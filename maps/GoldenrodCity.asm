@@ -581,18 +581,18 @@ GoldenrodCity_MapEventHeader:
 
 .PersonEvents:
 	db 15
-	person_event SPRITE_POKEFAN_M, 22, 11, $7, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x1989e3, EVENT_GOLDENROD_CITY_CIVILIANS
-	person_event SPRITE_YOUNGSTER, 21, 34, $2, 1, 1, -1, -1, 0, 0, 0, YoungsterScript_0x1989e6, EVENT_GOLDENROD_CITY_CIVILIANS
-	person_event SPRITE_COOLTRAINER_F, 20, 16, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x1989e9, EVENT_GOLDENROD_CITY_CIVILIANS
-	person_event SPRITE_COOLTRAINER_F, 30, 24, $2, 2, 1, -1, -1, 0, 0, 0, CooltrainerFScript_0x1989fd, EVENT_GOLDENROD_CITY_CIVILIANS
-	person_event SPRITE_YOUNGSTER, 21, 23, $2, 1, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x198a11, EVENT_GOLDENROD_CITY_CIVILIANS
-	person_event SPRITE_LASS, 14, 21, $5, 0, 2, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LassScript_0x198a14, EVENT_GOLDENROD_CITY_CIVILIANS
-	person_event SPRITE_GRAMPS, 31, 15, $5, 0, 1, -1, -1, 0, 0, 0, GrampsScript_0x198a17, EVENT_GOLDENROD_CITY_CIVILIANS
-	person_event SPRITE_ROCKET, 20, 8, $7, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x198a1a, EVENT_GOLDENROD_CITY_ROCKET_SCOUT
-	person_event SPRITE_ROCKET, 24, 32, $7, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x198a29, EVENT_GOLDENROD_CITY_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 19, 12, $6, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x198a2c, EVENT_GOLDENROD_CITY_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 27, 20, $9, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x198a2f, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 24, 33, $7, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x198a32, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 11, 33, $6, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x198a35, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 14, 35, $8, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x198a38, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_POKEFAN_M, 26, 16, $3, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, MoveTutor, EVENT_GOLDENROD_CITY_MOVE_TUTOR
+	person_event SPRITE_POKEFAN_M, 18 + 4, 7 + 4, $7, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x1989e3, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_YOUNGSTER, 17 + 4, 30 + 4, $2, 1, 1, -1, -1, 0, 0, 0, YoungsterScript_0x1989e6, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_COOLTRAINER_F, 16 + 4, 12 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x1989e9, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_COOLTRAINER_F, 26 + 4, 20 + 4, $2, 2, 1, -1, -1, 0, 0, 0, CooltrainerFScript_0x1989fd, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_YOUNGSTER, 17 + 4, 19 + 4, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x198a11, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_LASS, 10 + 4, 17 + 4, $5, 0, 2, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x198a14, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_GRAMPS, 27 + 4, 11 + 4, $5, 0, 1, -1, -1, 0, 0, 0, GrampsScript_0x198a17, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_ROCKET, 16 + 4, 4 + 4, $7, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x198a1a, EVENT_GOLDENROD_CITY_ROCKET_SCOUT
+	person_event SPRITE_ROCKET, 20 + 4, 28 + 4, $7, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x198a29, EVENT_GOLDENROD_CITY_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 15 + 4, 8 + 4, $6, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x198a2c, EVENT_GOLDENROD_CITY_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 23 + 4, 16 + 4, $9, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x198a2f, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 20 + 4, 29 + 4, $7, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x198a32, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 7 + 4, 29 + 4, $6, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x198a35, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 10 + 4, 31 + 4, $8, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x198a38, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_POKEFAN_M, 22 + 4, 12 + 4, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, MoveTutor, EVENT_GOLDENROD_CITY_MOVE_TUTOR

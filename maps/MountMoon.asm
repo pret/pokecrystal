@@ -182,4 +182,4 @@ MountMoon_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_SILVER, 7, 11, $8, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MT_MOON_RIVAL
+	person_event SPRITE_SILVER, 3 + 4, 7 + 4, $8, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MT_MOON_RIVAL

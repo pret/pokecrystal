@@ -78,8 +78,8 @@ PewterPokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x1a2ee7, -1
-	person_event SPRITE_TEACHER, 10, 12, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, TeacherScript_0x1a2eea, -1
-	person_event SPRITE_JIGGLYPUFF, 7, 5, $16, 0, 0, -1, -1, 0, 0, 0, JigglypuffScript_0x1a2eed, -1
-	person_event SPRITE_BUG_CATCHER, 7, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, BugCatcherScript_0x1a2ef7, -1
-	person_event SPRITE_POKEFAN_M, 6, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanMScript_0x1a2efa, -1
+	person_event SPRITE_NURSE, 1 + 4, 3 + 4, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x1a2ee7, -1
+	person_event SPRITE_TEACHER, 6 + 4, 8 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TeacherScript_0x1a2eea, -1
+	person_event SPRITE_JIGGLYPUFF, 3 + 4, 1 + 4, $16, 0, 0, -1, -1, 0, 0, 0, JigglypuffScript_0x1a2eed, -1
+	person_event SPRITE_BUG_CATCHER, 3 + 4, 2 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, BugCatcherScript_0x1a2ef7, -1
+	person_event SPRITE_POKEFAN_M, 2 + 4, 7 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, PokefanMScript_0x1a2efa, -1

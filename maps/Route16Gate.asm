@@ -80,4 +80,4 @@ Route16Gate_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_OFFICER, 6, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, OfficerScript_0x733ea, -1
+	person_event SPRITE_OFFICER, 2 + 4, 5 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, OfficerScript_0x733ea, -1

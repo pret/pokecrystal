@@ -669,12 +669,12 @@ WarehouseEntrance_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_SUPER_NERD, 35, 9, $8, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 3, TrainerSupernerdEric, -1
-	person_event SPRITE_SUPER_NERD, 13, 10, $7, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 2, TrainerSupernerdTeru, -1
-	person_event SPRITE_SUPER_NERD, 31, 7, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 2, TrainerPokemaniacIssac, -1
-	person_event SPRITE_SUPER_NERD, 10, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerPokemaniacDonald, -1
-	person_event SPRITE_POKE_BALL, 29, 11, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7c306, EVENT_WAREHOUSE_ENTRANCE_COIN_CASE
-	person_event SPRITE_GRAMPS, 15, 11, $8, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, GrampsScript_0x7c146, EVENT_WAREHOUSE_ENTRANCE_GRAMPS
-	person_event SPRITE_SUPER_NERD, 18, 11, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, OlderHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_OLDER_HAIRCUT_BROTHER
-	person_event SPRITE_SUPER_NERD, 19, 11, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, YoungerHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_YOUNGER_HAIRCUT_BROTHER
-	person_event SPRITE_GRANNY, 25, 11, $8, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, GrannyScript_0x7c132, EVENT_WAREHOUSE_ENTRANCE_GRANNY
+	person_event SPRITE_SUPER_NERD, 31 + 4, 5 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerSupernerdEric, -1
+	person_event SPRITE_SUPER_NERD, 9 + 4, 6 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerSupernerdTeru, -1
+	person_event SPRITE_SUPER_NERD, 27 + 4, 3 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPokemaniacIssac, -1
+	person_event SPRITE_SUPER_NERD, 6 + 4, 2 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPokemaniacDonald, -1
+	person_event SPRITE_POKE_BALL, 25 + 4, 7 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7c306, EVENT_WAREHOUSE_ENTRANCE_COIN_CASE
+	person_event SPRITE_GRAMPS, 11 + 4, 7 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, GrampsScript_0x7c146, EVENT_WAREHOUSE_ENTRANCE_GRAMPS
+	person_event SPRITE_SUPER_NERD, 14 + 4, 7 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, OlderHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_OLDER_HAIRCUT_BROTHER
+	person_event SPRITE_SUPER_NERD, 15 + 4, 7 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungerHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_YOUNGER_HAIRCUT_BROTHER
+	person_event SPRITE_GRANNY, 21 + 4, 7 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, GrannyScript_0x7c132, EVENT_WAREHOUSE_ENTRANCE_GRANNY

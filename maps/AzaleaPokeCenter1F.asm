@@ -90,7 +90,7 @@ AzaleaPokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x18db28, -1
-	person_event SPRITE_GENTLEMAN, 10, 13, $4, 1, 0, -1, -1, 0, 0, 0, GentlemanScript_0x18db2b, -1
-	person_event SPRITE_FISHING_GURU, 5, 10, $6, 0, 0, -1, -1, 0, 0, 0, FishingGuruScript_0x18db2e, -1
-	person_event SPRITE_POKEFAN_F, 8, 5, $2, 2, 1, -1, -1, 0, 0, 0, PokefanFScript_0x18db31, -1
+	person_event SPRITE_NURSE, 1 + 4, 3 + 4, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x18db28, -1
+	person_event SPRITE_GENTLEMAN, 6 + 4, 9 + 4, $4, 1, 0, -1, -1, 0, 0, 0, GentlemanScript_0x18db2b, -1
+	person_event SPRITE_FISHING_GURU, 1 + 4, 6 + 4, $6, 0, 0, -1, -1, 0, 0, 0, FishingGuruScript_0x18db2e, -1
+	person_event SPRITE_POKEFAN_F, 4 + 4, 1 + 4, $2, 2, 1, -1, -1, 0, 0, 0, PokefanFScript_0x18db31, -1

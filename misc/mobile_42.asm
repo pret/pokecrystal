@@ -132,7 +132,7 @@ Function1080b7: ; 1080b7
 	call Function1081ad
 	call Function1081ca
 	call Functione51
-	call Functione58
+	call LoadFontsBattleExtra
 	ld a, $1
 	ld [rVBK], a
 	ld hl, LZ_108da7
@@ -195,7 +195,7 @@ Function108157: ; 108157
 	call Function1081ad
 	call Function1081ca
 	call Functione51
-	call Functione58
+	call LoadFontsBattleExtra
 	call EnableLCD
 	xor a
 	ld [hSCX], a
@@ -327,7 +327,7 @@ Function10824b: ; 10824b
 	ld a, $90
 	ld [hWY], a
 	call Functione51
-	call Functione58
+	call LoadFontsBattleExtra
 	callba Function106462
 	callba Function106464
 	scf

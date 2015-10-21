@@ -295,11 +295,11 @@ SaffronCity_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_LASS, 18, 11, $5, 0, 2, -1, -1, 8 + PAL_OW_RED, 0, 0, LassScript_0x19932a, -1
-	person_event SPRITE_POKEFAN_M, 34, 23, $5, 0, 2, -1, -1, 8 + PAL_OW_BROWN, 0, 0, PokefanMScript_0x19933e, -1
-	person_event SPRITE_COOLTRAINER_M, 11, 36, $5, 0, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, CooltrainerMScript_0x199352, -1
-	person_event SPRITE_COOLTRAINER_F, 28, 24, $5, 0, 2, -1, -1, 8 + PAL_OW_RED, 0, 0, CooltrainerFScript_0x199355, -1
-	person_event SPRITE_FISHER, 16, 31, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, FisherScript_0x199358, -1
-	person_event SPRITE_YOUNGSTER, 23, 19, $4, 1, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, YoungsterScript_0x19936c, -1
-	person_event SPRITE_YOUNGSTER, 26, 39, $2, 1, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x19936f, -1
-	person_event SPRITE_LASS, 12, 23, $3, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LassScript_0x199372, -1
+	person_event SPRITE_LASS, 14 + 4, 7 + 4, $5, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, LassScript_0x19932a, -1
+	person_event SPRITE_POKEFAN_M, 30 + 4, 19 + 4, $5, 0, 2, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, PokefanMScript_0x19933e, -1
+	person_event SPRITE_COOLTRAINER_M, 7 + 4, 32 + 4, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerMScript_0x199352, -1
+	person_event SPRITE_COOLTRAINER_F, 24 + 4, 20 + 4, $5, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerFScript_0x199355, -1
+	person_event SPRITE_FISHER, 12 + 4, 27 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FisherScript_0x199358, -1
+	person_event SPRITE_YOUNGSTER, 19 + 4, 15 + 4, $4, 1, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, YoungsterScript_0x19936c, -1
+	person_event SPRITE_YOUNGSTER, 22 + 4, 35 + 4, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x19936f, -1
+	person_event SPRITE_LASS, 8 + 4, 19 + 4, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x199372, -1

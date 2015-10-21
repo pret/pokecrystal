@@ -60,4 +60,4 @@ BattleTowerElevator_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_RECEPTIONIST, 6, 5, $9, 0, 0, -1, -1, 0, 0, 0, MovementData_0x9f58f, -1
+	person_event SPRITE_RECEPTIONIST, 2 + 4, 1 + 4, $9, 0, 0, -1, -1, 0, 0, 0, MovementData_0x9f58f, -1

@@ -117,8 +117,8 @@ Functione51:: ; e51
 	ret
 ; e58
 
-Functione58:: ; e58
-	callba Functionfb4be
+LoadFontsBattleExtra:: ; e58
+	callba _LoadFontsBattleExtra
 	ret
 ; e5f
 

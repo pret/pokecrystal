@@ -221,5 +221,5 @@ OlivineLighthouse2F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_SAILOR, 7, 13, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerSailorHuey1, -1
-	person_event SPRITE_GENTLEMAN, 12, 21, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerGentlemanAlfred, -1
+	person_event SPRITE_SAILOR, 3 + 4, 9 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSailorHuey1, -1
+	person_event SPRITE_GENTLEMAN, 8 + 4, 17 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerGentlemanAlfred, -1

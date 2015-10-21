@@ -57,6 +57,6 @@ PewterMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 7, 5, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x1a2dcb, -1
-	person_event SPRITE_YOUNGSTER, 6, 13, $5, 0, 2, -1, -1, 0, 0, 0, YoungsterScript_0x1a2dd2, -1
-	person_event SPRITE_SUPER_NERD, 10, 10, $3, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SuperNerdScript_0x1a2dd5, -1
+	person_event SPRITE_CLERK, 3 + 4, 1 + 4, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x1a2dcb, -1
+	person_event SPRITE_YOUNGSTER, 2 + 4, 9 + 4, $5, 0, 2, -1, -1, 0, 0, 0, YoungsterScript_0x1a2dd2, -1
+	person_event SPRITE_SUPER_NERD, 6 + 4, 6 + 4, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SuperNerdScript_0x1a2dd5, -1

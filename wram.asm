@@ -363,7 +363,7 @@ wPartyMonMenuIconAnims:: ds 96 ; c314
 wc374:: ds 48 ; c374
 wc3a4:: ds 8 ; c3b4
 wc3ac:: ds 8 ; c3bc
-wc3b4:: ds 1 ; c3
+wc3b4:: ds 1 ; c3b4
 wc3b5:: ds 1
 
 CurIcon:: ; c3b6
@@ -379,7 +379,8 @@ wc3bc:: ds 1
 wc3bd:: ds 1
 wc3be:: ds 1
 wc3bf:: ds 1
-wc3c0:: ds 12
+wc3c0:: ds 1
+wc3c1:: ds 11
 wc3cc:: ds 1
 wc3cd:: ds 31
 wc3ec:: ds 1

@@ -121,11 +121,11 @@ GoldenrodDeptStoreB1F_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_POKE_BALL, 19, 14, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d7c3, EVENT_GOLDENROD_DEPT_STORE_B1F_ETHER
-	person_event SPRITE_POKE_BALL, 6, 18, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d7c5, EVENT_GOLDENROD_DEPT_STORE_B1F_AMULET_COIN
-	person_event SPRITE_POKE_BALL, 7, 10, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d7c7, EVENT_GOLDENROD_DEPT_STORE_B1F_BURN_HEAL
-	person_event SPRITE_POKE_BALL, 19, 19, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d7c9, EVENT_GOLDENROD_DEPT_STORE_B1F_ULTRA_BALL
-	person_event SPRITE_BLACK_BELT, 14, 13, $4, 1, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, BlackBeltScript_0x7d7b0, -1
-	person_event SPRITE_BLACK_BELT, 12, 8, $3, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, BlackBeltScript_0x7d7b3, -1
-	person_event SPRITE_BLACK_BELT, 17, 10, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, BlackBeltScript_0x7d7b6, -1
-	person_event SPRITE_MACHOP, 11, 11, $16, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, MachopScript_0x7d7b9, -1
+	person_event SPRITE_POKE_BALL, 15 + 4, 10 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d7c3, EVENT_GOLDENROD_DEPT_STORE_B1F_ETHER
+	person_event SPRITE_POKE_BALL, 2 + 4, 14 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d7c5, EVENT_GOLDENROD_DEPT_STORE_B1F_AMULET_COIN
+	person_event SPRITE_POKE_BALL, 3 + 4, 6 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d7c7, EVENT_GOLDENROD_DEPT_STORE_B1F_BURN_HEAL
+	person_event SPRITE_POKE_BALL, 15 + 4, 15 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d7c9, EVENT_GOLDENROD_DEPT_STORE_B1F_ULTRA_BALL
+	person_event SPRITE_BLACK_BELT, 10 + 4, 9 + 4, $4, 1, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, BlackBeltScript_0x7d7b0, -1
+	person_event SPRITE_BLACK_BELT, 8 + 4, 4 + 4, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, BlackBeltScript_0x7d7b3, -1
+	person_event SPRITE_BLACK_BELT, 13 + 4, 6 + 4, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, BlackBeltScript_0x7d7b6, -1
+	person_event SPRITE_MACHOP, 7 + 4, 7 + 4, $16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, MachopScript_0x7d7b9, -1

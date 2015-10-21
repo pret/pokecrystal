@@ -349,13 +349,13 @@ Route41_MapEventHeader:
 
 .PersonEvents:
 	db 10
-	person_event SPRITE_OLIVINE_RIVAL, 10, 36, $a, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerSwimmermCharlie, -1
-	person_event SPRITE_OLIVINE_RIVAL, 12, 50, $a, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerSwimmermGeorge, -1
-	person_event SPRITE_OLIVINE_RIVAL, 30, 24, $1e, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerSwimmermBerke, -1
-	person_event SPRITE_OLIVINE_RIVAL, 34, 36, $1f, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerSwimmermKirk, -1
-	person_event SPRITE_OLIVINE_RIVAL, 50, 23, $1e, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerSwimmermMathew, -1
-	person_event SPRITE_SWIMMER_GIRL, 8, 21, $a, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerSwimmerfKaylee, -1
-	person_event SPRITE_SWIMMER_GIRL, 23, 27, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerSwimmerfSusie, -1
-	person_event SPRITE_SWIMMER_GIRL, 38, 31, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerSwimmerfDenise, -1
-	person_event SPRITE_SWIMMER_GIRL, 32, 48, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 4, TrainerSwimmerfKara, -1
-	person_event SPRITE_SWIMMER_GIRL, 54, 13, $a, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 2, TrainerSwimmerfWendy, -1
+	person_event SPRITE_OLIVINE_RIVAL, 6 + 4, 32 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermCharlie, -1
+	person_event SPRITE_OLIVINE_RIVAL, 8 + 4, 46 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermGeorge, -1
+	person_event SPRITE_OLIVINE_RIVAL, 26 + 4, 20 + 4, $1e, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermBerke, -1
+	person_event SPRITE_OLIVINE_RIVAL, 30 + 4, 32 + 4, $1f, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermKirk, -1
+	person_event SPRITE_OLIVINE_RIVAL, 46 + 4, 19 + 4, $1e, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermMathew, -1
+	person_event SPRITE_SWIMMER_GIRL, 4 + 4, 17 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfKaylee, -1
+	person_event SPRITE_SWIMMER_GIRL, 19 + 4, 23 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfSusie, -1
+	person_event SPRITE_SWIMMER_GIRL, 34 + 4, 27 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfDenise, -1
+	person_event SPRITE_SWIMMER_GIRL, 28 + 4, 44 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 4, TrainerSwimmerfKara, -1
+	person_event SPRITE_SWIMMER_GIRL, 50 + 4, 9 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerSwimmerfWendy, -1

@@ -430,11 +430,11 @@ Route29_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_COOLTRAINER_M, 16, 54, $3, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, CooltrainerMScript_0x1a0ff1, -1
-	person_event SPRITE_YOUNGSTER, 20, 31, $4, 1, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, YoungsterScript_0x1a1028, -1
-	person_event SPRITE_TEACHER, 15, 19, $5, 0, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, TeacherScript_0x1a102b, -1
-	person_event SPRITE_FRUIT_TREE, 6, 16, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a1089, -1
-	person_event SPRITE_FISHER, 7, 29, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FisherScript_0x1a102e, -1
-	person_event SPRITE_COOLTRAINER_M, 8, 17, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, CooltrainerMScript_0x1a1031, -1
-	person_event SPRITE_TEACHER, 16, 33, $3, 0, 0, -1, -1, 0, 0, 0, TuscanyScript, EVENT_ROUTE_29_TUSCANY_OF_TUESDAY
-	person_event SPRITE_POKE_BALL, 6, 52, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a108b, EVENT_ROUTE_29_POTION
+	person_event SPRITE_COOLTRAINER_M, 12 + 4, 50 + 4, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerMScript_0x1a0ff1, -1
+	person_event SPRITE_YOUNGSTER, 16 + 4, 27 + 4, $4, 1, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x1a1028, -1
+	person_event SPRITE_TEACHER, 11 + 4, 15 + 4, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TeacherScript_0x1a102b, -1
+	person_event SPRITE_FRUIT_TREE, 2 + 4, 12 + 4, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a1089, -1
+	person_event SPRITE_FISHER, 3 + 4, 25 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, FisherScript_0x1a102e, -1
+	person_event SPRITE_COOLTRAINER_M, 4 + 4, 13 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerMScript_0x1a1031, -1
+	person_event SPRITE_TEACHER, 12 + 4, 29 + 4, $3, 0, 0, -1, -1, 0, 0, 0, TuscanyScript, EVENT_ROUTE_29_TUSCANY_OF_TUESDAY
+	person_event SPRITE_POKE_BALL, 2 + 4, 48 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a108b, EVENT_ROUTE_29_POTION

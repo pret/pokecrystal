@@ -393,9 +393,9 @@ GoldenrodGym_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_WHITNEY, 7, 12, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, WhitneyScript_0x5400c, -1
-	person_event SPRITE_LASS, 17, 13, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 4, TrainerLassCarrie, -1
-	person_event SPRITE_LASS, 10, 13, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerLassBridget, -1
-	person_event SPRITE_BUENA, 6, 4, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerBeautyVictoria, -1
-	person_event SPRITE_BUENA, 9, 23, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerBeautySamantha, -1
-	person_event SPRITE_GYM_GUY, 19, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, GoldenrodGymGuyScript, -1
+	person_event SPRITE_WHITNEY, 3 + 4, 8 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, WhitneyScript_0x5400c, -1
+	person_event SPRITE_LASS, 13 + 4, 9 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerLassCarrie, -1
+	person_event SPRITE_LASS, 6 + 4, 9 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerLassBridget, -1
+	person_event SPRITE_BUENA, 2 + 4, 0 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBeautyVictoria, -1
+	person_event SPRITE_BUENA, 5 + 4, 19 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBeautySamantha, -1
+	person_event SPRITE_GYM_GUY, 15 + 4, 5 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GoldenrodGymGuyScript, -1

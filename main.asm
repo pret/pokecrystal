@@ -1138,7 +1138,7 @@ Function627b: ; 627b
 	bit 7, a
 	jr nz, .done_title
 	call TitleScreenScene
-	callba Function10eea7
+	callba SuicuneFrameIterator
 	call DelayFrame
 	and a
 	ret
@@ -9729,7 +9729,7 @@ Functione41c: ; e41c (3:641c)
 	call PrintText
 	pop af
 	ld [Options], a
-	call Functione58
+	call LoadFontsBattleExtra
 	ret
 ; e43a (3:643a)
 
@@ -13238,7 +13238,7 @@ GiveTakePartyMonItem: ; 12b60
 	call ClearPalettes
 	call Function12ba9
 	call ClearPalettes
-	call Functione58
+	call LoadFontsBattleExtra
 	call ExitMenu
 	ld a, 0
 	ret
@@ -13883,7 +13883,7 @@ Function12f5b: ; 12f5b
 	ld a, [hl]
 	push af
 	set 4, [hl]
-	call Functione58
+	call LoadFontsBattleExtra
 	call Function12f73
 	pop bc
 	ld a, b
@@ -14180,7 +14180,7 @@ Function13172: ; 13172
 	xor a
 	ld [hBGMapMode], a
 	callba Functionfb571
-	callba Function8e814
+	callba InefficientlyClear121BytesAtwc300
 	ld a, [CurPartyMon]
 	ld e, a
 	ld d, $0
@@ -27228,7 +27228,7 @@ LinkCommunications: ; 28000
 	call ClearScreen
 	call UpdateSprites
 	call Functione51
-	call Functione58
+	call LoadFontsBattleExtra
 	callba Function16d69a
 	call Function3200
 	hlcoord 3, 8
@@ -29103,7 +29103,7 @@ Function28b87: ; 28b87
 	ld c, $64
 	call DelayFrames
 	call ClearTileMap
-	call Functione58
+	call LoadFontsBattleExtra
 	ld b, $8
 	call GetSGBLayout
 	ld a, [$ffcb]
@@ -29391,7 +29391,7 @@ Function28fdb: ; 28fdb
 	call ClearSprites
 	call ClearTileMap
 	call DisableLCD
-	call Functione58
+	call LoadFontsBattleExtra
 	callab Function8cf53
 	ld a, [hCGB]
 	and a
@@ -45537,7 +45537,7 @@ Function4e881: ; 4e881
 	call ClearSprites
 	call DisableLCD
 	call Functione51
-	call Functione58
+	call LoadFontsBattleExtra
 	ld hl, VBGMap0
 	ld bc, VBGMap1 - VBGMap0
 	ld a, " "
@@ -45570,7 +45570,7 @@ Function4e8c2: ; 4e8c2
 	call ClearSprites
 	call DisableLCD
 	call Functione51
-	call Functione58
+	call LoadFontsBattleExtra
 	ld hl, VBGMap0
 	ld bc, VBGMap1 - VBGMap0
 	ld a, " "
@@ -45945,9 +45945,9 @@ Function5003f: ; 5003f
 ; 5004f
 
 Function5004f: ; 5004f
-	call Functione58
-	callab Function8ad1
-	callab Function8e814
+	call LoadFontsBattleExtra
+	callab Function8ad1 ; engine/color.asm
+	callab InefficientlyClear121BytesAtwc300
 	ret
 ; 5005f
 
@@ -53514,7 +53514,7 @@ endr
 ; 86650
 
 Function86650: ; 86650
-	call Functione58
+	call LoadFontsBattleExtra
 	xor a
 	ld [wJumptableEntryIndexBuffer], a
 .asm_86657
@@ -58048,20 +58048,20 @@ INCBIN "gfx/unknown/08e7f4.2bpp"
 GFX_8e804: ; 8e804
 INCBIN "gfx/unknown/08e804.2bpp"
 
-Function8e814: ; 8e814
+InefficientlyClear121BytesAtwc300: ; 8e814
 	push hl
 	push de
 	push bc
 	push af
 	ld hl, wc300
-	ld bc, $00c1
-.asm_8e81e
+	ld bc, wc3c1 - wc300
+.loop
 	ld [hl], $0
 	inc hl
 	dec bc
 	ld a, c
 	or b
-	jr nz, .asm_8e81e
+	jr nz, .loop
 	pop af
 	pop bc
 	pop de
@@ -58934,7 +58934,7 @@ LoadCallerScript: ; 9020d (24:420d)
 ; 90233 (24:4233)
 
 WrongNumber: ; 90233
-	db PHONE, PHONE_NONE
+	db PHONE, PHONE_00
 	dba .script
 .script:
 	writetext .text
@@ -59282,17 +59282,17 @@ phone: MACRO
 	dba \7 ; script 2
 ENDM
 
-	phone PHONE, PHONE_NONE, N_A,                        0, UnusedPhoneScript,   0, UnusedPhoneScript
-	phone PHONE, PHONE_MOM, KRISS_HOUSE_1F,              7, MomPhoneScript,      0, UnusedPhoneScript
-	phone PHONE, PHONE_OAK, OAKS_LAB,                    0, UnusedPhoneScript,   0, UnusedPhoneScript
-	phone PHONE, PHONE_BILL, N_A,                        7, BillPhoneScript1,    0, BillPhoneScript2
-	phone PHONE, PHONE_ELM, ELMS_LAB,                    7, ElmPhoneScript1,     0, ElmPhoneScript2
+	phone PHONE, PHONE_00, N_A,                        0, UnusedPhoneScript,   0, UnusedPhoneScript
+	phone PHONE, MOM_PHONE, KRISS_HOUSE_1F,              7, MomPhoneScript,      0, UnusedPhoneScript
+	phone PHONE, OAK_PHONE, OAKS_LAB,                    0, UnusedPhoneScript,   0, UnusedPhoneScript
+	phone PHONE, BILL_PHONE, N_A,                        7, BillPhoneScript1,    0, BillPhoneScript2
+	phone PHONE, ELM_PHONE, ELMS_LAB,                    7, ElmPhoneScript1,     0, ElmPhoneScript2
 	phone SCHOOLBOY, JACK1, NATIONAL_PARK,               7, JackPhoneScript1,    7, JackPhoneScript2
 	phone POKEFANF, BEVERLY1, NATIONAL_PARK,             7, BeverlyPhoneScript1, 7, BeverlyPhoneScript2
 	phone SAILOR, HUEY1, OLIVINE_LIGHTHOUSE_2F,          7, HueyPhoneScript1,    7, HueyPhoneScript2
-	phone PHONE, PHONE_NONE, N_A,                        0, UnusedPhoneScript,   0, UnusedPhoneScript
-	phone PHONE, PHONE_NONE, N_A,                        0, UnusedPhoneScript,   0, UnusedPhoneScript
-	phone PHONE, PHONE_NONE, N_A,                        0, UnusedPhoneScript,   0, UnusedPhoneScript
+	phone PHONE, PHONE_00, N_A,                        0, UnusedPhoneScript,   0, UnusedPhoneScript
+	phone PHONE, PHONE_00, N_A,                        0, UnusedPhoneScript,   0, UnusedPhoneScript
+	phone PHONE, PHONE_00, N_A,                        0, UnusedPhoneScript,   0, UnusedPhoneScript
 	phone COOLTRAINERM, GAVEN3, ROUTE_26,                7, GavenPhoneScript1,   7, GavenPhoneScript2
 	phone COOLTRAINERF, BETH1, ROUTE_26,                 7, BethPhoneScript1,    7, BethPhoneScript2
 	phone BIRD_KEEPER, JOSE2, ROUTE_27,                  7, JosePhoneScript1,    7, JosePhoneScript2
@@ -59307,7 +59307,7 @@ ENDM
 	phone JUGGLER, IRWIN1, ROUTE_35,                     7, IrwinPhoneScript1,   7, IrwinPhoneScript2
 	phone BUG_CATCHER, ARNIE1, ROUTE_35,                 7, ArniePhoneScript1,   7, ArniePhoneScript2
 	phone SCHOOLBOY, ALAN1, ROUTE_36,                    7, AlanPhoneScript1,    7, AlanPhoneScript2
-	phone PHONE, PHONE_NONE, N_A,                        0, UnusedPhoneScript,   0, UnusedPhoneScript
+	phone PHONE, PHONE_00, N_A,                        0, UnusedPhoneScript,   0, UnusedPhoneScript
 	phone LASS, DANA1, ROUTE_38,                         7, DanaPhoneScript1,    7, DanaPhoneScript2
 	phone SCHOOLBOY, CHAD1, ROUTE_38,                    7, ChadPhoneScript1,    7, ChadPhoneScript2
 	phone POKEFANM, DEREK1, ROUTE_39,                    7, DerekPhoneScript1,   7, DerekPhoneScript2
@@ -59319,7 +59319,7 @@ ENDM
 	phone BLACKBELT_T, KENJI3, ROUTE_45,                 7, KenjiPhoneScript1,   7, KenjiPhoneScript2
 	phone HIKER, PARRY1, ROUTE_45,                       7, ParryPhoneScript1,   7, ParryPhoneScript2
 	phone PICNICKER, ERIN1, ROUTE_46,                    7, ErinPhoneScript1,    7, ErinPhoneScript2
-	phone PHONE, PHONE_BUENA, GOLDENROD_DEPT_STORE_ROOF, 7, BuenaPhoneScript1,   7, BuenaPhoneScript2
+	phone PHONE, BUENA_PHONE, GOLDENROD_DEPT_STORE_ROOF, 7, BuenaPhoneScript1,   7, BuenaPhoneScript2
 ; 90627
 
 SpecialPhoneCallList: ; 90627
@@ -60025,7 +60025,7 @@ UnknownText_0x90ab7: ; 0x90ab7
 
 Function90abc: ; 90abc
 	hlcoord 1, 14
-	lb bc, 3, 12
+	lb bc, 3, SCREEN_WIDTH - 2
 	call ClearBox
 	ld hl, UnknownText_0x90acc
 	call PlaceWholeStringInBoxAtOnce
@@ -67091,7 +67091,7 @@ DisplayCaughtContestMonStats: ; cc000
 	call WhiteBGMap
 	call ClearTileMap
 	call ClearSprites
-	call Functione58
+	call LoadFontsBattleExtra
 
 	ld hl, Options
 	ld a, [hl]
@@ -72858,7 +72858,7 @@ Functione33e8: ; e33e8 (38:73e8)
 	xor a
 	call ByteFill
 	call Functione51
-	call Functione58
+	call LoadFontsBattleExtra
 	ld hl, PCMailGFX
 	ld de, VTiles2 tile $5c
 	ld bc, $40
@@ -73135,7 +73135,7 @@ Functione36f9: ; e36f9 (38:76f9)
 	callba Function116c1
 	call ClearTileMap
 	call Functione51
-	call Functione58
+	call LoadFontsBattleExtra
 	ld a, [MenuSelection]
 	dec a
 	call Functione3626
@@ -76470,7 +76470,7 @@ Functionfb4b0:: ; fb4b0
 	ret
 ; fb4be
 
-Functionfb4be:: ; fb4be
+_LoadFontsBattleExtra:: ; fb4be
 	ld de, FontBattleExtra
 	ld hl, VTiles2 tile $60
 	lb bc, BANK(FontBattleExtra), $19
@@ -76528,7 +76528,7 @@ Functionfb50d: ; fb50d
 ; fb53e
 
 Functionfb53e: ; fb53e
-	call Functionfb4be
+	call _LoadFontsBattleExtra
 	ld de, GFX_f8ac0
 	ld hl, VTiles2 tile $6c
 	lb bc, BANK(GFX_f8ac0), 4
@@ -78289,7 +78289,7 @@ Function104000:: ; 104000
 
 Function104006: ; 104006
 	decoord 0, 0, AttrMap
-	ld hl, w6_d000 + $400
+	ld hl, w6_d400
 	call Function104263
 	decoord 0, 0
 	ld hl, w6_d000
@@ -78300,7 +78300,7 @@ Function104006: ; 104006
 	call Function10419d
 	ld a, $1
 	ld [rVBK], a
-	ld hl, w6_d000 + $400
+	ld hl, w6_d400
 	call Function10419d
 	ret
 ; 10402d
@@ -78328,11 +78328,11 @@ Function104047: ; 104047
 
 Function10404d: ; 10404d
 	decoord 0, 0, AttrMap
-	ld hl, $d400
+	ld hl, w6_d400
 	call Function104263
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $d400
+	ld hl, w6_d400
 	call Function10419d
 	ret
 ; 104061
@@ -78344,7 +78344,7 @@ Function104061:: ; 104061
 
 Function104067: ; 104067
 	decoord 0, 0, AttrMap
-	ld hl, $d400
+	ld hl, w6_d400
 	call Function104263
 	decoord 0, 0
 	ld hl, w6_d000
@@ -78355,7 +78355,7 @@ Function104067: ; 104067
 	push af
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $d400
+	ld hl, w6_d400
 	call Function1041ad
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
@@ -78374,7 +78374,7 @@ Function104099: ; 104099
 
 Function1040a2: ; 1040a2
 	decoord 0, 0, AttrMap
-	ld hl, $d400
+	ld hl, w6_d400
 	call Function104263
 	decoord 0, 0
 	ld hl, w6_d000
@@ -78385,7 +78385,7 @@ Function1040a2: ; 1040a2
 	push af
 	ld a, $1
 	ld [rVBK], a
-	ld hl, $d400
+	ld hl, w6_d400
 	call Function1041c1
 	ld a, $0
 	ld [rVBK], a
@@ -78444,7 +78444,7 @@ Function104110:: ; 104110
 
 Function104116: ; 104116
 	decoord 0, 0, AttrMap
-	ld hl, $d400
+	ld hl, w6_d400
 	call Function104263
 	decoord 0, 0
 	ld hl, w6_d000
@@ -78455,7 +78455,7 @@ Function104116: ; 104116
 	push af
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $d400
+	ld hl, w6_d400
 	call Function1041b7
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
@@ -78474,7 +78474,7 @@ Function104148: ; 104148 (41:4148)
 
 Function10414e: ; 10414e
 	decoord 0, 0, AttrMap
-	ld hl, $d400
+	ld hl, w6_d400
 	call Function104263
 	ld c, $ff
 	decoord 0, 0
@@ -78482,7 +78482,7 @@ Function10414e: ; 10414e
 	call Function104265
 	ld a, $1
 	ld [rVBK], a
-	ld hl, $d400
+	ld hl, w6_d400
 	call Function1041ad
 	ld a, $0
 	ld [rVBK], a
@@ -78576,25 +78576,25 @@ Function1041c1: ; 1041c1
 	ld a, $7f
 	sub c
 	ld d, a
-.asm_1041e4
+.loop1
 	ld a, [rLY]
 	cp d
-	jr nc, .asm_1041e4
-.asm_1041e9
+	jr nc, .loop1
+.loop2
 	ld a, [rSTAT]
 	and $3
-	jr z, .asm_1041e9
+	jr z, .loop2
 	ld a, b
 	ld [rHDMA5], a
 	ld a, [rLY]
 	inc c
 	ld hl, rLY
-.asm_1041f8
+.loop3
 	cp [hl]
-	jr z, .asm_1041f8
+	jr z, .loop3
 	ld a, [hl]
 	dec c
-	jr nz, .asm_1041f8
+	jr nz, .loop3
 	ld hl, rHDMA5
 	res 7, [hl]
 	ret
@@ -78605,54 +78605,57 @@ asm_104205:
 	jr asm_10420b
 
 
-Function104209: ; 104209
+Function104209:
+; LY magic
 	ld b, $7f
 asm_10420b:
 	ld a, h
 	ld [rHDMA1], a
 	ld a, l
-	and $f0
+	and $f0 ; high nybble
 	ld [rHDMA2], a
 	ld a, d
-	and $1f
+	and $1f ; lower 5 bits
 	ld [rHDMA3], a
 	ld a, e
-	and $f0
+	and $f0 ; high nybble
 	ld [rHDMA4], a
 	ld a, c
 	dec c
-	or $80
+	or $80 ; set 7, a
 	ld e, a
 	ld a, b
 	sub c
 	ld d, a
-.asm_104225
+.ly_loop
 	ld a, [rLY]
 	cp d
-	jr nc, .asm_104225
+	jr nc, .ly_loop
+
 	di
-.asm_10422b
+.rstat_loop_1
 	ld a, [rSTAT]
 	and $3
-	jr nz, .asm_10422b
-.asm_104231
+	jr nz, .rstat_loop_1
+.rstat_loop_2
 	ld a, [rSTAT]
 	and $3
-	jr z, .asm_104231
+	jr z, .rstat_loop_2
 	ld a, e
 	ld [rHDMA5], a
 	ld a, [rLY]
 	inc c
 	ld hl, rLY
-.asm_104240
+.final_ly_loop
 	cp [hl]
-	jr z, .asm_104240
+	jr z, .final_ly_loop
 	ld a, [hl]
 	dec c
-	jr nz, .asm_104240
+	jr nz, .final_ly_loop
 	ld hl, rHDMA5
 	res 7, [hl]
 	ei
+
 	ret
 ; 10424e
 
@@ -78677,60 +78680,79 @@ Function104263: ; 104263 (41:4263)
 	ld c, $0
 
 Function104265: ; 104265 (41:4265)
+; back up the value of c to hConnectionStripLength
 	ld a, [hConnectionStripLength]
 	push af
 	ld a, c
 	ld [hConnectionStripLength], a
-	ld c, $12
-.asm_10426d
-	ld b, $14
-.asm_10426f
+
+; for each row on the screen
+	ld c, SCREEN_HEIGHT
+.loop1
+; for each tile in the row
+	ld b, SCREEN_WIDTH
+.loop2
+; copy from de to hl
 	ld a, [de]
 	inc de
 	ld [hli], a
 	dec b
-	jr nz, .asm_10426f
+	jr nz, .loop2
+
+; load the original value of c into hl 12 times
 	ld a, [hConnectionStripLength]
-	ld b, $c
-.asm_104279
+	ld b, 12
+.loop3
 	ld [hli], a
 	dec b
-	jr nz, .asm_104279
+	jr nz, .loop3
+
 	dec c
-	jr nz, .asm_10426d
+	jr nz, .loop1
+
+; restore the original value of hConnectionStripLength
 	pop af
 	ld [hConnectionStripLength], a
 	ret
 
 
 Function104284:: ; 104284
+	; switch to WRAM bank 6
 	ld a, [rSVBK]
 	push af
 	ld a, $6
 	ld [rSVBK], a
+
 	push bc
 	push hl
-	ld a, b
-	ld l, c
+
+	; Copy c tiles of the 2bpp from b:de to w6_d000
+	ld a, b ; bank
+	ld l, c ; number of tiles
 	ld h, $0
 rept 4
-	add hl, hl
+	add hl, hl ; multiply by 16 (16 bytes of a 2bpp = 8 x 8 tile)
 endr
 	ld b, h
 	ld c, l
-	ld h, d
+	ld h, d ; address
 	ld l, e
 	ld de, w6_d000
 	call FarCopyBytes
+	
 	pop hl
 	pop bc
+
 	push bc
 	call DelayFrame
 	pop bc
+
 	ld d, h
 	ld e, l
 	ld hl, w6_d000
 	call Function104209
+
+	; restore the previous bank
 	pop af
 	ld [rSVBK], a
 	ret
@@ -82676,7 +82698,7 @@ Function1dc381: ; 1dc381
 	call ClearSprites
 	xor a
 	ld [hBGMapMode], a
-	call Functione58
+	call LoadFontsBattleExtra
 
 	ld de, MobileHPIcon
 	ld hl, VTiles2 tile $71
@@ -82776,7 +82798,7 @@ Function1dc47b: ; 1dc47b
 	call ClearSprites
 	xor a
 	ld [hBGMapMode], a
-	call Functione58
+	call LoadFontsBattleExtra
 	xor a
 	ld [MonType], a
 	callba Function5084a

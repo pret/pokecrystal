@@ -421,11 +421,11 @@ Route26_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_COOLTRAINER_M, 28, 18, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 2, TrainerCooltrainermJake, -1
-	person_event SPRITE_COOLTRAINER_M, 42, 13, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerCooltrainermGaven3, -1
-	person_event SPRITE_COOLTRAINER_F, 60, 14, $a, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerCooltrainerfJoyce, -1
-	person_event SPRITE_COOLTRAINER_F, 12, 9, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 4, TrainerCooltrainerfBeth1, -1
-	person_event SPRITE_YOUNGSTER, 83, 17, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 2, TrainerPsychicRichard, -1
-	person_event SPRITE_FISHER, 96, 14, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerFisherScott, -1
-	person_event SPRITE_FRUIT_TREE, 58, 18, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a4ec2, -1
-	person_event SPRITE_POKE_BALL, 19, 13, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a4ec4, EVENT_ROUTE_26_MAX_ELIXER
+	person_event SPRITE_COOLTRAINER_M, 24 + 4, 14 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerCooltrainermJake, -1
+	person_event SPRITE_COOLTRAINER_M, 38 + 4, 9 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainermGaven3, -1
+	person_event SPRITE_COOLTRAINER_F, 56 + 4, 10 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainerfJoyce, -1
+	person_event SPRITE_COOLTRAINER_F, 8 + 4, 5 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerCooltrainerfBeth1, -1
+	person_event SPRITE_YOUNGSTER, 79 + 4, 13 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPsychicRichard, -1
+	person_event SPRITE_FISHER, 92 + 4, 10 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerFisherScott, -1
+	person_event SPRITE_FRUIT_TREE, 54 + 4, 14 + 4, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a4ec2, -1
+	person_event SPRITE_POKE_BALL, 15 + 4, 9 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a4ec4, EVENT_ROUTE_26_MAX_ELIXER

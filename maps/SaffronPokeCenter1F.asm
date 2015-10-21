@@ -123,7 +123,7 @@ SaffronPokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x18a47d, -1
-	person_event SPRITE_TEACHER, 6, 11, $2, 1, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, TeacherScript_0x18a480, -1
-	person_event SPRITE_FISHER, 10, 12, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, FisherScript_0x18a48c, -1
-	person_event SPRITE_YOUNGSTER, 8, 5, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, YoungsterScript_0x18a4a0, -1
+	person_event SPRITE_NURSE, 1 + 4, 3 + 4, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x18a47d, -1
+	person_event SPRITE_TEACHER, 2 + 4, 7 + 4, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TeacherScript_0x18a480, -1
+	person_event SPRITE_FISHER, 6 + 4, 8 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, FisherScript_0x18a48c, -1
+	person_event SPRITE_YOUNGSTER, 4 + 4, 1 + 4, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, YoungsterScript_0x18a4a0, -1

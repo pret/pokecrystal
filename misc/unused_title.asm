@@ -17,17 +17,17 @@ endr
 
 	ld hl, UnusedTitleBG_GFX
 	ld de, VTiles2
-	ld bc, $800
+	ld bc, VBGMap0 - VTiles2
 	call CopyBytes
 
 	ld hl, UnusedTitleBG_GFX + $800
 	ld de, VTiles1
-	ld bc, $800
+	ld bc, VTiles2 - VTiles1
 	call CopyBytes
 
 	ld hl, UnusedTitleFG_GFX
 	ld de, VTiles0
-	ld bc, $800
+	ld bc, VTiles1 - VTiles0
 	call CopyBytes
 
 	ld hl, UnusedTitleBG_Tilemap
@@ -551,7 +551,7 @@ Function10ed51: ; 10ed51
 	ld b, a
 	and 1
 	jr nz, .done
-	call Function10eea7
+	call SuicuneFrameIterator
 	call DelayFrame
 	jr .loop
 .done

@@ -30,4 +30,4 @@ PokeSeersHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_GRANNY, 7, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SeerScript, -1
+	person_event SPRITE_GRANNY, 3 + 4, 2 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SeerScript, -1

@@ -109,4 +109,4 @@ Route27SandstormHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_GRANNY, 8, 6, $6, 0, 0, -1, -1, 0, 0, 0, SandstormHouseWoman, -1
+	person_event SPRITE_GRANNY, 4 + 4, 2 + 4, $6, 0, 0, -1, -1, 0, 0, 0, SandstormHouseWoman, -1

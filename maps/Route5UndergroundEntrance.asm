@@ -34,4 +34,4 @@ Route5UndergroundEntrance_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_TEACHER, 6, 6, $2, 1, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, TeacherScript_0x18b555, -1
+	person_event SPRITE_TEACHER, 2 + 4, 2 + 4, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TeacherScript_0x18b555, -1

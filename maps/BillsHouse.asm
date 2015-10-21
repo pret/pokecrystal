@@ -367,4 +367,4 @@ BillsHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_GRAMPS, 7, 6, $7, 2, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, GrampsScript_0x189538, -1
+	person_event SPRITE_GRAMPS, 3 + 4, 2 + 4, $7, 2, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GrampsScript_0x189538, -1

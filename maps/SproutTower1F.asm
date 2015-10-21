@@ -116,9 +116,9 @@ SproutTower1F_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_SAGE, 8, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, SageScript_0x1844fe, -1
-	person_event SPRITE_SAGE, 11, 10, $2, 1, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, SageScript_0x184501, -1
-	person_event SPRITE_GRANNY, 16, 15, $8, 0, 0, -1, -1, 0, 0, 0, GrannyScript_0x184504, -1
-	person_event SPRITE_TEACHER, 13, 13, $7, 0, 0, -1, -1, 0, 0, 0, TeacherScript_0x184507, -1
-	person_event SPRITE_SAGE, 9, 7, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 4, TrainerSageChow, -1
-	person_event SPRITE_POKE_BALL, 11, 20, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18451e, EVENT_SPROUT_TOWER1F_PARLYZ_HEAL
+	person_event SPRITE_SAGE, 4 + 4, 7 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SageScript_0x1844fe, -1
+	person_event SPRITE_SAGE, 7 + 4, 6 + 4, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SageScript_0x184501, -1
+	person_event SPRITE_GRANNY, 12 + 4, 11 + 4, $8, 0, 0, -1, -1, 0, 0, 0, GrannyScript_0x184504, -1
+	person_event SPRITE_TEACHER, 9 + 4, 9 + 4, $7, 0, 0, -1, -1, 0, 0, 0, TeacherScript_0x184507, -1
+	person_event SPRITE_SAGE, 5 + 4, 3 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerSageChow, -1
+	person_event SPRITE_POKE_BALL, 7 + 4, 16 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18451e, EVENT_SPROUT_TOWER1F_PARLYZ_HEAL

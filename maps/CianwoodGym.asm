@@ -313,12 +313,12 @@ CianwoodGym_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_CHUCK, 5, 8, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, ChuckScript_0x9d60f, -1
-	person_event SPRITE_BLACK_BELT, 16, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 3, TrainerBlackbeltYoshi, -1
-	person_event SPRITE_BLACK_BELT, 16, 11, $8, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 3, TrainerBlackbeltLao, -1
-	person_event SPRITE_BLACK_BELT, 13, 7, $9, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 2, TrainerBlackbeltNob, -1
-	person_event SPRITE_BLACK_BELT, 9, 9, $8, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 1, TrainerBlackbeltLung, -1
-	person_event SPRITE_BOULDER, 5, 9, $19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1
-	person_event SPRITE_BOULDER, 11, 7, $19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1
-	person_event SPRITE_BOULDER, 11, 8, $19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1
-	person_event SPRITE_BOULDER, 11, 9, $19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1
+	person_event SPRITE_CHUCK, 1 + 4, 4 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, ChuckScript_0x9d60f, -1
+	person_event SPRITE_BLACK_BELT, 12 + 4, 2 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBlackbeltYoshi, -1
+	person_event SPRITE_BLACK_BELT, 12 + 4, 7 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBlackbeltLao, -1
+	person_event SPRITE_BLACK_BELT, 9 + 4, 3 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerBlackbeltNob, -1
+	person_event SPRITE_BLACK_BELT, 5 + 4, 5 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerBlackbeltLung, -1
+	person_event SPRITE_BOULDER, 1 + 4, 5 + 4, $19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1
+	person_event SPRITE_BOULDER, 7 + 4, 3 + 4, $19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1
+	person_event SPRITE_BOULDER, 7 + 4, 4 + 4, $19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1
+	person_event SPRITE_BOULDER, 7 + 4, 5 + 4, $19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1

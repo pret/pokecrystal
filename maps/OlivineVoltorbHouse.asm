@@ -35,4 +35,4 @@ OlivineVoltorbHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_FISHING_GURU, 7, 6, $3, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, Tim, -1
+	person_event SPRITE_FISHING_GURU, 3 + 4, 2 + 4, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, Tim, -1

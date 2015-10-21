@@ -1,6 +1,11 @@
 ; trainer groups
 	enum_start
 	trainerclass PHONE ; 0
+	const MOM_PHONE
+	const OAK_PHONE
+	const BILL_PHONE
+	const ELM_PHONE
+	const BUENA_PHONE
 	
 	trainerclass FALKNER ; 1
 

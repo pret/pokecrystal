@@ -38,6 +38,6 @@ RockTunnelB1F_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_POKE_BALL, 29, 11, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x74409, EVENT_ROCK_TUNNEL_B1F_IRON
-	person_event SPRITE_POKE_BALL, 21, 10, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7440b, EVENT_ROCK_TUNNEL_B1F_PP_UP
-	person_event SPRITE_POKE_BALL, 6, 19, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7440d, EVENT_ROCK_TUNNEL_B1F_REVIVE
+	person_event SPRITE_POKE_BALL, 25 + 4, 7 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x74409, EVENT_ROCK_TUNNEL_B1F_IRON
+	person_event SPRITE_POKE_BALL, 17 + 4, 6 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7440b, EVENT_ROCK_TUNNEL_B1F_PP_UP
+	person_event SPRITE_POKE_BALL, 2 + 4, 15 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7440d, EVENT_ROCK_TUNNEL_B1F_REVIVE

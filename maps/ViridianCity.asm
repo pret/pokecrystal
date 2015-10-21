@@ -237,7 +237,7 @@ ViridianCity_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_GRAMPS, 9, 22, $2, 2, 2, -1, -1, 0, 0, 0, GrampsScript_0x1a9a4c, -1
-	person_event SPRITE_GRAMPS, 12, 34, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, GrampsScript_0x1a9a61, -1
-	person_event SPRITE_FISHER, 27, 10, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, FisherScript_0x1a9a75, -1
-	person_event SPRITE_YOUNGSTER, 25, 21, $2, 3, 3, -1, -1, 8 + PAL_OW_GREEN, 0, 0, YoungsterScript_0x1a9a90, -1
+	person_event SPRITE_GRAMPS, 5 + 4, 18 + 4, $2, 2, 2, -1, -1, 0, 0, 0, GrampsScript_0x1a9a4c, -1
+	person_event SPRITE_GRAMPS, 8 + 4, 30 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GrampsScript_0x1a9a61, -1
+	person_event SPRITE_FISHER, 23 + 4, 6 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, FisherScript_0x1a9a75, -1
+	person_event SPRITE_YOUNGSTER, 21 + 4, 17 + 4, $2, 3, 3, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x1a9a90, -1

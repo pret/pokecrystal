@@ -174,8 +174,8 @@ PewterCity_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_COOLTRAINER_F, 15, 23, $2, 2, 2, -1, -1, 8 + PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x18c009, -1
-	person_event SPRITE_BUG_CATCHER, 33, 18, $2, 2, 2, -1, -1, 8 + PAL_OW_RED, 0, 0, BugCatcherScript_0x18c00c, -1
-	person_event SPRITE_GRAMPS, 21, 33, $5, 0, 2, -1, -1, 8 + PAL_OW_BLUE, 0, 0, GrampsScript_0x18c00f, -1
-	person_event SPRITE_FRUIT_TREE, 7, 36, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x18c03e, -1
-	person_event SPRITE_FRUIT_TREE, 7, 34, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x18c040, -1
+	person_event SPRITE_COOLTRAINER_F, 11 + 4, 19 + 4, $2, 2, 2, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x18c009, -1
+	person_event SPRITE_BUG_CATCHER, 29 + 4, 14 + 4, $2, 2, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, BugCatcherScript_0x18c00c, -1
+	person_event SPRITE_GRAMPS, 17 + 4, 29 + 4, $5, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GrampsScript_0x18c00f, -1
+	person_event SPRITE_FRUIT_TREE, 3 + 4, 32 + 4, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x18c03e, -1
+	person_event SPRITE_FRUIT_TREE, 3 + 4, 30 + 4, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x18c040, -1

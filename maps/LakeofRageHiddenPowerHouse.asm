@@ -83,4 +83,4 @@ LakeofRageHiddenPowerHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_FISHER, 7, 6, $3, 0, 0, -1, -1, 0, 0, 0, HiddenPowerGuy, -1
+	person_event SPRITE_FISHER, 3 + 4, 2 + 4, $3, 0, 0, -1, -1, 0, 0, 0, HiddenPowerGuy, -1

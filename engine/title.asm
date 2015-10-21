@@ -220,7 +220,7 @@ _TitleScreen: ; 10ed67
 	ld [hBGMapMode], a
 	
 	xor a
-	ld [UnknPals1 + 2], a
+	ld [Unkn1Pals + 2], a
 	
 ; Play starting sound effect
 	call SFXChannelsOff
@@ -231,7 +231,7 @@ _TitleScreen: ; 10ed67
 ; 10eea7
 
 SuicuneFrameIterator: ; 10eea7
-	ld hl, UnknPals1 + 2
+	ld hl, Unkn1Pals + 2
 	ld a, [hl]
 	ld c, a
 	inc [hl]
@@ -342,7 +342,7 @@ InitializeBackground: ; 10ef06
 .InitColumn: ; 10ef1c
 	ld c, $6
 	ld b, $40
-.loop
+.loop2
 	ld a, d
 	ld [hli], a
 	ld a, b
@@ -357,7 +357,7 @@ endr
 	ld a, $80
 	ld [hli], a
 	dec c
-	jr nz, .loop
+	jr nz, .loop2
 	ret
 ; 10ef32
 

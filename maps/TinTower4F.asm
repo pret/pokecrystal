@@ -38,6 +38,6 @@ TinTower4F_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_POKE_BALL, 14, 18, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x185a58, EVENT_TIN_TOWER_4F_ULTRA_BALL
-	person_event SPRITE_POKE_BALL, 18, 21, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x185a5a, EVENT_TIN_TOWER_4F_PP_UP
-	person_event SPRITE_POKE_BALL, 16, 6, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x185a5c, EVENT_TIN_TOWER_4F_ESCAPE_ROPE
+	person_event SPRITE_POKE_BALL, 10 + 4, 14 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x185a58, EVENT_TIN_TOWER_4F_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 14 + 4, 17 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x185a5a, EVENT_TIN_TOWER_4F_PP_UP
+	person_event SPRITE_POKE_BALL, 12 + 4, 2 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x185a5c, EVENT_TIN_TOWER_4F_ESCAPE_ROPE

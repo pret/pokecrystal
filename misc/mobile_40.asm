@@ -6408,7 +6408,7 @@ Function102b12: ; 102b12
 	ld c, $64
 	call DelayFrames
 	call Function102d9a
-	call Functione58
+	call LoadFontsBattleExtra
 	ld a, [wcd2f]
 	and a
 	jr nz, .asm_102b2b

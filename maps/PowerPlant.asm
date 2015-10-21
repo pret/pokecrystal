@@ -401,10 +401,10 @@ PowerPlant_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_OFFICER, 18, 8, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, OfficerScript_0x188df5, -1
-	person_event SPRITE_GYM_GUY, 13, 6, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, GymGuyScript_0x188e15, -1
-	person_event SPRITE_GYM_GUY, 15, 10, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, GymGuyScript_0x188e29, -1
-	person_event SPRITE_OFFICER, 7, 13, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, OfficerScript_0x188e3d, -1
-	person_event SPRITE_GYM_GUY, 6, 11, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, GymGuyScript_0x188e51, -1
-	person_event SPRITE_FISHER, 14, 18, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PowerPlantManager, -1
-	person_event SPRITE_GYM_GUY, 9, 9, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, GymGuyScript_0x188ecb, -1
+	person_event SPRITE_OFFICER, 14 + 4, 4 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OfficerScript_0x188df5, -1
+	person_event SPRITE_GYM_GUY, 9 + 4, 2 + 4, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GymGuyScript_0x188e15, -1
+	person_event SPRITE_GYM_GUY, 11 + 4, 6 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GymGuyScript_0x188e29, -1
+	person_event SPRITE_OFFICER, 3 + 4, 9 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OfficerScript_0x188e3d, -1
+	person_event SPRITE_GYM_GUY, 2 + 4, 7 + 4, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GymGuyScript_0x188e51, -1
+	person_event SPRITE_FISHER, 10 + 4, 14 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, PowerPlantManager, -1
+	person_event SPRITE_GYM_GUY, 5 + 4, 5 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GymGuyScript_0x188ecb, -1

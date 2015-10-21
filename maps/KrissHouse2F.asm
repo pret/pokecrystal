@@ -132,7 +132,7 @@ KrissHouse2F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_CONSOLE, 6, 8, $1, 0, 0, -1, -1, 0, 0, 0, GameConsole, EVENT_KRISS_HOUSE_2F_CONSOLE
-	person_event SPRITE_DOLL_1, 8, 8, $1, 0, 0, -1, -1, 0, 0, 0, Doll1, EVENT_KRISS_HOUSE_2F_DOLL_1
-	person_event SPRITE_DOLL_2, 8, 9, $1, 0, 0, -1, -1, 0, 0, 0, Doll2, EVENT_KRISS_HOUSE_2F_DOLL_2
-	person_event SPRITE_BIG_DOLL, 5, 4, $21, 0, 0, -1, -1, 0, 0, 0, BigDoll, EVENT_KRISS_HOUSE_2F_BIG_DOLL
+	person_event SPRITE_CONSOLE, 2 + 4, 4 + 4, $1, 0, 0, -1, -1, 0, 0, 0, GameConsole, EVENT_KRISS_HOUSE_2F_CONSOLE
+	person_event SPRITE_DOLL_1, 4 + 4, 4 + 4, $1, 0, 0, -1, -1, 0, 0, 0, Doll1, EVENT_KRISS_HOUSE_2F_DOLL_1
+	person_event SPRITE_DOLL_2, 4 + 4, 5 + 4, $1, 0, 0, -1, -1, 0, 0, 0, Doll2, EVENT_KRISS_HOUSE_2F_DOLL_2
+	person_event SPRITE_BIG_DOLL, 1 + 4, 0 + 4, $21, 0, 0, -1, -1, 0, 0, 0, BigDoll, EVENT_KRISS_HOUSE_2F_BIG_DOLL

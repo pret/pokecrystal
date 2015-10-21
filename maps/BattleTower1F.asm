@@ -810,8 +810,8 @@ BattleTower1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_RECEPTIONIST, 10, 11, $6, 0, 0, -1, -1, 0, 0, 0, ReceptionistScript_0x9e3e2, -1
-	person_event SPRITE_YOUNGSTER, 13, 18, $9, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, YoungsterScript_0x9e55d, -1
-	person_event SPRITE_COOLTRAINER_F, 13, 8, $5, 0, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, CooltrainerFScript_0x9e568, -1
-	person_event SPRITE_BUG_CATCHER, 7, 5, $2, 1, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, BugCatcherScript_0x9e56b, -1
-	person_event SPRITE_GRANNY, 7, 18, $4, 1, 0, -1, -1, 0, 0, 0, GrannyScript_0x9e56e, -1
+	person_event SPRITE_RECEPTIONIST, 6 + 4, 7 + 4, $6, 0, 0, -1, -1, 0, 0, 0, ReceptionistScript_0x9e3e2, -1
+	person_event SPRITE_YOUNGSTER, 9 + 4, 14 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, YoungsterScript_0x9e55d, -1
+	person_event SPRITE_COOLTRAINER_F, 9 + 4, 4 + 4, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerFScript_0x9e568, -1
+	person_event SPRITE_BUG_CATCHER, 3 + 4, 1 + 4, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, BugCatcherScript_0x9e56b, -1
+	person_event SPRITE_GRANNY, 3 + 4, 14 + 4, $4, 1, 0, -1, -1, 0, 0, 0, GrannyScript_0x9e56e, -1

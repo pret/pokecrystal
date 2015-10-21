@@ -284,5 +284,5 @@ RuinsofAlphKabutoChamber_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_RECEPTIONIST, 9, 9, $6, 0, 0, -1, -1, 0, 0, 0, ReceptionistScript_0x58769, EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
-	person_event SPRITE_SCIENTIST, 5, 7, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ScientistScript_0x587a8, -1
+	person_event SPRITE_RECEPTIONIST, 5 + 4, 5 + 4, $6, 0, 0, -1, -1, 0, 0, 0, ReceptionistScript_0x58769, EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
+	person_event SPRITE_SCIENTIST, 1 + 4, 3 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ScientistScript_0x587a8, -1

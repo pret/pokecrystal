@@ -175,5 +175,5 @@ DayCare_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_GRAMPS, 7, 6, $9, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x62f8f, EVENT_DAYCARE_MAN_IN_DAYCARE
-	person_event SPRITE_GRANNY, 7, 9, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, GrannyScript_0x62fc3, -1
+	person_event SPRITE_GRAMPS, 3 + 4, 2 + 4, $9, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x62f8f, EVENT_DAYCARE_MAN_IN_DAYCARE
+	person_event SPRITE_GRANNY, 3 + 4, 5 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GrannyScript_0x62fc3, -1

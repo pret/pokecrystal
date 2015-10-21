@@ -88,5 +88,5 @@ Route10South_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKEFAN_M, 7, 21, $8, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 3, TrainerHikerJim, -1
-	person_event SPRITE_POKEFAN_M, 14, 12, $a, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerPokefanmRobert, -1
+	person_event SPRITE_POKEFAN_M, 3 + 4, 17 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerHikerJim, -1
+	person_event SPRITE_POKEFAN_M, 10 + 4, 8 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerPokefanmRobert, -1

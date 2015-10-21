@@ -107,6 +107,6 @@ Route32PokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x69b52, -1
-	person_event SPRITE_FISHING_GURU, 8, 5, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, FishingGuruScript_0x69b55, -1
-	person_event SPRITE_COOLTRAINER_F, 6, 10, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, CooltrainerFScript_0x69b80, -1
+	person_event SPRITE_NURSE, 1 + 4, 3 + 4, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x69b52, -1
+	person_event SPRITE_FISHING_GURU, 4 + 4, 1 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FishingGuruScript_0x69b55, -1
+	person_event SPRITE_COOLTRAINER_F, 2 + 4, 6 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerFScript_0x69b80, -1

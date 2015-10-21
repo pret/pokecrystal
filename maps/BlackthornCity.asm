@@ -333,12 +333,12 @@ BlackthornCity_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_SUPER_NERD, 16, 22, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SuperNerdScript_0x1a46e8, EVENT_BLACKTHORN_CITY_SUPER_NERD_BLOCKS_GYM
-	person_event SPRITE_SUPER_NERD, 16, 23, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SuperNerdScript_0x1a46e8, EVENT_BLACKTHORN_CITY_SUPER_NERD_DOES_NOT_BLOCK_GYM
-	person_event SPRITE_GRAMPS, 6, 24, $6, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x1a4708, EVENT_BLACKTHORN_CITY_GRAMPS_BLOCKS_DRAGONS_DEN
-	person_event SPRITE_GRAMPS, 6, 25, $8, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x1a470b, EVENT_BLACKTHORN_CITY_GRAMPS_NOT_BLOCKING_DRAGONS_DEN
-	person_event SPRITE_BLACK_BELT, 35, 28, $5, 0, 1, -1, -1, 8 + PAL_OW_BLUE, 0, 0, BlackBeltScript_0x1a470e, -1
-	person_event SPRITE_COOLTRAINER_F, 29, 13, $5, 0, 2, -1, -1, 8 + PAL_OW_RED, 0, 0, CooltrainerFScript_0x1a4722, -1
-	person_event SPRITE_YOUNGSTER, 19, 17, $5, 0, 1, -1, -1, 0, 0, 0, YoungsterScript_0x1a4725, -1
-	person_event SPRITE_YOUNGSTER, 24, 26, $6, 0, 0, -1, -1, 0, 0, 0, SantosScript, EVENT_BLACKTHORN_CITY_SANTOS_OF_SATURDAY
-	person_event SPRITE_COOLTRAINER_F, 23, 39, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x1a4728, -1
+	person_event SPRITE_SUPER_NERD, 12 + 4, 18 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SuperNerdScript_0x1a46e8, EVENT_BLACKTHORN_CITY_SUPER_NERD_BLOCKS_GYM
+	person_event SPRITE_SUPER_NERD, 12 + 4, 19 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SuperNerdScript_0x1a46e8, EVENT_BLACKTHORN_CITY_SUPER_NERD_DOES_NOT_BLOCK_GYM
+	person_event SPRITE_GRAMPS, 2 + 4, 20 + 4, $6, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x1a4708, EVENT_BLACKTHORN_CITY_GRAMPS_BLOCKS_DRAGONS_DEN
+	person_event SPRITE_GRAMPS, 2 + 4, 21 + 4, $8, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x1a470b, EVENT_BLACKTHORN_CITY_GRAMPS_NOT_BLOCKING_DRAGONS_DEN
+	person_event SPRITE_BLACK_BELT, 31 + 4, 24 + 4, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, BlackBeltScript_0x1a470e, -1
+	person_event SPRITE_COOLTRAINER_F, 25 + 4, 9 + 4, $5, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerFScript_0x1a4722, -1
+	person_event SPRITE_YOUNGSTER, 15 + 4, 13 + 4, $5, 0, 1, -1, -1, 0, 0, 0, YoungsterScript_0x1a4725, -1
+	person_event SPRITE_YOUNGSTER, 20 + 4, 22 + 4, $6, 0, 0, -1, -1, 0, 0, 0, SantosScript, EVENT_BLACKTHORN_CITY_SANTOS_OF_SATURDAY
+	person_event SPRITE_COOLTRAINER_F, 19 + 4, 35 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x1a4728, -1

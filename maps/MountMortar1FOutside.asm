@@ -40,5 +40,5 @@ MountMortar1FOutside_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKE_BALL, 19, 17, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7ddf6, EVENT_MOUNT_MORTAR_1F_OUTSIDE_ETHER
-	person_event SPRITE_POKE_BALL, 22, 35, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7ddf8, EVENT_MOUNT_MORTAR_1F_OUTSIDE_REVIVE
+	person_event SPRITE_POKE_BALL, 15 + 4, 13 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7ddf6, EVENT_MOUNT_MORTAR_1F_OUTSIDE_ETHER
+	person_event SPRITE_POKE_BALL, 18 + 4, 31 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7ddf8, EVENT_MOUNT_MORTAR_1F_OUTSIDE_REVIVE

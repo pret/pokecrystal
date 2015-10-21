@@ -317,6 +317,6 @@ VermilionPort_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_SAILOR, 21, 11, $7, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x74dc4, EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
-	person_event SPRITE_SAILOR, 15, 10, $9, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x74e97, -1
-	person_event SPRITE_SUPER_NERD, 15, 15, $5, 0, 2, -1, -1, 0, 0, 0, SuperNerdScript_0x74ee6, -1
+	person_event SPRITE_SAILOR, 17 + 4, 7 + 4, $7, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x74dc4, EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
+	person_event SPRITE_SAILOR, 11 + 4, 6 + 4, $9, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x74e97, -1
+	person_event SPRITE_SUPER_NERD, 11 + 4, 11 + 4, $5, 0, 2, -1, -1, 0, 0, 0, SuperNerdScript_0x74ee6, -1

@@ -14311,7 +14311,7 @@ UnknownText_0x11ac1f: ; 0x11ac1f
 Function11ac3e: ; 11ac3e
 	call SpeechTextBox
 	call FadeToMenu
-	callab Function8e814
+	callab InefficientlyClear121BytesAtwc300
 	call Function11ac51
 	call Function2b3c
 	ret
