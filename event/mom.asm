@@ -4,9 +4,9 @@ Special_BankOfMom: ; 16218
 	ld a, $1
 	ld [hInMenu], a
 	xor a
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 .asm_16223
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .asm_1622f
 	call Function16233
@@ -19,7 +19,7 @@ Special_BankOfMom: ; 16218
 ; 16233
 
 Function16233: ; 16233
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
 	ld hl, .jumptable
@@ -57,7 +57,7 @@ endr
 	ld a, $2
 
 .done_0
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 ; 1626a
 
@@ -79,7 +79,7 @@ endr
 	ld hl, UnknownText_0x16653
 	call PrintText
 	ld a, $8
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 ; 16290
 
@@ -96,7 +96,7 @@ endr
 	ld a, $7
 
 .done_2
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 ; 162a8
 
@@ -133,7 +133,7 @@ endr
 	ld a, $6
 
 .done_3
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 ; 162e0
 
@@ -201,7 +201,7 @@ endr
 	ld a, $7
 
 .done_4
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 ; 16373
 
@@ -269,7 +269,7 @@ endr
 	ld a, $7
 
 .done_5
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 ; 16406
 
@@ -283,14 +283,14 @@ endr
 	ld hl, UnknownText_0x16685
 	call PrintText
 	ld a, $8
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 
 .StopSavingMoney
 	ld a, $80
 	ld [wBankOfMomMode], a
 	ld a, $7
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 ; 1642d
 
@@ -299,7 +299,7 @@ endr
 	call PrintText
 
 .JustDoWhatYouCan: ; 16433
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
 ; 16439

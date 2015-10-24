@@ -529,7 +529,7 @@ Script_interpretmenu: ; 0x96f41
 	ld a, [ScriptBank]
 	ld hl, InterpretMenu
 	rst FarCall
-	ld a, [wPocketPointerLocationBuffer]
+	ld a, [wPocketCursorBuffer]
 	jr nc, .ok
 	xor a
 .ok
@@ -1585,7 +1585,7 @@ Script_reloadmap: ; 0x97491
 
 	xor a
 	ld [wd459], a
-	ld a, ($f << 4) + MAPSETUP_03
+	ld a, MAPSETUP_RELOADMAP
 	ld [hMapEntryMethod], a
 	ld a, $1
 	call LoadMapStatus
@@ -2840,7 +2840,7 @@ Script_warp: ; 0x97a1d
 	ld [YCoord], a
 	ld a, -1
 	ld [wd001], a
-	ld a, ($f << 4) + MAPSETUP_01
+	ld a, MAPSETUP_WARP
 	ld [hMapEntryMethod], a
 	ld a, 1
 	call LoadMapStatus
@@ -2852,7 +2852,7 @@ Script_warp: ; 0x97a1d
 	call GetScriptByte
 	ld a, -1
 	ld [wd001], a
-	ld a, ($f << 4) + MAPSETUP_11
+	ld a, MAPSETUP_BADWARP
 	ld [hMapEntryMethod], a
 	ld a, 1
 	call LoadMapStatus

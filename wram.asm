@@ -1186,7 +1186,7 @@ CurSpecies:: ; cf60
 
 wNamedObjectTypeBuffer:: ds 1
 	ds 1
-wJumptableEntryIndexBuffer:: ds 1
+wJumptableIndex:: ds 1
 wNrOfBeatenBattleTowerTrainers::
 wMomBankDigitCursorPosition::
 wIntroSceneFrameCounter::
@@ -1235,7 +1235,7 @@ wMenuBorderRightCoord:: ds 1
 
 wcf86:: ds 1
 wcf87:: ds 1
-wPocketPointerLocationBuffer:: ds 2
+wPocketCursorBuffer:: ds 2
 wcf8a:: ds 7 ; menu data 2 bank?
 wcf91:: ds 1
 
@@ -1500,10 +1500,10 @@ CurMoveNum:: ; d0d5
 wd0d6:: ds 1
 wd0d7:: ds 1
 wd0d8:: ds 1
-wItemsPocketPointerLocation:: ds 1
-wKeyItemsPocketPointerLocation:: ds 1
-wBallsPocketPointerLocation:: ds 1
-wTMHMPocketPointerLocation:: ds 1
+wItemsPocketCursor:: ds 1
+wKeyItemsPocketCursor:: ds 1
+wBallsPocketCursor:: ds 1
+wTMHMPocketCursor:: ds 1
 wd0dd:: ds 2
 wd0df:: ds 1
 wd0e0:: ds 1
@@ -2365,11 +2365,11 @@ wCurrentMapTriggerPointer:: ; dbf7
 	ds 2
 
 wCurrentCaller:: ds 2
-wdbfb:: ds 1
-wdbfc:: ds 1
+wCurrMapWarpCount:: ds 1
+wCurrMapWarpHeaderPointer:: ds 1
 wdbfd:: ds 1
 wCurrentMapXYTriggerCount:: ds 1
-wdbff:: ds 1
+wCurrentMapXYTriggerHeaderPointer:: ds 1
 wdc00:: ds 1
 wCurrentMapSignpostCount:: ds 1
 wdc02:: ds 1
@@ -2377,11 +2377,11 @@ wdc03:: ds 1
 wdc04:: ds 1
 wdc05:: ds 1
 wdc06:: ds 1
-wdc07:: ds 1
-wdc08:: ds 1
+wCurrMapTriggerCount:: ds 1
+wCurrMapTriggerHeaderPointer:: ds 1
 wdc09:: ds 1
-wdc0a:: ds 1
-wdc0b:: ds 2
+wCurrMapCallbackCount:: ds 1
+wCurrMapCallbackHeaderPointer:: ds 2
 wdc0d:: ds 1
 wdc0e:: ds 1
 

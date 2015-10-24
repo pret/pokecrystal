@@ -9,7 +9,7 @@ _TitleScreen: ; 10ed67
 	ld [hBGMapMode], a
 	
 ; Reset timing variables
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	ld [hli], a ; cf63 ; Scene?
 	ld [hli], a ; cf64
 	ld [hli], a ; cf65 ; Timer lo

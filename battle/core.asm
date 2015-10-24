@@ -8696,11 +8696,11 @@ Function3f6d0: ; 3f6d0
 	ld [wd267], a
 	ld [wd232], a
 	ld [wd0d8], a
-	ld [wKeyItemsPocketPointerLocation], a
-	ld [wItemsPocketPointerLocation], a
+	ld [wKeyItemsPocketCursor], a
+	ld [wItemsPocketCursor], a
 	ld [wd0d2], a
 	ld [CurMoveNum], a
-	ld [wBallsPocketPointerLocation], a
+	ld [wBallsPocketCursor], a
 	ld [wd0d6], a
 	ld [wd0e4], a
 	ld [wd0e0], a

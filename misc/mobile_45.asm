@@ -703,7 +703,7 @@ endr
 	ld a, d
 	or e
 	jr z, .asm_114559
-	ld hl, wdc07
+	ld hl, wCurrMapTriggerCount
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1537,7 +1537,7 @@ Function1149cc: ; 1149cc
 	ld [hl], d
 	dec hl
 	ld [hl], e
-	ld hl, wdc07
+	ld hl, wCurrMapTriggerCount
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -3860,7 +3860,7 @@ Function11560a: ; 11560a
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-	ld a, [wdc0a]
+	ld a, [wCurrMapCallbackCount]
 	cp b
 	jp c, .asm_1156b1
 	jr nz, .asm_115631
@@ -3874,7 +3874,7 @@ Function11560a: ; 11560a
 	jr z, .asm_1156a9
 	ld a, [wdc09]
 	ld l, a
-	ld a, [wdc0a]
+	ld a, [wCurrMapCallbackCount]
 	ld h, a
 	ld a, c
 	cpl
@@ -3887,7 +3887,7 @@ Function11560a: ; 11560a
 	ld a, l
 	ld [wdc09], a
 	ld a, h
-	ld [wdc0a], a
+	ld [wCurrMapCallbackCount], a
 .asm_11564d
 	ld a, $3
 	cp b
@@ -3929,13 +3929,13 @@ Function11560a: ; 11560a
 	ld a, [wCurrentMapSignpostCount]
 	ld [$ff8c], a
 	ld [$4000], a
-	ld hl, wdc07
+	ld hl, wCurrMapTriggerCount
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	ld hl, wdc24
 	call Function115d6a
-	ld hl, wdc07
+	ld hl, wCurrMapTriggerCount
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -4017,7 +4017,7 @@ Function1156cc: ; 1156cc
 	jp Function11425c
 
 .asm_115716
-	ld hl, wdc0a
+	ld hl, wCurrMapCallbackCount
 	ld a, [hli]
 	cpl
 	ld e, a
@@ -4262,9 +4262,9 @@ Function11581e: ; 11581e
 	ld b, [hl]
 	inc hl
 	push hl
-	ld a, [wdc0a]
+	ld a, [wCurrMapCallbackCount]
 	ld l, a
-	ld a, [wdc0b]
+	ld a, [wCurrMapCallbackHeaderPointer]
 	ld h, a
 	cp b
 	jr c, .asm_1158bb
@@ -4284,12 +4284,12 @@ Function11581e: ; 11581e
 	inc bc
 	add hl, bc
 	ld a, l
-	ld [wdc0a], a
+	ld [wCurrMapCallbackCount], a
 	ld a, h
-	ld [wdc0b], a
+	ld [wCurrMapCallbackHeaderPointer], a
 	pop bc
 	pop hl
-	ld hl, wdc07
+	ld hl, wCurrMapTriggerCount
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
@@ -4299,7 +4299,7 @@ Function11581e: ; 11581e
 	ld d, [hl]
 	ld hl, PartyMon5Speed
 	call Function115d6a
-	ld hl, wdc07
+	ld hl, wCurrMapTriggerCount
 	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
@@ -4615,7 +4615,7 @@ Function1159fb: ; 1159fb
 	jp Function11425c
 
 .asm_115a45
-	ld hl, wdc0a
+	ld hl, wCurrMapCallbackCount
 	ld a, [hli]
 	cpl
 	ld e, a
@@ -4826,9 +4826,9 @@ endr
 	ld b, [hl]
 	inc hl
 	push hl
-	ld a, [wdc0a]
+	ld a, [wCurrMapCallbackCount]
 	ld l, a
-	ld a, [wdc0b]
+	ld a, [wCurrMapCallbackHeaderPointer]
 	ld h, a
 	cp b
 	jr c, .asm_115b36
@@ -4848,12 +4848,12 @@ endr
 	inc bc
 	add hl, bc
 	ld a, l
-	ld [wdc0a], a
+	ld [wCurrMapCallbackCount], a
 	ld a, h
-	ld [wdc0b], a
+	ld [wCurrMapCallbackHeaderPointer], a
 	pop bc
 	pop hl
-	ld hl, wdc07
+	ld hl, wCurrMapTriggerCount
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
@@ -4863,7 +4863,7 @@ endr
 	ld d, [hl]
 	ld hl, wdc26
 	call Function115d6a
-	ld hl, wdc07
+	ld hl, wCurrMapTriggerCount
 	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
@@ -8168,7 +8168,7 @@ Function117a8d: ; 0x117a8d
 
 Function117a94: ; 0x117a94
 	xor a
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld [wcf64], a
 	ld [wcf65], a
 	ld [wcf66], a
@@ -8190,7 +8190,7 @@ Function117ab4: ; 0x117ab4
 
 Function117acd: ; 0x117acd
 	call JoyTextDelay
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .asm_117ae2 ; 0x117ad5 $b
 	call Function117ae9
@@ -8202,7 +8202,7 @@ Function117acd: ; 0x117acd
 	ret
 
 Function117ae9: ; 0x117ae9
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, $0
 	ld hl, Pointers117af8
@@ -8306,7 +8306,7 @@ Function117b4f:
 	call ExitMenu
 	callba Function104061
 	ld a, $80
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 
 Function117bb6:
@@ -8325,11 +8325,11 @@ Function117bb6:
 	ld [wc303], a
 	callba Function17f555
 	ld a, $80
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 .asm_117be1
 	ld a, $80
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 .asm_117be7
 	ld a, [rSVBK]
@@ -8411,7 +8411,7 @@ Function117c4a:
 	pop af
 	ld [rSVBK], a
 	ld a, $80
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 
 Function117c89:
@@ -8464,7 +8464,7 @@ MobileStadiumSuccessText: ; 0x117cd8
 	db "@"
 
 Function117cdd: ; 0x117cdd
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
@@ -11817,7 +11817,7 @@ Function119800: ; 119800
 	ld [wc702], a
 	ld a, [wcd81]
 	ld [wc74e], a
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	push af
 	ld a, [wcf64]
 	push af
@@ -11840,7 +11840,7 @@ Function119800: ; 119800
 	pop af
 	ld [wcf64], a
 	pop af
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	callba Function115dc3
 	jp Function119e2e
 ; 11984e
@@ -11853,7 +11853,7 @@ Function11984e: ; 11984e
 	and a
 	jr nz, .asm_1198a8
 	callba Function170000
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	push af
 	ld a, [wcf64]
 	push af
@@ -11876,7 +11876,7 @@ Function11984e: ; 11984e
 	pop af
 	ld [wcf64], a
 	pop af
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	callba Function115dc3
 	jp Function119e2e
 
@@ -11887,7 +11887,7 @@ Function11984e: ; 11984e
 
 .asm_1198a8
 	callba Function17005a
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	push af
 	ld a, [wcf64]
 	push af
@@ -11910,7 +11910,7 @@ Function11984e: ; 11984e
 	pop af
 	ld [wcf64], a
 	pop af
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	callba Function115dc3
 	jp Function119e2e
 ; 1198ee
@@ -14343,7 +14343,7 @@ Function11ac51: ; 11ac51
 	call DelayFrame
 .asm_11ac82
 	call JoyTextDelay
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .asm_11aca8
 	call Function11b314
@@ -14444,7 +14444,7 @@ Function11ad1b: ; 11ad1b
 	xor a
 	call ByteFill
 	xor a
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld [wcf64], a
 	ld [wcf65], a
 	ld [wcf66], a
@@ -14456,7 +14456,7 @@ Function11ad1b: ; 11ad1b
 ; 11ad6e
 
 Function11ad6e: ; 11ad6e
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	ld hl, Jumptable_11ad78
 	call Function11b239
 	jp [hl]
@@ -14475,13 +14475,13 @@ Jumptable_11ad78: ; 11ad78
 ; 11ad8a
 
 Function11ad8a: ; 11ad8a
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 ; 11ad8f
 
 Function11ad8f: ; 11ad8f
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
 ; 11ad95
@@ -14522,7 +14522,7 @@ Function11adc4:
 	ret z
 	call PlayClickSFX
 	xor a
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	jr .asm_11ae2e
 
 .asm_11ade6
@@ -14643,7 +14643,7 @@ Function11ae98:
 	ld a, $7f
 	ld [hl], a
 	ld a, $1
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	jr .asm_11aef7
 
 .asm_11aec1
@@ -14734,7 +14734,7 @@ Function11af4e:
 	ld a, $7f
 	ld [hl], a
 	ld a, $1
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	jr .asm_11afaa
 
 .asm_11af77
@@ -14765,7 +14765,7 @@ Function11af4e:
 	cp $2
 	jr z, .asm_11af6a
 	ld a, $6
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	xor a
 	ld [ScriptVar], a
 
@@ -15057,7 +15057,7 @@ Function11b0ff: ; 11b0ff
 	jr .asm_11b148
 
 .asm_11b141
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	ld a, $7
 	ld [hl], a
 	ret
@@ -15090,7 +15090,7 @@ Function11b0ff: ; 11b0ff
 .asm_11b16c
 	ld [wcd30], a
 	ld a, $4
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 ; 11b175
 
@@ -15411,7 +15411,7 @@ Function11b314: ; 11b314
 
 Function11b31b: ; 11b31b
 	ld hl, Unknown_11b350
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	cp $2
 	jr c, .asm_11b349
 	ld a, [wc7d1]
@@ -15419,7 +15419,7 @@ Function11b31b: ; 11b31b
 	jr nc, .asm_11b344
 	cp $3
 	jr c, .asm_11b349
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	cp $2
 	jr z, .asm_11b349
 	cp $3
@@ -15553,7 +15553,7 @@ Function11b3d9: ; 11b3d9
 	ld [hli], a
 	cp $41
 	jr c, .asm_11b42b
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	cp $4
 	jr z, .asm_11b43b
 	cp $5
@@ -15592,7 +15592,7 @@ Function11b444: ; 11b444
 
 Function11b44b: ; 11b44b
 	xor a
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld [wcf64], a
 	ld [wcf65], a
 	ld [wcf66], a
@@ -15604,14 +15604,14 @@ Function11b45c: ; 11b45c
 .asm_11b45c
 	call Function11b46a
 	call DelayFrame
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	cp $4
 	jr nz, .asm_11b45c
 	ret
 ; 11b46a
 
 Function11b46a: ; 11b46a
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_11b479
@@ -15813,7 +15813,7 @@ Function11b570: ; 11b570
 
 .asm_11b57f
 	ld a, $4
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 ; 11b585
 
@@ -15913,14 +15913,14 @@ Function11b64c: ; 11b64c
 .asm_11b64c
 	call Function11b65a
 	call DelayFrame
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	cp $1
 	jr nz, .asm_11b64c
 	ret
 ; 11b65a
 
 Function11b65a: ; 11b65a
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_11b669
@@ -16677,7 +16677,7 @@ Function11c08f: ; 11c08f
 
 
 Function11c0c6: ; 11c0c6
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	ld l, a
 	ld a, [wcf64]
 	ld h, a
@@ -16687,7 +16687,7 @@ Function11c0c6: ; 11c0c6
 	ld [hli], a
 	push de
 	xor a
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld a, $12
 	ld [wcf64], a
 	ld a, $6
@@ -16720,9 +16720,9 @@ Function11c0c6: ; 11c0c6
 .asm_11c102
 	cp e
 	jr nc, .asm_11c11c
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	inc a
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld [hl], $4e
 	rra
 	jr c, .asm_11c113
@@ -16763,7 +16763,7 @@ Function11c0c6: ; 11c0c6
 	call PlaceWholeStringInBoxAtOnce
 	pop hl
 	ld a, l
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld a, h
 	ld [wcf64], a
 	ret
@@ -16856,7 +16856,7 @@ Function11c1b9: ; 11c1b9
 
 Function11c1ca: ; 11c1ca
 	xor a
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld [wcf64], a
 	ld [wcf65], a
 	ld [wcf66], a
@@ -16938,7 +16938,7 @@ Function11c283: ; 11c283
 	call JoyTextDelay
 	ld a, [hJoyPressed]
 	ld [hJoypadPressed], a
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .asm_11c2a2
 	call Function11c2ac
@@ -16953,7 +16953,7 @@ Function11c283: ; 11c283
 ; 11c2ac
 
 Function11c2ac: ; 11c2ac
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_11c2bb
@@ -17219,7 +17219,7 @@ Function11c3ed: ; 11c3ed (47:43ed)
 .asm_11c472
 	call Function11c4a5
 .asm_11c475
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	call PlayClickSFX
 	ret
 .asm_11c47c
@@ -17383,7 +17383,7 @@ Function11c53d: ; 11c53d (47:453d)
 .asm_11c59f
 	ld hl, wcd24
 	set 1, [hl]
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	call PlayClickSFX
 	ret
 
@@ -17599,7 +17599,7 @@ Function11c675: ; 11c675 (47:4675)
 .asm_11c6fa
 	ld a, $15
 .asm_11c6fc
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld hl, wcd24
 	set 3, [hl]
 	call PlayClickSFX
@@ -18119,7 +18119,7 @@ Function11c9c3: ; 11c9c3 (47:49c3)
 	ld hl, wcd24
 	set 4, [hl]
 	ld a, $4
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	call PlayClickSFX
 	ret
 .asm_11c9f7
@@ -18271,7 +18271,7 @@ Function11cab3: ; 11cab3 (47:4ab3)
 	ld [wcd2a], a
 	ret
 .asm_11caf3
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
 .asm_11caf9
@@ -18280,7 +18280,7 @@ Function11cab3: ; 11cab3 (47:4ab3)
 	ld hl, wcd24
 	set 4, [hl]
 	ld a, $4
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld a, [wcd35]
 	cp $ff
 	ret nz
@@ -18389,7 +18389,7 @@ endr
 	ld d, a
 	hlcoord 1, 14
 	call PlaceString
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	inc [hl]
 	inc hl
 	ld a, $10
@@ -18404,7 +18404,7 @@ endr
 	ld hl, wcd24
 	set 4, [hl]
 	ld a, $4
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 .asm_11cbeb
 	ld a, [hl]
@@ -18490,7 +18490,7 @@ Function11cd04: ; 11cd04 (47:4d04)
 	and a
 	ret z
 	ld a, $4
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 ; 11cd10 (47:4d10)
 
@@ -18551,7 +18551,7 @@ Function11cd54: ; 11cd54 (47:4d54)
 .asm_11cd7d
 	ld a, $15
 .asm_11cd7f
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld hl, wcd24
 	set 5, [hl]
 	call PlayClickSFX
@@ -18692,7 +18692,7 @@ Function11ce2b: ; 11ce2b (47:4e2b)
 .asm_11ce96
 	ld a, $13
 .asm_11ce98
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld hl, wcd24
 	set 2, [hl]
 	call PlayClickSFX
@@ -18778,7 +18778,7 @@ String_11cf79: ; 11cf79
 ; 11cfb5
 
 Function11cfb5: ; 11cfb5 (47:4fb5)
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 ; 11cfba (47:4fba)
@@ -21327,7 +21327,7 @@ Function16c000: ; 16c000
 
 Function16c031: ; 16c031
 	xor a
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld [wcf64], a
 	ld [DefaultFlypoint], a
 	ld [wd003], a
@@ -22784,7 +22784,7 @@ Function17020c: ; 17020c
 
 Function170215: ; 170215
 	xor a
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	call Function17022c
 	ret
 ; 17021d
@@ -22795,7 +22795,7 @@ Function17021d: ; 17021d
 
 Function17021e: ; 17021e
 	xor a
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld [wcf64], a
 	ld [wcf65], a
 	ld [wcf66], a
@@ -22806,14 +22806,14 @@ Function17022c: ; 17022c
 .asm_17022c
 	call Jumpto_BattleTowerBattleFunction
 	call DelayFrame
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	cp $1
 	jr nz, .asm_17022c
 	ret
 ; 17023a
 
 Jumpto_BattleTowerBattleFunction: ; 17023a
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_BattleTowerBattleFunctions
@@ -22871,7 +22871,7 @@ RunBattleTowerBattle: ; 17024d
 	pop af
 	ld [Options], a
 	ld a, $1
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 
 
@@ -23229,7 +23229,7 @@ Function1704f1: ; 1704f1
 	call ClearScreen
 .asm_1704fa
 	call JoyTextDelay
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .asm_17050f
 	call Function170510
@@ -23241,7 +23241,7 @@ Function1704f1: ; 1704f1
 ; 170510
 
 Function170510: ; 170510
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_17051f
@@ -23332,12 +23332,12 @@ Function170577:
 	ret
 
 .asm_1705ac
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
 
 Function1705b2:
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 ; 1705b7

@@ -32,170 +32,170 @@ MapSetupScripts: ; 15377
 ; 1538f
 
 MapSetupScript4: ; 1538f
-	map_prolong_sprites
+	db map_prolong_sprites
 
 MapSetupScript12: ; 15390
-	map_fade_out_palettes
-	map_keep_roam
+	db map_fade_out_palettes
+	db map_keep_roam
 
 MapSetupScript1: ; 15392
-	map_lcd_off
-	map_sound_off
-	map_load_spawn
-	map_attributes
-	map_change_callback
-	map_spawn_coord
-	map_player_coord
-	map_anchor_screen
-	map_load_blocks
-	map_buffer_screen
-	map_load_graphics
-	map_time_of_day
-	map_load_objects
-	map_lcd_on
-	map_palettes
-	map_face_down
-	map_sprites
-	map_bike_music
-	map_max_volume
-	map_fade_in_palettes
-	map_animations_on
-	map_wildmons
-	map_end_setup_script
+	db map_lcd_off
+	db map_sound_off
+	db map_load_spawn
+	db map_attributes
+	db map_change_callback
+	db map_spawn_coord
+	db map_player_coord
+	db map_anchor_screen
+	db map_load_blocks
+	db map_buffer_screen
+	db map_load_graphics
+	db map_time_of_day
+	db map_load_objects
+	db map_lcd_on
+	db map_palettes
+	db map_face_down
+	db map_sprites
+	db map_bike_music
+	db map_max_volume
+	db map_fade_in_palettes
+	db map_animations_on
+	db map_wildmons
+	db map_end_setup_script
 
 MapSetupScript11: ; 153a9
-	map_load_spawn
-	map_attributes
-	map_change_callback
-	map_spawn_coord
-	map_player_coord
-	map_anchor_screen
-	map_load_blocks
-	map_buffer_screen
-	map_lcd_off
-	map_load_graphics
-	map_time_of_day
-	map_fade_out_music
-	map_lcd_on
-	map_load_objects
-	map_palettes
-	map_face_down
-	map_sprites
-	map_fade_music
-	map_fade_in_palettes
-	map_animations_on
-	map_wildmons
-	map_end_setup_script
+	db map_load_spawn
+	db map_attributes
+	db map_change_callback
+	db map_spawn_coord
+	db map_player_coord
+	db map_anchor_screen
+	db map_load_blocks
+	db map_buffer_screen
+	db map_lcd_off
+	db map_load_graphics
+	db map_time_of_day
+	db map_fade_out_music
+	db map_lcd_on
+	db map_load_objects
+	db map_palettes
+	db map_face_down
+	db map_sprites
+	db map_fade_music
+	db map_fade_in_palettes
+	db map_animations_on
+	db map_wildmons
+	db map_end_setup_script
 
 MapSetupScript7: ; 153bf
-	map_animations_off
-	map_load_connection
-	map_attributes
-	map_change_callback
-	map_player_coord
-	map_load_blocks
-	map_load_tileset_header
-	map_save_screen
-	map_load_objects
-	map_fade_music
-	map_palettes
-	map_stop_script
-	map_keep_palettes
-	map_wildmons
-	map_update_roam
-	map_animations_on
-	map_end_setup_script
+	db map_animations_off
+	db map_load_connection
+	db map_attributes
+	db map_change_callback
+	db map_player_coord
+	db map_load_blocks
+	db map_load_tileset_header
+	db map_save_screen
+	db map_load_objects
+	db map_fade_music
+	db map_palettes
+	db map_stop_script
+	db map_keep_palettes
+	db map_wildmons
+	db map_update_roam
+	db map_animations_on
+	db map_end_setup_script
 
 MapSetupScript6: ; 153d0
-	map_prolong_sprites
+	db map_prolong_sprites
 
 MapSetupScript5: ; 153d1
-	map_fade_out_palettes
+	db map_fade_out_palettes
 
 MapSetupScript9: ; 153d2
-	map_load_warp
-	map_attributes
-	map_warp_face
-	map_change_callback
-	map_player_coord
-	map_load_blocks
-	map_buffer_screen
-	map_lcd_off
-	map_load_graphics
-	map_time_of_day
-	map_fade_out_music
-	map_lcd_on
-	map_load_objects
-	map_palettes
-	map_sprites
-	map_fade_music
-	map_fade_in_palettes
-	map_animations_on
-	map_wildmons
-	map_update_roam
-	map_end_setup_script
+	db map_load_warp
+	db map_attributes
+	db map_warp_face
+	db map_change_callback
+	db map_player_coord
+	db map_load_blocks
+	db map_buffer_screen
+	db map_lcd_off
+	db map_load_graphics
+	db map_time_of_day
+	db map_fade_out_music
+	db map_lcd_on
+	db map_load_objects
+	db map_palettes
+	db map_sprites
+	db map_fade_music
+	db map_fade_in_palettes
+	db map_animations_on
+	db map_wildmons
+	db map_update_roam
+	db map_end_setup_script
 
 MapSetupScript3: ; 153e7
-	map_fade
-	map_clear_bg_palettes
-	map_lcd_off
-	map_sound_off
-	map_load_blocks
-	map_connection_blocks
-	map_load_graphics
-	map_time_of_day
-	map_lcd_on
-	map_palettes
-	map_sprites
-	map_music_force
-	map_fade_in_palettes
-	map_animations_on
-	map_wildmons
-	map_end_setup_script
+	db map_fade
+	db map_clear_bg_palettes
+	db map_lcd_off
+	db map_sound_off
+	db map_load_blocks
+	db map_connection_blocks
+	db map_load_graphics
+	db map_time_of_day
+	db map_lcd_on
+	db map_palettes
+	db map_sprites
+	db map_music_force
+	db map_fade_in_palettes
+	db map_animations_on
+	db map_wildmons
+	db map_end_setup_script
 
 MapSetupScript8: ; 153f7
-	map_fade
-	map_lcd_off
-	map_sound_off
-	map_change_callback
-	map_load_blocks
-	map_buffer_screen
-	map_load_graphics
-	map_time_of_day
-	map_lcd_on
-	map_palettes
-	map_sprites
-	map_bike_music
-	map_fade_in_palettes
-	map_animations_on
-	map_wildmons
-	map_text_scroll_off
-	map_end_setup_script
+	db map_fade
+	db map_lcd_off
+	db map_sound_off
+	db map_change_callback
+	db map_load_blocks
+	db map_buffer_screen
+	db map_load_graphics
+	db map_time_of_day
+	db map_lcd_on
+	db map_palettes
+	db map_sprites
+	db map_bike_music
+	db map_fade_in_palettes
+	db map_animations_on
+	db map_wildmons
+	db map_text_scroll_off
+	db map_end_setup_script
 
 MapSetupScript2: ; 15408
-	map_lcd_off
-	map_sound_off
-	map_attributes_2
-	map_anchor_screen
-	map_start_callback
-	map_load_blocks
-	map_connection_blocks
-	map_buffer_screen
-	map_load_graphics
-	map_time_of_day
-	map_lcd_on
-	map_palettes
-	map_sprites
-	map_bike_music
-	map_fade_in_palettes
-	map_animations_on
-	map_wildmons
-	map_end_setup_script
+	db map_lcd_off
+	db map_sound_off
+	db map_attributes_2
+	db map_anchor_screen
+	db map_start_callback
+	db map_load_blocks
+	db map_connection_blocks
+	db map_buffer_screen
+	db map_load_graphics
+	db map_time_of_day
+	db map_lcd_on
+	db map_palettes
+	db map_sprites
+	db map_bike_music
+	db map_fade_in_palettes
+	db map_animations_on
+	db map_wildmons
+	db map_end_setup_script
 
 MapSetupScript10: ; 1541a
-	map_load_blocks
-	map_connection_blocks
-	map_end_setup_script
+	db map_load_blocks
+	db map_connection_blocks
+	db map_end_setup_script
 
 
 ReadMapSetupScript: ; 1541d

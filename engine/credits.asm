@@ -124,7 +124,7 @@ Function109847:: ; 109847
 	jr z, .asm_10984f
 	ld a, $40
 .asm_10984f
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 
 	ld a, [rSVBK]
 	push af
@@ -225,7 +225,7 @@ Function1098fd: ; 1098fd
 	ld a, [hJoypadDown]
 	and $1
 	ret z
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	bit 7, a
 	ret
 ; 109908
@@ -234,7 +234,7 @@ Function109908: ; 109908
 	ld a, [hJoypadDown]
 	and $2
 	ret z
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	bit 6, a
 	ret z
 	ld hl, CreditsPos
@@ -255,7 +255,7 @@ Function109908: ; 109908
 ; 109926
 
 Function109926: ; 109926
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	and $f
 	ld e, a
 	ld d, 0
@@ -287,12 +287,12 @@ Jumptable_109937: ; 109937 (42:5937)
 
 
 Function109951: ; 109951 (42:5951)
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
 Function109956: ; 109956 (42:5956)
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	ld a, [hl]
 	and $f0
 	ld [hl], a
@@ -348,7 +348,7 @@ Function1099a3: ; 1099a3 (42:59a3)
 
 
 ParseCredits: ; 1099aa
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	bit 7, [hl]
 	jp nz, .done
 	
@@ -488,7 +488,7 @@ endr
 	
 .end
 ; Stop execution.
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	set 7, [hl]
 	ld a, $20
 	ld [MusicFade], a

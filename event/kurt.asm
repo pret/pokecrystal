@@ -62,7 +62,7 @@ Kurt_SelectApricorn: ; 88055
 	ld hl, .MenuDataHeader
 	call CopyMenuDataHeader
 	ld a, [MenuSelection]
-	ld [wPocketPointerLocationBuffer], a
+	ld [wPocketCursorBuffer], a
 	xor a
 	ld [hBGMapMode], a
 	call Function352f

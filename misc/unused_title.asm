@@ -9,7 +9,7 @@ UnusedTitleScreen: ; 10c000
 	xor a
 	ld [hBGMapMode], a
 
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 rept 3
 	ld [hli], a
 endr

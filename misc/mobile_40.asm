@@ -1786,12 +1786,12 @@ Function100b12: ; 100b12
 	ld a, BANK(BattleMenuDataHeader)
 	ld [wcf94], a
 	ld a, [wd0d2]
-	ld [wPocketPointerLocationBuffer], a
+	ld [wPocketCursorBuffer], a
 	call Function100e72
 	call Function100b45
 	callba Function8e85
 	call Function100ed4
-	ld a, [wPocketPointerLocationBuffer]
+	ld a, [wPocketCursorBuffer]
 	ld [wd0d2], a
 	call ExitMenu
 	ret
@@ -1818,7 +1818,7 @@ Function100b45: ; 100b45
 	ld c, a
 	ld a, [wcfa3]
 	call SimpleMultiply
-	ld [wPocketPointerLocationBuffer], a
+	ld [wPocketCursorBuffer], a
 	and a
 	ret
 ; 100b7a
@@ -6612,12 +6612,12 @@ Function102c71: ; 102c71
 ; 102c87
 
 Function102c87: ; 102c87
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	push af
 	ld a, [wcf64]
 	push af
 	ld a, [wcd4c]
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld a, [PartyCount]
 	ld [wcf64], a
 	ld a, $0
@@ -6632,7 +6632,7 @@ Function102c87: ; 102c87
 	ld bc, $011a
 	call Function102d3e
 	ld a, [wcd4d]
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld a, [OTPartyCount]
 	ld [wcf64], a
 	ld a, $5
@@ -6649,18 +6649,18 @@ Function102c87: ; 102c87
 	pop af
 	ld [wcf64], a
 	pop af
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 ; 102cee
 
 Function102cee: ; 102cee
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	dec a
 	call Function102d34
 	ld de, DefaultFlypoint
 	ld bc, $002f
 	call CopyBytes
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	ld c, a
 	ld a, $6
 	sub c
@@ -6669,7 +6669,7 @@ Function102cee: ; 102cee
 	ld hl, $0000
 	call AddNTimes
 	push hl
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	dec a
 	call Function102d34
 	ld d, h
@@ -7688,7 +7688,7 @@ Function103612: ; 103612
 	ld a, [wdc40]
 	and $f
 	jr z, .asm_103622
-	ld [wPocketPointerLocationBuffer], a
+	ld [wPocketCursorBuffer], a
 
 .asm_103622
 	call InterpretMenu2

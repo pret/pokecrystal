@@ -138,19 +138,19 @@ EnterMap: ; 9673e
 	call ClearAllScriptFlags3
 
 	ld a, [hMapEntryMethod]
-	cp ($f << 4) + MAPSETUP_07
+	cp MAPSETUP_07
 	jr nz, .dontset
 	call SetAll_ScriptFlags3
 .dontset
 
 	ld a, [hMapEntryMethod]
-	cp ($f << 4) + MAPSETUP_03
+	cp MAPSETUP_RELOADMAP
 	jr nz, .dontresetpoison
 	xor a
 	ld [PoisonStepCount], a
 .dontresetpoison
 
-	xor a ; ($0 << 4) + MAPSETUP_00
+	xor a ; end map entry
 	ld [hMapEntryMethod], a
 	ld a, 2 ; HandleMap
 	ld [MapStatus], a
@@ -320,7 +320,7 @@ PlayerEvents: ; 9681f
 	pop af
 
 	ld [ScriptRunning], a
-	call Function96beb
+	call DoPlayerEvent
 	ld a, [ScriptRunning]
 	cp 4
 	jr z, .ok2
@@ -361,7 +361,7 @@ CheckTileEvent: ; 96874
 	callba CheckMovingOffEdgeOfMap
 	jr c, .return4
 
-	call Function2238
+	call CheckWarpTile
 	jr c, .return6
 
 .bit2
@@ -436,7 +436,11 @@ SetUpFiveStepWildEncounterCooldown: ; 968d1
 	ret
 ; 968d7
 
-SetMinTwoStepWildEncounterCooldown: mobile ; 968d7
+ret_968d7: ; 968d7
+	ret
+;968d8
+
+SetMinTwoStepWildEncounterCooldown: ; 968d8
 	ld a, [wWildEncounterCooldown]
 	cp 2
 	ret nc
@@ -453,7 +457,7 @@ Dummy_CheckScriptFlags3Bit5: ; 968e4
 ; 968ec
 
 DoMapTrigger: ; 968ec
-	ld a, [wdc07]
+	ld a, [wCurrMapTriggerCount]
 	and a
 	jr z, .nope
 
@@ -464,7 +468,7 @@ DoMapTrigger: ; 968ec
 
 	ld e, a
 	ld d, 0
-	ld hl, wdc08
+	ld hl, wCurrMapTriggerHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -852,7 +856,7 @@ PlayerMovement: ; 96af0
 ; 96b10
 
 .seven ; 96b10
-	call SetMinTwoStepWildEncounterCooldown ; mobile
+	call ret_968d7 ; mobile
 	xor a
 	ld c, a
 	ret
@@ -1040,7 +1044,7 @@ DoRepelStep: ; 96bd7
 	ret
 ; 96beb
 
-Function96beb: ; 96beb
+DoPlayerEvent: ; 96beb
 	ld a, [ScriptRunning]
 	and a
 	ret z
@@ -1093,16 +1097,16 @@ HatchEggScript: ; 96c2f
 
 WarpToNewMapScript: ; 96c34
 	warpsound
-	newloadmap ($f << 4) + MAPSETUP_05
+	newloadmap MAPSETUP_05
 	end
 ; 96c38
 
 FallIntoMapScript: ; 96c38
-	newloadmap ($f << 4) + MAPSETUP_06
+	newloadmap MAPSETUP_06
 	playsound SFX_KINESIS
 	applymovement PLAYER, MovementData_0x96c48
 	playsound SFX_STRENGTH
-	scall UnknownScript_0x96c4a
+	scall LandAfterPitfallScript
 	end
 ; 96c48
 
@@ -1111,7 +1115,7 @@ MovementData_0x96c48: ; 96c48
 	step_end
 ; 96c4a
 
-UnknownScript_0x96c4a: ; 96c4a
+LandAfterPitfallScript: ; 96c4a
 	earthquake 16
 	end
 ; 96c4d

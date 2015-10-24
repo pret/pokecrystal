@@ -28,7 +28,7 @@ Pokedex: ; 40000
 
 .main
 	call JoyTextDelay
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .exit
 	call Function4010b
@@ -75,7 +75,7 @@ ENDC
 	call ByteFill
 
 	xor a
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld [wcf64], a
 	ld [wcf65], a
 	ld [wcf66], a
@@ -173,7 +173,7 @@ Function400ed: ; 400ed
 ; 4010b
 
 Function4010b: ; 4010b
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	ld hl, Jumptable_40115
 	call Function41432
 	jp [hl]
@@ -198,12 +198,12 @@ Jumptable_40115: ; 40115 (10:4115)
 
 
 Function40131: ; 40131 (10:4131)
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
 Function40136: ; 40136 (10:4136)
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
 
@@ -283,7 +283,7 @@ Function401ae: ; 401ae (10:41ae)
 	call Function40bd0
 	ret z
 	ld a, $2
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld a, $0
 	ld [wcf64], a
 	ret
@@ -291,7 +291,7 @@ Function401ae: ; 401ae (10:41ae)
 .select
 	call Function41401
 	ld a, $7
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	xor a
 	ld [hSCX], a ; $ff00+$cf
 	ld a, $a7
@@ -302,7 +302,7 @@ Function401ae: ; 401ae (10:41ae)
 .start
 	call Function41401
 	ld a, $5
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	xor a
 	ld [hSCX], a ; $ff00+$cf
 	ld a, $a7
@@ -312,7 +312,7 @@ Function401ae: ; 401ae (10:41ae)
 
 .b
 	ld a, $d
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 
 Function40217: ; 40217 (10:4217)
@@ -372,7 +372,7 @@ Function40258: ; 40258 (10:4258)
 .asm_40288
 	call MaxVolume
 	ld a, [wcf64]
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 ; 40292 (10:4292)
 
@@ -408,7 +408,7 @@ Function402aa: ; 402aa (10:42aa)
 	call Function41423
 	ld a, [CurPartySpecies]
 	call PlayCry
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	dec [hl]
 	ret
 ; 402e8 (10:42e8)
@@ -478,11 +478,11 @@ Function4034f: ; 4034f
 	push af
 	ld a, [wcf64]
 	push af
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	push af
 	callba Function8442c
 	pop af
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	pop af
 	ld [wcf64], a
 	pop af
@@ -552,7 +552,7 @@ Function403be: ; 403be (10:43be)
 .asm_403ea
 	call Function41401
 	ld a, $0
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 ; 403f3 (10:43f3)
 
@@ -604,13 +604,13 @@ Function40417: ; 40417 (10:4417)
 .asm_40431
 	call Function41401
 	ld a, $0
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 
 Function4043a: ; 4043a (10:443a)
 	call Function41401
 	ld a, $b
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 
 Function40443: ; 40443 (10:4443)
@@ -656,7 +656,7 @@ Function40471: ; 40471 (10:4471)
 .asm_40495
 	call Function41401
 	ld a, $0
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 ; 4049e (10:449e)
 
@@ -710,14 +710,14 @@ Function404b7: ; 404b7
 	ld [wc7d1], a
 	call Function41401
 	ld a, $9
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 ; 40501
 
 Function40501: ; 40501
 	call Function41401
 	ld a, $0
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 ; 4050a
 
@@ -779,7 +779,7 @@ Function40562: ; 40562 (10:4562)
 	call Function40bd0
 	ret z
 	ld a, $2
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld a, $9
 	ld [wcf64], a
 	ret
@@ -795,7 +795,7 @@ Function40562: ; 40562 (10:4562)
 	call ClearSprites
 	call Function40bdc
 	ld a, $5
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	xor a
 	ld [hSCX], a ; $ff00+$cf
 	ld a, $a7
@@ -827,7 +827,7 @@ Function405df: ; 405df (10:45df)
 .asm_405eb
 	call Function41401
 	ld a, $7
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	call DelayFrame
 	call Function41a24
 	jr nz, .asm_40603

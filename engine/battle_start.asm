@@ -13,7 +13,7 @@ Predef_StartBattle: ; 8c20f
 	ld [hl], $1
 
 .loop
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .done
 	call FlashyTransitionToBattle
@@ -72,7 +72,7 @@ Function8c26d: ; 8c26d
 	call DelayFrame
 	xor a
 	ld [hBGMapMode], a
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	xor a
 rept 2
 	ld [hli], a
@@ -146,7 +146,7 @@ INCBIN "gfx/overworld/trainer_battle_pokeball_tiles.2bpp"
 
 
 FlashyTransitionToBattle: ; 8c314
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
 	ld hl, .jumptable
@@ -230,7 +230,7 @@ StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 	ld hl, .StartingPoints
 	add hl, de
 	ld a, [hl]
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 ; 8c38f (23:438f)
 
@@ -242,11 +242,11 @@ StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 StartTrainerBattle_Finish: ; 8c393 (23:4393)
 	call ClearSprites
 	ld a, $80
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 
 StartTrainerBattle_NextScene: ; 8c39c (23:439c)
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
@@ -331,7 +331,7 @@ StartTrainerBattle_SineWave: ; 8c408 (23:4408)
 
 .end
 	ld a, $20
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 
 .DoSineWave: ; 8c419 (23:4419)
@@ -416,7 +416,7 @@ endr
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld a, $20
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 ; 8c490 (23:4490)
 
@@ -540,7 +540,7 @@ StartTrainerBattle_SpeckleToBlack: ; 8c58f (23:458f)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld a, $20
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 
 .BlackOutRandomTile: ; 8c5b8 (23:45b8)
@@ -836,7 +836,7 @@ StartTrainerBattle_ZoomToBlack: ; 8c768 (23:4768)
 
 .done
 	ld a, $20
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 ; 8c792 (23:4792)
 

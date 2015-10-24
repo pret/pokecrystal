@@ -214,7 +214,7 @@ Function222a:: ; 222a
 	ret
 ; 2238
 
-Function2238:: ; 2238
+CheckWarpTile:: ; 2238
 	call Function2252
 	ret nc
 	push bc
@@ -258,11 +258,11 @@ Function2266:: ; 2266
 	ld a, [MapX]
 	sub $4
 	ld d, a
-	ld a, [wdbfb]
+	ld a, [wCurrMapWarpCount]
 	and a
 	ret z
 	ld c, a
-	ld hl, wdbfc
+	ld hl, wCurrMapWarpHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -294,7 +294,7 @@ Function2266:: ; 2266
 	pop hl
 	call Function22a3
 	ret nc
-	ld a, [wdbfb]
+	ld a, [wCurrMapWarpCount]
 	inc a
 	sub c
 	ld c, a
@@ -325,7 +325,7 @@ Function22a7:: ; 22a7
 
 Function22b4:: ; 22b4
 	push bc
-	ld hl, wdbfc
+	ld hl, wCurrMapWarpHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -439,8 +439,8 @@ Function234f:: ; 234f
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call Function23ac
-	call Function23c3
+	call ReadMapTriggers
+	call ReadMapCallbacks
 	ret
 ; 235c
 
@@ -507,12 +507,12 @@ GetMapConnection:: ; 23a3
 ; 23ac
 
 
-Function23ac:: ; 23ac
+ReadMapTriggers:: ; 23ac
 	ld a, [hli] ; trigger count
 	ld c, a
-	ld [wdc07], a ; current map trigger count
+	ld [wCurrMapTriggerCount], a ; current map trigger count
 	ld a, l
-	ld [wdc08], a ; map trigger pointer
+	ld [wCurrMapTriggerHeaderPointer], a ; map trigger pointer
 	ld a, h
 	ld [wdc09], a
 	ld a, c
@@ -524,14 +524,14 @@ Function23ac:: ; 23ac
 	ret
 ; 23c3
 
-Function23c3:: ; 23c3
+ReadMapCallbacks:: ; 23c3
 	ld a, [hli]
 	ld c, a
-	ld [wdc0a], a
+	ld [wCurrMapCallbackCount], a
 	ld a, l
-	ld [wdc0b], a
+	ld [wCurrMapCallbackHeaderPointer], a
 	ld a, h
-	ld [wdc0b + 1], a
+	ld [wCurrMapCallbackHeaderPointer + 1], a
 	ld a, c
 	and a
 	ret z
@@ -544,9 +544,9 @@ Function23c3:: ; 23c3
 ReadWarps:: ; 23da
 	ld a, [hli]
 	ld c, a
-	ld [wdbfb], a
+	ld [wCurrMapWarpCount], a
 	ld a, l
-	ld [wdbfc], a
+	ld [wCurrMapWarpHeaderPointer], a
 	ld a, h
 	ld [wdbfd], a
 	ld a, c
@@ -562,7 +562,7 @@ ReadCoordEvents:: ; 23f1
 	ld c, a
 	ld [wCurrentMapXYTriggerCount], a
 	ld a, l
-	ld [wdbff], a
+	ld [wCurrentMapXYTriggerHeaderPointer], a
 	ld a, h
 	ld [wdc00], a
 	ld a, c
@@ -1002,11 +1002,11 @@ RunMapCallback:: ; 263b
 ; 2653
 
 Function2653:: ; 2653
-	ld a, [wdc0a]
+	ld a, [wCurrMapCallbackCount]
 	ld c, a
 	and a
 	ret z
-	ld hl, wdc0b
+	ld hl, wCurrMapCallbackHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1898,7 +1898,7 @@ CheckCurrentMapXYTriggers:: ; 2ad4
 
 CheckStandingOnXYTrigger:: ; 2ae7
 ; Checks to see if you are standing on an xy-trigger.  If yes, copies the trigger to EngineBuffer1 and sets carry.
-	ld hl, wdbff
+	ld hl, wCurrentMapXYTriggerHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

@@ -521,7 +521,7 @@ Function17d2b6: ; 17d2b6
 
 Function17d2c0: ; 17d2c0
 	xor a
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld [wcf64], a
 	ld [wcf65], a
 	ld [wcf66], a

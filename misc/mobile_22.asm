@@ -247,7 +247,7 @@ Function89261: ; 89261
 	add $5
 	ld [hl], a
 	pop af
-	ld [wPocketPointerLocationBuffer], a
+	ld [wPocketCursorBuffer], a
 	call BackUpTiles
 	call Function8923c
 	call Function89209
@@ -2194,7 +2194,7 @@ Function89d5e: ; 89d5e (22:5d5e)
 	push af
 	call CopyMenuDataHeader
 	pop af
-	ld [wPocketPointerLocationBuffer], a
+	ld [wPocketCursorBuffer], a
 	call Function8923c
 	call Function1c89
 	call Function1c10
@@ -3050,7 +3050,7 @@ Function8a31c: ; 8a31c (22:631c)
 	call Function8a3b2
 	pop bc
 	ld a, c
-	ld [wPocketPointerLocationBuffer], a
+	ld [wPocketCursorBuffer], a
 	ld [MenuSelection], a
 	call Function1c89
 	call Function1c10

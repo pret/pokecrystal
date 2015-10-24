@@ -124,7 +124,7 @@ Function108089: ; 108089
 
 Function1080b7: ; 1080b7
 	xor a
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	call WhiteBGMap
 	call ClearSprites
 	call ClearTileMap
@@ -187,7 +187,7 @@ Function1080b7: ; 1080b7
 
 Function108157: ; 108157
 	xor a
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	call WhiteBGMap
 	call ClearSprites
 	call ClearTileMap
@@ -310,7 +310,7 @@ Function108239: ; 108239
 ; 10824b
 
 Function10824b: ; 10824b
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .asm_10825a
 	call Function10827b
@@ -335,7 +335,7 @@ Function10824b: ; 10824b
 ; 10827b
 
 Function10827b: ; 10827b
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_10828a
@@ -372,7 +372,7 @@ Jumptable_10828a: ; 10828a
 ; 1082b2
 
 Function1082b2: ; 1082b2
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 ; 1082b7
@@ -383,7 +383,7 @@ Function1082b7: ; 1082b7
 	inc hl
 	ld d, [hl]
 	ld a, [de]
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	inc de
 	ld [hl], d
 	dec hl
@@ -392,7 +392,7 @@ Function1082b7: ; 1082b7
 ; 1082c6
 
 Function1082c6: ; 1082c6
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
 ; 1082cc

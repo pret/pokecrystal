@@ -247,7 +247,7 @@ Function8b0e2: ; 8b0e2
 	ld hl, .MenuDataHeader
 	call CopyMenuDataHeader
 	ld a, [MenuSelection]
-	ld [wPocketPointerLocationBuffer], a
+	ld [wPocketCursorBuffer], a
 	xor a
 	ld [wcf76], a
 	ld [hBGMapMode], a

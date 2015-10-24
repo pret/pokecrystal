@@ -5,7 +5,7 @@ Pack: ; 10000
 	call Function1068a
 .loop
 	call JoyTextDelay
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .done
 	call Function10026
@@ -21,7 +21,7 @@ Pack: ; 10000
 ; 10026
 
 Function10026: ; 10026
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	ld hl, Jumptable_10030
 	call Function1086b
 	jp [hl]
@@ -47,7 +47,7 @@ Function10046: ; 10046 (4:4046)
 	ld [hBGMapMode], a ; $ff00+$d4
 	call Function10955
 	ld a, [wcf64]
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	call Function10a40
 	ret
 
@@ -63,15 +63,15 @@ Function10056: ; 10056 (4:4056)
 Function10067: ; 10067 (4:4067)
 	ld hl, MenuDataHeader_0x10a4f
 	call CopyMenuDataHeader
-	ld a, [wItemsPocketPointerLocation]
-	ld [wPocketPointerLocationBuffer], a
+	ld a, [wItemsPocketCursor]
+	ld [wPocketCursorBuffer], a
 	ld a, [wd0df]
 	ld [wd0e4], a
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0df], a
 	ld a, [wcfa9]
-	ld [wItemsPocketPointerLocation], a
+	ld [wItemsPocketCursor], a
 	ld b, $7
 	ld c, $3
 	call Function108d4
@@ -91,15 +91,15 @@ Function10094: ; 10094 (4:4094)
 Function100a6: ; 100a6 (4:40a6)
 	ld hl, MenuDataHeader_0x10a7f
 	call CopyMenuDataHeader
-	ld a, [wKeyItemsPocketPointerLocation]
-	ld [wPocketPointerLocationBuffer], a
+	ld a, [wKeyItemsPocketCursor]
+	ld [wPocketCursorBuffer], a
 	ld a, [wd0e0]
 	ld [wd0e4], a
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0e0], a
 	ld a, [wcfa9]
-	ld [wKeyItemsPocketPointerLocation], a
+	ld [wKeyItemsPocketCursor], a
 	ld b, $3
 	ld c, $7
 	call Function108d4
@@ -221,15 +221,15 @@ Function10186: ; 10186 (4:4186)
 Function10198: ; 10198 (4:4198)
 	ld hl, MenuDataHeader_0x10aaf
 	call CopyMenuDataHeader
-	ld a, [wBallsPocketPointerLocation]
-	ld [wPocketPointerLocationBuffer], a
+	ld a, [wBallsPocketCursor]
+	ld [wPocketCursorBuffer], a
 	ld a, [wd0e1]
 	ld [wd0e4], a
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0e1], a
 	ld a, [wcfa9]
-	ld [wBallsPocketPointerLocation], a
+	ld [wBallsPocketCursor], a
 	ld b, $1
 	ld c, $5
 	call Function108d4
@@ -494,7 +494,7 @@ Function10311: ; 10311
 	and a
 	jr z, .Oak
 	ld a, $a
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 ; 10364 (4:4364)
 
@@ -537,19 +537,19 @@ Function1039d: ; 1039d
 
 .asm_103aa
 	xor a
-	ld [wBallsPocketPointerLocation], a
+	ld [wBallsPocketCursor], a
 	ld [wd0e1], a
 	ret
 
 .asm_103b2
 	xor a
-	ld [wItemsPocketPointerLocation], a
+	ld [wItemsPocketCursor], a
 	ld [wd0df], a
 	ret
 
 .asm_103ba
 	xor a
-	ld [wKeyItemsPocketPointerLocation], a
+	ld [wKeyItemsPocketCursor], a
 	ld [wd0e0], a
 	ret
 ; 103c2
@@ -613,7 +613,7 @@ Function103fd: ; 103fd
 	call PrintText
 	jr .asm_10427
 .asm_10453
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	push af
 	ld a, [wcf64]
 	push af
@@ -626,7 +626,7 @@ Function103fd: ; 103fd
 	pop af
 	ld [wcf64], a
 	pop af
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 .asm_10475
 	pop af
 	ld [Options], a
@@ -660,7 +660,7 @@ BattlePack: ; 10493
 	call Function1068a
 .asm_1049b
 	call JoyTextDelay
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .asm_104ad
 	call Function104b9
@@ -676,7 +676,7 @@ BattlePack: ; 10493
 ; 104b9
 
 Function104b9: ; 104b9
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	ld hl, Jumptable_104c3
 	call Function1086b
 	jp [hl]
@@ -702,7 +702,7 @@ Function104d9: ; 104d9 (4:44d9)
 	ld [hBGMapMode], a ; $ff00+$d4
 	call Function10955
 	ld a, [wcf64]
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	call Function10a40
 	ret
 
@@ -718,15 +718,15 @@ Function104e9: ; 104e9 (4:44e9)
 Function104fa: ; 104fa (4:44fa)
 	ld hl, MenuDataHeader_0x10a4f
 	call CopyMenuDataHeader
-	ld a, [wItemsPocketPointerLocation]
-	ld [wPocketPointerLocationBuffer], a
+	ld a, [wItemsPocketCursor]
+	ld [wPocketCursorBuffer], a
 	ld a, [wd0df]
 	ld [wd0e4], a
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0df], a
 	ld a, [wcfa9]
-	ld [wItemsPocketPointerLocation], a
+	ld [wItemsPocketCursor], a
 	ld b, $7
 	ld c, $3
 	call Function108d4
@@ -746,15 +746,15 @@ Function10527: ; 10527 (4:4527)
 Function10539: ; 10539 (4:4539)
 	ld hl, MenuDataHeader_0x10a7f
 	call CopyMenuDataHeader
-	ld a, [wKeyItemsPocketPointerLocation]
-	ld [wPocketPointerLocationBuffer], a
+	ld a, [wKeyItemsPocketCursor]
+	ld [wPocketCursorBuffer], a
 	ld a, [wd0e0]
 	ld [wd0e4], a
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0e0], a
 	ld a, [wcfa9]
-	ld [wKeyItemsPocketPointerLocation], a
+	ld [wKeyItemsPocketCursor], a
 	ld b, $3
 	ld c, $7
 	call Function108d4
@@ -797,15 +797,15 @@ Function10594: ; 10594 (4:4594)
 Function105a6: ; 105a6 (4:45a6)
 	ld hl, MenuDataHeader_0x10aaf
 	call CopyMenuDataHeader
-	ld a, [wBallsPocketPointerLocation]
-	ld [wPocketPointerLocationBuffer], a
+	ld a, [wBallsPocketCursor]
+	ld [wPocketCursorBuffer], a
 	ld a, [wd0e1]
 	ld [wd0e4], a
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0e1], a
 	ld a, [wcfa9]
-	ld [wBallsPocketPointerLocation], a
+	ld [wBallsPocketCursor], a
 	ld b, $1
 	ld c, $5
 	call Function108d4
@@ -931,7 +931,7 @@ Function105dc: ; 105dc (4:45dc)
 	jr z, .asm_10684
 .asm_1067e: ; 1067e (4:467e)
 	ld a, $a
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ret
 
 .asm_10684: ; 10684 (4:4684)
@@ -947,7 +947,7 @@ Function105dc: ; 105dc (4:45dc)
 
 Function1068a: ; 1068a
 	xor a
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld a, [wd0d6]
 	and $3
 	ld [wcf65], a
@@ -965,7 +965,7 @@ Function1068a: ; 1068a
 Function106a5: ; 106a5
 	xor a
 	ld [hBGMapMode], a
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld [wcf64], a
 	ld [wcf65], a
 	ld [wcf66], a
@@ -984,7 +984,7 @@ Function106be: ; 106be
 ; 106c7
 
 Function106c7: ; 106c7
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	ld hl, Jumptable_106d1
 	call Function1086b
 	jp [hl]
@@ -1003,15 +1003,15 @@ Jumptable_106d1: ; 106d1 (4:46d1)
 	call InitPocket
 	ld hl, MenuDataHeader_0x10a67
 	call CopyMenuDataHeader
-	ld a, [wItemsPocketPointerLocation]
-	ld [wPocketPointerLocationBuffer], a
+	ld a, [wItemsPocketCursor]
+	ld [wPocketCursorBuffer], a
 	ld a, [wd0df]
 	ld [wd0e4], a
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0df], a
 	ld a, [wcfa9]
-	ld [wItemsPocketPointerLocation], a
+	ld [wItemsPocketCursor], a
 	ret
 
 .KeyItemsPocket: ; 106ff (4:46ff)
@@ -1019,15 +1019,15 @@ Jumptable_106d1: ; 106d1 (4:46d1)
 	call InitPocket
 	ld hl, MenuDataHeader_0x10a97
 	call CopyMenuDataHeader
-	ld a, [wKeyItemsPocketPointerLocation]
-	ld [wPocketPointerLocationBuffer], a
+	ld a, [wKeyItemsPocketCursor]
+	ld [wPocketCursorBuffer], a
 	ld a, [wd0e0]
 	ld [wd0e4], a
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0e0], a
 	ld a, [wcfa9]
-	ld [wKeyItemsPocketPointerLocation], a
+	ld [wKeyItemsPocketCursor], a
 	ret
 
 .TMHMPocket: ; 10726 (4:4726)
@@ -1044,15 +1044,15 @@ Jumptable_106d1: ; 106d1 (4:46d1)
 	call InitPocket
 	ld hl, MenuDataHeader_0x10ac7
 	call CopyMenuDataHeader
-	ld a, [wBallsPocketPointerLocation]
-	ld [wPocketPointerLocationBuffer], a
+	ld a, [wBallsPocketCursor]
+	ld [wPocketCursorBuffer], a
 	ld a, [wd0e1]
 	ld [wd0e4], a
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0e1], a
 	ld a, [wcfa9]
-	ld [wBallsPocketPointerLocation], a
+	ld [wBallsPocketCursor], a
 	ret
 
 InitPocket: ; 10762 (4:4762)
@@ -1093,10 +1093,10 @@ Function1076f: ; 1076f
 	ret
 
 .asm_10795
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	dec a
 	and $3
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	push de
 	ld de, SFX_UNKNOWN_62
 	call PlaySFX
@@ -1105,10 +1105,10 @@ Function1076f: ; 1076f
 	ret
 
 .asm_107a8
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	inc a
 	and $3
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	push de
 	ld de, SFX_UNKNOWN_62
 	call PlaySFX
@@ -1134,7 +1134,7 @@ Function107bb: ; 107bb
 ; 107d7
 
 Function107d7: ; 107d7
-	ld a, [wJumptableEntryIndexBuffer]
+	ld a, [wJumptableIndex]
 	ld hl, Jumptable_107e1
 	call Function1086b
 	jp [hl]
@@ -1238,7 +1238,7 @@ Function1085a: ; 1085a (4:485a)
 	ret
 
 Function10866: ; 10866 (4:4866)
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
@@ -1255,14 +1255,14 @@ endr
 ; 10874
 
 Function10874: ; 10874 (4:4874)
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	set 7, [hl]
 	xor a
 	ld [wcf66], a
 	ret
 
 Function1087e: ; 1087e (4:487e)
-	ld hl, wJumptableEntryIndexBuffer
+	ld hl, wJumptableIndex
 	set 7, [hl]
 	ld a, $1
 	ld [wcf66], a
@@ -1346,12 +1346,12 @@ Function108d4: ; 108d4 (4:48d4)
 	ret
 .asm_108fa
 	ld a, $9
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	scf
 	ret
 .asm_10901
 	ld a, b
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld [wcf64], a
 	push de
 	ld de, SFX_UNKNOWN_62
@@ -1361,7 +1361,7 @@ Function108d4: ; 108d4 (4:48d4)
 	ret
 .asm_10912
 	ld a, c
-	ld [wJumptableEntryIndexBuffer], a
+	ld [wJumptableIndex], a
 	ld [wcf64], a
 	push de
 	ld de, SFX_UNKNOWN_62
