@@ -54,24 +54,24 @@ Function10046: ; 10046 (4:4046)
 Function10056: ; 10056 (4:4056)
 	xor a
 	ld [wcf65], a
-	call Function10a36
-	call Function109bb
-	call Function1089a
+	call ClearPocketList
+	call DrawPocketName
+	call WaitBGMap_DrawPackGFX
 	call Function10866
 	ret
 
 Function10067: ; 10067 (4:4067)
 	ld hl, MenuDataHeader_0x10a4f
 	call CopyMenuDataHeader
-	ld a, [wd0d9]
-	ld [wcf88], a
+	ld a, [wItemsPocketPointerLocation]
+	ld [wPocketPointerLocationBuffer], a
 	ld a, [wd0df]
 	ld [wd0e4], a
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0df], a
 	ld a, [wcfa9]
-	ld [wd0d9], a
+	ld [wItemsPocketPointerLocation], a
 	ld b, $7
 	ld c, $3
 	call Function108d4
@@ -82,24 +82,24 @@ Function10067: ; 10067 (4:4067)
 Function10094: ; 10094 (4:4094)
 	ld a, $2
 	ld [wcf65], a
-	call Function10a36
-	call Function109bb
-	call Function1089a
+	call ClearPocketList
+	call DrawPocketName
+	call WaitBGMap_DrawPackGFX
 	call Function10866
 	ret
 
 Function100a6: ; 100a6 (4:40a6)
 	ld hl, MenuDataHeader_0x10a7f
 	call CopyMenuDataHeader
-	ld a, [wd0da]
-	ld [wcf88], a
+	ld a, [wKeyItemsPocketPointerLocation]
+	ld [wPocketPointerLocationBuffer], a
 	ld a, [wd0e0]
 	ld [wd0e4], a
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0e0], a
 	ld a, [wcfa9]
-	ld [wd0da], a
+	ld [wKeyItemsPocketPointerLocation], a
 	ld b, $3
 	ld c, $7
 	call Function108d4
@@ -110,11 +110,11 @@ Function100a6: ; 100a6 (4:40a6)
 Function100d3: ; 100d3 (4:40d3)
 	ld a, $3
 	ld [wcf65], a
-	call Function10a36
-	call Function109bb
+	call ClearPocketList
+	call DrawPocketName
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	call Function1089a
+	call WaitBGMap_DrawPackGFX
 	call Function10866
 	ret
 
@@ -125,7 +125,7 @@ Function100e8: ; 100e8 (4:40e8)
 	call Function108d4
 	ret c
 	callba _CheckTossableItem
-	ld a, [wd142]
+	ld a, [wItemAttributeParamBuffer]
 	and a
 	jr nz, .asm_1010a
 	ld hl, MenuDataHeader_0x1013b
@@ -205,31 +205,31 @@ Function10159: ; 10159
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	call Function10955
-	call Function1089a
+	call WaitBGMap_DrawPackGFX
 	call Function10a40
 	ret
 
 Function10186: ; 10186 (4:4186)
 	ld a, $1
 	ld [wcf65], a
-	call Function10a36
-	call Function109bb
-	call Function1089a
+	call ClearPocketList
+	call DrawPocketName
+	call WaitBGMap_DrawPackGFX
 	call Function10866
 	ret
 
 Function10198: ; 10198 (4:4198)
 	ld hl, MenuDataHeader_0x10aaf
 	call CopyMenuDataHeader
-	ld a, [wd0db]
-	ld [wcf88], a
+	ld a, [wBallsPocketPointerLocation]
+	ld [wPocketPointerLocationBuffer], a
 	ld a, [wd0e1]
 	ld [wd0e4], a
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0e1], a
 	ld a, [wcfa9]
-	ld [wd0db], a
+	ld [wBallsPocketPointerLocation], a
 	ld b, $1
 	ld c, $5
 	call Function108d4
@@ -239,54 +239,62 @@ Function10198: ; 10198 (4:4198)
 
 Function101c5: ; 101c5 (4:41c5)
 	callba _CheckTossableItem
-	ld a, [wd142]
+	ld a, [wItemAttributeParamBuffer]
 	and a
-	jr nz, .asm_101f9
+	jr nz, .tossable
 	callba CheckSelectableItem
-	ld a, [wd142]
+	ld a, [wItemAttributeParamBuffer]
 	and a
-	jr nz, .asm_101eb
+	jr nz, .selectable
 	callba CheckItemMenu
-	ld a, [wd142]
+	ld a, [wItemAttributeParamBuffer]
 	and a
-	jr nz, .asm_10207
-	jr .asm_10227
-.asm_101eb
+	jr nz, .usable
+	jr .unusable
+
+.selectable
 	callba CheckItemMenu
-	ld a, [wd142]
+	ld a, [wItemAttributeParamBuffer]
 	and a
-	jr nz, .asm_1020f
-	jr .asm_1022f
-.asm_101f9
+	jr nz, .selectable_usable
+	jr .selectable_unusable
+
+.tossable
 	callba CheckSelectableItem
-	ld a, [wd142]
+	ld a, [wItemAttributeParamBuffer]
 	and a
-	jr nz, .asm_10217
-	jr .asm_1021f
-.asm_10207
+	jr nz, .tossable_selectable
+	jr .tossable_unselectable
+
+.usable
 	ld hl, MenuDataHeader_0x10249
 	ld de, Jumptable_1026a
-	jr .asm_10235
-.asm_1020f
+	jr .build_menu
+
+.selectable_usable
 	ld hl, MenuDataHeader_0x10274
 	ld de, Jumptable_10291
-	jr .asm_10235
-.asm_10217
+	jr .build_menu
+
+.tossable_selectable
 	ld hl, MenuDataHeader_0x10299
 	ld de, Jumptable_102ac
-	jr .asm_10235
-.asm_1021f
+	jr .build_menu
+
+.tossable_unselectable
 	ld hl, MenuDataHeader_0x102b0
 	ld de, Jumptable_102c7
-	jr .asm_10235
-.asm_10227
+	jr .build_menu
+
+.unusable
 	ld hl, MenuDataHeader_0x102cd
 	ld de, Jumptable_102ea
-	jr .asm_10235
-.asm_1022f
+	jr .build_menu
+
+.selectable_unusable
 	ld hl, MenuDataHeader_0x102f2
 	ld de, Jumptable_1030b
-.asm_10235
+.build_menu
 	push de
 	call LoadMenuDataHeader
 	call InterpretMenu2
@@ -350,7 +358,7 @@ Jumptable_10291: ; 10291
 ; 10299
 
 MenuDataHeader_0x10299: ; 0x10299
-	db $40 ; flags
+	db %01000000 ; flags
 	db 07, 13 ; start coords
 	db 11, 19 ; end coords
 	dw MenuData2_0x102a1
@@ -370,7 +378,7 @@ Jumptable_102ac: ; 102ac
 ; 102b0
 
 MenuDataHeader_0x102b0: ; 0x102b0
-	db $40 ; flags
+	db %01000000 ; flags
 	db 05, 13 ; start coords
 	db 11, 19 ; end coords
 	dw MenuData2_0x102b8
@@ -439,52 +447,52 @@ Jumptable_1030b: ; 1030b
 
 Function10311: ; 10311
 	callba CheckItemMenu
-	ld a, [wd142]
-	ld hl, Jumptable_1031f
+	ld a, [wItemAttributeParamBuffer]
+	ld hl, .jumptable
 	rst JumpTable
 	ret
 ; 1031f
 
-Jumptable_1031f: ; 1031f (4:431f)
-	dw Function1032d
-	dw Function1032d
-	dw Function1032d
-	dw Function1032d
-	dw Function10334
-	dw Function10338
-	dw Function10355
+.jumptable: ; 1031f (4:431f)
+	dw .Oak
+	dw .Oak
+	dw .Oak
+	dw .Oak
+	dw .Current
+	dw .Party
+	dw .Field
 ; 1035c
 
-Function1032d: ; 1032d (4:432d)
+.Oak: ; 1032d (4:432d)
 	ld hl, UnknownText_0x10af3
 	call Function10889
 	ret
 
-Function10334: ; 10334 (4:4334)
+.Current: ; 10334 (4:4334)
 	call DoItemEffect
 	ret
 
-Function10338: ; 10338 (4:4338)
+.Party: ; 10338 (4:4338)
 	ld a, [PartyCount]
 	and a
-	jr z, .asm_1034e
+	jr z, .NoPokemon
 	call DoItemEffect
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	call Function10955
-	call Function1089a
+	call WaitBGMap_DrawPackGFX
 	call Function10a40
 	ret
-.asm_1034e
+.NoPokemon
 	ld hl, UnknownText_0x10af8
 	call Function10889
 	ret
 
-Function10355: ; 10355 (4:4355)
+.Field: ; 10355 (4:4355)
 	call DoItemEffect
 	ld a, [wd0ec]
 	and a
-	jr z, Function1032d
+	jr z, .Oak
 	ld a, $a
 	ld [wJumptableEntryIndexBuffer], a
 	ret
@@ -529,26 +537,26 @@ Function1039d: ; 1039d
 
 .asm_103aa
 	xor a
-	ld [wd0db], a
+	ld [wBallsPocketPointerLocation], a
 	ld [wd0e1], a
 	ret
 
 .asm_103b2
 	xor a
-	ld [wd0d9], a
+	ld [wItemsPocketPointerLocation], a
 	ld [wd0df], a
 	ret
 
 .asm_103ba
 	xor a
-	ld [wd0da], a
+	ld [wKeyItemsPocketPointerLocation], a
 	ld [wd0e0], a
 	ret
 ; 103c2
 
 Function103c2: ; 103c2
 	callba CheckSelectableItem
-	ld a, [wd142]
+	ld a, [wItemAttributeParamBuffer]
 	and a
 	jr nz, .asm_103f6
 	ld a, [wcf65]
@@ -625,7 +633,7 @@ Function103fd: ; 103fd
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	call Function10955
-	call Function1089a
+	call WaitBGMap_DrawPackGFX
 	call Function10a40
 	ret
 
@@ -701,24 +709,24 @@ Function104d9: ; 104d9 (4:44d9)
 Function104e9: ; 104e9 (4:44e9)
 	xor a
 	ld [wcf65], a
-	call Function10a36
-	call Function109bb
-	call Function1089a
+	call ClearPocketList
+	call DrawPocketName
+	call WaitBGMap_DrawPackGFX
 	call Function10866
 	ret
 
 Function104fa: ; 104fa (4:44fa)
 	ld hl, MenuDataHeader_0x10a4f
 	call CopyMenuDataHeader
-	ld a, [wd0d9]
-	ld [wcf88], a
+	ld a, [wItemsPocketPointerLocation]
+	ld [wPocketPointerLocationBuffer], a
 	ld a, [wd0df]
 	ld [wd0e4], a
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0df], a
 	ld a, [wcfa9]
-	ld [wd0d9], a
+	ld [wItemsPocketPointerLocation], a
 	ld b, $7
 	ld c, $3
 	call Function108d4
@@ -729,24 +737,24 @@ Function104fa: ; 104fa (4:44fa)
 Function10527: ; 10527 (4:4527)
 	ld a, $2
 	ld [wcf65], a
-	call Function10a36
-	call Function109bb
-	call Function1089a
+	call ClearPocketList
+	call DrawPocketName
+	call WaitBGMap_DrawPackGFX
 	call Function10866
 	ret
 
 Function10539: ; 10539 (4:4539)
 	ld hl, MenuDataHeader_0x10a7f
 	call CopyMenuDataHeader
-	ld a, [wd0da]
-	ld [wcf88], a
+	ld a, [wKeyItemsPocketPointerLocation]
+	ld [wPocketPointerLocationBuffer], a
 	ld a, [wd0e0]
 	ld [wd0e4], a
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0e0], a
 	ld a, [wcfa9]
-	ld [wd0da], a
+	ld [wKeyItemsPocketPointerLocation], a
 	ld b, $3
 	ld c, $7
 	call Function108d4
@@ -757,11 +765,11 @@ Function10539: ; 10539 (4:4539)
 Function10566: ; 10566 (4:4566)
 	ld a, $3
 	ld [wcf65], a
-	call Function10a36
-	call Function109bb
+	call ClearPocketList
+	call DrawPocketName
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	call Function1089a
+	call WaitBGMap_DrawPackGFX
 	ld hl, UnknownText_0x10b0c
 	call Function10889
 	call Function10866
@@ -780,24 +788,24 @@ Function10581: ; 10581 (4:4581)
 Function10594: ; 10594 (4:4594)
 	ld a, $1
 	ld [wcf65], a
-	call Function10a36
-	call Function109bb
-	call Function1089a
+	call ClearPocketList
+	call DrawPocketName
+	call WaitBGMap_DrawPackGFX
 	call Function10866
 	ret
 
 Function105a6: ; 105a6 (4:45a6)
 	ld hl, MenuDataHeader_0x10aaf
 	call CopyMenuDataHeader
-	ld a, [wd0db]
-	ld [wcf88], a
+	ld a, [wBallsPocketPointerLocation]
+	ld [wPocketPointerLocationBuffer], a
 	ld a, [wd0e1]
 	ld [wd0e4], a
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0e1], a
 	ld a, [wcfa9]
-	ld [wd0db], a
+	ld [wBallsPocketPointerLocation], a
 	ld b, $1
 	ld c, $5
 	call Function108d4
@@ -807,18 +815,18 @@ Function105a6: ; 105a6 (4:45a6)
 
 Function105d3: ; 105d3 (4:45d3)
 	callba CheckItemContext
-	ld a, [wd142]
+	ld a, [wItemAttributeParamBuffer]
 
 Function105dc: ; 105dc (4:45dc)
 	and a
-	jr z, .asm_105e7
-	ld hl, MenuDataHeader_0x10601
-	ld de, Jumptable_10614
-	jr .asm_105ed
-.asm_105e7
-	ld hl, MenuDataHeader_0x10618
-	ld de, Jumptable_10627
-.asm_105ed
+	jr z, .NoUse
+	ld hl, .UsableMenuDataHeader
+	ld de, .UsableJumptable
+	jr .proceed
+.NoUse
+	ld hl, .UnusableMenuDataHeader
+	ld de, .UnusableJumptable
+.proceed
 	push de
 	call LoadMenuDataHeader
 	call InterpretMenu2
@@ -831,106 +839,108 @@ Function105dc: ; 105dc (4:45dc)
 	jp [hl]
 ; 10601 (4:4601)
 
-MenuDataHeader_0x10601: ; 0x10601
+.UsableMenuDataHeader: ; 0x10601
 	db $40 ; flags
 	db 07, 13 ; start coords
 	db 11, 19 ; end coords
-	dw MenuData2_0x10609
+	dw .UsableMenuData2
 	db 1 ; default option
 ; 0x10609
 
-MenuData2_0x10609: ; 0x10609
+.UsableMenuData2: ; 0x10609
 	db $c0 ; flags
 	db 2 ; items
 	db "USE@"
 	db "QUIT@"
 ; 0x10614
 
-Jumptable_10614: ; 10614
-	dw Function10629
-	dw Function10689
+.UsableJumptable: ; 10614
+	dw .Use
+	dw .Quit
 ; 10618
 
-MenuDataHeader_0x10618: ; 0x10618
+.UnusableMenuDataHeader: ; 0x10618
 	db $40 ; flags
 	db 09, 13 ; start coords
 	db 11, 19 ; end coords
-	dw MenuData2_0x10620
+	dw .UnusableMenuData2
 	db 1 ; default option
 ; 0x10620
 
-MenuData2_0x10620: ; 0x10620
+.UnusableMenuData2: ; 0x10620
 	db $c0 ; flags
 	db 1 ; items
 	db "QUIT@"
 ; 0x10627
 
-Jumptable_10627: ; 10627
-	dw Function10689
+.UnusableJumptable: ; 10627
+	dw .Quit
 ; 10629
 
-Function10629: ; 10629
+.Use: ; 10629
 	callba CheckItemContext
-	ld a, [wd142]
-	ld hl, Jumptable_10637
+	ld a, [wItemAttributeParamBuffer]
+	ld hl, .ItemFunctionJumptable
 	rst JumpTable
 	ret
 
-Jumptable_10637: ; 10637 (4:4637)
-	dw Function10645
-	dw Function10645
-	dw Function10645
-	dw Function10645
-	dw Function1064c
-	dw Function10656
-	dw Function10671
+.ItemFunctionJumptable: ; 10637 (4:4637)
+	dw .Oak
+	dw .Oak
+	dw .Oak
+	dw .Oak
+	dw .Unused
+	dw .BattleField
+	dw .BattleOnly
 
 
-Function10645: ; 10645 (4:4645)
+.Oak: ; 10645 (4:4645)
 	ld hl, UnknownText_0x10af3
 	call Function10889
 	ret
 
-Function1064c: ; 1064c (4:464c)
+.Unused: ; 1064c (4:464c)
 	call DoItemEffect
 	ld a, [wd0ec]
 	and a
-	jr nz, asm_1066c
+	jr nz, .asm_1066c
 	ret
 
-Function10656: ; 10656 (4:4656)
+.BattleField: ; 10656 (4:4656)
 	call DoItemEffect
 	ld a, [wd0ec]
 	and a
-	jr nz, asm_1067e
+	jr nz, .asm_1067e
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	call Function10955
-	call Function1089a
+	call WaitBGMap_DrawPackGFX
 	call Function10a40
 	ret
-asm_1066c: ; 1066c (4:466c)
-	call WhiteBGMap
-	jr asm_1067e
 
-Function10671: ; 10671 (4:4671)
+.asm_1066c: ; 1066c (4:466c)
+	call WhiteBGMap
+	jr .asm_1067e
+
+.BattleOnly: ; 10671 (4:4671)
 	call DoItemEffect
 	ld a, [wd0ec]
 	and a
-	jr z, Function10645
+	jr z, .Oak
 	cp $2
-	jr z, asm_10684
-asm_1067e: ; 1067e (4:467e)
+	jr z, .asm_10684
+.asm_1067e: ; 1067e (4:467e)
 	ld a, $a
 	ld [wJumptableEntryIndexBuffer], a
 	ret
-asm_10684: ; 10684 (4:4684)
+
+.asm_10684: ; 10684 (4:4684)
 	xor a
 	ld [wd0ec], a
 	ret
 ; 10689 (4:4689)
 
-Function10689: ; 10689
+.Quit: ; 10689
 	ret
 ; 1068a
 
@@ -982,74 +992,74 @@ Function106c7: ; 106c7
 
 
 Jumptable_106d1: ; 106d1 (4:46d1)
-	dw Function106d9
-	dw Function1073b
-	dw Function106ff
-	dw Function10726
+	dw .ItemsPocket
+	dw .BallsPocket
+	dw .KeyItemsPocket
+	dw .TMHMPocket
 
 
-Function106d9: ; 106d9 (4:46d9)
+.ItemsPocket: ; 106d9 (4:46d9)
 	xor a
-	call Function10762
+	call InitPocket
 	ld hl, MenuDataHeader_0x10a67
 	call CopyMenuDataHeader
-	ld a, [wd0d9]
-	ld [wcf88], a
+	ld a, [wItemsPocketPointerLocation]
+	ld [wPocketPointerLocationBuffer], a
 	ld a, [wd0df]
 	ld [wd0e4], a
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0df], a
 	ld a, [wcfa9]
-	ld [wd0d9], a
+	ld [wItemsPocketPointerLocation], a
 	ret
 
-Function106ff: ; 106ff (4:46ff)
+.KeyItemsPocket: ; 106ff (4:46ff)
 	ld a, $2
-	call Function10762
+	call InitPocket
 	ld hl, MenuDataHeader_0x10a97
 	call CopyMenuDataHeader
-	ld a, [wd0da]
-	ld [wcf88], a
+	ld a, [wKeyItemsPocketPointerLocation]
+	ld [wPocketPointerLocationBuffer], a
 	ld a, [wd0e0]
 	ld [wd0e4], a
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0e0], a
 	ld a, [wcfa9]
-	ld [wd0da], a
+	ld [wKeyItemsPocketPointerLocation], a
 	ret
 
-Function10726: ; 10726 (4:4726)
+.TMHMPocket: ; 10726 (4:4726)
 	ld a, $3
-	call Function10762
-	call Function1089a
+	call InitPocket
+	call WaitBGMap_DrawPackGFX
 	callba Function2c76f
 	ld a, [CurItem]
 	ld [CurItem], a
 	ret
 
-Function1073b: ; 1073b (4:473b)
+.BallsPocket: ; 1073b (4:473b)
 	ld a, $1
-	call Function10762
+	call InitPocket
 	ld hl, MenuDataHeader_0x10ac7
 	call CopyMenuDataHeader
-	ld a, [wd0db]
-	ld [wcf88], a
+	ld a, [wBallsPocketPointerLocation]
+	ld [wPocketPointerLocationBuffer], a
 	ld a, [wd0e1]
 	ld [wd0e4], a
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0e1], a
 	ld a, [wcfa9]
-	ld [wd0db], a
+	ld [wBallsPocketPointerLocation], a
 	ret
 
-Function10762: ; 10762 (4:4762)
+InitPocket: ; 10762 (4:4762)
 	ld [wcf65], a
-	call Function10a36
-	call Function109bb
-	call Function1089a
+	call ClearPocketList
+	call DrawPocketName
+	call WaitBGMap_DrawPackGFX
 	ret
 
 
@@ -1188,8 +1198,8 @@ MenuData2_0x10816: ; 0x10816
 
 Function10826: ; 10826 (4:4826)
 	ld a, $3
-	call Function10762
-	call Function1089a
+	call InitPocket
+	call WaitBGMap_DrawPackGFX
 	callba Function2c76f
 	ld a, [CurItem]
 	ld [CurItem], a
@@ -1221,7 +1231,7 @@ MenuData2_0x1084a: ; 0x1084a
 
 Function1085a: ; 1085a (4:485a)
 	push hl
-	call Function10762
+	call InitPocket
 	pop hl
 	call CopyMenuDataHeader
 	call Function350c
@@ -1268,23 +1278,23 @@ Function10889: ; 10889 (4:4889)
 	ld [Options], a
 	ret
 
-Function1089a: ; 1089a (4:489a)
+WaitBGMap_DrawPackGFX: ; 1089a (4:489a)
 	call WaitBGMap
 
 
-Function1089d: ; 1089d
+DrawPackGFX: ; 1089d
 	ld a, [wcf65]
 	and $3
 	ld e, a
 	ld d, $0
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
-	jr z, .asm_108b3
+	jr z, .male_dude
 	ld a, [PlayerGender]
 	bit 0, a
-	jr nz, .asm_108c5
+	jr nz, .female
 
-.asm_108b3
+.male_dude
 	ld hl, PackGFXPointers
 rept 2
 	add hl, de
@@ -1297,8 +1307,8 @@ endr
 	call Request2bpp
 	ret
 
-.asm_108c5
-	callba Function48e81
+.female
+	callba DrawKrisPackGFX
 	ret
 ; 108cc
 
@@ -1412,13 +1422,13 @@ Function10955: ; 10955
 	inc a
 	dec c
 	jr nz, .asm_1098a
-	call Function109bb
+	call DrawPocketName
 	call Function109a5
 	hlcoord 0, 12
 	lb bc, 4, 18
 	call TextBox
 	call EnableLCD
-	call Function1089d
+	call DrawPackGFX
 	ret
 ; 109a5
 
@@ -1440,7 +1450,7 @@ Function109a5: ; 109a5
 	ret
 ; 109bb
 
-Function109bb: ; 109bb
+DrawPocketName: ; 109bb
 	ld a, [wcf65]
 
 	; * 15
@@ -1450,30 +1460,30 @@ Function109bb: ; 109bb
 
 	ld d, 0
 	ld e, a
-	ld hl, Tilemap_109e1
+	ld hl, .tilemap
 	add hl, de
 	ld d, h
 	ld e, l
 	hlcoord 0, 7
 	ld c, 3
-.asm_109d0
+.row
 	ld b, 5
-.asm_109d2
+.col
 	ld a, [de]
 	inc de
 	ld [hli], a
 	dec b
-	jr nz, .asm_109d2
+	jr nz, .col
 	ld a, c
-	ld c, 15
+	ld c, SCREEN_WIDTH - 5
 	add hl, bc
 	ld c, a
 	dec c
-	jr nz, .asm_109d0
+	jr nz, .row
 	ret
 ; 109e1
 
-Tilemap_109e1: ; 109e1
+.tilemap: ; 109e1
 	db $00, $04, $04, $04, $01,  $06, $07, $08, $09, $0a,  $02, $05, $05, $05, $03
 	db $00, $04, $04, $04, $01,  $15, $16, $17, $18, $19,  $02, $05, $05, $05, $03
 	db $00, $04, $04, $04, $01,  $0b, $0c, $0d, $0e, $0f,  $02, $05, $05, $05, $03
@@ -1491,21 +1501,21 @@ Function10a1d: ; 10a1d
 Function10a2a: ; 10a2a
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	ld a, $7f
+	ld a, " "
 	call ByteFill
 	ret
 ; 10a36
 
-Function10a36: ; 10a36 (4:4a36)
+ClearPocketList: ; 10a36 (4:4a36)
 	hlcoord 5, 2
-	ld bc, $a0f
+	lb bc, 10, SCREEN_WIDTH - 5
 	call ClearBox
 	ret
 
 
 Function10a40: ; 10a40
 	call WaitBGMap
-	ld b, $14
+	ld b, SCREEN_WIDTH
 	call GetSGBLayout
 	call Function32f9
 	call DelayFrame

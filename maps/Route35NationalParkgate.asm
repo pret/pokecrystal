@@ -458,6 +458,6 @@ Route35NationalParkgate_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_OFFICER, 1 + 4, 2 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OfficerScript_0x6a204, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
-	person_event SPRITE_YOUNGSTER, 5 + 4, 6 + 4, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x6a2d8, EVENT_ROUTE_35_NATIONAL_PARK_GATE_YOUNGSTER
-	person_event SPRITE_OFFICER, 3 + 4, 0 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OfficerScript_0x6a2ca, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY
+	person_event SPRITE_OFFICER, 1, 2, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OfficerScript_0x6a204, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
+	person_event SPRITE_YOUNGSTER, 5, 6, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x6a2d8, EVENT_ROUTE_35_NATIONAL_PARK_GATE_YOUNGSTER
+	person_event SPRITE_OFFICER, 3, 0, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OfficerScript_0x6a2ca, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY

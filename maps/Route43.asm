@@ -516,11 +516,11 @@ Route43_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_SUPER_NERD, 5 + 4, 13 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPokemaniacBen, -1
-	person_event SPRITE_SUPER_NERD, 20 + 4, 13 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPokemaniacBrent1, -1
-	person_event SPRITE_SUPER_NERD, 7 + 4, 14 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPokemaniacRon, -1
-	person_event SPRITE_FISHER, 16 + 4, 4 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 4, TrainerFisherMarvin, -1
-	person_event SPRITE_LASS, 25 + 4, 9 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerPicnickerTiffany3, -1
-	person_event SPRITE_YOUNGSTER, 40 + 4, 13 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerCamperSpencer, -1
-	person_event SPRITE_FRUIT_TREE, 26 + 4, 1 + 4, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x19d266, -1
-	person_event SPRITE_POKE_BALL, 32 + 4, 12 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19d268, EVENT_ROUTE_43_MAX_ETHER
+	person_event SPRITE_SUPER_NERD, 5, 13, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPokemaniacBen, -1
+	person_event SPRITE_SUPER_NERD, 20, 13, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPokemaniacBrent1, -1
+	person_event SPRITE_SUPER_NERD, 7, 14, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPokemaniacRon, -1
+	person_event SPRITE_FISHER, 16, 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 4, TrainerFisherMarvin, -1
+	person_event SPRITE_LASS, 25, 9, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerPicnickerTiffany3, -1
+	person_event SPRITE_YOUNGSTER, 40, 13, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerCamperSpencer, -1
+	person_event SPRITE_FRUIT_TREE, 26, 1, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x19d266, -1
+	person_event SPRITE_POKE_BALL, 32, 12, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19d268, EVENT_ROUTE_43_MAX_ETHER

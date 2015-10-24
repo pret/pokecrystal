@@ -129,6 +129,7 @@ channel_struct: MACRO
                       ds 1 ; c131
                       ds 1 ; c132
 ENDM
+GLOBAL box_struct_length, party_struct_length
 
 INCLUDE "vram.asm"
 
@@ -880,19 +881,20 @@ wc7e8:: ds 24
 
 
 RSSET 0 ; Offsets for wBT_OTTempCopy:: @ $c608
-wBT_OTTempCopy_0			RB   $A			; $c608
-wBT_OTTempCopy_TrainerClass	RB   $1			; $c608 + $a = $c612
-wBT_OTTempCopy_Pkmn1		RB   $30		; $c608 + $b = $c613
-wBT_OTTempCopy_Pkmn1Name	RB   $A			; $c608 + $3b = $c643
-wBT_OTTempCopy_45			RB   $1			; $c608 + $45 = $c64d
-wBT_OTTempCopy_Pkmn2		RB   $30		; $c608 + $46 = $c64e
-wBT_OTTempCopy_Pkmn2Name	RB   $A			; $c608 + $76 = $c67e
-wBT_OTTempCopy_80			RB   $1			; $c608 + $80 = $c688
-wBT_OTTempCopy_Pkmn3		RB   $30		; $c608 + $81 = $c689
-wBT_OTTempCopy_Pkmn3Name	RB   $A			; $c608 + $b1 = $c6b9
-wBT_OTTempCopy_BB			RB   $1			; $c608 + $bb = $c6c3
+wBT_OTTempCopy_0			RB 10	                 ; $c608
+wBT_OTTempCopy_TrainerClass	RB 1	                 ; $c608 + $a = $c612
+wBT_OTTempCopy_Pkmn1		RB party_struct_length   ; $c608 + $b = $c613
+wBT_OTTempCopy_Pkmn1Name	RB PKMN_NAME_LENGTH + -1 ; $c608 + $45 = $c64d
+wBT_OTTempCopy_45           RB 1
+wBT_OTTempCopy_Pkmn2		RB party_struct_length   ; $c608 + $46 = $c64e
+wBT_OTTempCopy_Pkmn2Name	RB PKMN_NAME_LENGTH + -1 ; $c608 + $76 = $c67e
+wBT_OTTempCopy_80           RB 1
+wBT_OTTempCopy_Pkmn3		RB party_struct_length   ; $c608 + $81 = $c689
+wBT_OTTempCopy_Pkmn3Name	RB PKMN_NAME_LENGTH + -1 ; $c608 + $b1 = $c6b9
+wBT_OTTempCopy_BB           RB 1
 
-GLOBAL wBT_OTTempCopy_TrainerClass, wBT_OTTempCopy_Pkmn1, wBT_OTTempCopy_Pkmn1Name, wBT_OTTempCopy_45, wBT_OTTempCopy_Pkmn2, wBT_OTTempCopy_Pkmn2Name, wBT_OTTempCopy_80, wBT_OTTempCopy_Pkmn3, wBT_OTTempCopy_Pkmn3Name, wBT_OTTempCopy_BB
+GLOBAL wBT_OTTempCopy_TrainerClass, wBT_OTTempCopy_Pkmn1, wBT_OTTempCopy_Pkmn1Name, wBT_OTTempCopy_Pkmn2, wBT_OTTempCopy_Pkmn2Name, wBT_OTTempCopy_Pkmn3, wBT_OTTempCopy_Pkmn3Name
+GLOBAL wBT_OTTempCopy_45, wBT_OTTempCopy_80, wBT_OTTempCopy_BB
 
 
 
@@ -1221,25 +1223,28 @@ wcf75:: ds 1
 wcf76:: ds 1
 wcf77:: ds 1
 wcf78:: ds 9
+
+; menu data header buffer (ds 16)
 wcf81:: ds 1
 
 ; dw related to tilemap
-wcf82:: ds 1
-wcf83:: ds 1
+wMenuBorderTopCoord:: ds 1
+wMenuBorderLeftCoord:: ds 1
+wMenuBorderBottomCoord:: ds 1
+wMenuBorderRightCoord:: ds 1
 
-wcf84:: ds 1
-wcf85:: ds 1
 wcf86:: ds 1
 wcf87:: ds 1
-wcf88:: ds 2
-wcf8a:: ds 7
+wPocketPointerLocationBuffer:: ds 2
+wcf8a:: ds 7 ; menu data 2 bank?
 wcf91:: ds 1
+
 wcf92:: ds 1
 wcf93:: ds 1
 wcf94:: ds 1
-wcf95:: ds 1
-wcf96:: ds 1
-wcf97:: ds 1
+wcf95:: ds 1 ; bank
+wcf96:: ds 1 ; addr lo
+wcf97:: ds 1 ; addr hi
 wcf98:: ds 3
 wcf9b:: ds 3
 wcf9e:: ds 3
@@ -1340,10 +1345,13 @@ Options2:: ; cfd1
 	ds 2
 OptionsEnd::
 
-wcfd4:: ds 1
-wcfd5:: ds 1
-wcfd6:: ds 1
-wcfd7:: ds 1 ; related to time
+; Time buffer, for counting the amount of time since
+; an event began.
+
+wSecondsSince:: ds 1
+wMinutesSince:: ds 1
+wHoursSince:: ds 1
+wDaysSince:: ds 1
 
 	ds 40
 
@@ -1428,13 +1436,17 @@ EngineBuffer1:: ; d03e
 wd03f::
 CurFruit:: ; d03f
 MartPointerBank::
+EngineBuffer2::
 	ds 1
 
 wd040::
 MartPointer:: ; d040
+EngineBuffer3::
 	ds 1
 
-wd041:: ds 1
+wd041::
+EngineBuffer4::
+	ds 1
 MovementAnimation:: ; d042
 	ds 1
 
@@ -1488,10 +1500,10 @@ CurMoveNum:: ; d0d5
 wd0d6:: ds 1
 wd0d7:: ds 1
 wd0d8:: ds 1
-wd0d9:: ds 1
-wd0da:: ds 1
-wd0db:: ds 1
-wd0dc:: ds 1
+wItemsPocketPointerLocation:: ds 1
+wKeyItemsPocketPointerLocation:: ds 1
+wBallsPocketPointerLocation:: ds 1
+wTMHMPocketPointerLocation:: ds 1
 wd0dd:: ds 2
 wd0df:: ds 1
 wd0e0:: ds 1
@@ -1511,7 +1523,7 @@ VramState:: ; d0ed
 ;        flickers when climbing waterfall
 	ds 1
 
-wd0ee:: ds 1
+wBattleResult:: ds 1
 wd0ef:: ds 1
 wd0f0::
 CurMart:: ; d0f0
@@ -1559,7 +1571,9 @@ wd13f:: ds 2
 PartyMenuActionText:: ; d141
 	ds 1
 
-wd142:: ds 1
+wItemAttributeParamBuffer::
+wd142::
+	ds 1
 
 CurPartyLevel:: ; d143
 	ds 1
@@ -1942,13 +1956,18 @@ wd454:: ds 1
 	ds 4
 
 wd459:: ds 2
-wd45b:: ds 1
-wd45c:: ds 8
-wd464:: ds 1
-wd465:: ds 1
-wd466:: ds 6
-wd46c:: ds 1
-wd46d:: ds 5
+wPlayerSpriteSetupFlags:: ds 1
+wMapReentryScriptQueueFlag:: ds 1 ; MemScriptFlag
+wMapReentryScriptBank:: ds 1 ; MemScriptBank
+wMapReentryScriptAddress:: ds 2 ; MemScriptAddr
+	ds 4     ; ?????????????
+wTimeCyclesSinceLastCall:: ds 1
+wReceiveCallDelay_MinsRemaining:: ds 1
+wReceiveCallDelay_StartTime:: ds 3
+	ds 3
+wBugContestMinsRemaining:: ds 1
+wBugContestSecsRemaining:: ds 1
+	ds 4
 
 wCrystalData::
 PlayerGender:: ; d472
@@ -2333,7 +2352,7 @@ wCurBox:: ; db72
 ; 8 chars + $50
 wBoxNames:: ds 9 * NUM_BOXES ; db75
 
-wdbf3:: ds 1
+wCelebiEvent:: ds 1
 	ds 1
 
 BikeFlags:: ; dbf5
@@ -2358,7 +2377,8 @@ wdc03:: ds 1
 wdc04:: ds 1
 wdc05:: ds 1
 wdc06:: ds 1
-wdc07:: ds 2
+wdc07:: ds 1
+wdc08:: ds 1
 wdc09:: ds 1
 wdc0a:: ds 1
 wdc0b:: ds 2
@@ -2391,13 +2411,13 @@ wdc18:: ds 1
 wdc19:: ds 1
 wdc1a:: ds 1
 wdc1b:: ds 1
-wdc1c:: ds 2
+wDailyResetTimer:: ds 2
 DailyFlags:: ds 1
 WeeklyFlags:: ds 1
 SwarmFlags:: ds 1
 wdc21:: ds 1
 wdc22:: ds 1
-wdc23:: ds 1
+wStartDay:: ds 1
 wdc24:: ds 2
 wdc26:: ds 1
 
@@ -2410,15 +2430,16 @@ wLuckyNumberDayBuffer:: ds 2
 	ds 2
 wSpecialPhoneCallID:: ds 2
 wdc33:: ds 2
-wdc35:: ds 4
+wBugContestStartTime:: ds 4 ; day, hour, min, sec
 wdc39:: ds 1
-wdc3a:: ds 1 ; related to time
-wdc3b:: ds 5 ; related to time
+wUnusedTwoDayTimer:: ds 1
+wUnusedTwoDayTimerStartDate:: ds 1
+	ds 4
 wdc40:: ds 1
 wdc41:: ds 1
 wdc42:: ds 8
-wdc4a:: ds 1
-wdc4b:: ds 1
+wBuenasPassword:: ds 1
+wBlueCardBalance:: ds 1
 wDailyRematchFlags:: ds 4
 wDailyPhoneItemFlags:: ds 4
 wDailyPhoneTimeOfDayFlags:: ds 4
@@ -2438,11 +2459,13 @@ PoisonStepCount:: ; dc74
 wdc77:: ds 2
 wdc79:: ds 1
 wdc7a:: ds 2
-wdc7c:: ds 33
+wPhoneList:: ds CONTACT_LIST_SIZE
+	ds 23
 wLuckyNumberShowFlag:: ds 2
 wLuckyIDNumber:: ds 2
-wdca1:: ds 3
-wdca4:: ds 1
+wRepelEffect:: ds 1
+wBikeStep:: ds 2
+wKurtApricornQuantity:: ds 1
 
 wPlayerDataEnd::
 

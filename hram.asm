@@ -20,6 +20,7 @@ hVBlankCounter     EQU $ff9b
 hROMBank           EQU $ff9d
 hVBlank            EQU $ff9e
 hMapEntryMethod    EQU $ff9f
+hMenuReturn        EQU $ffa0
 
 hJoypadReleased    EQU $ffa2
 hJoypadPressed     EQU $ffa3
@@ -91,3 +92,4 @@ hCGBPalUpdate      EQU $ffe5
 hCGB               EQU $ffe6
 hSGB               EQU $ffe7
 hDMATransfer       EQU $ffe8
+hMobile            EQU $ffe9

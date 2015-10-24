@@ -1,14 +1,14 @@
 ; Functions used in displaying and handling menus.
 
 
-LoadMenuDataHeader:: ; 0x1d35
+LoadMenuDataHeader::
 	call CopyMenuDataHeader
-	call Function1c00
+	call BackUpTiles
 	ret
 
-CopyMenuDataHeader:: ; 0x1d3c
+CopyMenuDataHeader::
 	ld de, wcf81
-	ld bc, $0010
+	ld bc, 16
 	call CopyBytes
 	ld a, [hROMBank]
 	ld [wcf8a], a
@@ -16,7 +16,7 @@ CopyMenuDataHeader:: ; 0x1d3c
 ; 0x1d4b
 
 Function1d4b:: ; 1d4b
-	ld [wcf88], a
+	ld [wPocketPointerLocationBuffer], a
 	ret
 ; 1d4f
 
@@ -71,7 +71,7 @@ Function1d7d:: ; 1d7d
 	ret
 ; 1d81
 
-InterpretMenu2:: ; 0x1d81
+InterpretMenu2::
 	xor a
 	ld [hBGMapMode], a
 	call Function1cbb
@@ -81,12 +81,12 @@ InterpretMenu2:: ; 0x1d81
 	call Function1c66
 	ld a, [wcf91]
 	bit 7, a
-	jr z, .cancel ; 0x1d98 $d
+	jr z, .cancel
 	call Function1c10
 	call Function1bc9
 	call Function1ff8
 	bit 1, a
-	jr z, .okay ; 0x1da5 $2
+	jr z, .okay
 .cancel
 	scf
 	ret
@@ -103,7 +103,7 @@ GetMenu2:: ; 1dab
 	ret
 ; 1db8
 
-Function1db8:: ; 0x1db8
+Function1db8::
 	push hl
 	push bc
 	push af
@@ -151,14 +151,14 @@ _YesNoBox:: ; 1dd9
 
 .okay
 	ld a, b
-	ld [wcf83], a
+	ld [wMenuBorderLeftCoord], a
 	add $5
-	ld [wcf85], a
+	ld [wMenuBorderRightCoord], a
 	ld a, c
-	ld [wcf82], a
+	ld [wMenuBorderTopCoord], a
 	add $4
-	ld [wcf84], a
-	call Function1c00
+	ld [wMenuBorderBottomCoord], a
+	call BackUpTiles
 
 InterpretTwoOptionMenu:: ; 1dfe
 	call InterpretMenu2
@@ -198,7 +198,7 @@ YesNoMenuData2:: ; 1e25
 
 Function1e2e:: ; 1e2e
 	call Function1e35
-	call Function1c00
+	call BackUpTiles
 	ret
 ; 1e35
 
@@ -206,24 +206,24 @@ Function1e35:: ; 1e35
 	push de
 	call CopyMenuDataHeader
 	pop de
-	ld a, [wcf83]
+	ld a, [wMenuBorderLeftCoord]
 	ld h, a
-	ld a, [wcf85]
+	ld a, [wMenuBorderRightCoord]
 	sub h
 	ld h, a
 	ld a, d
-	ld [wcf83], a
+	ld [wMenuBorderLeftCoord], a
 	add h
-	ld [wcf85], a
-	ld a, [wcf82]
+	ld [wMenuBorderRightCoord], a
+	ld a, [wMenuBorderTopCoord]
 	ld l, a
-	ld a, [wcf84]
+	ld a, [wMenuBorderBottomCoord]
 	sub l
 	ld l, a
 	ld a, e
-	ld [wcf82], a
+	ld [wMenuBorderTopCoord], a
 	add l
-	ld [wcf84], a
+	ld [wMenuBorderBottomCoord], a
 	ret
 ; 1e5d
 
@@ -245,14 +245,14 @@ SetUpMenu:: ; 1e70
 	set 7, [hl]
 	ret
 
-MenuFunc_1e7f:: ; 0x1e7f
+MenuFunc_1e7f::
 	call Function1c66
 	call Function1ebd
 	call Function1ea6
 	call Function1cbb
 	ret
 
-MenuWriteText:: ; 0x1e8c
+MenuWriteText::
 	xor a
 	ld [hBGMapMode], a
 	call Function1ebd ; sort out the text
@@ -269,18 +269,18 @@ MenuWriteText:: ; 0x1e8c
 ; 0x1ea6
 
 Function1ea6:: ; 1ea6
-	ld a, [wcf83]
+	ld a, [wMenuBorderLeftCoord]
 	ld c, a
-	ld a, [wcf85]
+	ld a, [wMenuBorderRightCoord]
 	sub c
 	ld c, a
 	ld a, [wcf92]
 	add a
 	inc a
 	ld b, a
-	ld a, [wcf82]
+	ld a, [wMenuBorderTopCoord]
 	add b
-	ld [wcf84], a
+	ld [wMenuBorderBottomCoord], a
 	ret
 ; 1ebd
 
@@ -410,7 +410,7 @@ Function1f2a:: ; 1f2a
 	ld a, [hl]
 	ld [MenuSelection], a
 	ld a, [wcfa9]
-	ld [wcf88], a
+	ld [wPocketPointerLocationBuffer], a
 	and a
 	ret
 
@@ -571,7 +571,7 @@ InterpretMenu:: ; 202a
 	ld a, [hROMBank]
 	ld [wcf94], a
 	callba Function2400e
-	ld a, [wcf88]
+	ld a, [wPocketPointerLocationBuffer]
 	ret
 ; 2039
 
@@ -579,7 +579,7 @@ Function2039:: ; 2039
 	ld a, [hROMBank]
 	ld [wcf94], a
 	callba Function24022
-	ld a, [wcf88]
+	ld a, [wPocketPointerLocationBuffer]
 	ret
 ; 2048
 
@@ -587,7 +587,7 @@ Function2048:: ; 2048
 	ld a, [hROMBank]
 	ld [wcf94], a
 	callba Function2403c
-	ld a, [wcf88]
+	ld a, [wPocketPointerLocationBuffer]
 	ret
 ; 2057
 

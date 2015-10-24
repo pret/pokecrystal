@@ -88,7 +88,7 @@ SpecialsPointers:: ; c029
 	add_special Special_FindAtLeastThatHappy
 	add_special Special_FindThatSpecies
 	add_special Special_FindThatSpeciesYourTrainerID
-	add_special Functionc3ef ; unreferenced
+	add_special Special_CheckUnusedTwoDayTimer ; unreferenced
 	add_special Special_DayCareMon1
 	add_special Special_DayCareMon2
 	add_special Special_SelectRandomBugContestContestants
@@ -169,7 +169,7 @@ SpecialsPointers:: ; c029
 	add_special SpecialBuenasPassword
 	add_special SpecialBuenaPrize
 	add_special SpecialDratini
-	add_special Function11485
+	add_special Special_SampleKenjiBreakCountdown
 	add_special SpecialBeastsCheck
 	add_special SpecialMonCheck
 	add_special Functionc225
@@ -482,9 +482,9 @@ ScriptReturnCarry: ; c3e2
 	ret
 ; c3ef
 
-Functionc3ef: ; c3ef
-	callba Function1150c
-	ld a, [wdc3a]
+Special_CheckUnusedTwoDayTimer: ; c3ef
+	callba CheckUnusedTwoDayTimer
+	ld a, [wUnusedTwoDayTimer]
 	ld [ScriptVar], a
 	ret
 ; c3fc
@@ -523,7 +523,7 @@ SpecialCheckPokerus: ; c419
 ; c422
 
 Special_ResetLuckyNumberShowFlag: ; c422
-	callba Function1152b
+	callba RestartLuckyNumberCountdown
 	ld hl, wLuckyNumberShowFlag
 	res 0, [hl]
 	callba LoadOrRegenerateLuckyIDNumber

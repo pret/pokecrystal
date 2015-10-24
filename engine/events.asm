@@ -123,7 +123,7 @@ StartMap: ; 96724
 	ld hl, MapStatus
 	ld bc, $3e ; 62
 	call ByteFill
-	callba Function113e5
+	callba InitCallReceiveDelay
 	call ClearJoypad
 	; fallthrough
 ; 9673e
@@ -138,19 +138,19 @@ EnterMap: ; 9673e
 	call ClearAllScriptFlags3
 
 	ld a, [hMapEntryMethod]
-	cp $f7
+	cp ($f << 4) + MAPSETUP_07
 	jr nz, .dontset
 	call SetAll_ScriptFlags3
 .dontset
 
 	ld a, [hMapEntryMethod]
-	cp $f3
+	cp ($f << 4) + MAPSETUP_03
 	jr nz, .dontresetpoison
 	xor a
 	ld [PoisonStepCount], a
 .dontresetpoison
 
-	xor a
+	xor a ; ($0 << 4) + MAPSETUP_00
 	ld [hMapEntryMethod], a
 	ld a, 2 ; HandleMap
 	ld [MapStatus], a
@@ -285,12 +285,12 @@ Function96812: ; 96812
 PlayerEvents: ; 9681f
 
 	xor a
-
+; If there's already a player event, don't interrupt it.
 	ld a, [ScriptRunning]
 	and a
 	ret nz
 
-	call Function968e4
+	call Dummy_CheckScriptFlags3Bit5 ; This is a waste of time
 
 	call CheckTrainerBattle3
 	jr c, .ok
@@ -298,13 +298,13 @@ PlayerEvents: ; 9681f
 	call CheckTileEvent
 	jr c, .ok
 
-	call Function97c30
+	call RunMemScript
 	jr c, .ok
 
-	call Function968ec
+	call DoMapTrigger
 	jr c, .ok
 
-	call Function9693a
+	call CheckTimeEvents
 	jr c, .ok
 
 	call OWPlayerInput
@@ -436,11 +436,7 @@ SetUpFiveStepWildEncounterCooldown: ; 968d1
 	ret
 ; 968d7
 
-Function968d7: ; 968d7
-	ret
-; 968d8
-
-Function968d8: ; 968d8
+SetMinTwoStepWildEncounterCooldown: mobile ; 968d7
 	ld a, [wWildEncounterCooldown]
 	cp 2
 	ret nc
@@ -449,14 +445,14 @@ Function968d8: ; 968d8
 	ret
 ; 968e4
 
-Function968e4: ; 968e4
+Dummy_CheckScriptFlags3Bit5: ; 968e4
 	call CheckBit5_ScriptFlags3
 	ret z
-	call Function2f3e
+	call ret_2f3e
 	ret
 ; 968ec
 
-Function968ec: ; 968ec
+DoMapTrigger: ; 968ec
 	ld a, [wdc07]
 	and a
 	jr z, .nope
@@ -468,7 +464,7 @@ Function968ec: ; 968ec
 
 	ld e, a
 	ld d, 0
-	ld hl, wdc07 + 1
+	ld hl, wdc08
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -505,23 +501,23 @@ endr
 	ret
 ; 9693a
 
-Function9693a: ; 9693a
+CheckTimeEvents: ; 9693a
 	ld a, [wLinkMode]
 	and a
 	jr nz, .nothing
 
 	ld hl, StatusFlags2
 	bit 2, [hl]
-	jr z, .asm_96951
+	jr z, .do_daily
 
-	callba Function114a4
-	jr c, .elevator
+	callba CheckBugContestTimer
+	jr c, .end_bug_contest
 	xor a
 	ret
 
-.asm_96951
-	callba Function11452
-	callba Function114e7
+.do_daily
+	callba CheckDailyResetTimer
+	callba CheckPokerusTrick
 	callba CheckPhoneCall
 	ret c
 
@@ -529,7 +525,7 @@ Function9693a: ; 9693a
 	xor a
 	ret
 
-.elevator
+.end_bug_contest
 	ld a, BANK(BugCatchingContestOverScript)
 	ld hl, BugCatchingContestOverScript
 	call CallScript
@@ -537,7 +533,7 @@ Function9693a: ; 9693a
 	ret
 ; 96970
 
-Function96970: ; 96970
+.unused ; 96970
 	ld a, 8
 	scf
 	ret
@@ -856,7 +852,7 @@ PlayerMovement: ; 96af0
 ; 96b10
 
 .seven ; 96b10
-	call Function968d7 ; empty
+	call SetMinTwoStepWildEncounterCooldown ; mobile
 	xor a
 	ld c, a
 	ret
@@ -898,7 +894,7 @@ PlayerMovement: ; 96af0
 
 CheckMenuOW: ; 96b30
 	xor a
-	ld [$ffa0], a
+	ld [hMenuReturn], a
 	ld [$ffa1], a
 	ld a, [hJoyPressed]
 
@@ -940,9 +936,9 @@ SelectMenuScript: ; 96b5f
 
 StartMenuCallback:
 SelectMenuCallback: ; 96b66
-	copybytetovar $ffa0
-	if_equal %10000000, .Script
-	if_equal -1, .Asm
+	copybytetovar hMenuReturn
+	if_equal HMENURETURN_SCRIPT, .Script
+	if_equal HMENURETURN_ASM, .Asm
 	end
 ; 96b72
 
@@ -957,75 +953,85 @@ SelectMenuCallback: ; 96b66
 
 
 CountStep: ; 96b79
+	; Don't count steps in link communication rooms.
 	ld a, [wLinkMode]
 	and a
 	jr nz, .done
 
-	callba Function90136
-	jr c, .setminus1
+	; If there is a special phone call, don't count the step.
+	callba CheckSpecialPhoneCall
+	jr c, .doscript
 
-	call Function96bd7
-	jr c, .setminus1
+	; If Repel wore off, don't count the step.
+	call DoRepelStep
+	jr c, .doscript
 
+	; Count the step for poison and total steps
 	ld hl, PoisonStepCount
 	inc [hl]
 	ld hl, StepCount
 	inc [hl]
-	jr nz, .asm_96b9c
+	; Every 256 steps, increase the happiness of all your Pokemon.
+	jr nz, .skip_happiness
 
 	callba StepHappiness
 
-.asm_96b9c
+.skip_happiness
+	; Every 256 steps, offset from the happiness incrementor by 128 steps,
+	; decrease the hatch counter of all your eggs until you reach the first
+	; one that is ready to hatch.
 	ld a, [StepCount]
 	cp $80
-	jr nz, .asm_96bab
+	jr nz, .skip_egg
 
-	callba Function16f3e
-	jr nz, .set8
+	callba DoEggStep
+	jr nz, .hatch
 
-.asm_96bab
+.skip_egg
+	; Increase the EXP of (both) DayCare Pokemon by 1.
 	callba DaycareStep
 
+	; Every four steps, deal damage to all Poisoned Pokemon
 	ld hl, PoisonStepCount
 	ld a, [hl]
 	cp 4
-	jr c, .poisoned
+	jr c, .skip_poison
 	ld [hl], 0
 
-	callba Function505da
-	jr c, .setminus1
+	callba DoPoisonStep
+	jr c, .doscript
 
-.poisoned
-	callba Function97db3
+.skip_poison
+	callba DoBikeStep
 
 .done
 	xor a
 	ret
 
-.setminus1
+.doscript
 	ld a, -1
 	scf
 	ret
 
-.set8
+.hatch
 	ld a, 8
 	scf
 	ret
 ; 96bd3
 
 
-Function96bd3: ; 96bd3
+.unreferenced: ; 96bd3
 	ld a, 7
 	scf
 	ret
 ; 96bd7
 
-Function96bd7: ; 96bd7
-	ld a, [wdca1]
+DoRepelStep: ; 96bd7
+	ld a, [wRepelEffect]
 	and a
 	ret z
 	dec a
-	ld [wdca1], a
+	ld [wRepelEffect], a
 	ret nz
 	ld a, BANK(RepelWoreOffScript)
 	ld hl, RepelWoreOffScript
@@ -1038,7 +1044,7 @@ Function96beb: ; 96beb
 	ld a, [ScriptRunning]
 	and a
 	ret z
-	cp -1
+	cp -1 ; run script
 	ret z
 	cp 10
 	ret nc
@@ -1059,17 +1065,17 @@ endr
 ; 96c0c
 
 ScriptPointers96c0c: ; 96c0c
-	dbw BANK(Invalid_0x96c2d), Invalid_0x96c2d
-	dbw BANK(SeenByTrainerScript), SeenByTrainerScript
-	dbw BANK(TalkToTrainerScript), TalkToTrainerScript
-	dbw BANK(FindItemInBallScript), FindItemInBallScript
-	dbw BANK(UnknownScript_0x96c4d), UnknownScript_0x96c4d
-	dbw BANK(WarpToNewMapScript), WarpToNewMapScript
-	dbw BANK(FallIntoMapScript), FallIntoMapScript
-	dbw BANK(UnknownScript_0x124c8), UnknownScript_0x124c8
-	dbw BANK(HatchEggScript), HatchEggScript
-	dbw BANK(UnknownScript_0x96c4f), UnknownScript_0x96c4f
-	dbw BANK(Invalid_0x96c2d), Invalid_0x96c2d
+	dba Invalid_0x96c2d
+	dba SeenByTrainerScript
+	dba TalkToTrainerScript
+	dba FindItemInBallScript
+	dba UnknownScript_0x96c4d
+	dba WarpToNewMapScript
+	dba FallIntoMapScript
+	dba UnknownScript_0x124c8
+	dba HatchEggScript
+	dba UnknownScript_0x96c4f
+	dba Invalid_0x96c2d
 ; 96c2d
 
 Invalid_0x96c2d: ; 96c2d
@@ -1087,12 +1093,12 @@ HatchEggScript: ; 96c2f
 
 WarpToNewMapScript: ; 96c34
 	warpsound
-	newloadmap $f5
+	newloadmap ($f << 4) + MAPSETUP_05
 	end
 ; 96c38
 
 FallIntoMapScript: ; 96c38
-	newloadmap $f6
+	newloadmap ($f << 4) + MAPSETUP_06
 	playsound SFX_KINESIS
 	applymovement PLAYER, MovementData_0x96c48
 	playsound SFX_STRENGTH

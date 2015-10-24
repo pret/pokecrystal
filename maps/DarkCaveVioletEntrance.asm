@@ -43,11 +43,11 @@ DarkCaveVioletEntrance_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_POKE_BALL, 8 + 4, 6 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c68e, EVENT_DARK_CAVE_VIOLET_ENTRANCE_POTION
-	person_event SPRITE_ROCK, 14 + 4, 16 + 4, $18, 0, 0, -1, -1, 0, 0, 0, DarkCaveVioletEntranceRock, -1
-	person_event SPRITE_ROCK, 6 + 4, 27 + 4, $18, 0, 0, -1, -1, 0, 0, 0, DarkCaveVioletEntranceRock, -1
-	person_event SPRITE_ROCK, 14 + 4, 7 + 4, $18, 0, 0, -1, -1, 0, 0, 0, DarkCaveVioletEntranceRock, -1
-	person_event SPRITE_ROCK, 31 + 4, 36 + 4, $18, 0, 0, -1, -1, 0, 0, 0, DarkCaveVioletEntranceRock, -1
-	person_event SPRITE_POKE_BALL, 22 + 4, 36 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c690, EVENT_DARK_CAVE_VIOLET_ENTRANCE_FULL_HEAL
-	person_event SPRITE_POKE_BALL, 9 + 4, 35 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c692, EVENT_DARK_CAVE_VIOLET_ENTRANCE_HYPER_POTION
-	person_event SPRITE_POKE_BALL, 28 + 4, 30 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c694, EVENT_DARK_CAVE_VIOLET_ENTRANCE_DIRE_HIT
+	person_event SPRITE_POKE_BALL, 8, 6, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c68e, EVENT_DARK_CAVE_VIOLET_ENTRANCE_POTION
+	person_event SPRITE_ROCK, 14, 16, $18, 0, 0, -1, -1, 0, 0, 0, DarkCaveVioletEntranceRock, -1
+	person_event SPRITE_ROCK, 6, 27, $18, 0, 0, -1, -1, 0, 0, 0, DarkCaveVioletEntranceRock, -1
+	person_event SPRITE_ROCK, 14, 7, $18, 0, 0, -1, -1, 0, 0, 0, DarkCaveVioletEntranceRock, -1
+	person_event SPRITE_ROCK, 31, 36, $18, 0, 0, -1, -1, 0, 0, 0, DarkCaveVioletEntranceRock, -1
+	person_event SPRITE_POKE_BALL, 22, 36, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c690, EVENT_DARK_CAVE_VIOLET_ENTRANCE_FULL_HEAL
+	person_event SPRITE_POKE_BALL, 9, 35, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c692, EVENT_DARK_CAVE_VIOLET_ENTRANCE_HYPER_POTION
+	person_event SPRITE_POKE_BALL, 28, 30, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c694, EVENT_DARK_CAVE_VIOLET_ENTRANCE_DIRE_HIT

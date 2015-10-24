@@ -3,20 +3,20 @@ SpecialBuenasPassword: ; 8af6b
 	ld [wcf76], a
 	ld hl, MenuDataHeader_0x8afa9
 	call CopyMenuDataHeader
-	ld a, [wdc4a]
+	ld a, [wBuenasPassword]
 	ld c, a
 	callba GetBuenasPassword
-	ld a, [wcf83]
+	ld a, [wMenuBorderLeftCoord]
 	add c
 	add $2
-	ld [wcf85], a
-	call Function1c00
+	ld [wMenuBorderRightCoord], a
+	call BackUpTiles
 	call Function1e5d
 	callba Function4ae5e
 	ld b, $0
 	ld a, [MenuSelection]
 	ld c, a
-	ld a, [wdc4a]
+	ld a, [wBuenasPassword]
 	and $3
 	cp c
 	jr nz, .asm_8afa4
@@ -52,7 +52,7 @@ Unknown_8afb8: ; 8afb8
 
 Function8afbd: ; 8afbd
 	push de
-	ld a, [wdc4a]
+	ld a, [wBuenasPassword]
 	and $f0
 	ld c, a
 	ld a, [MenuSelection]
@@ -94,14 +94,16 @@ SpecialBuenaPrize: ; 8afd4
 	call Function105a
 	call YesNoBox
 	jr c, .asm_8afeb
+
 	ld a, [wcf75]
 	call Buena_getprize
 	inc hl
 	ld a, [hld]
 	ld c, a
-	ld a, [wdc4b]
+	ld a, [wBlueCardBalance]
 	cp c
-	jr c, .asm_8b047
+	jr c, .InsufficientBalance
+
 	ld a, [hli]
 	push hl
 	ld [CurItem], a
@@ -113,13 +115,13 @@ SpecialBuenaPrize: ; 8afd4
 	jr nc, .asm_8b04c
 	ld a, [hl]
 	ld c, a
-	ld a, [wdc4b]
+	ld a, [wBlueCardBalance]
 	sub c
-	ld [wdc4b], a
+	ld [wBlueCardBalance], a
 	call Function8b097
 	jr .asm_8b051
 
-.asm_8b047
+.InsufficientBalance
 	ld hl, UnknownText_0x8b081
 	jr .asm_8b05a
 
@@ -189,7 +191,7 @@ Function8b090: ; 8b090
 ; 8b097
 
 Function8b097: ; 8b097
-	ld de, wdc4b
+	ld de, wBlueCardBalance
 	call Function8b09e
 	ret
 ; 8b09e
@@ -245,7 +247,7 @@ Function8b0e2: ; 8b0e2
 	ld hl, .MenuDataHeader
 	call CopyMenuDataHeader
 	ld a, [MenuSelection]
-	ld [wcf88], a
+	ld [wPocketPointerLocationBuffer], a
 	xor a
 	ld [wcf76], a
 	ld [hBGMapMode], a

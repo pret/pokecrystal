@@ -152,9 +152,9 @@ UnionCaveB2F_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_ROCKER, 19 + 4, 15 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainermNick, -1
-	person_event SPRITE_COOLTRAINER_F, 13 + 4, 5 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerCooltrainerfGwen, -1
-	person_event SPRITE_COOLTRAINER_F, 30 + 4, 3 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainerfEmma, -1
-	person_event SPRITE_POKE_BALL, 2 + 4, 16 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5a36a, EVENT_UNION_CAVE_B2F_ELIXER
-	person_event SPRITE_POKE_BALL, 19 + 4, 12 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5a36c, EVENT_UNION_CAVE_B2F_HYPER_POTION
-	person_event SPRITE_SURF, 31 + 4, 11 + 4, $24, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SurfScript_0x5a31f, EVENT_UNION_CAVE_B2F_LAPRAS
+	person_event SPRITE_ROCKER, 19, 15, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainermNick, -1
+	person_event SPRITE_COOLTRAINER_F, 13, 5, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerCooltrainerfGwen, -1
+	person_event SPRITE_COOLTRAINER_F, 30, 3, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainerfEmma, -1
+	person_event SPRITE_POKE_BALL, 2, 16, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5a36a, EVENT_UNION_CAVE_B2F_ELIXER
+	person_event SPRITE_POKE_BALL, 19, 12, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5a36c, EVENT_UNION_CAVE_B2F_HYPER_POTION
+	person_event SPRITE_SURF, 31, 11, $24, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SurfScript_0x5a31f, EVENT_UNION_CAVE_B2F_LAPRAS

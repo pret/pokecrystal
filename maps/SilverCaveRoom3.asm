@@ -63,4 +63,4 @@ SilverCaveRoom3_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_RED, 10 + 4, 9 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, RedScript_0x18c603, EVENT_RED_IN_MT_SILVER
+	person_event SPRITE_RED, 10, 9, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, RedScript_0x18c603, EVENT_RED_IN_MT_SILVER

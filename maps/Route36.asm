@@ -679,12 +679,12 @@ Route36_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_YOUNGSTER, 13 + 4, 20 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPsychicMark, -1
-	person_event SPRITE_YOUNGSTER, 14 + 4, 31 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerSchoolboyAlan1, -1
-	person_event SPRITE_WEIRD_TREE, 9 + 4, 35 + 4, $17, 0, 0, -1, -1, 0, 0, 0, WeirdTreeScript_0x19403c, EVENT_ROUTE_36_SUDOWOODO
-	person_event SPRITE_LASS, 8 + 4, 51 + 4, $5, 0, 2, -1, -1, 0, 0, 0, LassScript_0x1940e0, -1
-	person_event SPRITE_FISHER, 9 + 4, 44 + 4, $8, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x1940b9, -1
-	person_event SPRITE_FRUIT_TREE, 4 + 4, 21 + 4, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x194247, -1
-	person_event SPRITE_YOUNGSTER, 6 + 4, 46 + 4, $2, 1, 1, -1, -1, 0, 0, 0, ArthurScript, EVENT_ROUTE_36_ARTHUR_OF_THURSDAY
-	person_event SPRITE_LASS, 12 + 4, 33 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, LassScript_0x19408c, EVENT_FLORIA_AT_SUDOWOODO
-	person_event SPRITE_SUICUNE, 6 + 4, 21 + 4, $1, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_36
+	person_event SPRITE_YOUNGSTER, 13, 20, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPsychicMark, -1
+	person_event SPRITE_YOUNGSTER, 14, 31, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerSchoolboyAlan1, -1
+	person_event SPRITE_WEIRD_TREE, 9, 35, $17, 0, 0, -1, -1, 0, 0, 0, WeirdTreeScript_0x19403c, EVENT_ROUTE_36_SUDOWOODO
+	person_event SPRITE_LASS, 8, 51, $5, 0, 2, -1, -1, 0, 0, 0, LassScript_0x1940e0, -1
+	person_event SPRITE_FISHER, 9, 44, $8, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x1940b9, -1
+	person_event SPRITE_FRUIT_TREE, 4, 21, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x194247, -1
+	person_event SPRITE_YOUNGSTER, 6, 46, $2, 1, 1, -1, -1, 0, 0, 0, ArthurScript, EVENT_ROUTE_36_ARTHUR_OF_THURSDAY
+	person_event SPRITE_LASS, 12, 33, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, LassScript_0x19408c, EVENT_FLORIA_AT_SUDOWOODO
+	person_event SPRITE_SUICUNE, 6, 21, $1, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_36

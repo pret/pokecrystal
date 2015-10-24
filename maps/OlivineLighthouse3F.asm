@@ -130,7 +130,7 @@ OlivineLighthouse3F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_SAILOR, 2 + 4, 9 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSailorTerrell, -1
-	person_event SPRITE_GENTLEMAN, 5 + 4, 13 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerGentlemanPreston, -1
-	person_event SPRITE_YOUNGSTER, 9 + 4, 3 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperTheo, -1
-	person_event SPRITE_POKE_BALL, 2 + 4, 8 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5b279, EVENT_OLIVINE_LIGHTHOUSE_3F_ETHER
+	person_event SPRITE_SAILOR, 2, 9, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSailorTerrell, -1
+	person_event SPRITE_GENTLEMAN, 5, 13, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerGentlemanPreston, -1
+	person_event SPRITE_YOUNGSTER, 9, 3, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperTheo, -1
+	person_event SPRITE_POKE_BALL, 2, 8, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5b279, EVENT_OLIVINE_LIGHTHOUSE_3F_ETHER

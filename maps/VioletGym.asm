@@ -31,7 +31,7 @@ FalknerScript_0x683c2:
 	setevent EVENT_BEAT_BIRD_KEEPER_ROD
 	setevent EVENT_BEAT_BIRD_KEEPER_ABE
 	domaptrigger ELMS_LAB, $2
-	specialphonecall ELMCALL_ASSISTANT
+	specialphonecall SPECIALCALL_ASSISTANT
 	writetext UnknownText_0x685c8
 	keeptextopen
 	verbosegiveitem TM_MUD_SLAP, 1
@@ -294,7 +294,7 @@ VioletGym_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_FALKNER, 1 + 4, 5 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, FalknerScript_0x683c2, -1
-	person_event SPRITE_YOUNGSTER, 6 + 4, 7 + 4, $8, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperRod, -1
-	person_event SPRITE_YOUNGSTER, 10 + 4, 2 + 4, $9, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperAbe, -1
-	person_event SPRITE_GYM_GUY, 13 + 4, 7 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, VioletGymGuyScript, -1
+	person_event SPRITE_FALKNER, 1, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, FalknerScript_0x683c2, -1
+	person_event SPRITE_YOUNGSTER, 6, 7, $8, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperRod, -1
+	person_event SPRITE_YOUNGSTER, 10, 2, $9, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperAbe, -1
+	person_event SPRITE_GYM_GUY, 13, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, VioletGymGuyScript, -1

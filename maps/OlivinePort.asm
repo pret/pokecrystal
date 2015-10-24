@@ -397,10 +397,10 @@ OlivinePort_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_SAILOR, 23 + 4, 7 + 4, $7, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x748c0, EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
-	person_event SPRITE_SAILOR, 15 + 4, 7 + 4, $7, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x749fe, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
-	person_event SPRITE_SAILOR, 15 + 4, 6 + 4, $9, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x7499c, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
-	person_event SPRITE_FISHING_GURU, 14 + 4, 4 + 4, $7, 0, 0, -1, -1, 0, 0, 0, FishingGuruScript_0x74a01, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
-	person_event SPRITE_FISHING_GURU, 14 + 4, 13 + 4, $7, 0, 0, -1, -1, 0, 0, 0, FishingGuruScript_0x74a0c, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
-	person_event SPRITE_YOUNGSTER, 15 + 4, 4 + 4, $6, 0, 0, -1, -1, 0, 0, 0, YoungsterScript_0x74a17, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
-	person_event SPRITE_COOLTRAINER_F, 15 + 4, 11 + 4, $6, 0, 0, -1, -1, 0, 0, 0, CooltrainerFScript_0x74a22, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
+	person_event SPRITE_SAILOR, 23, 7, $7, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x748c0, EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
+	person_event SPRITE_SAILOR, 15, 7, $7, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x749fe, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
+	person_event SPRITE_SAILOR, 15, 6, $9, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x7499c, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
+	person_event SPRITE_FISHING_GURU, 14, 4, $7, 0, 0, -1, -1, 0, 0, 0, FishingGuruScript_0x74a01, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
+	person_event SPRITE_FISHING_GURU, 14, 13, $7, 0, 0, -1, -1, 0, 0, 0, FishingGuruScript_0x74a0c, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
+	person_event SPRITE_YOUNGSTER, 15, 4, $6, 0, 0, -1, -1, 0, 0, 0, YoungsterScript_0x74a17, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
+	person_event SPRITE_COOLTRAINER_F, 15, 11, $6, 0, 0, -1, -1, 0, 0, 0, CooltrainerFScript_0x74a22, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME

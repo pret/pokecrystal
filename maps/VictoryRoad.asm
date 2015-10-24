@@ -263,9 +263,9 @@ VictoryRoad_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_SILVER, 13 + 4, 18 + 4, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RIVAL_VICTORY_ROAD
-	person_event SPRITE_POKE_BALL, 28 + 4, 3 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x74529, EVENT_VICTORY_ROAD_TM_EARTHQUAKE
-	person_event SPRITE_POKE_BALL, 48 + 4, 12 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7452b, EVENT_VICTORY_ROAD_MAX_REVIVE
-	person_event SPRITE_POKE_BALL, 29 + 4, 18 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7452d, EVENT_VICTORY_ROAD_FULL_RESTORE
-	person_event SPRITE_POKE_BALL, 48 + 4, 15 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7452f, EVENT_VICTORY_ROAD_FULL_HEAL
-	person_event SPRITE_POKE_BALL, 38 + 4, 7 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x74531, EVENT_VICTORY_ROAD_HP_UP
+	person_event SPRITE_SILVER, 13, 18, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RIVAL_VICTORY_ROAD
+	person_event SPRITE_POKE_BALL, 28, 3, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x74529, EVENT_VICTORY_ROAD_TM_EARTHQUAKE
+	person_event SPRITE_POKE_BALL, 48, 12, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7452b, EVENT_VICTORY_ROAD_MAX_REVIVE
+	person_event SPRITE_POKE_BALL, 29, 18, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7452d, EVENT_VICTORY_ROAD_FULL_RESTORE
+	person_event SPRITE_POKE_BALL, 48, 15, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7452f, EVENT_VICTORY_ROAD_FULL_HEAL
+	person_event SPRITE_POKE_BALL, 38, 7, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x74531, EVENT_VICTORY_ROAD_HP_UP

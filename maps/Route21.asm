@@ -99,6 +99,6 @@ Route21_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_SWIMMER_GIRL, 16 + 4, 11 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfNikki, -1
-	person_event SPRITE_SWIMMER_GUY, 30 + 4, 2 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerSwimmermSeth, -1
-	person_event SPRITE_FISHER, 22 + 4, 14 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherArnold, -1
+	person_event SPRITE_SWIMMER_GIRL, 16, 11, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfNikki, -1
+	person_event SPRITE_SWIMMER_GUY, 30, 2, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerSwimmermSeth, -1
+	person_event SPRITE_FISHER, 22, 14, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherArnold, -1

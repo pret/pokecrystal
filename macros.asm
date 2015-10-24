@@ -14,6 +14,7 @@ INCLUDE "macros/predef.asm"
 INCLUDE "macros/rst.asm"
 INCLUDE "macros/mobile.asm"
 INCLUDE "macros/trainer.asm"
+INCLUDE "macros/map_setup.asm"
 
 
 
@@ -90,12 +91,16 @@ lb: MACRO ; r, hi, lo
 	ld \1, (\2) << 8 + (\3)
 	ENDM
 
+ln: MACRO ; r, hi, lo
+	ld \1, (\2) << 4 + (\3)
+	ENDM
 
 bccoord equs "coord bc,"
 decoord equs "coord de,"
 hlcoord equs "coord hl,"
 
 coord: MACRO
+; register, x, y[, origin]
 	if _NARG < 4
 	ld \1, TileMap + SCREEN_WIDTH * (\3) + (\2)
 	else
@@ -163,18 +168,6 @@ bcd: MACRO
 	dn ((\1) % 100) / 10, (\1) % 10
 	shift
 	endr
-ENDM
-
-ln: MACRO
-	if _NARG == 5
-	lb \1, \2 << 4 + \3, \4 << 4 + \5
-	else
-	if _NARG == 3
-	ld \1, \2 << 4 + \3
-	else
-	fail "incorrect number of arguments for ln"
-	endc
-	endc
 ENDM
 
 tile EQUS "+ $10 *"

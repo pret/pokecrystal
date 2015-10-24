@@ -249,10 +249,10 @@ Route37_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_WEIRD_TREE, 12 + 4, 6 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsAnnandanne1, -1
-	person_event SPRITE_WEIRD_TREE, 12 + 4, 7 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsAnnandanne2, -1
-	person_event SPRITE_YOUNGSTER, 6 + 4, 6 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerPsychicGreg, -1
-	person_event SPRITE_FRUIT_TREE, 5 + 4, 13 + 4, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a8e09, -1
-	person_event SPRITE_BUG_CATCHER, 8 + 4, 16 + 4, $2, 1, 1, -1, -1, 0, 0, 0, SunnyScript, EVENT_ROUTE_37_SUNNY_OF_SUNDAY
-	person_event SPRITE_FRUIT_TREE, 5 + 4, 16 + 4, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a8e0b, -1
-	person_event SPRITE_FRUIT_TREE, 7 + 4, 15 + 4, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a8e0d, -1
+	person_event SPRITE_WEIRD_TREE, 12, 6, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsAnnandanne1, -1
+	person_event SPRITE_WEIRD_TREE, 12, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsAnnandanne2, -1
+	person_event SPRITE_YOUNGSTER, 6, 6, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerPsychicGreg, -1
+	person_event SPRITE_FRUIT_TREE, 5, 13, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a8e09, -1
+	person_event SPRITE_BUG_CATCHER, 8, 16, $2, 1, 1, -1, -1, 0, 0, 0, SunnyScript, EVENT_ROUTE_37_SUNNY_OF_SUNDAY
+	person_event SPRITE_FRUIT_TREE, 5, 16, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a8e0b, -1
+	person_event SPRITE_FRUIT_TREE, 7, 15, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a8e0d, -1

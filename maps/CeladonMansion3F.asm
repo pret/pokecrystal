@@ -206,7 +206,7 @@ CeladonMansion3F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_COOLTRAINER_M, 6 + 4, 3 + 4, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerMScript_0x71670, -1
-	person_event SPRITE_GYM_GUY, 4 + 4, 3 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GymGuyScript_0x71696, -1
-	person_event SPRITE_SUPER_NERD, 7 + 4, 0 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SuperNerdScript_0x716bc, -1
-	person_event SPRITE_FISHER, 4 + 4, 0 + 4, $7, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, FisherScript_0x716bf, -1
+	person_event SPRITE_COOLTRAINER_M, 6, 3, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerMScript_0x71670, -1
+	person_event SPRITE_GYM_GUY, 4, 3, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GymGuyScript_0x71696, -1
+	person_event SPRITE_SUPER_NERD, 7, 0, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SuperNerdScript_0x716bc, -1
+	person_event SPRITE_FISHER, 4, 0, $7, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, FisherScript_0x716bf, -1

@@ -512,7 +512,7 @@ endr
 	cp BATTLETYPE_TUTORIAL
 	jp z, .asm_ebd9
 
-	callba Function10607f
+	callba MobileFn_10607f
 
 	ld hl, UnknownText_0xedc9
 	call PrintText
@@ -550,7 +550,7 @@ endr
 	jp z, .asm_ebd1
 	cp BATTLETYPE_CELEBI
 	jr nz, .asm_eac8
-	ld hl, wd0ee
+	ld hl, wBattleResult
 	set 6, [hl]
 .asm_eac8
 
@@ -628,7 +628,7 @@ endr
 	ld a, [sBoxCount]
 	cp MONS_PER_BOX
 	jr nz, .asm_eb5b
-	ld hl, wd0ee
+	ld hl, wBattleResult
 	set 7, [hl]
 .asm_eb5b
 	ld a, [CurItem]
@@ -2254,12 +2254,12 @@ Repel: ; f46a
 ; f46c
 
 Function_0xf46c: ; f46c
-	ld a, [wdca1]
+	ld a, [wRepelEffect]
 	and a
 	ld hl, UnknownText_0xf47d
 	jp nz, PrintText
 	ld a, b
-	ld [wdca1], a
+	ld [wRepelEffect], a
 	jp Functionf789
 ; f47d
 
@@ -2285,10 +2285,10 @@ PokeDoll: ; f48f
 	jr nz, .asm_f4a6
 	inc a
 	ld [wd232], a
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and 3 << 6
 	or $2
-	ld [wd0ee], a
+	ld [wBattleResult], a
 	jp Functionf789
 
 .asm_f4a6

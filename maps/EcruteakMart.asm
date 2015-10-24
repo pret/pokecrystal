@@ -57,6 +57,6 @@ EcruteakMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 3 + 4, 1 + 4, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x99c3b, -1
-	person_event SPRITE_SUPER_NERD, 2 + 4, 5 + 4, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, SuperNerdScript_0x99c42, -1
-	person_event SPRITE_GRANNY, 6 + 4, 6 + 4, $7, 0, 0, -1, -1, 0, 0, 0, GrannyScript_0x99c45, -1
+	person_event SPRITE_CLERK, 3, 1, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x99c3b, -1
+	person_event SPRITE_SUPER_NERD, 2, 5, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, SuperNerdScript_0x99c42, -1
+	person_event SPRITE_GRANNY, 6, 6, $7, 0, 0, -1, -1, 0, 0, 0, GrannyScript_0x99c45, -1

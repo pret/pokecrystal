@@ -371,10 +371,10 @@ AzaleaGym_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_BUGSY, 7 + 4, 5 + 4, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, BugsyScript_0x18ec1e, -1
-	person_event SPRITE_BUG_CATCHER, 3 + 4, 5 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerBug_catcherBug_catcher_benny, -1
-	person_event SPRITE_BUG_CATCHER, 8 + 4, 8 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBug_catcherAl, -1
-	person_event SPRITE_BUG_CATCHER, 2 + 4, 0 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBug_catcherJosh, -1
-	person_event SPRITE_TWIN, 10 + 4, 4 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsAmyandmay1, -1
-	person_event SPRITE_TWIN, 10 + 4, 5 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsAmyandmay2, -1
-	person_event SPRITE_GYM_GUY, 13 + 4, 7 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, AzaleaGymGuyScript, -1
+	person_event SPRITE_BUGSY, 7, 5, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, BugsyScript_0x18ec1e, -1
+	person_event SPRITE_BUG_CATCHER, 3, 5, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerBug_catcherBug_catcher_benny, -1
+	person_event SPRITE_BUG_CATCHER, 8, 8, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBug_catcherAl, -1
+	person_event SPRITE_BUG_CATCHER, 2, 0, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBug_catcherJosh, -1
+	person_event SPRITE_TWIN, 10, 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsAmyandmay1, -1
+	person_event SPRITE_TWIN, 10, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsAmyandmay2, -1
+	person_event SPRITE_GYM_GUY, 13, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, AzaleaGymGuyScript, -1

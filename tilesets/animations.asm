@@ -504,7 +504,7 @@ ForestTreeLeftAnimation: ; fc45c
 	ld c, l
 
 ; Only during the Celebi event.
-	ld a, [wdbf3]
+	ld a, [wCelebiEvent]
 	bit 2, a
 	jr nz, .asm_fc46c
 	ld hl, ForestTreeLeftFrames
@@ -546,7 +546,7 @@ ForestTreeRightAnimation: ; fc4c4
 	ld c, l
 
 ; Only during the Celebi event.
-	ld a, [wdbf3]
+	ld a, [wCelebiEvent]
 	bit 2, a
 	jr nz, .asm_fc4d4
 	ld hl, ForestTreeRightFrames
@@ -581,7 +581,7 @@ ForestTreeLeftAnimation2: ; fc4f2
 	ld c, l
 
 ; Only during the Celebi event.
-	ld a, [wdbf3]
+	ld a, [wCelebiEvent]
 	bit 2, a
 	jr nz, .asm_fc502
 	ld hl, ForestTreeLeftFrames
@@ -613,7 +613,7 @@ ForestTreeRightAnimation2: ; fc51c
 	ld c, l
 
 ; Only during the Celebi event.
-	ld a, [wdbf3]
+	ld a, [wCelebiEvent]
 	bit 2, a
 	jr nz, .asm_fc52c
 	ld hl, ForestTreeRightFrames

@@ -99,6 +99,6 @@ SproutTower2F_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_SAGE, 3 + 4, 12 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerSageNico, -1
-	person_event SPRITE_SAGE, 14 + 4, 9 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerSageEdmond, -1
-	person_event SPRITE_POKE_BALL, 1 + 4, 3 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1847a7, EVENT_SPROUT_TOWER2F_X_ACCURACY
+	person_event SPRITE_SAGE, 3, 12, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerSageNico, -1
+	person_event SPRITE_SAGE, 14, 9, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerSageEdmond, -1
+	person_event SPRITE_POKE_BALL, 1, 3, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1847a7, EVENT_SPROUT_TOWER2F_X_ACCURACY

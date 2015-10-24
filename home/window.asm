@@ -16,12 +16,14 @@ ResetWindow:: ; 2dba
 ; 2dcf
 
 
-Function2dcf:: ; 2dcf
+LoadMoveSprites:: ; 2dcf
 	ld a, [hOAMUpdate]
 	push af
 	ld a, $1
 	ld [hOAMUpdate], a
+
 	call Function2de2
+
 	pop af
 	ld [hOAMUpdate], a
 	ld hl, VramState

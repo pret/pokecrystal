@@ -56,6 +56,6 @@ VioletNicknameSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_TEACHER, 3 + 4, 2 + 4, $9, 0, 0, -1, -1, 0, 0, 0, TeacherScript_0x693e9, -1
-	person_event SPRITE_LASS, 4 + 4, 6 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x693ec, -1
-	person_event SPRITE_BIRD, 2 + 4, 5 + 4, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, BirdScript_0x693ef, -1
+	person_event SPRITE_TEACHER, 3, 2, $9, 0, 0, -1, -1, 0, 0, 0, TeacherScript_0x693e9, -1
+	person_event SPRITE_LASS, 4, 6, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x693ec, -1
+	person_event SPRITE_BIRD, 2, 5, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, BirdScript_0x693ef, -1

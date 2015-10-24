@@ -224,19 +224,19 @@ Request2bpp:: ; eba
 
 	ld a, [$ffd3]
 	push af
-
 	ld a, $8
 	ld [$ffd3], a
+
 	ld a, [wLinkMode]
-	cp $4
-	jr nz, .okay
-	ld a, [$ffe9]
+	cp LINK_MOBILE
+	jr nz, .NotMobile
+	ld a, [hMobile]
 	and a
-	jr nz, .okay
+	jr nz, .NotMobile
 	ld a, $6
 	ld [$ffd3], a
 
-.okay
+.NotMobile
 	ld a, e
 	ld [Requested2bppSource], a
 	ld a, d
@@ -245,7 +245,6 @@ Request2bpp:: ; eba
 	ld [Requested2bppDest], a
 	ld a, h
 	ld [Requested2bppDest + 1], a
-
 .loop
 	ld a, c
 	ld hl, $ffd3
@@ -272,11 +271,13 @@ Request2bpp:: ; eba
 .iterate
 	ld a, [$ffd3]
 	ld [Requested2bpp], a
+
 .wait2
 	call DelayFrame
 	ld a, [Requested2bpp]
 	and a
 	jr nz, .wait2
+
 	ld a, c
 	ld hl, $ffd3
 	sub [hl]
@@ -302,9 +303,9 @@ Request1bpp:: ; f1e
 	ld a, $8
 	ld [$ffd3], a
 	ld a, [wLinkMode]
-	cp $4
+	cp LINK_MOBILE
 	jr nz, .NotMobile
-	ld a, [$ffe9]
+	ld a, [hMobile]
 	and a
 	jr nz, .NotMobile
 	ld a, $6

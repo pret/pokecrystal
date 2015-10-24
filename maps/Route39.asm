@@ -353,13 +353,13 @@ Route39_MapEventHeader:
 
 .PersonEvents:
 	db 10
-	person_event SPRITE_SAILOR, 29 + 4, 13 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerSailorEugene, -1
-	person_event SPRITE_POKEFAN_M, 22 + 4, 10 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerPokefanmDerek1, -1
-	person_event SPRITE_POKEFAN_F, 19 + 4, 11 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerPokefanfRuth, -1
-	person_event SPRITE_TAUROS, 12 + 4, 3 + 4, $16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_TAUROS, 11 + 4, 6 + 4, $16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_TAUROS, 15 + 4, 4 + 4, $16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_TAUROS, 13 + 4, 8 + 4, $16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 7 + 4, 13 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerPsychicNorman, -1
-	person_event SPRITE_FRUIT_TREE, 3 + 4, 9 + 4, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a5bf4, -1
-	person_event SPRITE_POKEFAN_F, 22 + 4, 4 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, PokefanFScript_0x1a5bbe, -1
+	person_event SPRITE_SAILOR, 29, 13, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerSailorEugene, -1
+	person_event SPRITE_POKEFAN_M, 22, 10, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerPokefanmDerek1, -1
+	person_event SPRITE_POKEFAN_F, 19, 11, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerPokefanfRuth, -1
+	person_event SPRITE_TAUROS, 12, 3, $16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
+	person_event SPRITE_TAUROS, 11, 6, $16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
+	person_event SPRITE_TAUROS, 15, 4, $16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
+	person_event SPRITE_TAUROS, 13, 8, $16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 7, 13, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerPsychicNorman, -1
+	person_event SPRITE_FRUIT_TREE, 3, 9, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a5bf4, -1
+	person_event SPRITE_POKEFAN_F, 22, 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, PokefanFScript_0x1a5bbe, -1

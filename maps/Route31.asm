@@ -15,7 +15,7 @@ UnknownScript_0x1a543c:
 	return
 
 UnknownScript_0x1a5443:
-	specialphonecall MOMCALL_WORRIED
+	specialphonecall SPECIALCALL_WORRIED
 	return
 
 TrainerBug_catcherWade1:
@@ -430,10 +430,10 @@ Route31_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_FISHER, 7 + 4, 17 + 4, $6, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x1a5570, -1
-	person_event SPRITE_YOUNGSTER, 5 + 4, 9 + 4, $2, 1, 1, -1, -1, 0, 0, 0, YoungsterScript_0x1a55ed, -1
-	person_event SPRITE_BUG_CATCHER, 13 + 4, 21 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 5, TrainerBug_catcherWade1, -1
-	person_event SPRITE_COOLTRAINER_M, 8 + 4, 33 + 4, $2, 1, 1, -1, -1, 0, 0, 0, CooltrainerMScript_0x1a55f6, -1
-	person_event SPRITE_FRUIT_TREE, 7 + 4, 16 + 4, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a55f9, -1
-	person_event SPRITE_POKE_BALL, 5 + 4, 29 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a55fb, EVENT_ROUTE_31_POTION
-	person_event SPRITE_POKE_BALL, 15 + 4, 19 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a55fd, EVENT_ROUTE_31_POKE_BALL
+	person_event SPRITE_FISHER, 7, 17, $6, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x1a5570, -1
+	person_event SPRITE_YOUNGSTER, 5, 9, $2, 1, 1, -1, -1, 0, 0, 0, YoungsterScript_0x1a55ed, -1
+	person_event SPRITE_BUG_CATCHER, 13, 21, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 5, TrainerBug_catcherWade1, -1
+	person_event SPRITE_COOLTRAINER_M, 8, 33, $2, 1, 1, -1, -1, 0, 0, 0, CooltrainerMScript_0x1a55f6, -1
+	person_event SPRITE_FRUIT_TREE, 7, 16, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a55f9, -1
+	person_event SPRITE_POKE_BALL, 5, 29, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a55fb, EVENT_ROUTE_31_POTION
+	person_event SPRITE_POKE_BALL, 15, 19, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a55fd, EVENT_ROUTE_31_POKE_BALL

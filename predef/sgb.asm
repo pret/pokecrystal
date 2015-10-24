@@ -443,13 +443,13 @@ endr
 	ld hl, wcda9 + $13
 	ld a, $5
 	ld [hli], a
-	ld a, [wcf83]
+	ld a, [wMenuBorderLeftCoord]
 	ld [hli], a
-	ld a, [wcf82]
+	ld a, [wMenuBorderTopCoord]
 	ld [hli], a
-	ld a, [wcf85]
+	ld a, [wMenuBorderRightCoord]
 	ld [hli], a
-	ld a, [wcf84]
+	ld a, [wMenuBorderBottomCoord]
 	ld [hl], a
 	ld hl, wcda9
 	ld de, wcda9 + $10

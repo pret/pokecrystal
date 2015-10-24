@@ -298,7 +298,7 @@ EcruteakHouse_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_SAGE, 6 + 4, 4 + 4, $6, 0, 0, -1, -1, 0, 0, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_1
-	person_event SPRITE_SAGE, 6 + 4, 5 + 4, $6, 0, 0, -1, -1, 0, 0, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_2
-	person_event SPRITE_SAGE, 9 + 4, 6 + 4, $2, 1, 1, -1, -1, 0, 0, 0, SageScript_0x980b0, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
-	person_event SPRITE_GRAMPS, 11 + 4, 3 + 4, $2, 1, 1, -1, -1, 0, 0, 0, GrampsScript_0x980c4, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
+	person_event SPRITE_SAGE, 6, 4, $6, 0, 0, -1, -1, 0, 0, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_1
+	person_event SPRITE_SAGE, 6, 5, $6, 0, 0, -1, -1, 0, 0, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_2
+	person_event SPRITE_SAGE, 9, 6, $2, 1, 1, -1, -1, 0, 0, 0, SageScript_0x980b0, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
+	person_event SPRITE_GRAMPS, 11, 3, $2, 1, 1, -1, -1, 0, 0, 0, GrampsScript_0x980c4, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE

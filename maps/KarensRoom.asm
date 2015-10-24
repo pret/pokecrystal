@@ -153,4 +153,4 @@ KarensRoom_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_KAREN, 7 + 4, 5 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, KarenScript_0x180bee, -1
+	person_event SPRITE_KAREN, 7, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, KarenScript_0x180bee, -1

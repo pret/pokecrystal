@@ -803,7 +803,7 @@ Function8b7bd: ; 8b7bd
 	ld hl, MenuDataHeader_0x8b867
 	call CopyMenuDataHeader
 	ld a, [wd030]
-	ld [wcf88], a
+	ld [wPocketPointerLocationBuffer], a
 	ld a, [wd031]
 	ld [wd0e4], a
 	ld a, [wd032]
@@ -881,7 +881,7 @@ Function8b83e: ; 8b83e
 Function8b84b: ; 8b84b
 	ld [wd0e4], a
 	ld a, [wcfa9]
-	ld [wcf88], a
+	ld [wPocketPointerLocationBuffer], a
 	ret
 ; 8b855
 

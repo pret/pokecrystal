@@ -1,24 +1,3 @@
-	const_def
-	const       NO_AI
-const_value = 0
-	shift_const AI_BASIC
-	shift_const AI_SETUP
-	shift_const AI_TYPES
-	shift_const AI_OFFENSIVE
-	shift_const AI_SMART
-	shift_const AI_OPPORTUNIST
-	shift_const AI_AGGRESSIVE
-	shift_const AI_CAUTIOUS
-	shift_const AI_STATUS
-	shift_const AI_RISKY
-	shift_const AI_10
-	shift_const AI_11
-	shift_const AI_12
-	shift_const AI_13
-	shift_const AI_14
-	shift_const AI_15
-
-
 TrainerClassAttributes: ; 3959c
 
 ; Falkner

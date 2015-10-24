@@ -160,7 +160,7 @@ DragonShrineTestScript:
 	playsound SFX_GET_BADGE
 	waitbutton
 	special RestartMapMusic
-	specialphonecall ELMCALL_MASTERBALL
+	specialphonecall SPECIALCALL_MASTERBALL
 	dotrigger $1
 	domaptrigger DRAGONS_DEN_B1F, $1
 	writetext UnknownText_0x18d9f2
@@ -681,7 +681,7 @@ DragonShrine_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_ELDER, 1 + 4, 5 + 4, $6, 0, 0, -1, -1, 0, 0, 0, ElderScript_0x18d1a5, EVENT_GAVE_KURT_APRICORNS
-	person_event SPRITE_ELDER, 4 + 4, 2 + 4, $9, 0, 0, -1, -1, 0, 0, 0, ElderScript_0x18d205, EVENT_GAVE_KURT_APRICORNS
-	person_event SPRITE_ELDER, 4 + 4, 7 + 4, $8, 0, 0, -1, -1, 0, 0, 0, ElderScript_0x18d20d, EVENT_GAVE_KURT_APRICORNS
-	person_event SPRITE_CLAIR, 8 + 4, 4 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_DRAGON_SHRINE_CLAIR
+	person_event SPRITE_ELDER, 1, 5, $6, 0, 0, -1, -1, 0, 0, 0, ElderScript_0x18d1a5, EVENT_GAVE_KURT_APRICORNS
+	person_event SPRITE_ELDER, 4, 2, $9, 0, 0, -1, -1, 0, 0, 0, ElderScript_0x18d205, EVENT_GAVE_KURT_APRICORNS
+	person_event SPRITE_ELDER, 4, 7, $8, 0, 0, -1, -1, 0, 0, 0, ElderScript_0x18d20d, EVENT_GAVE_KURT_APRICORNS
+	person_event SPRITE_CLAIR, 8, 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_DRAGON_SHRINE_CLAIR

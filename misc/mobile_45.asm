@@ -2416,14 +2416,14 @@ Function114e62: ; 114e62
 	ld a, c
 	and a
 	jr nz, .asm_114e6f
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	and a
 	jp z, Function11425c
 	jr .asm_114e76
 
 .asm_114e6f
 	xor a
-	ld [wdc23], a
+	ld [wStartDay], a
 	call Function114ee9
 
 .asm_114e76
@@ -2494,7 +2494,7 @@ Function114ea0: ; 114ea0
 	ld [hli], a
 	ld [hl], b
 	xor a
-	ld [wdc23], a
+	ld [wStartDay], a
 	ret
 
 .asm_114edb
@@ -2614,7 +2614,7 @@ Function114f39: ; 114f39
 ; 114f59
 
 Function114f59: ; 114f59
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	and a
 	jr nz, .asm_114f7c
 	ld a, [wdc03]
@@ -2632,7 +2632,7 @@ Function114f59: ; 114f59
 	and a
 	jr nz, .asm_114fe7
 	ld a, $1
-	ld [wdc23], a
+	ld [wStartDay], a
 
 .asm_114f7c
 	ld a, [wdc03]
@@ -2811,7 +2811,7 @@ Function115062: ; 115062
 	ld d, [hl]
 	ld b, $0
 	ld hl, wdc24
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	cp $1
 	jr z, .asm_11509b
 	cp $2
@@ -2836,14 +2836,14 @@ Function115062: ; 115062
 	call Function115d53
 	call Function1150b3
 	call Function115136
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	inc a
 	cp $4
 	jr nz, .asm_1150ae
 	ld a, $2
 
 .asm_1150ae
-	ld [wdc23], a
+	ld [wStartDay], a
 	xor a
 
 .asm_1150b2
@@ -3329,7 +3329,7 @@ Function1152b8: ; 1152b8
 	call Function114ea0
 	and a
 	jr nz, .asm_1152f9
-	ld [wdc23], a
+	ld [wStartDay], a
 	ld a, [wdc03]
 	cp $6
 	jr nz, .asm_1152ca
@@ -3337,7 +3337,7 @@ Function1152b8: ; 1152b8
 .asm_115335
 	call Function1153b5
 	xor a
-	ld [wdc23], a
+	ld [wStartDay], a
 	call Function114f59
 	and a
 	jr nz, .asm_1152f9
@@ -3355,7 +3355,7 @@ Function1152b8: ; 1152b8
 	jr z, .asm_11536b
 	call Function1153b5
 	xor a
-	ld [wdc23], a
+	ld [wStartDay], a
 	call Function114f59
 	and a
 	jr nz, .asm_1152f9
@@ -3425,7 +3425,7 @@ Function11537d: ; 11537d
 	ld [hl], d
 	xor a
 	ld [wdc03], a
-	ld [wdc23], a
+	ld [wStartDay], a
 	ret
 ; 1153b5
 
@@ -3645,7 +3645,7 @@ Function1153d2: ; 1153d2
 
 Function1154d4: ; 1154d4
 	xor a
-	ld [wdc23], a
+	ld [wStartDay], a
 	call Function1155af
 	call Function11560a
 	and a
@@ -3659,7 +3659,7 @@ Function1154d4: ; 1154d4
 	cp $1
 	jr nz, .asm_115531
 	xor a
-	ld [wdc1c], a
+	ld [wDailyResetTimer], a
 .asm_1154f7
 	ld a, [BigDoll]
 	cp $2
@@ -3699,7 +3699,7 @@ Function1154d4: ; 1154d4
 
 .asm_115531
 	ld a, $1
-	ld [wdc1c], a
+	ld [wDailyResetTimer], a
 	ld a, $b
 	ld [wdc03], a
 	call Function114f59
@@ -3726,7 +3726,7 @@ Function1154d4: ; 1154d4
 	call Function114ea0
 	and a
 	jr nz, .asm_11552c
-	ld a, [wdc1c]
+	ld a, [wDailyResetTimer]
 	and a
 	jr z, .asm_11557d
 	ld a, $f
@@ -3977,7 +3977,7 @@ Function11560a: ; 11560a
 ; 1156cc
 
 Function1156cc: ; 1156cc
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	and a
 	jp z, Function11425c
 	cp $2
@@ -4006,7 +4006,7 @@ Function1156cc: ; 1156cc
 	call Function11581e
 	and a
 	jr nz, .asm_11572b
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	cp $5
 	jr z, .asm_115716
 	ld a, [Poster]
@@ -4030,7 +4030,7 @@ Function1156cc: ; 1156cc
 	ld l, a
 	add hl, de
 	xor a
-	ld [wdc23], a
+	ld [wStartDay], a
 	jp Function11425c
 
 .asm_11572b
@@ -4165,7 +4165,7 @@ Function11575c: ; 11575c
 	pop hl
 	add hl, bc
 	ld a, $2
-	ld [wdc23], a
+	ld [wStartDay], a
 	ret
 ; 1157d0
 
@@ -4213,7 +4213,7 @@ Function1157d0: ; 1157d0
 	ld a, b
 	ld [Bed], a
 	ld a, $4
-	ld [wdc23], a
+	ld [wStartDay], a
 	ret
 
 .asm_11580f
@@ -4223,12 +4223,12 @@ Function1157d0: ; 1157d0
 	ld a, b
 	ld [Bed], a
 	ld a, $3
-	ld [wdc23], a
+	ld [wStartDay], a
 	ret
 ; 11581e
 
 Function11581e: ; 11581e
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	and a
 	ret z
 	ld a, [wdc0e]
@@ -4305,7 +4305,7 @@ Function11581e: ; 11581e
 	ld a, e
 	ld [hli], a
 	ld [hl], d
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	cp $3
 	jr z, .asm_1158b4
 	cp $4
@@ -4314,12 +4314,12 @@ Function11581e: ; 11581e
 
 .asm_1158ad
 	ld a, $5
-	ld [wdc23], a
+	ld [wStartDay], a
 	jr .asm_1158b9
 
 .asm_1158b4
 	ld a, $2
-	ld [wdc23], a
+	ld [wStartDay], a
 
 .asm_1158b9
 	xor a
@@ -4330,7 +4330,7 @@ Function11581e: ; 11581e
 
 .asm_1158bc
 	ld a, $ff
-	ld [wdc23], a
+	ld [wStartDay], a
 	ret
 ; 1158c2
 
@@ -4575,7 +4575,7 @@ Function1159dc: ; 1159dc
 ; 1159fb
 
 Function1159fb: ; 1159fb
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	and a
 	jp z, Function11425c
 	cp $2
@@ -4604,7 +4604,7 @@ Function1159fb: ; 1159fb
 	call Function115b00
 	and a
 	jr nz, .asm_115a5a
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	cp $5
 	jr z, .asm_115a45
 	ld a, [Poster]
@@ -4628,7 +4628,7 @@ Function1159fb: ; 1159fb
 	ld l, a
 	add hl, de
 	xor a
-	ld [wdc23], a
+	ld [wStartDay], a
 	jp Function11425c
 
 .asm_115a5a
@@ -4692,7 +4692,7 @@ Function115a5f: ; 115a5f
 	rl b
 	add hl, bc
 	ld a, $2
-	ld [wdc23], a
+	ld [wStartDay], a
 	ret
 ; 115ab0
 
@@ -4740,7 +4740,7 @@ Function115ab0: ; 115ab0
 	ld a, b
 	ld [Bed], a
 	ld a, $4
-	ld [wdc23], a
+	ld [wStartDay], a
 	xor a
 	ret
 
@@ -4751,13 +4751,13 @@ Function115ab0: ; 115ab0
 	ld a, b
 	ld [Bed], a
 	ld a, $3
-	ld [wdc23], a
+	ld [wStartDay], a
 	xor a
 	ret
 ; 115b00
 
 Function115b00: ; 115b00
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	and a
 	ret z
 	ld a, [wdc0e]
@@ -4780,7 +4780,7 @@ Function115b00: ; 115b00
 	jr z, .asm_115b43
 	cp $2
 	jr z, .asm_115b3b
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	cp $4
 	jr z, .asm_115b43
 rept 2
@@ -4798,7 +4798,7 @@ endr
 
 .asm_115b3d
 	ld a, $ff
-	ld [wdc23], a
+	ld [wStartDay], a
 	ret
 
 .asm_115b43
@@ -4869,7 +4869,7 @@ endr
 	ld a, e
 	ld [hli], a
 	ld [hl], d
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	cp $3
 	jr z, .asm_115bc1
 	cp $4
@@ -4878,12 +4878,12 @@ endr
 
 .asm_115bba
 	ld a, $5
-	ld [wdc23], a
+	ld [wStartDay], a
 	jr .asm_115bc6
 
 .asm_115bc1
 	ld a, $2
-	ld [wdc23], a
+	ld [wStartDay], a
 
 .asm_115bc6
 	xor a
@@ -4949,7 +4949,7 @@ Function115bc8: ; 115bc8
 	jr nz, .asm_115bcc
 
 .asm_115c1b
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	cp $4
 	jr z, .asm_115c33
 	ld a, [de]
@@ -5053,7 +5053,7 @@ endr
 
 .asm_115c99
 	ld a, $ff
-	ld [wdc23], a
+	ld [wStartDay], a
 	ret
 
 .asm_115c9f
@@ -5156,7 +5156,7 @@ Function115cfd: ; 115cfd
 	pop hl
 	pop hl
 	ld a, $ff
-	ld [wdc23], a
+	ld [wStartDay], a
 	ret
 
 .asm_115d2f
@@ -8954,7 +8954,7 @@ Function1183cb: ; 1183cb
 	ld [rIE], a
 	ld a, $1
 	ld [$ffc9], a
-	ld [$ffe9], a
+	ld [hMobile], a
 	ei
 	callba Function106462
 	callba Function106464
@@ -8984,7 +8984,7 @@ Function118452: ; 118452
 	di
 	xor a
 	ld [$ffc9], a
-	ld [$ffe9], a
+	ld [hMobile], a
 	ld [hVBlank], a
 	call NormalSpeed
 	xor a
@@ -13021,13 +13021,13 @@ Function11a00e: ; 11a00e
 
 .asm_11a081
 	xor a
-	ld [wcf83], a
-	ld [wcf82], a
+	ld [wMenuBorderLeftCoord], a
+	ld [wMenuBorderTopCoord], a
 	ld a, $13
-	ld [wcf85], a
+	ld [wMenuBorderRightCoord], a
 	ld a, $5
-	ld [wcf84], a
-	call Function1c00
+	ld [wMenuBorderBottomCoord], a
+	call BackUpTiles
 	callba Function11765d
 	callba Function117ab4
 	callba Function106462
@@ -13044,13 +13044,13 @@ Function11a00e: ; 11a00e
 
 Function11a0ca: ; 11a0ca
 	xor a
-	ld [wcf83], a
-	ld [wcf82], a
+	ld [wMenuBorderLeftCoord], a
+	ld [wMenuBorderTopCoord], a
 	ld a, $13
-	ld [wcf85], a
+	ld [wMenuBorderRightCoord], a
 	ld a, $11
-	ld [wcf84], a
-	call Function1c00
+	ld [wMenuBorderBottomCoord], a
+	call BackUpTiles
 	callba Function11765d
 	callba Function17d3f6
 	callba Function106462
@@ -13728,13 +13728,13 @@ Function11a5b0: ; 11a5b0
 
 Function11a5b9: ; 11a5b9
 	xor a
-	ld [wcf83], a
-	ld [wcf82], a
+	ld [wMenuBorderLeftCoord], a
+	ld [wMenuBorderTopCoord], a
 	ld a, $13
-	ld [wcf85], a
+	ld [wMenuBorderRightCoord], a
 	ld a, $5
-	ld [wcf84], a
-	call Function1c00
+	ld [wMenuBorderBottomCoord], a
+	call BackUpTiles
 	hlcoord 0, 0, AttrMap
 	ld b, $6
 	ld c, $14
@@ -13753,14 +13753,14 @@ Function11a5b9: ; 11a5b9
 
 Function11a5f5: ; 11a5f5
 	ld a, $e
-	ld [wcf83], a
+	ld [wMenuBorderLeftCoord], a
 	ld a, $13
-	ld [wcf85], a
+	ld [wMenuBorderRightCoord], a
 	ld a, $6
-	ld [wcf82], a
+	ld [wMenuBorderTopCoord], a
 	ld a, $a
-	ld [wcf84], a
-	call Function1c00
+	ld [wMenuBorderBottomCoord], a
+	call BackUpTiles
 	hlcoord 14, 6, AttrMap
 	ld b, $5
 	ld c, $6
@@ -22849,7 +22849,7 @@ RunBattleTowerBattle: ; 17024d
 	predef StartBattle
 	callba LoadPokemonData
 	callba HealParty
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	ld [ScriptVar], a
 	and a
 	jr nz, .asm_1702a9
@@ -24298,7 +24298,7 @@ Function170c06: ; 170c06
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $a894
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and a
 	jr nz, .asm_170c15
 	inc [hl]

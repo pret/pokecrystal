@@ -419,12 +419,12 @@ DragonsDenB1F_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_POKE_BALL, 16 + 4, 35 + 4, $1, 0, 0, -1, -1, 0, 0, 0, PokeBallScript_0x18c95a, EVENT_DRAGONS_DEN_B1F_DRAGON_FANG
-	person_event SPRITE_CLAIR, 30 + 4, 14 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_DRAGONS_DEN_CLAIR
-	person_event SPRITE_SILVER, 23 + 4, 20 + 4, $2, 2, 2, -1, -1, 0, 0, 0, SilverScript_0x18c97e, EVENT_RIVAL_DRAGONS_DEN
-	person_event SPRITE_COOLTRAINER_M, 8 + 4, 20 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerCooltrainermDarin, -1
-	person_event SPRITE_COOLTRAINER_F, 8 + 4, 8 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainerfCara, -1
-	person_event SPRITE_TWIN, 17 + 4, 4 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsLeaandpia1, -1
-	person_event SPRITE_TWIN, 18 + 4, 4 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsLeaandpia2, -1
-	person_event SPRITE_POKE_BALL, 4 + 4, 30 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c9a1, EVENT_DRAGONS_DEN_B1F_CALCIUM
-	person_event SPRITE_POKE_BALL, 20 + 4, 5 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c9a3, EVENT_DRAGONS_DEN_B1F_MAX_ELIXER
+	person_event SPRITE_POKE_BALL, 16, 35, $1, 0, 0, -1, -1, 0, 0, 0, PokeBallScript_0x18c95a, EVENT_DRAGONS_DEN_B1F_DRAGON_FANG
+	person_event SPRITE_CLAIR, 30, 14, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_DRAGONS_DEN_CLAIR
+	person_event SPRITE_SILVER, 23, 20, $2, 2, 2, -1, -1, 0, 0, 0, SilverScript_0x18c97e, EVENT_RIVAL_DRAGONS_DEN
+	person_event SPRITE_COOLTRAINER_M, 8, 20, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerCooltrainermDarin, -1
+	person_event SPRITE_COOLTRAINER_F, 8, 8, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainerfCara, -1
+	person_event SPRITE_TWIN, 17, 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsLeaandpia1, -1
+	person_event SPRITE_TWIN, 18, 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsLeaandpia2, -1
+	person_event SPRITE_POKE_BALL, 4, 30, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c9a1, EVENT_DRAGONS_DEN_B1F_CALCIUM
+	person_event SPRITE_POKE_BALL, 20, 5, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c9a3, EVENT_DRAGONS_DEN_B1F_MAX_ELIXER

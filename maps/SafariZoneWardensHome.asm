@@ -94,4 +94,4 @@ SafariZoneWardensHome_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_LASS, 4 + 4, 2 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, WardensGranddaughter, -1
+	person_event SPRITE_LASS, 4, 2, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, WardensGranddaughter, -1

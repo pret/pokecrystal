@@ -235,7 +235,7 @@ Function89261: ; 89261
 	ld hl, MenuDataHeader_0x892a3
 	call CopyMenuDataHeader
 	pop bc
-	ld hl, wcf82
+	ld hl, wMenuBorderTopCoord
 	ld a, c
 	ld [hli], a
 	ld a, b
@@ -247,8 +247,8 @@ Function89261: ; 89261
 	add $5
 	ld [hl], a
 	pop af
-	ld [wcf88], a
-	call Function1c00
+	ld [wPocketPointerLocationBuffer], a
+	call BackUpTiles
 	call Function8923c
 	call Function89209
 	call InterpretMenu2
@@ -2194,7 +2194,7 @@ Function89d5e: ; 89d5e (22:5d5e)
 	push af
 	call CopyMenuDataHeader
 	pop af
-	ld [wcf88], a
+	ld [wPocketPointerLocationBuffer], a
 	call Function8923c
 	call Function1c89
 	call Function1c10
@@ -3050,7 +3050,7 @@ Function8a31c: ; 8a31c (22:631c)
 	call Function8a3b2
 	pop bc
 	ld a, c
-	ld [wcf88], a
+	ld [wPocketPointerLocationBuffer], a
 	ld [MenuSelection], a
 	call Function1c89
 	call Function1c10

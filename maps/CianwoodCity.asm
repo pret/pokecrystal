@@ -401,15 +401,15 @@ CianwoodCity_MapEventHeader:
 
 .PersonEvents:
 	db 12
-	person_event SPRITE_STANDING_YOUNGSTER, 37 + 4, 21 + 4, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, StandingYoungsterScript_0x1a00b3, -1
-	person_event SPRITE_POKEFAN_M, 33 + 4, 17 + 4, $5, 0, 1, -1, -1, 0, 0, 0, PokefanMScript_0x1a00b6, -1
-	person_event SPRITE_LASS, 42 + 4, 14 + 4, $4, 2, 0, -1, -1, 0, 0, 0, LassScript_0x1a00b9, -1
-	person_event SPRITE_ROCK, 16 + 4, 8 + 4, $18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
-	person_event SPRITE_ROCK, 17 + 4, 9 + 4, $18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
-	person_event SPRITE_ROCK, 25 + 4, 4 + 4, $18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
-	person_event SPRITE_ROCK, 29 + 4, 5 + 4, $18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
-	person_event SPRITE_ROCK, 27 + 4, 10 + 4, $18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
-	person_event SPRITE_ROCK, 19 + 4, 4 + 4, $18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
-	person_event SPRITE_POKEFAN_F, 46 + 4, 10 + 4, $5, 0, 1, -1, -1, 0, 0, 0, PokefanFScript_0x1a0084, -1
-	person_event SPRITE_SUPER_NERD, 21 + 4, 11 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_CIANWOOD_CITY_EUSINE
-	person_event SPRITE_SUICUNE, 14 + 4, 10 + 4, $1, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
+	person_event SPRITE_STANDING_YOUNGSTER, 37, 21, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, StandingYoungsterScript_0x1a00b3, -1
+	person_event SPRITE_POKEFAN_M, 33, 17, $5, 0, 1, -1, -1, 0, 0, 0, PokefanMScript_0x1a00b6, -1
+	person_event SPRITE_LASS, 42, 14, $4, 2, 0, -1, -1, 0, 0, 0, LassScript_0x1a00b9, -1
+	person_event SPRITE_ROCK, 16, 8, $18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
+	person_event SPRITE_ROCK, 17, 9, $18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
+	person_event SPRITE_ROCK, 25, 4, $18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
+	person_event SPRITE_ROCK, 29, 5, $18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
+	person_event SPRITE_ROCK, 27, 10, $18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
+	person_event SPRITE_ROCK, 19, 4, $18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
+	person_event SPRITE_POKEFAN_F, 46, 10, $5, 0, 1, -1, -1, 0, 0, 0, PokefanFScript_0x1a0084, -1
+	person_event SPRITE_SUPER_NERD, 21, 11, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_CIANWOOD_CITY_EUSINE
+	person_event SPRITE_SUICUNE, 14, 10, $1, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY

@@ -47,7 +47,7 @@ RuinsofAlphOmanyteItemRoom_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_POKE_BALL, 6 + 4, 2 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59a2c, EVENT_PICKED_UP_MYSTERYBERRY_FROM_OMANYTE_ITEM_ROOM
-	person_event SPRITE_POKE_BALL, 6 + 4, 5 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59a2e, EVENT_PICKED_UP_MYSTIC_WATER_FROM_OMANYTE_ITEM_ROOM
-	person_event SPRITE_POKE_BALL, 4 + 4, 2 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59a30, EVENT_PICKED_UP_STARDUST_FROM_OMANYTE_ITEM_ROOM
-	person_event SPRITE_POKE_BALL, 4 + 4, 5 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59a32, EVENT_PICKED_UP_STAR_PIECE_FROM_OMANYTE_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 6, 2, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59a2c, EVENT_PICKED_UP_MYSTERYBERRY_FROM_OMANYTE_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 6, 5, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59a2e, EVENT_PICKED_UP_MYSTIC_WATER_FROM_OMANYTE_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 4, 2, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59a30, EVENT_PICKED_UP_STARDUST_FROM_OMANYTE_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 4, 5, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59a32, EVENT_PICKED_UP_STAR_PIECE_FROM_OMANYTE_ITEM_ROOM

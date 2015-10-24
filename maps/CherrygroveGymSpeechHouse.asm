@@ -59,5 +59,5 @@ CherrygroveGymSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKEFAN_M, 3 + 4, 2 + 4, $6, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x196ae1, -1
-	person_event SPRITE_BUG_CATCHER, 5 + 4, 5 + 4, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, BugCatcherScript_0x196ae4, -1
+	person_event SPRITE_POKEFAN_M, 3, 2, $6, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x196ae1, -1
+	person_event SPRITE_BUG_CATCHER, 5, 5, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, BugCatcherScript_0x196ae4, -1

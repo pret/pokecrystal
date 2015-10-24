@@ -44,7 +44,7 @@ SilverCaveRoom1_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_POKE_BALL, 9 + 4, 4 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c554, EVENT_SILVER_CAVE_ROOM_1_MAX_ELIXER
-	person_event SPRITE_POKE_BALL, 29 + 4, 15 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c556, EVENT_SILVER_CAVE_ROOM_1_PROTEIN
-	person_event SPRITE_POKE_BALL, 30 + 4, 5 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c558, EVENT_SILVER_CAVE_ROOM_1_ESCAPE_ROPE
-	person_event SPRITE_POKE_BALL, 18 + 4, 7 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c55a, EVENT_SILVER_CAVE_ROOM_1_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 9, 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c554, EVENT_SILVER_CAVE_ROOM_1_MAX_ELIXER
+	person_event SPRITE_POKE_BALL, 29, 15, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c556, EVENT_SILVER_CAVE_ROOM_1_PROTEIN
+	person_event SPRITE_POKE_BALL, 30, 5, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c558, EVENT_SILVER_CAVE_ROOM_1_ESCAPE_ROPE
+	person_event SPRITE_POKE_BALL, 18, 7, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c55a, EVENT_SILVER_CAVE_ROOM_1_ULTRA_BALL

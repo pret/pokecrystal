@@ -7188,10 +7188,10 @@ BattleCommanda0: ; 36778
 
 
 Function36804: ; 36804
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $c0
 	or $2
-	ld [wd0ee], a
+	ld [wBattleResult], a
 	ret
 ; 3680f
 
@@ -8519,7 +8519,7 @@ BattleCommand35: ; 36f9d
 
 BattleCommand36: ; 36fe1
 	call AnimateCurrentMove
-	callba Function1060e5
+	callba MobileFn_1060e5
 	jp PrintNothingHappened
 ; 36fed
 
@@ -9152,7 +9152,7 @@ CheckSubstituteOpp: ; 37378
 
 
 BattleCommand1a: ; 37380
-	callba Function10610d
+	callba MobileFn_10610d
 	ld a, $4
 	ld [wcfca], a
 	ld c, $3

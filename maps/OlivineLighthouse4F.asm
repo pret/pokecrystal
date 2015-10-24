@@ -102,5 +102,5 @@ OlivineLighthouse4F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_SAILOR, 14 + 4, 7 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSailorKent, -1
-	person_event SPRITE_LASS, 2 + 4, 11 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerLassConnie, -1
+	person_event SPRITE_SAILOR, 14, 7, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSailorKent, -1
+	person_event SPRITE_LASS, 2, 11, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerLassConnie, -1

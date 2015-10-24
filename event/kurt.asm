@@ -27,7 +27,7 @@ Special_SelectApricornForKurt: ; 88018
 	ld c, $1
 	xor a
 	ld [wd0e4], a
-	ld [wdca4], a
+	ld [wKurtApricornQuantity], a
 .loop
 	push bc
 	call Kurt_PrintTextWhichApricorn
@@ -48,7 +48,7 @@ Special_SelectApricornForKurt: ; 88018
 	pop bc
 	jr nc, .loop
 	ld a, [wd10c]
-	ld [wdca4], a
+	ld [wKurtApricornQuantity], a
 	call Kurt_GiveUpSelectedQuantityOfSelectedApricorn
 
 .done
@@ -62,7 +62,7 @@ Kurt_SelectApricorn: ; 88055
 	ld hl, .MenuDataHeader
 	call CopyMenuDataHeader
 	ld a, [MenuSelection]
-	ld [wcf88], a
+	ld [wPocketPointerLocationBuffer], a
 	xor a
 	ld [hBGMapMode], a
 	call Function352f

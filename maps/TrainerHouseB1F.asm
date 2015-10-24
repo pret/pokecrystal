@@ -184,5 +184,5 @@ TrainerHouseB1F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_RECEPTIONIST, 1 + 4, 7 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ObjectEvent, -1
-	person_event SPRITE_CHRIS, 11 + 4, 6 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ObjectEvent, -1
+	person_event SPRITE_RECEPTIONIST, 1, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ObjectEvent, -1
+	person_event SPRITE_CHRIS, 11, 6, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ObjectEvent, -1

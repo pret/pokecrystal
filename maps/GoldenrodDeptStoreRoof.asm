@@ -225,11 +225,11 @@ GoldenrodDeptStoreRoof_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_CLERK, 4 + 4, 1 + 4, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x5673f, EVENT_GOLDENROD_SALE_OFF
-	person_event SPRITE_POKEFAN_F, 3 + 4, 10 + 4, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, PokefanFScript_0x56746, -1
-	person_event SPRITE_FISHER, 1 + 4, 2 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, FisherScript_0x56749, -1
-	person_event SPRITE_TWIN, 4 + 4, 3 + 4, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TwinScript_0x56754, EVENT_GOLDENROD_SALE_ON
-	person_event SPRITE_SUPER_NERD, 6 + 4, 14 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, SuperNerdScript_0x56757, EVENT_GOLDENROD_SALE_ON
-	person_event SPRITE_POKEFAN_M, 0 + 4, 7 + 4, $5, 0, 1, -1, -1, 0, 0, 0, PokefanMScript_0x5676a, EVENT_GOLDENROD_SALE_OFF
-	person_event SPRITE_TEACHER, 3 + 4, 5 + 4, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TeacherScript_0x5676d, EVENT_GOLDENROD_SALE_OFF
-	person_event SPRITE_BUG_CATCHER, 6 + 4, 1 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, BugCatcherScript_0x56770, EVENT_GOLDENROD_SALE_OFF
+	person_event SPRITE_CLERK, 4, 1, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x5673f, EVENT_GOLDENROD_SALE_OFF
+	person_event SPRITE_POKEFAN_F, 3, 10, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, PokefanFScript_0x56746, -1
+	person_event SPRITE_FISHER, 1, 2, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, FisherScript_0x56749, -1
+	person_event SPRITE_TWIN, 4, 3, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TwinScript_0x56754, EVENT_GOLDENROD_SALE_ON
+	person_event SPRITE_SUPER_NERD, 6, 14, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, SuperNerdScript_0x56757, EVENT_GOLDENROD_SALE_ON
+	person_event SPRITE_POKEFAN_M, 0, 7, $5, 0, 1, -1, -1, 0, 0, 0, PokefanMScript_0x5676a, EVENT_GOLDENROD_SALE_OFF
+	person_event SPRITE_TEACHER, 3, 5, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TeacherScript_0x5676d, EVENT_GOLDENROD_SALE_OFF
+	person_event SPRITE_BUG_CATCHER, 6, 1, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, BugCatcherScript_0x56770, EVENT_GOLDENROD_SALE_OFF

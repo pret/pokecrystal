@@ -216,9 +216,9 @@ Route9_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_YOUNGSTER, 11 + 4, 23 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerCamperDean, -1
-	person_event SPRITE_LASS, 8 + 4, 39 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerPicnickerHeidi, -1
-	person_event SPRITE_YOUNGSTER, 4 + 4, 11 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 5, TrainerCamperSid, -1
-	person_event SPRITE_LASS, 15 + 4, 12 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerPicnickerEdna, -1
-	person_event SPRITE_POKEFAN_M, 3 + 4, 28 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerHikerTim, -1
-	person_event SPRITE_POKEFAN_M, 15 + 4, 36 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 4, TrainerHikerSidney, -1
+	person_event SPRITE_YOUNGSTER, 11, 23, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerCamperDean, -1
+	person_event SPRITE_LASS, 8, 39, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerPicnickerHeidi, -1
+	person_event SPRITE_YOUNGSTER, 4, 11, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 5, TrainerCamperSid, -1
+	person_event SPRITE_LASS, 15, 12, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerPicnickerEdna, -1
+	person_event SPRITE_POKEFAN_M, 3, 28, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerHikerTim, -1
+	person_event SPRITE_POKEFAN_M, 15, 36, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 4, TrainerHikerSidney, -1

@@ -58,6 +58,6 @@ BlackthornMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 3 + 4, 1 + 4, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x195a5d, -1
-	person_event SPRITE_COOLTRAINER_M, 6 + 4, 7 + 4, $5, 0, 2, -1, -1, 0, 0, 0, CooltrainerMScript_0x195a64, -1
-	person_event SPRITE_BLACK_BELT, 2 + 4, 5 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, BlackBeltScript_0x195a67, -1
+	person_event SPRITE_CLERK, 3, 1, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x195a5d, -1
+	person_event SPRITE_COOLTRAINER_M, 6, 7, $5, 0, 2, -1, -1, 0, 0, 0, CooltrainerMScript_0x195a64, -1
+	person_event SPRITE_BLACK_BELT, 2, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, BlackBeltScript_0x195a67, -1

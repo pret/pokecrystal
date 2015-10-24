@@ -785,16 +785,16 @@ Function973a: ; 973a
 Function974b: ; 974b
 	and a
 	jp nz, Function97f9
-	ld a, [wd45b]
+	ld a, [wPlayerSpriteSetupFlags]
 	bit 2, a
-	jr nz, .asm_9760
+	jr nz, .male
 	ld a, [PlayerGender]
 	and a
-	jr z, .asm_9760
+	jr z, .male
 	ld hl, KrisPalette
 	ret
 
-.asm_9760
+.male
 	ld hl, PlayerPalette
 	ret
 ; 9764

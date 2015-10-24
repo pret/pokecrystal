@@ -183,9 +183,9 @@ Route8_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_BIKER, 8 + 4, 10 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 5, TrainerBikerDwayne, -1
-	person_event SPRITE_BIKER, 9 + 4, 10 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 5, TrainerBikerHarris, -1
-	person_event SPRITE_BIKER, 10 + 4, 10 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerBikerZeke, -1
-	person_event SPRITE_SUPER_NERD, 2 + 4, 23 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerSupernerdSam, -1
-	person_event SPRITE_SUPER_NERD, 12 + 4, 31 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 4, TrainerSupernerdTom, -1
-	person_event SPRITE_FRUIT_TREE, 5 + 4, 33 + 4, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x6c06c, -1
+	person_event SPRITE_BIKER, 8, 10, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 5, TrainerBikerDwayne, -1
+	person_event SPRITE_BIKER, 9, 10, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 5, TrainerBikerHarris, -1
+	person_event SPRITE_BIKER, 10, 10, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerBikerZeke, -1
+	person_event SPRITE_SUPER_NERD, 2, 23, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerSupernerdSam, -1
+	person_event SPRITE_SUPER_NERD, 12, 31, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 4, TrainerSupernerdTom, -1
+	person_event SPRITE_FRUIT_TREE, 5, 33, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x6c06c, -1

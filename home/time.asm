@@ -3,7 +3,7 @@
 
 AskTimer:: ; 591
 	push af
-	ld a, [$ffe9]
+	ld a, [hMobile]
 	and a
 	jr z, .asm_59a
 	call Timer

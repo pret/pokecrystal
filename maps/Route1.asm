@@ -91,6 +91,6 @@ Route1_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_YOUNGSTER, 12 + 4, 4 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerSchoolboyDanny, -1
-	person_event SPRITE_COOLTRAINER_F, 25 + 4, 9 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerCooltrainerfQuinn, -1
-	person_event SPRITE_FRUIT_TREE, 7 + 4, 3 + 4, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1ac581, -1
+	person_event SPRITE_YOUNGSTER, 12, 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerSchoolboyDanny, -1
+	person_event SPRITE_COOLTRAINER_F, 25, 9, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerCooltrainerfQuinn, -1
+	person_event SPRITE_FRUIT_TREE, 7, 3, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1ac581, -1

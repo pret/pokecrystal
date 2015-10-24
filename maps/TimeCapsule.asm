@@ -73,5 +73,5 @@ TimeCapsule_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_CHRIS, 4 + 4, 3 + 4, $9, 0, 0, -1, -1, 0, 0, 0, ChrisScript_0x19351a, EVENT_GAVE_KURT_APRICORNS
-	person_event SPRITE_CHRIS, 4 + 4, 6 + 4, $8, 0, 0, -1, -1, 0, 0, 0, ChrisScript_0x19351a, EVENT_RECEIVED_BALLS_FROM_KURT
+	person_event SPRITE_CHRIS, 4, 3, $9, 0, 0, -1, -1, 0, 0, 0, ChrisScript_0x19351a, EVENT_GAVE_KURT_APRICORNS
+	person_event SPRITE_CHRIS, 4, 6, $8, 0, 0, -1, -1, 0, 0, 0, ChrisScript_0x19351a, EVENT_RECEIVED_BALLS_FROM_KURT

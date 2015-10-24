@@ -345,12 +345,12 @@ DanceTheatre_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_KIMONO_GIRL, 2 + 4, 0 + 4, $1e, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 0, TrainerKimono_girlNaoko2, -1
-	person_event SPRITE_KIMONO_GIRL, 1 + 4, 2 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 0, TrainerKimono_girlSayo, -1
-	person_event SPRITE_KIMONO_GIRL, 2 + 4, 6 + 4, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 0, TrainerKimono_girlZuki, -1
-	person_event SPRITE_KIMONO_GIRL, 1 + 4, 9 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 0, TrainerKimono_girlKuni, -1
-	person_event SPRITE_KIMONO_GIRL, 2 + 4, 11 + 4, $1f, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 0, TrainerKimono_girlMiki, -1
-	person_event SPRITE_GENTLEMAN, 10 + 4, 7 + 4, $7, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x994c6, -1
-	person_event SPRITE_RHYDON, 8 + 4, 6 + 4, $16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, RhydonScript_0x9951b, -1
-	person_event SPRITE_COOLTRAINER_M, 10 + 4, 10 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerMScript_0x99525, -1
-	person_event SPRITE_GRANNY, 6 + 4, 3 + 4, $7, 0, 0, -1, -1, 0, 0, 0, GrannyScript_0x99528, -1
+	person_event SPRITE_KIMONO_GIRL, 2, 0, $1e, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 0, TrainerKimono_girlNaoko2, -1
+	person_event SPRITE_KIMONO_GIRL, 1, 2, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 0, TrainerKimono_girlSayo, -1
+	person_event SPRITE_KIMONO_GIRL, 2, 6, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 0, TrainerKimono_girlZuki, -1
+	person_event SPRITE_KIMONO_GIRL, 1, 9, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 0, TrainerKimono_girlKuni, -1
+	person_event SPRITE_KIMONO_GIRL, 2, 11, $1f, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 0, TrainerKimono_girlMiki, -1
+	person_event SPRITE_GENTLEMAN, 10, 7, $7, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x994c6, -1
+	person_event SPRITE_RHYDON, 8, 6, $16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, RhydonScript_0x9951b, -1
+	person_event SPRITE_COOLTRAINER_M, 10, 10, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerMScript_0x99525, -1
+	person_event SPRITE_GRANNY, 6, 3, $7, 0, 0, -1, -1, 0, 0, 0, GrannyScript_0x99528, -1

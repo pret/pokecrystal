@@ -508,17 +508,18 @@ GetMapConnection:: ; 23a3
 
 
 Function23ac:: ; 23ac
-	ld a, [hli]
+	ld a, [hli] ; trigger count
 	ld c, a
-	ld [wdc07], a
+	ld [wdc07], a ; current map trigger count
 	ld a, l
-	ld [wdc07 + 1], a
+	ld [wdc08], a ; map trigger pointer
 	ld a, h
 	ld [wdc09], a
 	ld a, c
 	and a
 	ret z
-	ld bc, $0004
+
+	ld bc, 4 ; size of a map trigger header entry
 	call AddNTimes
 	ret
 ; 23c3
@@ -534,7 +535,8 @@ Function23c3:: ; 23c3
 	ld a, c
 	and a
 	ret z
-	ld bc, $0003
+
+	ld bc, 3
 	call AddNTimes
 	ret
 ; 23da
@@ -1958,7 +1960,7 @@ FadeToMenu:: ; 2b29
 	call Function1d6e
 	callba FadeBlackBGMap
 	call ClearSprites
-	call Function2ed3
+	call DisableSpriteUpdates
 	ret
 ; 2b3c
 
@@ -1986,7 +1988,7 @@ Function2b5c:: ; 2b5c
 	callba Function49409
 	call Function3200
 	callba FadeInBGMap
-	call Function2ee4
+	call EnableSpriteUpdates
 	ret
 ; 2b74
 

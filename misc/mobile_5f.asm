@@ -3122,7 +3122,7 @@ Function17e3c3: ; 17e3c3
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	callba Function106155
+	callba MobileFn_106155
 	callba Function106187
 	pop af
 	ld [rSVBK], a

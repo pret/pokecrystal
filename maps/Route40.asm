@@ -344,15 +344,15 @@ Route40_MapEventHeader:
 
 .PersonEvents:
 	db 12
-	person_event SPRITE_OLIVINE_RIVAL, 15 + 4, 14 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerSwimmermSimon, -1
-	person_event SPRITE_OLIVINE_RIVAL, 30 + 4, 18 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 5, TrainerSwimmermRandall, -1
-	person_event SPRITE_SWIMMER_GIRL, 19 + 4, 3 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 4, TrainerSwimmerfElaine, -1
-	person_event SPRITE_SWIMMER_GIRL, 25 + 4, 10 + 4, $1f, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfPaula, -1
-	person_event SPRITE_ROCK, 11 + 4, 7 + 4, $18, 0, 0, -1, -1, 0, 0, 0, Route40Rock, -1
-	person_event SPRITE_ROCK, 9 + 4, 6 + 4, $18, 0, 0, -1, -1, 0, 0, 0, Route40Rock, -1
-	person_event SPRITE_ROCK, 8 + 4, 7 + 4, $18, 0, 0, -1, -1, 0, 0, 0, Route40Rock, -1
-	person_event SPRITE_LASS, 13 + 4, 11 + 4, $6, 0, 0, -1, -1, 0, 0, 0, LassScript_0x1a61c4, -1
-	person_event SPRITE_BUENA, 10 + 4, 8 + 4, $3, 0, 0, -1, -1, 0, 0, 0, MonicaScript, EVENT_ROUTE_40_MONICA_OF_MONDAY
-	person_event SPRITE_POKEFAN_M, 6 + 4, 7 + 4, $9, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x1a61c7, -1
-	person_event SPRITE_LASS, 4 + 4, 13 + 4, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x1a61d3, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 9 + 4, 16 + 4, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, StandingYoungsterScript_0x1a61d6, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
+	person_event SPRITE_OLIVINE_RIVAL, 15, 14, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerSwimmermSimon, -1
+	person_event SPRITE_OLIVINE_RIVAL, 30, 18, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 5, TrainerSwimmermRandall, -1
+	person_event SPRITE_SWIMMER_GIRL, 19, 3, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 4, TrainerSwimmerfElaine, -1
+	person_event SPRITE_SWIMMER_GIRL, 25, 10, $1f, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfPaula, -1
+	person_event SPRITE_ROCK, 11, 7, $18, 0, 0, -1, -1, 0, 0, 0, Route40Rock, -1
+	person_event SPRITE_ROCK, 9, 6, $18, 0, 0, -1, -1, 0, 0, 0, Route40Rock, -1
+	person_event SPRITE_ROCK, 8, 7, $18, 0, 0, -1, -1, 0, 0, 0, Route40Rock, -1
+	person_event SPRITE_LASS, 13, 11, $6, 0, 0, -1, -1, 0, 0, 0, LassScript_0x1a61c4, -1
+	person_event SPRITE_BUENA, 10, 8, $3, 0, 0, -1, -1, 0, 0, 0, MonicaScript, EVENT_ROUTE_40_MONICA_OF_MONDAY
+	person_event SPRITE_POKEFAN_M, 6, 7, $9, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x1a61c7, -1
+	person_event SPRITE_LASS, 4, 13, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x1a61d3, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 9, 16, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, StandingYoungsterScript_0x1a61d6, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR

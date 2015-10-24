@@ -91,7 +91,7 @@ GoldenrodDeptStore4F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_CLERK, 5 + 4, 13 + 4, $7, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x55ee9, -1
-	person_event SPRITE_COOLTRAINER_M, 7 + 4, 11 + 4, $9, 0, 0, -1, -1, 0, 0, 0, CooltrainerMScript_0x55ef1, -1
-	person_event SPRITE_BUG_CATCHER, 2 + 4, 7 + 4, $5, 0, 1, -1, -1, 0, 0, 0, BugCatcherScript_0x55ef4, -1
-	person_event SPRITE_GAMEBOY_KID, 1 + 4, 5 + 4, $6, 0, 0, -1, -1, 0, 0, 0, GameboyKidScript_0x55ef7, -1
+	person_event SPRITE_CLERK, 5, 13, $7, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x55ee9, -1
+	person_event SPRITE_COOLTRAINER_M, 7, 11, $9, 0, 0, -1, -1, 0, 0, 0, CooltrainerMScript_0x55ef1, -1
+	person_event SPRITE_BUG_CATCHER, 2, 7, $5, 0, 1, -1, -1, 0, 0, 0, BugCatcherScript_0x55ef4, -1
+	person_event SPRITE_GAMEBOY_KID, 1, 5, $6, 0, 0, -1, -1, 0, 0, 0, GameboyKidScript_0x55ef7, -1

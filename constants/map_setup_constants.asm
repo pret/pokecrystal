@@ -1,0 +1,13 @@
+	const_def
+	const MAPSETUP_00
+	const MAPSETUP_01
+	const MAPSETUP_02
+	const MAPSETUP_03
+	const MAPSETUP_04
+	const MAPSETUP_05
+	const MAPSETUP_06
+	const MAPSETUP_07
+	const MAPSETUP_08
+	const MAPSETUP_09
+	const MAPSETUP_10
+	const MAPSETUP_11

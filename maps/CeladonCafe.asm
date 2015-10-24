@@ -219,8 +219,8 @@ CeladonCafe_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_SUPER_NERD, 3 + 4, 9 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, SuperNerdScript_0x73049, -1
-	person_event SPRITE_FISHER, 6 + 4, 4 + 4, $8, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x73051, -1
-	person_event SPRITE_FISHER, 7 + 4, 1 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FisherScript_0x73062, -1
-	person_event SPRITE_FISHER, 2 + 4, 1 + 4, $9, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x73073, -1
-	person_event SPRITE_TEACHER, 3 + 4, 4 + 4, $8, 0, 0, -1, -1, 0, 0, 0, TeacherScript_0x73084, -1
+	person_event SPRITE_SUPER_NERD, 3, 9, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, SuperNerdScript_0x73049, -1
+	person_event SPRITE_FISHER, 6, 4, $8, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x73051, -1
+	person_event SPRITE_FISHER, 7, 1, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FisherScript_0x73062, -1
+	person_event SPRITE_FISHER, 2, 1, $9, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x73073, -1
+	person_event SPRITE_TEACHER, 3, 4, $8, 0, 0, -1, -1, 0, 0, 0, TeacherScript_0x73084, -1

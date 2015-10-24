@@ -587,17 +587,17 @@ TeamRocketBaseB3F_MapEventHeader:
 
 .PersonEvents:
 	db 14
-	person_event SPRITE_LANCE, 14 + 4, 25 + 4, $6, 0, 0, -1, -1, 0, 0, 0, LanceScript_0x6dffc, EVENT_TEAM_ROCKET_BASE_B3F_LANCE_PASSWORDS
-	person_event SPRITE_ROCKET, 3 + 4, 8 + 4, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B3F_EXECUTIVE
-	person_event SPRITE_MOLTRES, 2 + 4, 7 + 4, $16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, MoltresScript_0x6e091, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_ROCKET_GIRL, 7 + 4, 21 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 0, TrainerGruntF5, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_ROCKET, 14 + 4, 5 + 4, $a, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM28, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_SCIENTIST, 11 + 4, 23 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 0, TrainerScientistRoss, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_SCIENTIST, 15 + 4, 11 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerScientistMitch, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_ROCKET, 14 + 4, 24 + 4, $6, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x6e048, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_SILVER, 5 + 4, 4 + 4, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RIVAL_TEAM_ROCKET_BASE
-	person_event SPRITE_POKE_BALL, 12 + 4, 1 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6e120, EVENT_TEAM_ROCKET_BASE_B3F_PROTEIN
-	person_event SPRITE_POKE_BALL, 12 + 4, 3 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6e122, EVENT_TEAM_ROCKET_BASE_B3F_X_SPECIAL
-	person_event SPRITE_POKE_BALL, 9 + 4, 28 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6e124, EVENT_TEAM_ROCKET_BASE_B3F_FULL_HEAL
-	person_event SPRITE_POKE_BALL, 2 + 4, 17 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6e126, EVENT_TEAM_ROCKET_BASE_B3F_ICE_HEAL
-	person_event SPRITE_POKE_BALL, 10 + 4, 14 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6e128, EVENT_TEAM_ROCKET_BASE_B3F_ULTRA_BALL
+	person_event SPRITE_LANCE, 14, 25, $6, 0, 0, -1, -1, 0, 0, 0, LanceScript_0x6dffc, EVENT_TEAM_ROCKET_BASE_B3F_LANCE_PASSWORDS
+	person_event SPRITE_ROCKET, 3, 8, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B3F_EXECUTIVE
+	person_event SPRITE_MOLTRES, 2, 7, $16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, MoltresScript_0x6e091, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_ROCKET_GIRL, 7, 21, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 0, TrainerGruntF5, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_ROCKET, 14, 5, $a, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM28, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_SCIENTIST, 11, 23, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 0, TrainerScientistRoss, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_SCIENTIST, 15, 11, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerScientistMitch, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_ROCKET, 14, 24, $6, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x6e048, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_SILVER, 5, 4, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RIVAL_TEAM_ROCKET_BASE
+	person_event SPRITE_POKE_BALL, 12, 1, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6e120, EVENT_TEAM_ROCKET_BASE_B3F_PROTEIN
+	person_event SPRITE_POKE_BALL, 12, 3, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6e122, EVENT_TEAM_ROCKET_BASE_B3F_X_SPECIAL
+	person_event SPRITE_POKE_BALL, 9, 28, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6e124, EVENT_TEAM_ROCKET_BASE_B3F_FULL_HEAL
+	person_event SPRITE_POKE_BALL, 2, 17, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6e126, EVENT_TEAM_ROCKET_BASE_B3F_ICE_HEAL
+	person_event SPRITE_POKE_BALL, 10, 14, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6e128, EVENT_TEAM_ROCKET_BASE_B3F_ULTRA_BALL

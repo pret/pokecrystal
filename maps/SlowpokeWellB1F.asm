@@ -326,12 +326,12 @@ SlowpokeWellB1F_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_ROCKET, 7 + 4, 15 + 4, $6, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM29, EVENT_SLOWPOKE_WELL_ROCKETS
-	person_event SPRITE_ROCKET, 2 + 4, 5 + 4, $6, 0, 0, -1, -1, 0, 2, 1, TrainerGruntM1, EVENT_SLOWPOKE_WELL_ROCKETS
-	person_event SPRITE_ROCKET, 6 + 4, 5 + 4, $9, 0, 0, -1, -1, 0, 2, 2, TrainerGruntM2, EVENT_SLOWPOKE_WELL_ROCKETS
-	person_event SPRITE_ROCKET_GIRL, 4 + 4, 10 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerGruntF1, EVENT_SLOWPOKE_WELL_ROCKETS
-	person_event SPRITE_SLOWPOKE, 4 + 4, 7 + 4, $1, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SlowpokeScript_0x5a681, EVENT_SLOWPOKE_WELL_SLOWPOKES
-	person_event SPRITE_SLOWPOKE, 2 + 4, 6 + 4, $1, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SlowpokeScript_0x5a695, EVENT_SLOWPOKE_WELL_SLOWPOKES
-	person_event SPRITE_KURT, 14 + 4, 16 + 4, $7, 0, 0, -1, -1, 0, 0, 0, KurtScript_0x5a5d5, EVENT_SLOWPOKE_WELL_KURT
-	person_event SPRITE_BOULDER, 2 + 4, 3 + 4, $19, 0, 0, -1, -1, 0, 0, 0, SlowpokeWellB1FBoulder, -1
-	person_event SPRITE_POKE_BALL, 3 + 4, 10 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5a6a3, EVENT_SLOWPOKE_WELL_B1F_SUPER_POTION
+	person_event SPRITE_ROCKET, 7, 15, $6, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM29, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_ROCKET, 2, 5, $6, 0, 0, -1, -1, 0, 2, 1, TrainerGruntM1, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_ROCKET, 6, 5, $9, 0, 0, -1, -1, 0, 2, 2, TrainerGruntM2, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_ROCKET_GIRL, 4, 10, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerGruntF1, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_SLOWPOKE, 4, 7, $1, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SlowpokeScript_0x5a681, EVENT_SLOWPOKE_WELL_SLOWPOKES
+	person_event SPRITE_SLOWPOKE, 2, 6, $1, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SlowpokeScript_0x5a695, EVENT_SLOWPOKE_WELL_SLOWPOKES
+	person_event SPRITE_KURT, 14, 16, $7, 0, 0, -1, -1, 0, 0, 0, KurtScript_0x5a5d5, EVENT_SLOWPOKE_WELL_KURT
+	person_event SPRITE_BOULDER, 2, 3, $19, 0, 0, -1, -1, 0, 0, 0, SlowpokeWellB1FBoulder, -1
+	person_event SPRITE_POKE_BALL, 3, 10, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5a6a3, EVENT_SLOWPOKE_WELL_B1F_SUPER_POTION

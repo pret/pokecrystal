@@ -183,5 +183,5 @@ ViridianGym_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_BLUE, 3 + 4, 5 + 4, $6, 0, 0, -1, -1, 0, 0, 0, BlueScript_0x9aa26, EVENT_VIRIDIAN_GYM_BLUE
-	person_event SPRITE_GYM_GUY, 13 + 4, 7 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ViridianGymGuyScript, EVENT_VIRIDIAN_GYM_BLUE
+	person_event SPRITE_BLUE, 3, 5, $6, 0, 0, -1, -1, 0, 0, 0, BlueScript_0x9aa26, EVENT_VIRIDIAN_GYM_BLUE
+	person_event SPRITE_GYM_GUY, 13, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ViridianGymGuyScript, EVENT_VIRIDIAN_GYM_BLUE

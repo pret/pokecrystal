@@ -264,6 +264,6 @@ Route43Gate_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_OFFICER, 4 + 4, 0 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, OfficerScript_0x19ac85, EVENT_LAKE_OF_RAGE_CIVILIANS
-	person_event SPRITE_ROCKET, 4 + 4, 2 + 4, $6, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x19ac82, EVENT_ROUTE_43_GATE_ROCKETS
-	person_event SPRITE_ROCKET, 4 + 4, 7 + 4, $7, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x19ac82, EVENT_ROUTE_43_GATE_ROCKETS
+	person_event SPRITE_OFFICER, 4, 0, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, OfficerScript_0x19ac85, EVENT_LAKE_OF_RAGE_CIVILIANS
+	person_event SPRITE_ROCKET, 4, 2, $6, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x19ac82, EVENT_ROUTE_43_GATE_ROCKETS
+	person_event SPRITE_ROCKET, 4, 7, $7, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x19ac82, EVENT_ROUTE_43_GATE_ROCKETS

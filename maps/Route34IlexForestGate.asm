@@ -152,7 +152,7 @@ Route34IlexForestGate_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_TEACHER, 3 + 4, 9 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, TeacherScript_0x62d63, EVENT_ROUTE_34_ILEX_FOREST_GATE_TEACHER_BEHIND_COUNTER
-	person_event SPRITE_BUTTERFREE, 4 + 4, 9 + 4, $16, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ButterfreeScript_0x62d8a, -1
-	person_event SPRITE_LASS, 4 + 4, 3 + 4, $4, 1, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x62d94, EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
-	person_event SPRITE_TEACHER, 7 + 4, 5 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, TeacherScript_0x62d63, EVENT_ROUTE_34_ILEX_FOREST_GATE_TEACHER_IN_WALKWAY
+	person_event SPRITE_TEACHER, 3, 9, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, TeacherScript_0x62d63, EVENT_ROUTE_34_ILEX_FOREST_GATE_TEACHER_BEHIND_COUNTER
+	person_event SPRITE_BUTTERFREE, 4, 9, $16, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ButterfreeScript_0x62d8a, -1
+	person_event SPRITE_LASS, 4, 3, $4, 1, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x62d94, EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
+	person_event SPRITE_TEACHER, 7, 5, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, TeacherScript_0x62d63, EVENT_ROUTE_34_ILEX_FOREST_GATE_TEACHER_IN_WALKWAY

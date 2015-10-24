@@ -84,7 +84,7 @@ Function100082: ; 100082
 	ld [hLCDStatCustom], a
 	ld a, $1
 	ld [$ffc9], a
-	ld [$ffe9], a
+	ld [hMobile], a
 	ei
 	ret
 ; 0x1000a4
@@ -93,7 +93,7 @@ Function1000a4: ; 1000a4
 	di
 	xor a
 	ld [$ffc9], a
-	ld [$ffe9], a
+	ld [hMobile], a
 	xor a
 	ld [hVBlank], a
 	call NormalSpeed
@@ -166,7 +166,7 @@ Function1000fa: ; 1000fa
 	ld [rIE], a
 	xor a
 	ld [$ffc9], a
-	ld [$ffe9], a
+	ld [hMobile], a
 	ei
 	ld a, [wLinkMode]
 	push af
@@ -1786,12 +1786,12 @@ Function100b12: ; 100b12
 	ld a, BANK(BattleMenuDataHeader)
 	ld [wcf94], a
 	ld a, [wd0d2]
-	ld [wcf88], a
+	ld [wPocketPointerLocationBuffer], a
 	call Function100e72
 	call Function100b45
 	callba Function8e85
 	call Function100ed4
-	ld a, [wcf88]
+	ld a, [wPocketPointerLocationBuffer]
 	ld [wd0d2], a
 	call ExitMenu
 	ret
@@ -1818,7 +1818,7 @@ Function100b45: ; 100b45
 	ld c, a
 	ld a, [wcfa3]
 	call SimpleMultiply
-	ld [wcf88], a
+	ld [wPocketPointerLocationBuffer], a
 	and a
 	ret
 ; 100b7a
@@ -3911,7 +3911,7 @@ Function101913: ; 101913
 ; 10194b
 
 Function10194b: ; 10194b
-	call Function2ed3
+	call DisableSpriteUpdates
 	call ClearSprites
 	callba Function1021f9
 	ld hl, wcd29
@@ -5401,7 +5401,7 @@ Function102423: ; 102423
 	call Function102921
 	ret nc
 	callba Function14a58
-	callba Function1060af
+	callba MobileFn_1060af
 	callba Function106187
 	ld hl, wcd4b
 	set 1, [hl]
@@ -7688,7 +7688,7 @@ Function103612: ; 103612
 	ld a, [wdc40]
 	and $f
 	jr z, .asm_103622
-	ld [wcf88], a
+	ld [wPocketPointerLocationBuffer], a
 
 .asm_103622
 	call InterpretMenu2

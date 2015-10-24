@@ -85,6 +85,6 @@ CopycatsHouse1F_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_POKEFAN_M, 3 + 4, 2 + 4, $6, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x18ad13, -1
-	person_event SPRITE_POKEFAN_F, 4 + 4, 5 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, PokefanFScript_0x18ad16, -1
-	person_event SPRITE_CLEFAIRY, 6 + 4, 6 + 4, $16, 0, 0, -1, -1, 0, 0, 0, ClefairyScript_0x18ad2a, -1
+	person_event SPRITE_POKEFAN_M, 3, 2, $6, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x18ad13, -1
+	person_event SPRITE_POKEFAN_F, 4, 5, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, PokefanFScript_0x18ad16, -1
+	person_event SPRITE_CLEFAIRY, 6, 6, $16, 0, 0, -1, -1, 0, 0, 0, ClefairyScript_0x18ad2a, -1

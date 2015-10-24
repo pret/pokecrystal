@@ -93,4 +93,4 @@ Route12SuperRodHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_FISHING_GURU, 3 + 4, 5 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, FishingGuruScript_0x7f484, -1
+	person_event SPRITE_FISHING_GURU, 3, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, FishingGuruScript_0x7f484, -1

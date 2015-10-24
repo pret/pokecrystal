@@ -90,4 +90,4 @@ CianwoodPharmacy_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_PHARMACIST, 3 + 4, 2 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CianwoodPharmacist, -1
+	person_event SPRITE_PHARMACIST, 3, 2, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CianwoodPharmacist, -1

@@ -382,10 +382,10 @@ MahoganyGym_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_PRYCE, 3 + 4, 5 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, PryceScript_0x199a9e, -1
-	person_event SPRITE_BUENA, 6 + 4, 4 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerSkierRoxanne, -1
-	person_event SPRITE_ROCKER, 17 + 4, 0 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBoarderRonald, -1
-	person_event SPRITE_BUENA, 17 + 4, 9 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerSkierClarissa, -1
-	person_event SPRITE_ROCKER, 9 + 4, 5 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBoarderBrad, -1
-	person_event SPRITE_ROCKER, 4 + 4, 2 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBoarderDouglas, -1
-	person_event SPRITE_GYM_GUY, 15 + 4, 7 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, MahoganyGymGuyScript, -1
+	person_event SPRITE_PRYCE, 3, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, PryceScript_0x199a9e, -1
+	person_event SPRITE_BUENA, 6, 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerSkierRoxanne, -1
+	person_event SPRITE_ROCKER, 17, 0, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBoarderRonald, -1
+	person_event SPRITE_BUENA, 17, 9, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerSkierClarissa, -1
+	person_event SPRITE_ROCKER, 9, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBoarderBrad, -1
+	person_event SPRITE_ROCKER, 4, 2, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBoarderDouglas, -1
+	person_event SPRITE_GYM_GUY, 15, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, MahoganyGymGuyScript, -1

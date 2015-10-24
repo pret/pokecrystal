@@ -123,18 +123,18 @@ Function3c000: ; 3c000
 
 WildFled_EnemyFled_LinkBattleCanceled: ; 3c0e5
 	call Function30b4
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $c0
 	add $2
-	ld [wd0ee], a
+	ld [wBattleResult], a
 	ld a, [wLinkMode]
 	and a
 	ld hl, BattleText_WildFled
 	jr z, .asm_3c115
 
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $c0
-	ld [wd0ee], a
+	ld [wBattleResult], a
 	ld hl, BattleText_EnemyFled
 	call Function3d2e0
 	jr nc, .asm_3c115
@@ -584,10 +584,10 @@ Function3c3f5: ; 3c3f5
 	ld a, [wdc79]
 	and a
 	jr nz, .asm_3c40e
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $c0
 	add $2
-	ld [wd0ee], a
+	ld [wBattleResult], a
 	scf
 	ret
 
@@ -2245,9 +2245,9 @@ Function3ce01: ; 3ce01
 	call z, Function3d0ea
 	call EmptyBattleTextBox
 	call Function309d
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $c0
-	ld [wd0ee], a
+	ld [wBattleResult], a
 	call Function3ceaa
 	jr z, .asm_3ce72
 	ld hl, EnemyMonBaseStats
@@ -2633,7 +2633,7 @@ Function3d0be: ; 3d0be
 	push bc
 	ld b, h
 	ld c, l
-	callba Function106008
+	callba MobileFn_106008
 	pop bc
 	pop hl
 .asm_3d0ce
@@ -2831,10 +2831,10 @@ Function3d1aa: ; 3d1aa
 	ld a, [CurBattleMon]
 	ld [CurPartyMon], a
 	callab ChangeHappiness
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and %11000000
 	add $1
-	ld [wd0ee], a
+	ld [wBattleResult], a
 	ld a, [wc6f7]
 	and a
 	ret z
@@ -3136,10 +3136,10 @@ LostBattle: ; 3d38e
 	call CheckEnemyTrainerDefeated
 	jr nz, .asm_3d40a
 	ld hl, TiedAgainstText
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $c0
 	add 2
-	ld [wd0ee], a
+	ld [wBattleResult], a
 	jr .text
 
 .asm_3d40a
@@ -4009,10 +4009,10 @@ Function3d8b3: ; 3d8b3
 	dec a
 .asm_3d9cf
 	ld b, a
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $c0
 	add b
-	ld [wd0ee], a
+	ld [wBattleResult], a
 	call StopDangerSound
 	push de
 	ld de, SFX_RUN
@@ -5251,7 +5251,7 @@ Function3e234: ; 3e234
 	and a
 	jr nz, .asm_3e279
 	callab CheckItemPocket
-	ld a, [wd142]
+	ld a, [wItemAttributeParamBuffer]
 	cp $3
 	jr z, .asm_3e24a
 	call WhiteBGMap
@@ -5282,9 +5282,9 @@ Function3e234: ; 3e234
 .asm_3e279
 	xor a
 	ld [wc64e], a
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $c0
-	ld [wd0ee], a
+	ld [wBattleResult], a
 	call ResetTextRelatedRAM
 	call Function32f9
 	scf
@@ -8403,9 +8403,13 @@ Function3f4b4: ; 3f4b4
 
 
 StartBattle: ; 3f4c1
+; This check prevents you from entering a battle without any Pokemon.
+; Those using walk-through-walls to bypass getting a Pokemon experience
+; the effects of this check.
 	ld a, [PartyCount]
 	and a
 	ret z
+
 	ld a, [TimeOfDayPal]
 	push af
 	call Function3f4dd
@@ -8425,17 +8429,17 @@ Function3f4d9: ; 3f4d9
 
 
 Function3f4dd: ; 3f4dd
-	callba Function106050
-	call Function3f54e
+	callba MobileFn_106050 ; mobile
+	call LoadTrainerOrWildMonPic
 	xor a
 	ld [TempBattleMonSpecies], a
 	ld [wd0d2], a
 	xor a
 	ld [$ffde], a
 	callba PlayBattleMusic
-	callba Function2ee18
-	callba Function2ee2f
-	call Function2ed3
+	callba ShowLinkBattleParticipants
+	callba FindFirstAliveMon
+	call DisableSpriteUpdates
 	callba ClearBattleRAM
 	call Function3f55e
 	call Function3f568
@@ -8465,14 +8469,14 @@ Function3f4dd: ; 3f4dd
 	ret
 ; 3f54e
 
-Function3f54e: ; 3f54e
+LoadTrainerOrWildMonPic: ; 3f54e
 	ld a, [OtherTrainerClass]
 	and a
-	jr nz, .asm_3f55a
+	jr nz, .Trainer
 	ld a, [TempWildMonSpecies]
 	ld [CurPartySpecies], a
 
-.asm_3f55a
+.Trainer
 	ld [TempEnemyMonSpecies], a
 	ret
 ; 3f55e
@@ -8480,8 +8484,8 @@ Function3f54e: ; 3f54e
 Function3f55e: ; 3f55e
 	ld a, [OtherTrainerClass]
 	and a
-	jp nz, Function3f594
-	jp Function3f607
+	jp nz, Function3f594 ; trainer
+	jp Function3f607 ; wild
 ; 3f568
 
 Function3f568: ; 3f568
@@ -8510,7 +8514,7 @@ Function3f568: ; 3f568
 
 Function3f594: ; 3f594
 	ld [TrainerClass], a
-	callba Function10606a
+	callba MobileFn_10606a
 	xor a
 	ld [TempEnemyMonSpecies], a
 	callab Function3957b
@@ -8566,7 +8570,7 @@ Function3f594: ; 3f594
 Function3f607: ; 3f607
 	ld a, $1
 	ld [wBattleMode], a
-	callba Function10605d
+	callba MobileFn_10605d
 	call LoadEnemyMon
 	ld hl, EnemyMonMoves
 	ld de, wc735
@@ -8660,15 +8664,15 @@ Function3f69e: ; 3f69e
 Function3f6a5: ; 3f6a5
 	ld a, [wLinkMode]
 	and a
-	jr z, .asm_3f6b7
+	jr z, .not_linked
 	call Function3f759
 	ld c, 150
 	call DelayFrames
 	call Function3f77c
 	ret
 
-.asm_3f6b7
-	ld a, [wd0ee]
+.not_linked
+	ld a, [wBattleResult]
 	and $f
 	ret nz
 	call Function3f71d
@@ -8692,11 +8696,11 @@ Function3f6d0: ; 3f6d0
 	ld [wd267], a
 	ld [wd232], a
 	ld [wd0d8], a
-	ld [wd0da], a
-	ld [wd0d9], a
+	ld [wKeyItemsPocketPointerLocation], a
+	ld [wItemsPocketPointerLocation], a
 	ld [wd0d2], a
 	ld [CurMoveNum], a
-	ld [wd0db], a
+	ld [wBallsPocketPointerLocation], a
 	ld [wd0d6], a
 	ld [wd0e4], a
 	ld [wd0e0], a
@@ -8750,7 +8754,7 @@ endr
 ; 3f759
 
 Function3f759: ; 3f759
-	callba Function1060df
+	callba MobileFn_1060df
 	callba Function106187
 	ld a, [CurOTMon]
 	ld hl, OTPartyMon1Status
@@ -8758,7 +8762,7 @@ Function3f759: ; 3f759
 	ld a, [EnemyMonStatus]
 	ld [hl], a
 	call ClearTileMap
-	callba Function2c1b2
+	callba _ShowLinkBattleParticipants
 	ret
 ; 3f77c
 
@@ -8773,22 +8777,22 @@ Function3f77c: ; 3f77c
 	callba Function2b930
 
 .asm_3f797
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $f
 	cp $1
 	jr c, .asm_3f7ad
 	jr z, .asm_3f7b8
-	callba Function106107
+	callba MobileFn_106107
 	ld de, .Draw
 	jr .asm_3f7c3
 
 .asm_3f7ad
-	callba Function1060fb
+	callba MobileFn_1060fb
 	ld de, .Win
 	jr .asm_3f7c3
 
 .asm_3f7b8
-	callba Function106101
+	callba MobileFn_106101
 	ld de, .Lose
 	jr .asm_3f7c3
 
@@ -9006,7 +9010,7 @@ Function3f998: ; 3f998
 	ld a, [BattleType]
 	cp BATTLETYPE_ROAMING
 	jr nz, .asm_3f9c4
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $f
 	jr z, .asm_3f9af
 	call GetRoamMonHP
@@ -9170,7 +9174,7 @@ endr
 ; 3faa0
 
 Function3faa0: ; 3faa0
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $f
 	cp $1
 	ld bc, $000d
@@ -9405,7 +9409,7 @@ GetBattleBackpic: ; 3fbff
 	jr z, .Decompress
 
 ; What gender are we?
-	ld a, [wd45b]
+	ld a, [wPlayerSpriteSetupFlags]
 	bit 2, a
 	jr nz, .Chris
 	ld a, [PlayerGender]
@@ -9542,7 +9546,7 @@ BattleStartMessage: ; 3fc8b
 	cp BATTLETYPE_FISH
 	jr nz, .asm_3fcfd
 
-	callba Function106086
+	callba MobileFn_106086
 
 	ld hl, HookedPokemonAttackedText
 	jr .asm_3fd0e

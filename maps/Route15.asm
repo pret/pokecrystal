@@ -210,10 +210,10 @@ Route15_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_YOUNGSTER, 10 + 4, 10 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerSchoolboyKipp, -1
-	person_event SPRITE_YOUNGSTER, 13 + 4, 15 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSchoolboyTommy, -1
-	person_event SPRITE_YOUNGSTER, 10 + 4, 33 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSchoolboyJohnny, -1
-	person_event SPRITE_YOUNGSTER, 10 + 4, 27 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSchoolboyBilly, -1
-	person_event SPRITE_TEACHER, 12 + 4, 30 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerTeacherColette, -1
-	person_event SPRITE_TEACHER, 10 + 4, 20 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerTeacherHillary, -1
-	person_event SPRITE_POKE_BALL, 5 + 4, 12 + 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1aa5e4, EVENT_ROUTE_15_PP_UP
+	person_event SPRITE_YOUNGSTER, 10, 10, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerSchoolboyKipp, -1
+	person_event SPRITE_YOUNGSTER, 13, 15, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSchoolboyTommy, -1
+	person_event SPRITE_YOUNGSTER, 10, 33, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSchoolboyJohnny, -1
+	person_event SPRITE_YOUNGSTER, 10, 27, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSchoolboyBilly, -1
+	person_event SPRITE_TEACHER, 12, 30, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerTeacherColette, -1
+	person_event SPRITE_TEACHER, 10, 20, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerTeacherHillary, -1
+	person_event SPRITE_POKE_BALL, 5, 12, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1aa5e4, EVENT_ROUTE_15_PP_UP

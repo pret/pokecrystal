@@ -949,7 +949,7 @@ Function9499: ; 9499
 	call Function91c8
 	ld de, $0014
 	hlcoord 0, 0, AttrMap
-	ld a, [wcf82]
+	ld a, [wMenuBorderTopCoord]
 .asm_94a5
 	and a
 	jr z, .asm_94ac
@@ -958,19 +958,19 @@ Function9499: ; 9499
 	jr .asm_94a5
 
 .asm_94ac
-	ld a, [wcf83]
+	ld a, [wMenuBorderLeftCoord]
 	ld e, a
 	ld d, $0
 	add hl, de
-	ld a, [wcf82]
+	ld a, [wMenuBorderTopCoord]
 	ld b, a
-	ld a, [wcf84]
+	ld a, [wMenuBorderBottomCoord]
 	inc a
 	sub b
 	ld b, a
-	ld a, [wcf83]
+	ld a, [wMenuBorderLeftCoord]
 	ld c, a
-	ld a, [wcf85]
+	ld a, [wMenuBorderRightCoord]
 	sub c
 	inc a
 	ld c, a

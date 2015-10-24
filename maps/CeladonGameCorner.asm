@@ -325,12 +325,12 @@ CeladonGameCorner_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_CLERK, 2 + 4, 5 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ClerkScript_0x7211d, -1
-	person_event SPRITE_RECEPTIONIST, 2 + 4, 3 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ReceptionistScript_0x72120, -1
-	person_event SPRITE_POKEFAN_M, 10 + 4, 14 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, PokefanMScript_0x72123, -1
-	person_event SPRITE_TEACHER, 7 + 4, 17 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, TeacherScript_0x7212e, -1
-	person_event SPRITE_FISHING_GURU, 7 + 4, 11 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FishingGuruScript_0x72139, -1
-	person_event SPRITE_FISHER, 10 + 4, 8 + 4, $8, 0, 0, -1, 2, (1 << 3) | PAL_OW_RED, 0, 0, FisherScript_0x72144, -1
-	person_event SPRITE_FISHER, 10 + 4, 8 + 4, $8, 0, 0, -1, 4, (1 << 3) | PAL_OW_RED, 0, 0, FisherScript_0x72144, -1
-	person_event SPRITE_GYM_GUY, 3 + 4, 11 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CeladonGymGuyScript, -1
-	person_event SPRITE_GRAMPS, 8 + 4, 2 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, GrampsScript_0x72190, -1
+	person_event SPRITE_CLERK, 2, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ClerkScript_0x7211d, -1
+	person_event SPRITE_RECEPTIONIST, 2, 3, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ReceptionistScript_0x72120, -1
+	person_event SPRITE_POKEFAN_M, 10, 14, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, PokefanMScript_0x72123, -1
+	person_event SPRITE_TEACHER, 7, 17, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, TeacherScript_0x7212e, -1
+	person_event SPRITE_FISHING_GURU, 7, 11, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FishingGuruScript_0x72139, -1
+	person_event SPRITE_FISHER, 10, 8, $8, 0, 0, -1, 2, (1 << 3) | PAL_OW_RED, 0, 0, FisherScript_0x72144, -1
+	person_event SPRITE_FISHER, 10, 8, $8, 0, 0, -1, 4, (1 << 3) | PAL_OW_RED, 0, 0, FisherScript_0x72144, -1
+	person_event SPRITE_GYM_GUY, 3, 11, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CeladonGymGuyScript, -1
+	person_event SPRITE_GRAMPS, 8, 2, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, GrampsScript_0x72190, -1

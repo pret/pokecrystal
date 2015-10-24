@@ -143,7 +143,7 @@ Route3_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_FISHER, 12 + 4, 26 + 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerFirebreatherOtis, -1
-	person_event SPRITE_YOUNGSTER, 7 + 4, 10 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterWarren, -1
-	person_event SPRITE_YOUNGSTER, 3 + 4, 16 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerYoungsterJimmy, -1
-	person_event SPRITE_FISHER, 5 + 4, 49 + 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerFirebreatherBurt, -1
+	person_event SPRITE_FISHER, 12, 26, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerFirebreatherOtis, -1
+	person_event SPRITE_YOUNGSTER, 7, 10, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterWarren, -1
+	person_event SPRITE_YOUNGSTER, 3, 16, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerYoungsterJimmy, -1
+	person_event SPRITE_FISHER, 5, 49, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerFirebreatherBurt, -1

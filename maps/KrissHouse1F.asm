@@ -404,8 +404,8 @@ KrissHouse1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_MOM, 4 + 4, 7 + 4, $8, 0, 0, -1, -1, 0, 0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_1
-	person_event SPRITE_MOM, 2 + 4, 2 + 4, $7, 0, 0, -1, 1, 0, 0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
-	person_event SPRITE_MOM, 4 + 4, 7 + 4, $8, 0, 0, -1, 2, 0, 0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
-	person_event SPRITE_MOM, 2 + 4, 0 + 4, $7, 0, 0, -1, 4, 0, 0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
-	person_event SPRITE_POKEFAN_F, 4 + 4, 4 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, NeighborScript, EVENT_KRISS_HOUSE_1F_NEIGHBOR
+	person_event SPRITE_MOM, 4, 7, $8, 0, 0, -1, -1, 0, 0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_1
+	person_event SPRITE_MOM, 2, 2, $7, 0, 0, -1, 1, 0, 0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
+	person_event SPRITE_MOM, 4, 7, $8, 0, 0, -1, 2, 0, 0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
+	person_event SPRITE_MOM, 2, 0, $7, 0, 0, -1, 4, 0, 0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
+	person_event SPRITE_POKEFAN_F, 4, 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, NeighborScript, EVENT_KRISS_HOUSE_1F_NEIGHBOR

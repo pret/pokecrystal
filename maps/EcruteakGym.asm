@@ -429,10 +429,10 @@ EcruteakGym_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_MORTY, 1 + 4, 5 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, MortyScript_0x99d58, -1
-	person_event SPRITE_SAGE, 7 + 4, 2 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSageJeffrey, -1
-	person_event SPRITE_SAGE, 13 + 4, 3 + 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSagePing, -1
-	person_event SPRITE_GRANNY, 5 + 4, 7 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerMediumMartha, -1
-	person_event SPRITE_GRANNY, 9 + 4, 7 + 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerMediumGrace, -1
-	person_event SPRITE_GYM_GUY, 15 + 4, 7 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, EcruteakGymGuyScript, -1
-	person_event SPRITE_GRAMPS, 14 + 4, 4 + 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ObjectEvent, EVENT_ECRUTEAK_GYM_GRAMPS
+	person_event SPRITE_MORTY, 1, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, MortyScript_0x99d58, -1
+	person_event SPRITE_SAGE, 7, 2, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSageJeffrey, -1
+	person_event SPRITE_SAGE, 13, 3, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSagePing, -1
+	person_event SPRITE_GRANNY, 5, 7, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerMediumMartha, -1
+	person_event SPRITE_GRANNY, 9, 7, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerMediumGrace, -1
+	person_event SPRITE_GYM_GUY, 15, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, EcruteakGymGuyScript, -1
+	person_event SPRITE_GRAMPS, 14, 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ObjectEvent, EVENT_ECRUTEAK_GYM_GRAMPS

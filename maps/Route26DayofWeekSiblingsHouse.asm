@@ -84,4 +84,4 @@ Route26DayofWeekSiblingsHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKEDEX, 3 + 4, 3 + 4, $1, 0, 0, -1, -1, 0, 0, 0, PokedexScript_0x7b1e4, -1
+	person_event SPRITE_POKEDEX, 3, 3, $1, 0, 0, -1, -1, 0, 0, 0, PokedexScript_0x7b1e4, -1

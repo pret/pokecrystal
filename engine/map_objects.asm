@@ -2196,7 +2196,7 @@ Function4ecd: ; 4ecd
 	add hl, bc
 	ld a, [hl]
 	ld b, a
-	callba Function807e
+	callba CopyDECoordsToMapObject
 	pop bc
 	ld hl, OBJECT_FLAGS
 	add hl, bc
@@ -3064,7 +3064,7 @@ Function579d: ; 579d
 ; 57bc
 
 Function57bc: ; 57bc
-	ld hl, wd45b
+	ld hl, wPlayerSpriteSetupFlags
 	bit 7, [hl]
 	jr nz, .ok
 	ret
@@ -3076,10 +3076,10 @@ Function57bc: ; 57bc
 ; 57ca
 
 Function57ca: ; 57ca
-	ld hl, wd45b
+	ld hl, wPlayerSpriteSetupFlags
 	bit 5, [hl]
 	ret z
-	ld a, [wd45b]
+	ld a, [wPlayerSpriteSetupFlags]
 	and 3
 rept 2
 	add a
