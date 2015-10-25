@@ -6,12 +6,12 @@ Note that this requires python2.7 for the moment.
 sudo apt-get install make gcc bison git python python-pip
 pip install pypng
 
-git clone git://github.com/bentley/rgbds.git
+git clone https://github.com/bentley/rgbds
 cd rgbds
 sudo make install
 cd ..
 
-git clone --recursive git://github.com/kanzure/pokecrystal.git
+git clone --recursive https://github.com/pret/pokecrystal
 cd pokecrystal
 ```
 
@@ -36,12 +36,12 @@ In **Terminal**, run:
 lynx -source bootstrap.pypa.io/get-pip.py | python
 pip install pypng
 
-git clone git://github.com/bentley/rgbds.git
+git clone https://github.com/bentley/rgbds
 cd rgbds
 sudo make install
 cd ..
 
-git clone --recursive git://github.com/kanzure/pokecrystal.git
+git clone --recursive https://github.com/pret/pokecrystal
 cd pokecrystal
 ```
 
@@ -68,7 +68,7 @@ apt-cyg install make git python gcc-core libsasl2-3 ca-certificates
 lynx -source bootstrap.pypa.io/get-pip.py | python
 pip install pypng
 
-git clone --recursive git://github.com/kanzure/pokecrystal.git
+git clone --recursive https://github.com/pret/pokecrystal
 cd pokecrystal
 ```
 
@@ -94,7 +94,7 @@ mkdir vagrantbox
 cd vagrantbox
 vagrant init pokecrystal
 vagrant up
-vagrant ssh -c "cd /vagrant && git clone --recursive git://github.com/kanzure/pokecrystal.git"
+vagrant ssh -c "cd /vagrant && git clone --recursive https://github.com/pret/pokecrystal"
 vagrant ssh
 ```
 
