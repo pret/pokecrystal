@@ -2334,11 +2334,6 @@ wErinFightCount::    ds 1
 	ds 100
 
 EventFlags:: ; da72
-;RoomDecorations:: ; dac6
-;TeamRocketAzaleaTownAttackEvent:: ; db51
-;PoliceAtElmsLabEvent:: ; db52
-;SalesmanMahoganyTownEvent:: ; db5c
-;RedGyaradosEvent:: ; db5c
 	flag_array NUM_EVENTS
 ; db6c
 
