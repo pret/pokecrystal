@@ -22,19 +22,13 @@ make
 ```
 
 
-# OS X
-
-Xcode provides most of the tools needed to build.
-
-On 10.8 or earlier, download and install **Command Line Tools for Xcode**.
-
-On 10.9 or later, run `xcode-select --install` in the terminal.
+# Mac
 
 In **Terminal**, run:
 
 ```bash
-lynx -source bootstrap.pypa.io/get-pip.py | python
-pip install pypng
+xcode-select --install
+sudo easy_install pypng
 
 git clone https://github.com/bentley/rgbds
 cd rgbds
