@@ -56,7 +56,7 @@ CheckForBattleTowerRules_Functions: ; 8b21a
 
 CheckForBattleTowerRules_Text: ; 8b222
 	dw JumpText_ExcuseMeYoureNotReady
-	dw JumbText_OnlyThreePkmnMayBeEntered
+	dw JumpText_OnlyThreePkmnMayBeEntered
 	dw JumpText_ThePkmnMustAllBeDifferentKinds
 	dw JumpText_ThePkmnMustNotHoldTheSameItems
 	dw JumpText_YouCantTakeAnEgg
@@ -92,7 +92,7 @@ UnknownText_0x8b242: ; 0x8b242
 	db "@"
 ; 0x8b247
 
-JumbText_OnlyThreePkmnMayBeEntered: ; 0x8b247
+JumpText_OnlyThreePkmnMayBeEntered: ; 0x8b247
 	; Only three #MON may be entered.
 	text_jump Text_OnlyThreePkmnMayBeEntered
 	db "@"
