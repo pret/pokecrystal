@@ -48,13 +48,13 @@ UnknownScript_0x7a519:
 	writetext UnknownText_0x7a742
 	yesorno
 	iffalse UnknownScript_0x7a52a
-	special Function90a54
+	special Special_InitialSetDSTFlag
 	yesorno
 	iffalse UnknownScript_0x7a519
 	jump UnknownScript_0x7a531
 
 UnknownScript_0x7a52a:
-	special Function90a88
+	special Special_InitialClearDSTFlag
 	yesorno
 	iffalse UnknownScript_0x7a519
 UnknownScript_0x7a531:
@@ -404,8 +404,8 @@ KrissHouse1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_MOM, 8, 11, $8, 0, 0, -1, -1, 0, 0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_1
-	person_event SPRITE_MOM, 6, 6, $7, 0, 0, -1, 1, 0, 0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
-	person_event SPRITE_MOM, 8, 11, $8, 0, 0, -1, 2, 0, 0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
-	person_event SPRITE_MOM, 6, 4, $7, 0, 0, -1, 4, 0, 0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
-	person_event SPRITE_POKEFAN_F, 8, 8, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, NeighborScript, EVENT_KRISS_HOUSE_1F_NEIGHBOR
+	person_event SPRITE_MOM, 4, 7, $8, 0, 0, -1, -1, 0, 0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_1
+	person_event SPRITE_MOM, 2, 2, $7, 0, 0, -1, 1, 0, 0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
+	person_event SPRITE_MOM, 4, 7, $8, 0, 0, -1, 2, 0, 0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
+	person_event SPRITE_MOM, 2, 0, $7, 0, 0, -1, 4, 0, 0, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
+	person_event SPRITE_POKEFAN_F, 4, 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, NeighborScript, EVENT_KRISS_HOUSE_1F_NEIGHBOR

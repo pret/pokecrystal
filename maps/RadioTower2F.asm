@@ -720,14 +720,14 @@ RadioTower2F_MapEventHeader:
 
 .PersonEvents:
 	db 11
-	person_event SPRITE_SUPER_NERD, 10, 10, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, SuperNerdScript_0x5d6fe, EVENT_GOLDENROD_CITY_CIVILIANS
-	person_event SPRITE_TEACHER, 6, 21, $5, 0, 1, -1, -1, 8 + PAL_OW_RED, 0, 0, TeacherScript_0x5d701, -1
-	person_event SPRITE_ROCKET, 8, 5, $7, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM4, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 8, 12, $6, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM5, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 5, 8, $6, 0, 0, -1, -1, 0, 2, 2, TrainerGruntM6, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET_GIRL, 9, 14, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerGruntF2, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_BLACK_BELT, 5, 4, $6, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x5d71f, EVENT_RADIO_TOWER_BLACKBELT_BLOCKS_STAIRS
-	person_event SPRITE_BLACK_BELT, 5, 5, $6, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x5d722, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	person_event SPRITE_JIGGLYPUFF, 5, 16, $16, 0, 0, -1, -1, 0, 0, 0, JigglypuffScript_0x5d715, -1
-	person_event SPRITE_BUENA, 9, 18, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, Buena, -1
-	person_event SPRITE_RECEPTIONIST, 11, 16, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ReceptionistScript_0x5d8ff, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_SUPER_NERD, 6, 6, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, SuperNerdScript_0x5d6fe, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_TEACHER, 2, 17, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, TeacherScript_0x5d701, -1
+	person_event SPRITE_ROCKET, 4, 1, $7, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM4, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 4, 8, $6, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM5, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 1, 4, $6, 0, 0, -1, -1, 0, 2, 2, TrainerGruntM6, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET_GIRL, 5, 10, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerGruntF2, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_BLACK_BELT, 1, 0, $6, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x5d71f, EVENT_RADIO_TOWER_BLACKBELT_BLOCKS_STAIRS
+	person_event SPRITE_BLACK_BELT, 1, 1, $6, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x5d722, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	person_event SPRITE_JIGGLYPUFF, 1, 12, $16, 0, 0, -1, -1, 0, 0, 0, JigglypuffScript_0x5d715, -1
+	person_event SPRITE_BUENA, 5, 14, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, Buena, -1
+	person_event SPRITE_RECEPTIONIST, 7, 12, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ReceptionistScript_0x5d8ff, EVENT_GOLDENROD_CITY_CIVILIANS

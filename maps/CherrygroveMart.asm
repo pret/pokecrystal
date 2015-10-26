@@ -83,6 +83,6 @@ CherrygroveMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 7, 5, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x19680a, -1
-	person_event SPRITE_COOLTRAINER_M, 10, 11, $5, 0, 2, -1, -1, 0, 0, 0, CooltrainerMScript_0x19681d, -1
-	person_event SPRITE_YOUNGSTER, 9, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, YoungsterScript_0x196831, -1
+	person_event SPRITE_CLERK, 3, 1, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x19680a, -1
+	person_event SPRITE_COOLTRAINER_M, 6, 7, $5, 0, 2, -1, -1, 0, 0, 0, CooltrainerMScript_0x19681d, -1
+	person_event SPRITE_YOUNGSTER, 5, 2, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x196831, -1

@@ -124,7 +124,7 @@ Function108089: ; 108089
 
 Function1080b7: ; 1080b7
 	xor a
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	call WhiteBGMap
 	call ClearSprites
 	call ClearTileMap
@@ -132,7 +132,7 @@ Function1080b7: ; 1080b7
 	call Function1081ad
 	call Function1081ca
 	call Functione51
-	call Functione58
+	call LoadFontsBattleExtra
 	ld a, $1
 	ld [rVBK], a
 	ld hl, LZ_108da7
@@ -141,7 +141,7 @@ Function1080b7: ; 1080b7
 	ld a, $0
 	ld [rVBK], a
 	ld hl, LZ_108d27
-	ld de, $8200
+	ld de, VTiles0 tile $20
 	call Decompress
 	call EnableLCD
 	xor a
@@ -158,7 +158,7 @@ Function1080b7: ; 1080b7
 	lb bc, BANK(TradeBallGFX), $06
 	call Request2bpp
 	ld de, TradePoofGFX
-	ld hl, $8060
+	ld hl, VTiles0 tile $06
 	lb bc, BANK(TradePoofGFX), $0c
 	call Request2bpp
 	xor a
@@ -167,11 +167,11 @@ Function1080b7: ; 1080b7
 	ld [hl], $0
 	ld a, [$c6d0]
 	ld hl, $c6fd
-	ld de, $8300
+	ld de, VTiles0 tile $30
 	call Function1081e9
 	ld a, [wc702]
 	ld hl, wc72f
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	call Function1081e9
 	ld a, [$c6d0]
 	ld de, $c6d1
@@ -187,7 +187,7 @@ Function1080b7: ; 1080b7
 
 Function108157: ; 108157
 	xor a
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	call WhiteBGMap
 	call ClearSprites
 	call ClearTileMap
@@ -195,7 +195,7 @@ Function108157: ; 108157
 	call Function1081ad
 	call Function1081ca
 	call Functione51
-	call Functione58
+	call LoadFontsBattleExtra
 	call EnableLCD
 	xor a
 	ld [hSCX], a
@@ -310,7 +310,7 @@ Function108239: ; 108239
 ; 10824b
 
 Function10824b: ; 10824b
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .asm_10825a
 	call Function10827b
@@ -327,7 +327,7 @@ Function10824b: ; 10824b
 	ld a, $90
 	ld [hWY], a
 	call Functione51
-	call Functione58
+	call LoadFontsBattleExtra
 	callba Function106462
 	callba Function106464
 	scf
@@ -335,7 +335,7 @@ Function10824b: ; 10824b
 ; 10827b
 
 Function10827b: ; 10827b
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_10828a
@@ -372,7 +372,7 @@ Jumptable_10828a: ; 10828a
 ; 1082b2
 
 Function1082b2: ; 1082b2
-	ld hl, wcf63
+	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 ; 1082b7
@@ -383,7 +383,7 @@ Function1082b7: ; 1082b7
 	inc hl
 	ld d, [hl]
 	ld a, [de]
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	inc de
 	ld [hl], d
 	dec hl
@@ -392,7 +392,7 @@ Function1082b7: ; 1082b7
 ; 1082c6
 
 Function1082c6: ; 1082c6
-	ld hl, wcf63
+	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
 ; 1082cc
@@ -587,7 +587,7 @@ Function10842c: ; 10842c
 	lb bc, BANK(TradeBallGFX), $06
 	call Request2bpp
 	ld de, TradePoofGFX
-	ld hl, $8060
+	ld hl, VTiles0 tile $06
 	lb bc, BANK(TradePoofGFX), $0c
 	call Request2bpp
 	ld a, [$c6fd]
@@ -661,7 +661,7 @@ Function1084d7: ; 1084d7
 	lb bc, BANK(TradeBallGFX), $06
 	call Request2bpp
 	ld de, TradePoofGFX
-	ld hl, $8060
+	ld hl, VTiles0 tile $06
 	lb bc, BANK(TradePoofGFX), $0c
 	call Request2bpp
 	xor a
@@ -730,7 +730,7 @@ Function108589: ; 108589
 	lb bc, BANK(TradeBallGFX), $06
 	call Request2bpp
 	ld de, TradePoofGFX
-	ld hl, $8060
+	ld hl, VTiles0 tile $06
 	lb bc, BANK(TradePoofGFX), $0c
 	call Request2bpp
 	xor a
@@ -832,7 +832,7 @@ Function108689: ; 108689
 	ld a, $0
 	ld [rVBK], a
 	ld hl, LZ_108d27
-	ld de, $8200
+	ld de, VTiles0 tile $20
 	call Decompress
 	call Function108c80
 	call Function108c6d
@@ -876,7 +876,7 @@ Function1086f4: ; 1086f4
 	ld a, $0
 	ld [rVBK], a
 	ld hl, LZ_108d27
-	ld de, $8200
+	ld de, VTiles0 tile $20
 	call Decompress
 	call Function108c80
 	call Function108c6d
@@ -1195,11 +1195,11 @@ Function10893d: ; 10893d
 ; 10895e
 
 Function10895e: ; 10895e
-	ld de, $8300
+	ld de, VTiles0 tile $30
 	jr asm_108966
 
 Function108963:
-	ld de, $9310
+	ld de, VTiles2 tile $31
 
 asm_108966
 	call DelayFrame
@@ -1270,8 +1270,8 @@ Function1089d2:
 asm_1089fc
 	call WaitTop
 	call Function108ac8
-	ld a, $9c
-	ld [$ffd7], a
+	ld a, VBGMap1 / $100
+	ld [hBGMapAddress + 1], a
 	hlcoord 5, 0
 	ld b, $6
 	ld c, $9
@@ -1293,8 +1293,8 @@ String_108a1d: ; 108a1d
 Function108a33: ; 108a33
 	call WaitTop
 	call Function108ac8
-	ld a, $9c
-	ld [$ffd7], a
+	ld a, VBGMap1 / $100
+	ld [hBGMapAddress + 1], a
 	hlcoord 5, 0
 	ld b, $6
 	ld c, $9
@@ -1313,8 +1313,8 @@ String_108a54: ; 108a54
 Function108a5b: ; 108a5b
 	call WaitTop
 	call Function108ac8
-	ld a, $9c
-	ld [$ffd7], a
+	ld a, VBGMap1 / $100
+	ld [hBGMapAddress + 1], a
 	hlcoord 4, 0
 	ld b, $6
 	ld c, $a
@@ -1336,14 +1336,14 @@ String_108a79: ; 108a79
 Function108a87: ; 108a87
 	call WaitBGMap
 	call WaitTop
-	ld a, $98
-	ld [$ffd7], a
+	ld a, VBGMap0 / $100
+	ld [hBGMapAddress + 1], a
 	ret
 ; 108a92
 
 Function108a92: ; 108a92
 	hlcoord 9, 0
-	ld bc, $8103
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
 	ret
 ; 108a9c
@@ -1380,7 +1380,7 @@ Unknown_108abb: ; 108abb
 
 Function108abe: ; 108abe
 	hlcoord 8, 6
-	ld bc, $8205
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	ret
 ; 108ac8
@@ -1405,7 +1405,7 @@ Function108ad4: ; 108ad4
 .asm_108adf
 	ld a, $1
 	ld [rVBK], a
-	ld hl, $94a0
+	ld hl, VTiles2 tile $4a
 	lb bc, $42, $10
 	call Functiondc9
 	call DelayFrame

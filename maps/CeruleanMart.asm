@@ -57,6 +57,6 @@ CeruleanMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 7, 5, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x188ac0, -1
-	person_event SPRITE_COOLTRAINER_M, 10, 5, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, CooltrainerMScript_0x188ac7, -1
-	person_event SPRITE_COOLTRAINER_F, 6, 11, $5, 0, 2, -1, -1, 8 + PAL_OW_RED, 0, 0, CooltrainerFScript_0x188aca, -1
+	person_event SPRITE_CLERK, 3, 1, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x188ac0, -1
+	person_event SPRITE_COOLTRAINER_M, 6, 1, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerMScript_0x188ac7, -1
+	person_event SPRITE_COOLTRAINER_F, 2, 7, $5, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerFScript_0x188aca, -1

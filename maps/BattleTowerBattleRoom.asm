@@ -3,25 +3,25 @@ BattleTowerBattleRoom_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x9f419, $0000
+	dw Script_EnterBattleRoom, $0000
 	dw UnknownScript_0x9f420, $0000
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x9f419:
+Script_EnterBattleRoom: ; 0x9f419
 	disappear $2
-	priorityjump UnknownScript_0x9f421
+	priorityjump Script_BattleRoom
 	dotrigger $1
-
 UnknownScript_0x9f420:
 	end
 
-UnknownScript_0x9f421:
+Script_BattleRoom: ; 0x9f421
 	applymovement PLAYER, MovementData_0x9e58c
-UnknownScript_0x9f425:
+; beat all 7 opponents in a row
+Script_BattleRoomLoop: ; 0x9f425
 	writebyte $2
-	special Function170b44
+	special Function_LoadOpponentTrainerAndPokemonsWithOTSprite
 	appear $2
 	warpsound
 	waitbutton
@@ -30,19 +30,19 @@ UnknownScript_0x9f425:
 	storetext 1
 	keeptextopen
 	loadmovesprites
-	special Function170215
+	special Function170215 ; calls predef startbattle
 	special FadeBlackBGMap
 	reloadmap
 	if_not_equal $0, UnknownScript_0x9f4c2
-	copybytetovar wcf64
-	if_equal $7, UnknownScript_0x9f4d9
+	copybytetovar wNrOfBeatenBattleTowerTrainers ; wcf64
+	if_equal BATTLETOWER_NROFTRAINERS, Script_BeatenAllTrainers
 	applymovement $2, MovementData_0x9e597
 	warpsound
 	disappear $2
 	applymovement $3, MovementData_0x9e59c
 	applymovement PLAYER, MovementData_0x9e5a7
 	loadfont
-	writetext UnknownText_0x9ee92
+	writetext Text_YourPkmnWillBeHealedToFullHealth
 	closetext
 	loadmovesprites
 	playmusic MUSIC_HEAL
@@ -52,19 +52,19 @@ UnknownScript_0x9f425:
 	special FadeInBGMap
 	special RestartMapMusic
 	loadfont
-	writetext UnknownText_0x9eebc
+	writetext Text_NextUpOpponentNo
 	yesorno
-	iffalse UnknownScript_0x9f483
-UnknownScript_0x9f477:
+	iffalse Script_DontBattleNextOpponent
+Script_ContinueAndBattleNextOpponent: ; 0x9f477
 	loadmovesprites
 	applymovement PLAYER, MovementData_0x9e5a9
 	applymovement $3, MovementData_0x9e5a1
-	jump UnknownScript_0x9f425
+	jump Script_BattleRoomLoop
 
-UnknownScript_0x9f483:
-	writetext UnknownText_0x9ef5e
+Script_DontBattleNextOpponent: ; 0x9f483
+	writetext Text_SaveAndEndTheSession
 	yesorno
-	iffalse UnknownScript_0x9f4a3
+	iffalse Script_DontSaveAndEndTheSession
 	writebyte $7
 	special Function170687
 	writebyte $1f
@@ -75,10 +75,10 @@ UnknownScript_0x9f483:
 	waitbutton
 	special FadeBlackBGMap
 	special Reset
-UnknownScript_0x9f4a3:
-	writetext UnknownText_0x9efbf
+Script_DontSaveAndEndTheSession: ; 0x9f4a3
+	writetext Text_CancelYourBattleRoomChallenge
 	yesorno
-	iffalse UnknownScript_0x9f477
+	iffalse Script_ContinueAndBattleNextOpponent
 	writebyte $4
 	special Function170687
 	writebyte $6
@@ -96,25 +96,25 @@ UnknownScript_0x9f4c2:
 	writebyte $4
 	special Function170687
 	loadfont
-	writetext UnknownText_0x9ea49
+	writetext Text_ThanksForVisiting
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x9f4d9:
+Script_BeatenAllTrainers: ; 0x9f4d9
 	pause 60
 	special Special_BattleTowerFade
 	warpfacing $1, BATTLE_TOWER_1F, $7, $7
 BattleTowerBattleRoomScript_0x9f4e4:
 	loadfont
-	writetext UnknownText_0x9eaef
-	jump UnknownScript_0x9e47a
+	writetext Text_CongratulationsYouveBeatenAllTheTrainers
+	jump Script_GivePlayerHisPrize
 
 UnknownScript_0x9f4eb:
 	writebyte $4
 	special Function170687
 	loadfont
-	writetext UnknownText_0x9f0c1
+	writetext Text_TooMuchTimeElapsedNoRegister
 	closetext
 	loadmovesprites
 	end
@@ -125,8 +125,8 @@ UnknownScript_0x9f4f7:
 	writebyte $6
 	special Function170687
 	loadfont
-	writetext UnknownText_0x9ea49
-	writetext UnknownText_0x9ec09
+	writetext Text_ThanksForVisiting
+	writetext Text_WeHopeToServeYouAgain
 	closetext
 	loadmovesprites
 	end
@@ -155,5 +155,5 @@ BattleTowerBattleRoom_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_YOUNGSTER, 4, 8, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_BATTLE_TOWER_BATTLE_ROOM_YOUNGSTER
-	person_event SPRITE_RECEPTIONIST, 10, 5, $9, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
+	person_event SPRITE_YOUNGSTER, 0, 4, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_BATTLE_TOWER_BATTLE_ROOM_YOUNGSTER
+	person_event SPRITE_RECEPTIONIST, 6, 1, $9, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1

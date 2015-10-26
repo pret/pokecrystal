@@ -78,17 +78,28 @@ bigdw: MACRO ; big-endian word
 	dx 2, \1
 	ENDM
 
+dba: MACRO ; dbw bank, address
+	dbw BANK(\1), \1
+	ENDM
+
+dab: MACRO ; dwb address, bank
+	dwb \1, BANK(\1)
+	ENDM
 
 lb: MACRO ; r, hi, lo
 	ld \1, (\2) << 8 + (\3)
 	ENDM
 
+ln: MACRO ; r, hi, lo
+	ld \1, (\2) << 4 + (\3)
+	ENDM
 
 bccoord equs "coord bc,"
 decoord equs "coord de,"
 hlcoord equs "coord hl,"
 
 coord: MACRO
+; register, x, y[, origin]
 	if _NARG < 4
 	ld \1, TileMap + SCREEN_WIDTH * (\3) + (\2)
 	else
@@ -104,6 +115,21 @@ dwcoord: MACRO
 	endr
 	ENDM
 
+ldcoord_a: MACRO
+	if _NARG < 3
+	ld [TileMap + SCREEN_WIDTH * (\2) + (\1)], a
+	else
+	ld [\3 + SCREEN_WIDTH * (\2) + (\1)], a
+	endc
+	ENDM
+
+lda_coord: MACRO
+	if _NARG < 3
+	ld a, [TileMap + SCREEN_WIDTH * (\2) + (\1)]
+	else
+	ld a, [\3 + SCREEN_WIDTH * (\2) + (\1)]
+	endc
+	ENDM
 
 ; pic animations
 frame: MACRO
@@ -142,3 +168,5 @@ bcd: MACRO
 	shift
 	endr
 ENDM
+
+tile EQUS "+ $10 *"

@@ -343,10 +343,10 @@ RadioTower3F_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_SUPER_NERD, 8, 11, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, SuperNerdScript_0x5e553, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	person_event SPRITE_GYM_GUY, 8, 7, $a, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, GymGuyScript_0x5e556, -1
-	person_event SPRITE_COOLTRAINER_F, 7, 15, $2, 1, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x5e56a, -1
-	person_event SPRITE_ROCKET, 5, 9, $9, 0, 0, -1, -1, 0, 2, 2, TrainerGruntM7, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 6, 10, $6, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM8, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 10, 20, $7, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM9, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_SCIENTIST, 10, 13, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 5, TrainerScientistMarc, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_SUPER_NERD, 4, 7, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SuperNerdScript_0x5e553, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	person_event SPRITE_GYM_GUY, 4, 3, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GymGuyScript_0x5e556, -1
+	person_event SPRITE_COOLTRAINER_F, 3, 11, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x5e56a, -1
+	person_event SPRITE_ROCKET, 1, 5, $9, 0, 0, -1, -1, 0, 2, 2, TrainerGruntM7, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 2, 6, $6, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM8, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 6, 16, $7, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM9, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_SCIENTIST, 6, 9, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerScientistMarc, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

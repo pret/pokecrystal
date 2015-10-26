@@ -18,8 +18,8 @@ ENDM
 
 person_event: macro
 	db \1 ; sprite
-	db \2 ; y
-	db \3 ; x
+	db \2 + 4 ; y
+	db \3 + 4 ; x
 	db \4 ; movement function
 	dn \5, \6 ; radius: y, x
 	db \7 ; clock_hour

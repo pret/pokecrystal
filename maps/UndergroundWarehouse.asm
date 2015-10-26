@@ -7,9 +7,9 @@ UndergroundWarehouse_MapScriptHeader:
 
 	; callbacks
 
-	dbw 5, UnknownScript_0x7d950
+	dbw 5, .ResetSwitches
 
-UnknownScript_0x7d950:
+.ResetSwitches:
 	clearevent EVENT_SWITCH_1
 	clearevent EVENT_SWITCH_2
 	clearevent EVENT_SWITCH_3
@@ -222,10 +222,10 @@ UndergroundWarehouse_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_ROCKET, 12, 13, $7, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM24, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 19, 12, $7, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM14, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 7, 18, $9, 0, 0, -1, -1, 0, 2, 4, TrainerGruntM15, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_GENTLEMAN, 12, 16, $3, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x7d9bf, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_POKE_BALL, 19, 22, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d9e4, EVENT_UNDERGROUND_WAREHOUSE_MAX_ETHER
-	person_event SPRITE_POKE_BALL, 13, 17, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d9e6, EVENT_UNDERGROUND_WAREHOUSE_TM_SLEEP_TALK
-	person_event SPRITE_POKE_BALL, 5, 6, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d9e8, EVENT_UNDERGROUND_WAREHOUSE_ULTRA_BALL
+	person_event SPRITE_ROCKET, 8, 9, $7, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM24, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 15, 8, $7, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM14, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 3, 14, $9, 0, 0, -1, -1, 0, 2, 4, TrainerGruntM15, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_GENTLEMAN, 8, 12, $3, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x7d9bf, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_POKE_BALL, 15, 18, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d9e4, EVENT_UNDERGROUND_WAREHOUSE_MAX_ETHER
+	person_event SPRITE_POKE_BALL, 9, 13, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d9e6, EVENT_UNDERGROUND_WAREHOUSE_TM_SLEEP_TALK
+	person_event SPRITE_POKE_BALL, 1, 2, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d9e8, EVENT_UNDERGROUND_WAREHOUSE_ULTRA_BALL

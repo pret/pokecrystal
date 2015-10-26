@@ -16,10 +16,10 @@ Pokedex: ; 40000
 	push af
 	xor a
 	ld [VramState], a
-	ld a, [$ffaa]
+	ld a, [hInMenu]
 	push af
 	ld a, $1
-	ld [$ffaa], a
+	ld [hInMenu], a
 
 	xor a
 	ld [$ffde], a
@@ -27,8 +27,8 @@ Pokedex: ; 40000
 	call DelayFrame
 
 .main
-	call Functiona57
-	ld a, [wcf63]
+	call JoyTextDelay
+	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .exit
 	call Function4010b
@@ -44,7 +44,7 @@ Pokedex: ; 40000
 	ld [wd959], a
 
 	pop af
-	ld [$ffaa], a
+	ld [hInMenu], a
 	pop af
 	ld [VramState], a
 	pop af
@@ -75,7 +75,7 @@ ENDC
 	call ByteFill
 
 	xor a
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ld [wcf64], a
 	ld [wcf65], a
 	ld [wcf66], a
@@ -173,7 +173,7 @@ Function400ed: ; 400ed
 ; 4010b
 
 Function4010b: ; 4010b
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	ld hl, Jumptable_40115
 	call Function41432
 	jp [hl]
@@ -198,12 +198,12 @@ Jumptable_40115: ; 40115 (10:4115)
 
 
 Function40131: ; 40131 (10:4131)
-	ld hl, wcf63
+	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
 Function40136: ; 40136 (10:4136)
-	ld hl, wcf63
+	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
 
@@ -217,7 +217,7 @@ Function4013c: ; 4013c (10:413c)
 	call ByteFill
 	callba Function1de171
 	hlcoord 0, 17
-	ld de, Unknown_407f2
+	ld de, String_START_SEARCH
 	call Function40acd
 	ld a, $7
 	ld [wc7d3], a
@@ -246,7 +246,7 @@ Function4013c: ; 4013c (10:413c)
 	call Function41148
 	callba Function1de171
 	hlcoord 0, 17
-	ld de, Unknown_407f2
+	ld de, String_START_SEARCH
 	call Function40acd
 	ld a, $7
 	ld [wc7d3], a
@@ -283,7 +283,7 @@ Function401ae: ; 401ae (10:41ae)
 	call Function40bd0
 	ret z
 	ld a, $2
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ld a, $0
 	ld [wcf64], a
 	ret
@@ -291,7 +291,7 @@ Function401ae: ; 401ae (10:41ae)
 .select
 	call Function41401
 	ld a, $7
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	xor a
 	ld [hSCX], a ; $ff00+$cf
 	ld a, $a7
@@ -302,7 +302,7 @@ Function401ae: ; 401ae (10:41ae)
 .start
 	call Function41401
 	ld a, $5
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	xor a
 	ld [hSCX], a ; $ff00+$cf
 	ld a, $a7
@@ -312,7 +312,7 @@ Function401ae: ; 401ae (10:41ae)
 
 .b
 	ld a, $d
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ret
 
 Function40217: ; 40217 (10:4217)
@@ -372,7 +372,7 @@ Function40258: ; 40258 (10:4258)
 .asm_40288
 	call MaxVolume
 	ld a, [wcf64]
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ret
 ; 40292 (10:4292)
 
@@ -408,7 +408,7 @@ Function402aa: ; 402aa (10:42aa)
 	call Function41423
 	ld a, [CurPartySpecies]
 	call PlayCry
-	ld hl, wcf63
+	ld hl, wJumptableIndex
 	dec [hl]
 	ret
 ; 402e8 (10:42e8)
@@ -478,11 +478,11 @@ Function4034f: ; 4034f
 	push af
 	ld a, [wcf64]
 	push af
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	push af
 	callba Function8442c
 	pop af
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	pop af
 	ld [wcf64], a
 	pop af
@@ -552,7 +552,7 @@ Function403be: ; 403be (10:43be)
 .asm_403ea
 	call Function41401
 	ld a, $0
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ret
 ; 403f3 (10:43f3)
 
@@ -604,13 +604,13 @@ Function40417: ; 40417 (10:4417)
 .asm_40431
 	call Function41401
 	ld a, $0
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ret
 
 Function4043a: ; 4043a (10:443a)
 	call Function41401
 	ld a, $b
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ret
 
 Function40443: ; 40443 (10:4443)
@@ -656,7 +656,7 @@ Function40471: ; 40471 (10:4471)
 .asm_40495
 	call Function41401
 	ld a, $0
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ret
 ; 4049e (10:449e)
 
@@ -710,14 +710,14 @@ Function404b7: ; 404b7
 	ld [wc7d1], a
 	call Function41401
 	ld a, $9
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ret
 ; 40501
 
 Function40501: ; 40501
 	call Function41401
 	ld a, $0
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ret
 ; 4050a
 
@@ -779,7 +779,7 @@ Function40562: ; 40562 (10:4562)
 	call Function40bd0
 	ret z
 	ld a, $2
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ld a, $9
 	ld [wcf64], a
 	ret
@@ -795,7 +795,7 @@ Function40562: ; 40562 (10:4562)
 	call ClearSprites
 	call Function40bdc
 	ld a, $5
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	xor a
 	ld [hSCX], a ; $ff00+$cf
 	ld a, $a7
@@ -827,7 +827,7 @@ Function405df: ; 405df (10:45df)
 .asm_405eb
 	call Function41401
 	ld a, $7
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	call DelayFrame
 	call Function41a24
 	jr nz, .asm_40603
@@ -836,7 +836,7 @@ Function405df: ; 405df (10:45df)
 
 .asm_40603
 	ld hl, PokedexLZ
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	lb bc, BANK(PokedexLZ), $3a
 	call Functione73
 
@@ -844,7 +844,7 @@ Function405df: ; 405df (10:45df)
 	ret
 
 Function40610: ; 40610 (10:4610)
-	ld hl, $ffa9
+	ld hl, hJoyLast
 	ld a, [hl]
 	and D_RIGHT
 	jr nz, .right
@@ -913,7 +913,7 @@ Function4066c: ; 4066c (10:466c)
 	ld [wc7e2], a
 	ld a, [wc7d0]
 	ld [wc7e3], a
-	ld hl, $ffa9
+	ld hl, hJoyLast
 	ld a, [hl]
 	and D_UP
 	jr nz, .up
@@ -964,7 +964,7 @@ Function406c5: ; 406c5 (10:46c5)
 	ld d, a
 	ld a, [wc7d2]
 	ld e, a
-	ld hl, $ffa9
+	ld hl, hJoyLast
 	ld a, [hl]
 	and D_UP
 	jr nz, Function406ea
@@ -1068,7 +1068,7 @@ Function40741: ; 40741
 
 Function4074c: ; 4074c (10:474c)
 	hlcoord 0, 17
-	ld de, Unknown_407f2
+	ld de, String_START_SEARCH
 	call Function40acd
 	ld a, $32
 	hlcoord 0, 0
@@ -1081,27 +1081,27 @@ Function4074c: ; 4074c (10:474c)
 	ld bc, $607
 	call Function40ad5
 	hlcoord 1, 11
-	ld de, Unknown_407e1
+	ld de, String_SEEN
 	call Function40acd
 	ld hl, PokedexSeen ; wdeb9 (aliases: EndPokedexSeen)
 	ld b, EndPokedexSeen - PokedexSeen
 	call CountSetBits
 	ld de, wd265
 	hlcoord 5, 12
-	ld bc, $103
+	lb bc, 1, 3
 	call PrintNum
 	hlcoord 1, 14
-	ld de, Unknown_407e6
+	ld de, String_OWN
 	call Function40acd
 	ld hl, PokedexCaught
 	ld b, EndPokedexCaught - PokedexCaught
 	call CountSetBits
 	ld de, wd265
 	hlcoord 5, 15
-	ld bc, $103
+	lb bc, 1, 3
 	call PrintNum
 	hlcoord 1, 17
-	ld de, Unknown_407ea
+	ld de, String_SELECT_OPTION
 	call Function40acd
 	hlcoord 8, 1
 	ld b, $7
@@ -1123,13 +1123,13 @@ Function4074c: ; 4074c (10:474c)
 	ret
 ; 407e1 (10:47e1)
 
-Unknown_407e1: ; 407e1
+String_SEEN: ; 407e1
 	db "SEEN", $ff
-Unknown_407e6: ; 407e6
+String_OWN: ; 407e6
 	db "OWN", $ff
-Unknown_407ea: ; 407ea
+String_SELECT_OPTION: ; 407ea
 	db $3b, $48, $49, $4a, $44, $45, $46, $47 ; SELECT > OPTION
-Unknown_407f2: ; 407f2
+String_START_SEARCH: ; 407f2
 	db $3c, $3b, $41, $42, $43, $4b, $4c, $4d, $4e, $3c, $ff ; START > SEARCH
 ; 407fd
 
@@ -1270,7 +1270,7 @@ Function40962: ; 40962 (10:4962)
 	call PlaceString
 	ld de, wc7d7
 	hlcoord 1, 16
-	ld bc, $103
+	lb bc, 1, 3
 	call PrintNum
 	hlcoord 8, 0
 	ld [hl], $59
@@ -1541,7 +1541,7 @@ Function40b6a: ; 40b6a (10:4b6a)
 	ld de, -20
 	add hl, de
 	ld de, wd265
-	ld bc, $8103
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
 	pop hl
 	ret
@@ -1799,7 +1799,7 @@ Function40f4f: ; 40f4f (10:4f4f)
 	ld a, [wc7d8]
 	cp $2
 	jr nc, .asm_40f63
-	ld hl, $ffa9
+	ld hl, hJoyLast
 	ld a, [hl]
 	and $20
 	jr nz, .asm_40f65
@@ -2274,7 +2274,7 @@ Function4135a: ; 4135a (10:535a)
 	jr nz, .asm_413c1
 	call Function413f5
 	jr c, .asm_413bf
-	ld hl, $ffa9
+	ld hl, hJoyLast
 	ld a, [hl]
 	and D_LEFT | D_UP
 	and b
@@ -2360,7 +2360,7 @@ Function413f5: ; 413f5 (10:53f5)
 	ret
 
 Function413fe: ; 413fe (10:53fe)
-	jp Functionfb8
+	jp FillBoxWithByte
 
 Function41401: ; 41401 (10:5401)
 	ld a, [rSVBK] ; $ff00+$70
@@ -2460,7 +2460,7 @@ Function4147b: ; 4147b
 	push hl
 	ld e, l
 	ld d, h
-	ld hl, $9620
+	ld hl, VTiles2 tile $62
 	lb bc, BANK(Footprints), 2
 	call Request1bpp
 	pop hl
@@ -2472,7 +2472,7 @@ Function4147b: ; 4147b
 
 	ld e, l
 	ld d, h
-	ld hl, $9640
+	ld hl, VTiles2 tile $64
 	lb bc, BANK(Footprints), 2
 	call Request1bpp
 
@@ -2488,7 +2488,7 @@ Function414b7: ; 414b7
 	call ByteFill
 	call Function414fb
 	call Functione5f
-	ld hl, $9600
+	ld hl, VTiles2 tile $60
 	ld bc, $0200
 	call Function41504
 	call Function41a24
@@ -2498,7 +2498,7 @@ Function414b7: ; 414b7
 
 .asm_414e0
 	ld hl, PokedexLZ
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	call Decompress
 
 .asm_414e9
@@ -2554,7 +2554,7 @@ Function41a2c: ; 41a2c
 	ld bc, $1b0
 	call Function41504
 	ld de, sScratch + $188
-	ld hl, $9400
+	ld hl, VTiles2 tile $40
 	lb bc, BANK(Function41a2c), $1b
 	call Request2bpp
 	call CloseSRAM
@@ -2575,7 +2575,7 @@ Function41a58: ; 41a58 (10:5a58)
 	ld a, UNOWN
 	ld [CurPartySpecies], a
 	call GetBaseData
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	predef GetFrontpic
 	pop af
 	ld [UnownLetter], a

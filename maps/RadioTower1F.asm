@@ -26,11 +26,11 @@ GentlemanScript_0x5cd3d:
 	loadfont
 	writetext UnknownText_0x5ceba
 	keeptextopen
-	special Functionc434
-	iffalse UnknownScript_0x5cd4c
-	special Functionc422
-UnknownScript_0x5cd4c:
-	special Function4d9d3
+	special Special_CheckLuckyNumberShowFlag
+	iffalse .skip
+	special Special_ResetLuckyNumberShowFlag
+.skip:
+	special Special_PrintTodaysLuckyNumber
 	checkflag ENGINE_LUCKY_NUMBER_SHOW
 	iftrue .GameOver
 	writetext UnknownText_0x5cf3a
@@ -45,7 +45,7 @@ UnknownScript_0x5cd4c:
 	playsound SFX_DEX_FANFARE_20_49
 	waitbutton
 	keeptextopen
-	special Function4d87a
+	special Special_CheckForLuckyNumberWinners
 	loadmovesprites
 	applymovement $6, MovementData_0x5ce74
 	loadfont
@@ -66,7 +66,7 @@ UnknownScript_0x5cd4c:
 	waitbutton
 	keeptextopen
 	giveitem MASTER_BALL, 1
-	iffalse UnknownScript_0x5cdcf
+	iffalse .BagFull
 	itemnotify
 	setflag ENGINE_LUCKY_NUMBER_SHOW
 	jump .GameOver
@@ -77,7 +77,7 @@ UnknownScript_0x5cd4c:
 	waitbutton
 	keeptextopen
 	giveitem EXP_SHARE, 1
-	iffalse UnknownScript_0x5cdcf
+	iffalse .BagFull
 	itemnotify
 	setflag ENGINE_LUCKY_NUMBER_SHOW
 	jump .GameOver
@@ -88,7 +88,7 @@ UnknownScript_0x5cd4c:
 	waitbutton
 	keeptextopen
 	giveitem PP_UP, 1
-	iffalse UnknownScript_0x5cdcf
+	iffalse .BagFull
 	itemnotify
 	setflag ENGINE_LUCKY_NUMBER_SHOW
 	jump .GameOver
@@ -99,7 +99,7 @@ UnknownScript_0x5cd4c:
 	loadmovesprites
 	end
 
-UnknownScript_0x5cdcf:
+.BagFull:
 	writetext UnknownText_0x5d0e6
 	closetext
 	loadmovesprites
@@ -484,9 +484,9 @@ RadioTower1F_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_RECEPTIONIST, 10, 9, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ReceptionistScript_0x5cd29, -1
-	person_event SPRITE_LASS, 8, 20, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, LassScript_0x5ce51, EVENT_GOLDENROD_CITY_CIVILIANS
-	person_event SPRITE_YOUNGSTER, 8, 19, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, YoungsterScript_0x5ce54, EVENT_GOLDENROD_CITY_CIVILIANS
-	person_event SPRITE_ROCKET, 5, 18, $6, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_GENTLEMAN, 10, 12, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, GentlemanScript_0x5cd3d, EVENT_GOLDENROD_CITY_CIVILIANS
-	person_event SPRITE_COOLTRAINER_F, 10, 16, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x5cdd5, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_RECEPTIONIST, 6, 5, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ReceptionistScript_0x5cd29, -1
+	person_event SPRITE_LASS, 4, 16, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, LassScript_0x5ce51, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_YOUNGSTER, 4, 15, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, YoungsterScript_0x5ce54, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_ROCKET, 1, 14, $6, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_GENTLEMAN, 6, 8, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GentlemanScript_0x5cd3d, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_COOLTRAINER_F, 6, 12, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x5cdd5, EVENT_GOLDENROD_CITY_CIVILIANS

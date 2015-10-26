@@ -159,11 +159,11 @@ Function1bd3:: ; 1bd3
 Function1bdd:: ; 1bdd
 	push bc
 	push af
-	ld a, [$ffa9]
-	and $f0
+	ld a, [hJoyLast]
+	and D_PAD
 	ld b, a
 	ld a, [hJoyPressed]
-	and $f
+	and BUTTONS
 	or b
 	ld b, a
 	pop af
@@ -190,33 +190,3 @@ Function1bf7:: ; 1bf7
 	ret
 ; 1c00
 
-Function1c00:: ; 1c00
-	callab Function24374
-	ret
-; 1c07
-
-ExitMenu:: ; 0x1c07
-	push af
-	callab Function243e8
-	pop af
-	ret
-
-Function1c10:: ; 0x1c10
-	callab Function2446d
-	ret
-
-WriteBackup:: ; 0x1c17
-	push af
-	call ExitMenu
-	call Function321c
-	call UpdateSprites
-	pop af
-	ret
-
-Function1c23:: ; 0x1c23
-	call Function1cfd
-	call Function1c30
-	call Function1d19
-	call Function1c30
-	ret
-; 0x1c30

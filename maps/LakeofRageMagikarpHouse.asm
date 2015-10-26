@@ -37,7 +37,7 @@ UnknownScript_0x19a6d7:
 
 UnknownScript_0x19a6e0:
 	writebyte MAGIKARP
-	special Functionc276
+	special Special_FindThatSpecies
 	iffalse UnknownScript_0x19a6d7
 	writetext UnknownText_0x19a93e
 	closetext
@@ -221,4 +221,4 @@ LakeofRageMagikarpHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_FISHING_GURU, 7, 6, $3, 0, 0, -1, -1, 0, 0, 0, FishingGuruScript_0x19a6ae, -1
+	person_event SPRITE_FISHING_GURU, 3, 2, $3, 0, 0, -1, -1, 0, 0, 0, FishingGuruScript_0x19a6ae, -1

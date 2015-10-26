@@ -39,7 +39,7 @@ SpecialsPointers:: ; c029
 	add_special Special_GetMysteryGiftItem
 	add_special Special_UnlockMysteryGift
 
-; Bug Catching Contest
+; Map Events
 	add_special BugContestJudging
 	add_special CheckPartyFullAfterContest
 	add_special CheckFirstMonFainted
@@ -83,30 +83,30 @@ SpecialsPointers:: ; c029
 	add_special PlayMapMusic
 	add_special RestartMapMusic
 	add_special HealMachineAnim
-	add_special Function8379
-	add_special Functionc25a
-	add_special Functionc268
-	add_special Functionc276
-	add_special Functionc284
-	add_special Functionc3ef
-	add_special Function17421
-	add_special Function17440
+	add_special Special_SurfStartStep
+	add_special Special_FindGreaterThanThatLevel
+	add_special Special_FindAtLeastThatHappy
+	add_special Special_FindThatSpecies
+	add_special Special_FindThatSpeciesYourTrainerID
+	add_special Special_CheckUnusedTwoDayTimer ; unreferenced
+	add_special Special_DayCareMon1
+	add_special Special_DayCareMon2
 	add_special Special_SelectRandomBugContestContestants
-	add_special Functionc3fc
+	add_special Special_ActivateFishingSwarm
 	add_special ToggleMaptileDecorations
 	add_special ToggleDecorationsVisibility
 	add_special SpecialGiveShuckle
 	add_special SpecialReturnShuckle
-	add_special Function73f7
+	add_special Special_BillsGrandfather
 	add_special SpecialCheckPokerus
-	add_special Function24b25
-	add_special Function24b4e
+	add_special Special_DisplayCoinCaseBalance
+	add_special Special_DisplayMoneyAndCoinBalance
 	add_special Function24ae8
-	add_special Function4d87a
-	add_special Functionc434
-	add_special Functionc422
-	add_special Function4d9d3
-	add_special Function88018
+	add_special Special_CheckForLuckyNumberWinners
+	add_special Special_CheckLuckyNumberShowFlag
+	add_special Special_ResetLuckyNumberShowFlag
+	add_special Special_PrintTodaysLuckyNumber
+	add_special Special_SelectApricornForKurt
 	add_special SpecialNameRater
 	add_special Functionc2da
 	add_special GetFirstPokemonHappiness
@@ -117,9 +117,9 @@ SpecialsPointers:: ; c029
 	add_special RunCallback_04
 	add_special Functionfb841
 	add_special SpecialSnorlaxAwake
-	add_special Function7413
-	add_special Function7418
-	add_special Function741d
+	add_special Special_YoungerHaircutBrother
+	add_special Special_OlderHaircutBrother
+	add_special Special_DaisyMassage
 	add_special Functionc472
 	add_special ProfOaksPCBoot
 	add_special SpecialGameboyCheck
@@ -142,9 +142,9 @@ SpecialsPointers:: ; c029
 	add_special Function170215
 	add_special Function1704e1
 	add_special Function17021d
-	add_special Function170b44
+	add_special Function_LoadOpponentTrainerAndPokemonsWithOTSprite
 	add_special Function11ba38
-	add_special Function170bd3
+	add_special SpecialCheckForBattleTowerRules
 	add_special Function117656
 	add_special Reset
 	add_special Function1011f1
@@ -156,20 +156,20 @@ SpecialsPointers:: ; c029
 	add_special Function11c1ab
 	add_special Function170687
 	add_special Special_DisplayUnownWords
-	add_special Function17d224
+	add_special Special_Menu_ChallengeExplanationCancel
 	add_special Function17d2b6
 	add_special Function17d2ce
 	add_special Function17f53d
 	add_special Function103612
 	add_special SpecialHoOhChamber
 	add_special Function102142
-	add_special Function4989a
+	add_special Special_CelebiShrineEvent
 	add_special Function49bf9
 	add_special SpecialPokeSeer
 	add_special SpecialBuenasPassword
 	add_special SpecialBuenaPrize
 	add_special SpecialDratini
-	add_special Function11485
+	add_special Special_SampleKenjiBreakCountdown
 	add_special SpecialBeastsCheck
 	add_special SpecialMonCheck
 	add_special Functionc225
@@ -186,8 +186,8 @@ SpecialsPointers:: ; c029
 	add_special Function4ae12
 	add_special LoadMapPalettes
 	add_special Function4a927
-	add_special Function90a54
-	add_special Function90a88
+	add_special Special_InitialSetDSTFlag
+	add_special Special_InitialClearDSTFlag
 	add_special SpecialNone
 ; c224
 
@@ -225,40 +225,40 @@ SpecialSeenMon: ; c252
 	ret
 ; c25a
 
-Functionc25a: ; c25a
+Special_FindGreaterThanThatLevel: ; c25a
 	ld a, [ScriptVar]
 	ld b, a
-	callba Function4dbd2
-	jr z, Functionc298
-	jr Functionc292
+	callba _FindGreaterThanThatLevel
+	jr z, FoundNone
+	jr FoundOne
 
-Functionc268: ; c268
+Special_FindAtLeastThatHappy: ; c268
 	ld a, [ScriptVar]
 	ld b, a
-	callba Function4dbd9
-	jr z, Functionc298
-	jr Functionc292
+	callba _FindAtLeastThatHappy
+	jr z, FoundNone
+	jr FoundOne
 
-Functionc276: ; c276
+Special_FindThatSpecies: ; c276
 	ld a, [ScriptVar]
 	ld b, a
-	callba Function4dbe0
-	jr z, Functionc298
-	jr Functionc292
+	callba _FindThatSpecies
+	jr z, FoundNone
+	jr FoundOne
 
-Functionc284: ; c284
+Special_FindThatSpeciesYourTrainerID: ; c284
 	ld a, [ScriptVar]
 	ld b, a
-	callba Function4dbe6
-	jr z, Functionc298
-	jr Functionc292
+	callba _FindThatSpeciesYourTrainerID
+	jr z, FoundNone
+	jr FoundOne
 
-Functionc292: ; c292
+FoundOne: ; c292
 	ld a, $1
 	ld [ScriptVar], a
 	ret
 
-Functionc298: ; c298
+FoundNone: ; c298
 	xor a
 	ld [ScriptVar], a
 	ret
@@ -314,9 +314,9 @@ Special_KrissHousePC: ; c2e7
 ; c2f6
 
 Special_CheckMysteryGift: ; c2f6
-	ld a, BANK(s0_abe2)
+	ld a, BANK(sMysteryGiftItem)
 	call GetSRAMBank
-	ld a, [s0_abe2]
+	ld a, [sMysteryGiftItem]
 	and a
 	jr z, .no
 	inc a
@@ -328,9 +328,9 @@ Special_CheckMysteryGift: ; c2f6
 ; c309
 
 Special_GetMysteryGiftItem: ; c309
-	ld a, BANK(s0_abe2)
+	ld a, BANK(sMysteryGiftItem)
 	call GetSRAMBank
-	ld a, [s0_abe2]
+	ld a, [sMysteryGiftItem]
 	ld [CurItem], a
 	ld a, $1
 	ld [wd10c], a
@@ -338,12 +338,12 @@ Special_GetMysteryGiftItem: ; c309
 	call ReceiveItem
 	jr nc, .asm_c33d
 	xor a
-	ld [s0_abe2], a
+	ld [sMysteryGiftItem], a
 	call CloseSRAM
 	ld a, [CurItem]
 	ld [wd265], a
 	call GetItemName
-	ld hl, UnknownText_0xc345
+	ld hl, .ReceiveItemText
 	call PrintText
 	ld a, $1
 	ld [ScriptVar], a
@@ -356,7 +356,7 @@ Special_GetMysteryGiftItem: ; c309
 	ret
 ; c345
 
-UnknownText_0xc345: ; 0xc345
+.ReceiveItemText: ; 0xc345
 	; received item
 	text_jump UnknownText_0x1bd3be
 	db "@"
@@ -482,16 +482,16 @@ ScriptReturnCarry: ; c3e2
 	ret
 ; c3ef
 
-Functionc3ef: ; c3ef
-	callba Function1150c
-	ld a, [wdc3a]
+Special_CheckUnusedTwoDayTimer: ; c3ef
+	callba CheckUnusedTwoDayTimer
+	ld a, [wUnusedTwoDayTimer]
 	ld [ScriptVar], a
 	ret
 ; c3fc
 
-Functionc3fc: ; c3fc
+Special_ActivateFishingSwarm: ; c3fc
 	ld a, [ScriptVar]
-	ld [wdfce], a
+	ld [wFishingSwarmFlag], a
 	ret
 ; c403
 
@@ -522,16 +522,16 @@ SpecialCheckPokerus: ; c419
 	jp ScriptReturnCarry
 ; c422
 
-Functionc422: ; c422
-	callba Function1152b
-	ld hl, wdc9d
+Special_ResetLuckyNumberShowFlag: ; c422
+	callba RestartLuckyNumberCountdown
+	ld hl, wLuckyNumberShowFlag
 	res 0, [hl]
-	callba Function5d33
+	callba LoadOrRegenerateLuckyIDNumber
 	ret
 ; c434
 
-Functionc434: ; c434
-	callba Function11542
+Special_CheckLuckyNumberShowFlag: ; c434
+	callba CheckLuckyNumberShowFlag
 	jp ScriptReturnCarry
 ; c43d
 
@@ -639,8 +639,8 @@ Functionc4ac: ; c4ac
 ; c4b9
 
 SpecialTrainerHouse: ; 0xc4b9
-	ld a, BANK(s0_abfd)
+	ld a, BANK(sMysteryGiftTrainerHouseFlag)
 	call GetSRAMBank
-	ld a, [s0_abfd]
+	ld a, [sMysteryGiftTrainerHouseFlag]
 	ld [ScriptVar], a
 	jp CloseSRAM

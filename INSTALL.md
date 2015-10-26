@@ -2,67 +2,78 @@
 
 Note that this requires python2.7 for the moment.
 
-	sudo apt-get install make gcc bison git python python-setuptools
+```bash
+sudo apt-get install make gcc bison git python python-pip
+pip install pypng
 
-	git clone git://github.com/bentley/rgbds.git
-	cd rgbds
-	sudo make install
-	cd ..
+git clone https://github.com/bentley/rgbds
+cd rgbds
+sudo make install
+cd ..
 
-	git clone --recursive git://github.com/kanzure/pokecrystal.git
-	easy_install pypng
-	cd pokecrystal
-	make init
-
-To build **pokecrystal.gbc**:
-
-	make
-
-
-# OS X
-
-On 10.8 or earlier, download and install **Command Line Tools for Xcode**.
-
-On 10.9 or later:
-
-	xcode-select --install
-
-In the shell, run:
-
-	git clone git://github.com/bentley/rgbds.git
-	cd rgbds
-	sudo make install
-	cd ..
-
-	git clone --recursive git://github.com/kanzure/pokecrystal.git
-	easy_install pypng
-	cd pokecrystal
-	make init
+git clone --recursive https://github.com/pret/pokecrystal
+cd pokecrystal
+make init
+```
 
 To build **pokecrystal.gbc**:
 
-	make
+```bash
+make
+```
+
+
+# Mac
+
+In **Terminal**, run:
+
+```bash
+xcode-select --install
+sudo easy_install pypng
+
+git clone https://github.com/bentley/rgbds
+cd rgbds
+sudo make install
+cd ..
+
+git clone --recursive https://github.com/pret/pokecrystal
+cd pokecrystal
+make init
+```
+
+To build **pokecrystal.gbc**:
+
+```bash
+make
+```
 
 
 # Windows
 
-To build on Windows, use [**Cygwin**](http://cygwin.com/install.html) (32-bit).
-
-In the installer, select the following packages: `make` `git` `python` `python-setuptools` `gcc-core` `libsasl2-3` `ca-certificates`
+To build on Windows, use [**Cygwin**](http://cygwin.com/install.html). Use the default settings.
 
 Then get the most recent version of [**rgbds**](https://github.com/bentley/rgbds/releases/).
-Put `rgbasm.exe`, `rgblink.exe` and `rgbfix.exe` in `C:\cygwin\usr\local\bin`.
+Extract the archive and put `rgbasm.exe`, `rgblink.exe` and `rgbfix.exe` in `C:\cygwin\usr\local\bin`.
 
 In the **Cygwin terminal**:
 
-	git clone --recursive git://github.com/kanzure/pokecrystal.git
-	easy_install pypng
-	cd pokecrystal
-	make init
+```bash
+install $(lynx -source rawgit.com/transcode-open/apt-cyg/master/apt-cyg) /bin
+apt-cyg install make git python gcc-core libsasl2-3 ca-certificates
 
-To build:
+lynx -source bootstrap.pypa.io/get-pip.py | python
+pip install pypng
 
-	make
+git clone --recursive https://github.com/pret/pokecrystal
+cd pokecrystal
+make init
+```
+
+To build **pokecrystal.gbc**:
+
+```bash
+make
+```
 
 
 # Vagrant
@@ -74,14 +85,14 @@ VirtualBox. Follow these steps:
 * Follow the instructions to [download and install VirtualBox](http://docs-v1.vagrantup.com/v1/docs/getting-started/)
 * Run these commands:
 
-```
-	vagrant box add pokecrystal http://diyhpl.us/~bryan/irc/pokecrystal/pokecrystal.box
-	mkdir vagrantbox
-	cd vagrantbox
-	vagrant init pokecrystal
-	vagrant up
-	vagrant ssh -c "cd /vagrant && git clone --recursive git://github.com/kanzure/pokecrystal.git && cd pokecrystal && make init"
-	vagrant ssh
+```bash
+vagrant box add pokecrystal http://diyhpl.us/~bryan/irc/pokecrystal/pokecrystal.box
+mkdir vagrantbox
+cd vagrantbox
+vagrant init pokecrystal
+vagrant up
+vagrant ssh -c "cd /vagrant && git clone --recursive https://github.com/pret/pokecrystal && cd pokecrystal && make init"
+vagrant ssh
 ```
 
 Running "vagrant ssh" will give you a shell to type commands into for compiling
@@ -91,5 +102,7 @@ folder inside of the guest virtual machine at "/vagrant".
 To build the project, run these commands in the guest (that is, inside "vagrant
 ssh"):
 
-	cd /vagrant/pokecrystal
-	make
+```bash
+cd /vagrant/pokecrystal
+make
+```

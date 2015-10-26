@@ -194,7 +194,7 @@ OlderHaircutBrotherScript:
 	if_equal $2, .NotEnoughMoney
 	writetext UnknownText_0x7c69a
 	keeptextopen
-	special Function7413
+	special Special_YoungerHaircutBrother
 	if_equal $0, .Refused
 	if_equal $1, .Refused
 	setflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
@@ -277,7 +277,7 @@ YoungerHaircutBrotherScript:
 	if_equal $2, .NotEnoughMoney
 	writetext UnknownText_0x7c7f1
 	keeptextopen
-	special Function7418
+	special Special_OlderHaircutBrother
 	if_equal $0, .Refused
 	if_equal $1, .Refused
 	setflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
@@ -342,21 +342,21 @@ YoungerHaircutBrotherScript:
 	end
 
 UnknownScript_0x7c2bb:
-	writetext UnknownText_0x7c8bf
+	writetext HaircutBrosText_SlightlyHappier
 	special Functionc472
 	closetext
 	loadmovesprites
 	end
 
 UnknownScript_0x7c2c4:
-	writetext UnknownText_0x7c8dc
+	writetext HaircutBrosText_Happier
 	special Functionc472
 	closetext
 	loadmovesprites
 	end
 
 UnknownScript_0x7c2cd:
-	writetext UnknownText_0x7c8ee
+	writetext HaircutBrosText_MuchHappier
 	special Functionc472
 	closetext
 	loadmovesprites
@@ -615,19 +615,19 @@ UnknownText_0x7c87b:
 	line "done for today."
 	done
 
-UnknownText_0x7c8bf:
+HaircutBrosText_SlightlyHappier:
 	text_from_ram StringBuffer3
 	text " looks a"
 	line "little happier."
 	done
 
-UnknownText_0x7c8dc:
+HaircutBrosText_Happier:
 	text_from_ram StringBuffer3
 	text " looks"
 	line "happy."
 	done
 
-UnknownText_0x7c8ee:
+HaircutBrosText_MuchHappier:
 	text_from_ram StringBuffer3
 	text " looks"
 	line "delighted!"
@@ -669,12 +669,12 @@ WarehouseEntrance_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_SUPER_NERD, 35, 9, $8, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 3, TrainerSupernerdEric, -1
-	person_event SPRITE_SUPER_NERD, 13, 10, $7, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 2, TrainerSupernerdTeru, -1
-	person_event SPRITE_SUPER_NERD, 31, 7, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 2, TrainerPokemaniacIssac, -1
-	person_event SPRITE_SUPER_NERD, 10, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerPokemaniacDonald, -1
-	person_event SPRITE_POKE_BALL, 29, 11, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7c306, EVENT_WAREHOUSE_ENTRANCE_COIN_CASE
-	person_event SPRITE_GRAMPS, 15, 11, $8, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, GrampsScript_0x7c146, EVENT_WAREHOUSE_ENTRANCE_GRAMPS
-	person_event SPRITE_SUPER_NERD, 18, 11, $8, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, OlderHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_OLDER_HAIRCUT_BROTHER
-	person_event SPRITE_SUPER_NERD, 19, 11, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, YoungerHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_YOUNGER_HAIRCUT_BROTHER
-	person_event SPRITE_GRANNY, 25, 11, $8, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, GrannyScript_0x7c132, EVENT_WAREHOUSE_ENTRANCE_GRANNY
+	person_event SPRITE_SUPER_NERD, 31, 5, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerSupernerdEric, -1
+	person_event SPRITE_SUPER_NERD, 9, 6, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerSupernerdTeru, -1
+	person_event SPRITE_SUPER_NERD, 27, 3, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPokemaniacIssac, -1
+	person_event SPRITE_SUPER_NERD, 6, 2, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPokemaniacDonald, -1
+	person_event SPRITE_POKE_BALL, 25, 7, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7c306, EVENT_WAREHOUSE_ENTRANCE_COIN_CASE
+	person_event SPRITE_GRAMPS, 11, 7, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, GrampsScript_0x7c146, EVENT_WAREHOUSE_ENTRANCE_GRAMPS
+	person_event SPRITE_SUPER_NERD, 14, 7, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, OlderHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_OLDER_HAIRCUT_BROTHER
+	person_event SPRITE_SUPER_NERD, 15, 7, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungerHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_YOUNGER_HAIRCUT_BROTHER
+	person_event SPRITE_GRANNY, 21, 7, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, GrannyScript_0x7c132, EVENT_WAREHOUSE_ENTRANCE_GRANNY

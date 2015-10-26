@@ -25,7 +25,7 @@ Function3c000: ; 3c000
 .asm_3c021
 	ld a, d
 	ld [wBattleAction], a
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3c031
 
@@ -34,7 +34,7 @@ Function3c000: ; 3c000
 	jr z, .asm_3c04c
 
 .asm_3c031
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .asm_3c047
 	xor a
@@ -63,7 +63,7 @@ Function3c000: ; 3c000
 	xor a
 	ld [CurPartyMon], a
 .asm_3c06b
-	call Function3d887
+	call CheckIfPartyHasPkmnToBattleWith
 	jr nz, .asm_3c076
 	ld hl, CurPartyMon
 	inc [hl]
@@ -71,7 +71,7 @@ Function3c000: ; 3c000
 
 .asm_3c076
 	ld a, [CurBattleMon]
-	ld [wc71a], a
+	ld [LastPlayerMon], a
 	ld a, [CurPartyMon]
 	ld [CurBattleMon], a
 	inc a
@@ -89,7 +89,7 @@ Function3c000: ; 3c000
 	call Function3d57a
 	call Function3da0d
 	call ResetPlayerStatLevels
-	call Function3f26d
+	call SendOutPkmnText
 	call NewBattleMonStatus
 	call BreakAttraction
 	call Function3db5f
@@ -97,7 +97,7 @@ Function3c000: ; 3c000
 	call Function309d
 	call SetPlayerTurn
 	call SpikesDamage
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3c0df
 	ld a, [$ffcb]
@@ -121,32 +121,35 @@ Function3c000: ; 3c000
 
 
 
-Function3c0e5: ; 3c0e5
+WildFled_EnemyFled_LinkBattleCanceled: ; 3c0e5
 	call Function30b4
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $c0
 	add $2
-	ld [wd0ee], a
-	ld a, [InLinkBattle]
+	ld [wBattleResult], a
+	ld a, [wLinkMode]
 	and a
-	ld hl, BattleText_0x807bd
+	ld hl, BattleText_WildFled
 	jr z, .asm_3c115
-	ld a, [wd0ee]
+
+	ld a, [wBattleResult]
 	and $c0
-	ld [wd0ee], a
-	ld hl, BattleText_0x807cf
+	ld [wBattleResult], a
+	ld hl, BattleText_EnemyFled
 	call Function3d2e0
 	jr nc, .asm_3c115
+
 	ld hl, wcd2a
 	bit 4, [hl]
 	jr nz, .asm_3c118
-	ld hl, BattleText_0x81863
+
+	ld hl, BattleText_LinkErrorBattleCanceled
 
 .asm_3c115
 	call StdBattleTextBox
 
 .asm_3c118
-	call Function3ceec
+	call StopDangerSound
 	call Function3d2e0
 	jr c, .asm_3c126
 
@@ -159,6 +162,7 @@ Function3c0e5: ; 3c0e5
 	ld [BattleEnded], a
 	ret
 ; 3c12f
+
 
 Function3c12f: ; 3c12f
 .loop
@@ -260,45 +264,45 @@ Function3c1c0: ; 3c1c0
 Function3c1d6: ; 3c1d6
 	ld a, [$ffcb]
 	cp $1
-	jr z, .asm_3c1fe
-	call Function3c23c
+	jr z, .CheckEnemyFirst
+	call CheckFaint_PlayerThenEnemy
 	ret c
 	call Function3ca26
-	call Function3c23c
+	call CheckFaint_PlayerThenEnemy
 	ret c
 	call HandleWeather
-	call Function3c23c
+	call CheckFaint_PlayerThenEnemy
 	ret c
 	call Function3c874
-	call Function3c23c
+	call CheckFaint_PlayerThenEnemy
 	ret c
 	call Function3c801
-	call Function3c23c
+	call CheckFaint_PlayerThenEnemy
 	ret c
-	jr .asm_3c21e
+	jr .NoMoreFaintingConditions
 
-.asm_3c1fe
-	call Function3c25c
+.CheckEnemyFirst
+	call CheckFaint_EnemyThenPlayer
 	ret c
 	call Function3ca26
-	call Function3c25c
+	call CheckFaint_EnemyThenPlayer
 	ret c
 	call HandleWeather
-	call Function3c25c
+	call CheckFaint_EnemyThenPlayer
 	ret c
 	call Function3c874
-	call Function3c25c
+	call CheckFaint_EnemyThenPlayer
 	ret c
 	call Function3c801
-	call Function3c25c
+	call CheckFaint_EnemyThenPlayer
 	ret c
 
-.asm_3c21e
+.NoMoreFaintingConditions
 	call Function3c8eb
 	call Function3c93c
-	call Function3ca8f
-	call Function3cafb
-	call Function3cb36
+	call HanleDefrost
+	call HandleSafeguard
+	call HandleScreens
 	call Function3de97
 	call Function3dcf9
 	call UpdateBattleMonInParty
@@ -306,52 +310,52 @@ Function3c1d6: ; 3c1d6
 	jp Function3c4df
 ; 3c23c
 
-Function3c23c: ; 3c23c
+CheckFaint_PlayerThenEnemy: ; 3c23c
 	call HasPlayerFainted
-	jr nz, .asm_3c24a
-	call Function3d14e
+	jr nz, .PlayerNotFainted
+	call HandlePlayerMonFaint
 	ld a, [BattleEnded]
 	and a
-	jr nz, .asm_3c25a
+	jr nz, .BattleIsOver
 
-.asm_3c24a
+.PlayerNotFainted
 	call HasEnemyFainted
-	jr nz, .asm_3c258
-	call Function3cd55
+	jr nz, .BattleContinues
+	call HandleEnemyMonFaint
 	ld a, [BattleEnded]
 	and a
-	jr nz, .asm_3c25a
+	jr nz, .BattleIsOver
 
-.asm_3c258
+.BattleContinues
 	and a
 	ret
 
-.asm_3c25a
+.BattleIsOver
 	scf
 	ret
 ; 3c25c
 
-Function3c25c: ; 3c25c
+CheckFaint_EnemyThenPlayer: ; 3c25c
 	call HasEnemyFainted
-	jr nz, .asm_3c26a
-	call Function3cd55
+	jr nz, .EnemyNotFainted
+	call HandleEnemyMonFaint
 	ld a, [BattleEnded]
 	and a
-	jr nz, .asm_3c27a
+	jr nz, .BattleIsOver
 
-.asm_3c26a
+.EnemyNotFainted
 	call HasPlayerFainted
-	jr nz, .asm_3c278
-	call Function3d14e
+	jr nz, .BattleContinues
+	call HandlePlayerMonFaint
 	ld a, [BattleEnded]
 	and a
-	jr nz, .asm_3c27a
+	jr nz, .BattleIsOver
 
-.asm_3c278
+.BattleContinues
 	and a
 	ret
 
-.asm_3c27a
+.BattleIsOver
 	scf
 	ret
 ; 3c27c
@@ -434,7 +438,7 @@ Function3c27c: ; 3c27c
 ; 3c300
 
 Function3c300: ; 3c300
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3c30d
 	ld a, [wBattleAction]
@@ -446,13 +450,13 @@ Function3c300: ; 3c300
 	ret
 
 .asm_3c30f
-	call Function3c0e5
+	call WildFled_EnemyFled_LinkBattleCanceled
 	scf
 	ret
 ; 3c314
 
 Function3c314: ; 3c314
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3c35b
 	ld a, [wBattleAction]
@@ -580,10 +584,10 @@ Function3c3f5: ; 3c3f5
 	ld a, [wdc79]
 	and a
 	jr nz, .asm_3c40e
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $c0
 	add $2
-	ld [wd0ee], a
+	ld [wBattleResult], a
 	scf
 	ret
 
@@ -774,7 +778,7 @@ Function3c4df: ; 3c4df
 
 
 Function3c543: ; 3c543
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .Stay
 
@@ -935,11 +939,11 @@ GetMoveEffect: ; 3c5ec
 Function3c5fe: ; 3c5fe
 	call Function309d
 	call Function3c543
-	jp c, Function3c0e5
+	jp c, WildFled_EnemyFled_LinkBattleCanceled
 	call SetEnemyTurn
 	ld a, $1
 	ld [wc70f], a
-	callab Function38000
+	callab AI_SwitchOrTryItem
 	jr c, .asm_3c62f
 	call Function3c6de
 	call Function3d2e0
@@ -948,14 +952,14 @@ Function3c5fe: ; 3c5fe
 	and a
 	ret nz
 	call HasPlayerFainted
-	jp z, Function3d14e
+	jp z, HandlePlayerMonFaint
 	call HasEnemyFainted
-	jp z, Function3cd55
+	jp z, HandleEnemyMonFaint
 
 .asm_3c62f
 	call SetEnemyTurn
 	call ResidualDamage
-	jp z, Function3cd55
+	jp z, HandleEnemyMonFaint
 	call RefreshBattleHuds
 	call Function3c6cf
 	call Function3d2e0
@@ -964,12 +968,12 @@ Function3c5fe: ; 3c5fe
 	and a
 	ret nz
 	call HasEnemyFainted
-	jp z, Function3cd55
+	jp z, HandleEnemyMonFaint
 	call HasPlayerFainted
-	jp z, Function3d14e
+	jp z, HandlePlayerMonFaint
 	call SetPlayerTurn
 	call ResidualDamage
-	jp z, Function3d14e
+	jp z, HandlePlayerMonFaint
 	call RefreshBattleHuds
 	xor a
 	ld [wd0ec], a
@@ -980,7 +984,7 @@ Function3c664: ; 3c664
 	xor a
 	ld [wc70f], a
 	call SetEnemyTurn
-	callab Function38000
+	callab AI_SwitchOrTryItem
 	push af
 	call Function3c6cf
 	pop bc
@@ -990,21 +994,21 @@ Function3c664: ; 3c664
 	call Function3d2e0
 	ret c
 	call HasEnemyFainted
-	jp z, Function3cd55
+	jp z, HandleEnemyMonFaint
 	call HasPlayerFainted
-	jp z, Function3d14e
+	jp z, HandlePlayerMonFaint
 	push bc
 	call SetPlayerTurn
 	call ResidualDamage
 	pop bc
-	jp z, Function3d14e
+	jp z, HandlePlayerMonFaint
 	push bc
 	call RefreshBattleHuds
 	pop af
 	jr c, .asm_3c6be
 	call Function309d
 	call Function3c543
-	jp c, Function3c0e5
+	jp c, WildFled_EnemyFled_LinkBattleCanceled
 	call Function3c6de
 	call Function3d2e0
 	ret c
@@ -1012,14 +1016,14 @@ Function3c664: ; 3c664
 	and a
 	ret nz
 	call HasPlayerFainted
-	jp z, Function3d14e
+	jp z, HandlePlayerMonFaint
 	call HasEnemyFainted
-	jp z, Function3cd55
+	jp z, HandleEnemyMonFaint
 
 .asm_3c6be
 	call SetEnemyTurn
 	call ResidualDamage
-	jp z, Function3cd55
+	jp z, HandleEnemyMonFaint
 	call RefreshBattleHuds
 	xor a
 	ld [wd0ec], a
@@ -1268,7 +1272,7 @@ Function3c801: ; 3c801
 	xor a
 	ld [hli], a
 	ld [hl], a
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	ret z
 	ld hl, OTPartyMon1HP
@@ -1425,7 +1429,7 @@ Function3c93c: ; 3c93c
 	jr z, .asm_3c99b
 	ld de, wc739
 	ld hl, wc735
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .asm_3c99b
 	ld hl, OTPartyMon1PP
@@ -1514,7 +1518,7 @@ Function3c93c: ; 3c93c
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_3ca12
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .asm_3ca14
 	call Function3df1f
@@ -1528,7 +1532,7 @@ Function3c93c: ; 3c93c
 	call SwitchTurnCore
 	call Function3ddc8
 	call SwitchTurnCore
-	ld hl, BattleText_0x80899
+	ld hl, BattleText_UserRecoveredPPUsing
 	jp StdBattleTextBox
 ; 3ca26
 
@@ -1590,7 +1594,7 @@ Function3ca26: ; 3ca26
 	jp UpdateEnemyMonInParty
 ; 3ca8f
 
-Function3ca8f: ; 3ca8f
+HanleDefrost: ; 3ca8f
 	ld a, [$ffcb]
 	cp $1
 	jr z, .asm_3ca9a
@@ -1633,7 +1637,7 @@ Function3ca8f: ; 3ca8f
 	xor a
 	ld [EnemyMonStatus], a
 
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .asm_3caef
 	ld a, [CurOTMon]
@@ -1648,7 +1652,7 @@ Function3ca8f: ; 3ca8f
 	jp StdBattleTextBox
 ; 3cafb
 
-Function3cafb: ; 3cafb
+HandleSafeguard: ; 3cafb
 	ld a, [$ffcb]
 	cp $1
 	jr z, .asm_3cb06
@@ -1682,12 +1686,11 @@ Function3cafb: ; 3cafb
 
 .asm_3cb2e
 	ld [hBattleTurn], a
-	ld hl, BattleText_0x808d2
+	ld hl, BattleText_SafeguardFaded
 	jp StdBattleTextBox
-; 3cb36
 
 
-Function3cb36: ; 3cb36
+HandleScreens: ; 3cb36
 	ld a, [$ffcb]
 	cp 1
 	jr z, .Both
@@ -1739,7 +1742,7 @@ FadeLightScreen: ; 3cb80
 	res SCREENS_LIGHT_SCREEN, [hl]
 	push hl
 	push de
-	ld hl, BattleText_0x808e7
+	ld hl, BattleText_PkmnnLightScreenFell
 	call StdBattleTextBox
 	pop de
 	pop hl
@@ -1850,13 +1853,13 @@ endr
 ; 3cc2d
 
 .WeatherMessages
-	dw BattleText_0x8091f
-	dw BattleText_0x80938
-	dw BattleText_0x80951
+	dw BattleText_RainContinuesToFall
+	dw BattleText_TheSunlightIsStrong
+	dw BattleText_TheSandstormRages
 .WeatherEndedMessages
-	dw BattleText_0x80967
-	dw BattleText_0x8097a
-	dw BattleText_0x8098f
+	dw BattleText_TheRainStopped
+	dw BattleText_TheSunlightFaded
+	dw BattleText_TheSandstormSubsided
 ; 3cc39
 
 Function3cc39: ; 3cc39
@@ -2092,12 +2095,12 @@ Function3cd3c: ; 3cd3c
 	ret
 ; 3cd55
 
-Function3cd55: ; 3cd55
-	call Function3cf14
+HandleEnemyMonFaint: ; 3cd55
+	call FaintEnemyPokemon
 	ld hl, BattleMonHP
 	ld a, [hli]
 	or [hl]
-	call z, Function3cef1
+	call z, FaintYourPokemon
 	xor a
 	ld [wc6f7], a
 	call Function3ce01
@@ -2116,17 +2119,17 @@ Function3cd55: ; 3cd55
 	ld c, 60
 	call DelayFrames
 
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
-	jr nz, .asm_3cd8c
+	jr nz, .trainer
 
 	ld a, 1
 	ld [BattleEnded], a
 	ret
 
-.asm_3cd8c
-	call Function3cf35
-	jp z, Function3cfa4
+.trainer
+	call CheckEnemyTrainerDefeated
+	jp z, WinTrainerBattle
 
 	ld hl, BattleMonHP
 	ld a, [hli]
@@ -2143,19 +2146,19 @@ Function3cd55: ; 3cd55
 .asm_3cda4
 	call Function3d227
 	call Function3d2e0
-	jp c, Function3c0e5
+	jp c, WildFled_EnemyFled_LinkBattleCanceled
 
 	ld a, $1
 	ld [wd0ec], a
 	call Function3cf4a
-	jp z, Function3c0e5
+	jp z, WildFled_EnemyFled_LinkBattleCanceled
 	jr Function3cdca
 
 .asm_3cdba
 	ld a, $1
 	ld [wd0ec], a
 	call Function3cf4a
-	jp z, Function3c0e5
+	jp z, WildFled_EnemyFled_LinkBattleCanceled
 	xor a
 	ld [wd0ec], a
 	ret
@@ -2193,7 +2196,7 @@ Function3cdca: ; 3cdca
 
 Function3ce01: ; 3ce01
 	call UpdateBattleMonInParty
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .asm_3ce16
 	ld a, [CurOTMon]
@@ -2212,13 +2215,13 @@ Function3ce01: ; 3ce01
 	ld [hl], a
 	call NewEnemyMonStatus
 	call BreakAttraction
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .asm_3ce2f
 	jr .asm_3ce37
 
 .asm_3ce2f
-	call Function3ceec
+	call StopDangerSound
 	ld a, $1
 	ld [wc6fd], a
 
@@ -2237,14 +2240,14 @@ Function3ce01: ; 3ce01
 	ld a, d
 	and a
 	ret z
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	call z, Function3d0ea
 	call EmptyBattleTextBox
 	call Function309d
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $c0
-	ld [wd0ee], a
+	ld [wBattleResult], a
 	call Function3ceaa
 	jr z, .asm_3ce72
 	ld hl, EnemyMonBaseStats
@@ -2339,55 +2342,57 @@ Function3ceaa: ; 3ceaa
 
 
 
-Function3ceec: ; 3ceec
+StopDangerSound: ; 3ceec
 	xor a
 	ld [Danger], a
 	ret
 ; 3cef1
 
-Function3cef1: ; 3cef1
-	call Function3ceec
+FaintYourPokemon: ; 3cef1
+	call StopDangerSound
 	call WaitSFX
 	ld a, $f0
 	ld [CryTracks], a
 	ld a, [BattleMonSpecies]
 	call PlayStereoCry
-	call Function3d43b
+	call PlayerMonFaintedAnimation
 	hlcoord 9, 7
 	lb bc, 5, 11
 	call ClearBox
-	ld hl, BattleText_0x80a75
+	ld hl, BattleText_PkmnFainted
 	jp StdBattleTextBox
 ; 3cf14
 
-Function3cf14: ; 3cf14
+FaintEnemyPokemon: ; 3cf14
 	call WaitSFX
 	ld de, SFX_KINESIS
 	call PlaySFX
-	call Function3d432
+	call EnemyMonFaintedAnimation
 	ld de, SFX_FAINT
 	call PlaySFX
 	hlcoord 1, 0
 	lb bc, 4, 10
 	call ClearBox
-	ld hl, BattleText_0x809a8
+	ld hl, BattleText_EnemyPkmnFainted
 	jp StdBattleTextBox
 ; 3cf35
 
-Function3cf35: ; 3cf35
+CheckEnemyTrainerDefeated: ; 3cf35
 	ld a, [OTPartyCount]
 	ld b, a
 	xor a
 	ld hl, OTPartyMon1HP
 	ld de, PartyMon2 - PartyMon1
-.asm_3cf40
+
+.loop
 	or [hl]
 	inc hl
 	or [hl]
 	dec hl
 	add hl, de
 	dec b
-	jr nz, .asm_3cf40
+	jr nz, .loop
+
 	and a
 	ret
 ; 3cf4a
@@ -2398,7 +2403,7 @@ Function3cf4a: ; 3cf4a
 	call Function3e12e
 	call WaitBGMap
 	callba Function2c012
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3cf6d
 	call Function3e8e4
@@ -2444,26 +2449,28 @@ EnemyPartyMonEntrance: ; 3cf78
 	ret
 ; 3cfa4
 
-Function3cfa4: ; 3cfa4
-	call Function3ceec
+WinTrainerBattle: ; 3cfa4
+	call StopDangerSound
 	ld a, $1
 	ld [wc6fd], a
 	ld [BattleEnded], a
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ld a, b
 	call z, Function3d0ea
 	callab Battle_GetTrainerName
-	ld hl, BattleText_0x809da
+	ld hl, BattleText_EnemyWasDefeated
 	call StdBattleTextBox
 	call IsMobileBattle
 	jr z, .asm_3cff5
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
-	ld a, [wcfc0]
+
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	jr nz, .asm_3d006
+
 	call Function3ebd8
 	ld c, $28
 	call DelayFrames
@@ -2626,7 +2633,7 @@ Function3d0be: ; 3d0be
 	push bc
 	ld b, h
 	ld c, l
-	callba Function106008
+	callba MobileFn_106008
 	pop bc
 	pop hl
 .asm_3d0ce
@@ -2659,7 +2666,7 @@ Function3d0ea: ; 3d0ea
 	call PlayMusic
 	call DelayFrame
 	ld de, MUSIC_WILD_VICTORY
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_3d113
 	push de
@@ -2742,15 +2749,15 @@ KantoGymLeaders:
 	db SABRINA
 	db BLAINE
 	db BLUE
-	db $ff
+	db -1
 
 
-Function3d14e: ; 3d14e
-	call Function3cef1
+HandlePlayerMonFaint: ; 3d14e
+	call FaintYourPokemon
 	ld hl, EnemyMonHP
 	ld a, [hli]
 	or [hl]
-	call z, Function3cf14
+	call z, FaintEnemyPokemon
 	ld a, $1
 	ld [wc6f7], a
 	call Function3d1aa
@@ -2761,20 +2768,20 @@ Function3d14e: ; 3d14e
 	ld hl, EnemyMonHP
 	ld a, [hli]
 	or [hl]
-	jr nz, .asm_3d185
+	jr nz, .notfainted
 	call Function3ce01
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
-	jr nz, .asm_3d17f
+	jr nz, .trainer
 	ld a, $1
 	ld [BattleEnded], a
 	ret
 
-.asm_3d17f
-	call Function3cf35
-	jp z, Function3cfa4
+.trainer
+	call CheckEnemyTrainerDefeated
+	jp z, WinTrainerBattle
 
-.asm_3d185
+.notfainted
 	call Function3d1f8
 	jr nc, .asm_3d190
 	ld a, $1
@@ -2784,14 +2791,14 @@ Function3d14e: ; 3d14e
 .asm_3d190
 	call Function3d227
 	call Function3d2e0
-	jp c, Function3c0e5
+	jp c, WildFled_EnemyFled_LinkBattleCanceled
 	ld a, c
 	and a
 	ret nz
 	ld a, $1
 	ld [wd0ec], a
 	call Function3cf4a
-	jp z, Function3c0e5
+	jp z, WildFled_EnemyFled_LinkBattleCanceled
 	jp Function3cdca
 ; 3d1aa
 
@@ -2810,23 +2817,24 @@ Function3d1aa: ; 3d1aa
 	ld [hl], a
 	ld [BattleMonStatus], a
 	call UpdateBattleMonInParty
-	ld c, $6
+	ld c, HAPPINESS_FAINTED
+	; If TheirLevel > (YourLevel + 30), use a different parameter
 	ld a, [BattleMonLevel]
-	add $1e
+	add 30
 	ld b, a
 	ld a, [EnemyMonLevel]
 	cp b
 	jr c, .asm_3d1dc
-	ld c, $8
+	ld c, HAPPINESS_BEATENBYSTRONGFOE
 
 .asm_3d1dc
 	ld a, [CurBattleMon]
 	ld [CurPartyMon], a
 	callab ChangeHappiness
-	ld a, [wd0ee]
-	and $c0
+	ld a, [wBattleResult]
+	and %11000000
 	add $1
-	ld [wd0ee], a
+	ld [wBattleResult], a
 	ld a, [wc6f7]
 	and a
 	ret z
@@ -2836,11 +2844,11 @@ Function3d1aa: ; 3d1aa
 Function3d1f8: ; 3d1f8
 	call EmptyBattleTextBox
 	call Function309d
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	dec a
 	ret nz
-	ld hl, BattleText_0x80a83
+	ld hl, BattleText_UseNextMon
 	call StdBattleTextBox
 .asm_3d20a
 	lb bc, 1, 7
@@ -2864,7 +2872,7 @@ Function3d227: ; 3d227
 	call Function1d6e
 	call Function3d2f7
 	call ForcePickPartyMonInBattle
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3d241
 	ld a, $1
@@ -2897,7 +2905,7 @@ Function3d227: ; 3d227
 .asm_3d26c
 	call ClearSprites
 	ld a, [CurBattleMon]
-	ld [wc71a], a
+	ld [LastPlayerMon], a
 	ld a, [CurPartyMon]
 	ld [CurBattleMon], a
 	call Function3d581
@@ -2909,7 +2917,7 @@ Function3d227: ; 3d227
 	call WriteBackup
 	call ClearSGB
 	call Function32f9
-	call Function3f26d
+	call SendOutPkmnText
 	call NewBattleMonStatus
 	call BreakAttraction
 	call Function3db5f
@@ -2925,13 +2933,13 @@ Function3d227: ; 3d227
 
 Function3d2b3: ; 3d2b3
 	ld a, [CurBattleMon]
-	ld [wc71a], a
+	ld [LastPlayerMon], a
 	ld a, [CurPartyMon]
 	ld [CurBattleMon], a
 	call Function3d581
 	call Function3da0d
 	call ResetPlayerStatLevels
-	call Function3f26d
+	call SendOutPkmnText
 	call NewBattleMonStatus
 	call BreakAttraction
 	call Function3db5f
@@ -2943,12 +2951,15 @@ Function3d2b3: ; 3d2b3
 
 
 Function3d2e0: ; 3d2e0
-	ld a, [InLinkBattle]
-	cp $4
-	jr nz, .asm_3d2ef
+	ld a, [wLinkMode]
+	cp LINK_MOBILE
+	jr nz, .asm_3d2ef ; It's not a mobile battle
+
 	ld a, [wcd2b]
 	and a
 	jr z, .asm_3d2ef
+
+; We have a mobile battle and something else happened
 	scf
 	ret
 
@@ -2958,8 +2969,8 @@ Function3d2e0: ; 3d2e0
 ; 3d2f1
 
 IsMobileBattle: ; 3d2f1
-	ld a, [InLinkBattle]
-	cp $4
+	ld a, [wLinkMode]
+	cp LINK_MOBILE
 	ret
 ; 3d2f7
 
@@ -3000,7 +3011,7 @@ PickPartyMonInBattle: ; 3d33c
 	call Function3d313
 	call Function3d329
 	ret c
-	call Function3d887
+	call CheckIfPartyHasPkmnToBattleWith
 	jr z, .loop
 	xor a
 	ret
@@ -3067,7 +3078,7 @@ LostBattle: ; 3d38e
 	ld a, 1
 	ld [BattleEnded], a
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	jr nz, .asm_3d3bd
 
@@ -3077,7 +3088,7 @@ LostBattle: ; 3d38e
 
 ; Remove the enemy from the screen.
 	hlcoord 0, 0
-	ld bc, $0815
+	lb bc, 8, 21
 	call ClearBox
 	call Function3ebd8
 
@@ -3094,7 +3105,7 @@ LostBattle: ; 3d38e
 .asm_3d3bd
 ; Remove the enemy from the screen.
 	hlcoord 0, 0
-	ld bc, $0815
+	lb bc, 8, 21
 	call ClearBox
 	call Function3ebd8
 
@@ -3110,7 +3121,7 @@ LostBattle: ; 3d38e
 	ret
 
 .asm_3d3e3
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .LostLinkBattle
 
@@ -3122,13 +3133,13 @@ LostBattle: ; 3d38e
 
 .LostLinkBattle
 	call UpdateEnemyMonInParty
-	call Function3cf35
+	call CheckEnemyTrainerDefeated
 	jr nz, .asm_3d40a
 	ld hl, TiedAgainstText
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $c0
 	add 2
-	ld [wd0ee], a
+	ld [wBattleResult], a
 	jr .text
 
 .asm_3d40a
@@ -3146,7 +3157,7 @@ LostBattle: ; 3d38e
 .asm_3d417
 ; Remove the enemy from the screen.
 	hlcoord 0, 0
-	ld bc, $0815
+	lb bc, 8, 21
 	call ClearBox
 	call Function3ebd8
 
@@ -3160,38 +3171,40 @@ LostBattle: ; 3d38e
 ; 3d432
 
 
-Function3d432: ; 3d432
+EnemyMonFaintedAnimation: ; 3d432
 	hlcoord 12, 5
 	decoord 12, 6
-	jp Function3d444
+	jp MonFaintedAnimation
 ; 3d43b
 
-Function3d43b: ; 3d43b
+PlayerMonFaintedAnimation: ; 3d43b
 	hlcoord 1, 10
 	decoord 1, 11
-	jp Function3d444
+	jp MonFaintedAnimation
 ; 3d444
 
-Function3d444: ; 3d444
+MonFaintedAnimation: ; 3d444
 	ld a, [wcfbe]
 	push af
 	set 6, a
 	ld [wcfbe], a
-	ld b, $7
-.asm_3d44f
+	ld b, 7
+
+.OuterLoop
 	push bc
 	push de
 	push hl
-	ld b, $6
-.asm_3d454
+	ld b, 6
+
+.InnerLoop
 	push bc
 	push hl
 	push de
-	ld bc, $0007
+	ld bc, 7
 	call CopyBytes
 	pop de
 	pop hl
-	ld bc, -20
+	ld bc, -SCREEN_WIDTH
 	add hl, bc
 	push hl
 	ld h, d
@@ -3202,7 +3215,8 @@ Function3d444: ; 3d444
 	pop hl
 	pop bc
 	dec b
-	jr nz, .asm_3d454
+	jr nz, .InnerLoop
+
 	ld bc, 20
 	add hl, bc
 	ld de, .Spaces
@@ -3213,7 +3227,8 @@ Function3d444: ; 3d444
 	pop de
 	pop bc
 	dec b
-	jr nz, .asm_3d44f
+	jr nz, .OuterLoop
+
 	pop af
 	ld [wcfbe], a
 	ret
@@ -3225,7 +3240,7 @@ Function3d444: ; 3d444
 
 
 Function3d490: ; 3d490
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	ld c, a
 .asm_3d493
 	push bc
@@ -3249,7 +3264,7 @@ Function3d490: ; 3d490
 ; 3d4ae
 
 Function3d4ae: ; 3d4ae
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	ld c, a
 	cp $8
 	jr nz, .back
@@ -3280,7 +3295,7 @@ Function3d4c3: ; 3d4c3
 	call Function3d7a0
 	call NewEnemyMonStatus
 	call ResetEnemyStatLevels
-	call Function3d7c7
+	call Function_SetEnemyPkmnAndSendOutAnimation
 	call BreakAttraction
 	call Function3d57a
 	ret
@@ -3299,8 +3314,8 @@ Function3d4e1: ; 3d4e1
 	call Function3d74b
 	push af
 	call Function3d7a0
-	call Function3d7b8
-	call Function3d7c7
+	call Function_BattleTextEnemySentOut
+	call Function_SetEnemyPkmnAndSendOutAnimation
 	pop af
 	ret c
 	xor a
@@ -3323,12 +3338,12 @@ Function3d517: ; 3d517
 	ld a, 1
 	ld [wEnemyIsSwitching], a
 	call Function3d7a0
-	call Function3d7b8
-	jp Function3d7c7
+	call Function_BattleTextEnemySentOut
+	jp Function_SetEnemyPkmnAndSendOutAnimation
 ; 3d533
 
 Function3d533: ; 3d533
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3d541
 
@@ -3621,7 +3636,7 @@ Function3d714: ; 3d714
 	ld a, [PartyCount]
 	dec a
 	jp z, .asm_3d749
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jp nz, .asm_3d749
 	ld a, [Options]
@@ -3648,7 +3663,7 @@ Function3d74b: ; 3d74b
 	ld a, [CurPartyMon]
 	push af
 	callab Battle_GetTrainerName
-	ld hl, BattleText_0x80aca
+	ld hl, BattleText_EnemyIsAboutToUseWillPlayerChangePkmn
 	call StdBattleTextBox
 	lb bc, 1, 7
 	call PlaceYesNoBox
@@ -3659,7 +3674,7 @@ Function3d74b: ; 3d74b
 	call PickSwitchMonInBattle
 	jr c, .asm_3d791
 	ld a, [CurBattleMon]
-	ld [wc71a], a
+	ld [LastPlayerMon], a
 	ld a, [CurPartyMon]
 	ld [CurBattleMon], a
 	call ClearPalettes
@@ -3697,14 +3712,14 @@ Function3d7a0: ; 3d7a0
 	jp Function3ee27
 ; 3d7b8
 
-Function3d7b8: ; 3d7b8
+Function_BattleTextEnemySentOut: ; 3d7b8
 	callab Battle_GetTrainerName
-	ld hl, BattleText_0x80af8
+	ld hl, BattleText_EnemySentOut
 	call StdBattleTextBox
 	jp WaitBGMap
 ; 3d7c7
 
-Function3d7c7: ; 3d7c7
+Function_SetEnemyPkmnAndSendOutAnimation: ; 3d7c7
 	ld a, [TempEnemyMonSpecies]
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
@@ -3806,13 +3821,14 @@ Function3d873: ; 3d873
 ; 3d887
 
 
-Function3d887: ; 3d887
+CheckIfPartyHasPkmnToBattleWith: ; 3d887
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1HP
 	call GetPartyLocation
 	ld a, [hli]
 	or [hl]
 	ret nz
+
 	ld a, [wd264]
 	and a
 	jr nz, .asm_3d8b1
@@ -3823,9 +3839,10 @@ Function3d887: ; 3d887
 	add hl, bc
 	ld a, [hl]
 	cp EGG
-	ld hl, BattleText_0x80b26
+	ld hl, BattleText_AnEGGCantBattle
 	jr z, .asm_3d8ae
-	ld hl, BattleText_0x80b0b
+
+	ld hl, BattleText_TheresNoWillToBattle
 
 .asm_3d8ae
 	call StdBattleTextBox
@@ -3851,11 +3868,11 @@ Function3d8b3: ; 3d8b3
 	cp BATTLETYPE_SUICUNE
 	jp z, .asm_3d98d
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jp nz, .asm_3d9a2
 
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jp nz, .asm_3d992
 
@@ -3890,29 +3907,30 @@ Function3d8b3: ; 3d8b3
 	inc a
 	ld [wd267], a
 	ld a, [hli]
-	ld [$ffb5], a
+	ld [hStringCmpString2 + 0], a
 	ld a, [hl]
-	ld [$ffb6], a
+	ld [hStringCmpString2 + 1], a
 	ld a, [de]
 	inc de
-	ld [$ffb1], a
+	ld [hStringCmpString1 + 0], a
 	ld a, [de]
-	ld [$ffb2], a
+	ld [hStringCmpString1 + 1], a
 	call Function30b4
-	ld de, $ffb5
-	ld hl, $ffb1
+	ld de, hStringCmpString2
+	ld hl, hStringCmpString1
 	ld c, $2
 	call StringCmp
 	jr nc, .asm_3d9a2
+
 	xor a
 	ld [hMultiplicand], a
 	ld a, $20
 	ld [hMultiplier], a
 	call Multiply
-	ld a, [$ffb5]
-	ld [hProduct], a
-	ld a, [$ffb6]
-	ld [hMultiplicand], a
+	ld a, [hProduct + 2]
+	ld [hDividend + 0], a
+	ld a, [hProduct + 3]
+	ld [hDividend + 1], a
 	ld a, [$ffb1]
 	ld b, a
 	ld a, [$ffb2]
@@ -3922,10 +3940,10 @@ Function3d8b3: ; 3d8b3
 	rr a
 	and a
 	jr z, .asm_3d9a2
-	ld [hMultiplier], a
+	ld [hDivisor], a
 	ld b, $2
 	call Divide
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	and a
 	jr nz, .asm_3d9a2
 	ld a, [wd267]
@@ -3934,7 +3952,7 @@ Function3d8b3: ; 3d8b3
 	dec c
 	jr z, .asm_3d97a
 	ld b, $1e
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	add b
 	ld [$ffb6], a
 	jr c, .asm_3d9a2
@@ -3948,15 +3966,15 @@ Function3d8b3: ; 3d8b3
 	jr nc, .asm_3d9a2
 	ld a, $1
 	ld [wd0ec], a
-	ld hl, BattleText_0x80b3b
+	ld hl, BattleText_CantEscape2
 	jr .asm_3d995
 
 .asm_3d98d
-	ld hl, BattleText_0x80ba0
+	ld hl, BattleText_CantEscape
 	jr .asm_3d995
 
 .asm_3d992
-	ld hl, BattleText_0x80b49
+	ld hl, BattleText_TheresNoEscapeFromTrainerBattle
 
 .asm_3d995
 	call StdBattleTextBox
@@ -3967,7 +3985,7 @@ Function3d8b3: ; 3d8b3
 	ret
 
 .asm_3d9a2
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ld a, $2
 	jr z, .asm_3d9cf
@@ -3991,17 +4009,17 @@ Function3d8b3: ; 3d8b3
 	dec a
 .asm_3d9cf
 	ld b, a
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $c0
 	add b
-	ld [wd0ee], a
-	call Function3ceec
+	ld [wBattleResult], a
+	call StopDangerSound
 	push de
 	ld de, SFX_RUN
 	call WaitPlaySFX
 	pop de
 	call WaitSFX
-	ld hl, BattleText_0x80b77
+	ld hl, BattleText_GotAwaySafely
 	call StdBattleTextBox
 	call WaitSFX
 	call Function309d
@@ -4009,11 +4027,11 @@ Function3d8b3: ; 3d8b3
 	ret
 
 .asm_3d9f5
-	call Function3ceec
+	call StopDangerSound
 	ld hl, wcd2a
 	bit 4, [hl]
 	jr nz, .asm_3da05
-	ld hl, BattleText_0x81863
+	ld hl, BattleText_LinkErrorBattleCanceled
 	call StdBattleTextBox
 
 .asm_3da05
@@ -4095,7 +4113,7 @@ Function3da97: ; 3da97
 	bit SUBSTATUS_TRANSFORMED, a
 	ret z
 	ld hl, wc6f2
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	ret z
 	ld hl, OTPartyMon1DVs
@@ -4172,7 +4190,7 @@ endr
 Function3db32: ; 3db32
 	call ClearSprites
 	ld a, [CurBattleMon]
-	ld [wc71a], a
+	ld [LastPlayerMon], a
 	ld a, [CurPartyMon]
 	ld [CurBattleMon], a
 	call Function3d581
@@ -4341,7 +4359,7 @@ Function3dc5b: ; 3dc5b
 	and a
 	jr z, .asm_3dc7e
 	ld hl, DoEnemyTurn
-	ld a, [wc71a]
+	ld a, [LastPlayerMon]
 	ld [CurBattleMon], a
 .asm_3dc7e
 	ld a, BANK(DoPlayerTurn)
@@ -4359,7 +4377,7 @@ Function3dc5b: ; 3dc5b
 	and a
 	jr z, .asm_3dcc0
 
-	ld a, [wc71a]
+	ld a, [LastPlayerMon]
 	call UpdateBattleMon
 	ld hl, BattleMonHP
 	ld a, [hli]
@@ -4375,8 +4393,8 @@ Function3dc5b: ; 3dc5b
 	ld hl, wc664
 	ld b, $0
 	predef FlagPredef
-	call Function3d43b
-	ld hl, BattleText_0x80a75
+	call PlayerMonFaintedAnimation
+	ld hl, BattleText_PkmnFainted
 	jr .asm_3dcdf
 
 .asm_3dcc0
@@ -4391,8 +4409,8 @@ Function3dc5b: ; 3dc5b
 	ld de, SFX_FAINT
 	call PlaySFX
 	call WaitSFX
-	call Function3d432
-	ld hl, BattleText_0x809a8
+	call EnemyMonFaintedAnimation
+	ld hl, BattleText_EnemyPkmnFainted
 
 .asm_3dcdf
 	call StdBattleTextBox
@@ -4646,7 +4664,7 @@ Function3de51: ; 3de51
 	call Function3df1f
 	xor a
 	ld [bc], a
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	ret z
 	ld [hl], $0
@@ -4810,7 +4828,7 @@ DrawPlayerHUD: ; 3df58
 	; HP bar
 	hlcoord 10, 9
 	ld b, 1
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	predef DrawPlayerHP
 
@@ -4892,7 +4910,7 @@ PrintPlayerHUD: ; 3dfbf
 	pop hl
 	dec hl
 
-	ld a, $3
+	ld a, BREEDMON
 	ld [MonType], a
 	callab GetGender
 	ld a, " "
@@ -4970,7 +4988,7 @@ DrawEnemyHUD: ; 3e043
 	ld a, [hl]
 	ld [de], a
 
-	ld a, $3
+	ld a, BREEDMON
 	ld [MonType], a
 	callab GetGender
 	ld a, " "
@@ -5003,17 +5021,18 @@ DrawEnemyHUD: ; 3e043
 
 	ld hl, EnemyMonHP
 	ld a, [hli]
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	ld a, [hld]
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	or [hl]
 	jr nz, .asm_3e0d1
+
 	ld c, a
 	ld e, a
 	ld d, HP_BAR_LENGTH
 	jp .asm_3e11a
-.asm_3e0d1
 
+.asm_3e0d1
 	xor a
 	ld [hMultiplicand], a
 	ld a, HP_BAR_LENGTH_PX
@@ -5032,11 +5051,11 @@ DrawEnemyHUD: ; 3e043
 	rr a
 	srl b
 	rr a
-	ld [hMultiplier], a
-	ld a, [$ffb5]
+	ld [hDivisor], a
+	ld a, [hProduct + 2]
 	ld b, a
 	srl b
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	rr a
 	srl b
 	rr a
@@ -5046,13 +5065,13 @@ DrawEnemyHUD: ; 3e043
 
 .asm_3e105
 	ld a, [$ffb5]
-	ld [hProduct], a
+	ld [hDividend + 0], a
 	ld a, [$ffb6]
-	ld [hMultiplicand], a
+	ld [hDividend + 1], a
 	ld a, $2
 	ld b, a
 	call Divide
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld e, a
 	ld a, HP_BAR_LENGTH
 	ld d, a
@@ -5114,7 +5133,7 @@ BattleMenu: ; 3e139
 	ld a, [InputType]
 	or a
 	jr z, .asm_3e171
-	callba Function1de294
+	callba _DudeAutoInput_DownA
 .asm_3e171
 
 	call LoadBattleMenu2
@@ -5160,7 +5179,7 @@ LoadBattleMenu2: ; 3e19b
 	ld hl, wcd2a
 	bit 4, [hl]
 	jr nz, .error
-	ld hl, BattleText_0x81863
+	ld hl, BattleText_LinkErrorBattleCanceled
 	call StdBattleTextBox
 	ld c, 60
 	call DelayFrames
@@ -5170,11 +5189,11 @@ LoadBattleMenu2: ; 3e19b
 ; 3e1c7
 
 BattleMenu_Pack: ; 3e1c7
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jp nz, ItemsCantBeUsed
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	jp nz, ItemsCantBeUsed
 
@@ -5232,7 +5251,7 @@ Function3e234: ; 3e234
 	and a
 	jr nz, .asm_3e279
 	callab CheckItemPocket
-	ld a, [wd142]
+	ld a, [wItemAttributeParamBuffer]
 	cp $3
 	jr z, .asm_3e24a
 	call WhiteBGMap
@@ -5255,7 +5274,7 @@ Function3e234: ; 3e234
 	call Function3df2c
 	call WaitBGMap
 	call Function309d
-	call Function1fbf
+	call ResetTextRelatedRAM
 	call Function3ee27
 	and a
 	ret
@@ -5263,10 +5282,10 @@ Function3e234: ; 3e234
 .asm_3e279
 	xor a
 	ld [wc64e], a
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $c0
-	ld [wd0ee], a
-	call Function1fbf
+	ld [wBattleResult], a
+	call ResetTextRelatedRAM
 	call Function32f9
 	scf
 	ret
@@ -5335,27 +5354,27 @@ Function3e2f5: ; 3e2f5
 
 Function3e308: ; 3e308
 	call DisableLCD
-	ld hl, $9310
+	ld hl, VTiles2 tile $31
 	ld de, VTiles0
 	ld bc, $0110
 	call CopyBytes
 	ld hl, VTiles2
-	ld de, $8110
+	ld de, VTiles0 tile $11
 	ld bc, $0310
 	call CopyBytes
 	call EnableLCD
 	call ClearSprites
 	call LowVolume
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	callba Function4dc7b
 	call MaxVolume
 	call DisableLCD
 	ld hl, VTiles0
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	ld bc, $0110
 	call CopyBytes
-	ld hl, $8110
+	ld hl, VTiles0 tile $11
 	ld de, VTiles2
 	ld bc, $0310
 	call CopyBytes
@@ -5388,10 +5407,10 @@ Function3e358: ; 3e358
 	jp Function3e299
 
 .asm_3e381
-	call Function3d887
+	call CheckIfPartyHasPkmnToBattleWith
 	jp z, Function3e299
 	ld a, [CurBattleMon]
-	ld [wc71a], a
+	ld [LastPlayerMon], a
 	ld a, $2
 	ld [wd0ec], a
 	call ClearPalettes
@@ -5409,7 +5428,7 @@ Function3e358: ; 3e358
 Function3e3ad: ; 3e3ad
 	ld a, 1
 	ld [wPlayerIsSwitching], a
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3e3c1
 	call Function1d6e
@@ -5418,7 +5437,7 @@ Function3e3ad: ; 3e3ad
 
 .asm_3e3c1
 	call Function3e7c1
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_3e3cf
 
@@ -5437,7 +5456,7 @@ Function3e3ad: ; 3e3ad
 	jp c, .asm_3e3ca
 	cp $f
 	jr nz, .asm_3e3e9
-	call Function3c0e5
+	call WildFled_EnemyFled_LinkBattleCanceled
 	ret
 
 .asm_3e3e9
@@ -5486,7 +5505,7 @@ BattleMonEntrance: ; 3e40b
 	call Function3d581
 	call Function3da0d
 	call ResetPlayerStatLevels
-	call Function3f26d
+	call SendOutPkmnText
 	call NewBattleMonStatus
 	call BreakAttraction
 	call Function3db5f
@@ -5574,7 +5593,7 @@ Function3e4bc: ; 3e4bc
 	call GetPartyParamLocation
 
 .asm_3e4e2
-	ld de, wd25e
+	ld de, wListMoves_MoveIndicesBuffer
 	ld bc, NUM_MOVES
 	call CopyBytes
 	xor a
@@ -5637,7 +5656,7 @@ Function3e4bc: ; 3e4bc
 	dec a
 	ld b, $c3
 	jr z, .asm_3e569
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_3e569
 	ld b, $c7
@@ -5947,14 +5966,14 @@ MoveInfoBox: ; 3e6c8
 
 Function3e75f: ; 3e75f
 	hlcoord 5, 11
-	ld a, [InLinkBattle]
-	cp $4
+	ld a, [wLinkMode] ; What's the point of this check?
+	cp LINK_MOBILE
 	jr c, .ok
 	hlcoord 5, 11
 .ok
 	push hl
 	ld de, StringBuffer1
-	ld bc, $0102
+	lb bc, 1, 2
 	call PrintNum
 	pop hl
 rept 2
@@ -5962,8 +5981,8 @@ rept 2
 endr
 	ld [hl], "/"
 	inc hl
-	ld de, wd265
-	ld bc, $0102
+	ld de, wNamedObjectIndexBuffer
+	lb bc, 1, 2
 	call PrintNum
 	ret
 ; 3e786
@@ -6021,7 +6040,7 @@ Function3e7c1: ; 3e7c1
 	ld a, [wEnemyIsSwitching]
 	and a
 	ret nz
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3e817
 	call EmptyBattleTextBox
@@ -6095,7 +6114,7 @@ Function3e7c1: ; 3e7c1
 	jr .asm_3e8bd
 
 .asm_3e84f
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_3e882
 .asm_3e855
@@ -6209,11 +6228,12 @@ LoadEnemyMon: ; 3e8eb
 	call ByteFill
 
 ; We don't need to be here if we're in a link battle
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jp nz, Function3dabd
 
-	ld a, [wcfc0] ; ????
+; and also not in a BattleTower-Battle
+	ld a, [InBattleTowerBattle] ; ????
 	bit 0, a
 	jp nz, Function3dabd
 
@@ -6230,7 +6250,7 @@ LoadEnemyMon: ; 3e8eb
 ; Let's get the item:
 
 ; Is the item predetermined?
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .WildItem
 
@@ -6279,7 +6299,7 @@ LoadEnemyMon: ; 3e8eb
 ; Initialize DVs
 
 ; If we're in a trainer battle, DVs are predetermined
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jr z, .InitDVs
 
@@ -6306,7 +6326,7 @@ LoadEnemyMon: ; 3e8eb
 ; See GetTrainerDVs for more on that
 	callba GetTrainerDVs
 ; These are the DVs we'll use if we're actually in a trainer battle
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .UpdateDVs
 
@@ -6382,7 +6402,7 @@ LoadEnemyMon: ; 3e8eb
 
 
 ; We've still got more to do if we're dealing with a wild monster
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .Happiness
 
@@ -6482,7 +6502,7 @@ LoadEnemyMon: ; 3e8eb
 
 ; If we're in a trainer battle,
 ; get the rest of the parameters from the party struct
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	cp a, TRAINER_BATTLE
 	jr z, .OpponentParty
 
@@ -6572,7 +6592,7 @@ LoadEnemyMon: ; 3e8eb
 ; Get moves
 	ld de, EnemyMonMoves
 ; Are we in a trainer battle?
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	cp a, TRAINER_BATTLE
 	jr nz, .WildMoves
 ; Then copy moves from the party struct
@@ -6599,7 +6619,7 @@ endr
 
 .PP
 ; Trainer battle?
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	cp a, TRAINER_BATTLE
 	jr z, .TrainerPP
 
@@ -6643,7 +6663,7 @@ endr
 	call GetPokemonName
 
 ; Did we catch it?
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	ret z
 
@@ -6711,7 +6731,7 @@ CheckSleepingTreeMon: ; 3eb38
 	db EXEGGCUTE
 	db LEDYBA
 	db AIPOM
-	db $ff ; end
+	db -1 ; end
 
 .Day
 	db VENONAT
@@ -6719,7 +6739,7 @@ CheckSleepingTreeMon: ; 3eb38
 	db NOCTOWL
 	db SPINARAK
 	db HERACROSS
-	db $ff ; end
+	db -1 ; end
 
 .Morn
 	db VENONAT
@@ -6727,7 +6747,7 @@ CheckSleepingTreeMon: ; 3eb38
 	db NOCTOWL
 	db SPINARAK
 	db HERACROSS
-	db $ff ; end
+	db -1 ; end
 ; 3eb75
 
 
@@ -6823,7 +6843,8 @@ Function3ebd8: ; 3ebd8
 	callab GetTrainerPic
 	hlcoord 19, 0
 	ld c, $0
-.asm_3ebf3
+
+.outer_loop
 	inc c
 	ld a, c
 	cp $7
@@ -6834,14 +6855,16 @@ Function3ebd8: ; 3ebd8
 	ld d, $0
 	push bc
 	push hl
-.asm_3ec01
+
+.inner_loop
 	call Function3ec1a
 	inc hl
 	ld a, $7
 	add d
 	ld d, a
 	dec c
-	jr nz, .asm_3ec01
+	jr nz, .inner_loop
+
 	ld a, $1
 	ld [hBGMapMode], a
 	ld c, $4
@@ -6849,7 +6872,7 @@ Function3ebd8: ; 3ebd8
 	pop hl
 	pop bc
 	dec hl
-	jr .asm_3ebf3
+	jr .outer_loop
 ; 3ec1a
 
 Function3ec1a: ; 3ec1a
@@ -6857,13 +6880,15 @@ Function3ec1a: ; 3ec1a
 	push de
 	push bc
 	ld e, $7
-.asm_3ec1f
+
+.loop
 	ld [hl], d
-	ld bc, $0014
+	ld bc, SCREEN_WIDTH
 	add hl, bc
 	inc d
 	dec e
-	jr nz, .asm_3ec1f
+	jr nz, .loop
+
 	pop bc
 	pop de
 	pop hl
@@ -7027,25 +7052,25 @@ Function3ecb7: ; 3ecb7
 	ld b, 0
 	add hl, bc
 	xor a
-	ld [hMultiplicand], a
+	ld [hMultiplicand + 0], a
 	ld a, [de]
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	inc de
 	ld a, [de]
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld a, [hli]
 	ld [hMultiplier], a
 	call Multiply
 	ld a, [hl]
-	ld [hMultiplier], a
+	ld [hDivisor], a
 	ld b, $4
 	call Divide
 	pop hl
 
 ; Cap at 999.
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	sub 999 % $100
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	sbc 999 / $100
 	jp c, .asm_3ed1e
 
@@ -7102,11 +7127,11 @@ BadgeStatBoosts: ; 3ed45
 
 ; The boosted stats are in order, except PlainBadge and MineralBadge's boosts are swapped.
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	ret nz
 
@@ -7196,15 +7221,15 @@ Function3eda6: ; 3eda6
 
 Function3edad: ; 3edad
 	ld de, GFX_f8ac0
-	ld hl, $96c0
+	ld hl, VTiles2 tile $6c
 	lb bc, BANK(GFX_f8ac0), 4
 	call Get1bpp
 	ld de, GFX_f8ae0
-	ld hl, $9730
+	ld hl, VTiles2 tile $73
 	lb bc, BANK(GFX_f8ae0), 6
 	call Get1bpp
 	ld de, GFX_f8b10
-	ld hl, $9550
+	ld hl, VTiles2 tile $55
 	lb bc, BANK(GFX_f8b10), 8
 	jp Get2bpp
 ; 3edd1
@@ -7223,7 +7248,7 @@ _BattleRandom:: ; 3edd8
 ; To circumvent this a shared PRNG is used instead.
 
 ; But if we're in a non-link battle we're safe to use it
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jp z, Random
 
@@ -7324,12 +7349,14 @@ Function3ee27: ; 3ee27
 
 Function3ee3b: ; 3ee3b
 ; Give experience.
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
-	ld a, [wcfc0]
+
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	ret nz
+
 	call Function3f0d4
 	xor a
 	ld [CurPartyMon], a
@@ -7407,15 +7434,15 @@ endr
 	dec c
 	jr nz, .asm_3ee7c
 	xor a
-	ld [hMultiplicand], a
-	ld [$ffb5], a
+	ld [hMultiplicand + 0], a
+	ld [hMultiplicand + 1], a
 	ld a, [EnemyMonBaseExp]
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld a, [EnemyMonLevel]
 	ld [hMultiplier], a
 	call Multiply
 	ld a, $7
-	ld [hMultiplier], a
+	ld [hDivisor], a
 	ld b, $4
 	call Divide
 	pop bc
@@ -7436,7 +7463,7 @@ endr
 
 .asm_3eee2
 	ld [StringBuffer2 + 2], a
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	call nz, DoubleExp
 	push bc
@@ -7520,7 +7547,7 @@ endr
 	ld [hld], a
 
 .asm_3ef74
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	predef Function5084a
 	callab Function50e1b
@@ -7632,7 +7659,7 @@ endr
 	call Function309d
 
 .asm_3f057
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	predef Function5084a
 	hlcoord 9, 0
@@ -7646,7 +7673,7 @@ endr
 	call DelayFrames
 	call Functiona80
 	call Function30b4
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	ld a, [CurSpecies]
 	ld [wd265], a
@@ -7787,7 +7814,7 @@ Function3f136: ; 3f136
 	push af
 	xor a
 	ld [DefaultFlypoint], a
-	xor a
+	xor a ; PARTYMON
 	ld [MonType], a
 	predef Function5084a
 	ld a, [TempMonLevel]
@@ -7957,36 +7984,37 @@ Function3f22c: ; 3f22c
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
-; 3f26d
 
 
 
-Function3f26d: ; 3f26d
-; SendOutMonText?
-
-	ld a, [InLinkBattle]
+SendOutPkmnText: ; 3f26d
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3f27c
-	ld hl, UnknownText_0x3f2d1
-	ld a, [wd264]
+
+	ld hl, JumpText_GoPkmn ; If we're in a LinkBattle print just "Go <PlayerMon>"
+
+	ld a, [wd264] ; besides this variable is set. which stands for ???
 	and a
 	jr nz, .asm_3f2ce
 
 .asm_3f27c
+; Depending on the HP of the enemy Pkmn, the game prints a different text
 	ld hl, EnemyMonHP
 	ld a, [hli]
 	or [hl]
-	ld hl, UnknownText_0x3f2d1
+	ld hl, JumpText_GoPkmn
 	jr z, .asm_3f2ce
+
 	xor a
-	ld [hMultiplicand], a
+	ld [hMultiplicand + 0], a
 	ld hl, EnemyMonHP
 	ld a, [hli]
 	ld [wc6ea], a
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	ld a, [hl]
 	ld [wc6eb], a
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld a, $19
 	ld [hMultiplier], a
 	call Multiply
@@ -7999,55 +8027,55 @@ Function3f26d: ; 3f26d
 	rr b
 	ld a, b
 	ld b, $4
-	ld [hMultiplier], a
+	ld [hDivisor], a
 	call Divide
-	ld a, [$ffb6]
-	ld hl, UnknownText_0x3f2d1
+	ld a, [hQuotient + 2]
+	ld hl, JumpText_GoPkmn
 	cp $46
 	jr nc, .asm_3f2ce
-	ld hl, UnknownText_0x3f2d8
+	ld hl, JumpText_DoItPkmn
 	cp $28
 	jr nc, .asm_3f2ce
-	ld hl, UnknownText_0x3f2df
+	ld hl, JumpText_GoForItPkmn
 	cp $a
 	jr nc, .asm_3f2ce
-	ld hl, UnknownText_0x3f2e6
+	ld hl, JumpText_YourFoesWeakGetmPkmn
 
 .asm_3f2ce
 	jp BattleTextBox
 ; 3f2d1
 
 
-UnknownText_0x3f2d1: ; 3f2d1
-	text_jump UnknownText_0x1c02df
+JumpText_GoPkmn: ; 3f2d1
+	text_jump Text_GoPkmn
 	start_asm
-	jr Function3f2eb
+	jr Function_TextJump_BattleMonNick01
 ; 3f2d6
 
-UnknownText_0x3f2d8: ; 3f2d8
-	text_jump UnknownText_0x1c02e6
+JumpText_DoItPkmn: ; 3f2d8
+	text_jump Text_DoItPkmn
 	start_asm
-	jr Function3f2eb
+	jr Function_TextJump_BattleMonNick01
 ; 3f2dd
 
-UnknownText_0x3f2df: ; 3f2df
-	text_jump UnknownText_0x1c02f0
+JumpText_GoForItPkmn: ; 3f2df
+	text_jump Text_GoForItPkmn
 	start_asm
-	jr Function3f2eb
+	jr Function_TextJump_BattleMonNick01
 ; 3f2e4
 
-UnknownText_0x3f2e6: ; 3f2e6
-	text_jump UnknownText_0x1c02fe
+JumpText_YourFoesWeakGetmPkmn: ; 3f2e6
+	text_jump Text_YourFoesWeakGetmPkmn
 	start_asm
 ; 3f2eb
 
-Function3f2eb: ; 3f2eb
-	ld hl, UnknownText_0x3f2ef
+Function_TextJump_BattleMonNick01: ; 3f2eb
+	ld hl, TextJump_BattleMonNick01
 	ret
 ; 3f2ef
 
-UnknownText_0x3f2ef: ; 3f2ef
-	text_jump UnknownText_0x1c0317
+TextJump_BattleMonNick01: ; 3f2ef
+	text_jump Text_BattleMonNick01
 	db "@"
 ; 3f2f4
 
@@ -8071,12 +8099,12 @@ Function3f2ff: ; 3f2ff
 	dec hl
 	ld a, [de]
 	sub b
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	dec de
 	ld b, [hl]
 	ld a, [de]
 	sbc b
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	ld a, $19
 	ld [hMultiplier], a
 	call Multiply
@@ -8089,11 +8117,11 @@ Function3f2ff: ; 3f2ff
 	rr b
 	ld a, b
 	ld b, $4
-	ld [hMultiplier], a
+	ld [hDivisor], a
 	call Divide
 	pop bc
 	pop de
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld hl, UnknownText_0x3f348
 	and a
 	ret z
@@ -8256,10 +8284,10 @@ Function3f39c: ; 3f39c
 
 .asm_3f40c
 	ld a, c
-	ld [hMultiplier], a
+	ld [hDivisor], a
 	ld b, $4
 	call Divide
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld b, a
 	ld a, $40
 	sub b
@@ -8316,7 +8344,7 @@ Function3f447: ; 3f447
 	ld [CurPartySpecies], a
 	ld hl, BattleMonDVs
 	predef GetUnownLetter
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	predef GetBackpic
 	pop af
 	ld [CurPartySpecies], a
@@ -8375,9 +8403,13 @@ Function3f4b4: ; 3f4b4
 
 
 StartBattle: ; 3f4c1
+; This check prevents you from entering a battle without any Pokemon.
+; Those using walk-through-walls to bypass getting a Pokemon experience
+; the effects of this check.
 	ld a, [PartyCount]
 	and a
 	ret z
+
 	ld a, [TimeOfDayPal]
 	push af
 	call Function3f4dd
@@ -8397,17 +8429,17 @@ Function3f4d9: ; 3f4d9
 
 
 Function3f4dd: ; 3f4dd
-	callba Function106050
-	call Function3f54e
+	callba MobileFn_106050 ; mobile
+	call LoadTrainerOrWildMonPic
 	xor a
 	ld [TempBattleMonSpecies], a
 	ld [wd0d2], a
 	xor a
 	ld [$ffde], a
 	callba PlayBattleMusic
-	callba Function2ee18
-	callba Function2ee2f
-	call Function2ed3
+	callba ShowLinkBattleParticipants
+	callba FindFirstAliveMon
+	call DisableSpriteUpdates
 	callba ClearBattleRAM
 	call Function3f55e
 	call Function3f568
@@ -8429,7 +8461,7 @@ Function3f4dd: ; 3f4dd
 	ld bc, 4 << 8 + 10
 	call ClearBox
 	call ClearSprites
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	cp $1
 	call z, UpdateEnemyHUD
 	ld a, $1
@@ -8437,14 +8469,14 @@ Function3f4dd: ; 3f4dd
 	ret
 ; 3f54e
 
-Function3f54e: ; 3f54e
+LoadTrainerOrWildMonPic: ; 3f54e
 	ld a, [OtherTrainerClass]
 	and a
-	jr nz, .asm_3f55a
+	jr nz, .Trainer
 	ld a, [TempWildMonSpecies]
 	ld [CurPartySpecies], a
 
-.asm_3f55a
+.Trainer
 	ld [TempEnemyMonSpecies], a
 	ret
 ; 3f55e
@@ -8452,8 +8484,8 @@ Function3f54e: ; 3f54e
 Function3f55e: ; 3f55e
 	ld a, [OtherTrainerClass]
 	and a
-	jp nz, Function3f594
-	jp Function3f607
+	jp nz, Function3f594 ; trainer
+	jp Function3f607 ; wild
 ; 3f568
 
 Function3f568: ; 3f568
@@ -8482,7 +8514,7 @@ Function3f568: ; 3f568
 
 Function3f594: ; 3f594
 	ld [TrainerClass], a
-	callba Function10606a
+	callba MobileFn_10606a
 	xor a
 	ld [TempEnemyMonSpecies], a
 	callab Function3957b
@@ -8504,41 +8536,41 @@ Function3f594: ; 3f594
 	hlcoord 12, 0
 	lb bc, 7, 7
 	predef FillBox
-	ld a, $ff
+	ld a, -1
 	ld [CurOTMon], a
 	ld a, TRAINER_BATTLE
-	ld [IsInBattle], a
+	ld [wBattleMode], a
 
 	call IsJohtoGymLeader
-	jr nc, .asm_3f606
+	jr nc, .done
 	xor a
 	ld [CurPartyMon], a
 	ld a, [PartyCount]
 	ld b, a
-.asm_3f5ea
+.partyloop
 	push bc
 	ld a, PartyMon1HP - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hli]
 	or [hl]
-	jr z, .asm_3f5fc
-	ld c, $4
+	jr z, .skipfaintedmon
+	ld c, HAPPINESS_GYMBATTLE
 	callab ChangeHappiness
-.asm_3f5fc
+.skipfaintedmon
 	pop bc
 	dec b
-	jr z, .asm_3f606
+	jr z, .done
 	ld hl, CurPartyMon
 	inc [hl]
-	jr .asm_3f5ea
-.asm_3f606
+	jr .partyloop
+.done
 	ret
 ; 3f607
 
 Function3f607: ; 3f607
 	ld a, $1
-	ld [IsInBattle], a
-	callba Function10605d
+	ld [wBattleMode], a
+	callba MobileFn_10605d
 	call LoadEnemyMon
 	ld hl, EnemyMonMoves
 	ld de, wc735
@@ -8572,7 +8604,7 @@ Function3f607: ; 3f607
 
 Function3f662: ; 3f662
 	ld hl, EnemyMonMoves
-	ld de, wd25e
+	ld de, wListMoves_MoveIndicesBuffer
 	ld b, NUM_MOVES
 .loop
 	ld a, [de]
@@ -8630,17 +8662,17 @@ Function3f69e: ; 3f69e
 ; 3f6a5
 
 Function3f6a5: ; 3f6a5
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
-	jr z, .asm_3f6b7
+	jr z, .not_linked
 	call Function3f759
 	ld c, 150
 	call DelayFrames
 	call Function3f77c
 	ret
 
-.asm_3f6b7
-	ld a, [wd0ee]
+.not_linked
+	ld a, [wBattleResult]
 	and $f
 	ret nz
 	call Function3f71d
@@ -8655,7 +8687,7 @@ Function3f6d0: ; 3f6d0
 	call Function3f998
 	xor a
 	ld [Danger], a
-	ld [IsInBattle], a
+	ld [wBattleMode], a
 	ld [BattleType], a
 	ld [AttackMissed], a
 	ld [TempWildMonSpecies], a
@@ -8664,11 +8696,11 @@ Function3f6d0: ; 3f6d0
 	ld [wd267], a
 	ld [wd232], a
 	ld [wd0d8], a
-	ld [wd0da], a
-	ld [wd0d9], a
+	ld [wKeyItemsPocketCursor], a
+	ld [wItemsPocketCursor], a
 	ld [wd0d2], a
 	ld [CurMoveNum], a
-	ld [wd0db], a
+	ld [wBallsPocketCursor], a
 	ld [wd0d6], a
 	ld [wd0e4], a
 	ld [wd0e0], a
@@ -8713,7 +8745,7 @@ endr
 	call Function3d0be
 	ld hl, BattleText_0x80730
 	call StdBattleTextBox
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	bit 0, a
 	ret z
 	call ClearTileMap
@@ -8722,7 +8754,7 @@ endr
 ; 3f759
 
 Function3f759: ; 3f759
-	callba Function1060df
+	callba MobileFn_1060df
 	callba Function106187
 	ld a, [CurOTMon]
 	ld hl, OTPartyMon1Status
@@ -8730,7 +8762,7 @@ Function3f759: ; 3f759
 	ld a, [EnemyMonStatus]
 	ld [hl], a
 	call ClearTileMap
-	callba Function2c1b2
+	callba _ShowLinkBattleParticipants
 	ret
 ; 3f77c
 
@@ -8745,22 +8777,22 @@ Function3f77c: ; 3f77c
 	callba Function2b930
 
 .asm_3f797
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $f
 	cp $1
 	jr c, .asm_3f7ad
 	jr z, .asm_3f7b8
-	callba Function106107
+	callba MobileFn_106107
 	ld de, .Draw
 	jr .asm_3f7c3
 
 .asm_3f7ad
-	callba Function1060fb
+	callba MobileFn_1060fb
 	ld de, .Win
 	jr .asm_3f7c3
 
 .asm_3f7b8
-	callba Function106101
+	callba MobileFn_106101
 	ld de, .Lose
 	jr .asm_3f7c3
 
@@ -8770,7 +8802,7 @@ Function3f77c: ; 3f77c
 	callba Function106187
 	ld c, $c8
 	call DelayFrames
-	ld a, $1
+	ld a, BANK(sLinkBattleStats)
 	call GetSRAMBank
 	call Function3fa42
 	call Function3f85f
@@ -8813,8 +8845,8 @@ Function3f80f: ; 3f80f
 
 
 Function3f830: ; 3f830
-	ld a, [InLinkBattle]
-	cp $4
+	ld a, [wLinkMode]
+	cp LINK_MOBILE
 	ret
 ; 3f836
 
@@ -8845,7 +8877,7 @@ Function3f85f: ; 3f85f
 	call .asm_3f8e0
 	hlcoord 0, 8
 	ld b, $5
-	ld de, $b268
+	ld de, sLinkBattleStats + $8
 .asm_3f870
 	push bc
 	push hl
@@ -8853,7 +8885,7 @@ Function3f85f: ; 3f85f
 	ld a, [de]
 	and a
 	jr z, .asm_3f8c9
-	ld a, [wd4b4]
+	ld a, [wSavedAtLeastOnce]
 	and a
 	jr z, .asm_3f8c9
 	push hl
@@ -8876,20 +8908,20 @@ Function3f85f: ; 3f85f
 	add hl, de
 	push hl
 	ld de, wd00d
-	ld bc, $0204
+	lb bc, 2, 4
 	call PrintNum
 	pop hl
 	ld de, $0005
 	add hl, de
 	push hl
 	ld de, wd00f
-	ld bc, $0204
+	lb bc, 2, 4
 	call PrintNum
 	pop hl
 	ld de, $0005
 	add hl, de
 	ld de, wd011
-	ld bc, $0204
+	lb bc, 2, 4
 	call PrintNum
 	jr .asm_3f8cf
 
@@ -8929,28 +8961,28 @@ Function3f85f: ; 3f85f
 	call .asm_3f92b
 	jr c, .asm_3f92a
 
-	ld bc, $0204
+	lb bc, 2, 4
 	call PrintNum
 
 	hlcoord 11, 4
 	ld de, sLinkBattleLosses
 	call .asm_3f92b
 
-	ld bc, $0204
+	lb bc, 2, 4
 	call PrintNum
 
 	hlcoord 16, 4
 	ld de, sLinkBattleDraws
 	call .asm_3f92b
 
-	ld bc, $0204
+	lb bc, 2, 4
 	call PrintNum
 
 .asm_3f92a
 	ret
 
 .asm_3f92b
-	ld a, [wd4b4]
+	ld a, [wSavedAtLeastOnce]
 	and a
 	ret nz
 	ld de, .Scores
@@ -8964,9 +8996,9 @@ Function3f85f: ; 3f85f
 ; 3f947
 
 .Format ; 3f947
-	db "  ---  ", $22, "         -    -    -@"
+	db "  ---  <LNBRK>         -    -    -@"
 .Record ; 3f964
-	db $52, "'s RECORD@"
+	db "<PLAYER>'s RECORD@"
 .Result ; 3f96e
 	db "RESULT WIN LOSE DRAW@"
 .Total ; 3f983
@@ -8978,7 +9010,7 @@ Function3f998: ; 3f998
 	ld a, [BattleType]
 	cp BATTLETYPE_ROAMING
 	jr nz, .asm_3f9c4
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $f
 	jr z, .asm_3f9af
 	call GetRoamMonHP
@@ -9142,7 +9174,7 @@ endr
 ; 3faa0
 
 Function3faa0: ; 3faa0
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $f
 	cp $1
 	ld bc, $000d
@@ -9377,7 +9409,7 @@ GetBattleBackpic: ; 3fbff
 	jr z, .Decompress
 
 ; What gender are we?
-	ld a, [wd45b]
+	ld a, [wPlayerSpriteSetupFlags]
 	bit 2, a
 	jr nz, .Chris
 	ld a, [PlayerGender]
@@ -9394,7 +9426,7 @@ GetBattleBackpic: ; 3fbff
 	ld hl, ChrisBackpic
 
 .Decompress
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	ld c, $31
 	predef DecompressPredef
 	ret
@@ -9407,7 +9439,7 @@ Function3fc30: ; 3fc30
 	ld a, $6
 	ld [rSVBK], a
 	ld hl, VTiles0
-	ld de, $9310
+	ld de, VTiles2 tile $31
 	ld a, [hROMBank]
 	ld b, a
 	ld c, $31
@@ -9426,7 +9458,7 @@ Function3fc30: ; 3fc30
 Function3fc5b: ; 3fc5b
 	ld hl, Sprites
 	xor a
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	ld b, $6
 	ld e, $a8
 .asm_3fc65
@@ -9437,10 +9469,10 @@ Function3fc5b: ; 3fc5b
 	inc hl
 	ld [hl], e
 	inc hl
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	ld [hli], a
 	inc a
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	ld a, $1
 	ld [hli], a
 	ld a, d
@@ -9448,9 +9480,9 @@ Function3fc5b: ; 3fc5b
 	ld d, a
 	dec c
 	jr nz, .asm_3fc69
-	ld a, [$ffaf]
+	ld a, [hConnectionStripLength]
 	add $3
-	ld [$ffaf], a
+	ld [hConnectionStripLength], a
 	ld a, e
 	add $8
 	ld e, a
@@ -9461,7 +9493,7 @@ Function3fc5b: ; 3fc5b
 
 
 BattleStartMessage: ; 3fc8b
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .asm_3fcaa
 
@@ -9514,7 +9546,7 @@ BattleStartMessage: ; 3fc8b
 	cp BATTLETYPE_FISH
 	jr nz, .asm_3fcfd
 
-	callba Function106086
+	callba MobileFn_106086
 
 	ld hl, HookedPokemonAttackedText
 	jr .asm_3fd0e

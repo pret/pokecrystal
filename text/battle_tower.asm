@@ -1,5 +1,5 @@
 
-UnknownText_0x1ec000: ; 0x1ec000
+BattleTowerText_0x1ec000: ; 0x1ec000
 	text "Hello, glad to"
 	line "meet you!"
 
@@ -8,7 +8,7 @@ UnknownText_0x1ec000: ; 0x1ec000
 	done
 ; 0x1ec03b
 
-UnknownText_0x1ec03b: ; 0x1ec03b
+BattleTowerText_0x1ec03b: ; 0x1ec03b
 	text "Thank you! A most"
 	line "enjoyable battle!"
 	done
@@ -20,7 +20,7 @@ UnknownText_0x1ec060: ; 0x1ec060
 	done
 ; 0x1ec080
 
-UnknownText_0x1ec080: ; 0x1ec080
+BattleTowerText_0x1ec080: ; 0x1ec080
 	text "Work, work, work…"
 	line "I'm always busy!"
 	done

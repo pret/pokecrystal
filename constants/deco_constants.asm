@@ -51,35 +51,36 @@ const_value = 1
 	const SET_UP_ORNAMENT
 	const PUT_AWAY_ORNAMENT
 
-const_value = 2
+const_value = 1
+	const DECO_01
 	const DECO_FEATHERY_BED ; 2
 	const DECO_PINK_BED ; 3
 	const DECO_POLKADOT_BED ; 4
 	const DECO_PIKACHU_BED ; 5
-const_value = const_value + 1
+	const DECO_06
 	const DECO_RED_CARPET ; 7
 	const DECO_BLUE_CARPET ; 8
 	const DECO_YELLOW_CARPET ; 9
 	const DECO_GREEN_CARPET ; a
-const_value = const_value + 1
+	const DECO_0B
 	const DECO_MAGNAPLANT ; c
 	const DECO_TROPICPLANT ; d
 	const DECO_JUMBOPLANT ; e
-const_value = const_value + 1
+	const DECO_0F
 	const DECO_TOWN_MAP ; 10
 	const DECO_PIKACHU_POSTER ; 11
 	const DECO_CLEFAIRY_POSTER ; 12
 	const DECO_JIGGLYPUFF_POSTER ; 13
-const_value = const_value + 1
+	const DECO_14
 	const DECO_FAMICOM ; 15
 	const DECO_SNES ; 16
 	const DECO_N64 ; 17
 	const DECO_VIRTUAL_BOY ; 18
-const_value = const_value + 1
+	const DECO_19
 	const DECO_BIG_SNORLAX_DOLL ; 1a
 	const DECO_BIG_ONIX_DOLL ; 1b
 	const DECO_BIG_LAPRAS_DOLL ; 1c
-const_value = const_value + 1
+	const DECO_1D
 	const DECO_PIKACHU_DOLL ; 1e
 	const DECO_SURF_PIKACHU_DOLL ; 1f
 	const DECO_CLEFAIRY_DOLL ; 20

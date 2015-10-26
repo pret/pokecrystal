@@ -156,8 +156,8 @@ Route11_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_YOUNGSTER, 18, 26, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerYoungsterOwen, -1
-	person_event SPRITE_YOUNGSTER, 8, 24, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerYoungsterJason, -1
-	person_event SPRITE_YOUNGSTER, 11, 32, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerPsychicHerman, -1
-	person_event SPRITE_YOUNGSTER, 10, 12, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerPsychicFidel, -1
-	person_event SPRITE_FRUIT_TREE, 6, 36, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x68055, -1
+	person_event SPRITE_YOUNGSTER, 14, 22, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterOwen, -1
+	person_event SPRITE_YOUNGSTER, 4, 20, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterJason, -1
+	person_event SPRITE_YOUNGSTER, 7, 28, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerPsychicHerman, -1
+	person_event SPRITE_YOUNGSTER, 6, 8, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPsychicFidel, -1
+	person_event SPRITE_FRUIT_TREE, 2, 32, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x68055, -1

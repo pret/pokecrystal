@@ -36,10 +36,10 @@ PredefPointers:: ; 856b
 	add_predef FlagPredef
 	add_predef Functionc699
 	add_predef FillPP
-	add_predef Functiond88c
+	add_predef TryAddMonToParty
 	add_predef Functionda96
 	add_predef Functiondb3f ; $8
-	add_predef Functionde6e
+	add_predef SentPkmnIntoBox
 	add_predef GiveEgg
 	add_predef Functionc6e0
 	add_predef Functione167
@@ -82,9 +82,9 @@ PredefPointers:: ; 856b
 	add_predef Predef_LoadSGBLayout
 	add_predef Function91d11
 	add_predef CheckContestMon
-	add_predef Function8c20f
-	add_predef Function8c000
-	add_predef Function8c000_2
+	add_predef Predef_StartBattle
+	add_predef Predef35
+	add_predef Predef36
 	add_predef PlayBattleAnim
 	add_predef Predef38 ; $38
 	add_predef Predef39

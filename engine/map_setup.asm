@@ -1,6 +1,6 @@
 
 RunMapSetupScript:: ; 15363
-	ld a, [$ff9f]
+	ld a, [hMapEntryMethod]
 	and $f
 	dec a
 	ld c, a
@@ -30,57 +30,6 @@ MapSetupScripts: ; 15377
 	dw MapSetupScript11
 	dw MapSetupScript12
 ; 1538f
-
-
-; Command descriptions from Condensation water's scripting compendium.
-	const_def
-	const map_lcd_on              ; 00 = Turn LCD on
-	const map_lcd_off             ; 01 = Turn LCD off
-	const map_sound_off           ; 02 = Turn speakers off
-	const map_music               ; 03 = Music check for current map/ special check for bug catcher contest
-	const map_start_music         ; 04 = Start map music anew
-	const map_fade_music          ; 05 = Music check for current map / special check for Bug Contest/ music with FadeOut (old) and FadeIn
-	const map_fade                ; 06 = Fade out music + screen
-	const map_bike_music          ; 07 = If HIRO is on bike = bike music, else play map music
-	const map_music_force         ; 08 = Play map music
-	const map_max_volume          ; 09 = Turn music to highest volume
-	const map_load_blocks         ; 0A = Write map data to MapRAM
-	const map_connection_blocks   ; 0B = Compute map’s connection pars and write into MapRAM
-	const map_save_screen         ; 0C = Write current part of map into temporary memory
-	const map_buffer_screen       ; 0D = Write current part of map into read-from memory
-	const map_load_graphics       ; 0E = Write tileset header to ram/ load tileset/ load sprite tiles/ load special tiles
-	const map_load_tileset_header ; 0F = Write tileset header to ram
-	const map_time_of_day         ; 10 = Compute time of day/ Update screen
-	const map_palettes            ; 11 = Load map palettes
-	const map_wildmons            ; 12 = Load probabilities for wild Pokémon battles
-	const map_sprites             ; 13 = Delete sprite data and draw new sprites
-	const map_change_callback     ; 14 = Check 2nd script header for 05 and 03 callbacks
-	const map_start_callback      ; 15 = Check 2nd script header for 03 callbacks
-	const map_load_objects        ; 16 = Analyze people data anew and check 2nd script header for 02 callbacks
-	const map_load_spawn          ; 17 = Writes arrival data for arrival by flying/Blackout from table 05:5319 to ram
-	const map_load_connection     ; 18 = Writes arrival data for entering a map by connection to ram
-	const map_load_warp           ; 19 = Write warp data to ram when entering warp
-	const map_attributes          ; 1A = Load complete map data (primary, secondary, event, script headers)
-	const map_attributes_2        ; 1B = Same as 1A, but some settings aren’t loaded new from the rom, such as hide function of the people events
-	const map_clear_bg_palettes   ; 1C = Fill palette data with FFFF (=white)
-	const map_fade_out_palettes   ; 1D = All BG pallet color are converted to 0|0 (Pal0, Col0), all sprite colors to x|0 (FadeOut)
-	const map_fade_in_palettes    ; 1E = Palette FadeIn
-	const map_anchor_screen       ; 1F = Compute position of upper left-most block visible on screen
-	const map_warp_face           ; 20 = Position computation when HIRO leaves a warp
-	const map_face_down           ; 21 = Set HIRO’s facing to “down”
-	const map_spawn_coord         ; 22 = Prepare HIRO data for arrival by flight
-	const map_player_coord        ; 23 = Compute HIRO x/y data anew
-	const map_prolong_sprites     ; 24 = Prolong old sprites before removing them
-	const map_delay_sprites       ; 25 = Delay rendering new sprites
-	const map_update_roam         ; 26 = Compute chances to meet Raikou, Entei or Suicune
-	const map_keep_roam           ; 27 = Recover chances to meet Raikou, Entei or Suicune
-	const map_fade_out_music      ; 28 = Temporarily stop music playing
-	const map_animations_on       ; 29 = Activate animations
-	const map_animations_off      ; 2A = Deactivate animations
-	const map_keep_palettes       ; 2B = Recover all palettes
-	const map_text_scroll_off     ; 2C = Turn off text scroll (for town name overlays)
-	const map_stop_script         ; 2D = Deactivate code prolonging
-
 
 MapSetupScript4: ; 1538f
 	db map_prolong_sprites
@@ -112,7 +61,7 @@ MapSetupScript1: ; 15392
 	db map_fade_in_palettes
 	db map_animations_on
 	db map_wildmons
-	db -1
+	db map_end_setup_script
 
 MapSetupScript11: ; 153a9
 	db map_load_spawn
@@ -136,7 +85,7 @@ MapSetupScript11: ; 153a9
 	db map_fade_in_palettes
 	db map_animations_on
 	db map_wildmons
-	db -1
+	db map_end_setup_script
 
 MapSetupScript7: ; 153bf
 	db map_animations_off
@@ -155,7 +104,7 @@ MapSetupScript7: ; 153bf
 	db map_wildmons
 	db map_update_roam
 	db map_animations_on
-	db -1
+	db map_end_setup_script
 
 MapSetupScript6: ; 153d0
 	db map_prolong_sprites
@@ -184,7 +133,7 @@ MapSetupScript9: ; 153d2
 	db map_animations_on
 	db map_wildmons
 	db map_update_roam
-	db -1
+	db map_end_setup_script
 
 MapSetupScript3: ; 153e7
 	db map_fade
@@ -202,7 +151,7 @@ MapSetupScript3: ; 153e7
 	db map_fade_in_palettes
 	db map_animations_on
 	db map_wildmons
-	db -1
+	db map_end_setup_script
 
 MapSetupScript8: ; 153f7
 	db map_fade
@@ -221,7 +170,7 @@ MapSetupScript8: ; 153f7
 	db map_animations_on
 	db map_wildmons
 	db map_text_scroll_off
-	db -1
+	db map_end_setup_script
 
 MapSetupScript2: ; 15408
 	db map_lcd_off
@@ -241,12 +190,12 @@ MapSetupScript2: ; 15408
 	db map_fade_in_palettes
 	db map_animations_on
 	db map_wildmons
-	db -1
+	db map_end_setup_script
 
 MapSetupScript10: ; 1541a
 	db map_load_blocks
 	db map_connection_blocks
-	db -1
+	db map_end_setup_script
 
 
 ReadMapSetupScript: ; 1541d
@@ -374,13 +323,13 @@ Function154ea: ; 154ea
 ; 154eb
 
 DelayClearingOldSprites: ; 154eb
-	ld hl, wd45b
+	ld hl, wPlayerSpriteSetupFlags
 	set 7, [hl]
 	ret
 ; 154f1
 
 DelayLoadingNewSprites: ; 154f1
-	ld hl, wd45b
+	ld hl, wPlayerSpriteSetupFlags
 	set 6, [hl]
 	ret
 

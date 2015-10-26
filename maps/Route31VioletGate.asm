@@ -42,5 +42,5 @@ Route31VioletGate_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_OFFICER, 6, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, OfficerScript_0x197634, -1
-	person_event SPRITE_COOLTRAINER_F, 6, 5, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, CooltrainerFScript_0x197637, -1
+	person_event SPRITE_OFFICER, 2, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, OfficerScript_0x197634, -1
+	person_event SPRITE_COOLTRAINER_F, 2, 1, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, CooltrainerFScript_0x197637, -1

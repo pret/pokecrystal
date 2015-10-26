@@ -44,7 +44,7 @@ WantsToBattleText:: ; 0x807a9
 	prompt
 ; 0x807bd
 
-BattleText_0x807bd: ; 0x807bd
+BattleText_WildFled: ; 0x807bd
 	text "Wild @"
 	text_from_ram EnemyMonNick
 	text ""
@@ -52,7 +52,7 @@ BattleText_0x807bd: ; 0x807bd
 	prompt
 ; 0x807cf
 
-BattleText_0x807cf: ; 0x807cf
+BattleText_EnemyFled: ; 0x807cf
 	text "Enemy @"
 	text_from_ram EnemyMonNick
 	text ""
@@ -113,7 +113,7 @@ BattleText_0x80880: ; 0x80880
 	prompt
 ; 0x80899
 
-BattleText_0x80899: ; 0x80899
+BattleText_UserRecoveredPPUsing: ; 0x80899
 	text "<USER>"
 	line "recovered PP using"
 	cont "@"
@@ -129,13 +129,13 @@ BattleText_0x808b6: ; 0x808b6
 	prompt
 ; 0x808d2
 
-BattleText_0x808d2: ; 0x808d2
+BattleText_SafeguardFaded: ; 0x808d2
 	text "<USER>'s"
 	line "SAFEGUARD faded!"
 	prompt
 ; 0x808e7
 
-BattleText_0x808e7: ; 0x808e7
+BattleText_PkmnnLightScreenFell: ; 0x808e7
 	text_from_ram StringBuffer1
 	text " #MON's"
 	line "LIGHT SCREEN fell!"
@@ -149,42 +149,42 @@ BattleText_0x80905: ; 0x80905
 	prompt
 ; 0x8091f
 
-BattleText_0x8091f: ; 0x8091f
+BattleText_RainContinuesToFall: ; 0x8091f
 	text "Rain continues to"
 	line "fall."
 	prompt
 ; 0x80938
 
-BattleText_0x80938: ; 0x80938
+BattleText_TheSunlightIsStrong: ; 0x80938
 	text "The sunlight is"
 	line "strong."
 	prompt
 ; 0x80951
 
-BattleText_0x80951: ; 0x80951
+BattleText_TheSandstormRages: ; 0x80951
 	text "The SANDSTORM"
 	line "rages."
 	prompt
 ; 0x80967
 
-BattleText_0x80967: ; 0x80967
+BattleText_TheRainStopped: ; 0x80967
 	text "The rain stopped."
 	prompt
 ; 0x8097a
 
-BattleText_0x8097a: ; 0x8097a
+BattleText_TheSunlightFaded: ; 0x8097a
 	text "The sunlight"
 	line "faded."
 	prompt
 ; 0x8098f
 
-BattleText_0x8098f: ; 0x8098f
+BattleText_TheSandstormSubsided: ; 0x8098f
 	text "The SANDSTORM"
 	line "subsided."
 	prompt
 ; 0x809a8
 
-BattleText_0x809a8: ; 0x809a8
+BattleText_EnemyPkmnFainted: ; 0x809a8
 	text "Enemy @"
 	text_from_ram EnemyMonNick
 	text ""
@@ -199,7 +199,7 @@ GotMoneyForWinningText:
 	line "for winning!"
 	prompt
 
-BattleText_0x809da: ; 0x809da
+BattleText_EnemyWasDefeated: ; 0x809da
 	text "<ENEMY>"
 	line "was defeated!"
 	prompt
@@ -234,14 +234,14 @@ BattleText_0x80a4f: ; 0x80a4f
 	prompt
 ; 0x80a75
 
-BattleText_0x80a75: ; 0x80a75
+BattleText_PkmnFainted: ; 0x80a75
 	text_from_ram BattleMonNick
 	text ""
 	line "fainted!"
 	prompt
 ; 0x80a83
 
-BattleText_0x80a83: ; 0x80a83
+BattleText_UseNextMon: ; 0x80a83
 	text "Use next #MON?"
 	done
 ; 0x80a93
@@ -259,7 +259,7 @@ LostAgainstText: ; 0x80ab9
 	prompt
 ; 0x80aca
 
-BattleText_0x80aca: ; 0x80aca
+BattleText_EnemyIsAboutToUseWillPlayerChangePkmn: ; 0x80aca
 	text "<ENEMY>"
 	line "is about to use"
 	cont "@"
@@ -271,7 +271,7 @@ BattleText_0x80aca: ; 0x80aca
 	done
 ; 0x80af8
 
-BattleText_0x80af8: ; 0x80af8
+BattleText_EnemySentOut: ; 0x80af8
 	text "<ENEMY>"
 	line "sent out"
 	cont "@"
@@ -280,34 +280,32 @@ BattleText_0x80af8: ; 0x80af8
 	done
 ; 0x80b0b
 
-BattleText_0x80b0b: ; 0x80b0b
+BattleText_TheresNoWillToBattle: ; 0x80b0b
 	text "There's no will to"
 	line "battle!"
 	prompt
 ; 0x80b26
 
-BattleText_0x80b26: ; 0x80b26
+BattleText_AnEGGCantBattle: ; 0x80b26
 	text "An EGG can't"
 	line "battle!"
 	prompt
 ; 0x80b3b
 
-BattleText_0x80b3b: ; 0x80b3b
+BattleText_CantEscape2: ; 0x80b3b
 	text "Can't escape!"
 	prompt
 ; 0x80b49
 
-BattleText_0x80b49: ; 0x80b49
+BattleText_TheresNoEscapeFromTrainerBattle: ; 0x80b49
 	text "No! There's no"
 	line "running from a"
 	cont "trainer battle!"
 	prompt
-; 0x80b77
 
-BattleText_0x80b77: ; 0x80b77
+BattleText_GotAwaySafely: ; 0x80b77
 	text "Got away safely!"
 	prompt
-; 0x80b89
 
 BattleText_0x80b89: ; 0x80b89
 	text "<USER>"
@@ -318,7 +316,7 @@ BattleText_0x80b89: ; 0x80b89
 	prompt
 ; 0x80ba0
 
-BattleText_0x80ba0: ; 0x80ba0
+BattleText_CantEscape: ; 0x80ba0
 	text "Can't escape!"
 	prompt
 ; 0x80bae
@@ -1282,7 +1280,7 @@ IgnoredOrders2Text: ; 0x81850
 	prompt
 ; 0x81863
 
-BattleText_0x81863: ; 0x81863
+BattleText_LinkErrorBattleCanceled: ; 0x81863
 	text "Link error…"
 
 	para "The battle has"

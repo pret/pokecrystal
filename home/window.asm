@@ -1,6 +1,6 @@
 ResetWindow:: ; 2dba
 
-	call Function1fbf
+	call ResetTextRelatedRAM
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(Function6454) ; and BANK(Function64bf)
@@ -16,12 +16,14 @@ ResetWindow:: ; 2dba
 ; 2dcf
 
 
-Function2dcf:: ; 2dcf
+LoadMoveSprites:: ; 2dcf
 	ld a, [hOAMUpdate]
 	push af
 	ld a, $1
 	ld [hOAMUpdate], a
+
 	call Function2de2
+
 	pop af
 	ld [hOAMUpdate], a
 	ld hl, VramState
@@ -30,7 +32,7 @@ Function2dcf:: ; 2dcf
 ; 2de2
 
 Function2de2:: ; 2de2
-	call Function1fbf
+	call ResetTextRelatedRAM
 	xor a
 	ld [hBGMapMode], a
 	call Function2173
@@ -46,8 +48,8 @@ Function2de2:: ; 2de2
 	ret
 ; 2e08
 
-Function2e08:: ; 2e08
-	call Function1fbf
+LoadFont:: ; 2e08
+	call ResetTextRelatedRAM
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(Function6454) ; and BANK(Function64bf)
@@ -68,7 +70,9 @@ Function2e20:: ; 2e20
 	push af
 	ld a, $1
 	ld [hOAMUpdate], a
+
 	callba Function104110
+
 	pop af
 	ld [hOAMUpdate], a
 	ret

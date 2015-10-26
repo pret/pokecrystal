@@ -48,6 +48,6 @@ ViridianMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 7, 5, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x9b5e7, -1
-	person_event SPRITE_LASS, 6, 11, $5, 0, 2, -1, -1, 0, 0, 0, LassScript_0x9b5ee, -1
-	person_event SPRITE_COOLTRAINER_M, 10, 5, $7, 0, 0, -1, -1, 0, 0, 0, CooltrainerMScript_0x9b5f1, -1
+	person_event SPRITE_CLERK, 3, 1, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x9b5e7, -1
+	person_event SPRITE_LASS, 2, 7, $5, 0, 2, -1, -1, 0, 0, 0, LassScript_0x9b5ee, -1
+	person_event SPRITE_COOLTRAINER_M, 6, 1, $7, 0, 0, -1, -1, 0, 0, 0, CooltrainerMScript_0x9b5f1, -1

@@ -54,5 +54,5 @@ OlivinePunishmentSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKEFAN_M, 6, 5, $3, 0, 0, -1, -1, 0, 0, 0, OlivinePunishmentSpeechHouseDad, -1
-	person_event SPRITE_LASS, 9, 9, $5, 0, 2, -1, -1, 0, 0, 0, OlivinePunishmentSpeechHouseDaughter, -1
+	person_event SPRITE_POKEFAN_M, 2, 1, $3, 0, 0, -1, -1, 0, 0, 0, OlivinePunishmentSpeechHouseDad, -1
+	person_event SPRITE_LASS, 5, 5, $5, 0, 2, -1, -1, 0, 0, 0, OlivinePunishmentSpeechHouseDaughter, -1

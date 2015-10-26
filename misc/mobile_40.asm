@@ -84,7 +84,7 @@ Function100082: ; 100082
 	ld [hLCDStatCustom], a
 	ld a, $1
 	ld [$ffc9], a
-	ld [$ffe9], a
+	ld [hMobile], a
 	ei
 	ret
 ; 0x1000a4
@@ -93,7 +93,7 @@ Function1000a4: ; 1000a4
 	di
 	xor a
 	ld [$ffc9], a
-	ld [$ffe9], a
+	ld [hMobile], a
 	xor a
 	ld [hVBlank], a
 	call NormalSpeed
@@ -166,19 +166,19 @@ Function1000fa: ; 1000fa
 	ld [rIE], a
 	xor a
 	ld [$ffc9], a
-	ld [$ffe9], a
+	ld [hMobile], a
 	ei
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	push af
 	xor a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	ld a, $4
 	ld [wPartyMonMenuIconAnims + 5], a
 	callba Function11619d
 	ld hl, wcd29
 	set 6, [hl]
 	pop af
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	ret
 ; 100144
 
@@ -332,7 +332,7 @@ Function100232: ; 100232
 	pop de
 	call PlaceString
 	call Function100320
-	call Functiona36
+	call JoyWaitAorB
 	ret
 ; 10024d
 
@@ -407,10 +407,10 @@ Function1002c9: ; 1002c9
 
 Function1002dc: ; 1002dc
 	ld a, $f8
-	ld [$ff9f], a
+	ld [hMapEntryMethod], a
 	callba RunMapSetupScript
 	xor a
-	ld [$ff9f], a
+	ld [hMapEntryMethod], a
 	call Functione51
 	ret
 ; 1002ed
@@ -432,7 +432,7 @@ Function100301: ; 100301
 	callba Function10202c
 	callba Function115dd3
 	call Function100320
-	call Functiona36
+	call JoyWaitAorB
 	ret
 ; 100320
 
@@ -1097,7 +1097,7 @@ Function100697: ; 100697
 	ret
 
 .asm_1006b4
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ret
 
@@ -1484,7 +1484,7 @@ Function100902: ; 100902
 	hlcoord 4, 11
 	call PlaceString
 	hlcoord 8, 11
-	ld bc, $0102
+	lb bc, 1, 2
 	ld de, StringBuffer2
 	call PrintNum
 	ld de, SFX_TWO_PC_BEEPS
@@ -1612,7 +1612,7 @@ Function100a09: ; 100a09
 	call Function100a2e
 	ld [wd431], a
 	callba Function4000
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $4
 	jr nz, .asm_100a2a
 	call Function100a87
@@ -1786,12 +1786,12 @@ Function100b12: ; 100b12
 	ld a, BANK(BattleMenuDataHeader)
 	ld [wcf94], a
 	ld a, [wd0d2]
-	ld [wcf88], a
+	ld [wPocketCursorBuffer], a
 	call Function100e72
 	call Function100b45
 	callba Function8e85
 	call Function100ed4
-	ld a, [wcf88]
+	ld a, [wPocketCursorBuffer]
 	ld [wd0d2], a
 	call ExitMenu
 	ret
@@ -1818,7 +1818,7 @@ Function100b45: ; 100b45
 	ld c, a
 	ld a, [wcfa3]
 	call SimpleMultiply
-	ld [wcf88], a
+	ld [wPocketCursorBuffer], a
 	and a
 	ret
 ; 100b7a
@@ -1843,7 +1843,7 @@ Function100b9f: ; 100b9f
 	callba Function3e786
 	ret z
 	call Function100dd8
-	jp c, Function2ec8
+	jp c, xor_a_dec_a
 	call Function100e72
 	call Function100bc2
 	push af
@@ -1959,7 +1959,7 @@ Function100c74: ; 100c74
 	ld c, 8
 	call TextBox
 	ld hl, BattleMonMoves
-	ld de, wd25e
+	ld de, wListMoves_MoveIndicesBuffer
 	ld bc, NUM_MOVES
 	call CopyBytes
 	ld a, SCREEN_WIDTH * 2
@@ -2010,7 +2010,7 @@ Function100cb5: ; 100cb5
 	cp b
 	jr z, .asm_100d17
 	ld [wd0d8], a
-	ld a, [$ffa9]
+	ld a, [hJoyLast]
 	ld b, a
 	bit 1, b
 	jr nz, .asm_100d17
@@ -2134,7 +2134,7 @@ Function100db0: ; 100db0
 
 
 Function100dc0: ; 100dc0
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $4
 	jr nz, .asm_100dd0
 	ld hl, wcd2a
@@ -2497,7 +2497,7 @@ Unknown_100ff3: ; 100ff3
 	dbwww $80, PlayerName, NAME_LENGTH, NULL
 	dbwww $80, PlayerName, NAME_LENGTH, NULL
 	dbwww $80, PlayerID, 2, NULL
-	dbwww $80, wd84a, 2, NULL
+	dbwww $80, wSecretID, 2, NULL
 	dbwww $80, PlayerGender, 1, NULL
 	dbwww $04, $a603, 8, NULL
 	dbwww $04, $a007, $30, NULL
@@ -2770,13 +2770,13 @@ Function1011f1: ; 1011f1
 	ld [wdc5f], a
 	ld [wdc60], a
 	ld a, $4
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	ret
 ; 101220
 
 Function101220: ; 101220
 	xor a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	ret
 ; 101225
 
@@ -3911,7 +3911,7 @@ Function101913: ; 101913
 ; 10194b
 
 Function10194b: ; 10194b
-	call Function2ed3
+	call DisableSpriteUpdates
 	call ClearSprites
 	callba Function1021f9
 	ld hl, wcd29
@@ -4979,7 +4979,7 @@ Function102142: ; 102142
 	call MenuTextBox
 	ld de, SFX_LEVEL_UP
 	call PlaySFX
-	call Functiona36
+	call JoyWaitAorB
 	call ExitMenu
 	call Function10219f
 	ld hl, UnknownText_0x1021d6
@@ -5022,7 +5022,7 @@ Function10219f: ; 10219f
 	call Function10218d
 	ld de, $c608 + 1
 	callba Function8ac4e
-	call Functiona36
+	call JoyWaitAorB
 	call PlayClickSFX
 	call Function1013aa
 	ret
@@ -5056,7 +5056,7 @@ UnknownText_0x1021db: ; 1021d1
 
 Function1021e0: ; 1021e0
 	call MenuTextBox
-	call Functiona36
+	call JoyWaitAorB
 	call ExitMenu
 	ret
 ; 1021ea
@@ -5401,7 +5401,7 @@ Function102423: ; 102423
 	call Function102921
 	ret nc
 	callba Function14a58
-	callba Function1060af
+	callba MobileFn_1060af
 	callba Function106187
 	ld hl, wcd4b
 	set 1, [hl]
@@ -6408,7 +6408,7 @@ Function102b12: ; 102b12
 	ld c, $64
 	call DelayFrames
 	call Function102d9a
-	call Functione58
+	call LoadFontsBattleExtra
 	ld a, [wcd2f]
 	and a
 	jr nz, .asm_102b2b
@@ -6612,12 +6612,12 @@ Function102c71: ; 102c71
 ; 102c87
 
 Function102c87: ; 102c87
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	push af
 	ld a, [wcf64]
 	push af
 	ld a, [wcd4c]
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ld a, [PartyCount]
 	ld [wcf64], a
 	ld a, $0
@@ -6632,7 +6632,7 @@ Function102c87: ; 102c87
 	ld bc, $011a
 	call Function102d3e
 	ld a, [wcd4d]
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ld a, [OTPartyCount]
 	ld [wcf64], a
 	ld a, $5
@@ -6649,18 +6649,18 @@ Function102c87: ; 102c87
 	pop af
 	ld [wcf64], a
 	pop af
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ret
 ; 102cee
 
 Function102cee: ; 102cee
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	dec a
 	call Function102d34
 	ld de, DefaultFlypoint
 	ld bc, $002f
 	call CopyBytes
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	ld c, a
 	ld a, $6
 	sub c
@@ -6669,7 +6669,7 @@ Function102cee: ; 102cee
 	ld hl, $0000
 	call AddNTimes
 	push hl
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	dec a
 	call Function102d34
 	ld d, h
@@ -6802,7 +6802,7 @@ Function102e07: ; 102e07
 	hlcoord 3, 10
 	ld b, $1
 	ld c, $b
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jr z, .asm_102e19
 	call TextBox
@@ -7557,7 +7557,7 @@ Function1034e0: ; 1034e0
 	add hl, bc
 	pop bc
 	ld a, $6
-	call Functionfb8
+	call FillBoxWithByte
 	ret
 ; 1034f1
 
@@ -7688,7 +7688,7 @@ Function103612: ; 103612
 	ld a, [wdc40]
 	and $f
 	jr z, .asm_103622
-	ld [wcf88], a
+	ld [wPocketCursorBuffer], a
 
 .asm_103622
 	call InterpretMenu2
@@ -7749,7 +7749,7 @@ Mobile_SelectThreeMons: ; 10366e
 	jr c, .asm_103696
 	callba Function8b1e1
 	jr nc, .asm_103690
-	call Functiona36
+	call JoyWaitAorB
 	jr .asm_103696
 
 .asm_103690
@@ -7772,7 +7772,7 @@ Mobile_SelectThreeMons: ; 10366e
 	call YesNoBox
 	jr c, .asm_1036b5
 	call Function1036f9
-	call Functiona36
+	call JoyWaitAorB
 
 .asm_1036b5
 	call Function103700
@@ -7794,7 +7794,7 @@ Mobile_SelectThreeMons: ; 10366e
 .asm_1036d9
 	callba Function8b1e1
 	jr nc, .asm_1036e6
-	call Functiona36
+	call JoyWaitAorB
 	jr .asm_1036f4
 
 .asm_1036e6
@@ -7804,7 +7804,7 @@ Mobile_SelectThreeMons: ; 10366e
 
 .asm_1036ec
 	call Function1036f9
-	call Functiona36
+	call JoyWaitAorB
 	jr .asm_1036b5
 
 .asm_1036f4
@@ -7859,7 +7859,7 @@ Function103700: ; 103700
 .asm_10373c
 	ld hl, UnknownText_0x10377b
 	call PrintText
-	call Functiona36
+	call JoyWaitAorB
 	scf
 	ret
 ; 103747
@@ -7981,10 +7981,10 @@ Function1037eb: ; 1037eb
 	jr nc, .asm_103807
 	ld hl, UnknownText_0x103819
 	call PrintText
-	call Functiona36
+	call JoyWaitAorB
 	ld hl, UnknownText_0x10381e
 	call PrintText
-	call Functiona36
+	call JoyWaitAorB
 	xor a
 	ld [ScriptVar], a
 	ret
@@ -8042,7 +8042,7 @@ endr
 	ld [hl], a
 	ld hl, UnknownText_0x103876
 	call PrintText
-	call Functiona36
+	call JoyWaitAorB
 	callba Script_reloadmappart
 	callba Function4a94e
 	jr c, .asm_103870
@@ -8074,7 +8074,7 @@ Function10387b: ; 10387b
 	ld [StringBuffer2], a
 	ld hl, UnknownText_0x103898
 	call PrintText
-	call Functiona36
+	call JoyWaitAorB
 	ret
 ; 103898
 

@@ -946,17 +946,17 @@ Route32_MapEventHeader:
 
 .PersonEvents:
 	db 14
-	person_event SPRITE_FISHER, 53, 12, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 1, TrainerFisherJustin, -1
-	person_event SPRITE_FISHER, 60, 16, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerFisherRalph1, -1
-	person_event SPRITE_FISHER, 52, 10, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 1, TrainerFisherHenry, -1
-	person_event SPRITE_YOUNGSTER, 26, 16, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerYoungsterAlbert, -1
-	person_event SPRITE_YOUNGSTER, 67, 8, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerYoungsterGordon, -1
-	person_event SPRITE_YOUNGSTER, 49, 7, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerCamperRoland, -1
-	person_event SPRITE_LASS, 34, 14, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 1, TrainerPicnickerLiz1, -1
-	person_event SPRITE_COOLTRAINER_M, 12, 23, $8, 0, 0, -1, -1, 0, 0, 0, CooltrainerMScript_0x19046f, -1
-	person_event SPRITE_YOUNGSTER, 86, 15, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerBird_keeperPeter, -1
-	person_event SPRITE_FISHER, 74, 11, $6, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x1904f2, EVENT_SLOWPOKE_WELL_ROCKETS
-	person_event SPRITE_POKE_BALL, 57, 10, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x190773, EVENT_ROUTE_32_GREAT_BALL
-	person_event SPRITE_FISHER, 17, 19, $9, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x1904ce, -1
-	person_event SPRITE_LASS, 71, 16, $8, 0, 0, -1, -1, 0, 0, 0, FriedaScript, EVENT_ROUTE_32_FRIEDA_OF_FRIDAY
-	person_event SPRITE_POKE_BALL, 34, 7, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x190775, EVENT_ROUTE_32_REPEL
+	person_event SPRITE_FISHER, 49, 8, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherJustin, -1
+	person_event SPRITE_FISHER, 56, 12, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerFisherRalph1, -1
+	person_event SPRITE_FISHER, 48, 6, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherHenry, -1
+	person_event SPRITE_YOUNGSTER, 22, 12, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterAlbert, -1
+	person_event SPRITE_YOUNGSTER, 63, 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterGordon, -1
+	person_event SPRITE_YOUNGSTER, 45, 3, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerCamperRoland, -1
+	person_event SPRITE_LASS, 30, 10, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerPicnickerLiz1, -1
+	person_event SPRITE_COOLTRAINER_M, 8, 19, $8, 0, 0, -1, -1, 0, 0, 0, CooltrainerMScript_0x19046f, -1
+	person_event SPRITE_YOUNGSTER, 82, 11, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperPeter, -1
+	person_event SPRITE_FISHER, 70, 7, $6, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x1904f2, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_POKE_BALL, 53, 6, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x190773, EVENT_ROUTE_32_GREAT_BALL
+	person_event SPRITE_FISHER, 13, 15, $9, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x1904ce, -1
+	person_event SPRITE_LASS, 67, 12, $8, 0, 0, -1, -1, 0, 0, 0, FriedaScript, EVENT_ROUTE_32_FRIEDA_OF_FRIDAY
+	person_event SPRITE_POKE_BALL, 30, 3, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x190775, EVENT_ROUTE_32_REPEL

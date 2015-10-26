@@ -12,7 +12,7 @@ DoPlayerTurn: ; 34000
 DoEnemyTurn: ; 3400a
 	call SetEnemyTurn
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, DoTurn
 
@@ -285,7 +285,7 @@ CheckPlayerTurn:
 	cp $80
 	jr nc, .not_confused
 
-	; clear confussion-dependent substatus
+	; clear confusion-dependent substatus
 	ld hl, PlayerSubStatus3
 	ld a, [hl]
 	and 1 << SUBSTATUS_CONFUSED
@@ -696,11 +696,11 @@ BattleCommand02: ; 343db
 
 	; No obedience in link battles
 	; (since no handling exists for enemy)
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	ret nz
 
@@ -1036,13 +1036,13 @@ BattleCommand04: ; 34555
 
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_34570
+	jr z, .proceed
 
 	ld hl, EnemyMonPP
 	ld de, EnemySubStatus3
 	ld bc, EnemyTurnsTaken
 
-.asm_34570
+.proceed
 
 ; If we've gotten this far, this counts as a turn.
 	ld a, [bc]
@@ -1080,7 +1080,7 @@ endr
 	jr z, .asm_345a4
 
 ; skip this part entirely if wildbattle
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .asm_345c5
 
@@ -1390,7 +1390,7 @@ BattleCommand07: ; 346d2
 	cp c
 	jr z, .stab
 
-	jr .asm_3473a
+	jr .SkipStab
 
 .stab
 	ld hl, CurDamage + 1
@@ -1412,13 +1412,13 @@ BattleCommand07: ; 346d2
 	ld hl, TypeModifier
 	set 7, [hl]
 
-.asm_3473a
+.SkipStab
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVar
 	ld b, a
 	ld hl, TypeMatchup
 
-.asm_34743
+.TypesLoop
 	ld a, [hli]
 
 	cp $ff
@@ -1426,88 +1426,90 @@ BattleCommand07: ; 346d2
 
 	; foresight
 	cp $fe
-	jr nz, .asm_34757
+	jr nz, .SkipForesightCheck
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
 	bit SUBSTATUS_IDENTIFIED, a
 	jr nz, .end
 
-	jr .asm_34743
+	jr .TypesLoop
 
-.asm_34757
+.SkipForesightCheck
 	cp b
-	jr nz, .asm_347b3
+	jr nz, .SkipType
 	ld a, [hl]
 	cp d
-	jr z, .asm_34763
+	jr z, .GotMatchup
 	cp e
-	jr z, .asm_34763
-	jr .asm_347b3
+	jr z, .GotMatchup
+	jr .SkipType
 
-.asm_34763
+.GotMatchup
 	push hl
 	push bc
 	inc hl
 	ld a, [TypeModifier]
 	and %10000000
 	ld b, a
+; If the target is immune to the move, treat it as a miss and calculate the damage as 0
 	ld a, [hl]
 	and a
-	jr nz, .asm_34775
+	jr nz, .NotImmune
 	inc a
 	ld [AttackMissed], a
 	xor a
-.asm_34775
-	ld [$ffb7], a
+.NotImmune
+	ld [hMultiplier], a
 	add b
 	ld [TypeModifier], a
 
 	xor a
-	ld [$ffb4], a
+	ld [hMultiplicand + 0], a
 
 	ld hl, CurDamage
 	ld a, [hli]
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	ld a, [hld]
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 
 	call Multiply
 
-	ld a, [$ffb4]
+	ld a, [hProduct + 1]
 	ld b, a
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	or b
 	ld b, a
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	or b
-	jr z, .asm_347ab
+	jr z, .ok ; This is a very convoluted way to get back that we've essentially dealt no damage.
 
-	ld a, $a
-	ld [$ffb7], a
-	ld b, $4
+; Take the product and divide it by 10.
+	ld a, 10
+	ld [hDivisor], a
+	ld b, 4
 	call Divide
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	ld b, a
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	or b
-	jr nz, .asm_347ab
+	jr nz, .ok
 
-	ld a, $1
-	ld [$ffb6], a
+	ld a, 1
+	ld [hMultiplicand + 2], a
 
-.asm_347ab
-	ld a, [$ffb5]
+.ok
+	ld a, [hMultiplicand + 1]
 	ld [hli], a
-	ld a, [$ffb6]
+	ld a, [hMultiplicand + 2]
 	ld [hl], a
 	pop bc
 	pop hl
 
-.asm_347b3
+.SkipType
 rept 2
 	inc hl
 endr
-	jr .asm_34743
+	jr .TypesLoop
 
 .end
 	call Function347c8
@@ -1545,38 +1547,38 @@ Function347d3: ; 347d3
 	ld a, 10 ; 1.0
 	ld [wd265], a
 	ld hl, TypeMatchup
-.asm_347e7
+.TypesLoop
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_3482f
+	jr z, .End
 	cp $fe
-	jr nz, .asm_347fb
+	jr nz, .Next
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
 	bit SUBSTATUS_IDENTIFIED, a
-	jr nz, .asm_3482f
-	jr .asm_347e7
-.asm_347fb
+	jr nz, .End
+	jr .TypesLoop
+.Next
 	cp d
-	jr nz, .asm_34807
+	jr nz, .Nope
 	ld a, [hli]
 	cp b
-	jr z, .asm_3480b
+	jr z, .Yup
 	cp c
-	jr z, .asm_3480b
-	jr .asm_34808
-.asm_34807
+	jr z, .Yup
+	jr .Nope2
+.Nope
 	inc hl
-.asm_34808
+.Nope2
 	inc hl
-	jr .asm_347e7
-.asm_3480b
+	jr .TypesLoop
+.Yup
 	xor a
-	ld [$ffb3], a
-	ld [$ffb4], a
-	ld [$ffb5], a
+	ld [hDividend + 0], a
+	ld [hMultiplicand + 0], a
+	ld [hMultiplicand + 1], a
 	ld a, [hli]
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld a, [wd265]
 	ld [hMultiplier], a
 	call Multiply
@@ -1586,11 +1588,11 @@ Function347d3: ; 347d3
 	ld b, 4
 	call Divide
 	pop bc
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld [wd265], a
-	jr .asm_347e7
+	jr .TypesLoop
 
-.asm_3482f
+.End
 	pop bc
 	pop de
 	pop hl
@@ -1603,14 +1605,14 @@ BattleCommanda3: ; 34833
 	ld a, [wd265]
 	and a
 	ld a, 10 ; 1.0
-	jr nz, .asm_3484a
+	jr nz, .skip
 	call ResetDamage
 	xor a
 	ld [TypeModifier], a
 	inc a
 	ld [AttackMissed], a
 	ret
-.asm_3484a
+.skip
 	ld [wd265], a
 	ret
 ; 3484e
@@ -2305,12 +2307,12 @@ BattleCommand08: ; 34cfd
 .go
 ; Start with the maximum damage.
 	xor a
-	ld [$ffb4], a
+	ld [hMultiplicand + 0], a
 	dec hl
 	ld a, [hli]
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	ld a, [hl]
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 
 ; Multiply by 85-100%...
 .loop
@@ -2319,20 +2321,20 @@ BattleCommand08: ; 34cfd
 	cp $d9 ; 85%
 	jr c, .loop
 
-	ld [$ffb7], a
+	ld [hMultiplier], a
 	call Multiply
 
 ; ...divide by 100%...
 	ld a, $ff ; 100%
-	ld [$ffb7], a
+	ld [hDivisor], a
 	ld b, $4
 	call Divide
 
 ; ...to get .85-1.00x damage.
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	ld hl, CurDamage
 	ld [hli], a
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld [hl], a
 	ret
 ; 34d32
@@ -2594,10 +2596,10 @@ BattleCommand09: ; 34d32
 	sub c
 	ld c, a
 	xor a
-	ld [$ffb4], a
-	ld [$ffb5], a
+	ld [hMultiplicand + 0], a
+	ld [hMultiplicand + 1], a
 	ld a, [hl]
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	push hl
 	ld d, $2
 
@@ -2611,15 +2613,15 @@ BattleCommand09: ; 34d32
 	add hl, bc
 	pop bc
 	ld a, [hli]
-	ld [$ffb7], a
+	ld [hMultiplier], a
 	call Multiply
 	ld a, [hl]
-	ld [$ffb7], a
+	ld [hDivisor], a
 	ld b, $4
 	call Divide
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld b, a
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	or b
 	jr nz, .asm_34ea2
 	ld [$ffb5], a
@@ -3519,7 +3521,7 @@ Function3534d: ; 3534d
 	inc l
 
 .asm_3536b
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp 3
 	jr z, .done
 
@@ -3833,15 +3835,15 @@ BattleCommanda1: ; 35461
 	sub b
 	ld [DefaultFlypoint], a
 .asm_3550d
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .asm_3556b
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_35532
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	jr nz, .asm_35532
 
@@ -4344,18 +4346,18 @@ BattleCommand3f: ; 35726
 .asm_3579d
 	xor a
 	ld [$ffb3], a
-	ld [$ffb4], a
+	ld [hMultiplicand + 0], a
 	ld a, [hli]
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	ld a, [hli]
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld a, $30
-	ld [$ffb7], a
+	ld [hMultiplier], a
 	call Multiply
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
-	ld [$ffb7], a
+	ld [hDivisor], a
 	ld a, b
 	and a
 	jr z, .asm_357d6
@@ -4365,22 +4367,22 @@ BattleCommand3f: ; 35726
 	rr a
 	srl b
 	rr a
-	ld [$ffb7], a
-	ld a, [$ffb5]
+	ld [hDivisor], a
+	ld a, [hProduct + 2]
 	ld b, a
 	srl b
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	rr a
 	srl b
 	rr a
-	ld [$ffb6], a
+	ld [hDividend + 3], a
 	ld a, b
-	ld [$ffb5], a
+	ld [hDividend + 2], a
 
 .asm_357d6
 	ld b, $4
 	call Divide
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld b, a
 	ld hl, .FlailPower
 
@@ -4823,7 +4825,7 @@ BattleCommand46: ; 35a74
 
 	call Function372d8
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_35a83
 	call AnimateFailedMove
@@ -4886,7 +4888,7 @@ BattleCommand46: ; 35a74
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_35af6
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_35af6
 	ld a, [hl]
@@ -5178,7 +5180,7 @@ endr
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .asm_35c81
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_35c81
 	ld hl, wc739
@@ -5544,7 +5546,7 @@ BattleCommand14: ; 35e5c
 
 	call AnimateCurrentMove
 	ld b, $7
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	jr z, .asm_35ea4
 	ld b, $3
@@ -5583,11 +5585,11 @@ Function35ece: ; 35ece
 	jr z, .asm_35eec
 
 	; Not in link battle
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_35eec
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	jr nz, .asm_35eec
 
@@ -5676,18 +5678,23 @@ BattleCommand2f: ; 35f2c
 	call GetBattleVar
 	and a
 	jr nz, .asm_35fb8
+
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_35f89
-	ld a, [InLinkBattle]
+
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_35f89
-	ld a, [wcfc0]
+
+	ld a, [InBattleTowerBattle]
 	and a
 	jr nz, .asm_35f89
+
 	ld a, [PlayerSubStatus5]
 	bit SUBSTATUS_LOCK_ON, a
 	jr nz, .asm_35f89
+
 	call BattleRandom
 	cp $40
 	jr c, .asm_35fb8
@@ -6093,7 +6100,7 @@ BattleCommand7d: ; 361e0
 	jr BattleCommand1c
 BattleCommand1c: ; 361e4
 ; statup
-	call Function361ef
+	call CheckIfStatCanBeRaised
 	ld a, [FailedMessage]
 	and a
 	ret nz
@@ -6101,7 +6108,7 @@ BattleCommand1c: ; 361e4
 ; 361ef
 
 
-Function361ef: ; 361ef
+CheckIfStatCanBeRaised: ; 361ef
 	ld a, b
 	ld [LoweredStat], a
 	ld hl, PlayerStatLevels
@@ -6323,11 +6330,12 @@ BattleCommand1d: ; 362e3
 	ld a, [hBattleTurn]
 	and a
 	jr z, .DidntMiss
-	ld a, [InLinkBattle]
+
+	ld a, [wLinkMode]
 	and a
 	jr nz, .DidntMiss
 
-	ld a, [wcfc0]
+	ld a, [InBattleTowerBattle]
 	and a
 	jr nz, .DidntMiss
 
@@ -6868,7 +6876,7 @@ rept 2
 endr
 
 	xor a
-	ld [hMultiplicand], a
+	ld [hMultiplicand + 0], a
 	ld a, [de]
 	ld [hMultiplicand + 1], a
 	inc de
@@ -7116,7 +7124,7 @@ BattleCommanda0: ; 36778
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .asm_367bf
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .failed
 	ld a, [CurPartyLevel]
@@ -7141,7 +7149,7 @@ BattleCommanda0: ; 36778
 	jp PrintButItFailed
 
 .asm_367bf
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .failed
 	ld a, [BattleMonLevel]
@@ -7180,10 +7188,10 @@ BattleCommanda0: ; 36778
 
 
 Function36804: ; 36804
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $c0
 	or $2
-	ld [wd0ee], a
+	ld [wBattleResult], a
 	ret
 ; 3680f
 
@@ -7206,7 +7214,7 @@ BattleCommand23: ; 3680f
 	ld a, [AttackMissed]
 	and a
 	jr nz, .asm_36852 ; 36830 $20
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_36869 ; 36836 $31
 	ld a, [CurPartyLevel]
@@ -7292,7 +7300,7 @@ BattleCommand23: ; 3680f
 	and a
 	jr nz, .asm_368f3
 
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_36908
 
@@ -7488,7 +7496,7 @@ BattleCommand24: ; 369b6
 	dec a
 	jr .asm_36a3a
 .asm_36a0b
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	cp $1
 	jp z, .asm_36a1e
 	ld a, [OTPartyCount]
@@ -8168,18 +8176,23 @@ BattleCommand30: ; 36dc7
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_36e0e
-	ld a, [InLinkBattle]
+
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_36e0e
-	ld a, [wcfc0]
+
+	ld a, [InBattleTowerBattle]
 	and a
 	jr nz, .asm_36e0e
+
 	ld a, [PlayerSubStatus5]
 	bit SUBSTATUS_LOCK_ON, a
 	jr nz, .asm_36e0e
+
 	call BattleRandom
 	cp $40
 	jr c, .asm_36e52
+
 .asm_36e0e
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarAddr
@@ -8506,7 +8519,7 @@ BattleCommand35: ; 36f9d
 
 BattleCommand36: ; 36fe1
 	call AnimateCurrentMove
-	callba Function1060e5
+	callba MobileFn_1060e5
 	jp PrintNothingHappened
 ; 36fed
 
@@ -9139,7 +9152,7 @@ CheckSubstituteOpp: ; 37378
 
 
 BattleCommand1a: ; 37380
-	callba Function10610d
+	callba MobileFn_10610d
 	ld a, $4
 	ld [wcfca], a
 	ld c, $3
@@ -9268,7 +9281,7 @@ BattleCommand53: ; 37563
 	and a
 	jr z, .party
 
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .done
 
@@ -9459,7 +9472,7 @@ BattleCommand60: ; 3784b
 	ld hl, EnemyMonHappiness
 .ok
 	xor a
-	ld [hMultiplicand], a
+	ld [hMultiplicand + 0], a
 	ld [hMultiplicand + 1], a
 	ld a, [hl]
 	ld [hMultiplicand + 2], a
@@ -9480,7 +9493,7 @@ BattleCommand60: ; 3784b
 BattleCommand61: ; 37874
 ; present
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $3
 	jr z, .asm_3787d
 	push bc
@@ -9489,7 +9502,7 @@ BattleCommand61: ; 37874
 
 	call BattleCommand07
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $3
 	jr z, .asm_37889
 	pop de
@@ -9584,18 +9597,18 @@ BattleCommand63: ; 3790e
 .asm_3791a
 	ld a, $ff
 	sub [hl]
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	xor a
-	ld [$ffb4], a
-	ld [$ffb5], a
+	ld [hMultiplicand + 0], a
+	ld [hMultiplicand + 1], a
 	ld a, 10
-	ld [$ffb7], a
+	ld [hMultiplier], a
 	call Multiply
 	ld a, 25
-	ld [$ffb7], a
+	ld [hDivisor], a
 	ld b, 4
 	call Divide
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld d, a
 	pop bc
 	ret
@@ -9752,7 +9765,7 @@ BattleCommand67: ; 379c9
 .Enemy
 
 ; Wildmons don't have anything to switch to
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a ; WILDMON
 	jp z, FailedBatonPass
 
@@ -9787,7 +9800,7 @@ BattleCommand67: ; 379c9
 
 
 BatonPass_LinkPlayerSwitch: ; 37a67
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret z
 
@@ -9806,7 +9819,7 @@ BatonPass_LinkPlayerSwitch: ; 37a67
 
 
 BatonPass_LinkEnemySwitch: ; 37a82
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret z
 
@@ -10044,7 +10057,7 @@ BattleCommand6a6c: ; 37b7e
 	jr z, .Full
 
 ; Don't factor in time of day in link battles.
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .Weather
 

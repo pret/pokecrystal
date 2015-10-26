@@ -391,9 +391,9 @@ FuchsiaGym_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_JANINE, 14, 5, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, JanineScript_0x195db9, -1
-	person_event SPRITE_FUCHSIA_GYM_1, 11, 9, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FuschiaGym1Script_0x195e1b, -1
-	person_event SPRITE_FUCHSIA_GYM_2, 15, 9, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FuschiaGym2Script_0x195e55, -1
-	person_event SPRITE_FUCHSIA_GYM_3, 8, 13, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FuschiaGym3Script_0x195e8f, -1
-	person_event SPRITE_FUCHSIA_GYM_4, 6, 8, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FuschiaGym4Script_0x195ec9, -1
-	person_event SPRITE_GYM_GUY, 19, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, FuchsiaGymGuyScript, -1
+	person_event SPRITE_JANINE, 10, 1, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, JanineScript_0x195db9, -1
+	person_event SPRITE_FUCHSIA_GYM_1, 7, 5, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, FuschiaGym1Script_0x195e1b, -1
+	person_event SPRITE_FUCHSIA_GYM_2, 11, 5, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, FuschiaGym2Script_0x195e55, -1
+	person_event SPRITE_FUCHSIA_GYM_3, 4, 9, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, FuschiaGym3Script_0x195e8f, -1
+	person_event SPRITE_FUCHSIA_GYM_4, 2, 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, FuschiaGym4Script_0x195ec9, -1
+	person_event SPRITE_GYM_GUY, 15, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, FuchsiaGymGuyScript, -1

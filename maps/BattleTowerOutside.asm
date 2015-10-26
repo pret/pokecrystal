@@ -142,7 +142,7 @@ BattleTowerOutside_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_STANDING_YOUNGSTER, 16, 10, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, StandingYoungsterScript_0x9f85f, -1
-	person_event SPRITE_BUENA, 15, 17, $2, 1, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, BuenaScript_0x9f862, -1
-	person_event SPRITE_SAILOR, 22, 16, $5, 0, 1, -1, -1, 0, 0, 0, SailorScript_0x9f865, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
-	person_event SPRITE_LASS, 28, 16, $3, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ObjectEvent, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 12, 6, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, StandingYoungsterScript_0x9f85f, -1
+	person_event SPRITE_BUENA, 11, 13, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, BuenaScript_0x9f862, -1
+	person_event SPRITE_SAILOR, 18, 12, $5, 0, 1, -1, -1, 0, 0, 0, SailorScript_0x9f865, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
+	person_event SPRITE_LASS, 24, 12, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ObjectEvent, -1

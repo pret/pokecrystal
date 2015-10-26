@@ -60,7 +60,7 @@ Function17c000: ; 17c000
 	ld [rSVBK], a
 
 	ld hl, MobileSelectGFX
-	ld de, $8300
+	ld de, VTiles0 tile $30
 	ld bc, $200
 	call CopyBytes
 
@@ -300,10 +300,10 @@ Function17d0f3: ; 17d0f3
 	ld a, $1
 	ld [wd1e9], a
 	ld a, $2
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	callba Function421d8
 	xor a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	callba Function14a58
 	ld a, $5
 	call GetSRAMBank
@@ -425,19 +425,29 @@ Function17d1f1: ; 17d1f1
 	ret
 ; 17d224
 
-Function17d224: ; 17d224
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Parameter: [ScriptVar] = 0..1
+;
+; if [ScriptVar] == 0
+;    Show japanese menu options
+;    - News - News - ??? - Cancel
+; if [ScriptVar] == 1
+;    Show BattleTower-Menu with 3 options in english language
+;    - Challenge - Explanation - Cancel
+Special_Menu_ChallengeExplanationCancel: ; 17d224
 	ld a, [ScriptVar]
 	and a
 	jr nz, .asm_17d234
 	ld a, $4
 	ld [ScriptVar], a
-	ld hl, MenuDataHeader_17d26a
+	ld hl, MenuDataHeader_17d26a ; Japanese Menu, where you can choose 'News' as an option
 	jr .asm_17d23c
 
 .asm_17d234
 	ld a, $4
 	ld [ScriptVar], a
-	ld hl, MenuDataHeader_17d28f
+	ld hl, MenuDataHeader_ChallengeExplanationCancel ; English Menu
 
 .asm_17d23c
 	call LoadMenuDataHeader
@@ -488,14 +498,14 @@ MenuData2_17d272: ; 17d272
 	db "やめる@"
 ; 17d28f
 
-MenuDataHeader_17d28f: ; 17d28f
+MenuDataHeader_ChallengeExplanationCancel: ; 17d28f
 	db $40 ; flags
 	db  0,  0 ; start coords
 	db  7, 14 ; end coords
-	dw MenuData2_17d297
+	dw MenuData2_ChallengeExplanationCancel
 	db 1 ; default option
 
-MenuData2_17d297: ; 17d297
+MenuData2_ChallengeExplanationCancel: ; 17d297
 	db $a0 ; flags
 	db 3
 	db "Challenge@"
@@ -511,7 +521,7 @@ Function17d2b6: ; 17d2b6
 
 Function17d2c0: ; 17d2c0
 	xor a
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ld [wcf64], a
 	ld [wcf65], a
 	ld [wcf66], a
@@ -619,7 +629,7 @@ Function17d370: ; 17d370
 	call ClearScreen
 	callba Function104061
 	call DisableLCD
-	ld hl, $8ee0
+	ld hl, VTiles1 tile $6e
 	ld de, $c608
 	ld bc, $0010
 	call CopyBytes
@@ -630,17 +640,17 @@ Function17d370: ; 17d370
 	ld bc, $0480
 	call CopyBytes
 	xor a
-	ld hl, $97f0
+	ld hl, VTiles2 tile $7f
 	ld bc, $0010
 	call ByteFill
 	ld hl, $c608
-	ld de, $8ee0
+	ld de, VTiles1 tile $6e
 	ld bc, $0010
 	call CopyBytes
 	xor a
 	ld [rVBK], a
 	ld hl, GFX_17eb7e
-	ld de, $9600
+	ld de, VTiles2 tile $60
 	ld bc, $0010
 	call CopyBytes
 	call EnableLCD
@@ -667,7 +677,7 @@ Function17d3f6: ; 17d3f6
 
 Function17d405:
 	call DisableLCD
-	ld hl, $8ee0
+	ld hl, VTiles1 tile $6e
 	ld de, $c608
 	ld bc, $0010
 	call CopyBytes
@@ -678,11 +688,11 @@ Function17d405:
 	ld bc, $0480
 	call CopyBytes
 	xor a
-	ld hl, $97f0
+	ld hl, VTiles2 tile $7f
 	ld bc, $0010
 	call ByteFill
 	ld hl, $c608
-	ld de, $8ee0
+	ld de, VTiles1 tile $6e
 	ld bc, $0010
 	call CopyBytes
 	xor a
@@ -704,7 +714,7 @@ Function17d405:
 
 Function17d45a: ; 17d45a
 .asm_17d45a
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcd77]
 	bit 7, a
 	jr nz, .asm_17d46f
@@ -2349,7 +2359,7 @@ Function17ded9: ; 17ded9
 	ld [MonType], a
 	push hl
 	push bc
-	predef Functiond88c
+	predef TryAddMonToParty
 	callba Function4db49
 	pop bc
 	pop hl
@@ -2388,7 +2398,7 @@ Function17ded9: ; 17ded9
 	ld a, [hli]
 	ld b, a
 	push hl
-	callba Function4dba3
+	callba SetPkmnCaughtData
 	pop hl
 	pop bc
 	jr .asm_17df5e
@@ -2534,7 +2544,7 @@ endr
 ; 17e026
 
 Function17e026: ; 17e026
-	ld a, $1
+	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld a, [sBoxCount]
 	call CloseSRAM
@@ -2545,11 +2555,11 @@ Function17e026: ; 17e026
 	push bc
 	push hl
 	callba LoadEnemyMon
-	callba Functionde6e
+	callba SentPkmnIntoBox
 	callba Function4db83
 	pop hl
 	pop bc
-	ld a, $1
+	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
 	bit 1, b
 	jr z, .asm_17e067
@@ -2970,7 +2980,7 @@ Function17e2a7: ; 17e2a7
 	ld [wcf66], a
 	callba Function118233
 	ld de, GFX_17eb7e
-	ld hl, $9600
+	ld hl, VTiles2 tile $60
 	lb bc, BANK(GFX_17eb7e), 1
 	call Get2bpp
 	ld a, [wc300]
@@ -3112,7 +3122,7 @@ Function17e3c3: ; 17e3c3
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	callba Function106155
+	callba MobileFn_106155
 	callba Function106187
 	pop af
 	ld [rSVBK], a
@@ -3134,7 +3144,7 @@ Function17e3f0: ; 17e3f0
 	call Function17e415
 	call Function17e41e
 .asm_17e3f6
-	call Functiona57
+	call JoyTextDelay
 	ld hl, hJoyPressed
 	ld a, [hl]
 	and $1
@@ -4294,9 +4304,9 @@ Function17f334: ; 17f334
 	ld a, [wcd55]
 	bit 7, a
 	jr nz, .asm_17f355
-	ld a, $1
+	ld a, BANK(sCrystalData)
 	call GetSRAMBank
-	ld a, [$be3f]
+	ld a, [sCrystalData + 2]
 	jr .asm_17f35d
 
 .asm_17f355
@@ -4338,9 +4348,9 @@ Function17f382: ; 17f382
 	ld a, [wcd55]
 	bit 7, a
 	jr nz, .asm_17f3a3
-	ld a, $1
+	ld a, BANK(sCrystalData)
 	call GetSRAMBank
-	ld de, $be40
+	ld de, sCrystalData + 3
 	jr .asm_17f3ab
 
 .asm_17f3a3
@@ -4349,9 +4359,9 @@ Function17f382: ; 17f382
 	ld de, $b2f4
 
 .asm_17f3ab
-	ld a, $82
+	ld a, PRINTNUM_LEADINGZEROS | 2
 	ld b, a
-	ld a, $3
+	ld a, 3
 	ld c, a
 	call PrintNum
 	call CloseSRAM
@@ -4668,7 +4678,7 @@ Function17f53d: ; 17f53d
 
 Function17f555: ; 17f555
 .asm_17f555
-	call Functiona57
+	call JoyTextDelay
 	call Function17f5ae
 	ld a, [wc303]
 	bit 7, a
@@ -5337,7 +5347,7 @@ Function17ff3c: ; 17ff3c
 	ld [wc300], a
 	hlcoord 14, 2
 	ld de, wc300
-	ld bc, $8103
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
 	pop af
 	ld [wc300], a
