@@ -12,12 +12,17 @@ pics = [
 	'gfx/shrink2',
 ]
 
-base_stats = None
+cache = {}
+def get_cache(filename):
+	global cache
+	cached = cache.get(filename)
+	if cached == None:
+		cached = open(filename).read()
+		cache[filename] = cached
+	return cached
+
 def get_base_stats():
-	global base_stats
-	if not base_stats:
-		base_stats = open('data/base_stats.asm').read()
-	return base_stats
+	return get_cache('data/base_stats.asm')
 
 def get_pokemon_dimensions(name):
 	if name == 'egg':
@@ -42,7 +47,7 @@ def filepath_rules(filepath):
 	pokemon_name = ''
 
 	if 'gfx/pics/' in filedir:
-		pokemon_name = filedir.split('/')[3]
+		pokemon_name = filedir.split('/')[-1]
 		if pokemon_name.startswith('unown_'):
 			index = filedir.find(pokemon_name)
 			if index != -1:
