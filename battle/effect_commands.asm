@@ -12,7 +12,7 @@ DoPlayerTurn: ; 34000
 DoEnemyTurn: ; 3400a
 	call SetEnemyTurn
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, DoTurn
 
@@ -696,7 +696,7 @@ BattleCommand02: ; 343db
 
 	; No obedience in link battles
 	; (since no handling exists for enemy)
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 
@@ -1080,7 +1080,7 @@ endr
 	jr z, .asm_345a4
 
 ; skip this part entirely if wildbattle
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .asm_345c5
 
@@ -3521,7 +3521,7 @@ Function3534d: ; 3534d
 	inc l
 
 .asm_3536b
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp 3
 	jr z, .done
 
@@ -3835,11 +3835,11 @@ BattleCommanda1: ; 35461
 	sub b
 	ld [DefaultFlypoint], a
 .asm_3550d
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .asm_3556b
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_35532
 
@@ -4825,7 +4825,7 @@ BattleCommand46: ; 35a74
 
 	call Function372d8
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr z, .asm_35a83
 	call AnimateFailedMove
@@ -4888,7 +4888,7 @@ BattleCommand46: ; 35a74
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_35af6
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_35af6
 	ld a, [hl]
@@ -5180,7 +5180,7 @@ endr
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .asm_35c81
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_35c81
 	ld hl, wc739
@@ -5585,7 +5585,7 @@ Function35ece: ; 35ece
 	jr z, .asm_35eec
 
 	; Not in link battle
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_35eec
 
@@ -5683,7 +5683,7 @@ BattleCommand2f: ; 35f2c
 	and a
 	jr z, .asm_35f89
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_35f89
 
@@ -6331,7 +6331,7 @@ BattleCommand1d: ; 362e3
 	and a
 	jr z, .DidntMiss
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .DidntMiss
 
@@ -7124,7 +7124,7 @@ BattleCommanda0: ; 36778
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .asm_367bf
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .failed
 	ld a, [CurPartyLevel]
@@ -7149,7 +7149,7 @@ BattleCommanda0: ; 36778
 	jp PrintButItFailed
 
 .asm_367bf
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .failed
 	ld a, [BattleMonLevel]
@@ -7188,10 +7188,10 @@ BattleCommanda0: ; 36778
 
 
 Function36804: ; 36804
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $c0
 	or $2
-	ld [wd0ee], a
+	ld [wBattleResult], a
 	ret
 ; 3680f
 
@@ -7214,7 +7214,7 @@ BattleCommand23: ; 3680f
 	ld a, [AttackMissed]
 	and a
 	jr nz, .asm_36852 ; 36830 $20
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_36869 ; 36836 $31
 	ld a, [CurPartyLevel]
@@ -7300,7 +7300,7 @@ BattleCommand23: ; 3680f
 	and a
 	jr nz, .asm_368f3
 
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_36908
 
@@ -7496,7 +7496,7 @@ BattleCommand24: ; 369b6
 	dec a
 	jr .asm_36a3a
 .asm_36a0b
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	cp $1
 	jp z, .asm_36a1e
 	ld a, [OTPartyCount]
@@ -8177,7 +8177,7 @@ BattleCommand30: ; 36dc7
 	and a
 	jr z, .asm_36e0e
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .asm_36e0e
 
@@ -8519,7 +8519,7 @@ BattleCommand35: ; 36f9d
 
 BattleCommand36: ; 36fe1
 	call AnimateCurrentMove
-	callba Function1060e5
+	callba MobileFn_1060e5
 	jp PrintNothingHappened
 ; 36fed
 
@@ -9152,7 +9152,7 @@ CheckSubstituteOpp: ; 37378
 
 
 BattleCommand1a: ; 37380
-	callba Function10610d
+	callba MobileFn_10610d
 	ld a, $4
 	ld [wcfca], a
 	ld c, $3
@@ -9281,7 +9281,7 @@ BattleCommand53: ; 37563
 	and a
 	jr z, .party
 
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr z, .done
 
@@ -9493,7 +9493,7 @@ BattleCommand60: ; 3784b
 BattleCommand61: ; 37874
 ; present
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $3
 	jr z, .asm_3787d
 	push bc
@@ -9502,7 +9502,7 @@ BattleCommand61: ; 37874
 
 	call BattleCommand07
 
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $3
 	jr z, .asm_37889
 	pop de
@@ -9765,7 +9765,7 @@ BattleCommand67: ; 379c9
 .Enemy
 
 ; Wildmons don't have anything to switch to
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a ; WILDMON
 	jp z, FailedBatonPass
 
@@ -9800,7 +9800,7 @@ BattleCommand67: ; 379c9
 
 
 BatonPass_LinkPlayerSwitch: ; 37a67
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret z
 
@@ -9819,7 +9819,7 @@ BatonPass_LinkPlayerSwitch: ; 37a67
 
 
 BatonPass_LinkEnemySwitch: ; 37a82
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret z
 
@@ -10057,7 +10057,7 @@ BattleCommand6a6c: ; 37b7e
 	jr z, .Full
 
 ; Don't factor in time of day in link battles.
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	jr nz, .Weather
 

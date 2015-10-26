@@ -39,7 +39,7 @@ SpecialsPointers:: ; c029
 	add_special Special_GetMysteryGiftItem
 	add_special Special_UnlockMysteryGift
 
-; Bug Catching Contest
+; Map Events
 	add_special BugContestJudging
 	add_special CheckPartyFullAfterContest
 	add_special CheckFirstMonFainted
@@ -88,25 +88,25 @@ SpecialsPointers:: ; c029
 	add_special Special_FindAtLeastThatHappy
 	add_special Special_FindThatSpecies
 	add_special Special_FindThatSpeciesYourTrainerID
-	add_special Functionc3ef
-	add_special Function17421
-	add_special Function17440
+	add_special Special_CheckUnusedTwoDayTimer ; unreferenced
+	add_special Special_DayCareMon1
+	add_special Special_DayCareMon2
 	add_special Special_SelectRandomBugContestContestants
-	add_special Functionc3fc
+	add_special Special_ActivateFishingSwarm
 	add_special ToggleMaptileDecorations
 	add_special ToggleDecorationsVisibility
 	add_special SpecialGiveShuckle
 	add_special SpecialReturnShuckle
-	add_special Function73f7
+	add_special Special_BillsGrandfather
 	add_special SpecialCheckPokerus
-	add_special Function24b25
-	add_special Function24b4e
+	add_special Special_DisplayCoinCaseBalance
+	add_special Special_DisplayMoneyAndCoinBalance
 	add_special Function24ae8
 	add_special Special_CheckForLuckyNumberWinners
 	add_special Special_CheckLuckyNumberShowFlag
 	add_special Special_ResetLuckyNumberShowFlag
-	add_special Function4d9d3
-	add_special Function88018
+	add_special Special_PrintTodaysLuckyNumber
+	add_special Special_SelectApricornForKurt
 	add_special SpecialNameRater
 	add_special Functionc2da
 	add_special GetFirstPokemonHappiness
@@ -169,7 +169,7 @@ SpecialsPointers:: ; c029
 	add_special SpecialBuenasPassword
 	add_special SpecialBuenaPrize
 	add_special SpecialDratini
-	add_special Function11485
+	add_special Special_SampleKenjiBreakCountdown
 	add_special SpecialBeastsCheck
 	add_special SpecialMonCheck
 	add_special Functionc225
@@ -482,16 +482,16 @@ ScriptReturnCarry: ; c3e2
 	ret
 ; c3ef
 
-Functionc3ef: ; c3ef
-	callba Function1150c
-	ld a, [wdc3a]
+Special_CheckUnusedTwoDayTimer: ; c3ef
+	callba CheckUnusedTwoDayTimer
+	ld a, [wUnusedTwoDayTimer]
 	ld [ScriptVar], a
 	ret
 ; c3fc
 
-Functionc3fc: ; c3fc
+Special_ActivateFishingSwarm: ; c3fc
 	ld a, [ScriptVar]
-	ld [wdfce], a
+	ld [wFishingSwarmFlag], a
 	ret
 ; c403
 
@@ -523,7 +523,7 @@ SpecialCheckPokerus: ; c419
 ; c422
 
 Special_ResetLuckyNumberShowFlag: ; c422
-	callba Function1152b
+	callba RestartLuckyNumberCountdown
 	ld hl, wLuckyNumberShowFlag
 	res 0, [hl]
 	callba LoadOrRegenerateLuckyIDNumber
@@ -531,7 +531,7 @@ Special_ResetLuckyNumberShowFlag: ; c422
 ; c434
 
 Special_CheckLuckyNumberShowFlag: ; c434
-	callba Function11542
+	callba CheckLuckyNumberShowFlag
 	jp ScriptReturnCarry
 ; c43d
 

@@ -136,15 +136,14 @@ Init:: ; 17d
 	; BG on
 	ld [rLCDC], a
 
-	ld a, $ff
+	ld a, -1
 	ld [$ffcb], a
 
 	callba Function9890
 
-	ld a, $9c
-	ld [$ffd7], a
-
-	xor a
+	ld a, VBGMap1 / $100
+	ld [hBGMapAddress + 1], a
+	xor a ; VBGMap1 % $100
 	ld [hBGMapAddress], a
 
 	callba StartClock

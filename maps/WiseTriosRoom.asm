@@ -360,9 +360,9 @@ WiseTriosRoom_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_SAGE, 6, 10, $3, 0, 0, -1, -1, 0, 0, 0, SageScript_0x9859a, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
-	person_event SPRITE_SAGE, 11, 10, $5, 0, 1, -1, -1, 0, 0, 0, SageScript_0x9859d, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
-	person_event SPRITE_SAGE, 9, 11, $8, 0, 0, -1, -1, 0, 0, 0, SageScript_0x985a0, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
-	person_event SPRITE_SAGE, 6, 8, $6, 0, 0, -1, -1, 0, 2, 2, TrainerSageGaku, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
-	person_event SPRITE_SAGE, 10, 8, $7, 0, 0, -1, -1, 0, 2, 2, TrainerSageMasa, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
-	person_event SPRITE_SAGE, 8, 10, $8, 0, 0, -1, -1, 0, 2, 2, TrainerSageKoji, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
+	person_event SPRITE_SAGE, 2, 6, $3, 0, 0, -1, -1, 0, 0, 0, SageScript_0x9859a, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	person_event SPRITE_SAGE, 7, 6, $5, 0, 1, -1, -1, 0, 0, 0, SageScript_0x9859d, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	person_event SPRITE_SAGE, 5, 7, $8, 0, 0, -1, -1, 0, 0, 0, SageScript_0x985a0, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	person_event SPRITE_SAGE, 2, 4, $6, 0, 0, -1, -1, 0, 2, 2, TrainerSageGaku, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
+	person_event SPRITE_SAGE, 6, 4, $7, 0, 0, -1, -1, 0, 2, 2, TrainerSageMasa, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
+	person_event SPRITE_SAGE, 4, 6, $8, 0, 0, -1, -1, 0, 2, 2, TrainerSageKoji, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2

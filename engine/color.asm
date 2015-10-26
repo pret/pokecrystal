@@ -83,7 +83,7 @@ Function8aa4: ; 8aa4
 	push bc
 	ld hl, PalPacket_9ce6
 	ld de, wcda9
-	ld bc, $0010
+	ld bc, PalPacket_9cf6 - PalPacket_9ce6
 	call CopyBytes
 	pop bc
 	pop de
@@ -105,7 +105,7 @@ Function8aa4: ; 8aa4
 
 Function8ad1: ; 8ad1
 	ld hl, PalPacket_9c56 + 1
-	call Function9610
+	call CopyFourPalettes
 	call Function971a
 	call Function9699
 	ret
@@ -196,8 +196,8 @@ Function8b4d: ; 8b4d
 .asm_8b5c
 	ld de, Unkn2Pals
 	ld a, $3b
-	call Function9625
-	jp Function9630
+	call GetAthPalletFromPalettes9df6
+	jp LoadHLPaletteIntoDE
 ; 8b67
 
 Function8b67: ; 8b67
@@ -212,8 +212,8 @@ Function8b67: ; 8b67
 .asm_8b76
 	ld de, Unkn2Pals
 	ld a, $3c
-	call Function9625
-	jp Function9630
+	call GetAthPalletFromPalettes9df6
+	jp LoadHLPaletteIntoDE
 ; 8b81
 
 Function8b81: ; 8b81
@@ -309,7 +309,7 @@ Function8bec: ; 8bec
 .asm_8c0b
 	ld b, $0
 	add hl, bc
-	ld bc, $0604
+	lb bc, 6, 4
 	ld a, [EnemySafeguardCount]
 	and $3
 	call Function9663
@@ -386,7 +386,7 @@ endr
 	jr .asm_8c7b
 
 .asm_8c82
-	ld bc, $0208
+	lb bc, 2, 8
 	ld a, e
 	call Function9663
 	ret
@@ -520,7 +520,7 @@ INCLUDE "predef/cgb.asm"
 Function95f0: ; 95f0
 	ld hl, Palette_9608
 	ld de, Unkn1Pals
-	ld bc, $0008
+	ld bc, 8
 	ld a, $5
 	call FarCopyWRAM
 	call Function96a4
@@ -537,28 +537,29 @@ Palette_9608: ; 9608
 ; 9610
 
 
-Function9610: ; 9610
+CopyFourPalettes: ; 9610
 	ld de, Unkn1Pals
 	ld c, $4
 
-Function9615: ; 9615
+CopyPalettes: ; 9615
+.loop
 	push bc
 	ld a, [hli]
 	push hl
-	call Function9625
-	call Function9630
+	call GetAthPalletFromPalettes9df6
+	call LoadHLPaletteIntoDE
 	pop hl
 	inc hl
 	pop bc
 	dec c
-	jr nz, Function9615
+	jr nz, .loop
 	ret
 ; 9625
 
-Function9625: ; 9625
+GetAthPalletFromPalettes9df6: ; 9625
 	ld l, a
 	ld h, $0
-rept 3
+rept 3 ; multiply by 8
 	add hl, hl
 endr
 	ld bc, Palettes_9df6
@@ -566,18 +567,18 @@ endr
 	ret
 ; 9630
 
-Function9630: ; 9630
+LoadHLPaletteIntoDE: ; 9630
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
 	ld c, $8
-.asm_9639
+.loop
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_9639
+	jr nz, .loop
 	pop af
 	ld [rSVBK], a
 	ret
@@ -595,12 +596,12 @@ Function9643: ; 9643
 	ld [de], a
 	inc de
 	ld c, $4
-.asm_9654
+.loop
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_9654
+	jr nz, .loop
 	xor a
 	ld [de], a
 	inc de
@@ -612,19 +613,19 @@ Function9643: ; 9643
 ; 9663
 
 Function9663: ; 9663
-.asm_9663
+.row
 	push bc
 	push hl
-.asm_9665
+.col
 	ld [hli], a
 	dec c
-	jr nz, .asm_9665
+	jr nz, .col
 	pop hl
-	ld bc, $0014
+	ld bc, SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .asm_9663
+	jr nz, .row
 	ret
 ; 9673
 
@@ -743,7 +744,7 @@ Function96f3: ; 96f3
 	jr .asm_970b
 
 .asm_9712
-	ld bc, $0208
+	lb bc, 2, 8
 	ld a, e
 	call Function9663
 	ret
@@ -784,16 +785,16 @@ Function973a: ; 973a
 Function974b: ; 974b
 	and a
 	jp nz, Function97f9
-	ld a, [wd45b]
+	ld a, [wPlayerSpriteSetupFlags]
 	bit 2, a
-	jr nz, .asm_9760
+	jr nz, .male
 	ld a, [PlayerGender]
 	and a
-	jr z, .asm_9760
+	jr z, .male
 	ld hl, KrisPalette
 	ret
 
-.asm_9760
+.male
 	ld hl, PlayerPalette
 	ret
 ; 9764
@@ -876,21 +877,21 @@ Function97cc: ; 97cc
 	ld a, $90
 	ld [rOBPI], a
 	ld a, $1c
-	call Function9625
+	call GetAthPalletFromPalettes9df6
 	call Function97e5
 	ld a, $21
-	call Function9625
+	call GetAthPalletFromPalettes9df6
 	call Function97e5
 	ret
 ; 97e5
 
 Function97e5: ; 97e5
 	ld c, $8
-.asm_97e7
+.loop
 	ld a, [hli]
 	ld [rOBPD], a
 	dec c
-	jr nz, .asm_97e7
+	jr nz, .loop
 	ret
 ; 97ee
 
@@ -935,32 +936,32 @@ Function981a: ; 981a
 	and $7
 	ret z
 	ld b, a
-.asm_981f
+.loop
 	push bc
 	xor a
 	ld [rJOYP], a
 	ld a, $30
 	ld [rJOYP], a
 	ld b, $10
-.asm_9829
+.loop2
 	ld e, $8
 	ld a, [hli]
 	ld d, a
-.asm_982d
+.loop3
 	bit 0, d
 	ld a, $10
-	jr nz, .asm_9835
+	jr nz, .okay
 	ld a, $20
 
-.asm_9835
+.okay
 	ld [rJOYP], a
 	ld a, $30
 	ld [rJOYP], a
 	rr d
 	dec e
-	jr nz, .asm_982d
+	jr nz, .loop3
 	dec b
-	jr nz, .asm_9829
+	jr nz, .loop2
 	ld a, $20
 	ld [rJOYP], a
 	ld a, $30
@@ -968,7 +969,7 @@ Function981a: ; 981a
 	call Function9a7a
 	pop bc
 	dec b
-	jr nz, .asm_981f
+	jr nz, .loop
 	ret
 ; 9853
 

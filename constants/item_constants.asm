@@ -352,7 +352,7 @@ const_value SET 70
 	const HELD_TRADE_EVOLVE
 	const HELD_AMULET_COIN
 	const HELD_BRIGHTPOWDER
-	const HELD_4E
+	const HELD_78
 	const HELD_FOCUS_BAND
 
 	const_def
@@ -364,3 +364,8 @@ const_value SET 70
 	const ITEMATTR_POCKET
 	const ITEMATTR_HELP
 NUM_ITEMATTRS EQU const_value
+
+ITEMMENU_NOUSE              EQU 0
+ITEMMENU_CURRENT            EQU 4
+ITEMMENU_PARTY              EQU 5
+ITEMMENU_CLOSE              EQU 6

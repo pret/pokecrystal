@@ -130,4 +130,4 @@ CeladonMansionRoofHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_PHARMACIST, 6, 7, $6, 2, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, PharmacistScript_0x71afd, -1
+	person_event SPRITE_PHARMACIST, 2, 3, $6, 2, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, PharmacistScript_0x71afd, -1

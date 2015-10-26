@@ -35,4 +35,4 @@ MoveDeletersHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_SUPER_NERD, 7, 6, $6, 0, 0, -1, -1, 0, 0, 0, MoveDeleter, -1
+	person_event SPRITE_SUPER_NERD, 3, 2, $6, 0, 0, -1, -1, 0, 0, 0, MoveDeleter, -1

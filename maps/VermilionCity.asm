@@ -294,9 +294,9 @@ VermilionCity_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_TEACHER, 13, 22, $2, 1, 1, -1, -1, 0, 0, 0, TeacherScript_0x1aa983, -1
-	person_event SPRITE_GRAMPS, 10, 27, $9, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x1aa986, -1
-	person_event SPRITE_MACHOP, 11, 30, $16, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, VermilionMachop, -1
-	person_event SPRITE_SUPER_NERD, 20, 18, $2, 1, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, SuperNerdScript_0x1aa99b, -1
-	person_event SPRITE_BIG_SNORLAX, 12, 38, $15, 0, 0, -1, -1, 0, 0, 0, VermilionSnorlax, EVENT_VERMILION_CITY_SNORLAX
-	person_event SPRITE_POKEFAN_M, 16, 35, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, VermilionGymBadgeGuy, -1
+	person_event SPRITE_TEACHER, 9, 18, $2, 1, 1, -1, -1, 0, 0, 0, TeacherScript_0x1aa983, -1
+	person_event SPRITE_GRAMPS, 6, 23, $9, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x1aa986, -1
+	person_event SPRITE_MACHOP, 7, 26, $16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, VermilionMachop, -1
+	person_event SPRITE_SUPER_NERD, 16, 14, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, SuperNerdScript_0x1aa99b, -1
+	person_event SPRITE_BIG_SNORLAX, 8, 34, $15, 0, 0, -1, -1, 0, 0, 0, VermilionSnorlax, EVENT_VERMILION_CITY_SNORLAX
+	person_event SPRITE_POKEFAN_M, 12, 31, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, VermilionGymBadgeGuy, -1

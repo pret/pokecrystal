@@ -534,13 +534,13 @@ TinTower1F_MapEventHeader:
 
 .PersonEvents:
 	db 10
-	person_event SPRITE_SUICUNE, 13, 13, $1, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_TIN_TOWER_1F_SUICUNE
-	person_event SPRITE_RAIKOU, 13, 11, $1, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, ObjectEvent, EVENT_TIN_TOWER_1F_RAIKOU
-	person_event SPRITE_ENTEI, 13, 16, $1, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ObjectEvent, EVENT_TIN_TOWER_1F_ENTEI
-	person_event SPRITE_SUPER_NERD, 7, 12, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, SuperNerdScript_0x1851c8, EVENT_TIN_TOWER_1F_EUSINE
-	person_event SPRITE_SAGE, 13, 9, $3, 0, 0, -1, -1, 0, 0, 0, SageScript_0x185173, EVENT_TIN_TOWER_1F_WISE_TRIO_1
-	person_event SPRITE_SAGE, 15, 15, $3, 0, 0, -1, -1, 0, 0, 0, SageScript_0x185176, EVENT_TIN_TOWER_1F_WISE_TRIO_1
-	person_event SPRITE_SAGE, 10, 18, $3, 0, 0, -1, -1, 0, 0, 0, SageScript_0x185179, EVENT_TIN_TOWER_1F_WISE_TRIO_1
-	person_event SPRITE_SAGE, 6, 8, $4, 1, 0, -1, -1, 0, 0, 0, SageScript_0x18517c, EVENT_TIN_TOWER_1F_WISE_TRIO_2
-	person_event SPRITE_SAGE, 5, 13, $6, 0, 0, -1, -1, 0, 0, 0, SageScript_0x185188, EVENT_TIN_TOWER_1F_WISE_TRIO_2
-	person_event SPRITE_SAGE, 6, 18, $5, 0, 1, -1, -1, 0, 0, 0, SageScript_0x1851bc, EVENT_TIN_TOWER_1F_WISE_TRIO_2
+	person_event SPRITE_SUICUNE, 9, 9, $1, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_TIN_TOWER_1F_SUICUNE
+	person_event SPRITE_RAIKOU, 9, 7, $1, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, ObjectEvent, EVENT_TIN_TOWER_1F_RAIKOU
+	person_event SPRITE_ENTEI, 9, 12, $1, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ObjectEvent, EVENT_TIN_TOWER_1F_ENTEI
+	person_event SPRITE_SUPER_NERD, 3, 8, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SuperNerdScript_0x1851c8, EVENT_TIN_TOWER_1F_EUSINE
+	person_event SPRITE_SAGE, 9, 5, $3, 0, 0, -1, -1, 0, 0, 0, SageScript_0x185173, EVENT_TIN_TOWER_1F_WISE_TRIO_1
+	person_event SPRITE_SAGE, 11, 11, $3, 0, 0, -1, -1, 0, 0, 0, SageScript_0x185176, EVENT_TIN_TOWER_1F_WISE_TRIO_1
+	person_event SPRITE_SAGE, 6, 14, $3, 0, 0, -1, -1, 0, 0, 0, SageScript_0x185179, EVENT_TIN_TOWER_1F_WISE_TRIO_1
+	person_event SPRITE_SAGE, 2, 4, $4, 1, 0, -1, -1, 0, 0, 0, SageScript_0x18517c, EVENT_TIN_TOWER_1F_WISE_TRIO_2
+	person_event SPRITE_SAGE, 1, 9, $6, 0, 0, -1, -1, 0, 0, 0, SageScript_0x185188, EVENT_TIN_TOWER_1F_WISE_TRIO_2
+	person_event SPRITE_SAGE, 2, 14, $5, 0, 1, -1, -1, 0, 0, 0, SageScript_0x1851bc, EVENT_TIN_TOWER_1F_WISE_TRIO_2

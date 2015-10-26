@@ -6,43 +6,53 @@ INCLUDE "gbhw.asm"
 SECTION "Main", ROMX
 
 Function110000: ; 110000 (44:4000)
+; Copy b bytes from hl to de
+.loop
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
-	jr nz, Function110000
+	jr nz, .loop
 	ret
 ; 110007 (44:4007)
 
 Function110007: ; 110007
-.asm_110007
+; Copy bytes from hl to de until a 0 is encountered.
+; Include the 0 in the copy, and count the number of
+; nonzero bytes copied.  Keep the de pointer at the
+; copied zero.
+.loop
 	ld a, [hli]
 	ld [de], a
 	or a
 	ret z
 	inc de
 	inc bc
-	jr .asm_110007
+	jr .loop
 ; 11000f
 
 Function11000f: ; 11000f
+; Copy bytes from hl to de until a 0 is encountered,
+; or a bytes have been copied, whichever comes first.
+; Add the byte count to the count previously stored
+; in bc.
 	push bc
 	ld c, $0
 	ld b, a
 	dec b
-.asm_110014
+.loop
 	ld a, [hli]
 	ld [de], a
 	or a
-	jr z, .asm_110020
+	jr z, .done
 	inc de
 	inc c
 	dec b
-	jr nz, .asm_110014
+	jr nz, .loop
 	xor a
 	ld [de], a
 
-.asm_110020
+.done
 	ld a, c
 	pop bc
 	add c
@@ -54,6 +64,7 @@ Function11000f: ; 11000f
 ; 110029
 
 Function110029: ; 110029 (44:4029)
+; Clear two bytes at $ca3a.
 	xor a
 	ld hl, $ca3a
 	ld [hli], a
@@ -61,21 +72,25 @@ Function110029: ; 110029 (44:4029)
 	ret
 
 Function110030:: ; 110030 (44:4030)
+; Use the byte at $c988 as a parameter
+; for a jumptable.
+; If [$c988] in {12, 14, 16},
+; clear [$c835].
 	push de
 	ld a, [$c988]
-	cp $c
-	jr z, .asm_110047
-	cp $e
-	jr z, .asm_110047
-	cp $10
-	jr z, .asm_110047
+	cp 2 * 6
+	jr z, .noreset
+	cp 2 * 7
+	jr z, .noreset
+	cp 2 * 8
+	jr z, .noreset
 	xor a
 	ld [$c835], a
 	ld a, [$c988]
-.asm_110047
+.noreset
 	ld d, $0
 	ld e, a
-	ld hl, Jumptable_110070
+	ld hl, .jumptable
 	add hl, de
 	ld a, [hli]
 	ld [$c988], a
@@ -89,19 +104,19 @@ Function110030:: ; 110030 (44:4030)
 	push hl
 	ld a, $36
 	cp l
-	jr nz, .asm_110066
+	jr nz, .okay
 	ld a, $42
 	cp h
-.asm_110066
+.okay
 	call nz, Function1100b4
 	ld hl, $c986
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ret
+	ret ; indirectly jump to the function loaded from the jumptable, which returns to Function3e60.
 ; 110070 (44:4070)
 
-Jumptable_110070: ; 110070
+.jumptable: ; 110070
 	dw Function110115
 	dw Function110236
 	dw Function110291
@@ -140,7 +155,7 @@ Jumptable_110070: ; 110070
 
 Function1100b4: ; 1100b4 (44:40b4)
 	push bc
-.asm_1100b5
+.loop
 	di
 	ld a, [$c800]
 	ld b, a
@@ -150,19 +165,19 @@ Function1100b4: ; 1100b4 (44:40b4)
 	ei
 	or a
 	bit 0, a
-	jr z, .asm_1100da
+	jr z, .done
 	ld a, b
 	or a
-	jr nz, .asm_1100b5
+	jr nz, .loop
 	ld a, c
 	cp $4
-	jr z, .asm_1100b5
+	jr z, .loop
 	xor a
 	ld [$c80f], a
 	ld hl, $c821
 	set 1, [hl]
 	scf
-.asm_1100da
+.done
 	pop bc
 	ret
 ; 1100dc (44:40dc)

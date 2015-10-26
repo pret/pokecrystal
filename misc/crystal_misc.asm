@@ -19,6 +19,7 @@ Function17a68f:: ; 17a68f (5e:668f)
 	pop de
 	xor a
 	ret
+
 .asm_17a6a6
 	scf
 	ret
@@ -82,6 +83,7 @@ Function17a713: ; 17a713 (5e:6713)
 	inc c
 	and a
 	ret
+
 .asm_17a71d
 	ld [hl], $ff
 	scf
@@ -113,10 +115,12 @@ Function17a721: ; 17a721 (5e:6721)
 	dec b
 	jr nz, .asm_17a732
 	ret
+
 .asm_17a748
 	ld a, $ff
 	ld [de], a
 	ret
+
 .asm_17a74c
 	ld a, $f0
 	or c
@@ -151,13 +155,13 @@ Function17a770: ; 17a770 (5e:6770)
 	ret
 
 Function17a781: ; 17a781 (5e:6781)
-	ld a, [$ffaa]
+	ld a, [hInMenu]
 	push af
 	ld a, $1
-	ld [$ffaa], a
-	call Functiona57
+	ld [hInMenu], a
+	call JoyTextDelay
 	pop af
-	ld [$ffaa], a
+	ld [hInMenu], a
 	ret
 
 Function17a78f: ; 17a78f (5e:678f)
@@ -167,6 +171,7 @@ Function17a78f: ; 17a78f (5e:678f)
 	jr nz, .asm_17a79f
 	callba Function10402d
 	ret
+
 .asm_17a79f
 	callba Function104061
 	ret
@@ -261,7 +266,7 @@ Function17a81a: ; 17a81a (5e:681a)
 	ret
 
 Function17a83c: ; 17a83c (5e:683c)
-	ld a, [$ffa9]
+	ld a, [hJoyLast]
 	and $f0
 	ld c, a
 	ld a, [hJoyPressed] ; $ff00+$a7
@@ -297,41 +302,49 @@ Function17a848: ; 17a848 (5e:6848)
 	jr nz, .asm_17a8a7
 	xor a
 	ret
+
 .asm_17a876
 	ld a, $9
 	call Function17aad0
 	scf
 	ret
+
 .asm_17a87d
 	ld a, $a
 	call Function17aad0
 	scf
 	ret
+
 .asm_17a884
 	ld a, $b
 	call Function17aad0
 	scf
 	ret
+
 .asm_17a88b
 	ld a, $c
 	call Function17aad0
 	scf
 	ret
+
 .asm_17a892
 	ld a, $5
 	call Function17aad0
 	scf
 	ret
+
 .asm_17a899
 	ld a, $6
 	call Function17aad0
 	scf
 	ret
+
 .asm_17a8a0
 	ld a, $7
 	call Function17aad0
 	scf
 	ret
+
 .asm_17a8a7
 	ld a, $8
 	call Function17aad0
@@ -347,6 +360,7 @@ Function17a8ae: ; 17a8ae (5e:68ae)
 	jr nz, .asm_17a8d7
 	xor a
 	ret
+
 .asm_17a8bc
 	ld a, $b
 	ld [$d08a], a
@@ -355,12 +369,14 @@ Function17a8ae: ; 17a8ae (5e:68ae)
 	call Function17aa88
 	scf
 	ret
+
 .asm_17a8cc
 	call Function17aad7
 	call Function17aa98
 	call Function17a8de
 	scf
 	ret
+
 .asm_17a8d7
 	ld a, $c
 	call Function17aad3
@@ -383,16 +399,19 @@ Function17a8de: ; 17a8de (5e:68de)
 	ld [$d087], a
 	call Function17aa88
 	ret
+
 .asm_17a8fd
 	call Function17a943
 	call Function17aa88
 	ret
+
 .asm_17a904
 	call Function17aad7
 	call Function17aa98
 	call Function17a91e
 	call Function17aa88
 	ret
+
 .asm_17a911
 	call Function17aa98
 	ld a, $5
@@ -409,6 +428,7 @@ Function17a91e: ; 17a91e (5e:691e)
 	ld [$d087], a
 	xor a
 	ret
+
 .asm_17a92c
 	call Function1d6e
 	call Function17a99e
@@ -436,6 +456,7 @@ Function17a943: ; 17a943 (5e:6943)
 	ld [$d087], a
 	and a
 	ret
+
 .asm_17a95d
 	ld a, $5
 	ld [$d087], a
@@ -455,6 +476,7 @@ Function17a964: ; 17a964 (5e:6964)
 	ld [hl], e
 	and a
 	ret
+
 .asm_17a979
 	scf
 	ret
@@ -479,6 +501,7 @@ Function17a97b: ; 17a97b (5e:697b)
 	dec c
 	jr nz, .asm_17a990
 	ret
+
 .asm_17a99d
 	ret
 
@@ -503,12 +526,13 @@ Function17a9cb: ; 17a9cb (5e:69cb)
 	ld de, Sprites ; $c400
 	ld hl, $d088
 	bit 6, [hl]
-	jr nz, .asm_17a9df
+	jr nz, .bit_6_set
 	call Function17a9e3
 	call Function17aa22
 	call Function17a9f5
 	ret
-.asm_17a9df
+
+.bit_6_set
 	call Function17a9e3
 	ret
 
@@ -533,9 +557,9 @@ Function17a9f5: ; 17a9f5 (5e:69f5)
 	ld [$d08e], a
 	ld a, [$d08c]
 	cp $10
-	jr c, .asm_17aa0f
+	jr c, .okay
 	dec a
-.asm_17aa0f
+.okay
 	ld c, $8
 	call SimpleMultiply
 	add $18
@@ -581,7 +605,7 @@ Function17aa4a: ; 17aa4a (5e:6a4a)
 	add $10
 	ld c, a
 	ld a, [hli]
-.asm_17aa56
+.loop
 	push af
 	ld a, [hli]
 	add c
@@ -603,7 +627,7 @@ Function17aa4a: ; 17aa4a (5e:6a4a)
 	inc de
 	pop af
 	dec a
-	jr nz, .asm_17aa56
+	jr nz, .loop
 	ret
 ; 17aa72 (5e:6a72)
 
@@ -662,7 +686,7 @@ rept 2
 	ld [hli], a
 endr
 	pop hl
-	ld de, $14
+	ld de, SCREEN_WIDTH
 	add hl, de
 rept 2
 	ld [hli], a
@@ -721,17 +745,21 @@ Function17aba0: ; 17aba0 (5e:6ba0)
 	push af
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $9000
+
+	ld hl, VTiles5 tile $00
 	ld de, GFX_17afa5
 	lb bc, BANK(GFX_17afa5), $80
 	call Get2bpp
+
 	pop af
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $8000
+
+	ld hl, VTiles0 tile $00
 	ld de, GFX_17afa5 + $4c0
 	lb bc, BANK(GFX_17afa5), 5
 	call Get2bpp
-	ld hl, $8050
+
+	ld hl, VTiles0 tile $05
 	ld de, GFX_11601a
 	lb bc, BANK(GFX_11601a), 4
 	call Get2bpp
@@ -740,25 +768,30 @@ Function17aba0: ; 17aba0 (5e:6ba0)
 Function17abcf: ; 17abcf (5e:6bcf)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
-	ld a, $5
+	ld a, BANK(Unkn1Pals)
 	ld [rSVBK], a ; $ff00+$70
+
 	ld hl, Palette_17ac55
 	ld de, Unkn1Pals ; $d000
 	ld bc, $30
 	call CopyBytes
+
 	ld hl, Palette_17ac95
 	ld de, Unkn2Pals
 	ld bc, $40
 	call CopyBytes
+
 	ld hl, GFX_17afa5 + $510
-	ld de, $d048
+	ld de, Unkn2Pals + 2 * 4
 	ld bc, $10
 	call CopyBytes
+
 	ld hl, MapObjectPals + 8
-	ld de, $d058
+	ld de, Unkn2Pals + 6 * 4
 	ld bc, $8
 	ld a, BANK(MapObjectPals)
 	call FarCopyBytes
+
 	pop af
 	ld [rSVBK], a ; $ff00+$70
 	ret
@@ -767,42 +800,43 @@ Function17ac0c: ; 17ac0c (5e:6c0c)
 	call Function17ac1d
 	call Function17ac2a
 	hlcoord 0, 0
-	ld b, $2
-	ld c, $12
+	ld b, 2
+	ld c, SCREEN_WIDTH - 2
 	call Function17ac46
 	ret
 
 Function17ac1d: ; 17ac1d (5e:6c1d)
 	ld hl, Tilemap_17acd5
 	decoord 0, 4
-	ld bc, $118
+	ld bc, (SCREEN_HEIGHT - 4) * SCREEN_WIDTH
 	call CopyBytes
 	ret
 
 Function17ac2a: ; 17ac2a (5e:6c2a)
 	ld hl, Tilemap_17ae3d
 	decoord 0, 4, AttrMap
-	ld bc, $118
+	ld bc, (SCREEN_HEIGHT - 4) * SCREEN_WIDTH
 	call CopyBytes
 	hlcoord 0, 4, AttrMap
-	ld bc, $118
-.asm_17ac3c
+	ld bc, (SCREEN_HEIGHT - 4) * SCREEN_WIDTH
+.loop
 	ld a, [hl]
 	or $8
 	ld [hli], a
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_17ac3c
+	jr nz, .loop
 	ret
 
 Function17ac46: ; 17ac46 (5e:6c46)
 	ld a, [$d088]
 	bit 4, a
-	jr nz, .asm_17ac51
+	jr nz, .bit_4_set
 	call TextBox
 	ret
-.asm_17ac51
+
+.bit_4_set
 	call Function3eea
 	ret
 ; 17ac55 (5e:6c55)
@@ -812,30 +846,37 @@ Palette_17ac55: ; 17ac55
 	RGB  9, 10, 25
 	RGB 16, 19, 31
 	RGB 31, 31, 31
+
 	RGB  5, 11,  9
 	RGB  7, 14, 12
 	RGB 17, 24, 22
 	RGB 28, 31, 31
+
 	RGB  0,  0,  0
 	RGB  3,  0, 10
 	RGB  3,  3, 16
 	RGB  6,  8, 25
+
 	RGB  5, 11,  9
 	RGB 28, 31, 31
 	RGB  7, 14, 12
 	RGB 17, 24, 22
+
 	RGB  0,  0,  0
 	RGB  5,  2, 16
 	RGB  8,  8, 26
 	RGB 13,  9, 17
+
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 	RGB  0,  0,  0
+
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 	RGB  0,  0,  0
+
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 	RGB  0,  0,  0
@@ -846,30 +887,37 @@ Palette_17ac95: ; 17ac95
 	RGB  4,  3,  3
 	RGB 31, 13,  0
 	RGB 31, 31, 31
+
 	RGB 31, 31, 31
 	RGB  0,  0,  0
 	RGB 31, 31, 31
 	RGB 31, 31, 31
+
 	RGB 31,  0,  0
 	RGB 16,  3,  0
 	RGB 28, 19, 11
 	RGB 31, 31, 31
+
 	RGB 31, 16,  0
 	RGB  9,  6,  4
 	RGB 31, 16,  0
 	RGB 31, 24,  0
+
 	RGB 31, 18,  6
 	RGB  0,  3,  0
 	RGB  0,  9,  0
 	RGB  0, 12,  0
+
 	RGB  0, 16,  0
 	RGB  0, 22,  0
 	RGB  0, 25,  0
 	RGB  0, 27,  0
+
 	RGB  0, 31,  0
 	RGB  3, 31,  0
 	RGB  8, 31,  0
 	RGB 14, 31,  0
+
 	RGB 16, 31,  0
 	RGB 22, 31,  0
 	RGB 27, 31,  0

@@ -325,12 +325,12 @@ CeladonGameCorner_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_CLERK, 6, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ClerkScript_0x7211d, -1
-	person_event SPRITE_RECEPTIONIST, 6, 7, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ReceptionistScript_0x72120, -1
-	person_event SPRITE_POKEFAN_M, 14, 18, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, PokefanMScript_0x72123, -1
-	person_event SPRITE_TEACHER, 11, 21, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, TeacherScript_0x7212e, -1
-	person_event SPRITE_FISHING_GURU, 11, 15, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, FishingGuruScript_0x72139, -1
-	person_event SPRITE_FISHER, 14, 12, $8, 0, 0, -1, 2, 8 + PAL_OW_RED, 0, 0, FisherScript_0x72144, -1
-	person_event SPRITE_FISHER, 14, 12, $8, 0, 0, -1, 4, 8 + PAL_OW_RED, 0, 0, FisherScript_0x72144, -1
-	person_event SPRITE_GYM_GUY, 7, 15, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, CeladonGymGuyScript, -1
-	person_event SPRITE_GRAMPS, 12, 6, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, GrampsScript_0x72190, -1
+	person_event SPRITE_CLERK, 2, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ClerkScript_0x7211d, -1
+	person_event SPRITE_RECEPTIONIST, 2, 3, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ReceptionistScript_0x72120, -1
+	person_event SPRITE_POKEFAN_M, 10, 14, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, PokefanMScript_0x72123, -1
+	person_event SPRITE_TEACHER, 7, 17, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, TeacherScript_0x7212e, -1
+	person_event SPRITE_FISHING_GURU, 7, 11, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FishingGuruScript_0x72139, -1
+	person_event SPRITE_FISHER, 10, 8, $8, 0, 0, -1, 2, (1 << 3) | PAL_OW_RED, 0, 0, FisherScript_0x72144, -1
+	person_event SPRITE_FISHER, 10, 8, $8, 0, 0, -1, 4, (1 << 3) | PAL_OW_RED, 0, 0, FisherScript_0x72144, -1
+	person_event SPRITE_GYM_GUY, 3, 11, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CeladonGymGuyScript, -1
+	person_event SPRITE_GRAMPS, 8, 2, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, GrampsScript_0x72190, -1

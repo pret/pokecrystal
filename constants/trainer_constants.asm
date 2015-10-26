@@ -1,5 +1,12 @@
 ; trainer groups
-	enum_start 1
+	enum_start
+	trainerclass TRAINER_NONE ; 0
+	const PHONECONTACT_MOM
+	const PHONECONTACT_BIKESHOP
+	const PHONECONTACT_BILL
+	const PHONECONTACT_ELM
+	const PHONECONTACT_BUENA
+	
 	trainerclass FALKNER ; 1
 
 	trainerclass WHITNEY ; 2
@@ -607,3 +614,33 @@
 	const EUSINE
 
 NUM_TRAINER_CLASSES EQU __enum__
+
+	const_def
+	const       NO_AI
+const_value = 0
+	shift_const AI_BASIC
+	shift_const AI_SETUP
+	shift_const AI_TYPES
+	shift_const AI_OFFENSIVE
+	shift_const AI_SMART
+	shift_const AI_OPPORTUNIST
+	shift_const AI_AGGRESSIVE
+	shift_const AI_CAUTIOUS
+	shift_const AI_STATUS
+	shift_const AI_RISKY
+	shift_const AI_10
+	shift_const AI_11
+	shift_const AI_12
+	shift_const AI_13
+	shift_const AI_14
+	shift_const AI_15
+
+	const_def
+	const TRNATTR_ITEM1
+	const TRNATTR_ITEM2
+	const TRNATTR_BASEMONEY
+	const TRNATTR_AI1
+	const TRNATTR_AI2
+	const TRNATTR_AI3
+	const TRNATTR_AI4
+NUM_TRAINER_ATTRIBUTES EQU const_value

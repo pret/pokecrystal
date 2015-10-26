@@ -1408,9 +1408,9 @@ ElmsLab_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_ELM, 6, 9, $6, 0, 0, -1, -1, 0, 0, 0, ProfElmScript, -1
-	person_event SPRITE_SCIENTIST, 13, 6, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
-	person_event SPRITE_POKE_BALL, 7, 10, $1, 0, 0, -1, -1, 0, 0, 0, CyndaquilPokeBallScript, EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
-	person_event SPRITE_POKE_BALL, 7, 11, $1, 0, 0, -1, -1, 0, 0, 0, TotodilePokeBallScript, EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
-	person_event SPRITE_POKE_BALL, 7, 12, $1, 0, 0, -1, -1, 0, 0, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
-	person_event SPRITE_OFFICER, 7, 9, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, CopScript, EVENT_COP_IN_ELMS_LAB
+	person_event SPRITE_ELM, 2, 5, $6, 0, 0, -1, -1, 0, 0, 0, ProfElmScript, -1
+	person_event SPRITE_SCIENTIST, 9, 2, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
+	person_event SPRITE_POKE_BALL, 3, 6, $1, 0, 0, -1, -1, 0, 0, 0, CyndaquilPokeBallScript, EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
+	person_event SPRITE_POKE_BALL, 3, 7, $1, 0, 0, -1, -1, 0, 0, 0, TotodilePokeBallScript, EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
+	person_event SPRITE_POKE_BALL, 3, 8, $1, 0, 0, -1, -1, 0, 0, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
+	person_event SPRITE_OFFICER, 3, 5, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, CopScript, EVENT_COP_IN_ELMS_LAB

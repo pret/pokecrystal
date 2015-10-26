@@ -336,12 +336,12 @@ Route42_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_FISHER, 14, 44, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 1, TrainerFisherTully1, -1
-	person_event SPRITE_POKEFAN_M, 13, 55, $a, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 3, TrainerHikerBenjamin, -1
-	person_event SPRITE_SUPER_NERD, 12, 51, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerPokemaniacShane, -1
-	person_event SPRITE_FRUIT_TREE, 20, 31, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a934d, -1
-	person_event SPRITE_FRUIT_TREE, 20, 32, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a934f, -1
-	person_event SPRITE_FRUIT_TREE, 20, 33, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a9351, -1
-	person_event SPRITE_POKE_BALL, 8, 10, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a9349, EVENT_ROUTE_42_ULTRA_BALL
-	person_event SPRITE_POKE_BALL, 12, 37, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a934b, EVENT_ROUTE_42_SUPER_POTION
-	person_event SPRITE_SUICUNE, 20, 30, $1, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42
+	person_event SPRITE_FISHER, 10, 40, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherTully1, -1
+	person_event SPRITE_POKEFAN_M, 9, 51, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerHikerBenjamin, -1
+	person_event SPRITE_SUPER_NERD, 8, 47, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPokemaniacShane, -1
+	person_event SPRITE_FRUIT_TREE, 16, 27, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a934d, -1
+	person_event SPRITE_FRUIT_TREE, 16, 28, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a934f, -1
+	person_event SPRITE_FRUIT_TREE, 16, 29, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a9351, -1
+	person_event SPRITE_POKE_BALL, 4, 6, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a9349, EVENT_ROUTE_42_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 8, 33, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a934b, EVENT_ROUTE_42_SUPER_POTION
+	person_event SPRITE_SUICUNE, 16, 26, $1, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42

@@ -96,4 +96,4 @@ OlivineGoodRodHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_FISHING_GURU, 7, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, GoodRodGuru, -1
+	person_event SPRITE_FISHING_GURU, 3, 2, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, GoodRodGuru, -1

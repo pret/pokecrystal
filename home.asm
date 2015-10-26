@@ -95,7 +95,7 @@ Function2ecb:: ; 2ecb
 ; 2ed3
 
 
-Function2ed3:: ; 0x2ed3
+DisableSpriteUpdates:: ; 0x2ed3
 ; disables overworld sprite updating?
 	xor a
 	ld [$ffde], a
@@ -107,7 +107,7 @@ Function2ed3:: ; 0x2ed3
 	ret
 ; 0x2ee4
 
-Function2ee4:: ; 2ee4
+EnableSpriteUpdates:: ; 2ee4
 	ld a, $1
 	ld [wc2ce], a
 	ld a, [VramState]
@@ -157,7 +157,7 @@ IsInJohto:: ; 2f17
 ; 2f3e
 
 
-Function2f3e:: ; 2f3e
+ret_2f3e:: ; 2f3e
 	ret
 ; 2f3f
 
@@ -605,24 +605,27 @@ Function3246:: ; 3246
 	push af
 	xor a
 	ld [hBGMapMode], a
+
 	ld a, [$ffde]
 	push af
 	xor a
 	ld [$ffde], a
+
 .wait
 	ld a, [rLY]
 	cp $7f
 	jr c, .wait
 
 	di
-	ld a, $1
+	ld a, 1 ; BANK(VTiles3)
 	ld [rVBK], a
 	hlcoord 0, 0, AttrMap
 	call Function327b
-	ld a, $0
+	ld a, 0 ; BANK(VTiles0)
 	ld [rVBK], a
 	hlcoord 0, 0
 	call Function327b
+
 .wait2
 	ld a, [rLY]
 	cp $7f
@@ -637,30 +640,33 @@ Function3246:: ; 3246
 ; 327b
 
 Function327b:: ; 327b
+; Copy all tiles to VBGMap
 	ld [hSPBuffer], sp
 	ld sp, hl
-	ld a, [$ffd7]
+	ld a, [hBGMapAddress + 1]
 	ld h, a
 	ld l, 0
-	ld a, 18
+	ld a, SCREEN_HEIGHT
 	ld [$ffd3], a
 	ld b, 1 << 1 ; not in v/hblank
 	ld c, rSTAT % $100
 
 .loop
-rept 20 / 2
+rept SCREEN_WIDTH / 2
 	pop de
+; if in v/hblank, wait until not in v/hblank
 .loop\@
 	ld a, [$ff00+c]
 	and b
 	jr nz, .loop\@
+; load BGMap0
 	ld [hl], e
 	inc l
 	ld [hl], d
 	inc l
 endr
 
-	ld de, 32 - 20
+	ld de, $20 - SCREEN_WIDTH
 	add hl, de
 	ld a, [$ffd3]
 	dec a
@@ -836,7 +842,7 @@ Function33c0:
 ; 33c3
 
 GetName:: ; 33c3
-; Return name CurSpecies from name list wcf61 in StringBuffer1.
+; Return name CurSpecies from name list wNamedObjectTypeBuffer in StringBuffer1.
 
 	ld a, [hROMBank]
 	push af
@@ -844,7 +850,7 @@ GetName:: ; 33c3
 	push bc
 	push de
 
-	ld a, [wcf61]
+	ld a, [wNamedObjectTypeBuffer]
 	cp PKMN_NAME
 	jr nz, .NotPokeName
 
@@ -858,7 +864,7 @@ GetName:: ; 33c3
 	jr .done
 
 .NotPokeName
-	ld a, [wcf61]
+	ld a, [wNamedObjectTypeBuffer]
 	dec a
 	ld e, a
 	ld d, 0
@@ -994,7 +1000,7 @@ GetItemName:: ; 3468
 
 	ld [CurSpecies], a
 	ld a, ITEM_NAME
-	ld [wcf61], a
+	ld [wNamedObjectTypeBuffer], a
 	call GetName
 	jr .Copied
 .TM
@@ -1123,7 +1129,7 @@ GetMoveName:: ; 34f8
 	push hl
 
 	ld a, MOVE_NAME
-	ld [wcf61], a
+	ld [wNamedObjectTypeBuffer], a
 
 	ld a, [wNamedObjectIndexBuffer] ; move id
 	ld [CurSpecies], a
@@ -1163,16 +1169,16 @@ Function3524:: ; 3524
 ; 352f
 
 Function352f:: ; 352f
-	ld a, [wcf82]
+	ld a, [wMenuBorderTopCoord]
 	dec a
 	ld b, a
-	ld a, [wcf84]
+	ld a, [wMenuBorderBottomCoord]
 	sub b
 	ld d, a
-	ld a, [wcf83]
+	ld a, [wMenuBorderLeftCoord]
 	dec a
 	ld c, a
-	ld a, [wcf85]
+	ld a, [wMenuBorderRightCoord]
 	sub c
 	ld e, a
 	push de
@@ -1184,15 +1190,15 @@ Function352f:: ; 352f
 Function354b:: ; 354b
 	call DelayFrame
 
-	ld a, [$ffaa]
+	ld a, [hInMenu]
 	push af
 	ld a, $1
-	ld [$ffaa], a
-	call Functiona57
+	ld [hInMenu], a
+	call JoyTextDelay
 	pop af
-	ld [$ffaa], a
+	ld [hInMenu], a
 
-	ld a, [$ffa9]
+	ld a, [hJoyLast]
 	and D_RIGHT + D_LEFT + D_UP + D_DOWN
 	ld c, a
 	ld a, [hJoyPressed]
@@ -1599,7 +1605,7 @@ Function3718:: ; 3718
 	jr .ok
 
 .canlose
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	ld hl, WalkingTile
 	and $f
 	jr z, .ok
@@ -1736,7 +1742,7 @@ PrintLevel:: ; 382d
 ; Print TempMonLevel at hl
 
 	ld a, [TempMonLevel]
-	ld [hl], LV_CHAR
+	ld [hl], "<LV>"
 	inc hl
 
 ; How many digits?
@@ -1752,7 +1758,7 @@ PrintLevel:: ; 382d
 
 Function383d:: ; 383d
 ; Print :L and all 3 digits
-	ld [hl], LV_CHAR
+	ld [hl], "<LV>"
 	inc hl
 	ld c, 3
 ; 3842
@@ -1766,7 +1772,7 @@ Function3842:: ; 3842
 
 
 Function384d:: ; 384d
-	ld hl, wd25e
+	ld hl, wListMoves_MoveIndicesBuffer
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -2220,8 +2226,8 @@ Function3f6e:: ; 3f6e
 ; 3f7c
 
 Function3f7c:: ; 3f7c
-	call Function1cfd
-	call Function1c53
+	call GetMemTileCoord
+	call GetMenuBoxDims
 	dec b
 	dec c
 	call Function3eea

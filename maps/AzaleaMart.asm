@@ -57,6 +57,6 @@ AzaleaMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 7, 5, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x18e040, -1
-	person_event SPRITE_COOLTRAINER_M, 9, 6, $7, 0, 0, -1, -1, 0, 0, 0, CooltrainerMScript_0x18e047, -1
-	person_event SPRITE_BUG_CATCHER, 6, 11, $5, 0, 2, -1, -1, 8 + PAL_OW_RED, 0, 0, BugCatcherScript_0x18e04a, -1
+	person_event SPRITE_CLERK, 3, 1, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x18e040, -1
+	person_event SPRITE_COOLTRAINER_M, 5, 2, $7, 0, 0, -1, -1, 0, 0, 0, CooltrainerMScript_0x18e047, -1
+	person_event SPRITE_BUG_CATCHER, 2, 7, $5, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, BugCatcherScript_0x18e04a, -1

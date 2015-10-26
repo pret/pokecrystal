@@ -114,5 +114,5 @@ KrissNeighborsHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_COOLTRAINER_F, 7, 6, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, KrissNeighborsDaughter, -1
-	person_event SPRITE_POKEFAN_F, 7, 9, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, KrissNeighbor, EVENT_KRISS_NEIGHBORS_HOUSE_NEIGHBOR
+	person_event SPRITE_COOLTRAINER_F, 3, 2, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, KrissNeighborsDaughter, -1
+	person_event SPRITE_POKEFAN_F, 3, 5, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, KrissNeighbor, EVENT_KRISS_NEIGHBORS_HOUSE_NEIGHBOR

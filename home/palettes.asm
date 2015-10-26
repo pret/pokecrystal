@@ -79,6 +79,7 @@ DmgToCgbBGPals:: ; c9f
 	ld [rBGP], a
 	push af
 
+; Don't need to be here if CGB
 	ld a, [hCGB]
 	and a
 	jr z, .end
@@ -89,7 +90,7 @@ DmgToCgbBGPals:: ; c9f
 	ld a, [rSVBK]
 	push af
 
-	ld a, 5
+	ld a, 5 ; gfx
 	ld [rSVBK], a
 
 ; copy & reorder bg pal buffer
@@ -165,16 +166,21 @@ DmgToCgbObjPals:: ; ccb
 Functioncf8:: ; cf8
 	ld [rOBP0], a
 	push af
+
+; Don't need to be here if CGB
 	ld a, [hCGB]
 	and a
-	jr z, .asm_d22
+	jr z, .done
+
 	push hl
 	push de
 	push bc
+
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, 5 ; gfx
 	ld [rSVBK], a
+
 	ld hl, OBPals
 	ld de, Unkn2Pals
 	ld a, [rOBP0]
@@ -183,13 +189,15 @@ Functioncf8:: ; cf8
 	call CopyPals
 	ld a, $1
 	ld [hCGBPalUpdate], a
+
 	pop af
 	ld [rSVBK], a
+
 	pop bc
 	pop de
 	pop hl
 
-.asm_d22
+.done
 	pop af
 	ret
 ; d24

@@ -1464,7 +1464,7 @@ UnknownText_0x1c5c5d: ; 0x1c5c5d
 UnknownText_0x1c5c5e: ; 0x1c5c5e
 	text "You now have"
 	line "@"
-	deciram wdc4b, $12
+	deciram wBlueCardBalance, $12
 	text " points."
 	done
 ; 0x1c5c7b

@@ -129,24 +129,16 @@ channel_struct: MACRO
                       ds 1 ; c131
                       ds 1 ; c132
 ENDM
+GLOBAL box_struct_length, party_struct_length
 
-SECTION "CHR0", VRAM [$8000], BANK [0]
-VTiles0::
-SECTION "CHR1", VRAM [$8800], BANK [0]
-VTiles1::
-SECTION "CHR2", VRAM [$9000], BANK [0]
-VTiles2::
-SECTION "BG0",  VRAM [$9800], BANK [0]
-VBGMap0::
-SECTION "BG1",  VRAM [$9C00], BANK [0]
-VBGMap1::
-
-
+INCLUDE "vram.asm"
 
 SECTION "Stack", WRAM0
 wc000::
-	ds $ff
+StackBottom::
+	ds $100 - 1
 Stack::
+StackTop::
 	ds 1
 
 
@@ -303,7 +295,7 @@ wc2d7:: ds 1
 wc2d8:: ds 1
 wc2d9:: ds 1
 wc2da:: ds 2
-InLinkBattle:: ; c2dc
+wLinkMode:: ; c2dc
 ; 0 not in link battle
 ; 1 link battle
 ; 4 mobile battle
@@ -372,7 +364,7 @@ wPartyMonMenuIconAnims:: ds 96 ; c314
 wc374:: ds 48 ; c374
 wc3a4:: ds 8 ; c3b4
 wc3ac:: ds 8 ; c3bc
-wc3b4:: ds 1 ; c3
+wc3b4:: ds 1 ; c3b4
 wc3b5:: ds 1
 
 CurIcon:: ; c3b6
@@ -388,7 +380,8 @@ wc3bc:: ds 1
 wc3bd:: ds 1
 wc3be:: ds 1
 wc3bf:: ds 1
-wc3c0:: ds 12
+wc3c0:: ds 1
+wc3c1:: ds 11
 wc3cc:: ds 1
 wc3cd:: ds 31
 wc3ec:: ds 1
@@ -450,6 +443,8 @@ wc60f::
 wPlayerMoveStruct:: ds MOVE_LENGTH ; c60f
 wc616::
 EnemyMonNick::  ds PKMN_NAME_LENGTH ; c616
+	ds -5
+wInitHourBuffer:: ds 5
 BattleMonNick:: ds PKMN_NAME_LENGTH ; c621
 
 BattleMon:: battle_struct BattleMon ; c62c
@@ -886,19 +881,20 @@ wc7e8:: ds 24
 
 
 RSSET 0 ; Offsets for wBT_OTTempCopy:: @ $c608
-wBT_OTTempCopy_0			RB   $A			; $c608
-wBT_OTTempCopy_TrainerClass	RB   $1			; $c608 + $a = $c612
-wBT_OTTempCopy_Pkmn1		RB   $30		; $c608 + $b = $c613
-wBT_OTTempCopy_Pkmn1Name	RB   $A			; $c608 + $3b = $c643
-wBT_OTTempCopy_45			RB   $1			; $c608 + $45 = $c64d
-wBT_OTTempCopy_Pkmn2		RB   $30		; $c608 + $46 = $c64e
-wBT_OTTempCopy_Pkmn2Name	RB   $A			; $c608 + $76 = $c67e
-wBT_OTTempCopy_80			RB   $1			; $c608 + $80 = $c688
-wBT_OTTempCopy_Pkmn3		RB   $30		; $c608 + $81 = $c689
-wBT_OTTempCopy_Pkmn3Name	RB   $A			; $c608 + $b1 = $c6b9
-wBT_OTTempCopy_BB			RB   $1			; $c608 + $bb = $c6c3
+wBT_OTTempCopy_0			RB 10	                 ; $c608
+wBT_OTTempCopy_TrainerClass	RB 1	                 ; $c608 + $a = $c612
+wBT_OTTempCopy_Pkmn1		RB party_struct_length   ; $c608 + $b = $c613
+wBT_OTTempCopy_Pkmn1Name	RB PKMN_NAME_LENGTH + -1 ; $c608 + $45 = $c64d
+wBT_OTTempCopy_45           RB 1
+wBT_OTTempCopy_Pkmn2		RB party_struct_length   ; $c608 + $46 = $c64e
+wBT_OTTempCopy_Pkmn2Name	RB PKMN_NAME_LENGTH + -1 ; $c608 + $76 = $c67e
+wBT_OTTempCopy_80           RB 1
+wBT_OTTempCopy_Pkmn3		RB party_struct_length   ; $c608 + $81 = $c689
+wBT_OTTempCopy_Pkmn3Name	RB PKMN_NAME_LENGTH + -1 ; $c608 + $b1 = $c6b9
+wBT_OTTempCopy_BB           RB 1
 
-GLOBAL wBT_OTTempCopy_TrainerClass, wBT_OTTempCopy_Pkmn1, wBT_OTTempCopy_Pkmn1Name, wBT_OTTempCopy_45, wBT_OTTempCopy_Pkmn2, wBT_OTTempCopy_Pkmn2Name, wBT_OTTempCopy_80, wBT_OTTempCopy_Pkmn3, wBT_OTTempCopy_Pkmn3Name, wBT_OTTempCopy_BB
+GLOBAL wBT_OTTempCopy_TrainerClass, wBT_OTTempCopy_Pkmn1, wBT_OTTempCopy_Pkmn1Name, wBT_OTTempCopy_Pkmn2, wBT_OTTempCopy_Pkmn2Name, wBT_OTTempCopy_Pkmn3, wBT_OTTempCopy_Pkmn3Name
+GLOBAL wBT_OTTempCopy_45, wBT_OTTempCopy_80, wBT_OTTempCopy_BB
 
 
 
@@ -1188,15 +1184,19 @@ MonType:: ; cf5f
 CurSpecies:: ; cf60
 	ds 1
 
-wcf61:: ds 2
-wcf63:: ds 1
+wNamedObjectTypeBuffer:: ds 1
+	ds 1
+wJumptableIndex:: ds 1
 wNrOfBeatenBattleTowerTrainers::
 wMomBankDigitCursorPosition::
+wIntroSceneFrameCounter::
 wcf64:: ds 1
 IF !DEF(CRYSTAL11)
 wPokedexStatus::
 ENDC
+wTitleScreenTimerLo::
 wcf65:: ds 1
+wTitleScreenTimerHi::
 wcf66:: ds 1
 
 Requested2bpp:: ; cf67
@@ -1223,22 +1223,28 @@ wcf75:: ds 1
 wcf76:: ds 1
 wcf77:: ds 1
 wcf78:: ds 9
+
+; menu data header buffer (ds 16)
 wcf81:: ds 1
-wcf82:: ds 1
-wcf83:: ds 1
-wcf84:: ds 1
-wcf85:: ds 1
+
+; dw related to tilemap
+wMenuBorderTopCoord:: ds 1
+wMenuBorderLeftCoord:: ds 1
+wMenuBorderBottomCoord:: ds 1
+wMenuBorderRightCoord:: ds 1
+
 wcf86:: ds 1
 wcf87:: ds 1
-wcf88:: ds 2
-wcf8a:: ds 7
+wPocketCursorBuffer:: ds 2
+wcf8a:: ds 7 ; menu data 2 bank?
 wcf91:: ds 1
+
 wcf92:: ds 1
 wcf93:: ds 1
 wcf94:: ds 1
-wcf95:: ds 1
-wcf96:: ds 1
-wcf97:: ds 1
+wcf95:: ds 1 ; bank
+wcf96:: ds 1 ; addr lo
+wcf97:: ds 1 ; addr hi
 wcf98:: ds 3
 wcf9b:: ds 3
 wcf9e:: ds 3
@@ -1339,41 +1345,52 @@ Options2:: ; cfd1
 	ds 2
 OptionsEnd::
 
-wcfd4:: ds 1
-wcfd5:: ds 1
-wcfd6:: ds 1
-wcfd7:: ds 1
+; Time buffer, for counting the amount of time since
+; an event began.
+
+wSecondsSince:: ds 1
+wMinutesSince:: ds 1
+wHoursSince:: ds 1
+wDaysSince:: ds 1
 
 	ds 40
 
 
 SECTION "WRAM 1", WRAMX, BANK [1]
 
+MiscBuffer0::
 wd000:: ds 1
+MiscBuffer1::
 wd001:: ds 1
 wd002::
+MiscBuffer2::
 PhoneScriptBank::
 DefaultFlypoint:: ; d002
 LuckyNumberDigit1Buffer::
 	ds 1
 wd003::
+MiscBuffer3::
 LuckyNumberDigit2Buffer::
 PhoneCallerLo::
 	ds 1
 wd004::
+MiscBuffer4::
 LuckyNumberDigit3Buffer::
 PhoneCallerHi::
 	ds 1
 wd005::
+MiscBuffer5::
 LuckyNumberDigit4Buffer::
 StartFlypoint:: ; d005
 	ds 1
 wd006::
+MiscBuffer6::
 LuckyNumberDigit5Buffer::
 EndFlypoint:: ; d006
 	ds 1
 
 wd007::
+MiscBuffer7::
 MovementBuffer:: ; d007
 	ds 1
 
@@ -1419,13 +1436,17 @@ EngineBuffer1:: ; d03e
 wd03f::
 CurFruit:: ; d03f
 MartPointerBank::
+EngineBuffer2::
 	ds 1
 
 wd040::
 MartPointer:: ; d040
+EngineBuffer3::
 	ds 1
 
-wd041:: ds 1
+wd041::
+EngineBuffer4::
+	ds 1
 MovementAnimation:: ; d042
 	ds 1
 
@@ -1447,6 +1468,7 @@ wd048:: ds 1
 wLossTextPointer:: ds 2
 wd04b:: ds 2
 wd04d:: ds 1
+MenuItemsListEnd::
 wd04e:: ds 2
 wd050:: ds 10
 wd05a:: ds 12
@@ -1478,10 +1500,10 @@ CurMoveNum:: ; d0d5
 wd0d6:: ds 1
 wd0d7:: ds 1
 wd0d8:: ds 1
-wd0d9:: ds 1
-wd0da:: ds 1
-wd0db:: ds 1
-wd0dc:: ds 1
+wItemsPocketCursor:: ds 1
+wKeyItemsPocketCursor:: ds 1
+wBallsPocketCursor:: ds 1
+wTMHMPocketCursor:: ds 1
 wd0dd:: ds 2
 wd0df:: ds 1
 wd0e0:: ds 1
@@ -1501,7 +1523,7 @@ VramState:: ; d0ed
 ;        flickers when climbing waterfall
 	ds 1
 
-wd0ee:: ds 1
+wBattleResult:: ds 1
 wd0ef:: ds 1
 wd0f0::
 CurMart:: ; d0f0
@@ -1521,6 +1543,7 @@ wd105:: ds 1
 CurItem:: ; d106
 	ds 1
 
+ItemCountBuffer:: ; d107
 wd107:: ds 1
 
 CurPartySpecies:: ; d108
@@ -1548,7 +1571,9 @@ wd13f:: ds 2
 PartyMenuActionText:: ; d141
 	ds 1
 
-wd142:: ds 1
+wItemAttributeParamBuffer::
+wd142::
+	ds 1
 
 CurPartyLevel:: ; d143
 	ds 1
@@ -1586,7 +1611,8 @@ wd195:: ds 1
 wd196:: ds 1
 wd197:: ds 2
 wd199:: ds 1
-wPermission:: ds 3
+wPermission:: ds 1
+	ds 2
 
 ; width/height are in blocks (2x2 walkable tiles, 4x4 graphics tiles)
 MapHeader:: ; d19d
@@ -1716,7 +1742,6 @@ EvolvableFlags:: ; d1e8
 	flag_array PARTY_LENGTH
 
 wd1e9:: ds 1
-wd1ea::
 MagikarpLength::
 Buffer1:: ; d1ea
 	ds 1
@@ -1752,7 +1777,7 @@ EnemyMonBaseExp::   db ; d22c
 EnemyMonEnd::
 
 
-IsInBattle:: ; d22d
+wBattleMode:: ; d22d
 ; 0: overworld
 ; 1: wild battle
 ; 2: trainer battle
@@ -1848,7 +1873,7 @@ CurDamage:: ; d256
 	ds 2
 wd25a:: ds 3
 wd25d:: ds 1
-wd25e:: ds 4
+wListMoves_MoveIndicesBuffer:: ds 4
 wd262:: ds 1
 wd263:: ds 1
 wd264:: ds 1
@@ -1864,14 +1889,13 @@ TimeOfDay:: ; d269
 	ds 1
 
 	ds 1
+SECTION "Enemy Party", WRAMX, BANK [1]
+OTPlayerName::
 wd26b:: ds 1
 wd26c:: ds 1
 wd26d:: ds 4
 wd271:: ds 5
 wd276:: ds 10
-
-
-SECTION "Enemy Party", WRAMX, BANK [1]
 
 OTPartyCount::   ds 1 ; d280
 OTPartySpecies:: ds PARTY_LENGTH ; d281
@@ -1932,13 +1956,18 @@ wd454:: ds 1
 	ds 4
 
 wd459:: ds 2
-wd45b:: ds 1
-wd45c:: ds 8
-wd464:: ds 1
-wd465:: ds 1
-wd466:: ds 6
-wd46c:: ds 1
-wd46d:: ds 5
+wPlayerSpriteSetupFlags:: ds 1
+wMapReentryScriptQueueFlag:: ds 1 ; MemScriptFlag
+wMapReentryScriptBank:: ds 1 ; MemScriptBank
+wMapReentryScriptAddress:: ds 2 ; MemScriptAddr
+	ds 4     ; ?????????????
+wTimeCyclesSinceLastCall:: ds 1
+wReceiveCallDelay_MinsRemaining:: ds 1
+wReceiveCallDelay_StartTime:: ds 3
+	ds 3
+wBugContestMinsRemaining:: ds 1
+wBugContestSecsRemaining:: ds 1
+	ds 4
 
 wCrystalData::
 PlayerGender:: ; d472
@@ -1967,7 +1996,7 @@ RivalName::  ds NAME_LENGTH ; d493
 RedsName::   ds NAME_LENGTH ; d49e
 GreensName:: ds NAME_LENGTH ; d4a9
 
-wd4b4:: ds 1
+wSavedAtLeastOnce:: ds 1
 wSpawnAfterChampion:: ds 1
 
 ; init time set at newgame
@@ -2106,7 +2135,7 @@ CurTimeOfDay:: ; d848
 
 	ds 1
 
-wd84a:: ds 1
+wSecretID:: ds 1
 wd84b:: ds 1
 StatusFlags:: ; d84c
 	ds 1
@@ -2119,7 +2148,7 @@ Money:: ; d84e
 wd851::
 wMomsMoney:: ; d851
 	ds 3
-wd854::
+wBankOfMomMode::
 wMomSavingMoney:: ; d854
 	ds 1
 
@@ -2305,11 +2334,6 @@ wErinFightCount::    ds 1
 	ds 100
 
 EventFlags:: ; da72
-;RoomDecorations:: ; dac6
-;TeamRocketAzaleaTownAttackEvent:: ; db51
-;PoliceAtElmsLabEvent:: ; db52
-;SalesmanMahoganyTownEvent:: ; db5c
-;RedGyaradosEvent:: ; db5c
 	flag_array NUM_EVENTS
 ; db6c
 
@@ -2323,7 +2347,7 @@ wCurBox:: ; db72
 ; 8 chars + $50
 wBoxNames:: ds 9 * NUM_BOXES ; db75
 
-wdbf3:: ds 1
+wCelebiEvent:: ds 1
 	ds 1
 
 BikeFlags:: ; dbf5
@@ -2336,11 +2360,11 @@ wCurrentMapTriggerPointer:: ; dbf7
 	ds 2
 
 wCurrentCaller:: ds 2
-wdbfb:: ds 1
-wdbfc:: ds 1
+wCurrMapWarpCount:: ds 1
+wCurrMapWarpHeaderPointer:: ds 1
 wdbfd:: ds 1
 wCurrentMapXYTriggerCount:: ds 1
-wdbff:: ds 1
+wCurrentMapXYTriggerHeaderPointer:: ds 1
 wdc00:: ds 1
 wCurrentMapSignpostCount:: ds 1
 wdc02:: ds 1
@@ -2348,10 +2372,11 @@ wdc03:: ds 1
 wdc04:: ds 1
 wdc05:: ds 1
 wdc06:: ds 1
-wdc07:: ds 2
+wCurrMapTriggerCount:: ds 1
+wCurrMapTriggerHeaderPointer:: ds 1
 wdc09:: ds 1
-wdc0a:: ds 1
-wdc0b:: ds 2
+wCurrMapCallbackCount:: ds 1
+wCurrMapCallbackHeaderPointer:: ds 2
 wdc0d:: ds 1
 wdc0e:: ds 1
 
@@ -2381,13 +2406,13 @@ wdc18:: ds 1
 wdc19:: ds 1
 wdc1a:: ds 1
 wdc1b:: ds 1
-wdc1c:: ds 2
+wDailyResetTimer:: ds 2
 DailyFlags:: ds 1
 WeeklyFlags:: ds 1
 SwarmFlags:: ds 1
 wdc21:: ds 1
 wdc22:: ds 1
-wdc23:: ds 1
+wStartDay:: ds 1
 wdc24:: ds 2
 wdc26:: ds 1
 
@@ -2400,15 +2425,16 @@ wLuckyNumberDayBuffer:: ds 2
 	ds 2
 wSpecialPhoneCallID:: ds 2
 wdc33:: ds 2
-wdc35:: ds 4
+wBugContestStartTime:: ds 4 ; day, hour, min, sec
 wdc39:: ds 1
-wdc3a:: ds 1
-wdc3b:: ds 5
+wUnusedTwoDayTimer:: ds 1
+wUnusedTwoDayTimerStartDate:: ds 1
+	ds 4
 wdc40:: ds 1
 wdc41:: ds 1
 wdc42:: ds 8
-wdc4a:: ds 1
-wdc4b:: ds 1
+wBuenasPassword:: ds 1
+wBlueCardBalance:: ds 1
 wDailyRematchFlags:: ds 4
 wDailyPhoneItemFlags:: ds 4
 wDailyPhoneTimeOfDayFlags:: ds 4
@@ -2428,11 +2454,13 @@ PoisonStepCount:: ; dc74
 wdc77:: ds 2
 wdc79:: ds 1
 wdc7a:: ds 2
-wdc7c:: ds 33
+wPhoneList:: ds CONTACT_LIST_SIZE
+	ds 23
 wLuckyNumberShowFlag:: ds 2
 wLuckyIDNumber:: ds 2
-wdca1:: ds 3
-wdca4:: ds 1
+wRepelEffect:: ds 1
+wBikeStep:: ds 2
+wKurtApricornQuantity:: ds 1
 
 wPlayerDataEnd::
 
@@ -2562,7 +2590,7 @@ wContestMon:: party_struct wContestMon ; df9c
 
 wdfcc:: ds 1
 wdfcd:: ds 1
-wdfce:: ds 1
+wFishingSwarmFlag:: ds 1
 
 roam_struct: MACRO
 \1Species::   db
@@ -2728,7 +2756,12 @@ w5_d422:: ds $40
 
 SECTION "WRAM 6", WRAMX, BANK [6]
 
-w6_d000:: ds $600
+w6_d000:: ds $400
+w6_d400:: ds $200
 w6_d600:: ds $600
 
 INCLUDE "sram.asm"
+
+SECTION "WRAM 7", WRAMX, BANK [7]
+w7_d000:: ds $1000 - 1
+w7_dfff:: ds 1
