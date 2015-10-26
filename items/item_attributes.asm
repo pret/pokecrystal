@@ -8,27 +8,27 @@ ENDM
 Item1Attributes:
 
 ; MASTER BALL
-	item_attribute     0, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_FIELD
+	item_attribute     0, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_CLOSE
 
 Item2Attributes:
 
 ; ULTRA BALL
-	item_attribute  1200, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_FIELD
+	item_attribute  1200, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_CLOSE
 
 ; BRIGHTPOWDER
 	item_attribute    10, HELD_BRIGHTPOWDER,   20,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_NOUSE
 
 ; GREAT BALL
-	item_attribute   600, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_FIELD
+	item_attribute   600, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_CLOSE
 
 ; # BALL
-	item_attribute   200, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_FIELD
+	item_attribute   200, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_CLOSE
 
 ; TERU-SAMA
 	item_attribute $9999, NONE,                 0,                       0, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_NOUSE
 
 ; BICYCLE
-	item_attribute     0, NONE,                 0,               CANT_TOSS, KEY_ITEM, ITEMMENU_FIELD,   ITEMMENU_NOUSE
+	item_attribute     0, NONE,                 0,               CANT_TOSS, KEY_ITEM, ITEMMENU_CLOSE,   ITEMMENU_NOUSE
 
 ; MOON STONE
 	item_attribute     0, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_PARTY,   ITEMMENU_NOUSE
@@ -64,7 +64,7 @@ Item2Attributes:
 	item_attribute   300, NONE,                20,             CANT_SELECT, ITEM,     ITEMMENU_PARTY,   ITEMMENU_PARTY
 
 ; ESCAPE ROPE
-	item_attribute   550, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_FIELD,   ITEMMENU_NOUSE
+	item_attribute   550, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_CLOSE,   ITEMMENU_NOUSE
 
 ; REPEL
 	item_attribute   350, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_CURRENT, ITEMMENU_NOUSE
@@ -106,7 +106,7 @@ Item2Attributes:
 	item_attribute  4800, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_PARTY,   ITEMMENU_NOUSE
 
 ; X ACCURACY
-	item_attribute   950, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_FIELD
+	item_attribute   950, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_CLOSE
 
 ; LEAF STONE
 	item_attribute  2100, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_PARTY,   ITEMMENU_NOUSE
@@ -118,7 +118,7 @@ Item2Attributes:
 	item_attribute 10000, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_NOUSE
 
 ; # DOLL
-	item_attribute  1000, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_FIELD
+	item_attribute  1000, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_CLOSE
 
 ; FULL HEAL
 	item_attribute   600, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_PARTY,   ITEMMENU_PARTY
@@ -130,7 +130,7 @@ Item2Attributes:
 	item_attribute  4000, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_PARTY,   ITEMMENU_PARTY
 
 ; GUARD SPEC.
-	item_attribute   700, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_FIELD
+	item_attribute   700, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_CLOSE
 
 ; SUPER REPEL
 	item_attribute   500, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_CURRENT, ITEMMENU_NOUSE
@@ -139,7 +139,7 @@ Item2Attributes:
 	item_attribute   700, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_CURRENT, ITEMMENU_NOUSE
 
 ; DIRE HIT
-	item_attribute   650, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_FIELD
+	item_attribute   650, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_CLOSE
 
 ; TERU-SAMA
 	item_attribute $9999, NONE,                 0,                       0, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_NOUSE
@@ -154,25 +154,25 @@ Item2Attributes:
 	item_attribute   350, NONE,                80,             CANT_SELECT, ITEM,     ITEMMENU_PARTY,   ITEMMENU_PARTY
 
 ; X ATTACK
-	item_attribute   500, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_FIELD
+	item_attribute   500, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_CLOSE
 
 ; TERU-SAMA
 	item_attribute $9999, NONE,                 0,                       0, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_NOUSE
 
 ; X DEFEND
-	item_attribute   550, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_FIELD
+	item_attribute   550, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_CLOSE
 
 ; X SPEED
-	item_attribute   350, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_FIELD
+	item_attribute   350, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_CLOSE
 
 ; X SPECIAL
-	item_attribute   350, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_FIELD
+	item_attribute   350, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_CLOSE
 
 ; COIN CASE
 	item_attribute     0, NONE,                 0, CANT_SELECT | CANT_TOSS, KEY_ITEM, ITEMMENU_CURRENT, ITEMMENU_NOUSE
 
 ; ITEMFINDER
-	item_attribute     0, NONE,                 0,               CANT_TOSS, KEY_ITEM, ITEMMENU_FIELD,   ITEMMENU_NOUSE
+	item_attribute     0, NONE,                 0,               CANT_TOSS, KEY_ITEM, ITEMMENU_CLOSE,   ITEMMENU_NOUSE
 
 ; TERU-SAMA
 	item_attribute $9999, NONE,                 0,                       0, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_NOUSE
@@ -181,16 +181,16 @@ Item2Attributes:
 	item_attribute  3000, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_NOUSE
 
 ; OLD ROD
-	item_attribute     0, NONE,                 0,               CANT_TOSS, KEY_ITEM, ITEMMENU_FIELD,   ITEMMENU_NOUSE
+	item_attribute     0, NONE,                 0,               CANT_TOSS, KEY_ITEM, ITEMMENU_CLOSE,   ITEMMENU_NOUSE
 
 ; GOOD ROD
-	item_attribute     0, NONE,                 0,               CANT_TOSS, KEY_ITEM, ITEMMENU_FIELD,   ITEMMENU_NOUSE
+	item_attribute     0, NONE,                 0,               CANT_TOSS, KEY_ITEM, ITEMMENU_CLOSE,   ITEMMENU_NOUSE
 
 ; SILVER LEAF
 	item_attribute  1000, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_NOUSE
 
 ; SUPER ROD
-	item_attribute     0, NONE,                 0,               CANT_TOSS, KEY_ITEM, ITEMMENU_FIELD,   ITEMMENU_NOUSE
+	item_attribute     0, NONE,                 0,               CANT_TOSS, KEY_ITEM, ITEMMENU_CLOSE,   ITEMMENU_NOUSE
 
 ; PP UP
 	item_attribute  9800, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_PARTY,   ITEMMENU_NOUSE
@@ -388,7 +388,7 @@ Item2Attributes:
 	item_attribute   200, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_NOUSE
 
 ; CARD KEY
-	item_attribute     0, NONE,                 0, CANT_SELECT | CANT_TOSS, KEY_ITEM, ITEMMENU_FIELD,   ITEMMENU_NOUSE
+	item_attribute     0, NONE,                 0, CANT_SELECT | CANT_TOSS, KEY_ITEM, ITEMMENU_CLOSE,   ITEMMENU_NOUSE
 
 ; MACHINE PART
 	item_attribute     0, NONE,                 0, CANT_SELECT | CANT_TOSS, KEY_ITEM, ITEMMENU_NOUSE,   ITEMMENU_NOUSE
@@ -406,7 +406,7 @@ Item2Attributes:
 	item_attribute  9800, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_NOUSE
 
 ; BASEMENT KEY
-	item_attribute     0, NONE,                 0, CANT_SELECT | CANT_TOSS, KEY_ITEM, ITEMMENU_FIELD,   ITEMMENU_NOUSE
+	item_attribute     0, NONE,                 0, CANT_SELECT | CANT_TOSS, KEY_ITEM, ITEMMENU_CLOSE,   ITEMMENU_NOUSE
 
 ; PASS
 	item_attribute     0, NONE,                 0, CANT_SELECT | CANT_TOSS, KEY_ITEM, ITEMMENU_NOUSE,   ITEMMENU_NOUSE
@@ -475,22 +475,22 @@ Item2Attributes:
 	item_attribute $9999, NONE,                 0,                       0, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_NOUSE
 
 ; SACRED ASH
-	item_attribute   200, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_FIELD,   ITEMMENU_NOUSE
+	item_attribute   200, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_CLOSE,   ITEMMENU_NOUSE
 
 ; HEAVY BALL
-	item_attribute   150, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_FIELD
+	item_attribute   150, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_CLOSE
 
 ; FLOWER MAIL
 	item_attribute    50, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_NOUSE
 
 ; LEVEL BALL
-	item_attribute   150, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_FIELD
+	item_attribute   150, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_CLOSE
 
 ; LURE BALL
-	item_attribute   150, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_FIELD
+	item_attribute   150, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_CLOSE
 
 ; FAST BALL
-	item_attribute   150, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_FIELD
+	item_attribute   150, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_CLOSE
 
 ; TERU-SAMA
 	item_attribute $9999, NONE,                 0,                       0, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_NOUSE
@@ -499,13 +499,13 @@ Item2Attributes:
 	item_attribute   100, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_NOUSE
 
 ; FRIEND BALL
-	item_attribute   150, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_FIELD
+	item_attribute   150, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_CLOSE
 
 ; MOON BALL
-	item_attribute   150, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_FIELD
+	item_attribute   150, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_CLOSE
 
 ; LOVE BALL
-	item_attribute   150, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_FIELD
+	item_attribute   150, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_CLOSE
 
 ; NORMAL BOX
 	item_attribute    10, NONE,                 0,             CANT_SELECT, ITEM,     ITEMMENU_CURRENT, ITEMMENU_NOUSE
@@ -532,13 +532,13 @@ Item2Attributes:
 	item_attribute    10, HELD_BERRY,          30,             CANT_SELECT, ITEM,     ITEMMENU_PARTY,   ITEMMENU_PARTY
 
 ; SQUIRTBOTTLE
-	item_attribute     0, NONE,                 0, CANT_SELECT | CANT_TOSS, KEY_ITEM, ITEMMENU_FIELD,   ITEMMENU_NOUSE
+	item_attribute     0, NONE,                 0, CANT_SELECT | CANT_TOSS, KEY_ITEM, ITEMMENU_CLOSE,   ITEMMENU_NOUSE
 
 ; TERU-SAMA
 	item_attribute $9999, NONE,                 0,                       0, ITEM,     ITEMMENU_NOUSE,   ITEMMENU_NOUSE
 
 ; PARK BALL
-	item_attribute     0, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_FIELD
+	item_attribute     0, NONE,                 0,             CANT_SELECT, BALL,     ITEMMENU_NOUSE,   ITEMMENU_CLOSE
 
 ; RAINBOW WING
 	item_attribute     0, NONE,                 0, CANT_SELECT | CANT_TOSS, KEY_ITEM, ITEMMENU_NOUSE,   ITEMMENU_NOUSE

@@ -368,4 +368,4 @@ NUM_ITEMATTRS EQU const_value
 ITEMMENU_NOUSE              EQU 0
 ITEMMENU_CURRENT            EQU 4
 ITEMMENU_PARTY              EQU 5
-ITEMMENU_FIELD              EQU 6
+ITEMMENU_CLOSE              EQU 6
