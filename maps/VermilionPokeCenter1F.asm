@@ -88,7 +88,7 @@ VermilionPokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_NURSE, 5, 7, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x191603, -1
-	person_event SPRITE_FISHING_GURU, 6, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, FishingGuruScript_0x191606, -1
-	person_event SPRITE_SAILOR, 9, 10, $4, 1, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, SailorScript_0x19161a, -1
-	person_event SPRITE_BUG_CATCHER, 9, 5, $3, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, BugCatcherScript_0x19161d, -1
+	person_event SPRITE_NURSE, 1, 3, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x191603, -1
+	person_event SPRITE_FISHING_GURU, 2, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, FishingGuruScript_0x191606, -1
+	person_event SPRITE_SAILOR, 5, 6, $4, 1, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SailorScript_0x19161a, -1
+	person_event SPRITE_BUG_CATCHER, 5, 1, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, BugCatcherScript_0x19161d, -1

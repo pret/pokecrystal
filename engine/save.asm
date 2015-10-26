@@ -380,7 +380,7 @@ ErasePreviousSave: ; 14cbb
 	ld [sStackTop + 1], a
 	call CloseSRAM
 	ld a, $1
-	ld [wd4b4], a
+	ld [wSavedAtLeastOnce], a
 	ret
 ; 14ce2
 
@@ -486,7 +486,7 @@ Function14d93: ; 14d93
 
 
 Function14da0: ; 14da0
-	ld a, [wd4b4]
+	ld a, [wSavedAtLeastOnce]
 	and a
 	ret nz
 	call ErasePreviousSave

@@ -82,9 +82,9 @@ PredefPointers:: ; 856b
 	add_predef Predef_LoadSGBLayout
 	add_predef Function91d11
 	add_predef CheckContestMon
-	add_predef Function8c20f
-	add_predef Function8c000
-	add_predef Function8c000_2
+	add_predef Predef_StartBattle
+	add_predef Predef35
+	add_predef Predef36
 	add_predef PlayBattleAnim
 	add_predef Predef38 ; $38
 	add_predef Predef39

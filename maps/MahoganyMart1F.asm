@@ -236,8 +236,8 @@ MahoganyMart1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_PHARMACIST, 7, 8, $6, 0, 0, -1, -1, 0, 0, 0, PharmacistScript_0x6c367, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_BLACK_BELT, 10, 5, $3, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x6c37b, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_LANCE, 10, 8, $8, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
-	person_event SPRITE_DRAGON, 10, 7, $8, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
-	person_event SPRITE_GRANNY, 7, 5, $9, 0, 0, -1, -1, 0, 0, 0, GrannyScript_0x6c3ee, EVENT_MAHOGANY_MART_OWNERS
+	person_event SPRITE_PHARMACIST, 3, 4, $6, 0, 0, -1, -1, 0, 0, 0, PharmacistScript_0x6c367, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_BLACK_BELT, 6, 1, $3, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x6c37b, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_LANCE, 6, 4, $8, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
+	person_event SPRITE_DRAGON, 6, 3, $8, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
+	person_event SPRITE_GRANNY, 3, 1, $9, 0, 0, -1, -1, 0, 0, 0, GrannyScript_0x6c3ee, EVENT_MAHOGANY_MART_OWNERS

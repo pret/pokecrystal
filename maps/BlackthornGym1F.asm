@@ -404,8 +404,8 @@ BlackthornGym1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_CLAIR, 7, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ClairScript_0x194e24, -1
-	person_event SPRITE_COOLTRAINER_M, 10, 10, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerCooltrainermMike, -1
-	person_event SPRITE_COOLTRAINER_M, 18, 5, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerCooltrainermPaul, -1
-	person_event SPRITE_COOLTRAINER_F, 6, 13, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 1, TrainerCooltrainerfLola, -1
-	person_event SPRITE_GYM_GUY, 19, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, BlackthornGymGuyScript, -1
+	person_event SPRITE_CLAIR, 3, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ClairScript_0x194e24, -1
+	person_event SPRITE_COOLTRAINER_M, 6, 6, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainermMike, -1
+	person_event SPRITE_COOLTRAINER_M, 14, 1, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainermPaul, -1
+	person_event SPRITE_COOLTRAINER_F, 2, 9, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerCooltrainerfLola, -1
+	person_event SPRITE_GYM_GUY, 15, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, BlackthornGymGuyScript, -1

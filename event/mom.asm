@@ -1,12 +1,12 @@
 Special_BankOfMom: ; 16218
-	ld a, [$ffaa]
+	ld a, [hInMenu]
 	push af
 	ld a, $1
-	ld [$ffaa], a
+	ld [hInMenu], a
 	xor a
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 .asm_16223
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .asm_1622f
 	call Function16233
@@ -14,15 +14,15 @@ Special_BankOfMom: ; 16218
 
 .asm_1622f
 	pop af
-	ld [$ffaa], a
+	ld [hInMenu], a
 	ret
 ; 16233
 
 Function16233: ; 16233
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
-	ld hl, Jumptable_16242
+	ld hl, .jumptable
 rept 2
 	add hl, de
 endr
@@ -32,75 +32,75 @@ endr
 	jp [hl]
 ; 16242
 
-Jumptable_16242: ; 16242
-	dw Function16254
-	dw Function1626a
-	dw Function16290
-	dw Function162a8
-	dw Function162e0
-	dw Function16373
-	dw Function16406
-	dw Function1642d
-	dw Function16433
+.jumptable: ; 16242
+	dw .CheckIfBankInitialized
+	dw .InitializeBank
+	dw .IsThisAboutYourMoney
+	dw .AccessBankOfMom
+	dw .StoreMoney
+	dw .TakeMoney
+	dw .StopOrStartSavingMoney
+	dw .AskDST
+	dw .JustDoWhatYouCan
 ; 16254
 
-Function16254: ; 16254
-	ld a, [wd854]
+.CheckIfBankInitialized: ; 16254
+	ld a, [wBankOfMomMode]
 	bit 7, a
-	jr nz, .asm_16264
+	jr nz, .savingmoneyalready
 	set 7, a
-	ld [wd854], a
+	ld [wBankOfMomMode], a
 	ld a, $1
-	jr .asm_16266
+	jr .done_0
 
-.asm_16264
+.savingmoneyalready
 	ld a, $2
 
-.asm_16266
-	ld [wcf63], a
+.done_0
+	ld [wJumptableIndex], a
 	ret
 ; 1626a
 
-Function1626a: ; 1626a
+.InitializeBank: ; 1626a
 	ld hl, UnknownText_0x16649
 	call PrintText
 	call YesNoBox
-	jr c, .asm_1627f
+	jr c, .DontSaveMoney
 	ld hl, UnknownText_0x1664e
 	call PrintText
-	ld a, $81
-	jr .asm_16281
+	ld a, %10000001
+	jr .done_1
 
-.asm_1627f
-	ld a, $80
+.DontSaveMoney
+	ld a, %10000000
 
-.asm_16281
-	ld [wd854], a
+.done_1
+	ld [wBankOfMomMode], a
 	ld hl, UnknownText_0x16653
 	call PrintText
 	ld a, $8
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ret
 ; 16290
 
-Function16290: ; 16290
+.IsThisAboutYourMoney: ; 16290
 	ld hl, UnknownText_0x16658
 	call PrintText
 	call YesNoBox
-	jr c, .asm_1629f
+	jr c, .nope
 	ld a, $3
-	jr .asm_162a4
+	jr .done_2
 
-.asm_1629f
+.nope
 	call DSTChecks
 	ld a, $7
 
-.asm_162a4
-	ld [wcf63], a
+.done_2
+	ld [wJumptableIndex], a
 	ret
 ; 162a8
 
-Function162a8: ; 162a8
+.AccessBankOfMom: ; 162a8
 	ld hl, UnknownText_0x1665d
 	call PrintText
 	call LoadMenuDataHeader_0x1d75
@@ -108,36 +108,36 @@ Function162a8: ; 162a8
 	call CopyMenuDataHeader
 	call InterpretMenu2
 	call WriteBackup
-	jr c, .asm_162ce
+	jr c, .cancel
 	ld a, [wcfa9]
 	cp $1
-	jr z, .asm_162d2
+	jr z, .withdraw
 	cp $2
-	jr z, .asm_162d6
+	jr z, .deposit
 	cp $3
-	jr z, .asm_162da
+	jr z, .stopsaving
 
-.asm_162ce
+.cancel
 	ld a, $7
-	jr .asm_162dc
+	jr .done_3
 
-.asm_162d2
+.withdraw
 	ld a, $5
-	jr .asm_162dc
+	jr .done_3
 
-.asm_162d6
+.deposit
 	ld a, $4
-	jr .asm_162dc
+	jr .done_3
 
-.asm_162da
+.stopsaving
 	ld a, $6
 
-.asm_162dc
-	ld [wcf63], a
+.done_3
+	ld [wJumptableIndex], a
 	ret
 ; 162e0
 
-Function162e0: ; 162e0
+.StoreMoney: ; 162e0
 	ld hl, UnknownText_0x16662
 	call PrintText
 	xor a
@@ -153,31 +153,31 @@ endr
 	call Function1656b
 	call Function16571
 	call WriteBackup
-	jr c, .asm_1636d
+	jr c, .CancelDeposit
 	ld hl, StringBuffer2
 	ld a, [hli]
 	or [hl]
 	inc hl
 	or [hl]
-	jr z, .asm_1636d
+	jr z, .CancelDeposit
 	ld de, Money
 	ld bc, StringBuffer2
 	callba CheckMoney
-	jr c, .asm_1635f
+	jr c, .DontHaveThatMuchToDeposit
 	ld hl, StringBuffer2
 	ld de, StringBuffer2 + 3
-	ld bc, $0003
+	ld bc, 3
 	call CopyBytes
 	ld bc, wd851
 	ld de, StringBuffer2
 	callba GiveMoney
-	jr c, .asm_16366
+	jr c, .CantDepositThatMuch
 	ld bc, StringBuffer2 + 3
 	ld de, Money
 	callba TakeMoney
 	ld hl, StringBuffer2
 	ld de, wd851
-	ld bc, $0003
+	ld bc, 3
 	call CopyBytes
 	ld de, SFX_TRANSACTION
 	call PlaySFX
@@ -185,27 +185,27 @@ endr
 	ld hl, UnknownText_0x1668a
 	call PrintText
 	ld a, $8
-	jr .asm_1636f
+	jr .done_4
 
-.asm_1635f
+.DontHaveThatMuchToDeposit
 	ld hl, UnknownText_0x1667b
 	call PrintText
 	ret
 
-.asm_16366
+.CantDepositThatMuch
 	ld hl, UnknownText_0x16680
 	call PrintText
 	ret
 
-.asm_1636d
+.CancelDeposit
 	ld a, $7
 
-.asm_1636f
-	ld [wcf63], a
+.done_4
+	ld [wJumptableIndex], a
 	ret
 ; 16373
 
-Function16373: ; 16373
+.TakeMoney: ; 16373
 	ld hl, UnknownText_0x16667
 	call PrintText
 	xor a
@@ -221,13 +221,13 @@ endr
 	call Function1656b
 	call Function16571
 	call WriteBackup
-	jr c, .asm_16400
+	jr c, .CancelWithdraw
 	ld hl, StringBuffer2
 	ld a, [hli]
 	or [hl]
 	inc hl
 	or [hl]
-	jr z, .asm_16400
+	jr z, .CancelWithdraw
 	ld hl, StringBuffer2
 	ld de, StringBuffer2 + 3
 	ld bc, 3
@@ -235,11 +235,11 @@ endr
 	ld de, wd851
 	ld bc, StringBuffer2
 	callba CheckMoney
-	jr c, .asm_163f2
+	jr c, .InsufficientFundsInBank
 	ld bc, Money
 	ld de, StringBuffer2
 	callba GiveMoney
-	jr c, .asm_163f9
+	jr c, .NotEnoughRoomInWallet
 	ld bc, StringBuffer2 + 3
 	ld de, wd851
 	callba TakeMoney
@@ -253,53 +253,53 @@ endr
 	ld hl, UnknownText_0x1668f
 	call PrintText
 	ld a, $8
-	jr .asm_16402
+	jr .done_5
 
-.asm_163f2
+.InsufficientFundsInBank
 	ld hl, UnknownText_0x16671
 	call PrintText
 	ret
 
-.asm_163f9
+.NotEnoughRoomInWallet
 	ld hl, UnknownText_0x16676
 	call PrintText
 	ret
 
-.asm_16400
-	ld a, 7
+.CancelWithdraw
+	ld a, $7
 
-.asm_16402
-	ld [wcf63], a
+.done_5
+	ld [wJumptableIndex], a
 	ret
 ; 16406
 
-Function16406: ; 16406
+.StopOrStartSavingMoney: ; 16406
 	ld hl, UnknownText_0x1666c
 	call PrintText
 	call YesNoBox
-	jr c, .asm_16422
+	jr c, .StopSavingMoney
 	ld a, $81
-	ld [wd854], a
+	ld [wBankOfMomMode], a
 	ld hl, UnknownText_0x16685
 	call PrintText
 	ld a, $8
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ret
 
-.asm_16422
+.StopSavingMoney
 	ld a, $80
-	ld [wd854], a
+	ld [wBankOfMomMode], a
 	ld a, $7
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ret
 ; 1642d
 
-Function1642d: ; 1642d
+.AskDST: ; 1642d
 	ld hl, UnknownText_0x16694
 	call PrintText
 
-Function16433: ; 16433
-	ld hl, wcf63
+.JustDoWhatYouCan: ; 16433
+	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
 ; 16439
@@ -491,7 +491,7 @@ Function1656b: ; 1656b
 
 Function16571: ; 16571
 .loop
-	call Functiona57
+	call JoyTextDelay
 	ld hl, hJoyPressed
 	ld a, [hl]
 	and B_BUTTON

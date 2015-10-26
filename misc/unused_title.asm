@@ -9,7 +9,7 @@ UnusedTitleScreen: ; 10c000
 	xor a
 	ld [hBGMapMode], a
 
-	ld hl, wcf63
+	ld hl, wJumptableIndex
 rept 3
 	ld [hli], a
 endr
@@ -17,17 +17,17 @@ endr
 
 	ld hl, UnusedTitleBG_GFX
 	ld de, VTiles2
-	ld bc, $800
+	ld bc, VBGMap0 - VTiles2
 	call CopyBytes
 
 	ld hl, UnusedTitleBG_GFX + $800
 	ld de, VTiles1
-	ld bc, $800
+	ld bc, VTiles2 - VTiles1
 	call CopyBytes
 
 	ld hl, UnusedTitleFG_GFX
 	ld de, VTiles0
-	ld bc, $800
+	ld bc, VTiles1 - VTiles0
 	call CopyBytes
 
 	ld hl, UnusedTitleBG_Tilemap
@@ -546,12 +546,12 @@ UnusedTitleFG_OAM: ; 10ecb1
 Function10ed51: ; 10ed51
 	call _TitleScreen
 .loop
-	call Functiona57
-	ld a, [$ffa9]
+	call JoyTextDelay
+	ld a, [hJoyLast]
 	ld b, a
 	and 1
 	jr nz, .done
-	call Function10eea7
+	call SuicuneFrameIterator
 	call DelayFrame
 	jr .loop
 .done

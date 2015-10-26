@@ -62,4 +62,4 @@ Route30BerrySpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKEFAN_M, 7, 6, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, PokefanMScript_0x196d64, -1
+	person_event SPRITE_POKEFAN_M, 3, 2, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, PokefanMScript_0x196d64, -1

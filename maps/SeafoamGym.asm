@@ -171,5 +171,5 @@ SeafoamGym_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_BLAINE, 6, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, BlaineScript_0x1ab4fb, -1
-	person_event SPRITE_GYM_GUY, 9, 10, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, SeafoamGymGuyScript, EVENT_SEAFOAM_GYM_GYM_GUY
+	person_event SPRITE_BLAINE, 2, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, BlaineScript_0x1ab4fb, -1
+	person_event SPRITE_GYM_GUY, 5, 6, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SeafoamGymGuyScript, EVENT_SEAFOAM_GYM_GYM_GUY

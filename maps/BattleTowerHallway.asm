@@ -98,4 +98,4 @@ BattleTowerHallway_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_RECEPTIONIST, 6, 15, $6, 0, 0, -1, -1, 0, 0, 0, BattleTowerHallway_MapEventHeader, -1
+	person_event SPRITE_RECEPTIONIST, 2, 11, $6, 0, 0, -1, -1, 0, 0, 0, BattleTowerHallway_MapEventHeader, -1

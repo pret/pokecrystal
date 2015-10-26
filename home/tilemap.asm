@@ -1,44 +1,79 @@
-Function1c30:: ; 0x1c30
-	call Function1c53
+BackUpTiles:: ; 1c00
+	callab _BackUpTiles
+	ret
+; 1c07
+
+ExitMenu:: ; 0x1c07
+	push af
+	callab Function243e8
+	pop af
+	ret
+
+Function1c10:: ; 0x1c10
+	callab Function2446d
+	ret
+
+WriteBackup:: ; 0x1c17
+	push af
+	call ExitMenu
+	call Function321c
+	call UpdateSprites
+	pop af
+	ret
+
+RestoreTileBackup:: ; 0x1c23
+	call GetMemTileCoord
+	call .copy
+	call GetMemAttrCoord
+	call .copy
+	ret
+; 0x1c30
+
+.copy: ; 0x1c30
+	call GetMenuBoxDims
 	inc b
 	inc c
-.asm_1c35
+
+.row
 	push bc
 	push hl
-.asm_1c37
+
+.col
 	ld a, [de]
 	ld [hli], a
 	dec de
 	dec c
-	jr nz, .asm_1c37 ; 0x1c3b $fa
+	jr nz, .col ; 0x1c3b $fa
+
 	pop hl
-	ld bc, $0014
+	ld bc, SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .asm_1c35 ; 0x1c44 $ef
+	jr nz, .row ; 0x1c44 $ef
+
 	ret
 
 Function1c47:: ; 0x1c47
 	ld b, $10
 	ld de, wcf81
-.asm_1c4c
+.loop
 	ld a, [hld]
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_1c4c ; 0x1c50 $fa
+	jr nz, .loop ; 0x1c50 $fa
 	ret
 
-Function1c53:: ; 0x1c53
-	ld a, [wcf82]
+GetMenuBoxDims:: ; 0x1c53
+	ld a, [wMenuBorderTopCoord] ; top
 	ld b, a
-	ld a, [wcf84]
+	ld a, [wMenuBorderBottomCoord] ; bottom
 	sub b
 	ld b, a
-	ld a, [wcf83]
+	ld a, [wMenuBorderLeftCoord] ; left
 	ld c, a
-	ld a, [wcf85]
+	ld a, [wMenuBorderRightCoord] ; right
 	sub c
 	ld c, a
 	ret
@@ -99,7 +134,7 @@ Function1c89:: ; 1c89
 	ld a, [wcf91]
 	bit 4, a
 	ret z
-	call Function1cfd
+	call GetMemTileCoord
 	ld a, [de]
 	ld c, a
 	inc de
@@ -109,18 +144,18 @@ Function1c89:: ; 1c89
 ; 1cbb
 
 Function1cbb:: ; 1cbb
-	call Function1cfd
-	call Function1c53
+	call GetMemTileCoord
+	call GetMenuBoxDims
 	dec b
 	dec c
 	jp TextBox
 ; 1cc6
 
 Function1cc6:: ; 1cc6
-	ld a, [wcf82]
+	ld a, [wMenuBorderTopCoord]
 	ld b, a
 	inc b
-	ld a, [wcf83]
+	ld a, [wMenuBorderLeftCoord]
 	ld c, a
 	inc c
 	ld a, [wcf91]
@@ -139,10 +174,10 @@ Function1cc6:: ; 1cc6
 ; 1ce1
 
 Function1ce1:: ; 1ce1
-	call Function1cfd
+	call GetMemTileCoord
 	ld bc, $0015
 	add hl, bc
-	call Function1c53
+	call GetMenuBoxDims
 	dec b
 	dec c
 	call ClearBox
@@ -150,8 +185,8 @@ Function1ce1:: ; 1ce1
 ; 1cf1
 
 Function1cf1:: ; 1cf1
-	call Function1cfd
-	call Function1c53
+	call GetMemTileCoord
+	call GetMenuBoxDims
 	inc c
 	inc b
 	call ClearBox
@@ -159,10 +194,10 @@ Function1cf1:: ; 1cf1
 ; 1cfd
 
 
-Function1cfd:: ; 1cfd
-	ld a, [wcf83]
+GetMemTileCoord:: ; 1cfd
+	ld a, [wMenuBorderLeftCoord]
 	ld c, a
-	ld a, [wcf82]
+	ld a, [wMenuBorderTopCoord]
 	ld b, a
 ; 1d05
 
@@ -191,10 +226,10 @@ endr
 	ret
 ; 1d19
 
-Function1d19:: ; 1d19
-	ld a, [wcf83]
+GetMemAttrCoord:: ; 1d19
+	ld a, [wMenuBorderLeftCoord]
 	ld c, a
-	ld a, [wcf82]
+	ld a, [wMenuBorderTopCoord]
 	ld b, a
 
 GetAttrCoord:: ; 1d21

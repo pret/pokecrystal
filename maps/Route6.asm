@@ -104,6 +104,6 @@ Route6_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_POKEFAN_M, 8, 21, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 2, PokefanMScript_0x1ad951, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
-	person_event SPRITE_POKEFAN_M, 16, 13, $9, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 0, TrainerPokefanmRex, -1
-	person_event SPRITE_POKEFAN_M, 16, 14, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 0, TrainerPokefanmAllan, -1
+	person_event SPRITE_POKEFAN_M, 4, 17, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 2, PokefanMScript_0x1ad951, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
+	person_event SPRITE_POKEFAN_M, 12, 9, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 0, TrainerPokefanmRex, -1
+	person_event SPRITE_POKEFAN_M, 12, 10, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 0, TrainerPokefanmAllan, -1

@@ -65,6 +65,6 @@ CeladonDeptStore4F_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 9, 17, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, ClerkScript_0x70f0d, -1
-	person_event SPRITE_SUPER_NERD, 10, 11, $5, 0, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, SuperNerdScript_0x70f15, -1
-	person_event SPRITE_YOUNGSTER, 6, 12, $7, 0, 0, -1, -1, 0, 0, 0, YoungsterScript_0x70f18, -1
+	person_event SPRITE_CLERK, 5, 13, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ClerkScript_0x70f0d, -1
+	person_event SPRITE_SUPER_NERD, 6, 7, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, SuperNerdScript_0x70f15, -1
+	person_event SPRITE_YOUNGSTER, 2, 8, $7, 0, 0, -1, -1, 0, 0, 0, YoungsterScript_0x70f18, -1

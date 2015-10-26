@@ -19,21 +19,21 @@ Predef_LoadSGBLayoutCGB: ; 8d59
 	ld l, a
 	ld h, 0
 	add hl, hl
-	ld de, Table8d7a
+	ld de, .jumptable
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, Function8d79
+	ld de, .ReturnFromJumpTable
 	push de
 	jp [hl]
 ; 8d79
 
-Function8d79: ; 8d79
+.ReturnFromJumpTable: ; 8d79
 	ret
 ; 8d7a
 
-Table8d7a: ; 8d7a
+.jumptable: ; 8d7a
 	dw Function8db8
 	dw Function8ddb
 	dw Function8eb9
@@ -71,15 +71,15 @@ Function8db8: ; 8db8
 	ld hl, PalPacket_9c66 + 1
 	ld de, Unkn1Pals
 	ld c, $4
-	call Function9615
+	call CopyPalettes
 	ld hl, PalPacket_9c66 + 1
 	ld de, Unkn1Pals + $20
 	ld c, $4
-	call Function9615
+	call CopyPalettes
 	ld hl, PalPacket_9c66 + 1
 	ld de, Unkn2Pals
 	ld c, $2
-	call Function9615
+	call CopyPalettes
 	jr Function8e23
 
 Function8ddb: ; 8ddb
@@ -288,13 +288,13 @@ Unknown_8f6a: ; 8f6a
 Function8f70: ; 8f70
 	ld de, Unkn1Pals
 	ld a, $1d
-	call Function9625
-	call Function9630
+	call GetAthPalletFromPalettes9df6
+	call LoadHLPaletteIntoDE
 	ld a, [CurPartySpecies]
 	cp $ff
 	jr nz, .asm_8f8a
 	ld hl, Palette8fba
-	call Function9630
+	call LoadHLPaletteIntoDE
 	jr .asm_8f90
 
 .asm_8f8a
@@ -336,13 +336,13 @@ Palette8fc2: ; 8fc2
 Function8fca: ; 8fca
 	ld de, Unkn1Pals
 	ld a, $1d
-	call Function9625
-	call Function9630
+	call GetAthPalletFromPalettes9df6
+	call LoadHLPaletteIntoDE
 	ld a, [CurPartySpecies]
 	cp $ff
 	jr nz, .asm_8fe4
 	ld hl, Palette9036
-	call Function9630
+	call LoadHLPaletteIntoDE
 	jr .asm_8fed
 
 .asm_8fe4
@@ -366,7 +366,7 @@ Function8fca: ; 8fca
 
 Function9009: ; 9009
 	ld hl, Palette9036
-	call Function9630
+	call LoadHLPaletteIntoDE
 	jr .asm_901a
 
 	ld bc, TempMonDVs
@@ -397,8 +397,8 @@ Palette9036: ; 9036
 Function903e: ; 903e
 	ld de, Unkn1Pals
 	ld a, $1d
-	call Function9625
-	call Function9630
+	call GetAthPalletFromPalettes9df6
+	call LoadHLPaletteIntoDE
 	ld a, [CurPartySpecies]
 	call Function9775
 	call Function9643
@@ -471,12 +471,12 @@ Function906e: ; 906e
 
 Function90f8: ; 90f8
 	ld hl, PalPacket_9ca6 + 1
-	call Function9610
+	call CopyFourPalettes
 	call Function9699
 	ld de, Unkn2Pals
 	ld a, $3c
-	call Function9625
-	call Function9630
+	call GetAthPalletFromPalettes9df6
+	call LoadHLPaletteIntoDE
 	hlcoord 0, 6, AttrMap
 	ld bc, $0c14
 	ld a, $1
@@ -509,7 +509,7 @@ Jumptable_912d: ; 912d
 Function9133: ; 9133
 	ld hl, Palette_914e
 	ld de, Unkn1Pals
-	call Function9630
+	call LoadHLPaletteIntoDE
 	ld hl, Palette_9156
 	ld de, Unkn2Pals
 	ld bc, $0010
@@ -540,23 +540,23 @@ Palette_9156: ; 9156
 Function9166: ; 9166
 	ld de, Unkn1Pals
 	ld a, $38
-	call Function9625
-	call Function9630
+	call GetAthPalletFromPalettes9df6
+	call LoadHLPaletteIntoDE
 	ld de, Unkn2Pals
 	ld a, $39
-	call Function9625
-	call Function9630
+	call GetAthPalletFromPalettes9df6
+	call LoadHLPaletteIntoDE
 	call Function9699
 	ret
 ; 9180
 
 Function9180: ; 9180
 	ld hl, PalPacket_9c36 + 1
-	call Function9610
+	call CopyFourPalettes
 	ld de, Unkn2Pals
 	ld a, $3a
-	call Function9625
-	call Function9630
+	call GetAthPalletFromPalettes9df6
+	call LoadHLPaletteIntoDE
 	call Function9699
 	ret
 ; 9195
@@ -580,7 +580,7 @@ Function91ad: ; 91ad
 	ld a, $5
 	call FarCopyWRAM
 	ld hl, PalPacket_9cb6 + 1
-	call Function9610
+	call CopyFourPalettes
 	call Function9699
 	call Function96b3
 	ret
@@ -595,7 +595,7 @@ Function91c8: ; 91c8
 
 Function91d1: ; 91d1
 	ld hl, PalPacket_9c56 + 1
-	call Function9610
+	call CopyFourPalettes
 	call Function8e9f
 	call Function8e85
 	call Function971a
@@ -609,8 +609,8 @@ Function91e4: ; 91e4
 	and a
 	jr z, .asm_91f5
 	ld a, $1a
-	call Function9625
-	call Function9630
+	call GetAthPalletFromPalettes9df6
+	call LoadHLPaletteIntoDE
 	jr .asm_921a
 
 .asm_91f5
@@ -659,7 +659,7 @@ Function9228: ; 9228
 
 Function9251: ; 9251
 	ld hl, PalPacket_9cb6 + 1
-	call Function9610
+	call CopyFourPalettes
 	call Function9699
 	call Function96b3
 	ret
@@ -667,11 +667,11 @@ Function9251: ; 9251
 
 Function925e: ; 925e
 	ld hl, PalPacket_9bc6 + 1
-	call Function9610
+	call CopyFourPalettes
 	ld de, Unkn2Pals
 	ld a, $4c
-	call Function9625
-	call Function9630
+	call GetAthPalletFromPalettes9df6
+	call LoadHLPaletteIntoDE
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -715,8 +715,8 @@ Function9289: ; 9289
 	call Function976b
 	call Function9643
 	ld a, $24
-	call Function9625
-	call Function9630
+	call GetAthPalletFromPalettes9df6
+	call LoadHLPaletteIntoDE
 	hlcoord 0, 0, AttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, [PlayerGender]
@@ -796,8 +796,8 @@ Function9289: ; 9289
 Function9373: ; 9373
 	ld de, Unkn1Pals
 	ld a, $10
-	call Function9625
-	call Function9630
+	call GetAthPalletFromPalettes9df6
+	call LoadHLPaletteIntoDE
 	ld a, [PlayerHPPal]
 	ld l, a
 	ld h, 0
@@ -821,7 +821,7 @@ endr
 
 Function93a6: ; 93a6
 	ld hl, PalPacket_9c46 + 1
-	call Function9610
+	call CopyFourPalettes
 	call Function9699
 	call Function96b3
 	call Function96a4
@@ -833,8 +833,8 @@ Function93a6: ; 93a6
 Function93ba: ; 93ba
 	ld de, Unkn1Pals
 	ld a, $1d
-	call Function9625
-	call Function9630
+	call GetAthPalletFromPalettes9df6
+	call LoadHLPaletteIntoDE
 	call Function9699
 	call Function96b3
 	call Function96a4
@@ -949,7 +949,7 @@ Function9499: ; 9499
 	call Function91c8
 	ld de, $0014
 	hlcoord 0, 0, AttrMap
-	ld a, [wcf82]
+	ld a, [wMenuBorderTopCoord]
 .asm_94a5
 	and a
 	jr z, .asm_94ac
@@ -958,19 +958,19 @@ Function9499: ; 9499
 	jr .asm_94a5
 
 .asm_94ac
-	ld a, [wcf83]
+	ld a, [wMenuBorderLeftCoord]
 	ld e, a
 	ld d, $0
 	add hl, de
-	ld a, [wcf82]
+	ld a, [wMenuBorderTopCoord]
 	ld b, a
-	ld a, [wcf84]
+	ld a, [wMenuBorderBottomCoord]
 	inc a
 	sub b
 	ld b, a
-	ld a, [wcf83]
+	ld a, [wMenuBorderLeftCoord]
 	ld c, a
-	ld a, [wcf85]
+	ld a, [wMenuBorderRightCoord]
 	sub c
 	inc a
 	ld c, a
@@ -982,7 +982,7 @@ Function9499: ; 9499
 
 Function94d0: ; 94d0
 	ld hl, PalPacket_9ba6 + 1
-	call Function9610
+	call CopyFourPalettes
 	call Function9699
 	hlcoord 0, 4, AttrMap
 	ld bc, $0a14
@@ -1002,14 +1002,14 @@ Function94d0: ; 94d0
 Function94fa: ; 94fa
 	ld de, Unkn1Pals
 	ld a, $4e
-	call Function9625
-	call Function9630
+	call GetAthPalletFromPalettes9df6
+	call LoadHLPaletteIntoDE
 	ld hl, Palette_9521
 	ld de, Unkn2Pals
-	call Function9630
+	call LoadHLPaletteIntoDE
 	ld hl, Palette_9521
 	ld de, Unkn2Pals + 8
-	call Function9630
+	call LoadHLPaletteIntoDE
 	call Function9699
 	call Function96b3
 	call Function96a4
@@ -1047,7 +1047,7 @@ Function9542: ; 9542
 
 Function9555: ; 9555
 	ld hl, PalPacket_9cc6 + 1
-	call Function9610
+	call CopyFourPalettes
 	ld hl, Palettes_b681
 	ld de, Unkn2Pals
 	ld bc, $0008
@@ -1055,8 +1055,8 @@ Function9555: ; 9555
 	call FarCopyWRAM
 	ld de, Unkn2Pals + $38
 	ld a, $1c
-	call Function9625
-	call Function9630
+	call GetAthPalletFromPalettes9df6
+	call LoadHLPaletteIntoDE
 	call Function9699
 	ret
 ; 9578

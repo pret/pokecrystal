@@ -3,7 +3,7 @@
 
 Functiond0000: ; d0000
 	hlcoord 12, 0
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	cp $1
 	jr z, .asm_d0012
 	ld e, $0

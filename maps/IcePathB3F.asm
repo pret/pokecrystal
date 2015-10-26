@@ -28,5 +28,5 @@ IcePathB3F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKE_BALL, 11, 9, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e66f, EVENT_ICE_PATH_B3F_NEVERMELTICE
-	person_event SPRITE_ROCK, 10, 10, $18, 0, 0, -1, -1, 0, 0, 0, IcePathB3FRock, -1
+	person_event SPRITE_POKE_BALL, 7, 5, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e66f, EVENT_ICE_PATH_B3F_NEVERMELTICE
+	person_event SPRITE_ROCK, 6, 6, $18, 0, 0, -1, -1, 0, 0, 0, IcePathB3FRock, -1

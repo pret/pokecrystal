@@ -159,7 +159,7 @@ PokeCenterNurseScript:
 
 .pokerus_done
 	setflag ENGINE_POKERUS
-	specialphonecall ELMCALL_POKERUS
+	specialphonecall SPECIALCALL_POKERUS
 	end
 
 DifficultBookshelfScript:
@@ -297,7 +297,7 @@ RadioTowerRocketsScript:
 	clearevent EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	clearevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	setevent EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST
-	specialphonecall ELMCALL_WEIRDBROADCAST
+	specialphonecall SPECIALCALL_WEIRDBROADCAST
 	domaptrigger MAHOGANY_TOWN, $1
 	end
 
@@ -1809,7 +1809,7 @@ CoinVendor_IntroScript: ; 0xbcde0
 	farwritetext CoinVendor_IntroText
 
 CoinVendor_SellCoinsMenuScript: ; 0xbcde4
-	special Function24b4e
+	special Special_DisplayMoneyAndCoinBalance
 	loadmenudata CoinVendor_MenuDataHeader
 	interpretmenu2
 	writebackup

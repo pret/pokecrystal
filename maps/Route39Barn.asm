@@ -200,6 +200,6 @@ Route39Barn_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_TWIN, 7, 6, $9, 0, 0, -1, -1, 0, 0, 0, TwinScript_0x9cc76, -1
-	person_event SPRITE_TWIN, 7, 8, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, TwinScript_0x9cc90, -1
-	person_event SPRITE_TAUROS, 7, 7, $16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x9ccaa, -1
+	person_event SPRITE_TWIN, 3, 2, $9, 0, 0, -1, -1, 0, 0, 0, TwinScript_0x9cc76, -1
+	person_event SPRITE_TWIN, 3, 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TwinScript_0x9cc90, -1
+	person_event SPRITE_TAUROS, 3, 3, $16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x9ccaa, -1

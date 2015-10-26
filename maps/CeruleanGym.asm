@@ -377,9 +377,9 @@ CeruleanGym_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_ROCKET, 14, 8, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_CERULEAN_GYM_ROCKET
-	person_event SPRITE_MISTY, 7, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, MistyScript_0x188432, EVENT_TRAINERS_IN_CERULEAN_GYM
-	person_event SPRITE_SWIMMER_GIRL, 10, 8, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerSwimmerfDiana, EVENT_TRAINERS_IN_CERULEAN_GYM
-	person_event SPRITE_SWIMMER_GIRL, 13, 5, $9, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 1, TrainerSwimmerfBriana, EVENT_TRAINERS_IN_CERULEAN_GYM
-	person_event SPRITE_SWIMMER_GUY, 13, 12, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerSwimmermParker, EVENT_TRAINERS_IN_CERULEAN_GYM
-	person_event SPRITE_GYM_GUY, 17, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, CeruleanGymGuyScript, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_ROCKET, 10, 4, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_CERULEAN_GYM_ROCKET
+	person_event SPRITE_MISTY, 3, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, MistyScript_0x188432, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_SWIMMER_GIRL, 6, 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfDiana, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_SWIMMER_GIRL, 9, 1, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerSwimmerfBriana, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_SWIMMER_GUY, 9, 8, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermParker, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_GYM_GUY, 13, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, CeruleanGymGuyScript, EVENT_TRAINERS_IN_CERULEAN_GYM

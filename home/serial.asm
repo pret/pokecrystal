@@ -15,7 +15,7 @@ Serial:: ; 6ef
 	jr nz, .asm_721
 
 	ld a, [$ffcb]
-	inc a
+	inc a ; is it equal to -1?
 	jr z, .asm_726
 
 	ld a, [rSB]
@@ -334,7 +334,7 @@ Function87d:: ; 87d
 Function8c1:: ; 8c1
 	push bc
 	ld b, $60
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $1
 	jr z, .asm_8d7
 	ld b, $60
@@ -391,7 +391,7 @@ Function908:: ; 908
 ; 919
 
 Function919:: ; 919
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
 	ret nz
 	ld a, $2

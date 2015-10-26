@@ -8,33 +8,39 @@ WarpToSpawnPoint:: ; 97c28
 	ret
 ; 97c30
 
-Function97c30:: ; 97c30
-	ld a, [wd45c]
+RunMemScript:: ; 97c30
+; If there is no script here, we don't need to be here.
+	ld a, [wMapReentryScriptQueueFlag]
 	and a
 	ret z
-	ld hl, wd45c + 2
+; Execute the script at (wMapReentryScriptBank):(wMapReentryScriptAddress).
+	ld hl, wMapReentryScriptAddress
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wd45c + 1]
+	ld a, [wMapReentryScriptBank]
 	call CallScript
 	scf
+; Clear the buffer for the next script.
 	push af
 	xor a
-	ld hl, wd45c
+	ld hl, wMapReentryScriptQueueFlag
 	ld bc, 8
 	call ByteFill
 	pop af
 	ret
 ; 97c4f
 
-Function97c4f:: ; 97c4f
-	ld hl, wd45c
+LoadScriptBDE:: ; 97c4f
+; If there's already a script here, don't overwrite.
+	ld hl, wMapReentryScriptQueueFlag
 	ld a, [hl]
 	and a
 	ret nz
+; Set the flag
 	ld [hl], 1
 	inc hl
+; Load the script pointer b:de into (wMapReentryScriptBank):(wMapReentryScriptAddress)
 	ld [hl], b
 	inc hl
 	ld [hl], e
@@ -262,46 +268,60 @@ ContestMons: ; 97d87
 	db -1, VENOMOTH,   30, 40
 ; 97db3
 
-Function97db3:: ; 97db3
+DoBikeStep:: ; 97db3
 	nop
 	nop
-	; fallthrough
-; 97db5
-
-Function97db5: ; 97db5
+	; If the bike shop owner doesn't have our number, or
+	; if we've already gotten the call, we don't have to
+	; be here.
 	ld hl, StatusFlags2
 	bit 4, [hl]
 	jr z, .NoCall
+
+	; If we're not on the bike, we don't have to be here.
 	ld a, [PlayerState]
-	cp 1
+	cp PLAYER_BIKE
 	jr nz, .NoCall
+
+	; If we're not in an area of phone service, we don't
+	; have to be here.
 	call GetMapHeaderPhoneServiceNybble
 	and a
 	jr nz, .NoCall
-	ld hl, wdca2
+
+	; Check the bike step count and check whether we've
+	; taken 65536 of them yet.
+	ld hl, wBikeStep
 	ld a, [hli]
 	ld d, a
 	ld e, [hl]
-	cp -1
-	jr nz, .asm_97dd8
+	cp 255
+	jr nz, .increment
 	ld a, e
-	cp -1
-	jr z, .asm_97ddc
+	cp 255
+	jr z, .dont_increment
 
-.asm_97dd8
+.increment
 	inc de
 	ld [hl], e
 	dec hl
 	ld [hl], d
 
-.asm_97ddc
+.dont_increment
+	; If we've taken at least 1024 steps, have the bike
+	;  shop owner try to call us.
 	ld a, d
-	cp $4
+	cp 1024 >> 8
 	jr c, .NoCall
+
+	; If a call has already been queued, don't overwrite
+	; that call.
 	ld a, [wSpecialPhoneCallID]
 	and a
 	jr nz, .NoCall
-	ld a, 6
+
+	; Queue the call.
+	ld a, SPECIALCALL_BIKESHOP
 	ld [wSpecialPhoneCallID], a
 	xor a
 	ld [wSpecialPhoneCallID + 1], a
@@ -488,7 +508,7 @@ Function97eb7: ; 97eb7
 ; 97eb8
 
 Function97eb8: ; 97eb8
-	call Function2f3e
+	call ret_2f3e
 	ret
 ; 97ebc
 

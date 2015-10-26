@@ -74,9 +74,9 @@ Timer:: ; 3e93
 	push de
 	push hl
 
-	ld a, [$ffe9]
+	ld a, [hMobile]
 	and a
-	jr z, .asm_3ed2
+	jr z, .pop_ret
 
 	xor a
 	ld [rTAC], a
@@ -88,15 +88,15 @@ Timer:: ; 3e93
 
 	ld a, [$c86a]
 	or a
-	jr z, .asm_3ed2
+	jr z, .pop_ret
 
 	ld a, [$c822]
 	bit 1, a
-	jr nz, .asm_3eca
+	jr nz, .skip_Function1118de
 
 	ld a, [rSC]
 	and 1 << rSC_ON
-	jr nz, .asm_3eca
+	jr nz, .skip_Function1118de
 
 	ld a, [hROMBank]
 	push af
@@ -111,14 +111,14 @@ Timer:: ; 3e93
 	ld [$c981], a
 	rst Bankswitch
 
-.asm_3eca
+.skip_Function1118de
 	ld a, [rTMA]
 	ld [rTIMA], a
 
 	ld a, 1 << rTAC_ON | rTAC_65536_HZ
 	ld [rTAC], a
 
-.asm_3ed2
+.pop_ret
 	pop hl
 	pop de
 	pop bc

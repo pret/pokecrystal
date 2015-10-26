@@ -169,5 +169,5 @@ GoldenrodDeptStore6F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_LASS, 6, 14, $5, 0, 1, -1, -1, 8 + PAL_OW_GREEN, 0, 0, LassScript_0x564bf, -1
-	person_event SPRITE_SUPER_NERD, 6, 12, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, SuperNerdScript_0x564c2, -1
+	person_event SPRITE_LASS, 2, 10, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x564bf, -1
+	person_event SPRITE_SUPER_NERD, 2, 8, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SuperNerdScript_0x564c2, -1

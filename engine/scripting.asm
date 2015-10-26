@@ -529,7 +529,7 @@ Script_interpretmenu: ; 0x96f41
 	ld a, [ScriptBank]
 	ld hl, InterpretMenu
 	rst FarCall
-	ld a, [wcf88]
+	ld a, [wPocketCursorBuffer]
 	jr nc, .ok
 	xor a
 .ok
@@ -651,7 +651,7 @@ Script_specialsound: ; 0x96fe4
 ; script command 0x88
 
 	callba CheckItemPocket
-	ld a, [wd142]
+	ld a, [wItemAttributeParamBuffer]
 	cp TM_HM
 	ld de, SFX_GET_TM
 	jr z, .play
@@ -665,7 +665,7 @@ Script_specialsound: ; 0x96fe4
 
 GetPocketName: ; 96ffe
 	callba CheckItemPocket
-	ld a, [wd142]
+	ld a, [wItemAttributeParamBuffer]
 	dec a
 	ld hl, .Pockets
 	and 3
@@ -1338,12 +1338,12 @@ Script_moveperson: ; 0x97341
 	call GetScriptPerson
 	ld b, a
 	call GetScriptByte
-	add $4
+	add 4
 	ld d, a
 	call GetScriptByte
-	add $4
+	add 4
 	ld e, a
-	callba Function807e
+	callba CopyDECoordsToMapObject
 	ret
 ; 0x9735b
 
@@ -1385,10 +1385,10 @@ Script_loademote: ; 0x97384
 ;     bubble (SingleByteParam)
 
 	call GetScriptByte
-	cp $ff
-	jr nz, .asm_9738e ; 0x97389 $3
+	cp -1
+	jr nz, .not_var_emote ; 0x97389 $3
 	ld a, [ScriptVar]
-.asm_9738e
+.not_var_emote
 	ld c, a
 	callba Function1442f
 	ret
@@ -1417,7 +1417,7 @@ Script_showemote: ; 0x97396
 ; 0x973b6
 
 ShowEmoteScript: ; 973b6
-	loademote $ff
+	loademote -1
 	applymovement2 .Show
 	pause 0
 	applymovement2 .Hide
@@ -1448,12 +1448,12 @@ Script_earthquake: ; 0x973c7
 	ld [wd003], a
 	and $3f
 	ld [wd005], a
-	ld b, BANK(UnknownScript_0x973e6)
-	ld de, UnknownScript_0x973e6
+	ld b, BANK(.script)
+	ld de, .script
 	jp ScriptCall
 ; 0x973e6
 
-UnknownScript_0x973e6: ; 973e6
+.script: ; 973e6
 	applymovement PLAYER, wd002
 	end
 ; 973eb
@@ -1487,7 +1487,7 @@ Script_battlecheck: ; 0x973fb
 Script_loadtrainerdata: ; 0x97400
 ; script command 0x5c
 
-	ld a, $81
+	ld a, (1 << 7) | 1
 	ld [wd459], a
 	ld a, [WalkingDirection]
 	ld [OtherTrainerClass], a
@@ -1502,7 +1502,7 @@ Script_loadpokedata: ; 0x97412
 ;     pokemon (PokemonParam)
 ;     level (DecimalParam)
 
-	ld a, $80
+	ld a, (1 << 7)
 	ld [wd459], a
 	call GetScriptByte
 	ld [TempWildMonSpecies], a
@@ -1517,7 +1517,7 @@ Script_loadtrainer: ; 0x97424
 ;     trainer_group (TrainerGroupParam)
 ;     trainer_id (TrainerIdParam)
 
-	ld a, $81
+	ld a, (1 << 7) | 1
 	ld [wd459], a
 	call GetScriptByte
 	ld [OtherTrainerClass], a
@@ -1531,7 +1531,7 @@ Script_startbattle: ; 0x97436
 
 	call BufferScreen
 	predef StartBattle
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $3f
 	ld [ScriptVar], a
 	ret
@@ -1555,26 +1555,28 @@ Script_returnafterbattle: ; 0x97459
 	ld hl, wd459
 	ld d, [hl]
 	ld [hl], $0
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and $3f
 	cp $1
-	jr nz, .asm_97470 ; 0x97466 $8
+	jr nz, .notblackedout ; 0x97466 $8
 	ld b, BANK(UnknownScript_0x124c1)
 	ld hl, UnknownScript_0x124c1
 	jp ScriptJump
-.asm_97470
+
+.notblackedout
 	bit 0, d
-	jr z, .asm_9747c ; 0x97472 $8
-	callba Functionfcfec
-	jr .asm_9748e ; 0x9747a $12
-.asm_9747c
-	ld a, [wd0ee]
+	jr z, .was_wild ; 0x97472 $8
+	callba MomTriesToBuySomething
+	jr .done ; 0x9747a $12
+
+.was_wild
+	ld a, [wBattleResult]
 	bit 7, a
-	jr z, .asm_9748e ; 0x97481 $b
-	ld b, BANK(UnknownScript_0x90255)
-	ld de, UnknownScript_0x90255
-	callba Function97c4f
-.asm_9748e
+	jr z, .done ; 0x97481 $b
+	ld b, BANK(Script_SpecialBillCall)
+	ld de, Script_SpecialBillCall
+	callba LoadScriptBDE
+.done
 	jp Script_reloadmap
 ; 0x97491
 
@@ -1583,7 +1585,7 @@ Script_reloadmap: ; 0x97491
 
 	xor a
 	ld [wd459], a
-	ld a, $f3
+	ld a, MAPSETUP_RELOADMAP
 	ld [hMapEntryMethod], a
 	ld a, $1
 	call LoadMapStatus
@@ -2202,7 +2204,7 @@ Script_name: ; 0x97716
 ;     memory (SingleByteParam)
 
 	call GetScriptByte
-	ld [wcf61], a
+	ld [wNamedObjectTypeBuffer], a
 
 ContinueToGetName: ; 0x9771c
 	call GetScriptByte
@@ -2219,7 +2221,7 @@ Script_trainerclassname: ; 0x9772b
 ;     memory (SingleByteParam)
 
 	ld a, TRAINER_NAME
-	ld [wcf61], a
+	ld [wNamedObjectTypeBuffer], a
 	jr ContinueToGetName ; 0x97730 $ea
 ; 0x97732
 
@@ -2811,10 +2813,10 @@ Script_warpfacing: ; 0x97a0e
 	call GetScriptByte
 	and $3
 	ld c, a
-	ld a, [wd45b]
+	ld a, [wPlayerSpriteSetupFlags]
 	set 5, a
 	or c
-	ld [wd45b], a
+	ld [wPlayerSpriteSetupFlags], a
 ; fall through
 
 Script_warp: ; 0x97a1d
@@ -2838,7 +2840,7 @@ Script_warp: ; 0x97a1d
 	ld [YCoord], a
 	ld a, -1
 	ld [wd001], a
-	ld a, -15
+	ld a, MAPSETUP_WARP
 	ld [hMapEntryMethod], a
 	ld a, 1
 	call LoadMapStatus
@@ -2850,7 +2852,7 @@ Script_warp: ; 0x97a1d
 	call GetScriptByte
 	ld a, -1
 	ld [wd001], a
-	ld a, -5
+	ld a, MAPSETUP_BADWARP
 	ld [hMapEntryMethod], a
 	ld a, 1
 	call LoadMapStatus
@@ -2966,7 +2968,7 @@ Script_reloadmappart:: ; 0x97ae3
 ; script command 0x7c
 
 	xor a
-	ld [$ffd4], a
+	ld [hBGMapMode], a
 	call Function2173
 	call Function2914
 	callba Function104061
@@ -3011,7 +3013,7 @@ Script_reloadandreturn: ; 0x97b16
 Script_loadfont: ; 0x97b1c
 ; script command 0x47
 
-	call Function2e08
+	call LoadFont
 	ret
 ; 0x97b20
 
@@ -3044,7 +3046,7 @@ Script_loadmovesprites: ; 0x97b2f
 ; script command 0x49
 
 	call Function2e20
-	call Function2dcf
+	call LoadMoveSprites
 	ret
 ; 0x97b36
 

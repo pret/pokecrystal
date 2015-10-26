@@ -76,10 +76,10 @@ MountMortar2FInside_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_POKE_BALL, 26, 32, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e0de, EVENT_MOUNT_MORTAR_2F_INSIDE_MAX_POTION
-	person_event SPRITE_POKE_BALL, 37, 6, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e0e0, EVENT_MOUNT_MORTAR_2F_INSIDE_RARE_CANDY
-	person_event SPRITE_POKE_BALL, 21, 23, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e0e2, EVENT_MOUNT_MORTAR_2F_INSIDE_TM_DEFENSE_CURL
-	person_event SPRITE_POKE_BALL, 9, 20, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e0e4, EVENT_MOUNT_MORTAR_2F_INSIDE_DRAGON_SCALE
-	person_event SPRITE_POKE_BALL, 15, 13, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e0e6, EVENT_MOUNT_MORTAR_2F_INSIDE_ELIXER
-	person_event SPRITE_POKE_BALL, 9, 32, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e0e8, EVENT_MOUNT_MORTAR_2F_INSIDE_ESCAPE_ROPE
-	person_event SPRITE_SUPER_NERD, 30, 17, $a, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 2, TrainerSupernerdHugh, -1
+	person_event SPRITE_POKE_BALL, 22, 28, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e0de, EVENT_MOUNT_MORTAR_2F_INSIDE_MAX_POTION
+	person_event SPRITE_POKE_BALL, 33, 2, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e0e0, EVENT_MOUNT_MORTAR_2F_INSIDE_RARE_CANDY
+	person_event SPRITE_POKE_BALL, 17, 19, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e0e2, EVENT_MOUNT_MORTAR_2F_INSIDE_TM_DEFENSE_CURL
+	person_event SPRITE_POKE_BALL, 5, 16, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e0e4, EVENT_MOUNT_MORTAR_2F_INSIDE_DRAGON_SCALE
+	person_event SPRITE_POKE_BALL, 11, 9, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e0e6, EVENT_MOUNT_MORTAR_2F_INSIDE_ELIXER
+	person_event SPRITE_POKE_BALL, 5, 28, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e0e8, EVENT_MOUNT_MORTAR_2F_INSIDE_ESCAPE_ROPE
+	person_event SPRITE_SUPER_NERD, 26, 13, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerSupernerdHugh, -1

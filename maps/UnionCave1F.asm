@@ -207,12 +207,12 @@ UnionCave1F_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_POKEFAN_M, 10, 7, $9, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 2, TrainerHikerDaniel, -1
-	person_event SPRITE_SUPER_NERD, 25, 8, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerPokemaniacLarry, -1
-	person_event SPRITE_POKEFAN_M, 12, 15, $a, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 1, TrainerHikerRussell, -1
-	person_event SPRITE_FISHER, 31, 19, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 4, TrainerFirebreatherRay, -1
-	person_event SPRITE_FISHER, 23, 18, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 4, TrainerFirebreatherBill, -1
-	person_event SPRITE_POKE_BALL, 25, 21, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59c00, EVENT_UNION_CAVE_1F_GREAT_BALL
-	person_event SPRITE_POKE_BALL, 6, 8, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59c02, EVENT_UNION_CAVE_1F_X_ATTACK
-	person_event SPRITE_POKE_BALL, 21, 8, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59c04, EVENT_UNION_CAVE_1F_POTION
-	person_event SPRITE_POKE_BALL, 37, 16, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59c06, EVENT_UNION_CAVE_1F_AWAKENING
+	person_event SPRITE_POKEFAN_M, 6, 3, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerHikerDaniel, -1
+	person_event SPRITE_SUPER_NERD, 21, 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPokemaniacLarry, -1
+	person_event SPRITE_POKEFAN_M, 8, 11, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerHikerRussell, -1
+	person_event SPRITE_FISHER, 27, 15, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerFirebreatherRay, -1
+	person_event SPRITE_FISHER, 19, 14, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerFirebreatherBill, -1
+	person_event SPRITE_POKE_BALL, 21, 17, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59c00, EVENT_UNION_CAVE_1F_GREAT_BALL
+	person_event SPRITE_POKE_BALL, 2, 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59c02, EVENT_UNION_CAVE_1F_X_ATTACK
+	person_event SPRITE_POKE_BALL, 17, 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59c04, EVENT_UNION_CAVE_1F_POTION
+	person_event SPRITE_POKE_BALL, 33, 12, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59c06, EVENT_UNION_CAVE_1F_AWAKENING

@@ -155,6 +155,6 @@ MountMoonSquare_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_FAIRY, 10, 10, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
-	person_event SPRITE_FAIRY, 10, 11, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
-	person_event SPRITE_ROCK, 11, 11, $18, 0, 0, -1, -1, 0, 0, 0, MtMoonSquareRock, EVENT_MT_MOON_SQUARE_ROCK
+	person_event SPRITE_FAIRY, 6, 6, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
+	person_event SPRITE_FAIRY, 6, 7, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
+	person_event SPRITE_ROCK, 7, 7, $18, 0, 0, -1, -1, 0, 0, 0, MtMoonSquareRock, EVENT_MT_MOON_SQUARE_ROCK

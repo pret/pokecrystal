@@ -456,15 +456,15 @@ FastShipB1F_MapEventHeader:
 
 .PersonEvents:
 	db 12
-	person_event SPRITE_SAILOR, 10, 34, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, SailorScript_0x76767, EVENT_FAST_SHIP_B1F_SAILOR_LEFT
-	person_event SPRITE_SAILOR, 10, 35, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, SailorScript_0x76767, EVENT_FAST_SHIP_B1F_SAILOR_RIGHT
-	person_event SPRITE_SAILOR, 15, 13, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerSailorJeff, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	person_event SPRITE_LASS, 8, 10, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 1, TrainerPicnickerDebra, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	person_event SPRITE_SUPER_NERD, 13, 30, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerJugglerFritz, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	person_event SPRITE_SAILOR, 8, 21, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 4, TrainerSailorGarrett, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	person_event SPRITE_FISHER, 12, 29, $7, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerFisherJonah, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	person_event SPRITE_BLACK_BELT, 15, 19, $1f, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 3, TrainerBlackbeltWai, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	person_event SPRITE_SAILOR, 8, 27, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 4, TrainerSailorKenneth, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	person_event SPRITE_TEACHER, 15, 13, $7, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 3, TrainerTeacherShirley, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	person_event SPRITE_YOUNGSTER, 13, 18, $3, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerSchoolboyNate, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	person_event SPRITE_YOUNGSTER, 15, 18, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerSchoolboyRicky, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_SAILOR, 6, 30, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SailorScript_0x76767, EVENT_FAST_SHIP_B1F_SAILOR_LEFT
+	person_event SPRITE_SAILOR, 6, 31, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SailorScript_0x76767, EVENT_FAST_SHIP_B1F_SAILOR_RIGHT
+	person_event SPRITE_SAILOR, 11, 9, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSailorJeff, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_LASS, 4, 6, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerPicnickerDebra, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_SUPER_NERD, 9, 26, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerJugglerFritz, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_SAILOR, 4, 17, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerSailorGarrett, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_FISHER, 8, 25, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerFisherJonah, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_BLACK_BELT, 11, 15, $1f, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBlackbeltWai, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_SAILOR, 4, 23, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerSailorKenneth, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_TEACHER, 11, 9, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerTeacherShirley, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_YOUNGSTER, 9, 14, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSchoolboyNate, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_YOUNGSTER, 11, 14, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSchoolboyRicky, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND

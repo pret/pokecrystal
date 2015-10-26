@@ -60,7 +60,7 @@ Function17c000: ; 17c000
 	ld [rSVBK], a
 
 	ld hl, MobileSelectGFX
-	ld de, $8300
+	ld de, VTiles0 tile $30
 	ld bc, $200
 	call CopyBytes
 
@@ -300,10 +300,10 @@ Function17d0f3: ; 17d0f3
 	ld a, $1
 	ld [wd1e9], a
 	ld a, $2
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	callba Function421d8
 	xor a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	callba Function14a58
 	ld a, $5
 	call GetSRAMBank
@@ -521,7 +521,7 @@ Function17d2b6: ; 17d2b6
 
 Function17d2c0: ; 17d2c0
 	xor a
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ld [wcf64], a
 	ld [wcf65], a
 	ld [wcf66], a
@@ -629,7 +629,7 @@ Function17d370: ; 17d370
 	call ClearScreen
 	callba Function104061
 	call DisableLCD
-	ld hl, $8ee0
+	ld hl, VTiles1 tile $6e
 	ld de, $c608
 	ld bc, $0010
 	call CopyBytes
@@ -640,17 +640,17 @@ Function17d370: ; 17d370
 	ld bc, $0480
 	call CopyBytes
 	xor a
-	ld hl, $97f0
+	ld hl, VTiles2 tile $7f
 	ld bc, $0010
 	call ByteFill
 	ld hl, $c608
-	ld de, $8ee0
+	ld de, VTiles1 tile $6e
 	ld bc, $0010
 	call CopyBytes
 	xor a
 	ld [rVBK], a
 	ld hl, GFX_17eb7e
-	ld de, $9600
+	ld de, VTiles2 tile $60
 	ld bc, $0010
 	call CopyBytes
 	call EnableLCD
@@ -677,7 +677,7 @@ Function17d3f6: ; 17d3f6
 
 Function17d405:
 	call DisableLCD
-	ld hl, $8ee0
+	ld hl, VTiles1 tile $6e
 	ld de, $c608
 	ld bc, $0010
 	call CopyBytes
@@ -688,11 +688,11 @@ Function17d405:
 	ld bc, $0480
 	call CopyBytes
 	xor a
-	ld hl, $97f0
+	ld hl, VTiles2 tile $7f
 	ld bc, $0010
 	call ByteFill
 	ld hl, $c608
-	ld de, $8ee0
+	ld de, VTiles1 tile $6e
 	ld bc, $0010
 	call CopyBytes
 	xor a
@@ -714,7 +714,7 @@ Function17d405:
 
 Function17d45a: ; 17d45a
 .asm_17d45a
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcd77]
 	bit 7, a
 	jr nz, .asm_17d46f
@@ -2980,7 +2980,7 @@ Function17e2a7: ; 17e2a7
 	ld [wcf66], a
 	callba Function118233
 	ld de, GFX_17eb7e
-	ld hl, $9600
+	ld hl, VTiles2 tile $60
 	lb bc, BANK(GFX_17eb7e), 1
 	call Get2bpp
 	ld a, [wc300]
@@ -3122,7 +3122,7 @@ Function17e3c3: ; 17e3c3
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	callba Function106155
+	callba MobileFn_106155
 	callba Function106187
 	pop af
 	ld [rSVBK], a
@@ -3144,7 +3144,7 @@ Function17e3f0: ; 17e3f0
 	call Function17e415
 	call Function17e41e
 .asm_17e3f6
-	call Functiona57
+	call JoyTextDelay
 	ld hl, hJoyPressed
 	ld a, [hl]
 	and $1
@@ -4678,7 +4678,7 @@ Function17f53d: ; 17f53d
 
 Function17f555: ; 17f555
 .asm_17f555
-	call Functiona57
+	call JoyTextDelay
 	call Function17f5ae
 	ld a, [wc303]
 	bit 7, a

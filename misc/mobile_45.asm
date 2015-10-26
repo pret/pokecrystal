@@ -703,7 +703,7 @@ endr
 	ld a, d
 	or e
 	jr z, .asm_114559
-	ld hl, wdc07
+	ld hl, wCurrMapTriggerCount
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1537,7 +1537,7 @@ Function1149cc: ; 1149cc
 	ld [hl], d
 	dec hl
 	ld [hl], e
-	ld hl, wdc07
+	ld hl, wCurrMapTriggerCount
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -2416,14 +2416,14 @@ Function114e62: ; 114e62
 	ld a, c
 	and a
 	jr nz, .asm_114e6f
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	and a
 	jp z, Function11425c
 	jr .asm_114e76
 
 .asm_114e6f
 	xor a
-	ld [wdc23], a
+	ld [wStartDay], a
 	call Function114ee9
 
 .asm_114e76
@@ -2494,7 +2494,7 @@ Function114ea0: ; 114ea0
 	ld [hli], a
 	ld [hl], b
 	xor a
-	ld [wdc23], a
+	ld [wStartDay], a
 	ret
 
 .asm_114edb
@@ -2614,7 +2614,7 @@ Function114f39: ; 114f39
 ; 114f59
 
 Function114f59: ; 114f59
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	and a
 	jr nz, .asm_114f7c
 	ld a, [wdc03]
@@ -2632,7 +2632,7 @@ Function114f59: ; 114f59
 	and a
 	jr nz, .asm_114fe7
 	ld a, $1
-	ld [wdc23], a
+	ld [wStartDay], a
 
 .asm_114f7c
 	ld a, [wdc03]
@@ -2811,7 +2811,7 @@ Function115062: ; 115062
 	ld d, [hl]
 	ld b, $0
 	ld hl, wdc24
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	cp $1
 	jr z, .asm_11509b
 	cp $2
@@ -2836,14 +2836,14 @@ Function115062: ; 115062
 	call Function115d53
 	call Function1150b3
 	call Function115136
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	inc a
 	cp $4
 	jr nz, .asm_1150ae
 	ld a, $2
 
 .asm_1150ae
-	ld [wdc23], a
+	ld [wStartDay], a
 	xor a
 
 .asm_1150b2
@@ -3329,7 +3329,7 @@ Function1152b8: ; 1152b8
 	call Function114ea0
 	and a
 	jr nz, .asm_1152f9
-	ld [wdc23], a
+	ld [wStartDay], a
 	ld a, [wdc03]
 	cp $6
 	jr nz, .asm_1152ca
@@ -3337,7 +3337,7 @@ Function1152b8: ; 1152b8
 .asm_115335
 	call Function1153b5
 	xor a
-	ld [wdc23], a
+	ld [wStartDay], a
 	call Function114f59
 	and a
 	jr nz, .asm_1152f9
@@ -3355,7 +3355,7 @@ Function1152b8: ; 1152b8
 	jr z, .asm_11536b
 	call Function1153b5
 	xor a
-	ld [wdc23], a
+	ld [wStartDay], a
 	call Function114f59
 	and a
 	jr nz, .asm_1152f9
@@ -3425,7 +3425,7 @@ Function11537d: ; 11537d
 	ld [hl], d
 	xor a
 	ld [wdc03], a
-	ld [wdc23], a
+	ld [wStartDay], a
 	ret
 ; 1153b5
 
@@ -3645,7 +3645,7 @@ Function1153d2: ; 1153d2
 
 Function1154d4: ; 1154d4
 	xor a
-	ld [wdc23], a
+	ld [wStartDay], a
 	call Function1155af
 	call Function11560a
 	and a
@@ -3659,7 +3659,7 @@ Function1154d4: ; 1154d4
 	cp $1
 	jr nz, .asm_115531
 	xor a
-	ld [wdc1c], a
+	ld [wDailyResetTimer], a
 .asm_1154f7
 	ld a, [BigDoll]
 	cp $2
@@ -3699,7 +3699,7 @@ Function1154d4: ; 1154d4
 
 .asm_115531
 	ld a, $1
-	ld [wdc1c], a
+	ld [wDailyResetTimer], a
 	ld a, $b
 	ld [wdc03], a
 	call Function114f59
@@ -3726,7 +3726,7 @@ Function1154d4: ; 1154d4
 	call Function114ea0
 	and a
 	jr nz, .asm_11552c
-	ld a, [wdc1c]
+	ld a, [wDailyResetTimer]
 	and a
 	jr z, .asm_11557d
 	ld a, $f
@@ -3860,7 +3860,7 @@ Function11560a: ; 11560a
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-	ld a, [wdc0a]
+	ld a, [wCurrMapCallbackCount]
 	cp b
 	jp c, .asm_1156b1
 	jr nz, .asm_115631
@@ -3874,7 +3874,7 @@ Function11560a: ; 11560a
 	jr z, .asm_1156a9
 	ld a, [wdc09]
 	ld l, a
-	ld a, [wdc0a]
+	ld a, [wCurrMapCallbackCount]
 	ld h, a
 	ld a, c
 	cpl
@@ -3887,7 +3887,7 @@ Function11560a: ; 11560a
 	ld a, l
 	ld [wdc09], a
 	ld a, h
-	ld [wdc0a], a
+	ld [wCurrMapCallbackCount], a
 .asm_11564d
 	ld a, $3
 	cp b
@@ -3929,13 +3929,13 @@ Function11560a: ; 11560a
 	ld a, [wCurrentMapSignpostCount]
 	ld [$ff8c], a
 	ld [$4000], a
-	ld hl, wdc07
+	ld hl, wCurrMapTriggerCount
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	ld hl, wdc24
 	call Function115d6a
-	ld hl, wdc07
+	ld hl, wCurrMapTriggerCount
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -3977,7 +3977,7 @@ Function11560a: ; 11560a
 ; 1156cc
 
 Function1156cc: ; 1156cc
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	and a
 	jp z, Function11425c
 	cp $2
@@ -4006,7 +4006,7 @@ Function1156cc: ; 1156cc
 	call Function11581e
 	and a
 	jr nz, .asm_11572b
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	cp $5
 	jr z, .asm_115716
 	ld a, [Poster]
@@ -4017,7 +4017,7 @@ Function1156cc: ; 1156cc
 	jp Function11425c
 
 .asm_115716
-	ld hl, wdc0a
+	ld hl, wCurrMapCallbackCount
 	ld a, [hli]
 	cpl
 	ld e, a
@@ -4030,7 +4030,7 @@ Function1156cc: ; 1156cc
 	ld l, a
 	add hl, de
 	xor a
-	ld [wdc23], a
+	ld [wStartDay], a
 	jp Function11425c
 
 .asm_11572b
@@ -4165,7 +4165,7 @@ Function11575c: ; 11575c
 	pop hl
 	add hl, bc
 	ld a, $2
-	ld [wdc23], a
+	ld [wStartDay], a
 	ret
 ; 1157d0
 
@@ -4213,7 +4213,7 @@ Function1157d0: ; 1157d0
 	ld a, b
 	ld [Bed], a
 	ld a, $4
-	ld [wdc23], a
+	ld [wStartDay], a
 	ret
 
 .asm_11580f
@@ -4223,12 +4223,12 @@ Function1157d0: ; 1157d0
 	ld a, b
 	ld [Bed], a
 	ld a, $3
-	ld [wdc23], a
+	ld [wStartDay], a
 	ret
 ; 11581e
 
 Function11581e: ; 11581e
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	and a
 	ret z
 	ld a, [wdc0e]
@@ -4262,9 +4262,9 @@ Function11581e: ; 11581e
 	ld b, [hl]
 	inc hl
 	push hl
-	ld a, [wdc0a]
+	ld a, [wCurrMapCallbackCount]
 	ld l, a
-	ld a, [wdc0b]
+	ld a, [wCurrMapCallbackHeaderPointer]
 	ld h, a
 	cp b
 	jr c, .asm_1158bb
@@ -4284,12 +4284,12 @@ Function11581e: ; 11581e
 	inc bc
 	add hl, bc
 	ld a, l
-	ld [wdc0a], a
+	ld [wCurrMapCallbackCount], a
 	ld a, h
-	ld [wdc0b], a
+	ld [wCurrMapCallbackHeaderPointer], a
 	pop bc
 	pop hl
-	ld hl, wdc07
+	ld hl, wCurrMapTriggerCount
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
@@ -4299,13 +4299,13 @@ Function11581e: ; 11581e
 	ld d, [hl]
 	ld hl, PartyMon5Speed
 	call Function115d6a
-	ld hl, wdc07
+	ld hl, wCurrMapTriggerCount
 	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
 	ld [hl], d
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	cp $3
 	jr z, .asm_1158b4
 	cp $4
@@ -4314,12 +4314,12 @@ Function11581e: ; 11581e
 
 .asm_1158ad
 	ld a, $5
-	ld [wdc23], a
+	ld [wStartDay], a
 	jr .asm_1158b9
 
 .asm_1158b4
 	ld a, $2
-	ld [wdc23], a
+	ld [wStartDay], a
 
 .asm_1158b9
 	xor a
@@ -4330,7 +4330,7 @@ Function11581e: ; 11581e
 
 .asm_1158bc
 	ld a, $ff
-	ld [wdc23], a
+	ld [wStartDay], a
 	ret
 ; 1158c2
 
@@ -4575,7 +4575,7 @@ Function1159dc: ; 1159dc
 ; 1159fb
 
 Function1159fb: ; 1159fb
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	and a
 	jp z, Function11425c
 	cp $2
@@ -4604,7 +4604,7 @@ Function1159fb: ; 1159fb
 	call Function115b00
 	and a
 	jr nz, .asm_115a5a
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	cp $5
 	jr z, .asm_115a45
 	ld a, [Poster]
@@ -4615,7 +4615,7 @@ Function1159fb: ; 1159fb
 	jp Function11425c
 
 .asm_115a45
-	ld hl, wdc0a
+	ld hl, wCurrMapCallbackCount
 	ld a, [hli]
 	cpl
 	ld e, a
@@ -4628,7 +4628,7 @@ Function1159fb: ; 1159fb
 	ld l, a
 	add hl, de
 	xor a
-	ld [wdc23], a
+	ld [wStartDay], a
 	jp Function11425c
 
 .asm_115a5a
@@ -4692,7 +4692,7 @@ Function115a5f: ; 115a5f
 	rl b
 	add hl, bc
 	ld a, $2
-	ld [wdc23], a
+	ld [wStartDay], a
 	ret
 ; 115ab0
 
@@ -4740,7 +4740,7 @@ Function115ab0: ; 115ab0
 	ld a, b
 	ld [Bed], a
 	ld a, $4
-	ld [wdc23], a
+	ld [wStartDay], a
 	xor a
 	ret
 
@@ -4751,13 +4751,13 @@ Function115ab0: ; 115ab0
 	ld a, b
 	ld [Bed], a
 	ld a, $3
-	ld [wdc23], a
+	ld [wStartDay], a
 	xor a
 	ret
 ; 115b00
 
 Function115b00: ; 115b00
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	and a
 	ret z
 	ld a, [wdc0e]
@@ -4780,7 +4780,7 @@ Function115b00: ; 115b00
 	jr z, .asm_115b43
 	cp $2
 	jr z, .asm_115b3b
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	cp $4
 	jr z, .asm_115b43
 rept 2
@@ -4798,7 +4798,7 @@ endr
 
 .asm_115b3d
 	ld a, $ff
-	ld [wdc23], a
+	ld [wStartDay], a
 	ret
 
 .asm_115b43
@@ -4826,9 +4826,9 @@ endr
 	ld b, [hl]
 	inc hl
 	push hl
-	ld a, [wdc0a]
+	ld a, [wCurrMapCallbackCount]
 	ld l, a
-	ld a, [wdc0b]
+	ld a, [wCurrMapCallbackHeaderPointer]
 	ld h, a
 	cp b
 	jr c, .asm_115b36
@@ -4848,12 +4848,12 @@ endr
 	inc bc
 	add hl, bc
 	ld a, l
-	ld [wdc0a], a
+	ld [wCurrMapCallbackCount], a
 	ld a, h
-	ld [wdc0b], a
+	ld [wCurrMapCallbackHeaderPointer], a
 	pop bc
 	pop hl
-	ld hl, wdc07
+	ld hl, wCurrMapTriggerCount
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
 	ld [$ff8c], a
@@ -4863,13 +4863,13 @@ endr
 	ld d, [hl]
 	ld hl, wdc26
 	call Function115d6a
-	ld hl, wdc07
+	ld hl, wCurrMapTriggerCount
 	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
 	ld [hl], d
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	cp $3
 	jr z, .asm_115bc1
 	cp $4
@@ -4878,12 +4878,12 @@ endr
 
 .asm_115bba
 	ld a, $5
-	ld [wdc23], a
+	ld [wStartDay], a
 	jr .asm_115bc6
 
 .asm_115bc1
 	ld a, $2
-	ld [wdc23], a
+	ld [wStartDay], a
 
 .asm_115bc6
 	xor a
@@ -4949,7 +4949,7 @@ Function115bc8: ; 115bc8
 	jr nz, .asm_115bcc
 
 .asm_115c1b
-	ld a, [wdc23]
+	ld a, [wStartDay]
 	cp $4
 	jr z, .asm_115c33
 	ld a, [de]
@@ -5053,7 +5053,7 @@ endr
 
 .asm_115c99
 	ld a, $ff
-	ld [wdc23], a
+	ld [wStartDay], a
 	ret
 
 .asm_115c9f
@@ -5156,7 +5156,7 @@ Function115cfd: ; 115cfd
 	pop hl
 	pop hl
 	ld a, $ff
-	ld [wdc23], a
+	ld [wStartDay], a
 	ret
 
 .asm_115d2f
@@ -5268,7 +5268,7 @@ Function115d80: ; 115d80
 
 Function115d99: ; 115d99
 	ld de, GFX_11601a
-	ld hl, $8600
+	ld hl, VTiles0 tile $60
 	lb bc, BANK(GFX_11601a), $14
 	call Get2bpp
 	xor a
@@ -5976,7 +5976,7 @@ Function1163c0: ; 1163c0
 	pop af
 	ld [rSVBK], a
 	callba Function104061
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	cp $4
 	jr z, .asm_11642a
 	ld a, $8
@@ -7656,13 +7656,13 @@ Function117656: ; 117656
 ; 11765d
 
 Function11765d: ; 11765d (45:765d)
-	ld a, [$ffaa]
+	ld a, [hInMenu]
 	push af
 	ld a, $1
-	ld [$ffaa], a
+	ld [hInMenu], a
 	call Function11766b
 	pop af
-	ld [$ffaa], a
+	ld [hInMenu], a
 	ret
 
 Function11766b: ; 11766b (45:766b)
@@ -7716,7 +7716,7 @@ Function117699: ; 117699 (45:7699)
 	ret
 
 Function1176ee: ; 1176ee (45:76ee)
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcd49]
 	bit 7, a
 	jr nz, .asm_117709
@@ -7798,7 +7798,7 @@ Function117764: ; 117764 (45:7764)
 	ld a, [hl]
 	and $2
 	jr nz, asm_1177d6
-	ld hl, $ffa9
+	ld hl, hJoyLast
 	ld a, [hl]
 	and $40
 	jr nz, asm_1177f1
@@ -7973,11 +7973,11 @@ Function1178aa: ; 1178aa (45:78aa)
 	ld hl, MenuDataHeader_1179b5
 	call LoadMenuDataHeader
 	call Function1cbb
-	call Function1cfd
+	call GetMemTileCoord
 	ld hl, MenuDataHeader_1179bd
 	call LoadMenuDataHeader
 	call Function1cbb
-	call Function1cfd
+	call GetMemTileCoord
 	callba Function104061
 	hlcoord 16, 8
 	ld de, String_1179c5
@@ -8076,7 +8076,7 @@ Function117984: ; 117984 (45:7984)
 	ld hl, MenuDataHeader_1179b5
 	call LoadMenuDataHeader
 	call Function1cbb
-	call Function1cfd
+	call GetMemTileCoord
 	callba Function104061
 	hlcoord 1, 14
 	ld de, String_1179e1
@@ -8150,13 +8150,13 @@ INCBIN "data/mobile/ascii-sym.txt"
 ; Mobile Stadium option from the continue/newgame menu.
 ; XXX better function names
 MobileStudium: ; 0x117a7f
-	ld a, [$ffaa]
+	ld a, [hInMenu]
 	push af
 	ld a, $1
-	ld [$ffaa], a
+	ld [hInMenu], a
 	call Function117a8d
 	pop af
-	ld [$ffaa], a
+	ld [hInMenu], a
 	ret
 ; 0x117a8d
 
@@ -8168,7 +8168,7 @@ Function117a8d: ; 0x117a8d
 
 Function117a94: ; 0x117a94
 	xor a
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ld [wcf64], a
 	ld [wcf65], a
 	ld [wcf66], a
@@ -8189,8 +8189,8 @@ Function117ab4: ; 0x117ab4
 ; 0x117acd
 
 Function117acd: ; 0x117acd
-	call Functiona57
-	ld a, [wcf63]
+	call JoyTextDelay
+	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .asm_117ae2 ; 0x117ad5 $b
 	call Function117ae9
@@ -8202,7 +8202,7 @@ Function117acd: ; 0x117acd
 	ret
 
 Function117ae9: ; 0x117ae9
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, $0
 	ld hl, Pointers117af8
@@ -8236,7 +8236,7 @@ Function117b14:
 	ld hl, Data117cbc
 	call LoadMenuDataHeader
 	call Function1cbb
-	call Function1cfd
+	call GetMemTileCoord
 	jp Function117cdd
 
 Function117b28:
@@ -8248,7 +8248,7 @@ Function117b31:
 	ld hl, Data117cc4
 	call LoadMenuDataHeader
 	call Function1cbb
-	call Function1cfd
+	call GetMemTileCoord
 	hlcoord 16, 8
 	ld de, YesNo117ccc
 	call PlaceString
@@ -8306,7 +8306,7 @@ Function117b4f:
 	call ExitMenu
 	callba Function104061
 	ld a, $80
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ret
 
 Function117bb6:
@@ -8325,11 +8325,11 @@ Function117bb6:
 	ld [wc303], a
 	callba Function17f555
 	ld a, $80
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ret
 .asm_117be1
 	ld a, $80
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ret
 .asm_117be7
 	ld a, [rSVBK]
@@ -8386,7 +8386,7 @@ Function117c4a:
 	ld hl, Data117cbc
 	call LoadMenuDataHeader
 	call Function1cbb
-	call Function1cfd
+	call GetMemTileCoord
 	callba Function104061
 	ld hl, MobileStadiumSuccessText
 	call PrintText
@@ -8411,7 +8411,7 @@ Function117c4a:
 	pop af
 	ld [rSVBK], a
 	ld a, $80
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ret
 
 Function117c89:
@@ -8464,7 +8464,7 @@ MobileStadiumSuccessText: ; 0x117cd8
 	db "@"
 
 Function117cdd: ; 0x117cdd
-	ld hl, wcf63
+	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
@@ -8493,7 +8493,7 @@ asm_11800b
 	ld a, $3
 	ld [rSVBK], a
 .asm_118024
-	call Functiona57
+	call JoyTextDelay
 	call Function118473
 	ld a, [wcf66]
 	cp $1b
@@ -8534,7 +8534,7 @@ Function11805f: ; 11805f
 	ld a, $3
 	ld [rSVBK], a
 .asm_11807d
-	call Functiona57
+	call JoyTextDelay
 	call Function118473
 	ld a, [wcf66]
 	cp $1b
@@ -8572,7 +8572,7 @@ Function1180b8: ; 1180b8
 	ld a, $3
 	ld [rSVBK], a
 .asm_1180d1
-	call Functiona57
+	call JoyTextDelay
 	call Function118473
 	ld a, [wcf66]
 	cp $28
@@ -8627,7 +8627,7 @@ Function118125: ; 118125
 	ld a, $3
 	ld [rSVBK], a
 .asm_11813e
-	call Functiona57
+	call JoyTextDelay
 	call Function118473
 	ld a, [wcf66]
 	cp $f
@@ -8712,7 +8712,7 @@ Function1181da: ; 1181da
 	ld a, $3
 	ld [rSVBK], a
 .asm_1181f8
-	call Functiona57
+	call JoyTextDelay
 	call Function118473
 	ld a, [wcf66]
 	cp $28
@@ -8750,7 +8750,7 @@ Function118233: ; 118233
 	ld a, $3
 	ld [rSVBK], a
 .asm_11824c
-	call Functiona57
+	call JoyTextDelay
 	call Function118473
 	ld a, [wcf66]
 	cp $1e
@@ -8787,7 +8787,7 @@ Function118284: ; 118284
 	ld a, $3
 	ld [rSVBK], a ; $ff00+$70
 .asm_11829d
-	call Functiona57
+	call JoyTextDelay
 	call Function118473
 	ld a, [wcf66]
 	cp $20
@@ -8824,7 +8824,7 @@ Function1182d5: ; 1182d5
 	ld a, $3
 	ld [rSVBK], a
 .asm_1182ee
-	call Functiona57
+	call JoyTextDelay
 	call Function118473
 	ld a, [wcf66]
 	cp $1b
@@ -8862,7 +8862,7 @@ Function118329: ; 118329
 	ld a, $3
 	ld [rSVBK], a
 .asm_118342
-	call Functiona57
+	call JoyTextDelay
 	call Function118473
 	ld a, [wcf66]
 	cp $18
@@ -8899,7 +8899,7 @@ Function11837a: ; 11837a
 	ld a, $3
 	ld [rSVBK], a
 .asm_118393
-	call Functiona57
+	call JoyTextDelay
 	call Function118473
 	ld a, [wcf66]
 	cp $19
@@ -8954,7 +8954,7 @@ Function1183cb: ; 1183cb
 	ld [rIE], a
 	ld a, $1
 	ld [$ffc9], a
-	ld [$ffe9], a
+	ld [hMobile], a
 	ei
 	callba Function106462
 	callba Function106464
@@ -8984,7 +8984,7 @@ Function118452: ; 118452
 	di
 	xor a
 	ld [$ffc9], a
-	ld [$ffe9], a
+	ld [hMobile], a
 	ld [hVBlank], a
 	call NormalSpeed
 	xor a
@@ -9756,7 +9756,7 @@ Function118936:
 	ld hl, MenuDataHeader_119cf7
 	call LoadMenuDataHeader
 	call Function1cbb
-	call Function1cfd
+	call GetMemTileCoord
 	call Function321c
 	hlcoord 16, 8, AttrMap
 	ld a, $40
@@ -11817,7 +11817,7 @@ Function119800: ; 119800
 	ld [wc702], a
 	ld a, [wcd81]
 	ld [wc74e], a
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	push af
 	ld a, [wcf64]
 	push af
@@ -11840,7 +11840,7 @@ Function119800: ; 119800
 	pop af
 	ld [wcf64], a
 	pop af
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	callba Function115dc3
 	jp Function119e2e
 ; 11984e
@@ -11853,7 +11853,7 @@ Function11984e: ; 11984e
 	and a
 	jr nz, .asm_1198a8
 	callba Function170000
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	push af
 	ld a, [wcf64]
 	push af
@@ -11876,7 +11876,7 @@ Function11984e: ; 11984e
 	pop af
 	ld [wcf64], a
 	pop af
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	callba Function115dc3
 	jp Function119e2e
 
@@ -11887,7 +11887,7 @@ Function11984e: ; 11984e
 
 .asm_1198a8
 	callba Function17005a
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	push af
 	ld a, [wcf64]
 	push af
@@ -11910,7 +11910,7 @@ Function11984e: ; 11984e
 	pop af
 	ld [wcf64], a
 	pop af
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	callba Function115dc3
 	jp Function119e2e
 ; 1198ee
@@ -13021,13 +13021,13 @@ Function11a00e: ; 11a00e
 
 .asm_11a081
 	xor a
-	ld [wcf83], a
-	ld [wcf82], a
+	ld [wMenuBorderLeftCoord], a
+	ld [wMenuBorderTopCoord], a
 	ld a, $13
-	ld [wcf85], a
+	ld [wMenuBorderRightCoord], a
 	ld a, $5
-	ld [wcf84], a
-	call Function1c00
+	ld [wMenuBorderBottomCoord], a
+	call BackUpTiles
 	callba Function11765d
 	callba Function117ab4
 	callba Function106462
@@ -13044,13 +13044,13 @@ Function11a00e: ; 11a00e
 
 Function11a0ca: ; 11a0ca
 	xor a
-	ld [wcf83], a
-	ld [wcf82], a
+	ld [wMenuBorderLeftCoord], a
+	ld [wMenuBorderTopCoord], a
 	ld a, $13
-	ld [wcf85], a
+	ld [wMenuBorderRightCoord], a
 	ld a, $11
-	ld [wcf84], a
-	call Function1c00
+	ld [wMenuBorderBottomCoord], a
+	call BackUpTiles
 	callba Function11765d
 	callba Function17d3f6
 	callba Function106462
@@ -13211,7 +13211,7 @@ Function11a207: ; 11a207
 	ld hl, MenuDataHeader_11a2de
 	call LoadMenuDataHeader
 	call Function1cbb
-	call Function1cfd
+	call GetMemTileCoord
 	call Function321c
 	hlcoord 16, 8
 	ld de, String_11a2cf
@@ -13728,13 +13728,13 @@ Function11a5b0: ; 11a5b0
 
 Function11a5b9: ; 11a5b9
 	xor a
-	ld [wcf83], a
-	ld [wcf82], a
+	ld [wMenuBorderLeftCoord], a
+	ld [wMenuBorderTopCoord], a
 	ld a, $13
-	ld [wcf85], a
+	ld [wMenuBorderRightCoord], a
 	ld a, $5
-	ld [wcf84], a
-	call Function1c00
+	ld [wMenuBorderBottomCoord], a
+	call BackUpTiles
 	hlcoord 0, 0, AttrMap
 	ld b, $6
 	ld c, $14
@@ -13753,14 +13753,14 @@ Function11a5b9: ; 11a5b9
 
 Function11a5f5: ; 11a5f5
 	ld a, $e
-	ld [wcf83], a
+	ld [wMenuBorderLeftCoord], a
 	ld a, $13
-	ld [wcf85], a
+	ld [wMenuBorderRightCoord], a
 	ld a, $6
-	ld [wcf82], a
+	ld [wMenuBorderTopCoord], a
 	ld a, $a
-	ld [wcf84], a
-	call Function1c00
+	ld [wMenuBorderBottomCoord], a
+	call BackUpTiles
 	hlcoord 14, 6, AttrMap
 	ld b, $5
 	ld c, $6
@@ -14311,7 +14311,7 @@ UnknownText_0x11ac1f: ; 0x11ac1f
 Function11ac3e: ; 11ac3e
 	call SpeechTextBox
 	call FadeToMenu
-	callab Function8e814
+	callab InefficientlyClear121BytesAtwc300
 	call Function11ac51
 	call Function2b3c
 	ret
@@ -14328,10 +14328,10 @@ Function11ac51: ; 11ac51
 	push af
 	xor a
 	ld [VramState], a
-	ld a, [$ffaa]
+	ld a, [hInMenu]
 	push af
 	ld a, $1
-	ld [$ffaa], a
+	ld [hInMenu], a
 	xor a
 	ld [$ffde], a
 	ld [wcd49], a
@@ -14342,8 +14342,8 @@ Function11ac51: ; 11ac51
 	call Function11ad1b
 	call DelayFrame
 .asm_11ac82
-	call Functiona57
-	ld a, [wcf63]
+	call JoyTextDelay
+	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .asm_11aca8
 	call Function11b314
@@ -14358,7 +14358,7 @@ Function11ac51: ; 11ac51
 .asm_11aca8
 	call ClearSprites
 	pop af
-	ld [$ffaa], a
+	ld [hInMenu], a
 	pop af
 	ld [VramState], a
 	pop af
@@ -14428,7 +14428,7 @@ Function11ad1b: ; 11ad1b
 	ld a, [wcfa9]
 	ld [wcd82], a
 	dec a
-	ld [$ffb0], a
+	ld [hConnectedMapWidth], a
 	ld a, $10
 	ld [wc3b7], a
 	ld hl, Function8e83f
@@ -14444,7 +14444,7 @@ Function11ad1b: ; 11ad1b
 	xor a
 	call ByteFill
 	xor a
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ld [wcf64], a
 	ld [wcf65], a
 	ld [wcf66], a
@@ -14456,7 +14456,7 @@ Function11ad1b: ; 11ad1b
 ; 11ad6e
 
 Function11ad6e: ; 11ad6e
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	ld hl, Jumptable_11ad78
 	call Function11b239
 	jp [hl]
@@ -14475,13 +14475,13 @@ Jumptable_11ad78: ; 11ad78
 ; 11ad8a
 
 Function11ad8a: ; 11ad8a
-	ld hl, wcf63
+	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 ; 11ad8f
 
 Function11ad8f: ; 11ad8f
-	ld hl, wcf63
+	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
 ; 11ad95
@@ -14522,7 +14522,7 @@ Function11adc4:
 	ret z
 	call PlayClickSFX
 	xor a
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	jr .asm_11ae2e
 
 .asm_11ade6
@@ -14643,7 +14643,7 @@ Function11ae98:
 	ld a, $7f
 	ld [hl], a
 	ld a, $1
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	jr .asm_11aef7
 
 .asm_11aec1
@@ -14734,7 +14734,7 @@ Function11af4e:
 	ld a, $7f
 	ld [hl], a
 	ld a, $1
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	jr .asm_11afaa
 
 .asm_11af77
@@ -14765,7 +14765,7 @@ Function11af4e:
 	cp $2
 	jr z, .asm_11af6a
 	ld a, $6
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	xor a
 	ld [ScriptVar], a
 
@@ -15057,7 +15057,7 @@ Function11b0ff: ; 11b0ff
 	jr .asm_11b148
 
 .asm_11b141
-	ld hl, wcf63
+	ld hl, wJumptableIndex
 	ld a, $7
 	ld [hl], a
 	ret
@@ -15090,7 +15090,7 @@ Function11b0ff: ; 11b0ff
 .asm_11b16c
 	ld [wcd30], a
 	ld a, $4
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ret
 ; 11b175
 
@@ -15099,7 +15099,7 @@ Function11b175: ; 11b175
 	ld d, a
 	ld a, [wc7d2]
 	ld e, a
-	ld hl, $ffa9
+	ld hl, hJoyLast
 	ld a, [hl]
 	and $40
 	jr nz, .asm_11b19a
@@ -15411,7 +15411,7 @@ Function11b314: ; 11b314
 
 Function11b31b: ; 11b31b
 	ld hl, Unknown_11b350
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	cp $2
 	jr c, .asm_11b349
 	ld a, [wc7d1]
@@ -15419,7 +15419,7 @@ Function11b31b: ; 11b31b
 	jr nc, .asm_11b344
 	cp $3
 	jr c, .asm_11b349
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	cp $2
 	jr z, .asm_11b349
 	cp $3
@@ -15553,7 +15553,7 @@ Function11b3d9: ; 11b3d9
 	ld [hli], a
 	cp $41
 	jr c, .asm_11b42b
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	cp $4
 	jr z, .asm_11b43b
 	cp $5
@@ -15592,7 +15592,7 @@ Function11b444: ; 11b444
 
 Function11b44b: ; 11b44b
 	xor a
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ld [wcf64], a
 	ld [wcf65], a
 	ld [wcf66], a
@@ -15604,14 +15604,14 @@ Function11b45c: ; 11b45c
 .asm_11b45c
 	call Function11b46a
 	call DelayFrame
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	cp $4
 	jr nz, .asm_11b45c
 	ret
 ; 11b46a
 
 Function11b46a: ; 11b46a
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_11b479
@@ -15780,11 +15780,11 @@ Function11b538: ; 11b538
 	ld [wcd2b], a
 	ld [bc], a
 	inc bc
-	ld a, [wd84a]
+	ld a, [wSecretID]
 	ld [wcd2c], a
 	ld [bc], a
 	inc bc
-	ld a, [wd84b]
+	ld a, [wSecretID + 1]
 	ld [wcd2d], a
 	ld [bc], a
 	inc bc
@@ -15813,7 +15813,7 @@ Function11b570: ; 11b570
 
 .asm_11b57f
 	ld a, $4
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ret
 ; 11b585
 
@@ -15913,14 +15913,14 @@ Function11b64c: ; 11b64c
 .asm_11b64c
 	call Function11b65a
 	call DelayFrame
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	cp $1
 	jr nz, .asm_11b64c
 	ret
 ; 11b65a
 
 Function11b65a: ; 11b65a
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_11b669
@@ -16146,10 +16146,10 @@ Function11b7e5: ; 11b7e5
 	ld a, $1
 	ld [wd1e9], a
 	ld a, $2
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	callba Function421d8
 	xor a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	callba Function14a58
 	ld a, $5
 	call GetSRAMBank
@@ -16677,7 +16677,7 @@ Function11c08f: ; 11c08f
 
 
 Function11c0c6: ; 11c0c6
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	ld l, a
 	ld a, [wcf64]
 	ld h, a
@@ -16687,7 +16687,7 @@ Function11c0c6: ; 11c0c6
 	ld [hli], a
 	push de
 	xor a
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ld a, $12
 	ld [wcf64], a
 	ld a, $6
@@ -16720,9 +16720,9 @@ Function11c0c6: ; 11c0c6
 .asm_11c102
 	cp e
 	jr nc, .asm_11c11c
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	inc a
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ld [hl], $4e
 	rra
 	jr c, .asm_11c113
@@ -16763,7 +16763,7 @@ Function11c0c6: ; 11c0c6
 	call PlaceWholeStringInBoxAtOnce
 	pop hl
 	ld a, l
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ld a, h
 	ld [wcf64], a
 	ret
@@ -16832,13 +16832,13 @@ Function11c156: ; 11c156
 ; 11c1ab
 
 Function11c1ab: ; 11c1ab
-	ld a, [$ffaa]
+	ld a, [hInMenu]
 	push af
 	ld a, $1
-	ld [$ffaa], a
+	ld [hInMenu], a
 	call Function11c1b9
 	pop af
-	ld [$ffaa], a
+	ld [hInMenu], a
 	ret
 ; 11c1b9
 
@@ -16856,7 +16856,7 @@ Function11c1b9: ; 11c1b9
 
 Function11c1ca: ; 11c1ca
 	xor a
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ld [wcf64], a
 	ld [wcf65], a
 	ld [wcf66], a
@@ -16935,10 +16935,10 @@ Function11c277: ; 11c277 (47:4277)
 
 Function11c283: ; 11c283
 .asm_11c283
-	call Functiona57
+	call JoyTextDelay
 	ld a, [hJoyPressed]
 	ld [hJoypadPressed], a
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .asm_11c2a2
 	call Function11c2ac
@@ -16953,7 +16953,7 @@ Function11c283: ; 11c283
 ; 11c2ac
 
 Function11c2ac: ; 11c2ac
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_11c2bb
@@ -17154,7 +17154,7 @@ Function11c3ed: ; 11c3ed (47:43ed)
 	ld a, [de]
 	and $1
 	jr nz, .asm_11c42c
-	ld de, $ffa9
+	ld de, hJoyLast
 	ld a, [de]
 	and $40
 	jr nz, .asm_11c47c
@@ -17219,7 +17219,7 @@ Function11c3ed: ; 11c3ed (47:43ed)
 .asm_11c472
 	call Function11c4a5
 .asm_11c475
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	call PlayClickSFX
 	ret
 .asm_11c47c
@@ -17326,7 +17326,7 @@ Function11c53d: ; 11c53d (47:453d)
 	and A_BUTTON
 	jr nz, .a
 
-	ld de, $ffa9
+	ld de, hJoyLast
 
 	ld a, [de]
 	and D_UP
@@ -17383,7 +17383,7 @@ Function11c53d: ; 11c53d (47:453d)
 .asm_11c59f
 	ld hl, wcd24
 	set 1, [hl]
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	call PlayClickSFX
 	ret
 
@@ -17570,7 +17570,7 @@ Function11c675: ; 11c675 (47:4675)
 	ret
 
 .select
-	ld de, $ffa9
+	ld de, hJoyLast
 	ld a, [de]
 	and D_UP
 	jr nz, .asm_11c708
@@ -17599,7 +17599,7 @@ Function11c675: ; 11c675 (47:4675)
 .asm_11c6fa
 	ld a, $15
 .asm_11c6fc
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ld hl, wcd24
 	set 3, [hl]
 	call PlayClickSFX
@@ -18119,7 +18119,7 @@ Function11c9c3: ; 11c9c3 (47:49c3)
 	ld hl, wcd24
 	set 4, [hl]
 	ld a, $4
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	call PlayClickSFX
 	ret
 .asm_11c9f7
@@ -18271,7 +18271,7 @@ Function11cab3: ; 11cab3 (47:4ab3)
 	ld [wcd2a], a
 	ret
 .asm_11caf3
-	ld hl, wcf63
+	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
 .asm_11caf9
@@ -18280,7 +18280,7 @@ Function11cab3: ; 11cab3 (47:4ab3)
 	ld hl, wcd24
 	set 4, [hl]
 	ld a, $4
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ld a, [wcd35]
 	cp $ff
 	ret nz
@@ -18389,7 +18389,7 @@ endr
 	ld d, a
 	hlcoord 1, 14
 	call PlaceString
-	ld hl, wcf63
+	ld hl, wJumptableIndex
 	inc [hl]
 	inc hl
 	ld a, $10
@@ -18404,7 +18404,7 @@ endr
 	ld hl, wcd24
 	set 4, [hl]
 	ld a, $4
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ret
 .asm_11cbeb
 	ld a, [hl]
@@ -18490,7 +18490,7 @@ Function11cd04: ; 11cd04 (47:4d04)
 	and a
 	ret z
 	ld a, $4
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ret
 ; 11cd10 (47:4d10)
 
@@ -18551,7 +18551,7 @@ Function11cd54: ; 11cd54 (47:4d54)
 .asm_11cd7d
 	ld a, $15
 .asm_11cd7f
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ld hl, wcd24
 	set 5, [hl]
 	call PlayClickSFX
@@ -18644,7 +18644,7 @@ Function11ce2b: ; 11ce2b (47:4e2b)
 	and B_BUTTON
 	jr nz, .b
 
-	ld de, $ffa9
+	ld de, hJoyLast
 	ld a, [de]
 	and D_UP
 	jr nz, .up
@@ -18692,7 +18692,7 @@ Function11ce2b: ; 11ce2b (47:4e2b)
 .asm_11ce96
 	ld a, $13
 .asm_11ce98
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ld hl, wcd24
 	set 2, [hl]
 	call PlayClickSFX
@@ -18778,7 +18778,7 @@ String_11cf79: ; 11cf79
 ; 11cfb5
 
 Function11cfb5: ; 11cfb5 (47:4fb5)
-	ld hl, wcf63
+	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 ; 11cfba (47:4fba)
@@ -21327,7 +21327,7 @@ Function16c000: ; 16c000
 
 Function16c031: ; 16c031
 	xor a
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ld [wcf64], a
 	ld [DefaultFlypoint], a
 	ld [wd003], a
@@ -22187,7 +22187,7 @@ Function16d43b: ; 16d43b
 	call GetSGBLayout
 	call SetPalettes
 	call WaitBGMap
-	call Functiona36
+	call JoyWaitAorB
 	call Call_ExitMenu
 	ret
 ; 16d465
@@ -22297,7 +22297,7 @@ Function16d696: ; 16d696
 
 Function16d69a: ; 16d69a
 	ld de, GFX_16cfc1 + $300
-	ld hl, $9760
+	ld hl, VTiles2 tile $76
 	lb bc, BANK(GFX_16cfc1), 8
 	call Get2bpp
 	ret
@@ -22362,7 +22362,7 @@ Function16d70c: ; 16d70c
 Function16d713: ; 16d713
 	push bc
 	push af
-	ld a, [$ffa9]
+	ld a, [hJoyLast]
 	and $f0
 	ld b, a
 	ld a, [hJoyPressed]
@@ -22518,7 +22518,7 @@ Function16d7e7: ; 16d7e7
 	callba Function8cf62
 
 .asm_16d7f4
-	call Functiona57
+	call JoyTextDelay
 	call Function16d713
 	and a
 	ret z
@@ -22701,9 +22701,9 @@ Function170139: ; 170139
 	ld [hli], a
 	ld a, [PlayerID + 1]
 	ld [hli], a
-	ld a, [wd84a]
+	ld a, [wSecretID]
 	ld [hli], a
-	ld a, [wd84b]
+	ld a, [wSecretID + 1]
 	ld [hli], a
 	ld e, l
 	ld d, h
@@ -22784,7 +22784,7 @@ Function17020c: ; 17020c
 
 Function170215: ; 170215
 	xor a
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	call Function17022c
 	ret
 ; 17021d
@@ -22795,7 +22795,7 @@ Function17021d: ; 17021d
 
 Function17021e: ; 17021e
 	xor a
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ld [wcf64], a
 	ld [wcf65], a
 	ld [wcf66], a
@@ -22806,14 +22806,14 @@ Function17022c: ; 17022c
 .asm_17022c
 	call Jumpto_BattleTowerBattleFunction
 	call DelayFrame
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	cp $1
 	jr nz, .asm_17022c
 	ret
 ; 17023a
 
 Jumpto_BattleTowerBattleFunction: ; 17023a
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_BattleTowerBattleFunctions
@@ -22841,7 +22841,7 @@ RunBattleTowerBattle: ; 17024d
 	or $1
 	ld [InBattleTowerBattle], a
 	xor a
-	ld [InLinkBattle], a
+	ld [wLinkMode], a
 	callba Mobile_HealParty
 	callba HealParty
 	call Function1702b7
@@ -22849,7 +22849,7 @@ RunBattleTowerBattle: ; 17024d
 	predef StartBattle
 	callba LoadPokemonData
 	callba HealParty
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	ld [ScriptVar], a
 	and a
 	jr nz, .asm_1702a9
@@ -22871,7 +22871,7 @@ RunBattleTowerBattle: ; 17024d
 	pop af
 	ld [Options], a
 	ld a, $1
-	ld [wcf63], a
+	ld [wJumptableIndex], a
 	ret
 
 
@@ -23228,8 +23228,8 @@ Function1704f1: ; 1704f1
 	call ClearSprites
 	call ClearScreen
 .asm_1704fa
-	call Functiona57
-	ld a, [wcf63]
+	call JoyTextDelay
+	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .asm_17050f
 	call Function170510
@@ -23241,7 +23241,7 @@ Function1704f1: ; 1704f1
 ; 170510
 
 Function170510: ; 170510
-	ld a, [wcf63]
+	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_17051f
@@ -23332,12 +23332,12 @@ Function170577:
 	ret
 
 .asm_1705ac
-	ld hl, wcf63
+	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
 
 Function1705b2:
-	ld hl, wcf63
+	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 ; 1705b7
@@ -24298,7 +24298,7 @@ Function170c06: ; 170c06
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $a894
-	ld a, [wd0ee]
+	ld a, [wBattleResult]
 	and a
 	jr nz, .asm_170c15
 	inc [hl]
@@ -24486,7 +24486,7 @@ Function170d02: ; 170d02
 	ld a, $1
 	ld [rVBK], a
 	ld de, GFX_171848
-	ld hl, $8c10
+	ld hl, VTiles1 tile $41
 	lb bc, BANK(GFX_171848), $18
 	call Get2bpp
 	xor a
@@ -24504,13 +24504,13 @@ GFX_171848:
 INCBIN "gfx/unknown/171848.2bpp"
 
 Function1719c8: ; 1719c8 (5c:59c8)
-	ld a, [$ffaa]
+	ld a, [hInMenu]
 	push af
 	ld a, $1
-	ld [$ffaa], a
+	ld [hInMenu], a
 	call Function1719d6
 	pop af
-	ld [$ffaa], a
+	ld [hInMenu], a
 	ret
 
 Function1719d6: ; 1719d6 (5c:59d6)
@@ -24539,7 +24539,7 @@ Function1719ed: ; 1719ed (5c:59ed)
 	ret
 
 Function171a11: ; 171a11 (5c:5a11)
-	call Functiona57
+	call JoyTextDelay
 	ld a, [wcd49]
 	bit 7, a
 	jr nz, .asm_171a2c
@@ -24801,7 +24801,7 @@ Function171beb: ; 171beb (5c:5beb)
 	ld hl, MenuDataHeader_171c6b
 	call LoadMenuDataHeader
 	call Function1cbb
-	call Function1cfd
+	call GetMemTileCoord
 	callba Function104061
 	hlcoord 1, 14
 	ld de, String_171c73
@@ -24869,11 +24869,11 @@ String_171c73: ; 171c73
 Function171c87: ; 171c87 (5c:5c87)
 	call DisableLCD
 	ld hl, GFX_171db1
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	ld bc, $6e0
 	call CopyBytes
 	ld hl, LZ_172abd
-	ld de, $8000
+	ld de, VTiles0 tile $00
 	call Decompress
 	call EnableLCD
 	ld hl, Tilemap_172491
@@ -24941,11 +24941,11 @@ endr
 Function171d2b: ; 171d2b (5c:5d2b)
 	call DisableLCD
 	ld hl, GFX_171db1
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	ld bc, $6e0
 	call CopyBytes
 	ld hl, LZ_172abd
-	ld de, $8000
+	ld de, VTiles0 tile $00
 	call Decompress
 	call EnableLCD
 	ld hl, Tilemap_172685
@@ -25040,7 +25040,7 @@ Function172e78: ; 172e78 (5c:6e78)
 	call ByteFill
 	call DisableLCD
 	ld hl, GFX_172f1f
-	ld de, $9000
+	ld de, VTiles2 tile $00
 	ld bc, $610
 	call CopyBytes
 	call EnableLCD

@@ -1,5 +1,5 @@
 SECTION "Scratch", SRAM, BANK [0]
-
+SRAM_Begin::
 sScratch::
 
 
@@ -7,8 +7,10 @@ SECTION "SRAM Bank 0", SRAM [$a600], BANK [0]
 
 s0_a600:: ds $11a
 s0_a71a:: ds $11a
-s0_a834:: ds $1d7
-s0_aa0b:: ds $1d7
+s0_a834:: ds 1
+s0_a835:: ds 10 * (party_struct_length + PartyMon1 - PartyMon1Item)
+s0_aa0b:: ds 1
+s0_aa0c:: ds 10 * (party_struct_length + PartyMon1 - PartyMon1Item)
 
 sMysteryGiftItem:: ds 1
 s0_abe3:: ds 1
@@ -16,7 +18,8 @@ s0_abe4:: ds 1
 s0_abe5:: ds 1
 s0_abe6:: ds 10
 s0_abf0:: ds 10
-s0_abfa:: ds 2
+sMysteryGiftTimer:: ds 1
+sMysteryGiftTimerStartDay:: ds 1
 	ds 1
 sMysteryGiftTrainerHouseFlag:: ds 1
 s0_abfe:: ds 12
@@ -49,6 +52,8 @@ sBackupGameDataEnd::
 sBackupChecksum:: ds 2
 s0_bf0f:: ds 1
 sStackTop:: ds 2
+	ds $ee
+SRAM_End::
 
 
 SECTION "SRAM Bank 1", SRAM, BANK [1]

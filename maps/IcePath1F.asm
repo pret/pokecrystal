@@ -33,6 +33,6 @@ IcePath1F_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_POKE_BALL, 11, 35, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e472, EVENT_GOT_HM07_WATERFALL
-	person_event SPRITE_POKE_BALL, 27, 36, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e474, EVENT_ICE_PATH_1F_PP_UP
-	person_event SPRITE_POKE_BALL, 13, 39, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e476, EVENT_ICE_PATH_1F_PROTEIN
+	person_event SPRITE_POKE_BALL, 7, 31, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e472, EVENT_GOT_HM07_WATERFALL
+	person_event SPRITE_POKE_BALL, 23, 32, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e474, EVENT_ICE_PATH_1F_PP_UP
+	person_event SPRITE_POKE_BALL, 9, 35, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e476, EVENT_ICE_PATH_1F_PROTEIN

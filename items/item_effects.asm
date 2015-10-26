@@ -208,7 +208,7 @@ FriendBall:
 MoonBall:
 LoveBall:
 ParkBall: ; e8a2
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jp nz, Functionf7a0
 
@@ -512,7 +512,7 @@ endr
 	cp BATTLETYPE_TUTORIAL
 	jp z, .asm_ebd9
 
-	callba Function10607f
+	callba MobileFn_10607f
 
 	ld hl, UnknownText_0xedc9
 	call PrintText
@@ -550,7 +550,7 @@ endr
 	jp z, .asm_ebd1
 	cp BATTLETYPE_CELEBI
 	jr nz, .asm_eac8
-	ld hl, wd0ee
+	ld hl, wBattleResult
 	set 6, [hl]
 .asm_eac8
 
@@ -628,7 +628,7 @@ endr
 	ld a, [sBoxCount]
 	cp MONS_PER_BOX
 	jr nz, .asm_eb5b
-	ld hl, wd0ee
+	ld hl, wBattleResult
 	set 7, [hl]
 .asm_eb5b
 	ld a, [CurItem]
@@ -1657,7 +1657,7 @@ Functionf0d6: ; f0d6
 	call Functionf30d
 	ld a, 1
 	ret nz
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jr z, .asm_f104
 
@@ -1936,7 +1936,7 @@ Functionf2a2: ; f2a2 (3:72a2)
 	ret
 
 Functionf2a6: ; f2a6 (3:72a6)
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	ret z
 	ld a, [CurPartyMon]
@@ -2181,7 +2181,7 @@ Functionf3df: ; f3df (3:73df)
 	call Functionf1db
 	ld a, $f5
 	call Functionf24a
-	call Functiona36
+	call JoyWaitAorB
 .asm_f413
 	ld a, b
 	inc a
@@ -2254,13 +2254,13 @@ Repel: ; f46a
 ; f46c
 
 Function_0xf46c: ; f46c
-	ld a, [RepelStepsLeft]
+	ld a, [wRepelEffect]
 	and a
 	ld hl, TextJump_RepelUsedEarlierIsStillInEffect
 	jp nz, PrintText
 
 	ld a, b
-	ld [RepelStepsLeft], a
+	ld [wRepelEffect], a
 	jp Functionf789
 
 
@@ -2281,15 +2281,15 @@ XAccuracy: ; f482
 
 
 PokeDoll: ; f48f
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_f4a6
 	inc a
 	ld [wd232], a
-	ld a, [wd0ee]
-	and $c0
+	ld a, [wBattleResult]
+	and 3 << 6
 	or $2
-	ld [wd0ee], a
+	ld [wBattleResult], a
 	jp Functionf789
 
 .asm_f4a6
@@ -2363,20 +2363,20 @@ Tablef504: ; f504
 
 
 PokeFlute: ; f50c
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jr nz, .asm_f512
 .asm_f512
 
 	xor a
-	ld [wd002], a
+	ld [MiscBuffer2], a
 
 	ld b, $ff ^ SLP
 
 	ld hl, PartyMon1Status
 	call .Functionf554
 
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	cp WILD_BATTLE
 	jr z, .asm_f52b
 	ld hl, OTPartyMon1Status
@@ -2392,7 +2392,7 @@ PokeFlute: ; f50c
 	and b
 	ld [hl], a
 
-	ld a, [wd002]
+	ld a, [MiscBuffer2]
 	and a
 	ld hl, UnknownText_0xf56c
 	jp z, PrintText
@@ -2417,7 +2417,7 @@ PokeFlute: ; f50c
 	and SLP
 	jr z, .asm_f564
 	ld a, 1
-	ld [wd002], a
+	ld [MiscBuffer2], a
 .asm_f564
 	pop af
 	and b
@@ -2449,7 +2449,7 @@ UnknownText_0xf576: ; 0xf576
 
 
 Function_0xf57b: ; f57b
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jr nz, .asm_f58c
 
@@ -2518,28 +2518,28 @@ MaxEther:
 Elixer:
 Mysteryberry: ; f5bf
 	ld a, [CurItem]
-	ld [wd002], a
+	ld [MiscBuffer2], a
 
-.asm_f5c5
+.loop
     ; Party Screen opens to choose on which Pkmn to use the Item
 	ld b, $1
 	call Functionf1f9
 	jp c, Functionf6e0
 
-.restart_func
-	ld a, [wd002]
+.loop2
+	ld a, [MiscBuffer2]
 	cp MAX_ELIXER
-	jp z, Functionf6af
+	jp z, Elixer_RestorePPofAllMoves
 	cp ELIXER
-	jp z, Functionf6af
+	jp z, Elixer_RestorePPofAllMoves
 
 	ld hl, TextJump_RaiseThePPOfWhichMove
-	ld a, [wd002]
+	ld a, [MiscBuffer2]
 	cp PP_UP
-	jr z, .asm_f5e7
+	jr z, .ppup
 	ld hl, TextJump_RestoreThePPOfWhichMove
 
-.asm_f5e7
+.ppup
 	call PrintText
 
 	ld a, [CurMoveNum]
@@ -2553,10 +2553,10 @@ Mysteryberry: ; f5bf
 
 	ld a, b
 	ld [CurMoveNum], a
-	jr nz, .asm_f5c5
+	jr nz, .loop
 	ld hl, PartyMon1Moves
 	ld bc, PartyMon2 - PartyMon1
-	call Add_CurPartyMon_Times
+	call GetMthMoveOfNthPartymon
 
 	push hl
 	ld a, [hl]
@@ -2565,26 +2565,27 @@ Mysteryberry: ; f5bf
 	call CopyName1
 	pop hl
 
-	ld a, [wd002]
+	ld a, [MiscBuffer2]
 	cp PP_UP
 	jp nz, Functionf6a7
 
 	ld a, [hl]
-	cp $a6
-	jr z, .pp_is_maxed_out
+	cp SKETCH
+	jr z, .CantUsePPUpOnSketch
 
 	ld bc, $0015
 	add hl, bc
 	ld a, [hl]
 	cp 3 << 6 ; have 3 PP Ups already been used?
-	jr c, .increase_pp
+	jr c, .do_ppup
 
+.CantUsePPUpOnSketch
 .pp_is_maxed_out
 	ld hl, TextJump_PPIsMaxedOut
 	call PrintText
-	jr .restart_func
+	jr .loop2
 
-.increase_pp
+.do_ppup
 	ld a, [hl]
 	add 1 << 6 ; increase PP Up count by 1
 	ld [hl], a
@@ -2602,7 +2603,7 @@ Functionf64c: ; f64c
 ; f652
 
 Functionf652: ; f652
-	ld a, [IsInBattle]
+	ld a, [wBattleMode]
 	and a
 	jr z, .asm_f66c
 	ld a, [CurPartyMon]
@@ -2659,37 +2660,37 @@ Functionf652: ; f652
 ; f6a7
 
 Functionf6a7: ; f6a7
-	call Functionf6e8
+	call RestorePP
 	jr nz, Functionf652
 	jp Functionf6dd
 ; f6af
 
-Functionf6af: ; f6af
+Elixer_RestorePPofAllMoves: ; f6af
 	xor a
 	ld hl, wcfa9
 	ld [hli], a
 	ld [hl], a
 	ld b, NUM_MOVES
-.asm_f6b7
+.moveLoop
 	push bc
 	ld hl, PartyMon1Moves
 	ld bc, PartyMon2 - PartyMon1
-	call Add_CurPartyMon_Times
+	call GetMthMoveOfNthPartymon
 	ld a, [hl]
 	and a
-	jr z, .asm_f6ce
+	jr z, .cant_restore_pp
 
-	call Functionf6e8
-	jr z, .asm_f6ce
+	call RestorePP
+	jr z, .cant_restore_pp
 	ld hl, wcfaa
 	inc [hl]
 
-.asm_f6ce
+.cant_restore_pp
 	ld hl, wcfa9
 	inc [hl]
 	pop bc
 	dec b
-	jr nz, .asm_f6b7
+	jr nz, .moveLoop
 	ld a, [wcfaa]
 	and a
 	jp nz, Functionf652
@@ -2704,48 +2705,48 @@ Functionf6e0: ; f6e0
 	ret
 ; f6e8
 
-Functionf6e8: ; f6e8
+RestorePP: ; f6e8
 	xor a ; PARTYMON
 	ld [MonType], a
 	call Functionf8ec
 	ld hl, PartyMon1PP
 	ld bc, PartyMon2 - PartyMon1
-	call Add_CurPartyMon_Times
+	call GetMthMoveOfNthPartymon
 	ld a, [wd265]
 	ld b, a
 	ld a, [hl]
-	and $3f
+	and (1 << 6) - 1
 	cp b
-	jr nc, .asm_f723
+	jr nc, .dont_restore
 
-	ld a, [wd002]
+	ld a, [MiscBuffer2]
 	cp MAX_ELIXER
-	jr z, .asm_f71d
+	jr z, .restore_all
 	cp MAX_ETHER
-	jr z, .asm_f71d
+	jr z, .restore_all
 
 	ld c, 5
 	cp MYSTERYBERRY
-	jr z, .asm_f715
+	jr z, .restore_some
 
 	ld c, 10
 
-.asm_f715
+.restore_some
 	ld a, [hl]
-	and $3f
+	and (1 << 6) - 1
 	add c
 	cp b
-	jr nc, .asm_f71d
+	jr nc, .restore_all
 	ld b, a
 
-.asm_f71d
+.restore_all
 	ld a, [hl]
-	and $c0
+	and 3 << 6
 	or b
 	ld [hl], a
 	ret
 
-.asm_f723
+.dont_restore
 	xor a
 	ret
 ; f725
@@ -3129,9 +3130,9 @@ Functionf84c: ; f84c
 
 .asm_f876
 	ld a, [hl]
-	and $c0
-	ld a, [de]
-	call nz, Functionf881
+	and 3 << 6
+	ld a, [de] ; wasted cycle
+	call nz, ComputeMaxPP
 
 .asm_f87d
 	inc hl
@@ -3141,8 +3142,9 @@ Functionf84c: ; f84c
 
 
 
-Functionf881: ; f881
+ComputeMaxPP: ; f881
 	push bc
+	; Divide the base PP by 5.
 	ld a, [de]
 	ld [hDividend + 3], a
 	xor a
@@ -3153,6 +3155,7 @@ Functionf881: ; f881
 	ld [hDivisor], a
 	ld b, 4
 	call Divide
+	; Get the number of PP, which are bits 6 and 7 of the PP value stored in RAM.
 	ld a, [hl]
 	ld b, a
 	swap a
@@ -3160,24 +3163,30 @@ Functionf881: ; f881
 	srl a
 	srl a
 	ld c, a
+	; If this value is 0, we are done
 	and a
-	jr z, .asm_f8b6
-.asm_f8a3
-	ld a, [$ffb6]
+	jr z, .NoPPUp
+
+.loop
+	; Normally, a move with 40 PP would have 64 PP with three PP Ups.
+	; Since this would overflow into bit 6, we prevent that from happening
+	; by decreasing the extra amount of PP each PP Up provides, resulting
+	; in a maximum of 61.
+	ld a, [hQuotient + 2]
 	cp $8
-	jr c, .asm_f8ab
+	jr c, .okay
 	ld a, $7
 
-.asm_f8ab
+.okay
 	add b
 	ld b, a
 	ld a, [wd265]
 	dec a
-	jr z, .asm_f8b6
+	jr z, .NoPPUp
 	dec c
-	jr nz, .asm_f8a3
+	jr nz, .loop
 
-.asm_f8b6
+.NoPPUp
 	ld [hl], b
 	pop bc
 	ret
@@ -3205,7 +3214,7 @@ Functionf8b9: ; f8b9
 	pop bc
 	pop de
 	ld a, [de]
-	and $c0
+	and 3 << 6
 	ld b, a
 	ld a, [wd265]
 	add b
@@ -3231,30 +3240,30 @@ Functionf8ec: ; f8ec
 
 	ld hl, PartyMon1Moves
 	ld bc, PartyMon2 - PartyMon1
-	jr z, .asm_f91a ; PARTYMON
+	jr z, .got_partymon ; PARTYMON
 
 	ld hl, OTPartyMon1Moves
 	dec a
-	jr z, .asm_f91a ; OTPARTYMON
+	jr z, .got_partymon ; OTPARTYMON
 
 	ld hl, TempMonMoves
 	dec a
-	jr z, .asm_f915 ; BOXMON
+	jr z, .got_nonpartymon ; BOXMON
 
 	ld hl, TempMonMoves ; Wasted cycles
 	dec a
-	jr z, .asm_f915 ; BREEDMON
+	jr z, .got_nonpartymon ; BREEDMON
 
 	ld hl, BattleMonMoves ; WILDMON
 
-.asm_f915 ; BOXMON, BREEDMON, WILDMON
-	call Functionf969
-	jr .asm_f91d
+.got_nonpartymon ; BOXMON, BREEDMON, WILDMON
+	call GetMthMoveOfCurrentMon
+	jr .gotdatmove
 
-.asm_f91a ; PARTYMON, OTPARTYMON
-	call Add_CurPartyMon_Times
+.got_partymon ; PARTYMON, OTPARTYMON
+	call GetMthMoveOfNthPartymon
 
-.asm_f91d
+.gotdatmove
 	ld a, [hl]
 	dec a
 
@@ -3273,12 +3282,12 @@ Functionf8ec: ; f8ec
 	ld bc, PartyMon1PP - PartyMon1Moves
 	ld a, [MonType]
 	cp WILDMON
-	jr nz, .asm_f942
+	jr nz, .notwild
 	ld bc, EnemyMonPP - EnemyMonMoves
-.asm_f942
+.notwild
 	add hl, bc
 	ld a, [hl]
-	and $c0
+	and 3 << 6
 	pop bc
 
 	or b
@@ -3286,10 +3295,10 @@ Functionf8ec: ; f8ec
 	ld [hl], a
 	xor a
 	ld [wd265], a
-	ld a, b
-	call Functionf881
+	ld a, b ; this gets lost anyway
+	call ComputeMaxPP
 	ld a, [hl]
-	and $3f
+	and (1 << 6) - 1
 	ld [wd265], a
 
 	pop af
@@ -3299,11 +3308,11 @@ Functionf8ec: ; f8ec
 	ret
 ; f963
 
-Add_CurPartyMon_Times: ; f963
+GetMthMoveOfNthPartymon: ; f963
 	ld a, [CurPartyMon]
 	call AddNTimes
 
-Functionf969: ; f969
+GetMthMoveOfCurrentMon: ; f969
 	ld a, [wcfa9]
 	ld c, a
 	ld b, 0

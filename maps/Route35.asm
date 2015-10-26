@@ -469,14 +469,14 @@ Route35_MapEventHeader:
 
 .PersonEvents:
 	db 11
-	person_event SPRITE_YOUNGSTER, 23, 8, $a, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 2, TrainerCamperIvan, -1
-	person_event SPRITE_YOUNGSTER, 24, 12, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerCamperElliot, -1
-	person_event SPRITE_LASS, 24, 11, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 3, TrainerPicnickerBrooke, -1
-	person_event SPRITE_LASS, 30, 14, $a, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 1, TrainerPicnickerKim, -1
-	person_event SPRITE_YOUNGSTER, 32, 18, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 0, TrainerBird_keeperBryan, -1
-	person_event SPRITE_FISHER, 14, 6, $1e, 0, 0, -1, -1, 8 + PAL_OW_RED, 2, 2, TrainerFirebreatherWalt, -1
-	person_event SPRITE_BUG_CATCHER, 11, 20, $6, 0, 2, -1, -1, 8 + PAL_OW_BROWN, 2, 3, TrainerBug_catcherArnie1, -1
-	person_event SPRITE_SUPER_NERD, 14, 9, $a, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 2, TrainerJugglerIrwin, -1
-	person_event SPRITE_OFFICER, 10, 9, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 0, 0, OfficerScript_0x19ca49, -1
-	person_event SPRITE_FRUIT_TREE, 29, 6, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x19ca7e, -1
-	person_event SPRITE_POKE_BALL, 20, 17, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19ca7c, EVENT_ROUTE_35_TM_ROLLOUT
+	person_event SPRITE_YOUNGSTER, 19, 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerCamperIvan, -1
+	person_event SPRITE_YOUNGSTER, 20, 8, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerCamperElliot, -1
+	person_event SPRITE_LASS, 20, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerPicnickerBrooke, -1
+	person_event SPRITE_LASS, 26, 10, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerPicnickerKim, -1
+	person_event SPRITE_YOUNGSTER, 28, 14, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 0, TrainerBird_keeperBryan, -1
+	person_event SPRITE_FISHER, 10, 2, $1e, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerFirebreatherWalt, -1
+	person_event SPRITE_BUG_CATCHER, 7, 16, $6, 0, 2, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBug_catcherArnie1, -1
+	person_event SPRITE_SUPER_NERD, 10, 5, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerJugglerIrwin, -1
+	person_event SPRITE_OFFICER, 6, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, OfficerScript_0x19ca49, -1
+	person_event SPRITE_FRUIT_TREE, 25, 2, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x19ca7e, -1
+	person_event SPRITE_POKE_BALL, 16, 13, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19ca7c, EVENT_ROUTE_35_TM_ROLLOUT

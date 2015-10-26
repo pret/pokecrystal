@@ -1707,7 +1707,7 @@ BuenasPassword3: ; b8f47 (2e:4f47)
 BuenasPassword4: ; b8f55 (2e:4f55)
 	call BuenasPasswordCheckMidnight
 	jp c, BuenasPassword8
-	ld a, [wdc4a]
+	ld a, [wBuenasPassword]
 ; If we already generated the password today, we don't need to generate a new one.
 	ld hl, WeeklyFlags
 	bit 7, [hl]
@@ -1727,9 +1727,9 @@ BuenasPassword4: ; b8f55 (2e:4f55)
 	and $3
 	cp $3
 	jr nc, .greater_than_three
-; The high nybble of wdc4a will now contain the password group index, and the low nybble contains the actual password.
+; The high nybble of wBuenasPassword will now contain the password group index, and the low nybble contains the actual password.
 	add e
-	ld [wdc4a], a
+	ld [wBuenasPassword], a
 ; Set the flag so that we don't generate a new password this week.
 	ld hl, WeeklyFlags
 	set 7, [hl]

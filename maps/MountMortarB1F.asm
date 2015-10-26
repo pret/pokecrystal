@@ -144,10 +144,10 @@ MountMortarB1F_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_POKE_BALL, 16, 33, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e240, EVENT_MOUNT_MORTAR_B1F_HYPER_POTION
-	person_event SPRITE_POKE_BALL, 20, 8, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e242, EVENT_MOUNT_MORTAR_B1F_CARBOS
-	person_event SPRITE_BOULDER, 14, 13, $19, 0, 0, -1, -1, 0, 0, 0, MountMortarB1FBoulder, -1
-	person_event SPRITE_BLACK_BELT, 8, 20, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 0, 0, BlackBeltScript_0x7e1f6, -1
-	person_event SPRITE_POKE_BALL, 28, 38, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e244, EVENT_MOUNT_MORTAR_B1F_FULL_RESTORE
-	person_event SPRITE_POKE_BALL, 7, 36, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e246, EVENT_MOUNT_MORTAR_B1F_MAX_ETHER
-	person_event SPRITE_POKE_BALL, 30, 25, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e248, EVENT_MOUNT_MORTAR_B1F_PP_UP
+	person_event SPRITE_POKE_BALL, 12, 29, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e240, EVENT_MOUNT_MORTAR_B1F_HYPER_POTION
+	person_event SPRITE_POKE_BALL, 16, 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e242, EVENT_MOUNT_MORTAR_B1F_CARBOS
+	person_event SPRITE_BOULDER, 10, 9, $19, 0, 0, -1, -1, 0, 0, 0, MountMortarB1FBoulder, -1
+	person_event SPRITE_BLACK_BELT, 4, 16, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, BlackBeltScript_0x7e1f6, -1
+	person_event SPRITE_POKE_BALL, 24, 34, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e244, EVENT_MOUNT_MORTAR_B1F_FULL_RESTORE
+	person_event SPRITE_POKE_BALL, 3, 32, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e246, EVENT_MOUNT_MORTAR_B1F_MAX_ETHER
+	person_event SPRITE_POKE_BALL, 26, 21, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e248, EVENT_MOUNT_MORTAR_B1F_PP_UP

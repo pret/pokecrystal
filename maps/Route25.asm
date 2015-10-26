@@ -439,14 +439,14 @@ Route25_MapEventHeader:
 
 .PersonEvents:
 	db 11
-	person_event SPRITE_MISTY, 13, 50, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
-	person_event SPRITE_COOLTRAINER_M, 14, 50, $8, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 0, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
-	person_event SPRITE_YOUNGSTER, 12, 16, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerSchoolboyDudley, -1
-	person_event SPRITE_LASS, 15, 20, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerLassEllen, -1
-	person_event SPRITE_YOUNGSTER, 12, 25, $6, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerSchoolboyJoe, -1
-	person_event SPRITE_LASS, 10, 26, $9, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 3, TrainerLassLaura, -1
-	person_event SPRITE_YOUNGSTER, 8, 29, $6, 0, 0, -1, -1, 8 + PAL_OW_GREEN, 2, 2, TrainerCamperLloyd, -1
-	person_event SPRITE_LASS, 15, 32, $7, 0, 0, -1, -1, 8 + PAL_OW_BLUE, 2, 1, TrainerLassShannon, -1
-	person_event SPRITE_SUPER_NERD, 11, 35, $6, 0, 0, -1, -1, 8 + PAL_OW_BROWN, 2, 1, TrainerSupernerdPat, -1
-	person_event SPRITE_COOLTRAINER_M, 12, 41, $8, 0, 0, -1, -1, 8 + PAL_OW_RED, 0, 0, CooltrainerMScript_0x19efac, -1
-	person_event SPRITE_POKE_BALL, 8, 36, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19efe3, EVENT_ROUTE_25_PROTEIN
+	person_event SPRITE_MISTY, 9, 46, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
+	person_event SPRITE_COOLTRAINER_M, 10, 46, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
+	person_event SPRITE_YOUNGSTER, 8, 12, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSchoolboyDudley, -1
+	person_event SPRITE_LASS, 11, 16, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerLassEllen, -1
+	person_event SPRITE_YOUNGSTER, 8, 21, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSchoolboyJoe, -1
+	person_event SPRITE_LASS, 6, 22, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerLassLaura, -1
+	person_event SPRITE_YOUNGSTER, 4, 25, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerCamperLloyd, -1
+	person_event SPRITE_LASS, 11, 28, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerLassShannon, -1
+	person_event SPRITE_SUPER_NERD, 7, 31, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerSupernerdPat, -1
+	person_event SPRITE_COOLTRAINER_M, 8, 37, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerMScript_0x19efac, -1
+	person_event SPRITE_POKE_BALL, 4, 32, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19efe3, EVENT_ROUTE_25_PROTEIN

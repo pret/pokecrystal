@@ -39,7 +39,7 @@ Joypad:: ; 935
 	
 ; We can only get four inputs at a time.
 ; We take d-pad first for no particular reason.
-	ld a, D_PAD
+	ld a, R_DPAD
 	ld [rJOYP], a
 ; Read twice to give the request time to take.
 rept 2
@@ -57,7 +57,7 @@ endr
 	
 ; Buttons make 8 total inputs (A, B, Select, Start).
 ; We can fit this into one byte.
-	ld a, BUTTONS
+	ld a, R_BUTTONS
 	ld [rJOYP], a
 ; Wait for input to stabilize.
 rept 6
@@ -198,14 +198,14 @@ GetJoypad:: ; 984
 .updateauto
 ; An input of $ff will end the stream.
 	ld a, [hli]
-	cp a, $ff
+	cp a, -1
 	jr z, .stopauto
 	ld b, a
 	
 ; A duration of $ff will end the stream indefinitely.
 	ld a, [hli]
 	ld [AutoInputLength], a
-	cp a, $ff
+	cp a, -1
 	jr nz, .next
 	
 ; The current input is overwritten.
@@ -273,42 +273,44 @@ StopAutoInput:: ; a0a
 ; a1b
 
 
-Functiona1b:: ; a1b
+JoyTitleScreenInput:: ; a1b
+.loop
 
 	call DelayFrame
 
 	push bc
-	call Functiona57
+	call JoyTextDelay
 	pop bc
 
 	ld a, [hJoyDown]
 	cp D_UP | SELECT | B_BUTTON
-	jr z, .asm_a34
+	jr z, .keycombo
 
-	ld a, [$ffa9]
+	ld a, [hJoyLast]
 	and START | A_BUTTON
-	jr nz, .asm_a34
+	jr nz, .keycombo
 
 	dec c
-	jr nz, Functiona1b
+	jr nz, .loop
 
 	and a
 	ret
 
-.asm_a34
+.keycombo
 	scf
 	ret
 ; a36
 
 
-Functiona36:: ; a36
+JoyWaitAorB:: ; a36
+.loop
 	call DelayFrame
 	call GetJoypad
 	ld a, [hJoyPressed]
 	and A_BUTTON | B_BUTTON
 	ret nz
 	call RTC
-	jr Functiona36
+	jr .loop
 ; a46
 
 CloseText:: ; a46
@@ -317,37 +319,37 @@ CloseText:: ; a46
 	ld a, 1
 	ld [hOAMUpdate], a
 	call WaitBGMap
-	call Functiona36
+	call JoyWaitAorB
 	pop af
 	ld [hOAMUpdate], a
 	ret
 ; a57
 
-Functiona57:: ; a57
+JoyTextDelay:: ; a57
 	call GetJoypad
-	ld a, [$ffaa]
+	ld a, [hInMenu]
 	and a
 	ld a, [hJoyPressed]
-	jr z, .asm_a63
+	jr z, .ok
 	ld a, [hJoyDown]
-.asm_a63
+.ok
 	ld [hJoyLast], a
 	ld a, [hJoyPressed]
 	and a
-	jr z, .asm_a70
+	jr z, .checkframedelay
 	ld a, 15
 	ld [TextDelayFrames], a
 	ret
 
-.asm_a70
+.checkframedelay
 	ld a, [TextDelayFrames]
 	and a
-	jr z, .asm_a7a
+	jr z, .restartframedelay
 	xor a
 	ld [hJoyLast], a
 	ret
 
-.asm_a7a
+.restartframedelay
 	ld a, 5
 	ld [TextDelayFrames], a
 	ret
@@ -356,90 +358,95 @@ Functiona57:: ; a57
 Functiona80:: ; a80
 	ld a, [hConnectionStripLength]
 	push af
-	ld a, [$ffb0]
+	ld a, [hConnectedMapWidth]
 	push af
 	xor a
 	ld [hConnectionStripLength], a
-	ld a, $6
-	ld [$ffb0], a
-.asm_a8d
+	ld a, 6
+	ld [hConnectedMapWidth], a
+
+.loop
 	push hl
 	hlcoord 18, 17
 	call Functionb06
 	pop hl
-	call Functiona57
-	ld a, [$ffa9]
-	and $3
-	jr z, .asm_a8d
+
+	call JoyTextDelay
+	ld a, [hJoyLast]
+	and A_BUTTON | B_BUTTON
+	jr z, .loop
+
 	pop af
-	ld [$ffb0], a
+	ld [hConnectedMapWidth], a
 	pop af
 	ld [hConnectionStripLength], a
 	ret
 ; aa5
 
 Functionaa5:: ; aa5
-	call Functiona57
-	ld a, [$ffa9]
+.loop
+	call JoyTextDelay
+	ld a, [hJoyLast]
 	and A_BUTTON | B_BUTTON
-	jr z, Functionaa5
+	jr z, .loop
 	ret
 ; aaf
 
 KeepTextOpen:: ; aaf
-	ld a, [InLinkBattle]
+	ld a, [wLinkMode]
 	and a
-	jr nz, .asm_ac1
-	call Functionac6
+	jr nz, .link
+	call .wait_input
 	push de
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	pop de
 	ret
 
-.asm_ac1
+.link
 	ld c, 65
 	jp DelayFrames
 ; ac6
 
-Functionac6:: ; ac6
+.wait_input: ; ac6
 	ld a, [hOAMUpdate]
 	push af
 	ld a, $1
 	ld [hOAMUpdate], a
 	ld a, [InputType]
 	or a
-	jr z, .asm_ad9
-	callba Start_DudeAutoInput_A
-.asm_ad9
-	call Functionaf5
-	call Functiona57
+	jr z, .input_wait_loop
+	callba _DudeAutoInput_A
+
+.input_wait_loop
+	call .blink_cursor
+	call JoyTextDelay
 	ld a, [hJoyPressed]
-	and $3
-	jr nz, .asm_af1
+	and A_BUTTON | B_BUTTON
+	jr nz, .received_input
 	call RTC
 	ld a, $1
 	ld [hBGMapMode], a
 	call DelayFrame
-	jr .asm_ad9
+	jr .input_wait_loop
 
-.asm_af1
+.received_input
 	pop af
 	ld [hOAMUpdate], a
 	ret
 ; af5
 
-Functionaf5:: ; af5
+.blink_cursor: ; af5
 	ld a, [$ff9b]
-	and $10
-	jr z, .asm_aff
-	ld a, $ee
-	jr .asm_b02
+	and %00010000 ; bit 4, a
+	jr z, .cursor_off
+	ld a, "▼"
+	jr .load_cursor_state
 
-.asm_aff
+.cursor_off
 	ld a, [TileMap + 17 + 17 * SCREEN_WIDTH]
 
-.asm_b02
+.load_cursor_state
 	ld [TileMap + 18 + 17 * SCREEN_WIDTH], a
 	ret
 ; b06
@@ -448,7 +455,7 @@ Functionb06:: ; b06
 	push bc
 	ld a, [hl]
 	ld b, a
-	ld a, $ee
+	ld a, "▼"
 	cp b
 	pop bc
 	jr nz, .asm_b27
@@ -456,16 +463,16 @@ Functionb06:: ; b06
 	dec a
 	ld [hConnectionStripLength], a
 	ret nz
-	ld a, [$ffb0]
+	ld a, [hConnectedMapWidth]
 	dec a
-	ld [$ffb0], a
+	ld [hConnectedMapWidth], a
 	ret nz
-	ld a, $7a
+	ld a, "─"
 	ld [hl], a
-	ld a, $ff
+	ld a, -1
 	ld [hConnectionStripLength], a
-	ld a, $6
-	ld [$ffb0], a
+	ld a, 6
+	ld [hConnectedMapWidth], a
 	ret
 
 .asm_b27
@@ -477,12 +484,12 @@ Functionb06:: ; b06
 	ret nz
 	dec a
 	ld [hConnectionStripLength], a
-	ld a, [$ffb0]
+	ld a, [hConnectedMapWidth]
 	dec a
-	ld [$ffb0], a
+	ld [hConnectedMapWidth], a
 	ret nz
 	ld a, $6
-	ld [$ffb0], a
+	ld [hConnectedMapWidth], a
 	ld a, $ee
 	ld [hl], a
 	ret
