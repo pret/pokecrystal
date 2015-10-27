@@ -1034,9 +1034,11 @@ DoRepelStep: ; 96bd7
 	ld a, [wRepelEffect]
 	and a
 	ret z
+
 	dec a
 	ld [wRepelEffect], a
 	ret nz
+
 	ld a, BANK(RepelWoreOffScript)
 	ld hl, RepelWoreOffScript
 	call CallScript

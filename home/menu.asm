@@ -52,7 +52,7 @@ MenuTextBoxBackup:: ; 1d67
 	ret
 ; 1d6e
 
-Function1d6e:: ; 1d6e
+LoadMenuDataHeader_0x1d75:: ; 1d6e
 	ld hl, MenuDataHeader_0x1d75
 	call LoadMenuDataHeader
 	ret
@@ -66,7 +66,7 @@ MenuDataHeader_0x1d75:: ; 1d75
 	db 1 ; default option
 ; 1d7d
 
-Function1d7d:: ; 1d7d
+Call_ExitMenu:: ; 1d7d
 	call ExitMenu
 	ret
 ; 1d81

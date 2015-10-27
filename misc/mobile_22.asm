@@ -655,7 +655,7 @@ Function894ca: ; 894ca (22:54ca)
 	call Function895c7
 	call Function8949c
 	call Function8a60d
-	call Function32f9
+	call SetPalettes
 	pop bc
 	ret
 
@@ -1307,7 +1307,7 @@ Function89844: ; 89844
 	call Function897af
 	push bc
 	call Function3200
-	call Function32f9
+	call SetPalettes
 	pop bc
 	ret
 ; 89856
@@ -1816,9 +1816,9 @@ Function89b28: ; 89b28 (22:5b28)
 	call Function891de
 	call WhiteBGMap
 	call Function893e2
-	call Function1d7d
+	call Call_ExitMenu
 	call Function891ab
-	call Function32f9
+	call SetPalettes
 	ret
 
 Function89b3b: ; 89b3b (22:5b3b)
@@ -2167,7 +2167,7 @@ Function89d0d: ; 89d0d (22:5d0d)
 	call CopyBytes
 	pop af
 	ld [rSVBK], a ; $ff00+$70
-	call Function32f9
+	call SetPalettes
 	callba Function845db
 	call Function89240
 	ld c, $18
@@ -2373,7 +2373,7 @@ Function89e6f: ; 89e6f (22:5e6f)
 	hlcoord 10, 4, AttrMap
 	call Function8a5a3
 	call Function891ab
-	call Function32f9
+	call SetPalettes
 	jp Function89e36
 
 Function89e9a: ; 89e9a (22:5e9a)
@@ -2410,7 +2410,7 @@ Function89eb9: ; 89eb9 (22:5eb9)
 	hlcoord 10, 4, AttrMap
 	call Function8a5a3
 	call Function891ab
-	call Function32f9
+	call SetPalettes
 	jp Function89e36
 
 Function89ee1: ; 89ee1 (22:5ee1)
@@ -2591,7 +2591,7 @@ Function89fce: ; 89fce (22:5fce)
 	hlcoord 10, 4, AttrMap
 	call Function8a5a3
 	call Function89448
-	call Function32f9
+	call SetPalettes
 	call Function891ab
 	jp Function89e36
 
@@ -2927,7 +2927,7 @@ UnknownText_0x8a23c: ; 0x8a23c
 ; 0x8a241
 
 Function8a241: ; 8a241 (22:6241)
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Function891fe
 	call Function8a262
 	jr nc, .asm_8a254
@@ -2938,7 +2938,7 @@ Function8a241: ; 8a241 (22:6241)
 .asm_8a254
 	call Function891de
 	call WhiteBGMap
-	call Function1d7d
+	call Call_ExitMenu
 	call Function891de
 	and a
 	ret
@@ -2965,7 +2965,7 @@ Function8a262: ; 8a262 (22:6262)
 	call Function8b36c
 	call Function8b493
 	call Function891ab
-	call Function32f9
+	call SetPalettes
 	call Function8b5e7
 	ret
 
@@ -3063,7 +3063,7 @@ Function8a31c: ; 8a31c (22:631c)
 	call Function8a4d3
 	call Function8a4fc
 	call Function891ab
-	call Function32f9
+	call SetPalettes
 	call Function8a383
 	jr c, .asm_8a370
 	jr z, .asm_8a34e
@@ -3455,7 +3455,7 @@ Palette_8a624: ; 8a624
 ; 8a62c
 
 Function8a62c: ; 8a62c (22:662c)
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Function891fe
 	xor a
 	call Function8b94a
@@ -3885,7 +3885,7 @@ Function8a999: ; 8a999 (22:6999)
 	jr c, .asm_8a9bb
 	push bc
 	push de
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	pop de
 	dec e
 	ld a, e
@@ -4141,7 +4141,7 @@ Function8ab77: ; 8ab77 (22:6b77)
 
 Function8ab93: ; 8ab93 (22:6b93)
 	call WhiteBGMap
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	callba Function105688
 	call ClearSprites
 	call Function891fe

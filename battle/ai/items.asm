@@ -9,7 +9,7 @@ AI_SwitchOrTryItem: ; 38000
 	and a
 	ret nz
 
-	callba Function3e8d1
+	callba CheckSubstatus_RechargeChargedRampageBideRollout
 	ret nz
 
 	ld a, [PlayerSubStatus5]
@@ -24,6 +24,7 @@ AI_SwitchOrTryItem: ; 38000
 	ld a, [InBattleTowerBattle] ; Load always the first TrainerClass for BattleTower-Trainers
 	and a
 	jr nz, .ok
+
 	ld a, [TrainerClass]
 	dec a
 	ld bc, 7

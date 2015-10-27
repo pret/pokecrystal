@@ -5789,7 +5789,7 @@ Function116294: ; 116294
 	ld de, Unkn1Pals + 8 * 7
 	ld bc, $0008
 	call CopyBytes
-	call Function32f9
+	call SetPalettes
 	pop af
 	ld [rSVBK], a
 	ld a, $30
@@ -5810,7 +5810,7 @@ Function1162cb: ; 1162cb
 	ld de, wd050
 	ld bc, $0030
 	call CopyBytes
-	call Function32f9
+	call SetPalettes
 	pop af
 	ld [rSVBK], a
 	ret
@@ -5917,7 +5917,7 @@ Function11636e: ; 11636e
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
-	call Function32f9
+	call SetPalettes
 	ld a, [rSVBK]
 	push af
 	ld a, $1
@@ -5967,7 +5967,7 @@ Function1163c0: ; 1163c0
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
-	call Function32f9
+	call SetPalettes
 	call DelayFrame
 	ld a, $90
 	ld [hWY], a
@@ -14155,7 +14155,7 @@ Function11a9c0: ; 11a9c0
 Function11a9ce: ; 11a9ce
 	call WhiteBGMap
 	call Function2bae
-	call Function1d7d
+	call Call_ExitMenu
 	callba Function106462
 	callba Function106464
 	call Functiond90
@@ -14937,7 +14937,7 @@ Function11b082: ; 11b082
 	call Function11b099
 	call Function11b295
 	call Function11b275
-	call Function32f9
+	call SetPalettes
 	jp Function11ad8a
 ; 11b099
 
@@ -15686,7 +15686,7 @@ Function11b483: ; 11b483
 	pop de
 	push de
 	ld b, $1
-	predef Functione167
+	predef CalcPkmnStats
 	pop de
 	ld h, d
 	ld l, e
@@ -16102,7 +16102,7 @@ Function11b6b4: ; 11b6b4
 	ld hl, $c616 + 1
 	ld de, $c62c + 5
 	ld b, $1
-	predef Functione167
+	predef CalcPkmnStats
 	ld de, $c62c + 5
 	ld hl, $c62c + 3
 	ld a, [de]
@@ -16875,7 +16875,7 @@ Function11c1ca: ; 11c1ca
 	call ClearSprites
 	call ClearScreen
 	call Function11d323
-	call Function32f9
+	call SetPalettes
 	call DisableLCD
 	ld hl, GFX_11d67e
 	ld de, VTiles2
@@ -21659,7 +21659,7 @@ endr
 	cp $8
 	jr nz, .asm_16c969
 	callba Function96a4
-	call Function32f9
+	call SetPalettes
 	ld a, [rSVBK]
 	push af
 	ld a, $1
@@ -21762,7 +21762,7 @@ endr
 	cp $8
 	jr nz, .asm_16ca28
 	callba Function96a4
-	call Function32f9
+	call SetPalettes
 	ld a, [rSVBK]
 	push af
 	ld a, $1
@@ -22177,7 +22177,7 @@ Function16d42e: ; 16d42e
 ; 16d43b
 
 Function16d43b: ; 16d43b
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call WhiteBGMap
 	call ClearTileMap
 	call ClearSprites
@@ -22185,10 +22185,10 @@ Function16d43b: ; 16d43b
 	callba Function16d42e
 	ld b, $8
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	call WaitBGMap
 	call JoyWaitAorB
-	call Function1d7d
+	call Call_ExitMenu
 	ret
 ; 16d465
 
@@ -22327,10 +22327,10 @@ Function16d6ca: ; 16d6ca
 ; 16d6ce
 
 Function16d6ce: ; 16d6ce
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Function16d6e1
 	callba Function87d
-	call Function1d7d
+	call Call_ExitMenu
 	call Function3200
 	ret
 ; 16d6e1
@@ -23076,7 +23076,7 @@ endr
 	ld hl, $000a
 	add hl, bc
 	ld b, $1
-	predef Functione167
+	predef CalcPkmnStats
 	pop de
 	pop hl
 rept 2
@@ -23293,7 +23293,7 @@ Function170525: ; 170525
 
 
 Function170571:
-	call Function32f9
+	call SetPalettes
 	call Function1705b2
 
 
@@ -24906,7 +24906,7 @@ Function171ccd: ; 171ccd (5c:5ccd)
 	ld [hli], a
 	ld a, $7f
 	ld [hl], a
-	call Function32f9
+	call SetPalettes
 	pop af
 	ld [rSVBK], a ; $ff00+$70
 	ret
@@ -25068,7 +25068,7 @@ Function172eb9:
 	ld de, BGPals
 	ld bc, $40
 	call CopyBytes
-	call Function32f9
+	call SetPalettes
 	pop af
 	ld [rSVBK], a ; $ff00+$70
 	ret

@@ -705,7 +705,7 @@ endr
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
 	ret z
-	cp 2
+	cp BATTLETYPE_DEBUG
 	ret z
 	cp BATTLETYPE_CONTEST
 	jr z, .used_park_ball
@@ -1143,13 +1143,13 @@ Functionedce: ; edce
 	ld de, MUSIC_CAPTURE
 	call PlayMusic
 	pop bc
-	ld hl, UnknownText_0xede6
+	ld hl, TextJump_Waitbutton
 	ret
 ; ede6
 
-UnknownText_0xede6: ; 0xede6
+TextJump_Waitbutton: ; 0xede6
 	; @
-	text_jump UnknownText_0x1c5b35
+	text_jump Text_Waitbutton_2
 	db "@"
 ; 0xedeb
 
@@ -1262,7 +1262,7 @@ Calcium: ; ee3d
 	ld bc, ITEM_NAME_LENGTH
 	call CopyBytes
 
-	call Functionf780
+	call Play_SFX_FULL_HEAL
 
 	ld hl, UnknownText_0xeea6
 	call PrintText
@@ -1288,7 +1288,7 @@ Functionee8c: ; ee8c
 	ld a, PartyMon1HPExp - 1 - PartyMon1
 	call GetPartyParamLocation
 	ld b, $1
-	predef_jump Functione167
+	predef_jump CalcPkmnStats
 ; ee9f
 
 Functionee9f: ; ee9f
@@ -1427,7 +1427,7 @@ RareCandy: ; ef14
 
 	xor a ; PARTYMON
 	ld [MonType], a
-	predef Function5084a
+	predef CopyPkmnToTempMon
 
 	hlcoord 9, 0
 	ld b, 10
@@ -1518,7 +1518,7 @@ Functionefda: ; efda (3:6fda)
 	ld a, b
 	ld [PartyMenuActionText], a
 	call Functionf030
-	call Functionf780
+	call Play_SFX_FULL_HEAL
 	call Functionf279
 	call Functionf795
 	ld a, $0
@@ -1880,7 +1880,7 @@ Functionf21c: ; f21c (3:721c)
 	callba WritePartyMenuTilemap
 	callba PrintPartyMenuText
 	call WaitBGMap
-	call Function32f9
+	call SetPalettes
 	call DelayFrame
 	callba PartyMenuSelect
 	ret
@@ -1897,7 +1897,7 @@ Functionf24a: ; f24a (3:724a)
 	callba WritePartyMenuTilemap
 	callba Function50566
 	call WaitBGMap
-	call Function32f9
+	call SetPalettes
 	call DelayFrame
 	pop bc
 	pop de
@@ -2256,16 +2256,17 @@ Repel: ; f46a
 Function_0xf46c: ; f46c
 	ld a, [wRepelEffect]
 	and a
-	ld hl, UnknownText_0xf47d
+	ld hl, TextJump_RepelUsedEarlierIsStillInEffect
 	jp nz, PrintText
+
 	ld a, b
 	ld [wRepelEffect], a
 	jp Functionf789
-; f47d
 
-UnknownText_0xf47d: ; 0xf47d
+
+TextJump_RepelUsedEarlierIsStillInEffect: ; 0xf47d
 	; The REPEL used earlier is still in effect.
-	text_jump UnknownText_0x1c5bcd
+	text_jump Text_RepelUsedEarlierIsStillInEffect
 	db "@"
 ; 0xf482
 
@@ -2520,6 +2521,7 @@ Mysteryberry: ; f5bf
 	ld [MiscBuffer2], a
 
 .loop
+    ; Party Screen opens to choose on which Pkmn to use the Item
 	ld b, $1
 	call Functionf1f9
 	jp c, Functionf6e0
@@ -2531,11 +2533,11 @@ Mysteryberry: ; f5bf
 	cp ELIXER
 	jp z, Elixer_RestorePPofAllMoves
 
-	ld hl, UnknownText_0xf725
+	ld hl, TextJump_RaiseThePPOfWhichMove
 	ld a, [MiscBuffer2]
 	cp PP_UP
 	jr z, .ppup
-	ld hl, UnknownText_0xf72a
+	ld hl, TextJump_RestoreThePPOfWhichMove
 
 .ppup
 	call PrintText
@@ -2546,9 +2548,9 @@ Mysteryberry: ; f5bf
 	ld [CurMoveNum], a
 	ld a, $2
 	ld [wd235], a
-	callba Function3e4bc
-
+	callba MoveSelectionScreen
 	pop bc
+
 	ld a, b
 	ld [CurMoveNum], a
 	jr nz, .loop
@@ -2561,8 +2563,8 @@ Mysteryberry: ; f5bf
 	ld [wd265], a
 	call GetMoveName
 	call CopyName1
-
 	pop hl
+
 	ld a, [MiscBuffer2]
 	cp PP_UP
 	jp nz, Functionf6a7
@@ -2574,24 +2576,25 @@ Mysteryberry: ; f5bf
 	ld bc, $0015
 	add hl, bc
 	ld a, [hl]
-	cp 3 << 6
+	cp 3 << 6 ; have 3 PP Ups already been used?
 	jr c, .do_ppup
 
 .CantUsePPUpOnSketch
-	ld hl, UnknownText_0xf72f
+.pp_is_maxed_out
+	ld hl, TextJump_PPIsMaxedOut
 	call PrintText
 	jr .loop2
 
 .do_ppup
 	ld a, [hl]
-	add 1 << 6
+	add 1 << 6 ; increase PP Up count by 1
 	ld [hl], a
 	ld a, $1
 	ld [wd265], a
 	call Functionf84c
-	call Functionf780
+	call Play_SFX_FULL_HEAL
 
-	ld hl, UnknownText_0xf734
+	ld hl, TextJump_PPsIncreased
 	call PrintText
 
 Functionf64c: ; f64c
@@ -2614,7 +2617,7 @@ Functionf652: ; f652
 	call .asm_f677
 
 .asm_f66c
-	call Functionf780
+	call Play_SFX_FULL_HEAL
 	ld hl, UnknownText_0xf739
 	call PrintText
 	jr Functionf64c
@@ -2748,27 +2751,27 @@ RestorePP: ; f6e8
 	ret
 ; f725
 
-UnknownText_0xf725: ; 0xf725
+TextJump_RaiseThePPOfWhichMove: ; 0xf725
 	; Raise the PP of which move?
-	text_jump UnknownText_0x1c5c8a
+	text_jump Text_RaiseThePPOfWhichMove
 	db "@"
 ; 0xf72a
 
-UnknownText_0xf72a: ; 0xf72a
+TextJump_RestoreThePPOfWhichMove: ; 0xf72a
 	; Restore the PP of which move?
-	text_jump UnknownText_0x1c5ca7
+	text_jump Text_RestoreThePPOfWhichMove
 	db "@"
 ; 0xf72f
 
-UnknownText_0xf72f: ; 0xf72f
+TextJump_PPIsMaxedOut: ; 0xf72f
 	; 's PP is maxed out.
-	text_jump UnknownText_0x1c5cc6
+	text_jump Text_PPIsMaxedOut
 	db "@"
 ; 0xf734
 
-UnknownText_0xf734: ; 0xf734
+TextJump_PPsIncreased: ; 0xf734
 	; 's PP increased.
-	text_jump UnknownText_0x1c5cdd
+	text_jump Text_PPsIncreased
 	db "@"
 ; 0xf739
 
@@ -2925,7 +2928,7 @@ ItemB3: ; f77d
 ; f780
 
 
-Functionf780: ; f780
+Play_SFX_FULL_HEAL: ; f780
 	push de
 	ld de, SFX_FULL_HEAL
 	call WaitPlaySFX
@@ -2936,7 +2939,7 @@ Functionf780: ; f780
 Functionf789: ; f789
 	ld hl, UsedItemText
 	call PrintText
-	call Functionf780
+	call Play_SFX_FULL_HEAL
 	call Functiona80
 	; fallthrough
 ; f795

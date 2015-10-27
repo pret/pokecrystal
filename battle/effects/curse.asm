@@ -44,10 +44,10 @@ BattleCommand54: ; 37588
 	call AnimateCurrentMove
 	ld a, $2
 	call Function36532
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 	call BattleCommand8d
 	call ResetMiss
-	call SwitchTurn
+	call BattleCommand_SwitchTurn
 	call BattleCommand70
 	call BattleCommand8c
 	call ResetMiss

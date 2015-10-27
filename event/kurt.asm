@@ -23,7 +23,7 @@ UnknownText_0x88013: ; 0x88013
 ; 0x88018
 
 Special_SelectApricornForKurt: ; 88018
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld c, $1
 	xor a
 	ld [wd0e4], a
@@ -52,7 +52,7 @@ Special_SelectApricornForKurt: ; 88018
 	call Kurt_GiveUpSelectedQuantityOfSelectedApricorn
 
 .done
-	call Function1d7d
+	call Call_ExitMenu
 	ret
 ; 88055
 

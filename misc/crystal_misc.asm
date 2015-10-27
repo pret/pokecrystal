@@ -51,7 +51,7 @@ Function17a6a8: ; 17a6a8 (5e:66a8)
 	call Function17abcf
 	callba Function49409
 	callba Function49420
-	call Function32f9
+	call SetPalettes
 	call DelayFrame
 	ret
 
@@ -430,7 +430,7 @@ Function17a91e: ; 17a91e (5e:691e)
 	ret
 
 .asm_17a92c
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Function17a99e
 	ld hl, $d088
 	set 7, [hl]

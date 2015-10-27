@@ -132,7 +132,7 @@ NewGame: ; 5b6b
 	ld [wc2cc], a
 	call ResetWRAM
 	call Function5b44
-	call Function5b8f
+	call AreYouABoyOrAreYouAGirl
 	call OakSpeech
 	call InitializeWorld
 	ld a, 1
@@ -146,8 +146,8 @@ NewGame: ; 5b6b
 	jp FinishContinueFunction
 ; 5b8f
 
-Function5b8f: ; 5b8f
-	callba Function10632f
+AreYouABoyOrAreYouAGirl: ; 5b8f
+	callba Function10632f ; some mobile stuff
 	jr c, .ok
 	callba InitGender
 	ret
@@ -415,7 +415,7 @@ Continue: ; 5d65
 	callba TryLoadSaveFile
 	jr c, .FailToLoad
 	callba Function150b9
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Function5e85
 	ld a, $1
 	ld [hBGMapMode], a
@@ -1586,7 +1586,7 @@ Function64db: ; 64db
 ; 6508
 
 LearnMove: ; 6508
-	call Function309d
+	call LoadTileMapToTempTileMap
 	ld a, [CurPartyMon]
 	ld hl, PartyMonNicknames
 	call GetNick
@@ -1748,7 +1748,7 @@ ForgetMove: ; 65d3
 	ld [wcfa7], a
 	call Function1bc9
 	push af
-	call Function30b4
+	call Call_LoadTempTileMapToTileMap
 	pop af
 	pop hl
 	bit 1, a
@@ -3190,7 +3190,7 @@ Function8000: ; 8000
 	ld a, $7
 	call ByteFill
 	call Function3200
-	call Function32f9
+	call SetPalettes
 	ret
 ; 8029
 
@@ -5198,7 +5198,7 @@ FlyFunction: ; ca3b
 .outdoors
 	xor a
 	ld [$ffde], a
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call ClearSprites
 	callba _FlyMap
 	ld a, e
@@ -7932,6 +7932,7 @@ Functiond839: ; d839
 
 
 TryAddMonToParty: ; d88c
+; Check if to copy wild Pkmn or generate new Pkmn
 	; Whose is it?
 	ld de, PartyCount
 	ld a, [MonType]
@@ -8199,12 +8200,15 @@ endr
 	ld [de], a
 	inc de
 	ld hl, EnemyMonStatus
+    ; Copy EnemyMonStatus
 	ld a, [hli]
 	ld [de], a
 	inc de
+    ; Copy EnemyMonUnused
 	ld a, [hli]
 	ld [de], a
 	inc de
+    ; Copy EnemyMonHP
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -8217,17 +8221,18 @@ endr
 	dec a
 	jr nz, .generatestats
 	ld hl, EnemyMonMaxHP
-	ld bc, 12
+	ld bc, 2*6 ; MaxHP + 5 Stats
 	call CopyBytes
 	pop hl
 	jr .next3
 
 .generatestats
 	pop hl
-	ld bc, $000a
+	ld bc, 2*5 ; 5 Stats
 	add hl, bc
-	ld b, $0
-	call Functione167
+	ld b, $0 ; if b = 1, then the Stats of the Pkmn are calculated
+             ; only the current HP aren't set to MaxHP after this
+	call CalcPkmnStats
 
 .next3
 	ld a, [MonType]
@@ -8248,6 +8253,7 @@ endr
 	scf ; When this function returns, the carry flag indicates success vs failure.
 	ret
 ; da6d
+
 
 FillPP: ; da6d
 	push bc
@@ -8286,6 +8292,7 @@ Functionda96: ; da96
 	cp PARTY_LENGTH
 	scf
 	ret z
+
 	inc a
 	ld [hl], a
 	ld c, a
@@ -8359,30 +8366,37 @@ Functionda96: ; da96
 
 	and a
 	ret
-; db3f
 
-Functiondb3f: ; db3f
+
+SentGetPkmnIntoFromBox: ; db3f
+; Sents/Gets Pkmn into/from Box depending on Parameter
+; wd10b == 0: get Pkmn into Party
+; wd10b == 1: sent Pkmn into Box
+
 	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld a, [wd10b]
 	and a
-	jr z, .asm_db60
+	jr z, .check_IfPartyIsFull
 	cp $2
-	jr z, .asm_db60
+	jr z, .check_IfPartyIsFull
 	cp $3
 	ld hl, wBreedMon1Species
 	jr z, .asm_db9b
+
+    ; we want to sent a Pkmn into the Box
+    ; so check if there's enough space
 	ld hl, sBoxCount
 	ld a, [hl]
 	cp MONS_PER_BOX
 	jr nz, .asm_db69
-	jp Functiondcb1
+	jp CloseSRAM_And_SetCFlag
 
-.asm_db60
+.check_IfPartyIsFull
 	ld hl, PartyCount
 	ld a, [hl]
 	cp PARTY_LENGTH
-	jp z, Functiondcb1
+	jp z, CloseSRAM_And_SetCFlag
 
 .asm_db69
 	inc a
@@ -8410,7 +8424,7 @@ Functiondb3f: ; db3f
 	ld a, [sBoxCount]
 
 .asm_db97
-	dec a
+	dec a ; PartyCount - 1
 	call AddNTimes
 
 .asm_db9b
@@ -8513,7 +8527,7 @@ Functiondb3f: ; db3f
 	srl a
 	add $2
 	ld [MonType], a
-	predef Function5084a
+	predef CopyPkmnToTempMon
 	callab Function50e1b
 	ld a, d
 	ld [CurPartyLevel], a
@@ -8531,7 +8545,7 @@ Functiondb3f: ; db3f
 	add hl, bc
 	push bc
 	ld b, $1
-	call Functione167
+	call CalcPkmnStats
 	pop bc
 	ld a, [wd10b]
 	and a
@@ -8576,7 +8590,7 @@ endr
 	ret
 ; dcb1
 
-Functiondcb1: ; dcb1
+CloseSRAM_And_SetCFlag: ; dcb1
 	call CloseSRAM
 	scf
 	ret
@@ -8584,7 +8598,6 @@ Functiondcb1: ; dcb1
 
 
 Functiondcb6: ; dcb6
-
 	ld a, b
 	ld hl, sBoxMons
 	ld bc, sBoxMon1End - sBoxMon1
@@ -8748,7 +8761,7 @@ Functiondd64: ; dd64
 	add hl, bc
 	push bc
 	ld b, $1
-	call Functione167
+	call CalcPkmnStats
 	ld hl, PartyMon1Moves
 	ld a, [PartyCount]
 	dec a
@@ -8892,8 +8905,9 @@ SentPkmnIntoBox: ; de6e
 	ld [de], a
 	inc de
 
+    ; Set all 5 Experience Values to 0
 	xor a
-	ld b, $a
+	ld b, 2*5
 .asm_dee5
 	ld [de], a
 	inc de
@@ -8936,10 +8950,12 @@ SentPkmnIntoBox: ; de6e
 	ld de, TempMonMoves
 	ld bc, NUM_MOVES
 	call CopyBytes
+
 	ld hl, sBoxMon1PP
 	ld de, TempMonPP
 	ld bc, NUM_MOVES
 	call CopyBytes
+
 	ld b, 0
 	call Functiondcb6
 
@@ -8947,6 +8963,7 @@ SentPkmnIntoBox: ; de6e
 	scf
 	ret
 ; df42
+
 
 Functiondf42: ; df42
 	call CloseSRAM
@@ -9062,7 +9079,7 @@ GiveEgg:: ; df8c
 	dec a
 	ld hl, PartyMonNicknames
 	call SkipNames
-	ld de, Stringe035
+	ld de, String_Egg
 	call CopyName2
 	ld a, [PartyCount]
 	dec a
@@ -9089,12 +9106,11 @@ GiveEgg:: ; df8c
 	ret
 ; e035
 
-Stringe035: ; e035
+String_Egg: ; e035
 	db "EGG@"
 ; e039
 
 Functione039: ; e039
-
 	ld hl, PartyCount
 
 	ld a, [wd10b]
@@ -9262,7 +9278,7 @@ Functione134: ; e134
 	ld a, PartyMon1Exp + 2 - PartyMon1
 	call GetPartyParamLocation
 	ld b, $1
-	call Functione167
+	call CalcPkmnStats
 	pop de
 	ld a, PartyMon1HP - PartyMon1
 	call GetPartyParamLocation
@@ -9274,7 +9290,12 @@ Functione134: ; e134
 	ret
 ; e167
 
-Functione167: ; e167
+CalcPkmnStats: ; e167
+; Calculates all 6 Stats of a Pkmn
+; b = 0 or 1
+; 'c' counts from 1-6 and points with 'BaseStats' to the base value
+; results in $ffb5 and $ffb6 are saved in [de]
+
 	ld c, $0
 .asm_e169
 	inc c
@@ -9292,14 +9313,16 @@ Functione167: ; e167
 ; e17b
 
 Functione17b: ; e17b
+; 'c' is 1-6 and points to the BaseStat
+
 	push hl
 	push de
 	push bc
 	ld a, b
 	ld d, a
 	push hl
-	ld hl, BaseHP
-	dec hl
+	ld hl, BaseStats
+	dec hl ; has to be decreased, because 'c' begins with 1
 	ld b, $0
 	add hl, bc
 	ld a, [hl]
@@ -9670,6 +9693,7 @@ Functione3d4: ; e3d4
 	ret
 ; e3d9
 
+
 TextJump_WasSentToBillsPC: ; 0xe3d9
 	; was sent to BILL's PC.
 	text_jump Text_WasSentToBillsPC
@@ -9678,7 +9702,7 @@ TextJump_WasSentToBillsPC: ; 0xe3d9
 
 Functione3de: ; e3de
 	push de
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call DisableSpriteUpdates
 	pop de
 	push de
@@ -9719,7 +9743,7 @@ UnknownText_0xe417: ; 0xe417
 Functione41c: ; e41c (3:641c)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call ClearPCItemScreen
 	ld hl, Options
 	ld a, [hl]
@@ -9749,7 +9773,7 @@ Functione443: ; e443 (3:6443)
 	ld a, $1
 .asm_e44b
 	ld [wPocketCursorBuffer], a
-	call Function32f9
+	call SetPalettes
 	xor a
 	ld [wcf76], a
 	ld [hBGMapMode], a ; $ff00+$d4
@@ -9815,7 +9839,7 @@ Functione4cb: ; e4cb
 ; e4cd
 
 Functione4cd: ; e4cd
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	callba Function44781
 	jr nc, .asm_e4e0
 	ld hl, UnknownText_0xe4f9
@@ -9842,7 +9866,7 @@ UnknownText_0xe4f9: ; 0xe4f9
 ; 0xe4fe
 
 Functione4fe: ; e4fe (3:64fe)
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	callba Functione2391
 	call Function222a
 	call ClearPCItemScreen
@@ -9918,7 +9942,7 @@ Functione538: ; e538
 
 
 Functione559: ; e559 (3:6559)
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	callba Functione2583
 	call Function222a
 	call ClearPCItemScreen
@@ -9969,7 +9993,7 @@ ClearPCItemScreen: ; e58b
 	ld bc, $0412
 	call TextBox
 	call Function3200
-	call Function32f9 ; load regular palettes?
+	call SetPalettes ; load regular palettes?
 	ret
 ; 0xe5bb
 
@@ -10477,7 +10501,7 @@ Function116f8: ; 116f8
 	call Function1171d
 	call WaitBGMap
 	call WaitTop
-	call Function32f9
+	call SetPalettes
 	call Function11be0
 	ret
 ; 1171d
@@ -12253,7 +12277,7 @@ Function124fa: ; 124fa
 Function1250a: ; 1250a
 	ld b, $0
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	ret
 ; 12513
 
@@ -12564,7 +12588,7 @@ endr
 
 .Clear ; 126b7
 	call WhiteBGMap
-	call Function1d7d
+	call Call_ExitMenu
 	call Function2bae
 	call .DrawMenuAccount_
 	call MenuFunc_1e7f
@@ -12963,7 +12987,7 @@ StartMenu_Pokemon: ; 12976
 	callba WritePartyMenuTilemap
 	callba PrintPartyMenuText
 	call WaitBGMap
-	call Function32f9 ; load regular palettes?
+	call SetPalettes ; load regular palettes?
 	call DelayFrame
 	callba PartyMenuSelect
 	jr c, .return ; if cancelled or pressed B
@@ -13185,7 +13209,7 @@ SwitchPartyMons: ; 12aec
 	call AddNTimes
 	ld [hl], "▷"
 	call WaitBGMap
-	call Function32f9
+	call SetPalettes
 	call DelayFrame
 
 	callba PartyMenuSelect
@@ -13234,7 +13258,7 @@ GiveTakePartyMonItem: ; 12b60
 	cp 1
 	jr nz, .asm_12ba0
 
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call ClearPalettes
 	call Function12ba9
 	call ClearPalettes
@@ -13647,7 +13671,7 @@ MonMailAction: ; 12d45
 
 
 OpenPartyStats: ; 12e00
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call ClearSprites
 ; PartyMon
 	xor a
@@ -13655,7 +13679,7 @@ OpenPartyStats: ; 12e00
 	call LowVolume
 	predef StatsScreenInit
 	call MaxVolume
-	call Function1d7d
+	call Call_ExitMenu
 	ld a, 0
 	ret
 ; 12e1b
@@ -13826,19 +13850,19 @@ Function12f05: ; 12f05
 	ld a, PartyMon1MaxHP - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hli]
-	ld [hProduct], a
+	ld [hDividend + 0], a
 	ld a, [hl]
-	ld [hMultiplicand], a
+	ld [hDividend + 1], a
 	ld a, $5
-	ld [hMultiplier], a
+	ld [hDivisor], a
 	ld b, $2
 	call Divide
 	ld a, PartyMon1HP + 1 - PartyMon1
 	call GetPartyParamLocation
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	sub [hl]
 	dec hl
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	sbc [hl]
 	ret
 ; 12f26
@@ -14209,7 +14233,7 @@ Function13172: ; 13172
 	hlcoord 5, 1
 	call PlaceString
 	push bc
-	callba Function5084a
+	callba CopyPkmnToTempMon
 	pop hl
 	call PrintLevel
 	ld hl, PlayerHPPal
@@ -14226,7 +14250,7 @@ Function131ef: ; 131ef
 	ld [hBGMapMode], a
 	ld [wd0e3], a
 	ld [MonType], a
-	predef Function5084a
+	predef CopyPkmnToTempMon
 	ld hl, TempMonMoves
 	ld de, wListMoves_MoveIndicesBuffer
 	ld bc, NUM_MOVES
@@ -14238,7 +14262,7 @@ Function131ef: ; 131ef
 	hlcoord 10, 4
 	predef Function50c50
 	call WaitBGMap
-	call Function32f9
+	call SetPalettes
 	ld a, [wd0eb]
 	inc a
 	ld [wcfa3], a
@@ -14707,7 +14731,7 @@ Function134c0: ; 134c0
 ; 134dd
 
 Function134dd: ; 134dd
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld hl, Elevator_WhichFloorText
 	call PrintText
 	call Elevator_GetCurrentFloorText
@@ -15764,7 +15788,7 @@ Function13a47: ; 13a47
 	ld hl, PartyMon1Exp + 2 - PartyMon1
 	add hl, bc
 	ld b, $1
-	predef Functione167
+	predef CalcPkmnStats
 	pop hl
 	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
@@ -18089,7 +18113,7 @@ UnknownText_0x157cc: ; 0x157cc
 ; 0x157d1
 
 KrisWithdrawItemMenu: ; 0x157d1
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	callba ClearPCItemScreen
 .asm_157da
 	call Function15985
@@ -18168,7 +18192,7 @@ Function157e9: ; 0x157e9
 
 
 KrisTossItemMenu: ; 0x1585f
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	callba ClearPCItemScreen
 .asm_15868
 	call Function15985
@@ -18205,7 +18229,7 @@ KrisDepositItemMenu: ; 0x1588b
 	call Function158b8
 	jr c, .asm_158b6
 	call DisableSpriteUpdates
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	callba Function106a5
 .asm_1589c
 	callba Function106be
@@ -18510,7 +18534,7 @@ MartDialog: ; 15a61
 
 HerbShop: ; 15a6e
 	call ReadMart
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld hl, UnknownText_0x15e4a
 	call Function15fcd
 	call Function15c62
@@ -18524,7 +18548,7 @@ BargainShop: ; 15a84
 	ld de, BargainShopData
 	call LoadMartPointer
 	call Function15c25
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld hl, UnknownText_0x15e6d
 	call Function15fcd
 	call Function15c62
@@ -18543,7 +18567,7 @@ BargainShop: ; 15a84
 
 Pharmacist: ; 15aae
 	call ReadMart
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld hl, UnknownText_0x15e90
 	call Function15fcd
 	call Function15c62
@@ -18564,7 +18588,7 @@ RooftopSale: ; 15ac4
 .ok
 	call LoadMartPointer
 	call Function15c25
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld hl, UnknownText_0x15f83
 	call Function15fcd
 	call Function15c62
@@ -18649,7 +18673,7 @@ Function15b47: ; 15b47
 ; 15b62
 
 Function15b62: ; 15b62
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld hl, UnknownText_0x15f83
 	call PrintText
 	ld a, $1
@@ -18702,7 +18726,7 @@ Function15ba3: ; 15ba3
 ; 15baf
 
 Function15baf: ; 15baf
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld hl, UnknownText_0x15fb9
 	call PrintText
 	ld a, $1
@@ -20220,7 +20244,7 @@ Function169ac: ; 169ac
 	pop hl
 	push bc
 	ld b, $0
-	predef Functione167
+	predef CalcPkmnStats
 	pop bc
 	ld hl, PartyMon1HP - PartyMon1
 	add hl, bc
@@ -20510,7 +20534,7 @@ Function16be4: ; 16be4
 
 	ld b, $1c
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 
 .asm_16c6b
 	call JoyTextDelay
@@ -20937,7 +20961,7 @@ DoEggStep:: ; 16f3e
 
 OverworldHatchEgg:: ; 16f5e
 	call ResetWindow
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Function16f70
 	call Function2b4d
 	call RestartMapMusic
@@ -21024,7 +21048,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	ld bc, PartyMon1Exp + 2 - PartyMon1
 	add hl, bc
 	ld b, $0
-	predef Functione167
+	predef CalcPkmnStats
 	pop bc
 	ld hl, PartyMon1MaxHP - PartyMon1
 	add hl, bc
@@ -21418,7 +21442,7 @@ Function17254: ; 17254 (5:7254)
 	predef FillBox
 	pop af
 	call Function17363
-	call Function32f9
+	call SetPalettes
 	jp WaitBGMap
 
 Function1727f: ; 1727f (5:727f)
@@ -21779,7 +21803,7 @@ Function20021: ; 20021 (8:4021)
 	ld a, [hl]
 	push af
 	set 4, [hl]
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call ClearTileMap
 	ld hl, UnknownText_0x2004c
 	call PrintText
@@ -24844,7 +24868,7 @@ Function2513b: ; 2513b (9:513b)
 	call WaitBGMap
 	ld b, $15
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	call WaitBGMap
 	ld hl, wJumptableIndex
 	xor a
@@ -26027,7 +26051,7 @@ Function2695b: ; 2695b
 	ld d, 0
 	add hl, de
 	ld [hl], -1
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld hl, MenuDataHeader_0x269c5
 	call CopyMenuDataHeader
 	xor a
@@ -27124,9 +27148,9 @@ Function2715c: ; 2715c
 	callba Function3ed9f
 	call ClearSGB
 	call WriteBackup
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call WaitBGMap
-	jp Function32f9
+	jp SetPalettes
 ; 27192
 
 Function27192: ; 27192
@@ -28586,7 +28610,7 @@ Function2891c: ; 2891c
 ; 28926
 
 Function28926: ; 28926
-	call Function309d
+	call LoadTileMapToTempTileMap
 	ld a, [wcfa9]
 	push af
 	hlcoord 0, 15
@@ -28627,7 +28651,7 @@ Function28926: ; 28926
 .asm_28983
 	pop af
 	ld [wcfa9], a
-	call Function30b4
+	call Call_LoadTempTileMapToTileMap
 	jp Function2888b
 
 .asm_2898d
@@ -28665,7 +28689,7 @@ Function28926: ; 28926
 	ld [wd263], a
 	callab Function50db9
 	callba Function4d319
-	call Function30b4
+	call Call_LoadTempTileMapToTileMap
 	hlcoord 6, 1
 	ld bc, $0601
 	ld a, $7f
@@ -28905,7 +28929,7 @@ Function28b87: ; 28b87
 	ld hl, UnknownText_0x28eb8
 	bccoord 1, 14
 	call PlaceWholeStringInBoxAtOnce
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	hlcoord 10, 7
 	ld b, $3
 	ld c, $7
@@ -28934,7 +28958,7 @@ Function28b87: ; 28b87
 	callba Function4d354
 	call Function1bd3
 	push af
-	call Function1d7d
+	call Call_ExitMenu
 	call Function3200
 	pop af
 	bit 1, a
@@ -29247,7 +29271,7 @@ Function28ef8: ; 28ef8
 
 Function28eff: ; 28eff
 	callba Function16d6a7
-	call Function32f9
+	call SetPalettes
 	ret
 ; 28f09
 
@@ -32506,13 +32530,13 @@ Function2b9a6: ; 2b9a6
 	jr z, .asm_2b9d7
 	dec hl
 	xor a
-	ld [hProduct], a
+	ld [hDividend + 0], a
 	ld a, [hli]
-	ld [hMultiplicand], a
+	ld [hDividend + 1], a
 	ld a, [hli]
-	ld [$ffb5], a
+	ld [hDividend + 2], a
 	xor a
-	ld [$ffb6], a
+	ld [hDividend + 3], a
 	ld a, [hli]
 	ld b, a
 	ld a, [hld]
@@ -32520,13 +32544,13 @@ Function2b9a6: ; 2b9a6
 	rr a
 	srl b
 	rr a
-	ld [hMultiplier], a
+	ld [hDivisor], a
 	ld b, $4
 	call Divide
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	add e
 	ld e, a
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	adc d
 	ld d, a
 	dec hl
@@ -32863,7 +32887,7 @@ _ShowLinkBattleParticipants: ; 2c1b2
 	callba Function2c10d ; no need to callba
 	ld b, $8
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	ld a, $e4
 	ld [rOBP0], a
 	ret
@@ -33464,7 +33488,7 @@ Function2c80a: ; 2c80a
 	callba WritePartyMenuTilemap
 	callba PrintPartyMenuText
 	call WaitBGMap
-	call Function32f9
+	call SetPalettes
 	call DelayFrame
 	callba PartyMenuSelect
 	push af
@@ -35032,7 +35056,7 @@ endr
 	push hl
 	xor a
 	ld [MonType], a
-	predef Function5084a
+	predef CopyPkmnToTempMon
 	pop hl
 
 .asm_42230
@@ -35242,7 +35266,7 @@ endr
 	ld hl, TempMonExp + 2
 	ld de, TempMonMaxHP
 	ld b, $1
-	predef Functione167
+	predef CalcPkmnStats
 
 	ld a, [CurPartyMon]
 	ld hl, PartyMons
@@ -35676,7 +35700,7 @@ AIChooseMove: ; 440ce
 	ret nz
 
 ; No use picking a move if there's no choice.
-	callba Function3e8d1
+	callba CheckSubstatus_RechargeChargedRampageBideRollout
 	ret nz
 
 
@@ -36486,7 +36510,7 @@ Function44781: ; 44781
 _KrisMailBoxMenu: ; 0x447a0
 	call InitMail
 	jr z, .nomail
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Function44806
 	jp WriteBackup
 
@@ -36680,7 +36704,7 @@ Function4484a: ; 0x4484a
 	callba WritePartyMenuTilemap
 	callba PrintPartyMenuText
 	call WaitBGMap
-	call Function32f9
+	call SetPalettes
 	call DelayFrame
 	callba PartyMenuSelect
 	jr c, .asm_44939
@@ -36900,7 +36924,7 @@ Function4802f: ; 4802f (12:402f)
 	call PlaceString
 	call Function48187
 	call Function3200
-	call Function32f9
+	call SetPalettes
 	call Function1bc9
 	ld hl, wcfa9
 	ld b, [hl]
@@ -38586,11 +38610,11 @@ Function48d4a: ; 48d4a (12:4d4a)
 Function48d94: ; 48d94 (12:4d94)
 	xor a
 	ld [hDividend + 0], a
-	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
+	ld [hDividend + 1], a ; $ff00+$b4 (aliases: hMultiplicand)
 	ld a, [hli]
 	ld [hDividend + 0], a
 	ld a, [hl]
-	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
+	ld [hDividend + 1], a ; $ff00+$b4 (aliases: hMultiplicand)
 	ld a, 100
 	ld [hDivisor], a ; $ff00+$b7 (aliases: hMultiplier)
 	ld b, 2
@@ -38620,8 +38644,8 @@ InitGender: ; 48dcb (12:4dcb)
 	call Function48e47
 	call Function48e64
 	call Function3200
-	call Function32f9
-	ld hl, UnknownText_0x48e0f
+	call SetPalettes
+	ld hl, TextJump_AreYouABoyOrAreYouAGirl
 	call PrintText
 	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
@@ -38651,9 +38675,9 @@ InitGender: ; 48dcb (12:4dcb)
 	db "Girl@"
 ; 0x48e0f
 
-UnknownText_0x48e0f: ; 0x48e0f
+TextJump_AreYouABoyOrAreYouAGirl: ; 0x48e0f
 	; Are you a boy? Or are you a girl?
-	text_jump UnknownText_0x1c0ca3
+	text_jump Text_AreYouABoyOrAreYouAGirl
 	db "@"
 ; 0x48e14
 
@@ -39834,7 +39858,7 @@ MainMenu: ; 49cdc
 	call Function49ed0
 	ld b, $8
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	ld hl, GameTimerPause
 	res 0, [hl]
 	call Function49da4
@@ -40215,7 +40239,7 @@ Function49f16: ; 49f16
 	hlcoord 1, 14
 	call PlaceString
 	call Function3200
-	call Function32f9
+	call SetPalettes
 	call Function1bc9
 	ld hl, wcfa9
 	ld b, [hl]
@@ -40360,9 +40384,9 @@ Function4a098: ; 4a098 (12:6098)
 	call Function1ff8
 	call Function1bee
 	call WaitBGMap
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	callba Function89de0
-	call Function1d7d
+	call Call_ExitMenu
 	call Function49351
 	call Function4a485
 	pop bc
@@ -40471,7 +40495,7 @@ Function4a149: ; 4a149 (12:6149)
 	hlcoord 1, 14
 	call PlaceString
 	callba Function104148
-	call Function32f9
+	call SetPalettes
 	call Function1bc9
 	ld hl, wcfa9
 	ld b, [hl]
@@ -40579,7 +40603,7 @@ Function4a28a: ; 4a28a (12:628a)
 	call Function4a6d8
 	call Function1bee
 	call WaitBGMap
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$aa4b]
@@ -40609,7 +40633,7 @@ Function4a28a: ; 4a28a (12:628a)
 .asm_4a2df
 	callba Function11765d
 	call WhiteBGMap
-	call Function1d7d
+	call Call_ExitMenu
 	call Functione5f
 	scf
 	ret
@@ -40643,7 +40667,7 @@ Function4a28a: ; 4a28a (12:628a)
 .asm_4a338
 	call ExitMenu
 .asm_4a33b
-	call Function1d7d
+	call Call_ExitMenu
 	callba Function104148
 	xor a
 	ret
@@ -40720,7 +40744,7 @@ Function4a39a: ; 4a39a
 	call Function4a485
 	call Function4a492
 	call Function4a3aa
-	call Function32f9
+	call SetPalettes
 	ret
 ; 4a3a7
 
@@ -40900,7 +40924,7 @@ Function4a4c4: ; 4a4c4 (12:64c4)
 	hlcoord 1, 16
 	call PlaceString
 	call Function3200
-	call Function32f9
+	call SetPalettes
 	call Function1bc9
 	ld hl, wcfa9
 	ld b, [hl]
@@ -41544,7 +41568,7 @@ Function4a94e: ; 4a94e
 	ld [wd019], a
 	ld b, $14
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	call Function4aa22
 	jr c, .asm_4a985
 	jr z, .asm_4a9a1
@@ -41675,7 +41699,7 @@ Function4aa34: ; 4aa34
 	callba PrintPartyMenuText
 	call Function4aab6
 	call WaitBGMap
-	call Function32f9
+	call SetPalettes
 	call DelayFrame
 	call Function4ab1a
 	jr z, .asm_4aa66
@@ -44167,7 +44191,7 @@ Function4ddf2: ; 4ddf2 (13:5df2)
 	call CopyBytes
 	jr .asm_4de2a
 .asm_4de10
-	callba Function5084a
+	callba CopyPkmnToTempMon
 	ld a, [CurPartySpecies]
 	cp EGG
 	jr z, .asm_4de2a
@@ -44421,7 +44445,7 @@ Function4dfb6: ; 4dfb6 (13:5fb6)
 	ld hl, wcf64
 	bit 4, [hl]
 	jr nz, .asm_4dfd6
-	call Function32f9
+	call SetPalettes
 	ret
 .asm_4dfd6
 	call Function4e226
@@ -44734,14 +44758,14 @@ Function4e226: ; 4e226 (13:6226)
 	jr .asm_4e246
 .asm_4e238
 	call Function4e271
-	call Function32f9
+	call SetPalettes
 	ret
 .asm_4e23f
 	call Function4e253
-	call Function32f9
+	call SetPalettes
 	ret
 .asm_4e246
-	call Function32f9
+	call SetPalettes
 	call Function4e253
 	ld a, [CurPartySpecies]
 	call PlayCry2
@@ -44925,7 +44949,7 @@ EggStatsScreen: ; 4e33a
 	call PlaceString
 	ld hl, wcf64
 	set 5, [hl]
-	call Function32f9 ; pals
+	call SetPalettes ; pals
 	call DelayFrame
 	hlcoord 0, 0
 	call Function3786
@@ -45568,7 +45592,7 @@ Function4e881: ; 4e881
 	ld hl, UnknownText_0x4e8bd
 	call PrintText
 	call Function3200
-	call Function32f9
+	call SetPalettes
 	ret
 ; 4e8bd
 
@@ -45608,7 +45632,7 @@ Function4e8c2: ; 4e8c2
 	ld [hSCX], a
 	call EnableLCD
 	call Function3200
-	call Function32f9
+	call SetPalettes
 	ret
 ; 4e906
 
@@ -45926,7 +45950,7 @@ SelectMonFromParty: ; 50000
 	call WhiteBGMap
 	call Function5003f
 	call WaitBGMap
-	call Function32f9
+	call SetPalettes
 	call DelayFrame
 	call PartyMenuSelect
 	call Function2b74
@@ -45943,7 +45967,7 @@ Function5001d: ; 5001d
 	call WaitBGMap
 	ld b, $a
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	call DelayFrame
 	call PartyMenuSelect
 	call Function2b74
@@ -46999,7 +47023,7 @@ Function5067b: ; 5067b
 	ld a, [PartyCount]
 	cp [hl]
 	jr nz, .asm_50682
-	predef Function3d873
+	predef CheckPlayerPartyForFitPkmn
 	ld a, d
 	ld [ScriptVar], a
 	ret
@@ -47297,10 +47321,13 @@ UnknownText_0x50845: ; 0x50845
 	db "@"
 ; 0x5084a
 
-Function5084a: ; 5084a
+CopyPkmnToTempMon: ; 5084a
+; gets the BaseData of a Pkmn
+; and copys the PkmnStructure to TempMon
+
 	ld a, [CurPartyMon]
 	ld e, a
-	call Function508d5
+	call GetPkmnSpecies
 	ld a, [CurPartySpecies]
 	ld [CurSpecies], a
 	call GetBaseData
@@ -47321,7 +47348,7 @@ Function5084a: ; 5084a
 .copywholestruct
 	ld a, [CurPartyMon]
 	call AddNTimes
-	ld de, TempMonSpecies
+	ld de, TempMon
 	ld bc, PartyMon2 - PartyMon1
 	call CopyBytes
 
@@ -47353,7 +47380,7 @@ Function50893: ; 50893
 	add hl, bc
 	push bc
 	ld b, $1
-	predef Functione167
+	predef CalcPkmnStats
 	pop bc
 	ld hl, TempMonHP - TempMon
 	add hl, bc
@@ -47385,7 +47412,10 @@ Function50893: ; 50893
 	ret
 ; 508d5
 
-Function508d5: ; 508d5
+GetPkmnSpecies: ; 508d5
+; [MonType] has the type of the Pkmn
+; e = Nr. of Pkmn (i.e. [CurPartyMon])
+
 	ld a, [MonType]
 	and a ; PARTYMON
 	jr z, .partymon
@@ -47888,7 +47918,7 @@ Function50cdb: ; 50cdb
 	call GetNick
 	pop hl
 	call PlaceString
-	call Function5084a
+	call CopyPkmnToTempMon
 	pop hl
 	ld a, [CurPartySpecies]
 	cp EGG
@@ -48109,15 +48139,15 @@ Function50e1b: ; 50e1b
 	call Function50e47
 	push hl
 	ld hl, TempMonExp + 2
-	ld a, [$ffb6]
+	ld a, [hMultiplicand + 2]
 	ld c, a
 	ld a, [hld]
 	sub c
-	ld a, [$ffb5]
+	ld a, [hMultiplicand + 1]
 	ld c, a
 	ld a, [hld]
 	sbc c
-	ld a, [hMultiplicand]
+	ld a, [hMultiplicand + 0]
 	ld c, a
 	ld a, [hl]
 	sbc c
@@ -48154,15 +48184,15 @@ endr
 
 	ld a, [hli]
 	and $f
-	ld [hMultiplier], a
+	ld [hDivisor], a
 	ld b, $4
 	call Divide
 
-	ld a, [hMultiplicand + 0]
+	ld a, [hQuotient + 0]
 	push af
-	ld a, [hMultiplicand + 1]
+	ld a, [hQuotient + 1]
 	push af
-	ld a, [hMultiplicand + 2]
+	ld a, [hQuotient + 2]
 	push af
 
 	call Function50eed
@@ -48363,12 +48393,12 @@ Function50f62: ; 50f62 (14:4f62)
 	ld bc, $30
 	call CopyBytes
 	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
-	ld hl, PartyMonOT ; wddff (aliases: PartyMonOT)
+	ld hl, PartyMonOT
 	call SkipNames
 	push hl
 	call Function51036
 	ld a, [wd1ec]
-	ld hl, PartyMonOT ; wddff (aliases: PartyMonOT)
+	ld hl, PartyMonOT
 	call SkipNames
 	pop de
 	push hl
@@ -52545,11 +52575,11 @@ Function84560: ; 84560
 	ld [hl], $4
 	xor a
 	ld [hBGMapMode], a
-	call Function309d
+	call LoadTileMapToTempTileMap
 	callba Function16dac
 	ld a, $0
 	call Function84419
-	call Function30b4
+	call Call_LoadTempTileMapToTileMap
 	call Function84742
 	ld a, $9
 	ld [wcf65], a
@@ -52577,7 +52607,7 @@ Function84560: ; 84560
 	pop af
 	ld [hVBlank], a
 	call Function84411
-	call Function30b4
+	call Call_LoadTempTileMapToTileMap
 	xor a
 	ld [rIF], a
 	pop af
@@ -52710,13 +52740,13 @@ Function84688: ; 84688
 	call Function84411
 	ld c, $c
 	call DelayFrames
-	call Function309d
+	call LoadTileMapToTempTileMap
 	xor a
 	ld [hBGMapMode], a
 	callba Function1dd7ae
 	ld a, $3
 	call Function84419
-	call Function30b4
+	call Call_LoadTempTileMapToTileMap
 	call Function84742
 	ld a, $9
 	ld [wcf65], a
@@ -53487,7 +53517,7 @@ endr
 	ld [hBGMapMode], a
 	ld b, $1a
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	call Function86635
 	xor a
 	ld [wc2c6], a
@@ -53625,7 +53655,7 @@ Function86692: ; 86692
 	call WaitBGMap
 	ld b, $1a
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	decoord 6, 5
 	ld c, $6
 	predef Functiond066e
@@ -53786,7 +53816,7 @@ Function86810: ; 86810
 	ld [CurPartySpecies], a
 	ld b, $1a
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	call Function86635
 	xor a
 	ld [wc2c6], a
@@ -58961,7 +58991,7 @@ Special_SetDayOfWeek: ; 90913
 	hlcoord 0, 12
 	lb bc, 4, 18
 	call TextBox
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld hl, UnknownText_0x90a3f
 	call PrintText
 	hlcoord 9, 3
@@ -59057,7 +59087,7 @@ Function909de: ; 909de
 	ld a, [wd002]
 	ld e, a
 	ld d, 0
-	ld hl, Unknown_909f2
+	ld hl, WeekdaysStrings
 rept 2
 	add hl, de
 endr
@@ -59069,7 +59099,7 @@ endr
 	ret
 ; 909f2
 
-Unknown_909f2: ; 909f2
+WeekdaysStrings: ; 909f2
 	dw Sunday
 	dw Monday
 	dw Tuesday
@@ -59129,13 +59159,13 @@ UnknownText_0x90a6c: ; 90a6c
 	ld c, a
 	decoord 1, 14
 	callba Function1dd6bb
-	ld hl, UnknownText_0x90a83
+	ld hl, TextJump_DSTIsThatOK
 	ret
 ; 90a83 (24:4a83)
 
-UnknownText_0x90a83: ; 0x90a83
+TextJump_DSTIsThatOK: ; 0x90a83
 	; DST, is that OK?
-	text_jump UnknownText_0x1c5fde
+	text_jump Text_DSTIsThatOK
 	db "@"
 ; 0x90a88
 
@@ -59388,7 +59418,7 @@ Function90bea: ; 90bea (24:4bea)
 	call Function90da8
 	ld b, $2
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	ld a, [hCGB]
 	and a
 	ret z
@@ -60772,7 +60802,7 @@ Function9191c: ; 9191c
 	ld [wd005], a
 	ld b, $2
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	ld a, [hCGB]
 	and a
 	jr z, .asm_9198b
@@ -61026,7 +61056,7 @@ _FlyMap: ; 91af3
 	call Function91c8f
 	ld b, $2
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 .loop
 	call JoyTextDelay
 	ld hl, hJoyPressed
@@ -61448,7 +61478,7 @@ Function91d11: ; 91d11
 	call TownMapBGUpdate
 	ld b, $2
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	xor a
 	ld [hBGMapMode], a
 	xor a
@@ -61958,7 +61988,7 @@ Function92311: ; 92311
 	ld [wd004], a
 	ld b, $2
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 .loop
 	call JoyTextDelay
 	ld hl, hJoyPressed
@@ -65104,7 +65134,7 @@ ReadAnyMail: ; b9237
 	ld a, [wd1ec]
 	ld e, a
 	callba Function8cb4
-	call Function32f9
+	call SetPalettes
 	xor a
 	ld [hJoyPressed], a
 	call Functionb929a
@@ -66312,7 +66342,7 @@ DisplayCaughtContestMonStats: ; cc000
 	call WaitBGMap
 	ld b, $8
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	ret
 ; cc0a7
 
@@ -69882,7 +69912,7 @@ BillsPCDepositFuncDeposit: ; e24a9 (38:64a9)
 	ret
 
 BillsPCDepositFuncStats: ; e24c8 (38:64c8)
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Functione2f7e
 	call ExitMenu
 	call PCMonInfo
@@ -69901,7 +69931,7 @@ BillsPCDepositFuncRelease: ; e24e0 (38:64e0)
 	push af
 	ld de, PCString_ReleasePKMN
 	call Functione2a6e
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	lb bc, 14, 11
 	call PlaceYesNoBox
 	ld a, [wcfa9]
@@ -70147,7 +70177,7 @@ endr
 	ret
 
 .stats: ; e26c0 (38:66c0)
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Functione2f7e
 	call ExitMenu
 	call PCMonInfo
@@ -70164,7 +70194,7 @@ endr
 	jr c, .FailedRelease
 	ld de, PCString_ReleasePKMN
 	call Functione2a6e
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	lb bc, 14, 11
 	call PlaceYesNoBox
 	ld a, [wcfa9]
@@ -70407,7 +70437,7 @@ Functione2887: ; e2887
 ; e28a5
 
 Functione28a5: ; e28a5
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Functione2f7e
 	call ExitMenu
 	call PCMonInfo
@@ -71523,7 +71553,7 @@ Functione2fd6: ; e2fd6 (38:6fd6)
 	call Functione3357
 	ld hl, PartyMonNicknames
 	call Functione3363
-	ld hl, PartyMonOT ; wddff (aliases: PartyMonOT)
+	ld hl, PartyMonOT
 	call Functione3376
 	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
 	ld bc, $30
@@ -71570,8 +71600,8 @@ Functione307c: ; e307c (38:707c)
 	call GetNick
 	ld a, $1
 	ld [wd10b], a
-	predef Functiondb3f
-	jr c, .asm_e30e4
+	predef SentGetPkmnIntoFromBox
+	jr c, .asm_boxisfull
 	xor a
 	ld [wd10b], a
 	callba Functione039
@@ -71600,7 +71630,8 @@ Functione307c: ; e307c (38:707c)
 	call DelayFrames
 	and a
 	ret
-.asm_e30e4
+
+.asm_boxisfull
 	ld de, PCString_BoxFull
 	call Functione2a6e
 	ld de, SFX_WRONG
@@ -71624,7 +71655,7 @@ TryWithdrawPokemon: ; e30fa (38:70fa)
 	call CloseSRAM
 	xor a
 	ld [wd10b], a
-	predef Functiondb3f
+	predef SentGetPkmnIntoFromBox
 	jr c, .PartyFull
 	ld a, $1
 	ld [wd10b], a
@@ -71654,6 +71685,7 @@ TryWithdrawPokemon: ; e30fa (38:70fa)
 	call DelayFrames
 	and a
 	ret
+
 .PartyFull
 	ld de, PCString_PartyFull
 	call Functione2a6e
@@ -71664,6 +71696,7 @@ TryWithdrawPokemon: ; e30fa (38:70fa)
 	call DelayFrames
 	scf
 	ret
+
 
 Functione3180: ; e3180 (38:7180)
 	hlcoord 0, 0
@@ -72042,7 +72075,7 @@ PCString_NoReleasingEGGS: db "No releasing EGGS!@"
 ; e35aa
 
 Functione35aa: ; e35aa (38:75aa)
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	call Functione35e2
 .loop
 	xor a
@@ -72404,7 +72437,7 @@ _OptionsMenu: ; e41d0
 	call WaitBGMap
 	ld b, $8
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 .asm_e4217
 	call JoyTextDelay
 	ld a, [hJoyPressed]
@@ -72971,7 +73004,7 @@ Functione4579: ; e4579
 	call WaitBGMap
 	ld b, $19
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	ld c, 10
 	call DelayFrames
 	callab Copyright
@@ -76088,7 +76121,7 @@ Functionfb8c8: ; fb8c8
 	ld [TempMonDVs + 1], a
 	ld b, $1c
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	ret
 ; fb8f1
 
@@ -78487,7 +78520,7 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	call WaitBGMap
 	ld b, $8
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	pop de
 	hlcoord 2, 8
 	ld a, d
@@ -79788,7 +79821,7 @@ Function105153: ; 105153 (41:5153)
 	call WaitBGMap
 	ld b, $1d
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	ret
 
 Function10522e: ; 10522e (41:522e)
@@ -79966,7 +79999,7 @@ Function105777: ; 105777 (41:5777)
 	call WaitBGMap
 	ld b, $8
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	ret
 
 Function10578c: ; 10578c (41:578c)
@@ -80091,7 +80124,7 @@ Function1057d7: ; 1057d7 (41:57d7)
 	call WaitBGMap
 	ld b, $2
 	callba Function4930f
-	jp Function32f9
+	jp SetPalettes
 
 Function1058c6: ; 1058c6 (41:58c6)
 	ld b, $6
@@ -81226,10 +81259,11 @@ endr
 	ld [$ffbb], a
 	ret
 
-Function1062f7
+Function1062f7:
 	ld a, [$ffbc]
 	bit 7, a
 	ret z
+
 	ld [hl], $f6
 	ret
 ; 1062ff
@@ -81864,7 +81898,7 @@ Function1dc381: ; 1dc381
 
 	xor a
 	ld [MonType], a
-	callba Function5084a
+	callba CopyPkmnToTempMon
 	hlcoord 0, 7
 	ld b, $9
 	ld c, $12
@@ -81935,7 +81969,7 @@ Function1dc381: ; 1dc381
 	call WaitBGMap
 	ld b, $3
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	ret
 ; 1dc47b
 
@@ -81948,7 +81982,7 @@ Function1dc47b: ; 1dc47b
 	call LoadFontsBattleExtra
 	xor a
 	ld [MonType], a
-	callba Function5084a
+	callba CopyPkmnToTempMon
 	hlcoord 0, 0
 	ld b, 15
 	ld c, 18
@@ -81987,7 +82021,7 @@ Function1dc47b: ; 1dc47b
 	call WaitBGMap
 	ld b, $3
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	ret
 ; 1dc507
 
@@ -82129,18 +82163,18 @@ Function1dd6bb: ; 1dd6bb (77:56bb)
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	pop bc
-	ld de, String_1dd6fc
+	ld de, String_AM
 	pop af
 	jr c, .asm_1dd6f7
-	ld de, String_1dd6ff
+	ld de, String_PM
 .asm_1dd6f7
 	inc hl
 	call PlaceString
 	ret
 ; 1dd6fc (77:56fc)
 
-String_1dd6fc: db "AM@"
-String_1dd6ff: db "PM@"
+String_AM: db "AM@" ; 1dd6fc
+String_PM: db "PM@" ; 1dd6ff
 ; 1dd702
 
 

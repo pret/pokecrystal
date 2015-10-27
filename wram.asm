@@ -813,13 +813,13 @@ LastEnemyMove:: ; c71c
 wc71d:: ds 1
 wc71e:: ds 1
 wc71f:: ds 1
-wc720:: ds 4
+wc720:: ds 4 ; copy from/to EnemyMonBaseStats, length=7
 wc724:: ds 3
 wc727:: ds 2
 wc729:: ds 2
 wc72b:: ds 1
 wc72c:: ds 1
-wc72d:: ds 1
+wc72d:: ds 1 ; if 0 then PrintButItFailed
 wc72e:: ds 1
 wc72f:: ds 1
 wc730:: ds 1
@@ -1791,17 +1791,17 @@ OtherTrainerClass:: ; d22f
 
 BattleType:: ; d230
 ; $00 normal
-; $01
-; $02
-; $03 dude
+; $01 can lose
+; $02 debug
+; $03 dude/tutorial
 ; $04 fishing
 ; $05 roaming
-; $06
+; $06 contest
 ; $07 shiny
 ; $08 headbutt/rock smash
-; $09
+; $09 trap
 ; $0a force Item1
-; $0b
+; $0b celebi
 ; $0c suicune
 	ds 1
 
@@ -2456,9 +2456,9 @@ wdc79:: ds 1
 wdc7a:: ds 2
 wPhoneList:: ds CONTACT_LIST_SIZE
 	ds 23
-wLuckyNumberShowFlag:: ds 2
-wLuckyIDNumber:: ds 2
-wRepelEffect:: ds 1
+wLuckyNumberShowFlag:: ds 2 ; dc9d
+wLuckyIDNumber:: ds 2 ; dc9f
+wRepelEffect:: ds 1 ; If a Repel is in use, it contains the nr of steps it's still active
 wBikeStep:: ds 2
 wKurtApricornQuantity:: ds 1
 
@@ -2619,7 +2619,9 @@ wGameDataEnd::
 
 SECTION "Pic Animations", WRAMX, BANK [2]
 
-w2_d000:: ds $168
+w2_d000::
+; 20x18 grid of 8x8 tiles
+	ds SCREEN_WIDTH * SCREEN_HEIGHT ; $168 = 360
 
 w2_d168:: ds 1
 w2_d169:: ds 1
