@@ -6,10 +6,10 @@ Music_Mom: ; f6bf2
 
 Music_Mom_Ch2: ; f6bfb
 	tempo 144
-	volume $77
+	volume $7, $7
 	stereopanning $f
-	dutycycle $2
-	notetype $6, $b3
+	waveduty $2
+	notetype $6, $b, $0, $3
 	octave 3
 	note B_, 1
 	octave 4
@@ -18,7 +18,7 @@ Music_Mom_Ch2: ; f6bfb
 	note A_, 1
 	note B_, 8
 Music_Mom_branch_f6c0e: ; f6c0e
-	notetype $c, $b1
+	notetype $c, $b, $0, $1
 	note __, 4
 	octave 3
 	note C#, 6
@@ -35,7 +35,7 @@ Music_Mom_branch_f6c0e: ; f6c0e
 
 Music_Mom_Ch3: ; f6c20
 	stereopanning $f0
-	notetype $6, $25
+	notetype $6, $2, $0, $5
 	octave 3
 	note E_, 1
 	note D_, 1
@@ -43,7 +43,7 @@ Music_Mom_Ch3: ; f6c20
 	note B_, 1
 	note G#, 1
 	note E_, 8
-	intensity $23
+	volenvelope $2, $0, $3
 Music_Mom_branch_f6c2e: ; f6c2e
 	octave 2
 	note A_, 2
@@ -80,7 +80,7 @@ Music_Mom_branch_f6c2e: ; f6c2e
 ; f6c51
 
 Music_Mom_Ch4: ; f6c51
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note __, 6
 Music_Mom_branch_f6c56: ; f6c56
@@ -110,3 +110,5 @@ Music_Mom_branch_f6c56: ; f6c56
 	note __, 1
 	loopchannel 0, Music_Mom_branch_f6c56
 ; f6c72
+
+

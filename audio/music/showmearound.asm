@@ -7,10 +7,10 @@ Music_ShowMeAround: ; edbd8
 
 Music_ShowMeAround_Ch1: ; edbe4
 	tempo 144
-	volume $77
+	volume $7, $7
 	stereopanning $f
-	dutycycle $2
-	notetype $c, $b1
+	waveduty $2
+	notetype $c, $b, $0, $1
 	octave 4
 	note B_, 2
 	note A_, 2
@@ -66,8 +66,8 @@ Music_ShowMeAround_branch_edc15: ; edc15
 
 Music_ShowMeAround_Ch2: ; edc2a
 	stereopanning $ff
-	dutycycle $2
-	notetype $c, $b1
+	waveduty $2
+	notetype $c, $b, $0, $1
 	octave 5
 	note E_, 2
 	note D_, 2
@@ -85,7 +85,7 @@ Music_ShowMeAround_Ch2: ; edc2a
 	octave 5
 	note D_, 1
 	note E_, 8
-	dutycycle $1
+	waveduty $1
 Music_ShowMeAround_branch_edc44: ; edc44
 	callchannel Music_ShowMeAround_branch_edc98
 	callchannel Music_ShowMeAround_branch_edc98
@@ -186,8 +186,8 @@ Music_ShowMeAround_branch_edc98: ; edc98
 
 Music_ShowMeAround_Ch3: ; edca9
 	stereopanning $f0
-	vibrato $10, $22
-	notetype $6, $25
+	vibrato $10, $2, $2
+	notetype $6, $2, $0, $5
 	octave 2
 	note B_, 1
 	note __, 3
@@ -216,7 +216,7 @@ Music_ShowMeAround_Ch3: ; edca9
 	note B_, 2
 	note E_, 2
 	note __, 6
-	intensity $14
+	volenvelope $1, $0, $4
 	octave 2
 	note B_, 1
 	note A#, 1
@@ -225,7 +225,7 @@ Music_ShowMeAround_Ch3: ; edca9
 	note G_, 1
 	note F_, 1
 	note E_, 2
-	intensity $14
+	volenvelope $1, $0, $4
 Music_ShowMeAround_branch_edcd9: ; edcd9
 	callchannel Music_ShowMeAround_branch_edcef
 	callchannel Music_ShowMeAround_branch_edcef
@@ -308,7 +308,7 @@ Music_ShowMeAround_branch_edd0f: ; edd0f
 ; edd30
 
 Music_ShowMeAround_Ch4: ; edd30
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note __, 16
 	note __, 8
@@ -360,3 +360,5 @@ Music_ShowMeAround_branch_edd5e: ; edd5e
 	note F#, 2
 	endchannel
 ; edd6d
+
+

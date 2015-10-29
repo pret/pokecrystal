@@ -7,15 +7,15 @@ Music_Route2: ; ed8dd
 
 Music_Route2_Ch1: ; ed8e9
 	tempo 151
-	volume $77
+	volume $7, $7
 	stereopanning $f
-	vibrato $6, $23
-	notetype $c, $b1
+	vibrato $6, $2, $3
+	notetype $c, $b, $0, $1
 	note __, 16
 	note __, 16
 	callchannel Music_Route2_branch_ed931
 Music_Route2_branch_ed8fb: ; ed8fb
-	intensity $b1
+	volenvelope $b, $0, $1
 	octave 3
 	note B_, 4
 	note B_, 4
@@ -65,11 +65,11 @@ Music_Route2_branch_ed931: ; ed931
 	note C_, 4
 	note C_, 4
 	note C_, 4
-	intensity $b7
+	volenvelope $b, $0, $7
 	note C_, 4
 	octave 3
 	note B_, 4
-	intensity $b1
+	volenvelope $b, $0, $1
 	endchannel
 ; ed940
 
@@ -110,7 +110,7 @@ Music_Route2_branch_ed940: ; ed940
 	note G#, 2
 	note C_, 2
 	note G#, 2
-	intensity $b7
+	volenvelope $b, $0, $7
 	octave 2
 	note B_, 2
 	octave 3
@@ -119,7 +119,7 @@ Music_Route2_branch_ed940: ; ed940
 	note B_, 2
 	octave 3
 	note G_, 2
-	intensity $b1
+	volenvelope $b, $0, $1
 	endchannel
 ; ed971
 
@@ -165,14 +165,14 @@ Music_Route2_branch_ed971: ; ed971
 
 Music_Route2_Ch2: ; ed996
 	stereopanning $ff
-	vibrato $8, $24
-	notetype $c, $b2
+	vibrato $8, $2, $4
+	notetype $c, $b, $0, $2
 	callchannel Music_Route2_branch_ed9ba
 Music_Route2_branch_ed9a1: ; ed9a1
-	intensity $b2
+	volenvelope $b, $0, $2
 	callchannel Music_Route2_branch_ed9ba
-	dutycycle $2
-	intensity $b5
+	waveduty $2
+	volenvelope $b, $0, $5
 	callchannel Music_Route2_branch_ed9dc
 	callchannel Music_Route2_branch_ed9dc
 	callchannel Music_Route2_branch_eda02
@@ -208,10 +208,10 @@ Music_Route2_branch_ed9ba: ; ed9ba
 	note A_, 4
 	note G#, 4
 	note G#, 4
-	intensity $b7
+	volenvelope $b, $0, $7
 	note G#, 4
 	note G_, 4
-	intensity $b2
+	volenvelope $b, $0, $2
 	endchannel
 ; ed9dc
 
@@ -303,8 +303,8 @@ Music_Route2_branch_eda02: ; eda02
 
 Music_Route2_Ch3: ; eda2c
 	stereopanning $f0
-	vibrato $16, $15
-	notetype $c, $14
+	vibrato $16, $1, $5
+	notetype $c, $1, $0, $4
 	octave 4
 	note B_, 1
 	note __, 3
@@ -327,7 +327,7 @@ Music_Route2_Ch3: ; eda2c
 	octave 3
 	note D_, 4
 Music_Route2_branch_eda4b: ; eda4b
-	notetype $c, $15
+	notetype $c, $1, $0, $5
 	octave 3
 	note C_, 4
 	note __, 2
@@ -352,7 +352,7 @@ Music_Route2_branch_eda4b: ; eda4b
 	callchannel Music_Route2_branch_eda9e
 	octave 3
 	note D_, 2
-	intensity $10
+	volenvelope $1, $0, $0
 	octave 6
 	note C_, 1
 	note D_, 1
@@ -361,10 +361,10 @@ Music_Route2_branch_eda4b: ; eda4b
 	note G_, 8
 	note F_, 2
 	note G_, 2
-	notetype $c, $10
+	notetype $c, $1, $0, $0
 	callchannel Music_Route2_branch_edaaf
 	note __, 16
-	intensity $25
+	volenvelope $2, $0, $5
 	callchannel Music_Route2_branch_edacb
 	note __, 4
 	note D#, 1
@@ -419,7 +419,7 @@ Music_Route2_branch_edaaf: ; edaaf
 	note D_, 2
 	note __, 2
 	note C_, 2
-	notetype $6, $10
+	notetype $6, $1, $0, $0
 	octave 5
 	note F#, 1
 	note G_, 15
@@ -463,7 +463,7 @@ Music_Route2_branch_edacb: ; edacb
 ; edadc
 
 Music_Route2_Ch4: ; edadc
-	togglenoise $5
+	drumkittoggle $5
 	notetype $c
 Music_Route2_branch_edae0: ; edae0
 	note A_, 4
@@ -526,3 +526,5 @@ Music_Route2_branch_edb17: ; edb17
 	note D#, 4
 	loopchannel 0, Music_Route2_branch_edaef
 ; edb29
+
+

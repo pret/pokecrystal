@@ -3,8 +3,8 @@ Sfx_IntroUnown1: ; 17982d
 ; 179830
 
 Sfx_IntroUnown1_Ch5: ; 179830
-	vibrato $1, $a3
-	dutycycle $2
+	vibrato $1, $a, $3
+	waveduty $2
 	sound $8, $39, $0705
 	sound $20, $e2, $0705
 	endchannel
@@ -15,8 +15,8 @@ Sfx_IntroUnown2: ; 17983e
 ; 179841
 
 Sfx_IntroUnown2_Ch6: ; 179841
-	vibrato $1, $73
-	dutycycle $2
+	vibrato $1, $7, $3
+	waveduty $2
 	sound $8, $39, $0758
 	sound $20, $e2, $0758
 	endchannel
@@ -27,7 +27,7 @@ Sfx_IntroUnown3: ; 17984f
 ; 179852
 
 Sfx_IntroUnown3_Ch7: ; 179852
-	vibrato $1, $53
+	vibrato $1, $5, $3
 	sound $3, $32, $07c2
 	sound $3, $22, $07c2
 	sound $3, $12, $07c2
@@ -42,11 +42,11 @@ Sfx_DittoPopUp: ; 17986e
 ; 179871
 
 Sfx_DittoPopUp_Ch5: ; 179871
-	dutycycle $2
-	soundinput $1e
+	waveduty $2
+	sweep $1, $1, $6
 	sound $3, $82, $0700
 	sound $1, $31, $0701
-	soundinput $16
+	sweep $1, $0, $6
 	sound $4, $b1, $0640
 	sound $10, $31, $0641
 	endchannel
@@ -57,8 +57,8 @@ Sfx_DittoTransform: ; 179888
 ; 17988b
 
 Sfx_DittoTransform_Ch5: ; 17988b
-	dutycycle $1
-	soundinput $26
+	waveduty $1
+	sweep $2, $0, $6
 	sound $14, $3b, $0440
 	sound $4, $97, $04c0
 	sound $4, $67, $04c1
@@ -81,11 +81,11 @@ Sfx_IntroPichu: ; 1798aa
 ; 1798ad
 
 Sfx_IntroPichu_Ch5: ; 1798ad
-	dutycycle $3
-	soundinput $4d
+	waveduty $3
+	sweep $4, $1, $5
 	sound $1, $88, $0770
 	sound $3, $0, $0000
-	soundinput $17
+	sweep $1, $0, $7
 	sound $2, $88, $0776
 	endchannel
 ; 1798c0
@@ -132,11 +132,11 @@ Sfx_DittoBounce: ; 179907
 ; 17990a
 
 Sfx_DittoBounce_Ch5: ; 17990a
-	dutycycle $2
-	soundinput $2c
+	waveduty $2
+	sweep $2, $1, $4
 	sound $2, $82, $04b0
 	sound $0, $31, $04b0
-	soundinput $34
+	sweep $3, $0, $4
 	sound $10, $b1, $0420
 	endchannel
 ; 17991d
@@ -166,10 +166,10 @@ Sfx_GameFreakPresents: ; 179942
 
 Sfx_GameFreakPresents_Ch5: ; 179945
 	togglesfx
-	dutycycle $2
-	notetype $2, $b1
-	soundinput $ff
-	forceoctave $1a
+	waveduty $2
+	notetype $2, $b, $0, $1
+	sweep $f, $1, $7
+	transpose $1, $a
 	octave 5
 	note C_, 2
 	note E_, 2
@@ -178,11 +178,11 @@ Sfx_GameFreakPresents_Ch5: ; 179945
 	note C_, 2
 	note E_, 2
 	note G_, 3
-	intensity $81
+	volenvelope $8, $0, $1
 	note G_, 3
-	intensity $51
+	volenvelope $5, $0, $1
 	note G_, 3
-	intensity $31
+	volenvelope $3, $0, $1
 	note G_, 3
 	endchannel
 ; 179961
@@ -193,9 +193,9 @@ Sfx_Tingle: ; 179961
 
 Sfx_Tingle_Ch5: ; 179964
 	togglesfx
-	dutycycle $1
-	forceoctave $b
-	notetype $1, $b1
+	waveduty $1
+	transpose $0, $b
+	notetype $1, $b, $0, $1
 Sfx_Tingle_branch_17996c: ; 17996c
 	octave 5
 	note C_, 3
@@ -206,7 +206,7 @@ Sfx_Tingle_branch_17996c: ; 17996c
 	note __, 2
 	loopchannel 2, Sfx_Tingle_branch_17996c
 	note C_, 2
-	intensity $a1
+	volenvelope $a, $0, $1
 	note G_, 13
 	endchannel
 ; 17997c
@@ -216,7 +216,7 @@ Sfx_TwoPcBeeps: ; 17997c
 ; 17997f
 
 Sfx_TwoPcBeeps_Ch5: ; 17997f
-	dutycycle $2
+	waveduty $2
 	sound $2, $e8, $07c2
 	sound $2, $28, $07c2
 	sound $2, $e8, $07c2
@@ -232,33 +232,33 @@ Sfx_4NoteDitty: ; 179992
 
 Sfx_4NoteDitty_Ch5: ; 17999b
 	togglesfx
-	dutycycle $2
-	notetype $2, $e8
-	forceoctave $2
+	waveduty $2
+	notetype $2, $e, $1, $0
+	transpose $0, $2
 	octave 4
 	note C_, 2
-	intensity $48
+	volenvelope $4, $1, $0
 	note C_, 2
-	intensity $e8
+	volenvelope $e, $1, $0
 	note G_, 2
-	intensity $48
+	volenvelope $4, $1, $0
 	note G_, 2
 	octave 5
-	intensity $e8
+	volenvelope $e, $1, $0
 	note E_, 2
-	intensity $48
+	volenvelope $4, $1, $0
 	note E_, 2
 	octave 6
-	intensity $e8
+	volenvelope $e, $1, $0
 	note C_, 2
-	intensity $43
+	volenvelope $4, $0, $3
 	note C_, 16
 	endchannel
 ; 1799bd
 
 Sfx_4NoteDitty_Ch6: ; 1799bd
 	togglesfx
-	notetype $2, $b8
+	notetype $2, $b, $1, $0
 	note __, 9
 	note __, 16
 	endchannel
@@ -266,7 +266,7 @@ Sfx_4NoteDitty_Ch6: ; 1799bd
 
 Sfx_4NoteDitty_Ch7: ; 1799c4
 	togglesfx
-	notetype $2, $b8
+	notetype $2, $b, $1, $0
 	note __, 9
 	note __, 16
 	endchannel
@@ -278,25 +278,25 @@ Sfx_Twinkle: ; 1799cb
 
 Sfx_Twinkle_Ch5: ; 1799ce
 	togglesfx
-	dutycycle $0
-	forceoctave $2
-	notetype $2, $e1
+	waveduty $0
+	transpose $0, $2
+	notetype $2, $e, $0, $1
 	octave 3
 	note G_, 2
-	intensity $b1
+	volenvelope $b, $0, $1
 	octave 4
 	note D_, 2
-	intensity $e1
+	volenvelope $e, $0, $1
 	note B_, 2
-	intensity $b1
+	volenvelope $b, $0, $1
 	note G_, 2
-	intensity $e1
+	volenvelope $e, $0, $1
 	octave 5
 	note D_, 2
-	intensity $b1
+	volenvelope $b, $0, $1
 	octave 4
 	note B_, 2
-	intensity $e1
+	volenvelope $e, $0, $1
 	octave 5
 	note G_, 6
 	endchannel

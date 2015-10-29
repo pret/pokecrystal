@@ -29,6 +29,21 @@ A_ EQU 10
 A# EQU 11
 B_ EQU 12
 
+; Drumkit0
+D0Drum00 EQU 0
+D0Snare1 EQU 1
+D0Snare2 EQU 2
+D0Snare3 EQU 3
+D0Snare4 EQU 4
+D0Drum05 EQU 5
+D0Triangle1 EQU 6
+D0Triangle2 EQU 7
+D0HiHat1 EQU 8
+D0Snare5 EQU 9
+D0Snare6 EQU 10
+D0Snare7 EQU 11
+D0HiHat2 EQU 12
+
 
 octave: macro
 	db $d8 - (\1)
@@ -38,13 +53,15 @@ notetype: macro
 	db $d8
 	db \1 ; note_length
 	if _NARG >= 2
-	db \2 ; intensity
+	db ((\2) << 4) | ((\3) << 3) | (\4) ; volenvelope
 	endc
 	endm
 
-forceoctave: macro
+transpose: macro
+; \1: octave (0 - 15)
+; \2: pitch (0 - 15)
 	db $d9
-	db \1 ; octave
+	db (\1 << 4) | (\2) 
 	endm
 
 tempo: macro
@@ -52,40 +69,53 @@ tempo: macro
 	bigdw \1 ; tempo
 	endm
 
-dutycycle: macro
+waveduty: macro
 	db $db
 	db \1 ; duty_cycle
 	endm
 
-intensity: macro
+volenvelope: macro
+; \1: Initial Volume of envelope (0-0Fh) (0=No Sound)
+; \2: Envelope Direction (0=Decrease, 1=Increase)
+; \3: Number of envelope sweep (n: 0-7)
+;     (If zero, stop envelope operation.)
 	db $dc
-	db \1 ; intensity
+;	db (((\1) & 0xf) << 4) | (((\2) & 0x1) << 3) | (((\3) & 0x7) << 0)
+	db ((\1) << 4) | ((\2) << 3) | (\3)
 	endm
 
-soundinput: macro
+sweep: macro
+; \1: Sweep Time (0-7)
+; \2: Sweep Direction (0=Increase, 1=Decrease)
+; \3: Number of sweep shift (n: 0-7)
 	db $dd
-	db \1 ; input
+	db (\1 << 4) | (\2 << 3) | (\3) ; sweep settings
 	endm
 
-unknownmusic0xde: macro
+dutycycle: macro
 	db $de
-	db \1 ; unknown
+    db (\1) | ((\2) << 2) | ((\3) << 4) | ((\4) << 6)
 	endm
 
 togglesfx: macro
 	db $df
 	endm
 
-unknownmusic0xe0: macro
+pitchbend: macro
+; \1: duration of the pitch
+; \2: octave
+; \3: pitch
 	db $e0
-	db \1 ; unknown
-	db \2 ; unknown
+	db \1, (\2 << 4) | (\3 << 0) 
 	endm
 
 vibrato: macro
+; \1: vibrato delay (in frames)
+; \2: extent
+; \3: rate (# frames per cycle)
 	db $e1
 	db \1 ; delay
-	db \2 ; extent
+	db (\2 << 4) | \3 ; extent and rate
 	endm
 
 unknownmusic0xe2: macro
@@ -93,7 +123,7 @@ unknownmusic0xe2: macro
 	db \1 ; unknown
 	endm
 
-togglenoise: macro
+drumkittoggle: macro
 	db $e3
 	db \1 ; id
 	endm
@@ -105,12 +135,12 @@ panning: macro
 
 volume: macro
 	db $e5
-	db \1 ; volume
+	db ((\1) << 4) | (\2) ; volume left and right
 	endm
 
-tone: macro
+pitchoffset: macro
 	db $e6
-	bigdw \1 ; tone
+	bigdw \1 ; pitch offset/frequency
 	endm
 
 unknownmusic0xe7: macro
@@ -123,7 +153,7 @@ unknownmusic0xe8: macro
 	db \1 ; unknown
 	endm
 
-globaltempo: macro
+addtempo: macro
 	db $e9
 	bigdw \1 ; value
 	endm
@@ -146,7 +176,7 @@ sfxpriorityoff: macro
 	db $ed
 	endm
 
-unknownmusic0xee: macro
+conditionaljump: macro
 	db $ee
 	dw \1 ; address
 	endm
@@ -156,7 +186,7 @@ stereopanning: macro
 	db \1 ; tracks
 	endm
 
-sfxtogglenoise: macro
+sfxdrumkittoggle: macro
 	db $f0
 	db \1 ; id
 	endm
@@ -197,7 +227,7 @@ unknownmusic0xf9: macro
 	db $f9
 	endm
 
-setcondition: macro
+condition: macro
 	db $fa
 	db \1 ; condition
 	endm

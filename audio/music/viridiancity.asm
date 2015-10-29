@@ -7,11 +7,11 @@ Music_ViridianCity: ; f4000
 
 Music_ViridianCity_Ch1: ; f400c
 	tempo 157
-	volume $77
+	volume $7, $7
 	stereopanning $f
-	dutycycle $2
-	vibrato $12, $34
-	notetype $c, $a7
+	waveduty $2
+	vibrato $12, $3, $4
+	notetype $c, $a, $0, $7
 	octave 3
 	note F#, 1
 	note __, 3
@@ -76,11 +76,11 @@ Music_ViridianCity_branch_f4039: ; f4039
 	note __, 1
 	note F#, 1
 	note __, 1
-	intensity $87
+	volenvelope $8, $0, $7
 	octave 5
 	note F#, 4
 	note F_, 4
-	intensity $a7
+	volenvelope $a, $0, $7
 	octave 3
 	note G_, 6
 	note B_, 8
@@ -275,9 +275,9 @@ Music_ViridianCity_branch_f410f: ; f410f
 ; f4125
 
 Music_ViridianCity_Ch2: ; f4125
-	vibrato $10, $46
-	dutycycle $1
-	notetype $c, $b7
+	vibrato $10, $4, $6
+	waveduty $1
+	notetype $c, $b, $0, $7
 	stereopanning $f0
 	octave 2
 	note D_, 4
@@ -515,8 +515,8 @@ Music_ViridianCity_branch_f4215: ; f4215
 ; f421e
 
 Music_ViridianCity_Ch3: ; f421e
-	vibrato $12, $24
-	notetype $c, $13
+	vibrato $12, $2, $4
+	notetype $c, $1, $0, $3
 	stereopanning $ff
 	octave 4
 	note A_, 1
@@ -551,15 +551,15 @@ Music_ViridianCity_Ch3: ; f421e
 	note F#, 2
 	note G_, 2
 Music_ViridianCity_branch_f4246: ; f4246
-	intensity $13
+	volenvelope $1, $0, $3
 	callchannel Music_ViridianCity_branch_f42a2
 	octave 5
 	note F#, 2
 	note G_, 2
 	callchannel Music_ViridianCity_branch_f42a2
 	note E_, 4
-	vibrato $18, $25
-	intensity $25
+	vibrato $18, $2, $5
+	volenvelope $2, $0, $5
 	note B_, 12
 	note G_, 4
 	octave 6
@@ -699,7 +699,7 @@ Music_ViridianCity_branch_f42a2: ; f42a2
 ; f42df
 
 Music_ViridianCity_Ch4: ; f42df
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	callchannel Music_ViridianCity_branch_f431d
 	callchannel Music_ViridianCity_branch_f432c
@@ -796,3 +796,5 @@ Music_ViridianCity_branch_f434b: ; f434b
 	note F#, 2
 	endchannel
 ; f435b
+
+

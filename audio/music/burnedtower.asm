@@ -7,93 +7,93 @@ Music_BurnedTower: ; f6a99
 
 Music_BurnedTower_Ch1: ; f6aa5
 	tempo 168
-	volume $77
-	dutycycle $1
-	tone $0004
-	vibrato $8, $45
+	volume $7, $7
+	waveduty $1
+	pitchoffset $0004
+	vibrato $8, $4, $5
 	stereopanning $f0
-	notetype $c, $91
+	notetype $c, $9, $0, $1
 	note __, 2
 	octave 2
 	note A_, 4
 	note A_, 4
 	note A_, 2
-	intensity $80
+	volenvelope $8, $0, $0
 	octave 3
 	note D#, 6
-	intensity $91
+	volenvelope $9, $0, $1
 	note D_, 4
 	note D_, 4
 	note D_, 2
-	intensity $80
+	volenvelope $8, $0, $0
 	note C#, 6
 Music_BurnedTower_branch_f6ac8: ; f6ac8
-	intensity $91
+	volenvelope $9, $0, $1
 	octave 2
 	note A_, 4
 	note A_, 4
 	note A_, 2
-	intensity $80
+	volenvelope $8, $0, $0
 	note A#, 6
 	loopchannel 2, Music_BurnedTower_branch_f6ac8
 	tempo 150
 Music_BurnedTower_branch_f6ad8: ; f6ad8
-	intensity $b1
+	volenvelope $b, $0, $1
 	octave 2
 	note A_, 4
 	note A_, 4
 	note A_, 2
-	intensity $a0
+	volenvelope $a, $0, $0
 	octave 3
 	note D#, 6
-	intensity $b1
+	volenvelope $b, $0, $1
 	note D_, 4
 	note D_, 4
 	note D_, 2
-	intensity $a0
+	volenvelope $a, $0, $0
 	note C#, 6
-	intensity $b1
+	volenvelope $b, $0, $1
 	octave 2
 	note A_, 4
 	note A_, 4
 	note A_, 2
-	intensity $a0
+	volenvelope $a, $0, $0
 	note A#, 6
-	intensity $b1
+	volenvelope $b, $0, $1
 	note A_, 4
 	note A_, 4
 	note A_, 2
-	intensity $b3
+	volenvelope $b, $0, $3
 	note A#, 16
 	note A#, 16
 	note A#, 16
 	note G#, 6
-	intensity $b1
+	volenvelope $b, $0, $1
 	note A_, 4
 	note A_, 4
 	note A_, 2
-	intensity $a0
+	volenvelope $a, $0, $0
 	note A#, 6
-	intensity $b1
+	volenvelope $b, $0, $1
 	note B_, 4
 	note B_, 4
 	note B_, 2
-	intensity $a0
+	volenvelope $a, $0, $0
 	octave 3
 	note F_, 6
-	intensity $b1
+	volenvelope $b, $0, $1
 	note E_, 4
 	note E_, 4
 	note E_, 2
-	intensity $a0
+	volenvelope $a, $0, $0
 	note D#, 6
 Music_BurnedTower_branch_f6b17: ; f6b17
-	intensity $b1
+	volenvelope $b, $0, $1
 	octave 2
 	note B_, 4
 	note B_, 4
 	note B_, 2
-	intensity $a0
+	volenvelope $a, $0, $0
 	octave 3
 	note C_, 6
 	loopchannel 2, Music_BurnedTower_branch_f6b17
@@ -101,54 +101,54 @@ Music_BurnedTower_branch_f6b17: ; f6b17
 ; f6b29
 
 Music_BurnedTower_Ch2: ; f6b29
-	dutycycle $2
-	vibrato $20, $82
-	tone $0002
-	notetype $c, $70
+	waveduty $2
+	vibrato $20, $8, $2
+	pitchoffset $0002
+	notetype $c, $7, $0, $0
 	callchannel Music_BurnedTower_branch_f6b8e
-	intensity $c5
+	volenvelope $c, $0, $5
 Music_BurnedTower_branch_f6b39: ; f6b39
 	callchannel Music_BurnedTower_branch_f6b8e
-	intensity $c1
-	dutycycle $3
+	volenvelope $c, $0, $1
+	waveduty $3
 	note __, 2
 	octave 2
 	note A_, 4
 	note A_, 4
 	note A_, 2
-	intensity $b0
+	volenvelope $b, $0, $0
 	octave 3
 	note D#, 6
-	intensity $c1
+	volenvelope $c, $0, $1
 	note D_, 4
 	note D_, 4
 	note D_, 2
-	intensity $b0
+	volenvelope $b, $0, $0
 	note C#, 6
-	intensity $c1
+	volenvelope $c, $0, $1
 	octave 2
 	note A_, 4
 	note A_, 4
 	note A_, 2
-	intensity $b0
+	volenvelope $b, $0, $0
 	note A#, 4
-	intensity $c1
-	intensity $c2
+	volenvelope $c, $0, $1
+	volenvelope $c, $0, $2
 	octave 3
 	note A_, 1
 	note G_, 1
 	note A_, 1
 	octave 4
 	note C_, 1
-	vibrato $0, $0
-	intensity $3d
+	vibrato $0, $0, $0
+	volenvelope $3, $1, $5
 	note E_, 8
-	vibrato $20, $83
-	intensity $b0
+	vibrato $20, $8, $3
+	volenvelope $b, $0, $0
 	octave 2
 	note G_, 4
-	dutycycle $2
-	intensity $b0
+	waveduty $2
+	volenvelope $b, $0, $0
 	octave 3
 	note F#, 4
 	note E_, 2
@@ -167,7 +167,7 @@ Music_BurnedTower_branch_f6b39: ; f6b39
 	note F#, 2
 	note G_, 4
 	note E_, 4
-	intensity $b7
+	volenvelope $b, $0, $7
 	note F#, 16
 	loopchannel 0, Music_BurnedTower_branch_f6b39
 ; f6b8e
@@ -197,7 +197,7 @@ Music_BurnedTower_branch_f6b8e: ; f6b8e
 
 Music_BurnedTower_Ch3: ; f6ba2
 	stereopanning $f
-	notetype $c, $14
+	notetype $c, $1, $0, $4
 	note __, 16
 	note __, 16
 	note __, 16
@@ -248,7 +248,7 @@ Music_BurnedTower_branch_f6bc3: ; f6bc3
 ; f6bdd
 
 Music_BurnedTower_Ch4: ; f6bdd
-	togglenoise $0
+	drumkittoggle $0
 	notetype $c
 Music_BurnedTower_branch_f6be1: ; f6be1
 	note __, 16
@@ -263,3 +263,5 @@ Music_BurnedTower_branch_f6be7: ; f6be7
 	note G_, 4
 	loopchannel 0, Music_BurnedTower_branch_f6be7
 ; f6bf2
+
+

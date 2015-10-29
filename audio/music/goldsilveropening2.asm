@@ -7,108 +7,108 @@ Music_GoldSilverOpening2: ; f7308
 
 Music_GoldSilverOpening2_Ch1: ; f7314
 	tempo 92
-	volume $77
-	dutycycle $3
-	tone $0002
+	volume $7, $7
+	waveduty $3
+	pitchoffset $0002
 	stereopanning $f
-	notetype $c, $3d
+	notetype $c, $3, $1, $5
 	octave 3
 	note D#, 8
 Music_GoldSilverOpening2_branch_f7325: ; f7325
-	notetype $c, $c1
+	notetype $c, $c, $0, $1
 	octave 3
 	note D_, 2
 	note D_, 2
 	note D_, 2
-	intensity $b7
+	volenvelope $b, $0, $7
 	note D#, 10
-	intensity $c1
+	volenvelope $c, $0, $1
 	note D_, 2
 	note D_, 2
 	note D_, 2
-	intensity $b7
+	volenvelope $b, $0, $7
 	note F_, 4
 	note D#, 4
 	note C_, 2
 	loopchannel 2, Music_GoldSilverOpening2_branch_f7325
-	intensity $c1
+	volenvelope $c, $0, $1
 	note D_, 2
 	note D_, 2
 	note D_, 2
-	intensity $b7
+	volenvelope $b, $0, $7
 	note D#, 10
-	intensity $c1
+	volenvelope $c, $0, $1
 	note D_, 2
 	note D_, 2
 	note D_, 2
-	intensity $b7
+	volenvelope $b, $0, $7
 	note F_, 4
 	note G_, 4
 	note A#, 2
-	intensity $b0
+	volenvelope $b, $0, $0
 	note A_, 16
 	note A_, 16
-	intensity $b2
+	volenvelope $b, $0, $2
 	octave 4
 	note D_, 16
 	endchannel
 ; f7358
 
 Music_GoldSilverOpening2_Ch2: ; f7358
-	dutycycle $3
-	vibrato $14, $14
+	waveduty $3
+	vibrato $14, $1, $4
 	stereopanning $f0
-	notetype $c, $3f
+	notetype $c, $3, $1, $7
 	octave 3
 	note A#, 8
-	notetype $c, $d1
+	notetype $c, $d, $0, $1
 	octave 3
 	note A_, 2
 	note A_, 2
 	note A_, 2
-	intensity $c7
+	volenvelope $c, $0, $7
 	note A#, 10
-	intensity $d1
+	volenvelope $d, $0, $1
 	note A_, 2
 	note A_, 2
 	note A_, 2
-	intensity $c7
+	volenvelope $c, $0, $7
 	octave 4
 	note C_, 4
 	octave 3
 	note A#, 4
 	note G_, 2
-	intensity $d1
+	volenvelope $d, $0, $1
 	note A_, 2
 	note A_, 2
 	note A_, 2
-	intensity $c7
+	volenvelope $c, $0, $7
 	note A#, 10
-	intensity $d1
+	volenvelope $d, $0, $1
 	note A_, 2
 	note A_, 2
 	note A_, 2
-	intensity $c7
+	volenvelope $c, $0, $7
 	octave 4
 	note C_, 4
 	note C#, 4
 	note D#, 2
-	intensity $c7
+	volenvelope $c, $0, $7
 	note D_, 8
 	note D#, 8
 	note F_, 8
 	note A#, 8
-	intensity $b0
+	volenvelope $b, $0, $0
 	octave 5
 	note D_, 16
 	note D_, 16
-	intensity $c2
+	volenvelope $c, $0, $2
 	note D_, 16
 	endchannel
 ; f739c
 
 Music_GoldSilverOpening2_Ch3: ; f739c
-	notetype $c, $17
+	notetype $c, $1, $0, $7
 	note __, 8
 	octave 2
 	note A_, 1
@@ -187,7 +187,7 @@ Music_GoldSilverOpening2_Ch3: ; f739c
 ; f73ea
 
 Music_GoldSilverOpening2_Ch4: ; f73ea
-	togglenoise $0
+	drumkittoggle $0
 	notetype $6
 	note D#, 2
 	note D#, 2
@@ -220,3 +220,5 @@ Music_GoldSilverOpening2_branch_f73f8: ; f73f8
 	note C_, 16
 	endchannel
 ; f7411
+
+

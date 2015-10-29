@@ -7,11 +7,11 @@ Music_PokemonChannel: ; ee45f
 
 Music_PokemonChannel_Ch1: ; ee46b
 	tempo 128
-	volume $77
-	vibrato $8, $38
-	dutycycle $1
+	volume $7, $7
+	vibrato $8, $3, $8
+	waveduty $1
 	stereopanning $f
-	notetype $c, $b3
+	notetype $c, $b, $0, $3
 	octave 2
 	note B_, 1
 	note __, 2
@@ -20,18 +20,18 @@ Music_PokemonChannel_Ch1: ; ee46b
 	note __, 1
 	octave 3
 	note F#, 4
-	dutycycle $0
+	waveduty $0
 	octave 2
 	note B_, 1
 	note __, 1
 	note B_, 1
 	note __, 1
-	notetype $6, $b3
+	notetype $6, $b, $0, $3
 	note G_, 1
 	note __, 1
 	note B_, 1
 	note __, 1
-	dutycycle $1
+	waveduty $1
 	octave 3
 	note C_, 2
 	note __, 4
@@ -39,13 +39,13 @@ Music_PokemonChannel_Ch1: ; ee46b
 	note C_, 2
 	note __, 2
 	note B_, 8
-	dutycycle $0
+	waveduty $0
 	note C_, 4
 	note C_, 4
 	octave 2
 	note G_, 2
 	note __, 2
-	dutycycle $3
+	waveduty $3
 	octave 4
 	note D_, 2
 	note __, 2
@@ -77,10 +77,10 @@ Music_PokemonChannel_Ch1: ; ee46b
 ; ee4be
 
 Music_PokemonChannel_Ch2: ; ee4be
-	dutycycle $1
-	vibrato $8, $38
+	waveduty $1
+	vibrato $8, $3, $8
 	stereopanning $ff
-	notetype $c, $b3
+	notetype $c, $b, $0, $3
 	octave 3
 	note G_, 3
 	note A_, 1
@@ -88,31 +88,31 @@ Music_PokemonChannel_Ch2: ; ee4be
 	note __, 1
 	octave 4
 	note D_, 4
-	dutycycle $0
+	waveduty $0
 	octave 3
 	note G_, 1
 	note __, 1
 	note G_, 1
 	note __, 1
-	notetype $6, $b3
+	notetype $6, $b, $0, $3
 	note D_, 1
 	note __, 1
 	note G_, 1
 	note __, 1
-	dutycycle $1
+	waveduty $1
 	octave 4
 	note C_, 6
 	note D_, 2
 	note E_, 2
 	note __, 2
 	note G_, 8
-	dutycycle $0
+	waveduty $0
 	octave 3
 	note G_, 4
 	note F#, 4
 	note E_, 2
 	note __, 2
-	dutycycle $3
+	waveduty $3
 	octave 4
 	note B_, 2
 	note __, 2
@@ -148,8 +148,8 @@ Music_PokemonChannel_Ch2: ; ee4be
 ; ee50e
 
 Music_PokemonChannel_Ch3: ; ee50e
-	vibrato $8, $38
-	notetype $c, $25
+	vibrato $8, $3, $8
+	notetype $c, $2, $0, $5
 	stereopanning $f0
 	octave 2
 	note G_, 1
@@ -205,7 +205,7 @@ Music_PokemonChannel_Ch3: ; ee50e
 ; ee549
 
 Music_PokemonChannel_Ch4: ; ee549
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 Music_PokemonChannel_branch_ee54d: ; ee54d
 	note A#, 3
@@ -234,3 +234,5 @@ Music_PokemonChannel_branch_ee54d: ; ee54d
 	note A#, 4
 	endchannel
 ; ee569
+
+

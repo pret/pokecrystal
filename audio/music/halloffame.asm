@@ -7,12 +7,12 @@ Music_HallOfFame: ; f05bf
 
 Music_HallOfFame_Ch1: ; f05cb
 	tempo 112
-	volume $77
-	dutycycle $2
-	vibrato $c, $22
-	tone $0001
+	volume $7, $7
+	waveduty $2
+	vibrato $c, $2, $2
+	pitchoffset $0001
 	stereopanning $f0
-	notetype $c, $93
+	notetype $c, $9, $0, $3
 	note __, 16
 	note __, 16
 	note __, 16
@@ -23,22 +23,22 @@ Music_HallOfFame_Ch1: ; f05cb
 	note F_, 1
 	note F#, 1
 Music_HallOfFame_branch_f05e6: ; f05e6
-	intensity $97
+	volenvelope $9, $0, $7
 	octave 4
 	note C_, 8
-	intensity $77
+	volenvelope $7, $0, $7
 	note C_, 8
-	intensity $97
+	volenvelope $9, $0, $7
 	note E_, 8
-	intensity $77
+	volenvelope $7, $0, $7
 	note E_, 8
-	intensity $97
+	volenvelope $9, $0, $7
 	note F#, 8
-	intensity $77
+	volenvelope $7, $0, $7
 	note F#, 8
-	intensity $77
+	volenvelope $7, $0, $7
 	note F_, 8
-	intensity $57
+	volenvelope $5, $0, $7
 	note F_, 8
 	loopchannel 3, Music_HallOfFame_branch_f05e6
 	note __, 16
@@ -49,10 +49,10 @@ Music_HallOfFame_branch_f05e6: ; f05e6
 ; f060b
 
 Music_HallOfFame_Ch2: ; f060b
-	vibrato $8, $25
-	dutycycle $3
+	vibrato $8, $2, $5
+	waveduty $3
 Music_HallOfFame_branch_f0610: ; f0610
-	notetype $c, $c4
+	notetype $c, $c, $0, $4
 	octave 3
 	note G_, 2
 	note D_, 2
@@ -81,7 +81,7 @@ Music_HallOfFame_branch_f0610: ; f0610
 
 Music_HallOfFame_Ch3: ; f062e
 Music_HallOfFame_branch_f062e: ; f062e
-	notetype $c, $28
+	notetype $c, $2, $1, $0
 Music_HallOfFame_branch_f0631: ; f0631
 	octave 3
 	note D_, 2
@@ -140,7 +140,7 @@ Music_HallOfFame_branch_f0631: ; f0631
 ; f066d
 
 Music_HallOfFame_Ch4: ; f066d
-	togglenoise $5
+	drumkittoggle $5
 	notetype $c
 	note __, 16
 	note __, 16
@@ -175,3 +175,5 @@ Music_HallOfFame_branch_f0677: ; f0677
 	note A#, 1
 	loopchannel 0, Music_HallOfFame_branch_f0677
 ; f0697
+
+

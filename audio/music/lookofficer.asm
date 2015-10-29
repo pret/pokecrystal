@@ -6,23 +6,23 @@ Music_LookOfficer: ; ed82d
 
 Music_LookOfficer_Ch1: ; ed836
 	tempo 116
-	volume $77
-	tone $0001
-	vibrato $12, $34
+	volume $7, $7
+	pitchoffset $0001
+	vibrato $12, $3, $4
 	stereopanning $f
-	dutycycle $3
-	notetype $c, $a7
+	waveduty $3
+	notetype $c, $a, $0, $7
 	octave 4
 	note C#, 1
 	note D_, 1
 	note D#, 1
 	note E_, 1
 	note F_, 12
-	intensity $2f
+	volenvelope $2, $1, $7
 	octave 3
 	note B_, 16
 Music_LookOfficer_branch_ed852: ; ed852
-	intensity $82
+	volenvelope $8, $0, $2
 	note __, 4
 	note B_, 6
 	note G#, 4
@@ -30,16 +30,16 @@ Music_LookOfficer_branch_ed852: ; ed852
 	note B_, 6
 	note G#, 4
 	note B_, 2
-	intensity $2f
+	volenvelope $2, $1, $7
 	note A#, 16
 	note A_, 16
 	loopchannel 0, Music_LookOfficer_branch_ed852
 ; ed863
 
 Music_LookOfficer_Ch2: ; ed863
-	vibrato $12, $34
-	dutycycle $3
-	notetype $c, $b7
+	vibrato $12, $3, $4
+	waveduty $3
+	notetype $c, $b, $0, $7
 	octave 5
 	note D#, 1
 	note D_, 1
@@ -47,8 +47,8 @@ Music_LookOfficer_Ch2: ; ed863
 	note C_, 1
 	octave 4
 	note B_, 12
-	dutycycle $3
-	intensity $a2
+	waveduty $3
+	volenvelope $a, $0, $2
 	octave 1
 	note B_, 4
 	octave 2
@@ -73,9 +73,9 @@ Music_LookOfficer_branch_ed882: ; ed882
 	note E_, 2
 	note G#, 2
 	loopchannel 2, Music_LookOfficer_branch_ed882
-	forceoctave $1
+	transpose $0, $1
 	callchannel Music_LookOfficer_branch_ed89e
-	forceoctave $0
+	transpose $0, $0
 	callchannel Music_LookOfficer_branch_ed89e
 	loopchannel 0, Music_LookOfficer_branch_ed882
 ; ed89e
@@ -99,15 +99,15 @@ Music_LookOfficer_branch_ed89e: ; ed89e
 ; ed8ad
 
 Music_LookOfficer_Ch3: ; ed8ad
-	vibrato $14, $14
+	vibrato $14, $1, $4
 	stereopanning $f0
-	notetype $c, $14
+	notetype $c, $1, $0, $4
 	note __, 10
 	octave 3
 	note B_, 2
 	note __, 2
 	note B_, 2
-	intensity $12
+	volenvelope $1, $0, $2
 	octave 5
 	note D#, 2
 	note __, 1
@@ -140,3 +140,5 @@ Music_LookOfficer_branch_ed8c8: ; ed8c8
 	note C#, 8
 	loopchannel 0, Music_LookOfficer_branch_ed8c8
 ; ed8dd
+
+

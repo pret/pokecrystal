@@ -6,11 +6,11 @@ Music_MobileAdapterMenu: ; 17801f
 
 Music_MobileAdapterMenu_Ch1: ; 178028
 	tempo 168
-	volume $77
-	tone $0001
+	volume $7, $7
+	pitchoffset $0001
 	stereopanning $f
-	dutycycle $2
-	notetype $c, $66
+	waveduty $2
+	notetype $c, $6, $0, $6
 	note __, 2
 Music_MobileAdapterMenu_branch_178038: ; 178038
 	callchannel Music_MobileAdapterMenu_branch_178057
@@ -88,8 +88,8 @@ Music_MobileAdapterMenu_branch_178076: ; 178076
 
 Music_MobileAdapterMenu_Ch2: ; 178084
 	stereopanning $f0
-	notetype $c, $84
-	dutycycle $2
+	notetype $c, $8, $0, $4
+	waveduty $2
 	octave 4
 	note E_, 1
 	note G#, 1
@@ -176,8 +176,8 @@ Music_MobileAdapterMenu_branch_1780d7: ; 1780d7
 ; 1780e2
 
 Music_MobileAdapterMenu_Ch3: ; 1780e2
-	vibrato $8, $34
-	notetype $c, $25
+	vibrato $8, $3, $4
+	notetype $c, $2, $0, $5
 	note __, 2
 Music_MobileAdapterMenu_branch_1780e9: ; 1780e9
 	callchannel Music_MobileAdapterMenu_branch_178119
@@ -259,9 +259,9 @@ Music_MobileAdapterMenu_branch_178119: ; 178119
 	note __, 1
 	note C#, 1
 	note E_, 3
-	intensity $35
+	volenvelope $3, $0, $5
 	note E_, 3
-	intensity $25
+	volenvelope $2, $0, $5
 	endchannel
 ; 178146
 
@@ -280,3 +280,5 @@ Music_MobileAdapterMenu_branch_178146: ; 178146
 	note A_, 4
 	endchannel
 ; 178153
+
+

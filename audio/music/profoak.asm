@@ -6,12 +6,12 @@ Music_ProfOak: ; f4dea
 
 Music_ProfOak_Ch1: ; f4df3
 	tempo 118
-	volume $77
-	vibrato $12, $34
-	tone $0001
+	volume $7, $7
+	vibrato $12, $3, $4
+	pitchoffset $0001
 	stereopanning $f0
-	dutycycle $3
-	notetype $c, $98
+	waveduty $3
+	notetype $c, $9, $1, $0
 	octave 2
 	note F#, 1
 	note B_, 1
@@ -20,10 +20,10 @@ Music_ProfOak_Ch1: ; f4df3
 	note F#, 1
 	note A_, 16
 	note G#, 8
-	intensity $97
+	volenvelope $9, $0, $7
 	note G#, 8
 Music_ProfOak_branch_f4e10: ; f4e10
-	intensity $91
+	volenvelope $9, $0, $1
 	callchannel Music_ProfOak_branch_f4e42
 	callchannel Music_ProfOak_branch_f4e42
 	callchannel Music_ProfOak_branch_f4e4d
@@ -34,10 +34,10 @@ Music_ProfOak_branch_f4e22: ; f4e22
 	callchannel Music_ProfOak_branch_f4e58
 	callchannel Music_ProfOak_branch_f4e6c
 	callchannel Music_ProfOak_branch_f4e6c
-	forceoctave $2
+	transpose $0, $2
 	callchannel Music_ProfOak_branch_f4e58
 	callchannel Music_ProfOak_branch_f4e58
-	forceoctave $0
+	transpose $0, $0
 	callchannel Music_ProfOak_branch_f4e6c
 	callchannel Music_ProfOak_branch_f4e6c
 	loopchannel 0, Music_ProfOak_branch_f4e22
@@ -80,13 +80,13 @@ Music_ProfOak_branch_f4e58: ; f4e58
 	note C#, 1
 	note E_, 1
 	note C#, 2
-	intensity $92
+	volenvelope $9, $0, $2
 	note A_, 2
-	intensity $91
+	volenvelope $9, $0, $1
 	note C#, 2
-	intensity $92
+	volenvelope $9, $0, $2
 	note E_, 2
-	intensity $91
+	volenvelope $9, $0, $1
 	endchannel
 ; f4e6c
 
@@ -95,22 +95,22 @@ Music_ProfOak_branch_f4e6c: ; f4e6c
 	note B_, 1
 	octave 3
 	note E_, 1
-	intensity $92
+	volenvelope $9, $0, $2
 	note G#, 4
 	note E_, 4
-	intensity $91
+	volenvelope $9, $0, $1
 	note E_, 1
 	note G#, 1
-	intensity $92
+	volenvelope $9, $0, $2
 	note B_, 4
-	intensity $91
+	volenvelope $9, $0, $1
 	endchannel
 ; f4e7e
 
 Music_ProfOak_Ch2: ; f4e7e
-	vibrato $12, $34
-	dutycycle $3
-	notetype $c, $a8
+	vibrato $12, $3, $4
+	waveduty $3
+	notetype $c, $a, $1, $0
 	octave 3
 	note B_, 1
 	octave 4
@@ -118,11 +118,11 @@ Music_ProfOak_Ch2: ; f4e7e
 	note F#, 1
 	note A#, 1
 	note B_, 16
-	intensity $a7
+	volenvelope $a, $0, $7
 	note B_, 10
-	dutycycle $2
+	waveduty $2
 Music_ProfOak_branch_f4e92: ; f4e92
-	intensity $b2
+	volenvelope $b, $0, $2
 	octave 3
 	note B_, 2
 	octave 4
@@ -131,7 +131,7 @@ Music_ProfOak_branch_f4e92: ; f4e92
 	note E_, 4
 	note D#, 2
 	note C#, 4
-	intensity $91
+	volenvelope $9, $0, $1
 	note B_, 2
 	octave 5
 	note C#, 2
@@ -139,7 +139,7 @@ Music_ProfOak_branch_f4e92: ; f4e92
 	note E_, 4
 	note D#, 2
 	note C#, 4
-	intensity $b2
+	volenvelope $b, $0, $2
 	octave 3
 	note B_, 2
 	note A_, 2
@@ -148,7 +148,7 @@ Music_ProfOak_branch_f4e92: ; f4e92
 	note B_, 1
 	note __, 1
 	note B_, 4
-	intensity $91
+	volenvelope $9, $0, $1
 	octave 4
 	note B_, 2
 	note A_, 2
@@ -158,7 +158,7 @@ Music_ProfOak_branch_f4e92: ; f4e92
 	note B_, 4
 	loopchannel 2, Music_ProfOak_branch_f4e92
 	note __, 6
-	intensity $b4
+	volenvelope $b, $0, $4
 Music_ProfOak_branch_f4ebf: ; f4ebf
 	note C#, 6
 	octave 3
@@ -178,14 +178,14 @@ Music_ProfOak_branch_f4ebf: ; f4ebf
 	note B_, 1
 	octave 4
 	note E_, 8
-	intensity $82
+	volenvelope $8, $0, $2
 	note B_, 6
 	note G#, 1
 	note B_, 1
-	intensity $83
+	volenvelope $8, $0, $3
 	octave 5
 	note E_, 8
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 3
 	note A_, 6
 	note F#, 1
@@ -212,7 +212,7 @@ Music_ProfOak_branch_f4ebf: ; f4ebf
 
 Music_ProfOak_Ch3: ; f4ef5
 	stereopanning $f
-	notetype $c, $14
+	notetype $c, $1, $0, $4
 	note __, 4
 	octave 3
 	note E_, 2
@@ -241,10 +241,10 @@ Music_ProfOak_branch_f4f1d: ; f4f1d
 	callchannel Music_ProfOak_branch_f4f5a
 	callchannel Music_ProfOak_branch_f4f69
 	callchannel Music_ProfOak_branch_f4f69
-	forceoctave $2
+	transpose $0, $2
 	callchannel Music_ProfOak_branch_f4f5a
 	callchannel Music_ProfOak_branch_f4f5a
-	forceoctave $0
+	transpose $0, $0
 	callchannel Music_ProfOak_branch_f4f69
 	callchannel Music_ProfOak_branch_f4f69
 	loopchannel 0, Music_ProfOak_branch_f4f1d
@@ -321,3 +321,5 @@ Music_ProfOak_branch_f4f69: ; f4f69
 	note B_, 2
 	endchannel
 ; f4f79
+
+

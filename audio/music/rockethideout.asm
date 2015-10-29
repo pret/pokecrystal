@@ -7,11 +7,11 @@ Music_RocketHideout: ; eeb75
 
 Music_RocketHideout_Ch1: ; eeb81
 	tempo 144
-	volume $77
-	dutycycle $3
-	tone $0004
-	vibrato $10, $44
-	notetype $c, $b3
+	volume $7, $7
+	waveduty $3
+	pitchoffset $0004
+	vibrato $10, $4, $4
+	notetype $c, $b, $0, $3
 	stereopanning $f0
 Music_RocketHideout_branch_eeb93: ; eeb93
 	note __, 16
@@ -108,12 +108,12 @@ Music_RocketHideout_branch_eeb98: ; eeb98
 	note F_, 2
 	note G_, 2
 	note __, 16
-	intensity $b7
+	volenvelope $b, $0, $7
 	octave 2
 	note G#, 16
 	note __, 16
 	note A_, 16
-	intensity $b3
+	volenvelope $b, $0, $3
 Music_RocketHideout_branch_eebfe: ; eebfe
 	note __, 16
 	loopchannel 4, Music_RocketHideout_branch_eebfe
@@ -121,10 +121,10 @@ Music_RocketHideout_branch_eebfe: ; eebfe
 ; eec07
 
 Music_RocketHideout_Ch2: ; eec07
-	dutycycle $3
-	tone $0002
-	vibrato $0, $f0
-	notetype $c, $c4
+	waveduty $3
+	pitchoffset $0002
+	vibrato $0, $f, $0
+	notetype $c, $c, $0, $4
 	stereopanning $f
 Music_RocketHideout_branch_eec14: ; eec14
 	octave 2
@@ -187,20 +187,20 @@ Music_RocketHideout_branch_eec14: ; eec14
 	note G#, 4
 	note G_, 2
 	note __, 6
-	intensity $c7
+	volenvelope $c, $0, $7
 	octave 3
 	note C#, 16
-	intensity $c4
+	volenvelope $c, $0, $4
 	octave 2
 	note C#, 2
 	note __, 2
 	note G#, 4
 	note G_, 2
 	note __, 6
-	intensity $c7
+	volenvelope $c, $0, $7
 	octave 3
 	note C#, 16
-	intensity $c4
+	volenvelope $c, $0, $4
 	octave 2
 	note C#, 2
 	note __, 2
@@ -224,7 +224,7 @@ Music_RocketHideout_branch_eec14: ; eec14
 ; eec79
 
 Music_RocketHideout_Ch3: ; eec79
-	notetype $c, $19
+	notetype $c, $1, $1, $1
 Music_RocketHideout_branch_eec7c: ; eec7c
 	octave 2
 	note D#, 2
@@ -277,7 +277,7 @@ Music_RocketHideout_branch_eeca6: ; eeca6
 ; eecb8
 
 Music_RocketHideout_Ch4: ; eecb8
-	togglenoise $0
+	drumkittoggle $0
 	notetype $c
 	stereopanning $f
 	note __, 16
@@ -311,3 +311,5 @@ Music_RocketHideout_branch_eecdb: ; eecdb
 	note A_, 4
 	endchannel
 ; eece8
+
+

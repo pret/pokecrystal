@@ -7,17 +7,17 @@ Music_BattleTowerTheme: ; 178889
 
 Music_BattleTowerTheme_Ch1: ; 178895
 	tempo 141
-	volume $77
-	tone $0001
-	vibrato $12, $34
+	volume $7, $7
+	pitchoffset $0001
+	vibrato $12, $3, $4
 	stereopanning $f
-	notetype $6, $94
+	notetype $6, $9, $0, $4
 Music_BattleTowerTheme_branch_1788a5: ; 1788a5
 	note __, 16
 	note __, 16
 	note __, 12
 	note __, 12
-	dutycycle $2
+	waveduty $2
 	octave 3
 	note C_, 2
 	note E_, 2
@@ -27,7 +27,7 @@ Music_BattleTowerTheme_branch_1788a5: ; 1788a5
 	note __, 2
 	note C_, 4
 	note __, 4
-	intensity $92
+	volenvelope $9, $0, $2
 	note G_, 2
 	note F_, 2
 	note C_, 2
@@ -46,7 +46,7 @@ Music_BattleTowerTheme_branch_1788a5: ; 1788a5
 	octave 2
 	note A#, 4
 	note __, 4
-	intensity $92
+	volenvelope $9, $0, $2
 	octave 3
 	note G_, 2
 	note D#, 2
@@ -60,7 +60,7 @@ Music_BattleTowerTheme_branch_1788a5: ; 1788a5
 	octave 3
 	note A_, 2
 	note F_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	note D_, 2
 	note __, 2
 	note E_, 4
@@ -103,7 +103,7 @@ Music_BattleTowerTheme_branch_1788a5: ; 1788a5
 	note C_, 2
 	note E_, 4
 	note __, 4
-	dutycycle $3
+	waveduty $3
 	note C_, 2
 	note E_, 2
 	note G_, 4
@@ -172,7 +172,7 @@ Music_BattleTowerTheme_branch_1788a5: ; 1788a5
 	note D#, 4
 	note C#, 4
 	note F_, 4
-	intensity $94
+	volenvelope $9, $0, $4
 	octave 4
 	note C_, 4
 	octave 3
@@ -188,7 +188,7 @@ Music_BattleTowerTheme_branch_1788a5: ; 1788a5
 ; 17895e
 
 Music_BattleTowerTheme_branch_17895e: ; 17895e
-	intensity $94
+	volenvelope $9, $0, $4
 	note A_, 2
 	note __, 2
 	note C_, 4
@@ -205,10 +205,10 @@ Music_BattleTowerTheme_branch_17895e: ; 17895e
 ; 17896d
 
 Music_BattleTowerTheme_Ch2: ; 17896d
-	vibrato $12, $34
+	vibrato $12, $3, $4
 Music_BattleTowerTheme_branch_178970: ; 178970
-	dutycycle $3
-	notetype $6, $b8
+	waveduty $3
+	notetype $6, $b, $1, $0
 	octave 3
 	note F_, 2
 	note __, 2
@@ -234,7 +234,7 @@ Music_BattleTowerTheme_branch_178970: ; 178970
 	octave 2
 	note A_, 4
 	note __, 4
-	tone $0001
+	pitchoffset $0001
 	note A_, 1
 	note __, 1
 	octave 3
@@ -242,8 +242,8 @@ Music_BattleTowerTheme_branch_178970: ; 178970
 	note __, 1
 	note F_, 4
 	note __, 4
-	tone $0000
-	intensity $b7
+	pitchoffset $0000
+	volenvelope $b, $0, $7
 	note G_, 2
 	octave 4
 	note C_, 2
@@ -252,11 +252,11 @@ Music_BattleTowerTheme_branch_178970: ; 178970
 	note A#, 4
 	note __, 2
 	note F_, 2
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	note C_, 12
-	notetype $6, $b7
+	notetype $6, $b, $0, $7
 	callchannel Music_BattleTowerTheme_branch_178a15
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	note A#, 2
 	note __, 1
 	note G_, 1
@@ -288,7 +288,7 @@ Music_BattleTowerTheme_branch_178970: ; 178970
 	note F_, 1
 	note E_, 8
 	stereopanning $f0
-	dutycycle $2
+	waveduty $2
 	note F_, 6
 	note A_, 1
 	note A#, 1
@@ -331,7 +331,7 @@ Music_BattleTowerTheme_branch_178970: ; 178970
 	note G#, 2
 	note G_, 5
 	note __, 1
-	notetype $6, $b7
+	notetype $6, $b, $0, $7
 	note G_, 1
 	note __, 1
 	note G_, 1
@@ -339,7 +339,7 @@ Music_BattleTowerTheme_branch_178970: ; 178970
 	note G_, 4
 	note __, 4
 	stereopanning $ff
-	dutycycle $3
+	waveduty $3
 	octave 3
 	note C_, 2
 	note D_, 2
@@ -362,8 +362,8 @@ Music_BattleTowerTheme_branch_178a15: ; 178a15
 ; 178a20
 
 Music_BattleTowerTheme_Ch3: ; 178a20
-	vibrato $12, $34
-	notetype $6, $16
+	vibrato $12, $3, $4
+	notetype $6, $1, $0, $6
 Music_BattleTowerTheme_branch_178a26: ; 178a26
 	stereopanning $ff
 	callchannel Music_BattleTowerTheme_branch_178afe
@@ -590,7 +590,7 @@ Music_BattleTowerTheme_branch_178afe: ; 178afe
 ; 178b0d
 
 Music_BattleTowerTheme_Ch4: ; 178b0d
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 Music_BattleTowerTheme_branch_178b11: ; 178b11
 	callchannel Music_BattleTowerTheme_branch_178b58
@@ -695,3 +695,5 @@ Music_BattleTowerTheme_branch_178b76: ; 178b76
 	note C#, 1
 	endchannel
 ; 178b81
+
+

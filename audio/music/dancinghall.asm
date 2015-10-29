@@ -4,24 +4,26 @@ Music_DancingHall: ; ef9bc
 	dbw $02, Music_DancingHall_Ch3
 ; ef9c5
 
-	db $3
+
+INCBIN "baserom.gbc", $ef9c5, $ef9c6 - $ef9c5
+
 
 Music_DancingHall_Ch1: ; ef9c6
 	tempo 208
-	volume $77
+	volume $7, $7
 	stereopanning $f
-	notetype $6, $b7
+	notetype $6, $b, $0, $7
 	note __, 3
-	dutycycle $0
+	waveduty $0
 Music_DancingHall_branch_ef9d3: ; ef9d3
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	callchannel Music_DancingHall_branch_efa17
 	note __, 16
 	callchannel Music_DancingHall_branch_efa17
 	note __, 16
 	note __, 16
 	note __, 16
-	intensity $b1
+	volenvelope $b, $0, $1
 	octave 2
 	note B_, 1
 	octave 3
@@ -34,28 +36,28 @@ Music_DancingHall_branch_ef9d3: ; ef9d3
 	octave 4
 	note D_, 1
 	note F_, 2
-	notetype $8, $b1
+	notetype $8, $b, $0, $1
 	note D_, 1
 	note E_, 1
 	note D_, 1
 	octave 3
 	note B_, 3
 	note A_, 3
-	notetype $c, $b1
+	notetype $c, $b, $0, $1
 	note B_, 1
 	note A_, 1
 	note D_, 1
 	note E_, 1
 	octave 4
 	note F_, 2
-	notetype $8, $b1
+	notetype $8, $b, $0, $1
 	octave 3
 	note B_, 1
 	octave 4
 	note D_, 1
 	octave 3
 	note B_, 1
-	notetype $c, $b5
+	notetype $c, $b, $0, $5
 	note A_, 1
 	note __, 1
 	note B_, 1
@@ -92,19 +94,19 @@ Music_DancingHall_branch_efa17: ; efa17
 
 Music_DancingHall_Ch2: ; efa2c
 	stereopanning $f0
-	notetype $6, $a1
-	dutycycle $0
-	vibrato $10, $24
+	notetype $6, $a, $0, $1
+	waveduty $0
+	vibrato $10, $2, $4
 	note __, 3
 Music_DancingHall_branch_efa37: ; efa37
-	notetype $6, $a2
+	notetype $6, $a, $0, $2
 	callchannel Music_DancingHall_branch_efa7a
 	callchannel Music_DancingHall_branch_efa7a
-	intensity $a7
+	volenvelope $a, $0, $7
 	octave 2
 	note D_, 16
 	note F_, 16
-	notetype $c, $a7
+	notetype $c, $a, $0, $7
 	note E_, 16
 	octave 3
 	note F_, 1
@@ -117,13 +119,13 @@ Music_DancingHall_branch_efa37: ; efa37
 	note E_, 1
 	note A_, 1
 	note B_, 2
-	notetype $8, $a7
+	notetype $8, $a, $0, $7
 	note A_, 1
 	note B_, 1
 	note A_, 1
 	note F_, 3
 	note D_, 3
-	notetype $c, $a7
+	notetype $c, $a, $0, $7
 	note E_, 1
 	note D_, 1
 	octave 3
@@ -131,11 +133,11 @@ Music_DancingHall_branch_efa37: ; efa37
 	note B_, 1
 	octave 4
 	note A_, 2
-	notetype $8, $a7
+	notetype $8, $a, $0, $7
 	note F_, 1
 	note A_, 1
 	note F_, 1
-	notetype $c, $a7
+	notetype $c, $a, $0, $7
 	note E_, 1
 	note __, 1
 	note F_, 1
@@ -147,7 +149,7 @@ Music_DancingHall_branch_efa37: ; efa37
 ; efa7a
 
 Music_DancingHall_branch_efa7a: ; efa7a
-	intensity $a1
+	volenvelope $a, $0, $1
 	octave 4
 	note E_, 4
 	octave 2
@@ -161,62 +163,62 @@ Music_DancingHall_branch_efa7a: ; efa7a
 	note A_, 4
 	note F_, 4
 	note A_, 4
-	intensity $33
+	volenvelope $3, $0, $3
 	note D_, 1
 	note F_, 1
-	intensity $63
+	volenvelope $6, $0, $3
 	note D_, 1
 	note F_, 1
-	intensity $93
+	volenvelope $9, $0, $3
 	note D_, 1
 	note F_, 1
-	intensity $c3
+	volenvelope $c, $0, $3
 	note D_, 1
 	note F_, 1
-	intensity $e3
+	volenvelope $e, $0, $3
 	note D_, 1
 	note F_, 1
-	intensity $a3
+	volenvelope $a, $0, $3
 	note D_, 1
 	note F_, 1
-	intensity $83
+	volenvelope $8, $0, $3
 	note D_, 1
 	note F_, 1
-	intensity $53
+	volenvelope $5, $0, $3
 	note D_, 1
 	note F_, 1
-	intensity $73
+	volenvelope $7, $0, $3
 	octave 3
 	note B_, 1
 	octave 4
 	note E_, 1
-	intensity $a3
+	volenvelope $a, $0, $3
 	octave 3
 	note B_, 1
 	octave 4
 	note E_, 1
-	intensity $b3
+	volenvelope $b, $0, $3
 	octave 3
 	note A_, 1
 	octave 4
 	note D_, 1
-	intensity $c3
+	volenvelope $c, $0, $3
 	octave 3
 	note A_, 1
 	octave 4
 	note D_, 1
-	intensity $d3
+	volenvelope $d, $0, $3
 	octave 3
 	note E_, 1
 	note B_, 1
-	intensity $e3
+	volenvelope $e, $0, $3
 	note E_, 1
 	note B_, 1
-	intensity $f3
+	volenvelope $f, $0, $3
 	note A_, 1
 	octave 4
 	note D_, 1
-	intensity $f3
+	volenvelope $f, $0, $3
 	octave 3
 	note A_, 1
 	octave 4
@@ -226,8 +228,8 @@ Music_DancingHall_branch_efa7a: ; efa7a
 
 Music_DancingHall_Ch3: ; efad6
 	stereopanning $ff
-	vibrato $16, $24
-	notetype $6, $10
+	vibrato $16, $2, $4
+	notetype $6, $1, $0, $0
 	octave 5
 	note A_, 1
 	note B_, 1
@@ -239,11 +241,11 @@ Music_DancingHall_branch_efae3: ; efae3
 	note E_, 1
 	note A_, 1
 	note B_, 16
-	intensity $14
+	volenvelope $1, $0, $4
 	octave 3
 	note F_, 16
 	note E_, 14
-	intensity $10
+	volenvelope $1, $0, $0
 	octave 6
 	note E_, 1
 	note F_, 1
@@ -252,11 +254,11 @@ Music_DancingHall_branch_efae3: ; efae3
 	note E_, 1
 	note A_, 1
 	note B_, 16
-	intensity $14
+	volenvelope $1, $0, $4
 	octave 3
 	note F_, 16
 	note E_, 16
-	intensity $13
+	volenvelope $1, $0, $3
 	octave 4
 	note F_, 2
 	note A_, 2
@@ -269,13 +271,13 @@ Music_DancingHall_branch_efae3: ; efae3
 	note A_, 2
 	note A#, 1
 	note B_, 3
-	notetype $8, $13
+	notetype $8, $1, $0, $3
 	note A_, 1
 	note B_, 1
 	note A_, 1
 	note F_, 3
 	note D_, 3
-	notetype $c, $13
+	notetype $c, $1, $0, $3
 	note E_, 1
 	note D_, 1
 	octave 4
@@ -283,11 +285,11 @@ Music_DancingHall_branch_efae3: ; efae3
 	note B_, 1
 	octave 5
 	note A_, 2
-	notetype $8, $13
+	notetype $8, $1, $0, $3
 	note F_, 1
 	note A_, 1
 	note F_, 1
-	notetype $6, $13
+	notetype $6, $1, $0, $3
 	note D#, 1
 	note E_, 3
 	note D_, 4
@@ -295,13 +297,13 @@ Music_DancingHall_branch_efae3: ; efae3
 	note B_, 4
 	octave 5
 	note D_, 4
-	intensity $14
+	volenvelope $1, $0, $4
 	octave 3
 	note D_, 16
 	note F_, 16
 	note E_, 16
 	note E_, 13
-	intensity $10
+	volenvelope $1, $0, $0
 	octave 5
 	note A_, 1
 	note B_, 1
@@ -309,3 +311,5 @@ Music_DancingHall_branch_efae3: ; efae3
 	note D_, 1
 	loopchannel 0, Music_DancingHall_branch_efae3
 ; efb3e
+
+

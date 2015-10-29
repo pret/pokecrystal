@@ -7,16 +7,16 @@ Music_MainMenu: ; f78fd
 
 Music_MainMenu_Ch1: ; f7909
 	tempo 160
-	volume $77
-	dutycycle $3
-	tone $0001
-	vibrato $10, $15
+	volume $7, $7
+	waveduty $3
+	pitchoffset $0001
+	vibrato $10, $1, $5
 	stereopanning $f0
-	notetype $c, $f
+	notetype $c, $0, $1, $7
 	octave 3
 	note D_, 8
 Music_MainMenu_branch_f791d: ; f791d
-	notetype $c, $92
+	notetype $c, $9, $0, $2
 	octave 3
 	note C#, 6
 	note C#, 1
@@ -37,20 +37,20 @@ Music_MainMenu_branch_f791d: ; f791d
 	note B_, 1
 	note B_, 2
 	note B_, 2
-	notetype $c, $94
+	notetype $c, $9, $0, $4
 	octave 3
 	note C_, 4
 	loopchannel 0, Music_MainMenu_branch_f791d
 ; f7940
 
 Music_MainMenu_Ch2: ; f7940
-	dutycycle $3
+	waveduty $3
 	stereopanning $f
-	notetype $c, $f
+	notetype $c, $0, $1, $7
 	octave 3
 	note G_, 8
 Music_MainMenu_branch_f7949: ; f7949
-	notetype $c, $a2
+	notetype $c, $a, $0, $2
 	note F#, 6
 	note F#, 1
 	note F#, 1
@@ -69,14 +69,14 @@ Music_MainMenu_branch_f7949: ; f7949
 	note E_, 1
 	note E_, 2
 	note E_, 2
-	notetype $c, $a4
+	notetype $c, $a, $0, $4
 	note F_, 4
 	loopchannel 0, Music_MainMenu_branch_f7949
 ; f7969
 
 Music_MainMenu_Ch3: ; f7969
 	stereopanning $f0
-	notetype $c, $25
+	notetype $c, $2, $0, $5
 	note __, 8
 Music_MainMenu_branch_f796f: ; f796f
 	octave 2
@@ -116,7 +116,7 @@ Music_MainMenu_branch_f796f: ; f796f
 
 Music_MainMenu_Ch4: ; f7996
 	stereopanning $f
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note __, 8
 	note __, 16
@@ -145,3 +145,5 @@ Music_MainMenu_branch_f79a5: ; f79a5
 	note D_, 1
 	loopchannel 0, Music_MainMenu_branch_f79a5
 ; f79b8
+
+

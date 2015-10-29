@@ -138,7 +138,7 @@ Sfx_Save: ; f09b0
 ; f09b6
 
 Sfx_Save_Ch5: ; f09b6
-	dutycycle $2
+	waveduty $2
 	sound $2, $f1, $0700
 	sound $1, $e1, $0600
 	sound $1, $e1, $0680
@@ -150,7 +150,7 @@ Sfx_Save_Ch5: ; f09b6
 ; f09d5
 
 Sfx_Save_Ch6: ; f09d5
-	dutycycle $2
+	waveduty $2
 	sound $2, $8, $0000
 	sound $2, $a1, $0701
 	sound $1, $91, $0601
@@ -497,14 +497,14 @@ Sfx_DexFanfare5079_Ch5: ; f0b4b
 Sfx_LevelUp_Ch5: ; f0b4b
 	togglesfx
 	tempo 120
-	volume $77
-	dutycycle $2
-	notetype $8, $b1
+	volume $7, $7
+	waveduty $2
+	notetype $8, $b, $0, $1
 	octave 3
 	note B_, 2
 	note B_, 2
 	note B_, 2
-	intensity $b3
+	volenvelope $b, $0, $3
 	octave 4
 	note G#, 12
 	endchannel
@@ -513,13 +513,13 @@ Sfx_LevelUp_Ch5: ; f0b4b
 Sfx_DexFanfare5079_Ch6: ; f0b5f
 Sfx_LevelUp_Ch6: ; f0b5f
 	togglesfx
-	dutycycle $2
-	notetype $8, $c1
+	waveduty $2
+	notetype $8, $c, $0, $1
 	octave 4
 	note E_, 2
 	note E_, 2
 	note E_, 2
-	intensity $c3
+	volenvelope $c, $0, $3
 	note B_, 12
 	endchannel
 ; f0b6d
@@ -527,7 +527,7 @@ Sfx_LevelUp_Ch6: ; f0b5f
 Sfx_DexFanfare5079_Ch7: ; f0b6d
 Sfx_LevelUp_Ch7: ; f0b6d
 	togglesfx
-	notetype $8, $25
+	notetype $8, $2, $0, $5
 	octave 4
 	note G#, 1
 	note __, 1
@@ -537,7 +537,7 @@ Sfx_LevelUp_Ch7: ; f0b6d
 	note __, 1
 	octave 5
 	note E_, 5
-	intensity $35
+	volenvelope $3, $0, $5
 	note E_, 3
 	note __, 4
 	endchannel
@@ -546,7 +546,7 @@ Sfx_LevelUp_Ch7: ; f0b6d
 Sfx_DexFanfare5079_Ch8: ; f0b7f
 Sfx_LevelUp_Ch8: ; f0b7f
 	togglesfx
-	sfxtogglenoise $4
+	sfxdrumkittoggle $4
 	notetype $c
 	note C_, 12
 	endchannel
@@ -562,9 +562,9 @@ Sfx_KeyItem: ; f0b86
 Sfx_KeyItem_Ch5: ; f0b92
 	togglesfx
 	tempo 120
-	volume $77
-	dutycycle $2
-	notetype $6, $b1
+	volume $7, $7
+	waveduty $2
+	notetype $6, $b, $0, $1
 	octave 3
 	note B_, 4
 	note B_, 2
@@ -572,29 +572,29 @@ Sfx_KeyItem_Ch5: ; f0b92
 	note B_, 4
 	octave 4
 	note E_, 4
-	intensity $b3
+	volenvelope $b, $0, $3
 	note G#, 16
 	endchannel
 ; f0ba8
 
 Sfx_KeyItem_Ch6: ; f0ba8
 	togglesfx
-	dutycycle $2
-	notetype $6, $c1
+	waveduty $2
+	notetype $6, $c, $0, $1
 	octave 4
 	note E_, 4
 	note E_, 2
 	note E_, 2
 	note E_, 4
 	note G#, 4
-	intensity $c3
+	volenvelope $c, $0, $3
 	note B_, 16
 	endchannel
 ; f0bb8
 
 Sfx_KeyItem_Ch7: ; f0bb8
 	togglesfx
-	notetype $6, $25
+	notetype $6, $2, $0, $5
 	octave 4
 	note G#, 2
 	note __, 2
@@ -608,7 +608,7 @@ Sfx_KeyItem_Ch7: ; f0bb8
 	note __, 2
 	octave 5
 	note E_, 8
-	intensity $35
+	volenvelope $3, $0, $5
 	note E_, 4
 	note __, 4
 	endchannel
@@ -616,7 +616,7 @@ Sfx_KeyItem_Ch7: ; f0bb8
 
 Sfx_KeyItem_Ch8: ; f0bce
 	togglesfx
-	sfxtogglenoise $4
+	sfxdrumkittoggle $4
 	notetype $c
 	note C_, 16
 	endchannel
@@ -632,9 +632,9 @@ Sfx_DexFanfare2049: ; f0bd5
 Sfx_DexFanfare2049_Ch5: ; f0be1
 	togglesfx
 	tempo 104
-	volume $77
-	dutycycle $2
-	notetype $c, $88
+	volume $7, $7
+	waveduty $2
+	notetype $c, $8, $1, $0
 	octave 3
 	note A_, 4
 	note __, 2
@@ -657,8 +657,8 @@ Sfx_DexFanfare2049_Ch5: ; f0be1
 
 Sfx_DexFanfare2049_Ch6: ; f0bfe
 	togglesfx
-	dutycycle $2
-	notetype $c, $c1
+	waveduty $2
+	notetype $c, $c, $0, $1
 	octave 5
 	note F_, 2
 	note E_, 2
@@ -678,7 +678,7 @@ Sfx_DexFanfare2049_Ch6: ; f0bfe
 
 Sfx_DexFanfare2049_Ch7: ; f0c13
 	togglesfx
-	notetype $c, $25
+	notetype $c, $2, $0, $5
 	octave 4
 	note F_, 4
 	note __, 2
@@ -699,7 +699,7 @@ Sfx_DexFanfare2049_Ch7: ; f0c13
 
 Sfx_DexFanfare2049_Ch8: ; f0c27
 	togglesfx
-	sfxtogglenoise $4
+	sfxdrumkittoggle $4
 	notetype $c
 	note C_, 16
 	note __, 16
@@ -716,10 +716,10 @@ Sfx_Item: ; f0c2f
 Sfx_Item_Ch5: ; f0c3b
 	togglesfx
 	tempo 108
-	volume $77
-	vibrato $8, $27
-	dutycycle $2
-	notetype $8, $b2
+	volume $7, $7
+	vibrato $8, $2, $7
+	waveduty $2
+	notetype $8, $b, $0, $2
 	octave 4
 	note C_, 6
 	note C_, 2
@@ -735,9 +735,9 @@ Sfx_Item_Ch5: ; f0c3b
 
 Sfx_Item_Ch6: ; f0c54
 	togglesfx
-	vibrato $8, $27
-	dutycycle $2
-	notetype $8, $c3
+	vibrato $8, $2, $7
+	waveduty $2
+	notetype $8, $c, $0, $3
 	octave 4
 	note A_, 6
 	note A_, 2
@@ -753,7 +753,7 @@ Sfx_Item_Ch6: ; f0c54
 
 Sfx_Item_Ch7: ; f0c68
 	togglesfx
-	notetype $8, $25
+	notetype $8, $2, $0, $5
 	octave 4
 	note F_, 4
 	note __, 2
@@ -770,7 +770,7 @@ Sfx_Item_Ch7: ; f0c68
 	note E_, 2
 	note __, 2
 	note F_, 6
-	intensity $35
+	volenvelope $3, $0, $5
 	note F_, 4
 	note __, 14
 	endchannel
@@ -778,7 +778,7 @@ Sfx_Item_Ch7: ; f0c68
 
 Sfx_Item_Ch8: ; f0c81
 	togglesfx
-	sfxtogglenoise $4
+	sfxdrumkittoggle $4
 	notetype $c
 	note C_, 16
 	note __, 16
@@ -795,16 +795,16 @@ Sfx_CaughtMon: ; f0c89
 Sfx_CaughtMon_Ch5: ; f0c95
 	togglesfx
 	tempo 112
-	volume $77
-	vibrato $8, $27
-	dutycycle $2
-	notetype $8, $b3
+	volume $7, $7
+	vibrato $8, $2, $7
+	waveduty $2
+	notetype $8, $b, $0, $3
 	octave 4
 	note C_, 6
 	octave 3
 	note A_, 6
 	note F_, 12
-	intensity $b1
+	volenvelope $b, $0, $1
 	octave 4
 	note D#, 2
 	note D#, 2
@@ -812,35 +812,35 @@ Sfx_CaughtMon_Ch5: ; f0c95
 	note D#, 2
 	note D#, 2
 	note G_, 2
-	intensity $b3
+	volenvelope $b, $0, $3
 	note F_, 12
 	endchannel
 ; f0cb5
 
 Sfx_CaughtMon_Ch6: ; f0cb5
 	togglesfx
-	dutycycle $2
-	vibrato $8, $27
-	notetype $8, $c3
+	waveduty $2
+	vibrato $8, $2, $7
+	notetype $8, $c, $0, $3
 	octave 4
 	note A_, 6
 	note F_, 6
 	note C_, 12
-	intensity $c1
+	volenvelope $c, $0, $1
 	note A#, 2
 	note A#, 2
 	note A#, 2
 	note G_, 2
 	note G_, 2
 	note A#, 2
-	intensity $c3
+	volenvelope $c, $0, $3
 	note A_, 12
 	endchannel
 ; f0cce
 
 Sfx_CaughtMon_Ch7: ; f0cce
 	togglesfx
-	notetype $8, $25
+	notetype $8, $2, $0, $5
 	octave 3
 	note C_, 12
 	note C_, 6
@@ -852,7 +852,7 @@ Sfx_CaughtMon_Ch7: ; f0cce
 	note G_, 6
 	note A#, 6
 	note A_, 6
-	intensity $35
+	volenvelope $3, $0, $5
 	note A_, 3
 	note __, 3
 	endchannel
@@ -860,7 +860,7 @@ Sfx_CaughtMon_Ch7: ; f0cce
 
 Sfx_CaughtMon_Ch8: ; f0ce2
 	togglesfx
-	sfxtogglenoise $4
+	sfxdrumkittoggle $4
 	notetype $c
 	note C_, 16
 	note __, 16
@@ -877,10 +877,10 @@ Sfx_DexFanfare80109: ; f0cea
 Sfx_DexFanfare80109_Ch5: ; f0cf6
 	togglesfx
 	tempo 112
-	volume $77
-	vibrato $8, $27
-	dutycycle $2
-	notetype $c, $b1
+	volume $7, $7
+	vibrato $8, $2, $7
+	waveduty $2
+	notetype $c, $b, $0, $1
 	octave 4
 	note D#, 2
 	note D#, 1
@@ -896,16 +896,16 @@ Sfx_DexFanfare80109_Ch5: ; f0cf6
 	note F_, 2
 	note F_, 1
 	note F_, 1
-	intensity $a5
+	volenvelope $a, $0, $5
 	note A#, 16
 	endchannel
 ; f0d17
 
 Sfx_DexFanfare80109_Ch6: ; f0d17
 	togglesfx
-	vibrato $8, $27
-	dutycycle $2
-	notetype $c, $c1
+	vibrato $8, $2, $7
+	waveduty $2
+	notetype $c, $c, $0, $1
 	octave 4
 	note G_, 2
 	note G_, 1
@@ -919,7 +919,7 @@ Sfx_DexFanfare80109_Ch6: ; f0d17
 	note A#, 2
 	note A#, 1
 	note A#, 1
-	intensity $b5
+	volenvelope $b, $0, $5
 	octave 5
 	note D#, 16
 	endchannel
@@ -927,7 +927,7 @@ Sfx_DexFanfare80109_Ch6: ; f0d17
 
 Sfx_DexFanfare80109_Ch7: ; f0d32
 	togglesfx
-	notetype $c, $25
+	notetype $c, $2, $0, $5
 	octave 4
 	note D#, 1
 	note __, 1
@@ -947,7 +947,7 @@ Sfx_DexFanfare80109_Ch7: ; f0d32
 	octave 3
 	note A#, 2
 	note D#, 4
-	intensity $35
+	volenvelope $3, $0, $5
 	note D#, 3
 	note __, 9
 	endchannel
@@ -955,7 +955,7 @@ Sfx_DexFanfare80109_Ch7: ; f0d32
 
 Sfx_DexFanfare80109_Ch8: ; f0d4e
 	togglesfx
-	sfxtogglenoise $4
+	sfxdrumkittoggle $4
 	notetype $c
 	note C_, 16
 	note __, 16
@@ -978,10 +978,10 @@ UnknownSfx: ; f0d5f
 UnknownSfx_Ch5: ; f0d6b
 	togglesfx
 	tempo 124
-	volume $77
-	vibrato $8, $27
-	dutycycle $2
-	notetype $c, $b1
+	volume $7, $7
+	vibrato $8, $2, $7
+	waveduty $2
+	notetype $c, $b, $0, $1
 	octave 4
 	note F_, 2
 	note F_, 1
@@ -995,16 +995,16 @@ UnknownSfx_Ch5: ; f0d6b
 	note C_, 2
 	note E_, 1
 	note E_, 1
-	intensity $a5
+	volenvelope $a, $0, $5
 	note F_, 16
 	endchannel
 ; f0d8a
 
 UnknownSfx_Ch6: ; f0d8a
 	togglesfx
-	vibrato $8, $27
-	dutycycle $2
-	notetype $c, $c1
+	vibrato $8, $2, $7
+	waveduty $2
+	notetype $c, $c, $0, $1
 	octave 4
 	note A_, 2
 	note A_, 1
@@ -1020,14 +1020,14 @@ UnknownSfx_Ch6: ; f0d8a
 	note A#, 2
 	note A#, 1
 	note A#, 1
-	intensity $b5
+	volenvelope $b, $0, $5
 	note A_, 16
 	endchannel
 ; f0da6
 
 UnknownSfx_Ch7: ; f0da6
 	togglesfx
-	notetype $c, $25
+	notetype $c, $2, $0, $5
 	octave 4
 	note F_, 8
 	note C_, 2
@@ -1035,7 +1035,7 @@ UnknownSfx_Ch7: ; f0da6
 	note G_, 2
 	note A#, 2
 	note A_, 4
-	intensity $35
+	volenvelope $3, $0, $5
 	note A_, 3
 	note __, 9
 	endchannel
@@ -1043,7 +1043,7 @@ UnknownSfx_Ch7: ; f0da6
 
 UnknownSfx_Ch8: ; f0db6
 	togglesfx
-	sfxtogglenoise $4
+	sfxdrumkittoggle $4
 	notetype $c
 	note C_, 16
 	note __, 16
@@ -1066,9 +1066,9 @@ Sfx_RegisterPhoneNumber: ; f0dc7
 Sfx_RegisterPhoneNumber_Ch5: ; f0dd3
 	togglesfx
 	tempo 124
-	volume $77
-	dutycycle $3
-	notetype $c, $a2
+	volume $7, $7
+	waveduty $3
+	notetype $c, $a, $0, $2
 	note __, 2
 	octave 3
 	note C_, 4
@@ -1088,12 +1088,14 @@ Sfx_RegisterPhoneNumber_Ch5: ; f0dd3
 	endchannel
 ; f0def
 
-	db $df
+
+INCBIN "baserom.gbc", $f0def, $f0df0 - $f0def
+
 
 Sfx_RegisterPhoneNumber_Ch6: ; f0df0
 	togglesfx
-	dutycycle $3
-	notetype $c, $c2
+	waveduty $3
+	notetype $c, $c, $0, $2
 	note __, 2
 	octave 4
 	note D#, 2
@@ -1113,11 +1115,13 @@ Sfx_RegisterPhoneNumber_Ch6: ; f0df0
 	endchannel
 ; f0e07
 
-	db $df
+
+INCBIN "baserom.gbc", $f0e07, $f0e08 - $f0e07
+
 
 Sfx_RegisterPhoneNumber_Ch7: ; f0e08
 	togglesfx
-	notetype $c, $25
+	notetype $c, $2, $0, $5
 	note __, 2
 	octave 3
 	note D#, 7
@@ -1135,11 +1139,13 @@ Sfx_RegisterPhoneNumber_Ch7: ; f0e08
 	endchannel
 ; f0e1b
 
-	db $df
+
+INCBIN "baserom.gbc", $f0e1b, $f0e1c - $f0e1b
+
 
 Sfx_RegisterPhoneNumber_Ch8: ; f0e1c
 	togglesfx
-	sfxtogglenoise $4
+	sfxdrumkittoggle $4
 	notetype $c
 	note C_, 2
 	note __, 16
@@ -1147,7 +1153,9 @@ Sfx_RegisterPhoneNumber_Ch8: ; f0e1c
 	endchannel
 ; f0e25
 
-	db $df
+
+INCBIN "baserom.gbc", $f0e25, $f0e26 - $f0e25
+
 
 Sfx_3RdPlace: ; f0e26
 	dbw $84, Sfx_3RdPlace_Ch5
@@ -1158,9 +1166,9 @@ Sfx_3RdPlace: ; f0e26
 Sfx_3RdPlace_Ch5: ; f0e2f
 	togglesfx
 	tempo 120
-	volume $77
-	dutycycle $2
-	notetype $c, $a4
+	volume $7, $7
+	waveduty $2
+	notetype $c, $a, $0, $4
 	octave 4
 	note F_, 1
 	note A_, 1
@@ -1173,12 +1181,14 @@ Sfx_3RdPlace_Ch5: ; f0e2f
 	endchannel
 ; f0e44
 
-	db $df
+
+INCBIN "baserom.gbc", $f0e44, $f0e45 - $f0e44
+
 
 Sfx_3RdPlace_Ch6: ; f0e45
 	togglesfx
-	dutycycle $2
-	notetype $c, $b4
+	waveduty $2
+	notetype $c, $b, $0, $4
 	octave 4
 	note A_, 1
 	octave 5
@@ -1191,11 +1201,13 @@ Sfx_3RdPlace_Ch6: ; f0e45
 	endchannel
 ; f0e55
 
-	db $df
+
+INCBIN "baserom.gbc", $f0e55, $f0e56 - $f0e55
+
 
 Sfx_3RdPlace_Ch7: ; f0e56
 	togglesfx
-	notetype $c, $25
+	notetype $c, $2, $0, $5
 	octave 3
 	note A_, 1
 	note F_, 1
@@ -1209,7 +1221,9 @@ Sfx_3RdPlace_Ch7: ; f0e56
 	endchannel
 ; f0e65
 
-	db $df
+
+INCBIN "baserom.gbc", $f0e65, $f0e66 - $f0e65
+
 
 Sfx_GetEggFromDaycareLady: ; f0e66
 Sfx_GetEggFromDaycareMan: ; f0e66
@@ -1223,10 +1237,10 @@ Sfx_GetEggFromDaycareLady_Ch5: ; f0e72
 Sfx_GetEggFromDaycareMan_Ch5: ; f0e72
 	togglesfx
 	tempo 120
-	volume $77
-	vibrato $12, $34
-	dutycycle $2
-	notetype $8, $a1
+	volume $7, $7
+	vibrato $12, $3, $4
+	waveduty $2
+	notetype $8, $a, $0, $1
 	note __, 2
 	octave 3
 	note C_, 2
@@ -1236,58 +1250,62 @@ Sfx_GetEggFromDaycareMan_Ch5: ; f0e72
 	note A#, 2
 	octave 4
 	note D_, 2
-	intensity $a2
+	volenvelope $a, $0, $2
 	note F_, 6
-	intensity $a1
-	dutycycle $3
+	volenvelope $a, $0, $1
+	waveduty $3
 	octave 3
 	note E_, 2
 	note G_, 2
 	octave 4
 	note C_, 2
-	intensity $a4
+	volenvelope $a, $0, $4
 	note F_, 9
 	note __, 9
 	endchannel
 ; f0e9a
 
-	db $df
+
+INCBIN "baserom.gbc", $f0e9a, $f0e9b - $f0e9a
+
 
 Sfx_GetEggFromDaycareLady_Ch6: ; f0e9b
 Sfx_GetEggFromDaycareMan_Ch6: ; f0e9b
 	togglesfx
-	vibrato $12, $34
-	dutycycle $3
-	notetype $8, $c2
+	vibrato $12, $3, $4
+	waveduty $3
+	notetype $8, $c, $0, $2
 	note __, 2
 	octave 4
 	note F_, 2
 	note __, 2
 	note A_, 2
-	intensity $c1
+	volenvelope $c, $0, $1
 	note A#, 2
 	note A_, 2
 	note A#, 2
-	intensity $c2
+	volenvelope $c, $0, $2
 	octave 5
 	note C_, 6
-	intensity $c1
+	volenvelope $c, $0, $1
 	octave 4
 	note C_, 2
 	note E_, 2
 	note G_, 2
-	intensity $c4
+	volenvelope $c, $0, $4
 	note A_, 9
 	note __, 9
 	endchannel
 ; f0ebd
 
-	db $df
+
+INCBIN "baserom.gbc", $f0ebd, $f0ebe - $f0ebd
+
 
 Sfx_GetEggFromDaycareLady_Ch7: ; f0ebe
 Sfx_GetEggFromDaycareMan_Ch7: ; f0ebe
 	togglesfx
-	notetype $8, $25
+	notetype $8, $2, $0, $5
 	note __, 2
 	octave 3
 	note C_, 6
@@ -1303,12 +1321,14 @@ Sfx_GetEggFromDaycareMan_Ch7: ; f0ebe
 	endchannel
 ; f0ecf
 
-	db $df
+
+INCBIN "baserom.gbc", $f0ecf, $f0ed0 - $f0ecf
+
 
 Sfx_GetEggFromDaycareLady_Ch8: ; f0ed0
 Sfx_GetEggFromDaycareMan_Ch8: ; f0ed0
 	togglesfx
-	sfxtogglenoise $4
+	sfxdrumkittoggle $4
 	notetype $8
 	note __, 2
 	notetype $c
@@ -1317,7 +1337,9 @@ Sfx_GetEggFromDaycareMan_Ch8: ; f0ed0
 	endchannel
 ; f0edb
 
-	db $df
+
+INCBIN "baserom.gbc", $f0edb, $f0edc - $f0edb
+
 
 Sfx_MoveDeleted: ; f0edc
 	dbw $c4, Sfx_MoveDeleted_Ch5
@@ -1329,10 +1351,10 @@ Sfx_MoveDeleted: ; f0edc
 Sfx_MoveDeleted_Ch5: ; f0ee8
 	togglesfx
 	tempo 116
-	volume $77
-	dutycycle $2
-	vibrato $c, $44
-	notetype $c, $a4
+	volume $7, $7
+	waveduty $2
+	vibrato $c, $4, $4
+	notetype $c, $a, $0, $4
 	note __, 8
 	octave 2
 	note G_, 1
@@ -1341,39 +1363,41 @@ Sfx_MoveDeleted_Ch5: ; f0ee8
 	note E_, 1
 	note D#, 1
 	note E_, 4
-	intensity $a1
+	volenvelope $a, $0, $1
 	note G_, 2
 	note F_, 2
 	note E_, 2
 	note D_, 2
 	note G#, 2
 	note B_, 2
-	intensity $a6
+	volenvelope $a, $0, $6
 	octave 3
 	note D_, 10
 	note __, 6
 	endchannel
 ; f0f0c
 
-	db $df
+
+INCBIN "baserom.gbc", $f0f0c, $f0f0d - $f0f0c
+
 
 Sfx_MoveDeleted_Ch6: ; f0f0d
 	togglesfx
-	dutycycle $3
-	vibrato $c, $44
-	notetype $c, $74
+	waveduty $3
+	vibrato $c, $4, $4
+	notetype $c, $7, $0, $4
 	octave 1
 	note B_, 1
 	octave 2
 	note D_, 1
 	note F_, 1
 	note G#, 1
-	intensity $94
+	volenvelope $9, $0, $4
 	note D_, 1
 	note F_, 1
 	note G#, 1
 	note B_, 1
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 3
 	note C#, 1
 	note __, 2
@@ -1382,21 +1406,23 @@ Sfx_MoveDeleted_Ch6: ; f0f0d
 	octave 3
 	note C#, 4
 	note __, 2
-	intensity $b1
+	volenvelope $b, $0, $1
 	note C#, 2
 	note D#, 2
 	note E_, 2
-	intensity $b6
+	volenvelope $b, $0, $6
 	note F_, 16
 	note __, 6
 	endchannel
 ; f0f36
 
-	db $df
+
+INCBIN "baserom.gbc", $f0f36, $f0f37 - $f0f36
+
 
 Sfx_MoveDeleted_Ch7: ; f0f37
 	togglesfx
-	notetype $6, $25
+	notetype $6, $2, $0, $5
 	octave 2
 	note G#, 8
 	note A_, 8
@@ -1414,17 +1440,19 @@ Sfx_MoveDeleted_Ch7: ; f0f37
 	octave 2
 	note A#, 2
 	note __, 2
-	notetype $c, $20
+	notetype $c, $2, $0, $0
 	note B_, 16
 	note __, 6
 	endchannel
 ; f0f52
 
-	db $df
+
+INCBIN "baserom.gbc", $f0f52, $f0f53 - $f0f52
+
 
 Sfx_MoveDeleted_Ch8: ; f0f53
 	togglesfx
-	sfxtogglenoise $3
+	sfxdrumkittoggle $3
 	notetype $c
 	note F_, 8
 	note __, 16
@@ -1433,7 +1461,9 @@ Sfx_MoveDeleted_Ch8: ; f0f53
 	endchannel
 ; f0f5d
 
-	db $df
+
+INCBIN "baserom.gbc", $f0f5d, $f0f5e - $f0f5d
+
 
 Sfx_2ndPlace: ; f0f5e
 	dbw $c4, Sfx_2ndPlace_Ch5
@@ -1445,10 +1475,10 @@ Sfx_2ndPlace: ; f0f5e
 Sfx_2ndPlace_Ch5: ; f0f6a
 	togglesfx
 	tempo 116
-	volume $77
-	dutycycle $2
-	vibrato $c, $34
-	notetype $8, $a1
+	volume $7, $7
+	waveduty $2
+	vibrato $c, $3, $4
+	notetype $8, $a, $0, $1
 	octave 4
 	note E_, 2
 	note E_, 2
@@ -1469,42 +1499,46 @@ Sfx_2ndPlace_Ch5: ; f0f6a
 	note A_, 2
 	note A_, 2
 	note A_, 2
-	intensity $a7
+	volenvelope $a, $0, $7
 	note B_, 12
 	note __, 6
 	endchannel
 ; f0f91
 
-	db $df
+
+INCBIN "baserom.gbc", $f0f91, $f0f92 - $f0f91
+
 
 Sfx_2ndPlace_Ch6: ; f0f92
 	togglesfx
-	dutycycle $2
-	notetype $8, $b1
+	waveduty $2
+	notetype $8, $b, $0, $1
 	octave 4
 	note G_, 2
 	note G_, 2
 	note G_, 2
 	note A_, 4
 	note B_, 2
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 5
 	note C_, 12
-	intensity $b1
+	volenvelope $b, $0, $1
 	note C_, 2
 	note C_, 2
 	note C_, 2
-	intensity $b7
+	volenvelope $b, $0, $7
 	note D_, 12
 	note __, 6
 	endchannel
 ; f0fac
 
-	db $df
+
+INCBIN "baserom.gbc", $f0fac, $f0fad - $f0fac
+
 
 Sfx_2ndPlace_Ch7: ; f0fad
 	togglesfx
-	notetype $8, $25
+	notetype $8, $2, $0, $5
 	octave 3
 	note C_, 1
 	note __, 1
@@ -1539,11 +1573,13 @@ Sfx_2ndPlace_Ch7: ; f0fad
 	endchannel
 ; f0fd1
 
-	db $df
+
+INCBIN "baserom.gbc", $f0fd1, $f0fd2 - $f0fd1
+
 
 Sfx_2ndPlace_Ch8: ; f0fd2
 	togglesfx
-	sfxtogglenoise $3
+	sfxdrumkittoggle $3
 	notetype $8
 Sfx_2ndPlace_branch_f0fd7: ; f0fd7
 	note C#, 1
@@ -1555,7 +1591,9 @@ Sfx_2ndPlace_branch_f0fd7: ; f0fd7
 	endchannel
 ; f0fe1
 
-	db $df
+
+INCBIN "baserom.gbc", $f0fe1, $f0fe2 - $f0fe1
+
 
 Sfx_1stPlace: ; f0fe2
 	dbw $c4, Sfx_1stPlace_Ch5
@@ -1567,10 +1605,10 @@ Sfx_1stPlace: ; f0fe2
 Sfx_1stPlace_Ch5: ; f0fee
 	togglesfx
 	tempo 124
-	volume $77
-	dutycycle $3
-	vibrato $c, $34
-	notetype $c, $a1
+	volume $7, $7
+	waveduty $3
+	vibrato $c, $3, $4
+	notetype $c, $a, $0, $1
 	octave 5
 	note D_, 2
 	octave 4
@@ -1581,59 +1619,63 @@ Sfx_1stPlace_Ch5: ; f0fee
 	note F_, 1
 	note D_, 1
 	note F_, 1
-	intensity $91
+	volenvelope $9, $0, $1
 	note D_, 1
 	octave 4
 	note A#, 1
 	note F_, 1
 	note A#, 1
-	intensity $81
+	volenvelope $8, $0, $1
 	octave 5
 	note D_, 1
 	octave 4
 	note A#, 1
 	note F_, 1
 	note D_, 1
-	intensity $a1
+	volenvelope $a, $0, $1
 	note C_, 2
 	note E_, 2
 	note G_, 2
-	intensity $a7
+	volenvelope $a, $0, $7
 	note A_, 10
 	note __, 6
 	endchannel
 ; f101f
 
-	db $df
+
+INCBIN "baserom.gbc", $f101f, $f1020 - $f101f
+
 
 Sfx_1stPlace_Ch6: ; f1020
 	togglesfx
-	dutycycle $3
-	vibrato $c, $34
-	notetype $c, $c1
+	waveduty $3
+	vibrato $c, $3, $4
+	notetype $c, $c, $0, $1
 	octave 3
 	note B_, 2
 	note G_, 2
 	note B_, 2
-	intensity $b6
+	volenvelope $b, $0, $6
 	octave 4
 	note D_, 12
-	intensity $c1
+	volenvelope $c, $0, $1
 	note E_, 2
 	note G_, 2
 	octave 5
 	note C_, 2
-	intensity $b7
+	volenvelope $b, $0, $7
 	note D_, 10
 	note __, 6
 	endchannel
 ; f103c
 
-	db $df
+
+INCBIN "baserom.gbc", $f103c, $f103d - $f103c
+
 
 Sfx_1stPlace_Ch7: ; f103d
 	togglesfx
-	notetype $c, $25
+	notetype $c, $2, $0, $5
 	octave 2
 	note G_, 1
 	note __, 1
@@ -1654,11 +1696,13 @@ Sfx_1stPlace_Ch7: ; f103d
 	endchannel
 ; f1053
 
-	db $df
+
+INCBIN "baserom.gbc", $f1053, $f1054 - $f1053
+
 
 Sfx_1stPlace_Ch8: ; f1054
 	togglesfx
-	sfxtogglenoise $4
+	sfxdrumkittoggle $4
 	notetype $6
 	note D_, 4
 	note D_, 4
@@ -1676,7 +1720,9 @@ Sfx_1stPlace_Ch8: ; f1054
 	endchannel
 ; f1068
 
-	db $df
+
+INCBIN "baserom.gbc", $f1068, $f1069 - $f1068
+
 
 Sfx_ChooseACard: ; f1069
 	dbw $c4, Sfx_ChooseACard_Ch5
@@ -1688,9 +1734,9 @@ Sfx_ChooseACard: ; f1069
 Sfx_ChooseACard_Ch5: ; f1075
 	togglesfx
 	tempo 152
-	volume $77
-	dutycycle $3
-	notetype $6, $a4
+	volume $7, $7
+	waveduty $3
+	notetype $6, $a, $0, $4
 	octave 3
 	note E_, 1
 	note __, 1
@@ -1712,30 +1758,32 @@ Sfx_ChooseACard_Ch5: ; f1075
 	note __, 1
 	octave 4
 	note E_, 4
-	intensity $71
+	volenvelope $7, $0, $1
 	octave 3
 	note E_, 1
 	note F#, 1
 	note G#, 1
 	note A_, 1
-	intensity $91
+	volenvelope $9, $0, $1
 	note B_, 1
 	octave 4
 	note C#, 1
 	note D_, 1
 	note D#, 1
-	intensity $a4
+	volenvelope $a, $0, $4
 	note E_, 4
 	note __, 12
 	endchannel
 ; f10a8
 
-	db $df
+
+INCBIN "baserom.gbc", $f10a8, $f10a9 - $f10a8
+
 
 Sfx_ChooseACard_Ch6: ; f10a9
 	togglesfx
-	dutycycle $3
-	notetype $6, $b4
+	waveduty $3
+	notetype $6, $b, $0, $4
 	octave 3
 	note A_, 1
 	note __, 1
@@ -1763,11 +1811,13 @@ Sfx_ChooseACard_Ch6: ; f10a9
 	endchannel
 ; f10c8
 
-	db $df
+
+INCBIN "baserom.gbc", $f10c8, $f10c9 - $f10c8
+
 
 Sfx_ChooseACard_Ch7: ; f10c9
 	togglesfx
-	notetype $6, $25
+	notetype $6, $2, $0, $5
 	octave 3
 	note C#, 1
 	note __, 1
@@ -1800,11 +1850,13 @@ Sfx_ChooseACard_Ch7: ; f10c9
 	endchannel
 ; f10eb
 
-	db $df
+
+INCBIN "baserom.gbc", $f10eb, $f10ec - $f10eb
+
 
 Sfx_ChooseACard_Ch8: ; f10ec
 	togglesfx
-	sfxtogglenoise $4
+	sfxdrumkittoggle $4
 	notetype $6
 	note D_, 2
 	note C#, 2
@@ -1826,7 +1878,9 @@ Sfx_ChooseACard_Ch8: ; f10ec
 	endchannel
 ; f1103
 
-	db $df
+
+INCBIN "baserom.gbc", $f1103, $f1104 - $f1103
+
 
 Sfx_GetTm: ; f1104
 	dbw $c4, Sfx_GetTm_Ch5
@@ -1838,10 +1892,10 @@ Sfx_GetTm: ; f1104
 Sfx_GetTm_Ch5: ; f1110
 	togglesfx
 	tempo 144
-	volume $77
-	dutycycle $3
-	vibrato $8, $24
-	notetype $c, $a3
+	volume $7, $7
+	waveduty $3
+	vibrato $8, $2, $4
+	notetype $c, $a, $0, $3
 	octave 4
 	note D_, 1
 	note __, 1
@@ -1850,45 +1904,49 @@ Sfx_GetTm_Ch5: ; f1110
 	octave 4
 	note D_, 1
 	note G_, 6
-	intensity $b1
+	volenvelope $b, $0, $1
 	note E_, 2
 	note F#, 2
 	note G_, 2
-	intensity $a5
+	volenvelope $a, $0, $5
 	note F#, 8
 	note __, 6
 	endchannel
 ; f1130
 
-	db $df
+
+INCBIN "baserom.gbc", $f1130, $f1131 - $f1130
+
 
 Sfx_GetTm_Ch6: ; f1131
 	togglesfx
-	dutycycle $3
-	vibrato $8, $24
-	notetype $c, $b3
+	waveduty $3
+	vibrato $8, $2, $4
+	notetype $c, $b, $0, $3
 	octave 4
 	note G_, 1
 	note __, 1
 	note D_, 1
 	note G_, 1
 	note B_, 6
-	intensity $c1
+	volenvelope $c, $0, $1
 	note A_, 2
 	note B_, 2
 	octave 5
 	note C_, 2
-	intensity $b5
+	volenvelope $b, $0, $5
 	note D_, 8
 	note __, 6
 	endchannel
 ; f114b
 
-	db $df
+
+INCBIN "baserom.gbc", $f114b, $f114c - $f114b
+
 
 Sfx_GetTm_Ch7: ; f114c
 	togglesfx
-	notetype $6, $25
+	notetype $6, $2, $0, $5
 	octave 2
 	note B_, 2
 	note __, 2
@@ -1916,11 +1974,13 @@ Sfx_GetTm_Ch7: ; f114c
 	endchannel
 ; f1169
 
-	db $df
+
+INCBIN "baserom.gbc", $f1169, $f116a - $f1169
+
 
 Sfx_GetTm_Ch8: ; f116a
 	togglesfx
-	sfxtogglenoise $4
+	sfxdrumkittoggle $4
 	notetype $6
 	note D_, 4
 	note C#, 2
@@ -1937,7 +1997,9 @@ Sfx_GetTm_Ch8: ; f116a
 	endchannel
 ; f117c
 
-	db $df
+
+INCBIN "baserom.gbc", $f117c, $f117d - $f117c
+
 
 Sfx_GetBadge: ; f117d
 	dbw $c4, Sfx_GetBadge_Ch5
@@ -1949,24 +2011,26 @@ Sfx_GetBadge: ; f117d
 Sfx_GetBadge_Ch5: ; f1189
 	togglesfx
 	tempo 120
-	volume $77
-	dutycycle $2
-	vibrato $8, $24
-	notetype $6, $92
+	volume $7, $7
+	waveduty $2
+	vibrato $8, $2, $4
+	notetype $6, $9, $0, $2
 	octave 4
 	note F_, 3
 	callchannel Sfx_GetBadge_branch_f11aa
 	note A#, 3
-	forceoctave $2
+	transpose $0, $2
 	callchannel Sfx_GetBadge_branch_f11aa
-	forceoctave $0
-	intensity $a7
+	transpose $0, $0
+	volenvelope $a, $0, $7
 	note A_, 16
 	note __, 6
 	endchannel
 ; f11a9
 
-	db $df
+
+INCBIN "baserom.gbc", $f11a9, $f11aa - $f11a9
+
 
 Sfx_GetBadge_branch_f11aa: ; f11aa
 	note __, 5
@@ -1993,9 +2057,9 @@ Sfx_GetBadge_branch_f11aa: ; f11aa
 
 Sfx_GetBadge_Ch6: ; f11be
 	togglesfx
-	dutycycle $3
-	vibrato $8, $24
-	notetype $6, $b5
+	waveduty $3
+	vibrato $8, $2, $4
+	notetype $6, $b, $0, $5
 	octave 5
 	note C#, 3
 	note __, 3
@@ -2009,10 +2073,10 @@ Sfx_GetBadge_Ch6: ; f11be
 	octave 2
 	note G#, 2
 	note __, 1
-	intensity $95
+	volenvelope $9, $0, $5
 	octave 5
 	note C_, 1
-	intensity $b5
+	volenvelope $b, $0, $5
 	note C#, 2
 	note __, 2
 	note D_, 2
@@ -2029,21 +2093,23 @@ Sfx_GetBadge_Ch6: ; f11be
 	octave 2
 	note A#, 2
 	note __, 1
-	intensity $95
+	volenvelope $9, $0, $5
 	octave 5
 	note D_, 1
-	intensity $b5
+	volenvelope $b, $0, $5
 	note D#, 8
 	note F_, 16
 	note __, 6
 	endchannel
 ; f11f4
 
-	db $df
+
+INCBIN "baserom.gbc", $f11f4, $f11f5 - $f11f4
+
 
 Sfx_GetBadge_Ch7: ; f11f5
 	togglesfx
-	notetype $6, $25
+	notetype $6, $2, $0, $5
 	octave 2
 	note G#, 3
 	note __, 3
@@ -2079,11 +2145,13 @@ Sfx_GetBadge_Ch7: ; f11f5
 	endchannel
 ; f121a
 
-	db $df
+
+INCBIN "baserom.gbc", $f121a, $f121b - $f121a
+
 
 Sfx_GetBadge_Ch8: ; f121b
 	togglesfx
-	sfxtogglenoise $4
+	sfxdrumkittoggle $4
 	notetype $6
 Sfx_GetBadge_branch_f1220: ; f1220
 	note B_, 12
@@ -2106,7 +2174,9 @@ Sfx_GetBadge_branch_f1220: ; f1220
 	endchannel
 ; f1235
 
-	db $df
+
+INCBIN "baserom.gbc", $f1235, $f1236 - $f1235
+
 
 Sfx_QuitSlots: ; f1236
 	dbw $c4, Sfx_QuitSlots_Ch5
@@ -2118,9 +2188,9 @@ Sfx_QuitSlots: ; f1236
 Sfx_QuitSlots_Ch5: ; f1242
 	togglesfx
 	tempo 144
-	volume $77
-	dutycycle $2
-	notetype $8, $82
+	volume $7, $7
+	waveduty $2
+	notetype $8, $8, $0, $2
 	octave 3
 	note G#, 2
 	note __, 4
@@ -2140,18 +2210,20 @@ Sfx_QuitSlots_Ch5: ; f1242
 	note A#, 2
 	note G#, 2
 	note F#, 2
-	intensity $97
+	volenvelope $9, $0, $7
 	note G#, 14
 	note __, 6
 	endchannel
 ; f1265
 
-	db $df
+
+INCBIN "baserom.gbc", $f1265, $f1266 - $f1265
+
 
 Sfx_QuitSlots_Ch6: ; f1266
 	togglesfx
-	dutycycle $2
-	notetype $8, $b3
+	waveduty $2
+	notetype $8, $b, $0, $3
 	note __, 3
 	octave 4
 	note B_, 1
@@ -2160,7 +2232,7 @@ Sfx_QuitSlots_Ch6: ; f1266
 	octave 4
 	note G#, 4
 	note A#, 2
-	intensity $c1
+	volenvelope $c, $0, $1
 	note B_, 4
 	note A#, 2
 	note G#, 4
@@ -2168,17 +2240,19 @@ Sfx_QuitSlots_Ch6: ; f1266
 	note F#, 4
 	note F_, 2
 	note D#, 4
-	intensity $b7
+	volenvelope $b, $0, $7
 	note F_, 14
 	note __, 6
 	endchannel
 ; f1282
 
-	db $df
+
+INCBIN "baserom.gbc", $f1282, $f1283 - $f1282
+
 
 Sfx_QuitSlots_Ch7: ; f1283
 	togglesfx
-	notetype $8, $25
+	notetype $8, $2, $0, $5
 	octave 3
 	note C#, 2
 	note __, 2
@@ -2206,11 +2280,13 @@ Sfx_QuitSlots_Ch7: ; f1283
 	endchannel
 ; f12a0
 
-	db $df
+
+INCBIN "baserom.gbc", $f12a0, $f12a1 - $f12a0
+
 
 Sfx_QuitSlots_Ch8: ; f12a1
 	togglesfx
-	sfxtogglenoise $3
+	sfxdrumkittoggle $3
 	notetype $8
 	note D#, 6
 	note D_, 4
@@ -2227,7 +2303,9 @@ Sfx_QuitSlots_Ch8: ; f12a1
 	endchannel
 ; f12b3
 
-	db $df
+
+INCBIN "baserom.gbc", $f12b3, $f12b4 - $f12b3
+
 
 Sfx_Protect: ; f12b4
 	dbw $44, Sfx_Protect_Ch5
@@ -2236,8 +2314,8 @@ Sfx_Protect: ; f12b4
 
 Sfx_Protect_Ch5: ; f12ba
 	togglesfx
-	notetype $1, $f1
-	dutycycle $0
+	notetype $1, $f, $0, $1
+	waveduty $0
 Sfx_Protect_branch_f12c0: ; f12c0
 	octave 5
 	note F_, 5
@@ -2252,19 +2330,19 @@ Sfx_Protect_branch_f12c0: ; f12c0
 	note C#, 5
 	note E_, 5
 	loopchannel 3, Sfx_Protect_branch_f12c0
-	intensity $c1
+	volenvelope $c, $0, $1
 	octave 5
 	note F_, 5
 	note A_, 5
-	intensity $91
+	volenvelope $9, $0, $1
 	octave 6
 	note C_, 5
 	note E_, 5
-	intensity $71
+	volenvelope $7, $0, $1
 	octave 5
 	note F#, 5
 	note A#, 5
-	intensity $51
+	volenvelope $5, $0, $1
 	octave 6
 	note C#, 5
 	note E_, 5
@@ -2286,15 +2364,15 @@ Sfx_Sketch: ; f12f6
 ; f12f9
 
 Sfx_Sketch_Ch5: ; f12f9
-	dutycycle $1
-	soundinput $a5
+	waveduty $1
+	sweep $a, $0, $5
 Sfx_Sketch_branch_f12fd: ; f12fd
 	sound $2, $f1, $06e0
 	sound $d, $af, $05b0
 	sound $4, $0, $0000
 	sound $9, $f4, $0718
 	loopchannel 3, Sfx_Sketch_branch_f12fd
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1314
 
@@ -2322,10 +2400,10 @@ Sfx_Aeroblast: ; f1334
 ; f133a
 
 Sfx_Aeroblast_Ch5: ; f133a
-	unknownmusic0xde $f2
-	soundinput $f5
+	dutycycle $2, $0, $3, $3
+	sweep $f, $0, $5
 	sound $1c, $f8, $0580
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1345
 
@@ -2355,7 +2433,7 @@ Sfx_Curse: ; f1360
 ; f1366
 
 Sfx_Curse_Ch5: ; f1366
-	dutycycle $3
+	waveduty $3
 	sound $4, $f2, $0483
 	sound $4, $f2, $0511
 	sound $4, $f2, $0589
@@ -2374,7 +2452,7 @@ Sfx_Rage: ; f137d
 ; f1383
 
 Sfx_Rage_Ch5: ; f1383
-	dutycycle $0
+	waveduty $0
 	sound $3, $d1, $07b0
 	sound $3, $d1, $07c2
 	sound $18, $d2, $07d5
@@ -2408,18 +2486,18 @@ Sfx_Thief2: ; f13b0
 
 Sfx_Thief2_Ch5: ; f13b3
 	togglesfx
-	notetype $2, $f4
-	dutycycle $0
+	notetype $2, $f, $0, $4
+	waveduty $0
 	octave 4
 	note C#, 3
 	note A#, 3
-	intensity $d2
+	volenvelope $d, $0, $2
 	note C#, 3
 	note A#, 3
-	intensity $b1
+	volenvelope $b, $0, $1
 	note C_, 3
 	note A_, 3
-	intensity $81
+	volenvelope $8, $0, $1
 	note C_, 3
 	note A_, 3
 	togglesfx
@@ -2432,16 +2510,16 @@ Sfx_SpiderWeb: ; f13ca
 ; f13d0
 
 Sfx_SpiderWeb_Ch5: ; f13d0
-	dutycycle $0
+	waveduty $0
 	sound $20, $7f, $0720
-	soundinput $95
+	sweep $9, $0, $5
 	sound $4, $f8, $0620
 	sound $4, $e8, $0630
 	sound $4, $d8, $0640
 	sound $4, $95, $0620
 	sound $4, $73, $0630
 	sound $4, $51, $0640
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f13f3
 
@@ -2457,19 +2535,19 @@ Sfx_MindReader: ; f13f7
 
 Sfx_MindReader_Ch5: ; f13fd
 	togglesfx
-	dutycycle $2
-	notetype $2, $f1
+	waveduty $2
+	notetype $2, $f, $0, $1
 	octave 5
 	note C_, 3
-	intensity $41
+	volenvelope $4, $0, $1
 	note C_, 3
-	intensity $f1
+	volenvelope $f, $0, $1
 	note C#, 3
-	intensity $41
+	volenvelope $4, $0, $1
 	note C#, 3
-	intensity $f1
+	volenvelope $f, $0, $1
 	note D_, 3
-	intensity $41
+	volenvelope $4, $0, $1
 	note D_, 3
 	togglesfx
 	endchannel
@@ -2486,8 +2564,8 @@ Sfx_Nightmare: ; f141d
 ; f1420
 
 Sfx_Nightmare_Ch5: ; f1420
-	dutycycle $0
-	soundinput $34
+	waveduty $0
+	sweep $3, $0, $4
 Sfx_Nightmare_branch_f1424: ; f1424
 	sound $3, $ba, $0631
 	sound $2, $0, $0000
@@ -2500,7 +2578,7 @@ Sfx_Nightmare_branch_f1424: ; f1424
 	sound $3, $e8, $05f1
 	sound $2, $0, $0000
 	loopchannel 2, Sfx_Nightmare_branch_f1424
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1453
 
@@ -2523,7 +2601,7 @@ Sfx_SweetKiss: ; f1469
 ; f146c
 
 Sfx_SweetKiss_Ch5: ; f146c
-	dutycycle $2
+	waveduty $2
 Sfx_SweetKiss_branch_f146e: ; f146e
 	sound $2, $c1, $07c8
 	sound $2, $d1, $07da
@@ -2537,8 +2615,8 @@ Sfx_SweetKiss2: ; f147f
 ; f1482
 
 Sfx_SweetKiss2_Ch5: ; f1482
-	dutycycle $0
-	soundinput $97
+	waveduty $0
+	sweep $9, $0, $7
 	sound $2, $f4, $0772
 	sound $4, $0, $0000
 	sound $2, $c4, $0772
@@ -2546,7 +2624,7 @@ Sfx_SweetKiss2_Ch5: ; f1482
 	sound $2, $b4, $0772
 	sound $4, $0, $0000
 	sound $2, $a1, $0772
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f14a5
 
@@ -2556,10 +2634,10 @@ Sfx_BellyDrum: ; f14a5
 ; f14ab
 
 Sfx_BellyDrum_Ch5: ; f14ab
-	dutycycle $2
-	soundinput $ac
+	waveduty $2
+	sweep $a, $1, $4
 	sound $c, $f1, $05a3
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f14b6
 
@@ -2573,12 +2651,12 @@ Sfx_Unknown7F: ; f14ba
 ; f14bd
 
 Sfx_Unknown7F_Ch5: ; f14bd
-	dutycycle $2
-	soundinput $95
+	waveduty $2
+	sweep $9, $0, $5
 	sound $2, $c9, $03b3
 	sound $5, $f8, $0463
 	sound $4, $d1, $0543
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f14d0
 
@@ -2588,13 +2666,13 @@ Sfx_SludgeBomb: ; f14d0
 ; f14d6
 
 Sfx_SludgeBomb_Ch5: ; f14d6
-	dutycycle $2
-	soundinput $c5
+	waveduty $2
+	sweep $c, $0, $5
 	sound $3, $f8, $0581
 	sound $1, $0, $0000
-	soundinput $cb
+	sweep $c, $1, $3
 	sound $10, $f2, $05d1
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f14eb
 
@@ -2626,10 +2704,10 @@ Sfx_Spite: ; f1515
 
 Sfx_Spite_Ch5: ; f1518
 	togglesfx
-	vibrato $0, $12
-	dutycycle $3
-	soundinput $fd
-	notetype $3, $f8
+	vibrato $0, $1, $2
+	waveduty $3
+	sweep $f, $1, $5
+	notetype $3, $f, $1, $0
 	octave 3
 	note F_, 3
 	note G#, 3
@@ -2637,16 +2715,16 @@ Sfx_Spite_Ch5: ; f1518
 	note E_, 3
 	note G_, 3
 	note A#, 3
-	intensity $bf
+	volenvelope $b, $1, $7
 	note D#, 3
 	note F#, 3
 	note A_, 3
-	intensity $5f
+	volenvelope $5, $1, $7
 	note D_, 3
-	intensity $2f
+	volenvelope $2, $1, $7
 	note F_, 3
 	note G#, 3
-	soundinput $8
+	sweep $0, $1, $0
 	togglesfx
 	endchannel
 ; f153a
@@ -2671,9 +2749,9 @@ Sfx_PerishSong: ; f154d
 
 Sfx_PerishSong_Ch5: ; f1553
 	togglesfx
-	dutycycle $0
-	vibrato $12, $53
-	notetype $8, $af
+	waveduty $0
+	vibrato $12, $5, $3
+	notetype $8, $a, $1, $7
 	octave 4
 	note A_, 9
 	note G#, 9
@@ -2683,9 +2761,9 @@ Sfx_PerishSong_Ch5: ; f1553
 
 Sfx_PerishSong_Ch6: ; f1561
 	togglesfx
-	dutycycle $0
-	vibrato $12, $53
-	notetype $8, $af
+	waveduty $0
+	vibrato $12, $5, $3
+	notetype $8, $a, $1, $7
 	octave 4
 	note C_, 9
 	octave 3
@@ -2700,8 +2778,8 @@ Sfx_GigaDrain: ; f1570
 ; f1576
 
 Sfx_GigaDrain_Ch5: ; f1576
-	dutycycle $2
-	soundinput $97
+	waveduty $2
+	sweep $9, $0, $7
 	sound $4, $f8, $0680
 	sound $14, $f8, $0680
 	sound $14, $c8, $0660
@@ -2711,7 +2789,7 @@ Sfx_GigaDrain_Ch5: ; f1576
 	sound $14, $c8, $0541
 	sound $14, $a8, $0521
 	sound $14, $88, $0511
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f15a1
 
@@ -2730,13 +2808,13 @@ Sfx_Attract: ; f15b4
 ; f15b7
 
 Sfx_Attract_Ch5: ; f15b7
-	dutycycle $0
-	soundinput $77
+	waveduty $0
+	sweep $7, $0, $7
 	sound $4, $a9, $06f0
 	sound $c, $f8, $0720
-	soundinput $7f
+	sweep $7, $1, $7
 	sound $8, $f1, $0740
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f15cc
 
@@ -2745,7 +2823,7 @@ Sfx_Kinesis2: ; f15cc
 ; f15cf
 
 Sfx_Kinesis2_Ch5: ; f15cf
-	dutycycle $0
+	waveduty $0
 	sound $2, $f3, $0796
 	sound $2, $23, $0796
 	sound $14, $f1, $07c4
@@ -2770,8 +2848,8 @@ Sfx_MeanLook: ; f15ef
 ; f15f2
 
 Sfx_MeanLook_Ch5: ; f15f2
-	soundinput $77
-	dutycycle $3
+	sweep $7, $0, $7
+	waveduty $3
 	sound $2, $f8, $0720
 Sfx_MeanLook_branch_f15fa: ; f15fa
 	sound $1, $88, $0660
@@ -2783,7 +2861,7 @@ Sfx_MeanLook_branch_f15fa: ; f15fa
 	sound $c, $78, $0720
 	sound $c, $48, $0700
 	sound $c, $28, $0720
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1621
 
@@ -2792,7 +2870,7 @@ Sfx_HealBell: ; f1621
 ; f1624
 
 Sfx_HealBell_Ch5: ; f1624
-	dutycycle $1
+	waveduty $1
 	sound $1, $f1, $07da
 	sound $1, $d1, $07d9
 	sound $1, $f1, $07da
@@ -2805,15 +2883,15 @@ Sfx_Return: ; f1637
 ; f163a
 
 Sfx_Return_Ch5: ; f163a
-	dutycycle $0
+	waveduty $0
 Sfx_Return_branch_f163c: ; f163c
-	soundinput $bf
+	sweep $b, $1, $7
 	sound $8, $f1, $0759
-	soundinput $57
+	sweep $5, $0, $7
 	sound $8, $f1, $0759
 	sound $10, $0, $0000
 	loopchannel 2, Sfx_Return_branch_f163c
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1653
 
@@ -2822,10 +2900,10 @@ Sfx_ExpBar: ; f1653
 ; f1656
 
 Sfx_ExpBar_Ch5: ; f1656
-	dutycycle $2
-	soundinput $d7
+	waveduty $2
+	sweep $d, $0, $7
 	sound $8, $e1, $0750
-	soundinput $e7
+	sweep $e, $0, $7
 	sound $8, $48, $06e0
 	sound $8, $58, $06f8
 	sound $8, $68, $0710
@@ -2833,7 +2911,7 @@ Sfx_ExpBar_Ch5: ; f1656
 	sound $8, $88, $0740
 	sound $8, $98, $0758
 	sound $10, $a8, $0770
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f167f
 
@@ -2842,16 +2920,16 @@ Sfx_MilkDrink: ; f167f
 ; f1682
 
 Sfx_MilkDrink_Ch5: ; f1682
-	dutycycle $2
+	waveduty $2
 Sfx_MilkDrink_branch_f1684: ; f1684
-	soundinput $a4
+	sweep $a, $0, $4
 	sound $2, $ea, $04e0
 	sound $d, $f7, $0290
-	soundinput $9e
+	sweep $9, $1, $6
 	sound $4, $c9, $05e1
 	sound $2, $0, $0000
 	loopchannel 6, Sfx_MilkDrink_branch_f1684
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f169f
 
@@ -2860,14 +2938,14 @@ Sfx_Present: ; f169f
 ; f16a2
 
 Sfx_Present_Ch5: ; f16a2
-	dutycycle $2
-	soundinput $d6
+	waveduty $2
+	sweep $d, $0, $6
 Sfx_Present_branch_f16a6: ; f16a6
 	sound $2, $f1, $0740
 	sound $1, $0, $0000
 	loopchannel 3, Sfx_Present_branch_f16a6
 	sound $10, $f1, $0780
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f16b9
 
@@ -2876,7 +2954,7 @@ Sfx_MorningSun: ; f16b9
 ; f16bc
 
 Sfx_MorningSun_Ch5: ; f16bc
-	dutycycle $3
+	waveduty $3
 Sfx_MorningSun_branch_f16be: ; f16be
 	sound $2, $f1, $07e4
 	sound $2, $f1, $07e0
@@ -2894,7 +2972,7 @@ Sfx_Moonlight: ; f16df
 ; f16e2
 
 Sfx_Moonlight_Ch5: ; f16e2
-	dutycycle $2
+	waveduty $2
 Sfx_Moonlight_branch_f16e4: ; f16e4
 	sound $1, $f8, $07d0
 	sound $4, $f1, $07e0
@@ -2911,14 +2989,14 @@ Sfx_Encore: ; f16fd
 ; f1703
 
 Sfx_Encore_Ch5: ; f1703
-	dutycycle $2
-	soundinput $ce
+	waveduty $2
+	sweep $c, $1, $6
 	sound $10, $0, $0000
 Sfx_Encore_branch_f170b: ; f170b
 	sound $2, $f8, $0774
 	sound $24, $0, $0000
 	loopchannel 2, Sfx_Encore_branch_f170b
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f171a
 
@@ -2946,13 +3024,13 @@ Sfx_SweetScent: ; f1734
 ; f1737
 
 Sfx_SweetScent_Ch5: ; f1737
-	dutycycle $2
-	soundinput $96
+	waveduty $2
+	sweep $9, $0, $6
 	sound $6, $f8, $0760
 	sound $6, $e8, $0720
-	soundinput $df
+	sweep $d, $1, $7
 	sound $16, $f1, $0730
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f174c
 
@@ -2962,15 +3040,15 @@ Sfx_BatonPass: ; f174c
 ; f1752
 
 Sfx_BatonPass_Ch5: ; f1752
-	dutycycle $2
-	soundinput $f7
+	waveduty $2
+	sweep $f, $0, $7
 	sound $20, $f2, $0680
 	sound $1, $f1, $0760
 	sound $20, $0, $0000
 	sound $1, $f1, $0760
 	sound $1a, $0, $0000
 	sound $1, $f1, $0760
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1771
 
@@ -2985,8 +3063,8 @@ Sfx_EggCrack: ; f1775
 
 Sfx_EggCrack_Ch5: ; f1778
 	togglesfx
-	notetype $1, $f1
-	dutycycle $0
+	notetype $1, $f, $0, $1
+	waveduty $0
 	octave 4
 	note D#, 1
 	note C_, 1
@@ -3001,7 +3079,7 @@ Sfx_Evolved: ; f1784
 
 Sfx_Evolved_Ch5: ; f1787
 	togglesfx
-	notetype $1, $c1
+	notetype $1, $c, $0, $1
 	octave 4
 	note C_, 2
 	note E_, 2
@@ -3026,8 +3104,8 @@ Sfx_MasterBall: ; f179b
 
 Sfx_MasterBall_Ch5: ; f179e
 	togglesfx
-	dutycycle $1
-	notetype $2, $e1
+	waveduty $1
+	notetype $2, $e, $0, $1
 	octave 6
 	note B_, 2
 	octave 7
@@ -3040,15 +3118,15 @@ Sfx_MasterBall_Ch5: ; f179e
 	note A_, 2
 	note A#, 2
 	note A_, 2
-	intensity $c1
+	volenvelope $c, $0, $1
 	note G#, 2
 	note G_, 2
 	note F#, 2
-	intensity $91
+	volenvelope $9, $0, $1
 	note F_, 2
 	note E_, 2
 	note D#, 2
-	intensity $61
+	volenvelope $6, $0, $1
 	note D_, 2
 	note C#, 2
 	note C_, 2
@@ -3061,19 +3139,19 @@ Sfx_EggHatch: ; f17c0
 
 Sfx_EggHatch_Ch5: ; f17c3
 	togglesfx
-	notetype $2, $f1
-	dutycycle $2
+	notetype $2, $f, $0, $1
+	waveduty $2
 	octave 5
 	note E_, 1
 	note C_, 1
 	note __, 1
 	note G_, 1
 	note D_, 1
-	intensity $e2
+	volenvelope $e, $0, $2
 	note B_, 7
-	intensity $82
+	volenvelope $8, $0, $2
 	note B_, 7
-	intensity $42
+	volenvelope $4, $0, $2
 	note B_, 7
 	endchannel
 ; f17d9
@@ -3118,8 +3196,8 @@ Sfx_Flash: ; f1818
 ; f181b
 
 Sfx_Flash_Ch5: ; f181b
-	dutycycle $1
-	soundinput $ef
+	waveduty $1
+	sweep $e, $1, $7
 	sound $1, $40, $07e8
 	sound $1, $60, $07e8
 	sound $2, $80, $07e8
@@ -3129,7 +3207,7 @@ Sfx_Flash_Ch5: ; f181b
 	sound $8, $60, $07e8
 	sound $9, $30, $07e8
 	sound $f, $12, $07e8
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1846
 
@@ -3138,8 +3216,8 @@ Sfx_GameFreakLogoGs: ; f1846
 ; f1849
 
 Sfx_GameFreakLogoGs_Ch5: ; f1849
-	dutycycle $3
-	soundinput $7f
+	waveduty $3
+	sweep $7, $1, $7
 	sound $4, $55, $07e2
 	sound $5, $75, $07e2
 	sound $6, $94, $07e2
@@ -3150,7 +3228,7 @@ Sfx_GameFreakLogoGs_Ch5: ; f1849
 	sound $a, $53, $07e2
 	sound $a, $34, $07e2
 	sound $a, $15, $07e2
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1878
 
@@ -3164,8 +3242,8 @@ Sfx_DexFanfareLessThan20: ; f1878
 Sfx_DexFanfareLessThan20_Ch5: ; f1884
 	togglesfx
 	tempo 124
-	volume $77
-	notetype $8, $b1
+	volume $7, $7
+	notetype $8, $b, $0, $1
 	octave 3
 	note A_, 4
 	note F#, 2
@@ -3181,11 +3259,13 @@ Sfx_DexFanfareLessThan20_Ch5: ; f1884
 	endchannel
 ; f189a
 
-	db $df
+
+INCBIN "baserom.gbc", $f189a, $f189b - $f189a
+
 
 Sfx_DexFanfareLessThan20_Ch6: ; f189b
 	togglesfx
-	notetype $8, $c1
+	notetype $8, $c, $0, $1
 	octave 3
 	note B_, 4
 	note A_, 2
@@ -3201,11 +3281,13 @@ Sfx_DexFanfareLessThan20_Ch6: ; f189b
 	endchannel
 ; f18ac
 
-	db $df
+
+INCBIN "baserom.gbc", $f18ac, $f18ad - $f18ac
+
 
 Sfx_DexFanfareLessThan20_Ch7: ; f18ad
 	togglesfx
-	notetype $8, $25
+	notetype $8, $2, $0, $5
 	octave 4
 	note D_, 6
 	octave 3
@@ -3230,11 +3312,13 @@ Sfx_DexFanfareLessThan20_Ch7: ; f18ad
 	endchannel
 ; f18c7
 
-	db $df
+
+INCBIN "baserom.gbc", $f18c7, $f18c8 - $f18c7
+
 
 Sfx_DexFanfareLessThan20_Ch8: ; f18c8
 	togglesfx
-	sfxtogglenoise $4
+	sfxdrumkittoggle $4
 	notetype $c
 	note C#, 6
 	note __, 16
@@ -3242,7 +3326,9 @@ Sfx_DexFanfareLessThan20_Ch8: ; f18c8
 	endchannel
 ; f18d1
 
-	db $df
+
+INCBIN "baserom.gbc", $f18d1, $f18d2 - $f18d1
+
 
 Sfx_DexFanfare140169: ; f18d2
 	dbw $c4, Sfx_DexFanfare140169_Ch5
@@ -3254,10 +3340,10 @@ Sfx_DexFanfare140169: ; f18d2
 Sfx_DexFanfare140169_Ch5: ; f18de
 	togglesfx
 	tempo 120
-	volume $77
-	dutycycle $3
-	vibrato $12, $34
-	notetype $6, $b1
+	volume $7, $7
+	waveduty $3
+	vibrato $12, $3, $4
+	notetype $6, $b, $0, $1
 	note __, 8
 	octave 3
 	note E_, 4
@@ -3265,7 +3351,7 @@ Sfx_DexFanfare140169_Ch5: ; f18de
 	note A_, 4
 	octave 4
 	note C#, 4
-	intensity $a4
+	volenvelope $a, $0, $4
 	note D_, 4
 	note C_, 4
 	octave 3
@@ -3279,13 +3365,15 @@ Sfx_DexFanfare140169_Ch5: ; f18de
 	endchannel
 ; f1900
 
-	db $df
+
+INCBIN "baserom.gbc", $f1900, $f1901 - $f1900
+
 
 Sfx_DexFanfare140169_Ch6: ; f1901
 	togglesfx
-	dutycycle $2
-	vibrato $12, $34
-	notetype $6, $c1
+	waveduty $2
+	vibrato $12, $3, $4
+	notetype $6, $c, $0, $1
 	octave 4
 	note E_, 4
 	note F#, 4
@@ -3293,7 +3381,7 @@ Sfx_DexFanfare140169_Ch6: ; f1901
 	note G_, 4
 	note G_, 4
 	note G_, 4
-	intensity $b4
+	volenvelope $b, $0, $4
 	note F#, 4
 	note G_, 4
 	note A_, 4
@@ -3306,11 +3394,13 @@ Sfx_DexFanfare140169_Ch6: ; f1901
 	endchannel
 ; f191d
 
-	db $df
+
+INCBIN "baserom.gbc", $f191d, $f191e - $f191d
+
 
 Sfx_DexFanfare140169_Ch7: ; f191e
 	togglesfx
-	notetype $c, $25
+	notetype $c, $2, $0, $5
 	note __, 4
 	octave 2
 	note A_, 1
@@ -3341,11 +3431,13 @@ Sfx_DexFanfare140169_Ch7: ; f191e
 	endchannel
 ; f193e
 
-	db $df
+
+INCBIN "baserom.gbc", $f193e, $f193f - $f193e
+
 
 Sfx_DexFanfare140169_Ch8: ; f193f
 	togglesfx
-	sfxtogglenoise $4
+	sfxdrumkittoggle $4
 	notetype $c
 	note C_, 4
 Sfx_DexFanfare140169_branch_f1945: ; f1945
@@ -3359,7 +3451,9 @@ Sfx_DexFanfare140169_branch_f1945: ; f1945
 	endchannel
 ; f1950
 
-	db $df
+
+INCBIN "baserom.gbc", $f1950, $f1951 - $f1950
+
 
 Sfx_DexFanfare170199: ; f1951
 	dbw $c4, Sfx_DexFanfare170199_Ch5
@@ -3371,10 +3465,10 @@ Sfx_DexFanfare170199: ; f1951
 Sfx_DexFanfare170199_Ch5: ; f195d
 	togglesfx
 	tempo 112
-	volume $77
-	vibrato $12, $34
-	dutycycle $3
-	notetype $8, $b4
+	volume $7, $7
+	vibrato $12, $3, $4
+	waveduty $3
+	notetype $8, $b, $0, $4
 	octave 3
 	note G_, 1
 	note __, 1
@@ -3386,23 +3480,25 @@ Sfx_DexFanfare170199_Ch5: ; f195d
 	note __, 1
 	note G_, 1
 	note __, 1
-	intensity $c1
+	volenvelope $c, $0, $1
 	note F_, 4
 	note G_, 4
 	note A_, 4
-	notetype $c, $a8
+	notetype $c, $a, $1, $0
 	note A#, 12
 	note __, 4
 	endchannel
 ; f1981
 
-	db $df
+
+INCBIN "baserom.gbc", $f1981, $f1982 - $f1981
+
 
 Sfx_DexFanfare170199_Ch6: ; f1982
 	togglesfx
-	vibrato $12, $34
-	dutycycle $3
-	notetype $8, $c4
+	vibrato $12, $3, $4
+	waveduty $3
+	notetype $8, $c, $0, $4
 	octave 3
 	note A#, 1
 	note __, 1
@@ -3414,22 +3510,24 @@ Sfx_DexFanfare170199_Ch6: ; f1982
 	note __, 1
 	note A#, 1
 	note __, 1
-	intensity $d1
+	volenvelope $d, $0, $1
 	octave 4
 	note D#, 4
 	note D#, 4
 	note D#, 4
-	notetype $c, $b8
+	notetype $c, $b, $1, $0
 	note D_, 12
 	note __, 4
 	endchannel
 ; f19a2
 
-	db $df
+
+INCBIN "baserom.gbc", $f19a2, $f19a3 - $f19a2
+
 
 Sfx_DexFanfare170199_Ch7: ; f19a3
 	togglesfx
-	notetype $8, $25
+	notetype $8, $2, $0, $5
 	octave 3
 	note D#, 1
 	note __, 1
@@ -3447,18 +3545,20 @@ Sfx_DexFanfare170199_Ch7: ; f19a3
 	note __, 2
 	note C_, 2
 	note __, 2
-	notetype $c, $25
+	notetype $c, $2, $0, $5
 	octave 2
 	note A#, 12
 	note __, 4
 	endchannel
 ; f19bf
 
-	db $df
+
+INCBIN "baserom.gbc", $f19bf, $f19c0 - $f19bf
+
 
 Sfx_DexFanfare170199_Ch8: ; f19c0
 	togglesfx
-	sfxtogglenoise $4
+	sfxdrumkittoggle $4
 	notetype $8
 	note D_, 2
 	note D_, 2
@@ -3477,7 +3577,9 @@ Sfx_DexFanfare170199_Ch8: ; f19c0
 	endchannel
 ; f19d5
 
-	db $fd
+
+INCBIN "baserom.gbc", $f19d5, $f19d6 - $f19d5
+
 
 Sfx_DexFanfare200229: ; f19d6
 	dbw $c4, Sfx_DexFanfare200229_Ch5
@@ -3489,10 +3591,10 @@ Sfx_DexFanfare200229: ; f19d6
 Sfx_DexFanfare200229_Ch5: ; f19e2
 	togglesfx
 	tempo 124
-	volume $77
-	vibrato $12, $34
-	dutycycle $3
-	notetype $8, $b2
+	volume $7, $7
+	vibrato $12, $3, $4
+	waveduty $3
+	notetype $8, $b, $0, $2
 	octave 3
 	note C_, 2
 	note E_, 2
@@ -3506,19 +3608,21 @@ Sfx_DexFanfare200229_Ch5: ; f19e2
 	octave 4
 	note D#, 4
 	note G_, 4
-	notetype $c, $a8
+	notetype $c, $a, $1, $0
 	note F#, 12
 	note __, 4
 	endchannel
 ; f1a03
 
-	db $df
+
+INCBIN "baserom.gbc", $f1a03, $f1a04 - $f1a03
+
 
 Sfx_DexFanfare200229_Ch6: ; f1a04
 	togglesfx
-	vibrato $12, $34
-	dutycycle $3
-	notetype $8, $b2
+	vibrato $12, $3, $4
+	waveduty $3
+	notetype $8, $b, $0, $2
 	octave 3
 	note E_, 2
 	note G_, 2
@@ -3530,17 +3634,19 @@ Sfx_DexFanfare200229_Ch6: ; f1a04
 	note D#, 4
 	note G_, 4
 	note A#, 4
-	notetype $c, $b8
+	notetype $c, $b, $1, $0
 	note A_, 12
 	note __, 4
 	endchannel
 ; f1a1e
 
-	db $df
+
+INCBIN "baserom.gbc", $f1a1e, $f1a1f - $f1a1e
+
 
 Sfx_DexFanfare200229_Ch7: ; f1a1f
 	togglesfx
-	notetype $8, $25
+	notetype $8, $2, $0, $5
 	octave 3
 	note C_, 1
 	note __, 1
@@ -3581,11 +3687,13 @@ Sfx_DexFanfare200229_Ch7: ; f1a1f
 	endchannel
 ; f1a49
 
-	db $df
+
+INCBIN "baserom.gbc", $f1a49, $f1a4a - $f1a49
+
 
 Sfx_DexFanfare200229_Ch8: ; f1a4a
 	togglesfx
-	sfxtogglenoise $4
+	sfxdrumkittoggle $4
 	notetype $8
 	note C#, 1
 	note C#, 1
@@ -3611,7 +3719,9 @@ Sfx_DexFanfare200229_Ch8: ; f1a4a
 	endchannel
 ; f1a65
 
-	db $df
+
+INCBIN "baserom.gbc", $f1a65, $f1a66 - $f1a65
+
 
 Sfx_DexFanfare230Plus: ; f1a66
 	dbw $c4, Sfx_DexFanfare230Plus_Ch5
@@ -3623,10 +3733,10 @@ Sfx_DexFanfare230Plus: ; f1a66
 Sfx_DexFanfare230Plus_Ch5: ; f1a72
 	togglesfx
 	tempo 112
-	volume $77
-	vibrato $12, $34
-	dutycycle $3
-	notetype $8, $a5
+	volume $7, $7
+	vibrato $12, $3, $4
+	waveduty $3
+	notetype $8, $a, $0, $5
 	octave 3
 	note B_, 2
 	note G_, 2
@@ -3634,46 +3744,48 @@ Sfx_DexFanfare230Plus_Ch5: ; f1a72
 	octave 4
 	note D_, 14
 	note __, 2
-	dutycycle $2
-	intensity $85
+	waveduty $2
+	volenvelope $8, $0, $5
 	octave 2
 	note F_, 1
 	note __, 1
 	note F_, 6
-	intensity $a5
-	dutycycle $3
+	volenvelope $a, $0, $5
+	waveduty $3
 	octave 3
 	note A_, 2
 	note G_, 2
 	note F_, 10
 	note __, 2
-	dutycycle $2
-	intensity $85
+	waveduty $2
+	volenvelope $8, $0, $5
 	octave 2
 	note F_, 1
 	note __, 1
 	note F_, 6
-	intensity $a5
-	dutycycle $3
+	volenvelope $a, $0, $5
+	waveduty $3
 	octave 3
 	note A#, 12
-	intensity $b2
+	volenvelope $b, $0, $2
 	note G_, 4
 	note A_, 4
 	note A#, 4
-	notetype $c, $a8
+	notetype $c, $a, $1, $0
 	note A_, 14
 	note __, 2
 	endchannel
 ; f1ab1
 
-	db $df
+
+INCBIN "baserom.gbc", $f1ab1, $f1ab2 - $f1ab1
+
 
 Sfx_DexFanfare230Plus_Ch6: ; f1ab2
 	togglesfx
-	vibrato $12, $34
-	dutycycle $3
-	notetype $8, $b5
+	vibrato $12, $3, $4
+	waveduty $3
+	notetype $8, $b, $0, $5
 	octave 4
 	note G_, 2
 	note D_, 2
@@ -3693,21 +3805,23 @@ Sfx_DexFanfare230Plus_Ch6: ; f1ab2
 	note C_, 2
 	note D_, 2
 	note D#, 12
-	intensity $c2
+	volenvelope $c, $0, $2
 	note G_, 4
 	note G_, 4
 	note G_, 4
-	notetype $c, $b8
+	notetype $c, $b, $1, $0
 	note F#, 14
 	note __, 2
 	endchannel
 ; f1ad9
 
-	db $df
+
+INCBIN "baserom.gbc", $f1ad9, $f1ada - $f1ad9
+
 
 Sfx_DexFanfare230Plus_Ch7: ; f1ada
 	togglesfx
-	notetype $8, $25
+	notetype $8, $2, $0, $5
 	octave 3
 	note G_, 6
 	note A#, 4
@@ -3747,17 +3861,19 @@ Sfx_DexFanfare230Plus_Ch7: ; f1ada
 	note A#, 4
 	note G_, 4
 	note D#, 4
-	notetype $c, $25
+	notetype $c, $2, $0, $5
 	note D_, 14
 	note __, 2
 	endchannel
 ; f1b0b
 
-	db $df
+
+INCBIN "baserom.gbc", $f1b0b, $f1b0c - $f1b0b
+
 
 Sfx_DexFanfare230Plus_Ch8: ; f1b0c
 	togglesfx
-	sfxtogglenoise $4
+	sfxdrumkittoggle $4
 	notetype $8
 	note D_, 2
 	note D_, 2
@@ -3790,7 +3906,9 @@ Sfx_DexFanfare230Plus_branch_f1b2b: ; f1b2b
 	endchannel
 ; f1b32
 
-	db $df
+
+INCBIN "baserom.gbc", $f1b32, $f1b33 - $f1b32
+
 
 Sfx_NotVeryEffective: ; f1b33
 	dbw $07, Sfx_NotVeryEffective_Ch8
@@ -3834,7 +3952,7 @@ Sfx_BallBounce: ; f1b63
 ; f1b69
 
 Sfx_BallBounce_Ch5: ; f1b69
-	dutycycle $2
+	waveduty $2
 	sound $8, $e1, $0740
 	sound $17, $0, $0000
 	sound $8, $b1, $0740
@@ -3847,7 +3965,7 @@ Sfx_BallBounce_Ch5: ; f1b69
 ; f1b8c
 
 Sfx_BallBounce_Ch6: ; f1b8c
-	dutycycle $2
+	waveduty $2
 	sound $2, $8, $0000
 	sound $8, $b1, $0741
 	sound $17, $0, $0000
@@ -3866,12 +3984,12 @@ Sfx_SweetScent2: ; f1bb3
 ; f1bb9
 
 Sfx_SweetScent2_Ch5: ; f1bb9
-	soundinput $af
-	dutycycle $1
+	sweep $a, $1, $7
+	waveduty $1
 	sound $6, $f8, $05f0
 	sound $2, $f1, $0620
 	sound $10, $f1, $0650
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1bcc
 
@@ -3896,7 +4014,7 @@ Sfx_HitEndOfExpBar: ; f1bec
 ; f1bf2
 
 Sfx_HitEndOfExpBar_Ch5: ; f1bf2
-	dutycycle $2
+	waveduty $2
 	sound $1, $e1, $0789
 	sound $1, $e1, $07a2
 	sound $10, $e1, $07b1
@@ -3904,7 +4022,7 @@ Sfx_HitEndOfExpBar_Ch5: ; f1bf2
 ; f1c01
 
 Sfx_HitEndOfExpBar_Ch6: ; f1c01
-	dutycycle $2
+	waveduty $2
 	sound $1, $e1, $07a2
 	sound $1, $e1, $07b1
 	sound $10, $e1, $07c4
@@ -3917,8 +4035,8 @@ Sfx_GiveTrademon: ; f1c10
 
 Sfx_GiveTrademon_Ch5: ; f1c13
 	sound $20, $0, $0000
-	dutycycle $1
-	soundinput $a7
+	waveduty $1
+	sweep $a, $0, $7
 	sound $1b, $f4, $0750
 	sound $1b, $d4, $0750
 	sound $1b, $b4, $0750
@@ -3927,7 +4045,7 @@ Sfx_GiveTrademon_Ch5: ; f1c13
 	sound $1b, $54, $0750
 	sound $1b, $34, $0750
 	sound $1b, $14, $0750
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1c3e
 
@@ -3937,8 +4055,8 @@ Sfx_GetTrademon: ; f1c3e
 
 Sfx_GetTrademon_Ch5: ; f1c41
 	sound $20, $0, $0000
-	dutycycle $2
-	soundinput $bf
+	waveduty $2
+	sweep $b, $1, $7
 	sound $1b, $14, $07bc
 	sound $1b, $34, $07bc
 	sound $1b, $54, $07bc
@@ -3947,7 +4065,7 @@ Sfx_GetTrademon_Ch5: ; f1c41
 	sound $1b, $b4, $07bc
 	sound $1b, $d4, $07bc
 	sound $1b, $f4, $07bc
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1c6c
 
@@ -3958,10 +4076,10 @@ Sfx_TrainArrived: ; f1c6c
 ; f1c75
 
 Sfx_TrainArrived_Ch6: ; f1c75
-	tone $0008
+	pitchoffset $0008
 	sound $8, $0, $0000
 Sfx_TrainArrived_Ch5: ; f1c7c
-	dutycycle $2
+	waveduty $2
 	sound $4, $5f, $0691
 	sound $4, $6f, $0694
 	sound $4, $78, $0697
@@ -3989,15 +4107,15 @@ Sfx_2Boops: ; f1cb4
 ; f1cb7
 
 Sfx_2Boops_Ch5: ; f1cb7
-	dutycycle $2
+	waveduty $2
 Sfx_2Boops_branch_f1cb9: ; f1cb9
-	soundinput $79
+	sweep $7, $1, $1
 	sound $1, $99, $0563
 	sound $4, $f2, $04b5
-	soundinput $43
+	sweep $4, $0, $3
 	sound $10, $f8, $05cd
 	loopchannel 2, Sfx_2Boops_branch_f1cb9
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1cd0
 
@@ -4013,10 +4131,10 @@ Sfx_Menu_Ch8: ; f1cd3
 
 Sfx_Pokeflute_Ch7: ; f1cda
 	tempo 256
-	volume $77
+	volume $7, $7
 	togglesfx
-	vibrato $10, $14
-	notetype $c, $10
+	vibrato $10, $1, $4
+	notetype $c, $1, $0, $0
 	octave 5
 	note E_, 2
 	note F_, 2
@@ -4053,60 +4171,60 @@ Sfx_EnterDoor_Ch8: ; f1d08
 ; f1d0f
 
 Sfx_SwitchPokemon_Ch5: ; f1d0f
-	dutycycle $2
+	waveduty $2
 	sound $8, $e1, $0740
 	endchannel
 ; f1d16
 
 Sfx_SwitchPokemon_Ch6: ; f1d16
-	dutycycle $2
+	waveduty $2
 	sound $2, $8, $0000
 	sound $8, $b1, $0741
 	endchannel
 ; f1d21
 
 Sfx_PokeballsPlacedOnTable_Ch5: ; f1d21
-	dutycycle $2
-	soundinput $3a
+	waveduty $2
+	sweep $3, $1, $2
 	sound $4, $f2, $0200
-	soundinput $22
+	sweep $2, $0, $2
 	sound $8, $e2, $0200
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1d32
 
 Sfx_BallWiggle_Ch5: ; f1d32
-	dutycycle $2
-	soundinput $3a
+	waveduty $2
+	sweep $3, $1, $2
 	sound $4, $f2, $0400
-	soundinput $22
+	sweep $2, $0, $2
 	sound $8, $e2, $0400
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1d43
 
 Sfx_Tally_Ch5: ; f1d43
-	dutycycle $2
+	waveduty $2
 	sound $4, $f1, $0780
 	endchannel
 ; f1d4a
 
 Sfx_Tally_Ch6: ; f1d4a
-	dutycycle $2
+	waveduty $2
 	sound $1, $8, $0000
 	sound $4, $a1, $0761
 	endchannel
 ; f1d55
 
 Sfx_Transaction_Ch5: ; f1d55
-	dutycycle $2
+	waveduty $2
 	sound $4, $e1, $0700
 	sound $18, $f2, $07e0
 	endchannel
 ; f1d60
 
 Sfx_Transaction_Ch6: ; f1d60
-	dutycycle $2
+	waveduty $2
 	sound $1, $8, $0000
 	sound $4, $91, $06c1
 	sound $18, $a2, $07a1
@@ -4114,10 +4232,10 @@ Sfx_Transaction_Ch6: ; f1d60
 ; f1d6f
 
 Sfx_Bump_Ch5: ; f1d6f
-	dutycycle $2
-	soundinput $5a
+	waveduty $2
+	sweep $5, $1, $2
 	sound $f, $f1, $0300
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1d7a
 
@@ -4132,7 +4250,7 @@ Sfx_ExitBuilding_Ch8: ; f1d7a
 
 Sfx_ReadText2_Ch5: ; f1d8a
 Sfx_ReadText_Ch5: ; f1d8a
-	dutycycle $2
+	waveduty $2
 	sound $0, $91, $07c0
 	sound $0, $81, $07d0
 	sound $0, $91, $07c0
@@ -4141,47 +4259,47 @@ Sfx_ReadText_Ch5: ; f1d8a
 ; f1d9d
 
 Sfx_Potion_Ch5: ; f1d9d
-	dutycycle $2
-	soundinput $17
+	waveduty $2
+	sweep $1, $0, $7
 	sound $f, $f0, $04f0
 	sound $f, $f2, $0650
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1dac
 
 Sfx_Poison_Ch5: ; f1dac
 Sfx_Poison_branch_f1dac: ; f1dac
-	dutycycle $0
-	soundinput $14
+	waveduty $0
+	sweep $1, $0, $4
 	sound $4, $f2, $0600
 	loopchannel 4, Sfx_Poison_branch_f1dac
 	sound $f, $f3, $0600
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1dbf
 
 Sfx_FullHeal_Ch5: ; f1dbf
-	dutycycle $2
-	soundinput $14
+	waveduty $2
+	sweep $1, $0, $4
 	sound $4, $f2, $0600
 	sound $4, $f2, $0600
-	soundinput $17
+	sweep $1, $0, $7
 	sound $f, $f2, $0600
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1dd4
 
 Sfx_GotSafariBalls_Ch5: ; f1dd4
-	dutycycle $2
-	soundinput $15
+	waveduty $2
+	sweep $1, $0, $5
 	sound $f, $f0, $04f0
 	sound $f, $f2, $0650
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1de3
 
 Sfx_BootPc_Ch5: ; f1de3
-	dutycycle $2
+	waveduty $2
 	sound $f, $f2, $07c0
 	sound $f, $0, $0000
 	sound $3, $a1, $0780
@@ -4196,7 +4314,7 @@ Sfx_BootPc_Ch5: ; f1de3
 ; f1e0e
 
 Sfx_ShutDownPc_Ch5: ; f1e0e
-	dutycycle $2
+	waveduty $2
 	sound $4, $f0, $0600
 	sound $4, $f0, $0400
 	sound $4, $f0, $0200
@@ -4205,7 +4323,7 @@ Sfx_ShutDownPc_Ch5: ; f1e0e
 ; f1e21
 
 Sfx_ChoosePcOption_Ch5: ; f1e21
-	dutycycle $2
+	waveduty $2
 	sound $6, $f0, $0700
 	sound $4, $0, $0000
 	sound $6, $f0, $0700
@@ -4214,19 +4332,19 @@ Sfx_ChoosePcOption_Ch5: ; f1e21
 ; f1e34
 
 Sfx_EscapeRope_Ch5: ; f1e34
-	dutycycle $1
-	soundinput $17
+	waveduty $1
+	sweep $1, $0, $7
 	sound $f, $d7, $0600
 	sound $f, $b7, $0580
 	sound $f, $87, $0500
 	sound $f, $47, $0480
 	sound $f, $17, $0400
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1e4f
 
 Sfx_PushButton_Ch5: ; f1e4f
-	dutycycle $2
+	waveduty $2
 	sound $4, $0, $0000
 	sound $2, $f1, $0680
 	sound $1, $0, $0000
@@ -4236,53 +4354,53 @@ Sfx_PushButton_Ch5: ; f1e4f
 ; f1e66
 
 Sfx_SecondPartOfItemfinder_Ch5: ; f1e66
-	dutycycle $2
-	soundinput $2c
+	waveduty $2
+	sweep $2, $1, $4
 	sound $4, $f2, $0500
-	soundinput $22
+	sweep $2, $0, $2
 	sound $2, $f1, $0500
-	soundinput $8
+	sweep $0, $1, $0
 	sound $1, $0, $0000
 	endchannel
 ; f1e7b
 
 Sfx_WarpTo_Ch5: ; f1e7b
-	dutycycle $1
-	soundinput $17
+	waveduty $1
+	sweep $1, $0, $7
 	sound $f, $d7, $0500
 	sound $f, $b7, $0580
 	sound $f, $87, $0600
 	sound $f, $47, $0680
 	sound $f, $17, $0700
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1e96
 
 Sfx_WarpFrom_Ch5: ; f1e96
-	dutycycle $1
-	soundinput $17
+	waveduty $1
+	sweep $1, $0, $7
 	sound $f, $d7, $0700
 	sound $f, $b7, $0680
 	sound $f, $87, $0600
 	sound $f, $47, $0580
 	sound $f, $17, $0500
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1eb1
 
 Sfx_ChangeDexMode_Ch5: ; f1eb1
-	dutycycle $1
-	soundinput $16
+	waveduty $1
+	sweep $1, $0, $6
 	sound $f, $d2, $0500
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1ebc
 
 Sfx_JumpOverLedge_Ch5: ; f1ebc
-	dutycycle $2
-	soundinput $95
+	waveduty $2
+	sweep $9, $0, $5
 	sound $f, $f2, $0400
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1ec7
 
@@ -4315,10 +4433,10 @@ Sfx_Fly_Ch8: ; f1ed4
 ; f1f05
 
 Sfx_Wrong_Ch5: ; f1f05
-	dutycycle $3
-	soundinput $5a
+	waveduty $3
+	sweep $5, $1, $2
 	sound $4, $f0, $0500
-	soundinput $8
+	sweep $0, $1, $0
 	sound $4, $0, $0000
 	sound $f, $f0, $0500
 	sound $1, $0, $0000
@@ -4326,7 +4444,7 @@ Sfx_Wrong_Ch5: ; f1f05
 ; f1f1c
 
 Sfx_Wrong_Ch6: ; f1f1c
-	dutycycle $3
+	waveduty $3
 	sound $4, $f0, $0401
 	sound $4, $0, $0000
 	sound $f, $f0, $0401
@@ -4335,10 +4453,10 @@ Sfx_Wrong_Ch6: ; f1f1c
 ; f1f2f
 
 Sfx_Squeak_Ch5: ; f1f2f
-	dutycycle $0
-	soundinput $17
+	waveduty $0
+	sweep $1, $0, $7
 	sound $f, $d2, $0700
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1f3a
 
@@ -4355,7 +4473,7 @@ Sfx_Strength_Ch8: ; f1f3a
 ; f1f53
 
 Sfx_Boat_Ch5: ; f1f53
-	dutycycle $2
+	waveduty $2
 	sound $f, $f0, $0500
 	sound $4, $0, $0000
 	sound $f, $f0, $0500
@@ -4367,7 +4485,7 @@ Sfx_Boat_Ch5: ; f1f53
 ; f1f72
 
 Sfx_Boat_Ch6: ; f1f72
-	dutycycle $3
+	waveduty $3
 	sound $f, $f0, $0482
 	sound $4, $0, $0000
 	sound $f, $f0, $0482
@@ -4379,21 +4497,21 @@ Sfx_Boat_Ch6: ; f1f72
 ; f1f91
 
 Sfx_WallOpen_Ch5: ; f1f91
-	dutycycle $1
-	soundinput $3a
+	waveduty $1
+	sweep $3, $1, $2
 	sound $4, $f2, $0500
-	soundinput $22
+	sweep $2, $0, $2
 	sound $4, $e2, $0500
-	soundinput $3a
+	sweep $3, $1, $2
 	sound $4, $f2, $0700
-	soundinput $22
+	sweep $2, $0, $2
 	sound $f, $e2, $0700
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1fae
 
 Sfx_ElevatorEnd_Ch5: ; f1fae
-	dutycycle $2
+	waveduty $2
 	sound $f, $f3, $0730
 	sound $8, $65, $0730
 	sound $f, $f4, $0700
@@ -4404,20 +4522,20 @@ Sfx_ElevatorEnd_Ch5: ; f1fae
 ; f1fc9
 
 Sfx_ThrowBall_Ch5: ; f1fc9
-	dutycycle $2
-	soundinput $2f
+	waveduty $2
+	sweep $2, $1, $7
 	sound $f, $f2, $0780
 	endchannel
 ; f1fd2
 
 Sfx_ThrowBall_Ch6: ; f1fd2
-	dutycycle $2
+	waveduty $2
 	sound $f, $c2, $0782
 	endchannel
 ; f1fd9
 
 Sfx_Shine_Ch5: ; f1fd9
-	dutycycle $0
+	waveduty $0
 	sound $0, $d2, $0700
 	sound $0, $d2, $0740
 	sound $0, $d2, $0780
@@ -4428,10 +4546,10 @@ Sfx_Shine_Ch5: ; f1fd9
 ; f1ff4
 
 Sfx_BallPoof_Ch5: ; f1ff4
-	dutycycle $2
-	soundinput $16
+	waveduty $2
+	sweep $1, $0, $6
 	sound $f, $f2, $0400
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f1fff
 
@@ -4442,7 +4560,7 @@ Sfx_BallPoof_Ch8: ; f1fff
 
 Sfx_Unknown3A_Ch5: ; f2003
 	sound $f, $d1, $0200
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f200a
 
@@ -4469,30 +4587,30 @@ Sfx_Run_Ch8: ; f2014
 ; f2036
 
 Sfx_SlotMachineStart_Ch5: ; f2036
-	dutycycle $2
-	soundinput $44
+	waveduty $2
+	sweep $4, $0, $4
 	sound $f, $f0, $04f0
-	soundinput $17
+	sweep $1, $0, $7
 	sound $f, $f2, $0650
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f2047
 
 Sfx_SlotMachineStart_Ch6: ; f2047
-	dutycycle $2
+	waveduty $2
 	sound $f, $92, $0600
 	sound $f, $92, $0782
 	endchannel
 ; f2052
 
 Sfx_Call_Ch5: ; f2052
-	soundinput $67
+	sweep $6, $0, $7
 	sound $4, $f7, $07a0
 	sound $4, $f7, $07a0
 	sound $4, $f7, $07a0
 	sound $4, $f7, $07a0
 	sound $4, $f7, $07a0
-	soundinput $8
+	sweep $0, $1, $0
 	sound $4, $0, $0000
 	endchannel
 ; f206f
@@ -4503,18 +4621,18 @@ Sfx_Peck_Ch8: ; f206f
 ; f2073
 
 Sfx_Kinesis_Ch5: ; f2073
-	dutycycle $1
-	soundinput $af
+	waveduty $1
+	sweep $a, $1, $7
 	sound $f, $f2, $0780
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f207e
 
 Sfx_Lick_Ch5: ; f207e
-	dutycycle $1
-	soundinput $97
+	waveduty $1
+	sweep $9, $0, $7
 	sound $f, $f2, $0500
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f2089
 
@@ -4662,12 +4780,12 @@ Sfx_Doubleslap_Ch8: ; f2151
 ; f2158
 
 Sfx_Bite_Ch5: ; f2158
-	dutycycle $0
-	soundinput $3a
+	waveduty $0
+	sweep $3, $1, $2
 	sound $4, $f2, $0200
-	soundinput $22
+	sweep $2, $0, $2
 	sound $8, $e2, $0200
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f2169
 
@@ -4718,10 +4836,10 @@ Sfx_Submission_Ch8: ; f21a1
 ; f21b1
 
 Sfx_WaterGun_Ch5: ; f21b1
-	dutycycle $1
-	soundinput $97
+	waveduty $1
+	sweep $9, $0, $7
 	sound $f, $f2, $0700
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f21bc
 
@@ -4752,7 +4870,7 @@ Sfx_Thunder_Ch8: ; f21d3
 ; f21e9
 
 Sfx_Supersonic_Ch5: ; f21e9
-	dutycycle $2
+	waveduty $2
 	sound $f, $3f, $07c0
 Sfx_Supersonic_branch_f21ef: ; f21ef
 	sound $f, $df, $07c0
@@ -4762,7 +4880,7 @@ Sfx_Supersonic_branch_f21ef: ; f21ef
 ; f21fc
 
 Sfx_Supersonic_Ch6: ; f21fc
-	unknownmusic0xde $b3
+	dutycycle $3, $0, $3, $2
 	sound $f, $2f, $07c8
 Sfx_Supersonic_branch_f2202: ; f2202
 	sound $f, $cf, $07c7
@@ -4781,7 +4899,7 @@ Sfx_Supersonic_branch_f220f: ; f220f
 
 Sfx_Leer_Ch5: ; f221a
 Sfx_Leer_branch_f221a: ; f221a
-	dutycycle $0
+	waveduty $0
 	sound $0, $f1, $07c0
 	sound $0, $f1, $0700
 	loopchannel 12, Sfx_Leer_branch_f221a
@@ -4790,7 +4908,7 @@ Sfx_Leer_branch_f221a: ; f221a
 
 Sfx_Leer_Ch6: ; f2229
 Sfx_Leer_branch_f2229: ; f2229
-	unknownmusic0xde $b3
+	dutycycle $3, $0, $3, $2
 	sound $0, $e1, $07c1
 	sound $0, $e1, $0701
 	loopchannel 12, Sfx_Leer_branch_f2229
@@ -4807,7 +4925,7 @@ Sfx_Leer_branch_f2238: ; f2238
 
 Sfx_Ember_Ch5: ; f2243
 Sfx_Ember_branch_f2243: ; f2243
-	unknownmusic0xde $c9
+	dutycycle $1, $2, $0, $3
 	sound $b, $f3, $0120
 	sound $9, $d3, $0150
 	loopchannel 5, Sfx_Ember_branch_f2243
@@ -4829,7 +4947,7 @@ Sfx_Ember_branch_f225a: ; f225a
 
 Sfx_Bubblebeam_Ch5: ; f226e
 Sfx_Bubblebeam_branch_f226e: ; f226e
-	unknownmusic0xde $39
+	dutycycle $1, $2, $3, $0
 	sound $4, $f4, $0600
 	sound $3, $c4, $0500
 	sound $5, $b5, $0600
@@ -4841,7 +4959,7 @@ Sfx_Bubblebeam_branch_f226e: ; f226e
 
 Sfx_Bubblebeam_Ch6: ; f2289
 Sfx_Bubblebeam_branch_f2289: ; f2289
-	unknownmusic0xde $8d
+	dutycycle $1, $3, $0, $2
 	sound $5, $e4, $05e0
 	sound $4, $b4, $04e0
 	sound $6, $a5, $05e8
@@ -4862,7 +4980,7 @@ Sfx_Bubblebeam_branch_f22a0: ; f22a0
 
 Sfx_HydroPump_Ch5: ; f22b1
 Sfx_HydroPump_branch_f22b1: ; f22b1
-	unknownmusic0xde $d2
+	dutycycle $2, $0, $1, $3
 	sound $3, $81, $0300
 	sound $3, $c1, $0400
 	sound $3, $f1, $0500
@@ -4887,7 +5005,7 @@ Sfx_HydroPump_branch_f22d0: ; f22d0
 
 Sfx_Surf_Ch5: ; f22e7
 Sfx_Surf_branch_f22e7: ; f22e7
-	unknownmusic0xde $39
+	dutycycle $1, $2, $3, $0
 	sound $f, $f4, $0500
 	sound $f, $c4, $0400
 	sound $f, $e2, $05c0
@@ -4897,7 +5015,7 @@ Sfx_Surf_branch_f22e7: ; f22e7
 
 Sfx_Surf_Ch6: ; f22fa
 Sfx_Surf_branch_f22fa: ; f22fa
-	unknownmusic0xde $8d
+	dutycycle $1, $3, $0, $2
 	sound $7, $e4, $0430
 	sound $f, $b4, $0330
 	sound $f, $a2, $0438
@@ -4917,7 +5035,7 @@ Sfx_Surf_branch_f230d: ; f230d
 
 Sfx_Psybeam_Ch5: ; f231e
 Sfx_Psybeam_branch_f231e: ; f231e
-	unknownmusic0xde $a1
+	dutycycle $1, $0, $2, $2
 	sound $a, $f1, $0640
 	sound $a, $f3, $0680
 	sound $a, $f2, $0620
@@ -4928,7 +5046,7 @@ Sfx_Psybeam_branch_f231e: ; f231e
 
 Sfx_Psybeam_Ch6: ; f2335
 Sfx_Psybeam_branch_f2335: ; f2335
-	unknownmusic0xde $b3
+	dutycycle $3, $0, $3, $2
 	sound $a, $f3, $0571
 	sound $7, $e3, $0531
 	sound $a, $f1, $0551
@@ -4947,7 +5065,7 @@ Sfx_Psybeam_branch_f234c: ; f234c
 
 Sfx_Charge_Ch5: ; f2357
 Sfx_Charge_branch_f2357: ; f2357
-	dutycycle $0
+	waveduty $0
 	sound $2, $f1, $0200
 	sound $3, $f1, $0700
 	sound $4, $f1, $0500
@@ -4958,7 +5076,7 @@ Sfx_Charge_branch_f2357: ; f2357
 
 Sfx_Charge_Ch6: ; f236e
 Sfx_Charge_branch_f236e: ; f236e
-	unknownmusic0xde $b3
+	dutycycle $3, $0, $3, $2
 	sound $2, $e1, $0302
 	sound $3, $e1, $07f2
 	sound $4, $e1, $0602
@@ -4979,7 +5097,7 @@ Sfx_Charge_branch_f2385: ; f2385
 
 Sfx_Thundershock_Ch5: ; f2396
 Sfx_Thundershock_branch_f2396: ; f2396
-	unknownmusic0xde $2b
+	dutycycle $3, $2, $2, $0
 	sound $3, $f1, $07f0
 	sound $4, $f2, $0200
 	loopchannel 8, Sfx_Thundershock_branch_f2396
@@ -4988,7 +5106,7 @@ Sfx_Thundershock_branch_f2396: ; f2396
 
 Sfx_Thundershock_Ch6: ; f23a5
 Sfx_Thundershock_branch_f23a5: ; f23a5
-	unknownmusic0xde $b3
+	dutycycle $3, $0, $3, $2
 	sound $4, $e2, $0202
 	sound $4, $e1, $07e2
 	loopchannel 9, Sfx_Thundershock_branch_f23a5
@@ -5004,20 +5122,20 @@ Sfx_Thundershock_branch_f23b4: ; f23b4
 ; f23bf
 
 Sfx_Psychic_Ch5: ; f23bf
-	dutycycle $2
-	soundinput $f7
+	waveduty $2
+	sweep $f, $0, $7
 	sound $8, $c4, $07bd
 	sound $8, $c4, $07be
 	sound $8, $c4, $07bf
 	sound $8, $c4, $07c0
 	sound $f, $c4, $07c1
 	sound $f, $f2, $07c0
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f23de
 
 Sfx_Psychic_Ch6: ; f23de
-	dutycycle $2
+	waveduty $2
 	sound $8, $c4, $0770
 	sound $8, $c4, $0761
 	sound $8, $c4, $0762
@@ -5038,7 +5156,7 @@ Sfx_Psychic_Ch8: ; f23f9
 ; f240c
 
 Sfx_Screech_Ch5: ; f240c
-	dutycycle $2
+	waveduty $2
 	sound $f, $ff, $07e0
 	sound $f, $ff, $07e0
 	sound $f, $ff, $07e0
@@ -5048,7 +5166,7 @@ Sfx_Screech_Ch5: ; f240c
 ; f2423
 
 Sfx_Screech_Ch6: ; f2423
-	dutycycle $3
+	waveduty $3
 	sound $f, $ff, $07e2
 	sound $f, $ff, $07e1
 	sound $f, $ff, $07e2
@@ -5058,21 +5176,21 @@ Sfx_Screech_Ch6: ; f2423
 ; f243a
 
 Sfx_BoneClub_Ch5: ; f243a
-	dutycycle $2
-	soundinput $af
+	waveduty $2
+	sweep $a, $1, $7
 	sound $8, $f1, $0700
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f2445
 
 Sfx_BoneClub_Ch6: ; f2445
-	dutycycle $3
+	waveduty $3
 	sound $8, $f1, $0701
 	endchannel
 ; f244c
 
 Sfx_Sharpen_Ch5: ; f244c
-	dutycycle $2
+	waveduty $2
 	sound $6, $f1, $0500
 	sound $6, $f1, $0580
 	sound $6, $f1, $0600
@@ -5082,7 +5200,7 @@ Sfx_Sharpen_Ch5: ; f244c
 ; f2463
 
 Sfx_Sharpen_Ch6: ; f2463
-	dutycycle $3
+	waveduty $3
 	sound $6, $e1, $0510
 	sound $6, $e1, $0590
 	sound $6, $e1, $0610
@@ -5092,7 +5210,7 @@ Sfx_Sharpen_Ch6: ; f2463
 ; f247a
 
 Sfx_EggBomb_Ch5: ; f247a
-	unknownmusic0xde $ed
+	dutycycle $1, $3, $2, $3
 	sound $8, $ff, $03f8
 	sound $f, $ff, $0400
 	sound $f, $f3, $0400
@@ -5100,7 +5218,7 @@ Sfx_EggBomb_Ch5: ; f247a
 ; f2489
 
 Sfx_EggBomb_Ch6: ; f2489
-	unknownmusic0xde $b4
+	dutycycle $0, $1, $3, $2
 	sound $8, $ef, $03c0
 	sound $f, $ef, $03c0
 	sound $f, $e3, $03c0
@@ -5117,9 +5235,9 @@ Sfx_EggBomb_Ch8: ; f2498
 
 Sfx_Sing_Ch5: ; f24a5
 	togglesfx
-	vibrato $a, $24
-	dutycycle $2
-	notetype $a, $87
+	vibrato $a, $2, $4
+	waveduty $2
+	notetype $a, $8, $0, $7
 	octave 5
 	note G_, 8
 	octave 6
@@ -5132,12 +5250,12 @@ Sfx_Sing_Ch5: ; f24a5
 
 Sfx_Sing_Ch6: ; f24b6
 	togglesfx
-	vibrato $a, $23
-	dutycycle $2
-	notetype $b, $67
+	vibrato $a, $2, $3
+	waveduty $2
+	notetype $b, $6, $0, $7
 	octave 5
 	note G_, 8
-	notetype $a, $67
+	notetype $a, $6, $0, $7
 	octave 6
 	note F_, 4
 	note D#, 4
@@ -5147,7 +5265,7 @@ Sfx_Sing_Ch6: ; f24b6
 ; f24ca
 
 Sfx_HyperBeam_Ch5: ; f24ca
-	dutycycle $0
+	waveduty $0
 	sound $2, $f1, $0780
 	sound $2, $f1, $0700
 	sound $2, $f1, $0790
@@ -5168,7 +5286,7 @@ Sfx_HyperBeam_branch_f24f8: ; f24f8
 ; f2509
 
 Sfx_HyperBeam_Ch6: ; f2509
-	unknownmusic0xde $b3
+	dutycycle $3, $0, $3, $2
 	sound $2, $f1, $0781
 	sound $2, $f1, $0701
 	sound $2, $f1, $0791
@@ -5255,7 +5373,7 @@ Sfx_TitleScreenEntrance_Ch8: ; f25a1
 ; f25b4
 
 Sfx_Unknown66_Ch5: ; f25b4
-	dutycycle $2
+	waveduty $2
 	sound $1, $f2, $06a0
 	sound $1, $f2, $06e0
 	sound $8, $f1, $0700
@@ -5263,14 +5381,14 @@ Sfx_Unknown66_Ch5: ; f25b4
 ; f25c3
 
 Sfx_GetCoinFromSlots_Ch5: ; f25c3
-	dutycycle $2
+	waveduty $2
 	sound $2, $f1, $0700
 	sound $8, $81, $07e0
 	endchannel
 ; f25ce
 
 Sfx_PayDay_Ch5: ; f25ce
-	dutycycle $3
+	waveduty $3
 	sound $5, $e1, $0700
 	sound $2, $e1, $0780
 	sound $f, $f1, $07c0
@@ -5278,7 +5396,7 @@ Sfx_PayDay_Ch5: ; f25ce
 ; f25dd
 
 Sfx_PayDay_Ch6: ; f25dd
-	dutycycle $2
+	waveduty $2
 	sound $4, $c1, $06c1
 	sound $2, $c1, $0741
 	sound $f, $d1, $0781
@@ -5286,8 +5404,8 @@ Sfx_PayDay_Ch6: ; f25dd
 ; f25ec
 
 Sfx_Metronome_Ch5: ; f25ec
-	dutycycle $2
-	soundinput $5f
+	waveduty $2
+	sweep $5, $1, $7
 	sound $4, $40, $07e0
 	sound $4, $60, $07e0
 	sound $4, $80, $07e0
@@ -5297,7 +5415,7 @@ Sfx_Metronome_Ch5: ; f25ec
 	sound $8, $60, $07e0
 	sound $8, $30, $07e0
 	sound $f, $12, $07e0
-	soundinput $8
+	sweep $0, $1, $0
 	endchannel
 ; f2617
 
@@ -5321,13 +5439,13 @@ Sfx_Fanfare2_Ch5: ; f2635
 	togglesfx
 	sfxpriorityon
 	tempo 256
-	volume $77
-	tone $0001
-	dutycycle $3
-	notetype $6, $b5
+	volume $7, $7
+	pitchoffset $0001
+	waveduty $3
+	notetype $6, $b, $0, $5
 	octave 3
 	note G#, 4
-	notetype $4, $b2
+	notetype $4, $b, $0, $2
 	note F_, 2
 	note G#, 2
 	note A_, 2
@@ -5337,7 +5455,7 @@ Sfx_Fanfare2_Ch5: ; f2635
 	octave 4
 	note C_, 4
 	note C_, 2
-	notetype $4, $b6
+	notetype $4, $b, $0, $6
 	note C#, 12
 	sfxpriorityoff
 	endchannel
@@ -5345,21 +5463,21 @@ Sfx_Fanfare2_Ch5: ; f2635
 
 Sfx_Fanfare2_Ch6: ; f2658
 	togglesfx
-	dutycycle $2
-	notetype $6, $c5
+	waveduty $2
+	notetype $6, $c, $0, $5
 	octave 4
 	note C#, 6
-	notetype $4, $c1
+	notetype $4, $c, $0, $1
 	note C#, 1
 	note C#, 1
 	note C#, 1
-	notetype $4, $c2
+	notetype $4, $c, $0, $2
 	note D#, 2
 	note C#, 2
 	note D#, 2
 	note E_, 4
 	note E_, 2
-	notetype $4, $c6
+	notetype $4, $c, $0, $6
 	note F_, 12
 	endchannel
 ; f2673
@@ -5389,10 +5507,10 @@ Sfx_Fanfare_Ch5: ; f2687
 	togglesfx
 	sfxpriorityon
 	tempo 256
-	volume $77
-	dutycycle $3
-	tone $0001
-	notetype $6, $b3
+	volume $7, $7
+	waveduty $3
+	pitchoffset $0001
+	notetype $6, $b, $0, $3
 	octave 3
 	note F_, 4
 	note C#, 4
@@ -5402,7 +5520,7 @@ Sfx_Fanfare_Ch5: ; f2687
 	note F_, 4
 	note A#, 4
 	note F#, 4
-	notetype $4, $b3
+	notetype $4, $b, $0, $3
 	note A#, 4
 	note B_, 4
 	octave 4
@@ -5410,7 +5528,7 @@ Sfx_Fanfare_Ch5: ; f2687
 	note C#, 4
 	note D#, 4
 	note C_, 4
-	notetype $4, $b6
+	notetype $4, $b, $0, $6
 	note C#, 12
 	sfxpriorityoff
 	endchannel
@@ -5418,11 +5536,11 @@ Sfx_Fanfare_Ch5: ; f2687
 
 Sfx_Fanfare_Ch6: ; f26af
 	togglesfx
-	dutycycle $2
-	notetype $6, $c4
+	waveduty $2
+	notetype $6, $c, $0, $4
 	octave 4
 	note C#, 4
-	notetype $4, $c4
+	notetype $4, $c, $0, $4
 	note C#, 2
 	octave 3
 	note A#, 2
@@ -5448,7 +5566,7 @@ Sfx_Fanfare_Ch6: ; f26af
 	note F_, 4
 	note F#, 4
 	note G#, 4
-	notetype $4, $c6
+	notetype $4, $c, $0, $6
 	note F#, 12
 	endchannel
 ; f26d8
@@ -5480,14 +5598,14 @@ Sfx_Fanfare_Ch8: ; f26d8
 ; f26f1
 
 Sfx_HangUp_Ch5: ; f26f1
-	dutycycle $2
+	waveduty $2
 	sound $4, $b8, $077b
 	sound $2, $21, $077b
 	sound $10, $0, $0000
 Sfx_HangUp_branch_f26ff: ; f26ff
 Sfx_NoSignal_Ch5: ; f26ff
 Sfx_NoSignal_branch_f26ff: ; f26ff
-	dutycycle $2
+	waveduty $2
 	sound $14, $e8, $070b
 	sound $1c, $0, $0000
 	loopchannel 3, Sfx_HangUp_branch_f26ff
@@ -5508,13 +5626,13 @@ Sfx_Unknown5F_branch_f270e: ; f270e
 ; f2722
 
 Sfx_Elevator_Ch5: ; f2722
-	dutycycle $2
-	soundinput $5a
+	waveduty $2
+	sweep $5, $1, $2
 Sfx_Elevator_branch_f2726: ; f2726
 	sound $2, $f1, $0300
 	loopchannel 48, Sfx_Elevator_branch_f2726
-	soundinput $8
-	dutycycle $2
+	sweep $0, $1, $0
+	waveduty $2
 	sound $f, $f3, $0730
 	sound $8, $65, $0730
 	sound $f, $f4, $0700
@@ -5542,7 +5660,7 @@ Sfx_StopSlot: ; f275b
 ; f275e
 
 Sfx_StopSlot_Ch5: ; f275e
-	dutycycle $2
+	waveduty $2
 	sound $1, $f8, $0760
 	sound $4, $82, $0760
 	endchannel
@@ -5553,7 +5671,7 @@ Sfx_GlassTing: ; f2769
 ; f276c
 
 Sfx_GlassTing_Ch5: ; f276c
-	dutycycle $2
+	waveduty $2
 	sound $20, $d1, $07dc
 	endchannel
 ; f2773
@@ -5564,13 +5682,13 @@ Sfx_GlassTing2: ; f2773
 ; f2779
 
 Sfx_GlassTing2_Ch5: ; f2779
-	dutycycle $2
+	waveduty $2
 	sound $10, $f1, $07dc
 	endchannel
 ; f2780
 
 Sfx_GlassTing2_Ch6: ; f2780
-	dutycycle $2
+	waveduty $2
 	sound $10, $d1, $07dd
 	endchannel
 ; f2787

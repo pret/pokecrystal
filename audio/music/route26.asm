@@ -7,12 +7,12 @@ Music_Route26: ; eefb2
 
 Music_Route26_Ch1: ; eefbe
 	stereopanning $f
-	vibrato $12, $23
+	vibrato $12, $2, $3
 	tempo 151
-	volume $77
-	vibrato $14, $23
-	dutycycle $0
-	notetype $c, $a7
+	volume $7, $7
+	vibrato $14, $2, $3
+	waveduty $0
+	notetype $c, $a, $0, $7
 	octave 3
 	note D_, 4
 	note __, 4
@@ -21,15 +21,15 @@ Music_Route26_Ch1: ; eefbe
 	note F#, 4
 	note __, 4
 	note G#, 12
-	notetype $8, $a7
+	notetype $8, $a, $0, $7
 	octave 4
 	note C_, 2
 	octave 3
 	note G#, 2
 	note F#, 2
 Music_Route26_branch_eefe0: ; eefe0
-	dutycycle $0
-	notetype $c, $a7
+	waveduty $0
+	notetype $c, $a, $0, $7
 	octave 3
 	note F_, 1
 	note __, 2
@@ -82,7 +82,7 @@ Music_Route26_branch_eefe0: ; eefe0
 	note __, 1
 	note A#, 4
 	note __, 2
-	notetype $6, $a7
+	notetype $6, $a, $0, $7
 	note A#, 1
 	note __, 1
 	note A#, 1
@@ -95,7 +95,7 @@ Music_Route26_branch_eefe0: ; eefe0
 	note __, 2
 	note G_, 2
 	note __, 2
-	notetype $8, $a5
+	notetype $8, $a, $0, $5
 	note G#, 2
 	octave 4
 	note C#, 2
@@ -110,8 +110,8 @@ Music_Route26_branch_eefe0: ; eefe0
 	note C_, 6
 	octave 3
 	note G#, 6
-	dutycycle $2
-	notetype $c, $a5
+	waveduty $2
+	notetype $c, $a, $0, $5
 	note A_, 3
 	note G#, 3
 	note F#, 4
@@ -136,12 +136,12 @@ Music_Route26_branch_eefe0: ; eefe0
 	note G#, 2
 	note F_, 4
 	note F#, 2
-	notetype $6, $a5
+	notetype $6, $a, $0, $5
 	note G#, 7
 	octave 4
 	note C_, 1
 	note C#, 8
-	notetype $8, $a5
+	notetype $8, $a, $0, $5
 	octave 3
 	note C#, 1
 	note __, 1
@@ -150,12 +150,12 @@ Music_Route26_branch_eefe0: ; eefe0
 	note C#, 1
 	note __, 1
 	note C#, 6
-	notetype $6, $a5
+	notetype $6, $a, $0, $5
 	note __, 7
 	octave 4
 	note D#, 1
 	note E_, 8
-	notetype $8, $a5
+	notetype $8, $a, $0, $5
 	octave 3
 	note E_, 1
 	note __, 1
@@ -165,7 +165,7 @@ Music_Route26_branch_eefe0: ; eefe0
 	note __, 1
 	note E_, 6
 	note __, 6
-	notetype $c, $a5
+	notetype $c, $a, $0, $5
 	octave 2
 	note B_, 1
 	note F#, 1
@@ -198,13 +198,13 @@ Music_Route26_branch_eefe0: ; eefe0
 
 Music_Route26_Ch2: ; ef09d
 	stereopanning $f0
-	vibrato $14, $23
-	dutycycle $2
-	notetype $c, $c7
+	vibrato $14, $2, $3
+	waveduty $2
+	notetype $c, $c, $0, $7
 	octave 1
 	note A#, 4
 	note __, 2
-	notetype $6, $c7
+	notetype $6, $c, $0, $7
 	note A#, 1
 	note __, 1
 	octave 2
@@ -226,17 +226,17 @@ Music_Route26_Ch2: ; ef09d
 	octave 2
 	note F#, 1
 	note __, 1
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	octave 1
 	note G#, 12
-	notetype $8, $c7
+	notetype $8, $c, $0, $7
 	note G#, 2
 	octave 2
 	note C_, 2
 	note D#, 2
 Music_Route26_branch_ef0ce: ; ef0ce
-	dutycycle $2
-	notetype $c, $c2
+	waveduty $2
+	notetype $c, $c, $0, $2
 	octave 2
 	note C#, 6
 	note C#, 1
@@ -260,7 +260,7 @@ Music_Route26_branch_ef0ce: ; ef0ce
 	note A_, 1
 	octave 2
 	note B_, 1
-	notetype $8, $c2
+	notetype $8, $c, $0, $2
 	octave 1
 	note B_, 2
 	note B_, 2
@@ -269,20 +269,20 @@ Music_Route26_branch_ef0ce: ; ef0ce
 	note B_, 2
 	note B_, 2
 	note B_, 2
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	callchannel Music_Route26_branch_ef14e
-	intensity $c7
+	volenvelope $c, $0, $7
 	octave 2
 	note F#, 4
 	note __, 2
-	notetype $6, $c2
+	notetype $6, $c, $0, $2
 	note F#, 2
 	note F#, 2
 	note F#, 4
 	note F#, 4
 	note D#, 4
 	note D#, 4
-	notetype $8, $c2
+	notetype $8, $c, $0, $2
 Music_Route26_branch_ef10e: ; ef10e
 	octave 2
 	note G#, 2
@@ -295,13 +295,13 @@ Music_Route26_branch_ef10e: ; ef10e
 	note G#, 2
 	note G#, 2
 	note G#, 2
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	note F#, 1
 	note D#, 1
 	note C_, 1
 	octave 1
 	note G#, 1
-	dutycycle $3
+	waveduty $3
 	octave 4
 	note C#, 6
 	note D#, 6
@@ -358,13 +358,13 @@ Music_Route26_branch_ef14e: ; ef14e
 
 Music_Route26_Ch3: ; ef15a
 	stereopanning $ff
-	vibrato $12, $23
-	notetype $c, $14
-	vibrato $18, $23
+	vibrato $12, $2, $3
+	notetype $c, $1, $0, $4
+	vibrato $18, $2, $3
 	octave 4
 	note A#, 4
 	note __, 2
-	notetype $6, $14
+	notetype $6, $1, $0, $4
 	note F_, 1
 	note __, 1
 	note A#, 1
@@ -386,22 +386,22 @@ Music_Route26_Ch3: ; ef15a
 	octave 5
 	note C#, 1
 	note __, 1
-	notetype $c, $14
+	notetype $c, $1, $0, $4
 	note D#, 12
-	notetype $8, $14
+	notetype $8, $1, $0, $4
 	note F#, 2
 	note F_, 2
 	note D#, 2
 Music_Route26_branch_ef18a: ; ef18a
-	vibrato $18, $23
-	notetype $c, $14
+	vibrato $18, $2, $3
+	notetype $c, $1, $0, $4
 	octave 5
 	note C#, 1
 	note __, 2
 	octave 4
 	note G#, 1
 	callchannel Music_Route26_branch_ef22f
-	vibrato $25, $13
+	vibrato $25, $1, $3
 	note C#, 1
 	note __, 1
 	octave 4
@@ -432,13 +432,13 @@ Music_Route26_branch_ef18a: ; ef18a
 	note C_, 1
 	octave 5
 	note G#, 1
-	intensity $15
+	volenvelope $1, $0, $5
 	octave 2
 	note A_, 1
 	note __, 1
 	note A_, 1
 	note __, 3
-	notetype $6, $15
+	notetype $6, $1, $0, $5
 	note A_, 1
 	note __, 1
 	note A_, 1
@@ -504,7 +504,7 @@ Music_Route26_branch_ef18a: ; ef18a
 	note C#, 4
 	octave 3
 	note F#, 8
-	notetype $8, $15
+	notetype $8, $1, $0, $5
 	octave 2
 	note F#, 1
 	note __, 1
@@ -525,7 +525,7 @@ Music_Route26_branch_ef18a: ; ef18a
 	note __, 1
 	note C_, 6
 	note __, 6
-	notetype $c, $15
+	notetype $c, $1, $0, $5
 	octave 2
 	note B_, 16
 	note B_, 8
@@ -553,7 +553,7 @@ Music_Route26_branch_ef22f: ; ef22f
 ; ef238
 
 Music_Route26_Ch4: ; ef238
-	togglenoise $4
+	drumkittoggle $4
 	notetype $c
 Music_Route26_branch_ef23c: ; ef23c
 	note B_, 6
@@ -673,3 +673,5 @@ Music_Route26_branch_ef2b0: ; ef2b0
 	note E_, 2
 	endchannel
 ; ef2d0
+
+

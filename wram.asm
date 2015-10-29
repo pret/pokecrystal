@@ -83,51 +83,54 @@ box: MACRO
 \1End::             ds 2 ; padding
 ENDM
 
-
 channel_struct: MACRO
-; Addreses are Channel1 (c101).
+; Addresses are Channel1 (c101).
 \1MusicID::           dw
 \1MusicBank::         db
-\1Flags::             db ; 0:on/off 1:subroutine 4:noise
-\1Flags2::            db ; 0:vibrato on/off 2:duty
+\1Flags::             db ; 0:on/off 1:subroutine 2:loop 3:sfx on/off??? 4:noise
+\1Flags2::            db ; 0:vibrato on/off 1:note on/off??? 2:duty 3:set by MusicE2 4:set by MusicE6 5:set by MusicE8 6:set by MusicE7
 \1Flags3::            db ; 0:vibrato up/down
 \1MusicAddress::      dw
 \1LastMusicAddress::  dw
                       dw
-\1NoteFlags::         db ; 5:rest
+\1NoteFlags::         db ; 3:sweep on/off 4:noise sample 5:rest
 \1Condition::         db ; conditional jumps
-\1DutyCycle::         db ; bits 6-7 (0:12.5% 1:25% 2:50% 3:75%)
+\1WaveDuty::          db ; bits 6-7 (0:12.5% 1:25% 2:50% 3:75%)
 \1Intensity::         db ; hi:pressure lo:velocity
 \1Frequency:: ; 11 bits
 \1FrequencyLo::       db
 \1FrequencyHi::       db
 \1Pitch::             db ; 0:rest 1-c:note
 \1Octave::            db ; 7-0 (0 is highest)
-\1StartingOctave::    db ; raises existing octaves (to repeat phrases)
+\1StartingOctave::    db ; raises existing octaves (to repeat phrases) 0-3:pitch 4-7:octave
 \1NoteDuration::      db ; frames remaining for the current note
-                      ds 1 ; c117
-                      ds 1 ; c118
+\1NoteDurationRest::  db ; c117 - Length of played notes has to be dividable through frame time,
+                         ; the rest playtime of previous note is saved here to be added to next note
+                      db ; c118
 \1LoopCount::         db
 \1Tempo::             dw
 \1Tracks::            db ; hi:left lo:right
-                      ds 1 ; c11d
+\1WaveDutyCycle::     db ; c11d - contains 4 settings for the wave duty (music command $de) that get cycled through
 \1VibratoDelayCount:: db ; initialized by \1VibratoDelay
 \1VibratoDelay::      db ; number of frames a note plays until vibrato starts
 \1VibratoExtent::     db
 \1VibratoRate::       db ; hi:frames for each alt lo:frames to the next alt
-                      ds 1 ; c122
-                      ds 1 ; c123
-                      ds 1 ; c124
-                      ds 1 ; c125
-                      ds 1 ; c126
-                      ds 1 ; c127
-\1CryPitch::          dw
-                      ds 4
+\1_21::               db ; c122 - new frequency:lo, comes from cmd $e0
+\1_22::               db ; c123 - new frequency:hi, comes from cmd $e0
+\1_23::               db ; c124
+\1_24::               db ; c125
+\1_25::               db ; c126
+                      db ; c127
+\1PitchShift::        dw
+\1_29::               db
+\1_2a::               db
+                      db
+\1_2c::               db
 \1NoteLength::        db ; frames per 16th note
-                      ds 1 ; c12f
-                      ds 1 ; c130
-                      ds 1 ; c131
-                      ds 1 ; c132
+\1_2e::               db ; c12f
+\1_2f::               db ; c130
+\1_30::               db ; c131
+                      db ; c132
 ENDM
 GLOBAL box_struct_length, party_struct_length
 
@@ -161,17 +164,17 @@ Channel7:: channel_struct Channel7 ; c22d
 Channel8:: channel_struct Channel8 ; c25f
 
 	ds 1 ; c291
-wc292:: ds 1
-wc293:: ds 1
-wc294:: ds 1
-wc295:: ds 1
-wc296:: ds 1
-wc297:: ds 1
+TempNRX1:: db ; c292 - temporary memory that gets written into NRX1
+TempNRX2:: db ; c293 - temporary memory that gets written into NRX2
+TempNRX3:: db ; c294 - temporary memory that gets written into NRX3
+TempNRX4:: db ; c295 - temporary memory that gets written into NRX4
+wc296:: db ; only used by Function3d9f (which in unreferenced)
+PitchDuration:: db ; c297 - temp memory for 1st parameter of MusicE0, used by LoadNote and gets subtracted by 1 there
 
 CurMusicByte:: ; c298
-	ds 1
+	db
 CurChannel:: ; c299
-	ds 1
+	db
 Volume:: ; c29a
 ; corresponds to $ff24
 ; Channel control / ON-OFF / Volume (R/W)
@@ -241,15 +244,20 @@ CryLength:: ; c2b2
 	ds 2
 LastVolume:: ; c2b4
 	ds 1
-wc2b5:: ds 1
+wc2b5:: ds 1 ; unused, never read
 SFXPriority:: ; c2b6
 ; if nonzero, turn off music when playing sfx
 	ds 1
 	ds 1
+
+; following 4 bytes should contain the result that the
+; music command $ee (conditional jump) uses to decide to jump or not
+; but their never set
 wc2b8:: ds 1
 wc2b9:: ds 1
 wc2ba:: ds 1
 wc2bb:: ds 1
+
 wc2bc:: ds 1
 CryTracks:: ; c2bd
 ; plays only in left or right track depending on what side the monster is on
@@ -259,6 +267,8 @@ wc2be:: ds 1
 CurSFX:: ; c2bf
 ; id of sfx currently playing
 	ds 1
+SoundWRAM_End::
+
 wc2c0::
 wMapMusic:: ; c2c0
 	ds 1

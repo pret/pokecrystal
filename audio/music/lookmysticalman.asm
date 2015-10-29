@@ -7,15 +7,15 @@ Music_LookMysticalMan: ; 17843b
 
 Music_LookMysticalMan_Ch1: ; 178447
 	tempo 136
-	volume $77
-	vibrato $a, $34
-	tone $0001
+	volume $7, $7
+	vibrato $a, $3, $4
+	pitchoffset $0001
 	stereopanning $f
-	notetype $c, $b3
+	notetype $c, $b, $0, $3
 	note __, 8
 Music_LookMysticalMan_branch_178458: ; 178458
-	dutycycle $3
-	notetype $6, $96
+	waveduty $3
+	notetype $6, $9, $0, $6
 	octave 3
 	note F#, 1
 	note __, 1
@@ -60,7 +60,7 @@ Music_LookMysticalMan_branch_178458: ; 178458
 	note E_, 4
 	note __, 4
 	note C#, 4
-	dutycycle $2
+	waveduty $2
 	callchannel Music_LookMysticalMan_branch_1784f9
 	octave 4
 	note C#, 2
@@ -87,13 +87,13 @@ Music_LookMysticalMan_branch_178458: ; 178458
 	note B_, 6
 	note A#, 4
 	note F#, 4
-	intensity $a5
-	dutycycle $0
+	volenvelope $a, $0, $5
+	waveduty $0
 	octave 4
 	note F#, 2
 	note A#, 6
-	dutycycle $2
-	intensity $72
+	waveduty $2
+	volenvelope $7, $0, $2
 Music_LookMysticalMan_branch_1784b4: ; 1784b4
 	octave 5
 	note D_, 2
@@ -195,13 +195,13 @@ Music_LookMysticalMan_branch_1784f9: ; 1784f9
 ; 17851a
 
 Music_LookMysticalMan_Ch2: ; 17851a
-	dutycycle $3
-	vibrato $a, $34
-	notetype $c, $b3
+	waveduty $3
+	vibrato $a, $3, $4
+	notetype $c, $b, $0, $3
 	note __, 8
 Music_LookMysticalMan_branch_178523: ; 178523
 	stereopanning $f0
-	notetype $6, $b8
+	notetype $6, $b, $1, $0
 	octave 3
 	note B_, 1
 	note __, 1
@@ -271,7 +271,7 @@ Music_LookMysticalMan_branch_178523: ; 178523
 	note E_, 2
 	note D_, 6
 	callchannel Music_LookMysticalMan_branch_1785c8
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	note B_, 2
 	note __, 2
 	note B_, 2
@@ -321,13 +321,13 @@ Music_LookMysticalMan_branch_17859a: ; 17859a
 	note C#, 6
 	octave 4
 	note B_, 12
-	intensity $88
+	volenvelope $8, $1, $0
 	note A#, 1
 	note A_, 1
-	intensity $68
+	volenvelope $6, $1, $0
 	note G#, 1
 	note F#, 1
-	intensity $b8
+	volenvelope $b, $1, $0
 	octave 5
 	note C#, 2
 	note __, 2
@@ -347,24 +347,24 @@ Music_LookMysticalMan_branch_17859a: ; 17859a
 
 Music_LookMysticalMan_branch_1785c8: ; 1785c8
 	note C#, 8
-	intensity $88
+	volenvelope $8, $1, $0
 	note C_, 1
 	octave 3
 	note B_, 1
 	note A#, 1
-	intensity $68
+	volenvelope $6, $1, $0
 	note G#, 1
 	note F#, 1
-	intensity $48
+	volenvelope $4, $1, $0
 	note E_, 1
 	note C#, 1
 	note __, 1
-	intensity $b8
+	volenvelope $b, $1, $0
 	endchannel
 ; 1785db
 
 Music_LookMysticalMan_Ch3: ; 1785db
-	notetype $6, $16
+	notetype $6, $1, $0, $6
 	note __, 16
 Music_LookMysticalMan_branch_1785df: ; 1785df
 	octave 2
@@ -540,7 +540,7 @@ Music_LookMysticalMan_branch_178615: ; 178615
 ; 17868e
 
 Music_LookMysticalMan_Ch4: ; 17868e
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note D#, 2
 	note D#, 2
@@ -617,3 +617,5 @@ Music_LookMysticalMan_branch_1786df: ; 1786df
 	note D_, 1
 	endchannel
 ; 1786e8
+
+

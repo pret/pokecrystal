@@ -7,12 +7,12 @@ Music_LookRival: ; f4f79
 
 Music_LookRival_Ch1: ; f4f85
 	tempo 112
-	volume $77
-	dutycycle $1
-	tone $0001
-	vibrato $12, $15
+	volume $7, $7
+	waveduty $1
+	pitchoffset $0001
+	vibrato $12, $1, $5
 	stereopanning $f
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	octave 4
 	note C_, 1
 	octave 3
@@ -22,21 +22,21 @@ Music_LookRival_Ch1: ; f4f85
 	note G#, 1
 	note F#, 2
 	note F_, 6
-	intensity $b7
+	volenvelope $b, $0, $7
 	note G#, 6
-	intensity $b2
+	volenvelope $b, $0, $2
 	note A#, 4
 	note F_, 2
 	note G#, 4
-	intensity $a0
+	volenvelope $a, $0, $0
 	note G#, 10
-	intensity $a5
+	volenvelope $a, $0, $5
 	note G#, 8
-	intensity $a6
+	volenvelope $a, $0, $6
 	note F#, 8
 Music_AfterTheRivalFight_branch_f4fb1: ; f4fb1
 Music_LookRival_branch_f4fb1: ; f4fb1
-	intensity $b5
+	volenvelope $b, $0, $5
 	note F_, 4
 	note D#, 2
 	note F_, 6
@@ -46,15 +46,15 @@ Music_LookRival_branch_f4fb1: ; f4fb1
 	note A#, 4
 	note G#, 2
 	note G_, 4
-	intensity $a0
+	volenvelope $a, $0, $0
 	note F_, 2
-	intensity $a7
+	volenvelope $a, $0, $7
 	note F_, 16
-	intensity $66
+	volenvelope $6, $0, $6
 	note __, 2
 	note F_, 2
 	note G_, 4
-	intensity $b6
+	volenvelope $b, $0, $6
 	note G#, 4
 	octave 4
 	note C_, 4
@@ -62,7 +62,7 @@ Music_LookRival_branch_f4fb1: ; f4fb1
 	note A#, 4
 	note G#, 2
 	note A#, 6
-	intensity $b4
+	volenvelope $b, $0, $4
 	note A#, 2
 	octave 4
 	note C_, 2
@@ -72,7 +72,7 @@ Music_LookRival_branch_f4fb1: ; f4fb1
 	note D#, 2
 	note C#, 2
 	note C_, 6
-	intensity $b7
+	volenvelope $b, $0, $7
 	octave 3
 	note A#, 12
 	note G#, 2
@@ -100,71 +100,71 @@ Music_LookRival_branch_f4fb1: ; f4fb1
 	note F_, 6
 	note C_, 2
 Music_LookRival_branch_f4ff7: ; f4ff7
-	intensity $b2
+	volenvelope $b, $0, $2
 	note F_, 6
-	intensity $b7
+	volenvelope $b, $0, $7
 	note G#, 4
 	note F#, 2
 	note F_, 2
 	note D#, 2
 	loopchannel 3, Music_LookRival_branch_f4ff7
-	intensity $b2
+	volenvelope $b, $0, $2
 	note F_, 2
 	note G#, 4
-	intensity $b7
+	volenvelope $b, $0, $7
 	note G#, 6
 	note F#, 4
 	loopchannel 0, Music_LookRival_branch_f4fb1
 ; f5010
 
 Music_LookRival_Ch2: ; f5010
-	dutycycle $3
-	vibrato $8, $36
+	waveduty $3
+	vibrato $8, $3, $6
 	stereopanning $f0
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	octave 4
 	note F#, 2
 	note F_, 2
 	note D#, 2
 	note C#, 2
 	note C_, 6
-	intensity $c7
+	volenvelope $c, $0, $7
 	note D#, 6
-	intensity $c2
+	volenvelope $c, $0, $2
 	note F_, 4
 	note C_, 2
 	note D#, 4
-	intensity $b0
+	volenvelope $b, $0, $0
 	note D#, 10
-	intensity $b7
+	volenvelope $b, $0, $7
 	note D#, 16
 Music_AfterTheRivalFight_branch_f502e: ; f502e
 Music_LookRival_branch_f502e: ; f502e
-	intensity $c7
+	volenvelope $c, $0, $7
 	note C_, 12
-	intensity $c4
+	volenvelope $c, $0, $4
 	note C_, 2
 	note D_, 2
 	note D#, 4
 	note D_, 4
 	note C_, 2
 	note D_, 4
-	intensity $b0
+	volenvelope $b, $0, $0
 	note C_, 6
-	intensity $b7
+	volenvelope $b, $0, $7
 	note C_, 8
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 3
 	note A_, 2
 	note G_, 2
 	note A_, 2
-	intensity $c6
+	volenvelope $c, $0, $6
 	octave 4
 	note C_, 6
-	intensity $c7
+	volenvelope $c, $0, $7
 	note D#, 8
 	note F_, 12
-	intensity $c4
+	volenvelope $c, $0, $4
 	note F_, 2
 	note G_, 2
 	note G#, 2
@@ -172,43 +172,43 @@ Music_LookRival_branch_f502e: ; f502e
 	note G_, 2
 	note G_, 2
 	note F_, 2
-	intensity $c4
+	volenvelope $c, $0, $4
 	note G_, 6
-	intensity $b0
+	volenvelope $b, $0, $0
 	note F_, 16
-	intensity $b7
+	volenvelope $b, $0, $7
 	note F_, 16
-	intensity $b0
+	volenvelope $b, $0, $0
 	note G_, 12
 	note F_, 4
 	note E_, 16
 	note F_, 12
 	note D#, 4
-	intensity $c7
+	volenvelope $c, $0, $7
 	note D_, 8
-	intensity $c4
+	volenvelope $c, $0, $4
 	note C_, 2
 	note D_, 2
 	note D#, 1
 	note D_, 1
 	note D#, 2
 Music_LookRival_branch_f5070: ; f5070
-	intensity $c2
+	volenvelope $c, $0, $2
 	note C_, 6
-	intensity $c7
+	volenvelope $c, $0, $7
 	note D#, 6
-	intensity $c2
+	volenvelope $c, $0, $2
 	note F_, 4
 	loopchannel 3, Music_LookRival_branch_f5070
 	note C_, 2
 	note D#, 4
-	intensity $c7
+	volenvelope $c, $0, $7
 	note D#, 10
 	loopchannel 0, Music_LookRival_branch_f502e
 ; f5086
 
 Music_LookRival_Ch3: ; f5086
-	notetype $c, $28
+	notetype $c, $2, $1, $0
 	note __, 2
 	octave 4
 	note C_, 2
@@ -329,7 +329,7 @@ Music_LookRival_branch_f50ff: ; f50ff
 
 Music_LookRival_Ch4: ; f5106
 	stereopanning $f0
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note __, 8
 	note __, 16
@@ -358,3 +358,5 @@ Music_LookRival_branch_f5118: ; f5118
 	note D_, 2
 	loopchannel 0, Music_LookRival_branch_f5118
 ; f5127
+
+

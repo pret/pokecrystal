@@ -6,23 +6,23 @@ Music_RuinsOfAlphRadio: ; eedcb
 
 Music_RuinsOfAlphRadio_Ch1: ; eedd4
 	tempo 160
-	volume $77
-	dutycycle $0
-	tone $0118
-	vibrato $0, $f0
+	volume $7, $7
+	waveduty $0
+	pitchoffset $0118
+	vibrato $0, $f, $0
 	stereopanning $f0
 Music_RuinsOfAlphRadio_branch_eede3: ; eede3
-	notetype $6, $71
+	notetype $6, $7, $0, $1
 	callchannel Music_RuinsOfAlphRadio_branch_eee01
-	notetype $c, $a1
+	notetype $c, $a, $0, $1
 	note __, 16
 	note __, 16
 	callchannel Music_RuinsOfAlphRadio_branch_eee08
-	notetype $c, $a1
+	notetype $c, $a, $0, $1
 	note __, 16
 	note __, 16
 	callchannel Music_RuinsOfAlphRadio_branch_eee01
-	notetype $c, $a1
+	notetype $c, $a, $0, $1
 	note __, 16
 	loopchannel 0, Music_RuinsOfAlphRadio_branch_eede3
 ; eee01
@@ -51,24 +51,24 @@ Music_RuinsOfAlphRadio_branch_eee08: ; eee08
 ; eee12
 
 Music_RuinsOfAlphRadio_Ch2: ; eee12
-	dutycycle $1
-	vibrato $1, $e0
+	waveduty $1
+	vibrato $1, $e, $0
 Music_RuinsOfAlphRadio_branch_eee17: ; eee17
 	stereopanning $f
-	notetype $6, $81
+	notetype $6, $8, $0, $1
 	callchannel Music_RuinsOfAlphRadio_branch_eee01
-	notetype $c, $a1
+	notetype $c, $a, $0, $1
 	note __, 16
 	note __, 16
-	notetype $6, $81
+	notetype $6, $8, $0, $1
 	callchannel Music_RuinsOfAlphRadio_branch_eee08
-	notetype $c, $a1
+	notetype $c, $a, $0, $1
 	note __, 16
 	loopchannel 0, Music_RuinsOfAlphRadio_branch_eee17
 ; eee32
 
 Music_RuinsOfAlphRadio_Ch3: ; eee32
-	notetype $6, $26
+	notetype $6, $2, $0, $6
 Music_RuinsOfAlphRadio_branch_eee35: ; eee35
 	octave 2
 	note C_, 1
@@ -77,3 +77,5 @@ Music_RuinsOfAlphRadio_branch_eee35: ; eee35
 	note __, 16
 	loopchannel 0, Music_RuinsOfAlphRadio_branch_eee35
 ; eee3e
+
+

@@ -6,17 +6,17 @@ Music_GoldSilverOpening: ; f7055
 
 Music_GoldSilverOpening_Ch1: ; f705e
 	tempo 256
-	volume $77
-	tone $0001
-	dutycycle $2
+	volume $7, $7
+	pitchoffset $0001
+	waveduty $2
 	stereopanning $f0
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	octave 1
 	note G#, 16
 	note G#, 16
 	tempo 168
-	dutycycle $3
-	notetype $6, $c7
+	waveduty $3
+	notetype $6, $c, $0, $7
 	octave 3
 	note F_, 12
 	note A_, 4
@@ -31,7 +31,7 @@ Music_GoldSilverOpening_Ch1: ; f705e
 	note D#, 12
 	note D_, 2
 	note C#, 2
-	notetype $6, $b5
+	notetype $6, $b, $0, $5
 	note C_, 8
 	octave 3
 	note F_, 8
@@ -39,7 +39,7 @@ Music_GoldSilverOpening_Ch1: ; f705e
 	note B_, 4
 	octave 4
 	note C_, 4
-	notetype $6, $b3
+	notetype $6, $b, $0, $3
 	octave 3
 	note A#, 8
 	note C#, 8
@@ -47,7 +47,7 @@ Music_GoldSilverOpening_Ch1: ; f705e
 	note F#, 8
 	octave 1
 	note B_, 8
-	notetype $6, $b2
+	notetype $6, $b, $0, $2
 	note __, 4
 	octave 3
 	note A#, 4
@@ -74,7 +74,7 @@ Music_GoldSilverOpening_Ch1: ; f705e
 	note F#, 4
 	note G_, 4
 	note F_, 4
-	notetype $8, $b3
+	notetype $8, $b, $0, $3
 	octave 4
 	note F_, 1
 	note G_, 1
@@ -83,8 +83,8 @@ Music_GoldSilverOpening_Ch1: ; f705e
 	note B_, 1
 	octave 5
 	note C_, 1
-	dutycycle $2
-	notetype $c, $b3
+	waveduty $2
+	notetype $c, $b, $0, $3
 	note D_, 1
 	note C#, 1
 	note D_, 4
@@ -102,8 +102,8 @@ Music_GoldSilverOpening_Ch1: ; f705e
 	note C_, 2
 	note D#, 4
 	note F#, 2
-	dutycycle $3
-	notetype $8, $92
+	waveduty $3
+	notetype $8, $9, $0, $2
 	note A_, 1
 	note F_, 1
 	note D#, 1
@@ -116,14 +116,14 @@ Music_GoldSilverOpening_Ch1: ; f705e
 	note C_, 1
 	octave 3
 	note A_, 3
-	notetype $c, $b2
+	notetype $c, $b, $0, $2
 	note A#, 2
 	note B_, 2
 	octave 4
 	note C_, 2
 	note D_, 2
 	note D#, 2
-	intensity $c2
+	volenvelope $c, $0, $2
 	note F_, 2
 	note G_, 2
 	note A_, 16
@@ -131,17 +131,17 @@ Music_GoldSilverOpening_Ch1: ; f705e
 ; f70f8
 
 Music_GoldSilverOpening_Ch2: ; f70f8
-	tone $0001
+	pitchoffset $0001
 	stereopanning $f
-	notetype $c, $b7
-	dutycycle $2
+	notetype $c, $b, $0, $7
+	waveduty $2
 	octave 2
 	note C_, 16
 	note C_, 16
-	dutycycle $3
-	notetype $c, $b2
+	waveduty $3
+	notetype $c, $b, $0, $2
 	note __, 2
-	notetype $6, $62
+	notetype $6, $6, $0, $2
 	octave 1
 	note F_, 2
 	note A_, 2
@@ -181,33 +181,33 @@ Music_GoldSilverOpening_Ch2: ; f70f8
 	note D_, 2
 	note D#, 2
 	note G_, 2
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	octave 1
 	note F_, 16
-	intensity $83
+	volenvelope $8, $0, $3
 	octave 4
 	note F_, 2
-	intensity $81
+	volenvelope $8, $0, $1
 	note D_, 2
-	intensity $93
+	volenvelope $9, $0, $3
 	note G#, 2
-	intensity $91
+	volenvelope $9, $0, $1
 	note F_, 2
-	intensity $a3
+	volenvelope $a, $0, $3
 	octave 5
 	note C#, 2
-	intensity $a1
+	volenvelope $a, $0, $1
 	octave 4
 	note A#, 2
-	intensity $b3
+	volenvelope $b, $0, $3
 	octave 5
 	note F#, 2
-	intensity $c1
+	volenvelope $c, $0, $1
 	note D#, 2
-	intensity $b3
+	volenvelope $b, $0, $3
 	octave 1
 	note A#, 2
-	notetype $6, $b2
+	notetype $6, $b, $0, $2
 	octave 4
 	note D_, 4
 	note D_, 4
@@ -293,16 +293,16 @@ Music_GoldSilverOpening_Ch2: ; f70f8
 	octave 3
 	note D#, 4
 	note D#, 16
-	notetype $6, $a2
+	notetype $6, $a, $0, $2
 	note F_, 4
 	note G_, 4
 	note G#, 4
-	notetype $6, $c2
+	notetype $6, $c, $0, $2
 	note A_, 4
 	note A#, 4
 	octave 4
 	note C_, 4
-	notetype $6, $d2
+	notetype $6, $d, $0, $2
 	octave 3
 	note A_, 4
 	octave 4
@@ -312,16 +312,16 @@ Music_GoldSilverOpening_Ch2: ; f70f8
 ; f71c8
 
 Music_GoldSilverOpening_Ch3: ; f71c8
-	notetype $6, $10
+	notetype $6, $1, $0, $0
 	octave 2
 	note D_, 4
-	notetype $6, $20
+	notetype $6, $2, $0, $0
 	note D_, 4
-	notetype $6, $30
+	notetype $6, $3, $0, $0
 	note D_, 4
 	note __, 12
 	note __, 8
-	notetype $6, $10
+	notetype $6, $1, $0, $0
 	octave 2
 	note D#, 1
 	note __, 1
@@ -433,7 +433,7 @@ Music_GoldSilverOpening_Ch3: ; f71c8
 	octave 6
 	note D_, 1
 	note __, 1
-	notetype $8, $10
+	notetype $8, $1, $0, $0
 	note F_, 1
 	octave 5
 	note B_, 1
@@ -467,7 +467,7 @@ Music_GoldSilverOpening_Ch3: ; f71c8
 	note F_, 1
 	octave 5
 	note A_, 3
-	notetype $c, $10
+	notetype $c, $1, $0, $0
 	note G_, 1
 	note __, 1
 	octave 6
@@ -484,7 +484,7 @@ Music_GoldSilverOpening_Ch3: ; f71c8
 	note __, 1
 	note __, 16
 	note __, 4
-	notetype $6, $10
+	notetype $6, $1, $0, $0
 	octave 2
 	note G_, 1
 	note __, 3
@@ -607,7 +607,7 @@ Music_GoldSilverOpening_Ch3: ; f71c8
 	note __, 1
 	note A#, 1
 	note __, 9
-	notetype $c, $10
+	notetype $c, $1, $0, $0
 	note __, 14
 	octave 3
 	note F_, 2
@@ -617,3 +617,5 @@ Music_GoldSilverOpening_Ch3: ; f71c8
 	note __, 13
 	endchannel
 ; f7308
+
+

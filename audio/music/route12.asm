@@ -7,12 +7,12 @@ Music_Route12: ; ec506
 
 Music_Route12_Ch1: ; ec512
 	tempo 148
-	volume $77
-	vibrato $12, $34
-	tone $0001
+	volume $7, $7
+	vibrato $12, $3, $4
+	pitchoffset $0001
 	stereopanning $f
-	dutycycle $3
-	notetype $c, $98
+	waveduty $3
+	notetype $c, $9, $1, $0
 	octave 3
 	note G#, 1
 	note __, 2
@@ -27,11 +27,11 @@ Music_Route12_Ch1: ; ec512
 	note F#, 1
 	note __, 2
 	note E_, 1
-	intensity $97
+	volenvelope $9, $0, $7
 	note D#, 12
 Music_Route12_branch_ec535: ; ec535
-	dutycycle $2
-	intensity $96
+	waveduty $2
+	volenvelope $9, $0, $6
 	callchannel Music_Route12_branch_ec5b1
 	callchannel Music_Route12_branch_ec5bf
 	callchannel Music_Route12_branch_ec5b1
@@ -45,7 +45,7 @@ Music_Route12_branch_ec535: ; ec535
 	callchannel Music_Route12_branch_ec5b1
 	callchannel Music_Route12_branch_ec5bf
 	callchannel Music_Route12_branch_ec5b1
-	intensity $92
+	volenvelope $9, $0, $2
 	octave 4
 	note E_, 1
 	octave 3
@@ -68,8 +68,8 @@ Music_Route12_branch_ec535: ; ec535
 	note F_, 1
 	note G#, 1
 	note B_, 1
-	dutycycle $3
-	intensity $7f
+	waveduty $3
+	volenvelope $7, $1, $7
 	octave 4
 	note C#, 3
 	octave 3
@@ -116,7 +116,7 @@ Music_Route12_branch_ec535: ; ec535
 	note D#, 4
 	note F#, 4
 Music_Route12_branch_ec59b: ; ec59b
-	intensity $97
+	volenvelope $9, $0, $7
 	note G#, 1
 	note A_, 1
 	note B_, 4
@@ -165,9 +165,9 @@ Music_Route12_branch_ec5bf: ; ec5bf
 ; ec5ca
 
 Music_Route12_Ch2: ; ec5ca
-	dutycycle $3
-	vibrato $12, $34
-	notetype $c, $b8
+	waveduty $3
+	vibrato $12, $3, $4
+	notetype $c, $b, $1, $0
 	octave 4
 	note E_, 1
 	note __, 2
@@ -178,7 +178,7 @@ Music_Route12_Ch2: ; ec5ca
 	note __, 2
 	octave 4
 	note C_, 1
-	intensity $b7
+	volenvelope $b, $0, $7
 	octave 3
 	note B_, 8
 	note D#, 1
@@ -187,8 +187,8 @@ Music_Route12_Ch2: ; ec5ca
 	octave 4
 	note D#, 1
 Music_Route12_branch_ec5e5: ; ec5e5
-	dutycycle $3
-	intensity $b7
+	waveduty $3
+	volenvelope $b, $0, $7
 	callchannel Music_Route12_branch_ec647
 	note F#, 1
 	note A_, 1
@@ -199,7 +199,7 @@ Music_Route12_branch_ec5e5: ; ec5e5
 	note E_, 1
 	octave 3
 	note B_, 12
-	dutycycle $2
+	waveduty $2
 	octave 2
 	note B_, 1
 	note __, 2
@@ -210,7 +210,7 @@ Music_Route12_branch_ec5e5: ; ec5e5
 	octave 3
 	note D#, 4
 	note F#, 4
-	dutycycle $3
+	waveduty $3
 	callchannel Music_Route12_branch_ec647
 	note A_, 1
 	octave 5
@@ -221,30 +221,30 @@ Music_Route12_branch_ec5e5: ; ec5e5
 	note B_, 2
 	note __, 1
 	note A_, 1
-	intensity $b8
+	volenvelope $b, $1, $0
 	note G#, 6
-	intensity $b7
+	volenvelope $b, $0, $7
 	note G#, 6
-	intensity $6f
+	volenvelope $6, $1, $7
 	note G#, 16
-	dutycycle $2
-	intensity $a8
+	waveduty $2
+	volenvelope $a, $1, $0
 	note A_, 3
 	note G#, 3
 	note F#, 1
 	note __, 1
 	note F#, 8
-	intensity $a7
+	volenvelope $a, $0, $7
 	note F#, 10
 	note __, 2
 	note F#, 4
-	intensity $a8
+	volenvelope $a, $1, $0
 	note G#, 3
 	note F#, 3
 	note E_, 1
 	note __, 1
 	note E_, 8
-	intensity $a7
+	volenvelope $a, $0, $7
 	note E_, 10
 	note __, 2
 	note E_, 4
@@ -252,7 +252,7 @@ Music_Route12_branch_ec5e5: ; ec5e5
 	note D#, 3
 	octave 3
 	note B_, 2
-	intensity $a8
+	volenvelope $a, $1, $0
 	octave 4
 	note B_, 8
 	note B_, 8
@@ -261,7 +261,7 @@ Music_Route12_branch_ec5e5: ; ec5e5
 	note F#, 1
 	note E_, 14
 	note E_, 10
-	intensity $a4
+	volenvelope $a, $0, $4
 	note E_, 6
 	loopchannel 0, Music_Route12_branch_ec5e5
 ; ec647
@@ -269,11 +269,11 @@ Music_Route12_branch_ec5e5: ; ec5e5
 Music_Route12_branch_ec647: ; ec647
 	octave 4
 	note E_, 6
-	intensity $b1
+	volenvelope $b, $0, $1
 	octave 3
 	note B_, 1
 	note B_, 1
-	intensity $b7
+	volenvelope $b, $0, $7
 	note B_, 4
 	octave 4
 	note B_, 4
@@ -284,8 +284,8 @@ Music_Route12_branch_ec647: ; ec647
 ; ec657
 
 Music_Route12_Ch3: ; ec657
-	vibrato $12, $54
-	notetype $c, $16
+	vibrato $12, $5, $4
+	notetype $c, $1, $0, $6
 	octave 3
 	note G#, 2
 	note __, 4
@@ -397,7 +397,7 @@ Music_Route12_branch_ec6b4: ; ec6b4
 ; ec6ce
 
 Music_Route12_Ch4: ; ec6ce
-	togglenoise $4
+	drumkittoggle $4
 	stereopanning $f0
 	notetype $c
 	note B_, 10
@@ -458,3 +458,5 @@ Music_Route12_branch_ec717: ; ec717
 	note C#, 1
 	endchannel
 ; ec720
+
+

@@ -7,11 +7,11 @@ Music_MobileAdapter: ; 1fc87
 
 Music_MobileAdapter_Ch1: ; 1fc93
 	tempo 132
-	volume $77
-	tone $0001
+	volume $7, $7
+	pitchoffset $0001
 	stereopanning $f
-	dutycycle $2
-	notetype $c, $84
+	waveduty $2
+	notetype $c, $8, $0, $4
 	note __, 2
 	note __, 6
 	octave 3
@@ -49,7 +49,7 @@ Music_MobileAdapter_branch_1fcad: ; 1fcad
 	note E_, 1
 	note D_, 1
 	note C#, 1
-	intensity $94
+	volenvelope $9, $0, $4
 	note D_, 2
 	octave 3
 	note A_, 2
@@ -64,13 +64,13 @@ Music_MobileAdapter_branch_1fcad: ; 1fcad
 	note __, 1
 	octave 4
 	note C#, 8
-	intensity $92
+	volenvelope $9, $0, $2
 	note F#, 1
 	note G_, 1
 	note A_, 2
 	note G#, 2
 	note A_, 2
-	intensity $94
+	volenvelope $9, $0, $4
 	note E_, 3
 	octave 3
 	note A_, 3
@@ -84,7 +84,7 @@ Music_MobileAdapter_branch_1fcad: ; 1fcad
 	note __, 1
 	octave 3
 	note B_, 8
-	intensity $92
+	volenvelope $9, $0, $2
 	octave 4
 	note B_, 1
 	octave 5
@@ -95,7 +95,7 @@ Music_MobileAdapter_branch_1fcad: ; 1fcad
 	note A_, 2
 	octave 5
 	note C#, 3
-	intensity $94
+	volenvelope $9, $0, $4
 	octave 4
 	note C#, 3
 	octave 3
@@ -120,7 +120,7 @@ Music_MobileAdapter_branch_1fcad: ; 1fcad
 	note D_, 10
 	octave 4
 	note A_, 8
-	intensity $a1
+	volenvelope $a, $0, $1
 	octave 3
 	note C#, 1
 	note D_, 1
@@ -138,19 +138,19 @@ Music_MobileAdapter_branch_1fcad: ; 1fcad
 	note A_, 1
 	note G_, 1
 	note A_, 2
-	intensity $94
+	volenvelope $9, $0, $4
 	note F#, 2
 	octave 2
 	note A_, 2
 	octave 3
 	note D_, 4
-	intensity $77
+	volenvelope $7, $0, $7
 	callchannel Music_MobileAdapter_branch_1ff09
 	loopchannel 0, Music_MobileAdapter_branch_1fcad
 ; 1fd39
 
 Music_MobileAdapter_branch_1fd39: ; 1fd39
-	intensity $94
+	volenvelope $9, $0, $4
 	octave 4
 	note F#, 1
 	note __, 1
@@ -167,7 +167,7 @@ Music_MobileAdapter_branch_1fd39: ; 1fd39
 	note G_, 2
 	octave 3
 	note G_, 8
-	intensity $a1
+	volenvelope $a, $0, $1
 	note B_, 1
 	octave 4
 	note D_, 1
@@ -193,9 +193,9 @@ Music_MobileAdapter_branch_1fd39: ; 1fd39
 ; 1fd63
 
 Music_MobileAdapter_Ch2: ; 1fd63
-	notetype $c, $c1
-	vibrato $10, $23
-	dutycycle $2
+	notetype $c, $c, $0, $1
+	vibrato $10, $2, $3
+	waveduty $2
 	octave 3
 	note G_, 1
 	note B_, 1
@@ -212,7 +212,7 @@ Music_MobileAdapter_Ch2: ; 1fd63
 	octave 3
 	note B_, 2
 	note A_, 2
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 4
 	note D_, 1
 	note F#, 1
@@ -249,11 +249,11 @@ Music_MobileAdapter_branch_1fd80: ; 1fd80
 	note E_, 2
 	note D_, 2
 	note C#, 9
-	intensity $a2
+	volenvelope $a, $0, $2
 	octave 3
 	note E_, 3
 	note C#, 2
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 5
 	note D_, 1
 	note C#, 1
@@ -270,11 +270,11 @@ Music_MobileAdapter_branch_1fd80: ; 1fd80
 	note E_, 2
 	note F#, 2
 	note E_, 9
-	intensity $a2
+	volenvelope $a, $0, $2
 	octave 3
 	note A_, 3
 	note E_, 2
-	intensity $b4
+	volenvelope $b, $0, $4
 	octave 5
 	note F#, 1
 	note G_, 1
@@ -307,8 +307,8 @@ Music_MobileAdapter_branch_1fd80: ; 1fd80
 	note C#, 12
 	note E_, 4
 	note D_, 16
-	dutycycle $1
-	intensity $71
+	waveduty $1
+	volenvelope $7, $0, $1
 	callchannel Music_MobileAdapter_branch_1fe16
 	octave 4
 	note E_, 1
@@ -318,8 +318,8 @@ Music_MobileAdapter_branch_1fd80: ; 1fd80
 	note E_, 1
 	callchannel Music_MobileAdapter_branch_1fe16
 	note __, 2
-	dutycycle $2
-	intensity $b4
+	waveduty $2
+	volenvelope $b, $0, $4
 	octave 4
 	note D_, 1
 	note F#, 1
@@ -396,7 +396,7 @@ Music_MobileAdapter_branch_1fe16: ; 1fe16
 ; 1fe3d
 
 Music_MobileAdapter_Ch3: ; 1fe3d
-	notetype $c, $14
+	notetype $c, $1, $0, $4
 	note __, 2
 	octave 3
 	note G_, 1
@@ -616,7 +616,7 @@ Music_MobileAdapter_branch_1ff09: ; 1ff09
 ; 1ff2c
 
 Music_MobileAdapter_Ch4: ; 1ff2c
-	togglenoise $3
+	drumkittoggle $3
 	stereopanning $f0
 	notetype $c
 	note __, 2
@@ -668,3 +668,4 @@ Music_MobileAdapter_branch_1ff60: ; 1ff60
 	note D_, 1
 	endchannel
 ; 1ff6c
+

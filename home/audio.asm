@@ -250,16 +250,16 @@ WaitSFX:: ; 3c55
 	
 .wait
 	ld hl, Channel5Flags
-	bit 0, [hl]
+	bit ChannelFlags_OnOff, [hl]
 	jr nz, .wait
 	ld hl, Channel6Flags
-	bit 0, [hl]
+	bit ChannelFlags_OnOff, [hl]
 	jr nz, .wait
 	ld hl, Channel7Flags
-	bit 0, [hl]
+	bit ChannelFlags_OnOff, [hl]
 	jr nz, .wait
 	ld hl, Channel8Flags
-	bit 0, [hl]
+	bit ChannelFlags_OnOff, [hl]
 	jr nz, .wait
 	
 	pop hl
@@ -272,16 +272,16 @@ IsSFXPlaying:: ; 3c74
 	push hl
 
 	ld hl, Channel5Flags
-	bit 0, [hl]
+	bit ChannelFlags_OnOff, [hl]
 	jr nz, .playing
 	ld hl, Channel6Flags
-	bit 0, [hl]
+	bit ChannelFlags_OnOff, [hl]
 	jr nz, .playing
 	ld hl, Channel7Flags
-	bit 0, [hl]
+	bit ChannelFlags_OnOff, [hl]
 	jr nz, .playing
 	ld hl, Channel8Flags
-	bit 0, [hl]
+	bit ChannelFlags_OnOff, [hl]
 	jr nz, .playing
 
 	pop hl
@@ -541,16 +541,16 @@ Function3d9f:: ; 3d9f
 CheckSFX:: ; 3dde
 ; Return carry if any SFX channels are active.
 	ld a, [Channel5Flags]
-	bit 0, a
+	bit ChannelFlags_OnOff, a
 	jr nz, .playing
 	ld a, [Channel6Flags]
-	bit 0, a
+	bit ChannelFlags_OnOff, a
 	jr nz, .playing
 	ld a, [Channel7Flags]
-	bit 0, a
+	bit ChannelFlags_OnOff, a
 	jr nz, .playing
 	ld a, [Channel8Flags]
-	bit 0, a
+	bit ChannelFlags_OnOff, a
 	jr nz, .playing
 	and a
 	ret

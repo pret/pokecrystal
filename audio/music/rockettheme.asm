@@ -7,35 +7,35 @@ Music_RocketTheme: ; f766d
 
 Music_RocketTheme_Ch1: ; f7679
 	tempo 128
-	volume $77
-	dutycycle $3
+	volume $7, $7
+	waveduty $3
 	stereopanning $f
-	vibrato $5, $64
-	notetype $c, $a8
+	vibrato $5, $6, $4
+	notetype $c, $a, $1, $0
 	octave 4
 	note C_, 1
 	note D_, 1
 Music_RocketTheme_branch_f768b: ; f768b
-	dutycycle $3
-	notetype $c, $a8
+	waveduty $3
+	notetype $c, $a, $1, $0
 	callchannel Music_RocketTheme_branch_f74e6
-	dutycycle $1
-	intensity $a8
+	waveduty $1
+	volenvelope $a, $1, $0
 	callchannel Music_RocketTheme_branch_f74f7
 	callchannel Music_RocketTheme_branch_f758a
 	octave 4
 	note F#, 1
 	note __, 1
-	intensity $53
+	volenvelope $5, $0, $3
 	callchannel Music_RocketTheme_branch_f750c
-	intensity $c3
+	volenvelope $c, $0, $3
 	callchannel Music_RocketTheme_branch_f750c
-	intensity $e3
+	volenvelope $e, $0, $3
 	callchannel Music_RocketTheme_branch_f750c
 	note __, 16
-	dutycycle $0
-	notetype $6, $b3
-	vibrato $6, $64
+	waveduty $0
+	notetype $6, $b, $0, $3
+	vibrato $6, $6, $4
 	callchannel Music_RocketTheme_branch_f7727
 	octave 4
 	note F_, 1
@@ -121,7 +121,7 @@ Music_RocketTheme_branch_f7713: ; f7713
 	octave 4
 	note C_, 2
 	loopchannel 4, Music_RocketTheme_branch_f7713
-	notetype $c, $b3
+	notetype $c, $b, $0, $3
 	note __, 16
 	note __, 12
 	note F_, 2
@@ -158,40 +158,40 @@ Music_RocketTheme_branch_f7727: ; f7727
 
 Music_RocketTheme_Ch2: ; f773e
 	stereopanning $ff
-	vibrato $4, $64
-	dutycycle $3
-	notetype $c, $b7
+	vibrato $4, $6, $4
+	waveduty $3
+	notetype $c, $b, $0, $7
 	octave 5
 	note C_, 1
 	note D_, 1
 Music_RocketTheme_branch_f774b: ; f774b
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	callchannel Music_RocketTheme_branch_f7547
-	intensity $b7
+	volenvelope $b, $0, $7
 	callchannel Music_RocketTheme_branch_f758a
 	octave 5
 	note C_, 1
 	note __, 1
 	callchannel Music_RocketTheme_branch_f7554
-	intensity $53
+	volenvelope $5, $0, $3
 	callchannel Music_RocketTheme_branch_f7568
-	intensity $c3
+	volenvelope $c, $0, $3
 	callchannel Music_RocketTheme_branch_f7568
-	intensity $e3
+	volenvelope $e, $0, $3
 	callchannel Music_RocketTheme_branch_f7568
 	callchannel Music_RocketTheme_branch_f756f
-	vibrato $6, $64
+	vibrato $6, $6, $4
 	callchannel Music_RocketTheme_branch_f7800
 	octave 4
 	note A_, 1
-	vibrato $0, $0
-	intensity $b8
+	vibrato $0, $0, $0
+	volenvelope $b, $1, $0
 	note A#, 14
-	vibrato $5, $22
-	intensity $b7
+	vibrato $5, $2, $2
+	volenvelope $b, $0, $7
 	note A#, 5
-	vibrato $6, $64
-	notetype $c, $b7
+	vibrato $6, $6, $4
+	notetype $c, $b, $0, $7
 	note A#, 12
 	note __, 2
 	octave 5
@@ -199,22 +199,22 @@ Music_RocketTheme_branch_f774b: ; f774b
 	note D_, 1
 	callchannel Music_RocketTheme_branch_f7800
 	note B_, 1
-	vibrato $0, $0
-	intensity $b8
+	vibrato $0, $0, $0
+	volenvelope $b, $1, $0
 	octave 4
 	note C_, 14
-	vibrato $5, $22
-	intensity $b7
+	vibrato $5, $2, $2
+	volenvelope $b, $0, $7
 	note C_, 5
-	vibrato $6, $64
-	notetype $c, $b7
+	vibrato $6, $6, $4
+	notetype $c, $b, $0, $7
 	note C_, 12
 	octave 3
 	note A#, 1
 	note A_, 1
 	note G#, 1
 	note G_, 1
-	notetype $6, $b7
+	notetype $6, $b, $0, $7
 	callchannel Music_RocketTheme_branch_f781c
 	octave 4
 	note D_, 1
@@ -294,7 +294,7 @@ Music_RocketTheme_branch_f774b: ; f774b
 ; f7800
 
 Music_RocketTheme_branch_f7800: ; f7800
-	notetype $6, $b7
+	notetype $6, $b, $0, $7
 	note __, 7
 	octave 4
 	note D_, 1
@@ -337,17 +337,17 @@ Music_RocketTheme_branch_f781c: ; f781c
 
 Music_RocketTheme_Ch3: ; f7826
 	stereopanning $f0
-	vibrato $4, $22
-	notetype $c, $14
+	vibrato $4, $2, $2
+	notetype $c, $1, $0, $4
 	note __, 2
 Music_RocketTheme_branch_f782f: ; f782f
-	notetype $c, $14
+	notetype $c, $1, $0, $4
 	callchannel Music_RocketTheme_branch_f75bf
 	callchannel Music_RocketTheme_branch_f75fe
 	callchannel Music_RocketTheme_branch_f75fe
-	intensity $24
+	volenvelope $2, $0, $4
 	callchannel Music_RocketTheme_branch_f7623
-	intensity $14
+	volenvelope $1, $0, $4
 	callchannel Music_RocketTheme_branch_f75cc
 	callchannel Music_RocketTheme_branch_f7623
 	callchannel Music_RocketTheme_branch_f75e1
@@ -450,7 +450,7 @@ Music_RocketTheme_branch_f782f: ; f782f
 ; f78be
 
 Music_RocketTheme_Ch4: ; f78be
-	togglenoise $3
+	drumkittoggle $3
 	notetype $c
 	note __, 2
 Music_RocketTheme_branch_f78c3: ; f78c3
@@ -480,3 +480,5 @@ Music_RocketTheme_branch_f78de: ; f78de
 	callchannel Music_RocketTheme_branch_f765c
 	loopchannel 0, Music_RocketTheme_branch_f78c3
 ; f78fd
+
+

@@ -7,8 +7,8 @@ Music_ContestResults: ; efb3e
 
 Music_ContestResults_Ch1: ; efb4a
 	tempo 144
-	volume $77
-	notetype $c, $51
+	volume $7, $7
+	notetype $c, $5, $0, $1
 Music_ContestResults_branch_efb52: ; efb52
 	note __, 2
 	octave 2
@@ -51,7 +51,7 @@ Music_ContestResults_branch_efb52: ; efb52
 ; efb7b
 
 Music_ContestResults_Ch2: ; efb7b
-	notetype $c, $61
+	notetype $c, $6, $0, $1
 Music_ContestResults_branch_efb7e: ; efb7e
 	octave 2
 	note C_, 2
@@ -129,8 +129,8 @@ Music_ContestResults_branch_efba6: ; efba6
 ; efbcc
 
 Music_ContestResults_Ch3: ; efbcc
-	vibrato $8, $24
-	notetype $c, $23
+	vibrato $8, $2, $4
+	notetype $c, $2, $0, $3
 Music_ContestResults_branch_efbd2: ; efbd2
 	octave 4
 	note E_, 5
@@ -155,7 +155,7 @@ Music_ContestResults_branch_efbd2: ; efbd2
 ; efbe9
 
 Music_ContestResults_Ch4: ; efbe9
-	togglenoise $4
+	drumkittoggle $4
 	notetype $6
 Music_ContestResults_branch_efbed: ; efbed
 	note C#, 4
@@ -176,3 +176,5 @@ Music_ContestResults_branch_efbed: ; efbed
 	note G_, 1
 	loopchannel 0, Music_ContestResults_branch_efbed
 ; efc01
+
+

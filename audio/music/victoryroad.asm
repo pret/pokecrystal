@@ -7,16 +7,16 @@ Music_VictoryRoad: ; f6c72
 
 Music_VictoryRoad_Ch1: ; f6c7e
 	tempo 144
-	volume $77
+	volume $7, $7
 	stereopanning $f
-	dutycycle $3
-	tone $0002
-	notetype $c, $b3
+	waveduty $3
+	pitchoffset $0002
+	notetype $c, $b, $0, $3
 Music_VictoryRoad_branch_f6c8d: ; f6c8d
 	callchannel Music_VictoryRoad_branch_f6cb9
 	loopchannel 6, Music_VictoryRoad_branch_f6c8d
 Music_VictoryRoad_branch_f6c94: ; f6c94
-	intensity $b2
+	volenvelope $b, $0, $2
 	octave 2
 	note A_, 1
 	octave 3
@@ -25,7 +25,7 @@ Music_VictoryRoad_branch_f6c94: ; f6c94
 	note __, 1
 	octave 2
 	note A_, 1
-	intensity $b7
+	volenvelope $b, $0, $7
 	octave 3
 	note C#, 3
 	octave 2
@@ -44,7 +44,7 @@ Music_VictoryRoad_branch_f6cae: ; f6cae
 ; f6cb9
 
 Music_VictoryRoad_branch_f6cb9: ; f6cb9
-	intensity $b2
+	volenvelope $b, $0, $2
 	octave 2
 	note G_, 1
 	note B_, 1
@@ -53,7 +53,7 @@ Music_VictoryRoad_branch_f6cb9: ; f6cb9
 	note __, 1
 	octave 2
 	note G_, 1
-	intensity $b7
+	volenvelope $b, $0, $7
 	note B_, 3
 	note G_, 1
 	octave 3
@@ -66,17 +66,17 @@ Music_VictoryRoad_branch_f6cb9: ; f6cb9
 ; f6cce
 
 Music_VictoryRoad_Ch2: ; f6cce
-	dutycycle $3
-	vibrato $10, $24
+	waveduty $3
+	vibrato $10, $2, $4
 Music_VictoryRoad_branch_f6cd3: ; f6cd3
-	notetype $c, $c2
+	notetype $c, $c, $0, $2
 	callchannel Music_VictoryRoad_branch_f6d1e
 	note __, 2
 	callchannel Music_VictoryRoad_branch_f6d1e
 	note __, 1
 	octave 4
 	note C_, 1
-	notetype $c, $b0
+	notetype $c, $b, $0, $0
 	note E_, 8
 	octave 5
 	note C_, 4
@@ -84,18 +84,18 @@ Music_VictoryRoad_branch_f6cd3: ; f6cd3
 	note B_, 4
 	note E_, 15
 	note D#, 1
-	notetype $c, $b0
+	notetype $c, $b, $0, $0
 	note E_, 8
 	octave 5
 	note C_, 4
 	octave 4
 	note B_, 4
-	notetype $c, $b0
+	notetype $c, $b, $0, $0
 	octave 5
 	note E_, 8
-	notetype $c, $b7
+	notetype $c, $b, $0, $7
 	note E_, 8
-	notetype $c, $c7
+	notetype $c, $c, $0, $7
 	note D_, 8
 	stereopanning $f0
 	note C#, 4
@@ -140,7 +140,7 @@ Music_VictoryRoad_branch_f6d1e: ; f6d1e
 
 Music_VictoryRoad_Ch3: ; f6d2c
 	stereopanning $f0
-	notetype $c, $28
+	notetype $c, $2, $1, $0
 Music_VictoryRoad_branch_f6d31: ; f6d31
 	callchannel Music_VictoryRoad_branch_f6d52
 	loopchannel 6, Music_VictoryRoad_branch_f6d31
@@ -180,7 +180,7 @@ Music_VictoryRoad_branch_f6d52: ; f6d52
 ; f6d5f
 
 Music_VictoryRoad_Ch4: ; f6d5f
-	togglenoise $0
+	drumkittoggle $0
 	notetype $c
 Music_VictoryRoad_branch_f6d63: ; f6d63
 	note D_, 2
@@ -203,3 +203,5 @@ Music_VictoryRoad_branch_f6d63: ; f6d63
 	note D#, 1
 	loopchannel 0, Music_VictoryRoad_branch_f6d63
 ; f6d79
+
+

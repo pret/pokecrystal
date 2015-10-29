@@ -7,12 +7,12 @@ Music_MobileCenter: ; 17961d
 
 Music_MobileCenter_Ch1: ; 179629
 	tempo 160
-	volume $77
-	dutycycle $1
-	tone $0002
-	vibrato $8, $22
+	volume $7, $7
+	waveduty $1
+	pitchoffset $0002
+	vibrato $8, $2, $2
 	stereopanning $f0
-	notetype $c, $a2
+	notetype $c, $a, $0, $2
 	octave 3
 	note E_, 2
 	note F_, 2
@@ -159,8 +159,8 @@ Music_MobileCenter_branch_179642: ; 179642
 ; 1796cc
 
 Music_MobileCenter_Ch2: ; 1796cc
-	notetype $c, $c2
-	dutycycle $3
+	notetype $c, $c, $0, $2
+	waveduty $3
 	note __, 10
 	octave 1
 	note G_, 2
@@ -328,8 +328,8 @@ Music_MobileCenter_branch_1796d6: ; 1796d6
 ; 179777
 
 Music_MobileCenter_Ch3: ; 179777
-	notetype $c, $24
-	vibrato $10, $34
+	notetype $c, $2, $0, $4
+	vibrato $10, $3, $4
 	octave 4
 	note G_, 2
 	note A_, 2
@@ -338,7 +338,7 @@ Music_MobileCenter_Ch3: ; 179777
 	octave 5
 	note C_, 2
 	note D_, 4
-	notetype $c, $25
+	notetype $c, $2, $0, $5
 Music_MobileCenter_branch_179788: ; 179788
 	note C_, 2
 	octave 4
@@ -351,7 +351,7 @@ Music_MobileCenter_branch_179788: ; 179788
 	note D_, 2
 	octave 4
 	note B_, 6
-	notetype $c, $10
+	notetype $c, $1, $0, $0
 	octave 6
 	note G_, 1
 	note __, 1
@@ -360,7 +360,7 @@ Music_MobileCenter_branch_179788: ; 179788
 	octave 7
 	note D_, 1
 	note __, 3
-	notetype $c, $25
+	notetype $c, $2, $0, $5
 	octave 4
 	note B_, 2
 	note G_, 2
@@ -390,7 +390,7 @@ Music_MobileCenter_branch_179788: ; 179788
 	note D_, 2
 	octave 4
 	note B_, 6
-	notetype $c, $10
+	notetype $c, $1, $0, $0
 	octave 6
 	note G_, 1
 	note __, 1
@@ -399,7 +399,7 @@ Music_MobileCenter_branch_179788: ; 179788
 	octave 7
 	note D_, 1
 	note __, 3
-	notetype $c, $25
+	notetype $c, $2, $0, $5
 	octave 4
 	note B_, 2
 	note G_, 2
@@ -417,7 +417,7 @@ Music_MobileCenter_branch_179788: ; 179788
 	note B_, 2
 	octave 5
 	note D_, 2
-	vibrato $18, $44
+	vibrato $18, $4, $4
 	note E_, 8
 	note G_, 8
 	note F_, 2
@@ -450,12 +450,12 @@ Music_MobileCenter_branch_179788: ; 179788
 	note E_, 2
 	note D_, 2
 	note C_, 8
-	vibrato $10, $34
+	vibrato $10, $3, $4
 	loopchannel 0, Music_MobileCenter_branch_179788
 ; 179807
 
 Music_MobileCenter_Ch4: ; 179807
-	togglenoise $3
+	drumkittoggle $3
 	stereopanning $f
 	notetype $c
 	note A_, 8
@@ -486,3 +486,4 @@ Music_MobileCenter_branch_179813: ; 179813
 	note C#, 1
 	loopchannel 0, Music_MobileCenter_branch_179813
 ; 17982d
+
