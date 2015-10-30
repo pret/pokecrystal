@@ -71,7 +71,7 @@ Function5ae8: ; 5ae8
 	jp Function6219
 ; 5b04
 
-Function5b04: ; 5b04
+; unreferenced
 	ret
 ; 5b05
 
@@ -883,7 +883,7 @@ NamePlayer: ; 0x6074
 	db "KRIS@@@@@@@"
 ; 60e9
 
-Function60e9: ; 60e9
+Function60e9: ; Unreferenced
 	call LoadMenuDataHeader
 	call InterpretMenu2
 	ld a, [wcfa9]
@@ -1180,7 +1180,7 @@ endr
 	dw TitleScreenEnd
 ; 62b7
 
-Function62b7: ; 62b7
+Function62b7: ; Unreferenced
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
@@ -1384,7 +1384,7 @@ ResetClock: ; 6392
 	jp Init
 ; 639b
 
-Function639b: ; 639b
+Function639b: ; unreferenced
 	; If bit 0 or 1 of [wcf65] is set, we don't need to be here.
 	ld a, [wcf65]
 	and $3
@@ -1420,12 +1420,12 @@ endr
 ; 63ca
 
 Data63ca: ; 63ca
-	dw $505c, $0000
+	dw $505c, NONE
 	dw $685c, $585c
 	dw $685c, $785c
 	dw $885c, $785c
-	dw $0000, $785c
-	dw $0000, $585c
+	dw NONE, $785c
+	dw NONE, $585c
 ; 63e2
 
 Copyright: ; 63e2
@@ -2117,7 +2117,7 @@ Function6ec1: ; 6ec1
 	add hl, bc
 	bit 5, [hl]
 	jr z, .asm_6ed9
-	ld hl, OBJECT_04
+	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 4, [hl]
 	push hl
@@ -2129,7 +2129,7 @@ Function6ec1: ; 6ec1
 	jr .asm_6ee9
 
 .asm_6ed9
-	ld hl, OBJECT_04
+	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 4, [hl]
 	jr nz, .asm_6ee9
@@ -2361,7 +2361,7 @@ CheckFacingObject:: ; 6fd9
 .asm_6ff1
 	ld bc, ObjectStructs ; redundant
 	ld a, 0
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	call Function7041
 	ret nc
 	ld hl, OBJECT_DIRECTION_WALKING
@@ -2388,8 +2388,8 @@ Function7009: ; 7009
 	jr Function7041
 ; 7015
 
-Function7015: ; 7015
-	ld a, [hConnectionStripLength]
+Function7015: ; unreferenced
+	ld a, [hMapObjectIndexBuffer1]
 	call GetObjectStruct
 	call Function7021
 	call Function7041
@@ -2429,10 +2429,10 @@ Function7041: ; 7041
 	ld bc, ObjectStructs
 	xor a
 .loop
-	ld [hConnectedMapWidth], a
+	ld [hMapObjectIndexBuffer2], a
 	call GetObjectSprite
 	jr z, .nope
-	ld hl, OBJECT_04
+	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 7, [hl]
 	jr nz, .nope
@@ -2457,9 +2457,9 @@ Function7041: ; 7041
 	jr nz, .ok
 
 .ok2
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	ld l, a
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 	cp l
 	jr nz, .setcarry
 
@@ -2474,9 +2474,9 @@ Function7041: ; 7041
 	ld a, [hl]
 	cp e
 	jr nz, .nope
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	ld l, a
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 	cp l
 	jr nz, .setcarry
 
@@ -2485,7 +2485,7 @@ Function7041: ; 7041
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -2588,7 +2588,7 @@ Function70ed: ; 70ed
 	ret
 ; 7113
 
-Function7113: ; 7113
+Function7113: ; unreferenced
 	ld a, [MapX]
 	ld d, a
 	ld a, [MapY]
@@ -2596,7 +2596,7 @@ Function7113: ; 7113
 	ld bc, ObjectStructs
 	xor a
 .loop
-	ld [hConnectedMapWidth], a
+	ld [hMapObjectIndexBuffer2], a
 	call GetObjectSprite
 	jr z, .asm_7160
 	ld hl, OBJECT_03
@@ -2619,7 +2619,7 @@ Function7113: ; 7113
 	ld a, [hl]
 	cp d
 	jr nz, .asm_714e
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 	cp $0
 	jr z, .asm_7160
 	jr .asm_716f
@@ -2642,7 +2642,7 @@ Function7113: ; 7113
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -3003,7 +3003,7 @@ SpecialShuckleNick:
 
 SpecialReturnShuckle: ; 737e
 	callba SelectMonFromParty
-	jr c, .asm_73e6
+	jr c, .refused
 
 	ld a, [CurPartySpecies]
 	cp SHUCKLE
@@ -3015,11 +3015,12 @@ SpecialReturnShuckle: ; 737e
 	call AddNTimes
 
 ; OT ID
+; 00518
 	ld a, [hli]
-	cp $2
+	cp 00518 / $100
 	jr nz, .DontReturn
 	ld a, [hl]
-	cp $6
+	cp 00518 % $100
 	jr nz, .DontReturn
 
 ; OT
@@ -3032,14 +3033,14 @@ SpecialReturnShuckle: ; 737e
 	cp [hl]
 	jr nz, .DontReturn
 	cp "@"
-	jr z, .asm_73bb
+	jr z, .done
 	inc de
 	inc hl
 	jr .CheckOT
 
-.asm_73bb
-	callba Functione538
-	jr c, .asm_73f1
+.done
+	callba CheckCurPartyMonFainted
+	jr c, .fainted
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Happiness
 	ld bc, PartyMon2 - PartyMon1
@@ -3047,17 +3048,17 @@ SpecialReturnShuckle: ; 737e
 	ld a, [hl]
 	cp 150
 	ld a, $3
-	jr nc, .asm_73e2
+	jr nc, .HappyToStayWithYou
 	xor a
 	ld [wd10b], a
 	callab Functione039
 	ld a, $2
 
-.asm_73e2
+.HappyToStayWithYou
 	ld [ScriptVar], a
 	ret
 
-.asm_73e6
+.refused
 	ld a, $1
 	ld [ScriptVar], a
 	ret
@@ -3067,7 +3068,7 @@ SpecialReturnShuckle: ; 737e
 	ld [ScriptVar], a
 	ret
 
-.asm_73f1
+.fainted
 	ld a, $4
 	ld [ScriptVar], a
 	ret
@@ -3219,10 +3220,10 @@ GetSpawnCoord: ; 8029
 .ok
 	ld [hl], e
 	ld a, $0
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	ld bc, MapObjects
 	ld a, $0
-	ld [hConnectedMapWidth], a
+	ld [hMapObjectIndexBuffer2], a
 	ld de, ObjectStructs
 	call Function8116
 	ld a, $0
@@ -3234,7 +3235,7 @@ PlayerObjectTemplate: ; 8071
 ; A dummy map object used to initialize the player object.
 ; Shorter than the actual amount copied by two bytes.
 ; Said bytes seem to be unused.
-	person_event SPRITE_CHRIS, -4, -4, $0b, 15, 15, -1, -1, 0, 0, 0, $0000, -1
+	person_event SPRITE_CHRIS, -4, -4, SPRITEMOVEFN_0B, 15, 15, -1, -1, 0, 0, 0, NONE, -1
 ; 807e
 
 CopyDECoordsToMapObject:: ; 807e
@@ -3275,7 +3276,7 @@ Function80a1:: ; 80a1
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld e, [hl]
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	ld b, a
 	call CopyDECoordsToMapObject
 	and a
@@ -3320,12 +3321,12 @@ CopyObjectStruct:: ; 80e7
 	ld a, 1
 	ld de, OBJECT_STRUCT_LENGTH
 .loop
-	ld [hConnectedMapWidth], a
+	ld [hMapObjectIndexBuffer2], a
 	ld a, [hl]
 	and a
 	jr z, .done
 	add hl, de
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -3339,7 +3340,7 @@ CopyObjectStruct:: ; 80e7
 	ld hl, VramState
 	bit 7, [hl]
 	ret z
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, de
 	set 5, [hl]
 	ret
@@ -3352,11 +3353,11 @@ Function8116: ; 8116
 ; 811d
 
 Function811d: ; 811d
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld [hl], a
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	ld [wc2f0], a
 	ld hl, MAPOBJECT_SPRITE
 	add hl, bc
@@ -3404,7 +3405,7 @@ Function8177: ; 8177
 	ld bc, MapObjects + OBJECT_LENGTH
 	ld a, 1
 .loop
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	ld hl, MAPOBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
@@ -3445,7 +3446,7 @@ Function8177: ; 8177
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	inc a
 	cp NUM_OBJECTS
 	jr nz, .loop
@@ -3489,7 +3490,7 @@ Function81ea: ; 81ea
 	ld bc, MapObjects + OBJECT_LENGTH
 	ld a, 1
 .loop
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	ld hl, MAPOBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
@@ -3524,7 +3525,7 @@ Function81ea: ; 81ea
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	inc a
 	cp NUM_OBJECTS
 	jr nz, .loop
@@ -3547,7 +3548,7 @@ Function823e: ; 823e
 	ld bc, MapObjects + OBJECT_LENGTH
 	ld a, 1
 .loop
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	ld hl, MAPOBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
@@ -3582,7 +3583,7 @@ Function823e: ; 823e
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	inc a
 	cp NUM_OBJECTS
 	jr nz, .loop
@@ -3839,7 +3840,7 @@ Function839e:: ; 839e
 	ld hl, OBJECT_SPRITE_Y
 	add hl, de
 	ld [hl], a
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 	ld hl, OBJECT_32
 	add hl, de
 	ld [hl], a
@@ -4920,9 +4921,6 @@ Script_UseFlash: ; 0xc8e6
 UnknownText_0xc8f3: ; 0xc8f3
 	text_jump UnknownText_0x1c0609
 	start_asm
-; 0xc8f8
-
-Functionc8f8: ; c8f8
 	call WaitSFX
 	ld de, SFX_FLASH
 	call PlaySFX
@@ -5646,7 +5644,7 @@ StrengthFunction: ; cce5
 	jr StartToUseStrength
 ; ccf8
 
-AlreadyUsingStrength: ; ccf8
+AlreadyUsingStrength: ; unreferenced
 	ld hl, UnknownText_0xcd01
 	call MenuTextBoxBackup
 	ld a, $80
@@ -5696,7 +5694,7 @@ Script_UsedStrength: ; 0xcd2d
 	callasm Functioncd12
 	writetext UnknownText_0xcd41
 	copybytetovar wd1ef
-	cry $0000
+	cry NONE
 	pause 3
 	writetext UnknownText_0xcd46
 	loadmovesprites
@@ -6068,7 +6066,7 @@ GetFacingObject: ; cf0d
 	callba CheckFacingObject
 	jr nc, .fail
 
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 	call GetObjectStruct
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
@@ -6376,7 +6374,7 @@ UnknownText_0xd0a9: ; 0xd0a9
 	db "@"
 ; 0xd0ae
 
-UnknownText_0xd0ae: ; 0xd0ae
+UnknownText_0xd0ae: ; unused
 	; Looks like there's nothing here.
 	text_jump UnknownText_0x1c0979
 	db "@"
@@ -7873,7 +7871,7 @@ Functiond839: ; d839
 	ld a, [Buffer1]
 	ld c, a
 	ld b, $0
-	ld hl, $0000
+	ld hl, NONE
 	ld a, [wd1f1]
 	cp $30
 	jr nc, .asm_d885
@@ -9851,7 +9849,7 @@ Functione4fe: ; e4fe (3:64fe)
 	ret
 ; e512 (3:6512)
 
-Functione512: ; e512
+Functione512: ; unused
 	ld a, [PartyCount]
 	and a
 	jr z, .asm_e51e
@@ -9886,32 +9884,32 @@ UnknownText_0xe533: ; 0xe533
 ; 0xe538
 
 
-Functione538: ; e538
+CheckCurPartyMonFainted: ; e538
 	ld hl, PartyMon1HP
 	ld de, PartyMon2 - PartyMon1
 	ld b, $0
-.asm_e540
+.loop
 	ld a, [CurPartyMon]
 	cp b
-	jr z, .asm_e54b
+	jr z, .skip
 	ld a, [hli]
 	or [hl]
-	jr nz, .asm_e557
+	jr nz, .notfainted
 	dec hl
 
-.asm_e54b
+.skip
 	inc b
 	ld a, [PartyCount]
 	cp b
-	jr z, .asm_e555
+	jr z, .done
 	add hl, de
-	jr .asm_e540
+	jr .loop
 
-.asm_e555
+.done
 	scf
 	ret
 
-.asm_e557
+.notfainted
 	and a
 	ret
 ; e559
@@ -9927,7 +9925,7 @@ Functione559: ; e559 (3:6559)
 	ret
 ; e56d (3:656d)
 
-Functione56d: ; e56d
+Functione56d: ; unused
 	ld a, [PartyCount]
 	cp PARTY_LENGTH
 	jr nc, .asm_e576
@@ -9987,7 +9985,7 @@ Functione5bb: ; e5bb
 	ret
 ; e5d9
 
-Functione5d9: ; e5d9
+Functione5d9: ; unreferenced
 	ld a, [wCurBox]
 	cp b
 	jr z, .asm_e5f1
@@ -10022,7 +10020,7 @@ Functione5d9: ; e5d9
 	push hl
 	push bc
 	ld a, c
-	ld bc, $0000
+	ld bc, NONE
 	add hl, bc
 	ld bc, $0020
 	call AddNTimes
@@ -11159,7 +11157,7 @@ Function11b39: ; 11b39
 	jr Function11b23
 ; 11b56
 
-Dakutens: ; 11b56
+Dakutens: ; Dummied out
 	db "かが", "きぎ", "くぐ", "けげ", "こご"
 	db "さざ", "しじ", "すず", "せぜ", "そぞ"
 	db "ただ", "ちぢ", "つづ", "てで", "とど"
@@ -11170,7 +11168,7 @@ Dakutens: ; 11b56
 	db "ハバ", "ヒビ", "フブ", "へべ", "ホボ"
 	db $ff
 
-Handakutens: ; 11ba7
+Handakutens: ; Dummied out
 	db "はぱ", "ひぴ", "ふぷ", "へぺ", "ほぽ"
 	db "ハパ", "ヒピ", "フプ", "へぺ", "ホポ"
 	db $ff
@@ -11348,7 +11346,7 @@ NameInputLower:
 	db "a b c d e f g h i"
 	db "j k l m n o p q r"
 	db "s t u v w x y z  "
-	db "× ( ) : ; [ ] ", $e1, " ", $e2
+	db "× ( ) : ; [ ] <PK> <MN>"
 	db "UPPER  DEL   END "
 BoxNameInputLower:
 	db "a b c d e f g h i"
@@ -11357,7 +11355,7 @@ BoxNameInputLower:
 	db "é 'd 'l 'm 'r 's 't 'v 0"
 	db "1 2 3 4 5 6 7 8 9"
 	db "UPPER  DEL   END "
-NameInputUpper:
+NameInputUpper: ; Unreferenced?
 	db "A B C D E F G H I"
 	db "J K L M N O P Q R"
 	db "S T U V W X Y Z  "
@@ -11367,12 +11365,12 @@ BoxNameInputUpper:
 	db "A B C D E F G H I"
 	db "J K L M N O P Q R"
 	db "S T U V W X Y Z  "
-	db "× ( ) : ; [ ] ", $e1, " ", $e2
+	db "× ( ) : ; [ ] <PK> <MN>"
 	db "- ? ! ♂ ♀ / . , &"
 	db "lower  DEL   END "
 ; 11e5d
 
-GFX_11e5d: ; 11e5d
+GFX_11e5d: ; ????
 INCBIN "gfx/unknown/011e5d.2bpp"
 ; 11e6d
 
@@ -11460,7 +11458,7 @@ Function11f74: ; 11f74 (4:5f74)
 	ret
 ; 11f7a (4:5f7a)
 
-String_11f7a: ; 11f7a
+String_11f7a: ; dummied out
 	db "メールを かいてね@"
 ; 11f84
 
@@ -11824,7 +11822,7 @@ Function121ac: ; 121ac (4:61ac)
 	jp Function11b17
 ; 121b2 (4:61b2)
 
-Function121b2: ; 121b2
+Function121b2: ; unreferenced
 	ld a, [wc6d2]
 	and a
 	ret z
@@ -15056,8 +15054,6 @@ _BugContestJudging: ; 1369d
 BugContest_FirstPlaceText: ; 0x136eb
 	text_jump ContestJudging_FirstPlaceText
 	start_asm
-; 0x136f0
-
 BugContest_FirstPlace: ; 136f0
 	ld de, SFX_1ST_PLACE
 	call PlaySFX
@@ -15076,8 +15072,6 @@ BugContest_SecondPlaceText: ; 0x13702
 	; Placing second was @ , who caught a @ !@ @
 	text_jump ContestJudging_SecondPlaceText
 	start_asm
-; 0x13707
-
 BugContest_SecondPlace: ; 13707
 	ld de, SFX_2ND_PLACE
 	call PlaySFX
@@ -15672,7 +15666,7 @@ ContestReturnMons: ; 13a31
 	ret
 ; 13a47
 
-Function13a47: ; 13a47
+Function13a47: ; unreferenced
 	ld hl, PartyCount
 	ld a, [hl]
 	and a
@@ -15940,7 +15934,7 @@ root	set root+1
 SECTION "bank5", ROMX, BANK[$5]
 
 
-StopRTC: ; 14000
+StopRTC: ; Unreferenced???
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
 	call LatchClock
@@ -16002,7 +15996,7 @@ TimesOfDay: ; 14044
 	db -1, MORN
 ; 1404e
 
-Unknown_1404e: ; 1404e
+Unknown_1404e: ; Unreferenced
 	db 20, 2
 	db 40, 0
 	db 60, 1
@@ -16153,7 +16147,7 @@ Function140ed:: ; 140ed
 	ret
 ; 1412a
 
-Function1412a: ; 1412a
+GetEmote2bpp: ; 1412a
 	ld a, $1
 	ld [rVBK], a
 	call Get2bpp
@@ -16336,7 +16330,7 @@ Function14215: ; 14215
 	bit 6, a
 	ret nz
 	ld c, $8
-	callba Function1442f
+	callba LoadEmote
 	call GetMapPermission
 	call CheckOutdoorMap
 	ld c, $b
@@ -16344,7 +16338,7 @@ Function14215: ; 14215
 	ld c, $a
 
 .asm_1422f
-	callba Function1442f
+	callba LoadEmote
 	ret
 ; 14236
 
@@ -16838,27 +16832,33 @@ Function14418: ; 14418
 	ret
 ; 1442f
 
-Function1442f:: ; 1442f
+LoadEmote:: ; 1442f
+; Get the address of the pointer to emote c.
 	ld a, c
 	ld bc, 6
 	ld hl, EmotesPointers
 	call AddNTimes
+; Load the emote address into de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
+; load the length of the emote (in tiles) into c
 	inc hl
 	ld c, [hl]
 	swap c
+; load the emote pointer bank into b
 	inc hl
 	ld b, [hl]
+; load the VRAM destination into hl
 	inc hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+; if the emote has a length of 0, do not proceed (error handling)
 	ld a, c
 	and a
 	ret z
-	call Function1412a
+	call GetEmote2bpp
 	ret
 ; 1444d
 
@@ -18962,7 +18962,7 @@ Function15cef: ; 15cef
 	ld de, Money
 	ld bc, hMoneyTemp
 	ld a, $3
-	call CheckMoney
+	call CompareMoney
 	jr c, .asm_15d79
 	ld hl, NumItems
 	call ReceiveItem
@@ -19289,7 +19289,7 @@ Function15ece: ; 15ece
 	ret
 ; 15ed3
 
-Function15ed3: ; 15ed3
+Function15ed3: ; unreferenced
 	ld hl, UnknownText_0x15edb
 	call MenuTextBoxBackup
 	and a
@@ -19465,10 +19465,10 @@ Function15fcd: ; 15fcd
 
 GiveMoney:: ; 15fd7
 	ld a, $3
-	call Function16053
+	call AddMoney
 	ld bc, MaxMoney
 	ld a, $3
-	call CheckMoney
+	call CompareMoney
 	jr z, .asm_15ff5
 	jr c, .asm_15ff5
 	ld hl, MaxMoney
@@ -19495,7 +19495,7 @@ MaxMoney: ; 15ff7
 
 TakeMoney:: ; 15ffa
 	ld a, 3
-	call CheckMoney2
+	call SubtractMoney
 	jr nc, .asm_16009
 	xor a
 	ld [de], a
@@ -19511,9 +19511,9 @@ TakeMoney:: ; 15ffa
 	ret
 ; 1600b
 
-CheckMoney:: ; 1600b
+CompareMoney:: ; 1600b
 	ld a, $3
-CheckFunds: ; 1600d
+CompareFunds: ; 1600d
 	push hl
 	push de
 	push bc
@@ -19521,46 +19521,46 @@ CheckFunds: ; 1600d
 	ld l, c
 	ld c, $0
 	ld b, a
-.asm_16015
+.loop1
 	dec a
-	jr z, .asm_1601c
+	jr z, .done
 	inc de
 	inc hl
-	jr .asm_16015
+	jr .loop1
 
-.asm_1601c
+.done
 	and a
-.asm_1601d
+.loop2
 	ld a, [de]
 	sbc [hl]
-	jr z, .asm_16022
+	jr z, .okay
 	inc c
 
-.asm_16022
+.okay
 	dec de
 	dec hl
 	dec b
-	jr nz, .asm_1601d
-	jr c, .asm_1602d
+	jr nz, .loop2
+	jr c, .set_carry
 	ld a, c
 	and a
-	jr .asm_16031
+	jr .skip_carry
 
-.asm_1602d
+.set_carry
 	ld a, $1
 	and a
 	scf
 
-.asm_16031
+.skip_carry
 	pop bc
 	pop de
 	pop hl
 	ret
 ; 16035
 
-CheckMoney2: ; 16035
+SubtractMoney: ; 16035
 	ld a, 3
-CheckFunds2: ; 16037
+SubtractFunds: ; 16037
 	push hl
 	push de
 	push bc
@@ -19591,32 +19591,32 @@ CheckFunds2: ; 16037
 	ret
 ; 16053
 
-Function16053: ; 16053
+AddMoney: ; 16053
 	ld a, $3
-Function16055: ; 16055
+AddFunds: ; 16055
 	push hl
 	push de
 	push bc
 	ld h, b
 	ld l, c
 	ld b, a
-.asm_1605b
+.loop1
 	dec a
-	jr z, .asm_16062
+	jr z, .done
 	inc de
 	inc hl
-	jr .asm_1605b
+	jr .loop1
 
-.asm_16062
+.done
 	and a
-.asm_16063
+.loop2
 	ld a, [de]
 	adc [hl]
 	ld [de], a
 	dec de
 	dec hl
 	dec b
-	jr nz, .asm_16063
+	jr nz, .loop2
 	pop bc
 	pop de
 	pop hl
@@ -19626,11 +19626,11 @@ Function16055: ; 16055
 GiveCoins:: ; 1606f
 	ld a, 2
 	ld de, Coins
-	call Function16055
+	call AddFunds
 	ld a, 2
 	ld bc, .maxcoins
-	call CheckFunds
-	jr c, .asm_1608b
+	call CompareFunds
+	jr c, .not_maxed
 	ld hl, .maxcoins
 	ld a, [hli]
 	ld [de], a
@@ -19640,7 +19640,7 @@ GiveCoins:: ; 1606f
 	scf
 	ret
 
-.asm_1608b
+.not_maxed
 	and a
 	ret
 ; 1608d
@@ -19653,7 +19653,7 @@ GiveCoins:: ; 1606f
 TakeCoins:: ; 1608f
 	ld a, 2
 	ld de, Coins
-	call CheckFunds2
+	call SubtractFunds
 	jr nc, .asm_1609f
 	xor a
 	ld [de], a
@@ -19670,7 +19670,7 @@ TakeCoins:: ; 1608f
 CheckCoins:: ; 160a1
 	ld a, $2
 	ld de, Coins
-	jp CheckFunds
+	jp CompareFunds
 ; 160a9
 
 
@@ -19788,7 +19788,7 @@ Function16798: ; 16798
 	ld a, [CurPartySpecies]
 	cp EGG
 	jr z, .asm_167e1
-	callba Functione538
+	callba CheckCurPartyMonFainted
 	jr c, .asm_167e9
 	ld hl, PartyMon1Item
 	ld bc, PartyMon2 - PartyMon1
@@ -19868,7 +19868,7 @@ Function16807: ; 16807
 .asm_1682d
 	ld de, Money
 	ld bc, StringBuffer2 + 2
-	callba CheckMoney
+	callba CompareMoney
 	jr c, .asm_16848
 	ld a, [PartyCount]
 	cp $6
@@ -19913,7 +19913,7 @@ Function1686d: ; 1686d
 	ld de, StringBuffer1
 	ld bc, $000b
 	call CopyBytes
-	ld hl, $0000
+	ld hl, NONE
 	ld bc, $0064
 	ld a, [StringBuffer2 + 1]
 	call AddNTimes
@@ -24143,7 +24143,7 @@ MenuDataHeader_0x24d3f: ; 24d3f
 	db $40 ; tile backup
 	db 00, 06 ; start coords
 	db 17, 19 ; end coords
-	dw $0000
+	dw NONE
 	db 1 ; default option
 ; 24d47
 
@@ -24475,7 +24475,7 @@ MenuData_0x24f34: ; 0x24f34
 	dn 2, 2 ; rows, columns
 	db 6 ; spacing
 	dba Strings24f3d
-	dbw $09, $0000
+	dbw $09, NONE
 ; 0x24f3d
 
 Strings24f3d: ; 0x24f3d
@@ -27816,7 +27816,7 @@ endr
 	jr nz, .asm_28457
 	ld hl, wc818
 	ld de, wc608 + 10
-	ld bc, $0000
+	ld bc, NONE
 .asm_28464
 	inc c
 	ld a, c
@@ -32498,7 +32498,7 @@ Function2b995: ; 2b995
 ; 2b9a6
 
 Function2b9a6: ; 2b9a6
-	ld de, $0000
+	ld de, NONE
 	ld c, $3
 .asm_2b9ab
 	ld a, [hli]
@@ -36346,7 +36346,7 @@ Function44654:: ; 44654
 	jr nz, .asm_44691
 
 .asm_446ab
-	callba Functione538
+	callba CheckCurPartyMonFainted
 	ld a, $4
 	jr c, .asm_446c1
 	xor a
@@ -41789,15 +41789,15 @@ Function4aad3: ; 4aad3
 
 	ld c, a
 	xor a
-	ld [hConnectedMapWidth], a
+	ld [hMapObjectIndexBuffer2], a
 .loop
 	push bc
 	push hl
 	ld e, 0
 	callba Function8e83f
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 	inc a
-	ld [hConnectedMapWidth], a
+	ld [hMapObjectIndexBuffer2], a
 	pop hl
 	pop bc
 	dec c
@@ -43080,7 +43080,7 @@ ClockResetPassword: ; 4d41e
 .CalculatePassword: ; 4d50f
 	ld a, BANK(sPlayerData)
 	call GetSRAMBank
-	ld de, $0000
+	ld de, NONE
 	ld hl, sPlayerData + (PlayerID - wPlayerData)
 	ld c, $2
 	call .ComponentFromNumber
@@ -46574,7 +46574,7 @@ Function503e0: ; 503e0
 	ret z
 	ld c, a
 	xor a
-	ld [hConnectedMapWidth], a
+	ld [hMapObjectIndexBuffer2], a
 .asm_503ea
 	push bc
 	push hl
@@ -46582,9 +46582,9 @@ Function503e0: ; 503e0
 	ld a, BANK(Function8e83f)
 	ld e, $0
 	rst FarCall
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 	inc a
-	ld [hConnectedMapWidth], a
+	ld [hMapObjectIndexBuffer2], a
 	pop hl
 	pop bc
 	dec c
@@ -49737,7 +49737,7 @@ GetMovementAction: ; 802ec
 IsNPCInFront: ; 80341
 
 	ld a, 0
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	ld a, [MapX]
 	ld d, a
 	ld a, [WalkingX]
@@ -55278,7 +55278,7 @@ rept 3
 endr
 	ld e, l
 	ld d, h
-	ld hl, $0000
+	ld hl, NONE
 	add hl, bc
 	ld a, [wc3b4]
 	ld [hli], a
@@ -55323,7 +55323,7 @@ endr
 ; 8d036
 
 Function8d036: ; 8d036
-	ld hl, $0000
+	ld hl, NONE
 	add hl, bc
 	ld [hl], $0
 	ret
@@ -55831,7 +55831,7 @@ endr
 
 .four_zero: ; 8d30a
 	call Function8d6d8
-	ld hl, $0000
+	ld hl, NONE
 	add hl, bc
 	ld a, [hl]
 	ld hl, $000d
@@ -58143,7 +58143,7 @@ Function8e862: ; 8e862 (23:6862)
 
 Function8e86c: ; 8e86c (23:686c)
 	push bc
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 	ld hl, PartyMon1Item
 	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
@@ -58215,7 +58215,7 @@ Function8e8d5: ; 8e8d5 (23:68d5)
 
 Function8e8df: ; 8e8df (23:68df)
 	push bc
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 	ld hl, PartyMon1Item
 	ld bc, $30
 	call AddNTimes
@@ -58243,7 +58243,7 @@ Function8e8df: ; 8e8df (23:68df)
 Function8e908: ; 8e908 (23:6908)
 	ld a, [wc3b7]
 	push af
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 	ld hl, PartySpecies
 	ld e, a
 	ld d, $0
@@ -58252,7 +58252,7 @@ Function8e908: ; 8e908 (23:6908)
 	call ReadMonMenuIcon
 	ld [CurIcon], a
 	call Function8e9db
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 rept 4
 	add a
 endr
@@ -58269,7 +58269,7 @@ endr
 
 Function8e936: ; 8e936 (23:6936)
 	push bc
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 	ld b, a
 	call Function8e94c
 	ld a, b
@@ -59977,7 +59977,7 @@ Function9102f: ; 9102f (24:502f)
 
 Function9106a: ; 9106a
 	push af
-	ld de, $0000
+	ld de, NONE
 	ld b, $a
 	ld a, [PlayerGender]
 	bit 0, a
@@ -60006,7 +60006,7 @@ Function9106a: ; 9106a
 
 Function91098: ; 91098
 	push af
-	ld de, $0000
+	ld de, NONE
 	ld a, $d
 	call Function3b2a
 	ld hl, $0003
@@ -61834,7 +61834,7 @@ TownMapMon: ; 91f7b
 	callba GetSpeciesIcon
 
 ; Animation/palette
-	ld de, $0000
+	ld de, NONE
 	ld a, $0
 	call Function3b2a
 
@@ -61869,7 +61869,7 @@ TownMapPlayerIcon: ; 91fa6
 	call Request2bpp
 
 ; Animation/palette
-	ld de, $0000
+	ld de, NONE
 	ld b, $0a ; Male
 	ld a, [PlayerGender]
 	bit 0, a
@@ -62918,7 +62918,7 @@ Function92c3a: ; 92c3a
 	ld hl, $0005
 	add hl, bc
 	ld [hl], $0
-	ld hl, $0000
+	ld hl, NONE
 	add hl, bc
 	ld [hl], $1
 	ld hl, $000f
@@ -62935,7 +62935,7 @@ Function92c4c: ; 92c4c
 	ret
 
 .asm_92c56
-	ld hl, $0000
+	ld hl, NONE
 	add hl, bc
 	ld a, $0
 	ld [hl], a
@@ -63043,7 +63043,7 @@ Function92cd2: ; 92cd2
 .asm_92ce1
 	ld a, SFX_STOP_SLOT
 	call Function9331e
-	ld hl, $0000
+	ld hl, NONE
 	add hl, bc
 	inc [hl]
 	ld hl, $000a
@@ -63067,7 +63067,7 @@ Function92cf8: ; 92cf8
 .asm_92d02
 	ld a, SFX_THROW_BALL
 	call Function9331e
-	ld hl, $0000
+	ld hl, NONE
 	add hl, bc
 	inc [hl]
 	ld hl, $0005
@@ -63092,7 +63092,7 @@ Function92d20: ; 92d20
 	ld a, SFX_STOP_SLOT
 	call Function9331e
 	call Function93316
-	ld hl, $0000
+	ld hl, NONE
 	add hl, bc
 	inc [hl]
 	ld hl, $0005
@@ -63126,7 +63126,7 @@ Function92d4f: ; 92d4f
 	ret
 
 .asm_92d62
-	ld hl, $0000
+	ld hl, NONE
 	add hl, bc
 	inc [hl]
 	ld hl, $0005
@@ -63138,7 +63138,7 @@ Function92d4f: ; 92d4f
 Function92d6e: ; 92d6e
 	xor a
 	ld [wcf64], a
-	ld hl, $0000
+	ld hl, NONE
 	add hl, bc
 	dec [hl]
 	ld hl, $0005
@@ -63153,7 +63153,7 @@ Function92d7e: ; 92d7e
 	ld a, SFX_STOP_SLOT
 	call Function9331e
 	call Function93316
-	ld hl, $0000
+	ld hl, NONE
 	add hl, bc
 	inc [hl]
 	ld hl, $0005
@@ -63173,7 +63173,7 @@ Function92da4: ; 92da4
 	ld a, [wcf64]
 	and a
 	ret z
-	ld hl, $0000
+	ld hl, NONE
 	add hl, bc
 	inc [hl]
 	ld a, $2
@@ -63183,7 +63183,7 @@ Function92db3: ; 92db3
 	ld a, [wcf64]
 	cp $4
 	ret c
-	ld hl, $0000
+	ld hl, NONE
 	add hl, bc
 	inc [hl]
 	ld hl, $0005
@@ -63216,7 +63216,7 @@ Function92dca: ; 92dca
 	ld hl, $0005
 	add hl, bc
 	ld [hl], $0
-	ld hl, $0000
+	ld hl, NONE
 	add hl, bc
 rept 2
 	dec [hl]
@@ -63232,7 +63232,7 @@ Function92df7: ; 92df7
 	ld a, SFX_STOP_SLOT
 	call Function9331e
 	call Function93316
-	ld hl, $0000
+	ld hl, NONE
 	add hl, bc
 	inc [hl]
 	call Function92fc0
@@ -63252,7 +63252,7 @@ Function92e10: ; 92e10
 
 .asm_92e1f
 	dec [hl]
-	ld hl, $0000
+	ld hl, NONE
 	add hl, bc
 	inc [hl]
 	ld hl, $000b
@@ -63272,7 +63272,7 @@ Function92e31: ; 92e31
 	ret
 
 .asm_92e3b
-	ld hl, $0000
+	ld hl, NONE
 	add hl, bc
 	dec [hl]
 	ld hl, $0005
@@ -63290,7 +63290,7 @@ Function92e47: ; 92e47
 	ld hl, $0005
 	add hl, bc
 	ld [hl], $1
-	ld hl, $0000
+	ld hl, NONE
 	add hl, bc
 	inc [hl]
 	ld hl, $000a
@@ -66424,7 +66424,7 @@ Functione0000: ; e0000
 	xor a
 	call GetSRAMBank
 	ld hl, sScratch
-	ld bc, $0000
+	ld bc, NONE
 .asm_e000b
 	push bc
 	push hl
@@ -66914,7 +66914,7 @@ Functione0366: ; e0366
 ; e0398
 
 Functione0398: ; e0398
-	ld hl, $0000
+	ld hl, NONE
 	ld bc, $0006
 	ld a, [wcf64]
 	call AddNTimes
@@ -71405,7 +71405,7 @@ Functione2f18: ; e2f18 (38:6f18)
 	ld hl, wcb2a
 	add [hl]
 	ld [CurPartyMon], a
-	callba Functione538
+	callba CheckCurPartyMonFainted
 	jr c, .AllOthersFainted
 	ld a, [wcb32]
 	and a
@@ -77198,12 +77198,12 @@ CheckBalance_MomItem2: ; fd044
 	ld a, [hli]
 	ld [hMoneyTemp], a
 	ld a, [hli]
-	ld [$ffc4], a
+	ld [hMoneyTemp + 1], a
 	ld a, [hli]
-	ld [$ffc5], a
+	ld [hMoneyTemp + 2], a
 	ld de, wd851
 	ld bc, hMoneyTemp
-	callba CheckMoney
+	callba CompareMoney
 	jr nc, .have_enough_money
 
 .nope
@@ -77223,7 +77223,7 @@ CheckBalance_MomItem2: ; fd044
 .loop
 	ld de, wdc19
 	ld bc, wd851
-	callba CheckMoney
+	callba CompareMoney
 	jr z, .exact
 	jr nc, .less_than
 	call Functionfd099
@@ -77246,7 +77246,7 @@ CheckBalance_MomItem2: ; fd044
 Functionfd099: ; fd099
 	ld de, wdc19
 	ld bc, hMoneyTemp
-	callba Function16053
+	callba AddMoney
 	ret
 ; fd0a6
 
@@ -77827,11 +77827,11 @@ Function104263: ; 104263 (41:4263)
 	ld c, $0
 
 Function104265: ; 104265 (41:4265)
-; back up the value of c to hConnectionStripLength
-	ld a, [hConnectionStripLength]
+; back up the value of c to hMapObjectIndexBuffer1
+	ld a, [hMapObjectIndexBuffer1]
 	push af
 	ld a, c
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 
 ; for each row on the screen
 	ld c, SCREEN_HEIGHT
@@ -77847,7 +77847,7 @@ Function104265: ; 104265 (41:4265)
 	jr nz, .loop2
 
 ; load the original value of c into hl 12 times
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	ld b, 12
 .loop3
 	ld [hli], a
@@ -77857,9 +77857,9 @@ Function104265: ; 104265 (41:4265)
 	dec c
 	jr nz, .loop1
 
-; restore the original value of hConnectionStripLength
+; restore the original value of hMapObjectIndexBuffer1
 	pop af
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	ret
 
 
@@ -80965,7 +80965,7 @@ Function10616e: ; 10616e
 	ld hl, $a001
 	ld bc, $0080
 	xor a
-	ld de, $0000
+	ld de, NONE
 .asm_106179
 	ld a, e
 	add [hl]

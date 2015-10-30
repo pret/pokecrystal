@@ -490,7 +490,7 @@ Music_TitleScreen_Ch2: ; eb984
 	octave 4
 	note A_, 4
 	stereopanning $ff
-	tone $0000
+	tone NONE
 	notetype $c, $b0
 	octave 3
 	note B_, 6
@@ -775,7 +775,7 @@ Music_TitleScreen_Ch3: ; ebb01
 	note __, 1
 	stereopanning $ff
 	notetype $c, $16
-	tone $0000
+	tone NONE
 	octave 4
 	note A_, 2
 	octave 5

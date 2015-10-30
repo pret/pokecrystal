@@ -1644,9 +1644,9 @@ NorthConnectionStripPointer:: ; d1ab
 	ds 2
 NorthConnectionStripLocation:: ; d1ad
 	ds 2
-NorthConnectionStripLength:: ; d1af
+NorthMapObjectIndexBuffer1:: ; d1af
 	ds 1
-NorthConnectedMapWidth:: ; d1b0
+NorthMapObjectIndexBuffer2:: ; d1b0
 	ds 1
 NorthConnectionStripYOffset:: ; d1b1
 	ds 1
@@ -1664,9 +1664,9 @@ SouthConnectionStripPointer:: ; d1b7
 	ds 2
 SouthConnectionStripLocation:: ; d1b9
 	ds 2
-SouthConnectionStripLength:: ; d1bb
+SouthMapObjectIndexBuffer1:: ; d1bb
 	ds 1
-SouthConnectedMapWidth:: ; d1bc
+SouthMapObjectIndexBuffer2:: ; d1bc
 	ds 1
 SouthConnectionStripYOffset:: ; d1bd
 	ds 1

@@ -14,7 +14,7 @@ Route20_MapScriptHeader:
 	return
 
 TrainerSwimmerfNicole:
-	trainer EVENT_BEAT_SWIMMERF_NICOLE, SWIMMERF, NICOLE, SwimmerfNicoleSeenText, SwimmerfNicoleBeatenText, $0000, SwimmerfNicoleScript
+	trainer EVENT_BEAT_SWIMMERF_NICOLE, SWIMMERF, NICOLE, SwimmerfNicoleSeenText, SwimmerfNicoleBeatenText, NONE, SwimmerfNicoleScript
 
 SwimmerfNicoleScript:
 	talkaftercancel
@@ -25,7 +25,7 @@ SwimmerfNicoleScript:
 	end
 
 TrainerSwimmerfLori:
-	trainer EVENT_BEAT_SWIMMERF_LORI, SWIMMERF, LORI, SwimmerfLoriSeenText, SwimmerfLoriBeatenText, $0000, SwimmerfLoriScript
+	trainer EVENT_BEAT_SWIMMERF_LORI, SWIMMERF, LORI, SwimmerfLoriSeenText, SwimmerfLoriBeatenText, NONE, SwimmerfLoriScript
 
 SwimmerfLoriScript:
 	talkaftercancel
@@ -36,7 +36,7 @@ SwimmerfLoriScript:
 	end
 
 TrainerSwimmermCameron:
-	trainer EVENT_BEAT_SWIMMERM_CAMERON, SWIMMERM, CAMERON, SwimmermCameronSeenText, SwimmermCameronBeatenText, $0000, SwimmermCameronScript
+	trainer EVENT_BEAT_SWIMMERM_CAMERON, SWIMMERM, CAMERON, SwimmermCameronSeenText, SwimmermCameronBeatenText, NONE, SwimmermCameronScript
 
 SwimmermCameronScript:
 	talkaftercancel
@@ -127,6 +127,6 @@ Route20_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_SWIMMER_GIRL, 8, 52, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfNicole, -1
-	person_event SPRITE_SWIMMER_GIRL, 13, 45, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfLori, -1
-	person_event SPRITE_SWIMMER_GUY, 13, 12, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermCameron, -1
+	person_event SPRITE_SWIMMER_GIRL, 8, 52, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfNicole, -1
+	person_event SPRITE_SWIMMER_GIRL, 13, 45, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfLori, -1
+	person_event SPRITE_SWIMMER_GUY, 13, 12, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermCameron, -1

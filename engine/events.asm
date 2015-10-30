@@ -606,7 +606,7 @@ TryObjectEvent: ; 969b5
 
 .IsObject
 	call PlayTalkObject
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 	call GetObjectStruct
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc

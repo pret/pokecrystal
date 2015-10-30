@@ -3,7 +3,7 @@ SaffronTrainStation_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw .Trigger1, $0000
+	dw .Trigger1, NONE
 
 .MapCallbacks:
 	db 0
@@ -231,7 +231,7 @@ SaffronTrainStation_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_OFFICER, 9, 9, $6, 0, 0, -1, -1, 0, 0, 0, OfficerScript_0x18a81e, -1
-	person_event SPRITE_GYM_GUY, 14, 10, $2, 1, 1, -1, -1, 0, 0, 0, GymGuyScript_0x18a875, -1
-	person_event SPRITE_TEACHER, 11, 6, $9, 0, 0, -1, -1, 0, 0, 0, TeacherScript_0x18a889, EVENT_SAFFRON_TRAIN_STATION_POPULATION
-	person_event SPRITE_LASS, 10, 6, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x18a88c, EVENT_SAFFRON_TRAIN_STATION_POPULATION
+	person_event SPRITE_OFFICER, 9, 9, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, OfficerScript_0x18a81e, -1
+	person_event SPRITE_GYM_GUY, 14, 10, SPRITEMOVEFN_02, 1, 1, -1, -1, 0, 0, 0, GymGuyScript_0x18a875, -1
+	person_event SPRITE_TEACHER, 11, 6, SPRITEMOVEFN_09, 0, 0, -1, -1, 0, 0, 0, TeacherScript_0x18a889, EVENT_SAFFRON_TRAIN_STATION_POPULATION
+	person_event SPRITE_LASS, 10, 6, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x18a88c, EVENT_SAFFRON_TRAIN_STATION_POPULATION

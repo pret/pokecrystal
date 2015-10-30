@@ -6,7 +6,7 @@ Route10South_MapScriptHeader:
 	db 0
 
 TrainerHikerJim:
-	trainer EVENT_BEAT_HIKER_JIM, HIKER, JIM, HikerJimSeenText, HikerJimBeatenText, $0000, HikerJimScript
+	trainer EVENT_BEAT_HIKER_JIM, HIKER, JIM, HikerJimSeenText, HikerJimBeatenText, NONE, HikerJimScript
 
 HikerJimScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ HikerJimScript:
 	end
 
 TrainerPokefanmRobert:
-	trainer EVENT_BEAT_POKEFANM_ROBERT, POKEFANM, ROBERT, PokefanmRobertSeenText, PokefanmRobertBeatenText, $0000, PokefanmRobertScript
+	trainer EVENT_BEAT_POKEFANM_ROBERT, POKEFANM, ROBERT, PokefanmRobertSeenText, PokefanmRobertBeatenText, NONE, PokefanmRobertScript
 
 PokefanmRobertScript:
 	talkaftercancel
@@ -88,5 +88,5 @@ Route10South_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKEFAN_M, 3, 17, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerHikerJim, -1
-	person_event SPRITE_POKEFAN_M, 10, 8, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerPokefanmRobert, -1
+	person_event SPRITE_POKEFAN_M, 3, 17, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerHikerJim, -1
+	person_event SPRITE_POKEFAN_M, 10, 8, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerPokefanmRobert, -1

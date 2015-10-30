@@ -3,7 +3,7 @@ TeamRocketBaseB1F_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x6c65a, $0000
+	dw UnknownScript_0x6c65a, NONE
 
 .MapCallbacks:
 	db 1
@@ -233,7 +233,7 @@ TrainerCameraGrunt1:
 	writetext CameraGrunt1SeenText
 	closetext
 	loadmovesprites
-	winlosstext CameraGrunt1BeatenText, $0000
+	winlosstext CameraGrunt1BeatenText, NONE
 	setlasttalked $2
 	loadtrainer GRUNTM, 20
 	startbattle
@@ -246,7 +246,7 @@ TrainerCameraGrunt2:
 	writetext CameraGrunt2SeenText
 	closetext
 	loadmovesprites
-	winlosstext CameraGrunt2BeatenText, $0000
+	winlosstext CameraGrunt2BeatenText, NONE
 	setlasttalked $2
 	loadtrainer GRUNTM, 21
 	startbattle
@@ -478,7 +478,7 @@ NoExplodingTrap:
 	end
 
 TrainerScientistJed:
-	trainer EVENT_BEAT_SCIENTIST_JED, SCIENTIST, JED, ScientistJedSeenText, ScientistJedBeatenText, $0000, ScientistJedScript
+	trainer EVENT_BEAT_SCIENTIST_JED, SCIENTIST, JED, ScientistJedSeenText, ScientistJedBeatenText, NONE, ScientistJedScript
 
 ScientistJedScript:
 	talkaftercancel
@@ -489,7 +489,7 @@ ScientistJedScript:
 	end
 
 TrainerGruntM16:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_16, GRUNTM, 16, GruntM16SeenText, GruntM16BeatenText, $0000, GruntM16Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_16, GRUNTM, 16, GruntM16SeenText, GruntM16BeatenText, NONE, GruntM16Script
 
 GruntM16Script:
 	talkaftercancel
@@ -786,9 +786,9 @@ TeamRocketBaseB1F_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_ROCKET, 0, 0, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_SECURITY_GRUNTS
-	person_event SPRITE_ROCKET, 4, 2, $9, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM16, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_SCIENTIST, 12, 18, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerScientistJed, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_POKE_BALL, 6, 27, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6cac4, EVENT_TEAM_ROCKET_BASE_B1F_HYPER_POTION
-	person_event SPRITE_POKE_BALL, 15, 14, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6cac6, EVENT_TEAM_ROCKET_BASE_B1F_NUGGET
-	person_event SPRITE_POKE_BALL, 12, 21, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6cac8, EVENT_TEAM_ROCKET_BASE_B1F_GUARD_SPEC
+	person_event SPRITE_ROCKET, 0, 0, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_SECURITY_GRUNTS
+	person_event SPRITE_ROCKET, 4, 2, SPRITEMOVEFN_09, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM16, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_SCIENTIST, 12, 18, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerScientistJed, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_POKE_BALL, 6, 27, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6cac4, EVENT_TEAM_ROCKET_BASE_B1F_HYPER_POTION
+	person_event SPRITE_POKE_BALL, 15, 14, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6cac6, EVENT_TEAM_ROCKET_BASE_B1F_NUGGET
+	person_event SPRITE_POKE_BALL, 12, 21, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6cac8, EVENT_TEAM_ROCKET_BASE_B1F_GUARD_SPEC

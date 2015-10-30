@@ -168,5 +168,5 @@ CeladonDeptStore6F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_SUPER_NERD, 2, 9, $7, 0, 0, -1, -1, 0, 0, 0, SuperNerdScript_0x7117a, -1
-	person_event SPRITE_YOUNGSTER, 5, 12, $2, 1, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x7117d, -1
+	person_event SPRITE_SUPER_NERD, 2, 9, SPRITEMOVEFN_07, 0, 0, -1, -1, 0, 0, 0, SuperNerdScript_0x7117a, -1
+	person_event SPRITE_YOUNGSTER, 5, 12, SPRITEMOVEFN_02, 1, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x7117d, -1

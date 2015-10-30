@@ -3,8 +3,8 @@ SproutTower3F_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x184945, $0000
-	dw UnknownScript_0x184946, $0000
+	dw UnknownScript_0x184945, NONE
+	dw UnknownScript_0x184946, NONE
 
 .MapCallbacks:
 	db 0
@@ -64,7 +64,7 @@ SageLiScript:
 	writetext SageLiSeenText
 	closetext
 	loadmovesprites
-	winlosstext SageLiBeatenText, $0000
+	winlosstext SageLiBeatenText, NONE
 	loadtrainer SAGE, LI
 	startbattle
 	returnafterbattle
@@ -86,7 +86,7 @@ UnknownScript_0x1849d1:
 	end
 
 TrainerSageJin:
-	trainer EVENT_BEAT_SAGE_JIN, SAGE, JIN, SageJinSeenText, SageJinBeatenText, $0000, SageJinScript
+	trainer EVENT_BEAT_SAGE_JIN, SAGE, JIN, SageJinSeenText, SageJinBeatenText, NONE, SageJinScript
 
 SageJinScript:
 	talkaftercancel
@@ -97,7 +97,7 @@ SageJinScript:
 	end
 
 TrainerSageTroy:
-	trainer EVENT_BEAT_SAGE_TROY, SAGE, TROY, SageTroySeenText, SageTroyBeatenText, $0000, SageTroyScript
+	trainer EVENT_BEAT_SAGE_TROY, SAGE, TROY, SageTroySeenText, SageTroyBeatenText, NONE, SageTroyScript
 
 SageTroyScript:
 	talkaftercancel
@@ -108,7 +108,7 @@ SageTroyScript:
 	end
 
 TrainerSageNeal:
-	trainer EVENT_BEAT_SAGE_NEAL, SAGE, NEAL, SageNealSeenText, SageNealBeatenText, $0000, SageNealScript
+	trainer EVENT_BEAT_SAGE_NEAL, SAGE, NEAL, SageNealSeenText, SageNealBeatenText, NONE, SageNealScript
 
 SageNealScript:
 	talkaftercancel
@@ -345,10 +345,10 @@ SproutTower3F_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_SAGE, 13, 8, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSageJin, -1
-	person_event SPRITE_SAGE, 8, 8, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerSageTroy, -1
-	person_event SPRITE_SAGE, 2, 10, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SageLiScript, -1
-	person_event SPRITE_SAGE, 11, 11, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSageNeal, -1
-	person_event SPRITE_POKE_BALL, 14, 6, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x184a19, EVENT_SPROUT_TOWER_3F_POTION
-	person_event SPRITE_POKE_BALL, 1, 14, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x184a1b, EVENT_SPROUT_TOWER_3F_ESCAPE_ROPE
-	person_event SPRITE_SILVER, 4, 10, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RIVAL_SPROUT_TOWER
+	person_event SPRITE_SAGE, 13, 8, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSageJin, -1
+	person_event SPRITE_SAGE, 8, 8, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerSageTroy, -1
+	person_event SPRITE_SAGE, 2, 10, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SageLiScript, -1
+	person_event SPRITE_SAGE, 11, 11, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSageNeal, -1
+	person_event SPRITE_POKE_BALL, 14, 6, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x184a19, EVENT_SPROUT_TOWER_3F_POTION
+	person_event SPRITE_POKE_BALL, 1, 14, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x184a1b, EVENT_SPROUT_TOWER_3F_ESCAPE_ROPE
+	person_event SPRITE_SILVER, 4, 10, SPRITEMOVEFN_07, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RIVAL_SPROUT_TOWER

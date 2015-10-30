@@ -3,8 +3,8 @@ RuinsofAlphHoOhChamber_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x5856d, $0000
-	dw UnknownScript_0x5857b, $0000
+	dw UnknownScript_0x5856d, NONE
+	dw UnknownScript_0x5857b, NONE
 
 .MapCallbacks:
 	db 1

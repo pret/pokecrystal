@@ -226,8 +226,8 @@ VioletPokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_NURSE, 1, 3, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x694c9, -1
-	person_event SPRITE_GAMEBOY_KID, 6, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, GameboyKidScript_0x69540, -1
-	person_event SPRITE_GENTLEMAN, 4, 1, $3, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x69543, -1
-	person_event SPRITE_YOUNGSTER, 1, 8, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x69546, -1
-	person_event SPRITE_SCIENTIST, 3, 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ScientistScript_0x694cc, EVENT_ELMS_AIDE_IN_VIOLET_POKEMON_CENTER
+	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x694c9, -1
+	person_event SPRITE_GAMEBOY_KID, 6, 7, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, GameboyKidScript_0x69540, -1
+	person_event SPRITE_GENTLEMAN, 4, 1, SPRITEMOVEFN_03, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x69543, -1
+	person_event SPRITE_YOUNGSTER, 1, 8, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x69546, -1
+	person_event SPRITE_SCIENTIST, 3, 4, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ScientistScript_0x694cc, EVENT_ELMS_AIDE_IN_VIOLET_POKEMON_CENTER

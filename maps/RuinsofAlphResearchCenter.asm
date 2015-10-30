@@ -3,8 +3,8 @@ RuinsofAlphResearchCenter_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x59180, $0000
-	dw UnknownScript_0x59181, $0000
+	dw UnknownScript_0x59180, NONE
+	dw UnknownScript_0x59181, NONE
 
 .MapCallbacks:
 	db 1
@@ -412,6 +412,6 @@ RuinsofAlphResearchCenter_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_SCIENTIST, 5, 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ScientistScript_0x591e5, -1
-	person_event SPRITE_SCIENTIST, 2, 5, $2, 1, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ScientistScript_0x59214, -1
-	person_event SPRITE_SCIENTIST, 5, 2, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ScientistScript_0x591d1, EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
+	person_event SPRITE_SCIENTIST, 5, 4, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ScientistScript_0x591e5, -1
+	person_event SPRITE_SCIENTIST, 2, 5, SPRITEMOVEFN_02, 1, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ScientistScript_0x59214, -1
+	person_event SPRITE_SCIENTIST, 5, 2, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ScientistScript_0x591d1, EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST

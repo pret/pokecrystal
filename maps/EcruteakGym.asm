@@ -3,8 +3,8 @@ EcruteakGym_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x99d53, $0000
-	dw UnknownScript_0x99d57, $0000
+	dw UnknownScript_0x99d53, NONE
+	dw UnknownScript_0x99d57, NONE
 
 .MapCallbacks:
 	db 0
@@ -24,7 +24,7 @@ MortyScript_0x99d58:
 	writetext UnknownText_0x99e65
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x9a00a, $0000
+	winlosstext UnknownText_0x9a00a, NONE
 	loadtrainer MORTY, 1
 	startbattle
 	returnafterbattle
@@ -91,7 +91,7 @@ UnknownScript_0x99dc6:
 	end
 
 TrainerSageJeffrey:
-	trainer EVENT_BEAT_SAGE_JEFFREY, SAGE, JEFFREY, SageJeffreySeenText, SageJeffreyBeatenText, $0000, SageJeffreyScript
+	trainer EVENT_BEAT_SAGE_JEFFREY, SAGE, JEFFREY, SageJeffreySeenText, SageJeffreyBeatenText, NONE, SageJeffreyScript
 
 SageJeffreyScript:
 	talkaftercancel
@@ -102,7 +102,7 @@ SageJeffreyScript:
 	end
 
 TrainerSagePing:
-	trainer EVENT_BEAT_SAGE_PING, SAGE, PING, SagePingSeenText, SagePingBeatenText, $0000, SagePingScript
+	trainer EVENT_BEAT_SAGE_PING, SAGE, PING, SagePingSeenText, SagePingBeatenText, NONE, SagePingScript
 
 SagePingScript:
 	talkaftercancel
@@ -113,7 +113,7 @@ SagePingScript:
 	end
 
 TrainerMediumMartha:
-	trainer EVENT_BEAT_MEDIUM_MARTHA, MEDIUM, MARTHA, MediumMarthaSeenText, MediumMarthaBeatenText, $0000, MediumMarthaScript
+	trainer EVENT_BEAT_MEDIUM_MARTHA, MEDIUM, MARTHA, MediumMarthaSeenText, MediumMarthaBeatenText, NONE, MediumMarthaScript
 
 MediumMarthaScript:
 	talkaftercancel
@@ -124,7 +124,7 @@ MediumMarthaScript:
 	end
 
 TrainerMediumGrace:
-	trainer EVENT_BEAT_MEDIUM_GRACE, MEDIUM, GRACE, MediumGraceSeenText, MediumGraceBeatenText, $0000, MediumGraceScript
+	trainer EVENT_BEAT_MEDIUM_GRACE, MEDIUM, GRACE, MediumGraceSeenText, MediumGraceBeatenText, NONE, MediumGraceScript
 
 MediumGraceScript:
 	talkaftercancel
@@ -429,10 +429,10 @@ EcruteakGym_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_MORTY, 1, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, MortyScript_0x99d58, -1
-	person_event SPRITE_SAGE, 7, 2, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSageJeffrey, -1
-	person_event SPRITE_SAGE, 13, 3, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSagePing, -1
-	person_event SPRITE_GRANNY, 5, 7, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerMediumMartha, -1
-	person_event SPRITE_GRANNY, 9, 7, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerMediumGrace, -1
-	person_event SPRITE_GYM_GUY, 15, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, EcruteakGymGuyScript, -1
-	person_event SPRITE_GRAMPS, 14, 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ObjectEvent, EVENT_ECRUTEAK_GYM_GRAMPS
+	person_event SPRITE_MORTY, 1, 5, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, MortyScript_0x99d58, -1
+	person_event SPRITE_SAGE, 7, 2, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSageJeffrey, -1
+	person_event SPRITE_SAGE, 13, 3, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSagePing, -1
+	person_event SPRITE_GRANNY, 5, 7, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerMediumMartha, -1
+	person_event SPRITE_GRANNY, 9, 7, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerMediumGrace, -1
+	person_event SPRITE_GYM_GUY, 15, 7, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, EcruteakGymGuyScript, -1
+	person_event SPRITE_GRAMPS, 14, 4, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ObjectEvent, EVENT_ECRUTEAK_GYM_GRAMPS

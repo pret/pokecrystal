@@ -14428,7 +14428,7 @@ Function11ad1b: ; 11ad1b
 	ld a, [wcfa9]
 	ld [wcd82], a
 	dec a
-	ld [hConnectedMapWidth], a
+	ld [hMapObjectIndexBuffer2], a
 	ld a, $10
 	ld [wc3b7], a
 	ld hl, Function8e83f
@@ -15521,7 +15521,7 @@ Function11b3d9: ; 11b3d9
 	add [hl]
 	cp e
 	jr z, .asm_11b40d
-	ld hl, $0000
+	ld hl, NONE
 	ld bc, $0070
 	call AddNTimes
 	ld e, l
@@ -16413,7 +16413,7 @@ Function11b98f: ; 11b98f
 ; 11ba38
 
 Function11ba38: ; 11ba38
-	callba Functione538
+	callba CheckCurPartyMonFainted
 	ret c
 	xor a
 	ld [ScriptVar], a

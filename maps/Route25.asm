@@ -3,8 +3,8 @@ Route25_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x19ee9e, $0000
-	dw UnknownScript_0x19ee9f, $0000
+	dw UnknownScript_0x19ee9e, NONE
+	dw UnknownScript_0x19ee9f, NONE
 
 .MapCallbacks:
 	db 0
@@ -68,7 +68,7 @@ UnknownScript_0x19eee0:
 	end
 
 TrainerSchoolboyDudley:
-	trainer EVENT_BEAT_SCHOOLBOY_DUDLEY, SCHOOLBOY, DUDLEY, SchoolboyDudleySeenText, SchoolboyDudleyBeatenText, $0000, SchoolboyDudleyScript
+	trainer EVENT_BEAT_SCHOOLBOY_DUDLEY, SCHOOLBOY, DUDLEY, SchoolboyDudleySeenText, SchoolboyDudleyBeatenText, NONE, SchoolboyDudleyScript
 
 SchoolboyDudleyScript:
 	talkaftercancel
@@ -79,7 +79,7 @@ SchoolboyDudleyScript:
 	end
 
 TrainerLassEllen:
-	trainer EVENT_BEAT_LASS_ELLEN, LASS, ELLEN, LassEllenSeenText, LassEllenBeatenText, $0000, LassEllenScript
+	trainer EVENT_BEAT_LASS_ELLEN, LASS, ELLEN, LassEllenSeenText, LassEllenBeatenText, NONE, LassEllenScript
 
 LassEllenScript:
 	talkaftercancel
@@ -90,7 +90,7 @@ LassEllenScript:
 	end
 
 TrainerSchoolboyJoe:
-	trainer EVENT_BEAT_SCHOOLBOY_JOE, SCHOOLBOY, JOE, SchoolboyJoeSeenText, SchoolboyJoeBeatenText, $0000, SchoolboyJoeScript
+	trainer EVENT_BEAT_SCHOOLBOY_JOE, SCHOOLBOY, JOE, SchoolboyJoeSeenText, SchoolboyJoeBeatenText, NONE, SchoolboyJoeScript
 
 SchoolboyJoeScript:
 	talkaftercancel
@@ -101,7 +101,7 @@ SchoolboyJoeScript:
 	end
 
 TrainerLassLaura:
-	trainer EVENT_BEAT_LASS_LAURA, LASS, LAURA, LassLauraSeenText, LassLauraBeatenText, $0000, LassLauraScript
+	trainer EVENT_BEAT_LASS_LAURA, LASS, LAURA, LassLauraSeenText, LassLauraBeatenText, NONE, LassLauraScript
 
 LassLauraScript:
 	talkaftercancel
@@ -112,7 +112,7 @@ LassLauraScript:
 	end
 
 TrainerCamperLloyd:
-	trainer EVENT_BEAT_CAMPER_LLOYD, CAMPER, LLOYD, CamperLloydSeenText, CamperLloydBeatenText, $0000, CamperLloydScript
+	trainer EVENT_BEAT_CAMPER_LLOYD, CAMPER, LLOYD, CamperLloydSeenText, CamperLloydBeatenText, NONE, CamperLloydScript
 
 CamperLloydScript:
 	talkaftercancel
@@ -123,7 +123,7 @@ CamperLloydScript:
 	end
 
 TrainerLassShannon:
-	trainer EVENT_BEAT_LASS_SHANNON, LASS, SHANNON, LassShannonSeenText, LassShannonBeatenText, $0000, LassShannonScript
+	trainer EVENT_BEAT_LASS_SHANNON, LASS, SHANNON, LassShannonSeenText, LassShannonBeatenText, NONE, LassShannonScript
 
 LassShannonScript:
 	talkaftercancel
@@ -134,7 +134,7 @@ LassShannonScript:
 	end
 
 TrainerSupernerdPat:
-	trainer EVENT_BEAT_SUPER_NERD_PAT, SUPER_NERD, PAT, SupernerdPatSeenText, SupernerdPatBeatenText, $0000, SupernerdPatScript
+	trainer EVENT_BEAT_SUPER_NERD_PAT, SUPER_NERD, PAT, SupernerdPatSeenText, SupernerdPatBeatenText, NONE, SupernerdPatScript
 
 SupernerdPatScript:
 	talkaftercancel
@@ -160,7 +160,7 @@ UnknownScript_0x19efc7:
 	writetext UnknownText_0x19f49d
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x19f4fd, $0000
+	winlosstext UnknownText_0x19f4fd, NONE
 	loadtrainer COOLTRAINERM, KEVIN
 	startbattle
 	returnafterbattle
@@ -439,14 +439,14 @@ Route25_MapEventHeader:
 
 .PersonEvents:
 	db 11
-	person_event SPRITE_MISTY, 9, 46, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
-	person_event SPRITE_COOLTRAINER_M, 10, 46, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
-	person_event SPRITE_YOUNGSTER, 8, 12, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSchoolboyDudley, -1
-	person_event SPRITE_LASS, 11, 16, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerLassEllen, -1
-	person_event SPRITE_YOUNGSTER, 8, 21, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSchoolboyJoe, -1
-	person_event SPRITE_LASS, 6, 22, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerLassLaura, -1
-	person_event SPRITE_YOUNGSTER, 4, 25, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerCamperLloyd, -1
-	person_event SPRITE_LASS, 11, 28, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerLassShannon, -1
-	person_event SPRITE_SUPER_NERD, 7, 31, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerSupernerdPat, -1
-	person_event SPRITE_COOLTRAINER_M, 8, 37, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerMScript_0x19efac, -1
-	person_event SPRITE_POKE_BALL, 4, 32, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19efe3, EVENT_ROUTE_25_PROTEIN
+	person_event SPRITE_MISTY, 9, 46, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
+	person_event SPRITE_COOLTRAINER_M, 10, 46, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
+	person_event SPRITE_YOUNGSTER, 8, 12, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSchoolboyDudley, -1
+	person_event SPRITE_LASS, 11, 16, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerLassEllen, -1
+	person_event SPRITE_YOUNGSTER, 8, 21, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSchoolboyJoe, -1
+	person_event SPRITE_LASS, 6, 22, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerLassLaura, -1
+	person_event SPRITE_YOUNGSTER, 4, 25, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerCamperLloyd, -1
+	person_event SPRITE_LASS, 11, 28, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerLassShannon, -1
+	person_event SPRITE_SUPER_NERD, 7, 31, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerSupernerdPat, -1
+	person_event SPRITE_COOLTRAINER_M, 8, 37, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerMScript_0x19efac, -1
+	person_event SPRITE_POKE_BALL, 4, 32, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19efe3, EVENT_ROUTE_25_PROTEIN

@@ -14,7 +14,7 @@ Music_LookKimonoGirl_Ch1: ; f79c2
 	notetype $6, $87
 	tone $0001
 	callchannel Music_LookKimonoGirl_branch_f7aa8
-	tone $0000
+	tone NONE
 Music_LookKimonoGirl_branch_f79d7: ; f79d7
 	notetype $c, $b2
 	callchannel Music_LookKimonoGirl_branch_f7a13

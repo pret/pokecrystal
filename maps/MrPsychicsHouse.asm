@@ -63,4 +63,4 @@ MrPsychicsHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_FISHING_GURU, 3, 5, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, MrPsychic, -1
+	person_event SPRITE_FISHING_GURU, 3, 5, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, MrPsychic, -1

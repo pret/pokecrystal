@@ -3,8 +3,8 @@ MobileTradeRoomMobile_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw .Trigger1, $0000
-	dw .Trigger2, $0000
+	dw .Trigger1, NONE
+	dw .Trigger2, NONE
 
 .MapCallbacks:
 	db 0

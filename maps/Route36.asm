@@ -3,8 +3,8 @@ Route36_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x19400d, $0000
-	dw UnknownScript_0x19400e, $0000
+	dw UnknownScript_0x19400d, NONE
+	dw UnknownScript_0x19400e, NONE
 
 .MapCallbacks:
 	db 1
@@ -162,7 +162,7 @@ UnknownScript_0x1940ee:
 	end
 
 TrainerSchoolboyAlan1:
-	trainer EVENT_BEAT_SCHOOLBOY_ALAN, SCHOOLBOY, ALAN1, SchoolboyAlan1SeenText, SchoolboyAlan1BeatenText, $0000, SchoolboyAlan1Script
+	trainer EVENT_BEAT_SCHOOLBOY_ALAN, SCHOOLBOY, ALAN1, SchoolboyAlan1SeenText, SchoolboyAlan1BeatenText, NONE, SchoolboyAlan1Script
 
 SchoolboyAlan1Script:
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_ALAN
@@ -194,7 +194,7 @@ UnknownScript_0x19412c:
 
 UnknownScript_0x194140:
 	scall UnknownScript_0x1941e1
-	winlosstext SchoolboyAlan1BeatenText, $0000
+	winlosstext SchoolboyAlan1BeatenText, NONE
 	copybytetovar wAlanFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
@@ -300,7 +300,7 @@ UnknownScript_0x1941e9:
 	end
 
 TrainerPsychicMark:
-	trainer EVENT_BEAT_PSYCHIC_MARK, PSYCHIC_T, MARK, PsychicMarkSeenText, PsychicMarkBeatenText, $0000, PsychicMarkScript
+	trainer EVENT_BEAT_PSYCHIC_MARK, PSYCHIC_T, MARK, PsychicMarkSeenText, PsychicMarkBeatenText, NONE, PsychicMarkScript
 
 PsychicMarkScript:
 	talkaftercancel
@@ -679,12 +679,12 @@ Route36_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_YOUNGSTER, 13, 20, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPsychicMark, -1
-	person_event SPRITE_YOUNGSTER, 14, 31, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerSchoolboyAlan1, -1
-	person_event SPRITE_WEIRD_TREE, 9, 35, $17, 0, 0, -1, -1, 0, 0, 0, WeirdTreeScript_0x19403c, EVENT_ROUTE_36_SUDOWOODO
-	person_event SPRITE_LASS, 8, 51, $5, 0, 2, -1, -1, 0, 0, 0, LassScript_0x1940e0, -1
-	person_event SPRITE_FISHER, 9, 44, $8, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x1940b9, -1
-	person_event SPRITE_FRUIT_TREE, 4, 21, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x194247, -1
-	person_event SPRITE_YOUNGSTER, 6, 46, $2, 1, 1, -1, -1, 0, 0, 0, ArthurScript, EVENT_ROUTE_36_ARTHUR_OF_THURSDAY
-	person_event SPRITE_LASS, 12, 33, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, LassScript_0x19408c, EVENT_FLORIA_AT_SUDOWOODO
-	person_event SPRITE_SUICUNE, 6, 21, $1, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_36
+	person_event SPRITE_YOUNGSTER, 13, 20, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPsychicMark, -1
+	person_event SPRITE_YOUNGSTER, 14, 31, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerSchoolboyAlan1, -1
+	person_event SPRITE_WEIRD_TREE, 9, 35, SPRITEMOVEFN_17, 0, 0, -1, -1, 0, 0, 0, WeirdTreeScript_0x19403c, EVENT_ROUTE_36_SUDOWOODO
+	person_event SPRITE_LASS, 8, 51, SPRITEMOVEFN_05, 0, 2, -1, -1, 0, 0, 0, LassScript_0x1940e0, -1
+	person_event SPRITE_FISHER, 9, 44, SPRITEMOVEFN_08, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x1940b9, -1
+	person_event SPRITE_FRUIT_TREE, 4, 21, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x194247, -1
+	person_event SPRITE_YOUNGSTER, 6, 46, SPRITEMOVEFN_02, 1, 1, -1, -1, 0, 0, 0, ArthurScript, EVENT_ROUTE_36_ARTHUR_OF_THURSDAY
+	person_event SPRITE_LASS, 12, 33, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, LassScript_0x19408c, EVENT_FLORIA_AT_SUDOWOODO
+	person_event SPRITE_SUICUNE, 6, 21, SPRITEMOVEFN_01, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_36

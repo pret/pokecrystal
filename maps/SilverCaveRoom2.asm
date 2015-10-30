@@ -38,6 +38,6 @@ SilverCaveRoom2_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_POKE_BALL, 10, 24, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c5b2, EVENT_SILVER_CAVE_ROOM_2_CALCIUM
-	person_event SPRITE_POKE_BALL, 24, 22, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c5b4, EVENT_SILVER_CAVE_ROOM_2_ULTRA_BALL
-	person_event SPRITE_POKE_BALL, 20, 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c5b6, EVENT_SILVER_CAVE_ROOM_2_PP_UP
+	person_event SPRITE_POKE_BALL, 10, 24, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c5b2, EVENT_SILVER_CAVE_ROOM_2_CALCIUM
+	person_event SPRITE_POKE_BALL, 24, 22, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c5b4, EVENT_SILVER_CAVE_ROOM_2_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 20, 4, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c5b6, EVENT_SILVER_CAVE_ROOM_2_PP_UP

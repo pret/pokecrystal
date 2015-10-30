@@ -3,8 +3,8 @@ HallOfFame_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw .Trigger1, $0000
-	dw .Trigger2, $0000
+	dw .Trigger1, NONE
+	dw .Trigger2, NONE
 
 .MapCallbacks:
 	db 0
@@ -126,4 +126,4 @@ HallOfFame_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_LANCE, 12, 4, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
+	person_event SPRITE_LANCE, 12, 4, SPRITEMOVEFN_07, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1

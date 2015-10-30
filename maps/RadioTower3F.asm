@@ -77,7 +77,7 @@ UnknownScript_0x5e5a1:
 	end
 
 TrainerGruntM7:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_7, GRUNTM, 7, GruntM7SeenText, GruntM7BeatenText, $0000, GruntM7Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_7, GRUNTM, 7, GruntM7SeenText, GruntM7BeatenText, NONE, GruntM7Script
 
 GruntM7Script:
 	talkaftercancel
@@ -88,7 +88,7 @@ GruntM7Script:
 	end
 
 TrainerGruntM8:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_8, GRUNTM, 8, GruntM8SeenText, GruntM8BeatenText, $0000, GruntM8Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_8, GRUNTM, 8, GruntM8SeenText, GruntM8BeatenText, NONE, GruntM8Script
 
 GruntM8Script:
 	talkaftercancel
@@ -99,7 +99,7 @@ GruntM8Script:
 	end
 
 TrainerGruntM9:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_9, GRUNTM, 9, GruntM9SeenText, GruntM9BeatenText, $0000, GruntM9Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_9, GRUNTM, 9, GruntM9SeenText, GruntM9BeatenText, NONE, GruntM9Script
 
 GruntM9Script:
 	talkaftercancel
@@ -110,7 +110,7 @@ GruntM9Script:
 	end
 
 TrainerScientistMarc:
-	trainer EVENT_BEAT_SCIENTIST_MARC, SCIENTIST, MARC, ScientistMarcSeenText, ScientistMarcBeatenText, $0000, ScientistMarcScript
+	trainer EVENT_BEAT_SCIENTIST_MARC, SCIENTIST, MARC, ScientistMarcSeenText, ScientistMarcBeatenText, NONE, ScientistMarcScript
 
 ScientistMarcScript:
 	talkaftercancel
@@ -343,10 +343,10 @@ RadioTower3F_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_SUPER_NERD, 4, 7, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SuperNerdScript_0x5e553, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	person_event SPRITE_GYM_GUY, 4, 3, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GymGuyScript_0x5e556, -1
-	person_event SPRITE_COOLTRAINER_F, 3, 11, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x5e56a, -1
-	person_event SPRITE_ROCKET, 1, 5, $9, 0, 0, -1, -1, 0, 2, 2, TrainerGruntM7, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 2, 6, $6, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM8, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 6, 16, $7, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM9, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_SCIENTIST, 6, 9, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerScientistMarc, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_SUPER_NERD, 4, 7, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SuperNerdScript_0x5e553, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	person_event SPRITE_GYM_GUY, 4, 3, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GymGuyScript_0x5e556, -1
+	person_event SPRITE_COOLTRAINER_F, 3, 11, SPRITEMOVEFN_02, 1, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x5e56a, -1
+	person_event SPRITE_ROCKET, 1, 5, SPRITEMOVEFN_09, 0, 0, -1, -1, 0, 2, 2, TrainerGruntM7, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 2, 6, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM8, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 6, 16, SPRITEMOVEFN_07, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM9, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_SCIENTIST, 6, 9, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerScientistMarc, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

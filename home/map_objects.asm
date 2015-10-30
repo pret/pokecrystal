@@ -21,7 +21,7 @@ Function180e:: ; 180e
 	ld hl, UsedSprites + 2
 	ld c, SPRITE_GFX_LIST_CAPACITY - 1
 	ld b, a
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	cp 0
 	jr z, .nope
 	ld a, b
@@ -234,14 +234,14 @@ GetMapObject:: ; 18d2
 
 Function18de:: ; 18de
 ; Sets carry if the object is not visible on the screen.
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp -1
 	jr z, .not_visible
-	ld [hConnectedMapWidth], a
+	ld [hMapObjectIndexBuffer2], a
 	call GetObjectStruct
 	and a
 	ret
@@ -326,7 +326,7 @@ Function18f5:: ; 18f5
 ; 194d
 
 Function194d:: ; 194d
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	call GetMapObject
 	call CopyObjectStruct
 	ret
@@ -335,16 +335,16 @@ Function194d:: ; 194d
 
 
 _CopyObjectStruct:: ; 1956
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	call Function271e
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	call GetMapObject
 	callba CopyObjectStruct
 	ret
 ; 1967
 
 Function1967:: ; 1967
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
@@ -569,12 +569,12 @@ endr
 	ld [hl], a
 	ld a, [bc]
 	inc bc
-	ld hl, OBJECT_04
+	ld hl, OBJECT_FLAGS1
 	add hl, de
 	ld [hl], a
 	ld a, [bc]
 	inc bc
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, de
 	ld [hl], a
 	ld a, [bc]

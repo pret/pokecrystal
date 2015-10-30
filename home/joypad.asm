@@ -356,14 +356,14 @@ JoyTextDelay:: ; a57
 ; a80
 
 Functiona80:: ; a80
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	push af
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 	push af
 	xor a
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	ld a, 6
-	ld [hConnectedMapWidth], a
+	ld [hMapObjectIndexBuffer2], a
 
 .loop
 	push hl
@@ -377,9 +377,9 @@ Functiona80:: ; a80
 	jr z, .loop
 
 	pop af
-	ld [hConnectedMapWidth], a
+	ld [hMapObjectIndexBuffer2], a
 	pop af
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	ret
 ; aa5
 
@@ -459,37 +459,37 @@ Functionb06:: ; b06
 	cp b
 	pop bc
 	jr nz, .asm_b27
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	dec a
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	ret nz
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 	dec a
-	ld [hConnectedMapWidth], a
+	ld [hMapObjectIndexBuffer2], a
 	ret nz
 	ld a, "─"
 	ld [hl], a
 	ld a, -1
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	ld a, 6
-	ld [hConnectedMapWidth], a
+	ld [hMapObjectIndexBuffer2], a
 	ret
 
 .asm_b27
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	and a
 	ret z
 	dec a
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	ret nz
 	dec a
-	ld [hConnectionStripLength], a
-	ld a, [hConnectedMapWidth]
+	ld [hMapObjectIndexBuffer1], a
+	ld a, [hMapObjectIndexBuffer2]
 	dec a
-	ld [hConnectedMapWidth], a
+	ld [hMapObjectIndexBuffer2], a
 	ret nz
 	ld a, $6
-	ld [hConnectedMapWidth], a
+	ld [hMapObjectIndexBuffer2], a
 	ld a, $ee
 	ld [hl], a
 	ret

@@ -121,11 +121,11 @@ GoldenrodDeptStoreB1F_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_POKE_BALL, 15, 10, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d7c3, EVENT_GOLDENROD_DEPT_STORE_B1F_ETHER
-	person_event SPRITE_POKE_BALL, 2, 14, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d7c5, EVENT_GOLDENROD_DEPT_STORE_B1F_AMULET_COIN
-	person_event SPRITE_POKE_BALL, 3, 6, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d7c7, EVENT_GOLDENROD_DEPT_STORE_B1F_BURN_HEAL
-	person_event SPRITE_POKE_BALL, 15, 15, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d7c9, EVENT_GOLDENROD_DEPT_STORE_B1F_ULTRA_BALL
-	person_event SPRITE_BLACK_BELT, 10, 9, $4, 1, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, BlackBeltScript_0x7d7b0, -1
-	person_event SPRITE_BLACK_BELT, 8, 4, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, BlackBeltScript_0x7d7b3, -1
-	person_event SPRITE_BLACK_BELT, 13, 6, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, BlackBeltScript_0x7d7b6, -1
-	person_event SPRITE_MACHOP, 7, 7, $16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, MachopScript_0x7d7b9, -1
+	person_event SPRITE_POKE_BALL, 15, 10, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d7c3, EVENT_GOLDENROD_DEPT_STORE_B1F_ETHER
+	person_event SPRITE_POKE_BALL, 2, 14, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d7c5, EVENT_GOLDENROD_DEPT_STORE_B1F_AMULET_COIN
+	person_event SPRITE_POKE_BALL, 3, 6, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d7c7, EVENT_GOLDENROD_DEPT_STORE_B1F_BURN_HEAL
+	person_event SPRITE_POKE_BALL, 15, 15, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d7c9, EVENT_GOLDENROD_DEPT_STORE_B1F_ULTRA_BALL
+	person_event SPRITE_BLACK_BELT, 10, 9, SPRITEMOVEFN_04, 1, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, BlackBeltScript_0x7d7b0, -1
+	person_event SPRITE_BLACK_BELT, 8, 4, SPRITEMOVEFN_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, BlackBeltScript_0x7d7b3, -1
+	person_event SPRITE_BLACK_BELT, 13, 6, SPRITEMOVEFN_05, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, BlackBeltScript_0x7d7b6, -1
+	person_event SPRITE_MACHOP, 7, 7, SPRITEMOVEFN_16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, MachopScript_0x7d7b9, -1

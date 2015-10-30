@@ -3,8 +3,8 @@ EcruteakPokeCenter1F_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x98e5f, $0000
-	dw UnknownScript_0x98e63, $0000
+	dw UnknownScript_0x98e5f, NONE
+	dw UnknownScript_0x98e63, NONE
 
 .MapCallbacks:
 	db 0
@@ -219,8 +219,8 @@ EcruteakPokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_NURSE, 1, 3, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x98eb0, -1
-	person_event SPRITE_POKEFAN_M, 6, 7, $a, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x98eb3, -1
-	person_event SPRITE_COOLTRAINER_F, 4, 1, $3, 0, 0, -1, -1, 0, 0, 0, CooltrainerFScript_0x98ebf, -1
-	person_event SPRITE_GYM_GUY, 1, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, GymGuyScript_0x98ec2, -1
-	person_event SPRITE_BILL, 7, 0, $9, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ECRUTEAK_POKE_CENTER_BILL
+	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x98eb0, -1
+	person_event SPRITE_POKEFAN_M, 6, 7, SPRITEMOVEFN_0A, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x98eb3, -1
+	person_event SPRITE_COOLTRAINER_F, 4, 1, SPRITEMOVEFN_03, 0, 0, -1, -1, 0, 0, 0, CooltrainerFScript_0x98ebf, -1
+	person_event SPRITE_GYM_GUY, 1, 7, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, GymGuyScript_0x98ec2, -1
+	person_event SPRITE_BILL, 7, 0, SPRITEMOVEFN_09, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ECRUTEAK_POKE_CENTER_BILL

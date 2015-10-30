@@ -3,9 +3,9 @@ Route35NationalParkgate_MapScriptHeader:
 	db 3
 
 	; triggers
-	dw Route35NationalParkgate_Trigger1, $0000
-	dw Route35NationalParkgate_Trigger2, $0000
-	dw Route35NationalParkgate_Trigger3, $0000
+	dw Route35NationalParkgate_Trigger1, NONE
+	dw Route35NationalParkgate_Trigger2, NONE
+	dw Route35NationalParkgate_Trigger3, NONE
 
 .MapCallbacks:
 	db 2
@@ -458,6 +458,6 @@ Route35NationalParkgate_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_OFFICER, 1, 2, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OfficerScript_0x6a204, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
-	person_event SPRITE_YOUNGSTER, 5, 6, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x6a2d8, EVENT_ROUTE_35_NATIONAL_PARK_GATE_YOUNGSTER
-	person_event SPRITE_OFFICER, 3, 0, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OfficerScript_0x6a2ca, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY
+	person_event SPRITE_OFFICER, 1, 2, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OfficerScript_0x6a204, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
+	person_event SPRITE_YOUNGSTER, 5, 6, SPRITEMOVEFN_02, 1, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x6a2d8, EVENT_ROUTE_35_NATIONAL_PARK_GATE_YOUNGSTER
+	person_event SPRITE_OFFICER, 3, 0, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OfficerScript_0x6a2ca, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY

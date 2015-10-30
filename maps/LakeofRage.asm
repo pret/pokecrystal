@@ -3,8 +3,8 @@ LakeofRage_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw .Trigger1, $0000
-	dw .Trigger2, $0000
+	dw .Trigger1, NONE
+	dw .Trigger2, NONE
 
 .MapCallbacks:
 	db 2
@@ -137,7 +137,7 @@ UnknownScript_0x700b8:
 	end
 
 TrainerFisherAndre:
-	trainer EVENT_BEAT_FISHER_ANDRE, FISHER, ANDRE, FisherAndreSeenText, FisherAndreBeatenText, $0000, FisherAndreScript
+	trainer EVENT_BEAT_FISHER_ANDRE, FISHER, ANDRE, FisherAndreSeenText, FisherAndreBeatenText, NONE, FisherAndreScript
 
 FisherAndreScript:
 	talkaftercancel
@@ -148,7 +148,7 @@ FisherAndreScript:
 	end
 
 TrainerFisherRaymond:
-	trainer EVENT_BEAT_FISHER_RAYMOND, FISHER, RAYMOND, FisherRaymondSeenText, FisherRaymondBeatenText, $0000, FisherRaymondScript
+	trainer EVENT_BEAT_FISHER_RAYMOND, FISHER, RAYMOND, FisherRaymondSeenText, FisherRaymondBeatenText, NONE, FisherRaymondScript
 
 FisherRaymondScript:
 	talkaftercancel
@@ -159,7 +159,7 @@ FisherRaymondScript:
 	end
 
 TrainerCooltrainermAaron:
-	trainer EVENT_BEAT_COOLTRAINERM_AARON, COOLTRAINERM, AARON, CooltrainermAaronSeenText, CooltrainermAaronBeatenText, $0000, CooltrainermAaronScript
+	trainer EVENT_BEAT_COOLTRAINERM_AARON, COOLTRAINERM, AARON, CooltrainermAaronSeenText, CooltrainermAaronBeatenText, NONE, CooltrainermAaronScript
 
 CooltrainermAaronScript:
 	talkaftercancel
@@ -170,7 +170,7 @@ CooltrainermAaronScript:
 	end
 
 TrainerCooltrainerfLois:
-	trainer EVENT_BEAT_COOLTRAINERF_LOIS, COOLTRAINERF, LOIS, CooltrainerfLoisSeenText, CooltrainerfLoisBeatenText, $0000, CooltrainerfLoisScript
+	trainer EVENT_BEAT_COOLTRAINERF_LOIS, COOLTRAINERF, LOIS, CooltrainerfLoisSeenText, CooltrainerfLoisBeatenText, NONE, CooltrainerfLoisScript
 
 CooltrainerfLoisScript:
 	talkaftercancel
@@ -509,15 +509,15 @@ LakeofRage_MapEventHeader:
 
 .PersonEvents:
 	db 12
-	person_event SPRITE_LANCE, 28, 21, $7, 0, 0, -1, -1, 0, 0, 0, LanceScript_0x70022, EVENT_LAKE_OF_RAGE_LANCE
-	person_event SPRITE_GRAMPS, 26, 20, $7, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x7008e, -1
-	person_event SPRITE_SUPER_NERD, 13, 36, $8, 0, 0, -1, -1, 0, 0, 0, SuperNerdScript_0x700a2, -1
-	person_event SPRITE_COOLTRAINER_F, 29, 25, $5, 0, 1, -1, -1, 0, 0, 0, CooltrainerFScript_0x700a5, -1
-	person_event SPRITE_FISHER, 23, 30, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerFisherAndre, EVENT_LAKE_OF_RAGE_CIVILIANS
-	person_event SPRITE_FISHER, 26, 24, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerFisherRaymond, EVENT_LAKE_OF_RAGE_CIVILIANS
-	person_event SPRITE_COOLTRAINER_M, 15, 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerCooltrainermAaron, EVENT_LAKE_OF_RAGE_CIVILIANS
-	person_event SPRITE_COOLTRAINER_F, 7, 36, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 0, TrainerCooltrainerfLois, EVENT_LAKE_OF_RAGE_CIVILIANS
-	person_event SPRITE_GYARADOS, 22, 18, $16, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GyaradosScript_0x70063, EVENT_LAKE_OF_RAGE_RED_GYARADOS
-	person_event SPRITE_SUPER_NERD, 4, 4, $6, 0, 0, -1, -1, 0, 0, 0, WesleyScript, EVENT_LAKE_OF_RAGE_WESLEY_OF_WEDNESDAY
-	person_event SPRITE_POKE_BALL, 10, 7, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x70148, EVENT_LAKE_OF_RAGE_ELIXER
-	person_event SPRITE_POKE_BALL, 2, 35, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7014a, EVENT_LAKE_OF_RAGE_TM_DETECT
+	person_event SPRITE_LANCE, 28, 21, SPRITEMOVEFN_07, 0, 0, -1, -1, 0, 0, 0, LanceScript_0x70022, EVENT_LAKE_OF_RAGE_LANCE
+	person_event SPRITE_GRAMPS, 26, 20, SPRITEMOVEFN_07, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x7008e, -1
+	person_event SPRITE_SUPER_NERD, 13, 36, SPRITEMOVEFN_08, 0, 0, -1, -1, 0, 0, 0, SuperNerdScript_0x700a2, -1
+	person_event SPRITE_COOLTRAINER_F, 29, 25, SPRITEMOVEFN_05, 0, 1, -1, -1, 0, 0, 0, CooltrainerFScript_0x700a5, -1
+	person_event SPRITE_FISHER, 23, 30, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerFisherAndre, EVENT_LAKE_OF_RAGE_CIVILIANS
+	person_event SPRITE_FISHER, 26, 24, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerFisherRaymond, EVENT_LAKE_OF_RAGE_CIVILIANS
+	person_event SPRITE_COOLTRAINER_M, 15, 4, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerCooltrainermAaron, EVENT_LAKE_OF_RAGE_CIVILIANS
+	person_event SPRITE_COOLTRAINER_F, 7, 36, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 0, TrainerCooltrainerfLois, EVENT_LAKE_OF_RAGE_CIVILIANS
+	person_event SPRITE_GYARADOS, 22, 18, SPRITEMOVEFN_16, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GyaradosScript_0x70063, EVENT_LAKE_OF_RAGE_RED_GYARADOS
+	person_event SPRITE_SUPER_NERD, 4, 4, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, WesleyScript, EVENT_LAKE_OF_RAGE_WESLEY_OF_WEDNESDAY
+	person_event SPRITE_POKE_BALL, 10, 7, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x70148, EVENT_LAKE_OF_RAGE_ELIXER
+	person_event SPRITE_POKE_BALL, 2, 35, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7014a, EVENT_LAKE_OF_RAGE_TM_DETECT

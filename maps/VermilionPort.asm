@@ -3,8 +3,8 @@ VermilionPort_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw .Trigger1, $0000
-	dw .Trigger2, $0000
+	dw .Trigger1, NONE
+	dw .Trigger2, NONE
 
 .MapCallbacks:
 	db 1
@@ -317,6 +317,6 @@ VermilionPort_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_SAILOR, 17, 7, $7, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x74dc4, EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
-	person_event SPRITE_SAILOR, 11, 6, $9, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x74e97, -1
-	person_event SPRITE_SUPER_NERD, 11, 11, $5, 0, 2, -1, -1, 0, 0, 0, SuperNerdScript_0x74ee6, -1
+	person_event SPRITE_SAILOR, 17, 7, SPRITEMOVEFN_07, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x74dc4, EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
+	person_event SPRITE_SAILOR, 11, 6, SPRITEMOVEFN_09, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x74e97, -1
+	person_event SPRITE_SUPER_NERD, 11, 11, SPRITEMOVEFN_05, 0, 2, -1, -1, 0, 0, 0, SuperNerdScript_0x74ee6, -1

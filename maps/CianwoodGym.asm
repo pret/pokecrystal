@@ -28,7 +28,7 @@ ChuckScript_0x9d60f:
 	writetext UnknownText_0x9d78a
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x9d7f6, $0000
+	winlosstext UnknownText_0x9d7f6, NONE
 	loadtrainer CHUCK, 1
 	startbattle
 	returnafterbattle
@@ -76,7 +76,7 @@ CianwoodGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerBlackbeltYoshi:
-	trainer EVENT_BEAT_BLACKBELT_YOSHI, BLACKBELT_T, YOSHI, BlackbeltYoshiSeenText, BlackbeltYoshiBeatenText, $0000, BlackbeltYoshiScript
+	trainer EVENT_BEAT_BLACKBELT_YOSHI, BLACKBELT_T, YOSHI, BlackbeltYoshiSeenText, BlackbeltYoshiBeatenText, NONE, BlackbeltYoshiScript
 
 BlackbeltYoshiScript:
 	talkaftercancel
@@ -87,7 +87,7 @@ BlackbeltYoshiScript:
 	end
 
 TrainerBlackbeltLao:
-	trainer EVENT_BEAT_BLACKBELT_LAO, BLACKBELT_T, LAO, BlackbeltLaoSeenText, BlackbeltLaoBeatenText, $0000, BlackbeltLaoScript
+	trainer EVENT_BEAT_BLACKBELT_LAO, BLACKBELT_T, LAO, BlackbeltLaoSeenText, BlackbeltLaoBeatenText, NONE, BlackbeltLaoScript
 
 BlackbeltLaoScript:
 	talkaftercancel
@@ -98,7 +98,7 @@ BlackbeltLaoScript:
 	end
 
 TrainerBlackbeltNob:
-	trainer EVENT_BEAT_BLACKBELT_NOB, BLACKBELT_T, NOB, BlackbeltNobSeenText, BlackbeltNobBeatenText, $0000, BlackbeltNobScript
+	trainer EVENT_BEAT_BLACKBELT_NOB, BLACKBELT_T, NOB, BlackbeltNobSeenText, BlackbeltNobBeatenText, NONE, BlackbeltNobScript
 
 BlackbeltNobScript:
 	talkaftercancel
@@ -109,7 +109,7 @@ BlackbeltNobScript:
 	end
 
 TrainerBlackbeltLung:
-	trainer EVENT_BEAT_BLACKBELT_LUNG, BLACKBELT_T, LUNG, BlackbeltLungSeenText, BlackbeltLungBeatenText, $0000, BlackbeltLungScript
+	trainer EVENT_BEAT_BLACKBELT_LUNG, BLACKBELT_T, LUNG, BlackbeltLungSeenText, BlackbeltLungBeatenText, NONE, BlackbeltLungScript
 
 BlackbeltLungScript:
 	talkaftercancel
@@ -313,12 +313,12 @@ CianwoodGym_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_CHUCK, 1, 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, ChuckScript_0x9d60f, -1
-	person_event SPRITE_BLACK_BELT, 12, 2, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBlackbeltYoshi, -1
-	person_event SPRITE_BLACK_BELT, 12, 7, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBlackbeltLao, -1
-	person_event SPRITE_BLACK_BELT, 9, 3, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerBlackbeltNob, -1
-	person_event SPRITE_BLACK_BELT, 5, 5, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerBlackbeltLung, -1
-	person_event SPRITE_BOULDER, 1, 5, $19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1
-	person_event SPRITE_BOULDER, 7, 3, $19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1
-	person_event SPRITE_BOULDER, 7, 4, $19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1
-	person_event SPRITE_BOULDER, 7, 5, $19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1
+	person_event SPRITE_CHUCK, 1, 4, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, ChuckScript_0x9d60f, -1
+	person_event SPRITE_BLACK_BELT, 12, 2, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBlackbeltYoshi, -1
+	person_event SPRITE_BLACK_BELT, 12, 7, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBlackbeltLao, -1
+	person_event SPRITE_BLACK_BELT, 9, 3, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerBlackbeltNob, -1
+	person_event SPRITE_BLACK_BELT, 5, 5, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerBlackbeltLung, -1
+	person_event SPRITE_BOULDER, 1, 5, SPRITEMOVEFN_19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1
+	person_event SPRITE_BOULDER, 7, 3, SPRITEMOVEFN_19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1
+	person_event SPRITE_BOULDER, 7, 4, SPRITEMOVEFN_19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1
+	person_event SPRITE_BOULDER, 7, 5, SPRITEMOVEFN_19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1

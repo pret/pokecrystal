@@ -76,7 +76,7 @@ DaycareMon2Script_0x7806b:
 	end
 
 TrainerCamperTodd1:
-	trainer EVENT_BEAT_CAMPER_TODD, CAMPER, TODD1, CamperTodd1SeenText, CamperTodd1BeatenText, $0000, CamperTodd1Script
+	trainer EVENT_BEAT_CAMPER_TODD, CAMPER, TODD1, CamperTodd1SeenText, CamperTodd1BeatenText, NONE, CamperTodd1Script
 
 CamperTodd1Script:
 	writecode VAR_CALLERID, PHONE_CAMPER_TODD
@@ -108,7 +108,7 @@ UnknownScript_0x780a9:
 
 UnknownScript_0x780bd:
 	scall UnknownScript_0x7814f
-	winlosstext CamperTodd1BeatenText, $0000
+	winlosstext CamperTodd1BeatenText, NONE
 	copybytetovar wToddFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
@@ -201,7 +201,7 @@ UnknownScript_0x7814f:
 	end
 
 TrainerPicnickerGina1:
-	trainer EVENT_BEAT_PICNICKER_GINA, PICNICKER, GINA1, PicnickerGina1SeenText, PicnickerGina1BeatenText, $0000, PicnickerGina1Script
+	trainer EVENT_BEAT_PICNICKER_GINA, PICNICKER, GINA1, PicnickerGina1SeenText, PicnickerGina1BeatenText, NONE, PicnickerGina1Script
 
 PicnickerGina1Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_GINA
@@ -233,7 +233,7 @@ UnknownScript_0x7818b:
 
 UnknownScript_0x7819f:
 	scall UnknownScript_0x78240
-	winlosstext PicnickerGina1BeatenText, $0000
+	winlosstext PicnickerGina1BeatenText, NONE
 	copybytetovar wGinaFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
@@ -349,7 +349,7 @@ OfficerScript_0x7824c:
 	writetext UnknownText_0x785e4
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x78609, $0000
+	winlosstext UnknownText_0x78609, NONE
 	loadtrainer OFFICER, KEITH
 	startbattle
 	returnafterbattle
@@ -370,7 +370,7 @@ UnknownScript_0x78276:
 	end
 
 TrainerYoungsterSamuel:
-	trainer EVENT_BEAT_YOUNGSTER_SAMUEL, YOUNGSTER, SAMUEL, YoungsterSamuelSeenText, YoungsterSamuelBeatenText, $0000, YoungsterSamuelScript
+	trainer EVENT_BEAT_YOUNGSTER_SAMUEL, YOUNGSTER, SAMUEL, YoungsterSamuelSeenText, YoungsterSamuelBeatenText, NONE, YoungsterSamuelScript
 
 YoungsterSamuelScript:
 	talkaftercancel
@@ -381,7 +381,7 @@ YoungsterSamuelScript:
 	end
 
 TrainerYoungsterIan:
-	trainer EVENT_BEAT_YOUNGSTER_IAN, YOUNGSTER, IAN, YoungsterIanSeenText, YoungsterIanBeatenText, $0000, YoungsterIanScript
+	trainer EVENT_BEAT_YOUNGSTER_IAN, YOUNGSTER, IAN, YoungsterIanSeenText, YoungsterIanBeatenText, NONE, YoungsterIanScript
 
 YoungsterIanScript:
 	talkaftercancel
@@ -392,7 +392,7 @@ YoungsterIanScript:
 	end
 
 TrainerPokefanmBrandon:
-	trainer EVENT_BEAT_POKEFANM_BRANDON, POKEFANM, BRANDON, PokefanmBrandonSeenText, PokefanmBrandonBeatenText, $0000, PokefanmBrandonScript
+	trainer EVENT_BEAT_POKEFANM_BRANDON, POKEFANM, BRANDON, PokefanmBrandonSeenText, PokefanmBrandonBeatenText, NONE, PokefanmBrandonScript
 
 PokefanmBrandonScript:
 	talkaftercancel
@@ -403,7 +403,7 @@ PokefanmBrandonScript:
 	end
 
 TrainerCooltrainerfIrene:
-	trainer EVENT_BEAT_COOLTRAINERF_IRENE, COOLTRAINERF, IRENE, CooltrainerfIreneSeenText, CooltrainerfIreneBeatenText, $0000, CooltrainerfIreneScript
+	trainer EVENT_BEAT_COOLTRAINERF_IRENE, COOLTRAINERF, IRENE, CooltrainerfIreneSeenText, CooltrainerfIreneBeatenText, NONE, CooltrainerfIreneScript
 
 CooltrainerfIreneScript:
 	talkaftercancel
@@ -422,7 +422,7 @@ UnknownScript_0x782d2:
 	end
 
 TrainerCooltrainerfJenn:
-	trainer EVENT_BEAT_COOLTRAINERF_JENN, COOLTRAINERF, JENN, CooltrainerfJennSeenText, CooltrainerfJennBeatenText, $0000, CooltrainerfJennScript
+	trainer EVENT_BEAT_COOLTRAINERF_JENN, COOLTRAINERF, JENN, CooltrainerfJennSeenText, CooltrainerfJennBeatenText, NONE, CooltrainerfJennScript
 
 CooltrainerfJennScript:
 	talkaftercancel
@@ -441,7 +441,7 @@ UnknownScript_0x782f2:
 	end
 
 TrainerCooltrainerfKate:
-	trainer EVENT_BEAT_COOLTRAINERF_KATE, COOLTRAINERF, KATE, CooltrainerfKateSeenText, CooltrainerfKateBeatenText, $0000, CooltrainerfKateScript
+	trainer EVENT_BEAT_COOLTRAINERF_KATE, COOLTRAINERF, KATE, CooltrainerfKateSeenText, CooltrainerfKateBeatenText, NONE, CooltrainerfKateScript
 
 CooltrainerfKateScript:
 	talkaftercancel
@@ -775,16 +775,16 @@ Route34_MapEventHeader:
 
 .PersonEvents:
 	db 13
-	person_event SPRITE_YOUNGSTER, 7, 13, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 5, TrainerCamperTodd1, -1
-	person_event SPRITE_YOUNGSTER, 32, 15, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterSamuel, -1
-	person_event SPRITE_YOUNGSTER, 20, 11, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterIan, -1
-	person_event SPRITE_LASS, 26, 10, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerPicnickerGina1, -1
-	person_event SPRITE_OFFICER, 11, 9, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, OfficerScript_0x7824c, -1
-	person_event SPRITE_POKEFAN_M, 28, 18, $1e, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerPokefanmBrandon, -1
-	person_event SPRITE_GRAMPS, 16, 15, $6, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x7803d, EVENT_DAYCARE_MAN_ON_ROUTE_34
-	person_event SPRITE_DAYCARE_MON_1, 18, 14, $16, 2, 2, -1, -1, 0, 0, 0, DaycareMon1Script_0x78065, EVENT_DAYCARE_MON_1
-	person_event SPRITE_DAYCARE_MON_2, 19, 17, $16, 2, 2, -1, -1, 0, 0, 0, DaycareMon2Script_0x7806b, EVENT_DAYCARE_MON_2
-	person_event SPRITE_COOLTRAINER_F, 48, 11, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 5, TrainerCooltrainerfIrene, -1
-	person_event SPRITE_COOLTRAINER_F, 48, 3, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainerfJenn, -1
-	person_event SPRITE_COOLTRAINER_F, 51, 6, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerCooltrainerfKate, -1
-	person_event SPRITE_POKE_BALL, 30, 7, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7832b, EVENT_ROUTE_34_NUGGET
+	person_event SPRITE_YOUNGSTER, 7, 13, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 5, TrainerCamperTodd1, -1
+	person_event SPRITE_YOUNGSTER, 32, 15, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterSamuel, -1
+	person_event SPRITE_YOUNGSTER, 20, 11, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterIan, -1
+	person_event SPRITE_LASS, 26, 10, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerPicnickerGina1, -1
+	person_event SPRITE_OFFICER, 11, 9, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, OfficerScript_0x7824c, -1
+	person_event SPRITE_POKEFAN_M, 28, 18, SPRITEMOVEFN_1E, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerPokefanmBrandon, -1
+	person_event SPRITE_GRAMPS, 16, 15, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x7803d, EVENT_DAYCARE_MAN_ON_ROUTE_34
+	person_event SPRITE_DAYCARE_MON_1, 18, 14, SPRITEMOVEFN_16, 2, 2, -1, -1, 0, 0, 0, DaycareMon1Script_0x78065, EVENT_DAYCARE_MON_1
+	person_event SPRITE_DAYCARE_MON_2, 19, 17, SPRITEMOVEFN_16, 2, 2, -1, -1, 0, 0, 0, DaycareMon2Script_0x7806b, EVENT_DAYCARE_MON_2
+	person_event SPRITE_COOLTRAINER_F, 48, 11, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 5, TrainerCooltrainerfIrene, -1
+	person_event SPRITE_COOLTRAINER_F, 48, 3, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainerfJenn, -1
+	person_event SPRITE_COOLTRAINER_F, 51, 6, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerCooltrainerfKate, -1
+	person_event SPRITE_POKE_BALL, 30, 7, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7832b, EVENT_ROUTE_34_NUGGET

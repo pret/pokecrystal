@@ -3,8 +3,8 @@ Route29_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x1a0f59, $0000
-	dw UnknownScript_0x1a0f5a, $0000
+	dw UnknownScript_0x1a0f59, NONE
+	dw UnknownScript_0x1a0f5a, NONE
 
 .MapCallbacks:
 	db 1
@@ -430,11 +430,11 @@ Route29_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_COOLTRAINER_M, 12, 50, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerMScript_0x1a0ff1, -1
-	person_event SPRITE_YOUNGSTER, 16, 27, $4, 1, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x1a1028, -1
-	person_event SPRITE_TEACHER, 11, 15, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TeacherScript_0x1a102b, -1
-	person_event SPRITE_FRUIT_TREE, 2, 12, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a1089, -1
-	person_event SPRITE_FISHER, 3, 25, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, FisherScript_0x1a102e, -1
-	person_event SPRITE_COOLTRAINER_M, 4, 13, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerMScript_0x1a1031, -1
-	person_event SPRITE_TEACHER, 12, 29, $3, 0, 0, -1, -1, 0, 0, 0, TuscanyScript, EVENT_ROUTE_29_TUSCANY_OF_TUESDAY
-	person_event SPRITE_POKE_BALL, 2, 48, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a108b, EVENT_ROUTE_29_POTION
+	person_event SPRITE_COOLTRAINER_M, 12, 50, SPRITEMOVEFN_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerMScript_0x1a0ff1, -1
+	person_event SPRITE_YOUNGSTER, 16, 27, SPRITEMOVEFN_04, 1, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x1a1028, -1
+	person_event SPRITE_TEACHER, 11, 15, SPRITEMOVEFN_05, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TeacherScript_0x1a102b, -1
+	person_event SPRITE_FRUIT_TREE, 2, 12, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a1089, -1
+	person_event SPRITE_FISHER, 3, 25, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, FisherScript_0x1a102e, -1
+	person_event SPRITE_COOLTRAINER_M, 4, 13, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerMScript_0x1a1031, -1
+	person_event SPRITE_TEACHER, 12, 29, SPRITEMOVEFN_03, 0, 0, -1, -1, 0, 0, 0, TuscanyScript, EVENT_ROUTE_29_TUSCANY_OF_TUESDAY
+	person_event SPRITE_POKE_BALL, 2, 48, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a108b, EVENT_ROUTE_29_POTION

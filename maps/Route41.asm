@@ -6,7 +6,7 @@ Route41_MapScriptHeader:
 	db 0
 
 TrainerSwimmerfKaylee:
-	trainer EVENT_BEAT_SWIMMERF_KAYLEE, SWIMMERF, KAYLEE, SwimmerfKayleeSeenText, SwimmerfKayleeBeatenText, $0000, SwimmerfKayleeScript
+	trainer EVENT_BEAT_SWIMMERF_KAYLEE, SWIMMERF, KAYLEE, SwimmerfKayleeSeenText, SwimmerfKayleeBeatenText, NONE, SwimmerfKayleeScript
 
 SwimmerfKayleeScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ SwimmerfKayleeScript:
 	end
 
 TrainerSwimmerfSusie:
-	trainer EVENT_BEAT_SWIMMERF_SUSIE, SWIMMERF, SUSIE, SwimmerfSusieSeenText, SwimmerfSusieBeatenText, $0000, SwimmerfSusieScript
+	trainer EVENT_BEAT_SWIMMERF_SUSIE, SWIMMERF, SUSIE, SwimmerfSusieSeenText, SwimmerfSusieBeatenText, NONE, SwimmerfSusieScript
 
 SwimmerfSusieScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ SwimmerfSusieScript:
 	end
 
 TrainerSwimmerfDenise:
-	trainer EVENT_BEAT_SWIMMERF_DENISE, SWIMMERF, DENISE, SwimmerfDeniseSeenText, SwimmerfDeniseBeatenText, $0000, SwimmerfDeniseScript
+	trainer EVENT_BEAT_SWIMMERF_DENISE, SWIMMERF, DENISE, SwimmerfDeniseSeenText, SwimmerfDeniseBeatenText, NONE, SwimmerfDeniseScript
 
 SwimmerfDeniseScript:
 	talkaftercancel
@@ -39,7 +39,7 @@ SwimmerfDeniseScript:
 	end
 
 TrainerSwimmerfKara:
-	trainer EVENT_BEAT_SWIMMERF_KARA, SWIMMERF, KARA, SwimmerfKaraSeenText, SwimmerfKaraBeatenText, $0000, SwimmerfKaraScript
+	trainer EVENT_BEAT_SWIMMERF_KARA, SWIMMERF, KARA, SwimmerfKaraSeenText, SwimmerfKaraBeatenText, NONE, SwimmerfKaraScript
 
 SwimmerfKaraScript:
 	talkaftercancel
@@ -50,7 +50,7 @@ SwimmerfKaraScript:
 	end
 
 TrainerSwimmerfWendy:
-	trainer EVENT_BEAT_SWIMMERF_WENDY, SWIMMERF, WENDY, SwimmerfWendySeenText, SwimmerfWendyBeatenText, $0000, SwimmerfWendyScript
+	trainer EVENT_BEAT_SWIMMERF_WENDY, SWIMMERF, WENDY, SwimmerfWendySeenText, SwimmerfWendyBeatenText, NONE, SwimmerfWendyScript
 
 SwimmerfWendyScript:
 	talkaftercancel
@@ -61,7 +61,7 @@ SwimmerfWendyScript:
 	end
 
 TrainerSwimmermCharlie:
-	trainer EVENT_BEAT_SWIMMERM_CHARLIE, SWIMMERM, CHARLIE, SwimmermCharlieSeenText, SwimmermCharlieBeatenText, $0000, SwimmermCharlieScript
+	trainer EVENT_BEAT_SWIMMERM_CHARLIE, SWIMMERM, CHARLIE, SwimmermCharlieSeenText, SwimmermCharlieBeatenText, NONE, SwimmermCharlieScript
 
 SwimmermCharlieScript:
 	talkaftercancel
@@ -72,7 +72,7 @@ SwimmermCharlieScript:
 	end
 
 TrainerSwimmermGeorge:
-	trainer EVENT_BEAT_SWIMMERM_GEORGE, SWIMMERM, GEORGE, SwimmermGeorgeSeenText, SwimmermGeorgeBeatenText, $0000, SwimmermGeorgeScript
+	trainer EVENT_BEAT_SWIMMERM_GEORGE, SWIMMERM, GEORGE, SwimmermGeorgeSeenText, SwimmermGeorgeBeatenText, NONE, SwimmermGeorgeScript
 
 SwimmermGeorgeScript:
 	talkaftercancel
@@ -83,7 +83,7 @@ SwimmermGeorgeScript:
 	end
 
 TrainerSwimmermBerke:
-	trainer EVENT_BEAT_SWIMMERM_BERKE, SWIMMERM, BERKE, SwimmermBerkeSeenText, SwimmermBerkeBeatenText, $0000, SwimmermBerkeScript
+	trainer EVENT_BEAT_SWIMMERM_BERKE, SWIMMERM, BERKE, SwimmermBerkeSeenText, SwimmermBerkeBeatenText, NONE, SwimmermBerkeScript
 
 SwimmermBerkeScript:
 	talkaftercancel
@@ -94,7 +94,7 @@ SwimmermBerkeScript:
 	end
 
 TrainerSwimmermKirk:
-	trainer EVENT_BEAT_SWIMMERM_KIRK, SWIMMERM, KIRK, SwimmermKirkSeenText, SwimmermKirkBeatenText, $0000, SwimmermKirkScript
+	trainer EVENT_BEAT_SWIMMERM_KIRK, SWIMMERM, KIRK, SwimmermKirkSeenText, SwimmermKirkBeatenText, NONE, SwimmermKirkScript
 
 SwimmermKirkScript:
 	talkaftercancel
@@ -105,7 +105,7 @@ SwimmermKirkScript:
 	end
 
 TrainerSwimmermMathew:
-	trainer EVENT_BEAT_SWIMMERM_MATHEW, SWIMMERM, MATHEW, SwimmermMathewSeenText, SwimmermMathewBeatenText, $0000, SwimmermMathewScript
+	trainer EVENT_BEAT_SWIMMERM_MATHEW, SWIMMERM, MATHEW, SwimmermMathewSeenText, SwimmermMathewBeatenText, NONE, SwimmermMathewScript
 
 SwimmermMathewScript:
 	talkaftercancel
@@ -349,13 +349,13 @@ Route41_MapEventHeader:
 
 .PersonEvents:
 	db 10
-	person_event SPRITE_OLIVINE_RIVAL, 6, 32, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermCharlie, -1
-	person_event SPRITE_OLIVINE_RIVAL, 8, 46, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermGeorge, -1
-	person_event SPRITE_OLIVINE_RIVAL, 26, 20, $1e, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermBerke, -1
-	person_event SPRITE_OLIVINE_RIVAL, 30, 32, $1f, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermKirk, -1
-	person_event SPRITE_OLIVINE_RIVAL, 46, 19, $1e, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermMathew, -1
-	person_event SPRITE_SWIMMER_GIRL, 4, 17, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfKaylee, -1
-	person_event SPRITE_SWIMMER_GIRL, 19, 23, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfSusie, -1
-	person_event SPRITE_SWIMMER_GIRL, 34, 27, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfDenise, -1
-	person_event SPRITE_SWIMMER_GIRL, 28, 44, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 4, TrainerSwimmerfKara, -1
-	person_event SPRITE_SWIMMER_GIRL, 50, 9, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerSwimmerfWendy, -1
+	person_event SPRITE_OLIVINE_RIVAL, 6, 32, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermCharlie, -1
+	person_event SPRITE_OLIVINE_RIVAL, 8, 46, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermGeorge, -1
+	person_event SPRITE_OLIVINE_RIVAL, 26, 20, SPRITEMOVEFN_1E, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermBerke, -1
+	person_event SPRITE_OLIVINE_RIVAL, 30, 32, SPRITEMOVEFN_1F, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermKirk, -1
+	person_event SPRITE_OLIVINE_RIVAL, 46, 19, SPRITEMOVEFN_1E, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermMathew, -1
+	person_event SPRITE_SWIMMER_GIRL, 4, 17, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfKaylee, -1
+	person_event SPRITE_SWIMMER_GIRL, 19, 23, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfSusie, -1
+	person_event SPRITE_SWIMMER_GIRL, 34, 27, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfDenise, -1
+	person_event SPRITE_SWIMMER_GIRL, 28, 44, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 4, TrainerSwimmerfKara, -1
+	person_event SPRITE_SWIMMER_GIRL, 50, 9, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerSwimmerfWendy, -1

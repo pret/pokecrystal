@@ -45,5 +45,5 @@ IlexForestAzaleaGate_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_OFFICER, 2, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, OfficerScript_0x62c7a, -1
-	person_event SPRITE_GRANNY, 3, 1, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, GrannyScript_0x62c7d, -1
+	person_event SPRITE_OFFICER, 2, 5, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, OfficerScript_0x62c7a, -1
+	person_event SPRITE_GRANNY, 3, 1, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, GrannyScript_0x62c7d, -1

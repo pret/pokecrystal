@@ -6,7 +6,7 @@ OlivineLighthouse4F_MapScriptHeader:
 	db 0
 
 TrainerLassConnie:
-	trainer EVENT_BEAT_LASS_CONNIE, LASS, CONNIE1, LassConnie1SeenText, LassConnie1BeatenText, $0000, LassConnie1Script
+	trainer EVENT_BEAT_LASS_CONNIE, LASS, CONNIE1, LassConnie1SeenText, LassConnie1BeatenText, NONE, LassConnie1Script
 
 LassConnie1Script:
 	talkaftercancel
@@ -17,7 +17,7 @@ LassConnie1Script:
 	end
 
 TrainerSailorKent:
-	trainer EVENT_BEAT_SAILOR_KENT, SAILOR, KENT, SailorKentSeenText, SailorKentBeatenText, $0000, SailorKentScript
+	trainer EVENT_BEAT_SAILOR_KENT, SAILOR, KENT, SailorKentSeenText, SailorKentBeatenText, NONE, SailorKentScript
 
 SailorKentScript:
 	talkaftercancel
@@ -102,5 +102,5 @@ OlivineLighthouse4F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_SAILOR, 14, 7, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSailorKent, -1
-	person_event SPRITE_LASS, 2, 11, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerLassConnie, -1
+	person_event SPRITE_SAILOR, 14, 7, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSailorKent, -1
+	person_event SPRITE_LASS, 2, 11, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerLassConnie, -1

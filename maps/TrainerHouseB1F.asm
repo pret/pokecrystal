@@ -3,7 +3,7 @@ TrainerHouseB1F_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x9b38a, $0000
+	dw UnknownScript_0x9b38a, NONE
 
 .MapCallbacks:
 	db 0
@@ -42,14 +42,14 @@ UnknownScript_0x9b3aa:
 	loadmovesprites
 	special SpecialTrainerHouse
 	iffalse UnknownScript_0x9b3dc
-	winlosstext UnknownText_0x9b578, $0000
+	winlosstext UnknownText_0x9b578, NONE
 	setlasttalked $3
 	loadtrainer CAL, CAL2
 	startbattle
 	returnafterbattle
 	iffalse UnknownScript_0x9b3e8
 UnknownScript_0x9b3dc:
-	winlosstext UnknownText_0x9b578, $0000
+	winlosstext UnknownText_0x9b578, NONE
 	setlasttalked $3
 	loadtrainer CAL, CAL3
 	startbattle
@@ -184,5 +184,5 @@ TrainerHouseB1F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_RECEPTIONIST, 1, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ObjectEvent, -1
-	person_event SPRITE_CHRIS, 11, 6, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ObjectEvent, -1
+	person_event SPRITE_RECEPTIONIST, 1, 7, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ObjectEvent, -1
+	person_event SPRITE_CHRIS, 11, 6, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ObjectEvent, -1

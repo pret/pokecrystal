@@ -352,7 +352,7 @@ Function97e08:: ; 97e08
 	ld hl, wd6de
 	xor a
 .asm_97e0c
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	ld a, [hl]
 	and a
 	jr z, .asm_97e19
@@ -365,7 +365,7 @@ Function97e08:: ; 97e08
 .asm_97e19
 	ld de, $0006
 	add hl, de
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	inc a
 	cp $4
 	jr nz, .asm_97e0c
@@ -441,14 +441,14 @@ Function97e5c:: ; 97e5c
 ; 97e72
 
 Function97e72: ; 97e72
-	ld hl, $0000
+	ld hl, NONE
 	add hl, bc
 	ld [hl], 0
 	ret
 ; 97e79
 
 Function97e79: ; 97e79
-	ld hl, $0000
+	ld hl, NONE
 	add hl, bc
 	ld a, [hl]
 	cp 5
@@ -620,7 +620,7 @@ Function97f42: ; 97f42
 .asm_97f47
 	push af
 
-	ld hl, $0000
+	ld hl, NONE
 	add hl, de
 	ld a, [hl]
 	and a

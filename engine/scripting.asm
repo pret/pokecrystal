@@ -1200,7 +1200,7 @@ ApplyPersonFacing: ; 0x9728b
 	call Function1836
 	pop bc
 	jr c, .not_visible ; 0x9729c $1b
-	ld hl, OBJECT_04
+	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 2, [hl]
 	jr nz, .not_visible ; 0x972a4 $13
@@ -1258,7 +1258,7 @@ Script_appear: ; 0x972dd
 	call GetScriptByte
 	call GetScriptPerson
 	call _CopyObjectStruct
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	ld b, 0 ; clear
 	call ApplyEventActionAppearDisappear
 	ret
@@ -1276,7 +1276,7 @@ Script_disappear: ; 0x972ee
 	ld a, [hLastTalked]
 .ok
 	call DeleteObjectStruct
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	ld b, 1 ; set
 	call ApplyEventActionAppearDisappear
 	callba RefreshMapAppearDisappear
@@ -1390,7 +1390,7 @@ Script_loademote: ; 0x97384
 	ld a, [ScriptVar]
 .not_var_emote
 	ld c, a
-	callba Function1442f
+	callba LoadEmote
 	ret
 ; 0x97396
 
@@ -1446,7 +1446,7 @@ Script_earthquake: ; 0x973c7
 	call CopyBytes
 	call GetScriptByte
 	ld [wd003], a
-	and $3f
+	and (1 << 6) - 1
 	ld [wd005], a
 	ld b, BANK(.script)
 	ld de, .script
@@ -2428,10 +2428,10 @@ Script_checkmoney: ; 0x97843
 
 	call GetMoneyAccount
 	call LoadMoneyAmountToMem
-	callba CheckMoney
+	callba CompareMoney
 ; 0x9784f
 
-CheckMoneyAction: ; 0x9784f
+CompareMoneyAction: ; 0x9784f
 	jr c, .two
 	jr z, .one
 	ld a, 0
@@ -2497,12 +2497,12 @@ Script_checkcoins: ; 0x97895
 
 	call LoadCoinAmountToMem
 	callba CheckCoins
-	jr CheckMoneyAction
+	jr CompareMoneyAction
 ; 978a0
 
 LoadCoinAmountToMem: ; 978a0
 	call GetScriptByte
-	ld [$ffc4], a
+	ld [hMoneyTemp + 1], a
 	call GetScriptByte
 	ld [hMoneyTemp], a
 	ld bc, hMoneyTemp

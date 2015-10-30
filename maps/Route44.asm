@@ -6,7 +6,7 @@ Route44_MapScriptHeader:
 	db 0
 
 TrainerBird_keeperVance1:
-	trainer EVENT_BEAT_BIRD_KEEPER_VANCE, BIRD_KEEPER, VANCE1, Bird_keeperVance1SeenText, Bird_keeperVance1BeatenText, $0000, Bird_keeperVance1Script
+	trainer EVENT_BEAT_BIRD_KEEPER_VANCE, BIRD_KEEPER, VANCE1, Bird_keeperVance1SeenText, Bird_keeperVance1BeatenText, NONE, Bird_keeperVance1Script
 
 Bird_keeperVance1Script:
 	writecode VAR_CALLERID, PHONE_BIRDKEEPER_VANCE
@@ -36,7 +36,7 @@ UnknownScript_0x19d856:
 
 UnknownScript_0x19d86a:
 	scall UnknownScript_0x19d8f7
-	winlosstext Bird_keeperVance1BeatenText, $0000
+	winlosstext Bird_keeperVance1BeatenText, NONE
 	copybytetovar wVanceFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
@@ -137,7 +137,7 @@ UnknownScript_0x19d90a:
 	end
 
 TrainerPsychicPhil:
-	trainer EVENT_BEAT_PSYCHIC_PHIL, PSYCHIC_T, PHIL, PsychicPhilSeenText, PsychicPhilBeatenText, $0000, PsychicPhilScript
+	trainer EVENT_BEAT_PSYCHIC_PHIL, PSYCHIC_T, PHIL, PsychicPhilSeenText, PsychicPhilBeatenText, NONE, PsychicPhilScript
 
 PsychicPhilScript:
 	talkaftercancel
@@ -148,7 +148,7 @@ PsychicPhilScript:
 	end
 
 TrainerFisherWilton1:
-	trainer EVENT_BEAT_FISHER_WILTON, FISHER, WILTON1, FisherWilton1SeenText, FisherWilton1BeatenText, $0000, FisherWilton1Script
+	trainer EVENT_BEAT_FISHER_WILTON, FISHER, WILTON1, FisherWilton1SeenText, FisherWilton1BeatenText, NONE, FisherWilton1Script
 
 FisherWilton1Script:
 	writecode VAR_CALLERID, PHONE_FISHER_WILTON
@@ -180,7 +180,7 @@ UnknownScript_0x19d95a:
 
 UnknownScript_0x19d96e:
 	scall UnknownScript_0x19d8f7
-	winlosstext FisherWilton1BeatenText, $0000
+	winlosstext FisherWilton1BeatenText, NONE
 	copybytetovar wWiltonFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
@@ -243,7 +243,7 @@ UnknownScript_0x19d9e7:
 	jump UnknownScript_0x19d8ff
 
 TrainerFisherEdgar:
-	trainer EVENT_BEAT_FISHER_EDGAR, FISHER, EDGAR, FisherEdgarSeenText, FisherEdgarBeatenText, $0000, FisherEdgarScript
+	trainer EVENT_BEAT_FISHER_EDGAR, FISHER, EDGAR, FisherEdgarSeenText, FisherEdgarBeatenText, NONE, FisherEdgarScript
 
 FisherEdgarScript:
 	talkaftercancel
@@ -254,7 +254,7 @@ FisherEdgarScript:
 	end
 
 TrainerCooltrainerfCybil:
-	trainer EVENT_BEAT_COOLTRAINERF_CYBIL, COOLTRAINERF, CYBIL, CooltrainerfCybilSeenText, CooltrainerfCybilBeatenText, $0000, CooltrainerfCybilScript
+	trainer EVENT_BEAT_COOLTRAINERF_CYBIL, COOLTRAINERF, CYBIL, CooltrainerfCybilSeenText, CooltrainerfCybilBeatenText, NONE, CooltrainerfCybilScript
 
 CooltrainerfCybilScript:
 	talkaftercancel
@@ -265,7 +265,7 @@ CooltrainerfCybilScript:
 	end
 
 TrainerPokemaniacZach:
-	trainer EVENT_BEAT_POKEMANIAC_ZACH, POKEMANIAC, ZACH, PokemaniacZachSeenText, PokemaniacZachBeatenText, $0000, PokemaniacZachScript
+	trainer EVENT_BEAT_POKEMANIAC_ZACH, POKEMANIAC, ZACH, PokemaniacZachSeenText, PokemaniacZachBeatenText, NONE, PokemaniacZachScript
 
 PokemaniacZachScript:
 	talkaftercancel
@@ -276,7 +276,7 @@ PokemaniacZachScript:
 	end
 
 TrainerCooltrainermAllen:
-	trainer EVENT_BEAT_COOLTRAINERM_ALLEN, COOLTRAINERM, ALLEN, CooltrainermAllenSeenText, CooltrainermAllenBeatenText, $0000, CooltrainermAllenScript
+	trainer EVENT_BEAT_COOLTRAINERM_ALLEN, COOLTRAINERM, ALLEN, CooltrainermAllenSeenText, CooltrainermAllenBeatenText, NONE, CooltrainermAllenScript
 
 CooltrainermAllenScript:
 	talkaftercancel
@@ -513,14 +513,14 @@ Route44_MapEventHeader:
 
 .PersonEvents:
 	db 11
-	person_event SPRITE_FISHER, 3, 35, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherWilton1, -1
-	person_event SPRITE_FISHER, 13, 19, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherEdgar, -1
-	person_event SPRITE_YOUNGSTER, 9, 10, $1f, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPsychicPhil, -1
-	person_event SPRITE_SUPER_NERD, 2, 43, $1f, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerPokemaniacZach, -1
-	person_event SPRITE_YOUNGSTER, 5, 51, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerBird_keeperVance1, -1
-	person_event SPRITE_COOLTRAINER_M, 15, 41, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 5, TrainerCooltrainermAllen, -1
-	person_event SPRITE_COOLTRAINER_F, 14, 31, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 5, TrainerCooltrainerfCybil, -1
-	person_event SPRITE_FRUIT_TREE, 5, 9, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x19da40, -1
-	person_event SPRITE_POKE_BALL, 8, 30, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19da42, EVENT_ROUTE_44_MAX_REVIVE
-	person_event SPRITE_POKE_BALL, 4, 45, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19da44, EVENT_ROUTE_44_ULTRA_BALL
-	person_event SPRITE_POKE_BALL, 9, 14, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19da46, EVENT_ROUTE_44_MAX_REPEL
+	person_event SPRITE_FISHER, 3, 35, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherWilton1, -1
+	person_event SPRITE_FISHER, 13, 19, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherEdgar, -1
+	person_event SPRITE_YOUNGSTER, 9, 10, SPRITEMOVEFN_1F, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPsychicPhil, -1
+	person_event SPRITE_SUPER_NERD, 2, 43, SPRITEMOVEFN_1F, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerPokemaniacZach, -1
+	person_event SPRITE_YOUNGSTER, 5, 51, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerBird_keeperVance1, -1
+	person_event SPRITE_COOLTRAINER_M, 15, 41, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 5, TrainerCooltrainermAllen, -1
+	person_event SPRITE_COOLTRAINER_F, 14, 31, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 5, TrainerCooltrainerfCybil, -1
+	person_event SPRITE_FRUIT_TREE, 5, 9, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x19da40, -1
+	person_event SPRITE_POKE_BALL, 8, 30, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19da42, EVENT_ROUTE_44_MAX_REVIVE
+	person_event SPRITE_POKE_BALL, 4, 45, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19da44, EVENT_ROUTE_44_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 9, 14, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19da46, EVENT_ROUTE_44_MAX_REPEL

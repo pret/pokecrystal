@@ -6,7 +6,7 @@ Route18_MapScriptHeader:
 	db 0
 
 TrainerBird_keeperBoris:
-	trainer EVENT_BEAT_BIRD_KEEPER_BORIS, BIRD_KEEPER, BORIS, Bird_keeperBorisSeenText, Bird_keeperBorisBeatenText, $0000, Bird_keeperBorisScript
+	trainer EVENT_BEAT_BIRD_KEEPER_BORIS, BIRD_KEEPER, BORIS, Bird_keeperBorisSeenText, Bird_keeperBorisBeatenText, NONE, Bird_keeperBorisScript
 
 Bird_keeperBorisScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ Bird_keeperBorisScript:
 	end
 
 TrainerBird_keeperBob:
-	trainer EVENT_BEAT_BIRD_KEEPER_BOB, BIRD_KEEPER, BOB, Bird_keeperBobSeenText, Bird_keeperBobBeatenText, $0000, Bird_keeperBobScript
+	trainer EVENT_BEAT_BIRD_KEEPER_BOB, BIRD_KEEPER, BOB, Bird_keeperBobSeenText, Bird_keeperBobBeatenText, NONE, Bird_keeperBobScript
 
 Bird_keeperBobScript:
 	talkaftercancel
@@ -91,5 +91,5 @@ Route18_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_YOUNGSTER, 12, 9, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperBoris, -1
-	person_event SPRITE_YOUNGSTER, 6, 13, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperBob, -1
+	person_event SPRITE_YOUNGSTER, 12, 9, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperBoris, -1
+	person_event SPRITE_YOUNGSTER, 6, 13, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperBob, -1

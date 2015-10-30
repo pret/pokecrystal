@@ -49,5 +49,5 @@ Route36RuinsofAlphgate_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_OFFICER, 4, 0, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, OfficerScript_0x6aa1a, -1
-	person_event SPRITE_GRAMPS, 5, 7, $2, 2, 1, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, GrampsScript_0x6aa1d, -1
+	person_event SPRITE_OFFICER, 4, 0, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, OfficerScript_0x6aa1a, -1
+	person_event SPRITE_GRAMPS, 5, 7, SPRITEMOVEFN_02, 2, 1, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, GrampsScript_0x6aa1d, -1

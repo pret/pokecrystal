@@ -3,8 +3,8 @@ PowerPlant_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x188dc3, $0000
-	dw UnknownScript_0x188dc4, $0000
+	dw UnknownScript_0x188dc3, NONE
+	dw UnknownScript_0x188dc4, NONE
 
 .MapCallbacks:
 	db 0
@@ -401,10 +401,10 @@ PowerPlant_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_OFFICER, 14, 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OfficerScript_0x188df5, -1
-	person_event SPRITE_GYM_GUY, 9, 2, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GymGuyScript_0x188e15, -1
-	person_event SPRITE_GYM_GUY, 11, 6, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GymGuyScript_0x188e29, -1
-	person_event SPRITE_OFFICER, 3, 9, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OfficerScript_0x188e3d, -1
-	person_event SPRITE_GYM_GUY, 2, 7, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GymGuyScript_0x188e51, -1
-	person_event SPRITE_FISHER, 10, 14, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, PowerPlantManager, -1
-	person_event SPRITE_GYM_GUY, 5, 5, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GymGuyScript_0x188ecb, -1
+	person_event SPRITE_OFFICER, 14, 4, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OfficerScript_0x188df5, -1
+	person_event SPRITE_GYM_GUY, 9, 2, SPRITEMOVEFN_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GymGuyScript_0x188e15, -1
+	person_event SPRITE_GYM_GUY, 11, 6, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GymGuyScript_0x188e29, -1
+	person_event SPRITE_OFFICER, 3, 9, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OfficerScript_0x188e3d, -1
+	person_event SPRITE_GYM_GUY, 2, 7, SPRITEMOVEFN_05, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GymGuyScript_0x188e51, -1
+	person_event SPRITE_FISHER, 10, 14, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, PowerPlantManager, -1
+	person_event SPRITE_GYM_GUY, 5, 5, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GymGuyScript_0x188ecb, -1

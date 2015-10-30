@@ -3,8 +3,8 @@ RuinsofAlphInnerChamber_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x58f69, $0000
-	dw UnknownScript_0x58f6a, $0000
+	dw UnknownScript_0x58f69, NONE
+	dw UnknownScript_0x58f6a, NONE
 
 .MapCallbacks:
 	db 0
@@ -125,6 +125,6 @@ RuinsofAlphInnerChamber_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_FISHER, 7, 3, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FisherScript_0x58f7d, EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
-	person_event SPRITE_TEACHER, 13, 14, $2, 1, 1, -1, -1, 0, 0, 0, TeacherScript_0x58f80, EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
-	person_event SPRITE_GRAMPS, 19, 11, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, GrampsScript_0x58f83, EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
+	person_event SPRITE_FISHER, 7, 3, SPRITEMOVEFN_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FisherScript_0x58f7d, EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
+	person_event SPRITE_TEACHER, 13, 14, SPRITEMOVEFN_02, 1, 1, -1, -1, 0, 0, 0, TeacherScript_0x58f80, EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
+	person_event SPRITE_GRAMPS, 19, 11, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, GrampsScript_0x58f83, EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS

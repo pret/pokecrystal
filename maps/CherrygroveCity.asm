@@ -3,8 +3,8 @@ CherrygroveCity_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw .Trigger1, $0000
-	dw .Trigger2, $0000
+	dw .Trigger1, NONE
+	dw .Trigger2, NONE
 
 .MapCallbacks:
 	db 1
@@ -570,8 +570,8 @@ CherrygroveCity_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_GRAMPS, 6, 32, $6, 0, 0, -1, -1, 0, 0, 0, CherrygroveCityGuideGent, EVENT_GUIDE_GENT_IN_HIS_HOUSE
-	person_event SPRITE_SILVER, 6, 39, $3, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RIVAL_CHERRYGROVE_CITY
-	person_event SPRITE_TEACHER, 12, 27, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, TeacherScript_0x19c146, -1
-	person_event SPRITE_YOUNGSTER, 7, 23, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x19c15a, -1
-	person_event SPRITE_FISHER, 12, 7, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, MysticWaterGuy, -1
+	person_event SPRITE_GRAMPS, 6, 32, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, CherrygroveCityGuideGent, EVENT_GUIDE_GENT_IN_HIS_HOUSE
+	person_event SPRITE_SILVER, 6, 39, SPRITEMOVEFN_03, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RIVAL_CHERRYGROVE_CITY
+	person_event SPRITE_TEACHER, 12, 27, SPRITEMOVEFN_05, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, TeacherScript_0x19c146, -1
+	person_event SPRITE_YOUNGSTER, 7, 23, SPRITEMOVEFN_05, 0, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x19c15a, -1
+	person_event SPRITE_FISHER, 12, 7, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, MysticWaterGuy, -1

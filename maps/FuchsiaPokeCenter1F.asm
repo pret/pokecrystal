@@ -3,7 +3,7 @@ FuchsiaPokeCenter1F_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x196458, $0000
+	dw UnknownScript_0x196458, NONE
 
 .MapCallbacks:
 	db 0
@@ -102,7 +102,7 @@ FuchsiaPokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_NURSE, 1, 3, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, NurseScript_0x196459, -1
-	person_event SPRITE_COOLTRAINER_M, 4, 8, $5, 0, 1, -1, -1, 0, 0, 0, CooltrainerMScript_0x19645c, -1
-	person_event SPRITE_COOLTRAINER_F, 4, 1, $5, 0, 1, -1, -1, 0, 0, 0, CooltrainerFScript_0x19645f, -1
-	person_event SPRITE_JANINE_IMPERSONATOR, 3, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, JanineImpersonatorScript_0x196462, -1
+	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, NurseScript_0x196459, -1
+	person_event SPRITE_COOLTRAINER_M, 4, 8, SPRITEMOVEFN_05, 0, 1, -1, -1, 0, 0, 0, CooltrainerMScript_0x19645c, -1
+	person_event SPRITE_COOLTRAINER_F, 4, 1, SPRITEMOVEFN_05, 0, 1, -1, -1, 0, 0, 0, CooltrainerFScript_0x19645f, -1
+	person_event SPRITE_JANINE_IMPERSONATOR, 3, 5, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, JanineImpersonatorScript_0x196462, -1

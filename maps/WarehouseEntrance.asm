@@ -105,7 +105,7 @@ WarehouseEntrance_MapScriptHeader:
 	return
 
 TrainerSupernerdEric:
-	trainer EVENT_BEAT_SUPER_NERD_ERIC, SUPER_NERD, ERIC, SupernerdEricSeenText, SupernerdEricBeatenText, $0000, SupernerdEricScript
+	trainer EVENT_BEAT_SUPER_NERD_ERIC, SUPER_NERD, ERIC, SupernerdEricSeenText, SupernerdEricBeatenText, NONE, SupernerdEricScript
 
 SupernerdEricScript:
 	talkaftercancel
@@ -116,7 +116,7 @@ SupernerdEricScript:
 	end
 
 TrainerSupernerdTeru:
-	trainer EVENT_BEAT_SUPER_NERD_TERU, SUPER_NERD, TERU, SupernerdTeruSeenText, SupernerdTeruBeatenText, $0000, SupernerdTeruScript
+	trainer EVENT_BEAT_SUPER_NERD_TERU, SUPER_NERD, TERU, SupernerdTeruSeenText, SupernerdTeruBeatenText, NONE, SupernerdTeruScript
 
 SupernerdTeruScript:
 	talkaftercancel
@@ -127,7 +127,7 @@ SupernerdTeruScript:
 	end
 
 TrainerPokemaniacIssac:
-	trainer EVENT_BEAT_POKEMANIAC_ISSAC, POKEMANIAC, ISSAC, PokemaniacIssacSeenText, PokemaniacIssacBeatenText, $0000, PokemaniacIssacScript
+	trainer EVENT_BEAT_POKEMANIAC_ISSAC, POKEMANIAC, ISSAC, PokemaniacIssacSeenText, PokemaniacIssacBeatenText, NONE, PokemaniacIssacScript
 
 PokemaniacIssacScript:
 	talkaftercancel
@@ -138,7 +138,7 @@ PokemaniacIssacScript:
 	end
 
 TrainerPokemaniacDonald:
-	trainer EVENT_BEAT_POKEMANIAC_DONALD, POKEMANIAC, DONALD, PokemaniacDonaldSeenText, PokemaniacDonaldBeatenText, $0000, PokemaniacDonaldScript
+	trainer EVENT_BEAT_POKEMANIAC_DONALD, POKEMANIAC, DONALD, PokemaniacDonaldSeenText, PokemaniacDonaldBeatenText, NONE, PokemaniacDonaldScript
 
 PokemaniacDonaldScript:
 	talkaftercancel
@@ -171,7 +171,7 @@ GrampsScript_0x7c146:
 .CheckMorn:
 	checkmorn
 	iffalse WarehouseEntranceScript_ShopClosed
-	pokemart $2, $0000
+	pokemart $2, NONE
 	loadmovesprites
 	end
 
@@ -669,12 +669,12 @@ WarehouseEntrance_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_SUPER_NERD, 31, 5, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerSupernerdEric, -1
-	person_event SPRITE_SUPER_NERD, 9, 6, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerSupernerdTeru, -1
-	person_event SPRITE_SUPER_NERD, 27, 3, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPokemaniacIssac, -1
-	person_event SPRITE_SUPER_NERD, 6, 2, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPokemaniacDonald, -1
-	person_event SPRITE_POKE_BALL, 25, 7, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7c306, EVENT_WAREHOUSE_ENTRANCE_COIN_CASE
-	person_event SPRITE_GRAMPS, 11, 7, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, GrampsScript_0x7c146, EVENT_WAREHOUSE_ENTRANCE_GRAMPS
-	person_event SPRITE_SUPER_NERD, 14, 7, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, OlderHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_OLDER_HAIRCUT_BROTHER
-	person_event SPRITE_SUPER_NERD, 15, 7, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungerHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_YOUNGER_HAIRCUT_BROTHER
-	person_event SPRITE_GRANNY, 21, 7, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, GrannyScript_0x7c132, EVENT_WAREHOUSE_ENTRANCE_GRANNY
+	person_event SPRITE_SUPER_NERD, 31, 5, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerSupernerdEric, -1
+	person_event SPRITE_SUPER_NERD, 9, 6, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerSupernerdTeru, -1
+	person_event SPRITE_SUPER_NERD, 27, 3, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPokemaniacIssac, -1
+	person_event SPRITE_SUPER_NERD, 6, 2, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPokemaniacDonald, -1
+	person_event SPRITE_POKE_BALL, 25, 7, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7c306, EVENT_WAREHOUSE_ENTRANCE_COIN_CASE
+	person_event SPRITE_GRAMPS, 11, 7, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, GrampsScript_0x7c146, EVENT_WAREHOUSE_ENTRANCE_GRAMPS
+	person_event SPRITE_SUPER_NERD, 14, 7, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, OlderHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_OLDER_HAIRCUT_BROTHER
+	person_event SPRITE_SUPER_NERD, 15, 7, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungerHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_YOUNGER_HAIRCUT_BROTHER
+	person_event SPRITE_GRANNY, 21, 7, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, GrannyScript_0x7c132, EVENT_WAREHOUSE_ENTRANCE_GRANNY

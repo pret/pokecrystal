@@ -15,7 +15,7 @@ UnknownScript_0x1ad0ab:
 	return
 
 TrainerBikerCharles:
-	trainer EVENT_BEAT_BIKER_CHARLES, BIKER, CHARLES, BikerCharlesSeenText, BikerCharlesBeatenText, $0000, BikerCharlesScript
+	trainer EVENT_BEAT_BIKER_CHARLES, BIKER, CHARLES, BikerCharlesSeenText, BikerCharlesBeatenText, NONE, BikerCharlesScript
 
 BikerCharlesScript:
 	talkaftercancel
@@ -26,7 +26,7 @@ BikerCharlesScript:
 	end
 
 TrainerBikerRiley:
-	trainer EVENT_BEAT_BIKER_RILEY, BIKER, RILEY, BikerRileySeenText, BikerRileyBeatenText, $0000, BikerRileyScript
+	trainer EVENT_BEAT_BIKER_RILEY, BIKER, RILEY, BikerRileySeenText, BikerRileyBeatenText, NONE, BikerRileyScript
 
 BikerRileyScript:
 	talkaftercancel
@@ -37,7 +37,7 @@ BikerRileyScript:
 	end
 
 TrainerBikerJoel:
-	trainer EVENT_BEAT_BIKER_JOEL, BIKER, JOEL, BikerJoelSeenText, BikerJoelBeatenText, $0000, BikerJoelScript
+	trainer EVENT_BEAT_BIKER_JOEL, BIKER, JOEL, BikerJoelSeenText, BikerJoelBeatenText, NONE, BikerJoelScript
 
 BikerJoelScript:
 	talkaftercancel
@@ -48,7 +48,7 @@ BikerJoelScript:
 	end
 
 TrainerBikerGlenn:
-	trainer EVENT_BEAT_BIKER_GLENN, BIKER, GLENN, BikerGlennSeenText, BikerGlennBeatenText, $0000, BikerGlennScript
+	trainer EVENT_BEAT_BIKER_GLENN, BIKER, GLENN, BikerGlennSeenText, BikerGlennBeatenText, NONE, BikerGlennScript
 
 BikerGlennScript:
 	talkaftercancel
@@ -150,7 +150,7 @@ Route17_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_BIKER, 17, 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 4, TrainerBikerRiley, -1
-	person_event SPRITE_BIKER, 68, 9, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerBikerJoel, -1
-	person_event SPRITE_BIKER, 53, 3, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBikerGlenn, -1
-	person_event SPRITE_BIKER, 80, 6, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 4, TrainerBikerCharles, -1
+	person_event SPRITE_BIKER, 17, 4, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 4, TrainerBikerRiley, -1
+	person_event SPRITE_BIKER, 68, 9, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerBikerJoel, -1
+	person_event SPRITE_BIKER, 53, 3, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBikerGlenn, -1
+	person_event SPRITE_BIKER, 80, 6, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 4, TrainerBikerCharles, -1

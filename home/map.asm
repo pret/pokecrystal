@@ -729,9 +729,9 @@ ChangeMap:: ; 24e4
 
 	ld hl, OverworldMap
 	ld a, [MapWidth]
-	ld [hConnectedMapWidth], a
+	ld [hMapObjectIndexBuffer2], a
 	add $6
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	ld c, a
 	ld b, 0
 rept 3
@@ -750,7 +750,7 @@ endr
 	ld b, a
 .asm_250c
 	push hl
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 	ld c, a
 .asm_2510
 	ld a, [de]
@@ -759,7 +759,7 @@ endr
 	dec c
 	jr nz, .asm_2510
 	pop hl
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	add l
 	ld l, a
 	jr nc, .asm_251e
@@ -794,10 +794,10 @@ FillMapConnections:: ; 2524
 	ld e, a
 	ld a, [NorthConnectionStripLocation + 1]
 	ld d, a
-	ld a, [NorthConnectionStripLength]
-	ld [hConnectionStripLength], a
-	ld a, [NorthConnectedMapWidth]
-	ld [hConnectedMapWidth], a
+	ld a, [NorthMapObjectIndexBuffer1]
+	ld [hMapObjectIndexBuffer1], a
+	ld a, [NorthMapObjectIndexBuffer2]
+	ld [hMapObjectIndexBuffer2], a
 	call FillNorthConnectionStrip
 
 .South
@@ -817,10 +817,10 @@ FillMapConnections:: ; 2524
 	ld e, a
 	ld a, [SouthConnectionStripLocation + 1]
 	ld d, a
-	ld a, [SouthConnectionStripLength]
-	ld [hConnectionStripLength], a
-	ld a, [SouthConnectedMapWidth]
-	ld [hConnectedMapWidth], a
+	ld a, [SouthMapObjectIndexBuffer1]
+	ld [hMapObjectIndexBuffer1], a
+	ld a, [SouthMapObjectIndexBuffer2]
+	ld [hMapObjectIndexBuffer2], a
 	call FillSouthConnectionStrip
 
 .West
@@ -843,7 +843,7 @@ FillMapConnections:: ; 2524
 	ld a, [WestConnectionStripLength]
 	ld b, a
 	ld a, [WestConnectedMapWidth]
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	call FillWestConnectionStrip
 
 .East
@@ -866,7 +866,7 @@ FillMapConnections:: ; 2524
 	ld a, [EastConnectionStripLength]
 	ld b, a
 	ld a, [EastConnectedMapWidth]
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	call FillEastConnectionStrip
 
 .Done
@@ -882,7 +882,7 @@ FillSouthConnectionStrip:: ; 25d3
 	push de
 
 	push hl
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	ld b, a
 .x
 	ld a, [hli]
@@ -892,7 +892,7 @@ FillSouthConnectionStrip:: ; 25d3
 	jr nz, .x
 	pop hl
 
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -917,7 +917,7 @@ FillEastConnectionStrip:: ; 25f6
 .asm_25f6
 	ld a, [MapWidth]
 	add 6
-	ld [hConnectedMapWidth], a
+	ld [hMapObjectIndexBuffer2], a
 
 	push de
 
@@ -933,13 +933,13 @@ FillEastConnectionStrip:: ; 25f6
 	inc de
 	pop hl
 
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	ld e, a
 	ld d, 0
 	add hl, de
 	pop de
 
-	ld a, [hConnectedMapWidth]
+	ld a, [hMapObjectIndexBuffer2]
 	add e
 	ld e, a
 	jr nc, .asm_2617
@@ -1171,7 +1171,7 @@ CoordinatesEventText:: ; 2702
 
 
 Function2707:: ; 2707
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	ld e, a
 	ld d, $0
 	ld hl, wd81e
@@ -1181,7 +1181,7 @@ Function2707:: ; 2707
 ; 2712
 
 Function2712:: ; 2712
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	ld e, a
 	ld d, $0
 	ld hl, wd81e
@@ -1191,7 +1191,7 @@ Function2712:: ; 2712
 ; 271e
 
 Function271e:: ; 271e
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	ld e, a
 	ld d, $0
 	ld hl, wd81e
@@ -1463,7 +1463,7 @@ SaveScreen:: ; 289d
 	ld de, XCoord + 1
 	ld a, [MapWidth]
 	add $6
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	ld a, [wd151]
 	and a
 	jr z, .asm_28cb
@@ -1477,7 +1477,7 @@ SaveScreen:: ; 289d
 
 .asm_28c0
 	ld de, wdcbf
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	ld c, a
 	ld b, $0
 	add hl, bc
@@ -1512,7 +1512,7 @@ LoadNeighboringBlockData:: ; 28e3
 	ld l, a
 	ld a, [MapWidth]
 	add $6
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer1], a
 	ld de, XCoord + 1
 	ld b, $6
 	ld c, $5
@@ -1537,7 +1537,7 @@ Function28f7:: ; 28f7
 
 .asm_2908
 	pop hl
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer1]
 	ld c, a
 	ld b, $0
 	add hl, bc
@@ -2145,7 +2145,7 @@ GetMapBank:: ; 2c29
 GetAnyMapBank:: ; 2c31
 	push hl
 	push de
-	ld de, $0000
+	ld de, NONE
 	call GetAnyMapHeaderMember
 	ld a, c
 	pop de

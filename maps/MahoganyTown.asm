@@ -3,8 +3,8 @@ MahoganyTown_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw .Trigger1, $0000
-	dw .Trigger2, $0000
+	dw .Trigger1, NONE
+	dw .Trigger2, NONE
 
 .MapCallbacks:
 	db 1
@@ -268,7 +268,7 @@ MahoganyTown_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_POKEFAN_M, 8, 19, $6, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x19002e, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST
-	person_event SPRITE_GRAMPS, 9, 6, $5, 0, 1, -1, -1, 0, 0, 0, GrampsScript_0x19007e, -1
-	person_event SPRITE_FISHER, 14, 6, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FisherScript_0x190092, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
-	person_event SPRITE_LASS, 8, 12, $6, 0, 0, -1, -1, 0, 0, 0, LassScript_0x190095, EVENT_MAHOGANY_MART_OWNERS
+	person_event SPRITE_POKEFAN_M, 8, 19, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x19002e, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST
+	person_event SPRITE_GRAMPS, 9, 6, SPRITEMOVEFN_05, 0, 1, -1, -1, 0, 0, 0, GrampsScript_0x19007e, -1
+	person_event SPRITE_FISHER, 14, 6, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FisherScript_0x190092, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
+	person_event SPRITE_LASS, 8, 12, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, LassScript_0x190095, EVENT_MAHOGANY_MART_OWNERS

@@ -3,8 +3,8 @@ WillsRoom_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x1804c6, $0000
-	dw UnknownScript_0x1804ca, $0000
+	dw UnknownScript_0x1804c6, NONE
+	dw UnknownScript_0x1804ca, NONE
 
 .MapCallbacks:
 	db 1
@@ -52,7 +52,7 @@ WillScript_0x1804f8:
 	writetext UnknownText_0x180531
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x18062c, $0000
+	winlosstext UnknownText_0x18062c, NONE
 	loadtrainer WILL, 1
 	startbattle
 	returnafterbattle
@@ -148,4 +148,4 @@ WillsRoom_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_WILL, 7, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, WillScript_0x1804f8, -1
+	person_event SPRITE_WILL, 7, 5, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, WillScript_0x1804f8, -1

@@ -3,8 +3,8 @@ Route43Gate_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x19abc5, $0000
-	dw UnknownScript_0x19abc9, $0000
+	dw UnknownScript_0x19abc5, NONE
+	dw UnknownScript_0x19abc9, NONE
 
 .MapCallbacks:
 	db 1
@@ -264,6 +264,6 @@ Route43Gate_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_OFFICER, 4, 0, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, OfficerScript_0x19ac85, EVENT_LAKE_OF_RAGE_CIVILIANS
-	person_event SPRITE_ROCKET, 4, 2, $6, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x19ac82, EVENT_ROUTE_43_GATE_ROCKETS
-	person_event SPRITE_ROCKET, 4, 7, $7, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x19ac82, EVENT_ROUTE_43_GATE_ROCKETS
+	person_event SPRITE_OFFICER, 4, 0, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, OfficerScript_0x19ac85, EVENT_LAKE_OF_RAGE_CIVILIANS
+	person_event SPRITE_ROCKET, 4, 2, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x19ac82, EVENT_ROUTE_43_GATE_ROCKETS
+	person_event SPRITE_ROCKET, 4, 7, SPRITEMOVEFN_07, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x19ac82, EVENT_ROUTE_43_GATE_ROCKETS

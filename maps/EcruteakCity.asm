@@ -290,10 +290,10 @@ EcruteakCity_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_GRAMPS, 15, 18, $2, 1, 1, -1, -1, 0, 0, 0, GrampsScript_0x1a4009, -1
-	person_event SPRITE_GRAMPS, 21, 20, $3, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x1a400c, -1
-	person_event SPRITE_LASS, 29, 21, $5, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, LassScript_0x1a4012, -1
-	person_event SPRITE_LASS, 9, 3, $7, 0, 0, -1, -1, 0, 0, 0, LassScript_0x1a4015, -1
-	person_event SPRITE_FISHER, 22, 9, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FisherScript_0x1a4029, -1
-	person_event SPRITE_YOUNGSTER, 14, 10, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x1a403d, -1
-	person_event SPRITE_GRAMPS, 7, 3, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, GrampsScript_0x1a400f, EVENT_ECRUTEAK_CITY_GRAMPS
+	person_event SPRITE_GRAMPS, 15, 18, SPRITEMOVEFN_02, 1, 1, -1, -1, 0, 0, 0, GrampsScript_0x1a4009, -1
+	person_event SPRITE_GRAMPS, 21, 20, SPRITEMOVEFN_03, 0, 0, -1, -1, 0, 0, 0, GrampsScript_0x1a400c, -1
+	person_event SPRITE_LASS, 29, 21, SPRITEMOVEFN_05, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, LassScript_0x1a4012, -1
+	person_event SPRITE_LASS, 9, 3, SPRITEMOVEFN_07, 0, 0, -1, -1, 0, 0, 0, LassScript_0x1a4015, -1
+	person_event SPRITE_FISHER, 22, 9, SPRITEMOVEFN_05, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FisherScript_0x1a4029, -1
+	person_event SPRITE_YOUNGSTER, 14, 10, SPRITEMOVEFN_02, 1, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x1a403d, -1
+	person_event SPRITE_GRAMPS, 7, 3, SPRITEMOVEFN_02, 1, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, GrampsScript_0x1a400f, EVENT_ECRUTEAK_CITY_GRAMPS

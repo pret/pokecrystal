@@ -3,9 +3,9 @@ Colosseum_MapScriptHeader:
 	db 3
 
 	; triggers
-	dw .Trigger1, $0000
-	dw .Trigger2, $0000
-	dw .Trigger3, $0000
+	dw .Trigger1, NONE
+	dw .Trigger2, NONE
+	dw .Trigger3, NONE
 
 .MapCallbacks:
 	db 2
@@ -83,5 +83,5 @@ Colosseum_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_CHRIS, 4, 3, $9, 0, 0, -1, -1, 0, 0, 0, ChrisScript_0x193499, EVENT_GAVE_KURT_APRICORNS
-	person_event SPRITE_CHRIS, 4, 6, $8, 0, 0, -1, -1, 0, 0, 0, ChrisScript_0x193499, EVENT_RECEIVED_BALLS_FROM_KURT
+	person_event SPRITE_CHRIS, 4, 3, SPRITEMOVEFN_09, 0, 0, -1, -1, 0, 0, 0, ChrisScript_0x193499, EVENT_GAVE_KURT_APRICORNS
+	person_event SPRITE_CHRIS, 4, 6, SPRITEMOVEFN_08, 0, 0, -1, -1, 0, 0, 0, ChrisScript_0x193499, EVENT_RECEIVED_BALLS_FROM_KURT

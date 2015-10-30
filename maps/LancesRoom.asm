@@ -3,8 +3,8 @@ LancesRoom_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x180e39, $0000
-	dw UnknownScript_0x180e3d, $0000
+	dw UnknownScript_0x180e39, NONE
+	dw UnknownScript_0x180e3d, NONE
 
 .MapCallbacks:
 	db 1
@@ -57,7 +57,7 @@ LanceScript_0x180e7b:
 	writetext UnknownText_0x180f67
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x1810a4, $0000
+	winlosstext UnknownText_0x1810a4, NONE
 	setlasttalked $2
 	loadtrainer CHAMPION, LANCE
 	startbattle
@@ -358,6 +358,6 @@ LancesRoom_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_LANCE, 3, 5, $6, 0, 0, -1, -1, 0, 0, 0, LanceScript_0x180e7b, -1
-	person_event SPRITE_TEACHER, 7, 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
-	person_event SPRITE_OAK, 7, 4, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
+	person_event SPRITE_LANCE, 3, 5, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, LanceScript_0x180e7b, -1
+	person_event SPRITE_TEACHER, 7, 4, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
+	person_event SPRITE_OAK, 7, 4, SPRITEMOVEFN_07, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY

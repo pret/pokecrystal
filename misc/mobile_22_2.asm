@@ -939,7 +939,7 @@ Function8b88c: ; 8b88c
 	call Function8931b
 	call Function8932d
 	jr c, .asm_8b8a3
-	ld hl, $0000
+	ld hl, NONE
 	add hl, bc
 	ld d, h
 	ld e, l

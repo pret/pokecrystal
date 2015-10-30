@@ -9,7 +9,7 @@ ClerkScript_0x19680a:
 	loadfont
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x196817
-	pokemart $0, $0000
+	pokemart $0, NONE
 	loadmovesprites
 	end
 
@@ -83,6 +83,6 @@ CherrygroveMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 3, 1, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x19680a, -1
-	person_event SPRITE_COOLTRAINER_M, 6, 7, $5, 0, 2, -1, -1, 0, 0, 0, CooltrainerMScript_0x19681d, -1
-	person_event SPRITE_YOUNGSTER, 5, 2, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x196831, -1
+	person_event SPRITE_CLERK, 3, 1, SPRITEMOVEFN_09, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x19680a, -1
+	person_event SPRITE_COOLTRAINER_M, 6, 7, SPRITEMOVEFN_05, 0, 2, -1, -1, 0, 0, 0, CooltrainerMScript_0x19681d, -1
+	person_event SPRITE_YOUNGSTER, 5, 2, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x196831, -1

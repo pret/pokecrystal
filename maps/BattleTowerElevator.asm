@@ -3,8 +3,8 @@ BattleTowerElevator_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x9f562, $0000
-	dw UnknownScript_0x9f567, $0000
+	dw UnknownScript_0x9f562, NONE
+	dw UnknownScript_0x9f567, NONE
 
 .MapCallbacks:
 	db 0
@@ -60,4 +60,4 @@ BattleTowerElevator_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_RECEPTIONIST, 2, 1, $9, 0, 0, -1, -1, 0, 0, 0, MovementData_0x9f58f, -1
+	person_event SPRITE_RECEPTIONIST, 2, 1, SPRITEMOVEFN_09, 0, 0, -1, -1, 0, 0, 0, MovementData_0x9f58f, -1

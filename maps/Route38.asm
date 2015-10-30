@@ -6,7 +6,7 @@ Route38_MapScriptHeader:
 	db 0
 
 TrainerBird_keeperToby:
-	trainer EVENT_BEAT_BIRD_KEEPER_TOBY, BIRD_KEEPER, TOBY, Bird_keeperTobySeenText, Bird_keeperTobyBeatenText, $0000, Bird_keeperTobyScript
+	trainer EVENT_BEAT_BIRD_KEEPER_TOBY, BIRD_KEEPER, TOBY, Bird_keeperTobySeenText, Bird_keeperTobyBeatenText, NONE, Bird_keeperTobyScript
 
 Bird_keeperTobyScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ Bird_keeperTobyScript:
 	end
 
 TrainerSailorHarry:
-	trainer EVENT_BEAT_SAILOR_HARRY, SAILOR, HARRY, SailorHarrySeenText, SailorHarryBeatenText, $0000, SailorHarryScript
+	trainer EVENT_BEAT_SAILOR_HARRY, SAILOR, HARRY, SailorHarrySeenText, SailorHarryBeatenText, NONE, SailorHarryScript
 
 SailorHarryScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ SailorHarryScript:
 	end
 
 TrainerLassDana1:
-	trainer EVENT_BEAT_LASS_DANA, LASS, DANA1, LassDana1SeenText, LassDana1BeatenText, $0000, LassDana1Script
+	trainer EVENT_BEAT_LASS_DANA, LASS, DANA1, LassDana1SeenText, LassDana1BeatenText, NONE, LassDana1Script
 
 LassDana1Script:
 	writecode VAR_CALLERID, PHONE_LASS_DANA
@@ -60,7 +60,7 @@ UnknownScript_0x1a1d6e:
 
 UnknownScript_0x1a1d82:
 	scall UnknownScript_0x1a1e23
-	winlosstext LassDana1BeatenText, $0000
+	winlosstext LassDana1BeatenText, NONE
 	copybytetovar wDanaFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
@@ -166,7 +166,7 @@ UnknownScript_0x1a1e2b:
 	end
 
 TrainerSchoolboyChad1:
-	trainer EVENT_BEAT_SCHOOLBOY_CHAD, SCHOOLBOY, CHAD1, SchoolboyChad1SeenText, SchoolboyChad1BeatenText, $0000, SchoolboyChad1Script
+	trainer EVENT_BEAT_SCHOOLBOY_CHAD, SCHOOLBOY, CHAD1, SchoolboyChad1SeenText, SchoolboyChad1BeatenText, NONE, SchoolboyChad1Script
 
 SchoolboyChad1Script:
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_CHAD
@@ -196,7 +196,7 @@ UnknownScript_0x1a1e61:
 
 UnknownScript_0x1a1e75:
 	scall UnknownScript_0x1a1f01
-	winlosstext SchoolboyChad1BeatenText, $0000
+	winlosstext SchoolboyChad1BeatenText, NONE
 	copybytetovar wChadFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
@@ -283,7 +283,7 @@ UnknownScript_0x1a1f01:
 	end
 
 TrainerBeautyValerie:
-	trainer EVENT_BEAT_BEAUTY_VALERIE, BEAUTY, VALERIE, BeautyValerieSeenText, BeautyValerieBeatenText, $0000, BeautyValerieScript
+	trainer EVENT_BEAT_BEAUTY_VALERIE, BEAUTY, VALERIE, BeautyValerieSeenText, BeautyValerieBeatenText, NONE, BeautyValerieScript
 
 BeautyValerieScript:
 	talkaftercancel
@@ -294,7 +294,7 @@ BeautyValerieScript:
 	end
 
 TrainerBeautyOlivia:
-	trainer EVENT_BEAT_BEAUTY_OLIVIA, BEAUTY, OLIVIA, BeautyOliviaSeenText, BeautyOliviaBeatenText, $0000, BeautyOliviaScript
+	trainer EVENT_BEAT_BEAUTY_OLIVIA, BEAUTY, OLIVIA, BeautyOliviaSeenText, BeautyOliviaBeatenText, NONE, BeautyOliviaScript
 
 BeautyOliviaScript:
 	talkaftercancel
@@ -482,10 +482,10 @@ Route38_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_STANDING_YOUNGSTER, 1, 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSchoolboyChad1, -1
-	person_event SPRITE_LASS, 3, 15, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerLassDana1, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 15, 12, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBird_keeperToby, -1
-	person_event SPRITE_BUENA, 9, 19, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBeautyValerie, -1
-	person_event SPRITE_SAILOR, 5, 24, $1e, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerSailorHarry, -1
-	person_event SPRITE_FRUIT_TREE, 10, 12, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a1f33, -1
-	person_event SPRITE_BUENA, 8, 5, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBeautyOlivia, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 1, 4, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSchoolboyChad1, -1
+	person_event SPRITE_LASS, 3, 15, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerLassDana1, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 15, 12, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBird_keeperToby, -1
+	person_event SPRITE_BUENA, 9, 19, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBeautyValerie, -1
+	person_event SPRITE_SAILOR, 5, 24, SPRITEMOVEFN_1E, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerSailorHarry, -1
+	person_event SPRITE_FRUIT_TREE, 10, 12, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a1f33, -1
+	person_event SPRITE_BUENA, 8, 5, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBeautyOlivia, -1

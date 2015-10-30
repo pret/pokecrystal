@@ -73,6 +73,6 @@ DarkCaveBlackthornEntrance_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_PHARMACIST, 3, 7, $3, 0, 0, -1, -1, 0, 0, 0, PharmacistScript_0x18c720, -1
-	person_event SPRITE_POKE_BALL, 24, 21, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c73b, EVENT_DARK_CAVE_BLACKTHORN_ENTRANCE_REVIVE
-	person_event SPRITE_POKE_BALL, 22, 7, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c73d, EVENT_DARK_CAVE_BLACKTHORN_ENTRANCE_TM_SNORE
+	person_event SPRITE_PHARMACIST, 3, 7, SPRITEMOVEFN_03, 0, 0, -1, -1, 0, 0, 0, PharmacistScript_0x18c720, -1
+	person_event SPRITE_POKE_BALL, 24, 21, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c73b, EVENT_DARK_CAVE_BLACKTHORN_ENTRANCE_REVIVE
+	person_event SPRITE_POKE_BALL, 22, 7, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c73d, EVENT_DARK_CAVE_BLACKTHORN_ENTRANCE_TM_SNORE

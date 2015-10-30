@@ -230,15 +230,15 @@ NationalParkBugContest_MapEventHeader:
 
 .PersonEvents:
 	db 12
-	person_event SPRITE_YOUNGSTER, 29, 19, $2, 2, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x5c8ec, EVENT_BUG_CATCHING_CONTESTANT_1A
-	person_event SPRITE_YOUNGSTER, 22, 28, $2, 2, 2, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x5c8f4, EVENT_BUG_CATCHING_CONTESTANT_2A
-	person_event SPRITE_ROCKER, 18, 9, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, RockerScript_0x5c8fc, EVENT_BUG_CATCHING_CONTESTANT_3A
-	person_event SPRITE_POKEFAN_M, 13, 7, $4, 0, 1, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, PokefanMScript_0x5c904, EVENT_BUG_CATCHING_CONTESTANT_4A
-	person_event SPRITE_YOUNGSTER, 9, 23, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x5c90c, EVENT_BUG_CATCHING_CONTESTANT_5A
-	person_event SPRITE_YOUNGSTER, 13, 27, $2, 3, 3, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x5c914, EVENT_BUG_CATCHING_CONTESTANT_6A
-	person_event SPRITE_LASS, 23, 7, $5, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, LassScript_0x5c91c, EVENT_BUG_CATCHING_CONTESTANT_7A
-	person_event SPRITE_YOUNGSTER, 27, 11, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x5c924, EVENT_BUG_CATCHING_CONTESTANT_8A
-	person_event SPRITE_YOUNGSTER, 8, 16, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x5c92c, EVENT_BUG_CATCHING_CONTESTANT_9A
-	person_event SPRITE_YOUNGSTER, 34, 17, $2, 3, 3, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, YoungsterScript_0x5c934, EVENT_BUG_CATCHING_CONTESTANT_10A
-	person_event SPRITE_POKE_BALL, 12, 35, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5c945, EVENT_NATIONAL_PARK_PARLYZ_HEAL
-	person_event SPRITE_POKE_BALL, 43, 1, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5c947, EVENT_NATIONAL_PARK_TM_DIG
+	person_event SPRITE_YOUNGSTER, 29, 19, SPRITEMOVEFN_02, 2, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x5c8ec, EVENT_BUG_CATCHING_CONTESTANT_1A
+	person_event SPRITE_YOUNGSTER, 22, 28, SPRITEMOVEFN_02, 2, 2, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x5c8f4, EVENT_BUG_CATCHING_CONTESTANT_2A
+	person_event SPRITE_ROCKER, 18, 9, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, RockerScript_0x5c8fc, EVENT_BUG_CATCHING_CONTESTANT_3A
+	person_event SPRITE_POKEFAN_M, 13, 7, SPRITEMOVEFN_04, 0, 1, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, PokefanMScript_0x5c904, EVENT_BUG_CATCHING_CONTESTANT_4A
+	person_event SPRITE_YOUNGSTER, 9, 23, SPRITEMOVEFN_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x5c90c, EVENT_BUG_CATCHING_CONTESTANT_5A
+	person_event SPRITE_YOUNGSTER, 13, 27, SPRITEMOVEFN_02, 3, 3, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x5c914, EVENT_BUG_CATCHING_CONTESTANT_6A
+	person_event SPRITE_LASS, 23, 7, SPRITEMOVEFN_05, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, LassScript_0x5c91c, EVENT_BUG_CATCHING_CONTESTANT_7A
+	person_event SPRITE_YOUNGSTER, 27, 11, SPRITEMOVEFN_02, 1, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x5c924, EVENT_BUG_CATCHING_CONTESTANT_8A
+	person_event SPRITE_YOUNGSTER, 8, 16, SPRITEMOVEFN_02, 1, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x5c92c, EVENT_BUG_CATCHING_CONTESTANT_9A
+	person_event SPRITE_YOUNGSTER, 34, 17, SPRITEMOVEFN_02, 3, 3, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, YoungsterScript_0x5c934, EVENT_BUG_CATCHING_CONTESTANT_10A
+	person_event SPRITE_POKE_BALL, 12, 35, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5c945, EVENT_NATIONAL_PARK_PARLYZ_HEAL
+	person_event SPRITE_POKE_BALL, 43, 1, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5c947, EVENT_NATIONAL_PARK_TM_DIG

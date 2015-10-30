@@ -6,7 +6,7 @@ OlivineLighthouse2F_MapScriptHeader:
 	db 0
 
 TrainerGentlemanAlfred:
-	trainer EVENT_BEAT_GENTLEMAN_ALFRED, GENTLEMAN, ALFRED, GentlemanAlfredSeenText, GentlemanAlfredBeatenText, $0000, GentlemanAlfredScript
+	trainer EVENT_BEAT_GENTLEMAN_ALFRED, GENTLEMAN, ALFRED, GentlemanAlfredSeenText, GentlemanAlfredBeatenText, NONE, GentlemanAlfredScript
 
 GentlemanAlfredScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ GentlemanAlfredScript:
 	end
 
 TrainerSailorHuey1:
-	trainer EVENT_BEAT_SAILOR_HUEY, SAILOR, HUEY1, SailorHuey1SeenText, SailorHuey1BeatenText, $0000, SailorHuey1Script
+	trainer EVENT_BEAT_SAILOR_HUEY, SAILOR, HUEY1, SailorHuey1SeenText, SailorHuey1BeatenText, NONE, SailorHuey1Script
 
 SailorHuey1Script:
 	writecode VAR_CALLERID, PHONE_SAILOR_HUEY
@@ -45,7 +45,7 @@ UnknownScript_0x5afb3:
 
 UnknownScript_0x5afc7:
 	scall UnknownScript_0x5b06b
-	winlosstext SailorHuey1BeatenText, $0000
+	winlosstext SailorHuey1BeatenText, NONE
 	copybytetovar wHueyFightCount
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
@@ -221,5 +221,5 @@ OlivineLighthouse2F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_SAILOR, 3, 9, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSailorHuey1, -1
-	person_event SPRITE_GENTLEMAN, 8, 17, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerGentlemanAlfred, -1
+	person_event SPRITE_SAILOR, 3, 9, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSailorHuey1, -1
+	person_event SPRITE_GENTLEMAN, 8, 17, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerGentlemanAlfred, -1

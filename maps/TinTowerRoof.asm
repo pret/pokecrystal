@@ -60,4 +60,4 @@ TinTowerRoof_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_HO_OH, 5, 9, $16, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, HoOhScript_0x77244, EVENT_TIN_TOWER_ROOF_HO_OH
+	person_event SPRITE_HO_OH, 5, 9, SPRITEMOVEFN_16, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, HoOhScript_0x77244, EVENT_TIN_TOWER_ROOF_HO_OH

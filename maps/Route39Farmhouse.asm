@@ -207,5 +207,5 @@ Route39Farmhouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKEFAN_M, 2, 3, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, PokefanMScript_0x9ceb4, -1
-	person_event SPRITE_POKEFAN_F, 4, 5, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, PokefanFScript_0x9cf0e, -1
+	person_event SPRITE_POKEFAN_M, 2, 3, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, PokefanMScript_0x9ceb4, -1
+	person_event SPRITE_POKEFAN_F, 4, 5, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, PokefanFScript_0x9cf0e, -1

@@ -84,7 +84,7 @@ Sfx_IntroPichu_Ch5: ; 1798ad
 	dutycycle $3
 	soundinput $4d
 	sound $1, $88, $0770
-	sound $3, $0, $0000
+	sound $3, $0, NONE
 	soundinput $17
 	sound $2, $88, $0776
 	endchannel

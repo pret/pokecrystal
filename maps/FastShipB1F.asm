@@ -3,8 +3,8 @@ FastShipB1F_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x7673a, $0000
-	dw UnknownScript_0x7673b, $0000
+	dw UnknownScript_0x7673a, NONE
+	dw UnknownScript_0x7673b, NONE
 
 .MapCallbacks:
 	db 0
@@ -82,7 +82,7 @@ UnknownScript_0x767a0:
 	end
 
 TrainerSailorJeff:
-	trainer EVENT_BEAT_SAILOR_JEFF, SAILOR, JEFF, SailorJeffSeenText, SailorJeffBeatenText, $0000, SailorJeffScript
+	trainer EVENT_BEAT_SAILOR_JEFF, SAILOR, JEFF, SailorJeffSeenText, SailorJeffBeatenText, NONE, SailorJeffScript
 
 SailorJeffScript:
 	talkaftercancel
@@ -93,7 +93,7 @@ SailorJeffScript:
 	end
 
 TrainerPicnickerDebra:
-	trainer EVENT_BEAT_PICNICKER_DEBRA, PICNICKER, DEBRA, PicnickerDebraSeenText, PicnickerDebraBeatenText, $0000, PicnickerDebraScript
+	trainer EVENT_BEAT_PICNICKER_DEBRA, PICNICKER, DEBRA, PicnickerDebraSeenText, PicnickerDebraBeatenText, NONE, PicnickerDebraScript
 
 PicnickerDebraScript:
 	talkaftercancel
@@ -104,7 +104,7 @@ PicnickerDebraScript:
 	end
 
 TrainerJugglerFritz:
-	trainer EVENT_BEAT_JUGGLER_FRITZ, JUGGLER, FRITZ, JugglerFritzSeenText, JugglerFritzBeatenText, $0000, JugglerFritzScript
+	trainer EVENT_BEAT_JUGGLER_FRITZ, JUGGLER, FRITZ, JugglerFritzSeenText, JugglerFritzBeatenText, NONE, JugglerFritzScript
 
 JugglerFritzScript:
 	talkaftercancel
@@ -115,7 +115,7 @@ JugglerFritzScript:
 	end
 
 TrainerSailorGarrett:
-	trainer EVENT_BEAT_SAILOR_GARRETT, SAILOR, GARRETT, SailorGarrettSeenText, SailorGarrettBeatenText, $0000, SailorGarrettScript
+	trainer EVENT_BEAT_SAILOR_GARRETT, SAILOR, GARRETT, SailorGarrettSeenText, SailorGarrettBeatenText, NONE, SailorGarrettScript
 
 SailorGarrettScript:
 	talkaftercancel
@@ -126,7 +126,7 @@ SailorGarrettScript:
 	end
 
 TrainerFisherJonah:
-	trainer EVENT_BEAT_FISHER_JONAH, FISHER, JONAH, FisherJonahSeenText, FisherJonahBeatenText, $0000, FisherJonahScript
+	trainer EVENT_BEAT_FISHER_JONAH, FISHER, JONAH, FisherJonahSeenText, FisherJonahBeatenText, NONE, FisherJonahScript
 
 FisherJonahScript:
 	talkaftercancel
@@ -137,7 +137,7 @@ FisherJonahScript:
 	end
 
 TrainerBlackbeltWai:
-	trainer EVENT_BEAT_BLACKBELT_WAI, BLACKBELT_T, WAI, BlackbeltWaiSeenText, BlackbeltWaiBeatenText, $0000, BlackbeltWaiScript
+	trainer EVENT_BEAT_BLACKBELT_WAI, BLACKBELT_T, WAI, BlackbeltWaiSeenText, BlackbeltWaiBeatenText, NONE, BlackbeltWaiScript
 
 BlackbeltWaiScript:
 	talkaftercancel
@@ -148,7 +148,7 @@ BlackbeltWaiScript:
 	end
 
 TrainerSailorKenneth:
-	trainer EVENT_BEAT_SAILOR_KENNETH, SAILOR, KENNETH, SailorKennethSeenText, SailorKennethBeatenText, $0000, SailorKennethScript
+	trainer EVENT_BEAT_SAILOR_KENNETH, SAILOR, KENNETH, SailorKennethSeenText, SailorKennethBeatenText, NONE, SailorKennethScript
 
 SailorKennethScript:
 	talkaftercancel
@@ -159,7 +159,7 @@ SailorKennethScript:
 	end
 
 TrainerTeacherShirley:
-	trainer EVENT_BEAT_TEACHER_SHIRLEY, TEACHER, SHIRLEY, TeacherShirleySeenText, TeacherShirleyBeatenText, $0000, TeacherShirleyScript
+	trainer EVENT_BEAT_TEACHER_SHIRLEY, TEACHER, SHIRLEY, TeacherShirleySeenText, TeacherShirleyBeatenText, NONE, TeacherShirleyScript
 
 TeacherShirleyScript:
 	talkaftercancel
@@ -170,7 +170,7 @@ TeacherShirleyScript:
 	end
 
 TrainerSchoolboyNate:
-	trainer EVENT_BEAT_SCHOOLBOY_NATE, SCHOOLBOY, NATE, SchoolboyNateSeenText, SchoolboyNateBeatenText, $0000, SchoolboyNateScript
+	trainer EVENT_BEAT_SCHOOLBOY_NATE, SCHOOLBOY, NATE, SchoolboyNateSeenText, SchoolboyNateBeatenText, NONE, SchoolboyNateScript
 
 SchoolboyNateScript:
 	talkaftercancel
@@ -181,7 +181,7 @@ SchoolboyNateScript:
 	end
 
 TrainerSchoolboyRicky:
-	trainer EVENT_BEAT_SCHOOLBOY_RICKY, SCHOOLBOY, RICKY, SchoolboyRickySeenText, SchoolboyRickyBeatenText, $0000, SchoolboyRickyScript
+	trainer EVENT_BEAT_SCHOOLBOY_RICKY, SCHOOLBOY, RICKY, SchoolboyRickySeenText, SchoolboyRickyBeatenText, NONE, SchoolboyRickyScript
 
 SchoolboyRickyScript:
 	talkaftercancel
@@ -456,15 +456,15 @@ FastShipB1F_MapEventHeader:
 
 .PersonEvents:
 	db 12
-	person_event SPRITE_SAILOR, 6, 30, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SailorScript_0x76767, EVENT_FAST_SHIP_B1F_SAILOR_LEFT
-	person_event SPRITE_SAILOR, 6, 31, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SailorScript_0x76767, EVENT_FAST_SHIP_B1F_SAILOR_RIGHT
-	person_event SPRITE_SAILOR, 11, 9, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSailorJeff, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	person_event SPRITE_LASS, 4, 6, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerPicnickerDebra, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	person_event SPRITE_SUPER_NERD, 9, 26, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerJugglerFritz, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	person_event SPRITE_SAILOR, 4, 17, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerSailorGarrett, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	person_event SPRITE_FISHER, 8, 25, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerFisherJonah, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	person_event SPRITE_BLACK_BELT, 11, 15, $1f, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBlackbeltWai, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	person_event SPRITE_SAILOR, 4, 23, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerSailorKenneth, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	person_event SPRITE_TEACHER, 11, 9, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerTeacherShirley, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	person_event SPRITE_YOUNGSTER, 9, 14, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSchoolboyNate, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	person_event SPRITE_YOUNGSTER, 11, 14, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSchoolboyRicky, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_SAILOR, 6, 30, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SailorScript_0x76767, EVENT_FAST_SHIP_B1F_SAILOR_LEFT
+	person_event SPRITE_SAILOR, 6, 31, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SailorScript_0x76767, EVENT_FAST_SHIP_B1F_SAILOR_RIGHT
+	person_event SPRITE_SAILOR, 11, 9, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSailorJeff, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_LASS, 4, 6, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerPicnickerDebra, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_SUPER_NERD, 9, 26, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerJugglerFritz, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_SAILOR, 4, 17, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerSailorGarrett, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_FISHER, 8, 25, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerFisherJonah, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_BLACK_BELT, 11, 15, SPRITEMOVEFN_1F, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBlackbeltWai, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_SAILOR, 4, 23, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerSailorKenneth, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_TEACHER, 11, 9, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerTeacherShirley, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_YOUNGSTER, 9, 14, SPRITEMOVEFN_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSchoolboyNate, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_YOUNGSTER, 11, 14, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSchoolboyRicky, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND

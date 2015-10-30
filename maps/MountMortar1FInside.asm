@@ -6,7 +6,7 @@ MountMortar1FInside_MapScriptHeader:
 	db 0
 
 TrainerPokemaniacMiller:
-	trainer EVENT_BEAT_POKEMANIAC_MILLER, POKEMANIAC, MILLER, PokemaniacMillerSeenText, PokemaniacMillerBeatenText, $0000, PokemaniacMillerScript
+	trainer EVENT_BEAT_POKEMANIAC_MILLER, POKEMANIAC, MILLER, PokemaniacMillerSeenText, PokemaniacMillerBeatenText, NONE, PokemaniacMillerScript
 
 PokemaniacMillerScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ PokemaniacMillerScript:
 	end
 
 TrainerSupernerdMarkus:
-	trainer EVENT_BEAT_SUPER_NERD_MARKUS, SUPER_NERD, MARKUS, SupernerdMarkusSeenText, SupernerdMarkusBeatenText, $0000, SupernerdMarkusScript
+	trainer EVENT_BEAT_SUPER_NERD_MARKUS, SUPER_NERD, MARKUS, SupernerdMarkusSeenText, SupernerdMarkusBeatenText, NONE, SupernerdMarkusScript
 
 SupernerdMarkusScript:
 	talkaftercancel
@@ -127,13 +127,13 @@ MountMortar1FInside_MapEventHeader:
 
 .PersonEvents:
 	db 10
-	person_event SPRITE_BOULDER, 43, 21, $19, 0, 0, -1, -1, 0, 0, 0, MountMortar1FBoulder, -1
-	person_event SPRITE_POKE_BALL, 38, 35, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7de7c, EVENT_MOUNT_MORTAR_1F_INSIDE_ESCAPE_ROPE
-	person_event SPRITE_POKE_BALL, 10, 16, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7de7e, EVENT_MOUNT_MORTAR_1F_INSIDE_MAX_REVIVE
-	person_event SPRITE_POKE_BALL, 27, 10, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7de80, EVENT_MOUNT_MORTAR_1F_INSIDE_HYPER_POTION
-	person_event SPRITE_POKE_BALL, 20, 22, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7de82, EVENT_MOUNT_MORTAR_1F_INSIDE_MAX_POTION
-	person_event SPRITE_POKE_BALL, 19, 35, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7de84, EVENT_MOUNT_MORTAR_1F_INSIDE_NUGGET
-	person_event SPRITE_SUPER_NERD, 43, 33, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPokemaniacMiller, -1
-	person_event SPRITE_SUPER_NERD, 28, 24, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerSupernerdMarkus, -1
-	person_event SPRITE_POKE_BALL, 16, 8, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7de86, EVENT_MOUNT_MORTAR_1F_INSIDE_IRON
-	person_event SPRITE_POKE_BALL, 17, 17, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7de88, EVENT_MOUNT_MORTAR_1F_INSIDE_ULTRA_BALL
+	person_event SPRITE_BOULDER, 43, 21, SPRITEMOVEFN_19, 0, 0, -1, -1, 0, 0, 0, MountMortar1FBoulder, -1
+	person_event SPRITE_POKE_BALL, 38, 35, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7de7c, EVENT_MOUNT_MORTAR_1F_INSIDE_ESCAPE_ROPE
+	person_event SPRITE_POKE_BALL, 10, 16, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7de7e, EVENT_MOUNT_MORTAR_1F_INSIDE_MAX_REVIVE
+	person_event SPRITE_POKE_BALL, 27, 10, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7de80, EVENT_MOUNT_MORTAR_1F_INSIDE_HYPER_POTION
+	person_event SPRITE_POKE_BALL, 20, 22, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7de82, EVENT_MOUNT_MORTAR_1F_INSIDE_MAX_POTION
+	person_event SPRITE_POKE_BALL, 19, 35, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7de84, EVENT_MOUNT_MORTAR_1F_INSIDE_NUGGET
+	person_event SPRITE_SUPER_NERD, 43, 33, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPokemaniacMiller, -1
+	person_event SPRITE_SUPER_NERD, 28, 24, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerSupernerdMarkus, -1
+	person_event SPRITE_POKE_BALL, 16, 8, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7de86, EVENT_MOUNT_MORTAR_1F_INSIDE_IRON
+	person_event SPRITE_POKE_BALL, 17, 17, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7de88, EVENT_MOUNT_MORTAR_1F_INSIDE_ULTRA_BALL

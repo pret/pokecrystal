@@ -84,8 +84,8 @@ CeladonDeptStore5F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_CLERK, 5, 7, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ClerkScript_0x71004, -1
-	person_event SPRITE_CLERK, 5, 8, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ClerkScript_0x7100c, -1
-	person_event SPRITE_GENTLEMAN, 5, 13, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GentlemanScript_0x71014, -1
-	person_event SPRITE_SAILOR, 4, 3, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SailorScript_0x71017, -1
-	person_event SPRITE_TEACHER, 7, 1, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TeacherScript_0x7101a, -1
+	person_event SPRITE_CLERK, 5, 7, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ClerkScript_0x71004, -1
+	person_event SPRITE_CLERK, 5, 8, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ClerkScript_0x7100c, -1
+	person_event SPRITE_GENTLEMAN, 5, 13, SPRITEMOVEFN_02, 1, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GentlemanScript_0x71014, -1
+	person_event SPRITE_SAILOR, 4, 3, SPRITEMOVEFN_02, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SailorScript_0x71017, -1
+	person_event SPRITE_TEACHER, 7, 1, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TeacherScript_0x7101a, -1

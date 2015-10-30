@@ -6,7 +6,7 @@ Route12_MapScriptHeader:
 	db 0
 
 TrainerFisherKyle:
-	trainer EVENT_BEAT_FISHER_KYLE, FISHER, KYLE, FisherKyleSeenText, FisherKyleBeatenText, $0000, FisherKyleScript
+	trainer EVENT_BEAT_FISHER_KYLE, FISHER, KYLE, FisherKyleSeenText, FisherKyleBeatenText, NONE, FisherKyleScript
 
 FisherKyleScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ FisherKyleScript:
 	end
 
 TrainerFisherMartin:
-	trainer EVENT_BEAT_FISHER_MARTIN, FISHER, MARTIN, FisherMartinSeenText, FisherMartinBeatenText, $0000, FisherMartinScript
+	trainer EVENT_BEAT_FISHER_MARTIN, FISHER, MARTIN, FisherMartinSeenText, FisherMartinBeatenText, NONE, FisherMartinScript
 
 FisherMartinScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ FisherMartinScript:
 	end
 
 TrainerFisherStephen:
-	trainer EVENT_BEAT_FISHER_STEPHEN, FISHER, STEPHEN, FisherStephenSeenText, FisherStephenBeatenText, $0000, FisherStephenScript
+	trainer EVENT_BEAT_FISHER_STEPHEN, FISHER, STEPHEN, FisherStephenSeenText, FisherStephenBeatenText, NONE, FisherStephenScript
 
 FisherStephenScript:
 	talkaftercancel
@@ -39,7 +39,7 @@ FisherStephenScript:
 	end
 
 TrainerFisherBarney:
-	trainer EVENT_BEAT_FISHER_BARNEY, FISHER, BARNEY, FisherBarneySeenText, FisherBarneyBeatenText, $0000, FisherBarneyScript
+	trainer EVENT_BEAT_FISHER_BARNEY, FISHER, BARNEY, FisherBarneySeenText, FisherBarneyBeatenText, NONE, FisherBarneyScript
 
 FisherBarneyScript:
 	talkaftercancel
@@ -178,9 +178,9 @@ Route12_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_FISHER, 13, 5, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherMartin, -1
-	person_event SPRITE_FISHER, 23, 14, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherStephen, -1
-	person_event SPRITE_FISHER, 38, 10, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 5, TrainerFisherBarney, -1
-	person_event SPRITE_FISHER, 7, 6, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerFisherKyle, -1
-	person_event SPRITE_POKE_BALL, 43, 5, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a700b, EVENT_ROUTE_12_CALCIUM
-	person_event SPRITE_POKE_BALL, 51, 5, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a700d, EVENT_ROUTE_12_NUGGET
+	person_event SPRITE_FISHER, 13, 5, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherMartin, -1
+	person_event SPRITE_FISHER, 23, 14, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherStephen, -1
+	person_event SPRITE_FISHER, 38, 10, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 5, TrainerFisherBarney, -1
+	person_event SPRITE_FISHER, 7, 6, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerFisherKyle, -1
+	person_event SPRITE_POKE_BALL, 43, 5, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a700b, EVENT_ROUTE_12_CALCIUM
+	person_event SPRITE_POKE_BALL, 51, 5, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a700d, EVENT_ROUTE_12_NUGGET

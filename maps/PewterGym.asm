@@ -13,7 +13,7 @@ BrockScript_0x1a2864:
 	writetext UnknownText_0x1a28d0
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x1a29bb, $0000
+	winlosstext UnknownText_0x1a29bb, NONE
 	loadtrainer BROCK, 1
 	startbattle
 	returnafterbattle
@@ -36,7 +36,7 @@ BrockScript_0x1a2864:
 	end
 
 TrainerCamperJerry:
-	trainer EVENT_BEAT_CAMPER_JERRY, CAMPER, JERRY, CamperJerrySeenText, CamperJerryBeatenText, $0000, CamperJerryScript
+	trainer EVENT_BEAT_CAMPER_JERRY, CAMPER, JERRY, CamperJerrySeenText, CamperJerryBeatenText, NONE, CamperJerryScript
 
 CamperJerryScript:
 	talkaftercancel
@@ -222,6 +222,6 @@ PewterGym_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_BROCK, 1, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, BrockScript_0x1a2864, -1
-	person_event SPRITE_YOUNGSTER, 5, 2, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerCamperJerry, -1
-	person_event SPRITE_GYM_GUY, 11, 6, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 1, PewterGymGuyScript, -1
+	person_event SPRITE_BROCK, 1, 5, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, BrockScript_0x1a2864, -1
+	person_event SPRITE_YOUNGSTER, 5, 2, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerCamperJerry, -1
+	person_event SPRITE_GYM_GUY, 11, 6, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 1, PewterGymGuyScript, -1

@@ -42,7 +42,7 @@ BlackBeltScript_0x5d722:
 	jumptextfaceplayer UnknownText_0x5da44
 
 TrainerGruntM4:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_4, GRUNTM, 4, GruntM4SeenText, GruntM4BeatenText, $0000, GruntM4Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_4, GRUNTM, 4, GruntM4SeenText, GruntM4BeatenText, NONE, GruntM4Script
 
 GruntM4Script:
 	talkaftercancel
@@ -53,7 +53,7 @@ GruntM4Script:
 	end
 
 TrainerGruntM5:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_5, GRUNTM, 5, GruntM5SeenText, GruntM5BeatenText, $0000, GruntM5Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_5, GRUNTM, 5, GruntM5SeenText, GruntM5BeatenText, NONE, GruntM5Script
 
 GruntM5Script:
 	talkaftercancel
@@ -64,7 +64,7 @@ GruntM5Script:
 	end
 
 TrainerGruntM6:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_6, GRUNTM, 6, GruntM6SeenText, GruntM6BeatenText, $0000, GruntM6Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_6, GRUNTM, 6, GruntM6SeenText, GruntM6BeatenText, NONE, GruntM6Script
 
 GruntM6Script:
 	talkaftercancel
@@ -75,7 +75,7 @@ GruntM6Script:
 	end
 
 TrainerGruntF2:
-	trainer EVENT_BEAT_ROCKET_GRUNTF_2, GRUNTF, 2, GruntF2SeenText, GruntF2BeatenText, $0000, GruntF2Script
+	trainer EVENT_BEAT_ROCKET_GRUNTF_2, GRUNTF, 2, GruntF2SeenText, GruntF2BeatenText, NONE, GruntF2Script
 
 GruntF2Script:
 	talkaftercancel
@@ -720,14 +720,14 @@ RadioTower2F_MapEventHeader:
 
 .PersonEvents:
 	db 11
-	person_event SPRITE_SUPER_NERD, 6, 6, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, SuperNerdScript_0x5d6fe, EVENT_GOLDENROD_CITY_CIVILIANS
-	person_event SPRITE_TEACHER, 2, 17, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, TeacherScript_0x5d701, -1
-	person_event SPRITE_ROCKET, 4, 1, $7, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM4, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 4, 8, $6, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM5, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 1, 4, $6, 0, 0, -1, -1, 0, 2, 2, TrainerGruntM6, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET_GIRL, 5, 10, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerGruntF2, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_BLACK_BELT, 1, 0, $6, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x5d71f, EVENT_RADIO_TOWER_BLACKBELT_BLOCKS_STAIRS
-	person_event SPRITE_BLACK_BELT, 1, 1, $6, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x5d722, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	person_event SPRITE_JIGGLYPUFF, 1, 12, $16, 0, 0, -1, -1, 0, 0, 0, JigglypuffScript_0x5d715, -1
-	person_event SPRITE_BUENA, 5, 14, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, Buena, -1
-	person_event SPRITE_RECEPTIONIST, 7, 12, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ReceptionistScript_0x5d8ff, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_SUPER_NERD, 6, 6, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, SuperNerdScript_0x5d6fe, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_TEACHER, 2, 17, SPRITEMOVEFN_05, 0, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, TeacherScript_0x5d701, -1
+	person_event SPRITE_ROCKET, 4, 1, SPRITEMOVEFN_07, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM4, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 4, 8, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM5, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 1, 4, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 2, 2, TrainerGruntM6, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET_GIRL, 5, 10, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerGruntF2, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_BLACK_BELT, 1, 0, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x5d71f, EVENT_RADIO_TOWER_BLACKBELT_BLOCKS_STAIRS
+	person_event SPRITE_BLACK_BELT, 1, 1, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x5d722, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	person_event SPRITE_JIGGLYPUFF, 1, 12, SPRITEMOVEFN_16, 0, 0, -1, -1, 0, 0, 0, JigglypuffScript_0x5d715, -1
+	person_event SPRITE_BUENA, 5, 14, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, Buena, -1
+	person_event SPRITE_RECEPTIONIST, 7, 12, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ReceptionistScript_0x5d8ff, EVENT_GOLDENROD_CITY_CIVILIANS

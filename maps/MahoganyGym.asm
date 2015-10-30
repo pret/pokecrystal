@@ -13,7 +13,7 @@ PryceScript_0x199a9e:
 	writetext UnknownText_0x199b8d
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x199cb3, $0000
+	winlosstext UnknownText_0x199cb3, NONE
 	loadtrainer PRYCE, 1
 	startbattle
 	returnafterbattle
@@ -62,7 +62,7 @@ MahoganyGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerSkierRoxanne:
-	trainer EVENT_BEAT_SKIER_ROXANNE, SKIER, ROXANNE, SkierRoxanneSeenText, SkierRoxanneBeatenText, $0000, SkierRoxanneScript
+	trainer EVENT_BEAT_SKIER_ROXANNE, SKIER, ROXANNE, SkierRoxanneSeenText, SkierRoxanneBeatenText, NONE, SkierRoxanneScript
 
 SkierRoxanneScript:
 	talkaftercancel
@@ -73,7 +73,7 @@ SkierRoxanneScript:
 	end
 
 TrainerSkierClarissa:
-	trainer EVENT_BEAT_SKIER_CLARISSA, SKIER, CLARISSA, SkierClarissaSeenText, SkierClarissaBeatenText, $0000, SkierClarissaScript
+	trainer EVENT_BEAT_SKIER_CLARISSA, SKIER, CLARISSA, SkierClarissaSeenText, SkierClarissaBeatenText, NONE, SkierClarissaScript
 
 SkierClarissaScript:
 	talkaftercancel
@@ -84,7 +84,7 @@ SkierClarissaScript:
 	end
 
 TrainerBoarderRonald:
-	trainer EVENT_BEAT_BOARDER_RONALD, BOARDER, RONALD, BoarderRonaldSeenText, BoarderRonaldBeatenText, $0000, BoarderRonaldScript
+	trainer EVENT_BEAT_BOARDER_RONALD, BOARDER, RONALD, BoarderRonaldSeenText, BoarderRonaldBeatenText, NONE, BoarderRonaldScript
 
 BoarderRonaldScript:
 	talkaftercancel
@@ -95,7 +95,7 @@ BoarderRonaldScript:
 	end
 
 TrainerBoarderBrad:
-	trainer EVENT_BEAT_BOARDER_BRAD, BOARDER, BRAD, BoarderBradSeenText, BoarderBradBeatenText, $0000, BoarderBradScript
+	trainer EVENT_BEAT_BOARDER_BRAD, BOARDER, BRAD, BoarderBradSeenText, BoarderBradBeatenText, NONE, BoarderBradScript
 
 BoarderBradScript:
 	talkaftercancel
@@ -106,7 +106,7 @@ BoarderBradScript:
 	end
 
 TrainerBoarderDouglas:
-	trainer EVENT_BEAT_BOARDER_DOUGLAS, BOARDER, DOUGLAS, BoarderDouglasSeenText, BoarderDouglasBeatenText, $0000, BoarderDouglasScript
+	trainer EVENT_BEAT_BOARDER_DOUGLAS, BOARDER, DOUGLAS, BoarderDouglasSeenText, BoarderDouglasBeatenText, NONE, BoarderDouglasScript
 
 BoarderDouglasScript:
 	talkaftercancel
@@ -382,10 +382,10 @@ MahoganyGym_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_PRYCE, 3, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, PryceScript_0x199a9e, -1
-	person_event SPRITE_BUENA, 6, 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerSkierRoxanne, -1
-	person_event SPRITE_ROCKER, 17, 0, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBoarderRonald, -1
-	person_event SPRITE_BUENA, 17, 9, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerSkierClarissa, -1
-	person_event SPRITE_ROCKER, 9, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBoarderBrad, -1
-	person_event SPRITE_ROCKER, 4, 2, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBoarderDouglas, -1
-	person_event SPRITE_GYM_GUY, 15, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, MahoganyGymGuyScript, -1
+	person_event SPRITE_PRYCE, 3, 5, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, PryceScript_0x199a9e, -1
+	person_event SPRITE_BUENA, 6, 4, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerSkierRoxanne, -1
+	person_event SPRITE_ROCKER, 17, 0, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBoarderRonald, -1
+	person_event SPRITE_BUENA, 17, 9, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerSkierClarissa, -1
+	person_event SPRITE_ROCKER, 9, 5, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBoarderBrad, -1
+	person_event SPRITE_ROCKER, 4, 2, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBoarderDouglas, -1
+	person_event SPRITE_GYM_GUY, 15, 7, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, MahoganyGymGuyScript, -1

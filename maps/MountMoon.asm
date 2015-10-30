@@ -3,8 +3,8 @@ MountMoon_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x74089, $0000
-	dw UnknownScript_0x7408d, $0000
+	dw UnknownScript_0x74089, NONE
+	dw UnknownScript_0x7408d, NONE
 
 .MapCallbacks:
 	db 0
@@ -182,4 +182,4 @@ MountMoon_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_SILVER, 3, 7, $8, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MT_MOON_RIVAL
+	person_event SPRITE_SILVER, 3, 7, SPRITEMOVEFN_08, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MT_MOON_RIVAL

@@ -3,8 +3,8 @@ UndergroundPathSwitchRoomEntrances_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x7c9f5, $0000
-	dw UnknownScript_0x7c9f6, $0000
+	dw UnknownScript_0x7c9f5, NONE
+	dw UnknownScript_0x7c9f6, NONE
 
 .MapCallbacks:
 	db 1
@@ -166,7 +166,7 @@ UnknownScript_0x7cb29:
 	end
 
 TrainerGruntM11:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_11, GRUNTM, 11, GruntM11SeenText, GruntM11BeatenText, $0000, GruntM11Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_11, GRUNTM, 11, GruntM11SeenText, GruntM11BeatenText, NONE, GruntM11Script
 
 GruntM11Script:
 	talkaftercancel
@@ -177,7 +177,7 @@ GruntM11Script:
 	end
 
 TrainerGruntM25:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_25, GRUNTM, 25, GruntM25SeenText, GruntM25BeatenText, $0000, GruntM25Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_25, GRUNTM, 25, GruntM25SeenText, GruntM25BeatenText, NONE, GruntM25Script
 
 GruntM25Script:
 	talkaftercancel
@@ -188,7 +188,7 @@ GruntM25Script:
 	end
 
 TrainerBurglarDuncan:
-	trainer EVENT_BEAT_BURGLAR_DUNCAN, BURGLAR, DUNCAN, BurglarDuncanSeenText, BurglarDuncanBeatenText, $0000, BurglarDuncanScript
+	trainer EVENT_BEAT_BURGLAR_DUNCAN, BURGLAR, DUNCAN, BurglarDuncanSeenText, BurglarDuncanBeatenText, NONE, BurglarDuncanScript
 
 BurglarDuncanScript:
 	talkaftercancel
@@ -199,7 +199,7 @@ BurglarDuncanScript:
 	end
 
 TrainerBurglarEddie:
-	trainer EVENT_BEAT_BURGLAR_EDDIE, BURGLAR, EDDIE, BurglarEddieSeenText, BurglarEddieBeatenText, $0000, BurglarEddieScript
+	trainer EVENT_BEAT_BURGLAR_EDDIE, BURGLAR, EDDIE, BurglarEddieSeenText, BurglarEddieBeatenText, NONE, BurglarEddieScript
 
 BurglarEddieScript:
 	talkaftercancel
@@ -210,7 +210,7 @@ BurglarEddieScript:
 	end
 
 TrainerGruntM13:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_13, GRUNTM, 13, GruntM13SeenText, GruntM13BeatenText, $0000, GruntM13Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_13, GRUNTM, 13, GruntM13SeenText, GruntM13BeatenText, NONE, GruntM13Script
 
 GruntM13Script:
 	talkaftercancel
@@ -221,7 +221,7 @@ GruntM13Script:
 	end
 
 TrainerGruntF3:
-	trainer EVENT_BEAT_ROCKET_GRUNTF_3, GRUNTF, 3, GruntF3SeenText, GruntF3BeatenText, $0000, GruntF3Script
+	trainer EVENT_BEAT_ROCKET_GRUNTF_3, GRUNTF, 3, GruntF3SeenText, GruntF3BeatenText, NONE, GruntF3Script
 
 GruntF3Script:
 	talkaftercancel
@@ -923,14 +923,14 @@ UndergroundPathSwitchRoomEntrances_MapEventHeader:
 
 .PersonEvents:
 	db 11
-	person_event SPRITE_PHARMACIST, 12, 9, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerBurglarDuncan, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_PHARMACIST, 8, 4, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerBurglarEddie, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 2, 17, $6, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM13, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 2, 11, $6, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM11, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 2, 3, $6, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM25, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET_GIRL, 12, 19, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerGruntF3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_TEACHER, 27, 3, $6, 0, 0, -1, -1, 0, 0, 0, TeacherScript_0x7ca7d, -1
-	person_event SPRITE_SUPER_NERD, 27, 19, $6, 0, 0, -1, -1, 0, 0, 0, SuperNerdScript_0x7ca7a, -1
-	person_event SPRITE_POKE_BALL, 12, 1, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7ce7d, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_SMOKE_BALL
-	person_event SPRITE_POKE_BALL, 9, 14, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7ce7f, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_FULL_HEAL
-	person_event SPRITE_SILVER, 3, 23, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RIVAL_UNDERGROUND_PATH
+	person_event SPRITE_PHARMACIST, 12, 9, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerBurglarDuncan, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_PHARMACIST, 8, 4, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerBurglarEddie, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 2, 17, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM13, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 2, 11, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM11, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 2, 3, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM25, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET_GIRL, 12, 19, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerGruntF3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_TEACHER, 27, 3, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, TeacherScript_0x7ca7d, -1
+	person_event SPRITE_SUPER_NERD, 27, 19, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, SuperNerdScript_0x7ca7a, -1
+	person_event SPRITE_POKE_BALL, 12, 1, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7ce7d, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_SMOKE_BALL
+	person_event SPRITE_POKE_BALL, 9, 14, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7ce7f, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_FULL_HEAL
+	person_event SPRITE_SILVER, 3, 23, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RIVAL_UNDERGROUND_PATH

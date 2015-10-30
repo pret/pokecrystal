@@ -3,7 +3,7 @@ MountMoonSquare_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x77092, $0000
+	dw UnknownScript_0x77092, NONE
 
 .MapCallbacks:
 	db 2
@@ -155,6 +155,6 @@ MountMoonSquare_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_FAIRY, 6, 6, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
-	person_event SPRITE_FAIRY, 6, 7, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
-	person_event SPRITE_ROCK, 7, 7, $18, 0, 0, -1, -1, 0, 0, 0, MtMoonSquareRock, EVENT_MT_MOON_SQUARE_ROCK
+	person_event SPRITE_FAIRY, 6, 6, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
+	person_event SPRITE_FAIRY, 6, 7, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
+	person_event SPRITE_ROCK, 7, 7, SPRITEMOVEFN_18, 0, 0, -1, -1, 0, 0, 0, MtMoonSquareRock, EVENT_MT_MOON_SQUARE_ROCK

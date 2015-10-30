@@ -3,9 +3,9 @@ BurnedTower1F_MapScriptHeader:
 	db 3
 
 	; triggers
-	dw UnknownScript_0x185bf2, $0000
-	dw UnknownScript_0x185bf6, $0000
-	dw UnknownScript_0x185bf7, $0000
+	dw UnknownScript_0x185bf2, NONE
+	dw UnknownScript_0x185bf6, NONE
+	dw UnknownScript_0x185bf7, NONE
 
 .MapCallbacks:
 	db 1
@@ -309,8 +309,8 @@ BurnedTower1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_ROCK, 4, 15, $18, 0, 0, -1, -1, 0, 0, 0, BurnedTower1FRock, -1
-	person_event SPRITE_SUPER_NERD, 12, 12, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SuperNerdScript_0x185cbc, EVENT_BURNED_TOWER_1F_EUSINE
-	person_event SPRITE_SILVER, 9, 8, $8, 0, 0, -1, -1, 0, 2, 3, ObjectEvent, EVENT_RIVAL_BURNED_TOWER
-	person_event SPRITE_MORTY, 14, 14, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, MortyScript_0x185cbf, EVENT_BURNED_TOWER_MORTY
-	person_event SPRITE_POKE_BALL, 2, 14, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x185ccb, EVENT_BURNED_TOWER_1F_HP_UP
+	person_event SPRITE_ROCK, 4, 15, SPRITEMOVEFN_18, 0, 0, -1, -1, 0, 0, 0, BurnedTower1FRock, -1
+	person_event SPRITE_SUPER_NERD, 12, 12, SPRITEMOVEFN_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SuperNerdScript_0x185cbc, EVENT_BURNED_TOWER_1F_EUSINE
+	person_event SPRITE_SILVER, 9, 8, SPRITEMOVEFN_08, 0, 0, -1, -1, 0, 2, 3, ObjectEvent, EVENT_RIVAL_BURNED_TOWER
+	person_event SPRITE_MORTY, 14, 14, SPRITEMOVEFN_02, 1, 1, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, MortyScript_0x185cbf, EVENT_BURNED_TOWER_MORTY
+	person_event SPRITE_POKE_BALL, 2, 14, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x185ccb, EVENT_BURNED_TOWER_1F_HP_UP

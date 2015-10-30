@@ -40,4 +40,4 @@ Route38EcruteakGate_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_OFFICER, 2, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, OfficerScript_0x9cbd7, -1
+	person_event SPRITE_OFFICER, 2, 5, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, OfficerScript_0x9cbd7, -1

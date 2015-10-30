@@ -14,7 +14,7 @@ TeacherScript_0x1ad47f:
 	end
 
 TrainerPokefanmCarter:
-	trainer EVENT_BEAT_POKEFANM_CARTER, POKEFANM, CARTER, PokefanmCarterSeenText, PokefanmCarterBeatenText, $0000, PokefanmCarterScript
+	trainer EVENT_BEAT_POKEFANM_CARTER, POKEFANM, CARTER, PokefanmCarterSeenText, PokefanmCarterBeatenText, NONE, PokefanmCarterScript
 
 PokefanmCarterScript:
 	talkaftercancel
@@ -25,7 +25,7 @@ PokefanmCarterScript:
 	end
 
 TrainerBird_keeperRoy:
-	trainer EVENT_BEAT_BIRD_KEEPER_ROY, BIRD_KEEPER, ROY, Bird_keeperRoySeenText, Bird_keeperRoyBeatenText, $0000, Bird_keeperRoyScript
+	trainer EVENT_BEAT_BIRD_KEEPER_ROY, BIRD_KEEPER, ROY, Bird_keeperRoySeenText, Bird_keeperRoyBeatenText, NONE, Bird_keeperRoyScript
 
 Bird_keeperRoyScript:
 	talkaftercancel
@@ -36,7 +36,7 @@ Bird_keeperRoyScript:
 	end
 
 TrainerPokefanmTrevor:
-	trainer EVENT_BEAT_POKEFANM_TREVOR, POKEFANM, TREVOR, PokefanmTrevorSeenText, PokefanmTrevorBeatenText, $0000, PokefanmTrevorScript
+	trainer EVENT_BEAT_POKEFANM_TREVOR, POKEFANM, TREVOR, PokefanmTrevorSeenText, PokefanmTrevorBeatenText, NONE, PokefanmTrevorScript
 
 PokefanmTrevorScript:
 	talkaftercancel
@@ -124,7 +124,7 @@ Route14_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_POKEFAN_M, 15, 11, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerPokefanmCarter, -1
-	person_event SPRITE_YOUNGSTER, 27, 11, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperRoy, -1
-	person_event SPRITE_POKEFAN_M, 11, 6, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerPokefanmTrevor, -1
-	person_event SPRITE_TEACHER, 5, 7, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 4, TeacherScript_0x1ad47f, -1
+	person_event SPRITE_POKEFAN_M, 15, 11, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerPokefanmCarter, -1
+	person_event SPRITE_YOUNGSTER, 27, 11, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperRoy, -1
+	person_event SPRITE_POKEFAN_M, 11, 6, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerPokefanmTrevor, -1
+	person_event SPRITE_TEACHER, 5, 7, SPRITEMOVEFN_05, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 4, TeacherScript_0x1ad47f, -1

@@ -283,7 +283,7 @@ OaksLab_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_OAK, 2, 4, $6, 0, 0, -1, -1, 0, 0, 0, Oak, -1
-	person_event SPRITE_SCIENTIST, 8, 1, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ScientistScript_0x19b40f, -1
-	person_event SPRITE_SCIENTIST, 9, 8, $4, 1, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ScientistScript_0x19b412, -1
-	person_event SPRITE_SCIENTIST, 4, 1, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ScientistScript_0x19b415, -1
+	person_event SPRITE_OAK, 2, 4, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, Oak, -1
+	person_event SPRITE_SCIENTIST, 8, 1, SPRITEMOVEFN_05, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ScientistScript_0x19b40f, -1
+	person_event SPRITE_SCIENTIST, 9, 8, SPRITEMOVEFN_04, 1, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ScientistScript_0x19b412, -1
+	person_event SPRITE_SCIENTIST, 4, 1, SPRITEMOVEFN_02, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ScientistScript_0x19b415, -1

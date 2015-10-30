@@ -3,8 +3,8 @@ GoldenrodGym_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x5400a, $0000
-	dw UnknownScript_0x5400b, $0000
+	dw UnknownScript_0x5400a, NONE
+	dw UnknownScript_0x5400b, NONE
 
 .MapCallbacks:
 	db 0
@@ -23,7 +23,7 @@ WhitneyScript_0x5400c:
 	writetext UnknownText_0x54122
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x541a5, $0000
+	winlosstext UnknownText_0x541a5, NONE
 	loadtrainer WHITNEY, 1
 	startbattle
 	returnafterbattle
@@ -87,7 +87,7 @@ GoldenrodGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerLassCarrie:
-	trainer EVENT_BEAT_LASS_CARRIE, LASS, CARRIE, LassCarrieSeenText, LassCarrieBeatenText, $0000, LassCarrieScript
+	trainer EVENT_BEAT_LASS_CARRIE, LASS, CARRIE, LassCarrieSeenText, LassCarrieBeatenText, NONE, LassCarrieScript
 
 LassCarrieScript:
 	talkaftercancel
@@ -111,7 +111,7 @@ WhitneyCriesScript:
 	end
 
 TrainerLassBridget:
-	trainer EVENT_BEAT_LASS_BRIDGET, LASS, BRIDGET, LassBridgetSeenText, LassBridgetBeatenText, $0000, LassBridgetScript
+	trainer EVENT_BEAT_LASS_BRIDGET, LASS, BRIDGET, LassBridgetSeenText, LassBridgetBeatenText, NONE, LassBridgetScript
 
 LassBridgetScript:
 	talkaftercancel
@@ -122,7 +122,7 @@ LassBridgetScript:
 	end
 
 TrainerBeautyVictoria:
-	trainer EVENT_BEAT_BEAUTY_VICTORIA, BEAUTY, VICTORIA, BeautyVictoriaSeenText, BeautyVictoriaBeatenText, $0000, BeautyVictoriaScript
+	trainer EVENT_BEAT_BEAUTY_VICTORIA, BEAUTY, VICTORIA, BeautyVictoriaSeenText, BeautyVictoriaBeatenText, NONE, BeautyVictoriaScript
 
 BeautyVictoriaScript:
 	talkaftercancel
@@ -133,7 +133,7 @@ BeautyVictoriaScript:
 	end
 
 TrainerBeautySamantha:
-	trainer EVENT_BEAT_BEAUTY_SAMANTHA, BEAUTY, SAMANTHA, BeautySamanthaSeenText, BeautySamanthaBeatenText, $0000, BeautySamanthaScript
+	trainer EVENT_BEAT_BEAUTY_SAMANTHA, BEAUTY, SAMANTHA, BeautySamanthaSeenText, BeautySamanthaBeatenText, NONE, BeautySamanthaScript
 
 BeautySamanthaScript:
 	talkaftercancel
@@ -393,9 +393,9 @@ GoldenrodGym_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_WHITNEY, 3, 8, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, WhitneyScript_0x5400c, -1
-	person_event SPRITE_LASS, 13, 9, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerLassCarrie, -1
-	person_event SPRITE_LASS, 6, 9, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerLassBridget, -1
-	person_event SPRITE_BUENA, 2, 0, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBeautyVictoria, -1
-	person_event SPRITE_BUENA, 5, 19, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBeautySamantha, -1
-	person_event SPRITE_GYM_GUY, 15, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GoldenrodGymGuyScript, -1
+	person_event SPRITE_WHITNEY, 3, 8, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, WhitneyScript_0x5400c, -1
+	person_event SPRITE_LASS, 13, 9, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerLassCarrie, -1
+	person_event SPRITE_LASS, 6, 9, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerLassBridget, -1
+	person_event SPRITE_BUENA, 2, 0, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBeautyVictoria, -1
+	person_event SPRITE_BUENA, 5, 19, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBeautySamantha, -1
+	person_event SPRITE_GYM_GUY, 15, 5, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GoldenrodGymGuyScript, -1

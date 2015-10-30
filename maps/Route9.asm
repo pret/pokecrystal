@@ -6,7 +6,7 @@ Route9_MapScriptHeader:
 	db 0
 
 TrainerCamperDean:
-	trainer EVENT_BEAT_CAMPER_DEAN, CAMPER, DEAN, CamperDeanSeenText, CamperDeanBeatenText, $0000, CamperDeanScript
+	trainer EVENT_BEAT_CAMPER_DEAN, CAMPER, DEAN, CamperDeanSeenText, CamperDeanBeatenText, NONE, CamperDeanScript
 
 CamperDeanScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ CamperDeanScript:
 	end
 
 TrainerPicnickerHeidi:
-	trainer EVENT_BEAT_PICNICKER_HEIDI, PICNICKER, HEIDI, PicnickerHeidiSeenText, PicnickerHeidiBeatenText, $0000, PicnickerHeidiScript
+	trainer EVENT_BEAT_PICNICKER_HEIDI, PICNICKER, HEIDI, PicnickerHeidiSeenText, PicnickerHeidiBeatenText, NONE, PicnickerHeidiScript
 
 PicnickerHeidiScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ PicnickerHeidiScript:
 	end
 
 TrainerCamperSid:
-	trainer EVENT_BEAT_CAMPER_SID, CAMPER, SID, CamperSidSeenText, CamperSidBeatenText, $0000, CamperSidScript
+	trainer EVENT_BEAT_CAMPER_SID, CAMPER, SID, CamperSidSeenText, CamperSidBeatenText, NONE, CamperSidScript
 
 CamperSidScript:
 	talkaftercancel
@@ -39,7 +39,7 @@ CamperSidScript:
 	end
 
 TrainerPicnickerEdna:
-	trainer EVENT_BEAT_PICNICKER_EDNA, PICNICKER, EDNA, PicnickerEdnaSeenText, PicnickerEdnaBeatenText, $0000, PicnickerEdnaScript
+	trainer EVENT_BEAT_PICNICKER_EDNA, PICNICKER, EDNA, PicnickerEdnaSeenText, PicnickerEdnaBeatenText, NONE, PicnickerEdnaScript
 
 PicnickerEdnaScript:
 	talkaftercancel
@@ -50,7 +50,7 @@ PicnickerEdnaScript:
 	end
 
 TrainerHikerTim:
-	trainer EVENT_BEAT_HIKER_TIM, HIKER, TIM, HikerTimSeenText, HikerTimBeatenText, $0000, HikerTimScript
+	trainer EVENT_BEAT_HIKER_TIM, HIKER, TIM, HikerTimSeenText, HikerTimBeatenText, NONE, HikerTimScript
 
 HikerTimScript:
 	talkaftercancel
@@ -61,7 +61,7 @@ HikerTimScript:
 	end
 
 TrainerHikerSidney:
-	trainer EVENT_BEAT_HIKER_SIDNEY, HIKER, SIDNEY, HikerSidneySeenText, HikerSidneyBeatenText, $0000, HikerSidneyScript
+	trainer EVENT_BEAT_HIKER_SIDNEY, HIKER, SIDNEY, HikerSidneySeenText, HikerSidneyBeatenText, NONE, HikerSidneyScript
 
 HikerSidneyScript:
 	talkaftercancel
@@ -216,9 +216,9 @@ Route9_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_YOUNGSTER, 11, 23, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerCamperDean, -1
-	person_event SPRITE_LASS, 8, 39, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerPicnickerHeidi, -1
-	person_event SPRITE_YOUNGSTER, 4, 11, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 5, TrainerCamperSid, -1
-	person_event SPRITE_LASS, 15, 12, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerPicnickerEdna, -1
-	person_event SPRITE_POKEFAN_M, 3, 28, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerHikerTim, -1
-	person_event SPRITE_POKEFAN_M, 15, 36, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 4, TrainerHikerSidney, -1
+	person_event SPRITE_YOUNGSTER, 11, 23, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerCamperDean, -1
+	person_event SPRITE_LASS, 8, 39, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerPicnickerHeidi, -1
+	person_event SPRITE_YOUNGSTER, 4, 11, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 5, TrainerCamperSid, -1
+	person_event SPRITE_LASS, 15, 12, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerPicnickerEdna, -1
+	person_event SPRITE_POKEFAN_M, 3, 28, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerHikerTim, -1
+	person_event SPRITE_POKEFAN_M, 15, 36, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 4, TrainerHikerSidney, -1

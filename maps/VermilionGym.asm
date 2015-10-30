@@ -13,7 +13,7 @@ SurgeScript_0x1920a5:
 	writetext UnknownText_0x192142
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x192238, $0000
+	winlosstext UnknownText_0x192238, NONE
 	loadtrainer LT_SURGE, 1
 	startbattle
 	returnafterbattle
@@ -38,7 +38,7 @@ SurgeScript_0x1920a5:
 	end
 
 TrainerGentlemanGregory:
-	trainer EVENT_BEAT_GENTLEMAN_GREGORY, GENTLEMAN, GREGORY, GentlemanGregorySeenText, GentlemanGregoryBeatenText, $0000, GentlemanGregoryScript
+	trainer EVENT_BEAT_GENTLEMAN_GREGORY, GENTLEMAN, GREGORY, GentlemanGregorySeenText, GentlemanGregoryBeatenText, NONE, GentlemanGregoryScript
 
 GentlemanGregoryScript:
 	talkaftercancel
@@ -49,7 +49,7 @@ GentlemanGregoryScript:
 	end
 
 TrainerGuitaristVincent:
-	trainer EVENT_BEAT_GUITARIST_VINCENT, GUITARIST, VINCENT, GuitaristVincentSeenText, GuitaristVincentBeatenText, $0000, GuitaristVincentScript
+	trainer EVENT_BEAT_GUITARIST_VINCENT, GUITARIST, VINCENT, GuitaristVincentSeenText, GuitaristVincentBeatenText, NONE, GuitaristVincentScript
 
 GuitaristVincentScript:
 	talkaftercancel
@@ -60,7 +60,7 @@ GuitaristVincentScript:
 	end
 
 TrainerJugglerHorton:
-	trainer EVENT_BEAT_JUGGLER_HORTON, JUGGLER, HORTON, JugglerHortonSeenText, JugglerHortonBeatenText, $0000, JugglerHortonScript
+	trainer EVENT_BEAT_JUGGLER_HORTON, JUGGLER, HORTON, JugglerHortonSeenText, JugglerHortonBeatenText, NONE, JugglerHortonScript
 
 JugglerHortonScript:
 	talkaftercancel
@@ -287,8 +287,8 @@ VermilionGym_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_SURGE, 2, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, SurgeScript_0x1920a5, -1
-	person_event SPRITE_GENTLEMAN, 8, 8, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerGentlemanGregory, -1
-	person_event SPRITE_ROCKER, 7, 4, $6, 0, 3, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerGuitaristVincent, -1
-	person_event SPRITE_SUPER_NERD, 10, 0, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerJugglerHorton, -1
-	person_event SPRITE_GYM_GUY, 15, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 1, VermilionGymGuyScript, -1
+	person_event SPRITE_SURGE, 2, 5, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, SurgeScript_0x1920a5, -1
+	person_event SPRITE_GENTLEMAN, 8, 8, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerGentlemanGregory, -1
+	person_event SPRITE_ROCKER, 7, 4, SPRITEMOVEFN_06, 0, 3, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerGuitaristVincent, -1
+	person_event SPRITE_SUPER_NERD, 10, 0, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerJugglerHorton, -1
+	person_event SPRITE_GYM_GUY, 15, 7, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 1, VermilionGymGuyScript, -1

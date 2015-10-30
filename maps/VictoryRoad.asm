@@ -3,8 +3,8 @@ VictoryRoad_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x74490, $0000
-	dw UnknownScript_0x74491, $0000
+	dw UnknownScript_0x74490, NONE
+	dw UnknownScript_0x74491, NONE
 
 .MapCallbacks:
 	db 0
@@ -263,9 +263,9 @@ VictoryRoad_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_SILVER, 13, 18, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RIVAL_VICTORY_ROAD
-	person_event SPRITE_POKE_BALL, 28, 3, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x74529, EVENT_VICTORY_ROAD_TM_EARTHQUAKE
-	person_event SPRITE_POKE_BALL, 48, 12, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7452b, EVENT_VICTORY_ROAD_MAX_REVIVE
-	person_event SPRITE_POKE_BALL, 29, 18, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7452d, EVENT_VICTORY_ROAD_FULL_RESTORE
-	person_event SPRITE_POKE_BALL, 48, 15, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7452f, EVENT_VICTORY_ROAD_FULL_HEAL
-	person_event SPRITE_POKE_BALL, 38, 7, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x74531, EVENT_VICTORY_ROAD_HP_UP
+	person_event SPRITE_SILVER, 13, 18, SPRITEMOVEFN_07, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RIVAL_VICTORY_ROAD
+	person_event SPRITE_POKE_BALL, 28, 3, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x74529, EVENT_VICTORY_ROAD_TM_EARTHQUAKE
+	person_event SPRITE_POKE_BALL, 48, 12, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7452b, EVENT_VICTORY_ROAD_MAX_REVIVE
+	person_event SPRITE_POKE_BALL, 29, 18, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7452d, EVENT_VICTORY_ROAD_FULL_RESTORE
+	person_event SPRITE_POKE_BALL, 48, 15, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7452f, EVENT_VICTORY_ROAD_FULL_HEAL
+	person_event SPRITE_POKE_BALL, 38, 7, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x74531, EVENT_VICTORY_ROAD_HP_UP

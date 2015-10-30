@@ -3,8 +3,8 @@ EcruteakHouse_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw .Trigger1, $0000
-	dw .Trigger2, $0000
+	dw .Trigger1, NONE
+	dw .Trigger2, NONE
 
 .MapCallbacks:
 	db 1
@@ -298,7 +298,7 @@ EcruteakHouse_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_SAGE, 6, 4, $6, 0, 0, -1, -1, 0, 0, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_1
-	person_event SPRITE_SAGE, 6, 5, $6, 0, 0, -1, -1, 0, 0, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_2
-	person_event SPRITE_SAGE, 9, 6, $2, 1, 1, -1, -1, 0, 0, 0, SageScript_0x980b0, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
-	person_event SPRITE_GRAMPS, 11, 3, $2, 1, 1, -1, -1, 0, 0, 0, GrampsScript_0x980c4, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
+	person_event SPRITE_SAGE, 6, 4, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_1
+	person_event SPRITE_SAGE, 6, 5, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_2
+	person_event SPRITE_SAGE, 9, 6, SPRITEMOVEFN_02, 1, 1, -1, -1, 0, 0, 0, SageScript_0x980b0, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
+	person_event SPRITE_GRAMPS, 11, 3, SPRITEMOVEFN_02, 1, 1, -1, -1, 0, 0, 0, GrampsScript_0x980c4, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE

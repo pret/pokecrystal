@@ -3,8 +3,8 @@ Route42_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x1a9216, $0000
-	dw UnknownScript_0x1a9217, $0000
+	dw UnknownScript_0x1a9216, NONE
+	dw UnknownScript_0x1a9217, NONE
 
 .MapCallbacks:
 	db 0
@@ -28,7 +28,7 @@ UnknownScript_0x1a9218:
 	end
 
 TrainerFisherTully1:
-	trainer EVENT_BEAT_FISHER_TULLY, FISHER, TULLY1, FisherTully1SeenText, FisherTully1BeatenText, $0000, FisherTully1Script
+	trainer EVENT_BEAT_FISHER_TULLY, FISHER, TULLY1, FisherTully1SeenText, FisherTully1BeatenText, NONE, FisherTully1Script
 
 FisherTully1Script:
 	writecode VAR_CALLERID, PHONE_FISHER_TULLY
@@ -60,7 +60,7 @@ UnknownScript_0x1a926b:
 
 UnknownScript_0x1a927f:
 	scall UnknownScript_0x1a9309
-	winlosstext FisherTully1BeatenText, $0000
+	winlosstext FisherTully1BeatenText, NONE
 	copybytetovar wTullyFightCount
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
@@ -154,7 +154,7 @@ UnknownScript_0x1a9311:
 	end
 
 TrainerPokemaniacShane:
-	trainer EVENT_BEAT_POKEMANIAC_SHANE, POKEMANIAC, SHANE, PokemaniacShaneSeenText, PokemaniacShaneBeatenText, $0000, PokemaniacShaneScript
+	trainer EVENT_BEAT_POKEMANIAC_SHANE, POKEMANIAC, SHANE, PokemaniacShaneSeenText, PokemaniacShaneBeatenText, NONE, PokemaniacShaneScript
 
 PokemaniacShaneScript:
 	talkaftercancel
@@ -165,7 +165,7 @@ PokemaniacShaneScript:
 	end
 
 TrainerHikerBenjamin:
-	trainer EVENT_BEAT_HIKER_BENJAMIN, HIKER, BENJAMIN, HikerBenjaminSeenText, HikerBenjaminBeatenText, $0000, HikerBenjaminScript
+	trainer EVENT_BEAT_HIKER_BENJAMIN, HIKER, BENJAMIN, HikerBenjaminSeenText, HikerBenjaminBeatenText, NONE, HikerBenjaminScript
 
 HikerBenjaminScript:
 	talkaftercancel
@@ -336,12 +336,12 @@ Route42_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_FISHER, 10, 40, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherTully1, -1
-	person_event SPRITE_POKEFAN_M, 9, 51, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerHikerBenjamin, -1
-	person_event SPRITE_SUPER_NERD, 8, 47, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPokemaniacShane, -1
-	person_event SPRITE_FRUIT_TREE, 16, 27, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a934d, -1
-	person_event SPRITE_FRUIT_TREE, 16, 28, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a934f, -1
-	person_event SPRITE_FRUIT_TREE, 16, 29, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a9351, -1
-	person_event SPRITE_POKE_BALL, 4, 6, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a9349, EVENT_ROUTE_42_ULTRA_BALL
-	person_event SPRITE_POKE_BALL, 8, 33, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a934b, EVENT_ROUTE_42_SUPER_POTION
-	person_event SPRITE_SUICUNE, 16, 26, $1, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42
+	person_event SPRITE_FISHER, 10, 40, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherTully1, -1
+	person_event SPRITE_POKEFAN_M, 9, 51, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerHikerBenjamin, -1
+	person_event SPRITE_SUPER_NERD, 8, 47, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPokemaniacShane, -1
+	person_event SPRITE_FRUIT_TREE, 16, 27, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a934d, -1
+	person_event SPRITE_FRUIT_TREE, 16, 28, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a934f, -1
+	person_event SPRITE_FRUIT_TREE, 16, 29, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a9351, -1
+	person_event SPRITE_POKE_BALL, 4, 6, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a9349, EVENT_ROUTE_42_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 8, 33, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a934b, EVENT_ROUTE_42_SUPER_POTION
+	person_event SPRITE_SUICUNE, 16, 26, SPRITEMOVEFN_01, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42

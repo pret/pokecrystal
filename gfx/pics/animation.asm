@@ -445,7 +445,7 @@ PokeAnim_End: ; d02a8
 Functiond02ae: ; d02ae
 	ld c, a
 	ld b, $0
-	ld hl, $0000
+	ld hl, NONE
 	ld a, [w2_d173]
 	call AddNTimes
 	ld a, h

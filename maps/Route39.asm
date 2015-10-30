@@ -14,7 +14,7 @@ TaurosScript_0x1a5af5:
 	end
 
 TrainerPokefanmDerek1:
-	trainer EVENT_BEAT_POKEFANM_DEREK, POKEFANM, DEREK1, PokefanmDerek1SeenText, PokefanmDerek1BeatenText, $0000, PokefanmDerek1Script
+	trainer EVENT_BEAT_POKEFANM_DEREK, POKEFANM, DEREK1, PokefanmDerek1SeenText, PokefanmDerek1BeatenText, NONE, PokefanmDerek1Script
 
 PokefanmDerek1Script:
 	writecode VAR_CALLERID, PHONE_POKEFANM_DEREK
@@ -93,7 +93,7 @@ UnknownScript_0x1a5b7e:
 	end
 
 TrainerPokefanfRuth:
-	trainer EVENT_BEAT_POKEFANF_RUTH, POKEFANF, RUTH, PokefanfRuthSeenText, PokefanfRuthBeatenText, $0000, PokefanfRuthScript
+	trainer EVENT_BEAT_POKEFANF_RUTH, POKEFANF, RUTH, PokefanfRuthSeenText, PokefanfRuthBeatenText, NONE, PokefanfRuthScript
 
 PokefanfRuthScript:
 	talkaftercancel
@@ -104,7 +104,7 @@ PokefanfRuthScript:
 	end
 
 TrainerSailorEugene:
-	trainer EVENT_BEAT_SAILOR_EUGENE, SAILOR, EUGENE, SailorEugeneSeenText, SailorEugeneBeatenText, $0000, SailorEugeneScript
+	trainer EVENT_BEAT_SAILOR_EUGENE, SAILOR, EUGENE, SailorEugeneSeenText, SailorEugeneBeatenText, NONE, SailorEugeneScript
 
 SailorEugeneScript:
 	talkaftercancel
@@ -115,7 +115,7 @@ SailorEugeneScript:
 	end
 
 TrainerPsychicNorman:
-	trainer EVENT_BEAT_PSYCHIC_NORMAN, PSYCHIC_T, NORMAN, PsychicNormanSeenText, PsychicNormanBeatenText, $0000, PsychicNormanScript
+	trainer EVENT_BEAT_PSYCHIC_NORMAN, PSYCHIC_T, NORMAN, PsychicNormanSeenText, PsychicNormanBeatenText, NONE, PsychicNormanScript
 
 PsychicNormanScript:
 	talkaftercancel
@@ -135,7 +135,7 @@ PokefanFScript_0x1a5bbe:
 	writetext UnknownText_0x1a5ee8
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x1a5f17, $0000
+	winlosstext UnknownText_0x1a5f17, NONE
 	loadtrainer POKEFANF, JAIME
 	startbattle
 	returnafterbattle
@@ -353,13 +353,13 @@ Route39_MapEventHeader:
 
 .PersonEvents:
 	db 10
-	person_event SPRITE_SAILOR, 29, 13, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerSailorEugene, -1
-	person_event SPRITE_POKEFAN_M, 22, 10, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerPokefanmDerek1, -1
-	person_event SPRITE_POKEFAN_F, 19, 11, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerPokefanfRuth, -1
-	person_event SPRITE_TAUROS, 12, 3, $16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_TAUROS, 11, 6, $16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_TAUROS, 15, 4, $16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_TAUROS, 13, 8, $16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 7, 13, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerPsychicNorman, -1
-	person_event SPRITE_FRUIT_TREE, 3, 9, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a5bf4, -1
-	person_event SPRITE_POKEFAN_F, 22, 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, PokefanFScript_0x1a5bbe, -1
+	person_event SPRITE_SAILOR, 29, 13, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerSailorEugene, -1
+	person_event SPRITE_POKEFAN_M, 22, 10, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerPokefanmDerek1, -1
+	person_event SPRITE_POKEFAN_F, 19, 11, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerPokefanfRuth, -1
+	person_event SPRITE_TAUROS, 12, 3, SPRITEMOVEFN_16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
+	person_event SPRITE_TAUROS, 11, 6, SPRITEMOVEFN_16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
+	person_event SPRITE_TAUROS, 15, 4, SPRITEMOVEFN_16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
+	person_event SPRITE_TAUROS, 13, 8, SPRITEMOVEFN_16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 7, 13, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerPsychicNorman, -1
+	person_event SPRITE_FRUIT_TREE, 3, 9, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a5bf4, -1
+	person_event SPRITE_POKEFAN_F, 22, 4, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, PokefanFScript_0x1a5bbe, -1

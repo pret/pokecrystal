@@ -6,7 +6,7 @@ Route13_MapScriptHeader:
 	db 0
 
 TrainerPokefanmAlex:
-	trainer EVENT_BEAT_POKEFANM_ALEX, POKEFANM, ALEX, PokefanmAlexSeenText, PokefanmAlexBeatenText, $0000, PokefanmAlexScript
+	trainer EVENT_BEAT_POKEFANM_ALEX, POKEFANM, ALEX, PokefanmAlexSeenText, PokefanmAlexBeatenText, NONE, PokefanmAlexScript
 
 PokefanmAlexScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ PokefanmAlexScript:
 	end
 
 TrainerPokefanmJoshua:
-	trainer EVENT_BEAT_POKEFANM_JOSHUA, POKEFANM, JOSHUA, PokefanmJoshuaSeenText, PokefanmJoshuaBeatenText, $0000, PokefanmJoshuaScript
+	trainer EVENT_BEAT_POKEFANM_JOSHUA, POKEFANM, JOSHUA, PokefanmJoshuaSeenText, PokefanmJoshuaBeatenText, NONE, PokefanmJoshuaScript
 
 PokefanmJoshuaScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ PokefanmJoshuaScript:
 	end
 
 TrainerBird_keeperPerry:
-	trainer EVENT_BEAT_BIRD_KEEPER_PERRY, BIRD_KEEPER, PERRY, Bird_keeperPerrySeenText, Bird_keeperPerryBeatenText, $0000, Bird_keeperPerryScript
+	trainer EVENT_BEAT_BIRD_KEEPER_PERRY, BIRD_KEEPER, PERRY, Bird_keeperPerrySeenText, Bird_keeperPerryBeatenText, NONE, Bird_keeperPerryScript
 
 Bird_keeperPerryScript:
 	talkaftercancel
@@ -39,7 +39,7 @@ Bird_keeperPerryScript:
 	end
 
 TrainerBird_keeperBret:
-	trainer EVENT_BEAT_BIRD_KEEPER_BRET, BIRD_KEEPER, BRET, Bird_keeperBretSeenText, Bird_keeperBretBeatenText, $0000, Bird_keeperBretScript
+	trainer EVENT_BEAT_BIRD_KEEPER_BRET, BIRD_KEEPER, BRET, Bird_keeperBretSeenText, Bird_keeperBretBeatenText, NONE, Bird_keeperBretScript
 
 Bird_keeperBretScript:
 	talkaftercancel
@@ -50,7 +50,7 @@ Bird_keeperBretScript:
 	end
 
 TrainerHikerKenny:
-	trainer EVENT_BEAT_HIKER_KENNY, HIKER, KENNY, HikerKennySeenText, HikerKennyBeatenText, $0000, HikerKennyScript
+	trainer EVENT_BEAT_HIKER_KENNY, HIKER, KENNY, HikerKennySeenText, HikerKennyBeatenText, NONE, HikerKennyScript
 
 HikerKennyScript:
 	talkaftercancel
@@ -204,8 +204,8 @@ Route13_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_YOUNGSTER, 6, 42, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerBird_keeperPerry, -1
-	person_event SPRITE_YOUNGSTER, 6, 43, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerBird_keeperBret, -1
-	person_event SPRITE_POKEFAN_M, 8, 32, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerPokefanmJoshua, -1
-	person_event SPRITE_POKEFAN_M, 10, 14, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerHikerKenny, -1
-	person_event SPRITE_POKEFAN_M, 6, 25, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerPokefanmAlex, -1
+	person_event SPRITE_YOUNGSTER, 6, 42, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerBird_keeperPerry, -1
+	person_event SPRITE_YOUNGSTER, 6, 43, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerBird_keeperBret, -1
+	person_event SPRITE_POKEFAN_M, 8, 32, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerPokefanmJoshua, -1
+	person_event SPRITE_POKEFAN_M, 10, 14, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerHikerKenny, -1
+	person_event SPRITE_POKEFAN_M, 6, 25, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerPokefanmAlex, -1

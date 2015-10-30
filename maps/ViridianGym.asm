@@ -13,7 +13,7 @@ BlueScript_0x9aa26:
 	writetext UnknownText_0x9aa7b
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x9abae, $0000
+	winlosstext UnknownText_0x9abae, NONE
 	loadtrainer BLUE, 1
 	startbattle
 	returnafterbattle
@@ -183,5 +183,5 @@ ViridianGym_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_BLUE, 3, 5, $6, 0, 0, -1, -1, 0, 0, 0, BlueScript_0x9aa26, EVENT_VIRIDIAN_GYM_BLUE
-	person_event SPRITE_GYM_GUY, 13, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ViridianGymGuyScript, EVENT_VIRIDIAN_GYM_BLUE
+	person_event SPRITE_BLUE, 3, 5, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, BlueScript_0x9aa26, EVENT_VIRIDIAN_GYM_BLUE
+	person_event SPRITE_GYM_GUY, 13, 7, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ViridianGymGuyScript, EVENT_VIRIDIAN_GYM_BLUE

@@ -3,8 +3,8 @@ CianwoodCity_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw .Trigger1, $0000
-	dw .Trigger2, $0000
+	dw .Trigger1, NONE
+	dw .Trigger2, NONE
 
 .MapCallbacks:
 	db 1
@@ -52,7 +52,7 @@ UnknownScript_0x1a001e:
 	writetext UnknownText_0x1a0433
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x1a05a1, $0000
+	winlosstext UnknownText_0x1a05a1, NONE
 	setlasttalked $c
 	loadtrainer MYSTICALMAN, EUSINE
 	startbattle
@@ -401,15 +401,15 @@ CianwoodCity_MapEventHeader:
 
 .PersonEvents:
 	db 12
-	person_event SPRITE_STANDING_YOUNGSTER, 37, 21, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, StandingYoungsterScript_0x1a00b3, -1
-	person_event SPRITE_POKEFAN_M, 33, 17, $5, 0, 1, -1, -1, 0, 0, 0, PokefanMScript_0x1a00b6, -1
-	person_event SPRITE_LASS, 42, 14, $4, 2, 0, -1, -1, 0, 0, 0, LassScript_0x1a00b9, -1
-	person_event SPRITE_ROCK, 16, 8, $18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
-	person_event SPRITE_ROCK, 17, 9, $18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
-	person_event SPRITE_ROCK, 25, 4, $18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
-	person_event SPRITE_ROCK, 29, 5, $18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
-	person_event SPRITE_ROCK, 27, 10, $18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
-	person_event SPRITE_ROCK, 19, 4, $18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
-	person_event SPRITE_POKEFAN_F, 46, 10, $5, 0, 1, -1, -1, 0, 0, 0, PokefanFScript_0x1a0084, -1
-	person_event SPRITE_SUPER_NERD, 21, 11, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_CIANWOOD_CITY_EUSINE
-	person_event SPRITE_SUICUNE, 14, 10, $1, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
+	person_event SPRITE_STANDING_YOUNGSTER, 37, 21, SPRITEMOVEFN_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, StandingYoungsterScript_0x1a00b3, -1
+	person_event SPRITE_POKEFAN_M, 33, 17, SPRITEMOVEFN_05, 0, 1, -1, -1, 0, 0, 0, PokefanMScript_0x1a00b6, -1
+	person_event SPRITE_LASS, 42, 14, SPRITEMOVEFN_04, 2, 0, -1, -1, 0, 0, 0, LassScript_0x1a00b9, -1
+	person_event SPRITE_ROCK, 16, 8, SPRITEMOVEFN_18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
+	person_event SPRITE_ROCK, 17, 9, SPRITEMOVEFN_18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
+	person_event SPRITE_ROCK, 25, 4, SPRITEMOVEFN_18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
+	person_event SPRITE_ROCK, 29, 5, SPRITEMOVEFN_18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
+	person_event SPRITE_ROCK, 27, 10, SPRITEMOVEFN_18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
+	person_event SPRITE_ROCK, 19, 4, SPRITEMOVEFN_18, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
+	person_event SPRITE_POKEFAN_F, 46, 10, SPRITEMOVEFN_05, 0, 1, -1, -1, 0, 0, 0, PokefanFScript_0x1a0084, -1
+	person_event SPRITE_SUPER_NERD, 21, 11, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_CIANWOOD_CITY_EUSINE
+	person_event SPRITE_SUICUNE, 14, 10, SPRITEMOVEFN_01, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY

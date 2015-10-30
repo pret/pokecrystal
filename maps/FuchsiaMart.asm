@@ -49,6 +49,6 @@ FuchsiaMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 3, 1, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x195ce8, -1
-	person_event SPRITE_FISHER, 2, 3, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, FisherScript_0x195cef, -1
-	person_event SPRITE_COOLTRAINER_F, 6, 7, $5, 0, 2, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x195cf2, -1
+	person_event SPRITE_CLERK, 3, 1, SPRITEMOVEFN_09, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x195ce8, -1
+	person_event SPRITE_FISHER, 2, 3, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, FisherScript_0x195cef, -1
+	person_event SPRITE_COOLTRAINER_F, 6, 7, SPRITEMOVEFN_05, 0, 2, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x195cf2, -1

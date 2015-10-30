@@ -151,6 +151,6 @@ GoldenrodHappinessRater_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_TEACHER, 4, 2, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, TeacherScript_0x54953, -1
-	person_event SPRITE_POKEFAN_M, 3, 5, $8, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x54997, -1
-	person_event SPRITE_TWIN, 6, 5, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TwinScript_0x5499a, -1
+	person_event SPRITE_TEACHER, 4, 2, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, TeacherScript_0x54953, -1
+	person_event SPRITE_POKEFAN_M, 3, 5, SPRITEMOVEFN_08, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x54997, -1
+	person_event SPRITE_TWIN, 6, 5, SPRITEMOVEFN_05, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TwinScript_0x5499a, -1

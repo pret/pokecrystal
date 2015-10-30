@@ -26,7 +26,7 @@ YoungsterScript_0x1a1673:
 	end
 
 TrainerYoungsterJoey:
-	trainer EVENT_BEAT_YOUNGSTER_JOEY, YOUNGSTER, JOEY1, YoungsterJoey1SeenText, YoungsterJoey1BeatenText, $0000, YoungsterJoey1Script
+	trainer EVENT_BEAT_YOUNGSTER_JOEY, YOUNGSTER, JOEY1, YoungsterJoey1SeenText, YoungsterJoey1BeatenText, NONE, YoungsterJoey1Script
 
 YoungsterJoey1Script:
 	writecode VAR_CALLERID, PHONE_YOUNGSTER_JOEY
@@ -56,7 +56,7 @@ UnknownScript_0x1a16cc:
 
 UnknownScript_0x1a16e0:
 	scall UnknownScript_0x1a179b
-	winlosstext YoungsterJoey1BeatenText, $0000
+	winlosstext YoungsterJoey1BeatenText, NONE
 	copybytetovar wJoeyFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
@@ -173,7 +173,7 @@ UnknownScript_0x1a17a6:
 	end
 
 TrainerYoungsterMikey:
-	trainer EVENT_BEAT_YOUNGSTER_MIKEY, YOUNGSTER, MIKEY, YoungsterMikeySeenText, YoungsterMikeyBeatenText, $0000, YoungsterMikeyScript
+	trainer EVENT_BEAT_YOUNGSTER_MIKEY, YOUNGSTER, MIKEY, YoungsterMikeySeenText, YoungsterMikeyBeatenText, NONE, YoungsterMikeyScript
 
 YoungsterMikeyScript:
 	talkaftercancel
@@ -184,7 +184,7 @@ YoungsterMikeyScript:
 	end
 
 TrainerBug_catcherDon:
-	trainer EVENT_BEAT_BUG_CATCHER_DON, BUG_CATCHER, DON, Bug_catcherDonSeenText, Bug_catcherDonBeatenText, $0000, Bug_catcherDonScript
+	trainer EVENT_BEAT_BUG_CATCHER_DON, BUG_CATCHER, DON, Bug_catcherDonSeenText, Bug_catcherDonBeatenText, NONE, Bug_catcherDonScript
 
 Bug_catcherDonScript:
 	talkaftercancel
@@ -416,14 +416,14 @@ Route30_MapEventHeader:
 
 .PersonEvents:
 	db 11
-	person_event SPRITE_YOUNGSTER, 26, 5, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, YoungsterScript_0x1a1673, EVENT_ROUTE_30_BATTLE
-	person_event SPRITE_YOUNGSTER, 28, 2, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterJoey, EVENT_ROUTE_30_YOUNGSTER_JOEY
-	person_event SPRITE_YOUNGSTER, 23, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerYoungsterMikey, -1
-	person_event SPRITE_BUG_CATCHER, 7, 1, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBug_catcherDon, -1
-	person_event SPRITE_YOUNGSTER, 30, 7, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x1a17d2, -1
-	person_event SPRITE_MONSTER, 24, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ObjectEvent, EVENT_ROUTE_30_BATTLE
-	person_event SPRITE_MONSTER, 25, 5, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_ROUTE_30_BATTLE
-	person_event SPRITE_FRUIT_TREE, 39, 5, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a17f7, -1
-	person_event SPRITE_FRUIT_TREE, 5, 11, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a17f9, -1
-	person_event SPRITE_COOLTRAINER_F, 13, 2, $6, 0, 0, -1, -1, 0, 0, 0, CooltrainerFScript_0x1a17e6, -1
-	person_event SPRITE_POKE_BALL, 35, 8, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a17f5, EVENT_ROUTE_30_ANTIDOTE
+	person_event SPRITE_YOUNGSTER, 26, 5, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, YoungsterScript_0x1a1673, EVENT_ROUTE_30_BATTLE
+	person_event SPRITE_YOUNGSTER, 28, 2, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterJoey, EVENT_ROUTE_30_YOUNGSTER_JOEY
+	person_event SPRITE_YOUNGSTER, 23, 5, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerYoungsterMikey, -1
+	person_event SPRITE_BUG_CATCHER, 7, 1, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBug_catcherDon, -1
+	person_event SPRITE_YOUNGSTER, 30, 7, SPRITEMOVEFN_05, 0, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x1a17d2, -1
+	person_event SPRITE_MONSTER, 24, 5, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ObjectEvent, EVENT_ROUTE_30_BATTLE
+	person_event SPRITE_MONSTER, 25, 5, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_ROUTE_30_BATTLE
+	person_event SPRITE_FRUIT_TREE, 39, 5, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a17f7, -1
+	person_event SPRITE_FRUIT_TREE, 5, 11, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a17f9, -1
+	person_event SPRITE_COOLTRAINER_F, 13, 2, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, CooltrainerFScript_0x1a17e6, -1
+	person_event SPRITE_POKE_BALL, 35, 8, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a17f5, EVENT_ROUTE_30_ANTIDOTE

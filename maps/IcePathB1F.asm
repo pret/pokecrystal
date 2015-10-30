@@ -107,8 +107,8 @@ IcePathB1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_BOULDER, 7, 11, $19, 0, 0, -1, -1, 0, 0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_1
-	person_event SPRITE_BOULDER, 8, 7, $19, 0, 0, -1, -1, 0, 0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_2
-	person_event SPRITE_BOULDER, 9, 8, $19, 0, 0, -1, -1, 0, 0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_3
-	person_event SPRITE_BOULDER, 7, 17, $19, 0, 0, -1, -1, 0, 0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_4
-	person_event SPRITE_POKE_BALL, 35, 5, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e50d, EVENT_ICE_PATH_B1F_IRON
+	person_event SPRITE_BOULDER, 7, 11, SPRITEMOVEFN_19, 0, 0, -1, -1, 0, 0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_1
+	person_event SPRITE_BOULDER, 8, 7, SPRITEMOVEFN_19, 0, 0, -1, -1, 0, 0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_2
+	person_event SPRITE_BOULDER, 9, 8, SPRITEMOVEFN_19, 0, 0, -1, -1, 0, 0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_3
+	person_event SPRITE_BOULDER, 7, 17, SPRITEMOVEFN_19, 0, 0, -1, -1, 0, 0, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_4
+	person_event SPRITE_POKE_BALL, 35, 5, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e50d, EVENT_ICE_PATH_B1F_IRON

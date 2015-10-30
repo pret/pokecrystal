@@ -301,11 +301,11 @@ VioletCity_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_FISHER, 16, 13, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FisherScript_0x1a83bb, EVENT_VIOLET_CITY_EARL
-	person_event SPRITE_LASS, 28, 28, $2, 2, 2, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x1a8403, -1
-	person_event SPRITE_SUPER_NERD, 14, 24, $2, 2, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SuperNerdScript_0x1a8406, -1
-	person_event SPRITE_GRAMPS, 20, 17, $5, 0, 1, -1, -1, 0, 0, 0, GrampsScript_0x1a8409, -1
-	person_event SPRITE_YOUNGSTER, 18, 5, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x1a840c, -1
-	person_event SPRITE_FRUIT_TREE, 29, 14, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a8425, -1
-	person_event SPRITE_POKE_BALL, 1, 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a8421, EVENT_VIOLET_CITY_PP_UP
-	person_event SPRITE_POKE_BALL, 5, 35, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a8423, EVENT_VIOLET_CITY_RARE_CANDY
+	person_event SPRITE_FISHER, 16, 13, SPRITEMOVEFN_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FisherScript_0x1a83bb, EVENT_VIOLET_CITY_EARL
+	person_event SPRITE_LASS, 28, 28, SPRITEMOVEFN_02, 2, 2, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x1a8403, -1
+	person_event SPRITE_SUPER_NERD, 14, 24, SPRITEMOVEFN_02, 2, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SuperNerdScript_0x1a8406, -1
+	person_event SPRITE_GRAMPS, 20, 17, SPRITEMOVEFN_05, 0, 1, -1, -1, 0, 0, 0, GrampsScript_0x1a8409, -1
+	person_event SPRITE_YOUNGSTER, 18, 5, SPRITEMOVEFN_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x1a840c, -1
+	person_event SPRITE_FRUIT_TREE, 29, 14, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a8425, -1
+	person_event SPRITE_POKE_BALL, 1, 4, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a8421, EVENT_VIOLET_CITY_PP_UP
+	person_event SPRITE_POKE_BALL, 5, 35, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a8423, EVENT_VIOLET_CITY_RARE_CANDY

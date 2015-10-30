@@ -3,8 +3,8 @@ RuinsofAlphKabutoChamber_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x5872b, $0000
-	dw UnknownScript_0x58736, $0000
+	dw UnknownScript_0x5872b, NONE
+	dw UnknownScript_0x58736, NONE
 
 .MapCallbacks:
 	db 1
@@ -284,5 +284,5 @@ RuinsofAlphKabutoChamber_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_RECEPTIONIST, 5, 5, $6, 0, 0, -1, -1, 0, 0, 0, ReceptionistScript_0x58769, EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
-	person_event SPRITE_SCIENTIST, 1, 3, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ScientistScript_0x587a8, -1
+	person_event SPRITE_RECEPTIONIST, 5, 5, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, ReceptionistScript_0x58769, EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
+	person_event SPRITE_SCIENTIST, 1, 3, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ScientistScript_0x587a8, -1

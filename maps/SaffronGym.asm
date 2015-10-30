@@ -13,7 +13,7 @@ SabrinaScript_0x189c2e:
 	writetext UnknownText_0x189cdf
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x189df4, $0000
+	winlosstext UnknownText_0x189df4, NONE
 	loadtrainer SABRINA, 1
 	startbattle
 	returnafterbattle
@@ -39,7 +39,7 @@ SabrinaScript_0x189c2e:
 	end
 
 TrainerMediumRebecca:
-	trainer EVENT_BEAT_MEDIUM_REBECCA, MEDIUM, REBECCA, MediumRebeccaSeenText, MediumRebeccaBeatenText, $0000, MediumRebeccaScript
+	trainer EVENT_BEAT_MEDIUM_REBECCA, MEDIUM, REBECCA, MediumRebeccaSeenText, MediumRebeccaBeatenText, NONE, MediumRebeccaScript
 
 MediumRebeccaScript:
 	talkaftercancel
@@ -50,7 +50,7 @@ MediumRebeccaScript:
 	end
 
 TrainerPsychicFranklin:
-	trainer EVENT_BEAT_PSYCHIC_FRANKLIN, PSYCHIC_T, FRANKLIN, PsychicFranklinSeenText, PsychicFranklinBeatenText, $0000, PsychicFranklinScript
+	trainer EVENT_BEAT_PSYCHIC_FRANKLIN, PSYCHIC_T, FRANKLIN, PsychicFranklinSeenText, PsychicFranklinBeatenText, NONE, PsychicFranklinScript
 
 PsychicFranklinScript:
 	talkaftercancel
@@ -61,7 +61,7 @@ PsychicFranklinScript:
 	end
 
 TrainerMediumDoris:
-	trainer EVENT_BEAT_MEDIUM_DORIS, MEDIUM, DORIS, MediumDorisSeenText, MediumDorisBeatenText, $0000, MediumDorisScript
+	trainer EVENT_BEAT_MEDIUM_DORIS, MEDIUM, DORIS, MediumDorisSeenText, MediumDorisBeatenText, NONE, MediumDorisScript
 
 MediumDorisScript:
 	talkaftercancel
@@ -72,7 +72,7 @@ MediumDorisScript:
 	end
 
 TrainerPsychicJared:
-	trainer EVENT_BEAT_PSYCHIC_JARED, PSYCHIC_T, JARED, PsychicJaredSeenText, PsychicJaredBeatenText, $0000, PsychicJaredScript
+	trainer EVENT_BEAT_PSYCHIC_JARED, PSYCHIC_T, JARED, PsychicJaredSeenText, PsychicJaredBeatenText, NONE, PsychicJaredScript
 
 PsychicJaredScript:
 	talkaftercancel
@@ -330,9 +330,9 @@ SaffronGym_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_SABRINA, 8, 9, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SabrinaScript_0x189c2e, -1
-	person_event SPRITE_GRANNY, 16, 17, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerMediumRebecca, -1
-	person_event SPRITE_YOUNGSTER, 16, 3, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPsychicFranklin, -1
-	person_event SPRITE_GRANNY, 4, 3, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerMediumDoris, -1
-	person_event SPRITE_YOUNGSTER, 4, 17, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPsychicJared, -1
-	person_event SPRITE_GYM_GUY, 14, 9, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SaffronGymGuyScript, -1
+	person_event SPRITE_SABRINA, 8, 9, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SabrinaScript_0x189c2e, -1
+	person_event SPRITE_GRANNY, 16, 17, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerMediumRebecca, -1
+	person_event SPRITE_YOUNGSTER, 16, 3, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPsychicFranklin, -1
+	person_event SPRITE_GRANNY, 4, 3, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerMediumDoris, -1
+	person_event SPRITE_YOUNGSTER, 4, 17, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPsychicJared, -1
+	person_event SPRITE_GYM_GUY, 14, 9, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SaffronGymGuyScript, -1

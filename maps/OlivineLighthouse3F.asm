@@ -6,7 +6,7 @@ OlivineLighthouse3F_MapScriptHeader:
 	db 0
 
 TrainerBird_keeperTheo:
-	trainer EVENT_BEAT_BIRD_KEEPER_THEO, BIRD_KEEPER, THEO, Bird_keeperTheoSeenText, Bird_keeperTheoBeatenText, $0000, Bird_keeperTheoScript
+	trainer EVENT_BEAT_BIRD_KEEPER_THEO, BIRD_KEEPER, THEO, Bird_keeperTheoSeenText, Bird_keeperTheoBeatenText, NONE, Bird_keeperTheoScript
 
 Bird_keeperTheoScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ Bird_keeperTheoScript:
 	end
 
 TrainerGentlemanPreston:
-	trainer EVENT_BEAT_GENTLEMAN_PRESTON, GENTLEMAN, PRESTON, GentlemanPrestonSeenText, GentlemanPrestonBeatenText, $0000, GentlemanPrestonScript
+	trainer EVENT_BEAT_GENTLEMAN_PRESTON, GENTLEMAN, PRESTON, GentlemanPrestonSeenText, GentlemanPrestonBeatenText, NONE, GentlemanPrestonScript
 
 GentlemanPrestonScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ GentlemanPrestonScript:
 	end
 
 TrainerSailorTerrell:
-	trainer EVENT_BEAT_SAILOR_TERRELL, SAILOR, TERRELL, SailorTerrellSeenText, SailorTerrellBeatenText, $0000, SailorTerrellScript
+	trainer EVENT_BEAT_SAILOR_TERRELL, SAILOR, TERRELL, SailorTerrellSeenText, SailorTerrellBeatenText, NONE, SailorTerrellScript
 
 SailorTerrellScript:
 	talkaftercancel
@@ -130,7 +130,7 @@ OlivineLighthouse3F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_SAILOR, 2, 9, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSailorTerrell, -1
-	person_event SPRITE_GENTLEMAN, 5, 13, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerGentlemanPreston, -1
-	person_event SPRITE_YOUNGSTER, 9, 3, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperTheo, -1
-	person_event SPRITE_POKE_BALL, 2, 8, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5b279, EVENT_OLIVINE_LIGHTHOUSE_3F_ETHER
+	person_event SPRITE_SAILOR, 2, 9, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSailorTerrell, -1
+	person_event SPRITE_GENTLEMAN, 5, 13, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerGentlemanPreston, -1
+	person_event SPRITE_YOUNGSTER, 9, 3, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperTheo, -1
+	person_event SPRITE_POKE_BALL, 2, 8, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5b279, EVENT_OLIVINE_LIGHTHOUSE_3F_ETHER
