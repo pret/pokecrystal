@@ -1,7 +1,7 @@
 BattleText_0x80730: ; 0x80730
 	text "<PLAYER> picked up"
 	line "¥@"
-	deciram wPayDayMoney, $36
+	deciram wPayDayMoney, 3, 6
 	text "!"
 	prompt
 ; 0x80746
@@ -99,7 +99,7 @@ SandstormHitsText: ; 0x8084d
 PerishCountText: ; 0x80864
 	text "<USER>'s"
 	line "PERISH count is @"
-	deciram wd265, $11
+	deciram wd265, 1, 1
 	text "!"
 	prompt
 ; 0x80880
@@ -194,7 +194,7 @@ BattleText_EnemyPkmnFainted: ; 0x809a8
 
 GotMoneyForWinningText:
 	text "<PLAYER> got ¥@"
-	deciram wc686, $36
+	deciram wc686, 3, 6
 	text ""
 	line "for winning!"
 	prompt
@@ -213,7 +213,7 @@ TiedAgainstText: ; 0x809eb
 
 SentSomeToMomText:
 	text "<PLAYER> got ¥@"
-	deciram wc686, $36
+	deciram wc686, 3, 6
 	text ""
 	line "for winning!"
 	cont "Sent some to MOM!"
@@ -394,7 +394,7 @@ BattleText_0x80c9c: ; 0x80c9c
 	text_from_ram StringBuffer1
 	text " grew to"
 	line "level @"
-	deciram CurPartyLevel, $13
+	deciram CurPartyLevel, 1, 3
 	text "!@"
 	sound0
 	db "@"
@@ -778,7 +778,7 @@ SpiteEffectText: ; 0x8117f
 	text_from_ram StringBuffer1
 	text " was"
 	cont "reduced by @"
-	deciram wd265, $11
+	deciram wd265, 1, 1
 	text "!"
 	prompt
 ; 0x811a0
@@ -887,14 +887,14 @@ BlownAwayText: ; 0x812d2
 
 PlayerHitTimesText: ; 0x812e5
 	text "Hit @"
-	deciram PlayerDamageTaken, $11
+	deciram PlayerDamageTaken, 1, 1
 	text " times!"
 	prompt
 ; 0x812f8
 
 EnemyHitTimesText: ; 0x812f8
 	text "Hit @"
-	deciram EnemyDamageTaken, $11
+	deciram EnemyDamageTaken, 1, 1
 	text " times!"
 	prompt
 ; 0x8130b
@@ -1203,7 +1203,7 @@ SafeguardProtectText: ; 0x81733
 
 MagnitudeText: ; 0x81751
 	text "Magnitude @"
-	deciram wd265, $11
+	deciram wd265, 1, 1
 	text "!"
 	prompt
 ; 0x81764

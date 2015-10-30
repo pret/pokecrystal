@@ -21990,7 +21990,7 @@ INCLUDE "tilesets/data_3.asm"
 
 SECTION "bank9", ROMX, BANK[$9]
 
-Unknown_24000:: ; 24000
+StringBufferPointers:: ; 24000
 	dw StringBuffer3
 	dw StringBuffer4
 	dw StringBuffer5

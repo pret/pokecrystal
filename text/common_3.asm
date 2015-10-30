@@ -116,7 +116,7 @@ UnknownText_0x1c02a9: ; 1c02a9
 	text ""
 	line "a boosted"
 	cont "@"
-	deciram StringBuffer2, $24
+	deciram StringBuffer2, 2, 4
 	text " EXP. Points!"
 	prompt
 ; 1c02c9
@@ -124,7 +124,7 @@ UnknownText_0x1c02a9: ; 1c02a9
 UnknownText_0x1c02c9: ; 1c02c9
 	text ""
 	line "@"
-	deciram StringBuffer2, $24
+	deciram StringBuffer2, 2, 4
 	text " EXP. Points!"
 	prompt
 ; 1c02df
@@ -311,7 +311,7 @@ UnknownText_0x1c0531: ; 1c0531
 	text_from_ram wc850
 	text "'s CARD was"
 	line "listed as no.@"
-	deciram wd265, $12
+	deciram wd265, 1, 2
 	text "."
 	prompt
 ; 1c0555
@@ -708,7 +708,7 @@ UnknownText_0x1c0ba5: ; 1c0ba5
 
 UnknownText_0x1c0bbb: ; 1c0bbb
 	text "Throw away @"
-	deciram wd10c, $12
+	deciram wd10c, 1, 2
 	text ""
 	line "@"
 	text_from_ram StringBuffer2
@@ -1056,7 +1056,7 @@ UnknownText_0x1c0fb8: ; 1c0fb8
 ; 1c0fbc
 
 UnknownText_0x1c0fbc: ; 1c0fbc
-	deciram wcf64, $13
+	deciram wcf64, 1, 3
 	text " @"
 	text_from_ram StringBuffer1
 	text ""
@@ -1158,7 +1158,7 @@ ContestJudging_FirstPlaceScoreText: ; 1c113f
 	text ""
 	para "The winning score"
 	line "was @"
-	deciram wd004, $23
+	deciram wd004, 2, 3
 	text " points!"
 	prompt
 ; 1c1166
@@ -1179,7 +1179,7 @@ ContestJudging_SecondPlaceScoreText: ; 1c1196
 	text ""
 	para "The score was"
 	line "@"
-	deciram wd008, $23
+	deciram wd008, 2, 3
 	text " points!"
 	prompt
 ; 1c11b5
@@ -1200,7 +1200,7 @@ ContestJudging_ThirdPlaceScoreText: ; 1c11e4
 	text ""
 	para "The score was"
 	line "@"
-	deciram wd00c, $23
+	deciram wd00c, 2, 3
 	text " points!"
 	prompt
 ; 1c1203
@@ -1293,7 +1293,7 @@ _KrissPCHowManyWithdrawText: ; 1c1381
 
 _KrissPCWithdrewItemsText: ; 1c13a4
 	text "Withdrew @"
-	deciram wd10c, $12
+	deciram wd10c, 1, 2
 	text ""
 	line "@"
 	text_from_ram StringBuffer2
@@ -1320,7 +1320,7 @@ _KrissPCHowManyDepositText: ; 1c13ef
 
 _KrissPCDepositItemsText: ; 1c1411
 	text "Deposited @"
-	deciram wd10c, $12
+	deciram wd10c, 1, 2
 	text ""
 	line "@"
 	text_from_ram StringBuffer2
@@ -1610,7 +1610,7 @@ UnknownText_0x1c1a90: ; 1c1a90
 
 UnknownText_0x1c1aad: ; 1c1aad
 	text "Throw away @"
-	deciram wd10c, $12
+	deciram wd10c, 1, 2
 	text ""
 	line "@"
 	text_from_ram StringBuffer2

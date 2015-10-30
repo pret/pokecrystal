@@ -734,7 +734,7 @@ Text_APkmnLevelExceeds: ; 0x9f1e5
 	text "One or more of"
 	line "your #MON's"
 	cont "levels exceeds @"
-	deciram ScriptVar, $13
+	deciram ScriptVar, 1, 3
 	text "."
 	done
 
@@ -746,7 +746,7 @@ Text_MayNotEnterABattleRoomUnderL70: ; 0x9f217
 
 	para "This BATTLE ROOM"
 	line "is for L@"
-	deciram ScriptVar, $13
+	deciram ScriptVar, 1, 3
 	text "."
 	done
 

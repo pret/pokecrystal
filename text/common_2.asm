@@ -48,7 +48,7 @@ UnknownText_0x1bc0a2: ; 0x1bc0a2
 	text_from_ram StringBuffer1
 	text ""
 	line "recovered @"
-	deciram wd1f3, $23
+	deciram wd1f3, 2, 3
 	text "HP!"
 	done
 ; 0x1bc0bb
@@ -106,7 +106,7 @@ UnknownText_0x1bc14f: ; 0x1bc14f
 	text_from_ram StringBuffer1
 	text " grew to"
 	line "level @"
-	deciram CurPartyLevel, $13
+	deciram CurPartyLevel, 1, 3
 	text "!@"
 	sound0
 	text_waitbutton
@@ -1381,7 +1381,7 @@ Text_BreedingIsNotPossible: ; 0x1bd0bd
 UnknownText_0x1bd0d8: ; 0x1bd0d8
 	text "The compatibility"
 	line "is @"
-	deciram wd265, $13
+	deciram wd265, 1, 3
 	text "."
 	cont "Should they breed?"
 	done
@@ -1402,7 +1402,7 @@ UnknownText_0x1bd11c: ; 0x1bd11c
 UnknownText_0x1bd131: ; 0x1bd131
 	text "Test event"
 	line "@"
-	deciram StringBuffer2, $12
+	deciram StringBuffer2, 1, 2
 	text "?"
 	done
 ; 0x1bd145
@@ -1456,7 +1456,7 @@ UnknownText_0x1bd1dd: ; 0x1bd1dd
 	text_from_ram StringBuffer2
 	text "'s CARD was"
 	line "listed as no.@"
-	deciram StringBuffer1, $12
+	deciram StringBuffer1, 1, 2
 	text "."
 	prompt
 ; 0x1bd201
@@ -2049,13 +2049,13 @@ UnknownText_0x1bdd96: ; 0x1bdd96
 
 	para "By level, it's"
 	line "grown by @"
-	deciram StringBuffer2 + 1, $13
+	deciram StringBuffer2 + 1, 1, 3
 	text "."
 
 	para "If you want your"
 	line "#MON back, it"
 	cont "will cost ¥@"
-	deciram StringBuffer2 + 2, $34
+	deciram StringBuffer2 + 2, 3, 4
 	text "."
 	done
 ; 0x1bde04
