@@ -6,6 +6,9 @@ MD5 := md5sum -c --quiet
 .PHONY: all clean crystal pngs
 .SECONDEXPANSION:
 
+# suppress intermediate file deletion
+.PRECIOUS: %.2bpp
+
 poketools := extras/pokemontools
 gfx       := $(PYTHON) gfx.py
 includes  := $(PYTHON) $(poketools)/scan_includes.py
@@ -78,20 +81,29 @@ pngs:
 	find . -iname "*.[12]bpp" -exec $(gfx) png  {} +
 	find . -iname "*.[12]bpp" -exec touch {} \;
 	find . -iname "*.lz"      -exec touch {} \;
+	touch gfx/pics/*/{normal.pal,bitmask.asm,frames.asm}
 
 init:
 	find . -iname "*.[12]bpp" -exec touch {} \;
 	find . -iname "*.lz"      -exec touch {} \;
+	touch gfx/pics/*/{normal.pal,bitmask.asm,frames.asm}
 
 
-%.2bpp: %.png ; $(gfx) 2bpp $<
-%.1bpp: %.png ; $(gfx) 1bpp $<
-%.lz:   %     ; $(gfx) lz $<
+%.2bpp: %.png
+	$(gfx) 2bpp $<
+%.1bpp: %.png
+	$(gfx) 1bpp $<
+%.lz: %
+	@if cmp -s $< $<.orig; then \
+		cp $@.orig $@; \
+	else \
+		$(gfx) lz $<; \
+	fi
 
-
-%.pal: %.2bpp ;
-gfx/pics/%/normal.pal gfx/pics/%/bitmask.asm gfx/pics/%/frames.asm: gfx/pics/%/front.2bpp ;
+%.pal: %.2bpp
+	@:
+gfx/pics/%/normal.pal gfx/pics/%/bitmask.asm gfx/pics/%/frames.asm: gfx/pics/%/front.2bpp
+	@:
 %.bin: ;
 %.blk: ;
 %.tilemap: ;
-
