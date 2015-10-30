@@ -18,4 +18,3 @@
 .frame5
 	db $03 ; bitmask
 	db $29
-; 0xd4759

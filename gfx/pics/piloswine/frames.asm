@@ -10,4 +10,3 @@
 .frame3
 	db $02 ; bitmask
 	db $38, $39, $3a
-; 0xd921f

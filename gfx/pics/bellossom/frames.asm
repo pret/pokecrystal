@@ -22,4 +22,3 @@
 .frame6
 	db $05 ; bitmask
 	db $46, $47, $48, $49
-; 0xd8af9

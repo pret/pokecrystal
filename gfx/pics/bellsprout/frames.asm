@@ -22,4 +22,3 @@
 .frame6
 	db $04 ; bitmask
 	db $19, $1a
-; 0xd5098

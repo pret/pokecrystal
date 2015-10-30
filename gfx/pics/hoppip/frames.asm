@@ -6,4 +6,3 @@
 .frame2
 	db $01 ; bitmask
 	db $1d, $1f
-; 0xd8bec

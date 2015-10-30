@@ -22,4 +22,3 @@
 .frame6
 	db $04 ; bitmask
 	db $52, $53
-; 0xd4698

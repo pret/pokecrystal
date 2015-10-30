@@ -10,4 +10,3 @@
 .frame3
 	db $02 ; bitmask
 	db $3b, $3c, $3d, $3e, $3f, $40
-; 0xd4a49

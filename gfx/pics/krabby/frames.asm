@@ -26,4 +26,3 @@
 .frame7
 	db $05 ; bitmask
 	db $24, $25
-; 0xd5680

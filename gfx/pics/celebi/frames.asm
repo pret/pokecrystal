@@ -50,4 +50,3 @@
 .frame13
 	db $06 ; bitmask
 	db $21, $22
-; 0xd998b
