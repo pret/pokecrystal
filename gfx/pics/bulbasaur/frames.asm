@@ -18,4 +18,3 @@
 .frame5
 	db $04 ; bitmask
 	db $28, $29, $2a
-; 0xd421e

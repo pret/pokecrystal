@@ -14,4 +14,3 @@
 .frame4
 	db $03 ; bitmask
 	db $22
-; 0xd612c

@@ -30,4 +30,3 @@
 .frame8
 	db $05 ; bitmask
 	db $20, $21, $22
-; 0xd919e

@@ -22,4 +22,3 @@
 .frame6
 	db $05 ; bitmask
 	db $23
-; 0xd45dc
