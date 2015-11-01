@@ -13,7 +13,6 @@ cd ..
 
 git clone --recursive https://github.com/pret/pokecrystal
 cd pokecrystal
-make init
 ```
 
 To build **pokecrystal.gbc**:
@@ -38,7 +37,6 @@ cd ..
 
 git clone --recursive https://github.com/pret/pokecrystal
 cd pokecrystal
-make init
 ```
 
 To build **pokecrystal.gbc**:
@@ -66,7 +64,6 @@ pip install pypng
 
 git clone --recursive https://github.com/pret/pokecrystal
 cd pokecrystal
-make init
 ```
 
 To build **pokecrystal.gbc**:
@@ -91,7 +88,7 @@ mkdir vagrantbox
 cd vagrantbox
 vagrant init pokecrystal
 vagrant up
-vagrant ssh -c "cd /vagrant && git clone --recursive https://github.com/pret/pokecrystal && cd pokecrystal && make init"
+vagrant ssh -c "cd /vagrant && git clone --recursive https://github.com/pret/pokecrystal"
 vagrant ssh
 ```
 

@@ -79,11 +79,6 @@ pngs:
 	find . -iname "*.[12]bpp" -exec touch {} \;
 	find . -iname "*.lz"      -exec touch {} \;
 
-init:
-	find . -iname "*.[12]bpp" -exec touch {} \;
-	find . -iname "*.lz"      -exec touch {} \;
-
-
 %.2bpp: %.png ; $(gfx) 2bpp $<
 %.1bpp: %.png ; $(gfx) 1bpp $<
 %.lz:   %     ; $(gfx) lz $<
