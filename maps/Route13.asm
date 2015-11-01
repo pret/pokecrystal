@@ -204,8 +204,8 @@ Route13_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_YOUNGSTER, 6, 42, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerBird_keeperPerry, -1
-	person_event SPRITE_YOUNGSTER, 6, 43, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerBird_keeperBret, -1
-	person_event SPRITE_POKEFAN_M, 8, 32, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerPokefanmJoshua, -1
-	person_event SPRITE_POKEFAN_M, 10, 14, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerHikerKenny, -1
-	person_event SPRITE_POKEFAN_M, 6, 25, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerPokefanmAlex, -1
+	person_event SPRITE_YOUNGSTER, 6, 42, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerBird_keeperPerry, -1
+	person_event SPRITE_YOUNGSTER, 6, 43, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerBird_keeperBret, -1
+	person_event SPRITE_POKEFAN_M, 8, 32, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerPokefanmJoshua, -1
+	person_event SPRITE_POKEFAN_M, 10, 14, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerHikerKenny, -1
+	person_event SPRITE_POKEFAN_M, 6, 25, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerPokefanmAlex, -1

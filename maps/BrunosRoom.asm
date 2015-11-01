@@ -145,4 +145,4 @@ BrunosRoom_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_BRUNO, 7, 5, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, BrunoScript_0x1809c5, -1
+	person_event SPRITE_BRUNO, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, BrunoScript_0x1809c5, -1

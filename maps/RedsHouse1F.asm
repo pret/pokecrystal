@@ -94,4 +94,4 @@ RedsHouse1F_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_REDS_MOM, 3, 5, SPRITEMOVEFN_08, 0, 0, -1, -1, 0, 0, 0, RedsMom, -1
+	person_event SPRITE_REDS_MOM, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 0, 0, RedsMom, -1

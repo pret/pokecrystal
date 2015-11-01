@@ -313,12 +313,12 @@ CianwoodGym_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_CHUCK, 1, 4, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, ChuckScript_0x9d60f, -1
-	person_event SPRITE_BLACK_BELT, 12, 2, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBlackbeltYoshi, -1
-	person_event SPRITE_BLACK_BELT, 12, 7, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBlackbeltLao, -1
-	person_event SPRITE_BLACK_BELT, 9, 3, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerBlackbeltNob, -1
-	person_event SPRITE_BLACK_BELT, 5, 5, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerBlackbeltLung, -1
-	person_event SPRITE_BOULDER, 1, 5, SPRITEMOVEFN_19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1
-	person_event SPRITE_BOULDER, 7, 3, SPRITEMOVEFN_19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1
-	person_event SPRITE_BOULDER, 7, 4, SPRITEMOVEFN_19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1
-	person_event SPRITE_BOULDER, 7, 5, SPRITEMOVEFN_19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1
+	person_event SPRITE_CHUCK, 1, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, ChuckScript_0x9d60f, -1
+	person_event SPRITE_BLACK_BELT, 12, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBlackbeltYoshi, -1
+	person_event SPRITE_BLACK_BELT, 12, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBlackbeltLao, -1
+	person_event SPRITE_BLACK_BELT, 9, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerBlackbeltNob, -1
+	person_event SPRITE_BLACK_BELT, 5, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerBlackbeltLung, -1
+	person_event SPRITE_BOULDER, 1, 5, SPRITEMOVEDATA_19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1
+	person_event SPRITE_BOULDER, 7, 3, SPRITEMOVEDATA_19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1
+	person_event SPRITE_BOULDER, 7, 4, SPRITEMOVEDATA_19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1
+	person_event SPRITE_BOULDER, 7, 5, SPRITEMOVEDATA_19, 0, 0, -1, -1, 0, 0, 0, CianwoodGymBoulder, -1

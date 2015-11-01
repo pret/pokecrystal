@@ -91,7 +91,7 @@ CeladonMansion1F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_GRANNY, 5, 1, SPRITEMOVEFN_03, 0, 0, -1, -1, 0, 0, 0, CeladonMansionManager, -1
-	person_event SPRITE_GROWLITHE, 6, 2, SPRITEMOVEFN_16, 0, 0, -1, -1, 0, 0, 0, CeladonMansion1FMeowth, -1
-	person_event SPRITE_CLEFAIRY, 4, 3, SPRITEMOVEFN_16, 0, 0, -1, -1, 0, 0, 0, CeladonMansion1FClefairy, -1
-	person_event SPRITE_GROWLITHE, 4, 4, SPRITEMOVEFN_16, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, CeladonMansion1FNidoranF, -1
+	person_event SPRITE_GRANNY, 5, 1, SPRITEMOVEDATA_03, 0, 0, -1, -1, 0, 0, 0, CeladonMansionManager, -1
+	person_event SPRITE_GROWLITHE, 6, 2, SPRITEMOVEDATA_16, 0, 0, -1, -1, 0, 0, 0, CeladonMansion1FMeowth, -1
+	person_event SPRITE_CLEFAIRY, 4, 3, SPRITEMOVEDATA_16, 0, 0, -1, -1, 0, 0, 0, CeladonMansion1FClefairy, -1
+	person_event SPRITE_GROWLITHE, 4, 4, SPRITEMOVEDATA_16, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, CeladonMansion1FNidoranF, -1

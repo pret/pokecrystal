@@ -130,4 +130,4 @@ Route24_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_ROCKET, 7, 8, SPRITEMOVEFN_03, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x1adbfa, EVENT_ROUTE_24_ROCKET
+	person_event SPRITE_ROCKET, 7, 8, SPRITEMOVEDATA_03, 0, 0, -1, -1, 0, 0, 0, RocketScript_0x1adbfa, EVENT_ROUTE_24_ROCKET

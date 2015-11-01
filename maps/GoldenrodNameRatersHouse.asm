@@ -41,4 +41,4 @@ GoldenrodNameRatersHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_GENTLEMAN, 4, 2, SPRITEMOVEFN_06, 0, 2, -1, -1, 0, 0, 0, GentlemanScript_0x5577c, -1
+	person_event SPRITE_GENTLEMAN, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 2, -1, -1, 0, 0, 0, GentlemanScript_0x5577c, -1

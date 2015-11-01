@@ -233,8 +233,8 @@ LavRadioTower1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_RECEPTIONIST, 6, 6, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ReceptionistScript_0x7ee63, -1
-	person_event SPRITE_OFFICER, 1, 15, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OfficerScript_0x7ee66, -1
-	person_event SPRITE_SUPER_NERD, 3, 1, SPRITEMOVEFN_02, 1, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SuperNerdScript_0x7ee69, -1
-	person_event SPRITE_GENTLEMAN, 1, 9, SPRITEMOVEFN_07, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x7ee6c, -1
-	person_event SPRITE_SUPER_NERD, 6, 14, SPRITEMOVEFN_09, 0, 0, -1, -1, 0, 0, 0, SuperNerdScript_0x7eea2, -1
+	person_event SPRITE_RECEPTIONIST, 6, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ReceptionistScript_0x7ee63, -1
+	person_event SPRITE_OFFICER, 1, 15, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OfficerScript_0x7ee66, -1
+	person_event SPRITE_SUPER_NERD, 3, 1, SPRITEMOVEDATA_02, 1, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SuperNerdScript_0x7ee69, -1
+	person_event SPRITE_GENTLEMAN, 1, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x7ee6c, -1
+	person_event SPRITE_SUPER_NERD, 6, 14, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, SuperNerdScript_0x7eea2, -1

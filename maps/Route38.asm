@@ -482,10 +482,10 @@ Route38_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_STANDING_YOUNGSTER, 1, 4, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSchoolboyChad1, -1
-	person_event SPRITE_LASS, 3, 15, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerLassDana1, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 15, 12, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBird_keeperToby, -1
-	person_event SPRITE_BUENA, 9, 19, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBeautyValerie, -1
-	person_event SPRITE_SAILOR, 5, 24, SPRITEMOVEFN_1E, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerSailorHarry, -1
-	person_event SPRITE_FRUIT_TREE, 10, 12, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a1f33, -1
-	person_event SPRITE_BUENA, 8, 5, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBeautyOlivia, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 1, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSchoolboyChad1, -1
+	person_event SPRITE_LASS, 3, 15, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerLassDana1, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 15, 12, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBird_keeperToby, -1
+	person_event SPRITE_BUENA, 9, 19, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBeautyValerie, -1
+	person_event SPRITE_SAILOR, 5, 24, SPRITEMOVEDATA_1E, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerSailorHarry, -1
+	person_event SPRITE_FRUIT_TREE, 10, 12, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a1f33, -1
+	person_event SPRITE_BUENA, 8, 5, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBeautyOlivia, -1

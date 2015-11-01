@@ -73,5 +73,5 @@ SlowpokeWellB2F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_GYM_GUY, 4, 5, SPRITEMOVEFN_02, 2, 1, -1, -1, 0, 0, 1, GymGuyScript_0x5ad0b, -1
-	person_event SPRITE_POKE_BALL, 5, 15, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5ad28, EVENT_SLOWPOKE_WELL_B2F_TM_RAIN_DANCE
+	person_event SPRITE_GYM_GUY, 4, 5, SPRITEMOVEDATA_02, 2, 1, -1, -1, 0, 0, 1, GymGuyScript_0x5ad0b, -1
+	person_event SPRITE_POKE_BALL, 5, 15, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5ad28, EVENT_SLOWPOKE_WELL_B2F_TM_RAIN_DANCE

@@ -261,9 +261,9 @@ Route46_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_POKEFAN_M, 19, 12, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerHikerBailey, -1
-	person_event SPRITE_YOUNGSTER, 14, 4, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerCamperTed, -1
-	person_event SPRITE_LASS, 13, 2, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerPicnickerErin1, -1
-	person_event SPRITE_FRUIT_TREE, 5, 7, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a978f, -1
-	person_event SPRITE_FRUIT_TREE, 6, 8, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a9791, -1
-	person_event SPRITE_POKE_BALL, 15, 1, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a978d, EVENT_ROUTE_46_X_SPEED
+	person_event SPRITE_POKEFAN_M, 19, 12, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerHikerBailey, -1
+	person_event SPRITE_YOUNGSTER, 14, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerCamperTed, -1
+	person_event SPRITE_LASS, 13, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerPicnickerErin1, -1
+	person_event SPRITE_FRUIT_TREE, 5, 7, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a978f, -1
+	person_event SPRITE_FRUIT_TREE, 6, 8, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a9791, -1
+	person_event SPRITE_POKE_BALL, 15, 1, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a978d, EVENT_ROUTE_46_X_SPEED

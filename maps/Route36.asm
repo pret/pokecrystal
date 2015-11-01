@@ -679,12 +679,12 @@ Route36_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_YOUNGSTER, 13, 20, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPsychicMark, -1
-	person_event SPRITE_YOUNGSTER, 14, 31, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerSchoolboyAlan1, -1
-	person_event SPRITE_WEIRD_TREE, 9, 35, SPRITEMOVEFN_17, 0, 0, -1, -1, 0, 0, 0, WeirdTreeScript_0x19403c, EVENT_ROUTE_36_SUDOWOODO
-	person_event SPRITE_LASS, 8, 51, SPRITEMOVEFN_05, 0, 2, -1, -1, 0, 0, 0, LassScript_0x1940e0, -1
-	person_event SPRITE_FISHER, 9, 44, SPRITEMOVEFN_08, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x1940b9, -1
-	person_event SPRITE_FRUIT_TREE, 4, 21, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x194247, -1
-	person_event SPRITE_YOUNGSTER, 6, 46, SPRITEMOVEFN_02, 1, 1, -1, -1, 0, 0, 0, ArthurScript, EVENT_ROUTE_36_ARTHUR_OF_THURSDAY
-	person_event SPRITE_LASS, 12, 33, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, LassScript_0x19408c, EVENT_FLORIA_AT_SUDOWOODO
-	person_event SPRITE_SUICUNE, 6, 21, SPRITEMOVEFN_01, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_36
+	person_event SPRITE_YOUNGSTER, 13, 20, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPsychicMark, -1
+	person_event SPRITE_YOUNGSTER, 14, 31, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerSchoolboyAlan1, -1
+	person_event SPRITE_WEIRD_TREE, 9, 35, SPRITEMOVEDATA_17, 0, 0, -1, -1, 0, 0, 0, WeirdTreeScript_0x19403c, EVENT_ROUTE_36_SUDOWOODO
+	person_event SPRITE_LASS, 8, 51, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, 0, 0, LassScript_0x1940e0, -1
+	person_event SPRITE_FISHER, 9, 44, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x1940b9, -1
+	person_event SPRITE_FRUIT_TREE, 4, 21, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x194247, -1
+	person_event SPRITE_YOUNGSTER, 6, 46, SPRITEMOVEDATA_02, 1, 1, -1, -1, 0, 0, 0, ArthurScript, EVENT_ROUTE_36_ARTHUR_OF_THURSDAY
+	person_event SPRITE_LASS, 12, 33, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, LassScript_0x19408c, EVENT_FLORIA_AT_SUDOWOODO
+	person_event SPRITE_SUICUNE, 6, 21, SPRITEMOVEDATA_01, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_36

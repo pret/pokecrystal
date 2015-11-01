@@ -516,11 +516,11 @@ Route43_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_SUPER_NERD, 5, 13, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPokemaniacBen, -1
-	person_event SPRITE_SUPER_NERD, 20, 13, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPokemaniacBrent1, -1
-	person_event SPRITE_SUPER_NERD, 7, 14, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPokemaniacRon, -1
-	person_event SPRITE_FISHER, 16, 4, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 4, TrainerFisherMarvin, -1
-	person_event SPRITE_LASS, 25, 9, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerPicnickerTiffany3, -1
-	person_event SPRITE_YOUNGSTER, 40, 13, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerCamperSpencer, -1
-	person_event SPRITE_FRUIT_TREE, 26, 1, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x19d266, -1
-	person_event SPRITE_POKE_BALL, 32, 12, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19d268, EVENT_ROUTE_43_MAX_ETHER
+	person_event SPRITE_SUPER_NERD, 5, 13, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPokemaniacBen, -1
+	person_event SPRITE_SUPER_NERD, 20, 13, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPokemaniacBrent1, -1
+	person_event SPRITE_SUPER_NERD, 7, 14, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPokemaniacRon, -1
+	person_event SPRITE_FISHER, 16, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 4, TrainerFisherMarvin, -1
+	person_event SPRITE_LASS, 25, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerPicnickerTiffany3, -1
+	person_event SPRITE_YOUNGSTER, 40, 13, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerCamperSpencer, -1
+	person_event SPRITE_FRUIT_TREE, 26, 1, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x19d266, -1
+	person_event SPRITE_POKE_BALL, 32, 12, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19d268, EVENT_ROUTE_43_MAX_ETHER

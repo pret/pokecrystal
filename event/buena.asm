@@ -77,7 +77,7 @@ SpecialBuenaPrize: ; 8afd4
 
 .asm_8afeb
 	ld hl, UnknownText_0x8b072
-	call Function105a
+	call BuenaPrintText
 
 .asm_8aff1
 	call DelayFrame
@@ -91,7 +91,7 @@ SpecialBuenaPrize: ; 8afd4
 	ld [wd265], a
 	call GetItemName
 	ld hl, UnknownText_0x8b077
-	call Function105a
+	call BuenaPrintText
 	call YesNoBox
 	jr c, .asm_8afeb
 
@@ -135,7 +135,7 @@ SpecialBuenaPrize: ; 8afd4
 	ld hl, UnknownText_0x8b07c
 
 .asm_8b05a
-	call Function105a
+	call BuenaPrintText
 	jr .asm_8afeb
 
 .asm_8b05f

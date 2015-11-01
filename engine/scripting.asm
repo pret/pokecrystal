@@ -1417,7 +1417,7 @@ Script_showemote: ; 0x97396
 ; 0x973b6
 
 ShowEmoteScript: ; 973b6
-	loademote -1
+	loademote EMOTE_MEM
 	applymovement2 .Show
 	pause 0
 	applymovement2 .Hide

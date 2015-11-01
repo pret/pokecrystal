@@ -75,6 +75,6 @@ CianwoodLugiaSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_TEACHER, 4, 2, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, TeacherScript_0x9e1b0, -1
-	person_event SPRITE_LASS, 5, 6, SPRITEMOVEFN_05, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x9e1b3, -1
-	person_event SPRITE_TWIN, 2, 0, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, TwinScript_0x9e1b6, -1
+	person_event SPRITE_TEACHER, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, TeacherScript_0x9e1b0, -1
+	person_event SPRITE_LASS, 5, 6, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x9e1b3, -1
+	person_event SPRITE_TWIN, 2, 0, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, TwinScript_0x9e1b6, -1

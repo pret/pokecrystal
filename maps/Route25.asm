@@ -16,7 +16,7 @@ UnknownScript_0x19ee9f:
 	end
 
 UnknownScript_0x19eea0:
-	showemote $4, $2, 15
+	showemote EMOTE_HEART, $2, 15
 	pause 30
 	showemote EMOTE_SHOCK, $3, 10
 	spriteface $2, DOWN
@@ -42,7 +42,7 @@ UnknownScript_0x19eea0:
 	end
 
 UnknownScript_0x19eee0:
-	showemote $4, $2, 15
+	showemote EMOTE_HEART, $2, 15
 	pause 30
 	showemote EMOTE_SHOCK, $3, 10
 	spriteface $2, DOWN
@@ -439,14 +439,14 @@ Route25_MapEventHeader:
 
 .PersonEvents:
 	db 11
-	person_event SPRITE_MISTY, 9, 46, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
-	person_event SPRITE_COOLTRAINER_M, 10, 46, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
-	person_event SPRITE_YOUNGSTER, 8, 12, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSchoolboyDudley, -1
-	person_event SPRITE_LASS, 11, 16, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerLassEllen, -1
-	person_event SPRITE_YOUNGSTER, 8, 21, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSchoolboyJoe, -1
-	person_event SPRITE_LASS, 6, 22, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerLassLaura, -1
-	person_event SPRITE_YOUNGSTER, 4, 25, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerCamperLloyd, -1
-	person_event SPRITE_LASS, 11, 28, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerLassShannon, -1
-	person_event SPRITE_SUPER_NERD, 7, 31, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerSupernerdPat, -1
-	person_event SPRITE_COOLTRAINER_M, 8, 37, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerMScript_0x19efac, -1
-	person_event SPRITE_POKE_BALL, 4, 32, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19efe3, EVENT_ROUTE_25_PROTEIN
+	person_event SPRITE_MISTY, 9, 46, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
+	person_event SPRITE_COOLTRAINER_M, 10, 46, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
+	person_event SPRITE_YOUNGSTER, 8, 12, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSchoolboyDudley, -1
+	person_event SPRITE_LASS, 11, 16, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerLassEllen, -1
+	person_event SPRITE_YOUNGSTER, 8, 21, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSchoolboyJoe, -1
+	person_event SPRITE_LASS, 6, 22, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerLassLaura, -1
+	person_event SPRITE_YOUNGSTER, 4, 25, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerCamperLloyd, -1
+	person_event SPRITE_LASS, 11, 28, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerLassShannon, -1
+	person_event SPRITE_SUPER_NERD, 7, 31, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerSupernerdPat, -1
+	person_event SPRITE_COOLTRAINER_M, 8, 37, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerMScript_0x19efac, -1
+	person_event SPRITE_POKE_BALL, 4, 32, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19efe3, EVENT_ROUTE_25_PROTEIN

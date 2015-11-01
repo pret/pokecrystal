@@ -35,4 +35,4 @@ MoveDeletersHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_SUPER_NERD, 3, 2, SPRITEMOVEFN_06, 0, 0, -1, -1, 0, 0, 0, MoveDeleter, -1
+	person_event SPRITE_SUPER_NERD, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, MoveDeleter, -1

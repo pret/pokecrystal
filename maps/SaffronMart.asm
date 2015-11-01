@@ -49,6 +49,6 @@ SaffronMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 3, 1, SPRITEMOVEFN_09, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x18a3bf, -1
-	person_event SPRITE_COOLTRAINER_M, 2, 7, SPRITEMOVEFN_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, CooltrainerMScript_0x18a3c6, -1
-	person_event SPRITE_COOLTRAINER_F, 6, 7, SPRITEMOVEFN_05, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x18a3c9, -1
+	person_event SPRITE_CLERK, 3, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x18a3bf, -1
+	person_event SPRITE_COOLTRAINER_M, 2, 7, SPRITEMOVEDATA_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, CooltrainerMScript_0x18a3c6, -1
+	person_event SPRITE_COOLTRAINER_F, 6, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x18a3c9, -1

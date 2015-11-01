@@ -330,9 +330,9 @@ SaffronGym_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_SABRINA, 8, 9, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SabrinaScript_0x189c2e, -1
-	person_event SPRITE_GRANNY, 16, 17, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerMediumRebecca, -1
-	person_event SPRITE_YOUNGSTER, 16, 3, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPsychicFranklin, -1
-	person_event SPRITE_GRANNY, 4, 3, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerMediumDoris, -1
-	person_event SPRITE_YOUNGSTER, 4, 17, SPRITEMOVEFN_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPsychicJared, -1
-	person_event SPRITE_GYM_GUY, 14, 9, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SaffronGymGuyScript, -1
+	person_event SPRITE_SABRINA, 8, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SabrinaScript_0x189c2e, -1
+	person_event SPRITE_GRANNY, 16, 17, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerMediumRebecca, -1
+	person_event SPRITE_YOUNGSTER, 16, 3, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPsychicFranklin, -1
+	person_event SPRITE_GRANNY, 4, 3, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerMediumDoris, -1
+	person_event SPRITE_YOUNGSTER, 4, 17, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPsychicJared, -1
+	person_event SPRITE_GYM_GUY, 14, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SaffronGymGuyScript, -1

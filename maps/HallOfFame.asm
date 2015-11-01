@@ -126,4 +126,4 @@ HallOfFame_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_LANCE, 12, 4, SPRITEMOVEFN_07, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
+	person_event SPRITE_LANCE, 12, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1

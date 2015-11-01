@@ -43,11 +43,11 @@ DarkCaveVioletEntrance_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_POKE_BALL, 8, 6, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c68e, EVENT_DARK_CAVE_VIOLET_ENTRANCE_POTION
-	person_event SPRITE_ROCK, 14, 16, SPRITEMOVEFN_18, 0, 0, -1, -1, 0, 0, 0, DarkCaveVioletEntranceRock, -1
-	person_event SPRITE_ROCK, 6, 27, SPRITEMOVEFN_18, 0, 0, -1, -1, 0, 0, 0, DarkCaveVioletEntranceRock, -1
-	person_event SPRITE_ROCK, 14, 7, SPRITEMOVEFN_18, 0, 0, -1, -1, 0, 0, 0, DarkCaveVioletEntranceRock, -1
-	person_event SPRITE_ROCK, 31, 36, SPRITEMOVEFN_18, 0, 0, -1, -1, 0, 0, 0, DarkCaveVioletEntranceRock, -1
-	person_event SPRITE_POKE_BALL, 22, 36, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c690, EVENT_DARK_CAVE_VIOLET_ENTRANCE_FULL_HEAL
-	person_event SPRITE_POKE_BALL, 9, 35, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c692, EVENT_DARK_CAVE_VIOLET_ENTRANCE_HYPER_POTION
-	person_event SPRITE_POKE_BALL, 28, 30, SPRITEMOVEFN_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c694, EVENT_DARK_CAVE_VIOLET_ENTRANCE_DIRE_HIT
+	person_event SPRITE_POKE_BALL, 8, 6, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c68e, EVENT_DARK_CAVE_VIOLET_ENTRANCE_POTION
+	person_event SPRITE_ROCK, 14, 16, SPRITEMOVEDATA_18, 0, 0, -1, -1, 0, 0, 0, DarkCaveVioletEntranceRock, -1
+	person_event SPRITE_ROCK, 6, 27, SPRITEMOVEDATA_18, 0, 0, -1, -1, 0, 0, 0, DarkCaveVioletEntranceRock, -1
+	person_event SPRITE_ROCK, 14, 7, SPRITEMOVEDATA_18, 0, 0, -1, -1, 0, 0, 0, DarkCaveVioletEntranceRock, -1
+	person_event SPRITE_ROCK, 31, 36, SPRITEMOVEDATA_18, 0, 0, -1, -1, 0, 0, 0, DarkCaveVioletEntranceRock, -1
+	person_event SPRITE_POKE_BALL, 22, 36, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c690, EVENT_DARK_CAVE_VIOLET_ENTRANCE_FULL_HEAL
+	person_event SPRITE_POKE_BALL, 9, 35, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c692, EVENT_DARK_CAVE_VIOLET_ENTRANCE_HYPER_POTION
+	person_event SPRITE_POKE_BALL, 28, 30, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c694, EVENT_DARK_CAVE_VIOLET_ENTRANCE_DIRE_HIT

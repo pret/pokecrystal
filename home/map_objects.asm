@@ -453,7 +453,10 @@ Function19e9:: ; 19e9
 
 
 
-Function1a13:: ; 1a13
+FindFirstEmptyObjectStruct:: ; 1a13
+; Returns the index of the first empty object struct in A and its address in HL, then sets carry.
+; If all object structs are occupied, A = 0 and Z is set.
+; Preserves BC and DE.
 	push bc
 	push de
 	ld hl, ObjectStructs
@@ -462,15 +465,15 @@ Function1a13:: ; 1a13
 .loop
 	ld a, [hl]
 	and a
-	jr z, .empty
+	jr z, .break
 	add hl, de
 	dec c
 	jr nz, .loop
 	xor a
 	jr .done
 
-.empty
-	ld a, $d
+.break
+	ld a, NUM_OBJECT_STRUCTS
 	sub c
 	scf
 
@@ -547,7 +550,7 @@ Function1a71:: ; 1a71
 	push de
 	ld e, a
 	ld d, 0
-	ld hl, ObjectStruct3_Data + 1
+	ld hl, ObjectStruct3_Data + 1 ; facing?
 rept OBJECT_STRUCT_3_DATA_WIDTH
 	add hl, de
 endr

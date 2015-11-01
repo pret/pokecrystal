@@ -1402,8 +1402,9 @@ endr
 	; If bit 2 of [wcf65] is set, get the second dw; else, get the first dw
 	ld a, [wcf65]
 	and %00000100
+rept 2
 	srl a
-	srl a
+endr
 	ld e, a
 	ld d, 0
 rept 2
@@ -3235,7 +3236,7 @@ PlayerObjectTemplate: ; 8071
 ; A dummy map object used to initialize the player object.
 ; Shorter than the actual amount copied by two bytes.
 ; Said bytes seem to be unused.
-	person_event SPRITE_CHRIS, -4, -4, SPRITEMOVEFN_0B, 15, 15, -1, -1, 0, 0, 0, NONE, -1
+	person_event SPRITE_CHRIS, -4, -4, SPRITEMOVEDATA_0B, 15, 15, -1, -1, 0, 0, 0, NONE, -1
 ; 807e
 
 CopyDECoordsToMapObject:: ; 807e
@@ -6268,7 +6269,7 @@ Script_NotEvenANibble2: ; 0xd027
 	writetext UnknownText_0xd0a9
 
 Script_NotEvenANibble_FallThrough: ; 0xd02d
-	loademote $8
+	loademote EMOTE_ROD + DOWN
 	callasm PutTheRodAway
 	loadmovesprites
 	end
@@ -6337,11 +6338,11 @@ Fishing_CheckFacingUp: ; d06c
 
 Script_FishCastRod: ; 0xd07c
 	reloadmappart
-	loadvar $ffd4, $0
+	loadvar hBGMapMode, $0
 	special UpdateTimePals
-	loademote $9
+	loademote EMOTE_ROD + UP
 	callasm Functionb84b3
-	loademote $0
+	loademote EMOTE_SHOCK
 	applymovement PLAYER, MovementData_0xd093
 	pause 40
 	end
@@ -16728,32 +16729,32 @@ GetSpriteLength: ; 14386
 Function1439b: ; 1439b
 	ld hl, UsedSprites
 	ld c, SPRITE_GFX_LIST_CAPACITY
-.asm_143a0
+.loop
 	ld a, [wd13e]
 	res 5, a
 	ld [wd13e], a
 	ld a, [hli]
 	and a
-	jr z, .asm_143c7
+	jr z, .done
 	ld [$ffbd], a
 	ld a, [hli]
 	ld [$ffbe], a
 	bit 7, a
-	jr z, .asm_143bd
+	jr z, .dont_set
 	ld a, [wd13e]
 	set 5, a
 	ld [wd13e], a
 
-.asm_143bd
+.dont_set
 	push bc
 	push hl
 	call Function143c8
 	pop hl
 	pop bc
 	dec c
-	jr nz, .asm_143a0
+	jr nz, .loop
 
-.asm_143c7
+.done
 	ret
 ; 143c8
 
@@ -16800,17 +16801,17 @@ endr
 ; 14406
 
 Function14406: ; 14406
-	and $7f
+	and (VTiles1 - VTiles0) / $10 - 1
 	ld l, a
-	ld h, $0
+	ld h, 0
 rept 4
 	add hl, hl
 endr
 	ld a, l
-	add $0
+	add VTiles0 % $100
 	ld l, a
 	ld a, h
-	adc $80
+	adc VTiles0 / $100
 	ld h, a
 	ret
 ; 14418
@@ -16868,51 +16869,51 @@ EmotesPointers: ; 144d
 ; dw dest address
 
 	dw ShockEmote
-	db $40, BANK(ShockEmote)
+	db 4 * $10, BANK(ShockEmote)
 	dw VTiles1 tile $78
 
 	dw QuestionEmote
-	db $40, BANK(QuestionEmote)
+	db 4 * $10, BANK(QuestionEmote)
 	dw VTiles1 tile $78
 
 	dw HappyEmote
-	db $40, BANK(HappyEmote)
+	db 4 * $10, BANK(HappyEmote)
 	dw VTiles1 tile $78
 
 	dw SadEmote
-	db $40, BANK(SadEmote)
+	db 4 * $10, BANK(SadEmote)
 	dw VTiles1 tile $78
 
 	dw HeartEmote
-	db $40, BANK(HeartEmote)
+	db 4 * $10, BANK(HeartEmote)
 	dw VTiles1 tile $78
 
 	dw BoltEmote
-	db $40, BANK(BoltEmote)
+	db 4 * $10, BANK(BoltEmote)
 	dw VTiles1 tile $78
 
 	dw SleepEmote
-	db $40, BANK(SleepEmote)
+	db 4 * $10, BANK(SleepEmote)
 	dw VTiles1 tile $78
 
 	dw FishEmote
-	db $40, BANK(FishEmote)
+	db 4 * $10, BANK(FishEmote)
 	dw VTiles1 tile $78
 
 	dw FishingRodGFX + $00
-	db $10, BANK(FishingRodGFX)
+	db 1 * $10, BANK(FishingRodGFX)
 	dw VTiles1 tile $7c
 
 	dw FishingRodGFX + $10
-	db $20, BANK(FishingRodGFX)
+	db 2 * $10, BANK(FishingRodGFX)
 	dw VTiles1 tile $7c
 
 	dw FishingRodGFX + $30
-	db $20, BANK(FishingRodGFX)
+	db 2 * $10, BANK(FishingRodGFX)
 	dw VTiles1 tile $7e
 
 	dw FishingRodGFX + $50
-	db $10, BANK(FishingRodGFX)
+	db 1 * $10, BANK(FishingRodGFX)
 	dw VTiles1 tile $7e
 
 ; 14495
@@ -23215,18 +23216,16 @@ Function2471a: ; 2471a
 	ld a, [wcf95]
 	call GetFarByte
 	ld [wd144], a
-; Store [wcf92] + [wd0e4] in c
+; if ([wd144] + 1) < [wcf92] + [wd0e4]: [wd0e4] = max(([wd144] + 1) - [wcf92], 0)
 	ld a, [wcf92]
 	ld c, a
 	ld a, [wd0e4]
 	add c
 	ld c, a
-; If [wd144] > c, skip this next part.
 	ld a, [wd144]
 	inc a
 	cp c
 	jr nc, .skip
-; If [wd144] > [wcf92], store ([wd144] - [wcf92]) in [wd0e4].  Else, store 0 in [wd0e4].
 	ld a, [wcf92]
 	ld c, a
 	ld a, [wd144]
@@ -76007,7 +76006,7 @@ KantoMonSpecials: ; fb656
 INCLUDE "event/name_rater.asm"
 
 
-Functionfb841: ; fb841
+PlaySlowCry: ; fb841
 	ld a, [ScriptVar]
 	call LoadCryHeader
 	jr c, .done

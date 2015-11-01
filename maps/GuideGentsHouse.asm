@@ -43,4 +43,4 @@ GuideGentsHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_GRAMPS, 3, 2, SPRITEMOVEFN_09, 0, 0, -1, -1, 0, 0, 0, GuideGentsHouseGuideGent, EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
+	person_event SPRITE_GRAMPS, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, GuideGentsHouseGuideGent, EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE

@@ -2,44 +2,45 @@
 INCLUDE "engine/facings.asm"
 
 ObjectStruct3_Data:: ; 4273
-	db $00, $00, $01, $02, $00, $00 ; 00
-	db $06, $00, $01, $0c, $00, $00 ; 01
-	db $03, $00, $01, $00, $00, $00 ; 02
-	db $04, $00, $01, $00, $00, $00 ; 03
-	db $01, $00, $01, $00, $00, $00 ; 04
-	db $02, $00, $01, $00, $00, $00 ; 05
-	db $06, $00, $01, $00, $00, $00 ; 06
-	db $06, $01, $01, $00, $00, $00 ; 07
-	db $06, $02, $01, $00, $00, $00 ; 08
-	db $06, $03, $01, $00, $00, $00 ; 09
-	db $05, $00, $01, $00, $00, $00 ; 0a
-	db $07, $00, $01, $02, $00, $00 ; 0b
-	db $08, $00, $01, $00, $00, $00 ; 0c
-	db $09, $00, $01, $00, $00, $00 ; 0d
-	db $0a, $00, $01, $00, $00, $00 ; 0e
-	db $0b, $00, $01, $00, $00, $00 ; 0f
-	db $0c, $00, $01, $00, $00, $00 ; 10
-	db $0d, $00, $01, $00, $00, $00 ; 11
-	db $0e, $00, $01, $00, $00, $00 ; 12
-	db $0f, $00, $01, $02, $00, $00 ; 13
-	db $10, $00, $01, $02, $00, $00 ; 14
-	db $15, $00, $09, $2e, $01, $c0 ; 15
-	db $16, $00, $0a, $2e, $00, $00 ; 16
-	db $06, $00, $01, $0c, $00, $00 ; 17
-	db $06, $00, $01, $2e, $10, $00 ; 18
-	db $11, $00, $01, $2e, $00, $40 ; 19
-	db $12, $00, $01, $02, $00, $00 ; 1a
-	db $13, $00, $00, $8e, $01, $00 ; 1b
-	db $14, $00, $08, $8e, $02, $00 ; 1c
-	db $17, $00, $00, $82, $00, $00 ; 1d
-	db $19, $02, $01, $00, $00, $00 ; 1e
-	db $18, $03, $01, $00, $00, $00 ; 1f
-	db $11, $00, $0c, $2e, $01, $c0 ; 20
-	db $11, $00, $0d, $2e, $01, $c0 ; 21
-	db $1a, $00, $0e, $8e, $01, $00 ; 22
-	db $1b, $00, $0f, $8e, $02, $00 ; 23
-	db $03, $00, $01, $00, $00, $20 ; 24
-	db $00, $00, $01, $00, $00, $00 ; 25
+	; function,         facing, ?, ?, ?, ?
+	db SPRITEMOVEFN_00, DOWN,  $01, $02, $00, $00 ; 00
+	db SPRITEMOVEFN_06, DOWN,  $01, $0c, $00, $00 ; 01
+	db SPRITEMOVEFN_03, DOWN,  $01, $00, $00, $00 ; 02
+	db SPRITEMOVEFN_04, DOWN,  $01, $00, $00, $00 ; 03
+	db SPRITEMOVEFN_01, DOWN,  $01, $00, $00, $00 ; 04
+	db SPRITEMOVEFN_02, DOWN,  $01, $00, $00, $00 ; 05
+	db SPRITEMOVEFN_06, DOWN,  $01, $00, $00, $00 ; 06
+	db SPRITEMOVEFN_06, UP,    $01, $00, $00, $00 ; 07
+	db SPRITEMOVEFN_06, LEFT,  $01, $00, $00, $00 ; 08
+	db SPRITEMOVEFN_06, RIGHT, $01, $00, $00, $00 ; 09
+	db SPRITEMOVEFN_05, DOWN,  $01, $00, $00, $00 ; 0a
+	db SPRITEMOVEFN_07, DOWN,  $01, $02, $00, $00 ; 0b
+	db SPRITEMOVEFN_08, DOWN,  $01, $00, $00, $00 ; 0c
+	db SPRITEMOVEFN_09, DOWN,  $01, $00, $00, $00 ; 0d
+	db SPRITEMOVEFN_0A, DOWN,  $01, $00, $00, $00 ; 0e
+	db SPRITEMOVEFN_0B, DOWN,  $01, $00, $00, $00 ; 0f
+	db SPRITEMOVEFN_0C, DOWN,  $01, $00, $00, $00 ; 10
+	db SPRITEMOVEFN_0D, DOWN,  $01, $00, $00, $00 ; 11
+	db SPRITEMOVEFN_0E, DOWN,  $01, $00, $00, $00 ; 12
+	db SPRITEMOVEFN_0F, DOWN,  $01, $02, $00, $00 ; 13
+	db SPRITEMOVEFN_10, DOWN,  $01, $02, $00, $00 ; 14
+	db SPRITEMOVEFN_15, DOWN,  $09, $2e, $01, $c0 ; 15
+	db SPRITEMOVEFN_16, DOWN,  $0a, $2e, $00, $00 ; 16
+	db SPRITEMOVEFN_06, DOWN,  $01, $0c, $00, $00 ; 17
+	db SPRITEMOVEFN_06, DOWN,  $01, $2e, $10, $00 ; 18
+	db SPRITEMOVEFN_11, DOWN,  $01, $2e, $00, $40 ; 19
+	db SPRITEMOVEFN_12, DOWN,  $01, $02, $00, $00 ; 1a
+	db SPRITEMOVEFN_13, DOWN,  $00, $8e, $01, $00 ; 1b
+	db SPRITEMOVEFN_14, DOWN,  $08, $8e, $02, $00 ; 1c
+	db SPRITEMOVEFN_17, DOWN,  $00, $82, $00, $00 ; 1d
+	db SPRITEMOVEFN_19, LEFT,  $01, $00, $00, $00 ; 1e
+	db SPRITEMOVEFN_18, RIGHT, $01, $00, $00, $00 ; 1f
+	db SPRITEMOVEFN_11, DOWN,  $0c, $2e, $01, $c0 ; 20
+	db SPRITEMOVEFN_11, DOWN,  $0d, $2e, $01, $c0 ; 21
+	db SPRITEMOVEFN_1A, DOWN,  $0e, $8e, $01, $00 ; 22
+	db SPRITEMOVEFN_1B, DOWN,  $0f, $8e, $02, $00 ; 23
+	db SPRITEMOVEFN_03, DOWN,  $01, $00, $00, $20 ; 24
+	db SPRITEMOVEFN_00, DOWN,  $01, $00, $00, $00 ; 25
 ; 4357
 
 
@@ -158,7 +159,7 @@ Function43f3: ; 43f3
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	bit 5, [hl]
-	jr nz, .not_bit5
+	jr nz, .bit5
 	cp 1
 	jr z, .one
 	jr .ok
@@ -168,7 +169,7 @@ Function43f3: ; 43f3
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	bit 5, [hl]
-	jr nz, .not_bit5
+	jr nz, .bit5
 
 .one
 	call Function47dd
@@ -185,7 +186,7 @@ Function43f3: ; 43f3
 	rst JumpTable
 	ret
 
-.not_bit5
+.bit5
 	ret
 ; 4427
 
@@ -2690,7 +2691,7 @@ Function5582: ; 5582
 ; 55ac
 
 Function55ac: ; 55ac
-	call Function1a13
+	call FindFirstEmptyObjectStruct
 	ret nc
 	ld d, h
 	ld e, l
@@ -3312,7 +3313,7 @@ Function5903: ; 5903
 	rrca
 	ld e, a
 	ld d, 0
-	ld hl, .data_591c
+	ld hl, .standing_movefns
 	add hl, de
 	ld a, [hl]
 	ld hl, OBJECT_03
@@ -3323,8 +3324,11 @@ Function5903: ; 5903
 	ld [hl], 0
 	ret
 
-.data_591c
-	db 6, 7, 8, 9
+.standing_movefns
+	db SPRITEMOVEDATA_STANDING_DOWN
+	db SPRITEMOVEDATA_STANDING_UP
+	db SPRITEMOVEDATA_STANDING_LEFT
+	db SPRITEMOVEDATA_STANDING_RIGHT
 ; 5920
 
 RefreshMapAppearDisappear:: ; 5920

@@ -257,12 +257,12 @@ CeladonCity_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_FISHER, 11, 26, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FisherScript_0x1a9f43, -1
-	person_event SPRITE_POLIWAG, 11, 27, SPRITEMOVEFN_16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, CeladonCityPoliwrath, -1
-	person_event SPRITE_TEACHER, 24, 20, SPRITEMOVEFN_05, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, TeacherScript_0x1a9f50, -1
-	person_event SPRITE_GRAMPS, 16, 14, SPRITEMOVEFN_06, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, GrampsScript_0x1a9f53, -1
-	person_event SPRITE_GRAMPS, 31, 8, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GrampsScript_0x1a9f56, -1
-	person_event SPRITE_YOUNGSTER, 13, 18, SPRITEMOVEFN_05, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, YoungsterScript_0x1a9f59, -1
-	person_event SPRITE_YOUNGSTER, 33, 24, SPRITEMOVEFN_07, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x1a9f5c, -1
-	person_event SPRITE_TEACHER, 14, 6, SPRITEMOVEFN_02, 2, 2, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TeacherScript_0x1a9f5f, -1
-	person_event SPRITE_LASS, 22, 7, SPRITEMOVEFN_04, 2, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, LassScript_0x1a9f62, -1
+	person_event SPRITE_FISHER, 11, 26, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FisherScript_0x1a9f43, -1
+	person_event SPRITE_POLIWAG, 11, 27, SPRITEMOVEDATA_16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, CeladonCityPoliwrath, -1
+	person_event SPRITE_TEACHER, 24, 20, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, TeacherScript_0x1a9f50, -1
+	person_event SPRITE_GRAMPS, 16, 14, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, GrampsScript_0x1a9f53, -1
+	person_event SPRITE_GRAMPS, 31, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GrampsScript_0x1a9f56, -1
+	person_event SPRITE_YOUNGSTER, 13, 18, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, YoungsterScript_0x1a9f59, -1
+	person_event SPRITE_YOUNGSTER, 33, 24, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x1a9f5c, -1
+	person_event SPRITE_TEACHER, 14, 6, SPRITEMOVEDATA_02, 2, 2, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TeacherScript_0x1a9f5f, -1
+	person_event SPRITE_LASS, 22, 7, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, LassScript_0x1a9f62, -1

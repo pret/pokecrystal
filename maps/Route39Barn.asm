@@ -9,15 +9,15 @@ TwinScript_0x9cc76:
 	faceplayer
 	loadfont
 	checkevent EVENT_HEALED_MOOMOO
-	iftrue UnknownScript_0x9cc87
-	writetext UnknownText_0x9cd2e
+	iftrue .FeedingMooMoo
+	writetext Text_MoomooIsSick
 	closetext
 	loadmovesprites
 	spriteface $2, RIGHT
 	end
 
-UnknownScript_0x9cc87:
-	writetext UnknownText_0x9cd5a
+.FeedingMooMoo:
+	writetext Text_WereFeedingMoomoo
 	closetext
 	loadmovesprites
 	spriteface $2, RIGHT
@@ -27,15 +27,15 @@ TwinScript_0x9cc90:
 	faceplayer
 	loadfont
 	checkevent EVENT_HEALED_MOOMOO
-	iftrue UnknownScript_0x9cca1
-	writetext UnknownText_0x9cd2e
+	iftrue .FeedingMooMoo
+	writetext Text_MoomooIsSick
 	closetext
 	loadmovesprites
 	spriteface $3, LEFT
 	end
 
-UnknownScript_0x9cca1:
-	writetext UnknownText_0x9cd5a
+.FeedingMooMoo:
+	writetext Text_WereFeedingMoomoo
 	closetext
 	loadmovesprites
 	spriteface $3, LEFT
@@ -44,101 +44,101 @@ UnknownScript_0x9cca1:
 TaurosScript_0x9ccaa:
 	loadfont
 	checkevent EVENT_HEALED_MOOMOO
-	iftrue UnknownScript_0x9cd25
-	writetext UnknownText_0x9cd70
+	iftrue .HappyCow
+	writetext Text_WeakMoo
 	writebyte MILTANK
-	special Functionfb841
+	special PlaySlowCry
 	keeptextopen
-	writetext UnknownText_0x9cd80
+	writetext Text_ItsCryIsWeak
 	checkevent EVENT_TALKED_TO_FARMER_ABOUT_MOOMOO
-	iftrue UnknownScript_0x9ccc6
+	iftrue .GiveBerry
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x9ccc6:
+.GiveBerry:
 	keeptextopen
-	writetext UnknownText_0x9cda2
+	writetext Text_AskGiveBerry
 	yesorno
-	iffalse UnknownScript_0x9cd1f
+	iffalse .Refused
 	checkitem BERRY
-	iffalse UnknownScript_0x9cd19
+	iffalse .NoBerriesInBag
 	takeitem BERRY, 1
 	copybytetovar MooMooBerries
-	addvar $1
+	addvar 1
 	copyvartobyte MooMooBerries
-	if_equal $3, UnknownScript_0x9ccf0
-	if_equal $5, UnknownScript_0x9ccfa
-	if_equal $7, UnknownScript_0x9cd04
-	writetext UnknownText_0x9cdbc
+	if_equal 3, .ThreeBerries
+	if_equal 5, .FiveBerries
+	if_equal 7, .SevenBerries
+	writetext Text_GaveBerry
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x9ccf0:
-	writetext UnknownText_0x9cdbc
+.ThreeBerries:
+	writetext Text_GaveBerry
 	keeptextopen
-	writetext UnknownText_0x9cdd8
+	writetext Text_LittleHealthier
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x9ccfa:
-	writetext UnknownText_0x9cdbc
+.FiveBerries:
+	writetext Text_GaveBerry
 	keeptextopen
-	writetext UnknownText_0x9cdfc
+	writetext Text_QuiteHealthy
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x9cd04:
+.SevenBerries:
 	playmusic MUSIC_HEAL
-	writetext UnknownText_0x9cdbc
+	writetext Text_GaveBerry
 	pause 60
 	keeptextopen
 	special RestartMapMusic
-	writetext UnknownText_0x9ce1b
+	writetext Text_TotallyHealthy
 	closetext
 	loadmovesprites
 	setevent EVENT_HEALED_MOOMOO
 	end
 
-UnknownScript_0x9cd19:
-	writetext UnknownText_0x9ce3c
+.NoBerriesInBag:
+	writetext Text_NoBerries
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x9cd1f:
-	writetext UnknownText_0x9ce4f
+.Refused:
+	writetext Text_RefusedToGiveBerry
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x9cd25:
+.HappyCow:
 	writetext UnknownText_0x9cd92
 	cry MILTANK
 	closetext
 	loadmovesprites
 	end
 
-UnknownText_0x9cd2e:
+Text_MoomooIsSick:
 	text "MOOMOO is sick…"
 
 	para "She needs lots of"
 	line "BERRIES."
 	done
 
-UnknownText_0x9cd5a:
+Text_WereFeedingMoomoo:
 	text "We're feeding"
 	line "MOOMOO!"
 	done
 
-UnknownText_0x9cd70:
+Text_WeakMoo:
 	text "MILTANK: …Moo…"
 	done
 
-UnknownText_0x9cd80:
+Text_ItsCryIsWeak:
 	text "Its cry is weak…"
 	done
 
@@ -146,37 +146,37 @@ UnknownText_0x9cd92:
 	text "MILTANK: Mooo!"
 	done
 
-UnknownText_0x9cda2:
+Text_AskGiveBerry:
 	text "Give a BERRY to"
 	line "MILTANK?"
 	done
 
-UnknownText_0x9cdbc:
+Text_GaveBerry:
 	text "<PLAYER> gave a"
 	line "BERRY to MILTANK."
 	done
 
-UnknownText_0x9cdd8:
+Text_LittleHealthier:
 	text "MILTANK became a"
 	line "little healthier!"
 	done
 
-UnknownText_0x9cdfc:
+Text_QuiteHealthy:
 	text "MILTANK became"
 	line "quite healthy!"
 	done
 
-UnknownText_0x9ce1b:
+Text_TotallyHealthy:
 	text "MILTANK became"
 	line "totally healthy!"
 	done
 
-UnknownText_0x9ce3c:
+Text_NoBerries:
 	text "<PLAYER> has no"
 	line "BERRIES…"
 	done
 
-UnknownText_0x9ce4f:
+Text_RefusedToGiveBerry:
 	text "<PLAYER> wouldn't"
 	line "give a BERRY."
 
@@ -200,6 +200,6 @@ Route39Barn_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_TWIN, 3, 2, SPRITEMOVEFN_09, 0, 0, -1, -1, 0, 0, 0, TwinScript_0x9cc76, -1
-	person_event SPRITE_TWIN, 3, 4, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TwinScript_0x9cc90, -1
-	person_event SPRITE_TAUROS, 3, 3, SPRITEMOVEFN_16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x9ccaa, -1
+	person_event SPRITE_TWIN, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, TwinScript_0x9cc76, -1
+	person_event SPRITE_TWIN, 3, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TwinScript_0x9cc90, -1
+	person_event SPRITE_TAUROS, 3, 3, SPRITEMOVEDATA_16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x9ccaa, -1

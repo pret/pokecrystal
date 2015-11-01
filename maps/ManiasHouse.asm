@@ -212,4 +212,4 @@ ManiasHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_ROCKER, 4, 2, SPRITEMOVEFN_03, 0, 0, -1, -1, 0, 0, 0, ManiaScript, -1
+	person_event SPRITE_ROCKER, 4, 2, SPRITEMOVEDATA_03, 0, 0, -1, -1, 0, 0, 0, ManiaScript, -1

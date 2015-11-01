@@ -90,6 +90,6 @@ OlivineCafe_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_SAILOR, 3, 4, SPRITEMOVEFN_08, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x9c8c1, -1
-	person_event SPRITE_FISHING_GURU, 3, 7, SPRITEMOVEFN_04, 1, 0, -1, -1, 0, 0, 0, FishingGuruScript_0x9c8d9, -1
-	person_event SPRITE_SAILOR, 6, 6, SPRITEMOVEFN_07, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x9c8dc, -1
+	person_event SPRITE_SAILOR, 3, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x9c8c1, -1
+	person_event SPRITE_FISHING_GURU, 3, 7, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, 0, 0, FishingGuruScript_0x9c8d9, -1
+	person_event SPRITE_SAILOR, 6, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x9c8dc, -1

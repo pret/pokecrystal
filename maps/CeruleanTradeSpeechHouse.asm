@@ -64,7 +64,7 @@ CeruleanTradeSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_GRANNY, 4, 2, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GrannyScript_0x188133, -1
-	person_event SPRITE_GRAMPS, 2, 1, SPRITEMOVEFN_02, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, GrampsScript_0x188136, -1
-	person_event SPRITE_RHYDON, 2, 5, SPRITEMOVEFN_16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, RhydonScript_0x188139, -1
-	person_event SPRITE_ZUBAT, 6, 5, SPRITEMOVEFN_16, 0, 0, -1, -1, 0, 0, 0, ZubatScript_0x188143, -1
+	person_event SPRITE_GRANNY, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GrannyScript_0x188133, -1
+	person_event SPRITE_GRAMPS, 2, 1, SPRITEMOVEDATA_02, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, GrampsScript_0x188136, -1
+	person_event SPRITE_RHYDON, 2, 5, SPRITEMOVEDATA_16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, RhydonScript_0x188139, -1
+	person_event SPRITE_ZUBAT, 6, 5, SPRITEMOVEDATA_16, 0, 0, -1, -1, 0, 0, 0, ZubatScript_0x188143, -1

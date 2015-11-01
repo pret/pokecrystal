@@ -38,3 +38,5 @@ const_value SET 1
 	const ANIM_GFX_ANGELS
 	const ANIM_GFX_WAVE
 	const ANIM_GFX_AEROBLAST
+
+TILESIZE EQU $10

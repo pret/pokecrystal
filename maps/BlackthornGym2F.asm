@@ -145,11 +145,11 @@ BlackthornGym2F_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_COOLTRAINER_M, 1, 4, SPRITEMOVEFN_09, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerCooltrainermCody, -1
-	person_event SPRITE_COOLTRAINER_F, 11, 4, SPRITEMOVEFN_08, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerCooltrainerfFran, -1
-	person_event SPRITE_BOULDER, 2, 8, SPRITEMOVEFN_19, 0, 0, -1, -1, 0, 0, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_1
-	person_event SPRITE_BOULDER, 3, 2, SPRITEMOVEFN_19, 0, 0, -1, -1, 0, 0, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_2
-	person_event SPRITE_BOULDER, 16, 6, SPRITEMOVEFN_19, 0, 0, -1, -1, 0, 0, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_3
-	person_event SPRITE_BOULDER, 3, 3, SPRITEMOVEFN_19, 0, 0, -1, -1, 0, 0, 0, BlackthornGymBoulder, -1
-	person_event SPRITE_BOULDER, 1, 6, SPRITEMOVEFN_19, 0, 0, -1, -1, 0, 0, 0, BlackthornGymBoulder, -1
-	person_event SPRITE_BOULDER, 14, 8, SPRITEMOVEFN_19, 0, 0, -1, -1, 0, 0, 0, BlackthornGymBoulder, -1
+	person_event SPRITE_COOLTRAINER_M, 1, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerCooltrainermCody, -1
+	person_event SPRITE_COOLTRAINER_F, 11, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerCooltrainerfFran, -1
+	person_event SPRITE_BOULDER, 2, 8, SPRITEMOVEDATA_19, 0, 0, -1, -1, 0, 0, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_1
+	person_event SPRITE_BOULDER, 3, 2, SPRITEMOVEDATA_19, 0, 0, -1, -1, 0, 0, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_2
+	person_event SPRITE_BOULDER, 16, 6, SPRITEMOVEDATA_19, 0, 0, -1, -1, 0, 0, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_3
+	person_event SPRITE_BOULDER, 3, 3, SPRITEMOVEDATA_19, 0, 0, -1, -1, 0, 0, 0, BlackthornGymBoulder, -1
+	person_event SPRITE_BOULDER, 1, 6, SPRITEMOVEDATA_19, 0, 0, -1, -1, 0, 0, 0, BlackthornGymBoulder, -1
+	person_event SPRITE_BOULDER, 14, 8, SPRITEMOVEDATA_19, 0, 0, -1, -1, 0, 0, 0, BlackthornGymBoulder, -1
