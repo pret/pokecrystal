@@ -108,7 +108,7 @@ SpecialBuenaPrize: ; 8afd4
 	push hl
 	ld [CurItem], a
 	ld a, $1
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
 	call ReceiveItem
 	pop hl

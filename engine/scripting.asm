@@ -608,7 +608,7 @@ Script_verbosegiveitem2: ; 0x96f8e
 	call GetScriptByte
 	call GetVarAction
 	ld a, [de]
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
 	call ReceiveItem
 	ld a, 1
@@ -2344,7 +2344,7 @@ Script_giveitem: ; 0x977ca
 .ok
 	ld [CurItem], a
 	call GetScriptByte
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
 	call ReceiveItem
 	jr nc, .full ; 0x977e3 $6
@@ -2368,7 +2368,7 @@ Script_takeitem: ; 0x977f0
 	call GetScriptByte
 	ld [CurItem], a
 	call GetScriptByte
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	ld a, $ff
 	ld [wd107], a
 	ld hl, NumItems

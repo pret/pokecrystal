@@ -16285,29 +16285,29 @@ Function11b93b: ; 11b93b
 	xor a
 	ld [$a800], a
 	ld hl, $a823
-	ld de, $c608
+	ld de, wEnemyMoveStruct
 	ld bc, $008f
 	call CopyBytes
 	call CloseSRAM
-	ld a, $8
-	ld [BGMapBuffer], a
-	ld a, $c6
+	ld a, wEnemyMoveStruct % $100
+	ld [wcd20], a
+	ld a, wEnemyMoveStruct / $100
 	ld [wcd21], a
-	ld a, $11
-	ld [CreditsTimer], a
-	ld a, $c6
+	ld a, $c611 % $100
+	ld [wcd22], a
+	ld a, $c611 / $100
 	ld [wcd23], a
-	ld a, $41
+	ld a, $c641 % $100
 	ld [wcd24], a
-	ld a, $c6
+	ld a, $c641 / $100
 	ld [wcd25], a
-	ld a, $46
+	ld a, $c646 % $100
 	ld [wcd26], a
-	ld a, $c6
+	ld a, $c646 / $100
 	ld [wcd27], a
-	ld a, $4b
+	ld a, $c64b % $100
 	ld [wcd28], a
-	ld a, $c6
+	ld a, $c64b / $100
 	ld [wcd29], a
 	call Function11b98f
 	callba Function14a58
@@ -16319,17 +16319,17 @@ Function11b98f: ; 11b98f
 	ld a, [hl]
 	ld e, a
 	inc [hl]
-	ld a, [BGMapBuffer]
+	ld a, [wcd20]
 	ld l, a
 	ld a, [wcd21]
 	ld h, a
 	inc hl
 	ld bc, PartySpecies
 	ld d, e
-.asm_11b9a2
+.loop1
 	inc bc
 	dec d
-	jr nz, .asm_11b9a2
+	jr nz, .loop1
 	ld a, e
 	ld [CurPartyMon], a
 	ld a, [hl]
@@ -16341,11 +16341,11 @@ Function11b98f: ; 11b98f
 	ld bc, PartyMon2 - PartyMon1
 	ld a, e
 	ld [wcd2a], a
-.asm_11b9ba
+.loop2
 	add hl, bc
 	dec a
 	and a
-	jr nz, .asm_11b9ba
+	jr nz, .loop2
 	ld e, l
 	ld d, h
 	ld a, [CreditsTimer]
@@ -16355,49 +16355,49 @@ Function11b98f: ; 11b98f
 	ld bc, PartyMon2 - PartyMon1
 	call CopyBytes
 	ld hl, PartyMonOT
-	ld bc, $000b
+	ld bc, NAME_LENGTH
 	ld a, [wcd2a]
-.asm_11b9d8
+.loop3
 	add hl, bc
 	dec a
 	and a
-	jr nz, .asm_11b9d8
+	jr nz, .loop3
 	ld e, l
 	ld d, h
 	ld a, [wcd24]
 	ld l, a
 	ld a, [wcd25]
 	ld h, a
-	ld bc, $000a
+	ld bc, PKMN_NAME_LENGTH - 1
 	call CopyBytes
-	ld a, $50
+	ld a, "@"
 	ld [de], a
 	ld hl, PartyMonNicknames
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	ld a, [wcd2a]
-.asm_11b9f9
+.loop4
 	add hl, bc
 	dec a
 	and a
-	jr nz, .asm_11b9f9
+	jr nz, .loop4
 	ld e, l
 	ld d, h
 	ld a, [wcd26]
 	ld l, a
 	ld a, [wcd27]
 	ld h, a
-	ld bc, $000a
+	ld bc, PKMN_NAME_LENGTH - 1
 	call CopyBytes
-	ld a, $50
+	ld a, "@"
 	ld [de], a
-	ld hl, $a600
-	ld bc, $002f
+	ld hl, s0_a600
+	ld bc, party_struct_length - 1
 	ld a, [wcd2a]
-.asm_11ba1a
+.loop5
 	add hl, bc
 	dec a
 	and a
-	jr nz, .asm_11ba1a
+	jr nz, .loop5
 	ld a, $0
 	call GetSRAMBank
 	ld e, l
@@ -16406,7 +16406,7 @@ Function11b98f: ; 11b98f
 	ld l, a
 	ld a, [wcd29]
 	ld h, a
-	ld bc, $002f
+	ld bc, party_struct_length - 1
 	call CopyBytes
 	call CloseSRAM
 	ret
@@ -23950,7 +23950,7 @@ endr
 	ld a, EGG_TICKET
 	ld [CurItem], a
 	ld a, $1
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	ld a, $ff
 	ld [wd107], a
 	ld hl, NumItems

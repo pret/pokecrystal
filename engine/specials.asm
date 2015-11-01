@@ -333,7 +333,7 @@ Special_GetMysteryGiftItem: ; c309
 	ld a, [sMysteryGiftItem]
 	ld [CurItem], a
 	ld a, $1
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
 	call ReceiveItem
 	jr nc, .asm_c33d

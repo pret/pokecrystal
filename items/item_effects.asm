@@ -720,7 +720,7 @@ endr
 .toss
 	ld hl, NumItems
 	inc a
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	jp TossItem
 
 .used_park_ball
@@ -2944,7 +2944,7 @@ Functionf789: ; f789
 Functionf795: ; f795
 	ld hl, NumItems
 	ld a, 1
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	jp TossItem
 ; f7a0
 

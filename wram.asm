@@ -432,12 +432,16 @@ TileMapEnd::
 
 
 SECTION "Battle", WRAM0
+	party_struct OddEgg
+wOddEggName:: ds PKMN_NAME_LENGTH
+wOddEggOTName:: ds PKMN_NAME_LENGTH
+	ds -70
 
 wMisc::
 wBattle::
+wc608::
 wBT_OTTempCopy:: ; used to copy the data of the BattleTower-Trainer and the 3 Pkmn
 
-wc608::
 wEnemyMoveStruct::  ds MOVE_LENGTH ; c608
 wc60f::
 wPlayerMoveStruct:: ds MOVE_LENGTH ; c60f
@@ -1035,7 +1039,7 @@ OverworldMapEnd::
 SECTION "Video", WRAM0
 CreditsPos::
 BGMapBuffer:: ; cd20
-	ds 1
+wcd20:: ds 1
 wcd21:: ds 1
 wcd22::
 CreditsTimer:: ; cd22
@@ -1557,8 +1561,8 @@ CurPartyMon:: ; d109
 
 wd10a:: ds 1
 wd10b:: ds 1
-wd10c:: ds 1
-wd10d:: ds 1
+wItemQuantityChangeBuffer:: ds 1
+wItemQuantityBuffer:: ds 1
 
 wd10e::
 TempMon::

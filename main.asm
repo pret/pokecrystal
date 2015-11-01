@@ -6790,7 +6790,7 @@ PutItemInPocket: ; d29c
 	sub [hl]
 	add b
 	ld b, a
-	ld a, [wd10c]
+	ld a, [wItemQuantityChangeBuffer]
 	cp b
 	jr z, .ok
 	jr c, .ok
@@ -6812,8 +6812,8 @@ PutItemInPocket: ; d29c
 	ld l, e
 	ld a, [CurItem]
 	ld c, a
-	ld a, [wd10c]
-	ld [wd10d], a
+	ld a, [wItemQuantityChangeBuffer]
+	ld [wItemQuantityBuffer], a
 .loop2
 	inc hl
 	ld a, [hli]
@@ -6821,7 +6821,7 @@ PutItemInPocket: ; d29c
 	jr z, .terminator2
 	cp c
 	jr nz, .loop2
-	ld a, [wd10d]
+	ld a, [wItemQuantityBuffer]
 	add [hl]
 	cp 100
 	jr nc, .newstack
@@ -6831,14 +6831,14 @@ PutItemInPocket: ; d29c
 .newstack
 	ld [hl], 99
 	sub 99
-	ld [wd10d], a
+	ld [wItemQuantityBuffer], a
 	jr .loop2
 
 .terminator2
 	dec hl
 	ld a, [CurItem]
 	ld [hli], a
-	ld a, [wd10d]
+	ld a, [wItemQuantityBuffer]
 	ld [hli], a
 	ld [hl], -1
 	ld h, d
@@ -6855,9 +6855,9 @@ RemoveItemFromPocket: ; d2ff
 	ld e, l
 	ld a, [hli]
 	ld c, a
-	ld a, [wd107]
+	ld a, [ItemCountBuffer]
 	cp c
-	jr nc, .ok
+	jr nc, .ok ; memory
 	ld c, a
 	ld b, $0
 rept 2
@@ -6884,13 +6884,13 @@ endr
 	jr .loop
 
 .skip
-	ld a, [wd10c]
+	ld a, [wItemQuantityChangeBuffer]
 	ld b, a
 	ld a, [hl]
 	sub b
 	jr c, .nope
 	ld [hl], a
-	ld [wd10d], a
+	ld [wItemQuantityBuffer], a
 	and a
 	jr nz, .yup
 	dec hl
@@ -7035,7 +7035,7 @@ ReceiveTMHM: ; d3c4
 	ld b, 0
 	ld hl, TMsHMs
 	add hl, bc
-	ld a, [wd10c]
+	ld a, [wItemQuantityChangeBuffer]
 	add [hl]
 	cp 100
 	jr nc, .toomany
@@ -7053,13 +7053,13 @@ TossTMHM: ; d3d8
 	ld b, 0
 	ld hl, TMsHMs
 	add hl, bc
-	ld a, [wd10c]
+	ld a, [wItemQuantityChangeBuffer]
 	ld b, a
 	ld a, [hl]
 	sub b
 	jr c, .nope
 	ld [hl], a
-	ld [wd10d], a
+	ld [wItemQuantityBuffer], a
 	jr nz, .yup
 	ld a, [wd0e2]
 	and a
@@ -11932,7 +11932,7 @@ Function122f8: ; 122f8
 	ld a, [EngineBuffer1]
 	ld [CurItem], a
 	ld a, [CurFruit]
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
 	call ReceiveItem
 	ret nc
@@ -13470,7 +13470,7 @@ GetPartyItemLocation: ; 12cd7
 
 Function12cdf: ; 12cdf
 	ld a, $1
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
 	jp ReceiveItem
 ; 12cea
@@ -13478,7 +13478,7 @@ Function12cdf: ; 12cdf
 
 Function12cea: ; 12cea (4:6cea)
 	ld a, $1
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
 	jp TossItem
 
@@ -18115,7 +18115,7 @@ Function157e9: ; 0x157e9
 
 	; items without quantity are always ×1
 	ld a, 1
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	jr .withdraw
 
 .askquantity
@@ -18127,7 +18127,7 @@ Function157e9: ; 0x157e9
 	jr c, .done
 
 .withdraw
-	ld a, [wd10c]
+	ld a, [wItemQuantityChangeBuffer]
 	ld [Buffer1], a ; quantity
 	ld a, [wd107]
 	ld [Buffer2], a
@@ -18135,7 +18135,7 @@ Function157e9: ; 0x157e9
 	call ReceiveItem
 	jr nc, .PackFull
 	ld a, [Buffer1]
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	ld a, [Buffer2]
 	ld [wd107], a
 	ld hl, PCItems
@@ -18288,7 +18288,7 @@ Function1590a: ; 0x1590a
 	and a
 	jr z, .asm_1591d
 	ld a, $1
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	jr .asm_15933
 
 .asm_1591d
@@ -18302,7 +18302,7 @@ Function1590a: ; 0x1590a
 	jr c, .asm_1596c
 
 .asm_15933
-	ld a, [wd10c]
+	ld a, [wItemQuantityChangeBuffer]
 	ld [Buffer1], a
 	ld a, [wd107]
 	ld [Buffer2], a
@@ -18310,7 +18310,7 @@ Function1590a: ; 0x1590a
 	call ReceiveItem
 	jr nc, .asm_15965
 	ld a, [Buffer1]
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	ld a, [Buffer2]
 	ld [wd107], a
 	ld hl, NumItems
@@ -19010,7 +19010,7 @@ Function15cef: ; 15cef
 
 Function15d83: ; 15d83
 	ld a, $63
-	ld [wd10d], a
+	ld [wItemQuantityBuffer], a
 	ld a, $0
 	call Function15c7d
 	callba Function24fc9
@@ -19028,7 +19028,7 @@ Function15d97: ; 15d97
 
 Function15da5: ; 15da5
 	ld a, $1
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	ld a, [wd107]
 	ld e, a
 	ld d, $0
@@ -19072,7 +19072,7 @@ Function15de2: ; 15de2
 	call Function15c7d
 	call Function15df9
 	ld a, $63
-	ld [wd10d], a
+	ld [wItemQuantityBuffer], a
 	callba Function24fcf
 	call ExitMenu
 	ret
@@ -23084,7 +23084,7 @@ MenuJoyAction: ; 24609
 	ld a, [MenuSelection]
 	ld [CurItem], a
 	ld a, [wcf75]
-	ld [wd10d], a
+	ld [wItemQuantityBuffer], a
 	call Function246fc
 	dec a
 	ld [wcf77], a
@@ -24586,7 +24586,7 @@ Function24fe1: ; 24fe1
 
 Function24ff9: ; 24ff9
 	ld a, $1
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 .asm_24ffe
 	call Function25072
 	call Function2500e
@@ -24629,10 +24629,10 @@ Function2500e: ; 2500e
 	ret
 
 .asm_25033
-	ld hl, wd10c
+	ld hl, wItemQuantityChangeBuffer
 	dec [hl]
 	jr nz, .asm_2503d
-	ld a, [wd10d]
+	ld a, [wItemQuantityBuffer]
 	ld [hl], a
 
 .asm_2503d
@@ -24640,9 +24640,9 @@ Function2500e: ; 2500e
 	ret
 
 .asm_2503f
-	ld hl, wd10c
+	ld hl, wItemQuantityChangeBuffer
 	inc [hl]
-	ld a, [wd10d]
+	ld a, [wItemQuantityBuffer]
 	cp [hl]
 	jr nc, .asm_2504b
 	ld [hl], $1
@@ -24652,7 +24652,7 @@ Function2500e: ; 2500e
 	ret
 
 .asm_2504d
-	ld a, [wd10c]
+	ld a, [wItemQuantityChangeBuffer]
 	sub $a
 	jr c, .asm_25058
 	jr z, .asm_25058
@@ -24662,22 +24662,22 @@ Function2500e: ; 2500e
 	ld a, $1
 
 .asm_2505a
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	and a
 	ret
 
 .asm_2505f
-	ld a, [wd10c]
+	ld a, [wItemQuantityChangeBuffer]
 	add $a
 	ld b, a
-	ld a, [wd10d]
+	ld a, [wItemQuantityBuffer]
 	cp b
 	jr nc, .asm_2506c
 	ld b, a
 
 .asm_2506c
 	ld a, b
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	and a
 	ret
 ; 25072
@@ -24689,7 +24689,7 @@ Function25072: ; 25072
 	add hl, de
 	ld [hl], $f1
 	inc hl
-	ld de, wd10c
+	ld de, wItemQuantityChangeBuffer
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ld a, [wcf86]
@@ -24726,7 +24726,7 @@ Function250a9: ; 250a9
 	ld [hMultiplicand + 1], a
 	ld a, [Buffer2]
 	ld [hMultiplicand + 2], a
-	ld a, [wd10c]
+	ld a, [wItemQuantityChangeBuffer]
 	ld [hMultiplier], a
 	push hl
 	call Multiply
@@ -33392,7 +33392,7 @@ Function2c76f: ; 2c76f (b:476f)
 	ld b, $0
 	add hl, bc
 	ld a, [hl]
-	ld [wd10d], a
+	ld [wItemQuantityBuffer], a
 	call Function2c798
 	scf
 	ret
@@ -36628,7 +36628,7 @@ Function4484a: ; 0x4484a
 	dec a
 	call .Function448bb
 	ld a, $1
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
 	call ReceiveItem
 	jr c, .asm_4489e
@@ -43907,6 +43907,10 @@ FindGreaterThanThatLevel: ; 4dc31
 ; 4dc56
 
 FindThatSpecies: ; 4dc56
+; Find species b in your party.
+; If you have no Pokemon, returns c = -1 and z.
+; If that species is in your party, returns its location in c, and nz.
+; Otherwise, returns z.
 	ld c, -1
 	ld hl, PartySpecies
 .loop
@@ -77286,7 +77290,7 @@ Functionfd0c3: ; fd0c3
 	ld a, [hl]
 	ld [CurItem], a
 	ld a, $1
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	ld hl, PCItems
 	call ReceiveItem
 	ret

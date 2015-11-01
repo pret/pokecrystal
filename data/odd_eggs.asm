@@ -43,43 +43,49 @@ GiveOddEgg: ; 1fb4b6
 	ld a, OddEgg2 - OddEgg1
 	call AddNTimes
 
-	ld de, wEnemyMoveStruct
-	ld bc, $0046
+	ld de, OddEggSpecies
+	ld bc, party_struct_length + 2 * PKMN_NAME_LENGTH
 	call CopyBytes
 
 	ld a, EGG_TICKET
 	ld [CurItem], a
-	ld a, $1
-	ld [wd10c], a
-	ld a, $ff
-	ld [wd107], a
+	ld a, 1
+	ld [wItemQuantityChangeBuffer], a
+	ld a, -1
+	ld [ItemCountBuffer], a
 	ld hl, NumItems
 	call TossItem
 
+	; load species in wcd2a
 	ld a, EGG
 	ld [wcd2a], a
 
+	; load pointer to wcd29 in wcd20
 	ld a, wcd29 % $100
-	ld [CreditsPos], a
+	ld [wcd20], a
 	ld a, wcd29 / $100
 	ld [wcd21], a
-	ld a, wEnemyMoveStruct % $100
+	; load pointer to OddEggSpecies in wcd22
+	ld a, OddEggSpecies % $100
 	ld [wcd22], a
-	ld a, wEnemyMoveStruct / $100
+	ld a, OddEggSpecies / $100
 	ld [wcd23], a
 
+	; load Odd Egg Name in wcd2b
 	ld hl, .Odd
 	ld de, wcd2b
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
+	; load pointer to wcd2b in wcd24
 	ld a, wcd2b % $100
 	ld [wcd24], a
 	ld a, wcd2b / $100
 	ld [wcd25], a
-	ld a, BattleMonHappiness % $100
+	; load pointer to wOddEggName in wcd26
+	ld a, wOddEggName % $100
 	ld [wcd26], a
-	ld a, BattleMonHappiness / $100
+	ld a, wOddEggName / $100
 	ld [wcd27], a
 	callba Function11b98f
 	ret

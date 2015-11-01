@@ -537,7 +537,7 @@ UnknownText_0x1c4bfd: ; 0x1c4bfd
 ; 0x1c4c08
 
 UnknownText_0x1c4c08: ; 0x1c4c08
-	deciram wd10c, 1, 2
+	deciram wItemQuantityChangeBuffer, 1, 2
 	text " @"
 	text_from_ram StringBuffer2
 	text "(S)"
@@ -569,7 +569,7 @@ UnknownText_0x1c4ca3: ; 0x1c4ca3
 ; 0x1c4cae
 
 UnknownText_0x1c4cae: ; 0x1c4cae
-	deciram wd10c, 1, 2
+	deciram wItemQuantityChangeBuffer, 1, 2
 	text " @"
 	text_from_ram StringBuffer2
 	text "(S)"
@@ -666,7 +666,7 @@ UnknownText_0x1c4e7e: ; 0x1c4e7e
 ; 0x1c4e89
 
 UnknownText_0x1c4e89: ; 0x1c4e89
-	deciram wd10c, 1, 2
+	deciram wItemQuantityChangeBuffer, 1, 2
 	text " @"
 	text_from_ram StringBuffer2
 	text "(S)"

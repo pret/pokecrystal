@@ -2693,7 +2693,7 @@ Function17e0fd: ; 17e0fd
 	ld a, [hli]
 	ld [CurItem], a
 	ld a, [hli]
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	push hl
 	ld hl, NumItems
 	call ReceiveItem

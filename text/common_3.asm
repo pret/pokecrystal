@@ -708,7 +708,7 @@ UnknownText_0x1c0ba5: ; 1c0ba5
 
 UnknownText_0x1c0bbb: ; 1c0bbb
 	text "Throw away @"
-	deciram wd10c, 1, 2
+	deciram wItemQuantityChangeBuffer, 1, 2
 	text ""
 	line "@"
 	text_from_ram StringBuffer2
@@ -1293,7 +1293,7 @@ _KrissPCHowManyWithdrawText: ; 1c1381
 
 _KrissPCWithdrewItemsText: ; 1c13a4
 	text "Withdrew @"
-	deciram wd10c, 1, 2
+	deciram wItemQuantityChangeBuffer, 1, 2
 	text ""
 	line "@"
 	text_from_ram StringBuffer2
@@ -1320,7 +1320,7 @@ _KrissPCHowManyDepositText: ; 1c13ef
 
 _KrissPCDepositItemsText: ; 1c1411
 	text "Deposited @"
-	deciram wd10c, 1, 2
+	deciram wItemQuantityChangeBuffer, 1, 2
 	text ""
 	line "@"
 	text_from_ram StringBuffer2
@@ -1610,7 +1610,7 @@ UnknownText_0x1c1a90: ; 1c1a90
 
 UnknownText_0x1c1aad: ; 1c1aad
 	text "Throw away @"
-	deciram wd10c, 1, 2
+	deciram wItemQuantityChangeBuffer, 1, 2
 	text ""
 	line "@"
 	text_from_ram StringBuffer2
