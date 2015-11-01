@@ -1408,7 +1408,7 @@ Function10955: ; 10955
 	ld a, BANK(PackMenuGFX)
 	call FarCopyBytes
 	hlcoord 0, 1
-	ld bc, $00dc
+	lb bc, 0, 220
 	ld a, $24
 	call ByteFill
 	hlcoord 5, 1

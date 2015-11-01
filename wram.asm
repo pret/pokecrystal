@@ -1606,6 +1606,7 @@ wd182:: ds 1
 wd191:: ds 1
 wd192:: ds 1
 wd193:: ds 1
+UsedSpritesEnd::
 wd194:: ds 1
 wd195:: ds 1
 wd196:: ds 1

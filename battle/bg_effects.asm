@@ -338,7 +338,7 @@ Functionc81c0: ; c81c0 (32:41c0)
 	jr .asm_c81d7
 .asm_c81d1
 	hlcoord 2, 6
-	ld bc, $606
+	lb bc, 6, 6
 .asm_c81d7
 	call ClearBox
 	pop bc
@@ -437,7 +437,7 @@ Functionc825a: ; c825a (32:425a)
 	jr .asm_c8271
 .asm_c826b
 	hlcoord 2, 6
-	ld bc, $106
+	lb bc, 1, 6
 .asm_c8271
 	call ClearBox
 	ld a, $1
@@ -503,7 +503,7 @@ Functionc82c7: ; c82c7 (32:42c7)
 	jr .asm_c82de
 .asm_c82d8
 	hlcoord 2, 6
-	ld bc, $206
+	lb bc, 2, 6
 .asm_c82de
 	call ClearBox
 	ld a, $1

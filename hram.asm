@@ -58,6 +58,8 @@ hPrintNum5         EQU $ffb7
 hPrintNum6         EQU $ffb8
 hPrintNum7         EQU $ffb9
 
+hUsedSpriteIndex   EQU $ffbd
+hUsedSpriteTile    EQU $ffbe
 hMoneyTemp         EQU $ffc3
 
 hLCDStatCustom     EQU $ffc6

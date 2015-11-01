@@ -7257,7 +7257,7 @@ BattleCommand23: ; 3680f
 	ld c, $14
 	call DelayFrames
 	hlcoord 1, 0
-	ld bc, $040a
+	lb bc, 4, 10
 	call ClearBox
 	ld c, $14
 	call DelayFrames
@@ -7351,7 +7351,7 @@ BattleCommand23: ; 3680f
 	ld c, $14
 	call DelayFrames
 	hlcoord 9, 7
-	ld bc, $050b
+	lb bc, 5, 11
 	call ClearBox
 	ld c, $14
 	call DelayFrames

@@ -24234,9 +24234,9 @@ Function_LoadOpponentTrainerAndPokemonsWithOTSprite: ; 0x170b44
 	ld hl, UsedSprites
 	add hl, de
 	ld [hli], a
-	ld [$ffbd], a
+	ld [hUsedSpriteIndex], a
 	ld a, [hl]
-	ld [$ffbe], a
+	ld [hUsedSpriteTile], a
 	callba Function143c8
 	ret
 ; 170b90

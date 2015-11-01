@@ -385,7 +385,7 @@ NoRadioName: ; 918a9 (24:58a9)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	hlcoord 1, 8
-	ld bc, $312
+	lb bc, 3, 18
 	call ClearBox
 	hlcoord 0, 12
 	ld bc, $412

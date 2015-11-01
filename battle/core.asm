@@ -9336,7 +9336,7 @@ Function3fb6c: ; 3fb6c
 	call TextBox
 	callba MobileTextBorder
 	hlcoord 1, 5
-	ld bc, $0307
+	lb bc, 3, 7
 	call ClearBox
 	call Functione51
 	call Function3ed9f

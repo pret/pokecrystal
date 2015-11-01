@@ -10702,10 +10702,10 @@ Function118a8: ; 118a8
 	ld a, $60
 	call ByteFill
 	hlcoord 1, 1
-	ld bc, $0612
+	lb bc, 6, 18
 	call Function1189c
 	jr nz, .asm_118c4
-	ld bc, $0412
+	lb bc, 4, 18
 
 .asm_118c4
 	call ClearBox
@@ -10721,16 +10721,16 @@ Function118ca: ; 118ca
 .asm_118d5
 	push de
 	hlcoord 1, 8
-	ld bc, $0712
+	lb bc, 7, 18
 	call Function1189c
 	jr nz, .asm_118e7
 	hlcoord 1, 6
-	ld bc, $0912
+	lb bc, 9, 18
 
 .asm_118e7
 	call ClearBox
 	hlcoord 1, 16
-	ld bc, $0112
+	lb bc, 1, 18
 	call ClearBox
 	pop de
 	hlcoord 2, 8
@@ -10788,7 +10788,7 @@ Function11940: ; 11940
 	hlcoord 1, 3
 
 .asm_1194e
-	ld bc, $0112
+	lb bc, 1, 18
 	call ClearBox
 	ld hl, wc6d0
 	ld e, [hl]
@@ -11521,7 +11521,7 @@ Function11feb: ; 11feb (4:5feb)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	hlcoord 1, 1
-	ld bc, $412
+	lb bc, 4, 18
 	call ClearBox
 	ld hl, wc6d0
 	ld e, [hl]
@@ -12800,7 +12800,7 @@ endr
 	call .IsMenuAccountOn
 	ret z
 	hlcoord 0, 13
-	ld bc, $050a
+	lb bc, 5, 10
 	call ClearBox
 	hlcoord 0, 13
 	ld b, 3
@@ -13114,7 +13114,7 @@ CancelPokemonAction: ; 12a79
 
 PokemonActionSubmenu: ; 12a88
 	hlcoord 1, 15
-	ld bc, $0212 ; box size
+	lb bc, 2, 18
 	call ClearBox
 	callba Function24d19
 	call GetCurNick
@@ -14124,10 +14124,10 @@ Function12fd5: ; 12fd5
 	call PlaySFX
 	call WaitSFX
 	hlcoord 1, 2
-	ld bc, $0812
+	lb bc, 8, 18
 	call ClearBox
 	hlcoord 10, 10
-	ld bc, $0109
+	lb bc, 1, 9
 	call ClearBox
 	jp .asm_12fe8
 ; 1313a
@@ -14198,7 +14198,7 @@ Function13172: ; 13172
 	ld c, $12
 	call TextBox
 	hlcoord 2, 0
-	ld bc, $0203
+	lb bc, 2, 3
 	call ClearBox
 	xor a
 	ld [MonType], a
@@ -14216,7 +14216,7 @@ Function13172: ; 13172
 	ld b, $e
 	call GetSGBLayout
 	hlcoord 16, 0
-	ld bc, $0103
+	lb bc, 1, 3
 	jp ClearBox
 ; 131ef
 
@@ -16160,9 +16160,9 @@ GetEmote2bpp: ; 1412a
 Function14135:: ; 14135
 	call GetPlayerSprite
 	ld a, [UsedSprites]
-	ld [$ffbd], a
+	ld [hUsedSpriteIndex], a
 	ld a, [UsedSprites + 1]
-	ld [$ffbe], a
+	ld [hUsedSpriteTile], a
 	call Function143c8
 	ret
 ; 14146
@@ -16736,9 +16736,9 @@ Function1439b: ; 1439b
 	ld a, [hli]
 	and a
 	jr z, .done
-	ld [$ffbd], a
+	ld [hUsedSpriteIndex], a
 	ld a, [hli]
-	ld [$ffbe], a
+	ld [hUsedSpriteTile], a
 	bit 7, a
 	jr z, .dont_set
 	ld a, [wd13e]
@@ -16759,10 +16759,10 @@ Function1439b: ; 1439b
 ; 143c8
 
 Function143c8: ; 143c8
-	ld a, [$ffbd]
+	ld a, [hUsedSpriteIndex]
 	call SafeGetSprite
-	ld a, [$ffbe]
-	call Function14406
+	ld a, [hUsedSpriteTile]
+	call GetTileAddr
 	push hl
 	push de
 	push bc
@@ -16788,7 +16788,7 @@ endr
 	jr nz, .asm_14405
 	bit 6, a
 	jr nz, .asm_14405
-	ld a, [$ffbd]
+	ld a, [hUsedSpriteIndex]
 	call Function142a7
 	jr c, .asm_14405
 	ld a, h
@@ -16800,7 +16800,8 @@ endr
 	ret
 ; 14406
 
-Function14406: ; 14406
+GetTileAddr: ; 14406
+; Return the address of tile (a) in (hl).
 	and (VTiles1 - VTiles0) / $10 - 1
 	ld l, a
 	ld h, 0
@@ -17716,7 +17717,7 @@ CheckWarpCollision: ; 149c6
 	db -1
 ; 149dd
 
-Function149dd:: ; 149dd
+CheckGrassCollision:: ; 149dd
 	ld a, [StandingTile]
 	ld hl, .blocks
 	ld de, 1
@@ -19345,7 +19346,7 @@ Function15ee0: ; 15ee0
 	call ExitMenu
 	jr c, .asm_15f6e
 	hlcoord 1, 14
-	ld bc, $0312
+	lb bc, 3, 18
 	call ClearBox
 	ld hl, UnknownText_0x15f78
 	call PrintTextBoxText
@@ -19359,7 +19360,7 @@ Function15ee0: ; 15ee0
 	call TossItem
 	predef PartyMonItemName
 	hlcoord 1, 14
-	ld bc, $0312
+	lb bc, 3, 18
 	call ClearBox
 	ld hl, UnknownText_0x15fbe
 	call PrintTextBoxText
@@ -25075,7 +25076,7 @@ Function2530a: ; 2530a (9:530a)
 	bit 0, a
 	ret nz
 	hlcoord 1, 9
-	ld bc, $211
+	lb bc, 2, 17
 	call ClearBox
 	ret
 ; 2534c (9:534c)
@@ -33726,7 +33727,7 @@ Function2c9e2: ; 2c9e2 (b:49e2)
 	jp z, Function2caca
 
 	hlcoord 5, 2
-	ld bc, $a0f
+	lb bc, 10, 15
 	ld a, " "
 	call ClearBox
 	call Function2cab5
@@ -36942,7 +36943,7 @@ Function48187: ; 48187 (12:4187)
 	ld d, a
 	call Function48725
 	jr c, .asm_481a2
-	ld bc, $104
+	lb bc, 1, 4
 	hlcoord 2, 12
 	call ClearBox
 	jr .asm_481ad
@@ -36958,19 +36959,19 @@ Function48187: ; 48187 (12:4187)
 	jr nz, .asm_481c1
 	bit 0, d
 	jr nz, .asm_481c1
-	ld bc, $108
+	lb bc, 1, 8
 	hlcoord 11, 4
 	call ClearBox
 .asm_481c1
 	bit 1, d
 	jr nz, .asm_481ce
-	ld bc, $108
+	lb bc, 1, 8
 	hlcoord 11, 6
 	call ClearBox
 .asm_481ce
 	bit 2, d
 	jr nz, .asm_481db
-	ld bc, $208
+	lb bc, 2, 8
 	hlcoord 11, 7
 	call ClearBox
 .asm_481db
@@ -36979,7 +36980,7 @@ Function48187: ; 48187 (12:4187)
 	ld a, [wd479]
 	bit 0, a
 	jr nz, .asm_481f8
-	ld bc, $108
+	lb bc, 1, 8
 	hlcoord 11, 10
 	call ClearBox
 	jr .asm_48201
@@ -37060,7 +37061,7 @@ String_48275: ; 48275
 ; 48283
 
 Function48283: ; 48283 (12:4283)
-	ld bc, $212
+	lb bc, 2, 18
 	hlcoord 1, 15
 	call ClearBox
 	ret
@@ -37949,7 +37950,7 @@ asm_48972: ; 48972 (12:4972)
 	hlcoord 11, 10
 	call Function489ea
 	hlcoord 11, 9
-	ld bc, $108
+	lb bc, 1, 8
 	call ClearBox
 	pop af
 	ld [hInMenu], a
@@ -40521,7 +40522,7 @@ asm_4a19d: ; 4a19d (12:619d)
 	pop bc
 	ld hl, wcfa9
 	ld [hl], b
-	ld bc, $601
+	lb bc, 6, 1
 	hlcoord 2, 3
 	call ClearBox
 	jp Function4a195
@@ -42001,7 +42002,7 @@ endr
 
 .asm_4ac29
 	hlcoord 0, 1
-	ld bc, $0d01
+	lb bc, 13, 1
 	call ClearBox
 	call Function4aab6
 	ld a, [PartyCount]
@@ -42031,7 +42032,7 @@ endr
 ; 4ac58
 
 Function4ac58: ; 4ac58
-	ld bc, $0212
+	lb bc, 2, 18
 	hlcoord 1, 15
 	call ClearBox
 	callba Function8ea4a
@@ -44432,7 +44433,7 @@ Function4dfda: ; 4dfda (13:5fda)
 	ld c, a
 	call Function4e4cd
 	hlcoord 0, 8
-	ld bc, $a14
+	lb bc, 10, 20
 	call ClearBox
 	ret
 
@@ -52882,7 +52883,7 @@ Function847bd: ; 847bd
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 2, 4
-	ld bc, $0d10
+	lb bc, 13, 16
 	call ClearBox
 	pop af
 	ld e, a
@@ -53000,7 +53001,7 @@ Function848b7: ; 848b7 (21:48b7)
 	call ByteFill
 	call Function84a0e
 	hlcoord 1, 15
-	ld bc, $212
+	lb bc, 2, 18
 	call ClearBox
 	call Function849e9
 	call Function849fc
@@ -59112,7 +59113,7 @@ Special_InitialSetDSTFlag: ; 90a54
 	set 7, a
 	ld [wDST], a
 	hlcoord 1, 14
-	ld bc, $0312
+	lb bc, 3, 18
 	call ClearBox
 	ld hl, UnknownText_0x90a6c
 	call PlaceWholeStringInBoxAtOnce
@@ -59143,7 +59144,7 @@ Special_InitialClearDSTFlag: ; 90a88
 	res 7, a
 	ld [wDST], a
 	hlcoord 1, 14
-	ld bc, $0312
+	lb bc, 3, 18
 	call ClearBox
 	ld hl, UnknownText_0x90aa0
 	call PlaceWholeStringInBoxAtOnce
@@ -71577,10 +71578,10 @@ Functione307c: ; e307c (38:707c)
 	ld a, [CurPartySpecies]
 	call PlayCry
 	hlcoord 0, 0
-	ld bc, $f08
+	lb bc, 15, 8
 	call ClearBox
 	hlcoord 8, 14
-	ld bc, $103
+	lb bc, 1, 3
 	call ClearBox
 	hlcoord 0, 15
 	ld bc, $112
@@ -71631,10 +71632,10 @@ TryWithdrawPokemon: ; e30fa (38:70fa)
 	ld a, [CurPartySpecies]
 	call PlayCry
 	hlcoord 0, 0
-	ld bc, $f08
+	lb bc, 15, 8
 	call ClearBox
 	hlcoord 8, 14
-	ld bc, $103
+	lb bc, 1, 3
 	call ClearBox
 	hlcoord 0, 15
 	ld bc, $112
@@ -71666,10 +71667,10 @@ TryWithdrawPokemon: ; e30fa (38:70fa)
 
 Functione3180: ; e3180 (38:7180)
 	hlcoord 0, 0
-	ld bc, $f08
+	lb bc, 15, 8
 	call ClearBox
 	hlcoord 8, 14
-	ld bc, $103
+	lb bc, 1, 3
 	call ClearBox
 	hlcoord 0, 15
 	ld bc, $112
@@ -80016,7 +80017,7 @@ Function1057d7: ; 1057d7 (41:57d7)
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	call ByteFill
 	hlcoord 3, 7
-	ld bc, $90f
+	lb bc, 9, 15
 	call ClearBox
 	hlcoord 0, 0
 	ld a, $0
@@ -81728,7 +81729,7 @@ Function1dc1b0: ; 1dc1b0
 	ld [hli], a
 	ld [hl], a
 	ld hl, wcb6e
-	ld bc, $0512
+	lb bc, 5, 18
 	call ClearBox
 	ld a, [wd265]
 	dec a
@@ -82179,10 +82180,10 @@ INCBIN "gfx/unknown/1de0e1.2bpp.lz"
 Function1de171: ; 1de171 (77:6171)
 	ld a, $32
 	hlcoord 0, 17
-	ld bc, $c
+	lb bc, 0, 12
 	call ByteFill
 	hlcoord 0, 1
-	ld bc, $f0b
+	lb bc, 15, 11
 	call ClearBox
 	ld a, $34
 	hlcoord 0, 0

@@ -483,7 +483,7 @@ Function17a964: ; 17a964 (5e:6964)
 
 Function17a97b: ; 17a97b (5e:697b)
 	hlcoord 1, 1
-	ld bc, $212
+	lb bc, 2, 18
 	call ClearBox
 	hlcoord 3, 2
 	ld de, Buffer1

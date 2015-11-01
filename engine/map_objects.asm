@@ -2928,7 +2928,7 @@ Function56cd: ; 56cd
 	sub $20
 
 .ok3
-	ld [$ffbd], a
+	ld [hUsedSpriteIndex], a
 	ld a, [wd14d]
 	ld e, a
 	ld hl, OBJECT_SPRITE_Y_OFFSET
@@ -2960,7 +2960,7 @@ Function56cd: ; 56cd
 	sub $20
 
 .ok6
-	ld [$ffbe], a
+	ld [hUsedSpriteTile], a
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	bit 7, [hl]
@@ -2978,14 +2978,14 @@ Function56cd: ; 56cd
 .loop
 	ld a, [$ffbf]
 	ld d, a
-	ld a, [$ffbe]
+	ld a, [hUsedSpriteTile]
 	add e
 	dec a
 	cp $12
 	jr nc, .ok9
 	ld b, a
 .next
-	ld a, [$ffbd]
+	ld a, [hUsedSpriteIndex]
 	add d
 	dec a
 	cp $14
@@ -3336,7 +3336,7 @@ RefreshMapAppearDisappear:: ; 5920
 	bit 0, a
 	ret z
 	xor a
-	ld [$ffbd], a
+	ld [hUsedSpriteIndex], a
 	ld a, [hOAMUpdate]
 	push af
 	ld a, 1
@@ -3356,7 +3356,7 @@ Function593a: ; 593a
 	ld b, $70
 
 .ok
-	ld a, [$ffbd]
+	ld a, [hUsedSpriteIndex]
 	cp b
 	ret nc
 	ld l, a
@@ -3596,11 +3596,11 @@ Function5a0d: ; 5a0d
 	ld h, [hl]
 	ld l, a
 
-	ld a, [$ffbd]
+	ld a, [hUsedSpriteIndex]
 	ld c, a
 	ld b, Sprites / $100
 	ld a, [hli]
-	ld [$ffbe], a
+	ld [hUsedSpriteTile], a
 	add c
 	cp SpritesEnd % $100
 	jr nc, .full
@@ -3645,13 +3645,13 @@ Function5a0d: ; 5a0d
 	ld [bc], a
 	inc c
 
-	ld a, [$ffbe]
+	ld a, [hUsedSpriteTile]
 	dec a
-	ld [$ffbe], a
+	ld [hUsedSpriteTile], a
 	jr nz, .addsprite
 
 	ld a, c
-	ld [$ffbd], a
+	ld [hUsedSpriteIndex], a
 
 .done
 	xor a

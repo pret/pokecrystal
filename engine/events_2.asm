@@ -109,7 +109,7 @@ RandomEncounter:: ; 97cc0
 	call CanUseSweetScent
 	jr nc, .nope
 	ld hl, StatusFlags2
-	bit 2, [hl]
+	bit 2, [hl] ; bug contest
 	jr nz, .bug_contest
 	callba TryWildEncounter
 	jr nz, .nope
@@ -153,11 +153,11 @@ CanUseSweetScent:: ; 97cfd
 	bit 5, [hl]
 	jr nz, .no
 	ld a, [wPermission]
-	cp $4
+	cp CAVE
 	jr z, .ice_check
-	cp $7
+	cp DUNGEON
 	jr z, .ice_check
-	callba Function149dd
+	callba CheckGrassCollision
 	jr nc, .no
 
 .ice_check
@@ -237,9 +237,9 @@ ChooseWildEncounter_BugContest:: ; 97d31
 TryWildEncounter_BugContest: ; 97d64
 	ld a, [StandingTile]
 	call CheckSuperTallGrassTile
-	ld b, $66
+	ld b, 40 percent
 	jr z, .ok
-	ld b, $33
+	ld b, 20 percent
 
 .ok
 	callba ApplyMusicEffectOnEncounterRate
@@ -473,11 +473,11 @@ endr
 ; 97e94
 
 Table97e94: ; 97e94
-	dbw BANK(Function97eb7), Function97eb7
-	dbw BANK(Function97eb8), Function97eb8
-	dbw BANK(Function97f42), Function97f42
-	dbw BANK(Function97ef9), Function97ef9
-	dbw BANK(Function97ebc), Function97ebc
+	dba Function97eb7
+	dba Function97eb8
+	dba Function97f42
+	dba Function97ef9
+	dba Function97ebc
 ; 97ea3
 
 Function97ea3: ; 97ea3

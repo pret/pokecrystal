@@ -175,7 +175,7 @@ Function1cc6:: ; 1cc6
 
 Function1ce1:: ; 1ce1
 	call GetMemTileCoord
-	ld bc, $0015
+	lb bc, 0, 21
 	add hl, bc
 	call GetMenuBoxDims
 	dec b

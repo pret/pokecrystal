@@ -79,11 +79,17 @@ bigdw: MACRO ; big-endian word
 	ENDM
 
 dba: MACRO ; dbw bank, address
+	rept _NARG
 	dbw BANK(\1), \1
+	shift
+	endr
 	ENDM
 
 dab: MACRO ; dwb address, bank
+	rept _NARG
 	dwb \1, BANK(\1)
+	shift
+	endr
 	ENDM
 
 lb: MACRO ; r, hi, lo
