@@ -529,7 +529,7 @@ Script_interpretmenu: ; 0x96f41
 	ld a, [ScriptBank]
 	ld hl, InterpretMenu
 	rst FarCall
-	ld a, [wPocketCursorBuffer]
+	ld a, [wMenuCursorBuffer]
 	jr nc, .ok
 	xor a
 .ok

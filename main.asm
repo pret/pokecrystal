@@ -4699,7 +4699,7 @@ CutFunction: ; c785
 
 .DoCut: ; c7b2 (3:47b2)
 	ld hl, Script_CutFromMenu
-	call ExitMenuCallScript
+	call QueueScript
 	ld a, $81
 	ret
 
@@ -4907,7 +4907,7 @@ Functionc8b5: ; c8b5
 
 UseFlash: ; c8e0
 	ld hl, Script_UseFlash
-	jp ExitMenuCallScript
+	jp QueueScript
 ; c8e6
 
 Script_UseFlash: ; 0xc8e6
@@ -4990,7 +4990,7 @@ SurfFunction: ; c909
 	ld [Buffer2], a ; wd1eb (aliases: MovementType)
 	call GetPartyNick
 	ld hl, SurfFromMenuScript
-	call ExitMenuCallScript
+	call QueueScript
 	ld a, $81
 	ret
 
@@ -5228,7 +5228,7 @@ FlyFunction: ; ca3b
 
 .DoFly: ; ca94
 	ld hl, .FlyScript
-	call ExitMenuCallScript
+	call QueueScript
 	ld a, $81
 	ret
 ; ca9d
@@ -5279,7 +5279,7 @@ AttemptToWaterfall: ; cae7
 	call CheckMapCanWaterfall
 	jr c, .failed
 	ld hl, Script_WaterfallFromMenu
-	call ExitMenuCallScript
+	call QueueScript
 	ld a, $81
 	ret
 
@@ -5452,14 +5452,14 @@ dig_incave
 	cp $2
 	jr nz, .escaperope
 	ld hl, UsedDigScript
-	call ExitMenuCallScript
+	call QueueScript
 	ld a, $81
 	ret
 
 .escaperope
 	callba SpecialKabutoChamber
 	ld hl, UsedEscapeRopeScript
-	call ExitMenuCallScript
+	call QueueScript
 	ld a, $81
 	ret
 ; cc06
@@ -5578,7 +5578,7 @@ TeleportFunction: ; cc61
 .DoTeleport: ; cc9c
 	call GetPartyNick
 	ld hl, Script_UsedTeleport
-	call ExitMenuCallScript
+	call QueueScript
 	ld a, $81
 	ret
 ; cca8
@@ -5664,7 +5664,7 @@ FailedStrength: ; cd06
 
 StartToUseStrength: ; cd09
 	ld hl, Script_StrengthFromMenu
-	call ExitMenuCallScript
+	call QueueScript
 	ld a, $81
 	ret
 ; cd12
@@ -5820,7 +5820,7 @@ Jumptable_cdae: ; cdae
 
 .DoWhirlpool: ; cdca
 	ld hl, Script_WhirlpoolFromMenu
-	call ExitMenuCallScript
+	call QueueScript
 	ld a, $81
 	ret
 ; cdd3
@@ -5958,7 +5958,7 @@ TryHeadbuttFromMenu: ; ce86
 	jr nz, .no_tree
 
 	ld hl, HeadbuttFromMenuScript
-	call ExitMenuCallScript
+	call QueueScript
 	ld a, $81
 	ret
 
@@ -6053,7 +6053,7 @@ TryRockSmashFromMenu: ; cef4
 	jr nz, .no_rock
 
 	ld hl, RockSmashFromMenuScript
-	call ExitMenuCallScript
+	call QueueScript
 	ld a, $81
 	ret
 
@@ -6235,7 +6235,7 @@ FishFunction: ; cf8e
 	ld a, $1
 	ld [wd1ef], a
 	ld hl, Script_GotABite
-	call ExitMenuCallScript
+	call QueueScript
 	ld a, $81
 	ret
 ; d002
@@ -6244,7 +6244,7 @@ FishFunction: ; cf8e
 	ld a, $2
 	ld [wd1ef], a
 	ld hl, Script_NotEvenANibble
-	call ExitMenuCallScript
+	call QueueScript
 	ld a, $81
 	ret
 ; d010
@@ -6253,7 +6253,7 @@ FishFunction: ; cf8e
 	ld a, $0
 	ld [wd1ef], a
 	ld hl, Script_NotEvenANibble2
-	call ExitMenuCallScript
+	call QueueScript
 	ld a, $81
 	ret
 ; d01e
@@ -6402,7 +6402,7 @@ BikeFunction: ; d0b3
 	ld hl, Script_GetOnBike
 	ld de, Script_GetOnBike_Register
 	call .CheckIfRegistered
-	call ExitMenuCallScript
+	call QueueScript
 	xor a
 	ld [MusicFade], a
 	ld de, MUSIC_NONE
@@ -6435,7 +6435,7 @@ BikeFunction: ; d0b3
 	ret
 
 .done
-	call ExitMenuCallScript
+	call QueueScript
 	ld a, $1
 	ret
 ; d119
@@ -9747,14 +9747,14 @@ Functione443: ; e443 (3:6443)
 	call LoadMenuDataHeader
 	ld a, $1
 .asm_e44b
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	call Function32f9
 	xor a
 	ld [wcf76], a
 	ld [hBGMapMode], a ; $ff00+$d4
 	call Function1e5d
 	jr c, .asm_e46b
-	ld a, [wPocketCursorBuffer]
+	ld a, [wMenuCursorBuffer]
 	push af
 	ld a, [MenuSelection]
 	ld hl, Jumptable_e4ba
@@ -12371,7 +12371,7 @@ ItemFinder: ; 12580
 	ld hl, UnknownScript_0x125ad
 
 .asm_12590
-	call ExitMenuCallScript
+	call QueueScript
 	ld a, $1
 	ld [wd0ec], a
 	ret
@@ -12440,7 +12440,7 @@ StartMenu:: ; 125cd
 	call LoadMenuDataHeader
 	call .SetUpMenuItems
 	ld a, [wd0d2]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	call .DrawMenuAccount_
 	call MenuFunc_1e7f
 	call .DrawBugContestStatusBox
@@ -12456,13 +12456,13 @@ StartMenu:: ; 125cd
 	call UpdateTimePals
 	call .SetUpMenuItems
 	ld a, [wd0d2]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 
 .Select
 	call .GetInput
 	jr c, .Exit
 	call .DrawMenuAccount
-	ld a, [wPocketCursorBuffer]
+	ld a, [wMenuCursorBuffer]
 	ld [wd0d2], a
 	call PlayClickSFX
 	call Function1bee
@@ -12484,9 +12484,9 @@ endr
 .MenuReturns
 	dw .Reopen
 	dw .Exit
-	dw .ReturnTwo
-	dw .ReturnThree
-	dw .ReturnFour
+	dw .ExitMenuCallFuncLoadMoveSprites
+	dw .ExitMenuRunScriptLoadMoveSprites
+	dw .ExitMenuRunScript
 	dw .ReturnEnd
 	dw .ReturnRedraw
 
@@ -12531,27 +12531,27 @@ endr
 	ret
 ; 12691
 
-.ReturnFour ; 12691
+.ExitMenuRunScript ; 12691
 	call ExitMenu
 	ld a, HMENURETURN_SCRIPT
 	ld [hMenuReturn], a
 	ret
 ; 12699
 
-.ReturnThree ; 12699
+.ExitMenuRunScriptLoadMoveSprites ; 12699
 	call ExitMenu
 	ld a, HMENURETURN_SCRIPT
 	ld [hMenuReturn], a
 	jr .ReturnEnd2
 ; 126a2
 
-.ReturnTwo ; 126a2
+.ExitMenuCallFuncLoadMoveSprites ; 126a2
 	call ExitMenu
-	ld hl, wd0e9
+	ld hl, wQueuedScriptAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wd0e8]
+	ld a, [wQueuedScriptBank]
 	rst FarCall
 	jr .ReturnEnd2
 ; 126b1
@@ -12846,13 +12846,14 @@ StartMenu_Quit: ; 128f0
 
 	ld hl, .EndTheContestText
 	call Function12cf5
-	jr c, .asm_12903
+	jr c, .DontEndContest
 	ld a, BANK(BugCatchingContestReturnToGateScript)
 	ld hl, BugCatchingContestReturnToGateScript
-	call Function31cf
+	call FarQueueScript
 	ld a, 4
 	ret
-.asm_12903
+
+.DontEndContest
 	ld a, 0
 	ret
 
@@ -18365,7 +18366,7 @@ Function15985: ; 0x15985
 	ld c, $12
 	call TextBox
 	ld a, [wd0d7]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	ld a, [wd0dd]
 	ld [wd0e4], a
 	call Function350c
@@ -18941,7 +18942,7 @@ Function15cef: ; 15cef
 	ld hl, MenuDataHeader_0x15e18
 	call CopyMenuDataHeader
 	ld a, [WalkingX]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	ld a, [WalkingY]
 	ld [wd0e4], a
 	call Function350c
@@ -22054,7 +22055,7 @@ Function2403c:: ; 2403c
 	ld c, a
 	ld a, [wcfa3]
 	call SimpleMultiply
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	and a
 	ret
 ; 24085
@@ -22099,7 +22100,7 @@ Function24098: ; 24098
 	ld c, a
 	ld a, [wcfaa]
 	add c
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	and a
 	ret
 
@@ -22185,7 +22186,7 @@ Function2411a: ; 2411a (9:411a)
 	call Function24193
 	ld a, [wcfa4]
 	ld e, a
-	ld a, [wPocketCursorBuffer]
+	ld a, [wMenuCursorBuffer]
 	ld b, a
 	xor a
 	ld d, $0
@@ -22819,7 +22820,7 @@ Function2446d:: ; 2446d
 
 .asm_244a9
 	ld [hli], a
-	ld a, [wPocketCursorBuffer]
+	ld a, [wMenuCursorBuffer]
 	and a
 	jr z, .asm_244b7
 	ld c, a
@@ -23241,7 +23242,7 @@ Function2471a: ; 2471a
 .skip
 	ld a, [wd0e4]
 	ld c, a
-	ld a, [wPocketCursorBuffer]
+	ld a, [wMenuCursorBuffer]
 	add c
 	ld b, a
 	ld a, [wd144]
@@ -23254,7 +23255,7 @@ Function2471a: ; 2471a
 	xor a
 	ld [wd0e4], a
 	ld a, $1
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 
 .asm_24763
 	ret
@@ -23312,7 +23313,7 @@ Function24764: ; 24764
 	ld [wcfa8], a
 	ld a, [wcfa3]
 	ld b, a
-	ld a, [wPocketCursorBuffer]
+	ld a, [wMenuCursorBuffer]
 	and a
 	jr z, .asm_247c8
 	cp b
@@ -24430,9 +24431,9 @@ LoadBattleMenu: ; 24ef2
 	ld hl, BattleMenuDataHeader
 	call LoadMenuDataHeader
 	ld a, [wd0d2]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	call Function2039
-	ld a, [wPocketCursorBuffer]
+	ld a, [wMenuCursorBuffer]
 	ld [wd0d2], a
 	call ExitMenu
 	ret
@@ -24453,9 +24454,9 @@ ContestBattleMenu: ; 24f13
 
 Function24f19: ; 24f19
 	ld a, [wd0d2]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	call InterpretMenu
-	ld a, [wPocketCursorBuffer]
+	ld a, [wMenuCursorBuffer]
 	ld [wd0d2], a
 	call ExitMenu
 	ret
@@ -25695,7 +25696,7 @@ _KrisDecorationMenu: ; 0x2675c
 	ld [wd1ef], a
 .asm_2676f
 	ld a, [wd1ef]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	call Function26806
 	call Function1e5d
 	ld a, [wcfa9]
@@ -36568,7 +36569,7 @@ Function44806: ; 0x44806
 	call Function352f
 	call UpdateSprites
 	ld a, [wd0f1]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	ld a, [OBPals + 8 * 6]
 	ld [wd0e4], a
 	call Function350c
@@ -37087,7 +37088,7 @@ asm_4828d: ; 4828d (12:428d)
 	call WaitBGMap
 	ld a, [PlayerGender]
 	inc a
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	call Function1bc9
 	call PlayClickSFX
 	call ExitMenu
@@ -37131,7 +37132,7 @@ Function48304: ; 48304 (12:4304)
 	ld b, $c
 	ld c, $8
 	call Function48cdc
-	ld a, [wPocketCursorBuffer]
+	ld a, [wMenuCursorBuffer]
 	ld b, a
 	ld a, [wd0e4]
 	ld c, a
@@ -37142,7 +37143,7 @@ Function48304: ; 48304 (12:4304)
 	jr c, .asm_4833f
 	sub $29
 	inc a
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	ld a, $29
 .asm_4833f
 	ld [wd0e4], a
@@ -37155,7 +37156,7 @@ Function48304: ; 48304 (12:4304)
 	ld d, a
 	pop bc
 	ld a, b
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	ld a, c
 	ld [wd0e4], a
 	ld a, d
@@ -37204,7 +37205,7 @@ Function48383: ; 48383 (12:4383)
 .asm_483af
 	ld hl, wcfa9
 	ld a, [hl]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	scf
 .asm_483b7
 	pop bc
@@ -42097,7 +42098,7 @@ Function4acaa: ; 4acaa
 	ld a, $b
 	ld [wMenuBorderLeftCoord], a
 	ld a, $1
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	call Function1c10
 	ld hl, wcfa5
 	set 6, [hl]
@@ -47018,7 +47019,7 @@ PoisonWhiteOutText: ; 506b7
 
 DoMovementFunctionc: ; 506bc
 	ld hl, UnknownScript_0x506c8
-	call ExitMenuCallScript
+	call QueueScript
 	ld a, $1
 	ld [wd0ec], a
 	ret
@@ -47095,7 +47096,7 @@ UnknownText_0x5072b: ; 0x5072b
 
 _Squirtbottle: ; 50730
 	ld hl, UnknownScript_0x5073c
-	call ExitMenuCallScript
+	call QueueScript
 	ld a, $1
 	ld [wd0ec], a
 	ret
@@ -47170,7 +47171,7 @@ _CardKey: ; 50779
 	jr nz, .nope
 ; Let's use the Card Key.
 	ld hl, .CardKeyScript
-	call ExitMenuCallScript
+	call QueueScript
 	ld a, $1
 	ld [wd0ec], a
 	ret
@@ -47206,7 +47207,7 @@ _BasementKey: ; 507b4
 	jr nz, .nope
 ; Let's use the Basement Key
 	ld hl, .BasementKeyScript
-	call ExitMenuCallScript
+	call QueueScript
 	ld a, 1
 	ld [wd0ec], a
 	ret
@@ -47230,7 +47231,7 @@ _SacredAsh: ; 507e6
 	ret nc
 
 	ld hl, SacredAshScript
-	call ExitMenuCallScript
+	call QueueScript
 	ld a, $1
 	ld [wd0ec], a
 	ret

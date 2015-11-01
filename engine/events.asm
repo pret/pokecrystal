@@ -947,11 +947,11 @@ SelectMenuCallback: ; 96b66
 ; 96b72
 
 .Script ; 96b72
-	ptjump wd0e8
+	ptjump wQueuedScriptBank
 ; 96b75
 
 .Asm ; 96b75
-	ptcallasm wd0e8
+	ptcallasm wQueuedScriptBank
 	end
 ; 96b79
 

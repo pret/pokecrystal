@@ -413,9 +413,9 @@ Special_DummyNonfunctionalGameCornerGame: ; c38d
 ; c39a
 
 Special_StartGameCornerGame: ; c39a
-	call Function31cf
+	call FarQueueScript
 	call FadeToMenu
-	ld hl, wd0e8
+	ld hl, wQueuedScriptBank
 	ld a, [hli]
 	push af
 	ld a, [hli]

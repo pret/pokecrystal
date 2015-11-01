@@ -1786,12 +1786,12 @@ Function100b12: ; 100b12
 	ld a, BANK(BattleMenuDataHeader)
 	ld [wcf94], a
 	ld a, [wd0d2]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	call Function100e72
 	call Function100b45
 	callba Function8e85
 	call Function100ed4
-	ld a, [wPocketCursorBuffer]
+	ld a, [wMenuCursorBuffer]
 	ld [wd0d2], a
 	call ExitMenu
 	ret
@@ -1818,7 +1818,7 @@ Function100b45: ; 100b45
 	ld c, a
 	ld a, [wcfa3]
 	call SimpleMultiply
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	and a
 	ret
 ; 100b7a
@@ -7688,7 +7688,7 @@ Function103612: ; 103612
 	ld a, [wdc40]
 	and $f
 	jr z, .asm_103622
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 
 .asm_103622
 	call InterpretMenu2

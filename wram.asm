@@ -1235,7 +1235,7 @@ wMenuBorderRightCoord:: ds 1
 
 wcf86:: ds 1
 wcf87:: ds 1
-wPocketCursorBuffer:: ds 2
+wMenuCursorBuffer:: ds 2
 wcf8a:: ds 7 ; menu data 2 bank?
 wcf91:: ds 1
 
@@ -1511,8 +1511,8 @@ wd0e1:: ds 1
 wd0e2:: ds 1
 wd0e3:: ds 1
 wd0e4:: ds 4
-wd0e8:: ds 1
-wd0e9:: ds 2
+wQueuedScriptBank:: ds 1
+wQueuedScriptAddr:: ds 2
 wd0eb:: ds 1
 wd0ec:: ds 1
 

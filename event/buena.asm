@@ -1,7 +1,7 @@
 SpecialBuenasPassword: ; 8af6b
 	xor a
 	ld [wcf76], a
-	ld hl, MenuDataHeader_0x8afa9
+	ld hl, .MenuDataHeader
 	call CopyMenuDataHeader
 	ld a, [wBuenasPassword]
 	ld c, a
@@ -11,7 +11,7 @@ SpecialBuenasPassword: ; 8af6b
 	add $2
 	ld [wMenuBorderRightCoord], a
 	call BackUpTiles
-	call Function1e5d
+	call Function1e5d ; menu
 	callba Function4ae5e
 	ld b, $0
 	ld a, [MenuSelection]
@@ -19,38 +19,38 @@ SpecialBuenasPassword: ; 8af6b
 	ld a, [wBuenasPassword]
 	and $3
 	cp c
-	jr nz, .asm_8afa4
+	jr nz, .wrong
 	ld b, $1
 
-.asm_8afa4
+.wrong
 	ld a, b
 	ld [ScriptVar], a
 	ret
 ; 8afa9
 
-MenuDataHeader_0x8afa9: ; 0x8afa9
+.MenuDataHeader: ; 0x8afa9
 	db $40 ; flags
 	db 00, 00 ; start coords
 	db 07, 10 ; end coords
-	dw MenuData2_0x8afb2
+	dw .MenuData2
 	db 1 ; default option
 ; 0x8afb1
 
 	db 0
 
-MenuData2_0x8afb2: ; 0x8afb2
+.MenuData2: ; 0x8afb2
 	db $81 ; flags
 	db 0 ; items
-	dw Unknown_8afb8
-	dw Function8afbd
+	dw .PasswordIndices
+	dw .PlacePasswordChoices
 ; 0x8afb4
 
-Unknown_8afb8: ; 8afb8
+.PasswordIndices: ; 8afb8
 	db 3
 	db 0, 1, 2
 	db -1
 
-Function8afbd: ; 8afbd
+.PlacePasswordChoices: ; 8afbd
 	push de
 	ld a, [wBuenasPassword]
 	and $f0
@@ -71,29 +71,29 @@ SpecialBuenaPrize: ; 8afd4
 	ld [MenuSelection], a
 	call Function8b0d6
 	call Function8b090
-	ld hl, UnknownText_0x8b072
+	ld hl, .Text_AskWhichPrize
 	call PrintText
-	jr .asm_8aff1
+	jr .okay
 
-.asm_8afeb
-	ld hl, UnknownText_0x8b072
+.loop
+	ld hl, .Text_AskWhichPrize
 	call BuenaPrintText
 
-.asm_8aff1
+.okay
 	call DelayFrame
 	call UpdateSprites
 	call Function8b097
 	call Function8b0e2
-	jr z, .asm_8b05f
+	jr z, .done
 	ld [wcf75], a
 	call Buena_getprize
 	ld a, [hl]
 	ld [wd265], a
 	call GetItemName
-	ld hl, UnknownText_0x8b077
+	ld hl, .Text_IsThatRight
 	call BuenaPrintText
 	call YesNoBox
-	jr c, .asm_8afeb
+	jr c, .loop
 
 	ld a, [wcf75]
 	call Buena_getprize
@@ -112,73 +112,72 @@ SpecialBuenaPrize: ; 8afd4
 	ld hl, NumItems
 	call ReceiveItem
 	pop hl
-	jr nc, .asm_8b04c
+	jr nc, .BagFull
 	ld a, [hl]
 	ld c, a
 	ld a, [wBlueCardBalance]
 	sub c
 	ld [wBlueCardBalance], a
 	call Function8b097
-	jr .asm_8b051
+	jr .Purchase
 
 .InsufficientBalance
-	ld hl, UnknownText_0x8b081
-	jr .asm_8b05a
+	ld hl, .Text_NotEnoughPoints
+	jr .print
 
-.asm_8b04c
-	ld hl, UnknownText_0x8b086
-	jr .asm_8b05a
+.BagFull
+	ld hl, .Text_NoRoom
+	jr .print
 
-.asm_8b051
+.Purchase
 	ld de, SFX_TRANSACTION
 	call PlaySFX
-	ld hl, UnknownText_0x8b07c
+	ld hl, .Text_HereYouGo
 
-.asm_8b05a
+.print
 	call BuenaPrintText
-	jr .asm_8afeb
+	jr .loop
 
-.asm_8b05f
+.done
 	call WriteBackup
 	call WriteBackup
-	ld hl, UnknownText_0x8b08b
+	ld hl, .Text_PleaseComeBackAgain
 	call PrintText
 	call JoyWaitAorB
 	call PlayClickSFX
 	ret
 ; 8b072
 
-UnknownText_0x8b072: ; 0x8b072
+.Text_AskWhichPrize: ; 0x8b072
 	; Which prize would you like?
 	text_jump UnknownText_0x1c589f
 	db "@"
 ; 0x8b077
 
-UnknownText_0x8b077: ; 0x8b077
+.Text_IsThatRight: ; 0x8b077
 	; ? Is that right?
 	text_jump UnknownText_0x1c58bc
 	db "@"
 ; 0x8b07c
 
-UnknownText_0x8b07c: ; 0x8b07c
-	; Here you go!
+.Text_HereYouGo	; Here you go!
 	text_jump UnknownText_0x1c58d1
 	db "@"
 ; 0x8b081
 
-UnknownText_0x8b081: ; 0x8b081
+.Text_NotEnoughPoints: ; 0x8b081
 	; You don't have enough points.
 	text_jump UnknownText_0x1c58e0
 	db "@"
 ; 0x8b086
 
-UnknownText_0x8b086: ; 0x8b086
+.Text_NoRoom: ; 0x8b086
 	; You have no room for it.
 	text_jump UnknownText_0x1c58ff
 	db "@"
 ; 0x8b08b
 
-UnknownText_0x8b08b: ; 0x8b08b
+.Text_PleaseComeBackAgain: ; 0x8b08b
 	; Oh. Please come back again!
 	text_jump UnknownText_0x1c591a
 	db "@"
@@ -247,7 +246,7 @@ Function8b0e2: ; 8b0e2
 	ld hl, .MenuDataHeader
 	call CopyMenuDataHeader
 	ld a, [MenuSelection]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	xor a
 	ld [wcf76], a
 	ld [hBGMapMode], a
