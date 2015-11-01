@@ -1375,7 +1375,7 @@ UnknownText_0x1c5b34: ; 0x1c5b34
 	db "@"
 ; 0x1c5b35
 
-UnknownText_0x1c5b35: ; 0x1c5b35
+Text_Waitbutton_2: ; 0x1c5b35
 	text_waitbutton
 	db "@"
 ; 0x1c5b37
@@ -1428,7 +1428,7 @@ UnknownText_0x1c5bac: ; 0x1c5bac
 	prompt
 ; 0x1c5bcd
 
-UnknownText_0x1c5bcd: ; 0x1c5bcd
+Text_RepelUsedEarlierIsStillInEffect: ; 0x1c5bcd
 	text "The REPEL used"
 	line "earlier is still"
 	cont "in effect."
@@ -1480,26 +1480,26 @@ UnknownText_0x1c5c89: ; 0x1c5c89
 	db "@"
 ; 0x1c5c8a
 
-UnknownText_0x1c5c8a: ; 0x1c5c8a
+Text_RaiseThePPOfWhichMove: ; 0x1c5c8a
 	text "Raise the PP of"
 	line "which move?"
 	done
 ; 0x1c5ca7
 
-UnknownText_0x1c5ca7: ; 0x1c5ca7
+Text_RestoreThePPOfWhichMove: ; 0x1c5ca7
 	text "Restore the PP of"
 	line "which move?"
 	done
 ; 0x1c5cc6
 
-UnknownText_0x1c5cc6: ; 0x1c5cc6
+Text_PPIsMaxedOut: ; 0x1c5cc6
 	text_from_ram StringBuffer2
 	text "'s PP"
 	line "is maxed out."
 	prompt
 ; 0x1c5cdd
 
-UnknownText_0x1c5cdd: ; 0x1c5cdd
+Text_PPsIncreased: ; 0x1c5cdd
 	text_from_ram StringBuffer2
 	text "'s PP"
 	line "increased."
@@ -1674,7 +1674,7 @@ UnknownText_0x1c5fd1: ; 0x1c5fd1
 	prompt
 ; 0x1c5fde
 
-UnknownText_0x1c5fde: ; 0x1c5fde
+Text_DSTIsThatOK: ; 0x1c5fde
 	text " DST,"
 	line "is that OK?"
 	done

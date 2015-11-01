@@ -38,11 +38,11 @@ PredefPointers:: ; 856b
 	add_predef FillPP
 	add_predef TryAddMonToParty
 	add_predef Functionda96
-	add_predef Functiondb3f ; $8
+	add_predef SentGetPkmnIntoFromBox
 	add_predef SentPkmnIntoBox
 	add_predef GiveEgg
 	add_predef Functionc6e0
-	add_predef Functione167
+	add_predef CalcPkmnStats
 	add_predef Functione17b
 	add_predef CanLearnTMHMMove
 	add_predef GetTMHMMove
@@ -50,7 +50,7 @@ PredefPointers:: ; 856b
 	add_predef PrintMoveDesc
 	add_predef UpdatePlayerHUD
 	add_predef FillBox
-	add_predef Function3d873
+	add_predef CheckPlayerPartyForFitPkmn
 	add_predef UpdateEnemyHUD
 	add_predef StartBattle
 	add_predef FillInExpBar
@@ -61,7 +61,7 @@ PredefPointers:: ; 856b
 	add_predef Function421e6
 	add_predef Function28f63
 	add_predef Function28f24
-	add_predef Function5084a
+	add_predef CopyPkmnToTempMon
 	add_predef ListMoves ; $20
 	add_predef Function50d2e
 	add_predef Function50cdb

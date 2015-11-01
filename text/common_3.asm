@@ -106,13 +106,13 @@ UnknownText_0x1c0272: ; 1c0272
 	prompt
 ; 1c029c
 
-UnknownText_0x1c029c: ; 1c029c
+Text_Gained: ; 1c029c
 	text_from_ram StringBuffer1
 	text " gained@"
 	db "@"
 ; 1c02a9
 
-UnknownText_0x1c02a9: ; 1c02a9
+Text_ABoostedStringBuffer2ExpPoints: ; 1c02a9
 	text ""
 	line "a boosted"
 	cont "@"
@@ -121,7 +121,7 @@ UnknownText_0x1c02a9: ; 1c02a9
 	prompt
 ; 1c02c9
 
-UnknownText_0x1c02c9: ; 1c02c9
+Text_StringBuffer2ExpPoints: ; 1c02c9
 	text ""
 	line "@"
 	deciram StringBuffer2, 2, 4
@@ -157,31 +157,31 @@ Text_BattleMonNick01: ; 1c0317
 	done
 ; 1c031d
 
-UnknownText_0x1c031d: ; 1c031d
+Text_BattleMonNickComma: ; 1c031d
 	text_from_ram BattleMonNick
 	text ",@"
 	db "@"
 ; 1c0324
 
-UnknownText_0x1c0324: ; 1c0324
+Text_ThatsEnoughComeBack: ; 1c0324
 	text " that's"
 	line "enough! Come back!@"
 	db "@"
 ; 1c0340
 
-UnknownText_0x1c0340: ; 1c0340
+Text_OKComeBack: ; 1c0340
 	text " OK!"
 	line "Come back!@"
 	db "@"
 ; 1c0352
 
-UnknownText_0x1c0352: ; 1c0352
+Text_GoodComeBack: ; 1c0352
 	text " good!"
 	line "Come back!@"
 	db "@"
 ; 1c0366
 
-UnknownText_0x1c0366: ; 1c0366
+Text_ComeBack: ; 1c0366
 	text " come"
 	line "back!"
 	done
@@ -689,7 +689,7 @@ UnknownText_0x1c0b65: ; 1c0b65
 	done
 ; 1c0b7f
 
-UnknownText_0x1c0b7f: ; 1c0b7f
+Text_AnEGGCantHoldAnItem: ; 1c0b7f
 	text "An EGG can't hold"
 	line "an item."
 	prompt
@@ -731,7 +731,7 @@ UnknownText_0x1c0bee: ; 1c0bee
 	prompt
 ; 1c0c17
 
-UnknownText_0x1c0c17: ; 1c0c17
+Text_YouDontHaveAPkmn: ; 1c0c17
 	text "You don't have a"
 	line "#MON!"
 	prompt
@@ -762,13 +762,13 @@ UnknownText_0x1c0c83: ; 1c0c83
 	done
 ; 1c0c85
 
-UnknownText_0x1c0c85: ; 1c0c85
+Text_YouCantUseItInABattle: ; 1c0c85
 	text "You can't use it"
 	line "in a battle."
 	prompt
 ; 1c0ca3
 
-UnknownText_0x1c0ca3: ; 1c0ca3
+Text_AreYouABoyOrAreYouAGirl: ; 1c0ca3
 	text "Are you a boy?"
 	line "Or are you a girl?"
 	done

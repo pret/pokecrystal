@@ -581,7 +581,7 @@ Function8b677: ; 8b677
 	call Function8b6ed
 	call EnableLCD
 	call Function891ab
-	call Function32f9
+	call SetPalettes
 	ret
 ; 8b690
 

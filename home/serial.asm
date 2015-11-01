@@ -273,15 +273,15 @@ Function83b:: ; 83b
 ; 862
 
 Function862:: ; 862
-	call Function309d
+	call LoadTileMapToTempTileMap
 	callab Function4000
 	call Function87d
-	jp Function30b4
+	jp Call_LoadTempTileMapToTileMap
 ; 871
 
 
 Function871:: ; 871
-	call Function309d
+	call LoadTileMapToTempTileMap
 	callab Function4000
 	jp Function87d
 ; 87d

@@ -1615,6 +1615,7 @@ Function100a09: ; 100a09
 	ld a, [wLinkMode]
 	cp $4
 	jr nz, .asm_100a2a
+
 	call Function100a87
 	call Function100da5
 	callba Function3ee27
@@ -1941,15 +1942,15 @@ endr
 	ret
 
 .asm_100c63
-	ld hl, BattleText_0x80c5b
+	ld hl, BattleText_TheMoveIsDisabled
 	jr .asm_100c6b
 
 .asm_100c68
-	ld hl, BattleText_0x80c39
+	ld hl, BattleText_TheresNoPPLeftForThisMove
 
 .asm_100c6b
 	call StdBattleTextBox
-	call Function30b4
+	call Call_LoadTempTileMapToTileMap
 	jp Function100bc2
 ; 100c74
 
@@ -3015,7 +3016,7 @@ Function10138b: ; 10138b
 
 Function1013aa: ; 1013aa
 	call WhiteBGMap
-	call Function1d7d
+	call Call_ExitMenu
 	call Function2bae
 	callba Function106464
 	call UpdateSprites
@@ -4482,7 +4483,7 @@ Unknown_101d8d: ; 101d8d
 
 Function101d95: ; 101d95
 	call Function101ee2
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	ld e, $e
 	call Function101ee4
 	ld hl, wcd29
@@ -6255,7 +6256,7 @@ Jumptable_1029cb: ; 1029cb
 ; 1029cf
 
 Function1029cf: ; 1029cf
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	hlcoord 10, 7
 	ld b, $3
 	ld c, $8
@@ -6793,7 +6794,7 @@ Function102dec: ; 102dec
 	ld a, $5
 	call FarCopyWRAM
 	callba Function49742
-	call Function32f9
+	call SetPalettes
 	call DelayFrame
 	ret
 ; 102e07

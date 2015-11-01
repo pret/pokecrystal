@@ -1,4 +1,4 @@
-BattleText_0x80730: ; 0x80730
+BattleText_PlayerPickuedUpPayDayMoney: ; 0x80730
 	text "<PLAYER> picked up"
 	line "¥@"
 	deciram wPayDayMoney, 3, 6
@@ -307,7 +307,7 @@ BattleText_GotAwaySafely: ; 0x80b77
 	text "Got away safely!"
 	prompt
 
-BattleText_0x80b89: ; 0x80b89
+BattleText_UserFledUsingAStringBuffer1: ; 0x80b89
 	text "<USER>"
 	line "fled using a"
 	cont "@"
@@ -321,7 +321,7 @@ BattleText_CantEscape: ; 0x80ba0
 	prompt
 ; 0x80bae
 
-BattleText_0x80bae: ; 0x80bae
+BattleText_UserHurtBySpikes: ; 0x80bae
 	text "<USER>'s"
 	line "hurt by SPIKES!"
 	prompt
@@ -336,7 +336,7 @@ RecoveredUsingText: ; 0x80bc2
 	prompt
 ; 0x80bde
 
-BattleText_0x80bde: ; 0x80bde
+BattleText_UsersStringBuffer1Activated: ; 0x80bde
 	text "<USER>'s"
 	line "@"
 	text_from_ram StringBuffer1
@@ -345,52 +345,52 @@ BattleText_0x80bde: ; 0x80bde
 	prompt
 ; 0x80bf3
 
-BattleText_0x80bf3: ; 0x80bf3
+BattleText_ItemsCantBeUsedHere: ; 0x80bf3
 	text "Items can't be"
 	line "used here."
 	prompt
 ; 0x80c0d
 
-BattleText_0x80c0d: ; 0x80c0d
+BattleText_PkmnIsAlreadyOut: ; 0x80c0d
 	text_from_ram BattleMonNick
 	text ""
 	line "is already out."
 	prompt
 ; 0x80c22
 
-BattleText_0x80c22: ; 0x80c22
+BattleText_PkmnCantBeRecalled: ; 0x80c22
 	text_from_ram BattleMonNick
 	text ""
 	line "can't be recalled!"
 	prompt
 ; 0x80c39
 
-BattleText_0x80c39: ; 0x80c39
+BattleText_TheresNoPPLeftForThisMove: ; 0x80c39
 	text "There's no PP left"
 	line "for this move!"
 	prompt
 ; 0x80c5b
 
-BattleText_0x80c5b: ; 0x80c5b
+BattleText_TheMoveIsDisabled: ; 0x80c5b
 	text "The move is"
 	line "DISABLED!"
 	prompt
 ; 0x80c72
 
-BattleText_0x80c72: ; 0x80c72
+BattleText_PkmnHasNoMovesLeft: ; 0x80c72
 	text_from_ram BattleMonNick
 	text ""
 	line "has no moves left!"
 	done
 ; 0x80c8a
 
-BattleText_0x80c8a: ; 0x80c8a
+BattleText_TargetsEncoreEnded: ; 0x80c8a
 	text "<TARGET>'s"
 	line "ENCORE ended!"
 	prompt
 ; 0x80c9c
 
-BattleText_0x80c9c: ; 0x80c9c
+BattleText_StringBuffer1GrewToLevel: ; 0x80c9c
 	text_from_ram StringBuffer1
 	text " grew to"
 	line "level @"
@@ -404,7 +404,7 @@ BattleText_0x80cb9: ; 0x80cb9
 	db "@"
 ; 0x80cba
 
-BattleText_0x80cba: ; 0x80cba
+BattleText_WildPkmnIsEating: ; 0x80cba
 	text "Wild @"
 	text_from_ram EnemyMonNick
 	text ""
@@ -412,7 +412,7 @@ BattleText_0x80cba: ; 0x80cba
 	prompt
 ; 0x80cd1
 
-BattleText_0x80cd1: ; 0x80cd1
+BattleText_WildPkmnIsAngry: ; 0x80cd1
 	text "Wild @"
 	text_from_ram EnemyMonNick
 	text ""
@@ -495,7 +495,7 @@ AlreadyConfusedText: ; 0x80dcc
 	prompt
 ; 0x80de2
 
-BattleText_0x80de2: ; 0x80de2
+BattleText_UsersHurtByStringBuffer1: ; 0x80de2
 	text "<USER>'s"
 	line "hurt by"
 	cont "@"
@@ -504,7 +504,7 @@ BattleText_0x80de2: ; 0x80de2
 	prompt
 ; 0x80df5
 
-BattleText_0x80df5: ; 0x80df5
+BattleText_UserWasReleasedFromStringBuffer1: ; 0x80df5
 	text "<USER>"
 	line "was released from"
 	cont "@"

@@ -1,5 +1,5 @@
 Function14a1a: ; 14a1a
-	call Function1d6e
+	call LoadMenuDataHeader_0x1d75
 	callba Function5e9a
 	call SpeechTextBox
 	call UpdateSprites
