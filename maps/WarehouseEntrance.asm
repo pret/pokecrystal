@@ -156,7 +156,7 @@ GrannyScript_0x7c132:
 	jump WarehouseEntranceScript_ShopClosed
 
 .Open:
-	pokemart $1, $0021
+	pokemart MARTTYPE_BITTER, MART_UNDERGROUND
 	loadmovesprites
 	end
 
@@ -171,7 +171,7 @@ GrampsScript_0x7c146:
 .CheckMorn:
 	checkmorn
 	iffalse WarehouseEntranceScript_ShopClosed
-	pokemart $2, 0
+	pokemart MARTTYPE_BARGAIN, 0
 	loadmovesprites
 	end
 

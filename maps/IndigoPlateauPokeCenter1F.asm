@@ -137,7 +137,7 @@ NurseScript_0x18012c:
 
 ClerkScript_0x18012f:
 	loadfont
-	pokemart $0, $0020
+	pokemart MARTTYPE_STANDARD, MART_INDIGO_PLATEAU
 	loadmovesprites
 	end
 

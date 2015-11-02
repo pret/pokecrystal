@@ -71,7 +71,7 @@ ENDM
 	trigger_def RUINS_OF_ALPH_OMANYTE_CHAMBER,          wRuinsOfAlphOmanyteChamberTrigger
 	trigger_def RUINS_OF_ALPH_AERODACTYL_CHAMBER,       wRuinsOfAlphAerodactylChamberTrigger
 	trigger_def RUINS_OF_ALPH_INNER_CHAMBER,            wRuinsOfAlphInnerChamberTrigger
-	trigger_def MAHOGANY_MART_1F,                       wMahoganyMart1FTrigger
+	trigger_def MAHOGANY_MARTTYPE_1F,                       wMahoganyMart1FTrigger
 	trigger_def TEAM_ROCKET_BASE_B1F,                   wTeamRocketBaseB1FTrigger
 	trigger_def TEAM_ROCKET_BASE_B2F,                   wTeamRocketBaseB2FTrigger
 	trigger_def TEAM_ROCKET_BASE_B3F,                   wTeamRocketBaseB3FTrigger

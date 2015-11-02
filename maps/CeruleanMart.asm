@@ -7,7 +7,7 @@ CeruleanMart_MapScriptHeader:
 
 ClerkScript_0x188ac0:
 	loadfont
-	pokemart $0, $0014
+	pokemart MARTTYPE_STANDARD, MART_CERULEAN
 	loadmovesprites
 	end
 

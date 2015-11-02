@@ -7,7 +7,7 @@ SaffronMart_MapScriptHeader:
 
 ClerkScript_0x18a3bf:
 	loadfont
-	pokemart $0, $001e
+	pokemart MARTTYPE_STANDARD, MART_SAFFRON
 	loadmovesprites
 	end
 

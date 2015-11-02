@@ -34,22 +34,22 @@ ClerkScript_0x5609c:
 	jump .onlyheadbutt
 
 .neither:
-	pokemart $0, $0009
+	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_5F_1
 	loadmovesprites
 	end
 
 .onlyheadbutt:
-	pokemart $0, $000a
+	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_5F_2
 	loadmovesprites
 	end
 
 .onlyrocksmash:
-	pokemart $0, $000b
+	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_5F_3
 	loadmovesprites
 	end
 
 .both:
-	pokemart $0, $000c
+	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_5F_4
 	loadmovesprites
 	end
 

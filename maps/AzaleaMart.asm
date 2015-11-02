@@ -7,7 +7,7 @@ AzaleaMart_MapScriptHeader:
 
 ClerkScript_0x18e040:
 	loadfont
-	pokemart $0, $0003
+	pokemart MARTTYPE_STANDARD, MART_AZALEA
 	loadmovesprites
 	end
 

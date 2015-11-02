@@ -70,8 +70,10 @@ KrissHouseRadio:
 	loadmovesprites
 	setevent EVENT_LISTENED_TO_INITIAL_RADIO
 	end
+
 .NormalRadio
 	jumpstd radio1
+
 .AbbreviatedRadio
 	loadfont
 	writetext KrisRadioText4

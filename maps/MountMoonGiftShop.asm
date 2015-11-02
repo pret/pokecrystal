@@ -8,7 +8,7 @@ MountMoonGiftShop_MapScriptHeader:
 GrampsScript_0x771a8:
 	faceplayer
 	loadfont
-	pokemart $0, $001f
+	pokemart MARTTYPE_STANDARD, MART_MT_MOON
 	loadmovesprites
 	end
 

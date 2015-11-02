@@ -7,7 +7,7 @@ BlackthornMart_MapScriptHeader:
 
 ClerkScript_0x195a5d:
 	loadfont
-	pokemart $0, $0011
+	pokemart MARTTYPE_STANDARD, MART_BLACKTHORN
 	loadmovesprites
 	end
 

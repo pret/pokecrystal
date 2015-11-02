@@ -32,7 +32,7 @@ CianwoodPharmacist:
 	end
 
 .Mart
-	pokemart $3, $0004
+	pokemart MARTTYPE_PHARMACY, MART_CIANWOOD
 	loadmovesprites
 	end
 

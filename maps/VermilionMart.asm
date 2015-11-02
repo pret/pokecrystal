@@ -7,7 +7,7 @@ VermilionMart_MapScriptHeader:
 
 ClerkScript_0x191f7e:
 	loadfont
-	pokemart $0, $0016
+	pokemart MARTTYPE_STANDARD, MART_VERMILION
 	loadmovesprites
 	end
 

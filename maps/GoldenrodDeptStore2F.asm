@@ -8,14 +8,14 @@ GoldenrodDeptStore2F_MapScriptHeader:
 ClerkScript_0x55b5d:
 	faceplayer
 	loadfont
-	pokemart $0, $0005
+	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_2F_1
 	loadmovesprites
 	end
 
 ClerkScript_0x55b65:
 	faceplayer
 	loadfont
-	pokemart $0, $0006
+	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_2F_2
 	loadmovesprites
 	end
 

@@ -7,7 +7,7 @@ FuchsiaMart_MapScriptHeader:
 
 ClerkScript_0x195ce8:
 	loadfont
-	pokemart $0, $001d
+	pokemart MARTTYPE_STANDARD, MART_FUCHSIA
 	loadmovesprites
 	end
 

@@ -82,7 +82,7 @@ MAP_NONE   EQU 0
 	mapgroup OLIVINE_LIGHTHOUSE_4F,                       9, 10 ; 45
 	mapgroup OLIVINE_LIGHTHOUSE_5F,                       9, 10 ; 46
 	mapgroup OLIVINE_LIGHTHOUSE_6F,                       9, 10 ; 47
-	mapgroup MAHOGANY_MART_1F,                            4,  4 ; 48
+	mapgroup MAHOGANY_MARTTYPE_1F,                            4,  4 ; 48
 	mapgroup TEAM_ROCKET_BASE_B1F,                        9, 15 ; 49
 	mapgroup TEAM_ROCKET_BASE_B2F,                        9, 15 ; 50
 	mapgroup TEAM_ROCKET_BASE_B3F,                        9, 15 ; 51

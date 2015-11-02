@@ -730,7 +730,7 @@ TeamRocketBaseB1F_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $2, $1b, 3, MAHOGANY_MART_1F
+	warp_def $2, $1b, 3, MAHOGANY_MARTTYPE_1F
 	warp_def $e, $3, 1, TEAM_ROCKET_BASE_B2F
 	warp_def $f, $5, 4, TEAM_ROCKET_BASE_B1F
 	warp_def $2, $19, 3, TEAM_ROCKET_BASE_B1F

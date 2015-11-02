@@ -8,7 +8,7 @@ CeladonDeptStore4F_MapScriptHeader:
 ClerkScript_0x70f0d:
 	faceplayer
 	loadfont
-	pokemart $0, $001a
+	pokemart MARTTYPE_STANDARD, MART_CELADON_4F
 	loadmovesprites
 	end
 

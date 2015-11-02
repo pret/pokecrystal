@@ -7,7 +7,7 @@ EcruteakMart_MapScriptHeader:
 
 ClerkScript_0x99c3b:
 	loadfont
-	pokemart $0, $000e
+	pokemart MARTTYPE_STANDARD, MART_ECRUTEAK
 	loadmovesprites
 	end
 

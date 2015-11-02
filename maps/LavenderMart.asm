@@ -7,7 +7,7 @@ LavenderMart_MapScriptHeader:
 
 ClerkScript_0x7eb1c:
 	loadfont
-	pokemart $0, $0015
+	pokemart MARTTYPE_STANDARD, MART_LAVENDER
 	loadmovesprites
 	end
 
