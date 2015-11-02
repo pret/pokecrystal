@@ -3315,9 +3315,9 @@ RefreshPlayerCoords: ; 80b8
 
 
 CopyObjectStruct:: ; 80e7
-	call Function2707
+	call CheckObjectMask
 	and a
-	ret nz
+	ret nz ; masked
 	ld hl, ObjectStructs + OBJECT_STRUCT_LENGTH * 1
 	ld a, 1
 	ld de, OBJECT_STRUCT_LENGTH
@@ -22936,22 +22936,22 @@ MenuDataHeader_0x24547: ; 0x24547
 	db 1 ; default option
 ; 0x2454f
 
-Function2454f: ; 2454f
-	ld hl, wd81e
+LoadObjectMasks: ; 2454f
+	ld hl, wObjectMasks
 	xor a
 	ld bc, NUM_OBJECTS
 	call ByteFill
 	nop
 	ld bc, MapObjects
-	ld de, wd81e
+	ld de, wObjectMasks
 	xor a
 .loop
 	push af
 	push bc
 	push de
-	call Function245a7
+	call GetObjectTimeMask
 	jr c, .next
-	call Function2457d
+	call CheckObjectFlag
 .next
 	pop de
 	ld [de], a
@@ -22967,12 +22967,12 @@ Function2454f: ; 2454f
 	jr nz, .loop
 	ret
 
-Function2457d: ; 2457d (9:457d)
+CheckObjectFlag: ; 2457d (9:457d)
 	ld hl, MAPOBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .minus_one
+	jr z, .masked
 	ld hl, MAPOBJECT_EVENT_FLAG
 	add hl, bc
 	ld a, [hli]
@@ -22983,24 +22983,25 @@ Function2457d: ; 2457d (9:457d)
 	jr nz, .check
 	ld a, e
 	cp -1
-	jr z, .zero
-	jr .minus_one
+	jr z, .unmasked
+	jr .masked
 .check
 	ld b, CHECK_FLAG
 	call EventFlagAction
 	ld a, c
 	and a
-	jr nz, .minus_one
-.zero
+	jr nz, .masked
+.unmasked
 	xor a
 	ret
-.minus_one
+
+.masked
 	ld a, -1
 	scf
 	ret
 
-Function245a7: ; 245a7 (9:45a7)
-	call Function18f5
+GetObjectTimeMask: ; 245a7 (9:45a7)
+	call CheckObjectTime
 	ld a, -1
 	ret c
 	xor a

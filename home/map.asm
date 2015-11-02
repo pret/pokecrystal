@@ -1170,33 +1170,33 @@ CoordinatesEventText:: ; 2702
 ; 2707
 
 
-Function2707:: ; 2707
+CheckObjectMask:: ; 2707
 	ld a, [hMapObjectIndexBuffer1]
 	ld e, a
 	ld d, $0
-	ld hl, wd81e
+	ld hl, wObjectMasks
 	add hl, de
 	ld a, [hl]
 	ret
 ; 2712
 
-Function2712:: ; 2712
+MaskObject:: ; 2712
 	ld a, [hMapObjectIndexBuffer1]
 	ld e, a
 	ld d, $0
-	ld hl, wd81e
+	ld hl, wObjectMasks
 	add hl, de
-	ld [hl], $ff
+	ld [hl], -1 ; ,masked
 	ret
 ; 271e
 
-Function271e:: ; 271e
+UnmaskObject:: ; 271e
 	ld a, [hMapObjectIndexBuffer1]
 	ld e, a
 	ld d, $0
-	ld hl, wd81e
+	ld hl, wObjectMasks
 	add hl, de
-	ld [hl], $0
+	ld [hl], 0 ; unmasked
 	ret
 ; 272a
 

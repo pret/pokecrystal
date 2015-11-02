@@ -313,7 +313,7 @@ SuspendMapAnims: ; 154d3
 LoadObjectsRunCallback_02: ; 154d7
 	ld a, $2
 	call RunMapCallback
-	callba Function2454f
+	callba LoadObjectMasks
 	callba Function8177
 	ret
 ; 154ea (5:54ea)

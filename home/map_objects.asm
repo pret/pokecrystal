@@ -251,7 +251,7 @@ Function18de:: ; 18de
 	ret
 ; 18f5
 
-Function18f5:: ; 18f5
+CheckObjectTime:: ; 18f5
 	ld hl, MAPOBJECT_HOUR
 	add hl, bc
 	ld a, [hl]
@@ -336,7 +336,7 @@ Function194d:: ; 194d
 
 _CopyObjectStruct:: ; 1956
 	ld [hMapObjectIndexBuffer1], a
-	call Function271e
+	call UnmaskObject
 	ld a, [hMapObjectIndexBuffer1]
 	call GetMapObject
 	callba CopyObjectStruct
@@ -378,7 +378,7 @@ Function1985:: ; 1985
 
 DeleteObjectStruct:: ; 199f
 	call Function1967
-	call Function2712
+	call MaskObject
 	ret
 ; 19a6
 

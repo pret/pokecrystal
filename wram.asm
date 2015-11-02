@@ -2122,7 +2122,7 @@ wd6de::
 MapObjects:: ; d71e
 	ds OBJECT_LENGTH * NUM_OBJECTS
 
-wd81e:: ds NUM_OBJECTS
+wObjectMasks:: ds NUM_OBJECTS ; d81e
 
 VariableSprites:: ; d82e
 	ds $10
