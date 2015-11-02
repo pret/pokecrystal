@@ -3,8 +3,8 @@ MountMoon_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x74089, NONE
-	dw UnknownScript_0x7408d, NONE
+	dw UnknownScript_0x74089, 0
+	dw UnknownScript_0x7408d, 0
 
 .MapCallbacks:
 	db 0

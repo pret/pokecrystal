@@ -6,7 +6,7 @@ Route44_MapScriptHeader:
 	db 0
 
 TrainerBird_keeperVance1:
-	trainer EVENT_BEAT_BIRD_KEEPER_VANCE, BIRD_KEEPER, VANCE1, Bird_keeperVance1SeenText, Bird_keeperVance1BeatenText, NONE, Bird_keeperVance1Script
+	trainer EVENT_BEAT_BIRD_KEEPER_VANCE, BIRD_KEEPER, VANCE1, Bird_keeperVance1SeenText, Bird_keeperVance1BeatenText, 0, Bird_keeperVance1Script
 
 Bird_keeperVance1Script:
 	writecode VAR_CALLERID, PHONE_BIRDKEEPER_VANCE
@@ -36,7 +36,7 @@ UnknownScript_0x19d856:
 
 UnknownScript_0x19d86a:
 	scall UnknownScript_0x19d8f7
-	winlosstext Bird_keeperVance1BeatenText, NONE
+	winlosstext Bird_keeperVance1BeatenText, 0
 	copybytetovar wVanceFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
@@ -137,7 +137,7 @@ UnknownScript_0x19d90a:
 	end
 
 TrainerPsychicPhil:
-	trainer EVENT_BEAT_PSYCHIC_PHIL, PSYCHIC_T, PHIL, PsychicPhilSeenText, PsychicPhilBeatenText, NONE, PsychicPhilScript
+	trainer EVENT_BEAT_PSYCHIC_PHIL, PSYCHIC_T, PHIL, PsychicPhilSeenText, PsychicPhilBeatenText, 0, PsychicPhilScript
 
 PsychicPhilScript:
 	talkaftercancel
@@ -148,7 +148,7 @@ PsychicPhilScript:
 	end
 
 TrainerFisherWilton1:
-	trainer EVENT_BEAT_FISHER_WILTON, FISHER, WILTON1, FisherWilton1SeenText, FisherWilton1BeatenText, NONE, FisherWilton1Script
+	trainer EVENT_BEAT_FISHER_WILTON, FISHER, WILTON1, FisherWilton1SeenText, FisherWilton1BeatenText, 0, FisherWilton1Script
 
 FisherWilton1Script:
 	writecode VAR_CALLERID, PHONE_FISHER_WILTON
@@ -180,7 +180,7 @@ UnknownScript_0x19d95a:
 
 UnknownScript_0x19d96e:
 	scall UnknownScript_0x19d8f7
-	winlosstext FisherWilton1BeatenText, NONE
+	winlosstext FisherWilton1BeatenText, 0
 	copybytetovar wWiltonFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
@@ -243,7 +243,7 @@ UnknownScript_0x19d9e7:
 	jump UnknownScript_0x19d8ff
 
 TrainerFisherEdgar:
-	trainer EVENT_BEAT_FISHER_EDGAR, FISHER, EDGAR, FisherEdgarSeenText, FisherEdgarBeatenText, NONE, FisherEdgarScript
+	trainer EVENT_BEAT_FISHER_EDGAR, FISHER, EDGAR, FisherEdgarSeenText, FisherEdgarBeatenText, 0, FisherEdgarScript
 
 FisherEdgarScript:
 	talkaftercancel
@@ -254,7 +254,7 @@ FisherEdgarScript:
 	end
 
 TrainerCooltrainerfCybil:
-	trainer EVENT_BEAT_COOLTRAINERF_CYBIL, COOLTRAINERF, CYBIL, CooltrainerfCybilSeenText, CooltrainerfCybilBeatenText, NONE, CooltrainerfCybilScript
+	trainer EVENT_BEAT_COOLTRAINERF_CYBIL, COOLTRAINERF, CYBIL, CooltrainerfCybilSeenText, CooltrainerfCybilBeatenText, 0, CooltrainerfCybilScript
 
 CooltrainerfCybilScript:
 	talkaftercancel
@@ -265,7 +265,7 @@ CooltrainerfCybilScript:
 	end
 
 TrainerPokemaniacZach:
-	trainer EVENT_BEAT_POKEMANIAC_ZACH, POKEMANIAC, ZACH, PokemaniacZachSeenText, PokemaniacZachBeatenText, NONE, PokemaniacZachScript
+	trainer EVENT_BEAT_POKEMANIAC_ZACH, POKEMANIAC, ZACH, PokemaniacZachSeenText, PokemaniacZachBeatenText, 0, PokemaniacZachScript
 
 PokemaniacZachScript:
 	talkaftercancel
@@ -276,7 +276,7 @@ PokemaniacZachScript:
 	end
 
 TrainerCooltrainermAllen:
-	trainer EVENT_BEAT_COOLTRAINERM_ALLEN, COOLTRAINERM, ALLEN, CooltrainermAllenSeenText, CooltrainermAllenBeatenText, NONE, CooltrainermAllenScript
+	trainer EVENT_BEAT_COOLTRAINERM_ALLEN, COOLTRAINERM, ALLEN, CooltrainermAllenSeenText, CooltrainermAllenBeatenText, 0, CooltrainermAllenScript
 
 CooltrainermAllenScript:
 	talkaftercancel

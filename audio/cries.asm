@@ -370,7 +370,7 @@ Cry_2C_branch_f3022: ; f3022
 	unknownmusic0xde $52
 	sound $4, $f1, $0796
 	sound $4, $f1, $072d
-	sound $7, $0, NONE
+	sound $7, $0, 0
 	sound $10, $f1, $07a7
 	endchannel
 ; f3035
@@ -381,7 +381,7 @@ Cry_2C_Ch6: ; f3038
 Cry_2C_branch_f3038: ; f3038
 	callchannel Cry_2C_branch_f3022
 	loopchannel 2, Cry_2C_branch_f3038
-	sound $e, $0, NONE
+	sound $e, $0, 0
 	sound $8, $f2, $07c2
 	endchannel
 ; f3048
@@ -398,7 +398,7 @@ Cry_27_Ch5: ; f3048
 Cry_27_Ch6: ; f305b
 	unknownmusic0xde $2a
 	sound $3, $2c, $07c7
-	sound $1, $0, NONE
+	sound $1, $0, 0
 	sound $5, $59, $07be
 	sound $6, $b4, $07bd
 	endchannel
@@ -621,7 +621,7 @@ Cry_36_Ch6: ; f3200
 Cry_36_branch_f3202: ; f3202
 	sound $3, $f8, $0791
 	sound $3, $d8, $078d
-	sound $2, $0, NONE
+	sound $2, $0, 0
 	sound $1, $78, $06c1
 	sound $1, $f8, $0741
 	sound $4, $e1, $0751
@@ -646,7 +646,7 @@ Cry_43_Ch5: ; f322e
 	sound $8, $ab, $0734
 	sound $4, $d6, $0716
 	sound $8, $d1, $0712
-	sound $8, $0, NONE
+	sound $8, $0, 0
 	endchannel
 ; f3249
 
@@ -658,7 +658,7 @@ Cry_43_Ch6: ; f3249
 	sound $8, $cb, $0754
 	sound $4, $f6, $0736
 	sound $8, $f1, $0732
-	sound $8, $0, NONE
+	sound $8, $0, 0
 	endchannel
 ; f3264
 
@@ -1213,7 +1213,7 @@ Cry_09_Ch5: ; f361f
 
 Cry_09_Ch6: ; f363c
 	unknownmusic0xde $5
-	sound $2, $8, NONE
+	sound $2, $8, 0
 	sound $f, $a7, $06a1
 	sound $6, $86, $06a2
 	sound $a, $74, $06a1
@@ -1312,7 +1312,7 @@ Cry_11_Ch5: ; f3703
 
 Cry_11_Ch6: ; f3722
 	unknownmusic0xde $a
-	sound $4, $8, NONE
+	sound $4, $8, 0
 	sound $6, $a7, $0741
 	sound $8, $86, $0743
 	sound $4, $76, $0741
@@ -1587,7 +1587,7 @@ Cry_0B_Ch5: ; f394b
 
 Cry_0B_Ch6: ; f3976
 	unknownmusic0xde $44
-	sound $c, $8, NONE
+	sound $c, $8, 0
 	sound $4, $f1, $0701
 	sound $4, $e1, $0782
 	sound $4, $d1, $0741
@@ -1670,7 +1670,7 @@ Cry_0D_branch_f3a1a: ; f3a1a
 
 Cry_0D_Ch6: ; f3a39
 	unknownmusic0xde $40
-	sound $4, $8, NONE
+	sound $4, $8, 0
 	sound $5, $f2, $0651
 	sound $9, $d1, $0661
 	sound $5, $e2, $0614
@@ -1738,7 +1738,7 @@ Cry_0A_Ch5: ; f3aba
 
 Cry_0A_Ch6: ; f3ad9
 	unknownmusic0xde $5
-	sound $3, $8, NONE
+	sound $3, $8, 0
 	sound $8, $a7, $06a1
 	sound $6, $86, $06a3
 	sound $3, $74, $06a1

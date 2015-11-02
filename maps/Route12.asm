@@ -6,7 +6,7 @@ Route12_MapScriptHeader:
 	db 0
 
 TrainerFisherKyle:
-	trainer EVENT_BEAT_FISHER_KYLE, FISHER, KYLE, FisherKyleSeenText, FisherKyleBeatenText, NONE, FisherKyleScript
+	trainer EVENT_BEAT_FISHER_KYLE, FISHER, KYLE, FisherKyleSeenText, FisherKyleBeatenText, 0, FisherKyleScript
 
 FisherKyleScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ FisherKyleScript:
 	end
 
 TrainerFisherMartin:
-	trainer EVENT_BEAT_FISHER_MARTIN, FISHER, MARTIN, FisherMartinSeenText, FisherMartinBeatenText, NONE, FisherMartinScript
+	trainer EVENT_BEAT_FISHER_MARTIN, FISHER, MARTIN, FisherMartinSeenText, FisherMartinBeatenText, 0, FisherMartinScript
 
 FisherMartinScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ FisherMartinScript:
 	end
 
 TrainerFisherStephen:
-	trainer EVENT_BEAT_FISHER_STEPHEN, FISHER, STEPHEN, FisherStephenSeenText, FisherStephenBeatenText, NONE, FisherStephenScript
+	trainer EVENT_BEAT_FISHER_STEPHEN, FISHER, STEPHEN, FisherStephenSeenText, FisherStephenBeatenText, 0, FisherStephenScript
 
 FisherStephenScript:
 	talkaftercancel
@@ -39,7 +39,7 @@ FisherStephenScript:
 	end
 
 TrainerFisherBarney:
-	trainer EVENT_BEAT_FISHER_BARNEY, FISHER, BARNEY, FisherBarneySeenText, FisherBarneyBeatenText, NONE, FisherBarneyScript
+	trainer EVENT_BEAT_FISHER_BARNEY, FISHER, BARNEY, FisherBarneySeenText, FisherBarneyBeatenText, 0, FisherBarneyScript
 
 FisherBarneyScript:
 	talkaftercancel

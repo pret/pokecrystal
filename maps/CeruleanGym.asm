@@ -3,8 +3,8 @@ CeruleanGym_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x1883d9, NONE
-	dw UnknownScript_0x1883da, NONE
+	dw UnknownScript_0x1883d9, 0
+	dw UnknownScript_0x1883da, 0
 
 .MapCallbacks:
 	db 0
@@ -60,7 +60,7 @@ MistyScript_0x188432:
 	writetext UnknownText_0x188674
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x18870c, NONE
+	winlosstext UnknownText_0x18870c, 0
 	loadtrainer MISTY, 1
 	startbattle
 	returnafterbattle
@@ -80,7 +80,7 @@ MistyScript_0x188432:
 	end
 
 TrainerSwimmerfDiana:
-	trainer EVENT_BEAT_SWIMMERF_DIANA, SWIMMERF, DIANA, SwimmerfDianaSeenText, SwimmerfDianaBeatenText, NONE, SwimmerfDianaScript
+	trainer EVENT_BEAT_SWIMMERF_DIANA, SWIMMERF, DIANA, SwimmerfDianaSeenText, SwimmerfDianaBeatenText, 0, SwimmerfDianaScript
 
 SwimmerfDianaScript:
 	talkaftercancel
@@ -91,7 +91,7 @@ SwimmerfDianaScript:
 	end
 
 TrainerSwimmerfBriana:
-	trainer EVENT_BEAT_SWIMMERF_BRIANA, SWIMMERF, BRIANA, SwimmerfBrianaSeenText, SwimmerfBrianaBeatenText, NONE, SwimmerfBrianaScript
+	trainer EVENT_BEAT_SWIMMERF_BRIANA, SWIMMERF, BRIANA, SwimmerfBrianaSeenText, SwimmerfBrianaBeatenText, 0, SwimmerfBrianaScript
 
 SwimmerfBrianaScript:
 	talkaftercancel
@@ -102,7 +102,7 @@ SwimmerfBrianaScript:
 	end
 
 TrainerSwimmermParker:
-	trainer EVENT_BEAT_SWIMMERM_PARKER, SWIMMERM, PARKER, SwimmermParkerSeenText, SwimmermParkerBeatenText, NONE, SwimmermParkerScript
+	trainer EVENT_BEAT_SWIMMERM_PARKER, SWIMMERM, PARKER, SwimmermParkerSeenText, SwimmermParkerBeatenText, 0, SwimmermParkerScript
 
 SwimmermParkerScript:
 	talkaftercancel

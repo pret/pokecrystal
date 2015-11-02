@@ -3,7 +3,7 @@ CianwoodPharmacy_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw CianwoodPharmacyTrigger, NONE
+	dw CianwoodPharmacyTrigger, 0
 
 .MapCallbacks:
 	db 0

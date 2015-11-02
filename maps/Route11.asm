@@ -6,7 +6,7 @@ Route11_MapScriptHeader:
 	db 0
 
 TrainerYoungsterOwen:
-	trainer EVENT_BEAT_YOUNGSTER_OWEN, YOUNGSTER, OWEN, YoungsterOwenSeenText, YoungsterOwenBeatenText, NONE, YoungsterOwenScript
+	trainer EVENT_BEAT_YOUNGSTER_OWEN, YOUNGSTER, OWEN, YoungsterOwenSeenText, YoungsterOwenBeatenText, 0, YoungsterOwenScript
 
 YoungsterOwenScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ YoungsterOwenScript:
 	end
 
 TrainerYoungsterJason:
-	trainer EVENT_BEAT_YOUNGSTER_JASON, YOUNGSTER, JASON, YoungsterJasonSeenText, YoungsterJasonBeatenText, NONE, YoungsterJasonScript
+	trainer EVENT_BEAT_YOUNGSTER_JASON, YOUNGSTER, JASON, YoungsterJasonSeenText, YoungsterJasonBeatenText, 0, YoungsterJasonScript
 
 YoungsterJasonScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ YoungsterJasonScript:
 	end
 
 TrainerPsychicHerman:
-	trainer EVENT_BEAT_PSYCHIC_HERMAN, PSYCHIC_T, HERMAN, PsychicHermanSeenText, PsychicHermanBeatenText, NONE, PsychicHermanScript
+	trainer EVENT_BEAT_PSYCHIC_HERMAN, PSYCHIC_T, HERMAN, PsychicHermanSeenText, PsychicHermanBeatenText, 0, PsychicHermanScript
 
 PsychicHermanScript:
 	talkaftercancel
@@ -39,7 +39,7 @@ PsychicHermanScript:
 	end
 
 TrainerPsychicFidel:
-	trainer EVENT_BEAT_PSYCHIC_FIDEL, PSYCHIC_T, FIDEL, PsychicFidelSeenText, PsychicFidelBeatenText, NONE, PsychicFidelScript
+	trainer EVENT_BEAT_PSYCHIC_FIDEL, PSYCHIC_T, FIDEL, PsychicFidelSeenText, PsychicFidelBeatenText, 0, PsychicFidelScript
 
 PsychicFidelScript:
 	talkaftercancel

@@ -6,7 +6,7 @@ SproutTower2F_MapScriptHeader:
 	db 0
 
 TrainerSageNico:
-	trainer EVENT_BEAT_SAGE_NICO, SAGE, NICO, SageNicoSeenText, SageNicoBeatenText, NONE, SageNicoScript
+	trainer EVENT_BEAT_SAGE_NICO, SAGE, NICO, SageNicoSeenText, SageNicoBeatenText, 0, SageNicoScript
 
 SageNicoScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ SageNicoScript:
 	end
 
 TrainerSageEdmond:
-	trainer EVENT_BEAT_SAGE_EDMOND, SAGE, EDMOND, SageEdmondSeenText, SageEdmondBeatenText, NONE, SageEdmondScript
+	trainer EVENT_BEAT_SAGE_EDMOND, SAGE, EDMOND, SageEdmondSeenText, SageEdmondBeatenText, 0, SageEdmondScript
 
 SageEdmondScript:
 	talkaftercancel

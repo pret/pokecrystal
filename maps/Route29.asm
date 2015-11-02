@@ -3,8 +3,8 @@ Route29_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x1a0f59, NONE
-	dw UnknownScript_0x1a0f5a, NONE
+	dw UnknownScript_0x1a0f59, 0
+	dw UnknownScript_0x1a0f5a, 0
 
 .MapCallbacks:
 	db 1

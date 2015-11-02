@@ -3,7 +3,7 @@ TeamRocketBaseB1F_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x6c65a, NONE
+	dw UnknownScript_0x6c65a, 0
 
 .MapCallbacks:
 	db 1
@@ -233,7 +233,7 @@ TrainerCameraGrunt1:
 	writetext CameraGrunt1SeenText
 	closetext
 	loadmovesprites
-	winlosstext CameraGrunt1BeatenText, NONE
+	winlosstext CameraGrunt1BeatenText, 0
 	setlasttalked $2
 	loadtrainer GRUNTM, 20
 	startbattle
@@ -246,7 +246,7 @@ TrainerCameraGrunt2:
 	writetext CameraGrunt2SeenText
 	closetext
 	loadmovesprites
-	winlosstext CameraGrunt2BeatenText, NONE
+	winlosstext CameraGrunt2BeatenText, 0
 	setlasttalked $2
 	loadtrainer GRUNTM, 21
 	startbattle
@@ -478,7 +478,7 @@ NoExplodingTrap:
 	end
 
 TrainerScientistJed:
-	trainer EVENT_BEAT_SCIENTIST_JED, SCIENTIST, JED, ScientistJedSeenText, ScientistJedBeatenText, NONE, ScientistJedScript
+	trainer EVENT_BEAT_SCIENTIST_JED, SCIENTIST, JED, ScientistJedSeenText, ScientistJedBeatenText, 0, ScientistJedScript
 
 ScientistJedScript:
 	talkaftercancel
@@ -489,7 +489,7 @@ ScientistJedScript:
 	end
 
 TrainerGruntM16:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_16, GRUNTM, 16, GruntM16SeenText, GruntM16BeatenText, NONE, GruntM16Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_16, GRUNTM, 16, GruntM16SeenText, GruntM16BeatenText, 0, GruntM16Script
 
 GruntM16Script:
 	talkaftercancel

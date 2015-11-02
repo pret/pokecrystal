@@ -3,8 +3,8 @@ WiseTriosRoom_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x98572, NONE
-	dw UnknownScript_0x98573, NONE
+	dw UnknownScript_0x98572, 0
+	dw UnknownScript_0x98573, 0
 
 .MapCallbacks:
 	db 1
@@ -66,7 +66,7 @@ UnknownScript_0x985a3:
 	end
 
 TrainerSageGaku:
-	trainer EVENT_BEAT_SAGE_GAKU, SAGE, GAKU, SageGakuSeenText, SageGakuBeatenText, NONE, SageGakuScript
+	trainer EVENT_BEAT_SAGE_GAKU, SAGE, GAKU, SageGakuSeenText, SageGakuBeatenText, 0, SageGakuScript
 
 SageGakuScript:
 	loadfont
@@ -76,7 +76,7 @@ SageGakuScript:
 	end
 
 TrainerSageMasa:
-	trainer EVENT_BEAT_SAGE_MASA, SAGE, MASA, SageMasaSeenText, SageMasaBeatenText, NONE, SageMasaScript
+	trainer EVENT_BEAT_SAGE_MASA, SAGE, MASA, SageMasaSeenText, SageMasaBeatenText, 0, SageMasaScript
 
 SageMasaScript:
 	loadfont
@@ -86,7 +86,7 @@ SageMasaScript:
 	end
 
 TrainerSageKoji:
-	trainer EVENT_BEAT_SAGE_KOJI, SAGE, KOJI, SageKojiSeenText, SageKojiBeatenText, NONE, SageKojiScript
+	trainer EVENT_BEAT_SAGE_KOJI, SAGE, KOJI, SageKojiSeenText, SageKojiBeatenText, 0, SageKojiScript
 
 SageKojiScript:
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER

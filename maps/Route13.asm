@@ -6,7 +6,7 @@ Route13_MapScriptHeader:
 	db 0
 
 TrainerPokefanmAlex:
-	trainer EVENT_BEAT_POKEFANM_ALEX, POKEFANM, ALEX, PokefanmAlexSeenText, PokefanmAlexBeatenText, NONE, PokefanmAlexScript
+	trainer EVENT_BEAT_POKEFANM_ALEX, POKEFANM, ALEX, PokefanmAlexSeenText, PokefanmAlexBeatenText, 0, PokefanmAlexScript
 
 PokefanmAlexScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ PokefanmAlexScript:
 	end
 
 TrainerPokefanmJoshua:
-	trainer EVENT_BEAT_POKEFANM_JOSHUA, POKEFANM, JOSHUA, PokefanmJoshuaSeenText, PokefanmJoshuaBeatenText, NONE, PokefanmJoshuaScript
+	trainer EVENT_BEAT_POKEFANM_JOSHUA, POKEFANM, JOSHUA, PokefanmJoshuaSeenText, PokefanmJoshuaBeatenText, 0, PokefanmJoshuaScript
 
 PokefanmJoshuaScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ PokefanmJoshuaScript:
 	end
 
 TrainerBird_keeperPerry:
-	trainer EVENT_BEAT_BIRD_KEEPER_PERRY, BIRD_KEEPER, PERRY, Bird_keeperPerrySeenText, Bird_keeperPerryBeatenText, NONE, Bird_keeperPerryScript
+	trainer EVENT_BEAT_BIRD_KEEPER_PERRY, BIRD_KEEPER, PERRY, Bird_keeperPerrySeenText, Bird_keeperPerryBeatenText, 0, Bird_keeperPerryScript
 
 Bird_keeperPerryScript:
 	talkaftercancel
@@ -39,7 +39,7 @@ Bird_keeperPerryScript:
 	end
 
 TrainerBird_keeperBret:
-	trainer EVENT_BEAT_BIRD_KEEPER_BRET, BIRD_KEEPER, BRET, Bird_keeperBretSeenText, Bird_keeperBretBeatenText, NONE, Bird_keeperBretScript
+	trainer EVENT_BEAT_BIRD_KEEPER_BRET, BIRD_KEEPER, BRET, Bird_keeperBretSeenText, Bird_keeperBretBeatenText, 0, Bird_keeperBretScript
 
 Bird_keeperBretScript:
 	talkaftercancel
@@ -50,7 +50,7 @@ Bird_keeperBretScript:
 	end
 
 TrainerHikerKenny:
-	trainer EVENT_BEAT_HIKER_KENNY, HIKER, KENNY, HikerKennySeenText, HikerKennyBeatenText, NONE, HikerKennyScript
+	trainer EVENT_BEAT_HIKER_KENNY, HIKER, KENNY, HikerKennySeenText, HikerKennyBeatenText, 0, HikerKennyScript
 
 HikerKennyScript:
 	talkaftercancel

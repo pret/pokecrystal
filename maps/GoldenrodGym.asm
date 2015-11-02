@@ -3,8 +3,8 @@ GoldenrodGym_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x5400a, NONE
-	dw UnknownScript_0x5400b, NONE
+	dw UnknownScript_0x5400a, 0
+	dw UnknownScript_0x5400b, 0
 
 .MapCallbacks:
 	db 0
@@ -23,7 +23,7 @@ WhitneyScript_0x5400c:
 	writetext UnknownText_0x54122
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x541a5, NONE
+	winlosstext UnknownText_0x541a5, 0
 	loadtrainer WHITNEY, 1
 	startbattle
 	returnafterbattle
@@ -87,7 +87,7 @@ GoldenrodGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerLassCarrie:
-	trainer EVENT_BEAT_LASS_CARRIE, LASS, CARRIE, LassCarrieSeenText, LassCarrieBeatenText, NONE, LassCarrieScript
+	trainer EVENT_BEAT_LASS_CARRIE, LASS, CARRIE, LassCarrieSeenText, LassCarrieBeatenText, 0, LassCarrieScript
 
 LassCarrieScript:
 	talkaftercancel
@@ -111,7 +111,7 @@ WhitneyCriesScript:
 	end
 
 TrainerLassBridget:
-	trainer EVENT_BEAT_LASS_BRIDGET, LASS, BRIDGET, LassBridgetSeenText, LassBridgetBeatenText, NONE, LassBridgetScript
+	trainer EVENT_BEAT_LASS_BRIDGET, LASS, BRIDGET, LassBridgetSeenText, LassBridgetBeatenText, 0, LassBridgetScript
 
 LassBridgetScript:
 	talkaftercancel
@@ -122,7 +122,7 @@ LassBridgetScript:
 	end
 
 TrainerBeautyVictoria:
-	trainer EVENT_BEAT_BEAUTY_VICTORIA, BEAUTY, VICTORIA, BeautyVictoriaSeenText, BeautyVictoriaBeatenText, NONE, BeautyVictoriaScript
+	trainer EVENT_BEAT_BEAUTY_VICTORIA, BEAUTY, VICTORIA, BeautyVictoriaSeenText, BeautyVictoriaBeatenText, 0, BeautyVictoriaScript
 
 BeautyVictoriaScript:
 	talkaftercancel
@@ -133,7 +133,7 @@ BeautyVictoriaScript:
 	end
 
 TrainerBeautySamantha:
-	trainer EVENT_BEAT_BEAUTY_SAMANTHA, BEAUTY, SAMANTHA, BeautySamanthaSeenText, BeautySamanthaBeatenText, NONE, BeautySamanthaScript
+	trainer EVENT_BEAT_BEAUTY_SAMANTHA, BEAUTY, SAMANTHA, BeautySamanthaSeenText, BeautySamanthaBeatenText, 0, BeautySamanthaScript
 
 BeautySamanthaScript:
 	talkaftercancel

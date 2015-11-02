@@ -3,8 +3,8 @@ RuinsofAlphAerodactylChamber_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x58dad, NONE
-	dw UnknownScript_0x58db8, NONE
+	dw UnknownScript_0x58dad, 0
+	dw UnknownScript_0x58db8, 0
 
 .MapCallbacks:
 	db 1

@@ -3,10 +3,10 @@ TeamRocketBaseB2F_MapScriptHeader:
 	db 4
 
 	; triggers
-	dw UnknownScript_0x6cf85, NONE
-	dw UnknownScript_0x6cf86, NONE
-	dw UnknownScript_0x6cf87, NONE
-	dw UnknownScript_0x6cf88, NONE
+	dw UnknownScript_0x6cf85, 0
+	dw UnknownScript_0x6cf86, 0
+	dw UnknownScript_0x6cf87, 0
+	dw UnknownScript_0x6cf88, 0
 
 .MapCallbacks:
 	db 1
@@ -84,7 +84,7 @@ UnknownScript_0x6cfac:
 	loadmovesprites
 	applymovement $2, MovementData_0x6d24a
 	applymovement $3, MovementData_0x6d248
-	winlosstext UnknownText_0x6d45c, NONE
+	winlosstext UnknownText_0x6d45c, 0
 	setlasttalked $3
 	loadtrainer EXECUTIVEF, 2
 	startbattle
@@ -178,7 +178,7 @@ UnknownScript_0x6d0be:
 	end
 
 TrainerGruntM17:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_17, GRUNTM, 17, GruntM17SeenText, GruntM17BeatenText, NONE, GruntM17Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_17, GRUNTM, 17, GruntM17SeenText, GruntM17BeatenText, 0, GruntM17Script
 
 GruntM17Script:
 	talkaftercancel
@@ -189,7 +189,7 @@ GruntM17Script:
 	end
 
 TrainerGruntM18:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_18, GRUNTM, 18, GruntM18SeenText, GruntM18BeatenText, NONE, GruntM18Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_18, GRUNTM, 18, GruntM18SeenText, GruntM18BeatenText, 0, GruntM18Script
 
 GruntM18Script:
 	talkaftercancel
@@ -200,7 +200,7 @@ GruntM18Script:
 	end
 
 TrainerGruntM19:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_19, GRUNTM, 19, GruntM19SeenText, GruntM19BeatenText, NONE, GruntM19Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_19, GRUNTM, 19, GruntM19SeenText, GruntM19BeatenText, 0, GruntM19Script
 
 GruntM19Script:
 	talkaftercancel

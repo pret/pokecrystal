@@ -3,8 +3,8 @@ Route36_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x19400d, NONE
-	dw UnknownScript_0x19400e, NONE
+	dw UnknownScript_0x19400d, 0
+	dw UnknownScript_0x19400e, 0
 
 .MapCallbacks:
 	db 1
@@ -162,7 +162,7 @@ UnknownScript_0x1940ee:
 	end
 
 TrainerSchoolboyAlan1:
-	trainer EVENT_BEAT_SCHOOLBOY_ALAN, SCHOOLBOY, ALAN1, SchoolboyAlan1SeenText, SchoolboyAlan1BeatenText, NONE, SchoolboyAlan1Script
+	trainer EVENT_BEAT_SCHOOLBOY_ALAN, SCHOOLBOY, ALAN1, SchoolboyAlan1SeenText, SchoolboyAlan1BeatenText, 0, SchoolboyAlan1Script
 
 SchoolboyAlan1Script:
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_ALAN
@@ -194,7 +194,7 @@ UnknownScript_0x19412c:
 
 UnknownScript_0x194140:
 	scall UnknownScript_0x1941e1
-	winlosstext SchoolboyAlan1BeatenText, NONE
+	winlosstext SchoolboyAlan1BeatenText, 0
 	copybytetovar wAlanFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
@@ -300,7 +300,7 @@ UnknownScript_0x1941e9:
 	end
 
 TrainerPsychicMark:
-	trainer EVENT_BEAT_PSYCHIC_MARK, PSYCHIC_T, MARK, PsychicMarkSeenText, PsychicMarkBeatenText, NONE, PsychicMarkScript
+	trainer EVENT_BEAT_PSYCHIC_MARK, PSYCHIC_T, MARK, PsychicMarkSeenText, PsychicMarkBeatenText, 0, PsychicMarkScript
 
 PsychicMarkScript:
 	talkaftercancel

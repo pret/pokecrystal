@@ -33,7 +33,7 @@ SurfScript_0x5a31f:
 	end
 
 TrainerCooltrainermNick:
-	trainer EVENT_BEAT_COOLTRAINERM_NICK, COOLTRAINERM, NICK, CooltrainermNickSeenText, CooltrainermNickBeatenText, NONE, CooltrainermNickScript
+	trainer EVENT_BEAT_COOLTRAINERM_NICK, COOLTRAINERM, NICK, CooltrainermNickSeenText, CooltrainermNickBeatenText, 0, CooltrainermNickScript
 
 CooltrainermNickScript:
 	talkaftercancel
@@ -44,7 +44,7 @@ CooltrainermNickScript:
 	end
 
 TrainerCooltrainerfGwen:
-	trainer EVENT_BEAT_COOLTRAINERF_GWEN, COOLTRAINERF, GWEN, CooltrainerfGwenSeenText, CooltrainerfGwenBeatenText, NONE, CooltrainerfGwenScript
+	trainer EVENT_BEAT_COOLTRAINERF_GWEN, COOLTRAINERF, GWEN, CooltrainerfGwenSeenText, CooltrainerfGwenBeatenText, 0, CooltrainerfGwenScript
 
 CooltrainerfGwenScript:
 	talkaftercancel
@@ -55,7 +55,7 @@ CooltrainerfGwenScript:
 	end
 
 TrainerCooltrainerfEmma:
-	trainer EVENT_BEAT_COOLTRAINERF_EMMA, COOLTRAINERF, EMMA, CooltrainerfEmmaSeenText, CooltrainerfEmmaBeatenText, NONE, CooltrainerfEmmaScript
+	trainer EVENT_BEAT_COOLTRAINERF_EMMA, COOLTRAINERF, EMMA, CooltrainerfEmmaSeenText, CooltrainerfEmmaBeatenText, 0, CooltrainerfEmmaScript
 
 CooltrainerfEmmaScript:
 	talkaftercancel

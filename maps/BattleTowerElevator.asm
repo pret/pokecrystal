@@ -3,8 +3,8 @@ BattleTowerElevator_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x9f562, NONE
-	dw UnknownScript_0x9f567, NONE
+	dw UnknownScript_0x9f562, 0
+	dw UnknownScript_0x9f567, 0
 
 .MapCallbacks:
 	db 0

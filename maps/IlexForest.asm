@@ -376,7 +376,7 @@ UnknownScript_0x6edf7:
 	end
 
 TrainerBug_catcherWayne:
-	trainer EVENT_BEAT_BUG_CATCHER_WAYNE, BUG_CATCHER, WAYNE, Bug_catcherWayneSeenText, Bug_catcherWayneBeatenText, NONE, Bug_catcherWayneScript
+	trainer EVENT_BEAT_BUG_CATCHER_WAYNE, BUG_CATCHER, WAYNE, Bug_catcherWayneSeenText, Bug_catcherWayneBeatenText, 0, Bug_catcherWayneScript
 
 Bug_catcherWayneScript:
 	talkaftercancel

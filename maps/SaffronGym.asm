@@ -13,7 +13,7 @@ SabrinaScript_0x189c2e:
 	writetext UnknownText_0x189cdf
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x189df4, NONE
+	winlosstext UnknownText_0x189df4, 0
 	loadtrainer SABRINA, 1
 	startbattle
 	returnafterbattle
@@ -39,7 +39,7 @@ SabrinaScript_0x189c2e:
 	end
 
 TrainerMediumRebecca:
-	trainer EVENT_BEAT_MEDIUM_REBECCA, MEDIUM, REBECCA, MediumRebeccaSeenText, MediumRebeccaBeatenText, NONE, MediumRebeccaScript
+	trainer EVENT_BEAT_MEDIUM_REBECCA, MEDIUM, REBECCA, MediumRebeccaSeenText, MediumRebeccaBeatenText, 0, MediumRebeccaScript
 
 MediumRebeccaScript:
 	talkaftercancel
@@ -50,7 +50,7 @@ MediumRebeccaScript:
 	end
 
 TrainerPsychicFranklin:
-	trainer EVENT_BEAT_PSYCHIC_FRANKLIN, PSYCHIC_T, FRANKLIN, PsychicFranklinSeenText, PsychicFranklinBeatenText, NONE, PsychicFranklinScript
+	trainer EVENT_BEAT_PSYCHIC_FRANKLIN, PSYCHIC_T, FRANKLIN, PsychicFranklinSeenText, PsychicFranklinBeatenText, 0, PsychicFranklinScript
 
 PsychicFranklinScript:
 	talkaftercancel
@@ -61,7 +61,7 @@ PsychicFranklinScript:
 	end
 
 TrainerMediumDoris:
-	trainer EVENT_BEAT_MEDIUM_DORIS, MEDIUM, DORIS, MediumDorisSeenText, MediumDorisBeatenText, NONE, MediumDorisScript
+	trainer EVENT_BEAT_MEDIUM_DORIS, MEDIUM, DORIS, MediumDorisSeenText, MediumDorisBeatenText, 0, MediumDorisScript
 
 MediumDorisScript:
 	talkaftercancel
@@ -72,7 +72,7 @@ MediumDorisScript:
 	end
 
 TrainerPsychicJared:
-	trainer EVENT_BEAT_PSYCHIC_JARED, PSYCHIC_T, JARED, PsychicJaredSeenText, PsychicJaredBeatenText, NONE, PsychicJaredScript
+	trainer EVENT_BEAT_PSYCHIC_JARED, PSYCHIC_T, JARED, PsychicJaredSeenText, PsychicJaredBeatenText, 0, PsychicJaredScript
 
 PsychicJaredScript:
 	talkaftercancel

@@ -13,7 +13,7 @@ BlueScript_0x9aa26:
 	writetext UnknownText_0x9aa7b
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x9abae, NONE
+	winlosstext UnknownText_0x9abae, 0
 	loadtrainer BLUE, 1
 	startbattle
 	returnafterbattle

@@ -3,7 +3,7 @@ Route1718Gate_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x7360d, NONE
+	dw UnknownScript_0x7360d, 0
 
 .MapCallbacks:
 	db 0

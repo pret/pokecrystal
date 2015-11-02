@@ -3,8 +3,8 @@ RuinsofAlphResearchCenter_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x59180, NONE
-	dw UnknownScript_0x59181, NONE
+	dw UnknownScript_0x59180, 0
+	dw UnknownScript_0x59181, 0
 
 .MapCallbacks:
 	db 1

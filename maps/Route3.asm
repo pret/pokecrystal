@@ -6,7 +6,7 @@ Route3_MapScriptHeader:
 	db 0
 
 TrainerFirebreatherOtis:
-	trainer EVENT_BEAT_FIREBREATHER_OTIS, FIREBREATHER, OTIS, FirebreatherOtisSeenText, FirebreatherOtisBeatenText, NONE, FirebreatherOtisScript
+	trainer EVENT_BEAT_FIREBREATHER_OTIS, FIREBREATHER, OTIS, FirebreatherOtisSeenText, FirebreatherOtisBeatenText, 0, FirebreatherOtisScript
 
 FirebreatherOtisScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ FirebreatherOtisScript:
 	end
 
 TrainerYoungsterWarren:
-	trainer EVENT_BEAT_YOUNGSTER_WARREN, YOUNGSTER, WARREN, YoungsterWarrenSeenText, YoungsterWarrenBeatenText, NONE, YoungsterWarrenScript
+	trainer EVENT_BEAT_YOUNGSTER_WARREN, YOUNGSTER, WARREN, YoungsterWarrenSeenText, YoungsterWarrenBeatenText, 0, YoungsterWarrenScript
 
 YoungsterWarrenScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ YoungsterWarrenScript:
 	end
 
 TrainerYoungsterJimmy:
-	trainer EVENT_BEAT_YOUNGSTER_JIMMY, YOUNGSTER, JIMMY, YoungsterJimmySeenText, YoungsterJimmyBeatenText, NONE, YoungsterJimmyScript
+	trainer EVENT_BEAT_YOUNGSTER_JIMMY, YOUNGSTER, JIMMY, YoungsterJimmySeenText, YoungsterJimmyBeatenText, 0, YoungsterJimmyScript
 
 YoungsterJimmyScript:
 	talkaftercancel
@@ -39,7 +39,7 @@ YoungsterJimmyScript:
 	end
 
 TrainerFirebreatherBurt:
-	trainer EVENT_BEAT_FIREBREATHER_BURT, FIREBREATHER, BURT, FirebreatherBurtSeenText, FirebreatherBurtBeatenText, NONE, FirebreatherBurtScript
+	trainer EVENT_BEAT_FIREBREATHER_BURT, FIREBREATHER, BURT, FirebreatherBurtSeenText, FirebreatherBurtBeatenText, 0, FirebreatherBurtScript
 
 FirebreatherBurtScript:
 	talkaftercancel

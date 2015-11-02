@@ -3,8 +3,8 @@ BattleTower1F_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x9e39d, NONE
-	dw UnknownScript_0x9e3d3, NONE
+	dw UnknownScript_0x9e39d, 0
+	dw UnknownScript_0x9e3d3, 0
 
 .MapCallbacks:
 	db 0

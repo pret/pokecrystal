@@ -33,7 +33,7 @@ ClairScript_0x194e24:
 	writetext UnknownText_0x194efa
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x194fd6, NONE
+	winlosstext UnknownText_0x194fd6, 0
 	loadtrainer CLAIR, 1
 	startbattle
 	returnafterbattle
@@ -87,7 +87,7 @@ UnknownScript_0x194e94:
 	end
 
 TrainerCooltrainermPaul:
-	trainer EVENT_BEAT_COOLTRAINERM_PAUL, COOLTRAINERM, PAUL, CooltrainermPaulSeenText, CooltrainermPaulBeatenText, NONE, CooltrainermPaulScript
+	trainer EVENT_BEAT_COOLTRAINERM_PAUL, COOLTRAINERM, PAUL, CooltrainermPaulSeenText, CooltrainermPaulBeatenText, 0, CooltrainermPaulScript
 
 CooltrainermPaulScript:
 	talkaftercancel
@@ -98,7 +98,7 @@ CooltrainermPaulScript:
 	end
 
 TrainerCooltrainermMike:
-	trainer EVENT_BEAT_COOLTRAINERM_MIKE, COOLTRAINERM, MIKE, CooltrainermMikeSeenText, CooltrainermMikeBeatenText, NONE, CooltrainermMikeScript
+	trainer EVENT_BEAT_COOLTRAINERM_MIKE, COOLTRAINERM, MIKE, CooltrainermMikeSeenText, CooltrainermMikeBeatenText, 0, CooltrainermMikeScript
 
 CooltrainermMikeScript:
 	talkaftercancel
@@ -109,7 +109,7 @@ CooltrainermMikeScript:
 	end
 
 TrainerCooltrainerfLola:
-	trainer EVENT_BEAT_COOLTRAINERF_LOLA, COOLTRAINERF, LOLA, CooltrainerfLolaSeenText, CooltrainerfLolaBeatenText, NONE, CooltrainerfLolaScript
+	trainer EVENT_BEAT_COOLTRAINERF_LOLA, COOLTRAINERF, LOLA, CooltrainerfLolaSeenText, CooltrainerfLolaBeatenText, 0, CooltrainerfLolaScript
 
 CooltrainerfLolaScript:
 	talkaftercancel

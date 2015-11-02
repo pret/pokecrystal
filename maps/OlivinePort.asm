@@ -3,8 +3,8 @@ OlivinePort_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x748ac, NONE
-	dw UnknownScript_0x748ad, NONE
+	dw UnknownScript_0x748ac, 0
+	dw UnknownScript_0x748ad, 0
 
 .MapCallbacks:
 	db 0

@@ -6,7 +6,7 @@ Route21_MapScriptHeader:
 	db 0
 
 TrainerSwimmermSeth:
-	trainer EVENT_BEAT_SWIMMERM_SETH, SWIMMERM, SETH, SwimmermSethSeenText, SwimmermSethBeatenText, NONE, SwimmermSethScript
+	trainer EVENT_BEAT_SWIMMERM_SETH, SWIMMERM, SETH, SwimmermSethSeenText, SwimmermSethBeatenText, 0, SwimmermSethScript
 
 SwimmermSethScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ SwimmermSethScript:
 	end
 
 TrainerSwimmerfNikki:
-	trainer EVENT_BEAT_SWIMMERF_NIKKI, SWIMMERF, NIKKI, SwimmerfNikkiSeenText, SwimmerfNikkiBeatenText, NONE, SwimmerfNikkiScript
+	trainer EVENT_BEAT_SWIMMERF_NIKKI, SWIMMERF, NIKKI, SwimmerfNikkiSeenText, SwimmerfNikkiBeatenText, 0, SwimmerfNikkiScript
 
 SwimmerfNikkiScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ SwimmerfNikkiScript:
 	end
 
 TrainerFisherArnold:
-	trainer EVENT_BEAT_FISHER_ARNOLD, FISHER, ARNOLD, FisherArnoldSeenText, FisherArnoldBeatenText, NONE, FisherArnoldScript
+	trainer EVENT_BEAT_FISHER_ARNOLD, FISHER, ARNOLD, FisherArnoldSeenText, FisherArnoldBeatenText, 0, FisherArnoldScript
 
 FisherArnoldScript:
 	talkaftercancel

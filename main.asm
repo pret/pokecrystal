@@ -1421,12 +1421,12 @@ endr
 ; 63ca
 
 Data63ca: ; 63ca
-	dw $505c, NONE
+	dw $505c, 0
 	dw $685c, $585c
 	dw $685c, $785c
 	dw $885c, $785c
-	dw NONE, $785c
-	dw NONE, $585c
+	dw 0, $785c
+	dw 0, $585c
 ; 63e2
 
 Copyright: ; 63e2
@@ -3236,7 +3236,7 @@ PlayerObjectTemplate: ; 8071
 ; A dummy map object used to initialize the player object.
 ; Shorter than the actual amount copied by two bytes.
 ; Said bytes seem to be unused.
-	person_event SPRITE_CHRIS, -4, -4, SPRITEMOVEDATA_0B, 15, 15, -1, -1, 0, 0, 0, NONE, -1
+	person_event SPRITE_CHRIS, -4, -4, SPRITEMOVEDATA_0B, 15, 15, -1, -1, 0, 0, 0, 0, -1
 ; 807e
 
 CopyDECoordsToMapObject:: ; 807e
@@ -5695,7 +5695,7 @@ Script_UsedStrength: ; 0xcd2d
 	callasm Functioncd12
 	writetext UnknownText_0xcd41
 	copybytetovar wd1ef
-	cry NONE
+	cry 0
 	pause 3
 	writetext UnknownText_0xcd46
 	loadmovesprites
@@ -7872,7 +7872,7 @@ Functiond839: ; d839
 	ld a, [Buffer1]
 	ld c, a
 	ld b, $0
-	ld hl, NONE
+	ld hl, 0
 	ld a, [wd1f1]
 	cp $30
 	jr nc, .asm_d885
@@ -10045,7 +10045,7 @@ Functione5d9: ; unreferenced
 	push hl
 	push bc
 	ld a, c
-	ld bc, NONE
+	ld bc, 0
 	add hl, bc
 	ld bc, $0020
 	call AddNTimes
@@ -19940,7 +19940,7 @@ Function1686d: ; 1686d
 	ld de, StringBuffer1
 	ld bc, $000b
 	call CopyBytes
-	ld hl, NONE
+	ld hl, 0
 	ld bc, $0064
 	ld a, [StringBuffer2 + 1]
 	call AddNTimes
@@ -24169,7 +24169,7 @@ MenuDataHeader_0x24d3f: ; 24d3f
 	db $40 ; tile backup
 	db 00, 06 ; start coords
 	db 17, 19 ; end coords
-	dw NONE
+	dw 0
 	db 1 ; default option
 ; 24d47
 
@@ -24501,7 +24501,7 @@ MenuData_0x24f34: ; 0x24f34
 	dn 2, 2 ; rows, columns
 	db 6 ; spacing
 	dba Strings24f3d
-	dbw $09, NONE
+	dbw $09, 0
 ; 0x24f3d
 
 Strings24f3d: ; 0x24f3d
@@ -27842,7 +27842,7 @@ endr
 	jr nz, .asm_28457
 	ld hl, wc818
 	ld de, wc608 + 10
-	ld bc, NONE
+	ld bc, 0
 .asm_28464
 	inc c
 	ld a, c
@@ -32524,7 +32524,7 @@ Function2b995: ; 2b995
 ; 2b9a6
 
 Function2b9a6: ; 2b9a6
-	ld de, NONE
+	ld de, 0
 	ld c, $3
 .asm_2b9ab
 	ld a, [hli]
@@ -43106,7 +43106,7 @@ ClockResetPassword: ; 4d41e
 .CalculatePassword: ; 4d50f
 	ld a, BANK(sPlayerData)
 	call GetSRAMBank
-	ld de, NONE
+	ld de, 0
 	ld hl, sPlayerData + (PlayerID - wPlayerData)
 	ld c, $2
 	call .ComponentFromNumber
@@ -55314,7 +55314,7 @@ rept 3
 endr
 	ld e, l
 	ld d, h
-	ld hl, NONE
+	ld hl, 0
 	add hl, bc
 	ld a, [wc3b4]
 	ld [hli], a
@@ -55359,7 +55359,7 @@ endr
 ; 8d036
 
 Function8d036: ; 8d036
-	ld hl, NONE
+	ld hl, 0
 	add hl, bc
 	ld [hl], $0
 	ret
@@ -55867,7 +55867,7 @@ endr
 
 .four_zero: ; 8d30a
 	call Function8d6d8
-	ld hl, NONE
+	ld hl, 0
 	add hl, bc
 	ld a, [hl]
 	ld hl, $000d
@@ -60013,7 +60013,7 @@ Function9102f: ; 9102f (24:502f)
 
 Function9106a: ; 9106a
 	push af
-	ld de, NONE
+	ld de, 0
 	ld b, $a
 	ld a, [PlayerGender]
 	bit 0, a
@@ -60042,7 +60042,7 @@ Function9106a: ; 9106a
 
 Function91098: ; 91098
 	push af
-	ld de, NONE
+	ld de, 0
 	ld a, $d
 	call Function3b2a
 	ld hl, $0003
@@ -61870,7 +61870,7 @@ TownMapMon: ; 91f7b
 	callba GetSpeciesIcon
 
 ; Animation/palette
-	ld de, NONE
+	ld de, 0
 	ld a, $0
 	call Function3b2a
 
@@ -61905,7 +61905,7 @@ TownMapPlayerIcon: ; 91fa6
 	call Request2bpp
 
 ; Animation/palette
-	ld de, NONE
+	ld de, 0
 	ld b, $0a ; Male
 	ld a, [PlayerGender]
 	bit 0, a
@@ -62954,7 +62954,7 @@ Function92c3a: ; 92c3a
 	ld hl, $0005
 	add hl, bc
 	ld [hl], $0
-	ld hl, NONE
+	ld hl, 0
 	add hl, bc
 	ld [hl], $1
 	ld hl, $000f
@@ -62971,7 +62971,7 @@ Function92c4c: ; 92c4c
 	ret
 
 .asm_92c56
-	ld hl, NONE
+	ld hl, 0
 	add hl, bc
 	ld a, $0
 	ld [hl], a
@@ -63079,7 +63079,7 @@ Function92cd2: ; 92cd2
 .asm_92ce1
 	ld a, SFX_STOP_SLOT
 	call Function9331e
-	ld hl, NONE
+	ld hl, 0
 	add hl, bc
 	inc [hl]
 	ld hl, $000a
@@ -63103,7 +63103,7 @@ Function92cf8: ; 92cf8
 .asm_92d02
 	ld a, SFX_THROW_BALL
 	call Function9331e
-	ld hl, NONE
+	ld hl, 0
 	add hl, bc
 	inc [hl]
 	ld hl, $0005
@@ -63128,7 +63128,7 @@ Function92d20: ; 92d20
 	ld a, SFX_STOP_SLOT
 	call Function9331e
 	call Function93316
-	ld hl, NONE
+	ld hl, 0
 	add hl, bc
 	inc [hl]
 	ld hl, $0005
@@ -63162,7 +63162,7 @@ Function92d4f: ; 92d4f
 	ret
 
 .asm_92d62
-	ld hl, NONE
+	ld hl, 0
 	add hl, bc
 	inc [hl]
 	ld hl, $0005
@@ -63174,7 +63174,7 @@ Function92d4f: ; 92d4f
 Function92d6e: ; 92d6e
 	xor a
 	ld [wcf64], a
-	ld hl, NONE
+	ld hl, 0
 	add hl, bc
 	dec [hl]
 	ld hl, $0005
@@ -63189,7 +63189,7 @@ Function92d7e: ; 92d7e
 	ld a, SFX_STOP_SLOT
 	call Function9331e
 	call Function93316
-	ld hl, NONE
+	ld hl, 0
 	add hl, bc
 	inc [hl]
 	ld hl, $0005
@@ -63209,7 +63209,7 @@ Function92da4: ; 92da4
 	ld a, [wcf64]
 	and a
 	ret z
-	ld hl, NONE
+	ld hl, 0
 	add hl, bc
 	inc [hl]
 	ld a, $2
@@ -63219,7 +63219,7 @@ Function92db3: ; 92db3
 	ld a, [wcf64]
 	cp $4
 	ret c
-	ld hl, NONE
+	ld hl, 0
 	add hl, bc
 	inc [hl]
 	ld hl, $0005
@@ -63252,7 +63252,7 @@ Function92dca: ; 92dca
 	ld hl, $0005
 	add hl, bc
 	ld [hl], $0
-	ld hl, NONE
+	ld hl, 0
 	add hl, bc
 rept 2
 	dec [hl]
@@ -63268,7 +63268,7 @@ Function92df7: ; 92df7
 	ld a, SFX_STOP_SLOT
 	call Function9331e
 	call Function93316
-	ld hl, NONE
+	ld hl, 0
 	add hl, bc
 	inc [hl]
 	call Function92fc0
@@ -63288,7 +63288,7 @@ Function92e10: ; 92e10
 
 .asm_92e1f
 	dec [hl]
-	ld hl, NONE
+	ld hl, 0
 	add hl, bc
 	inc [hl]
 	ld hl, $000b
@@ -63308,7 +63308,7 @@ Function92e31: ; 92e31
 	ret
 
 .asm_92e3b
-	ld hl, NONE
+	ld hl, 0
 	add hl, bc
 	dec [hl]
 	ld hl, $0005
@@ -63326,7 +63326,7 @@ Function92e47: ; 92e47
 	ld hl, $0005
 	add hl, bc
 	ld [hl], $1
-	ld hl, NONE
+	ld hl, 0
 	add hl, bc
 	inc [hl]
 	ld hl, $000a
@@ -66460,7 +66460,7 @@ Functione0000: ; e0000
 	xor a
 	call GetSRAMBank
 	ld hl, sScratch
-	ld bc, NONE
+	ld bc, 0
 .asm_e000b
 	push bc
 	push hl
@@ -66950,7 +66950,7 @@ Functione0366: ; e0366
 ; e0398
 
 Functione0398: ; e0398
-	ld hl, NONE
+	ld hl, 0
 	ld bc, $0006
 	ld a, [wcf64]
 	call AddNTimes
@@ -81004,7 +81004,7 @@ Function10616e: ; 10616e
 	ld hl, $a001
 	ld bc, $0080
 	xor a
-	ld de, NONE
+	ld de, 0
 .asm_106179
 	ld a, e
 	add [hl]

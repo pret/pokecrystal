@@ -6,7 +6,7 @@ UnionCave1F_MapScriptHeader:
 	db 0
 
 TrainerPokemaniacLarry:
-	trainer EVENT_BEAT_POKEMANIAC_LARRY, POKEMANIAC, LARRY, PokemaniacLarrySeenText, PokemaniacLarryBeatenText, NONE, PokemaniacLarryScript
+	trainer EVENT_BEAT_POKEMANIAC_LARRY, POKEMANIAC, LARRY, PokemaniacLarrySeenText, PokemaniacLarryBeatenText, 0, PokemaniacLarryScript
 
 PokemaniacLarryScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ PokemaniacLarryScript:
 	end
 
 TrainerHikerRussell:
-	trainer EVENT_BEAT_HIKER_RUSSELL, HIKER, RUSSELL, HikerRussellSeenText, HikerRussellBeatenText, NONE, HikerRussellScript
+	trainer EVENT_BEAT_HIKER_RUSSELL, HIKER, RUSSELL, HikerRussellSeenText, HikerRussellBeatenText, 0, HikerRussellScript
 
 HikerRussellScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ HikerRussellScript:
 	end
 
 TrainerHikerDaniel:
-	trainer EVENT_BEAT_HIKER_DANIEL, HIKER, DANIEL, HikerDanielSeenText, HikerDanielBeatenText, NONE, HikerDanielScript
+	trainer EVENT_BEAT_HIKER_DANIEL, HIKER, DANIEL, HikerDanielSeenText, HikerDanielBeatenText, 0, HikerDanielScript
 
 HikerDanielScript:
 	talkaftercancel
@@ -39,7 +39,7 @@ HikerDanielScript:
 	end
 
 TrainerFirebreatherBill:
-	trainer EVENT_BEAT_FIREBREATHER_BILL, FIREBREATHER, BILL, FirebreatherBillSeenText, FirebreatherBillBeatenText, NONE, FirebreatherBillScript
+	trainer EVENT_BEAT_FIREBREATHER_BILL, FIREBREATHER, BILL, FirebreatherBillSeenText, FirebreatherBillBeatenText, 0, FirebreatherBillScript
 
 FirebreatherBillScript:
 	talkaftercancel
@@ -50,7 +50,7 @@ FirebreatherBillScript:
 	end
 
 TrainerFirebreatherRay:
-	trainer EVENT_BEAT_FIREBREATHER_RAY, FIREBREATHER, RAY, FirebreatherRaySeenText, FirebreatherRayBeatenText, NONE, FirebreatherRayScript
+	trainer EVENT_BEAT_FIREBREATHER_RAY, FIREBREATHER, RAY, FirebreatherRaySeenText, FirebreatherRayBeatenText, 0, FirebreatherRayScript
 
 FirebreatherRayScript:
 	talkaftercancel

@@ -14,7 +14,7 @@ JanineScript_0x195db9:
 	writetext UnknownText_0x195f35
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x195fa1, NONE
+	winlosstext UnknownText_0x195fa1, 0
 	loadtrainer JANINE, 1
 	startbattle
 	returnafterbattle
@@ -66,7 +66,7 @@ UnknownScript_0x195e2c:
 	writetext UnknownText_0x1960e6
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x196126, NONE
+	winlosstext UnknownText_0x196126, 0
 	loadtrainer LASS, ALICE
 	startbattle
 	iftrue UnknownScript_0x195e4a
@@ -100,7 +100,7 @@ UnknownScript_0x195e66:
 	writetext UnknownText_0x196166
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x19617b, NONE
+	winlosstext UnknownText_0x19617b, 0
 	loadtrainer LASS, LINDA
 	startbattle
 	iftrue UnknownScript_0x195e84
@@ -134,7 +134,7 @@ UnknownScript_0x195ea0:
 	writetext UnknownText_0x1961bb
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x1961f1, NONE
+	winlosstext UnknownText_0x1961f1, 0
 	loadtrainer PICNICKER, CINDY
 	startbattle
 	iftrue UnknownScript_0x195ebe
@@ -168,7 +168,7 @@ UnknownScript_0x195eda:
 	writetext UnknownText_0x196228
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x19624a, NONE
+	winlosstext UnknownText_0x19624a, 0
 	loadtrainer CAMPER, BARRY
 	startbattle
 	iftrue UnknownScript_0x195ef8

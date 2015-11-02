@@ -6,7 +6,7 @@ Route10South_MapScriptHeader:
 	db 0
 
 TrainerHikerJim:
-	trainer EVENT_BEAT_HIKER_JIM, HIKER, JIM, HikerJimSeenText, HikerJimBeatenText, NONE, HikerJimScript
+	trainer EVENT_BEAT_HIKER_JIM, HIKER, JIM, HikerJimSeenText, HikerJimBeatenText, 0, HikerJimScript
 
 HikerJimScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ HikerJimScript:
 	end
 
 TrainerPokefanmRobert:
-	trainer EVENT_BEAT_POKEFANM_ROBERT, POKEFANM, ROBERT, PokefanmRobertSeenText, PokefanmRobertBeatenText, NONE, PokefanmRobertScript
+	trainer EVENT_BEAT_POKEFANM_ROBERT, POKEFANM, ROBERT, PokefanmRobertSeenText, PokefanmRobertBeatenText, 0, PokefanmRobertScript
 
 PokefanmRobertScript:
 	talkaftercancel

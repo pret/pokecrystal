@@ -13,7 +13,7 @@ SurgeScript_0x1920a5:
 	writetext UnknownText_0x192142
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x192238, NONE
+	winlosstext UnknownText_0x192238, 0
 	loadtrainer LT_SURGE, 1
 	startbattle
 	returnafterbattle
@@ -38,7 +38,7 @@ SurgeScript_0x1920a5:
 	end
 
 TrainerGentlemanGregory:
-	trainer EVENT_BEAT_GENTLEMAN_GREGORY, GENTLEMAN, GREGORY, GentlemanGregorySeenText, GentlemanGregoryBeatenText, NONE, GentlemanGregoryScript
+	trainer EVENT_BEAT_GENTLEMAN_GREGORY, GENTLEMAN, GREGORY, GentlemanGregorySeenText, GentlemanGregoryBeatenText, 0, GentlemanGregoryScript
 
 GentlemanGregoryScript:
 	talkaftercancel
@@ -49,7 +49,7 @@ GentlemanGregoryScript:
 	end
 
 TrainerGuitaristVincent:
-	trainer EVENT_BEAT_GUITARIST_VINCENT, GUITARIST, VINCENT, GuitaristVincentSeenText, GuitaristVincentBeatenText, NONE, GuitaristVincentScript
+	trainer EVENT_BEAT_GUITARIST_VINCENT, GUITARIST, VINCENT, GuitaristVincentSeenText, GuitaristVincentBeatenText, 0, GuitaristVincentScript
 
 GuitaristVincentScript:
 	talkaftercancel
@@ -60,7 +60,7 @@ GuitaristVincentScript:
 	end
 
 TrainerJugglerHorton:
-	trainer EVENT_BEAT_JUGGLER_HORTON, JUGGLER, HORTON, JugglerHortonSeenText, JugglerHortonBeatenText, NONE, JugglerHortonScript
+	trainer EVENT_BEAT_JUGGLER_HORTON, JUGGLER, HORTON, JugglerHortonSeenText, JugglerHortonBeatenText, 0, JugglerHortonScript
 
 JugglerHortonScript:
 	talkaftercancel

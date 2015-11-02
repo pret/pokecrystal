@@ -3,12 +3,12 @@ ElmsLab_MapScriptHeader:
 	db 6
 
 	; triggers
-	dw UnknownScript_0x78b7a, NONE
-	dw UnknownScript_0x78b7e, NONE
-	dw UnknownScript_0x78b7f, NONE
-	dw UnknownScript_0x78b80, NONE
-	dw UnknownScript_0x78b81, NONE
-	dw UnknownScript_0x78b82, NONE
+	dw UnknownScript_0x78b7a, 0
+	dw UnknownScript_0x78b7e, 0
+	dw UnknownScript_0x78b7f, 0
+	dw UnknownScript_0x78b80, 0
+	dw UnknownScript_0x78b81, 0
+	dw UnknownScript_0x78b82, 0
 
 .MapCallbacks:
 	db 1

@@ -3,10 +3,10 @@ TeamRocketBaseB3F_MapScriptHeader:
 	db 4
 
 	; triggers
-	dw .Trigger1, NONE
-	dw .Trigger2, NONE
-	dw .Trigger3, NONE
-	dw .Trigger4, NONE
+	dw .Trigger1, 0
+	dw .Trigger2, 0
+	dw .Trigger3, 0
+	dw .Trigger4, 0
 
 .MapCallbacks:
 	db 1
@@ -91,7 +91,7 @@ UnknownScript_0x6e056:
 	closetext
 	loadmovesprites
 	applymovement $3, MovementData_0x6e142
-	winlosstext UnknownText_0x6e511, NONE
+	winlosstext UnknownText_0x6e511, 0
 	setlasttalked $3
 	loadtrainer EXECUTIVEM, 4
 	startbattle
@@ -117,7 +117,7 @@ MoltresScript_0x6e091:
 	end
 
 TrainerGruntF5:
-	trainer EVENT_BEAT_ROCKET_GRUNTF_5, GRUNTF, 5, GruntF5SeenText, GruntF5BeatenText, NONE, GruntF5Script
+	trainer EVENT_BEAT_ROCKET_GRUNTF_5, GRUNTF, 5, GruntF5SeenText, GruntF5BeatenText, 0, GruntF5Script
 
 GruntF5Script:
 	talkaftercancel
@@ -129,7 +129,7 @@ GruntF5Script:
 	end
 
 TrainerGruntM28:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_28, GRUNTM, 28, GruntM28SeenText, GruntM28BeatenText, NONE, GruntM28Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_28, GRUNTM, 28, GruntM28SeenText, GruntM28BeatenText, 0, GruntM28Script
 
 GruntM28Script:
 	talkaftercancel
@@ -141,7 +141,7 @@ GruntM28Script:
 	end
 
 TrainerScientistRoss:
-	trainer EVENT_BEAT_SCIENTIST_ROSS, SCIENTIST, ROSS, ScientistRossSeenText, ScientistRossBeatenText, NONE, ScientistRossScript
+	trainer EVENT_BEAT_SCIENTIST_ROSS, SCIENTIST, ROSS, ScientistRossSeenText, ScientistRossBeatenText, 0, ScientistRossScript
 
 ScientistRossScript:
 	talkaftercancel
@@ -152,7 +152,7 @@ ScientistRossScript:
 	end
 
 TrainerScientistMitch:
-	trainer EVENT_BEAT_SCIENTIST_MITCH, SCIENTIST, MITCH, ScientistMitchSeenText, ScientistMitchBeatenText, NONE, ScientistMitchScript
+	trainer EVENT_BEAT_SCIENTIST_MITCH, SCIENTIST, MITCH, ScientistMitchSeenText, ScientistMitchBeatenText, 0, ScientistMitchScript
 
 ScientistMitchScript:
 	talkaftercancel

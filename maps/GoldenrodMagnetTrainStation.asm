@@ -3,7 +3,7 @@ GoldenrodMagnetTrainStation_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw .Trigger1, NONE
+	dw .Trigger1, 0
 
 .MapCallbacks:
 	db 0

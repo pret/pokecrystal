@@ -3,7 +3,7 @@ MountMoonSquare_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x77092, NONE
+	dw UnknownScript_0x77092, 0
 
 .MapCallbacks:
 	db 2

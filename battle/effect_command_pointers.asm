@@ -1,5 +1,5 @@
 
-	dw NONE ; padding
+	dw 0 ; padding
 
 BattleCommandPointers: ; 3fd28
 	dw BattleCommand01 ; 34084

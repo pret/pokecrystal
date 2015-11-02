@@ -3103,7 +3103,7 @@ Function57e2: ; 57e2
 	ld a, d
 	and %10000000
 	ret z
-	ld bc, NONE ; debug?
+	ld bc, 0 ; debug?
 	ld hl, OBJECT_FACING
 	add hl, bc
 	ld a, [hl]

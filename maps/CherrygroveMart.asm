@@ -9,7 +9,7 @@ ClerkScript_0x19680a:
 	loadfont
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x196817
-	pokemart $0, NONE
+	pokemart $0, 0
 	loadmovesprites
 	end
 

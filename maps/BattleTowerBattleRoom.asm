@@ -3,8 +3,8 @@ BattleTowerBattleRoom_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw Script_EnterBattleRoom, NONE
-	dw UnknownScript_0x9f420, NONE
+	dw Script_EnterBattleRoom, 0
+	dw UnknownScript_0x9f420, 0
 
 .MapCallbacks:
 	db 0

@@ -3,8 +3,8 @@ FastShipB1F_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x7673a, NONE
-	dw UnknownScript_0x7673b, NONE
+	dw UnknownScript_0x7673a, 0
+	dw UnknownScript_0x7673b, 0
 
 .MapCallbacks:
 	db 0
@@ -82,7 +82,7 @@ UnknownScript_0x767a0:
 	end
 
 TrainerSailorJeff:
-	trainer EVENT_BEAT_SAILOR_JEFF, SAILOR, JEFF, SailorJeffSeenText, SailorJeffBeatenText, NONE, SailorJeffScript
+	trainer EVENT_BEAT_SAILOR_JEFF, SAILOR, JEFF, SailorJeffSeenText, SailorJeffBeatenText, 0, SailorJeffScript
 
 SailorJeffScript:
 	talkaftercancel
@@ -93,7 +93,7 @@ SailorJeffScript:
 	end
 
 TrainerPicnickerDebra:
-	trainer EVENT_BEAT_PICNICKER_DEBRA, PICNICKER, DEBRA, PicnickerDebraSeenText, PicnickerDebraBeatenText, NONE, PicnickerDebraScript
+	trainer EVENT_BEAT_PICNICKER_DEBRA, PICNICKER, DEBRA, PicnickerDebraSeenText, PicnickerDebraBeatenText, 0, PicnickerDebraScript
 
 PicnickerDebraScript:
 	talkaftercancel
@@ -104,7 +104,7 @@ PicnickerDebraScript:
 	end
 
 TrainerJugglerFritz:
-	trainer EVENT_BEAT_JUGGLER_FRITZ, JUGGLER, FRITZ, JugglerFritzSeenText, JugglerFritzBeatenText, NONE, JugglerFritzScript
+	trainer EVENT_BEAT_JUGGLER_FRITZ, JUGGLER, FRITZ, JugglerFritzSeenText, JugglerFritzBeatenText, 0, JugglerFritzScript
 
 JugglerFritzScript:
 	talkaftercancel
@@ -115,7 +115,7 @@ JugglerFritzScript:
 	end
 
 TrainerSailorGarrett:
-	trainer EVENT_BEAT_SAILOR_GARRETT, SAILOR, GARRETT, SailorGarrettSeenText, SailorGarrettBeatenText, NONE, SailorGarrettScript
+	trainer EVENT_BEAT_SAILOR_GARRETT, SAILOR, GARRETT, SailorGarrettSeenText, SailorGarrettBeatenText, 0, SailorGarrettScript
 
 SailorGarrettScript:
 	talkaftercancel
@@ -126,7 +126,7 @@ SailorGarrettScript:
 	end
 
 TrainerFisherJonah:
-	trainer EVENT_BEAT_FISHER_JONAH, FISHER, JONAH, FisherJonahSeenText, FisherJonahBeatenText, NONE, FisherJonahScript
+	trainer EVENT_BEAT_FISHER_JONAH, FISHER, JONAH, FisherJonahSeenText, FisherJonahBeatenText, 0, FisherJonahScript
 
 FisherJonahScript:
 	talkaftercancel
@@ -137,7 +137,7 @@ FisherJonahScript:
 	end
 
 TrainerBlackbeltWai:
-	trainer EVENT_BEAT_BLACKBELT_WAI, BLACKBELT_T, WAI, BlackbeltWaiSeenText, BlackbeltWaiBeatenText, NONE, BlackbeltWaiScript
+	trainer EVENT_BEAT_BLACKBELT_WAI, BLACKBELT_T, WAI, BlackbeltWaiSeenText, BlackbeltWaiBeatenText, 0, BlackbeltWaiScript
 
 BlackbeltWaiScript:
 	talkaftercancel
@@ -148,7 +148,7 @@ BlackbeltWaiScript:
 	end
 
 TrainerSailorKenneth:
-	trainer EVENT_BEAT_SAILOR_KENNETH, SAILOR, KENNETH, SailorKennethSeenText, SailorKennethBeatenText, NONE, SailorKennethScript
+	trainer EVENT_BEAT_SAILOR_KENNETH, SAILOR, KENNETH, SailorKennethSeenText, SailorKennethBeatenText, 0, SailorKennethScript
 
 SailorKennethScript:
 	talkaftercancel
@@ -159,7 +159,7 @@ SailorKennethScript:
 	end
 
 TrainerTeacherShirley:
-	trainer EVENT_BEAT_TEACHER_SHIRLEY, TEACHER, SHIRLEY, TeacherShirleySeenText, TeacherShirleyBeatenText, NONE, TeacherShirleyScript
+	trainer EVENT_BEAT_TEACHER_SHIRLEY, TEACHER, SHIRLEY, TeacherShirleySeenText, TeacherShirleyBeatenText, 0, TeacherShirleyScript
 
 TeacherShirleyScript:
 	talkaftercancel
@@ -170,7 +170,7 @@ TeacherShirleyScript:
 	end
 
 TrainerSchoolboyNate:
-	trainer EVENT_BEAT_SCHOOLBOY_NATE, SCHOOLBOY, NATE, SchoolboyNateSeenText, SchoolboyNateBeatenText, NONE, SchoolboyNateScript
+	trainer EVENT_BEAT_SCHOOLBOY_NATE, SCHOOLBOY, NATE, SchoolboyNateSeenText, SchoolboyNateBeatenText, 0, SchoolboyNateScript
 
 SchoolboyNateScript:
 	talkaftercancel
@@ -181,7 +181,7 @@ SchoolboyNateScript:
 	end
 
 TrainerSchoolboyRicky:
-	trainer EVENT_BEAT_SCHOOLBOY_RICKY, SCHOOLBOY, RICKY, SchoolboyRickySeenText, SchoolboyRickyBeatenText, NONE, SchoolboyRickyScript
+	trainer EVENT_BEAT_SCHOOLBOY_RICKY, SCHOOLBOY, RICKY, SchoolboyRickySeenText, SchoolboyRickyBeatenText, 0, SchoolboyRickyScript
 
 SchoolboyRickyScript:
 	talkaftercancel

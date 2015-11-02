@@ -3,8 +3,8 @@ TinTower1F_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x18502a, NONE
-	dw UnknownScript_0x18502e, NONE
+	dw UnknownScript_0x18502a, 0
+	dw UnknownScript_0x18502e, 0
 
 .MapCallbacks:
 	db 2

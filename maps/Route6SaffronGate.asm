@@ -3,7 +3,7 @@ Route6SaffronGate_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x1926e9, NONE
+	dw UnknownScript_0x1926e9, 0
 
 .MapCallbacks:
 	db 0

@@ -6,7 +6,7 @@ Route8_MapScriptHeader:
 	db 0
 
 TrainerBikerDwayne:
-	trainer EVENT_BEAT_BIKER_DWAYNE, BIKER, DWAYNE, BikerDwayneSeenText, BikerDwayneBeatenText, NONE, BikerDwayneScript
+	trainer EVENT_BEAT_BIKER_DWAYNE, BIKER, DWAYNE, BikerDwayneSeenText, BikerDwayneBeatenText, 0, BikerDwayneScript
 
 BikerDwayneScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ BikerDwayneScript:
 	end
 
 TrainerBikerHarris:
-	trainer EVENT_BEAT_BIKER_HARRIS, BIKER, HARRIS, BikerHarrisSeenText, BikerHarrisBeatenText, NONE, BikerHarrisScript
+	trainer EVENT_BEAT_BIKER_HARRIS, BIKER, HARRIS, BikerHarrisSeenText, BikerHarrisBeatenText, 0, BikerHarrisScript
 
 BikerHarrisScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ BikerHarrisScript:
 	end
 
 TrainerBikerZeke:
-	trainer EVENT_BEAT_BIKER_ZEKE, BIKER, ZEKE, BikerZekeSeenText, BikerZekeBeatenText, NONE, BikerZekeScript
+	trainer EVENT_BEAT_BIKER_ZEKE, BIKER, ZEKE, BikerZekeSeenText, BikerZekeBeatenText, 0, BikerZekeScript
 
 BikerZekeScript:
 	talkaftercancel
@@ -39,7 +39,7 @@ BikerZekeScript:
 	end
 
 TrainerSupernerdSam:
-	trainer EVENT_BEAT_SUPER_NERD_SAM, SUPER_NERD, SAM, SupernerdSamSeenText, SupernerdSamBeatenText, NONE, SupernerdSamScript
+	trainer EVENT_BEAT_SUPER_NERD_SAM, SUPER_NERD, SAM, SupernerdSamSeenText, SupernerdSamBeatenText, 0, SupernerdSamScript
 
 SupernerdSamScript:
 	talkaftercancel
@@ -50,7 +50,7 @@ SupernerdSamScript:
 	end
 
 TrainerSupernerdTom:
-	trainer EVENT_BEAT_SUPER_NERD_TOM, SUPER_NERD, TOM, SupernerdTomSeenText, SupernerdTomBeatenText, NONE, SupernerdTomScript
+	trainer EVENT_BEAT_SUPER_NERD_TOM, SUPER_NERD, TOM, SupernerdTomSeenText, SupernerdTomBeatenText, 0, SupernerdTomScript
 
 SupernerdTomScript:
 	talkaftercancel

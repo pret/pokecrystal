@@ -6,7 +6,7 @@ Route4_MapScriptHeader:
 	db 0
 
 TrainerBird_keeperHank:
-	trainer EVENT_BEAT_BIRD_KEEPER_HANK, BIRD_KEEPER, HANK, Bird_keeperHankSeenText, Bird_keeperHankBeatenText, NONE, Bird_keeperHankScript
+	trainer EVENT_BEAT_BIRD_KEEPER_HANK, BIRD_KEEPER, HANK, Bird_keeperHankSeenText, Bird_keeperHankBeatenText, 0, Bird_keeperHankScript
 
 Bird_keeperHankScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ Bird_keeperHankScript:
 	end
 
 TrainerPicnickerHope:
-	trainer EVENT_BEAT_PICNICKER_HOPE, PICNICKER, HOPE, PicnickerHopeSeenText, PicnickerHopeBeatenText, NONE, PicnickerHopeScript
+	trainer EVENT_BEAT_PICNICKER_HOPE, PICNICKER, HOPE, PicnickerHopeSeenText, PicnickerHopeBeatenText, 0, PicnickerHopeScript
 
 PicnickerHopeScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ PicnickerHopeScript:
 	end
 
 TrainerPicnickerSharon:
-	trainer EVENT_BEAT_PICNICKER_SHARON, PICNICKER, SHARON, PicnickerSharonSeenText, PicnickerSharonBeatenText, NONE, PicnickerSharonScript
+	trainer EVENT_BEAT_PICNICKER_SHARON, PICNICKER, SHARON, PicnickerSharonSeenText, PicnickerSharonBeatenText, 0, PicnickerSharonScript
 
 PicnickerSharonScript:
 	talkaftercancel

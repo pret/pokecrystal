@@ -59,7 +59,7 @@ BlackthornGymBoulder:
 	jumpstd strengthboulder
 
 TrainerCooltrainermCody:
-	trainer EVENT_BEAT_COOLTRAINERM_CODY, COOLTRAINERM, CODY, CooltrainermCodySeenText, CooltrainermCodyBeatenText, NONE, CooltrainermCodyScript
+	trainer EVENT_BEAT_COOLTRAINERM_CODY, COOLTRAINERM, CODY, CooltrainermCodySeenText, CooltrainermCodyBeatenText, 0, CooltrainermCodyScript
 
 CooltrainermCodyScript:
 	talkaftercancel
@@ -70,7 +70,7 @@ CooltrainermCodyScript:
 	end
 
 TrainerCooltrainerfFran:
-	trainer EVENT_BEAT_COOLTRAINERF_FRAN, COOLTRAINERF, FRAN, CooltrainerfFranSeenText, CooltrainerfFranBeatenText, NONE, CooltrainerfFranScript
+	trainer EVENT_BEAT_COOLTRAINERF_FRAN, COOLTRAINERF, FRAN, CooltrainerfFranSeenText, CooltrainerfFranBeatenText, 0, CooltrainerfFranScript
 
 CooltrainerfFranScript:
 	talkaftercancel

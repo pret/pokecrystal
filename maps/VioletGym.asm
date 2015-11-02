@@ -13,7 +13,7 @@ FalknerScript_0x683c2:
 	writetext UnknownText_0x68473
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x6854a, NONE
+	winlosstext UnknownText_0x6854a, 0
 	loadtrainer FALKNER, 1
 	startbattle
 	returnafterbattle
@@ -61,7 +61,7 @@ VioletGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerBird_keeperRod:
-	trainer EVENT_BEAT_BIRD_KEEPER_ROD, BIRD_KEEPER, ROD, Bird_keeperRodSeenText, Bird_keeperRodBeatenText, NONE, Bird_keeperRodScript
+	trainer EVENT_BEAT_BIRD_KEEPER_ROD, BIRD_KEEPER, ROD, Bird_keeperRodSeenText, Bird_keeperRodBeatenText, 0, Bird_keeperRodScript
 
 Bird_keeperRodScript:
 	talkaftercancel
@@ -72,7 +72,7 @@ Bird_keeperRodScript:
 	end
 
 TrainerBird_keeperAbe:
-	trainer EVENT_BEAT_BIRD_KEEPER_ABE, BIRD_KEEPER, ABE, Bird_keeperAbeSeenText, Bird_keeperAbeBeatenText, NONE, Bird_keeperAbeScript
+	trainer EVENT_BEAT_BIRD_KEEPER_ABE, BIRD_KEEPER, ABE, Bird_keeperAbeSeenText, Bird_keeperAbeBeatenText, 0, Bird_keeperAbeScript
 
 Bird_keeperAbeScript:
 	talkaftercancel

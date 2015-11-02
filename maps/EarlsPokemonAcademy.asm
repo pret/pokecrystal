@@ -106,7 +106,7 @@ AcademyBlackboard:
 	dn 3, 2 ; rows, columns
 	db 5 ; spacing
 	dbw BANK(.Text), .Text
-	dbw $1a, NONE
+	dbw $1a, 0
 
 .Text
 	db "PSN@"

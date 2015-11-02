@@ -1,7 +1,6 @@
 ; A library included as part of the Mobile Adapter GB SDK.
 
 INCLUDE "gbhw.asm"
-NONE EQU 0
 
 SECTION "Main", ROMX
 
@@ -258,7 +257,7 @@ Function110115: ; 110115
 	cp $0
 	jr z, .asm_11015d
 .asm_110158
-	ld hl, NONE
+	ld hl, 0
 .asm_11015b
 	ld a, e
 	ret
@@ -684,14 +683,14 @@ rept 2
 	inc de
 endr
 	pop hl
-	ld bc, NONE
+	ld bc, 0
 	call Function110007
 	ld a, c
 	ld [$cb7a], a
 	ld [$c86b], a
 	push de
 	inc de
-	ld bc, NONE
+	ld bc, 0
 	ld a, $20
 	call Function11000f
 	ld l, e
@@ -1021,7 +1020,7 @@ Function110615: ; 110615
 	push de
 	inc de
 	ld a, b
-	ld bc, NONE
+	ld bc, 0
 	call Function11000f
 	ld a, c
 	pop hl
@@ -4810,7 +4809,7 @@ Function111f07: ; 111f07 (44:5f07)
 
 Function111f63: ; 111f63
 	push de
-	ld hl, NONE
+	ld hl, 0
 	ld c, b
 	xor a
 	cp b
@@ -5233,7 +5232,7 @@ Function112271: ; 112271
 	cp $41
 	jr nz, .asm_1122f5
 	ld b, $be
-	ld de, NONE
+	ld de, 0
 .asm_1122b3
 	ld a, [hli]
 	add e
@@ -6506,8 +6505,8 @@ Function112aac: ; 112aac
 	push af
 	ld a, [$c874]
 	push af
-	ld bc, NONE
-	ld de, NONE
+	ld bc, 0
+	ld de, 0
 .asm_112abe
 	ld a, [hli]
 	cp $d
@@ -6584,7 +6583,7 @@ Function112b11: ; 112b11
 .asm_112b36
 	push hl
 	ld hl, $c872
-	ld de, NONE
+	ld de, 0
 	ld a, b
 	or a
 	jr z, .asm_112b49
@@ -8226,7 +8225,7 @@ Function113519: ; 113519
 	cp $41
 	jr nz, .asm_113586
 	ld b, $be
-	ld de, NONE
+	ld de, 0
 .asm_113551
 	ld a, [hli]
 	add e

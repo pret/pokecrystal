@@ -9,7 +9,7 @@ KurtScript_0x5a5d5:
 	jumptextfaceplayer UnknownText_0x5a6b5
 
 TrainerGruntM29:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_29, GRUNTM, 29, GruntM29SeenText, GruntM29BeatenText, NONE, GruntM29Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_29, GRUNTM, 29, GruntM29SeenText, GruntM29BeatenText, 0, GruntM29Script
 
 GruntM29Script:
 	talkaftercancel
@@ -20,7 +20,7 @@ GruntM29Script:
 	end
 
 TrainerGruntM1:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_1, GRUNTM, 1, GruntM1SeenText, GruntM1BeatenText, NONE, GruntM1Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_1, GRUNTM, 1, GruntM1SeenText, GruntM1BeatenText, 0, GruntM1Script
 
 GruntM1Script:
 	loadfont
@@ -63,7 +63,7 @@ GruntM1Script:
 	end
 
 TrainerGruntM2:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_2, GRUNTM, 2, GruntM2SeenText, GruntM2BeatenText, NONE, GruntM2Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_2, GRUNTM, 2, GruntM2SeenText, GruntM2BeatenText, 0, GruntM2Script
 
 GruntM2Script:
 	talkaftercancel
@@ -74,7 +74,7 @@ GruntM2Script:
 	end
 
 TrainerGruntF1:
-	trainer EVENT_BEAT_ROCKET_GRUNTF_1, GRUNTF, 1, GruntF1SeenText, GruntF1BeatenText, NONE, GruntF1Script
+	trainer EVENT_BEAT_ROCKET_GRUNTF_1, GRUNTF, 1, GruntF1SeenText, GruntF1BeatenText, 0, GruntF1Script
 
 GruntF1Script:
 	talkaftercancel

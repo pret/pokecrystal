@@ -3,8 +3,8 @@ WillsRoom_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x1804c6, NONE
-	dw UnknownScript_0x1804ca, NONE
+	dw UnknownScript_0x1804c6, 0
+	dw UnknownScript_0x1804ca, 0
 
 .MapCallbacks:
 	db 1
@@ -52,7 +52,7 @@ WillScript_0x1804f8:
 	writetext UnknownText_0x180531
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x18062c, NONE
+	winlosstext UnknownText_0x18062c, 0
 	loadtrainer WILL, 1
 	startbattle
 	returnafterbattle

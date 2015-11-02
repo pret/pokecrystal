@@ -3,9 +3,9 @@ BurnedTower1F_MapScriptHeader:
 	db 3
 
 	; triggers
-	dw UnknownScript_0x185bf2, NONE
-	dw UnknownScript_0x185bf6, NONE
-	dw UnknownScript_0x185bf7, NONE
+	dw UnknownScript_0x185bf2, 0
+	dw UnknownScript_0x185bf6, 0
+	dw UnknownScript_0x185bf7, 0
 
 .MapCallbacks:
 	db 1

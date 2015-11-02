@@ -6,7 +6,7 @@ Route15_MapScriptHeader:
 	db 0
 
 TrainerTeacherColette:
-	trainer EVENT_BEAT_TEACHER_COLETTE, TEACHER, COLETTE, TeacherColetteSeenText, TeacherColetteBeatenText, NONE, TeacherColetteScript
+	trainer EVENT_BEAT_TEACHER_COLETTE, TEACHER, COLETTE, TeacherColetteSeenText, TeacherColetteBeatenText, 0, TeacherColetteScript
 
 TeacherColetteScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ TeacherColetteScript:
 	end
 
 TrainerTeacherHillary:
-	trainer EVENT_BEAT_TEACHER_HILLARY, TEACHER, HILLARY, TeacherHillarySeenText, TeacherHillaryBeatenText, NONE, TeacherHillaryScript
+	trainer EVENT_BEAT_TEACHER_HILLARY, TEACHER, HILLARY, TeacherHillarySeenText, TeacherHillaryBeatenText, 0, TeacherHillaryScript
 
 TeacherHillaryScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ TeacherHillaryScript:
 	end
 
 TrainerSchoolboyKipp:
-	trainer EVENT_BEAT_SCHOOLBOY_KIP, SCHOOLBOY, KIPP, SchoolboyKippSeenText, SchoolboyKippBeatenText, NONE, SchoolboyKippScript
+	trainer EVENT_BEAT_SCHOOLBOY_KIP, SCHOOLBOY, KIPP, SchoolboyKippSeenText, SchoolboyKippBeatenText, 0, SchoolboyKippScript
 
 SchoolboyKippScript:
 	talkaftercancel
@@ -39,7 +39,7 @@ SchoolboyKippScript:
 	end
 
 TrainerSchoolboyTommy:
-	trainer EVENT_BEAT_SCHOOLBOY_TOMMY, SCHOOLBOY, TOMMY, SchoolboyTommySeenText, SchoolboyTommyBeatenText, NONE, SchoolboyTommyScript
+	trainer EVENT_BEAT_SCHOOLBOY_TOMMY, SCHOOLBOY, TOMMY, SchoolboyTommySeenText, SchoolboyTommyBeatenText, 0, SchoolboyTommyScript
 
 SchoolboyTommyScript:
 	talkaftercancel
@@ -50,7 +50,7 @@ SchoolboyTommyScript:
 	end
 
 TrainerSchoolboyJohnny:
-	trainer EVENT_BEAT_SCHOOLBOY_JOHNNY, SCHOOLBOY, JOHNNY, SchoolboyJohnnySeenText, SchoolboyJohnnyBeatenText, NONE, SchoolboyJohnnyScript
+	trainer EVENT_BEAT_SCHOOLBOY_JOHNNY, SCHOOLBOY, JOHNNY, SchoolboyJohnnySeenText, SchoolboyJohnnyBeatenText, 0, SchoolboyJohnnyScript
 
 SchoolboyJohnnyScript:
 	talkaftercancel
@@ -61,7 +61,7 @@ SchoolboyJohnnyScript:
 	end
 
 TrainerSchoolboyBilly:
-	trainer EVENT_BEAT_SCHOOLBOY_BILLY, SCHOOLBOY, BILLY, SchoolboyBillySeenText, SchoolboyBillyBeatenText, NONE, SchoolboyBillyScript
+	trainer EVENT_BEAT_SCHOOLBOY_BILLY, SCHOOLBOY, BILLY, SchoolboyBillySeenText, SchoolboyBillyBeatenText, 0, SchoolboyBillyScript
 
 SchoolboyBillyScript:
 	talkaftercancel

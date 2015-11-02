@@ -28,7 +28,7 @@ ChuckScript_0x9d60f:
 	writetext UnknownText_0x9d78a
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x9d7f6, NONE
+	winlosstext UnknownText_0x9d7f6, 0
 	loadtrainer CHUCK, 1
 	startbattle
 	returnafterbattle
@@ -76,7 +76,7 @@ CianwoodGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerBlackbeltYoshi:
-	trainer EVENT_BEAT_BLACKBELT_YOSHI, BLACKBELT_T, YOSHI, BlackbeltYoshiSeenText, BlackbeltYoshiBeatenText, NONE, BlackbeltYoshiScript
+	trainer EVENT_BEAT_BLACKBELT_YOSHI, BLACKBELT_T, YOSHI, BlackbeltYoshiSeenText, BlackbeltYoshiBeatenText, 0, BlackbeltYoshiScript
 
 BlackbeltYoshiScript:
 	talkaftercancel
@@ -87,7 +87,7 @@ BlackbeltYoshiScript:
 	end
 
 TrainerBlackbeltLao:
-	trainer EVENT_BEAT_BLACKBELT_LAO, BLACKBELT_T, LAO, BlackbeltLaoSeenText, BlackbeltLaoBeatenText, NONE, BlackbeltLaoScript
+	trainer EVENT_BEAT_BLACKBELT_LAO, BLACKBELT_T, LAO, BlackbeltLaoSeenText, BlackbeltLaoBeatenText, 0, BlackbeltLaoScript
 
 BlackbeltLaoScript:
 	talkaftercancel
@@ -98,7 +98,7 @@ BlackbeltLaoScript:
 	end
 
 TrainerBlackbeltNob:
-	trainer EVENT_BEAT_BLACKBELT_NOB, BLACKBELT_T, NOB, BlackbeltNobSeenText, BlackbeltNobBeatenText, NONE, BlackbeltNobScript
+	trainer EVENT_BEAT_BLACKBELT_NOB, BLACKBELT_T, NOB, BlackbeltNobSeenText, BlackbeltNobBeatenText, 0, BlackbeltNobScript
 
 BlackbeltNobScript:
 	talkaftercancel
@@ -109,7 +109,7 @@ BlackbeltNobScript:
 	end
 
 TrainerBlackbeltLung:
-	trainer EVENT_BEAT_BLACKBELT_LUNG, BLACKBELT_T, LUNG, BlackbeltLungSeenText, BlackbeltLungBeatenText, NONE, BlackbeltLungScript
+	trainer EVENT_BEAT_BLACKBELT_LUNG, BLACKBELT_T, LUNG, BlackbeltLungSeenText, BlackbeltLungBeatenText, 0, BlackbeltLungScript
 
 BlackbeltLungScript:
 	talkaftercancel

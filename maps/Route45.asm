@@ -6,7 +6,7 @@ Route45_MapScriptHeader:
 	db 0
 
 TrainerBlackbeltKenji:
-	trainer EVENT_BEAT_BLACKBELT_KENJI, BLACKBELT_T, KENJI3, BlackbeltKenji3SeenText, BlackbeltKenji3BeatenText, NONE, BlackbeltKenji3Script
+	trainer EVENT_BEAT_BLACKBELT_KENJI, BLACKBELT_T, KENJI3, BlackbeltKenji3SeenText, BlackbeltKenji3BeatenText, 0, BlackbeltKenji3Script
 
 BlackbeltKenji3Script:
 	writecode VAR_CALLERID, PHONE_BLACKBELT_KENJI
@@ -110,7 +110,7 @@ UnknownScript_0x19e146:
 	end
 
 TrainerHikerErik:
-	trainer EVENT_BEAT_HIKER_ERIK, HIKER, ERIK, HikerErikSeenText, HikerErikBeatenText, NONE, HikerErikScript
+	trainer EVENT_BEAT_HIKER_ERIK, HIKER, ERIK, HikerErikSeenText, HikerErikBeatenText, 0, HikerErikScript
 
 HikerErikScript:
 	talkaftercancel
@@ -121,7 +121,7 @@ HikerErikScript:
 	end
 
 TrainerHikerMichael:
-	trainer EVENT_BEAT_HIKER_MICHAEL, HIKER, MICHAEL, HikerMichaelSeenText, HikerMichaelBeatenText, NONE, HikerMichaelScript
+	trainer EVENT_BEAT_HIKER_MICHAEL, HIKER, MICHAEL, HikerMichaelSeenText, HikerMichaelBeatenText, 0, HikerMichaelScript
 
 HikerMichaelScript:
 	talkaftercancel
@@ -132,7 +132,7 @@ HikerMichaelScript:
 	end
 
 TrainerHikerParry:
-	trainer EVENT_BEAT_HIKER_PARRY, HIKER, PARRY3, HikerParry3SeenText, HikerParry3BeatenText, NONE, HikerParry3Script
+	trainer EVENT_BEAT_HIKER_PARRY, HIKER, PARRY3, HikerParry3SeenText, HikerParry3BeatenText, 0, HikerParry3Script
 
 HikerParry3Script:
 	writecode VAR_CALLERID, PHONE_HIKER_PARRY
@@ -162,7 +162,7 @@ UnknownScript_0x19e1a4:
 
 UnknownScript_0x19e1b8:
 	scall UnknownScript_0x19e133
-	winlosstext HikerParry3BeatenText, NONE
+	winlosstext HikerParry3BeatenText, 0
 	copybytetovar wParryFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
@@ -218,7 +218,7 @@ UnknownScript_0x19e219:
 	jump UnknownScript_0x19e127
 
 TrainerHikerTimothy:
-	trainer EVENT_BEAT_HIKER_TIMOTHY, HIKER, TIMOTHY, HikerTimothySeenText, HikerTimothyBeatenText, NONE, HikerTimothyScript
+	trainer EVENT_BEAT_HIKER_TIMOTHY, HIKER, TIMOTHY, HikerTimothySeenText, HikerTimothyBeatenText, 0, HikerTimothyScript
 
 HikerTimothyScript:
 	talkaftercancel
@@ -229,7 +229,7 @@ HikerTimothyScript:
 	end
 
 TrainerCooltrainermRyan:
-	trainer EVENT_BEAT_COOLTRAINERM_RYAN, COOLTRAINERM, RYAN, CooltrainermRyanSeenText, CooltrainermRyanBeatenText, NONE, CooltrainermRyanScript
+	trainer EVENT_BEAT_COOLTRAINERM_RYAN, COOLTRAINERM, RYAN, CooltrainermRyanSeenText, CooltrainermRyanBeatenText, 0, CooltrainermRyanScript
 
 CooltrainermRyanScript:
 	talkaftercancel
@@ -240,7 +240,7 @@ CooltrainermRyanScript:
 	end
 
 TrainerCooltrainerfKelly:
-	trainer EVENT_BEAT_COOLTRAINERF_KELLY, COOLTRAINERF, KELLY, CooltrainerfKellySeenText, CooltrainerfKellyBeatenText, NONE, CooltrainerfKellyScript
+	trainer EVENT_BEAT_COOLTRAINERF_KELLY, COOLTRAINERF, KELLY, CooltrainerfKellySeenText, CooltrainerfKellyBeatenText, 0, CooltrainerfKellyScript
 
 CooltrainerfKellyScript:
 	talkaftercancel
@@ -258,7 +258,7 @@ YoungsterScript_0x19e269:
 	writetext UnknownText_0x19e87f
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x19e899, NONE
+	winlosstext UnknownText_0x19e899, 0
 	loadtrainer CAMPER, QUENTIN
 	startbattle
 	returnafterbattle

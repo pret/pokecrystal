@@ -35,7 +35,7 @@ GoldenrodDeptStoreRoof_MapScriptHeader:
 
 ClerkScript_0x5673f:
 	loadfont
-	pokemart $4, NONE
+	pokemart $4, 0
 	loadmovesprites
 	end
 

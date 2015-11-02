@@ -3,8 +3,8 @@ MrPokemonsHouse_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x196e51, NONE
-	dw UnknownScript_0x196e55, NONE
+	dw UnknownScript_0x196e51, 0
+	dw UnknownScript_0x196e55, 0
 
 .MapCallbacks:
 	db 0

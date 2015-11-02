@@ -3,8 +3,8 @@ Route43Gate_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x19abc5, NONE
-	dw UnknownScript_0x19abc9, NONE
+	dw UnknownScript_0x19abc5, 0
+	dw UnknownScript_0x19abc9, 0
 
 .MapCallbacks:
 	db 1

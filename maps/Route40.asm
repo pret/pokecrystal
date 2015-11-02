@@ -21,7 +21,7 @@ MonicaCallback:
 	return
 
 TrainerSwimmerfElaine:
-	trainer EVENT_BEAT_SWIMMERF_ELAINE, SWIMMERF, ELAINE, SwimmerfElaineSeenText, SwimmerfElaineBeatenText, NONE, SwimmerfElaineScript
+	trainer EVENT_BEAT_SWIMMERF_ELAINE, SWIMMERF, ELAINE, SwimmerfElaineSeenText, SwimmerfElaineBeatenText, 0, SwimmerfElaineScript
 
 SwimmerfElaineScript:
 	talkaftercancel
@@ -32,7 +32,7 @@ SwimmerfElaineScript:
 	end
 
 TrainerSwimmerfPaula:
-	trainer EVENT_BEAT_SWIMMERF_PAULA, SWIMMERF, PAULA, SwimmerfPaulaSeenText, SwimmerfPaulaBeatenText, NONE, SwimmerfPaulaScript
+	trainer EVENT_BEAT_SWIMMERF_PAULA, SWIMMERF, PAULA, SwimmerfPaulaSeenText, SwimmerfPaulaBeatenText, 0, SwimmerfPaulaScript
 
 SwimmerfPaulaScript:
 	talkaftercancel
@@ -43,7 +43,7 @@ SwimmerfPaulaScript:
 	end
 
 TrainerSwimmermSimon:
-	trainer EVENT_BEAT_SWIMMERM_SIMON, SWIMMERM, SIMON, SwimmermSimonSeenText, SwimmermSimonBeatenText, NONE, SwimmermSimonScript
+	trainer EVENT_BEAT_SWIMMERM_SIMON, SWIMMERM, SIMON, SwimmermSimonSeenText, SwimmermSimonBeatenText, 0, SwimmermSimonScript
 
 SwimmermSimonScript:
 	talkaftercancel
@@ -54,7 +54,7 @@ SwimmermSimonScript:
 	end
 
 TrainerSwimmermRandall:
-	trainer EVENT_BEAT_SWIMMERM_RANDALL, SWIMMERM, RANDALL, SwimmermRandallSeenText, SwimmermRandallBeatenText, NONE, SwimmermRandallScript
+	trainer EVENT_BEAT_SWIMMERM_RANDALL, SWIMMERM, RANDALL, SwimmermRandallSeenText, SwimmermRandallBeatenText, 0, SwimmermRandallScript
 
 SwimmermRandallScript:
 	talkaftercancel

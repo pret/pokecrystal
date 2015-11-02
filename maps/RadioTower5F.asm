@@ -3,9 +3,9 @@ RadioTower5F_MapScriptHeader:
 	db 3
 
 	; triggers
-	dw UnknownScript_0x6000e, NONE
-	dw UnknownScript_0x6000f, NONE
-	dw UnknownScript_0x60010, NONE
+	dw UnknownScript_0x6000e, 0
+	dw UnknownScript_0x6000f, 0
+	dw UnknownScript_0x60010, 0
 
 .MapCallbacks:
 	db 0
@@ -32,7 +32,7 @@ UnknownScript_0x60011:
 	writetext UnknownText_0x60147
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x60223, NONE
+	winlosstext UnknownText_0x60223, 0
 	setlasttalked $2
 	loadtrainer EXECUTIVEM, 3
 	startbattle
@@ -63,7 +63,7 @@ UnknownScript_0x60054:
 	end
 
 TrainerExecutivef1:
-	trainer EVENT_BEAT_ROCKET_EXECUTIVEF_1, EXECUTIVEF, 1, Executivef1SeenText, Executivef1BeatenText, NONE, Executivef1Script
+	trainer EVENT_BEAT_ROCKET_EXECUTIVEF_1, EXECUTIVEF, 1, Executivef1SeenText, Executivef1BeatenText, 0, Executivef1Script
 
 Executivef1Script:
 	talkaftercancel
@@ -81,7 +81,7 @@ UnknownScript_0x6006e:
 	writetext UnknownText_0x603d1
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x604f3, NONE
+	winlosstext UnknownText_0x604f3, 0
 	setlasttalked $3
 	loadtrainer EXECUTIVEM, 1
 	startbattle

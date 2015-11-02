@@ -3,7 +3,7 @@ SeafoamGym_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x1ab4fa, NONE
+	dw UnknownScript_0x1ab4fa, 0
 
 .MapCallbacks:
 	db 0
@@ -19,7 +19,7 @@ BlaineScript_0x1ab4fb:
 	writetext UnknownText_0x1ab548
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x1ab646, NONE
+	winlosstext UnknownText_0x1ab646, 0
 	loadtrainer BLAINE, 1
 	startbattle
 	iftrue .ReturnAfterBattle

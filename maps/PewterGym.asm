@@ -13,7 +13,7 @@ BrockScript_0x1a2864:
 	writetext UnknownText_0x1a28d0
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x1a29bb, NONE
+	winlosstext UnknownText_0x1a29bb, 0
 	loadtrainer BROCK, 1
 	startbattle
 	returnafterbattle
@@ -36,7 +36,7 @@ BrockScript_0x1a2864:
 	end
 
 TrainerCamperJerry:
-	trainer EVENT_BEAT_CAMPER_JERRY, CAMPER, JERRY, CamperJerrySeenText, CamperJerryBeatenText, NONE, CamperJerryScript
+	trainer EVENT_BEAT_CAMPER_JERRY, CAMPER, JERRY, CamperJerrySeenText, CamperJerryBeatenText, 0, CamperJerryScript
 
 CamperJerryScript:
 	talkaftercancel

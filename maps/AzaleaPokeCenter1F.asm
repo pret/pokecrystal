@@ -3,7 +3,7 @@ AzaleaPokeCenter1F_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x18db27, NONE
+	dw UnknownScript_0x18db27, 0
 
 .MapCallbacks:
 	db 0

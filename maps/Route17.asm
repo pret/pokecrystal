@@ -15,7 +15,7 @@ UnknownScript_0x1ad0ab:
 	return
 
 TrainerBikerCharles:
-	trainer EVENT_BEAT_BIKER_CHARLES, BIKER, CHARLES, BikerCharlesSeenText, BikerCharlesBeatenText, NONE, BikerCharlesScript
+	trainer EVENT_BEAT_BIKER_CHARLES, BIKER, CHARLES, BikerCharlesSeenText, BikerCharlesBeatenText, 0, BikerCharlesScript
 
 BikerCharlesScript:
 	talkaftercancel
@@ -26,7 +26,7 @@ BikerCharlesScript:
 	end
 
 TrainerBikerRiley:
-	trainer EVENT_BEAT_BIKER_RILEY, BIKER, RILEY, BikerRileySeenText, BikerRileyBeatenText, NONE, BikerRileyScript
+	trainer EVENT_BEAT_BIKER_RILEY, BIKER, RILEY, BikerRileySeenText, BikerRileyBeatenText, 0, BikerRileyScript
 
 BikerRileyScript:
 	talkaftercancel
@@ -37,7 +37,7 @@ BikerRileyScript:
 	end
 
 TrainerBikerJoel:
-	trainer EVENT_BEAT_BIKER_JOEL, BIKER, JOEL, BikerJoelSeenText, BikerJoelBeatenText, NONE, BikerJoelScript
+	trainer EVENT_BEAT_BIKER_JOEL, BIKER, JOEL, BikerJoelSeenText, BikerJoelBeatenText, 0, BikerJoelScript
 
 BikerJoelScript:
 	talkaftercancel
@@ -48,7 +48,7 @@ BikerJoelScript:
 	end
 
 TrainerBikerGlenn:
-	trainer EVENT_BEAT_BIKER_GLENN, BIKER, GLENN, BikerGlennSeenText, BikerGlennBeatenText, NONE, BikerGlennScript
+	trainer EVENT_BEAT_BIKER_GLENN, BIKER, GLENN, BikerGlennSeenText, BikerGlennBeatenText, 0, BikerGlennScript
 
 BikerGlennScript:
 	talkaftercancel

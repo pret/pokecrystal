@@ -6,7 +6,7 @@ Route26_MapScriptHeader:
 	db 0
 
 TrainerCooltrainermJake:
-	trainer EVENT_BEAT_COOLTRAINERM_JAKE, COOLTRAINERM, JAKE, CooltrainermJakeSeenText, CooltrainermJakeBeatenText, NONE, CooltrainermJakeScript
+	trainer EVENT_BEAT_COOLTRAINERM_JAKE, COOLTRAINERM, JAKE, CooltrainermJakeSeenText, CooltrainermJakeBeatenText, 0, CooltrainermJakeScript
 
 CooltrainermJakeScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ CooltrainermJakeScript:
 	end
 
 TrainerCooltrainermGaven3:
-	trainer EVENT_BEAT_COOLTRAINERM_GAVEN, COOLTRAINERM, GAVEN3, CooltrainermGaven3SeenText, CooltrainermGaven3BeatenText, NONE, CooltrainermGaven3Script
+	trainer EVENT_BEAT_COOLTRAINERM_GAVEN, COOLTRAINERM, GAVEN3, CooltrainermGaven3SeenText, CooltrainermGaven3BeatenText, 0, CooltrainermGaven3Script
 
 CooltrainermGaven3Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERM_GAVEN
@@ -47,7 +47,7 @@ UnknownScript_0x1a4d65:
 
 UnknownScript_0x1a4d79:
 	scall UnknownScript_0x1a4dd7
-	winlosstext CooltrainermGaven3BeatenText, NONE
+	winlosstext CooltrainermGaven3BeatenText, 0
 	copybytetovar wGavenFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
@@ -110,7 +110,7 @@ UnknownScript_0x1a4dd7:
 	end
 
 TrainerCooltrainerfJoyce:
-	trainer EVENT_BEAT_COOLTRAINERF_JOYCE, COOLTRAINERF, JOYCE, CooltrainerfJoyceSeenText, CooltrainerfJoyceBeatenText, NONE, CooltrainerfJoyceScript
+	trainer EVENT_BEAT_COOLTRAINERF_JOYCE, COOLTRAINERF, JOYCE, CooltrainerfJoyceSeenText, CooltrainerfJoyceBeatenText, 0, CooltrainerfJoyceScript
 
 CooltrainerfJoyceScript:
 	talkaftercancel
@@ -121,7 +121,7 @@ CooltrainerfJoyceScript:
 	end
 
 TrainerCooltrainerfBeth1:
-	trainer EVENT_BEAT_COOLTRAINERF_BETH, COOLTRAINERF, BETH1, CooltrainerfBeth1SeenText, CooltrainerfBeth1BeatenText, NONE, CooltrainerfBeth1Script
+	trainer EVENT_BEAT_COOLTRAINERF_BETH, COOLTRAINERF, BETH1, CooltrainerfBeth1SeenText, CooltrainerfBeth1BeatenText, 0, CooltrainerfBeth1Script
 
 CooltrainerfBeth1Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERF_BETH
@@ -151,7 +151,7 @@ UnknownScript_0x1a4e21:
 
 UnknownScript_0x1a4e35:
 	scall UnknownScript_0x1a4e93
-	winlosstext CooltrainerfBeth1BeatenText, NONE
+	winlosstext CooltrainerfBeth1BeatenText, 0
 	copybytetovar wBethFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
@@ -214,7 +214,7 @@ UnknownScript_0x1a4e93:
 	end
 
 TrainerPsychicRichard:
-	trainer EVENT_BEAT_PSYCHIC_RICHARD, PSYCHIC_T, RICHARD, PsychicRichardSeenText, PsychicRichardBeatenText, NONE, PsychicRichardScript
+	trainer EVENT_BEAT_PSYCHIC_RICHARD, PSYCHIC_T, RICHARD, PsychicRichardSeenText, PsychicRichardBeatenText, 0, PsychicRichardScript
 
 PsychicRichardScript:
 	talkaftercancel
@@ -225,7 +225,7 @@ PsychicRichardScript:
 	end
 
 TrainerFisherScott:
-	trainer EVENT_BEAT_FISHER_SCOTT, FISHER, SCOTT, FisherScottSeenText, FisherScottBeatenText, NONE, FisherScottScript
+	trainer EVENT_BEAT_FISHER_SCOTT, FISHER, SCOTT, FisherScottSeenText, FisherScottBeatenText, 0, FisherScottScript
 
 FisherScottScript:
 	talkaftercancel

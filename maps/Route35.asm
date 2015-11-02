@@ -6,7 +6,7 @@ Route35_MapScriptHeader:
 	db 0
 
 TrainerBird_keeperBryan:
-	trainer EVENT_BEAT_BIRD_KEEPER_BRYAN, BIRD_KEEPER, BRYAN, Bird_keeperBryanSeenText, Bird_keeperBryanBeatenText, NONE, Bird_keeperBryanScript
+	trainer EVENT_BEAT_BIRD_KEEPER_BRYAN, BIRD_KEEPER, BRYAN, Bird_keeperBryanSeenText, Bird_keeperBryanBeatenText, 0, Bird_keeperBryanScript
 
 Bird_keeperBryanScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ Bird_keeperBryanScript:
 	end
 
 TrainerJugglerIrwin:
-	trainer EVENT_BEAT_JUGGLER_IRWIN, JUGGLER, IRWIN1, JugglerIrwin1SeenText, JugglerIrwin1BeatenText, NONE, JugglerIrwin1Script
+	trainer EVENT_BEAT_JUGGLER_IRWIN, JUGGLER, IRWIN1, JugglerIrwin1SeenText, JugglerIrwin1BeatenText, 0, JugglerIrwin1Script
 
 JugglerIrwin1Script:
 	writecode VAR_CALLERID, PHONE_JUGGLER_IRWIN
@@ -72,7 +72,7 @@ UnknownScript_0x19c91b:
 	end
 
 TrainerCamperIvan:
-	trainer EVENT_BEAT_CAMPER_IVAN, CAMPER, IVAN, CamperIvanSeenText, CamperIvanBeatenText, NONE, CamperIvanScript
+	trainer EVENT_BEAT_CAMPER_IVAN, CAMPER, IVAN, CamperIvanSeenText, CamperIvanBeatenText, 0, CamperIvanScript
 
 CamperIvanScript:
 	talkaftercancel
@@ -83,7 +83,7 @@ CamperIvanScript:
 	end
 
 TrainerCamperElliot:
-	trainer EVENT_BEAT_CAMPER_ELLIOT, CAMPER, ELLIOT, CamperElliotSeenText, CamperElliotBeatenText, NONE, CamperElliotScript
+	trainer EVENT_BEAT_CAMPER_ELLIOT, CAMPER, ELLIOT, CamperElliotSeenText, CamperElliotBeatenText, 0, CamperElliotScript
 
 CamperElliotScript:
 	talkaftercancel
@@ -94,7 +94,7 @@ CamperElliotScript:
 	end
 
 TrainerPicnickerBrooke:
-	trainer EVENT_BEAT_PICNICKER_BROOKE, PICNICKER, BROOKE, PicnickerBrookeSeenText, PicnickerBrookeBeatenText, NONE, PicnickerBrookeScript
+	trainer EVENT_BEAT_PICNICKER_BROOKE, PICNICKER, BROOKE, PicnickerBrookeSeenText, PicnickerBrookeBeatenText, 0, PicnickerBrookeScript
 
 PicnickerBrookeScript:
 	talkaftercancel
@@ -105,7 +105,7 @@ PicnickerBrookeScript:
 	end
 
 TrainerPicnickerKim:
-	trainer EVENT_BEAT_PICNICKER_KIM, PICNICKER, KIM, PicnickerKimSeenText, PicnickerKimBeatenText, NONE, PicnickerKimScript
+	trainer EVENT_BEAT_PICNICKER_KIM, PICNICKER, KIM, PicnickerKimSeenText, PicnickerKimBeatenText, 0, PicnickerKimScript
 
 PicnickerKimScript:
 	talkaftercancel
@@ -116,7 +116,7 @@ PicnickerKimScript:
 	end
 
 TrainerBug_catcherArnie1:
-	trainer EVENT_BEAT_BUG_CATCHER_ARNIE, BUG_CATCHER, ARNIE1, Bug_catcherArnie1SeenText, Bug_catcherArnie1BeatenText, NONE, Bug_catcherArnie1Script
+	trainer EVENT_BEAT_BUG_CATCHER_ARNIE, BUG_CATCHER, ARNIE1, Bug_catcherArnie1SeenText, Bug_catcherArnie1BeatenText, 0, Bug_catcherArnie1Script
 
 Bug_catcherArnie1Script:
 	writecode VAR_CALLERID, PHONE_BUG_CATCHER_ARNIE
@@ -148,7 +148,7 @@ UnknownScript_0x19c9a7:
 
 UnknownScript_0x19c9bb:
 	scall UnknownScript_0x19c91b
-	winlosstext Bug_catcherArnie1BeatenText, NONE
+	winlosstext Bug_catcherArnie1BeatenText, 0
 	copybytetovar wArnieFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
@@ -213,7 +213,7 @@ UnknownScript_0x19ca2f:
 	end
 
 TrainerFirebreatherWalt:
-	trainer EVENT_BEAT_FIREBREATHER_WALT, FIREBREATHER, WALT, FirebreatherWaltSeenText, FirebreatherWaltBeatenText, NONE, FirebreatherWaltScript
+	trainer EVENT_BEAT_FIREBREATHER_WALT, FIREBREATHER, WALT, FirebreatherWaltSeenText, FirebreatherWaltBeatenText, 0, FirebreatherWaltScript
 
 FirebreatherWaltScript:
 	talkaftercancel
@@ -234,7 +234,7 @@ OfficerScript_0x19ca49:
 	writetext UnknownText_0x19ceea
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x19cf06, NONE
+	winlosstext UnknownText_0x19cf06, 0
 	loadtrainer OFFICER, DIRK
 	startbattle
 	returnafterbattle

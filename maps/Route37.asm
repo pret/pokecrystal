@@ -20,7 +20,7 @@ SunnyCallback:
 	return
 
 TrainerTwinsAnnandanne1:
-	trainer EVENT_BEAT_TWINS_ANN_AND_ANNE, TWINS, ANNANDANNE1, TwinsAnnandanne1SeenText, TwinsAnnandanne1BeatenText, NONE, TwinsAnnandanne1Script
+	trainer EVENT_BEAT_TWINS_ANN_AND_ANNE, TWINS, ANNANDANNE1, TwinsAnnandanne1SeenText, TwinsAnnandanne1BeatenText, 0, TwinsAnnandanne1Script
 
 TwinsAnnandanne1Script:
 	talkaftercancel
@@ -31,7 +31,7 @@ TwinsAnnandanne1Script:
 	end
 
 TrainerTwinsAnnandanne2:
-	trainer EVENT_BEAT_TWINS_ANN_AND_ANNE, TWINS, ANNANDANNE2, TwinsAnnandanne2SeenText, TwinsAnnandanne2BeatenText, NONE, TwinsAnnandanne2Script
+	trainer EVENT_BEAT_TWINS_ANN_AND_ANNE, TWINS, ANNANDANNE2, TwinsAnnandanne2SeenText, TwinsAnnandanne2BeatenText, 0, TwinsAnnandanne2Script
 
 TwinsAnnandanne2Script:
 	talkaftercancel
@@ -42,7 +42,7 @@ TwinsAnnandanne2Script:
 	end
 
 TrainerPsychicGreg:
-	trainer EVENT_BEAT_PSYCHIC_GREG, PSYCHIC_T, GREG, PsychicGregSeenText, PsychicGregBeatenText, NONE, PsychicGregScript
+	trainer EVENT_BEAT_PSYCHIC_GREG, PSYCHIC_T, GREG, PsychicGregSeenText, PsychicGregBeatenText, 0, PsychicGregScript
 
 PsychicGregScript:
 	talkaftercancel

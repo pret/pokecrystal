@@ -3,8 +3,8 @@ LancesRoom_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x180e39, NONE
-	dw UnknownScript_0x180e3d, NONE
+	dw UnknownScript_0x180e39, 0
+	dw UnknownScript_0x180e3d, 0
 
 .MapCallbacks:
 	db 1
@@ -57,7 +57,7 @@ LanceScript_0x180e7b:
 	writetext UnknownText_0x180f67
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x1810a4, NONE
+	winlosstext UnknownText_0x1810a4, 0
 	setlasttalked $2
 	loadtrainer CHAMPION, LANCE
 	startbattle

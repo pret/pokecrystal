@@ -3,7 +3,7 @@ IndigoPlateauPokeCenter1F_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x180009, NONE
+	dw UnknownScript_0x180009, 0
 
 .MapCallbacks:
 	db 1

@@ -76,7 +76,7 @@ DaycareMon2Script_0x7806b:
 	end
 
 TrainerCamperTodd1:
-	trainer EVENT_BEAT_CAMPER_TODD, CAMPER, TODD1, CamperTodd1SeenText, CamperTodd1BeatenText, NONE, CamperTodd1Script
+	trainer EVENT_BEAT_CAMPER_TODD, CAMPER, TODD1, CamperTodd1SeenText, CamperTodd1BeatenText, 0, CamperTodd1Script
 
 CamperTodd1Script:
 	writecode VAR_CALLERID, PHONE_CAMPER_TODD
@@ -108,7 +108,7 @@ UnknownScript_0x780a9:
 
 UnknownScript_0x780bd:
 	scall UnknownScript_0x7814f
-	winlosstext CamperTodd1BeatenText, NONE
+	winlosstext CamperTodd1BeatenText, 0
 	copybytetovar wToddFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
@@ -201,7 +201,7 @@ UnknownScript_0x7814f:
 	end
 
 TrainerPicnickerGina1:
-	trainer EVENT_BEAT_PICNICKER_GINA, PICNICKER, GINA1, PicnickerGina1SeenText, PicnickerGina1BeatenText, NONE, PicnickerGina1Script
+	trainer EVENT_BEAT_PICNICKER_GINA, PICNICKER, GINA1, PicnickerGina1SeenText, PicnickerGina1BeatenText, 0, PicnickerGina1Script
 
 PicnickerGina1Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_GINA
@@ -233,7 +233,7 @@ UnknownScript_0x7818b:
 
 UnknownScript_0x7819f:
 	scall UnknownScript_0x78240
-	winlosstext PicnickerGina1BeatenText, NONE
+	winlosstext PicnickerGina1BeatenText, 0
 	copybytetovar wGinaFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
@@ -349,7 +349,7 @@ OfficerScript_0x7824c:
 	writetext UnknownText_0x785e4
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x78609, NONE
+	winlosstext UnknownText_0x78609, 0
 	loadtrainer OFFICER, KEITH
 	startbattle
 	returnafterbattle
@@ -370,7 +370,7 @@ UnknownScript_0x78276:
 	end
 
 TrainerYoungsterSamuel:
-	trainer EVENT_BEAT_YOUNGSTER_SAMUEL, YOUNGSTER, SAMUEL, YoungsterSamuelSeenText, YoungsterSamuelBeatenText, NONE, YoungsterSamuelScript
+	trainer EVENT_BEAT_YOUNGSTER_SAMUEL, YOUNGSTER, SAMUEL, YoungsterSamuelSeenText, YoungsterSamuelBeatenText, 0, YoungsterSamuelScript
 
 YoungsterSamuelScript:
 	talkaftercancel
@@ -381,7 +381,7 @@ YoungsterSamuelScript:
 	end
 
 TrainerYoungsterIan:
-	trainer EVENT_BEAT_YOUNGSTER_IAN, YOUNGSTER, IAN, YoungsterIanSeenText, YoungsterIanBeatenText, NONE, YoungsterIanScript
+	trainer EVENT_BEAT_YOUNGSTER_IAN, YOUNGSTER, IAN, YoungsterIanSeenText, YoungsterIanBeatenText, 0, YoungsterIanScript
 
 YoungsterIanScript:
 	talkaftercancel
@@ -392,7 +392,7 @@ YoungsterIanScript:
 	end
 
 TrainerPokefanmBrandon:
-	trainer EVENT_BEAT_POKEFANM_BRANDON, POKEFANM, BRANDON, PokefanmBrandonSeenText, PokefanmBrandonBeatenText, NONE, PokefanmBrandonScript
+	trainer EVENT_BEAT_POKEFANM_BRANDON, POKEFANM, BRANDON, PokefanmBrandonSeenText, PokefanmBrandonBeatenText, 0, PokefanmBrandonScript
 
 PokefanmBrandonScript:
 	talkaftercancel
@@ -403,7 +403,7 @@ PokefanmBrandonScript:
 	end
 
 TrainerCooltrainerfIrene:
-	trainer EVENT_BEAT_COOLTRAINERF_IRENE, COOLTRAINERF, IRENE, CooltrainerfIreneSeenText, CooltrainerfIreneBeatenText, NONE, CooltrainerfIreneScript
+	trainer EVENT_BEAT_COOLTRAINERF_IRENE, COOLTRAINERF, IRENE, CooltrainerfIreneSeenText, CooltrainerfIreneBeatenText, 0, CooltrainerfIreneScript
 
 CooltrainerfIreneScript:
 	talkaftercancel
@@ -422,7 +422,7 @@ UnknownScript_0x782d2:
 	end
 
 TrainerCooltrainerfJenn:
-	trainer EVENT_BEAT_COOLTRAINERF_JENN, COOLTRAINERF, JENN, CooltrainerfJennSeenText, CooltrainerfJennBeatenText, NONE, CooltrainerfJennScript
+	trainer EVENT_BEAT_COOLTRAINERF_JENN, COOLTRAINERF, JENN, CooltrainerfJennSeenText, CooltrainerfJennBeatenText, 0, CooltrainerfJennScript
 
 CooltrainerfJennScript:
 	talkaftercancel
@@ -441,7 +441,7 @@ UnknownScript_0x782f2:
 	end
 
 TrainerCooltrainerfKate:
-	trainer EVENT_BEAT_COOLTRAINERF_KATE, COOLTRAINERF, KATE, CooltrainerfKateSeenText, CooltrainerfKateBeatenText, NONE, CooltrainerfKateScript
+	trainer EVENT_BEAT_COOLTRAINERF_KATE, COOLTRAINERF, KATE, CooltrainerfKateSeenText, CooltrainerfKateBeatenText, 0, CooltrainerfKateScript
 
 CooltrainerfKateScript:
 	talkaftercancel

@@ -2773,7 +2773,7 @@ LoadMusicByte:: ; e8d76
 ; e8d80
 
 FrequencyTable: ; e8d80
-	dw NONE ; filler
+	dw 0 ; filler
 	dw $f82c
 	dw $f89d
 	dw $f907

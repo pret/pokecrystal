@@ -3,7 +3,7 @@ Route16Gate_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x733e9, NONE
+	dw UnknownScript_0x733e9, 0
 
 .MapCallbacks:
 	db 0

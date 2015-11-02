@@ -3,8 +3,8 @@ SproutTower3F_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x184945, NONE
-	dw UnknownScript_0x184946, NONE
+	dw UnknownScript_0x184945, 0
+	dw UnknownScript_0x184946, 0
 
 .MapCallbacks:
 	db 0
@@ -64,7 +64,7 @@ SageLiScript:
 	writetext SageLiSeenText
 	closetext
 	loadmovesprites
-	winlosstext SageLiBeatenText, NONE
+	winlosstext SageLiBeatenText, 0
 	loadtrainer SAGE, LI
 	startbattle
 	returnafterbattle
@@ -86,7 +86,7 @@ UnknownScript_0x1849d1:
 	end
 
 TrainerSageJin:
-	trainer EVENT_BEAT_SAGE_JIN, SAGE, JIN, SageJinSeenText, SageJinBeatenText, NONE, SageJinScript
+	trainer EVENT_BEAT_SAGE_JIN, SAGE, JIN, SageJinSeenText, SageJinBeatenText, 0, SageJinScript
 
 SageJinScript:
 	talkaftercancel
@@ -97,7 +97,7 @@ SageJinScript:
 	end
 
 TrainerSageTroy:
-	trainer EVENT_BEAT_SAGE_TROY, SAGE, TROY, SageTroySeenText, SageTroyBeatenText, NONE, SageTroyScript
+	trainer EVENT_BEAT_SAGE_TROY, SAGE, TROY, SageTroySeenText, SageTroyBeatenText, 0, SageTroyScript
 
 SageTroyScript:
 	talkaftercancel
@@ -108,7 +108,7 @@ SageTroyScript:
 	end
 
 TrainerSageNeal:
-	trainer EVENT_BEAT_SAGE_NEAL, SAGE, NEAL, SageNealSeenText, SageNealBeatenText, NONE, SageNealScript
+	trainer EVENT_BEAT_SAGE_NEAL, SAGE, NEAL, SageNealSeenText, SageNealBeatenText, 0, SageNealScript
 
 SageNealScript:
 	talkaftercancel

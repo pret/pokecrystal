@@ -3,8 +3,8 @@ Route25_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x19ee9e, NONE
-	dw UnknownScript_0x19ee9f, NONE
+	dw UnknownScript_0x19ee9e, 0
+	dw UnknownScript_0x19ee9f, 0
 
 .MapCallbacks:
 	db 0
@@ -68,7 +68,7 @@ UnknownScript_0x19eee0:
 	end
 
 TrainerSchoolboyDudley:
-	trainer EVENT_BEAT_SCHOOLBOY_DUDLEY, SCHOOLBOY, DUDLEY, SchoolboyDudleySeenText, SchoolboyDudleyBeatenText, NONE, SchoolboyDudleyScript
+	trainer EVENT_BEAT_SCHOOLBOY_DUDLEY, SCHOOLBOY, DUDLEY, SchoolboyDudleySeenText, SchoolboyDudleyBeatenText, 0, SchoolboyDudleyScript
 
 SchoolboyDudleyScript:
 	talkaftercancel
@@ -79,7 +79,7 @@ SchoolboyDudleyScript:
 	end
 
 TrainerLassEllen:
-	trainer EVENT_BEAT_LASS_ELLEN, LASS, ELLEN, LassEllenSeenText, LassEllenBeatenText, NONE, LassEllenScript
+	trainer EVENT_BEAT_LASS_ELLEN, LASS, ELLEN, LassEllenSeenText, LassEllenBeatenText, 0, LassEllenScript
 
 LassEllenScript:
 	talkaftercancel
@@ -90,7 +90,7 @@ LassEllenScript:
 	end
 
 TrainerSchoolboyJoe:
-	trainer EVENT_BEAT_SCHOOLBOY_JOE, SCHOOLBOY, JOE, SchoolboyJoeSeenText, SchoolboyJoeBeatenText, NONE, SchoolboyJoeScript
+	trainer EVENT_BEAT_SCHOOLBOY_JOE, SCHOOLBOY, JOE, SchoolboyJoeSeenText, SchoolboyJoeBeatenText, 0, SchoolboyJoeScript
 
 SchoolboyJoeScript:
 	talkaftercancel
@@ -101,7 +101,7 @@ SchoolboyJoeScript:
 	end
 
 TrainerLassLaura:
-	trainer EVENT_BEAT_LASS_LAURA, LASS, LAURA, LassLauraSeenText, LassLauraBeatenText, NONE, LassLauraScript
+	trainer EVENT_BEAT_LASS_LAURA, LASS, LAURA, LassLauraSeenText, LassLauraBeatenText, 0, LassLauraScript
 
 LassLauraScript:
 	talkaftercancel
@@ -112,7 +112,7 @@ LassLauraScript:
 	end
 
 TrainerCamperLloyd:
-	trainer EVENT_BEAT_CAMPER_LLOYD, CAMPER, LLOYD, CamperLloydSeenText, CamperLloydBeatenText, NONE, CamperLloydScript
+	trainer EVENT_BEAT_CAMPER_LLOYD, CAMPER, LLOYD, CamperLloydSeenText, CamperLloydBeatenText, 0, CamperLloydScript
 
 CamperLloydScript:
 	talkaftercancel
@@ -123,7 +123,7 @@ CamperLloydScript:
 	end
 
 TrainerLassShannon:
-	trainer EVENT_BEAT_LASS_SHANNON, LASS, SHANNON, LassShannonSeenText, LassShannonBeatenText, NONE, LassShannonScript
+	trainer EVENT_BEAT_LASS_SHANNON, LASS, SHANNON, LassShannonSeenText, LassShannonBeatenText, 0, LassShannonScript
 
 LassShannonScript:
 	talkaftercancel
@@ -134,7 +134,7 @@ LassShannonScript:
 	end
 
 TrainerSupernerdPat:
-	trainer EVENT_BEAT_SUPER_NERD_PAT, SUPER_NERD, PAT, SupernerdPatSeenText, SupernerdPatBeatenText, NONE, SupernerdPatScript
+	trainer EVENT_BEAT_SUPER_NERD_PAT, SUPER_NERD, PAT, SupernerdPatSeenText, SupernerdPatBeatenText, 0, SupernerdPatScript
 
 SupernerdPatScript:
 	talkaftercancel
@@ -160,7 +160,7 @@ UnknownScript_0x19efc7:
 	writetext UnknownText_0x19f49d
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x19f4fd, NONE
+	winlosstext UnknownText_0x19f4fd, 0
 	loadtrainer COOLTRAINERM, KEVIN
 	startbattle
 	returnafterbattle

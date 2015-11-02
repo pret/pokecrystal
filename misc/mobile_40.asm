@@ -246,17 +246,17 @@ Function10016f: ; 10016f
 
 .asm_1001af
 	ld a, $d7
-	ld de, NONE
+	ld de, 0
 	jr .asm_1001d7
 
 .asm_1001b6
 	ld a, $d5
-	ld de, NONE
+	ld de, 0
 	jr .asm_1001d7
 
 .asm_1001bd
 	ld a, $d6
-	ld de, NONE
+	ld de, 0
 	jr .asm_1001d7
 
 .asm_1001c4
@@ -271,7 +271,7 @@ Function10016f: ; 10016f
 
 .asm_1001d2
 	ld a, $d0
-	ld de, NONE
+	ld de, 0
 
 .asm_1001d7
 	ld [wc300], a
@@ -645,7 +645,7 @@ Function100406: ; 100406
 Function10043a: ; 10043a
 	push hl
 	push bc
-	ld de, NONE
+	ld de, 0
 .asm_10043f
 	ld a, [hli]
 	add e
@@ -3637,7 +3637,7 @@ Function10177b: ; 10177b
 	ld c, a
 	ld b, $0
 	ld a, [wcd3a]
-	ld hl, NONE
+	ld hl, 0
 	call AddNTimes
 	ld e, l
 	ld d, h
@@ -6667,7 +6667,7 @@ Function102cee: ; 102cee
 	sub c
 	ret z
 	ld bc, $002f
-	ld hl, NONE
+	ld hl, 0
 	call AddNTimes
 	push hl
 	ld a, [wJumptableIndex]
@@ -7474,7 +7474,7 @@ Function10343c: ; 10343c
 	call Function1034e0
 
 .asm_10345f
-	ld bc, NONE
+	ld bc, 0
 	call Function10350f
 	ld bc, $0001
 	call Function103487

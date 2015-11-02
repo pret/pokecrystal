@@ -26,7 +26,7 @@ YoungsterScript_0x1a1673:
 	end
 
 TrainerYoungsterJoey:
-	trainer EVENT_BEAT_YOUNGSTER_JOEY, YOUNGSTER, JOEY1, YoungsterJoey1SeenText, YoungsterJoey1BeatenText, NONE, YoungsterJoey1Script
+	trainer EVENT_BEAT_YOUNGSTER_JOEY, YOUNGSTER, JOEY1, YoungsterJoey1SeenText, YoungsterJoey1BeatenText, 0, YoungsterJoey1Script
 
 YoungsterJoey1Script:
 	writecode VAR_CALLERID, PHONE_YOUNGSTER_JOEY
@@ -56,7 +56,7 @@ UnknownScript_0x1a16cc:
 
 UnknownScript_0x1a16e0:
 	scall UnknownScript_0x1a179b
-	winlosstext YoungsterJoey1BeatenText, NONE
+	winlosstext YoungsterJoey1BeatenText, 0
 	copybytetovar wJoeyFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
@@ -173,7 +173,7 @@ UnknownScript_0x1a17a6:
 	end
 
 TrainerYoungsterMikey:
-	trainer EVENT_BEAT_YOUNGSTER_MIKEY, YOUNGSTER, MIKEY, YoungsterMikeySeenText, YoungsterMikeyBeatenText, NONE, YoungsterMikeyScript
+	trainer EVENT_BEAT_YOUNGSTER_MIKEY, YOUNGSTER, MIKEY, YoungsterMikeySeenText, YoungsterMikeyBeatenText, 0, YoungsterMikeyScript
 
 YoungsterMikeyScript:
 	talkaftercancel
@@ -184,7 +184,7 @@ YoungsterMikeyScript:
 	end
 
 TrainerBug_catcherDon:
-	trainer EVENT_BEAT_BUG_CATCHER_DON, BUG_CATCHER, DON, Bug_catcherDonSeenText, Bug_catcherDonBeatenText, NONE, Bug_catcherDonScript
+	trainer EVENT_BEAT_BUG_CATCHER_DON, BUG_CATCHER, DON, Bug_catcherDonSeenText, Bug_catcherDonBeatenText, 0, Bug_catcherDonScript
 
 Bug_catcherDonScript:
 	talkaftercancel

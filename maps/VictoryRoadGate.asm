@@ -3,8 +3,8 @@ VictoryRoadGate_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x9b9fb, NONE
-	dw UnknownScript_0x9b9fc, NONE
+	dw UnknownScript_0x9b9fb, 0
+	dw UnknownScript_0x9b9fc, 0
 
 .MapCallbacks:
 	db 0

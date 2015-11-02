@@ -3,8 +3,8 @@ Route42_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x1a9216, NONE
-	dw UnknownScript_0x1a9217, NONE
+	dw UnknownScript_0x1a9216, 0
+	dw UnknownScript_0x1a9217, 0
 
 .MapCallbacks:
 	db 0
@@ -28,7 +28,7 @@ UnknownScript_0x1a9218:
 	end
 
 TrainerFisherTully1:
-	trainer EVENT_BEAT_FISHER_TULLY, FISHER, TULLY1, FisherTully1SeenText, FisherTully1BeatenText, NONE, FisherTully1Script
+	trainer EVENT_BEAT_FISHER_TULLY, FISHER, TULLY1, FisherTully1SeenText, FisherTully1BeatenText, 0, FisherTully1Script
 
 FisherTully1Script:
 	writecode VAR_CALLERID, PHONE_FISHER_TULLY
@@ -60,7 +60,7 @@ UnknownScript_0x1a926b:
 
 UnknownScript_0x1a927f:
 	scall UnknownScript_0x1a9309
-	winlosstext FisherTully1BeatenText, NONE
+	winlosstext FisherTully1BeatenText, 0
 	copybytetovar wTullyFightCount
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
@@ -154,7 +154,7 @@ UnknownScript_0x1a9311:
 	end
 
 TrainerPokemaniacShane:
-	trainer EVENT_BEAT_POKEMANIAC_SHANE, POKEMANIAC, SHANE, PokemaniacShaneSeenText, PokemaniacShaneBeatenText, NONE, PokemaniacShaneScript
+	trainer EVENT_BEAT_POKEMANIAC_SHANE, POKEMANIAC, SHANE, PokemaniacShaneSeenText, PokemaniacShaneBeatenText, 0, PokemaniacShaneScript
 
 PokemaniacShaneScript:
 	talkaftercancel
@@ -165,7 +165,7 @@ PokemaniacShaneScript:
 	end
 
 TrainerHikerBenjamin:
-	trainer EVENT_BEAT_HIKER_BENJAMIN, HIKER, BENJAMIN, HikerBenjaminSeenText, HikerBenjaminBeatenText, NONE, HikerBenjaminScript
+	trainer EVENT_BEAT_HIKER_BENJAMIN, HIKER, BENJAMIN, HikerBenjaminSeenText, HikerBenjaminBeatenText, 0, HikerBenjaminScript
 
 HikerBenjaminScript:
 	talkaftercancel

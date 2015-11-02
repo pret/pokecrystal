@@ -6,7 +6,7 @@ Route9_MapScriptHeader:
 	db 0
 
 TrainerCamperDean:
-	trainer EVENT_BEAT_CAMPER_DEAN, CAMPER, DEAN, CamperDeanSeenText, CamperDeanBeatenText, NONE, CamperDeanScript
+	trainer EVENT_BEAT_CAMPER_DEAN, CAMPER, DEAN, CamperDeanSeenText, CamperDeanBeatenText, 0, CamperDeanScript
 
 CamperDeanScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ CamperDeanScript:
 	end
 
 TrainerPicnickerHeidi:
-	trainer EVENT_BEAT_PICNICKER_HEIDI, PICNICKER, HEIDI, PicnickerHeidiSeenText, PicnickerHeidiBeatenText, NONE, PicnickerHeidiScript
+	trainer EVENT_BEAT_PICNICKER_HEIDI, PICNICKER, HEIDI, PicnickerHeidiSeenText, PicnickerHeidiBeatenText, 0, PicnickerHeidiScript
 
 PicnickerHeidiScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ PicnickerHeidiScript:
 	end
 
 TrainerCamperSid:
-	trainer EVENT_BEAT_CAMPER_SID, CAMPER, SID, CamperSidSeenText, CamperSidBeatenText, NONE, CamperSidScript
+	trainer EVENT_BEAT_CAMPER_SID, CAMPER, SID, CamperSidSeenText, CamperSidBeatenText, 0, CamperSidScript
 
 CamperSidScript:
 	talkaftercancel
@@ -39,7 +39,7 @@ CamperSidScript:
 	end
 
 TrainerPicnickerEdna:
-	trainer EVENT_BEAT_PICNICKER_EDNA, PICNICKER, EDNA, PicnickerEdnaSeenText, PicnickerEdnaBeatenText, NONE, PicnickerEdnaScript
+	trainer EVENT_BEAT_PICNICKER_EDNA, PICNICKER, EDNA, PicnickerEdnaSeenText, PicnickerEdnaBeatenText, 0, PicnickerEdnaScript
 
 PicnickerEdnaScript:
 	talkaftercancel
@@ -50,7 +50,7 @@ PicnickerEdnaScript:
 	end
 
 TrainerHikerTim:
-	trainer EVENT_BEAT_HIKER_TIM, HIKER, TIM, HikerTimSeenText, HikerTimBeatenText, NONE, HikerTimScript
+	trainer EVENT_BEAT_HIKER_TIM, HIKER, TIM, HikerTimSeenText, HikerTimBeatenText, 0, HikerTimScript
 
 HikerTimScript:
 	talkaftercancel
@@ -61,7 +61,7 @@ HikerTimScript:
 	end
 
 TrainerHikerSidney:
-	trainer EVENT_BEAT_HIKER_SIDNEY, HIKER, SIDNEY, HikerSidneySeenText, HikerSidneyBeatenText, NONE, HikerSidneyScript
+	trainer EVENT_BEAT_HIKER_SIDNEY, HIKER, SIDNEY, HikerSidneySeenText, HikerSidneyBeatenText, 0, HikerSidneyScript
 
 HikerSidneyScript:
 	talkaftercancel

@@ -3,8 +3,8 @@ RuinsofAlphInnerChamber_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x58f69, NONE
-	dw UnknownScript_0x58f6a, NONE
+	dw UnknownScript_0x58f69, 0
+	dw UnknownScript_0x58f6a, 0
 
 .MapCallbacks:
 	db 0

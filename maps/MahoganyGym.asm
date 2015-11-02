@@ -13,7 +13,7 @@ PryceScript_0x199a9e:
 	writetext UnknownText_0x199b8d
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x199cb3, NONE
+	winlosstext UnknownText_0x199cb3, 0
 	loadtrainer PRYCE, 1
 	startbattle
 	returnafterbattle
@@ -62,7 +62,7 @@ MahoganyGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerSkierRoxanne:
-	trainer EVENT_BEAT_SKIER_ROXANNE, SKIER, ROXANNE, SkierRoxanneSeenText, SkierRoxanneBeatenText, NONE, SkierRoxanneScript
+	trainer EVENT_BEAT_SKIER_ROXANNE, SKIER, ROXANNE, SkierRoxanneSeenText, SkierRoxanneBeatenText, 0, SkierRoxanneScript
 
 SkierRoxanneScript:
 	talkaftercancel
@@ -73,7 +73,7 @@ SkierRoxanneScript:
 	end
 
 TrainerSkierClarissa:
-	trainer EVENT_BEAT_SKIER_CLARISSA, SKIER, CLARISSA, SkierClarissaSeenText, SkierClarissaBeatenText, NONE, SkierClarissaScript
+	trainer EVENT_BEAT_SKIER_CLARISSA, SKIER, CLARISSA, SkierClarissaSeenText, SkierClarissaBeatenText, 0, SkierClarissaScript
 
 SkierClarissaScript:
 	talkaftercancel
@@ -84,7 +84,7 @@ SkierClarissaScript:
 	end
 
 TrainerBoarderRonald:
-	trainer EVENT_BEAT_BOARDER_RONALD, BOARDER, RONALD, BoarderRonaldSeenText, BoarderRonaldBeatenText, NONE, BoarderRonaldScript
+	trainer EVENT_BEAT_BOARDER_RONALD, BOARDER, RONALD, BoarderRonaldSeenText, BoarderRonaldBeatenText, 0, BoarderRonaldScript
 
 BoarderRonaldScript:
 	talkaftercancel
@@ -95,7 +95,7 @@ BoarderRonaldScript:
 	end
 
 TrainerBoarderBrad:
-	trainer EVENT_BEAT_BOARDER_BRAD, BOARDER, BRAD, BoarderBradSeenText, BoarderBradBeatenText, NONE, BoarderBradScript
+	trainer EVENT_BEAT_BOARDER_BRAD, BOARDER, BRAD, BoarderBradSeenText, BoarderBradBeatenText, 0, BoarderBradScript
 
 BoarderBradScript:
 	talkaftercancel
@@ -106,7 +106,7 @@ BoarderBradScript:
 	end
 
 TrainerBoarderDouglas:
-	trainer EVENT_BEAT_BOARDER_DOUGLAS, BOARDER, DOUGLAS, BoarderDouglasSeenText, BoarderDouglasBeatenText, NONE, BoarderDouglasScript
+	trainer EVENT_BEAT_BOARDER_DOUGLAS, BOARDER, DOUGLAS, BoarderDouglasSeenText, BoarderDouglasBeatenText, 0, BoarderDouglasScript
 
 BoarderDouglasScript:
 	talkaftercancel

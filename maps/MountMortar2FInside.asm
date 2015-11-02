@@ -6,7 +6,7 @@ MountMortar2FInside_MapScriptHeader:
 	db 0
 
 TrainerSupernerdHugh:
-	trainer EVENT_BEAT_SUPER_NERD_HUGH, SUPER_NERD, HUGH, SupernerdHughSeenText, SupernerdHughBeatenText, NONE, SupernerdHughScript
+	trainer EVENT_BEAT_SUPER_NERD_HUGH, SUPER_NERD, HUGH, SupernerdHughSeenText, SupernerdHughBeatenText, 0, SupernerdHughScript
 
 SupernerdHughScript:
 	talkaftercancel

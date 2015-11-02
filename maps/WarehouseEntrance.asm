@@ -105,7 +105,7 @@ WarehouseEntrance_MapScriptHeader:
 	return
 
 TrainerSupernerdEric:
-	trainer EVENT_BEAT_SUPER_NERD_ERIC, SUPER_NERD, ERIC, SupernerdEricSeenText, SupernerdEricBeatenText, NONE, SupernerdEricScript
+	trainer EVENT_BEAT_SUPER_NERD_ERIC, SUPER_NERD, ERIC, SupernerdEricSeenText, SupernerdEricBeatenText, 0, SupernerdEricScript
 
 SupernerdEricScript:
 	talkaftercancel
@@ -116,7 +116,7 @@ SupernerdEricScript:
 	end
 
 TrainerSupernerdTeru:
-	trainer EVENT_BEAT_SUPER_NERD_TERU, SUPER_NERD, TERU, SupernerdTeruSeenText, SupernerdTeruBeatenText, NONE, SupernerdTeruScript
+	trainer EVENT_BEAT_SUPER_NERD_TERU, SUPER_NERD, TERU, SupernerdTeruSeenText, SupernerdTeruBeatenText, 0, SupernerdTeruScript
 
 SupernerdTeruScript:
 	talkaftercancel
@@ -127,7 +127,7 @@ SupernerdTeruScript:
 	end
 
 TrainerPokemaniacIssac:
-	trainer EVENT_BEAT_POKEMANIAC_ISSAC, POKEMANIAC, ISSAC, PokemaniacIssacSeenText, PokemaniacIssacBeatenText, NONE, PokemaniacIssacScript
+	trainer EVENT_BEAT_POKEMANIAC_ISSAC, POKEMANIAC, ISSAC, PokemaniacIssacSeenText, PokemaniacIssacBeatenText, 0, PokemaniacIssacScript
 
 PokemaniacIssacScript:
 	talkaftercancel
@@ -138,7 +138,7 @@ PokemaniacIssacScript:
 	end
 
 TrainerPokemaniacDonald:
-	trainer EVENT_BEAT_POKEMANIAC_DONALD, POKEMANIAC, DONALD, PokemaniacDonaldSeenText, PokemaniacDonaldBeatenText, NONE, PokemaniacDonaldScript
+	trainer EVENT_BEAT_POKEMANIAC_DONALD, POKEMANIAC, DONALD, PokemaniacDonaldSeenText, PokemaniacDonaldBeatenText, 0, PokemaniacDonaldScript
 
 PokemaniacDonaldScript:
 	talkaftercancel
@@ -171,7 +171,7 @@ GrampsScript_0x7c146:
 .CheckMorn:
 	checkmorn
 	iffalse WarehouseEntranceScript_ShopClosed
-	pokemart $2, NONE
+	pokemart $2, 0
 	loadmovesprites
 	end
 

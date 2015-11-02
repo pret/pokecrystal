@@ -151,7 +151,7 @@ Sfx_Save_Ch5: ; f09b6
 
 Sfx_Save_Ch6: ; f09d5
 	dutycycle $2
-	sound $2, $8, NONE
+	sound $2, $8, 0
 	sound $2, $a1, $0701
 	sound $1, $91, $0601
 	sound $1, $91, $0681
@@ -2291,7 +2291,7 @@ Sfx_Sketch_Ch5: ; f12f9
 Sfx_Sketch_branch_f12fd: ; f12fd
 	sound $2, $f1, $06e0
 	sound $d, $af, $05b0
-	sound $4, $0, NONE
+	sound $4, $0, 0
 	sound $9, $f4, $0718
 	loopchannel 3, Sfx_Sketch_branch_f12fd
 	soundinput $8
@@ -2490,15 +2490,15 @@ Sfx_Nightmare_Ch5: ; f1420
 	soundinput $34
 Sfx_Nightmare_branch_f1424: ; f1424
 	sound $3, $ba, $0631
-	sound $2, $0, NONE
+	sound $2, $0, 0
 	sound $3, $f8, $0621
-	sound $2, $0, NONE
+	sound $2, $0, 0
 	sound $3, $f8, $0611
-	sound $2, $0, NONE
+	sound $2, $0, 0
 	sound $3, $e8, $0601
-	sound $2, $0, NONE
+	sound $2, $0, 0
 	sound $3, $e8, $05f1
-	sound $2, $0, NONE
+	sound $2, $0, 0
 	loopchannel 2, Sfx_Nightmare_branch_f1424
 	soundinput $8
 	endchannel
@@ -2540,11 +2540,11 @@ Sfx_SweetKiss2_Ch5: ; f1482
 	dutycycle $0
 	soundinput $97
 	sound $2, $f4, $0772
-	sound $4, $0, NONE
+	sound $4, $0, 0
 	sound $2, $c4, $0772
-	sound $4, $0, NONE
+	sound $4, $0, 0
 	sound $2, $b4, $0772
-	sound $4, $0, NONE
+	sound $4, $0, 0
 	sound $2, $a1, $0772
 	soundinput $8
 	endchannel
@@ -2591,7 +2591,7 @@ Sfx_SludgeBomb_Ch5: ; f14d6
 	dutycycle $2
 	soundinput $c5
 	sound $3, $f8, $0581
-	sound $1, $0, NONE
+	sound $1, $0, 0
 	soundinput $cb
 	sound $10, $f2, $05d1
 	soundinput $8
@@ -2613,9 +2613,9 @@ Sfx_Foresight_Ch5: ; f14f8
 	sound $3, $f4, $07b5
 	sound $3, $f5, $07c8
 	sound $8, $f4, $07da
-	sound $2, $0, NONE
+	sound $2, $0, 0
 	sound $8, $c1, $07da
-	sound $2, $0, NONE
+	sound $2, $0, 0
 	sound $8, $91, $07da
 	endchannel
 ; f1515
@@ -2811,7 +2811,7 @@ Sfx_Return_branch_f163c: ; f163c
 	sound $8, $f1, $0759
 	soundinput $57
 	sound $8, $f1, $0759
-	sound $10, $0, NONE
+	sound $10, $0, 0
 	loopchannel 2, Sfx_Return_branch_f163c
 	soundinput $8
 	endchannel
@@ -2849,7 +2849,7 @@ Sfx_MilkDrink_branch_f1684: ; f1684
 	sound $d, $f7, $0290
 	soundinput $9e
 	sound $4, $c9, $05e1
-	sound $2, $0, NONE
+	sound $2, $0, 0
 	loopchannel 6, Sfx_MilkDrink_branch_f1684
 	soundinput $8
 	endchannel
@@ -2864,7 +2864,7 @@ Sfx_Present_Ch5: ; f16a2
 	soundinput $d6
 Sfx_Present_branch_f16a6: ; f16a6
 	sound $2, $f1, $0740
-	sound $1, $0, NONE
+	sound $1, $0, 0
 	loopchannel 3, Sfx_Present_branch_f16a6
 	sound $10, $f1, $0780
 	soundinput $8
@@ -2882,9 +2882,9 @@ Sfx_MorningSun_branch_f16be: ; f16be
 	sound $2, $f1, $07e0
 	sound $5, $f2, $07e7
 	loopchannel 3, Sfx_MorningSun_branch_f16be
-	sound $1, $0, NONE
+	sound $1, $0, 0
 	sound $8, $c2, $07e7
-	sound $1, $0, NONE
+	sound $1, $0, 0
 	sound $8, $82, $07e7
 	endchannel
 ; f16df
@@ -2913,10 +2913,10 @@ Sfx_Encore: ; f16fd
 Sfx_Encore_Ch5: ; f1703
 	dutycycle $2
 	soundinput $ce
-	sound $10, $0, NONE
+	sound $10, $0, 0
 Sfx_Encore_branch_f170b: ; f170b
 	sound $2, $f8, $0774
-	sound $24, $0, NONE
+	sound $24, $0, 0
 	loopchannel 2, Sfx_Encore_branch_f170b
 	soundinput $8
 	endchannel
@@ -2966,9 +2966,9 @@ Sfx_BatonPass_Ch5: ; f1752
 	soundinput $f7
 	sound $20, $f2, $0680
 	sound $1, $f1, $0760
-	sound $20, $0, NONE
+	sound $20, $0, 0
 	sound $1, $f1, $0760
-	sound $1a, $0, NONE
+	sound $1a, $0, 0
 	sound $1, $f1, $0760
 	soundinput $8
 	endchannel
@@ -3836,27 +3836,27 @@ Sfx_BallBounce: ; f1b63
 Sfx_BallBounce_Ch5: ; f1b69
 	dutycycle $2
 	sound $8, $e1, $0740
-	sound $17, $0, NONE
+	sound $17, $0, 0
 	sound $8, $b1, $0740
-	sound $17, $0, NONE
+	sound $17, $0, 0
 	sound $8, $81, $0740
-	sound $17, $0, NONE
+	sound $17, $0, 0
 	sound $8, $51, $0740
-	sound $17, $0, NONE
+	sound $17, $0, 0
 	endchannel
 ; f1b8c
 
 Sfx_BallBounce_Ch6: ; f1b8c
 	dutycycle $2
-	sound $2, $8, NONE
+	sound $2, $8, 0
 	sound $8, $b1, $0741
-	sound $17, $0, NONE
+	sound $17, $0, 0
 	sound $8, $81, $0741
-	sound $17, $0, NONE
+	sound $17, $0, 0
 	sound $8, $51, $0741
-	sound $17, $0, NONE
+	sound $17, $0, 0
 	sound $8, $21, $0741
-	sound $17, $0, NONE
+	sound $17, $0, 0
 	endchannel
 ; f1bb3
 
@@ -3916,7 +3916,7 @@ Sfx_GiveTrademon: ; f1c10
 ; f1c13
 
 Sfx_GiveTrademon_Ch5: ; f1c13
-	sound $20, $0, NONE
+	sound $20, $0, 0
 	dutycycle $1
 	soundinput $a7
 	sound $1b, $f4, $0750
@@ -3936,7 +3936,7 @@ Sfx_GetTrademon: ; f1c3e
 ; f1c41
 
 Sfx_GetTrademon_Ch5: ; f1c41
-	sound $20, $0, NONE
+	sound $20, $0, 0
 	dutycycle $2
 	soundinput $bf
 	sound $1b, $14, $07bc
@@ -3959,7 +3959,7 @@ Sfx_TrainArrived: ; f1c6c
 
 Sfx_TrainArrived_Ch6: ; f1c75
 	tone $0008
-	sound $8, $0, NONE
+	sound $8, $0, 0
 Sfx_TrainArrived_Ch5: ; f1c7c
 	dutycycle $2
 	sound $4, $5f, $0691
@@ -4060,7 +4060,7 @@ Sfx_SwitchPokemon_Ch5: ; f1d0f
 
 Sfx_SwitchPokemon_Ch6: ; f1d16
 	dutycycle $2
-	sound $2, $8, NONE
+	sound $2, $8, 0
 	sound $8, $b1, $0741
 	endchannel
 ; f1d21
@@ -4093,7 +4093,7 @@ Sfx_Tally_Ch5: ; f1d43
 
 Sfx_Tally_Ch6: ; f1d4a
 	dutycycle $2
-	sound $1, $8, NONE
+	sound $1, $8, 0
 	sound $4, $a1, $0761
 	endchannel
 ; f1d55
@@ -4107,7 +4107,7 @@ Sfx_Transaction_Ch5: ; f1d55
 
 Sfx_Transaction_Ch6: ; f1d60
 	dutycycle $2
-	sound $1, $8, NONE
+	sound $1, $8, 0
 	sound $4, $91, $06c1
 	sound $18, $a2, $07a1
 	endchannel
@@ -4183,7 +4183,7 @@ Sfx_GotSafariBalls_Ch5: ; f1dd4
 Sfx_BootPc_Ch5: ; f1de3
 	dutycycle $2
 	sound $f, $f2, $07c0
-	sound $f, $0, NONE
+	sound $f, $0, 0
 	sound $3, $a1, $0780
 	sound $3, $a1, $0700
 	sound $3, $a1, $0740
@@ -4200,16 +4200,16 @@ Sfx_ShutDownPc_Ch5: ; f1e0e
 	sound $4, $f0, $0600
 	sound $4, $f0, $0400
 	sound $4, $f0, $0200
-	sound $1, $0, NONE
+	sound $1, $0, 0
 	endchannel
 ; f1e21
 
 Sfx_ChoosePcOption_Ch5: ; f1e21
 	dutycycle $2
 	sound $6, $f0, $0700
-	sound $4, $0, NONE
+	sound $4, $0, 0
 	sound $6, $f0, $0700
-	sound $1, $0, NONE
+	sound $1, $0, 0
 	endchannel
 ; f1e34
 
@@ -4227,11 +4227,11 @@ Sfx_EscapeRope_Ch5: ; f1e34
 
 Sfx_PushButton_Ch5: ; f1e4f
 	dutycycle $2
-	sound $4, $0, NONE
+	sound $4, $0, 0
 	sound $2, $f1, $0680
-	sound $1, $0, NONE
+	sound $1, $0, 0
 	sound $4, $f1, $0780
-	sound $4, $0, NONE
+	sound $4, $0, 0
 	endchannel
 ; f1e66
 
@@ -4242,7 +4242,7 @@ Sfx_SecondPartOfItemfinder_Ch5: ; f1e66
 	soundinput $22
 	sound $2, $f1, $0500
 	soundinput $8
-	sound $1, $0, NONE
+	sound $1, $0, 0
 	endchannel
 ; f1e7b
 
@@ -4319,18 +4319,18 @@ Sfx_Wrong_Ch5: ; f1f05
 	soundinput $5a
 	sound $4, $f0, $0500
 	soundinput $8
-	sound $4, $0, NONE
+	sound $4, $0, 0
 	sound $f, $f0, $0500
-	sound $1, $0, NONE
+	sound $1, $0, 0
 	endchannel
 ; f1f1c
 
 Sfx_Wrong_Ch6: ; f1f1c
 	dutycycle $3
 	sound $4, $f0, $0401
-	sound $4, $0, NONE
+	sound $4, $0, 0
 	sound $f, $f0, $0401
-	sound $1, $0, NONE
+	sound $1, $0, 0
 	endchannel
 ; f1f2f
 
@@ -4357,7 +4357,7 @@ Sfx_Strength_Ch8: ; f1f3a
 Sfx_Boat_Ch5: ; f1f53
 	dutycycle $2
 	sound $f, $f0, $0500
-	sound $4, $0, NONE
+	sound $4, $0, 0
 	sound $f, $f0, $0500
 	sound $f, $f0, $0500
 	sound $f, $f0, $0500
@@ -4369,7 +4369,7 @@ Sfx_Boat_Ch5: ; f1f53
 Sfx_Boat_Ch6: ; f1f72
 	dutycycle $3
 	sound $f, $f0, $0482
-	sound $4, $0, NONE
+	sound $4, $0, 0
 	sound $f, $f0, $0482
 	sound $f, $f0, $0482
 	sound $f, $f0, $0482
@@ -4423,7 +4423,7 @@ Sfx_Shine_Ch5: ; f1fd9
 	sound $0, $d2, $0780
 	sound $0, $d2, $07c0
 	sound $a, $e1, $07e0
-	sound $1, $0, NONE
+	sound $1, $0, 0
 	endchannel
 ; f1ff4
 
@@ -4493,7 +4493,7 @@ Sfx_Call_Ch5: ; f2052
 	sound $4, $f7, $07a0
 	sound $4, $f7, $07a0
 	soundinput $8
-	sound $4, $0, NONE
+	sound $4, $0, 0
 	endchannel
 ; f206f
 
@@ -5483,13 +5483,13 @@ Sfx_HangUp_Ch5: ; f26f1
 	dutycycle $2
 	sound $4, $b8, $077b
 	sound $2, $21, $077b
-	sound $10, $0, NONE
+	sound $10, $0, 0
 Sfx_HangUp_branch_f26ff: ; f26ff
 Sfx_NoSignal_Ch5: ; f26ff
 Sfx_NoSignal_branch_f26ff: ; f26ff
 	dutycycle $2
 	sound $14, $e8, $070b
-	sound $1c, $0, NONE
+	sound $1c, $0, 0
 	loopchannel 3, Sfx_HangUp_branch_f26ff
 	endchannel
 ; f270e
@@ -5526,8 +5526,8 @@ Sfx_Elevator_branch_f2726: ; f2726
 
 Sfx_Elevator_Ch6: ; f274b
 Sfx_Elevator_Ch7: ; f274b
-	sound $60, $0, NONE
-	sound $53, $0, NONE
+	sound $60, $0, 0
+	sound $53, $0, 0
 	endchannel
 ; f2754
 

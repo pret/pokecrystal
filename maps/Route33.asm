@@ -9,7 +9,7 @@ LassScript_0x1ac002:
 	jumptextfaceplayer UnknownText_0x1ac1e7
 
 TrainerHikerAnthony:
-	trainer EVENT_BEAT_HIKER_ANTHONY, HIKER, ANTHONY2, HikerAnthony2SeenText, HikerAnthony2BeatenText, NONE, HikerAnthony2Script
+	trainer EVENT_BEAT_HIKER_ANTHONY, HIKER, ANTHONY2, HikerAnthony2SeenText, HikerAnthony2BeatenText, 0, HikerAnthony2Script
 
 HikerAnthony2Script:
 	writecode VAR_CALLERID, PHONE_HIKER_ANTHONY
@@ -41,7 +41,7 @@ UnknownScript_0x1ac03d:
 
 UnknownScript_0x1ac051:
 	scall UnknownScript_0x1ac0e3
-	winlosstext HikerAnthony2BeatenText, NONE
+	winlosstext HikerAnthony2BeatenText, 0
 	copybytetovar wAnthonyFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3

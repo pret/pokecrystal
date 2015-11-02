@@ -3,8 +3,8 @@ KrissHouse1F_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x7a4d6, NONE
-	dw UnknownScript_0x7a4d7, NONE
+	dw UnknownScript_0x7a4d6, 0
+	dw UnknownScript_0x7a4d7, 0
 
 .MapCallbacks:
 	db 0

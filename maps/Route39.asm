@@ -14,7 +14,7 @@ TaurosScript_0x1a5af5:
 	end
 
 TrainerPokefanmDerek1:
-	trainer EVENT_BEAT_POKEFANM_DEREK, POKEFANM, DEREK1, PokefanmDerek1SeenText, PokefanmDerek1BeatenText, NONE, PokefanmDerek1Script
+	trainer EVENT_BEAT_POKEFANM_DEREK, POKEFANM, DEREK1, PokefanmDerek1SeenText, PokefanmDerek1BeatenText, 0, PokefanmDerek1Script
 
 PokefanmDerek1Script:
 	writecode VAR_CALLERID, PHONE_POKEFANM_DEREK
@@ -93,7 +93,7 @@ UnknownScript_0x1a5b7e:
 	end
 
 TrainerPokefanfRuth:
-	trainer EVENT_BEAT_POKEFANF_RUTH, POKEFANF, RUTH, PokefanfRuthSeenText, PokefanfRuthBeatenText, NONE, PokefanfRuthScript
+	trainer EVENT_BEAT_POKEFANF_RUTH, POKEFANF, RUTH, PokefanfRuthSeenText, PokefanfRuthBeatenText, 0, PokefanfRuthScript
 
 PokefanfRuthScript:
 	talkaftercancel
@@ -104,7 +104,7 @@ PokefanfRuthScript:
 	end
 
 TrainerSailorEugene:
-	trainer EVENT_BEAT_SAILOR_EUGENE, SAILOR, EUGENE, SailorEugeneSeenText, SailorEugeneBeatenText, NONE, SailorEugeneScript
+	trainer EVENT_BEAT_SAILOR_EUGENE, SAILOR, EUGENE, SailorEugeneSeenText, SailorEugeneBeatenText, 0, SailorEugeneScript
 
 SailorEugeneScript:
 	talkaftercancel
@@ -115,7 +115,7 @@ SailorEugeneScript:
 	end
 
 TrainerPsychicNorman:
-	trainer EVENT_BEAT_PSYCHIC_NORMAN, PSYCHIC_T, NORMAN, PsychicNormanSeenText, PsychicNormanBeatenText, NONE, PsychicNormanScript
+	trainer EVENT_BEAT_PSYCHIC_NORMAN, PSYCHIC_T, NORMAN, PsychicNormanSeenText, PsychicNormanBeatenText, 0, PsychicNormanScript
 
 PsychicNormanScript:
 	talkaftercancel
@@ -135,7 +135,7 @@ PokefanFScript_0x1a5bbe:
 	writetext UnknownText_0x1a5ee8
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x1a5f17, NONE
+	winlosstext UnknownText_0x1a5f17, 0
 	loadtrainer POKEFANF, JAIME
 	startbattle
 	returnafterbattle

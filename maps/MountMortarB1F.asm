@@ -15,7 +15,7 @@ BlackBeltScript_0x7e1f6:
 	writetext UnknownText_0x7e24d
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x7e2a9, NONE
+	winlosstext UnknownText_0x7e2a9, 0
 	loadtrainer BLACKBELT_T, KIYO
 	startbattle
 	returnafterbattle

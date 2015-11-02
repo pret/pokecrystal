@@ -14,7 +14,7 @@ TeacherScript_0x1ad47f:
 	end
 
 TrainerPokefanmCarter:
-	trainer EVENT_BEAT_POKEFANM_CARTER, POKEFANM, CARTER, PokefanmCarterSeenText, PokefanmCarterBeatenText, NONE, PokefanmCarterScript
+	trainer EVENT_BEAT_POKEFANM_CARTER, POKEFANM, CARTER, PokefanmCarterSeenText, PokefanmCarterBeatenText, 0, PokefanmCarterScript
 
 PokefanmCarterScript:
 	talkaftercancel
@@ -25,7 +25,7 @@ PokefanmCarterScript:
 	end
 
 TrainerBird_keeperRoy:
-	trainer EVENT_BEAT_BIRD_KEEPER_ROY, BIRD_KEEPER, ROY, Bird_keeperRoySeenText, Bird_keeperRoyBeatenText, NONE, Bird_keeperRoyScript
+	trainer EVENT_BEAT_BIRD_KEEPER_ROY, BIRD_KEEPER, ROY, Bird_keeperRoySeenText, Bird_keeperRoyBeatenText, 0, Bird_keeperRoyScript
 
 Bird_keeperRoyScript:
 	talkaftercancel
@@ -36,7 +36,7 @@ Bird_keeperRoyScript:
 	end
 
 TrainerPokefanmTrevor:
-	trainer EVENT_BEAT_POKEFANM_TREVOR, POKEFANM, TREVOR, PokefanmTrevorSeenText, PokefanmTrevorBeatenText, NONE, PokefanmTrevorScript
+	trainer EVENT_BEAT_POKEFANM_TREVOR, POKEFANM, TREVOR, PokefanmTrevorSeenText, PokefanmTrevorBeatenText, 0, PokefanmTrevorScript
 
 PokefanmTrevorScript:
 	talkaftercancel

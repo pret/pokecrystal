@@ -3,8 +3,8 @@ EcruteakPokeCenter1F_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x98e5f, NONE
-	dw UnknownScript_0x98e63, NONE
+	dw UnknownScript_0x98e5f, 0
+	dw UnknownScript_0x98e63, 0
 
 .MapCallbacks:
 	db 0

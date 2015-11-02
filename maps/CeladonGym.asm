@@ -13,7 +13,7 @@ ErikaScript_0x72a6a:
 	writetext UnknownText_0x72b28
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x72c3e, NONE
+	winlosstext UnknownText_0x72c3e, 0
 	loadtrainer ERIKA, 1
 	startbattle
 	returnafterbattle
@@ -42,7 +42,7 @@ UnknownScript_0x72aae:
 	end
 
 TrainerLassMichelle:
-	trainer EVENT_BEAT_LASS_MICHELLE, LASS, MICHELLE, LassMichelleSeenText, LassMichelleBeatenText, NONE, LassMichelleScript
+	trainer EVENT_BEAT_LASS_MICHELLE, LASS, MICHELLE, LassMichelleSeenText, LassMichelleBeatenText, 0, LassMichelleScript
 
 LassMichelleScript:
 	talkaftercancel
@@ -53,7 +53,7 @@ LassMichelleScript:
 	end
 
 TrainerPicnickerTanya:
-	trainer EVENT_BEAT_PICNICKER_TANYA, PICNICKER, TANYA, PicnickerTanyaSeenText, PicnickerTanyaBeatenText, NONE, PicnickerTanyaScript
+	trainer EVENT_BEAT_PICNICKER_TANYA, PICNICKER, TANYA, PicnickerTanyaSeenText, PicnickerTanyaBeatenText, 0, PicnickerTanyaScript
 
 PicnickerTanyaScript:
 	talkaftercancel
@@ -64,7 +64,7 @@ PicnickerTanyaScript:
 	end
 
 TrainerBeautyJulia:
-	trainer EVENT_BEAT_BEAUTY_JULIA, BEAUTY, JULIA, BeautyJuliaSeenText, BeautyJuliaBeatenText, NONE, BeautyJuliaScript
+	trainer EVENT_BEAT_BEAUTY_JULIA, BEAUTY, JULIA, BeautyJuliaSeenText, BeautyJuliaBeatenText, 0, BeautyJuliaScript
 
 BeautyJuliaScript:
 	talkaftercancel
@@ -75,7 +75,7 @@ BeautyJuliaScript:
 	end
 
 TrainerTwinsJoandzoe1:
-	trainer EVENT_BEAT_TWINS_JO_AND_ZOE, TWINS, JOANDZOE1, TwinsJoandzoe1SeenText, TwinsJoandzoe1BeatenText, NONE, TwinsJoandzoe1Script
+	trainer EVENT_BEAT_TWINS_JO_AND_ZOE, TWINS, JOANDZOE1, TwinsJoandzoe1SeenText, TwinsJoandzoe1BeatenText, 0, TwinsJoandzoe1Script
 
 TwinsJoandzoe1Script:
 	talkaftercancel
@@ -86,7 +86,7 @@ TwinsJoandzoe1Script:
 	end
 
 TrainerTwinsJoandzoe2:
-	trainer EVENT_BEAT_TWINS_JO_AND_ZOE, TWINS, JOANDZOE2, TwinsJoandzoe2SeenText, TwinsJoandzoe2BeatenText, NONE, TwinsJoandzoe2Script
+	trainer EVENT_BEAT_TWINS_JO_AND_ZOE, TWINS, JOANDZOE2, TwinsJoandzoe2SeenText, TwinsJoandzoe2BeatenText, 0, TwinsJoandzoe2Script
 
 TwinsJoandzoe2Script:
 	talkaftercancel

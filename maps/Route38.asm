@@ -6,7 +6,7 @@ Route38_MapScriptHeader:
 	db 0
 
 TrainerBird_keeperToby:
-	trainer EVENT_BEAT_BIRD_KEEPER_TOBY, BIRD_KEEPER, TOBY, Bird_keeperTobySeenText, Bird_keeperTobyBeatenText, NONE, Bird_keeperTobyScript
+	trainer EVENT_BEAT_BIRD_KEEPER_TOBY, BIRD_KEEPER, TOBY, Bird_keeperTobySeenText, Bird_keeperTobyBeatenText, 0, Bird_keeperTobyScript
 
 Bird_keeperTobyScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ Bird_keeperTobyScript:
 	end
 
 TrainerSailorHarry:
-	trainer EVENT_BEAT_SAILOR_HARRY, SAILOR, HARRY, SailorHarrySeenText, SailorHarryBeatenText, NONE, SailorHarryScript
+	trainer EVENT_BEAT_SAILOR_HARRY, SAILOR, HARRY, SailorHarrySeenText, SailorHarryBeatenText, 0, SailorHarryScript
 
 SailorHarryScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ SailorHarryScript:
 	end
 
 TrainerLassDana1:
-	trainer EVENT_BEAT_LASS_DANA, LASS, DANA1, LassDana1SeenText, LassDana1BeatenText, NONE, LassDana1Script
+	trainer EVENT_BEAT_LASS_DANA, LASS, DANA1, LassDana1SeenText, LassDana1BeatenText, 0, LassDana1Script
 
 LassDana1Script:
 	writecode VAR_CALLERID, PHONE_LASS_DANA
@@ -60,7 +60,7 @@ UnknownScript_0x1a1d6e:
 
 UnknownScript_0x1a1d82:
 	scall UnknownScript_0x1a1e23
-	winlosstext LassDana1BeatenText, NONE
+	winlosstext LassDana1BeatenText, 0
 	copybytetovar wDanaFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
@@ -166,7 +166,7 @@ UnknownScript_0x1a1e2b:
 	end
 
 TrainerSchoolboyChad1:
-	trainer EVENT_BEAT_SCHOOLBOY_CHAD, SCHOOLBOY, CHAD1, SchoolboyChad1SeenText, SchoolboyChad1BeatenText, NONE, SchoolboyChad1Script
+	trainer EVENT_BEAT_SCHOOLBOY_CHAD, SCHOOLBOY, CHAD1, SchoolboyChad1SeenText, SchoolboyChad1BeatenText, 0, SchoolboyChad1Script
 
 SchoolboyChad1Script:
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_CHAD
@@ -196,7 +196,7 @@ UnknownScript_0x1a1e61:
 
 UnknownScript_0x1a1e75:
 	scall UnknownScript_0x1a1f01
-	winlosstext SchoolboyChad1BeatenText, NONE
+	winlosstext SchoolboyChad1BeatenText, 0
 	copybytetovar wChadFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
@@ -283,7 +283,7 @@ UnknownScript_0x1a1f01:
 	end
 
 TrainerBeautyValerie:
-	trainer EVENT_BEAT_BEAUTY_VALERIE, BEAUTY, VALERIE, BeautyValerieSeenText, BeautyValerieBeatenText, NONE, BeautyValerieScript
+	trainer EVENT_BEAT_BEAUTY_VALERIE, BEAUTY, VALERIE, BeautyValerieSeenText, BeautyValerieBeatenText, 0, BeautyValerieScript
 
 BeautyValerieScript:
 	talkaftercancel
@@ -294,7 +294,7 @@ BeautyValerieScript:
 	end
 
 TrainerBeautyOlivia:
-	trainer EVENT_BEAT_BEAUTY_OLIVIA, BEAUTY, OLIVIA, BeautyOliviaSeenText, BeautyOliviaBeatenText, NONE, BeautyOliviaScript
+	trainer EVENT_BEAT_BEAUTY_OLIVIA, BEAUTY, OLIVIA, BeautyOliviaSeenText, BeautyOliviaBeatenText, 0, BeautyOliviaScript
 
 BeautyOliviaScript:
 	talkaftercancel

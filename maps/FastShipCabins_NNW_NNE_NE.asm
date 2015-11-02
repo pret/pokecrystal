@@ -6,7 +6,7 @@ FastShipCabins_NNW_NNE_NE_MapScriptHeader:
 	db 0
 
 TrainerCooltrainermSean:
-	trainer EVENT_BEAT_COOLTRAINERM_SEAN, COOLTRAINERM, SEAN, CooltrainermSeanSeenText, CooltrainermSeanBeatenText, NONE, CooltrainermSeanScript
+	trainer EVENT_BEAT_COOLTRAINERM_SEAN, COOLTRAINERM, SEAN, CooltrainermSeanSeenText, CooltrainermSeanBeatenText, 0, CooltrainermSeanScript
 
 CooltrainermSeanScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ CooltrainermSeanScript:
 	end
 
 TrainerCooltrainerfCarol:
-	trainer EVENT_BEAT_COOLTRAINERF_CAROL, COOLTRAINERF, CAROL, CooltrainerfCarolSeenText, CooltrainerfCarolBeatenText, NONE, CooltrainerfCarolScript
+	trainer EVENT_BEAT_COOLTRAINERF_CAROL, COOLTRAINERF, CAROL, CooltrainerfCarolSeenText, CooltrainerfCarolBeatenText, 0, CooltrainerfCarolScript
 
 CooltrainerfCarolScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ CooltrainerfCarolScript:
 	end
 
 TrainerPokemaniacEthan:
-	trainer EVENT_BEAT_POKEMANIAC_ETHAN, POKEMANIAC, ETHAN, PokemaniacEthanSeenText, PokemaniacEthanBeatenText, NONE, PokemaniacEthanScript
+	trainer EVENT_BEAT_POKEMANIAC_ETHAN, POKEMANIAC, ETHAN, PokemaniacEthanSeenText, PokemaniacEthanBeatenText, 0, PokemaniacEthanScript
 
 PokemaniacEthanScript:
 	talkaftercancel
@@ -39,7 +39,7 @@ PokemaniacEthanScript:
 	end
 
 TrainerHikerNoland:
-	trainer EVENT_BEAT_HIKER_NOLAND, HIKER, NOLAND, HikerNolandSeenText, HikerNolandBeatenText, NONE, HikerNolandScript
+	trainer EVENT_BEAT_HIKER_NOLAND, HIKER, NOLAND, HikerNolandSeenText, HikerNolandBeatenText, 0, HikerNolandScript
 
 HikerNolandScript:
 	talkaftercancel
@@ -50,7 +50,7 @@ HikerNolandScript:
 	end
 
 TrainerGentlemanEdward:
-	trainer EVENT_BEAT_GENTLEMAN_EDWARD, GENTLEMAN, EDWARD, GentlemanEdwardSeenText, GentlemanEdwardBeatenText, NONE, GentlemanEdwardScript
+	trainer EVENT_BEAT_GENTLEMAN_EDWARD, GENTLEMAN, EDWARD, GentlemanEdwardSeenText, GentlemanEdwardBeatenText, 0, GentlemanEdwardScript
 
 GentlemanEdwardScript:
 	talkaftercancel
@@ -61,7 +61,7 @@ GentlemanEdwardScript:
 	end
 
 TrainerBurglarCorey:
-	trainer EVENT_BEAT_BURGLAR_COREY, BURGLAR, COREY, BurglarCoreySeenText, BurglarCoreyBeatenText, NONE, BurglarCoreyScript
+	trainer EVENT_BEAT_BURGLAR_COREY, BURGLAR, COREY, BurglarCoreySeenText, BurglarCoreyBeatenText, 0, BurglarCoreyScript
 
 BurglarCoreyScript:
 	talkaftercancel
@@ -78,7 +78,7 @@ SailorScript_0x755f1:
 	writetext UnknownText_0x75812
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x75897, NONE
+	winlosstext UnknownText_0x75897, 0
 	loadtrainer SAILOR, STANLY
 	startbattle
 	reloadmap

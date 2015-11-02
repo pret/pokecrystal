@@ -3,8 +3,8 @@ RuinsofAlphKabutoChamber_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x5872b, NONE
-	dw UnknownScript_0x58736, NONE
+	dw UnknownScript_0x5872b, 0
+	dw UnknownScript_0x58736, 0
 
 .MapCallbacks:
 	db 1

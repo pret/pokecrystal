@@ -3,8 +3,8 @@ EcruteakGym_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x99d53, NONE
-	dw UnknownScript_0x99d57, NONE
+	dw UnknownScript_0x99d53, 0
+	dw UnknownScript_0x99d57, 0
 
 .MapCallbacks:
 	db 0
@@ -24,7 +24,7 @@ MortyScript_0x99d58:
 	writetext UnknownText_0x99e65
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x9a00a, NONE
+	winlosstext UnknownText_0x9a00a, 0
 	loadtrainer MORTY, 1
 	startbattle
 	returnafterbattle
@@ -91,7 +91,7 @@ UnknownScript_0x99dc6:
 	end
 
 TrainerSageJeffrey:
-	trainer EVENT_BEAT_SAGE_JEFFREY, SAGE, JEFFREY, SageJeffreySeenText, SageJeffreyBeatenText, NONE, SageJeffreyScript
+	trainer EVENT_BEAT_SAGE_JEFFREY, SAGE, JEFFREY, SageJeffreySeenText, SageJeffreyBeatenText, 0, SageJeffreyScript
 
 SageJeffreyScript:
 	talkaftercancel
@@ -102,7 +102,7 @@ SageJeffreyScript:
 	end
 
 TrainerSagePing:
-	trainer EVENT_BEAT_SAGE_PING, SAGE, PING, SagePingSeenText, SagePingBeatenText, NONE, SagePingScript
+	trainer EVENT_BEAT_SAGE_PING, SAGE, PING, SagePingSeenText, SagePingBeatenText, 0, SagePingScript
 
 SagePingScript:
 	talkaftercancel
@@ -113,7 +113,7 @@ SagePingScript:
 	end
 
 TrainerMediumMartha:
-	trainer EVENT_BEAT_MEDIUM_MARTHA, MEDIUM, MARTHA, MediumMarthaSeenText, MediumMarthaBeatenText, NONE, MediumMarthaScript
+	trainer EVENT_BEAT_MEDIUM_MARTHA, MEDIUM, MARTHA, MediumMarthaSeenText, MediumMarthaBeatenText, 0, MediumMarthaScript
 
 MediumMarthaScript:
 	talkaftercancel
@@ -124,7 +124,7 @@ MediumMarthaScript:
 	end
 
 TrainerMediumGrace:
-	trainer EVENT_BEAT_MEDIUM_GRACE, MEDIUM, GRACE, MediumGraceSeenText, MediumGraceBeatenText, NONE, MediumGraceScript
+	trainer EVENT_BEAT_MEDIUM_GRACE, MEDIUM, GRACE, MediumGraceSeenText, MediumGraceBeatenText, 0, MediumGraceScript
 
 MediumGraceScript:
 	talkaftercancel

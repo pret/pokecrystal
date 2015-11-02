@@ -128,7 +128,7 @@ TwinScript_0x75f6d:
 	end
 
 TrainerPokefanmColin:
-	trainer EVENT_BEAT_POKEFANM_COLIN, POKEFANM, COLIN, PokefanmColinSeenText, PokefanmColinBeatenText, NONE, PokefanmColinScript
+	trainer EVENT_BEAT_POKEFANM_COLIN, POKEFANM, COLIN, PokefanmColinSeenText, PokefanmColinBeatenText, 0, PokefanmColinScript
 
 PokefanmColinScript:
 	talkaftercancel
@@ -139,7 +139,7 @@ PokefanmColinScript:
 	end
 
 TrainerTwinsMegandpeg1:
-	trainer EVENT_BEAT_TWINS_MEG_AND_PEG, TWINS, MEGANDPEG1, TwinsMegandpeg1SeenText, TwinsMegandpeg1BeatenText, NONE, TwinsMegandpeg1Script
+	trainer EVENT_BEAT_TWINS_MEG_AND_PEG, TWINS, MEGANDPEG1, TwinsMegandpeg1SeenText, TwinsMegandpeg1BeatenText, 0, TwinsMegandpeg1Script
 
 TwinsMegandpeg1Script:
 	talkaftercancel
@@ -150,7 +150,7 @@ TwinsMegandpeg1Script:
 	end
 
 TrainerTwinsMegandpeg2:
-	trainer EVENT_BEAT_TWINS_MEG_AND_PEG, TWINS, MEGANDPEG2, TwinsMegandpeg2SeenText, TwinsMegandpeg2BeatenText, NONE, TwinsMegandpeg2Script
+	trainer EVENT_BEAT_TWINS_MEG_AND_PEG, TWINS, MEGANDPEG2, TwinsMegandpeg2SeenText, TwinsMegandpeg2BeatenText, 0, TwinsMegandpeg2Script
 
 TwinsMegandpeg2Script:
 	talkaftercancel
@@ -161,7 +161,7 @@ TwinsMegandpeg2Script:
 	end
 
 TrainerPsychicRodney:
-	trainer EVENT_BEAT_PSYCHIC_RODNEY, PSYCHIC_T, RODNEY, PsychicRodneySeenText, PsychicRodneyBeatenText, NONE, PsychicRodneyScript
+	trainer EVENT_BEAT_PSYCHIC_RODNEY, PSYCHIC_T, RODNEY, PsychicRodneySeenText, PsychicRodneyBeatenText, 0, PsychicRodneyScript
 
 PsychicRodneyScript:
 	talkaftercancel
@@ -172,7 +172,7 @@ PsychicRodneyScript:
 	end
 
 TrainerPokefanmJeremy:
-	trainer EVENT_BEAT_POKEFANM_JEREMY, POKEFANM, JEREMY, PokefanmJeremySeenText, PokefanmJeremyBeatenText, NONE, PokefanmJeremyScript
+	trainer EVENT_BEAT_POKEFANM_JEREMY, POKEFANM, JEREMY, PokefanmJeremySeenText, PokefanmJeremyBeatenText, 0, PokefanmJeremyScript
 
 PokefanmJeremyScript:
 	talkaftercancel
@@ -183,7 +183,7 @@ PokefanmJeremyScript:
 	end
 
 TrainerPokefanfGeorgia:
-	trainer EVENT_BEAT_POKEFANF_GEORGIA, POKEFANF, GEORGIA, PokefanfGeorgiaSeenText, PokefanfGeorgiaBeatenText, NONE, PokefanfGeorgiaScript
+	trainer EVENT_BEAT_POKEFANF_GEORGIA, POKEFANF, GEORGIA, PokefanfGeorgiaSeenText, PokefanfGeorgiaBeatenText, 0, PokefanfGeorgiaScript
 
 PokefanfGeorgiaScript:
 	talkaftercancel
@@ -194,7 +194,7 @@ PokefanfGeorgiaScript:
 	end
 
 TrainerSupernerdShawn:
-	trainer EVENT_BEAT_SUPER_NERD_SHAWN, SUPER_NERD, SHAWN, SupernerdShawnSeenText, SupernerdShawnBeatenText, NONE, SupernerdShawnScript
+	trainer EVENT_BEAT_SUPER_NERD_SHAWN, SUPER_NERD, SHAWN, SupernerdShawnSeenText, SupernerdShawnBeatenText, 0, SupernerdShawnScript
 
 SupernerdShawnScript:
 	talkaftercancel

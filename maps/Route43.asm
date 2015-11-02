@@ -20,7 +20,7 @@ UnknownScript_0x19d05c:
 	return
 
 TrainerCamperSpencer:
-	trainer EVENT_BEAT_CAMPER_SPENCER, CAMPER, SPENCER, CamperSpencerSeenText, CamperSpencerBeatenText, NONE, CamperSpencerScript
+	trainer EVENT_BEAT_CAMPER_SPENCER, CAMPER, SPENCER, CamperSpencerSeenText, CamperSpencerBeatenText, 0, CamperSpencerScript
 
 CamperSpencerScript:
 	talkaftercancel
@@ -31,7 +31,7 @@ CamperSpencerScript:
 	end
 
 TrainerPokemaniacBen:
-	trainer EVENT_BEAT_POKEMANIAC_BEN, POKEMANIAC, BEN, PokemaniacBenSeenText, PokemaniacBenBeatenText, NONE, PokemaniacBenScript
+	trainer EVENT_BEAT_POKEMANIAC_BEN, POKEMANIAC, BEN, PokemaniacBenSeenText, PokemaniacBenBeatenText, 0, PokemaniacBenScript
 
 PokemaniacBenScript:
 	talkaftercancel
@@ -42,7 +42,7 @@ PokemaniacBenScript:
 	end
 
 TrainerPokemaniacBrent1:
-	trainer EVENT_BEAT_POKEMANIAC_BRENT, POKEMANIAC, BRENT1, PokemaniacBrent1SeenText, PokemaniacBrent1BeatenText, NONE, PokemaniacBrent1Script
+	trainer EVENT_BEAT_POKEMANIAC_BRENT, POKEMANIAC, BRENT1, PokemaniacBrent1SeenText, PokemaniacBrent1BeatenText, 0, PokemaniacBrent1Script
 
 PokemaniacBrent1Script:
 	writecode VAR_CALLERID, PHONE_POKEMANIAC_BRENT
@@ -72,7 +72,7 @@ UnknownScript_0x19d0bb:
 
 UnknownScript_0x19d0cf:
 	scall UnknownScript_0x19d144
-	winlosstext PokemaniacBrent1BeatenText, NONE
+	winlosstext PokemaniacBrent1BeatenText, 0
 	copybytetovar wBrentFightCount
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
@@ -147,7 +147,7 @@ UnknownScript_0x19d144:
 	end
 
 TrainerPokemaniacRon:
-	trainer EVENT_BEAT_POKEMANIAC_RON, POKEMANIAC, RON, PokemaniacRonSeenText, PokemaniacRonBeatenText, NONE, PokemaniacRonScript
+	trainer EVENT_BEAT_POKEMANIAC_RON, POKEMANIAC, RON, PokemaniacRonSeenText, PokemaniacRonBeatenText, 0, PokemaniacRonScript
 
 PokemaniacRonScript:
 	talkaftercancel
@@ -158,7 +158,7 @@ PokemaniacRonScript:
 	end
 
 TrainerFisherMarvin:
-	trainer EVENT_BEAT_FISHER_MARVIN, FISHER, MARVIN, FisherMarvinSeenText, FisherMarvinBeatenText, NONE, FisherMarvinScript
+	trainer EVENT_BEAT_FISHER_MARVIN, FISHER, MARVIN, FisherMarvinSeenText, FisherMarvinBeatenText, 0, FisherMarvinScript
 
 FisherMarvinScript:
 	talkaftercancel
@@ -169,7 +169,7 @@ FisherMarvinScript:
 	end
 
 TrainerPicnickerTiffany3:
-	trainer EVENT_BEAT_PICNICKER_TIFFANY, PICNICKER, TIFFANY3, PicnickerTiffany3SeenText, PicnickerTiffany3BeatenText, NONE, PicnickerTiffany3Script
+	trainer EVENT_BEAT_PICNICKER_TIFFANY, PICNICKER, TIFFANY3, PicnickerTiffany3SeenText, PicnickerTiffany3BeatenText, 0, PicnickerTiffany3Script
 
 PicnickerTiffany3Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_TIFFANY
@@ -203,7 +203,7 @@ UnknownScript_0x19d1ad:
 
 UnknownScript_0x19d1c1:
 	scall UnknownScript_0x19d251
-	winlosstext PicnickerTiffany3BeatenText, NONE
+	winlosstext PicnickerTiffany3BeatenText, 0
 	copybytetovar wTiffanyFightCount
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2

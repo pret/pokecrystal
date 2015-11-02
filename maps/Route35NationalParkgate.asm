@@ -3,9 +3,9 @@ Route35NationalParkgate_MapScriptHeader:
 	db 3
 
 	; triggers
-	dw Route35NationalParkgate_Trigger1, NONE
-	dw Route35NationalParkgate_Trigger2, NONE
-	dw Route35NationalParkgate_Trigger3, NONE
+	dw Route35NationalParkgate_Trigger1, 0
+	dw Route35NationalParkgate_Trigger2, 0
+	dw Route35NationalParkgate_Trigger3, 0
 
 .MapCallbacks:
 	db 2

@@ -178,7 +178,7 @@ YoungsterScript_0x5ce54:
 	jumptextfaceplayer UnknownText_0x5d4ac
 
 TrainerGruntM3:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_3, GRUNTM, 3, GruntM3SeenText, GruntM3BeatenText, NONE, GruntM3Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_3, GRUNTM, 3, GruntM3SeenText, GruntM3BeatenText, 0, GruntM3Script
 
 GruntM3Script:
 	talkaftercancel

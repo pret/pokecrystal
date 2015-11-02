@@ -3,7 +3,7 @@ TrainerHouseB1F_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x9b38a, NONE
+	dw UnknownScript_0x9b38a, 0
 
 .MapCallbacks:
 	db 0
@@ -42,14 +42,14 @@ UnknownScript_0x9b3aa:
 	loadmovesprites
 	special SpecialTrainerHouse
 	iffalse UnknownScript_0x9b3dc
-	winlosstext UnknownText_0x9b578, NONE
+	winlosstext UnknownText_0x9b578, 0
 	setlasttalked $3
 	loadtrainer CAL, CAL2
 	startbattle
 	returnafterbattle
 	iffalse UnknownScript_0x9b3e8
 UnknownScript_0x9b3dc:
-	winlosstext UnknownText_0x9b578, NONE
+	winlosstext UnknownText_0x9b578, 0
 	setlasttalked $3
 	loadtrainer CAL, CAL3
 	startbattle

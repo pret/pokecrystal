@@ -30,7 +30,7 @@ UndergroundWarehouse_MapScriptHeader:
 	return
 
 TrainerGruntM24:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_24, GRUNTM, 24, GruntM24SeenText, GruntM24BeatenText, NONE, GruntM24Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_24, GRUNTM, 24, GruntM24SeenText, GruntM24BeatenText, 0, GruntM24Script
 
 GruntM24Script:
 	talkaftercancel
@@ -41,7 +41,7 @@ GruntM24Script:
 	end
 
 TrainerGruntM14:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_14, GRUNTM, 14, GruntM14SeenText, GruntM14BeatenText, NONE, GruntM14Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_14, GRUNTM, 14, GruntM14SeenText, GruntM14BeatenText, 0, GruntM14Script
 
 GruntM14Script:
 	talkaftercancel
@@ -52,7 +52,7 @@ GruntM14Script:
 	end
 
 TrainerGruntM15:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_15, GRUNTM, 15, GruntM15SeenText, GruntM15BeatenText, NONE, GruntM15Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_15, GRUNTM, 15, GruntM15SeenText, GruntM15BeatenText, 0, GruntM15Script
 
 GruntM15Script:
 	talkaftercancel

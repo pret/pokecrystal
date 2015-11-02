@@ -62,7 +62,7 @@ MenuDataHeader_0x1d75:: ; 1d75
 	db $40 ; tile backup
 	db 0, 0 ; start coords
 	db 17, 19 ; end coords
-	dw NONE
+	dw 0
 	db 1 ; default option
 ; 1d7d
 

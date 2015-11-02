@@ -3,8 +3,8 @@ BrunosRoom_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x180993, NONE
-	dw UnknownScript_0x180997, NONE
+	dw UnknownScript_0x180993, 0
+	dw UnknownScript_0x180997, 0
 
 .MapCallbacks:
 	db 1
@@ -52,7 +52,7 @@ BrunoScript_0x1809c5:
 	writetext UnknownText_0x1809fe
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x180b23, NONE
+	winlosstext UnknownText_0x180b23, 0
 	loadtrainer BRUNO, 1
 	startbattle
 	returnafterbattle

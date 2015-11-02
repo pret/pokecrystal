@@ -3,8 +3,8 @@ MahoganyMart1F_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x6c356, NONE
-	dw UnknownScript_0x6c357, NONE
+	dw UnknownScript_0x6c356, 0
+	dw UnknownScript_0x6c357, 0
 
 .MapCallbacks:
 	db 1

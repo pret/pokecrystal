@@ -3,7 +3,7 @@ FuchsiaPokeCenter1F_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x196458, NONE
+	dw UnknownScript_0x196458, 0
 
 .MapCallbacks:
 	db 0

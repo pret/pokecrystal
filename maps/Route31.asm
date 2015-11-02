@@ -19,7 +19,7 @@ UnknownScript_0x1a5443:
 	return
 
 TrainerBug_catcherWade1:
-	trainer EVENT_BEAT_BUG_CATCHER_WADE, BUG_CATCHER, WADE1, Bug_catcherWade1SeenText, Bug_catcherWade1BeatenText, NONE, Bug_catcherWade1Script
+	trainer EVENT_BEAT_BUG_CATCHER_WADE, BUG_CATCHER, WADE1, Bug_catcherWade1SeenText, Bug_catcherWade1BeatenText, 0, Bug_catcherWade1Script
 
 Bug_catcherWade1Script:
 	writecode VAR_CALLERID, PHONE_BUG_CATCHER_WADE
@@ -51,7 +51,7 @@ UnknownScript_0x1a547f:
 
 UnknownScript_0x1a5493:
 	scall UnknownScript_0x1a5564
-	winlosstext Bug_catcherWade1BeatenText, NONE
+	winlosstext Bug_catcherWade1BeatenText, 0
 	copybytetovar wWadeFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3

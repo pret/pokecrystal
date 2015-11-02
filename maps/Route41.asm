@@ -6,7 +6,7 @@ Route41_MapScriptHeader:
 	db 0
 
 TrainerSwimmerfKaylee:
-	trainer EVENT_BEAT_SWIMMERF_KAYLEE, SWIMMERF, KAYLEE, SwimmerfKayleeSeenText, SwimmerfKayleeBeatenText, NONE, SwimmerfKayleeScript
+	trainer EVENT_BEAT_SWIMMERF_KAYLEE, SWIMMERF, KAYLEE, SwimmerfKayleeSeenText, SwimmerfKayleeBeatenText, 0, SwimmerfKayleeScript
 
 SwimmerfKayleeScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ SwimmerfKayleeScript:
 	end
 
 TrainerSwimmerfSusie:
-	trainer EVENT_BEAT_SWIMMERF_SUSIE, SWIMMERF, SUSIE, SwimmerfSusieSeenText, SwimmerfSusieBeatenText, NONE, SwimmerfSusieScript
+	trainer EVENT_BEAT_SWIMMERF_SUSIE, SWIMMERF, SUSIE, SwimmerfSusieSeenText, SwimmerfSusieBeatenText, 0, SwimmerfSusieScript
 
 SwimmerfSusieScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ SwimmerfSusieScript:
 	end
 
 TrainerSwimmerfDenise:
-	trainer EVENT_BEAT_SWIMMERF_DENISE, SWIMMERF, DENISE, SwimmerfDeniseSeenText, SwimmerfDeniseBeatenText, NONE, SwimmerfDeniseScript
+	trainer EVENT_BEAT_SWIMMERF_DENISE, SWIMMERF, DENISE, SwimmerfDeniseSeenText, SwimmerfDeniseBeatenText, 0, SwimmerfDeniseScript
 
 SwimmerfDeniseScript:
 	talkaftercancel
@@ -39,7 +39,7 @@ SwimmerfDeniseScript:
 	end
 
 TrainerSwimmerfKara:
-	trainer EVENT_BEAT_SWIMMERF_KARA, SWIMMERF, KARA, SwimmerfKaraSeenText, SwimmerfKaraBeatenText, NONE, SwimmerfKaraScript
+	trainer EVENT_BEAT_SWIMMERF_KARA, SWIMMERF, KARA, SwimmerfKaraSeenText, SwimmerfKaraBeatenText, 0, SwimmerfKaraScript
 
 SwimmerfKaraScript:
 	talkaftercancel
@@ -50,7 +50,7 @@ SwimmerfKaraScript:
 	end
 
 TrainerSwimmerfWendy:
-	trainer EVENT_BEAT_SWIMMERF_WENDY, SWIMMERF, WENDY, SwimmerfWendySeenText, SwimmerfWendyBeatenText, NONE, SwimmerfWendyScript
+	trainer EVENT_BEAT_SWIMMERF_WENDY, SWIMMERF, WENDY, SwimmerfWendySeenText, SwimmerfWendyBeatenText, 0, SwimmerfWendyScript
 
 SwimmerfWendyScript:
 	talkaftercancel
@@ -61,7 +61,7 @@ SwimmerfWendyScript:
 	end
 
 TrainerSwimmermCharlie:
-	trainer EVENT_BEAT_SWIMMERM_CHARLIE, SWIMMERM, CHARLIE, SwimmermCharlieSeenText, SwimmermCharlieBeatenText, NONE, SwimmermCharlieScript
+	trainer EVENT_BEAT_SWIMMERM_CHARLIE, SWIMMERM, CHARLIE, SwimmermCharlieSeenText, SwimmermCharlieBeatenText, 0, SwimmermCharlieScript
 
 SwimmermCharlieScript:
 	talkaftercancel
@@ -72,7 +72,7 @@ SwimmermCharlieScript:
 	end
 
 TrainerSwimmermGeorge:
-	trainer EVENT_BEAT_SWIMMERM_GEORGE, SWIMMERM, GEORGE, SwimmermGeorgeSeenText, SwimmermGeorgeBeatenText, NONE, SwimmermGeorgeScript
+	trainer EVENT_BEAT_SWIMMERM_GEORGE, SWIMMERM, GEORGE, SwimmermGeorgeSeenText, SwimmermGeorgeBeatenText, 0, SwimmermGeorgeScript
 
 SwimmermGeorgeScript:
 	talkaftercancel
@@ -83,7 +83,7 @@ SwimmermGeorgeScript:
 	end
 
 TrainerSwimmermBerke:
-	trainer EVENT_BEAT_SWIMMERM_BERKE, SWIMMERM, BERKE, SwimmermBerkeSeenText, SwimmermBerkeBeatenText, NONE, SwimmermBerkeScript
+	trainer EVENT_BEAT_SWIMMERM_BERKE, SWIMMERM, BERKE, SwimmermBerkeSeenText, SwimmermBerkeBeatenText, 0, SwimmermBerkeScript
 
 SwimmermBerkeScript:
 	talkaftercancel
@@ -94,7 +94,7 @@ SwimmermBerkeScript:
 	end
 
 TrainerSwimmermKirk:
-	trainer EVENT_BEAT_SWIMMERM_KIRK, SWIMMERM, KIRK, SwimmermKirkSeenText, SwimmermKirkBeatenText, NONE, SwimmermKirkScript
+	trainer EVENT_BEAT_SWIMMERM_KIRK, SWIMMERM, KIRK, SwimmermKirkSeenText, SwimmermKirkBeatenText, 0, SwimmermKirkScript
 
 SwimmermKirkScript:
 	talkaftercancel
@@ -105,7 +105,7 @@ SwimmermKirkScript:
 	end
 
 TrainerSwimmermMathew:
-	trainer EVENT_BEAT_SWIMMERM_MATHEW, SWIMMERM, MATHEW, SwimmermMathewSeenText, SwimmermMathewBeatenText, NONE, SwimmermMathewScript
+	trainer EVENT_BEAT_SWIMMERM_MATHEW, SWIMMERM, MATHEW, SwimmermMathewSeenText, SwimmermMathewBeatenText, 0, SwimmermMathewScript
 
 SwimmermMathewScript:
 	talkaftercancel

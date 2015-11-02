@@ -56,7 +56,7 @@ GameboyKidScript_0x5c037:
 	end
 
 TrainerSchoolboyJack1:
-	trainer EVENT_BEAT_SCHOOLBOY_JACK, SCHOOLBOY, JACK1, SchoolboyJack1SeenText, SchoolboyJack1BeatenText, NONE, SchoolboyJack1Script
+	trainer EVENT_BEAT_SCHOOLBOY_JACK, SCHOOLBOY, JACK1, SchoolboyJack1SeenText, SchoolboyJack1BeatenText, 0, SchoolboyJack1Script
 
 SchoolboyJack1Script:
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_JACK
@@ -86,7 +86,7 @@ UnknownScript_0x5c074:
 
 UnknownScript_0x5c088:
 	scall UnknownScript_0x5c114
-	winlosstext SchoolboyJack1BeatenText, NONE
+	winlosstext SchoolboyJack1BeatenText, 0
 	copybytetovar wJackFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
@@ -173,7 +173,7 @@ UnknownScript_0x5c114:
 	end
 
 TrainerPokefanmWilliam:
-	trainer EVENT_BEAT_POKEFANM_WILLIAM, POKEFANM, WILLIAM, PokefanmWilliamSeenText, PokefanmWilliamBeatenText, NONE, PokefanmWilliamScript
+	trainer EVENT_BEAT_POKEFANM_WILLIAM, POKEFANM, WILLIAM, PokefanmWilliamSeenText, PokefanmWilliamBeatenText, 0, PokefanmWilliamScript
 
 PokefanmWilliamScript:
 	talkaftercancel
@@ -184,7 +184,7 @@ PokefanmWilliamScript:
 	end
 
 TrainerPokefanfBeverly1:
-	trainer EVENT_BEAT_POKEFANF_BEVERLY, POKEFANF, BEVERLY1, PokefanfBeverly1SeenText, PokefanfBeverly1BeatenText, NONE, PokefanfBeverly1Script
+	trainer EVENT_BEAT_POKEFANF_BEVERLY, POKEFANF, BEVERLY1, PokefanfBeverly1SeenText, PokefanfBeverly1BeatenText, 0, PokefanfBeverly1Script
 
 PokefanfBeverly1Script:
 	writecode VAR_CALLERID, PHONE_POKEFAN_BEVERLY
@@ -263,7 +263,7 @@ UnknownScript_0x5c1ab:
 	end
 
 TrainerLassKrise:
-	trainer EVENT_BEAT_LASS_KRISE, LASS, KRISE, LassKriseSeenText, LassKriseBeatenText, NONE, LassKriseScript
+	trainer EVENT_BEAT_LASS_KRISE, LASS, KRISE, LassKriseSeenText, LassKriseBeatenText, 0, LassKriseScript
 
 LassKriseScript:
 	talkaftercancel

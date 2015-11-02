@@ -15521,7 +15521,7 @@ Function11b3d9: ; 11b3d9
 	add [hl]
 	cp e
 	jr z, .asm_11b40d
-	ld hl, NONE
+	ld hl, 0
 	ld bc, $0070
 	call AddNTimes
 	ld e, l

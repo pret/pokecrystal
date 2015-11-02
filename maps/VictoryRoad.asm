@@ -3,8 +3,8 @@ VictoryRoad_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x74490, NONE
-	dw UnknownScript_0x74491, NONE
+	dw UnknownScript_0x74490, 0
+	dw UnknownScript_0x74491, 0
 
 .MapCallbacks:
 	db 0

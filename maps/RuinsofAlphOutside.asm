@@ -3,8 +3,8 @@ RuinsofAlphOutside_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x5800d, NONE
-	dw UnknownScript_0x5800e, NONE
+	dw UnknownScript_0x5800d, 0
+	dw UnknownScript_0x5800e, 0
 
 .MapCallbacks:
 	db 1
@@ -100,7 +100,7 @@ YoungsterScript_0x5807e:
 	end
 
 TrainerPsychicNathan:
-	trainer EVENT_BEAT_PSYCHIC_NATHAN, PSYCHIC_T, NATHAN, PsychicNathanSeenText, PsychicNathanBeatenText, NONE, PsychicNathanScript
+	trainer EVENT_BEAT_PSYCHIC_NATHAN, PSYCHIC_T, NATHAN, PsychicNathanSeenText, PsychicNathanBeatenText, 0, PsychicNathanScript
 
 PsychicNathanScript:
 	talkaftercancel
@@ -112,7 +112,7 @@ PsychicNathanScript:
 
 
 TrainerSuperNerdStan:
-	trainer EVENT_BEAT_SUPER_NERD_STAN, SUPER_NERD, STAN, UnknownText_0x581e5, UnknownText_0x58217, NONE, UnknownScript_0x580a9
+	trainer EVENT_BEAT_SUPER_NERD_STAN, SUPER_NERD, STAN, UnknownText_0x581e5, UnknownText_0x58217, 0, UnknownScript_0x580a9
 
 UnknownScript_0x580a9:
 	talkaftercancel

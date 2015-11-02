@@ -47,7 +47,7 @@ GrowlitheScript_0x5ebb2:
 	end
 
 TrainerGruntM10:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_10, GRUNTM, 10, GruntM10SeenText, GruntM10BeatenText, NONE, GruntM10Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_10, GRUNTM, 10, GruntM10SeenText, GruntM10BeatenText, 0, GruntM10Script
 
 GruntM10Script:
 	talkaftercancel
@@ -58,7 +58,7 @@ GruntM10Script:
 	end
 
 TrainerExecutivem2:
-	trainer EVENT_BEAT_ROCKET_EXECUTIVEM_2, EXECUTIVEM, 2, Executivem2SeenText, Executivem2BeatenText, NONE, Executivem2Script
+	trainer EVENT_BEAT_ROCKET_EXECUTIVEM_2, EXECUTIVEM, 2, Executivem2SeenText, Executivem2BeatenText, 0, Executivem2Script
 
 Executivem2Script:
 	talkaftercancel
@@ -69,7 +69,7 @@ Executivem2Script:
 	end
 
 TrainerGruntF4:
-	trainer EVENT_BEAT_ROCKET_GRUNTF_4, GRUNTF, 4, GruntF4SeenText, GruntF4BeatenText, NONE, GruntF4Script
+	trainer EVENT_BEAT_ROCKET_GRUNTF_4, GRUNTF, 4, GruntF4SeenText, GruntF4BeatenText, 0, GruntF4Script
 
 GruntF4Script:
 	talkaftercancel
@@ -80,7 +80,7 @@ GruntF4Script:
 	end
 
 TrainerScientistRich:
-	trainer EVENT_BEAT_SCIENTIST_RICH, SCIENTIST, RICH, ScientistRichSeenText, ScientistRichBeatenText, NONE, ScientistRichScript
+	trainer EVENT_BEAT_SCIENTIST_RICH, SCIENTIST, RICH, ScientistRichSeenText, ScientistRichBeatenText, 0, ScientistRichScript
 
 ScientistRichScript:
 	talkaftercancel

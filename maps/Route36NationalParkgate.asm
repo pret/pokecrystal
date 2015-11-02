@@ -3,9 +3,9 @@ Route36NationalParkgate_MapScriptHeader:
 	db 3
 
 	; triggers
-	dw .Trigger1, NONE
-	dw .Trigger2, NONE
-	dw .Trigger3, NONE
+	dw .Trigger1, 0
+	dw .Trigger2, 0
+	dw .Trigger3, 0
 
 .MapCallbacks:
 	db 2

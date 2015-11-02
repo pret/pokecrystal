@@ -3,8 +3,8 @@ BattleTowerHallway_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x9f5bb, NONE
-	dw UnknownScript_0x9f5c0, NONE
+	dw UnknownScript_0x9f5bb, 0
+	dw UnknownScript_0x9f5c0, 0
 
 .MapCallbacks:
 	db 0

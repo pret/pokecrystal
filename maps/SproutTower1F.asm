@@ -18,7 +18,7 @@ TeacherScript_0x184507:
 	jumptextfaceplayer UnknownText_0x18469d
 
 TrainerSageChow:
-	trainer EVENT_BEAT_SAGE_CHOW, SAGE, CHOW, SageChowSeenText, SageChowBeatenText, NONE, SageChowScript
+	trainer EVENT_BEAT_SAGE_CHOW, SAGE, CHOW, SageChowSeenText, SageChowBeatenText, 0, SageChowScript
 
 SageChowScript:
 	talkaftercancel

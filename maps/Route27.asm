@@ -3,8 +3,8 @@ Route27_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x1a0871, NONE
-	dw UnknownScript_0x1a0872, NONE
+	dw UnknownScript_0x1a0871, 0
+	dw UnknownScript_0x1a0872, 0
 
 .MapCallbacks:
 	db 0
@@ -40,7 +40,7 @@ FisherScript_0x1a089c:
 	jumptextfaceplayer UnknownText_0x1a0a71
 
 TrainerPsychicGilbert:
-	trainer EVENT_BEAT_PSYCHIC_GILBERT, PSYCHIC_T, GILBERT, PsychicGilbertSeenText, PsychicGilbertBeatenText, NONE, PsychicGilbertScript
+	trainer EVENT_BEAT_PSYCHIC_GILBERT, PSYCHIC_T, GILBERT, PsychicGilbertSeenText, PsychicGilbertBeatenText, 0, PsychicGilbertScript
 
 PsychicGilbertScript:
 	talkaftercancel
@@ -51,7 +51,7 @@ PsychicGilbertScript:
 	end
 
 TrainerBird_keeperJose2:
-	trainer EVENT_BEAT_BIRD_KEEPER_JOSE2, BIRD_KEEPER, JOSE2, Bird_keeperJose2SeenText, Bird_keeperJose2BeatenText, NONE, Bird_keeperJose2Script
+	trainer EVENT_BEAT_BIRD_KEEPER_JOSE2, BIRD_KEEPER, JOSE2, Bird_keeperJose2SeenText, Bird_keeperJose2BeatenText, 0, Bird_keeperJose2Script
 
 Bird_keeperJose2Script:
 	writecode VAR_CALLERID, PHONE_BIRDKEEPER_JOSE
@@ -83,7 +83,7 @@ UnknownScript_0x1a08eb:
 
 UnknownScript_0x1a08ff:
 	scall UnknownScript_0x1a096f
-	winlosstext Bird_keeperJose2BeatenText, NONE
+	winlosstext Bird_keeperJose2BeatenText, 0
 	copybytetovar wJoseFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
@@ -164,7 +164,7 @@ UnknownScript_0x1a0977:
 	end
 
 TrainerCooltrainermBlake:
-	trainer EVENT_BEAT_COOLTRAINERM_BLAKE, COOLTRAINERM, BLAKE, CooltrainermBlakeSeenText, CooltrainermBlakeBeatenText, NONE, CooltrainermBlakeScript
+	trainer EVENT_BEAT_COOLTRAINERM_BLAKE, COOLTRAINERM, BLAKE, CooltrainermBlakeSeenText, CooltrainermBlakeBeatenText, 0, CooltrainermBlakeScript
 
 CooltrainermBlakeScript:
 	talkaftercancel
@@ -175,7 +175,7 @@ CooltrainermBlakeScript:
 	end
 
 TrainerCooltrainermBrian:
-	trainer EVENT_BEAT_COOLTRAINERM_BRIAN, COOLTRAINERM, BRIAN, CooltrainermBrianSeenText, CooltrainermBrianBeatenText, NONE, CooltrainermBrianScript
+	trainer EVENT_BEAT_COOLTRAINERM_BRIAN, COOLTRAINERM, BRIAN, CooltrainermBrianSeenText, CooltrainermBrianBeatenText, 0, CooltrainermBrianScript
 
 CooltrainermBrianScript:
 	talkaftercancel
@@ -186,7 +186,7 @@ CooltrainermBrianScript:
 	end
 
 TrainerCooltrainerfReena:
-	trainer EVENT_BEAT_COOLTRAINERF_REENA, COOLTRAINERF, REENA1, CooltrainerfReena1SeenText, CooltrainerfReena1BeatenText, NONE, CooltrainerfReena1Script
+	trainer EVENT_BEAT_COOLTRAINERF_REENA, COOLTRAINERF, REENA1, CooltrainerfReena1SeenText, CooltrainerfReena1BeatenText, 0, CooltrainerfReena1Script
 
 CooltrainerfReena1Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERF_REENA
@@ -216,7 +216,7 @@ UnknownScript_0x1a09d5:
 
 UnknownScript_0x1a09e9:
 	scall UnknownScript_0x1a0a47
-	winlosstext CooltrainerfReena1BeatenText, NONE
+	winlosstext CooltrainerfReena1BeatenText, 0
 	copybytetovar wReenaFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
@@ -279,7 +279,7 @@ UnknownScript_0x1a0a47:
 	end
 
 TrainerCooltrainerfMegan:
-	trainer EVENT_BEAT_COOLTRAINERF_MEGAN, COOLTRAINERF, MEGAN, CooltrainerfMeganSeenText, CooltrainerfMeganBeatenText, NONE, CooltrainerfMeganScript
+	trainer EVENT_BEAT_COOLTRAINERF_MEGAN, COOLTRAINERF, MEGAN, CooltrainerfMeganSeenText, CooltrainerfMeganBeatenText, 0, CooltrainerfMeganScript
 
 CooltrainerfMeganScript:
 	talkaftercancel

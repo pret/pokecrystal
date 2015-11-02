@@ -6,7 +6,7 @@ Route6_MapScriptHeader:
 	db 0
 
 TrainerPokefanmRex:
-	trainer EVENT_BEAT_POKEFANM_REX, POKEFANM, REX, PokefanmRexSeenText, PokefanmRexBeatenText, NONE, PokefanmRexScript
+	trainer EVENT_BEAT_POKEFANM_REX, POKEFANM, REX, PokefanmRexSeenText, PokefanmRexBeatenText, 0, PokefanmRexScript
 
 PokefanmRexScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ PokefanmRexScript:
 	end
 
 TrainerPokefanmAllan:
-	trainer EVENT_BEAT_POKEFANM_ALLAN, POKEFANM, ALLAN, PokefanmAllanSeenText, PokefanmAllanBeatenText, NONE, PokefanmAllanScript
+	trainer EVENT_BEAT_POKEFANM_ALLAN, POKEFANM, ALLAN, PokefanmAllanSeenText, PokefanmAllanBeatenText, 0, PokefanmAllanScript
 
 PokefanmAllanScript:
 	talkaftercancel

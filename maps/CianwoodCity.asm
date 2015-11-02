@@ -3,8 +3,8 @@ CianwoodCity_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw .Trigger1, NONE
-	dw .Trigger2, NONE
+	dw .Trigger1, 0
+	dw .Trigger2, 0
 
 .MapCallbacks:
 	db 1
@@ -52,7 +52,7 @@ UnknownScript_0x1a001e:
 	writetext UnknownText_0x1a0433
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x1a05a1, NONE
+	winlosstext UnknownText_0x1a05a1, 0
 	setlasttalked $c
 	loadtrainer MYSTICALMAN, EUSINE
 	startbattle

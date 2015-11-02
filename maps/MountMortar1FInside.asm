@@ -6,7 +6,7 @@ MountMortar1FInside_MapScriptHeader:
 	db 0
 
 TrainerPokemaniacMiller:
-	trainer EVENT_BEAT_POKEMANIAC_MILLER, POKEMANIAC, MILLER, PokemaniacMillerSeenText, PokemaniacMillerBeatenText, NONE, PokemaniacMillerScript
+	trainer EVENT_BEAT_POKEMANIAC_MILLER, POKEMANIAC, MILLER, PokemaniacMillerSeenText, PokemaniacMillerBeatenText, 0, PokemaniacMillerScript
 
 PokemaniacMillerScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ PokemaniacMillerScript:
 	end
 
 TrainerSupernerdMarkus:
-	trainer EVENT_BEAT_SUPER_NERD_MARKUS, SUPER_NERD, MARKUS, SupernerdMarkusSeenText, SupernerdMarkusBeatenText, NONE, SupernerdMarkusScript
+	trainer EVENT_BEAT_SUPER_NERD_MARKUS, SUPER_NERD, MARKUS, SupernerdMarkusSeenText, SupernerdMarkusBeatenText, 0, SupernerdMarkusScript
 
 SupernerdMarkusScript:
 	talkaftercancel

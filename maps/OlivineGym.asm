@@ -13,7 +13,7 @@ JasmineScript_0x9c12f:
 	writetext UnknownText_0x9c1b9
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x9c2bb, NONE
+	winlosstext UnknownText_0x9c2bb, 0
 	loadtrainer JASMINE, 1
 	startbattle
 	returnafterbattle

@@ -3,9 +3,9 @@ Route32_MapScriptHeader:
 	db 3
 
 	; triggers
-	dw UnknownScript_0x190460, NONE
-	dw UnknownScript_0x190461, NONE
-	dw UnknownScript_0x190462, NONE
+	dw UnknownScript_0x190460, 0
+	dw UnknownScript_0x190461, 0
+	dw UnknownScript_0x190462, 0
 
 .MapCallbacks:
 	db 1
@@ -133,7 +133,7 @@ UnknownScript_0x190503:
 	end
 
 TrainerCamperRoland:
-	trainer EVENT_BEAT_CAMPER_ROLAND, CAMPER, ROLAND, CamperRolandSeenText, CamperRolandBeatenText, NONE, CamperRolandScript
+	trainer EVENT_BEAT_CAMPER_ROLAND, CAMPER, ROLAND, CamperRolandSeenText, CamperRolandBeatenText, 0, CamperRolandScript
 
 CamperRolandScript:
 	talkaftercancel
@@ -144,7 +144,7 @@ CamperRolandScript:
 	end
 
 TrainerFisherJustin:
-	trainer EVENT_BEAT_FISHER_JUSTIN, FISHER, JUSTIN, FisherJustinSeenText, FisherJustinBeatenText, NONE, FisherJustinScript
+	trainer EVENT_BEAT_FISHER_JUSTIN, FISHER, JUSTIN, FisherJustinSeenText, FisherJustinBeatenText, 0, FisherJustinScript
 
 FisherJustinScript:
 	talkaftercancel
@@ -155,7 +155,7 @@ FisherJustinScript:
 	end
 
 TrainerFisherRalph1:
-	trainer EVENT_BEAT_FISHER_RALPH, FISHER, RALPH1, FisherRalph1SeenText, FisherRalph1BeatenText, NONE, FisherRalph1Script
+	trainer EVENT_BEAT_FISHER_RALPH, FISHER, RALPH1, FisherRalph1SeenText, FisherRalph1BeatenText, 0, FisherRalph1Script
 
 FisherRalph1Script:
 	writecode VAR_CALLERID, PHONE_FISHER_RALPH
@@ -187,7 +187,7 @@ UnknownScript_0x190569:
 
 UnknownScript_0x19057d:
 	scall UnknownScript_0x19060f
-	winlosstext FisherRalph1BeatenText, NONE
+	winlosstext FisherRalph1BeatenText, 0
 	copybytetovar wRalphFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
@@ -280,7 +280,7 @@ UnknownScript_0x19060f:
 	end
 
 TrainerFisherHenry:
-	trainer EVENT_BEAT_FISHER_HENRY, FISHER, HENRY, FisherHenrySeenText, FisherHenryBeatenText, NONE, FisherHenryScript
+	trainer EVENT_BEAT_FISHER_HENRY, FISHER, HENRY, FisherHenrySeenText, FisherHenryBeatenText, 0, FisherHenryScript
 
 FisherHenryScript:
 	talkaftercancel
@@ -291,7 +291,7 @@ FisherHenryScript:
 	end
 
 TrainerPicnickerLiz1:
-	trainer EVENT_BEAT_PICNICKER_LIZ, PICNICKER, LIZ1, PicnickerLiz1SeenText, PicnickerLiz1BeatenText, NONE, PicnickerLiz1Script
+	trainer EVENT_BEAT_PICNICKER_LIZ, PICNICKER, LIZ1, PicnickerLiz1SeenText, PicnickerLiz1BeatenText, 0, PicnickerLiz1Script
 
 PicnickerLiz1Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_LIZ
@@ -321,7 +321,7 @@ UnknownScript_0x190659:
 
 UnknownScript_0x19066d:
 	scall UnknownScript_0x1906f9
-	winlosstext PicnickerLiz1BeatenText, NONE
+	winlosstext PicnickerLiz1BeatenText, 0
 	copybytetovar wLizFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
@@ -408,7 +408,7 @@ UnknownScript_0x1906f9:
 	end
 
 TrainerYoungsterAlbert:
-	trainer EVENT_BEAT_YOUNGSTER_ALBERT, YOUNGSTER, ALBERT, YoungsterAlbertSeenText, YoungsterAlbertBeatenText, NONE, YoungsterAlbertScript
+	trainer EVENT_BEAT_YOUNGSTER_ALBERT, YOUNGSTER, ALBERT, YoungsterAlbertSeenText, YoungsterAlbertBeatenText, 0, YoungsterAlbertScript
 
 YoungsterAlbertScript:
 	talkaftercancel
@@ -419,7 +419,7 @@ YoungsterAlbertScript:
 	end
 
 TrainerYoungsterGordon:
-	trainer EVENT_BEAT_YOUNGSTER_GORDON, YOUNGSTER, GORDON, YoungsterGordonSeenText, YoungsterGordonBeatenText, NONE, YoungsterGordonScript
+	trainer EVENT_BEAT_YOUNGSTER_GORDON, YOUNGSTER, GORDON, YoungsterGordonSeenText, YoungsterGordonBeatenText, 0, YoungsterGordonScript
 
 YoungsterGordonScript:
 	talkaftercancel
@@ -430,7 +430,7 @@ YoungsterGordonScript:
 	end
 
 TrainerBird_keeperPeter:
-	trainer EVENT_BEAT_BIRD_KEEPER_PETER, BIRD_KEEPER, PETER, Bird_keeperPeterSeenText, Bird_keeperPeterBeatenText, NONE, Bird_keeperPeterScript
+	trainer EVENT_BEAT_BIRD_KEEPER_PETER, BIRD_KEEPER, PETER, Bird_keeperPeterSeenText, Bird_keeperPeterBeatenText, 0, Bird_keeperPeterScript
 
 Bird_keeperPeterScript:
 	talkaftercancel

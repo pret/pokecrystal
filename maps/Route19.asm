@@ -22,7 +22,7 @@ Route19_MapScriptHeader:
 	return
 
 TrainerSwimmerfDawn:
-	trainer EVENT_BEAT_SWIMMERF_DAWN, SWIMMERF, DAWN, SwimmerfDawnSeenText, SwimmerfDawnBeatenText, NONE, SwimmerfDawnScript
+	trainer EVENT_BEAT_SWIMMERF_DAWN, SWIMMERF, DAWN, SwimmerfDawnSeenText, SwimmerfDawnBeatenText, 0, SwimmerfDawnScript
 
 SwimmerfDawnScript:
 	talkaftercancel
@@ -33,7 +33,7 @@ SwimmerfDawnScript:
 	end
 
 TrainerSwimmermHarold:
-	trainer EVENT_BEAT_SWIMMERM_HAROLD, SWIMMERM, HAROLD, SwimmermHaroldSeenText, SwimmermHaroldBeatenText, NONE, SwimmermHaroldScript
+	trainer EVENT_BEAT_SWIMMERM_HAROLD, SWIMMERM, HAROLD, SwimmermHaroldSeenText, SwimmermHaroldBeatenText, 0, SwimmermHaroldScript
 
 SwimmermHaroldScript:
 	talkaftercancel
@@ -44,7 +44,7 @@ SwimmermHaroldScript:
 	end
 
 TrainerSwimmermJerome:
-	trainer EVENT_BEAT_SWIMMERM_JEROME, SWIMMERM, JEROME, SwimmermJeromeSeenText, SwimmermJeromeBeatenText, NONE, SwimmermJeromeScript
+	trainer EVENT_BEAT_SWIMMERM_JEROME, SWIMMERM, JEROME, SwimmermJeromeSeenText, SwimmermJeromeBeatenText, 0, SwimmermJeromeScript
 
 SwimmermJeromeScript:
 	talkaftercancel
@@ -55,7 +55,7 @@ SwimmermJeromeScript:
 	end
 
 TrainerSwimmermTucker:
-	trainer EVENT_BEAT_SWIMMERM_TUCKER, SWIMMERM, TUCKER, SwimmermTuckerSeenText, SwimmermTuckerBeatenText, NONE, SwimmermTuckerScript
+	trainer EVENT_BEAT_SWIMMERM_TUCKER, SWIMMERM, TUCKER, SwimmermTuckerSeenText, SwimmermTuckerBeatenText, 0, SwimmermTuckerScript
 
 SwimmermTuckerScript:
 	talkaftercancel

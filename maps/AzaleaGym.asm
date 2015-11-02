@@ -13,7 +13,7 @@ BugsyScript:
 	writetext BugsyText_INeverLose
 	closetext
 	loadmovesprites
-	winlosstext BugsyText_ResearchIncomplete, NONE
+	winlosstext BugsyText_ResearchIncomplete, 0
 	loadtrainer BUGSY, 1
 	startbattle
 	returnafterbattle
@@ -61,7 +61,7 @@ AzaleaGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerTwinsAmyandmay1:
-	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY1, TwinsAmyandmay1SeenText, TwinsAmyandmay1BeatenText, NONE, .AfterScript
+	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY1, TwinsAmyandmay1SeenText, TwinsAmyandmay1BeatenText, 0, .AfterScript
 
 .AfterScript:
 	talkaftercancel
@@ -72,7 +72,7 @@ TrainerTwinsAmyandmay1:
 	end
 
 TrainerTwinsAmyandmay2:
-	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY2, TwinsAmyandmay2SeenText, TwinsAmyandmay2BeatenText, NONE, .AfterScript
+	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY2, TwinsAmyandmay2SeenText, TwinsAmyandmay2BeatenText, 0, .AfterScript
 
 .AfterScript:
 	talkaftercancel
@@ -83,7 +83,7 @@ TrainerTwinsAmyandmay2:
 	end
 
 TrainerBug_catcherbenny:
-	trainer EVENT_BEAT_BUG_CATCHER_BENNY, BUG_CATCHER, BUG_CATCHER_BENNY, Bug_catcherbennySeenText, Bug_catcherbennyBeatenText, NONE, .AfterScript
+	trainer EVENT_BEAT_BUG_CATCHER_BENNY, BUG_CATCHER, BUG_CATCHER_BENNY, Bug_catcherbennySeenText, Bug_catcherbennyBeatenText, 0, .AfterScript
 
 .AfterScript:
 	talkaftercancel
@@ -94,7 +94,7 @@ TrainerBug_catcherbenny:
 	end
 
 TrainerBug_catcherAl:
-	trainer EVENT_BEAT_BUG_CATCHER_AL, BUG_CATCHER, AL, Bug_catcherAlSeenText, Bug_catcherAlBeatenText, NONE, .AfterScript
+	trainer EVENT_BEAT_BUG_CATCHER_AL, BUG_CATCHER, AL, Bug_catcherAlSeenText, Bug_catcherAlBeatenText, 0, .AfterScript
 
 .AfterScript:
 	talkaftercancel
@@ -105,7 +105,7 @@ TrainerBug_catcherAl:
 	end
 
 TrainerBug_catcherJosh:
-	trainer EVENT_BEAT_BUG_CATCHER_JOSH, BUG_CATCHER, JOSH, Bug_catcherJoshSeenText, Bug_catcherJoshBeatenText, NONE, .AfterScript
+	trainer EVENT_BEAT_BUG_CATCHER_JOSH, BUG_CATCHER, JOSH, Bug_catcherJoshSeenText, Bug_catcherJoshBeatenText, 0, .AfterScript
 
 .AfterScript:
 	talkaftercancel

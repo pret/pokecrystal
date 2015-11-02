@@ -441,14 +441,14 @@ Function97e5c:: ; 97e5c
 ; 97e72
 
 Function97e72: ; 97e72
-	ld hl, NONE
+	ld hl, 0
 	add hl, bc
 	ld [hl], 0
 	ret
 ; 97e79
 
 Function97e79: ; 97e79
-	ld hl, NONE
+	ld hl, 0
 	add hl, bc
 	ld a, [hl]
 	cp 5
@@ -620,7 +620,7 @@ Function97f42: ; 97f42
 .asm_97f47
 	push af
 
-	ld hl, NONE
+	ld hl, 0
 	add hl, de
 	ld a, [hl]
 	and a

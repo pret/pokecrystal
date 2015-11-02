@@ -2145,7 +2145,7 @@ GetMapBank:: ; 2c29
 GetAnyMapBank:: ; 2c31
 	push hl
 	push de
-	ld de, NONE
+	ld de, 0
 	call GetAnyMapHeaderMember
 	ld a, c
 	pop de

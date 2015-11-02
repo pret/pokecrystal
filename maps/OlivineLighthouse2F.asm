@@ -6,7 +6,7 @@ OlivineLighthouse2F_MapScriptHeader:
 	db 0
 
 TrainerGentlemanAlfred:
-	trainer EVENT_BEAT_GENTLEMAN_ALFRED, GENTLEMAN, ALFRED, GentlemanAlfredSeenText, GentlemanAlfredBeatenText, NONE, GentlemanAlfredScript
+	trainer EVENT_BEAT_GENTLEMAN_ALFRED, GENTLEMAN, ALFRED, GentlemanAlfredSeenText, GentlemanAlfredBeatenText, 0, GentlemanAlfredScript
 
 GentlemanAlfredScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ GentlemanAlfredScript:
 	end
 
 TrainerSailorHuey1:
-	trainer EVENT_BEAT_SAILOR_HUEY, SAILOR, HUEY1, SailorHuey1SeenText, SailorHuey1BeatenText, NONE, SailorHuey1Script
+	trainer EVENT_BEAT_SAILOR_HUEY, SAILOR, HUEY1, SailorHuey1SeenText, SailorHuey1BeatenText, 0, SailorHuey1Script
 
 SailorHuey1Script:
 	writecode VAR_CALLERID, PHONE_SAILOR_HUEY
@@ -45,7 +45,7 @@ UnknownScript_0x5afb3:
 
 UnknownScript_0x5afc7:
 	scall UnknownScript_0x5b06b
-	winlosstext SailorHuey1BeatenText, NONE
+	winlosstext SailorHuey1BeatenText, 0
 	copybytetovar wHueyFightCount
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2

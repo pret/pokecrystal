@@ -3,12 +3,12 @@ PokeCenter2F_MapScriptHeader:
 	db 6
 
 	; triggers
-	dw .Trigger1, NONE
-	dw .Trigger2, NONE
-	dw .Trigger3, NONE
-	dw .Trigger4, NONE
-	dw .Trigger5, NONE
-	dw .Trigger6, NONE
+	dw .Trigger1, 0
+	dw .Trigger2, 0
+	dw .Trigger3, 0
+	dw .Trigger4, 0
+	dw .Trigger5, 0
+	dw .Trigger6, 0
 
 .MapCallbacks:
 	db 0

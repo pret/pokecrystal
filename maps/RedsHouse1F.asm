@@ -3,7 +3,7 @@ RedsHouse1F_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw .Trigger, NONE
+	dw .Trigger, 0
 
 .MapCallbacks:
 	db 0

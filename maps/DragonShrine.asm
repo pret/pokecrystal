@@ -3,8 +3,8 @@ DragonShrine_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw .Trigger1, NONE
-	dw .Trigger2, NONE
+	dw .Trigger1, 0
+	dw .Trigger2, 0
 
 .MapCallbacks:
 	db 0

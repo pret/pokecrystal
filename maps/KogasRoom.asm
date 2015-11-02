@@ -3,8 +3,8 @@ KogasRoom_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x180728, NONE
-	dw UnknownScript_0x18072c, NONE
+	dw UnknownScript_0x180728, 0
+	dw UnknownScript_0x18072c, 0
 
 .MapCallbacks:
 	db 1
@@ -52,7 +52,7 @@ KogaScript_0x18075a:
 	writetext UnknownText_0x180793
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x1808a9, NONE
+	winlosstext UnknownText_0x1808a9, 0
 	loadtrainer KOGA, 1
 	startbattle
 	returnafterbattle

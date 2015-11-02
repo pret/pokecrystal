@@ -3,8 +3,8 @@ PowerPlant_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x188dc3, NONE
-	dw UnknownScript_0x188dc4, NONE
+	dw UnknownScript_0x188dc3, 0
+	dw UnknownScript_0x188dc4, 0
 
 .MapCallbacks:
 	db 0

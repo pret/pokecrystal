@@ -3,7 +3,7 @@ LavenderNameRater_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x7eaf1, NONE
+	dw UnknownScript_0x7eaf1, 0
 
 .MapCallbacks:
 	db 0

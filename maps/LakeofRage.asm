@@ -3,8 +3,8 @@ LakeofRage_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw .Trigger1, NONE
-	dw .Trigger2, NONE
+	dw .Trigger1, 0
+	dw .Trigger2, 0
 
 .MapCallbacks:
 	db 2
@@ -137,7 +137,7 @@ UnknownScript_0x700b8:
 	end
 
 TrainerFisherAndre:
-	trainer EVENT_BEAT_FISHER_ANDRE, FISHER, ANDRE, FisherAndreSeenText, FisherAndreBeatenText, NONE, FisherAndreScript
+	trainer EVENT_BEAT_FISHER_ANDRE, FISHER, ANDRE, FisherAndreSeenText, FisherAndreBeatenText, 0, FisherAndreScript
 
 FisherAndreScript:
 	talkaftercancel
@@ -148,7 +148,7 @@ FisherAndreScript:
 	end
 
 TrainerFisherRaymond:
-	trainer EVENT_BEAT_FISHER_RAYMOND, FISHER, RAYMOND, FisherRaymondSeenText, FisherRaymondBeatenText, NONE, FisherRaymondScript
+	trainer EVENT_BEAT_FISHER_RAYMOND, FISHER, RAYMOND, FisherRaymondSeenText, FisherRaymondBeatenText, 0, FisherRaymondScript
 
 FisherRaymondScript:
 	talkaftercancel
@@ -159,7 +159,7 @@ FisherRaymondScript:
 	end
 
 TrainerCooltrainermAaron:
-	trainer EVENT_BEAT_COOLTRAINERM_AARON, COOLTRAINERM, AARON, CooltrainermAaronSeenText, CooltrainermAaronBeatenText, NONE, CooltrainermAaronScript
+	trainer EVENT_BEAT_COOLTRAINERM_AARON, COOLTRAINERM, AARON, CooltrainermAaronSeenText, CooltrainermAaronBeatenText, 0, CooltrainermAaronScript
 
 CooltrainermAaronScript:
 	talkaftercancel
@@ -170,7 +170,7 @@ CooltrainermAaronScript:
 	end
 
 TrainerCooltrainerfLois:
-	trainer EVENT_BEAT_COOLTRAINERF_LOIS, COOLTRAINERF, LOIS, CooltrainerfLoisSeenText, CooltrainerfLoisBeatenText, NONE, CooltrainerfLoisScript
+	trainer EVENT_BEAT_COOLTRAINERF_LOIS, COOLTRAINERF, LOIS, CooltrainerfLoisSeenText, CooltrainerfLoisBeatenText, 0, CooltrainerfLoisScript
 
 CooltrainerfLoisScript:
 	talkaftercancel

@@ -3,8 +3,8 @@ DragonsDenB1F_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x18c89d, NONE
-	dw UnknownScript_0x18c89e, NONE
+	dw UnknownScript_0x18c89d, 0
+	dw UnknownScript_0x18c89e, 0
 
 .MapCallbacks:
 	db 1
@@ -78,7 +78,7 @@ UnknownScript_0x18c8f9:
 	end
 
 TrainerCooltrainermDarin:
-	trainer EVENT_BEAT_COOLTRAINERM_DARIN, COOLTRAINERM, DARIN, CooltrainermDarinSeenText, CooltrainermDarinBeatenText, NONE, CooltrainermDarinScript
+	trainer EVENT_BEAT_COOLTRAINERM_DARIN, COOLTRAINERM, DARIN, CooltrainermDarinSeenText, CooltrainermDarinBeatenText, 0, CooltrainermDarinScript
 
 CooltrainermDarinScript:
 	talkaftercancel
@@ -89,7 +89,7 @@ CooltrainermDarinScript:
 	end
 
 TrainerCooltrainerfCara:
-	trainer EVENT_BEAT_COOLTRAINERF_CARA, COOLTRAINERF, CARA, CooltrainerfCaraSeenText, CooltrainerfCaraBeatenText, NONE, CooltrainerfCaraScript
+	trainer EVENT_BEAT_COOLTRAINERF_CARA, COOLTRAINERF, CARA, CooltrainerfCaraSeenText, CooltrainerfCaraBeatenText, 0, CooltrainerfCaraScript
 
 CooltrainerfCaraScript:
 	talkaftercancel
@@ -100,7 +100,7 @@ CooltrainerfCaraScript:
 	end
 
 TrainerTwinsLeaandpia1:
-	trainer EVENT_BEAT_TWINS_LEA_AND_PIA, TWINS, LEAANDPIA1, TwinsLeaandpia1SeenText, TwinsLeaandpia1BeatenText, NONE, TwinsLeaandpia1Script
+	trainer EVENT_BEAT_TWINS_LEA_AND_PIA, TWINS, LEAANDPIA1, TwinsLeaandpia1SeenText, TwinsLeaandpia1BeatenText, 0, TwinsLeaandpia1Script
 
 TwinsLeaandpia1Script:
 	talkaftercancel
@@ -111,7 +111,7 @@ TwinsLeaandpia1Script:
 	end
 
 TrainerTwinsLeaandpia2:
-	trainer EVENT_BEAT_TWINS_LEA_AND_PIA, TWINS, LEAANDPIA1, TwinsLeaandpia2SeenText, TwinsLeaandpia2BeatenText, NONE, TwinsLeaandpia2Script
+	trainer EVENT_BEAT_TWINS_LEA_AND_PIA, TWINS, LEAANDPIA1, TwinsLeaandpia2SeenText, TwinsLeaandpia2BeatenText, 0, TwinsLeaandpia2Script
 
 TwinsLeaandpia2Script:
 	talkaftercancel
