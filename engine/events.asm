@@ -396,7 +396,7 @@ CheckTileEvent: ; 96874
 	ret
 
 .return6
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	call CheckPitTile
 	jr nz, .pittile
 	ld a, 6
@@ -606,7 +606,7 @@ TryObjectEvent: ; 969b5
 
 .IsObject
 	call PlayTalkObject
-	ld a, [hMapObjectIndexBuffer2]
+	ld a, [hObjectStructIndexBuffer]
 	call GetObjectStruct
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc

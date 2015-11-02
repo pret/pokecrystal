@@ -205,8 +205,8 @@ Movement_4a: ; 51b8
 ; 51c1
 
 Movement_step_end: ; 51c1
-	call Function4769
-	ld hl, OBJECT_03
+	call RestoreDefaultMovement
+	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
 	ld [hl], a
 	ld hl, OBJECT_27
@@ -221,8 +221,8 @@ Movement_step_end: ; 51c1
 ; 51db
 
 Movement_48: ; 51db
-	call Function4769
-	ld hl, OBJECT_03
+	call RestoreDefaultMovement
+	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
 	ld [hl], a
 	ld hl, OBJECT_27
@@ -242,8 +242,8 @@ Movement_48: ; 51db
 
 Movement_remove_person: ; 51fd
 	call Function4357
-	ld hl, wd4cd
-	ld a, [hMapObjectIndexBuffer1]
+	ld hl, wObjectFollow_Leader
+	ld a, [hMapObjectIndexBuffer]
 	cp [hl]
 	jr nz, .asm_520a
 	ld [hl], $ff
@@ -738,7 +738,7 @@ NormalStep: ; 5412
 
 .asm_5430
 	ld hl, wd4cf
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	cp [hl]
 	jr z, .asm_543f
 
@@ -761,7 +761,7 @@ TurningStep: ; 5446
 	add hl, bc
 	ld [hl], $4
 	ld hl, wd4cf
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	cp [hl]
 	jr z, .asm_5461
 	ld hl, OBJECT_09
@@ -784,7 +784,7 @@ SlideStep: ; 5468
 	add hl, bc
 	ld [hl], $1
 	ld hl, wd4cf
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	cp [hl]
 	jr z, .asm_5483
 	ld hl, OBJECT_09
@@ -813,7 +813,7 @@ JumpStep: ; 548a
 	ld [hl], $2
 	call Function5529
 	ld hl, wd4cf
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	cp [hl]
 	jr z, .asm_54b1
 	ld hl, OBJECT_09

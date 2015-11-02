@@ -828,7 +828,7 @@ Function4759: ; 4759
 	ret
 ; 4769
 
-Function4769: ; 4769
+RestoreDefaultMovement: ; 4769
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
 	ld a, [hl]
@@ -1029,7 +1029,7 @@ Function4851: ; 4851
 	jp Function4b26
 ; 4869
 
-Function4869: ; 4869
+Function4869: ; standing?
 	call Function462a
 	call Function467b
 	ld hl, OBJECT_11
@@ -1083,7 +1083,7 @@ Function48a0: ; 48a0
 ; 48a6
 
 Function48a6: ; 48a6
-	ld hl, Function500e
+	ld hl, Function500e ; scripted
 	jp Function5041
 ; 48ac
 
@@ -1500,7 +1500,7 @@ Function4af0: ; 4af0
 	add hl, bc
 	ld [hl], 2
 	ld hl, wd4cf
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	cp [hl]
 	jr z, .ok
 	ld hl, OBJECT_09
@@ -2047,7 +2047,7 @@ Function4e0c: ; 4e0c
 ; 4e13
 
 Function4e13: ; 4e13
-	call Function4769
+	call RestoreDefaultMovement
 	call Function1a47
 	ld hl, OBJECT_FACING
 	add hl, bc
@@ -2396,7 +2396,7 @@ UpdateJumpPosition: ; 4fd5
 	db -11, -10,  -9,  -8,  -6,  -4,   0,   0
 ; 5000
 
-Function5000: ; 5000
+Function5000: ; unscripted?
 	ld a, [wc2de]
 	ld hl, wc2df
 	ld [hl], a
@@ -2406,8 +2406,8 @@ Function5000: ; 5000
 	ret
 ; 500e
 
-Function500e: ; 500e
-	ld hl, wc2e3
+Function500e: ; scripted
+	ld hl, wMovementDataPointer
 	call Function1aae
 	ret
 ; 5015
@@ -2418,7 +2418,7 @@ Function5015: ; 5015
 	ld e, [hl]
 	inc [hl]
 	ld d, 0
-	ld hl, wc2e2
+	ld hl, wMovementPerson
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2448,7 +2448,7 @@ Function5037: ; 5037
 ; 503d
 
 Function503d: ; 503d
-	ld a, [wc2e2]
+	ld a, [wMovementPerson]
 	ret
 ; 5041
 
@@ -2467,14 +2467,14 @@ Function5041: ; 5041
 
 CopyMovementPointer: ; 5055
 	ld a, l
-	ld [wc2eb], a
+	ld [wMovementPointer], a
 	ld a, h
-	ld [wc2ec], a
+	ld [wMovementPointer + 1], a
 	ret
 ; 505e
 
 GetMovementByte: ; 505e
-	ld hl, wc2eb
+	ld hl, wMovementPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2489,7 +2489,7 @@ Function5065: ; 5065
 
 DoMovementFunction: ; 506b
 	push af
-	call Function54b8
+	call ApplyMovementToFollower
 	pop af
 	ld hl, MovementPointers
 	rst JumpTable
@@ -2502,14 +2502,14 @@ INCLUDE "engine/movement.asm"
 ; 54b8
 
 
-Function54b8: ; 54b8
+ApplyMovementToFollower: ; 54b8
 	ld e, a
-	ld a, [wd4ce]
+	ld a, [wObjectFollow_Follower]
 	cp -1
 	ret z
-	ld a, [wd4cd]
+	ld a, [wObjectFollow_Leader]
 	ld d, a
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	cp d
 	ret nz
 	ld a, e
@@ -2565,7 +2565,7 @@ Function54e6: ; 54e6
 ; 550a
 
 Function550a: ; 550a
-	ld a, [wd4cd]
+	ld a, [wObjectFollow_Leader]
 	cp -1
 	jr z, .nope
 	push bc
@@ -2581,7 +2581,7 @@ Function550a: ; 550a
 
 .nope
 	ld a, $ff
-	ld [wd4ce], a
+	ld [wObjectFollow_Follower], a
 	ld a, $47
 	scf
 	ret
@@ -2652,7 +2652,7 @@ Function5565: ; 5565
 
 Function5579: ; 5579
 	push bc
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	ld c, a
 	call Function5582
 	pop bc
@@ -2713,7 +2713,7 @@ Function55b9: ; 55b9
 	ld [hli], a
 	ld a, [de]
 	ld [hli], a
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	ld [hli], a
 	push hl
 	ld hl, OBJECT_MAP_X
@@ -2738,7 +2738,7 @@ Function55e0:: ; 55e0
 	ld bc, ObjectStructs
 	xor a
 .loop
-	ld [hMapObjectIndexBuffer1], a
+	ld [hMapObjectIndexBuffer], a
 	call GetObjectSprite
 	jr z, .ok
 	call Function565c
@@ -2748,7 +2748,7 @@ Function55e0:: ; 55e0
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -2802,13 +2802,13 @@ Function5645: ; 5645
 	xor a
 	ld bc, ObjectStructs
 .loop
-	ld [hMapObjectIndexBuffer1], a
+	ld [hMapObjectIndexBuffer], a
 	call Function5680
 	ld hl, OBJECT_STRUCT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -3033,7 +3033,7 @@ Function5781: ; 5781
 	ld bc, ObjectStructs
 	xor a
 .loop
-	ld [hMapObjectIndexBuffer1], a
+	ld [hMapObjectIndexBuffer], a
 	call GetObjectSprite
 	jr z, .next
 	call Function437b
@@ -3043,7 +3043,7 @@ Function5781: ; 5781
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -3056,7 +3056,7 @@ Function579d: ; 579d
 	ld [wc2df], a
 	xor a
 	ld [wd04e], a
-	ld [wd4e2], a
+	ld [PlayerObject12], a
 	call Function57bc
 	callba CheckWarpCollision
 	call c, SpawnInFacingDown
@@ -3101,7 +3101,7 @@ Function57db: ; 57db
 
 Function57e2: ; 57e2
 	ld a, d
-	and $80
+	and %10000000
 	ret z
 	ld bc, NONE ; debug?
 	ld hl, OBJECT_FACING
@@ -3123,69 +3123,69 @@ Function57e2: ; 57e2
 	ret
 ; 5803
 
-Function5803:: ; 5803
+StartFollow:: ; 5803
 	push bc
 	ld a, b
-	call Function5815
+	call SetLeaderIfVisible
 	pop bc
 	ret c
 	ld a, c
-	call Function582c
+	call SetFollowerIfVisible
 	callba Function848a
 	ret
 ; 5815
 
-Function5815: ; 5815
-	call Function18de
+SetLeaderIfVisible: ; 5815
+	call CheckObjectVisibility
 	ret c
-	ld a, [hMapObjectIndexBuffer2]
-	ld [wd4cd], a
+	ld a, [hObjectStructIndexBuffer]
+	ld [wObjectFollow_Leader], a
 	ret
 ; 581f
 
-Function581f:: ; 581f
-	call Function5826
-	call Function5847
+StopFollow:: ; 581f
+	call ResetLeader
+	call ResetFollower
 	ret
 ; 5826
 
-Function5826: ; 5826
+ResetLeader: ; 5826
 	ld a, -1
-	ld [wd4cd], a
+	ld [wObjectFollow_Leader], a
 	ret
 ; 582c
 
-Function582c: ; 582c
+SetFollowerIfVisible: ; 582c
 	push af
-	call Function5847
+	call ResetFollower
 	pop af
-	call Function18de
+	call CheckObjectVisibility
 	ret c
-	ld hl, OBJECT_03
+	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
-	ld [hl], $13
+	ld [hl], SPRITEMOVEDATA_13
 	ld hl, OBJECT_09
 	add hl, bc
 	ld [hl], 0
-	ld a, [hMapObjectIndexBuffer2]
-	ld [wd4ce], a
+	ld a, [hObjectStructIndexBuffer]
+	ld [wObjectFollow_Follower], a
 	ret
 ; 5847
 
-Function5847: ; 5847
-	ld a, [wd4ce]
+ResetFollower: ; 5847
+	ld a, [wObjectFollow_Follower]
 	cp -1
 	ret z
 	call GetObjectStruct
 	callba Function58e3
 	ld a, -1
-	ld [wd4ce], a
+	ld [wObjectFollow_Follower], a
 	ret
 ; 585c
 
 SetFlagsForMovement_1:: ; 585c
 	ld a, c
-	call Function18de
+	call CheckObjectVisibility
 	ret c
 	push bc
 	call Function587a
@@ -3198,7 +3198,7 @@ SetFlagsForMovement_1:: ; 585c
 ; 586e
 
 Function586e: ; 586e
-	call Function18de
+	call CheckObjectVisibility
 	ret c
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
@@ -3231,7 +3231,7 @@ Function587a: ; 587a
 ; 5897
 
 _SetFlagsForMovement_2:: ; 5897
-	ld a, [wd4cd]
+	ld a, [wObjectFollow_Leader]
 	cp -1
 	ret z
 	push bc
@@ -3242,7 +3242,7 @@ _SetFlagsForMovement_2:: ; 5897
 	pop bc
 	cp c
 	ret nz
-	ld a, [wd4ce]
+	ld a, [wObjectFollow_Follower]
 	cp -1
 	ret z
 	call GetObjectStruct
@@ -3278,7 +3278,7 @@ Function58b9:: ; 58b9
 ; 58d8
 
 Function58d8: ; 58d8
-	call Function18de
+	call CheckObjectVisibility
 	ret c
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
@@ -3298,7 +3298,7 @@ Function58e3: ; 58e3
 	add hl, bc
 	ld a, [hl]
 	pop bc
-	ld hl, OBJECT_03
+	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
 	ld [hl], a
 	ld hl, OBJECT_09
@@ -3316,7 +3316,7 @@ Function5903: ; 5903
 	ld hl, .standing_movefns
 	add hl, de
 	ld a, [hl]
-	ld hl, OBJECT_03
+	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
 	ld [hl], a
 	ld hl, OBJECT_09
@@ -3431,13 +3431,13 @@ Function5991: ; 5991
 
 Function59a4: ; 59a4
 	xor a
-	ld hl, wc2eb
+	ld hl, wMovementPointer
 	ld bc, 13
 	call ByteFill
 
 	ld d, 0
 	ld bc, ObjectStructs
-	ld hl, wc2eb
+	ld hl, wMovementPointer
 .loop
 	push hl
 	call GetObjectSprite
@@ -3488,7 +3488,7 @@ Function59a4: ; 59a4
 ; 59f3
 
 Function59f3: ; 59f3
-	ld hl, wc2eb
+	ld hl, wMovementPointer
 .next
 	ld a, [hli]
 	ld d, a
@@ -3677,16 +3677,16 @@ endr
 
 .Addresses ; 5ace
 	dw PlayerStruct
-	dw ObjectStruct1
-	dw ObjectStruct2
-	dw ObjectStruct3
-	dw ObjectStruct4
-	dw ObjectStruct5
-	dw ObjectStruct6
-	dw ObjectStruct7
-	dw ObjectStruct8
-	dw ObjectStruct9
-	dw ObjectStruct10
-	dw ObjectStruct11
-	dw ObjectStruct12
+	dw Object1Struct
+	dw Object2Struct
+	dw Object3Struct
+	dw Object4Struct
+	dw Object5Struct
+	dw Object6Struct
+	dw Object7Struct
+	dw Object8Struct
+	dw Object9Struct
+	dw Object10Struct
+	dw Object11Struct
+	dw Object12Struct
 ; 5ae8

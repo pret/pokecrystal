@@ -2345,14 +2345,14 @@ CheckFacingObject:: ; 6fd9
 	call CheckCounterTile
 	jr nz, .asm_6ff1
 
-	ld a, [MapX]
+	ld a, [PlayerMapX]
 	sub d
 	cpl
 	inc a
 	add d
 	ld d, a
 
-	ld a, [MapY]
+	ld a, [PlayerMapY]
 	sub e
 	cpl
 	inc a
@@ -2362,7 +2362,7 @@ CheckFacingObject:: ; 6fd9
 .asm_6ff1
 	ld bc, ObjectStructs ; redundant
 	ld a, 0
-	ld [hMapObjectIndexBuffer1], a
+	ld [hMapObjectIndexBuffer], a
 	call Function7041
 	ret nc
 	ld hl, OBJECT_DIRECTION_WALKING
@@ -2390,7 +2390,7 @@ Function7009: ; 7009
 ; 7015
 
 Function7015: ; unreferenced
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	call GetObjectStruct
 	call Function7021
 	call Function7041
@@ -2430,7 +2430,7 @@ Function7041: ; 7041
 	ld bc, ObjectStructs
 	xor a
 .loop
-	ld [hMapObjectIndexBuffer2], a
+	ld [hObjectStructIndexBuffer], a
 	call GetObjectSprite
 	jr z, .nope
 	ld hl, OBJECT_FLAGS1
@@ -2458,9 +2458,9 @@ Function7041: ; 7041
 	jr nz, .ok
 
 .ok2
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	ld l, a
-	ld a, [hMapObjectIndexBuffer2]
+	ld a, [hObjectStructIndexBuffer]
 	cp l
 	jr nz, .setcarry
 
@@ -2475,9 +2475,9 @@ Function7041: ; 7041
 	ld a, [hl]
 	cp e
 	jr nz, .nope
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	ld l, a
-	ld a, [hMapObjectIndexBuffer2]
+	ld a, [hObjectStructIndexBuffer]
 	cp l
 	jr nz, .setcarry
 
@@ -2486,7 +2486,7 @@ Function7041: ; 7041
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hMapObjectIndexBuffer2]
+	ld a, [hObjectStructIndexBuffer]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -2590,20 +2590,20 @@ Function70ed: ; 70ed
 ; 7113
 
 Function7113: ; unreferenced
-	ld a, [MapX]
+	ld a, [PlayerMapX]
 	ld d, a
-	ld a, [MapY]
+	ld a, [PlayerMapY]
 	ld e, a
 	ld bc, ObjectStructs
 	xor a
 .loop
-	ld [hMapObjectIndexBuffer2], a
+	ld [hObjectStructIndexBuffer], a
 	call GetObjectSprite
 	jr z, .asm_7160
-	ld hl, OBJECT_03
+	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
 	ld a, [hl]
-	cp $15
+	cp SPRITEMOVEDATA_15
 	jr nz, .asm_7136
 	call Function7171
 	jr c, .asm_716f
@@ -2620,7 +2620,7 @@ Function7113: ; unreferenced
 	ld a, [hl]
 	cp d
 	jr nz, .asm_714e
-	ld a, [hMapObjectIndexBuffer2]
+	ld a, [hObjectStructIndexBuffer]
 	cp $0
 	jr z, .asm_7160
 	jr .asm_716f
@@ -2643,7 +2643,7 @@ Function7113: ; unreferenced
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hMapObjectIndexBuffer2]
+	ld a, [hObjectStructIndexBuffer]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -3198,8 +3198,8 @@ Function8000: ; 8000
 
 GetSpawnCoord: ; 8029
 	ld a, -1
-	ld [wd4cd], a
-	ld [wd4ce], a
+	ld [wObjectFollow_Leader], a
+	ld [wObjectFollow_Follower], a
 	ld a, $0
 	ld hl, PlayerObjectTemplate
 	call Function19a6
@@ -3221,10 +3221,10 @@ GetSpawnCoord: ; 8029
 .ok
 	ld [hl], e
 	ld a, $0
-	ld [hMapObjectIndexBuffer1], a
+	ld [hMapObjectIndexBuffer], a
 	ld bc, MapObjects
 	ld a, $0
-	ld [hMapObjectIndexBuffer2], a
+	ld [hObjectStructIndexBuffer], a
 	ld de, ObjectStructs
 	call Function8116
 	ld a, $0
@@ -3269,7 +3269,7 @@ PlayerSpawn_ConvertCoords: ; 808f
 
 Function80a1:: ; 80a1
 	ld a, b
-	call Function18de
+	call CheckObjectVisibility
 	ret c
 	ld hl, OBJECT_MAP_X
 	add hl, bc
@@ -3277,7 +3277,7 @@ Function80a1:: ; 80a1
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld e, [hl]
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	ld b, a
 	call CopyDECoordsToMapObject
 	and a
@@ -3288,26 +3288,26 @@ RefreshPlayerCoords: ; 80b8
 	ld a, [XCoord]
 	add 4
 	ld d, a
-	ld hl, MapX
+	ld hl, PlayerMapX
 	sub [hl]
 	ld [hl], d
 	ld hl, MapObjects + MAPOBJECT_X_COORD
 	ld [hl], d
-	ld hl, MapX2
+	ld hl, PlayerNextMapX
 	ld [hl], d
 	ld d, a
 	ld a, [YCoord]
 	add 4
 	ld e, a
-	ld hl, MapY
+	ld hl, PlayerMapY
 	sub [hl]
 	ld [hl], e
 	ld hl, MapObjects + MAPOBJECT_Y_COORD
 	ld [hl], e
-	ld hl, MapY2
+	ld hl, PlayerNextMapY
 	ld [hl], e
 	ld e, a
-	ld a, [wd4cd]
+	ld a, [wObjectFollow_Leader]
 	cp $0
 	ret nz
 	ret
@@ -3322,12 +3322,12 @@ CopyObjectStruct:: ; 80e7
 	ld a, 1
 	ld de, OBJECT_STRUCT_LENGTH
 .loop
-	ld [hMapObjectIndexBuffer2], a
+	ld [hObjectStructIndexBuffer], a
 	ld a, [hl]
 	and a
 	jr z, .done
 	add hl, de
-	ld a, [hMapObjectIndexBuffer2]
+	ld a, [hObjectStructIndexBuffer]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -3354,11 +3354,11 @@ Function8116: ; 8116
 ; 811d
 
 Function811d: ; 811d
-	ld a, [hMapObjectIndexBuffer2]
+	ld a, [hObjectStructIndexBuffer]
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld [hl], a
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	ld [wc2f0], a
 	ld hl, MAPOBJECT_SPRITE
 	add hl, bc
@@ -3406,7 +3406,7 @@ Function8177: ; 8177
 	ld bc, MapObjects + OBJECT_LENGTH
 	ld a, 1
 .loop
-	ld [hMapObjectIndexBuffer1], a
+	ld [hMapObjectIndexBuffer], a
 	ld hl, MAPOBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
@@ -3447,7 +3447,7 @@ Function8177: ; 8177
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	inc a
 	cp NUM_OBJECTS
 	jr nz, .loop
@@ -3491,7 +3491,7 @@ Function81ea: ; 81ea
 	ld bc, MapObjects + OBJECT_LENGTH
 	ld a, 1
 .loop
-	ld [hMapObjectIndexBuffer1], a
+	ld [hMapObjectIndexBuffer], a
 	ld hl, MAPOBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
@@ -3526,7 +3526,7 @@ Function81ea: ; 81ea
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	inc a
 	cp NUM_OBJECTS
 	jr nz, .loop
@@ -3549,7 +3549,7 @@ Function823e: ; 823e
 	ld bc, MapObjects + OBJECT_LENGTH
 	ld a, 1
 .loop
-	ld [hMapObjectIndexBuffer1], a
+	ld [hMapObjectIndexBuffer], a
 	ld hl, MAPOBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
@@ -3584,7 +3584,7 @@ Function823e: ; 823e
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	inc a
 	cp NUM_OBJECTS
 	jr nz, .loop
@@ -3773,13 +3773,13 @@ Function8388: ; 8388
 Function839e:: ; 839e
 	push bc
 	ld a, c
-	call Function18de
+	call CheckObjectVisibility
 	ld d, b
 	ld e, c
 	pop bc
 	ret c
 	ld a, b
-	call Function18de
+	call CheckObjectVisibility
 	ret c
 	ld hl, OBJECT_MAP_X
 	add hl, bc
@@ -3841,13 +3841,13 @@ Function839e:: ; 839e
 	ld hl, OBJECT_SPRITE_Y
 	add hl, de
 	ld [hl], a
-	ld a, [hMapObjectIndexBuffer2]
+	ld a, [hObjectStructIndexBuffer]
 	ld hl, OBJECT_32
 	add hl, de
 	ld [hl], a
-	ld hl, OBJECT_03
+	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, de
-	ld [hl], $1a
+	ld [hl], SPRITEMOVEDATA_1A
 	ld hl, OBJECT_09
 	add hl, de
 	ld [hl], $0
@@ -3977,7 +3977,7 @@ Function848a: ; 848a
 ; 849d
 
 Function849d: ; 849d
-	ld a, [wd4cd]
+	ld a, [wObjectFollow_Leader]
 	call GetObjectStruct
 	ld hl, OBJECT_MAP_X
 	add hl, bc
@@ -3985,7 +3985,7 @@ Function849d: ; 849d
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld e, [hl]
-	ld a, [wd4ce]
+	ld a, [wObjectFollow_Follower]
 	call GetObjectStruct
 	ld hl, OBJECT_MAP_X
 	add hl, bc
@@ -5325,7 +5325,7 @@ Script_UsedWaterfall: ; 0xcb20
 CheckContinueWaterfall: ; cb38
 	xor a
 	ld [ScriptVar], a
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	call CheckWaterfallTile
 	ret z
 	callba MobileFn_1060c1
@@ -6067,7 +6067,7 @@ GetFacingObject: ; cf0d
 	callba CheckFacingObject
 	jr nc, .fail
 
-	ld a, [hMapObjectIndexBuffer2]
+	ld a, [hObjectStructIndexBuffer]
 	call GetObjectStruct
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
@@ -17687,7 +17687,7 @@ INCLUDE "gfx/overworld/sprite_headers.asm"
 
 
 Function1499a:: ; 1499a
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	cp $60
 	jr z, .asm_149ad
 	cp $68
@@ -17704,7 +17704,7 @@ Function1499a:: ; 1499a
 ; 149af
 
 Function149af:: ; 149af
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	cp $70
 	jr z, .asm_149c4
 	cp $76
@@ -17724,7 +17724,7 @@ Function149af:: ; 149af
 CheckWarpCollision: ; 149c6
 	ld de, 1
 	ld hl, .blocks
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	call IsInArray
 	ret
 ; 149d3
@@ -17743,7 +17743,7 @@ CheckWarpCollision: ; 149c6
 ; 149dd
 
 CheckGrassCollision:: ; 149dd
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	ld hl, .blocks
 	ld de, 1
 	call IsInArray
@@ -17783,7 +17783,7 @@ CheckCutCollision: ; 149f5
 ; 14a07
 
 Function14a07:: ; 14a07
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	ld de, $001f
 	cp $71 ; door
 	ret z
@@ -41815,15 +41815,15 @@ Function4aad3: ; 4aad3
 
 	ld c, a
 	xor a
-	ld [hMapObjectIndexBuffer2], a
+	ld [hObjectStructIndexBuffer], a
 .loop
 	push bc
 	push hl
 	ld e, 0
 	callba Function8e83f
-	ld a, [hMapObjectIndexBuffer2]
+	ld a, [hObjectStructIndexBuffer]
 	inc a
-	ld [hMapObjectIndexBuffer2], a
+	ld [hObjectStructIndexBuffer], a
 	pop hl
 	pop bc
 	dec c
@@ -46604,7 +46604,7 @@ Function503e0: ; 503e0
 	ret z
 	ld c, a
 	xor a
-	ld [hMapObjectIndexBuffer2], a
+	ld [hObjectStructIndexBuffer], a
 .asm_503ea
 	push bc
 	push hl
@@ -46612,9 +46612,9 @@ Function503e0: ; 503e0
 	ld a, BANK(Function8e83f)
 	ld e, $0
 	rst FarCall
-	ld a, [hMapObjectIndexBuffer2]
+	ld a, [hObjectStructIndexBuffer]
 	inc a
-	ld [hMapObjectIndexBuffer2], a
+	ld [hObjectStructIndexBuffer], a
 	pop hl
 	pop bc
 	dec c
@@ -49273,7 +49273,7 @@ CheckTileMovement: ; 800b7
 ; Tiles such as waterfalls and warps move the player
 ; in a given direction, overriding input.
 
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	ld c, a
 	call CheckWhirlpoolTile
 	jr c, .asm_800c4
@@ -49434,7 +49434,7 @@ TryStep: ; 8016b
 	cp 2
 	jr z, .asm_801be
 
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	call CheckIceTile
 	jr nc, .ice
 
@@ -49521,7 +49521,7 @@ TrySurfStep: ; 801c0
 
 
 TryJumpLedge: ; 801f3
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	ld e, a
 	and $f0
 	cp $a0 ; ledge
@@ -49573,7 +49573,7 @@ CheckEdgeWarp: ; 80226
 	ld d, 0
 	ld hl, .EdgeWarps
 	add hl, de
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	cp [hl]
 	jr nz, .asm_80259
 
@@ -49757,7 +49757,7 @@ GetMovementAction: ; 802ec
 ;	tile collision pointer
 .table1
 	db STANDING, FACE_CURRENT, 0, 0
-	dw StandingTile
+	dw PlayerStandingTile
 .table2
 	db RIGHT, FACE_RIGHT,  1,  0
 	dw TileRight
@@ -49773,13 +49773,13 @@ GetMovementAction: ; 802ec
 IsNPCInFront: ; 80341
 
 	ld a, 0
-	ld [hMapObjectIndexBuffer1], a
-	ld a, [MapX]
+	ld [hMapObjectIndexBuffer], a
+	ld a, [PlayerMapX]
 	ld d, a
 	ld a, [WalkingX]
 	add d
 	ld d, a
-	ld a, [MapY]
+	ld a, [PlayerMapY]
 	ld e, a
 	ld a, [WalkingY]
 	add e
@@ -49963,7 +49963,7 @@ Function80404:: ; 80404
 	jr z, .asm_80420
 	cp $f0
 	jr z, .asm_80420
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	call CheckIceTile
 	jr nc, .asm_8041e
 	ld a, [PlayerState]
@@ -58179,7 +58179,7 @@ Function8e862: ; 8e862 (23:6862)
 
 Function8e86c: ; 8e86c (23:686c)
 	push bc
-	ld a, [hMapObjectIndexBuffer2]
+	ld a, [hObjectStructIndexBuffer]
 	ld hl, PartyMon1Item
 	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
@@ -58251,7 +58251,7 @@ Function8e8d5: ; 8e8d5 (23:68d5)
 
 Function8e8df: ; 8e8df (23:68df)
 	push bc
-	ld a, [hMapObjectIndexBuffer2]
+	ld a, [hObjectStructIndexBuffer]
 	ld hl, PartyMon1Item
 	ld bc, $30
 	call AddNTimes
@@ -58279,7 +58279,7 @@ Function8e8df: ; 8e8df (23:68df)
 Function8e908: ; 8e908 (23:6908)
 	ld a, [wc3b7]
 	push af
-	ld a, [hMapObjectIndexBuffer2]
+	ld a, [hObjectStructIndexBuffer]
 	ld hl, PartySpecies
 	ld e, a
 	ld d, $0
@@ -58288,7 +58288,7 @@ Function8e908: ; 8e908 (23:6908)
 	call ReadMonMenuIcon
 	ld [CurIcon], a
 	call Function8e9db
-	ld a, [hMapObjectIndexBuffer2]
+	ld a, [hObjectStructIndexBuffer]
 rept 4
 	add a
 endr
@@ -58305,7 +58305,7 @@ endr
 
 Function8e936: ; 8e936 (23:6936)
 	push bc
-	ld a, [hMapObjectIndexBuffer2]
+	ld a, [hObjectStructIndexBuffer]
 	ld b, a
 	call Function8e94c
 	ld a, b
@@ -77866,11 +77866,11 @@ Function104263: ; 104263 (41:4263)
 	ld c, $0
 
 Function104265: ; 104265 (41:4265)
-; back up the value of c to hMapObjectIndexBuffer1
-	ld a, [hMapObjectIndexBuffer1]
+; back up the value of c to hMapObjectIndexBuffer
+	ld a, [hMapObjectIndexBuffer]
 	push af
 	ld a, c
-	ld [hMapObjectIndexBuffer1], a
+	ld [hMapObjectIndexBuffer], a
 
 ; for each row on the screen
 	ld c, SCREEN_HEIGHT
@@ -77886,7 +77886,7 @@ Function104265: ; 104265 (41:4265)
 	jr nz, .loop2
 
 ; load the original value of c into hl 12 times
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	ld b, 12
 .loop3
 	ld [hli], a
@@ -77896,9 +77896,9 @@ Function104265: ; 104265 (41:4265)
 	dec c
 	jr nz, .loop1
 
-; restore the original value of hMapObjectIndexBuffer1
+; restore the original value of hMapObjectIndexBuffer
 	pop af
-	ld [hMapObjectIndexBuffer1], a
+	ld [hMapObjectIndexBuffer], a
 	ret
 
 
@@ -78411,7 +78411,7 @@ CheckMovingOffEdgeOfMap:: ; 104820 (41:4820)
 	and a
 	ret
 .down
-	ld a, [MapY]
+	ld a, [PlayerMapY]
 	sub 4
 	ld b, a
 	ld a, [MapHeight]
@@ -78421,21 +78421,21 @@ CheckMovingOffEdgeOfMap:: ; 104820 (41:4820)
 	and a
 	ret
 .up
-	ld a, [MapY]
+	ld a, [PlayerMapY]
 	sub 4
 	cp -1
 	jr z, .ok
 	and a
 	ret
 .left
-	ld a, [MapX]
+	ld a, [PlayerMapX]
 	sub $4
 	cp -1
 	jr z, .ok
 	and a
 	ret
 .right
-	ld a, [MapX]
+	ld a, [PlayerMapX]
 	sub 4
 	ld b, a
 	ld a, [MapWidth]

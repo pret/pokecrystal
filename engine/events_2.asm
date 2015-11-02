@@ -161,7 +161,7 @@ CanUseSweetScent:: ; 97cfd
 	jr nc, .no
 
 .ice_check
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	call CheckIceTile
 	jr z, .no
 	scf
@@ -235,7 +235,7 @@ ChooseWildEncounter_BugContest:: ; 97d31
 ; 97d64
 
 TryWildEncounter_BugContest: ; 97d64
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	call CheckSuperTallGrassTile
 	ld b, 40 percent
 	jr z, .ok
@@ -352,7 +352,7 @@ Function97e08:: ; 97e08
 	ld hl, wd6de
 	xor a
 .asm_97e0c
-	ld [hMapObjectIndexBuffer1], a
+	ld [hMapObjectIndexBuffer], a
 	ld a, [hl]
 	and a
 	jr z, .asm_97e19
@@ -365,7 +365,7 @@ Function97e08:: ; 97e08
 .asm_97e19
 	ld de, $0006
 	add hl, de
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	inc a
 	cp $4
 	jr nz, .asm_97e0c

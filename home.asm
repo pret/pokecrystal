@@ -1515,11 +1515,11 @@ FacingPlayerDistance:: ; 36ad
 	add hl, bc
 	ld e, [hl]
 
-	ld a, [MapX]
+	ld a, [PlayerMapX]
 	cp d
 	jr z, .CheckY
 
-	ld a, [MapY]
+	ld a, [PlayerMapY]
 	cp e
 	jr z, .CheckX
 
@@ -1527,7 +1527,7 @@ FacingPlayerDistance:: ; 36ad
 	ret
 
 .CheckY
-	ld a, [MapY]
+	ld a, [PlayerMapY]
 	sub e
 	jr z, .NotFacing
 	jr nc, .Above
@@ -1545,7 +1545,7 @@ FacingPlayerDistance:: ; 36ad
 	jr .CheckFacing
 
 .CheckX
-	ld a, [MapX]
+	ld a, [PlayerMapX]
 	sub d
 	jr z, .NotFacing
 	jr nc, .Left

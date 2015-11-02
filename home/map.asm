@@ -252,10 +252,10 @@ Function2252:: ; 2252
 ; 2266
 
 Function2266:: ; 2266
-	ld a, [MapY]
+	ld a, [PlayerMapY]
 	sub $4
 	ld e, a
-	ld a, [MapX]
+	ld a, [PlayerMapX]
 	sub $4
 	ld d, a
 	ld a, [wCurrMapWarpCount]
@@ -652,11 +652,11 @@ Function2457:: ; 2457
 ; 2471
 
 Function2471:: ; 2471
-	ld hl, ObjectStruct1
+	ld hl, Object1Struct
 	ld bc, OBJECT_STRUCT_LENGTH * (NUM_OBJECT_STRUCTS - 1)
 	xor a
 	call ByteFill
-	ld hl, ObjectStruct1
+	ld hl, Object1Struct
 	ld de, OBJECT_STRUCT_LENGTH
 	ld c, NUM_OBJECT_STRUCTS - 1
 	xor a
@@ -729,9 +729,9 @@ ChangeMap:: ; 24e4
 
 	ld hl, OverworldMap
 	ld a, [MapWidth]
-	ld [hMapObjectIndexBuffer2], a
+	ld [hObjectStructIndexBuffer], a
 	add $6
-	ld [hMapObjectIndexBuffer1], a
+	ld [hMapObjectIndexBuffer], a
 	ld c, a
 	ld b, 0
 rept 3
@@ -750,7 +750,7 @@ endr
 	ld b, a
 .asm_250c
 	push hl
-	ld a, [hMapObjectIndexBuffer2]
+	ld a, [hObjectStructIndexBuffer]
 	ld c, a
 .asm_2510
 	ld a, [de]
@@ -759,7 +759,7 @@ endr
 	dec c
 	jr nz, .asm_2510
 	pop hl
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	add l
 	ld l, a
 	jr nc, .asm_251e
@@ -794,10 +794,10 @@ FillMapConnections:: ; 2524
 	ld e, a
 	ld a, [NorthConnectionStripLocation + 1]
 	ld d, a
-	ld a, [NorthMapObjectIndexBuffer1]
-	ld [hMapObjectIndexBuffer1], a
-	ld a, [NorthMapObjectIndexBuffer2]
-	ld [hMapObjectIndexBuffer2], a
+	ld a, [NorthMapObjectIndexBuffer]
+	ld [hMapObjectIndexBuffer], a
+	ld a, [NorthObjectStructIndexBuffer]
+	ld [hObjectStructIndexBuffer], a
 	call FillNorthConnectionStrip
 
 .South
@@ -817,10 +817,10 @@ FillMapConnections:: ; 2524
 	ld e, a
 	ld a, [SouthConnectionStripLocation + 1]
 	ld d, a
-	ld a, [SouthMapObjectIndexBuffer1]
-	ld [hMapObjectIndexBuffer1], a
-	ld a, [SouthMapObjectIndexBuffer2]
-	ld [hMapObjectIndexBuffer2], a
+	ld a, [SouthMapObjectIndexBuffer]
+	ld [hMapObjectIndexBuffer], a
+	ld a, [SouthObjectStructIndexBuffer]
+	ld [hObjectStructIndexBuffer], a
 	call FillSouthConnectionStrip
 
 .West
@@ -843,7 +843,7 @@ FillMapConnections:: ; 2524
 	ld a, [WestConnectionStripLength]
 	ld b, a
 	ld a, [WestConnectedMapWidth]
-	ld [hMapObjectIndexBuffer1], a
+	ld [hMapObjectIndexBuffer], a
 	call FillWestConnectionStrip
 
 .East
@@ -866,7 +866,7 @@ FillMapConnections:: ; 2524
 	ld a, [EastConnectionStripLength]
 	ld b, a
 	ld a, [EastConnectedMapWidth]
-	ld [hMapObjectIndexBuffer1], a
+	ld [hMapObjectIndexBuffer], a
 	call FillEastConnectionStrip
 
 .Done
@@ -882,7 +882,7 @@ FillSouthConnectionStrip:: ; 25d3
 	push de
 
 	push hl
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	ld b, a
 .x
 	ld a, [hli]
@@ -892,7 +892,7 @@ FillSouthConnectionStrip:: ; 25d3
 	jr nz, .x
 	pop hl
 
-	ld a, [hMapObjectIndexBuffer2]
+	ld a, [hObjectStructIndexBuffer]
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -917,7 +917,7 @@ FillEastConnectionStrip:: ; 25f6
 .asm_25f6
 	ld a, [MapWidth]
 	add 6
-	ld [hMapObjectIndexBuffer2], a
+	ld [hObjectStructIndexBuffer], a
 
 	push de
 
@@ -933,13 +933,13 @@ FillEastConnectionStrip:: ; 25f6
 	inc de
 	pop hl
 
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	ld e, a
 	ld d, 0
 	add hl, de
 	pop de
 
-	ld a, [hMapObjectIndexBuffer2]
+	ld a, [hObjectStructIndexBuffer]
 	add e
 	ld e, a
 	jr nc, .asm_2617
@@ -1171,7 +1171,7 @@ CoordinatesEventText:: ; 2702
 
 
 CheckObjectMask:: ; 2707
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	ld e, a
 	ld d, $0
 	ld hl, wObjectMasks
@@ -1181,7 +1181,7 @@ CheckObjectMask:: ; 2707
 ; 2712
 
 MaskObject:: ; 2712
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	ld e, a
 	ld d, $0
 	ld hl, wObjectMasks
@@ -1191,7 +1191,7 @@ MaskObject:: ; 2712
 ; 271e
 
 UnmaskObject:: ; 271e
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	ld e, a
 	ld d, $0
 	ld hl, wObjectMasks
@@ -1463,7 +1463,7 @@ SaveScreen:: ; 289d
 	ld de, XCoord + 1
 	ld a, [MapWidth]
 	add $6
-	ld [hMapObjectIndexBuffer1], a
+	ld [hMapObjectIndexBuffer], a
 	ld a, [wd151]
 	and a
 	jr z, .asm_28cb
@@ -1477,7 +1477,7 @@ SaveScreen:: ; 289d
 
 .asm_28c0
 	ld de, wdcbf
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	ld c, a
 	ld b, $0
 	add hl, bc
@@ -1512,7 +1512,7 @@ LoadNeighboringBlockData:: ; 28e3
 	ld l, a
 	ld a, [MapWidth]
 	add $6
-	ld [hMapObjectIndexBuffer1], a
+	ld [hMapObjectIndexBuffer], a
 	ld de, XCoord + 1
 	ld b, $6
 	ld c, $5
@@ -1537,7 +1537,7 @@ Function28f7:: ; 28f7
 
 .asm_2908
 	pop hl
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	ld c, a
 	ld b, $0
 	add hl, bc
@@ -1552,15 +1552,15 @@ Function2914:: ; 2914
 	ld [TilePermissions], a
 	call Function296c
 	call Function294d
-	ld a, [MapX]
+	ld a, [PlayerMapX]
 	ld d, a
-	ld a, [MapY]
+	ld a, [PlayerMapY]
 	ld e, a
 	call Function2a3c
-	ld [StandingTile], a
+	ld [PlayerStandingTile], a
 	call Function29ff
 	ret nz
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	and 7
 	ld hl, .data_2945
 	add l
@@ -1580,9 +1580,9 @@ Function2914:: ; 2914
 ; 294d
 
 Function294d:: ; 294d
-	ld a, [MapX]
+	ld a, [PlayerMapX]
 	ld d, a
-	ld a, [MapY]
+	ld a, [PlayerMapY]
 	ld e, a
 	push de
 	inc e
@@ -1598,9 +1598,9 @@ Function294d:: ; 294d
 ; 296c
 
 Function296c:: ; 296c
-	ld a, [MapX]
+	ld a, [PlayerMapX]
 	ld d, a
-	ld a, [MapY]
+	ld a, [PlayerMapY]
 	ld e, a
 	push de
 	dec d
@@ -1725,10 +1725,10 @@ endr
 	ld h, [hl]
 	ld l, a
 
-	ld a, [MapX]
+	ld a, [PlayerMapX]
 	add d
 	ld d, a
-	ld a, [MapY]
+	ld a, [PlayerMapY]
 	add e
 	ld e, a
 	ld a, [hl]
@@ -1906,10 +1906,10 @@ CheckStandingOnXYTrigger:: ; 2ae7
 	call CheckTriggers
 	ld b, a
 ; Load your current coordinates into de.  This will be used to check if your position is in the xy-trigger table for the current map.
-	ld a, [MapX]
+	ld a, [PlayerMapX]
 	sub 4
 	ld d, a
-	ld a, [MapY]
+	ld a, [PlayerMapY]
 	sub 4
 	ld e, a
 

@@ -14428,7 +14428,7 @@ Function11ad1b: ; 11ad1b
 	ld a, [wcfa9]
 	ld [wcd82], a
 	dec a
-	ld [hMapObjectIndexBuffer2], a
+	ld [hObjectStructIndexBuffer], a
 	ld a, $10
 	ld [wc3b7], a
 	ld hl, Function8e83f

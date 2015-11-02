@@ -306,12 +306,12 @@ ScriptVar:: ; c2dd
 
 wc2de:: ds 1
 wc2df:: ds 3
-wc2e2:: ds 1
-wc2e3:: ds 3
+wMovementPerson:: ds 1
+wMovementDataPointer:: ds 3
 wc2e6:: ds 4
 wc2ea:: ds 1
-wc2eb:: ds 1
-wc2ec:: ds 4
+wMovementPointer:: ds 2
+	ds 3
 wc2f0:: ds 1
 wc2f1:: ds 1
 wc2f2:: ds 1
@@ -1649,9 +1649,9 @@ NorthConnectionStripPointer:: ; d1ab
 	ds 2
 NorthConnectionStripLocation:: ; d1ad
 	ds 2
-NorthMapObjectIndexBuffer1:: ; d1af
+NorthMapObjectIndexBuffer:: ; d1af
 	ds 1
-NorthMapObjectIndexBuffer2:: ; d1b0
+NorthObjectStructIndexBuffer:: ; d1b0
 	ds 1
 NorthConnectionStripYOffset:: ; d1b1
 	ds 1
@@ -1669,9 +1669,9 @@ SouthConnectionStripPointer:: ; d1b7
 	ds 2
 SouthConnectionStripLocation:: ; d1b9
 	ds 2
-SouthMapObjectIndexBuffer1:: ; d1bb
+SouthMapObjectIndexBuffer:: ; d1bb
 	ds 1
-SouthMapObjectIndexBuffer2:: ; d1bc
+SouthObjectStructIndexBuffer:: ; d1bc
 	ds 1
 SouthConnectionStripYOffset:: ; d1bd
 	ds 1
@@ -2036,85 +2036,57 @@ CurDay:: ; d4cb
 	ds 1
 
 	ds 1
-wd4cd:: ds 1
-wd4ce:: ds 1
+wObjectFollow_Leader:: ds 1
+wObjectFollow_Follower:: ds 1
 wd4cf:: ds 1
 wd4d0:: ds 1
-wd4d1:: ds 5
+wd4d1:: ds 1
+	ds 4
 
 ObjectStructs::
-
-PlayerStruct:: ; d4d6
-	ds 2
-PlayerSprite:: ; d4d8
+object_struct: MACRO
+\1Struct::
+\1Sprite:: ds 1
+\1MapObjectIndex:: ds 1
+\1SpriteTile:: ds 1
+\1MovementType:: ds 1
+\1Flags:: ds 2
+\1Palette:: ds 1
+\1Walking:: ds 1
+\1Direction:: ds 1
 	ds 1
+\1StepDuration:: ds 1
+\1Action:: ds 1
+\1Object12:: ds 1
+\1Facing:: ds 1
+\1StandingTile:: ds 1
+\1NextTile:: ds 1
+\1MapX:: ds 1
+\1MapY:: ds 1
+\1NextMapX:: ds 1
+\1NextMapY:: ds 1
 	ds 3
-PlayerPalette:: ; d4dc
-	ds 1
-	ds 1
-PlayerDirection:: ; d4de
-; uses bits 2 and 3 / $0c / %00001100
-; %00 down
-; %01 up
-; %10 left
-; $11 right
-	ds 1
-	ds 2
-PlayerAction:: ; d4e1
-; 1 standing
-; 2 walking
-; 4 spinning
-; 6 fishing
-	ds 1
-wd4e2:: ds 1
-PlayerFacing:: ; d4e3
-	ds 1
-StandingTile:: ; d4e4
-	ds 1
-StandingTile2:: ; d4e5
-	ds 1
-; relative to the map struct including borders
-MapX:: ; d4e6
-	ds 1
-MapY:: ; d4e7
-	ds 1
-MapX2:: ; d4e8
-	ds 1
-MapY2:: ; d4e9
-	ds 1
-	ds 3
-; relative to the bg map, in px
-PlayerSpriteX:: ; d4ed
-	ds 1
-PlayerSpriteY:: ; d4ee
-	ds 1
-	ds 15
+\1SpriteX:: ds 1
+\1SpriteY:: ds 1
+\1SpriteXOffset:: ds 1
+\1SpriteYOffset:: ds 1
+	ds 6
+	ds 7
+ENDM
 
-ObjectStruct1:: ; d4fe
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct2:: ; d526
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct3:: ; d54e
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct4:: ; d576
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct5:: ; d59e
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct6:: ; d5c6
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct7:: ; d5ee
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct8:: ; d616
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct9:: ; d63e
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct10:: ; d666
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct11:: ; d68e
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct12:: ; d6b6
-	ds OBJECT_STRUCT_LENGTH
-; d6de
+	object_struct Player
+	object_struct Object1
+	object_struct Object2
+	object_struct Object3
+	object_struct Object4
+	object_struct Object5
+	object_struct Object6
+	object_struct Object7
+	object_struct Object8
+	object_struct Object9
+	object_struct Object10
+	object_struct Object11
+	object_struct Object12
 
 wd6de::
 	ds 64

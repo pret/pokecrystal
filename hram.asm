@@ -32,8 +32,8 @@ hJoyDown           EQU $ffa8
 hJoyLast           EQU $ffa9
 hInMenu            EQU $ffaa
 
-hMapObjectIndexBuffer1 EQU $ffaf
-hMapObjectIndexBuffer2 EQU $ffb0
+hMapObjectIndexBuffer EQU $ffaf
+hObjectStructIndexBuffer EQU $ffb0
 
 hPastLeadingZeroes EQU $ffb3
 

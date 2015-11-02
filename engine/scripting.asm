@@ -1191,7 +1191,7 @@ endr
 ApplyPersonFacing: ; 0x9728b
 	ld a, d
 	push de
-	call Function18de
+	call CheckObjectVisibility
 	jr c, .not_visible ; 0x97290 $27
 	ld hl, OBJECT_SPRITE
 	add hl, bc
@@ -1258,7 +1258,7 @@ Script_appear: ; 0x972dd
 	call GetScriptByte
 	call GetScriptPerson
 	call _CopyObjectStruct
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	ld b, 0 ; clear
 	call ApplyEventActionAppearDisappear
 	ret
@@ -1276,7 +1276,7 @@ Script_disappear: ; 0x972ee
 	ld a, [hLastTalked]
 .ok
 	call DeleteObjectStruct
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	ld b, 1 ; set
 	call ApplyEventActionAppearDisappear
 	callba RefreshMapAppearDisappear
@@ -1316,14 +1316,14 @@ Script_follow: ; 0x97325
 	call GetScriptByte
 	call GetScriptPerson
 	ld c, a
-	callba Function5803
+	callba StartFollow
 	ret
 ; 0x9733a
 
 Script_stopfollow: ; 0x9733a
 ; script command 0x71
 
-	callba Function581f
+	callba StopFollow
 	ret
 ; 0x97341
 

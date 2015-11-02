@@ -3247,7 +3247,7 @@ MonFaintedAnimation: ; 3d444
 
 
 Function3d490: ; 3d490
-	ld [hMapObjectIndexBuffer1], a
+	ld [hMapObjectIndexBuffer], a
 	ld c, a
 .asm_3d493
 	push bc
@@ -3271,7 +3271,7 @@ Function3d490: ; 3d490
 ; 3d4ae
 
 Function3d4ae: ; 3d4ae
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	ld c, a
 	cp $8
 	jr nz, .back
@@ -9486,7 +9486,7 @@ Function3fc30: ; 3fc30
 Function3fc5b: ; 3fc5b
 	ld hl, Sprites
 	xor a
-	ld [hMapObjectIndexBuffer1], a
+	ld [hMapObjectIndexBuffer], a
 	ld b, $6
 	ld e, $a8
 .asm_3fc65
@@ -9497,10 +9497,10 @@ Function3fc5b: ; 3fc5b
 	inc hl
 	ld [hl], e
 	inc hl
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	ld [hli], a
 	inc a
-	ld [hMapObjectIndexBuffer1], a
+	ld [hMapObjectIndexBuffer], a
 	ld a, $1
 	ld [hli], a
 	ld a, d
@@ -9508,9 +9508,9 @@ Function3fc5b: ; 3fc5b
 	ld d, a
 	dec c
 	jr nz, .asm_3fc69
-	ld a, [hMapObjectIndexBuffer1]
+	ld a, [hMapObjectIndexBuffer]
 	add $3
-	ld [hMapObjectIndexBuffer1], a
+	ld [hMapObjectIndexBuffer], a
 	ld a, e
 	add $8
 	ld e, a
