@@ -35,6 +35,9 @@ hInMenu            EQU $ffaa
 hMapObjectIndexBuffer EQU $ffaf
 hObjectStructIndexBuffer EQU $ffb0
 
+hConnectionStripLength EQU $ffaf
+hConnectedMapWidth EQU $ffb0
+
 hPastLeadingZeroes EQU $ffb3
 
 hStringCmpString1  EQU $ffb1

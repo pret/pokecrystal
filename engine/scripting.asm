@@ -1209,28 +1209,29 @@ ApplyPersonFacing: ; 0x9728b
 	call SetSpriteDirection
 	ld hl, VramState
 	bit 6, [hl]
-	jr nz, .asm_972b5 ; 0x972b0 $3
-	call Function972bc
-.asm_972b5
+	jr nz, .text_state ; 0x972b0 $3
+	call .DisableTextTiles
+.text_state
 	call UpdateSprites
 	ret
+
 .not_visible
 	pop de
 	scf
 	ret
 ; 0x972bc
 
-Function972bc: ; 0x972bc
+.DisableTextTiles: ; 0x972bc
 	call Function217a
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-.asm_972c5
+.loop
 	res 7, [hl]
 	inc hl
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_972c5 ; 0x972cb $f8
+	jr nz, .loop ; 0x972cb $f8
 	ret
 ; 0x972ce
 

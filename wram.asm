@@ -1649,9 +1649,9 @@ NorthConnectionStripPointer:: ; d1ab
 	ds 2
 NorthConnectionStripLocation:: ; d1ad
 	ds 2
-NorthMapObjectIndexBuffer:: ; d1af
+NorthConnectionStripLength:: ; d1af
 	ds 1
-NorthObjectStructIndexBuffer:: ; d1b0
+NorthConnectedMapWidth:: ; d1b0
 	ds 1
 NorthConnectionStripYOffset:: ; d1b1
 	ds 1
@@ -1669,9 +1669,9 @@ SouthConnectionStripPointer:: ; d1b7
 	ds 2
 SouthConnectionStripLocation:: ; d1b9
 	ds 2
-SouthMapObjectIndexBuffer:: ; d1bb
+SouthConnectionStripLength:: ; d1bb
 	ds 1
-SouthObjectStructIndexBuffer:: ; d1bc
+SouthConnectedMapWidth:: ; d1bc
 	ds 1
 SouthConnectionStripYOffset:: ; d1bd
 	ds 1
@@ -1927,6 +1927,8 @@ wd431:: ds 1
 MapStatus:: ; d432
 	ds 1
 MapEventStatus:: ; d433
+; 0: do map events
+; 1: do background events
 	ds 1
 
 ScriptFlags:: ; d434

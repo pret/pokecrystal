@@ -111,7 +111,7 @@ Function217a:: ; 217a
 	call Function2198
 	ld a, $60
 	hlcoord 0, 0
-	ld bc, TileMapEnd - TileMap
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 
 	ld a, BANK(Function4d15b)
@@ -131,12 +131,12 @@ Function2198:: ; 2198
 	ld hl, wEnemyMoveStruct
 	ld b, $5
 
-.asm_21a5
+.loop
 	push de
 	push hl
 	ld c, $6
 
-.asm_21a9
+.loop2
 	push de
 	push hl
 	ld a, [de]
@@ -187,7 +187,7 @@ endr
 	pop de
 	inc de
 	dec c
-	jp nz, .asm_21a9
+	jp nz, .loop2
 	pop hl
 	ld de, $0060
 	add hl, de
@@ -201,7 +201,7 @@ endr
 
 .asm_2225
 	dec b
-	jp nz, .asm_21a5
+	jp nz, .loop
 	ret
 ; 222a
 
@@ -729,9 +729,9 @@ ChangeMap:: ; 24e4
 
 	ld hl, OverworldMap
 	ld a, [MapWidth]
-	ld [hObjectStructIndexBuffer], a
+	ld [hConnectedMapWidth], a
 	add $6
-	ld [hMapObjectIndexBuffer], a
+	ld [hConnectionStripLength], a
 	ld c, a
 	ld b, 0
 rept 3
@@ -750,7 +750,7 @@ endr
 	ld b, a
 .asm_250c
 	push hl
-	ld a, [hObjectStructIndexBuffer]
+	ld a, [hConnectedMapWidth]
 	ld c, a
 .asm_2510
 	ld a, [de]
@@ -759,7 +759,7 @@ endr
 	dec c
 	jr nz, .asm_2510
 	pop hl
-	ld a, [hMapObjectIndexBuffer]
+	ld a, [hConnectionStripLength]
 	add l
 	ld l, a
 	jr nc, .asm_251e
@@ -794,10 +794,10 @@ FillMapConnections:: ; 2524
 	ld e, a
 	ld a, [NorthConnectionStripLocation + 1]
 	ld d, a
-	ld a, [NorthMapObjectIndexBuffer]
-	ld [hMapObjectIndexBuffer], a
-	ld a, [NorthObjectStructIndexBuffer]
-	ld [hObjectStructIndexBuffer], a
+	ld a, [NorthConnectionStripLength]
+	ld [hConnectionStripLength], a
+	ld a, [NorthConnectedMapWidth]
+	ld [hConnectedMapWidth], a
 	call FillNorthConnectionStrip
 
 .South
@@ -817,10 +817,10 @@ FillMapConnections:: ; 2524
 	ld e, a
 	ld a, [SouthConnectionStripLocation + 1]
 	ld d, a
-	ld a, [SouthMapObjectIndexBuffer]
-	ld [hMapObjectIndexBuffer], a
-	ld a, [SouthObjectStructIndexBuffer]
-	ld [hObjectStructIndexBuffer], a
+	ld a, [SouthConnectionStripLength]
+	ld [hConnectionStripLength], a
+	ld a, [SouthConnectedMapWidth]
+	ld [hConnectedMapWidth], a
 	call FillSouthConnectionStrip
 
 .West
@@ -843,7 +843,7 @@ FillMapConnections:: ; 2524
 	ld a, [WestConnectionStripLength]
 	ld b, a
 	ld a, [WestConnectedMapWidth]
-	ld [hMapObjectIndexBuffer], a
+	ld [hConnectionStripLength], a
 	call FillWestConnectionStrip
 
 .East
@@ -866,7 +866,7 @@ FillMapConnections:: ; 2524
 	ld a, [EastConnectionStripLength]
 	ld b, a
 	ld a, [EastConnectedMapWidth]
-	ld [hMapObjectIndexBuffer], a
+	ld [hConnectionStripLength], a
 	call FillEastConnectionStrip
 
 .Done
@@ -882,7 +882,7 @@ FillSouthConnectionStrip:: ; 25d3
 	push de
 
 	push hl
-	ld a, [hMapObjectIndexBuffer]
+	ld a, [hConnectionStripLength]
 	ld b, a
 .x
 	ld a, [hli]
@@ -892,7 +892,7 @@ FillSouthConnectionStrip:: ; 25d3
 	jr nz, .x
 	pop hl
 
-	ld a, [hObjectStructIndexBuffer]
+	ld a, [hConnectedMapWidth]
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -917,7 +917,7 @@ FillEastConnectionStrip:: ; 25f6
 .asm_25f6
 	ld a, [MapWidth]
 	add 6
-	ld [hObjectStructIndexBuffer], a
+	ld [hConnectedMapWidth], a
 
 	push de
 
@@ -933,13 +933,13 @@ FillEastConnectionStrip:: ; 25f6
 	inc de
 	pop hl
 
-	ld a, [hMapObjectIndexBuffer]
+	ld a, [hConnectionStripLength]
 	ld e, a
 	ld d, 0
 	add hl, de
 	pop de
 
-	ld a, [hObjectStructIndexBuffer]
+	ld a, [hConnectedMapWidth]
 	add e
 	ld e, a
 	jr nc, .asm_2617

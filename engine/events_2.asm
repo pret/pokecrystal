@@ -351,24 +351,24 @@ Function97df9:: ; 97df9
 Function97e08:: ; 97e08
 	ld hl, wd6de
 	xor a
-.asm_97e0c
+.loop
 	ld [hMapObjectIndexBuffer], a
 	ld a, [hl]
 	and a
-	jr z, .asm_97e19
+	jr z, .skip
 	push hl
 	ld b, h
 	ld c, l
 	call Function97e79
 	pop hl
 
-.asm_97e19
+.skip
 	ld de, $0006
 	add hl, de
 	ld a, [hMapObjectIndexBuffer]
 	inc a
 	cp $4
-	jr nz, .asm_97e0c
+	jr nz, .loop
 	ret
 ; 97e25
 
