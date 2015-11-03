@@ -325,7 +325,7 @@
 	map_header_2 OlivineLighthouse4F, OLIVINE_LIGHTHOUSE_4F, $0, 0
 	map_header_2 OlivineLighthouse5F, OLIVINE_LIGHTHOUSE_5F, $0, 0
 	map_header_2 OlivineLighthouse6F, OLIVINE_LIGHTHOUSE_6F, $0, 0
-	map_header_2 MahoganyMart1F, MAHOGANY_MARTTYPE_1F, $0, 0
+	map_header_2 MahoganyMart1F, MAHOGANY_MART_1F, $0, 0
 	map_header_2 TeamRocketBaseB1F, TEAM_ROCKET_BASE_B1F, $0, 0
 	map_header_2 TeamRocketBaseB2F, TEAM_ROCKET_BASE_B2F, $0, 0
 	map_header_2 TeamRocketBaseB3F, TEAM_ROCKET_BASE_B3F, $0, 0

@@ -51,9 +51,9 @@ UnknownScript_0x70035:
 	playsound SFX_WARP_TO
 	applymovement $2, MovementData_0x70155
 	disappear $2
-	clearevent EVENT_MAHOGANY_MARTTYPE_LANCE_AND_DRAGONITE
+	clearevent EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
 	setevent EVENT_DECIDED_TO_HELP_LANCE
-	domaptrigger MAHOGANY_MARTTYPE_1F, $1
+	domaptrigger MAHOGANY_MART_1F, $1
 	end
 
 UnknownScript_0x7004e:

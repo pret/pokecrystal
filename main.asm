@@ -2432,11 +2432,11 @@ Function7041: ; 7041
 .loop
 	ld [hObjectStructIndexBuffer], a
 	call GetObjectSprite
-	jr z, .nope
+	jr z, .next
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 7, [hl]
-	jr nz, .nope
+	jr nz, .next
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	bit 7, [hl]
@@ -2469,19 +2469,19 @@ Function7041: ; 7041
 	add hl, bc
 	ld a, [hl]
 	cp d
-	jr nz, .nope
+	jr nz, .next
 	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
-	jr nz, .nope
+	jr nz, .next
 	ld a, [hMapObjectIndexBuffer]
 	ld l, a
 	ld a, [hObjectStructIndexBuffer]
 	cp l
 	jr nz, .setcarry
 
-.nope
+.next
 	ld hl, OBJECT_STRUCT_LENGTH
 	add hl, bc
 	ld b, h
@@ -16827,7 +16827,7 @@ endr
 
 GetTileAddr: ; 14406
 ; Return the address of tile (a) in (hl).
-	and (VTiles1 - VTiles0) / $10 - 1
+	and $7f
 	ld l, a
 	ld h, 0
 rept 4
@@ -18531,7 +18531,7 @@ MartDialog: ; 15a61
 	ld [EngineBuffer1], a
 	xor a
 	ld [MovementAnimation], a
-	call Function15b47
+	call StandardMart
 	ret
 ; 15a6e
 
@@ -18656,26 +18656,26 @@ endr
 	ret
 ; 15b47
 
-Function15b47: ; 15b47
-.asm_15b47
+StandardMart: ; 15b47
+.loop
 	ld a, [MovementAnimation]
-	ld hl, .table_15b56
+	ld hl, .MartFunctions
 	rst JumpTable
 	ld [MovementAnimation], a
 	cp $ff
-	jr nz, .asm_15b47
+	jr nz, .loop
 	ret
 
-.table_15b56
-	dw Function15b62
-	dw Function15b6e
-	dw Function15b8d
-	dw Function15b9a
-	dw Function15ba3
-	dw Function15baf
+.MartFunctions
+	dw .HowMayIHelpYou
+	dw .TopMenu
+	dw .Buy
+	dw .Sell
+	dw .Quit
+	dw .AnythingElse
 ; 15b62
 
-Function15b62: ; 15b62
+.HowMayIHelpYou: ; 15b62
 	call LoadMenuDataHeader_0x1d75
 	ld hl, UnknownText_0x15f83
 	call PrintText
@@ -18683,28 +18683,28 @@ Function15b62: ; 15b62
 	ret
 ; 15b6e
 
-Function15b6e: ; 15b6e
+.TopMenu: ; 15b6e
 	ld hl, MenuDataHeader_0x15f88
 	call CopyMenuDataHeader
 	call InterpretMenu2
-	jr c, .asm_15b84
+	jr c, .quit
 	ld a, [wcfa9]
 	cp $1
-	jr z, .asm_15b87
+	jr z, .buy
 	cp $2
-	jr z, .asm_15b8a
-.asm_15b84
+	jr z, .sell
+.quit
 	ld a, $4
 	ret
-.asm_15b87
+.buy
 	ld a, $2
 	ret
-.asm_15b8a
+.sell
 	ld a, $3
 	ret
 ; 15b8d
 
-Function15b8d: ; 15b8d
+.Buy: ; 15b8d
 	call ExitMenu
 	call ReadMart
 	call Function15c62
@@ -18713,14 +18713,14 @@ Function15b8d: ; 15b8d
 	ret
 ; 15b9a
 
-Function15b9a: ; 15b9a
+.Sell: ; 15b9a
 	call ExitMenu
 	call Function15eb3
 	ld a, $5
 	ret
 ; 15ba3
 
-Function15ba3: ; 15ba3
+.Quit: ; 15ba3
 	call ExitMenu
 	ld hl, UnknownText_0x15fb4
 	call Function15fcd
@@ -18728,7 +18728,7 @@ Function15ba3: ; 15ba3
 	ret
 ; 15baf
 
-Function15baf: ; 15baf
+.AnythingElse: ; 15baf
 	call LoadMenuDataHeader_0x1d75
 	ld hl, UnknownText_0x15fb9
 	call PrintText
@@ -18743,7 +18743,7 @@ ReadMart: ; 15bbb
 	ld l, a
 	ld de, CurMart
 .CopyMart
-	ld a, [wd03f]
+	ld a, [MartPointerBank]
 	call GetFarByte
 	ld [de], a
 	inc hl
@@ -18755,14 +18755,14 @@ ReadMart: ; 15bbb
 .ReadMartItem
 	ld a, [de]
 	inc de
-	cp $ff
-	jr z, .asm_15be4
+	cp -1
+	jr z, .done
 	push de
 	call GetMartItemPrice
 	pop de
 	jr .ReadMartItem
 
-.asm_15be4
+.done
 	ret
 ; 15be5
 
