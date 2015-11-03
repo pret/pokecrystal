@@ -7,7 +7,7 @@ VermilionMart_MapScriptHeader:
 
 ClerkScript_0x191f7e:
 	loadfont
-	pokemart $0, $0016
+	pokemart MARTTYPE_STANDARD, MART_VERMILION
 	loadmovesprites
 	end
 
@@ -48,6 +48,6 @@ VermilionMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 3, 1, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x191f7e, -1
-	person_event SPRITE_SUPER_NERD, 2, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SuperNerdScript_0x191f85, -1
-	person_event SPRITE_BUENA, 6, 8, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, BuenaScript_0x191f88, -1
+	person_event SPRITE_CLERK, 3, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x191f7e, -1
+	person_event SPRITE_SUPER_NERD, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SuperNerdScript_0x191f85, -1
+	person_event SPRITE_BUENA, 6, 8, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, BuenaScript_0x191f88, -1

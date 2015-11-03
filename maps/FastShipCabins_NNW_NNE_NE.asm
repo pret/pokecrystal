@@ -6,7 +6,7 @@ FastShipCabins_NNW_NNE_NE_MapScriptHeader:
 	db 0
 
 TrainerCooltrainermSean:
-	trainer EVENT_BEAT_COOLTRAINERM_SEAN, COOLTRAINERM, SEAN, CooltrainermSeanSeenText, CooltrainermSeanBeatenText, $0000, CooltrainermSeanScript
+	trainer EVENT_BEAT_COOLTRAINERM_SEAN, COOLTRAINERM, SEAN, CooltrainermSeanSeenText, CooltrainermSeanBeatenText, 0, CooltrainermSeanScript
 
 CooltrainermSeanScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ CooltrainermSeanScript:
 	end
 
 TrainerCooltrainerfCarol:
-	trainer EVENT_BEAT_COOLTRAINERF_CAROL, COOLTRAINERF, CAROL, CooltrainerfCarolSeenText, CooltrainerfCarolBeatenText, $0000, CooltrainerfCarolScript
+	trainer EVENT_BEAT_COOLTRAINERF_CAROL, COOLTRAINERF, CAROL, CooltrainerfCarolSeenText, CooltrainerfCarolBeatenText, 0, CooltrainerfCarolScript
 
 CooltrainerfCarolScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ CooltrainerfCarolScript:
 	end
 
 TrainerPokemaniacEthan:
-	trainer EVENT_BEAT_POKEMANIAC_ETHAN, POKEMANIAC, ETHAN, PokemaniacEthanSeenText, PokemaniacEthanBeatenText, $0000, PokemaniacEthanScript
+	trainer EVENT_BEAT_POKEMANIAC_ETHAN, POKEMANIAC, ETHAN, PokemaniacEthanSeenText, PokemaniacEthanBeatenText, 0, PokemaniacEthanScript
 
 PokemaniacEthanScript:
 	talkaftercancel
@@ -39,7 +39,7 @@ PokemaniacEthanScript:
 	end
 
 TrainerHikerNoland:
-	trainer EVENT_BEAT_HIKER_NOLAND, HIKER, NOLAND, HikerNolandSeenText, HikerNolandBeatenText, $0000, HikerNolandScript
+	trainer EVENT_BEAT_HIKER_NOLAND, HIKER, NOLAND, HikerNolandSeenText, HikerNolandBeatenText, 0, HikerNolandScript
 
 HikerNolandScript:
 	talkaftercancel
@@ -50,7 +50,7 @@ HikerNolandScript:
 	end
 
 TrainerGentlemanEdward:
-	trainer EVENT_BEAT_GENTLEMAN_EDWARD, GENTLEMAN, EDWARD, GentlemanEdwardSeenText, GentlemanEdwardBeatenText, $0000, GentlemanEdwardScript
+	trainer EVENT_BEAT_GENTLEMAN_EDWARD, GENTLEMAN, EDWARD, GentlemanEdwardSeenText, GentlemanEdwardBeatenText, 0, GentlemanEdwardScript
 
 GentlemanEdwardScript:
 	talkaftercancel
@@ -61,7 +61,7 @@ GentlemanEdwardScript:
 	end
 
 TrainerBurglarCorey:
-	trainer EVENT_BEAT_BURGLAR_COREY, BURGLAR, COREY, BurglarCoreySeenText, BurglarCoreyBeatenText, $0000, BurglarCoreyScript
+	trainer EVENT_BEAT_BURGLAR_COREY, BURGLAR, COREY, BurglarCoreySeenText, BurglarCoreyBeatenText, 0, BurglarCoreyScript
 
 BurglarCoreyScript:
 	talkaftercancel
@@ -78,7 +78,7 @@ SailorScript_0x755f1:
 	writetext UnknownText_0x75812
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x75897, $0000
+	winlosstext UnknownText_0x75897, 0
 	loadtrainer SAILOR, STANLY
 	startbattle
 	reloadmap
@@ -278,10 +278,10 @@ FastShipCabins_NNW_NNE_NE_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_COOLTRAINER_M, 3, 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerCooltrainermSean, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	person_event SPRITE_COOLTRAINER_F, 5, 1, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainerfCarol, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	person_event SPRITE_SUPER_NERD, 5, 1, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPokemaniacEthan, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	person_event SPRITE_POKEFAN_M, 17, 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerHikerNoland, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	person_event SPRITE_SAILOR, 26, 4, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SailorScript_0x755f1, EVENT_FAST_SHIP_CABINS_NNW_NNE_NE_SAILOR
-	person_event SPRITE_GENTLEMAN, 30, 7, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerGentlemanEdward, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	person_event SPRITE_PHARMACIST, 30, 2, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 4, TrainerBurglarCorey, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_COOLTRAINER_M, 3, 4, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerCooltrainermSean, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_COOLTRAINER_F, 5, 1, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainerfCarol, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_SUPER_NERD, 5, 1, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPokemaniacEthan, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_POKEFAN_M, 17, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerHikerNoland, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_SAILOR, 26, 4, SPRITEMOVEDATA_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SailorScript_0x755f1, EVENT_FAST_SHIP_CABINS_NNW_NNE_NE_SAILOR
+	person_event SPRITE_GENTLEMAN, 30, 7, SPRITEMOVEDATA_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerGentlemanEdward, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_PHARMACIST, 30, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 4, TrainerBurglarCorey, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND

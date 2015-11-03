@@ -3,7 +3,7 @@ Route28FamousSpeechHouse_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw .Trigger, $0000
+	dw .Trigger, 0
 
 .MapCallbacks:
 	db 0
@@ -87,5 +87,5 @@ Route28FamousSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_COOLTRAINER_F, 3, 2, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, Celebrity, -1
-	person_event SPRITE_MOLTRES, 5, 6, $16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, CelebritysFearow, -1
+	person_event SPRITE_COOLTRAINER_F, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, Celebrity, -1
+	person_event SPRITE_MOLTRES, 5, 6, SPRITEMOVEDATA_16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, CelebritysFearow, -1

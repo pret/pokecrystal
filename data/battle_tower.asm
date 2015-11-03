@@ -773,7 +773,7 @@ BattleTowerMons1:
 
 	db UNOWN
 	db BERRY
-	db HIDDEN_POWER, NONE, NONE, NONE
+	db HIDDEN_POWER, 0, 0, 0
 	dw 0 ; OT ID
 	dt 1000 ; Exp
 	; Stat exp

@@ -178,7 +178,7 @@ YoungsterScript_0x5ce54:
 	jumptextfaceplayer UnknownText_0x5d4ac
 
 TrainerGruntM3:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_3, GRUNTM, 3, GruntM3SeenText, GruntM3BeatenText, $0000, GruntM3Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_3, GRUNTM, 3, GruntM3SeenText, GruntM3BeatenText, 0, GruntM3Script
 
 GruntM3Script:
 	talkaftercancel
@@ -484,9 +484,9 @@ RadioTower1F_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_RECEPTIONIST, 6, 5, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ReceptionistScript_0x5cd29, -1
-	person_event SPRITE_LASS, 4, 16, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, LassScript_0x5ce51, EVENT_GOLDENROD_CITY_CIVILIANS
-	person_event SPRITE_YOUNGSTER, 4, 15, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, YoungsterScript_0x5ce54, EVENT_GOLDENROD_CITY_CIVILIANS
-	person_event SPRITE_ROCKET, 1, 14, $6, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_GENTLEMAN, 6, 8, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GentlemanScript_0x5cd3d, EVENT_GOLDENROD_CITY_CIVILIANS
-	person_event SPRITE_COOLTRAINER_F, 6, 12, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x5cdd5, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_RECEPTIONIST, 6, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ReceptionistScript_0x5cd29, -1
+	person_event SPRITE_LASS, 4, 16, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, LassScript_0x5ce51, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_YOUNGSTER, 4, 15, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, YoungsterScript_0x5ce54, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_ROCKET, 1, 14, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_GENTLEMAN, 6, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GentlemanScript_0x5cd3d, EVENT_GOLDENROD_CITY_CIVILIANS
+	person_event SPRITE_COOLTRAINER_F, 6, 12, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x5cdd5, EVENT_GOLDENROD_CITY_CIVILIANS

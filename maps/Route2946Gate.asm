@@ -51,5 +51,5 @@ Route2946Gate_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_OFFICER, 4, 0, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, OfficerScript_0x7b5bb, -1
-	person_event SPRITE_YOUNGSTER, 4, 6, $4, 1, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x7b5be, -1
+	person_event SPRITE_OFFICER, 4, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, OfficerScript_0x7b5bb, -1
+	person_event SPRITE_YOUNGSTER, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x7b5be, -1

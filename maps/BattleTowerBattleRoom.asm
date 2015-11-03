@@ -3,8 +3,8 @@ BattleTowerBattleRoom_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw Script_EnterBattleRoom, $0000
-	dw UnknownScript_0x9f420, $0000
+	dw Script_EnterBattleRoom, 0
+	dw UnknownScript_0x9f420, 0
 
 .MapCallbacks:
 	db 0
@@ -155,5 +155,5 @@ BattleTowerBattleRoom_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_YOUNGSTER, 0, 4, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_BATTLE_TOWER_BATTLE_ROOM_YOUNGSTER
-	person_event SPRITE_RECEPTIONIST, 6, 1, $9, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1
+	person_event SPRITE_YOUNGSTER, 0, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_BATTLE_TOWER_BATTLE_ROOM_YOUNGSTER
+	person_event SPRITE_RECEPTIONIST, 6, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, -1

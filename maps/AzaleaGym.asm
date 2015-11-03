@@ -5,21 +5,21 @@ AzaleaGym_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-BugsyScript_0x18ec1e:
+BugsyScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_BEAT_BUGSY
 	iftrue .FightDone
-	writetext UnknownText_0x18ed0b
+	writetext BugsyText_INeverLose
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x18edae, $0000
+	winlosstext BugsyText_ResearchIncomplete, 0
 	loadtrainer BUGSY, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_BUGSY
 	loadfont
-	writetext UnknownText_0x18ee14
+	writetext Text_ReceivedHiveBadge
 	playsound SFX_GET_BADGE
 	waitbutton
 	setflag ENGINE_HIVEBADGE
@@ -32,18 +32,18 @@ BugsyScript_0x18ec1e:
 	setevent EVENT_BEAT_BUG_CATCHER_BENNY
 	setevent EVENT_BEAT_BUG_CATCHER_AL
 	setevent EVENT_BEAT_BUG_CATCHER_JOSH
-	writetext UnknownText_0x18ee2b
+	writetext BugsyText_HiveBadgeSpeech
 	keeptextopen
 	verbosegiveitem TM_FURY_CUTTER, 1
 	iffalse .NoRoomForFuryCutter
 	setevent EVENT_GOT_TM49_FURY_CUTTER
-	writetext UnknownText_0x18eefa
+	writetext BugsyText_FuryCutterSpeech
 	closetext
 	loadmovesprites
 	end
 
 .GotFuryCutter:
-	writetext UnknownText_0x18ef98
+	writetext BugsyText_BugMonsAreDeep
 	closetext
 .NoRoomForFuryCutter:
 	loadmovesprites
@@ -61,56 +61,56 @@ AzaleaGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerTwinsAmyandmay1:
-	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY1, TwinsAmyandmay1SeenText, TwinsAmyandmay1BeatenText, $0000, .AfterScript
+	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY1, TwinsAmyandmay1SeenText, TwinsAmyandmay1BeatenText, 0, .AfterScript
 
 .AfterScript:
 	talkaftercancel
 	loadfont
-	writetext UnknownText_0x18f1fc
+	writetext TwinsAmyandmay1AfterBattleText
 	closetext
 	loadmovesprites
 	end
 
 TrainerTwinsAmyandmay2:
-	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY2, TwinsAmyandmay2SeenText, TwinsAmyandmay2BeatenText, $0000, .AfterScript
+	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY2, TwinsAmyandmay2SeenText, TwinsAmyandmay2BeatenText, 0, .AfterScript
 
 .AfterScript:
 	talkaftercancel
 	loadfont
-	writetext UnknownText_0x18f269
+	writetext TwinsAmyandmay2AfterBattleText
 	closetext
 	loadmovesprites
 	end
 
-TrainerBug_catcherBug_catcher_benny:
-	trainer EVENT_BEAT_BUG_CATCHER_BENNY, BUG_CATCHER, BUG_CATCHER_BENNY, Bug_catcherBug_catcher_bennySeenText, Bug_catcherBug_catcher_bennyBeatenText, $0000, .AfterScript
+TrainerBug_catcherbenny:
+	trainer EVENT_BEAT_BUG_CATCHER_BENNY, BUG_CATCHER, BUG_CATCHER_BENNY, Bug_catcherbennySeenText, Bug_catcherbennyBeatenText, 0, .AfterScript
 
 .AfterScript:
 	talkaftercancel
 	loadfont
-	writetext UnknownText_0x18f053
+	writetext Bug_catcherbennyAfterBattleText
 	closetext
 	loadmovesprites
 	end
 
 TrainerBug_catcherAl:
-	trainer EVENT_BEAT_BUG_CATCHER_AL, BUG_CATCHER, AL, Bug_catcherAlSeenText, Bug_catcherAlBeatenText, $0000, .AfterScript
+	trainer EVENT_BEAT_BUG_CATCHER_AL, BUG_CATCHER, AL, Bug_catcherAlSeenText, Bug_catcherAlBeatenText, 0, .AfterScript
 
 .AfterScript:
 	talkaftercancel
 	loadfont
-	writetext UnknownText_0x18f0d3
+	writetext Bug_catcherAlAfterBattleText
 	closetext
 	loadmovesprites
 	end
 
 TrainerBug_catcherJosh:
-	trainer EVENT_BEAT_BUG_CATCHER_JOSH, BUG_CATCHER, JOSH, Bug_catcherJoshSeenText, Bug_catcherJoshBeatenText, $0000, .AfterScript
+	trainer EVENT_BEAT_BUG_CATCHER_JOSH, BUG_CATCHER, JOSH, Bug_catcherJoshSeenText, Bug_catcherJoshBeatenText, 0, .AfterScript
 
 .AfterScript:
 	talkaftercancel
 	loadfont
-	writetext UnknownText_0x18f17e
+	writetext Bug_catcherJoshAfterBattleText
 	closetext
 	loadmovesprites
 	end
@@ -140,7 +140,7 @@ AzaleaGymStatue:
 	trainertotext BUGSY, 1, $1
 	jumpstd gymstatue2
 
-UnknownText_0x18ed0b:
+BugsyText_INeverLose:
 	text "I'm BUGSY!"
 	line "I never lose when"
 
@@ -158,7 +158,7 @@ UnknownText_0x18ed0b:
 	cont "from my studies."
 	done
 
-UnknownText_0x18edae:
+BugsyText_ResearchIncomplete:
 	text "Whoa, amazing!"
 	line "You're an expert"
 	cont "on #MON!"
@@ -170,12 +170,12 @@ UnknownText_0x18edae:
 	line "this BADGE."
 	done
 
-UnknownText_0x18ee14:
+Text_ReceivedHiveBadge:
 	text "<PLAYER> received"
 	line "HIVEBADGE."
 	done
 
-UnknownText_0x18ee2b:
+BugsyText_HiveBadgeSpeech:
 	text "Do you know the"
 	line "benefits of HIVE-"
 	cont "BADGE?"
@@ -196,7 +196,7 @@ UnknownText_0x18ee2b:
 	line "you to have this."
 	done
 
-UnknownText_0x18eefa:
+BugsyText_FuryCutterSpeech:
 	text "TM49 contains"
 	line "FURY CUTTER."
 
@@ -212,7 +212,7 @@ UnknownText_0x18eefa:
 	line "I discovered it!"
 	done
 
-UnknownText_0x18ef98:
+BugsyText_BugMonsAreDeep:
 	text "Bug #MON are"
 	line "deep. There are"
 
@@ -223,7 +223,7 @@ UnknownText_0x18ef98:
 	line "ites thoroughly."
 	done
 
-Bug_catcherBug_catcher_bennySeenText:
+Bug_catcherbennySeenText:
 	text "Bug #MON evolve"
 	line "young. So they get"
 
@@ -231,12 +231,12 @@ Bug_catcherBug_catcher_bennySeenText:
 	line "faster."
 	done
 
-Bug_catcherBug_catcher_bennyBeatenText:
+Bug_catcherbennyBeatenText:
 	text "Just evolving"
 	line "isn't enough!"
 	done
 
-UnknownText_0x18f053:
+Bug_catcherbennyAfterBattleText:
 	text "#MON become"
 	line "stronger if they"
 	cont "evolve. Really!"
@@ -255,7 +255,7 @@ Bug_catcherAlBeatenText:
 	line "tough you are…"
 	done
 
-UnknownText_0x18f0d3:
+Bug_catcherAlAfterBattleText:
 	text "They're so cool,"
 	line "but most girls"
 
@@ -279,7 +279,7 @@ Bug_catcherJoshBeatenText:
 	text "Urrgggh!"
 	done
 
-UnknownText_0x18f17e:
+Bug_catcherJoshAfterBattleText:
 	text "I guess I should"
 	line "teach them better"
 	cont "moves…"
@@ -296,7 +296,7 @@ TwinsAmyandmay1BeatenText:
 	line "double goodness!"
 	done
 
-UnknownText_0x18f1fc:
+TwinsAmyandmay1AfterBattleText:
 	text "AMY: You're"
 	line "really strong!"
 	done
@@ -312,7 +312,7 @@ TwinsAmyandmay2BeatenText:
 	line "double goodness!"
 	done
 
-UnknownText_0x18f269:
+TwinsAmyandmay2AfterBattleText:
 	text "MAY: Our bug #-"
 	line "MON lost! Oh, what"
 	cont "a shame."
@@ -371,10 +371,10 @@ AzaleaGym_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_BUGSY, 7, 5, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, BugsyScript_0x18ec1e, -1
-	person_event SPRITE_BUG_CATCHER, 3, 5, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerBug_catcherBug_catcher_benny, -1
-	person_event SPRITE_BUG_CATCHER, 8, 8, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBug_catcherAl, -1
-	person_event SPRITE_BUG_CATCHER, 2, 0, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBug_catcherJosh, -1
-	person_event SPRITE_TWIN, 10, 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsAmyandmay1, -1
-	person_event SPRITE_TWIN, 10, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsAmyandmay2, -1
-	person_event SPRITE_GYM_GUY, 13, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, AzaleaGymGuyScript, -1
+	person_event SPRITE_BUGSY, 7, 5, SPRITEMOVEDATA_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, BugsyScript, -1
+	person_event SPRITE_BUG_CATCHER, 3, 5, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerBug_catcherbenny, -1
+	person_event SPRITE_BUG_CATCHER, 8, 8, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBug_catcherAl, -1
+	person_event SPRITE_BUG_CATCHER, 2, 0, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerBug_catcherJosh, -1
+	person_event SPRITE_TWIN, 10, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsAmyandmay1, -1
+	person_event SPRITE_TWIN, 10, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsAmyandmay2, -1
+	person_event SPRITE_GYM_GUY, 13, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, AzaleaGymGuyScript, -1

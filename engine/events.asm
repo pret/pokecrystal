@@ -396,7 +396,7 @@ CheckTileEvent: ; 96874
 	ret
 
 .return6
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	call CheckPitTile
 	jr nz, .pittile
 	ld a, 6
@@ -606,7 +606,7 @@ TryObjectEvent: ; 969b5
 
 .IsObject
 	call PlayTalkObject
-	ld a, [hConnectedMapWidth]
+	ld a, [hObjectStructIndexBuffer]
 	call GetObjectStruct
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
@@ -947,11 +947,11 @@ SelectMenuCallback: ; 96b66
 ; 96b72
 
 .Script ; 96b72
-	ptjump wd0e8
+	ptjump wQueuedScriptBank
 ; 96b75
 
 .Asm ; 96b75
-	ptcallasm wd0e8
+	ptcallasm wQueuedScriptBank
 	end
 ; 96b79
 

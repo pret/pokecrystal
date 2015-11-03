@@ -242,7 +242,7 @@ Music_BattleTowerTheme_branch_178970: ; 178970
 	note __, 1
 	note F_, 4
 	note __, 4
-	tone $0000
+	tone 0
 	intensity $b7
 	note G_, 2
 	octave 4

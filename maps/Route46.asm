@@ -6,7 +6,7 @@ Route46_MapScriptHeader:
 	db 0
 
 TrainerCamperTed:
-	trainer EVENT_BEAT_CAMPER_TED, CAMPER, TED, CamperTedSeenText, CamperTedBeatenText, $0000, CamperTedScript
+	trainer EVENT_BEAT_CAMPER_TED, CAMPER, TED, CamperTedSeenText, CamperTedBeatenText, 0, CamperTedScript
 
 CamperTedScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ CamperTedScript:
 	end
 
 TrainerPicnickerErin1:
-	trainer EVENT_BEAT_PICNICKER_ERIN, PICNICKER, ERIN1, PicnickerErin1SeenText, PicnickerErin1BeatenText, $0000, PicnickerErin1Script
+	trainer EVENT_BEAT_PICNICKER_ERIN, PICNICKER, ERIN1, PicnickerErin1SeenText, PicnickerErin1BeatenText, 0, PicnickerErin1Script
 
 PicnickerErin1Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_ERIN
@@ -47,7 +47,7 @@ UnknownScript_0x1a96c6:
 
 UnknownScript_0x1a96da:
 	scall UnknownScript_0x1a9767
-	winlosstext PicnickerErin1BeatenText, $0000
+	winlosstext PicnickerErin1BeatenText, 0
 	copybytetovar wErinFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
@@ -140,7 +140,7 @@ UnknownScript_0x1a9772:
 	end
 
 TrainerHikerBailey:
-	trainer EVENT_BEAT_HIKER_BAILEY, HIKER, BAILEY, HikerBaileySeenText, HikerBaileyBeatenText, $0000, HikerBaileyScript
+	trainer EVENT_BEAT_HIKER_BAILEY, HIKER, BAILEY, HikerBaileySeenText, HikerBaileyBeatenText, 0, HikerBaileyScript
 
 HikerBaileyScript:
 	talkaftercancel
@@ -261,9 +261,9 @@ Route46_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_POKEFAN_M, 19, 12, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerHikerBailey, -1
-	person_event SPRITE_YOUNGSTER, 14, 4, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerCamperTed, -1
-	person_event SPRITE_LASS, 13, 2, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerPicnickerErin1, -1
-	person_event SPRITE_FRUIT_TREE, 5, 7, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a978f, -1
-	person_event SPRITE_FRUIT_TREE, 6, 8, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a9791, -1
-	person_event SPRITE_POKE_BALL, 15, 1, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a978d, EVENT_ROUTE_46_X_SPEED
+	person_event SPRITE_POKEFAN_M, 19, 12, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerHikerBailey, -1
+	person_event SPRITE_YOUNGSTER, 14, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerCamperTed, -1
+	person_event SPRITE_LASS, 13, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerPicnickerErin1, -1
+	person_event SPRITE_FRUIT_TREE, 5, 7, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a978f, -1
+	person_event SPRITE_FRUIT_TREE, 6, 8, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a9791, -1
+	person_event SPRITE_POKE_BALL, 15, 1, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a978d, EVENT_ROUTE_46_X_SPEED

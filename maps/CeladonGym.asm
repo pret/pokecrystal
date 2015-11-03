@@ -13,7 +13,7 @@ ErikaScript_0x72a6a:
 	writetext UnknownText_0x72b28
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x72c3e, $0000
+	winlosstext UnknownText_0x72c3e, 0
 	loadtrainer ERIKA, 1
 	startbattle
 	returnafterbattle
@@ -42,7 +42,7 @@ UnknownScript_0x72aae:
 	end
 
 TrainerLassMichelle:
-	trainer EVENT_BEAT_LASS_MICHELLE, LASS, MICHELLE, LassMichelleSeenText, LassMichelleBeatenText, $0000, LassMichelleScript
+	trainer EVENT_BEAT_LASS_MICHELLE, LASS, MICHELLE, LassMichelleSeenText, LassMichelleBeatenText, 0, LassMichelleScript
 
 LassMichelleScript:
 	talkaftercancel
@@ -53,7 +53,7 @@ LassMichelleScript:
 	end
 
 TrainerPicnickerTanya:
-	trainer EVENT_BEAT_PICNICKER_TANYA, PICNICKER, TANYA, PicnickerTanyaSeenText, PicnickerTanyaBeatenText, $0000, PicnickerTanyaScript
+	trainer EVENT_BEAT_PICNICKER_TANYA, PICNICKER, TANYA, PicnickerTanyaSeenText, PicnickerTanyaBeatenText, 0, PicnickerTanyaScript
 
 PicnickerTanyaScript:
 	talkaftercancel
@@ -64,7 +64,7 @@ PicnickerTanyaScript:
 	end
 
 TrainerBeautyJulia:
-	trainer EVENT_BEAT_BEAUTY_JULIA, BEAUTY, JULIA, BeautyJuliaSeenText, BeautyJuliaBeatenText, $0000, BeautyJuliaScript
+	trainer EVENT_BEAT_BEAUTY_JULIA, BEAUTY, JULIA, BeautyJuliaSeenText, BeautyJuliaBeatenText, 0, BeautyJuliaScript
 
 BeautyJuliaScript:
 	talkaftercancel
@@ -75,7 +75,7 @@ BeautyJuliaScript:
 	end
 
 TrainerTwinsJoandzoe1:
-	trainer EVENT_BEAT_TWINS_JO_AND_ZOE, TWINS, JOANDZOE1, TwinsJoandzoe1SeenText, TwinsJoandzoe1BeatenText, $0000, TwinsJoandzoe1Script
+	trainer EVENT_BEAT_TWINS_JO_AND_ZOE, TWINS, JOANDZOE1, TwinsJoandzoe1SeenText, TwinsJoandzoe1BeatenText, 0, TwinsJoandzoe1Script
 
 TwinsJoandzoe1Script:
 	talkaftercancel
@@ -86,7 +86,7 @@ TwinsJoandzoe1Script:
 	end
 
 TrainerTwinsJoandzoe2:
-	trainer EVENT_BEAT_TWINS_JO_AND_ZOE, TWINS, JOANDZOE2, TwinsJoandzoe2SeenText, TwinsJoandzoe2BeatenText, $0000, TwinsJoandzoe2Script
+	trainer EVENT_BEAT_TWINS_JO_AND_ZOE, TWINS, JOANDZOE2, TwinsJoandzoe2SeenText, TwinsJoandzoe2BeatenText, 0, TwinsJoandzoe2Script
 
 TwinsJoandzoe2Script:
 	talkaftercancel
@@ -278,9 +278,9 @@ CeladonGym_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_ERIKA, 3, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ErikaScript_0x72a6a, -1
-	person_event SPRITE_LASS, 8, 7, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerLassMichelle, -1
-	person_event SPRITE_LASS, 8, 2, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerPicnickerTanya, -1
-	person_event SPRITE_BUENA, 5, 3, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerBeautyJulia, -1
-	person_event SPRITE_TWIN, 10, 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsJoandzoe1, -1
-	person_event SPRITE_TWIN, 10, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsJoandzoe2, -1
+	person_event SPRITE_ERIKA, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ErikaScript_0x72a6a, -1
+	person_event SPRITE_LASS, 8, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerLassMichelle, -1
+	person_event SPRITE_LASS, 8, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerPicnickerTanya, -1
+	person_event SPRITE_BUENA, 5, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerBeautyJulia, -1
+	person_event SPRITE_TWIN, 10, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsJoandzoe1, -1
+	person_event SPRITE_TWIN, 10, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsJoandzoe2, -1

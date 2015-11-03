@@ -111,7 +111,7 @@ Function217a:: ; 217a
 	call Function2198
 	ld a, $60
 	hlcoord 0, 0
-	ld bc, TileMapEnd - TileMap
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 
 	ld a, BANK(Function4d15b)
@@ -131,12 +131,12 @@ Function2198:: ; 2198
 	ld hl, wEnemyMoveStruct
 	ld b, $5
 
-.asm_21a5
+.loop
 	push de
 	push hl
 	ld c, $6
 
-.asm_21a9
+.loop2
 	push de
 	push hl
 	ld a, [de]
@@ -187,7 +187,7 @@ endr
 	pop de
 	inc de
 	dec c
-	jp nz, .asm_21a9
+	jp nz, .loop2
 	pop hl
 	ld de, $0060
 	add hl, de
@@ -201,7 +201,7 @@ endr
 
 .asm_2225
 	dec b
-	jp nz, .asm_21a5
+	jp nz, .loop
 	ret
 ; 222a
 
@@ -252,10 +252,10 @@ Function2252:: ; 2252
 ; 2266
 
 Function2266:: ; 2266
-	ld a, [MapY]
+	ld a, [PlayerMapY]
 	sub $4
 	ld e, a
-	ld a, [MapX]
+	ld a, [PlayerMapX]
 	sub $4
 	ld d, a
 	ld a, [wCurrMapWarpCount]
@@ -652,11 +652,11 @@ Function2457:: ; 2457
 ; 2471
 
 Function2471:: ; 2471
-	ld hl, ObjectStruct1
+	ld hl, Object1Struct
 	ld bc, OBJECT_STRUCT_LENGTH * (NUM_OBJECT_STRUCTS - 1)
 	xor a
 	call ByteFill
-	ld hl, ObjectStruct1
+	ld hl, Object1Struct
 	ld de, OBJECT_STRUCT_LENGTH
 	ld c, NUM_OBJECT_STRUCTS - 1
 	xor a
@@ -1170,33 +1170,33 @@ CoordinatesEventText:: ; 2702
 ; 2707
 
 
-Function2707:: ; 2707
-	ld a, [hConnectionStripLength]
+CheckObjectMask:: ; 2707
+	ld a, [hMapObjectIndexBuffer]
 	ld e, a
 	ld d, $0
-	ld hl, wd81e
+	ld hl, wObjectMasks
 	add hl, de
 	ld a, [hl]
 	ret
 ; 2712
 
-Function2712:: ; 2712
-	ld a, [hConnectionStripLength]
+MaskObject:: ; 2712
+	ld a, [hMapObjectIndexBuffer]
 	ld e, a
 	ld d, $0
-	ld hl, wd81e
+	ld hl, wObjectMasks
 	add hl, de
-	ld [hl], $ff
+	ld [hl], -1 ; ,masked
 	ret
 ; 271e
 
-Function271e:: ; 271e
-	ld a, [hConnectionStripLength]
+UnmaskObject:: ; 271e
+	ld a, [hMapObjectIndexBuffer]
 	ld e, a
 	ld d, $0
-	ld hl, wd81e
+	ld hl, wObjectMasks
 	add hl, de
-	ld [hl], $0
+	ld [hl], 0 ; unmasked
 	ret
 ; 272a
 
@@ -1463,7 +1463,7 @@ SaveScreen:: ; 289d
 	ld de, XCoord + 1
 	ld a, [MapWidth]
 	add $6
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer], a
 	ld a, [wd151]
 	and a
 	jr z, .asm_28cb
@@ -1477,7 +1477,7 @@ SaveScreen:: ; 289d
 
 .asm_28c0
 	ld de, wdcbf
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer]
 	ld c, a
 	ld b, $0
 	add hl, bc
@@ -1512,7 +1512,7 @@ LoadNeighboringBlockData:: ; 28e3
 	ld l, a
 	ld a, [MapWidth]
 	add $6
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer], a
 	ld de, XCoord + 1
 	ld b, $6
 	ld c, $5
@@ -1537,7 +1537,7 @@ Function28f7:: ; 28f7
 
 .asm_2908
 	pop hl
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer]
 	ld c, a
 	ld b, $0
 	add hl, bc
@@ -1552,15 +1552,15 @@ Function2914:: ; 2914
 	ld [TilePermissions], a
 	call Function296c
 	call Function294d
-	ld a, [MapX]
+	ld a, [PlayerMapX]
 	ld d, a
-	ld a, [MapY]
+	ld a, [PlayerMapY]
 	ld e, a
 	call Function2a3c
-	ld [StandingTile], a
+	ld [PlayerStandingTile], a
 	call Function29ff
 	ret nz
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	and 7
 	ld hl, .data_2945
 	add l
@@ -1580,9 +1580,9 @@ Function2914:: ; 2914
 ; 294d
 
 Function294d:: ; 294d
-	ld a, [MapX]
+	ld a, [PlayerMapX]
 	ld d, a
-	ld a, [MapY]
+	ld a, [PlayerMapY]
 	ld e, a
 	push de
 	inc e
@@ -1598,9 +1598,9 @@ Function294d:: ; 294d
 ; 296c
 
 Function296c:: ; 296c
-	ld a, [MapX]
+	ld a, [PlayerMapX]
 	ld d, a
-	ld a, [MapY]
+	ld a, [PlayerMapY]
 	ld e, a
 	push de
 	dec d
@@ -1725,10 +1725,10 @@ endr
 	ld h, [hl]
 	ld l, a
 
-	ld a, [MapX]
+	ld a, [PlayerMapX]
 	add d
 	ld d, a
-	ld a, [MapY]
+	ld a, [PlayerMapY]
 	add e
 	ld e, a
 	ld a, [hl]
@@ -1906,10 +1906,10 @@ CheckStandingOnXYTrigger:: ; 2ae7
 	call CheckTriggers
 	ld b, a
 ; Load your current coordinates into de.  This will be used to check if your position is in the xy-trigger table for the current map.
-	ld a, [MapX]
+	ld a, [PlayerMapX]
 	sub 4
 	ld d, a
-	ld a, [MapY]
+	ld a, [PlayerMapY]
 	sub 4
 	ld e, a
 
@@ -2145,7 +2145,7 @@ GetMapBank:: ; 2c29
 GetAnyMapBank:: ; 2c31
 	push hl
 	push de
-	ld de, $0000
+	ld de, 0
 	call GetAnyMapHeaderMember
 	ld a, c
 	pop de

@@ -3,7 +3,7 @@ CianwoodPharmacy_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw CianwoodPharmacyTrigger, $0000
+	dw CianwoodPharmacyTrigger, 0
 
 .MapCallbacks:
 	db 0
@@ -32,7 +32,7 @@ CianwoodPharmacist:
 	end
 
 .Mart
-	pokemart $3, $0004
+	pokemart MARTTYPE_PHARMACY, MART_CIANWOOD
 	loadmovesprites
 	end
 
@@ -90,4 +90,4 @@ CianwoodPharmacy_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_PHARMACIST, 3, 2, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CianwoodPharmacist, -1
+	person_event SPRITE_PHARMACIST, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CianwoodPharmacist, -1

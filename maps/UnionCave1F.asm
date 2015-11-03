@@ -6,7 +6,7 @@ UnionCave1F_MapScriptHeader:
 	db 0
 
 TrainerPokemaniacLarry:
-	trainer EVENT_BEAT_POKEMANIAC_LARRY, POKEMANIAC, LARRY, PokemaniacLarrySeenText, PokemaniacLarryBeatenText, $0000, PokemaniacLarryScript
+	trainer EVENT_BEAT_POKEMANIAC_LARRY, POKEMANIAC, LARRY, PokemaniacLarrySeenText, PokemaniacLarryBeatenText, 0, PokemaniacLarryScript
 
 PokemaniacLarryScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ PokemaniacLarryScript:
 	end
 
 TrainerHikerRussell:
-	trainer EVENT_BEAT_HIKER_RUSSELL, HIKER, RUSSELL, HikerRussellSeenText, HikerRussellBeatenText, $0000, HikerRussellScript
+	trainer EVENT_BEAT_HIKER_RUSSELL, HIKER, RUSSELL, HikerRussellSeenText, HikerRussellBeatenText, 0, HikerRussellScript
 
 HikerRussellScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ HikerRussellScript:
 	end
 
 TrainerHikerDaniel:
-	trainer EVENT_BEAT_HIKER_DANIEL, HIKER, DANIEL, HikerDanielSeenText, HikerDanielBeatenText, $0000, HikerDanielScript
+	trainer EVENT_BEAT_HIKER_DANIEL, HIKER, DANIEL, HikerDanielSeenText, HikerDanielBeatenText, 0, HikerDanielScript
 
 HikerDanielScript:
 	talkaftercancel
@@ -39,7 +39,7 @@ HikerDanielScript:
 	end
 
 TrainerFirebreatherBill:
-	trainer EVENT_BEAT_FIREBREATHER_BILL, FIREBREATHER, BILL, FirebreatherBillSeenText, FirebreatherBillBeatenText, $0000, FirebreatherBillScript
+	trainer EVENT_BEAT_FIREBREATHER_BILL, FIREBREATHER, BILL, FirebreatherBillSeenText, FirebreatherBillBeatenText, 0, FirebreatherBillScript
 
 FirebreatherBillScript:
 	talkaftercancel
@@ -50,7 +50,7 @@ FirebreatherBillScript:
 	end
 
 TrainerFirebreatherRay:
-	trainer EVENT_BEAT_FIREBREATHER_RAY, FIREBREATHER, RAY, FirebreatherRaySeenText, FirebreatherRayBeatenText, $0000, FirebreatherRayScript
+	trainer EVENT_BEAT_FIREBREATHER_RAY, FIREBREATHER, RAY, FirebreatherRaySeenText, FirebreatherRayBeatenText, 0, FirebreatherRayScript
 
 FirebreatherRayScript:
 	talkaftercancel
@@ -207,12 +207,12 @@ UnionCave1F_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_POKEFAN_M, 6, 3, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerHikerDaniel, -1
-	person_event SPRITE_SUPER_NERD, 21, 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPokemaniacLarry, -1
-	person_event SPRITE_POKEFAN_M, 8, 11, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerHikerRussell, -1
-	person_event SPRITE_FISHER, 27, 15, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerFirebreatherRay, -1
-	person_event SPRITE_FISHER, 19, 14, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerFirebreatherBill, -1
-	person_event SPRITE_POKE_BALL, 21, 17, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59c00, EVENT_UNION_CAVE_1F_GREAT_BALL
-	person_event SPRITE_POKE_BALL, 2, 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59c02, EVENT_UNION_CAVE_1F_X_ATTACK
-	person_event SPRITE_POKE_BALL, 17, 4, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59c04, EVENT_UNION_CAVE_1F_POTION
-	person_event SPRITE_POKE_BALL, 33, 12, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59c06, EVENT_UNION_CAVE_1F_AWAKENING
+	person_event SPRITE_POKEFAN_M, 6, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerHikerDaniel, -1
+	person_event SPRITE_SUPER_NERD, 21, 4, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPokemaniacLarry, -1
+	person_event SPRITE_POKEFAN_M, 8, 11, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerHikerRussell, -1
+	person_event SPRITE_FISHER, 27, 15, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerFirebreatherRay, -1
+	person_event SPRITE_FISHER, 19, 14, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerFirebreatherBill, -1
+	person_event SPRITE_POKE_BALL, 21, 17, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59c00, EVENT_UNION_CAVE_1F_GREAT_BALL
+	person_event SPRITE_POKE_BALL, 2, 4, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59c02, EVENT_UNION_CAVE_1F_X_ATTACK
+	person_event SPRITE_POKE_BALL, 17, 4, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59c04, EVENT_UNION_CAVE_1F_POTION
+	person_event SPRITE_POKE_BALL, 33, 12, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x59c06, EVENT_UNION_CAVE_1F_AWAKENING

@@ -9,7 +9,7 @@ LassScript_0x1ac002:
 	jumptextfaceplayer UnknownText_0x1ac1e7
 
 TrainerHikerAnthony:
-	trainer EVENT_BEAT_HIKER_ANTHONY, HIKER, ANTHONY2, HikerAnthony2SeenText, HikerAnthony2BeatenText, $0000, HikerAnthony2Script
+	trainer EVENT_BEAT_HIKER_ANTHONY, HIKER, ANTHONY2, HikerAnthony2SeenText, HikerAnthony2BeatenText, 0, HikerAnthony2Script
 
 HikerAnthony2Script:
 	writecode VAR_CALLERID, PHONE_HIKER_ANTHONY
@@ -41,7 +41,7 @@ UnknownScript_0x1ac03d:
 
 UnknownScript_0x1ac051:
 	scall UnknownScript_0x1ac0e3
-	winlosstext HikerAnthony2BeatenText, $0000
+	winlosstext HikerAnthony2BeatenText, 0
 	copybytetovar wAnthonyFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
@@ -206,6 +206,6 @@ Route33_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_POKEFAN_M, 13, 6, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerHikerAnthony, -1
-	person_event SPRITE_LASS, 16, 13, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, LassScript_0x1ac002, -1
-	person_event SPRITE_FRUIT_TREE, 16, 14, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1ac0ea, -1
+	person_event SPRITE_POKEFAN_M, 13, 6, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerHikerAnthony, -1
+	person_event SPRITE_LASS, 16, 13, SPRITEMOVEDATA_02, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, LassScript_0x1ac002, -1
+	person_event SPRITE_FRUIT_TREE, 16, 14, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1ac0ea, -1

@@ -16,7 +16,7 @@ CopyMenuDataHeader::
 ; 0x1d4b
 
 Function1d4b:: ; 1d4b
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	ret
 ; 1d4f
 
@@ -62,7 +62,7 @@ MenuDataHeader_0x1d75:: ; 1d75
 	db $40 ; tile backup
 	db 0, 0 ; start coords
 	db 17, 19 ; end coords
-	dw $0000
+	dw 0
 	db 1 ; default option
 ; 1d7d
 
@@ -410,7 +410,7 @@ Function1f2a:: ; 1f2a
 	ld a, [hl]
 	ld [MenuSelection], a
 	ld a, [wcfa9]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	and a
 	ret
 
@@ -571,7 +571,7 @@ InterpretMenu:: ; 202a
 	ld a, [hROMBank]
 	ld [wcf94], a
 	callba Function2400e
-	ld a, [wPocketCursorBuffer]
+	ld a, [wMenuCursorBuffer]
 	ret
 ; 2039
 
@@ -579,7 +579,7 @@ Function2039:: ; 2039
 	ld a, [hROMBank]
 	ld [wcf94], a
 	callba Function24022
-	ld a, [wPocketCursorBuffer]
+	ld a, [wMenuCursorBuffer]
 	ret
 ; 2048
 
@@ -587,7 +587,7 @@ Function2048:: ; 2048
 	ld a, [hROMBank]
 	ld [wcf94], a
 	callba Function2403c
-	ld a, [wPocketCursorBuffer]
+	ld a, [wMenuCursorBuffer]
 	ret
 ; 2057
 

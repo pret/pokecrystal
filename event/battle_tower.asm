@@ -117,7 +117,7 @@ JumpText_YouCantTakeAnEgg: ; 0x8b256
 ; 0x8b25b
 
 Function8b25b: ; 8b25b
-	ld bc, $0000
+	ld bc, 0
 .asm_8b25e
 	call Function8b26c
 	call c, Function8b28e

@@ -295,11 +295,11 @@ SaffronCity_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_LASS, 14, 7, $5, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, LassScript_0x19932a, -1
-	person_event SPRITE_POKEFAN_M, 30, 19, $5, 0, 2, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, PokefanMScript_0x19933e, -1
-	person_event SPRITE_COOLTRAINER_M, 7, 32, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerMScript_0x199352, -1
-	person_event SPRITE_COOLTRAINER_F, 24, 20, $5, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerFScript_0x199355, -1
-	person_event SPRITE_FISHER, 12, 27, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FisherScript_0x199358, -1
-	person_event SPRITE_YOUNGSTER, 19, 15, $4, 1, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, YoungsterScript_0x19936c, -1
-	person_event SPRITE_YOUNGSTER, 22, 35, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x19936f, -1
-	person_event SPRITE_LASS, 8, 19, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x199372, -1
+	person_event SPRITE_LASS, 14, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, LassScript_0x19932a, -1
+	person_event SPRITE_POKEFAN_M, 30, 19, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, PokefanMScript_0x19933e, -1
+	person_event SPRITE_COOLTRAINER_M, 7, 32, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerMScript_0x199352, -1
+	person_event SPRITE_COOLTRAINER_F, 24, 20, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerFScript_0x199355, -1
+	person_event SPRITE_FISHER, 12, 27, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FisherScript_0x199358, -1
+	person_event SPRITE_YOUNGSTER, 19, 15, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, YoungsterScript_0x19936c, -1
+	person_event SPRITE_YOUNGSTER, 22, 35, SPRITEMOVEDATA_02, 1, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x19936f, -1
+	person_event SPRITE_LASS, 8, 19, SPRITEMOVEDATA_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x199372, -1

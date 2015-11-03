@@ -5,8 +5,8 @@ sScratch::
 
 SECTION "SRAM Bank 0", SRAM [$a600], BANK [0]
 
-s0_a600:: ds $11a
-s0_a71a:: ds $11a
+s0_a600:: ds 6 * (party_struct_length + PartyMon1 - PartyMon1Item)
+s0_a71a:: ds 6 * (party_struct_length + PartyMon1 - PartyMon1Item)
 s0_a834:: ds 1
 s0_a835:: ds 10 * (party_struct_length + PartyMon1 - PartyMon1Item)
 s0_aa0b:: ds 1

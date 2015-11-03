@@ -20,7 +20,7 @@ UnknownScript_0x19d05c:
 	return
 
 TrainerCamperSpencer:
-	trainer EVENT_BEAT_CAMPER_SPENCER, CAMPER, SPENCER, CamperSpencerSeenText, CamperSpencerBeatenText, $0000, CamperSpencerScript
+	trainer EVENT_BEAT_CAMPER_SPENCER, CAMPER, SPENCER, CamperSpencerSeenText, CamperSpencerBeatenText, 0, CamperSpencerScript
 
 CamperSpencerScript:
 	talkaftercancel
@@ -31,7 +31,7 @@ CamperSpencerScript:
 	end
 
 TrainerPokemaniacBen:
-	trainer EVENT_BEAT_POKEMANIAC_BEN, POKEMANIAC, BEN, PokemaniacBenSeenText, PokemaniacBenBeatenText, $0000, PokemaniacBenScript
+	trainer EVENT_BEAT_POKEMANIAC_BEN, POKEMANIAC, BEN, PokemaniacBenSeenText, PokemaniacBenBeatenText, 0, PokemaniacBenScript
 
 PokemaniacBenScript:
 	talkaftercancel
@@ -42,7 +42,7 @@ PokemaniacBenScript:
 	end
 
 TrainerPokemaniacBrent1:
-	trainer EVENT_BEAT_POKEMANIAC_BRENT, POKEMANIAC, BRENT1, PokemaniacBrent1SeenText, PokemaniacBrent1BeatenText, $0000, PokemaniacBrent1Script
+	trainer EVENT_BEAT_POKEMANIAC_BRENT, POKEMANIAC, BRENT1, PokemaniacBrent1SeenText, PokemaniacBrent1BeatenText, 0, PokemaniacBrent1Script
 
 PokemaniacBrent1Script:
 	writecode VAR_CALLERID, PHONE_POKEMANIAC_BRENT
@@ -72,7 +72,7 @@ UnknownScript_0x19d0bb:
 
 UnknownScript_0x19d0cf:
 	scall UnknownScript_0x19d144
-	winlosstext PokemaniacBrent1BeatenText, $0000
+	winlosstext PokemaniacBrent1BeatenText, 0
 	copybytetovar wBrentFightCount
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
@@ -147,7 +147,7 @@ UnknownScript_0x19d144:
 	end
 
 TrainerPokemaniacRon:
-	trainer EVENT_BEAT_POKEMANIAC_RON, POKEMANIAC, RON, PokemaniacRonSeenText, PokemaniacRonBeatenText, $0000, PokemaniacRonScript
+	trainer EVENT_BEAT_POKEMANIAC_RON, POKEMANIAC, RON, PokemaniacRonSeenText, PokemaniacRonBeatenText, 0, PokemaniacRonScript
 
 PokemaniacRonScript:
 	talkaftercancel
@@ -158,7 +158,7 @@ PokemaniacRonScript:
 	end
 
 TrainerFisherMarvin:
-	trainer EVENT_BEAT_FISHER_MARVIN, FISHER, MARVIN, FisherMarvinSeenText, FisherMarvinBeatenText, $0000, FisherMarvinScript
+	trainer EVENT_BEAT_FISHER_MARVIN, FISHER, MARVIN, FisherMarvinSeenText, FisherMarvinBeatenText, 0, FisherMarvinScript
 
 FisherMarvinScript:
 	talkaftercancel
@@ -169,7 +169,7 @@ FisherMarvinScript:
 	end
 
 TrainerPicnickerTiffany3:
-	trainer EVENT_BEAT_PICNICKER_TIFFANY, PICNICKER, TIFFANY3, PicnickerTiffany3SeenText, PicnickerTiffany3BeatenText, $0000, PicnickerTiffany3Script
+	trainer EVENT_BEAT_PICNICKER_TIFFANY, PICNICKER, TIFFANY3, PicnickerTiffany3SeenText, PicnickerTiffany3BeatenText, 0, PicnickerTiffany3Script
 
 PicnickerTiffany3Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_TIFFANY
@@ -203,7 +203,7 @@ UnknownScript_0x19d1ad:
 
 UnknownScript_0x19d1c1:
 	scall UnknownScript_0x19d251
-	winlosstext PicnickerTiffany3BeatenText, $0000
+	winlosstext PicnickerTiffany3BeatenText, 0
 	copybytetovar wTiffanyFightCount
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
@@ -516,11 +516,11 @@ Route43_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_SUPER_NERD, 5, 13, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPokemaniacBen, -1
-	person_event SPRITE_SUPER_NERD, 20, 13, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPokemaniacBrent1, -1
-	person_event SPRITE_SUPER_NERD, 7, 14, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPokemaniacRon, -1
-	person_event SPRITE_FISHER, 16, 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 4, TrainerFisherMarvin, -1
-	person_event SPRITE_LASS, 25, 9, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerPicnickerTiffany3, -1
-	person_event SPRITE_YOUNGSTER, 40, 13, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerCamperSpencer, -1
-	person_event SPRITE_FRUIT_TREE, 26, 1, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x19d266, -1
-	person_event SPRITE_POKE_BALL, 32, 12, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19d268, EVENT_ROUTE_43_MAX_ETHER
+	person_event SPRITE_SUPER_NERD, 5, 13, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPokemaniacBen, -1
+	person_event SPRITE_SUPER_NERD, 20, 13, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPokemaniacBrent1, -1
+	person_event SPRITE_SUPER_NERD, 7, 14, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPokemaniacRon, -1
+	person_event SPRITE_FISHER, 16, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 4, TrainerFisherMarvin, -1
+	person_event SPRITE_LASS, 25, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerPicnickerTiffany3, -1
+	person_event SPRITE_YOUNGSTER, 40, 13, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerCamperSpencer, -1
+	person_event SPRITE_FRUIT_TREE, 26, 1, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x19d266, -1
+	person_event SPRITE_POKE_BALL, 32, 12, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19d268, EVENT_ROUTE_43_MAX_ETHER

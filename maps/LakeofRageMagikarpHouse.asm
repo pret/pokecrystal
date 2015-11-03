@@ -221,4 +221,4 @@ LakeofRageMagikarpHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_FISHING_GURU, 3, 2, $3, 0, 0, -1, -1, 0, 0, 0, FishingGuruScript_0x19a6ae, -1
+	person_event SPRITE_FISHING_GURU, 3, 2, SPRITEMOVEDATA_03, 0, 0, -1, -1, 0, 0, 0, FishingGuruScript_0x19a6ae, -1

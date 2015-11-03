@@ -24,7 +24,7 @@ Functioncc9a1: ; cc9a1 (33:49a1)
 
 
 Functioncc9bd: ; cc9bd
-	ld hl, $0000
+	ld hl, 0
 	add hl, bc
 	ld [hl], $0
 	ret

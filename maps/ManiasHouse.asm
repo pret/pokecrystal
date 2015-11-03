@@ -5,90 +5,90 @@ ManiasHouse_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-RockerScript_0x9d278:
+ManiaScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_MANIA_TOOK_SHUCKIE_OR_LET_YOU_KEEP_HIM
-	iftrue UnknownScript_0x9d2fa
+	iftrue .default_postevent
 	checkevent EVENT_GOT_SHUCKIE
-	iftrue UnknownScript_0x9d2a4
-	writetext UnknownText_0x9d303
+	iftrue .alreadyhaveshuckie
+	writetext ManiaText_AskLookAfterShuckle
 	yesorno
-	iffalse UnknownScript_0x9d2b6
+	iffalse .refusetotakeshuckie
 	special SpecialGiveShuckle
-	iffalse UnknownScript_0x9d2b0
-	writetext UnknownText_0x9d3ed
+	iffalse .partyfull
+	writetext ManiaText_TakeCareOfShuckle
 	keeptextopen
 	waitbutton
-	writetext UnknownText_0x9d41b
+	writetext ManiaText_GotShuckle
 	playsound SFX_KEY_ITEM
 	waitbutton
 	loadmovesprites
 	setevent EVENT_GOT_SHUCKIE
 	end
 
-UnknownScript_0x9d2a4:
+.alreadyhaveshuckie:
 	checkflag ENGINE_SHUCKLE_GIVEN
-	iffalse UnknownScript_0x9d2bc
-	writetext UnknownText_0x9d3ed
+	iffalse .returnshuckie
+	writetext ManiaText_TakeCareOfShuckle
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x9d2b0:
-	writetext UnknownText_0x9d42f
+.partyfull:
+	writetext ManiaText_PartyFull
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x9d2b6:
-	writetext UnknownText_0x9d449
+.refusetotakeshuckie:
+	writetext ManiaText_IfHeComesBack
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x9d2bc:
-	writetext UnknownText_0x9d470
+.returnshuckie:
+	writetext ManiaText_CanIHaveMyMonBack
 	yesorno
-	iffalse UnknownScript_0x9d2ee
+	iffalse .refused
 	special SpecialReturnShuckle
-	if_equal $0, UnknownScript_0x9d2df
-	if_equal $1, UnknownScript_0x9d2ee
-	if_equal $3, UnknownScript_0x9d2e5
-	if_equal $4, UnknownScript_0x9d2fa
-	writetext UnknownText_0x9d4b1
+	if_equal $0, .wrong
+	if_equal $1, .refused
+	if_equal $3, .superhappy
+	if_equal $4, .default_postevent
+	writetext ManiaText_ThankYou
 	closetext
 	loadmovesprites
 	setevent EVENT_MANIA_TOOK_SHUCKIE_OR_LET_YOU_KEEP_HIM
 	end
 
-UnknownScript_0x9d2df:
-	writetext UnknownText_0x9d4bd
+.wrong:
+	writetext ManiaText_ShuckleNotThere
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x9d2e5:
-	writetext UnknownText_0x9d4e3
+.superhappy:
+	writetext ManiaText_ShuckleLikesYou
 	closetext
 	loadmovesprites
 	setevent EVENT_MANIA_TOOK_SHUCKIE_OR_LET_YOU_KEEP_HIM
 	end
 
-UnknownScript_0x9d2ee:
-	writetext UnknownText_0x9d53f
+.refused:
+	writetext ManiaText_SameAsBeingRobbed
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x9d2f4:
-	writetext UnknownText_0x9d5b0
+.nothingleft:
+	writetext ManiaText_ShuckleIsYourLastMon
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x9d2fa:
-	writetext UnknownText_0x9d56c
+.default_postevent:
+	writetext ManiaText_HappinessSpeech
 	closetext
 	loadmovesprites
 	end
@@ -96,7 +96,7 @@ UnknownScript_0x9d2fa:
 UnknownScript_0x9d300:
 	jumpstd picturebookshelf
 
-UnknownText_0x9d303:
+ManiaText_AskLookAfterShuckle:
 	text "I, I'm in shock!"
 
 	para "A guy about your"
@@ -120,30 +120,30 @@ UnknownText_0x9d303:
 	line "for a while?"
 	done
 
-UnknownText_0x9d3ed:
+ManiaText_TakeCareOfShuckle:
 	text "Oh, thank you!"
 
 	para "Take good care of"
 	line "it, please!"
 	done
 
-UnknownText_0x9d41b:
+ManiaText_GotShuckle:
 	text "<PLAYER> received a"
 	line "#MON."
 	done
 
-UnknownText_0x9d42f:
+ManiaText_PartyFull:
 	text "Your #MON party"
 	line "is full."
 	done
 
-UnknownText_0x9d449:
+ManiaText_IfHeComesBack:
 	text "Oh, no… What'll"
 	line "I do if he comes"
 	cont "back?"
 	done
 
-UnknownText_0x9d470:
+ManiaText_CanIHaveMyMonBack:
 	text "Hi! How's my #-"
 	line "MON?"
 
@@ -152,17 +152,17 @@ UnknownText_0x9d470:
 	cont "it back?"
 	done
 
-UnknownText_0x9d4b1:
+ManiaText_ThankYou:
 	text "Thank you!"
 	done
 
-UnknownText_0x9d4bd:
+ManiaText_ShuckleNotThere:
 	text "Hey, you don't"
 	line "have my #MON"
 	cont "with you."
 	done
 
-UnknownText_0x9d4e3:
+ManiaText_ShuckleLikesYou:
 	text "My #MON has"
 	line "come to like you."
 
@@ -173,13 +173,13 @@ UnknownText_0x9d4e3:
 	line "be good to it!"
 	done
 
-UnknownText_0x9d53f:
+ManiaText_SameAsBeingRobbed:
 	text "Oh, no, no… That's"
 	line "the same as being"
 	cont "robbed."
 	done
 
-UnknownText_0x9d56c:
+ManiaText_HappinessSpeech:
 	text "For #MON, hap-"
 	line "piness is being"
 
@@ -187,7 +187,7 @@ UnknownText_0x9d56c:
 	line "treats them well."
 	done
 
-UnknownText_0x9d5b0:
+ManiaText_ShuckleIsYourLastMon:
 	text "If I take my #-"
 	line "MON back, what are"
 
@@ -212,4 +212,4 @@ ManiasHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_ROCKER, 4, 2, $3, 0, 0, -1, -1, 0, 0, 0, RockerScript_0x9d278, -1
+	person_event SPRITE_ROCKER, 4, 2, SPRITEMOVEDATA_03, 0, 0, -1, -1, 0, 0, 0, ManiaScript, -1

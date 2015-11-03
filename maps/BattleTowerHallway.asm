@@ -3,8 +3,8 @@ BattleTowerHallway_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x9f5bb, $0000
-	dw UnknownScript_0x9f5c0, $0000
+	dw UnknownScript_0x9f5bb, 0
+	dw UnknownScript_0x9f5c0, 0
 
 .MapCallbacks:
 	db 0
@@ -98,4 +98,4 @@ BattleTowerHallway_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_RECEPTIONIST, 2, 11, $6, 0, 0, -1, -1, 0, 0, 0, BattleTowerHallway_MapEventHeader, -1
+	person_event SPRITE_RECEPTIONIST, 2, 11, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, BattleTowerHallway_MapEventHeader, -1

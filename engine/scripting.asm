@@ -529,7 +529,7 @@ Script_interpretmenu: ; 0x96f41
 	ld a, [ScriptBank]
 	ld hl, InterpretMenu
 	rst FarCall
-	ld a, [wPocketCursorBuffer]
+	ld a, [wMenuCursorBuffer]
 	jr nc, .ok
 	xor a
 .ok
@@ -608,7 +608,7 @@ Script_verbosegiveitem2: ; 0x96f8e
 	call GetScriptByte
 	call GetVarAction
 	ld a, [de]
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
 	call ReceiveItem
 	ld a, 1
@@ -1191,7 +1191,7 @@ endr
 ApplyPersonFacing: ; 0x9728b
 	ld a, d
 	push de
-	call Function18de
+	call CheckObjectVisibility
 	jr c, .not_visible ; 0x97290 $27
 	ld hl, OBJECT_SPRITE
 	add hl, bc
@@ -1200,7 +1200,7 @@ ApplyPersonFacing: ; 0x9728b
 	call Function1836
 	pop bc
 	jr c, .not_visible ; 0x9729c $1b
-	ld hl, OBJECT_04
+	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 2, [hl]
 	jr nz, .not_visible ; 0x972a4 $13
@@ -1209,28 +1209,29 @@ ApplyPersonFacing: ; 0x9728b
 	call SetSpriteDirection
 	ld hl, VramState
 	bit 6, [hl]
-	jr nz, .asm_972b5 ; 0x972b0 $3
-	call Function972bc
-.asm_972b5
+	jr nz, .text_state ; 0x972b0 $3
+	call .DisableTextTiles
+.text_state
 	call UpdateSprites
 	ret
+
 .not_visible
 	pop de
 	scf
 	ret
 ; 0x972bc
 
-Function972bc: ; 0x972bc
+.DisableTextTiles: ; 0x972bc
 	call Function217a
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-.asm_972c5
+.loop
 	res 7, [hl]
 	inc hl
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_972c5 ; 0x972cb $f8
+	jr nz, .loop ; 0x972cb $f8
 	ret
 ; 0x972ce
 
@@ -1258,7 +1259,7 @@ Script_appear: ; 0x972dd
 	call GetScriptByte
 	call GetScriptPerson
 	call _CopyObjectStruct
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer]
 	ld b, 0 ; clear
 	call ApplyEventActionAppearDisappear
 	ret
@@ -1276,7 +1277,7 @@ Script_disappear: ; 0x972ee
 	ld a, [hLastTalked]
 .ok
 	call DeleteObjectStruct
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer]
 	ld b, 1 ; set
 	call ApplyEventActionAppearDisappear
 	callba RefreshMapAppearDisappear
@@ -1316,14 +1317,14 @@ Script_follow: ; 0x97325
 	call GetScriptByte
 	call GetScriptPerson
 	ld c, a
-	callba Function5803
+	callba StartFollow
 	ret
 ; 0x9733a
 
 Script_stopfollow: ; 0x9733a
 ; script command 0x71
 
-	callba Function581f
+	callba StopFollow
 	ret
 ; 0x97341
 
@@ -1390,7 +1391,7 @@ Script_loademote: ; 0x97384
 	ld a, [ScriptVar]
 .not_var_emote
 	ld c, a
-	callba Function1442f
+	callba LoadEmote
 	ret
 ; 0x97396
 
@@ -1417,7 +1418,7 @@ Script_showemote: ; 0x97396
 ; 0x973b6
 
 ShowEmoteScript: ; 973b6
-	loademote -1
+	loademote EMOTE_MEM
 	applymovement2 .Show
 	pause 0
 	applymovement2 .Hide
@@ -1446,7 +1447,7 @@ Script_earthquake: ; 0x973c7
 	call CopyBytes
 	call GetScriptByte
 	ld [wd003], a
-	and $3f
+	and (1 << 6) - 1
 	ld [wd005], a
 	ld b, BANK(.script)
 	ld de, .script
@@ -2344,7 +2345,7 @@ Script_giveitem: ; 0x977ca
 .ok
 	ld [CurItem], a
 	call GetScriptByte
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
 	call ReceiveItem
 	jr nc, .full ; 0x977e3 $6
@@ -2368,7 +2369,7 @@ Script_takeitem: ; 0x977f0
 	call GetScriptByte
 	ld [CurItem], a
 	call GetScriptByte
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	ld a, $ff
 	ld [wd107], a
 	ld hl, NumItems
@@ -2428,10 +2429,10 @@ Script_checkmoney: ; 0x97843
 
 	call GetMoneyAccount
 	call LoadMoneyAmountToMem
-	callba CheckMoney
+	callba CompareMoney
 ; 0x9784f
 
-CheckMoneyAction: ; 0x9784f
+CompareMoneyAction: ; 0x9784f
 	jr c, .two
 	jr z, .one
 	ld a, 0
@@ -2497,12 +2498,12 @@ Script_checkcoins: ; 0x97895
 
 	call LoadCoinAmountToMem
 	callba CheckCoins
-	jr CheckMoneyAction
+	jr CompareMoneyAction
 ; 978a0
 
 LoadCoinAmountToMem: ; 978a0
 	call GetScriptByte
-	ld [$ffc4], a
+	ld [hMoneyTemp + 1], a
 	call GetScriptByte
 	ld [hMoneyTemp], a
 	ld bc, hMoneyTemp

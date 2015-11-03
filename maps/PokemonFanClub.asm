@@ -307,9 +307,9 @@ PokemonFanClub_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_GENTLEMAN, 1, 3, $6, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x1917e9, -1
-	person_event SPRITE_RECEPTIONIST, 1, 4, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ReceptionistScript_0x191821, -1
-	person_event SPRITE_FISHER, 3, 2, $9, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x191824, -1
-	person_event SPRITE_TEACHER, 2, 7, $8, 0, 0, -1, -1, 0, 0, 0, TeacherScript_0x19186b, -1
-	person_event SPRITE_FAIRY, 4, 2, $6, 0, 0, -1, -1, 0, 0, 0, FairyScript_0x19186e, EVENT_VERMILION_FAN_CLUB_DOLL
-	person_event SPRITE_ODDISH, 3, 7, $16, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OddishScript_0x191871, -1
+	person_event SPRITE_GENTLEMAN, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x1917e9, -1
+	person_event SPRITE_RECEPTIONIST, 1, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ReceptionistScript_0x191821, -1
+	person_event SPRITE_FISHER, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x191824, -1
+	person_event SPRITE_TEACHER, 2, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 0, 0, TeacherScript_0x19186b, -1
+	person_event SPRITE_FAIRY, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, FairyScript_0x19186e, EVENT_VERMILION_FAN_CLUB_DOLL
+	person_event SPRITE_ODDISH, 3, 7, SPRITEMOVEDATA_16, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OddishScript_0x191871, -1

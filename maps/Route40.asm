@@ -21,7 +21,7 @@ MonicaCallback:
 	return
 
 TrainerSwimmerfElaine:
-	trainer EVENT_BEAT_SWIMMERF_ELAINE, SWIMMERF, ELAINE, SwimmerfElaineSeenText, SwimmerfElaineBeatenText, $0000, SwimmerfElaineScript
+	trainer EVENT_BEAT_SWIMMERF_ELAINE, SWIMMERF, ELAINE, SwimmerfElaineSeenText, SwimmerfElaineBeatenText, 0, SwimmerfElaineScript
 
 SwimmerfElaineScript:
 	talkaftercancel
@@ -32,7 +32,7 @@ SwimmerfElaineScript:
 	end
 
 TrainerSwimmerfPaula:
-	trainer EVENT_BEAT_SWIMMERF_PAULA, SWIMMERF, PAULA, SwimmerfPaulaSeenText, SwimmerfPaulaBeatenText, $0000, SwimmerfPaulaScript
+	trainer EVENT_BEAT_SWIMMERF_PAULA, SWIMMERF, PAULA, SwimmerfPaulaSeenText, SwimmerfPaulaBeatenText, 0, SwimmerfPaulaScript
 
 SwimmerfPaulaScript:
 	talkaftercancel
@@ -43,7 +43,7 @@ SwimmerfPaulaScript:
 	end
 
 TrainerSwimmermSimon:
-	trainer EVENT_BEAT_SWIMMERM_SIMON, SWIMMERM, SIMON, SwimmermSimonSeenText, SwimmermSimonBeatenText, $0000, SwimmermSimonScript
+	trainer EVENT_BEAT_SWIMMERM_SIMON, SWIMMERM, SIMON, SwimmermSimonSeenText, SwimmermSimonBeatenText, 0, SwimmermSimonScript
 
 SwimmermSimonScript:
 	talkaftercancel
@@ -54,7 +54,7 @@ SwimmermSimonScript:
 	end
 
 TrainerSwimmermRandall:
-	trainer EVENT_BEAT_SWIMMERM_RANDALL, SWIMMERM, RANDALL, SwimmermRandallSeenText, SwimmermRandallBeatenText, $0000, SwimmermRandallScript
+	trainer EVENT_BEAT_SWIMMERM_RANDALL, SWIMMERM, RANDALL, SwimmermRandallSeenText, SwimmermRandallBeatenText, 0, SwimmermRandallScript
 
 SwimmermRandallScript:
 	talkaftercancel
@@ -344,15 +344,15 @@ Route40_MapEventHeader:
 
 .PersonEvents:
 	db 12
-	person_event SPRITE_OLIVINE_RIVAL, 15, 14, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerSwimmermSimon, -1
-	person_event SPRITE_OLIVINE_RIVAL, 30, 18, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 5, TrainerSwimmermRandall, -1
-	person_event SPRITE_SWIMMER_GIRL, 19, 3, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 4, TrainerSwimmerfElaine, -1
-	person_event SPRITE_SWIMMER_GIRL, 25, 10, $1f, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfPaula, -1
-	person_event SPRITE_ROCK, 11, 7, $18, 0, 0, -1, -1, 0, 0, 0, Route40Rock, -1
-	person_event SPRITE_ROCK, 9, 6, $18, 0, 0, -1, -1, 0, 0, 0, Route40Rock, -1
-	person_event SPRITE_ROCK, 8, 7, $18, 0, 0, -1, -1, 0, 0, 0, Route40Rock, -1
-	person_event SPRITE_LASS, 13, 11, $6, 0, 0, -1, -1, 0, 0, 0, LassScript_0x1a61c4, -1
-	person_event SPRITE_BUENA, 10, 8, $3, 0, 0, -1, -1, 0, 0, 0, MonicaScript, EVENT_ROUTE_40_MONICA_OF_MONDAY
-	person_event SPRITE_POKEFAN_M, 6, 7, $9, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x1a61c7, -1
-	person_event SPRITE_LASS, 4, 13, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x1a61d3, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 9, 16, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, StandingYoungsterScript_0x1a61d6, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
+	person_event SPRITE_OLIVINE_RIVAL, 15, 14, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerSwimmermSimon, -1
+	person_event SPRITE_OLIVINE_RIVAL, 30, 18, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 5, TrainerSwimmermRandall, -1
+	person_event SPRITE_SWIMMER_GIRL, 19, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 4, TrainerSwimmerfElaine, -1
+	person_event SPRITE_SWIMMER_GIRL, 25, 10, SPRITEMOVEDATA_1F, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfPaula, -1
+	person_event SPRITE_ROCK, 11, 7, SPRITEMOVEDATA_18, 0, 0, -1, -1, 0, 0, 0, Route40Rock, -1
+	person_event SPRITE_ROCK, 9, 6, SPRITEMOVEDATA_18, 0, 0, -1, -1, 0, 0, 0, Route40Rock, -1
+	person_event SPRITE_ROCK, 8, 7, SPRITEMOVEDATA_18, 0, 0, -1, -1, 0, 0, 0, Route40Rock, -1
+	person_event SPRITE_LASS, 13, 11, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, LassScript_0x1a61c4, -1
+	person_event SPRITE_BUENA, 10, 8, SPRITEMOVEDATA_03, 0, 0, -1, -1, 0, 0, 0, MonicaScript, EVENT_ROUTE_40_MONICA_OF_MONDAY
+	person_event SPRITE_POKEFAN_M, 6, 7, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x1a61c7, -1
+	person_event SPRITE_LASS, 4, 13, SPRITEMOVEDATA_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x1a61d3, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 9, 16, SPRITEMOVEDATA_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, StandingYoungsterScript_0x1a61d6, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR

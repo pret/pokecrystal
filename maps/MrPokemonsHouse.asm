@@ -3,8 +3,8 @@ MrPokemonsHouse_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x196e51, $0000
-	dw UnknownScript_0x196e55, $0000
+	dw UnknownScript_0x196e51, 0
+	dw UnknownScript_0x196e55, 0
 
 .MapCallbacks:
 	db 0
@@ -392,5 +392,5 @@ MrPokemonsHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_GENTLEMAN, 5, 3, $9, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x196e97, -1
-	person_event SPRITE_OAK, 5, 6, $7, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MR_POKEMONS_HOUSE_OAK
+	person_event SPRITE_GENTLEMAN, 5, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x196e97, -1
+	person_event SPRITE_OAK, 5, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MR_POKEMONS_HOUSE_OAK

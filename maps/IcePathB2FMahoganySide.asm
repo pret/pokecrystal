@@ -45,9 +45,9 @@ IcePathB2FMahoganySide_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_BOULDER, 3, 11, $1, 0, 0, -1, -1, 0, 0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_1A
-	person_event SPRITE_BOULDER, 7, 4, $1, 0, 0, -1, -1, 0, 0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_2A
-	person_event SPRITE_BOULDER, 12, 3, $1, 0, 0, -1, -1, 0, 0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_3A
-	person_event SPRITE_BOULDER, 13, 12, $1, 0, 0, -1, -1, 0, 0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_4A
-	person_event SPRITE_POKE_BALL, 9, 8, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e5a6, EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_FULL_HEAL
-	person_event SPRITE_POKE_BALL, 2, 0, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e5a8, EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_MAX_POTION
+	person_event SPRITE_BOULDER, 3, 11, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_1A
+	person_event SPRITE_BOULDER, 7, 4, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_2A
+	person_event SPRITE_BOULDER, 12, 3, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_3A
+	person_event SPRITE_BOULDER, 13, 12, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_4A
+	person_event SPRITE_POKE_BALL, 9, 8, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e5a6, EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_FULL_HEAL
+	person_event SPRITE_POKE_BALL, 2, 0, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7e5a8, EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_MAX_POTION

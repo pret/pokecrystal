@@ -92,7 +92,7 @@ Route10PokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_NURSE, 1, 3, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x188bd4, -1
-	person_event SPRITE_GENTLEMAN, 6, 7, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GentlemanScript_0x188bd7, -1
-	person_event SPRITE_GYM_GUY, 2, 7, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, GymGuyScript_0x188bda, -1
-	person_event SPRITE_COOLTRAINER_F, 3, 1, $6, 0, 0, -1, -1, 0, 0, 0, CooltrainerFScript_0x188bee, -1
+	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x188bd4, -1
+	person_event SPRITE_GENTLEMAN, 6, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GentlemanScript_0x188bd7, -1
+	person_event SPRITE_GYM_GUY, 2, 7, SPRITEMOVEDATA_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, GymGuyScript_0x188bda, -1
+	person_event SPRITE_COOLTRAINER_F, 3, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, CooltrainerFScript_0x188bee, -1

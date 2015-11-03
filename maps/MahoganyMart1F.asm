@@ -3,8 +3,8 @@ MahoganyMart1F_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x6c356, $0000
-	dw UnknownScript_0x6c357, $0000
+	dw UnknownScript_0x6c356, 0
+	dw UnknownScript_0x6c357, 0
 
 .MapCallbacks:
 	db 1
@@ -34,7 +34,7 @@ PharmacistScript_0x6c367:
 	loadfont
 	checkevent EVENT_DECIDED_TO_HELP_LANCE
 	iftrue UnknownScript_0x6c375
-	pokemart $0, $000f
+	pokemart MARTTYPE_STANDARD, MART_MAHOGANY_1
 	loadmovesprites
 	end
 
@@ -106,7 +106,7 @@ UnknownScript_0x6c38f:
 GrannyScript_0x6c3ee:
 	faceplayer
 	loadfont
-	pokemart $0, $0010
+	pokemart MARTTYPE_STANDARD, MART_MAHOGANY_2
 	loadmovesprites
 	end
 
@@ -236,8 +236,8 @@ MahoganyMart1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_PHARMACIST, 3, 4, $6, 0, 0, -1, -1, 0, 0, 0, PharmacistScript_0x6c367, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_BLACK_BELT, 6, 1, $3, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x6c37b, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_LANCE, 6, 4, $8, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
-	person_event SPRITE_DRAGON, 6, 3, $8, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
-	person_event SPRITE_GRANNY, 3, 1, $9, 0, 0, -1, -1, 0, 0, 0, GrannyScript_0x6c3ee, EVENT_MAHOGANY_MART_OWNERS
+	person_event SPRITE_PHARMACIST, 3, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, PharmacistScript_0x6c367, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_BLACK_BELT, 6, 1, SPRITEMOVEDATA_03, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x6c37b, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_LANCE, 6, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
+	person_event SPRITE_DRAGON, 6, 3, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
+	person_event SPRITE_GRANNY, 3, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, GrannyScript_0x6c3ee, EVENT_MAHOGANY_MART_OWNERS

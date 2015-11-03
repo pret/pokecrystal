@@ -3,8 +3,8 @@ RuinsofAlphOutside_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x5800d, $0000
-	dw UnknownScript_0x5800e, $0000
+	dw UnknownScript_0x5800d, 0
+	dw UnknownScript_0x5800e, 0
 
 .MapCallbacks:
 	db 1
@@ -100,7 +100,7 @@ YoungsterScript_0x5807e:
 	end
 
 TrainerPsychicNathan:
-	trainer EVENT_BEAT_PSYCHIC_NATHAN, PSYCHIC_T, NATHAN, PsychicNathanSeenText, PsychicNathanBeatenText, $0000, PsychicNathanScript
+	trainer EVENT_BEAT_PSYCHIC_NATHAN, PSYCHIC_T, NATHAN, PsychicNathanSeenText, PsychicNathanBeatenText, 0, PsychicNathanScript
 
 PsychicNathanScript:
 	talkaftercancel
@@ -112,7 +112,7 @@ PsychicNathanScript:
 
 
 TrainerSuperNerdStan:
-	trainer EVENT_BEAT_SUPER_NERD_STAN, SUPER_NERD, STAN, UnknownText_0x581e5, UnknownText_0x58217, $0000, UnknownScript_0x580a9
+	trainer EVENT_BEAT_SUPER_NERD_STAN, SUPER_NERD, STAN, UnknownText_0x581e5, UnknownText_0x58217, 0, UnknownScript_0x580a9
 
 UnknownScript_0x580a9:
 	talkaftercancel
@@ -311,8 +311,8 @@ RuinsofAlphOutside_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_YOUNGSTER, 20, 4, $6, 0, 0, -1, -1, 0, 2, 1, TrainerPsychicNathan, -1
-	person_event SPRITE_SCIENTIST, 15, 11, $7, 0, 0, -1, -1, 0, 0, 0, ScientistScript_0x58043, EVENT_RUINS_OF_ALPH_OUTSIDE_SCIENTIST
-	person_event SPRITE_FISHER, 17, 13, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FisherScript_0x58061, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_FISHER
-	person_event SPRITE_YOUNGSTER, 11, 14, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, YoungsterScript_0x58076, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS
-	person_event SPRITE_YOUNGSTER, 8, 12, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x5807e, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS
+	person_event SPRITE_YOUNGSTER, 20, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 2, 1, TrainerPsychicNathan, -1
+	person_event SPRITE_SCIENTIST, 15, 11, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, 0, 0, ScientistScript_0x58043, EVENT_RUINS_OF_ALPH_OUTSIDE_SCIENTIST
+	person_event SPRITE_FISHER, 17, 13, SPRITEMOVEDATA_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FisherScript_0x58061, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_FISHER
+	person_event SPRITE_YOUNGSTER, 11, 14, SPRITEMOVEDATA_02, 1, 1, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, YoungsterScript_0x58076, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS
+	person_event SPRITE_YOUNGSTER, 8, 12, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x5807e, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS

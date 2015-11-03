@@ -6,7 +6,7 @@ Route3_MapScriptHeader:
 	db 0
 
 TrainerFirebreatherOtis:
-	trainer EVENT_BEAT_FIREBREATHER_OTIS, FIREBREATHER, OTIS, FirebreatherOtisSeenText, FirebreatherOtisBeatenText, $0000, FirebreatherOtisScript
+	trainer EVENT_BEAT_FIREBREATHER_OTIS, FIREBREATHER, OTIS, FirebreatherOtisSeenText, FirebreatherOtisBeatenText, 0, FirebreatherOtisScript
 
 FirebreatherOtisScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ FirebreatherOtisScript:
 	end
 
 TrainerYoungsterWarren:
-	trainer EVENT_BEAT_YOUNGSTER_WARREN, YOUNGSTER, WARREN, YoungsterWarrenSeenText, YoungsterWarrenBeatenText, $0000, YoungsterWarrenScript
+	trainer EVENT_BEAT_YOUNGSTER_WARREN, YOUNGSTER, WARREN, YoungsterWarrenSeenText, YoungsterWarrenBeatenText, 0, YoungsterWarrenScript
 
 YoungsterWarrenScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ YoungsterWarrenScript:
 	end
 
 TrainerYoungsterJimmy:
-	trainer EVENT_BEAT_YOUNGSTER_JIMMY, YOUNGSTER, JIMMY, YoungsterJimmySeenText, YoungsterJimmyBeatenText, $0000, YoungsterJimmyScript
+	trainer EVENT_BEAT_YOUNGSTER_JIMMY, YOUNGSTER, JIMMY, YoungsterJimmySeenText, YoungsterJimmyBeatenText, 0, YoungsterJimmyScript
 
 YoungsterJimmyScript:
 	talkaftercancel
@@ -39,7 +39,7 @@ YoungsterJimmyScript:
 	end
 
 TrainerFirebreatherBurt:
-	trainer EVENT_BEAT_FIREBREATHER_BURT, FIREBREATHER, BURT, FirebreatherBurtSeenText, FirebreatherBurtBeatenText, $0000, FirebreatherBurtScript
+	trainer EVENT_BEAT_FIREBREATHER_BURT, FIREBREATHER, BURT, FirebreatherBurtSeenText, FirebreatherBurtBeatenText, 0, FirebreatherBurtScript
 
 FirebreatherBurtScript:
 	talkaftercancel
@@ -143,7 +143,7 @@ Route3_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_FISHER, 12, 26, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerFirebreatherOtis, -1
-	person_event SPRITE_YOUNGSTER, 7, 10, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterWarren, -1
-	person_event SPRITE_YOUNGSTER, 3, 16, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerYoungsterJimmy, -1
-	person_event SPRITE_FISHER, 5, 49, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerFirebreatherBurt, -1
+	person_event SPRITE_FISHER, 12, 26, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerFirebreatherOtis, -1
+	person_event SPRITE_YOUNGSTER, 7, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterWarren, -1
+	person_event SPRITE_YOUNGSTER, 3, 16, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerYoungsterJimmy, -1
+	person_event SPRITE_FISHER, 5, 49, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerFirebreatherBurt, -1

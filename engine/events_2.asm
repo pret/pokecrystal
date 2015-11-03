@@ -109,7 +109,7 @@ RandomEncounter:: ; 97cc0
 	call CanUseSweetScent
 	jr nc, .nope
 	ld hl, StatusFlags2
-	bit 2, [hl]
+	bit 2, [hl] ; bug contest
 	jr nz, .bug_contest
 	callba TryWildEncounter
 	jr nz, .nope
@@ -153,15 +153,15 @@ CanUseSweetScent:: ; 97cfd
 	bit 5, [hl]
 	jr nz, .no
 	ld a, [wPermission]
-	cp $4
+	cp CAVE
 	jr z, .ice_check
-	cp $7
+	cp DUNGEON
 	jr z, .ice_check
-	callba Function149dd
+	callba CheckGrassCollision
 	jr nc, .no
 
 .ice_check
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	call CheckIceTile
 	jr z, .no
 	scf
@@ -235,11 +235,11 @@ ChooseWildEncounter_BugContest:: ; 97d31
 ; 97d64
 
 TryWildEncounter_BugContest: ; 97d64
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	call CheckSuperTallGrassTile
-	ld b, $66
+	ld b, 40 percent
 	jr z, .ok
-	ld b, $33
+	ld b, 20 percent
 
 .ok
 	callba ApplyMusicEffectOnEncounterRate
@@ -351,24 +351,24 @@ Function97df9:: ; 97df9
 Function97e08:: ; 97e08
 	ld hl, wd6de
 	xor a
-.asm_97e0c
-	ld [hConnectionStripLength], a
+.loop
+	ld [hMapObjectIndexBuffer], a
 	ld a, [hl]
 	and a
-	jr z, .asm_97e19
+	jr z, .skip
 	push hl
 	ld b, h
 	ld c, l
 	call Function97e79
 	pop hl
 
-.asm_97e19
+.skip
 	ld de, $0006
 	add hl, de
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer]
 	inc a
 	cp $4
-	jr nz, .asm_97e0c
+	jr nz, .loop
 	ret
 ; 97e25
 
@@ -441,14 +441,14 @@ Function97e5c:: ; 97e5c
 ; 97e72
 
 Function97e72: ; 97e72
-	ld hl, $0000
+	ld hl, 0
 	add hl, bc
 	ld [hl], 0
 	ret
 ; 97e79
 
 Function97e79: ; 97e79
-	ld hl, $0000
+	ld hl, 0
 	add hl, bc
 	ld a, [hl]
 	cp 5
@@ -473,11 +473,11 @@ endr
 ; 97e94
 
 Table97e94: ; 97e94
-	dbw BANK(Function97eb7), Function97eb7
-	dbw BANK(Function97eb8), Function97eb8
-	dbw BANK(Function97f42), Function97f42
-	dbw BANK(Function97ef9), Function97ef9
-	dbw BANK(Function97ebc), Function97ebc
+	dba Function97eb7
+	dba Function97eb8
+	dba Function97f42
+	dba Function97ef9
+	dba Function97ebc
 ; 97ea3
 
 Function97ea3: ; 97ea3
@@ -620,7 +620,7 @@ Function97f42: ; 97f42
 .asm_97f47
 	push af
 
-	ld hl, $0000
+	ld hl, 0
 	add hl, de
 	ld a, [hl]
 	and a

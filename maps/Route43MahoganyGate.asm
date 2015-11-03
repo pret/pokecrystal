@@ -54,4 +54,4 @@ Route43MahoganyGate_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_OFFICER, 4, 0, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, OfficerScript_0x19ab0b, -1
+	person_event SPRITE_OFFICER, 4, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, OfficerScript_0x19ab0b, -1

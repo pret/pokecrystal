@@ -306,12 +306,12 @@ ScriptVar:: ; c2dd
 
 wc2de:: ds 1
 wc2df:: ds 3
-wc2e2:: ds 1
-wc2e3:: ds 3
+wMovementPerson:: ds 1
+wMovementDataPointer:: ds 3
 wc2e6:: ds 4
 wc2ea:: ds 1
-wc2eb:: ds 1
-wc2ec:: ds 4
+wMovementPointer:: ds 2
+	ds 3
 wc2f0:: ds 1
 wc2f1:: ds 1
 wc2f2:: ds 1
@@ -432,12 +432,16 @@ TileMapEnd::
 
 
 SECTION "Battle", WRAM0
+	party_struct OddEgg
+wOddEggName:: ds PKMN_NAME_LENGTH
+wOddEggOTName:: ds PKMN_NAME_LENGTH
+	ds -70
 
 wMisc::
 wBattle::
+wc608::
 wBT_OTTempCopy:: ; used to copy the data of the BattleTower-Trainer and the 3 Pkmn
 
-wc608::
 wEnemyMoveStruct::  ds MOVE_LENGTH ; c608
 wc60f::
 wPlayerMoveStruct:: ds MOVE_LENGTH ; c60f
@@ -1035,7 +1039,7 @@ OverworldMapEnd::
 SECTION "Video", WRAM0
 CreditsPos::
 BGMapBuffer:: ; cd20
-	ds 1
+wcd20:: ds 1
 wcd21:: ds 1
 wcd22::
 CreditsTimer:: ; cd22
@@ -1235,7 +1239,7 @@ wMenuBorderRightCoord:: ds 1
 
 wcf86:: ds 1
 wcf87:: ds 1
-wPocketCursorBuffer:: ds 2
+wMenuCursorBuffer:: ds 2
 wcf8a:: ds 7 ; menu data 2 bank?
 wcf91:: ds 1
 
@@ -1511,8 +1515,8 @@ wd0e1:: ds 1
 wd0e2:: ds 1
 wd0e3:: ds 1
 wd0e4:: ds 4
-wd0e8:: ds 1
-wd0e9:: ds 2
+wQueuedScriptBank:: ds 1
+wQueuedScriptAddr:: ds 2
 wd0eb:: ds 1
 wd0ec:: ds 1
 
@@ -1557,8 +1561,8 @@ CurPartyMon:: ; d109
 
 wd10a:: ds 1
 wd10b:: ds 1
-wd10c:: ds 1
-wd10d:: ds 1
+wItemQuantityChangeBuffer:: ds 1
+wItemQuantityBuffer:: ds 1
 
 wd10e::
 TempMon::
@@ -1606,6 +1610,7 @@ wd182:: ds 1
 wd191:: ds 1
 wd192:: ds 1
 wd193:: ds 1
+UsedSpritesEnd::
 wd194:: ds 1
 wd195:: ds 1
 wd196:: ds 1
@@ -1922,6 +1927,8 @@ wd431:: ds 1
 MapStatus:: ; d432
 	ds 1
 MapEventStatus:: ; d433
+; 0: do map events
+; 1: do background events
 	ds 1
 
 ScriptFlags:: ; d434
@@ -2031,85 +2038,57 @@ CurDay:: ; d4cb
 	ds 1
 
 	ds 1
-wd4cd:: ds 1
-wd4ce:: ds 1
+wObjectFollow_Leader:: ds 1
+wObjectFollow_Follower:: ds 1
 wd4cf:: ds 1
 wd4d0:: ds 1
-wd4d1:: ds 5
+wd4d1:: ds 1
+	ds 4
 
 ObjectStructs::
-
-PlayerStruct:: ; d4d6
-	ds 2
-PlayerSprite:: ; d4d8
+object_struct: MACRO
+\1Struct::
+\1Sprite:: ds 1
+\1MapObjectIndex:: ds 1
+\1SpriteTile:: ds 1
+\1MovementType:: ds 1
+\1Flags:: ds 2
+\1Palette:: ds 1
+\1Walking:: ds 1
+\1Direction:: ds 1
 	ds 1
+\1StepDuration:: ds 1
+\1Action:: ds 1
+\1Object12:: ds 1
+\1Facing:: ds 1
+\1StandingTile:: ds 1
+\1NextTile:: ds 1
+\1MapX:: ds 1
+\1MapY:: ds 1
+\1NextMapX:: ds 1
+\1NextMapY:: ds 1
 	ds 3
-PlayerPalette:: ; d4dc
-	ds 1
-	ds 1
-PlayerDirection:: ; d4de
-; uses bits 2 and 3 / $0c / %00001100
-; %00 down
-; %01 up
-; %10 left
-; $11 right
-	ds 1
-	ds 2
-PlayerAction:: ; d4e1
-; 1 standing
-; 2 walking
-; 4 spinning
-; 6 fishing
-	ds 1
-wd4e2:: ds 1
-PlayerFacing:: ; d4e3
-	ds 1
-StandingTile:: ; d4e4
-	ds 1
-StandingTile2:: ; d4e5
-	ds 1
-; relative to the map struct including borders
-MapX:: ; d4e6
-	ds 1
-MapY:: ; d4e7
-	ds 1
-MapX2:: ; d4e8
-	ds 1
-MapY2:: ; d4e9
-	ds 1
-	ds 3
-; relative to the bg map, in px
-PlayerSpriteX:: ; d4ed
-	ds 1
-PlayerSpriteY:: ; d4ee
-	ds 1
-	ds 15
+\1SpriteX:: ds 1
+\1SpriteY:: ds 1
+\1SpriteXOffset:: ds 1
+\1SpriteYOffset:: ds 1
+	ds 6
+	ds 7
+ENDM
 
-ObjectStruct1:: ; d4fe
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct2:: ; d526
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct3:: ; d54e
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct4:: ; d576
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct5:: ; d59e
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct6:: ; d5c6
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct7:: ; d5ee
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct8:: ; d616
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct9:: ; d63e
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct10:: ; d666
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct11:: ; d68e
-	ds OBJECT_STRUCT_LENGTH
-ObjectStruct12:: ; d6b6
-	ds OBJECT_STRUCT_LENGTH
-; d6de
+	object_struct Player
+	object_struct Object1
+	object_struct Object2
+	object_struct Object3
+	object_struct Object4
+	object_struct Object5
+	object_struct Object6
+	object_struct Object7
+	object_struct Object8
+	object_struct Object9
+	object_struct Object10
+	object_struct Object11
+	object_struct Object12
 
 wd6de::
 	ds 64
@@ -2117,7 +2096,7 @@ wd6de::
 MapObjects:: ; d71e
 	ds OBJECT_LENGTH * NUM_OBJECTS
 
-wd81e:: ds NUM_OBJECTS
+wObjectMasks:: ds NUM_OBJECTS ; d81e
 
 VariableSprites:: ; d82e
 	ds $10

@@ -44,4 +44,4 @@ LavenderTownSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKEFAN_F, 3, 2, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, PokefanFScript_0x7ea47, -1
+	person_event SPRITE_POKEFAN_F, 3, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, PokefanFScript_0x7ea47, -1

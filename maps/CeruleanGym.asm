@@ -3,8 +3,8 @@ CeruleanGym_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x1883d9, $0000
-	dw UnknownScript_0x1883da, $0000
+	dw UnknownScript_0x1883d9, 0
+	dw UnknownScript_0x1883da, 0
 
 .MapCallbacks:
 	db 0
@@ -60,7 +60,7 @@ MistyScript_0x188432:
 	writetext UnknownText_0x188674
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x18870c, $0000
+	winlosstext UnknownText_0x18870c, 0
 	loadtrainer MISTY, 1
 	startbattle
 	returnafterbattle
@@ -80,7 +80,7 @@ MistyScript_0x188432:
 	end
 
 TrainerSwimmerfDiana:
-	trainer EVENT_BEAT_SWIMMERF_DIANA, SWIMMERF, DIANA, SwimmerfDianaSeenText, SwimmerfDianaBeatenText, $0000, SwimmerfDianaScript
+	trainer EVENT_BEAT_SWIMMERF_DIANA, SWIMMERF, DIANA, SwimmerfDianaSeenText, SwimmerfDianaBeatenText, 0, SwimmerfDianaScript
 
 SwimmerfDianaScript:
 	talkaftercancel
@@ -91,7 +91,7 @@ SwimmerfDianaScript:
 	end
 
 TrainerSwimmerfBriana:
-	trainer EVENT_BEAT_SWIMMERF_BRIANA, SWIMMERF, BRIANA, SwimmerfBrianaSeenText, SwimmerfBrianaBeatenText, $0000, SwimmerfBrianaScript
+	trainer EVENT_BEAT_SWIMMERF_BRIANA, SWIMMERF, BRIANA, SwimmerfBrianaSeenText, SwimmerfBrianaBeatenText, 0, SwimmerfBrianaScript
 
 SwimmerfBrianaScript:
 	talkaftercancel
@@ -102,7 +102,7 @@ SwimmerfBrianaScript:
 	end
 
 TrainerSwimmermParker:
-	trainer EVENT_BEAT_SWIMMERM_PARKER, SWIMMERM, PARKER, SwimmermParkerSeenText, SwimmermParkerBeatenText, $0000, SwimmermParkerScript
+	trainer EVENT_BEAT_SWIMMERM_PARKER, SWIMMERM, PARKER, SwimmermParkerSeenText, SwimmermParkerBeatenText, 0, SwimmermParkerScript
 
 SwimmermParkerScript:
 	talkaftercancel
@@ -377,9 +377,9 @@ CeruleanGym_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_ROCKET, 10, 4, $6, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_CERULEAN_GYM_ROCKET
-	person_event SPRITE_MISTY, 3, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, MistyScript_0x188432, EVENT_TRAINERS_IN_CERULEAN_GYM
-	person_event SPRITE_SWIMMER_GIRL, 6, 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfDiana, EVENT_TRAINERS_IN_CERULEAN_GYM
-	person_event SPRITE_SWIMMER_GIRL, 9, 1, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerSwimmerfBriana, EVENT_TRAINERS_IN_CERULEAN_GYM
-	person_event SPRITE_SWIMMER_GUY, 9, 8, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermParker, EVENT_TRAINERS_IN_CERULEAN_GYM
-	person_event SPRITE_GYM_GUY, 13, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, CeruleanGymGuyScript, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_ROCKET, 10, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_CERULEAN_GYM_ROCKET
+	person_event SPRITE_MISTY, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, MistyScript_0x188432, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_SWIMMER_GIRL, 6, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfDiana, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_SWIMMER_GIRL, 9, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerSwimmerfBriana, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_SWIMMER_GUY, 9, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermParker, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_GYM_GUY, 13, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, CeruleanGymGuyScript, EVENT_TRAINERS_IN_CERULEAN_GYM

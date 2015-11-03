@@ -6,7 +6,7 @@ OlivineLighthouse5F_MapScriptHeader:
 	db 0
 
 TrainerBird_keeperDenis:
-	trainer EVENT_BEAT_BIRD_KEEPER_DENIS, BIRD_KEEPER, DENIS, Bird_keeperDenisSeenText, Bird_keeperDenisBeatenText, $0000, Bird_keeperDenisScript
+	trainer EVENT_BEAT_BIRD_KEEPER_DENIS, BIRD_KEEPER, DENIS, Bird_keeperDenisSeenText, Bird_keeperDenisBeatenText, 0, Bird_keeperDenisScript
 
 Bird_keeperDenisScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ Bird_keeperDenisScript:
 	end
 
 TrainerSailorErnest:
-	trainer EVENT_BEAT_SAILOR_ERNEST, SAILOR, ERNEST, SailorErnestSeenText, SailorErnestBeatenText, $0000, SailorErnestScript
+	trainer EVENT_BEAT_SAILOR_ERNEST, SAILOR, ERNEST, SailorErnestSeenText, SailorErnestBeatenText, 0, SailorErnestScript
 
 SailorErnestScript:
 	talkaftercancel
@@ -107,8 +107,8 @@ OlivineLighthouse5F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_SAILOR, 11, 8, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSailorErnest, -1
-	person_event SPRITE_YOUNGSTER, 3, 8, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerBird_keeperDenis, -1
-	person_event SPRITE_POKE_BALL, 12, 15, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x609aa, EVENT_OLIVINE_LIGHTHOUSE_5F_RARE_CANDY
-	person_event SPRITE_POKE_BALL, 15, 6, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x609ac, EVENT_OLIVINE_LIGHTHOUSE_5F_SUPER_REPEL
-	person_event SPRITE_POKE_BALL, 13, 2, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x609ae, EVENT_OLIVINE_LIGHTHOUSE_5F_TM_SWAGGER
+	person_event SPRITE_SAILOR, 11, 8, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSailorErnest, -1
+	person_event SPRITE_YOUNGSTER, 3, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerBird_keeperDenis, -1
+	person_event SPRITE_POKE_BALL, 12, 15, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x609aa, EVENT_OLIVINE_LIGHTHOUSE_5F_RARE_CANDY
+	person_event SPRITE_POKE_BALL, 15, 6, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x609ac, EVENT_OLIVINE_LIGHTHOUSE_5F_SUPER_REPEL
+	person_event SPRITE_POKE_BALL, 13, 2, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x609ae, EVENT_OLIVINE_LIGHTHOUSE_5F_TM_SWAGGER

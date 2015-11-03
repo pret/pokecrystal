@@ -3,8 +3,8 @@ BurnedTowerB1F_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x18615e, $0000
-	dw UnknownScript_0x18615f, $0000
+	dw UnknownScript_0x18615e, 0
+	dw UnknownScript_0x18615f, 0
 
 .MapCallbacks:
 	db 1
@@ -251,12 +251,12 @@ BurnedTowerB1F_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_BOULDER, 8, 17, $19, 0, 0, -1, -1, 0, 0, 0, BurnedTowerB1FBoulder, -1
-	person_event SPRITE_RAIKOU, 3, 7, $16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
-	person_event SPRITE_ENTEI, 3, 12, $16, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
-	person_event SPRITE_SUICUNE, 4, 10, $16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
-	person_event SPRITE_RAIKOU, 3, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_SILVER, 0, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
-	person_event SPRITE_ENTEI, 3, 12, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_SILVER, 0, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
-	person_event SPRITE_SUICUNE, 4, 10, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_SILVER, 0, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
-	person_event SPRITE_POKE_BALL, 4, 16, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x186231, EVENT_BURNED_TOWER_B1F_TM_ENDURE
-	person_event SPRITE_SUPER_NERD, 12, 10, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SuperNerdScript_0x186212, EVENT_EUSINE_IN_BURNED_TOWER
+	person_event SPRITE_BOULDER, 8, 17, SPRITEMOVEDATA_19, 0, 0, -1, -1, 0, 0, 0, BurnedTowerB1FBoulder, -1
+	person_event SPRITE_RAIKOU, 3, 7, SPRITEMOVEDATA_16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
+	person_event SPRITE_ENTEI, 3, 12, SPRITEMOVEDATA_16, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
+	person_event SPRITE_SUICUNE, 4, 10, SPRITEMOVEDATA_16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
+	person_event SPRITE_RAIKOU, 3, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_SILVER, 0, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
+	person_event SPRITE_ENTEI, 3, 12, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_SILVER, 0, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
+	person_event SPRITE_SUICUNE, 4, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_SILVER, 0, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
+	person_event SPRITE_POKE_BALL, 4, 16, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x186231, EVENT_BURNED_TOWER_B1F_TM_ENDURE
+	person_event SPRITE_SUPER_NERD, 12, 10, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SuperNerdScript_0x186212, EVENT_EUSINE_IN_BURNED_TOWER

@@ -21,7 +21,7 @@ Function180e:: ; 180e
 	ld hl, UsedSprites + 2
 	ld c, SPRITE_GFX_LIST_CAPACITY - 1
 	ld b, a
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer]
 	cp 0
 	jr z, .nope
 	ld a, b
@@ -78,14 +78,14 @@ Function1836:: ; 1836
 
 
 Function184a:: ; 184a
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	call GetTileCollision
 	ld b, a
 	ret
 ; 1852
 
 CheckOnWater:: ; 1852
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	call GetTileCollision
 	sub 1
 	ret z
@@ -209,7 +209,7 @@ CheckWaterfallTile:: ; 18bd
 ; 18c3
 
 CheckStandingOnEntrance:: ; 18c3
-	ld a, [StandingTile]
+	ld a, [PlayerStandingTile]
 	cp $71 ; door
 	ret z
 	cp $79
@@ -232,16 +232,16 @@ GetMapObject:: ; 18d2
 ; 18de
 
 
-Function18de:: ; 18de
+CheckObjectVisibility:: ; 18de
 ; Sets carry if the object is not visible on the screen.
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer], a
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp -1
 	jr z, .not_visible
-	ld [hConnectedMapWidth], a
+	ld [hObjectStructIndexBuffer], a
 	call GetObjectStruct
 	and a
 	ret
@@ -251,7 +251,7 @@ Function18de:: ; 18de
 	ret
 ; 18f5
 
-Function18f5:: ; 18f5
+CheckObjectTime:: ; 18f5
 	ld hl, MAPOBJECT_HOUR
 	add hl, bc
 	ld a, [hl]
@@ -326,7 +326,7 @@ Function18f5:: ; 18f5
 ; 194d
 
 Function194d:: ; 194d
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer], a
 	call GetMapObject
 	call CopyObjectStruct
 	ret
@@ -335,22 +335,22 @@ Function194d:: ; 194d
 
 
 _CopyObjectStruct:: ; 1956
-	ld [hConnectionStripLength], a
-	call Function271e
-	ld a, [hConnectionStripLength]
+	ld [hMapObjectIndexBuffer], a
+	call UnmaskObject
+	ld a, [hMapObjectIndexBuffer]
 	call GetMapObject
 	callba CopyObjectStruct
 	ret
 ; 1967
 
 Function1967:: ; 1967
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer], a
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp -1
-	ret z
+	ret z ; already hidden
 	ld [hl], -1
 	push af
 	call Function1985
@@ -361,24 +361,24 @@ Function1967:: ; 1967
 ; 1985
 
 Function1985:: ; 1985
-	ld hl, wd4cd
+	ld hl, wObjectFollow_Leader
 	cp [hl]
 	jr z, .ok
-	ld hl, wd4ce
+	ld hl, wObjectFollow_Follower
 	cp [hl]
 	ret nz
 
 .ok
-	callba Function581f
+	callba StopFollow
 	ld a, -1
-	ld [wd4cd], a
-	ld [wd4ce], a
+	ld [wObjectFollow_Leader], a
+	ld [wObjectFollow_Follower], a
 	ret
 ; 199f
 
 DeleteObjectStruct:: ; 199f
 	call Function1967
-	call Function2712
+	call MaskObject
 	ret
 ; 19a6
 
@@ -413,11 +413,11 @@ Function19b8:: ; 19b8
 	cp $d
 	ret nc
 	ld b, a
-	ld a, [wd4cd]
+	ld a, [wObjectFollow_Leader]
 	cp b
 	jr nz, .ok
 	ld a, -1
-	ld [wd4cd], a
+	ld [wObjectFollow_Leader], a
 
 .ok
 	ld a, b
@@ -429,19 +429,19 @@ Function19b8:: ; 19b8
 
 
 Function19e9:: ; 19e9
-	ld [wc2e2], a
+	ld [wMovementPerson], a
 	ld a, [hROMBank]
-	ld [wc2e3], a
+	ld [wMovementDataPointer], a
 	ld a, l
-	ld [wc2e3 + 1], a
+	ld [wMovementDataPointer + 1], a
 	ld a, h
-	ld [wc2e3 + 2], a
-	ld a, [wc2e2]
-	call Function18de
+	ld [wMovementDataPointer + 2], a
+	ld a, [wMovementPerson]
+	call CheckObjectVisibility
 	ret c
-	ld hl, OBJECT_03
+	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
-	ld [hl], $14
+	ld [hl], SPRITEMOVEDATA_14
 	ld hl, OBJECT_09
 	add hl, bc
 	ld [hl], 0
@@ -453,7 +453,10 @@ Function19e9:: ; 19e9
 
 
 
-Function1a13:: ; 1a13
+FindFirstEmptyObjectStruct:: ; 1a13
+; Returns the index of the first empty object struct in A and its address in HL, then sets carry.
+; If all object structs are occupied, A = 0 and Z is set.
+; Preserves BC and DE.
 	push bc
 	push de
 	ld hl, ObjectStructs
@@ -462,15 +465,15 @@ Function1a13:: ; 1a13
 .loop
 	ld a, [hl]
 	and a
-	jr z, .empty
+	jr z, .break
 	add hl, de
 	dec c
 	jr nz, .loop
 	xor a
 	jr .done
 
-.empty
-	ld a, $d
+.break
+	ld a, NUM_OBJECT_STRUCTS
 	sub c
 	scf
 
@@ -483,7 +486,7 @@ Function1a13:: ; 1a13
 
 
 Function1a2f:: ; 1a2f
-	ld hl, OBJECT_03
+	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
 	ld a, [hl]
 	cp OBJECT_STRUCT_3_DATA_HEIGHT
@@ -541,13 +544,13 @@ Function1a61:: ; 1a61
 ; 1a71
 
 Function1a71:: ; 1a71
-	ld hl, OBJECT_03
+	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, de
 	ld [hl], a
 	push de
 	ld e, a
 	ld d, 0
-	ld hl, ObjectStruct3_Data + 1
+	ld hl, ObjectStruct3_Data + 1 ; facing?
 rept OBJECT_STRUCT_3_DATA_WIDTH
 	add hl, de
 endr
@@ -569,12 +572,12 @@ endr
 	ld [hl], a
 	ld a, [bc]
 	inc bc
-	ld hl, OBJECT_04
+	ld hl, OBJECT_FLAGS1
 	add hl, de
 	ld [hl], a
 	ld a, [bc]
 	inc bc
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, de
 	ld [hl], a
 	ld a, [bc]

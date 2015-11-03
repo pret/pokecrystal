@@ -7,7 +7,7 @@ VioletMart_MapScriptHeader:
 
 ClerkScript_0x68295:
 	loadfont
-	pokemart $0, $0002
+	pokemart MARTTYPE_STANDARD, MART_VIOLET
 	loadmovesprites
 	end
 
@@ -60,6 +60,6 @@ VioletMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 3, 1, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x68295, -1
-	person_event SPRITE_GRANNY, 6, 7, $5, 0, 1, -1, -1, 0, 0, 0, GrannyScript_0x6829c, -1
-	person_event SPRITE_COOLTRAINER_M, 2, 5, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerMScript_0x6829f, -1
+	person_event SPRITE_CLERK, 3, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x68295, -1
+	person_event SPRITE_GRANNY, 6, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, 0, 0, GrannyScript_0x6829c, -1
+	person_event SPRITE_COOLTRAINER_M, 2, 5, SPRITEMOVEDATA_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerMScript_0x6829f, -1

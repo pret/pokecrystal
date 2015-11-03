@@ -8,14 +8,14 @@ CeladonDeptStore2F_MapScriptHeader:
 ClerkScript_0x70bad:
 	faceplayer
 	loadfont
-	pokemart $0, $0017
+	pokemart MARTTYPE_STANDARD, MART_CELADON_2F_1
 	loadmovesprites
 	end
 
 ClerkScript_0x70bb5:
 	faceplayer
 	loadfont
-	pokemart $0, $0018
+	pokemart MARTTYPE_STANDARD, MART_CELADON_2F_2
 	loadmovesprites
 	end
 
@@ -82,7 +82,7 @@ CeladonDeptStore2F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_CLERK, 5, 13, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ClerkScript_0x70bad, -1
-	person_event SPRITE_CLERK, 5, 14, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ClerkScript_0x70bb5, -1
-	person_event SPRITE_POKEFAN_M, 2, 5, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, PokefanMScript_0x70bbd, -1
-	person_event SPRITE_YOUNGSTER, 2, 6, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x70bc0, -1
+	person_event SPRITE_CLERK, 5, 13, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ClerkScript_0x70bad, -1
+	person_event SPRITE_CLERK, 5, 14, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ClerkScript_0x70bb5, -1
+	person_event SPRITE_POKEFAN_M, 2, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, PokefanMScript_0x70bbd, -1
+	person_event SPRITE_YOUNGSTER, 2, 6, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x70bc0, -1

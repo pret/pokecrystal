@@ -162,7 +162,7 @@ endr
 	jr z, .CancelDeposit
 	ld de, Money
 	ld bc, StringBuffer2
-	callba CheckMoney
+	callba CompareMoney
 	jr c, .DontHaveThatMuchToDeposit
 	ld hl, StringBuffer2
 	ld de, StringBuffer2 + 3
@@ -234,7 +234,7 @@ endr
 	call CopyBytes
 	ld de, wd851
 	ld bc, StringBuffer2
-	callba CheckMoney
+	callba CompareMoney
 	jr c, .InsufficientFundsInBank
 	ld bc, Money
 	ld de, StringBuffer2
@@ -401,7 +401,7 @@ Function164d1: ; 164d1
 
 Function164ea: ; 164ea
 	hlcoord 1, 14
-	ld bc, $0312
+	lb bc, 3, 18
 	call ClearBox
 	ret
 ; 164f4

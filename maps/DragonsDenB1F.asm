@@ -3,8 +3,8 @@ DragonsDenB1F_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x18c89d, $0000
-	dw UnknownScript_0x18c89e, $0000
+	dw UnknownScript_0x18c89d, 0
+	dw UnknownScript_0x18c89e, 0
 
 .MapCallbacks:
 	db 1
@@ -78,7 +78,7 @@ UnknownScript_0x18c8f9:
 	end
 
 TrainerCooltrainermDarin:
-	trainer EVENT_BEAT_COOLTRAINERM_DARIN, COOLTRAINERM, DARIN, CooltrainermDarinSeenText, CooltrainermDarinBeatenText, $0000, CooltrainermDarinScript
+	trainer EVENT_BEAT_COOLTRAINERM_DARIN, COOLTRAINERM, DARIN, CooltrainermDarinSeenText, CooltrainermDarinBeatenText, 0, CooltrainermDarinScript
 
 CooltrainermDarinScript:
 	talkaftercancel
@@ -89,7 +89,7 @@ CooltrainermDarinScript:
 	end
 
 TrainerCooltrainerfCara:
-	trainer EVENT_BEAT_COOLTRAINERF_CARA, COOLTRAINERF, CARA, CooltrainerfCaraSeenText, CooltrainerfCaraBeatenText, $0000, CooltrainerfCaraScript
+	trainer EVENT_BEAT_COOLTRAINERF_CARA, COOLTRAINERF, CARA, CooltrainerfCaraSeenText, CooltrainerfCaraBeatenText, 0, CooltrainerfCaraScript
 
 CooltrainerfCaraScript:
 	talkaftercancel
@@ -100,7 +100,7 @@ CooltrainerfCaraScript:
 	end
 
 TrainerTwinsLeaandpia1:
-	trainer EVENT_BEAT_TWINS_LEA_AND_PIA, TWINS, LEAANDPIA1, TwinsLeaandpia1SeenText, TwinsLeaandpia1BeatenText, $0000, TwinsLeaandpia1Script
+	trainer EVENT_BEAT_TWINS_LEA_AND_PIA, TWINS, LEAANDPIA1, TwinsLeaandpia1SeenText, TwinsLeaandpia1BeatenText, 0, TwinsLeaandpia1Script
 
 TwinsLeaandpia1Script:
 	talkaftercancel
@@ -111,7 +111,7 @@ TwinsLeaandpia1Script:
 	end
 
 TrainerTwinsLeaandpia2:
-	trainer EVENT_BEAT_TWINS_LEA_AND_PIA, TWINS, LEAANDPIA1, TwinsLeaandpia2SeenText, TwinsLeaandpia2BeatenText, $0000, TwinsLeaandpia2Script
+	trainer EVENT_BEAT_TWINS_LEA_AND_PIA, TWINS, LEAANDPIA1, TwinsLeaandpia2SeenText, TwinsLeaandpia2BeatenText, 0, TwinsLeaandpia2Script
 
 TwinsLeaandpia2Script:
 	talkaftercancel
@@ -419,12 +419,12 @@ DragonsDenB1F_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_POKE_BALL, 16, 35, $1, 0, 0, -1, -1, 0, 0, 0, PokeBallScript_0x18c95a, EVENT_DRAGONS_DEN_B1F_DRAGON_FANG
-	person_event SPRITE_CLAIR, 30, 14, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_DRAGONS_DEN_CLAIR
-	person_event SPRITE_SILVER, 23, 20, $2, 2, 2, -1, -1, 0, 0, 0, SilverScript_0x18c97e, EVENT_RIVAL_DRAGONS_DEN
-	person_event SPRITE_COOLTRAINER_M, 8, 20, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerCooltrainermDarin, -1
-	person_event SPRITE_COOLTRAINER_F, 8, 8, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainerfCara, -1
-	person_event SPRITE_TWIN, 17, 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsLeaandpia1, -1
-	person_event SPRITE_TWIN, 18, 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsLeaandpia2, -1
-	person_event SPRITE_POKE_BALL, 4, 30, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c9a1, EVENT_DRAGONS_DEN_B1F_CALCIUM
-	person_event SPRITE_POKE_BALL, 20, 5, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c9a3, EVENT_DRAGONS_DEN_B1F_MAX_ELIXER
+	person_event SPRITE_POKE_BALL, 16, 35, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, PokeBallScript_0x18c95a, EVENT_DRAGONS_DEN_B1F_DRAGON_FANG
+	person_event SPRITE_CLAIR, 30, 14, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_DRAGONS_DEN_CLAIR
+	person_event SPRITE_SILVER, 23, 20, SPRITEMOVEDATA_02, 2, 2, -1, -1, 0, 0, 0, SilverScript_0x18c97e, EVENT_RIVAL_DRAGONS_DEN
+	person_event SPRITE_COOLTRAINER_M, 8, 20, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerCooltrainermDarin, -1
+	person_event SPRITE_COOLTRAINER_F, 8, 8, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainerfCara, -1
+	person_event SPRITE_TWIN, 17, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsLeaandpia1, -1
+	person_event SPRITE_TWIN, 18, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsLeaandpia2, -1
+	person_event SPRITE_POKE_BALL, 4, 30, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c9a1, EVENT_DRAGONS_DEN_B1F_CALCIUM
+	person_event SPRITE_POKE_BALL, 20, 5, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18c9a3, EVENT_DRAGONS_DEN_B1F_MAX_ELIXER

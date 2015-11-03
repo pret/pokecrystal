@@ -33,7 +33,7 @@ ClairScript_0x194e24:
 	writetext UnknownText_0x194efa
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x194fd6, $0000
+	winlosstext UnknownText_0x194fd6, 0
 	loadtrainer CLAIR, 1
 	startbattle
 	returnafterbattle
@@ -87,7 +87,7 @@ UnknownScript_0x194e94:
 	end
 
 TrainerCooltrainermPaul:
-	trainer EVENT_BEAT_COOLTRAINERM_PAUL, COOLTRAINERM, PAUL, CooltrainermPaulSeenText, CooltrainermPaulBeatenText, $0000, CooltrainermPaulScript
+	trainer EVENT_BEAT_COOLTRAINERM_PAUL, COOLTRAINERM, PAUL, CooltrainermPaulSeenText, CooltrainermPaulBeatenText, 0, CooltrainermPaulScript
 
 CooltrainermPaulScript:
 	talkaftercancel
@@ -98,7 +98,7 @@ CooltrainermPaulScript:
 	end
 
 TrainerCooltrainermMike:
-	trainer EVENT_BEAT_COOLTRAINERM_MIKE, COOLTRAINERM, MIKE, CooltrainermMikeSeenText, CooltrainermMikeBeatenText, $0000, CooltrainermMikeScript
+	trainer EVENT_BEAT_COOLTRAINERM_MIKE, COOLTRAINERM, MIKE, CooltrainermMikeSeenText, CooltrainermMikeBeatenText, 0, CooltrainermMikeScript
 
 CooltrainermMikeScript:
 	talkaftercancel
@@ -109,7 +109,7 @@ CooltrainermMikeScript:
 	end
 
 TrainerCooltrainerfLola:
-	trainer EVENT_BEAT_COOLTRAINERF_LOLA, COOLTRAINERF, LOLA, CooltrainerfLolaSeenText, CooltrainerfLolaBeatenText, $0000, CooltrainerfLolaScript
+	trainer EVENT_BEAT_COOLTRAINERF_LOLA, COOLTRAINERF, LOLA, CooltrainerfLolaSeenText, CooltrainerfLolaBeatenText, 0, CooltrainerfLolaScript
 
 CooltrainerfLolaScript:
 	talkaftercancel
@@ -404,8 +404,8 @@ BlackthornGym1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_CLAIR, 3, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ClairScript_0x194e24, -1
-	person_event SPRITE_COOLTRAINER_M, 6, 6, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainermMike, -1
-	person_event SPRITE_COOLTRAINER_M, 14, 1, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainermPaul, -1
-	person_event SPRITE_COOLTRAINER_F, 2, 9, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerCooltrainerfLola, -1
-	person_event SPRITE_GYM_GUY, 15, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, BlackthornGymGuyScript, -1
+	person_event SPRITE_CLAIR, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ClairScript_0x194e24, -1
+	person_event SPRITE_COOLTRAINER_M, 6, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainermMike, -1
+	person_event SPRITE_COOLTRAINER_M, 14, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainermPaul, -1
+	person_event SPRITE_COOLTRAINER_F, 2, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerCooltrainerfLola, -1
+	person_event SPRITE_GYM_GUY, 15, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, BlackthornGymGuyScript, -1

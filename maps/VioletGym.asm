@@ -13,7 +13,7 @@ FalknerScript_0x683c2:
 	writetext UnknownText_0x68473
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x6854a, $0000
+	winlosstext UnknownText_0x6854a, 0
 	loadtrainer FALKNER, 1
 	startbattle
 	returnafterbattle
@@ -61,7 +61,7 @@ VioletGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerBird_keeperRod:
-	trainer EVENT_BEAT_BIRD_KEEPER_ROD, BIRD_KEEPER, ROD, Bird_keeperRodSeenText, Bird_keeperRodBeatenText, $0000, Bird_keeperRodScript
+	trainer EVENT_BEAT_BIRD_KEEPER_ROD, BIRD_KEEPER, ROD, Bird_keeperRodSeenText, Bird_keeperRodBeatenText, 0, Bird_keeperRodScript
 
 Bird_keeperRodScript:
 	talkaftercancel
@@ -72,7 +72,7 @@ Bird_keeperRodScript:
 	end
 
 TrainerBird_keeperAbe:
-	trainer EVENT_BEAT_BIRD_KEEPER_ABE, BIRD_KEEPER, ABE, Bird_keeperAbeSeenText, Bird_keeperAbeBeatenText, $0000, Bird_keeperAbeScript
+	trainer EVENT_BEAT_BIRD_KEEPER_ABE, BIRD_KEEPER, ABE, Bird_keeperAbeSeenText, Bird_keeperAbeBeatenText, 0, Bird_keeperAbeScript
 
 Bird_keeperAbeScript:
 	talkaftercancel
@@ -294,7 +294,7 @@ VioletGym_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_FALKNER, 1, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, FalknerScript_0x683c2, -1
-	person_event SPRITE_YOUNGSTER, 6, 7, $8, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperRod, -1
-	person_event SPRITE_YOUNGSTER, 10, 2, $9, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperAbe, -1
-	person_event SPRITE_GYM_GUY, 13, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, VioletGymGuyScript, -1
+	person_event SPRITE_FALKNER, 1, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, FalknerScript_0x683c2, -1
+	person_event SPRITE_YOUNGSTER, 6, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperRod, -1
+	person_event SPRITE_YOUNGSTER, 10, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperAbe, -1
+	person_event SPRITE_GYM_GUY, 13, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, VioletGymGuyScript, -1

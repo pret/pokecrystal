@@ -2,44 +2,45 @@
 INCLUDE "engine/facings.asm"
 
 ObjectStruct3_Data:: ; 4273
-	db $00, $00, $01, $02, $00, $00 ; 00
-	db $06, $00, $01, $0c, $00, $00 ; 01
-	db $03, $00, $01, $00, $00, $00 ; 02
-	db $04, $00, $01, $00, $00, $00 ; 03
-	db $01, $00, $01, $00, $00, $00 ; 04
-	db $02, $00, $01, $00, $00, $00 ; 05
-	db $06, $00, $01, $00, $00, $00 ; 06
-	db $06, $01, $01, $00, $00, $00 ; 07
-	db $06, $02, $01, $00, $00, $00 ; 08
-	db $06, $03, $01, $00, $00, $00 ; 09
-	db $05, $00, $01, $00, $00, $00 ; 0a
-	db $07, $00, $01, $02, $00, $00 ; 0b
-	db $08, $00, $01, $00, $00, $00 ; 0c
-	db $09, $00, $01, $00, $00, $00 ; 0d
-	db $0a, $00, $01, $00, $00, $00 ; 0e
-	db $0b, $00, $01, $00, $00, $00 ; 0f
-	db $0c, $00, $01, $00, $00, $00 ; 10
-	db $0d, $00, $01, $00, $00, $00 ; 11
-	db $0e, $00, $01, $00, $00, $00 ; 12
-	db $0f, $00, $01, $02, $00, $00 ; 13
-	db $10, $00, $01, $02, $00, $00 ; 14
-	db $15, $00, $09, $2e, $01, $c0 ; 15
-	db $16, $00, $0a, $2e, $00, $00 ; 16
-	db $06, $00, $01, $0c, $00, $00 ; 17
-	db $06, $00, $01, $2e, $10, $00 ; 18
-	db $11, $00, $01, $2e, $00, $40 ; 19
-	db $12, $00, $01, $02, $00, $00 ; 1a
-	db $13, $00, $00, $8e, $01, $00 ; 1b
-	db $14, $00, $08, $8e, $02, $00 ; 1c
-	db $17, $00, $00, $82, $00, $00 ; 1d
-	db $19, $02, $01, $00, $00, $00 ; 1e
-	db $18, $03, $01, $00, $00, $00 ; 1f
-	db $11, $00, $0c, $2e, $01, $c0 ; 20
-	db $11, $00, $0d, $2e, $01, $c0 ; 21
-	db $1a, $00, $0e, $8e, $01, $00 ; 22
-	db $1b, $00, $0f, $8e, $02, $00 ; 23
-	db $03, $00, $01, $00, $00, $20 ; 24
-	db $00, $00, $01, $00, $00, $00 ; 25
+	; function,         facing, ?, ?, ?, ?
+	db SPRITEMOVEFN_00, DOWN,  $01, $02, $00, $00 ; 00
+	db SPRITEMOVEFN_06, DOWN,  $01, $0c, $00, $00 ; 01
+	db SPRITEMOVEFN_03, DOWN,  $01, $00, $00, $00 ; 02
+	db SPRITEMOVEFN_04, DOWN,  $01, $00, $00, $00 ; 03
+	db SPRITEMOVEFN_01, DOWN,  $01, $00, $00, $00 ; 04
+	db SPRITEMOVEFN_02, DOWN,  $01, $00, $00, $00 ; 05
+	db SPRITEMOVEFN_06, DOWN,  $01, $00, $00, $00 ; 06
+	db SPRITEMOVEFN_06, UP,    $01, $00, $00, $00 ; 07
+	db SPRITEMOVEFN_06, LEFT,  $01, $00, $00, $00 ; 08
+	db SPRITEMOVEFN_06, RIGHT, $01, $00, $00, $00 ; 09
+	db SPRITEMOVEFN_05, DOWN,  $01, $00, $00, $00 ; 0a
+	db SPRITEMOVEFN_07, DOWN,  $01, $02, $00, $00 ; 0b
+	db SPRITEMOVEFN_08, DOWN,  $01, $00, $00, $00 ; 0c
+	db SPRITEMOVEFN_09, DOWN,  $01, $00, $00, $00 ; 0d
+	db SPRITEMOVEFN_0A, DOWN,  $01, $00, $00, $00 ; 0e
+	db SPRITEMOVEFN_0B, DOWN,  $01, $00, $00, $00 ; 0f
+	db SPRITEMOVEFN_0C, DOWN,  $01, $00, $00, $00 ; 10
+	db SPRITEMOVEFN_0D, DOWN,  $01, $00, $00, $00 ; 11
+	db SPRITEMOVEFN_0E, DOWN,  $01, $00, $00, $00 ; 12
+	db SPRITEMOVEFN_0F, DOWN,  $01, $02, $00, $00 ; 13
+	db SPRITEMOVEFN_10, DOWN,  $01, $02, $00, $00 ; 14
+	db SPRITEMOVEFN_15, DOWN,  $09, $2e, $01, $c0 ; 15
+	db SPRITEMOVEFN_16, DOWN,  $0a, $2e, $00, $00 ; 16
+	db SPRITEMOVEFN_06, DOWN,  $01, $0c, $00, $00 ; 17
+	db SPRITEMOVEFN_06, DOWN,  $01, $2e, $10, $00 ; 18
+	db SPRITEMOVEFN_11, DOWN,  $01, $2e, $00, $40 ; 19
+	db SPRITEMOVEFN_12, DOWN,  $01, $02, $00, $00 ; 1a
+	db SPRITEMOVEFN_13, DOWN,  $00, $8e, $01, $00 ; 1b
+	db SPRITEMOVEFN_14, DOWN,  $08, $8e, $02, $00 ; 1c
+	db SPRITEMOVEFN_17, DOWN,  $00, $82, $00, $00 ; 1d
+	db SPRITEMOVEFN_19, LEFT,  $01, $00, $00, $00 ; 1e
+	db SPRITEMOVEFN_18, RIGHT, $01, $00, $00, $00 ; 1f
+	db SPRITEMOVEFN_11, DOWN,  $0c, $2e, $01, $c0 ; 20
+	db SPRITEMOVEFN_11, DOWN,  $0d, $2e, $01, $c0 ; 21
+	db SPRITEMOVEFN_1A, DOWN,  $0e, $8e, $01, $00 ; 22
+	db SPRITEMOVEFN_1B, DOWN,  $0f, $8e, $02, $00 ; 23
+	db SPRITEMOVEFN_03, DOWN,  $01, $00, $00, $20 ; 24
+	db SPRITEMOVEFN_00, DOWN,  $01, $00, $00, $00 ; 25
 ; 4357
 
 
@@ -78,7 +79,7 @@ Function437b: ; 437b
 ; 4386
 
 Function4386: ; 4386
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res 6, [hl]
 	ld a, [XCoord]
@@ -104,7 +105,7 @@ Function4386: ; 4386
 	jr .yes
 
 .ok
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	set 6, [hl]
 	ld a, [XCoord]
@@ -133,7 +134,7 @@ Function4386: ; 4386
 	ret
 
 .ok2
-	ld hl, OBJECT_04
+	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 1, [hl]
 	jr nz, .yes2
@@ -142,7 +143,7 @@ Function4386: ; 4386
 	ret
 
 .yes2
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	set 6, [hl]
 	and a
@@ -155,20 +156,20 @@ Function43f3: ; 43f3
 	ld a, [hl]
 	and a
 	jr z, .zero
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	bit 5, [hl]
-	jr nz, .not_bit5
+	jr nz, .bit5
 	cp 1
 	jr z, .one
 	jr .ok
 
 .zero
 	call Function47bc
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	bit 5, [hl]
-	jr nz, .not_bit5
+	jr nz, .bit5
 
 .one
 	call Function47dd
@@ -185,17 +186,17 @@ Function43f3: ; 43f3
 	rst JumpTable
 	ret
 
-.not_bit5
+.bit5
 	ret
 ; 4427
 
 Function4427: ; 4427
-	ld hl, OBJECT_04
+	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 0, [hl]
 	jr nz, Function44a3
 
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	bit 6, [hl]
 	jr nz, Function44a3
@@ -208,7 +209,7 @@ Function4427: ; 4427
 ; 4440
 
 Function4440: ; 4440
-	ld hl, OBJECT_04
+	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 0, [hl]
 	jr nz, Function44a3
@@ -300,7 +301,7 @@ Function44b5: ; 44b5
 ; 44c1
 
 Function44c1: ; 44c1
-	ld hl, OBJECT_04
+	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 3, [hl]
 	jp nz, Function44aa
@@ -324,7 +325,7 @@ Function44c1: ; 44c1
 ; 44e4
 
 Function44e4: ; 44e4
-	ld hl, OBJECT_04
+	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 3, [hl]
 	jp nz, Function44aa
@@ -348,7 +349,7 @@ Function44e4: ; 44e4
 ; 4508
 
 Function4508: ; 4508
-	ld hl, OBJECT_04
+	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 3, [hl]
 	jp nz, Function44aa
@@ -603,7 +604,7 @@ Function462a: ; 462a
 ; 463f
 
 Function463f: ; 463f
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	bit 3, [hl]
 	jr z, .ok
@@ -632,13 +633,13 @@ Function4661: ; 4661
 	jr c, .reset
 
 .set
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	set 3, [hl]
 	ret
 
 .reset
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res 3, [hl]
 	ret
@@ -670,7 +671,7 @@ Function4690: ; 4690
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_04
+	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 2, [hl]
 	jr nz, .ok
@@ -827,7 +828,7 @@ Function4759: ; 4759
 	ret
 ; 4769
 
-Function4769: ; 4769
+RestoreDefaultMovement: ; 4769
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
 	ld a, [hl]
@@ -1028,7 +1029,7 @@ Function4851: ; 4851
 	jp Function4b26
 ; 4869
 
-Function4869: ; 4869
+Function4869: ; standing?
 	call Function462a
 	call Function467b
 	ld hl, OBJECT_11
@@ -1082,7 +1083,7 @@ Function48a0: ; 48a0
 ; 48a6
 
 Function48a6: ; 48a6
-	ld hl, Function500e
+	ld hl, Function500e ; scripted
 	jp Function5041
 ; 48ac
 
@@ -1098,7 +1099,7 @@ Function48b3: ; 48b3
 	ld a, [hl]
 	call CheckPitTile
 	jr z, .on_pit
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	bit 2, [hl]
 	res 2, [hl]
@@ -1192,7 +1193,7 @@ Function48ff: ; 48ff
 	and %00001100
 	or d
 	pop bc
-	jp Function5412
+	jp NormalStep
 
 .standing
 	pop bc
@@ -1499,7 +1500,7 @@ Function4af0: ; 4af0
 	add hl, bc
 	ld [hl], 2
 	ld hl, wd4cf
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer]
 	cp [hl]
 	jr z, .ok
 	ld hl, OBJECT_09
@@ -1604,7 +1605,7 @@ Function4b8d: ; 4b8d
 	ret nz
 	call Function4600
 	call Function46a6
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res 3, [hl]
 	call IncrementObjectStructField28
@@ -1648,7 +1649,7 @@ Function4bd2: ; 4bd2
 	dec [hl]
 	ret nz
 	call Function4600
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res 3, [hl]
 	ld hl, wd150
@@ -1723,7 +1724,7 @@ Function4c42: ; 4c42
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], $10
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res 3, [hl]
 	call IncrementObjectStructField28
@@ -2046,7 +2047,7 @@ Function4e0c: ; 4e0c
 ; 4e13
 
 Function4e13: ; 4e13
-	call Function4769
+	call RestoreDefaultMovement
 	call Function1a47
 	ld hl, OBJECT_FACING
 	add hl, bc
@@ -2198,7 +2199,7 @@ Function4ecd: ; 4ecd
 	ld b, a
 	callba CopyDECoordsToMapObject
 	pop bc
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res 2, [hl]
 	call Function4600
@@ -2395,7 +2396,7 @@ UpdateJumpPosition: ; 4fd5
 	db -11, -10,  -9,  -8,  -6,  -4,   0,   0
 ; 5000
 
-Function5000: ; 5000
+Function5000: ; unscripted?
 	ld a, [wc2de]
 	ld hl, wc2df
 	ld [hl], a
@@ -2405,8 +2406,8 @@ Function5000: ; 5000
 	ret
 ; 500e
 
-Function500e: ; 500e
-	ld hl, wc2e3
+Function500e: ; scripted
+	ld hl, wMovementDataPointer
 	call Function1aae
 	ret
 ; 5015
@@ -2417,7 +2418,7 @@ Function5015: ; 5015
 	ld e, [hl]
 	inc [hl]
 	ld d, 0
-	ld hl, wc2e2
+	ld hl, wMovementPerson
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2447,7 +2448,7 @@ Function5037: ; 5037
 ; 503d
 
 Function503d: ; 503d
-	ld a, [wc2e2]
+	ld a, [wMovementPerson]
 	ret
 ; 5041
 
@@ -2466,14 +2467,14 @@ Function5041: ; 5041
 
 CopyMovementPointer: ; 5055
 	ld a, l
-	ld [wc2eb], a
+	ld [wMovementPointer], a
 	ld a, h
-	ld [wc2ec], a
+	ld [wMovementPointer + 1], a
 	ret
 ; 505e
 
 GetMovementByte: ; 505e
-	ld hl, wc2eb
+	ld hl, wMovementPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2488,7 +2489,7 @@ Function5065: ; 5065
 
 DoMovementFunction: ; 506b
 	push af
-	call Function54b8
+	call ApplyMovementToFollower
 	pop af
 	ld hl, MovementPointers
 	rst JumpTable
@@ -2501,14 +2502,14 @@ INCLUDE "engine/movement.asm"
 ; 54b8
 
 
-Function54b8: ; 54b8
+ApplyMovementToFollower: ; 54b8
 	ld e, a
-	ld a, [wd4ce]
+	ld a, [wObjectFollow_Follower]
 	cp -1
 	ret z
-	ld a, [wd4cd]
+	ld a, [wObjectFollow_Leader]
 	ld d, a
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer]
 	cp d
 	ret nz
 	ld a, e
@@ -2564,7 +2565,7 @@ Function54e6: ; 54e6
 ; 550a
 
 Function550a: ; 550a
-	ld a, [wd4cd]
+	ld a, [wObjectFollow_Leader]
 	cp -1
 	jr z, .nope
 	push bc
@@ -2580,7 +2581,7 @@ Function550a: ; 550a
 
 .nope
 	ld a, $ff
-	ld [wd4ce], a
+	ld [wObjectFollow_Follower], a
 	ld a, $47
 	scf
 	ret
@@ -2651,7 +2652,7 @@ Function5565: ; 5565
 
 Function5579: ; 5579
 	push bc
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer]
 	ld c, a
 	call Function5582
 	pop bc
@@ -2663,7 +2664,7 @@ Function5582: ; 5582
 	ld a, NUM_OBJECT_STRUCTS
 .loop
 	push af
-	ld hl, OBJECT_04
+	ld hl, OBJECT_FLAGS1
 	add hl, de
 	bit 7, [hl]
 	jr z, .next
@@ -2690,7 +2691,7 @@ Function5582: ; 5582
 ; 55ac
 
 Function55ac: ; 55ac
-	call Function1a13
+	call FindFirstEmptyObjectStruct
 	ret nc
 	ld d, h
 	ld e, l
@@ -2712,7 +2713,7 @@ Function55b9: ; 55b9
 	ld [hli], a
 	ld a, [de]
 	ld [hli], a
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer]
 	ld [hli], a
 	push hl
 	ld hl, OBJECT_MAP_X
@@ -2737,7 +2738,7 @@ Function55e0:: ; 55e0
 	ld bc, ObjectStructs
 	xor a
 .loop
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer], a
 	call GetObjectSprite
 	jr z, .ok
 	call Function565c
@@ -2747,7 +2748,7 @@ Function55e0:: ; 55e0
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -2801,13 +2802,13 @@ Function5645: ; 5645
 	xor a
 	ld bc, ObjectStructs
 .loop
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer], a
 	call Function5680
 	ld hl, OBJECT_STRUCT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -2927,7 +2928,7 @@ Function56cd: ; 56cd
 	sub $20
 
 .ok3
-	ld [$ffbd], a
+	ld [hUsedSpriteIndex], a
 	ld a, [wd14d]
 	ld e, a
 	ld hl, OBJECT_SPRITE_Y_OFFSET
@@ -2959,7 +2960,7 @@ Function56cd: ; 56cd
 	sub $20
 
 .ok6
-	ld [$ffbe], a
+	ld [hUsedSpriteTile], a
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	bit 7, [hl]
@@ -2977,14 +2978,14 @@ Function56cd: ; 56cd
 .loop
 	ld a, [$ffbf]
 	ld d, a
-	ld a, [$ffbe]
+	ld a, [hUsedSpriteTile]
 	add e
 	dec a
 	cp $12
 	jr nc, .ok9
 	ld b, a
 .next
-	ld a, [$ffbd]
+	ld a, [hUsedSpriteIndex]
 	add d
 	dec a
 	cp $14
@@ -3032,7 +3033,7 @@ Function5781: ; 5781
 	ld bc, ObjectStructs
 	xor a
 .loop
-	ld [hConnectionStripLength], a
+	ld [hMapObjectIndexBuffer], a
 	call GetObjectSprite
 	jr z, .next
 	call Function437b
@@ -3042,7 +3043,7 @@ Function5781: ; 5781
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hConnectionStripLength]
+	ld a, [hMapObjectIndexBuffer]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -3055,7 +3056,7 @@ Function579d: ; 579d
 	ld [wc2df], a
 	xor a
 	ld [wd04e], a
-	ld [wd4e2], a
+	ld [PlayerObject12], a
 	call Function57bc
 	callba CheckWarpCollision
 	call c, SpawnInFacingDown
@@ -3100,9 +3101,9 @@ Function57db: ; 57db
 
 Function57e2: ; 57e2
 	ld a, d
-	and $80
+	and %10000000
 	ret z
-	ld bc, $0000 ; debug?
+	ld bc, 0 ; debug?
 	ld hl, OBJECT_FACING
 	add hl, bc
 	ld a, [hl]
@@ -3122,74 +3123,74 @@ Function57e2: ; 57e2
 	ret
 ; 5803
 
-Function5803:: ; 5803
+StartFollow:: ; 5803
 	push bc
 	ld a, b
-	call Function5815
+	call SetLeaderIfVisible
 	pop bc
 	ret c
 	ld a, c
-	call Function582c
+	call SetFollowerIfVisible
 	callba Function848a
 	ret
 ; 5815
 
-Function5815: ; 5815
-	call Function18de
+SetLeaderIfVisible: ; 5815
+	call CheckObjectVisibility
 	ret c
-	ld a, [hConnectedMapWidth]
-	ld [wd4cd], a
+	ld a, [hObjectStructIndexBuffer]
+	ld [wObjectFollow_Leader], a
 	ret
 ; 581f
 
-Function581f:: ; 581f
-	call Function5826
-	call Function5847
+StopFollow:: ; 581f
+	call ResetLeader
+	call ResetFollower
 	ret
 ; 5826
 
-Function5826: ; 5826
+ResetLeader: ; 5826
 	ld a, -1
-	ld [wd4cd], a
+	ld [wObjectFollow_Leader], a
 	ret
 ; 582c
 
-Function582c: ; 582c
+SetFollowerIfVisible: ; 582c
 	push af
-	call Function5847
+	call ResetFollower
 	pop af
-	call Function18de
+	call CheckObjectVisibility
 	ret c
-	ld hl, OBJECT_03
+	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
-	ld [hl], $13
+	ld [hl], SPRITEMOVEDATA_13
 	ld hl, OBJECT_09
 	add hl, bc
 	ld [hl], 0
-	ld a, [hConnectedMapWidth]
-	ld [wd4ce], a
+	ld a, [hObjectStructIndexBuffer]
+	ld [wObjectFollow_Follower], a
 	ret
 ; 5847
 
-Function5847: ; 5847
-	ld a, [wd4ce]
+ResetFollower: ; 5847
+	ld a, [wObjectFollow_Follower]
 	cp -1
 	ret z
 	call GetObjectStruct
 	callba Function58e3
 	ld a, -1
-	ld [wd4ce], a
+	ld [wObjectFollow_Follower], a
 	ret
 ; 585c
 
 SetFlagsForMovement_1:: ; 585c
 	ld a, c
-	call Function18de
+	call CheckObjectVisibility
 	ret c
 	push bc
 	call Function587a
 	pop bc
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res 5, [hl]
 	xor a
@@ -3197,9 +3198,9 @@ SetFlagsForMovement_1:: ; 585c
 ; 586e
 
 Function586e: ; 586e
-	call Function18de
+	call CheckObjectVisibility
 	ret c
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	set 5, [hl]
 	xor a
@@ -3213,7 +3214,7 @@ Function587a: ; 587a
 	push af
 	call GetObjectSprite
 	jr z, .next
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	set 5, [hl]
 
@@ -3230,7 +3231,7 @@ Function587a: ; 587a
 ; 5897
 
 _SetFlagsForMovement_2:: ; 5897
-	ld a, [wd4cd]
+	ld a, [wObjectFollow_Leader]
 	cp -1
 	ret z
 	push bc
@@ -3241,11 +3242,11 @@ _SetFlagsForMovement_2:: ; 5897
 	pop bc
 	cp c
 	ret nz
-	ld a, [wd4ce]
+	ld a, [wObjectFollow_Follower]
 	cp -1
 	ret z
 	call GetObjectStruct
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res 5, [hl]
 	ret
@@ -3259,7 +3260,7 @@ Function58b9:: ; 58b9
 	push af
 	call GetObjectSprite
 	jr z, .next
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res 5, [hl]
 
@@ -3277,9 +3278,9 @@ Function58b9:: ; 58b9
 ; 58d8
 
 Function58d8: ; 58d8
-	call Function18de
+	call CheckObjectVisibility
 	ret c
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res 5, [hl]
 	ret
@@ -3297,7 +3298,7 @@ Function58e3: ; 58e3
 	add hl, bc
 	ld a, [hl]
 	pop bc
-	ld hl, OBJECT_03
+	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
 	ld [hl], a
 	ld hl, OBJECT_09
@@ -3312,10 +3313,10 @@ Function5903: ; 5903
 	rrca
 	ld e, a
 	ld d, 0
-	ld hl, .data_591c
+	ld hl, .standing_movefns
 	add hl, de
 	ld a, [hl]
-	ld hl, OBJECT_03
+	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
 	ld [hl], a
 	ld hl, OBJECT_09
@@ -3323,8 +3324,11 @@ Function5903: ; 5903
 	ld [hl], 0
 	ret
 
-.data_591c
-	db 6, 7, 8, 9
+.standing_movefns
+	db SPRITEMOVEDATA_STANDING_DOWN
+	db SPRITEMOVEDATA_STANDING_UP
+	db SPRITEMOVEDATA_STANDING_LEFT
+	db SPRITEMOVEDATA_STANDING_RIGHT
 ; 5920
 
 RefreshMapAppearDisappear:: ; 5920
@@ -3332,7 +3336,7 @@ RefreshMapAppearDisappear:: ; 5920
 	bit 0, a
 	ret z
 	xor a
-	ld [$ffbd], a
+	ld [hUsedSpriteIndex], a
 	ld a, [hOAMUpdate]
 	push af
 	ld a, 1
@@ -3352,12 +3356,12 @@ Function593a: ; 593a
 	ld b, $70
 
 .ok
-	ld a, [$ffbd]
+	ld a, [hUsedSpriteIndex]
 	cp b
 	ret nc
 	ld l, a
 	ld h, $c4
-	ld de, OBJECT_04
+	ld de, OBJECT_FLAGS1
 	ld a, b
 	ld c, $a0
 .loop
@@ -3427,13 +3431,13 @@ Function5991: ; 5991
 
 Function59a4: ; 59a4
 	xor a
-	ld hl, wc2eb
+	ld hl, wMovementPointer
 	ld bc, 13
 	call ByteFill
 
 	ld d, 0
 	ld bc, ObjectStructs
-	ld hl, wc2eb
+	ld hl, wMovementPointer
 .loop
 	push hl
 	call GetObjectSprite
@@ -3447,7 +3451,7 @@ Function59a4: ; 59a4
 
 ; Define the sprite priority.
 	ld e, $10
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	bit 0, [hl]
 	jr nz, .add
@@ -3484,7 +3488,7 @@ Function59a4: ; 59a4
 ; 59f3
 
 Function59f3: ; 59f3
-	ld hl, wc2eb
+	ld hl, wMovementPointer
 .next
 	ld a, [hli]
 	ld d, a
@@ -3517,7 +3521,7 @@ Function5a0d: ; 5a0d
 	or %00001000
 .skip1
 
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	ld e, [hl]
 	bit 7, e
@@ -3592,11 +3596,11 @@ Function5a0d: ; 5a0d
 	ld h, [hl]
 	ld l, a
 
-	ld a, [$ffbd]
+	ld a, [hUsedSpriteIndex]
 	ld c, a
 	ld b, Sprites / $100
 	ld a, [hli]
-	ld [$ffbe], a
+	ld [hUsedSpriteTile], a
 	add c
 	cp SpritesEnd % $100
 	jr nc, .full
@@ -3641,13 +3645,13 @@ Function5a0d: ; 5a0d
 	ld [bc], a
 	inc c
 
-	ld a, [$ffbe]
+	ld a, [hUsedSpriteTile]
 	dec a
-	ld [$ffbe], a
+	ld [hUsedSpriteTile], a
 	jr nz, .addsprite
 
 	ld a, c
-	ld [$ffbd], a
+	ld [hUsedSpriteIndex], a
 
 .done
 	xor a
@@ -3673,16 +3677,16 @@ endr
 
 .Addresses ; 5ace
 	dw PlayerStruct
-	dw ObjectStruct1
-	dw ObjectStruct2
-	dw ObjectStruct3
-	dw ObjectStruct4
-	dw ObjectStruct5
-	dw ObjectStruct6
-	dw ObjectStruct7
-	dw ObjectStruct8
-	dw ObjectStruct9
-	dw ObjectStruct10
-	dw ObjectStruct11
-	dw ObjectStruct12
+	dw Object1Struct
+	dw Object2Struct
+	dw Object3Struct
+	dw Object4Struct
+	dw Object5Struct
+	dw Object6Struct
+	dw Object7Struct
+	dw Object8Struct
+	dw Object9Struct
+	dw Object10Struct
+	dw Object11Struct
+	dw Object12Struct
 ; 5ae8

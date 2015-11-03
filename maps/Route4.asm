@@ -6,7 +6,7 @@ Route4_MapScriptHeader:
 	db 0
 
 TrainerBird_keeperHank:
-	trainer EVENT_BEAT_BIRD_KEEPER_HANK, BIRD_KEEPER, HANK, Bird_keeperHankSeenText, Bird_keeperHankBeatenText, $0000, Bird_keeperHankScript
+	trainer EVENT_BEAT_BIRD_KEEPER_HANK, BIRD_KEEPER, HANK, Bird_keeperHankSeenText, Bird_keeperHankBeatenText, 0, Bird_keeperHankScript
 
 Bird_keeperHankScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ Bird_keeperHankScript:
 	end
 
 TrainerPicnickerHope:
-	trainer EVENT_BEAT_PICNICKER_HOPE, PICNICKER, HOPE, PicnickerHopeSeenText, PicnickerHopeBeatenText, $0000, PicnickerHopeScript
+	trainer EVENT_BEAT_PICNICKER_HOPE, PICNICKER, HOPE, PicnickerHopeSeenText, PicnickerHopeBeatenText, 0, PicnickerHopeScript
 
 PicnickerHopeScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ PicnickerHopeScript:
 	end
 
 TrainerPicnickerSharon:
-	trainer EVENT_BEAT_PICNICKER_SHARON, PICNICKER, SHARON, PicnickerSharonSeenText, PicnickerSharonBeatenText, $0000, PicnickerSharonScript
+	trainer EVENT_BEAT_PICNICKER_SHARON, PICNICKER, SHARON, PicnickerSharonSeenText, PicnickerSharonBeatenText, 0, PicnickerSharonScript
 
 PicnickerSharonScript:
 	talkaftercancel
@@ -133,7 +133,7 @@ Route4_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_YOUNGSTER, 9, 17, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperHank, -1
-	person_event SPRITE_LASS, 8, 9, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 4, TrainerPicnickerHope, -1
-	person_event SPRITE_LASS, 6, 21, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 4, TrainerPicnickerSharon, -1
-	person_event SPRITE_POKE_BALL, 3, 26, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1ae20f, EVENT_ROUTE_4_HP_UP
+	person_event SPRITE_YOUNGSTER, 9, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperHank, -1
+	person_event SPRITE_LASS, 8, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 4, TrainerPicnickerHope, -1
+	person_event SPRITE_LASS, 6, 21, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 4, TrainerPicnickerSharon, -1
+	person_event SPRITE_POKE_BALL, 3, 26, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1ae20f, EVENT_ROUTE_4_HP_UP

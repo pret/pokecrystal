@@ -803,7 +803,7 @@ Function8b7bd: ; 8b7bd
 	ld hl, MenuDataHeader_0x8b867
 	call CopyMenuDataHeader
 	ld a, [wd030]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	ld a, [wd031]
 	ld [wd0e4], a
 	ld a, [wd032]
@@ -881,7 +881,7 @@ Function8b83e: ; 8b83e
 Function8b84b: ; 8b84b
 	ld [wd0e4], a
 	ld a, [wcfa9]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	ret
 ; 8b855
 
@@ -939,7 +939,7 @@ Function8b88c: ; 8b88c
 	call Function8931b
 	call Function8932d
 	jr c, .asm_8b8a3
-	ld hl, $0000
+	ld hl, 0
 	add hl, bc
 	ld d, h
 	ld e, l

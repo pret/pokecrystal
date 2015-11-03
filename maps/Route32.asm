@@ -3,9 +3,9 @@ Route32_MapScriptHeader:
 	db 3
 
 	; triggers
-	dw UnknownScript_0x190460, $0000
-	dw UnknownScript_0x190461, $0000
-	dw UnknownScript_0x190462, $0000
+	dw UnknownScript_0x190460, 0
+	dw UnknownScript_0x190461, 0
+	dw UnknownScript_0x190462, 0
 
 .MapCallbacks:
 	db 1
@@ -133,7 +133,7 @@ UnknownScript_0x190503:
 	end
 
 TrainerCamperRoland:
-	trainer EVENT_BEAT_CAMPER_ROLAND, CAMPER, ROLAND, CamperRolandSeenText, CamperRolandBeatenText, $0000, CamperRolandScript
+	trainer EVENT_BEAT_CAMPER_ROLAND, CAMPER, ROLAND, CamperRolandSeenText, CamperRolandBeatenText, 0, CamperRolandScript
 
 CamperRolandScript:
 	talkaftercancel
@@ -144,7 +144,7 @@ CamperRolandScript:
 	end
 
 TrainerFisherJustin:
-	trainer EVENT_BEAT_FISHER_JUSTIN, FISHER, JUSTIN, FisherJustinSeenText, FisherJustinBeatenText, $0000, FisherJustinScript
+	trainer EVENT_BEAT_FISHER_JUSTIN, FISHER, JUSTIN, FisherJustinSeenText, FisherJustinBeatenText, 0, FisherJustinScript
 
 FisherJustinScript:
 	talkaftercancel
@@ -155,7 +155,7 @@ FisherJustinScript:
 	end
 
 TrainerFisherRalph1:
-	trainer EVENT_BEAT_FISHER_RALPH, FISHER, RALPH1, FisherRalph1SeenText, FisherRalph1BeatenText, $0000, FisherRalph1Script
+	trainer EVENT_BEAT_FISHER_RALPH, FISHER, RALPH1, FisherRalph1SeenText, FisherRalph1BeatenText, 0, FisherRalph1Script
 
 FisherRalph1Script:
 	writecode VAR_CALLERID, PHONE_FISHER_RALPH
@@ -187,7 +187,7 @@ UnknownScript_0x190569:
 
 UnknownScript_0x19057d:
 	scall UnknownScript_0x19060f
-	winlosstext FisherRalph1BeatenText, $0000
+	winlosstext FisherRalph1BeatenText, 0
 	copybytetovar wRalphFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
@@ -280,7 +280,7 @@ UnknownScript_0x19060f:
 	end
 
 TrainerFisherHenry:
-	trainer EVENT_BEAT_FISHER_HENRY, FISHER, HENRY, FisherHenrySeenText, FisherHenryBeatenText, $0000, FisherHenryScript
+	trainer EVENT_BEAT_FISHER_HENRY, FISHER, HENRY, FisherHenrySeenText, FisherHenryBeatenText, 0, FisherHenryScript
 
 FisherHenryScript:
 	talkaftercancel
@@ -291,7 +291,7 @@ FisherHenryScript:
 	end
 
 TrainerPicnickerLiz1:
-	trainer EVENT_BEAT_PICNICKER_LIZ, PICNICKER, LIZ1, PicnickerLiz1SeenText, PicnickerLiz1BeatenText, $0000, PicnickerLiz1Script
+	trainer EVENT_BEAT_PICNICKER_LIZ, PICNICKER, LIZ1, PicnickerLiz1SeenText, PicnickerLiz1BeatenText, 0, PicnickerLiz1Script
 
 PicnickerLiz1Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_LIZ
@@ -321,7 +321,7 @@ UnknownScript_0x190659:
 
 UnknownScript_0x19066d:
 	scall UnknownScript_0x1906f9
-	winlosstext PicnickerLiz1BeatenText, $0000
+	winlosstext PicnickerLiz1BeatenText, 0
 	copybytetovar wLizFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
@@ -408,7 +408,7 @@ UnknownScript_0x1906f9:
 	end
 
 TrainerYoungsterAlbert:
-	trainer EVENT_BEAT_YOUNGSTER_ALBERT, YOUNGSTER, ALBERT, YoungsterAlbertSeenText, YoungsterAlbertBeatenText, $0000, YoungsterAlbertScript
+	trainer EVENT_BEAT_YOUNGSTER_ALBERT, YOUNGSTER, ALBERT, YoungsterAlbertSeenText, YoungsterAlbertBeatenText, 0, YoungsterAlbertScript
 
 YoungsterAlbertScript:
 	talkaftercancel
@@ -419,7 +419,7 @@ YoungsterAlbertScript:
 	end
 
 TrainerYoungsterGordon:
-	trainer EVENT_BEAT_YOUNGSTER_GORDON, YOUNGSTER, GORDON, YoungsterGordonSeenText, YoungsterGordonBeatenText, $0000, YoungsterGordonScript
+	trainer EVENT_BEAT_YOUNGSTER_GORDON, YOUNGSTER, GORDON, YoungsterGordonSeenText, YoungsterGordonBeatenText, 0, YoungsterGordonScript
 
 YoungsterGordonScript:
 	talkaftercancel
@@ -430,7 +430,7 @@ YoungsterGordonScript:
 	end
 
 TrainerBird_keeperPeter:
-	trainer EVENT_BEAT_BIRD_KEEPER_PETER, BIRD_KEEPER, PETER, Bird_keeperPeterSeenText, Bird_keeperPeterBeatenText, $0000, Bird_keeperPeterScript
+	trainer EVENT_BEAT_BIRD_KEEPER_PETER, BIRD_KEEPER, PETER, Bird_keeperPeterSeenText, Bird_keeperPeterBeatenText, 0, Bird_keeperPeterScript
 
 Bird_keeperPeterScript:
 	talkaftercancel
@@ -946,17 +946,17 @@ Route32_MapEventHeader:
 
 .PersonEvents:
 	db 14
-	person_event SPRITE_FISHER, 49, 8, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherJustin, -1
-	person_event SPRITE_FISHER, 56, 12, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerFisherRalph1, -1
-	person_event SPRITE_FISHER, 48, 6, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherHenry, -1
-	person_event SPRITE_YOUNGSTER, 22, 12, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterAlbert, -1
-	person_event SPRITE_YOUNGSTER, 63, 4, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterGordon, -1
-	person_event SPRITE_YOUNGSTER, 45, 3, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerCamperRoland, -1
-	person_event SPRITE_LASS, 30, 10, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerPicnickerLiz1, -1
-	person_event SPRITE_COOLTRAINER_M, 8, 19, $8, 0, 0, -1, -1, 0, 0, 0, CooltrainerMScript_0x19046f, -1
-	person_event SPRITE_YOUNGSTER, 82, 11, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperPeter, -1
-	person_event SPRITE_FISHER, 70, 7, $6, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x1904f2, EVENT_SLOWPOKE_WELL_ROCKETS
-	person_event SPRITE_POKE_BALL, 53, 6, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x190773, EVENT_ROUTE_32_GREAT_BALL
-	person_event SPRITE_FISHER, 13, 15, $9, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x1904ce, -1
-	person_event SPRITE_LASS, 67, 12, $8, 0, 0, -1, -1, 0, 0, 0, FriedaScript, EVENT_ROUTE_32_FRIEDA_OF_FRIDAY
-	person_event SPRITE_POKE_BALL, 30, 3, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x190775, EVENT_ROUTE_32_REPEL
+	person_event SPRITE_FISHER, 49, 8, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherJustin, -1
+	person_event SPRITE_FISHER, 56, 12, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerFisherRalph1, -1
+	person_event SPRITE_FISHER, 48, 6, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherHenry, -1
+	person_event SPRITE_YOUNGSTER, 22, 12, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterAlbert, -1
+	person_event SPRITE_YOUNGSTER, 63, 4, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterGordon, -1
+	person_event SPRITE_YOUNGSTER, 45, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerCamperRoland, -1
+	person_event SPRITE_LASS, 30, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerPicnickerLiz1, -1
+	person_event SPRITE_COOLTRAINER_M, 8, 19, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 0, 0, CooltrainerMScript_0x19046f, -1
+	person_event SPRITE_YOUNGSTER, 82, 11, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperPeter, -1
+	person_event SPRITE_FISHER, 70, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x1904f2, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_POKE_BALL, 53, 6, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x190773, EVENT_ROUTE_32_GREAT_BALL
+	person_event SPRITE_FISHER, 13, 15, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x1904ce, -1
+	person_event SPRITE_LASS, 67, 12, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 0, 0, FriedaScript, EVENT_ROUTE_32_FRIEDA_OF_FRIDAY
+	person_event SPRITE_POKE_BALL, 30, 3, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x190775, EVENT_ROUTE_32_REPEL

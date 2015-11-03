@@ -6,7 +6,7 @@ Route26_MapScriptHeader:
 	db 0
 
 TrainerCooltrainermJake:
-	trainer EVENT_BEAT_COOLTRAINERM_JAKE, COOLTRAINERM, JAKE, CooltrainermJakeSeenText, CooltrainermJakeBeatenText, $0000, CooltrainermJakeScript
+	trainer EVENT_BEAT_COOLTRAINERM_JAKE, COOLTRAINERM, JAKE, CooltrainermJakeSeenText, CooltrainermJakeBeatenText, 0, CooltrainermJakeScript
 
 CooltrainermJakeScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ CooltrainermJakeScript:
 	end
 
 TrainerCooltrainermGaven3:
-	trainer EVENT_BEAT_COOLTRAINERM_GAVEN, COOLTRAINERM, GAVEN3, CooltrainermGaven3SeenText, CooltrainermGaven3BeatenText, $0000, CooltrainermGaven3Script
+	trainer EVENT_BEAT_COOLTRAINERM_GAVEN, COOLTRAINERM, GAVEN3, CooltrainermGaven3SeenText, CooltrainermGaven3BeatenText, 0, CooltrainermGaven3Script
 
 CooltrainermGaven3Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERM_GAVEN
@@ -47,7 +47,7 @@ UnknownScript_0x1a4d65:
 
 UnknownScript_0x1a4d79:
 	scall UnknownScript_0x1a4dd7
-	winlosstext CooltrainermGaven3BeatenText, $0000
+	winlosstext CooltrainermGaven3BeatenText, 0
 	copybytetovar wGavenFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
@@ -110,7 +110,7 @@ UnknownScript_0x1a4dd7:
 	end
 
 TrainerCooltrainerfJoyce:
-	trainer EVENT_BEAT_COOLTRAINERF_JOYCE, COOLTRAINERF, JOYCE, CooltrainerfJoyceSeenText, CooltrainerfJoyceBeatenText, $0000, CooltrainerfJoyceScript
+	trainer EVENT_BEAT_COOLTRAINERF_JOYCE, COOLTRAINERF, JOYCE, CooltrainerfJoyceSeenText, CooltrainerfJoyceBeatenText, 0, CooltrainerfJoyceScript
 
 CooltrainerfJoyceScript:
 	talkaftercancel
@@ -121,7 +121,7 @@ CooltrainerfJoyceScript:
 	end
 
 TrainerCooltrainerfBeth1:
-	trainer EVENT_BEAT_COOLTRAINERF_BETH, COOLTRAINERF, BETH1, CooltrainerfBeth1SeenText, CooltrainerfBeth1BeatenText, $0000, CooltrainerfBeth1Script
+	trainer EVENT_BEAT_COOLTRAINERF_BETH, COOLTRAINERF, BETH1, CooltrainerfBeth1SeenText, CooltrainerfBeth1BeatenText, 0, CooltrainerfBeth1Script
 
 CooltrainerfBeth1Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERF_BETH
@@ -151,7 +151,7 @@ UnknownScript_0x1a4e21:
 
 UnknownScript_0x1a4e35:
 	scall UnknownScript_0x1a4e93
-	winlosstext CooltrainerfBeth1BeatenText, $0000
+	winlosstext CooltrainerfBeth1BeatenText, 0
 	copybytetovar wBethFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
@@ -214,7 +214,7 @@ UnknownScript_0x1a4e93:
 	end
 
 TrainerPsychicRichard:
-	trainer EVENT_BEAT_PSYCHIC_RICHARD, PSYCHIC_T, RICHARD, PsychicRichardSeenText, PsychicRichardBeatenText, $0000, PsychicRichardScript
+	trainer EVENT_BEAT_PSYCHIC_RICHARD, PSYCHIC_T, RICHARD, PsychicRichardSeenText, PsychicRichardBeatenText, 0, PsychicRichardScript
 
 PsychicRichardScript:
 	talkaftercancel
@@ -225,7 +225,7 @@ PsychicRichardScript:
 	end
 
 TrainerFisherScott:
-	trainer EVENT_BEAT_FISHER_SCOTT, FISHER, SCOTT, FisherScottSeenText, FisherScottBeatenText, $0000, FisherScottScript
+	trainer EVENT_BEAT_FISHER_SCOTT, FISHER, SCOTT, FisherScottSeenText, FisherScottBeatenText, 0, FisherScottScript
 
 FisherScottScript:
 	talkaftercancel
@@ -421,11 +421,11 @@ Route26_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_COOLTRAINER_M, 24, 14, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerCooltrainermJake, -1
-	person_event SPRITE_COOLTRAINER_M, 38, 9, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainermGaven3, -1
-	person_event SPRITE_COOLTRAINER_F, 56, 10, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainerfJoyce, -1
-	person_event SPRITE_COOLTRAINER_F, 8, 5, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerCooltrainerfBeth1, -1
-	person_event SPRITE_YOUNGSTER, 79, 13, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPsychicRichard, -1
-	person_event SPRITE_FISHER, 92, 10, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerFisherScott, -1
-	person_event SPRITE_FRUIT_TREE, 54, 14, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a4ec2, -1
-	person_event SPRITE_POKE_BALL, 15, 9, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a4ec4, EVENT_ROUTE_26_MAX_ELIXER
+	person_event SPRITE_COOLTRAINER_M, 24, 14, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerCooltrainermJake, -1
+	person_event SPRITE_COOLTRAINER_M, 38, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainermGaven3, -1
+	person_event SPRITE_COOLTRAINER_F, 56, 10, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainerfJoyce, -1
+	person_event SPRITE_COOLTRAINER_F, 8, 5, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerCooltrainerfBeth1, -1
+	person_event SPRITE_YOUNGSTER, 79, 13, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerPsychicRichard, -1
+	person_event SPRITE_FISHER, 92, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerFisherScott, -1
+	person_event SPRITE_FRUIT_TREE, 54, 14, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a4ec2, -1
+	person_event SPRITE_POKE_BALL, 15, 9, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a4ec4, EVENT_ROUTE_26_MAX_ELIXER

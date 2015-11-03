@@ -3,9 +3,9 @@ RadioTower5F_MapScriptHeader:
 	db 3
 
 	; triggers
-	dw UnknownScript_0x6000e, $0000
-	dw UnknownScript_0x6000f, $0000
-	dw UnknownScript_0x60010, $0000
+	dw UnknownScript_0x6000e, 0
+	dw UnknownScript_0x6000f, 0
+	dw UnknownScript_0x60010, 0
 
 .MapCallbacks:
 	db 0
@@ -32,7 +32,7 @@ UnknownScript_0x60011:
 	writetext UnknownText_0x60147
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x60223, $0000
+	winlosstext UnknownText_0x60223, 0
 	setlasttalked $2
 	loadtrainer EXECUTIVEM, 3
 	startbattle
@@ -63,7 +63,7 @@ UnknownScript_0x60054:
 	end
 
 TrainerExecutivef1:
-	trainer EVENT_BEAT_ROCKET_EXECUTIVEF_1, EXECUTIVEF, 1, Executivef1SeenText, Executivef1BeatenText, $0000, Executivef1Script
+	trainer EVENT_BEAT_ROCKET_EXECUTIVEF_1, EXECUTIVEF, 1, Executivef1SeenText, Executivef1BeatenText, 0, Executivef1Script
 
 Executivef1Script:
 	talkaftercancel
@@ -81,7 +81,7 @@ UnknownScript_0x6006e:
 	writetext UnknownText_0x603d1
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x604f3, $0000
+	winlosstext UnknownText_0x604f3, 0
 	setlasttalked $3
 	loadtrainer EXECUTIVEM, 1
 	startbattle
@@ -439,8 +439,8 @@ RadioTower5F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_GENTLEMAN, 6, 3, $3, 0, 0, -1, -1, 0, 0, 0, Director, -1
-	person_event SPRITE_ROCKET, 5, 13, $8, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET_GIRL, 2, 17, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerExecutivef1, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKER, 5, 13, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, Ben, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	person_event SPRITE_POKE_BALL, 5, 8, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x600fe, EVENT_RADIO_TOWER_5F_ULTRA_BALL
+	person_event SPRITE_GENTLEMAN, 6, 3, SPRITEMOVEDATA_03, 0, 0, -1, -1, 0, 0, 0, Director, -1
+	person_event SPRITE_ROCKET, 5, 13, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET_GIRL, 2, 17, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerExecutivef1, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKER, 5, 13, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, Ben, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	person_event SPRITE_POKE_BALL, 5, 8, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x600fe, EVENT_RADIO_TOWER_5F_ULTRA_BALL

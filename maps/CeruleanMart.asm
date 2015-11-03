@@ -7,7 +7,7 @@ CeruleanMart_MapScriptHeader:
 
 ClerkScript_0x188ac0:
 	loadfont
-	pokemart $0, $0014
+	pokemart MARTTYPE_STANDARD, MART_CERULEAN
 	loadmovesprites
 	end
 
@@ -57,6 +57,6 @@ CeruleanMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 3, 1, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x188ac0, -1
-	person_event SPRITE_COOLTRAINER_M, 6, 1, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerMScript_0x188ac7, -1
-	person_event SPRITE_COOLTRAINER_F, 2, 7, $5, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerFScript_0x188aca, -1
+	person_event SPRITE_CLERK, 3, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x188ac0, -1
+	person_event SPRITE_COOLTRAINER_M, 6, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerMScript_0x188ac7, -1
+	person_event SPRITE_COOLTRAINER_F, 2, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerFScript_0x188aca, -1

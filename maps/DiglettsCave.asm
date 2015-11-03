@@ -42,4 +42,4 @@ DiglettsCave_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKEFAN_M, 31, 3, $6, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x74002, -1
+	person_event SPRITE_POKEFAN_M, 31, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x74002, -1

@@ -3,8 +3,8 @@ KarensRoom_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x180bbc, $0000
-	dw UnknownScript_0x180bc0, $0000
+	dw UnknownScript_0x180bbc, 0
+	dw UnknownScript_0x180bc0, 0
 
 .MapCallbacks:
 	db 1
@@ -52,7 +52,7 @@ KarenScript_0x180bee:
 	writetext UnknownText_0x180c27
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x180cf8, $0000
+	winlosstext UnknownText_0x180cf8, 0
 	loadtrainer KAREN, 1
 	startbattle
 	returnafterbattle
@@ -153,4 +153,4 @@ KarensRoom_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_KAREN, 7, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, KarenScript_0x180bee, -1
+	person_event SPRITE_KAREN, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, KarenScript_0x180bee, -1

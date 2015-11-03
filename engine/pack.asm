@@ -64,7 +64,7 @@ Function10067: ; 10067 (4:4067)
 	ld hl, MenuDataHeader_0x10a4f
 	call CopyMenuDataHeader
 	ld a, [wItemsPocketCursor]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	ld a, [wd0df]
 	ld [wd0e4], a
 	call Function350c
@@ -92,7 +92,7 @@ Function100a6: ; 100a6 (4:40a6)
 	ld hl, MenuDataHeader_0x10a7f
 	call CopyMenuDataHeader
 	ld a, [wKeyItemsPocketCursor]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	ld a, [wd0e0]
 	ld [wd0e4], a
 	call Function350c
@@ -222,7 +222,7 @@ Function10198: ; 10198 (4:4198)
 	ld hl, MenuDataHeader_0x10aaf
 	call CopyMenuDataHeader
 	ld a, [wBallsPocketCursor]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	ld a, [wd0e1]
 	ld [wd0e4], a
 	call Function350c
@@ -722,7 +722,7 @@ Function104fa: ; 104fa (4:44fa)
 	ld hl, MenuDataHeader_0x10a4f
 	call CopyMenuDataHeader
 	ld a, [wItemsPocketCursor]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	ld a, [wd0df]
 	ld [wd0e4], a
 	call Function350c
@@ -750,7 +750,7 @@ Function10539: ; 10539 (4:4539)
 	ld hl, MenuDataHeader_0x10a7f
 	call CopyMenuDataHeader
 	ld a, [wKeyItemsPocketCursor]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	ld a, [wd0e0]
 	ld [wd0e4], a
 	call Function350c
@@ -801,7 +801,7 @@ Function105a6: ; 105a6 (4:45a6)
 	ld hl, MenuDataHeader_0x10aaf
 	call CopyMenuDataHeader
 	ld a, [wBallsPocketCursor]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	ld a, [wd0e1]
 	ld [wd0e4], a
 	call Function350c
@@ -1007,7 +1007,7 @@ Jumptable_106d1: ; 106d1 (4:46d1)
 	ld hl, MenuDataHeader_0x10a67
 	call CopyMenuDataHeader
 	ld a, [wItemsPocketCursor]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	ld a, [wd0df]
 	ld [wd0e4], a
 	call Function350c
@@ -1023,7 +1023,7 @@ Jumptable_106d1: ; 106d1 (4:46d1)
 	ld hl, MenuDataHeader_0x10a97
 	call CopyMenuDataHeader
 	ld a, [wKeyItemsPocketCursor]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	ld a, [wd0e0]
 	ld [wd0e4], a
 	call Function350c
@@ -1048,7 +1048,7 @@ Jumptable_106d1: ; 106d1 (4:46d1)
 	ld hl, MenuDataHeader_0x10ac7
 	call CopyMenuDataHeader
 	ld a, [wBallsPocketCursor]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	ld a, [wd0e1]
 	ld [wd0e4], a
 	call Function350c
@@ -1411,7 +1411,7 @@ Function10955: ; 10955
 	ld a, BANK(PackMenuGFX)
 	call FarCopyBytes
 	hlcoord 0, 1
-	ld bc, $00dc
+	ld bc, 220
 	ld a, $24
 	call ByteFill
 	hlcoord 5, 1

@@ -30,7 +30,7 @@ UndergroundWarehouse_MapScriptHeader:
 	return
 
 TrainerGruntM24:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_24, GRUNTM, 24, GruntM24SeenText, GruntM24BeatenText, $0000, GruntM24Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_24, GRUNTM, 24, GruntM24SeenText, GruntM24BeatenText, 0, GruntM24Script
 
 GruntM24Script:
 	talkaftercancel
@@ -41,7 +41,7 @@ GruntM24Script:
 	end
 
 TrainerGruntM14:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_14, GRUNTM, 14, GruntM14SeenText, GruntM14BeatenText, $0000, GruntM14Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_14, GRUNTM, 14, GruntM14SeenText, GruntM14BeatenText, 0, GruntM14Script
 
 GruntM14Script:
 	talkaftercancel
@@ -52,7 +52,7 @@ GruntM14Script:
 	end
 
 TrainerGruntM15:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_15, GRUNTM, 15, GruntM15SeenText, GruntM15BeatenText, $0000, GruntM15Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_15, GRUNTM, 15, GruntM15SeenText, GruntM15BeatenText, 0, GruntM15Script
 
 GruntM15Script:
 	talkaftercancel
@@ -222,10 +222,10 @@ UndergroundWarehouse_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_ROCKET, 8, 9, $7, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM24, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 15, 8, $7, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM14, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 3, 14, $9, 0, 0, -1, -1, 0, 2, 4, TrainerGruntM15, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_GENTLEMAN, 8, 12, $3, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x7d9bf, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_POKE_BALL, 15, 18, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d9e4, EVENT_UNDERGROUND_WAREHOUSE_MAX_ETHER
-	person_event SPRITE_POKE_BALL, 9, 13, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d9e6, EVENT_UNDERGROUND_WAREHOUSE_TM_SLEEP_TALK
-	person_event SPRITE_POKE_BALL, 1, 2, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d9e8, EVENT_UNDERGROUND_WAREHOUSE_ULTRA_BALL
+	person_event SPRITE_ROCKET, 8, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM24, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 15, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM14, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET, 3, 14, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 2, 4, TrainerGruntM15, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_GENTLEMAN, 8, 12, SPRITEMOVEDATA_03, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x7d9bf, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_POKE_BALL, 15, 18, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d9e4, EVENT_UNDERGROUND_WAREHOUSE_MAX_ETHER
+	person_event SPRITE_POKE_BALL, 9, 13, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d9e6, EVENT_UNDERGROUND_WAREHOUSE_TM_SLEEP_TALK
+	person_event SPRITE_POKE_BALL, 1, 2, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x7d9e8, EVENT_UNDERGROUND_WAREHOUSE_ULTRA_BALL

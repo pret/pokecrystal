@@ -6,7 +6,7 @@ Route8_MapScriptHeader:
 	db 0
 
 TrainerBikerDwayne:
-	trainer EVENT_BEAT_BIKER_DWAYNE, BIKER, DWAYNE, BikerDwayneSeenText, BikerDwayneBeatenText, $0000, BikerDwayneScript
+	trainer EVENT_BEAT_BIKER_DWAYNE, BIKER, DWAYNE, BikerDwayneSeenText, BikerDwayneBeatenText, 0, BikerDwayneScript
 
 BikerDwayneScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ BikerDwayneScript:
 	end
 
 TrainerBikerHarris:
-	trainer EVENT_BEAT_BIKER_HARRIS, BIKER, HARRIS, BikerHarrisSeenText, BikerHarrisBeatenText, $0000, BikerHarrisScript
+	trainer EVENT_BEAT_BIKER_HARRIS, BIKER, HARRIS, BikerHarrisSeenText, BikerHarrisBeatenText, 0, BikerHarrisScript
 
 BikerHarrisScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ BikerHarrisScript:
 	end
 
 TrainerBikerZeke:
-	trainer EVENT_BEAT_BIKER_ZEKE, BIKER, ZEKE, BikerZekeSeenText, BikerZekeBeatenText, $0000, BikerZekeScript
+	trainer EVENT_BEAT_BIKER_ZEKE, BIKER, ZEKE, BikerZekeSeenText, BikerZekeBeatenText, 0, BikerZekeScript
 
 BikerZekeScript:
 	talkaftercancel
@@ -39,7 +39,7 @@ BikerZekeScript:
 	end
 
 TrainerSupernerdSam:
-	trainer EVENT_BEAT_SUPER_NERD_SAM, SUPER_NERD, SAM, SupernerdSamSeenText, SupernerdSamBeatenText, $0000, SupernerdSamScript
+	trainer EVENT_BEAT_SUPER_NERD_SAM, SUPER_NERD, SAM, SupernerdSamSeenText, SupernerdSamBeatenText, 0, SupernerdSamScript
 
 SupernerdSamScript:
 	talkaftercancel
@@ -50,7 +50,7 @@ SupernerdSamScript:
 	end
 
 TrainerSupernerdTom:
-	trainer EVENT_BEAT_SUPER_NERD_TOM, SUPER_NERD, TOM, SupernerdTomSeenText, SupernerdTomBeatenText, $0000, SupernerdTomScript
+	trainer EVENT_BEAT_SUPER_NERD_TOM, SUPER_NERD, TOM, SupernerdTomSeenText, SupernerdTomBeatenText, 0, SupernerdTomScript
 
 SupernerdTomScript:
 	talkaftercancel
@@ -183,9 +183,9 @@ Route8_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_BIKER, 8, 10, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 5, TrainerBikerDwayne, -1
-	person_event SPRITE_BIKER, 9, 10, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 5, TrainerBikerHarris, -1
-	person_event SPRITE_BIKER, 10, 10, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerBikerZeke, -1
-	person_event SPRITE_SUPER_NERD, 2, 23, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerSupernerdSam, -1
-	person_event SPRITE_SUPER_NERD, 12, 31, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 4, TrainerSupernerdTom, -1
-	person_event SPRITE_FRUIT_TREE, 5, 33, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x6c06c, -1
+	person_event SPRITE_BIKER, 8, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 5, TrainerBikerDwayne, -1
+	person_event SPRITE_BIKER, 9, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 5, TrainerBikerHarris, -1
+	person_event SPRITE_BIKER, 10, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerBikerZeke, -1
+	person_event SPRITE_SUPER_NERD, 2, 23, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerSupernerdSam, -1
+	person_event SPRITE_SUPER_NERD, 12, 31, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 4, TrainerSupernerdTom, -1
+	person_event SPRITE_FRUIT_TREE, 5, 33, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x6c06c, -1

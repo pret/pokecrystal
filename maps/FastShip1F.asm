@@ -3,9 +3,9 @@ FastShip1F_MapScriptHeader:
 	db 3
 
 	; triggers
-	dw .Trigger1, $0000
-	dw .Trigger2, $0000
-	dw .Trigger3, $0000
+	dw .Trigger1, 0
+	dw .Trigger2, 0
+	dw .Trigger3, 0
 
 .MapCallbacks:
 	db 0
@@ -310,7 +310,7 @@ FastShip1F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_SAILOR, 2, 25, $6, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x75160, -1
-	person_event SPRITE_SAILOR, 7, 14, $9, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x751d0, -1
-	person_event SPRITE_SAILOR, 17, 22, $5, 0, 2, -1, -1, 0, 0, 0, SailorScript_0x751e4, -1
-	person_event SPRITE_GENTLEMAN, 6, 19, $9, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_FAST_SHIP_1F_GENTLEMAN
+	person_event SPRITE_SAILOR, 2, 25, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x75160, -1
+	person_event SPRITE_SAILOR, 7, 14, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, SailorScript_0x751d0, -1
+	person_event SPRITE_SAILOR, 17, 22, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, 0, 0, SailorScript_0x751e4, -1
+	person_event SPRITE_GENTLEMAN, 6, 19, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_FAST_SHIP_1F_GENTLEMAN

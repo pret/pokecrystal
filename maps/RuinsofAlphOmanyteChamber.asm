@@ -3,8 +3,8 @@ RuinsofAlphOmanyteChamber_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x58be9, $0000
-	dw UnknownScript_0x58bf7, $0000
+	dw UnknownScript_0x58be9, 0
+	dw UnknownScript_0x58bf7, 0
 
 .MapCallbacks:
 	db 1

@@ -47,7 +47,7 @@ Special_SelectApricornForKurt: ; 88018
 	call Kurt_SelectQuantity
 	pop bc
 	jr nc, .loop
-	ld a, [wd10c]
+	ld a, [wItemQuantityChangeBuffer]
 	ld [wKurtApricornQuantity], a
 	call Kurt_GiveUpSelectedQuantityOfSelectedApricorn
 
@@ -62,7 +62,7 @@ Kurt_SelectApricorn: ; 88055
 	ld hl, .MenuDataHeader
 	call CopyMenuDataHeader
 	ld a, [MenuSelection]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	xor a
 	ld [hBGMapMode], a
 	call Function352f
@@ -115,7 +115,7 @@ Kurt_SelectApricorn: ; 88055
 	ld [CurItem], a
 	call Kurt_GetQuantityOfApricorn
 	ret z
-	ld a, [wd10c]
+	ld a, [wItemQuantityChangeBuffer]
 	ld [wcf75], a
 	callba PlaceMenuItemQuantity
 	ret
@@ -126,10 +126,10 @@ Kurt_SelectQuantity: ; 880c2
 	ld [MenuSelection], a
 	call Kurt_GetQuantityOfApricorn
 	jr z, .done
-	ld a, [wd10c]
-	ld [wd10d], a
+	ld a, [wItemQuantityChangeBuffer]
+	ld [wItemQuantityBuffer], a
 	ld a, $1
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
 .loop
@@ -149,8 +149,8 @@ Kurt_SelectQuantity: ; 880c2
 	ld a, b
 	cp -1
 	jr z, .done
-	ld a, [wd10c]
-	ld [wd10c], a ; What is the point of this operation?
+	ld a, [wItemQuantityChangeBuffer]
+	ld [wItemQuantityChangeBuffer], a ; What is the point of this operation?
 	scf
 
 .done
@@ -181,7 +181,7 @@ PlaceApricornQuantity: ; 88126
 	add hl, de
 	ld [hl], "×"
 	inc hl
-	ld de, wd10c
+	ld de, wItemQuantityChangeBuffer
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	jp PrintNum
 ; 88139
@@ -213,7 +213,7 @@ Kurt_GetQuantityOfApricorn: ; 88139
 
 .done2
 	ld a, b
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	and a
 	pop bc
 	ret
@@ -325,7 +325,7 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 	ld [ItemCountBuffer], a
 	call Kurt_GetRidOfItem
 	pop hl
-	ld a, [wd10c]
+	ld a, [wItemQuantityChangeBuffer]
 	and a
 	jr z, .done
 	push hl
@@ -348,7 +348,7 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 	jr .loop4
 
 .done
-	ld a, [wd10c]
+	ld a, [wItemQuantityChangeBuffer]
 	and a
 	pop bc
 	pop de
@@ -389,7 +389,7 @@ endr
 	jr z, .done
 	cp c
 	jr nz, .done
-	ld a, [wd10c]
+	ld a, [wItemQuantityChangeBuffer]
 	ld c, a
 	ld a, [hl]
 	sub c
@@ -402,14 +402,14 @@ endr
 	push bc
 	ld hl, NumItems
 	ld a, b
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	call TossItem
 	pop bc
 	ld a, c
 	sub b
 
 .done
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	pop bc
 	ret
 ; 88248

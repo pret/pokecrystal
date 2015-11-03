@@ -8,7 +8,7 @@ GoldenrodDeptStore3F_MapScriptHeader:
 ClerkScript_0x55db8:
 	faceplayer
 	loadfont
-	pokemart $0, $0007
+	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_3F
 	loadmovesprites
 	end
 
@@ -71,6 +71,6 @@ GoldenrodDeptStore3F_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 1, 6, $6, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x55db8, -1
-	person_event SPRITE_SUPER_NERD, 5, 12, $a, 1, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SuperNerdScript_0x55dc0, -1
-	person_event SPRITE_ROCKER, 5, 2, $4, 1, 0, -1, -1, 0, 0, 0, RockerScript_0x55dc3, -1
+	person_event SPRITE_CLERK, 1, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x55db8, -1
+	person_event SPRITE_SUPER_NERD, 5, 12, SPRITEMOVEDATA_0A, 1, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SuperNerdScript_0x55dc0, -1
+	person_event SPRITE_ROCKER, 5, 2, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, 0, 0, RockerScript_0x55dc3, -1

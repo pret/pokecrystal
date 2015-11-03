@@ -7,7 +7,7 @@ EcruteakMart_MapScriptHeader:
 
 ClerkScript_0x99c3b:
 	loadfont
-	pokemart $0, $000e
+	pokemart MARTTYPE_STANDARD, MART_ECRUTEAK
 	loadmovesprites
 	end
 
@@ -57,6 +57,6 @@ EcruteakMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 3, 1, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x99c3b, -1
-	person_event SPRITE_SUPER_NERD, 2, 5, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, SuperNerdScript_0x99c42, -1
-	person_event SPRITE_GRANNY, 6, 6, $7, 0, 0, -1, -1, 0, 0, 0, GrannyScript_0x99c45, -1
+	person_event SPRITE_CLERK, 3, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x99c3b, -1
+	person_event SPRITE_SUPER_NERD, 2, 5, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, SuperNerdScript_0x99c42, -1
+	person_event SPRITE_GRANNY, 6, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, 0, 0, GrannyScript_0x99c45, -1

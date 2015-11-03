@@ -3,8 +3,8 @@ WiseTriosRoom_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x98572, $0000
-	dw UnknownScript_0x98573, $0000
+	dw UnknownScript_0x98572, 0
+	dw UnknownScript_0x98573, 0
 
 .MapCallbacks:
 	db 1
@@ -66,7 +66,7 @@ UnknownScript_0x985a3:
 	end
 
 TrainerSageGaku:
-	trainer EVENT_BEAT_SAGE_GAKU, SAGE, GAKU, SageGakuSeenText, SageGakuBeatenText, $0000, SageGakuScript
+	trainer EVENT_BEAT_SAGE_GAKU, SAGE, GAKU, SageGakuSeenText, SageGakuBeatenText, 0, SageGakuScript
 
 SageGakuScript:
 	loadfont
@@ -76,7 +76,7 @@ SageGakuScript:
 	end
 
 TrainerSageMasa:
-	trainer EVENT_BEAT_SAGE_MASA, SAGE, MASA, SageMasaSeenText, SageMasaBeatenText, $0000, SageMasaScript
+	trainer EVENT_BEAT_SAGE_MASA, SAGE, MASA, SageMasaSeenText, SageMasaBeatenText, 0, SageMasaScript
 
 SageMasaScript:
 	loadfont
@@ -86,7 +86,7 @@ SageMasaScript:
 	end
 
 TrainerSageKoji:
-	trainer EVENT_BEAT_SAGE_KOJI, SAGE, KOJI, SageKojiSeenText, SageKojiBeatenText, $0000, SageKojiScript
+	trainer EVENT_BEAT_SAGE_KOJI, SAGE, KOJI, SageKojiSeenText, SageKojiBeatenText, 0, SageKojiScript
 
 SageKojiScript:
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
@@ -360,9 +360,9 @@ WiseTriosRoom_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_SAGE, 2, 6, $3, 0, 0, -1, -1, 0, 0, 0, SageScript_0x9859a, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
-	person_event SPRITE_SAGE, 7, 6, $5, 0, 1, -1, -1, 0, 0, 0, SageScript_0x9859d, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
-	person_event SPRITE_SAGE, 5, 7, $8, 0, 0, -1, -1, 0, 0, 0, SageScript_0x985a0, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
-	person_event SPRITE_SAGE, 2, 4, $6, 0, 0, -1, -1, 0, 2, 2, TrainerSageGaku, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
-	person_event SPRITE_SAGE, 6, 4, $7, 0, 0, -1, -1, 0, 2, 2, TrainerSageMasa, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
-	person_event SPRITE_SAGE, 4, 6, $8, 0, 0, -1, -1, 0, 2, 2, TrainerSageKoji, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
+	person_event SPRITE_SAGE, 2, 6, SPRITEMOVEDATA_03, 0, 0, -1, -1, 0, 0, 0, SageScript_0x9859a, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	person_event SPRITE_SAGE, 7, 6, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, 0, 0, SageScript_0x9859d, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	person_event SPRITE_SAGE, 5, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 0, 0, SageScript_0x985a0, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	person_event SPRITE_SAGE, 2, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 2, 2, TrainerSageGaku, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
+	person_event SPRITE_SAGE, 6, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, 2, 2, TrainerSageMasa, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
+	person_event SPRITE_SAGE, 4, 6, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 2, 2, TrainerSageKoji, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2

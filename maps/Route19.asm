@@ -22,7 +22,7 @@ Route19_MapScriptHeader:
 	return
 
 TrainerSwimmerfDawn:
-	trainer EVENT_BEAT_SWIMMERF_DAWN, SWIMMERF, DAWN, SwimmerfDawnSeenText, SwimmerfDawnBeatenText, $0000, SwimmerfDawnScript
+	trainer EVENT_BEAT_SWIMMERF_DAWN, SWIMMERF, DAWN, SwimmerfDawnSeenText, SwimmerfDawnBeatenText, 0, SwimmerfDawnScript
 
 SwimmerfDawnScript:
 	talkaftercancel
@@ -33,7 +33,7 @@ SwimmerfDawnScript:
 	end
 
 TrainerSwimmermHarold:
-	trainer EVENT_BEAT_SWIMMERM_HAROLD, SWIMMERM, HAROLD, SwimmermHaroldSeenText, SwimmermHaroldBeatenText, $0000, SwimmermHaroldScript
+	trainer EVENT_BEAT_SWIMMERM_HAROLD, SWIMMERM, HAROLD, SwimmermHaroldSeenText, SwimmermHaroldBeatenText, 0, SwimmermHaroldScript
 
 SwimmermHaroldScript:
 	talkaftercancel
@@ -44,7 +44,7 @@ SwimmermHaroldScript:
 	end
 
 TrainerSwimmermJerome:
-	trainer EVENT_BEAT_SWIMMERM_JEROME, SWIMMERM, JEROME, SwimmermJeromeSeenText, SwimmermJeromeBeatenText, $0000, SwimmermJeromeScript
+	trainer EVENT_BEAT_SWIMMERM_JEROME, SWIMMERM, JEROME, SwimmermJeromeSeenText, SwimmermJeromeBeatenText, 0, SwimmermJeromeScript
 
 SwimmermJeromeScript:
 	talkaftercancel
@@ -55,7 +55,7 @@ SwimmermJeromeScript:
 	end
 
 TrainerSwimmermTucker:
-	trainer EVENT_BEAT_SWIMMERM_TUCKER, SWIMMERM, TUCKER, SwimmermTuckerSeenText, SwimmermTuckerBeatenText, $0000, SwimmermTuckerScript
+	trainer EVENT_BEAT_SWIMMERM_TUCKER, SWIMMERM, TUCKER, SwimmermTuckerSeenText, SwimmermTuckerBeatenText, 0, SwimmermTuckerScript
 
 SwimmermTuckerScript:
 	talkaftercancel
@@ -247,9 +247,9 @@ Route19_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_SWIMMER_GIRL, 23, 9, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 0, TrainerSwimmerfDawn, -1
-	person_event SPRITE_SWIMMER_GUY, 28, 13, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermHarold, -1
-	person_event SPRITE_SWIMMER_GUY, 17, 11, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermJerome, -1
-	person_event SPRITE_SWIMMER_GUY, 23, 8, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 0, TrainerSwimmermTucker, -1
-	person_event SPRITE_FISHER, 5, 9, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 1, FisherScript_0x19ea4d, -1
-	person_event SPRITE_FISHER, 5, 11, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 1, FisherScript_0x19ea61, -1
+	person_event SPRITE_SWIMMER_GIRL, 23, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 0, TrainerSwimmerfDawn, -1
+	person_event SPRITE_SWIMMER_GUY, 28, 13, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermHarold, -1
+	person_event SPRITE_SWIMMER_GUY, 17, 11, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerSwimmermJerome, -1
+	person_event SPRITE_SWIMMER_GUY, 23, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 0, TrainerSwimmermTucker, -1
+	person_event SPRITE_FISHER, 5, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 1, FisherScript_0x19ea4d, -1
+	person_event SPRITE_FISHER, 5, 11, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 1, FisherScript_0x19ea61, -1

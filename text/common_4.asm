@@ -137,7 +137,7 @@ UnknownText_0x1c4298: ; 0x1c4298
 UnknownText_0x1c439c: ; 0x1c439c
 	text "Today's remaining"
 	line "time is @"
-	deciram StringBuffer2, $12
+	deciram StringBuffer2, 1, 2
 	text " min."
 
 	para "Would you like to"
@@ -147,7 +147,7 @@ UnknownText_0x1c439c: ; 0x1c439c
 
 UnknownText_0x1c43dc: ; 0x1c43dc
 	text "There are only @"
-	deciram StringBuffer2, $12
+	deciram StringBuffer2, 1, 2
 	text ""
 	line "min. left today."
 
@@ -201,7 +201,7 @@ UnknownText_0x1c4508: ; 0x1c4508
 UnknownText_0x1c4525: ; 0x1c4525
 	text "Today's remaining"
 	line "time is @"
-	deciram StringBuffer2, $12
+	deciram StringBuffer2, 1, 2
 	text " min."
 	done
 ; 0x1c454b
@@ -537,12 +537,12 @@ UnknownText_0x1c4bfd: ; 0x1c4bfd
 ; 0x1c4c08
 
 UnknownText_0x1c4c08: ; 0x1c4c08
-	deciram wd10c, $12
+	deciram wItemQuantityChangeBuffer, 1, 2
 	text " @"
 	text_from_ram StringBuffer2
 	text "(S)"
 	line "will be ¥@"
-	deciram hMoneyTemp, $36
+	deciram hMoneyTemp, 3, 6
 	text "."
 	done
 ; 0x1c4c28
@@ -569,12 +569,12 @@ UnknownText_0x1c4ca3: ; 0x1c4ca3
 ; 0x1c4cae
 
 UnknownText_0x1c4cae: ; 0x1c4cae
-	deciram wd10c, $12
+	deciram wItemQuantityChangeBuffer, 1, 2
 	text " @"
 	text_from_ram StringBuffer2
 	text "(S)"
 	line "will be ¥@"
-	deciram hMoneyTemp, $36
+	deciram hMoneyTemp, 3, 6
 	text "."
 	done
 ; 0x1c4cce
@@ -619,7 +619,7 @@ UnknownText_0x1c4db0: ; 0x1c4db0
 	text_from_ram StringBuffer2
 	text " costs"
 	line "¥@"
-	deciram hMoneyTemp, $36
+	deciram hMoneyTemp, 3, 6
 	text ". Want it?"
 	done
 ; 0x1c4dcd
@@ -666,12 +666,12 @@ UnknownText_0x1c4e7e: ; 0x1c4e7e
 ; 0x1c4e89
 
 UnknownText_0x1c4e89: ; 0x1c4e89
-	deciram wd10c, $12
+	deciram wItemQuantityChangeBuffer, 1, 2
 	text " @"
 	text_from_ram StringBuffer2
 	text "(S)"
 	line "will cost ¥@"
-	deciram hMoneyTemp, $36
+	deciram hMoneyTemp, 3, 6
 	text "."
 	done
 ; 0x1c4eab
@@ -713,7 +713,7 @@ UnknownText_0x1c4f33: ; 0x1c4f33
 UnknownText_0x1c4f3e: ; 0x1c4f3e
 	text "I can pay you"
 	line "¥@"
-	deciram hMoneyTemp, $36
+	deciram hMoneyTemp, 3, 6
 	text "."
 
 	para "Is that OK?"
@@ -763,7 +763,7 @@ UnknownText_0x1c500d: ; 0x1c500d
 
 UnknownText_0x1c502e: ; 0x1c502e
 	text "Got ¥@"
-	deciram hMoneyTemp, $36
+	deciram hMoneyTemp, 3, 6
 	text " for"
 	line "@"
 	text_from_ram StringBuffer2
@@ -1464,7 +1464,7 @@ UnknownText_0x1c5c5d: ; 0x1c5c5d
 UnknownText_0x1c5c5e: ; 0x1c5c5e
 	text "You now have"
 	line "@"
-	deciram wBlueCardBalance, $12
+	deciram wBlueCardBalance, 1, 2
 	text " points."
 	done
 ; 0x1c5c7b
@@ -1472,7 +1472,7 @@ UnknownText_0x1c5c5e: ; 0x1c5c5e
 UnknownText_0x1c5c7b: ; 0x1c5c7b
 	text "Coins:"
 	line "@"
-	deciram Coins, $24
+	deciram Coins, 2, 4
 	db "@"
 ; 0x1c5c89
 
@@ -1587,7 +1587,7 @@ UnknownText_0x1c5e3a: ; 0x1c5e3a
 
 UnknownText_0x1c5e68: ; 0x1c5e68
 	text "<PLAYER> used the@"
-	text_dunno1
+	text_low
 	text_from_ram StringBuffer2
 	text "."
 	done
@@ -1595,7 +1595,7 @@ UnknownText_0x1c5e68: ; 0x1c5e68
 
 UnknownText_0x1c5e7b: ; 0x1c5e7b
 	text "<PLAYER> got on the@"
-	text_dunno1
+	text_low
 	text_from_ram StringBuffer2
 	text "."
 	prompt
@@ -1603,7 +1603,7 @@ UnknownText_0x1c5e7b: ; 0x1c5e7b
 
 UnknownText_0x1c5e90: ; 0x1c5e90
 	text "<PLAYER> got off@"
-	text_dunno1
+	text_low
 	text "the @"
 	text_from_ram StringBuffer2
 	text "."

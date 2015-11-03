@@ -7,7 +7,7 @@ FuchsiaMart_MapScriptHeader:
 
 ClerkScript_0x195ce8:
 	loadfont
-	pokemart $0, $001d
+	pokemart MARTTYPE_STANDARD, MART_FUCHSIA
 	loadmovesprites
 	end
 
@@ -49,6 +49,6 @@ FuchsiaMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 3, 1, $9, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x195ce8, -1
-	person_event SPRITE_FISHER, 2, 3, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, FisherScript_0x195cef, -1
-	person_event SPRITE_COOLTRAINER_F, 6, 7, $5, 0, 2, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x195cf2, -1
+	person_event SPRITE_CLERK, 3, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x195ce8, -1
+	person_event SPRITE_FISHER, 2, 3, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, FisherScript_0x195cef, -1
+	person_event SPRITE_COOLTRAINER_F, 6, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x195cf2, -1

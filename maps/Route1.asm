@@ -6,7 +6,7 @@ Route1_MapScriptHeader:
 	db 0
 
 TrainerSchoolboyDanny:
-	trainer EVENT_BEAT_SCHOOLBOY_DANNY, SCHOOLBOY, DANNY, SchoolboyDannySeenText, SchoolboyDannyBeatenText, $0000, SchoolboyDannyScript
+	trainer EVENT_BEAT_SCHOOLBOY_DANNY, SCHOOLBOY, DANNY, SchoolboyDannySeenText, SchoolboyDannyBeatenText, 0, SchoolboyDannyScript
 
 SchoolboyDannyScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ SchoolboyDannyScript:
 	end
 
 TrainerCooltrainerfQuinn:
-	trainer EVENT_BEAT_COOLTRAINERF_QUINN, COOLTRAINERF, QUINN, CooltrainerfQuinnSeenText, CooltrainerfQuinnBeatenText, $0000, CooltrainerfQuinnScript
+	trainer EVENT_BEAT_COOLTRAINERF_QUINN, COOLTRAINERF, QUINN, CooltrainerfQuinnSeenText, CooltrainerfQuinnBeatenText, 0, CooltrainerfQuinnScript
 
 CooltrainerfQuinnScript:
 	talkaftercancel
@@ -91,6 +91,6 @@ Route1_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_YOUNGSTER, 12, 4, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerSchoolboyDanny, -1
-	person_event SPRITE_COOLTRAINER_F, 25, 9, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerCooltrainerfQuinn, -1
-	person_event SPRITE_FRUIT_TREE, 7, 3, $1, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1ac581, -1
+	person_event SPRITE_YOUNGSTER, 12, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerSchoolboyDanny, -1
+	person_event SPRITE_COOLTRAINER_F, 25, 9, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerCooltrainerfQuinn, -1
+	person_event SPRITE_FRUIT_TREE, 7, 3, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1ac581, -1

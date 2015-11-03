@@ -32,6 +32,9 @@ hJoyDown           EQU $ffa8
 hJoyLast           EQU $ffa9
 hInMenu            EQU $ffaa
 
+hMapObjectIndexBuffer EQU $ffaf
+hObjectStructIndexBuffer EQU $ffb0
+
 hConnectionStripLength EQU $ffaf
 hConnectedMapWidth EQU $ffb0
 
@@ -58,6 +61,8 @@ hPrintNum5         EQU $ffb7
 hPrintNum6         EQU $ffb8
 hPrintNum7         EQU $ffb9
 
+hUsedSpriteIndex   EQU $ffbd
+hUsedSpriteTile    EQU $ffbe
 hMoneyTemp         EQU $ffc3
 
 hLCDStatCustom     EQU $ffc6

@@ -115,7 +115,7 @@ SpecialsPointers:: ; c029
 	add_special RandomPhoneWildMon
 	add_special RandomPhoneMon
 	add_special RunCallback_04
-	add_special Functionfb841
+	add_special PlaySlowCry
 	add_special SpecialSnorlaxAwake
 	add_special Special_YoungerHaircutBrother
 	add_special Special_OlderHaircutBrother
@@ -333,7 +333,7 @@ Special_GetMysteryGiftItem: ; c309
 	ld a, [sMysteryGiftItem]
 	ld [CurItem], a
 	ld a, $1
-	ld [wd10c], a
+	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
 	call ReceiveItem
 	jr nc, .asm_c33d
@@ -413,9 +413,9 @@ Special_DummyNonfunctionalGameCornerGame: ; c38d
 ; c39a
 
 Special_StartGameCornerGame: ; c39a
-	call Function31cf
+	call FarQueueScript
 	call FadeToMenu
-	ld hl, wd0e8
+	ld hl, wQueuedScriptBank
 	ld a, [hli]
 	push af
 	ld a, [hli]

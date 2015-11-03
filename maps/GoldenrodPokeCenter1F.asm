@@ -818,8 +818,8 @@ GoldenrodPokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_NURSE, 1, 3, $6, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x60f91, -1
-	person_event SPRITE_LINK_RECEPTIONIST, 8, 16, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, -1
-	person_event SPRITE_GAMEBOY_KID, 1, 6, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, GameboyKidScript_0x6101e, -1
-	person_event SPRITE_LASS, 4, 1, $5, 0, 1, -1, -1, 0, 0, 0, LassScript_0x61021, -1
-	person_event SPRITE_POKEFAN_F, 5, 7, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, PokefanFScript_0x61024, -1
+	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x60f91, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 8, 16, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, -1
+	person_event SPRITE_GAMEBOY_KID, 1, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, GameboyKidScript_0x6101e, -1
+	person_event SPRITE_LASS, 4, 1, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, 0, 0, LassScript_0x61021, -1
+	person_event SPRITE_POKEFAN_F, 5, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, PokefanFScript_0x61024, -1

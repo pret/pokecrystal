@@ -6,7 +6,7 @@ SproutTower2F_MapScriptHeader:
 	db 0
 
 TrainerSageNico:
-	trainer EVENT_BEAT_SAGE_NICO, SAGE, NICO, SageNicoSeenText, SageNicoBeatenText, $0000, SageNicoScript
+	trainer EVENT_BEAT_SAGE_NICO, SAGE, NICO, SageNicoSeenText, SageNicoBeatenText, 0, SageNicoScript
 
 SageNicoScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ SageNicoScript:
 	end
 
 TrainerSageEdmond:
-	trainer EVENT_BEAT_SAGE_EDMOND, SAGE, EDMOND, SageEdmondSeenText, SageEdmondBeatenText, $0000, SageEdmondScript
+	trainer EVENT_BEAT_SAGE_EDMOND, SAGE, EDMOND, SageEdmondSeenText, SageEdmondBeatenText, 0, SageEdmondScript
 
 SageEdmondScript:
 	talkaftercancel
@@ -99,6 +99,6 @@ SproutTower2F_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_SAGE, 3, 12, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerSageNico, -1
-	person_event SPRITE_SAGE, 14, 9, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerSageEdmond, -1
-	person_event SPRITE_POKE_BALL, 1, 3, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1847a7, EVENT_SPROUT_TOWER2F_X_ACCURACY
+	person_event SPRITE_SAGE, 3, 12, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerSageNico, -1
+	person_event SPRITE_SAGE, 14, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerSageEdmond, -1
+	person_event SPRITE_POKE_BALL, 1, 3, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1847a7, EVENT_SPROUT_TOWER2F_X_ACCURACY

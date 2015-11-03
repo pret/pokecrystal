@@ -284,5 +284,5 @@ CeladonGameCornerPrizeRoom_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_GENTLEMAN, 2, 0, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GentlemanScript_0x726e9, -1
-	person_event SPRITE_PHARMACIST, 4, 4, $4, 1, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, PharmacistScript_0x726ec, -1
+	person_event SPRITE_GENTLEMAN, 2, 0, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GentlemanScript_0x726e9, -1
+	person_event SPRITE_PHARMACIST, 4, 4, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, PharmacistScript_0x726ec, -1

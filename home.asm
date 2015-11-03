@@ -475,17 +475,17 @@ CallPointerAt:: ; 31be
 ; 31cd
 
 
-ExitMenuCallScript:: ; 31cd
-; Push pointer hl in the current bank to wd0e8.
+QueueScript:: ; 31cd
+; Push pointer hl in the current bank to wQueuedScriptBank.
 	ld a, [hROMBank]
 
-Function31cf:: ; 31cf
-; Push pointer a:hl to wd0e8.
-	ld [wd0e8], a
+FarQueueScript:: ; 31cf
+; Push pointer a:hl to wQueuedScriptBank.
+	ld [wQueuedScriptBank], a
 	ld a, l
-	ld [wd0e9], a
+	ld [wQueuedScriptAddr], a
 	ld a, h
-	ld [wd0e9 + 1], a
+	ld [wQueuedScriptAddr + 1], a
 	ret
 ; 31db
 
@@ -1515,11 +1515,11 @@ FacingPlayerDistance:: ; 36ad
 	add hl, bc
 	ld e, [hl]
 
-	ld a, [MapX]
+	ld a, [PlayerMapX]
 	cp d
 	jr z, .CheckY
 
-	ld a, [MapY]
+	ld a, [PlayerMapY]
 	cp e
 	jr z, .CheckX
 
@@ -1527,7 +1527,7 @@ FacingPlayerDistance:: ; 36ad
 	ret
 
 .CheckY
-	ld a, [MapY]
+	ld a, [PlayerMapY]
 	sub e
 	jr z, .NotFacing
 	jr nc, .Above
@@ -1545,7 +1545,7 @@ FacingPlayerDistance:: ; 36ad
 	jr .CheckFacing
 
 .CheckX
-	ld a, [MapX]
+	ld a, [PlayerMapX]
 	sub d
 	jr z, .NotFacing
 	jr nc, .Left

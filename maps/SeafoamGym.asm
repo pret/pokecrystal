@@ -3,7 +3,7 @@ SeafoamGym_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x1ab4fa, $0000
+	dw UnknownScript_0x1ab4fa, 0
 
 .MapCallbacks:
 	db 0
@@ -19,7 +19,7 @@ BlaineScript_0x1ab4fb:
 	writetext UnknownText_0x1ab548
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x1ab646, $0000
+	winlosstext UnknownText_0x1ab646, 0
 	loadtrainer BLAINE, 1
 	startbattle
 	iftrue .ReturnAfterBattle
@@ -171,5 +171,5 @@ SeafoamGym_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_BLAINE, 2, 5, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, BlaineScript_0x1ab4fb, -1
-	person_event SPRITE_GYM_GUY, 5, 6, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SeafoamGymGuyScript, EVENT_SEAFOAM_GYM_GYM_GUY
+	person_event SPRITE_BLAINE, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, BlaineScript_0x1ab4fb, -1
+	person_event SPRITE_GYM_GUY, 5, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SeafoamGymGuyScript, EVENT_SEAFOAM_GYM_GYM_GUY

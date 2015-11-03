@@ -3,8 +3,8 @@ BattleTower1F_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x9e39d, $0000
-	dw UnknownScript_0x9e3d3, $0000
+	dw UnknownScript_0x9e39d, 0
+	dw UnknownScript_0x9e3d3, 0
 
 .MapCallbacks:
 	db 0
@@ -734,7 +734,7 @@ Text_APkmnLevelExceeds: ; 0x9f1e5
 	text "One or more of"
 	line "your #MON's"
 	cont "levels exceeds @"
-	deciram ScriptVar, $13
+	deciram ScriptVar, 1, 3
 	text "."
 	done
 
@@ -746,7 +746,7 @@ Text_MayNotEnterABattleRoomUnderL70: ; 0x9f217
 
 	para "This BATTLE ROOM"
 	line "is for L@"
-	deciram ScriptVar, $13
+	deciram ScriptVar, 1, 3
 	text "."
 	done
 
@@ -810,8 +810,8 @@ BattleTower1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_RECEPTIONIST, 6, 7, $6, 0, 0, -1, -1, 0, 0, 0, ReceptionistScript_0x9e3e2, -1
-	person_event SPRITE_YOUNGSTER, 9, 14, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, YoungsterScript_0x9e55d, -1
-	person_event SPRITE_COOLTRAINER_F, 9, 4, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerFScript_0x9e568, -1
-	person_event SPRITE_BUG_CATCHER, 3, 1, $2, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, BugCatcherScript_0x9e56b, -1
-	person_event SPRITE_GRANNY, 3, 14, $4, 1, 0, -1, -1, 0, 0, 0, GrannyScript_0x9e56e, -1
+	person_event SPRITE_RECEPTIONIST, 6, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, ReceptionistScript_0x9e3e2, -1
+	person_event SPRITE_YOUNGSTER, 9, 14, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, YoungsterScript_0x9e55d, -1
+	person_event SPRITE_COOLTRAINER_F, 9, 4, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerFScript_0x9e568, -1
+	person_event SPRITE_BUG_CATCHER, 3, 1, SPRITEMOVEDATA_02, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, BugCatcherScript_0x9e56b, -1
+	person_event SPRITE_GRANNY, 3, 14, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, 0, 0, GrannyScript_0x9e56e, -1

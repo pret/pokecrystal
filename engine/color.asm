@@ -1,6 +1,12 @@
 
 INCLUDE "predef/sgb.asm"
 
+SHINY_ATK_BIT EQU 5
+SHINY_DEF_VAL EQU 10
+SHINY_SPD_VAL EQU 10
+SHINY_SPC_VAL EQU 10
+LO_NYBBLE     EQU $0f
+HI_NYBBLE     EQU $f0
 
 CheckShininess: ; 8a68
 ; Check if a mon is shiny by DVs at bc.
@@ -11,25 +17,25 @@ CheckShininess: ; 8a68
 
 ; Attack
 	ld a, [hl]
-	and %0010 << 4
+	and 1 << SHINY_ATK_BIT
 	jr z, .NotShiny
 
 ; Defense
 	ld a, [hli]
-	and %1111
-	cp  %1010
+	and LO_NYBBLE
+	cp  SHINY_DEF_VAL
 	jr nz, .NotShiny
 
 ; Speed
 	ld a, [hl]
-	and %1111 << 4
-	cp  %1010 << 4
+	and HI_NYBBLE
+	cp  SHINY_SPD_VAL << 4
 	jr nz, .NotShiny
 
 ; Special
 	ld a, [hl]
-	and %1111
-	cp  %1010
+	and LO_NYBBLE
+	cp  SHINY_SPC_VAL
 	jr nz, .NotShiny
 
 .Shiny
@@ -53,7 +59,7 @@ CheckContestMon: ; 8a88
 
 ; Defense
 	ld a, [hli]
-	and $f
+	and LO_NYBBLE
 	cp 10
 	jr c, .Bad
 
@@ -64,7 +70,7 @@ CheckContestMon: ; 8a88
 
 ; Special
 	ld a, [hl]
-	and $f
+	and LO_NYBBLE
 	cp 10
 	jr c, .Bad
 

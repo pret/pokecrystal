@@ -6,7 +6,7 @@ FastShipCabins_SW_SSW_NW_MapScriptHeader:
 	db 0
 
 TrainerFirebreatherLyle:
-	trainer EVENT_BEAT_FIREBREATHER_LYLE, FIREBREATHER, LYLE, FirebreatherLyleSeenText, FirebreatherLyleBeatenText, $0000, FirebreatherLyleScript
+	trainer EVENT_BEAT_FIREBREATHER_LYLE, FIREBREATHER, LYLE, FirebreatherLyleSeenText, FirebreatherLyleBeatenText, 0, FirebreatherLyleScript
 
 FirebreatherLyleScript:
 	talkaftercancel
@@ -17,7 +17,7 @@ FirebreatherLyleScript:
 	end
 
 TrainerBug_catcherKen:
-	trainer EVENT_BEAT_BUG_CATCHER_KEN, BUG_CATCHER, KEN, Bug_catcherKenSeenText, Bug_catcherKenBeatenText, $0000, Bug_catcherKenScript
+	trainer EVENT_BEAT_BUG_CATCHER_KEN, BUG_CATCHER, KEN, Bug_catcherKenSeenText, Bug_catcherKenBeatenText, 0, Bug_catcherKenScript
 
 Bug_catcherKenScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ Bug_catcherKenScript:
 	end
 
 TrainerBeautyCassie:
-	trainer EVENT_BEAT_BEAUTY_CASSIE, BEAUTY, CASSIE, BeautyCassieSeenText, BeautyCassieBeatenText, $0000, BeautyCassieScript
+	trainer EVENT_BEAT_BEAUTY_CASSIE, BEAUTY, CASSIE, BeautyCassieSeenText, BeautyCassieBeatenText, 0, BeautyCassieScript
 
 BeautyCassieScript:
 	talkaftercancel
@@ -39,7 +39,7 @@ BeautyCassieScript:
 	end
 
 TrainerGuitaristClyde:
-	trainer EVENT_BEAT_GUITARIST_CLYDE, GUITARIST, CLYDE, GuitaristClydeSeenText, GuitaristClydeBeatenText, $0000, GuitaristClydeScript
+	trainer EVENT_BEAT_GUITARIST_CLYDE, GUITARIST, CLYDE, GuitaristClydeSeenText, GuitaristClydeBeatenText, 0, GuitaristClydeScript
 
 GuitaristClydeScript:
 	talkaftercancel
@@ -239,7 +239,7 @@ FastShipCabins_SW_SSW_NW_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_FISHER, 15, 1, $1e, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerFirebreatherLyle, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	person_event SPRITE_BUG_CATCHER, 15, 6, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerBug_catcherKen, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	person_event SPRITE_BUENA, 26, 1, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBeautyCassie, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	person_event SPRITE_ROCKER, 28, 3, $1e, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerGuitaristClyde, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_FISHER, 15, 1, SPRITEMOVEDATA_1E, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerFirebreatherLyle, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_BUG_CATCHER, 15, 6, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerBug_catcherKen, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_BUENA, 26, 1, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBeautyCassie, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_ROCKER, 28, 3, SPRITEMOVEDATA_1E, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerGuitaristClyde, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND

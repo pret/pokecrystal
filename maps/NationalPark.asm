@@ -56,7 +56,7 @@ GameboyKidScript_0x5c037:
 	end
 
 TrainerSchoolboyJack1:
-	trainer EVENT_BEAT_SCHOOLBOY_JACK, SCHOOLBOY, JACK1, SchoolboyJack1SeenText, SchoolboyJack1BeatenText, $0000, SchoolboyJack1Script
+	trainer EVENT_BEAT_SCHOOLBOY_JACK, SCHOOLBOY, JACK1, SchoolboyJack1SeenText, SchoolboyJack1BeatenText, 0, SchoolboyJack1Script
 
 SchoolboyJack1Script:
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_JACK
@@ -86,7 +86,7 @@ UnknownScript_0x5c074:
 
 UnknownScript_0x5c088:
 	scall UnknownScript_0x5c114
-	winlosstext SchoolboyJack1BeatenText, $0000
+	winlosstext SchoolboyJack1BeatenText, 0
 	copybytetovar wJackFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
@@ -173,7 +173,7 @@ UnknownScript_0x5c114:
 	end
 
 TrainerPokefanmWilliam:
-	trainer EVENT_BEAT_POKEFANM_WILLIAM, POKEFANM, WILLIAM, PokefanmWilliamSeenText, PokefanmWilliamBeatenText, $0000, PokefanmWilliamScript
+	trainer EVENT_BEAT_POKEFANM_WILLIAM, POKEFANM, WILLIAM, PokefanmWilliamSeenText, PokefanmWilliamBeatenText, 0, PokefanmWilliamScript
 
 PokefanmWilliamScript:
 	talkaftercancel
@@ -184,7 +184,7 @@ PokefanmWilliamScript:
 	end
 
 TrainerPokefanfBeverly1:
-	trainer EVENT_BEAT_POKEFANF_BEVERLY, POKEFANF, BEVERLY1, PokefanfBeverly1SeenText, PokefanfBeverly1BeatenText, $0000, PokefanfBeverly1Script
+	trainer EVENT_BEAT_POKEFANF_BEVERLY, POKEFANF, BEVERLY1, PokefanfBeverly1SeenText, PokefanfBeverly1BeatenText, 0, PokefanfBeverly1Script
 
 PokefanfBeverly1Script:
 	writecode VAR_CALLERID, PHONE_POKEFAN_BEVERLY
@@ -263,7 +263,7 @@ UnknownScript_0x5c1ab:
 	end
 
 TrainerLassKrise:
-	trainer EVENT_BEAT_LASS_KRISE, LASS, KRISE, LassKriseSeenText, LassKriseBeatenText, $0000, LassKriseScript
+	trainer EVENT_BEAT_LASS_KRISE, LASS, KRISE, LassKriseSeenText, LassKriseBeatenText, 0, LassKriseScript
 
 LassKriseScript:
 	talkaftercancel
@@ -521,17 +521,17 @@ NationalPark_MapEventHeader:
 
 .PersonEvents:
 	db 14
-	person_event SPRITE_LASS, 24, 15, $5, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x5c002, -1
-	person_event SPRITE_POKEFAN_F, 4, 14, $6, 0, 0, -1, -1, 0, 0, 0, PokefanFScript_0x5c005, -1
-	person_event SPRITE_TEACHER, 40, 27, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TeacherScript_0x5c008, -1
-	person_event SPRITE_YOUNGSTER, 41, 11, $8, 0, 0, -1, -1, 0, 0, 0, YoungsterScript_0x5c023, -1
-	person_event SPRITE_YOUNGSTER, 41, 10, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x5c026, -1
-	person_event SPRITE_TEACHER, 41, 17, $2, 2, 1, -1, -1, 0, 0, 0, TeacherScript_0x5c029, -1
-	person_event SPRITE_GROWLITHE, 40, 26, $16, 0, 0, -1, -1, 0, 0, 0, GrowlitheScript_0x5c02c, -1
-	person_event SPRITE_YOUNGSTER, 23, 27, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSchoolboyJack1, -1
-	person_event SPRITE_POKEFAN_F, 29, 18, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerPokefanfBeverly1, -1
-	person_event SPRITE_POKEFAN_M, 9, 16, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerPokefanmWilliam, -1
-	person_event SPRITE_LASS, 14, 8, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerLassKrise, -1
-	person_event SPRITE_POKE_BALL, 12, 35, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5c1cc, EVENT_NATIONAL_PARK_PARLYZ_HEAL
-	person_event SPRITE_GAMEBOY_KID, 6, 26, $6, 0, 0, -1, -1, 0, 0, 0, GameboyKidScript_0x5c037, -1
-	person_event SPRITE_POKE_BALL, 43, 1, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5c1ce, EVENT_NATIONAL_PARK_TM_DIG
+	person_event SPRITE_LASS, 24, 15, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x5c002, -1
+	person_event SPRITE_POKEFAN_F, 4, 14, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, PokefanFScript_0x5c005, -1
+	person_event SPRITE_TEACHER, 40, 27, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TeacherScript_0x5c008, -1
+	person_event SPRITE_YOUNGSTER, 41, 11, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 0, 0, YoungsterScript_0x5c023, -1
+	person_event SPRITE_YOUNGSTER, 41, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x5c026, -1
+	person_event SPRITE_TEACHER, 41, 17, SPRITEMOVEDATA_02, 2, 1, -1, -1, 0, 0, 0, TeacherScript_0x5c029, -1
+	person_event SPRITE_GROWLITHE, 40, 26, SPRITEMOVEDATA_16, 0, 0, -1, -1, 0, 0, 0, GrowlitheScript_0x5c02c, -1
+	person_event SPRITE_YOUNGSTER, 23, 27, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSchoolboyJack1, -1
+	person_event SPRITE_POKEFAN_F, 29, 18, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerPokefanfBeverly1, -1
+	person_event SPRITE_POKEFAN_M, 9, 16, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerPokefanmWilliam, -1
+	person_event SPRITE_LASS, 14, 8, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerLassKrise, -1
+	person_event SPRITE_POKE_BALL, 12, 35, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5c1cc, EVENT_NATIONAL_PARK_PARLYZ_HEAL
+	person_event SPRITE_GAMEBOY_KID, 6, 26, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, GameboyKidScript_0x5c037, -1
+	person_event SPRITE_POKE_BALL, 43, 1, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5c1ce, EVENT_NATIONAL_PARK_TM_DIG

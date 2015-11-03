@@ -246,17 +246,17 @@ Function10016f: ; 10016f
 
 .asm_1001af
 	ld a, $d7
-	ld de, $0000
+	ld de, 0
 	jr .asm_1001d7
 
 .asm_1001b6
 	ld a, $d5
-	ld de, $0000
+	ld de, 0
 	jr .asm_1001d7
 
 .asm_1001bd
 	ld a, $d6
-	ld de, $0000
+	ld de, 0
 	jr .asm_1001d7
 
 .asm_1001c4
@@ -271,7 +271,7 @@ Function10016f: ; 10016f
 
 .asm_1001d2
 	ld a, $d0
-	ld de, $0000
+	ld de, 0
 
 .asm_1001d7
 	ld [wc300], a
@@ -645,7 +645,7 @@ Function100406: ; 100406
 Function10043a: ; 10043a
 	push hl
 	push bc
-	ld de, $0000
+	ld de, 0
 .asm_10043f
 	ld a, [hli]
 	add e
@@ -1787,12 +1787,12 @@ Function100b12: ; 100b12
 	ld a, BANK(BattleMenuDataHeader)
 	ld [wcf94], a
 	ld a, [wd0d2]
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	call Function100e72
 	call Function100b45
 	callba Function8e85
 	call Function100ed4
-	ld a, [wPocketCursorBuffer]
+	ld a, [wMenuCursorBuffer]
 	ld [wd0d2], a
 	call ExitMenu
 	ret
@@ -1819,7 +1819,7 @@ Function100b45: ; 100b45
 	ld c, a
 	ld a, [wcfa3]
 	call SimpleMultiply
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 	and a
 	ret
 ; 100b7a
@@ -3637,7 +3637,7 @@ Function10177b: ; 10177b
 	ld c, a
 	ld b, $0
 	ld a, [wcd3a]
-	ld hl, $0000
+	ld hl, 0
 	call AddNTimes
 	ld e, l
 	ld d, h
@@ -6667,7 +6667,7 @@ Function102cee: ; 102cee
 	sub c
 	ret z
 	ld bc, $002f
-	ld hl, $0000
+	ld hl, 0
 	call AddNTimes
 	push hl
 	ld a, [wJumptableIndex]
@@ -7474,7 +7474,7 @@ Function10343c: ; 10343c
 	call Function1034e0
 
 .asm_10345f
-	ld bc, $0000
+	ld bc, 0
 	call Function10350f
 	ld bc, $0001
 	call Function103487
@@ -7689,7 +7689,7 @@ Function103612: ; 103612
 	ld a, [wdc40]
 	and $f
 	jr z, .asm_103622
-	ld [wPocketCursorBuffer], a
+	ld [wMenuCursorBuffer], a
 
 .asm_103622
 	call InterpretMenu2

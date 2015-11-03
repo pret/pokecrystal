@@ -74,9 +74,7 @@ map_header_2: MACRO
 ; label, map, border block, connections
 \1_SecondMapHeader::
 	db \3
-\2\@HEIGHT EQUS "\2_HEIGHT"
-\2\@WIDTH  EQUS "\2_WIDTH"
-	db \2\@HEIGHT, \2\@WIDTH
+	db \2_HEIGHT, \2_WIDTH
 	db BANK(\1_BlockData)
 	dw \1_BlockData
 	db BANK(\1_MapScriptHeader)
@@ -162,11 +160,6 @@ GROUP_\1 EQU const_value
 \1_HEIGHT EQU \2
 \1_WIDTH EQU \3
 ENDM
-; map id, height, width
-; \1\@  EQUS "GROUP_\1"
-; \1\@_2 EQUS "MAP_\1"
-; \1\@ EQU const_value
-	; enum \1\@_2
 
 newgroup: MACRO
 const_value = const_value + 1

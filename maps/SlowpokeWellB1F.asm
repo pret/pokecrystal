@@ -9,7 +9,7 @@ KurtScript_0x5a5d5:
 	jumptextfaceplayer UnknownText_0x5a6b5
 
 TrainerGruntM29:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_29, GRUNTM, 29, GruntM29SeenText, GruntM29BeatenText, $0000, GruntM29Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_29, GRUNTM, 29, GruntM29SeenText, GruntM29BeatenText, 0, GruntM29Script
 
 GruntM29Script:
 	talkaftercancel
@@ -20,7 +20,7 @@ GruntM29Script:
 	end
 
 TrainerGruntM1:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_1, GRUNTM, 1, GruntM1SeenText, GruntM1BeatenText, $0000, GruntM1Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_1, GRUNTM, 1, GruntM1SeenText, GruntM1BeatenText, 0, GruntM1Script
 
 GruntM1Script:
 	loadfont
@@ -63,7 +63,7 @@ GruntM1Script:
 	end
 
 TrainerGruntM2:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_2, GRUNTM, 2, GruntM2SeenText, GruntM2BeatenText, $0000, GruntM2Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_2, GRUNTM, 2, GruntM2SeenText, GruntM2BeatenText, 0, GruntM2Script
 
 GruntM2Script:
 	talkaftercancel
@@ -74,7 +74,7 @@ GruntM2Script:
 	end
 
 TrainerGruntF1:
-	trainer EVENT_BEAT_ROCKET_GRUNTF_1, GRUNTF, 1, GruntF1SeenText, GruntF1BeatenText, $0000, GruntF1Script
+	trainer EVENT_BEAT_ROCKET_GRUNTF_1, GRUNTF, 1, GruntF1SeenText, GruntF1BeatenText, 0, GruntF1Script
 
 GruntF1Script:
 	talkaftercancel
@@ -326,12 +326,12 @@ SlowpokeWellB1F_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_ROCKET, 7, 15, $6, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM29, EVENT_SLOWPOKE_WELL_ROCKETS
-	person_event SPRITE_ROCKET, 2, 5, $6, 0, 0, -1, -1, 0, 2, 1, TrainerGruntM1, EVENT_SLOWPOKE_WELL_ROCKETS
-	person_event SPRITE_ROCKET, 6, 5, $9, 0, 0, -1, -1, 0, 2, 2, TrainerGruntM2, EVENT_SLOWPOKE_WELL_ROCKETS
-	person_event SPRITE_ROCKET_GIRL, 4, 10, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerGruntF1, EVENT_SLOWPOKE_WELL_ROCKETS
-	person_event SPRITE_SLOWPOKE, 4, 7, $1, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SlowpokeScript_0x5a681, EVENT_SLOWPOKE_WELL_SLOWPOKES
-	person_event SPRITE_SLOWPOKE, 2, 6, $1, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SlowpokeScript_0x5a695, EVENT_SLOWPOKE_WELL_SLOWPOKES
-	person_event SPRITE_KURT, 14, 16, $7, 0, 0, -1, -1, 0, 0, 0, KurtScript_0x5a5d5, EVENT_SLOWPOKE_WELL_KURT
-	person_event SPRITE_BOULDER, 2, 3, $19, 0, 0, -1, -1, 0, 0, 0, SlowpokeWellB1FBoulder, -1
-	person_event SPRITE_POKE_BALL, 3, 10, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5a6a3, EVENT_SLOWPOKE_WELL_B1F_SUPER_POTION
+	person_event SPRITE_ROCKET, 7, 15, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM29, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_ROCKET, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 2, 1, TrainerGruntM1, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_ROCKET, 6, 5, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 2, 2, TrainerGruntM2, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_ROCKET_GIRL, 4, 10, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerGruntF1, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_SLOWPOKE, 4, 7, SPRITEMOVEDATA_01, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SlowpokeScript_0x5a681, EVENT_SLOWPOKE_WELL_SLOWPOKES
+	person_event SPRITE_SLOWPOKE, 2, 6, SPRITEMOVEDATA_01, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SlowpokeScript_0x5a695, EVENT_SLOWPOKE_WELL_SLOWPOKES
+	person_event SPRITE_KURT, 14, 16, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, 0, 0, KurtScript_0x5a5d5, EVENT_SLOWPOKE_WELL_KURT
+	person_event SPRITE_BOULDER, 2, 3, SPRITEMOVEDATA_19, 0, 0, -1, -1, 0, 0, 0, SlowpokeWellB1FBoulder, -1
+	person_event SPRITE_POKE_BALL, 3, 10, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5a6a3, EVENT_SLOWPOKE_WELL_B1F_SUPER_POTION

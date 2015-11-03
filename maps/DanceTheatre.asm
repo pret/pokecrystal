@@ -6,7 +6,7 @@ DanceTheatre_MapScriptHeader:
 	db 0
 
 TrainerKimono_girlNaoko2:
-	trainer EVENT_BEAT_KIMONO_GIRL_NAOKO, KIMONO_GIRL, NAOKO2, Kimono_girlNaoko2SeenText, Kimono_girlNaoko2BeatenText, $0000, Kimono_girlNaoko2Script
+	trainer EVENT_BEAT_KIMONO_GIRL_NAOKO, KIMONO_GIRL, NAOKO2, Kimono_girlNaoko2SeenText, Kimono_girlNaoko2BeatenText, 0, Kimono_girlNaoko2Script
 
 Kimono_girlNaoko2Script:
 	talkaftercancel
@@ -17,7 +17,7 @@ Kimono_girlNaoko2Script:
 	end
 
 TrainerKimono_girlSayo:
-	trainer EVENT_BEAT_KIMONO_GIRL_SAYO, KIMONO_GIRL, SAYO, Kimono_girlSayoSeenText, Kimono_girlSayoBeatenText, $0000, Kimono_girlSayoScript
+	trainer EVENT_BEAT_KIMONO_GIRL_SAYO, KIMONO_GIRL, SAYO, Kimono_girlSayoSeenText, Kimono_girlSayoBeatenText, 0, Kimono_girlSayoScript
 
 Kimono_girlSayoScript:
 	talkaftercancel
@@ -28,7 +28,7 @@ Kimono_girlSayoScript:
 	end
 
 TrainerKimono_girlZuki:
-	trainer EVENT_BEAT_KIMONO_GIRL_ZUKI, KIMONO_GIRL, ZUKI, Kimono_girlZukiSeenText, Kimono_girlZukiBeatenText, $0000, Kimono_girlZukiScript
+	trainer EVENT_BEAT_KIMONO_GIRL_ZUKI, KIMONO_GIRL, ZUKI, Kimono_girlZukiSeenText, Kimono_girlZukiBeatenText, 0, Kimono_girlZukiScript
 
 Kimono_girlZukiScript:
 	talkaftercancel
@@ -39,7 +39,7 @@ Kimono_girlZukiScript:
 	end
 
 TrainerKimono_girlKuni:
-	trainer EVENT_BEAT_KIMONO_GIRL_KUNI, KIMONO_GIRL, KUNI, Kimono_girlKuniSeenText, Kimono_girlKuniBeatenText, $0000, Kimono_girlKuniScript
+	trainer EVENT_BEAT_KIMONO_GIRL_KUNI, KIMONO_GIRL, KUNI, Kimono_girlKuniSeenText, Kimono_girlKuniBeatenText, 0, Kimono_girlKuniScript
 
 Kimono_girlKuniScript:
 	talkaftercancel
@@ -50,7 +50,7 @@ Kimono_girlKuniScript:
 	end
 
 TrainerKimono_girlMiki:
-	trainer EVENT_BEAT_KIMONO_GIRL_MIKI, KIMONO_GIRL, MIKI, Kimono_girlMikiSeenText, Kimono_girlMikiBeatenText, $0000, Kimono_girlMikiScript
+	trainer EVENT_BEAT_KIMONO_GIRL_MIKI, KIMONO_GIRL, MIKI, Kimono_girlMikiSeenText, Kimono_girlMikiBeatenText, 0, Kimono_girlMikiScript
 
 Kimono_girlMikiScript:
 	talkaftercancel
@@ -345,12 +345,12 @@ DanceTheatre_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_KIMONO_GIRL, 2, 0, $1e, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 0, TrainerKimono_girlNaoko2, -1
-	person_event SPRITE_KIMONO_GIRL, 1, 2, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 0, TrainerKimono_girlSayo, -1
-	person_event SPRITE_KIMONO_GIRL, 2, 6, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 0, TrainerKimono_girlZuki, -1
-	person_event SPRITE_KIMONO_GIRL, 1, 9, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 0, TrainerKimono_girlKuni, -1
-	person_event SPRITE_KIMONO_GIRL, 2, 11, $1f, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 0, TrainerKimono_girlMiki, -1
-	person_event SPRITE_GENTLEMAN, 10, 7, $7, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x994c6, -1
-	person_event SPRITE_RHYDON, 8, 6, $16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, RhydonScript_0x9951b, -1
-	person_event SPRITE_COOLTRAINER_M, 10, 10, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerMScript_0x99525, -1
-	person_event SPRITE_GRANNY, 6, 3, $7, 0, 0, -1, -1, 0, 0, 0, GrannyScript_0x99528, -1
+	person_event SPRITE_KIMONO_GIRL, 2, 0, SPRITEMOVEDATA_1E, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 0, TrainerKimono_girlNaoko2, -1
+	person_event SPRITE_KIMONO_GIRL, 1, 2, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 0, TrainerKimono_girlSayo, -1
+	person_event SPRITE_KIMONO_GIRL, 2, 6, SPRITEMOVEDATA_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 0, TrainerKimono_girlZuki, -1
+	person_event SPRITE_KIMONO_GIRL, 1, 9, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 0, TrainerKimono_girlKuni, -1
+	person_event SPRITE_KIMONO_GIRL, 2, 11, SPRITEMOVEDATA_1F, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 0, TrainerKimono_girlMiki, -1
+	person_event SPRITE_GENTLEMAN, 10, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x994c6, -1
+	person_event SPRITE_RHYDON, 8, 6, SPRITEMOVEDATA_16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, RhydonScript_0x9951b, -1
+	person_event SPRITE_COOLTRAINER_M, 10, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerMScript_0x99525, -1
+	person_event SPRITE_GRANNY, 6, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, 0, 0, GrannyScript_0x99528, -1

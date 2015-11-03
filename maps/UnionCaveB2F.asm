@@ -33,7 +33,7 @@ SurfScript_0x5a31f:
 	end
 
 TrainerCooltrainermNick:
-	trainer EVENT_BEAT_COOLTRAINERM_NICK, COOLTRAINERM, NICK, CooltrainermNickSeenText, CooltrainermNickBeatenText, $0000, CooltrainermNickScript
+	trainer EVENT_BEAT_COOLTRAINERM_NICK, COOLTRAINERM, NICK, CooltrainermNickSeenText, CooltrainermNickBeatenText, 0, CooltrainermNickScript
 
 CooltrainermNickScript:
 	talkaftercancel
@@ -44,7 +44,7 @@ CooltrainermNickScript:
 	end
 
 TrainerCooltrainerfGwen:
-	trainer EVENT_BEAT_COOLTRAINERF_GWEN, COOLTRAINERF, GWEN, CooltrainerfGwenSeenText, CooltrainerfGwenBeatenText, $0000, CooltrainerfGwenScript
+	trainer EVENT_BEAT_COOLTRAINERF_GWEN, COOLTRAINERF, GWEN, CooltrainerfGwenSeenText, CooltrainerfGwenBeatenText, 0, CooltrainerfGwenScript
 
 CooltrainerfGwenScript:
 	talkaftercancel
@@ -55,7 +55,7 @@ CooltrainerfGwenScript:
 	end
 
 TrainerCooltrainerfEmma:
-	trainer EVENT_BEAT_COOLTRAINERF_EMMA, COOLTRAINERF, EMMA, CooltrainerfEmmaSeenText, CooltrainerfEmmaBeatenText, $0000, CooltrainerfEmmaScript
+	trainer EVENT_BEAT_COOLTRAINERF_EMMA, COOLTRAINERF, EMMA, CooltrainerfEmmaSeenText, CooltrainerfEmmaBeatenText, 0, CooltrainerfEmmaScript
 
 CooltrainerfEmmaScript:
 	talkaftercancel
@@ -152,9 +152,9 @@ UnionCaveB2F_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_ROCKER, 19, 15, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainermNick, -1
-	person_event SPRITE_COOLTRAINER_F, 13, 5, $a, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerCooltrainerfGwen, -1
-	person_event SPRITE_COOLTRAINER_F, 30, 3, $7, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainerfEmma, -1
-	person_event SPRITE_POKE_BALL, 2, 16, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5a36a, EVENT_UNION_CAVE_B2F_ELIXER
-	person_event SPRITE_POKE_BALL, 19, 12, $1, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5a36c, EVENT_UNION_CAVE_B2F_HYPER_POTION
-	person_event SPRITE_SURF, 31, 11, $24, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SurfScript_0x5a31f, EVENT_UNION_CAVE_B2F_LAPRAS
+	person_event SPRITE_ROCKER, 19, 15, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainermNick, -1
+	person_event SPRITE_COOLTRAINER_F, 13, 5, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerCooltrainerfGwen, -1
+	person_event SPRITE_COOLTRAINER_F, 30, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainerfEmma, -1
+	person_event SPRITE_POKE_BALL, 2, 16, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5a36a, EVENT_UNION_CAVE_B2F_ELIXER
+	person_event SPRITE_POKE_BALL, 19, 12, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5a36c, EVENT_UNION_CAVE_B2F_HYPER_POTION
+	person_event SPRITE_SURF, 31, 11, SPRITEMOVEDATA_24, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SurfScript_0x5a31f, EVENT_UNION_CAVE_B2F_LAPRAS

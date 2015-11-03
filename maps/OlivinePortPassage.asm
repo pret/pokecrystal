@@ -36,4 +36,4 @@ OlivinePortPassage_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKEFAN_M, 1, 17, $8, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x76fac, EVENT_OLIVINE_PORT_PASSAGE_POKEFAN_M
+	person_event SPRITE_POKEFAN_M, 1, 17, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x76fac, EVENT_OLIVINE_PORT_PASSAGE_POKEFAN_M

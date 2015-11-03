@@ -128,7 +128,7 @@ TwinScript_0x75f6d:
 	end
 
 TrainerPokefanmColin:
-	trainer EVENT_BEAT_POKEFANM_COLIN, POKEFANM, COLIN, PokefanmColinSeenText, PokefanmColinBeatenText, $0000, PokefanmColinScript
+	trainer EVENT_BEAT_POKEFANM_COLIN, POKEFANM, COLIN, PokefanmColinSeenText, PokefanmColinBeatenText, 0, PokefanmColinScript
 
 PokefanmColinScript:
 	talkaftercancel
@@ -139,7 +139,7 @@ PokefanmColinScript:
 	end
 
 TrainerTwinsMegandpeg1:
-	trainer EVENT_BEAT_TWINS_MEG_AND_PEG, TWINS, MEGANDPEG1, TwinsMegandpeg1SeenText, TwinsMegandpeg1BeatenText, $0000, TwinsMegandpeg1Script
+	trainer EVENT_BEAT_TWINS_MEG_AND_PEG, TWINS, MEGANDPEG1, TwinsMegandpeg1SeenText, TwinsMegandpeg1BeatenText, 0, TwinsMegandpeg1Script
 
 TwinsMegandpeg1Script:
 	talkaftercancel
@@ -150,7 +150,7 @@ TwinsMegandpeg1Script:
 	end
 
 TrainerTwinsMegandpeg2:
-	trainer EVENT_BEAT_TWINS_MEG_AND_PEG, TWINS, MEGANDPEG2, TwinsMegandpeg2SeenText, TwinsMegandpeg2BeatenText, $0000, TwinsMegandpeg2Script
+	trainer EVENT_BEAT_TWINS_MEG_AND_PEG, TWINS, MEGANDPEG2, TwinsMegandpeg2SeenText, TwinsMegandpeg2BeatenText, 0, TwinsMegandpeg2Script
 
 TwinsMegandpeg2Script:
 	talkaftercancel
@@ -161,7 +161,7 @@ TwinsMegandpeg2Script:
 	end
 
 TrainerPsychicRodney:
-	trainer EVENT_BEAT_PSYCHIC_RODNEY, PSYCHIC_T, RODNEY, PsychicRodneySeenText, PsychicRodneyBeatenText, $0000, PsychicRodneyScript
+	trainer EVENT_BEAT_PSYCHIC_RODNEY, PSYCHIC_T, RODNEY, PsychicRodneySeenText, PsychicRodneyBeatenText, 0, PsychicRodneyScript
 
 PsychicRodneyScript:
 	talkaftercancel
@@ -172,7 +172,7 @@ PsychicRodneyScript:
 	end
 
 TrainerPokefanmJeremy:
-	trainer EVENT_BEAT_POKEFANM_JEREMY, POKEFANM, JEREMY, PokefanmJeremySeenText, PokefanmJeremyBeatenText, $0000, PokefanmJeremyScript
+	trainer EVENT_BEAT_POKEFANM_JEREMY, POKEFANM, JEREMY, PokefanmJeremySeenText, PokefanmJeremyBeatenText, 0, PokefanmJeremyScript
 
 PokefanmJeremyScript:
 	talkaftercancel
@@ -183,7 +183,7 @@ PokefanmJeremyScript:
 	end
 
 TrainerPokefanfGeorgia:
-	trainer EVENT_BEAT_POKEFANF_GEORGIA, POKEFANF, GEORGIA, PokefanfGeorgiaSeenText, PokefanfGeorgiaBeatenText, $0000, PokefanfGeorgiaScript
+	trainer EVENT_BEAT_POKEFANF_GEORGIA, POKEFANF, GEORGIA, PokefanfGeorgiaSeenText, PokefanfGeorgiaBeatenText, 0, PokefanfGeorgiaScript
 
 PokefanfGeorgiaScript:
 	talkaftercancel
@@ -194,7 +194,7 @@ PokefanfGeorgiaScript:
 	end
 
 TrainerSupernerdShawn:
-	trainer EVENT_BEAT_SUPER_NERD_SHAWN, SUPER_NERD, SHAWN, SupernerdShawnSeenText, SupernerdShawnBeatenText, $0000, SupernerdShawnScript
+	trainer EVENT_BEAT_SUPER_NERD_SHAWN, SUPER_NERD, SHAWN, SupernerdShawnSeenText, SupernerdShawnBeatenText, 0, SupernerdShawnScript
 
 SupernerdShawnScript:
 	talkaftercancel
@@ -471,14 +471,14 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapEventHeader:
 
 .PersonEvents:
 	db 11
-	person_event SPRITE_CAPTAIN, 25, 3, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, CaptainScript_0x75ea7, -1
-	person_event SPRITE_GENTLEMAN, 17, 2, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GentlemanScript_0x75f1f, EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
-	person_event SPRITE_TWIN, 17, 3, $a, 0, 0, -1, -1, 0, 0, 0, TwinScript_0x75f6d, EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
-	person_event SPRITE_TWIN, 25, 2, $a, 0, 0, -1, -1, 0, 0, 0, TwinScript_0x75ebb, EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_2
-	person_event SPRITE_POKEFAN_M, 6, 5, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 5, TrainerPokefanmColin, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	person_event SPRITE_TWIN, 4, 2, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsMegandpeg1, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	person_event SPRITE_TWIN, 4, 3, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsMegandpeg2, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	person_event SPRITE_SUPER_NERD, 5, 5, $8, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerPsychicRodney, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	person_event SPRITE_POKEFAN_M, 3, 2, $6, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerPokefanmJeremy, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	person_event SPRITE_POKEFAN_F, 5, 5, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerPokefanfGeorgia, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	person_event SPRITE_SUPER_NERD, 15, 1, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerSupernerdShawn, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_CAPTAIN, 25, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, CaptainScript_0x75ea7, -1
+	person_event SPRITE_GENTLEMAN, 17, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GentlemanScript_0x75f1f, EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
+	person_event SPRITE_TWIN, 17, 3, SPRITEMOVEDATA_0A, 0, 0, -1, -1, 0, 0, 0, TwinScript_0x75f6d, EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
+	person_event SPRITE_TWIN, 25, 2, SPRITEMOVEDATA_0A, 0, 0, -1, -1, 0, 0, 0, TwinScript_0x75ebb, EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_2
+	person_event SPRITE_POKEFAN_M, 6, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 5, TrainerPokefanmColin, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_TWIN, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsMegandpeg1, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_TWIN, 4, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerTwinsMegandpeg2, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_SUPER_NERD, 5, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerPsychicRodney, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_POKEFAN_M, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerPokefanmJeremy, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_POKEFAN_F, 5, 5, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerPokefanfGeorgia, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_SUPER_NERD, 15, 1, SPRITEMOVEDATA_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerSupernerdShawn, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND

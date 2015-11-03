@@ -9,60 +9,60 @@ OfficerScript_0x69d37:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_HP_UP_FROM_RANDY
-	iftrue UnknownScript_0x69d92
+	iftrue .gothpup
 	checkevent EVENT_GAVE_KENYA
-	iftrue UnknownScript_0x69d85
+	iftrue .questcomplete
 	checkevent EVENT_GOT_KENYA
-	iftrue UnknownScript_0x69d73
+	iftrue .alreadyhavekenya
 	writetext UnknownText_0x69ddd
 	yesorno
-	iffalse UnknownScript_0x69d7f
+	iffalse .refused
 	writetext UnknownText_0x69e48
 	keeptextopen
 	waitbutton
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, UnknownScript_0x69d79
+	if_equal PARTY_LENGTH, .partyfull
 	writetext UnknownText_0x69eb8
 	playsound SFX_KEY_ITEM
 	waitbutton
-	givepoke SPEAROW, 10, 0, 1, GiftSpearowName, GiftSpearowOTName
+	givepoke SPEAROW, 10, NO_ITEM, 1, GiftSpearowName, GiftSpearowOTName
 	givepokeitem GiftSpearowMail
 	setevent EVENT_GOT_KENYA
-UnknownScript_0x69d73:
+.alreadyhavekenya:
 	writetext UnknownText_0x69ed6
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x69d79:
+.partyfull:
 	writetext UnknownText_0x69f56
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x69d7f:
+.refused:
 	writetext UnknownText_0x69f74
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x69d85:
+.questcomplete:
 	writetext UnknownText_0x69f8b
 	keeptextopen
 	verbosegiveitem HP_UP, 1
-	iffalse UnknownScript_0x69d96
+	iffalse .bagfull
 	setevent EVENT_GOT_HP_UP_FROM_RANDY
-UnknownScript_0x69d92:
+.gothpup:
 	writetext UnknownText_0x69fd9
 	closetext
-UnknownScript_0x69d96:
+.bagfull:
 	loadmovesprites
 	end
 
 GiftSpearowMail:
-	db FLOWER_MAIL
-	db "DARK CAVE leads", $4E
-	db "to another road@"
+	db   FLOWER_MAIL
+	db   "DARK CAVE leads"
+	next "to another road@"
 GiftSpearowName:
 	db "KENYA@"
 GiftSpearowOTName:
@@ -74,13 +74,13 @@ PokefanFScript_0x69dc6:
 	faceplayer
 	loadfont
 	checkevent EVENT_FOUGHT_SUDOWOODO
-	iftrue UnknownScript_0x69dd4
+	iftrue .aftersudowoodo
 	writetext UnknownText_0x6a00a
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x69dd4:
+.aftersudowoodo:
 	writetext UnknownText_0x6a09a
 	closetext
 	loadmovesprites
@@ -209,6 +209,6 @@ Route35Goldenrodgate_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_OFFICER, 4, 0, $9, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, OfficerScript_0x69d37, -1
-	person_event SPRITE_POKEFAN_F, 4, 6, $4, 1, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, PokefanFScript_0x69dc6, -1
-	person_event SPRITE_FISHER, 2, 3, $3, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FisherScript_0x69dda, -1
+	person_event SPRITE_OFFICER, 4, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, OfficerScript_0x69d37, -1
+	person_event SPRITE_POKEFAN_F, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, PokefanFScript_0x69dc6, -1
+	person_event SPRITE_FISHER, 2, 3, SPRITEMOVEDATA_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, FisherScript_0x69dda, -1

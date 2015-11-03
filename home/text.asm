@@ -175,7 +175,7 @@ RadioTerminator:: ; 1052
 
 PrintText:: ; 1057
 	call SetUpTextBox
-Function105a:: ; 105a
+BuenaPrintText:: ; 105a
 	push hl
 	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY
 	lb bc, TEXTBOX_INNERH - 1, TEXTBOX_INNERW
@@ -1057,13 +1057,13 @@ Function1522:: ; 1522
 ; 152d
 
 TextSFX:: ; 152d
-	dbw $0b, SFX_DEX_FANFARE_50_79
-	dbw $12, SFX_FANFARE
-	dbw $0e, SFX_DEX_FANFARE_20_49
-	dbw $0f, SFX_ITEM
-	dbw $10, SFX_CAUGHT_MON
-	dbw $11, SFX_DEX_FANFARE_80_109
-	dbw $13, SFX_SLOT_MACHINE_START
+	dbw TX_SOUND_0B, SFX_DEX_FANFARE_50_79
+	dbw TX_SOUND_12, SFX_FANFARE
+	dbw TX_SOUND_0E, SFX_DEX_FANFARE_20_49
+	dbw TX_SOUND_0F, SFX_ITEM
+	dbw TX_SOUND_10, SFX_CAUGHT_MON
+	dbw TX_SOUND_11, SFX_DEX_FANFARE_80_109
+	dbw TX_SOUND_13, SFX_SLOT_MACHINE_START
 	db -1
 ; 1543
 
@@ -1122,11 +1122,11 @@ Text_TX_STRINGBUFFER:: ; 156a
 	push hl
 	ld e, a
 	ld d, 0
-	ld hl, Unknown_24000
+	ld hl, StringBufferPointers
 rept 2
 	add hl, de
 endr
-	ld a, BANK(Unknown_24000)
+	ld a, BANK(StringBufferPointers)
 	call GetFarHalfword
 	ld d, h
 	ld e, l
