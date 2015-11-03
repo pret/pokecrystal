@@ -259,13 +259,13 @@ NUM_HMS = const_value - HM01
 	add_mt THUNDERBOLT
 	add_mt ICE_BEAM
 
+ITEM_FROM_MEM EQU $ff
 
 
 ; leftovers from red
 SAFARI_BALL    EQU  8 ; MOON_STONE
 MOON_STONE_RED EQU 10 ; BURN_HEAL
 FULL_HEAL_RED  EQU 52 ; X_SPEED
-
 MAIL_MAX_LENGTH EQU $20
 
 ; pockets

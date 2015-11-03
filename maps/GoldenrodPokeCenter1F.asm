@@ -9,8 +9,8 @@ NurseScript_0x60f91:
 	jumpstd pokecenternurse
 
 UnknownScript_0x60f94:
-	writebyte $b
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_0B
+	special BattleTowerAction
 	if_equal $b, UnknownScript_0x60f9e
 	end
 
@@ -41,8 +41,8 @@ UnknownScript_0x60fd8:
 	end
 
 UnknownScript_0x60fd9:
-	writebyte $b
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_0B
+	special BattleTowerAction
 	if_equal $b, UnknownScript_0x60fe3
 	end
 

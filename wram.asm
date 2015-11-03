@@ -2645,23 +2645,17 @@ w3_d000:: ; d000
 BT_OTrainer::
 w3_d100:: ; BattleTower OpponentTrainer-Data (length = 0xe0 = $a + $1 + 3*$3b + $24)
 BT_OTrainer_Name::
-	ds $A
+	ds NAME_LENGTH + -1
 BT_OTrainer_TrainerClass::
-	ds $1
-BT_OTPkmn1:: ; w3_d10b
-	ds $1
-BT_OTPkmn1Item::
-	ds $3b-1
-BT_OTPkmn2:: ; w3_d146
-	ds $1
-BT_OTPkmn2Item::
-	ds $3b-1
-BT_OTPkmn3:: ; w3_d181
-	ds $1
-BT_OTPkmn3Item::
-	ds $3b-1
+	ds 1
+BT_OTPkmn1:: party_struct BT_OTPkmn1
+BT_OTPkmn1Name:: ds PKMN_NAME_LENGTH
+BT_OTPkmn2:: party_struct BT_OTPkmn2
+BT_OTPkmn2Name:: ds PKMN_NAME_LENGTH
+BT_OTPkmn3:: party_struct BT_OTPkmn3
+BT_OTPkmn3Name:: ds PKMN_NAME_LENGTH
 	
-	ds $24
+BT_OTrainerData:: ds $24
 BT_OTrainerEnd:: ; we_d1e0
 	
 	ds $20

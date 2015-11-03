@@ -127,7 +127,7 @@ LanceScript_0x180e7b:
 	applymovement $3, MovementData_0x180f5b
 	special FadeBlackBGMap
 	pause 15
-	warpfacing $1, HALL_OF_FAME, $4, $d
+	warpfacing UP, HALL_OF_FAME, $4, $d
 	end
 
 MovementData_0x180f33:

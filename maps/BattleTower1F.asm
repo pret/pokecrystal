@@ -10,11 +10,11 @@ BattleTower1F_MapScriptHeader:
 	db 0
 
 UnknownScript_0x9e39d:
-	writebyte $9
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_09
+	special BattleTowerAction
 	iffalse UnknownScript_0x9e3d1
-	writebyte $2
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_02
+	special BattleTowerAction
 	if_equal $0, UnknownScript_0x9e3d1
 	if_equal $2, UnknownScript_0x9e3c4
 	if_equal $3, UnknownScript_0x9e3d1
@@ -30,10 +30,10 @@ UnknownScript_0x9e3c4:
 	priorityjump UnknownScript_0x9e555
 
 UnknownScript_0x9e3c7:
-	writebyte $4
-	special Function170687
-	writebyte $6
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_04
+	special BattleTowerAction
+	writebyte BATTLE_TOWER_ACTION_06
+	special BattleTowerAction
 UnknownScript_0x9e3d1:
 	dotrigger $1
 UnknownScript_0x9e3d3:
@@ -51,14 +51,14 @@ UnknownScript_0x9e3e0:
 	end
 
 ReceptionistScript_0x9e3e2:
-	writebyte $2
-	special Function170687
-	if_equal $3, BattleTowerBattleRoomScript_0x9f4e4
+	writebyte BATTLE_TOWER_ACTION_02
+	special BattleTowerAction
+	if_equal $3, BattleTowerBattleRoomScript_0x9f4e4 ; maps/BattleTowerBattleRoom.asm
 	loadfont
 	writetext Text_BattleTowerWelcomesYou
 	keeptextopen
-	writebyte $0
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_00
+	special BattleTowerAction
 	if_not_equal $0, Script_Menu_ChallengeExplanationCancel
 	jump Script_BattleTowerIntroductionYesNo
 
@@ -71,8 +71,8 @@ Script_Menu_ChallengeExplanationCancel: ; 0x9e3fc
 	jump UnknownScript_0x9e4b0
 
 Script_ChoseChallenge: ; 0x9e40f
-	writebyte $1a
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_1A ; ResetBattleTowerTrainerSRAM
+	special BattleTowerAction
 	special SpecialCheckForBattleTowerRules
 	if_not_equal $0, Script_CloseText
 	writetext Text_SaveBeforeEnteringBattleRoom
@@ -82,24 +82,24 @@ Script_ChoseChallenge: ; 0x9e40f
 	special Special_TryQuickSave
 	iffalse Script_Menu_ChallengeExplanationCancel
 	dotrigger $1
-	writebyte $1
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_01
+	special BattleTowerAction
 	special Function1700b0
 	if_equal $a, Script_Menu_ChallengeExplanationCancel
 	if_not_equal $0, UnknownScript_0x9e550
-	writebyte $11
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_11
+	special BattleTowerAction
 	writetext Text_RightThisWayToYourBattleRoom
 	closetext
 	loadmovesprites
-	writebyte $1e
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_1E
+	special BattleTowerAction
 	jump UnknownScript_0x9e454
 
 UnknownScript_0x9e44e:
 	loadmovesprites
-	writebyte $8
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_08
+	special BattleTowerAction
 UnknownScript_0x9e454:
 	musicfadeout MUSIC_NONE, $8
 	domaptrigger BATTLE_TOWER_BATTLE_ROOM, $0
@@ -107,8 +107,8 @@ UnknownScript_0x9e454:
 	domaptrigger BATTLE_TOWER_HALLWAY, $0
 	follow $2, PLAYER
 	applymovement $2, MovementData_0x9e571
-	writebyte $a
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_0A
+	special BattleTowerAction
 	warpsound
 	disappear $2
 	stopfollow
@@ -117,16 +117,16 @@ UnknownScript_0x9e454:
 	end
 
 Script_GivePlayerHisPrize: ; 0x9e47a
-	writebyte $1c
-	special Function170687
-	writebyte $1b
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_1C
+	special BattleTowerAction
+	writebyte BATTLE_TOWER_ACTION_1B
+	special BattleTowerAction
 	if_equal $12, Script_YourPackIsStuffedFull
 	itemtotext $0, $1
-	giveitem $ff, $5
+	giveitem ITEM_FROM_MEM, 5
 	writetext Text_PlayerGotFive
-	writebyte $1d
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_1D
+	special BattleTowerAction
 	loadmovesprites
 	end
 
@@ -143,8 +143,8 @@ Script_BattleTowerIntroductionYesNo: ; 0x9e49e
 Script_BattleTowerExplanation: ; 0x9e4a5
 	writetext Text_BattleTowerIntroduction_2
 UnknownScript_0x9e4a8:
-	writebyte $1
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_01
+	special BattleTowerAction
 	jump Script_Menu_ChallengeExplanationCancel
 
 UnknownScript_0x9e4b0:
@@ -170,8 +170,8 @@ UnknownScript_0x9e4be:
 	iffalse Script_Menu_ChallengeExplanationCancel
 	special Special_TryQuickSave
 	iffalse Script_Menu_ChallengeExplanationCancel
-	writebyte $1
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_01
+	special BattleTowerAction
 	special Function1700ba
 	if_equal $a, Script_Menu_ChallengeExplanationCancel
 	if_not_equal $0, UnknownScript_0x9e550
@@ -184,16 +184,16 @@ UnknownScript_0x9e4be:
 	end
 
 UnknownScript_0x9e4ea:
-	writebyte $18
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_18
+	special BattleTowerAction
 	if_not_equal $0, Script_APkmnLevelExceeds
-	writebyte $19
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_19
+	special BattleTowerAction
 	if_not_equal $0, Script_MayNotEnterABattleRoomUnderL70
 	special SpecialCheckForBattleTowerRules
 	if_not_equal $0, Script_CloseText
-	writebyte $5
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_05
+	special BattleTowerAction
 	if_equal $0, UnknownScript_0x9e512
 	writetext UnknownText_0x9ecb0
 	jump UnknownScript_0x9e515
@@ -210,10 +210,10 @@ UnknownScript_0x9e515:
 	special Special_TryQuickSave
 	iffalse Script_Menu_ChallengeExplanationCancel
 	dotrigger $1
-	writebyte $6
-	special Function170687
-	writebyte $12
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_06
+	special BattleTowerAction
+	writebyte BATTLE_TOWER_ACTION_12
+	special BattleTowerAction
 	writetext Text_RightThisWayToYourBattleRoom
 	closetext
 	jump UnknownScript_0x9e44e

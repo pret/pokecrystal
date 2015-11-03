@@ -30,10 +30,10 @@ Script_BattleRoomLoop: ; 0x9f425
 	storetext 1
 	keeptextopen
 	loadmovesprites
-	special Function170215 ; calls predef startbattle
+	special BattleTowerBattle ; calls predef startbattle
 	special FadeBlackBGMap
 	reloadmap
-	if_not_equal $0, UnknownScript_0x9f4c2
+	if_not_equal $0, Script_FailedBattleTowerChallenge
 	copybytetovar wNrOfBeatenBattleTowerTrainers ; wcf64
 	if_equal BATTLETOWER_NROFTRAINERS, Script_BeatenAllTrainers
 	applymovement $2, MovementData_0x9e597
@@ -65,12 +65,12 @@ Script_DontBattleNextOpponent: ; 0x9f483
 	writetext Text_SaveAndEndTheSession
 	yesorno
 	iffalse Script_DontSaveAndEndTheSession
-	writebyte $7
-	special Function170687
-	writebyte $1f
-	special Function170687
-	writebyte $3
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_07
+	special BattleTowerAction
+	writebyte BATTLE_TOWER_ACTION_1F
+	special BattleTowerAction
+	writebyte BATTLE_TOWER_ACTION_03
+	special BattleTowerAction
 	playsound SFX_SAVE
 	waitbutton
 	special FadeBlackBGMap
@@ -79,22 +79,22 @@ Script_DontSaveAndEndTheSession: ; 0x9f4a3
 	writetext Text_CancelYourBattleRoomChallenge
 	yesorno
 	iffalse Script_ContinueAndBattleNextOpponent
-	writebyte $4
-	special Function170687
-	writebyte $6
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_04
+	special BattleTowerAction
+	writebyte BATTLE_TOWER_ACTION_06
+	special BattleTowerAction
 	loadmovesprites
 	special FadeBlackBGMap
-	warpfacing $1, BATTLE_TOWER_1F, $7, $7
+	warpfacing UP, BATTLE_TOWER_1F, $7, $7
 	loadfont
 	jump UnknownScript_0x9e4b0
 
-UnknownScript_0x9f4c2:
+Script_FailedBattleTowerChallenge:
 	pause 60
 	special Special_BattleTowerFade
-	warpfacing $1, BATTLE_TOWER_1F, $7, $7
-	writebyte $4
-	special Function170687
+	warpfacing UP, BATTLE_TOWER_1F, $7, $7
+	writebyte BATTLE_TOWER_ACTION_04
+	special BattleTowerAction
 	loadfont
 	writetext Text_ThanksForVisiting
 	closetext
@@ -104,15 +104,15 @@ UnknownScript_0x9f4c2:
 Script_BeatenAllTrainers: ; 0x9f4d9
 	pause 60
 	special Special_BattleTowerFade
-	warpfacing $1, BATTLE_TOWER_1F, $7, $7
+	warpfacing UP, BATTLE_TOWER_1F, $7, $7
 BattleTowerBattleRoomScript_0x9f4e4:
 	loadfont
 	writetext Text_CongratulationsYouveBeatenAllTheTrainers
 	jump Script_GivePlayerHisPrize
 
 UnknownScript_0x9f4eb:
-	writebyte $4
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_04
+	special BattleTowerAction
 	loadfont
 	writetext Text_TooMuchTimeElapsedNoRegister
 	closetext
@@ -120,10 +120,10 @@ UnknownScript_0x9f4eb:
 	end
 
 UnknownScript_0x9f4f7:
-	writebyte $4
-	special Function170687
-	writebyte $6
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_04
+	special BattleTowerAction
+	writebyte BATTLE_TOWER_ACTION_06
+	special BattleTowerAction
 	loadfont
 	writetext Text_ThanksForVisiting
 	writetext Text_WeHopeToServeYouAgain

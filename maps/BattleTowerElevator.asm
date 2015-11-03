@@ -20,8 +20,8 @@ UnknownScript_0x9f568:
 	follow $2, PLAYER
 	applymovement $2, MovementData_0x9f58f
 	applymovement PLAYER, MovementData_0x9f592
-	writebyte $a
-	special Function170687
+	writebyte BATTLE_TOWER_ACTION_0A
+	special BattleTowerAction
 	playsound SFX_ELEVATOR
 	earthquake 60
 	waitbutton

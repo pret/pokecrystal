@@ -85,7 +85,7 @@ Route36NationalParkgate_MapScriptHeader:
 	playsound SFX_EXIT_BUILDING
 	special FadeBlackBGMap
 	waitbutton
-	warpfacing $2, NATIONAL_PARK_BUG_CONTEST, $21, $12
+	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, $21, $12
 	end
 
 .CopyContestants:
@@ -169,7 +169,7 @@ Route36OfficerScriptContest:
 	special FadeBlackBGMap
 	waitbutton
 	special Special_SelectRandomBugContestContestants
-	warpfacing $2, NATIONAL_PARK_BUG_CONTEST, $21, $12
+	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, $21, $12
 	end
 
 .LeaveMonsWithOfficer:

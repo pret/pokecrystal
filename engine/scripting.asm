@@ -2339,7 +2339,7 @@ Script_giveitem: ; 0x977ca
 ;     quantity (SingleByteParam)
 
 	call GetScriptByte
-	cp -1
+	cp ITEM_FROM_MEM
 	jr nz, .ok ; 0x977cf $3
 	ld a, [ScriptVar]
 .ok

@@ -77,7 +77,7 @@ Route35NationalParkgate_GoBackIn:
 	playsound SFX_ENTER_DOOR
 	special FadeBlackBGMap
 	waitbutton
-	warpfacing $1, NATIONAL_PARK_BUG_CONTEST, $a, $2f
+	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, $a, $2f
 	end
 
 OfficerScript_0x6a204:
@@ -115,7 +115,7 @@ Route35NationalParkgate_OkayToProceed:
 	special FadeBlackBGMap
 	waitbutton
 	special Special_SelectRandomBugContestContestants
-	warpfacing $1, NATIONAL_PARK_BUG_CONTEST, $a, $2f
+	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, $a, $2f
 	end
 
 Route35NationalParkgate_EnterContest:
