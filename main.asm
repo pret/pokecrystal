@@ -16193,26 +16193,26 @@ Function14135:: ; 14135
 ; 14146
 
 Function14146: ; 14146
-	ld hl, wd13e
+	ld hl, wSpriteFlags
 	ld a, [hl]
 	push af
 	res 7, [hl]
 	set 6, [hl]
 	call RunCallback_04
 	pop af
-	ld [wd13e], a
+	ld [wSpriteFlags], a
 	ret
 ; 14157
 
 Function14157: ; 14157
-	ld hl, wd13e
+	ld hl, wSpriteFlags
 	ld a, [hl]
 	push af
 	set 7, [hl]
 	res 6, [hl]
 	call RunCallback_04
 	pop af
-	ld [wd13e], a
+	ld [wSpriteFlags], a
 	ret
 ; 14168
 
@@ -16225,7 +16225,7 @@ Function14168:: ; 14168
 
 Function1416f: ; 1416f
 	xor a
-	ld bc, $0040
+	ld bc, UsedSpritesEnd - UsedSprites
 	ld hl, UsedSprites
 	call ByteFill
 	call GetPlayerSprite
@@ -16254,7 +16254,7 @@ GetPlayerSprite: ; 14183
 .loop
 	ld a, [hli]
 	cp c
-	jr z, .asm_141ac
+	jr z, .good
 	inc hl
 	cp $ff
 	jr nz, .loop
@@ -16263,15 +16263,15 @@ GetPlayerSprite: ; 14183
 	xor a ; ld a, PLAYER_NORMAL
 	ld [PlayerState], a
 	ld a, SPRITE_CHRIS
-	jr .asm_141ad
+	jr .finish
 
-.asm_141ac
+.good
 	ld a, [hl]
 
-.asm_141ad
+.finish
 	ld [UsedSprites + 0], a
-	ld [PlayerStruct + 0], a
-	ld [MapObjects + OBJECT_LENGTH * 0 + 1], a
+	ld [PlayerSprite], a
+	ld [MapObjects + OBJECT_LENGTH * PLAYER_OBJECT + MAPOBJECT_SPRITE], a
 	ret
 
 .Chris
@@ -16303,7 +16303,7 @@ AddMapSprites: ; 141c9
 
 
 AddIndoorSprites: ; 141d9
-	ld hl, MapObjects + 1 * OBJECT_LENGTH + 1 ; sprite
+	ld hl, MapObjects + 1 * OBJECT_LENGTH + MAPOBJECT_SPRITE ; sprite
 	ld a, 1
 .loop
 	push af
@@ -16352,7 +16352,7 @@ RunCallback_04: ; 14209
 ; 14215
 
 Function14215: ; 14215
-	ld a, [wd13e]
+	ld a, [wSpriteFlags]
 	bit 6, a
 	ret nz
 	ld c, $8
@@ -16755,9 +16755,9 @@ Function1439b: ; 1439b
 	ld hl, UsedSprites
 	ld c, SPRITE_GFX_LIST_CAPACITY
 .loop
-	ld a, [wd13e]
+	ld a, [wSpriteFlags]
 	res 5, a
-	ld [wd13e], a
+	ld [wSpriteFlags], a
 	ld a, [hli]
 	and a
 	jr z, .done
@@ -16766,9 +16766,9 @@ Function1439b: ; 1439b
 	ld [hUsedSpriteTile], a
 	bit 7, a
 	jr z, .dont_set
-	ld a, [wd13e]
+	ld a, [wSpriteFlags]
 	set 5, a
-	ld [wd13e], a
+	ld [wSpriteFlags], a
 
 .dont_set
 	push bc
@@ -16791,7 +16791,7 @@ Function143c8: ; 143c8
 	push hl
 	push de
 	push bc
-	ld a, [wd13e]
+	ld a, [wSpriteFlags]
 	bit 7, a
 	jr nz, .asm_143df
 	call Function14418
@@ -16808,7 +16808,7 @@ endr
 	ld d, h
 	ld e, l
 	pop hl
-	ld a, [wd13e]
+	ld a, [wSpriteFlags]
 	bit 5, a
 	jr nz, .asm_14405
 	bit 6, a
@@ -16845,7 +16845,7 @@ endr
 Function14418: ; 14418
 	ld a, [rVBK]
 	push af
-	ld a, [wd13e]
+	ld a, [wSpriteFlags]
 	bit 5, a
 	ld a, $1
 	jr z, .asm_14426
@@ -16889,59 +16889,29 @@ LoadEmote:: ; 1442f
 	ret
 ; 1444d
 
+emote_header: MACRO
+	dw \1
+	db \2 * $10, BANK(\1)
+	dw \3
+ENDM
+
 EmotesPointers: ; 144d
 ; dw source address
 ; db length, bank
 ; dw dest address
 
-	dw ShockEmote
-	db 4 * $10, BANK(ShockEmote)
-	dw VTiles1 tile $78
-
-	dw QuestionEmote
-	db 4 * $10, BANK(QuestionEmote)
-	dw VTiles1 tile $78
-
-	dw HappyEmote
-	db 4 * $10, BANK(HappyEmote)
-	dw VTiles1 tile $78
-
-	dw SadEmote
-	db 4 * $10, BANK(SadEmote)
-	dw VTiles1 tile $78
-
-	dw HeartEmote
-	db 4 * $10, BANK(HeartEmote)
-	dw VTiles1 tile $78
-
-	dw BoltEmote
-	db 4 * $10, BANK(BoltEmote)
-	dw VTiles1 tile $78
-
-	dw SleepEmote
-	db 4 * $10, BANK(SleepEmote)
-	dw VTiles1 tile $78
-
-	dw FishEmote
-	db 4 * $10, BANK(FishEmote)
-	dw VTiles1 tile $78
-
-	dw FishingRodGFX + $00
-	db 1 * $10, BANK(FishingRodGFX)
-	dw VTiles1 tile $7c
-
-	dw FishingRodGFX + $10
-	db 2 * $10, BANK(FishingRodGFX)
-	dw VTiles1 tile $7c
-
-	dw FishingRodGFX + $30
-	db 2 * $10, BANK(FishingRodGFX)
-	dw VTiles1 tile $7e
-
-	dw FishingRodGFX + $50
-	db 1 * $10, BANK(FishingRodGFX)
-	dw VTiles1 tile $7e
-
+	emote_header ShockEmote, 4, VTiles1 tile $78
+	emote_header QuestionEmote, 4, VTiles1 tile $78
+	emote_header HappyEmote, 4, VTiles1 tile $78
+	emote_header SadEmote, 4, VTiles1 tile $78
+	emote_header HeartEmote, 4, VTiles1 tile $78
+	emote_header BoltEmote, 4, VTiles1 tile $78
+	emote_header SleepEmote, 4, VTiles1 tile $78
+	emote_header FishEmote, 4, VTiles1 tile $78
+	emote_header FishingRodGFX1, 1, VTiles1 tile $7c
+	emote_header FishingRodGFX2, 2, VTiles1 tile $7c
+	emote_header FishingRodGFX3, 2, VTiles1 tile $7e
+	emote_header FishingRodGFX4, 1, VTiles1 tile $7e
 ; 14495
 
 
@@ -78058,7 +78028,10 @@ HeartEmote:    INCBIN "gfx/emotes/heart.2bpp"
 BoltEmote:     INCBIN "gfx/emotes/bolt.2bpp"
 SleepEmote:    INCBIN "gfx/emotes/sleep.2bpp"
 FishEmote:     INCBIN "gfx/emotes/fish.2bpp"
-FishingRodGFX: INCBIN "gfx/misc/fishing.2bpp"
+FishingRodGFX1: INCBIN "gfx/misc/fishing1.2bpp"
+FishingRodGFX2: INCBIN "gfx/misc/fishing2.2bpp"
+FishingRodGFX3: INCBIN "gfx/misc/fishing3.2bpp"
+FishingRodGFX4: INCBIN "gfx/misc/fishing4.2bpp"
 
 
 RunCallback_05_03: ; 1045b0

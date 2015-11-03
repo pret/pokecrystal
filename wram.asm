@@ -1568,7 +1568,7 @@ wd10e::
 TempMon::
 	party_struct TempMon
 
-wd13e:: ds 1
+wSpriteFlags:: ds 1
 
 wd13f:: ds 2
 
