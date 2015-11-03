@@ -1407,11 +1407,11 @@ Function10955: ; 10955
 	call DisableLCD
 	ld hl, PackMenuGFX
 	ld de, VTiles2
-	ld bc, $0600
+	ld bc, $60 tiles
 	ld a, BANK(PackMenuGFX)
 	call FarCopyBytes
 	hlcoord 0, 1
-	ld bc, 220
+	ld bc, 11 * SCREEN_WIDTH
 	ld a, $24
 	call ByteFill
 	hlcoord 5, 1
@@ -1419,12 +1419,12 @@ Function10955: ; 10955
 	call ClearBox
 	hlcoord 0, 0
 	ld a, $28
-	ld c, $14
-.asm_1098a
+	ld c, SCREEN_WIDTH
+.loop
 	ld [hli], a
 	inc a
 	dec c
-	jr nz, .asm_1098a
+	jr nz, .loop
 	call DrawPocketName
 	call Function109a5
 	hlcoord 0, 12

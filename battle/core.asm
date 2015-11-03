@@ -7543,7 +7543,7 @@ endr
 	call GetBaseData
 	push bc
 	ld d, MAX_LEVEL
-	callab Function50e47
+	callab CalcExpAtLevel
 	pop bc
 	ld hl, $000a
 	add hl, bc
@@ -7572,7 +7572,7 @@ endr
 	xor a ; PARTYMON
 	ld [MonType], a
 	predef CopyPkmnToTempMon
-	callab Function50e1b
+	callab CalcLevel
 	pop bc
 	ld hl, PartyMon1Level - PartyMon1
 	add hl, bc
@@ -7864,7 +7864,7 @@ endr
 
 .asm_3f186
 	ld d, MAX_LEVEL
-	callab Function50e47
+	callab CalcExpAtLevel
 	ld a, [hMultiplicand]
 	ld b, a
 	ld a, [$ffb5]
@@ -7887,7 +7887,7 @@ endr
 	ld [hld], a
 
 .asm_3f1a8
-	callab Function50e1b
+	callab CalcLevel
 	ld a, d
 	pop bc
 	pop de
@@ -8235,7 +8235,7 @@ Function3f39c: ; 3f39c
 	push de
 	ld d, b
 	push de
-	callab Function50e47
+	callab CalcExpAtLevel
 	pop de
 	ld hl, hMultiplicand
 	ld a, [hli]
@@ -8245,7 +8245,7 @@ Function3f39c: ; 3f39c
 	ld a, [hl]
 	push af
 	inc d
-	callab Function50e47
+	callab CalcExpAtLevel
 	ld hl, $ffb6
 	ld a, [hl]
 	ld [$ffba], a

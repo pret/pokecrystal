@@ -5,7 +5,7 @@
 
 sprite_header: MACRO
 	dw \1
-	db \2 * $40, BANK(\1)
+	db \2 * 4 tiles, BANK(\1)
 	db \3, \4
 ENDM
 

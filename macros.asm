@@ -175,4 +175,5 @@ bcd: MACRO
 	endr
 ENDM
 
+tiles EQUS "* $10"
 tile EQUS "+ $10 *"

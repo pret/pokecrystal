@@ -1382,7 +1382,7 @@ RareCandy: ; ef14
 	ld [CurPartyLevel], a
 	push de
 	ld d, a
-	callba Function50e47
+	callba CalcExpAtLevel
 
 	pop de
 	ld a, PartyMon1Exp - PartyMon1

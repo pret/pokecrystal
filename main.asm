@@ -8068,7 +8068,7 @@ endr
 	push de
 	ld a, [CurPartyLevel]
 	ld d, a
-	callab Function50e47
+	callab CalcExpAtLevel
 	pop de
 	ld a, [hMultiplicand]
 	ld [de], a
@@ -8527,7 +8527,7 @@ SentGetPkmnIntoFromBox: ; db3f
 	add $2
 	ld [MonType], a
 	predef CopyPkmnToTempMon
-	callab Function50e1b
+	callab CalcLevel
 	ld a, d
 	ld [CurPartyLevel], a
 	pop hl
@@ -8777,7 +8777,7 @@ Functiondd64: ; dd64
 	callba HealPartyMon
 	ld a, [CurPartyLevel]
 	ld d, a
-	callab Function50e47
+	callab CalcExpAtLevel
 	pop bc
 	ld hl, $0008
 	add hl, bc
@@ -8892,7 +8892,7 @@ SentPkmnIntoBox: ; de6e
 	push de
 	ld a, [CurPartyLevel]
 	ld d, a
-	callab Function50e47
+	callab CalcExpAtLevel
 	pop de
 	ld a, [hMultiplicand]
 	ld [de], a
@@ -10134,7 +10134,7 @@ Functione698: ; e698
 	ld de, TempMon
 	ld bc, $0020
 	call CopyBytes
-	callab Function50e1b
+	callab CalcLevel
 	ld a, [wBreedMon1Level]
 	ld b, a
 	ld a, d
@@ -10149,7 +10149,7 @@ Functione6b3: ; e6b3
 	ld de, TempMon
 	ld bc, $0020
 	call CopyBytes
-	callab Function50e1b
+	callab CalcLevel
 	ld a, [wBreedMon2Level]
 	ld b, a
 	ld a, d
@@ -16891,7 +16891,7 @@ LoadEmote:: ; 1442f
 
 emote_header: MACRO
 	dw \1
-	db \2 * $10, BANK(\1)
+	db \2 tiles, BANK(\1)
 	dw \3
 ENDM
 
@@ -20345,7 +20345,7 @@ Function16a66: ; 16a66
 	ld [hl], a
 	ld a, [CurPartyLevel]
 	ld d, a
-	callab Function50e47
+	callab CalcExpAtLevel
 	ld hl, wEggMonExp
 	ld a, [hMultiplicand]
 	ld [hli], a
@@ -44560,7 +44560,7 @@ Function4e0e7: ; 4e0e7 (13:60e7)
 	jr z, .asm_4e111
 	inc a
 	ld d, a
-	callba Function50e47
+	callba CalcExpAtLevel
 rept 2
 	ld hl, TempMonExp + 2
 endr
@@ -48102,43 +48102,43 @@ Function50db9: ; 50db9
 ; 50e1b
 
 
-Function50e1b: ; 50e1b
+CalcLevel: ; 50e1b
 	ld a, [TempMonSpecies]
 	ld [CurSpecies], a
 	call GetBaseData
 	ld d, 1
-.asm_50e26
+.next_level
 	inc d
 	ld a, d
 	cp (MAX_LEVEL + 1) % $100
-	jr z, .asm_50e45
-	call Function50e47
+	jr z, .got_level
+	call CalcExpAtLevel
 	push hl
 	ld hl, TempMonExp + 2
-	ld a, [hMultiplicand + 2]
+	ld a, [hProduct + 3]
 	ld c, a
 	ld a, [hld]
 	sub c
-	ld a, [hMultiplicand + 1]
+	ld a, [hProduct + 2]
 	ld c, a
 	ld a, [hld]
 	sbc c
-	ld a, [hMultiplicand + 0]
+	ld a, [hProduct + 1]
 	ld c, a
 	ld a, [hl]
 	sbc c
 	pop hl
-	jr nc, .asm_50e26
+	jr nc, .next_level
 
-.asm_50e45
+.got_level
 	dec d
 	ret
 ; 50e47
 
 
 
-Function50e47: ; 50e47
-
+CalcExpAtLevel: ; 50e47
+; (a/b)*n**3 + c*n**2 + d*n - e
 	ld a, [BaseGrowthRate]
 rept 2
 	add a
@@ -48147,36 +48147,38 @@ endr
 	ld b, 0
 	ld hl, GrowthRates
 	add hl, bc
-	call Function50eed
+; Cube the level
+	call .LevelSquared
 	ld a, d
 	ld [hMultiplier], a
 	call Multiply
 
+; Multiply by a
 	ld a, [hl]
 	and $f0
 	swap a
 	ld [hMultiplier], a
 	call Multiply
-
+; Divide by b
 	ld a, [hli]
 	and $f
 	ld [hDivisor], a
-	ld b, $4
+	ld b, 4
 	call Divide
-
+; Push the cubic term to the stack
 	ld a, [hQuotient + 0]
 	push af
 	ld a, [hQuotient + 1]
 	push af
 	ld a, [hQuotient + 2]
 	push af
-
-	call Function50eed
+; Square the level and multiply by the lower 7 bits of c
+	call .LevelSquared
 	ld a, [hl]
 	and $7f
 	ld [hMultiplier], a
 	call Multiply
-
+; Push the absolute value of the quadratic term to the stack
 	ld a, [hProduct + 1]
 	push af
 	ld a, [hProduct + 2]
@@ -48185,7 +48187,7 @@ endr
 	push af
 	ld a, [hli]
 	push af
-
+; Multiply the level by d
 	xor a
 	ld [hMultiplicand + 0], a
 	ld [hMultiplicand + 1], a
@@ -48194,68 +48196,70 @@ endr
 	ld a, [hli]
 	ld [hMultiplier], a
 	call Multiply
-
+; Subtract e
 	ld b, [hl]
 	ld a, [hProduct + 3]
 	sub b
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	ld b, $0
 	ld a, [hProduct + 2]
 	sbc b
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
+	ld a, [hProduct + 1]
+	sbc b
+	ld [hMultiplicand], a
+; If bit 7 of c is set, c is negative; otherwise, it's positive
+	pop af
+	and $80
+	jr nz, .subtract
+; Add c*n**2 to (d*n - e)
+	pop bc
+	ld a, [hProduct + 3]
+	add b
+	ld [hMultiplicand + 2], a
+	pop bc
+	ld a, [hProduct + 2]
+	adc b
+	ld [hMultiplicand + 1], a
+	pop bc
+	ld a, [hProduct + 1]
+	adc b
+	ld [hMultiplicand], a
+	jr .done_quadratic
+
+.subtract
+; Subtract c*n**2 from (d*n - e)
+	pop bc
+	ld a, [hProduct + 3]
+	sub b
+	ld [hMultiplicand + 2], a
+	pop bc
+	ld a, [hProduct + 2]
+	sbc b
+	ld [hMultiplicand + 1], a
+	pop bc
 	ld a, [hProduct + 1]
 	sbc b
 	ld [hMultiplicand], a
 
-	pop af
-	and $80
-	jr nz, .asm_50ec8
-
+.done_quadratic
+; Add (a/b)*n**3 to (d*n - e +/- c*n**2)
 	pop bc
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	add b
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	pop bc
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	adc b
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	pop bc
-	ld a, [hMultiplicand]
-	adc b
-	ld [hMultiplicand], a
-	jr .asm_50eda
-
-.asm_50ec8
-	pop bc
-	ld a, [$ffb6]
-	sub b
-	ld [$ffb6], a
-	pop bc
-	ld a, [$ffb5]
-	sbc b
-	ld [$ffb5], a
-	pop bc
-	ld a, [hMultiplicand]
-	sbc b
-	ld [hMultiplicand], a
-
-.asm_50eda
-	pop bc
-	ld a, [$ffb6]
-	add b
-	ld [$ffb6], a
-	pop bc
-	ld a, [$ffb5]
-	adc b
-	ld [$ffb5], a
-	pop bc
-	ld a, [hMultiplicand]
+	ld a, [hProduct + 1]
 	adc b
 	ld [hMultiplicand], a
 	ret
 ; 50eed
 
-Function50eed: ; 50eed
+.LevelSquared: ; 50eed
 	xor a
 	ld [hMultiplicand + 0], a
 	ld [hMultiplicand + 1], a
