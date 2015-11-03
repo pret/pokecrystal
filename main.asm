@@ -44486,7 +44486,7 @@ Function4e013: ; 4e013 (13:6013)
 	hlcoord 6, 13
 	push hl
 	ld de, TempMonStatus
-	predef Function50d0a
+	predef PlaceStatusString
 	pop hl
 	jr nz, .asm_4e066
 	jr .asm_4e060
@@ -46219,7 +46219,7 @@ Function501b2: ; 501b2
 	ld e, l
 	ld d, h
 	pop hl
-	call Function50d0a
+	call PlaceStatusString
 
 .asm_501d5
 	pop hl
@@ -47916,7 +47916,7 @@ Function50cdb: ; 50cdb
 ; 50d0a
 
 
-Function50d0a: ; 50d0a
+PlaceStatusString: ; 50d0a
 	push de
 rept 2
 	inc de
@@ -47927,10 +47927,10 @@ endr
 	ld a, [de]
 	or b
 	pop de
-	jr nz, Function50d2e
+	jr nz, PlaceNonFaintStatus
 	push de
 	ld de, FntString
-	call Function50d25
+	call CopyStatusString
 	pop de
 	ld a, $1
 	and a
@@ -47941,7 +47941,7 @@ FntString: ; 50d22
 	db "FNT@"
 ; 50d25
 
-Function50d25: ; 50d25
+CopyStatusString: ; 50d25
 	ld a, [de]
 	inc de
 	ld [hli], a
@@ -47953,31 +47953,31 @@ Function50d25: ; 50d25
 	ret
 ; 50d2e
 
-Function50d2e: ; 50d2e
+PlaceNonFaintStatus: ; 50d2e
 	push de
 	ld a, [de]
 	ld de, PsnString
 	bit PSN, a
-	jr nz, .asm_50d53
+	jr nz, .place
 	ld de, BrnString
 	bit BRN, a
-	jr nz, .asm_50d53
+	jr nz, .place
 	ld de, FrzString
 	bit FRZ, a
-	jr nz, .asm_50d53
+	jr nz, .place
 	ld de, ParString
 	bit PAR, a
-	jr nz, .asm_50d53
+	jr nz, .place
 	ld de, SlpString
 	and SLP
-	jr z, .asm_50d59
+	jr z, .no_status
 
-.asm_50d53
-	call Function50d25
+.place
+	call CopyStatusString
 	ld a, $1
 	and a
 
-.asm_50d59
+.no_status
 	pop de
 	ret
 ; 50d5b

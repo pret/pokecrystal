@@ -4945,7 +4945,7 @@ PrintPlayerHUD: ; 3dfbf
 	push af
 	push hl
 	ld de, BattleMonStatus
-	predef Function50d2e
+	predef PlaceNonFaintStatus
 	pop hl
 	pop bc
 	ret nz
@@ -5024,7 +5024,7 @@ DrawEnemyHUD: ; 3e043
 	push af
 	push hl
 	ld de, EnemyMonStatus
-	predef Function50d2e
+	predef PlaceNonFaintStatus
 	pop hl
 	pop bc
 	jr nz, .asm_3e0be

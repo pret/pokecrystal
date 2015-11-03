@@ -63,7 +63,7 @@ PredefPointers:: ; 856b
 	add_predef Function28f24
 	add_predef CopyPkmnToTempMon
 	add_predef ListMoves ; $20
-	add_predef Function50d2e
+	add_predef PlaceNonFaintStatus
 	add_predef Function50cdb
 	add_predef Function50c50
 	add_predef GetGender
@@ -99,7 +99,7 @@ PredefPointers:: ; 856b
 	add_predef ConvertMon_1to2
 	add_predef Functionfb877
 	add_predef Functiond0000
-	add_predef Function50d0a
+	add_predef PlaceStatusString
 	add_predef Functiond00a3
 	add_predef Functiond008e
 	add_predef Functiond0669 ; $48
