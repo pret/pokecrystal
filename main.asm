@@ -10119,15 +10119,15 @@ Functione5d9: ; unreferenced
 ; e66e
 
 Unknown_e66e: ; e66e
-	dbw BANK(sBox1),  sBox1
-	dbw BANK(sBox2),  sBox2
-	dbw BANK(sBox3),  sBox3
-	dbw BANK(sBox4),  sBox4
-	dbw BANK(sBox5),  sBox5
-	dbw BANK(sBox6),  sBox6
-	dbw BANK(sBox7),  sBox7
-	dbw BANK(sBox8),  sBox8
-	dbw BANK(sBox9),  sBox9
+	dba sBox1
+	dba sBox2
+	dba sBox3
+	dba sBox4
+	dba sBox5
+	dba sBox6
+	dba sBox7
+	dba sBox8
+	dba sBox9
 	dba sBox10
 	dba sBox11
 	dba sBox12
@@ -41323,15 +41323,15 @@ CheckOwnMon: ; 0x4a7ba
 ; 0x4a810
 
 BoxAddressTable1: ; 4a810
-	dbw BANK(sBox1),  sBox1
-	dbw BANK(sBox2),  sBox2
-	dbw BANK(sBox3),  sBox3
-	dbw BANK(sBox4),  sBox4
-	dbw BANK(sBox5),  sBox5
-	dbw BANK(sBox6),  sBox6
-	dbw BANK(sBox7),  sBox7
-	dbw BANK(sBox8),  sBox8
-	dbw BANK(sBox9),  sBox9
+	dba sBox1
+	dba sBox2
+	dba sBox3
+	dba sBox4
+	dba sBox5
+	dba sBox6
+	dba sBox7
+	dba sBox8
+	dba sBox9
 	dba sBox10
 	dba sBox11
 	dba sBox12
@@ -41485,15 +41485,15 @@ Function4a8dc: ; 4a8dc
 ; 4a8f4
 
 BoxAddressTable2: ; 4a8f4
-	dbw BANK(sBox1),  sBox1
-	dbw BANK(sBox2),  sBox2
-	dbw BANK(sBox3),  sBox3
-	dbw BANK(sBox4),  sBox4
-	dbw BANK(sBox5),  sBox5
-	dbw BANK(sBox6),  sBox6
-	dbw BANK(sBox7),  sBox7
-	dbw BANK(sBox8),  sBox8
-	dbw BANK(sBox9),  sBox9
+	dba sBox1
+	dba sBox2
+	dba sBox3
+	dba sBox4
+	dba sBox5
+	dba sBox6
+	dba sBox7
+	dba sBox8
+	dba sBox9
 	dba sBox10
 	dba sBox11
 	dba sBox12
@@ -43380,7 +43380,7 @@ endr
 	ld b, h
 	ld c, l
 	inc bc
-	ld de, MONS_PER_BOX + NUM_MOVES + 4
+	ld de, sBoxMon1ID - sBox
 	add hl, de
 	ld d, a
 .BoxNLoop
@@ -43389,7 +43389,7 @@ endr
 	cp EGG
 	jr z, .SkipBoxMon
 
-	call .CompareLuckyNumberToMonID
+	call .CompareLuckyNumberToMonID ; sets ScriptVar and CurPartySpecies appropriately
 	jr nc, .SkipBoxMon
 	ld a, 1
 	ld [wFoundMatchingIDInParty], a
@@ -43480,11 +43480,11 @@ endr
 	inc b
 	ld a, [ScriptVar]
 	and a
-	jr z, .foundmatch
+	jr z, .bettermatch
 	cp b
 	jr c, .nomatch
 
-.foundmatch
+.bettermatch
 	dec b
 	ld a, b
 	ld [ScriptVar], a
@@ -43503,15 +43503,15 @@ endr
 ; 4d99f
 
 .BoxBankAddresses: ; 4d99f
-	dbw BANK(sBox1),  sBox1
-	dbw BANK(sBox2),  sBox2
-	dbw BANK(sBox3),  sBox3
-	dbw BANK(sBox4),  sBox4
-	dbw BANK(sBox5),  sBox5
-	dbw BANK(sBox6),  sBox6
-	dbw BANK(sBox7),  sBox7
-	dbw BANK(sBox8),  sBox8
-	dbw BANK(sBox9),  sBox9
+	dba sBox1
+	dba sBox2
+	dba sBox3
+	dba sBox4
+	dba sBox5
+	dba sBox6
+	dba sBox7
+	dba sBox8
+	dba sBox9
 	dba sBox10
 	dba sBox11
 	dba sBox12
@@ -71982,15 +71982,15 @@ endr
 
 Unknown_e33a6: ; e33a6
 	;  bank, address
-	dbw BANK(sBox1),  sBox1
-	dbw BANK(sBox2),  sBox2
-	dbw BANK(sBox3),  sBox3
-	dbw BANK(sBox4),  sBox4
-	dbw BANK(sBox5),  sBox5
-	dbw BANK(sBox6),  sBox6
-	dbw BANK(sBox7),  sBox7
-	dbw BANK(sBox8),  sBox8
-	dbw BANK(sBox9),  sBox9
+	dba sBox1
+	dba sBox2
+	dba sBox3
+	dba sBox4
+	dba sBox5
+	dba sBox6
+	dba sBox7
+	dba sBox8
+	dba sBox9
 	dba sBox10
 	dba sBox11
 	dba sBox12
@@ -72215,15 +72215,15 @@ endr
 ; e36a5 (38:76a5)
 
 .boxbanks: ; e36a5
-	dbw BANK(sBox1),  sBox1
-	dbw BANK(sBox2),  sBox2
-	dbw BANK(sBox3),  sBox3
-	dbw BANK(sBox4),  sBox4
-	dbw BANK(sBox5),  sBox5
-	dbw BANK(sBox6),  sBox6
-	dbw BANK(sBox7),  sBox7
-	dbw BANK(sBox8),  sBox8
-	dbw BANK(sBox9),  sBox9
+	dba sBox1
+	dba sBox2
+	dba sBox3
+	dba sBox4
+	dba sBox5
+	dba sBox6
+	dba sBox7
+	dba sBox8
+	dba sBox9
 	dba sBox10
 	dba sBox11
 	dba sBox12
@@ -72233,8 +72233,8 @@ endr
 
 Functione36cf: ; e36cf (38:76cf)
 	hlcoord 0, 0
-	ld b, $2
-	ld c, $12
+	ld b, 2
+	ld c, 18
 	call TextBox
 	hlcoord 1, 2
 	ld de, String_e36f1
