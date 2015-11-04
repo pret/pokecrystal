@@ -916,9 +916,9 @@ MenuData2_0x8b870: ; 0x8b870
 	db 5 ; items
 	db 3, 1
 	dbw 0, wd002
-	dbw BANK(Function8b880), Function8b880
-	dbw BANK(Function8b88c), Function8b88c
-	dbw BANK(Function8b8c8), Function8b8c8
+	dba Function8b880
+	dba Function8b88c
+	dba Function8b8c8
 ; 8b880
 
 Function8b880: ; 8b880

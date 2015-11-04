@@ -98,9 +98,9 @@ Kurt_SelectApricorn: ; 88055
 	db 4, 7
 	db 1
 	dbw 0, Buffer1
-	dbw BANK(.Name), .Name
-	dbw BANK(.Quantity), .Quantity
-	dbw BANK(NULL), NULL
+	dba .Name
+	dba .Quantity
+	dba NULL
 
 .Name: ; 8809f
 	ld a, [MenuSelection]

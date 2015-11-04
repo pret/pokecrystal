@@ -243,52 +243,52 @@ endr
 ; 15440
 
 MapSetupCommands: ; 15440
-	dbw BANK(EnableLCD), EnableLCD ; 00
-	dbw BANK(DisableLCD), DisableLCD ; 01
-	dbw BANK(SoundRestart), SoundRestart ; 02
-	dbw BANK(PlayMapMusic), PlayMapMusic ; 03
-	dbw BANK(RestartMapMusic), RestartMapMusic ; 04
-	dbw BANK(FadeToMapMusic), FadeToMapMusic ; 05
-	dbw BANK(FadeOutMapAndMusic), FadeOutMapAndMusic ; 06
-	dbw BANK(EnterMapMusic), EnterMapMusic ; 07
-	dbw BANK(ForceMapMusic), ForceMapMusic ; 08
-	dbw BANK(CrankUpTheVolume), CrankUpTheVolume ; 09
-	dbw BANK(LoadBlockData), LoadBlockData ; 0a
-	dbw BANK(LoadNeighboringBlockData), LoadNeighboringBlockData ; 0b
-	dbw BANK(SaveScreen), SaveScreen ; 0c
-	dbw BANK(BufferScreen), BufferScreen ; 0d
-	dbw BANK(LoadGraphics), LoadGraphics ; 0e
-	dbw BANK(LoadTilesetHeader), LoadTilesetHeader ; 0f
-	dbw BANK(LoadMapTimeOfDay), LoadMapTimeOfDay ; 10
-	dbw BANK(LoadMapPalettes), LoadMapPalettes ; 11
-	dbw BANK(LoadWildMonData), LoadWildMonData ; 12
-	dbw BANK(RefreshMapSprites), RefreshMapSprites ; 13
-	dbw BANK(RunCallback_05_03), RunCallback_05_03 ; 14
-	dbw BANK(RunCallback_03), RunCallback_03 ; 15
-	dbw BANK(LoadObjectsRunCallback_02), LoadObjectsRunCallback_02 ; 16
-	dbw BANK(LoadSpawnPoint), LoadSpawnPoint ; 17
-	dbw BANK(EnterMapConnection), EnterMapConnection ; 18
-	dbw BANK(LoadWarpData), LoadWarpData ; 19
-	dbw BANK(LoadMapAttributes), LoadMapAttributes ; 1a
-	dbw BANK(LoadMapAttributes_IgnoreHidden), LoadMapAttributes_IgnoreHidden ; 1b
-	dbw BANK(WhiteBGMap), WhiteBGMap ; 1c
-	dbw BANK(FadeBlackBGMap), FadeBlackBGMap ; 1d
-	dbw BANK(FadeInBGMap), FadeInBGMap ; 1e
-	dbw BANK(GetCoordOfUpperLeftCorner), GetCoordOfUpperLeftCorner ; 1f
-	dbw BANK(RestoreFacingAfterWarp), RestoreFacingAfterWarp ; 20
-	dbw BANK(SpawnInFacingDown), SpawnInFacingDown ; 21
-	dbw BANK(GetSpawnCoord), GetSpawnCoord ; 22
-	dbw BANK(RefreshPlayerCoords), RefreshPlayerCoords ; 23
-	dbw BANK(DelayClearingOldSprites), DelayClearingOldSprites ; 24
-	dbw BANK(DelayLoadingNewSprites), DelayLoadingNewSprites ; 25
-	dbw BANK(UpdateRoamMons), UpdateRoamMons ; 26
-	dbw BANK(JumpRoamMons), JumpRoamMons ; 27
-	dbw BANK(FadeOldMapMusic), FadeOldMapMusic ; 28
-	dbw BANK(ActivateMapAnims), ActivateMapAnims ; 29
-	dbw BANK(SuspendMapAnims), SuspendMapAnims ; 2a
-	dbw BANK(RetainOldPalettes), RetainOldPalettes ; 2b
-	dbw BANK(DontScrollText), DontScrollText ; 2c
-	dbw BANK(ReturnFromMapSetupScript), ReturnFromMapSetupScript ; 2d
+	dba EnableLCD ; 00
+	dba DisableLCD ; 01
+	dba SoundRestart ; 02
+	dba PlayMapMusic ; 03
+	dba RestartMapMusic ; 04
+	dba FadeToMapMusic ; 05
+	dba FadeOutMapAndMusic ; 06
+	dba EnterMapMusic ; 07
+	dba ForceMapMusic ; 08
+	dba CrankUpTheVolume ; 09
+	dba LoadBlockData ; 0a
+	dba LoadNeighboringBlockData ; 0b
+	dba SaveScreen ; 0c
+	dba BufferScreen ; 0d
+	dba LoadGraphics ; 0e
+	dba LoadTilesetHeader ; 0f
+	dba LoadMapTimeOfDay ; 10
+	dba LoadMapPalettes ; 11
+	dba LoadWildMonData ; 12
+	dba RefreshMapSprites ; 13
+	dba RunCallback_05_03 ; 14
+	dba RunCallback_03 ; 15
+	dba LoadObjectsRunCallback_02 ; 16
+	dba LoadSpawnPoint ; 17
+	dba EnterMapConnection ; 18
+	dba LoadWarpData ; 19
+	dba LoadMapAttributes ; 1a
+	dba LoadMapAttributes_IgnoreHidden ; 1b
+	dba WhiteBGMap ; 1c
+	dba FadeBlackBGMap ; 1d
+	dba FadeInBGMap ; 1e
+	dba GetCoordOfUpperLeftCorner ; 1f
+	dba RestoreFacingAfterWarp ; 20
+	dba SpawnInFacingDown ; 21
+	dba GetSpawnCoord ; 22
+	dba RefreshPlayerCoords ; 23
+	dba DelayClearingOldSprites ; 24
+	dba DelayLoadingNewSprites ; 25
+	dba UpdateRoamMons ; 26
+	dba JumpRoamMons ; 27
+	dba FadeOldMapMusic ; 28
+	dba ActivateMapAnims ; 29
+	dba SuspendMapAnims ; 2a
+	dba RetainOldPalettes ; 2b
+	dba DontScrollText ; 2c
+	dba ReturnFromMapSetupScript ; 2d
 ; 154ca
 
 

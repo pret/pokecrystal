@@ -105,7 +105,7 @@ AcademyBlackboard:
 	db $80 ; flags
 	dn 3, 2 ; rows, columns
 	db 5 ; spacing
-	dbw BANK(.Text), .Text
+	dba .Text
 	dbw $1a, 0
 
 .Text

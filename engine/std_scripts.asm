@@ -1,56 +1,56 @@
 StdScripts::
-	dbw BANK(PokeCenterNurseScript), PokeCenterNurseScript
-	dbw BANK(DifficultBookshelfScript), DifficultBookshelfScript
-	dbw BANK(PictureBookshelfScript), PictureBookshelfScript
-	dbw BANK(MagazineBookshelfScript), MagazineBookshelfScript
-	dbw BANK(TeamRocketOathScript), TeamRocketOathScript
-	dbw BANK(IncenseBurnerScript), IncenseBurnerScript
-	dbw BANK(MerchandiseShelfScript), MerchandiseShelfScript
-	dbw BANK(TownMapScript), TownMapScript
-	dbw BANK(WindowScript), WindowScript
-	dbw BANK(TVScript), TVScript
-	dbw BANK(HomepageScript), HomepageScript
-	dbw BANK(Radio1Script), Radio1Script
-	dbw BANK(Radio2Script), Radio2Script
-	dbw BANK(TrashCanScript), TrashCanScript
-	dbw BANK(StrengthBoulderScript), StrengthBoulderScript
-	dbw BANK(SmashRockScript), SmashRockScript
-	dbw BANK(PokeCenterSignScript), PokeCenterSignScript
-	dbw BANK(MartSignScript), MartSignScript
-	dbw BANK(GoldenrodRocketsScript), GoldenrodRocketsScript
-	dbw BANK(RadioTowerRocketsScript), RadioTowerRocketsScript
-	dbw BANK(ElevatorButtonScript), ElevatorButtonScript
-	dbw BANK(DayToTextScript), DayToTextScript
-	dbw BANK(BugContestResultsWarpScript), BugContestResultsWarpScript
-	dbw BANK(BugContestResultsScript), BugContestResultsScript
-	dbw BANK(InitializeEventsScript), InitializeEventsScript
-	dbw BANK(AskNumber1MScript), AskNumber1MScript
-	dbw BANK(AskNumber2MScript), AskNumber2MScript
-	dbw BANK(RegisteredNumberMScript), RegisteredNumberMScript
-	dbw BANK(NumberAcceptedMScript), NumberAcceptedMScript
-	dbw BANK(NumberDeclinedMScript), NumberDeclinedMScript
-	dbw BANK(PhoneFullMScript), PhoneFullMScript
-	dbw BANK(RematchMScript), RematchMScript
-	dbw BANK(GiftMScript), GiftMScript
-	dbw BANK(PackFullMScript), PackFullMScript
-	dbw BANK(RematchGiftMScript), RematchGiftMScript
-	dbw BANK(AskNumber1FScript), AskNumber1FScript
-	dbw BANK(AskNumber2FScript), AskNumber2FScript
-	dbw BANK(RegisteredNumberFScript), RegisteredNumberFScript
-	dbw BANK(NumberAcceptedFScript), NumberAcceptedFScript
-	dbw BANK(NumberDeclinedFScript), NumberDeclinedFScript
-	dbw BANK(PhoneFullFScript), PhoneFullFScript
-	dbw BANK(RematchFScript), RematchFScript
-	dbw BANK(GiftFScript), GiftFScript
-	dbw BANK(PackFullFScript), PackFullFScript
-	dbw BANK(RematchGiftFScript), RematchGiftFScript
-	dbw BANK(GymStatue1Script), GymStatue1Script
-	dbw BANK(GymStatue2Script), GymStatue2Script
-	dbw BANK(ReceiveItemScript), ReceiveItemScript
-	dbw BANK(ReceiveTogepiEggScript), ReceiveTogepiEggScript
-	dbw BANK(PCScript), PCScript
-	dbw BANK(GameCornerCoinVendorScript), GameCornerCoinVendorScript
-	dbw BANK(HappinessCheckScript), HappinessCheckScript
+	dba PokeCenterNurseScript
+	dba DifficultBookshelfScript
+	dba PictureBookshelfScript
+	dba MagazineBookshelfScript
+	dba TeamRocketOathScript
+	dba IncenseBurnerScript
+	dba MerchandiseShelfScript
+	dba TownMapScript
+	dba WindowScript
+	dba TVScript
+	dba HomepageScript
+	dba Radio1Script
+	dba Radio2Script
+	dba TrashCanScript
+	dba StrengthBoulderScript
+	dba SmashRockScript
+	dba PokeCenterSignScript
+	dba MartSignScript
+	dba GoldenrodRocketsScript
+	dba RadioTowerRocketsScript
+	dba ElevatorButtonScript
+	dba DayToTextScript
+	dba BugContestResultsWarpScript
+	dba BugContestResultsScript
+	dba InitializeEventsScript
+	dba AskNumber1MScript
+	dba AskNumber2MScript
+	dba RegisteredNumberMScript
+	dba NumberAcceptedMScript
+	dba NumberDeclinedMScript
+	dba PhoneFullMScript
+	dba RematchMScript
+	dba GiftMScript
+	dba PackFullMScript
+	dba RematchGiftMScript
+	dba AskNumber1FScript
+	dba AskNumber2FScript
+	dba RegisteredNumberFScript
+	dba NumberAcceptedFScript
+	dba NumberDeclinedFScript
+	dba PhoneFullFScript
+	dba RematchFScript
+	dba GiftFScript
+	dba PackFullFScript
+	dba RematchGiftFScript
+	dba GymStatue1Script
+	dba GymStatue2Script
+	dba ReceiveItemScript
+	dba ReceiveTogepiEggScript
+	dba PCScript
+	dba GameCornerCoinVendorScript
+	dba HappinessCheckScript
 
 PokeCenterNurseScript:
 ; EVENT_WELCOMED_TO_POKECOM_CENTER is never set

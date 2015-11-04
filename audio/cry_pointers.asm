@@ -1,70 +1,70 @@
 ; e91b0
-	dbw BANK(Cry_00), Cry_00
-	dbw BANK(Cry_01), Cry_01
-	dbw BANK(Cry_02), Cry_02
-	dbw BANK(Cry_03), Cry_03
-	dbw BANK(Cry_04), Cry_04
-	dbw BANK(Cry_05), Cry_05
-	dbw BANK(Cry_06), Cry_06
-	dbw BANK(Cry_07), Cry_07
-	dbw BANK(Cry_08), Cry_08
-	dbw BANK(Cry_09), Cry_09
-	dbw BANK(Cry_0A), Cry_0A
-	dbw BANK(Cry_0B), Cry_0B
-	dbw BANK(Cry_0C), Cry_0C
-	dbw BANK(Cry_0D), Cry_0D
-	dbw BANK(Cry_0E), Cry_0E
-	dbw BANK(Cry_0F), Cry_0F
-	dbw BANK(Cry_10), Cry_10
-	dbw BANK(Cry_11), Cry_11
-	dbw BANK(Cry_12), Cry_12
-	dbw BANK(Cry_13), Cry_13
-	dbw BANK(Cry_14), Cry_14
-	dbw BANK(Cry_15), Cry_15
-	dbw BANK(Cry_16), Cry_16
-	dbw BANK(Cry_17), Cry_17
-	dbw BANK(Cry_18), Cry_18
-	dbw BANK(Cry_19), Cry_19
-	dbw BANK(Cry_1A), Cry_1A
-	dbw BANK(Cry_1B), Cry_1B
-	dbw BANK(Cry_1C), Cry_1C
-	dbw BANK(Cry_1D), Cry_1D
-	dbw BANK(Cry_1E), Cry_1E
-	dbw BANK(Cry_1F), Cry_1F
-	dbw BANK(Cry_20), Cry_20
-	dbw BANK(Cry_21), Cry_21
-	dbw BANK(Cry_22), Cry_22
-	dbw BANK(Cry_23), Cry_23
-	dbw BANK(Cry_24), Cry_24
-	dbw BANK(Cry_25), Cry_25
-	dbw BANK(Cry_26), Cry_26
-	dbw BANK(Cry_27), Cry_27
-	dbw BANK(Cry_28), Cry_28
-	dbw BANK(Cry_29), Cry_29
-	dbw BANK(Cry_2A), Cry_2A
-	dbw BANK(Cry_2B), Cry_2B
-	dbw BANK(Cry_2C), Cry_2C
-	dbw BANK(Cry_2D), Cry_2D
-	dbw BANK(Cry_2E), Cry_2E
-	dbw BANK(Cry_2F), Cry_2F
-	dbw BANK(Cry_30), Cry_30
-	dbw BANK(Cry_31), Cry_31
-	dbw BANK(Cry_32), Cry_32
-	dbw BANK(Cry_33), Cry_33
-	dbw BANK(Cry_34), Cry_34
-	dbw BANK(Cry_35), Cry_35
-	dbw BANK(Cry_36), Cry_36
-	dbw BANK(Cry_37), Cry_37
-	dbw BANK(Cry_38), Cry_38
-	dbw BANK(Cry_39), Cry_39
-	dbw BANK(Cry_3A), Cry_3A
-	dbw BANK(Cry_3B), Cry_3B
-	dbw BANK(Cry_3C), Cry_3C
-	dbw BANK(Cry_3D), Cry_3D
-	dbw BANK(Cry_3E), Cry_3E
-	dbw BANK(Cry_3F), Cry_3F
-	dbw BANK(Cry_40), Cry_40
-	dbw BANK(Cry_41), Cry_41
-	dbw BANK(Cry_42), Cry_42
-	dbw BANK(Cry_43), Cry_43
+	dba Cry_00
+	dba Cry_01
+	dba Cry_02
+	dba Cry_03
+	dba Cry_04
+	dba Cry_05
+	dba Cry_06
+	dba Cry_07
+	dba Cry_08
+	dba Cry_09
+	dba Cry_0A
+	dba Cry_0B
+	dba Cry_0C
+	dba Cry_0D
+	dba Cry_0E
+	dba Cry_0F
+	dba Cry_10
+	dba Cry_11
+	dba Cry_12
+	dba Cry_13
+	dba Cry_14
+	dba Cry_15
+	dba Cry_16
+	dba Cry_17
+	dba Cry_18
+	dba Cry_19
+	dba Cry_1A
+	dba Cry_1B
+	dba Cry_1C
+	dba Cry_1D
+	dba Cry_1E
+	dba Cry_1F
+	dba Cry_20
+	dba Cry_21
+	dba Cry_22
+	dba Cry_23
+	dba Cry_24
+	dba Cry_25
+	dba Cry_26
+	dba Cry_27
+	dba Cry_28
+	dba Cry_29
+	dba Cry_2A
+	dba Cry_2B
+	dba Cry_2C
+	dba Cry_2D
+	dba Cry_2E
+	dba Cry_2F
+	dba Cry_30
+	dba Cry_31
+	dba Cry_32
+	dba Cry_33
+	dba Cry_34
+	dba Cry_35
+	dba Cry_36
+	dba Cry_37
+	dba Cry_38
+	dba Cry_39
+	dba Cry_3A
+	dba Cry_3B
+	dba Cry_3C
+	dba Cry_3D
+	dba Cry_3E
+	dba Cry_3F
+	dba Cry_40
+	dba Cry_41
+	dba Cry_42
+	dba Cry_43
 ; e927c

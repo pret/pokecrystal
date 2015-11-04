@@ -3,22 +3,22 @@ BattleTower1F_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x9e39d, 0
-	dw UnknownScript_0x9e3d3, 0
+	dw .Trigger0, 0
+	dw .Trigger1, 0
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x9e39d:
+.Trigger0:
 	writebyte BATTLE_TOWER_ACTION_09
 	special BattleTowerAction
-	iffalse UnknownScript_0x9e3d1
+	iffalse .SkipEverything
 	writebyte BATTLE_TOWER_ACTION_02
 	special BattleTowerAction
-	if_equal $0, UnknownScript_0x9e3d1
-	if_equal $2, UnknownScript_0x9e3c4
-	if_equal $3, UnknownScript_0x9e3d1
-	if_equal $4, UnknownScript_0x9e3d1
+	if_equal $0, .SkipEverything
+	if_equal $2, .priorityjump1
+	if_equal $3, .SkipEverything
+	if_equal $4, .SkipEverything
 	loadfont
 	writetext UnknownText_0x9f037
 	closetext
@@ -26,17 +26,15 @@ UnknownScript_0x9e39d:
 	priorityjump UnknownScript_0x9e44e
 	end
 
-UnknownScript_0x9e3c4:
+.priorityjump1:
 	priorityjump UnknownScript_0x9e555
-
-UnknownScript_0x9e3c7:
 	writebyte BATTLE_TOWER_ACTION_04
 	special BattleTowerAction
 	writebyte BATTLE_TOWER_ACTION_06
 	special BattleTowerAction
-UnknownScript_0x9e3d1:
+.SkipEverything:
 	dotrigger $1
-UnknownScript_0x9e3d3:
+.Trigger1:
 	end
 
 MapBattleTower1FSignpost0Script:

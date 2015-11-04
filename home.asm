@@ -830,13 +830,13 @@ INCLUDE "home/pokedex_flags.asm"
 
 
 NamesPointers:: ; 33ab
-	dbw BANK(PokemonNames), PokemonNames
-	dbw BANK(MoveNames), MoveNames
+	dba PokemonNames
+	dba MoveNames
 	dbw 0, 0
-	dbw BANK(ItemNames), ItemNames
+	dba ItemNames
 	dbw 0, PartyMonOT
 	dbw 0, OTPartyMonOT
-	dbw BANK(TrainerClassNames), TrainerClassNames
+	dba TrainerClassNames
 ; 33c0
 
 Function33c0:

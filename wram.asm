@@ -2640,7 +2640,9 @@ w2_d188:: ds 1
 SECTION "WRAM 3", WRAMX, BANK [3]
 
 w3_d000:: ; d000
-	ds $100
+	ds $90
+w3_d090::
+	ds $70
 
 BT_OTrainer::
 w3_d100:: ; BattleTower OpponentTrainer-Data (length = 0xe0 = $a + $1 + 3*$3b + $24)

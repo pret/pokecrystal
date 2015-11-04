@@ -8,15 +8,15 @@ GoldenrodPokeCenter1F_MapScriptHeader:
 NurseScript_0x60f91:
 	jumpstd pokecenternurse
 
-UnknownScript_0x60f94:
+GoldenrodPokeCenter1F_GSBallTriggerLeft:
 	writebyte BATTLE_TOWER_ACTION_0B
 	special BattleTowerAction
-	if_equal $b, UnknownScript_0x60f9e
+	if_equal MOBILE_EVENT_OBJECT_GS_BALL, .gsball
 	end
 
-UnknownScript_0x60f9e:
+.gsball:
 	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
-	iftrue UnknownScript_0x60fd8
+	iftrue .cancel
 	playsound SFX_EXIT_BUILDING
 	moveperson $3, $0, $7
 	disappear $3
@@ -37,18 +37,18 @@ UnknownScript_0x60f9e:
 	special RestartMapMusic
 	disappear $3
 	playsound SFX_EXIT_BUILDING
-UnknownScript_0x60fd8:
+.cancel:
 	end
 
-UnknownScript_0x60fd9:
+GoldenrodPokeCenter1F_GSBallTriggerRight:
 	writebyte BATTLE_TOWER_ACTION_0B
 	special BattleTowerAction
-	if_equal $b, UnknownScript_0x60fe3
+	if_equal MOBILE_EVENT_OBJECT_GS_BALL, .gsball
 	end
 
-UnknownScript_0x60fe3:
+.gsball:
 	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
-	iftrue UnknownScript_0x6101d
+	iftrue .cancel
 	playsound SFX_EXIT_BUILDING
 	moveperson $3, $0, $7
 	disappear $3
@@ -69,7 +69,7 @@ UnknownScript_0x60fe3:
 	special RestartMapMusic
 	disappear $3
 	playsound SFX_EXIT_BUILDING
-UnknownScript_0x6101d:
+.cancel:
 	end
 
 GameboyKidScript_0x6101e:
@@ -810,8 +810,8 @@ GoldenrodPokeCenter1F_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 0, $7, $3, $0, UnknownScript_0x60f94, $0, $0
-	xy_trigger 0, $7, $4, $0, UnknownScript_0x60fd9, $0, $0
+	xy_trigger 0, $7, $3, $0, GoldenrodPokeCenter1F_GSBallTriggerLeft, $0, $0
+	xy_trigger 0, $7, $4, $0, GoldenrodPokeCenter1F_GSBallTriggerRight, $0, $0
 
 .Signposts:
 	db 0

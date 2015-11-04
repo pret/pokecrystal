@@ -1049,7 +1049,7 @@ Function1708b1: ; 1708b1 (5c:48b1)
 	call MaxVolume
 	ret
 
-Function1708b9: ; 1708b9 (5c:48b9)
+Function1708b9: ; 1708b9 (5c:48b9) something to do with GS Ball
 	ld a, BANK(s1_be3c)
 	call GetSRAMBank
 	ld a, [s1_be3c]
@@ -1129,21 +1129,21 @@ Function17093c: ; 17093c (5c:493c)
 	ld b, 0
 	ld c, a
 	ld hl, PartySpecies
-.asm_170955
+.loop
 	ld a, [hli]
 	cp EGG
-	jr nz, .asm_17099f
+	jr nz, .not_egg
 	push hl
 	ld hl, PartyMonOT ; wddff (aliases: PartyMonOT)
 	ld de, $6
 	ld a, b
 	and a
-	jr z, .asm_170969
-.asm_170965
+	jr z, .skip
+.loop2
 	add hl, de
 	dec a
-	jr nz, .asm_170965
-.asm_170969
+	jr nz, .loop2
+.skip
 	ld de, String_1709a4
 	ld a, $6
 .asm_17096e
@@ -1179,10 +1179,10 @@ endr
 .asm_17099d
 	pop af
 	pop hl
-.asm_17099f
+.not_egg
 	inc b
 	dec c
-	jr nz, .asm_170955
+	jr nz, .loop
 	ret
 ; 1709a4 (5c:49a4)
 
@@ -1192,9 +1192,9 @@ String_1709a4: ; 1709a4
 Function1709aa: ; 1709aa (5c:49aa)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
-	ld a, $3
+	ld a, BANK(w3_d090)
 	ld [rSVBK], a ; $ff00+$70
-	ld a, [StringBuffer2 + 10]
+	ld a, [w3_d090]
 	ld [ScriptVar], a
 	pop af
 	ld [rSVBK], a ; $ff00+$70
@@ -1208,7 +1208,7 @@ Function1709bb: ; 1709bb (5c:49bb)
 	ld a, [$a800]
 	call CloseSRAM
 	cp 6
-	jr nc, .asm_1709da
+	jr nc, .invalid
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_1709e7
@@ -1219,7 +1219,8 @@ endr
 	ld h, [hl]
 	ld l, a
 	jp [hl]
-.asm_1709da
+
+.invalid
 	ld a, $5
 	call GetSRAMBank
 	xor a

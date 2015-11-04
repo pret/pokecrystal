@@ -168,8 +168,8 @@ BattleAnimRestoreHuds: ; cc1bb
 	ld [rSVBK], a
 
 	ld hl, UpdateBattleHuds
-	ld a, $f
-	rst FarCall
+	ld a, BANK(UpdatePlayerHUD)
+	rst FarCall ; Why the heck is this a callab?
 
 	pop af
 	ld [rSVBK], a
