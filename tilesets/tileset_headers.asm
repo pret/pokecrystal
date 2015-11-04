@@ -1,7 +1,5 @@
 tileset: macro
-	dbw BANK(\1GFX),  \1GFX
-	dba \1Meta
-	dba \1Coll
+	dba \1GFX, \1Meta, \1Coll
 	dw \1Anim
 	dw NULL
 	dw \1PalMap
