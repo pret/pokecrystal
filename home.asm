@@ -1600,20 +1600,21 @@ CheckTrainerFlag:: ; 36f5
 ; 3718
 
 
-Function3718:: ; 3718
+PrintWinLossText:: ; 3718
 	ld a, [BattleType]
 	cp BATTLETYPE_CANLOSE
-	jr .canlose
+	jr .canlose ; ??????????
 
-	ld hl, WalkingTile
+; unreferenced
+	ld hl, wWinTextPointer
 	jr .ok
 
 .canlose
 	ld a, [wBattleResult]
-	ld hl, WalkingTile
+	ld hl, wWinTextPointer
 	and $f
 	jr z, .ok
-	ld hl, wd048 + 1
+	ld hl, wLossTextPointer
 
 .ok
 	ld a, [hli]

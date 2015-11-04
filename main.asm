@@ -32254,7 +32254,7 @@ Function2c165: ; 2c165
 	ld de, GFX_2c172
 	ld hl, VTiles0 tile $31
 	lb bc, BANK(GFX_2c172), 4
-	call Functiondc9
+	call Get2bpp_2
 	ret
 ; 2c172
 
@@ -57873,7 +57873,7 @@ GetGFXUnlessMobile: ; 8ea3f
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	jp nz, Request2bpp
-	jp Functiondc9
+	jp Get2bpp_2
 ; 8ea4a
 
 Function8ea4a: ; 8ea4a
@@ -74940,12 +74940,12 @@ GFX_f8aa0: ; f8aa0
 INCBIN "gfx/unknown/0f8aa0.2bpp"
 ; f8ac0
 
-GFX_f8ac0: ; f8ac0
-INCBIN "gfx/unknown/0f8ac0.2bpp"
+EnemyHPBarBorderGFX: ; f8ac0
+INCBIN "gfx/battle/enemy_hp_bar_border.1bpp"
 ; f8ae0
 
-GFX_f8ae0: ; f8ae0
-INCBIN "gfx/unknown/0f8ae0.2bpp"
+HPExpBarBorderGFX: ; f8ae0
+INCBIN "gfx/battle/hp_exp_bar_border.1bpp"
 ; f8b10
 
 ExpBarGFX: ; f8b10
@@ -74994,41 +74994,41 @@ Unknown_fb434:
 Functionfb435: ; 4b435
 	ld a, [Unknown_fb434]
 	and a
-	jp nz, Functionddc
+	jp nz, Get1bpp_2
 	jp Get1bpp
 ; fb43f
 
 Functionfb43f: ; fb43f
 	ld a, [Unknown_fb434]
 	and a
-	jp nz, Functiondc9
+	jp nz, Get2bpp_2
 	jp Get2bpp
 ; fb449
 
 Functionfb449:: ; fb449
 	ld de, Font
 	ld hl, VTiles1
-	lb bc, BANK(Font), $400 / 8
+	lb bc, BANK(Font), $80
 	ld a, [rLCDC]
 	bit 7, a
 	jp z, Copy1bpp
 
 	ld de, Font
 	ld hl, VTiles1
-	lb bc, BANK(Font), $100 / 8
-	call Functionddc
-	ld de, Font + $100
-	ld hl, VTiles1 + $200
-	lb bc, BANK(Font), $100 / 8
-	call Functionddc
-	ld de, Font + $200
-	ld hl, VTiles1 + $400
-	lb bc, BANK(Font), $100 / 8
-	call Functionddc
-	ld de, Font + $300
-	ld hl, VTiles1 + $600
-	lb bc, BANK(Font), $100 / 8
-	call Functionddc
+	lb bc, BANK(Font), $20
+	call Get1bpp_2
+	ld de, Font + $20 * LEN_1BPP_TILE
+	ld hl, VTiles1 tile $20
+	lb bc, BANK(Font), $20
+	call Get1bpp_2
+	ld de, Font + $40 * LEN_1BPP_TILE
+	ld hl, VTiles1 tile $40
+	lb bc, BANK(Font), $20
+	call Get1bpp_2
+	ld de, Font + $60 * LEN_1BPP_TILE
+	ld hl, VTiles1 tile $60
+	lb bc, BANK(Font), $20
+	call Get1bpp_2
 	ret
 ; fb48a
 
@@ -75038,16 +75038,16 @@ Functionfb48a:: ; fb48a
 	ld de, GFX_f9214
 	ld hl, VTiles2 tile $60
 	lb bc, BANK(GFX_f9214), 1
-	call Functionddc
+	call Get1bpp_2
 	ld de, GFX_f8f24
 	ld hl, VTiles2 tile $62
 	lb bc, BANK(GFX_f8f24), 1
-	call Functiondc9
-	ld de, FontExtra + $30
+	call Get2bpp_2
+	ld de, FontExtra + 3 * LEN_2BPP_TILE
 	ld hl, VTiles2 tile $63
 	lb bc, BANK(FontExtra), $16
-	call Functiondc9
-	jr Functionfb4cc
+	call Get2bpp_2
+	jr LoadFrame
 ; fb4b0
 
 Functionfb4b0:: ; fb4b0
@@ -75055,7 +75055,7 @@ Functionfb4b0:: ; fb4b0
 	ld hl, VTiles2 tile $61
 	ld b, BANK(GFX_f9424)
 	ld c, 1
-	call Functiondc9
+	call Get2bpp_2
 	ret
 ; fb4be
 
@@ -75063,25 +75063,25 @@ _LoadFontsBattleExtra:: ; fb4be
 	ld de, FontBattleExtra
 	ld hl, VTiles2 tile $60
 	lb bc, BANK(FontBattleExtra), $19
-	call Functiondc9
-	jr Functionfb4cc
+	call Get2bpp_2
+	jr LoadFrame
 ; fb4cc
 
-Functionfb4cc: ; fb4cc
+LoadFrame: ; fb4cc
 	ld a, [TextBoxFrame]
 	and 7
-	ld bc, $30
+	ld bc, TILES_PER_FRAME * LEN_1BPP_TILE
 	ld hl, Frames
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld hl, VTiles2 tile $79
-	lb bc, BANK(Frames), 6
-	call Functionddc
+	lb bc, BANK(Frames), TILES_PER_FRAME
+	call Get1bpp_2
 	ld hl, VTiles2 tile $7f
 	ld de, GFX_f9204
 	lb bc, BANK(GFX_f9204), 1
-	call Functionddc
+	call Get1bpp_2
 	ret
 ; fb4f2
 
@@ -75089,59 +75089,61 @@ Functionfb4f2: ; fb4f2
 	ld de, FontBattleExtra
 	ld hl, VTiles2 tile $60
 	lb bc, BANK(FontBattleExtra), $c
-	call Functiondc9
+	call Get2bpp_2
 	ld hl, VTiles2 tile $70
-	ld de, FontBattleExtra + $100
+	ld de, FontBattleExtra + $10 * LEN_2BPP_TILE
 	lb bc, BANK(FontBattleExtra), 3
-	call Functiondc9
-	call Functionfb4cc
+	call Get2bpp_2
+	call LoadFrame
 
 Functionfb50d: ; fb50d
-	ld de, GFX_f8ac0
+	ld de, EnemyHPBarBorderGFX
 	ld hl, VTiles2 tile $6c
-	lb bc, BANK(GFX_f8ac0), 4
-	call Functionddc
-	ld de, GFX_f8ae0
+	lb bc, BANK(EnemyHPBarBorderGFX), 4
+	call Get1bpp_2
+	ld de, HPExpBarBorderGFX
 	ld hl, VTiles2 tile $73
-	lb bc, BANK(GFX_f8ae0), 6
-	call Functionddc
+	lb bc, BANK(HPExpBarBorderGFX), 6
+	call Get1bpp_2
 	ld de, ExpBarGFX
 	ld hl, VTiles2 tile $55
 	lb bc, BANK(ExpBarGFX), 9
-	call Functiondc9
-	ld de, GFX_f9214 + $90
+	call Get2bpp_2
+	ld de, GFX_f9214 + 9 * LEN_2BPP_TILE
 	ld hl, VTiles2 tile $5e
 	lb bc, BANK(GFX_f9214), 2
-	call Functiondc9
+	call Get2bpp_2
 	ret
 ; fb53e
 
 Functionfb53e: ; fb53e
 	call _LoadFontsBattleExtra
-	ld de, GFX_f8ac0
+	ld de, EnemyHPBarBorderGFX
 	ld hl, VTiles2 tile $6c
-	lb bc, BANK(GFX_f8ac0), 4
-	call Functionddc
-	ld de, GFX_f8ae0
+	lb bc, BANK(EnemyHPBarBorderGFX), 4
+	call Get1bpp_2
+	ld de, HPExpBarBorderGFX
 	ld hl, VTiles2 tile $78
-	lb bc, BANK(GFX_f8ae0), 1
-	call Functionddc
-	ld de, GFX_f8ae0 + $18
+	lb bc, BANK(HPExpBarBorderGFX), 1
+	call Get1bpp_2
+	ld de, HPExpBarBorderGFX + 3 * LEN_1BPP_TILE
 	ld hl, VTiles2 tile $76
-	lb bc, BANK(GFX_f8ae0), 2
-	call Functionddc
+	lb bc, BANK(HPExpBarBorderGFX), 2
+	call Get1bpp_2
 	ld de, ExpBarGFX
 	ld hl, VTiles2 tile $55
 	lb bc, BANK(ExpBarGFX), 8
-	call Functiondc9
+	call Get2bpp_2
 
 Functionfb571: ; fb571
 	ld de, GFX_f89b0
 	ld hl, VTiles2 tile $31
 	lb bc, BANK(GFX_f89b0), $11
-	call Functiondc9
+	call Get2bpp_2
 	ret
 ; fb57e
+
+; These functions seem to be related to backwards compatibility
 
 Functionfb57e: ; fb57e
 	ld a, [wd003]
@@ -77306,6 +77308,7 @@ Function104265: ; 104265 (41:4265)
 
 
 Function104284:: ; 104284
+	; 2bpp when [rLCDC] & $80
 	; switch to WRAM bank 6
 	ld a, [rSVBK]
 	push af
@@ -77348,16 +77351,17 @@ endr
 ; 1042b2
 
 Function1042b2:: ; 1042b2
+	; 1bpp when [rLCDC] & $80
 .loop
 	ld a, c
 	cp $10
-	jp c, .asm_1042d6
-	jp z, .asm_1042d6
+	jp c, .bankswitch
+	jp z, .bankswitch
 	push bc
 	push hl
 	push de
 	ld c, $10
-	call .asm_1042d6
+	call .bankswitch
 	pop de
 	ld hl, $80
 	add hl, de
@@ -77373,34 +77377,40 @@ Function1042b2:: ; 1042b2
 	jr .loop
 ; 1042d6
 
-.asm_1042d6: ; 1042d6
+.bankswitch: ; 1042d6
 	ld a, [rSVBK]
 	push af
 	ld a, $6
 	ld [rSVBK], a
+
 	push bc
 	push hl
+
 	ld a, b
 	ld l, c
 	ld h, $0
 rept 3
-	add hl, hl
+	add hl, hl ; multiply by 8
 endr
 	ld c, l
 	ld b, h
 	ld h, d
 	ld l, e
 	ld de, w6_d000
-	call Functiondef
+	call FarCopyBytesDouble_DoubleBankSwitch
+
 	pop hl
 	pop bc
+
 	push bc
 	call DelayFrame
 	pop bc
+
 	ld d, h
 	ld e, l
 	ld hl, w6_d000
 	call Function104209
+
 	pop af
 	ld [rSVBK], a
 	ret
@@ -80944,7 +80954,7 @@ Function106464:: ; 106464
 	ld hl, VTiles2 tile $6b
 	ld b, $f ; XXX no graphics at 0f:40b0
 	call Get2bpp
-	callba Functionfb4cc
+	callba LoadFrame
 	ret
 ; 10649b
 

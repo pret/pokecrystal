@@ -1407,7 +1407,7 @@ Function108ad4: ; 108ad4
 	ld [rVBK], a
 	ld hl, VTiles2 tile $4a
 	lb bc, $42, $10
-	call Functiondc9
+	call Get2bpp_2
 	call DelayFrame
 	ld a, $0
 	ld [rVBK], a

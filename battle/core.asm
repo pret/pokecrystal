@@ -2488,10 +2488,10 @@ WinTrainerBattle: ; 3cfa4
 .skip_heal
 	ld a, [wc2cc]
 	bit 0, a
-	jr nz, .skip_whatever_this_is
-	call Function3718
+	jr nz, .skip_win_loss_text
+	call PrintWinLossText
 
-.skip_whatever_this_is
+.skip_win_loss_text
 	jp Function3d02b
 
 .mobile
@@ -3104,9 +3104,9 @@ LostBattle: ; 3d38e
 
 	ld a, [wc2cc]
 	bit 0, a
-	jr nz, .skip
-	call Function3718
-.skip
+	jr nz, .skip_win_loss_text
+	call PrintWinLossText
+.skip_win_loss_text
 	ret
 
 .battle_tower
@@ -7241,14 +7241,14 @@ Function3eda6: ; 3eda6
 ; 3edad
 
 
-Function3edad: ; 3edad
-	ld de, GFX_f8ac0
+LoadHPExpBarGFX: ; unreferenced
+	ld de, EnemyHPBarBorderGFX
 	ld hl, VTiles2 tile $6c
-	lb bc, BANK(GFX_f8ac0), 4
+	lb bc, BANK(EnemyHPBarBorderGFX), 4
 	call Get1bpp
-	ld de, GFX_f8ae0
+	ld de, HPExpBarBorderGFX
 	ld hl, VTiles2 tile $73
-	lb bc, BANK(GFX_f8ae0), 6
+	lb bc, BANK(HPExpBarBorderGFX), 6
 	call Get1bpp
 	ld de, ExpBarGFX
 	ld hl, VTiles2 tile $55
