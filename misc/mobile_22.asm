@@ -499,8 +499,8 @@ Function8939a: ; 8939a
 Function893b3: ; 893b3 (22:53b3)
 	call DisableLCD
 	call ClearSprites
-	call Functione51
-	call Functione5f
+	call LoadStandardFont
+	call LoadFontsExtra
 	call Function893ef
 	call Function8942b
 	call Function89455
@@ -510,8 +510,8 @@ Function893b3: ; 893b3 (22:53b3)
 Function893cc: ; 893cc
 	call DisableLCD
 	call ClearSprites
-	call Functione51
-	call Functione5f
+	call LoadStandardFont
+	call LoadFontsExtra
 	call Function893ef
 	call Function89464
 	call EnableLCD
@@ -4307,7 +4307,7 @@ Function8ac7c: ; 8ac7c
 
 .asm_8ace4
 	call CloseSRAM
-	call Functione51
+	call LoadStandardFont
 	ld a, [wd02f]
 	ld c, a
 	and a
@@ -4319,7 +4319,7 @@ Function8ac7c: ; 8ac7c
 	ld a, $2
 	call Function89259
 	jp c, Function8ac7c
-	call Functione51
+	call LoadStandardFont
 	pop de
 	ld c, $0
 	scf

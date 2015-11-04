@@ -109,8 +109,8 @@ Function5b44: ; 5b44
 	xor a
 	ld [$ffde], a
 	call ClearTileMap
-	call Functione5f
-	call Functione51
+	call LoadFontsExtra
+	call LoadStandardFont
 	call ResetTextRelatedRAM
 	ret
 ; 5b54
@@ -582,7 +582,7 @@ Function5e9f: ; 5e9f
 	call Function5ebf
 	call Function5f1c
 	call Function5f40
-	call Functione5f
+	call LoadFontsExtra
 	call UpdateSprites
 	ret
 ; 5eaf
@@ -591,7 +591,7 @@ Function5eaf: ; 5eaf
 	call Function5ebf
 	call Function5f1c
 	call Function5f48
-	call Functione5f
+	call LoadFontsExtra
 	call UpdateSprites
 	ret
 ; 5ebf
@@ -856,7 +856,7 @@ NamePlayer: ; 0x6074
 	call FadeToWhite
 	call ClearTileMap
 
-	call Functione5f
+	call LoadFontsExtra
 	call WaitBGMap
 
 	xor a
@@ -948,7 +948,7 @@ ShrinkPlayer: ; 610f
 	call DelayFrames
 
 	call Intro_PlacePlayerSprite
-	call Functione5f
+	call LoadFontsExtra
 
 	ld c, 50
 	call DelayFrames
@@ -1431,7 +1431,7 @@ Data63ca: ; 63ca
 
 Copyright: ; 63e2
 	call ClearTileMap
-	call Functione5f
+	call LoadFontsExtra
 	ld de, CopyrightGFX
 	ld hl, VTiles2 tile $60
 	lb bc, BANK(CopyrightGFX), $1d
@@ -1553,11 +1553,11 @@ Function64bf:: ; 64bf
 ; 64cd
 
 Function64cd: ; 64cd
-	call Functione5f
+	call LoadFontsExtra
 	ld a, $90
 	ld [hWY], a
 	call Function2e31
-	call Functione51
+	call LoadStandardFont
 	ret
 ; 64db
 
@@ -4783,7 +4783,7 @@ CutDownTreeOrGrass: ; c810
 	call Function2914
 	call UpdateSprites
 	call DelayFrame
-	call Functione51
+	call LoadStandardFont
 	ret
 ; c840
 
@@ -5020,7 +5020,7 @@ UsedSurfScript: ; c986
 	copybytetovar Buffer2
 	writevarcode VAR_MOVEMENT
 
-	special Special_ReplaceKrisSprite
+	special ReplaceKrisSprite
 	special PlayMapMusic
 ; step into the water
 	special Special_SurfStartStep ; (slow_step_x, step_end)
@@ -5258,7 +5258,7 @@ FlyFunction: ; ca3b
 Functioncacb: ; cacb
 	callba Function561d
 	call DelayFrame
-	call Special_ReplaceKrisSprite
+	call ReplaceKrisSprite
 	callba Function106594
 	ret
 ; cade
@@ -6359,7 +6359,7 @@ PutTheRodAway: ; d095
 	ld a, $1
 	ld [PlayerAction], a
 	call UpdateSprites
-	call Special_ReplaceKrisSprite
+	call ReplaceKrisSprite
 	ret
 ; d0a4
 
@@ -6478,14 +6478,14 @@ Script_GetOnBike: ; 0xd13e
 	writetext UnknownText_0xd17c
 	closetext
 	loadmovesprites
-	special Special_ReplaceKrisSprite
+	special ReplaceKrisSprite
 	end
 ; 0xd14e
 
 Script_GetOnBike_Register: ; 0xd14e
 	writecode VAR_MOVEMENT, $1
 	loadmovesprites
-	special Special_ReplaceKrisSprite
+	special ReplaceKrisSprite
 	end
 ; 0xd156
 
@@ -6502,7 +6502,7 @@ Script_GetOffBike: ; 0xd158
 
 UnknownScript_0xd163:
 	loadmovesprites
-	special Special_ReplaceKrisSprite
+	special ReplaceKrisSprite
 	special PlayMapMusic
 	end
 ; 0xd16b
@@ -11322,8 +11322,8 @@ Function11c11: ; 11c11 (4:5c11)
 Function11c51: ; 11c51
 	call ClearSprites
 	callab Function8cf53
-	call Functione51
-	call Functione5f
+	call LoadStandardFont
+	call LoadFontsExtra
 
 	ld de, GFX_11e65
 	ld hl, VTiles1 tile $6b
@@ -12525,7 +12525,7 @@ endr
 	push af
 	ld a, 1
 	ld [hOAMUpdate], a
-	call Functione5f
+	call LoadFontsExtra
 	pop af
 	ld [hOAMUpdate], a
 .ReturnEnd
@@ -16188,7 +16188,7 @@ GetEmote2bpp: ; 1412a
 	ret
 ; 14135
 
-Function14135:: ; 14135
+_ReplaceKrisSprite:: ; 14135
 	call GetPlayerSprite
 	ld a, [UsedSprites]
 	ld [hUsedSpriteIndex], a
@@ -22316,7 +22316,7 @@ PokepicYesOrNo:: ; 24528
 	call Function2173
 	call Function321c
 	call UpdateSprites
-	call Functione51
+	call LoadStandardFont
 	ret
 ; 24547
 
@@ -26660,7 +26660,7 @@ LinkCommunications: ; 28000
 	call DelayFrames
 	call ClearScreen
 	call UpdateSprites
-	call Functione51
+	call LoadStandardFont
 	call LoadFontsBattleExtra
 	callba Function16d69a
 	call Function3200
@@ -28897,7 +28897,7 @@ Function29082: ; 29082
 	ret
 
 .asm_2909b
-	call Functione51
+	call LoadStandardFont
 	scf
 	ret
 ; 290a0
@@ -32264,7 +32264,7 @@ INCBIN "gfx/battle/balls.2bpp"
 
 _ShowLinkBattleParticipants: ; 2c1b2
 	call WhiteBGMap
-	call Functione5f
+	call LoadFontsExtra
 	hlcoord 2, 3
 	ld b, 9
 	ld c, 14
@@ -34330,8 +34330,8 @@ Function41a7f: ; 41a7f
 	callba Function1de247
 	call Function41af7
 	call DisableLCD
-	call Functione51
-	call Functione5f
+	call LoadStandardFont
+	call LoadFontsExtra
 	call Function414b7
 	call Function4147b
 	ld a, [wd265]
@@ -36226,7 +36226,7 @@ Function4802f: ; 4802f (12:402f)
 	ld [wd003], a
 .asm_4805a
 	call Function486bf
-	call Functione5f
+	call LoadFontsExtra
 	ld de, GFX_488c3
 	ld hl, VTiles2 tile $10
 	lb bc, BANK(GFX_488c3), 1
@@ -38087,7 +38087,7 @@ Function48e14: ; 48e14 (12:4e14)
 	call DelayFrames
 	call WhiteBGMap
 	call Function48000
-	call Functione5f
+	call LoadFontsExtra
 	hlcoord 0, 0
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	ld a, $0
@@ -39576,8 +39576,8 @@ Function49ed0: ; 49ed0
 	xor a
 	ld [$ffde], a
 	call ClearTileMap
-	call Functione5f
-	call Functione51
+	call LoadFontsExtra
+	call LoadStandardFont
 	call ResetTextRelatedRAM
 	ret
 ; 49ee0
@@ -39829,7 +39829,7 @@ Function4a100: ; 4a100 (12:6100)
 
 asm_4a111: ; 4a111 (12:6111)
 	pop bc
-	call Functione5f
+	call LoadFontsExtra
 	jp Function49f0a
 
 Function4a118: ; 4a118 (12:6118)
@@ -40029,7 +40029,7 @@ Function4a28a: ; 4a28a (12:628a)
 	callba Function11765d
 	call WhiteBGMap
 	call Call_ExitMenu
-	call Functione5f
+	call LoadFontsExtra
 	scf
 	ret
 .asm_4a2f0
@@ -40459,7 +40459,7 @@ Function4a6ab: ; 4a6ab (12:66ab)
 	call GetSGBLayout
 	callba Function11c1ab
 	pop bc
-	call Functione5f
+	call LoadFontsExtra
 	jp Function4a4c4
 
 Function4a6c5: ; 4a6c5 (12:66c5)
@@ -42267,8 +42267,8 @@ _ResetClock: ; 4d3b1
 	callba Function8000
 	ld b, $8
 	call GetSGBLayout
-	call Functione51
-	call Functione5f
+	call LoadStandardFont
+	call LoadFontsExtra
 	ld de, MUSIC_MAIN_MENU
 	call PlayMusic
 	ld hl, .text_askreset
@@ -42543,8 +42543,8 @@ Function4d54c: ; 4d54c
 	callba Function8000
 	ld b, $8
 	call GetSGBLayout
-	call Functione51
-	call Functione5f
+	call LoadStandardFont
+	call LoadFontsExtra
 	ld de, MUSIC_MAIN_MENU
 	call PlayMusic
 	ld hl, UnknownText_0x4d580
@@ -44975,7 +44975,7 @@ Function4e881: ; 4e881
 	call ClearTileMap
 	call ClearSprites
 	call DisableLCD
-	call Functione51
+	call LoadStandardFont
 	call LoadFontsBattleExtra
 	ld hl, VBGMap0
 	ld bc, VBGMap1 - VBGMap0
@@ -45008,7 +45008,7 @@ Function4e8c2: ; 4e8c2
 	call ClearTileMap
 	call ClearSprites
 	call DisableLCD
-	call Functione51
+	call LoadStandardFont
 	call LoadFontsBattleExtra
 	ld hl, VBGMap0
 	ld bc, VBGMap1 - VBGMap0
@@ -49349,7 +49349,7 @@ WaterToLandSprite: ; 803f9
 	push bc
 	ld a, PLAYER_NORMAL
 	ld [PlayerState], a
-	call Special_ReplaceKrisSprite ; UpdateSprites
+	call ReplaceKrisSprite ; UpdateSprites
 	pop bc
 	ret
 ; 80404
@@ -49776,7 +49776,7 @@ Function8197c: ; 8197c
 	ld de, VTiles0
 	ld bc, $10
 	call CopyBytes
-	call Functione51
+	call LoadStandardFont
 	ld hl, VTiles1
 	lb bc, 8, 0
 .asm_8199d
@@ -53681,7 +53681,7 @@ ShakeHeadbuttTree: ; 8c80a
 	ld hl, VTiles1
 	lb bc, BANK(Font), $c
 	call Get1bpp
-	call Special_ReplaceKrisSprite
+	call ReplaceKrisSprite
 	ret
 ; 8c893
 
@@ -57994,7 +57994,7 @@ InitClock: ; 90672 (24:4672)
 	call GetSGBLayout
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	call Functione51
+	call LoadStandardFont
 	ld de, GFX_908fb
 	ld hl, VTiles2 tile $00
 	lb bc, BANK(GFX_908fb), 1
@@ -58424,7 +58424,7 @@ Special_SetDayOfWeek: ; 90913
 	ld a, [DefaultFlypoint]
 	ld [StringBuffer2], a
 	call Function663
-	call Functione51
+	call LoadStandardFont
 	pop af
 	ld [hInMenu], a
 	ret
@@ -61336,7 +61336,7 @@ Function91ff2: ; 91ff2
 	ld hl, TownMapGFX
 	ld de, VTiles2
 	lb bc, BANK(TownMapGFX), $30
-	call Functione73
+	call DecompressRequest2bpp
 	ret
 ; 91fff
 
@@ -64511,7 +64511,7 @@ ReadAnyMail: ; b9237
 	call ClearSprites
 	call ClearTileMap
 	call DisableLCD
-	call Functione5f
+	call LoadFontsExtra
 	pop de
 	push de
 	ld a, BANK(s0_a600)
@@ -64544,7 +64544,7 @@ ReadAnyMail: ; b9237
 	call Functionb929a
 	call WhiteBGMap
 	call DisableLCD
-	call Functione51
+	call LoadStandardFont
 	jp EnableLCD
 ; b929a
 
@@ -65981,8 +65981,8 @@ _CardFlip: ; e00ee (38:40ee)
 	call PlayMusic
 	call DelayFrame
 	call DisableLCD
-	call Functione51
-	call Functione5f
+	call LoadStandardFont
+	call LoadFontsExtra
 	ld hl, LZ_e0d16
 	ld de, VTiles2 tile $00
 	call Decompress
@@ -71441,7 +71441,7 @@ Functione33e8: ; e33e8 (38:73e8)
 	ld bc, $310
 	xor a
 	call ByteFill
-	call Functione51
+	call LoadStandardFont
 	call LoadFontsBattleExtra
 	ld hl, PCMailGFX
 	ld de, VTiles2 tile $5c
@@ -71723,7 +71723,7 @@ Functione36f9: ; e36f9 (38:76f9)
 	ld de, DefaultFlypoint
 	callba Function116c1
 	call ClearTileMap
-	call Functione51
+	call LoadStandardFont
 	call LoadFontsBattleExtra
 	ld a, [MenuSelection]
 	dec a
@@ -72314,7 +72314,7 @@ Functione4512: ; e4512
 	hlcoord 16, 15 ;where on the screen the number is drawn
 	add "1"
 	ld [hl], a
-	call Functione5f
+	call LoadFontsExtra
 	and a
 	ret
 ; e4520
@@ -74988,6 +74988,7 @@ Footprints: ; f9434
 INCBIN "gfx/misc/footprints.1bpp"
 ; fb434
 
+; This and the following two functions are unreferenced.
 Unknown_fb434:
 	db 0
 
@@ -75003,9 +75004,10 @@ Functionfb43f: ; fb43f
 	and a
 	jp nz, Get2bpp_2
 	jp Get2bpp
+; End unreferenced block
 ; fb449
 
-Functionfb449:: ; fb449
+_LoadStandardFont:: ; fb449
 	ld de, Font
 	ld hl, VTiles1
 	lb bc, BANK(Font), $80
@@ -75032,9 +75034,7 @@ Functionfb449:: ; fb449
 	ret
 ; fb48a
 
-
-
-Functionfb48a:: ; fb48a
+_LoadFontsExtra1:: ; fb48a
 	ld de, GFX_f9214
 	ld hl, VTiles2 tile $60
 	lb bc, BANK(GFX_f9214), 1
@@ -75050,7 +75050,7 @@ Functionfb48a:: ; fb48a
 	jr LoadFrame
 ; fb4b0
 
-Functionfb4b0:: ; fb4b0
+_LoadFontsExtra2:: ; fb4b0
 	ld de, GFX_f9424
 	ld hl, VTiles2 tile $61
 	ld b, BANK(GFX_f9424)
@@ -75521,8 +75521,8 @@ Functionfb877: ; fb877
 
 Functionfb8c8: ; fb8c8
 	call ClearTileMap
-	call Functione5f
-	call Functione51
+	call LoadFontsExtra
+	call LoadStandardFont
 	callba Function40ab2
 	call Function3200
 	callba Function3da97
@@ -77307,7 +77307,7 @@ Function104265: ; 104265 (41:4265)
 	ret
 
 
-Function104284:: ; 104284
+_Get2bpp:: ; 104284
 	; 2bpp when [rLCDC] & $80
 	; switch to WRAM bank 6
 	ld a, [rSVBK]
@@ -77350,7 +77350,7 @@ endr
 	ret
 ; 1042b2
 
-Function1042b2:: ; 1042b2
+_Get1bpp:: ; 1042b2
 	; 1bpp when [rLCDC] & $80
 .loop
 	ld a, c
@@ -77785,7 +77785,7 @@ LoadGraphics: ; 1047cf
 	xor a
 	ld [hTileAnimFrame], a ; $ff00+$df
 	callba Function14168
-	call Functione5f
+	call LoadFontsExtra
 	callba Function106594
 	ret
 
@@ -81626,7 +81626,7 @@ Function1ddf26: ; 1ddf26 (77:5f26)
 	ld hl, LZ_1ddf33
 	ld de, VTiles2 tile $31
 	lb bc, BANK(LZ_1ddf33), $3a
-	call Functione73
+	call DecompressRequest2bpp
 	ret
 ; 1ddf33 (77:5f33)
 

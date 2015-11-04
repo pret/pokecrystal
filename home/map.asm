@@ -2022,8 +2022,8 @@ Function2bae:: ; 2bae
 	call DisableLCD
 	call ClearSprites
 	callba Function14168
-	call Functione51
-	call Functione5f
+	call LoadStandardFont
+	call LoadFontsExtra
 	ld a, [hROMBank]
 	push af
 	ld a, [MapGroup]

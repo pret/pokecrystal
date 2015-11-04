@@ -8,9 +8,9 @@ Get2bpp_2:: ; dc9
 
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(Function104284)
+	ld a, BANK(_Get2bpp)
 	rst Bankswitch
-	call Function104284
+	call _Get2bpp
 	pop af
 	rst Bankswitch
 
@@ -24,9 +24,9 @@ Get1bpp_2:: ; ddc
 
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(Function1042b2)
+	ld a, BANK(_Get1bpp)
 	rst Bankswitch
-	call Function1042b2
+	call _Get1bpp
 	pop af
 	rst Bankswitch
 
@@ -47,7 +47,7 @@ FarCopyBytesDouble_DoubleBankSwitch:: ; def
 	ret
 ; dfd
 
-Functiondfd:: ; dfd
+OldDMATransfer:: ; dfd
 	dec c
 	ld a, [hBGMapMode]
 	push af
@@ -59,42 +59,47 @@ Functiondfd:: ; dfd
 	rst Bankswitch
 
 .loop
+; load the source and target MSB and LSB
 	ld a, d
-	ld [rHDMA1], a
+	ld [rHDMA1], a ; source MSB
 	ld a, e
 	and $f0
-	ld [rHDMA2], a
+	ld [rHDMA2], a ; source LSB
 	ld a, h
 	and $1f
-	ld [rHDMA3], a
+	ld [rHDMA3], a ; target MSB
 	ld a, l
 	and $f0
-	ld [rHDMA4], a
+	ld [rHDMA4], a ; target LSB
+; stop when c < 8
 	ld a, c
 	cp $8
 	jr c, .done
+; decrease c by 8
 	sub $8
 	ld c, a
+; DMA transfer state
 	ld a, $f
 	ld [hDMATransfer], a
 	call DelayFrame
+; add $100 to hl and de
 	ld a, l
-	add 0
+	add $100 % $100
 	ld l, a
 	ld a, h
-	adc 1
+	adc $100 / $100
 	ld h, a
 	ld a, e
-	add 0
+	add $100 % $100
 	ld e, a
 	ld a, d
-	adc 1
+	adc $100 / $100
 	ld d, a
 	jr .loop
 
 .done
 	ld a, c
-	and $7f
+	and $7f ; pretty silly, considering at most bits 0-2 would be set
 	ld [hDMATransfer], a
 	call DelayFrame
 	pop af
@@ -107,15 +112,15 @@ Functiondfd:: ; dfd
 
 
 
-Special_ReplaceKrisSprite:: ; e4a
-	callba Function14135
+ReplaceKrisSprite:: ; e4a
+	callba _ReplaceKrisSprite
 	ret
 ; e51
 
 
 
-Functione51:: ; e51
-	callba Functionfb449
+LoadStandardFont:: ; e51
+	callba _LoadStandardFont
 	ret
 ; e58
 
@@ -126,27 +131,30 @@ LoadFontsBattleExtra:: ; e58
 
 
 
-Functione5f:: ; e5f
-	callba Functionfb48a
-	callba Functionfb4b0
+LoadFontsExtra:: ; e5f
+	callba _LoadFontsExtra1
+	callba _LoadFontsExtra2
 	ret
 ; e6c
 
-Functione6c:: ; e6c
-	callba Functionfb4b0
+LoadFontsExtra2:: ; e6c
+	callba _LoadFontsExtra2
 	ret
 ; e73
 
-Functione73:: ; e73
+DecompressRequest2bpp:: ; e73
 	push de
 	ld a, BANK(sScratch)
 	call GetSRAMBank
 	push bc
+
 	ld de, sScratch
 	ld a, b
 	call FarDecompress
+
 	pop bc
 	pop hl
+
 	ld de, sScratch
 	call Request2bpp
 	call CloseSRAM

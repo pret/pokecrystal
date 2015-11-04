@@ -607,7 +607,7 @@ endr
 
 	call FadeToWhite
 
-	call Functione51
+	call LoadStandardFont
 
 	pop hl
 	ld de, StringBuffer1
@@ -687,7 +687,7 @@ endr
 	call PrintText
 
 	call FadeToWhite
-	call Functione51
+	call LoadStandardFont
 	jr .asm_ebe2
 
 .asm_ebd1

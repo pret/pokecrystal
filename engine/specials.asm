@@ -76,7 +76,7 @@ SpecialsPointers:: ; c029
 	add_special UpdateTimePals
 	add_special ClearTileMap
 	add_special UpdateSprites
-	add_special Special_ReplaceKrisSprite
+	add_special ReplaceKrisSprite
 	add_special Special_GameCornerPrizeMonCheckDex
 	add_special SpecialSeenMon
 	add_special WaitSFX

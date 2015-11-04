@@ -9366,7 +9366,7 @@ Function3fb6c: ; 3fb6c
 	hlcoord 1, 5
 	lb bc, 3, 7
 	call ClearBox
-	call Functione51
+	call LoadStandardFont
 	call Function3ed9f
 	call Function3fbd6
 	xor a

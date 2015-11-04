@@ -838,7 +838,7 @@ Function405df: ; 405df (10:45df)
 	ld hl, PokedexLZ
 	ld de, VTiles2 tile $31
 	lb bc, BANK(PokedexLZ), $3a
-	call Functione73
+	call DecompressRequest2bpp
 
 .asm_4060f
 	ret
@@ -2487,7 +2487,7 @@ Function414b7: ; 414b7
 	xor a
 	call ByteFill
 	call Function414fb
-	call Functione5f
+	call LoadFontsExtra
 	ld hl, VTiles2 tile $60
 	ld bc, $0200
 	call Function41504
@@ -2511,7 +2511,7 @@ Function414b7: ; 414b7
 	ret
 
 Function414fb: ; 414fb
-	call Functione51
+	call LoadStandardFont
 	ld hl, VTiles1
 	ld bc, $0800
 

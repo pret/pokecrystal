@@ -10,8 +10,8 @@ Function17c000: ; 17c000
 	xor a
 	call ByteFill
 
-	call Functione51
-	call Functione5f
+	call LoadStandardFont
+	call LoadFontsExtra
 
 	ld hl, HaveWantMap
 	decoord 0, 0

@@ -4949,7 +4949,7 @@ endr
 	ld l, a
 	pop de
 	push bc
-	call Functione73
+	call DecompressRequest2bpp
 	pop bc
 	ret
 ; ce85e (33:685e)

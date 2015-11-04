@@ -343,7 +343,7 @@ Function154f7: ; 154f7
 	jr c, .ok
 	ret
 .ok
-	call Special_ReplaceKrisSprite
+	call ReplaceKrisSprite
 	ret
 
 Function1550c: ; 1550c (5:550c)

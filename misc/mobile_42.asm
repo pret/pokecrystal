@@ -131,7 +131,7 @@ Function1080b7: ; 1080b7
 	call DisableLCD
 	call Function1081ad
 	call Function1081ca
-	call Functione51
+	call LoadStandardFont
 	call LoadFontsBattleExtra
 	ld a, $1
 	ld [rVBK], a
@@ -194,7 +194,7 @@ Function108157: ; 108157
 	call DisableLCD
 	call Function1081ad
 	call Function1081ca
-	call Functione51
+	call LoadStandardFont
 	call LoadFontsBattleExtra
 	call EnableLCD
 	xor a
@@ -326,7 +326,7 @@ Function10824b: ; 10824b
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	call Functione51
+	call LoadStandardFont
 	call LoadFontsBattleExtra
 	callba Function106462
 	callba Function106464
