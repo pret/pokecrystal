@@ -81634,7 +81634,19 @@ INCLUDE "engine/title.asm"
 
 
 INCLUDE "misc/mobile_45.asm"
+INCLUDE "misc/mobile_46.asm"
 
+SECTION "bank47", ROMX, BANK[$47]
+
+INCLUDE "misc/battle_tower_47.asm"
+
+SECTION "bank5B", ROMX, BANK[$5B]
+
+INCLUDE "misc/mobile_5b.asm"
+
+SECTION "bank5C", ROMX, BANK[$5C]
+
+INCLUDE "misc/mobile_5c.asm"
 
 SECTION "bank5D", ROMX, BANK[$5D]
 
