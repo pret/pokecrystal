@@ -7,6 +7,7 @@
 	charmap "<RED>",    $38
 	charmap "<GREEN>",  $39
 	charmap "<ENEMY>",  $3f
+	charmap "<SHINY>",  $3f
 	charmap "<MOM>",    $49
 	charmap "<PKMN>",   $4a
 	charmap "<NEXT>",   $4e
@@ -30,12 +31,15 @@
 	charmap "<DEXEND>", $5f
 
 ; Actual characters
+	charmap "_",        $62
 	charmap "′",        $6e
 	charmap "<LV>",     $6e
 	charmap "″",        $6f
 
 	charmap "<PO>",     $70
 	charmap "<KE>",     $71
+	charmap "◀",        $71
+	charmap "<ID>",     $73
 	charmap "№",        $74
 	charmap "…",        $75
 

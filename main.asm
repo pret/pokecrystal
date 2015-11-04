@@ -44323,7 +44323,7 @@ Function4deea: ; 4deea (13:5eea)
 	hlcoord 18, 0
 	call Function4df66
 	hlcoord 9, 4
-	ld a, $f3
+	ld a, "/"
 	ld [hli], a
 	ld a, [CurBaseData] ; wd236 (aliases: BaseDexNo)
 	ld [wd265], a
@@ -44357,9 +44357,9 @@ Function4df66: ; 4df66 (13:5f66)
 	pop hl
 	ret c
 	ld a, "♂"
-	jr nz, .asm_4df75
+	jr nz, .got_gender
 	ld a, "♀"
-.asm_4df75
+.got_gender
 	ld [hl], a
 	ret
 ; 4df77 (13:5f77)
@@ -44373,32 +44373,32 @@ Unknown_4df77: ; 4df77
 
 Function4df7f: ; 4df7f
 	hlcoord 7, 0
-	ld bc, 20
-	ld d, 18
-.asm_4df87
+	ld bc, SCREEN_WIDTH
+	ld d, SCREEN_HEIGHT
+.loop
 	ld a, $31
 	ld [hl], a
 	add hl, bc
 	dec d
-	jr nz, .asm_4df87
+	jr nz, .loop
 	ret
 ; 4df8f
 
 Function4df8f: ; 4df8f (13:5f8f)
 	hlcoord 0, 7
-	ld b, 20
-	ld a, $62
-.asm_4df96
+	ld b, SCREEN_WIDTH
+	ld a, "_"
+.loop
 	ld [hli], a
 	dec b
-	jr nz, .asm_4df96
+	jr nz, .loop
 	ret
 
 Function4df9b: ; 4df9b (13:5f9b)
 	hlcoord 12, 6
-	ld [hl], $71
+	ld [hl], "◀"
 	hlcoord 19, 6
-	ld [hl], $ed
+	ld [hl], "▶"
 	ret
 
 Function4dfa6: ; 4dfa6 (13:5fa6)
@@ -44406,7 +44406,7 @@ Function4dfa6: ; 4dfa6 (13:5fa6)
 	callba CheckShininess
 	ret nc
 	hlcoord 19, 0
-	ld [hl], $3f
+	ld [hl], "<SHINY>"
 	ret
 
 Function4dfb6: ; 4dfb6 (13:5fb6)
@@ -44423,6 +44423,7 @@ Function4dfb6: ; 4dfb6 (13:5fb6)
 	jr nz, .asm_4dfd6
 	call SetPalettes
 	ret
+
 .asm_4dfd6
 	call Function4e226
 	ret
@@ -81737,7 +81738,7 @@ INCBIN "gfx/misc/unown_font.2bpp"
 Function1dc1b0: ; 1dc1b0
 	hlcoord 0, 0
 	ld de, wca90
-	ld bc, $154
+	ld bc, 17 * SCREEN_WIDTH
 	call CopyBytes
 	ld hl, wcab5
 	ld a, $62
@@ -81789,7 +81790,7 @@ Function1dc1b0: ; 1dc1b0
 Function1dc213: ; 1dc213
 	ld hl, wca90
 	ld bc, $a0
-	ld a, $7f
+	ld a, " "
 	call ByteFill
 	ld hl, wca90
 	ld a, $36
@@ -81895,14 +81896,14 @@ Function1dc381: ; 1dc381
 	ld [MonType], a
 	callba CopyPkmnToTempMon
 	hlcoord 0, 7
-	ld b, $9
-	ld c, $12
+	ld b, 9
+	ld c, 18
 	call TextBox
 	hlcoord 8, 2
 	ld a, [TempMonLevel]
 	call Function383d
 	hlcoord 12, 2
-	ld [hl], $71
+	ld [hl], "◀" ; Filled left triangle
 	inc hl
 	ld de, TempMonMaxHP
 	lb bc, 2, 3
@@ -81915,14 +81916,14 @@ Function1dc381: ; 1dc381
 	hlcoord 8, 4
 	call PlaceString
 	hlcoord 9, 6
-	ld [hl], $f3
+	ld [hl], "/"
 	call GetPokemonName
 	hlcoord 10, 6
 	call PlaceString
 	hlcoord 8, 0
-	ld [hl], $74
+	ld [hl], "№"
 	inc hl
-	ld [hl], $e8
+	ld [hl], "."
 	inc hl
 	ld de, wd265
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
@@ -82053,20 +82054,20 @@ Function1dc51a: ; 1dc51a
 
 Function1dc52c: ; 1dc52c
 	callba GetGender
-	ld a, $7f
-	jr c, .asm_1dc53c
-	ld a, $ef
-	jr nz, .asm_1dc53c
-	ld a, $f5
+	ld a, " "
+	jr c, .got_gender
+	ld a, "♂"
+	jr nz, .got_gender
+	ld a, "♀"
 
-.asm_1dc53c
+.got_gender
 	hlcoord 17, 2
 	ld [hl], a
 	ld bc, TempMonDVs
 	callba CheckShininess
 	ret nc
 	hlcoord 18, 2
-	ld [hl], $3f
+	ld [hl], "<SHINY>"
 	ret
 ; 1dc550
 
@@ -82077,7 +82078,7 @@ String1dc554: ; 1dc554
 	db "MOVE@"
 
 String1dc559: ; 1dc559
-	db $73, "№.@"
+	db "<ID>№.@"
 
 String1dc55d: ; 1dc55d
 	db   "ATTACK"
