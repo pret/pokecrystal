@@ -236,7 +236,7 @@ ENDC
 	dw Script_halloffame
 	dw Script_credits
 	dw Script_warpfacing
-	dw Script_storetext
+	dw Script_battletowertext
 	dw Script_displaylocation
 	dw Script_trainerclassname
 	dw Script_name
@@ -537,7 +537,7 @@ Script_interpretmenu: ; 0x96f41
 	ret
 ; 0x96f52
 
-Script_storetext: ; 0x96f52
+Script_battletowertext: ; 0x96f52
 ; script command 0xa4
 ; parameters:
 ;     pointer (PointerLabelBeforeBank)
@@ -546,7 +546,7 @@ Script_storetext: ; 0x96f52
 	call SetUpTextBox
 	call GetScriptByte
 	ld c, a
-	callba StoreText
+	callba BattleTowerText
 	ret
 ; 0x96f60
 
@@ -2370,8 +2370,8 @@ Script_takeitem: ; 0x977f0
 	ld [CurItem], a
 	call GetScriptByte
 	ld [wItemQuantityChangeBuffer], a
-	ld a, $ff
-	ld [wd107], a
+	ld a, -1
+	ld [ItemCountBuffer], a
 	ld hl, NumItems
 	call TossItem
 	ret nc

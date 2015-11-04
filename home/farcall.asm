@@ -25,7 +25,7 @@ FarCall_hl:: ; 2d63
 	push af
 	ld a, [hBuffer]
 	rst Bankswitch
-	call Function2d82
+	call FarJump_hl
 ; 2d6e
 
 ReturnFarCall:: ; 2d6e
@@ -33,22 +33,22 @@ ReturnFarCall:: ; 2d6e
 ; To do this, we can pop to bc instead of af.
 	
 	ld a, b
-	ld [PredefAddress + 2], a
+	ld [wFarCallBCBuffer], a
 	ld a, c
-	ld [PredefAddress + 3], a
+	ld [wFarCallBCBuffer + 1], a
 	
 ; Restore the working bank.
 	pop bc
 	ld a, b
 	rst Bankswitch
 	
-	ld a, [PredefAddress + 2]
+	ld a, [wFarCallBCBuffer]
 	ld b, a
-	ld a, [PredefAddress + 3]
+	ld a, [wFarCallBCBuffer + 1]
 	ld c, a
 	ret
 ; 2d82
 
-Function2d82:: ; 2d82
+FarJump_hl:: ; 2d82
 	jp [hl]
 ; 2d83

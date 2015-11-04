@@ -1279,7 +1279,7 @@ PredefTemp:: ; cfb5
 	ds 2
 PredefAddress:: ; cfb7
 	ds 2
-
+wFarCallBCBuffer:: ; cfb9
 	ds 2
 
 wcfbb:: ds 1
@@ -2658,10 +2658,10 @@ BT_OTPkmn3:: party_struct BT_OTPkmn3
 BT_OTPkmn3Name:: ds PKMN_NAME_LENGTH
 	
 BT_OTrainerData:: ds $24
-BT_OTrainerEnd:: ; we_d1e0
+BT_OTrainerEnd:: ; w3_d1e0
 	
 	ds $20
-	
+BT_TrainerTextIndex::
 	ds $600
 
 wBTChoiceOfLvlGroup::

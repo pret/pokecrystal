@@ -2469,32 +2469,32 @@ WinTrainerBattle: ; 3cfa4
 	call StdBattleTextBox
 
 	call IsMobileBattle
-	jr z, .asm_3cff5
+	jr z, .mobile
 	ld a, [wLinkMode]
 	and a
 	ret nz
 
 	ld a, [InBattleTowerBattle]
 	bit 0, a
-	jr nz, .asm_3d006
+	jr nz, .battle_tower
 
 	call Function3ebd8
 	ld c, $28
 	call DelayFrames
 	ld a, [BattleType]
 	cp BATTLETYPE_CANLOSE
-	jr nz, .asm_3cfe8
+	jr nz, .skip_heal
 	predef HealParty
-.asm_3cfe8
+.skip_heal
 	ld a, [wc2cc]
 	bit 0, a
-	jr nz, .asm_3cff2
+	jr nz, .skip_whatever_this_is
 	call Function3718
 
-.asm_3cff2
+.skip_whatever_this_is
 	jp Function3d02b
 
-.asm_3cff5
+.mobile
 	call Function3ebd8
 	ld c, $28
 	call DelayFrames
@@ -2502,13 +2502,13 @@ WinTrainerBattle: ; 3cfa4
 	callba Function4ea0a
 	ret
 
-.asm_3d006
+.battle_tower
 	call Function3ebd8
 	ld c, $28
 	call DelayFrames
 	call EmptyBattleTextBox
 	ld c, $3
-	callba StoreText
+	callba BattleTowerText
 	call Functiona80
 	ld hl, wPayDayMoney
 	ld a, [hli]
@@ -3087,11 +3087,11 @@ LostBattle: ; 3d38e
 
 	ld a, [InBattleTowerBattle]
 	bit 0, a
-	jr nz, .asm_3d3bd
+	jr nz, .battle_tower
 
 	ld a, [BattleType]
 	cp BATTLETYPE_CANLOSE
-	jr nz, .asm_3d3e3
+	jr nz, .not_canlose
 
 ; Remove the enemy from the screen.
 	hlcoord 0, 0
@@ -3104,12 +3104,12 @@ LostBattle: ; 3d38e
 
 	ld a, [wc2cc]
 	bit 0, a
-	jr nz, .asm_3d3bc
+	jr nz, .skip
 	call Function3718
-.asm_3d3bc
+.skip
 	ret
 
-.asm_3d3bd
+.battle_tower
 ; Remove the enemy from the screen.
 	hlcoord 0, 0
 	lb bc, 8, 21
@@ -3121,13 +3121,13 @@ LostBattle: ; 3d38e
 
 	call EmptyBattleTextBox
 	ld c, 2
-	callba StoreText
+	callba BattleTowerText
 	call Functiona80
 	call ClearTileMap
 	call WhiteBGMap
 	ret
 
-.asm_3d3e3
+.not_canlose
 	ld a, [wLinkMode]
 	and a
 	jr nz, .LostLinkBattle
@@ -3141,7 +3141,7 @@ LostBattle: ; 3d38e
 .LostLinkBattle
 	call UpdateEnemyMonInParty
 	call CheckEnemyTrainerDefeated
-	jr nz, .asm_3d40a
+	jr nz, .not_tied
 	ld hl, TiedAgainstText
 	ld a, [wBattleResult]
 	and $c0
@@ -3149,10 +3149,10 @@ LostBattle: ; 3d38e
 	ld [wBattleResult], a
 	jr .text
 
-.asm_3d40a
+.not_tied
 	ld hl, LostAgainstText
 	call IsMobileBattle
-	jr z, .asm_3d417
+	jr z, .mobile
 
 .text
 	call StdBattleTextBox
@@ -3161,7 +3161,7 @@ LostBattle: ; 3d38e
 	scf
 	ret
 
-.asm_3d417
+.mobile
 ; Remove the enemy from the screen.
 	hlcoord 0, 0
 	lb bc, 8, 21

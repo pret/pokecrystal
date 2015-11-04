@@ -1022,9 +1022,9 @@ warpfacing: macro
 	db \4 ; y
 	endm
 
-	enum storetext_command
-storetext: macro
-	db storetext_command
+	enum battletowertext_command
+battletowertext: macro
+	db battletowertext_command
 	db \1 ; memory
 	endm
 

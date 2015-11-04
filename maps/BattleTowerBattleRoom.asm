@@ -27,7 +27,7 @@ Script_BattleRoomLoop: ; 0x9f425
 	waitbutton
 	applymovement $2, MovementData_0x9e592
 	loadfont
-	storetext 1
+	battletowertext 1
 	keeptextopen
 	loadmovesprites
 	special BattleTowerBattle ; calls predef startbattle
