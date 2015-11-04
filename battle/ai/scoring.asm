@@ -1719,7 +1719,7 @@ AI_Smart_HealBell: ; 38d1f
 	ld b, a
 	ld c, 0
 	ld hl, OTPartyMon1HP
-	ld de, OTPartyMon2 - OTPartyMon1
+	ld de, PARTYMON_STRUCT_LENGTH
 
 .loop
 	push hl
@@ -1933,7 +1933,7 @@ AICheckLastPlayerMon: ; 38e2e
 	ld b, a
 	ld c, 0
 	ld hl, PartyMon1HP
-	ld de, PartyMon2 - PartyMon1
+	ld de, PARTYMON_STRUCT_LENGTH
 
 .loop
 	ld a, [CurBattleMon]

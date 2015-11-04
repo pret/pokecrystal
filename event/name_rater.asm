@@ -91,7 +91,7 @@ CheckIfMonIsYourOT: ; fb78a
 	jr c, .nope
 
 	ld hl, PartyMon1ID
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld de, PlayerID

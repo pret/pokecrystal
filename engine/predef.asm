@@ -43,7 +43,7 @@ PredefPointers:: ; 856b
 	add_predef GiveEgg
 	add_predef Functionc6e0
 	add_predef CalcPkmnStats
-	add_predef Functione17b
+	add_predef CalcPkmnStatC
 	add_predef CanLearnTMHMMove
 	add_predef GetTMHMMove
 	add_predef Function28eef ; $ 10

@@ -2295,7 +2295,7 @@ ShareExperiencePoints: ; 3ceaa
 .asm_3ceb5
 	push hl
 	push bc
-	ld bc, PartyMon1HP - PartyMon1
+	ld bc, MON_HP
 	add hl, bc
 	ld a, [hli]
 	or [hl]
@@ -2305,7 +2305,7 @@ ShareExperiencePoints: ; 3ceaa
 
 	push hl
 	push bc
-	ld bc, PartyMon1Item - PartyMon1
+	ld bc, MON_ITEM
 	add hl, bc
 	pop bc
 	ld a, [hl]
@@ -2320,7 +2320,7 @@ ShareExperiencePoints: ; 3ceaa
 .asm_3ced1
 	sla c
 	push de
-	ld de, PartyMon2 - PartyMon1
+	ld de, PARTYMON_STRUCT_LENGTH
 	add hl, de
 	pop de
 	dec b
@@ -2384,7 +2384,7 @@ CheckEnemyTrainerDefeated: ; 3cf35
 	ld b, a
 	xor a
 	ld hl, OTPartyMon1HP
-	ld de, PartyMon2 - PartyMon1
+	ld de, PARTYMON_STRUCT_LENGTH
 
 .loop
 	or [hl]
@@ -4062,7 +4062,7 @@ TryToRunAwayFromBattle: ; 3d8b3
 
 
 Function3da0d: ; 3da0d
-	ld a, PartyMon1Species - PartyMon1
+	ld a, MON_SPECIES
 	call GetPartyParamLocation
 	ld de, BattleMonSpecies
 	ld bc, 1 + 1 + NUM_MOVES ; species, item, moves ; BattleMonDVs - BattleMonSpecies
@@ -4265,7 +4265,7 @@ Function3db5f: ; 3db5f
 	call Call_PlayBattleAnim
 
 .asm_3dbbc
-	ld a, PartyMon1Species - PartyMon1
+	ld a, MON_SPECIES
 	call GetPartyParamLocation
 	ld b, h
 	ld c, l
@@ -5608,7 +5608,7 @@ MoveSelectionScreen: ; 3e4bc
 	jr .asm_3e4e2
 
 .asm_3e4dd
-	ld a, PartyMon1Moves - PartyMon1
+	ld a, MON_MOVES
 	call GetPartyParamLocation
 
 .asm_3e4e2
@@ -5867,7 +5867,7 @@ endr
 	push hl
 	call .asm_3e6a5
 	pop hl
-	ld bc, PartyMon1PP - PartyMon1Moves
+	ld bc, (MON_PP) - (MON_MOVES)
 	add hl, bc
 	call .asm_3e6a5
 
@@ -7424,7 +7424,7 @@ GiveExperiencePoints: ; 3ee3b
 .asm_3ee89
 	push hl
 	push bc
-	ld a, PartyMon1PokerusStatus - PartyMon1
+	ld a, MON_PKRUS
 	call GetPartyParamLocation
 	ld a, [hl]
 	and a
@@ -7489,7 +7489,7 @@ endr
 	dec a
 	call nz, DoubleExp
 	push bc
-	ld a, PartyMon1Item - PartyMon1
+	ld a, MON_ITEM
 	call GetPartyParamLocation
 	ld a, [hl]
 	cp LUCKY_EGG
@@ -7574,7 +7574,7 @@ endr
 	predef CopyPkmnToTempMon
 	callab CalcLevel
 	pop bc
-	ld hl, PartyMon1Level - PartyMon1
+	ld hl, MON_LEVEL
 	add hl, bc
 	ld a, [hl]
 	cp MAX_LEVEL
@@ -7587,7 +7587,7 @@ endr
 	ld a, d
 	ld [CurPartyLevel], a
 	ld [hl], a
-	ld hl, PartyMon1Species - PartyMon1
+	ld hl, MON_SPECIES
 	add hl, bc
 	ld a, [hl]
 	ld [CurSpecies], a
@@ -7733,7 +7733,7 @@ endr
 	cp b
 	jr z, .asm_3f0d1
 	ld [CurPartyMon], a
-	ld a, PartyMon1Species - PartyMon1
+	ld a, MON_SPECIES
 	call GetPartyParamLocation
 	ld b, h
 	ld c, l
@@ -8577,7 +8577,7 @@ Function3f594: ; 3f594
 	ld b, a
 .partyloop
 	push bc
-	ld a, PartyMon1HP - PartyMon1
+	ld a, MON_HP
 	call GetPartyParamLocation
 	ld a, [hli]
 	or [hl]

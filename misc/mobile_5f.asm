@@ -410,7 +410,7 @@ Function17d1f1: ; 17d1f1
 	ld hl, PartyMon1DVs
 	ld a, [PartyCount]
 	dec a
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	predef GetUnownLetter
 	callab Functionfba18
@@ -2398,7 +2398,7 @@ Function17ded9: ; 17ded9
 	ld a, [hli]
 	ld b, a
 	push hl
-	callba SetPkmnCaughtData
+	callba SetPartymonCaughtData
 	pop hl
 	pop bc
 	jr .asm_17df5e
@@ -2585,7 +2585,7 @@ Function17e026: ; 17e026
 	ld b, a
 	push hl
 	call CloseSRAM
-	callba Function4db92
+	callba SetBoxMonCaughtData
 	ld a, $1
 	call GetSRAMBank
 	pop hl

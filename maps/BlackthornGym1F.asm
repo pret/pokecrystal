@@ -62,7 +62,7 @@ UnknownScript_0x194e69:
 	iftrue UnknownScript_0x194e94
 	writetext UnknownText_0x195196
 	keeptextopen
-	giveitem TM_DRAGONBREATH, $1
+	giveitem TM_DRAGONBREATH, 1
 	iffalse UnknownScript_0x194e8e
 	itemtotext TM_DRAGONBREATH, $0
 	writetext UnknownText_0x1951bf

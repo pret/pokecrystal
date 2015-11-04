@@ -4101,7 +4101,7 @@ Function119d93: ; 119d93 (46:5d93)
 	call SimpleMultiply
 	ld hl, wcd50
 	ld [hl], a
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld de, PartyMon1Level
 	ld a, [PartyCount]
 .asm_119daf
@@ -4143,7 +4143,7 @@ Function119dd1: ; 119dd1 (46:5dd1)
 	ld a, $1
 	ld [rSVBK], a ; $ff00+$70
 	ld hl, PartyMon1Level
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld de, PartySpecies
 	ld a, [PartyCount]
 .asm_119deb
@@ -7867,7 +7867,7 @@ Function11b98f: ; 11b98f
 	ld a, $ff
 	ld [bc], a
 	ld hl, PartyMon1Species
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, e
 	ld [wcd2a], a
 .loop2
@@ -7881,7 +7881,7 @@ Function11b98f: ; 11b98f
 	ld l, a
 	ld a, [wcd23]
 	ld h, a
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 	ld hl, PartyMonOT
 	ld bc, NAME_LENGTH
@@ -7920,7 +7920,7 @@ Function11b98f: ; 11b98f
 	ld a, "@"
 	ld [de], a
 	ld hl, s0_a600
-	ld bc, party_struct_length - 1
+	ld bc, PARTYMON_STRUCT_LENGTH - 1
 	ld a, [wcd2a]
 .loop5
 	add hl, bc
@@ -7935,7 +7935,7 @@ Function11b98f: ; 11b98f
 	ld l, a
 	ld a, [wcd29]
 	ld h, a
-	ld bc, party_struct_length - 1
+	ld bc, PARTYMON_STRUCT_LENGTH - 1
 	call CopyBytes
 	call CloseSRAM
 	ret

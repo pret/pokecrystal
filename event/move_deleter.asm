@@ -12,7 +12,7 @@ MoveDeletion:
 	jr z, .asm_2c5bc
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Moves + 1
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [hl]
 	and a
@@ -116,7 +116,7 @@ Function2c5f9: ; 2c5f9
 	ld hl, PartyMon1Moves
 	add hl, bc
 	ld a, [CurPartyMon]
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	pop bc
 	push bc
@@ -145,7 +145,7 @@ Function2c5f9: ; 2c5f9
 	ld hl, PartyMon1PP
 	add hl, bc
 	ld a, [CurPartyMon]
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	pop bc
 	inc b

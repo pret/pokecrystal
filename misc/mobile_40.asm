@@ -6527,7 +6527,7 @@ Function102bdc: ; 102bdc
 	jr nz, .asm_102c05
 
 .asm_102bfa
-	ld bc, OTPartyMon1Level - OTPartyMon1
+	ld bc, MON_LEVEL
 	add hl, bc
 	ld a, [hl]
 	cp MAX_LEVEL + 1
@@ -6718,7 +6718,7 @@ Function102d48: ; 102d48
 	call SetSeenAndCaughtMon
 	ld a, [wcd4c]
 	dec a
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, PartyMon1Happiness
 	call AddNTimes
 	ld [hl], BASE_HAPPINESS
@@ -6729,7 +6729,7 @@ Function102d48: ; 102d48
 	jr nz, .asm_102d98
 	ld a, [wcd4c]
 	dec a
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, PartyMon1DVs
 	call AddNTimes
 	predef GetUnownLetter

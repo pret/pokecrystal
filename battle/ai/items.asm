@@ -250,7 +250,7 @@ endr
 	ld d, a
 	ld e, 0
 	ld hl, OTPartyMon1Level
-	ld bc, OTPartyMon2 - OTPartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 .next
 	ld a, [hl]
 	cp e
@@ -685,7 +685,7 @@ AI_TrySwitch: ; 3844b
 	inc d
 .fainted
 	push bc
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	dec c
@@ -710,7 +710,7 @@ AI_Switch: ; 3846c
 	push af
 	ld a, [CurOTMon]
 	ld hl, OTPartyMon1Status
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -754,7 +754,7 @@ Function384d5: ; This appears to be unused
 AI_HealStatus: ; 384e0
 	ld a, [CurOTMon]
 	ld hl, OTPartyMon1Status
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	xor a
 	ld [hl], a

@@ -4,7 +4,6 @@ flag_array: MACRO
 	ds ((\1) + 7) / 8
 ENDM
 
-box_struct_length EQU 24 + NUM_MOVES * 2 ; 32
 box_struct: MACRO
 \1Species::        db
 \1Item::           db
@@ -30,7 +29,6 @@ box_struct: MACRO
 \1End::
 ENDM
 
-party_struct_length EQU box_struct_length + 16
 party_struct: MACRO
 	box_struct \1
 \1Status::         db
@@ -76,7 +74,7 @@ box: MACRO
 \1Species::         ds MONS_PER_BOX + 1
 \1Mons::
 \1Mon1::            box_struct \1Mon1
-\1Mon2::            ds box_struct_length * (MONS_PER_BOX +- 1)
+\1Mon2::            ds BOXMON_STRUCT_LENGTH * (MONS_PER_BOX +- 1)
 \1MonOT::           ds NAME_LENGTH * MONS_PER_BOX
 \1MonNicknames::    ds PKMN_NAME_LENGTH * MONS_PER_BOX
 \1MonNicknamesEnd::
@@ -129,7 +127,6 @@ channel_struct: MACRO
                       ds 1 ; c131
                       ds 1 ; c132
 ENDM
-GLOBAL box_struct_length, party_struct_length
 
 INCLUDE "vram.asm"
 
@@ -885,15 +882,15 @@ wc7e8:: ds 24
 
 
 RSSET 0 ; Offsets for wBT_OTTempCopy:: @ $c608
-wBT_OTTempCopy_0			RB 10	                 ; $c608
+wBT_OTTempCopy_0			RB NAME_LENGTH + -1      ; $c608
 wBT_OTTempCopy_TrainerClass	RB 1	                 ; $c608 + $a = $c612
-wBT_OTTempCopy_Pkmn1		RB party_struct_length   ; $c608 + $b = $c613
+wBT_OTTempCopy_Pkmn1		RB $30 ; PARTYMON_STRUCT_LENGTH   ; $c608 + $b = $c613
 wBT_OTTempCopy_Pkmn1Name	RB PKMN_NAME_LENGTH + -1 ; $c608 + $45 = $c64d
 wBT_OTTempCopy_45           RB 1
-wBT_OTTempCopy_Pkmn2		RB party_struct_length   ; $c608 + $46 = $c64e
+wBT_OTTempCopy_Pkmn2		RB $30 ; PARTYMON_STRUCT_LENGTH   ; $c608 + $46 = $c64e
 wBT_OTTempCopy_Pkmn2Name	RB PKMN_NAME_LENGTH + -1 ; $c608 + $76 = $c67e
 wBT_OTTempCopy_80           RB 1
-wBT_OTTempCopy_Pkmn3		RB party_struct_length   ; $c608 + $81 = $c689
+wBT_OTTempCopy_Pkmn3		RB $30 ; PARTYMON_STRUCT_LENGTH   ; $c608 + $81 = $c689
 wBT_OTTempCopy_Pkmn3Name	RB PKMN_NAME_LENGTH + -1 ; $c608 + $b1 = $c6b9
 wBT_OTTempCopy_BB           RB 1
 

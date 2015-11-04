@@ -38,7 +38,7 @@ SpecialOmanyteChamber: ; 8adef
 	dec a
 	ld [CurPartyMon], a
 	push bc
-	ld a, PartyMon1Item - PartyMon1
+	ld a, MON_ITEM
 	call GetPartyParamLocation
 	pop bc
 	ld a, [hl]

@@ -499,7 +499,7 @@ AideScript_GiveYouBalls:
 	keeptextopen
 	itemtotext POKE_BALL, $1
 	scall AideScript_ReceiveTheBalls
-	giveitem POKE_BALL, $5
+	giveitem POKE_BALL, 5
 	writetext AideText_ExplainBalls
 	keeptextopen
 	itemnotify

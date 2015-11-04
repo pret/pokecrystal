@@ -1965,7 +1965,7 @@ GetPartyParamLocation:: ; 3917
 
 GetPartyLocation:: ; 3927
 ; Add the length of a PartyMon struct to hl a times.
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	jp AddNTimes
 ; 392d
 

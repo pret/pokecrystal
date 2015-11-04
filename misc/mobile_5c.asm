@@ -431,7 +431,7 @@ Function1702b7: ; 1702b7
 	ld [bc], a
 	inc bc
 	push bc
-	ld bc, party_struct_length
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 	push de
 	ld a, [BGMapBuffer]
@@ -648,7 +648,7 @@ CopyBTTrainer_FromBT_OTrainer_TowBT_OTTempCopy: ; 1704a2
 	ld hl, BT_OTrainer ; $d100
 	ld de, wBT_OTTempCopy ; $c608
 	ld bc, BT_OTrainerEnd - BT_OTrainer ; $e0 = $a + $1 + 3*$3b + $24
-                                        ;	  = $a + $1 + BATTLETOWER_NROFPKMNS * (party_struct_length + PKMN_NAME_LENGTH) + BATTLETOWER_TRAINERDATALENGTH
+                                        ;	  = $a + $1 + BATTLETOWER_NROFPKMNS * (PARTYMON_STRUCT_LENGTH + PKMN_NAME_LENGTH) + BATTLETOWER_TRAINERDATALENGTH
 	call CopyBytes
 	pop af
 	ld [rSVBK], a

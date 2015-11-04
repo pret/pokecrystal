@@ -706,7 +706,7 @@ BattleCommand02: ; 343db
 
 	; If the monster's id doesn't match the player's,
 	; some conditions need to be met.
-	ld a, PartyMon1ID - PartyMon1
+	ld a, MON_ID
 	call BattlePartyAttr
 
 	ld a, [PlayerID]
@@ -1949,7 +1949,7 @@ CountEnemyAliveMons: ; 349f4
 .next
 	srl b
 	push bc
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	inc e
@@ -1987,7 +1987,7 @@ Function34a2a: ; 34a2a
 
 	push hl
 	push bc
-	ld bc, PartyMon1HP - PartyMon1
+	ld bc, MON_HP
 	add hl, bc
 	pop bc
 	ld a, [hli]
@@ -2022,7 +2022,7 @@ Function34a2a: ; 34a2a
 	ret z
 
 	push bc
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 
@@ -2136,7 +2136,7 @@ Function34aa7: ; 34aa7
 
 .asm_34b00
 	push bc
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	srl b
@@ -2266,7 +2266,7 @@ endr
 	srl b
 	pop hl
 	push bc
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	jr .loop
@@ -3358,7 +3358,7 @@ endr
 
 
 DittoMetalPowder: ; 352b1
-	ld a, PartyMon1Species - PartyMon1
+	ld a, MON_SPECIES
 	call BattlePartyAttr
 	ld a, [hBattleTurn]
 	and a
@@ -3633,7 +3633,7 @@ SpeciesItemBoost: ; 353d1
 	ld h, a
 
 	push hl
-	ld a, PartyMon1Species - PartyMon1
+	ld a, MON_SPECIES
 	call BattlePartyAttr
 
 	ld a, [hBattleTurn]
@@ -4840,7 +4840,7 @@ BattleCommand46: ; 35a74
 	bit SUBSTATUS_TRANSFORMED, [hl]
 	jp nz, .asm_35b10
 
-	ld a, PartyMon1Moves - PartyMon1
+	ld a, MON_MOVES
 	call UserPartyAttr
 	ld d, h
 	ld e, l
@@ -5118,7 +5118,7 @@ BattleCommand4a: ; 35c0f
 	ld a, [AttackMissed]
 	and a
 	jp nz, .asm_35c91
-	ld bc, PartyMon2 - PartyMon1 ; ????
+	ld bc, PARTYMON_STRUCT_LENGTH ; ????
 	ld hl, EnemyMonMoves
 	ld a, [hBattleTurn]
 	and a
@@ -5166,7 +5166,7 @@ endr
 	sub b
 	ld [hl], a
 	push af
-	ld a, PartyMon1PP - PartyMon1
+	ld a, MON_PP
 	call OpponentPartyAttr
 	ld d, b
 	pop af
@@ -5262,7 +5262,7 @@ BattleCommand4c: ; 35cc9
 	ld [hl], a
 	ld h, d
 	ld l, e
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld d, PartyEnd - PartySpecies
 .asm_35ce9
 	ld [hl], a
@@ -7418,7 +7418,7 @@ Function36994: ; 36994
 	ld a, [PartyCount]
 	ld d, a
 	ld e, 0
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 .asm_3699d
 	ld a, [CurBattleMon]
 	cp e
@@ -9286,7 +9286,7 @@ BattleCommand53: ; 37563
 	jr z, .done
 
 .party
-	ld a, PartyMon1Status - PartyMon1
+	ld a, MON_STATUS
 	call UserPartyAttr
 	res FRZ, [hl]
 
@@ -9408,7 +9408,7 @@ BattleCommand5f: ; 377ce
 
 
 Function377f5: ; 377f5
-	ld a, PartyMon1Species - PartyMon1
+	ld a, MON_SPECIES
 	call BattlePartyAttr
 	ld a, [hl]
 	ld [CurPartySpecies], a
@@ -9937,7 +9937,7 @@ CheckAnyOtherAliveMons: ; 37b01
 
 .next
 	push bc
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	inc c

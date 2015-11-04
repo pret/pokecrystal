@@ -573,7 +573,7 @@ endr
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1Happiness
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 
 	ld a, FRIEND_BALL_HAPPINESS
@@ -1198,7 +1198,7 @@ SunStone: ; ee0f
 
 	jp c, .asm_ee38
 
-	ld a, PartyMon1Item - PartyMon1
+	ld a, MON_ITEM
 	call GetPartyParamLocation
 
 	ld a, [hl]
@@ -1239,7 +1239,7 @@ Calcium: ; ee3d
 
 	call Functioneed9
 
-	ld a, PartyMon1StatExp - PartyMon1
+	ld a, MON_STAT_EXP
 	call GetPartyParamLocation
 
 	add hl, bc
@@ -1281,11 +1281,11 @@ Functionee83: ; ee83
 
 
 Functionee8c: ; ee8c
-	ld a, PartyMon1MaxHP - PartyMon1
+	ld a, MON_MAXHP
 	call GetPartyParamLocation
 	ld d, h
 	ld e, l
-	ld a, PartyMon1HPExp - 1 - PartyMon1
+	ld a, MON_EXP + 2
 	call GetPartyParamLocation
 	ld b, $1
 	predef_jump CalcPkmnStats
@@ -1338,11 +1338,11 @@ Functioneed9: ; eed9
 ; eeeb
 
 Table_eeeb: ; eeeb
-	db HP_UP,   PartyMon1HPExp  - PartyMon1StatExp
-	db PROTEIN, PartyMon1AtkExp - PartyMon1StatExp
-	db IRON,    PartyMon1DefExp - PartyMon1StatExp
-	db CARBOS,  PartyMon1SpdExp - PartyMon1StatExp
-	db CALCIUM, PartyMon1SpcExp - PartyMon1StatExp
+	db HP_UP,    (MON_HP_EXP) - (MON_STAT_EXP)
+	db PROTEIN, (MON_ATK_EXP) - (MON_STAT_EXP)
+	db IRON,    (MON_DEF_EXP) - (MON_STAT_EXP)
+	db CARBOS,  (MON_SPD_EXP) - (MON_STAT_EXP)
+	db CALCIUM, (MON_SPC_EXP) - (MON_STAT_EXP)
 ; eef5
 
 
@@ -1350,7 +1350,7 @@ Functioneef5: ; eef5
 	ld a, [CurPartySpecies]
 	ld [CurSpecies], a
 	ld [wd265], a
-	ld a, PartyMon1Level - PartyMon1
+	ld a, MON_LEVEL
 	call GetPartyParamLocation
 	ld a, [hl]
 	ld [CurPartyLevel], a
@@ -1370,7 +1370,7 @@ RareCandy: ; ef14
 
 	call Functioneef5
 
-	ld a, PartyMon1Level - PartyMon1
+	ld a, MON_LEVEL
 	call GetPartyParamLocation
 
 	ld a, [hl]
@@ -1385,7 +1385,7 @@ RareCandy: ; ef14
 	callba CalcExpAtLevel
 
 	pop de
-	ld a, PartyMon1Exp - PartyMon1
+	ld a, MON_EXP
 	call GetPartyParamLocation
 
 	ld a, [hMultiplicand]
@@ -1395,7 +1395,7 @@ RareCandy: ; ef14
 	ld a, [$ffb6]
 	ld [hl], a
 
-	ld a, PartyMon1MaxHP - PartyMon1
+	ld a, MON_MAXHP
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld b, a
@@ -1403,7 +1403,7 @@ RareCandy: ; ef14
 	push bc
 	call Functionee8c
 
-	ld a, PartyMon1MaxHP + 1 - PartyMon1
+	ld a, MON_MAXHP + 1
 	call GetPartyParamLocation
 
 	pop bc
@@ -1503,7 +1503,7 @@ Functionefda: ; efda (3:6fda)
 	ld a, $1
 	ret z
 	call Functionf058
-	ld a, PartyMon1Status - PartyMon1
+	ld a, MON_STATUS
 	call GetPartyParamLocation
 	ld a, [hl]
 	and c
@@ -1542,7 +1542,7 @@ Functionf009: ; f009 (3:7009)
 Functionf01e: ; f01e (3:701e)
 	call Functionf2a6
 	ret nc
-	ld a, PartyMon1HP - PartyMon1
+	ld a, MON_HP
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld [BattleMonHP], a
@@ -1724,7 +1724,7 @@ Functionf144: ; f144
 	xor a
 	ld [Danger], a
 	call Functionf2c3
-	ld a, PartyMon1Status - PartyMon1
+	ld a, MON_STATUS
 	call GetPartyParamLocation
 	xor a
 	ld [hli], a
@@ -1960,7 +1960,7 @@ Functionf2ba: ; f2ba (3:72ba)
 Functionf2c3: ; f2c3 (3:72c3)
 	call Functionf36f
 asm_f2c6: ; f2c6 (3:72c6)
-	ld a, PartyMon1HP - PartyMon1
+	ld a, MON_HP
 	call GetPartyParamLocation
 	ld [hl], d
 	inc hl
@@ -1968,7 +1968,7 @@ asm_f2c6: ; f2c6 (3:72c6)
 	jp Functionf328
 
 Functionf2d1: ; f2d1 (3:72d1)
-	ld a, PartyMon1HP + 1 - PartyMon1
+	ld a, MON_HP + 1
 	call GetPartyParamLocation
 	ld a, [hl]
 	add e
@@ -1978,11 +1978,11 @@ Functionf2d1: ; f2d1 (3:72d1)
 	ld [hl], a
 	jr c, .asm_f2f5
 	call Functionf328
-	ld a, PartyMon1HP + 1 - PartyMon1
+	ld a, MON_HP + 1
 	call GetPartyParamLocation
 	ld d, h
 	ld e, l
-	ld a, PartyMon1MaxHP + 1 - PartyMon1
+	ld a, MON_MAXHP + 1
 	call GetPartyParamLocation
 	ld a, [de]
 	sub [hl]
@@ -1997,7 +1997,7 @@ Functionf2d1: ; f2d1 (3:72d1)
 	ret
 
 Functionf2f9: ; f2f9 (3:72f9)
-	ld a, PartyMon1HP + 1 - PartyMon1
+	ld a, MON_HP + 1
 	call GetPartyParamLocation
 	ld a, [hl]
 	sub e
@@ -2035,7 +2035,7 @@ Functionf31b: ; f31b (3:731b)
 	ret
 
 Functionf328: ; f328 (3:7328)
-	ld a, PartyMon1HP - PartyMon1
+	ld a, MON_HP
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld [wd1ef], a
@@ -2061,7 +2061,7 @@ Functionf33f: ; f33f
 ; f348
 
 Functionf348: ; f348 (3:7348)
-	ld a, PartyMon1HP - PartyMon1
+	ld a, MON_HP
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld [wd1ed], a
@@ -2078,7 +2078,7 @@ Functionf356: ; f356 (3:7356)
 
 Functionf35f: ; f35f (3:735f)
 	push hl
-	ld a, PartyMon1MaxHP - PartyMon1
+	ld a, MON_MAXHP
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld [Buffer2], a
@@ -2096,7 +2096,7 @@ Functionf36f: ; f36f (3:736f)
 
 Functionf378: ; f378 (3:7378)
 	push bc
-	ld a, PartyMon1MaxHP - PartyMon1
+	ld a, MON_MAXHP
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld [hDividend + 0], a
@@ -2408,7 +2408,7 @@ PokeFlute: ; f50c
 
 
 .Functionf554
-	ld de, PartyMon2 - PartyMon1
+	ld de, PARTYMON_STRUCT_LENGTH
 	ld c, PARTY_LENGTH
 
 .loop
@@ -2555,7 +2555,7 @@ Mysteryberry: ; f5bf
 	ld [CurMoveNum], a
 	jr nz, .loop
 	ld hl, PartyMon1Moves
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call GetMthMoveOfNthPartymon
 
 	push hl
@@ -2625,7 +2625,7 @@ Functionf652: ; f652
 .asm_f677
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Moves
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld de, BattleMonMoves
 	ld b, NUM_MOVES
@@ -2641,7 +2641,7 @@ Functionf652: ; f652
 	rept NUM_MOVES + 2 ; BattleMonPP - BattleMonMoves
 	inc de
 	endr
-	ld bc, PartyMon1PP - PartyMon1Moves
+	ld bc, (MON_PP) - (MON_MOVES)
 	add hl, bc
 	ld a, [hl]
 	ld [de], a
@@ -2674,7 +2674,7 @@ Elixer_RestorePPofAllMoves: ; f6af
 .moveLoop
 	push bc
 	ld hl, PartyMon1Moves
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call GetMthMoveOfNthPartymon
 	ld a, [hl]
 	and a
@@ -2710,7 +2710,7 @@ RestorePP: ; f6e8
 	ld [MonType], a
 	call Functionf8ec
 	ld hl, PartyMon1PP
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call GetMthMoveOfNthPartymon
 	ld a, [wd265]
 	ld b, a
@@ -3105,13 +3105,13 @@ GotOffTheItemText: ; 0xf847
 
 
 Functionf84c: ; f84c
-	ld a, PartyMon1Moves - PartyMon1
+	ld a, MON_MOVES
 	call GetPartyParamLocation
 	push hl
 	ld de, Buffer1
 	predef FillPP
 	pop hl
-	ld bc, PartyMon1PP - PartyMon1Moves
+	ld bc, (MON_PP) - (MON_MOVES)
 	add hl, bc
 	ld de, Buffer1
 	ld b, 0
@@ -3193,10 +3193,10 @@ ComputeMaxPP: ; f881
 ; f8b9
 
 Functionf8b9: ; f8b9
-	ld a, PartyMon1PP - PartyMon1
+	ld a, MON_PP
 	call GetPartyParamLocation
 	push hl
-	ld a, PartyMon1Moves - PartyMon1
+	ld a, MON_MOVES
 	call GetPartyParamLocation
 	pop de
 	xor a ; PARTYMON
@@ -3239,7 +3239,7 @@ Functionf8ec: ; f8ec
 	and a
 
 	ld hl, PartyMon1Moves
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	jr z, .got_partymon ; PARTYMON
 
 	ld hl, OTPartyMon1Moves
@@ -3279,7 +3279,7 @@ Functionf8ec: ; f8ec
 	pop hl
 
 	push bc
-	ld bc, PartyMon1PP - PartyMon1Moves
+	ld bc, (MON_PP) - (MON_MOVES)
 	ld a, [MonType]
 	cp WILDMON
 	jr nz, .notwild

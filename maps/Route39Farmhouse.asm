@@ -25,7 +25,7 @@ UnknownScript_0x9cec5:
 	iffalse UnknownScript_0x9cf02
 	checkmoney $0, 500
 	if_equal $2, UnknownScript_0x9cef6
-	giveitem MOOMOO_MILK, $1
+	giveitem MOOMOO_MILK, 1
 	iffalse UnknownScript_0x9cefc
 	takemoney $0, 500
 	special Function24ae8

@@ -615,7 +615,7 @@ Function91e4: ; 91e4
 
 .asm_91f5
 	ld hl, PartyMon1DVs
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld c, l

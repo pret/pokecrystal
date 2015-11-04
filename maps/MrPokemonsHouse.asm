@@ -28,7 +28,7 @@ UnknownScript_0x196e56:
 	writetext UnknownText_0x196fa8
 	keeptextopen
 	waitbutton
-	giveitem MYSTERY_EGG, $1
+	giveitem MYSTERY_EGG, 1
 	writetext UnknownText_0x196fd2
 	playsound SFX_KEY_ITEM
 	waitbutton

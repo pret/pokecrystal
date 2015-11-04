@@ -121,7 +121,7 @@ Function_LoadRandomBattleTowerPkmn: ; 1f8081
 	; Check if Pkmn was already loaded before
 	; Check current and the 2 previous teams
 	; includes check if item is double at the current team
-	ld bc, party_struct_length + PKMN_NAME_LENGTH
+	ld bc, PARTYMON_STRUCT_LENGTH + PKMN_NAME_LENGTH
 	call AddNTimes
 	ld a, [hli]
 	ld b, a
@@ -164,17 +164,17 @@ Function_LoadRandomBattleTowerPkmn: ; 1f8081
 	cp b
 	jr z, .FindARandomBattleTowerPkmn
 
-	ld bc, party_struct_length + PKMN_NAME_LENGTH
+	ld bc, PARTYMON_STRUCT_LENGTH + PKMN_NAME_LENGTH
 	call CopyBytes
 
 	ld a, [wNamedObjectIndexBuffer]
 	push af
 	push de
-	ld hl, - (party_struct_length + PKMN_NAME_LENGTH)
+	ld hl, - (PARTYMON_STRUCT_LENGTH + PKMN_NAME_LENGTH)
 	add hl, de
 	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
-	ld bc, party_struct_length
+	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	push hl
 	call GetPokemonName

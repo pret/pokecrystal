@@ -106,7 +106,7 @@ UnknownScript_0x6104b:
 	end
 
 UnknownScript_0x61051:
-	giveitem EON_MAIL, $1
+	giveitem EON_MAIL, 1
 	writetext UnknownText_0x6252a
 	closetext
 	loadmovesprites

@@ -97,7 +97,7 @@ SeerAction4: ; 4f12b
 ; 4f134
 
 ReadCaughtData: ; 4f134
-	ld a, PartyMon1CaughtData - PartyMon1
+	ld a, MON_CAUGHTDATA
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld [wd03b], a
@@ -109,7 +109,7 @@ ReadCaughtData: ; 4f134
 	ld a, 1
 	ld [wd002], a
 
-	ld a, PartyMon1ID - PartyMon1
+	ld a, MON_ID
 	call GetPartyParamLocation
 	ld a, [PlayerID]
 	cp [hl]
@@ -358,7 +358,7 @@ SeerCancelText: ; 0x4f2af
 
 
 SeerAdvice: ; 4f2b4
-	ld a, PartyMon1Level - PartyMon1
+	ld a, MON_LEVEL
 	call GetPartyParamLocation
 	ld a, [wd038 + 2]
 	ld c, a
@@ -426,7 +426,7 @@ SeerAdvice5: ; 0x4f2fc
 
 
 GetCaughtGender: ; 4f301
-	ld hl, PartyMon1CaughtGender - PartyMon1
+	ld hl, MON_CAUGHTGENDER
 	add hl, bc
 
 	ld a, [hl]

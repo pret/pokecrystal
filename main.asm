@@ -1598,7 +1598,7 @@ LearnMove: ; 6508
 
 .loop
 	ld hl, PartyMon1Moves
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld d, h
@@ -1642,7 +1642,7 @@ LearnMove: ; 6508
 .learn
 	ld a, [wd262]
 	ld [hl], a
-	ld bc, PartyMon1PP - PartyMon1Moves
+	ld bc, (MON_PP) - (MON_MOVES)
 	add hl, bc
 
 	push hl
@@ -2681,7 +2681,7 @@ Function7171: ; 7171
 
 GetFirstPokemonHappiness: ; 718d
 	ld hl, PartyMon1Happiness
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld de, PartySpecies
 .loop
 	ld a, [de]
@@ -2729,7 +2729,7 @@ ChangeHappiness: ; 71c2
 
 	push bc
 	ld hl, PartyMon1Happiness
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
 	pop bc
@@ -2838,7 +2838,7 @@ StepHappiness:: ; 725a
 
 .next
 	push de
-	ld de, PartyMon2 - PartyMon1
+	ld de, PARTYMON_STRUCT_LENGTH
 	add hl, de
 	pop de
 	dec c
@@ -2945,10 +2945,10 @@ SpecialGiveShuckle: ; 7305
 
 ; Caught data.
 	ld b, 0
-	callba SetPkmnCaughtData
+	callba SetPartymonCaughtData
 
 ; Holding a Berry.
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [PartyCount]
 	dec a
 	push af
@@ -3012,7 +3012,7 @@ SpecialReturnShuckle: ; 737e
 
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1ID
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 
 ; OT ID
@@ -3044,7 +3044,7 @@ SpecialReturnShuckle: ; 737e
 	jr c, .fainted
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Happiness
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [hl]
 	cp 150
@@ -4444,21 +4444,21 @@ HealParty: ; c658
 ; c677
 
 HealPartyMon: ; c677
-	ld a, PartyMon1Species - PartyMon1
+	ld a, MON_SPECIES
 	call GetPartyParamLocation
 	ld d, h
 	ld e, l
 
-	ld hl, PartyMon1Status - PartyMon1Species
+	ld hl, MON_STATUS
 	add hl, de
 	xor a
 	ld [hli], a
 	ld [hl], a
 
-	ld hl, PartyMon1MaxHP - PartyMon1Species
+	ld hl, MON_MAXHP
 	add hl, de
 
-	; bc = PartyMon1HP - PartyMon1Species
+	; bc = MON_HP
 	ld b, h
 	ld c, l
 rept 2
@@ -4626,7 +4626,7 @@ CheckPartyMove: ; c742
 	cp a, EGG
 	jr z, .next
 
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, PartyMon1Moves
 	ld a, e
 	call AddNTimes
@@ -8005,7 +8005,7 @@ TryAddMonToParty: ; d88c
 .initializeStats
 	ld a, [$ffae]
 	dec a
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 GeneratePartyMonStats: ; d906
 	ld e, l
@@ -8157,7 +8157,7 @@ endr
 	ld a, $1
 	ld c, a
 	ld b, $0
-	call Functione17b
+	call CalcPkmnStatC
 	ld a, [$ffb5]
 	ld [de], a
 	inc de
@@ -8243,7 +8243,7 @@ endr
 	ld hl, PartyMon1DVs
 	ld a, [PartyCount]
 	dec a
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	predef GetUnownLetter
 	callab Functionfba18
@@ -8303,7 +8303,7 @@ Functionda96: ; da96
 	ld hl, PartyMon1Species
 	ld a, [PartyCount]
 	dec a
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld e, l
 	ld d, h
@@ -8341,7 +8341,7 @@ Functionda96: ; da96
 	ld hl, PartyMon1Happiness
 	ld a, [PartyCount]
 	dec a
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld [hl], BASE_HAPPINESS
 .owned
@@ -8352,7 +8352,7 @@ Functionda96: ; da96
 	ld hl, PartyMon1DVs
 	ld a, [PartyCount]
 	dec a
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	predef GetUnownLetter
 	callab Functionfba18
@@ -8415,11 +8415,11 @@ SentGetPkmnIntoFromBox: ; db3f
 	ld a, [wd10b]
 	dec a
 	ld hl, PartyMon1Species
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [PartyCount]
 	jr nz, .asm_db97
 	ld hl, sBoxMon1Species
-	ld bc, sBoxMon1End - sBoxMon1
+	ld bc, BOXMON_STRUCT_LENGTH
 	ld a, [sBoxCount]
 
 .asm_db97
@@ -8433,20 +8433,20 @@ SentGetPkmnIntoFromBox: ; db3f
 	ld a, [wd10b]
 	and a
 	ld hl, sBoxMon1Species
-	ld bc, sBoxMon1End - sBoxMon1
+	ld bc, BOXMON_STRUCT_LENGTH
 	jr z, .asm_dbb7
 	cp $2
 	ld hl, wBreedMon1Species
 	jr z, .asm_dbbd
 	ld hl, PartyMon1Species
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 
 .asm_dbb7
 	ld a, [CurPartyMon]
 	call AddNTimes
 
 .asm_dbbd
-	ld bc, sBoxMon1End - sBoxMon1
+	ld bc, BOXMON_STRUCT_LENGTH
 	call CopyBytes
 	ld a, [wd10b]
 	cp $3
@@ -8599,11 +8599,11 @@ CloseSRAM_And_SetCFlag: ; dcb1
 Functiondcb6: ; dcb6
 	ld a, b
 	ld hl, sBoxMons
-	ld bc, sBoxMon1End - sBoxMon1
+	ld bc, BOXMON_STRUCT_LENGTH
 	call AddNTimes
 	ld b, h
 	ld c, l
-	ld hl, sBoxMon1PP - sBoxMon1
+	ld hl, MON_PP
 	add hl, bc
 	push hl
 	push bc
@@ -8611,7 +8611,7 @@ Functiondcb6: ; dcb6
 	ld bc, NUM_MOVES
 	call CopyBytes
 	pop bc
-	ld hl, sBoxMon1Moves - sBoxMon1
+	ld hl, MON_MOVES
 	add hl, bc
 	push hl
 	ld de, TempMonMoves
@@ -8764,7 +8764,7 @@ Functiondd64: ; dd64
 	ld hl, PartyMon1Moves
 	ld a, [PartyCount]
 	dec a
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -8795,7 +8795,7 @@ Functionde1a: ; de1a
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1Species
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -8829,9 +8829,9 @@ Functionde44: ; de44
 	call CopyBytes
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Species
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
-	ld bc, sBoxMon1End - sBoxMon1
+	ld bc, BOXMON_STRUCT_LENGTH
 	jp CopyBytes
 
 
@@ -8980,7 +8980,7 @@ ShiftBoxMon: ; df47
 	call .asm_df5f
 
 	ld hl, sBoxMons
-	ld bc, sBoxMon1End - sBoxMon1
+	ld bc, BOXMON_STRUCT_LENGTH
 
 .asm_df5f
 	ld a, [sBoxCount]
@@ -9062,7 +9062,7 @@ GiveEgg:: ; df8c
 	ld [CurPartySpecies], a
 	ld a, [PartyCount]
 	dec a
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, PartyMon1Species
 	call AddNTimes
 	ld a, [CurPartySpecies]
@@ -9083,7 +9083,7 @@ GiveEgg:: ; df8c
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1Happiness
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [wc2cc]
 	bit 1, a
@@ -9096,7 +9096,7 @@ GiveEgg:: ; df8c
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1HP
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	xor a
 	ld [hli], a
@@ -9168,12 +9168,12 @@ Functione039: ; e039
 	call CopyDataUntil
 
 	ld hl, PartyMons
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wd10b]
 	and a
 	jr z, .asm_e0a5
 	ld hl, sBoxMons
-	ld bc, sBoxMon1End - sBoxMon1
+	ld bc, BOXMON_STRUCT_LENGTH
 
 .asm_e0a5
 	ld a, [CurPartyMon]
@@ -9183,13 +9183,13 @@ Functione039: ; e039
 	ld a, [wd10b]
 	and a
 	jr z, .asm_e0bc
-	ld bc, sBoxMon1End - sBoxMon1
+	ld bc, BOXMON_STRUCT_LENGTH
 	add hl, bc
 	ld bc, sBoxMonOT
 	jr .asm_e0c3
 
 .asm_e0bc
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	ld bc, PartyMonOT
 
@@ -9232,7 +9232,7 @@ Functione039: ; e039
 	cp [hl]
 	jr z, .asm_e131
 	ld hl, s0_a600
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	call AddNTimes
 	push hl
 	add hl, bc
@@ -9242,11 +9242,11 @@ Functione039: ; e039
 .asm_e11a
 	push bc
 	push hl
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	call CopyBytes
 	pop hl
 	push hl
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	add hl, bc
 	pop de
 	pop bc
@@ -9260,26 +9260,26 @@ Functione039: ; e039
 ; e134
 
 Functione134: ; e134
-	ld a, PartyMon1Level - PartyMon1
+	ld a, MON_LEVEL
 	call GetPartyParamLocation
 	ld a, [hl]
-	ld [PartyMon1Level - PartyMon1], a ; wow
-	ld a, PartyMon1Species - PartyMon1
+	ld [MON_LEVEL], a ; wow
+	ld a, MON_SPECIES
 	call GetPartyParamLocation
 	ld a, [hl]
 	ld [CurSpecies], a
 	call GetBaseData
-	ld a, PartyMon1MaxHP - PartyMon1
+	ld a, MON_MAXHP
 	call GetPartyParamLocation
 	ld d, h
 	ld e, l
 	push de
-	ld a, PartyMon1Exp + 2 - PartyMon1
+	ld a, MON_EXP + 2
 	call GetPartyParamLocation
 	ld b, $1
 	call CalcPkmnStats
 	pop de
-	ld a, PartyMon1HP - PartyMon1
+	ld a, MON_HP
 	call GetPartyParamLocation
 	ld a, [de]
 	inc de
@@ -9296,24 +9296,29 @@ CalcPkmnStats: ; e167
 ; results in $ffb5 and $ffb6 are saved in [de]
 
 	ld c, $0
-.asm_e169
+.loop
 	inc c
-	call Functione17b
-	ld a, [$ffb5]
+	call CalcPkmnStatC
+	ld a, [hMultiplicand + 1]
 	ld [de], a
 	inc de
-	ld a, [$ffb6]
+	ld a, [hMultiplicand + 2]
 	ld [de], a
 	inc de
 	ld a, c
-	cp $6
-	jr nz, .asm_e169
+	cp STAT_SDEF
+	jr nz, .loop
 	ret
 ; e17b
 
-Functione17b: ; e17b
+CalcPkmnStatC: ; e17b
 ; 'c' is 1-6 and points to the BaseStat
-
+; 1: HP
+; 2: Attack
+; 3: Defense
+; 4: Speed
+; 5: SpAtk
+; 6: SpDef
 	push hl
 	push de
 	push bc
@@ -9329,17 +9334,17 @@ Functione17b: ; e17b
 	pop hl
 	push hl
 	ld a, c
-	cp $6
-	jr nz, .asm_e193
+	cp STAT_SDEF
+	jr nz, .not_spdef
 rept 2
 	dec hl
 endr
 
-.asm_e193
+.not_spdef
 	sla c
 	ld a, d
 	and a
-	jr z, .asm_e1a5
+	jr z, .SkipSqrt
 	add hl, bc
 	push de
 	ld a, [hld]
@@ -9348,24 +9353,25 @@ endr
 	callba GetSquareRoot
 	pop de
 
-.asm_e1a5
+.SkipSqrt
 	srl c
 	pop hl
 	push bc
-	ld bc, NAME_LENGTH
+	ld bc, (MON_DVS) - (MON_HP_EXP) + 1
 	add hl, bc
 	pop bc
 	ld a, c
-	cp $2
-	jr z, .asm_e1e3
-	cp $3
-	jr z, .asm_e1ea
-	cp $4
-	jr z, .asm_e1ef
-	cp $5
-	jr z, .asm_e1f7
-	cp $6
-	jr z, .asm_e1f7
+	cp STAT_ATK
+	jr z, .Attack
+	cp STAT_DEF
+	jr z, .Defense
+	cp STAT_SPD
+	jr z, .Speed
+	cp STAT_SATK
+	jr z, .Special
+	cp STAT_SDEF
+	jr z, .Special
+; DV_HP = (DV_ATK & 1) << 3 + (DV_DEF & 1) << 2 + (DV_SPD & 1) << 1 + (DV_SPC & 1)
 	push bc
 	ld a, [hl]
 	swap a
@@ -9391,49 +9397,49 @@ endr
 	and $1
 	add b
 	pop bc
-	jr .asm_e1fb
+	jr .GotDV
 
-.asm_e1e3
+.Attack
 	ld a, [hl]
 	swap a
 	and $f
-	jr .asm_e1fb
+	jr .GotDV
 
-.asm_e1ea
+.Defense
 	ld a, [hl]
 	and $f
-	jr .asm_e1fb
+	jr .GotDV
 
-.asm_e1ef
+.Speed
 	inc hl
 	ld a, [hl]
 	swap a
 	and $f
-	jr .asm_e1fb
+	jr .GotDV
 
-.asm_e1f7
+.Special
 	inc hl
 	ld a, [hl]
 	and $f
 
-.asm_e1fb
-	ld d, $0
+.GotDV
+	ld d, 0
 	add e
 	ld e, a
-	jr nc, .asm_e202
+	jr nc, .no_overflow_1
 	inc d
 
-.asm_e202
+.no_overflow_1
 	sla e
 	rl d
 	srl b
 	srl b
 	ld a, b
 	add e
-	jr nc, .asm_e20f
+	jr nc, .no_overflow_2
 	inc d
 
-.asm_e20f
+.no_overflow_2
 	ld [hMultiplicand + 2], a
 	ld a, d
 	ld [hMultiplicand + 1], a
@@ -9448,55 +9454,55 @@ endr
 	ld [hDividend + 1], a
 	ld a, [hProduct + 3]
 	ld [hDividend + 2], a
-	ld a, $64
+	ld a, 100
 	ld [hDivisor], a
-	ld a, $3
+	ld a, 3
 	ld b, a
 	call Divide
 	ld a, c
-	cp $1
-	ld a, $5
-	jr nz, .asm_e24e
+	cp STAT_HP
+	ld a, 5
+	jr nz, .not_hp
 	ld a, [CurPartyLevel]
 	ld b, a
 	ld a, [hQuotient + 2]
 	add b
-	ld [$ffb6], a
-	jr nc, .asm_e24c
+	ld [hMultiplicand + 2], a
+	jr nc, .no_overflow_3
 	ld a, [hQuotient + 1]
 	inc a
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 
-.asm_e24c
-	ld a, $a
+.no_overflow_3
+	ld a, 10
 
-.asm_e24e
+.not_hp
 	ld b, a
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	add b
-	ld [$ffb6], a
-	jr nc, .asm_e25b
-	ld a, [$ffb5]
+	ld [hMultiplicand + 2], a
+	jr nc, .no_overflow_4
+	ld a, [hQuotient + 1]
 	inc a
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 
-.asm_e25b
-	ld a, [$ffb5]
-	cp $4
-	jr nc, .asm_e26b
-	cp $3
-	jr c, .asm_e273
-	ld a, [$ffb6]
-	cp $e8
-	jr c, .asm_e273
+.no_overflow_4
+	ld a, [hQuotient + 1]
+	cp (1000 / $100) + 1
+	jr nc, .max_stat
+	cp 1000 / $100
+	jr c, .stat_value_okay
+	ld a, [hQuotient + 2]
+	cp 1000 % $100
+	jr c, .stat_value_okay
 
-.asm_e26b
-	ld a, $3
-	ld [$ffb5], a
-	ld a, $e7
-	ld [$ffb6], a
+.max_stat
+	ld a, 999 / $100
+	ld [hMultiplicand + 1], a
+	ld a, 999 % $100
+	ld [hMultiplicand + 2], a
 
-.asm_e273
+.stat_value_okay
 	pop bc
 	pop de
 	pop hl
@@ -9528,7 +9534,7 @@ GivePoke:: ; e277
 	jr z, .done
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Item
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [CurItem]
 	ld [hl], a
@@ -9613,27 +9619,27 @@ endr
 	push bc
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1ID
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, 01001 / $100
 	ld [hli], a
 	ld [hl], 01001 % $100
 	pop bc
-	callba SetPkmnCaughtData
-	jr .asm_e3b2
+	callba SetPartymonCaughtData
+	jr .skip_nickname
 
 .asm_e35e
 	ld a, BANK(sBoxMonOT)
 	call GetSRAMBank
 	ld de, sBoxMonOT
-.asm_e366
+.loop
 	ld a, [ScriptBank]
 	call GetFarByte
 	ld [de], a
 	inc hl
 	inc de
 	cp "@"
-	jr nz, .asm_e366
+	jr nz, .loop
 	ld a, [ScriptBank]
 	call GetFarByte
 	ld b, a
@@ -9643,8 +9649,8 @@ endr
 	call Random
 	ld [hl], a
 	call CloseSRAM
-	callba Function4db92
-	jr .asm_e3b2
+	callba SetBoxMonCaughtData
+	jr .skip_nickname
 
 .asm_e390
 	pop de
@@ -9663,10 +9669,10 @@ endr
 .asm_e3a6
 	callba GiveANickname_YesNo
 	pop de
-	jr c, .asm_e3b2
-	call Functione3de
+	jr c, .skip_nickname
+	call InitNickname
 
-.asm_e3b2
+.skip_nickname
 	pop bc
 	pop de
 	ld a, b
@@ -9699,7 +9705,7 @@ TextJump_WasSentToBillsPC: ; 0xe3d9
 	db "@"
 ; 0xe3de
 
-Functione3de: ; e3de
+InitNickname: ; e3de
 	push de
 	call LoadMenuDataHeader_0x1d75
 	call DisableSpriteUpdates
@@ -9911,7 +9917,7 @@ UnknownText_0xe533: ; 0xe533
 
 CheckCurPartyMonFainted: ; e538
 	ld hl, PartyMon1HP
-	ld de, PartyMon2 - PartyMon1
+	ld de, PARTYMON_STRUCT_LENGTH
 	ld b, $0
 .loop
 	ld a, [CurPartyMon]
@@ -10187,7 +10193,7 @@ BugContest_SetCaughtContestMon: ; e6ce
 	ld [CurPartySpecies], a
 	call GetBaseData
 	xor a
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, wContestMon
 	call ByteFill
 	xor a
@@ -10298,7 +10304,7 @@ WobbleChances: ; f9ba
 
 
 KnowsMove: ; f9ea
-	ld a, PartyMon1Moves - PartyMon1
+	ld a, MON_MOVES
 	call GetPartyParamLocation
 	ld a, [wd262]
 	ld b, a
@@ -13485,7 +13491,7 @@ CantBeHeldText: ; 12cd2
 
 GetPartyItemLocation: ; 12cd7
 	push af
-	ld a, PartyMon1Item - PartyMon1
+	ld a, MON_ITEM
 	call GetPartyParamLocation
 	pop af
 	ret
@@ -13530,12 +13536,12 @@ Function12cfe: ; 12cfe (4:6cfe)
 	ld [de], a
 	ld a, [CurPartyMon]
 	ld hl, s0_a600
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld hl, DefaultFlypoint
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	ld a, BANK(s0_a600)
 	call GetSRAMBank
 	call CopyBytes
@@ -13847,7 +13853,7 @@ UnknownText_0x12f00: ; 0x12f00
 ; 0x12f05
 
 Function12f05: ; 12f05
-	ld a, PartyMon1MaxHP - PartyMon1
+	ld a, MON_MAXHP
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld [hDividend + 0], a
@@ -13857,7 +13863,7 @@ Function12f05: ; 12f05
 	ld [hDivisor], a
 	ld b, $2
 	call Divide
-	ld a, PartyMon1HP + 1 - PartyMon1
+	ld a, MON_HP + 1
 	call GetPartyParamLocation
 	ld a, [hQuotient + 2]
 	sub [hl]
@@ -14119,7 +14125,7 @@ Function12fd5: ; 12fd5
 
 .asm_130de
 	ld hl, PartyMon1Moves
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
 	push hl
@@ -14274,7 +14280,7 @@ Function131ef: ; 131ef
 
 Function13235: ; 13235
 	ld hl, PartyMon1Moves
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld a, [wcfa9]
@@ -15553,7 +15559,7 @@ ApplyPokerusTick: ; 13988
 	ld [hl], a
 
 .does_not_have_pokerus
-	ld de, PartyMon2 - PartyMon1
+	ld de, PARTYMON_STRUCT_LENGTH
 	add hl, de
 	dec c
 	jr nz, .loop
@@ -15762,7 +15768,7 @@ Function13a47: ; unreferenced
 .asm_13a9c
 	ld [CurSpecies], a
 	call GetBaseData
-	ld hl, PartyMon1Level - PartyMon1
+	ld hl, MON_LEVEL
 	add hl, bc
 	ld a, [hl]
 	cp MIN_LEVEL
@@ -15777,16 +15783,16 @@ Function13a47: ; unreferenced
 .asm_13ab5
 	ld [CurPartyLevel], a
 
-	ld hl, PartyMon1MaxHP - PartyMon1
+	ld hl, MON_MAXHP
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, PartyMon1Exp + 2 - PartyMon1
+	ld hl, MON_EXP + 2
 	add hl, bc
 	ld b, $1
 	predef CalcPkmnStats
 	pop hl
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	pop de
 	inc e
@@ -15889,7 +15895,7 @@ Function13a47: ; unreferenced
 .asm_13b60
 	pop hl
 	push bc
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	dec b
@@ -19788,7 +19794,7 @@ Function16798: ; 16798
 	callba CheckCurPartyMonFainted
 	jr c, .asm_167e9
 	ld hl, PartyMon1Item
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld d, [hl]
@@ -20194,7 +20200,7 @@ Function169ac: ; 169ac
 	ld hl, wEggOT
 	call CopyBytes
 	ld hl, PartyMon1
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call Function16a31
 	ld hl, wEggMon
 	ld bc, wEggMonEnd - wEggMon
@@ -20203,14 +20209,14 @@ Function169ac: ; 169ac
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld b, h
 	ld c, l
-	ld hl, PartyMon1ID + 1 - PartyMon1
+	ld hl, MON_ID + 1
 	add hl, bc
 	push hl
-	ld hl, PartyMon1MaxHP - PartyMon1
+	ld hl, MON_MAXHP
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -20219,7 +20225,7 @@ Function169ac: ; 169ac
 	ld b, $0
 	predef CalcPkmnStats
 	pop bc
-	ld hl, PartyMon1HP - PartyMon1
+	ld hl, MON_HP
 	add hl, bc
 	xor a
 	ld [hli], a
@@ -20926,7 +20932,7 @@ DoEggStep:: ; 16f3e
 
 .next
 	push de
-	ld de, PartyMon2 - PartyMon1
+	ld de, PARTYMON_STRUCT_LENGTH
 	add hl, de
 	pop de
 	jr .loop
@@ -20967,7 +20973,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	callba MobileFn_10608d
 	ld a, [CurPartyMon]
 	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [hl]
 	ld [CurPartySpecies], a
@@ -20996,45 +21002,45 @@ Function16f7a: ; 16f7a (5:6f7a)
 	call GetBaseData
 	ld a, [CurPartyMon]
 	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	push hl
-	ld bc, PartyMon1MaxHP - PartyMon1
+	ld bc, MON_MAXHP
 	add hl, bc
 	ld d, h
 	ld e, l
 	pop hl
 	push hl
-	ld bc, PartyMon1Level - PartyMon1
+	ld bc, MON_LEVEL
 	add hl, bc
 	ld a, [hl]
 	ld [CurPartyLevel], a
 	pop hl
 	push hl
-	ld bc, PartyMon1Status - PartyMon1
+	ld bc, MON_STATUS
 	add hl, bc
 	xor a
 	ld [hli], a
 	ld [hl], a
 	pop hl
 	push hl
-	ld bc, PartyMon1Exp + 2 - PartyMon1
+	ld bc, MON_EXP + 2
 	add hl, bc
 	ld b, $0
 	predef CalcPkmnStats
 	pop bc
-	ld hl, PartyMon1MaxHP - PartyMon1
+	ld hl, MON_MAXHP
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, PartyMon1HP - PartyMon1
+	ld hl, MON_HP
 	add hl, bc
 	ld a, [de]
 	inc de
 	ld [hli], a
 	ld a, [de]
 	ld [hl], a
-	ld hl, PartyMon1ID - PartyMon1
+	ld hl, MON_ID
 	add hl, bc
 	ld a, [PlayerID]
 	ld [hli], a
@@ -21082,7 +21088,7 @@ Function1707d: ; 1707d (5:707d)
 	ld hl, CurPartyMon
 	inc [hl]
 	pop hl
-	ld de, PartyMon2 - PartyMon1
+	ld de, PARTYMON_STRUCT_LENGTH
 	add hl, de
 	pop de
 	jp Function16f7a
@@ -24244,7 +24250,7 @@ Function24dd4: ; 24dd4
 	ld a, [wLinkMode]
 	and a
 	jr nz, .skip
-	ld a, PartyMon1Moves - PartyMon1
+	ld a, MON_MOVES
 	call GetPartyParamLocation
 	ld d, h
 	ld e, l
@@ -24279,7 +24285,7 @@ Function24dd4: ; 24dd4
 	and a
 	jr nz, .skip2
 	push hl
-	ld a, PartyMon1Item - PartyMon1
+	ld a, MON_ITEM
 	call GetPartyParamLocation
 	ld d, [hl]
 	callba ItemIsMail
@@ -27902,7 +27908,7 @@ Function28499: ; 28499
 .asm_284db
 	push bc
 	call Function284f6
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	dec c
@@ -28010,7 +28016,7 @@ Function284f6: ; 284f6
 	add hl, bc
 	ld c, $5
 	ld b, $1
-	predef Functione17b
+	predef CalcPkmnStatC
 
 	pop bc
 	pop de
@@ -28108,7 +28114,7 @@ Function28595: ; 28595
 
 .next
 	pop de
-	ld hl, PartyMon1StatsEnd - PartyMon1Item
+	ld hl, (SCRATCHMON_STRUCT_LENGTH)
 	add hl, de
 	ld d, h
 	ld e, l
@@ -28281,7 +28287,7 @@ Function286ba: ; 286ba
 	add hl, bc
 	ld c, $5
 	ld b, $1
-	predef Functione17b
+	predef CalcPkmnStatC
 	pop bc
 	pop hl
 	ld a, [$ffb5]
@@ -28294,7 +28300,7 @@ Function286ba: ; 286ba
 	add hl, bc
 	ld c, $6
 	ld b, $1
-	predef Functione17b
+	predef CalcPkmnStatC
 	pop bc
 	pop hl
 	ld a, [$ffb5]
@@ -28971,13 +28977,13 @@ Function28b87: ; 28b87
 .asm_28c7b
 	ld hl, s0_a600
 	ld a, [DefaultFlypoint]
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	call AddNTimes
 	ld a, BANK(s0_a600)
 	call GetSRAMBank
 	ld d, h
 	ld e, l
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	add hl, bc
 	ld a, [DefaultFlypoint]
 	ld c, a
@@ -28987,7 +28993,7 @@ Function28b87: ; 28b87
 	cp $6
 	jr z, .asm_28ca6
 	push bc
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	call CopyBytes
 	pop bc
 	jr .asm_28c96
@@ -28996,15 +29002,15 @@ Function28b87: ; 28b87
 	ld hl, s0_a600
 	ld a, [PartyCount]
 	dec a
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	call AddNTimes
 	push hl
 	ld hl, wc9f4
 	ld a, [wd003]
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	call AddNTimes
 	pop de
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	call CopyBytes
 	call CloseSRAM
 	ld hl, PlayerName
@@ -29139,7 +29145,7 @@ Function28b87: ; 28b87
 	ld a, c
 	call GetPartyLocation
 	ld de, TempMonSpecies
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 	predef Functionda96
 	ld a, [PartyCount]
@@ -30829,7 +30835,7 @@ Special_CheckTimeCapsuleCompatibility: ; 29bfb
 	pop bc
 	pop hl
 	jr c, .mon_has_mail
-	ld de, PartyMon2 - PartyMon1
+	ld de, PARTYMON_STRUCT_LENGTH
 	add hl, de
 	dec b
 	jr nz, .itemloop
@@ -31601,7 +31607,7 @@ ApplyMusicEffectOnEncounterRate:: ; 2a124
 ApplyCleanseTagEffectOnEncounterRate:: ; 2a138
 ; Cleanse Tag halves encounter rate.
 	ld hl, PartyMon1Item
-	ld de, PartyMon2 - PartyMon1
+	ld de, PARTYMON_STRUCT_LENGTH
 	ld a, [PartyCount]
 	ld c, a
 .loop
@@ -31738,7 +31744,7 @@ CheckRepelEffect:: ; 2a1df
 	jr z, .encounter
 ; Get the first Pokemon in your party that isn't fainted.
 	ld hl, PartyMon1HP
-	ld bc, PartyMon2 - PartyMon1 - 1
+	ld bc, PARTYMON_STRUCT_LENGTH - 1
 .loop
 	ld a, [hli]
 	or [hl]
@@ -33978,7 +33984,7 @@ Function2ed44: ; 2ed44
 	ld hl, PartyMon1PokerusStatus
 	ld a, [PartyCount]
 	ld b, a
-	ld de, PartyMon2 - PartyMon1
+	ld de, PARTYMON_STRUCT_LENGTH
 .loopMons
 	ld a, [hl]
 	and $f
@@ -34104,7 +34110,7 @@ ConvertBerriesToBerryJuice: ; 2ede6
 	ld a, [hl]
 	cp SHUCKLE
 	jr nz, .loopMon
-	ld bc, PartyMon1Item - PartyMon1Species
+	ld bc, MON_ITEM
 	add hl, bc
 	ld a, [hl]
 	cp BERRY
@@ -34112,7 +34118,7 @@ ConvertBerriesToBerryJuice: ; 2ede6
 
 .loopMon
 	pop hl
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	pop af
 	dec a
@@ -34149,7 +34155,7 @@ FindFirstAliveMon: ; 2ee2f
 	call DelayFrame
 	ld b, 6
 	ld hl, PartyMon1HP
-	ld de, PartyMon2 - PartyMon1 - 1
+	ld de, PARTYMON_STRUCT_LENGTH - 1
 
 .loop
 	ld a, [hli]
@@ -34160,7 +34166,7 @@ FindFirstAliveMon: ; 2ee2f
 	jr nz, .loop
 
 .okay
-	ld de, PartyMon1Level - PartyMon1HP
+	ld de, (MON_LEVEL) - (MON_HP)
 	add hl, de
 	ld a, [hl]
 	ld [BattleMonLevel], a
@@ -34614,7 +34620,7 @@ TrainerType2: ; 39806
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1Moves
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -34633,14 +34639,14 @@ TrainerType2: ; 39806
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1Species
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, OTPartyMon1PP - OTPartyMon1
+	ld hl, MON_PP
 	add hl, de
 	push hl
-	ld hl, OTPartyMon1Moves - OTPartyMon1
+	ld hl, MON_MOVES
 	add hl, de
 	pop de
 
@@ -34690,7 +34696,7 @@ TrainerType3: ; 39871
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1Item
-	ld bc, OTPartyMon2 - OTPartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -34721,7 +34727,7 @@ TrainerType4: ; 3989d
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1Item
-	ld bc, OTPartyMon2 - OTPartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -34734,7 +34740,7 @@ TrainerType4: ; 3989d
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1Moves
-	ld bc, OTPartyMon2 - OTPartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -34753,15 +34759,15 @@ TrainerType4: ; 3989d
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1
-	ld bc, OTPartyMon2 - OTPartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, OTPartyMon1PP - OTPartyMon1
+	ld hl, MON_PP
 	add hl, de
 
 	push hl
-	ld hl, OTPartyMon1Moves - OTPartyMon1
+	ld hl, MON_MOVES
 	add hl, de
 	pop de
 
@@ -35242,11 +35248,11 @@ endr
 
 	ld a, [CurPartyMon]
 	ld hl, PartyMons
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld e, l
 	ld d, h
-	ld bc, PartyMon1MaxHP - PartyMon1
+	ld bc, MON_MAXHP
 	add hl, bc
 	ld a, [hli]
 	ld b, a
@@ -35267,7 +35273,7 @@ endr
 	ld [hl], a
 
 	ld hl, TempMonSpecies
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 
 	ld a, [CurSpecies]
@@ -35370,7 +35376,7 @@ Function42461: ; 42461
 	push hl
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Item
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [hl]
 	cp EVERSTONE
@@ -35437,7 +35443,7 @@ endr
 	ld d, a
 	ld hl, PartyMon1Moves
 	ld a, [CurPartyMon]
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 
 	ld b, NUM_MOVES
@@ -35560,7 +35566,7 @@ FillMoves: ; 424e1
 	jr z, .NextMove
 	push hl
 	ld a, [hl]
-	ld hl, PartyMon1PP - PartyMon1Moves
+	ld hl, (MON_PP) - (MON_MOVES)
 	add hl, de
 	push hl
 	dec a
@@ -35583,12 +35589,12 @@ FillMoves: ; 424e1
 
 ShiftMoves: ; 4256e
 	ld c, NUM_MOVES - 1
-.asm_42570
+.loop
 	inc de
 	ld a, [de]
 	ld [hli], a
 	dec c
-	jr nz, .asm_42570
+	jr nz, .loop
 	ret
 ; 42577
 
@@ -35608,7 +35614,7 @@ GetPreEvolution: ; 42581
 ; if a pre-evolution is found.
 
 	ld c, 0
-.asm_42583
+.loop ; For each Pokemon...
 	ld hl, EvosAttacksPointers
 	ld b, 0
 rept 2
@@ -35617,33 +35623,33 @@ endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-.asm_4258d
+.loop2 ; For each evolution...
 	ld a, [hli]
 	and a
-	jr z, .asm_425a2
-	cp EVOLVE_STAT
-	jr nz, .asm_42596
+	jr z, .no_evolve ; If we jump, this Pokemon does not evolve into CurPartySpecies.
+	cp EVOLVE_STAT ; This evolution type has the extra parameter of stat comparison.
+	jr nz, .not_tyrogue
 	inc hl
 
-.asm_42596
+.not_tyrogue
 	inc hl
 	ld a, [CurPartySpecies]
 	cp [hl]
-	jr z, .asm_425aa
+	jr z, .found_preevo
 	inc hl
 	ld a, [hl]
 	and a
-	jr nz, .asm_4258d
+	jr nz, .loop2
 
-.asm_425a2
+.no_evolve
 	inc c
 	ld a, c
 	cp NUM_POKEMON
-	jr c, .asm_42583
+	jr c, .loop
 	and a
 	ret
 
-.asm_425aa
+.found_preevo
 	inc c
 	ld a, c
 	ld [CurPartySpecies], a
@@ -36173,7 +36179,7 @@ INCLUDE "data/pokedex/entry_pointers.asm"
 
 
 Function4456e: ; 4456e
-	ld a, PartyMon1Item - PartyMon1
+	ld a, MON_ITEM
 	call GetPartyParamLocation
 	ld d, [hl]
 	callba ItemIsMail
@@ -36181,25 +36187,25 @@ Function4456e: ; 4456e
 	call Function44648
 	cp $a
 	jr nc, .asm_445be
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	ld hl, s0_a835
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld a, [CurPartyMon]
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	ld hl, s0_a600
 	call AddNTimes
 	push hl
 	ld a, BANK(s0_a834)
 	call GetSRAMBank
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	call CopyBytes
 	pop hl
 	xor a
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	call ByteFill
-	ld a, PartyMon1Item - PartyMon1
+	ld a, MON_ITEM
 	call GetPartyParamLocation
 	ld [hl], $0
 	ld hl, s0_a834
@@ -36219,7 +36225,7 @@ Function445c0: ; 445c0 (11:45c0)
 	ld a, b
 	push bc
 	ld hl, s0_a835
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	call AddNTimes
 	push hl
 	add hl, bc
@@ -36230,7 +36236,7 @@ Function445c0: ; 445c0 (11:45c0)
 	cp $9
 	jr z, .done
 	push bc
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	call CopyBytes
 	pop bc
 	inc b
@@ -36239,7 +36245,7 @@ Function445c0: ; 445c0 (11:45c0)
 	ld h, d
 	ld l, e
 	xor a
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	call ByteFill
 	ld hl, s0_a834
 	dec [hl]
@@ -36249,7 +36255,7 @@ Function445c0: ; 445c0 (11:45c0)
 ReadMailMessage: ; 445f4
 	ld a, b
 	ld hl, s0_a835
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -36261,27 +36267,27 @@ Function44607: ; 44607
 	call GetSRAMBank
 	push bc
 	ld a, b
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	ld hl, s0_a835
 	call AddNTimes
 	push hl
 	ld a, [CurPartyMon]
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	ld hl, s0_a600
 	call AddNTimes
 	ld d, h
 	ld e, l
 	pop hl
 	push hl
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	call CopyBytes
 	pop hl
-	ld de, PartyMon1StatsEnd - PartyMon1Moves
+	ld de, (PARTYMON_STRUCT_LENGTH) - (MON_MOVES)
 	add hl, de
 	ld d, [hl]
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Item
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld [hl], d
 	call CloseSRAM
@@ -36305,7 +36311,7 @@ Function44654:: ; 44654
 	jr c, .asm_446c6
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Item
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, [hl]
 	callba ItemIsMail
@@ -36315,7 +36321,7 @@ Function44654:: ; 44654
 	call GetSRAMBank
 	ld a, [CurPartyMon]
 	ld hl, s0_a600
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -36369,7 +36375,7 @@ GivePokeItem:: ; 446cc
 	push af
 	push bc
 	ld hl, PartyMon1Item
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	pop bc
 	ld [hl], b
@@ -36395,7 +36401,7 @@ GivePokeItem:: ; 446cc
 	call CopyBytes
 	pop af
 	ld hl, PartyMon1ID
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [hli]
 	ld [de], a
@@ -36418,11 +36424,11 @@ Function44725: ; 44725
 	call GetSRAMBank
 	ld hl, s0_a600
 	ld de, s0_a71a
-	ld bc, 6 * (party_struct_length + PartyMon1 - PartyMon1Item)
+	ld bc, 6 * (SCRATCHMON_STRUCT_LENGTH)
 	call CopyBytes
 	ld hl, s0_a834
 	ld de, s0_aa0b
-	ld bc, 1 + 10 * (party_struct_length + PartyMon1 - PartyMon1Item)
+	ld bc, 1 + 10 * (SCRATCHMON_STRUCT_LENGTH)
 	call CopyBytes
 	jp CloseSRAM
 ; 44745
@@ -36432,11 +36438,11 @@ Function44745: ; 44745 (11:4745)
 	call GetSRAMBank
 	ld hl, s0_a71a
 	ld de, s0_a600
-	ld bc, 6 * (party_struct_length + PartyMon1 - PartyMon1Item)
+	ld bc, 6 * (SCRATCHMON_STRUCT_LENGTH)
 	call CopyBytes
 	ld hl, s0_aa0b
 	ld de, s0_a834
-	ld bc, 1 + 10 * (party_struct_length + PartyMon1 - PartyMon1Item)
+	ld bc, 1 + 10 * (SCRATCHMON_STRUCT_LENGTH)
 	call CopyBytes
 	jp CloseSRAM
 
@@ -36445,11 +36451,11 @@ Function44765: ; 44765 (11:4765)
 	call GetSRAMBank
 	xor a
 	ld hl, s0_a600
-	ld bc, 6 * (party_struct_length + PartyMon1 - PartyMon1Item)
+	ld bc, 6 * (SCRATCHMON_STRUCT_LENGTH)
 	call ByteFill
 	xor a
 	ld hl, s0_a834
-	ld bc, 1 + 10 * (party_struct_length + PartyMon1 - PartyMon1Item)
+	ld bc, 1 + 10 * (SCRATCHMON_STRUCT_LENGTH)
 	call ByteFill
 	jp CloseSRAM
 ; 44781 (11:4781)
@@ -36469,7 +36475,7 @@ Function44781: ; 44781
 	pop de
 	pop hl
 	ret c
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	dec e
 	jr nz, .asm_4478b
@@ -36683,7 +36689,7 @@ Function4484a: ; 0x4484a
 	ld a, [CurPartySpecies]
 	cp EGG
 	jr z, .asm_44923
-	ld a, PartyMon1Item - PartyMon1
+	ld a, MON_ITEM
 	call GetPartyParamLocation
 	ld a, [hl]
 	and a
@@ -41136,7 +41142,7 @@ CheckOwnMonAnywhere: ; 0x4a721
 	ret c ; found!
 
 	push bc
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	call UpdateOTPointer
@@ -41163,7 +41169,7 @@ CheckOwnMonAnywhere: ; 0x4a721
 
 .loop
 	push bc
-	ld bc, sBoxMon2 - sBoxMon1
+	ld bc, BOXMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	call UpdateOTPointer
@@ -41227,7 +41233,7 @@ endr
 
 .loopboxmon
 	push bc
-	ld bc, sBoxMon2 - sBoxMon1
+	ld bc, BOXMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	call UpdateOTPointer
@@ -41271,7 +41277,7 @@ CheckOwnMon: ; 0x4a7ba
 	jr nz, .notfound ; species doesn't match
 
 ; check ID number
-	ld bc, PartyMon1ID - PartyMon1Species
+	ld bc, MON_ID
 	add hl, bc ; now hl points to ID number
 	ld a, [PlayerID]
 	cp [hl]
@@ -41360,7 +41366,7 @@ MobileCheckOwnMonAnywhere: ; 4a843
 	call Function4a8dc
 	ret c
 	push bc
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	call Function4a91e
@@ -41382,7 +41388,7 @@ MobileCheckOwnMonAnywhere: ; 4a843
 
 .asm_4a87c
 	push bc
-	ld bc, sBoxMon2 - sBoxMon1
+	ld bc, BOXMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	call Function4a91e
@@ -41433,7 +41439,7 @@ endr
 
 .asm_4a8c4
 	push bc
-	ld bc, sBoxMon2 - sBoxMon1
+	ld bc, BOXMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	call Function4a91e
@@ -41818,7 +41824,7 @@ Function4aafb: ; 4aafb
 
 Function4ab06: ; 4ab06
 	ld a, [CurPartyMon]
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, PartyMon1HP
 	call AddNTimes
 	ld a, [hli]
@@ -43285,7 +43291,7 @@ CheckPokerus: ; 4d860
 	ld b, a
 ; Check each monster in the party for Pokerus
 	ld hl, PartyMon1PokerusStatus
-	ld de, PartyMon2 - PartyMon1
+	ld de, PARTYMON_STRUCT_LENGTH
 .Check
 	ld a, [hl]
 	and $0f ; only the bottom nybble is used
@@ -43318,7 +43324,7 @@ Special_CheckForLuckyNumberWinners: ; 4d87a
 	cp EGG
 	call nz, .CompareLuckyNumberToMonID
 	push bc
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	dec d
@@ -43343,7 +43349,7 @@ Special_CheckForLuckyNumberWinners: ; 4d87a
 
 .SkipOpenBoxMon
 	push bc
-	ld bc, sBoxMon2 - sBoxMon1 ; box_struct_length
+	ld bc, BOXMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	dec d
@@ -43390,7 +43396,7 @@ endr
 
 .SkipBoxMon
 	push bc
-	ld bc, sBoxMon2 - sBoxMon1 ; box_struct_length
+	ld bc, BOXMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	dec d
@@ -43538,14 +43544,14 @@ Special_PrintTodaysLuckyNumber: ; 4d9d3
 CheckPartyFullAfterContest: ; 4d9e5
 	ld a, [wContestMon]
 	and a
-	jp z, Function4db35
+	jp z, .DidntCatchAnything
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	call GetBaseData
 	ld hl, PartyCount
 	ld a, [hl]
 	cp 6
-	jp nc, Function4daa3
+	jp nc, .TryAddToBox
 	inc a
 	ld [hl], a
 	ld c, a
@@ -43559,12 +43565,12 @@ CheckPartyFullAfterContest: ; 4d9e5
 	ld hl, PartyMon1Species
 	ld a, [PartyCount]
 	dec a
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld hl, wContestMon
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 	ld a, [PartyCount]
 	dec a
@@ -43582,16 +43588,16 @@ CheckPartyFullAfterContest: ; 4d9e5
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	call GiveANickname_YesNo
-	jr c, .asm_4da66
+	jr c, .Party_SkipNickname
 	ld a, [PartyCount]
 	dec a
 	ld [CurPartyMon], a
 	xor a
 	ld [MonType], a
 	ld de, wd050
-	callab Functione3de
+	callab InitNickname
 
-.asm_4da66
+.Party_SkipNickname
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMonNicknames
@@ -43623,19 +43629,19 @@ CheckPartyFullAfterContest: ; 4d9e5
 	ret
 ; 4daa3
 
-Function4daa3: ; 4daa3
+.TryAddToBox: ; 4daa3
 	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld hl, sBoxCount
 	ld a, [hl]
 	cp MONS_PER_BOX
 	call CloseSRAM
-	jr nc, .asm_4db08
+	jr nc, .BoxFull
 	xor a
 	ld [CurPartyMon], a
 	ld hl, wContestMon
 	ld de, wd018
-	ld bc, sBoxMon2 - sBoxMon1
+	ld bc, BOXMON_STRUCT_LENGTH
 	call CopyBytes
 	ld hl, PlayerName
 	ld de, wd00d
@@ -43647,14 +43653,14 @@ Function4daa3: ; 4daa3
 	call GetPokemonName
 	call GiveANickname_YesNo
 	ld hl, StringBuffer1
-	jr c, .asm_4daf7
+	jr c, .Box_SkipNickname
 	ld a, BOXMON
 	ld [MonType], a
 	ld de, wd050
-	callab Functione3de
+	callab InitNickname
 	ld hl, wd050
 
-.asm_4daf7
+.Box_SkipNickname
 	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
 	ld de, sBoxMonNicknames
@@ -43662,7 +43668,7 @@ Function4daa3: ; 4daa3
 	call CopyBytes
 	call CloseSRAM
 
-.asm_4db08
+.BoxFull
 	ld a, BANK(sBoxMon1Level)
 	call GetSRAMBank
 	ld a, [sBoxMon1Level]
@@ -43685,7 +43691,7 @@ Function4daa3: ; 4daa3
 	ret
 ; 4db35
 
-Function4db35: ; 4db35
+.DidntCatchAnything: ; 4db35
 	ld a, $2
 	ld [ScriptVar], a
 	ret
@@ -43724,17 +43730,17 @@ Function4db53: ; 4db53
 	ld a, [MapNumber]
 	ld c, a
 	cp MAP_POKECENTER_2F
-	jr nz, .asm_4db78
+	jr nz, .NotPokeCenter2F
 	ld a, b
 	cp GROUP_POKECENTER_2F
-	jr nz, .asm_4db78
+	jr nz, .NotPokeCenter2F
 
 	ld a, [BackupMapGroup]
 	ld b, a
 	ld a, [BackupMapNumber]
 	ld c, a
 
-.asm_4db78
+.NotPokeCenter2F
 	call GetWorldMapLocation
 	ld b, a
 	ld a, [PlayerGender]
@@ -43753,25 +43759,25 @@ Function4db83: ; 4db83
 	ret
 ; 4db92
 
-Function4db92: ; 4db92
+SetBoxMonCaughtData: ; 4db92
 	push bc
 	ld a, BANK(sBoxMon1CaughtLevel)
 	call GetSRAMBank
 	ld hl, sBoxMon1CaughtLevel
 	pop bc
-	call Function4dbaf
+	call SetPkmnCaughtData
 	call CloseSRAM
 	ret
 ; 4dba3
 
-SetPkmnCaughtData: ; 4dba3
+SetPartymonCaughtData: ; 4dba3
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1CaughtLevel
 	push bc
 	call GetPartyLocation
 	pop bc
-Function4dbaf: ; 4dbaf
+SetPkmnCaughtData: ; 4dbaf
 	xor a
 	ld [hli], a
 	ld a, $7e
@@ -43818,7 +43824,7 @@ _FindThatSpeciesYourTrainerID: ; 4dbe6
 	ret z
 	ld a, c
 	ld hl, PartyMon1ID
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [PlayerID]
 	cp [hl]
@@ -43847,7 +43853,7 @@ FindAtLeastThatHappy: ; 4dc0a
 	dec a
 	push hl
 	push bc
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	pop bc
 	ld a, b
@@ -43880,7 +43886,7 @@ FindGreaterThanThatLevel: ; 4dc31
 	dec a
 	push hl
 	push bc
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	pop bc
 	ld a, b
@@ -44810,7 +44816,7 @@ Jumptable_4e2b5: ; 4e2b5 (13:62b5)
 Function4e2bf: ; 4e2bf (13:62bf)
 	ld a, [CurPartyMon]
 	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld b, h
 	ld c, l
@@ -45067,12 +45073,12 @@ Function4e528: ; 4e528 (13:6528)
 
 
 Function4e53f: ; 4e53f
-	ld hl, PartyMon1HP - PartyMon1
+	ld hl, MON_HP
 	add hl, bc
 	ld a, [hli]
 	or [hl]
 	jr z, .asm_4e552
-	ld hl, PartyMon1Status - PartyMon1
+	ld hl, MON_STATUS
 	add hl, bc
 	ld a, [hl]
 	and (1 << FRZ) | SLP
@@ -46091,7 +46097,7 @@ Function500cf: ; 500cf
 
 Function50117: ; 50117
 	ld a, b
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, PartyMon1HP
 	call AddNTimes
 	ld a, [hli]
@@ -46130,7 +46136,7 @@ Function50138: ; 50138
 	jr z, .asm_5016b
 	push hl
 	ld a, b
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, PartyMon1HP
 	call AddNTimes
 	ld e, l
@@ -46173,7 +46179,7 @@ Function50176: ; 50176
 	jr z, .asm_501a7
 	push hl
 	ld a, b
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, PartyMon1Level
 	call AddNTimes
 	ld e, l
@@ -46214,7 +46220,7 @@ Function501b2: ; 501b2
 	jr z, .asm_501d5
 	push hl
 	ld a, b
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, PartyMon1Status
 	call AddNTimes
 	ld e, l
@@ -46303,7 +46309,7 @@ Function5022f: ; 5022f
 	jr z, .asm_5025d
 	push hl
 	ld a, b
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, PartyMon1Species
 	call AddNTimes
 	ld a, [hl]
@@ -46918,13 +46924,13 @@ DoPoisonStep:: ; 505da
 ; 5062e
 
 Function5062e: ; 5062e
-	ld a, PartyMon1Status - PartyMon1
+	ld a, MON_STATUS
 	call GetPartyParamLocation
 	ld a, [hl]
 	and 1 << PSN
 	ret z
 
-	ld a, PartyMon1HP - PartyMon1
+	ld a, MON_HP
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld b, a
@@ -46942,7 +46948,7 @@ Function5062e: ; 5062e
 	or c
 	jr nz, .not_fainted
 
-	ld a, PartyMon1Status - PartyMon1
+	ld a, MON_STATUS
 	call GetPartyParamLocation
 	ld [hl], 0
 	ld c, 2
@@ -47238,7 +47244,7 @@ _SacredAsh: ; 507e6
 ; 507fb
 
 CheckAnyFaintedMon: ; 507fb
-	ld de, PartyMon2 - PartyMon1
+	ld de, PARTYMON_STRUCT_LENGTH
 	ld bc, PartySpecies
 	ld hl, PartyMon1HP
 	ld a, [PartyCount]
@@ -47311,11 +47317,11 @@ CopyPkmnToTempMon: ; 5084a
 
 	ld a, [MonType]
 	ld hl, PartyMon1Species
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	and a
 	jr z, .copywholestruct
 	ld hl, OTPartyMon1Species
-	ld bc, OTPartyMon2 - OTPartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	cp OTPARTYMON
 	jr z, .copywholestruct
 	ld bc, BOXMON_STRUCT_LENGTH
@@ -47326,7 +47332,7 @@ CopyPkmnToTempMon: ; 5084a
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld de, TempMon
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 
 .done
@@ -47680,7 +47686,7 @@ GetGender: ; 50bdd
 
 ; 0: PartyMon
 	ld hl, PartyMon1DVs
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [MonType]
 	and a
 	jr z, .PartyMon
@@ -47692,7 +47698,7 @@ GetGender: ; 50bdd
 
 ; 2: sBoxMon
 	ld hl, sBoxMon1DVs
-	ld bc, sBoxMon2 - sBoxMon1
+	ld bc, BOXMON_STRUCT_LENGTH
 	dec a
 	jr z, .sBoxMon
 
@@ -48972,7 +48978,7 @@ Function51322: ; 51322
 	dec a
 	ld [wd265], a
 	ld hl, sBoxMons
-	ld bc, sBoxMon1End - sBoxMon1
+	ld bc, BOXMON_STRUCT_LENGTH
 	ld de, wd018
 	call Function513e0
 	ld hl, wd01a
@@ -49010,7 +49016,7 @@ Function5138b: ; 5138b
 	dec a
 	ld [wd265], a
 	ld hl, PartyMons
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld de, wd018
 	call Function513e0
 	ret
@@ -53401,27 +53407,18 @@ GetHallOfFameParty: ; 8653f
 
 	ld a, c
 	ld hl, PartyMons
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld c, l
 	ld b, h
 
-	ld hl, PartyMon1Species - PartyMon1
+	ld hl, MON_SPECIES
 	add hl, bc
 	ld a, [hl]
 	ld [de], a
 	inc de
 
-	ld hl, PartyMon1ID - PartyMon1
-	add hl, bc
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hl]
-	ld [de], a
-	inc de
-
-	ld hl, PartyMon1DVs - PartyMon1
+	ld hl, MON_ID
 	add hl, bc
 	ld a, [hli]
 	ld [de], a
@@ -53430,7 +53427,16 @@ GetHallOfFameParty: ; 8653f
 	ld [de], a
 	inc de
 
-	ld hl, PartyMon1Level - PartyMon1
+	ld hl, MON_DVS
+	add hl, bc
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hl]
+	ld [de], a
+	inc de
+
+	ld hl, MON_LEVEL
 	add hl, bc
 	ld a, [hl]
 	ld [de], a
@@ -58156,7 +58162,7 @@ Function8e86c: ; 8e86c (23:686c)
 	push bc
 	ld a, [hObjectStructIndexBuffer]
 	ld hl, PartyMon1Item
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	pop bc
 	ld a, [hl]
@@ -65078,7 +65084,7 @@ INCLUDE "engine/radio.asm"
 ReadPartyMonMail: ; b9229
 	ld a, [CurPartyMon]
 	ld hl, s0_a600
-	ld bc, PartyMon1StatsEnd - PartyMon1Item
+	ld bc, (SCRATCHMON_STRUCT_LENGTH)
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -69880,14 +69886,14 @@ BillsPCDepositFuncDeposit: ; e24a9 (38:64a9)
 	call Functione2f18
 	jp c, BillsPCDepositFuncCancel
 	call Functione307c
-	jr c, .asm_e24c1
+	jr c, .no_overflow_31
 	ld a, $0
 	ld [wJumptableIndex], a
 	xor a
 	ld [wcb2b], a
 	ld [wcb2a], a
 	ret
-.asm_e24c1
+.no_overflow_31
 	ld de, PCString_WhatsUp
 	call Functione2a6e
 	ret
@@ -70004,11 +70010,11 @@ Functione2583: ; e2583 (38:6583)
 	call JoyTextDelay
 	ld a, [wJumptableIndex]
 	bit 7, a
-	jr nz, .asm_e25b9
+	jr nz, .no_overflow_49
 	call Functione25c8
 	call DelayFrame
 	jr .asm_e25a7
-.asm_e25b9
+.no_overflow_49
 	call ClearSprites
 	pop af
 	ld [hInMenu], a
@@ -71520,7 +71526,7 @@ Functione2fd6: ; e2fd6 (38:6fd6)
 	ld hl, sBoxMonOT
 	call Functione3376
 	ld hl, sBoxMons
-	ld bc, sBoxMon2 - sBoxMon1
+	ld bc, BOXMON_STRUCT_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld de, wd018
@@ -71872,7 +71878,7 @@ Functione32b0: ; e32b0
 	ld hl, sBoxMonOT
 	call Functione3376
 	ld hl, sBoxMons
-	ld bc, sBoxMon1End - sBoxMon1
+	ld bc, BOXMON_STRUCT_LENGTH
 	call Functione3389
 	call CloseSRAM
 	callba Function5088b
@@ -71907,7 +71913,7 @@ Functione3316: ; e3316
 	ld hl, PartyMonOT
 	call Functione3376
 	ld hl, PartyMon1Species
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call Functione3389
 	xor a
 	ld [wd10b], a
@@ -75736,7 +75742,7 @@ Functionfb57e: ; fb57e
 .asm_fb59c
 	ld b, h
 	ld c, l
-	ld hl, OTPartyMon1Level - OTPartyMon1
+	ld hl, MON_LEVEL
 	add hl, bc
 	ld a, [hl]
 	cp 101
@@ -76698,19 +76704,19 @@ Functionfcc63: ; fcc63
 	call Functionfcdf4
 
 	ld hl, PartyMon1ID
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call Functionfcdd7
 	ld de, wc6ff
 	call Functionfce0f
 
 	ld hl, PartyMon1DVs
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call Functionfcdd7
 	ld de, wc6fd
 	call Functionfce0f
 
 	ld hl, PartyMon1Species
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call Functionfcdd7
 	ld b, h
 	ld c, l
@@ -76729,7 +76735,7 @@ Functionfcc63: ; fcc63
 	ld [wc733], a
 
 	ld hl, PartyMon1Level
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call Functionfcdd7
 	ld a, [hl]
 	ld [CurPartyLevel], a
@@ -76749,7 +76755,7 @@ Functionfcc63: ; fcc63
 	jr c, .asm_fcd1c
 	ld b, 1
 .asm_fcd1c
-	callba SetPkmnCaughtData
+	callba SetPartymonCaughtData
 
 	ld e, TRADE_NICK
 	call GetTradeAttribute
@@ -76783,7 +76789,7 @@ Functionfcc63: ; fcc63
 	call Functionfce0f
 
 	ld hl, PartyMon1DVs
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call Functionfcdde
 	ld hl, wc72f
 	call Functionfce0f
@@ -76794,7 +76800,7 @@ Functionfcc63: ; fcc63
 	call Functionfce15
 
 	ld hl, PartyMon1ID
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call Functionfcdde
 	ld hl, wc731
 	call Functionfce0f
@@ -76803,7 +76809,7 @@ Functionfcc63: ; fcc63
 	call GetTradeAttribute
 	push hl
 	ld hl, PartyMon1Item
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call Functionfcdde
 	pop hl
 	ld a, [hl]
@@ -79685,17 +79691,17 @@ Function10510b: ; 10510b (41:510b)
 	cp EGG
 	jr z, .asm_10513e
 	push hl
-	ld hl, PartyMon1Level - PartyMon1
+	ld hl, MON_LEVEL
 	add hl, bc
 	ld a, [hl]
 	ld [de], a
 	inc de
-	ld hl, PartyMon1Species - PartyMon1
+	ld hl, MON_SPECIES
 	add hl, bc
 	ld a, [hl]
 	ld [de], a
 	inc de
-	ld hl, PartyMon1Moves - PartyMon1
+	ld hl, MON_MOVES
 	add hl, bc
 	push bc
 	ld bc, NUM_MOVES
@@ -79704,7 +79710,7 @@ Function10510b: ; 10510b (41:510b)
 	pop hl
 .asm_10513e
 	push hl
-	ld hl, PartyMon2 - PartyMon1
+	ld hl, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l

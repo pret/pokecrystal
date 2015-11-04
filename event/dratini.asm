@@ -12,7 +12,7 @@ SpecialDratini: ; 0x8b170
 	call GetNthPartyMon
 	ld a, [bc]
 	ld c, a
-	ld de, PartyMon2 - PartyMon1
+	ld de, PARTYMON_STRUCT_LENGTH
 .CheckForDratini
 ; start at the end of the party and search backwards for a Dratini
 	ld a, [hl]
@@ -59,7 +59,7 @@ endr
 	call GetFarByte
 
 	; get the address of the move's PP and update the PP
-	ld hl, PartyMon1PP - PartyMon1Moves
+	ld hl, (MON_PP) - (MON_MOVES)
 	add hl, de
 	ld [hl], a
 
@@ -100,7 +100,7 @@ GetNthPartyMon: ; 0x8b1ce
 	jr z, .EmptyParty
 	dec a
 	ret z
-	ld de, PartyMon2 - PartyMon1
+	ld de, PARTYMON_STRUCT_LENGTH
 .loop
 	add hl, de
 	dec a

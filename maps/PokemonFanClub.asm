@@ -69,7 +69,7 @@ UnknownScript_0x191844:
 	writetext UnknownText_0x191c5a
 	keeptextopen
 	waitbutton
-	giveitem LOST_ITEM, $1
+	giveitem LOST_ITEM, 1
 	iffalse UnknownScript_0x191865
 	disappear $6
 	writetext UnknownText_0x191d0a
