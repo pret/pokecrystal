@@ -2270,7 +2270,7 @@ Function171beb: ; 171beb (5c:5beb)
 	call CloseSRAM
 	ld hl, MenuDataHeader_171c6b
 	call LoadMenuDataHeader
-	call Function1cbb
+	call MenuBox
 	call GetMemTileCoord
 	callba Function104061
 	hlcoord 1, 14

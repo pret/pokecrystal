@@ -88,7 +88,7 @@ Function1c66:: ; 1c66
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, wcf91
+	ld de, wMenuData2Flags
 	ld bc, $0010
 	call CopyBytes
 	pop af
@@ -131,7 +131,7 @@ Function1c89:: ; 1c89
 	pop bc
 	dec b
 	jr nz, .asm_1c9c
-	ld a, [wcf91]
+	ld a, [wMenuData2Flags]
 	bit 4, a
 	ret z
 	call GetMemTileCoord
@@ -143,7 +143,7 @@ Function1c89:: ; 1c89
 	jp PlaceString
 ; 1cbb
 
-Function1cbb:: ; 1cbb
+MenuBox:: ; 1cbb
 	call GetMemTileCoord
 	call GetMenuBoxDims
 	dec b
@@ -158,13 +158,13 @@ Function1cc6:: ; 1cc6
 	ld a, [wMenuBorderLeftCoord]
 	ld c, a
 	inc c
-	ld a, [wcf91]
+	ld a, [wMenuData2Flags]
 	bit 6, a
 	jr nz, .asm_1cd8
 	inc b
 
 .asm_1cd8
-	ld a, [wcf91]
+	ld a, [wMenuData2Flags]
 	bit 7, a
 	jr z, .asm_1ce0
 	inc c

@@ -462,7 +462,7 @@ Function17d246: ; 17d246
 	ld a, [ScriptVar]
 	cp $5
 	jr nz, .asm_17d25d
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $3
 	ret z
 	jr c, .asm_17d25d
@@ -470,7 +470,7 @@ Function17d246: ; 17d246
 	jr .asm_17d260
 
 .asm_17d25d
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 
 .asm_17d260
 	ld [ScriptVar], a
@@ -1932,13 +1932,13 @@ Function17dc1f: ; 17dc1f
 	call InterpretMenu2
 	jr nc, .asm_17dc6e
 	ld a, $2
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 
 .asm_17dc6e
 	call WriteBackup
 	pop af
 	ld [rSVBK], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $1
 	jr nz, .asm_17dc85
 	ld a, [$c68a]

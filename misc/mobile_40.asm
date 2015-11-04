@@ -901,7 +901,7 @@ Function100597: ; 100597
 	ret z
 	jr nc, .asm_1005a6
 	xor a
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 
 .asm_1005a6
 	call ExitMenu
@@ -953,7 +953,7 @@ Function1005e1: ; 1005e1
 	ret z
 	jr nc, .asm_1005f0
 	xor a
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 .asm_1005f0
 	call ExitMenu
 	ld a, [wcd26]
@@ -1882,16 +1882,16 @@ Function100bc2: ; 100bc2
 	jr .asm_100bd1
 
 .asm_100bff
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	and a
 	jp nz, .asm_100bcb
 	ld a, [wd0eb]
 	inc a
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	jp .asm_100bcb
 
 .asm_100c10
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld b, a
 	ld a, [wd0eb]
 rept 2
@@ -1900,11 +1900,11 @@ endr
 	cp b
 	jp nz, .asm_100bcb
 	ld a, $1
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	jp .asm_100bcb
 
 .asm_100c25
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld [CurMoveNum], a
 	ld a, $1
@@ -1912,10 +1912,10 @@ endr
 	ret
 
 .asm_100c30
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld [CurMoveNum], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld c, a
 	ld b, 0
@@ -1930,7 +1930,7 @@ endr
 	dec a
 	cp c
 	jr z, .asm_100c63
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld c, a
 	ld b, 0
@@ -1978,7 +1978,7 @@ Function100c98: ; 100c98
 	ld [wcfa3], a
 	ld a, [CurMoveNum]
 	inc a
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ret
 ; 100cad
 
@@ -2007,7 +2007,7 @@ Function100cb5: ; 100cb5
 	ld a, [PartyCount]
 	inc a
 	ld b, a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp b
 	jr z, .asm_100d17
 	ld [wd0d8], a
@@ -2015,7 +2015,7 @@ Function100cb5: ; 100cb5
 	ld b, a
 	bit 1, b
 	jr nz, .asm_100d17
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld [CurPartyMon], a
 	ld c, a
@@ -2084,7 +2084,7 @@ Function100d67: ; 100d67
 	call CopyMenuDataHeader
 	xor a
 	ld [hBGMapMode], a
-	call Function1cbb
+	call MenuBox
 	call UpdateSprites
 	call Function1c89
 	call WaitBGMap
@@ -4141,7 +4141,7 @@ Function101b2b: ; 101b2b
 	call Function1013dd
 	ld a, $0
 	ld [wcd26], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $1
 	jr z, .asm_101b51
 	ld a, $2
@@ -4194,7 +4194,7 @@ Function101b8f: ; 101b8f
 	call Function1013dd
 	ld a, $0
 	ld [wcd26], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $1
 	jr z, .asm_101bbc
 	ld a, $1
@@ -4238,7 +4238,7 @@ Function101be5: ; 101be5
 	call Function1013dd
 	ld a, $0
 	ld [wcd26], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $1
 	jr nz, .asm_101c0b
 	ld a, $2a
@@ -5330,7 +5330,7 @@ Function102387: ; 102387
 	call Function102d9a
 	call Function102dd3
 	ld a, $1
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 
 Function1023a1: ; 1023a1
 	call Function102283
@@ -5696,20 +5696,20 @@ Function1025ff: ; 1025ff
 	ret
 
 .asm_10262e
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld b, a
 	ld a, [OTPartyCount]
 	cp b
 	ret nz
 	call Function1bf7
 	ld a, [PartyCount]
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld a, $1d
 	ld [wcd49], a
 	ret
 
 .asm_102646
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $1
 	ret nz
 	ld a, $23
@@ -5758,7 +5758,7 @@ Function10266b: ; 10266b
 	ret
 
 .asm_10269a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ret nz
 	call Function1bf7
@@ -5767,7 +5767,7 @@ Function10266b: ; 10266b
 	ret
 
 .asm_1026a8
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld b, a
 	ld a, [PartyCount]
 	cp b
@@ -5827,7 +5827,7 @@ Function1026f3: ; 1026f3
 	hlcoord 9, 17
 	ld [hl], $7f
 	ld a, $1
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld a, $1d
 	ld [wcd49], a
 	ret
@@ -5836,7 +5836,7 @@ Function1026f3: ; 1026f3
 	hlcoord 9, 17
 	ld [hl], $7f
 	ld a, [OTPartyCount]
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld a, $1f
 	ld [wcd49], a
 	ret
@@ -5947,7 +5947,7 @@ asm_1027c6:
 asm_1027d1:
 	ld hl, wcd4b
 	set 3, [hl]
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wcd4c], a
 	ld a, $7
 	ld [wcd49], a
@@ -5978,7 +5978,7 @@ String_102804: ; 102804
 ; 102814
 
 Function102814: ; 102814
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wcd52], a
 	ld a, [wcd4c]
 	dec a
@@ -6030,7 +6030,7 @@ Function10286f: ; 10286f
 	call Function1028fc
 	ret nc
 	ld a, [wcd52]
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld a, [wcd51]
 	cp $8
 	jr nz, .asm_102886
@@ -6062,7 +6062,7 @@ Function1028a5: ; 1028a5
 
 Function1028ab: ; 1028ab
 	ld a, [wcd52]
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	call Function102f15
 	ld hl, wcd4b
 	set 1, [hl]
@@ -6288,7 +6288,7 @@ Function1029fe: ; 1029fe
 	push af
 	call ExitMenu
 	pop af
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $1
 	jr nz, .asm_102a21
 	ld a, $1
@@ -6439,12 +6439,12 @@ Function102b32: ; 102b32
 Function102b4e: ; 102b4e
 	ld a, $1
 	ld [MonType], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	push af
 	ld de, Unknown_102b73
 	call Function1bb1
 	pop af
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld a, [OTPartyCount]
 	ld [wcfa3], a
 	ret
@@ -6464,12 +6464,12 @@ Unknown_102b73:
 Function102b7b: ; 102b7b
 	xor a
 	ld [MonType], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	push af
 	ld de, Unknown_102b94
 	call Function1bb1
 	pop af
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld a, [PartyCount]
 	ld [wcfa3], a
 	ret
@@ -6489,7 +6489,7 @@ Function102b9c: ; 102b9c
 ; 102bac
 
 Function102bac: ; 102bac
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld [CurPartyMon], a
 	call LowVolume
@@ -6497,7 +6497,7 @@ Function102bac: ; 102bac
 	callba Function4dc8f
 	ld a, [CurPartyMon]
 	inc a
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	call Function102d9a
 	call ClearPalettes
 	call DelayFrame
@@ -7695,7 +7695,7 @@ Function103612: ; 103612
 	call InterpretMenu2
 	call WriteBackup
 	jr c, .asm_10363b
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [ScriptVar], a
 	ld c, a
 	ld a, [wdc40]
@@ -7783,7 +7783,7 @@ Mobile_SelectThreeMons: ; 10366e
 	call InterpretMenu2
 	call ExitMenu
 	jr c, .asm_1036f4
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $1
 	jr z, .asm_1036d9
 	cp $2

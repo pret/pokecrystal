@@ -7972,11 +7972,11 @@ Function11784c: ; 11784c (45:784c)
 Function1178aa: ; 1178aa (45:78aa)
 	ld hl, MenuDataHeader_1179b5
 	call LoadMenuDataHeader
-	call Function1cbb
+	call MenuBox
 	call GetMemTileCoord
 	ld hl, MenuDataHeader_1179bd
 	call LoadMenuDataHeader
-	call Function1cbb
+	call MenuBox
 	call GetMemTileCoord
 	callba Function104061
 	hlcoord 16, 8
@@ -8075,7 +8075,7 @@ asm_11797e: ; 11797e (45:797e)
 Function117984: ; 117984 (45:7984)
 	ld hl, MenuDataHeader_1179b5
 	call LoadMenuDataHeader
-	call Function1cbb
+	call MenuBox
 	call GetMemTileCoord
 	callba Function104061
 	hlcoord 1, 14
@@ -8235,7 +8235,7 @@ Function117b14:
 	ret nz
 	ld hl, Data117cbc
 	call LoadMenuDataHeader
-	call Function1cbb
+	call MenuBox
 	call GetMemTileCoord
 	jp Function117cdd
 
@@ -8247,7 +8247,7 @@ Function117b28:
 Function117b31:
 	ld hl, Data117cc4
 	call LoadMenuDataHeader
-	call Function1cbb
+	call MenuBox
 	call GetMemTileCoord
 	hlcoord 16, 8
 	ld de, YesNo117ccc
@@ -8385,7 +8385,7 @@ Function117bb6:
 Function117c4a:
 	ld hl, Data117cbc
 	call LoadMenuDataHeader
-	call Function1cbb
+	call MenuBox
 	call GetMemTileCoord
 	callba Function104061
 	ld hl, MobileStadiumSuccessText

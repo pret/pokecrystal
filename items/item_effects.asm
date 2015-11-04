@@ -2667,7 +2667,7 @@ Functionf6a7: ; f6a7
 
 Elixer_RestorePPofAllMoves: ; f6af
 	xor a
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld [hli], a
 	ld [hl], a
 	ld b, NUM_MOVES
@@ -2686,7 +2686,7 @@ Elixer_RestorePPofAllMoves: ; f6af
 	inc [hl]
 
 .cant_restore_pp
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	inc [hl]
 	pop bc
 	dec b
@@ -3123,7 +3123,7 @@ Functionf84c: ; f84c
 	ld a, [wd265]
 	dec a
 	jr nz, .asm_f876
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	inc a
 	cp b
 	jr nz, .asm_f87d
@@ -3200,7 +3200,7 @@ Functionf8b9: ; f8b9
 	call GetPartyParamLocation
 	pop de
 	xor a ; PARTYMON
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld [MonType], a
 	ld c, NUM_MOVES
 .loop
@@ -3220,7 +3220,7 @@ Functionf8b9: ; f8b9
 	add b
 	ld [de], a
 	inc de
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	inc [hl]
 	pop hl
 	dec c
@@ -3313,7 +3313,7 @@ GetMthMoveOfNthPartymon: ; f963
 	call AddNTimes
 
 GetMthMoveOfCurrentMon: ; f969
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld c, a
 	ld b, 0
 	add hl, bc

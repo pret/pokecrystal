@@ -109,7 +109,7 @@ endr
 	call InterpretMenu2
 	call WriteBackup
 	jr c, .cancel
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $1
 	jr z, .withdraw
 	cp $2

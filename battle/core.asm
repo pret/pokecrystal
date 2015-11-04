@@ -2860,13 +2860,13 @@ Function3d1f8: ; 3d1f8
 .asm_3d20a
 	lb bc, 1, 7
 	call PlaceYesNoBox
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	jr c, .asm_3d217
 	and a
 	ret
 
 .asm_3d217
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $1
 	jr z, .asm_3d20a
 	ld hl, PartyMon1Speed
@@ -3684,7 +3684,7 @@ Function3d74b: ; 3d74b
 	call StdBattleTextBox
 	lb bc, 1, 7
 	call PlaceYesNoBox
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	jr nz, .asm_3d79a
 	call Function3d2f7
@@ -5288,7 +5288,7 @@ Function3e234: ; 3e234
 .asm_3e25d
 	call Function3f47c
 	ld a, $1
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	call ExitMenu
 	call Function3df2c
 	call WaitBGMap
@@ -5328,7 +5328,7 @@ Function3e299:
 	call Function3e2f5
 	jr c, .asm_3e2c8
 	call Function1bee
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $1
 	jp z, Function3e358
 	cp $2
@@ -5533,7 +5533,7 @@ BattleMonEntrance: ; 3e40b
 	call SetPlayerTurn
 	call SpikesDamage
 	ld a, $2
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ret
 ; 3e459
 
@@ -5563,7 +5563,7 @@ PassedBattleMonEntrance: ; 3e459
 BattleMenu_Run: ; 3e489
 	call Call_LoadTempTileMapToTileMap
 	ld a, $3
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld hl, BattleMonSpeed
 	ld de, EnemyMonSpeed
 	call TryToRunAwayFromBattle
@@ -5659,7 +5659,7 @@ MoveSelectionScreen: ; 3e4bc
 	inc a
 
 .asm_3e53e
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld a, $1
 	ld [wcfaa], a
 	ld a, [wd0eb]
@@ -5726,9 +5726,9 @@ MoveSelectionScreen: ; 3e4bc
 
 	xor a
 	ld [wd0e3], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld b, a
 	ld a, [wd235]
 	dec a
@@ -5751,7 +5751,7 @@ MoveSelectionScreen: ; 3e4bc
 	ret nz
 
 	ld hl, BattleMonPP
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -5767,7 +5767,7 @@ MoveSelectionScreen: ; 3e4bc
 	ld a, [wc6e1]
 	and a
 	jr nz, .asm_3e606
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld hl, BattleMonMoves
 	ld c, a
 	ld b, 0
@@ -5797,17 +5797,17 @@ MoveSelectionScreen: ; 3e4bc
 ; 3e61d
 
 .asm_3e61d
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	and a
 	jp nz, .asm_3e57a
 	ld a, [wd0eb]
 	inc a
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	jp .asm_3e57a
 ; 3e62e
 
 .asm_3e62e ; 3e62e
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld b, a
 	ld a, [wd0eb]
 rept 2
@@ -5816,7 +5816,7 @@ endr
 	cp b
 	jp nz, .asm_3e57a
 	ld a, $1
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	jp .asm_3e57a
 ; 3e643
 
@@ -5833,7 +5833,7 @@ endr
 	swap a
 	and $f
 	ld b, a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp b
 	jr nz, .asm_3e671
 	ld a, [hl]
@@ -5852,7 +5852,7 @@ endr
 	ld a, [hl]
 	and $f
 	ld b, a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	swap a
 	add b
 	ld [hl], a
@@ -5886,7 +5886,7 @@ endr
 	ld d, h
 	ld e, l
 	pop hl
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld c, a
 	ld b, 0
@@ -5899,7 +5899,7 @@ endr
 	ret
 
 .asm_3e6bf
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wd0e3], a
 	jp MoveSelectionScreen
 ; 3e6c8
@@ -5921,7 +5921,7 @@ MoveInfoBox: ; 3e6c8
 	swap a
 	and $f
 	ld b, a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp b
 	jr nz, .asm_3e6f4
 
@@ -5931,11 +5931,11 @@ MoveInfoBox: ; 3e6c8
 	jr .done
 
 .asm_3e6f4
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	dec [hl]
 	call SetPlayerTurn
 	ld hl, BattleMonMoves
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -5948,7 +5948,7 @@ MoveInfoBox: ; 3e6c8
 	ld [MonType], a
 	callab Functionf8ec
 
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld c, [hl]
 	inc [hl]
 	ld b, 0
@@ -7250,9 +7250,9 @@ Function3edad: ; 3edad
 	ld hl, VTiles2 tile $73
 	lb bc, BANK(GFX_f8ae0), 6
 	call Get1bpp
-	ld de, GFX_f8b10
+	ld de, ExpBarGFX
 	ld hl, VTiles2 tile $55
-	lb bc, BANK(GFX_f8b10), 8
+	lb bc, BANK(ExpBarGFX), 8
 	jp Get2bpp
 ; 3edd1
 

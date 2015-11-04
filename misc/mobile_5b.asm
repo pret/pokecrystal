@@ -1168,7 +1168,7 @@ Function16d77a: ; 16d77a
 	swap a
 	and $f
 	ld c, a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld b, a
 	xor a
 	dec b

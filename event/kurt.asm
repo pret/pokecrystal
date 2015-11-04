@@ -40,7 +40,7 @@ Special_SelectApricornForKurt: ; 88018
 	and a
 	jr z, .done
 	ld [CurItem], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld c, a
 	push bc
 	call Kurt_PrintTextHowMany
@@ -135,7 +135,7 @@ Kurt_SelectQuantity: ; 880c2
 .loop
 	xor a
 	ld [hBGMapMode], a
-	call Function1cbb
+	call MenuBox
 	call UpdateSprites
 	call .PlaceApricornName
 	call PlaceApricornQuantity

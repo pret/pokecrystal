@@ -292,3 +292,30 @@ MON_SDF                EQUS "PartyMon1SpclDef - PartyMon1"
 BOXMON_STRUCT_LENGTH   EQUS "PartyMon1End - PartyMon1"
 PARTYMON_STRUCT_LENGTH EQUS "PartyMon1StatsEnd - PartyMon1"
 SCRATCHMON_STRUCT_LENGTH EQUS "PartyMon1StatsEnd - PartyMon1Item"
+
+const_value SET 1
+	const MONMENU_CUT        ; 1
+	const MONMENU_FLY        ; 2
+	const MONMENU_SURF       ; 3
+	const MONMENU_STRENGTH   ; 4
+	const MONMENU_WATERFALL  ; 5
+	const MONMENU_FLASH      ; 6
+	const MONMENU_WHIRLPOOL  ; 7
+	const MONMENU_DIG        ; 8
+	const MONMENU_TELEPORT   ; 9
+	const MONMENU_SOFTBOILED ; 10
+	const MONMENU_HEADBUTT   ; 11
+	const MONMENU_ROCKSMASH  ; 12
+	const MONMENU_MILKDRINK  ; 13
+	const MONMENU_SWEETSCENT ; 14
+
+	const MONMENU_STATS      ; 15
+	const MONMENU_SWITCH     ; 16
+	const MONMENU_ITEM       ; 17
+	const MONMENU_CANCEL     ; 18
+	const MONMENU_MOVE       ; 19
+	const MONMENU_MAIL       ; 20
+	const MONMENU_ERROR      ; 21
+
+MONMENU_FIELD_MOVE EQU 0
+MONMENU_MENUOPTION EQU 1

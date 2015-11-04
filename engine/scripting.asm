@@ -515,7 +515,7 @@ Script_interpretmenu2: ; 0x96f30
 	ld a, [ScriptBank]
 	ld hl, InterpretMenu2
 	rst FarCall
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	jr nc, .ok
 	xor a
 .ok

@@ -122,7 +122,7 @@ Special_DisplayUnownWords: ; 8ae68
 	call LoadMenuDataHeader
 	xor a
 	ld [hBGMapMode], a
-	call Function1cbb
+	call MenuBox
 	call UpdateSprites
 	call Function321c
 	call GetMemTileCoord

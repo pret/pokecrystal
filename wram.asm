@@ -1238,9 +1238,9 @@ wcf86:: ds 1
 wcf87:: ds 1
 wMenuCursorBuffer:: ds 2
 wcf8a:: ds 7 ; menu data 2 bank?
-wcf91:: ds 1
 
-wcf92:: ds 1
+wMenuData2Flags:: ds 1
+wMenuData2Items:: ds 1
 wcf93:: ds 1
 wcf94:: ds 1
 wcf95:: ds 1 ; bank
@@ -1257,7 +1257,7 @@ wcfa5:: ds 1
 wcfa6:: ds 1
 wcfa7:: ds 1
 wcfa8:: ds 1
-wcfa9:: ds 1
+MenuSelection2:: ds 1
 wcfaa:: ds 1
 wcfab:: ds 1
 wcfac:: ds 1
@@ -2321,7 +2321,7 @@ wCurBox:: ; db72
 	ds 2
 
 ; 8 chars + $50
-wBoxNames:: ds 9 * NUM_BOXES ; db75
+wBoxNames:: ds BOX_NAME_LENGTH * NUM_BOXES ; db75
 
 wCelebiEvent:: ds 1
 	ds 1

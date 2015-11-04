@@ -1284,7 +1284,7 @@ Function118936:
 	ret nz
 	ld hl, MenuDataHeader_119cf7
 	call LoadMenuDataHeader
-	call Function1cbb
+	call MenuBox
 	call GetMemTileCoord
 	call Function321c
 	hlcoord 16, 8, AttrMap
@@ -4739,7 +4739,7 @@ Function11a1ff: ; 11a1ff
 Function11a207: ; 11a207
 	ld hl, MenuDataHeader_11a2de
 	call LoadMenuDataHeader
-	call Function1cbb
+	call MenuBox
 	call GetMemTileCoord
 	call Function321c
 	hlcoord 16, 8
@@ -5954,7 +5954,7 @@ Function11ad1b: ; 11ad1b
 	call ClearSprites
 	call ClearTileMap
 	callba Function17c000
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wcd82], a
 	dec a
 	ld [hObjectStructIndexBuffer], a
@@ -6018,7 +6018,7 @@ Function11ad8f: ; 11ad8f
 Function11ad95: ; 11ad95
 	ld hl, MenuDataHeader_11ae38
 	call LoadMenuDataHeader
-	call Function1cbb
+	call MenuBox
 	hlcoord 12, 12
 	ld de, String_11ae40
 	call PlaceString
@@ -6028,7 +6028,7 @@ Function11ad95: ; 11ad95
 	callba Function104061
 	call Function11ad8a
 	ld a, $1
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld hl, Unknown_11afcc
 	call Function11afb7
 
@@ -6055,13 +6055,13 @@ Function11adc4:
 	jr .asm_11ae2e
 
 .asm_11ade6
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ret z
 	jr .asm_11adf4
 
 .asm_11aded
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	inc a
 	cp $4
 	ret z
@@ -6071,21 +6071,21 @@ Function11adc4:
 	ld hl, Unknown_11afcc
 	call Function11afbb
 	pop af
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld hl, Unknown_11afcc
 	call Function11afb7
 	ret
 
 .asm_11ae06
 	call PlayClickSFX
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld hl, wcd30
 	ld [hl], a
 	and a
 	jr z, .asm_11ae28
 	hlcoord 2, 14
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $2
 	jr z, .asm_11ae23
 	call Function11b272
@@ -6126,13 +6126,13 @@ String_11ae40: ; 11ae40
 Function11ae4e: ; 11ae4e
 	ld hl, MenuDataHeader_11afe8
 	call LoadMenuDataHeader
-	call Function1cbb
+	call MenuBox
 	hlcoord 10, 14
 	ld de, String_11aff0
 	call PlaceString
 	ld hl, MenuDataHeader_11b013
 	call LoadMenuDataHeader
-	call Function1cbb
+	call MenuBox
 	hlcoord 16, 8
 	ld de, String_11b01b
 	call PlaceString
@@ -6145,7 +6145,7 @@ Function11ae4e: ; 11ae4e
 	callba Function104061
 	call Function11ad8a
 	ld a, $1
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld hl, Unknown_11afd2
 	call Function11afb7
 
@@ -6176,13 +6176,13 @@ Function11ae98:
 	jr .asm_11aef7
 
 .asm_11aec1
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ret z
 	jr .asm_11aecf
 
 .asm_11aec8
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	inc a
 	cp $3
 	ret z
@@ -6192,14 +6192,14 @@ Function11ae98:
 	ld hl, Unknown_11afd2
 	call Function11afbb
 	pop af
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld hl, Unknown_11afd2
 	call Function11afb7
 	ret
 
 .asm_11aee1
 	call PlayClickSFX
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $2
 	jr z, .asm_11aeb4
 	ld a, [wcd4b]
@@ -6217,13 +6217,13 @@ Function11ae98:
 Function11af04: ; 11af04
 	ld hl, MenuDataHeader_11afe8
 	call LoadMenuDataHeader
-	call Function1cbb
+	call MenuBox
 	hlcoord 10, 14
 	ld de, String_11b003
 	call PlaceString
 	ld hl, MenuDataHeader_11b013
 	call LoadMenuDataHeader
-	call Function1cbb
+	call MenuBox
 	hlcoord 16, 8
 	ld de, String_11b01b
 	call PlaceString
@@ -6236,7 +6236,7 @@ Function11af04: ; 11af04
 	callba Function104061
 	call Function11ad8a
 	ld a, $2
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld hl, Unknown_11afd2
 	call Function11afb7
 
@@ -6267,13 +6267,13 @@ Function11af4e:
 	jr .asm_11afaa
 
 .asm_11af77
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ret z
 	jr .asm_11af85
 
 .asm_11af7e
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	inc a
 	cp $3
 	ret z
@@ -6283,14 +6283,14 @@ Function11af4e:
 	ld hl, Unknown_11afd2
 	call Function11afbb
 	pop af
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld hl, Unknown_11afd2
 	call Function11afb7
 	ret
 
 .asm_11af97
 	call PlayClickSFX
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $2
 	jr z, .asm_11af6a
 	ld a, $6
@@ -6313,7 +6313,7 @@ Function11afbb:
 	ld e, $7f
 
 asm_11afbd:
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld c, a
 	ld b, 0

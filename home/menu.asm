@@ -74,12 +74,12 @@ Call_ExitMenu:: ; 1d7d
 InterpretMenu2::
 	xor a
 	ld [hBGMapMode], a
-	call Function1cbb
+	call MenuBox
 	call UpdateSprites
 	call Function1c89
 	call Function321c
 	call Function1c66
-	ld a, [wcf91]
+	ld a, [wMenuData2Flags]
 	bit 7, a
 	jr z, .cancel
 	call Function1c10
@@ -99,7 +99,7 @@ GetMenu2:: ; 1dab
 	call LoadMenuDataHeader
 	call InterpretMenu2
 	call WriteBackup
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ret
 ; 1db8
 
@@ -168,7 +168,7 @@ InterpretTwoOptionMenu:: ; 1dfe
 	call WriteBackup
 	pop af
 	jr c, .no
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp 2 ; no
 	jr z, .no
 	and a
@@ -176,7 +176,7 @@ InterpretTwoOptionMenu:: ; 1dfe
 
 .no
 	ld a, 2
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	scf
 	ret
 ; 1e1d
@@ -249,7 +249,7 @@ MenuFunc_1e7f::
 	call Function1c66
 	call Function1ebd
 	call Function1ea6
-	call Function1cbb
+	call MenuBox
 	ret
 
 MenuWriteText::
@@ -274,7 +274,7 @@ Function1ea6:: ; 1ea6
 	ld a, [wMenuBorderRightCoord]
 	sub c
 	ld c, a
-	ld a, [wcf92]
+	ld a, [wMenuData2Items]
 	add a
 	inc a
 	ld b, a
@@ -305,7 +305,7 @@ Function1ebd:: ; 1ebd
 	ld d, h
 	ld e, l
 	ld a, [hl]
-	ld [wcf92], a
+	ld [wMenuData2Items], a
 	ret
 ; 1eda
 
@@ -342,13 +342,13 @@ Function1efb:: ; 1efb
 Function1eff:: ; 1eff
 	call Function1c10
 	ld hl, wcfa8
-	ld a, [wcf91]
+	ld a, [wMenuData2Flags]
 	bit 3, a
 	jr z, .asm_1f0e
 	set 3, [hl]
 
 .asm_1f0e
-	ld a, [wcf91]
+	ld a, [wMenuData2Flags]
 	bit 2, a
 	jr z, .asm_1f19
 	set 5, [hl]
@@ -403,13 +403,13 @@ Function1f2a:: ; 1f2a
 
 .asm_1f57
 	call Function1ebd
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld l, a
 	ld h, $0
 	add hl, de
 	ld a, [hl]
 	ld [MenuSelection], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wMenuCursorBuffer], a
 	and a
 	ret
@@ -491,7 +491,7 @@ ResetTextRelatedRAM:: ; 1fbf
 	call .bytefill
 	ld hl, wcf81
 	call .bytefill
-	ld hl, wcf91
+	ld hl, wMenuData2Flags
 	call .bytefill
 	ld hl, wcfa1
 	call .bytefill

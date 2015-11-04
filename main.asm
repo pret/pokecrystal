@@ -607,7 +607,7 @@ Function5ebf: ; 5ebf
 
 .asm_5ecf
 	call Function1e35
-	call Function1cbb
+	call MenuBox
 	call Function1c89
 	ret
 ; 5ed9
@@ -840,7 +840,7 @@ OakText7: ; 0x606f
 NamePlayer: ; 0x6074
 	callba MovePlayerPicRight
 	callba ShowPlayerNamingChoices
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	jr z, .NewName
 	call StorePlayerName
@@ -886,7 +886,7 @@ NamePlayer: ; 0x6074
 Function60e9: ; Unreferenced
 	call LoadMenuDataHeader
 	call InterpretMenu2
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	call Function1db8
 	call WriteBackup
@@ -1737,7 +1737,7 @@ ForgetMove: ; 65d3
 	ld [wcfa3], a
 	ld a, $1
 	ld [wcfa4], a
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld [wcfaa], a
 	ld a, $3
 	ld [wcfa8], a
@@ -1755,7 +1755,7 @@ ForgetMove: ; 65d3
 	bit 1, a
 	jr nz, .cancel
 	push hl
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld c, a
 	ld b, 0
@@ -8620,7 +8620,7 @@ Functiondcb6: ; dcb6
 	pop hl
 	pop de
 
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	push af
 	ld a, [MonType]
 	push af
@@ -8633,7 +8633,7 @@ Functiondcb6: ; dcb6
 	ld a, BOXMON
 	ld [MonType], a
 	ld a, b
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	push bc
 	push hl
 	push de
@@ -8657,7 +8657,7 @@ Functiondcb6: ; dcb6
 	pop af
 	ld [MonType], a
 	pop af
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ret
 ; dd21
 
@@ -9776,14 +9776,14 @@ Functione443: ; e443 (3:6443)
 	ld hl, MenuDataHeader_0xe46f
 	call LoadMenuDataHeader
 	ld a, $1
-.asm_e44b
+.loop
 	ld [wMenuCursorBuffer], a
 	call SetPalettes
 	xor a
 	ld [wcf76], a
 	ld [hBGMapMode], a ; $ff00+$d4
 	call Function1e5d
-	jr c, .asm_e46b
+	jr c, .cancel
 	ld a, [wMenuCursorBuffer]
 	push af
 	ld a, [MenuSelection]
@@ -9791,8 +9791,8 @@ Functione443: ; e443 (3:6443)
 	rst JumpTable
 	pop bc
 	ld a, b
-	jr nc, .asm_e44b
-.asm_e46b
+	jr nc, .loop
+.cancel
 	call WriteBackup
 	ret
 ; e46f (3:646f)
@@ -13147,7 +13147,7 @@ PokemonActionSubmenu: ; 12a88
 	hlcoord 1, 15
 	lb bc, 2, 18
 	call ClearBox
-	callba Function24d19
+	callba MonSubmenu
 	call GetCurNick
 	ld a, [MenuSelection]
 	ld hl, .Actions
@@ -13166,26 +13166,26 @@ PokemonActionSubmenu: ; 12a88
 	ret
 
 .Actions
-	dbw  1, Function12e1b ; Cut
-	dbw  2, Function12e30 ; Fly
-	dbw  3, Function12ebd ; Surf
-	dbw  4, Function12e6a ; Strength
-	dbw  6, Function12e55 ; Flash
-	dbw  7, Function12e7f ; Whirlpool
-	dbw  8, Function12ed1 ; Dig
-	dbw  9, Function12ea9 ; Teleport
-	dbw 10, Function12ee6 ; Softboiled
-	dbw 13, Function12ee6 ; MilkDrink
-	dbw 11, Function12f26 ; Headbutt
-	dbw  5, Function12e94 ; Waterfall
-	dbw 12, Function12f3b ; RockSmash
-	dbw 14, Function12f50 ; SweetScent
-	dbw 15, OpenPartyStats
-	dbw 16, SwitchPartyMons
-	dbw 17, GiveTakePartyMonItem
-	dbw 18, CancelPokemonAction
-	dbw 19, Function12fba ; move
-	dbw 20, MonMailAction ; mail
+	dbw MONMENU_CUT,        Function12e1b ; Cut
+	dbw MONMENU_FLY,        Function12e30 ; Fly
+	dbw MONMENU_SURF,       Function12ebd ; Surf
+	dbw MONMENU_STRENGTH,   Function12e6a ; Strength
+	dbw MONMENU_FLASH,      Function12e55 ; Flash
+	dbw MONMENU_WHIRLPOOL,  Function12e7f ; Whirlpool
+	dbw MONMENU_DIG,        Function12ed1 ; Dig
+	dbw MONMENU_TELEPORT,   Function12ea9 ; Teleport
+	dbw MONMENU_SOFTBOILED, Function12ee6 ; Softboiled
+	dbw MONMENU_MILKDRINK,  Function12ee6 ; MilkDrink
+	dbw MONMENU_HEADBUTT,   Function12f26 ; Headbutt
+	dbw MONMENU_WATERFALL,  Function12e94 ; Waterfall
+	dbw MONMENU_ROCKSMASH,  Function12f3b ; RockSmash
+	dbw MONMENU_SWEETSCENT, Function12f50 ; SweetScent
+	dbw MONMENU_STATS,      OpenPartyStats
+	dbw MONMENU_SWITCH,     SwitchPartyMons
+	dbw MONMENU_ITEM,       GiveTakePartyMonItem
+	dbw MONMENU_CANCEL,     CancelPokemonAction
+	dbw MONMENU_MOVE,       Function12fba ; move
+	dbw MONMENU_MAIL,       MonMailAction ; mail
 ; 12aec
 
 
@@ -13260,7 +13260,7 @@ GiveTakePartyMonItem: ; 12b60
 	ld de, wd050
 	ld bc, $b
 	call CopyBytes
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp 1
 	jr nz, .asm_12ba0
 
@@ -13566,7 +13566,7 @@ MonMailAction: ; 12d45
 
 ; Interpret the menu.
 	jp c, .done
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $1
 	jr z, .read
 	cp $2
@@ -14039,7 +14039,7 @@ Function12fd5: ; 12fd5
 	and a
 	jp z, Function13154
 	ld a, [wd0e3]
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	xor a
 	ld [wd0e3], a
 	hlcoord 1, 2
@@ -14118,7 +14118,7 @@ Function12fd5: ; 12fd5
 	ld a, [wd0e3]
 	and a
 	jr nz, .asm_130de
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wd0e3], a
 	call Function1bee
 	jp .asm_13018
@@ -14165,7 +14165,7 @@ Function12fd5: ; 12fd5
 
 Function1313a: ; 1313a
 	push hl
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld c, a
 	ld b, $0
@@ -14283,7 +14283,7 @@ Function13235: ; 13235
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld c, a
 	ld b, $0
@@ -18372,7 +18372,7 @@ Function15985: ; 0x15985
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0dd], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wd0d7], a
 	pop af
 	ld [wc2ce], a
@@ -18664,7 +18664,7 @@ StandardMart: ; 15b47
 	call CopyMenuDataHeader
 	call InterpretMenu2
 	jr c, .quit
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $1
 	jr z, .buy
 	cp $2
@@ -18948,7 +18948,7 @@ Function15cef: ; 15cef
 	call Function350c
 	ld a, [wd0e4]
 	ld [WalkingY], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [WalkingX], a
 	call SpeechTextBox
 	ld a, [wcf73]
@@ -22003,591 +22003,7 @@ StringBufferPointers:: ; 24000
 	dw BattleMonNick
 ; 2400e
 
-Function2400e:: ; 2400e
-	ld hl, Function1c66
-	ld a, [wcf94]
-	rst FarCall
-	call Function24085
-	call UpdateSprites
-	call Function321c
-	call Function2408f
-	ret
-; 24022
-
-Function24022:: ; 24022
-	ld hl, Function1c66
-	ld a, [wcf94]
-	rst FarCall
-	call Function24085
-	callba MobileTextBorder
-	call UpdateSprites
-	call Function321c
-	call Function2408f
-	ret
-; 2403c
-
-Function2403c:: ; 2403c
-	ld hl, Function1c66
-	ld a, [wcf94]
-	rst FarCall
-	call Function24085
-	callba MobileTextBorder
-	call UpdateSprites
-	call Function321c
-	call Function2411a
-	ld hl, wcfa5
-	set 7, [hl]
-.asm_2405a
-	call DelayFrame
-	callba Function10032e
-	ld a, [wcd2b]
-	and a
-	jr nz, .asm_24076
-	call Function241ba
-	ld a, [wcfa8]
-	and c
-	jr z, .asm_2405a
-	call Function24098
-	ret
-
-.asm_24076
-	ld a, [wcfa4]
-	ld c, a
-	ld a, [wcfa3]
-	call SimpleMultiply
-	ld [wMenuCursorBuffer], a
-	and a
-	ret
-; 24085
-
-
-
-Function24085: ; 24085
-	xor a
-	ld [hBGMapMode], a
-	call Function1cbb
-	call Function240db
-	ret
-; 2408f
-
-Function2408f: ; 2408f
-	call Function2411a
-	call Function1bc9
-	call Function1ff8
-
-Function24098: ; 24098
-	ld a, [wcf91]
-	bit 1, a
-	jr z, .asm_240a6
-	call Function1bdd
-	bit 2, a
-	jr nz, .asm_240c9
-
-.asm_240a6
-	ld a, [wcf91]
-	bit 0, a
-	jr nz, .asm_240b4
-	call Function1bdd
-	bit 1, a
-	jr nz, .asm_240cb
-
-.asm_240b4
-	ld a, [wcfa4]
-	ld c, a
-	ld a, [wcfa9]
-	dec a
-	call SimpleMultiply
-	ld c, a
-	ld a, [wcfaa]
-	add c
-	ld [wMenuCursorBuffer], a
-	and a
-	ret
-
-.asm_240c9
-	scf
-	ret
-
-.asm_240cb
-	scf
-	ret
-; 240cd
-
-Function240cd: ; 240cd
-	ld a, [wcf92]
-	and $f
-	ret
-; 240d3
-
-Function240d3: ; 240d3
-	ld a, [wcf92]
-	swap a
-	and $f
-	ret
-; 240db
-
-Function240db: ; 240db
-	ld hl, wcf95
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	call Function1cc6
-	call GetTileCoord
-	call Function240d3
-	ld b, a
-.asm_240eb
-	push bc
-	push hl
-	call Function240cd
-	ld c, a
-.asm_240f1
-	push bc
-	ld a, [wcf94]
-	call Function201c
-	inc de
-	ld a, [wcf93]
-	ld c, a
-	ld b, $0
-	add hl, bc
-	pop bc
-	dec c
-	jr nz, .asm_240f1
-	pop hl
-	ld bc, $28
-	add hl, bc
-	pop bc
-	dec b
-	jr nz, .asm_240eb
-	ld hl, wcf98
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	or h
-	ret z
-	ld a, [wcf97]
-	rst FarCall
-	ret
-; 2411a
-
-
-Function2411a: ; 2411a (9:411a)
-	call Function1cc6
-	ld a, b
-	ld [wcfa1], a
-	dec c
-	ld a, c
-	ld [wcfa2], a
-	call Function240d3
-	ld [wcfa3], a
-	call Function240cd
-	ld [wcfa4], a
-	call Function24179
-	call Function2418a
-	call Function24193
-	ld a, [wcfa4]
-	ld e, a
-	ld a, [wMenuCursorBuffer]
-	ld b, a
-	xor a
-	ld d, $0
-.asm_24146
-	inc d
-	add e
-	cp b
-	jr c, .asm_24146
-	sub e
-	ld c, a
-	ld a, b
-	sub c
-	and a
-	jr z, .asm_24157
-	cp e
-	jr z, .asm_24159
-	jr c, .asm_24159
-.asm_24157
-	ld a, $1
-.asm_24159
-	ld [wcfaa], a
-	ld a, [wcfa3]
-	ld e, a
-	ld a, d
-	and a
-	jr z, .asm_24169
-	cp e
-	jr z, .asm_2416b
-	jr c, .asm_2416b
-.asm_24169
-	ld a, $1
-.asm_2416b
-	ld [wcfa9], a
-	xor a
-	ld [wcfab], a
-	ld [wcfac], a
-	ld [wcfad], a
-	ret
-; 24179
-
-Function24179: ; 24179
-	xor a
-	ld hl, wcfa5
-	ld [hli], a
-	ld [hld], a
-	ld a, [wcf91]
-	bit 5, a
-	ret z
-	set 5, [hl]
-	set 4, [hl]
-	ret
-; 2418a
-
-Function2418a: ; 2418a
-	ld a, [wcf93]
-	or $20
-	ld [wcfa7], a
-	ret
-; 24193
-
-Function24193: ; 24193
-	ld hl, wcf91
-	ld a, $1
-	bit 0, [hl]
-	jr nz, .asm_2419e
-	or $2
-
-.asm_2419e
-	bit 1, [hl]
-	jr z, .asm_241a4
-	or $4
-
-.asm_241a4
-	ld [wcfa8], a
-	ret
-; 241a8
-
-
-Function241a8:: ; 241a8
-	call Function24329
-Function241ab:: ; 241ab
-	ld hl, wcfa6
-	res 7, [hl]
-	ld a, [hBGMapMode]
-	push af
-	call Function24216
-	pop af
-	ld [hBGMapMode], a
-	ret
-; 241ba
-
-Function241ba: ; 241ba
-	ld hl, wcfa6
-	res 7, [hl]
-	ld a, [hBGMapMode]
-	push af
-	call Function2431a
-	call Function24249
-	jr nc, .asm_241cd
-	call Function24270
-
-.asm_241cd
-	pop af
-	ld [hBGMapMode], a
-	call Function1bdd
-	ld c, a
-	ret
-; 241d5
-
-
-Function241d5: ; 241d5
-	call Function24329
-.asm_241d8
-	call Function2431a
-	call Function10402d ; BUG: This function is in another bank.
-	call Function241fa
-	jr nc, .asm_241f9
-	call Function24270
-	jr c, .asm_241f9
-	ld a, [wcfa5]
-	bit 7, a
-	jr nz, .asm_241f9
-	call Function1bdd
-	ld c, a
-	ld a, [wcfa8]
-	and c
-	jr z, .asm_241d8
-
-.asm_241f9
-	ret
-; 241fa
-
-Function241fa: ; 241fa
-.asm_241fa
-	call Function24259
-	ret c
-	ld c, $1
-	ld b, $3
-	call Function10062d ; BUG: This function is in another bank.
-	ret c
-	callba Function100337
-	ret c
-	ld a, [wcfa5]
-	bit 7, a
-	jr z, .asm_241fa
-	and a
-	ret
-; 24216
-
-
-Function24216: ; 24216
-.asm_24216
-	call Function2431a
-	call Function24238
-	call Function24249
-	jr nc, .asm_24237
-	call Function24270
-	jr c, .asm_24237
-	ld a, [wcfa5]
-	bit 7, a
-	jr nz, .asm_24237
-	call Function1bdd
-	ld b, a
-	ld a, [wcfa8]
-	and b
-	jr z, .asm_24216
-
-.asm_24237
-	ret
-; 24238
-
-Function24238: ; 24238
-	ld a, [hOAMUpdate]
-	push af
-	ld a, $1
-	ld [hOAMUpdate], a
-	call WaitBGMap
-	pop af
-	ld [hOAMUpdate], a
-	xor a
-	ld [hBGMapMode], a
-	ret
-; 24249
-
-Function24249: ; 24249
-.asm_24249
-	call RTC
-	call Function24259
-	ret c
-	ld a, [wcfa5]
-	bit 7, a
-	jr z, .asm_24249
-	and a
-	ret
-; 24259
-
-Function24259: ; 24259
-	ld a, [wcfa5]
-	bit 6, a
-	jr z, .asm_24266
-	callab Function8cf62
-
-.asm_24266
-	call JoyTextDelay
-	call Function1bdd
-	and a
-	ret z
-	scf
-	ret
-; 24270
-
-Function24270: ; 24270
-	call Function1bdd
-	bit 0, a
-	jp nz, Function24318
-	bit 1, a
-	jp nz, Function24318
-	bit 2, a
-	jp nz, Function24318
-	bit 3, a
-	jp nz, Function24318
-	bit 4, a
-	jr nz, .asm_242fa
-	bit 5, a
-	jr nz, .asm_242dc
-	bit 6, a
-	jr nz, .asm_242be
-	bit 7, a
-	jr nz, .asm_242a0
-	and a
-	ret
-
-.asm_24299: ; 24299
-	ld hl, wcfa6
-	set 7, [hl]
-	scf
-	ret
-
-.asm_242a0
-	ld hl, wcfa9
-	ld a, [wcfa3]
-	cp [hl]
-	jr z, .asm_242ac
-	inc [hl]
-	xor a
-	ret
-
-.asm_242ac
-	ld a, [wcfa5]
-	bit 5, a
-	jr nz, .asm_242ba
-	bit 3, a
-	jp nz, .asm_24299
-	xor a
-	ret
-
-.asm_242ba
-	ld [hl], $1
-	xor a
-	ret
-
-.asm_242be
-	ld hl, wcfa9
-	ld a, [hl]
-	dec a
-	jr z, .asm_242c8
-	ld [hl], a
-	xor a
-	ret
-
-.asm_242c8
-	ld a, [wcfa5]
-	bit 5, a
-	jr nz, .asm_242d6
-	bit 2, a
-	jp nz, .asm_24299
-	xor a
-	ret
-
-.asm_242d6
-	ld a, [wcfa3]
-	ld [hl], a
-	xor a
-	ret
-
-.asm_242dc
-	ld hl, wcfaa
-	ld a, [hl]
-	dec a
-	jr z, .asm_242e6
-	ld [hl], a
-	xor a
-	ret
-
-.asm_242e6
-	ld a, [wcfa5]
-	bit 4, a
-	jr nz, .asm_242f4
-	bit 1, a
-	jp nz, .asm_24299
-	xor a
-	ret
-
-.asm_242f4
-	ld a, [wcfa4]
-	ld [hl], a
-	xor a
-	ret
-
-.asm_242fa
-	ld hl, wcfaa
-	ld a, [wcfa4]
-	cp [hl]
-	jr z, .asm_24306
-	inc [hl]
-	xor a
-	ret
-
-.asm_24306
-	ld a, [wcfa5]
-	bit 4, a
-	jr nz, .asm_24314
-	bit 0, a
-	jp nz, .asm_24299
-	xor a
-	ret
-
-.asm_24314
-	ld [hl], $1
-	xor a
-	ret
-; 24318
-
-Function24318: ; 24318
-	xor a
-	ret
-; 2431a
-
-Function2431a: ; 2431a
-	ld hl, wcfac
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, [hl]
-	cp $ed
-	jr nz, Function24329
-	ld a, [wcfab]
-	ld [hl], a
-
-Function24329: ; 24329
-	ld a, [wcfa1]
-	ld b, a
-	ld a, [wcfa2]
-	ld c, a
-	call GetTileCoord
-	ld a, [wcfa7]
-	swap a
-	and $f
-	ld c, a
-	ld a, [wcfa9]
-	ld b, a
-	xor a
-	dec b
-	jr z, .asm_24348
-.asm_24344
-	add c
-	dec b
-	jr nz, .asm_24344
-
-.asm_24348
-	ld c, $14
-	call AddNTimes
-	ld a, [wcfa7]
-	and $f
-	ld c, a
-	ld a, [wcfaa]
-	ld b, a
-	xor a
-	dec b
-	jr z, .asm_2435f
-.asm_2435b
-	add c
-	dec b
-	jr nz, .asm_2435b
-
-.asm_2435f
-	ld c, a
-	add hl, bc
-	ld a, [hl]
-	cp $ed
-	jr z, .asm_2436b
-	ld [wcfab], a
-	ld [hl], $ed
-
-.asm_2436b
-	ld a, l
-	ld [wcfac], a
-	ld a, h
-	ld [wcfad], a
-	ret
-; 24374
+INCLUDE "engine/menu.asm"
 
 _BackUpTiles:: ; 24374
 	ld a, [rSVBK]
@@ -22778,7 +22194,7 @@ UnknownText_0x24468: ; 24468
 ; 2446d
 
 Function2446d:: ; 2446d
-	ld a, [wcf91]
+	ld a, [wMenuData2Flags]
 	ld b, a
 	ld hl, wcfa1
 	ld a, [wMenuBorderTopCoord]
@@ -22792,7 +22208,7 @@ Function2446d:: ; 2446d
 	ld a, [wMenuBorderLeftCoord]
 	inc a
 	ld [hli], a
-	ld a, [wcf92]
+	ld a, [wMenuData2Items]
 	ld [hli], a
 	ld a, $1
 	ld [hli], a
@@ -22824,7 +22240,7 @@ Function2446d:: ; 2446d
 	and a
 	jr z, .asm_244b7
 	ld c, a
-	ld a, [wcf92]
+	ld a, [wMenuData2Items]
 	cp c
 	jr nc, .asm_244b9
 
@@ -22862,7 +22278,7 @@ Function244c3: ; 0x244c3
 Pokepic:: ; 244e3
 	ld hl, MenuDataHeader_0x24547
 	call CopyMenuDataHeader
-	call Function1cbb
+	call MenuBox
 	call UpdateSprites
 	call Function321c
 	ld b, $12
@@ -23079,7 +22495,7 @@ MenuJoyAction: ; 24609
 
 .a_button: ; 24644
 	call Function1bee
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	call Function248d5
 	ld a, [MenuSelection]
@@ -23105,10 +22521,10 @@ MenuJoyAction: ; 24609
 ; 24673
 
 .select: ; 24673
-	ld a, [wcf91]
+	ld a, [wMenuData2Flags]
 	bit 7, a
 	jp z, xor_a_dec_a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	call Function248d5
 	ld a, [MenuSelection]
@@ -23123,7 +22539,7 @@ MenuJoyAction: ; 24609
 ; 24695
 
 .start: ; 24695
-	ld a, [wcf91]
+	ld a, [wMenuData2Flags]
 	bit 6, a
 	jp z, xor_a_dec_a
 	ld a, START
@@ -23135,7 +22551,7 @@ MenuJoyAction: ; 24609
 	ld hl, wcfa6
 	bit 7, [hl]
 	jp z, xor_a_dec_a
-	ld a, [wcf91]
+	ld a, [wMenuData2Flags]
 	bit 3, a
 	jp z, xor_a_dec_a
 	ld a, D_LEFT
@@ -23147,7 +22563,7 @@ MenuJoyAction: ; 24609
 	ld hl, wcfa6
 	bit 7, [hl]
 	jp z, xor_a_dec_a
-	ld a, [wcf91]
+	ld a, [wMenuData2Flags]
 	bit 2, a
 	jp z, xor_a_dec_a
 	ld a, D_RIGHT
@@ -23175,7 +22591,7 @@ MenuJoyAction: ; 24609
 	bit 7, [hl]
 	jp z, xor_a
 	ld hl, wd0e4
-	ld a, [wcf92]
+	ld a, [wMenuData2Items]
 	add [hl]
 	ld b, a
 	ld a, [wd144]
@@ -23191,7 +22607,7 @@ MenuJoyAction: ; 24609
 Function246fc: ; 246fc
 	ld a, [wd0e4]
 	ld c, a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	add c
 	ld c, a
 	ret
@@ -23202,7 +22618,7 @@ Function24706: ; 24706 (9:4706)
 	ld de, SCREEN_WIDTH
 	add hl, de
 	ld de, 2 * SCREEN_WIDTH
-	ld a, [wcf92]
+	ld a, [wMenuData2Items]
 .asm_24713
 	ld [hl], " "
 	add hl, de
@@ -23219,8 +22635,8 @@ Function2471a: ; 2471a
 	ld a, [wcf95]
 	call GetFarByte
 	ld [wd144], a
-; if ([wd144] + 1) < [wcf92] + [wd0e4]: [wd0e4] = max(([wd144] + 1) - [wcf92], 0)
-	ld a, [wcf92]
+; if ([wd144] + 1) < [wMenuData2Items] + [wd0e4]: [wd0e4] = max(([wd144] + 1) - [wMenuData2Items], 0)
+	ld a, [wMenuData2Items]
 	ld c, a
 	ld a, [wd0e4]
 	add c
@@ -23229,7 +22645,7 @@ Function2471a: ; 2471a
 	inc a
 	cp c
 	jr nc, .skip
-	ld a, [wcf92]
+	ld a, [wMenuData2Items]
 	ld c, a
 	ld a, [wd144]
 	inc a
@@ -23263,7 +22679,7 @@ Function2471a: ; 2471a
 ; 24764
 
 Function24764: ; 24764
-	ld a, [wcf91]
+	ld a, [wMenuData2Flags]
 	ld c, a
 	ld a, [wd144]
 	ld b, a
@@ -23273,7 +22689,7 @@ Function24764: ; 24764
 	ld a, [wMenuBorderLeftCoord]
 	add $0
 	ld [wcfa2], a
-	ld a, [wcf92]
+	ld a, [wMenuData2Items]
 	cp b
 	jr c, .asm_24786
 	jr z, .asm_24786
@@ -23325,7 +22741,7 @@ Function24764: ; 24764
 	ld a, $1
 
 .asm_247ca
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld a, $1
 	ld [wcfaa], a
 	xor a
@@ -23353,7 +22769,7 @@ Function247dd: ; 247dd
 
 Function247f0: ; 247f0
 	call Function1cf1
-	ld a, [wcf91]
+	ld a, [wMenuData2Flags]
 	bit 4, a
 	jr z, .asm_2480d
 	ld a, [wd0e4]
@@ -23370,7 +22786,7 @@ Function247f0: ; 247f0
 	call GetMemTileCoord
 	ld bc, $15
 	add hl, bc
-	ld a, [wcf92]
+	ld a, [wMenuData2Items]
 	ld b, a
 	ld c, $0
 .asm_2481a
@@ -23393,7 +22809,7 @@ Function247f0: ; 247f0
 	ld a, c
 	cp b
 	jr nz, .asm_2481a
-	ld a, [wcf91]
+	ld a, [wMenuData2Flags]
 	bit 4, a
 	jr z, .asm_24850
 	ld a, [wMenuBorderBottomCoord]
@@ -23407,7 +22823,7 @@ Function247f0: ; 247f0
 	ret
 
 .asm_24851
-	ld a, [wcf91]
+	ld a, [wMenuData2Flags]
 	bit 0, a
 	jr nz, .asm_24866
 	ld de, .string_2485f
@@ -23455,7 +22871,7 @@ Function2488b: ; 2488b
 	cp b
 	jr nc, .asm_248b7
 	ld c, a
-	ld a, [wcf92]
+	ld a, [wMenuData2Items]
 	add c
 	cp b
 	jr c, .asm_248b7
@@ -23479,7 +22895,7 @@ Function2488b: ; 2488b
 ; 248b8
 
 Function248b8: ; 248b8
-	ld a, [wcf91]
+	ld a, [wMenuData2Flags]
 	bit 5, a
 	ret z
 	bit 1, a
@@ -23489,7 +22905,7 @@ Function248b8: ; 248b8
 	ret nz
 
 .asm_248c7
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	call Function248d5
 	ld hl, wcf9e
@@ -23847,7 +23263,7 @@ Function24af8: ; 24af8
 	call Function1e2e
 
 Function24b01: ; 24b01
-	call Function1cbb
+	call MenuBox
 	call GetMemTileCoord
 	ld de, $15
 	add hl, de
@@ -24095,41 +23511,41 @@ MonMenuOptionStrings: ; 24caf
 MonMenuOptions: ; 24cd9
 
 ; Moves
-	db 0,  1, CUT
-	db 0,  2, FLY
-	db 0,  3, SURF
-	db 0,  4, STRENGTH
-	db 0,  6, FLASH
-	db 0,  5, WATERFALL
-	db 0,  7, WHIRLPOOL
-	db 0,  8, DIG
-	db 0,  9, TELEPORT
-	db 0, 10, SOFTBOILED
-	db 0, 11, HEADBUTT
-	db 0, 12, ROCK_SMASH
-	db 0, 13, MILK_DRINK
-	db 0, 14, SWEET_SCENT
+	db MONMENU_FIELD_MOVE, MONMENU_CUT,        CUT
+	db MONMENU_FIELD_MOVE, MONMENU_FLY,        FLY
+	db MONMENU_FIELD_MOVE, MONMENU_SURF,       SURF
+	db MONMENU_FIELD_MOVE, MONMENU_STRENGTH,   STRENGTH
+	db MONMENU_FIELD_MOVE, MONMENU_FLASH,      FLASH
+	db MONMENU_FIELD_MOVE, MONMENU_WATERFALL,  WATERFALL
+	db MONMENU_FIELD_MOVE, MONMENU_WHIRLPOOL,  WHIRLPOOL
+	db MONMENU_FIELD_MOVE, MONMENU_DIG,        DIG
+	db MONMENU_FIELD_MOVE, MONMENU_TELEPORT,   TELEPORT
+	db MONMENU_FIELD_MOVE, MONMENU_SOFTBOILED, SOFTBOILED
+	db MONMENU_FIELD_MOVE, MONMENU_HEADBUTT,   HEADBUTT
+	db MONMENU_FIELD_MOVE, MONMENU_ROCKSMASH,  ROCK_SMASH
+	db MONMENU_FIELD_MOVE, MONMENU_MILKDRINK,  MILK_DRINK
+	db MONMENU_FIELD_MOVE, MONMENU_SWEETSCENT, SWEET_SCENT
 
 ; Options
-	db 1, 15, 1 ; STATS
-	db 1, 16, 2 ; SWITCH
-	db 1, 17, 3 ; ITEM
-	db 1, 18, 4 ; CANCEL
-	db 1, 19, 5 ; MOVE
-	db 1, 20, 6 ; MAIL
-	db 1, 21, 7 ; ERROR!
+	db MONMENU_MENUOPTION, MONMENU_STATS,      1 ; STATS
+	db MONMENU_MENUOPTION, MONMENU_SWITCH,     2 ; SWITCH
+	db MONMENU_MENUOPTION, MONMENU_ITEM,       3 ; ITEM
+	db MONMENU_MENUOPTION, MONMENU_CANCEL,     4 ; CANCEL
+	db MONMENU_MENUOPTION, MONMENU_MOVE,       5 ; MOVE
+	db MONMENU_MENUOPTION, MONMENU_MAIL,       6 ; MAIL
+	db MONMENU_MENUOPTION, MONMENU_ERROR,      7 ; ERROR!
 
-	db $ff
+	db -1
 ; 24d19
 
-Function24d19: ; 24d19
+MonSubmenu: ; 24d19
 	xor a
 	ld [hBGMapMode], a
-	call Function24dd4
+	call GetMonSubmenuItems
 	callba Function8ea4a
-	ld hl, MenuDataHeader_0x24d3f
+	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
-	call Function24d47
+	call .GetTopCoord
 	call PopulateMonMenu
 
 	ld a, 1
@@ -24141,7 +23557,7 @@ Function24d19: ; 24d19
 	ret
 ; 24d3f
 
-MenuDataHeader_0x24d3f: ; 24d3f
+.MenuDataHeader: ; 24d3f
 	db $40 ; tile backup
 	db 00, 06 ; start coords
 	db 17, 19 ; end coords
@@ -24149,7 +23565,8 @@ MenuDataHeader_0x24d3f: ; 24d3f
 	db 1 ; default option
 ; 24d47
 
-Function24d47: ; 24d47
+.GetTopCoord: ; 24d47
+; TopCoord = 1 + BottomCoord - 2 * (NumSubmenuItems + 1)
 	ld a, [Buffer1]
 	inc a
 	add a
@@ -24158,16 +23575,16 @@ Function24d47: ; 24d47
 	sub b
 	inc a
 	ld [wMenuBorderTopCoord], a
-	call Function1cbb
+	call MenuBox
 	ret
 ; 24d59
 
 MonMenuLoop: ; 24d59
 .loop
-	ld a, $a0
-	ld [wcf91], a
-	ld a, [Buffer1]
-	ld [wcf92], a
+	ld a, $a0 ; flags
+	ld [wMenuData2Flags], a
+	ld a, [Buffer1] ; items
+	ld [wMenuData2Items], a
 	call Function1c10
 	ld hl, wcfa5
 	set 6, [hl]
@@ -24182,11 +23599,11 @@ MonMenuLoop: ; 24d59
 	jr .loop
 
 .cancel
-	ld a, 18 ; CANCEL
+	ld a, MONMENU_CANCEL ; CANCEL
 	ret
 
 .select
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld c, a
 	ld b, 0
@@ -24242,14 +23659,14 @@ GetMonMenuString: ; 24db0
 	ret
 ; 24dd4
 
-Function24dd4: ; 24dd4
-	call Function24e68
+GetMonSubmenuItems: ; 24dd4
+	call ResetMonSubmenu
 	ld a, [CurPartySpecies]
 	cp EGG
 	jr z, .egg
 	ld a, [wLinkMode]
 	and a
-	jr nz, .skip
+	jr nz, .skip_moves
 	ld a, MON_MOVES
 	call GetPartyParamLocation
 	ld d, h
@@ -24262,10 +23679,10 @@ Function24dd4: ; 24dd4
 	and a
 	jr z, .next
 	push hl
-	call Function24e52
+	call IsFieldMove
 	pop hl
 	jr nc, .next
-	call Function24e83
+	call AddMonMenuItem
 
 .next
 	pop de
@@ -24274,13 +23691,13 @@ Function24dd4: ; 24dd4
 	dec c
 	jr nz, .loop
 
-.skip
-	ld a, $f
-	call Function24e83
-	ld a, $10
-	call Function24e83
-	ld a, $13
-	call Function24e83
+.skip_moves
+	ld a, MONMENU_STATS
+	call AddMonMenuItem
+	ld a, MONMENU_SWITCH
+	call AddMonMenuItem
+	ld a, MONMENU_MOVE
+	call AddMonMenuItem
 	ld a, [wLinkMode]
 	and a
 	jr nz, .skip2
@@ -24290,66 +23707,66 @@ Function24dd4: ; 24dd4
 	ld d, [hl]
 	callba ItemIsMail
 	pop hl
-	ld a, $14
+	ld a, MONMENU_MAIL
 	jr c, .ok
-	ld a, $11
+	ld a, MONMENU_ITEM
 
 .ok
-	call Function24e83
+	call AddMonMenuItem
 
 .skip2
 	ld a, [Buffer1]
-	cp $8
+	cp NUM_MON_SUBMENU_ITEMS
 	jr z, .ok2
-	ld a, $12
-	call Function24e83
+	ld a, MONMENU_CANCEL
+	call AddMonMenuItem
 
 .ok2
-	call Function24e76
+	call TerminateMonSubmenu
 	ret
 
 .egg
-	ld a, $f
-	call Function24e83
-	ld a, $10
-	call Function24e83
-	ld a, $12
-	call Function24e83
-	call Function24e76
+	ld a, MONMENU_STATS
+	call AddMonMenuItem
+	ld a, MONMENU_SWITCH
+	call AddMonMenuItem
+	ld a, MONMENU_CANCEL
+	call AddMonMenuItem
+	call TerminateMonSubmenu
 	ret
 ; 24e52
 
-Function24e52: ; 24e52
+IsFieldMove: ; 24e52
 	ld b, a
 	ld hl, MonMenuOptions
-.asm_24e56
+.next
 	ld a, [hli]
-	cp $ff
-	jr z, .asm_24e67
-	cp $1
-	jr z, .asm_24e67
+	cp -1
+	jr z, .nope
+	cp MONMENU_MENUOPTION
+	jr z, .nope
 	ld d, [hl]
 	inc hl
 	ld a, [hli]
 	cp b
-	jr nz, .asm_24e56
+	jr nz, .next
 	ld a, d
 	scf
 
-.asm_24e67
+.nope
 	ret
 ; 24e68
 
-Function24e68: ; 24e68
+ResetMonSubmenu: ; 24e68
 	xor a
 	ld [Buffer1], a
 	ld hl, Buffer2
-	ld bc, 9
+	ld bc, NUM_MON_SUBMENU_ITEMS + 1
 	call ByteFill
 	ret
 ; 24e76
 
-Function24e76: ; 24e76
+TerminateMonSubmenu: ; 24e76
 	ld a, [Buffer1]
 	ld e, a
 	ld d, $0
@@ -24359,7 +23776,7 @@ Function24e76: ; 24e76
 	ret
 ; 24e83
 
-Function24e83: ; 24e83
+AddMonMenuItem: ; 24e83
 	push hl
 	push de
 	push af
@@ -24383,12 +23800,12 @@ Function24e99: ; 24e99
 	call CopyMenuDataHeader
 	xor a
 	ld [hBGMapMode], a
-	call Function1cbb
+	call MenuBox
 	call UpdateSprites
 	call Function1c89
 	call WaitBGMap
 	call Function1c66
-	ld a, [wcf91]
+	ld a, [wMenuData2Flags]
 	bit 7, a
 	jr z, .asm_24ed0
 	call Function1c10
@@ -24684,7 +24101,7 @@ Function2500e: ; 2500e
 ; 25072
 
 Function25072: ; 25072
-	call Function1cbb
+	call MenuBox
 	call GetMemTileCoord
 	ld de, $15
 	add hl, de
@@ -25700,7 +25117,7 @@ _KrisDecorationMenu: ; 0x2675c
 	ld [wMenuCursorBuffer], a
 	call Function26806
 	call Function1e5d
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wd1ef], a
 	jr c, .asm_2678e
 	ld a, [MenuSelection]
@@ -26646,7 +26063,7 @@ DecoAction_AskWhichSide: ; 26e70
 	call ExitMenu
 	call Function1c66
 	jr c, .nope
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp 3
 	jr z, .nope
 	ld [Buffer2], a
@@ -28435,7 +27852,7 @@ rept 3
 endr
 	ld [hl], a
 	ld a, $1
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	inc a
 	ld [wcf56], a
 	jp Function2888b
@@ -28480,7 +27897,7 @@ Function28835: ; 28835
 .asm_2885b
 	bit 6, a
 	jr z, .asm_28883
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld b, a
 	ld a, [OTPartyCount]
 	cp b
@@ -28496,7 +27913,7 @@ Function28835: ; 28835
 	pop bc
 	pop hl
 	ld a, [PartyCount]
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	jr Function2888b
 
 .asm_28883
@@ -28544,7 +27961,7 @@ Function288c5: ; 288c5
 .asm_288d9
 	bit 7, a
 	jr z, .asm_288fe
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	jp nz, Function2891c
 	ld a, $1
@@ -28558,13 +27975,13 @@ Function288c5: ; 288c5
 	pop bc
 	pop hl
 	ld a, $1
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	jp Function28803
 
 .asm_288fe
 	bit 6, a
 	jr z, Function2891c
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld b, a
 	ld a, [PartyCount]
 	cp b
@@ -28589,7 +28006,7 @@ Function2891c: ; 2891c
 
 Function28926: ; 28926
 	call LoadTileMapToTempTileMap
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	push af
 	hlcoord 0, 15
 	ld b, $1
@@ -28614,7 +28031,7 @@ Function28926: ; 28926
 	ld a, $1
 	ld [wcfa2], a
 	ld a, $1
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld [wcfaa], a
 	ld a, $20
 	ld [wcfa7], a
@@ -28628,7 +28045,7 @@ Function28926: ; 28926
 	jr z, .asm_289cd
 .asm_28983
 	pop af
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	call Call_LoadTempTileMapToTileMap
 	jp Function2888b
 
@@ -28646,7 +28063,7 @@ Function28926: ; 28926
 	ld a, $b
 	ld [wcfa2], a
 	ld a, $1
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld [wcfaa], a
 	ld a, $20
 	ld [wcfa7], a
@@ -28662,7 +28079,7 @@ Function28926: ; 28926
 
 .asm_289cd
 	pop af
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld a, $4
 	ld [wd263], a
 	callab Function50db9
@@ -28681,7 +28098,7 @@ Function28926: ; 28926
 .asm_289fe
 	call Function1bee
 	pop af
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	dec a
 	ld [DefaultFlypoint], a
 	ld [wcf56], a
@@ -28765,7 +28182,7 @@ UnknownText_0x28ac4: ; 0x28ac4
 
 
 Function28ac9: ; 28ac9
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $1
 	jp nz, Function2891c
 	call Function1bf7
@@ -28795,12 +28212,12 @@ Function28ade: ; 28ade
 	bit 6, a
 	jr z, .asm_28b03
 	ld a, [OTPartyCount]
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	jp Function28803
 
 .asm_28b03
 	ld a, $1
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	jp Function2888b
 
 .asm_28b0b
@@ -28931,7 +28348,7 @@ Function28b87: ; 28b87
 	ld a, $3
 	ld [wcfa8], a
 	ld a, $1
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld [wcfaa], a
 	callba Function4d354
 	call Function1bd3
@@ -28941,7 +28358,7 @@ Function28b87: ; 28b87
 	pop af
 	bit 1, a
 	jr nz, .asm_28c33
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	jr z, .asm_28c54
 
@@ -33601,7 +33018,7 @@ Function2c8d3: ; 2c8d3 (b:48d3)
 	ld [wcfa8], a
 	ld a, [wTMHMPocketCursor]
 	inc a
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld a, $1
 	ld [wcfaa], a
 	jr Function2c946
@@ -33610,7 +33027,7 @@ Function2c915: ; 2c915 (b:4915)
 	call Function2c9e2
 	call Function1bc9
 	ld b, a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld [wTMHMPocketCursor], a
 	xor a
@@ -33650,7 +33067,7 @@ Function2c946: ; 2c946 (b:4946)
 Function2c974: ; 2c974 (b:4974)
 	call Function2cad6
 	call Function2cb2a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld b, a
 	ld a, [wd0e2]
@@ -33662,7 +33079,7 @@ Function2c974: ; 2c974 (b:4974)
 
 Function2c98a: ; 2c98a (b:498a)
 	call Function2cab5
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld b, a
 .asm_2c991
 	inc c
@@ -36576,7 +35993,7 @@ Function44806: ; 0x44806
 	call Function350c
 	ld a, [wd0e4]
 	ld [OBPals + 8 * 6], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wd0f1], a
 	ld a, [wcf73]
 	cp $2
@@ -36595,7 +36012,7 @@ Function4484a: ; 0x4484a
 	call InterpretMenu2
 	call ExitMenu
 	jr c, .asm_44860
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld hl, .JumpTable
 	rst JumpTable
@@ -36904,14 +36321,14 @@ Function4802f: ; 4802f (12:402f)
 	call Function3200
 	call SetPalettes
 	call Function1bc9
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld b, [hl]
 	push bc
 	jr asm_4815f
 
 Function48157: ; 48157 (12:4157)
 	call Function1bd3
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld b, [hl]
 	push bc
 
@@ -37004,7 +36421,7 @@ String_48202: ; 48202
 
 Function4820d: ; 4820d (12:420d)
 	call Function1bee
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld a, [hl]
 	push af
 	ld a, [DefaultFlypoint]
@@ -37095,7 +36512,7 @@ asm_4828d: ; 4828d (12:428d)
 	call ExitMenu
 	bit 0, a
 	jp z, Function4840c
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld a, [hl]
 	ld hl, Strings_484fb
 	cp $1
@@ -37204,7 +36621,7 @@ Function48383: ; 48383 (12:4383)
 	ld [wd0e4], a
 	jr .asm_483af
 .asm_483af
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld a, [hl]
 	ld [wMenuCursorBuffer], a
 	scf
@@ -37282,7 +36699,7 @@ Function4840c: ; 4840c (12:440c)
 	call PlaceString
 	call Function486bf
 	pop bc
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld [hl], b
 	ld a, [DefaultFlypoint]
 	bit 6, a
@@ -38010,7 +37427,7 @@ Function48a3a: ; 48a3a (12:4a3a)
 	ld a, $b
 	ld [wcfa2], a
 	ld a, $1
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	hlcoord 10, 8
 	ld b, $4
 	ld c, $8
@@ -38025,7 +37442,7 @@ Function48a3a: ; 48a3a (12:4a3a)
 	pop af
 	bit 1, a
 	jp nz, Function48a9a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $1
 	jr z, .asm_48a98
 	ld a, [wd003]
@@ -38630,7 +38047,7 @@ InitGender: ; 48dcb (12:4dcb)
 	call Function3200
 	call InterpretMenu2
 	call WriteBackup
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld [PlayerGender], a
 	ld c, 10
@@ -40219,14 +39636,14 @@ Function49f16: ; 49f16
 	call Function3200
 	call SetPalettes
 	call Function1bc9
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld b, [hl]
 	push bc
 	jr .asm_49f5d
 
 .asm_49f55
 	call Function1bd3
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld b, [hl]
 	push bc
 
@@ -40238,7 +39655,7 @@ Function49f16: ; 49f16
 	jr .asm_49f97
 
 .asm_49f67
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld a, [hl]
 	cp $1
 	jp z, Function4a098
@@ -40262,7 +39679,7 @@ Function49f16: ; 49f16
 	ret
 
 .asm_49f97
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld a, [hl]
 	dec a
 	ld hl, MobileStrings2
@@ -40280,7 +39697,7 @@ Function49f16: ; 49f16
 .asm_49fb7
 	call Function4a071
 	pop bc
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld [hl], b
 	ld b, $a
 	ld c, $1
@@ -40460,7 +39877,7 @@ Function4a149: ; 4a149 (12:6149)
 	ld b, $4
 	ld c, $12
 	call TextBox
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld hl, Strings_4a23d
 	call GetNthString
@@ -40475,14 +39892,14 @@ Function4a149: ; 4a149 (12:6149)
 	callba Function104148
 	call SetPalettes
 	call Function1bc9
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld b, [hl]
 	push bc
 	jr asm_4a19d
 
 Function4a195: ; 4a195 (12:6195)
 	call Function1bd3
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld b, [hl]
 	push bc
 
@@ -40493,7 +39910,7 @@ asm_4a19d: ; 4a19d (12:619d)
 	jr nz, .asm_4a1ba
 	jr .asm_4a1bc
 .asm_4a1a7
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld a, [hl]
 	cp $1
 	jp z, Function4a20e
@@ -40505,7 +39922,7 @@ asm_4a19d: ; 4a19d (12:619d)
 	pop bc
 	ret
 .asm_4a1bc
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld a, [hl]
 	dec a
 	ld hl, Strings_4a23d
@@ -40522,7 +39939,7 @@ asm_4a19d: ; 4a19d (12:619d)
 .asm_4a1db
 	call Function4a373
 	pop bc
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld [hl], b
 	lb bc, 6, 1
 	hlcoord 2, 3
@@ -40551,7 +39968,7 @@ Function4a221: ; 4a221 (12:6221)
 	jr c, Function4a239
 	call Function4a373
 	ld a, $2
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	jr .asm_4a235
 .asm_4a235
 	pop bc
@@ -40603,7 +40020,7 @@ Function4a28a: ; 4a28a (12:628a)
 	pop af
 	bit 1, a
 	jr nz, .asm_4a33b
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $2
 	jr z, .asm_4a2f0
 	cp $3
@@ -40629,7 +40046,7 @@ Function4a28a: ; 4a28a (12:628a)
 	call InterpretMenu2
 	bit 1, a
 	jr nz, .asm_4a338
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $2
 	jr z, .asm_4a338
 	ld a, $5
@@ -40904,14 +40321,14 @@ Function4a4c4: ; 4a4c4 (12:64c4)
 	call Function3200
 	call SetPalettes
 	call Function1bc9
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld b, [hl]
 	push bc
 	jr asm_4a54d
 
 Function4a545: ; 4a545 (12:6545)
 	call Function1bd3
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld b, [hl]
 	push bc
 
@@ -40922,7 +40339,7 @@ asm_4a54d: ; 4a54d (12:654d)
 	jr nz, .asm_4a574
 	jr .asm_4a57e
 .asm_4a557
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld a, [hl]
 	cp $1
 	jp z, Function4a6ab
@@ -40940,7 +40357,7 @@ asm_4a54d: ; 4a54d (12:654d)
 	call ClearTileMap
 	jp Function49f0a
 .asm_4a57e
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld a, [hl]
 	dec a
 	add a
@@ -40968,7 +40385,7 @@ asm_4a54d: ; 4a54d (12:654d)
 Function4a5b0: ; 4a5b0 (12:65b0)
 	call Function4a680
 	pop bc
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld [hl], b
 	ld b, $a
 	ld c, $1
@@ -41859,11 +41276,11 @@ Function4ab1a: ; 4ab1a
 	ld a, [PartyCount]
 	inc a
 	ld b, a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wd0d8], a
 	cp b
 	jr z, .asm_4ab7e
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld [CurPartyMon], a
 	ld c, a
@@ -41880,7 +41297,7 @@ Function4ab1a: ; 4ab1a
 	ret
 
 .asm_4ab6d
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wd0d8], a
 .asm_4ab73
 	ld de, SFX_READ_TEXT_2
@@ -41946,7 +41363,7 @@ Function4abc3: ; 4abc3
 	jr z, .asm_4abd5
 	ld a, [PartyCount]
 	inc a
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld a, $1
 	ld [wcfaa], a
 	jr .asm_4ac29
@@ -41954,30 +41371,30 @@ Function4abc3: ; 4abc3
 .asm_4abd5
 	bit 6, a
 	jr z, .asm_4abeb
-	ld a, [wcfa9]
-	ld [wcfa9], a
+	ld a, [MenuSelection2]
+	ld [MenuSelection2], a
 	and a
 	jr nz, .asm_4ac29
 	ld a, [PartyCount]
 	inc a
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	jr .asm_4ac29
 
 .asm_4abeb
 	bit 7, a
 	jr z, .asm_4ac08
-	ld a, [wcfa9]
-	ld [wcfa9], a
+	ld a, [MenuSelection2]
+	ld [MenuSelection2], a
 	ld a, [PartyCount]
 rept 2
 	inc a
 endr
 	ld b, a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp b
 	jr nz, .asm_4ac29
 	ld a, $1
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	jr .asm_4ac29
 
 .asm_4ac08
@@ -41987,7 +41404,7 @@ endr
 	jr z, .asm_4ac56
 
 .asm_4ac10
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld b, a
 	ld a, [PartyCount]
 	inc a
@@ -42015,7 +41432,7 @@ endr
 	dec a
 	jr nz, .asm_4ac3b
 	ld [hl], $7f
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld b, a
 	ld a, [PartyCount]
 	inc a
@@ -42079,19 +41496,19 @@ MenuDataHeader_0x4aca2: ; 0x4aca2
 Function4acaa: ; 4acaa
 .asm_4acaa
 	ld a, $a0
-	ld [wcf91], a
+	ld [wMenuData2Flags], a
 	ld a, [wd019]
 	bit 1, a
 	jr z, .asm_4acc2
 	ld a, $2
-	ld [wcf92], a
+	ld [wMenuData2Items], a
 	ld a, $c
 	ld [wMenuBorderTopCoord], a
 	jr .asm_4accc
 
 .asm_4acc2
 	ld a, $4
-	ld [wcf92], a
+	ld [wMenuData2Items], a
 	ld a, $8
 	ld [wMenuBorderTopCoord], a
 
@@ -42120,7 +41537,7 @@ Function4acaa: ; 4acaa
 	ld a, [wd019]
 	bit 1, a
 	jr nz, .asm_4ad0e
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $1
 	jr z, Function4ad17
 	cp $2
@@ -42130,7 +41547,7 @@ Function4acaa: ; 4acaa
 	jr .asm_4acf3
 
 .asm_4ad0e
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $1
 	jr z, Function4ad56
 	jr .asm_4acf3
@@ -42280,7 +41697,7 @@ Function4adf7: ; 4adf7
 	ret z
 	ld a, [PartyCount]
 	inc a
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld a, $1
 	ld [wcfaa], a
 	ld a, [wd019]
@@ -42322,7 +41739,7 @@ Function4ae1f: ; 4ae1f
 	call Function4ae5e
 	pop af
 	jr c, .asm_4ae57
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $2
 	jr z, .asm_4ae57
 	and a
@@ -42330,7 +41747,7 @@ Function4ae1f: ; 4ae1f
 
 .asm_4ae57
 	ld a, $2
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	scf
 	ret
 ; 4ae5e
@@ -42747,14 +42164,14 @@ INCBIN "gfx/shrink2.2bpp.lz"
 ; 4d319
 
 Function4d319: ; 4d319
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld [CurPartyMon], a
 	call LowVolume
 	predef StatsScreenInit
 	ld a, [CurPartyMon]
 	inc a
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	call ClearScreen
 	call WhiteBGMap
 	call MaxVolume
@@ -42860,7 +42277,7 @@ _ResetClock: ; 4d3b1
 	call CopyMenuDataHeader
 	call InterpretMenu2
 	ret c
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $1
 	ret z
 	call ClockResetPassword
@@ -43136,7 +42553,7 @@ Function4d54c: ; 4d54c
 	call CopyMenuDataHeader
 	call InterpretMenu2
 	ret c
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $1
 	ret z
 	callba EmptyAllSRAMBanks
@@ -46621,7 +46038,7 @@ Function50405: ; 50405
 	ld a, $1
 
 .asm_50424
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld a, $3
 	ld [wcfa8], a
 	ret
@@ -46642,7 +46059,7 @@ Function5042d: ; 0x5042d
 .asm_50444
 	ld a, $1
 .asm_50446
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld a, $3
 	ld [wcfa8], a
 	ret
@@ -46667,7 +46084,7 @@ PartyMenuSelect: ; 0x50457
 	ld a, [PartyCount]
 	inc a
 	ld b, a
-	ld a, [wcfa9] ; menu selection?
+	ld a, [MenuSelection2] ; menu selection?
 	cp b
 	jr z, .exitmenu ; CANCEL
 	ld [wd0d8], a
@@ -46675,7 +46092,7 @@ PartyMenuSelect: ; 0x50457
 	ld b, a
 	bit 1, b
 	jr nz, .exitmenu ; B button?
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld [CurPartyMon], a
 	ld c, a
@@ -47825,7 +47242,7 @@ endr
 	push bc
 	push hl
 	push de
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld a, [hl]
 	push af
 	ld [hl], b
@@ -48302,7 +47719,7 @@ Function50f12:
 	dec a
 	ld [wd1ec], a
 	ld b, a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld [Buffer2], a ; wd1eb (aliases: MovementType)
 	cp b
@@ -52958,7 +52375,7 @@ Function84817: ; 84817 (21:4817)
 	ld de, String_84865
 	call PlaceString
 	ld a, [wd007]
-	ld bc, 9
+	ld bc, BOX_NAME_LENGTH
 	ld hl, wBoxNames
 	call AddNTimes
 	ld d, h
@@ -53939,7 +53356,7 @@ ShowPlayerNamingChoices: ; 88297
 .GotGender
 	call LoadMenuDataHeader
 	call InterpretMenu2
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	call Function1db8
 	call WriteBackup
@@ -55770,7 +55187,7 @@ endr
 	ret
 
 .one: ; 8d2a2 (23:52a2)
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld hl, $
 	add hl, bc
 	cp [hl]
@@ -55821,7 +55238,7 @@ endr
 	ret
 
 .three: ; 8d2ea (23:52ea)
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld hl, $
 	add hl, bc
 	cp [hl]
@@ -58462,7 +57879,7 @@ GetGFXUnlessMobile: ; 8ea3f
 Function8ea4a: ; 8ea4a
 	ld hl, wPartyMonMenuIconAnims
 	ld e, $6
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld d, a
 .loop
 	ld a, [hl]
@@ -63720,7 +63137,7 @@ Function9307c: ; 9307c (24:707c)
 	call InterpretMenu2
 	call WriteBackup
 	ret c
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld b, a
 	ld a, $4
 	sub b
@@ -63803,7 +63220,7 @@ Function930e9: ; 930e9 (24:70e9)
 	call LoadMenuTextBox
 	lb bc, 14, 12
 	call PlaceYesNoBox
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	call WriteBackup
 	and a
@@ -69533,7 +68950,7 @@ Functione20e5: ; e20e5
 ; e2101
 
 Functione2101: ; e2101
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld l, a
 	ld h, 0
@@ -69850,18 +69267,18 @@ Functione245d: ; e245d (38:645d)
 	ld de, PCString_WhatsUp
 	call Functione2a6e
 	ld a, $1
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	call Functione298d
 	ret
 
 Functione247d: ; e247d (38:647d)
 	ld hl, BillsPCDepositMenuDataHeader
 	call CopyMenuDataHeader
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	call Function1d4b
 	call InterpretMenu2
 	jp c, BillsPCDepositFuncCancel
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	and $3
 	ld e, a
@@ -69914,14 +69331,14 @@ BillsPCDepositFuncRelease: ; e24e0 (38:64e0)
 	jr c, BillsPCDepositFuncCancel
 	call Functione2f5f
 	jr c, BillsPCDepositFuncCancel
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	push af
 	ld de, PCString_ReleasePKMN
 	call Functione2a6e
 	call LoadMenuDataHeader_0x1d75
 	lb bc, 14, 11
 	call PlaceYesNoBox
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	call ExitMenu
 	and a
@@ -69945,7 +69362,7 @@ BillsPCDepositFuncRelease: ; e24e0 (38:64e0)
 	ld de, PCString_WhatsUp
 	call Functione2a6e
 	pop af
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ret
 
 BillsPCDepositFuncCancel: ; e2537 (38:6537)
@@ -70115,18 +69532,18 @@ Functione2655: ; e2655 (38:6655)
 	ld de, PCString_WhatsUp
 	call Functione2a6e
 	ld a, $1
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	call Functione298d
 	ret
 
 BillsPC_Withdraw: ; e2675 (38:6675)
 	ld hl, .MenuDataHeader
 	call CopyMenuDataHeader
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	call Function1d4b
 	call InterpretMenu2
 	jp c, .cancel
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	and 3
 	ld e, a
@@ -70175,7 +69592,7 @@ endr
 	ret
 
 .release: ; e26d8 (38:66d8)
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	push af
 	call Functione2f5f
 	jr c, .FailedRelease
@@ -70184,7 +69601,7 @@ endr
 	call LoadMenuDataHeader_0x1d75
 	lb bc, 14, 11
 	call PlaceYesNoBox
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	call ExitMenu
 	and a
@@ -70208,7 +69625,7 @@ endr
 	ld de, PCString_WhatsUp
 	call Functione2a6e
 	pop af
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ret
 
 .cancel: ; e272b (38:672b)
@@ -70376,7 +69793,7 @@ Functione283d: ; e283d
 	ld de, PCString_WhatsUp
 	call Functione2a6e
 	ld a, $1
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	call Functione298d
 	ret
 ; e285d
@@ -70384,11 +69801,11 @@ Functione283d: ; e283d
 Functione285d: ; e285d
 	ld hl, MenuDataHeader_0xe28c3
 	call CopyMenuDataHeader
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	call Function1d4b
 	call InterpretMenu2
 	jp c, Functione28bd
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	and 3
 	ld e, a
@@ -70758,7 +70175,7 @@ Functione2a8e: ; e2a8e (38:6a8e)
 .gotbox
 	dec a
 	ld hl, wBoxNames
-	ld bc, 9
+	ld bc, BOX_NAME_LENGTH
 	call AddNTimes
 	ld e, l
 	ld d, h
@@ -72116,8 +71533,12 @@ Functione35aa_menudataheader: ; 0xe35f1
 ; e3609
 
 .boxes: ; e3609
-	db 14
-	db 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
+	db NUM_BOXES
+x = 1
+rept NUM_BOXES
+	db x
+x = x + 1
+endr
 	db -1
 ; e3619
 
@@ -72125,14 +71546,14 @@ Functione35aa_menudataheader: ; 0xe35f1
 	push de
 	ld a, [MenuSelection]
 	dec a
-	call Functione3626
+	call GetBoxName
 	pop hl
 	call PlaceString
 	ret
 ; e3626
 
-Functione3626: ; e3626 (38:7626)
-	ld bc, 9
+GetBoxName: ; e3626 (38:7626)
+	ld bc, BOX_NAME_LENGTH
 	ld hl, wBoxNames
 	call AddNTimes
 	ld d, h
@@ -72166,6 +71587,7 @@ String_e3663: ; e3663
 ; e3668
 
 String_e3668: ; e3668
+	; db "/20@"
 	db "/"
 	db "0" + MONS_PER_BOX / 10 ; "2"
 	db "0" + MONS_PER_BOX % 10 ; "0"
@@ -72241,7 +71663,7 @@ Functione36cf: ; e36cf (38:76cf)
 	call PlaceString
 	ld a, [wCurBox]
 	and $f
-	call Functione3626
+	call GetBoxName
 	hlcoord 11, 2
 	call PlaceString
 	ret
@@ -72257,7 +71679,7 @@ Functione36f9: ; e36f9 (38:76f9)
 	call InterpretMenu2
 	call ExitMenu
 	ret c
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $1
 	jr z, .asm_e3734
 	cp $2
@@ -72305,7 +71727,7 @@ Functione36f9: ; e36f9 (38:76f9)
 	call LoadFontsBattleExtra
 	ld a, [MenuSelection]
 	dec a
-	call Functione3626
+	call GetBoxName
 	ld e, l
 	ld d, h
 	ld hl, DefaultFlypoint
@@ -72313,7 +71735,7 @@ Functione36f9: ; e36f9 (38:76f9)
 	call InitString
 	ld a, [MenuSelection]
 	dec a
-	call Functione3626
+	call GetBoxName
 	ld de, DefaultFlypoint
 	call CopyName2
 	ret
@@ -75526,8 +74948,8 @@ GFX_f8ae0: ; f8ae0
 INCBIN "gfx/unknown/0f8ae0.2bpp"
 ; f8b10
 
-GFX_f8b10: ; f8b10
-INCBIN "gfx/unknown/0f8b10.2bpp"
+ExpBarGFX: ; f8b10
+INCBIN "gfx/battle/expbar.2bpp"
 ; f8ba0
 
 TownMapGFX: ; f8ba0
@@ -75683,9 +75105,9 @@ Functionfb50d: ; fb50d
 	ld hl, VTiles2 tile $73
 	lb bc, BANK(GFX_f8ae0), 6
 	call Functionddc
-	ld de, GFX_f8b10
+	ld de, ExpBarGFX
 	ld hl, VTiles2 tile $55
-	lb bc, BANK(GFX_f8b10), 9
+	lb bc, BANK(ExpBarGFX), 9
 	call Functiondc9
 	ld de, GFX_f9214 + $90
 	ld hl, VTiles2 tile $5e
@@ -75708,9 +75130,9 @@ Functionfb53e: ; fb53e
 	ld hl, VTiles2 tile $76
 	lb bc, BANK(GFX_f8ae0), 2
 	call Functionddc
-	ld de, GFX_f8b10
+	ld de, ExpBarGFX
 	ld hl, VTiles2 tile $55
-	lb bc, BANK(GFX_f8b10), 8
+	lb bc, BANK(ExpBarGFX), 8
 	call Functiondc9
 
 Functionfb571: ; fb571

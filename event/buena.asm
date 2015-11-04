@@ -201,7 +201,7 @@ Function8b09e: ; 8b09e
 	ld [hBGMapMode], a
 	ld hl, MenuDataHeader_0x8b0d1
 	call CopyMenuDataHeader
-	call Function1cbb
+	call MenuBox
 	call UpdateSprites
 	call GetMemTileCoord
 	ld bc, $0015
@@ -255,7 +255,7 @@ Function8b0e2: ; 8b0e2
 	call Function350c
 	ld a, [MenuSelection]
 	ld c, a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [MenuSelection], a
 	ld a, [wcf73]
 	cp $2

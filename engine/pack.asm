@@ -70,7 +70,7 @@ Function10067: ; 10067 (4:4067)
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0df], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wItemsPocketCursor], a
 	ld b, $7
 	ld c, $3
@@ -98,7 +98,7 @@ Function100a6: ; 100a6 (4:40a6)
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0e0], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wKeyItemsPocketCursor], a
 	ld b, $3
 	ld c, $7
@@ -141,7 +141,7 @@ Function100e8: ; 100e8 (4:40e8)
 	call ExitMenu
 	pop hl
 	ret c
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	call Function1086b
 	jp [hl]
@@ -228,7 +228,7 @@ Function10198: ; 10198 (4:4198)
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0e1], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wBallsPocketCursor], a
 	ld b, $1
 	ld c, $5
@@ -301,7 +301,7 @@ Function101c5: ; 101c5 (4:41c5)
 	call ExitMenu
 	pop hl
 	ret c
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	call Function1086b
 	jp [hl]
@@ -728,7 +728,7 @@ Function104fa: ; 104fa (4:44fa)
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0df], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wItemsPocketCursor], a
 	ld b, $7
 	ld c, $3
@@ -756,7 +756,7 @@ Function10539: ; 10539 (4:4539)
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0e0], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wKeyItemsPocketCursor], a
 	ld b, $3
 	ld c, $7
@@ -807,7 +807,7 @@ Function105a6: ; 105a6 (4:45a6)
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0e1], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wBallsPocketCursor], a
 	ld b, $1
 	ld c, $5
@@ -836,7 +836,7 @@ Function105dc: ; 105dc (4:45dc)
 	call ExitMenu
 	pop hl
 	ret c
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	call Function1086b
 	jp [hl]
@@ -1013,7 +1013,7 @@ Jumptable_106d1: ; 106d1 (4:46d1)
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0df], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wItemsPocketCursor], a
 	ret
 
@@ -1029,7 +1029,7 @@ Jumptable_106d1: ; 106d1 (4:46d1)
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0e0], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wKeyItemsPocketCursor], a
 	ret
 
@@ -1054,7 +1054,7 @@ Jumptable_106d1: ; 106d1 (4:46d1)
 	call Function350c
 	ld a, [wd0e4]
 	ld [wd0e1], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wBallsPocketCursor], a
 	ret
 

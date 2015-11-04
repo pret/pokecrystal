@@ -854,7 +854,7 @@ Function8b7bd: ; 8b7bd
 
 .asm_8b824
 	ld c, a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wd030], a
 	ld a, [wd0e4]
 	ld [wd031], a
@@ -863,7 +863,7 @@ Function8b7bd: ; 8b7bd
 
 Function8b832: ; 8b832
 	ld a, [wd0e4]
-	ld hl, wcf92
+	ld hl, wMenuData2Items
 	sub [hl]
 	jr nc, Function8b84b
 	xor a
@@ -872,7 +872,7 @@ Function8b832: ; 8b832
 
 Function8b83e: ; 8b83e
 	ld a, [wd0e4]
-	ld hl, wcf92
+	ld hl, wMenuData2Items
 	add [hl]
 	cp $24
 	jr c, Function8b84b
@@ -880,7 +880,7 @@ Function8b83e: ; 8b83e
 
 Function8b84b: ; 8b84b
 	ld [wd0e4], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wMenuCursorBuffer], a
 	ret
 ; 8b855
