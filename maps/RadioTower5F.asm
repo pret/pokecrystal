@@ -40,7 +40,7 @@ UnknownScript_0x60011:
 	loadfont
 	writetext UnknownText_0x60246
 	keeptextopen
-	verbosegiveitem BASEMENT_KEY, 1
+	verbosegiveitem BASEMENT_KEY
 	loadmovesprites
 	dotrigger $1
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_3
@@ -117,7 +117,7 @@ UnknownScript_0x6006e:
 	loadfont
 	writetext UnknownText_0x605b2
 	keeptextopen
-	verbosegiveitem CLEAR_BELL, 1
+	verbosegiveitem CLEAR_BELL
 	writetext UnknownText_0x6062c
 	closetext
 	loadmovesprites

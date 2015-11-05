@@ -18,7 +18,7 @@ Celebrity:
 	iftrue .AlreadyGotItem
 	writetext CelebrityText1
 	keeptextopen
-	verbosegiveitem TM_STEEL_WING, 1
+	verbosegiveitem TM_STEEL_WING
 	iffalse .Done
 	setevent EVENT_GOT_TM47_STEEL_WING
 .Done

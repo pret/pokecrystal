@@ -327,7 +327,7 @@ ElmAfterTheftScript:
 	keeptextopen
 	writetext ElmAfterTheftText2
 	closetext
-	takeitem MYSTERY_EGG, 1
+	takeitem MYSTERY_EGG
 	scall ElmJumpBackScript1
 	writetext ElmAfterTheftText3
 	closetext
@@ -379,7 +379,7 @@ ShowElmTogepiScript:
 ElmGiveEverstoneScript:
 	writetext ElmGiveEverstoneText1
 	keeptextopen
-	verbosegiveitem EVERSTONE, 1
+	verbosegiveitem EVERSTONE
 	iffalse ElmScript_NoRoomForEverstone
 	writetext ElmGiveEverstoneText2
 	closetext
@@ -397,7 +397,7 @@ ElmScript_NoRoomForEverstone:
 ElmGiveMasterBallScript:
 	writetext ElmGiveMasterBallText1
 	keeptextopen
-	verbosegiveitem MASTER_BALL, 1
+	verbosegiveitem MASTER_BALL
 	iffalse .notdone
 	setevent EVENT_GOT_MASTER_BALL_FROM_ELM
 	writetext ElmGiveMasterBallText2
@@ -409,7 +409,7 @@ ElmGiveMasterBallScript:
 ElmGiveTicketScript:
 	writetext ElmGiveTicketText1
 	keeptextopen
-	verbosegiveitem S_S_TICKET, 1
+	verbosegiveitem S_S_TICKET
 	setevent EVENT_GOT_SS_TICKET_FROM_ELM
 	writetext ElmGiveTicketText2
 	closetext
@@ -472,7 +472,7 @@ AideScript_GivePotions:
 	loadfont
 	writetext AideText_GiveYouPotions
 	keeptextopen
-	verbosegiveitem POTION, 1
+	verbosegiveitem POTION
 	writetext AideText_AlwaysBusy
 	closetext
 	loadmovesprites

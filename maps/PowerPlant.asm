@@ -154,7 +154,7 @@ UnknownScript_0x188e8d:
 UnknownScript_0x188e93:
 	writetext UnknownText_0x18936e
 	keeptextopen
-	takeitem MACHINE_PART, 1
+	takeitem MACHINE_PART
 	setevent EVENT_RETURNED_MACHINE_PART
 	clearevent EVENT_SAFFRON_TRAIN_STATION_POPULATION
 	setevent EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
@@ -166,7 +166,7 @@ UnknownScript_0x188eac:
 	iftrue UnknownScript_0x188ec5
 	writetext UnknownText_0x1893c4
 	keeptextopen
-	verbosegiveitem TM_ZAP_CANNON, 1
+	verbosegiveitem TM_ZAP_CANNON
 	iffalse UnknownScript_0x188ec3
 	setevent EVENT_GOT_TM07_ZAP_CANNON
 	writetext UnknownText_0x1893f4

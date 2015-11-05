@@ -117,7 +117,7 @@ UnknownScript_0x18963b:
 	checkevent EVENT_GOT_EVERSTONE_FROM_BILLS_GRANDPA
 	iftrue UnknownScript_0x189592
 	scall UnknownScript_0x1896b5
-	verbosegiveitem EVERSTONE, 1
+	verbosegiveitem EVERSTONE
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_EVERSTONE_FROM_BILLS_GRANDPA
 	setevent EVENT_GAVE_KURT_APRICORNS
@@ -128,7 +128,7 @@ UnknownScript_0x189652:
 	checkevent EVENT_GOT_LEAF_STONE_FROM_BILLS_GRANDPA
 	iftrue UnknownScript_0x1895b3
 	scall UnknownScript_0x1896b5
-	verbosegiveitem LEAF_STONE, 1
+	verbosegiveitem LEAF_STONE
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_LEAF_STONE_FROM_BILLS_GRANDPA
 	setevent EVENT_GAVE_KURT_APRICORNS
@@ -139,7 +139,7 @@ UnknownScript_0x189669:
 	checkevent EVENT_GOT_WATER_STONE_FROM_BILLS_GRANDPA
 	iftrue UnknownScript_0x1895d4
 	scall UnknownScript_0x1896b5
-	verbosegiveitem WATER_STONE, 1
+	verbosegiveitem WATER_STONE
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_WATER_STONE_FROM_BILLS_GRANDPA
 	setevent EVENT_GAVE_KURT_APRICORNS
@@ -150,7 +150,7 @@ UnknownScript_0x189680:
 	checkevent EVENT_GOT_FIRE_STONE_FROM_BILLS_GRANDPA
 	iftrue UnknownScript_0x18961a
 	scall UnknownScript_0x1896b5
-	verbosegiveitem FIRE_STONE, 1
+	verbosegiveitem FIRE_STONE
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_FIRE_STONE_FROM_BILLS_GRANDPA
 	setevent EVENT_GAVE_KURT_APRICORNS
@@ -159,7 +159,7 @@ UnknownScript_0x189680:
 
 UnknownScript_0x189697:
 	scall UnknownScript_0x1896b5
-	verbosegiveitem THUNDERSTONE, 1
+	verbosegiveitem THUNDERSTONE
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_THUNDERSTONE_FROM_BILLS_GRANDPA
 	loadmovesprites

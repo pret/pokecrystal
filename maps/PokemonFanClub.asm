@@ -20,7 +20,7 @@ GentlemanScript_0x1917e9:
 UnknownScript_0x191802:
 	writetext UnknownText_0x191a3d
 	keeptextopen
-	verbosegiveitem RARE_CANDY, 1
+	verbosegiveitem RARE_CANDY
 	iffalse UnknownScript_0x19181f
 	setevent EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT
 	writetext UnknownText_0x191a72
@@ -69,7 +69,7 @@ UnknownScript_0x191844:
 	writetext UnknownText_0x191c5a
 	keeptextopen
 	waitbutton
-	giveitem LOST_ITEM, 1
+	giveitem LOST_ITEM
 	iffalse UnknownScript_0x191865
 	disappear $6
 	writetext UnknownText_0x191d0a

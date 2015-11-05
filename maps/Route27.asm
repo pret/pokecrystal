@@ -119,7 +119,7 @@ UnknownScript_0x1a08ff:
 
 UnknownScript_0x1a0945:
 	scall UnknownScript_0x1a0973
-	verbosegiveitem STAR_PIECE, 1
+	verbosegiveitem STAR_PIECE
 	iffalse UnknownScript_0x1a0954
 	clearflag ENGINE_JOSE_HAS_STAR_PIECE
 	jump UnknownScript_0x1a0963

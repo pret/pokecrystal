@@ -49,7 +49,7 @@ UnknownScript_0x18c8b8:
 	loadfont
 	writetext UnknownText_0x18c9bf
 	keeptextopen
-	giveitem TM_DRAGONBREATH, 1
+	giveitem TM_DRAGONBREATH
 	iffalse UnknownScript_0x18c8f4
 	itemtotext TM_DRAGONBREATH, $0
 	writetext UnknownText_0x18c9fb
@@ -122,7 +122,7 @@ TwinsLeaandpia2Script:
 	end
 
 PokeBallScript_0x18c95a:
-	giveitem DRAGON_FANG, 1
+	giveitem DRAGON_FANG
 	iffalse UnknownScript_0x18c970
 	disappear $2
 	loadfont

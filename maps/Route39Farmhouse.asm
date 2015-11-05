@@ -25,7 +25,7 @@ UnknownScript_0x9cec5:
 	iffalse UnknownScript_0x9cf02
 	checkmoney $0, 500
 	if_equal $2, UnknownScript_0x9cef6
-	giveitem MOOMOO_MILK, 1
+	giveitem MOOMOO_MILK
 	iffalse UnknownScript_0x9cefc
 	takemoney $0, 500
 	special Function24ae8
@@ -76,7 +76,7 @@ PokefanFScript_0x9cf0e:
 UnknownScript_0x9cf22:
 	writetext UnknownText_0x9d156
 	keeptextopen
-	verbosegiveitem TM_SNORE, 1
+	verbosegiveitem TM_SNORE
 	iffalse UnknownScript_0x9cf33
 	setevent EVENT_GOT_TM13_SNORE_FROM_MOOMOO_FARM
 UnknownScript_0x9cf2f:

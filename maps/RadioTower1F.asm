@@ -65,7 +65,7 @@ GentlemanScript_0x5cd3d:
 	playsound SFX_1ST_PLACE
 	waitbutton
 	keeptextopen
-	giveitem MASTER_BALL, 1
+	giveitem MASTER_BALL
 	iffalse .BagFull
 	itemnotify
 	setflag ENGINE_LUCKY_NUMBER_SHOW
@@ -76,7 +76,7 @@ GentlemanScript_0x5cd3d:
 	playsound SFX_2ND_PLACE
 	waitbutton
 	keeptextopen
-	giveitem EXP_SHARE, 1
+	giveitem EXP_SHARE
 	iffalse .BagFull
 	itemnotify
 	setflag ENGINE_LUCKY_NUMBER_SHOW
@@ -87,7 +87,7 @@ GentlemanScript_0x5cd3d:
 	playsound SFX_3RD_PLACE
 	waitbutton
 	keeptextopen
-	giveitem PP_UP, 1
+	giveitem PP_UP
 	iffalse .BagFull
 	itemnotify
 	setflag ENGINE_LUCKY_NUMBER_SHOW

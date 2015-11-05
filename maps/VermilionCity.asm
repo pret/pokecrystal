@@ -85,7 +85,7 @@ VermilionGymBadgeGuy:
 .AllBadges
 	writetext UnknownText_0x1aacf3
 	keeptextopen
-	verbosegiveitem HP_UP, 1
+	verbosegiveitem HP_UP
 	iffalse .Done
 	setevent EVENT_GOT_HP_UP_FROM_VERMILION_GUY
 .AlreadyGotItem

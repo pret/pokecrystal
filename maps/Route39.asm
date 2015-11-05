@@ -46,7 +46,7 @@ UnknownScript_0x1a5b36:
 
 UnknownScript_0x1a5b4a:
 	scall UnknownScript_0x1a5b7a
-	verbosegiveitem NUGGET, 1
+	verbosegiveitem NUGGET
 	iffalse UnknownScript_0x1a5b59
 	clearflag ENGINE_DEREK_HAS_NUGGET
 	jump UnknownScript_0x1a5b6e

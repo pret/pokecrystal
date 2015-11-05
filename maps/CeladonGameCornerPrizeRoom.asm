@@ -35,7 +35,7 @@ CeladonPrizeRoom_tmcounterloop:
 	itemtotext TM_DOUBLE_TEAM, $0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
-	giveitem TM_DOUBLE_TEAM, 1
+	giveitem TM_DOUBLE_TEAM
 	iffalse CeladonPrizeRoom_notenoughroom
 	takecoins 1500
 	jump CeladonPrizeRoom_purchased
@@ -46,7 +46,7 @@ CeladonPrizeRoom_tmcounterloop:
 	itemtotext TM_PSYCHIC, $0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
-	giveitem TM_PSYCHIC, 1
+	giveitem TM_PSYCHIC
 	iffalse CeladonPrizeRoom_notenoughroom
 	takecoins 3500
 	jump CeladonPrizeRoom_purchased
@@ -57,7 +57,7 @@ CeladonPrizeRoom_tmcounterloop:
 	itemtotext TM_HYPER_BEAM, $0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
-	giveitem TM_HYPER_BEAM, 1
+	giveitem TM_HYPER_BEAM
 	iffalse CeladonPrizeRoom_notenoughroom
 	takecoins 7500
 	jump CeladonPrizeRoom_purchased

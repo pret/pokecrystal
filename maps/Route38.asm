@@ -120,7 +120,7 @@ UnknownScript_0x1a1d82:
 
 UnknownScript_0x1a1df6:
 	scall UnknownScript_0x1a1e27
-	verbosegiveitem THUNDERSTONE, 1
+	verbosegiveitem THUNDERSTONE
 	iffalse UnknownScript_0x1a1e08
 	clearflag ENGINE_DANA_HAS_THUNDERSTONE
 	setevent EVENT_DANA_GAVE_THUNDERSTONE

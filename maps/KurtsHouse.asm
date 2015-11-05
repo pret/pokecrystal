@@ -66,7 +66,7 @@ KurtScript_0x18e178:
 .ClearedSlowpokeWell:
 	writetext UnknownText_0x18e615
 	keeptextopen
-	verbosegiveitem LURE_BALL, 1
+	verbosegiveitem LURE_BALL
 	iffalse .NoRoomForBall
 	setevent EVENT_KURT_GAVE_YOU_LURE_BALL
 .GotLureBall:
@@ -192,7 +192,7 @@ KurtScript_0x18e178:
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
 	keeptextopen
-	verbosegiveitem2 LEVEL_BALL, $16
+	verbosegiveitem2 LEVEL_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_RED_APRICORN
 	jump ._ThatTurnedOutGreat
@@ -202,7 +202,7 @@ KurtScript_0x18e178:
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
 	keeptextopen
-	verbosegiveitem2 LURE_BALL, $16
+	verbosegiveitem2 LURE_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_BLU_APRICORN
 	jump ._ThatTurnedOutGreat
@@ -212,7 +212,7 @@ KurtScript_0x18e178:
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
 	keeptextopen
-	verbosegiveitem2 MOON_BALL, $16
+	verbosegiveitem2 MOON_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_YLW_APRICORN
 	jump ._ThatTurnedOutGreat
@@ -222,7 +222,7 @@ KurtScript_0x18e178:
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
 	keeptextopen
-	verbosegiveitem2 FRIEND_BALL, $16
+	verbosegiveitem2 FRIEND_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_GRN_APRICORN
 	jump ._ThatTurnedOutGreat
@@ -232,7 +232,7 @@ KurtScript_0x18e178:
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
 	keeptextopen
-	verbosegiveitem2 FAST_BALL, $16
+	verbosegiveitem2 FAST_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_WHT_APRICORN
 	jump ._ThatTurnedOutGreat
@@ -242,7 +242,7 @@ KurtScript_0x18e178:
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
 	keeptextopen
-	verbosegiveitem2 HEAVY_BALL, $16
+	verbosegiveitem2 HEAVY_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_BLK_APRICORN
 	jump ._ThatTurnedOutGreat
@@ -252,7 +252,7 @@ KurtScript_0x18e178:
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
 	keeptextopen
-	verbosegiveitem2 LOVE_BALL, $16
+	verbosegiveitem2 LOVE_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_PNK_APRICORN
 	jump ._ThatTurnedOutGreat
@@ -266,7 +266,7 @@ KurtScript_0x18e178:
 	closetext
 	loadmovesprites
 	setevent EVENT_GAVE_GS_BALL_TO_KURT
-	takeitem GS_BALL, 1
+	takeitem GS_BALL
 	setflag ENGINE_KURT_MAKING_BALLS
 	end
 

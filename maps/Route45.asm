@@ -43,7 +43,7 @@ UnknownScript_0x19e0e4:
 	checkevent EVENT_KENJI_ON_BREAK
 	iffalse UnknownScript_0x19e127
 	scall UnknownScript_0x19e137
-	verbosegiveitem PP_UP, 1
+	verbosegiveitem PP_UP
 	iffalse UnknownScript_0x19e118
 	clearevent EVENT_KENJI_ON_BREAK
 	special Special_SampleKenjiBreakCountdown
@@ -199,7 +199,7 @@ UnknownScript_0x19e1b8:
 	checkevent EVENT_GOT_IRON_FROM_PARRY
 	iftrue UnknownScript_0x19e218
 	scall UnknownScript_0x19e146
-	verbosegiveitem IRON, 1
+	verbosegiveitem IRON
 	iffalse UnknownScript_0x19e13f
 	setevent EVENT_GOT_IRON_FROM_PARRY
 	jump UnknownScript_0x19e127
@@ -211,7 +211,7 @@ UnknownScript_0x19e219:
 	loadfont
 	writetext UnknownText_0x19e52c
 	closetext
-	verbosegiveitem IRON, 1
+	verbosegiveitem IRON
 	iffalse UnknownScript_0x19e13f
 	clearevent EVENT_PARRY_IRON
 	setevent EVENT_GOT_IRON_FROM_PARRY

@@ -293,7 +293,7 @@ UnknownScript_0x7819f:
 
 UnknownScript_0x78213:
 	scall UnknownScript_0x78244
-	verbosegiveitem LEAF_STONE, 1
+	verbosegiveitem LEAF_STONE
 	iffalse UnknownScript_0x78225
 	clearflag ENGINE_GINA_HAS_LEAF_STONE
 	setevent EVENT_GINA_GAVE_LEAF_STONE
@@ -450,7 +450,7 @@ CooltrainerfKateScript:
 	iftrue UnknownScript_0x78319
 	writetext UnknownText_0x788e2
 	keeptextopen
-	verbosegiveitem SOFT_SAND, 1
+	verbosegiveitem SOFT_SAND
 	iffalse UnknownScript_0x7831d
 	setevent EVENT_GOT_SOFT_SAND_FROM_KATE
 UnknownScript_0x78319:

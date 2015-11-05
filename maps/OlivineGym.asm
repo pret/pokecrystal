@@ -30,7 +30,7 @@ JasmineScript_0x9c12f:
 	iftrue UnknownScript_0x9c172
 	writetext UnknownText_0x9c354
 	keeptextopen
-	verbosegiveitem TM_IRON_TAIL, 1
+	verbosegiveitem TM_IRON_TAIL
 	iffalse UnknownScript_0x9c176
 	setevent EVENT_GOT_TM23_IRON_TAIL
 	writetext UnknownText_0x9c3a5

@@ -153,7 +153,7 @@ CooltrainerMScript_0x19efac:
 	iftrue UnknownScript_0x19efc7
 	writetext UnknownText_0x19f43b
 	keeptextopen
-	verbosegiveitem NUGGET, 1
+	verbosegiveitem NUGGET
 	iffalse UnknownScript_0x19efde
 	setevent EVENT_CLEARED_NUGGET_BRIDGE
 UnknownScript_0x19efc7:

@@ -56,7 +56,7 @@ UnknownScript_0x190040:
 	iffalse UnknownScript_0x190072
 	checkmoney $0, 300
 	if_equal $2, UnknownScript_0x19006c
-	giveitem RAGECANDYBAR, 1
+	giveitem RAGECANDYBAR
 	iffalse UnknownScript_0x190078
 	waitbutton
 	playsound SFX_TRANSACTION

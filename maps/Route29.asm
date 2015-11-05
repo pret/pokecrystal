@@ -176,7 +176,7 @@ TuscanyScript:
 .MetTuscany
 	writetext TuscanyGivesGiftText
 	keeptextopen
-	verbosegiveitem PINK_BOW, 1
+	verbosegiveitem PINK_BOW
 	iffalse TuscanyDoneScript
 	setevent EVENT_GOT_PINK_BOW_FROM_TUSCANY
 	writetext TuscanyGaveGiftText

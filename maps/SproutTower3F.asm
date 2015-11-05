@@ -71,7 +71,7 @@ SageLiScript:
 	loadfont
 	writetext UnknownText_0x184cc2
 	keeptextopen
-	verbosegiveitem HM_FLASH, 1
+	verbosegiveitem HM_FLASH
 	setevent EVENT_GOT_HM05_FLASH
 	setevent EVENT_BEAT_SAGE_LI
 	writetext UnknownText_0x184d13

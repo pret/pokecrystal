@@ -155,7 +155,7 @@ UnknownScript_0x1980e5:
 	keeptextopen
 	writetext UnknownText_0x198628
 	closetext
-	verbosegiveitem GS_BALL, 1
+	verbosegiveitem GS_BALL
 	spriteface $d, LEFT
 	setflag ENGINE_HAVE_EXAMINED_GS_BALL
 	clearevent EVENT_ILEX_FOREST_LASS

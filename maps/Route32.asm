@@ -57,7 +57,7 @@ UnknownScript_0x190489:
 UnknownScript_0x19048f:
 	writetext UnknownText_0x190925
 	keeptextopen
-	verbosegiveitem MIRACLE_SEED, 1
+	verbosegiveitem MIRACLE_SEED
 	iffalse UnknownScript_0x1904a9
 	setevent EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
 	jump UnknownScript_0x1904a5
@@ -98,7 +98,7 @@ FisherScript_0x1904ce:
 	iftrue UnknownScript_0x1904e3
 	writetext UnknownText_0x191133
 	keeptextopen
-	verbosegiveitem TM_ROAR, 1
+	verbosegiveitem TM_ROAR
 	iffalse UnknownScript_0x1904e7
 	setevent EVENT_GOT_TM05_ROAR
 UnknownScript_0x1904e3:
@@ -455,7 +455,7 @@ FriedaScript:
 .MetFrieda
 	writetext FriedaGivesGiftText
 	keeptextopen
-	verbosegiveitem POISON_BARB, 1
+	verbosegiveitem POISON_BARB
 	iffalse FriedaDoneScript
 	setevent EVENT_GOT_POISON_BARB_FROM_FRIEDA
 	writetext FriedaGaveGiftText

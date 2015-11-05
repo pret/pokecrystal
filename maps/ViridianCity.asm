@@ -52,7 +52,7 @@ FisherScript_0x1a9a75:
 	iftrue UnknownScript_0x1a9a8a
 	writetext UnknownText_0x1a9cc4
 	keeptextopen
-	verbosegiveitem TM_DREAM_EATER, 1
+	verbosegiveitem TM_DREAM_EATER
 	iffalse UnknownScript_0x1a9a8e
 	setevent EVENT_GOT_TM42_DREAM_EATER
 UnknownScript_0x1a9a8a:

@@ -587,7 +587,10 @@ OW_RIGHT EQU RIGHT << 2
 	const EMOTE_BOLT ; 5
 	const EMOTE_SLEEP ; 6
 	const EMOTE_FISH ; 7
-	const EMOTE_ROD ; 8 - add directional constant
+	const EMOTE_08 ; 8
+	const EMOTE_09 ; 9
+	const EMOTE_0A ; 10
+	const EMOTE_0B ; 11
 EMOTE_MEM EQU -1
 
 	const_def

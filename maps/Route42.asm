@@ -108,7 +108,7 @@ UnknownScript_0x1a927f:
 
 UnknownScript_0x1a92dc:
 	scall UnknownScript_0x1a930d
-	verbosegiveitem WATER_STONE, 1
+	verbosegiveitem WATER_STONE
 	iffalse UnknownScript_0x1a92ee
 	clearflag ENGINE_TULLY_HAS_WATER_STONE
 	setevent EVENT_TULLY_GAVE_WATER_STONE

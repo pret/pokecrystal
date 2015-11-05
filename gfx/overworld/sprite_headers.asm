@@ -4,6 +4,7 @@
 ;	Type, Palette
 
 sprite_header: MACRO
+; pointer, length, type, palette
 	dw \1
 	db \2 * 4 tiles, BANK(\1)
 	db \3, \4

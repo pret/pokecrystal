@@ -36,7 +36,7 @@ CeladonVendingMachine:
 .FreshWater
 	checkmoney $0, 200
 	if_equal $2, .NotEnoughMoney
-	giveitem FRESH_WATER, 1
+	giveitem FRESH_WATER
 	iffalse .NotEnoughSpace
 	takemoney $0, 200
 	itemtotext FRESH_WATER, $0
@@ -45,7 +45,7 @@ CeladonVendingMachine:
 .SodaPop
 	checkmoney $0, 300
 	if_equal $2, .NotEnoughMoney
-	giveitem SODA_POP, 1
+	giveitem SODA_POP
 	iffalse .NotEnoughSpace
 	takemoney $0, 300
 	itemtotext SODA_POP, $0
@@ -54,7 +54,7 @@ CeladonVendingMachine:
 .Lemonade
 	checkmoney $0, 350
 	if_equal $2, .NotEnoughMoney
-	giveitem LEMONADE, 1
+	giveitem LEMONADE
 	iffalse .NotEnoughSpace
 	takemoney $0, 350
 	itemtotext LEMONADE, $0

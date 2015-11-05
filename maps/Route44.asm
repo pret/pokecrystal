@@ -73,7 +73,7 @@ UnknownScript_0x19d86a:
 	checkevent EVENT_GOT_CARBOS_FROM_VANCE
 	iftrue UnknownScript_0x19d8ca
 	scall UnknownScript_0x19d90a
-	verbosegiveitem CARBOS, 1
+	verbosegiveitem CARBOS
 	iffalse UnknownScript_0x19d903
 	setevent EVENT_GOT_CARBOS_FROM_VANCE
 	jump UnknownScript_0x19d8eb
@@ -85,7 +85,7 @@ UnknownScript_0x19d8cb:
 	loadfont
 	writetext UnknownText_0x19dc67
 	closetext
-	verbosegiveitem CARBOS, 1
+	verbosegiveitem CARBOS
 	iffalse UnknownScript_0x19d903
 	clearevent EVENT_VANCE_CARBOS
 	setevent EVENT_GOT_CARBOS_FROM_VANCE
@@ -223,17 +223,17 @@ UnknownScript_0x19d9b4:
 	checkevent EVENT_WILTON_HAS_POKE_BALL
 	iftrue UnknownScript_0x19d9db
 UnknownScript_0x19d9c9:
-	verbosegiveitem ULTRA_BALL, 1
+	verbosegiveitem ULTRA_BALL
 	iffalse UnknownScript_0x19d9e7
 	jump UnknownScript_0x19d9e1
 
 UnknownScript_0x19d9d2:
-	verbosegiveitem GREAT_BALL, 1
+	verbosegiveitem GREAT_BALL
 	iffalse UnknownScript_0x19d9e7
 	jump UnknownScript_0x19d9e1
 
 UnknownScript_0x19d9db:
-	verbosegiveitem POKE_BALL, 1
+	verbosegiveitem POKE_BALL
 	iffalse UnknownScript_0x19d9e7
 UnknownScript_0x19d9e1:
 	clearflag ENGINE_WILTON_HAS_ITEM

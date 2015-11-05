@@ -151,7 +151,7 @@ UnknownScript_0x5d800:
 	writetext UnknownText_0x5dcf4
 	keeptextopen
 	setevent EVENT_MET_BUENA
-	verbosegiveitem BLUE_CARD, 1
+	verbosegiveitem BLUE_CARD
 UnknownScript_0x5d80a:
 	writetext UnknownText_0x5de10
 	closetext

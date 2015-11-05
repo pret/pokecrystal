@@ -69,7 +69,7 @@ GentlemanScript_0x7d9bf:
 	iftrue UnknownScript_0x7d9de
 	writetext UnknownText_0x7dbc6
 	keeptextopen
-	verbosegiveitem CARD_KEY, 1
+	verbosegiveitem CARD_KEY
 	setevent EVENT_RECEIVED_CARD_KEY
 	setevent EVENT_WAREHOUSE_LAYOUT_1
 	clearevent EVENT_WAREHOUSE_LAYOUT_2

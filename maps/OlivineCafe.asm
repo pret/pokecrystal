@@ -12,7 +12,7 @@ SailorScript_0x9c8c1:
 	iftrue UnknownScript_0x9c8d3
 	writetext UnknownText_0x9c8df
 	keeptextopen
-	verbosegiveitem HM_STRENGTH, 1
+	verbosegiveitem HM_STRENGTH
 	setevent EVENT_GOT_HM04_STRENGTH
 UnknownScript_0x9c8d3:
 	writetext UnknownText_0x9c965

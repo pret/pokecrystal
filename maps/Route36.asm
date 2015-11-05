@@ -90,7 +90,7 @@ UnknownScript_0x19407b:
 	disappear $4
 	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
 	special RunCallback_04
-	special Function14168
+	special RefreshSprites
 	end
 
 LassScript_0x19408c:
@@ -135,7 +135,7 @@ FisherScript_0x1940b9:
 UnknownScript_0x1940cd:
 	writetext UnknownText_0x1944d0
 	keeptextopen
-	verbosegiveitem TM_ROCK_SMASH, 1
+	verbosegiveitem TM_ROCK_SMASH
 	iffalse UnknownScript_0x1940de
 	setevent EVENT_GOT_TM08_ROCK_SMASH
 UnknownScript_0x1940da:
@@ -254,7 +254,7 @@ UnknownScript_0x194140:
 
 UnknownScript_0x1941b4:
 	scall UnknownScript_0x1941e5
-	verbosegiveitem FIRE_STONE, 1
+	verbosegiveitem FIRE_STONE
 	iffalse UnknownScript_0x1941c6
 	clearflag ENGINE_ALAN_HAS_FIRE_STONE
 	setevent EVENT_ALAN_GAVE_FIRE_STONE
@@ -325,7 +325,7 @@ ArthurScript:
 .MetArthur
 	writetext ArthurGivesGiftText
 	keeptextopen
-	verbosegiveitem HARD_STONE, 1
+	verbosegiveitem HARD_STONE
 	iffalse ArthurDoneScript
 	setevent EVENT_GOT_HARD_STONE_FROM_ARTHUR
 	writetext ArthurGaveGiftText

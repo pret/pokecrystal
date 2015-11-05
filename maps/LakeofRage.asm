@@ -85,7 +85,7 @@ GyaradosScript_0x70063:
 UnknownScript_0x7007a:
 	returnafterbattle
 	loadfont
-	giveitem RED_SCALE, 1
+	giveitem RED_SCALE
 	waitbutton
 	writetext UnknownText_0x703df
 	playsound SFX_ITEM
@@ -195,7 +195,7 @@ WesleyScript:
 .MetWesley
 	writetext WesleyGivesGiftText
 	keeptextopen
-	verbosegiveitem BLACKBELT, 1
+	verbosegiveitem BLACKBELT
 	iffalse WesleyDoneScript
 	setevent EVENT_GOT_BLACKBELT_FROM_WESLEY
 	writetext WesleyGaveGiftText

@@ -42,7 +42,7 @@ UnknownScript_0x195e02:
 	iftrue UnknownScript_0x195e15
 	writetext UnknownText_0x196002
 	keeptextopen
-	verbosegiveitem TM_TOXIC, 1
+	verbosegiveitem TM_TOXIC
 	iffalse UnknownScript_0x195e15
 	setevent EVENT_GOT_TM06_TOXIC
 UnknownScript_0x195e15:

@@ -49,7 +49,7 @@ OfficerScript_0x69d37:
 .questcomplete:
 	writetext UnknownText_0x69f8b
 	keeptextopen
-	verbosegiveitem HP_UP, 1
+	verbosegiveitem HP_UP
 	iffalse .bagfull
 	setevent EVENT_GOT_HP_UP_FROM_RANDY
 .gothpup:

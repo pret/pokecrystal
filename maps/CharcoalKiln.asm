@@ -44,7 +44,7 @@ CharcoalKilnApprentice:
 .Thanks
 	writetext CharcoalKilnApprenticeText2
 	keeptextopen
-	verbosegiveitem CHARCOAL, 1
+	verbosegiveitem CHARCOAL
 	iffalse .Done
 	setevent EVENT_GOT_CHARCOAL_IN_CHARCOAL_KILN
 	loadmovesprites

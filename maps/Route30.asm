@@ -117,7 +117,7 @@ UnknownScript_0x1a16e0:
 	checkevent EVENT_GOT_HP_UP_FROM_JOEY
 	iftrue UnknownScript_0x1a176e
 	scall UnknownScript_0x1a17a6
-	verbosegiveitem HP_UP, 1
+	verbosegiveitem HP_UP
 	iffalse UnknownScript_0x1a179f
 	setevent EVENT_GOT_HP_UP_FROM_JOEY
 	jump UnknownScript_0x1a178f
@@ -129,7 +129,7 @@ UnknownScript_0x1a176f:
 	loadfont
 	writetext UnknownText_0x1a1bc0
 	closetext
-	verbosegiveitem HP_UP, 1
+	verbosegiveitem HP_UP
 	iffalse UnknownScript_0x1a179f
 	clearevent EVENT_JOEY_HP_UP
 	setevent EVENT_GOT_HP_UP_FROM_JOEY

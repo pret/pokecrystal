@@ -20,7 +20,7 @@ FlowerShopTeacherScript:
 	loadfont
 	writetext UnknownText_0x554c2
 	keeptextopen
-	verbosegiveitem SQUIRTBOTTLE, 1
+	verbosegiveitem SQUIRTBOTTLE
 	setevent EVENT_GOT_SQUIRTBOTTLE
 	loadmovesprites
 	setevent EVENT_FLORIA_AT_SUDOWOODO

@@ -84,7 +84,7 @@ UnknownScript_0x1a96da:
 	checkevent EVENT_GOT_CALCIUM_FROM_ERIN
 	iftrue UnknownScript_0x1a973a
 	scall UnknownScript_0x1a9772
-	verbosegiveitem CALCIUM, 1
+	verbosegiveitem CALCIUM
 	iffalse UnknownScript_0x1a976b
 	setevent EVENT_GOT_CALCIUM_FROM_ERIN
 	jump UnknownScript_0x1a975b
@@ -96,7 +96,7 @@ UnknownScript_0x1a973b:
 	loadfont
 	writetext UnknownText_0x1a9927
 	closetext
-	verbosegiveitem CALCIUM, 1
+	verbosegiveitem CALCIUM
 	iffalse UnknownScript_0x1a976b
 	clearevent EVENT_ERIN_CALCIUM
 	setevent EVENT_GOT_CALCIUM_FROM_ERIN

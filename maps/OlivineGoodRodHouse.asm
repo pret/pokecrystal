@@ -15,7 +15,7 @@ GoodRodGuru:
 	iffalse .DontWantIt
 	writetext GiveGoodRodText
 	keeptextopen
-	verbosegiveitem GOOD_ROD, 1
+	verbosegiveitem GOOD_ROD
 	writetext GaveGoodRodText
 	closetext
 	loadmovesprites

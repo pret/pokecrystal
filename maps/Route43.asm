@@ -251,7 +251,7 @@ UnknownScript_0x19d1c1:
 
 UnknownScript_0x19d21e:
 	scall UnknownScript_0x19d255
-	verbosegiveitem PINK_BOW, 1
+	verbosegiveitem PINK_BOW
 	iffalse UnknownScript_0x19d230
 	clearflag ENGINE_TIFFANY_HAS_PINK_BOW
 	setevent EVENT_TIFFANY_GAVE_PINK_BOW

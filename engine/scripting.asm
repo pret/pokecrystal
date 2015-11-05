@@ -1197,9 +1197,9 @@ ApplyPersonFacing: ; 0x9728b
 	add hl, bc
 	ld a, [hl]
 	push bc
-	call Function1836
+	call DoesSpriteHaveFacings
 	pop bc
-	jr c, .not_visible ; 0x9729c $1b
+	jr c, .not_visible ; STILL_SPRITE
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 2, [hl]

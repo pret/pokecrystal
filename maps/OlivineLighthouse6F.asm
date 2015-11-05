@@ -27,7 +27,7 @@ UnknownScript_0x60bab:
 	iffalse UnknownScript_0x60c25
 	writetext UnknownText_0x60dc3
 	keeptextopen
-	takeitem SECRETPOTION, 1
+	takeitem SECRETPOTION
 	writetext UnknownText_0x60dea
 	closetext
 	loadmovesprites

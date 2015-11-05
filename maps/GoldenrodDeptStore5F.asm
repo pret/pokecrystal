@@ -70,7 +70,7 @@ ReceptionistScript_0x560ce:
 .VeryHappy:
 	writetext UnknownText_0x5615a
 	keeptextopen
-	verbosegiveitem TM_RETURN, 1
+	verbosegiveitem TM_RETURN
 	iffalse .Done
 	setflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT
 	loadmovesprites
@@ -85,7 +85,7 @@ ReceptionistScript_0x560ce:
 .NotVeryHappy:
 	writetext UnknownText_0x561d8
 	keeptextopen
-	verbosegiveitem TM_FRUSTRATION, 1
+	verbosegiveitem TM_FRUSTRATION
 	iffalse .Done
 	setflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT
 	loadmovesprites

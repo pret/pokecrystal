@@ -86,7 +86,7 @@ EatathonContestPoster:
 CeladonCafeTrashcan:
 	checkevent EVENT_FOUND_LEFTOVERS_IN_CELADON_CAFE
 	iftrue .TrashEmpty
-	giveitem LEFTOVERS, 1
+	giveitem LEFTOVERS
 	iffalse .PackFull
 	loadfont
 	itemtotext LEFTOVERS, $0

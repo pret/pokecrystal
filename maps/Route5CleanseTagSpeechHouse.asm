@@ -12,7 +12,7 @@ GrannyScript_0x18b634:
 	iftrue UnknownScript_0x18b649
 	writetext UnknownText_0x18b655
 	keeptextopen
-	verbosegiveitem CLEANSE_TAG, 1
+	verbosegiveitem CLEANSE_TAG
 	iffalse UnknownScript_0x18b64d
 	setevent EVENT_GOT_CLEANSE_TAG
 UnknownScript_0x18b649:

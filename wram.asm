@@ -2090,8 +2090,40 @@ ENDM
 wd6de::
 	ds 64
 
+map_object: MACRO
+\1Object::
+\1ObjectStructID::  ds 1
+\1ObjectSprite::    ds 1
+\1ObjectYCoord::    ds 1
+\1ObjectXCoord::    ds 1
+\1ObjectMovement::  ds 1
+\1ObjectRadius::    ds 1
+\1ObjectHour::      ds 1
+\1ObjectTimeOfDay:: ds 1
+\1ObjectColor::     ds 1
+\1ObjectRange::     ds 1
+\1ObjectScript::    ds 2
+\1ObjectEventFlag:: ds 2
+	ds 2
+endm
+
 MapObjects:: ; d71e
-	ds OBJECT_LENGTH * NUM_OBJECTS
+	map_object Player
+	map_object Map1
+	map_object Map2
+	map_object Map3
+	map_object Map4
+	map_object Map5
+	map_object Map6
+	map_object Map7
+	map_object Map8
+	map_object Map9
+	map_object Map10
+	map_object Map11
+	map_object Map12
+	map_object Map13
+	map_object Map14
+	map_object Map15
 
 wObjectMasks:: ds NUM_OBJECTS ; d81e
 

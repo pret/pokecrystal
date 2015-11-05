@@ -64,7 +64,7 @@ UnknownScript_0x56c4d:
 	itemtotext TM_THUNDER, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	giveitem TM_THUNDER, 1
+	giveitem TM_THUNDER
 	iffalse UnknownScript_0x56cb7
 	takecoins 5500
 	jump UnknownScript_0x56ca6
@@ -75,7 +75,7 @@ UnknownScript_0x56c69:
 	itemtotext TM_BLIZZARD, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	giveitem TM_BLIZZARD, 1
+	giveitem TM_BLIZZARD
 	iffalse UnknownScript_0x56cb7
 	takecoins 5500
 	jump UnknownScript_0x56ca6
@@ -86,7 +86,7 @@ UnknownScript_0x56c85:
 	itemtotext TM_FIRE_BLAST, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	giveitem TM_FIRE_BLAST, 1
+	giveitem TM_FIRE_BLAST
 	iffalse UnknownScript_0x56cb7
 	takecoins 5500
 	jump UnknownScript_0x56ca6

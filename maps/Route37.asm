@@ -74,7 +74,7 @@ SunnyScript:
 	writetext SunnyGivesGiftText2
 	keeptextopen
 .next
-	verbosegiveitem MAGNET, 1
+	verbosegiveitem MAGNET
 	iffalse SunnyDoneScript
 	setevent EVENT_GOT_MAGNET_FROM_SUNNY
 	writetext SunnyGaveGiftText

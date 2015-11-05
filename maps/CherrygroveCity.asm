@@ -213,7 +213,7 @@ MysticWaterGuy:
 	iftrue UnknownScript_0x19c183
 	writetext UnknownText_0x19c766
 	keeptextopen
-	verbosegiveitem MYSTIC_WATER, 1
+	verbosegiveitem MYSTIC_WATER
 	iffalse UnknownScript_0x19c187
 	setevent EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE
 UnknownScript_0x19c183:

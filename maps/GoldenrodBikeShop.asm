@@ -19,7 +19,7 @@ ClerkScript_0x54750:
 	writetext UnknownText_0x547f8
 	keeptextopen
 	waitbutton
-	giveitem BICYCLE, 1
+	giveitem BICYCLE
 	writetext UnknownText_0x54848
 	playsound SFX_KEY_ITEM
 	waitbutton

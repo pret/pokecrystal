@@ -94,7 +94,7 @@ UnknownScript_0x5afc7:
 	checkevent EVENT_GOT_PROTEIN_FROM_HUEY
 	iftrue UnknownScript_0x5b03e
 	scall UnknownScript_0x5b076
-	verbosegiveitem PROTEIN, 1
+	verbosegiveitem PROTEIN
 	iffalse UnknownScript_0x5b06f
 	setevent EVENT_GOT_PROTEIN_FROM_HUEY
 	jump UnknownScript_0x5b05f
@@ -106,7 +106,7 @@ UnknownScript_0x5b03f:
 	loadfont
 	writetext UnknownText_0x5b1b6
 	closetext
-	verbosegiveitem PROTEIN, 1
+	verbosegiveitem PROTEIN
 	iffalse UnknownScript_0x5b06f
 	clearevent EVENT_HUEY_PROTEIN
 	setevent EVENT_GOT_PROTEIN_FROM_HUEY

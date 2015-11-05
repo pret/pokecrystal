@@ -189,7 +189,7 @@ SageScript_0x185188:
 	iftrue UnknownScript_0x1851b0
 	writetext UnknownText_0x185629
 	keeptextopen
-	verbosegiveitem RAINBOW_WING, 1
+	verbosegiveitem RAINBOW_WING
 	loadmovesprites
 	refreshscreen $0
 	earthquake 72

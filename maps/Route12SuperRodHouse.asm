@@ -15,7 +15,7 @@ FishingGuruScript_0x7f484:
 	iffalse UnknownScript_0x7f4a6
 	writetext UnknownText_0x7f52f
 	keeptextopen
-	verbosegiveitem SUPER_ROD, 1
+	verbosegiveitem SUPER_ROD
 	iffalse UnknownScript_0x7f4aa
 	setevent EVENT_GOT_SUPER_ROD
 UnknownScript_0x7f4a0:

@@ -241,7 +241,7 @@ Route36Officer_ContestHasConcluded:
 .Sunstone:
 	writetext UnknownText_0x6b97f
 	keeptextopen
-	verbosegiveitem SUN_STONE, 1
+	verbosegiveitem SUN_STONE
 	iffalse .BagFull
 	clearevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
 	loadmovesprites
@@ -250,7 +250,7 @@ Route36Officer_ContestHasConcluded:
 .Everstone:
 	writetext UnknownText_0x6b97f
 	keeptextopen
-	verbosegiveitem EVERSTONE, 1
+	verbosegiveitem EVERSTONE
 	iffalse .BagFull
 	clearevent EVENT_CONTEST_OFFICER_HAS_EVERSTONE
 	loadmovesprites
@@ -259,7 +259,7 @@ Route36Officer_ContestHasConcluded:
 .GoldBerry:
 	writetext UnknownText_0x6b97f
 	keeptextopen
-	verbosegiveitem GOLD_BERRY, 1
+	verbosegiveitem GOLD_BERRY
 	iffalse .BagFull
 	clearevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
 	loadmovesprites
@@ -268,7 +268,7 @@ Route36Officer_ContestHasConcluded:
 .Berry:
 	writetext UnknownText_0x6b97f
 	keeptextopen
-	verbosegiveitem BERRY, 1
+	verbosegiveitem BERRY
 	iffalse .BagFull
 	clearevent EVENT_CONTEST_OFFICER_HAS_BERRY
 	loadmovesprites

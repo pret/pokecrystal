@@ -63,7 +63,7 @@ TaurosScript_0x9ccaa:
 	iffalse .Refused
 	checkitem BERRY
 	iffalse .NoBerriesInBag
-	takeitem BERRY, 1
+	takeitem BERRY
 	copybytetovar MooMooBerries
 	addvar 1
 	copyvartobyte MooMooBerries

@@ -339,7 +339,7 @@ BlackBeltScript_0x6edae:
 	iftrue UnknownScript_0x6edd8
 	writetext UnknownText_0x6f099
 	keeptextopen
-	verbosegiveitem HM_CUT, 1
+	verbosegiveitem HM_CUT
 	setevent EVENT_GOT_HM01_CUT
 	writetext UnknownText_0x6f141
 	closetext
@@ -365,7 +365,7 @@ RockerScript_0x6edde:
 	iftrue UnknownScript_0x6edf3
 	writetext UnknownText_0x6f21b
 	keeptextopen
-	verbosegiveitem TM_HEADBUTT, 1
+	verbosegiveitem TM_HEADBUTT
 	iffalse UnknownScript_0x6edf7
 	setevent EVENT_GOT_TM02_HEADBUTT
 UnknownScript_0x6edf3:
@@ -439,7 +439,7 @@ UnknownScript_0x6ee38:
 	end
 
 UnknownScript_0x6ee42:
-	takeitem GS_BALL, 1
+	takeitem GS_BALL
 	clearevent EVENT_FOREST_IS_RESTLESS
 	setevent EVENT_AZALEA_TOWN_KURT
 	disappear $8

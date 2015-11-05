@@ -2021,7 +2021,7 @@ Function2b74:: ; 0x2b74
 Function2bae:: ; 2bae
 	call DisableLCD
 	call ClearSprites
-	callba Function14168
+	callba RefreshSprites
 	call LoadStandardFont
 	call LoadFontsExtra
 	ld a, [hROMBank]

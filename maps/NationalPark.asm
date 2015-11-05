@@ -18,7 +18,7 @@ TeacherScript_0x5c008:
 	iftrue UnknownScript_0x5c01d
 	writetext UnknownText_0x5c265
 	keeptextopen
-	verbosegiveitem QUICK_CLAW, 1
+	verbosegiveitem QUICK_CLAW
 	iffalse UnknownScript_0x5c021
 	setevent EVENT_GOT_QUICK_CLAW
 UnknownScript_0x5c01d:
@@ -216,7 +216,7 @@ UnknownScript_0x5c163:
 
 UnknownScript_0x5c177:
 	scall UnknownScript_0x5c1a7
-	verbosegiveitem NUGGET, 1
+	verbosegiveitem NUGGET
 	iffalse UnknownScript_0x5c186
 	clearflag ENGINE_BEVERLY_HAS_NUGGET
 	jump UnknownScript_0x5c19b

@@ -170,6 +170,16 @@ const_value SET 1
 	const STANDING_SPRITE
 	const STILL_SPRITE
 
+; sprite header fields
+	const_def
+	const SPRITEHEADER_ADDR_LO
+	const SPRITEHEADER_ADDR_HI
+	const SPRITEHEADER_SIZE
+	const SPRITEHEADER_BANK
+	const SPRITEHEADER_TYPE
+	const SPRITEHEADER_PALETTE
+NUM_SPRITEHEADER_FIELDS EQU const_value
+
 ; sprite palettes
 	const_def
 	const PAL_OW_RED
@@ -252,3 +262,5 @@ const_value SET 1
 	const SPRITEMOVEFN_19
 	const SPRITEMOVEFN_1A
 	const SPRITEMOVEFN_1B
+
+MAX_OUTDOOR_SPRITES EQU 23

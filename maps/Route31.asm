@@ -120,19 +120,19 @@ UnknownScript_0x1a5507:
 	checkevent EVENT_WADE_HAS_BITTER_BERRY
 	iftrue .BitterBerry
 .Berry
-	verbosegiveitem BERRY, 1
+	verbosegiveitem BERRY
 	iffalse .PackFull
 	jump .Done
 .Psncureberry
-	verbosegiveitem PSNCUREBERRY, 1
+	verbosegiveitem PSNCUREBERRY
 	iffalse .PackFull
 	jump .Done
 .Przcureberry
-	verbosegiveitem PRZCUREBERRY, 1
+	verbosegiveitem PRZCUREBERRY
 	iffalse .PackFull
 	jump .Done
 .BitterBerry
-	verbosegiveitem BITTER_BERRY, 1
+	verbosegiveitem BITTER_BERRY
 	iffalse .PackFull
 .Done
 	clearflag ENGINE_WADE_HAS_ITEM
@@ -201,7 +201,7 @@ UnknownScript_0x1a5584:
 	writetext UnknownText_0x1a57ba
 	keeptextopen
 	setevent EVENT_GAVE_KENYA
-	verbosegiveitem TM_NIGHTMARE, 1
+	verbosegiveitem TM_NIGHTMARE
 	iffalse UnknownScript_0x1a55b3
 	setevent EVENT_GOT_TM50_NIGHTMARE
 UnknownScript_0x1a55af:

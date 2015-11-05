@@ -52,18 +52,18 @@ endr
 	ret
 ; 1836
 
-Function1836:: ; 1836
+DoesSpriteHaveFacings:: ; 1836
 	push de
 	push hl
 
 	ld b, a
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(Function142a7)
+	ld a, BANK(_DoesSpriteHaveFacings)
 	rst Bankswitch
 
 	ld a, b
-	call Function142a7
+	call _DoesSpriteHaveFacings
 	ld c, a
 
 	pop de

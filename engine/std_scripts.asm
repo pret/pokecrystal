@@ -328,7 +328,7 @@ BugContestResultsScript:
 	farwritetext ContestResults_ConsolationPrizeText
 	keeptextopen
 	waitbutton
-	verbosegiveitem BERRY, 1
+	verbosegiveitem BERRY
 	iffalse BugContestResults_NoRoomForBerry
 
 BugContestResults_DidNotWin
@@ -387,7 +387,7 @@ BugContestResults_FirstPlace ; 0xbc31e
 	itemtotext SUN_STONE, $1
 	farwritetext ContestResults_PlayerWonAPrizeText
 	closetext
-	verbosegiveitem SUN_STONE, 1
+	verbosegiveitem SUN_STONE
 	iffalse BugContestResults_NoRoomForSunStone
 	jump BugContestResults_ReturnAfterWinnersPrize
 ; 0xbc332
@@ -396,7 +396,7 @@ BugContestResults_SecondPlace ; 0xbc332
 	itemtotext EVERSTONE, $1
 	farwritetext ContestResults_PlayerWonAPrizeText
 	closetext
-	verbosegiveitem EVERSTONE, 1
+	verbosegiveitem EVERSTONE
 	iffalse BugContestResults_NoRoomForEverstone
 	jump BugContestResults_ReturnAfterWinnersPrize
 ; 0xbc343
@@ -405,7 +405,7 @@ BugContestResults_ThirdPlace ; 0xbc343
 	itemtotext GOLD_BERRY, $1
 	farwritetext ContestResults_PlayerWonAPrizeText
 	closetext
-	verbosegiveitem GOLD_BERRY, 1
+	verbosegiveitem GOLD_BERRY
 	iffalse BugContestResults_NoRoomForGoldBerry
 	jump BugContestResults_ReturnAfterWinnersPrize
 ; 0xbc354

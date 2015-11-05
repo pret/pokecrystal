@@ -12,7 +12,7 @@ PharmacistScript_0x18c720:
 	iftrue UnknownScript_0x18c735
 	writetext UnknownText_0x18c73f
 	keeptextopen
-	verbosegiveitem BLACKGLASSES, 1
+	verbosegiveitem BLACKGLASSES
 	iffalse UnknownScript_0x18c739
 	setevent EVENT_GOT_BLACKGLASSES_IN_DARK_CAVE
 UnknownScript_0x18c735:

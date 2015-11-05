@@ -25,7 +25,7 @@ GrampsScript_0x18c00f:
 	iftrue UnknownScript_0x18c023
 	writetext UnknownText_0x18c0c6
 	keeptextopen
-	verbosegiveitem SILVER_WING, 1
+	verbosegiveitem SILVER_WING
 	setevent EVENT_GOT_SILVER_WING
 	loadmovesprites
 	end

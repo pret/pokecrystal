@@ -12,7 +12,7 @@ GymGuyScript_0x5ad0b:
 	iftrue UnknownScript_0x5ad22
 	writetext UnknownText_0x5ad2a
 	keeptextopen
-	verbosegiveitem KINGS_ROCK, 1
+	verbosegiveitem KINGS_ROCK
 	iffalse UnknownScript_0x5ad20
 	setevent EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL
 UnknownScript_0x5ad20:

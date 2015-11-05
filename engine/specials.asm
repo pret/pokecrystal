@@ -178,7 +178,7 @@ SpecialsPointers:: ; c029
 	add_special Function1037eb
 	add_special Function10383c
 	add_special Mobile_HealParty
-	add_special Function14168
+	add_special RefreshSprites
 	add_special Function1037c2
 	add_special Function10630f
 	add_special Function103780

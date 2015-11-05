@@ -106,7 +106,7 @@ Copycat:
 	loadfont
 	writetext UnknownText_0x18b17f
 	keeptextopen
-	takeitem LOST_ITEM, 1
+	takeitem LOST_ITEM
 	setevent EVENT_RETURNED_LOST_ITEM_TO_COPYCAT
 	clearevent EVENT_COPYCATS_HOUSE_2F_DOLL
 	jump .Part14
@@ -116,7 +116,7 @@ Copycat:
 .Part14
 	writetext UnknownText_0x18b1e2
 	keeptextopen
-	verbosegiveitem PASS, 1
+	verbosegiveitem PASS
 	iffalse .Part22
 	setevent EVENT_GOT_PASS_FROM_COPYCAT
 	writetext UnknownText_0x18b214

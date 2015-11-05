@@ -96,7 +96,7 @@ MonicaScript:
 .MetMonica
 	writetext MonicaGivesGiftText
 	keeptextopen
-	verbosegiveitem SHARP_BEAK, 1
+	verbosegiveitem SHARP_BEAK
 	iffalse MonicaDoneScript
 	setevent EVENT_GOT_SHARP_BEAK_FROM_MONICA
 	writetext MonicaGaveGiftText

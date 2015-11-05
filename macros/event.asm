@@ -206,14 +206,22 @@ writecode: macro
 giveitem: macro
 	db giveitem_command
 	db \1 ; item
+if _NARG == 2
 	db \2 ; quantity
+else
+	db 1
+endc
 	endm
 
 	enum takeitem_command
 takeitem: macro
 	db takeitem_command
 	db \1 ; item
+if _NARG == 2
 	db \2 ; quantity
+else
+	db 1
+endc
 	endm
 
 	enum checkitem_command
@@ -986,7 +994,11 @@ checkphonecall: macro
 verbosegiveitem: macro
 	db verbosegiveitem_command
 	db \1 ; item
+if _NARG == 2
 	db \2 ; quantity
+else
+	db 1
+endc
 	endm
 
 	enum verbosegiveitem2_command

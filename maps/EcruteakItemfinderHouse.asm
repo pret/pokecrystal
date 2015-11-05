@@ -15,7 +15,7 @@ CooltrainerMScript_0x9a5fb:
 	iffalse UnknownScript_0x9a61a
 	writetext UnknownText_0x9a6b5
 	keeptextopen
-	verbosegiveitem ITEMFINDER, 1
+	verbosegiveitem ITEMFINDER
 	setevent EVENT_GOT_ITEMFINDER
 UnknownScript_0x9a614:
 	writetext UnknownText_0x9a70e

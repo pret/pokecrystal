@@ -276,7 +276,7 @@ UnknownScript_0x6d184:
 	loadfont
 	writetext UnknownText_0x6d809
 	keeptextopen
-	verbosegiveitem HM_WHIRLPOOL, 1
+	verbosegiveitem HM_WHIRLPOOL
 	setevent EVENT_GOT_HM06_WHIRLPOOL
 	writetext UnknownText_0x6d8f8
 	closetext
