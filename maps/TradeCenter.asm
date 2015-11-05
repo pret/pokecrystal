@@ -39,7 +39,7 @@ TradeCenter_Initialize:
 
 MapTradeCenterSignpost1Script:
 	special Special_TradeCenter
-	newloadmap $f8
+	newloadmap MAPSETUP_08
 	end
 
 ChrisScript_0x19340b:

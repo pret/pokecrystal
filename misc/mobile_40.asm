@@ -406,7 +406,7 @@ Function1002c9: ; 1002c9
 ; 1002dc
 
 Function1002dc: ; 1002dc
-	ld a, $f8
+	ld a, MAPSETUP_08
 	ld [hMapEntryMethod], a
 	callba RunMapSetupScript
 	xor a

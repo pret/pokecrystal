@@ -1,5 +1,4 @@
-const_value SET $f0
-	const MAPSETUP_00
+const_value SET $f1
 	const MAPSETUP_WARP
 	const MAPSETUP_02
 	const MAPSETUP_RELOADMAP
@@ -11,6 +10,7 @@ const_value SET $f0
 	const MAPSETUP_09
 	const MAPSETUP_10
 	const MAPSETUP_BADWARP
+	const MAPSETUP_12
 
 ; Command descriptions from Condensation water's scripting compendium.	const_def
 	const_def

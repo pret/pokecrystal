@@ -208,7 +208,7 @@ endr
 ; 222a
 
 Function222a:: ; 222a
-	ld a, $fa
+	ld a, MAPSETUP_10
 	ld [hMapEntryMethod], a
 	callba RunMapSetupScript
 	xor a
@@ -967,14 +967,15 @@ CallScript:: ; 261f
 	ld a, h
 	ld [ScriptPos + 1], a
 
-	ld a, $ff
+	ld a, PLAYEREVENT_MAPSCRIPT
 	ld [ScriptRunning], a
 
 	scf
 	ret
 ; 2631
 
-Function2631:: ; 2631
+CallMapScript:: ; 2631
+; Call a script at hl in the current bank if there isn't already a script running
 	ld a, [ScriptRunning]
 	and a
 	ret nz
@@ -988,7 +989,7 @@ RunMapCallback:: ; 263b
 	ld a, [hROMBank]
 	push af
 	call SwitchToMapScriptHeaderBank
-	call Function2653
+	call .FindCallback
 	jr nc, .done
 
 	call GetMapScriptHeaderBank
@@ -1003,7 +1004,7 @@ RunMapCallback:: ; 263b
 	ret
 ; 2653
 
-Function2653:: ; 2653
+.FindCallback: ; 2653
 	ld a, [wCurrMapCallbackCount]
 	ld c, a
 	and a
@@ -1018,14 +1019,14 @@ Function2653:: ; 2653
 .loop
 	ld a, [hl]
 	cp b
-	jr z, .done
+	jr z, .found
 	add hl, de
 	dec c
 	jr nz, .loop
 	xor a
 	ret
 
-.done
+.found
 	inc hl
 	ld a, [hli]
 	ld h, [hl]
@@ -1035,7 +1036,8 @@ Function2653:: ; 2653
 ; 2674
 
 ExecuteCallbackScript:: ; 2674
-	callba Function974f3
+; Do map callback de and return to script bank b.
+	callba CallCallback
 	ld a, [ScriptMode]
 	push af
 	ld hl, ScriptFlags

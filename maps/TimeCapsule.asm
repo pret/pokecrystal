@@ -39,7 +39,7 @@ TimeCapsule_Initialize:
 
 MapTimeCapsuleSignpost1Script:
 	special Special_TimeCapsule
-	newloadmap $f8
+	newloadmap MAPSETUP_08
 	end
 
 ChrisScript_0x19351a:

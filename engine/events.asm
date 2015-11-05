@@ -322,9 +322,9 @@ PlayerEvents: ; 9681f
 	ld [ScriptRunning], a
 	call DoPlayerEvent
 	ld a, [ScriptRunning]
-	cp 4
+	cp PLAYEREVENT_4
 	jr z, .ok2
-	cp 9
+	cp PLAYEREVENT_9
 	jr z, .ok2
 
 	xor a
@@ -1050,14 +1050,14 @@ DoPlayerEvent: ; 96beb
 	ld a, [ScriptRunning]
 	and a
 	ret z
-	cp -1 ; run script
+	cp PLAYEREVENT_MAPSCRIPT ; run script
 	ret z
-	cp 10
+	cp NUM_PLAYER_EVENTS
 	ret nc
 
 	ld c, a
 	ld b, 0
-	ld hl, ScriptPointers96c0c
+	ld hl, PlayerEventScriptPointers
 rept 3
 	add hl,bc
 endr
@@ -1070,18 +1070,18 @@ endr
 	ret
 ; 96c0c
 
-ScriptPointers96c0c: ; 96c0c
-	dba Invalid_0x96c2d
-	dba SeenByTrainerScript
-	dba TalkToTrainerScript
-	dba FindItemInBallScript
-	dba UnknownScript_0x96c4d
-	dba WarpToNewMapScript
-	dba FallIntoMapScript
-	dba UnknownScript_0x124c8
-	dba HatchEggScript
-	dba UnknownScript_0x96c4f
-	dba Invalid_0x96c2d
+PlayerEventScriptPointers: ; 96c0c
+	dba Invalid_0x96c2d         ; 0
+	dba SeenByTrainerScript     ; 1
+	dba TalkToTrainerScript     ; 2
+	dba FindItemInBallScript    ; 3
+	dba UnknownScript_0x96c4d   ; 4
+	dba WarpToNewMapScript      ; 5
+	dba FallIntoMapScript       ; 6
+	dba UnknownScript_0x124c8   ; 7
+	dba HatchEggScript          ; 8
+	dba UnknownScript_0x96c4f   ; 9
+	dba Invalid_0x96c2d         ; 10
 ; 96c2d
 
 Invalid_0x96c2d: ; 96c2d
@@ -1122,11 +1122,11 @@ LandAfterPitfallScript: ; 96c4a
 	end
 ; 96c4d
 
-UnknownScript_0x96c4d: ; 96c4d
-	reloadandreturn $f7
+UnknownScript_0x96c4d: ; 4
+	reloadandreturn MAPSETUP_07
 ; 96c4f
 
-UnknownScript_0x96c4f: ; 96c4f
+UnknownScript_0x96c4f: ; 9
 	deactivatefacing $3
 	callasm SetBit4_ScriptFlags3
 	end

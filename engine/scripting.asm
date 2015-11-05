@@ -1664,7 +1664,7 @@ endr
 	ret
 ; 0x974f3
 
-Function974f3:: ; 0x974f3
+CallCallback:: ; 0x974f3
 	ld a, [ScriptBank]
 	or $80
 	ld [ScriptBank], a

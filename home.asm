@@ -1242,7 +1242,7 @@ Function3574:: ; 3574
 	ld e, l
 	call Function35de
 	jr nc, .asm_3597
-	call Function2631
+	call CallMapScript
 	callba EnableScriptMode
 	scf
 	ret

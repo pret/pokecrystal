@@ -141,7 +141,7 @@ NewGame: ; 5b6b
 	ld a, SPAWN_HOME
 	ld [wd001], a
 
-	ld a, $f1
+	ld a, MAPSETUP_WARP
 	ld [hMapEntryMethod], a
 	jp FinishContinueFunction
 ; 5b8f
@@ -451,7 +451,7 @@ Continue: ; 5d65
 	ld a, [wSpawnAfterChampion]
 	cp SPAWN_LANCE
 	jr z, .SpawnAfterE4
-	ld a, $f2
+	ld a, MAPSETUP_02
 	ld [hMapEntryMethod], a
 	jp FinishContinueFunction
 
@@ -473,7 +473,7 @@ SpawnAfterRed: ; 5de2
 PostCreditsSpawn: ; 5de7
 	xor a
 	ld [wSpawnAfterChampion], a
-	ld a, $f1
+	ld a, MAPSETUP_WARP
 	ld [hMapEntryMethod], a
 	ret
 ; 5df0
@@ -5248,7 +5248,7 @@ FlyFunction: ; ca3b
 	special WarpToSpawnPoint
 	callasm DelayLoadingNewSprites
 	writecode VAR_MOVEMENT, $0
-	newloadmap -4
+	newloadmap MAPSETUP_12
 	callasm Function8cb33
 	special WaitSFX
 	callasm Functioncacb
@@ -5516,7 +5516,7 @@ UsedDigOrEscapeRopeScript: ; 0xcc3c
 	farscall UnknownScript_0x122c1
 	special WarpToSpawnPoint
 	writecode VAR_MOVEMENT, $0
-	newloadmap -11
+	newloadmap MAPSETUP_05
 	playsound SFX_WARP_FROM
 	applymovement PLAYER, MovementData_0xcc5d
 	end
@@ -5614,7 +5614,7 @@ Script_UsedTeleport: ; 0xccbb
 	farscall UnknownScript_0x122c1
 	special WarpToSpawnPoint
 	writecode VAR_MOVEMENT, $0
-	newloadmap -12
+	newloadmap MAPSETUP_04
 	playsound SFX_WARP_FROM
 	applymovement PLAYER, MovementData_0xcce3
 	end
@@ -12257,7 +12257,7 @@ UnknownScript_0x124ce: ; 0x124ce
 	callasm Function12527
 	farscall UnknownScript_0x122c1
 	special WarpToSpawnPoint
-	newloadmap $f1
+	newloadmap MAPSETUP_WARP
 	resetfuncs
 
 .script_64f2
