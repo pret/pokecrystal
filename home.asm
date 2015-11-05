@@ -99,7 +99,7 @@ Function2ecb:: ; 2ecb
 DisableSpriteUpdates:: ; 0x2ed3
 ; disables overworld sprite updating?
 	xor a
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ld a, [VramState]
 	res 0, a
 	ld [VramState], a
@@ -115,7 +115,7 @@ EnableSpriteUpdates:: ; 2ee4
 	set 0, a
 	ld [VramState], a
 	ld a, $1
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ret
 ; 2ef6
 
@@ -427,13 +427,13 @@ PrintNum:: ; 3198
 ; 31a4
 
 
-Function31a4:: ; 31a4
+MobilePrintNum:: ; 31a4
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(Function1061ef)
+	ld a, BANK(_MobilePrintNum)
 	rst Bankswitch
 
-	call Function1061ef
+	call _MobilePrintNum
 
 	pop af
 	rst Bankswitch
@@ -609,10 +609,10 @@ Function3246:: ; 3246
 	xor a
 	ld [hBGMapMode], a
 
-	ld a, [$ffde]
+	ld a, [hMapAnims]
 	push af
 	xor a
-	ld [$ffde], a
+	ld [hMapAnims], a
 
 .wait
 	ld a, [rLY]
@@ -636,7 +636,7 @@ Function3246:: ; 3246
 	ei
 
 	pop af
-	ld [$ffde], a
+	ld [hMapAnims], a
 	pop af
 	ld [hBGMapMode], a
 	ret
@@ -650,7 +650,7 @@ Function327b:: ; 327b
 	ld h, a
 	ld l, 0
 	ld a, SCREEN_HEIGHT
-	ld [$ffd3], a
+	ld [hTilesPerCycle], a
 	ld b, 1 << 1 ; not in v/hblank
 	ld c, rSTAT % $100
 
@@ -671,9 +671,9 @@ endr
 
 	ld de, $20 - SCREEN_WIDTH
 	add hl, de
-	ld a, [$ffd3]
+	ld a, [hTilesPerCycle]
 	dec a
-	ld [$ffd3], a
+	ld [hTilesPerCycle], a
 	jr nz, .loop
 
 	ld a, [hSPBuffer]

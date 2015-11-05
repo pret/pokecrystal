@@ -8463,7 +8463,7 @@ Function3f4dd: ; 3f4dd
 	ld [TempBattleMonSpecies], a
 	ld [wd0d2], a
 	xor a
-	ld [$ffde], a
+	ld [hMapAnims], a
 	callba PlayBattleMusic
 	callba ShowLinkBattleParticipants
 	callba FindFirstAliveMon
@@ -8783,7 +8783,7 @@ endr
 
 Function3f759: ; 3f759
 	callba MobileFn_1060df
-	callba Function106187
+	callba BackupMobileEventIndex
 	ld a, [CurOTMon]
 	ld hl, OTPartyMon1Status
 	call GetPartyLocation
@@ -8827,7 +8827,7 @@ Function3f77c: ; 3f77c
 .asm_3f7c3
 	hlcoord 6, 8
 	call PlaceString
-	callba Function106187
+	callba BackupMobileEventIndex
 	ld c, $c8
 	call DelayFrames
 	ld a, BANK(sLinkBattleStats)
@@ -9370,7 +9370,7 @@ Function3fb6c: ; 3fb6c
 	call Function3ed9f
 	call Function3fbd6
 	xor a
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ld [hSCY], a
 	ld a, $90
 	ld [hWY], a

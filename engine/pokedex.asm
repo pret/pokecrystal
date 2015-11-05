@@ -22,7 +22,7 @@ Pokedex: ; 40000
 	ld [hInMenu], a
 
 	xor a
-	ld [$ffde], a
+	ld [hMapAnims], a
 	call InitPokedex
 	call DelayFrame
 

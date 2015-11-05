@@ -9,8 +9,8 @@ sScratch::
 
 SECTION "SRAM Bank 0", SRAM [$a600], BANK [0]
 
-s0_a600:: ds 6 * (SCRATCHMON_STRUCT_LENGTH)
-s0_a71a:: ds 6 * (SCRATCHMON_STRUCT_LENGTH)
+sPartyScratch1:: ds 6 * (SCRATCHMON_STRUCT_LENGTH)
+sPartyScratch2:: ds 6 * (SCRATCHMON_STRUCT_LENGTH)
 s0_a834:: ds 1
 s0_a835:: ds 10 * (SCRATCHMON_STRUCT_LENGTH)
 s0_aa0b:: ds 1
@@ -87,18 +87,18 @@ sLinkBattleStats:: ; b260
 sLinkBattleWins::   ds 2
 sLinkBattleLosses:: ds 2
 sLinkBattleDraws::  ds 2
-	ds $5a
+	ds 90
 sLinkBattleStatsEnd::
 
 sHallOfFame:: ; b2c0
 	ds HOF_LENGTH * NUM_HOF_TEAMS
 sHallOfFameEnd::
 
-s1_be3c:: ds 1
+sMobileEventIndex:: ds 1
 
 sCrystalData::
 	ds wCrystalDataEnd - wCrystalData
-s1_be44:: ds 1
+sMobileEventIndexBackup:: ds 1
 s1_be45:: ds 1
 
 ; data of the BattleTower must be in SRAM because you can save and leave between battles

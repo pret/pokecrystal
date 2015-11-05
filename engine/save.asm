@@ -30,7 +30,7 @@ Function14a58: ; 14a58
 	call Function14e13
 	call SaveBackupPokemonData
 	call SaveBackupChecksum
-	callba Function44725
+	callba BackupScratchmons
 	callba Function1406a
 	call ClearWRAMStateAfterSave
 	ret
@@ -106,8 +106,8 @@ Function14ad5: ; 14ad5
 	call SaveBackupPlayerData
 	call SaveBackupPokemonData
 	call SaveBackupChecksum
-	callba Function44725
-	callba Function106187
+	callba BackupScratchmons
+	callba BackupMobileEventIndex
 	callba Function1406a
 	call LoadBox
 	call ClearWRAMStateAfterSave
@@ -284,8 +284,8 @@ SaveGameData_: ; 14c10
 	call SaveBackupPokemonData
 	call SaveBackupChecksum
 	call UpdateStackTop
-	callba Function44725
-	callba Function106187
+	callba BackupScratchmons
+	callba BackupMobileEventIndex
 	callba Function1406a
 	ld a, BANK(s1_be45)
 	call GetSRAMBank
@@ -630,8 +630,8 @@ TryLoadSaveFile: ; 14ea5 (5:4ea5)
 	call LoadPlayerData
 	call LoadPokemonData
 	call LoadBox
-	callba Function44745
-	callba Function10619d
+	callba RestoreScratchmons
+	callba RestoreMobileEventIndex
 	callba Function1050ea
 	call ValidateBackupSave
 	call SaveBackupOptions
@@ -647,8 +647,8 @@ TryLoadSaveFile: ; 14ea5 (5:4ea5)
 	call LoadBackupPlayerData
 	call LoadBackupPokemonData
 	call LoadBox
-	callba Function44745
-	callba Function10619d
+	callba RestoreScratchmons
+	callba RestoreMobileEventIndex
 	callba Function1050ea
 	call ValidateSave
 	call SaveOptions

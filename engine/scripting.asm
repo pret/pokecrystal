@@ -1222,7 +1222,7 @@ ApplyPersonFacing: ; 0x9728b
 ; 0x972bc
 
 .DisableTextTiles: ; 0x972bc
-	call Function217a
+	call LoadMapPart
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 .loop

@@ -449,7 +449,7 @@ endr
 AnimateTileset:: ; 17d3
 ; Only call during the first fifth of VBlank
 
-	ld a, [$ffde]
+	ld a, [hMapAnims]
 	and a
 	ret z
 	

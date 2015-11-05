@@ -613,6 +613,7 @@ FadeMusic: ; e8358
 	jr z, .novolume
 	dec a
 	jr .updatevolume
+
 .novolume
 	; make sure volume is off
 	xor a
@@ -660,6 +661,7 @@ FadeMusic: ; e8358
 	ld hl, MusicFade
 	set 7, [hl]
 	ret
+
 .fadein
 	; are we done?
 	cp a, $07

@@ -124,7 +124,7 @@ SpecialsPointers:: ; c029
 	add_special ProfOaksPCBoot
 	add_special SpecialGameboyCheck
 	add_special SpecialTrainerHouse
-	add_special Function16dc7
+	add_special PhotoStudio
 	add_special InitRoamMons
 	add_special Functionc48f
 	add_special Functionc49f

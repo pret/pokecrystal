@@ -993,7 +993,7 @@ endr
 	dw Function170881 ; 0x08
 	dw Function17089a ; 0x09
 	dw Function1708b1 ; 0x0a
-	dw Function1708b9 ; 0x0b
+	dw CheckMobileEventIndex ; 0x0b
 	dw Function1708c8 ; 0x0c
 	dw Function1708f0 ; 0x0d
 	dw Function17093c ; 0x0e
@@ -1302,10 +1302,10 @@ Function1708b1: ; 1708b1 (5c:48b1)
 	call MaxVolume
 	ret
 
-Function1708b9: ; 1708b9 (5c:48b9) something to do with GS Ball
-	ld a, BANK(s1_be3c)
+CheckMobileEventIndex: ; 1708b9 (5c:48b9) something to do with GS Ball
+	ld a, BANK(sMobileEventIndex)
 	call GetSRAMBank
-	ld a, [s1_be3c]
+	ld a, [sMobileEventIndex]
 	ld [ScriptVar], a
 	call CloseSRAM
 	ret

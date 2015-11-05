@@ -63,7 +63,7 @@ Function100063: ; 100063
 	ld a, [rIE]
 	ld [BGMapBuffer], a
 	xor a
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ld [hLCDStatCustom], a
 	ret
 ; 100082
@@ -80,7 +80,7 @@ Function100082: ; 100082
 	ld a, 1 << VBLANK + 1 << LCD_STAT + 1 << TIMER + 1 << SERIAL
 	ld [rIE], a
 	xor a
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ld [hLCDStatCustom], a
 	ld a, $1
 	ld [$ffc9], a
@@ -5403,7 +5403,7 @@ Function102423: ; 102423
 	ret nc
 	callba Function14a58
 	callba MobileFn_1060af
-	callba Function106187
+	callba BackupMobileEventIndex
 	ld hl, wcd4b
 	set 1, [hl]
 	ld a, $0

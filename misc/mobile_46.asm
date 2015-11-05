@@ -5862,7 +5862,7 @@ Function11ac51: ; 11ac51
 	ld a, $1
 	ld [hInMenu], a
 	xor a
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ld [wcd49], a
 	ld [wcd4a], a
 	ld [wcd4c], a
@@ -7919,7 +7919,7 @@ Function11b98f: ; 11b98f
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
-	ld hl, s0_a600
+	ld hl, sPartyScratch1
 	ld bc, PARTYMON_STRUCT_LENGTH - 1
 	ld a, [wcd2a]
 .loop5

@@ -67,10 +67,10 @@ Function10805b: ; 10805b
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld a, [$ffde]
+	ld a, [hMapAnims]
 	push af
 	xor a
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ld hl, VramState
 	ld a, [hl]
 	push af
@@ -88,7 +88,7 @@ Function10805b: ; 10805b
 	pop af
 	ld [VramState], a
 	pop af
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ret
 ; 108089
 
@@ -97,10 +97,10 @@ Function108089: ; 108089
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld a, [$ffde]
+	ld a, [hMapAnims]
 	push af
 	xor a
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ld hl, VramState
 	ld a, [hl]
 	push af
@@ -118,7 +118,7 @@ Function108089: ; 108089
 	pop af
 	ld [VramState], a
 	pop af
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ret
 ; 1080b7
 

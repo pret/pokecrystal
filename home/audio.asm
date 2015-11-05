@@ -312,13 +312,13 @@ VolumeOff:: ; 3ca3
 	ret
 ; 3ca8
 
-Function3ca8:: ; 3ca8
+FadeOutMusic:: ; 3ca8
 	ld a, 4
 	ld [MusicFade], a
 	ret
 ; 3cae
 
-CrankUpTheVolume:: ; 3cae
+FadeInMusic:: ; 3cae
 	ld a, 4 | 1 << 7
 	ld [MusicFade], a
 	ret
@@ -326,11 +326,12 @@ CrankUpTheVolume:: ; 3cae
 
 SkipMusic:: ; 3cb4
 ; Skip a frames of music.
+.loop
 	and a
 	ret z
 	dec a
 	call UpdateSound
-	jr SkipMusic
+	jr .loop
 ; 3cbc
 
 FadeToMapMusic:: ; 3cbc

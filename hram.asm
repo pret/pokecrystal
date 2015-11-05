@@ -60,6 +60,9 @@ hPrintNum4         EQU $ffb6
 hPrintNum5         EQU $ffb7
 hPrintNum6         EQU $ffb8
 hPrintNum7         EQU $ffb9
+hPrintNum8         EQU $ffba
+hPrintNum9         EQU $ffbb
+hPrintNum10        EQU $ffbc
 
 hUsedSpriteIndex   EQU $ffbd
 hUsedSpriteTile    EQU $ffbe
@@ -74,7 +77,7 @@ hSCX               EQU $ffcf
 hSCY               EQU $ffd0
 hWX                EQU $ffd1
 hWY                EQU $ffd2
-
+hTilesPerCycle     EQU $ffd3
 hBGMapMode         EQU $ffd4
 hBGMapThird        EQU $ffd5
 hBGMapAddress      EQU $ffd6
@@ -84,6 +87,7 @@ hSPBuffer          EQU $ffd9
 
 hBGMapUpdate       EQU $ffdb
 
+hMapAnims          EQU $ffde
 hTileAnimFrame     EQU $ffdf
 
 hLastTalked        EQU $ffe0

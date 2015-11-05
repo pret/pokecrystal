@@ -2,7 +2,7 @@ Reset:: ; 150
 	di
 	call SoundRestart
 	xor a
-	ld [$ffde], a
+	ld [hMapAnims], a
 	call ClearPalettes
 	xor a
 	ld [rIF], a
@@ -109,7 +109,7 @@ Init:: ; 17d
 	call LoadPushOAM
 
 	xor a
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ld [hSCX], a
 	ld [hSCY], a
 	ld [rJOYP], a

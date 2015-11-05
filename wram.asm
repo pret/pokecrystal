@@ -972,14 +972,23 @@ wca84:: ds 1
 wca85:: ds 1
 wca86:: ds 1
 wca87:: ds 1
+
+; Gameboy Printer
 wca88:: ds 1
-wca89:: ds 1
+wca89::
+; bit 7: set if error 1
+; bit 6: set if error 4
+; bit 5: set if error 3
+	ds 1
+
 wca8a:: ds 1
 wca8b:: ds 1
 wca8c:: ds 1
 wca8d:: ds 1
 wca8e:: ds 1
 wca8f:: ds 1
+
+; tilemap backup?
 wca90:: ds 16
 wcaa0:: ds 3
 wcaa3:: ds 2
@@ -1014,6 +1023,7 @@ wcb84:: ds 100
 wcbe8:: ds 1
 wcbe9:: ds 1
 wcbea:: ds 14
+
 wcbf8:: ds 2
 wcbfa:: ds 1
 wcbfb:: ds 79
@@ -1183,6 +1193,7 @@ MonType:: ; cf5f
 	ds 1
 
 CurSpecies:: ; cf60
+CurMove::
 	ds 1
 
 wNamedObjectTypeBuffer:: ds 1
@@ -1510,6 +1521,7 @@ wd0df:: ds 1
 wd0e0:: ds 1
 wd0e1:: ds 1
 wd0e2:: ds 1
+wMoveSwapBuffer::
 wd0e3:: ds 1
 wd0e4:: ds 4
 wQueuedScriptBank:: ds 1

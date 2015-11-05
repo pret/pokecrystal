@@ -3123,7 +3123,7 @@ Function17e3c3: ; 17e3c3
 	ld a, $1
 	ld [rSVBK], a
 	callba MobileFn_106155
-	callba Function106187
+	callba BackupMobileEventIndex
 	pop af
 	ld [rSVBK], a
 	ret
@@ -3855,7 +3855,7 @@ endr
 	ld b, a
 	ld a, [wcd57]
 	ld c, a
-	call Function31a4
+	call MobilePrintNum
 	ld a, l
 	ld [wcd52], a
 	ld a, h
@@ -4246,7 +4246,7 @@ Function17f2cb: ; 17f2cb
 	ld b, $1
 	ld a, [wcd54]
 	ld c, a
-	call Function31a4
+	call MobilePrintNum
 	ld a, l
 	ld [wcd52], a
 	ld a, h
@@ -4562,7 +4562,7 @@ endr
 	ld b, a
 	ld a, [wcd58]
 	ld c, a
-	call Function31a4
+	call MobilePrintNum
 	ld a, l
 	ld [wcd52], a
 	ld a, h

@@ -232,10 +232,10 @@ Request2bpp:: ; eba
 	ld a, b
 	rst Bankswitch
 
-	ld a, [$ffd3]
+	ld a, [hTilesPerCycle]
 	push af
 	ld a, $8
-	ld [$ffd3], a
+	ld [hTilesPerCycle], a
 
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
@@ -244,7 +244,7 @@ Request2bpp:: ; eba
 	and a
 	jr nz, .NotMobile
 	ld a, $6
-	ld [$ffd3], a
+	ld [hTilesPerCycle], a
 
 .NotMobile
 	ld a, e
@@ -257,7 +257,7 @@ Request2bpp:: ; eba
 	ld [Requested2bppDest + 1], a
 .loop
 	ld a, c
-	ld hl, $ffd3
+	ld hl, hTilesPerCycle
 	cp [hl]
 	jr nc, .iterate
 
@@ -269,7 +269,7 @@ Request2bpp:: ; eba
 	jr nz, .wait
 
 	pop af
-	ld [$ffd3], a
+	ld [hTilesPerCycle], a
 
 	pop af
 	rst Bankswitch
@@ -279,7 +279,7 @@ Request2bpp:: ; eba
 	ret
 
 .iterate
-	ld a, [$ffd3]
+	ld a, [hTilesPerCycle]
 	ld [Requested2bpp], a
 
 .wait2
@@ -289,7 +289,7 @@ Request2bpp:: ; eba
 	jr nz, .wait2
 
 	ld a, c
-	ld hl, $ffd3
+	ld hl, hTilesPerCycle
 	sub [hl]
 	ld c, a
 	jr .loop
@@ -297,6 +297,7 @@ Request2bpp:: ; eba
 
 
 Request1bpp:: ; f1e
+; Load 1bpp at b:de to occupy c tiles of hl.
 	ld a, [hBGMapMode]
 	push af
 	xor a
@@ -307,11 +308,11 @@ Request1bpp:: ; f1e
 	ld a, b
 	rst Bankswitch
 
-	ld a, [$ffd3]
+	ld a, [hTilesPerCycle]
 	push af
 
 	ld a, $8
-	ld [$ffd3], a
+	ld [hTilesPerCycle], a
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	jr nz, .NotMobile
@@ -319,7 +320,7 @@ Request1bpp:: ; f1e
 	and a
 	jr nz, .NotMobile
 	ld a, $6
-	ld [$ffd3], a
+	ld [hTilesPerCycle], a
 
 .NotMobile
 	ld a, e
@@ -332,7 +333,7 @@ Request1bpp:: ; f1e
 	ld [Requested1bppDest + 1], a
 .loop
 	ld a, c
-	ld hl, $ffd3
+	ld hl, hTilesPerCycle
 	cp [hl]
 	jr nc, .iterate
 
@@ -344,7 +345,7 @@ Request1bpp:: ; f1e
 	jr nz, .wait
 
 	pop af
-	ld [$ffd3], a
+	ld [hTilesPerCycle], a
 
 	pop af
 	rst Bankswitch
@@ -354,7 +355,7 @@ Request1bpp:: ; f1e
 	ret
 
 .iterate
-	ld a, [$ffd3]
+	ld a, [hTilesPerCycle]
 	ld [Requested1bpp], a
 
 .wait2
@@ -364,7 +365,7 @@ Request1bpp:: ; f1e
 	jr nz, .wait2
 
 	ld a, c
-	ld hl, $ffd3
+	ld hl, hTilesPerCycle
 	sub [hl]
 	ld c, a
 	jr .loop

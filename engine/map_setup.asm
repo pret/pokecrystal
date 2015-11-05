@@ -252,7 +252,7 @@ MapSetupCommands: ; 15440
 	dba FadeOutMapAndMusic ; 06
 	dba EnterMapMusic ; 07
 	dba ForceMapMusic ; 08
-	dba CrankUpTheVolume ; 09
+	dba FadeInMusic ; 09
 	dba LoadBlockData ; 0a
 	dba LoadNeighboringBlockData ; 0b
 	dba SaveScreen ; 0c
@@ -300,13 +300,13 @@ DontScrollText: ; 154ca
 
 ActivateMapAnims: ; 154cf
 	ld a, $1
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ret
 ; 154d3
 
 SuspendMapAnims: ; 154d3
 	xor a
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ret
 ; 154d7
 

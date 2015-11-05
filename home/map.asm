@@ -96,19 +96,19 @@ GetMapTrigger:: ; 2147
 ; 2173
 
 Function2173:: ; 2173
-	call Function217a
+	call LoadMapPart
 	call FarCallSwapTextboxPalettes
 	ret
 ; 217a
 
-Function217a:: ; 217a
+LoadMapPart:: ; 217a
 	ld a, [hROMBank]
 	push af
 
 	ld a, [TilesetBlocksBank]
 	rst Bankswitch
 
-	call Function2198
+	call LoadMetatiles
 	ld a, $60
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
@@ -123,36 +123,38 @@ Function217a:: ; 217a
 	ret
 ; 2198
 
-Function2198:: ; 2198
+LoadMetatiles:: ; 2198
 	ld a, [wd194]
 	ld e, a
 	ld a, [wd195]
 	ld d, a
-	ld hl, wEnemyMoveStruct
-	ld b, $5
+	ld hl, wMisc
+	ld b, 5 ; SCREEN_WIDTH / 4
 
 .loop
 	push de
 	push hl
-	ld c, $6
+	ld c, 6 ; SCREEN_HEIGHT / 3
 
 .loop2
 	push de
 	push hl
 	ld a, [de]
 	and a
-	jr nz, .asm_21b2
+	jr nz, .ok
 	ld a, [MapBorderBlock]
 
-.asm_21b2
+.ok
 	ld e, l
 	ld d, h
+; double a, load hl <- a, multiply hl by 8
 	add a
 	ld l, a
 	ld h, 0
 rept 3
 	add hl,hl
 endr
+; hl <- hl + [TilesetBlocksAddress]
 	ld a, [TilesetBlocksAddress]
 	add l
 	ld l, a
@@ -168,7 +170,7 @@ rept 4
 endr
 
 	ld a, e
-	add 20
+	add 5 * 4
 	ld e, a
 	jr nc, .next\@
 	inc d
@@ -182,24 +184,24 @@ rept 4
 endr
 
 	pop hl
-	ld de, $0004
+	ld de, 4
 	add hl, de
 	pop de
 	inc de
 	dec c
 	jp nz, .loop2
 	pop hl
-	ld de, $0060
+	ld de, $60
 	add hl, de
 	pop de
 	ld a, [MapWidth]
-	add $6
+	add 6
 	add e
 	ld e, a
-	jr nc, .asm_2225
+	jr nc, .ok2
 	inc d
 
-.asm_2225
+.ok2
 	dec b
 	jp nz, .loop
 	ret
@@ -2001,7 +2003,7 @@ Function2b74:: ; 0x2b74
 	call ClearSprites
 	call Function2bae
 	hlcoord 0, 12
-	ld bc, $0412
+	lb bc, 4, 18
 	call TextBox
 	ld hl, VramState
 	set 0, [hl]
@@ -2013,7 +2015,7 @@ Function2b74:: ; 0x2b74
 	call UpdateTimePals
 	call DelayFrame
 	ld a, $1
-	ld [$ffde], a
+	ld [hMapAnims], a
 	pop af
 	ret
 ; 0x2bae
