@@ -137,7 +137,7 @@ Init:: ; 17d
 	ld [rLCDC], a
 
 	ld a, -1
-	ld [$ffcb], a
+	ld [hLinkPlayerNumber], a
 
 	callba Function9890
 

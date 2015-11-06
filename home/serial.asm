@@ -14,7 +14,7 @@ Serial:: ; 6ef
 	bit 0, a
 	jr nz, .asm_721
 
-	ld a, [$ffcb]
+	ld a, [hLinkPlayerNumber]
 	inc a ; is it equal to -1?
 	jr z, .asm_726
 
@@ -24,7 +24,7 @@ Serial:: ; 6ef
 	ld a, [hSerialSend]
 	ld [rSB], a
 
-	ld a, [$ffcb]
+	ld a, [hLinkPlayerNumber]
 	cp $2
 	jr z, .asm_752
 
@@ -51,7 +51,7 @@ Serial:: ; 6ef
 
 .asm_730
 	ld [hSerialReceive], a
-	ld [$ffcb], a
+	ld [hLinkPlayerNumber], a
 	cp $2
 	jr z, .asm_74f
 
@@ -128,7 +128,7 @@ Function75f:: ; 75f
 Function78a:: ; 78a
 	xor a
 	ld [$ffca], a
-	ld a, [$ffcb]
+	ld a, [hLinkPlayerNumber]
 	cp $2
 	jr nz, .asm_79b
 	ld a, $1
@@ -140,7 +140,7 @@ Function78a:: ; 78a
 	ld a, [$ffca]
 	and a
 	jr nz, .asm_7e5
-	ld a, [$ffcb]
+	ld a, [hLinkPlayerNumber]
 	cp $1
 	jr nz, .asm_7c0
 	call Function82b
@@ -172,7 +172,7 @@ Function78a:: ; 78a
 	dec a
 	ld [wcf5d + 1], a
 	jr nz, .asm_79b
-	ld a, [$ffcb]
+	ld a, [hLinkPlayerNumber]
 	cp $1
 	jr z, .asm_7e5
 	ld a, $ff
@@ -349,7 +349,7 @@ Function8c1:: ; 8c1
 	ld a, [wcf56]
 	add b
 	ld [hSerialSend], a
-	ld a, [$ffcb]
+	ld a, [hLinkPlayerNumber]
 	cp $2
 	jr nz, .asm_8ee
 	ld a, $1
@@ -380,7 +380,7 @@ Function8f3:: ; 8f3
 Function908:: ; 908
 	xor a
 	ld [hSerialSend], a
-	ld a, [$ffcb]
+	ld a, [hLinkPlayerNumber]
 	cp $2
 	ret nz
 	ld a, $1

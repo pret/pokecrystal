@@ -707,6 +707,7 @@ AI_Switch: ; 3846c
 	xor a
 	ld [hBattleTurn], a
 	callab PursuitSwitch
+
 	push af
 	ld a, [CurOTMon]
 	ld hl, OTPartyMon1Status
@@ -718,9 +719,11 @@ AI_Switch: ; 3846c
 	ld bc, $0004
 	call CopyBytes
 	pop af
+
 	jr c, .skiptext
 	ld hl, TextJump_EnemyWithdrew
 	call PrintText
+
 .skiptext
 	ld a, $1
 	ld [wd264], a

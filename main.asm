@@ -25212,7 +25212,7 @@ Function2805d: ; 2805d
 	xor a
 	ld [wcf56], a
 	call Function87d
-	ld a, [$ffcb]
+	ld a, [hLinkPlayerNumber]
 	cp $2
 	jr nz, .asm_28091
 	ld c, $3
@@ -25338,7 +25338,7 @@ Function2805d: ; 2805d
 	ld [wd103], a
 	ld de, MUSIC_NONE
 	call PlayMusic
-	ld a, [$ffcb]
+	ld a, [hLinkPlayerNumber]
 	cp $2
 	ld c, 66
 	call z, DelayFrames
@@ -25355,7 +25355,7 @@ Function28177: ; 28177
 	ld a, [ScriptVar]
 	and a
 	jp z, Function283b2
-	ld a, [$ffcb]
+	ld a, [hLinkPlayerNumber]
 	cp $2
 	jr nz, .asm_281ae
 	ld c, $3
@@ -25580,7 +25580,7 @@ Function28177: ; 28177
 	ld [wd103], a
 	ld de, MUSIC_NONE
 	call PlayMusic
-	ld a, [$ffcb]
+	ld a, [hLinkPlayerNumber]
 	cp $2
 	ld c, 66
 	call z, DelayFrames
@@ -26319,7 +26319,7 @@ Function2879e: ; 2879e
 ; 287ab
 
 Function287ab: ; 287ab
-	ld a, [$ffcb]
+	ld a, [hLinkPlayerNumber]
 	cp $2
 	ret z
 	ld hl, EnemyMonSpecies
@@ -27061,7 +27061,7 @@ Function28b87: ; 28b87
 	call LoadFontsBattleExtra
 	ld b, $8
 	call GetSGBLayout
-	ld a, [$ffcb]
+	ld a, [hLinkPlayerNumber]
 	cp $1
 	jr z, .asm_28de4
 	predef Function28f24
@@ -28855,7 +28855,7 @@ Special_AbortLink: ; 29c92
 	ld c, $3
 	call DelayFrames
 	ld a, -1
-	ld [$ffcb], a
+	ld [hLinkPlayerNumber], a
 	xor a
 	ld [rSB], a
 	ld [hSerialReceive], a
@@ -28881,7 +28881,7 @@ Special_AbortLink: ; 29c92
 	ld c, $3
 	call DelayFrames
 	ld a, -1
-	ld [$ffcb], a
+	ld [hLinkPlayerNumber], a
 	ld a, [rIF]
 	push af
 	xor a
@@ -28950,13 +28950,13 @@ Special_WaitForLinkedFriend: ; 29d11
 	ld a, $ff
 	ld [wcf5b], a
 .asm_29d39
-	ld a, [$ffcb]
+	ld a, [hLinkPlayerNumber]
 	cp $2
 	jr z, .asm_29d79
 	cp $1
 	jr z, .asm_29d79
 	ld a, -1
-	ld [$ffcb], a
+	ld [hLinkPlayerNumber], a
 	ld a, $2
 	ld [rSB], a
 	xor a
@@ -29232,7 +29232,7 @@ Function29f04: ; 29f04
 	ld c, $3
 	call DelayFrames
 	ld a, -1
-	ld [$ffcb], a
+	ld [hLinkPlayerNumber], a
 	ld a, $2
 	ld [rSB], a
 	xor a
@@ -29271,7 +29271,7 @@ Function29f17: ; 29f17
 ; 29f47
 
 Special_CableClubCheckWhichChris: ; 29f47
-	ld a, [$ffcb]
+	ld a, [hLinkPlayerNumber]
 	cp $1
 	ld a, $1
 	jr z, .yes
