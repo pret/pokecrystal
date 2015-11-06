@@ -210,11 +210,11 @@ LoveBall:
 ParkBall: ; e8a2
 	ld a, [wBattleMode]
 	dec a
-	jp nz, Functionf7a0
+	jp nz, UseBallInTrainerBattle
 
 	ld a, [PartyCount]
 	cp PARTY_LENGTH
-	jr nz, .asm_e8c0
+	jr nz, .room_in_party
 
 	ld a, BANK(sBoxCount)
 	call GetSRAMBank
@@ -223,9 +223,9 @@ ParkBall: ; e8a2
 	call CloseSRAM
 	jp z, Ball_BoxIsFullMessage
 
-.asm_e8c0
+.room_in_party
 	xor a
-	ld [wc64e], a
+	ld [wCaughtMon], a
 	ld a, [CurItem]
 	cp PARK_BALL
 	call nz, Functionedfa
@@ -239,38 +239,38 @@ ParkBall: ; e8a2
 	ld b, a
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
-	jp z, .asm_e99c
+	jp z, .catch_without_fail
 	ld a, [CurItem]
 	cp MASTER_BALL
-	jp z, .asm_e99c
+	jp z, .catch_without_fail
 	ld a, [CurItem]
 	ld c, a
 	ld hl, BallMultiplierFunctionTable
 
-.asm_e8f2
+.get_multiplier_loop
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_e906
+	jr z, .skip_or_return_from_ball_fn
 	cp c
-	jr z, .asm_e8fe
+	jr z, .call_ball_function
 rept 2
 	inc hl
 endr
-	jr .asm_e8f2
+	jr .get_multiplier_loop
 
-.asm_e8fe
+.call_ball_function
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, .asm_e906
+	ld de, .skip_or_return_from_ball_fn
 	push de
 	jp [hl]
 
-.asm_e906
+.skip_or_return_from_ball_fn
 	ld a, [CurItem]
 	cp LEVEL_BALL
 	ld a, b
-	jp z, .asm_e98e
+	jp z, .skip_hp_calc
 
 	ld a, b
 	ld [hMultiplicand + 2], a
@@ -295,7 +295,7 @@ endr
 	ld e, l
 	ld a, d
 	and a
-	jr z, .asm_e940
+	jr z, .okay_1
 
 	srl d
 	rr e
@@ -308,9 +308,9 @@ endr
 
 	ld a, c
 	and a
-	jr nz, .asm_e940
+	jr nz, .okay_1
 	ld c, $1
-.asm_e940
+.okay_1
 	ld b, e
 
 	push bc
@@ -350,9 +350,9 @@ endr
 .addstatus
 	ld a, b
 	add c
-	jr nc, .asm_e977
+	jr nc, .max_1
 	ld a, $ff
-.asm_e977
+.max_1
 
 	ld d, a
 	push de
@@ -375,11 +375,11 @@ endr
 	pop de
 	ld a, d
 
-	jr nz, .asm_e98e
+	jr nz, .skip_hp_calc
 	add c
-	jr nc, .asm_e98e
+	jr nc, .skip_hp_calc
 	ld a, $ff
-.asm_e98e
+.skip_hp_calc
 
 	ld b, a
 	ld [Buffer1], a
@@ -387,22 +387,22 @@ endr
 
 	cp b
 	ld a, 0
-	jr z, .asm_e99c
-	jr nc, .asm_e99f
+	jr z, .catch_without_fail
+	jr nc, .fail_to_catch
 
-.asm_e99c
+.catch_without_fail
 	ld a, [EnemyMonSpecies]
 
-.asm_e99f
-	ld [wc64e], a
+.fail_to_catch
+	ld [wCaughtMon], a
 	ld c, 20
 	call DelayFrames
 
 	ld a, [CurItem]
 	cp POKE_BALL + 1 ; Assumes Master/Ultra/Great come before
-	jr c, .asm_e9b0
+	jr c, .not_kurt_ball
 	ld a, POKE_BALL
-.asm_e9b0
+.not_kurt_ball
 	ld [wc689], a
 
 	ld de, ANIM_THROW_POKE_BALL
@@ -416,23 +416,23 @@ endr
 	ld [wcfca], a
 	predef PlayBattleAnim
 
-	ld a, [wc64e]
+	ld a, [wCaughtMon]
 	and a
-	jr nz, .asm_e9f5
+	jr nz, .caught
 	ld a, [Buffer2]
 	cp $1
 	ld hl, UnknownText_0xedb5
-	jp z, .asm_ebdc
+	jp z, .shake_and_break_free
 	cp $2
 	ld hl, UnknownText_0xedba
-	jp z, .asm_ebdc
+	jp z, .shake_and_break_free
 	cp $3
 	ld hl, UnknownText_0xedbf
-	jp z, .asm_ebdc
+	jp z, .shake_and_break_free
 	cp $4
 	ld hl, UnknownText_0xedc4
-	jp z, .asm_ebdc
-.asm_e9f5
+	jp z, .shake_and_break_free
+.caught
 
 	ld hl, EnemyMonStatus
 	ld a, [hli]
@@ -492,29 +492,29 @@ endr
 
 	ld hl, EnemySubStatus5
 	bit SUBSTATUS_TRANSFORMED, [hl]
-	jr nz, .asm_ea67
-	ld hl, wc735
+	jr nz, .Transformed
+	ld hl, wCaughtMonMoves
 	ld de, EnemyMonMoves
 	ld bc, NUM_MOVES
 	call CopyBytes
 
-	ld hl, wc739
+	ld hl, wCaughtMonPP
 	ld de, EnemyMonPP
 	ld bc, NUM_MOVES
 	call CopyBytes
-.asm_ea67
+.Transformed
 
 	ld a, [EnemyMonSpecies]
-	ld [wc64e], a
+	ld [wCaughtMon], a
 	ld [CurPartySpecies], a
 	ld [wd265], a
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
-	jp z, .asm_ebd9
+	jp z, .FinishTutorial
 
 	callba MobileFn_10607f
 
-	ld hl, UnknownText_0xedc9
+	ld hl, Text_GotchaMonWasCaught
 	call PrintText
 
 	call ClearSprites
@@ -530,10 +530,10 @@ endr
 	call SetSeenAndCaughtMon
 	pop af
 	and a
-	jr nz, .asm_eab7
+	jr nz, .skip_pokedex
 
-	call Function2ead
-	jr z, .asm_eab7
+	call CheckReceivedDex
+	jr z, .skip_pokedex
 
 	ld hl, UnknownText_0xedf0
 	call PrintText
@@ -544,19 +544,19 @@ endr
 	ld [wd265], a
 	predef Functionfb877
 
-.asm_eab7
+.skip_pokedex
 	ld a, [BattleType]
 	cp BATTLETYPE_CONTEST
-	jp z, .asm_ebd1
+	jp z, .catch_bug_contest_mon
 	cp BATTLETYPE_CELEBI
-	jr nz, .asm_eac8
+	jr nz, .not_celebi
 	ld hl, wBattleResult
 	set 6, [hl]
-.asm_eac8
+.not_celebi
 
 	ld a, [PartyCount]
 	cp PARTY_LENGTH
-	jr z, .asm_eb3c
+	jr z, .SendToPC
 
 	xor a ; PARTYMON
 	ld [MonType], a
@@ -568,7 +568,7 @@ endr
 
 	ld a, [CurItem]
 	cp FRIEND_BALL
-	jr nz, .asm_eaf8
+	jr nz, .SkipPartyMonFriendBall
 
 	ld a, [PartyCount]
 	dec a
@@ -578,7 +578,7 @@ endr
 
 	ld a, FRIEND_BALL_HAPPINESS
 	ld [hl], a
-.asm_eaf8
+.SkipPartyMonFriendBall
 
 	ld hl, UnknownText_0xedf5
 	call PrintText
@@ -588,7 +588,7 @@ endr
 	call GetPokemonName
 
 	call YesNoBox
-	jp c, .asm_ebe2
+	jp c, .return_from_capture
 
 	ld a, [PartyCount]
 	dec a
@@ -613,9 +613,9 @@ endr
 	ld de, StringBuffer1
 	call InitName
 
-	jp .asm_ebe2
+	jp .return_from_capture
 
-.asm_eb3c
+.SendToPC
 	call ClearSprites
 
 	predef SentPkmnIntoBox
@@ -627,17 +627,17 @@ endr
 
 	ld a, [sBoxCount]
 	cp MONS_PER_BOX
-	jr nz, .asm_eb5b
+	jr nz, .BoxNotFullYet
 	ld hl, wBattleResult
 	set 7, [hl]
-.asm_eb5b
+.BoxNotFullYet
 	ld a, [CurItem]
 	cp FRIEND_BALL
-	jr nz, .asm_eb67
+	jr nz, .SkipBoxMonFriendBall
 	; Bug: overwrites the happiness of the first mon in the box!
 	ld a, FRIEND_BALL_HAPPINESS
 	ld [sBoxMon1Happiness], a
-.asm_eb67
+.SkipBoxMonFriendBall
 	call CloseSRAM
 
 	ld hl, UnknownText_0xedf5
@@ -648,7 +648,7 @@ endr
 	call GetPokemonName
 
 	call YesNoBox
-	jr c, .asm_ebaf
+	jr c, .SkipBoxMonNickname
 
 	xor a
 	ld [CurPartyMon], a
@@ -672,7 +672,7 @@ endr
 
 	call CloseSRAM
 
-.asm_ebaf
+.SkipBoxMonNickname
 	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
 
@@ -688,20 +688,20 @@ endr
 
 	call FadeToWhite
 	call LoadStandardFont
-	jr .asm_ebe2
+	jr .return_from_capture
 
-.asm_ebd1
+.catch_bug_contest_mon
 	callba BugContest_SetCaughtContestMon
-	jr .asm_ebe2
+	jr .return_from_capture
 
-.asm_ebd9
-	ld hl, UnknownText_0xedc9
+.FinishTutorial
+	ld hl, Text_GotchaMonWasCaught
 
-.asm_ebdc
+.shake_and_break_free
 	call PrintText
 	call ClearSprites
 
-.asm_ebe2
+.return_from_capture
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
 	ret z
@@ -710,7 +710,7 @@ endr
 	cp BATTLETYPE_CONTEST
 	jr z, .used_park_ball
 
-	ld a, [wc64e]
+	ld a, [wCaughtMon]
 	and a
 	jr z, .toss
 
@@ -733,16 +733,16 @@ endr
 BallMultiplierFunctionTable:
 ; table of routines that increase or decrease the catch rate based on
 ; which ball is used in a certain situation.
-	dbw ULTRA_BALL, UltraBallMultiplier
-	dbw GREAT_BALL, GreatBallMultiplier
-	dbw 8,          SafariBallMultiplier ; Safari Ball, leftover from RBY
-	dbw HEAVY_BALL, HeavyBallMultiplier
-	dbw LEVEL_BALL, LevelBallMultiplier
-	dbw LURE_BALL,  LureBallMultiplier
-	dbw FAST_BALL,  FastBallMultiplier
-	dbw MOON_BALL,  MoonBallMultiplier
-	dbw LOVE_BALL,  LoveBallMultiplier
-	dbw PARK_BALL,  ParkBallMultiplier
+	dbw ULTRA_BALL,  UltraBallMultiplier
+	dbw GREAT_BALL,  GreatBallMultiplier
+	dbw SAFARI_BALL, SafariBallMultiplier ; Safari Ball, leftover from RBY
+	dbw HEAVY_BALL,  HeavyBallMultiplier
+	dbw LEVEL_BALL,  LevelBallMultiplier
+	dbw LURE_BALL,   LureBallMultiplier
+	dbw FAST_BALL,   FastBallMultiplier
+	dbw MOON_BALL,   MoonBallMultiplier
+	dbw LOVE_BALL,   LoveBallMultiplier
+	dbw PARK_BALL,   ParkBallMultiplier
 	db $ff
 
 UltraBallMultiplier:
@@ -1128,7 +1128,7 @@ UnknownText_0xedc4: ; 0xedc4
 	db "@"
 ; 0xedc9
 
-UnknownText_0xedc9: ; 0xedc9
+Text_GotchaMonWasCaught: ; 0xedc9
 	; Gotcha! @ was caught!@ @
 	text_jump UnknownText_0x1c5b17
 	start_asm
@@ -1213,7 +1213,7 @@ SunStone: ; ee0f
 	and a
 	jr z, .asm_ee35
 
-	jp Functionf795
+	jp UseDisposableItem
 
 .asm_ee35
 	call WontHaveAnyEffectMessage
@@ -1270,7 +1270,7 @@ Calcium: ; ee3d
 	ld c, HAPPINESS_USEDITEM
 	callba ChangeHappiness
 
-	jp Functionf795
+	jp UseDisposableItem
 
 
 Functionee83: ; ee83
@@ -1450,7 +1450,7 @@ RareCandy: ; ef14
 	ld [wd1e9], a
 	callba Function421d8
 
-	jp Functionf795
+	jp UseDisposableItem
 ; efad
 
 
@@ -1520,7 +1520,7 @@ Functionefda: ; efda (3:6fda)
 	call Functionf030
 	call Play_SFX_FULL_HEAL
 	call Functionf279
-	call Functionf795
+	call UseDisposableItem
 	ld a, $0
 	ret
 
@@ -1695,7 +1695,7 @@ Functionf0d6: ; f0d6
 	ld a, $f7
 	ld [PartyMenuActionText], a
 	call Functionf279
-	call Functionf795
+	call UseDisposableItem
 	ld a, 0
 	ret
 ; f128
@@ -1735,7 +1735,7 @@ Functionf144: ; f144
 	ld a, $f5
 	ld [PartyMenuActionText], a
 	call Functionf279
-	call Functionf795
+	call UseDisposableItem
 	ld a, 0
 	ret
 ; f16a
@@ -1827,7 +1827,7 @@ Functionf1a9: ; f1a9 (3:71a9)
 	ld a, $f5
 	ld [PartyMenuActionText], a
 	call Functionf279
-	call Functionf795
+	call UseDisposableItem
 	ld a, 0
 	ret
 
@@ -2234,7 +2234,7 @@ EscapeRope: ; f44f
 
 	ld a, [wd0ec]
 	cp 1
-	call z, Functionf795
+	call z, UseDisposableItem
 	ret
 ; f462
 
@@ -2344,8 +2344,8 @@ endr
 	callba CheckIfStatCanBeRaised
 	call WaitSFX
 
-	callba BattleCommand8c
-	callba BattleCommand8e
+	callba BattleCommand_StatMessageUser
+	callba BattleCommand_StatUpFailText
 
 	ld a, [CurBattleMon]
 	ld [CurPartyMon], a
@@ -2599,7 +2599,7 @@ Mysteryberry: ; f5bf
 
 Functionf64c: ; f64c
 	call ClearPalettes
-	jp Functionf795
+	jp UseDisposableItem
 ; f652
 
 Functionf652: ; f652
@@ -2805,7 +2805,7 @@ SacredAsh: ; f753
 	ld a, [wd0ec]
 	cp $1
 	ret nz
-	call Functionf795
+	call UseDisposableItem
 	ret
 ; f763
 
@@ -2825,7 +2825,7 @@ Function_0xf769: ; f769
 	ld hl, UnknownText_0xf778
 	call PrintText
 
-	jp Functionf795
+	jp UseDisposableItem
 ; f778
 
 UnknownText_0xf778: ; 0xf778
@@ -2944,14 +2944,14 @@ Functionf789: ; f789
 	; fallthrough
 ; f795
 
-Functionf795: ; f795
+UseDisposableItem: ; f795
 	ld hl, NumItems
 	ld a, 1
 	ld [wItemQuantityChangeBuffer], a
 	jp TossItem
 ; f7a0
 
-Functionf7a0: ; f7a0
+UseBallInTrainerBattle: ; f7a0
 	call Functionedfa
 	ld de, ANIM_THROW_POKE_BALL
 	ld a, e
@@ -2967,7 +2967,7 @@ Functionf7a0: ; f7a0
 	call PrintText
 	ld hl, DontBeAThiefText
 	call PrintText
-	jr Functionf795
+	jr UseDisposableItem
 ; f7ca
 
 WontHaveAnyEffect_NotUsedMessage: ; f7ca

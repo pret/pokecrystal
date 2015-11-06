@@ -1,4 +1,4 @@
-BattleCommand55: ; 37618
+BattleCommand_Protect: ; 37618
 ; protect
 	call ProtectChance
 	ret c

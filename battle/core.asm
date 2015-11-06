@@ -417,14 +417,14 @@ Function3c27c: ; 3c27c
 	ld [hl], a
 	ld [AttackMissed], a
 	ld [EffectFailed], a
-	callba BattleCommand77
+	callba BattleCommand_AttackUp2
 	pop af
 	pop hl
 	ld [hl], a
 	call GetItemName
 	ld hl, BattleText_UsersStringBuffer1Activated
 	call StdBattleTextBox
-	callab BattleCommand8c
+	callab BattleCommand_StatMessageUser
 	pop af
 	bit SUBSTATUS_CONFUSED, a
 	ret nz
@@ -4238,7 +4238,7 @@ Function3db5f: ; 3db5f
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
-	call Function3f43d
+	call GetMonBackpic
 	xor a
 	ld [$ffad], a
 	ld [wd0d2], a
@@ -4748,7 +4748,7 @@ endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, BANK(BattleCommand70)
+	ld a, BANK(BattleCommand_AttackUp)
 	rst FarCall
 	pop bc
 	pop de
@@ -4761,7 +4761,7 @@ endr
 	call GetItemName
 	ld hl, BattleText_UsersStringBuffer1Activated
 	call StdBattleTextBox
-	callab BattleCommand8c
+	callab BattleCommand_StatMessageUser
 	ret
 
 .asm_3def9
@@ -4771,13 +4771,13 @@ endr
 ; 3defc
 
 .data_3defc
-	dbw HELD_ATTACK_UP,     BattleCommand70
-	dbw HELD_DEFENSE_UP,    BattleCommand71
-	dbw HELD_SPEED_UP,      BattleCommand72
-	dbw HELD_SP_ATTACK_UP,  BattleCommand73
-	dbw HELD_SP_DEFENSE_UP, BattleCommand74
-	dbw HELD_ACCURACY_UP,   BattleCommand75
-	dbw HELD_EVASION_UP,    BattleCommand76
+	dbw HELD_ATTACK_UP,     BattleCommand_AttackUp
+	dbw HELD_DEFENSE_UP,    BattleCommand_DefenseUp
+	dbw HELD_SPEED_UP,      BattleCommand_SpeedUp
+	dbw HELD_SP_ATTACK_UP,  BattleCommand_SpecialAttackUp
+	dbw HELD_SP_DEFENSE_UP, BattleCommand_SpecialDefenseUp
+	dbw HELD_ACCURACY_UP,   BattleCommand_AccuracyUp
+	dbw HELD_EVASION_UP,    BattleCommand_EvasionUp
 	db $ff
 ; 3df12
 
@@ -5251,7 +5251,7 @@ BattleMenu_Pack: ; 3e1c7
 	call ClearPalettes
 	call DelayFrame
 	call Function3ed9f
-	call Function3f43d
+	call GetMonBackpic
 	call Function3f47c
 	call ExitMenu
 	call WaitBGMap
@@ -5284,7 +5284,7 @@ Function3e234: ; 3e234
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
 	jr z, .asm_3e25d
-	call Function3f43d
+	call GetMonBackpic
 
 .asm_3e25d
 	call Function3f47c
@@ -8356,7 +8356,7 @@ Function3f41c: ; 3f41c
 	ret
 ; 3f43d
 
-Function3f43d: ; 3f43d
+GetMonBackpic: ; 3f43d
 	ld a, [PlayerSubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
 	ld hl, BattleAnimCmd_DD

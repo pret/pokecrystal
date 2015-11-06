@@ -102,7 +102,7 @@ FlagAction:: ; 0x2e76
 ; 0x2ead
 
 
-Function2ead:: ; 2ead
+CheckReceivedDex:: ; 2ead
 	ld de, ENGINE_POKEDEX
 	ld b, CHECK_FLAG
 	callba EngineFlagAction

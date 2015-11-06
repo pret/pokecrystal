@@ -54,7 +54,7 @@ PredefPointers:: ; 856b
 	add_predef UpdateEnemyHUD
 	add_predef StartBattle
 	add_predef FillInExpBar
-	add_predef Function3f43d ; $18
+	add_predef GetMonBackpic ; $18
 	add_predef Function3f47c
 	add_predef LearnLevelMoves
 	add_predef FillMoves

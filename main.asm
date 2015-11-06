@@ -16375,7 +16375,7 @@ PokemonCenterPC: ; 1559a
 ; 1563e
 
 Function1563e: ; 1563e
-	call Function2ead
+	call CheckReceivedDex
 	jr nz, .asm_15646
 	ld a, $0
 	ret
@@ -25054,7 +25054,7 @@ Function2715c: ; 2715c
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
 	jr z, .gettutorialbackpic
-	callba Function3f43d
+	callba GetMonBackpic
 	jr .continue
 
 .gettutorialbackpic

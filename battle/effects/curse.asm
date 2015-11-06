@@ -1,4 +1,4 @@
-BattleCommand54: ; 37588
+BattleCommand_Curse: ; 37588
 ; curse
 
 	ld de, BattleMonType1
@@ -45,14 +45,14 @@ BattleCommand54: ; 37588
 	ld a, $2
 	call Function36532
 	call BattleCommand_SwitchTurn
-	call BattleCommand8d
+	call BattleCommand_StatMessageTarget
 	call ResetMiss
 	call BattleCommand_SwitchTurn
-	call BattleCommand70
-	call BattleCommand8c
+	call BattleCommand_AttackUp
+	call BattleCommand_StatMessageUser
 	call ResetMiss
-	call BattleCommand71
-	jp BattleCommand8c
+	call BattleCommand_DefenseUp
+	jp BattleCommand_StatMessageUser
 
 
 .ghost

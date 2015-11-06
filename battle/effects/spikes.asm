@@ -1,4 +1,4 @@
-BattleCommand56: ; 37683
+BattleCommand_Spikes: ; 37683
 ; spikes
 
 	ld hl, EnemyScreens

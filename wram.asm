@@ -454,7 +454,9 @@ wc64c::
 	ds 1
 
 wc64d:: ds 1
-wc64e:: ds 2
+wCaughtMon::
+wc64e:: ds 1
+	ds 1
 wEnemyTrainerItem1:: ds 1
 wEnemyTrainerItem2:: ds 1
 wc652:: ds 4
@@ -831,8 +833,10 @@ wc734::
 BattleEnded:: ; c734
 	ds 1
 
+wCaughtMonMoves::
 wc735:: ds 1
 wc736:: ds 3
+wCaughtMonPP::
 wc739:: ds 4
 wc73d:: ds 1
 wc73e:: ds 1

@@ -1,4 +1,4 @@
-BattleCommand1b: ; 373c9
+BattleCommand_MirrorMove: ; 373c9
 ; mirrormove
 
 	call Function372d8
@@ -47,6 +47,6 @@ BattleCommand1b: ; 373c9
 	ld [wc689], a
 
 .done
-	call BattleCommandaa
+	call BattleCommand_MoveDelay
 	jp ResetTurn
 ; 37418

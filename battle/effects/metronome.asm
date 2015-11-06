@@ -1,4 +1,4 @@
-BattleCommand34: ; 37418
+BattleCommand_Metronome: ; 37418
 ; metronome
 
 	call Function372d8
