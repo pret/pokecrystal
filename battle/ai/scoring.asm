@@ -1343,11 +1343,11 @@ AI_Smart_Rage: ; 38b7f
 
 ; Encourage this move based on Rage's counter.	
 .asm_38b8c
-	ld a, [wc72c]
+	ld a, [wEnemyRageCounter]
 	cp $2
 	ret c
 	dec [hl]
-	ld a, [wc72c]
+	ld a, [wEnemyRageCounter]
 	cp $3
 	ret c
 	dec [hl]

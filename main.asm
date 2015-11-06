@@ -32413,7 +32413,7 @@ Function3957b: ; 3957b
 	ld hl, TrainerClassAttributes
 	ld bc, NUM_TRAINER_ATTRIBUTES
 	call AddNTimes
-	ld de, wc650
+	ld de, wEnemyTrainerItem1
 	ld a, [hli]
 	ld [de], a
 	inc de

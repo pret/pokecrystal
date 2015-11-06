@@ -163,9 +163,9 @@ AI_TryItem: ; 38105
 	and a
 	ret nz
 
-	ld a, [wc650]
+	ld a, [wEnemyTrainerItem1]
 	ld b, a
-	ld a, [wc651]
+	ld a, [wEnemyTrainerItem2]
 	or b
 	ret z
 
@@ -180,7 +180,7 @@ AI_TryItem: ; 38105
 	ld b, h
 	ld c, l
 	ld hl, AI_Items
-	ld de, wc650
+	ld de, wEnemyTrainerItem1
 .loop
 	ld a, [hl]
 	and a
@@ -233,7 +233,7 @@ endr
 	xor a
 	ld [EnemyFuryCutterCount], a
 	ld [EnemyProtectCount], a
-	ld [wc72c], a
+	ld [wEnemyRageCounter], a
 
 	ld hl, EnemySubStatus4
 	res SUBSTATUS_RAGE, [hl]
@@ -706,7 +706,7 @@ AI_Switch: ; 3846c
 	res SUBSTATUS_RAGE, [hl]
 	xor a
 	ld [hBattleTurn], a
-	callab Function3dc5b
+	callab PursuitSwitch
 	push af
 	ld a, [CurOTMon]
 	ld hl, OTPartyMon1Status

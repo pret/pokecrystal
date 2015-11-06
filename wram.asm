@@ -455,8 +455,8 @@ wc64c::
 
 wc64d:: ds 1
 wc64e:: ds 2
-wc650:: ds 1
-wc651:: ds 1
+wEnemyTrainerItem1:: ds 1
+wEnemyTrainerItem2:: ds 1
 wc652:: ds 4
 wc656::
 OTName:: ds NAME_LENGTH ; c656
@@ -818,8 +818,8 @@ wc720:: ds 4 ; copy from/to EnemyMonBaseStats, length=7
 wc724:: ds 3
 wc727:: ds 2
 wc729:: ds 2
-wc72b:: ds 1
-wc72c:: ds 1
+wPlayerRageCounter:: ds 1
+wEnemyRageCounter:: ds 1
 wc72d:: ds 1 ; if 0 then PrintButItFailed
 wc72e:: ds 1
 wc72f:: ds 1

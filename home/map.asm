@@ -1398,7 +1398,7 @@ Function2821:: ; 2821
 	call FarDecompress
 	ld hl, w6_d000
 	ld de, VTiles2
-	ld bc, $0600
+	ld bc, $60 tiles
 	call CopyBytes
 	ld a, [rVBK]
 	push af
@@ -1406,7 +1406,7 @@ Function2821:: ; 2821
 	ld [rVBK], a
 	ld hl, w6_d600
 	ld de, VTiles2
-	ld bc, $0600
+	ld bc, $60 tiles
 	call CopyBytes
 	pop af
 	ld [rVBK], a

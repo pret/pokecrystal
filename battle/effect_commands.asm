@@ -3295,12 +3295,12 @@ BattleCommand12: ; 35250
 	bit SUBSTATUS_RAGE, a
 	ret z
 
-	ld de, wc72c
+	ld de, wEnemyRageCounter
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3526b
-	ld de, wc72b
-.asm_3526b
+	jr z, .player
+	ld de, wPlayerRageCounter
+.player
 	ld a, [de]
 	inc a
 	ret z
@@ -3324,9 +3324,9 @@ BattleCommanda2: ; 3527b
 	ld c, a
 	ld a, [hBattleTurn]
 	and a
-	ld a, [wc72b]
+	ld a, [wPlayerRageCounter]
 	jr z, .asm_35290
-	ld a, [wc72c]
+	ld a, [wEnemyRageCounter]
 .asm_35290
 	and a
 	jr z, .asm_3529a

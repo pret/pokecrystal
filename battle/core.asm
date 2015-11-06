@@ -458,44 +458,45 @@ Function3c300: ; 3c300
 Function3c314: ; 3c314
 	ld a, [wLinkMode]
 	and a
-	jr z, .asm_3c35b
+	jr z, .skip_ai
 	ld a, [wBattleAction]
 	cp $e
-	jr z, .asm_3c35b
+	jr z, .skip_ai
 	cp $d
-	jr z, .asm_3c35b
+	jr z, .skip_ai
 	sub NUM_MOVES
-	jr c, .asm_3c35b
+	jr c, .skip_ai
 	ld a, [wd0ec]
 	cp $2
-	jr nz, .asm_3c34c
+	jr nz, .switch
 	ld a, [$ffcb]
 	cp $2
 	jr z, .asm_3c341
+
 	call BattleRandom
 	cp 1 + (50 percent)
-	jp c, .asm_3c3f1
+	jp c, .done
 	jp Function3c3f3
 
 .asm_3c341
 	call BattleRandom
 	cp 1 + (50 percent)
 	jp c, Function3c3f3
-	jp .asm_3c3f1
+	jp .done
 
-.asm_3c34c
+.switch
 	callab AI_Switch
 	call SetEnemyTurn
 	call SpikesDamage
 	jp Function3c3f3
 
-.asm_3c35b
+.skip_ai
 	ld a, [wd0ec]
 	and a
-	jp nz, .asm_3c3f1
+	jp nz, .done
 	call CompareMovePriority
 	jr z, .asm_3c36d
-	jp c, .asm_3c3f1
+	jp c, .done
 	jp Function3c3f3
 
 .asm_3c36d
@@ -513,7 +514,7 @@ Function3c314: ; 3c314
 	call BattleRandom
 	cp e
 	jr nc, .asm_3c3c5
-	jp .asm_3c3f1
+	jp .done
 
 .asm_3c391
 	ld a, b
@@ -533,13 +534,13 @@ Function3c314: ; 3c314
 	jp c, Function3c3f3
 	call BattleRandom
 	cp e
-	jp c, .asm_3c3f1
+	jp c, .done
 	jr .asm_3c3c5
 
 .asm_3c3b5
 	call BattleRandom
 	cp e
-	jp c, .asm_3c3f1
+	jp c, .done
 	call BattleRandom
 	cp c
 	jp c, Function3c3f3
@@ -551,7 +552,7 @@ Function3c314: ; 3c314
 	ld c, $2
 	call StringCmp
 	jr z, .asm_3c3d8
-	jp nc, .asm_3c3f1
+	jp nc, .done
 	jp Function3c3f3
 
 .asm_3c3d8
@@ -560,14 +561,14 @@ Function3c314: ; 3c314
 	jr z, .asm_3c3e9
 	call BattleRandom
 	cp 1 + (50 percent)
-	jp c, .asm_3c3f1
+	jp c, .done
 	jp Function3c3f3
 
 .asm_3c3e9
 	call BattleRandom
 	cp 1 + (50 percent)
 	jp c, Function3c3f3
-.asm_3c3f1
+.done
 	scf
 	ret
 ; 3c3f3
@@ -678,7 +679,7 @@ Function3c434: ; 3c434
 	ld hl, PlayerSubStatus4
 	res SUBSTATUS_RAGE, [hl]
 	xor a
-	ld [wc72b], a
+	ld [wPlayerRageCounter], a
 
 .asm_3c4a4
 	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
@@ -698,7 +699,7 @@ Function3c434: ; 3c434
 	xor a
 	ld [PlayerFuryCutterCount], a
 	ld [PlayerProtectCount], a
-	ld [wc72b], a
+	ld [wPlayerRageCounter], a
 	ld hl, PlayerSubStatus4
 	res SUBSTATUS_RAGE, [hl]
 
@@ -711,7 +712,7 @@ Function3c434: ; 3c434
 	xor a
 	ld [PlayerFuryCutterCount], a
 	ld [PlayerProtectCount], a
-	ld [wc72b], a
+	ld [wPlayerRageCounter], a
 	ld hl, PlayerSubStatus4
 	res SUBSTATUS_RAGE, [hl]
 	xor a
@@ -3798,7 +3799,7 @@ endr
 	ld [EnemyDisableCount], a
 	ld [EnemyFuryCutterCount], a
 	ld [EnemyProtectCount], a
-	ld [wc72c], a
+	ld [wEnemyRageCounter], a
 	ld [EnemyDisabledMove], a
 	ld [wc6fa], a
 	ld [wc730], a
@@ -4301,7 +4302,7 @@ endr
 	ld [PlayerDisableCount], a
 	ld [PlayerFuryCutterCount], a
 	ld [PlayerProtectCount], a
-	ld [wc72b], a
+	ld [wPlayerRageCounter], a
 	ld [DisabledMove], a
 	ld [wc6fe], a
 	ld [wc731], a
@@ -4361,14 +4362,14 @@ SpikesDamage: ; 3dc23
 	jp [hl]
 ; 3dc5b
 
-Function3dc5b: ; 3dc5b
+PursuitSwitch: ; 3dc5b
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
 	ld b, a
 	call GetMoveEffect
 	ld a, b
 	cp EFFECT_PURSUIT
-	jr nz, .asm_3dce4
+	jr nz, .done
 
 	ld a, [CurBattleMon]
 	push af
@@ -4376,11 +4377,11 @@ Function3dc5b: ; 3dc5b
 	ld hl, DoPlayerTurn
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3dc7e
+	jr z, .do_turn
 	ld hl, DoEnemyTurn
 	ld a, [LastPlayerMon]
 	ld [CurBattleMon], a
-.asm_3dc7e
+.do_turn
 	ld a, BANK(DoPlayerTurn)
 	rst FarCall
 
@@ -4394,14 +4395,14 @@ Function3dc5b: ; 3dc5b
 
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3dcc0
+	jr z, .check_enemy_fainted
 
 	ld a, [LastPlayerMon]
 	call UpdateBattleMon
 	ld hl, BattleMonHP
 	ld a, [hli]
 	or [hl]
-	jr nz, .asm_3dce4
+	jr nz, .done
 
 	ld a, $f0
 	ld [CryTracks], a
@@ -4414,13 +4415,13 @@ Function3dc5b: ; 3dc5b
 	predef FlagPredef
 	call PlayerMonFaintedAnimation
 	ld hl, BattleText_PkmnFainted
-	jr .asm_3dcdf
+	jr .done_fainted
 
-.asm_3dcc0
+.check_enemy_fainted
 	ld hl, EnemyMonHP
 	ld a, [hli]
 	or [hl]
-	jr nz, .asm_3dce4
+	jr nz, .done
 
 	ld de, SFX_KINESIS
 	call PlaySFX
@@ -4431,12 +4432,12 @@ Function3dc5b: ; 3dc5b
 	call EnemyMonFaintedAnimation
 	ld hl, BattleText_EnemyPkmnFainted
 
-.asm_3dcdf
+.done_fainted
 	call StdBattleTextBox
 	scf
 	ret
 
-.asm_3dce4
+.done
 	and a
 	ret
 ; 3dce6
@@ -5510,7 +5511,7 @@ BattleMonEntrance: ; 3e40b
 	res SUBSTATUS_RAGE, [hl]
 
 	call SetEnemyTurn
-	call Function3dc5b
+	call PursuitSwitch
 	jr c, .ok
 	call Function3dce6
 .ok
@@ -6187,7 +6188,7 @@ Function3e7c1: ; 3e7c1
 	ld hl, EnemySubStatus4
 	res SUBSTATUS_RAGE, [hl]
 	xor a
-	ld [wc72c], a
+	ld [wEnemyRageCounter], a
 
 .asm_3e8af
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
@@ -6208,7 +6209,7 @@ ResetVarsForSubstatusRage: ; 3e8c1
 	xor a
 	ld [EnemyFuryCutterCount], a
 	ld [EnemyProtectCount], a
-	ld [wc72c], a
+	ld [wEnemyRageCounter], a
 	ld hl, EnemySubStatus4
 	res SUBSTATUS_RAGE, [hl]
 	ret
@@ -8483,10 +8484,10 @@ Function3f4dd: ; 3f4dd
 	ld [hBGMapMode], a
 	call EmptyBattleTextBox
 	hlcoord 9, 7
-	ld bc, 5 << 8 + 11
+	lb bc, 5, 11
 	call ClearBox
 	hlcoord 1, 0
-	ld bc, 4 << 8 + 10
+	lb bc, 4, 10
 	call ClearBox
 	call ClearSprites
 	ld a, [wBattleMode]
