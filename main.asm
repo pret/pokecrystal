@@ -2603,7 +2603,7 @@ Function7113: ; unreferenced
 	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
 	ld a, [hl]
-	cp SPRITEMOVEDATA_15
+	cp SPRITEMOVEDATA_SNORLAX
 	jr nz, .asm_7136
 	call Function7171
 	jr c, .asm_716f
@@ -3236,7 +3236,7 @@ PlayerObjectTemplate: ; 8071
 ; A dummy map object used to initialize the player object.
 ; Shorter than the actual amount copied by two bytes.
 ; Said bytes seem to be unused.
-	person_event SPRITE_CHRIS, -4, -4, SPRITEMOVEDATA_0B, 15, 15, -1, -1, 0, 0, 0, 0, -1
+	person_event SPRITE_CHRIS, -4, -4, SPRITEMOVEDATA_PLAYER, 15, 15, -1, -1, 0, 0, 0, 0, -1
 ; 807e
 
 CopyDECoordsToMapObject:: ; 807e
@@ -25058,10 +25058,10 @@ Function2715c: ; 2715c
 	jr .continue
 
 .gettutorialbackpic
-	callba GetBattleBackpic
+	callba GetTrainerBackpic
 
 .continue
-	callba Function3f47c
+	callba GetMonFrontpic
 	callba Function3ed9f
 	call ClearSGB
 	call WriteBackup
@@ -74055,7 +74055,7 @@ Functionfb8c8: ; fb8c8
 	call LoadStandardFont
 	callba Function40ab2
 	call Function3200
-	callba Function3da97
+	callba GetEnemyMonDVs
 	ld a, [hli]
 	ld [TempMonDVs], a
 	ld a, [hl]

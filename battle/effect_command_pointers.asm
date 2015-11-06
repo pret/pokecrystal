@@ -1,7 +1,3 @@
-
-
-
-
 	dw 0 ; padding
 
 BattleCommandPointers: ; 3fd28
@@ -14,9 +10,9 @@ BattleCommandPointers: ; 3fd28
 	dw BattleCommand_Stab ; 346d2 - 07
 	dw BattleCommand_DamageVariation ; 34cfd
 	dw BattleCommand_CheckHit ; 34d32
-	dw BattleCommand0a ; 34eee
+	dw BattleCommand_LowerSub ; 34eee
 	dw BattleCommand0b ; 34f60
-	dw BattleCommand0c ; 35004
+	dw BattleCommand_RaiseSub ; 35004
 	dw BattleCommand_ResultText ; 35023
 	dw BattleCommand_CheckFaint ; 3505e
 	dw BattleCommand_CriticalText ; 35175
@@ -149,8 +145,8 @@ BattleCommandPointers: ; 3fd28
 	dw BattleCommand_StatUpFailText ; 3644c
 	dw BattleCommand_StatDownFailText ; 3646a
 	dw BattleCommand_EffectChance ; 34ecc
-	dw BattleCommand91 ; 34fdb
-	dw BattleCommand92 ; 34fd1
+	dw BattleCommand_StatDownAnim ; 34fdb
+	dw BattleCommand_StatUpAnim ; 34fd1
 	dw BattleCommand_SwitchTurn ; 34ffd - 93
 	dw BattleCommand_FakeOut ; 36a82
 	dw BattleCommand_BellyDrum ; 37c1a

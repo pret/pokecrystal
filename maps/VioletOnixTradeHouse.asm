@@ -45,5 +45,5 @@ VioletOnixTradeHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKEFAN_M, 3, 2, SPRITEMOVEDATA_03, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x6998d, -1
+	person_event SPRITE_POKEFAN_M, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x6998d, -1
 	person_event SPRITE_YOUNGSTER, 5, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x69990, -1

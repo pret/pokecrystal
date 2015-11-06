@@ -430,4 +430,4 @@ EarlsPokemonAcademy_MapEventHeader:
 	person_event SPRITE_GAMEBOY_KID, 11, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, GameboyKidScript_0x68a86, -1
 	person_event SPRITE_GAMEBOY_KID, 11, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GameboyKidScript_0x68a91, -1
 	person_event SPRITE_YOUNGSTER, 7, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, 0, 0, YoungsterScript_0x68a9c, -1
-	person_event SPRITE_POKEDEX, 4, 2, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, AcademyNotebook, -1
+	person_event SPRITE_POKEDEX, 4, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, AcademyNotebook, -1

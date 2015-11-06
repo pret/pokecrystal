@@ -7,7 +7,7 @@ BattleCommand_Metronome: ; 37418
 
 	ld a, [wc689]
 	push af
-	call BattleCommand0a
+	call BattleCommand_LowerSub
 	pop af
 	ld [wc689], a
 

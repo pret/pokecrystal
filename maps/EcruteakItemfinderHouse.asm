@@ -177,4 +177,4 @@ EcruteakItemfinderHouse_MapEventHeader:
 .PersonEvents:
 	db 2
 	person_event SPRITE_COOLTRAINER_M, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerMScript_0x9a5fb, -1
-	person_event SPRITE_POKEDEX, 3, 3, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, PokedexScript_0x9a620, -1
+	person_event SPRITE_POKEDEX, 3, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, PokedexScript_0x9a620, -1

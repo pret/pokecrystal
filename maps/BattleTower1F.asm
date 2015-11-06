@@ -811,5 +811,5 @@ BattleTower1F_MapEventHeader:
 	person_event SPRITE_RECEPTIONIST, 6, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, ReceptionistScript_0x9e3e2, -1
 	person_event SPRITE_YOUNGSTER, 9, 14, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, YoungsterScript_0x9e55d, -1
 	person_event SPRITE_COOLTRAINER_F, 9, 4, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerFScript_0x9e568, -1
-	person_event SPRITE_BUG_CATCHER, 3, 1, SPRITEMOVEDATA_02, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, BugCatcherScript_0x9e56b, -1
+	person_event SPRITE_BUG_CATCHER, 3, 1, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, BugCatcherScript_0x9e56b, -1
 	person_event SPRITE_GRANNY, 3, 14, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, 0, 0, GrannyScript_0x9e56e, -1

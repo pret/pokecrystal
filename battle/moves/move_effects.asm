@@ -252,9 +252,9 @@ AttackUp:
 	usedmovetext
 	doturn
 	attackup
-	effect0x0a
-	effect0x92
-	effect0x0c
+	lowersub
+	statupanim
+	raisesub
 	statmessageuser
 	statupfailtext
 	endmove
@@ -266,9 +266,9 @@ DefenseUp:
 	usedmovetext
 	doturn
 	defenseup
-	effect0x0a
-	effect0x92
-	effect0x0c
+	lowersub
+	statupanim
+	raisesub
 	statmessageuser
 	statupfailtext
 	endmove
@@ -278,9 +278,9 @@ SpeedUp:
 	usedmovetext
 	doturn
 	speedup
-	effect0x0a
-	effect0x92
-	effect0x0c
+	lowersub
+	statupanim
+	raisesub
 	statmessageuser
 	statupfailtext
 	endmove
@@ -291,9 +291,9 @@ SpecialAttackUp:
 	usedmovetext
 	doturn
 	specialattackup
-	effect0x0a
-	effect0x92
-	effect0x0c
+	lowersub
+	statupanim
+	raisesub
 	statmessageuser
 	statupfailtext
 	endmove
@@ -303,9 +303,9 @@ SpecialDefenseUp:
 	usedmovetext
 	doturn
 	specialdefenseup
-	effect0x0a
-	effect0x92
-	effect0x0c
+	lowersub
+	statupanim
+	raisesub
 	statmessageuser
 	statupfailtext
 	endmove
@@ -315,9 +315,9 @@ AccuracyUp:
 	usedmovetext
 	doturn
 	accuracyup
-	effect0x0a
-	effect0x92
-	effect0x0c
+	lowersub
+	statupanim
+	raisesub
 	statmessageuser
 	statupfailtext
 	endmove
@@ -328,11 +328,11 @@ EvasionUp:
 	checkobedience
 	usedmovetext
 	doturn
-	effect0x0a
+	lowersub
 	evasionup
-	effect0x92
+	statupanim
 	effect0xa7
-	effect0x0c
+	raisesub
 	statmessageuser
 	statupfailtext
 	endmove
@@ -343,9 +343,9 @@ AttackUp2:
 	usedmovetext
 	doturn
 	attackup2
-	effect0x0a
-	effect0x92
-	effect0x0c
+	lowersub
+	statupanim
+	raisesub
 	statmessageuser
 	statupfailtext
 	endmove
@@ -357,9 +357,9 @@ DefenseUp2:
 	usedmovetext
 	doturn
 	defenseup2
-	effect0x0a
-	effect0x92
-	effect0x0c
+	lowersub
+	statupanim
+	raisesub
 	statmessageuser
 	statupfailtext
 	endmove
@@ -370,9 +370,9 @@ SpeedUp2:
 	usedmovetext
 	doturn
 	speedup2
-	effect0x0a
-	effect0x92
-	effect0x0c
+	lowersub
+	statupanim
+	raisesub
 	statmessageuser
 	statupfailtext
 	endmove
@@ -382,9 +382,9 @@ SpecialAttackUp2:
 	usedmovetext
 	doturn
 	specialattackup2
-	effect0x0a
-	effect0x92
-	effect0x0c
+	lowersub
+	statupanim
+	raisesub
 	statmessageuser
 	statupfailtext
 	endmove
@@ -395,9 +395,9 @@ SpecialDefenseUp2:
 	usedmovetext
 	doturn
 	specialdefenseup2
-	effect0x0a
-	effect0x92
-	effect0x0c
+	lowersub
+	statupanim
+	raisesub
 	statmessageuser
 	statupfailtext
 	endmove
@@ -407,9 +407,9 @@ AccuracyUp2:
 	usedmovetext
 	doturn
 	accuracyup2
-	effect0x0a
-	effect0x92
-	effect0x0c
+	lowersub
+	statupanim
+	raisesub
 	statmessageuser
 	statupfailtext
 	endmove
@@ -419,9 +419,9 @@ EvasionUp2:
 	usedmovetext
 	doturn
 	evasionup2
-	effect0x0a
-	effect0x92
-	effect0x0c
+	lowersub
+	statupanim
+	raisesub
 	statmessageuser
 	statupfailtext
 	endmove
@@ -433,9 +433,9 @@ AttackDown:
 	doturn
 	checkhit
 	attackdown
-	effect0x0a
-	effect0x91
-	effect0x0c
+	lowersub
+	statdownanim
+	raisesub
 	statmessagetarget
 	statdownfailtext
 	endmove
@@ -448,9 +448,9 @@ DefenseDown:
 	doturn
 	checkhit
 	defensedown
-	effect0x0a
-	effect0x91
-	effect0x0c
+	lowersub
+	statdownanim
+	raisesub
 	statmessagetarget
 	statdownfailtext
 	endmove
@@ -462,9 +462,9 @@ SpeedDown:
 	doturn
 	checkhit
 	speeddown
-	effect0x0a
-	effect0x91
-	effect0x0c
+	lowersub
+	statdownanim
+	raisesub
 	statmessagetarget
 	statdownfailtext
 	endmove
@@ -475,9 +475,9 @@ SpecialAttackDown:
 	doturn
 	checkhit
 	specialattackdown
-	effect0x0a
-	effect0x91
-	effect0x0c
+	lowersub
+	statdownanim
+	raisesub
 	statmessagetarget
 	statdownfailtext
 	endmove
@@ -488,9 +488,9 @@ SpecialDefenseDown:
 	doturn
 	checkhit
 	specialdefensedown
-	effect0x0a
-	effect0x91
-	effect0x0c
+	lowersub
+	statdownanim
+	raisesub
 	statmessagetarget
 	statdownfailtext
 	endmove
@@ -505,9 +505,9 @@ AccuracyDown:
 	doturn
 	checkhit
 	accuracydown
-	effect0x0a
-	effect0x91
-	effect0x0c
+	lowersub
+	statdownanim
+	raisesub
 	statmessagetarget
 	statdownfailtext
 	endmove
@@ -519,9 +519,9 @@ EvasionDown:
 	doturn
 	checkhit
 	evasiondown
-	effect0x0a
-	effect0x91
-	effect0x0c
+	lowersub
+	statdownanim
+	raisesub
 	statmessagetarget
 	statdownfailtext
 	endmove
@@ -533,9 +533,9 @@ AttackDown2:
 	doturn
 	checkhit
 	attackdown2
-	effect0x0a
-	effect0x91
-	effect0x0c
+	lowersub
+	statdownanim
+	raisesub
 	statmessagetarget
 	statdownfailtext
 	endmove
@@ -547,9 +547,9 @@ DefenseDown2:
 	doturn
 	checkhit
 	defensedown2
-	effect0x0a
-	effect0x91
-	effect0x0c
+	lowersub
+	statdownanim
+	raisesub
 	statmessagetarget
 	statdownfailtext
 	endmove
@@ -562,9 +562,9 @@ SpeedDown2:
 	doturn
 	checkhit
 	speeddown2
-	effect0x0a
-	effect0x91
-	effect0x0c
+	lowersub
+	statdownanim
+	raisesub
 	statmessagetarget
 	statdownfailtext
 	endmove
@@ -575,9 +575,9 @@ SpecialAttackDown2:
 	doturn
 	checkhit
 	specialattackdown2
-	effect0x0a
-	effect0x91
-	effect0x0c
+	lowersub
+	statdownanim
+	raisesub
 	statmessagetarget
 	statdownfailtext
 	endmove
@@ -588,9 +588,9 @@ SpecialDefenseDown2:
 	doturn
 	checkhit
 	specialdefensedown2
-	effect0x0a
-	effect0x91
-	effect0x0c
+	lowersub
+	statdownanim
+	raisesub
 	statmessagetarget
 	statdownfailtext
 	endmove
@@ -601,9 +601,9 @@ AccuracyDown2:
 	doturn
 	checkhit
 	accuracydown2
-	effect0x0a
-	effect0x91
-	effect0x0c
+	lowersub
+	statdownanim
+	raisesub
 	statmessagetarget
 	statdownfailtext
 	endmove
@@ -614,9 +614,9 @@ EvasionDown2:
 	doturn
 	checkhit
 	evasiondown2
-	effect0x0a
-	effect0x91
-	effect0x0c
+	lowersub
+	statdownanim
+	raisesub
 	statmessagetarget
 	statdownfailtext
 	endmove
@@ -958,7 +958,7 @@ MultiHit:
 	usedmovetext
 	doturn
 	startloop
-	effect0x0a
+	lowersub
 	checkhit
 	critical
 	damagestats
@@ -975,7 +975,7 @@ MultiHit:
 	checkdestinybond
 	buildopponentrage
 	endloop
-	effect0x0c
+	raisesub
 	kingsrock
 	endmove
 
@@ -985,7 +985,7 @@ PoisonMultiHit:
 	usedmovetext
 	doturn
 	startloop
-	effect0x0a
+	lowersub
 	checkhit
 	effectchance
 	critical
@@ -1003,7 +1003,7 @@ PoisonMultiHit:
 	checkdestinybond
 	buildopponentrage
 	endloop
-	effect0x0c
+	raisesub
 	kingsrock
 	poisontarget
 	endmove
@@ -1351,7 +1351,7 @@ Dig:
 	damagevariation
 	checkhit
 	effect0x0b
-	effect0x0c
+	raisesub
 	resulttext
 	checkfaint
 	criticaltext
@@ -1562,7 +1562,7 @@ TripleKick:
 	usedmovetext
 	doturn
 	startloop
-	effect0x0a
+	lowersub
 	checkhit
 	critical
 	damagestats
@@ -1581,7 +1581,7 @@ TripleKick:
 	buildopponentrage
 	kickcounter
 	endloop
-	effect0x0c
+	raisesub
 	kingsrock
 	endmove
 
@@ -1725,9 +1725,9 @@ Swagger:
 	switchturn
 	attackup2
 	switchturn
-	effect0x0a
-	effect0x92
-	effect0x0c
+	lowersub
+	statupanim
+	raisesub
 	resulttext
 	switchturn
 	statmessageuser
@@ -2204,7 +2204,7 @@ BeatUp:
 	movedelay
 	doturn
 	startloop
-	effect0x0a
+	lowersub
 	checkhit
 	critical
 	beatup
@@ -2221,7 +2221,7 @@ BeatUp:
 	buildopponentrage
 	endloop
 	effect0xa8
-	effect0x0c
+	raisesub
 	kingsrock
 	endmove
 
@@ -2231,9 +2231,9 @@ DefenseCurl:
 	doturn
 	defenseup
 	curl
-	effect0x0a
-	effect0x92
-	effect0x0c
+	lowersub
+	statupanim
+	raisesub
 	statmessageuser
 	statupfailtext
 	endmove

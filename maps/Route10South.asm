@@ -89,4 +89,4 @@ Route10South_MapEventHeader:
 .PersonEvents:
 	db 2
 	person_event SPRITE_POKEFAN_M, 3, 17, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 3, TrainerHikerJim, -1
-	person_event SPRITE_POKEFAN_M, 10, 8, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerPokefanmRobert, -1
+	person_event SPRITE_POKEFAN_M, 10, 8, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerPokefanmRobert, -1

@@ -14,9 +14,9 @@ endm
 	command stab
 	command damagevariation
 	command checkhit
-	command effect0x0a
+	command lowersub
 	command effect0x0b
-	command effect0x0c
+	command raisesub
 	command resulttext
 	command checkfaint
 	command criticaltext
@@ -149,8 +149,8 @@ endm
 	command statupfailtext
 	command statdownfailtext
 	command effectchance
-	command effect0x91
-	command effect0x92
+	command statdownanim
+	command statupanim
 	command switchturn
 	command fakeout
 	command bellydrum

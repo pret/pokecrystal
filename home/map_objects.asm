@@ -441,7 +441,7 @@ Function19e9:: ; 19e9
 	ret c
 	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
-	ld [hl], SPRITEMOVEDATA_14
+	ld [hl], SPRITEMOVEDATA_SCRIPTED
 	ld hl, OBJECT_09
 	add hl, bc
 	ld [hl], 0
@@ -485,19 +485,19 @@ FindFirstEmptyObjectStruct:: ; 1a13
 
 
 
-Function1a2f:: ; 1a2f
+GetSpriteMovementFunction:: ; 1a2f
 	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
 	ld a, [hl]
-	cp OBJECT_STRUCT_3_DATA_HEIGHT
+	cp NUM_SPRITEMOVEDATA
 	jr c, .ok
 	xor a
 
 .ok
-	ld hl, ObjectStruct3_Data
+	ld hl, SpriteMovementData
 	ld e, a
 	ld d, 0
-rept OBJECT_STRUCT_3_DATA_WIDTH
+rept SPRITEMOVEDATA_FIELDS
 	add hl,de
 endr
 	ld a, [hl]
@@ -509,11 +509,11 @@ Function1a47:: ; 1a47
 	push de
 	ld e, a
 	ld d, 0
-	ld hl, ObjectStruct3_Data + 1
-rept OBJECT_STRUCT_3_DATA_WIDTH
+	ld hl, SpriteMovementData + 1 ; init facing
+rept SPRITEMOVEDATA_FIELDS
 	add hl,de
 endr
-	ld a, BANK(ObjectStruct3_Data)
+	ld a, BANK(SpriteMovementData)
 	call GetFarByte
 rept 2
 	add a
@@ -529,7 +529,7 @@ Function1a61:: ; 1a61
 	ld l, a
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(ObjectStruct3_Data)
+	ld a, BANK(SpriteMovementData)
 	rst Bankswitch
 	ld a, l
 	push bc
@@ -550,8 +550,8 @@ Function1a71:: ; 1a71
 	push de
 	ld e, a
 	ld d, 0
-	ld hl, ObjectStruct3_Data + 1 ; facing?
-rept OBJECT_STRUCT_3_DATA_WIDTH
+	ld hl, SpriteMovementData + 1 ; init facing
+rept SPRITEMOVEDATA_FIELDS
 	add hl, de
 endr
 	ld b, h

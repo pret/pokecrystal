@@ -347,12 +347,12 @@ Route40_MapEventHeader:
 	person_event SPRITE_OLIVINE_RIVAL, 15, 14, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerSwimmermSimon, -1
 	person_event SPRITE_OLIVINE_RIVAL, 30, 18, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 5, TrainerSwimmermRandall, -1
 	person_event SPRITE_SWIMMER_GIRL, 19, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 4, TrainerSwimmerfElaine, -1
-	person_event SPRITE_SWIMMER_GIRL, 25, 10, SPRITEMOVEDATA_1F, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfPaula, -1
-	person_event SPRITE_ROCK, 11, 7, SPRITEMOVEDATA_18, 0, 0, -1, -1, 0, 0, 0, Route40Rock, -1
-	person_event SPRITE_ROCK, 9, 6, SPRITEMOVEDATA_18, 0, 0, -1, -1, 0, 0, 0, Route40Rock, -1
-	person_event SPRITE_ROCK, 8, 7, SPRITEMOVEDATA_18, 0, 0, -1, -1, 0, 0, 0, Route40Rock, -1
+	person_event SPRITE_SWIMMER_GIRL, 25, 10, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerSwimmerfPaula, -1
+	person_event SPRITE_ROCK, 11, 7, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, 0, 0, Route40Rock, -1
+	person_event SPRITE_ROCK, 9, 6, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, 0, 0, Route40Rock, -1
+	person_event SPRITE_ROCK, 8, 7, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, 0, 0, Route40Rock, -1
 	person_event SPRITE_LASS, 13, 11, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, LassScript_0x1a61c4, -1
-	person_event SPRITE_BUENA, 10, 8, SPRITEMOVEDATA_03, 0, 0, -1, -1, 0, 0, 0, MonicaScript, EVENT_ROUTE_40_MONICA_OF_MONDAY
+	person_event SPRITE_BUENA, 10, 8, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, 0, 0, MonicaScript, EVENT_ROUTE_40_MONICA_OF_MONDAY
 	person_event SPRITE_POKEFAN_M, 6, 7, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x1a61c7, -1
-	person_event SPRITE_LASS, 4, 13, SPRITEMOVEDATA_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x1a61d3, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 9, 16, SPRITEMOVEDATA_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, StandingYoungsterScript_0x1a61d6, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
+	person_event SPRITE_LASS, 4, 13, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x1a61d3, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 9, 16, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, StandingYoungsterScript_0x1a61d6, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR

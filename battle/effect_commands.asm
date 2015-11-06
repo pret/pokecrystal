@@ -540,7 +540,7 @@ CheckEnemyTurn: ; 3421f
 	call StdBattleTextBox
 	call Function355dd
 	call BattleCommand_DamageCalc
-	call BattleCommand0a
+	call BattleCommand_LowerSub
 	xor a
 	ld [wcfca], a
 
@@ -553,7 +553,7 @@ CheckEnemyTurn: ; 3421f
 
 	ld c, $1
 	call Function35d1c
-	call BattleCommand0c
+	call BattleCommand_RaiseSub
 	call CantMove
 	jp Function34385
 
@@ -653,7 +653,7 @@ HitConfusion: ; 343a5
 
 	call Function355dd
 	call BattleCommand_DamageCalc
-	call BattleCommand0a
+	call BattleCommand_LowerSub
 
 	xor a
 	ld [wcfca], a
@@ -671,7 +671,7 @@ HitConfusion: ; 343a5
 	ld [$ffd4], a
 	ld c, $1
 	call Function35d7e
-	jp BattleCommand0c
+	jp BattleCommand_RaiseSub
 ; 343db
 
 
@@ -2691,7 +2691,7 @@ BattleCommand_EffectChance: ; 34ecc
 ; 34eee
 
 
-BattleCommand0a: ; 34eee
+BattleCommand_LowerSub: ; 34eee
 ; lowersub
 
 	ld a, BATTLE_VARS_SUBSTATUS4
@@ -2702,29 +2702,29 @@ BattleCommand0a: ; 34eee
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVar
 	bit SUBSTATUS_CHARGED, a
-	jr nz, .asm_34f18
+	jr nz, .already_charged
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_RAZOR_WIND
-	jr z, .asm_34f21
+	jr z, .charge_turn
 	cp EFFECT_SKY_ATTACK
-	jr z, .asm_34f21
+	jr z, .charge_turn
 	cp EFFECT_SKULL_BASH
-	jr z, .asm_34f21
+	jr z, .charge_turn
 	cp EFFECT_SOLARBEAM
-	jr z, .asm_34f21
+	jr z, .charge_turn
 	cp EFFECT_FLY
-	jr z, .asm_34f21
+	jr z, .charge_turn
 
-.asm_34f18
+.already_charged
 	call .Rampage
-	jr z, .asm_34f21
+	jr z, .charge_turn
 
 	call Function34548
 	ret nz
 
-.asm_34f21
+.charge_turn
 	call Function37ed5
 	jr c, .asm_34f36
 
@@ -2744,15 +2744,15 @@ BattleCommand0a: ; 34eee
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_ROLLOUT
-	jr z, .asm_34f4d
+	jr z, .rollout_rampage
 	cp EFFECT_RAMPAGE
-	jr z, .asm_34f4d
+	jr z, .rollout_rampage
 
 	ld a, 1
 	and a
 	ret
 
-.asm_34f4d
+.rollout_rampage
 	ld a, [wc73e]
 	and a
 	ld a, 0
@@ -2763,9 +2763,9 @@ BattleCommand0a: ; 34eee
 
 BattleCommand_HitTarget: ; 34f57
 ; hittarget
-	call BattleCommand0a
+	call BattleCommand_LowerSub
 	call BattleCommand0b
-	jp BattleCommand0c
+	jp BattleCommand_RaiseSub
 ; 34f60
 
 
@@ -2787,19 +2787,19 @@ BattleCommand0b: ; 34f60
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_MULTI_HIT
-	jr z, .asm_34fb0
+	jr z, .multihit_conversion_doublehit_twineedle
 	cp EFFECT_CONVERSION
-	jr z, .asm_34fb0
+	jr z, .multihit_conversion_doublehit_twineedle
 	cp EFFECT_DOUBLE_HIT
-	jr z, .asm_34fb0
+	jr z, .multihit_conversion_doublehit_twineedle
 	cp EFFECT_TWINEEDLE
-	jr z, .asm_34fb0
+	jr z, .multihit_conversion_doublehit_twineedle
 	cp EFFECT_TRIPLE_KICK
-	jr z, .asm_34f96
+	jr z, .triplekick
 	xor a
 	ld [wc689], a
 
-.asm_34f96
+.triplekick
 
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
@@ -2810,14 +2810,14 @@ BattleCommand0b: ; 34f60
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	cp FLY
-	jr z, .asm_34fad
+	jr z, .fly_dig
 	cp DIG
 	ret nz
 
-.asm_34fad
+.fly_dig
 ; clear sprite
 	jp Function37ec7
-.asm_34fb0
+.multihit_conversion_doublehit_twineedle
 	ld a, [wc689]
 	and 1
 	xor 1
@@ -2837,17 +2837,17 @@ BattleCommand0b: ; 34f60
 ; 34fd1
 
 
-BattleCommand92: ; 34fd1
+BattleCommand_StatUpAnim: ; 34fd1
 	ld a, [AttackMissed]
 	and a
 	jp nz, BattleCommand_MoveDelay
 
 	xor a
-	jr BattleCommand91_92
+	jr BattleCommand_StatUpDownAnim
 ; 34fdb
 
 
-BattleCommand91: ; 34fdb
+BattleCommand_StatDownAnim: ; 34fdb
 	ld a, [AttackMissed]
 	and a
 	jp nz, BattleCommand_MoveDelay
@@ -2855,14 +2855,14 @@ BattleCommand91: ; 34fdb
 	ld a, [hBattleTurn]
 	and a
 	ld a, 2
-	jr z, BattleCommand91_92
+	jr z, BattleCommand_StatUpDownAnim
 	ld a, 5
 
 	; fallthrough
 ; 34feb
 
 
-BattleCommand91_92: ; 34feb
+BattleCommand_StatUpDownAnim: ; 34feb
 	ld [wcfca], a
 	xor a
 	ld [wc689], a
@@ -2884,7 +2884,7 @@ BattleCommand_SwitchTurn: ; 34ffd
 ; 35004
 
 
-BattleCommand0c: ; 35004
+BattleCommand_RaiseSub: ; 35004
 ; raisesub
 
 	ld a, BATTLE_VARS_SUBSTATUS4
@@ -2933,7 +2933,7 @@ BattleCommand_ResultText: ; 35023
 	jp EndMoveEffect
 
 .asm_35049
-	call BattleCommand0c
+	call BattleCommand_RaiseSub
 	jp EndMoveEffect
 
 .asm_3504f
@@ -3274,7 +3274,7 @@ BattleCommand_CheckDestinyBond: ; 351c0
 	jr nz, .asm_3524d
 
 .asm_3524a
-	call BattleCommand0c
+	call BattleCommand_RaiseSub
 
 .asm_3524d
 	jp EndMoveEffect
@@ -5011,7 +5011,7 @@ BattleCommand_SleepTalk: ; 35b33
 	jr nz, .asm_35b9a
 	ld a, [wc689]
 	push af
-	call BattleCommand0a
+	call BattleCommand_LowerSub
 	pop af
 	ld [wc689], a
 .asm_35b9a
@@ -6793,9 +6793,9 @@ BattleCommanda6: ; 365af
 	ld hl, GetMonBackpic
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_365ba ; 365b5 $3
-	ld hl, Function3f47c
-.asm_365ba
+	jr z, .PlayerTurn ; 365b5 $3
+	ld hl, GetMonFrontpic
+.PlayerTurn
 	xor a
 	ld [$ffd4], a
 	call CallBattleCore
@@ -6807,9 +6807,9 @@ BattleCommanda7: ; 365c3
 	ld hl, Function3f447
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_365ce ; 365c9 $3
+	jr z, .PlayerTurn ; 365c9 $3
 	ld hl, Function3f486
-.asm_365ce
+.PlayerTurn
 	xor a
 	ld [$ffd4], a
 	call CallBattleCore
@@ -7176,7 +7176,7 @@ BattleCommand_Teleport: ; 36778
 	ld [wd232], a
 	ld [wc689], a
 	call Function36804
-	call BattleCommand0a
+	call BattleCommand_LowerSub
 	call Function37e36
 	ld c, 20
 	call DelayFrames
@@ -7390,9 +7390,9 @@ BattleCommand_ForceSwitch: ; 3680f
 	jp CallBattleCore
 
 .asm_36969
-	call BattleCommand0a
+	call BattleCommand_LowerSub
 	call BattleCommand_MoveDelay
-	call BattleCommand0c
+	call BattleCommand_RaiseSub
 	jp PrintButItFailed
 
 .asm_36975
@@ -7742,7 +7742,7 @@ BattleCommand_Charge: ; 36b4d
 	jr z, .asm_36b65
 
 	call BattleCommand_MoveDelay
-	call BattleCommand0c
+	call BattleCommand_RaiseSub
 	call PrintButItFailed
 	jp EndMoveEffect
 
@@ -7756,7 +7756,7 @@ BattleCommand_Charge: ; 36b4d
 	and a
 	call nz, StdBattleTextBox
 
-	call BattleCommand0a
+	call BattleCommand_LowerSub
 	xor a
 	ld [wcfca], a
 	inc a
@@ -7768,7 +7768,7 @@ BattleCommand_Charge: ; 36b4d
 	jr z, .asm_36b96
 	cp DIG
 	jr z, .asm_36b96
-	call BattleCommand0c
+	call BattleCommand_RaiseSub
 	jr .asm_36b99
 .asm_36b96
 	call Function37ec0
@@ -8346,13 +8346,13 @@ endr
 
 .asm_36ef4
 	call Function34548
-	call nz, BattleCommand0c
+	call nz, BattleCommand_RaiseSub
 	ld hl, HasSubstituteText
 	jr .asm_36f08
 
 .asm_36eff
 	call Function34548
-	call nz, BattleCommand0c
+	call nz, BattleCommand_RaiseSub
 	ld hl, TooWeakSubText
 .asm_36f08
 	jp StdBattleTextBox
@@ -9166,7 +9166,7 @@ BattleCommand_SelfDestruct: ; 37380
 	ld [hl], a
 	ld a, $1
 	ld [wc689], a
-	call BattleCommand0a
+	call BattleCommand_LowerSub
 	call Function37e36
 	ld a, BATTLE_VARS_SUBSTATUS4
 	call GetBattleVarAddr
@@ -10386,11 +10386,11 @@ BattleCommand_FutureSight: ; 37d34
 	jr nz, .asm_37d87 ; 37d58 $2d
 	ld a, $4
 	ld [hl], a
-	call BattleCommand0a
+	call BattleCommand_LowerSub
 	call BattleCommand_MoveDelay
 	ld hl, ForesawAttackText
 	call StdBattleTextBox
-	call BattleCommand0c
+	call BattleCommand_RaiseSub
 	ld de, wc727
 	ld a, [hBattleTurn]
 	and a
@@ -10497,11 +10497,11 @@ Function37de9: ; 37de9
 	push bc
 	ld a, [wc689]
 	push af
-	call BattleCommand0a
+	call BattleCommand_LowerSub
 	pop af
 	ld [wc689], a
 	call Function37e19
-	call BattleCommand0c
+	call BattleCommand_RaiseSub
 	pop bc
 	pop de
 	pop hl
@@ -10515,11 +10515,11 @@ AnimateCurrentMove: ; 37e01
 	push bc
 	ld a, [wc689]
 	push af
-	call BattleCommand0a
+	call BattleCommand_LowerSub
 	pop af
 	ld [wc689], a
 	call Function37e36
-	call BattleCommand0c
+	call BattleCommand_RaiseSub
 	pop bc
 	pop de
 	pop hl
@@ -10616,9 +10616,9 @@ CallBattleCore: ; 37e73
 
 
 AnimateFailedMove: ; 37e77
-	call BattleCommand0a
+	call BattleCommand_LowerSub
 	call BattleCommand_MoveDelay
-	jp BattleCommand0c
+	jp BattleCommand_RaiseSub
 ; 37e80
 
 

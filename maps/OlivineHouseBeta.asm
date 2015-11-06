@@ -54,5 +54,5 @@ OlivineHouseBeta_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_TEACHER, 3, 2, SPRITEMOVEDATA_03, 0, 0, -1, -1, 0, 0, 0, TeacherScript_0x9c58f, -1
+	person_event SPRITE_TEACHER, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, 0, 0, TeacherScript_0x9c58f, -1
 	person_event SPRITE_RHYDON, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, 0, 0, 0, RhydonScript_0x9c592, -1

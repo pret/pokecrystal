@@ -87,7 +87,7 @@ Function3c000: ; 3c000
 	call Function3d490
 	call LoadTileMapToTempTileMap
 	call Function3d57a
-	call Function3da0d
+	call InitBattleMon
 	call ResetPlayerStatLevels
 	call SendOutPkmnText
 	call NewBattleMonStatus
@@ -2917,7 +2917,7 @@ Function3d227: ; 3d227
 	ld a, [CurPartyMon]
 	ld [CurBattleMon], a
 	call Function3d581
-	call Function3da0d
+	call InitBattleMon
 	call ResetPlayerStatLevels
 	call ClearPalettes
 	call DelayFrame
@@ -2945,7 +2945,7 @@ Function3d2b3: ; 3d2b3
 	ld a, [CurPartyMon]
 	ld [CurBattleMon], a
 	call Function3d581
-	call Function3da0d
+	call InitBattleMon
 	call ResetPlayerStatLevels
 	call SendOutPkmnText
 	call NewBattleMonStatus
@@ -3745,7 +3745,7 @@ Function_SetEnemyPkmnAndSendOutAnimation: ; 3d7c7
 	ld a, OTPARTYMON
 	ld [MonType], a
 	predef CopyPkmnToTempMon
-	call Function3f47c
+	call GetMonFrontpic
 
 	xor a
 	ld [wcfca], a
@@ -3754,7 +3754,7 @@ Function_SetEnemyPkmnAndSendOutAnimation: ; 3d7c7
 	ld de, ANIM_SEND_OUT_MON
 	call Call_PlayBattleAnim
 
-	call Function3da79
+	call BattleCheckEnemyShininess
 	jr nc, .asm_3d800
 	ld a, 1 ; shiny anim
 	ld [wc689], a
@@ -4062,7 +4062,7 @@ TryToRunAwayFromBattle: ; 3d8b3
 ; 3da0d
 
 
-Function3da0d: ; 3da0d
+InitBattleMon: ; 3da0d
 	ld a, MON_SPECIES
 	call GetPartyParamLocation
 	ld de, BattleMonSpecies
@@ -4096,28 +4096,28 @@ endr
 	call CopyBytes
 	ld hl, BattleMonAttack
 	ld de, PlayerStats
-	ld bc, 2 * 5
+	ld bc, (PARTYMON_STRUCT_LENGTH) - (MON_ATK)
 	call CopyBytes
 	call Function3ec2c
 	call BadgeStatBoosts
 	ret
 ; 3da74
 
-Function3da74: ; 3da74
-	call Function3da85
-	jr Function3da7c
+BattleCheckPlayerShininess: ; 3da74
+	call GetPartyMonDVs
+	jr BattleCheckShininess
 
-Function3da79: ; 3da79
-	call Function3da97
+BattleCheckEnemyShininess: ; 3da79
+	call GetEnemyMonDVs
 
-Function3da7c: ; 3da7c
+BattleCheckShininess: ; 3da7c
 	ld b, h
 	ld c, l
 	callab CheckShininess
 	ret
 ; 3da85
 
-Function3da85: ; 3da85
+GetPartyMonDVs: ; 3da85
 	ld hl, BattleMonDVs
 	ld a, [PlayerSubStatus5]
 	bit SUBSTATUS_TRANSFORMED, a
@@ -4127,7 +4127,7 @@ Function3da85: ; 3da85
 	jp GetPartyLocation
 ; 3da97
 
-Function3da97: ; 3da97
+GetEnemyMonDVs: ; 3da97
 	ld hl, EnemyMonDVs
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_TRANSFORMED, a
@@ -4214,7 +4214,7 @@ Function3db32: ; 3db32
 	ld a, [CurPartyMon]
 	ld [CurBattleMon], a
 	call Function3d581
-	call Function3da0d
+	call InitBattleMon
 	call ResetPlayerStatLevels
 	call NewBattleMonStatus
 	call BreakAttraction
@@ -4258,7 +4258,7 @@ Function3db5f: ; 3db5f
 	ld [wc689], a
 	ld de, ANIM_SEND_OUT_MON
 	call Call_PlayBattleAnim
-	call Function3da74
+	call BattleCheckPlayerShininess
 	jr nc, .asm_3dbbc
 	ld a, $1
 	ld [wc689], a
@@ -5252,7 +5252,7 @@ BattleMenu_Pack: ; 3e1c7
 	call DelayFrame
 	call Function3ed9f
 	call GetMonBackpic
-	call Function3f47c
+	call GetMonFrontpic
 	call ExitMenu
 	call WaitBGMap
 	call Function3ee27
@@ -5287,7 +5287,7 @@ Function3e234: ; 3e234
 	call GetMonBackpic
 
 .asm_3e25d
-	call Function3f47c
+	call GetMonFrontpic
 	ld a, $1
 	ld [MenuSelection2], a
 	call ExitMenu
@@ -5523,7 +5523,7 @@ BattleMonEntrance: ; 3e40b
 	ld a, [CurBattleMon]
 	ld [CurPartyMon], a
 	call Function3d581
-	call Function3da0d
+	call InitBattleMon
 	call ResetPlayerStatLevels
 	call SendOutPkmnText
 	call NewBattleMonStatus
@@ -5549,7 +5549,7 @@ PassedBattleMonEntrance: ; 3e459
 	ld a, [CurPartyMon]
 	ld [CurBattleMon], a
 	call Function3d581
-	call Function3da0d
+	call InitBattleMon
 	xor a
 	ld [wd265], a
 	call ApplyStatLevelMultiplierOnAllStats
@@ -8392,7 +8392,7 @@ Function3f46f: ; 3f46f
 	ret
 ; 3f47c
 
-Function3f47c: ; 3f47c
+GetMonFrontpic: ; 3f47c
 	ld a, [EnemySubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
 	ld hl, BattleAnimCmd_DD
@@ -8470,8 +8470,8 @@ Function3f4dd: ; 3f4dd
 	callba FindFirstAliveMon
 	call DisableSpriteUpdates
 	callba ClearBattleRAM
-	call Function3f55e
-	call Function3f568
+	call InitEnemy
+	call BackUpVBGMap2
 	ld b, $0
 	call GetSGBLayout
 	ld hl, rLCDC
@@ -8510,20 +8510,20 @@ LoadTrainerOrWildMonPic: ; 3f54e
 	ret
 ; 3f55e
 
-Function3f55e: ; 3f55e
+InitEnemy: ; 3f55e
 	ld a, [OtherTrainerClass]
 	and a
-	jp nz, Function3f594 ; trainer
-	jp Function3f607 ; wild
+	jp nz, InitEnemyTrainer ; trainer
+	jp InitEnemyWildmon ; wild
 ; 3f568
 
-Function3f568: ; 3f568
+BackUpVBGMap2: ; 3f568
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, $6 ; BANK(w6_d000)
 	ld [rSVBK], a
 	ld hl, w6_d000
-	ld bc, $400
+	ld bc, $40 tiles ; VBGMap3 - VBGMap2
 	ld a, $2
 	call ByteFill
 	ld a, [rVBK]
@@ -8531,8 +8531,8 @@ Function3f568: ; 3f568
 	ld a, $1
 	ld [rVBK], a
 	ld de, w6_d000
-	ld hl, VBGMap0
-	ld bc, $0f40
+	ld hl, VBGMap0 ; VBGMap2
+	lb bc, BANK(BackUpVBGMap2), $40
 	call Request2bpp
 	pop af
 	ld [rVBK], a
@@ -8541,7 +8541,7 @@ Function3f568: ; 3f568
 	ret
 ; 3f594
 
-Function3f594: ; 3f594
+InitEnemyTrainer: ; 3f594
 	ld [TrainerClass], a
 	callba MobileFn_10606a
 	xor a
@@ -8596,7 +8596,7 @@ Function3f594: ; 3f594
 	ret
 ; 3f607
 
-Function3f607: ; 3f607
+InitEnemyWildmon: ; 3f607
 	ld a, $1
 	ld [wBattleMode], a
 	callba MobileFn_10605d
@@ -9360,8 +9360,8 @@ Function3fb54: ; 3fb54
 Function3fb6c: ; 3fb6c
 	call Function3fbf8
 	hlcoord 0, 12
-	ld b, $4
-	ld c, $12
+	ld b, 4
+	ld c, 18
 	call TextBox
 	callba MobileTextBorder
 	hlcoord 1, 5
@@ -9385,7 +9385,7 @@ Function3fb6c: ; 3fb6c
 	ld a, $31
 	ld [$ffad], a
 	hlcoord 2, 6
-	ld bc, $0606
+	lb bc, 6, 6
 	predef FillBox
 	xor a
 	ld [hWY], a
@@ -9421,13 +9421,13 @@ Function3fbd6: ; 3fbd6
 ; 3fbf8
 
 Function3fbf8: ; 3fbf8
-	call GetBattleBackpic
-	call Function3fc30
+	call GetTrainerBackpic
+	call CopyBackpic
 	ret
 ; 3fbff
 
 
-GetBattleBackpic: ; 3fbff
+GetTrainerBackpic: ; 3fbff
 ; Load the player character's backpic (6x6) into VRAM starting from $9310.
 
 ; Special exception for Dude.
@@ -9462,7 +9462,7 @@ GetBattleBackpic: ; 3fbff
 ; 3fc30
 
 
-Function3fc30: ; 3fc30
+CopyBackpic: ; 3fc30
 	ld a, [rSVBK]
 	push af
 	ld a, $6
@@ -9479,7 +9479,7 @@ Function3fc30: ; 3fc30
 	ld a, $31
 	ld [$ffad], a
 	hlcoord 2, 6
-	ld bc, $0606
+	lb bc, 6, 6
 	predef FillBox
 	ret
 ; 3fc5b
@@ -9490,10 +9490,10 @@ Function3fc5b: ; 3fc5b
 	ld [hMapObjectIndexBuffer], a
 	ld b, $6
 	ld e, $a8
-.asm_3fc65
+.outer_loop
 	ld c, $3
 	ld d, $40
-.asm_3fc69
+.inner_loop
 	ld [hl], d
 	inc hl
 	ld [hl], e
@@ -9508,7 +9508,7 @@ Function3fc5b: ; 3fc5b
 	add $8
 	ld d, a
 	dec c
-	jr nz, .asm_3fc69
+	jr nz, .inner_loop
 	ld a, [hMapObjectIndexBuffer]
 	add $3
 	ld [hMapObjectIndexBuffer], a
@@ -9516,7 +9516,7 @@ Function3fc5b: ; 3fc5b
 	add $8
 	ld e, a
 	dec b
-	jr nz, .asm_3fc65
+	jr nz, .outer_loop
 	ret
 ; 3fc8b
 
@@ -9524,7 +9524,7 @@ Function3fc5b: ; 3fc5b
 BattleStartMessage: ; 3fc8b
 	ld a, [wBattleMode]
 	dec a
-	jr z, .asm_3fcaa
+	jr z, .wild
 
 	ld de, SFX_SHINE
 	call PlaySFX
@@ -9536,11 +9536,11 @@ BattleStartMessage: ; 3fc8b
 	callba Battle_GetTrainerName
 
 	ld hl, WantsToBattleText
-	jr .asm_3fd0e
+	jr .PlaceBattleStartText
 
-.asm_3fcaa
-	call Function3da79
-	jr nc, .asm_3fcc2
+.wild
+	call BattleCheckEnemyShininess
+	jr nc, .not_shiny
 
 	xor a
 	ld [wcfca], a
@@ -9551,45 +9551,45 @@ BattleStartMessage: ; 3fc8b
 	ld de, ANIM_SEND_OUT_MON
 	call Call_PlayBattleAnim
 
-.asm_3fcc2
+.not_shiny
 	callba CheckSleepingTreeMon
-	jr c, .asm_3fceb
+	jr c, .skip_cry
 
 	callba CheckBattleScene
-	jr c, .asm_3fce0
+	jr c, .do_cry
 
 	hlcoord 12, 0
 	ld d, $0
 	ld e, $1
 	predef Functiond008e
-	jr .asm_3fceb
+	jr .skip_cry
 
-.asm_3fce0
+.do_cry
 	ld a, $0f
 	ld [CryTracks], a
 	ld a, [TempEnemyMonSpecies]
 	call PlayStereoCry
 
-.asm_3fceb
+.skip_cry
 	ld a, [BattleType]
 	cp BATTLETYPE_FISH
-	jr nz, .asm_3fcfd
+	jr nz, .NotFishing
 
 	callba MobileFn_106086
 
 	ld hl, HookedPokemonAttackedText
-	jr .asm_3fd0e
+	jr .PlaceBattleStartText
 
-.asm_3fcfd
+.NotFishing
 	ld hl, PokemonFellFromTreeText
 	cp BATTLETYPE_TREE
-	jr z, .asm_3fd0e
+	jr z, .PlaceBattleStartText
 	ld hl, WildCelebiAppearedText
 	cp BATTLETYPE_CELEBI
-	jr z, .asm_3fd0e
+	jr z, .PlaceBattleStartText
 	ld hl, WildPokemonAppearedText
 
-.asm_3fd0e
+.PlaceBattleStartText
 	push hl
 	callba Function2c000
 	pop hl

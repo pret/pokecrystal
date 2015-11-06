@@ -80,6 +80,6 @@ PewterPokeCenter1F_MapEventHeader:
 	db 5
 	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x1a2ee7, -1
 	person_event SPRITE_TEACHER, 6, 8, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TeacherScript_0x1a2eea, -1
-	person_event SPRITE_JIGGLYPUFF, 3, 1, SPRITEMOVEDATA_16, 0, 0, -1, -1, 0, 0, 0, JigglypuffScript_0x1a2eed, -1
+	person_event SPRITE_JIGGLYPUFF, 3, 1, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, 0, 0, JigglypuffScript_0x1a2eed, -1
 	person_event SPRITE_BUG_CATCHER, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, BugCatcherScript_0x1a2ef7, -1
 	person_event SPRITE_POKEFAN_M, 2, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, PokefanMScript_0x1a2efa, -1

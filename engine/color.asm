@@ -768,7 +768,7 @@ Function971a: ; 971a
 
 Function9729: ; 9729
 	push de
-	callba Function3da85
+	callba GetPartyMonDVs
 	ld c, l
 	ld b, h
 	ld a, [TempBattleMonSpecies]
@@ -779,7 +779,7 @@ Function9729: ; 9729
 
 Function973a: ; 973a
 	push de
-	callba Function3da97
+	callba GetEnemyMonDVs
 	ld c, l
 	ld b, h
 	ld a, [TempEnemyMonSpecies]

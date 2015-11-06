@@ -42,7 +42,7 @@ BattleCommand_MirrorMove: ; 373c9
 
 	ld a, [wc689]
 	push af
-	call BattleCommand0a
+	call BattleCommand_LowerSub
 	pop af
 	ld [wc689], a
 
