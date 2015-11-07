@@ -59,7 +59,7 @@ endr
 	call GetFarByte
 
 	; get the address of the move's PP and update the PP
-	ld hl, (MON_PP) - (MON_MOVES)
+	ld hl, MON_PP - MON_MOVES
 	add hl, de
 	ld [hl], a
 

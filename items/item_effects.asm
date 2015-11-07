@@ -1338,11 +1338,11 @@ Functioneed9: ; eed9
 ; eeeb
 
 Table_eeeb: ; eeeb
-	db HP_UP,    (MON_HP_EXP) - (MON_STAT_EXP)
-	db PROTEIN, (MON_ATK_EXP) - (MON_STAT_EXP)
-	db IRON,    (MON_DEF_EXP) - (MON_STAT_EXP)
-	db CARBOS,  (MON_SPD_EXP) - (MON_STAT_EXP)
-	db CALCIUM, (MON_SPC_EXP) - (MON_STAT_EXP)
+	db HP_UP,    MON_HP_EXP - MON_STAT_EXP
+	db PROTEIN, MON_ATK_EXP - MON_STAT_EXP
+	db IRON,    MON_DEF_EXP - MON_STAT_EXP
+	db CARBOS,  MON_SPD_EXP - MON_STAT_EXP
+	db CALCIUM, MON_SPC_EXP - MON_STAT_EXP
 ; eef5
 
 
@@ -2641,7 +2641,7 @@ Functionf652: ; f652
 	rept NUM_MOVES + 2 ; BattleMonPP - BattleMonMoves
 	inc de
 	endr
-	ld bc, (MON_PP) - (MON_MOVES)
+	ld bc, MON_PP - MON_MOVES
 	add hl, bc
 	ld a, [hl]
 	ld [de], a
@@ -3111,7 +3111,7 @@ Functionf84c: ; f84c
 	ld de, Buffer1
 	predef FillPP
 	pop hl
-	ld bc, (MON_PP) - (MON_MOVES)
+	ld bc, MON_PP - MON_MOVES
 	add hl, bc
 	ld de, Buffer1
 	ld b, 0
@@ -3279,7 +3279,7 @@ Functionf8ec: ; f8ec
 	pop hl
 
 	push bc
-	ld bc, (MON_PP) - (MON_MOVES)
+	ld bc, MON_PP - MON_MOVES
 	ld a, [MonType]
 	cp WILDMON
 	jr nz, .notwild

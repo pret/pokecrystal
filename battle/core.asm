@@ -4068,16 +4068,16 @@ InitBattleMon: ; 3da0d
 	ld de, BattleMonSpecies
 	ld bc, MON_ID
 	call CopyBytes
-	ld bc, (MON_DVS) - (MON_ID)
+	ld bc, MON_DVS - MON_ID
 	add hl, bc
 	ld de, BattleMonDVs
-	ld bc, (MON_PKRUS) - (MON_DVS)
+	ld bc, MON_PKRUS - MON_DVS
 	call CopyBytes
 rept 3
 	inc hl
 endr
 	ld de, BattleMonLevel
-	ld bc, (PARTYMON_STRUCT_LENGTH) - (MON_LEVEL)
+	ld bc, PARTYMON_STRUCT_LENGTH - MON_LEVEL
 	call CopyBytes
 	ld a, [BattleMonSpecies]
 	ld [TempBattleMonSpecies], a
@@ -4096,7 +4096,7 @@ endr
 	call CopyBytes
 	ld hl, BattleMonAttack
 	ld de, PlayerStats
-	ld bc, (PARTYMON_STRUCT_LENGTH) - (MON_ATK)
+	ld bc, PARTYMON_STRUCT_LENGTH - MON_ATK
 	call CopyBytes
 	call Function3ec2c
 	call BadgeStatBoosts
@@ -4160,16 +4160,16 @@ Function3dabd: ; 3dabd
 	ld de, EnemyMonSpecies
 	ld bc, MON_ID
 	call CopyBytes
-	ld bc, (MON_DVS) - (MON_ID)
+	ld bc, MON_DVS - MON_ID
 	add hl, bc
 	ld de, EnemyMonDVs
-	ld bc, (MON_PKRUS) - (MON_DVS)
+	ld bc, MON_PKRUS - MON_DVS
 	call CopyBytes
 rept 3
 	inc hl
 endr
 	ld de, EnemyMonLevel
-	ld bc, (PARTYMON_STRUCT_LENGTH) - (MON_LEVEL)
+	ld bc, PARTYMON_STRUCT_LENGTH - MON_LEVEL
 	call CopyBytes
 	ld a, [EnemyMonSpecies]
 	ld [CurSpecies], a
@@ -4182,7 +4182,7 @@ endr
 	call CopyBytes
 	ld hl, EnemyMonAttack
 	ld de, EnemyStats
-	ld bc, (PARTYMON_STRUCT_LENGTH) - (MON_ATK)
+	ld bc, PARTYMON_STRUCT_LENGTH - MON_ATK
 	call CopyBytes
 	call Function3ec30
 	ld hl, BaseType1
@@ -5868,7 +5868,7 @@ endr
 	push hl
 	call .asm_3e6a5
 	pop hl
-	ld bc, (MON_PP) - (MON_MOVES)
+	ld bc, MON_PP - MON_MOVES
 	add hl, bc
 	call .asm_3e6a5
 

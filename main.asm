@@ -1642,7 +1642,7 @@ LearnMove: ; 6508
 .learn
 	ld a, [wd262]
 	ld [hl], a
-	ld bc, (MON_PP) - (MON_MOVES)
+	ld bc, MON_PP - MON_MOVES
 	add hl, bc
 
 	push hl
@@ -9232,7 +9232,7 @@ Functione039: ; e039
 	cp [hl]
 	jr z, .asm_e131
 	ld hl, sPartyScratch1
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call AddNTimes
 	push hl
 	add hl, bc
@@ -9242,11 +9242,11 @@ Functione039: ; e039
 .asm_e11a
 	push bc
 	push hl
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call CopyBytes
 	pop hl
 	push hl
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	add hl, bc
 	pop de
 	pop bc
@@ -9357,7 +9357,7 @@ endr
 	srl c
 	pop hl
 	push bc
-	ld bc, (MON_DVS) - (MON_HP_EXP) + 1
+	ld bc, MON_DVS - MON_HP_EXP + 1
 	add hl, bc
 	pop bc
 	ld a, c
@@ -13536,12 +13536,12 @@ Function12cfe: ; 12cfe (4:6cfe)
 	ld [de], a
 	ld a, [CurPartyMon]
 	ld hl, sPartyScratch1
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld hl, DefaultFlypoint
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	ld a, BANK(sPartyScratch1)
 	call GetSRAMBank
 	call CopyBytes
@@ -26053,7 +26053,7 @@ Function28595: ; 28595
 
 .next
 	pop de
-	ld hl, (SCRATCHMON_STRUCT_LENGTH)
+	ld hl, SCRATCHMON_STRUCT_LENGTH
 	add hl, de
 	ld d, h
 	ld e, l
@@ -26916,13 +26916,13 @@ Function28b87: ; 28b87
 .asm_28c7b
 	ld hl, sPartyScratch1
 	ld a, [DefaultFlypoint]
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, BANK(sPartyScratch1)
 	call GetSRAMBank
 	ld d, h
 	ld e, l
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	add hl, bc
 	ld a, [DefaultFlypoint]
 	ld c, a
@@ -26932,7 +26932,7 @@ Function28b87: ; 28b87
 	cp $6
 	jr z, .asm_28ca6
 	push bc
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call CopyBytes
 	pop bc
 	jr .asm_28c96
@@ -26941,15 +26941,15 @@ Function28b87: ; 28b87
 	ld hl, sPartyScratch1
 	ld a, [PartyCount]
 	dec a
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call AddNTimes
 	push hl
 	ld hl, wc9f4
 	ld a, [wd003]
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call AddNTimes
 	pop de
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call CopyBytes
 	call CloseSRAM
 	ld hl, PlayerName
@@ -32105,7 +32105,7 @@ FindFirstAliveMon: ; 2ee2f
 	jr nz, .loop
 
 .okay
-	ld de, (MON_LEVEL) - (MON_HP)
+	ld de, MON_LEVEL - MON_HP
 	add hl, de
 	ld a, [hl]
 	ld [BattleMonLevel], a
@@ -33505,7 +33505,7 @@ FillMoves: ; 424e1
 	jr z, .NextMove
 	push hl
 	ld a, [hl]
-	ld hl, (MON_PP) - (MON_MOVES)
+	ld hl, MON_PP - MON_MOVES
 	add hl, de
 	push hl
 	dec a
@@ -34126,23 +34126,23 @@ Function4456e: ; 4456e
 	call Function44648
 	cp $a
 	jr nc, .asm_445be
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	ld hl, s0_a835
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld a, [CurPartyMon]
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	ld hl, sPartyScratch1
 	call AddNTimes
 	push hl
 	ld a, BANK(s0_a834)
 	call GetSRAMBank
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call CopyBytes
 	pop hl
 	xor a
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call ByteFill
 	ld a, MON_ITEM
 	call GetPartyParamLocation
@@ -34164,7 +34164,7 @@ Function445c0: ; 445c0 (11:45c0)
 	ld a, b
 	push bc
 	ld hl, s0_a835
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call AddNTimes
 	push hl
 	add hl, bc
@@ -34175,7 +34175,7 @@ Function445c0: ; 445c0 (11:45c0)
 	cp $9
 	jr z, .done
 	push bc
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call CopyBytes
 	pop bc
 	inc b
@@ -34184,7 +34184,7 @@ Function445c0: ; 445c0 (11:45c0)
 	ld h, d
 	ld l, e
 	xor a
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call ByteFill
 	ld hl, s0_a834
 	dec [hl]
@@ -34194,7 +34194,7 @@ Function445c0: ; 445c0 (11:45c0)
 ReadMailMessage: ; 445f4
 	ld a, b
 	ld hl, s0_a835
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -34206,22 +34206,22 @@ Function44607: ; 44607
 	call GetSRAMBank
 	push bc
 	ld a, b
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	ld hl, s0_a835
 	call AddNTimes
 	push hl
 	ld a, [CurPartyMon]
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	ld hl, sPartyScratch1
 	call AddNTimes
 	ld d, h
 	ld e, l
 	pop hl
 	push hl
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call CopyBytes
 	pop hl
-	ld de, (PARTYMON_STRUCT_LENGTH) - (MON_MOVES)
+	ld de, PARTYMON_STRUCT_LENGTH - MON_MOVES
 	add hl, de
 	ld d, [hl]
 	ld a, [CurPartyMon]
@@ -34260,7 +34260,7 @@ Function44654:: ; 44654
 	call GetSRAMBank
 	ld a, [CurPartyMon]
 	ld hl, sPartyScratch1
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -34363,11 +34363,11 @@ BackupScratchmons: ; 44725
 	call GetSRAMBank
 	ld hl, sPartyScratch1
 	ld de, sPartyScratch2
-	ld bc, 6 * (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, 6 * SCRATCHMON_STRUCT_LENGTH
 	call CopyBytes
 	ld hl, s0_a834
 	ld de, s0_aa0b
-	ld bc, 1 + 10 * (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, 1 + 10 * SCRATCHMON_STRUCT_LENGTH
 	call CopyBytes
 	jp CloseSRAM
 ; 44745
@@ -34377,11 +34377,11 @@ RestoreScratchmons: ; 44745 (11:4745)
 	call GetSRAMBank
 	ld hl, sPartyScratch2
 	ld de, sPartyScratch1
-	ld bc, 6 * (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, 6 * SCRATCHMON_STRUCT_LENGTH
 	call CopyBytes
 	ld hl, s0_aa0b
 	ld de, s0_a834
-	ld bc, 1 + 10 * (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, 1 + 10 * SCRATCHMON_STRUCT_LENGTH
 	call CopyBytes
 	jp CloseSRAM
 
@@ -34390,11 +34390,11 @@ DeleteScratchmons: ; 44765 (11:4765)
 	call GetSRAMBank
 	xor a
 	ld hl, sPartyScratch1
-	ld bc, 6 * (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, 6 * SCRATCHMON_STRUCT_LENGTH
 	call ByteFill
 	xor a
 	ld hl, s0_a834
-	ld bc, 1 + 10 * (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, 1 + 10 * SCRATCHMON_STRUCT_LENGTH
 	call ByteFill
 	jp CloseSRAM
 ; 44781 (11:4781)
@@ -34471,7 +34471,7 @@ InitMail: ; 0x447b9
 
 Function447da: ; 0x447da
 	dec a
-	ld hl, s0_a835 + (MON_HP) - 1
+	ld hl, s0_a835 + MON_HP - 1
 	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, BANK(s0_a834)
@@ -63031,7 +63031,7 @@ INCLUDE "engine/radio.asm"
 ReadPartyMonMail: ; b9229
 	ld a, [CurPartyMon]
 	ld hl, sPartyScratch1
-	ld bc, (SCRATCHMON_STRUCT_LENGTH)
+	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l

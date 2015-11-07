@@ -9,12 +9,12 @@ sScratch::
 
 SECTION "SRAM Bank 0", SRAM [$a600], BANK [0]
 
-sPartyScratch1:: ds 6 * (SCRATCHMON_STRUCT_LENGTH)
-sPartyScratch2:: ds 6 * (SCRATCHMON_STRUCT_LENGTH)
+sPartyScratch1:: ds 6 * SCRATCHMON_STRUCT_LENGTH
+sPartyScratch2:: ds 6 * SCRATCHMON_STRUCT_LENGTH
 s0_a834:: ds 1
-s0_a835:: ds 10 * (SCRATCHMON_STRUCT_LENGTH)
+s0_a835:: ds 10 * SCRATCHMON_STRUCT_LENGTH
 s0_aa0b:: ds 1
-s0_aa0c:: ds 10 * (SCRATCHMON_STRUCT_LENGTH)
+s0_aa0c:: ds 10 * SCRATCHMON_STRUCT_LENGTH
 
 sMysteryGiftItem:: ds 1
 s0_abe3:: ds 1
