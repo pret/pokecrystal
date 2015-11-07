@@ -20039,8 +20039,8 @@ Function1728f: ; 1728f (5:728f)
 	ld [CurPartySpecies], a
 	hlcoord 6, 3
 	ld d, $0
-	ld e, $5
-	predef Functiond008e
+	ld e, ANIM_MON_HATCH
+	predef AnimateFrontpic
 	pop af
 	ld [CurSpecies], a
 	ret
@@ -41215,8 +41215,8 @@ Function4d81e: ; 4d81e
 	ld [CurPartySpecies], a
 	hlcoord 7, 2
 	ld d, $0
-	ld e, $3
-	predef Functiond008e
+	ld e, ANIM_MON_TRADE
+	predef AnimateFrontpic
 	ret
 ; 4d860
 
@@ -42738,7 +42738,7 @@ Function4e289: ; 4e289 (13:6289)
 	hlcoord 0, 0
 	ld d, $0
 	ld e, $2
-	predef Functiond00a3
+	predef LoadMonAnimation
 	ld hl, wcf64
 	set 6, [hl]
 	ret
@@ -42793,7 +42793,7 @@ Function4e2f2: ; 4e2f2 (13:62f2)
 	ld a, [CurPartySpecies]
 	cp EGG
 	jr z, .asm_4e2fe
-	call Function4e53f
+	call CheckFaintedFrzSlp
 	jr c, Function4e305
 .asm_4e2fe
 	xor a
@@ -42941,7 +42941,7 @@ Function4e497: ; 4e497 (13:6497)
 	pop de
 	hlcoord 0, 0
 	ld d, $0
-	predef Functiond00a3
+	predef LoadMonAnimation
 	ld hl, wcf64
 	set 6, [hl]
 	ret
@@ -43016,21 +43016,21 @@ Function4e528: ; 4e528 (13:6528)
 	jp SkipNames
 
 
-Function4e53f: ; 4e53f
+CheckFaintedFrzSlp: ; 4e53f
 	ld hl, MON_HP
 	add hl, bc
 	ld a, [hli]
 	or [hl]
-	jr z, .asm_4e552
+	jr z, .fainted_frz_slp
 	ld hl, MON_STATUS
 	add hl, bc
 	ld a, [hl]
 	and (1 << FRZ) | SLP
-	jr nz, .asm_4e552
+	jr nz, .fainted_frz_slp
 	and a
 	ret
 
-.asm_4e552
+.fainted_frz_slp
 	scf
 	ret
 ; 4e554
@@ -43248,8 +43248,8 @@ _EvolutionAnimation: ; 4e607
 	ld [CurPartySpecies], a
 	hlcoord 7, 2
 	ld d, $0
-	ld e, $4
-	predef Functiond008e
+	ld e, ANIM_MON_EVOLVE
+	predef AnimateFrontpic
 
 	pop af
 	ld [CurPartySpecies], a
@@ -43393,7 +43393,7 @@ Function4e794: ; 4e794
 	call GetPartyLocation
 	ld b, h
 	ld c, l
-	callba Function4e53f
+	callba CheckFaintedFrzSlp
 	ret
 ; 4e7a6
 

@@ -217,10 +217,10 @@ LoadTileMapToTempTileMap:: ; 309d
 ; Load TileMap into TempTileMap
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(w2_d000)
+	ld a, BANK(TempTileMap)
 	ld [rSVBK], a
 	hlcoord 0, 0
-	ld de, w2_d000
+	decoord 0, 0, TempTileMap
 	ld bc, TileMapEnd - TileMap
 	call CopyBytes
 	pop af
@@ -241,9 +241,9 @@ LoadTempTileMapToTileMap:: ; 30bf
 ; Load TempTileMap into TileMap
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(w2_d000)
+	ld a, BANK(TempTileMap)
 	ld [rSVBK], a
-	ld hl, w2_d000
+	hlcoord 0, 0, TempTileMap
 	decoord 0, 0
 	ld bc, TileMapEnd - TileMap
 	call CopyBytes

@@ -60,3 +60,14 @@ ANIM_BG_PSYCHIC EQU $29
 
 ANIM_BG_VIBRATE_MON EQU $33
 ANIM_BG_WOBBLE_MON EQU $34
+
+	const_def
+	const ANIM_MON_SLOW    ; 0
+	const ANIM_MON_NORMAL  ; 1
+	const ANIM_MON_MENU    ; 2
+	const ANIM_MON_TRADE   ; 3
+	const ANIM_MON_EVOLVE  ; 4
+	const ANIM_MON_HATCH   ; 5
+	const ANIM_MON_UNUSED  ; 6
+	const ANIM_MON_EGG1    ; 7
+	const ANIM_MON_EGG2    ; 8

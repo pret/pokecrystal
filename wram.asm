@@ -2648,20 +2648,19 @@ wGameDataEnd::
 
 SECTION "Pic Animations", WRAMX, BANK [2]
 
-w2_d000::
+TempTileMap::
 ; 20x18 grid of 8x8 tiles
 	ds SCREEN_WIDTH * SCREEN_HEIGHT ; $168 = 360
-
-w2_d168:: ds 1
-w2_d169:: ds 1
-w2_d16a:: ds 1
-w2_d16b:: ds 1
-w2_d16c:: ds 1
-w2_d16d:: ds 1
+; PokeAnim Header
+wPokeAnimSceneIndex:: ds 1
+wPokeAnimPointer:: ds 2
+wPokeAnimSpecies:: ds 1
+wPokeAnimUnownLetter:: ds 1
+wPokeAnimSpeciesOrUnown:: ds 1
 w2_d16e:: ds 1
-w2_d16f:: ds 1
-w2_d170:: ds 1
-w2_d171:: ds 1
+wPokeAnimCoord:: ds 2
+wPokeAnimFrontpicHeight:: ds 1
+; PokeAnim Data
 w2_d172:: ds 1
 w2_d173:: ds 1
 w2_d174:: ds 1
@@ -2677,7 +2676,7 @@ w2_d17d:: ds 1
 w2_d17e:: ds 1
 w2_d17f:: ds 1
 w2_d180:: ds 1
-w2_d181:: ds 1
+wPokeAnimWaitCounter:: ds 1
 w2_d182:: ds 1
 w2_d183:: ds 1
 w2_d184:: ds 1
@@ -2685,6 +2684,8 @@ w2_d185:: ds 1
 w2_d186:: ds 1
 w2_d187:: ds 1
 w2_d188:: ds 1
+	ds 8
+wPokeAnimStructEnd::
 
 
 SECTION "WRAM 3", WRAMX, BANK [3]

@@ -92,7 +92,7 @@ Function3c000: ; 3c000
 	call SendOutPkmnText
 	call NewBattleMonStatus
 	call BreakAttraction
-	call Function3db5f
+	call SendOutPlayerMon
 	call EmptyBattleTextBox
 	call LoadTileMapToTempTileMap
 	call SetPlayerTurn
@@ -2928,7 +2928,7 @@ Function3d227: ; 3d227
 	call SendOutPkmnText
 	call NewBattleMonStatus
 	call BreakAttraction
-	call Function3db5f
+	call SendOutPlayerMon
 	call EmptyBattleTextBox
 	call LoadTileMapToTempTileMap
 	call SetPlayerTurn
@@ -2950,7 +2950,7 @@ Function3d2b3: ; 3d2b3
 	call SendOutPkmnText
 	call NewBattleMonStatus
 	call BreakAttraction
-	call Function3db5f
+	call SendOutPlayerMon
 	call EmptyBattleTextBox
 	call LoadTileMapToTempTileMap
 	call SetPlayerTurn
@@ -3755,31 +3755,31 @@ Function_SetEnemyPkmnAndSendOutAnimation: ; 3d7c7
 	call Call_PlayBattleAnim
 
 	call BattleCheckEnemyShininess
-	jr nc, .asm_3d800
+	jr nc, .not_shiny
 	ld a, 1 ; shiny anim
 	ld [wKickCounter], a
 	ld de, ANIM_SEND_OUT_MON
 	call Call_PlayBattleAnim
-.asm_3d800
+.not_shiny
 
 	ld bc, TempMonSpecies
-	callba Function4e53f
-	jr c, .asm_3d82c
+	callba CheckFaintedFrzSlp
+	jr c, .skip_cry
 	callba CheckBattleScene
-	jr c, .asm_3d821
+	jr c, .cry_no_anim
 	hlcoord 12, 0
 	ld d, $0
-	ld e, $0
-	predef Functiond008e
-	jr .asm_3d82c
+	ld e, ANIM_MON_SLOW
+	predef AnimateFrontpic
+	jr .skip_cry
 
-.asm_3d821
+.cry_no_anim
 	ld a, $f
 	ld [CryTracks], a
 	ld a, [TempEnemyMonSpecies]
 	call PlayStereoCry
 
-.asm_3d82c
+.skip_cry
 	call UpdateEnemyHUD
 	ld a, $1
 	ld [hBGMapMode], a
@@ -4207,7 +4207,7 @@ endr
 ; 3db32
 
 
-Function3db32: ; 3db32
+SwitchPlayerMon: ; 3db32
 	call ClearSprites
 	ld a, [CurBattleMon]
 	ld [LastPlayerMon], a
@@ -4218,7 +4218,7 @@ Function3db32: ; 3db32
 	call ResetPlayerStatLevels
 	call NewBattleMonStatus
 	call BreakAttraction
-	call Function3db5f
+	call SendOutPlayerMon
 	call EmptyBattleTextBox
 	call LoadTileMapToTempTileMap
 	ld hl, EnemyMonHP
@@ -4228,7 +4228,7 @@ Function3db32: ; 3db32
 ; 3db5f
 
 
-Function3db5f: ; 3db5f
+SendOutPlayerMon: ; 3db5f
 	ld hl, BattleMonDVs
 	predef GetUnownLetter
 	hlcoord 1, 5
@@ -4259,25 +4259,25 @@ Function3db5f: ; 3db5f
 	ld de, ANIM_SEND_OUT_MON
 	call Call_PlayBattleAnim
 	call BattleCheckPlayerShininess
-	jr nc, .asm_3dbbc
+	jr nc, .not_shiny
 	ld a, $1
 	ld [wKickCounter], a
 	ld de, ANIM_SEND_OUT_MON
 	call Call_PlayBattleAnim
 
-.asm_3dbbc
+.not_shiny
 	ld a, MON_SPECIES
 	call GetPartyParamLocation
 	ld b, h
 	ld c, l
-	callba Function4e53f
-	jr c, .asm_3dbd6
+	callba CheckFaintedFrzSlp
+	jr c, .statused
 	ld a, $f0
 	ld [CryTracks], a
 	ld a, [CurPartySpecies]
 	call PlayStereoCry
 
-.asm_3dbd6
+.statused
 	call UpdatePlayerHUD
 	ld a, $1
 	ld [hBGMapMode], a
@@ -5528,7 +5528,7 @@ BattleMonEntrance: ; 3e40b
 	call SendOutPkmnText
 	call NewBattleMonStatus
 	call BreakAttraction
-	call Function3db5f
+	call SendOutPlayerMon
 	call EmptyBattleTextBox
 	call LoadTileMapToTempTileMap
 	call SetPlayerTurn
@@ -5553,7 +5553,7 @@ PassedBattleMonEntrance: ; 3e459
 	xor a
 	ld [wd265], a
 	call ApplyStatLevelMultiplierOnAllStats
-	call Function3db5f
+	call SendOutPlayerMon
 	call EmptyBattleTextBox
 	call LoadTileMapToTempTileMap
 	call SetPlayerTurn
@@ -9556,15 +9556,15 @@ BattleStartMessage: ; 3fc8b
 	jr c, .skip_cry
 
 	callba CheckBattleScene
-	jr c, .do_cry
+	jr c, .cry_no_anim
 
 	hlcoord 12, 0
 	ld d, $0
-	ld e, $1
-	predef Functiond008e
+	ld e, ANIM_MON_NORMAL
+	predef AnimateFrontpic
 	jr .skip_cry
 
-.do_cry
+.cry_no_anim
 	ld a, $0f
 	ld [CryTracks], a
 	ld a, [TempEnemyMonSpecies]

@@ -6555,41 +6555,42 @@ BattleCommand_ForceSwitch: ; 3680f
 
 	ld a, [BattleType]
 	cp BATTLETYPE_SHINY
-	jp z, .asm_36969
+	jp z, .fail
 	cp BATTLETYPE_TRAP
-	jp z, .asm_36969
+	jp z, .fail
 	cp BATTLETYPE_CELEBI
-	jp z, .asm_36969
+	jp z, .fail
 	cp BATTLETYPE_SUICUNE
-	jp z, .asm_36969
+	jp z, .fail
 	ld a, [hBattleTurn]
 	and a
-	jp nz, .asm_368cd
+	jp nz, .force_player_switch
 	ld a, [AttackMissed]
 	and a
-	jr nz, .asm_36852 ; 36830 $20
+	jr nz, .missed ; 36830 $20
 	ld a, [wBattleMode]
 	dec a
-	jr nz, .asm_36869 ; 36836 $31
+	jr nz, .trainer ; 36836 $31
 	ld a, [CurPartyLevel]
 	ld b, a
 	ld a, [BattleMonLevel]
 	cp b
-	jr nc, .asm_36855 ; 36840 $13
+	jr nc, .wild_force_flee ; 36840 $13
 	add b
 	ld c, a
 	inc c
-.asm_36845
+.random_loop_wild
 	call BattleRandom
 	cp c
-	jr nc, .asm_36845 ; 36849 $fa
+	jr nc, .random_loop_wild ; 36849 $fa
 	srl b
 	srl b
 	cp b
-	jr nc, .asm_36855 ; 36850 $3
-.asm_36852
-	jp .asm_36969
-.asm_36855
+	jr nc, .wild_force_flee ; 36850 $3
+.missed
+	jp .fail
+
+.wild_force_flee
 	call UpdateBattleMonInParty
 	xor a
 	ld [wcfca], a
@@ -6597,13 +6598,14 @@ BattleCommand_ForceSwitch: ; 3680f
 	ld [wd232], a
 	call SetBattleDraw
 	ld a, [wPlayerMoveStruct + MOVE_ANIM]
-	jp .asm_36975
-.asm_36869
-	call CountEnemyAliveMons
-	jr c, .asm_368ca ; 3686c $5c
+	jp .succeed
+
+.trainer
+	call CheckEnemyHasMonToSwitchTo
+	jr c, .switch_fail ; 3686c $5c
 	ld a, [wc70f]
 	and a
-	jr z, .asm_368ca ; 36872 $56
+	jr z, .switch_fail ; 36872 $56
 	call UpdateEnemyMonInParty
 	ld a, $1
 	ld [wKickCounter], a
@@ -6613,19 +6615,20 @@ BattleCommand_ForceSwitch: ; 3680f
 	hlcoord 1, 0
 	lb bc, 4, 10
 	call ClearBox
-	ld c, $14
+	ld c, 20
 	call DelayFrames
 	ld a, [OTPartyCount]
 	ld b, a
 	ld a, [CurOTMon]
 	ld c, a
-.asm_3689a
+; select a random enemy mon to switch to
+.random_loop_trainer
 	call BattleRandom
 	and $7
 	cp b
-	jr nc, .asm_3689a ; 368a0 $f8
+	jr nc, .random_loop_trainer ; 368a0 $f8
 	cp c
-	jr z, .asm_3689a ; 368a3 $f5
+	jr z, .random_loop_trainer ; 368a3 $f5
 	push af
 	push bc
 	ld hl, OTPartyMon1HP
@@ -6634,7 +6637,7 @@ BattleCommand_ForceSwitch: ; 3680f
 	or [hl]
 	pop bc
 	pop de
-	jr z, .asm_3689a ; 368b1 $e7
+	jr z, .random_loop_trainer ; 368b1 $e7
 	ld a, d
 	inc a
 	ld [wc718], a
@@ -6646,41 +6649,41 @@ BattleCommand_ForceSwitch: ; 3680f
 	ld hl, SpikesDamage
 	jp CallBattleCore
 
-.asm_368ca
-	jp .asm_36969
+.switch_fail
+	jp .fail
 
-.asm_368cd
+.force_player_switch
 	ld a, [AttackMissed]
 	and a
-	jr nz, .asm_368f3
+	jr nz, .player_miss
 
 	ld a, [wBattleMode]
 	dec a
-	jr nz, .asm_36908
+	jr nz, .vs_trainer
 
 	ld a, [BattleMonLevel]
 	ld b, a
 	ld a, [CurPartyLevel]
 	cp b
-	jr nc, .asm_368f5
+	jr nc, .wild_succeed_playeristarget
 
 	add b
 	ld c, a
 	inc c
-.asm_368e6
+.wild_random_loop_playeristarget
 	call BattleRandom
 	cp c
-	jr nc, .asm_368e6
+	jr nc, .wild_random_loop_playeristarget
 
 	srl b
 	srl b
 	cp b
-	jr nc, .asm_368f5
+	jr nc, .wild_succeed_playeristarget
 
-.asm_368f3
-	jr .asm_36969
+.player_miss
+	jr .fail
 
-.asm_368f5
+.wild_succeed_playeristarget
 	call UpdateBattleMonInParty
 	xor a
 	ld [wcfca], a
@@ -6688,39 +6691,39 @@ BattleCommand_ForceSwitch: ; 3680f
 	ld [wd232], a
 	call SetBattleDraw
 	ld a, [wEnemyMoveStruct + MOVE_ANIM]
-	jr .asm_36975
+	jr .succeed
 
-.asm_36908
-	call Function36994
-	jr c, .asm_36969
+.vs_trainer
+	call CheckPlayerHasMonToSwitchTo
+	jr c, .fail
 
 	ld a, [wc70f]
 	cp $1
-	jr z, .asm_368ca
+	jr z, .switch_fail
 
 	call UpdateBattleMonInParty
 	ld a, $1
 	ld [wKickCounter], a
 	call AnimateCurrentMove
-	ld c, $14
+	ld c, 20
 	call DelayFrames
 	hlcoord 9, 7
 	lb bc, 5, 11
 	call ClearBox
-	ld c, $14
+	ld c, 20
 	call DelayFrames
 	ld a, [PartyCount]
 	ld b, a
 	ld a, [CurBattleMon]
 	ld c, a
-.asm_3693a
+.random_loop_trainer_playeristarget
 	call BattleRandom
 	and $7
 	cp b
-	jr nc, .asm_3693a
+	jr nc, .random_loop_trainer_playeristarget
 
 	cp c
-	jr z, .asm_3693a
+	jr z, .random_loop_trainer_playeristarget
 
 	push af
 	push bc
@@ -6730,11 +6733,11 @@ BattleCommand_ForceSwitch: ; 3680f
 	or [hl]
 	pop bc
 	pop de
-	jr z, .asm_3693a
+	jr z, .random_loop_trainer_playeristarget
 
 	ld a, d
 	ld [CurPartyMon], a
-	ld hl, Function3db32
+	ld hl, SwitchPlayerMon
 	call CallBattleCore
 
 	ld hl, DraggedOutText
@@ -6743,57 +6746,57 @@ BattleCommand_ForceSwitch: ; 3680f
 	ld hl, SpikesDamage
 	jp CallBattleCore
 
-.asm_36969
+.fail
 	call BattleCommand_LowerSub
 	call BattleCommand_MoveDelay
 	call BattleCommand_RaiseSub
 	jp PrintButItFailed
 
-.asm_36975
+.succeed
 	push af
 	call SetBattleDraw
 	ld a, $1
 	ld [wKickCounter], a
 	call AnimateCurrentMove
-	ld c, $14
+	ld c, 20
 	call DelayFrames
 	pop af
 
 	ld hl, FledInFearText
-	cp $2e
-	jr z, .asm_36991
+	cp ROAR
+	jr z, .do_text
 	ld hl, BlownAwayText
-.asm_36991
+.do_text
 	jp StdBattleTextBox
 ; 36994
 
 
-Function36994: ; 36994
+CheckPlayerHasMonToSwitchTo: ; 36994
 	ld a, [PartyCount]
 	ld d, a
 	ld e, 0
 	ld bc, PARTYMON_STRUCT_LENGTH
-.asm_3699d
+.loop
 	ld a, [CurBattleMon]
 	cp e
-	jr z, .asm_369ae
+	jr z, .next
 
 	ld a, e
 	ld hl, PartyMon1HP
 	call AddNTimes
 	ld a, [hli]
 	or [hl]
-	jr nz, .asm_369b4
+	jr nz, .not_fainted
 
-.asm_369ae
+.next
 	inc e
 	dec d
-	jr nz, .asm_3699d
+	jr nz, .loop
 
 	scf
 	ret
 
-.asm_369b4
+.not_fainted
 	and a
 	ret
 ; 369b6

@@ -284,8 +284,8 @@ Function108219: ; 108219
 	ld [CurPartySpecies], a
 	hlcoord 7, 2
 	ld d, $0
-	ld e, $3
-	predef Functiond008e
+	ld e, ANIM_MON_TRADE
+	predef AnimateFrontpic
 	ret
 ; 108229
 
@@ -293,8 +293,8 @@ Function108229: ; 108229
 	ld [CurPartySpecies], a
 	hlcoord 7, 2
 	ld d, $0
-	ld e, $3
-	predef Functiond00a3
+	ld e, ANIM_MON_TRADE
+	predef LoadMonAnimation
 	ret
 ; 108239
 
@@ -304,7 +304,7 @@ Function108239: ; 108239
 	call GetPokemonName
 	ld hl, StringBuffer1
 	pop de
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	ret
 ; 10824b

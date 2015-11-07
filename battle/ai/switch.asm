@@ -184,7 +184,7 @@ endr
 CheckAbleToSwitch: ; 34941
 	xor a
 	ld [wc717], a
-	call CountEnemyAliveMons
+	call CheckEnemyHasMonToSwitchTo
 	ret c
 
 	ld a, [EnemySubStatus1]
@@ -197,7 +197,7 @@ CheckAbleToSwitch: ; 34941
 
 	; Perish count is 1
 
-	call CountEnemyAliveMons
+	call CheckEnemyHasMonToSwitchTo
 	call Function34b77
 	call Function34b20
 	call Function34a85
@@ -212,7 +212,7 @@ CheckAbleToSwitch: ; 34941
 	ret
 
 .not_2
-	call CountEnemyAliveMons
+	call CheckEnemyHasMonToSwitchTo
 	sla c
 	sla c
 	ld b, $ff
@@ -284,7 +284,7 @@ CheckAbleToSwitch: ; 34941
 	cp 10
 	ret nc
 
-	call CountEnemyAliveMons
+	call CheckEnemyHasMonToSwitchTo
 	call Function34b77
 	call Function34b20
 	call Function34a85
@@ -300,7 +300,7 @@ CheckAbleToSwitch: ; 34941
 ; 349f4
 
 
-CountEnemyAliveMons: ; 349f4
+CheckEnemyHasMonToSwitchTo: ; 349f4
 	ld a, [OTPartyCount]
 	cp 2
 	jr c, .only_one
