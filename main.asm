@@ -31025,7 +31025,7 @@ AI_Redundant: ; 2c41a
 	jr .NotRedundant
 
 .Attract: ; 2c4fe
-	callba Function377f5
+	callba CheckOppositeGender
 	jr c, .Redundant
 	ld a, [PlayerSubStatus1]
 	bit SUBSTATUS_IN_LOVE, a

@@ -66,6 +66,7 @@ battle_struct: MACRO
 \1Type::
 \1Type1::     db
 \1Type2::     db
+\1StructEnd::
 ENDM
 
 box: MACRO
@@ -600,7 +601,8 @@ EnemyDamageTaken:: ; c684
 
 wc686:: ds 2
 wc688:: ds 1
-wKickCounter:: ds 1
+wKickCounter::
+wPresentPower:: ds 1
 wc68a::
 BattleScriptBuffer:: ; c68a
 	ds 40
@@ -703,6 +705,7 @@ wPayDayMoney:: ds 3 ; c6ec
 	ds 1
 
 wc6f0:: ds 2
+wEnemyBackupDVs:: ; used when enemy is transformed
 wc6f2:: ds 2
 AlreadyDisobeyed:: ; c6f4
 	ds 1

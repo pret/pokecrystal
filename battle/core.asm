@@ -1158,7 +1158,7 @@ ResidualDamage: ; 3c716
 	call SubtractHPFromUser
 	ld a, $1
 	ld [hBGMapMode], a
-	call Function3ccef
+	call RestoreHP
 	ld hl, LeechSeedSapsText
 	call StdBattleTextBox
 .asm_3c7a1
@@ -1394,7 +1394,7 @@ Function3c8eb: ; 3c8eb
 .asm_3c92d
 	call GetSixteenthMaxHP
 	call SwitchTurnCore
-	call Function3ccef
+	call RestoreHP
 	ld hl, BattleText_0x80880
 	jp StdBattleTextBox
 ; 3c93c
@@ -1531,7 +1531,7 @@ Function3c93c: ; 3c93c
 .asm_3ca14
 	call GetItemName
 	call SwitchTurnCore
-	call Function3ddc8
+	call ItemRecoveryAnim
 	call SwitchTurnCore
 	ld hl, BattleText_UserRecoveredPPUsing
 	jp StdBattleTextBox
@@ -2032,7 +2032,7 @@ Function3ccde: ; 3ccde
 ; 3ccef
 
 
-Function3ccef: ; 3ccef
+RestoreHP ; 3ccef
 	ld hl, EnemyMonMaxHP
 	ld a, [hBattleTurn]
 	and a
@@ -4461,21 +4461,21 @@ Function3dcf9: ; 3dcf9
 	jr z, .player_1
 	call SetPlayerTurn
 	call Function3dd2f
-	call Function3dde9
+	call UseHeldStatusHealingItem
 	call Function3de51
 	call SetEnemyTurn
 	call Function3dd2f
-	call Function3dde9
+	call UseHeldStatusHealingItem
 	jp Function3de51
 
 .player_1
 	call SetEnemyTurn
 	call Function3dd2f
-	call Function3dde9
+	call UseHeldStatusHealingItem
 	call Function3de51
 	call SetPlayerTurn
 	call Function3dd2f
-	call Function3dde9
+	call UseHeldStatusHealingItem
 	jp Function3de51
 ; 3dd2f
 
@@ -4519,7 +4519,7 @@ Function3dd2f: ; 3dd2f
 	ret nc
 
 .asm_3dd66
-	call Function3ddc8
+	call ItemRecoveryAnim
 	ld a, [hli]
 	ld [Buffer2], a
 	ld a, [hl]
@@ -4559,7 +4559,7 @@ Function3dd2f: ; 3dd2f
 .asm_3dda4
 	ld [wd10a], a
 	predef Functionc6e0
-Function3ddac:
+UseOpponentItem:
 	call RefreshBattleHuds
 	callab GetOpponentItem
 	ld a, [hl]
@@ -4571,7 +4571,7 @@ Function3ddac:
 ; 3ddc8
 
 
-Function3ddc8: ; 3ddc8
+ItemRecoveryAnim: ; 3ddc8
 	push hl
 	push de
 	push bc
@@ -4590,16 +4590,16 @@ Function3ddc8: ; 3ddc8
 	ret
 ; 3dde9
 
-Function3dde9: ; 3dde9
+UseHeldStatusHealingItem: ; 3dde9
 	callab GetOpponentItem
 	ld hl, .Statuses
-.asm_3ddf2
+.loop
 	ld a, [hli]
 	cp $ff
 	ret z
 	inc hl
 	cp b
-	jr nz, .asm_3ddf2
+	jr nz, .loop
 	dec hl
 	ld b, [hl]
 	ld a, BATTLE_VARS_STATUS_OPP
@@ -4620,26 +4620,26 @@ Function3dde9: ; 3dde9
 	and [hl]
 	res SUBSTATUS_NIGHTMARE, [hl]
 	ld a, b
-	cp $7f
-	jr nz, .asm_3de26
+	cp 1 << PSN | 1 << FRZ | 1 << BRN | SLP | 1 << PAR
+	jr nz, .skip_confuse
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVarAddr
 	res SUBSTATUS_CONFUSED, [hl]
 
-.asm_3de26
+.skip_confuse
 	ld hl, CalcEnemyStats
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3de31
+	jr z, .got_pointer
 	ld hl, CalcPlayerStats
 
-.asm_3de31
+.got_pointer
 	call SwitchTurnCore
 	ld a, BANK(CalcEnemyStats)
 	rst FarCall
 	call SwitchTurnCore
-	call Function3ddc8
-	call Function3ddac
+	call ItemRecoveryAnim
+	call UseOpponentItem
 	ld a, $1
 	and a
 	ret
@@ -4675,7 +4675,7 @@ Function3de51: ; 3de51
 	call GetBattleVarAddr
 	res SUBSTATUS_CONFUSED, [hl]
 	call GetItemName
-	call Function3ddc8
+	call ItemRecoveryAnim
 	ld hl, BattleText_0x80dab
 	call StdBattleTextBox
 	ld a, [hBattleTurn]

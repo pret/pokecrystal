@@ -166,8 +166,8 @@ BattleCommandPointers: ; 3fd28
 	dw BattleCommanda3 ; 34833
 	dw BattleCommand_AllStatsUp ; 36500
 	dw BattleCommanda5 ; 35165
-	dw BattleCommanda6 ; 365af
-	dw BattleCommanda7 ; 365c3
+	dw BattleCommand_RaiseSubNoAnim ; 365af
+	dw BattleCommand_LowerSubNoAnim ; 365c3
 	dw BattleCommanda8 ; 355b5
 	dw BattleCommand_ClearMissDamage ; 355d5 - a9
 	dw BattleCommand_MoveDelay ; 37e80

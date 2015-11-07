@@ -170,8 +170,8 @@ endm
 	command effect0xa3
 	command allstatsup
 	command effect0xa5
-	command effect0xa6
-	command effect0xa7
+	command raisesubnoanim
+	command lowersubnoanim
 	command effect0xa8
 	command clearmissdamage
 	command movedelay

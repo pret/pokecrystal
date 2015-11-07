@@ -331,7 +331,7 @@ EvasionUp:
 	lowersub
 	evasionup
 	statupanim
-	effect0xa7
+	lowersubnoanim
 	raisesub
 	statupmessage
 	statupfailtext

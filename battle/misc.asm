@@ -13,11 +13,11 @@ Functionfbd54: ; fbd54
 	jr Functionfbd91
 
 Functionfbd69: ; fbd69 (3e:7d69)
-	callba BattleCommanda6
+	callba BattleCommand_RaiseSubNoAnim
 	jr Functionfbd77
 
 Functionfbd71: ; fbd71 (3e:7d71)
-	callba BattleCommanda7
+	callba BattleCommand_LowerSubNoAnim
 
 Functionfbd77: ; fbd77 (3e:7d77)
 	xor a
