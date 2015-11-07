@@ -15,7 +15,7 @@ endm
 	command damagevariation
 	command checkhit
 	command lowersub
-	command effect0x0b
+	command hittargetnosub
 	command raisesub
 	command resulttext
 	command checkfaint
@@ -144,8 +144,8 @@ endm
 	command specialdefensedown2
 	command accuracydown2
 	command evasiondown2
-	command statmessageuser
-	command statmessagetarget
+	command statupmessage
+	command statdownmessage
 	command statupfailtext
 	command statdownfailtext
 	command effectchance

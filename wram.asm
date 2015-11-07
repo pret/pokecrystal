@@ -600,7 +600,7 @@ EnemyDamageTaken:: ; c684
 
 wc686:: ds 2
 wc688:: ds 1
-wc689:: ds 1
+wKickCounter:: ds 1
 wc68a::
 BattleScriptBuffer:: ; c68a
 	ds 40
@@ -1898,6 +1898,7 @@ wd264:: ds 1
 wFoundMatchingIDInParty::
 wNamedObjectIndexBuffer::
 wCurTMHM::
+wTypeMatchup::
 wd265:: ds 1
 wd266:: ds 1
 wd267:: ds 1

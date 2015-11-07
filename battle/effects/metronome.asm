@@ -5,14 +5,14 @@ BattleCommand_Metronome: ; 37418
 	call Function34548
 	jr nz, .asm_3742b
 
-	ld a, [wc689]
+	ld a, [wKickCounter]
 	push af
 	call BattleCommand_LowerSub
 	pop af
-	ld [wc689], a
+	ld [wKickCounter], a
 
 .asm_3742b
-	call Function37e36
+	call PlayPlayerMoveAnim_ClearHiID
 
 .GetMove
 	call BattleRandom

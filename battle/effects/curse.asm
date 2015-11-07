@@ -26,13 +26,13 @@ BattleCommand_Curse: ; 37588
 
 ; Attack
 	ld a, [bc]
-	cp 13 ; max
+	cp MAX_STAT_LEVEL
 	jr c, .raise
 
 ; Defense
 	inc bc
 	ld a, [bc]
-	cp 13 ; max
+	cp MAX_STAT_LEVEL
 	jr nc, .cantraise
 
 .raise
@@ -40,19 +40,19 @@ BattleCommand_Curse: ; 37588
 ; Raise Attack and Defense, and lower Speed.
 
 	ld a, $1
-	ld [wc689], a
+	ld [wKickCounter], a
 	call AnimateCurrentMove
-	ld a, $2
-	call Function36532
+	ld a, SPEED
+	call LowerStat
 	call BattleCommand_SwitchTurn
-	call BattleCommand_StatMessageTarget
+	call BattleCommand_StatDownMessage
 	call ResetMiss
 	call BattleCommand_SwitchTurn
 	call BattleCommand_AttackUp
-	call BattleCommand_StatMessageUser
+	call BattleCommand_StatUpMessage
 	call ResetMiss
 	call BattleCommand_DefenseUp
-	jp BattleCommand_StatMessageUser
+	jp BattleCommand_StatUpMessage
 
 
 .ghost
@@ -74,7 +74,7 @@ BattleCommand_Curse: ; 37588
 	call AnimateCurrentMove
 	ld hl, GetHalfMaxHP
 	call CallBattleCore
-	ld hl, Function3cc3f
+	ld hl, SubtractHPFromUser
 	call CallBattleCore
 	call UpdateUserInParty
 	ld hl, PutACurseText
@@ -89,7 +89,7 @@ BattleCommand_Curse: ; 37588
 
 ; Can't raise either stat.
 
-	ld b, $8 ; ABILITY
+	ld b, ABILITY + 1
 	call GetStatName
 	call AnimateFailedMove
 	ld hl, WontRiseAnymoreText

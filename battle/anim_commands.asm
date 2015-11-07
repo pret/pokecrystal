@@ -498,7 +498,7 @@ endr
 	ret
 
 BattleAnimCmd_EF: ; cc383 (33:4383)
-	ld hl, wc689
+	ld hl, wKickCounter
 	ld a, [hl]
 	and a
 	jr z, .asm_cc39a
@@ -568,7 +568,7 @@ endr
 
 BattleAnimCmd_F8: ; cc3d6 (33:43d6)
 	call GetBattleAnimByte
-	ld hl, wc689
+	ld hl, wKickCounter
 	cp [hl]
 	jr z, .jump
 
@@ -598,7 +598,7 @@ endr
 BattleAnimCmd_EE: ; cc3fa (33:43fa)
 	call GetBattleAnimByte
 	ld e, a
-	ld a, [wc689]
+	ld a, [wKickCounter]
 	and e
 	jr nz, .jump
 
@@ -1150,7 +1150,7 @@ BattleAnimCmd_E6: ; cc776 (33:4776)
 	ld a, [CurPartySpecies] ; CurPartySpecies
 	push af
 
-	ld a, [wc689]
+	ld a, [wKickCounter]
 	ld [CurPartySpecies], a ; CurPartySpecies
 
 	ld a, [hBattleTurn] ; $ff00+$e4

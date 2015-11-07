@@ -95,7 +95,7 @@ PredefPointers:: ; 856b
 	add_predef Function5108b
 	add_predef GetTrainerPic
 	add_predef DecompressPredef ; $40
-	add_predef Function347d3
+	add_predef CheckTypeMatchup
 	add_predef ConvertMon_1to2
 	add_predef Functionfb877
 	add_predef Functiond0000

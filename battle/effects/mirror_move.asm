@@ -40,11 +40,11 @@ BattleCommand_MirrorMove: ; 373c9
 	call Function34548
 	jr nz, .done
 
-	ld a, [wc689]
+	ld a, [wKickCounter]
 	push af
 	call BattleCommand_LowerSub
 	pop af
-	ld [wc689], a
+	ld [wKickCounter], a
 
 .done
 	call BattleCommand_MoveDelay

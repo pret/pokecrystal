@@ -4,6 +4,8 @@ EGG_LEVEL EQU 5
 NUM_MOVES EQU 4
 
 REST_TURNS EQU 2
+MAX_STAT_LEVEL EQU 13
+BASE_STAT_LEVEL EQU 7
 
 	const_def
 	const ATTACK
@@ -13,6 +15,8 @@ REST_TURNS EQU 2
 	const SP_DEFENSE
 	const ACCURACY
 	const EVASION
+	const ABILITY
+NUM_LEVEL_STATS EQU const_value
 
 ; move struct
 	const_def

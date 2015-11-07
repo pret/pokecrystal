@@ -208,7 +208,7 @@ Explosion:
 	damagevariation
 	checkhit
 	selfdestruct
-	effect0x0b
+	hittargetnosub
 	resulttext
 	checkfaint
 	criticaltext
@@ -255,7 +255,7 @@ AttackUp:
 	lowersub
 	statupanim
 	raisesub
-	statmessageuser
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -269,7 +269,7 @@ DefenseUp:
 	lowersub
 	statupanim
 	raisesub
-	statmessageuser
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -281,7 +281,7 @@ SpeedUp:
 	lowersub
 	statupanim
 	raisesub
-	statmessageuser
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -294,7 +294,7 @@ SpecialAttackUp:
 	lowersub
 	statupanim
 	raisesub
-	statmessageuser
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -306,7 +306,7 @@ SpecialDefenseUp:
 	lowersub
 	statupanim
 	raisesub
-	statmessageuser
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -318,7 +318,7 @@ AccuracyUp:
 	lowersub
 	statupanim
 	raisesub
-	statmessageuser
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -333,7 +333,7 @@ EvasionUp:
 	statupanim
 	effect0xa7
 	raisesub
-	statmessageuser
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -346,7 +346,7 @@ AttackUp2:
 	lowersub
 	statupanim
 	raisesub
-	statmessageuser
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -360,7 +360,7 @@ DefenseUp2:
 	lowersub
 	statupanim
 	raisesub
-	statmessageuser
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -373,7 +373,7 @@ SpeedUp2:
 	lowersub
 	statupanim
 	raisesub
-	statmessageuser
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -385,7 +385,7 @@ SpecialAttackUp2:
 	lowersub
 	statupanim
 	raisesub
-	statmessageuser
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -398,7 +398,7 @@ SpecialDefenseUp2:
 	lowersub
 	statupanim
 	raisesub
-	statmessageuser
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -410,7 +410,7 @@ AccuracyUp2:
 	lowersub
 	statupanim
 	raisesub
-	statmessageuser
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -422,7 +422,7 @@ EvasionUp2:
 	lowersub
 	statupanim
 	raisesub
-	statmessageuser
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -436,7 +436,7 @@ AttackDown:
 	lowersub
 	statdownanim
 	raisesub
-	statmessagetarget
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -451,7 +451,7 @@ DefenseDown:
 	lowersub
 	statdownanim
 	raisesub
-	statmessagetarget
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -465,7 +465,7 @@ SpeedDown:
 	lowersub
 	statdownanim
 	raisesub
-	statmessagetarget
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -478,7 +478,7 @@ SpecialAttackDown:
 	lowersub
 	statdownanim
 	raisesub
-	statmessagetarget
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -491,7 +491,7 @@ SpecialDefenseDown:
 	lowersub
 	statdownanim
 	raisesub
-	statmessagetarget
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -508,7 +508,7 @@ AccuracyDown:
 	lowersub
 	statdownanim
 	raisesub
-	statmessagetarget
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -522,7 +522,7 @@ EvasionDown:
 	lowersub
 	statdownanim
 	raisesub
-	statmessagetarget
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -536,7 +536,7 @@ AttackDown2:
 	lowersub
 	statdownanim
 	raisesub
-	statmessagetarget
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -550,7 +550,7 @@ DefenseDown2:
 	lowersub
 	statdownanim
 	raisesub
-	statmessagetarget
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -565,7 +565,7 @@ SpeedDown2:
 	lowersub
 	statdownanim
 	raisesub
-	statmessagetarget
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -578,7 +578,7 @@ SpecialAttackDown2:
 	lowersub
 	statdownanim
 	raisesub
-	statmessagetarget
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -591,7 +591,7 @@ SpecialDefenseDown2:
 	lowersub
 	statdownanim
 	raisesub
-	statmessagetarget
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -604,7 +604,7 @@ AccuracyDown2:
 	lowersub
 	statdownanim
 	raisesub
-	statmessagetarget
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -617,7 +617,7 @@ EvasionDown2:
 	lowersub
 	statdownanim
 	raisesub
-	statmessagetarget
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -641,7 +641,7 @@ AttackDownHit:
 	checkdestinybond
 	buildopponentrage
 	attackdown
-	statmessagetarget
+	statdownmessage
 	endmove
 
 Acid:
@@ -667,7 +667,7 @@ DefenseDownHit:
 	buildopponentrage
 	effectchance
 	defensedown
-	statmessagetarget
+	statdownmessage
 	endmove
 
 Bubblebeam:
@@ -693,7 +693,7 @@ SpeedDownHit:
 	checkdestinybond
 	buildopponentrage
 	speeddown
-	statmessagetarget
+	statdownmessage
 	endmove
 
 SpecialAttackDownHit:
@@ -715,7 +715,7 @@ SpecialAttackDownHit:
 	checkdestinybond
 	buildopponentrage
 	specialattackdown
-	statmessagetarget
+	statdownmessage
 	endmove
 
 PsychicM:
@@ -740,7 +740,7 @@ SpecialDefenseDownHit:
 	checkdestinybond
 	buildopponentrage
 	specialdefensedown
-	statmessagetarget
+	statdownmessage
 	endmove
 
 MudSlap:
@@ -764,7 +764,7 @@ AccuracyDownHit:
 	checkdestinybond
 	buildopponentrage
 	accuracydown
-	statmessagetarget
+	statdownmessage
 	endmove
 
 EvasionDownHit:
@@ -786,7 +786,7 @@ EvasionDownHit:
 	checkdestinybond
 	buildopponentrage
 	evasiondown
-	statmessagetarget
+	statdownmessage
 	endmove
 
 SteelWing:
@@ -809,7 +809,7 @@ DefenseUpHit:
 	checkdestinybond
 	buildopponentrage
 	defenseup
-	statmessageuser
+	statupmessage
 	endmove
 
 MetalClaw:
@@ -832,7 +832,7 @@ AttackUpHit:
 	checkdestinybond
 	buildopponentrage
 	attackup
-	statmessageuser
+	statupmessage
 	endmove
 
 Ancientpower:
@@ -966,7 +966,7 @@ MultiHit:
 	stab
 	damagevariation
 	clearmissdamage
-	effect0x0b
+	hittargetnosub
 	resulttext
 	checkfaint
 	criticaltext
@@ -994,7 +994,7 @@ PoisonMultiHit:
 	stab
 	damagevariation
 	clearmissdamage
-	effect0x0b
+	hittargetnosub
 	resulttext
 	checkfaint
 	criticaltext
@@ -1350,7 +1350,7 @@ Dig:
 	stab
 	damagevariation
 	checkhit
-	effect0x0b
+	hittargetnosub
 	raisesub
 	resulttext
 	checkfaint
@@ -1571,7 +1571,7 @@ TripleKick:
 	stab
 	damagevariation
 	clearmissdamage
-	effect0x0b
+	hittargetnosub
 	resulttext
 	checkfaint
 	criticaltext
@@ -1730,7 +1730,7 @@ Swagger:
 	raisesub
 	resulttext
 	switchturn
-	statmessageuser
+	statupmessage
 	switchturn
 	confusetarget
 	endmove
@@ -2041,7 +2041,7 @@ SkullBash:
 	kingsrock
 	endturn
 	defenseup
-	statmessageuser
+	statupmessage
 	endmove
 
 Twister:
@@ -2097,7 +2097,7 @@ FutureSight:
 	futuresight
 	damagevariation
 	checkhit
-	effect0x0b
+	hittargetnosub
 	resulttext
 	checkfaint
 	checkdestinybond
@@ -2211,7 +2211,7 @@ BeatUp:
 	damagecalc
 	damagevariation
 	clearmissdamage
-	effect0x0b
+	hittargetnosub
 	resulttext
 	checkfaint
 	criticaltext
@@ -2234,6 +2234,6 @@ DefenseCurl:
 	lowersub
 	statupanim
 	raisesub
-	statmessageuser
+	statupmessage
 	statupfailtext
 	endmove

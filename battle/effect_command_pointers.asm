@@ -11,7 +11,7 @@ BattleCommandPointers: ; 3fd28
 	dw BattleCommand_DamageVariation ; 34cfd
 	dw BattleCommand_CheckHit ; 34d32
 	dw BattleCommand_LowerSub ; 34eee
-	dw BattleCommand0b ; 34f60
+	dw BattleCommand_HitTargetNoSub ; 34f60
 	dw BattleCommand_RaiseSub ; 35004
 	dw BattleCommand_ResultText ; 35023
 	dw BattleCommand_CheckFaint ; 3505e
@@ -140,8 +140,8 @@ BattleCommandPointers: ; 3fd28
 	dw BattleCommand_SpecialDefenseDown2 ; 362d9
 	dw BattleCommand_AccuracyDown2 ; 362dd
 	dw BattleCommand_EvasionDown2 ; 362e1
-	dw BattleCommand_StatMessageUser ; 363b8
-	dw BattleCommand_StatMessageTarget ; 363e9
+	dw BattleCommand_StatUpMessage ; 363b8
+	dw BattleCommand_StatDownMessage ; 363e9
 	dw BattleCommand_StatUpFailText ; 3644c
 	dw BattleCommand_StatDownFailText ; 3646a
 	dw BattleCommand_EffectChance ; 34ecc

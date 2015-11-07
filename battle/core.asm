@@ -424,7 +424,7 @@ Function3c27c: ; 3c27c
 	call GetItemName
 	ld hl, BattleText_UsersStringBuffer1Activated
 	call StdBattleTextBox
-	callab BattleCommand_StatMessageUser
+	callab BattleCommand_StatUpMessage
 	pop af
 	bit SUBSTATUS_CONFUSED, a
 	ret nz
@@ -1133,7 +1133,7 @@ ResidualDamage: ; 3c716
 	ld c, l
 .did_toxic
 
-	call Function3cc3f
+	call SubtractHPFromUser
 .did_psn_brn
 
 	call HasUserFainted
@@ -1155,7 +1155,7 @@ ResidualDamage: ; 3c716
 	call SwitchTurnCore
 
 	call GetEighthMaxHP
-	call Function3cc3f
+	call SubtractHPFromUser
 	ld a, $1
 	ld [hBGMapMode], a
 	call Function3ccef
@@ -1175,7 +1175,7 @@ ResidualDamage: ; 3c716
 	ld de, ANIM_IN_NIGHTMARE
 	call Function3ee0f
 	call GetQuarterMaxHP
-	call Function3cc3f
+	call SubtractHPFromUser
 	ld hl, HasANightmareText
 	call StdBattleTextBox
 .asm_3c7c5
@@ -1193,7 +1193,7 @@ ResidualDamage: ; 3c716
 	ld de, ANIM_IN_NIGHTMARE
 	call Function3ee0f
 	call GetQuarterMaxHP
-	call Function3cc3f
+	call SubtractHPFromUser
 	ld hl, HurtByCurseText
 	call StdBattleTextBox
 
@@ -1334,7 +1334,7 @@ Function3c874: ; 3c874
 
 .asm_3c8d3
 	call GetSixteenthMaxHP
-	call Function3cc3f
+	call SubtractHPFromUser
 	ld hl, BattleText_UsersHurtByStringBuffer1
 	jr .asm_3c8e1
 
@@ -1827,7 +1827,7 @@ HandleWeather: ; 3cb9e
 	call Call_PlayBattleAnim
 	call SwitchTurnCore
 	call GetEighthMaxHP
-	call Function3cc3f
+	call SubtractHPFromUser
 
 	ld hl, SandstormHitsText
 	jp StdBattleTextBox
@@ -1863,19 +1863,19 @@ endr
 	dw BattleText_TheSandstormSubsided
 ; 3cc39
 
-Function3cc39: ; 3cc39
-	call Function3cc45
+SubtractHPFromTarget: ; 3cc39
+	call SubtractHP
 	jp Function3cd3c
 ; 3cc3f
 
-Function3cc3f: ; 3cc3f
+SubtractHPFromUser: ; 3cc3f
 ; Subtract HP from Pkmn
-	call Function3cc45
+	call SubtractHP
 	jp Function3cd36
 ; 3cc45
 
 
-Function3cc45: ; 3cc45
+SubtractHP: ; 3cc45
 	ld hl, BattleMonHP
 	ld a, [hBattleTurn]
 	and a
@@ -3480,7 +3480,7 @@ LookUpTheEffectivenessOfEveryMove: ; 3d5d7
 	ld a, BANK(Moves)
 	call FarCopyBytes
 	call SetEnemyTurn
-	callab HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
+	callab BattleCheckTypeMatchup
 	pop bc
 	pop de
 	pop hl
@@ -3516,13 +3516,13 @@ IsThePlayerPkmnTypesEffectiveAgainstOTPkmn: ; 3d618
 	ld a, [BattleMonType1]
 	ld [wPlayerMoveStruct + MOVE_TYPE], a
 	call SetPlayerTurn
-	callab HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
+	callab BattleCheckTypeMatchup
 	ld a, [wd265]
 	cp 10 + 1 ; 1.0 + 0.1
 	jr nc, .asm_3d663
 	ld a, [BattleMonType2]
 	ld [wPlayerMoveStruct + MOVE_TYPE], a
-	callab HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
+	callab BattleCheckTypeMatchup
 	ld a, [wd265]
 	cp 10 + 1 ; 1.0 + 0.1
 	jr nc, .asm_3d663
@@ -3749,7 +3749,7 @@ Function_SetEnemyPkmnAndSendOutAnimation: ; 3d7c7
 
 	xor a
 	ld [wcfca], a
-	ld [wc689], a
+	ld [wKickCounter], a
 	call SetEnemyTurn
 	ld de, ANIM_SEND_OUT_MON
 	call Call_PlayBattleAnim
@@ -3757,7 +3757,7 @@ Function_SetEnemyPkmnAndSendOutAnimation: ; 3d7c7
 	call BattleCheckEnemyShininess
 	jr nc, .asm_3d800
 	ld a, 1 ; shiny anim
-	ld [wc689], a
+	ld [wKickCounter], a
 	ld de, ANIM_SEND_OUT_MON
 	call Call_PlayBattleAnim
 .asm_3d800
@@ -3811,8 +3811,8 @@ endr
 ; 3d867
 
 ResetEnemyStatLevels: ; 3d867
-	ld a, 7
-	ld b, 8
+	ld a, BASE_STAT_LEVEL
+	ld b, NUM_LEVEL_STATS
 	ld hl, EnemyStatLevels
 .loop
 	ld [hli], a
@@ -4142,8 +4142,8 @@ GetEnemyMonDVs: ; 3da97
 ; 3dab1
 
 ResetPlayerStatLevels: ; 3dab1
-	ld a, 7
-	ld b, 8
+	ld a, BASE_STAT_LEVEL
+	ld b, NUM_LEVEL_STATS
 	ld hl, PlayerStatLevels
 .loop
 	ld [hli], a
@@ -4255,13 +4255,13 @@ Function3db5f: ; 3db5f
 	call SetPlayerTurn
 	xor a
 	ld [wcfca], a
-	ld [wc689], a
+	ld [wKickCounter], a
 	ld de, ANIM_SEND_OUT_MON
 	call Call_PlayBattleAnim
 	call BattleCheckPlayerShininess
 	jr nc, .asm_3dbbc
 	ld a, $1
-	ld [wc689], a
+	ld [wKickCounter], a
 	ld de, ANIM_SEND_OUT_MON
 	call Call_PlayBattleAnim
 
@@ -4351,7 +4351,7 @@ SpikesDamage: ; 3dc23
 	call StdBattleTextBox
 
 	call GetEighthMaxHP
-	call Function3cc39
+	call SubtractHPFromTarget
 
 	pop hl
 	call .hl
@@ -4627,15 +4627,15 @@ Function3dde9: ; 3dde9
 	res SUBSTATUS_CONFUSED, [hl]
 
 .asm_3de26
-	ld hl, Function365fd
+	ld hl, CalcEnemyStats
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_3de31
-	ld hl, Function365d7
+	ld hl, CalcPlayerStats
 
 .asm_3de31
 	call SwitchTurnCore
-	ld a, BANK(Function365fd)
+	ld a, BANK(CalcEnemyStats)
 	rst FarCall
 	call SwitchTurnCore
 	call Function3ddc8
@@ -4761,7 +4761,7 @@ endr
 	call GetItemName
 	ld hl, BattleText_UsersStringBuffer1Activated
 	call StdBattleTextBox
-	callab BattleCommand_StatMessageUser
+	callab BattleCommand_StatUpMessage
 	ret
 
 .asm_3def9
@@ -6170,18 +6170,18 @@ Function3e7c1: ; 3e7c1
 	call SetEnemyTurn
 	callab UpdateMoveData
 	call CheckSubstatus_RechargeChargedRampageBideRollout
-	jr nz, .asm_3e894
+	jr nz, .raging
 	xor a
 	ld [wc733], a
 
-.asm_3e894
+.raging
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	cp EFFECT_FURY_CUTTER
-	jr z, .asm_3e89f
+	jr z, .fury_cutter
 	xor a
 	ld [EnemyFuryCutterCount], a
 
-.asm_3e89f
+.fury_cutter
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	cp EFFECT_RAGE
 	jr z, .asm_3e8af
@@ -6929,11 +6929,11 @@ Function3ec30: ; 3ec30
 
 Function3ec31: ; 3ec31
 	ld [hBattleTurn], a
-	call Function3ec39
-	jp Function3ec76
+	call ApplyPrzEffectOnSpeed
+	jp ApplyBrnEffectOnAttack
 ; 3ec39
 
-Function3ec39: ; 3ec39
+ApplyPrzEffectOnSpeed: ; 3ec39
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_3ec5a
@@ -6979,7 +6979,7 @@ Function3ec39: ; 3ec39
 	ret
 ; 3ec76
 
-Function3ec76: ; 3ec76
+ApplyBrnEffectOnAttack: ; 3ec76
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_3ec93
@@ -9547,7 +9547,7 @@ BattleStartMessage: ; 3fc8b
 	ld a, 1
 	ld [hBattleTurn], a
 	ld a, 1
-	ld [wc689], a
+	ld [wKickCounter], a
 	ld de, ANIM_SEND_OUT_MON
 	call Call_PlayBattleAnim
 

@@ -176,7 +176,7 @@ AI_Types: ; 38635
 	push de
 	ld a, 1
 	ld [hBattleTurn], a
-	callab HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
+	callab BattleCheckTypeMatchup
 	pop de
 	pop bc
 	pop hl
@@ -431,7 +431,7 @@ AI_Smart_LeechHit: ; 387f7
 	push hl
 	ld a, 1
 	ld [hBattleTurn], a
-	callab HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
+	callab BattleCheckTypeMatchup
 	pop hl
 
 ; 60% chance to discourage this move if not very effective.
@@ -512,7 +512,7 @@ AI_Smart_LockOn: ; 3881d
 
 	push hl
 	push bc
-	callba HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
+	callba BattleCheckTypeMatchup
 	ld a, [wd265]
 	cp $a
 	pop bc
@@ -1384,7 +1384,7 @@ AI_Smart_Mimic: ; 38ba8
 
 	ld a, $1
 	ld [hBattleTurn], a
-	callab HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
+	callab BattleCheckTypeMatchup
 
 	ld a, [wd265]
 	cp $a
@@ -1504,7 +1504,7 @@ AI_Smart_Encore: ; 38c3b
 	push hl
 	ld a, [wEnemyMoveStruct + MOVE_TYPE]
 	ld hl, EnemyMonType1
-	predef Function347d3
+	predef CheckTypeMatchup
 
 	pop hl
 	ld a, [wd265]
@@ -1830,7 +1830,7 @@ AI_Smart_Conversion2: ; 38d98
 	xor a
 	ld [hBattleTurn], a
 
-	callab HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
+	callab BattleCheckTypeMatchup
 
 	ld a, [wd265]
 	cp $a
@@ -2496,7 +2496,7 @@ AI_Smart_HiddenPower: ; 3909e
 	
 ; Calculate Hidden Power's type and base power based on enemy's DVs.
 	callab HiddenPowerDamage
-	callab HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
+	callab BattleCheckTypeMatchup
 	pop hl
 
 ; Discourage Hidden Power if not very effective.
@@ -3498,7 +3498,7 @@ AI_Status: ; 39453
 	push de
 	ld a, 1
 	ld [hBattleTurn], a
-	callab HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
+	callab BattleCheckTypeMatchup
 	pop de
 	pop bc
 	pop hl

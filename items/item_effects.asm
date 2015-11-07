@@ -403,7 +403,7 @@ endr
 	jr c, .not_kurt_ball
 	ld a, POKE_BALL
 .not_kurt_ball
-	ld [wc689], a
+	ld [wKickCounter], a
 
 	ld de, ANIM_THROW_POKE_BALL
 	ld a, e
@@ -1567,7 +1567,7 @@ Functionf030: ; f030 (3:7030)
 	res 7, [hl]
 .asm_f04f
 	push bc
-	callba Function365d7
+	callba CalcPlayerStats
 	pop bc
 	ret
 
@@ -2344,7 +2344,7 @@ endr
 	callba CheckIfStatCanBeRaised
 	call WaitSFX
 
-	callba BattleCommand_StatMessageUser
+	callba BattleCommand_StatUpMessage
 	callba BattleCommand_StatUpFailText
 
 	ld a, [CurBattleMon]
@@ -2959,7 +2959,7 @@ UseBallInTrainerBattle: ; f7a0
 	ld a, d
 	ld [FXAnimIDHi], a
 	xor a
-	ld [wc689], a
+	ld [wKickCounter], a
 	ld [hBattleTurn], a
 	ld [wcfca], a
 	predef PlayBattleAnim
