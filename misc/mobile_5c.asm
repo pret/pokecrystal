@@ -251,418 +251,7 @@ Function17020c: ; 17020c
 	ret
 ; 170215
 
-BattleTowerBattle: ; 170215
-	xor a
-	ld [wJumptableIndex], a
-	call Function17022c
-	ret
-; 17021d
-
-Function17021d: ; 17021d
-	ret
-; 17021e
-
-Function17021e: ; 17021e
-	xor a
-	ld [wJumptableIndex], a
-	ld [wcf64], a
-	ld [wcf65], a
-	ld [wcf66], a
-	ret
-; 17022c
-
-Function17022c: ; 17022c
-.loop
-	call Jumpto_BattleTowerBattleFunction
-	call DelayFrame
-	ld a, [wJumptableIndex]
-	cp $1
-	jr nz, .loop
-	ret
-; 17023a
-
-Jumpto_BattleTowerBattleFunction: ; 17023a
-	ld a, [wJumptableIndex]
-	ld e, a
-	ld d, 0
-	ld hl, Jumptable_BattleTowerBattleFunctions
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
-; 170249
-
-Jumptable_BattleTowerBattleFunctions: ; 170249
-	dw RunBattleTowerBattle
-	dw SkipBattleTowerBattle
-; 17024d
-
-RunBattleTowerBattle: ; 17024d
-	ld a, [Options]
-	push af
-	ld hl, Options
-	set 6, [hl]
-	ld a, [InBattleTowerBattle]
-	push af
-	or $1
-	ld [InBattleTowerBattle], a
-	xor a
-	ld [wLinkMode], a
-	callba Mobile_HealParty
-	callba HealParty
-	call Function1702b7
-	call Function170bf7
-	predef StartBattle
-	callba LoadPokemonData
-	callba HealParty
-	ld a, [wBattleResult]
-	ld [ScriptVar], a
-	and a
-	jr nz, .lost
-	ld a, BANK(sNrOfBeatenBattleTowerTrainers)
-	call GetSRAMBank
-	ld a, [sNrOfBeatenBattleTowerTrainers]
-	ld [wNrOfBeatenBattleTowerTrainers], a ; wcf64
-	call CloseSRAM
-	ld hl, StringBuffer3
-	ld a, [wNrOfBeatenBattleTowerTrainers] ; wcf64
-	add $f7
-	ld [hli], a
-	ld a, $50
-	ld [hl], a
-
-.lost
-	pop af
-	ld [InBattleTowerBattle], a
-	pop af
-	ld [Options], a
-	ld a, $1
-	ld [wJumptableIndex], a
-	ret
-
-
-Function1702b7: ; 1702b7
-; Initialise the BattleTower-Trainer and his Pkmn
-	call CopyBTTrainer_FromBT_OTrainer_TowBT_OTTempCopy
-	ld de, wBT_OTTempCopy + wBT_OTTempCopy_Pkmn1Name ; $c643
-	ld c, PKMN_NAME_LENGTH
-	callba Function17d073
-	jr nc, .asm_1702db
-
-	ld a, [wBT_OTTempCopy + wBT_OTTempCopy_Pkmn1]
-	ld [wd265], a
-	call GetPokemonName
-	ld l, e
-	ld h, d
-	ld de, wBT_OTTempCopy + wBT_OTTempCopy_Pkmn1Name ; $c643
-	ld bc, PKMN_NAME_LENGTH
-	call CopyBytes
-
-.asm_1702db
-	ld de, wBT_OTTempCopy + wBT_OTTempCopy_Pkmn2Name ; $c67e
-	ld c, PKMN_NAME_LENGTH
-	callba Function17d073
-	jr nc, .asm_1702fc
-	ld a, [wBT_OTTempCopy + wBT_OTTempCopy_Pkmn2] ; [$c64e]
-	ld [wd265], a
-	call GetPokemonName
-	ld l, e
-	ld h, d
-	ld de, wBT_OTTempCopy + wBT_OTTempCopy_Pkmn2Name ; $c67e
-	ld bc, PKMN_NAME_LENGTH
-	call CopyBytes
-
-.asm_1702fc
-	ld de, wBT_OTTempCopy + wBT_OTTempCopy_Pkmn3Name ; $c686 + 51 = $c6b9
-	ld c, PKMN_NAME_LENGTH
-	callba Function17d073
-	jr nc, .asm_17031d
-	ld a, [wBT_OTTempCopy + wBT_OTTempCopy_Pkmn3] ; [$c689]
-	ld [wd265], a
-	call GetPokemonName
-	ld l, e
-	ld h, d
-	ld de, wBT_OTTempCopy + wBT_OTTempCopy_Pkmn3Name ; $c686 + 51 = $c6b9
-	ld bc, PKMN_NAME_LENGTH
-	call CopyBytes
-
-.asm_17031d
-	ld a, $50
-	ld [wBT_OTTempCopy + wBT_OTTempCopy_45], a ; $c64d
-	ld [wBT_OTTempCopy + wBT_OTTempCopy_80], a ; $c688
-	ld [wBT_OTTempCopy + wBT_OTTempCopy_BB], a ; $c68a + 57 = $c6c3
-	call Function170c98
-	ld de, wBT_OTTempCopy
-	ld c, $a
-	callba Function17d073
-	jr nc, .asm_17033d
-	ld hl, String_170426
-	jr .asm_170340
-
-.asm_17033d
-	ld hl, wBT_OTTempCopy ; 0xc608
-
-.asm_170340
-	ld de, wd26b
-	ld bc, $000a
-	call CopyBytes
-	ld a, $50
-	ld [de], a
-	ld hl, wBT_OTTempCopy + wBT_OTTempCopy_TrainerClass
-	ld a, [hli]
-	ld [OtherTrainerClass], a
-	ld a, $ea
-	ld [BGMapBuffer], a
-	ld a, $d3
-	ld [wcd21], a
-
-	; Copy Pkmn into Memory from the address in hl
-	ld de, OTPartyMon1Species
-	ld bc, OTPartyCount
-	ld a, BATTLETOWER_NROFPKMNS		; Number of Pkmn the BattleTower-Trainer has
-	ld [bc], a
-	inc bc
-.asm_170367
-	push af
-	ld a, [hl]
-	ld [bc], a
-	inc bc
-	push bc
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call CopyBytes
-	push de
-	ld a, [BGMapBuffer]
-	ld e, a
-	ld a, [wcd21]
-	ld d, a
-	ld bc, $000b
-	call CopyBytes
-	ld a, e
-	ld [BGMapBuffer], a
-	ld a, d
-	ld [wcd21], a
-	pop de
-	pop bc
-	pop af
-	dec a
-	and a
-	jr nz, .asm_170367
-	ld a, $ff
-	ld [bc], a
-	ret
-; 170394
-
-Function170394: ; 170394
-	ld hl, $c608 + 11
-	ld d, $3
-.asm_170399
-	push de
-	push hl
-	ld b, h
-	ld c, l
-	ld a, [hl]
-	and a
-	jr z, .asm_1703b1
-	cp $ff
-	jr z, .asm_1703b1
-	cp $fe
-	jr z, .asm_1703b1
-	cp $fd
-	jr z, .asm_1703b1
-	cp $fc
-	jr nz, .asm_1703b4
-
-.asm_1703b1
-	ld a, $eb
-	ld [hl], a
-
-.asm_1703b4
-	ld [CurSpecies], a
-	call GetBaseData
-	ld a, $5
-	call GetSRAMBank
-	ld a, [$b2fb]
-	call CloseSRAM
-	ld e, a
-	ld hl, $001f
-	add hl, bc
-	ld a, [hl]
-	cp $2
-	ld a, $2
-	jr c, .asm_1703d6
-	ld a, [hl]
-	cp e
-	jr c, .asm_1703d7
-	ld a, e
-
-.asm_1703d6
-	ld [hl], a
-
-.asm_1703d7
-	ld [CurPartyLevel], a
-	ld hl, $0002
-	add hl, bc
-	ld d, $3
-	ld a, [hli]
-	and a
-	jr z, .asm_1703ea
-	cp $fc
-	jr nc, .asm_1703ea
-	jr .asm_1703f4
-
-.asm_1703ea
-	dec hl
-	ld a, $1
-	ld [hli], a
-	xor a
-rept 2
-	ld [hli], a
-endr
-	ld [hl], a
-	jr .asm_1703ff
-
-.asm_1703f4
-	ld a, [hl]
-	cp $fc
-	jr c, .asm_1703fb
-	ld [hl], $0
-
-.asm_1703fb
-	inc hl
-	dec d
-	jr nz, .asm_1703f4
-
-.asm_1703ff
-	ld hl, $0024
-	add hl, bc
-	ld d, h
-	ld e, l
-	push hl
-	push de
-	ld hl, $000a
-	add hl, bc
-	ld b, $1
-	predef CalcPkmnStats
-	pop de
-	pop hl
-rept 2
-	dec de
-endr
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hl]
-	ld [de], a
-	pop hl
-	ld bc, $003b
-	add hl, bc
-	pop de
-	dec d
-	jp nz, .asm_170399
-	ret
-; 170426
-
-String_170426: ; 170426
-	db "CHRIS@"
-; 17042c
-
-Function17042c: ; 17042c
-	ld hl, OTPartyMon2ID
-	ld a, $7
-.asm_170431
-	push af
-	push hl
-	ld c, $12
-.asm_170435
-	ld a, [hli]
-	ld b, a
-	ld a, [hli]
-	and a
-	jr z, .asm_170451
-	cp $f
-	jr nc, .asm_17045b
-	push hl
-	ld hl, Unknown_170470
-	dec a
-	ld e, a
-	ld d, 0
-	add hl, de
-	ld a, [hl]
-	pop hl
-	cp b
-	jr c, .asm_17045b
-	jr z, .asm_17045b
-	jr .asm_170456
-
-.asm_170451
-	ld a, b
-	cp $fc
-	jr nc, .asm_17045b
-
-.asm_170456
-	dec c
-	jr nz, .asm_170435
-	jr .asm_170466
-
-.asm_17045b
-	pop de
-	push de
-	ld hl, Unknown_17047e
-	ld bc, $0024
-	call CopyBytes
-
-.asm_170466
-	pop hl
-	ld de, $00e0
-	add hl, de
-	pop af
-	dec a
-	jr nz, .asm_170431
-	ret
-; 170470
-
-Unknown_170470:
-	db $12, $24, $45, $45, $42, $42, $45, $42, $27, $27, $45, $27, $42, $24
-
-Unknown_17047e:
-	db $03, $04, $05, $08
-	db $03, $05, $0e, $06
-	db $03, $02, $00, $00
-	db $39, $07, $07, $04
-	db $00, $05, $04, $07
-	db $01, $05, $00, $00
-	db $0f, $05, $14, $07
-	db $05, $05, $11, $0c
-	db $0c, $06, $06, $04
-
-
-CopyBTTrainer_FromBT_OTrainer_TowBT_OTTempCopy: ; 1704a2
-; copy the BattleTower-Trainer data that lies at 'BT_OTrainer' to 'wBT_OTTempCopy'
-	ld a, [rSVBK]
-	push af
-	ld a, $3
-	ld [rSVBK], a
-	ld hl, BT_OTrainer ; $d100
-	ld de, wBT_OTTempCopy ; $c608
-	ld bc, BT_OTrainerEnd - BT_OTrainer ; $e0 = $a + $1 + 3*$3b + $24
-                                        ;	  = $a + $1 + BATTLETOWER_NROFPKMNS * (PARTYMON_STRUCT_LENGTH + PKMN_NAME_LENGTH) + BATTLETOWER_TRAINERDATALENGTH
-	call CopyBytes
-	pop af
-	ld [rSVBK], a
-	ld a, BANK(s1_be45)
-	call GetSRAMBank
-	ld a, $2
-	ld [s1_be45], a
-	ld hl, sNrOfBeatenBattleTowerTrainers
-	inc [hl]
-	call CloseSRAM
-SkipBattleTowerBattle: ; 1704c9
-	ret
-; 1704ca
-
+INCLUDE "misc/battle_tower_5c.asm"
 
 Function1704ca: ; 1704ca
 	ld a, [$be46]
@@ -1753,7 +1342,7 @@ Function170be4: ; 170be4
 	ret
 ; 170bf7
 
-Function170bf7: ; 170bf7
+Clears5_a89a: ; 170bf7
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $a89a
@@ -1881,46 +1470,46 @@ Function170c8b: ; 170c8b
 	ret
 ; 170c98
 
-Function170c98: ; 170c98
-	ld c, $3
-	ld hl, $c608 + 13
-.asm_170c9d
+CheckBTMonMovesForErrors: ; 170c98
+	ld c, BATTLETOWER_NROFPKMNS
+	ld hl, wBT_OTTempPkmn1Moves
+.loop
 	push hl
 	ld a, [hl]
-	cp $fc
-	jr c, .asm_170ca6
-	ld a, $1
+	cp NUM_ATTACKS + 1
+	jr c, .okay
+	ld a, POUND
 	ld [hl], a
 
-.asm_170ca6
+.okay
 	inc hl
-	ld b, $3
-.asm_170ca9
+	ld b, NUM_MOVES - 1
+.loop2
 	ld a, [hl]
 	and a
-	jr z, .asm_170cb1
-	cp $fc
-	jr c, .asm_170cb9
+	jr z, .loop3
+	cp NUM_ATTACKS + 1
+	jr c, .next
 
-.asm_170cb1
+.loop3
 	xor a
 	ld [hl], a
 	inc hl
 	dec b
-	jr nz, .asm_170cb1
-	jr .asm_170cbd
+	jr nz, .loop3
+	jr .done
 
-.asm_170cb9
+.next
 	inc hl
 	dec b
-	jr nz, .asm_170ca9
+	jr nz, .loop2
 
-.asm_170cbd
+.done
 	pop hl
-	ld de, $003b
+	ld de, PARTYMON_STRUCT_LENGTH + PKMN_NAME_LENGTH
 	add hl, de
 	dec c
-	jr nz, .asm_170c9d
+	jr nz, .loop
 	ret
 ; 170cc6
 

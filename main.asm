@@ -15809,7 +15809,7 @@ Function13a47: ; unreferenced
 	push bc
 	call Function13b71
 	push de
-	callba Function17d073
+	callba CheckStringForErrors
 	pop hl
 	pop bc
 	jr nc, .asm_13b0e
@@ -15847,7 +15847,7 @@ Function13a47: ; unreferenced
 	push bc
 	call Function13b71
 	push de
-	callba Function17d073
+	callba CheckStringForErrors
 	pop hl
 	jr nc, .asm_13b34
 	ld d, h

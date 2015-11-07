@@ -7543,7 +7543,7 @@ Function11b6b4: ; 11b6b4
 	ld [$c628], a
 	ld de, $c63d
 	ld c, $5
-	callba Function17d073
+	callba CheckStringForErrors
 	jr nc, .asm_11b70f
 	callba Function17d187
 
@@ -7557,7 +7557,7 @@ Function11b6b4: ; 11b6b4
 .asm_11b723
 	ld de, $c642
 	ld c, $5
-	callba Function17d073
+	callba CheckStringForErrors
 	jr nc, .asm_11b736
 	callba Function17d199
 
@@ -7571,7 +7571,7 @@ Function11b6b4: ; 11b6b4
 .asm_11b74a
 	ld de, $c647
 	ld c, $21
-	callba Function17d073
+	callba CheckStringForErrors
 	jr nc, .asm_11b75d
 	callba Function17d1ab
 
@@ -7590,7 +7590,7 @@ Function11b6b4: ; 11b6b4
 .asm_11b776
 	ld de, $c668
 	ld c, $5
-	callba Function17d073
+	callba CheckStringForErrors
 	jr nc, .asm_11b789
 	callba Function17d1c9
 

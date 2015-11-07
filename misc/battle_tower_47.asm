@@ -1,16 +1,16 @@
 BattleTowerText:: ; 11c000
-; Print text c for trainer [BT_OTrainer_TrainerClass]
+; Print text c for trainer [BT_OTTrainerClass]
 ; 1: Intro text
 ; 2: Player lost
 ; 3: Player won
 	ld a, [rSVBK]
 	push af
-	ld a, 3 ; BANK(BT_OTrainer_TrainerClass)
+	ld a, 3 ; BANK(BT_OTTrainerClass)
 	ld [rSVBK], a
 IF DEF(CRYSTAL11)
-	ld hl, BT_OTrainer_TrainerClass
+	ld hl, BT_OTTrainerClass
 ELSE
-	ld hl, BT_OTrainer_Name + 5
+	ld hl, BT_OTName + 5
 ENDC
 	ld a, [hl]
 	dec a

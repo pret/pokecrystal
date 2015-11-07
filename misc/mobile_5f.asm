@@ -178,48 +178,50 @@ HaveWantPals: ; 17cff3
 	RGB  0,  0,  0
 
 
-Function17d073: ; 17d073
-.asm_17d073
+CheckStringForErrors: ; 17d073
+; Valid character ranges:
+; $00, $05 - $13, $19 - $1c, $26 - $34, $3a - $3e, $40 - $48, $60 - $ff
+.loop
 	ld a, [de]
 	inc de
 	and a
-	jr z, .asm_17d0ae
+	jr z, .NextChar
 	cp $60
-	jr nc, .asm_17d0ae
+	jr nc, .NextChar
 	cp $4e
-	jr z, .asm_17d0ae
-	cp $50
-	jr z, .asm_17d0b1
+	jr z, .NextChar
+	cp "@"
+	jr z, .Done
 	cp $5
-	jr c, .asm_17d0ac
-	cp $14
-	jr c, .asm_17d0ae
+	jr c, .Fail
+	cp "<PLAY_G>"
+	jr c, .NextChar
 	cp $19
-	jr c, .asm_17d0ac
+	jr c, .Fail
 	cp $1d
-	jr c, .asm_17d0ae
+	jr c, .NextChar
 	cp $26
-	jr c, .asm_17d0ac
+	jr c, .Fail
 	cp $35
-	jr c, .asm_17d0ae
+	jr c, .NextChar
 	cp $3a
-	jr c, .asm_17d0ac
+	jr c, .Fail
 	cp $3f
-	jr c, .asm_17d0ae
+	jr c, .NextChar
 	cp $40
-	jr c, .asm_17d0ac
+	jr c, .Fail
 	cp $49
-	jr c, .asm_17d0ae
+	jr c, .NextChar
 
-.asm_17d0ac
+.Fail
 	scf
 	ret
 
-.asm_17d0ae
+.NextChar
 	dec c
-	jr nz, .asm_17d073
+	jr nz, .loop
 
-.asm_17d0b1
+.Done
 	and a
 	ret
 ; 17d0b3
