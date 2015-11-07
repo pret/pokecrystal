@@ -41,7 +41,7 @@ PredefPointers:: ; 856b
 	add_predef SentGetPkmnIntoFromBox
 	add_predef SentPkmnIntoBox
 	add_predef GiveEgg
-	add_predef Functionc6e0
+	add_predef AnimateHPBar
 	add_predef CalcPkmnStats
 	add_predef CalcPkmnStatC
 	add_predef CanLearnTMHMMove

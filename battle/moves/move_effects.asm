@@ -898,7 +898,7 @@ Bide:
 	doturn
 	usedmovetext
 	unleashenergy
-	effect0xa3
+	resettypematchup
 	checkhit
 	hittarget
 	effect0xa5
@@ -1398,7 +1398,7 @@ StaticDamage:
 	doturn
 	constantdamage
 	checkhit
-	effect0xa3
+	resettypematchup
 	hittarget
 	resulttext
 	checkfaint

@@ -981,7 +981,7 @@ AI_Smart_Whirlwind: ; 38a2a
 ; Consider player's type(s) if its moves are unknown.
 
 	push hl
-	callab Function3484e
+	callab CheckPlayerMoveTypeMatchups
 	ld a, [wc716]
 	cp 10 ; neutral
 	pop hl
@@ -1908,7 +1908,7 @@ AI_Smart_MeanLook: ; 38dfb
 
 ; Otherwise, discourage this move unless the player only has not very effective moves against the enemy.	
 	push hl
-	callab Function3484e
+	callab CheckPlayerMoveTypeMatchups
 	ld a, [wc716]
 	cp $b ; not very effective
 	pop hl
@@ -2169,7 +2169,7 @@ AI_Smart_PerishSong: ; 38f4a
 	jr nz, .yes
 
 	push hl
-	callab Function3484e
+	callab CheckPlayerMoveTypeMatchups
 	ld a, [wc716]
 	cp 10 ; 1.0
 	pop hl
@@ -2431,7 +2431,7 @@ AI_Smart_BatonPass: ; 39062
 ; Consider player's type(s) if its moves are unknown.
 
 	push hl
-	callab Function3484e
+	callab CheckPlayerMoveTypeMatchups
 	ld a, [wc716]
 	cp 10 ; neutral
 	pop hl

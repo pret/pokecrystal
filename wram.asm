@@ -1776,6 +1776,7 @@ Buffer4::
 wd1ed:: ds 1
 Buffer5::
 wd1ee:: ds 1
+Buffer6::
 wd1ef:: ds 1
 wd1f0:: ds 1
 wd1f1:: ds 1

@@ -4525,9 +4525,9 @@ Functionc699: ; c699
 	ret
 ; c6e0
 
-Functionc6e0: ; c6e0
+AnimateHPBar: ; c6e0
 	call WaitBGMap
-	call Functiond627
+	call _AnimateHPBar
 	call WaitBGMap
 	ret
 ; c6ea
@@ -7495,11 +7495,11 @@ Functiond61d: ; d61d (3:561d)
 	inc [hl]
 	ret
 
-Functiond627: ; d627
+_AnimateHPBar: ; d627
 	call Functiond65f
-	jr c, .asm_d645
+	jr c, .do_player
 	call Functiond670
-.asm_d62f
+.enemy_loop
 	push bc
 	push hl
 	call Functiond6e2
@@ -7513,12 +7513,12 @@ Functiond627: ; d627
 	pop hl
 	pop bc
 	pop af
-	jr nc, .asm_d62f
+	jr nc, .enemy_loop
 	ret
 
-.asm_d645
+.do_player
 	call Functiond670
-.asm_d648
+.player_loop
 	push bc
 	push hl
 	call Functiond6f5
@@ -7533,21 +7533,21 @@ Functiond627: ; d627
 	pop hl
 	pop bc
 	pop af
-	jr nc, .asm_d648
+	jr nc, .player_loop
 	ret
 ; d65f
 
 Functiond65f: ; d65f
 	ld a, [Buffer2]
 	and a
-	jr nz, .asm_d66e
+	jr nz, .player
 	ld a, [Buffer1]
 	cp $30
-	jr nc, .asm_d66e
+	jr nc, .player
 	and a
 	ret
 
-.asm_d66e
+.player
 	scf
 	ret
 ; d670

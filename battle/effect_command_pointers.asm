@@ -163,7 +163,7 @@ BattleCommandPointers: ; 3fd28
 	dw BattleCommand_Teleport ; 36778
 	dw BattleCommand_BeatUp ; 35461
 	dw BattleCommand_RageDamage ; 3527b
-	dw BattleCommanda3 ; 34833
+	dw BattleCommand_ResetTypeMatchup ; 34833
 	dw BattleCommand_AllStatsUp ; 36500
 	dw BattleCommanda5 ; 35165
 	dw BattleCommand_RaiseSubNoAnim ; 365af

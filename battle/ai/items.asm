@@ -44,7 +44,7 @@ DontSwitch: ; 38041
 ; 38045
 
 SwitchOften: ; 38045
-	callab Function34941
+	callab CheckAbleToSwitch
 	ld a, [wc717]
 	and $f0
 	jp z, DontSwitch
@@ -80,7 +80,7 @@ SwitchOften: ; 38045
 ; 38083
 
 SwitchRarely: ; 38083
-	callab Function34941
+	callab CheckAbleToSwitch
 	ld a, [wc717]
 	and $f0
 	jp z, DontSwitch
@@ -115,7 +115,7 @@ SwitchRarely: ; 38083
 ; 380c1
 
 SwitchSometimes: ; 380c1
-	callab Function34941
+	callab CheckAbleToSwitch
 	ld a, [wc717]
 	and $f0
 	jp z, DontSwitch
@@ -665,7 +665,7 @@ EnemyPotionFinish: ; 38436
 	xor a
 	ld [wd10a], a
 	call AIUsedItemSound
-	predef Functionc6e0
+	predef AnimateHPBar
 	jp AIUpdateHUD
 
 

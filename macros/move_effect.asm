@@ -167,7 +167,7 @@ endm
 	command teleport
 	command beatup
 	command ragedamage
-	command effect0xa3
+	command resettypematchup
 	command allstatsup
 	command effect0xa5
 	command raisesubnoanim

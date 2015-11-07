@@ -1842,7 +1842,7 @@ Functionf1db: ; f1db (3:71db)
 	call AddNTimes
 	ld a, $2
 	ld [wd10a], a
-	predef_jump Functionc6e0
+	predef_jump AnimateHPBar
 
 Functionf1f9: ; f1f9 (3:71f9)
 	call Functionf20b

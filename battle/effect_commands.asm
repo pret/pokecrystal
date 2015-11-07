@@ -1600,12 +1600,14 @@ CheckTypeMatchup: ; 347d3
 ; 34833
 
 
-BattleCommanda3: ; 34833
+BattleCommand_ResetTypeMatchup: ; 34833
+; Reset the type matchup multiplier to 1.0, if the type matchup is not 0.
+; If there is immunity in play, the move automatically misses.
 	call BattleCheckTypeMatchup
 	ld a, [wTypeMatchup]
 	and a
 	ld a, 10 ; 1.0
-	jr nz, .skip
+	jr nz, .reset
 	call ResetDamage
 	xor a
 	ld [TypeModifier], a
@@ -1613,673 +1615,12 @@ BattleCommanda3: ; 34833
 	ld [AttackMissed], a
 	ret
 
-.skip
+.reset
 	ld [wTypeMatchup], a
 	ret
 ; 3484e
 
-
-Function3484e: ; 3484e
-	push hl
-	push de
-	push bc
-	ld a, 10
-	ld [wc716], a
-	ld hl, PlayerUsedMoves
-	ld a, [hl]
-	and a
-	jr z, .unknown_moves
-
-	ld d, NUM_MOVES
-	ld e, 0
-.loop
-	ld a, [hli]
-	and a
-	jr z, .exit
-	push hl
-	dec a
-	ld hl, Moves + MOVE_POWER
-	call GetMoveAttr
-	and a
-	jr z, .next
-
-	inc hl
-	call GetMoveByte
-	ld hl, EnemyMonType
-	call CheckTypeMatchup
-	ld a, [wTypeMatchup]
-	cp 10 + 1 ; 1.0 + 0.1
-	jr nc, .super_effective
-	and a
-	jr z, .next
-	cp 10 ; 1.0
-	jr nc, .neutral
-
-.not_very_effective
-	ld a, e
-	cp 1 ; 0.1
-	jr nc, .next
-	ld e, 1
-	jr .next
-
-.neutral
-	ld e, 2
-	jr .next
-
-.super_effective
-	call Function34931
-	pop hl
-	jr .done
-
-.next
-	pop hl
-	dec d
-	jr nz, .loop
-
-.exit
-	ld a, e
-	cp 2
-	jr z, .done
-	call Function34939
-	ld a, e
-	and a
-	jr nz, .done
-	call Function34939
-	jr .done
-
-.unknown_moves
-	ld a, [BattleMonType1]
-	ld b, a
-	ld hl, EnemyMonType1
-	call CheckTypeMatchup
-	ld a, [wTypeMatchup]
-	cp 10 + 1 ; 1.0 + 0.1
-	jr c, .ok
-	call Function34931
-.ok
-	ld a, [BattleMonType2]
-	cp b
-	jr z, .ok2
-	call CheckTypeMatchup
-	ld a, [wTypeMatchup]
-	cp 10 + 1 ; 1.0 + 0.1
-	jr c, .ok2
-	call Function34931
-.ok2
-
-.done
-	call Function348de
-	pop bc
-	pop de
-	pop hl
-	ret
-; 348de
-
-
-Function348de: ; 348de
-	ld de, EnemyMonMoves
-	ld b, NUM_MOVES + 1
-	ld c, 0
-
-	ld a, [wTypeMatchup]
-	push af
-.loop
-	dec b
-	jr z, .exit
-
-	ld a, [de]
-	and a
-	jr z, .exit
-
-	inc de
-	dec a
-	ld hl, Moves + MOVE_POWER
-	call GetMoveAttr
-	and a
-	jr z, .loop
-
-	inc hl
-	call GetMoveByte
-	ld hl, BattleMonType1
-	call CheckTypeMatchup
-
-	ld a, [wTypeMatchup]
-	; immune
-	and a
-	jr z, .loop
-
-	; not very effective
-	inc c
-	cp 10
-	jr c, .loop
-
-	; neutral
-rept 5
-	inc c
-endr
-	cp 10
-	jr z, .loop
-
-	; super effective
-	ld c, 100
-	jr .loop
-
-.exit
-	pop af
-	ld [wTypeMatchup], a
-
-	ld a, c
-	and a
-	jr z, .doubledown ; double down
-	cp 5
-	jr c, Function34931 ; down
-	cp 100
-	ret c
-	jr Function34939 ; up
-
-.doubledown
-	call Function34931
-	
-	; fallthrough
-; 34931
-
-
-Function34931: ; 34931
-	ld a, [wc716]
-	dec a
-	ld [wc716], a
-	ret
-; 34939
-
-
-Function34939: ; 34939
-	ld a, [wc716]
-	inc a
-	ld [wc716], a
-	ret
-; 34941
-
-
-Function34941: ; 34941
-	xor a
-	ld [wc717], a
-	call CountEnemyAliveMons
-	ret c
-
-	ld a, [EnemySubStatus1]
-	bit SUBSTATUS_PERISH, a
-	jr z, .no_perish
-
-	ld a, [EnemyPerishCount]
-	cp 1
-	jr nz, .no_perish
-
-	; Perish count is 1
-
-	call CountEnemyAliveMons
-	call Function34b77
-	call Function34b20
-	call Function34a85
-
-	ld a, e
-	cp 2
-	jr nz, .asm_34971
-
-	ld a, [wc716]
-	add $30
-	ld [wc717], a
-	ret
-
-.asm_34971
-	call CountEnemyAliveMons
-	sla c
-	sla c
-	ld b, $ff
-
-.asm_3497a
-	inc b
-	sla c
-	jr nc, .asm_3497a
-
-	ld a, b
-	add $30
-	ld [wc717], a
-	ret
-
-.no_perish
-
-	call Function3484e
-	ld a, [wc716]
-	cp 11
-	ret nc
-
-	ld a, [LastEnemyCounterMove]
-	and a
-	jr z, .asm_349d2
-
-	call Function34a2a
-	ld a, [wc716]
-	and a
-	jr z, .asm_349d2
-
-	ld c, a
-	call Function34aa7
-	ld a, [wc716]
-	cp $ff
-	ret z
-
-	ld b, a
-	ld a, e
-	cp 2
-	jr z, .asm_349be
-
-	call Function3484e
-	ld a, [wc716]
-	cp 10
-	ret nc
-
-	ld a, b
-	add $10
-	ld [wc717], a
-	ret
-
-.asm_349be
-	ld c, $10
-	call Function3484e
-	ld a, [wc716]
-	cp 10
-	jr nc, .asm_349cc
-	ld c, $20
-
-.asm_349cc
-	ld a, b
-	add c
-	ld [wc717], a
-	ret
-
-.asm_349d2
-	call Function3484e
-	ld a, [wc716]
-	cp 10
-	ret nc
-
-	call CountEnemyAliveMons
-	call Function34b77
-	call Function34b20
-	call Function34a85
-
-	ld a, e
-	cp $2
-	ret nz
-
-	ld a, [wc716]
-	add $10
-	ld [wc717], a
-	ret
-; 349f4
-
-
-CountEnemyAliveMons: ; 349f4
-	ld a, [OTPartyCount]
-	cp 2
-	jr c, .only_one
-
-	ld d, a
-	ld e, 0
-	ld b, 1 << (PARTY_LENGTH - 1)
-	ld c, 0
-	ld hl, OTPartyMon1HP
-
-.loop
-	ld a, [CurOTMon]
-	cp e
-	jr z, .next
-
-	push bc
-	ld b, [hl]
-	inc hl
-	ld a, [hld]
-	or b
-	pop bc
-	jr z, .next
-
-	ld a, c
-	or b
-	ld c, a
-
-.next
-	srl b
-	push bc
-	ld bc, PARTYMON_STRUCT_LENGTH
-	add hl, bc
-	pop bc
-	inc e
-	dec d
-	jr nz, .loop
-
-	ld a, c
-	and a
-	jr nz, .more_than_one
-
-.only_one
-	scf
-	ret
-
-.more_than_one
-	and a
-	ret
-; 34a2a
-
-
-Function34a2a: ; 34a2a
-	ld hl, OTPartyMon1
-	ld a, [OTPartyCount]
-	ld b, a
-	ld c, 1 << (PARTY_LENGTH - 1)
-	ld d, 0
-	xor a
-	ld [wc716], a
-
-.asm_34a39
-	ld a, [CurOTMon]
-	cp d
-	push hl
-	jr z, .asm_34a77
-
-	push hl
-	push bc
-	ld bc, MON_HP
-	add hl, bc
-	pop bc
-	ld a, [hli]
-	or [hl]
-	pop hl
-	jr z, .asm_34a77
-
-	ld a, [hl]
-	ld [CurSpecies], a
-	call GetBaseData
-	ld a, [LastEnemyCounterMove]
-	dec a
-	ld hl, Moves + MOVE_POWER
-	call GetMoveAttr
-	and a
-	jr z, .asm_34a77
-
-	inc hl
-	call GetMoveByte
-	ld hl, BaseType
-	call CheckTypeMatchup
-	ld a, [wTypeMatchup]
-	and a
-	jr nz, .asm_34a77
-
-	ld a, [wc716]
-	or c
-	ld [wc716], a
-.asm_34a77
-	pop hl
-	dec b
-	ret z
-
-	push bc
-	ld bc, PARTYMON_STRUCT_LENGTH
-	add hl, bc
-	pop bc
-
-	inc d
-	srl c
-	jr .asm_34a39
-; 34a85
-
-
-Function34a85: ; 34a85
-	push bc
-	ld a, [OTPartyCount]
-	ld e, a
-	ld hl, OTPartyMon1HP
-	ld b, 1 << (PARTY_LENGTH - 1)
-	ld c, 0
-.asm_34a91
-	ld a, [hli]
-	or [hl]
-	jr z, .asm_34a98
-
-	ld a, b
-	or c
-	ld c, a
-
-.asm_34a98
-	srl b
-	push bc
-	ld bc, PartyMon2HP - (PartyMon1HP + 1)
-	add hl, bc
-	pop bc
-	dec e
-	jr nz, .asm_34a91
-
-	ld a, c
-	pop bc
-
-	and c
-	ld c, a
-
-	; fallthrough
-; 34aa7
-
-Function34aa7: ; 34aa7
-
-	ld a, $ff
-	ld [wc716], a
-	ld hl, OTPartyMon1Moves
-	ld b, 1 << (PARTY_LENGTH - 1)
-	ld d, 0
-	ld e, 0
-.asm_34ab5
-	ld a, b
-	and c
-	jr z, .asm_34b00
-
-	push hl
-	push bc
-	ld b, NUM_MOVES
-	ld c, 0
-.asm_34abf
-	ld a, [hli]
-	and a
-	push hl
-	jr z, .asm_34aef
-
-	dec a
-	ld hl, Moves + MOVE_POWER
-	call GetMoveAttr
-	and a
-	jr z, .asm_34ae9
-
-	inc hl
-	call GetMoveByte
-	ld hl, BattleMonType1
-	call CheckTypeMatchup
-	ld a, [wTypeMatchup]
-	cp 10
-	jr c, .asm_34ae9
-
-	ld e, 1
-	cp 11
-	jr c, .asm_34ae9
-
-	ld e, 2
-	jr .asm_34aef
-
-.asm_34ae9
-	pop hl
-	dec b
-	jr nz, .asm_34abf
-
-	jr .asm_34af0
-
-.asm_34aef
-	pop hl
-.asm_34af0
-	ld a, e
-	pop bc
-	pop hl
-	cp $2
-	jr z, .asm_34b0e
-
-	cp $1
-	jr nz, .asm_34b00
-
-	ld a, d
-	or b
-	ld d, a
-	jr .asm_34b00
-
-.asm_34b00
-	push bc
-	ld bc, PARTYMON_STRUCT_LENGTH
-	add hl, bc
-	pop bc
-	srl b
-	jr nc, .asm_34ab5
-
-	ld a, d
-	ld b, a
-	and a
-	ret z
-
-.asm_34b0e
-	push bc
-	sla b
-	sla b
-	ld c, $ff
-.asm_34b15
-	inc c
-	sla b
-	jr nc, .asm_34b15
-
-	ld a, c
-	ld [wc716], a
-	pop bc
-	ret
-; 34b20
-
-
-Function34b20: ; 34b20
-	push bc
-	ld hl, OTPartySpecies
-	ld b, 1 << (PARTY_LENGTH - 1)
-	ld c, 0
-
-.asm_34b28
-	ld a, [hli]
-	cp $ff
-	jr z, .asm_34b72
-
-	push hl
-	ld [CurSpecies], a
-	call GetBaseData
-	ld a, [LastEnemyCounterMove]
-	and a
-	jr z, .asm_34b4a
-
-	dec a
-	ld hl, Moves + MOVE_POWER
-	call GetMoveAttr
-	and a
-	jr z, .asm_34b4a
-
-	inc hl
-	call GetMoveByte
-	jr .asm_34b5d
-
-.asm_34b4a
-	ld a, [BattleMonType1]
-	ld hl, BaseType
-	call CheckTypeMatchup
-	ld a, [wTypeMatchup]
-	cp $b
-	jr nc, .asm_34b6d
-	ld a, [BattleMonType2]
-
-.asm_34b5d
-	ld hl, BaseType
-	call CheckTypeMatchup
-	ld a, [wTypeMatchup]
-	cp $b
-	jr nc, .asm_34b6d
-
-	ld a, b
-	or c
-	ld c, a
-
-.asm_34b6d
-	srl b
-	pop hl
-	jr .asm_34b28
-
-.asm_34b72
-	ld a, c
-	pop bc
-	and c
-	ld c, a
-	ret
-; 34b77
-
-
-Function34b77: ; 34b77
-	push bc
-	ld de, OTPartySpecies
-	ld b, 1 << (PARTY_LENGTH - 1)
-	ld c, 0
-	ld hl, OTPartyMon1HP
-
-.loop
-	ld a, [de]
-	inc de
-	cp $ff
-	jr z, .done
-
-	push hl
-	push bc
-	ld b, [hl]
-	inc hl
-	ld c, [hl]
-rept 2
-	inc hl
-endr
-	srl c
-	rl b
-	srl c
-	rl b
-	ld a, [hld]
-	cp c
-	ld a, [hl]
-	sbc b
-	pop bc
-	jr nc, .next
-
-	ld a, b
-	or c
-	ld c, a
-
-.next
-	srl b
-	pop hl
-	push bc
-	ld bc, PARTYMON_STRUCT_LENGTH
-	add hl, bc
-	pop bc
-	jr .loop
-
-.done
-	ld a, c
-	pop bc
-	and c
-	ld c, a
-	ret
-; 34bb1
-
+INCLUDE "battle/ai/switch.asm"
 
 TypeMatchup: ; 34bb1
 INCLUDE "battle/type_matchup.asm"
@@ -2779,11 +2120,11 @@ BattleCommand_HitTargetNoSub: ; 34f60
 	and a
 	ld de, PlayerRolloutCount
 	ld a, 1
-	jr z, .asm_34f76
+	jr z, .got_rollout_count
 	ld de, EnemyRolloutCount
 	ld a, 4
 
-.asm_34f76
+.got_rollout_count
 	ld [wcfca], a
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
@@ -3234,18 +2575,18 @@ BattleCommand_CheckDestinyBond: ; 351c0
 	ld a, [hld]
 	ld [Buffer2], a
 	ld a, [hl]
-	ld [wd1ec], a
+	ld [Buffer3], a
 	xor a
 	ld [hld], a
 	ld a, [hl]
-	ld [wd1ed], a
+	ld [Buffer4], a
 	xor a
 	ld [hl], a
-	ld [wd1ee], a
-	ld [wd1ef], a
+	ld [Buffer5], a
+	ld [Buffer6], a
 	ld h, b
 	ld l, c
-	predef Functionc6e0
+	predef AnimateHPBar
 	call RefreshBattleHuds
 
 	call BattleCommand_SwitchTurn
@@ -4449,7 +3790,7 @@ BattleCommand_Counter: ; 35813
 	cp EFFECT_COUNTER
 	ret z
 
-	call BattleCommanda3
+	call BattleCommand_ResetTypeMatchup
 	ld a, [wTypeMatchup]
 	and a
 	ret z
@@ -4633,12 +3974,12 @@ BattleCommand_PainSplit: ; 35926
 	ld a, $1
 	ld [wd10a], a
 	hlcoord 10, 9
-	predef Functionc6e0
+	predef AnimateHPBar
 	ld hl, EnemyMonHP
 	ld a, [hli]
-	ld [wd1ed], a
+	ld [Buffer4], a
 	ld a, [hli]
-	ld [wd1ec], a
+	ld [Buffer3], a
 	ld a, [hli]
 	ld [Buffer2], a
 	ld a, [hl]
@@ -4648,7 +3989,7 @@ BattleCommand_PainSplit: ; 35926
 	ld [wd10a], a
 	call ResetDamage
 	hlcoord 2, 2
-	predef Functionc6e0
+	predef AnimateHPBar
 	callba Function178000
 
 	ld hl, SharedPainText
@@ -4661,9 +4002,9 @@ BattleCommand_PainSplit: ; 35926
 	ld [Buffer2], a
 	ld a, [hld]
 	ld b, a
-	ld [wd1ec], a
+	ld [Buffer3], a
 	ld a, [hl]
-	ld [wd1ed], a
+	ld [Buffer4], a
 rept 2
 	dec de
 endr
@@ -4708,10 +4049,10 @@ Function359ac: ; 359ac
 .asm_359c2
 	ld a, c
 	ld [hld], a
-	ld [wd1ee], a
+	ld [Buffer5], a
 	ld a, b
 	ld [hli], a
-	ld [wd1ef], a
+	ld [Buffer6], a
 	ret
 ; 359cd
 
@@ -5331,20 +4672,20 @@ Function35d1c: ; 35d1c
 	ld a, [hld]
 	ld b, a
 	ld a, [EnemyMonHP + 1]
-	ld [wd1ec], a
+	ld [Buffer3], a
 	sub b
 	ld [EnemyMonHP + 1], a
 	ld a, [hl]
 	ld b, a
 	ld a, [EnemyMonHP]
-	ld [wd1ec + 1], a
+	ld [Buffer4], a
 	sbc b
 	ld [EnemyMonHP], a
 	jr nc, .asm_35d59
 
-	ld a, [wd1ed]
+	ld a, [Buffer4]
 	ld [hli], a
-	ld a, [wd1ec]
+	ld a, [Buffer3]
 	ld [hl], a
 
 	xor a
@@ -5360,13 +4701,13 @@ Function35d1c: ; 35d1c
 	ld [Buffer1], a
 	ld hl, EnemyMonHP
 	ld a, [hli]
-	ld [wd1ef], a
+	ld [Buffer6], a
 	ld a, [hl]
-	ld [wd1ee], a
+	ld [Buffer5], a
 	hlcoord 2, 2
 	xor a
 	ld [wd10a], a
-	predef Functionc6e0
+	predef AnimateHPBar
 .asm_35d7b
 	jp RefreshBattleHuds
 ; 35d7e
@@ -5391,28 +4732,28 @@ Function35d7e: ; 35d7e
 	ld a, [hld]
 	ld b, a
 	ld a, [BattleMonHP + 1]
-	ld [wd1ec], a
+	ld [Buffer3], a
 	sub b
 	ld [BattleMonHP + 1], a
-	ld [wd1ee], a
+	ld [Buffer5], a
 	ld b, [hl]
 	ld a, [BattleMonHP]
-	ld [wd1ec + 1], a
+	ld [Buffer4], a
 	sbc b
 	ld [BattleMonHP], a
-	ld [wd1ee + 1], a
+	ld [Buffer6], a
 	jr nc, .asm_35dc5
 
-	ld a, [wd1ec + 1]
+	ld a, [Buffer4]
 	ld [hli], a
-	ld a, [wd1ec]
+	ld a, [Buffer3]
 	ld [hl], a
 	xor a
 
 	ld hl, BattleMonHP
 	ld [hli], a
 	ld [hl], a
-	ld hl, wd1ee
+	ld hl, Buffer5
 	ld [hli], a
 	ld [hl], a
 
@@ -5425,7 +4766,7 @@ Function35d7e: ; 35d7e
 	hlcoord 10, 9
 	ld a, $1
 	ld [wd10a], a
-	predef Functionc6e0
+	predef AnimateHPBar
 .asm_35ddd
 	jp RefreshBattleHuds
 ; 35de0
@@ -5826,7 +5167,7 @@ SapHealth: ; 36011
 	ld hl, EnemyMonHP
 	ld de, EnemyMonMaxHP
 .battlemonhp
-	ld bc, wd1ed
+	ld bc, Buffer4
 	ld a, [hli]
 	ld [bc], a
 	ld a, [hl]
@@ -5843,12 +5184,12 @@ SapHealth: ; 36011
 	ld b, [hl]
 	add b
 	ld [hld], a
-	ld [wd1ee], a
+	ld [Buffer5], a
 	ld a, [hDividend]
 	ld b, [hl]
 	adc b
 	ld [hli], a
-	ld [wd1ef], a
+	ld [Buffer6], a
 	jr c, .okay2 ; 0x36056 $c
 	ld a, [hld]
 	ld b, a
@@ -5864,11 +5205,11 @@ SapHealth: ; 36011
 .okay2
 	ld a, [de]
 	ld [hld], a
-	ld [wd1ee], a
+	ld [Buffer5], a
 	dec de
 	ld a, [de]
 	ld [hli], a
-	ld [wd1ef], a
+	ld [Buffer6], a
 	inc de
 .okay3
 	ld a, [hBattleTurn]
@@ -5880,7 +5221,7 @@ SapHealth: ; 36011
 	xor a
 .hp_bar
 	ld [wd10a], a
-	predef Functionc6e0
+	predef AnimateHPBar
 	call RefreshBattleHuds
 	jp UpdateBattleMonInParty
 ; 3608c
@@ -8019,20 +7360,20 @@ rept 2
 	dec hl
 endr
 	ld a, [hl]
-	ld [wd1ec], a
+	ld [Buffer3], a
 	sub c
 	ld [hld], a
-	ld [wd1ee], a
+	ld [Buffer5], a
 	ld a, [hl]
-	ld [wd1ed], a
+	ld [Buffer4], a
 	sbc b
 	ld [hl], a
-	ld [wd1ef], a
+	ld [Buffer6], a
 	jr nc, .asm_36cfe
 	xor a
 	ld [hli], a
 	ld [hl], a
-	ld hl, wd1ee
+	ld hl, Buffer5
 	ld [hli], a
 	ld [hl], a
 .asm_36cfe
@@ -8045,7 +7386,7 @@ endr
 	xor a
 .asm_36d0c
 	ld [wd10a], a
-	predef Functionc6e0
+	predef AnimateHPBar
 	call RefreshBattleHuds
 	ld hl, RecoilText
 	jp StdBattleTextBox
@@ -10097,7 +9438,7 @@ BattleCommand_MirrorCoat: ; 37c95
 	cp EFFECT_MIRROR_COAT
 	ret z
 
-	call BattleCommanda3
+	call BattleCommand_ResetTypeMatchup
 	ld a, [wTypeMatchup]
 	and a
 	ret z

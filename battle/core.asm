@@ -1865,13 +1865,13 @@ endr
 
 SubtractHPFromTarget: ; 3cc39
 	call SubtractHP
-	jp Function3cd3c
+	jp UpdateHPBar
 ; 3cc3f
 
 SubtractHPFromUser: ; 3cc3f
 ; Subtract HP from Pkmn
 	call SubtractHP
-	jp Function3cd36
+	jp UpdateHPBarBattleHuds
 ; 3cc45
 
 
@@ -2040,20 +2040,20 @@ RestoreHP ; 3ccef
 	ld hl, BattleMonMaxHP
 .ok
 	ld a, [hli]
-	ld [Buffer1 + 1], a
+	ld [Buffer2], a
 	ld a, [hld]
-	ld [Buffer1 + 0], a
+	ld [Buffer1], a
 	dec hl
 	ld a, [hl]
-	ld [Buffer1 + 2], a
+	ld [Buffer3], a
 	add c
 	ld [hld], a
-	ld [Buffer1 + 4], a
+	ld [Buffer5], a
 	ld a, [hl]
-	ld [Buffer1 + 3], a
+	ld [Buffer4], a
 	adc b
 	ld [hli], a
-	ld [Buffer1 + 5], a
+	ld [Buffer6], a
 
 	ld a, [Buffer1]
 	ld c, a
@@ -2066,23 +2066,23 @@ RestoreHP ; 3ccef
 	jr c, .asm_3cd2d
 	ld a, b
 	ld [hli], a
-	ld [Buffer1 + 5], a
+	ld [Buffer6], a
 	ld a, c
 	ld [hl], a
-	ld [Buffer1 + 4], a
+	ld [Buffer5], a
 .asm_3cd2d
 
 	call SwitchTurnCore
-	call Function3cd36
+	call UpdateHPBarBattleHuds
 	jp SwitchTurnCore
 ; 3cd36
 
-Function3cd36: ; 3cd36
-	call Function3cd3c
+UpdateHPBarBattleHuds: ; 3cd36
+	call UpdateHPBar
 	jp UpdateBattleHuds
 ; 3cd3c
 
-Function3cd3c: ; 3cd3c
+UpdateHPBar: ; 3cd3c
 	hlcoord 10, 9
 	ld a, [hBattleTurn]
 	and a
@@ -2093,7 +2093,7 @@ Function3cd3c: ; 3cd3c
 .ok
 	push bc
 	ld [wd10a], a
-	predef Functionc6e0
+	predef AnimateHPBar
 	pop bc
 	ret
 ; 3cd55
@@ -4558,7 +4558,7 @@ Function3dd2f: ; 3dd2f
 
 .asm_3dda4
 	ld [wd10a], a
-	predef Functionc6e0
+	predef AnimateHPBar
 UseOpponentItem:
 	call RefreshBattleHuds
 	callab GetOpponentItem
