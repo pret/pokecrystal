@@ -314,7 +314,7 @@ AI_Items: ; 39196
 	bit ALWAYS_USE_F, a
 	jp nz, .Use
 	call Random
-	cp 50
+	cp -1 + 20 percent
 	jp c, .Use
 	jp .DontUse
 
@@ -326,7 +326,7 @@ AI_Items: ; 39196
 	cp 4
 	jr c, .FailToxicCheck
 	call Random
-	cp $80
+	cp 1 + 50 percent
 	jp c, .Use
 .FailToxicCheck
 	ld a, [EnemyMonStatus]
@@ -367,7 +367,7 @@ AI_Items: ; 39196
 	callab AICheckEnemyQuarterHP
 	jp nc, .UseHealItem
 	call Random
-	cp $80
+	cp 1 + 50 percent
 	jp c, .UseHealItem
 	jp .DontUse
 
@@ -375,7 +375,7 @@ AI_Items: ; 39196
 	callab AICheckEnemyQuarterHP
 	jp c, .DontUse
 	call Random
-	cp $32
+	cp -1 + 20 percent
 	jp c, .DontUse
 	jr .UseHealItem
 
@@ -385,7 +385,7 @@ AI_Items: ; 39196
 	callab AICheckEnemyQuarterHP
 	jp nc, .UseHealItem
 	call Random
-	cp $32
+	cp -1 + 20 percent
 	jp nc, .DontUse
 
 .UseHealItem: ; 38281 (e:4281)
@@ -418,44 +418,44 @@ AI_Items: ; 39196
 
 .asm_382ae: ; This appears to be unused
 	callab AICheckEnemyMaxHP
-	jr c, .asm_382e4
+	jr c, .dont_use
 	push bc
 	ld de, EnemyMonMaxHP + 1
 	ld hl, EnemyMonHP + 1
 	ld a, [de]
 	sub [hl]
-	jr z, .asm_382e7
+	jr z, .check_40_percent
 	dec hl
 	dec de
 	ld c, a
 	sbc [hl]
 	and a
-	jr nz, .asm_382e7
+	jr nz, .check_40_percent
 	ld a, c
 	cp b
-	jp c, .asm_382d5
+	jp c, .check_50_percent
 	callab AICheckEnemyQuarterHP
-	jr c, .asm_382e7
+	jr c, .check_40_percent
 
-.asm_382d5
+.check_50_percent
 	pop bc
 	ld a, [bc]
 	bit UNKNOWN_USE_F, a
 	jp z, .Use
 	call Random
-	cp $80
+	cp 1 + 50 percent
 	jp c, .Use
 
-.asm_382e4
+.dont_use
 	jp .DontUse
 
-.asm_382e7
+.check_40_percent
 	pop bc
 	ld a, [bc]
 	bit UNKNOWN_USE_F, a
 	jp z, .DontUse
 	call Random
-	cp $64
+	cp 1 + 39 percent
 	jp c, .Use
 	jp .DontUse
 ; 382f9
@@ -517,13 +517,13 @@ AI_Items: ; 39196
 	bit ALWAYS_USE_F, a
 	jp nz, .Use
 	call Random
-	cp $80
+	cp 1 + 50 percent
 	jp c, .DontUse
 	ld a, [bc]
 	bit CONTEXT_USE_F, a
 	jp nz, .Use
 	call Random
-	cp $80
+	cp 1 + 50 percent
 	jp c, .DontUse
 	jp .Use
 .notfirstturnout
@@ -531,7 +531,7 @@ AI_Items: ; 39196
 	bit ALWAYS_USE_F, a
 	jp z, .DontUse
 	call Random
-	cp $32
+	cp -1 + 20 percent
 	jp nc, .DontUse
 	jp .Use
 

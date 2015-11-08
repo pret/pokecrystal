@@ -1193,8 +1193,8 @@ Thunderstone:
 WaterStone:
 LeafStone:
 SunStone: ; ee0f
-	ld b, $5
-	call Functionf1f9
+	ld b, PARTYMENUACTION_EVO_STONE
+	call UseItem_SelectMon
 
 	jp c, .asm_ee38
 
@@ -1230,8 +1230,8 @@ Protein:
 Iron:
 Carbos:
 Calcium: ; ee3d
-	ld b, $1
-	call Functionf1f9
+	ld b, PARTYMENUACTION_HEALING_ITEM
+	call UseItem_SelectMon
 
 	jp c, Functionee9f
 
@@ -1363,8 +1363,8 @@ Functioneef5: ; eef5
 
 
 RareCandy: ; ef14
-	ld b, $1
-	call Functionf1f9
+	ld b, PARTYMENUACTION_HEALING_ITEM
+	call UseItem_SelectMon
 
 	jp c, Functionee9f
 
@@ -1422,7 +1422,7 @@ RareCandy: ; ef14
 	ld [hl], a
 	callba LevelUpHappinessMod
 
-	ld a, $f8
+	ld a, PARTYMENUTEXT_LEVEL_UP
 	call Functionf24a
 
 	xor a ; PARTYMON
@@ -1455,8 +1455,8 @@ RareCandy: ; ef14
 
 
 HealPowder: ; efad
-	ld b, $1
-	call Functionf1f9
+	ld b, PARTYMENUACTION_HEALING_ITEM
+	call UseItem_SelectMon
 
 	jp c, Functionf29e
 
@@ -1488,8 +1488,8 @@ BurntBerry:
 IceBerry:
 MintBerry:
 Miracleberry: ; efcc
-	ld b, $1
-	call Functionf1f9
+	ld b, PARTYMENUACTION_HEALING_ITEM
+	call UseItem_SelectMon
 	jp c, Functionf29e
 
 Functionefd4: ; efd4
@@ -1502,22 +1502,22 @@ Functionefda: ; efda (3:6fda)
 	call Functionf30d
 	ld a, $1
 	ret z
-	call Functionf058
+	call GetItemHealingAction
 	ld a, MON_STATUS
 	call GetPartyParamLocation
 	ld a, [hl]
 	and c
-	jr nz, .asm_eff4
+	jr nz, .good
 	call Functionf009
 	ld a, $1
 	ret nc
-	ld b, $f9
-.asm_eff4
+	ld b, PARTYMENUTEXT_HEAL_CONFUSION
+.good
 	xor a
 	ld [hl], a
 	ld a, b
 	ld [PartyMenuActionText], a
-	call Functionf030
+	call HealStatus
 	call Play_SFX_FULL_HEAL
 	call Functionf279
 	call UseDisposableItem
@@ -1526,16 +1526,16 @@ Functionefda: ; efda (3:6fda)
 
 Functionf009: ; f009 (3:7009)
 	call Functionf2a6
-	jr nc, .asm_f01c
+	jr nc, .nope
 	ld a, [PlayerSubStatus3]
-	bit 7, a
-	jr z, .asm_f01c
+	bit SUBSTATUS_CONFUSED, a
+	jr z, .nope
 	ld a, c
 	cp $ff
-	jr nz, .asm_f01c
+	jr nz, .nope
 	scf
 	ret
-.asm_f01c
+.nope
 	and a
 	ret
 
@@ -1550,39 +1550,39 @@ Functionf01e: ; f01e (3:701e)
 	ld [BattleMonHP + 1], a
 	ret
 
-Functionf030: ; f030 (3:7030)
+HealStatus: ; f030 (3:7030)
 	call Functionf2a6
 	ret nc
 	xor a
 	ld [BattleMonStatus], a
 	ld hl, PlayerSubStatus5
-	res 0, [hl]
+	res SUBSTATUS_TOXIC, [hl]
 	ld hl, PlayerSubStatus1
-	res 0, [hl]
-	call Functionf058
+	res SUBSTATUS_NIGHTMARE, [hl]
+	call GetItemHealingAction
 	ld a, c
-	cp $ff
-	jr nz, .asm_f04f
+	cp %11111111
+	jr nz, .not_full_heal
 	ld hl, PlayerSubStatus3
-	res 7, [hl]
-.asm_f04f
+	res SUBSTATUS_CONFUSED, [hl]
+.not_full_heal
 	push bc
 	callba CalcPlayerStats
 	pop bc
 	ret
 
-Functionf058: ; f058 (3:7058)
+GetItemHealingAction: ; f058 (3:7058)
 	push hl
 	ld a, [CurItem]
-	ld hl, Table_f071
+	ld hl, .healingactions
 	ld bc, 3
 .next
 	cp [hl]
-	jr z, .asm_f068
+	jr z, .found_it
 	add hl, bc
 	jr .next
 
-.asm_f068
+.found_it
 	inc hl
 	ld b, [hl]
 	inc hl
@@ -1593,39 +1593,39 @@ Functionf058: ; f058 (3:7058)
 	ret
 ; f071 (3:7071)
 
-Table_f071: ; f071
+.healingactions: ; f071
 ; item, party menu action text, status
-	db ANTIDOTE,     $f0, 1 << PSN
-	db BURN_HEAL,    $f1, 1 << BRN
-	db ICE_HEAL,     $f2, 1 << FRZ
-	db AWAKENING,    $f3, SLP
-	db PARLYZ_HEAL,  $f4, 1 << PAR
-	db FULL_HEAL,    $f6, %11111111
-	db FULL_RESTORE, $f6, %11111111
-	db HEAL_POWDER,  $f6, %11111111
-	db PSNCUREBERRY, $f0, 1 << PSN
-	db PRZCUREBERRY, $f4, 1 << PAR
-	db BURNT_BERRY,  $f2, 1 << FRZ
-	db ICE_BERRY,    $f1, 1 << BRN
-	db MINT_BERRY,   $f3, SLP
-	db MIRACLEBERRY, $f6, %11111111
+	db ANTIDOTE,     PARTYMENUTEXT_HEAL_PSN, 1 << PSN
+	db BURN_HEAL,    PARTYMENUTEXT_HEAL_BRN, 1 << BRN
+	db ICE_HEAL,     PARTYMENUTEXT_HEAL_FRZ, 1 << FRZ
+	db AWAKENING,    PARTYMENUTEXT_HEAL_SLP, SLP
+	db PARLYZ_HEAL,  PARTYMENUTEXT_HEAL_PAR, 1 << PAR
+	db FULL_HEAL,    PARTYMENUTEXT_HEAL_ALL, %11111111
+	db FULL_RESTORE, PARTYMENUTEXT_HEAL_ALL, %11111111
+	db HEAL_POWDER,  PARTYMENUTEXT_HEAL_ALL, %11111111
+	db PSNCUREBERRY, PARTYMENUTEXT_HEAL_PSN, 1 << PSN
+	db PRZCUREBERRY, PARTYMENUTEXT_HEAL_PAR, 1 << PAR
+	db BURNT_BERRY,  PARTYMENUTEXT_HEAL_FRZ, 1 << FRZ
+	db ICE_BERRY,    PARTYMENUTEXT_HEAL_BRN, 1 << BRN
+	db MINT_BERRY,   PARTYMENUTEXT_HEAL_SLP, SLP
+	db MIRACLEBERRY, PARTYMENUTEXT_HEAL_ALL, %11111111
 	db -1, 0, 0
 ; f09e
 
 Functionf09e: ; f09e (3:709e)
-	ld hl, Jumptable_f0a3
+	ld hl, .jumptable
 	rst JumpTable
 	ret
 
-Jumptable_f0a3: ; f0a3 (3:70a3)
+.jumptable: ; f0a3 (3:70a3)
 	dw Functionf2a2
 	dw Functionf299
 	dw Functionf29e
 
 
 RevivalHerb: ; f0a9
-	ld b, $1
-	call Functionf1f9
+	ld b, PARTYMENUACTION_HEALING_ITEM
+	call UseItem_SelectMon
 	jp c, Functionf29e
 
 	call Functionf0d6
@@ -1644,8 +1644,8 @@ RevivalHerb: ; f0a9
 
 Revive:
 MaxRevive: ; f0c8
-	ld b, $1
-	call Functionf1f9
+	ld b, PARTYMENUACTION_HEALING_ITEM
+	call UseItem_SelectMon
 	jp c, Functionf29e
 
 	call Functionf0d6
@@ -1692,7 +1692,7 @@ Functionf0d6: ; f0d6
 
 .asm_f117
 	call Functionf1db
-	ld a, $f7
+	ld a, PARTYMENUTEXT_REVIVE
 	ld [PartyMenuActionText], a
 	call Functionf279
 	call UseDisposableItem
@@ -1702,8 +1702,8 @@ Functionf0d6: ; f0d6
 
 
 FullRestore: ; f128
-	ld b, 1
-	call Functionf1f9
+	ld b, PARTYMENUACTION_HEALING_ITEM
+	call UseItem_SelectMon
 	jp c, Functionf29e
 
 	call Functionf30d
@@ -1729,10 +1729,10 @@ Functionf144: ; f144
 	xor a
 	ld [hli], a
 	ld [hl], a
-	call Functionf030
+	call HealStatus
 	call Functionf01e
 	call Functionf1db
-	ld a, $f5
+	ld a, PARTYMENUTEXT_HEAL_HP
 	ld [PartyMenuActionText], a
 	call Functionf279
 	call UseDisposableItem
@@ -1805,8 +1805,8 @@ Functionf192: ; f192
 
 
 Functionf1a9: ; f1a9 (3:71a9)
-	ld b, 1
-	call Functionf1f9
+	ld b, PARTYMENUACTION_HEALING_ITEM
+	call UseItem_SelectMon
 	ld a, 2
 	ret c
 
@@ -1824,7 +1824,7 @@ Functionf1a9: ; f1a9 (3:71a9)
 	call Functionf2d1
 	call Functionf01e
 	call Functionf1db
-	ld a, $f5
+	ld a, PARTYMENUTEXT_HEAL_HP
 	ld [PartyMenuActionText], a
 	call Functionf279
 	call UseDisposableItem
@@ -1844,23 +1844,23 @@ Functionf1db: ; f1db (3:71db)
 	ld [wd10a], a
 	predef_jump AnimateHPBar
 
-Functionf1f9: ; f1f9 (3:71f9)
-	call Functionf20b
+UseItem_SelectMon: ; f1f9 (3:71f9)
+	call .SelectMon
 	ret c
 
 	ld a, [CurPartySpecies]
 	cp EGG
-	jr nz, .asm_f209
+	jr nz, .not_egg
 
 	call CantUseOnEggMessage
 	scf
 	ret
 
-.asm_f209
+.not_egg
 	and a
 	ret
 
-Functionf20b: ; f20b (3:720b)
+.SelectMon: ; f20b (3:720b)
 	ld a, b
 	ld [PartyMenuActionText], a
 	push hl
@@ -2179,7 +2179,7 @@ Functionf3df: ; f3df (3:73df)
 	call Functionf30d
 	call Functionf2d1
 	call Functionf1db
-	ld a, $f5
+	ld a, PARTYMENUTEXT_HEAL_HP
 	call Functionf24a
 	call JoyWaitAorB
 .asm_f413
@@ -2189,35 +2189,38 @@ Functionf3df: ; f3df (3:73df)
 	ret
 
 Functionf419: ; f419 (3:7419)
+.loop
 	push bc
-	ld a, $1
+	ld a, PARTYMENUACTION_HEALING_ITEM
 	ld [PartyMenuActionText], a
 	call Functionf21c
 	pop bc
-	jr c, .asm_f43e
+	jr c, .set_carry
 	ld a, [wd0d8]
 	dec a
 	ld c, a
 	ld a, b
 	cp c
-	jr z, .asm_f440
+	jr z, .loopback
 	ld a, c
 	ld [CurPartyMon], a
 	call Functionf30d
-	jr z, .asm_f440
+	jr z, .loopback
 	call Functionf31b
-	jr nc, .asm_f440
+	jr nc, .loopback
 	xor a
 	ret
-.asm_f43e
+
+.set_carry
 	scf
 	ret
-.asm_f440
+
+.loopback
 	push bc
 	ld hl, UnknownText_0xf44a
 	call MenuTextBoxBackup
 	pop bc
-	jr Functionf419
+	jr .loop
 ; f44a (3:744a)
 
 UnknownText_0xf44a: ; 0xf44a
@@ -2301,18 +2304,18 @@ PokeDoll: ; f48f
 
 GuardSpec: ; f4ab
 	ld hl, PlayerSubStatus4
-	bit 1, [hl]
+	bit SUBSTATUS_MIST, [hl]
 	jp nz, WontHaveAnyEffect_NotUsedMessage
-	set 1, [hl]
+	set SUBSTATUS_MIST, [hl]
 	jp Functionf789
 ; f4b8
 
 
 DireHit: ; f4b8
 	ld hl, PlayerSubStatus4
-	bit 2, [hl]
+	bit SUBSTATUS_FOCUS_ENERGY, [hl]
 	jp nz, WontHaveAnyEffect_NotUsedMessage
-	set 2, [hl]
+	set SUBSTATUS_FOCUS_ENERGY, [hl]
 	jp Functionf789
 ; f4c5
 
@@ -2324,17 +2327,17 @@ XSpecial: ; f4c5
 	call Functionf789
 
 	ld a, [CurItem]
-	ld hl, Tablef504
+	ld hl, .x_item_table
 
-.asm_f4ce
+.loop
 	cp [hl]
-	jr z, .asm_f4d5
+	jr z, .got_it
 rept 2
 	inc hl
 endr
-	jr .asm_f4ce
+	jr .loop
 
-.asm_f4d5
+.got_it
 	inc hl
 	ld b, [hl]
 	xor a
@@ -2354,7 +2357,7 @@ endr
 	ret
 ; f504
 
-Tablef504: ; f504
+.x_item_table: ; f504
 	db X_ATTACK,  ATTACK
 	db X_DEFEND,  DEFENSE
 	db X_SPEED,   SPEED
@@ -2522,8 +2525,8 @@ Mysteryberry: ; f5bf
 
 .loop
     ; Party Screen opens to choose on which Pkmn to use the Item
-	ld b, $1
-	call Functionf1f9
+	ld b, PARTYMENUACTION_HEALING_ITEM
+	call UseItem_SelectMon
 	jp c, Functionf6e0
 
 .loop2
@@ -2612,7 +2615,7 @@ Functionf652: ; f652
 	cp b
 	jr nz, .asm_f66c
 	ld a, [PlayerSubStatus5]
-	bit 3, a
+	bit SUBSTATUS_TRANSFORMED, a
 	jr nz, .asm_f66c
 	call .asm_f677
 
@@ -2708,7 +2711,7 @@ Functionf6e0: ; f6e0
 RestorePP: ; f6e8
 	xor a ; PARTYMON
 	ld [MonType], a
-	call Functionf8ec
+	call GetMaxPPOfMove
 	ld hl, PartyMon1PP
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call GetMthMoveOfNthPartymon
@@ -3210,7 +3213,7 @@ Functionf8b9: ; f8b9
 	push hl
 	push de
 	push bc
-	call Functionf8ec
+	call GetMaxPPOfMove
 	pop bc
 	pop de
 	ld a, [de]
@@ -3229,7 +3232,7 @@ Functionf8b9: ; f8b9
 ; f8ec
 
 
-Functionf8ec: ; f8ec
+GetMaxPPOfMove: ; f8ec
 	ld a, [StringBuffer1 + 0]
 	push af
 	ld a, [StringBuffer1 + 1]

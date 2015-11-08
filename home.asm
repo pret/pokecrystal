@@ -1648,7 +1648,7 @@ IsAPokemon:: ; 3741
 ; 3750
 
 
-DrawHPBar:: ; 3750
+DrawBattleHPBar:: ; 3750
 ; Draw an HP bar d tiles long at hl
 ; Fill it up to e pixels
 

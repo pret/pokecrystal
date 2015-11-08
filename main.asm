@@ -3050,8 +3050,8 @@ SpecialReturnShuckle: ; 737e
 	cp 150
 	ld a, $3
 	jr nc, .HappyToStayWithYou
-	xor a
-	ld [wd10b], a
+	xor a ; take from pc
+	ld [wPokemonWithdrawDepositParameter], a
 	callab Functione039
 	ld a, $2
 
@@ -4475,7 +4475,7 @@ endr
 	ret
 ; c699
 
-Functionc699: ; c699
+DrawPartyMenuHPBar: ; c699
 	ld a, b
 	or c
 	jr z, .zero
@@ -7564,7 +7564,7 @@ Functiond670: ; d670
 	ld a, [hli]
 	ld b, a
 	pop hl
-	call Functionc699
+	call DrawPartyMenuHPBar
 	ld a, e
 	ld [wd1f1], a
 	ld a, [wd1ee]
@@ -7575,7 +7575,7 @@ Functiond670: ; d670
 	ld e, a
 	ld a, [Buffer2]
 	ld d, a
-	call Functionc699
+	call DrawPartyMenuHPBar
 	ld a, e
 	ld [wd1f2], a
 	push hl
@@ -7679,7 +7679,7 @@ Functiond6f5: ; d6f5
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	call Functionc699
+	call DrawPartyMenuHPBar
 	pop bc
 	pop de
 	pop hl
@@ -7718,7 +7718,7 @@ Functiond749: ; d749
 	ld e, a
 	ld a, [Buffer2]
 	ld d, a
-	call Functionc699
+	call DrawPartyMenuHPBar
 	ld c, e
 	ld d, $6
 	ld a, [wd10a]
@@ -7743,7 +7743,7 @@ Functiond771: ; d771
 	ld h, a
 
 .asm_d780
-	call DrawHPBar
+	call DrawBattleHPBar
 	ret
 ; d784
 
@@ -8369,26 +8369,28 @@ Functionda96: ; da96
 
 SentGetPkmnIntoFromBox: ; db3f
 ; Sents/Gets Pkmn into/from Box depending on Parameter
-; wd10b == 0: get Pkmn into Party
-; wd10b == 1: sent Pkmn into Box
+; wPokemonWithdrawDepositParameter == 0: get Pkmn into Party
+; wPokemonWithdrawDepositParameter == 1: sent Pkmn into Box
+; wPokemonWithdrawDepositParameter == 2: get Pkmn from DayCare
+; wPokemonWithdrawDepositParameter == 3: put Pkmn into DayCare
 
 	ld a, BANK(sBoxCount)
 	call GetSRAMBank
-	ld a, [wd10b]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jr z, .check_IfPartyIsFull
-	cp $2
+	cp DAYCARE_WITHDRAW
 	jr z, .check_IfPartyIsFull
-	cp $3
+	cp DAYCARE_DEPOSIT
 	ld hl, wBreedMon1Species
-	jr z, .asm_db9b
+	jr z, .breedmon
 
     ; we want to sent a Pkmn into the Box
     ; so check if there's enough space
 	ld hl, sBoxCount
 	ld a, [hl]
 	cp MONS_PER_BOX
-	jr nz, .asm_db69
+	jr nz, .there_is_room
 	jp CloseSRAM_And_SetCFlag
 
 .check_IfPartyIsFull
@@ -8397,131 +8399,133 @@ SentGetPkmnIntoFromBox: ; db3f
 	cp PARTY_LENGTH
 	jp z, CloseSRAM_And_SetCFlag
 
-.asm_db69
+.there_is_room
 	inc a
 	ld [hl], a
 	ld c, a
 	ld b, 0
 	add hl, bc
-	ld a, [wd10b]
-	cp $2
+	ld a, [wPokemonWithdrawDepositParameter]
+	cp DAYCARE_WITHDRAW
 	ld a, [wBreedMon1Species]
-	jr z, .asm_db7c
+	jr z, .okay1
 	ld a, [CurPartySpecies]
 
-.asm_db7c
+.okay1
 	ld [hli], a
 	ld [hl], $ff
-	ld a, [wd10b]
+	ld a, [wPokemonWithdrawDepositParameter]
 	dec a
 	ld hl, PartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [PartyCount]
-	jr nz, .asm_db97
+	jr nz, .okay2
 	ld hl, sBoxMon1Species
 	ld bc, BOXMON_STRUCT_LENGTH
 	ld a, [sBoxCount]
 
-.asm_db97
+.okay2
 	dec a ; PartyCount - 1
 	call AddNTimes
 
-.asm_db9b
+.breedmon
 	push hl
 	ld e, l
 	ld d, h
-	ld a, [wd10b]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	ld hl, sBoxMon1Species
 	ld bc, BOXMON_STRUCT_LENGTH
-	jr z, .asm_dbb7
-	cp $2
+	jr z, .okay3
+	cp DAYCARE_WITHDRAW
 	ld hl, wBreedMon1Species
-	jr z, .asm_dbbd
+	jr z, .okay4
 	ld hl, PartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 
-.asm_dbb7
+.okay3
 	ld a, [CurPartyMon]
 	call AddNTimes
 
-.asm_dbbd
+.okay4
 	ld bc, BOXMON_STRUCT_LENGTH
 	call CopyBytes
-	ld a, [wd10b]
-	cp $3
+	ld a, [wPokemonWithdrawDepositParameter]
+	cp DAYCARE_DEPOSIT
 	ld de, wBreedMon1OT
-	jr z, .asm_dbe2
+	jr z, .okay5
 	dec a
 	ld hl, PartyMonOT
 	ld a, [PartyCount]
-	jr nz, .asm_dbdc
+	jr nz, .okay6
 	ld hl, sBoxMonOT
 	ld a, [sBoxCount]
 
-.asm_dbdc
+.okay6
 	dec a
 	call SkipNames
 	ld d, h
 	ld e, l
 
-.asm_dbe2
+.okay5
 	ld hl, sBoxMonOT
-	ld a, [wd10b]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr z, .asm_dbf5
+	jr z, .okay7
 	ld hl, wBreedMon1OT
-	cp $2
-	jr z, .asm_dbfb
+	cp DAYCARE_WITHDRAW
+	jr z, .okay8
 	ld hl, PartyMonOT
 
-.asm_dbf5
+.okay7
 	ld a, [CurPartyMon]
 	call SkipNames
 
-.asm_dbfb
+.okay8
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	ld a, [wd10b]
-	cp $3
+	ld a, [wPokemonWithdrawDepositParameter]
+	cp DAYCARE_DEPOSIT
 	ld de, wBreedMon1Nick
-	jr z, .asm_dc20
+	jr z, .okay9
 	dec a
 	ld hl, PartyMonNicknames
 	ld a, [PartyCount]
-	jr nz, .asm_dc1a
+	jr nz, .okay10
 	ld hl, sBoxMonNicknames
 	ld a, [sBoxCount]
 
-.asm_dc1a
+.okay10
 	dec a
 	call SkipNames
 	ld d, h
 	ld e, l
 
-.asm_dc20
+.okay9
 	ld hl, sBoxMonNicknames
-	ld a, [wd10b]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr z, .asm_dc33
+	jr z, .okay11
 	ld hl, wBreedMon1Nick
-	cp $2
-	jr z, .asm_dc39
+	cp DAYCARE_WITHDRAW
+	jr z, .okay12
 	ld hl, PartyMonNicknames
 
-.asm_dc33
+.okay11
 	ld a, [CurPartyMon]
 	call SkipNames
 
-.asm_dc39
+.okay12
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	pop hl
-	ld a, [wd10b]
-	cp $1
-	jr z, .asm_dca4
-	cp $3
-	jp z, .asm_dcac
+
+	ld a, [wPokemonWithdrawDepositParameter]
+	cp PC_DEPOSIT
+	jr z, .took_out_of_box
+	cp DAYCARE_DEPOSIT
+	jp z, .CloseSRAM_And_ClearCFlag
+
 	push hl
 	srl a
 	add $2
@@ -8531,35 +8535,38 @@ SentGetPkmnIntoFromBox: ; db3f
 	ld a, d
 	ld [CurPartyLevel], a
 	pop hl
+
 	ld b, h
 	ld c, l
-	ld hl, $1f
+	ld hl, MON_LEVEL
 	add hl, bc
 	ld [hl], a
-	ld hl, $24
+	ld hl, MON_MAXHP
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, $a
+	ld hl, MON_EXP + 2
 	add hl, bc
+
 	push bc
 	ld b, $1
 	call CalcPkmnStats
 	pop bc
-	ld a, [wd10b]
+
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr nz, .asm_dcac
-	ld hl, $20
+	jr nz, .CloseSRAM_And_ClearCFlag
+	ld hl, MON_STATUS
 	add hl, bc
 	xor a
 	ld [hl], a
-	ld hl, $22
+	ld hl, MON_HP
 	add hl, bc
 	ld d, h
 	ld e, l
 	ld a, [CurPartySpecies]
 	cp EGG
-	jr z, .asm_dc9e
+	jr z, .egg
 rept 2
 	inc hl
 endr
@@ -8568,22 +8575,22 @@ endr
 	ld a, [hl]
 	inc de
 	ld [de], a
-	jr .asm_dcac
+	jr .CloseSRAM_And_ClearCFlag
 
-.asm_dc9e
+.egg
 	xor a
 	ld [de], a
 	inc de
 	ld [de], a
-	jr .asm_dcac
+	jr .CloseSRAM_And_ClearCFlag
 
-.asm_dca4
+.took_out_of_box
 	ld a, [sBoxCount]
 	dec a
 	ld b, a
 	call Functiondcb6
 
-.asm_dcac
+.CloseSRAM_And_ClearCFlag
 	call CloseSRAM
 	and a
 	ret
@@ -8637,13 +8644,13 @@ Functiondcb6: ; dcb6
 	push bc
 	push hl
 	push de
-	callba Functionf8ec
+	callba GetMaxPPOfMove
 	pop de
 	pop hl
 	ld a, [wd265]
 	ld b, a
 	ld a, [de]
-	and $c0
+	and %11000000
 	add b
 	ld [de], a
 	pop bc
@@ -8674,7 +8681,7 @@ Functiondd21: ; dd21
 	ld a, e
 	ld [CurPartyLevel], a
 	xor a
-	ld [wd10b], a
+	ld [wPokemonWithdrawDepositParameter], a
 	jp Functiondd64
 ; dd42
 
@@ -8689,8 +8696,8 @@ Functiondd42: ; dd42
 	ld [DefaultFlypoint], a
 	ld a, e
 	ld [CurPartyLevel], a
-	ld a, $1
-	ld [wd10b], a
+	ld a, PC_DEPOSIT
+	ld [wPokemonWithdrawDepositParameter], a
 	jp Functiondd64
 ; dd64
 
@@ -8698,25 +8705,25 @@ Functiondd64: ; dd64
 	ld hl, PartyCount
 	ld a, [hl]
 	cp PARTY_LENGTH
-	jr nz, .asm_dd6e
+	jr nz, .room_in_party
 	scf
 	ret
 
-.asm_dd6e
+.room_in_party
 	inc a
 	ld [hl], a
 	ld c, a
 	ld b, 0
 	add hl, bc
-	ld a, [wd10b]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	ld a, [wBreedMon1Species]
 	ld de, wBreedMon1Nick
-	jr z, .asm_dd86
+	jr z, .okay
 	ld a, [wBreedMon2Species]
 	ld de, wBreedMon2Nick
 
-.asm_dd86
+.okay
 	ld [hli], a
 	ld [CurSpecies], a
 	ld a, $ff
@@ -8742,17 +8749,17 @@ Functiondd64: ; dd64
 	push hl
 	call Functionde1a
 	pop hl
-	ld bc, $20
+	ld bc, BOXMON_STRUCT_LENGTH
 	call CopyBytes
 	call GetBaseData
 	call Functionde1a
 	ld b, d
 	ld c, e
-	ld hl, $1f
+	ld hl, MON_LEVEL
 	add hl, bc
 	ld a, [CurPartyLevel]
 	ld [hl], a
-	ld hl, $24
+	ld hl, MON_MAXHP
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -8783,9 +8790,9 @@ Functiondd64: ; dd64
 	add hl, bc
 	ld a, [hMultiplicand]
 	ld [hli], a
-	ld a, [$ffb5]
+	ld a, [hMultiplicand + 1]
 	ld [hli], a
-	ld a, [$ffb6]
+	ld a, [hMultiplicand + 2]
 	ld [hl], a
 	and a
 	ret
@@ -8806,7 +8813,7 @@ Functionde2a: ; de2a
 	ld de, wBreedMon1Nick
 	call Functionde44
 	xor a
-	ld [wd10b], a
+	ld [wPokemonWithdrawDepositParameter], a
 	jp Functione039
 ; de37
 
@@ -8814,7 +8821,7 @@ Functionde37: ; de37
 	ld de, wBreedMon2Nick
 	call Functionde44
 	xor a
-	ld [wd10b], a
+	ld [wPokemonWithdrawDepositParameter], a
 	jp Functione039
 ; de44
 
@@ -9112,15 +9119,15 @@ String_Egg: ; e035
 Functione039: ; e039
 	ld hl, PartyCount
 
-	ld a, [wd10b]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr z, .asm_e04a
+	jr z, .okay
 
 	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld hl, sBoxCount
 
-.asm_e04a
+.okay
 	ld a, [hl]
 	dec a
 	ld [hli], a
@@ -9139,7 +9146,7 @@ Functione039: ; e039
 	jr nz, .asm_e057
 	ld hl, PartyMonOT
 	ld d, PARTY_LENGTH - 1
-	ld a, [wd10b]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jr z, .asm_e06d
 	ld hl, sBoxMonOT
@@ -9160,7 +9167,7 @@ Functione039: ; e039
 	ld bc, PKMN_NAME_LENGTH
 	add hl, bc
 	ld bc, PartyMonNicknames
-	ld a, [wd10b]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jr z, .asm_e090
 	ld bc, sBoxMonNicknames
@@ -9169,7 +9176,7 @@ Functione039: ; e039
 
 	ld hl, PartyMons
 	ld bc, PARTYMON_STRUCT_LENGTH
-	ld a, [wd10b]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jr z, .asm_e0a5
 	ld hl, sBoxMons
@@ -9180,7 +9187,7 @@ Functione039: ; e039
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld a, [wd10b]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jr z, .asm_e0bc
 	ld bc, BOXMON_STRUCT_LENGTH
@@ -9196,7 +9203,7 @@ Functione039: ; e039
 .asm_e0c3
 	call CopyDataUntil
 	ld hl, PartyMonNicknames
-	ld a, [wd10b]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jr z, .asm_e0d2
 	ld hl, sBoxMonNicknames
@@ -9210,7 +9217,7 @@ Functione039: ; e039
 	ld bc, PKMN_NAME_LENGTH
 	add hl, bc
 	ld bc, PartyMonNicknamesEnd
-	ld a, [wd10b]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jr z, .asm_e0ed
 	ld bc, sBoxMonNicknamesEnd
@@ -9219,7 +9226,7 @@ Functione039: ; e039
 	call CopyDataUntil
 
 .asm_60f0
-	ld a, [wd10b]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jp nz, CloseSRAM
 	ld a, [wLinkMode]
@@ -27040,7 +27047,7 @@ Function28b87: ; 28b87
 	ld a, [hl]
 	ld [DefaultFlypoint], a
 	xor a
-	ld [wd10b], a
+	ld [wPokemonWithdrawDepositParameter], a
 	callab Functione039
 	ld a, [PartyCount]
 	dec a
@@ -34291,7 +34298,7 @@ Function44654:: ; 44654
 	ld a, $4
 	jr c, .asm_446c1
 	xor a
-	ld [wd10b], a
+	ld [wPokemonWithdrawDepositParameter], a
 	callba Functione039
 	ld a, $1
 
@@ -42293,7 +42300,7 @@ Function4df45: ; 4df45 (13:5f45)
 	ld a, [hli]
 	ld d, a
 	ld e, [hl]
-	callba Functionc699
+	callba DrawPartyMenuHPBar
 	ld hl, wcda1
 	call SetHPPal
 	ld b, $3
@@ -43929,42 +43936,42 @@ WritePartyMenuTilemap: ; 0x5005f
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "
 	call ByteFill ; blank the tilemap
-	call Function50396 ; This reads from a pointer table???
-.asm_50077
+	call GetPartyMenuTilemapPointers ; This reads from a pointer table???
+.loop
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_50084 ; 0x5007a $8
+	jr z, .end ; 0x5007a $8
 	push hl
-	ld hl, Jumptable_50089
+	ld hl, .Jumptable
 	rst JumpTable
 	pop hl
-	jr .asm_50077 ; 0x50082 $f3
-.asm_50084
+	jr .loop ; 0x50082 $f3
+.end
 	pop af
 	ld [Options], a
 	ret
 ; 0x50089
 
-Jumptable_50089: ; 50089
-	dw Function5009b
-	dw Function500cf
-	dw Function50138
-	dw Function50176
-	dw Function501b2
-	dw Function501e0
-	dw Function5022f
-	dw Function502b1
-	dw Function50307
+.Jumptable: ; 50089
+	dw PlacePartyNicknames
+	dw PlacePartyHPBar
+	dw PlacePartyMenuHPDigits
+	dw PlacePartyMonLevel
+	dw PlacePartyMonStatus
+	dw PlacePartyMonTMHMCompatibility
+	dw PlacePartyMonEvoStoneCompatibility
+	dw PlacePartyMonGender
+	dw PlacePartyMonMobileBattleSelection
 ; 5009b
 
-Function5009b: ; 5009b
+PlacePartyNicknames: ; 5009b
 	hlcoord 3, 1
 	ld a, [PartyCount]
 	and a
-	jr z, .asm_500bf
+	jr z, .end
 	ld c, a
 	ld b, $0
-.asm_500a7
+.loop
 	push bc
 	push hl
 	push hl
@@ -43974,28 +43981,28 @@ Function5009b: ; 5009b
 	pop hl
 	call PlaceString
 	pop hl
-	ld de, $28
+	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	pop bc
 	inc b
 	dec c
-	jr nz, .asm_500a7
+	jr nz, .loop
 
-.asm_500bf
+.end
 rept 2
 	dec hl
 endr
-	ld de, String_500c8
+	ld de, .CANCEL
 	call PlaceString
 	ret
 ; 500c8
 
-String_500c8: ; 500c8
+.CANCEL: ; 500c8
 	db "CANCEL@"
 ; 500cf
 
 
-Function500cf: ; 500cf
+PlacePartyHPBar: ; 500cf
 	xor a
 	ld [wcda9], a
 	ld a, [PartyCount]
@@ -44004,17 +44011,17 @@ Function500cf: ; 500cf
 	ld c, a
 	ld b, $0
 	hlcoord 11, 2
-.asm_500de
+.loop
 	push bc
 	push hl
-	call Function50389
-	jr z, .asm_50103
+	call PartyMenuCheckEgg
+	jr z, .skip
 	push hl
-	call Function50117
+	call PlacePartymonHPBar
 	pop hl
 	ld d, $6
 	ld b, $0
-	call DrawHPBar
+	call DrawBattleHPBar
 	ld hl, wcd9b
 	ld a, [wcda9]
 	ld c, a
@@ -44024,35 +44031,35 @@ Function500cf: ; 500cf
 	ld b, $fc
 	call GetSGBLayout
 
-.asm_50103
+.skip
 	ld hl, wcda9
 	inc [hl]
 	pop hl
-	ld de, $28
+	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	pop bc
 	inc b
 	dec c
-	jr nz, .asm_500de
+	jr nz, .loop
 	ld b, $a
 	call GetSGBLayout
 	ret
 ; 50117
 
-Function50117: ; 50117
+PlacePartymonHPBar: ; 50117
 	ld a, b
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, PartyMon1HP
 	call AddNTimes
 	ld a, [hli]
 	or [hl]
-	jr nz, .asm_50129
+	jr nz, .not_fainted
 	xor a
 	ld e, a
 	ld c, a
 	ret
 
-.asm_50129
+.not_fainted
 	dec hl
 	ld a, [hli]
 	ld b, a
@@ -44062,22 +44069,22 @@ Function50117: ; 50117
 	ld d, a
 	ld a, [hli]
 	ld e, a
-	predef Functionc699
+	predef DrawPartyMenuHPBar
 	ret
 ; 50138
 
-Function50138: ; 50138
+PlacePartyMenuHPDigits: ; 50138
 	ld a, [PartyCount]
 	and a
 	ret z
 	ld c, a
 	ld b, $0
 	hlcoord 13, 1
-.asm_50143
+.loop
 	push bc
 	push hl
-	call Function50389
-	jr z, .asm_5016b
+	call PartyMenuCheckEgg
+	jr z, .next
 	push hl
 	ld a, b
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -44090,7 +44097,7 @@ Function50138: ; 50138
 	lb bc, 2, 3
 	call PrintNum
 	pop de
-	ld a, $f3
+	ld a, "/"
 	ld [hli], a
 rept 2
 	inc de
@@ -44098,29 +44105,29 @@ endr
 	lb bc, 2, 3
 	call PrintNum
 
-.asm_5016b
+.next
 	pop hl
-	ld de, $28
+	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	pop bc
 	inc b
 	dec c
-	jr nz, .asm_50143
+	jr nz, .loop
 	ret
 ; 50176
 
-Function50176: ; 50176
+PlacePartyMonLevel: ; 50176
 	ld a, [PartyCount]
 	and a
 	ret z
 	ld c, a
 	ld b, 0
 	hlcoord 8, 2
-.asm_50181
+.loop
 	push bc
 	push hl
-	call Function50389
-	jr z, .asm_501a7
+	call PartyMenuCheckEgg
+	jr z, .next
 	push hl
 	ld a, b
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -44131,37 +44138,39 @@ Function50176: ; 50176
 	pop hl
 	ld a, [de]
 	cp 100 ; This is distinct from MAX_LEVEL.
-	jr nc, .asm_501a1
+	jr nc, .ThreeDigits
 	ld a, "<LV>"
 	ld [hli], a
-	lb bc, PRINTNUM_RIGHTALIGN | 1, 2 ; Missing a jr in here
-.asm_501a1
+	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
+	; jr .okay
+.ThreeDigits
 	lb bc, PRINTNUM_RIGHTALIGN | 1, 3
+; .okay
 	call PrintNum
 
-.asm_501a7
+.next
 	pop hl
 	ld de, SCREEN_WIDTH * 2
 	add hl, de
 	pop bc
 	inc b
 	dec c
-	jr nz, .asm_50181
+	jr nz, .loop
 	ret
 ; 501b2
 
-Function501b2: ; 501b2
+PlacePartyMonStatus: ; 501b2
 	ld a, [PartyCount]
 	and a
 	ret z
 	ld c, a
 	ld b, 0
 	hlcoord 5, 2
-.asm_501bd
+.loop
 	push bc
 	push hl
-	call Function50389
-	jr z, .asm_501d5
+	call PartyMenuCheckEgg
+	jr z, .next
 	push hl
 	ld a, b
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -44172,29 +44181,29 @@ Function501b2: ; 501b2
 	pop hl
 	call PlaceStatusString
 
-.asm_501d5
+.next
 	pop hl
 	ld de, SCREEN_WIDTH * 2
 	add hl, de
 	pop bc
 	inc b
 	dec c
-	jr nz, .asm_501bd
+	jr nz, .loop
 	ret
 ; 501e0
 
-Function501e0: ; 501e0
+PlacePartyMonTMHMCompatibility: ; 501e0
 	ld a, [PartyCount]
 	and a
 	ret z
 	ld c, a
 	ld b, 0
 	hlcoord 12, 2
-.asm_501eb
+.loop
 	push bc
 	push hl
-	call Function50389
-	jr z, .asm_5020a
+	call PartyMenuCheckEgg
+	jr z, .next
 	push hl
 	ld hl, PartySpecies
 	ld e, b
@@ -44204,53 +44213,53 @@ Function501e0: ; 501e0
 	ld [CurPartySpecies], a
 	predef CanLearnTMHMMove
 	pop hl
-	call Function50215
+	call .PlaceAbleNotAble
 	call PlaceString
 
-.asm_5020a
+.next
 	pop hl
 	ld de, SCREEN_WIDTH * 2
 	add hl, de
 	pop bc
 	inc b
 	dec c
-	jr nz, .asm_501eb
+	jr nz, .loop
 	ret
 ; 50215
 
-Function50215: ; 50215
+.PlaceAbleNotAble: ; 50215
 	ld a, c
 	and a
-	jr nz, .asm_5021d
-	ld de, String_50226
+	jr nz, .able
+	ld de, .string_not_able
 	ret
 
-.asm_5021d
-	ld de, String_50221
+.able
+	ld de, .string_able
 	ret
 ; 50221
 
-String_50221: ; 50221
+.string_able: ; 50221
 	db "ABLE@"
 ; 50226
 
-String_50226: ; 50226
+.string_not_able: ; 50226
 	db "NOT ABLE@"
 ; 5022f
 
 
-Function5022f: ; 5022f
+PlacePartyMonEvoStoneCompatibility: ; 5022f
 	ld a, [PartyCount]
 	and a
 	ret z
 	ld c, a
 	ld b, 0
 	hlcoord 12, 2
-.asm_5023a
+.loop
 	push bc
 	push hl
-	call Function50389
-	jr z, .asm_5025d
+	call PartyMenuCheckEgg
+	jr z, .next
 	push hl
 	ld a, b
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -44264,22 +44273,22 @@ Function5022f: ; 5022f
 rept 2
 	add hl, de
 endr
-	call Function50268
+	call .DetermineCompatibility
 	pop hl
 	call PlaceString
 
-.asm_5025d
+.next
 	pop hl
-	ld de, $28
+	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	pop bc
 	inc b
 	dec c
-	jr nz, .asm_5023a
+	jr nz, .loop
 	ret
 ; 50268
 
-Function50268: ; 50268
+.DetermineCompatibility: ; 50268
 	ld de, StringBuffer1
 	ld a, BANK(EvosAttacksPointers)
 	ld bc, 2
@@ -44293,15 +44302,15 @@ Function50268: ; 50268
 	ld bc, $a
 	call FarCopyBytes
 	ld hl, StringBuffer1
-.asm_50287
+.loop2
 	ld a, [hli]
 	and a
-	jr z, .asm_5029f
+	jr z, .nope
 rept 2
 	inc hl
 endr
 	cp EVOLVE_ITEM
-	jr nz, .asm_50287
+	jr nz, .loop2
 rept 2
 	dec hl
 endr
@@ -44310,35 +44319,35 @@ endr
 rept 2
 	inc hl
 endr
-	jr nz, .asm_50287
-	ld de, String_502a3
+	jr nz, .loop2
+	ld de, .string_able
 	ret
 
-.asm_5029f
-	ld de, String_502a8
+.nope
+	ld de, .string_not_able
 	ret
 ; 502a3
 
-String_502a3: ; 502a3
+.string_able: ; 502a3
 	db "ABLE@"
 ; 502a8
-String_502a8: ; 502a8
+.string_not_able: ; 502a8
 	db "NOT ABLE@"
 ; 502b1
 
 
-Function502b1: ; 502b1
+PlacePartyMonGender: ; 502b1
 	ld a, [PartyCount]
 	and a
 	ret z
 	ld c, a
 	ld b, 0
 	hlcoord 12, 2
-.asm_502bc
+.loop
 	push bc
 	push hl
-	call Function50389
-	jr z, .asm_502e3
+	call PartyMenuCheckEgg
+	jr z, .next
 	ld [CurPartySpecies], a
 	push hl
 	ld a, b
@@ -44346,86 +44355,86 @@ Function502b1: ; 502b1
 	xor a
 	ld [MonType], a
 	call GetGender
-	ld de, String_502fe
-	jr c, .asm_502df
-	ld de, String_502ee
-	jr nz, .asm_502df
-	ld de, String_502f5
+	ld de, .unknown
+	jr c, .got_gender
+	ld de, .male
+	jr nz, .got_gender
+	ld de, .female
 
-.asm_502df
+.got_gender
 	pop hl
 	call PlaceString
 
-.asm_502e3
+.next
 	pop hl
-	ld de, $28
+	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	pop bc
 	inc b
 	dec c
-	jr nz, .asm_502bc
+	jr nz, .loop
 	ret
 ; 502ee
 
-String_502ee: ; 502ee
+.male: ; 502ee
 	db "♂…MALE@"
 ; 502f5
 
-String_502f5: ; 502f5
+.female: ; 502f5
 	db "♀…FEMALE@"
 ; 502fe
 
-String_502fe: ; 502fe
+.unknown: ; 502fe
 	db "…UNKNOWN@"
 ; 50307
 
 
-Function50307: ; 50307
+PlacePartyMonMobileBattleSelection: ; 50307
 	ld a, [PartyCount]
 	and a
 	ret z
 	ld c, a
 	ld b, 0
 	hlcoord 12, 1
-.asm_50312
+.loop
 	push bc
 	push hl
-	ld de, String_50372
+	ld de, .String_Sanka_Shinai
 	call PlaceString
 	pop hl
-	ld de, $28
+	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	pop bc
 	inc b
 	dec c
-	jr nz, .asm_50312
+	jr nz, .loop
 	ld a, l
-	ld e, $b
+	ld e, PKMN_NAME_LENGTH
 	sub e
 	ld l, a
 	ld a, h
 	sbc $0
 	ld h, a
-	ld de, String_50379
+	ld de, .String_Kettei_Yameru
 	call PlaceString
 	ld b, $3
 	ld c, $0
 	ld hl, DefaultFlypoint
 	ld a, [hl]
-.asm_5033b
+.loop2
 	push hl
 	push bc
 	hlcoord 12, 1
-.asm_50340
+.loop3
 	and a
-	jr z, .asm_5034a
-	ld de, $28
+	jr z, .done
+	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	dec a
-	jr .asm_50340
+	jr .loop3
 
-.asm_5034a
-	ld de, String_5036b
+.done
+	ld de, .String_Banme
 	push hl
 	call PlaceString
 	pop hl
@@ -44433,7 +44442,7 @@ Function50307: ; 50307
 	push bc
 	push hl
 	ld a, c
-	ld hl, Strings_50383
+	ld hl, .Strings_1_2_3
 	call GetNthString
 	ld d, h
 	ld e, l
@@ -44446,24 +44455,24 @@ Function50307: ; 50307
 	inc c
 	dec b
 	ret z
-	jr .asm_5033b
+	jr .loop2
 ; 5036b
 
-String_5036b: ; 5036b
+.String_Banme: ; 5036b
 	db " ばんめ  @" ; Place
 ; 50372
-String_50372: ; 50372
+.String_Sanka_Shinai: ; 50372
 	db "さんかしない@" ; Cancel
 ; 50379
-String_50379: ; 50379
+.String_Kettei_Yameru: ; 50379
 	db "けってい  やめる@" ; Quit
 ; 50383
-Strings_50383: ; 50383
+.Strings_1_2_3: ; 50383
 	db "1@", "2@", "3@" ; 1st, 2nd, 3rd
 ; 50389
 
 
-Function50389: ; 50389
+PartyMenuCheckEgg: ; 50389
 	ld a, PartySpecies % $100
 	add b
 	ld e, a
@@ -44475,15 +44484,15 @@ Function50389: ; 50389
 	ret
 ; 50396
 
-Function50396: ; 50396
+GetPartyMenuTilemapPointers: ; 50396
 	ld a, [PartyMenuActionText]
 	and $f0
-	jr nz, .asm_503ae
+	jr nz, .skip
 	ld a, [PartyMenuActionText]
 	and $f
 	ld e, a
 	ld d, 0
-	ld hl, Unknown_503b2
+	ld hl, .Pointers
 rept 2
 	add hl, de
 endr
@@ -44492,29 +44501,29 @@ endr
 	ld l, a
 	ret
 
-.asm_503ae
-	ld hl, Unknown_503c6
+.skip
+	ld hl, .Default
 	ret
 ; 503b2
 
-Unknown_503b2: ; 503b2
-	dw Unknown_503c6
-	dw Unknown_503c6
-	dw Unknown_503c6
-	dw Unknown_503cc
-	dw Unknown_503c6
-	dw Unknown_503d1
-	dw Unknown_503d6
-	dw Unknown_503d6
-	dw Unknown_503c6
-	dw Unknown_503db
+.Pointers: ; 503b2
+	dw .Default
+	dw .Default
+	dw .Default
+	dw .TMHM
+	dw .Default
+	dw .EvoStone
+	dw .Gender
+	dw .Gender
+	dw .Default
+	dw .Mobile
 ; 503c6
 
-Unknown_503c6: db 0, 1, 2, 3, 4, $ff
-Unknown_503cc: db 0, 5, 3, 4, $ff
-Unknown_503d1: db 0, 6, 3, 4, $ff
-Unknown_503d6: db 0, 7, 3, 4, $ff
-Unknown_503db: db 0, 8, 3, 4, $ff
+.Default: db 0, 1, 2, 3, 4, $ff
+.TMHM: db 0, 5, 3, 4, $ff
+.EvoStone: db 0, 6, 3, 4, $ff
+.Gender: db 0, 7, 3, 4, $ff
+.Mobile: db 0, 8, 3, 4, $ff
 ; 503e0
 
 
@@ -45529,7 +45538,7 @@ DrawHP: ; 50b10
 	ld c, e
 
 .asm_50b41
-	predef Functionc699
+	predef DrawPartyMenuHPBar
 	ld a, 6
 	ld d, a
 	ld c, a
@@ -45542,7 +45551,7 @@ DrawHP: ; 50b10
 	push de
 	push hl
 	push hl
-	call DrawHPBar
+	call DrawBattleHPBar
 	pop hl
 
 ; Print HP
@@ -45774,7 +45783,7 @@ endr
 	push af
 	ld [hl], b
 	push hl
-	callab Functionf8ec
+	callab GetMaxPPOfMove
 	pop hl
 	pop af
 	ld [hl], a
@@ -56249,7 +56258,7 @@ Function8e936: ; 8e936 (23:6936)
 	ret
 
 Function8e94c: ; 8e94c (23:694c)
-	callba Function50117
+	callba PlacePartymonHPBar
 	call GetHPPal
 	ld e, d
 	ld d, 0
@@ -67878,7 +67887,7 @@ BillsPCDepositFuncRelease: ; e24e0 (38:64e0)
 	add [hl]
 	ld [CurPartyMon], a
 	xor a
-	ld [wd10b], a
+	ld [wPokemonWithdrawDepositParameter], a
 	callba Functione039
 	call Functione3180
 	ld a, $0
@@ -68140,8 +68149,8 @@ endr
 	ld hl, wcb2a
 	add [hl]
 	ld [CurPartyMon], a
-	ld a, $1
-	ld [wd10b], a
+	ld a, PC_DEPOSIT
+	ld [wPokemonWithdrawDepositParameter], a
 	callba Functione039
 	call Functione3180
 	ld a, $0
@@ -69532,12 +69541,12 @@ Functione307c: ; e307c (38:707c)
 	ld hl, PartyMonNicknames
 	ld a, [CurPartyMon]
 	call GetNick
-	ld a, $1
-	ld [wd10b], a
+	ld a, PC_DEPOSIT
+	ld [wPokemonWithdrawDepositParameter], a
 	predef SentGetPkmnIntoFromBox
 	jr c, .asm_boxisfull
 	xor a
-	ld [wd10b], a
+	ld [wPokemonWithdrawDepositParameter], a
 	callba Functione039
 	ld a, [CurPartySpecies]
 	call PlayCry
@@ -69588,11 +69597,11 @@ TryWithdrawPokemon: ; e30fa (38:70fa)
 	call GetNick
 	call CloseSRAM
 	xor a
-	ld [wd10b], a
+	ld [wPokemonWithdrawDepositParameter], a
 	predef SentGetPkmnIntoFromBox
 	jr c, .PartyFull
-	ld a, $1
-	ld [wd10b], a
+	ld a, PC_DEPOSIT
+	ld [wPokemonWithdrawDepositParameter], a
 	callba Functione039
 	ld a, [CurPartySpecies]
 	call PlayCry
@@ -69829,8 +69838,8 @@ Functione32b0: ; e32b0
 	call Functione3389
 	call CloseSRAM
 	callba Function5088b
-	ld a, $1
-	ld [wd10b], a
+	ld a, PC_DEPOSIT
+	ld [wPokemonWithdrawDepositParameter], a
 	callba Functione039
 	ret
 ; e32fa
@@ -69863,7 +69872,7 @@ Functione3316: ; e3316
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call Functione3389
 	xor a
-	ld [wd10b], a
+	ld [wPokemonWithdrawDepositParameter], a
 	callba Functione039
 	ret
 ; e3346
@@ -74697,7 +74706,7 @@ Functionfcc63: ; fcc63
 	ld [CurPartySpecies], a
 	xor a
 	ld [MonType], a
-	ld [wd10b], a
+	ld [wPokemonWithdrawDepositParameter], a
 	callab Functione039
 	predef TryAddMonToParty
 

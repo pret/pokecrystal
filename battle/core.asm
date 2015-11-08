@@ -5109,7 +5109,7 @@ DrawEnemyHUD: ; 3e043
 	ld [wd10a], a
 	hlcoord 2, 2
 	ld b, 0
-	call DrawHPBar
+	call DrawBattleHPBar
 	ret
 ; 3e127
 
@@ -5954,7 +5954,7 @@ MoveInfoBox: ; 3e6c8
 	ld [CurPartyMon], a
 	ld a, WILDMON
 	ld [MonType], a
-	callab Functionf8ec
+	callab GetMaxPPOfMove
 
 	ld hl, MenuSelection2
 	ld c, [hl]

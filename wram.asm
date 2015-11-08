@@ -561,8 +561,8 @@ PlayerSubStatus5:: ; c66c
 ; 7 cant run
 ; 6 destiny bond
 ; 5 lock-on
-; 4
-; 3
+; 4 encore
+; 3 transformed
 ; 2
 ; 1
 ; 0 toxic
@@ -1602,6 +1602,11 @@ CurPartyMon:: ; d109
 	ds 1
 
 wd10a:: ds 1
+wPokemonWithdrawDepositParameter::
+; 0: Take from PC
+; 1: Put into PC
+; 2: Take from Daycare
+; 3: Put into Daycare
 wd10b:: ds 1
 wItemQuantityChangeBuffer:: ds 1
 wItemQuantityBuffer:: ds 1
