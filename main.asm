@@ -415,7 +415,7 @@ Continue: ; 5d65
 	callba TryLoadSaveFile
 	jr c, .FailToLoad
 	callba Function150b9
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	call Function5e85
 	ld a, $1
 	ld [hBGMapMode], a
@@ -5197,7 +5197,7 @@ FlyFunction: ; ca3b
 .outdoors
 	xor a
 	ld [hMapAnims], a
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	call ClearSprites
 	callba _FlyMap
 	ld a, e
@@ -9707,7 +9707,7 @@ TextJump_WasSentToBillsPC: ; 0xe3d9
 
 InitNickname: ; e3de
 	push de
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	call DisableSpriteUpdates
 	pop de
 	push de
@@ -9748,7 +9748,7 @@ UnknownText_0xe417: ; 0xe417
 Functione41c: ; e41c (3:641c)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	call ClearPCItemScreen
 	ld hl, Options
 	ld a, [hl]
@@ -9844,7 +9844,7 @@ Functione4cb: ; e4cb
 ; e4cd
 
 Functione4cd: ; e4cd
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	callba Function44781
 	jr nc, .asm_e4e0
 	ld hl, UnknownText_0xe4f9
@@ -9871,7 +9871,7 @@ UnknownText_0xe4f9: ; 0xe4f9
 ; 0xe4fe
 
 Functione4fe: ; e4fe (3:64fe)
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	callba Functione2391
 	call Function222a
 	call ClearPCItemScreen
@@ -9947,7 +9947,7 @@ CheckCurPartyMonFainted: ; e538
 
 
 Functione559: ; e559 (3:6559)
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	callba Functione2583
 	call Function222a
 	call ClearPCItemScreen
@@ -13264,7 +13264,7 @@ GiveTakePartyMonItem: ; 12b60
 	cp 1
 	jr nz, .asm_12ba0
 
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	call ClearPalettes
 	call Function12ba9
 	call ClearPalettes
@@ -13677,7 +13677,7 @@ MonMailAction: ; 12d45
 
 
 OpenPartyStats: ; 12e00
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	call ClearSprites
 ; PartyMon
 	xor a
@@ -14739,7 +14739,7 @@ Function134c0: ; 134c0
 ; 134dd
 
 Function134dd: ; 134dd
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	ld hl, Elevator_WhichFloorText
 	call PrintText
 	call Elevator_GetCurrentFloorText
@@ -16613,7 +16613,7 @@ UnknownText_0x157cc: ; 0x157cc
 ; 0x157d1
 
 KrisWithdrawItemMenu: ; 0x157d1
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	callba ClearPCItemScreen
 .asm_157da
 	call Function15985
@@ -16692,7 +16692,7 @@ Function157e9: ; 0x157e9
 
 
 KrisTossItemMenu: ; 0x1585f
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	callba ClearPCItemScreen
 .asm_15868
 	call Function15985
@@ -16729,7 +16729,7 @@ KrisDepositItemMenu: ; 0x1588b
 	call Function158b8
 	jr c, .asm_158b6
 	call DisableSpriteUpdates
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	callba Function106a5
 .asm_1589c
 	callba Function106be
@@ -17034,7 +17034,7 @@ MartDialog: ; 15a61
 
 HerbShop: ; 15a6e
 	call ReadMart
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	ld hl, UnknownText_0x15e4a
 	call Function15fcd
 	call Function15c62
@@ -17048,7 +17048,7 @@ BargainShop: ; 15a84
 	ld de, BargainShopData
 	call LoadMartPointer
 	call Function15c25
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	ld hl, UnknownText_0x15e6d
 	call Function15fcd
 	call Function15c62
@@ -17067,7 +17067,7 @@ BargainShop: ; 15a84
 
 Pharmacist: ; 15aae
 	call ReadMart
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	ld hl, UnknownText_0x15e90
 	call Function15fcd
 	call Function15c62
@@ -17088,7 +17088,7 @@ RooftopSale: ; 15ac4
 .ok
 	call LoadMartPointer
 	call Function15c25
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	ld hl, UnknownText_0x15f83
 	call Function15fcd
 	call Function15c62
@@ -17173,7 +17173,7 @@ StandardMart: ; 15b47
 ; 15b62
 
 .HowMayIHelpYou: ; 15b62
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	ld hl, UnknownText_0x15f83
 	call PrintText
 	ld a, $1
@@ -17226,7 +17226,7 @@ StandardMart: ; 15b47
 ; 15baf
 
 .AnythingElse: ; 15baf
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	ld hl, UnknownText_0x15fb9
 	call PrintText
 	ld a, $1
@@ -19462,7 +19462,7 @@ DoEggStep:: ; 16f3e
 
 OverworldHatchEgg:: ; 16f5e
 	call ResetWindow
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	call Function16f70
 	call Function2b4d
 	call RestartMapMusic
@@ -20304,7 +20304,7 @@ Function20021: ; 20021 (8:4021)
 	ld a, [hl]
 	push af
 	set 4, [hl]
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	call ClearTileMap
 	ld hl, UnknownText_0x2004c
 	call PrintText
@@ -23968,7 +23968,7 @@ Function2695b: ; 2695b
 	ld d, 0
 	add hl, de
 	ld [hl], -1
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	ld hl, MenuDataHeader_0x269c5
 	call CopyMenuDataHeader
 	xor a
@@ -25065,7 +25065,7 @@ Function2715c: ; 2715c
 	callba Function3ed9f
 	call ClearSGB
 	call WriteBackup
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	call WaitBGMap
 	jp SetPalettes
 ; 27192
@@ -26846,7 +26846,7 @@ Function28b87: ; 28b87
 	ld hl, UnknownText_0x28eb8
 	bccoord 1, 14
 	call PlaceWholeStringInBoxAtOnce
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	hlcoord 10, 7
 	ld b, $3
 	ld c, $7
@@ -27015,7 +27015,7 @@ Function28b87: ; 28b87
 	ld a, [hli]
 	ld [wc731], a
 	ld a, [hl]
-	ld [wc732], a
+	ld [wPlayerCharging], a
 	ld hl, OTPartyMon1DVs
 	ld a, [wd003]
 	call GetPartyLocation
@@ -27030,7 +27030,7 @@ Function28b87: ; 28b87
 	ld c, l
 	callba GetCaughtGender
 	ld a, c
-	ld [wc733], a
+	ld [wEnemyCharging], a
 	ld a, [DefaultFlypoint]
 	ld [CurPartyMon], a
 	ld hl, PartySpecies
@@ -28143,7 +28143,7 @@ Function29549: ; 29549
 	call Function295e3
 	ld de, wc703
 	call Function295ef
-	ld a, [wc733]
+	ld a, [wEnemyCharging]
 	ld de, wc724
 	call Function295f6
 	ld de, wc731
@@ -32241,7 +32241,7 @@ endr
 	ld [wd0e4], a
 	ld [CriticalHit], a
 	ld [BattleMonSpecies], a
-	ld [wc664], a
+	ld [wBattleParticipantsNotFainted], a
 	ld [CurBattleMon], a
 	ld [wd232], a
 	ld [TimeOfDayPal], a
@@ -34427,7 +34427,7 @@ Function44781: ; 44781
 _KrisMailBoxMenu: ; 0x447a0
 	call InitMail
 	jr z, .nomail
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	call Function44806
 	jp WriteBackup
 
@@ -38301,7 +38301,7 @@ Function4a098: ; 4a098 (12:6098)
 	call Function1ff8
 	call Function1bee
 	call WaitBGMap
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	callba Function89de0
 	call Call_ExitMenu
 	call Function49351
@@ -38520,7 +38520,7 @@ Function4a28a: ; 4a28a (12:628a)
 	call Function4a6d8
 	call Function1bee
 	call WaitBGMap
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$aa4b]
@@ -56925,7 +56925,7 @@ Special_SetDayOfWeek: ; 90913
 	hlcoord 0, 12
 	lb bc, 4, 18
 	call TextBox
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	ld hl, UnknownText_0x90a3f
 	call PrintText
 	hlcoord 9, 3
@@ -67846,7 +67846,7 @@ BillsPCDepositFuncDeposit: ; e24a9 (38:64a9)
 	ret
 
 BillsPCDepositFuncStats: ; e24c8 (38:64c8)
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	call Functione2f7e
 	call ExitMenu
 	call PCMonInfo
@@ -67865,7 +67865,7 @@ BillsPCDepositFuncRelease: ; e24e0 (38:64e0)
 	push af
 	ld de, PCString_ReleasePKMN
 	call Functione2a6e
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	lb bc, 14, 11
 	call PlaceYesNoBox
 	ld a, [MenuSelection2]
@@ -68111,7 +68111,7 @@ endr
 	ret
 
 .stats: ; e26c0 (38:66c0)
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	call Functione2f7e
 	call ExitMenu
 	call PCMonInfo
@@ -68128,7 +68128,7 @@ endr
 	jr c, .FailedRelease
 	ld de, PCString_ReleasePKMN
 	call Functione2a6e
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	lb bc, 14, 11
 	call PlaceYesNoBox
 	ld a, [MenuSelection2]
@@ -68371,7 +68371,7 @@ Functione2887: ; e2887
 ; e28a5
 
 Functione28a5: ; e28a5
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	call Functione2f7e
 	call ExitMenu
 	call PCMonInfo
@@ -70009,7 +70009,7 @@ PCString_NoReleasingEGGS: db "No releasing EGGS!@"
 ; e35aa
 
 Functione35aa: ; e35aa (38:75aa)
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	call Functione35e2
 .loop
 	xor a
@@ -74686,7 +74686,7 @@ Functionfcc63: ; fcc63
 	jr c, .asm_fcce6
 	ld a, 2
 .asm_fcce6
-	ld [wc733], a
+	ld [wEnemyCharging], a
 
 	ld hl, PartyMon1Level
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -74750,7 +74750,7 @@ Functionfcc63: ; fcc63
 
 	ld e, TRADE_OT_ID
 	call GetTradeAttribute
-	ld de, wc732
+	ld de, wPlayerCharging
 	call Functionfce15
 
 	ld hl, PartyMon1ID

@@ -242,7 +242,7 @@ Function10016f: ; 10016f
 	jr z, .asm_1001af
 	cp $f8
 	ret z
-	ret
+	ret   ; ????????????????????????????
 
 .asm_1001af
 	ld a, $d7
@@ -4483,7 +4483,7 @@ Unknown_101d8d: ; 101d8d
 
 Function101d95: ; 101d95
 	call Function101ee2
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	ld e, $e
 	call Function101ee4
 	ld hl, wcd29
@@ -6256,7 +6256,7 @@ Jumptable_1029cb: ; 1029cb
 ; 1029cf
 
 Function1029cf: ; 1029cf
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	hlcoord 10, 7
 	ld b, $3
 	ld c, $8
@@ -6384,7 +6384,7 @@ Function102a3b: ; 102a3b
 	ld a, [hli]
 	ld [wc731], a
 	ld a, [hl]
-	ld [wc732], a
+	ld [wPlayerCharging], a
 	ld a, [wcd4d]
 	dec a
 	ld hl, OTPartyMon1DVs
@@ -6401,7 +6401,7 @@ Function102a3b: ; 102a3b
 	ld c, l
 	callba GetCaughtGender
 	ld a, c
-	ld [wc733], a
+	ld [wEnemyCharging], a
 	ret
 ; 102b12
 

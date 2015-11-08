@@ -7658,7 +7658,7 @@ Function11b7e5: ; 11b7e5
 	ld a, [$c608 + 11]
 	ld [wc731], a
 	ld a, [$c608 + 12]
-	ld [wc732], a
+	ld [wPlayerCharging], a
 	ld hl, $c608 + 26
 	ld a, [hli]
 	ld [wc72f], a
@@ -7667,7 +7667,7 @@ Function11b7e5: ; 11b7e5
 	ld bc, $c608 + 5
 	callba GetCaughtGender
 	ld a, c
-	ld [wc733], a
+	ld [wEnemyCharging], a
 	call SpeechTextBox
 	call FadeToMenu
 	callba Function108016

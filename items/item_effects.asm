@@ -1673,7 +1673,7 @@ Functionf0d6: ; f0d6
 
 	ld a, [CurPartyMon]
 	ld c, a
-	ld hl, wc664
+	ld hl, wBattleParticipantsNotFainted
 	ld b, SET_FLAG
 	predef FlagPredef
 

@@ -723,22 +723,22 @@ BattleCommand_CheckObedience: ; 343db
 	ld hl, JohtoBadges
 
 	; risingbadge
-	bit 7, [hl]
+	bit RISINGBADGE, [hl]
 	ld a, MAX_LEVEL + 1
 	jr nz, .getlevel
 
 	; stormbadge
-	bit 5, [hl]
+	bit STORMBADGE, [hl]
 	ld a, 70
 	jr nz, .getlevel
 
 	; fogbadge
-	bit 3, [hl]
+	bit FOGBADGE, [hl]
 	ld a, 50
 	jr nz, .getlevel
 
 	; hivebadge
-	bit 1, [hl]
+	bit HIVEBADGE, [hl]
 	ld a, 30
 	jr nz, .getlevel
 
@@ -1017,9 +1017,9 @@ Function34548: ; 34548
 
 	ld a, [hBattleTurn]
 	and a
-	ld a, [wc732] ; player
+	ld a, [wPlayerCharging] ; player
 	jr z, .end
-	ld a, [wc733] ; enemy
+	ld a, [wEnemyCharging] ; enemy
 .end
 	and a
 	ret
@@ -2129,13 +2129,13 @@ BattleCommand_HitTargetNoSub: ; 34f60
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_MULTI_HIT
-	jr z, .multihit_conversion_doublehit_twineedle
+	jr z, .multihit
 	cp EFFECT_CONVERSION
-	jr z, .multihit_conversion_doublehit_twineedle
+	jr z, .conversion
 	cp EFFECT_DOUBLE_HIT
-	jr z, .multihit_conversion_doublehit_twineedle
+	jr z, .doublehit
 	cp EFFECT_TWINEEDLE
-	jr z, .multihit_conversion_doublehit_twineedle
+	jr z, .twineedle
 	cp EFFECT_TRIPLE_KICK
 	jr z, .triplekick
 	xor a
@@ -2159,7 +2159,10 @@ BattleCommand_HitTargetNoSub: ; 34f60
 .fly_dig
 ; clear sprite
 	jp Function37ec7
-.multihit_conversion_doublehit_twineedle
+.multihit
+.conversion
+.doublehit
+.twineedle
 	ld a, [wKickCounter]
 	and 1
 	xor 1
@@ -6307,12 +6310,12 @@ BattleCommand_StoreEnergy: ; 36671
 	ld a, 1
 	ld [hl], a
 	ld hl, PlayerDamageTaken + 1
-	ld de, wc732 ; player
+	ld de, wPlayerCharging ; player
 	ld a, [hBattleTurn]
 	and a
 	jr z, .player
 	ld hl, EnemyDamageTaken + 1
-	ld de, wc733 ; enemy
+	ld de, wEnemyCharging ; enemy
 .player
 	ld a, [hld]
 	add a
@@ -8575,11 +8578,11 @@ CheckUserMove: ; 37462
 
 
 ResetTurn: ; 3747b
-	ld hl, wc732
+	ld hl, wPlayerCharging
 	ld a, [hBattleTurn]
 	and a
 	jr z, .player
-	ld hl, wc733
+	ld hl, wEnemyCharging
 
 .player
 	ld [hl], 1
@@ -8921,7 +8924,7 @@ BattleCommand_BatonPass: ; 379c9
 	call DelayFrames
 
 ; Transition into switchmon menu
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	callba Function3d2f7
 
 	callba ForcePickSwitchMonInBattle
@@ -8971,9 +8974,9 @@ BattleCommand_BatonPass: ; 379c9
 ; Passed enemy PartyMon entrance
 	xor a
 	ld [wc718], a
-	ld hl, Function3d517
+	ld hl, EnemySwitch_SetMode
 	call CallBattleCore
-	ld hl, Function3d57a
+	ld hl, ResetBattleParticipants
 	call CallBattleCore
 	ld a, 1
 	ld [wTypeMatchup], a
@@ -8995,7 +8998,7 @@ BatonPass_LinkPlayerSwitch: ; 37a67
 	ld a, 1
 	ld [wd0ec], a
 
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	ld hl, Function3e8e4
 	call CallBattleCore
 	call WriteBackup
@@ -9011,7 +9014,7 @@ BatonPass_LinkEnemySwitch: ; 37a82
 	and a
 	ret z
 
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	ld hl, Function3e8e4
 	call CallBattleCore
 

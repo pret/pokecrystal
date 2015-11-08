@@ -211,94 +211,93 @@ ReadBTTrainerParty: ; 1702b7
 	ret
 ; 170394
 
-Function170394: ; 170394
-	ld hl, $c608 + 11
-	ld d, $3
-.asm_170399
+ValidateBTParty: ; 170394
+; Check for and fix errors in party data
+	ld hl, wBT_OTTempPkmn1Species
+	ld d, BATTLETOWER_NROFPKMNS
+.pkmn_loop
 	push de
 	push hl
 	ld b, h
 	ld c, l
 	ld a, [hl]
 	and a
-	jr z, .asm_1703b1
-	cp $ff
-	jr z, .asm_1703b1
-	cp $fe
-	jr z, .asm_1703b1
-	cp $fd
-	jr z, .asm_1703b1
-	cp $fc
-	jr nz, .asm_1703b4
+idx = $ff
+rept ($ff +- NUM_POKEMON)
+	jr z, .invalid
+	cp idx
+idx = idx +- 1
+endr
+	jr nz, .valid
 
-.asm_1703b1
-	ld a, $eb
+.invalid
+	ld a, SMEARGLE
 	ld [hl], a
 
-.asm_1703b4
+.valid
 	ld [CurSpecies], a
 	call GetBaseData
 	ld a, $5
 	call GetSRAMBank
-	ld a, [$b2fb]
+	ld a, [$b2fb] ; s5_b2fb ; max level?
 	call CloseSRAM
 	ld e, a
-	ld hl, $001f
+	ld hl, MON_LEVEL
 	add hl, bc
 	ld a, [hl]
-	cp $2
-	ld a, $2
-	jr c, .asm_1703d6
+	cp MIN_LEVEL
+	ld a, MIN_LEVEL
+	jr c, .load
 	ld a, [hl]
 	cp e
-	jr c, .asm_1703d7
+	jr c, .dont_load
 	ld a, e
 
-.asm_1703d6
+.load
 	ld [hl], a
 
-.asm_1703d7
+.dont_load
 	ld [CurPartyLevel], a
-	ld hl, $0002
+	ld hl, MON_MOVES
 	add hl, bc
-	ld d, $3
+	ld d, NUM_MOVES - 1
 	ld a, [hli]
 	and a
-	jr z, .asm_1703ea
-	cp $fc
-	jr nc, .asm_1703ea
-	jr .asm_1703f4
+	jr z, .not_move
+	cp NUM_ATTACKS + 1
+	jr nc, .not_move
+	jr .valid_move
 
-.asm_1703ea
+.not_move
 	dec hl
-	ld a, $1
+	ld a, POUND
 	ld [hli], a
 	xor a
 rept 2
 	ld [hli], a
 endr
 	ld [hl], a
-	jr .asm_1703ff
+	jr .done_moves
 
-.asm_1703f4
+.valid_move
 	ld a, [hl]
-	cp $fc
-	jr c, .asm_1703fb
+	cp NUM_ATTACKS + 1
+	jr c, .next
 	ld [hl], $0
 
-.asm_1703fb
+.next
 	inc hl
 	dec d
-	jr nz, .asm_1703f4
+	jr nz, .valid_move
 
-.asm_1703ff
-	ld hl, $0024
+.done_moves
+	ld hl, MON_MAXHP
 	add hl, bc
 	ld d, h
 	ld e, l
 	push hl
 	push de
-	ld hl, $000a
+	ld hl, MON_EXP + 2
 	add hl, bc
 	ld b, $1
 	predef CalcPkmnStats
@@ -317,7 +316,7 @@ endr
 	add hl, bc
 	pop de
 	dec d
-	jp nz, .asm_170399
+	jp nz, .pkmn_loop
 	ret
 ; 170426
 
@@ -326,20 +325,20 @@ BT_ChrisName: ; 170426
 ; 17042c
 
 Function17042c: ; 17042c
-	ld hl, OTPartyMon2ID
-	ld a, $7
-.asm_170431
+	ld hl, BT_TrainerTextIndex + $be
+	ld a, 7
+.loop
 	push af
 	push hl
-	ld c, $12
-.asm_170435
+	ld c, 18
+.loop2
 	ld a, [hli]
 	ld b, a
 	ld a, [hli]
 	and a
-	jr z, .asm_170451
+	jr z, .skip
 	cp $f
-	jr nc, .asm_17045b
+	jr nc, .exit_inner_loop
 	push hl
 	ld hl, Unknown_170470
 	dec a
@@ -349,34 +348,34 @@ Function17042c: ; 17042c
 	ld a, [hl]
 	pop hl
 	cp b
-	jr c, .asm_17045b
-	jr z, .asm_17045b
+	jr c, .exit_inner_loop
+	jr z, .exit_inner_loop
 	jr .asm_170456
 
-.asm_170451
+.skip
 	ld a, b
 	cp $fc
-	jr nc, .asm_17045b
+	jr nc, .exit_inner_loop
 
 .asm_170456
 	dec c
-	jr nz, .asm_170435
-	jr .asm_170466
+	jr nz, .loop2
+	jr .dont_copy
 
-.asm_17045b
+.exit_inner_loop
 	pop de
 	push de
 	ld hl, Unknown_17047e
 	ld bc, BATTLETOWER_TRAINERDATALENGTH
 	call CopyBytes
 
-.asm_170466
+.dont_copy
 	pop hl
 	ld de, $00e0
 	add hl, de
 	pop af
 	dec a
-	jr nz, .asm_170431
+	jr nz, .loop
 	ret
 ; 170470
 

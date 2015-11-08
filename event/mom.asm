@@ -103,7 +103,7 @@ endr
 .AccessBankOfMom: ; 162a8
 	ld hl, UnknownText_0x1665d
 	call PrintText
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	ld hl, MenuDataHeader_0x166b5
 	call CopyMenuDataHeader
 	call InterpretMenu2
@@ -148,7 +148,7 @@ endr
 	ld [hl], a
 	ld a, $5
 	ld [wcf64], a
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	call Function16517
 	call Function1656b
 	call Function16571
@@ -216,7 +216,7 @@ endr
 	ld [hl], a
 	ld a, $5
 	ld [wcf64], a
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	call Function16512
 	call Function1656b
 	call Function16571

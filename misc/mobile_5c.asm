@@ -62,11 +62,11 @@ Function17005a: ; 17005a
 	ld a, [hli]
 	ld [wc731], a
 	ld a, [hl]
-	ld [wc732], a
+	ld [wPlayerCharging], a
 	ld bc, $a82c
 	callba GetCaughtGender
 	ld a, c
-	ld [wc733], a
+	ld [wEnemyCharging], a
 	ld a, [wcd81]
 	ld [wc74e], a
 	call CloseSRAM

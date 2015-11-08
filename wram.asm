@@ -488,7 +488,14 @@ wc663::
 CurOTMon:: ; c663
 	ds 1
 
-wc664:: ds 1
+wBattleParticipantsNotFainted::
+; Bit array.  Bits 0 - 5 correspond to party members 1 - 6.
+; Bit set if the mon appears in battle.
+; Bit cleared if the mon faints.
+; Backed up if the enemy switches.
+; All bits cleared if the enemy faints.
+	ds 1
+
 TypeModifier:: ; c665
 ; >10: super-effective
 ;  10: normal
@@ -848,8 +855,8 @@ wc72e:: ds 1
 wc72f:: ds 1
 wc730:: ds 1
 wc731:: ds 1
-wc732:: ds 1
-wc733:: ds 1
+wPlayerCharging:: ds 1
+wEnemyCharging:: ds 1
 wc734::
 BattleEnded:: ; c734
 	ds 1

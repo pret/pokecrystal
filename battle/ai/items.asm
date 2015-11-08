@@ -731,8 +731,8 @@ AI_Switch: ; 3846c
 	callab ResetEnemyStatLevels
 	ld hl, PlayerSubStatus1
 	res SUBSTATUS_IN_LOVE, [hl]
-	callba Function3d4e1
-	callba Function3d57a
+	callba EnemySwitch
+	callba ResetBattleParticipants
 	xor a
 	ld [wd264], a
 	ld a, [wLinkMode]

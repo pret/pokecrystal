@@ -1259,7 +1259,7 @@ Function1089d2:
 	call Function108a92
 	ld de, wc703
 	call Function108a9c
-	ld a, [wc733]
+	ld a, [wEnemyCharging]
 	ld de, wc724
 	call Function108aa3
 	ld de, wc731

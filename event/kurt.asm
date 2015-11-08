@@ -23,7 +23,7 @@ UnknownText_0x88013: ; 0x88013
 ; 0x88018
 
 Special_SelectApricornForKurt: ; 88018
-	call LoadMenuDataHeader_0x1d75
+	call LoadPartyMenuDataHeader
 	ld c, $1
 	xor a
 	ld [wd0e4], a
