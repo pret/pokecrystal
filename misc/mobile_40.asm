@@ -6382,7 +6382,7 @@ Function102a3b: ; 102a3b
 	ld hl, OTPartyMon1ID
 	call GetPartyLocation
 	ld a, [hli]
-	ld [wc731], a
+	ld [wEnemyWrapCount], a
 	ld a, [hl]
 	ld [wPlayerCharging], a
 	ld a, [wcd4d]
@@ -6390,9 +6390,9 @@ Function102a3b: ; 102a3b
 	ld hl, OTPartyMon1DVs
 	call GetPartyLocation
 	ld a, [hli]
-	ld [wc72f], a
+	ld [wEnemyTrappingMove], a
 	ld a, [hl]
-	ld [wc730], a
+	ld [wPlayerWrapCount], a
 	ld a, [wcd4d]
 	dec a
 	ld hl, OTPartyMon1Species

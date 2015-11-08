@@ -1360,7 +1360,7 @@ Script_writepersonxy: ; 0x9735b
 	ld a, [hLastTalked]
 .ok
 	ld b, a
-	callba Function80a1
+	callba WritePersonXY
 	ret
 ; 0x9736f
 
@@ -1376,7 +1376,7 @@ Script_follownotexact: ; 0x9736f
 	call GetScriptByte
 	call GetScriptPerson
 	ld c, a
-	callba Function839e
+	callba FollowNotExact
 	ret
 ; 0x97384
 
@@ -1546,7 +1546,7 @@ Script_catchtutorial: ; 0x97447
 	call GetScriptByte
 	ld [BattleType], a
 	call BufferScreen
-	callba Function4e554
+	callba CatchTutorial
 	jp Script_reloadmap
 ; 0x97459
 

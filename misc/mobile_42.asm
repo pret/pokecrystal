@@ -170,7 +170,7 @@ Function1080b7: ; 1080b7
 	ld de, VTiles0 tile $30
 	call Function1081e9
 	ld a, [wc702]
-	ld hl, wc72f
+	ld hl, wEnemyTrappingMove
 	ld de, VTiles2 tile $31
 	call Function1081e9
 	ld a, [$c6d0]
@@ -515,7 +515,7 @@ Function10839b: ; 10839b
 	call Function1081ca
 	ld a, [wc702]
 	ld [CurPartySpecies], a
-	ld hl, wc72f
+	ld hl, wEnemyTrappingMove
 	ld de, VTiles2
 	call Function108201
 	call EnableLCD
@@ -548,9 +548,9 @@ Function10839b: ; 10839b
 	ld [hWY], a
 	ld a, [wc702]
 	ld [CurPartySpecies], a
-	ld a, [wc72f]
+	ld a, [wEnemyTrappingMove]
 	ld [TempMonDVs], a
-	ld a, [wc730]
+	ld a, [wPlayerWrapCount]
 	ld [TempMonDVs + 1], a
 	ld b, $1a
 	call GetSGBLayout
@@ -650,7 +650,7 @@ Function1084d7: ; 1084d7
 	call Function1081ca
 	ld a, [wc702]
 	ld [CurPartySpecies], a
-	ld hl, wc72f
+	ld hl, wEnemyTrappingMove
 	ld de, VTiles2
 	call Function108201
 	call EnableLCD
@@ -692,16 +692,16 @@ Function1084d7: ; 1084d7
 	ld [hWY], a
 	ld a, [wc702]
 	ld [CurPartySpecies], a
-	ld a, [wc72f]
+	ld a, [wEnemyTrappingMove]
 	ld [TempMonDVs], a
-	ld a, [wc730]
+	ld a, [wPlayerWrapCount]
 	ld [TempMonDVs + 1], a
 	ld b, $1a
 	call GetSGBLayout
 	ld a, $e4
 	call DmgToCgbBGPals
 	ld a, [wc702]
-	ld hl, wc72f
+	ld hl, wEnemyTrappingMove
 	call Function10898a
 	ld a, [wc702]
 	call Function108229
@@ -719,7 +719,7 @@ Function108589: ; 108589
 	call Function1081ca
 	ld a, [wc702]
 	ld [CurPartySpecies], a
-	ld hl, wc72f
+	ld hl, wEnemyTrappingMove
 	ld de, VTiles2
 	call Function108201
 	call EnableLCD
@@ -761,16 +761,16 @@ Function108589: ; 108589
 	ld [hWY], a
 	ld a, [wc702]
 	ld [CurPartySpecies], a
-	ld a, [wc72f]
+	ld a, [wEnemyTrappingMove]
 	ld [TempMonDVs], a
-	ld a, [wc730]
+	ld a, [wPlayerWrapCount]
 	ld [TempMonDVs + 1], a
 	ld b, $1a
 	call GetSGBLayout
 	ld a, $e4
 	call DmgToCgbBGPals
 	ld a, [wc702]
-	ld hl, wc72f
+	ld hl, wEnemyTrappingMove
 	call Function10898a
 	ld a, [wc702]
 	call Function108229
@@ -1262,7 +1262,7 @@ Function1089d2:
 	ld a, [wEnemyCharging]
 	ld de, wc724
 	call Function108aa3
-	ld de, wc731
+	ld de, wEnemyWrapCount
 	call Function108abe
 	call Function108a87
 	ret
@@ -1737,7 +1737,7 @@ Function108c9b: ; 108c9b
 	dec c
 	jr nz, .asm_108ccc
 
-	ld de, wc731
+	ld de, wEnemyWrapCount
 	ld c, $2
 .asm_108cd7
 	ld a, [hli]

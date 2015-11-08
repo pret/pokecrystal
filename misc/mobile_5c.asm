@@ -55,12 +55,12 @@ Function17005a: ; 17005a
 	ld [de], a
 	ld hl, $a841
 	ld a, [hli]
-	ld [wc72f], a
+	ld [wEnemyTrappingMove], a
 	ld a, [hl]
-	ld [wc730], a
+	ld [wPlayerWrapCount], a
 	ld hl, $a832
 	ld a, [hli]
-	ld [wc731], a
+	ld [wEnemyWrapCount], a
 	ld a, [hl]
 	ld [wPlayerCharging], a
 	ld bc, $a82c
@@ -177,7 +177,7 @@ Function170139: ; 170139
 	ld e, l
 	ld d, h
 	ld hl, PlayerName
-	ld bc, $0005
+	ld bc, $0005 ; Japanese name length
 	call CopyBytes
 	ld bc, PlayerID
 	ld de, PlayerGender

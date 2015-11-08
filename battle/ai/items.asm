@@ -16,7 +16,7 @@ AI_SwitchOrTryItem: ; 38000
 	bit SUBSTATUS_CANT_RUN, a
 	jr nz, DontSwitch
 
-	ld a, [wc731]
+	ld a, [wEnemyWrapCount]
 	and a
 	jr nz, DontSwitch
 

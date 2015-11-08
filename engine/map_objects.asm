@@ -29,7 +29,7 @@ SpriteMovementData:: ; 4273
 	db SPRITEMOVEFN_STANDING, DOWN,  $01, $0c, $00, $00 ; 17
 	db SPRITEMOVEFN_STANDING, DOWN,  $01, $2e, $10, $00 ; 18
 	db SPRITEMOVEFN_STRENGTH, DOWN,  $01, $2e, $00, $40 ; 19
-	db SPRITEMOVEFN_12, DOWN,  $01, $02, $00, $00 ; 1a
+	db SPRITEMOVEFN_FOLLOWNOTEXACT, DOWN,  $01, $02, $00, $00 ; 1a
 	db SPRITEMOVEFN_13, DOWN,  $00, $8e, $01, $00 ; 1b
 	db SPRITEMOVEFN_14, DOWN,  $08, $8e, $02, $00 ; 1c
 	db SPRITEMOVEFN_17, DOWN,  $00, $82, $00, $00 ; 1d
@@ -963,7 +963,7 @@ Function47dd: ; 47dd
 	dw .Follow ; 0f
 	dw .Script ; 10
 	dw .Strength ; 11
-	dw .Movement12 ; 12
+	dw .FollowNotExact ; 12
 	dw .Movement13 ; 13
 	dw .Movement14 ; 14
 	dw .MovementBigStanding ; 15
@@ -1145,7 +1145,7 @@ Function47dd: ; 47dd
 	ret
 ; 48ff
 
-.Movement12: ; 48ff
+.FollowNotExact: ; 48ff
 	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld d, [hl]

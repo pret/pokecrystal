@@ -1062,7 +1062,7 @@ AI_Smart_Bind: ; 38a71
 ; Bind, Wrap, Fire Spin, Clamp
 
 ; 50% chance to discourage this move if the player is already trapped.
-	ld a, [wc730]
+	ld a, [wPlayerWrapCount]
 	and a
 	jr nz, .asm_38a8b
 
@@ -2466,7 +2466,7 @@ AI_Smart_RapidSpin: ; 39084
 ; 80% chance to greatly encourage this move if the enemy is
 ; trapped (Bind effect), seeded, or scattered with spikes.
 
-	ld a, [wc731]
+	ld a, [wEnemyWrapCount]
 	and a
 	jr nz, .asm_39097
 

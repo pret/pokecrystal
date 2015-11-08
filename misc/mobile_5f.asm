@@ -283,14 +283,14 @@ Function17d0f3: ; 17d0f3
 	ld a, $50
 	ld [de], a
 	ld a, [$c608 + 11]
-	ld [wc731], a
+	ld [wEnemyWrapCount], a
 	ld a, [$c608 + 12]
 	ld [wPlayerCharging], a
 	ld hl, $c608 + 26
 	ld a, [hli]
-	ld [wc72f], a
+	ld [wEnemyTrappingMove], a
 	ld a, [hl]
-	ld [wc730], a
+	ld [wPlayerWrapCount], a
 	ld bc, $c608 + 5
 	callba GetCaughtGender
 	ld a, c

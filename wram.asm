@@ -841,8 +841,8 @@ LastPlayerMove:: ; c71b
 LastEnemyMove:: ; c71c
 	ds 1
 
-wc71d:: ds 1
-wc71e:: ds 1
+wPlayerFutureSightCount:: ds 1
+wEnemyFutureSightCount:: ds 1
 wc71f:: ds 1
 wc720:: ds 4 ; copy from/to EnemyMonBaseStats, length=7
 wc724:: ds 3
@@ -851,10 +851,10 @@ wc729:: ds 2
 wPlayerRageCounter:: ds 1
 wEnemyRageCounter:: ds 1
 wc72d:: ds 1 ; if 0 then PrintButItFailed
-wc72e:: ds 1
-wc72f:: ds 1
-wc730:: ds 1
-wc731:: ds 1
+wPlayerTrappingMove:: ds 1
+wEnemyTrappingMove:: ds 1
+wPlayerWrapCount:: ds 1
+wEnemyWrapCount:: ds 1
 wPlayerCharging:: ds 1
 wEnemyCharging:: ds 1
 wc734::
@@ -1636,8 +1636,8 @@ wd148:: ds 1
 wd149:: ds 1
 wd14a:: ds 1
 wd14b:: ds 1
-wd14c:: ds 1
-wd14d:: ds 1
+wd14c:: ds 1 ; used in FollowNotExact
+wd14d:: ds 1 ; used in FollowNotExact
 wd14e:: ds 1
 wd14f:: ds 1
 wd150:: ds 1
@@ -2512,8 +2512,10 @@ PoisonStepCount:: ; dc74
 
 	ds 2
 wdc77:: ds 2
-wdc79:: ds 1
-wdc7a:: ds 2
+wdc79::
+wParkBallsRemaining::
+wSafariBallsRemaining:: ds 1
+wSafariTimeRemaining:: ds 2
 wPhoneList:: ds CONTACT_LIST_SIZE
 	ds 23
 wLuckyNumberShowFlag:: ds 2 ; dc9d

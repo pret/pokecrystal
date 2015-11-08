@@ -98,6 +98,8 @@ const_value SET 3
 	const PAR
 	const SLP ; 7 turns
 
+ALL_STATUS EQU (1 << PSN) + (1 << BRN) + (1 << FRZ) + (1 << PAR) + SLP
+
 ; substatus
 	enum_start 7, -1
 	enum SUBSTATUS_IN_LOVE

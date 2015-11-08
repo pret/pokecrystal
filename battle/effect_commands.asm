@@ -7247,13 +7247,13 @@ BattleCommand_TrapTarget: ; 36c2d
 	ld a, [AttackMissed]
 	and a
 	ret nz
-	ld hl, wc731
-	ld de, wc72f
+	ld hl, wEnemyWrapCount
+	ld de, wEnemyTrappingMove
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_36c43
-	ld hl, wc730
-	ld de, wc72e
+	ld hl, wPlayerWrapCount
+	ld de, wPlayerTrappingMove
 
 .asm_36c43
 	ld a, [hl]
@@ -7494,7 +7494,7 @@ endr
 	cp HELD_HEAL_CONFUSION
 	ret nz
 .asm_36db0
-	ld hl, Function3de51
+	ld hl, HandleStatusHealingItem
 	jp CallBattleCore
 ; 36db6
 
@@ -7674,13 +7674,13 @@ endr
 	call GetBattleVarAddr
 	set SUBSTATUS_SUBSTITUTE, [hl]
 
-	ld hl, wc730
-	ld de, wc72e
+	ld hl, wPlayerWrapCount
+	ld de, wPlayerTrappingMove
 	ld a, [hBattleTurn]
 	and a
 	jr z, .player
-	ld hl, wc731
-	ld de, wc72f
+	ld hl, wEnemyWrapCount
+	ld de, wEnemyTrappingMove
 .player
 
 	xor a
@@ -9077,8 +9077,8 @@ ResetBatonPassStatus: ; 37ab1
 	ld [hl], 0
 
 	xor a
-	ld [wc730], a
-	ld [wc731], a
+	ld [wPlayerWrapCount], a
+	ld [wEnemyWrapCount], a
 	ret
 ; 37ae9
 
@@ -9181,12 +9181,12 @@ BattleCommand_ClearHazards: ; 37b39
 .asm_37b4a
 
 	ld hl, PlayerScreens
-	ld de, wc730
+	ld de, wPlayerWrapCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_37b5b ; 37b53 $6
 	ld hl, EnemyScreens
-	ld de, wc731
+	ld de, wEnemyWrapCount
 .asm_37b5b
 	bit SCREENS_SPIKES, [hl]
 	jr z, .asm_37b69 ; 37b5d $a
@@ -9526,12 +9526,12 @@ BattleCommand_SkipSunCharge: ; 37d02
 BattleCommand_CheckFutureSight: ; 37d0d
 ; checkfuturesight
 
-	ld hl, wc71d
+	ld hl, wPlayerFutureSightCount
 	ld de, wc727
 	ld a, [hBattleTurn]
 	and a
 	jr z, .ok
-	ld hl, wc71e
+	ld hl, wEnemyFutureSightCount
 	ld de, wc729
 .ok
 
@@ -9566,11 +9566,11 @@ BattleCommand_FutureSight: ; 37d34
 	call GetBattleVarAddr
 	ld [hl], b
 .asm_37d4b
-	ld hl, wc71d
+	ld hl, wPlayerFutureSightCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_37d56 ; 37d51 $3
-	ld hl, wc71e
+	ld hl, wEnemyFutureSightCount
 .asm_37d56
 	ld a, [hl]
 	and a

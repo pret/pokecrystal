@@ -3267,10 +3267,11 @@ PlayerSpawn_ConvertCoords: ; 808f
 ; 80a1
 
 
-Function80a1:: ; 80a1
+WritePersonXY:: ; 80a1
 	ld a, b
 	call CheckObjectVisibility
 	ret c
+
 	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld d, [hl]
@@ -3685,7 +3686,7 @@ Function830d: ; 830d
 	ret
 ; 831e
 
-Function831e: ; 831e
+TrainerWalkToPlayer: ; 831e
 	ld a, [hLastTalked]
 	call Function1b1e
 	ld a, $3e
@@ -3770,7 +3771,7 @@ Function8388: ; 8388
 ; 839e
 
 
-Function839e:: ; 839e
+FollowNotExact:: ; 839e
 	push bc
 	ld a, c
 	call CheckObjectVisibility
@@ -3778,9 +3779,12 @@ Function839e:: ; 839e
 	ld e, c
 	pop bc
 	ret c
+
 	ld a, b
 	call CheckObjectVisibility
 	ret c
+
+; Person 2 is now in bc, person 1 is now in de
 	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
@@ -3788,33 +3792,34 @@ Function839e:: ; 839e
 	add hl, bc
 	ld c, [hl]
 	ld b, a
+
 	ld hl, OBJECT_MAP_X
 	add hl, de
 	ld a, [hl]
 	cp b
-	jr z, .asm_83c7
-	jr c, .asm_83c4
+	jr z, .same_x
+	jr c, .to_the_left
 	inc b
-	jr .asm_83d5
+	jr .continue
 
-.asm_83c4
+.to_the_left
 	dec b
-	jr .asm_83d5
+	jr .continue
 
-.asm_83c7
+.same_x
 	ld hl, OBJECT_MAP_Y
 	add hl, de
 	ld a, [hl]
 	cp c
-	jr z, .asm_83d5
-	jr c, .asm_83d4
+	jr z, .continue
+	jr c, .below
 	inc c
-	jr .asm_83d5
+	jr .continue
 
-.asm_83d4
+.below
 	dec c
 
-.asm_83d5
+.continue
 	ld hl, OBJECT_MAP_X
 	add hl, de
 	ld [hl], b
@@ -3847,7 +3852,7 @@ Function839e:: ; 839e
 	ld [hl], a
 	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, de
-	ld [hl], SPRITEMOVEDATA_1A
+	ld [hl], SPRITEMOVEDATA_FOLLOWNOTEXACT
 	ld hl, OBJECT_09
 	add hl, de
 	ld [hl], $0
@@ -9760,7 +9765,7 @@ Functione41c: ; e41c (3:641c)
 	ld hl, Options
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set NO_TEXT_SCROLL, [hl]
 	ld hl, UnknownText_0xe43a
 	call PrintText
 	pop af
@@ -10477,7 +10482,7 @@ Function116c1: ; 116c1
 	ld hl, Options
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set NO_TEXT_SCROLL, [hl]
 	ld a, [hMapAnims]
 	push af
 	xor a
@@ -13919,7 +13924,7 @@ Function12f5b: ; 12f5b
 	ld hl, Options
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set NO_TEXT_SCROLL, [hl]
 	call LoadFontsBattleExtra
 	call Function12f73
 	pop bc
@@ -13983,7 +13988,7 @@ ManagePokemonMoves: ; 12fba
 	ld hl, Options
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set NO_TEXT_SCROLL, [hl]
 	call MoveScreenLoop
 	pop af
 	ld [Options], a
@@ -14781,10 +14786,10 @@ Elevator_GetCurrentFloorText: ; 13512
 	ld hl, Options
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set NO_TEXT_SCROLL, [hl]
 	hlcoord 0, 0
-	ld b, $4
-	ld c, $8
+	ld b, 4
+	ld c, 8
 	call TextBox
 	hlcoord 1, 2
 	ld de, Elevator_CurrentFloorText
@@ -14916,7 +14921,7 @@ Special_GiveParkBalls: ; 135db
 	xor a
 	ld [wContestMon], a
 	ld a, 20
-	ld [wdc79], a
+	ld [wParkBallsRemaining], a
 	callba StartBugContestTimer
 	ret
 ; 135eb
@@ -14926,7 +14931,7 @@ BugCatchingContestBattleScript:: ; 0x135eb
 	battlecheck
 	startbattle
 	returnafterbattle
-	copybytetovar wdc79
+	copybytetovar wParkBallsRemaining
 	iffalse BugCatchingContestOutOfBallsScript
 	end
 ; 0x135f8
@@ -16605,7 +16610,7 @@ LOG_OFF       EQU 6
 PC_DisplayTextWaitMenu: ; 157bb
 	ld a, [Options]
 	push af
-	set 4, a
+	set NO_TEXT_SCROLL, a
 	ld [Options], a
 	call MenuTextBox
 	pop af
@@ -18989,7 +18994,7 @@ Function16be4: ; 16be4
 	ld [hInMenu], a
 	ld a, [Options]
 	push af
-	set 4, a
+	set NO_TEXT_SCROLL, a
 	ld [Options], a
 	call WhiteBGMap
 	call ClearTileMap
@@ -20310,7 +20315,7 @@ Function20021: ; 20021 (8:4021)
 	ld hl, Options
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set NO_TEXT_SCROLL, [hl]
 	call LoadPartyMenuDataHeader
 	call ClearTileMap
 	ld hl, UnknownText_0x2004c
@@ -20978,7 +20983,7 @@ Function245f1: ; 245f1
 	ld hl, Options
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set NO_TEXT_SCROLL, [hl]
 	call Function247f0
 	call Function2488b
 	call Function248b8
@@ -21868,26 +21873,27 @@ ShowMoney_TerminatorString: ; 24b8e
 ; 24b8f
 
 Function24b8f: ; 24b8f
+; unreferenced, related to safari?
 	ld hl, Options
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set NO_TEXT_SCROLL, [hl]
 	hlcoord 0, 0
-	ld b, $3
-	ld c, $7
+	ld b, 3
+	ld c, 7
 	call TextBox
 	hlcoord 1, 1
-	ld de, wdc7a
+	ld de, wSafariTimeRemaining
 	lb bc, 2, 3
 	call PrintNum
 	hlcoord 4, 1
-	ld de, String24bcf
+	ld de, .slash_500
 	call PlaceString
 	hlcoord 1, 3
-	ld de, String24bd4
+	ld de, .booru_ko
 	call PlaceString
 	hlcoord 5, 3
-	ld de, wdc79
+	ld de, wSafariBallsRemaining
 	lb bc, 1, 2
 	call PrintNum
 	pop af
@@ -21895,9 +21901,9 @@ Function24b8f: ; 24b8f
 	ret
 ; 24bcf
 
-String24bcf: ; 24bcf
+.slash_500: ; 24bcf
 	db "/500@"
-String24bd4: ; 24bd4
+.booru_ko: ; 24bd4
 	db "ボール   こ@"
 ; 24bdc
 
@@ -21919,7 +21925,7 @@ Function24be7: ; 24be7
 	ld de, String24c52
 	call PlaceString
 	hlcoord 8, 5
-	ld de, wdc79
+	ld de, wSafariBallsRemaining
 	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
 	call PrintNum
 	hlcoord 1, 1
@@ -22459,7 +22465,7 @@ Strings24f5f: ; 24f5f
 
 Function24f7c: ; 24f7c
 	hlcoord 17, 13
-	ld de, wdc79
+	ld de, wSafariBallsRemaining
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ret
@@ -22484,14 +22490,14 @@ MenuData_0x24f91: ; 24f91
 
 Strings24f9a: ; 24f9a
 	db "FIGHT@"
-	db $4a, "@"
+	db "<PKMN>", "@"
 	db "PARKBALL×  @"
 	db "RUN@"
 ; 24fb2
 
 Function24fb2: ; 24fb2
 	hlcoord 13, 16
-	ld de, wdc79
+	ld de, wParkBallsRemaining
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ret
@@ -27020,16 +27026,16 @@ Function28b87: ; 28b87
 	ld a, [wd003]
 	call GetPartyLocation
 	ld a, [hli]
-	ld [wc731], a
+	ld [wEnemyWrapCount], a
 	ld a, [hl]
 	ld [wPlayerCharging], a
 	ld hl, OTPartyMon1DVs
 	ld a, [wd003]
 	call GetPartyLocation
 	ld a, [hli]
-	ld [wc72f], a
+	ld [wEnemyTrappingMove], a
 	ld a, [hl]
-	ld [wc730], a
+	ld [wPlayerWrapCount], a
 	ld a, [wd003]
 	ld hl, OTPartyMon1Species
 	call GetPartyLocation
@@ -27400,7 +27406,7 @@ Function28fdb: ; 28fdb
 	ld de, VTiles0
 	call Function29491
 	ld a, [wc702]
-	ld hl, wc72f
+	ld hl, wEnemyTrappingMove
 	ld de, VTiles0 tile $31
 	call Function29491
 	ld a, [wc6d0]
@@ -28011,9 +28017,9 @@ Function29461: ; 29461
 	call Function29549
 	ld a, [wc702]
 	ld [CurPartySpecies], a
-	ld a, [wc72f]
+	ld a, [wEnemyTrappingMove]
 	ld [TempMonDVs], a
-	ld a, [wc730]
+	ld a, [wPlayerWrapCount]
 	ld [TempMonDVs + 1], a
 	ld b, $1a
 	call GetSGBLayout
@@ -28153,7 +28159,7 @@ Function29549: ; 29549
 	ld a, [wEnemyCharging]
 	ld de, wc724
 	call Function295f6
-	ld de, wc731
+	ld de, wEnemyWrapCount
 	call Function29611
 	call Function295d8
 	ret
@@ -41188,7 +41194,7 @@ FlagPredef: ; 4d7c1
 
 Function4d7fd: ; 4d7fd
 	ld a, [wc702]
-	ld hl, wc72f
+	ld hl, wEnemyTrappingMove
 	ld de, VTiles2
 	push de
 	push af
@@ -41209,9 +41215,9 @@ Function4d81e: ; 4d81e
 	callba Function29549
 	ld a, [wc702]
 	ld [CurPartySpecies], a
-	ld a, [wc72f]
+	ld a, [wEnemyTrappingMove]
 	ld [TempMonDVs], a
-	ld a, [wc730]
+	ld a, [wPlayerWrapCount]
 	ld [TempMonDVs + 1], a
 	ld b, $1a
 	call GetSGBLayout
@@ -43043,11 +43049,11 @@ CheckFaintedFrzSlp: ; 4e53f
 ; 4e554
 
 
-Function4e554:: ; 4e554
+CatchTutorial:: ; 4e554
 	ld a, [BattleType]
 	dec a
 	ld c, a
-	ld hl, Jumptable_4e564
+	ld hl, .jumptable
 	ld b, 0
 rept 2
 	add hl, bc
@@ -43058,23 +43064,24 @@ endr
 	jp [hl]
 ; 4e564
 
-Jumptable_4e564: ; 4e564 (13:6564)
-	dw Function4e56a
-	dw Function4e56a
-	dw Function4e56a
+.jumptable: ; 4e564 (13:6564)
+	dw .DudeTutorial
+	dw .DudeTutorial
+	dw .DudeTutorial
 
-Function4e56a: ; 4e56a (13:656a)
+.DudeTutorial: ; 4e56a (13:656a)
+; Back up your name to your Mom's name.
 	ld hl, PlayerName
 	ld de, MomsName
 	ld bc, NAME_LENGTH
 	call CopyBytes
-
-	ld hl, DudeString
+; Copy Dude's name to your name
+	ld hl, .Dude
 	ld de, PlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
 
-	call Function4e5b7
+	call .LoadDudeData
 
 	xor a
 	ld [hJoyDown], a
@@ -43084,8 +43091,8 @@ Function4e56a: ; 4e56a (13:656a)
 	and $f8
 	add $3
 	ld [Options], a
-	ld hl, AutoInput_4e5df
-	ld a, BANK(AutoInput_4e5df)
+	ld hl, .AutoInput
+	ld a, BANK(.AutoInput)
 	call StartAutoInput
 	callab StartBattle
 	call StopAutoInput
@@ -43098,13 +43105,13 @@ Function4e56a: ; 4e56a (13:656a)
 	call CopyBytes
 	ret
 
-Function4e5b7: ; 4e5b7 (13:65b7)
+.LoadDudeData: ; 4e5b7 (13:65b7)
 	ld hl, OTPartyMon1
-	ld [hl], $1
+	ld [hl], BULBASAUR
 	inc hl
-	ld [hl], $12
+	ld [hl], POTION
 	inc hl
-	ld [hl], $1
+	ld [hl], POUND
 	inc hl
 	ld [hl], $ff
 	ld hl, OTPartyMon1Exp + 2
@@ -43122,474 +43129,17 @@ endr
 	ret
 ; 4e5da (13:65da)
 
-DudeString: ; 4e5da
+.Dude: ; 4e5da
 	db "DUDE@"
 ; 4e5df
 
-AutoInput_4e5df: ; 4e5df
+.AutoInput: ; 4e5df
 	db NO_INPUT, $ff ; end
 ; 4e5e1
 
+INCLUDE "engine/evolution_animation.asm"
 
-EvolutionAnimation: ; 4e5e1
-	push hl
-	push de
-	push bc
-	ld a, [CurSpecies]
-	push af
-	ld a, [rOBP0]
-	push af
-	ld a, [BaseDexNo]
-	push af
-
-	call _EvolutionAnimation
-
-	pop af
-	ld [BaseDexNo], a
-	pop af
-	ld [rOBP0], a
-	pop af
-	ld [CurSpecies], a
-	pop bc
-	pop de
-	pop hl
-
-	ld a, [wd1ed]
-	and a
-	ret z
-
-	scf
-	ret
-; 4e607
-
-_EvolutionAnimation: ; 4e607
-	ld a, $e4
-	ld [rOBP0], a
-
-	ld de, MUSIC_NONE
-	call PlayMusic
-
-	callba Function8cf53
-
-	ld de, EvolutionGFX
-	ld hl, VTiles0
-	lb bc, BANK(EvolutionGFX), 8
-	call Request2bpp
-
-	xor a
-	ld [Danger], a
-	call WaitBGMap
-	xor a
-	ld [hBGMapMode], a
-	ld a, [Buffer1]
-	ld [PlayerHPPal], a
-
-	ld c, $0
-	call Function4e703
-	ld a, [Buffer1]
-	ld [CurPartySpecies], a
-	ld [CurSpecies], a
-	call Function4e708
-
-	ld de, VTiles2
-	ld hl, VTiles2 tile $31
-	ld bc, $31
-	call Request2bpp
-
-	ld a, $31
-	ld [wd1ec], a
-	call Function4e755
-	ld a, [Buffer2]
-	ld [CurPartySpecies], a
-	ld [CurSpecies], a
-	call Function4e711
-	ld a, [Buffer1]
-	ld [CurPartySpecies], a
-	ld [CurSpecies], a
-
-	ld a, $1
-	ld [hBGMapMode], a
-	call Function4e794
-	jr c, .asm_4e67c
-
-	ld a, [Buffer1]
-	call PlayCry
-
-.asm_4e67c
-	ld de, MUSIC_EVOLUTION
-	call PlayMusic
-
-	ld c, 80
-	call DelayFrames
-
-	ld c, $1
-	call Function4e703
-	call Function4e726
-	jr c, .asm_4e6df
-
-	ld a, $cf
-	ld [wd1ec], a
-
-	call Function4e755
-	xor a
-	ld [wd1ed], a
-
-	ld a, [Buffer2]
-	ld [PlayerHPPal], a
-
-	ld c, $0
-	call Function4e703
-	call Function4e7a6
-	callba Function8cf53
-	call Function4e794
-	jr c, .asm_4e6de
-
-	ld a, [wc2c6]
-	push af
-	ld a, $1
-	ld [wc2c6], a
-	ld a, [CurPartySpecies]
-	push af
-
-	ld a, [PlayerHPPal]
-	ld [CurPartySpecies], a
-	hlcoord 7, 2
-	ld d, $0
-	ld e, ANIM_MON_EVOLVE
-	predef AnimateFrontpic
-
-	pop af
-	ld [CurPartySpecies], a
-	pop af
-	ld [wc2c6], a
-	ret
-
-.asm_4e6de
-	ret
-
-.asm_4e6df
-	ld a, $1
-	ld [wd1ed], a
-
-	ld a, [Buffer1]
-	ld [PlayerHPPal], a
-
-	ld c, $0
-	call Function4e703
-	call Function4e7a6
-	callba Function8cf53
-	call Function4e794
-	ret c
-
-	ld a, [PlayerHPPal]
-	call PlayCry
-	ret
-; 4e703
-
-Function4e703: ; 4e703
-	ld b, $b
-	jp GetSGBLayout
-; 4e708
-
-Function4e708: ; 4e708
-	call GetBaseData
-	hlcoord 7, 2
-	jp Function3786
-; 4e711
-
-Function4e711: ; 4e711
-	call GetBaseData
-	ld a, $1
-	ld [wc2c6], a
-	ld de, VTiles2
-	predef Function5108b
-	xor a
-	ld [wc2c6], a
-	ret
-; 4e726
-
-Function4e726: ; 4e726
-	call ClearJoypad
-	lb bc, 1, 14
-.asm_4e72c
-	push bc
-	call Function4e779
-	pop bc
-	jr c, .asm_4e73f
-	push bc
-	call Function4e741
-	pop bc
-	inc b
-rept 2
-	dec c
-endr
-	jr nz, .asm_4e72c
-	and a
-	ret
-
-.asm_4e73f
-	scf
-	ret
-; 4e741
-
-Function4e741: ; 4e741
-.asm_4e741
-	ld a, $cf
-	ld [wd1ec], a
-	call Function4e755
-	ld a, $31
-	ld [wd1ec], a
-	call Function4e755
-	dec b
-	jr nz, .asm_4e741
-	ret
-; 4e755
-
-Function4e755: ; 4e755
-	push bc
-	xor a
-	ld [hBGMapMode], a
-	hlcoord 7, 2
-	lb bc, 7, 7
-	ld de, $d
-.asm_4e762
-	push bc
-.asm_4e763
-	ld a, [wd1ec]
-	add [hl]
-	ld [hli], a
-	dec c
-	jr nz, .asm_4e763
-	pop bc
-	add hl, de
-	dec b
-	jr nz, .asm_4e762
-	ld a, $1
-	ld [hBGMapMode], a
-	call WaitBGMap
-	pop bc
-	ret
-; 4e779
-
-Function4e779: ; 4e779
-.asm_4e779
-	call DelayFrame
-	push bc
-	call JoyTextDelay
-	ld a, [hJoyDown]
-	pop bc
-	and B_BUTTON
-	jr nz, .asm_4e78c
-.asm_4e787
-	dec c
-	jr nz, .asm_4e779
-	and a
-	ret
-
-.asm_4e78c
-	ld a, [wd1e9]
-	and a
-	jr nz, .asm_4e787
-	scf
-	ret
-; 4e794
-
-Function4e794: ; 4e794
-	ld a, [CurPartyMon]
-	ld hl, PartyMon1Species
-	call GetPartyLocation
-	ld b, h
-	ld c, l
-	callba CheckFaintedFrzSlp
-	ret
-; 4e7a6
-
-Function4e7a6: ; 4e7a6
-	ld a, [wd1ed]
-	and a
-	ret nz
-	ld de, SFX_EVOLVED
-	call PlaySFX
-	ld hl, wJumptableIndex
-	ld a, [hl]
-	push af
-	ld [hl], $0
-.asm_4e7b8
-	call Function4e7cf
-	jr nc, .asm_4e7c2
-	call Function4e80c
-	jr .asm_4e7b8
-
-.asm_4e7c2
-	ld c, $20
-.asm_4e7c4
-	call Function4e80c
-	dec c
-	jr nz, .asm_4e7c4
-	pop af
-	ld [wJumptableIndex], a
-	ret
-; 4e7cf
-
-Function4e7cf: ; 4e7cf
-	ld hl, wJumptableIndex
-	ld a, [hl]
-	cp $20
-	ret nc
-	ld d, a
-	inc [hl]
-	and $1
-	jr nz, .asm_4e7e6
-	ld e, $0
-	call Function4e7e8
-	ld e, $10
-	call Function4e7e8
-
-.asm_4e7e6
-	scf
-	ret
-; 4e7e8
-
-Function4e7e8: ; 4e7e8
-	push de
-	ld de, $4858
-	ld a, $13
-	call Function3b2a
-	ld hl, $b
-	add hl, bc
-	ld a, [wJumptableIndex]
-	and $e
-	sla a
-	pop de
-	add e
-	ld [hl], a
-	ld hl, $3
-	add hl, bc
-	ld [hl], $0
-	ld hl, $c
-	add hl, bc
-	ld [hl], $10
-	ret
-; 4e80c
-
-Function4e80c: ; 4e80c
-	push bc
-	callab Function8cf69
-	ld a, [$ff9b]
-	and $e
-	srl a
-rept 2
-	inc a
-endr
-	and $7
-	ld b, a
-	ld hl, Sprites + 3
-	ld c, $28
-.asm_4e823
-	ld a, [hl]
-	or b
-	ld [hli], a
-rept 3
-	inc hl
-endr
-	dec c
-	jr nz, .asm_4e823
-	pop bc
-	call DelayFrame
-	ret
-; 4e831
-
-
-EvolutionGFX:
-INCBIN "gfx/evo/bubble_large.2bpp"
-INCBIN "gfx/evo/bubble.2bpp"
-
-Function4e881: ; 4e881
-	call WhiteBGMap
-	call ClearTileMap
-	call ClearSprites
-	call DisableLCD
-	call LoadStandardFont
-	call LoadFontsBattleExtra
-	ld hl, VBGMap0
-	ld bc, VBGMap1 - VBGMap0
-	ld a, " "
-	call ByteFill
-	hlcoord 0, 0, AttrMap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	xor a
-	call ByteFill
-	xor a
-	ld [hSCY], a
-	ld [hSCX], a
-	call EnableLCD
-	ld hl, UnknownText_0x4e8bd
-	call PrintText
-	call Function3200
-	call SetPalettes
-	ret
-; 4e8bd
-
-UnknownText_0x4e8bd: ; 0x4e8bd
-	; SAVING RECORD… DON'T TURN OFF!
-	text_jump UnknownText_0x1bd39e
-	db "@"
-; 0x4e8c2
-
-
-Function4e8c2: ; 4e8c2
-	call WhiteBGMap
-	call ClearTileMap
-	call ClearSprites
-	call DisableLCD
-	call LoadStandardFont
-	call LoadFontsBattleExtra
-	ld hl, VBGMap0
-	ld bc, VBGMap1 - VBGMap0
-	ld a, " "
-	call ByteFill
-	hlcoord 0, 0, AttrMap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	xor a
-	call ByteFill
-	ld hl, wd000
-	ld c, $40
-.asm_4e8ee
-	ld a, -1
-	ld [hli], a
-	ld a, " "
-	ld [hli], a
-	dec c
-	jr nz, .asm_4e8ee
-	xor a
-	ld [hSCY], a
-	ld [hSCX], a
-	call EnableLCD
-	call Function3200
-	call SetPalettes
-	ret
-; 4e906
-
-Function4e906: ; 4e906
-	ld a, [rSVBK]
-	push af
-	ld a, $6
-	ld [rSVBK], a
-	ld hl, w6_d000
-	ld bc, w6_d400 - w6_d000
-	ld a, " "
-	call ByteFill
-	ld hl, VBGMap0
-	ld de, w6_d000
-	ld b, $0
-	ld c, $40
-	call Request2bpp
-	pop af
-	ld [rSVBK], a
-	ret
-; 4e929
-
-Function4e929: ; 4e929
+Function4e929: ; mobile function
 	ld h, b
 	ld l, c
 	call Function4e930
@@ -43601,35 +43151,35 @@ Function4e930: ; 4e930
 	ld a, [hli]
 	xor [hl]
 	ld c, a
-	jr z, .asm_4e941
+	jr z, .skip_male_trainers
 	srl c
 	srl c
-.asm_4e939
+.male_trainer_loop
 	srl c
 	ld a, c
 	cp MaleTrainersEnd - MaleTrainers - 1
-	jr nc, .asm_4e939
+	jr nc, .male_trainer_loop
 	inc c
 
-.asm_4e941
+.skip_male_trainers
 	ld a, [de]
 	cp $1
 	ld hl, MaleTrainers
-	jr nz, .asm_4e958
+	jr nz, .finished
 
 	ld hl, FemaleTrainers
 	ld a, c
 	and a
-	jr z, .asm_4e958
+	jr z, .finished
 
-.asm_4e950
+.female_trainer_loop
 	srl c
 	ld a, c
 	cp FemaleTrainersEnd - FemaleTrainers - 1
-	jr nc, .asm_4e950
+	jr nc, .female_trainer_loop
 	inc c
 
-.asm_4e958
+.finished
 	ld b, $0
 	add hl, bc
 	ld a, [hl]
@@ -64133,6 +63683,42 @@ INCLUDE "engine/std_scripts.asm"
 
 INCLUDE "engine/phone_scripts.asm"
 
+TalkToTrainerScript:: ; 0xbe66a
+	faceplayer
+	trainerstatus CHECK_FLAG
+	iftrue AlreadyBeatenTrainerScript
+	loadtrainerdata
+	playrammusic
+	jump StartBattleWithMapTrainerScript
+; 0xbe675
+
+SeenByTrainerScript:: ; 0xbe675
+	loadtrainerdata
+	playrammusic
+	showemote EMOTE_SHOCK, LAST_TALKED, 30
+	callasm TrainerWalkToPlayer
+	applymovement2 MovementBuffer
+	writepersonxy LAST_TALKED
+	faceperson PLAYER, LAST_TALKED
+	jump StartBattleWithMapTrainerScript
+; 0xbe68a
+
+StartBattleWithMapTrainerScript: ; 0xbe68a
+	loadfont
+	trainertext $0
+	closetext
+	loadmovesprites
+	loadtrainerdata
+	startbattle
+	returnafterbattle
+	trainerstatus SET_FLAG
+	loadvar wd04d, -1
+
+AlreadyBeatenTrainerScript:
+	scripttalkafter
+; 0xbe699
+
+
 
 SECTION "bank30", ROMX, BANK[$30]
 
@@ -74748,13 +74334,13 @@ Functionfcc63: ; fcc63
 
 	ld e, TRADE_DVS
 	call GetTradeAttribute
-	ld de, wc72f
+	ld de, wEnemyTrappingMove
 	call Functionfce0f
 
 	ld hl, PartyMon1DVs
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call Functionfcdde
-	ld hl, wc72f
+	ld hl, wEnemyTrappingMove
 	call Functionfce0f
 
 	ld e, TRADE_OT_ID
@@ -74765,7 +74351,7 @@ Functionfcc63: ; fcc63
 	ld hl, PartyMon1ID
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call Functionfcdde
-	ld hl, wc731
+	ld hl, wEnemyWrapCount
 	call Functionfce0f
 
 	ld e, TRADE_ITEM

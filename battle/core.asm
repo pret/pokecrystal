@@ -166,8 +166,8 @@ WildFled_EnemyFled_LinkBattleCanceled: ; 3c0e5
 
 Function3c12f: ; 3c12f
 .loop
-	call Function3c1bf
-	call Function3c3f5
+	call MobileFn_3c1bf
+	call CheckContestBattleOver
 	jp c, .quit
 
 	xor a
@@ -192,8 +192,8 @@ Function3c12f: ; 3c12f
 .not_disconnected
 
 	call Function3c410
-	jr c, .asm_3c18a
-.asm_3c179
+	jr c, .skip_iteration
+.loop1
 	call BattleMenu
 	jr c, .quit
 	ld a, [BattleEnded]
@@ -202,20 +202,20 @@ Function3c12f: ; 3c12f
 	ld a, [wd232] ; roared/whirlwinded/teleported
 	and a
 	jr nz, .quit
-.asm_3c18a
+.skip_iteration
 	call Function3c434
-	jr nz, .asm_3c179
+	jr nz, .loop1
 
 	call Function3c300
 	jr c, .quit
 
 	call DetermineMoveOrder
-	jr c, .asm_3c19e
+	jr c, .false
 	call Function3c5fe
-	jr .asm_3c1a1
-.asm_3c19e
+	jr .proceed
+.false
 	call Function3c664
-.asm_3c1a1
+.proceed
 	call Function3d2e0
 	jr c, .quit
 
@@ -227,7 +227,7 @@ Function3c12f: ; 3c12f
 	and a
 	jr nz, .quit
 
-	call Function3c1d6
+	call HandleBetweenTurnEffects
 	ld a, [BattleEnded]
 	and a
 	jr nz, .quit
@@ -237,46 +237,41 @@ Function3c12f: ; 3c12f
 	ret
 ; 3c1bf
 
-Function3c1bf: ; 3c1bf
-	ret
-; 3c1c0
-
-
-Function3c1c0: ; 3c1c0
+MobileFn_3c1bf: mobile
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $a89b
 	inc [hl]
-	jr nz, .asm_3c1d2
+	jr nz, .finish
 	dec hl
 	inc [hl]
-	jr nz, .asm_3c1d2
+	jr nz, .finish
 	dec [hl]
 	inc hl
 	dec [hl]
 
-.asm_3c1d2
+.finish
 	call CloseSRAM
 	ret
 ; 3c1d6
 
 
-Function3c1d6: ; 3c1d6
+HandleBetweenTurnEffects: ; 3c1d6
 	ld a, [hLinkPlayerNumber]
 	cp $1
 	jr z, .CheckEnemyFirst
 	call CheckFaint_PlayerThenEnemy
 	ret c
-	call Function3ca26
+	call HandleFutureSight
 	call CheckFaint_PlayerThenEnemy
 	ret c
 	call HandleWeather
 	call CheckFaint_PlayerThenEnemy
 	ret c
-	call Function3c874
+	call HandleWrap
 	call CheckFaint_PlayerThenEnemy
 	ret c
-	call Function3c801
+	call HandlePerishSong
 	call CheckFaint_PlayerThenEnemy
 	ret c
 	jr .NoMoreFaintingConditions
@@ -284,27 +279,27 @@ Function3c1d6: ; 3c1d6
 .CheckEnemyFirst
 	call CheckFaint_EnemyThenPlayer
 	ret c
-	call Function3ca26
+	call HandleFutureSight
 	call CheckFaint_EnemyThenPlayer
 	ret c
 	call HandleWeather
 	call CheckFaint_EnemyThenPlayer
 	ret c
-	call Function3c874
+	call HandleWrap
 	call CheckFaint_EnemyThenPlayer
 	ret c
-	call Function3c801
+	call HandlePerishSong
 	call CheckFaint_EnemyThenPlayer
 	ret c
 
 .NoMoreFaintingConditions
-	call Function3c8eb
-	call Function3c93c
+	call HandleLeftovers
+	call HandleMysteryberry
 	call HanleDefrost
 	call HandleSafeguard
 	call HandleScreens
-	call Function3de97
-	call Function3dcf9
+	call HandleStatBoostingHeldItems
+	call HandleHealingItems
 	call UpdateBattleMonInParty
 	call LoadTileMapToTempTileMap
 	jp Function3c4df
@@ -578,13 +573,13 @@ DetermineMoveOrder: ; 3c314
 	ret
 ; 3c3f5
 
-Function3c3f5: ; 3c3f5
+CheckContestBattleOver: ; 3c3f5
 	ld a, [BattleType]
 	cp BATTLETYPE_CONTEST
-	jr nz, .asm_3c40e
-	ld a, [wdc79]
+	jr nz, .contest_not_over
+	ld a, [wParkBallsRemaining]
 	and a
-	jr nz, .asm_3c40e
+	jr nz, .contest_not_over
 	ld a, [wBattleResult]
 	and $c0
 	add $2
@@ -592,7 +587,7 @@ Function3c3f5: ; 3c3f5
 	scf
 	ret
 
-.asm_3c40e
+.contest_not_over
 	and a
 	ret
 ; 3c410
@@ -787,7 +782,7 @@ TryEnemyFlee: ; 3c543
 	bit SUBSTATUS_CANT_RUN, a
 	jr nz, .Stay
 
-	ld a, [wc731]
+	ld a, [wEnemyWrapCount]
 	and a
 	jr nz, .Stay
 
@@ -1217,27 +1212,28 @@ ResidualDamage: ; 3c716
 	ret
 ; 3c801
 
-Function3c801: ; 3c801
+HandlePerishSong: ; 3c801
 	ld a, [hLinkPlayerNumber]
 	cp $1
-	jr z, .asm_3c813
+	jr z, .EnemyFirst
 	call SetPlayerTurn
-	call .asm_3c81c
+	call .do_it
 	call SetEnemyTurn
-	jp .asm_3c81c
+	jp .do_it
 
-.asm_3c813
+.EnemyFirst
 	call SetEnemyTurn
-	call .asm_3c81c
+	call .do_it
 	call SetPlayerTurn
-.asm_3c81c
+
+.do_it
 	ld hl, PlayerPerishCount
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3c827
+	jr z, .got_count
 	ld hl, EnemyPerishCount
 
-.asm_3c827
+.got_count
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVar
 	bit SUBSTATUS_PERISH, a
@@ -1285,46 +1281,51 @@ Function3c801: ; 3c801
 	ret
 ; 3c874
 
-Function3c874: ; 3c874
+HandleWrap: ; 3c874
 	ld a, [hLinkPlayerNumber]
 	cp $1
-	jr z, .asm_3c886
+	jr z, .EnemyFirst
 	call SetPlayerTurn
-	call .asm_3c88f
+	call .do_it
 	call SetEnemyTurn
-	jp .asm_3c88f
+	jp .do_it
 
-.asm_3c886
+.EnemyFirst
 	call SetEnemyTurn
-	call .asm_3c88f
+	call .do_it
 	call SetPlayerTurn
-.asm_3c88f
-	ld hl, wc730
-	ld de, wc72e
+
+.do_it
+	ld hl, wPlayerWrapCount
+	ld de, wPlayerTrappingMove
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3c8a0
-	ld hl, wc731
-	ld de, wc72f
+	jr z, .got_addrs
+	ld hl, wEnemyWrapCount
+	ld de, wEnemyTrappingMove
 
-.asm_3c8a0
+.got_addrs
 	ld a, [hl]
 	and a
 	ret z
+
 	ld a, BATTLE_VARS_SUBSTATUS4
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz
+
 	ld a, [de]
 	ld [wd265], a
 	ld [FXAnimIDLo], a
 	call GetMoveName
 	dec [hl]
-	jr z, .asm_3c8de
+	jr z, .release_from_bounds
+
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVar
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
-	jr nz, .asm_3c8d3
+	jr nz, .skip_anim
+
 	call SwitchTurnCore
 	xor a
 	ld [wcfca], a
@@ -1332,13 +1333,13 @@ Function3c874: ; 3c874
 	predef PlayBattleAnim
 	call SwitchTurnCore
 
-.asm_3c8d3
+.skip_anim
 	call GetSixteenthMaxHP
 	call SubtractHPFromUser
 	ld hl, BattleText_UsersHurtByStringBuffer1
 	jr .asm_3c8e1
 
-.asm_3c8de
+.release_from_bounds
 	ld hl, BattleText_UserWasReleasedFromStringBuffer1
 
 .asm_3c8e1
@@ -1352,20 +1353,21 @@ SwitchTurnCore: ; 3c8e4
 	ret
 ; 3c8eb
 
-Function3c8eb: ; 3c8eb
+HandleLeftovers: ; 3c8eb
 	ld a, [hLinkPlayerNumber]
 	cp $1
-	jr z, .asm_3c8fd
+	jr z, .DoEnemyFirst
 	call SetPlayerTurn
-	call .asm_3c906
+	call .do_it
 	call SetEnemyTurn
-	jp .asm_3c906
+	jp .do_it
 
-.asm_3c8fd
+.DoEnemyFirst
 	call SetEnemyTurn
-	call .asm_3c906
+	call .do_it
 	call SetPlayerTurn
-.asm_3c906
+.do_it
+
 	callab GetUserItem
 	ld a, [hl]
 	ld [wd265], a
@@ -1373,25 +1375,27 @@ Function3c8eb: ; 3c8eb
 	ld a, b
 	cp HELD_LEFTOVERS
 	ret nz
+
 	ld hl, BattleMonHP
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3c922
+	jr z, .got_hp
 	ld hl, EnemyMonHP
 
-.asm_3c922
+.got_hp
+; Don't restore if we're already at max HP
 	ld a, [hli]
 	ld b, a
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
 	cp b
-	jr nz, .asm_3c92d
+	jr nz, .restore
 	ld a, [hl]
 	cp c
 	ret z
 
-.asm_3c92d
+.restore
 	call GetSixteenthMaxHP
 	call SwitchTurnCore
 	call RestoreHP
@@ -1399,24 +1403,25 @@ Function3c8eb: ; 3c8eb
 	jp StdBattleTextBox
 ; 3c93c
 
-Function3c93c: ; 3c93c
+HandleMysteryberry: ; 3c93c
 	ld a, [hLinkPlayerNumber]
 	cp $1
-	jr z, .asm_3c94e
+	jr z, .DoEnemyFirst
 	call SetPlayerTurn
-	call .asm_3c957
+	call .do_it
 	call SetEnemyTurn
-	jp .asm_3c957
+	jp .do_it
 
-.asm_3c94e
+.DoEnemyFirst
 	call SetEnemyTurn
-	call .asm_3c957
+	call .do_it
 	call SetPlayerTurn
-.asm_3c957
+
+.do_it
 	callab GetUserItem
 	ld a, b
 	cp HELD_RESTORE_PP
-	jr nz, .asm_3c9ae
+	jr nz, .quit
 	ld hl, PartyMon1PP
 	ld a, [CurBattleMon]
 	call GetPartyLocation
@@ -1427,12 +1432,12 @@ Function3c93c: ; 3c93c
 	call GetPartyLocation
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3c99b
+	jr z, .wild
 	ld de, wc739
 	ld hl, wc735
 	ld a, [wBattleMode]
 	dec a
-	jr z, .asm_3c99b
+	jr z, .wild
 	ld hl, OTPartyMon1PP
 	ld a, [CurOTMon]
 	call GetPartyLocation
@@ -1442,33 +1447,33 @@ Function3c93c: ; 3c93c
 	ld a, [CurOTMon]
 	call GetPartyLocation
 
-.asm_3c99b
+.wild
 	ld c, $0
-.asm_3c99d
+.loop
 	ld a, [hl]
 	and a
-	jr z, .asm_3c9ae
+	jr z, .quit
 	ld a, [de]
 	and $3f
-	jr z, .asm_3c9af
+	jr z, .restore
 	inc hl
 	inc de
 	inc c
 	ld a, c
 	cp NUM_MOVES
-	jr nz, .asm_3c99d
+	jr nz, .loop
 
-.asm_3c9ae
+.quit
 	ret
 
-.asm_3c9af
+.restore
 	; lousy hack
 	ld a, [hl]
 	cp SKETCH
 	ld b, 1
-	jr z, .asm_3c9b8
+	jr z, .sketch
 	ld b, 5
-.asm_3c9b8
+.sketch
 	ld a, [de]
 	add b
 	ld [de], a
@@ -1480,10 +1485,10 @@ Function3c93c: ; 3c93c
 	ld hl, BattleMonPP
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3c9d2
+	jr z, .player_pp
 	ld de, EnemyMonMoves - 1
 	ld hl, EnemyMonPP
-.asm_3c9d2
+.player_pp
 	inc de
 	pop bc
 	ld b, 0
@@ -1497,38 +1502,38 @@ Function3c93c: ; 3c93c
 
 	ld a, [wd265]
 	cp [hl]
-	jr nz, .asm_3c9f5
+	jr nz, .skip_checks
 	ld a, [hBattleTurn]
 	and a
 	ld a, [PlayerSubStatus5]
-	jr z, .asm_3c9ee
+	jr z, .check_transform
 	ld a, [EnemySubStatus5]
-.asm_3c9ee
+.check_transform
 	bit SUBSTATUS_TRANSFORMED, a
-	jr nz, .asm_3c9f5
+	jr nz, .skip_checks
 	ld a, [de]
 	add b
 	ld [de], a
-.asm_3c9f5
+.skip_checks
 	callab GetUserItem
 	ld a, [hl]
 	ld [wd265], a
 	xor a
 	ld [hl], a
-	call Function3df12
+	call GetPartymonItem
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3ca12
+	jr z, .consume_item
 	ld a, [wBattleMode]
 	dec a
-	jr z, .asm_3ca14
-	call Function3df1f
+	jr z, .skip_consumption
+	call GetOTPartymonItem
 
-.asm_3ca12
+.consume_item
 	xor a
 	ld [hl], a
 
-.asm_3ca14
+.skip_consumption
 	call GetItemName
 	call SwitchTurnCore
 	call ItemRecoveryAnim
@@ -1537,27 +1542,28 @@ Function3c93c: ; 3c93c
 	jp StdBattleTextBox
 ; 3ca26
 
-Function3ca26: ; 3ca26
+HandleFutureSight: ; 3ca26
 	ld a, [hLinkPlayerNumber]
 	cp $1
-	jr z, .asm_3ca38
+	jr z, .enemy_first
 	call SetPlayerTurn
-	call .asm_3ca41
+	call .do_it
 	call SetEnemyTurn
-	jp .asm_3ca41
+	jp .do_it
 
-.asm_3ca38
+.enemy_first
 	call SetEnemyTurn
-	call .asm_3ca41
+	call .do_it
 	call SetPlayerTurn
-.asm_3ca41
-	ld hl, wc71d
+
+.do_it
+	ld hl, wPlayerFutureSightCount
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3ca4c
-	ld hl, wc71e
+	jr z, .okay
+	ld hl, wEnemyFutureSightCount
 
-.asm_3ca4c
+.okay
 	ld a, [hl]
 	and a
 	ret z
@@ -3402,7 +3408,7 @@ ResetEnemyBattleVars: ; 3d557
 	dec a
 	ld [wc6e6], a
 	xor a
-	ld [wc730], a
+	ld [wPlayerWrapCount], a
 	hlcoord 18, 0
 	ld a, $8
 	call Function3d490
@@ -3809,8 +3815,8 @@ endr
 	ld [wEnemyRageCounter], a
 	ld [EnemyDisabledMove], a
 	ld [wc6fa], a
-	ld [wc730], a
-	ld [wc731], a
+	ld [wPlayerWrapCount], a
+	ld [wEnemyWrapCount], a
 	ld [EnemyTurnsTaken], a
 	ld hl, PlayerSubStatus5
 	res SUBSTATUS_CANT_RUN, [hl]
@@ -3907,7 +3913,7 @@ TryToRunAwayFromBattle: ; 3d8b3
 	bit SUBSTATUS_CANT_RUN, a
 	jp nz, .cant_escape
 
-	ld a, [wc730]
+	ld a, [wPlayerWrapCount]
 	and a
 	jp nz, .cant_escape
 
@@ -4258,7 +4264,7 @@ SendOutPlayerMon: ; 3db5f
 	call CheckAmuletCoin
 	call Function3ee27
 	xor a
-	ld [wc731], a
+	ld [wEnemyWrapCount], a
 	call SetPlayerTurn
 	xor a
 	ld [wcfca], a
@@ -4312,8 +4318,8 @@ endr
 	ld [wPlayerRageCounter], a
 	ld [DisabledMove], a
 	ld [wc6fe], a
-	ld [wc731], a
-	ld [wc730], a
+	ld [wEnemyWrapCount], a
+	ld [wPlayerWrapCount], a
 	ld [PlayerTurnsTaken], a
 	ld hl, EnemySubStatus5
 	res SUBSTATUS_CANT_RUN, [hl]
@@ -4462,31 +4468,31 @@ Function3dce6: ; 3dce6
 	ret
 ; 3dcf9
 
-Function3dcf9: ; 3dcf9
+HandleHealingItems: ; 3dcf9
 	ld a, [hLinkPlayerNumber]
 	cp $1
 	jr z, .player_1
 	call SetPlayerTurn
-	call Function3dd2f
+	call HandleHPHealingItem
 	call UseHeldStatusHealingItem
-	call Function3de51
+	call HandleStatusHealingItem
 	call SetEnemyTurn
-	call Function3dd2f
+	call HandleHPHealingItem
 	call UseHeldStatusHealingItem
-	jp Function3de51
+	jp HandleStatusHealingItem
 
 .player_1
 	call SetEnemyTurn
-	call Function3dd2f
+	call HandleHPHealingItem
 	call UseHeldStatusHealingItem
-	call Function3de51
+	call HandleStatusHealingItem
 	call SetPlayerTurn
-	call Function3dd2f
+	call HandleHPHealingItem
 	call UseHeldStatusHealingItem
-	jp Function3de51
+	jp HandleStatusHealingItem
 ; 3dd2f
 
-Function3dd2f: ; 3dd2f
+HandleHPHealingItem: ; 3dd2f
 	callab GetOpponentItem
 	ld a, b
 	cp $1
@@ -4495,11 +4501,11 @@ Function3dd2f: ; 3dd2f
 	ld hl, EnemyMonMaxHP
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3dd4a
+	jr z, .go
 	ld de, BattleMonHP + 1
 	ld hl, BattleMonMaxHP
 
-.asm_3dd4a
+.go
 	push bc
 	ld a, [de]
 	ld [wd1ec], a
@@ -4515,17 +4521,17 @@ Function3dd2f: ; 3dd2f
 	cp [hl]
 	ld a, c
 	pop bc
-	jr z, .asm_3dd62
-	jr c, .asm_3dd66
+	jr z, .equal
+	jr c, .less
 	ret
 
-.asm_3dd62
+.equal
 	inc hl
 	cp [hl]
 	dec hl
 	ret nc
 
-.asm_3dd66
+.less
 	call ItemRecoveryAnim
 	ld a, [hli]
 	ld [Buffer2], a
@@ -4544,13 +4550,13 @@ Function3dd2f: ; 3dd2f
 	cp c
 	ld a, [hl]
 	sbc b
-	jr nc, .asm_3dd8d
+	jr nc, .okay
 	ld a, [hli]
 	ld [wd1ef], a
 	ld a, [hl]
 	ld [wd1ee], a
 
-.asm_3dd8d
+.okay
 	ld a, [wd1ef]
 	ld [de], a
 	inc de
@@ -4560,10 +4566,10 @@ Function3dd2f: ; 3dd2f
 	ld [wd10a], a
 	and a
 	hlcoord 2, 2
-	jr z, .asm_3dda4
+	jr z, .got_hp_bar_coords
 	hlcoord 10, 9
 
-.asm_3dda4
+.got_hp_bar_coords
 	ld [wd10a], a
 	predef AnimateHPBar
 UseOpponentItem:
@@ -4627,7 +4633,7 @@ UseHeldStatusHealingItem: ; 3dde9
 	and [hl]
 	res SUBSTATUS_NIGHTMARE, [hl]
 	ld a, b
-	cp 1 << PSN | 1 << FRZ | 1 << BRN | SLP | 1 << PAR
+	cp ALL_STATUS
 	jr nz, .skip_confuse
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVarAddr
@@ -4658,12 +4664,12 @@ UseHeldStatusHealingItem: ; 3dde9
 	db HELD_HEAL_BURN, 1 << BRN
 	db HELD_HEAL_SLEEP, SLP
 	db HELD_HEAL_PARALYZE, 1 << PAR
-	db HELD_HEAL_STATUS, 1 << PSN | 1 << FRZ | 1 << BRN | SLP | 1 << PAR
+	db HELD_HEAL_STATUS, ALL_STATUS
 	db $ff
 ; 3de51
 
 
-Function3de51: ; 3de51
+HandleStatusHealingItem: ; 3de51
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVar
 	bit SUBSTATUS_CONFUSED, a
@@ -4671,11 +4677,11 @@ Function3de51: ; 3de51
 	callab GetOpponentItem
 	ld a, b
 	cp HELD_HEAL_CONFUSION
-	jr z, .asm_3de67
+	jr z, .heal_status
 	cp HELD_HEAL_STATUS
 	ret nz
 
-.asm_3de67
+.heal_status
 	ld a, [hl]
 	ld [wd265], a
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
@@ -4687,8 +4693,8 @@ Function3de51: ; 3de51
 	call StdBattleTextBox
 	ld a, [hBattleTurn]
 	and a
-	jr nz, .asm_3de90
-	call Function3df1f
+	jr nz, .do_partymon
+	call GetOTPartymonItem
 	xor a
 	ld [bc], a
 	ld a, [wBattleMode]
@@ -4697,36 +4703,37 @@ Function3de51: ; 3de51
 	ld [hl], $0
 	ret
 
-.asm_3de90
-	call Function3df12
+.do_partymon
+	call GetPartymonItem
 	xor a
 	ld [bc], a
 	ld [hl], a
 	ret
 ; 3de97
 
-Function3de97: ; 3de97
+HandleStatBoostingHeldItems: ; 3de97
+; The effects handled here are not used in-game.
 	ld a, [hLinkPlayerNumber]
 	cp $1
 	jr z, .player_1
-	call Function3dea9
-	jp Function3deb1
+	call .DoEnemy
+	jp .DoPlayer
 
 .player_1
-	call Function3deb1
-	jp Function3dea9
+	call .DoPlayer
+	jp .DoEnemy
 ; 3dea9
 
-Function3dea9: ; 3dea9
-	call Function3df12
+.DoEnemy: ; 3dea9
+	call GetPartymonItem
 	ld a, $0
-	jp Function3deb6
+	jp .HandleItem
 ; 3deb1
 
-Function3deb1: ; 3deb1
-	call Function3df1f
+.DoPlayer: ; 3deb1
+	call GetOTPartymonItem
 	ld a, $1
-Function3deb6: ; 3deb6
+.HandleItem: ; 3deb6
 	ld [hBattleTurn], a
 	ld d, h
 	ld e, l
@@ -4735,16 +4742,16 @@ Function3deb6: ; 3deb6
 	ld a, [bc]
 	ld b, a
 	callab GetItem
-	ld hl, .data_3defc
-.asm_3dec7
+	ld hl, .StatUpItems
+.loop
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_3def9
+	jr z, .finish
 rept 2
 	inc hl
 endr
 	cp b
-	jr nz, .asm_3dec7
+	jr nz, .loop
 	pop bc
 	ld a, [bc]
 	ld [wd265], a
@@ -4771,13 +4778,13 @@ endr
 	callab BattleCommand_StatUpMessage
 	ret
 
-.asm_3def9
+.finish
 	pop bc
 	pop de
 	ret
 ; 3defc
 
-.data_3defc
+.StatUpItems
 	dbw HELD_ATTACK_UP,     BattleCommand_AttackUp
 	dbw HELD_DEFENSE_UP,    BattleCommand_DefenseUp
 	dbw HELD_SPEED_UP,      BattleCommand_SpeedUp
@@ -4789,7 +4796,7 @@ endr
 ; 3df12
 
 
-Function3df12: ; 3df12
+GetPartymonItem: ; 3df12
 	ld hl, PartyMon1Item
 	ld a, [CurBattleMon]
 	call GetPartyLocation
@@ -4797,7 +4804,7 @@ Function3df12: ; 3df12
 	ret
 ; 3df1f
 
-Function3df1f: ; 3df1f
+GetOTPartymonItem: ; 3df1f
 	ld hl, OTPartyMon1Item
 	ld a, [CurOTMon]
 	call GetPartyLocation
@@ -4805,7 +4812,7 @@ Function3df1f: ; 3df1f
 	ret
 ; 3df2c
 
-Function3df2c: ; 3df2c
+UpdateBattleHUDs: ; 3df2c
 	push hl
 	push de
 	push bc
@@ -5298,7 +5305,7 @@ Function3e234: ; 3e234
 	ld a, $1
 	ld [MenuSelection2], a
 	call ExitMenu
-	call Function3df2c
+	call UpdateBattleHUDs
 	call WaitBGMap
 	call LoadTileMapToTempTileMap
 	call ResetTextRelatedRAM
@@ -5421,7 +5428,7 @@ Function3e358: ; 3e358
 	jp Function3e299
 
 .asm_3e36b
-	ld a, [wc730]
+	ld a, [wPlayerWrapCount]
 	and a
 	jr nz, .asm_3e378
 	ld a, [EnemySubStatus5]
