@@ -124,9 +124,10 @@ LoadMapPart:: ; 217a
 ; 2198
 
 LoadMetatiles:: ; 2198
+; de <- wd194
 	ld a, [wd194]
 	ld e, a
-	ld a, [wd195]
+	ld a, [wd194 + 1]
 	ld d, a
 	ld hl, wMisc
 	ld b, 5 ; SCREEN_WIDTH / 4
@@ -163,20 +164,21 @@ endr
 	ld h, a
 
 rept 3
+; copy 4 bytes from hl to de
 rept 4
 	ld a, [hli]
 	ld [de], a
 	inc de
 endr
-
+; next row
 	ld a, e
-	add 5 * 4
+	add SCREEN_WIDTH
 	ld e, a
 	jr nc, .next\@
 	inc d
 .next\@
 endr
-
+; copy 4 more bytes from hl to de
 rept 4
 	ld a, [hli]
 	ld [de], a

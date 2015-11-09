@@ -2022,7 +2022,7 @@ Function3ccc2: ; 3ccc2
 	ret
 ; 3ccde
 
-Function3ccde: ; 3ccde
+CheckUserHasEnoughHP: ; 3ccde
 	ld hl, BattleMonHP + 1
 	ld a, [hBattleTurn]
 	and a
@@ -3740,7 +3740,7 @@ Function3d7a0: ; 3d7a0
 	lb bc, 4, 10
 	call ClearBox
 	call WaitBGMap
-	jp Function3ee27
+	jp FinishBattleAnim
 ; 3d7b8
 
 Function_BattleTextEnemySentOut: ; 3d7b8
@@ -4253,7 +4253,7 @@ SendOutPlayerMon: ; 3db5f
 	ld [hBGMapMode], a
 	call GetMonBackpic
 	xor a
-	ld [$ffad], a
+	ld [hFillBox], a
 	ld [wd0d2], a
 	ld [CurMoveNum], a
 	ld [TypeModifier], a
@@ -4262,7 +4262,7 @@ SendOutPlayerMon: ; 3db5f
 	ld [LastPlayerCounterMove], a
 	ld [LastPlayerMove], a
 	call CheckAmuletCoin
-	call Function3ee27
+	call FinishBattleAnim
 	xor a
 	ld [wEnemyWrapCount], a
 	call SetPlayerTurn
@@ -5132,7 +5132,7 @@ Function3e12e: ; 3e12e
 	ld a, [hl]
 	cp b
 	ret z
-	jp Function3ee27
+	jp FinishBattleAnim
 ; 3e138
 
 Function3e138: ; 3e138
@@ -5269,7 +5269,7 @@ BattleMenu_Pack: ; 3e1c7
 	call GetMonFrontpic
 	call ExitMenu
 	call WaitBGMap
-	call Function3ee27
+	call FinishBattleAnim
 	call LoadTileMapToTempTileMap
 	jp BattleMenu
 ; 3e22b
@@ -5309,7 +5309,7 @@ Function3e234: ; 3e234
 	call WaitBGMap
 	call LoadTileMapToTempTileMap
 	call ResetTextRelatedRAM
-	call Function3ee27
+	call FinishBattleAnim
 	and a
 	ret
 
@@ -6873,7 +6873,7 @@ Function3ebc7: ; 3ebc7
 Function3ebd8: ; 3ebd8
 	xor a
 	ld [TempEnemyMonSpecies], a
-	call Function3ee27
+	call FinishBattleAnim
 	ld a, [OtherTrainerClass]
 	ld [TrainerClass], a
 	ld de, VTiles2
@@ -7368,7 +7368,7 @@ Call_PlayBattleAnim: ; 3ee17
 	predef_jump PlayBattleAnim
 ; 3ee27
 
-Function3ee27: ; 3ee27
+FinishBattleAnim: ; 3ee27
 	push af
 	push bc
 	push de
@@ -8377,7 +8377,7 @@ GetMonBackpic: ; 3f43d
 	ld a, [PlayerSubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
 	ld hl, BattleAnimCmd_DD
-	jr nz, Function3f46f
+	jr nz, Function3f46f ; substitute
 
 Function3f447: ; 3f447
 	ld a, [wc6fe]
@@ -8576,7 +8576,7 @@ InitEnemyTrainer: ; 3f594
 	ld de, VTiles2
 	callab GetTrainerPic
 	xor a
-	ld [$ffad], a
+	ld [hFillBox], a
 	dec a
 	ld [wc6e6], a
 	hlcoord 12, 0
@@ -8641,7 +8641,7 @@ InitEnemyWildmon: ; 3f607
 	predef Function5108b
 	xor a
 	ld [TrainerClass], a
-	ld [$ffad], a
+	ld [hFillBox], a
 	hlcoord 12, 0
 	lb bc, 7, 7
 	predef FillBox
@@ -9400,7 +9400,7 @@ Function3fb6c: ; 3fb6c
 	ld a, $1
 	ld [hBGMapMode], a
 	ld a, $31
-	ld [$ffad], a
+	ld [hFillBox], a
 	hlcoord 2, 6
 	lb bc, 6, 6
 	predef FillBox
@@ -9494,7 +9494,7 @@ CopyBackpic: ; 3fc30
 	ld [rSVBK], a
 	call Function3fc5b
 	ld a, $31
-	ld [$ffad], a
+	ld [hFillBox], a
 	hlcoord 2, 6
 	lb bc, 6, 6
 	predef FillBox

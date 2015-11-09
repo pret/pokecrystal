@@ -225,7 +225,7 @@ ParkBall: ; e8a2
 
 .room_in_party
 	xor a
-	ld [wCaughtMon], a
+	ld [wWildMon], a
 	ld a, [CurItem]
 	cp PARK_BALL
 	call nz, Functionedfa
@@ -394,7 +394,7 @@ endr
 	ld a, [EnemyMonSpecies]
 
 .fail_to_catch
-	ld [wCaughtMon], a
+	ld [wWildMon], a
 	ld c, 20
 	call DelayFrames
 
@@ -416,7 +416,7 @@ endr
 	ld [wcfca], a
 	predef PlayBattleAnim
 
-	ld a, [wCaughtMon]
+	ld a, [wWildMon]
 	and a
 	jr nz, .caught
 	ld a, [Buffer2]
@@ -493,19 +493,19 @@ endr
 	ld hl, EnemySubStatus5
 	bit SUBSTATUS_TRANSFORMED, [hl]
 	jr nz, .Transformed
-	ld hl, wCaughtMonMoves
+	ld hl, wWildMonMoves
 	ld de, EnemyMonMoves
 	ld bc, NUM_MOVES
 	call CopyBytes
 
-	ld hl, wCaughtMonPP
+	ld hl, wWildMonPP
 	ld de, EnemyMonPP
 	ld bc, NUM_MOVES
 	call CopyBytes
 .Transformed
 
 	ld a, [EnemyMonSpecies]
-	ld [wCaughtMon], a
+	ld [wWildMon], a
 	ld [CurPartySpecies], a
 	ld [wd265], a
 	ld a, [BattleType]
@@ -710,7 +710,7 @@ endr
 	cp BATTLETYPE_CONTEST
 	jr z, .used_park_ball
 
-	ld a, [wCaughtMon]
+	ld a, [wWildMon]
 	and a
 	jr z, .toss
 

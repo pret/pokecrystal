@@ -1,50 +1,50 @@
-Functionfbd54: ; fbd54
+_DisappearUser: ; fbd54
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld a, [hBattleTurn] ; $ff00+$e4
 	and a
-	jr z, .asm_fbd61
-	call Functionfbd96
-	jr .asm_fbd64
-.asm_fbd61
-	call Functionfbd9d
-.asm_fbd64
+	jr z, .player
+	call GetEnemyFrontpicCoords
+	jr .okay
+.player
+	call GetPlayerBackpicCoords
+.okay
 	call ClearBox
-	jr Functionfbd91
+	jr FinishAppearDisappearUser
 
-Functionfbd69: ; fbd69 (3e:7d69)
+_AppearUserRaiseSub: ; fbd69 (3e:7d69)
 	callba BattleCommand_RaiseSubNoAnim
-	jr Functionfbd77
+	jr AppearUser
 
-Functionfbd71: ; fbd71 (3e:7d71)
+_AppearUserLowerSub: ; fbd71 (3e:7d71)
 	callba BattleCommand_LowerSubNoAnim
 
-Functionfbd77: ; fbd77 (3e:7d77)
+AppearUser: ; fbd77 (3e:7d77)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld a, [hBattleTurn] ; $ff00+$e4
 	and a
-	jr z, .asm_fbd85
-	call Functionfbd96
+	jr z, .player
+	call GetEnemyFrontpicCoords
 	xor a
-	jr .asm_fbd8a
-.asm_fbd85
-	call Functionfbd9d
+	jr .okay
+.player
+	call GetPlayerBackpicCoords
 	ld a, $31
-.asm_fbd8a
-	ld [$ffad], a
+.okay
+	ld [hFillBox], a
 	predef FillBox
-Functionfbd91: ; fbd91 (3e:7d91)
+FinishAppearDisappearUser: ; fbd91 (3e:7d91)
 	ld a, $1
 	ld [hBGMapMode], a ; $ff00+$d4
 	ret
 
-Functionfbd96: ; fbd96 (3e:7d96)
+GetEnemyFrontpicCoords: ; fbd96 (3e:7d96)
 	hlcoord 12, 0
 	lb bc, 7, 7
 	ret
 
-Functionfbd9d: ; fbd9d (3e:7d9d)
+GetPlayerBackpicCoords: ; fbd9d (3e:7d9d)
 	hlcoord 2, 6
 	lb bc, 6, 6
 	ret
@@ -62,7 +62,7 @@ DoWeatherModifiers: ; fbda4
 	ld a, [de]
 	inc de
 	cp $ff
-	jr z, .asm_fbdc0
+	jr z, .done_weather_types
 
 	cp b
 	jr nz, .NextWeatherType
@@ -78,7 +78,7 @@ endr
 	jr .CheckWeatherType
 
 
-.asm_fbdc0
+.done_weather_types
 	ld de, .WeatherMoveModifiers
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
@@ -217,10 +217,10 @@ DoBadgeTypeBoosts: ; fbe24
 
 	ld a, e
 	or d
-	jr nz, .asm_fbe6f
+	jr nz, .done_min
 	ld e, 1
 
-.asm_fbe6f
+.done_min
 	add hl, de
 	jr nc, .Update
 

@@ -23,7 +23,7 @@ ProtectChance: ; 3762c
 	ld de, EnemyProtectCount
 .asm_37637
 
-	call Function36abf
+	call CheckOpponentWentFirst
 	jr nz, .failed
 
 ; Can't have a substitute.

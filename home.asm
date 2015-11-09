@@ -1724,7 +1724,7 @@ Function378b:: ; 378b
 	predef GetFrontpic
 	pop hl
 	xor a
-	ld [$ffad], a
+	ld [hFillBox], a
 	lb bc, 7, 7
 	predef FillBox
 	xor a
@@ -1990,57 +1990,6 @@ Function392d:: ; 392d
 
 
 INCLUDE "home/battle.asm"
-
-
-Function3ae1:: ; 3ae1
-
-GLOBAL BattleAnimations
-GLOBAL BattleAnimCommands
-
-	ld a, BANK(BattleAnimations)
-	rst Bankswitch
-
-	ld a, [hli]
-	ld [BattleAnimAddress], a
-	ld a, [hl]
-	ld [BattleAnimAddress + 1], a
-
-	ld a, BANK(BattleAnimCommands)
-	rst Bankswitch
-
-	ret
-; 3af0
-
-GetBattleAnimByte:: ; 3af0
-
-	push hl
-	push de
-
-	ld hl, BattleAnimAddress
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-
-	ld a, BANK(BattleAnimations)
-	rst Bankswitch
-
-	ld a, [de]
-	ld [BattleAnimByte], a
-	inc de
-
-	ld a, BANK(BattleAnimCommands)
-	rst Bankswitch
-
-	ld [hl], d
-	dec hl
-	ld [hl], e
-
-	pop de
-	pop hl
-
-	ld a, [BattleAnimByte]
-	ret
-; 3b0c
 
 Function3b0c:: ; 3b0c
 

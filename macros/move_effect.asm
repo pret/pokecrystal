@@ -17,7 +17,7 @@ endm
 	command lowersub
 	command hittargetnosub
 	command raisesub
-	command resulttext
+	command failuretext
 	command checkfaint
 	command criticaltext
 	command supereffectivetext

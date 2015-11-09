@@ -1618,7 +1618,7 @@ Function100a09: ; 100a09
 
 	call Function100a87
 	call Function100da5
-	callba Function3ee27
+	callba FinishBattleAnim
 	jr .asm_100a2d
 
 .asm_100a2a

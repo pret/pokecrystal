@@ -79,7 +79,7 @@ DmgToCgbBGPals:: ; c9f
 	ld [rBGP], a
 	push af
 
-; Don't need to be here if CGB
+; Don't need to be here if DMG
 	ld a, [hCGB]
 	and a
 	jr z, .end

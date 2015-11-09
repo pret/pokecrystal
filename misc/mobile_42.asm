@@ -1210,7 +1210,7 @@ asm_108966
 	call Function108ac8
 	hlcoord 7, 2
 	xor a
-	ld [$ffad], a
+	ld [hFillBox], a
 	ld bc, $0707
 	predef FillBox
 	call WaitBGMap
@@ -1224,7 +1224,7 @@ Function10898a: ; 10898a
 	call Function108ac8
 	hlcoord 7, 2
 	xor a
-	ld [$ffad], a
+	ld [hFillBox], a
 	ld bc, $0707
 	predef FillBox
 	call WaitBGMap

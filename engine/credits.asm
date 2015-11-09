@@ -366,7 +366,7 @@ ParseCredits: ; 1099aa
 ; First, let's clear the current text display,
 ; starting from line 5.
 	xor a
-	ld [$ffd4], a
+	ld [hBGMapMode], a
 	hlcoord 0, 5
 	ld bc, 20 * 12
 	ld a, " "
@@ -479,9 +479,9 @@ endr
 	ld [CreditsTimer], a
 	
 	xor a
-	ld [$ffd5], a
+	ld [hBGMapThird], a
 	ld a, 1
-	ld [$ffd4], a
+	ld [hBGMapMode], a
 	
 .done
 	jp Function109951

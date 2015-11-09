@@ -1001,7 +1001,7 @@ Function619c: ; 619c
 	ld de, VTiles2
 	callba GetTrainerPic
 	xor a
-	ld [$ffad], a
+	ld [hFillBox], a
 	hlcoord 6, 4
 	lb bc, 7, 7
 	predef FillBox
@@ -1013,7 +1013,7 @@ ShrinkFrame: ; 61b4
 	ld c, $31
 	predef DecompressPredef
 	xor a
-	ld [$ffad], a
+	ld [hFillBox], a
 	hlcoord 6, 4
 	lb bc, 7, 7
 	predef FillBox
@@ -7487,11 +7487,11 @@ Functiond5fe: ; d5fe (3:55fe)
 	cp $2
 	jr nz, .asm_d61c
 	ld [hl], $0
-	call Functiond61d
+	call .Incrementwd194
 .asm_d61c
 	ret
 
-Functiond61d: ; d61d (3:561d)
+.Incrementwd194: ; d61d (3:561d)
 	ld hl, wd194
 	ld a, [hl]
 	add $1
@@ -7757,14 +7757,14 @@ Functiond784: ; d784
 	and a
 	ret z
 	cp $1
-	jr z, .asm_d792
+	jr z, .load_15
 	ld de, $16
-	jr .asm_d795
+	jr .loaded_de
 
-.asm_d792
+.load_15
 	ld de, $15
 
-.asm_d795
+.loaded_de
 	push hl
 	add hl, de
 	ld a, " "
@@ -7799,39 +7799,39 @@ Functiond7b4: ; d7b4
 Functiond7c9: ; d7c9
 	ld a, [hCGB]
 	and a
-	jr nz, .asm_d7d5
+	jr nz, .cgb
 	call DelayFrame
 	call DelayFrame
 	ret
 
-.asm_d7d5
+.cgb
 	ld a, [wd10a]
 	and a
-	jr z, .asm_d829
+	jr z, .load_0
 	cp $1
-	jr z, .asm_d82d
+	jr z, .load_1
 	ld a, [CurPartyMon]
 	cp $3
-	jr nc, .asm_d7ea
+	jr nc, .c_is_1
 	ld c, $0
-	jr .asm_d7ec
+	jr .c_is_0
 
-.asm_d7ea
+.c_is_1
 	ld c, $1
 
-.asm_d7ec
+.c_is_0
 	push af
 	cp $2
-	jr z, .asm_d7ff
+	jr z, .skip_delay
 	cp $5
-	jr z, .asm_d7ff
+	jr z, .skip_delay
 	ld a, $2
 	ld [hBGMapMode], a
 	ld a, c
 	ld [hBGMapThird], a
 	call DelayFrame
 
-.asm_d7ff
+.skip_delay
 	ld a, $1
 	ld [hBGMapMode], a
 	ld a, c
@@ -7839,12 +7839,12 @@ Functiond7c9: ; d7c9
 	call DelayFrame
 	pop af
 	cp $2
-	jr z, .asm_d813
+	jr z, .two_frames
 	cp $5
-	jr z, .asm_d813
+	jr z, .two_frames
 	ret
 
-.asm_d813
+.two_frames
 	inc c
 	ld a, $2
 	ld [hBGMapMode], a
@@ -7858,14 +7858,14 @@ Functiond7c9: ; d7c9
 	call DelayFrame
 	ret
 
-.asm_d829
+.load_0
 	ld c, $0
-	jr .asm_d82f
+	jr .finish
 
-.asm_d82d
+.load_1
 	ld c, $1
 
-.asm_d82f
+.finish
 	call DelayFrame
 	ld a, c
 	ld [hBGMapThird], a
@@ -7880,23 +7880,23 @@ Functiond839: ; d839
 	ld hl, 0
 	ld a, [wd1f1]
 	cp $30
-	jr nc, .asm_d885
+	jr nc, .coppy_buffer
 	and a
-	jr z, .asm_d880
+	jr z, .return_zero
 	call AddNTimes
 	ld b, $0
-.asm_d851
+.loop
 	ld a, l
 	sub $30
 	ld l, a
 	ld a, h
 	sbc $0
 	ld h, a
-	jr c, .asm_d85e
+	jr c, .done
 	inc b
-	jr .asm_d851
+	jr .loop
 
-.asm_d85e
+.done
 	push bc
 	ld bc, $80
 	add hl, bc
@@ -7907,28 +7907,28 @@ Functiond839: ; d839
 	ld a, h
 	sbc $0
 	ld h, a
-	jr c, .asm_d86f
+	jr c, .no_carry
 	inc b
 
-.asm_d86f
+.no_carry
 	ld a, [wd1f5]
 	cp b
-	jr nc, .asm_d87c
+	jr nc, .finish
 	ld a, [wd1f6]
 	cp b
-	jr c, .asm_d87c
+	jr c, .finish
 	ld a, b
 
-.asm_d87c
+.finish
 	ld [wd1ec], a
 	ret
 
-.asm_d880
+.return_zero
 	xor a
 	ld [wd1ec], a
 	ret
 
-.asm_d885
+.coppy_buffer
 	ld a, [Buffer1]
 	ld [wd1ec], a
 	ret
@@ -8262,10 +8262,10 @@ endr
 FillPP: ; da6d
 	push bc
 	ld b, NUM_MOVES
-.asm_da70
+.loop
 	ld a, [hli]
 	and a
-	jr z, .asm_da8f
+	jr z, .next
 	dec a
 	push hl
 	push de
@@ -8281,11 +8281,11 @@ FillPP: ; da6d
 	pop hl
 	ld a, [StringBuffer1 + MOVE_PP]
 
-.asm_da8f
+.next
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_da70
+	jr nz, .loop
 	pop bc
 	ret
 ; da96
@@ -8396,13 +8396,13 @@ SentGetPkmnIntoFromBox: ; db3f
 	ld a, [hl]
 	cp MONS_PER_BOX
 	jr nz, .there_is_room
-	jp CloseSRAM_And_SetCFlag
+	jp CloseSRAM_And_SetCarryFlag
 
 .check_IfPartyIsFull
 	ld hl, PartyCount
 	ld a, [hl]
 	cp PARTY_LENGTH
-	jp z, CloseSRAM_And_SetCFlag
+	jp z, CloseSRAM_And_SetCarryFlag
 
 .there_is_room
 	inc a
@@ -8529,7 +8529,7 @@ SentGetPkmnIntoFromBox: ; db3f
 	cp PC_DEPOSIT
 	jr z, .took_out_of_box
 	cp DAYCARE_DEPOSIT
-	jp z, .CloseSRAM_And_ClearCFlag
+	jp z, .CloseSRAM_And_ClearCarryFlag
 
 	push hl
 	srl a
@@ -8560,7 +8560,7 @@ SentGetPkmnIntoFromBox: ; db3f
 
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr nz, .CloseSRAM_And_ClearCFlag
+	jr nz, .CloseSRAM_And_ClearCarryFlag
 	ld hl, MON_STATUS
 	add hl, bc
 	xor a
@@ -8580,14 +8580,14 @@ endr
 	ld a, [hl]
 	inc de
 	ld [de], a
-	jr .CloseSRAM_And_ClearCFlag
+	jr .CloseSRAM_And_ClearCarryFlag
 
 .egg
 	xor a
 	ld [de], a
 	inc de
 	ld [de], a
-	jr .CloseSRAM_And_ClearCFlag
+	jr .CloseSRAM_And_ClearCarryFlag
 
 .took_out_of_box
 	ld a, [sBoxCount]
@@ -8595,13 +8595,13 @@ endr
 	ld b, a
 	call Functiondcb6
 
-.CloseSRAM_And_ClearCFlag
+.CloseSRAM_And_ClearCarryFlag
 	call CloseSRAM
 	and a
 	ret
 ; dcb1
 
-CloseSRAM_And_SetCFlag: ; dcb1
+CloseSRAM_And_SetCarryFlag: ; dcb1
 	call CloseSRAM
 	scf
 	ret
@@ -19131,7 +19131,7 @@ Function16cc8: ; 16cc8
 	call Function16cff
 	hlcoord 1, 6
 	xor a
-	ld [$ffad], a
+	ld [hFillBox], a
 	lb bc, 7, 7
 	predef FillBox
 	ld de, VTiles2 tile $31
@@ -19213,7 +19213,7 @@ Function16dac: ; 16dac
 	call ByteFill
 	hlcoord 7, 11
 	ld a, $31
-	ld [$ffad], a
+	ld [hFillBox], a
 	lb bc, 7, 7
 	predef FillBox
 	ret
@@ -19950,7 +19950,7 @@ Function17254: ; 17254 (5:7254)
 	ld a, b
 	ld [hBGMapAddress + 1], a
 	ld a, c
-	ld [$ffad], a
+	ld [hFillBox], a
 	lb bc, 7, 7
 	predef FillBox
 	pop af
@@ -20832,7 +20832,7 @@ Pokepic:: ; 244e3
 	ld c, a
 	call GetTileCoord
 	ld a, $80
-	ld [$ffad], a
+	ld [hFillBox], a
 	lb bc, 7, 7
 	predef FillBox
 	call WaitBGMap
@@ -22991,7 +22991,7 @@ Function25299: ; 25299 (9:5299)
 	hlcoord 14, 1
 	lb bc, 5, 7
 	xor a
-	ld [$ffad], a
+	ld [hFillBox], a
 	predef FillBox
 	ret
 ; 252ec (9:52ec)
@@ -28076,7 +28076,7 @@ Function294c3: ; 294c3
 	call Function297cf
 	hlcoord 7, 2
 	xor a
-	ld [$ffad], a
+	ld [hFillBox], a
 	lb bc, 7, 7
 	predef FillBox
 	call WaitBGMap
@@ -32294,7 +32294,7 @@ endr
 
 FillBox: ; 2ef6e
 ; Fill wc2c6-aligned box width b height c
-; with iterating tile starting from $ffad at hl.
+; with iterating tile starting from hFillBox at hl.
 ; Predef $13
 
 	ld de, 20
@@ -32303,7 +32303,7 @@ FillBox: ; 2ef6e
 	and a
 	jr nz, .left
 
-	ld a, [$ffad]
+	ld a, [hFillBox]
 .x1
 	push bc
 	push hl
@@ -32330,7 +32330,7 @@ FillBox: ; 2ef6e
 	add hl, bc
 	pop bc
 
-	ld a, [$ffad]
+	ld a, [hFillBox]
 .x2
 	push bc
 	push hl
@@ -48128,7 +48128,7 @@ Function81adb: ; 81adb
 	ld de, VTiles2 tile $31
 	predef GetBackpic
 	ld a, $31
-	ld [$ffad], a
+	ld [hFillBox], a
 	hlcoord 2, 4
 	lb bc, 6, 6
 	predef FillBox
@@ -48160,7 +48160,7 @@ Function81adb: ; 81adb
 	callab GetTrainerPic
 	xor a
 	ld [TempEnemyMonSpecies], a
-	ld [$ffad], a
+	ld [hFillBox], a
 	hlcoord 2, 3
 	lb bc, 7, 7
 	predef FillBox
@@ -50997,7 +50997,7 @@ endr
 	ld de, VTiles2 tile $31
 	predef GetBackpic
 	ld a, $31
-	ld [$ffad], a
+	ld [hFillBox], a
 	hlcoord 6, 6
 	lb bc, 6, 6
 	predef FillBox
@@ -51295,7 +51295,7 @@ Function86810: ; 86810
 	call ByteFill
 	callba GetPlayerBackpic
 	ld a, $31
-	ld [$ffad], a
+	ld [hFillBox], a
 	hlcoord 6, 6
 	lb bc, 6, 6
 	predef FillBox
@@ -51319,7 +51319,7 @@ Function86810: ; 86810
 	call ByteFill
 	callba Function88840
 	xor a
-	ld [$ffad], a
+	ld [hFillBox], a
 	hlcoord 12, 5
 	lb bc, 7, 7
 	predef FillBox
@@ -51635,7 +51635,7 @@ DrawIntroPlayerPic: ; 88874
 
 ; Draw
 	xor a
-	ld [$ffad], a
+	ld [hFillBox], a
 	hlcoord 6, 4
 	lb bc, 7, 7
 	predef FillBox
@@ -52482,7 +52482,7 @@ Function8ce14: ; 8ce14
 
 Function8ce19: ; 8ce19
 	ld d, $55
-	ld a, [wd195]
+	ld a, [wd194 + 1]
 	ld e, a
 	ld b, $15
 	ld a, [rSVBK]
@@ -75652,22 +75652,22 @@ EnterWestConnection: ; 1045ed
 	ld h, [hl]
 	ld l, a
 	srl c
-	jr z, .asm_10461e
+	jr z, .skip_to_load
 	ld a, [WestConnectedMapWidth]
 	add 6
 	ld e, a
 	ld d, 0
 
-.asm_10461a
+.loop
 	add hl, de
 	dec c
-	jr nz, .asm_10461a
+	jr nz, .loop
 
-.asm_10461e
+.skip_to_load
 	ld a, l
 	ld [wd194], a
 	ld a, h
-	ld [wd195], a
+	ld [wd194 + 1], a
 	jp EnteredConnection
 ; 104629
 
@@ -75689,22 +75689,22 @@ EnterEastConnection: ; 104629
 	ld h, [hl]
 	ld l, a
 	srl c
-	jr z, .asm_10465a
+	jr z, .skip_to_load
 	ld a, [EastConnectedMapWidth]
 	add 6
 	ld e, a
 	ld d, 0
 
-.asm_104656
+.loop
 	add hl, de
 	dec c
-	jr nz, .asm_104656
+	jr nz, .loop
 
-.asm_10465a
+.skip_to_load
 	ld a, l
 	ld [wd194], a
 	ld a, h
-	ld [wd195], a
+	ld [wd194 + 1], a
 	jp EnteredConnection
 ; 104665
 
@@ -75731,7 +75731,7 @@ EnterNorthConnection: ; 104665
 	ld a, l
 	ld [wd194], a
 	ld a, h
-	ld [wd195], a
+	ld [wd194 + 1], a
 	jp EnteredConnection
 ; 104696
 
@@ -75758,7 +75758,7 @@ EnterSouthConnection: ; 104696
 	ld a, l
 	ld [wd194], a
 	ld a, h
-	ld [wd195], a
+	ld [wd194 + 1], a
 	; fallthrough
 ; 1046c4
 
@@ -75994,16 +75994,16 @@ GetCoordOfUpperLeftCorner:: ; 10486d
 	ld hl, OverworldMap
 	ld a, [XCoord]
 	bit 0, a
-	jr nz, .asm_10487d
+	jr nz, .increment_then_halve1
 	srl a
 	add $1
-	jr .asm_104881
+	jr .resume
 
-.asm_10487d
+.increment_then_halve1
 	add $1
 	srl a
 
-.asm_104881
+.resume
 	ld c, a
 	ld b, $0
 	add hl, bc
@@ -76013,21 +76013,21 @@ GetCoordOfUpperLeftCorner:: ; 10486d
 	ld b, $0
 	ld a, [YCoord]
 	bit 0, a
-	jr nz, .asm_10489a
+	jr nz, .increment_then_halve2
 	srl a
 	add $1
-	jr .asm_10489e
+	jr .resume2
 
-.asm_10489a
+.increment_then_halve2
 	add $1
 	srl a
 
-.asm_10489e
+.resume2
 	call AddNTimes
 	ld a, l
 	ld [wd194], a
 	ld a, h
-	ld [wd195], a
+	ld [wd194 + 1], a
 	ld a, [YCoord]
 	and $1
 	ld [wd196], a
@@ -77777,7 +77777,7 @@ UsedMoveText: ; 105db9
 	ld [wd265], a
 
 	push hl
-	callba Function34548
+	callba CheckUserIsCharging
 	pop hl
 	jr nz, .grammar
 
@@ -79228,14 +79228,14 @@ INCLUDE "text/phone/extra3.asm"
 
 SECTION "bank5E", ROMX, BANK[$5E]
 
-Function178000:
+_UpdateBattleHUDs:
 	callba DrawPlayerHUD
 	ld hl, PlayerHPPal
 	call SetHPPal
 	callba DrawEnemyHUD
 	ld hl, EnemyHPPal
 	call SetHPPal
-	callba Function3ee27
+	callba FinishBattleAnim
 	ret
 ; 17801f (5e:401f)
 

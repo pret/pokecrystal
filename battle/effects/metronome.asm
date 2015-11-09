@@ -1,8 +1,8 @@
 BattleCommand_Metronome: ; 37418
 ; metronome
 
-	call Function372d8
-	call Function34548
+	call ClearLastMove
+	call CheckUserIsCharging
 	jr nz, .asm_3742b
 
 	ld a, [wKickCounter]
@@ -12,7 +12,7 @@ BattleCommand_Metronome: ; 37418
 	ld [wKickCounter], a
 
 .asm_3742b
-	call PlayPlayerMoveAnim_ClearHiID
+	call LoadMoveAnim
 
 .GetMove
 	call BattleRandom

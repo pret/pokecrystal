@@ -13,7 +13,7 @@ BattleCommandPointers: ; 3fd28
 	dw BattleCommand_LowerSub ; 34eee
 	dw BattleCommand_HitTargetNoSub ; 34f60
 	dw BattleCommand_RaiseSub ; 35004
-	dw BattleCommand_ResultText ; 35023
+	dw BattleCommand_FailureText ; 35023
 	dw BattleCommand_CheckFaint ; 3505e
 	dw BattleCommand_CriticalText ; 35175
 	dw BattleCommand_SuperEffectiveText ; 351ad

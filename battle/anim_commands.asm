@@ -40,7 +40,7 @@ _PlayBattleAnim: ; cc0e4
 	push af
 
 	ld [hl], c
-	call Functioncc11c
+	call BattleAnimRunScript
 
 	pop af
 	ld [hVBlank], a
@@ -55,17 +55,17 @@ _PlayBattleAnim: ; cc0e4
 	ret
 ; cc11c
 
-Functioncc11c: ; cc11c
+BattleAnimRunScript: ; cc11c
 
 	ld a, [FXAnimIDHi]
 	and a
-	jr nz, .asm_cc156
+	jr nz, .hi_byte
 
 	callba CheckBattleScene
-	jr c, .asm_cc141
+	jr c, .disabled
 
 	call BattleAnimClearHud
-	call Functioncc163
+	call RunBattleAnimScript
 
 	call BattleAnimAssignPals
 	call BattleAnimRequestPals
@@ -76,31 +76,31 @@ Functioncc11c: ; cc11c
 	call BattleAnimDelayFrame
 	call BattleAnimRestoreHuds
 
-.asm_cc141
+.disabled
 	ld a, [wcfca]
 	and a
-	jr z, .asm_cc15f
+	jr z, .done
 
 	ld l, a
 	ld h, 0
-	ld de, $10e
+	ld de, ANIM_MISS
 	add hl, de
 	ld a, l
 	ld [FXAnimIDLo], a
 	ld a, h
 	ld [FXAnimIDHi], a
 
-.asm_cc156
+.hi_byte
 	call WaitSFX
 	call Functioncc881
-	call Functioncc163
+	call RunBattleAnimScript
 
-.asm_cc15f
+.done
 	call Functioncc8f6
 	ret
 ; cc163
 
-Functioncc163: ; cc163
+RunBattleAnimScript: ; cc163
 
 	call Functioncc8d3
 
@@ -257,11 +257,11 @@ Functioncc23d: ; cc23d
 
 	ld a, [BattleAnimFlags]
 	bit 3, a
-	jr z, .asm_cc254
+	jr z, .skip
 
 	ld hl, Sprites + 3
 	ld c, (SpritesEnd - Sprites) / 4
-.asm_cc249
+.loop
 	ld a, [hl]
 	and $f0
 	ld [hli], a
@@ -269,71 +269,71 @@ rept 3
 	inc hl
 endr
 	dec c
-	jr nz, .asm_cc249
+	jr nz, .loop
 	ret
 
-.asm_cc254
+.skip
 	ld hl, Sprites
 	ld c, SpritesEnd - Sprites
 	xor a
-.asm_cc25a
+.loop2
 	ld [hli], a
 	dec c
-	jr nz, .asm_cc25a
+	jr nz, .loop2
 	ret
 ; cc25f
 
 Functioncc25f: ; cc25f
-	call Functioncc267
+	call .CheckTimer
 	ret nc
-	call Functioncc275
+	call .RunScript
 	ret
 ; cc267
 
-Functioncc267: ; cc267
+.CheckTimer: ; cc267
 	ld a, [BattleAnimDuration]
 	and a
-	jr z, .asm_cc273
+	jr z, .done
 
 	dec a
 	ld [BattleAnimDuration], a
 	and a
 	ret
 
-.asm_cc273
+.done
 	scf
 	ret
 ; cc275
 
-Functioncc275: ; cc275
-
+.RunScript: ; cc275
+.loop
 	call GetBattleAnimByte
 
 	cp $ff
-	jr nz, .asm_cc286
+	jr nz, .not_done_with_anim
 
 ; Return from a subroutine.
 	ld hl, BattleAnimFlags
 	bit 1, [hl]
-	jr nz, .asm_cc28e
+	jr nz, .do_anim
 
 	set 0, [hl]
 	ret
 
-.asm_cc286
+.not_done_with_anim
 	cp $d0
-	jr nc, .asm_cc28e
+	jr nc, .do_anim
 
 	ld [BattleAnimDuration], a
 	ret
 
-.asm_cc28e
-	call Functioncc293
+.do_anim
+	call .DoCommand
 
-	jr Functioncc275
+	jr .loop
 ; cc293
 
-Functioncc293: ; cc293
+.DoCommand: ; cc293
 ; Execute battle animation command in [BattleAnimByte].
 	ld a, [BattleAnimByte]
 	sub $d0
@@ -1332,11 +1332,11 @@ Datacc871: ; cc871
 Functioncc881: ; cc881
 	ld a, [wcfca]
 	cp $1
-	jr z, .asm_cc88b
+	jr z, .okay
 	cp $4
 	ret nz
 
-.asm_cc88b
+.okay
 	ld a, [TypeModifier]
 	and $7f
 	ret z
@@ -1358,41 +1358,43 @@ Functioncc881: ; cc881
 BattleAnimAssignPals: ; cc8a4
 	ld a, [hCGB]
 	and a
-	jr nz, .asm_cc8be
+	jr nz, .cgb
 	ld a, [hSGB]
 	and a
-	ld a, $e0
-	jr z, .asm_cc8b2
-	ld a, $f0
+	ld a, %11100000
+	jr z, .sgb
+	ld a, %11110000
 
-.asm_cc8b2
+.sgb
 	ld [wcfc8], a
-	ld a, $e4
+	ld a, %11100100
 	ld [wcfc7], a
 	ld [wcfc9], a
 	ret
 
-.asm_cc8be
-	ld a, $e4
+.cgb
+	ld a, %11100100
 	ld [wcfc7], a
 	ld [wcfc8], a
 	ld [wcfc9], a
 	call DmgToCgbBGPals
-	ld de, $e4e4
+	lb de, %11100100, %11100100
 	call DmgToCgbObjPals
 	ret
 ; cc8d3
 
 Functioncc8d3: ; cc8d3
+; Clear animation block
 	ld hl, LYOverrides
-	ld bc, $0354
-.asm_cc8d9
+	ld bc, wBattleAnimEnd - LYOverrides
+.loop
 	ld [hl], $0
 	inc hl
 	dec bc
 	ld a, c
 	or b
-	jr nz, .asm_cc8d9
+	jr nz, .loop
+
 	ld hl, FXAnimIDLo
 	ld e, [hl]
 	inc hl
@@ -1401,7 +1403,7 @@ Functioncc8d3: ; cc8d3
 rept 2
 	add hl, de
 endr
-	call Function3ae1
+	call GetBattleAnimPointer
 	call BattleAnimAssignPals
 	call BattleAnimDelayFrame
 	ret
@@ -1409,12 +1411,12 @@ endr
 
 Functioncc8f6: ; cc8f6
 	call WaitTop
-	ld a, $e4
+	ld a, %11100100
 	ld [wcfc7], a
 	ld [wcfc8], a
 	ld [wcfc9], a
 	call DmgToCgbBGPals
-	ld de, $e4e4
+	lb de, %11100100, %11100100
 	call DmgToCgbObjPals
 	xor a
 	ld [hSCX], a

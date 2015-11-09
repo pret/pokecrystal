@@ -1,7 +1,7 @@
 BattleCommand_MirrorMove: ; 373c9
 ; mirrormove
 
-	call Function372d8
+	call ClearLastMove
 
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVarAddr
@@ -37,7 +37,7 @@ BattleCommand_MirrorMove: ; 373c9
 	call GetMoveData
 	call GetMoveName
 	call CopyName1
-	call Function34548
+	call CheckUserIsCharging
 	jr nz, .done
 
 	ld a, [wKickCounter]

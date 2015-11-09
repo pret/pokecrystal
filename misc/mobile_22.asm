@@ -1253,7 +1253,7 @@ Function897d5: ; 897d5
 
 .asm_897f3
 	ld a, $37
-	ld [$ffad], a
+	ld [hFillBox], a
 	hlcoord 12, 3
 	lb bc, 7, 7
 	predef FillBox

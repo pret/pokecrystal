@@ -440,14 +440,14 @@ Script_closetext: ; 0x96ed9
 Script_keeptextopen: ; 0x96edc
 ; script command 0x55
 
-	ld a, [$ffd8]
+	ld a, [hOAMUpdate]
 	push af
 	ld a, $1
-	ld [$ffd8], a
+	ld [hOAMUpdate], a
 	call WaitBGMap
 	call KeepTextOpen
 	pop af
-	ld [$ffd8], a
+	ld [hOAMUpdate], a
 	ret
 ; 0x96eed
 

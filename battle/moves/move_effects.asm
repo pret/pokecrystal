@@ -44,7 +44,7 @@ NormalHit:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -83,7 +83,7 @@ PoisonHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -107,7 +107,7 @@ LeechHit:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -133,7 +133,7 @@ BurnHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -158,7 +158,7 @@ FreezeHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -187,7 +187,7 @@ ParalyzeHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -209,7 +209,7 @@ Explosion:
 	checkhit
 	selfdestruct
 	hittargetnosub
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -229,7 +229,7 @@ DreamEater:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -634,7 +634,7 @@ AttackDownHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -659,7 +659,7 @@ DefenseDownHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -686,7 +686,7 @@ SpeedDownHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -708,7 +708,7 @@ SpecialAttackDownHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -733,7 +733,7 @@ SpecialDefenseDownHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -757,7 +757,7 @@ AccuracyDownHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -779,7 +779,7 @@ EvasionDownHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -802,7 +802,7 @@ DefenseUpHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -825,7 +825,7 @@ AttackUpHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -848,7 +848,7 @@ AllUpHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -868,7 +868,7 @@ PayDay:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -925,7 +925,7 @@ Rampage:
 	damagevariation
 	clearmissdamage
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -967,7 +967,7 @@ MultiHit:
 	damagevariation
 	clearmissdamage
 	hittargetnosub
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	cleartext
@@ -995,7 +995,7 @@ PoisonMultiHit:
 	damagevariation
 	clearmissdamage
 	hittargetnosub
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	cleartext
@@ -1027,7 +1027,7 @@ FlinchHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1046,7 +1046,7 @@ OHKOHit:
 	stab
 	ohko
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1069,7 +1069,7 @@ RecoilHit:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1122,7 +1122,7 @@ ConfuseHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1169,7 +1169,7 @@ TriAttack:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1218,7 +1218,7 @@ SkyAttack:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1246,7 +1246,7 @@ HyperBeam:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1267,7 +1267,7 @@ Rage:
 	ragedamage
 	damagevariation
 	hittarget
-	resulttext
+	failuretext
 	rage
 	checkfaint
 	criticaltext
@@ -1328,7 +1328,7 @@ RazorWind:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1352,7 +1352,7 @@ Dig:
 	checkhit
 	hittargetnosub
 	raisesub
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1377,7 +1377,7 @@ Whirlpool:
 	damagevariation
 	clearmissdamage
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1400,7 +1400,7 @@ StaticDamage:
 	checkhit
 	resettypematchup
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	checkdestinybond
 	buildopponentrage
@@ -1416,7 +1416,7 @@ Reversal:
 	stab
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	supereffectivetext
 	checkdestinybond
@@ -1430,7 +1430,7 @@ Counter:
 	doturn
 	counter
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	checkdestinybond
 	buildopponentrage
@@ -1466,7 +1466,7 @@ Snore:
 	effectchance
 	snore
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1541,7 +1541,7 @@ FalseSwipe:
 	falseswipe
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1572,7 +1572,7 @@ TripleKick:
 	damagevariation
 	clearmissdamage
 	hittargetnosub
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	cleartext
@@ -1597,7 +1597,7 @@ Thief:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1634,7 +1634,7 @@ FlameWheel:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1708,7 +1708,7 @@ Rollout:
 	rolloutpower
 	damagevariation
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1728,7 +1728,7 @@ Swagger:
 	lowersub
 	statupanim
 	raisesub
-	resulttext
+	failuretext
 	switchturn
 	statupmessage
 	switchturn
@@ -1747,7 +1747,7 @@ FuryCutter:
 	furycutter
 	damagevariation
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1776,7 +1776,7 @@ Return:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1797,7 +1797,7 @@ Present:
 	stab
 	damagevariation
 	clearmissdamage
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1818,7 +1818,7 @@ Frustration:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1846,7 +1846,7 @@ SacredFire:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1869,7 +1869,7 @@ Magnitude:
 	checkhit
 	doubleundergrounddamage
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1897,7 +1897,7 @@ Pursuit:
 	pursuit
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1917,7 +1917,7 @@ RapidSpin:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1959,7 +1959,7 @@ HiddenPower:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1989,7 +1989,7 @@ FakeOut:
 	checkhit
 	fakeout
 	hittarget
-	resulttext
+	failuretext
 	endmove
 
 BellyDrum:
@@ -2012,7 +2012,7 @@ MirrorCoat:
 	doturn
 	mirrorcoat
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	checkdestinybond
 	buildopponentrage
@@ -2032,7 +2032,7 @@ SkullBash:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -2057,7 +2057,7 @@ Twister:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -2079,7 +2079,7 @@ Earthquake:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -2098,7 +2098,7 @@ FutureSight:
 	damagevariation
 	checkhit
 	hittargetnosub
-	resulttext
+	failuretext
 	checkfaint
 	checkdestinybond
 	buildopponentrage
@@ -2116,7 +2116,7 @@ Gust:
 	doubleflyingdamage
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -2137,7 +2137,7 @@ Stomp:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -2160,7 +2160,7 @@ Solarbeam:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -2182,7 +2182,7 @@ Thunder:
 	stab
 	damagevariation
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -2212,7 +2212,7 @@ BeatUp:
 	damagevariation
 	clearmissdamage
 	hittargetnosub
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	cleartext

@@ -473,7 +473,7 @@ wc64c::
 	ds 1
 
 wc64d:: ds 1
-wCaughtMon::
+wWildMon::
 wc64e:: ds 1
 	ds 1
 wEnemyTrainerItem1:: ds 1
@@ -635,7 +635,8 @@ BattleScriptBuffer:: ; c68a
 BattleScriptBufferLoc:: ; c6b2
 	ds 2
 
-wc6b4:: ds 2
+wTurnEnded:: ds 1
+	ds 1
 
 PlayerStats:: ; c6b6
 	ds 10
@@ -862,10 +863,10 @@ wc734::
 BattleEnded:: ; c734
 	ds 1
 
-wCaughtMonMoves::
+wWildMonMoves::
 wc735:: ds 1
 wc736:: ds 3
-wCaughtMonPP::
+wWildMonPP::
 wc739:: ds 4
 wc73d:: ds 1
 wc73e:: ds 1
@@ -1627,7 +1628,11 @@ wd151:: ds 1
 wd152:: ds 1
 wd153:: ds 1
 
-UsedSprites:: ; d154
+UsedSprites:: ds 64
+UsedSpritesEnd::
+	ds UsedSprites - @
+
+wd154:: ; d154
 	ds 31 ; 64
 
 wd173:: ds 1
@@ -1639,9 +1644,7 @@ wd182:: ds 1
 wd191:: ds 1
 wd192:: ds 1
 wd193:: ds 1
-UsedSpritesEnd::
-wd194:: ds 1
-wd195:: ds 1
+wd194:: dw
 wd196:: ds 1
 wd197:: ds 2
 wd199:: ds 1
@@ -2731,7 +2734,7 @@ OBPals::    ds 8 * 8 ; d0c0
 
 LYOverrides:: ; d100
 	ds SCREEN_HEIGHT_PX
-LYOverridesEnd::
+LYOverridesEnd:: ; d190
 
 	ds 1
 w5_d191:: ds 1
@@ -2781,7 +2784,9 @@ w5_d418:: ds 1
 BattleAnimTemps:: ; d419
 	ds 8
 	ds 1
-w5_d422:: ds $40
+w5_d422:: ds $32
+wBattleAnimEnd::
+	ds $e
 
 
 SECTION "WRAM 6", WRAMX, BANK [6]
