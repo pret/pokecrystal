@@ -38,7 +38,7 @@ Function3c000: ; 3c000
 	dec a
 	jr z, .wild
 	xor a
-	ld [wc718], a
+	ld [wEnemySwitchMonIndex], a
 	call NewEnemyMonStatus
 	call ResetEnemyStatLevels
 	call BreakAttraction
@@ -104,7 +104,7 @@ Function3c000: ; 3c000
 	cp $2
 	jr nz, .not_linked_2
 	xor a
-	ld [wc718], a
+	ld [wEnemySwitchMonIndex], a
 	call NewEnemyMonStatus
 	call ResetEnemyStatLevels
 	call BreakAttraction
@@ -136,7 +136,7 @@ WildFled_EnemyFled_LinkBattleCanceled: ; 3c0e5
 	and $c0
 	ld [wBattleResult], a
 	ld hl, BattleText_EnemyFled
-	call Function3d2e0
+	call CheckMobileBattleError
 	jr nc, .asm_3c115
 
 	ld hl, wcd2a
@@ -150,7 +150,7 @@ WildFled_EnemyFled_LinkBattleCanceled: ; 3c0e5
 
 .asm_3c118
 	call StopDangerSound
-	call Function3d2e0
+	call CheckMobileBattleError
 	jr c, .asm_3c126
 
 	ld de, SFX_RUN
@@ -179,7 +179,7 @@ Function3c12f: ; 3c12f
 	ld [CurDamage], a
 	ld [CurDamage + 1], a
 
-	call Function3c27c
+	call HandleBerserkGene
 	call UpdateBattleMonInParty
 	callba AIChooseMove
 
@@ -191,7 +191,7 @@ Function3c12f: ; 3c12f
 	jp c, .quit
 .not_disconnected
 
-	call Function3c410
+	call CheckPlayerLockedIn
 	jr c, .skip_iteration
 .loop1
 	call BattleMenu
@@ -199,27 +199,27 @@ Function3c12f: ; 3c12f
 	ld a, [BattleEnded]
 	and a
 	jr nz, .quit
-	ld a, [wd232] ; roared/whirlwinded/teleported
+	ld a, [wForcedSwitch] ; roared/whirlwinded/teleported
 	and a
 	jr nz, .quit
 .skip_iteration
-	call Function3c434
+	call ParsePlayerAction
 	jr nz, .loop1
 
-	call Function3c300
+	call EnemyTriesToFlee
 	jr c, .quit
 
 	call DetermineMoveOrder
 	jr c, .false
-	call Function3c5fe
+	call Battle_EnemyFirst
 	jr .proceed
 .false
-	call Function3c664
+	call Battle_PlayerFirst
 .proceed
-	call Function3d2e0
+	call CheckMobileBattleError
 	jr c, .quit
 
-	ld a, [wd232]
+	ld a, [wForcedSwitch]
 	and a
 	jr nz, .quit
 
@@ -355,7 +355,7 @@ CheckFaint_EnemyThenPlayer: ; 3c25c
 	ret
 ; 3c27c
 
-Function3c27c: ; 3c27c
+HandleBerserkGene: ; 3c27c
 	ld a, [hLinkPlayerNumber]
 	cp $1
 	jr z, .reverse
@@ -432,7 +432,7 @@ Function3c27c: ; 3c27c
 	jp StdBattleTextBox
 ; 3c300
 
-Function3c300: ; 3c300
+EnemyTriesToFlee: ; 3c300
 	ld a, [wLinkMode]
 	and a
 	jr z, .not_linked
@@ -592,7 +592,7 @@ CheckContestBattleOver: ; 3c3f5
 	ret
 ; 3c410
 
-Function3c410: ; 3c410
+CheckPlayerLockedIn: ; 3c410
 	ld a, [PlayerSubStatus4]
 	and 1 << SUBSTATUS_RECHARGE
 	jp nz, .quit
@@ -618,25 +618,25 @@ Function3c410: ; 3c410
 	ret
 ; 3c434
 
-Function3c434: ; 3c434
-	call Function3c410
-	jp c, .asm_3c4ba
+ParsePlayerAction: ; 3c434
+	call CheckPlayerLockedIn
+	jp c, .locked_in
 	ld hl, PlayerSubStatus5
 	bit SUBSTATUS_ENCORED, [hl]
-	jr z, .asm_3c449
+	jr z, .not_encored
 	ld a, [LastPlayerMove]
 	ld [CurPlayerMove], a
-	jr .asm_3c47c
+	jr .encored
 
-.asm_3c449
+.not_encored
 	ld a, [wd0ec]
 	cp $2
-	jr z, .asm_3c4ce
+	jr z, .reset_rage
 	and a
-	jr nz, .asm_3c4b5
+	jr nz, .reset_bide
 	ld a, [PlayerSubStatus3]
 	and 1 << SUBSTATUS_BIDE
-	jr nz, .asm_3c4ba
+	jr nz, .locked_in
 	xor a
 	ld [wd235], a
 	inc a ; POUND
@@ -647,50 +647,50 @@ Function3c434: ; 3c434
 	call UpdateBattleHuds
 	ld a, [CurPlayerMove]
 	cp STRUGGLE
-	jr z, .asm_3c476
+	jr z, .struggle
 	call PlayClickSFX
 
-.asm_3c476
+.struggle
 	ld a, $1
 	ld [hBGMapMode], a
 	pop af
 	ret nz
 
-.asm_3c47c
+.encored
 	call SetPlayerTurn
 	callab UpdateMoveData
 	xor a
 	ld [wPlayerCharging], a
 	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
 	cp EFFECT_FURY_CUTTER
-	jr z, .asm_3c494
+	jr z, .continue_fury_cutter
 	xor a
 	ld [PlayerFuryCutterCount], a
 
-.asm_3c494
+.continue_fury_cutter
 	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
 	cp EFFECT_RAGE
-	jr z, .asm_3c4a4
+	jr z, .continue_rage
 	ld hl, PlayerSubStatus4
 	res SUBSTATUS_RAGE, [hl]
 	xor a
 	ld [wPlayerRageCounter], a
 
-.asm_3c4a4
+.continue_rage
 	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
 	cp EFFECT_PROTECT
-	jr z, .asm_3c4c9
+	jr z, .continue_protect
 	cp EFFECT_ENDURE
-	jr z, .asm_3c4c9
+	jr z, .continue_protect
 	xor a
 	ld [PlayerProtectCount], a
-	jr .asm_3c4c9
+	jr .continue_protect
 
-.asm_3c4b5
+.reset_bide
 	ld hl, PlayerSubStatus3
 	res SUBSTATUS_BIDE, [hl]
 
-.asm_3c4ba
+.locked_in
 	xor a
 	ld [PlayerFuryCutterCount], a
 	ld [PlayerProtectCount], a
@@ -698,12 +698,12 @@ Function3c434: ; 3c434
 	ld hl, PlayerSubStatus4
 	res SUBSTATUS_RAGE, [hl]
 
-.asm_3c4c9
-	call Function3e7c1
+.continue_protect
+	call ParseEnemyAction
 	xor a
 	ret
 
-.asm_3c4ce
+.reset_rage
 	xor a
 	ld [PlayerFuryCutterCount], a
 	ld [PlayerProtectCount], a
@@ -932,19 +932,19 @@ GetMoveEffect: ; 3c5ec
 ; 3c5fe
 
 
-Function3c5fe: ; 3c5fe
+Battle_EnemyFirst: ; 3c5fe
 	call LoadTileMapToTempTileMap
 	call TryEnemyFlee
 	jp c, WildFled_EnemyFled_LinkBattleCanceled
 	call SetEnemyTurn
 	ld a, $1
-	ld [wc70f], a
+	ld [wEnemyGoesFirst], a
 	callab AI_SwitchOrTryItem
 	jr c, .switch_item
 	call EnemyTurn_EndOpponentProtectEndureDestinyBond
-	call Function3d2e0
+	call CheckMobileBattleError
 	ret c
-	ld a, [wd232]
+	ld a, [wForcedSwitch]
 	and a
 	ret nz
 	call HasPlayerFainted
@@ -958,9 +958,9 @@ Function3c5fe: ; 3c5fe
 	jp z, HandleEnemyMonFaint
 	call RefreshBattleHuds
 	call PlayerTurn_EndOpponentProtectEndureDestinyBond
-	call Function3d2e0
+	call CheckMobileBattleError
 	ret c
-	ld a, [wd232]
+	ld a, [wForcedSwitch]
 	and a
 	ret nz
 	call HasEnemyFainted
@@ -976,18 +976,18 @@ Function3c5fe: ; 3c5fe
 	ret
 ; 3c664
 
-Function3c664: ; 3c664
+Battle_PlayerFirst: ; 3c664
 	xor a
-	ld [wc70f], a
+	ld [wEnemyGoesFirst], a
 	call SetEnemyTurn
 	callab AI_SwitchOrTryItem
 	push af
 	call PlayerTurn_EndOpponentProtectEndureDestinyBond
 	pop bc
-	ld a, [wd232]
+	ld a, [wForcedSwitch]
 	and a
 	ret nz
-	call Function3d2e0
+	call CheckMobileBattleError
 	ret c
 	call HasEnemyFainted
 	jp z, HandleEnemyMonFaint
@@ -1006,9 +1006,9 @@ Function3c664: ; 3c664
 	call TryEnemyFlee
 	jp c, WildFled_EnemyFled_LinkBattleCanceled
 	call EnemyTurn_EndOpponentProtectEndureDestinyBond
-	call Function3d2e0
+	call CheckMobileBattleError
 	ret c
-	ld a, [wd232]
+	ld a, [wForcedSwitch]
 	and a
 	ret nz
 	call HasPlayerFainted
@@ -2154,7 +2154,7 @@ HandleEnemyMonFaint: ; 3cd55
 
 .dont_flee
 	call Function3d227
-	call Function3d2e0
+	call CheckMobileBattleError
 	jp c, WildFled_EnemyFled_LinkBattleCanceled
 
 	ld a, $1
@@ -2437,7 +2437,7 @@ Function3cf4a: ; 3cf4a
 EnemyPartyMonEntrance: ; 3cf78
 	push af
 	xor a
-	ld [wc718], a
+	ld [wEnemySwitchMonIndex], a
 	call NewEnemyMonStatus
 	call ResetEnemyStatLevels
 	call BreakAttraction
@@ -2805,7 +2805,7 @@ HandlePlayerMonFaint: ; 3d14e
 
 .asm_3d190
 	call Function3d227
-	call Function3d2e0
+	call CheckMobileBattleError
 	jp c, WildFled_EnemyFled_LinkBattleCanceled
 	ld a, c
 	and a
@@ -2900,7 +2900,7 @@ Function3d227: ; 3d227
 .skip_link
 	xor a
 	ld [wd0ec], a
-	call Function3d2e0
+	call CheckMobileBattleError
 	jr c, .asm_3d251
 	ld hl, EnemyMonHP
 	ld a, [hli]
@@ -2968,7 +2968,7 @@ Function3d2b3: ; 3d2b3
 ; 3d2e0
 
 
-Function3d2e0: ; 3d2e0
+CheckMobileBattleError: ; 3d2e0
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	jr nz, .not_mobile ; It's not a mobile battle
@@ -3057,7 +3057,7 @@ ForcePickPartyMonInBattle: ; 3d362
 .pick
 	call PickPartyMonInBattle
 	ret nc
-	call Function3d2e0
+	call CheckMobileBattleError
 	ret c
 
 	ld de, SFX_WRONG
@@ -3082,7 +3082,7 @@ ForcePickSwitchMonInBattle: ; 3d380
 
 .pick
 	call ForcePickPartyMonInBattle
-	call Function3d2e0
+	call CheckMobileBattleError
 	ret c
 	call SwitchMonAlreadyOut
 	jr c, .pick
@@ -3306,7 +3306,7 @@ Function3d4ae: ; 3d4ae
 
 Function3d4c3: ; 3d4c3
 	call ResetEnemyBattleVars
-	ld a, [wc718]
+	ld a, [wEnemySwitchMonIndex]
 	dec a
 	ld b, a
 	call LoadEnemyPkmnToSwitchTo
@@ -3376,7 +3376,7 @@ Function3d533: ; 3d533
 	jr .return_carry
 
 .not_linked
-	ld a, [wc718]
+	ld a, [wEnemySwitchMonIndex]
 	and a
 	jr z, .check_wd264
 
@@ -4031,8 +4031,8 @@ TryToRunAwayFromBattle: ; 3d8b3
 	ld [CurPlayerMove], a
 	call Function3e8e4
 	call Call_LoadTempTileMapToTileMap
-	call Function3d2e0
-	jr c, .asm_3d9f5
+	call CheckMobileBattleError
+	jr c, .mobile
 
 	; Got away safely
 	ld a, [wBattleAction]
@@ -4059,15 +4059,15 @@ TryToRunAwayFromBattle: ; 3d8b3
 	scf
 	ret
 
-.asm_3d9f5
+.mobile
 	call StopDangerSound
 	ld hl, wcd2a
 	bit 4, [hl]
-	jr nz, .asm_3da05
+	jr nz, .skip_link_error
 	ld hl, BattleText_LinkErrorBattleCanceled
 	call StdBattleTextBox
 
-.asm_3da05
+.skip_link_error
 	call WaitSFX
 	call LoadTileMapToTempTileMap
 	scf
@@ -5353,13 +5353,13 @@ Function3e299:
 	jr .asm_3e2a8
 
 .asm_3e2c8
-	call Function3d2e0
+	call CheckMobileBattleError
 	jr c, .asm_3e2da
 	jr Function3e299
 
 .asm_3e2cf
 	call Function3e308
-	call Function3d2e0
+	call CheckMobileBattleError
 	jr c, .asm_3e2da
 	jp Function3e290
 
@@ -5470,7 +5470,7 @@ PlayerSwitch: ; 3e3ad
 	call WriteBackup
 
 .not_linked
-	call Function3e7c1
+	call ParseEnemyAction
 	ld a, [wLinkMode]
 	and a
 	jr nz, .linked
@@ -6070,7 +6070,7 @@ Function3e786: ; 3e786
 
 
 
-Function3e7c1: ; 3e7c1
+ParseEnemyAction: ; 3e7c1
 	ld a, [wEnemyIsSwitching]
 	and a
 	ret nz
@@ -8740,7 +8740,7 @@ Function3f6d0: ; 3f6d0
 	ld [OtherTrainerClass], a
 	ld [wd266], a
 	ld [wd267], a
-	ld [wd232], a
+	ld [wForcedSwitch], a
 	ld [wd0d8], a
 	ld [wKeyItemsPocketCursor], a
 	ld [wItemsPocketCursor], a
@@ -8813,7 +8813,7 @@ Function3f759: ; 3f759
 ; 3f77c
 
 Function3f77c: ; 3f77c
-	callba Function3d2e0
+	callba CheckMobileBattleError
 	jp c, Function3f80f
 	call Function3f830
 	jr nz, .asm_3f797

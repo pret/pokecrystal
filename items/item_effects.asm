@@ -2288,7 +2288,7 @@ PokeDoll: ; f48f
 	dec a
 	jr nz, .asm_f4a6
 	inc a
-	ld [wd232], a
+	ld [wForcedSwitch], a
 	ld a, [wBattleResult]
 	and 3 << 6
 	or $2

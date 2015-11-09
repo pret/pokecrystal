@@ -576,7 +576,7 @@ AI_Smart_Explosion: ; 388a6
 
 ; Unless this is the enemy's last Pokemon...
 	push hl
-	callba CheckEnemyHasMonToSwitchTo
+	callba FindAliveEnemyMons
 	pop hl
 	jr nc, .asm_388b7
 
@@ -2028,7 +2028,7 @@ endr
 	jp nz, AIDiscourageMove
 
 	push hl
-	callba CheckEnemyHasMonToSwitchTo
+	callba FindAliveEnemyMons
 	pop hl
 	jr nc, .asm_38eb0
 
@@ -2160,7 +2160,7 @@ endr
 
 AI_Smart_PerishSong: ; 38f4a
 	push hl
-	callab CheckEnemyHasMonToSwitchTo
+	callab FindAliveEnemyMons
 	pop hl
 	jr c, .no
 

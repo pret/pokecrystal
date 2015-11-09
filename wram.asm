@@ -452,7 +452,7 @@ wOddEggOTName:: ds PKMN_NAME_LENGTH
 	ds -70
 
 wBT_OTTemp:: battle_tower_struct wBT_OTTemp
-	ds -BATTLE_TOWER_STRUCT_LENGTH
+	ds wBT_OTTemp - @
 
 wMisc::
 wBattle::
@@ -818,7 +818,7 @@ wc70e::
 FailedMessage:: ; c70e
 	ds 1
 
-wc70f:: ds 1
+wEnemyGoesFirst:: ds 1
 wc710::
 wPlayerIsSwitching:: ds 1 ; c710
 wc711::
@@ -831,8 +831,9 @@ PlayerUsedMoves:: ; c712
 	ds NUM_MOVES
 
 wc716:: ds 1
+wEnemySwitchMonParam::
 wc717:: ds 1
-wc718:: ds 1
+wEnemySwitchMonIndex:: ds 1
 wc719:: ds 1
 LastPlayerMon:: ; c71a
 wc71a:: ds 1
@@ -911,25 +912,6 @@ ENDC
 wMiscEnd::
 
 wc7e8:: ds 24
-
-
-RSSET 0 ; Offsets for wBT_OTTemp:: @ $c608
-wBT_OTTemp_0			RB NAME_LENGTH + -1      ; $c608
-wBT_OTTemp_TrainerClass	RB 1	                 ; $c608 + $a = $c612
-wBT_OTTemp_Pkmn1		RB $30 ; PARTYMON_STRUCT_LENGTH   ; $c608 + $b = $c613
-wBT_OTTemp_Pkmn1Name	RB PKMN_NAME_LENGTH + -1 ; $c608 + $45 = $c64d
-wBT_OTTemp_45           RB 1
-wBT_OTTemp_Pkmn2		RB $30 ; PARTYMON_STRUCT_LENGTH   ; $c608 + $46 = $c64e
-wBT_OTTemp_Pkmn2Name	RB PKMN_NAME_LENGTH + -1 ; $c608 + $76 = $c67e
-wBT_OTTemp_80           RB 1
-wBT_OTTemp_Pkmn3		RB $30 ; PARTYMON_STRUCT_LENGTH   ; $c608 + $81 = $c689
-wBT_OTTemp_Pkmn3Name	RB PKMN_NAME_LENGTH + -1 ; $c608 + $b1 = $c6b9
-wBT_OTTemp_BB           RB 1
-
-GLOBAL wBT_OTTemp_TrainerClass, wBT_OTTemp_Pkmn1, wBT_OTTemp_Pkmn1Name, wBT_OTTemp_Pkmn2, wBT_OTTemp_Pkmn2Name, wBT_OTTemp_Pkmn3, wBT_OTTemp_Pkmn3Name
-GLOBAL wBT_OTTemp_45, wBT_OTTemp_80, wBT_OTTemp_BB
-
-
 
 SECTION "Overworld Map", WRAM0 [$c800]
 
@@ -1863,7 +1845,7 @@ OtherTrainerID:: ; d231
 ; (Joey, Mikey, Albert, etc.)
 	ds 1
 
-wd232:: ds 1
+wForcedSwitch:: ds 1
 
 TrainerClass:: ; d233
 	ds 1

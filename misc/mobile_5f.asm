@@ -1928,7 +1928,7 @@ Function17dc1f: ; 17dc1f
 	ld a, $5c
 	ld [wc70e], a
 	ld a, $1
-	ld [wc70f], a
+	ld [wEnemyGoesFirst], a
 	ld hl, wc708
 	call LoadMenuDataHeader
 	call InterpretMenu2
@@ -2155,7 +2155,7 @@ Function17dd49: ; 17dd49
 	jr .asm_17ddc9
 
 .asm_17ddb7
-	ld a, [wc70f]
+	ld a, [wEnemyGoesFirst]
 	ld l, a
 	ld a, [wc710]
 	ld h, a
@@ -2219,7 +2219,7 @@ Function17ddcd: ; 17ddcd
 	jr nz, .asm_17de26
 	ld a, [wc70e]
 	ld l, a
-	ld a, [wc70f]
+	ld a, [wEnemyGoesFirst]
 	ld h, a
 	jr .asm_17de2e
 
@@ -2277,7 +2277,7 @@ Function17de32: ; 17de32
 .asm_17de78
 	ld a, [wc70e]
 	ld l, a
-	ld a, [wc70f]
+	ld a, [wEnemyGoesFirst]
 	ld h, a
 	jr .asm_17de8a
 
@@ -2879,7 +2879,7 @@ Function17e1a1: ; 17e1a1
 	jr .asm_17e250
 
 .asm_17e23e
-	ld a, [wc70f]
+	ld a, [wEnemyGoesFirst]
 	ld l, a
 	ld a, [wc710]
 	ld h, a

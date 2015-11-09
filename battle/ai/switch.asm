@@ -183,8 +183,8 @@ endr
 
 CheckAbleToSwitch: ; 34941
 	xor a
-	ld [wc717], a
-	call CheckEnemyHasMonToSwitchTo
+	ld [wEnemySwitchMonParam], a
+	call FindAliveEnemyMons
 	ret c
 
 	ld a, [EnemySubStatus1]
@@ -197,9 +197,9 @@ CheckAbleToSwitch: ; 34941
 
 	; Perish count is 1
 
-	call CheckEnemyHasMonToSwitchTo
-	call Function34b77
-	call Function34b20
+	call FindAliveEnemyMons
+	call FindEnemyMonsWithEnoughHP
+	call FindEnemyMonsThatResistPlayer
 	call Function34a85
 
 	ld a, e
@@ -208,11 +208,11 @@ CheckAbleToSwitch: ; 34941
 
 	ld a, [wc716]
 	add $30
-	ld [wc717], a
+	ld [wEnemySwitchMonParam], a
 	ret
 
 .not_2
-	call CheckEnemyHasMonToSwitchTo
+	call FindAliveEnemyMons
 	sla c
 	sla c
 	ld b, $ff
@@ -224,7 +224,7 @@ CheckAbleToSwitch: ; 34941
 
 	ld a, b
 	add $30
-	ld [wc717], a
+	ld [wEnemySwitchMonParam], a
 	ret
 
 .no_perish
@@ -236,12 +236,12 @@ CheckAbleToSwitch: ; 34941
 
 	ld a, [LastEnemyCounterMove]
 	and a
-	jr z, .asm_349d2
+	jr z, .no_last_counter_move
 
 	call Function34a2a
 	ld a, [wc716]
 	and a
-	jr z, .asm_349d2
+	jr z, .no_last_counter_move
 
 	ld c, a
 	call Function34aa7
@@ -252,7 +252,7 @@ CheckAbleToSwitch: ; 34941
 	ld b, a
 	ld a, e
 	cp 2
-	jr z, .asm_349be
+	jr z, .not_2_again
 
 	call CheckPlayerMoveTypeMatchups
 	ld a, [wc716]
@@ -261,32 +261,32 @@ CheckAbleToSwitch: ; 34941
 
 	ld a, b
 	add $10
-	ld [wc717], a
+	ld [wEnemySwitchMonParam], a
 	ret
 
-.asm_349be
+.not_2_again
 	ld c, $10
 	call CheckPlayerMoveTypeMatchups
 	ld a, [wc716]
 	cp 10
-	jr nc, .asm_349cc
+	jr nc, .okay
 	ld c, $20
 
-.asm_349cc
+.okay
 	ld a, b
 	add c
-	ld [wc717], a
+	ld [wEnemySwitchMonParam], a
 	ret
 
-.asm_349d2
+.no_last_counter_move
 	call CheckPlayerMoveTypeMatchups
 	ld a, [wc716]
 	cp 10
 	ret nc
 
-	call CheckEnemyHasMonToSwitchTo
-	call Function34b77
-	call Function34b20
+	call FindAliveEnemyMons
+	call FindEnemyMonsWithEnoughHP
+	call FindEnemyMonsThatResistPlayer
 	call Function34a85
 
 	ld a, e
@@ -295,12 +295,12 @@ CheckAbleToSwitch: ; 34941
 
 	ld a, [wc716]
 	add $10
-	ld [wc717], a
+	ld [wEnemySwitchMonParam], a
 	ret
 ; 349f4
 
 
-CheckEnemyHasMonToSwitchTo: ; 349f4
+FindAliveEnemyMons: ; 349f4
 	ld a, [OTPartyCount]
 	cp 2
 	jr c, .only_one
@@ -421,23 +421,23 @@ Function34a85: ; 34a85
 	ld hl, OTPartyMon1HP
 	ld b, 1 << (PARTY_LENGTH - 1)
 	ld c, 0
-.asm_34a91
+.loop
 	ld a, [hli]
 	or [hl]
-	jr z, .asm_34a98
+	jr z, .next
 
 	ld a, b
 	or c
 	ld c, a
 
-.asm_34a98
+.next
 	srl b
 	push bc
 	ld bc, PartyMon2HP - (PartyMon1HP + 1)
 	add hl, bc
 	pop bc
 	dec e
-	jr nz, .asm_34a91
+	jr nz, .loop
 
 	ld a, c
 	pop bc
@@ -456,26 +456,26 @@ Function34aa7: ; 34aa7
 	ld b, 1 << (PARTY_LENGTH - 1)
 	ld d, 0
 	ld e, 0
-.asm_34ab5
+.loop
 	ld a, b
 	and c
-	jr z, .asm_34b00
+	jr z, .next
 
 	push hl
 	push bc
 	ld b, NUM_MOVES
 	ld c, 0
-.asm_34abf
+.loop3
 	ld a, [hli]
 	and a
 	push hl
-	jr z, .asm_34aef
+	jr z, .break3
 
 	dec a
 	ld hl, Moves + MOVE_POWER
 	call GetMoveAttr
 	and a
-	jr z, .asm_34ae9
+	jr z, .nope
 
 	inc hl
 	call GetMoveByte
@@ -483,61 +483,61 @@ Function34aa7: ; 34aa7
 	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp 10
-	jr c, .asm_34ae9
+	jr c, .nope
 
 	ld e, 1
-	cp 11
-	jr c, .asm_34ae9
+	cp 10 + 1
+	jr c, .nope
 
 	ld e, 2
-	jr .asm_34aef
+	jr .break3
 
-.asm_34ae9
+.nope
 	pop hl
 	dec b
-	jr nz, .asm_34abf
+	jr nz, .loop3
 
-	jr .asm_34af0
+	jr .done
 
-.asm_34aef
+.break3
 	pop hl
-.asm_34af0
+.done
 	ld a, e
 	pop bc
 	pop hl
 	cp $2
-	jr z, .asm_34b0e
+	jr z, .done2
 
 	cp $1
-	jr nz, .asm_34b00
+	jr nz, .next
 
 	ld a, d
 	or b
 	ld d, a
-	jr .asm_34b00
+	jr .next
 
-.asm_34b00
+.next
 	push bc
 	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	srl b
-	jr nc, .asm_34ab5
+	jr nc, .loop
 
 	ld a, d
 	ld b, a
 	and a
 	ret z
 
-.asm_34b0e
+.done2
 	push bc
 	sla b
 	sla b
 	ld c, $ff
-.asm_34b15
+.loop2
 	inc c
 	sla b
-	jr nc, .asm_34b15
+	jr nc, .loop2
 
 	ld a, c
 	ld [wc716], a
@@ -546,60 +546,60 @@ Function34aa7: ; 34aa7
 ; 34b20
 
 
-Function34b20: ; 34b20
+FindEnemyMonsThatResistPlayer: ; 34b20
 	push bc
 	ld hl, OTPartySpecies
 	ld b, 1 << (PARTY_LENGTH - 1)
 	ld c, 0
 
-.asm_34b28
+.loop
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_34b72
+	jr z, .done
 
 	push hl
 	ld [CurSpecies], a
 	call GetBaseData
 	ld a, [LastEnemyCounterMove]
 	and a
-	jr z, .asm_34b4a
+	jr z, .skip_move
 
 	dec a
 	ld hl, Moves + MOVE_POWER
 	call GetMoveAttr
 	and a
-	jr z, .asm_34b4a
+	jr z, .skip_move
 
 	inc hl
 	call GetMoveByte
-	jr .asm_34b5d
+	jr .check_type
 
-.asm_34b4a
+.skip_move
 	ld a, [BattleMonType1]
 	ld hl, BaseType
 	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
-	cp $b
-	jr nc, .asm_34b6d
+	cp 10 + 1
+	jr nc, .dont_choose_mon
 	ld a, [BattleMonType2]
 
-.asm_34b5d
+.check_type
 	ld hl, BaseType
 	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
-	cp $b
-	jr nc, .asm_34b6d
+	cp 10 + 1
+	jr nc, .dont_choose_mon
 
 	ld a, b
 	or c
 	ld c, a
 
-.asm_34b6d
+.dont_choose_mon
 	srl b
 	pop hl
-	jr .asm_34b28
+	jr .loop
 
-.asm_34b72
+.done
 	ld a, c
 	pop bc
 	and c
@@ -608,7 +608,7 @@ Function34b20: ; 34b20
 ; 34b77
 
 
-Function34b77: ; 34b77
+FindEnemyMonsWithEnoughHP: ; 34b77
 	push bc
 	ld de, OTPartySpecies
 	ld b, 1 << (PARTY_LENGTH - 1)
@@ -629,10 +629,14 @@ Function34b77: ; 34b77
 rept 2
 	inc hl
 endr
+; hl = MaxHP + 1
+; b = (4 * b) % $100 + (c & 3)
+; c = c / 4
 	srl c
 	rl b
 	srl c
 	rl b
+; a = (MaxHP / $100) - b - (1 if c > (MaxHP % $100) else 0)
 	ld a, [hld]
 	cp c
 	ld a, [hl]

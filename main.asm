@@ -32256,7 +32256,7 @@ endr
 	ld [BattleMonSpecies], a
 	ld [wBattleParticipantsNotFainted], a
 	ld [CurBattleMon], a
-	ld [wd232], a
+	ld [wForcedSwitch], a
 	ld [TimeOfDayPal], a
 	ld [PlayerTurnsTaken], a
 	ld [EnemyTurnsTaken], a
@@ -33688,14 +33688,14 @@ endr
 	; so we have always the same AI, regardless of the loaded class of trainer
 	ld a, [InBattleTowerBattle]
 	bit 0, a
-	jr nz, .asm_4412f
+	jr nz, .battle_tower_skip
 
 	ld a, [TrainerClass]
 	dec a
 	ld bc, 7 ; Trainer2AI - Trainer1AI
 	call AddNTimes
 
-.asm_4412f
+.battle_tower_skip
 	lb bc, CHECK_FLAG, 0
 	push bc
 	push hl
@@ -33766,40 +33766,40 @@ endr
 .PickLowestScoreMoves
 	ld a, c
 
-.asm_44175
+.move_loop
 	inc [hl]
 	dec hl
 	inc a
 	cp NUM_MOVES + 1
-	jr nz, .asm_44175
+	jr nz, .move_loop
 
 	ld hl, Buffer1
 	ld de, EnemyMonMoves
 	ld c, NUM_MOVES
 
 ; Give a score of 0 to a blank move	
-.asm_44184
+.loop2
 	ld a, [de]
 	and a
-	jr nz, .asm_44189
+	jr nz, .skip_load
 	ld [hl], a
 
 ; Disregard the move if its score is not 1	
-.asm_44189
+.skip_load
 	ld a, [hl]
 	dec a
-	jr z, .asm_44191
+	jr z, .keep
 	xor a
 	ld [hli], a
-	jr .asm_44193
+	jr .after_toss
 
-.asm_44191
+.keep
 	ld a, [de]
 	ld [hli], a
-.asm_44193
+.after_toss
 	inc de
 	dec c
-	jr nz, .asm_44184
+	jr nz, .loop2
 
 ; Randomly choose one of the moves with a score of 1 	
 .ChooseMove
@@ -60912,7 +60912,7 @@ Function92ed5: ; 92ed5
 ; 92ee0
 
 Function92ee0: ; 92ee0
-	ld hl, wc70f
+	ld hl, wEnemyGoesFirst
 	ld a, [wc700]
 	cp [hl]
 	call z, Function92f0c
@@ -60920,7 +60920,7 @@ Function92ee0: ; 92ee0
 ; 92eeb
 
 Function92eeb: ; 92eeb
-	ld hl, wc70f
+	ld hl, wEnemyGoesFirst
 	ld a, [wc701]
 	cp [hl]
 	call z, Function92f0c
@@ -60928,7 +60928,7 @@ Function92eeb: ; 92eeb
 ; 92ef6
 
 Function92ef6: ; 92ef6
-	ld hl, wc70f
+	ld hl, wEnemyGoesFirst
 	ld a, [wc702]
 	cp [hl]
 	call z, Function92f0c
@@ -61033,7 +61033,7 @@ Function92f70: ; 92f70
 ; 92f80
 
 Function92f80: ; 92f80
-	ld hl, wc70f
+	ld hl, wEnemyGoesFirst
 	ld a, [wc701]
 	cp [hl]
 	ret nz

@@ -45,14 +45,14 @@ DontSwitch: ; 38041
 
 SwitchOften: ; 38045
 	callab CheckAbleToSwitch
-	ld a, [wc717]
+	ld a, [wEnemySwitchMonParam]
 	and $f0
 	jp z, DontSwitch
 
 	cp $10
 	jr nz, .not_10
 	call Random
-	cp $80
+	cp 1 + 50 percent
 	jr c, .switch
 	jp DontSwitch
 .not_10
@@ -60,35 +60,35 @@ SwitchOften: ; 38045
 	cp $20
 	jr nz, .not_20
 	call Random
-	cp 200
+	cp -1 + 79 percent
 	jr c, .switch
 	jp DontSwitch
 .not_20
 
 	; $30
 	call Random
-	cp 10
+	cp 4 percent
 	jp c, DontSwitch
 
 .switch
-	ld a, [wc717]
+	ld a, [wEnemySwitchMonParam]
 	and $f
 	inc a
 	; In register 'a' is the number (1-6) of the Pkmn to switch to
-	ld [wc718], a
+	ld [wEnemySwitchMonIndex], a
 	jp AI_TrySwitch
 ; 38083
 
 SwitchRarely: ; 38083
 	callab CheckAbleToSwitch
-	ld a, [wc717]
+	ld a, [wEnemySwitchMonParam]
 	and $f0
 	jp z, DontSwitch
 
 	cp $10
 	jr nz, .not_10
 	call Random
-	cp 20
+	cp 8 percent
 	jr c, .switch
 	jp DontSwitch
 .not_10
@@ -96,34 +96,34 @@ SwitchRarely: ; 38083
 	cp $20
 	jr nz, .not_20
 	call Random
-	cp 30
+	cp 12 percent
 	jr c, .switch
 	jp DontSwitch
 .not_20
 
 	; $30
 	call Random
-	cp 200
+	cp -1 + 79 percent
 	jp c, DontSwitch
 
 .switch
-	ld a, [wc717]
+	ld a, [wEnemySwitchMonParam]
 	and $f
 	inc a
-	ld [wc718], a
+	ld [wEnemySwitchMonIndex], a
 	jp AI_TrySwitch
 ; 380c1
 
 SwitchSometimes: ; 380c1
 	callab CheckAbleToSwitch
-	ld a, [wc717]
+	ld a, [wEnemySwitchMonParam]
 	and $f0
 	jp z, DontSwitch
 
 	cp $10
 	jr nz, .not_10
 	call Random
-	cp 50
+	cp -1 + 20 percent
 	jr c, .switch
 	jp DontSwitch
 .not_10
@@ -131,21 +131,21 @@ SwitchSometimes: ; 380c1
 	cp $20
 	jr nz, .not_20
 	call Random
-	cp $80
+	cp 1 + 50 percent
 	jr c, .switch
 	jp DontSwitch
 .not_20
 
 	; $30
 	call Random
-	cp 50
+	cp -1 + 20 percent
 	jp c, DontSwitch
 
 .switch
-	ld a, [wc717]
+	ld a, [wEnemySwitchMonParam]
 	and $f
 	inc a
-	ld [wc718], a
+	ld [wEnemySwitchMonIndex], a
 	jp AI_TrySwitch
 ; 380ff
 
@@ -225,7 +225,7 @@ endr
 	xor a
 	ld [de], a
 	inc a
-	ld [wc70f], a
+	ld [wEnemyGoesFirst], a
 
 	ld hl, EnemySubStatus3
 	res SUBSTATUS_BIDE, [hl]
@@ -701,7 +701,7 @@ AI_TrySwitch: ; 3844b
 AI_Switch: ; 3846c
 	ld a, $1
 	ld [wEnemyIsSwitching], a
-	ld [wc70f], a
+	ld [wEnemyGoesFirst], a
 	ld hl, EnemySubStatus4
 	res SUBSTATUS_RAGE, [hl]
 	xor a

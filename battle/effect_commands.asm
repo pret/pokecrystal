@@ -6530,7 +6530,7 @@ BattleCommand_Teleport: ; 36778
 	xor a
 	ld [wcfca], a
 	inc a
-	ld [wd232], a
+	ld [wForcedSwitch], a
 	ld [wKickCounter], a
 	call SetBattleDraw
 	call BattleCommand_LowerSub
@@ -6598,15 +6598,15 @@ BattleCommand_ForceSwitch: ; 3680f
 	xor a
 	ld [wcfca], a
 	inc a
-	ld [wd232], a
+	ld [wForcedSwitch], a
 	call SetBattleDraw
 	ld a, [wPlayerMoveStruct + MOVE_ANIM]
 	jp .succeed
 
 .trainer
-	call CheckEnemyHasMonToSwitchTo
+	call FindAliveEnemyMons
 	jr c, .switch_fail ; 3686c $5c
-	ld a, [wc70f]
+	ld a, [wEnemyGoesFirst]
 	and a
 	jr z, .switch_fail ; 36872 $56
 	call UpdateEnemyMonInParty
@@ -6643,7 +6643,7 @@ BattleCommand_ForceSwitch: ; 3680f
 	jr z, .random_loop_trainer ; 368b1 $e7
 	ld a, d
 	inc a
-	ld [wc718], a
+	ld [wEnemySwitchMonIndex], a
 	callab Function3d4c3
 
 	ld hl, DraggedOutText
@@ -6691,7 +6691,7 @@ BattleCommand_ForceSwitch: ; 3680f
 	xor a
 	ld [wcfca], a
 	inc a
-	ld [wd232], a
+	ld [wForcedSwitch], a
 	call SetBattleDraw
 	ld a, [wEnemyMoveStruct + MOVE_ANIM]
 	jr .succeed
@@ -6700,7 +6700,7 @@ BattleCommand_ForceSwitch: ; 3680f
 	call CheckPlayerHasMonToSwitchTo
 	jr c, .fail
 
-	ld a, [wc70f]
+	ld a, [wEnemyGoesFirst]
 	cp $1
 	jr z, .switch_fail
 
@@ -6991,7 +6991,7 @@ Function36ab5: ; 36ab5
 
 Function36abf: ; 36abf
 	push bc
-	ld a, [wc70f]
+	ld a, [wEnemyGoesFirst]
 	ld b, a
 	ld a, [hBattleTurn]
 	xor b
@@ -8943,7 +8943,7 @@ BattleCommand_BatonPass: ; 379c9
 	call BatonPass_LinkPlayerSwitch
 
 ; Mobile link battles handle entrances differently
-	callba Function3d2e0
+	callba CheckMobileBattleError
 	jp c, EndMoveEffect
 
 	ld hl, PassedBattleMonEntrance
@@ -8968,12 +8968,12 @@ BattleCommand_BatonPass: ; 379c9
 	call BatonPass_LinkEnemySwitch
 
 ; Mobile link battles handle entrances differently
-	callba Function3d2e0
+	callba CheckMobileBattleError
 	jp c, EndMoveEffect
 
 ; Passed enemy PartyMon entrance
 	xor a
-	ld [wc718], a
+	ld [wEnemySwitchMonIndex], a
 	ld hl, EnemySwitch_SetMode
 	call CallBattleCore
 	ld hl, ResetBattleParticipants
