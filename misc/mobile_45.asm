@@ -7667,10 +7667,10 @@ Function11765d: ; 11765d (45:765d)
 
 Function11766b: ; 11766b (45:766b)
 	call Function117699
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	call Function1176ee
 	ld a, $5
 	call GetSRAMBank
@@ -7683,7 +7683,7 @@ Function11766b: ; 11766b (45:766b)
 	call CopyBytes
 	call CloseSRAM
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ret
 
 Function117699: ; 117699 (45:7699)
@@ -7973,11 +7973,11 @@ Function1178aa: ; 1178aa (45:78aa)
 	ld hl, MenuDataHeader_1179b5
 	call LoadMenuDataHeader
 	call MenuBox
-	call GetMemTileCoord
+	call MenuBoxCoord2Tile
 	ld hl, MenuDataHeader_1179bd
 	call LoadMenuDataHeader
 	call MenuBox
-	call GetMemTileCoord
+	call MenuBoxCoord2Tile
 	callba Function104061
 	hlcoord 16, 8
 	ld de, String_1179c5
@@ -7993,7 +7993,7 @@ Function1178aa: ; 1178aa (45:78aa)
 	jp Function117a0a
 
 Function1178e8: ; 1178e8 (45:78e8)
-	ld a, [hJoyPressed] ; $ff00+$a7
+	ld a, [hJoyPressed]
 	cp $2
 	jr z, .asm_117939
 	cp $1
@@ -8076,7 +8076,7 @@ Function117984: ; 117984 (45:7984)
 	ld hl, MenuDataHeader_1179b5
 	call LoadMenuDataHeader
 	call MenuBox
-	call GetMemTileCoord
+	call MenuBoxCoord2Tile
 	callba Function104061
 	hlcoord 1, 14
 	ld de, String_1179e1
@@ -8236,7 +8236,7 @@ Function117b14:
 	ld hl, Data117cbc
 	call LoadMenuDataHeader
 	call MenuBox
-	call GetMemTileCoord
+	call MenuBoxCoord2Tile
 	jp Function117cdd
 
 Function117b28:
@@ -8248,7 +8248,7 @@ Function117b31:
 	ld hl, Data117cc4
 	call LoadMenuDataHeader
 	call MenuBox
-	call GetMemTileCoord
+	call MenuBoxCoord2Tile
 	hlcoord 16, 8
 	ld de, YesNo117ccc
 	call PlaceString
@@ -8386,7 +8386,7 @@ Function117c4a:
 	ld hl, Data117cbc
 	call LoadMenuDataHeader
 	call MenuBox
-	call GetMemTileCoord
+	call MenuBoxCoord2Tile
 	callba Function104061
 	ld hl, MobileStadiumSuccessText
 	call PrintText

@@ -125,7 +125,7 @@ Special_DisplayUnownWords: ; 8ae68
 	call MenuBox
 	call UpdateSprites
 	call Function321c
-	call GetMemTileCoord
+	call MenuBoxCoord2Tile
 	inc hl
 	ld d, $0
 	ld e, $14

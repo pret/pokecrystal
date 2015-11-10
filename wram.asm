@@ -724,12 +724,13 @@ wc6e9::
 CurEnemyMoveNum:: ; c6e9
 	ds 1
 
+wEnemyHPAtTimeOfPlayerSwitch::
 wc6ea:: ds 1
 wc6eb:: ds 1
 wPayDayMoney:: ds 3 ; c6ec
 
-	ds 1
-
+wSafariMonAngerCount:: ds 1
+wSafariMonEating::
 wc6f0:: ds 2
 wEnemyBackupDVs:: ; used when enemy is transformed
 wc6f2:: ds 2
@@ -749,14 +750,14 @@ wc6f9::
 LastPlayerCounterMove:: ; c6f9
 	ds 1
 
-wc6fa:: ds 1
+wEnemyMinimized:: ds 1 ; c6fa
 
 AlreadyFailed:: ; c6fb
 	ds 1
 
 wc6fc:: ds 1
 wc6fd:: ds 1
-wc6fe:: ds 1
+wPlayerMinimized:: ds 1 ; c6fe
 wc6ff::
 PlayerScreens:: ; c6ff
 ; bit
@@ -870,8 +871,8 @@ wWildMonPP::
 wc739:: ds 4
 wc73d:: ds 1
 wc73e:: ds 1
-wc73f:: ds 1
-wc740:: ds 1
+wPlayerJustGotFrozen:: ds 1
+wEnemyJustGotFrozen:: ds 1
 wc741::
 wBattleEnd::
 ; c741
@@ -1241,6 +1242,7 @@ Requested1bppSource:: ; cf6d
 Requested1bppDest:: ; cf6f
 	ds 2
 
+; something to do with menu
 wcf71:: ds 1
 wcf72:: ds 1
 wcf73:: ds 1
@@ -1252,21 +1254,31 @@ wcf76:: ds 1
 wcf77:: ds 1
 wcf78:: ds 9
 
-; menu data header buffer (ds 16)
-wcf81:: ds 1
-
-; dw related to tilemap
+; menu data header
+wMenuDataHeader:: ; cf81
+wMenuFlags:: ds 1
 wMenuBorderTopCoord:: ds 1
 wMenuBorderLeftCoord:: ds 1
 wMenuBorderBottomCoord:: ds 1
 wMenuBorderRightCoord:: ds 1
-
-wcf86:: ds 1
-wcf87:: ds 1
+wMenuData2Pointer:: ds 2
 wMenuCursorBuffer:: ds 2
-wcf8a:: ds 7 ; menu data 2 bank?
+; end menu data header
+wMenuDataBank:: ds 1 ; menu data bank?
+	ds 6
+wMenuDataHeaderEnd::
 
-wMenuData2Flags:: ds 1
+wMenuData2::
+wMenuData2Flags:: ds 1 ; cf91
+; bit 7: When set, start printing text one tile to the right of the border
+; bit 6: When set, start printing text one tile below the border
+; bit 5: ????
+; bit 4: ????
+; bit 3: ????
+; bit 2: ????
+; bit 1: ????
+; bit 0: ????
+
 wMenuData2Items:: ds 1
 wcf93:: ds 1
 wcf94:: ds 1
@@ -1276,12 +1288,14 @@ wcf97:: ds 1 ; addr hi
 wcf98:: ds 3
 wcf9b:: ds 3
 wcf9e:: ds 3
+wMenuData2End::
 wcfa1:: ds 1
+
 wcfa2:: ds 1
 wcfa3:: ds 1
 wcfa4:: ds 1
-wcfa5:: ds 1
-wcfa6:: ds 1
+wcfa5:: ds 1 ; dynamic menu flags?
+wcfa6:: ds 1 ; dynamic menu flags?
 wcfa7:: ds 1
 wcfa8:: ds 1
 MenuSelection2:: ds 1
@@ -1389,6 +1403,7 @@ SECTION "WRAM 1", WRAMX, BANK [1]
 MiscBuffer0::
 wd000:: ds 1
 MiscBuffer1::
+DefaultSpawnpoint::
 wd001:: ds 1
 wd002::
 MiscBuffer2::

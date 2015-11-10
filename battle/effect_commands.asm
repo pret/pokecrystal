@@ -5361,13 +5361,14 @@ BattleCommand_FreezeTarget: ; 36102
 
 	callba UseHeldStatusHealingItem
 	ret nz
+
 	call OpponentCantMove
 	call EndRechargeOpp
-	ld hl, wc740
+	ld hl, wEnemyJustGotFrozen
 	ld a, [hBattleTurn]
 	and a
 	jr z, .finish
-	ld hl, wc73f
+	ld hl, wPlayerJustGotFrozen
 .finish
 	ld [hl], $1
 	ret
@@ -5582,12 +5583,12 @@ CheckIfStatCanBeRaised: ; 361ef
 
 
 StatUpAnimation: ; 36281
-	ld bc, wc6fe
+	ld bc, wPlayerMinimized
 	ld hl, Function3f447
 	ld a, [hBattleTurn]
 	and a
 	jr z, .do_player ; 0x3628a $6
-	ld bc, wc6fa
+	ld bc, wEnemyMinimized
 	ld hl, Function3f486
 .do_player
 	ld a, BATTLE_VARS_MOVE_ANIM
@@ -8338,9 +8339,9 @@ endr
 	jr c, .mimic_anims
 	ld a, [hBattleTurn]
 	and a
-	ld a, [wc6fe]
+	ld a, [wPlayerMinimized]
 	jr z, .got_byte
-	ld a, [wc6fa]
+	ld a, [wEnemyMinimized]
 .got_byte
 	and a
 	jr nz, .mimic_anims
@@ -9528,11 +9529,11 @@ BattleCommand_MirrorCoat: ; 37c95
 BattleCommand_DoubleMinimizeDamage: ; 37ce6
 ; doubleminimizedamage
 
-	ld hl, wc6fa
+	ld hl, wEnemyMinimized
 	ld a, [hBattleTurn]
 	and a
 	jr z, .ok
-	ld hl, wc6fe
+	ld hl, wPlayerMinimized
 .ok
 	ld a, [hl]
 	and a

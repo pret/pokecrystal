@@ -130,6 +130,7 @@
 	charmap "'t",       $d5
 	charmap "'v",       $d6
 
+	charmap "←",        $df
 	charmap "'",        $e0
 	charmap "<PK>",     $e1
 	charmap "<MN>",     $e2

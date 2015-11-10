@@ -22,9 +22,9 @@ WriteBackup:: ; 0x1c17
 	ret
 
 RestoreTileBackup:: ; 0x1c23
-	call GetMemTileCoord
+	call MenuBoxCoord2Tile
 	call .copy
-	call GetMemAttrCoord
+	call MenuBoxCoord2Attr
 	call .copy
 	ret
 ; 0x1c30
@@ -56,7 +56,7 @@ RestoreTileBackup:: ; 0x1c23
 
 Function1c47:: ; 0x1c47
 	ld b, $10
-	ld de, wcf81
+	ld de, wMenuFlags
 .loop
 	ld a, [hld]
 	ld [de], a
@@ -79,17 +79,17 @@ GetMenuBoxDims:: ; 0x1c53
 	ret
 ; 0x1c66
 
-Function1c66:: ; 1c66
+CopyMenuData2:: ; 1c66
 	push hl
 	push de
 	push bc
 	push af
-	ld hl, wcf86
+	ld hl, wMenuData2Pointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld de, wMenuData2Flags
-	ld bc, $0010
+	ld bc, wMenuData2End - wMenuData2Flags
 	call CopyBytes
 	pop af
 	pop bc
@@ -111,30 +111,31 @@ Function1c7e:: ; 1c7e
 ; 1c89
 
 Function1c89:: ; 1c89
-	call Function1c66
-	ld hl, wcf86
+	call CopyMenuData2
+	ld hl, wMenuData2Pointer
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	call Function1cc6
-	call GetTileCoord
+	call GetMenuTextStartCoord
+	call Coord2Tile ; hl now contains the TileMap address where we will start printing text.
 	inc de
-	ld a, [de]
+	ld a, [de] ; Number of items
 	inc de
 	ld b, a
-.asm_1c9c
+.loop
 	push bc
 	call PlaceString
 	inc de
-	ld bc, $0028
+	ld bc, 2 * SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .asm_1c9c
+	jr nz, .loop
 	ld a, [wMenuData2Flags]
 	bit 4, a
 	ret z
-	call GetMemTileCoord
+
+	call MenuBoxCoord2Tile
 	ld a, [de]
 	ld c, a
 	inc de
@@ -144,38 +145,40 @@ Function1c89:: ; 1c89
 ; 1cbb
 
 MenuBox:: ; 1cbb
-	call GetMemTileCoord
+	call MenuBoxCoord2Tile
 	call GetMenuBoxDims
 	dec b
 	dec c
 	jp TextBox
 ; 1cc6
 
-Function1cc6:: ; 1cc6
+GetMenuTextStartCoord:: ; 1cc6
 	ld a, [wMenuBorderTopCoord]
 	ld b, a
 	inc b
 	ld a, [wMenuBorderLeftCoord]
 	ld c, a
 	inc c
+; bit 6: if not set, leave extra room on top
 	ld a, [wMenuData2Flags]
 	bit 6, a
-	jr nz, .asm_1cd8
+	jr nz, .bit_6_set
 	inc b
 
-.asm_1cd8
+.bit_6_set
+; bit 7: if set, leave extra room on the left
 	ld a, [wMenuData2Flags]
 	bit 7, a
-	jr z, .asm_1ce0
+	jr z, .bit_7_clear
 	inc c
 
-.asm_1ce0
+.bit_7_clear
 	ret
 ; 1ce1
 
-Function1ce1:: ; 1ce1
-	call GetMemTileCoord
-	lb bc, 0, 21
+ClearMenuBoxInterior:: ; 1ce1
+	call MenuBoxCoord2Tile
+	ld bc, SCREEN_WIDTH + 1
 	add hl, bc
 	call GetMenuBoxDims
 	dec b
@@ -184,8 +187,8 @@ Function1ce1:: ; 1ce1
 	ret
 ; 1cf1
 
-Function1cf1:: ; 1cf1
-	call GetMemTileCoord
+ClearWholeMenuBox:: ; 1cf1
+	call MenuBoxCoord2Tile
 	call GetMenuBoxDims
 	inc c
 	inc b
@@ -194,7 +197,7 @@ Function1cf1:: ; 1cf1
 ; 1cfd
 
 
-GetMemTileCoord:: ; 1cfd
+MenuBoxCoord2Tile:: ; 1cfd
 	ld a, [wMenuBorderLeftCoord]
 	ld c, a
 	ld a, [wMenuBorderTopCoord]
@@ -202,7 +205,7 @@ GetMemTileCoord:: ; 1cfd
 ; 1d05
 
 
-GetTileCoord:: ; 1d05
+Coord2Tile:: ; 1d05
 ; Return the address of TileMap(c, b) in hl.
 	xor a
 	ld h, a
@@ -226,13 +229,13 @@ endr
 	ret
 ; 1d19
 
-GetMemAttrCoord:: ; 1d19
+MenuBoxCoord2Attr:: ; 1d19
 	ld a, [wMenuBorderLeftCoord]
 	ld c, a
 	ld a, [wMenuBorderTopCoord]
 	ld b, a
 
-GetAttrCoord:: ; 1d21
+Coord2Attr:: ; 1d21
 ; Return the address of AttrMap(c, b) in hl.
 	xor a
 	ld h, a

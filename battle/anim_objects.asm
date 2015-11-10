@@ -946,14 +946,14 @@ endr
 
 Functioncd249: ; cd249 (33:5249)
 	ld hl, Unknown_cd26c
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, $1
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld a, [CurItem] ; CurItem
 	ld e, a
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 .asm_cd25a
 	ld a, [hli]
 	cp $ff
@@ -1694,7 +1694,7 @@ Jumptable_cd66d: ; cd66d (33:566d)
 Functioncd677: ; cd677 (33:5677)
 	call Functionce72c
 	ld a, $42
-	ld [hLCDStatCustom], a ; $ff00+$c6
+	ld [hLCDStatCustom], a
 	ld a, $58
 	ld [hLCDStatCustom + 1], a
 	ld a, $5e
@@ -1753,7 +1753,7 @@ Functioncd6c6: ; cd6c6 (33:56c6)
 	cp $70
 	jr c, asm_cd6da
 	xor a
-	ld [hLCDStatCustom], a ; $ff00+$c6
+	ld [hLCDStatCustom], a
 	ld [hLCDStatCustom + 1], a
 	ld [hLCDStatCustom + 2], a
 
@@ -2839,7 +2839,7 @@ Jumptable_cdcc6: ; cdcc6 (33:5cc6)
 
 
 Functioncdcca: ; cdcca (33:5cca)
-	ld a, [hBattleTurn] ; $ff00+$e4
+	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_cdcd9
 	ld hl, $b
@@ -3842,7 +3842,7 @@ Jumptable_ce258: ; ce258 (33:6258)
 
 Functionce260: ; ce260 (33:6260)
 	call Functionce72c
-	ld a, [hBattleTurn] ; $ff00+$e4
+	ld a, [hBattleTurn]
 	and a
 	jr nz, .asm_ce26c
 	ld a, $f0
@@ -3893,7 +3893,7 @@ Functionce29f: ; ce29f (33:629f)
 	srl a
 	ld e, a
 	ld d, $0
-	ld a, [hSGB] ; $ff00+$e7
+	ld a, [hSGB]
 	and a
 	jr nz, .asm_ce2b6
 	ld hl, Unknown_ce2c4

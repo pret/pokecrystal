@@ -300,7 +300,7 @@ Function109956: ; 109956 (42:5956)
 
 Function10995e: ; 10995e (42:595e)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	jp Function109951
 
 Function109964: ; 109964 (42:5964)
@@ -317,13 +317,13 @@ Function109964: ; 109964 (42:5964)
 
 Function10997b: ; 10997b (42:597b)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ld a, $8
 	ld [Requested2bpp], a
 	jp Function109951
 
 Function109986: ; 109986 (42:5986)
-	ld a, [rLY] ; $ff00+$44
+	ld a, [rLY]
 	cp $30
 	jr c, Function109986
 	ld a, [wcf66]
@@ -523,9 +523,9 @@ endr
 
 Function109a95: ; 109a95 (42:5a95)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ld a, $c
-	ld [hBGMapAddress], a ; $ff00+$d6
+	ld [hBGMapAddress], a
 	ld a, $28
 	hlcoord 0, 0
 	ld bc, $168
@@ -558,8 +558,8 @@ Function109a95: ; 109a95 (42:5a95)
 	call ByteFill
 	call Function3200
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
-	ld [hBGMapAddress], a ; $ff00+$d6
+	ld [hBGMapMode], a
+	ld [hBGMapAddress], a
 	hlcoord 0, 0
 	call Function109aff
 	call Function3200

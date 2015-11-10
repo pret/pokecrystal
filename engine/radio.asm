@@ -1679,15 +1679,15 @@ BuenasPassword1: ; b8f12 (2e:4f12)
 
 .PlayPassword: ; b8f22 (2e:4f22)
 	call StartRadioStation
-	ld a, [hBGMapMode] ; $ff00+$d4
+	ld a, [hBGMapMode]
 	push af
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ld de, String_b9171
 	hlcoord 2, 9
 	call PlaceString
 	pop af
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ld hl, UnknownText_0xb9182
 	ld a, BUENAS_PASSWORD_2
 	jp NextRadioLine
@@ -1951,12 +1951,12 @@ BuenasPassword19: ; b9122 (2e:5122)
 	jp NextRadioLine
 
 BuenasPassword20: ; b912a (2e:512a)
-	ld a, [hBGMapMode] ; $ff00+$d4
+	ld a, [hBGMapMode]
 	push af
 	callba NoRadioMusic
 	callba NoRadioName
 	pop af
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ld hl, WeeklyFlags
 	res 7, [hl]
 	ld a, BUENAS_PASSWORD
@@ -1980,7 +1980,7 @@ BuenasPassword21: ; b9152 (2e:5152)
 
 BuenasPasswordCheckTime: ; b9169 (2e:5169)
 	call UpdateTime
-	ld a, [hHours] ; $ff00+$94
+	ld a, [hHours]
 	cp 18 ; 6 PM
 	ret
 ; b9171 (2e:5171)

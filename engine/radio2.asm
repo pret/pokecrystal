@@ -371,7 +371,7 @@ NoRadioStation: ; 91888 (24:5888)
 	ld [wc6da], a
 	ld [wc6db], a
 	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ret
 
 NoRadioMusic: ; 9189d (24:589d)
@@ -383,7 +383,7 @@ NoRadioMusic: ; 9189d (24:589d)
 
 NoRadioName: ; 918a9 (24:58a9)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	hlcoord 1, 8
 	lb bc, 3, 18
 	call ClearBox

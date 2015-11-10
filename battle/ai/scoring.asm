@@ -2859,7 +2859,7 @@ endr
 AI_Smart_Stomp: ; 39200
 ; 80% chance to encourage this move if the player has used Minimize.
 
-	ld a, [wc6fe]
+	ld a, [wPlayerMinimized]
 	and a
 	ret z
 

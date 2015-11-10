@@ -816,16 +816,16 @@ endr
 
 
 Function895c7: ; 895c7 (22:55c7)
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, 5
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld hl, Palette_895de
 	ld de, wd030
 	ld bc, 8
 	call CopyBytes
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ret
 ; 895de (22:55de)
 
@@ -2147,10 +2147,10 @@ Function89cdf: ; 89cdf (22:5cdf)
 
 Function89d0d: ; 89d0d (22:5d0d)
 	call Function8923c
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld c, $8
 	ld de, Unkn1Pals
 .asm_89d1c
@@ -2166,7 +2166,7 @@ Function89d0d: ; 89d0d (22:5d0d)
 	ld bc, $8
 	call CopyBytes
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	call SetPalettes
 	callba Function845db
 	call Function89240
@@ -2377,16 +2377,16 @@ Function89e6f: ; 89e6f (22:5e6f)
 	jp Function89e36
 
 Function89e9a: ; 89e9a (22:5e9a)
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld hl, Palette_89eb1
 	ld de, wd028
 	ld bc, $8
 	call CopyBytes
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ret
 ; 89eb1 (22:5eb1)
 
@@ -3383,10 +3383,10 @@ Function8a5a3: ; 8a5a3 (22:65a3)
 	ret
 
 Function8a5b6: ; 8a5b6 (22:65b6)
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld hl, Palette_8a5e5
 	ld de, wd020
 	ld bc, $18
@@ -3400,7 +3400,7 @@ Function8a5b6: ; 8a5b6 (22:65b6)
 	ld bc, $8
 	call CopyBytes
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ret
 ; 8a5e5 (22:65e5)
 

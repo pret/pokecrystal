@@ -203,7 +203,7 @@ Function8b09e: ; 8b09e
 	call CopyMenuDataHeader
 	call MenuBox
 	call UpdateSprites
-	call GetMemTileCoord
+	call MenuBoxCoord2Tile
 	ld bc, $0015
 	add hl, bc
 	ld de, .Points_string

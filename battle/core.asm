@@ -174,8 +174,8 @@ Function3c12f: ; 3c12f
 	ld [wPlayerIsSwitching], a
 	ld [wEnemyIsSwitching], a
 	ld [wd264], a
-	ld [wc73f], a
-	ld [wc740], a
+	ld [wPlayerJustGotFrozen], a
+	ld [wEnemyJustGotFrozen], a
 	ld [CurDamage], a
 	ld [CurDamage + 1], a
 
@@ -1604,19 +1604,21 @@ HandleFutureSight: ; 3ca26
 HanleDefrost: ; 3ca8f
 	ld a, [hLinkPlayerNumber]
 	cp $1
-	jr z, .asm_3ca9a
-	call .asm_3ca9d
-	jr .asm_3cac9
+	jr z, .enemy_first
+	call .do_player_turn
+	jr .do_enemy_turn
 
-.asm_3ca9a
-	call .asm_3cac9
-.asm_3ca9d
+.enemy_first
+	call .do_enemy_turn
+.do_player_turn
 	ld a, [BattleMonStatus]
 	bit FRZ, a
 	ret z
-	ld a, [wc73f]
+
+	ld a, [wPlayerJustGotFrozen]
 	and a
 	ret nz
+
 	call BattleRandom
 	cp 10 percent
 	ret nc
@@ -1631,11 +1633,11 @@ HanleDefrost: ; 3ca8f
 	ld hl, DefrostedOpponentText
 	jp StdBattleTextBox
 
-.asm_3cac9
+.do_enemy_turn
 	ld a, [EnemyMonStatus]
 	bit FRZ, a
 	ret z
-	ld a, [wc740]
+	ld a, [wEnemyJustGotFrozen]
 	and a
 	ret nz
 	call BattleRandom
@@ -3654,9 +3656,9 @@ LoadEnemyPkmnToSwitchTo: ; 3d6ca
 
 	ld hl, EnemyMonHP
 	ld a, [hli]
-	ld [wc6ea], a
+	ld [wEnemyHPAtTimeOfPlayerSwitch], a
 	ld a, [hl]
-	ld [wc6eb], a
+	ld [wEnemyHPAtTimeOfPlayerSwitch + 1], a
 	ret
 ; 3d714
 
@@ -3814,7 +3816,7 @@ endr
 	ld [EnemyProtectCount], a
 	ld [wEnemyRageCounter], a
 	ld [EnemyDisabledMove], a
-	ld [wc6fa], a
+	ld [wEnemyMinimized], a
 	ld [wPlayerWrapCount], a
 	ld [wEnemyWrapCount], a
 	ld [EnemyTurnsTaken], a
@@ -4317,7 +4319,7 @@ endr
 	ld [PlayerProtectCount], a
 	ld [wPlayerRageCounter], a
 	ld [DisabledMove], a
-	ld [wc6fe], a
+	ld [wPlayerMinimized], a
 	ld [wEnemyWrapCount], a
 	ld [wPlayerWrapCount], a
 	ld [PlayerTurnsTaken], a
@@ -5166,9 +5168,9 @@ BattleMenu: ; 3e139
 	; Auto input: choose "ITEM"
 	ld a, [InputType]
 	or a
-	jr z, .asm_3e171
+	jr z, .skip_dude_pack_select
 	callba _DudeAutoInput_DownA
-.asm_3e171
+.skip_dude_pack_select
 
 	call LoadBattleMenu2
 	ret c
@@ -5242,26 +5244,26 @@ BattleMenu_Pack: ; 3e1c7
 	callba BattlePack
 	ld a, [wd0ec]
 	and a
-	jr z, .asm_3e20d
-	jr .asm_3e209
+	jr z, .didnt_use_item
+	jr .got_item
 
 .tutorial
 	callba Function107bb
 	ld a, POKE_BALL
 	ld [CurItem], a
 	call DoItemEffect
-	jr .asm_3e209
+	jr .got_item
 
 .contest
 	ld a, PARK_BALL
 	ld [CurItem], a
 	call DoItemEffect
 
-.asm_3e209
+.got_item
 	call Function3e234
 	ret
 
-.asm_3e20d
+.didnt_use_item
 	call ClearPalettes
 	call DelayFrame
 	call Function3ed9f
@@ -7862,7 +7864,7 @@ Function3f136: ; 3f136
 	ld e, a
 	push de
 	ld de, TempMonExp + 2
-	call Function3f39c
+	call CalcExpBar
 	push bc
 	ld hl, TempMonExp + 2
 	ld a, [wd004]
@@ -7950,7 +7952,7 @@ endr
 	push bc
 	ld b, d
 	ld de, TempMonExp + 2
-	call Function3f39c
+	call CalcExpBar
 	ld a, b
 	pop bc
 	ld c, a
@@ -7986,7 +7988,7 @@ Function3f22c: ; 3f22c
 	push bc
 	push de
 	hlcoord 17, 11
-	call Function3f41c
+	call PlaceExpBar
 	pop de
 	ld a, $1
 	ld [hBGMapMode], a
@@ -8002,7 +8004,7 @@ Function3f22c: ; 3f22c
 	push bc
 	push de
 	hlcoord 17, 11
-	call Function3f41c
+	call PlaceExpBar
 	pop de
 	ld a, $1
 	ld [hBGMapMode], a
@@ -8030,32 +8032,33 @@ Function3f22c: ; 3f22c
 SendOutPkmnText: ; 3f26d
 	ld a, [wLinkMode]
 	and a
-	jr z, .asm_3f27c
+	jr z, .not_linked
 
 	ld hl, JumpText_GoPkmn ; If we're in a LinkBattle print just "Go <PlayerMon>"
 
-	ld a, [wd264] ; besides this variable is set. which stands for ???
+	ld a, [wd264] ; unless this (unidentified) variable is set
 	and a
-	jr nz, .asm_3f2ce
+	jr nz, .skip_to_textbox
 
-.asm_3f27c
+.not_linked
 ; Depending on the HP of the enemy Pkmn, the game prints a different text
 	ld hl, EnemyMonHP
 	ld a, [hli]
 	or [hl]
 	ld hl, JumpText_GoPkmn
-	jr z, .asm_3f2ce
+	jr z, .skip_to_textbox
 
+	; compute enemy helth remaining as a percentage
 	xor a
 	ld [hMultiplicand + 0], a
 	ld hl, EnemyMonHP
 	ld a, [hli]
-	ld [wc6ea], a
+	ld [wEnemyHPAtTimeOfPlayerSwitch], a
 	ld [hMultiplicand + 1], a
 	ld a, [hl]
-	ld [wc6eb], a
+	ld [wEnemyHPAtTimeOfPlayerSwitch + 1], a
 	ld [hMultiplicand + 2], a
-	ld a, $19
+	ld a, 25
 	ld [hMultiplier], a
 	call Multiply
 	ld hl, EnemyMonMaxHP
@@ -8066,22 +8069,25 @@ SendOutPkmnText: ; 3f26d
 	srl a
 	rr b
 	ld a, b
-	ld b, $4
+	ld b, 4
 	ld [hDivisor], a
 	call Divide
+
 	ld a, [hQuotient + 2]
 	ld hl, JumpText_GoPkmn
-	cp $46
-	jr nc, .asm_3f2ce
-	ld hl, JumpText_DoItPkmn
-	cp $28
-	jr nc, .asm_3f2ce
-	ld hl, JumpText_GoForItPkmn
-	cp $a
-	jr nc, .asm_3f2ce
-	ld hl, JumpText_YourFoesWeakGetmPkmn
+	cp 70
+	jr nc, .skip_to_textbox
 
-.asm_3f2ce
+	ld hl, JumpText_DoItPkmn
+	cp 40
+	jr nc, .skip_to_textbox
+
+	ld hl, JumpText_GoForItPkmn
+	cp 10
+	jr nc, .skip_to_textbox
+
+	ld hl, JumpText_YourFoesWeakGetmPkmn
+.skip_to_textbox
 	jp BattleTextBox
 ; 3f2d1
 
@@ -8130,13 +8136,13 @@ TextJump_BattleMonNickComma: ; 3f2fa
 	start_asm
 ; 3f2ff
 
-Function3f2ff: ; 3f2ff
+WithdrawPkmnText: ; 3f2ff
 ; Print text to withdraw Pkmn
 ; depending on HP the message is different
 	push de
 	push bc
 	ld hl, EnemyMonHP + 1
-	ld de, wc6eb
+	ld de, wEnemyHPAtTimeOfPlayerSwitch + 1
 	ld b, [hl]
 	dec hl
 	ld a, [de]
@@ -8147,7 +8153,7 @@ Function3f2ff: ; 3f2ff
 	ld a, [de]
 	sbc b
 	ld [hMultiplicand + 1], a
-	ld a, $19
+	ld a, 25
 	ld [hMultiplier], a
 	call Multiply
 	ld hl, EnemyMonMaxHP
@@ -8158,7 +8164,7 @@ Function3f2ff: ; 3f2ff
 	srl a
 	rr b
 	ld a, b
-	ld b, $4
+	ld b, 4
 	ld [hDivisor], a
 	call Divide
 	pop bc
@@ -8169,11 +8175,11 @@ Function3f2ff: ; 3f2ff
 	ret z
 
 	ld hl, TextJump_ComeBack
-	cp $1e
+	cp 30
 	ret c
 
 	ld hl, TextJump_OKComeBack
-	cp $46
+	cp 70
 	ret c
 
 	ld hl, TextJump_GoodComeBack
@@ -8207,23 +8213,23 @@ TextJump_ComeBack: ; 3f35b
 ; 3f360
 
 
-Function3f360: ; 3f360
-	ld hl, wc6f0
+HandleSafariAngerEatingStatus: ; unreferenced
+	ld hl, wSafariMonEating
 	ld a, [hl]
 	and a
-	jr z, .asm_3f36d
+	jr z, .angry
 	dec [hl]
 	ld hl, BattleText_WildPkmnIsEating
-	jr .asm_3f388
+	jr .finish
 
-.asm_3f36d
-	dec hl
+.angry
+	dec hl ; wSafariMonAngerCount
 	ld a, [hl]
 	and a
 	ret z
 	dec [hl]
 	ld hl, BattleText_WildPkmnIsAngry
-	jr nz, .asm_3f388
+	jr nz, .finish
 	push hl
 	ld a, [EnemyMonSpecies]
 	ld [CurSpecies], a
@@ -8232,7 +8238,7 @@ Function3f360: ; 3f360
 	ld [EnemyMonCatchRate], a
 	pop hl
 
-.asm_3f388
+.finish
 	push hl
 	call Call_LoadTempTileMapToTileMap
 	pop hl
@@ -8242,19 +8248,22 @@ Function3f360: ; 3f360
 
 FillInExpBar: ; 3f390
 	push hl
-	call Function3f39c
+	call CalcExpBar
 	pop hl
-	ld de, $0007
+	ld de, 7
 	add hl, de
-	jp Function3f41c
+	jp PlaceExpBar
 ; 3f39c
 
-Function3f39c: ; 3f39c
+CalcExpBar: ; 3f39c
+; Calculate the percent exp between this level and the next
+; Level in b
 	push de
 	ld d, b
 	push de
 	callab CalcExpAtLevel
 	pop de
+; exp at current level gets pushed to the stack
 	ld hl, hMultiplicand
 	ld a, [hli]
 	push af
@@ -8262,16 +8271,18 @@ Function3f39c: ; 3f39c
 	push af
 	ld a, [hl]
 	push af
+; next level
 	inc d
 	callab CalcExpAtLevel
-	ld hl, hProduct + 3
+; back up the next level exp, and subtract the two levels
+	ld hl, hMultiplicand + 2
 	ld a, [hl]
-	ld [hPrintNum8], a
+	ld [hMathBuffer + 2], a
 	pop bc
 	sub b
 	ld [hld], a
 	ld a, [hl]
-	ld [hPrintNum7], a
+	ld [hMathBuffer + 1], a
 	pop bc
 	sbc b
 	ld [hld], a
@@ -8281,21 +8292,24 @@ Function3f39c: ; 3f39c
 	sbc b
 	ld [hl], a
 	pop de
-	ld hl, hProduct + 2
+
+	ld hl, hMultiplicand + 1
 	ld a, [hli]
 	push af
 	ld a, [hl]
 	push af
+
+; get the amount of exp remaining to the next level
 	ld a, [de]
 	dec de
 	ld c, a
-	ld a, [hPrintNum8]
+	ld a, [hMathBuffer + 2]
 	sub c
 	ld [hld], a
 	ld a, [de]
 	dec de
 	ld b, a
-	ld a, [hPrintNum7]
+	ld a, [hMathBuffer + 1]
 	sbc b
 	ld [hld], a
 	ld a, [de]
@@ -8305,6 +8319,7 @@ Function3f39c: ; 3f39c
 	ld [hld], a
 	xor a
 	ld [hl], a
+; multiply by 64
 	ld a, $40
 	ld [hMultiplier], a
 	call Multiply
@@ -8312,10 +8327,10 @@ Function3f39c: ; 3f39c
 	ld c, a
 	pop af
 	ld b, a
-.asm_3f3f4
+.loop
 	ld a, b
 	and a
-	jr z, .asm_3f40c
+	jr z, .done
 	srl b
 	rr c
 	ld hl, hProduct
@@ -8326,12 +8341,12 @@ Function3f39c: ; 3f39c
 	rr [hl]
 	inc hl
 	rr [hl]
-	jr .asm_3f3f4
+	jr .loop
 
-.asm_3f40c
+.done
 	ld a, c
 	ld [hDivisor], a
-	ld b, $4
+	ld b, 4
 	call Divide
 	ld a, [hQuotient + 2]
 	ld b, a
@@ -8341,49 +8356,49 @@ Function3f39c: ; 3f39c
 	ret
 ; 3f41c
 
-Function3f41c: ; 3f41c
-	ld c, $8
-.asm_3f41e
+PlaceExpBar: ; 3f41c
+	ld c, $8 ; number of tiles
+.loop1
 	ld a, b
 	sub $8
-	jr c, .asm_3f42c
+	jr c, .next
 	ld b, a
-	ld a, $6a
+	ld a, $6a ; full bar
 	ld [hld], a
 	dec c
-	jr z, .asm_3f43c
-	jr .asm_3f41e
+	jr z, .finish
+	jr .loop1
 
-.asm_3f42c
+.next
 	add $8
-	jr z, .asm_3f434
-	add $54
-	jr .asm_3f436
+	jr z, .loop2
+	add $54 ; tile to the left of small exp bar tile
+	jr .skip
 
-.asm_3f434
-	ld a, $62
+.loop2
+	ld a, $62 ; empty bar
 
-.asm_3f436
+.skip
 	ld [hld], a
-	ld a, $62
+	ld a, $62 ; empty bar
 	dec c
-	jr nz, .asm_3f434
+	jr nz, .loop2
 
-.asm_3f43c
+.finish
 	ret
 ; 3f43d
 
 GetMonBackpic: ; 3f43d
 	ld a, [PlayerSubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
-	ld hl, BattleAnimCmd_DD
-	jr nz, Function3f46f ; substitute
+	ld hl, BattleAnimCmd_RaiseSub
+	jr nz, GetBackpic_DoAnim ; substitute
 
 Function3f447: ; 3f447
-	ld a, [wc6fe]
+	ld a, [wPlayerMinimized]
 	and a
-	ld hl, BattleAnimCmd_E2
-	jr nz, Function3f46f
+	ld hl, BattleAnimCmd_MinimizeOpp
+	jr nz, GetBackpic_DoAnim
 	ld a, [CurPartySpecies]
 	push af
 	ld a, [BattleMonSpecies]
@@ -8397,7 +8412,7 @@ Function3f447: ; 3f447
 	ret
 ; 3f46f
 
-Function3f46f: ; 3f46f
+GetBackpic_DoAnim: ; 3f46f
 	ld a, [hBattleTurn]
 	push af
 	xor a
@@ -8412,14 +8427,14 @@ Function3f46f: ; 3f46f
 GetMonFrontpic: ; 3f47c
 	ld a, [EnemySubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
-	ld hl, BattleAnimCmd_DD
-	jr nz, Function3f4b4
+	ld hl, BattleAnimCmd_RaiseSub
+	jr nz, GetFrontpic_DoAnim
 
 Function3f486: ; 3f486
-	ld a, [wc6fa]
+	ld a, [wEnemyMinimized]
 	and a
-	ld hl, BattleAnimCmd_E2
-	jr nz, Function3f4b4
+	ld hl, BattleAnimCmd_MinimizeOpp
+	jr nz, GetFrontpic_DoAnim
 
 	ld a, [CurPartySpecies]
 	push af
@@ -8436,7 +8451,7 @@ Function3f486: ; 3f486
 	ret
 ; 3f4b4
 
-Function3f4b4: ; 3f4b4
+GetFrontpic_DoAnim: ; 3f4b4
 	ld a, [hBattleTurn]
 	push af
 	call SetEnemyTurn

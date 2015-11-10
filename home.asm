@@ -1147,7 +1147,7 @@ GetMoveName:: ; 34f8
 
 
 Function350c:: ; 350c
-	call Function1c66
+	call CopyMenuData2
 	ld a, [hROMBank]
 	push af
 
@@ -1186,7 +1186,7 @@ Function352f:: ; 352f
 	sub c
 	ld e, a
 	push de
-	call GetTileCoord
+	call Coord2Tile
 	pop bc
 	jp TextBox
 ; 354b
@@ -2180,7 +2180,7 @@ Function3f6e:: ; 3f6e
 ; 3f7c
 
 Function3f7c:: ; 3f7c
-	call GetMemTileCoord
+	call MenuBoxCoord2Tile
 	call GetMenuBoxDims
 	dec b
 	dec c

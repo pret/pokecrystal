@@ -1825,7 +1825,7 @@ Function100b45: ; 100b45
 ; 100b7a
 
 Function100b7a: ; 100b7a
-	ld hl, Function1c66
+	ld hl, CopyMenuData2
 	ld a, [wcf94]
 	rst FarCall
 	callba Function24085
@@ -2088,7 +2088,7 @@ Function100d67: ; 100d67
 	call UpdateSprites
 	call Function1c89
 	call WaitBGMap
-	call Function1c66
+	call CopyMenuData2
 	call Function1c10
 	ld hl, wcfa5
 	set 6, [hl]

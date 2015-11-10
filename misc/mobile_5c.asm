@@ -673,7 +673,7 @@ Function170737: ; 170737 (5c:4737)
 
 Function17073e: ; 17073e (5c:473e)
 	call Random
-	ld a, [hRandomAdd] ; $ff00+$e1
+	ld a, [hRandomAdd]
 	and $7
 	cp $6
 	jr c, .asm_17074b
@@ -842,28 +842,28 @@ Function17081d: ; 17081d (5c:481d)
 Function170868: ; 170868 (5c:4868)
 	ld a, BANK(sbe47)
 	call GetSRAMBank
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, $3
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld a, [wd000 + $800]
 	ld [sbe47], a
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	call CloseSRAM
 	ret
 
 Function170881: ; 170881 (5c:4881)
 	ld a, BANK(sbe47)
 	call GetSRAMBank
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, $3
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld a, [sbe47]
 	ld [wd000 + $800], a
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	call CloseSRAM
 	ret
 
@@ -1032,14 +1032,14 @@ String_1709a4: ; 1709a4
 	db "なぞナゾ@@"
 
 Function1709aa: ; 1709aa (5c:49aa)
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, BANK(w3_d090)
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld a, [w3_d090]
 	ld [ScriptVar], a
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ret
 
 Function1709bb: ; 1709bb (5c:49bb)
@@ -1575,13 +1575,13 @@ Function1719c8: ; 1719c8 (5c:59c8)
 Function1719d6: ; 1719d6 (5c:59d6)
 	callba Function1183cb
 	call Function1719ed
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	call Function171a11
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ret
 
 Function1719ed: ; 1719ed (5c:59ed)
@@ -1656,13 +1656,13 @@ Function171a5d: ; 171a5d (5c:5a5d)
 	ld [wc302], a
 	ld a, $a
 	call Function3e32
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, $1
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	callba Function118452
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld a, $a
 	ld [wcd49], a
 	ret
@@ -1700,13 +1700,13 @@ Function171ad7: ; 171ad7 (5c:5ad7)
 	jp Function171c66
 
 Function171aec: ; 171aec (5c:5aec)
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, $1
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	callba Function118452
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	hlcoord 2, 6
 	ld a, $8
 .asm_171b01
@@ -1860,7 +1860,7 @@ Function171beb: ; 171beb (5c:5beb)
 	ld hl, MenuDataHeader_171c6b
 	call LoadMenuDataHeader
 	call MenuBox
-	call GetMemTileCoord
+	call MenuBoxCoord2Tile
 	callba Function104061
 	hlcoord 1, 14
 	ld de, String_171c73
@@ -1952,10 +1952,10 @@ Function171c87: ; 171c87 (5c:5c87)
 	ret
 
 Function171ccd: ; 171ccd (5c:5ccd)
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld hl, Palette_171d71
 	ld de, Unkn1Pals
 	ld bc, $40
@@ -1967,7 +1967,7 @@ Function171ccd: ; 171ccd (5c:5ccd)
 	ld [hl], a
 	call SetPalettes
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ret
 
 Function171cf0: ; 171cf0 (5c:5cf0)
@@ -2115,10 +2115,10 @@ Function172e78: ; 172e78 (5c:6e78)
 ; 172eb9 (5c:6eb9)
 
 Function172eb9:
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld hl, Palette_172edf
 	ld de, Unkn1Pals
 	ld bc, $40
@@ -2129,7 +2129,7 @@ Function172eb9:
 	call CopyBytes
 	call SetPalettes
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ret
 ; 172edf (5c:6edf)
 

@@ -72,9 +72,9 @@ RestartClock: ; 20021 (8:4021)
 	call UpdateTime
 	call GetWeekday
 	ld [Buffer4], a
-	ld a, [hHours] ; $ff00+$94
+	ld a, [hHours]
 	ld [Buffer5], a
-	ld a, [hMinutes] ; $ff00+$96
+	ld a, [hMinutes]
 	ld [Buffer6], a
 
 .loop
@@ -223,7 +223,7 @@ RestartClock: ; 20021 (8:4021)
 .unreferenced: ; 20160
 	ld a, [Buffer3]
 	ld b, a
-	call GetTileCoord
+	call Coord2Tile
 	ret
 ; 20168
 
@@ -233,7 +233,7 @@ RestartClock: ; 20021 (8:4021)
 	ld a, [Buffer3]
 	dec a
 	ld b, a
-	call GetTileCoord
+	call Coord2Tile
 	pop de
 	ld [hl], d
 	ld bc, 2 * SCREEN_WIDTH

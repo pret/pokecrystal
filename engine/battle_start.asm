@@ -254,7 +254,7 @@ StartTrainerBattle_SetUpBGMap: ; 8c3a1 (23:43a1)
 	call StartTrainerBattle_NextScene
 	xor a
 	ld [wcf64], a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ret
 
 StartTrainerBattle_Flash: ; 8c3ab (23:43ab)
@@ -309,10 +309,10 @@ StartTrainerBattle_Flash: ; 8c3ab (23:43ab)
 StartTrainerBattle_SetUpForWavyOutro: ; 8c3e8 (23:43e8)
 	callba Function5602
 	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	call StartTrainerBattle_NextScene
 	ld a, $43
-	ld [hLCDStatCustom], a ; $ff00+$c6
+	ld [hLCDStatCustom], a
 	xor a
 	ld [hLCDStatCustom + 1], a
 	ld a, $90
@@ -365,7 +365,7 @@ StartTrainerBattle_SineWave: ; 8c408 (23:4408)
 StartTrainerBattle_SetUpForSpinOutro: ; 8c43d (23:443d)
 	callba Function5602
 	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	call StartTrainerBattle_NextScene
 	xor a
 	ld [wcf64], a
@@ -386,7 +386,7 @@ ENDM
 
 StartTrainerBattle_SpinToBlack: ; 8c44f (23:444f)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ld a, [wcf64]
 	ld e, a
 	ld d, 0
@@ -400,7 +400,7 @@ endr
 	ld [wcf65], a
 	call .load
 	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call DelayFrame
 	call DelayFrame
 	ld hl, wcf64
@@ -409,12 +409,12 @@ endr
 
 .end
 	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call DelayFrame
 	call DelayFrame
 	call DelayFrame
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ld a, $20
 	ld [wJumptableIndex], a
 	ret
@@ -508,12 +508,12 @@ endr
 StartTrainerBattle_SetUpForRandomScatterOutro: ; 8c578 (23:4578)
 	callba Function5602
 	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	call StartTrainerBattle_NextScene
 	ld a, $10
 	ld [wcf64], a
 	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ret
 
 StartTrainerBattle_SpeckleToBlack: ; 8c58f (23:458f)
@@ -533,12 +533,12 @@ StartTrainerBattle_SpeckleToBlack: ; 8c58f (23:458f)
 
 .done
 	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call DelayFrame
 	call DelayFrame
 	call DelayFrame
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ld a, $20
 	ld [wJumptableIndex], a
 	ret
@@ -580,7 +580,7 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	jp z, .nextscene
 
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	hlcoord 0, 0, AttrMap
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	inc b
@@ -636,11 +636,11 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	dec b
 	jr nz, .loop2
 
-	ld a, [hCGB] ; $ff00+$e6
+	ld a, [hCGB]
 	and a
 	jr nz, .cgb
 	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call DelayFrame
 	call DelayFrame
 	jr .nextscene
@@ -653,10 +653,10 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	jr nz, .daytime
 	ld hl, .nightpals
 .daytime
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, $5 ; WRAM5 = palettes
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	call .copypals
 	push hl
 	ld de, Unkn1Pals + 8 * 7
@@ -667,9 +667,9 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	ld bc, $8
 	call CopyBytes
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld a, $1
-	ld [hCGBPalUpdate], a ; $ff00+$e5
+	ld [hCGBPalUpdate], a
 	call DelayFrame
 	call Function8cf4f
 
@@ -829,7 +829,7 @@ StartTrainerBattle_ZoomToBlack: ; 8c768 (23:4768)
 	inc de
 	ld h, a
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call .Copy
 	call WaitBGMap
 	jr .loop

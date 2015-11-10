@@ -1,5 +1,5 @@
 Function2400e:: ; 2400e
-	ld hl, Function1c66
+	ld hl, CopyMenuData2
 	ld a, [wcf94]
 	rst FarCall
 	call Function24085
@@ -10,7 +10,7 @@ Function2400e:: ; 2400e
 ; 24022
 
 Function24022:: ; 24022
-	ld hl, Function1c66
+	ld hl, CopyMenuData2
 	ld a, [wcf94]
 	rst FarCall
 	call Function24085
@@ -22,7 +22,7 @@ Function24022:: ; 24022
 ; 2403c
 
 Function2403c:: ; 2403c
-	ld hl, Function1c66
+	ld hl, CopyMenuData2
 	ld a, [wcf94]
 	rst FarCall
 	call Function24085
@@ -126,8 +126,8 @@ Function240db: ; 240db
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	call Function1cc6
-	call GetTileCoord
+	call GetMenuTextStartCoord
+	call Coord2Tile
 	call Function240d3
 	ld b, a
 .asm_240eb
@@ -166,7 +166,7 @@ Function240db: ; 240db
 
 
 Function2411a: ; 2411a (9:411a)
-	call Function1cc6
+	call GetMenuTextStartCoord
 	ld a, b
 	ld [wcfa1], a
 	dec c
@@ -538,7 +538,7 @@ Function24329: ; 24329
 	ld b, a
 	ld a, [wcfa2]
 	ld c, a
-	call GetTileCoord
+	call Coord2Tile
 	ld a, [wcfa7]
 	swap a
 	and $f

@@ -1163,7 +1163,7 @@ Function16d77a: ; 16d77a
 	ld b, a
 	ld a, [wcfa2]
 	ld c, a
-	call GetTileCoord
+	call Coord2Tile
 	ld a, [wcfa7]
 	swap a
 	and $f

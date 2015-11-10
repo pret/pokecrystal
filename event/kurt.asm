@@ -166,7 +166,7 @@ Kurt_SelectQuantity: ; 880c2
 	db 0, 0, -1, 0 ; XXX
 
 .PlaceApricornName: ; 88116
-	call GetMemTileCoord
+	call MenuBoxCoord2Tile
 	ld de, $0015
 	add hl, de
 	ld d, h
@@ -176,7 +176,7 @@ Kurt_SelectQuantity: ; 880c2
 ; 88126
 
 PlaceApricornQuantity: ; 88126
-	call GetMemTileCoord
+	call MenuBoxCoord2Tile
 	ld de, $0032
 	add hl, de
 	ld [hl], "×"

@@ -1813,7 +1813,7 @@ Function28b87: ; 28b87
 	ld a, [hli]
 	ld [wc6fd], a
 	ld a, [hl]
-	ld [wc6fe], a
+	ld [wPlayerMinimized], a
 	ld a, [DefaultFlypoint]
 	ld hl, PartyMon1Species
 	call GetPartyLocation
@@ -2810,7 +2810,7 @@ Function2942e: ; 2942e
 	ld [CurPartySpecies], a
 	ld a, [wc6fd]
 	ld [TempMonDVs], a
-	ld a, [wc6fe]
+	ld a, [wPlayerMinimized]
 	ld [TempMonDVs + 1], a
 	ld b, $1a
 	call GetSGBLayout

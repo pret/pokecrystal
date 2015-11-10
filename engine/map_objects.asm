@@ -2995,7 +2995,7 @@ Function56cd: ; 56cd
 	jr nc, .ok8
 	ld c, a
 	push bc
-	call GetTileCoord
+	call Coord2Tile
 	pop bc
 	ld a, [hl]
 	cp $60

@@ -311,10 +311,10 @@ Function118284: ; 118284
 	ld [wcd34], a
 	ld a, $5
 	ld [wc3f0], a
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, $3
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 .asm_11829d
 	call JoyTextDelay
 	call Function118473
@@ -334,7 +334,7 @@ Function118284: ; 118284
 	cp [hl]
 	jr nz, .asm_11829d
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	call Function118452
 	ret
 ; 1182d5 (46:42d5)
@@ -1038,7 +1038,7 @@ Function11878d: ; 11878d (46:478d)
 	and $1
 	jr z, .asm_1187a7
 	ld a, $3
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 .asm_1187a7
 	jp Function119e2e
 .asm_1187aa
@@ -1066,7 +1066,7 @@ Function11878d: ; 11878d (46:478d)
 	jr nz, .asm_118803
 	set 0, [hl]
 	ld a, $6
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld de, Unkn1Pals
 	ld bc, $1000
 	ld a, [hl]
@@ -1111,7 +1111,7 @@ Function118821: ; 118821 (46:4821)
 	jr c, .asm_11884a
 	cp $4
 	jr z, .asm_11884a
-	ld a, [hJoyDown] ; $ff00+$a8
+	ld a, [hJoyDown]
 	cp $5
 	jr nz, .asm_11884a
 	ld a, $a
@@ -1285,7 +1285,7 @@ Function118936:
 	ld hl, MenuDataHeader_119cf7
 	call LoadMenuDataHeader
 	call MenuBox
-	call GetMemTileCoord
+	call MenuBoxCoord2Tile
 	call Function321c
 	hlcoord 16, 8, AttrMap
 	ld a, $40
@@ -4092,10 +4092,10 @@ String_119d8c:
 ; 119d93
 
 Function119d93: ; 119d93 (46:5d93)
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, $1
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld a, [wcd4f]
 	ld c, 10
 	call SimpleMultiply
@@ -4122,7 +4122,7 @@ Function119d93: ; 119d93 (46:5d93)
 	dec a
 	jr nz, .asm_119daf
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	and a
 	ret
 .asm_119dc6
@@ -4130,18 +4130,18 @@ Function119d93: ; 119d93 (46:5d93)
 	ld a, $4
 	ld [wcf66], a
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	scf
 	ret
 
 Function119dd1: ; 119dd1 (46:5dd1)
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, [wcd4f]
 	cp 70 / 10
 	jr nc, .asm_119e08
 	ld a, $1
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld hl, PartyMon1Level
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld de, PartySpecies
@@ -4169,7 +4169,7 @@ Function119dd1: ; 119dd1 (46:5dd1)
 	jr nz, .asm_119deb
 .asm_119e08
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	and a
 	ret
 .asm_119e0d
@@ -4184,7 +4184,7 @@ Function119dd1: ; 119dd1 (46:5dd1)
 	ld a, $a
 	ld [wcf66], a
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	scf
 	ret
 ; 119e2b (46:5e2b)
@@ -4333,15 +4333,15 @@ Function119ec2: ; 119ec2 (46:5ec2)
 	ret
 
 Function119ed8: ; 119ed8 (46:5ed8)
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	ld [wcd8c], a
 	ld a, $1
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	call Function119eee
 	ld a, [wcd8c]
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ret
 
 Function119eee: ; 119eee (46:5eee)
@@ -4740,7 +4740,7 @@ Function11a207: ; 11a207
 	ld hl, MenuDataHeader_11a2de
 	call LoadMenuDataHeader
 	call MenuBox
-	call GetMemTileCoord
+	call MenuBoxCoord2Tile
 	call Function321c
 	hlcoord 16, 8
 	ld de, String_11a2cf

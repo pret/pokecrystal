@@ -353,54 +353,54 @@ endr
 
 
 BattleAnimCommands:: ; cc2a4 (33:42a4)
-	dw BattleAnimCmd_D0
-	dw BattleAnimCmd_D1
-	dw BattleAnimCmd_D2
-	dw BattleAnimCmd_D3
-	dw BattleAnimCmd_D4
-	dw BattleAnimCmd_D5
-	dw BattleAnimCmd_D6
-	dw BattleAnimCmd_D7
-	dw BattleAnimCmd_D8
-	dw BattleAnimCmd_D9
-	dw BattleAnimCmd_DA
-	dw BattleAnimCmd_DB
-	dw BattleAnimCmd_DC
-	dw BattleAnimCmd_DD
-	dw BattleAnimCmd_DE
-	dw BattleAnimCmd_DF
-	dw BattleAnimCmd_E0
-	dw BattleAnimCmd_E1
-	dw BattleAnimCmd_E2
-	dw BattleAnimCmd_E3
-	dw BattleAnimCmd_E4
-	dw BattleAnimCmd_E5
-	dw BattleAnimCmd_E6
+	dw BattleAnimCmd_Obj
+	dw BattleAnimCmd_1GFX
+	dw BattleAnimCmd_2GFX
+	dw BattleAnimCmd_3GFX
+	dw BattleAnimCmd_4GFX
+	dw BattleAnimCmd_5GFX
+	dw BattleAnimCmd_IncObj
+	dw BattleAnimCmd_SetObj
+	dw BattleAnimCmd_IncBGEffect
+	dw BattleAnimCmd_EnemyFeetObj
+	dw BattleAnimCmd_PlayerHeadObj
+	dw BattleAnimCmd_CheckPokeball
+	dw BattleAnimCmd_Transform
+	dw BattleAnimCmd_RaiseSub
+	dw BattleAnimCmd_DropSub
+	dw BattleAnimCmd_ResetObp0
+	dw BattleAnimCmd_Sound
+	dw BattleAnimCmd_Cry
+	dw BattleAnimCmd_MinimizeOpp
+	dw BattleAnimCmd_OAMOn
+	dw BattleAnimCmd_OAMOff
+	dw BattleAnimCmd_ClearObjs
+	dw BattleAnimCmd_BeatUp
 	dw BattleAnimCmd_E7
-	dw BattleAnimCmd_E8
-	dw BattleAnimCmd_E9
-	dw BattleAnimCmd_EA
-	dw BattleAnimCmd_EB
-	dw BattleAnimCmd_EC
-	dw BattleAnimCmd_ED
-	dw BattleAnimCmd_EE
-	dw BattleAnimCmd_EF
-	dw BattleAnimCmd_F0
-	dw BattleAnimCmd_F1
-	dw BattleAnimCmd_F2
-	dw BattleAnimCmd_F3
-	dw BattleAnimCmd_F4
+	dw BattleAnimCmd_UpdateActorPic
+	dw BattleAnimCmd_Minimize
+	dw BattleAnimCmd_EA ; dummy
+	dw BattleAnimCmd_EB ; dummy
+	dw BattleAnimCmd_EC ; dummy
+	dw BattleAnimCmd_ED ; dummy
+	dw BattleAnimCmd_JumpAnd
+	dw BattleAnimCmd_JumpUntil
+	dw BattleAnimCmd_BGEffect
+	dw BattleAnimCmd_BGP
+	dw BattleAnimCmd_OBP0
+	dw BattleAnimCmd_OBP1
+	dw BattleAnimCmd_ClearSprites
 	dw BattleAnimCmd_F5
 	dw BattleAnimCmd_F6
 	dw BattleAnimCmd_F7
-	dw BattleAnimCmd_F8
-	dw BattleAnimCmd_F9
-	dw BattleAnimCmd_FA
-	dw BattleAnimCmd_FB
-	dw BattleAnimCmd_FC
-	dw BattleAnimCmd_FD
-	dw BattleAnimCmd_FE
-	dw BattleAnimCmd_FF
+	dw BattleAnimCmd_JumpIf
+	dw BattleAnimCmd_SetVar
+	dw BattleAnimCmd_IncVar
+	dw BattleAnimCmd_JumpVar
+	dw BattleAnimCmd_Jump
+	dw BattleAnimCmd_Loop
+	dw BattleAnimCmd_Call
+	dw BattleAnimCmd_Ret
 
 
 BattleAnimCmd_EA:
@@ -409,7 +409,7 @@ BattleAnimCmd_EC:
 BattleAnimCmd_ED: ; cc304 (33:4304)
 	ret
 
-BattleAnimCmd_FF: ; cc305 (33:4305)
+BattleAnimCmd_Ret: ; cc305 (33:4305)
 	ld hl, BattleAnimFlags
 	res 1, [hl]
 	ld hl, BattleAnimParent
@@ -422,7 +422,7 @@ BattleAnimCmd_FF: ; cc305 (33:4305)
 	ld [hl], d
 	ret
 
-BattleAnimCmd_FE: ; cc317 (33:4317)
+BattleAnimCmd_Call: ; cc317 (33:4317)
 	call GetBattleAnimByte
 	ld e, a
 	call GetBattleAnimByte
@@ -445,7 +445,7 @@ BattleAnimCmd_FE: ; cc317 (33:4317)
 	set 1, [hl]
 	ret
 
-BattleAnimCmd_FC: ; cc339 (33:4339)
+BattleAnimCmd_Jump: ; cc339 (33:4339)
 	call GetBattleAnimByte
 	ld e, a
 	call GetBattleAnimByte
@@ -456,7 +456,7 @@ BattleAnimCmd_FC: ; cc339 (33:4339)
 	ld [hl], d
 	ret
 
-BattleAnimCmd_FD: ; cc348 (33:4348)
+BattleAnimCmd_Loop: ; cc348 (33:4348)
 	call GetBattleAnimByte
 	ld hl, BattleAnimFlags
 	bit 2, [hl]
@@ -497,7 +497,7 @@ endr
 	ld [hl], e
 	ret
 
-BattleAnimCmd_EF: ; cc383 (33:4383)
+BattleAnimCmd_JumpUntil: ; cc383 (33:4383)
 	ld hl, wKickCounter
 	ld a, [hl]
 	and a
@@ -527,17 +527,17 @@ endr
 	ld [hl], e
 	ret
 
-BattleAnimCmd_F9: ; cc3a6 (33:43a6)
+BattleAnimCmd_SetVar: ; cc3a6 (33:43a6)
 	call GetBattleAnimByte
 	ld [BattleAnimVar], a
 	ret
 
-BattleAnimCmd_FA: ; cc3ad (33:43ad)
+BattleAnimCmd_IncVar: ; cc3ad (33:43ad)
 	ld hl, BattleAnimVar
 	inc [hl]
 	ret
 
-BattleAnimCmd_FB: ; cc3b2 (33:43b2)
+BattleAnimCmd_JumpVar: ; cc3b2 (33:43b2)
 	call GetBattleAnimByte
 	ld hl, BattleAnimVar
 	cp [hl]
@@ -566,7 +566,7 @@ endr
 	ld [hl], d
 	ret
 
-BattleAnimCmd_F8: ; cc3d6 (33:43d6)
+BattleAnimCmd_JumpIf: ; cc3d6 (33:43d6)
 	call GetBattleAnimByte
 	ld hl, wKickCounter
 	cp [hl]
@@ -595,7 +595,7 @@ endr
 	ld [hl], d
 	ret
 
-BattleAnimCmd_EE: ; cc3fa (33:43fa)
+BattleAnimCmd_JumpAnd: ; cc3fa (33:43fa)
 	call GetBattleAnimByte
 	ld e, a
 	ld a, [wKickCounter]
@@ -624,7 +624,7 @@ endr
 	ld [hl], d
 	ret
 
-BattleAnimCmd_D0: ; cc41f (33:441f)
+BattleAnimCmd_Obj: ; cc41f (33:441f)
 	call GetBattleAnimByte
 	ld [BattleAnimTemps], a
 	call GetBattleAnimByte
@@ -636,7 +636,7 @@ BattleAnimCmd_D0: ; cc41f (33:441f)
 	call Functioncc9a1
 	ret
 
-BattleAnimCmd_F0: ; cc43b (33:443b)
+BattleAnimCmd_BGEffect: ; cc43b (33:443b)
 	call GetBattleAnimByte
 	ld [BattleAnimTemps], a
 	call GetBattleAnimByte
@@ -648,23 +648,23 @@ BattleAnimCmd_F0: ; cc43b (33:443b)
 	call Functionccb4f
 	ret
 
-BattleAnimCmd_F1: ; cc457 (33:4457)
+BattleAnimCmd_BGP: ; cc457 (33:4457)
 	call GetBattleAnimByte
 	ld [wcfc7], a
 	ret
 
-BattleAnimCmd_F2: ; cc45e (33:445e)
+BattleAnimCmd_OBP0: ; cc45e (33:445e)
 	call GetBattleAnimByte
 	ld [wcfc8], a
 	ret
 
-BattleAnimCmd_F3: ; cc465 (33:4465)
+BattleAnimCmd_OBP1: ; cc465 (33:4465)
 	call GetBattleAnimByte
 	ld [wcfc9], a
 	ret
 
-BattleAnimCmd_DF: ; cc46c (33:446c)
-	ld a, [hSGB] ; $ff00+$e7
+BattleAnimCmd_ResetObp0: ; cc46c (33:446c)
+	ld a, [hSGB]
 	and a
 	ld a, $e0
 	jr z, .asm_cc475
@@ -673,7 +673,7 @@ BattleAnimCmd_DF: ; cc46c (33:446c)
 	ld [wcfc8], a
 	ret
 
-BattleAnimCmd_E5: ; cc479 (33:4479)
+BattleAnimCmd_ClearObjs: ; cc479 (33:4479)
 	ld hl, OTPartyMon3HP
 	ld a, $a0
 .asm_cc47e
@@ -683,11 +683,11 @@ BattleAnimCmd_E5: ; cc479 (33:4479)
 	jr nz, .asm_cc47e
 	ret
 
-BattleAnimCmd_D1:
-BattleAnimCmd_D2:
-BattleAnimCmd_D3:
-BattleAnimCmd_D4:
-BattleAnimCmd_D5: ; cc485 (33:4485)
+BattleAnimCmd_1GFX:
+BattleAnimCmd_2GFX:
+BattleAnimCmd_3GFX:
+BattleAnimCmd_4GFX:
+BattleAnimCmd_5GFX: ; cc485 (33:4485)
 	ld a, [BattleAnimByte]
 	and $f
 	ld c, a
@@ -722,7 +722,7 @@ endr
 	jr nz, .asm_cc492
 	ret
 
-BattleAnimCmd_D6: ; cc4c0 (33:44c0)
+BattleAnimCmd_IncObj: ; cc4c0 (33:44c0)
 	call GetBattleAnimByte
 	ld e, $a
 	ld bc, OTPartyMon3HP
@@ -746,7 +746,7 @@ BattleAnimCmd_D6: ; cc4c0 (33:44c0)
 	inc [hl]
 	ret
 
-BattleAnimCmd_D8: ; cc4e3 (33:44e3)
+BattleAnimCmd_IncBGEffect: ; cc4e3 (33:44e3)
 	call GetBattleAnimByte
 	ld e, $5
 	ld bc, ActiveBGEffects
@@ -770,7 +770,7 @@ BattleAnimCmd_D8: ; cc4e3 (33:44e3)
 	inc [hl]
 	ret
 
-BattleAnimCmd_D7: ; cc506 (33:4506)
+BattleAnimCmd_SetObj: ; cc506 (33:4506)
 	call GetBattleAnimByte
 	ld e, $a
 	ld bc, OTPartyMon3HP
@@ -795,7 +795,7 @@ BattleAnimCmd_D7: ; cc506 (33:4506)
 	ld [hl], a
 	ret
 
-BattleAnimCmd_D9: ; cc52c (33:452c)
+BattleAnimCmd_EnemyFeetObj: ; cc52c (33:452c)
 
 	ld hl, w5_d300
 .asm_cc52f
@@ -851,7 +851,7 @@ Functioncc561: ; cc561 (33:4561)
 	jr nz, Functioncc561
 	ret
 
-BattleAnimCmd_DA: ; cc57e (33:457e)
+BattleAnimCmd_PlayerHeadObj: ; cc57e (33:457e)
 
 	ld hl, w5_d300
 .asm_cc581
@@ -907,7 +907,7 @@ Functioncc5b3: ; cc5b3 (33:45b3)
 	jr nz, Functioncc5b3
 	ret
 
-BattleAnimCmd_DB: ; cc5d0 (33:45d0)
+BattleAnimCmd_CheckPokeball: ; cc5d0 (33:45d0)
 	callab GetPokeBallWobble
 	ld a, c
 	ld [BattleAnimVar], a
@@ -916,15 +916,15 @@ BattleAnimCmd_DB: ; cc5d0 (33:45d0)
 BattleAnimCmd_E7: ; cc5db (33:45db)
 	ret
 
-BattleAnimCmd_DC: ; cc5dc (33:45dc)
-	ld a, [rSVBK] ; $ff00+$70
+BattleAnimCmd_Transform: ; cc5dc (33:45dc)
+	ld a, [rSVBK]
 	push af
 	ld a, 1
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld a, [CurPartySpecies] ; CurPartySpecies
 	push af
 
-	ld a, [hBattleTurn] ; $ff00+$e4
+	ld a, [hBattleTurn]
 	and a
 	jr z, .player
 
@@ -948,13 +948,13 @@ BattleAnimCmd_DC: ; cc5dc (33:45dc)
 	pop af
 	ld [CurPartySpecies], a ; CurPartySpecies
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ret
 
-BattleAnimCmd_E8: ; cc622 (33:4622)
+BattleAnimCmd_UpdateActorPic: ; cc622 (33:4622)
 
 	ld de, VTiles0 tile $00
-	ld a, [hBattleTurn] ; $ff00+$e4
+	ld a, [hBattleTurn]
 	and a
 	jr z, .player
 
@@ -971,12 +971,12 @@ BattleAnimCmd_E8: ; cc622 (33:4622)
 	call Request2bpp
 	ret
 
-BattleAnimCmd_DD: ; cc640 (33:4640)
+BattleAnimCmd_RaiseSub: ; cc640 (33:4640)
 
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, 1
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	xor a
 	call GetSRAMBank
 
@@ -992,7 +992,7 @@ GetSubstitutePic: ; cc64c
 	or b
 	jr nz, .loop
 
-	ld a, [hBattleTurn] ; $ff00+$e4
+	ld a, [hBattleTurn]
 	and a
 	jr z, .player
 
@@ -1037,7 +1037,7 @@ GetSubstitutePic: ; cc64c
 .done
 	call CloseSRAM
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ret
 
 CopyMonsterSpriteTile: ; cc6c6 (33:46c6)
@@ -1046,18 +1046,18 @@ CopyMonsterSpriteTile: ; cc6c6 (33:46c6)
 	call FarCopyBytes
 	ret
 
-BattleAnimCmd_E2: ; cc6cf (33:46cf)
-	ld a, [rSVBK] ; $ff00+$70
+BattleAnimCmd_MinimizeOpp: ; cc6cf (33:46cf)
+	ld a, [rSVBK]
 	push af
 	ld a, $1
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	xor a
 	call GetSRAMBank
 	call GetMinimizePic
 	call Request2bpp
 	call CloseSRAM
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ret
 
 GetMinimizePic: ; cc6e7 (33:46e7)
@@ -1071,7 +1071,7 @@ GetMinimizePic: ; cc6e7 (33:46e7)
 	or b
 	jr nz, .loop
 
-	ld a, [hBattleTurn] ; $ff00+$e4
+	ld a, [hBattleTurn]
 	and a
 	jr z, .player
 
@@ -1102,11 +1102,11 @@ MinimizePic: ; cc725
 INCBIN "gfx/battle/minimize.2bpp"
 ; cc735
 
-BattleAnimCmd_E9: ; cc735 (33:4735)
-	ld a, [rSVBK] ; $ff00+$70
+BattleAnimCmd_Minimize: ; cc735 (33:4735)
+	ld a, [rSVBK]
 	push af
 	ld a, $1
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	xor a
 	call GetSRAMBank
 	call GetMinimizePic
@@ -1114,18 +1114,18 @@ BattleAnimCmd_E9: ; cc735 (33:4735)
 	call Request2bpp
 	call CloseSRAM
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ret
 
-BattleAnimCmd_DE: ; cc750 (33:4750)
-	ld a, [rSVBK] ; $ff00+$70
+BattleAnimCmd_DropSub: ; cc750 (33:4750)
+	ld a, [rSVBK]
 	push af
 	ld a, $1
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 
 	ld a, [CurPartySpecies] ; CurPartySpecies
 	push af
-	ld a, [hBattleTurn] ; $ff00+$e4
+	ld a, [hBattleTurn]
 	and a
 	jr z, .player
 
@@ -1139,21 +1139,21 @@ BattleAnimCmd_DE: ; cc750 (33:4750)
 	pop af
 	ld [CurPartySpecies], a ; CurPartySpecies
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ret
 
-BattleAnimCmd_E6: ; cc776 (33:4776)
-	ld a, [rSVBK] ; $ff00+$70
+BattleAnimCmd_BeatUp: ; cc776 (33:4776)
+	ld a, [rSVBK]
 	push af
 	ld a, $1
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld a, [CurPartySpecies] ; CurPartySpecies
 	push af
 
 	ld a, [wKickCounter]
 	ld [CurPartySpecies], a ; CurPartySpecies
 
-	ld a, [hBattleTurn] ; $ff00+$e4
+	ld a, [hBattleTurn]
 	and a
 	jr z, .player
 
@@ -1175,20 +1175,20 @@ BattleAnimCmd_E6: ; cc776 (33:4776)
 	ld b, $1
 	call GetSGBLayout
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ret
 
-BattleAnimCmd_E3: ; cc7bb (33:47bb)
+BattleAnimCmd_OAMOn: ; cc7bb (33:47bb)
 	xor a
-	ld [hOAMUpdate], a ; $ff00+$d8
+	ld [hOAMUpdate], a
 	ret
 
-BattleAnimCmd_E4: ; cc7bf (33:47bf)
+BattleAnimCmd_OAMOff: ; cc7bf (33:47bf)
 	ld a, $1
-	ld [hOAMUpdate], a ; $ff00+$d8
+	ld [hOAMUpdate], a
 	ret
 
-BattleAnimCmd_F4: ; cc7c4 (33:47c4)
+BattleAnimCmd_ClearSprites: ; cc7c4 (33:47c4)
 	ld hl, BattleAnimFlags
 	set 3, [hl]
 	ret
@@ -1202,7 +1202,7 @@ BattleAnimCmd_F6: ; cc7cb (33:47cb)
 BattleAnimCmd_F7: ; cc7cc (33:47cc)
 	ret
 
-BattleAnimCmd_E0: ; cc7cd (33:47cd)
+BattleAnimCmd_Sound: ; cc7cd (33:47cd)
 	call GetBattleAnimByte
 	ld e, a
 	srl a
@@ -1232,7 +1232,7 @@ Datacc7f8: ; cc7f8
 ; cc7fc
 
 Functioncc7fc: ; cc7fc (33:47fc)
-	ld a, [hBattleTurn] ; $ff00+$e4
+	ld a, [hBattleTurn]
 	and a
 	jr nz, .enemy
 
@@ -1244,7 +1244,7 @@ Functioncc7fc: ; cc7fc (33:47fc)
 	xor 1
 	ret
 
-BattleAnimCmd_E1: ; cc807 (33:4807)
+BattleAnimCmd_Cry: ; cc807 (33:4807)
 	call GetBattleAnimByte
 	and 3
 	ld e, a
@@ -1254,12 +1254,12 @@ rept 4
 	add hl, de
 endr
 
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, 1
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 
-	ld a, [hBattleTurn] ; $ff00+$e4
+	ld a, [hBattleTurn]
 	and a
 	jr nz, .enemy
 
@@ -1316,7 +1316,7 @@ endr
 
 .done
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ret
 ; cc871 (33:4871)
 

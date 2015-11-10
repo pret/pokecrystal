@@ -44,7 +44,7 @@ Jumptable_10030: ; 10030 (4:4030)
 
 Function10046: ; 10046 (4:4046)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call Function10955
 	ld a, [wcf64]
 	ld [wJumptableIndex], a
@@ -113,7 +113,7 @@ Function100d3: ; 100d3 (4:40d3)
 	call ClearPocketList
 	call DrawPocketName
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call WaitBGMap_DrawPackGFX
 	call Function10866
 	ret
@@ -203,7 +203,7 @@ Function10159: ; 10159
 	ld [Options], a
 .asm_10179
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call Function10955
 	call WaitBGMap_DrawPackGFX
 	call Function10a40
@@ -478,7 +478,7 @@ Function10311: ; 10311
 	jr z, .NoPokemon
 	call DoItemEffect
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call Function10955
 	call WaitBGMap_DrawPackGFX
 	call Function10a40
@@ -634,7 +634,7 @@ Function103fd: ; 103fd
 	pop af
 	ld [Options], a
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call Function10955
 	call WaitBGMap_DrawPackGFX
 	call Function10a40
@@ -702,7 +702,7 @@ Jumptable_104c3: ; 104c3 (4:44c3)
 
 Function104d9: ; 104d9 (4:44d9)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call Function10955
 	ld a, [wcf64]
 	ld [wJumptableIndex], a
@@ -771,7 +771,7 @@ Function10566: ; 10566 (4:4566)
 	call ClearPocketList
 	call DrawPocketName
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call WaitBGMap_DrawPackGFX
 	ld hl, UnknownText_0x10b0c
 	call Function10889
@@ -915,7 +915,7 @@ Function105dc: ; 105dc (4:45dc)
 	and a
 	jr nz, .asm_1067e
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call Function10955
 	call WaitBGMap_DrawPackGFX
 	call Function10a40

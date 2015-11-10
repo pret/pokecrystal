@@ -252,7 +252,7 @@ Function8b45c: ; 8b45c (22:745c)
 	call Function8b4fd
 	call Function89c44
 	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	pop bc
 	call Function8b3dd
 	jr nc, .asm_8b46e
@@ -809,9 +809,9 @@ Function8b7bd: ; 8b7bd
 	ld a, [wd032]
 	and a
 	jr z, .asm_8b7e0
-	ld a, [wcf81]
+	ld a, [wMenuFlags]
 	set 3, a
-	ld [wcf81], a
+	ld [wMenuFlags], a
 
 .asm_8b7e0
 	ld a, [wd0e3]

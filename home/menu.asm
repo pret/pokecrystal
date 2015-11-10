@@ -7,11 +7,11 @@ LoadMenuDataHeader::
 	ret
 
 CopyMenuDataHeader::
-	ld de, wcf81
-	ld bc, 16
+	ld de, wMenuDataHeader
+	ld bc, wMenuDataHeaderEnd - wMenuDataHeader
 	call CopyBytes
 	ld a, [hROMBank]
-	ld [wcf8a], a
+	ld [wMenuDataBank], a
 	ret
 ; 0x1d4b
 
@@ -78,7 +78,7 @@ InterpretMenu2::
 	call UpdateSprites
 	call Function1c89
 	call Function321c
-	call Function1c66
+	call CopyMenuData2
 	ld a, [wMenuData2Flags]
 	bit 7, a
 	jr z, .cancel
@@ -103,11 +103,11 @@ GetMenu2:: ; 1dab
 	ret
 ; 1db8
 
-Function1db8::
+CopyNameFromMenu::
 	push hl
 	push bc
 	push af
-	ld hl, wcf86
+	ld hl, wMenuData2Pointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -126,7 +126,7 @@ endr
 
 
 YesNoBox:: ; 1dcf
-	lb bc, 14, 7
+	lb bc, SCREEN_WIDTH - 6, 7
 
 PlaceYesNoBox:: ; 1dd2
 	jr _YesNoBox
@@ -152,11 +152,11 @@ _YesNoBox:: ; 1dd9
 .okay
 	ld a, b
 	ld [wMenuBorderLeftCoord], a
-	add $5
+	add 5
 	ld [wMenuBorderRightCoord], a
 	ld a, c
 	ld [wMenuBorderTopCoord], a
-	add $4
+	add 4
 	ld [wMenuBorderBottomCoord], a
 	call BackUpTiles
 
@@ -246,7 +246,7 @@ SetUpMenu:: ; 1e70
 	ret
 
 MenuFunc_1e7f::
-	call Function1c66
+	call CopyMenuData2
 	call Function1ebd
 	call Function1ea6
 	call MenuBox
@@ -310,7 +310,7 @@ Function1ebd:: ; 1ebd
 ; 1eda
 
 Function1eda:: ; 1eda
-	call GetMemTileCoord
+	call MenuBoxCoord2Tile
 	ld bc, $002a
 	add hl, bc
 .asm_1ee1
@@ -489,7 +489,7 @@ endr
 ResetTextRelatedRAM:: ; 1fbf
 	ld hl, wcf71
 	call .bytefill
-	ld hl, wcf81
+	ld hl, wMenuDataHeader
 	call .bytefill
 	ld hl, wMenuData2Flags
 	call .bytefill
@@ -527,7 +527,7 @@ Function1ff8:: ; 1ff8
 	push af
 	and $3
 	jr z, .nosound
-	ld hl, wcf81
+	ld hl, wMenuFlags
 	bit 3, [hl]
 	jr nz, .nosound
 	call PlayClickSFX

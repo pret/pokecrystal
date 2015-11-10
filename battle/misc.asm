@@ -1,7 +1,7 @@
 _DisappearUser: ; fbd54
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
-	ld a, [hBattleTurn] ; $ff00+$e4
+	ld [hBGMapMode], a
+	ld a, [hBattleTurn]
 	and a
 	jr z, .player
 	call GetEnemyFrontpicCoords
@@ -21,8 +21,8 @@ _AppearUserLowerSub: ; fbd71 (3e:7d71)
 
 AppearUser: ; fbd77 (3e:7d77)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
-	ld a, [hBattleTurn] ; $ff00+$e4
+	ld [hBGMapMode], a
+	ld a, [hBattleTurn]
 	and a
 	jr z, .player
 	call GetEnemyFrontpicCoords
@@ -36,7 +36,7 @@ AppearUser: ; fbd77 (3e:7d77)
 	predef FillBox
 FinishAppearDisappearUser: ; fbd91 (3e:7d91)
 	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ret
 
 GetEnemyFrontpicCoords: ; fbd96 (3e:7d96)
