@@ -234,7 +234,7 @@ endr
 ; 3a90
 
 
-FarJumpText:: ; 3a90
+FarCopyRadioText:: ; 3a90
 	inc hl
 	ld a, [hROMBank]
 	push af
@@ -249,8 +249,8 @@ FarJumpText:: ; 3a90
 	ld l, a
 	ld a, d
 	ld h, a
-	ld de, wd00c
-	ld bc, $0028
+	ld de, wRadioText
+	ld bc, 2 * SCREEN_WIDTH
 	call CopyBytes
 	pop af
 	ld [hROMBank], a

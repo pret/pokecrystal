@@ -899,7 +899,7 @@ PlayerMovement: ; 96af0
 CheckMenuOW: ; 96b30
 	xor a
 	ld [hMenuReturn], a
-	ld [$ffa1], a
+	ld [hMenuReturn + 1], a
 	ld a, [hJoyPressed]
 
 	bit 2, a ; SELECT

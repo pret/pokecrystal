@@ -437,7 +437,7 @@ KeepTextOpen:: ; aaf
 ; af5
 
 .blink_cursor: ; af5
-	ld a, [$ff9b]
+	ld a, [hVBlankCounter]
 	and %00010000 ; bit 4, a
 	jr z, .cursor_off
 	ld a, "▼"

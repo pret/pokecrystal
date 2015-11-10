@@ -5093,14 +5093,14 @@ DrawEnemyHUD: ; 3e043
 	rr a
 	srl b
 	rr a
-	ld [$ffb6], a
+	ld [hProduct + 3], a
 	ld a, b
-	ld [$ffb5], a
+	ld [hProduct + 2], a
 
 .asm_3e105
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	ld [hDividend + 0], a
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	ld [hDividend + 1], a
 	ld a, $2
 	ld b, a
@@ -7796,17 +7796,17 @@ Function3f0d4: ; 3f0d4
 
 DoubleExp: ; 3f106
 	push bc
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	ld b, a
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	ld c, a
 	srl b
 	rr c
 	add c
-	ld [$ffb6], a
-	ld a, [$ffb5]
+	ld [hProduct + 3], a
+	ld a, [hProduct + 2]
 	adc b
-	ld [$ffb5], a
+	ld [hProduct + 2], a
 	pop bc
 	ret
 ; 3f11b
@@ -7846,10 +7846,10 @@ Function3f136: ; 3f136
 	cp MAX_LEVEL
 	jp nc, .asm_3f219
 
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	ld [wd004], a
 	push af
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	ld [wd003], a
 	push af
 	xor a
@@ -7883,11 +7883,11 @@ endr
 .asm_3f186
 	ld d, MAX_LEVEL
 	callab CalcExpAtLevel
-	ld a, [hMultiplicand]
+	ld a, [hProduct + 1]
 	ld b, a
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	ld c, a
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	ld d, a
 	ld hl, TempMonExp + 2
 	ld a, [hld]
@@ -7958,9 +7958,9 @@ endr
 	call Function3f22c
 	call Function3dfe
 	pop af
-	ld [$ffb5], a
+	ld [hProduct + 2], a
 	pop af
-	ld [$ffb6], a
+	ld [hProduct + 3], a
 
 .asm_3f219
 	pop bc
@@ -8264,14 +8264,14 @@ Function3f39c: ; 3f39c
 	push af
 	inc d
 	callab CalcExpAtLevel
-	ld hl, $ffb6
+	ld hl, hProduct + 3
 	ld a, [hl]
-	ld [$ffba], a
+	ld [hPrintNum8], a
 	pop bc
 	sub b
 	ld [hld], a
 	ld a, [hl]
-	ld [$ffb9], a
+	ld [hPrintNum7], a
 	pop bc
 	sbc b
 	ld [hld], a
@@ -8281,7 +8281,7 @@ Function3f39c: ; 3f39c
 	sbc b
 	ld [hl], a
 	pop de
-	ld hl, $ffb5
+	ld hl, hProduct + 2
 	ld a, [hli]
 	push af
 	ld a, [hl]
@@ -8289,13 +8289,13 @@ Function3f39c: ; 3f39c
 	ld a, [de]
 	dec de
 	ld c, a
-	ld a, [$ffba]
+	ld a, [hPrintNum8]
 	sub c
 	ld [hld], a
 	ld a, [de]
 	dec de
 	ld b, a
-	ld a, [$ffb9]
+	ld a, [hPrintNum7]
 	sbc b
 	ld [hld], a
 	ld a, [de]
@@ -9194,7 +9194,7 @@ endr
 	add hl, bc
 	dec d
 	jr nz, .asm_3fa62
-	ld bc, $ffee
+	ld bc, -18
 	add hl, bc
 	push hl
 

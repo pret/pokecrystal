@@ -1008,7 +1008,7 @@ FlickeringCaveEntrancePalette: ; fc71e
 ; Ready for BGPD input...
 	ld a, %10100000 ; auto-increment, index $20 (pal 4 color 0)
 	ld [rBGPI], a
-	ld a, [$ff9b]
+	ld a, [hVBlankCounter]
 	and %00000010
 	jr nz, .bit1set
 	ld hl, Unkn1Pals + $20 ; pal 4 color 0

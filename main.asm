@@ -1149,7 +1149,7 @@ Function627b: ; 627b
 ; 6292
 
 Function6292: ; 6292 ; unreferenced
-	ld a, [$ff9b]
+	ld a, [hVBlankCounter]
 	and $7
 	ret nz
 	ld hl, LYOverrides + $5f
@@ -3688,28 +3688,29 @@ Function830d: ; 830d
 
 TrainerWalkToPlayer: ; 831e
 	ld a, [hLastTalked]
-	call Function1b1e
-	ld a, $3e
-	call Function1b3f
+	call InitMovementBuffer
+	ld a, movement_show_person
+	call AppendToMovementBuffer
 	ld a, [wd03f]
 	dec a
-	jr z, Function833b
+	jr z, .TerminateStep
 	ld a, [hLastTalked]
 	ld b, a
-	ld c, 0
+	ld c, PLAYER
 	ld d, 1
-	call Function8341
-	call Function1b35
+	call .GetPathToPlayer
+	call DecrementMovementBufferCount
 
-Function833b
-	ld a, $47
-	call Function1b3f
+.TerminateStep
+	ld a, movement_step_end
+	call AppendToMovementBuffer
 	ret
 ; 8341
 
-Function8341: ; 8341
+.GetPathToPlayer: ; 8341
 	push de
 	push bc
+; get player object struct, load to de
 	ld a, c
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
@@ -3718,6 +3719,8 @@ Function8341: ; 8341
 	call GetObjectStruct
 	ld d, b
 	ld e, c
+
+; get last talked object struct, load to bc
 	pop bc
 	ld a, b
 	call GetMapObject
@@ -3725,6 +3728,8 @@ Function8341: ; 8341
 	add hl, bc
 	ld a, [hl]
 	call GetObjectStruct
+
+; get last talked coords, load to bc
 	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
@@ -3732,6 +3737,8 @@ Function8341: ; 8341
 	add hl, bc
 	ld c, [hl]
 	ld b, a
+
+; get player coords, load to de
 	ld hl, OBJECT_MAP_X
 	add hl, de
 	ld a, [hl]
@@ -3739,35 +3746,39 @@ Function8341: ; 8341
 	add hl, de
 	ld e, [hl]
 	ld d, a
+
 	pop af
-	call Function1b5f
+	call ComputePathToWalkToPlayer
 	ret
 ; 8379
 
 Special_SurfStartStep: ; 8379
-	call Function1b1e
-	call Function8388
-	call Function1b3f
-	ld a, $47
-	call Function1b3f
+	call InitMovementBuffer
+	call .GetMovementData
+	call AppendToMovementBuffer
+	ld a, movement_step_end
+	call AppendToMovementBuffer
 	ret
 ; 8388
 
-Function8388: ; 8388
+.GetMovementData: ; 8388
 	ld a, [PlayerDirection]
 	srl a
 	srl a
 	and 3
 	ld e, a
 	ld d, 0
-	ld hl, .data_839a
+	ld hl, .movement_data
 	add hl, de
 	ld a, [hl]
 	ret
 ; 839a
 
-.data_839a
-	db 8 + DOWN, 8 + UP, 8 + LEFT, 8 + RIGHT
+.movement_data
+	slow_step_down
+	slow_step_up
+	slow_step_left
+	slow_step_right
 ; 839e
 
 
@@ -23185,7 +23196,7 @@ Function25415: ; 25415 (9:5415)
 	ld de, GameTimeMinutes
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
-	ld a, [$ff9b]
+	ld a, [hVBlankCounter]
 	and $1f
 	ret nz
 	hlcoord 15, 12
@@ -23195,7 +23206,7 @@ Function25415: ; 25415 (9:5415)
 	ret
 
 Function25438: ; 25438 (9:5438)
-	ld a, [$ff9b]
+	ld a, [hVBlankCounter]
 	and $7
 	ret nz
 	ld a, [wcf64]
@@ -59041,7 +59052,7 @@ Function91d9b: ; 91d9b
 ; 91dcd
 
 Function91dcd: ; 91dcd
-	ld a, [$ff9b]
+	ld a, [hVBlankCounter]
 	ld e, a
 	and $f
 	ret nz
@@ -64357,7 +64368,7 @@ endr
 
 .CheckTheCard: ; e02da
 	xor a
-	ld [$ff9b], a
+	ld [hVBlankCounter], a
 	call Functione0960
 	call WaitSFX
 	ld de, SFX_CHOOSE_A_CARD
@@ -65463,7 +65474,7 @@ Functione0960: ; e0960
 	ld a, [hCGB]
 	and a
 	jr nz, .asm_e096d
-	ld a, [$ff9b]
+	ld a, [hVBlankCounter]
 	and $4
 	ret nz
 
@@ -65867,7 +65878,7 @@ Functione1190: ; e1190
 	ld a, [wcf64]
 	and a
 	jr nz, .asm_e1230
-	ld a, [$ff9b]
+	ld a, [hVBlankCounter]
 	and $10
 	jr z, .asm_e1235
 

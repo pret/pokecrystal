@@ -510,7 +510,7 @@ Function16571: ; 16571
 	ld de, StringBuffer2
 	lb bc, PRINTNUM_MONEY | PRINTNUM_LEADINGZEROS | 3, 6
 	call PrintNum
-	ld a, [$ff9b]
+	ld a, [hVBlankCounter]
 	and $10
 	jr nz, .skip
 	hlcoord 13, 6

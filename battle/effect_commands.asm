@@ -1966,18 +1966,18 @@ BattleCommand_CheckHit: ; 34d32
 	ld a, [hQuotient + 1]
 	or b
 	jr nz, .asm_34ea2
-	ld [$ffb5], a
+	ld [hQuotient + 1], a
 	ld a, $1
-	ld [$ffb6], a
+	ld [hQuotient + 2], a
 
 .asm_34ea2
 	ld b, c
 	dec d
 	jr nz, .asm_34e7a
 
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	and a
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	jr z, .asm_34eaf
 	ld a, $ff
 
@@ -2683,7 +2683,7 @@ BattleCommand_RageDamage: ; 3527b
 	dec a
 	add hl, bc
 	jr nc, .asm_35290
-	ld hl, $ffff
+	ld hl, -1
 .asm_3529a
 	ld a, h
 	ld [CurDamage], a
@@ -3371,33 +3371,33 @@ BattleCommand_DamageCalc: ; 35612
 
 ; Selfdestruct and Explosion halve defense.
 	cp EFFECT_EXPLOSION
-	jr nz, .asm_35620
+	jr nz, .dont_explode
 
 	srl c
-	jr nz, .asm_35620
+	jr nz, .dont_explode
 	inc c
 
-.asm_35620
+.dont_explode
 
 ; Variable-hit moves and Conversion can have a power of 0.
 	cp EFFECT_MULTI_HIT
-	jr z, .asm_3562b
+	jr z, .skip_zero_damage_check
 
 	cp EFFECT_CONVERSION
-	jr z, .asm_3562b
+	jr z, .skip_zero_damage_check
 
 ; No damage if move power is 0.
 	ld a, d
 	and a
 	ret z
 
-.asm_3562b
+.skip_zero_damage_check
 ; Minimum defense value is 1.
 	ld a, c
 	and a
-	jr nz, .asm_35631
+	jr nz, .not_dividing_by_zero
 	ld c, 1
-.asm_35631
+.not_dividing_by_zero
 
 	xor a
 	ld hl, hDividend
@@ -3409,9 +3409,9 @@ endr
 ; Level * 2
 	ld a, e
 	add a
-	jr nc, .asm_3563e
+	jr nc, .level_not_overflowing
 	ld [hl], $1
-.asm_3563e
+.level_not_overflowing
 	inc hl
 	ld [hli], a
 
@@ -3493,44 +3493,44 @@ endr
 ; Update CurDamage (capped at 997).
 	ld hl, CurDamage
 	ld b, [hl]
-	ld a, [hQuotient + 2]
+	ld a, [hProduct + 3]
 	add b
-	ld [$ffb6], a
-	jr nc, .asm_356a5
+	ld [hProduct + 3], a
+	jr nc, .dont_cap_1
 
-	ld a, [hQuotient + 1]
+	ld a, [hProduct + 2]
 	inc a
-	ld [$ffb5], a
+	ld [hProduct + 2], a
 	and a
 	jr z, .Cap
 
-.asm_356a5
-	ld a, [$ffb3]
+.dont_cap_1
+	ld a, [hProduct]
 	ld b, a
-	ld a, [$ffb4]
+	ld a, [hProduct + 1]
 	or a
 	jr nz, .Cap
 
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	cp 998 / $100
-	jr c, .asm_356bd
+	jr c, .dont_cap_2
 
 	cp 998 / $100 + 1
 	jr nc, .Cap
 
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	cp 998 % $100
 	jr nc, .Cap
 
-.asm_356bd
+.dont_cap_2
 	inc hl
 
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	ld b, [hl]
 	add b
 	ld [hld], a
 
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	ld b, [hl]
 	adc b
 	ld [hl], a
@@ -3538,7 +3538,7 @@ endr
 
 	ld a, [hl]
 	cp 998 / $100
-	jr c, .asm_356df
+	jr c, .dont_cap_3
 
 	cp 998 / $100 + 1
 	jr nc, .Cap
@@ -3546,7 +3546,7 @@ endr
 	inc hl
 	ld a, [hld]
 	cp 998 % $100
-	jr c, .asm_356df
+	jr c, .dont_cap_3
 
 .Cap
 	ld a, 997 / $100
@@ -3555,15 +3555,15 @@ endr
 	ld [hld], a
 
 
-.asm_356df
+.dont_cap_3
 ; Minimum neutral damage is 2 (bringing the cap to 999).
 	inc hl
 	ld a, [hl]
 	add 2
 	ld [hld], a
-	jr nc, .asm_356e7
+	jr nc, .dont_floor
 	inc [hl]
-.asm_356e7
+.dont_floor
 
 	ld a, 1
 	and a
@@ -3576,20 +3576,20 @@ endr
 	ret z
 
 ; x2
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	add a
-	ld [$ffb6], a
+	ld [hProduct + 3], a
 
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	rl a
-	ld [$ffb5], a
+	ld [hProduct + 2], a
 
 ; Cap at $ffff.
 	ret nc
 
 	ld a, $ff
-	ld [$ffb5], a
-	ld [$ffb6], a
+	ld [hProduct + 2], a
+	ld [hProduct + 3], a
 
 	ret
 ; 35703
@@ -3623,55 +3623,56 @@ BattleCommand_ConstantDamage: ; 35726
 	ld hl, BattleMonLevel
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_35731
+	jr z, .got_turn
 	ld hl, EnemyMonLevel
 
-.asm_35731
+.got_turn
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_LEVEL_DAMAGE
 	ld b, [hl]
 	ld a, 0
-	jr z, .asm_3578c
+	jr z, .got_power
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_PSYWAVE
-	jr z, .asm_35758
+	jr z, .psywave
 
 	cp EFFECT_SUPER_FANG
-	jr z, .asm_3576b
+	jr z, .super_fang
 
 	cp EFFECT_REVERSAL
-	jr z, .asm_35792
+	jr z, .reversal
 
 	ld a, BATTLE_VARS_MOVE_POWER
 	call GetBattleVar
 	ld b, a
 	ld a, $0
-	jr .asm_3578c
+	jr .got_power
 
-.asm_35758
+.psywave
 	ld a, b
 	srl a
 	add b
 	ld b, a
-.asm_3575d
+.psywave_loop
 	call BattleRandom
 	and a
-	jr z, .asm_3575d ; 35761 $fa
+	jr z, .psywave_loop ; 35761 $fa
 	cp b
-	jr nc, .asm_3575d ; 35764 $f7
+	jr nc, .psywave_loop ; 35764 $f7
 	ld b, a
 	ld a, $0
-	jr .asm_3578c ; 35769 $21
-.asm_3576b
+	jr .got_power ; 35769 $21
+
+.super_fang
 	ld hl, EnemyMonHP
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_35776 ; 35771 $3
+	jr z, .got_hp ; 35771 $3
 	ld hl, BattleMonHP
-.asm_35776
+.got_hp
 	ld a, [hli]
 	srl a
 	ld b, a
@@ -3681,26 +3682,28 @@ BattleCommand_ConstantDamage: ; 35726
 	ld a, b
 	pop bc
 	and a
-	jr nz, .asm_3578c ; 35781 $9
+	jr nz, .got_power ; 35781 $9
 	or b
 	ld a, $0
-	jr nz, .asm_3578c ; 35786 $4
+	jr nz, .got_power ; 35786 $4
 	ld b, $1
-	jr .asm_3578c ; 3578a $0
-.asm_3578c
+	jr .got_power ; 3578a $0
+
+.got_power
 	ld hl, CurDamage
 	ld [hli], a
 	ld [hl], b
 	ret
-.asm_35792
+
+.reversal
 	ld hl, BattleMonHP
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3579d ; 35798 $3
+	jr z, .reversal_got_hp ; 35798 $3
 	ld hl, EnemyMonHP
-.asm_3579d
+.reversal_got_hp
 	xor a
-	ld [$ffb3], a
+	ld [hDividend], a
 	ld [hMultiplicand + 0], a
 	ld a, [hli]
 	ld [hMultiplicand + 1], a
@@ -3715,9 +3718,9 @@ BattleCommand_ConstantDamage: ; 35726
 	ld [hDivisor], a
 	ld a, b
 	and a
-	jr z, .asm_357d6
+	jr z, .skip_to_divide
 
-	ld a, [$ffb7]
+	ld a, [hProduct + 4]
 	srl b
 	rr a
 	srl b
@@ -3734,21 +3737,21 @@ BattleCommand_ConstantDamage: ; 35726
 	ld a, b
 	ld [hDividend + 2], a
 
-.asm_357d6
+.skip_to_divide
 	ld b, $4
 	call Divide
 	ld a, [hQuotient + 2]
 	ld b, a
 	ld hl, .FlailPower
 
-.asm_357e1
+.reversal_loop
 	ld a, [hli]
 	cp b
-	jr nc, .asm_357e8
+	jr nc, .break_loop
 	inc hl
-	jr .asm_357e1
+	jr .reversal_loop
 
-.asm_357e8
+.break_loop
 	ld a, [hBattleTurn]
 	and a
 	ld a, [hl]
@@ -6277,16 +6280,16 @@ endr
 	jr c, .not_maxed_out
 
 	ld a, 999 % $100
-	ld [$ffb6], a
+	ld [hQuotient + 2], a
 	ld a, 999 / $100
-	ld [$ffb5], a
+	ld [hQuotient + 1], a
 
 .not_maxed_out
 	pop bc
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	ld [bc], a
 	inc bc
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld [bc], a
 	inc bc
 	pop hl

@@ -2926,7 +2926,7 @@ Function56cd: ; 56cd
 	srl a
 	srl a
 	srl a
-	cp $14
+	cp SCREEN_WIDTH
 	jr c, .ok3
 	sub $20
 

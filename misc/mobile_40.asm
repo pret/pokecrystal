@@ -2357,38 +2357,45 @@ Function100efb: ; 100efb
 asm_100f02:
 	ld a, c
 	ld [StringBuffer2], a
+	; someting that was previously stored in de gets backed up to here
 	ld a, e
 	ld [StringBuffer2 + 1], a
 	ld a, d
 	ld [StringBuffer2 + 2], a
+	; empty this
 	xor a
 	ld [StringBuffer2 + 4], a
 	ld [StringBuffer2 + 5], a
-.asm_100f15
+.loop
 	ld a, [hl]
 	cp $ff
-	jr z, .asm_100f34
-	ld [StringBuffer2 + 3], a
+	jr z, .done
+	ld [StringBuffer2 + 3], a ; bank
 	push hl
 	inc hl
+	; addr 1
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
+	; size
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
 	ld b, a
+	; addr 2
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	call Function100f3d
+	; next line
 	pop hl
 	ld de, $0007
 	add hl, de
-	jr .asm_100f15
+	jr .loop
 
-.asm_100f34
+.done
+	; recover the values into bc
 	ld a, [StringBuffer2 + 4]
 	ld c, a
 	ld a, [StringBuffer2 + 5]
@@ -2397,16 +2404,20 @@ asm_100f02:
 ; 100f3d
 
 Function100f3d: ; 100f3d
+	; parameter
 	ld a, [StringBuffer2]
 	cp $2
-	jr z, .asm_100f61
+	jr z, .two
 	cp $1
-	jr z, .asm_100f77
+	jr z, .one
 	cp $3
-	jr z, .asm_100f4d
+	jr z, .three
 	ret
 
-.asm_100f4d
+.three
+	; what was once in de gets copied to hl,
+	; modified by Function100f8d, and put back
+	; into this backup
 	ld a, [StringBuffer2 + 1]
 	ld l, a
 	ld a, [StringBuffer2 + 2]
@@ -2418,7 +2429,9 @@ Function100f3d: ; 100f3d
 	ld [StringBuffer2 + 2], a
 	ret
 
-.asm_100f61
+.two
+	; hl gets backed up to de, then
+	; do the same as in .three
 	ld d, h
 	ld e, l
 	ld a, [StringBuffer2 + 1]
@@ -2432,7 +2445,11 @@ Function100f3d: ; 100f3d
 	ld [StringBuffer2 + 2], a
 	ret
 
-.asm_100f77
+.one
+	; de gets copied to hl, then
+	; load the backup into de,
+	; finally run Function100f8d
+	; and store the de result
 	ld h, d
 	ld l, e
 	ld a, [StringBuffer2 + 1]
@@ -2462,18 +2479,18 @@ Function100f8d: ; 100f8d
 	ld a, [StringBuffer2 + 3]
 	bit 7, a
 	res 7, a
-	jr z, .asm_100fb6
+	jr z, .sram
 	and a
-	jr nz, .asm_100fb0
+	jr nz, .wram
 	call CopyBytes
 	ret
 
-.asm_100fb0
+.wram
 	and $7f
 	call FarCopyWRAM
 	ret
 
-.asm_100fb6
+.sram
 	call GetSRAMBank
 	call CopyBytes
 	call CloseSRAM
@@ -2481,16 +2498,20 @@ Function100f8d: ; 100f8d
 ; 100fc0
 
 Unknown_100fc0: ; 100fc0
-	dbwww $80, PlayerName, NAME_LENGTH, wd26b
+	; first byte:
+	;     Bit 7 set: Not SRAM
+	;     Lower 7 bits: Bank
+	; Address, size (dw), address
+	dbwww $80, PlayerName, NAME_LENGTH, OTPlayerName
 	dbwww $80, PartyCount, 1 + PARTY_LENGTH + 1, OTPartyCount
-	dbwww $80, PlayerID, 2, wd276
-	dbwww $80, PartyMons, $30 * PARTY_LENGTH, OTPartyMons
+	dbwww $80, PlayerID, 2, OTPlayerID
+	dbwww $80, PartyMons, PARTYMON_STRUCT_LENGTH * PARTY_LENGTH, OTPartyMons
 	dbwww $80, PartyMonOT, NAME_LENGTH * PARTY_LENGTH, OTPartyMonOT
 	dbwww $80, PartyMonNicknames, PKMN_NAME_LENGTH * PARTY_LENGTH, OTPartyMonNicknames
 	db -1
 
 Unknown_100feb: ; 100feb
-	dbwww $00, $a600, $2f * PARTY_LENGTH, NULL
+	dbwww $00, sPartyScratch1, SCRATCHMON_STRUCT_LENGTH * PARTY_LENGTH, NULL
 	db -1
 
 Unknown_100ff3: ; 100ff3
@@ -2501,15 +2522,15 @@ Unknown_100ff3: ; 100ff3
 	dbwww $80, wSecretID, 2, NULL
 	dbwww $80, PlayerGender, 1, NULL
 	dbwww $04, $a603, 8, NULL
-	dbwww $04, $a007, $30, NULL
+	dbwww $04, $a007, PARTYMON_STRUCT_LENGTH, NULL
 	db -1
 
 Unknown_10102c: ; 10102c
-	dbwww $80, wd26b, 11, NULL
-	dbwww $80, wd276, 2, NULL
+	dbwww $80, OTPlayerName, 11, NULL
+	dbwww $80, OTPlayerID, 2, NULL
 	dbwww $80, OTPartyMonNicknames, PKMN_NAME_LENGTH * PARTY_LENGTH, NULL
 	dbwww $80, OTPartyMonOT, NAME_LENGTH * PARTY_LENGTH, NULL
-	dbwww $80, OTPartyMons, $30 * PARTY_LENGTH, NULL
+	dbwww $80, OTPartyMons, PARTYMON_STRUCT_LENGTH * PARTY_LENGTH, NULL
 	db -1
 ; 10104f
 

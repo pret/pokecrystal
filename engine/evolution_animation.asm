@@ -342,7 +342,7 @@ Function4e7e8: ; 4e7e8
 Function4e80c: ; 4e80c
 	push bc
 	callab Function8cf69
-	ld a, [$ff9b]
+	ld a, [hVBlankCounter]
 	and $e
 	srl a
 rept 2

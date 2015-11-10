@@ -1460,17 +1460,17 @@ CheckTrainerBattle:: ; 360d
 	pop af
 	ld [hLastTalked], a
 	ld a, b
-	ld [CurFruit], a
+	ld [EngineBuffer2], a
 	ld a, c
-	ld [wd040], a
+	ld [EngineBuffer3], a
 	jr Function367e
 ; 3674
 
 Function3674:: ; 3674
 	ld a, 1
-	ld [CurFruit], a
+	ld [EngineBuffer2], a
 	ld a, -1
-	ld [wd040], a
+	ld [EngineBuffer3], a
 
 Function367e:: ; 367e
 	call GetMapScriptHeaderBank

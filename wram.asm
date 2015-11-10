@@ -1395,26 +1395,33 @@ MiscBuffer2::
 PhoneScriptBank::
 DefaultFlypoint:: ; d002
 LuckyNumberDigit1Buffer::
+wCurrentRadioLine::
+wMovementBufferCount::
 	ds 1
 wd003::
 MiscBuffer3::
 LuckyNumberDigit2Buffer::
 PhoneCallerLo::
+wNextRadioLine::
+wMovementBufferPerson::
 	ds 1
 wd004::
 MiscBuffer4::
 LuckyNumberDigit3Buffer::
 PhoneCallerHi::
+wRadioTextDelay::
 	ds 1
 wd005::
 MiscBuffer5::
 LuckyNumberDigit4Buffer::
 StartFlypoint:: ; d005
+wNumRadioLinesPrinted::
 	ds 1
 wd006::
 MiscBuffer6::
 LuckyNumberDigit5Buffer::
 EndFlypoint:: ; d006
+wOaksPkmnTalkSegmentCounter::
 	ds 1
 
 wd007::
@@ -1425,6 +1432,11 @@ MovementBuffer:: ; d007
 wd008:: ds 2
 wd00a:: ds 1
 wd00b:: ds 1
+
+wRadioText:: ds 2 * SCREEN_WIDTH
+wRadioTextEnd::
+	ds wRadioText - @
+
 wd00c:: ds 1
 wd00d:: ds 1
 wd00e:: ds 1
@@ -1474,31 +1486,40 @@ EngineBuffer3::
 
 wd041::
 EngineBuffer4::
+wTempTrainerEventFlagLo::
 	ds 1
+
+wTempTrainerEventFlagHi::
 MovementAnimation:: ; d042
 	ds 1
 
+wTempTrainerClass::
 WalkingDirection:: ; d043
 	ds 1
 
+wTempTrainerID::
 FacingDirection:: ; d044
 	ds 1
 
+wSeenTextPointer::
 WalkingX:: ; d045
 	ds 1
 WalkingY:: ; d046
 	ds 1
+
 WalkingTile:: ; d047
 wWinTextPointer::
 	ds 1
 
 wd048:: ds 1
 wLossTextPointer:: ds 2
+wScriptAfterPointer::
 wd04b:: ds 2
 wd04d:: ds 1
 MenuItemsListEnd::
 wd04e:: ds 2
-wd050:: ds 10
+wOaksPkmnTalkPkmnNameBuffer::
+wd050:: ds PKMN_NAME_LENGTH +- 1
 wd05a:: ds 12
 wd066:: ds 10
 wd070:: ds 3
@@ -1929,11 +1950,16 @@ TimeOfDay:: ; d269
 
 	ds 1
 SECTION "Enemy Party", WRAMX, BANK [1]
-OTPlayerName::
+OTPlayerName:: ds NAME_LENGTH
+	ds OTPlayerName - @
+wPokedexShowPointerAddr::
 wd26b:: ds 1
 wd26c:: ds 1
-wd26d:: ds 4
+wPokedexShowPointerBank::
+wd26d:: ds 1
+	ds 3
 wd271:: ds 5
+OTPlayerID::
 wd276:: ds 10
 
 OTPartyCount::   ds 1 ; d280
