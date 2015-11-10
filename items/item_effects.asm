@@ -358,7 +358,7 @@ endr
 	push de
 
 	; BUG: callba overwrites a,
-	; and GetItem takes b anyway.
+	; and GetItemHeldEffect takes b anyway.
 
 	; This is probably the reason
 	; the HELD_CATCH_CHANCE effect
@@ -368,7 +368,7 @@ endr
 
 	ld a, [BattleMonItem]
 ;	ld b, a
-	callba GetItem
+	callba GetItemHeldEffect
 	ld a, b
 	cp HELD_CATCH_CHANCE
 

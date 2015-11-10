@@ -3922,7 +3922,7 @@ TryToRunAwayFromBattle: ; 3d8b3
 	ld a, [BattleMonItem]
 	ld [wd265], a
 	ld b, a
-	callab GetItem
+	callab GetItemHeldEffect
 	ld a, b
 	cp HELD_ESCAPE
 	pop de
@@ -4576,9 +4576,9 @@ UseOpponentItem:
 	call RefreshBattleHuds
 	callab GetOpponentItem
 	ld a, [hl]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
-	callab Function27192
+	callab ConsumeHeldItem
 	ld hl, RecoveredUsingText
 	jp StdBattleTextBox
 ; 3ddc8
@@ -4741,7 +4741,7 @@ HandleStatBoostingHeldItems: ; 3de97
 	push bc
 	ld a, [bc]
 	ld b, a
-	callab GetItem
+	callab GetItemHeldEffect
 	ld hl, .StatUpItems
 .loop
 	ld a, [hli]
@@ -5595,7 +5595,7 @@ BattleMenu_Run: ; 3e489
 CheckAmuletCoin: ; 3e4a8
 	ld a, [BattleMonItem]
 	ld b, a
-	callab GetItem
+	callab GetItemHeldEffect
 	ld a, b
 	cp HELD_AMULET_COIN
 	ret nz
@@ -7247,12 +7247,12 @@ BoostStat: ; 3ed7c
 
 
 Function3ed9f: ; 3ed9f
-	callab Functionfb4f2
+	callab LoadBattleFontsHPBar
 	ret
 ; 3eda6
 
 Function3eda6: ; 3eda6
-	callab Functionfb50d
+	callab LoadHPBar
 	ret
 ; 3edad
 

@@ -306,9 +306,9 @@ wc2d4:: ds 1
 wc2d5:: ds 1
 wc2d6:: ds 1
 wc2d7:: ds 1
-wc2d8:: ds 1
-wc2d9:: ds 1
-wc2da:: ds 2
+wPreviousLandmark:: ds 1
+wCurrentLandmark:: ds 1
+wLandmarkSignTimer:: ds 2
 wLinkMode:: ; c2dc
 ; 0 not in link battle
 ; 1 link battle
@@ -2193,8 +2193,8 @@ wObjectMasks:: ds NUM_OBJECTS ; d81e
 VariableSprites:: ; d82e
 	ds $10
 
-wd83e:: ds 3
-
+wEnteredMapFromContinue:: ds 1 ; d83e
+	ds 2
 TimeOfDayPal:: ; d841
 	ds 1
 	ds 4

@@ -2996,11 +2996,11 @@ SpeciesItemBoost: ; 353d1
 	pop hl
 
 	cp b
-	jr z, .GetItem
+	jr z, .GetItemHeldEffect
 	cp c
 	ret nz
 
-.GetItem
+.GetItemHeldEffect
 	push hl
 	call GetUserItem
 	ld a, [hl]
@@ -9679,7 +9679,7 @@ GetUserItem: ; 37db2
 	ld hl, EnemyMonItem
 .go
 	ld b, [hl]
-	jp GetItem
+	jp GetItemHeldEffect
 ; 37dc1
 
 
@@ -9692,11 +9692,11 @@ GetOpponentItem: ; 37dc1
 	ld hl, BattleMonItem
 .go
 	ld b, [hl]
-	jp GetItem
+	jp GetItemHeldEffect
 ; 37dd0
 
 
-GetItem: ; 37dd0
+GetItemHeldEffect: ; 37dd0
 ; Return the effect of item b in bc.
 	ld a, b
 	and a

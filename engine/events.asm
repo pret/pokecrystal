@@ -247,7 +247,7 @@ Function967d1: ; 967d1
 Function967e1: ; 967e1
 	callba RefreshMapAppearDisappear
 	callba Functiond4d2
-	callba Functionb8098
+	callba PlaceMapNameSign
 	ret
 ; 967f4
 
@@ -328,7 +328,7 @@ PlayerEvents: ; 9681f
 	jr z, .ok2
 
 	xor a
-	ld [wc2da], a
+	ld [wLandmarkSignTimer], a
 
 .ok2
 	scf

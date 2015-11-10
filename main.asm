@@ -75,7 +75,7 @@ Function5ae8: ; 5ae8
 	ret
 ; 5b05
 
-Function5b05: ; 5b05
+PrintDayOfWeek: ; 5b05
 	push de
 	ld hl, .Days
 	ld a, b
@@ -136,7 +136,7 @@ NewGame: ; 5b6b
 	call OakSpeech
 	call InitializeWorld
 	ld a, 1
-	ld [wc2d8], a
+	ld [wPreviousLandmark], a
 
 	ld a, SPAWN_HOME
 	ld [wd001], a
@@ -447,7 +447,7 @@ Continue: ; 5d65
 	call DelayFrames
 	callba JumpRoamMons
 	callba Function105091
-	callba Function140ae
+	callba Function140ae ; time-related
 	ld a, [wSpawnAfterChampion]
 	cp SPAWN_LANCE
 	jr z, .SpawnAfterE4
@@ -524,9 +524,9 @@ ConfirmContinue: ; 5e34
 
 Function5e48: ; 5e48
 	call Function6e3
-	and $80
+	and %10000000 ; Day count exceeded 16383
 	jr z, .pass
-	callba Function20021
+	callba RestartClock
 	ld a, c
 	and a
 	jr z, .pass
@@ -546,7 +546,7 @@ FinishContinueFunction: ; 5e5d
 	ld hl, GameTimerPause
 	set 0, [hl]
 	res 7, [hl]
-	ld hl, wd83e
+	ld hl, wEnteredMapFromContinue
 	set 1, [hl]
 	callba OverworldLoop
 	ld a, [wSpawnAfterChampion]
@@ -563,7 +563,7 @@ Function5e85: ; 5e85
 	call Function6e3
 	and $80
 	jr z, .asm_5e93
-	ld de, $408
+	lb de, 4, 8
 	call Function5eaf
 	ret
 
@@ -16097,10 +16097,12 @@ StartClock:: ; 14089
 	call GetClock
 	call Function1409b
 	call FixDays
-	jr nc, .asm_14097
-	call Function6d3
+	jr nc, .skip_set
+	; bit 5: Day count exceeds 139
+	; bit 6: Day count exceeds 255
+	call Function6d3 ; set flag on s0_ac60
 
-.asm_14097
+.skip_set
 	call StartRTC
 	ret
 ; 1409b
@@ -16108,38 +16110,40 @@ StartClock:: ; 14089
 Function1409b: ; 1409b
 	ld hl, hRTCDayHi
 	bit 7, [hl]
-	jr nz, .asm_140a8
+	jr nz, .set_bit_7
 	bit 6, [hl]
-	jr nz, .asm_140a8
+	jr nz, .set_bit_7
 	xor a
 	ret
 
-.asm_140a8
-	ld a, $80
-	call Function6d3
+.set_bit_7
+	; Day count exceeds 16383
+	ld a, %10000000
+	call Function6d3 ; set bit 7 on s0_ac60
 	ret
 ; 140ae
 
 Function140ae: ; 140ae
 	call Function6e3
 	ld c, a
-	and %11000000
-	jr nz, .asm_140c8
+	and %11000000 ; Day count exceeded 255 or 16383
+	jr nz, .time_overflow
 
 	ld a, c
-	and %00100000
-	jr z, .asm_140eb
+	and %00100000 ; Day count exceeded 139
+	jr z, .dont_update
 
 	call UpdateTime
 	ld a, [wRTC + 0]
 	ld b, a
 	ld a, [CurDay]
 	cp b
-	jr c, .asm_140eb
+	jr c, .dont_update
 
-.asm_140c8
+.time_overflow
 	callba ClearDailyTimers
 	callba Function170923
+; mobile
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$aa8c]
@@ -16151,7 +16155,7 @@ Function140ae: ; 140ae
 	call CloseSRAM
 	ret
 
-.asm_140eb
+.dont_update
 	xor a
 	ret
 ; 140ed
@@ -20288,248 +20292,7 @@ INCLUDE "tilesets/data_2.asm"
 
 SECTION "bank8", ROMX, BANK[$8]
 
-
-Function20000: ; 20000 (8:4000)
-	push hl
-	dec a
-	ld e, a
-	ld d, 0
-	ld hl, Unknown_20015
-rept 4
-	add hl, de
-endr
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc hl
-	ld b, [hl]
-	inc hl
-	ld c, [hl]
-	pop hl
-	ret
-; 20015 (8:4015)
-
-Unknown_20015: ; 20015
-	dw wd1ed
-	db $07, $04
-
-	dw wd1ee
-	db $18, $0c
-
-	dw wd1ef
-	db $3c, $0f
-; 20021
-
-Function20021: ; 20021 (8:4021)
-	ld hl, UnknownText_0x20047
-	call PrintText
-	ld hl, Options
-	ld a, [hl]
-	push af
-	set NO_TEXT_SCROLL, [hl]
-	call LoadPartyMenuDataHeader
-	call ClearTileMap
-	ld hl, UnknownText_0x2004c
-	call PrintText
-	call Function20051
-	call ExitMenu
-	pop bc
-	ld hl, Options
-	ld [hl], b
-	ld c, a
-	ret
-; 20047 (8:4047)
-
-UnknownText_0x20047: ; 0x20047
-	; The clock's time may be wrong. Please reset the time.
-	text_jump UnknownText_0x1c40e6
-	db "@"
-; 0x2004c
-
-UnknownText_0x2004c: ; 0x2004c
-	; Set with the Control Pad. Confirm: A Button Cancel:  B Button
-	text_jump UnknownText_0x1c411c
-	db "@"
-; 0x20051
-
-Function20051: ; 20051 (8:4051)
-	ld a, $1
-	ld [Buffer1], a ; wd1ea (aliases: MagikarpLength)
-	ld [Buffer2], a ; wd1eb (aliases: MovementType)
-	ld a, $8
-	ld [wd1ec], a
-	call UpdateTime
-	call GetWeekday
-	ld [wd1ed], a
-	ld a, [hHours] ; $ff00+$94
-	ld [wd1ee], a
-	ld a, [hMinutes] ; $ff00+$96
-	ld [wd1ef], a
-.asm_20071
-	call Function200ba
-	jr nc, .asm_20071
-	and a
-	ret nz
-	call Function2011f
-	ld hl, UnknownText_0x200b0
-	call PrintText
-	call YesNoBox
-	jr c, .asm_200ad
-	ld a, [wd1ed]
-	ld [StringBuffer2], a
-	ld a, [wd1ee]
-	ld [StringBuffer2 + 1], a
-	ld a, [wd1ef]
-	ld [StringBuffer2 + 2], a
-	xor a
-	ld [StringBuffer2 + 3], a
-	call Function677
-	call Function2011f
-	ld hl, UnknownText_0x200b5
-	call PrintText
-	call Functiona80
-	xor a
-	ret
-.asm_200ad
-	ld a, $1
-	ret
-; 200b0 (8:40b0)
-
-UnknownText_0x200b0: ; 0x200b0
-	; Is this OK?
-	text_jump UnknownText_0x1c415b
-	db "@"
-; 0x200b5
-
-UnknownText_0x200b5: ; 0x200b5
-	; The clock has been reset.
-	text_jump UnknownText_0x1c4168
-	db "@"
-; 0x200ba
-
-Function200ba: ; 200ba (8:40ba)
-	call Function354b
-	ld c, a
-	push af
-	call Function2011f
-	pop af
-	bit 0, a
-	jr nz, .asm_200dd
-	bit 1, a
-	jr nz, .asm_200e1
-	bit 6, a
-	jr nz, .asm_200e5
-	bit 7, a
-	jr nz, .asm_200f6
-	bit 5, a
-	jr nz, .asm_20108
-	bit 4, a
-	jr nz, .asm_20112
-	jr Function200ba
-.asm_200dd
-	ld a, $0
-	scf
-	ret
-.asm_200e1
-	ld a, $1
-	scf
-	ret
-.asm_200e5
-	ld a, [Buffer1] ; wd1ea (aliases: MagikarpLength)
-	call Function20000
-	ld a, [de]
-	inc a
-	ld [de], a
-	cp b
-	jr c, .asm_2011d
-	ld a, $0
-	ld [de], a
-	jr .asm_2011d
-.asm_200f6
-	ld a, [Buffer1] ; wd1ea (aliases: MagikarpLength)
-	call Function20000
-	ld a, [de]
-	dec a
-	ld [de], a
-	cp $ff
-	jr nz, .asm_2011d
-	ld a, b
-	dec a
-	ld [de], a
-	jr .asm_2011d
-.asm_20108
-	ld hl, Buffer1 ; wd1ea (aliases: MagikarpLength)
-	dec [hl]
-	jr nz, .asm_2011d
-	ld [hl], $3
-	jr .asm_2011d
-.asm_20112
-	ld hl, Buffer1 ; wd1ea (aliases: MagikarpLength)
-	inc [hl]
-	ld a, [hl]
-	cp $4
-	jr c, .asm_2011d
-	ld [hl], $1
-.asm_2011d
-	xor a
-	ret
-
-Function2011f: ; 2011f (8:411f)
-	hlcoord 0, 5
-	ld b, $5
-	ld c, $12
-	call TextBox
-	decoord 1, 8
-	ld a, [wd1ed]
-	ld b, a
-	callba Function5b05
-	ld a, [wd1ee]
-	ld b, a
-	ld a, [wd1ef]
-	ld c, a
-	decoord 11, 8
-	callba Function1dd6bb
-	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
-	lb de, $7f, $7f
-	call Function20168
-	ld a, [Buffer1] ; wd1ea (aliases: MagikarpLength)
-	lb de, $61, $ee
-	call Function20168
-	ld a, [Buffer1] ; wd1ea (aliases: MagikarpLength)
-	ld [Buffer2], a ; wd1eb (aliases: MovementType)
-	ret
-; 20160 (8:4160)
-
-Function20160: ; 20160
-	ld a, [wd1ec]
-	ld b, a
-	call GetTileCoord
-	ret
-; 20168
-
-Function20168: ; 20168 (8:4168)
-	push de
-	call Function20000
-	ld a, [wd1ec]
-	dec a
-	ld b, a
-	call GetTileCoord
-	pop de
-	ld [hl], d
-	ld bc, $28
-	add hl, bc
-	ld [hl], e
-	ret
-; 2017c (8:417c)
-
-String_2017c: ; 2017c
-	db "じ@" ; HR
-; 2017e
-
-String_2017e: ; 2017e
-	db "ふん@" ; MIN
-; 20181
-
+INCLUDE "engine/clock_reset.asm"
 
 SECTION "Tileset Data 3", ROMX, BANK[TILESETS_3]
 
@@ -25094,7 +24857,7 @@ Function2715c: ; 2715c
 	jp SetPalettes
 ; 27192
 
-Function27192: ; 27192
+ConsumeHeldItem: ; 27192
 	push hl
 	push de
 	push bc
@@ -25113,8 +24876,8 @@ Function27192: ; 27192
 	push af
 	ld a, [de]
 	ld b, a
-	callba GetItem
-	ld hl, Unknown_271de
+	callba GetItemHeldEffect
+	ld hl, .ConsumableEffects
 .loop
 	ld a, [hli]
 	cp b
@@ -25151,18 +24914,18 @@ Function27192: ; 27192
 	ret
 ; 271de
 
-Unknown_271de: ; 271de
+.ConsumableEffects: ; 271de
 ; Consumable items?
 	db HELD_BERRY
-	db $02
-	db $05
+	db HELD_2
+	db HELD_5
 	db HELD_HEAL_POISON
 	db HELD_HEAL_FREEZE
 	db HELD_HEAL_BURN
 	db HELD_HEAL_SLEEP
 	db HELD_HEAL_PARALYZE
 	db HELD_HEAL_STATUS
-	db $1e
+	db HELD_30
 	db HELD_ATTACK_UP
 	db HELD_DEFENSE_UP
 	db HELD_SPEED_UP
@@ -25170,8 +24933,8 @@ Unknown_271de: ; 271de
 	db HELD_SP_DEFENSE_UP
 	db HELD_ACCURACY_UP
 	db HELD_EVASION_UP
-	db $26
-	db $47
+	db HELD_38
+	db HELD_71
 	db HELD_ESCAPE
 	db HELD_CRITICAL_UP
 	db -1
@@ -25208,30 +24971,27 @@ Function29fe4: ; unreferenced
 
 LoadWildMonData: ; 29ff8
 	call _GrassWildmonLookup
-	jr c, .asm_2a006
+	jr c, .copy
 	ld hl, wd25a
 	xor a
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld [hl], a
-	jr .asm_2a011
-.asm_2a006
-rept 2
+	jr .done_copy
+.copy
 	inc hl
-endr
+	inc hl
 	ld de, wd25a
 	ld bc, $3
 	call CopyBytes
-.asm_2a011
+.done_copy
 	call _WaterWildmonLookup
 	ld a, $0
-	jr nc, .asm_2a01b
-rept 2
+	jr nc, .no_copy
 	inc hl
-endr
+	inc hl
 	ld a, [hl]
-.asm_2a01b
+.no_copy
 	ld [wd25d], a
 	ret
 
@@ -25242,7 +25002,7 @@ Function2a01f: ; 2a01f
 	call ByteFill
 	ld a, e
 	and a
-	jr nz, .asm_2a043
+	jr nz, .kanto
 	decoord 0, 0
 	ld hl, JohtoGrassWildMons
 	call Function2a052
@@ -25252,7 +25012,7 @@ Function2a01f: ; 2a01f
 	call Function2a0cf
 	ret
 
-.asm_2a043
+.kanto
 	decoord 0, 0
 	ld hl, KantoGrassWildMons
 	call Function2a052
@@ -25261,7 +25021,7 @@ Function2a01f: ; 2a01f
 ; 2a052
 
 Function2a052: ; 2a052
-.asm_2a052
+.loop
 	ld a, [hl]
 	cp $ff
 	ret z
@@ -25275,19 +25035,19 @@ rept 3
 endr
 	ld a, $15
 	call Function2a088
-	jr nc, .asm_2a067
+	jr nc, .next
 	ld [de], a
 	inc de
 
-.asm_2a067
+.next
 	pop hl
 	ld bc, $2f
 	add hl, bc
-	jr .asm_2a052
+	jr .loop
 ; 2a06e
 
 Function2a06e: ; 2a06e
-.asm_2a06e
+.loop
 	ld a, [hl]
 	cp $ff
 	ret z
@@ -25299,34 +25059,34 @@ Function2a06e: ; 2a06e
 	inc hl
 	ld a, $3
 	call Function2a088
-	jr nc, .asm_2a081
+	jr nc, .next
 	ld [de], a
 	inc de
 
-.asm_2a081
+.next
 	pop hl
 	ld bc, 9
 	add hl, bc
-	jr .asm_2a06e
+	jr .loop
 ; 2a088
 
 Function2a088: ; 2a088
 	inc hl
-.asm_2a089
+.loop
 	push af
 	ld a, [wd265]
 	cp [hl]
-	jr z, .asm_2a098
+	jr z, .found
 rept 2
 	inc hl
 endr
 	pop af
 	dec a
-	jr nz, .asm_2a089
+	jr nz, .loop
 	and a
 	ret
 
-.asm_2a098
+.found
 	pop af
 	jp Function2a09c
 ; 2a09c
@@ -25337,20 +25097,20 @@ Function2a09c: ; 2a09c
 	ld c, a
 	hlcoord 0, 0
 	ld de, SCREEN_WIDTH * SCREEN_HEIGHT
-.asm_2a0a7
+.loop
 	ld a, [hli]
 	cp c
-	jr z, .asm_2a0b4
+	jr z, .found
 	dec de
 	ld a, e
 	or d
-	jr nz, .asm_2a0a7
+	jr nz, .loop
 	ld a, c
 	pop de
 	scf
 	ret
 
-.asm_2a0b4
+.found
 	pop de
 	and a
 	ret
@@ -27116,7 +26876,7 @@ Function2c6ac: ; 2c6ac (b:46ac)
 	pop de
 	ret
 
-MysteryGiftGetItem: ; 2c708 (b:4708)
+MysteryGiftGetItemHeldEffect: ; 2c708 (b:4708)
 	ld a, c
 	cp $25 ; 37
 	jr nc, Function2c722
@@ -34150,27 +33910,27 @@ MobileString1: ; 49fcc
 MobileStrings2:
 
 String_0x49fe9: ; 49fe9
-	db   "めいし", $1f, "つくったり"
+	db   "めいし¯つくったり"
 	next "ほぞんしておける フ,ルダーです@"
 ; 4a004
 
 String_0x4a004: ; 4a004
 	db   "モバイルたいせんや じぶんのめいしで"
-	next "つかう あいさつ", $1f, "つくります@"
+	next "つかう あいさつ¯つくります@"
 ; 4a026
 
 String_0x4a026: ; 4a026
-	db   "あなた", $25, "じゅうしょや ねんれいの"
-	next "せ", $1e, "い", $1f, "かえられます@"
+	db   "あなた%じゅうしょや ねんれいの"
+	next "せ", $1e, "い¯かえられます@"
 ; 4a042
 
 String_0x4a042: ; 4a042
 	db  "モバイルセンター", $1d, "せつぞくするとき"
-	next "ひつような こと", $1f, "きめます@"
+	next "ひつような こと¯きめます@"
 ; 4a062
 
 String_0x4a062: ; 4a062
-	db   "まえ", $25, "がめん ", $1d, "もどります"
+	db   "まえ%がめん ", $1d, "もどります"
 	next "@"
 ; 4a071
 
@@ -34378,8 +34138,8 @@ asm_4a19d: ; 4a19d (12:619d)
 ; 4a1ef (12:61ef)
 
 String_4a1ef: ; 4a1ef
-	db   "モバイルセンター", $1f, "えらぶ"
-	next "ログインパスワード", $1f, "いれる"
+	db   "モバイルセンター¯えらぶ"
+	next "ログインパスワード¯いれる"
 	next "もどる@"
 ; 4a20e
 
@@ -34410,13 +34170,13 @@ Function4a239: ; 4a239 (12:6239)
 ; 4a23d (12:623d)
 
 Strings_4a23d: ; 4a23d
-	db   "いつも せつぞく", $1f, "する"
-	next "モバイルセンター", $1f, "えらびます@"
+	db   "いつも せつぞく¯する"
+	next "モバイルセンター¯えらびます@"
 
 	db   "モバイルセンター", $1d, "せつぞくするとき"
-	next "つかうパスワード", $1f, "ほぞんできます@"
+	next "つかうパスワード¯ほぞんできます@"
 
-	db   "まえ", $25, "がめん ", $1d, "もどります@"
+	db   "まえ%がめん ", $1d, "もどります@"
 
 	db   "@"
 ; 4a28a
@@ -34838,14 +34598,14 @@ String_4a5f2: ; 4a5f2
 
 Strings_4a5f6: ; 4a5f6
 	db "めいし や ニュース ", $1d, "のせる@"
-	db "あなた", $25, "あいさつです@"
+	db "あなた%あいさつです@"
 	db "モバイル たいせん", $4a, "はじまるとき@"
 	db "あいて", $1d, "みえる あいさつです@"
 	db "モバイル たいせんで かったとき@"
 	db "あいて", $1d, "みえる あいさつです@"
 	db "モバイル たいせんで まけたとき@"
 	db "あいて", $1d, "みえる あいさつです@"
-	db "まえ", $25, "がめん ", $1d, "もどります@"
+	db "まえ%がめん ", $1d, "もどります@"
 	db "@"
 ; 4a680
 
@@ -38727,8 +38487,8 @@ Function4e307: ; 4e307 (13:6307)
 	push af
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
-	ld de, GFX_f9204
-	lb bc, BANK(GFX_f9204), 1
+	ld de, TextBoxSpaceGFX
+	lb bc, BANK(TextBoxSpaceGFX), 1
 	ld hl, VTiles2 tile $7f
 	call Get2bpp
 	pop af
@@ -52546,7 +52306,7 @@ UnknownText_0x90a6c: ; 90a6c
 	ld a, [hMinutes] ; $ff00+$96
 	ld c, a
 	decoord 1, 14
-	callba Function1dd6bb
+	callba PrintHoursMins
 	ld hl, TextJump_DSTIsThatOK
 	ret
 ; 90a83 (24:4a83)
@@ -52577,7 +52337,7 @@ UnknownText_0x90aa0: ; 90aa0
 	ld a, [hMinutes]
 	ld c, a
 	decoord 1, 14
-	callba Function1dd6bb
+	callba PrintHoursMins
 	ld hl, UnknownText_0x90ab7
 	ret
 ; 90ab7
@@ -53254,7 +53014,7 @@ Function90f86: ; 90f86 (24:4f86)
 	ld a, [hMinutes] ; $ff00+$96
 	ld c, a
 	decoord 6, 8
-	callba Function1dd6bb
+	callba PrintHoursMins
 	ld hl, UnknownText_0x90faf
 	bccoord 6, 6
 	call PlaceWholeStringInBoxAtOnce
@@ -57645,42 +57405,43 @@ ReturnFromMapSetupScript:: ; b8000
 	ld a, [MapNumber]
 	ld c, a
 	call GetWorldMapLocation
-	ld [wc2d9], a
-	call Functionb8089
-	jr z, .asm_b8024
+	ld [wCurrentLandmark], a
+	call .CheckNationalParkGate
+	jr z, .nationalparkgate
 
 	call GetMapPermission
-	cp $6
-	jr nz, .asm_b8029
+	cp GATE
+	jr nz, .not_gate
 
-.asm_b8024
+.nationalparkgate
 	ld a, -1
-	ld [wc2d9], a
+	ld [wCurrentLandmark], a
 
-.asm_b8029
-	ld hl, wd83e
+.not_gate
+	ld hl, wEnteredMapFromContinue
 	bit 1, [hl]
 	res 1, [hl]
-	jr nz, .asm_b8054
+	jr nz, .dont_do_map_sign
 
-	call Functionb8064
-	jr z, .asm_b8054
+	call .CheckMovingWithinLandmark
+	jr z, .dont_do_map_sign
+	ld a, [wCurrentLandmark]
+	ld [wPreviousLandmark], a
 
-	ld a, [wc2d9]
-	ld [wc2d8], a
-	call Functionb8070
-	jr z, .asm_b8054
+	call .CheckSpecialMap
+	jr z, .dont_do_map_sign
 
-	ld a, $3c
-	ld [wc2da], a
-	call Functionb80c6
-	call Functionb80d3
+; Display for 60 frames
+	ld a, 60
+	ld [wLandmarkSignTimer], a
+	call LoadMapNameSignGFX
+	call InitMapNameFrame
 	callba Function104303
 	ret
 
-.asm_b8054
-	ld a, [wc2d9]
-	ld [wc2d8], a
+.dont_do_map_sign
+	ld a, [wCurrentLandmark]
+	ld [wPreviousLandmark], a
 	ld a, $90
 	ld [rWY], a
 	ld [hWY], a
@@ -57689,17 +57450,17 @@ ReturnFromMapSetupScript:: ; b8000
 	ret
 ; b8064
 
-Functionb8064: ; b8064
-	ld a, [wc2d9]
+.CheckMovingWithinLandmark: ; b8064
+	ld a, [wCurrentLandmark]
 	ld c, a
-	ld a, [wc2d8]
+	ld a, [wPreviousLandmark]
 	cp c
 	ret z
 	cp $0
 	ret
 ; b8070
 
-Functionb8070: ; b8070
+.CheckSpecialMap: ; b8070
 	cp -1
 	ret z
 	cp SPECIAL_MAP
@@ -57719,7 +57480,7 @@ Functionb8070: ; b8070
 	ret
 ; b8089
 
-Functionb8089: ; b8089
+.CheckNationalParkGate: ; b8089
 	ld a, [MapGroup]
 	cp GROUP_ROUTE_35_NATIONAL_PARK_GATE
 	ret nz
@@ -57731,26 +57492,27 @@ Functionb8089: ; b8089
 ; b8098
 
 
-Functionb8098:: ; b8098 (2e:4098)
-	ld hl, wc2da
+PlaceMapNameSign:: ; b8098 (2e:4098)
+	ld hl, wLandmarkSignTimer
 	ld a, [hl]
 	and a
-	jr z, .asm_b80bc
+	jr z, .disappear
 	dec [hl]
-	cp $3c
+	cp 60
 	ret z
-	cp $3b
-	jr nz, .asm_b80b3
-	call Functionb80d3
-	call Functionb80e1
+	cp 59
+	jr nz, .skip2
+	call InitMapNameFrame
+	call PlaceMapNameCenterAlign
 	callba Function104303
-.asm_b80b3
+.skip2
 	ld a, $80
 	ld a, $70
 	ld [rWY], a ; $ff00+$4a
 	ld [hWY], a ; $ff00+$d2
 	ret
-.asm_b80bc
+
+.disappear
 	ld a, $90
 	ld [rWY], a ; $ff00+$4a
 	ld [hWY], a ; $ff00+$d2
@@ -57759,30 +57521,30 @@ Functionb8098:: ; b8098 (2e:4098)
 	ret
 
 
-Functionb80c6: ; b80c6
-	ld de, GFX_f9344
+LoadMapNameSignGFX: ; b80c6
+	ld de, MapEntryFrameGFX
 	ld hl, VTiles2 tile $60
-	lb bc, BANK(GFX_f9344), $e
+	lb bc, BANK(MapEntryFrameGFX), $e
 	call Get2bpp
 	ret
 ; b80d3
 
-Functionb80d3: ; b80d3
+InitMapNameFrame: ; b80d3
 	hlcoord 0, 0
-	ld b, $2
-	ld c, $12
-	call Functionb8115
-	call Functionb812f
+	ld b, 2
+	ld c, 18
+	call InitMapSignAttrMap
+	call PlaceMapNameFrame
 	ret
 ; b80e1
 
 
-Functionb80e1: ; b80e1 (2e:40e1)
-	ld a, [wc2d9]
+PlaceMapNameCenterAlign: ; b80e1 (2e:40e1)
+	ld a, [wCurrentLandmark]
 	ld e, a
 	callba GetLandmarkName
-	call Functionb8101
-	ld a, $14
+	call .GetNameLength
+	ld a, SCREEN_WIDTH
 	sub c
 	srl a
 	ld b, $0
@@ -57793,15 +57555,15 @@ Functionb80e1: ; b80e1 (2e:40e1)
 	call PlaceString
 	ret
 
-Functionb8101: ; b8101 (2e:4101)
-	ld c, $0
+.GetNameLength: ; b8101 (2e:4101)
+	ld c, 0
 	push hl
 	ld hl, StringBuffer1
 .loop
 	ld a, [hli]
-	cp $50
+	cp "@"
 	jr z, .stop
-	cp $25
+	cp "%"
 	jr z, .loop
 	inc c
 	jr .loop
@@ -57810,7 +57572,7 @@ Functionb8101: ; b8101 (2e:4101)
 	ret
 
 
-Functionb8115: ; b8115
+InitMapSignAttrMap: ; b8115
 	ld de, AttrMap - TileMap
 	add hl, de
 rept 2
@@ -57836,34 +57598,34 @@ endr
 	ret
 ; b812f
 
-Functionb812f: ; b812f
+PlaceMapNameFrame: ; b812f
 	hlcoord 0, 0
 	ld a, $61
 	ld [hli], a
 	ld a, $62
-	call .Fill5Words
+	call .FillTopBottom
 	ld a, $64
 	ld [hli], a
 	ld a, $65
 	ld [hli], a
-	call .Fill18Bytes
+	call .FillLeftRight
 	ld a, $6b
 	ld [hli], a
 	ld a, $66
 	ld [hli], a
-	call .Fill18Bytes
+	call .FillLeftRight
 	ld a, $6c
 	ld [hli], a
 	ld a, $67
 	ld [hli], a
 	ld a, $68
-	call .Fill5Words
+	call .FillTopBottom
 	ld a, $6a
 	ld [hl], a
 	ret
 ; b815b
 
-.Fill18Bytes: ; b815b
+.FillLeftRight: ; b815b
 	ld c, 18
 	ld a, $6d
 .loop
@@ -57873,7 +57635,7 @@ Functionb812f: ; b812f
 	ret
 ; b8164
 
-.Fill5Words: ; b8164
+.FillTopBottom: ; b8164
 	ld c, 5
 	jr .enterloop
 
@@ -68976,28 +68738,28 @@ TownMapGFX: ; f8ba0
 INCBIN "gfx/misc/town_map.2bpp.lz"
 ; f8ea4
 
-GFX_f8ea4: ; f8ea4
+GFX_f8ea4: ; unused
 INCBIN "gfx/unknown/0f8ea4.2bpp"
 ; f8f24
 
-GFX_f8f24: ; f8f24
-INCBIN "gfx/unknown/0f8f24.2bpp"
+OverworldPhoneIconGFX: ; f8f24
+INCBIN "gfx/mobile/overworld_phone_icon.2bpp"
 ; f8f34
 
-GFX_f8f34: ; f8f34
+GFX_f8f34: ; unused
 INCBIN "gfx/unknown/0f8f34.2bpp"
 ; f9204
 
-GFX_f9204: ; f9204
-INCBIN "gfx/unknown/0f9204.2bpp"
+TextBoxSpaceGFX: ; f9204
+INCBIN "gfx/frames/space.2bpp"
 ; f9214
 
-GFX_f9214: ; f9214
-INCBIN "gfx/unknown/0f9214.2bpp"
+MobilePhoneTilesGFX: ; f9214
+INCBIN "gfx/mobile/phone_tiles.2bpp"
 ; f9344
 
-GFX_f9344: ; f9344
-INCBIN "gfx/unknown/0f9344.2bpp"
+MapEntryFrameGFX: ; f9344
+INCBIN "gfx/frames/map_entry_sign.2bpp"
 ; f9424
 
 GFX_f9424: ; f9424
@@ -69055,13 +68817,13 @@ _LoadStandardFont:: ; fb449
 ; fb48a
 
 _LoadFontsExtra1:: ; fb48a
-	ld de, GFX_f9214
+	ld de, MobilePhoneTilesGFX
 	ld hl, VTiles2 tile $60
-	lb bc, BANK(GFX_f9214), 1
+	lb bc, BANK(MobilePhoneTilesGFX), 1
 	call Get1bpp_2
-	ld de, GFX_f8f24
+	ld de, OverworldPhoneIconGFX
 	ld hl, VTiles2 tile $62
-	lb bc, BANK(GFX_f8f24), 1
+	lb bc, BANK(OverworldPhoneIconGFX), 1
 	call Get2bpp_2
 	ld de, FontExtra + 3 * LEN_2BPP_TILE
 	ld hl, VTiles2 tile $63
@@ -69099,13 +68861,13 @@ LoadFrame: ; fb4cc
 	lb bc, BANK(Frames), TILES_PER_FRAME
 	call Get1bpp_2
 	ld hl, VTiles2 tile $7f
-	ld de, GFX_f9204
-	lb bc, BANK(GFX_f9204), 1
+	ld de, TextBoxSpaceGFX
+	lb bc, BANK(TextBoxSpaceGFX), 1
 	call Get1bpp_2
 	ret
 ; fb4f2
 
-Functionfb4f2: ; fb4f2
+LoadBattleFontsHPBar: ; fb4f2
 	ld de, FontBattleExtra
 	ld hl, VTiles2 tile $60
 	lb bc, BANK(FontBattleExtra), $c
@@ -69116,7 +68878,7 @@ Functionfb4f2: ; fb4f2
 	call Get2bpp_2
 	call LoadFrame
 
-Functionfb50d: ; fb50d
+LoadHPBar: ; fb50d
 	ld de, EnemyHPBarBorderGFX
 	ld hl, VTiles2 tile $6c
 	lb bc, BANK(EnemyHPBarBorderGFX), 4
@@ -69129,9 +68891,9 @@ Functionfb50d: ; fb50d
 	ld hl, VTiles2 tile $55
 	lb bc, BANK(ExpBarGFX), 9
 	call Get2bpp_2
-	ld de, GFX_f9214 + 9 * LEN_2BPP_TILE
+	ld de, MobilePhoneTilesGFX + 9 * LEN_2BPP_TILE
 	ld hl, VTiles2 tile $5e
-	lb bc, BANK(GFX_f9214), 2
+	lb bc, BANK(MobilePhoneTilesGFX), 2
 	call Get2bpp_2
 	ret
 ; fb53e
@@ -72022,7 +71784,7 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	call GetMysteryGiftBank
 	ld a, [wc910]
 	ld c, a
-	callba MysteryGiftGetItem
+	callba MysteryGiftGetItemHeldEffect
 	ld a, c
 	ld [s0_abe4], a
 	ld [wNamedObjectIndexBuffer], a
@@ -73405,10 +73167,10 @@ asm_105726: ; 105726 (41:5726)
 ; 10572e (41:572e)
 
 String_10572e: ; 10572e
-	db   "エーボタン", $1f, "おすと"
+	db   "エーボタン¯おすと"
 	next "つうしん",   $4a, "おこなわれるよ!"
-	next "ビーボタン", $1f, "おすと"
-	next "つうしん",   $1f, "ちゅうし します"
+	next "ビーボタン¯おすと"
+	next "つうしん¯ちゅうし します"
 	db   "@"
 
 ; 10575e
@@ -74966,9 +74728,9 @@ Function106463: ; 106463
 ; 106464
 
 Function106464:: ; 106464
-	ld de, GFX_f9214
+	ld de, MobilePhoneTilesGFX
 	ld hl, VTiles2 tile $60
-	lb bc, BANK(GFX_f9214), 1
+	lb bc, BANK(MobilePhoneTilesGFX), 1
 	call Get2bpp
 	ld de, GFX_f9424
 	ld hl, VTiles2 tile $61
@@ -74996,13 +74758,13 @@ Function10649b: ; 10649b
 	ld d, h
 	ld e, l
 	ld hl, VTiles2 tile $79
-	ld c, $6
+	ld c, 6
 	ld b, BANK(Frames)
 	call Function1064c3
 	ld hl, VTiles2 tile $7f
-	ld de, GFX_f9204
-	ld c, $1
-	ld b, BANK(GFX_f9204)
+	ld de, TextBoxSpaceGFX
+	ld c, 1
+	ld b, BANK(TextBoxSpaceGFX)
 	call Function1064c3
 	ret
 ; 1064c3
@@ -75059,8 +74821,8 @@ asm_1064ed
 ; 10650a
 
 Function10650a: ; 10650a
-	ld de, GFX_f9214 + $20
-	lb bc, BANK(GFX_f9214), $11
+	ld de, MobilePhoneTilesGFX + $20
+	lb bc, BANK(MobilePhoneTilesGFX), $11
 	call Get2bpp
 	ret
 ; 106514
@@ -75591,30 +75353,32 @@ Function1dd6a9: ; 1dd6a9
 	ret
 ; 1dd6bb
 
-Function1dd6bb: ; 1dd6bb (77:56bb)
+PrintHoursMins ; 1dd6bb (77:56bb)
+; Hours in b, minutes in c
 	ld a, b
 	cp 12
 	push af
-	jr c, .asm_1dd6c7
-	jr z, .asm_1dd6cc
-	sub $c
-	jr .asm_1dd6cc
-.asm_1dd6c7
+	jr c, .AM
+	jr z, .PM
+	sub 12
+	jr .PM
+.AM
 	or a
-	jr nz, .asm_1dd6cc
-	ld a, $c
-.asm_1dd6cc
+	jr nz, .PM
+	ld a, 12
+.PM
 	ld b, a
+; Crazy stuff happening with the stack
 	push bc
 	ld hl, [sp+$1]
 	push de
 	push hl
 	pop de
 	pop hl
-	ld [hl], $7f
+	ld [hl], " "
 	lb bc, 1, 2
 	call PrintNum
-	ld [hl], $9c
+	ld [hl], ":"
 	inc hl
 	ld d, h
 	ld e, l
@@ -75628,9 +75392,9 @@ Function1dd6bb: ; 1dd6bb (77:56bb)
 	pop bc
 	ld de, String_AM
 	pop af
-	jr c, .asm_1dd6f7
+	jr c, .place_am_pm
 	ld de, String_PM
-.asm_1dd6f7
+.place_am_pm
 	inc hl
 	call PlaceString
 	ret

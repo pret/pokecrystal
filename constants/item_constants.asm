@@ -318,6 +318,7 @@ const_value SET 30
 	const HELD_SP_DEFENSE_UP
 	const HELD_ACCURACY_UP
 	const HELD_EVASION_UP
+	const HELD_38
 
 const_value SET 40
 	const HELD_40

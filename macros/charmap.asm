@@ -2,8 +2,10 @@
 	charmap "<START>",  $00
 	charmap "<PLAY_G>", $14 ; <PLAYER> + gender
 	charmap "<DAY>",    $15
+	charmap "¯",        $1f
 	charmap "<LNBRK>",  $22
 	charmap "<POKE>",   $24
+	charmap "%",        $25
 	charmap "<RED>",    $38
 	charmap "<GREEN>",  $39
 	charmap "<ENEMY>",  $3f
@@ -31,6 +33,7 @@
 	charmap "<DEXEND>", $5f
 
 ; Actual characters
+	charmap "▲",        $61
 	charmap "_",        $62
 	charmap "′",        $6e
 	charmap "<LV>",     $6e
