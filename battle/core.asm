@@ -8831,43 +8831,47 @@ Function3f77c: ; 3f77c
 	callba CheckMobileBattleError
 	jp c, Function3f80f
 	call Function3f830
-	jr nz, .asm_3f797
+	jr nz, .proceed
 	ld hl, wcd2a
 	bit 4, [hl]
-	jr z, .asm_3f797
+	jr z, .proceed
 	callba Function2b930
 
-.asm_3f797
+.proceed
 	ld a, [wBattleResult]
 	and $f
 	cp $1
-	jr c, .asm_3f7ad
-	jr z, .asm_3f7b8
+	jr c, .victory
+	jr z, .loss
 	callba MobileFn_106107
 	ld de, .Draw
-	jr .asm_3f7c3
+	jr .store_result
 
-.asm_3f7ad
+.victory
 	callba MobileFn_1060fb
 	ld de, .Win
-	jr .asm_3f7c3
+	jr .store_result
 
-.asm_3f7b8
+.loss
 	callba MobileFn_106101
 	ld de, .Lose
-	jr .asm_3f7c3
+	jr .store_result
 
-.asm_3f7c3
+.store_result
 	hlcoord 6, 8
 	call PlaceString
 	callba BackupMobileEventIndex
-	ld c, $c8
+	ld c, 200
 	call DelayFrames
+
 	ld a, BANK(sLinkBattleStats)
 	call GetSRAMBank
+
 	call Function3fa42
 	call Function3f85f
+
 	call CloseSRAM
+
 	call Function3f830
 	jr z, .asm_3f7ee
 	call Functiona80
@@ -8875,7 +8879,7 @@ Function3f77c: ; 3f77c
 	ret
 
 .asm_3f7ee
-	ld c, $c8
+	ld c, 200
 	call DelayFrames
 	call ClearTileMap
 	ret
@@ -9178,16 +9182,16 @@ GetRoamMonSpecies: ; 3fa31
 Function3fa42: ; 3fa42
 	ld hl, wd276
 	ld de, StringBuffer1
-	ld bc, $0002
+	ld bc, 2
 	call CopyBytes
 	ld hl, wd26b
-	ld bc, $000a
+	ld bc, 10
 	call CopyBytes
-	ld hl, $b254
+	ld hl, s1_b254
 	call Function3faa0
-	ld hl, $b266
-	ld d, $5
-.asm_3fa62
+	ld hl, s1_b266
+	ld d, 5
+.loop
 	push hl
 rept 2
 	inc hl
@@ -9197,38 +9201,38 @@ rept 2
 	dec hl
 endr
 	and a
-	jr z, .asm_3fa85
+	jr z, .copy
 	push de
-	ld bc, $000c
+	ld bc, 12
 	ld de, StringBuffer1
 	call CompareLong
 	pop de
 	pop hl
-	jr c, .asm_3fa99
-	ld bc, $0012
+	jr c, .done
+	ld bc, 18
 	add hl, bc
 	dec d
-	jr nz, .asm_3fa62
+	jr nz, .loop
 	ld bc, -18
 	add hl, bc
 	push hl
 
-.asm_3fa85
+.copy
 	ld d, h
 	ld e, l
 	ld hl, StringBuffer1
-	ld bc, $000c
+	ld bc, 12
 	call CopyBytes
-	ld b, $6
+	ld b, 6
 	xor a
-.asm_3fa93
+.loop2
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_3fa93
+	jr nz, .loop2
 	pop hl
 
-.asm_3fa99
+.done
 	call Function3faa0
 	call Function3fac8
 	ret
@@ -9238,13 +9242,13 @@ Function3faa0: ; 3faa0
 	ld a, [wBattleResult]
 	and $f
 	cp $1
-	ld bc, $000d
-	jr c, .asm_3fab4
-	ld bc, $000f
-	jr z, .asm_3fab4
-	ld bc, $0011
+	ld bc, 13
+	jr c, .okay
+	ld bc, 15
+	jr z, .okay
+	ld bc, 17
 
-.asm_3fab4
+.okay
 	add hl, bc
 	call Function3fabe
 	ret nc
@@ -9268,9 +9272,9 @@ Function3fabe: ; 3fabe
 
 Function3fac8: ; 3fac8
 	ld b, $5
-	ld hl, $b277
+	ld hl, s1_b277
 	ld de, DefaultFlypoint
-.asm_3fad0
+.loop
 	push bc
 	push de
 	push hl
@@ -9286,14 +9290,14 @@ Function3fac8: ; 3fac8
 	ld a, c
 	ld [de], a
 	inc de
-	ld bc, $0012
+	ld bc, 18
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .asm_3fad0
+	jr nz, .loop
 	ld b, $0
 	ld c, $1
-.asm_3faed
+.loop2
 	ld a, b
 rept 2
 	add b
@@ -9318,45 +9322,45 @@ endr
 	ld c, $3
 	call StringCmp
 	pop bc
-	jr z, .asm_3fb10
-	jr nc, .asm_3fb1f
+	jr z, .equal
+	jr nc, .done
 
-.asm_3fb10
+.equal
 	inc c
 	ld a, c
 	cp $5
-	jr nz, .asm_3faed
+	jr nz, .loop2
 	inc b
 	ld c, b
 	inc c
 	ld a, b
 	cp $4
-	jr nz, .asm_3faed
+	jr nz, .loop2
 	ret
 
-.asm_3fb1f
+.done
 	push bc
 	ld a, b
-	ld bc, $0012
-	ld hl, $b266
+	ld bc, 18
+	ld hl, s1_b266
 	call AddNTimes
 	push hl
 	ld de, DefaultFlypoint
-	ld bc, $0012
+	ld bc, 18
 	call CopyBytes
 	pop hl
 	pop bc
 	push hl
 	ld a, c
-	ld bc, $0012
-	ld hl, $b266
+	ld bc, 18
+	ld hl, s1_b266
 	call AddNTimes
 	pop de
 	push hl
-	ld bc, $0012
+	ld bc, 18
 	call CopyBytes
 	ld hl, DefaultFlypoint
-	ld bc, $0012
+	ld bc, 18
 	pop de
 	call CopyBytes
 	ret
@@ -9374,10 +9378,10 @@ Function3fb54: ; 3fb54
 	ld a, [hld]
 	adc b
 	ld b, a
-	jr nc, .asm_3fb63
+	jr nc, .okay
 	inc e
 
-.asm_3fb63
+.okay
 	ld a, [hld]
 	add c
 	ld c, a
@@ -9439,14 +9443,17 @@ Function3fbd6: ; 3fbd6
 	push af
 	ld a, $6
 	ld [rSVBK], a
+
 	ld hl, w6_d000
-	ld bc, $400
-	ld a, $7f
+	ld bc, w6_d400 - w6_d000
+	ld a, " "
 	call ByteFill
+
 	ld de, w6_d000
 	ld hl, VBGMap0
 	lb bc, BANK(Function3fbd6), $40
 	call Request2bpp
+
 	pop af
 	ld [rSVBK], a
 	ret

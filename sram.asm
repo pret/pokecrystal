@@ -81,13 +81,17 @@ s1_ad0f::     ds 1
 	box sBox
 ; b160
 
-	ds $100
+	ds $f4
+s1_b254:: ds $c
 
 sLinkBattleStats:: ; b260
 sLinkBattleWins::   ds 2
-sLinkBattleLosses:: ds 2
-sLinkBattleDraws::  ds 2
-	ds 90
+sLinkBattleLosses:: ds 2 ; b262
+sLinkBattleDraws::  ds 2 ; b264
+s1_b266::
+	ds 17
+s1_b277::
+	ds 73
 sLinkBattleStatsEnd::
 
 sHallOfFame:: ; b2c0
