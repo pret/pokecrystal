@@ -3642,15 +3642,15 @@ LoadEnemyPkmnToSwitchTo: ; 3d6ca
 
 	ld a, [CurPartySpecies]
 	cp UNOWN
-	jr nz, .asm_3d708
+	jr nz, .skip_unown
 	ld a, [wdef4]
 	and a
-	jr nz, .asm_3d708
+	jr nz, .skip_unown
 	ld hl, EnemyMonDVs
 	predef GetUnownLetter
 	ld a, [UnownLetter]
 	ld [wdef4], a
-.asm_3d708
+.skip_unown
 
 	ld hl, EnemyMonHP
 	ld a, [hli]
@@ -8630,13 +8630,13 @@ InitEnemyWildmon: ; 3f607
 	predef GetUnownLetter
 	ld a, [CurPartySpecies]
 	cp UNOWN
-	jr nz, .asm_3f648
+	jr nz, .skip_unown
 	ld a, [wdef4]
 	and a
-	jr nz, .asm_3f648
+	jr nz, .skip_unown
 	ld a, [UnownLetter]
 	ld [wdef4], a
-.asm_3f648
+.skip_unown
 	ld de, VTiles2
 	predef Function5108b
 	xor a
