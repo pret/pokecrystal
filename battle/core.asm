@@ -8473,7 +8473,7 @@ StartBattle: ; 3f4c1
 
 	ld a, [TimeOfDayPal]
 	push af
-	call Function3f4dd
+	call BattleIntro
 	call Function3c000
 	call Function3f69e
 	pop af
@@ -8489,7 +8489,7 @@ Function3f4d9: ; 3f4d9
 ; 3f4dd
 
 
-Function3f4dd: ; 3f4dd
+BattleIntro: ; 3f4dd
 	callba MobileFn_106050 ; mobile
 	call LoadTrainerOrWildMonPic
 	xor a
@@ -8508,7 +8508,7 @@ Function3f4dd: ; 3f4dd
 	call GetSGBLayout
 	ld hl, rLCDC
 	res 6, [hl]
-	call Function3fb6c
+	call InitBattleDisplay
 	call BattleStartMessage
 	ld hl, rLCDC
 	set 6, [hl]
@@ -9393,8 +9393,8 @@ Function3fb54: ; 3fb54
 	ret
 ; 3fb6c
 
-Function3fb6c: ; 3fb6c
-	call Function3fbf8
+InitBattleDisplay: ; 3fb6c
+	call .InitBackPic
 	hlcoord 0, 12
 	ld b, 4
 	ld c, 18
@@ -9405,7 +9405,7 @@ Function3fb6c: ; 3fb6c
 	call ClearBox
 	call LoadStandardFont
 	call _LoadBattleFontsHPBar
-	call Function3fbd6
+	call .BlankBGMap
 	xor a
 	ld [hMapAnims], a
 	ld [hSCY], a
@@ -9415,7 +9415,7 @@ Function3fb6c: ; 3fb6c
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
-	callba Function4e980
+	callba SlideBattlePics
 	ld a, $1
 	ld [hBGMapMode], a
 	ld a, $31
@@ -9438,7 +9438,7 @@ Function3fb6c: ; 3fb6c
 	ret
 ; 3fbd6
 
-Function3fbd6: ; 3fbd6
+.BlankBGMap: ; 3fbd6
 	ld a, [rSVBK]
 	push af
 	ld a, $6
@@ -9451,7 +9451,7 @@ Function3fbd6: ; 3fbd6
 
 	ld de, w6_d000
 	ld hl, VBGMap0
-	lb bc, BANK(Function3fbd6), $40
+	lb bc, BANK(.BlankBGMap), $40
 	call Request2bpp
 
 	pop af
@@ -9459,7 +9459,7 @@ Function3fbd6: ; 3fbd6
 	ret
 ; 3fbf8
 
-Function3fbf8: ; 3fbf8
+.InitBackPic: ; 3fbf8
 	call GetTrainerBackpic
 	call CopyBackpic
 	ret

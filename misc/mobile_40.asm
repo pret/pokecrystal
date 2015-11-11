@@ -4039,7 +4039,7 @@ Function101a21: ; 101a21
 	ld [hl], a
 	ld a, $1
 	ld [wc2d7], a
-	callba Function3f4dd
+	callba BattleIntro
 	callba Function3c000
 	callba Function3f759
 	xor a
