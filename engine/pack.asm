@@ -67,7 +67,7 @@ Function10067: ; 10067 (4:4067)
 	ld [wMenuCursorBuffer], a
 	ld a, [wd0df]
 	ld [wd0e4], a
-	call Function350c
+	call HandleScrollingMenu
 	ld a, [wd0e4]
 	ld [wd0df], a
 	ld a, [MenuSelection2]
@@ -95,7 +95,7 @@ Function100a6: ; 100a6 (4:40a6)
 	ld [wMenuCursorBuffer], a
 	ld a, [wd0e0]
 	ld [wd0e4], a
-	call Function350c
+	call HandleScrollingMenu
 	ld a, [wd0e4]
 	ld [wd0e0], a
 	ld a, [MenuSelection2]
@@ -225,7 +225,7 @@ Function10198: ; 10198 (4:4198)
 	ld [wMenuCursorBuffer], a
 	ld a, [wd0e1]
 	ld [wd0e4], a
-	call Function350c
+	call HandleScrollingMenu
 	ld a, [wd0e4]
 	ld [wd0e1], a
 	ld a, [MenuSelection2]
@@ -725,7 +725,7 @@ Function104fa: ; 104fa (4:44fa)
 	ld [wMenuCursorBuffer], a
 	ld a, [wd0df]
 	ld [wd0e4], a
-	call Function350c
+	call HandleScrollingMenu
 	ld a, [wd0e4]
 	ld [wd0df], a
 	ld a, [MenuSelection2]
@@ -753,7 +753,7 @@ Function10539: ; 10539 (4:4539)
 	ld [wMenuCursorBuffer], a
 	ld a, [wd0e0]
 	ld [wd0e4], a
-	call Function350c
+	call HandleScrollingMenu
 	ld a, [wd0e4]
 	ld [wd0e0], a
 	ld a, [MenuSelection2]
@@ -804,7 +804,7 @@ Function105a6: ; 105a6 (4:45a6)
 	ld [wMenuCursorBuffer], a
 	ld a, [wd0e1]
 	ld [wd0e4], a
-	call Function350c
+	call HandleScrollingMenu
 	ld a, [wd0e4]
 	ld [wd0e1], a
 	ld a, [MenuSelection2]
@@ -1010,7 +1010,7 @@ Jumptable_106d1: ; 106d1 (4:46d1)
 	ld [wMenuCursorBuffer], a
 	ld a, [wd0df]
 	ld [wd0e4], a
-	call Function350c
+	call HandleScrollingMenu
 	ld a, [wd0e4]
 	ld [wd0df], a
 	ld a, [MenuSelection2]
@@ -1026,7 +1026,7 @@ Jumptable_106d1: ; 106d1 (4:46d1)
 	ld [wMenuCursorBuffer], a
 	ld a, [wd0e0]
 	ld [wd0e4], a
-	call Function350c
+	call HandleScrollingMenu
 	ld a, [wd0e4]
 	ld [wd0e0], a
 	ld a, [MenuSelection2]
@@ -1051,7 +1051,7 @@ Jumptable_106d1: ; 106d1 (4:46d1)
 	ld [wMenuCursorBuffer], a
 	ld a, [wd0e1]
 	ld [wd0e4], a
-	call Function350c
+	call HandleScrollingMenu
 	ld a, [wd0e4]
 	ld [wd0e1], a
 	ld a, [MenuSelection2]
@@ -1237,7 +1237,7 @@ Function1085a: ; 1085a (4:485a)
 	call InitPocket
 	pop hl
 	call CopyMenuDataHeader
-	call Function350c
+	call HandleScrollingMenu
 	ret
 
 Function10866: ; 10866 (4:4866)

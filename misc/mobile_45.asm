@@ -5588,14 +5588,14 @@ INCBIN "gfx/unknown/11601a.2bpp"
 Function11615a: ; 11615a
 	xor a
 	ld [wc30d], a
-	ld [wPartyMonMenuIconAnims + 5], a
+	ld [wc314 + 5], a
 	ld [wc310], a
 	ld [wc311], a
 	ld [wc312], a
 	ld [wc313], a
-	ld [wPartyMonMenuIconAnims], a
-	ld [wPartyMonMenuIconAnims + 1], a
-	ld [wPartyMonMenuIconAnims + 4], a
+	ld [wc314], a
+	ld [wc314 + 1], a
+	ld [wc314 + 4], a
 	ld [wc3f6], a
 	ld [wc3f8], a
 	ld [wc3f2], a
@@ -5617,7 +5617,7 @@ Function11619d: ; 11619d
 	ld a, [wc30d]
 	and a
 	ret z
-	ld a, [wPartyMonMenuIconAnims + 5]
+	ld a, [wc314 + 5]
 	cp $2
 	jr c, .asm_1161b4
 	ld a, $a0
@@ -5631,7 +5631,7 @@ Function11619d: ; 11619d
 ; 1161b8
 
 Function1161b8: ; 1161b8
-	ld a, [wPartyMonMenuIconAnims + 5]
+	ld a, [wc314 + 5]
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_1161c7
@@ -5758,9 +5758,9 @@ Function1161d5: ; 1161d5
 	ld [wc2a9], a
 	ld a, d
 	ld [wc2aa], a
-	ld a, [wPartyMonMenuIconAnims + 5]
+	ld a, [wc314 + 5]
 	inc a
-	ld [wPartyMonMenuIconAnims + 5], a
+	ld [wc314 + 5], a
 	ret
 ; 11628c
 
@@ -5774,15 +5774,15 @@ MenuDataHeader_11628c: ; 11628c
 
 Function116294: ; 116294
 	callba Function170d02
-	ld a, [wPartyMonMenuIconAnims + 5]
+	ld a, [wc314 + 5]
 	inc a
-	ld [wPartyMonMenuIconAnims + 5], a
+	ld [wc314 + 5], a
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, wd030
-	ld de, wPartyMonMenuIconAnims + 12
+	ld de, wc314 + 12
 	ld bc, $0010
 	call CopyBytes
 	ld hl, Palette_11734e
@@ -5799,9 +5799,9 @@ Function116294: ; 116294
 
 Function1162cb: ; 1162cb
 	callba Function170cc6
-	ld a, [wPartyMonMenuIconAnims + 5]
+	ld a, [wc314 + 5]
 	inc a
-	ld [wPartyMonMenuIconAnims + 5], a
+	ld [wc314 + 5], a
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -5838,7 +5838,7 @@ Function1162f2: ; 1162f2
 	ld c, a
 	ld a, [wc30f]
 	ld b, a
-	ld a, [wPartyMonMenuIconAnims + 4]
+	ld a, [wc314 + 4]
 	ld e, a
 	ld a, [hli]
 	sub e
@@ -5939,7 +5939,7 @@ Function11636e: ; 11636e
 	xor a
 	ld [wc2aa], a
 	xor a
-	ld [wPartyMonMenuIconAnims + 5], a
+	ld [wc314 + 5], a
 	ld [wc30d], a
 	ret
 ; 1163c0
@@ -5961,7 +5961,7 @@ Function1163c0: ; 1163c0
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, wPartyMonMenuIconAnims + 12
+	ld hl, wc314 + 12
 	ld de, wd030
 	ld bc, $0010
 	call CopyBytes
@@ -5997,7 +5997,7 @@ Function1163c0: ; 1163c0
 
 .asm_116439
 	xor a
-	ld [wPartyMonMenuIconAnims + 5], a
+	ld [wc314 + 5], a
 	ld [wc30d], a
 	ret
 ; 116441
@@ -6014,14 +6014,14 @@ Function116441: ; 116441
 	xor a
 	ld [wc2aa], a
 	xor a
-	ld [wPartyMonMenuIconAnims + 5], a
+	ld [wc314 + 5], a
 	ld [wc30d], a
 	ret
 ; 116468
 
 Function116468: ; 116468
 	call Function116567
-	ld a, [wPartyMonMenuIconAnims]
+	ld a, [wc314]
 	cp $d
 	jr nz, .asm_1164a8
 	ld hl, wc30e
@@ -6213,7 +6213,7 @@ Function116567: ; 116567
 ; 11659d
 
 Function11659d: ; 11659d
-	ld a, [wPartyMonMenuIconAnims]
+	ld a, [wc314]
 	cp $12
 	ret nc
 	ld e, a
@@ -6289,7 +6289,7 @@ Function116600:
 	call Function116780
 	ret c
 	ld a, $2
-	ld [wPartyMonMenuIconAnims], a
+	ld [wc314], a
 	ret
 ; 116615
 
@@ -6332,24 +6332,24 @@ Function116640:
 	call Function116780
 	ret c
 	ld a, $7
-	ld [wPartyMonMenuIconAnims], a
+	ld [wc314], a
 	ret
 ; 116655
 
 Function116655: ; 116655
 	xor a
-	ld [wPartyMonMenuIconAnims + 3], a
+	ld [wc314 + 3], a
 	call Function11678e
 
 Function11665c:
-	ld hl, wPartyMonMenuIconAnims + 3
+	ld hl, wc314 + 3
 	ld a, $1
 	xor [hl]
 	ld [hl], a
 	add $4
 	ld c, a
 	call Function11679c
-	ld a, [wPartyMonMenuIconAnims + 3]
+	ld a, [wc314 + 3]
 	and a
 	jr nz, .asm_116673
 	ld a, $48
@@ -6378,7 +6378,7 @@ Function11668d:
 	call Function116780
 	ret c
 	ld a, $c
-	ld [wPartyMonMenuIconAnims], a
+	ld [wc314], a
 	ret
 ; 11669f
 
@@ -6393,9 +6393,9 @@ Function1166a2:
 	ld [wc30f], a
 	ld [wc3f3], a
 	ld a, $ff
-	ld [wPartyMonMenuIconAnims + 2], a
+	ld [wc314 + 2], a
 	xor a
-	ld [wPartyMonMenuIconAnims + 3], a
+	ld [wc314 + 3], a
 	ld a, $0
 	ld c, a
 	call Function11679c
@@ -6417,25 +6417,25 @@ Function1166d6:
 	cp $48
 	jr nz, .asm_1166e4
 	xor a
-	ld [wPartyMonMenuIconAnims + 2], a
+	ld [wc314 + 2], a
 
 .asm_1166e4
 	ld a, [wc311]
 	cp $ff
 	ret nz
 	ld a, $4
-	ld [wPartyMonMenuIconAnims + 5], a
+	ld [wc314 + 5], a
 	xor a
-	ld [wPartyMonMenuIconAnims], a
+	ld [wc314], a
 	ret
 ; 1166f4
 
 Function1166f4: ; 1166f4
 	ld [wc30e], a
 	ld a, b
-	ld [wPartyMonMenuIconAnims + 2], a
+	ld [wc314 + 2], a
 	xor a
-	ld [wPartyMonMenuIconAnims + 3], a
+	ld [wc314 + 3], a
 	ld hl, wc30f
 .asm_116702
 	call Random
@@ -6460,9 +6460,9 @@ Function1166f4: ; 1166f4
 Function11671f: ; 11671f
 	ld [wc30f], a
 	ld a, b
-	ld [wPartyMonMenuIconAnims + 3], a
+	ld [wc314 + 3], a
 	xor a
-	ld [wPartyMonMenuIconAnims + 2], a
+	ld [wc314 + 2], a
 	ld hl, wc30e
 .asm_11672d
 	call Random
@@ -6482,11 +6482,11 @@ Function11671f: ; 11671f
 
 Function116747: ; 116747
 	ld hl, wc30e
-	ld a, [wPartyMonMenuIconAnims + 2]
+	ld a, [wc314 + 2]
 	add [hl]
 	ld [hl], a
 	ld hl, wc30f
-	ld a, [wPartyMonMenuIconAnims + 3]
+	ld a, [wc314 + 3]
 	add [hl]
 	ld [hl], a
 	ret
@@ -6518,7 +6518,7 @@ Function116758: ; 116758
 	ld a, $4
 
 .asm_11677a
-	ld [wPartyMonMenuIconAnims + 4], a
+	ld [wc314 + 4], a
 	ret
 ; 11677e
 
@@ -6526,11 +6526,11 @@ Function11677e: ; 11677e
 	ld a, $0
 
 Function116780:
-	ld hl, wPartyMonMenuIconAnims + 1
+	ld hl, wc314 + 1
 	cp [hl]
 	jr z, .asm_11678c
 	ld a, [hl]
-	ld [wPartyMonMenuIconAnims], a
+	ld [wc314], a
 	scf
 	ret
 
@@ -6540,15 +6540,15 @@ Function116780:
 ; 11678e
 
 Function11678e: ; 11678e
-	ld hl, wPartyMonMenuIconAnims
+	ld hl, wc314
 	ld a, [hl]
-	ld [wPartyMonMenuIconAnims + 1], a
+	ld [wc314 + 1], a
 	inc [hl]
 	ret
 ; 116797
 
 Function116797: ; 116797
-	ld hl, wPartyMonMenuIconAnims
+	ld hl, wc314
 	inc [hl]
 	ret
 ; 11679c

@@ -828,7 +828,7 @@ Function8b7bd: ; 8b7bd
 	call Function8b75d
 	call UpdateSprites
 	call Function89209
-	call Function350c
+	call HandleScrollingMenu
 	call Function8920f
 	ld a, [wcf73]
 	cp $2

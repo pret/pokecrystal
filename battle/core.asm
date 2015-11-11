@@ -7389,6 +7389,7 @@ FinishBattleAnim: ; 3ee27
 
 GiveExperiencePoints: ; 3ee3b
 ; Give experience.
+; Don't give experience if linked or in the Battle Tower.
 	ld a, [wLinkMode]
 	and a
 	ret nz
@@ -7499,20 +7500,20 @@ endr
 	jr z, .no_boost
 
 .boosted
-	call DoubleExp
+	call BoostExp
 	ld a, $1
 
 .no_boost
 	ld [StringBuffer2 + 2], a
 	ld a, [wBattleMode]
 	dec a
-	call nz, DoubleExp
+	call nz, BoostExp
 	push bc
 	ld a, MON_ITEM
 	call GetPartyParamLocation
 	ld a, [hl]
 	cp LUCKY_EGG
-	call z, DoubleExp
+	call z, BoostExp
 	ld a, [hQuotient + 2]
 	ld [StringBuffer2 + 1], a
 	ld a, [hQuotient + 1]
@@ -7796,14 +7797,18 @@ Function3f0d4: ; 3f0d4
 	ret
 ; 3f106
 
-DoubleExp: ; 3f106
+BoostExp: ; 3f106
+; Multiply experience by 1.5x
 	push bc
+; load experience value
 	ld a, [hProduct + 2]
 	ld b, a
 	ld a, [hProduct + 3]
 	ld c, a
+; halve it
 	srl b
 	rr c
+; add it back to the whole exp value
 	add c
 	ld [hProduct + 3], a
 	ld a, [hProduct + 2]

@@ -319,7 +319,7 @@ Function8bec: ; 8bec
 	ld a, [EnemySafeguardCount]
 	and $3
 	call Function9663
-	call Function323d
+	call LoadDETile
 	ret
 ; 8c1d
 

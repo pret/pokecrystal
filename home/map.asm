@@ -95,7 +95,7 @@ GetMapTrigger:: ; 2147
 	ret
 ; 2173
 
-Function2173:: ; 2173
+OverworldTextModeSwitch:: ; 2173
 	call LoadMapPart
 	call FarCallSwapTextboxPalettes
 	ret
@@ -2038,7 +2038,7 @@ Function2bae:: ; 2bae
 	ld c, a
 	call SwitchToAnyMapBank
 	callba Function8c001
-	call Function2173
+	call OverworldTextModeSwitch
 	call Function2821
 	ld a, 9
 	call SkipMusic

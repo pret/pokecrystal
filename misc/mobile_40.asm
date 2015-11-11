@@ -86,7 +86,7 @@ Function100082: ; 100082
 	ld [hMapAnims], a
 	ld [hLCDStatCustom], a
 	ld a, $1
-	ld [$ffc9], a
+	ld [hFFC9], a
 	ld [hMobile], a
 	ei
 	ret
@@ -95,7 +95,7 @@ Function100082: ; 100082
 Function1000a4: ; 1000a4
 	di
 	xor a
-	ld [$ffc9], a
+	ld [hFFC9], a
 	ld [hMobile], a
 	xor a
 	ld [hVBlank], a
@@ -168,7 +168,7 @@ Function1000fa: ; 1000fa
 	and $13
 	ld [rIE], a
 	xor a
-	ld [$ffc9], a
+	ld [hFFC9], a
 	ld [hMobile], a
 	ei
 	ld a, [wLinkMode]
@@ -176,7 +176,7 @@ Function1000fa: ; 1000fa
 	xor a
 	ld [wLinkMode], a
 	ld a, $4
-	ld [wPartyMonMenuIconAnims + 5], a
+	ld [wc314 + 5], a
 	callba Function11619d
 	ld hl, wcd29
 	set 6, [hl]
@@ -4393,7 +4393,7 @@ Function101cc2: ; 101cc2 ; unreferenced
 
 Function101cc8: ; 101cc8
 	ld a, $1
-	ld [wPartyMonMenuIconAnims], a
+	ld [wc314], a
 	ld a, $1
 	ld [wc30d], a
 	ld hl, wcd29
@@ -4406,7 +4406,7 @@ Function101cc8: ; 101cc8
 
 Function101cdf: ; 101cdf
 	ld a, $6
-	ld [wPartyMonMenuIconAnims], a
+	ld [wc314], a
 	ld a, $1
 	ld [wc30d], a
 	ld hl, wcd29
@@ -4419,7 +4419,7 @@ Function101cdf: ; 101cdf
 
 Function101cf6: ; 101cf6
 	ld a, $b
-	ld [wPartyMonMenuIconAnims + 1], a
+	ld [wc314 + 1], a
 	ld a, [wcd25]
 	inc a
 	ld [wcd25], a
@@ -4428,7 +4428,7 @@ Function101cf6: ; 101cf6
 
 Function101d03: ; 101d03
 	ld a, $e
-	ld [wPartyMonMenuIconAnims + 1], a
+	ld [wc314 + 1], a
 	ld a, [wcd25]
 	inc a
 	ld [wcd25], a

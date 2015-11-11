@@ -35,7 +35,7 @@ Function2de2:: ; 2de2
 	call ResetTextRelatedRAM
 	xor a
 	ld [hBGMapMode], a
-	call Function2173
+	call OverworldTextModeSwitch
 	call Function2e20
 	xor a
 	ld [hBGMapMode], a

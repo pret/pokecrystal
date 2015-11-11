@@ -561,7 +561,7 @@ Function3200:: ; 0x3200
 ; 0x3218
 
 
-Function3218:: ; 3218
+IsCGB:: ; 3218
 	ld a, [hCGB]
 	and a
 	ret
@@ -579,9 +579,10 @@ Function321c:: ; 321c
 
 	ld a, 1
 	ld [hBGMapMode], a
-	jr Function323d
+	jr LoadDETile
 
 .dmg
+; WaitBGMap
 	ld a, 1
 	ld [hBGMapMode], a
 	ld c, 4
@@ -594,16 +595,16 @@ Function3238:: ; 3238
 	and a
 	jr z, WaitBGMap
 
-Function323d:: ; 323d
-	jr Function3246
+LoadDETile:: ; 323d
+	jr .LoadDETile
 ; 323f
 
-Function323f:: ; 323f
+.unreferenced_323f ; 323f
 	callba Function104000
 	ret
 ; 3246
 
-Function3246:: ; 3246
+.LoadDETile ; 3246
 	ld a, [hBGMapMode]
 	push af
 	xor a
@@ -623,11 +624,11 @@ Function3246:: ; 3246
 	ld a, 1 ; BANK(VTiles3)
 	ld [rVBK], a
 	hlcoord 0, 0, AttrMap
-	call Function327b
+	call .StackPointerMagic
 	ld a, 0 ; BANK(VTiles0)
 	ld [rVBK], a
 	hlcoord 0, 0
-	call Function327b
+	call .StackPointerMagic
 
 .wait2
 	ld a, [rLY]
@@ -642,7 +643,7 @@ Function3246:: ; 3246
 	ret
 ; 327b
 
-Function327b:: ; 327b
+.StackPointerMagic ; 327b
 ; Copy all tiles to VBGMap
 	ld [hSPBuffer], sp
 	ld sp, hl
@@ -1146,7 +1147,7 @@ GetMoveName:: ; 34f8
 ; 350c
 
 
-Function350c:: ; 350c
+HandleScrollingMenu:: ; 350c
 	call CopyMenuData2
 	ld a, [hROMBank]
 	push af
@@ -1891,7 +1892,7 @@ PrintBCDNumber:: ; 38bb
 	bit 5, b
 	jr z, .loop
 	bit 7, b
-	jr nz, .loop
+	jr nz, .loop ; skip currency symbol
 	ld [hl], "¥"
 	inc hl
 .loop
@@ -1941,6 +1942,7 @@ PrintBCDDigit:: ; 38f2
 	add a, "0"
 	ld [hli], a
 	jp PrintLetterDelay
+
 .zeroDigit
 	bit 7, b ; either printing leading zeroes or already reached a nonzero digit?
 	jr z, .outputDigit ; if so, print a zero digit

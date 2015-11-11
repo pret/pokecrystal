@@ -72,6 +72,8 @@ hMoneyTemp         EQU $ffc3
 
 hLCDStatCustom     EQU $ffc6
 
+hFFC9              EQU $ffc9
+
 hLinkPlayerNumber  EQU $ffcb
 
 hSerialSend        EQU $ffcd

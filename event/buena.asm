@@ -252,7 +252,7 @@ Function8b0e2: ; 8b0e2
 	ld [hBGMapMode], a
 	call Function352f
 	call UpdateSprites
-	call Function350c
+	call HandleScrollingMenu
 	ld a, [MenuSelection]
 	ld c, a
 	ld a, [MenuSelection2]

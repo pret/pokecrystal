@@ -467,7 +467,7 @@ Function1183cb: ; 1183cb
 	ld [wcd66], a
 	ld [wcd67], a
 	ld [wcd68], a
-	ld [wPartyMonMenuIconAnims + 6], a
+	ld [wc314 + 6], a
 	ld [wcd89], a
 	ld [wcd8a], a
 	ld [wcd8b], a
@@ -1056,7 +1056,7 @@ Function11878d: ; 11878d (46:478d)
 	ld a, $a
 	call Function3e32
 	ld a, [wc3f0]
-	ld [wPartyMonMenuIconAnims + 5], a
+	ld [wc314 + 5], a
 	ld a, [wcd34]
 	ld [wcf66], a
 	ret
@@ -1100,13 +1100,13 @@ Function118805: ; 118805 (46:4805)
 	ld a, $a
 	call Function3e32
 	ld a, [wc3f0]
-	ld [wPartyMonMenuIconAnims + 5], a
+	ld [wc314 + 5], a
 	ld a, [wcd34]
 	ld [wcf66], a
 	ret
 
 Function118821: ; 118821 (46:4821)
-	ld a, [wPartyMonMenuIconAnims + 5]
+	ld a, [wc314 + 5]
 	cp $3
 	jr c, .asm_11884a
 	cp $4
@@ -1119,7 +1119,7 @@ Function118821: ; 118821 (46:4821)
 	ld a, $a
 	ld [wc300], a
 	ld a, [wc3f0]
-	ld [wPartyMonMenuIconAnims + 5], a
+	ld [wc314 + 5], a
 	ld a, [wcd34]
 	ld [wcf66], a
 	scf
@@ -1198,7 +1198,7 @@ Function118896: ; 118896
 ; 1188b0
 
 Function1188b0: ; 1188b0 (46:48b0)
-	ld de, wPartyMonMenuIconAnims + 48 + 2
+	ld de, wc314 + 48 + 2
 	ld a, $c
 	jp Function119e2b
 
@@ -1230,7 +1230,7 @@ Function1188c8: ; 1188c8 (46:48c8)
 	jp Function119e2b
 
 Function1188e7: ; 1188e7 (46:48e7)
-	ld de, wPartyMonMenuIconAnims + 48 + 2
+	ld de, wc314 + 48 + 2
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$aa4a]
@@ -1250,7 +1250,7 @@ Function1188e7: ; 1188e7 (46:48e7)
 
 Function118903: ; 118903 (46:4903)
 	ld a, [wc3f0]
-	ld [wPartyMonMenuIconAnims + 5], a
+	ld [wc314 + 5], a
 	ld c, $1
 	callba Function115e18
 	ld a, $8
@@ -1279,7 +1279,7 @@ Function118922: ; 118922
 	call Function119e2e
 
 Function118936:
-	ld a, [wPartyMonMenuIconAnims + 6]
+	ld a, [wc314 + 6]
 	and a
 	ret nz
 	ld hl, MenuDataHeader_119cf7
@@ -1562,7 +1562,7 @@ Function118b10:
 	jp Function119e2b
 
 Function118b24: ; 118b24 (46:4b24)
-	ld hl, wPartyMonMenuIconAnims + 48 + 2
+	ld hl, wc314 + 48 + 2
 	ld a, $8
 	ld [hli], a
 	ld a, $c7
@@ -1575,7 +1575,7 @@ Function118b24: ; 118b24 (46:4b24)
 	call Function119ec2
 	ld a, $80
 	ld [wcd89], a
-	ld hl, wPartyMonMenuIconAnims + 48 + 2
+	ld hl, wc314 + 48 + 2
 	ret
 ; 118b42 (46:4b42)
 
@@ -1910,22 +1910,22 @@ Function118ec6: ; 118ec6
 	call Function118440
 	call SpeechTextBox
 	ld hl, $d80e
-	ld de, wPartyMonMenuIconAnims + 12
+	ld de, wc314 + 12
 	ld bc, $0026
 	call CopyBytes
 	xor a
-	ld [wPartyMonMenuIconAnims + 11], a
+	ld [wc314 + 11], a
 	ld a, $20
-	ld [wPartyMonMenuIconAnims + 7], a
+	ld [wc314 + 7], a
 	ld a, $c3
-	ld [wPartyMonMenuIconAnims + 8], a
+	ld [wc314 + 8], a
 	hlcoord 1, 14
 	ld a, l
-	ld [wPartyMonMenuIconAnims + 9], a
+	ld [wc314 + 9], a
 	ld a, h
-	ld [wPartyMonMenuIconAnims + 10], a
+	ld [wc314 + 10], a
 	ld a, $2
-	ld [wPartyMonMenuIconAnims + 6], a
+	ld [wc314 + 6], a
 	ld a, $1d
 	ld [wcd3c], a
 	ld a, $24
@@ -1998,7 +1998,7 @@ Function118f68:
 	ld a, [wcc60]
 	and a
 	jr z, .asm_118fba
-	ld hl, wPartyMonMenuIconAnims + 48 + 2
+	ld hl, wc314 + 48 + 2
 	ld a, $c608 % $100
 	ld [hli], a
 	ld a, $c608 / $100
@@ -2019,7 +2019,7 @@ Function118f68:
 	call Function119ec2
 	ld a, $40
 	ld [wcd89], a
-	ld hl, wPartyMonMenuIconAnims + 48 + 2
+	ld hl, wc314 + 48 + 2
 	ld de, $de00
 	ld bc, $0200
 	ld a, $2c
@@ -2079,7 +2079,7 @@ Function119009:
 	ld de, wcc60
 	call Function1191ad
 	ret c
-	ld hl, wPartyMonMenuIconAnims + 48 + 2
+	ld hl, wc314 + 48 + 2
 	ld a, $8
 	ld [hli], a
 	ld a, $c6
@@ -2100,7 +2100,7 @@ Function119009:
 	call Function119ec2
 	ld a, $40
 	ld [wcd89], a
-	ld hl, wPartyMonMenuIconAnims + 48 + 2
+	ld hl, wc314 + 48 + 2
 	ld de, Unkn1Pals
 	ld bc, $1000
 	ld a, $2c
@@ -2627,7 +2627,7 @@ Function1193a0:
 	ld a, $8
 	ld [wcd3c], a
 	call Function119ed8
-	ld hl, wPartyMonMenuIconAnims + 48 + 2
+	ld hl, wc314 + 48 + 2
 	ld a, wd000 % $100
 	ld [hli], a
 	ld a, wd000 / $100
@@ -2648,7 +2648,7 @@ Function1193a0:
 	call Function119ec2
 	ld a, $40
 	ld [wcd89], a
-	ld hl, wPartyMonMenuIconAnims + 48 + 2
+	ld hl, wc314 + 48 + 2
 	ld de, $de00
 	ld bc, $0200
 	ld a, $2c
@@ -3450,7 +3450,7 @@ Function1198ee: ; 1198ee
 	call Function119e2e
 
 Function1198f7:
-	ld a, [wPartyMonMenuIconAnims + 6]
+	ld a, [wc314 + 6]
 	and a
 	ret nz
 	ld hl, $c608 + 2
@@ -3996,7 +3996,7 @@ Function119ca2:
 	call Function119e2e
 
 Function119cab:
-	ld a, [wPartyMonMenuIconAnims + 6]
+	ld a, [wc314 + 6]
 	and a
 	ret nz
 	ld a, $80
@@ -4033,7 +4033,7 @@ Function119cc3: ; 119cc3
 	call Function119e2e
 
 Function119cdf:
-	ld a, [wPartyMonMenuIconAnims + 6]
+	ld a, [wc314 + 6]
 	and a
 	ret nz
 	ld a, $f
@@ -4479,7 +4479,7 @@ Function119f98: ; 119f98
 	ld a, $1
 	ld [wc30d], a
 	ld a, $1
-	ld [wPartyMonMenuIconAnims], a
+	ld [wc314], a
 	callba Function104061
 	and a
 	ret
@@ -4661,7 +4661,7 @@ Function11a16d: ; 11a16d
 	call Function11a63c
 	call Function11a1e6
 	hlcoord 4, 2
-	ld de, wPartyMonMenuIconAnims + 48 + 2
+	ld de, wc314 + 48 + 2
 	call PlaceString
 	call Function11a5f5
 	xor a
@@ -4715,7 +4715,7 @@ Function11a1d6: ; 11a1d6
 
 Function11a1e6: ; 11a1e6
 	ld hl, String_11a706
-	ld de, wPartyMonMenuIconAnims + 48 + 2
+	ld de, wc314 + 48 + 2
 	call Function11a1ff
 	ld hl, wcd85
 	call Function11a1ff
@@ -5541,7 +5541,7 @@ endr
 ; 11a8fa
 
 Function11a8fa: ; 11a8fa
-	ld a, [wPartyMonMenuIconAnims + 6]
+	ld a, [wc314 + 6]
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_11a909
@@ -5565,14 +5565,14 @@ Function11a90f: ; 11a90f
 	ld [rSVBK], a
 	call SpeechTextBox
 	ld a, $50
-	ld hl, wPartyMonMenuIconAnims + 12
+	ld hl, wc314 + 12
 	ld bc, $008c
 	call ByteFill
-	ld a, [wPartyMonMenuIconAnims + 7]
+	ld a, [wc314 + 7]
 	ld l, a
-	ld a, [wPartyMonMenuIconAnims + 8]
+	ld a, [wc314 + 8]
 	ld h, a
-	ld de, wPartyMonMenuIconAnims + 12
+	ld de, wc314 + 12
 .asm_11a92c
 	ld a, [hli]
 	cp $57
@@ -5603,17 +5603,17 @@ Function11a90f: ; 11a90f
 
 .asm_11a94f
 	xor a
-	ld [wPartyMonMenuIconAnims + 11], a
+	ld [wc314 + 11], a
 	ld a, $20
-	ld [wPartyMonMenuIconAnims + 7], a
+	ld [wc314 + 7], a
 	ld a, $c3
-	ld [wPartyMonMenuIconAnims + 8], a
+	ld [wc314 + 8], a
 	hlcoord 1, 14
 	ld a, l
-	ld [wPartyMonMenuIconAnims + 9], a
+	ld [wc314 + 9], a
 	ld a, h
-	ld [wPartyMonMenuIconAnims + 10], a
-	ld hl, wPartyMonMenuIconAnims + 6
+	ld [wc314 + 10], a
+	ld hl, wc314 + 6
 	inc [hl]
 	ld a, $3
 	ld [rSVBK], a
@@ -5623,7 +5623,7 @@ Function11a970:
 ; 11a971
 
 Function11a971: ; 11a971
-	ld hl, wPartyMonMenuIconAnims + 11
+	ld hl, wc314 + 11
 	ld a, [hJoyDown]
 	and a
 	jr nz, .asm_11a97f
@@ -5638,34 +5638,34 @@ Function11a971: ; 11a971
 	and $7
 	ld [hl], a
 	ld hl, wcd8d
-	ld a, [wPartyMonMenuIconAnims + 7]
+	ld a, [wc314 + 7]
 	ld e, a
-	ld a, [wPartyMonMenuIconAnims + 8]
+	ld a, [wc314 + 8]
 	ld d, a
 	ld a, [de]
 	inc de
 	ld [hli], a
 	ld a, e
-	ld [wPartyMonMenuIconAnims + 7], a
+	ld [wc314 + 7], a
 	ld a, d
-	ld [wPartyMonMenuIconAnims + 8], a
+	ld [wc314 + 8], a
 	ld a, $50
 	ld [hl], a
-	ld a, [wPartyMonMenuIconAnims + 9]
+	ld a, [wc314 + 9]
 	ld l, a
-	ld a, [wPartyMonMenuIconAnims + 10]
+	ld a, [wc314 + 10]
 	ld h, a
 	ld de, wcd8d
 	call PlaceString
 	ld a, c
-	ld [wPartyMonMenuIconAnims + 9], a
+	ld [wc314 + 9], a
 	ld a, b
-	ld [wPartyMonMenuIconAnims + 10], a
+	ld [wc314 + 10], a
 	ld a, [wcd8d]
 	cp $50
 	jr nz, .asm_11a9bf
 	xor a
-	ld [wPartyMonMenuIconAnims + 6], a
+	ld [wc314 + 6], a
 
 .asm_11a9bf
 	ret
@@ -5673,11 +5673,11 @@ Function11a971: ; 11a971
 
 Function11a9c0: ; 11a9c0
 	ld a, l
-	ld [wPartyMonMenuIconAnims + 7], a
+	ld [wc314 + 7], a
 	ld a, h
-	ld [wPartyMonMenuIconAnims + 8], a
+	ld [wc314 + 8], a
 	ld a, $1
-	ld [wPartyMonMenuIconAnims + 6], a
+	ld [wc314 + 6], a
 	ret
 ; 11a9ce
 

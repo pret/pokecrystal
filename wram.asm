@@ -355,6 +355,11 @@ TilePermissions:: ; c2fe
 	ds 1
 
 	ds 1
+
+SECTION "PARTY ICONS", WRAM0 [$c300]
+; wc300 - wc313 is a 10x2 dictionary.
+wDict_c300:: ds 10 * 2
+	ds wDict_c300 - @
 wc300:: ds 1
 wc301:: ds 1
 wc302:: ds 1
@@ -374,11 +379,22 @@ wc310:: ds 1
 wc311:: ds 1
 wc312:: ds 1
 wc313:: ds 1
-wPartyMonMenuIconAnims:: ds 96 ; c314
-wc374:: ds 48 ; c374
-wc3a4:: ds 8 ; c3b4
-wc3ac:: ds 8 ; c3bc
-wc3b4:: ds 1 ; c3b4
+; wPartyMonMenuIconAnims::
+; Field  0: Index
+; Fields 1-3: Loaded from Unknown_8d1c4
+wc314:: ds 16 ; c314
+wc324:: ds 16 ; c324
+wc334:: ds 16 ; c334
+wc344:: ds 16 ; c344
+wc354:: ds 16 ; c354
+wc364:: ds 16 ; c364
+wc374:: ds 16 ; c374
+wc384:: ds 16 ; c384
+wc394:: ds 16 ; c394
+wc3a4:: ds 8  ; c3a4
+wc3ac:: ds 8  ; c3ac
+; wPartyMonMenuIconAnimsEnd::
+wc3b4:: ds 1 ; something to do with wc314
 wc3b5:: ds 1
 
 CurIcon:: ; c3b6
@@ -386,8 +402,7 @@ CurIcon:: ; c3b6
 
 
 wc3b7:: ds 1
-wc3b8:: ds 1
-wc3b9:: ds 1
+wc3b8:: dw
 wc3ba:: ds 1
 wc3bb:: ds 1
 wc3bc:: ds 1
@@ -1409,6 +1424,7 @@ PhoneScriptBank::
 LuckyNumberDigit1Buffer::
 wCurrentRadioLine::
 wMovementBufferCount::
+wMartItem1BCD::
 	ds 1
 wd003::
 LuckyNumberDigit2Buffer::
@@ -1425,6 +1441,7 @@ wd005::
 LuckyNumberDigit4Buffer::
 StartFlypoint:: ; d005
 wNumRadioLinesPrinted::
+wMartItem2BCD::
 	ds 1
 wd006::
 LuckyNumberDigit5Buffer::
@@ -1436,8 +1453,10 @@ wd007::
 MovementBuffer:: ; d007
 	ds 1
 
+wMartItem3BCD::
 wd008:: ds 2
 wd00a:: ds 1
+wMartItem4BCD::
 wd00b:: ds 1
 
 wRadioText:: ds 2 * SCREEN_WIDTH
@@ -1446,19 +1465,26 @@ wRadioTextEnd::
 
 wd00c:: ds 1
 wd00d:: ds 1
+wMartItem5BCD::
 wd00e:: ds 1
 wd00f:: ds 1
 wd010:: ds 1
+wMartItem6BCD::
 wd011:: ds 1
 wd012:: ds 1
 wd013:: ds 1
+wMartItem7BCD::
 wd014:: ds 2
 wd016:: ds 1
+wMartItem8BCD::
 wd017:: ds 1
 wd018:: ds 1
 wd019:: ds 1
-wd01a:: ds 5
+wMartItem9BCD::
+wd01a:: ds 3
+wMartItem10BCD:: ds 2
 wd01f:: ds 1
+wMartItemBCDEnd::
 wd020:: ds 3
 wd023:: ds 5
 wd028:: ds 2
@@ -1502,6 +1528,7 @@ MovementAnimation:: ; d042
 
 wTempTrainerClass::
 WalkingDirection:: ; d043
+wBargainShopFlags::
 	ds 1
 
 wTempTrainerID::
@@ -1509,7 +1536,8 @@ FacingDirection:: ; d044
 	ds 1
 
 wSeenTextPointer::
-WalkingX:: ; d045
+WalkingX::
+wd045:: ; d045
 	ds 1
 WalkingY:: ; d046
 	ds 1
@@ -1588,7 +1616,7 @@ CurMart:: ; d0f0
 	ds 1
 wd0f1:: ds 1
 wd0f2:: ds 14
-
+CurMartEnd::
 wd100:: ds 1
 
 wd101:: ds 1
@@ -1601,6 +1629,7 @@ CurItem:: ; d106
 	ds 1
 
 ItemCountBuffer:: ; d107
+wMartItemID::
 wd107:: ds 1
 
 CurPartySpecies:: ; d108

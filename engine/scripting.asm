@@ -2970,7 +2970,7 @@ Script_reloadmappart:: ; 0x97ae3
 
 	xor a
 	ld [hBGMapMode], a
-	call Function2173
+	call OverworldTextModeSwitch
 	call Function2914
 	callba Function104061
 	call UpdateSprites

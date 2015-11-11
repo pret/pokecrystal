@@ -67,7 +67,7 @@ Kurt_SelectApricorn: ; 88055
 	ld [hBGMapMode], a
 	call Function352f
 	call UpdateSprites
-	call Function350c
+	call HandleScrollingMenu
 	ld a, [wcf73]
 	cp $2
 	jr z, .nope
