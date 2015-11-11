@@ -725,7 +725,7 @@ AI_Switch: ; 3846c
 	call PrintText
 
 .skiptext
-	ld a, $1
+	ld a, 1
 	ld [wd264], a
 	callab NewEnemyMonStatus
 	callab ResetEnemyStatLevels

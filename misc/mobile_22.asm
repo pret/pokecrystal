@@ -38,7 +38,7 @@ Function89174: ; 89174 (22:5174)
 	ret
 
 Function8917a: ; 8917a (22:517a)
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld bc, $32
 	xor a
 	call ByteFill
@@ -484,7 +484,7 @@ Function8939a: ; 8939a
 	push bc
 	ld hl, 0
 	add hl, bc
-	ld de, DefaultFlypoint
+	ld de, wd002
 	ld c, 6
 	call Function89193
 	pop bc
@@ -1365,8 +1365,8 @@ Function898aa: ; 898aa
 
 Function898be: ; 898be
 	push bc
-	ld de, DefaultFlypoint
-	ld hl, DefaultFlypoint
+	ld de, wd002
+	ld hl, wd002
 	call Function89331
 	jr nc, .asm_898cd
 	ld de, String_89116
@@ -3106,7 +3106,7 @@ Function8a383: ; 8a383 (22:6383)
 Function8a3a2: ; 8a3a2 (22:63a2)
 	ld a, [MenuSelection2]
 	dec a
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld e, a
 	ld d, $0
 	add hl, de
@@ -3141,7 +3141,7 @@ Function8a3df: ; 8a3df (22:63df)
 	ld hl, $a603
 	call Function89b45
 	call CloseSRAM
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	jr c, .asm_8a3f8
 	ld de, Unknown_8a408
 	call Function8a400
@@ -3620,7 +3620,7 @@ Function8a765: ; 8a765 (22:6765)
 	push bc
 	ld hl, $0
 	add hl, bc
-	ld de, DefaultFlypoint
+	ld de, wd002
 	ld c, $6
 	call Function89185
 	pop bc
@@ -3641,7 +3641,7 @@ Function8a765: ; 8a765 (22:6765)
 
 Function8a78c: ; 8a78c (22:678c)
 	call Function891fe
-	ld de, DefaultFlypoint
+	ld de, wd002
 	ld b, $5
 	callba Function116c1
 	call OpenSRAMBank4
@@ -3651,7 +3651,7 @@ Function8a78c: ; 8a78c (22:678c)
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	call InitName
 	call CloseSRAM
 	call DelayFrame
@@ -3701,7 +3701,7 @@ Function8a7cb: ; 8a7cb (22:67cb)
 
 Function8a818: ; 8a818 (22:6818)
 	call Function89a23
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	call Function89331
 	jr c, .asm_8a875
 	ld hl, wd008
@@ -3716,7 +3716,7 @@ Function8a818: ; 8a818 (22:6818)
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld c, $6
 	call Function89193
 	pop bc
@@ -3851,7 +3851,7 @@ Function8a930: ; 8a930 (22:6930)
 	push bc
 	ld h, b
 	ld l, c
-	ld de, DefaultFlypoint
+	ld de, wd002
 	ld bc, $25
 	call CopyBytes
 	pop de
@@ -3865,7 +3865,7 @@ Function8a930: ; 8a930 (22:6930)
 	ld bc, $25
 	call CopyBytes
 	pop de
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld bc, $25
 	call CopyBytes
 	ld de, SFX_SWITCH_POKEMON

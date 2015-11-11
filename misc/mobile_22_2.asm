@@ -887,7 +887,7 @@ Function8b84b: ; 8b84b
 
 Function8b855: ; 8b855
 	ld a, $28
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld [hli], a
 	ld c, $28
 	xor a
@@ -1061,7 +1061,7 @@ Function8b960: ; 8b960 (22:7960)
 	ret
 
 Function8b99f: ; 8b99f (22:799f)
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	dec a
 	ld c, a
 	ld b, $0
@@ -1135,7 +1135,7 @@ Function8b9e9: ; 8b9e9 (22:79e9)
 	scf
 .asm_8ba0c
 	push af
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 .asm_8ba10
 	ld a, [de]
 	inc de

@@ -1452,7 +1452,7 @@ Function28926: ; 28926
 	pop af
 	ld [MenuSelection2], a
 	dec a
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	ld [wcf56], a
 	callba Function16d6ce
 	ld a, [wcf51]
@@ -1653,7 +1653,7 @@ Function28b87: ; 28b87
 	ld c, $12
 	call Function28eef
 	callba Function4d354
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld hl, PartySpecies
 	ld c, a
 	ld b, $0
@@ -1745,7 +1745,7 @@ Function28b87: ; 28b87
 
 .asm_28c7b
 	ld hl, sPartyScratch1
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, BANK(sPartyScratch1)
@@ -1754,7 +1754,7 @@ Function28b87: ; 28b87
 	ld e, l
 	ld bc, SCRATCHMON_STRUCT_LENGTH
 	add hl, bc
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld c, a
 .asm_28c96
 	inc c
@@ -1786,7 +1786,7 @@ Function28b87: ; 28b87
 	ld de, wc6e7
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld hl, PartySpecies
 	ld b, $0
 	ld c, a
@@ -1794,27 +1794,27 @@ Function28b87: ; 28b87
 	ld a, [hl]
 	ld [wc6d0], a
 	push af
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld hl, PartyMonOT
 	call SkipNames
 	ld de, wc6f2
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	ld hl, PartyMon1ID
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	call GetPartyLocation
 	ld a, [hli]
 	ld [PlayerScreens], a
 	ld a, [hl]
 	ld [EnemyScreens], a
 	ld hl, PartyMon1DVs
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	call GetPartyLocation
 	ld a, [hli]
 	ld [wc6fd], a
 	ld a, [hl]
 	ld [wPlayerMinimized], a
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld hl, PartyMon1Species
 	call GetPartyLocation
 	ld b, h
@@ -1861,14 +1861,14 @@ Function28b87: ; 28b87
 	callba GetCaughtGender
 	ld a, c
 	ld [wEnemyCharging], a
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld [CurPartyMon], a
 	ld hl, PartySpecies
 	ld b, $0
 	ld c, a
 	add hl, bc
 	ld a, [hl]
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
 	callab Functione039

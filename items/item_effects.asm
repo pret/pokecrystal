@@ -2372,7 +2372,7 @@ PokeFlute: ; f50c
 .asm_f512
 
 	xor a
-	ld [MiscBuffer2], a
+	ld [wd002], a
 
 	ld b, $ff ^ SLP
 
@@ -2395,7 +2395,7 @@ PokeFlute: ; f50c
 	and b
 	ld [hl], a
 
-	ld a, [MiscBuffer2]
+	ld a, [wd002]
 	and a
 	ld hl, UnknownText_0xf56c
 	jp z, PrintText
@@ -2420,7 +2420,7 @@ PokeFlute: ; f50c
 	and SLP
 	jr z, .asm_f564
 	ld a, 1
-	ld [MiscBuffer2], a
+	ld [wd002], a
 .asm_f564
 	pop af
 	and b
@@ -2521,7 +2521,7 @@ MaxEther:
 Elixer:
 Mysteryberry: ; f5bf
 	ld a, [CurItem]
-	ld [MiscBuffer2], a
+	ld [wd002], a
 
 .loop
     ; Party Screen opens to choose on which Pkmn to use the Item
@@ -2530,14 +2530,14 @@ Mysteryberry: ; f5bf
 	jp c, Functionf6e0
 
 .loop2
-	ld a, [MiscBuffer2]
+	ld a, [wd002]
 	cp MAX_ELIXER
 	jp z, Elixer_RestorePPofAllMoves
 	cp ELIXER
 	jp z, Elixer_RestorePPofAllMoves
 
 	ld hl, TextJump_RaiseThePPOfWhichMove
-	ld a, [MiscBuffer2]
+	ld a, [wd002]
 	cp PP_UP
 	jr z, .ppup
 	ld hl, TextJump_RestoreThePPOfWhichMove
@@ -2568,7 +2568,7 @@ Mysteryberry: ; f5bf
 	call CopyName1
 	pop hl
 
-	ld a, [MiscBuffer2]
+	ld a, [wd002]
 	cp PP_UP
 	jp nz, Functionf6a7
 
@@ -2722,7 +2722,7 @@ RestorePP: ; f6e8
 	cp b
 	jr nc, .dont_restore
 
-	ld a, [MiscBuffer2]
+	ld a, [wd002]
 	cp MAX_ELIXER
 	jr z, .restore_all
 	cp MAX_ETHER

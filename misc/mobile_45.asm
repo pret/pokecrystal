@@ -8373,7 +8373,7 @@ Function117bb6:
 	ld [rSVBK], a
 	ld a, $7
 	call GetSRAMBank
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld de, $b000
 	ld bc, $1000
 	call CopyBytes

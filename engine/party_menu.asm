@@ -539,7 +539,7 @@ Function50307: ; 50307
 	call PlaceString
 	ld b, $3
 	ld c, $0
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld a, [hl]
 .asm_5033b
 	push hl

@@ -3109,7 +3109,7 @@ BattleCommand_BeatUp: ; 35461
 	call DelayFrames
 	xor a
 	ld [PlayerRolloutCount], a
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	ld [wc72d], a
 	jr .got_mon
 
@@ -3118,10 +3118,10 @@ BattleCommand_BeatUp: ; 35461
 	ld b, a
 	ld a, [PartyCount]
 	sub b
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 
 .got_mon
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld hl, PartyMonNicknames
 	call GetNick
 	ld a, MON_HP
@@ -3129,7 +3129,7 @@ BattleCommand_BeatUp: ; 35461
 	ld a, [hli]
 	or [hl]
 	jp z, .beatup_fail ; fainted
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld c, a
 	ld a, [CurBattleMon]
 	cp [hl]
@@ -3177,7 +3177,7 @@ BattleCommand_BeatUp: ; 35461
 
 	xor a
 	ld [EnemyRolloutCount], a
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	ld [wc72d], a
 	jr .enemy_continue
 
@@ -3186,7 +3186,7 @@ BattleCommand_BeatUp: ; 35461
 	ld b, a
 	ld a, [OTPartyCount]
 	sub b
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 .enemy_continue
 	ld a, [wBattleMode]
 	dec a
@@ -3200,7 +3200,7 @@ BattleCommand_BeatUp: ; 35461
 	and a
 	jr nz, .link_or_tower
 
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld c, a
 	ld b, 0
 	ld hl, OTPartySpecies
@@ -3211,7 +3211,7 @@ BattleCommand_BeatUp: ; 35461
 	jr .got_enemy_nick
 
 .link_or_tower
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld hl, OTPartyMonNicknames
 	ld bc, NAME_LENGTH
 	call AddNTimes
@@ -3223,7 +3223,7 @@ BattleCommand_BeatUp: ; 35461
 	ld a, [hli]
 	or [hl]
 	jp z, .beatup_fail
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld b, a
 	ld a, [CurOTMon]
 	cp b
@@ -3304,7 +3304,7 @@ GetBeatupMonLocation: ; 355bd
 	ld hl, OTPartyMon1Species
 
 .asm_355cc
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	add hl, bc
 	call GetPartyLocation
 	pop bc
@@ -6665,7 +6665,7 @@ BattleCommand_ForceSwitch: ; 3680f
 	ld a, d
 	inc a
 	ld [wEnemySwitchMonIndex], a
-	callab Function3d4c3
+	callab ForceEnemySwitch
 
 	ld hl, DraggedOutText
 	call StdBattleTextBox
@@ -8960,7 +8960,7 @@ BattleCommand_BatonPass: ; 379c9
 
 ; Return to battle scene
 	call ClearPalettes
-	callba Function3ed9f
+	callba _LoadBattleFontsHPBar
 	call WriteBackup
 	call ClearSprites
 	hlcoord 1, 0

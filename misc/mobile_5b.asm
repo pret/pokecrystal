@@ -25,17 +25,17 @@ Function16c031: ; 16c031
 	xor a
 	ld [wJumptableIndex], a
 	ld [wcf64], a
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	ld [wd003], a
 .asm_16c03e
 	call DelayFrame
 	callba Function10635c
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld hl, Jumptable_16c05c
 	rst JumpTable
 	call Function16cb2e
 	call Function16cbae
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	cp $ff
 	jr nz, .asm_16c03e
 	ret
@@ -60,7 +60,7 @@ Function16c074: ; 16c074
 	ld a, [wcf64]
 	and a
 	ret z
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	xor a
 	ld [wd003], a
 	ret
@@ -69,7 +69,7 @@ Function16c074: ; 16c074
 Function16c081: ; 16c081
 	push af
 	ld a, $ff
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	pop af
 	ret
 ; 16c089
@@ -81,7 +81,7 @@ Function16c089: ; 16c089
 	xor a
 	ld [hWY], a
 	call Function16c0fa
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld [wcf64], a
 	ret
 ; 16c09e
@@ -144,16 +144,16 @@ Function16c0ec: ; 16c0ec
 	call ClearScreen
 	push af
 	ld a, $ff
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	pop af
 	ret
 ; 16c0fa
 
 Function16c0fa: ; 16c0fa
 	push af
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	inc a
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	xor a
 	ld [wd003], a
 	pop af

@@ -1580,7 +1580,7 @@ Function118b24: ; 118b24 (46:4b24)
 ; 118b42 (46:4b42)
 
 Function118b42: ; 118b42
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld a, l
 	ld [wcd51], a
 	ld a, h
@@ -1780,7 +1780,7 @@ Function118ded: ; 118ded
 ; 118e06
 
 Function118e06: ; 118e06
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld a, [wcd38]
 	and a
 	jr z, .asm_118e1d
@@ -2110,7 +2110,7 @@ Function119009:
 Function119054: ; 119054
 	ld a, $6
 	call GetSRAMBank
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld a, [wcd4f]
 	ld e, a
 	ld a, [wcd50]
@@ -2126,7 +2126,7 @@ Function119054: ; 119054
 	jr z, .asm_11908a
 	ld a, $6
 	ld [rSVBK], a
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld a, [Unkn1Pals]
 	ld c, a
 	ld a, [wd001]
@@ -2198,7 +2198,7 @@ Function1190ec: ; 1190ec
 	ld c, a
 	ld a, [wd001]
 	ld b, a
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld de, $a000
 	call Function119192
 	ret c
@@ -2211,7 +2211,7 @@ Function1190ec: ; 1190ec
 	ld c, a
 	ld a, [wd001]
 	ld b, a
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	call Function119192
 	ret c
 
@@ -2729,7 +2729,7 @@ Function119451: ; 119451 (46:5451)
 	ld a, b
 	ld [wcd49], a
 	call Function1196cd
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld hl, wd003
 
 Function119471: ; 119471 (46:5471)
@@ -3146,7 +3146,7 @@ Function1196de: ; 1196de (46:56de)
 ; 1196f2 (46:56f2)
 
 Function1196f2: ; 1196f2
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 .asm_1196f5
 	call Function118b9a
 	ret nc
@@ -3314,7 +3314,7 @@ Function1197bf: ; 1197bf
 ; 1197c9
 
 Function1197c9: ; 1197c9
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	call Function118e39
 	ld a, $9
 	ld [wcd3c], a
@@ -3326,7 +3326,7 @@ Function1197dc:
 	call Function119ed8
 	ret c
 	call DelayFrame
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld de, wcc60
 	ld bc, $0080
 	call CopyBytes

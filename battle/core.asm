@@ -240,7 +240,7 @@ Function3c12f: ; 3c12f
 MobileFn_3c1bf: mobile
 	ld a, $5
 	call GetSRAMBank
-	ld hl, $a89b
+	ld hl, $a89b ; s5_a89b
 	inc [hl]
 	jr nz, .finish
 	dec hl
@@ -2145,7 +2145,7 @@ HandleEnemyMonFaint: ; 3cd55
 	ld hl, BattleMonHP
 	ld a, [hli]
 	or [hl]
-	jr nz, .asm_3cdba
+	jr nz, .player_mon_not_fainted
 
 	call AskUseNextPokemon
 	jr nc, .dont_flee
@@ -2155,7 +2155,7 @@ HandleEnemyMonFaint: ; 3cd55
 	ret
 
 .dont_flee
-	call Function3d227
+	call ForcePlayerMonChoice
 	call CheckMobileBattleError
 	jp c, WildFled_EnemyFled_LinkBattleCanceled
 
@@ -2165,7 +2165,7 @@ HandleEnemyMonFaint: ; 3cd55
 	jp z, WildFled_EnemyFled_LinkBattleCanceled
 	jr Function3cdca
 
-.asm_3cdba
+.player_mon_not_fainted
 	ld a, $1
 	ld [wd0ec], a
 	call Function3cf4a
@@ -2178,17 +2178,17 @@ HandleEnemyMonFaint: ; 3cd55
 Function3cdca: ; 3cdca
 	ld a, [hLinkPlayerNumber]
 	cp $1
-	jr z, .asm_3cde6
+	jr z, .player_1
 	call ClearSprites
 	hlcoord 1, 0
 	lb bc, 4, 10
 	call ClearBox
-	call Function3d2b3
+	call PlayerPartyMonEntrance
 	ld a, $1
 	call EnemyPartyMonEntrance
-	jr .asm_3cdfc
+	jr .done
 
-.asm_3cde6
+.player_1
 	ld a, [CurPartyMon]
 	push af
 	ld a, $1
@@ -2197,9 +2197,9 @@ Function3cdca: ; 3cdca
 	call LoadTileMapToTempTileMap
 	pop af
 	ld [CurPartyMon], a
-	call Function3d2b3
+	call PlayerPartyMonEntrance
 
-.asm_3cdfc
+.done
 	xor a
 	ld [wd0ec], a
 	ret
@@ -2209,7 +2209,7 @@ Function3ce01: ; 3ce01
 	call UpdateBattleMonInParty
 	ld a, [wBattleMode]
 	dec a
-	jr z, .asm_3ce16
+	jr z, .wild
 	ld a, [CurOTMon]
 	ld hl, OTPartyMon1HP
 	call GetPartyLocation
@@ -2217,7 +2217,7 @@ Function3ce01: ; 3ce01
 	ld [hli], a
 	ld [hl], a
 
-.asm_3ce16
+.wild
 	ld hl, PlayerSubStatus3
 	res SUBSTATUS_IN_LOOP, [hl]
 	xor a
@@ -2228,25 +2228,25 @@ Function3ce01: ; 3ce01
 	call BreakAttraction
 	ld a, [wBattleMode]
 	dec a
-	jr z, .asm_3ce2f
-	jr .asm_3ce37
+	jr z, .wild2
+	jr .trainer
 
-.asm_3ce2f
+.wild2
 	call StopDangerSound
 	ld a, $1
 	ld [wc6fd], a
 
-.asm_3ce37
+.trainer
 	ld hl, BattleMonHP
 	ld a, [hli]
 	or [hl]
-	jr nz, .asm_3ce47
+	jr nz, .player_mon_did_not_faint
 	ld a, [wc6f7]
 	and a
-	jr nz, .asm_3ce47
-	call Function3d1aa
+	jr nz, .player_mon_did_not_faint
+	call PlayerMonFaintHappinessMod
 
-.asm_3ce47
+.player_mon_did_not_faint
 	call CheckPlayerPartyForFitPkmn
 	ld a, d
 	and a
@@ -2260,16 +2260,16 @@ Function3ce01: ; 3ce01
 	and $c0
 	ld [wBattleResult], a
 	call DoOthersShareExperience
-	jr z, .asm_3ce72
+	jr z, .skip_exp
 	ld hl, EnemyMonBaseStats
 	ld b, $7
-.asm_3ce6c
+.loop
 	srl [hl]
 	inc hl
 	dec b
-	jr nz, .asm_3ce6c
+	jr nz, .loop
 
-.asm_3ce72
+.skip_exp
 	ld hl, EnemyMonBaseStats
 	ld de, wc720
 	ld bc, EnemyMonEnd - EnemyMonBaseStats
@@ -2777,7 +2777,7 @@ HandlePlayerMonFaint: ; 3d14e
 	call z, FaintEnemyPokemon
 	ld a, $1
 	ld [wc6f7], a
-	call Function3d1aa
+	call PlayerMonFaintHappinessMod
 	call CheckPlayerPartyForFitPkmn
 	ld a, d
 	and a
@@ -2800,13 +2800,13 @@ HandlePlayerMonFaint: ; 3d14e
 
 .notfainted
 	call AskUseNextPokemon
-	jr nc, .asm_3d190
+	jr nc, .switch
 	ld a, $1
 	ld [BattleEnded], a
 	ret
 
-.asm_3d190
-	call Function3d227
+.switch
+	call ForcePlayerMonChoice
 	call CheckMobileBattleError
 	jp c, WildFled_EnemyFled_LinkBattleCanceled
 	ld a, c
@@ -2819,7 +2819,7 @@ HandlePlayerMonFaint: ; 3d14e
 	jp Function3cdca
 ; 3d1aa
 
-Function3d1aa: ; 3d1aa
+PlayerMonFaintHappinessMod: ; 3d1aa
 	ld a, [CurBattleMon]
 	ld c, a
 	ld hl, wBattleParticipantsNotFainted
@@ -2841,10 +2841,10 @@ Function3d1aa: ; 3d1aa
 	ld b, a
 	ld a, [EnemyMonLevel]
 	cp b
-	jr c, .asm_3d1dc
+	jr c, .got_param
 	ld c, HAPPINESS_BEATENBYSTRONGFOE
 
-.asm_3d1dc
+.got_param
 	ld a, [CurBattleMon]
 	ld [CurPartyMon], a
 	callab ChangeHappiness
@@ -2855,7 +2855,7 @@ Function3d1aa: ; 3d1aa
 	ld a, [wc6f7]
 	and a
 	ret z
-	ret
+	ret ; ??????????
 ; 3d1f8
 
 AskUseNextPokemon: ; 3d1f8
@@ -2887,7 +2887,7 @@ AskUseNextPokemon: ; 3d1f8
 	jp TryToRunAwayFromBattle
 ; 3d227
 
-Function3d227: ; 3d227
+ForcePlayerMonChoice: ; 3d227
 	call EmptyBattleTextBox
 	call LoadPartyMenuDataHeader
 	call Function3d2f7
@@ -2903,16 +2903,16 @@ Function3d227: ; 3d227
 	xor a
 	ld [wd0ec], a
 	call CheckMobileBattleError
-	jr c, .asm_3d251
+	jr c, .enemy_fainted_mobile_error
 	ld hl, EnemyMonHP
 	ld a, [hli]
 	or [hl]
-	jr nz, .asm_3d26c
+	jr nz, .send_out_pokemon
 
-.asm_3d251
+.enemy_fainted_mobile_error
 	call ClearSprites
 	call WhiteBGMap
-	call Function3eda6
+	call _LoadHPBar
 	call ExitMenu
 	call LoadTileMapToTempTileMap
 	call WaitBGMap
@@ -2922,7 +2922,7 @@ Function3d227: ; 3d227
 	ld c, a
 	ret
 
-.asm_3d26c
+.send_out_pokemon
 	call ClearSprites
 	ld a, [CurBattleMon]
 	ld [LastPlayerMon], a
@@ -2933,7 +2933,7 @@ Function3d227: ; 3d227
 	call ResetPlayerStatLevels
 	call ClearPalettes
 	call DelayFrame
-	call Function3eda6
+	call _LoadHPBar
 	call WriteBackup
 	call ClearSGB
 	call SetPalettes
@@ -2951,7 +2951,7 @@ Function3d227: ; 3d227
 	ret
 ; 3d2b3
 
-Function3d2b3: ; 3d2b3
+PlayerPartyMonEntrance: ; 3d2b3
 	ld a, [CurBattleMon]
 	ld [LastPlayerMon], a
 	ld a, [CurPartyMon]
@@ -3306,13 +3306,13 @@ Function3d4ae: ; 3d4ae
 ; 3d4c3
 
 
-Function3d4c3: ; 3d4c3
+ForceEnemySwitch: ; 3d4c3
 	call ResetEnemyBattleVars
 	ld a, [wEnemySwitchMonIndex]
 	dec a
 	ld b, a
 	call LoadEnemyPkmnToSwitchTo
-	call Function3d7a0
+	call ClearEnemyMonBox
 	call NewEnemyMonStatus
 	call ResetEnemyStatLevels
 	call Function_SetEnemyPkmnAndSendOutAnimation
@@ -3323,11 +3323,11 @@ Function3d4c3: ; 3d4c3
 
 
 EnemySwitch: ; 3d4e1
-	call Function3d714
+	call CheckWhetherToAskSwitch
 	jr nc, EnemySwitch_SetMode
 	; Shift Mode
 	call ResetEnemyBattleVars
-	call Function3d533
+	call CheckWhetherSwitchmonIsPredetermined
 	jr c, .skip
 	call FindPkmnInOTPartyToSwitchIntoBattle
 .skip
@@ -3335,7 +3335,7 @@ EnemySwitch: ; 3d4e1
 	call LoadEnemyPkmnToSwitchTo
 	call OfferSwitch
 	push af
-	call Function3d7a0
+	call ClearEnemyMonBox
 	call Function_BattleTextEnemySentOut
 	call Function_SetEnemyPkmnAndSendOutAnimation
 	pop af
@@ -3353,7 +3353,7 @@ EnemySwitch: ; 3d4e1
 
 EnemySwitch_SetMode: ; 3d517
 	call ResetEnemyBattleVars
-	call Function3d533
+	call CheckWhetherSwitchmonIsPredetermined
 	jr c, .skip
 	call FindPkmnInOTPartyToSwitchIntoBattle
 .skip
@@ -3361,12 +3361,12 @@ EnemySwitch_SetMode: ; 3d517
 	call LoadEnemyPkmnToSwitchTo
 	ld a, 1
 	ld [wEnemyIsSwitching], a
-	call Function3d7a0
+	call ClearEnemyMonBox
 	call Function_BattleTextEnemySentOut
 	jp Function_SetEnemyPkmnAndSendOutAnimation
 ; 3d533
 
-Function3d533: ; 3d533
+CheckWhetherSwitchmonIsPredetermined: ; 3d533
 ; returns carry if: ???
 	ld a, [wLinkMode]
 	and a
@@ -3662,19 +3662,19 @@ LoadEnemyPkmnToSwitchTo: ; 3d6ca
 	ret
 ; 3d714
 
-Function3d714: ; 3d714
+CheckWhetherToAskSwitch: ; 3d714
 	ld a, [wd264]
 	dec a
-	jp z, .asm_3d749
+	jp z, .return_nc
 	ld a, [PartyCount]
 	dec a
-	jp z, .asm_3d749
+	jp z, .return_nc
 	ld a, [wLinkMode]
 	and a
-	jp nz, .asm_3d749
+	jp nz, .return_nc
 	ld a, [Options]
 	bit BATTLE_SHIFT, a
-	jr nz, .asm_3d749
+	jr nz, .return_nc
 	ld a, [CurPartyMon]
 	push af
 	ld a, [CurBattleMon]
@@ -3683,11 +3683,11 @@ Function3d714: ; 3d714
 	pop bc
 	ld a, b
 	ld [CurPartyMon], a
-	jr c, .asm_3d749
+	jr c, .return_nc
 	scf
 	ret
 
-.asm_3d749
+.return_nc
 	and a
 	ret
 ; 3d74b
@@ -3712,7 +3712,7 @@ OfferSwitch: ; 3d74b
 	ld [CurBattleMon], a
 	call ClearPalettes
 	call DelayFrame
-	call Function3eda6
+	call _LoadHPBar
 	pop af
 	ld [CurPartyMon], a
 	xor a
@@ -3724,7 +3724,7 @@ OfferSwitch: ; 3d74b
 .canceled_switch
 	call ClearPalettes
 	call DelayFrame
-	call Function3eda6
+	call _LoadHPBar
 
 .said_no
 	pop af
@@ -3733,7 +3733,7 @@ OfferSwitch: ; 3d74b
 	ret
 ; 3d7a0
 
-Function3d7a0: ; 3d7a0
+ClearEnemyMonBox: ; 3d7a0
 	xor a
 	ld [hBGMapMode], a
 	call ExitMenu
@@ -5266,7 +5266,7 @@ BattleMenu_Pack: ; 3e1c7
 .didnt_use_item
 	call ClearPalettes
 	call DelayFrame
-	call Function3ed9f
+	call _LoadBattleFontsHPBar
 	call GetMonBackpic
 	call GetMonFrontpic
 	call ExitMenu
@@ -5295,7 +5295,7 @@ Function3e234: ; 3e234
 .asm_3e24a
 	xor a
 	ld [hBGMapMode], a
-	call Function3ed9f
+	call _LoadBattleFontsHPBar
 	call ClearSprites
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
@@ -5369,7 +5369,7 @@ Function3e299:
 	call ClearSprites
 	call ClearPalettes
 	call DelayFrame
-	call Function3eda6
+	call _LoadHPBar
 	call WriteBackup
 	call LoadTileMapToTempTileMap
 	call ClearSGB
@@ -5452,7 +5452,7 @@ Function3e358: ; 3e358
 	call ClearPalettes
 	call DelayFrame
 	call ClearSprites
-	call Function3eda6
+	call _LoadHPBar
 	call WriteBackup
 	call ClearSGB
 	call SetPalettes
@@ -7248,12 +7248,12 @@ BoostStat: ; 3ed7c
 ; 3ed9f
 
 
-Function3ed9f: ; 3ed9f
+_LoadBattleFontsHPBar: ; 3ed9f
 	callab LoadBattleFontsHPBar
 	ret
 ; 3eda6
 
-Function3eda6: ; 3eda6
+_LoadHPBar: ; 3eda6
 	callab LoadHPBar
 	ret
 ; 3edad
@@ -7842,11 +7842,11 @@ Function3f136: ; 3f136
 	ld hl, CurPartyMon
 	ld a, [CurBattleMon]
 	cp [hl]
-	jp nz, .asm_3f219
+	jp nz, .finish
 
 	ld a, [BattleMonLevel]
 	cp MAX_LEVEL
-	jp nc, .asm_3f219
+	jp nc, .finish
 
 	ld a, [hProduct + 3]
 	ld [wd004], a
@@ -7855,7 +7855,7 @@ Function3f136: ; 3f136
 	ld [wd003], a
 	push af
 	xor a
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	xor a ; PARTYMON
 	ld [MonType], a
 	predef CopyPkmnToTempMon
@@ -7964,7 +7964,7 @@ endr
 	pop af
 	ld [hProduct + 3], a
 
-.asm_3f219
+.finish
 	pop bc
 	ret
 ; 3f21b
@@ -8957,7 +8957,7 @@ Function3f85f: ; 3f85f
 	push hl
 	ld h, d
 	ld l, e
-	ld de, DefaultFlypoint
+	ld de, wd002
 	ld bc, $000a
 	call CopyBytes
 	ld a, $50
@@ -8965,7 +8965,7 @@ Function3f85f: ; 3f85f
 	inc de
 	ld bc, $0006
 	call CopyBytes
-	ld de, DefaultFlypoint
+	ld de, wd002
 	pop hl
 	call PlaceString
 	pop hl
@@ -9273,7 +9273,7 @@ Function3fabe: ; 3fabe
 Function3fac8: ; 3fac8
 	ld b, $5
 	ld hl, s1_b277
-	ld de, DefaultFlypoint
+	ld de, wd002
 .loop
 	push bc
 	push de
@@ -9304,7 +9304,7 @@ rept 2
 endr
 	ld e, a
 	ld d, $0
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	add hl, de
 	push hl
 	ld a, c
@@ -9313,7 +9313,7 @@ rept 2
 endr
 	ld e, a
 	ld d, $0
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	add hl, de
 	ld d, h
 	ld e, l
@@ -9345,7 +9345,7 @@ endr
 	ld hl, s1_b266
 	call AddNTimes
 	push hl
-	ld de, DefaultFlypoint
+	ld de, wd002
 	ld bc, 18
 	call CopyBytes
 	pop hl
@@ -9359,7 +9359,7 @@ endr
 	push hl
 	ld bc, 18
 	call CopyBytes
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld bc, 18
 	pop de
 	call CopyBytes
@@ -9404,7 +9404,7 @@ Function3fb6c: ; 3fb6c
 	lb bc, 3, 7
 	call ClearBox
 	call LoadStandardFont
-	call Function3ed9f
+	call _LoadBattleFontsHPBar
 	call Function3fbd6
 	xor a
 	ld [hMapAnims], a

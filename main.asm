@@ -8693,7 +8693,7 @@ Functiondd21: ; dd21
 	call WaitSFX
 	call Functione698
 	ld a, b
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	ld a, e
 	ld [CurPartyLevel], a
 	xor a
@@ -8709,7 +8709,7 @@ Functiondd42: ; dd42
 	call WaitSFX
 	call Functione6b3
 	ld a, b
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	ld a, e
 	ld [CurPartyLevel], a
 	ld a, PC_DEPOSIT
@@ -13543,7 +13543,7 @@ Function12cf5: ; 12cf5
 
 
 Function12cfe: ; 12cfe (4:6cfe)
-	ld de, DefaultFlypoint
+	ld de, wd002
 	callba Function11e75
 	ld hl, PlayerName
 	ld de, wd023
@@ -13563,7 +13563,7 @@ Function12cfe: ; 12cfe (4:6cfe)
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld bc, SCRATCHMON_STRUCT_LENGTH
 	ld a, BANK(sPartyScratch1)
 	call GetSRAMBank
@@ -15098,7 +15098,7 @@ _BugContestJudging: ; 1369d
 	call GetPokemonName
 	ld hl, BugContest_SecondPlaceText
 	call PrintText
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	call LoadContestantName
 	ld a, [wd003]
 	ld [wd265], a
@@ -15330,7 +15330,7 @@ Function13819: ; 13819
 ; 13833
 
 Function13833: ; 13833
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld b, 12
 	xor a
 .loop
@@ -15350,11 +15350,11 @@ Function1383e: ; 1383e
 	ld de, wd00a
 	ld bc, 4
 	call CopyBytes
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld de, EndFlypoint
 	ld bc, 4
 	call CopyBytes
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	call Function138a0
 	jr .done
 
@@ -17274,7 +17274,7 @@ ReadMart: ; 15bbb
 	inc de
 	cp -1
 	jr nz, .CopyMart
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld de, CurMart + 1
 .ReadMartItem
 	ld a, [de]
@@ -17680,7 +17680,7 @@ Function15e30: ; 15e30
 	ld a, [wcf77]
 	ld c, a
 	ld b, 0
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 rept 3
 	add hl, bc
 endr
@@ -20462,7 +20462,7 @@ Function249d1: ; 249d1 (9:49d1)
 
 Function24a40: ; 24a40 (9:4a40)
 	call Function24a5c
-	ld de, DefaultFlypoint
+	ld de, wd002
 	call Function24a80
 	call CopyBytes
 	ret
@@ -20471,7 +20471,7 @@ Function24a4d: ; 24a4d (9:4a4d)
 	call Function24a5c
 	ld d, h
 	ld e, l
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	call Function24a80
 	call CopyBytes
 	ret
@@ -22191,7 +22191,7 @@ Rate: ; 0x26616
 	ld hl, PokedexSeen
 	ld b, EndPokedexSeen - PokedexSeen
 	call CountSetBits
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	ld hl, PokedexCaught
 	ld b, EndPokedexCaught - PokedexCaught
 	call CountSetBits
@@ -22213,7 +22213,7 @@ Rate: ; 0x26616
 
 ClearOakRatingBuffers: ; 0x26647
 	ld hl, StringBuffer3
-	ld de, DefaultFlypoint
+	ld de, wd002
 	call ClearOakRatingBuffer
 	ld hl, StringBuffer4
 	ld de, wd003
@@ -22513,7 +22513,7 @@ Function26806: ; 26806
 	ld a, $7
 	call Function26830
 	ld hl, StringBuffer2
-	ld de, DefaultFlypoint
+	ld de, wd002
 	ld bc, $d
 	call CopyBytes
 	ret
@@ -22573,7 +22573,7 @@ Jumptable_26855: ; 26855
 
 Function2686c: ; 2686c
 	xor a
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld [hli], a
 	ld a, -1
 	ld bc, $10
@@ -22603,7 +22603,7 @@ CheckAllDecorationFlags: ; 2687a
 ; 26891
 
 Function26891: ; 26891
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	inc [hl]
 	ld e, [hl]
 	ld d, $0
@@ -22619,7 +22619,7 @@ Function2689b: ; 2689b
 	pop hl
 	call CheckAllDecorationFlags
 	pop bc
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	and a
 	ret z
 	ld a, c
@@ -22757,7 +22757,7 @@ Function26959: ; 26959
 ; 2695b
 
 Function2695b: ; 2695b
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	and a
 	jr z, .empty
 	cp 8
@@ -22775,7 +22775,7 @@ Function2695b: ; 2695b
 	ret
 
 .beyond_eight
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld e, [hl]
 	dec [hl]
 	ld d, 0
@@ -23875,7 +23875,7 @@ Function2715c: ; 2715c
 
 .continue
 	callba GetMonFrontpic
-	callba Function3ed9f
+	callba _LoadBattleFontsHPBar
 	call ClearSGB
 	call WriteBackup
 	call LoadPartyMenuDataHeader
@@ -26804,7 +26804,7 @@ FindFirstAliveMon: ; 2ee2f
 	ld a, [hl]
 	ld [BattleMonLevel], a
 	predef Predef_StartBattle
-	callba Function3ed9f
+	callba _LoadBattleFontsHPBar
 	ld a, 1
 	ld [hBGMapMode], a
 	call ClearSprites
@@ -28147,7 +28147,7 @@ FillMoves: ; 424e1
 	ld a, [Buffer1]
 	and a
 	jr z, .CheckMove
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	cp b
 	jr nc, .GetMove
 
@@ -29407,7 +29407,7 @@ Function48000: ; 48000
 	ld [wd476], a
 	ld [wd477], a
 	ld [wd478], a
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	ld [wd003], a
 	; could have done "ld a, [wd479] \ and -4", saved four operations
 	ld a, [wd479]
@@ -29423,7 +29423,7 @@ Function48000: ; 48000
 Function4802f: ; 4802f (12:402f)
 	xor a
 	set 6, a
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	ld hl, wd003
 	set 0, [hl]
 	ld a, c
@@ -29453,7 +29453,7 @@ Function4802f: ; 4802f (12:402f)
 	call Request1bpp
 	call Function4a3a7
 	call WhiteBGMap
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	bit 6, a
 	jr z, .asm_4808a
 	call Function48689
@@ -29503,7 +29503,7 @@ Function4802f: ; 4802f (12:402f)
 	hlcoord 2, 12
 	ld de, String_4849e
 	call PlaceString
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	bit 6, a
 	jr nz, .asm_48113
 	ld a, [PlayerGender]
@@ -29552,7 +29552,7 @@ asm_4815f: ; 4815f (12:415f)
 	bit 0, a
 	jp nz, Function4820d
 	ld b, a
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	bit 6, a
 	jr z, .asm_48177
 	ld hl, wd479
@@ -29589,7 +29589,7 @@ Function48187: ; 48187 (12:4187)
 	call PlaceString
 	pop de
 .asm_481ad
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	bit 6, a
 	jr nz, .asm_481c1
 	bit 0, d
@@ -29640,7 +29640,7 @@ Function4820d: ; 4820d (12:420d)
 	ld hl, MenuSelection2
 	ld a, [hl]
 	push af
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	bit 6, a
 	jr z, .asm_4821f
 	pop af
@@ -29658,7 +29658,7 @@ Function4820d: ; 4820d (12:420d)
 	jp z, Function488d3
 	ld a, $2
 	call Function1ff8
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	bit 6, a
 	jr z, .asm_4825c
 	jr .asm_4825c
@@ -29917,7 +29917,7 @@ Function4840c: ; 4840c (12:440c)
 	pop bc
 	ld hl, MenuSelection2
 	ld [hl], b
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	bit 6, a
 	jr nz, .asm_48437
 	ld b, $9
@@ -30110,7 +30110,7 @@ Function48689: ; 48689 (12:4689)
 
 Function486bf: ; 486bf (12:46bf)
 	ld hl, wcfa1
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	bit 6, a
 	jr nz, .asm_486ce
 	ld a, $4
@@ -30122,7 +30122,7 @@ Function486bf: ; 486bf (12:46bf)
 .asm_486d1
 	ld a, $1
 	ld [hli], a
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	bit 6, a
 	jr nz, .asm_486e7
 	call Function48725
@@ -30158,7 +30158,7 @@ Function486bf: ; 486bf (12:46bf)
 	add $40
 	add $80
 	push af
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	bit 6, a
 	jr z, .asm_4871a
 	pop af
@@ -30477,10 +30477,10 @@ asm_48922: ; 48922 (12:4922)
 	jp nz, Function4896e
 	bit 1, a
 	jp nz, Function4896e
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	and %11001111
 	res 7, a
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	pop bc
 	inc b
 	ld a, b
@@ -30531,10 +30531,10 @@ asm_48972: ; 48972 (12:4972)
 	jr z, .asm_48994
 	cp $f
 	jr nz, .asm_48988
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	set 7, a
 	and $cf
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 .asm_48988
 	hlcoord 11, 10
 	ld b, $0
@@ -30780,7 +30780,7 @@ Function48ab5: ; 48ab5 (12:4ab5)
 	jr nz, .asm_48b9d
 	hlcoord 11, 10
 	call Function489ea
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	bit 7, a
 	jr nz, .asm_48b51
 .asm_48b51
@@ -30931,7 +30931,7 @@ Function48c0f: ; 48c0f (12:4c0f)
 	ret
 
 Function48c11: ; 48c11 (12:4c11)
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	bit 7, a
 	jr z, .asm_48c20
 	ld a, d
@@ -30941,30 +30941,30 @@ Function48c11: ; 48c11 (12:4c11)
 .asm_48c1e
 	ld [hl], $7f
 .asm_48c20
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	swap a
 	and $3
 	inc a
 	cp b
 	jr nz, .asm_48c40
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	bit 7, a
 	jr z, .asm_48c3a
 	res 7, a
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	xor a
 	jr .asm_48c40
 .asm_48c3a
 	set 7, a
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	xor a
 .asm_48c40
 	swap a
 	ld b, a
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	and $cf
 	or b
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	ret
 
 Function48c4d: ; 48c4d (12:4c4d)
@@ -31661,7 +31661,7 @@ Function4942f: ; 4942f
 	ld bc, 4 * SCREEN_WIDTH
 	ld a, $7
 	call ByteFill
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	bit 6, a
 	jr z, .asm_49464
 	call Function49480
@@ -34171,7 +34171,7 @@ Function4a927: ; 4a927
 Function4a94e: ; 4a94e
 	call FadeToMenu
 	ld a, -1
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld bc, 3
 	call ByteFill
 	xor a
@@ -34205,7 +34205,7 @@ Function4a94e: ; 4a94e
 
 .asm_4a990
 	call Function2b3c
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld a, -1
 	ld bc, 3
 	call ByteFill
@@ -34238,7 +34238,7 @@ UnknownText_0x4a9be: ; 0x4a9be
 ; 0x4a9c3
 
 Function4a9c3: ; 4a9c3
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld a, $ff
 	cp [hl]
 	jr z, .asm_4a9d5
@@ -34257,7 +34257,7 @@ Function4a9c3: ; 4a9c3
 ; 4a9d7
 
 Function4a9d7: ; 4a9d7
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld hl, PartyMonNicknames
 	call GetNick
 	ld h, d
@@ -34340,7 +34340,7 @@ Function4aa6e: ; 4aa6e
 ; 4aa7a
 
 Function4aa7a: ; 4aa7a
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld d, $3
 .loop
 	ld e, PARTY_LENGTH
@@ -34395,7 +34395,7 @@ Function4aa7a: ; 4aa7a
 ; 4aab6
 
 Function4aab6: ; 4aab6
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld d, $3
 .loop
 	ld a, [hli]
@@ -34540,7 +34540,7 @@ Function4ab1a: ; 4ab1a
 Function4ab99: ; 4ab99
 	bit 1, a
 	jr z, .asm_4aba6
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	cp $ff
 	jr z, .asm_4aba6
 	scf
@@ -34771,7 +34771,7 @@ Function4acaa: ; 4acaa
 Function4ad17: ; 4ad17
 	call Function4adb2
 	jr z, .asm_4ad4a
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld a, $ff
 	cp [hl]
 	jr z, .asm_4ad39
@@ -34863,7 +34863,7 @@ String_4ada7: ; 4ada7
 ; 4adb2
 
 Function4adb2: ; 4adb2
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld a, [CurPartyMon]
 	cp [hl]
 	ret z
@@ -34878,20 +34878,20 @@ Function4adb2: ; 4adb2
 ; 4adc2
 
 Function4adc2: ; 4adc2
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	cp $ff
 	jr nz, .asm_4ade5
 	ld a, [wd003]
 	cp $ff
 	jr nz, .asm_4addd
 	ld a, [wd004]
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	ld a, $ff
 	ld [wd004], a
 	jr .asm_4ade5
 
 .asm_4addd
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	ld a, $ff
 	ld [wd003], a
 
@@ -38650,7 +38650,7 @@ PlacePartyMonMobileBattleSelection: ; 50307
 	call PlaceString
 	ld b, $3
 	ld c, $0
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld a, [hl]
 .loop2
 	push hl
@@ -40548,7 +40548,7 @@ _SwitchPartyMons:
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	push hl
-	ld de, MiscBuffer2
+	ld de, wd002
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 	ld a, [Buffer3]
@@ -40560,14 +40560,14 @@ _SwitchPartyMons:
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 	pop de
-	ld hl, MiscBuffer2
+	ld hl, wd002
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
 	ld hl, PartyMonOT
 	call SkipNames
 	push hl
-	call .CopyNameToMiscBuffer2
+	call .CopyNameTowd002
 	ld a, [Buffer3]
 	ld hl, PartyMonOT
 	call SkipNames
@@ -40575,13 +40575,13 @@ _SwitchPartyMons:
 	push hl
 	call .CopyName
 	pop de
-	ld hl, MiscBuffer2
+	ld hl, wd002
 	call .CopyName
 	ld hl, PartyMonNicknames
 	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
 	call SkipNames
 	push hl
-	call .CopyNameToMiscBuffer2
+	call .CopyNameTowd002
 	ld hl, PartyMonNicknames
 	ld a, [Buffer3]
 	call SkipNames
@@ -40589,14 +40589,14 @@ _SwitchPartyMons:
 	push hl
 	call .CopyName
 	pop de
-	ld hl, MiscBuffer2
+	ld hl, wd002
 	call .CopyName
 	ld hl, sPartyScratch1
 	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
 	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call AddNTimes
 	push hl
-	ld de, MiscBuffer2
+	ld de, wd002
 	ld bc, SCRATCHMON_STRUCT_LENGTH
 	ld a, BANK(sPartyScratch1)
 	call GetSRAMBank
@@ -40610,7 +40610,7 @@ _SwitchPartyMons:
 	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call CopyBytes
 	pop de
-	ld hl, MiscBuffer2
+	ld hl, wd002
 	ld bc, SCRATCHMON_STRUCT_LENGTH
 	call CopyBytes
 	call CloseSRAM
@@ -40619,8 +40619,8 @@ _SwitchPartyMons:
 	pop hl
 	ret
 
-.CopyNameToMiscBuffer2: ; 51036 (14:5036)
-	ld de, MiscBuffer2
+.CopyNameTowd002: ; 51036 (14:5036)
+	ld de, wd002
 
 .CopyName: ; 51039 (14:5039)
 	ld bc, NAME_LENGTH
@@ -42449,7 +42449,7 @@ ColorTest: ; 818ac
 ; 818f4
 
 Function818f4: ; 818f4
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	and a
 	jr nz, Function81911
 	ld hl, PokemonPalettes
@@ -42745,7 +42745,7 @@ endr
 
 Function81ac3: ; 81ac3
 ; Looping back around the pic set.
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	and a
 	jr nz, .asm_81acc
 	ld a, NUM_POKEMON ; CELEBI
@@ -42794,7 +42794,7 @@ Function81adb: ; 81adb
 	ld de, wd265
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	and a
 	jr nz, .asm_81b7a
 	ld a, $1
@@ -43031,7 +43031,7 @@ endr
 	ret
 
 .asm_81ce5
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	and a
 	ret nz
 	ld a, [wd003]
@@ -45270,7 +45270,7 @@ Function848ed: ; 848ed (21:48ed)
 	ld bc, $372
 	add hl, bc
 	ld bc, $b
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	call AddNTimes
 	ld e, l
 	ld d, h
@@ -45288,13 +45288,13 @@ Function848ed: ; 848ed (21:48ed)
 	ld bc, $35
 	add hl, bc
 	ld bc, $20
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	call AddNTimes
 	ld a, [hl]
 	pop hl
 	call Function383d
 .ok2
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	inc [hl]
 	pop de
 	pop hl
@@ -45321,7 +45321,7 @@ Function8498a: ; 8498a (21:498a)
 	ld bc, $2b
 	add hl, bc
 	ld bc, $20
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	call AddNTimes
 	ld de, TempMonDVs
 	ld a, [hli]
@@ -45329,7 +45329,7 @@ Function8498a: ; 8498a (21:498a)
 	inc de
 	ld a, [hli]
 	ld [de], a
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld [CurPartyMon], a
 	ld a, $3
 	ld [MonType], a
@@ -51160,7 +51160,7 @@ Special_SetDayOfWeek: ; 90913
 	lb bc, BANK(GFX_9090b), 1
 	call Request1bpp
 	xor a
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 .asm_90936
 	hlcoord 0, 12
 	lb bc, 4, 18
@@ -51191,7 +51191,7 @@ Special_SetDayOfWeek: ; 90913
 	call PrintText
 	call YesNoBox
 	jr c, .asm_90936
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld [StringBuffer2], a
 	call Function663
 	call LoadStandardFont
@@ -53251,7 +53251,7 @@ _FlyMap: ; 91af3
 	jr .exit
 
 .pressedA
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld l, a
 	ld h, 0
 	add hl, hl
@@ -53260,7 +53260,7 @@ _FlyMap: ; 91af3
 	ld a, [hl]
 
 .exit
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	pop af
 	ld [hInMenu], a
 	call WhiteBGMap
@@ -53270,7 +53270,7 @@ _FlyMap: ; 91af3
 	ld [hBGMapAddress], a
 	ld a, VBGMap0 / $100
 	ld [hBGMapAddress + 1], a
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld e, a
 	ret
 ; 91b73
@@ -53290,7 +53290,7 @@ FlyMapScroll: ; 91b73
 	ret
 
 .ScrollNext
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld a, [hl]
 	cp d
 	jr nz, .NotAtEndYet
@@ -53305,7 +53305,7 @@ FlyMapScroll: ; 91b73
 	jr .Finally
 
 .ScrollPrev
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld a, [hl]
 	cp e
 	jr nz, .NotAtStartYet
@@ -53384,7 +53384,7 @@ TownMapBubble: ; 91bb5
 
 .Name
 ; We need the map location of the default flypoint
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld l, a
 	ld h, 0
 	add hl, hl ; two bytes per flypoint
@@ -53401,7 +53401,7 @@ TownMapBubble: ; 91bb5
 ; 91c17
 
 GetMapCursorCoordinates: ; 91c17
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld l, a
 	ld h, $0
 	add hl, hl
@@ -53534,7 +53534,7 @@ FlyMap: ; 91c90
 
 ; Start from New Bark Town
 	ld a, FLY_NEW_BARK
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 
 ; Flypoints begin at New Bark Town...
 	ld [StartFlypoint], a
@@ -53578,7 +53578,7 @@ FlyMap: ; 91c90
 
 ; Because Indigo Plateau is the first flypoint the player
 ; visits, it's made the default flypoint
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 
 ; Fill out the map
 	call FillKantoMap
@@ -53592,7 +53592,7 @@ FlyMap: ; 91c90
 
 ; Start from New Bark Town
 	ld a, FLY_NEW_BARK
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 
 ; Flypoints begin at New Bark Town...
 	ld [StartFlypoint], a
@@ -53620,12 +53620,12 @@ FlyMap: ; 91c90
 ; 91d11
 
 Function91d11: ; 91d11
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	push af
 	ld a, [wd003]
 	push af
 	ld a, e
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	call ClearSprites
 	xor a
 	ld [hBGMapMode], a
@@ -53682,7 +53682,7 @@ Function91d11: ; 91d11
 	pop af
 	ld [wd003], a
 	pop af
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	ret
 ; 91d9b
 
@@ -53807,7 +53807,7 @@ Function91e5a: ; 91e5a
 	call Function91ea9
 	ret c
 
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld e, a
 	callba GetLandmarkCoords
 	ld c, e
@@ -53863,7 +53863,7 @@ Unknown_91e9c: ; 91e9c
 ; 91ea9
 
 Function91ea9: ; 91ea9
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	cp FAST_SHIP
 	jr z, .johto
 	cp KANTO_LANDMARK
@@ -53894,7 +53894,7 @@ Function91ea9: ; 91ea9
 ; 91ed0
 
 Function91ed0: ; 91ed0
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	cp FAST_SHIP
 	jr z, .asm_91ede
 	callba GetPlayerIcon
@@ -54129,7 +54129,7 @@ INCBIN "gfx/unknown/092301.2bpp"
 
 Function92311: ; 92311
 	xor a
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	call WhiteBGMap
 	call ClearTileMap
 	call ClearSprites
@@ -54183,7 +54183,7 @@ Function92311: ; 92311
 	jr .asm_9239f
 
 .pressedA
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld l, a
 	ld h, 0
 	add hl, hl
@@ -54192,7 +54192,7 @@ Function92311: ; 92311
 	ld a, [hl]
 
 .asm_9239f
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	pop af
 	ld [hInMenu], a
 	call WhiteBGMap
@@ -54202,7 +54202,7 @@ Function92311: ; 92311
 	ld [hBGMapAddress], a
 	ld a, VBGMap0 / $100
 	ld [hBGMapAddress + 1], a
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld e, a
 	ret
 ; 923b8
@@ -54218,7 +54218,7 @@ Function923b8: ; 923b8
 	ret
 
 .asm_923c6
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld a, [hl]
 	cp FLY_INDIGO
 	jr c, .asm_923d0
@@ -54228,7 +54228,7 @@ Function923b8: ; 923b8
 	jr .asm_923dd
 
 .asm_923d3
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld a, [hl]
 	and a
 	jr nz, .asm_923dc
@@ -54237,7 +54237,7 @@ Function923b8: ; 923b8
 	dec [hl]
 
 .asm_923dd
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	cp KANTO_FLYPOINT
 	jr c, .johto
 
@@ -61021,13 +61021,13 @@ Unknown_e14b5: ; e14b5
 
 Functione14d9: ; e14d9
 	call Functione1481
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	xor a
 	call Functione1463
 	ld a, [hli]
 	ld b, [hl]
 	ld c, a
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	cp $e0
 	jr z, .asm_e14f2
 	ld hl, Unknown_e150f
@@ -61049,7 +61049,7 @@ Functione14d9: ; e14d9
 	add c
 	ld [de], a
 	inc de
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	add [hl]
 	ld [de], a
 	inc hl
@@ -64180,7 +64180,7 @@ Functione3363: ; e3363 (38:7363)
 	ld bc, $b
 	ld a, [CurPartyMon]
 	call AddNTimes
-	ld de, DefaultFlypoint
+	ld de, wd002
 	ld bc, $b
 	call CopyBytes
 	ret
@@ -64540,7 +64540,7 @@ Functione36f9: ; e36f9 (38:76f9)
 
 .asm_e3745
 	ld b, $4
-	ld de, DefaultFlypoint
+	ld de, wd002
 	callba Function116c1
 	call ClearTileMap
 	call LoadStandardFont
@@ -64550,13 +64550,13 @@ Functione36f9: ; e36f9 (38:76f9)
 	call GetBoxName
 	ld e, l
 	ld d, h
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld c, $8
 	call InitString
 	ld a, [MenuSelection]
 	dec a
 	call GetBoxName
-	ld de, DefaultFlypoint
+	ld de, wd002
 	call CopyName2
 	ret
 ; e3778 (38:7778)
@@ -68032,7 +68032,7 @@ endr
 ; fb5dd
 
 Functionfb5dd: ; fb5dd
-	ld a, [DefaultFlypoint]
+	ld a, [wd002]
 	ld d, a
 	ld a, [PartyCount]
 	ld b, a

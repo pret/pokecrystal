@@ -233,7 +233,7 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 	xor a
 	ld [ItemCountBuffer], a
 	ld a, -1
-	ld [MiscBuffer2], a
+	ld [wd002], a
 
 ; Search for [CurItem] in the bag.
 .loop1
@@ -253,7 +253,7 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 ; Increment the result counter and store the bag index of the match.
 	ld d, $0
 	push hl
-	ld hl, MiscBuffer2
+	ld hl, wd002
 	add hl, de
 	inc e
 	ld a, [ItemCountBuffer]
@@ -271,7 +271,7 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 	jr z, .done
 	dec a
 	jr z, .OnlyOne
-	ld hl, MiscBuffer2
+	ld hl, wd002
 
 .loop2
 	ld a, [hl]
@@ -316,7 +316,7 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 	jr nz, .loop2
 
 .OnlyOne
-	ld hl, MiscBuffer2
+	ld hl, wd002
 .loop4
 	ld a, [hl]
 	cp -1

@@ -5573,7 +5573,7 @@ Function10250c: ; 10250c
 	ld [wd003], a
 	ld a, [wcd4c]
 	dec a
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	call Function102b9c
 	call Function102bdc
 	jr c, .asm_10256d
@@ -6003,7 +6003,7 @@ Function102814: ; 102814
 	ld [wcd52], a
 	ld a, [wcd4c]
 	dec a
-	ld [DefaultFlypoint], a
+	ld [wd002], a
 	ld a, [wcd4d]
 	dec a
 	ld [wd003], a
@@ -6679,7 +6679,7 @@ Function102cee: ; 102cee
 	ld a, [wJumptableIndex]
 	dec a
 	call Function102d34
-	ld de, DefaultFlypoint
+	ld de, wd002
 	ld bc, $002f
 	call CopyBytes
 	ld a, [wJumptableIndex]
@@ -6705,7 +6705,7 @@ Function102cee: ; 102cee
 	call Function102d34
 	ld d, h
 	ld e, l
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld bc, $002f
 	call CopyBytes
 	ret
@@ -8068,7 +8068,7 @@ endr
 	callba Script_reloadmappart
 	callba Function4a94e
 	jr c, .asm_103870
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld de, wdc5c
 	ld bc, $0003
 	call CopyBytes

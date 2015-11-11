@@ -1400,47 +1400,38 @@ wDaysSince:: ds 1
 
 SECTION "WRAM 1", WRAMX, BANK [1]
 
-MiscBuffer0::
 wd000:: ds 1
-MiscBuffer1::
 DefaultSpawnpoint::
 wd001:: ds 1
 wd002::
-MiscBuffer2::
 PhoneScriptBank::
-DefaultFlypoint:: ; d002
 LuckyNumberDigit1Buffer::
 wCurrentRadioLine::
 wMovementBufferCount::
 	ds 1
 wd003::
-MiscBuffer3::
 LuckyNumberDigit2Buffer::
 PhoneCallerLo::
 wNextRadioLine::
 wMovementBufferPerson::
 	ds 1
 wd004::
-MiscBuffer4::
 LuckyNumberDigit3Buffer::
 PhoneCallerHi::
 wRadioTextDelay::
 	ds 1
 wd005::
-MiscBuffer5::
 LuckyNumberDigit4Buffer::
 StartFlypoint:: ; d005
 wNumRadioLinesPrinted::
 	ds 1
 wd006::
-MiscBuffer6::
 LuckyNumberDigit5Buffer::
 EndFlypoint:: ; d006
 wOaksPkmnTalkSegmentCounter::
 	ds 1
 
 wd007::
-MiscBuffer7::
 MovementBuffer:: ; d007
 	ds 1
 
