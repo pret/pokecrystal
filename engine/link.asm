@@ -1676,7 +1676,7 @@ Function28b87: ; 28b87
 	ld hl, UnknownText_0x28eb8
 	bccoord 1, 14
 	call PlaceWholeStringInBoxAtOnce
-	call LoadPartyMenuDataHeader
+	call LoadStandardMenuDataHeader
 	hlcoord 10, 7
 	ld b, $3
 	ld c, $7

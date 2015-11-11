@@ -42,6 +42,8 @@
 	charmap "<PO>",     $70
 	charmap "<KE>",     $71
 	charmap "◀",        $71
+	charmap "<``>",     $72
+	charmap "<''>",     $73
 	charmap "<ID>",     $73
 	charmap "№",        $74
 	charmap "…",        $75

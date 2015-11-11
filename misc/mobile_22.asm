@@ -2927,7 +2927,7 @@ UnknownText_0x8a23c: ; 0x8a23c
 ; 0x8a241
 
 Function8a241: ; 8a241 (22:6241)
-	call LoadPartyMenuDataHeader
+	call LoadStandardMenuDataHeader
 	call Function891fe
 	call Function8a262
 	jr nc, .asm_8a254
@@ -3455,7 +3455,7 @@ Palette_8a624: ; 8a624
 ; 8a62c
 
 Function8a62c: ; 8a62c (22:662c)
-	call LoadPartyMenuDataHeader
+	call LoadStandardMenuDataHeader
 	call Function891fe
 	xor a
 	call Function8b94a
@@ -3643,7 +3643,7 @@ Function8a78c: ; 8a78c (22:678c)
 	call Function891fe
 	ld de, wd002
 	ld b, $5
-	callba Function116c1
+	callba NamingScreen
 	call OpenSRAMBank4
 	call Function8931b
 	push bc
@@ -3885,7 +3885,7 @@ Function8a999: ; 8a999 (22:6999)
 	jr c, .asm_8a9bb
 	push bc
 	push de
-	call LoadPartyMenuDataHeader
+	call LoadStandardMenuDataHeader
 	pop de
 	dec e
 	ld a, e
@@ -4141,7 +4141,7 @@ Function8ab77: ; 8ab77 (22:6b77)
 
 Function8ab93: ; 8ab93 (22:6b93)
 	call WhiteBGMap
-	call LoadPartyMenuDataHeader
+	call LoadStandardMenuDataHeader
 	callba Function105688
 	call ClearSprites
 	call Function891fe

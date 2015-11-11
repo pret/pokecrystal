@@ -1711,11 +1711,11 @@ DrawBattleHPBar:: ; 3750
 ; 3786
 
 
-Function3786:: ; 3786
+PrepMonFrontpic:: ; 3786
 	ld a, $1
 	ld [wc2c6], a
 
-Function378b:: ; 378b
+_PrepMonFrontpic:: ; 378b
 	ld a, [CurPartySpecies]
 	call IsAPokemon
 	jr c, .not_pokemon

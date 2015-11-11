@@ -96,7 +96,7 @@ OfficerScript_0x6a204:
 	iffalse Route35NationalParkgate_DeclinedToParticipate
 	checkcode VAR_PARTYCOUNT
 	if_greater_than $1, Route35NationalParkgate_LeaveTheRestBehind
-	special CheckFirstMonFainted
+	special ContestDropOffMons
 	clearevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 Route35NationalParkgate_OkayToProceed:
 	setflag ENGINE_BUG_CONTEST_TIMER
@@ -140,7 +140,7 @@ Route35NationalParkgate_LessThanFullParty: ; 6a27d
 	writetext UnknownText_0x6a4c6
 	yesorno
 	iffalse Route35NationalParkgate_DeclinedToLeaveMonsBehind
-	special CheckFirstMonFainted
+	special ContestDropOffMons
 	iftrue Route35NationalParkgate_FirstMonIsFainted
 	setevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 	writetext UnknownText_0x6a537

@@ -52,7 +52,7 @@ MenuTextBoxBackup:: ; 1d67
 	ret
 ; 1d6e
 
-LoadPartyMenuDataHeader:: ; 1d6e
+LoadStandardMenuDataHeader:: ; 1d6e
 	ld hl, MenuDataHeader_0x1d75
 	call LoadMenuDataHeader
 	ret

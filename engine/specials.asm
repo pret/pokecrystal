@@ -42,7 +42,7 @@ SpecialsPointers:: ; c029
 ; Map Events
 	add_special BugContestJudging
 	add_special CheckPartyFullAfterContest
-	add_special CheckFirstMonFainted
+	add_special ContestDropOffMons
 	add_special ContestReturnMons
 	add_special Special_GiveParkBalls
 	add_special Special_CheckMagikarpLength

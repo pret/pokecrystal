@@ -2889,7 +2889,7 @@ AskUseNextPokemon: ; 3d1f8
 
 ForcePlayerMonChoice: ; 3d227
 	call EmptyBattleTextBox
-	call LoadPartyMenuDataHeader
+	call LoadStandardMenuDataHeader
 	call Function3d2f7
 	call ForcePickPartyMonInBattle
 	ld a, [wLinkMode]
@@ -2996,7 +2996,7 @@ IsMobileBattle: ; 3d2f1
 
 Function3d2f7: ; 3d2f7
 	call WhiteBGMap
-Function3d2fa: ; 3d2fa
+Function3d2fa: ; switch to fullscreen menu?
 	callba Function5004f
 	callba Function50405
 	callba Function8e85
@@ -3415,7 +3415,7 @@ ResetEnemyBattleVars: ; 3d557
 	ld a, $8
 	call Function3d490
 	call EmptyBattleTextBox
-	jp LoadPartyMenuDataHeader
+	jp LoadStandardMenuDataHeader
 ; 3d57a
 
 ResetBattleParticipants: ; 3d57a
@@ -5233,7 +5233,7 @@ BattleMenu_Pack: ; 3e1c7
 	and a
 	jp nz, ItemsCantBeUsed
 
-	call LoadPartyMenuDataHeader
+	call LoadStandardMenuDataHeader
 
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
@@ -5328,10 +5328,10 @@ Function3e234: ; 3e234
 ; 3e28d
 
 BattleMenu_PKMN: ; 3e28d
-	call LoadPartyMenuDataHeader
+	call LoadStandardMenuDataHeader
 Function3e290:
 	call ExitMenu
-	call LoadPartyMenuDataHeader
+	call LoadStandardMenuDataHeader
 	call WhiteBGMap
 Function3e299:
 	call Function3d2fa
@@ -5467,7 +5467,7 @@ PlayerSwitch: ; 3e3ad
 	ld a, [wLinkMode]
 	and a
 	jr z, .not_linked
-	call LoadPartyMenuDataHeader
+	call LoadStandardMenuDataHeader
 	call Function3e8e4
 	call WriteBackup
 

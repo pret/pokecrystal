@@ -190,7 +190,7 @@ DoEggStep:: ; 16f3e
 
 OverworldHatchEgg:: ; 16f5e
 	call ResetWindow
-	call LoadPartyMenuDataHeader
+	call LoadStandardMenuDataHeader
 	call Function16f70
 	call Function2b4d
 	call RestartMapMusic
@@ -324,7 +324,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	ld [MonType], a
 	push de
 	ld b, $0
-	callba Function116c1
+	callba NamingScreen
 	pop hl
 	ld de, StringBuffer1
 	call InitName

@@ -1507,6 +1507,7 @@ CurInput::
 EngineBuffer1:: ; d03e
 	ds 1
 wd03f::
+wJumpStdScriptBuffer::
 CurFruit:: ; d03f
 MartPointerBank::
 EngineBuffer2::
@@ -2593,7 +2594,9 @@ BackupMapNumber:: ; dcae
 
 	ds 3
 
+wLastSpawnMapGroup::
 wdcb2:: ds 1
+wLastSpawnMapNumber::
 wdcb3:: ds 1
 
 WarpNumber:: ; dcb4
@@ -2691,7 +2694,8 @@ wEggNick:: ds PKMN_NAME_LENGTH ; df65
 wEggOT::   ds NAME_LENGTH ; df70
 wEggMon::  box_struct wEggMon ; df7b
 
-wdf9b:: ds 1
+wdf9b::
+wBugContestSecondPartySpecies:: ds 1
 
 
 wdf9c::

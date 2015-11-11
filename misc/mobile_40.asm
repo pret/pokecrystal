@@ -4519,7 +4519,7 @@ Unknown_101d8d: ; 101d8d
 
 Function101d95: ; 101d95
 	call Function101ee2
-	call LoadPartyMenuDataHeader
+	call LoadStandardMenuDataHeader
 	ld e, $e
 	call Function101ee4
 	ld hl, wcd29
@@ -6292,7 +6292,7 @@ Jumptable_1029cb: ; 1029cb
 ; 1029cf
 
 Function1029cf: ; 1029cf
-	call LoadPartyMenuDataHeader
+	call LoadStandardMenuDataHeader
 	hlcoord 10, 7
 	ld b, $3
 	ld c, $8

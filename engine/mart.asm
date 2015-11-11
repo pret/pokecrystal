@@ -36,7 +36,7 @@ MartDialog: ; 15a61
 
 HerbShop: ; 15a6e
 	call FarReadMart
-	call LoadPartyMenuDataHeader
+	call LoadStandardMenuDataHeader
 	ld hl, Text_HerbShop_Intro
 	call MartTextBox
 	call BuyMenu
@@ -50,7 +50,7 @@ BargainShop: ; 15a84
 	ld de, BargainShopData
 	call LoadMartPointer
 	call ReadMart
-	call LoadPartyMenuDataHeader
+	call LoadStandardMenuDataHeader
 	ld hl, Text_BargainShop_Intro
 	call MartTextBox
 	call BuyMenu
@@ -69,7 +69,7 @@ BargainShop: ; 15a84
 
 Pharmacist: ; 15aae
 	call FarReadMart
-	call LoadPartyMenuDataHeader
+	call LoadStandardMenuDataHeader
 	ld hl, UnknownText_0x15e90
 	call MartTextBox
 	call BuyMenu
@@ -90,7 +90,7 @@ RooftopSale: ; 15ac4
 .ok
 	call LoadMartPointer
 	call ReadMart
-	call LoadPartyMenuDataHeader
+	call LoadStandardMenuDataHeader
 	ld hl, Text_Mart_HowMayIHelpYou
 	call MartTextBox
 	call BuyMenu
@@ -175,7 +175,7 @@ StandardMart: ; 15b47
 ; 15b62
 
 .HowMayIHelpYou: ; 15b62
-	call LoadPartyMenuDataHeader
+	call LoadStandardMenuDataHeader
 	ld hl, Text_Mart_HowMayIHelpYou
 	call PrintText
 	ld a, $1 ; top menu
@@ -183,7 +183,7 @@ StandardMart: ; 15b47
 ; 15b6e
 
 .TopMenu: ; 15b6e
-	ld hl, MenuDataHeader_0x15f88
+	ld hl, MenuDataHeader_BuySell
 	call CopyMenuDataHeader
 	call InterpretMenu2
 	jr c, .quit
@@ -228,7 +228,7 @@ StandardMart: ; 15b47
 ; 15baf
 
 .AnythingElse: ; 15baf
-	call LoadPartyMenuDataHeader
+	call LoadStandardMenuDataHeader
 	ld hl, Text_Mart_AnythingElse
 	call PrintText
 	ld a, $1 ; top menu
@@ -472,7 +472,7 @@ endr
 BuyMenuLoop: ; 15cef
 	callba Function24ae8
 	call UpdateSprites
-	ld hl, MenuDataHeader_0x15e18
+	ld hl, MenuDataHeader_Buy
 	call CopyMenuDataHeader
 	ld a, [wd045]
 	ld [wMenuCursorBuffer], a
@@ -643,19 +643,19 @@ Text_Mart_CostsThisMuch: ; 0x15e13
 	db "@"
 ; 0x15e18
 
-MenuDataHeader_0x15e18: ; 0x15e18
+MenuDataHeader_Buy: ; 0x15e18
 	db $40 ; flags
 	db 03, 01 ; start coords
 	db 11, 19 ; end coords
-	dw MenuData2_0x15e20
+	dw .menudata2
 	db 1 ; default option
 ; 0x15e20
 
-MenuData2_0x15e20: ; 0x15e20
-	db $30 ; flags
+.menudata2: ; 0x15e20
+	db $30 ; pointers
 	db 4, 8 ; rows, columns
 	db 1 ; horizontal spacing
-	dbw 0, OBPals + 8 * 6
+	dbw 0, CurMart
 	dba PlaceMenuItemName
 	dba .PrintBCDPrices
 	dba Function244c3
@@ -929,16 +929,16 @@ Text_Mart_HowMayIHelpYou: ; 0x15f83
 	db "@"
 ; 0x15f88
 
-MenuDataHeader_0x15f88: ; 0x15f88
+MenuDataHeader_BuySell: ; 0x15f88
 	db $40 ; flags
 	db 00, 00 ; start coords
 	db 08, 07 ; end coords
-	dw MenuData2_0x15f90
+	dw .menudata2
 	db 1 ; default option
 ; 0x15f90
 
-MenuData2_0x15f90: ; 0x15f90
-	db $80 ; flags
+.menudata2: ; 0x15f90
+	db $80 ; strings
 	db 3 ; items
 	db "BUY@"
 	db "SELL@"

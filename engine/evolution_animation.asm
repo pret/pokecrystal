@@ -161,7 +161,7 @@ Function4e703: ; 4e703
 Function4e708: ; 4e708
 	call GetBaseData
 	hlcoord 7, 2
-	jp Function3786
+	jp PrepMonFrontpic
 ; 4e711
 
 Function4e711: ; 4e711

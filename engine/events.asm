@@ -1078,7 +1078,7 @@ PlayerEventScriptPointers: ; 96c0c
 	dba UnknownScript_0x96c4d   ; 4
 	dba WarpToNewMapScript      ; 5
 	dba FallIntoMapScript       ; 6
-	dba UnknownScript_0x124c8   ; 7
+	dba Script_OverworldWhiteout   ; 7
 	dba HatchEggScript          ; 8
 	dba UnknownScript_0x96c4f   ; 9
 	dba Invalid_0x96c2d         ; 10

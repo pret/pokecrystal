@@ -603,7 +603,7 @@ endr
 	xor a ; PARTYMON
 	ld [MonType], a
 	ld b, 0
-	callba Function116c1
+	callba NamingScreen
 
 	call FadeToWhite
 
@@ -656,7 +656,7 @@ endr
 	ld [MonType], a
 	ld de, wd050
 	ld b, $0
-	callba Function116c1
+	callba NamingScreen
 
 	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank

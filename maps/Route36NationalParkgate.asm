@@ -148,7 +148,7 @@ Route36OfficerScriptContest:
 	iffalse .DecidedNotToJoinContest
 	checkcode VAR_PARTYCOUNT
 	if_greater_than $1, .LeaveMonsWithOfficer
-	special CheckFirstMonFainted
+	special ContestDropOffMons
 	clearevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 .ResumeStartingContest:
 	setflag ENGINE_BUG_CONTEST_TIMER
@@ -183,7 +183,7 @@ Route36OfficerScriptContest:
 	writetext UnknownText_0x6afb0
 	yesorno
 	iffalse .RefusedToLeaveMons
-	special CheckFirstMonFainted
+	special ContestDropOffMons
 	iftrue .FirstMonIsFainted
 	setevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 	writetext UnknownText_0x6b021

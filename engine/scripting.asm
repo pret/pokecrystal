@@ -1560,8 +1560,8 @@ Script_returnafterbattle: ; 0x97459
 	and $3f
 	cp $1
 	jr nz, .notblackedout ; 0x97466 $8
-	ld b, BANK(UnknownScript_0x124c1)
-	ld hl, UnknownScript_0x124c1
+	ld b, BANK(Script_BattleWhiteout)
+	ld hl, Script_BattleWhiteout
 	jp ScriptJump
 
 .notblackedout
@@ -2884,9 +2884,9 @@ Script_blackoutmod: ; 0x97a78
 ;     map_id (MapIdParam)
 
 	call GetScriptByte
-	ld [wdcb2], a
+	ld [wLastSpawnMapGroup], a
 	call GetScriptByte
-	ld [wdcb3], a
+	ld [wLastSpawnMapNumber], a
 	ret
 ; 0x97a85
 

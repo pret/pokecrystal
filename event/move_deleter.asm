@@ -19,7 +19,7 @@ MoveDeletion:
 	jr z, .asm_2c5ca
 	ld hl, UnknownText_0x2c5ea
 	call PrintText
-	call LoadPartyMenuDataHeader
+	call LoadStandardMenuDataHeader
 	callba Function12f5b
 	push af
 	call Function2b74
