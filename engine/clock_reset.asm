@@ -99,7 +99,7 @@ RestartClock: ; 20021 (8:4021)
 	call .PrintTime
 	ld hl, .Text_ClockReset
 	call PrintText
-	call Functiona80
+	call WaitPressAorB_BlinkCursor
 	xor a
 	ret
 

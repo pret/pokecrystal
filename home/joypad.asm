@@ -355,7 +355,7 @@ JoyTextDelay:: ; a57
 	ret
 ; a80
 
-Functiona80:: ; a80
+WaitPressAorB_BlinkCursor:: ; a80
 	ld a, [hMapObjectIndexBuffer]
 	push af
 	ld a, [hObjectStructIndexBuffer]
@@ -368,7 +368,7 @@ Functiona80:: ; a80
 .loop
 	push hl
 	hlcoord 18, 17
-	call Functionb06
+	call BlinkCursor
 	pop hl
 
 	call JoyTextDelay
@@ -383,7 +383,7 @@ Functiona80:: ; a80
 	ret
 ; aa5
 
-Functionaa5:: ; aa5
+SimpleWaitPressAorB:: ; aa5
 .loop
 	call JoyTextDelay
 	ld a, [hJoyLast]
@@ -451,14 +451,14 @@ KeepTextOpen:: ; aaf
 	ret
 ; b06
 
-Functionb06:: ; b06
+BlinkCursor:: ; b06
 	push bc
 	ld a, [hl]
 	ld b, a
 	ld a, "▼"
 	cp b
 	pop bc
-	jr nz, .asm_b27
+	jr nz, .place_arrow
 	ld a, [hMapObjectIndexBuffer]
 	dec a
 	ld [hMapObjectIndexBuffer], a
@@ -475,7 +475,7 @@ Functionb06:: ; b06
 	ld [hObjectStructIndexBuffer], a
 	ret
 
-.asm_b27
+.place_arrow
 	ld a, [hMapObjectIndexBuffer]
 	and a
 	ret z
@@ -488,9 +488,9 @@ Functionb06:: ; b06
 	dec a
 	ld [hObjectStructIndexBuffer], a
 	ret nz
-	ld a, $6
+	ld a, 6
 	ld [hObjectStructIndexBuffer], a
-	ld a, $ee
+	ld a, "▼"
 	ld [hl], a
 	ret
 ; b40

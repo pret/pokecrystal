@@ -1623,7 +1623,7 @@ PrintWinLossText:: ; 3718
 	call GetMapScriptHeaderBank
 	call FarPrintText
 	call WaitBGMap
-	call Functiona80
+	call WaitPressAorB_BlinkCursor
 	ret
 ; 3741
 

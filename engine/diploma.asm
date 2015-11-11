@@ -1,7 +1,7 @@
 
 Function1dd702: ; 1dd702
 	call Function1dd709
-	call Functiona80
+	call WaitPressAorB_BlinkCursor
 	ret
 ; 1dd709
 

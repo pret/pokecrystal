@@ -894,7 +894,7 @@ Special_DayCareMon2: ; 17440
 	jp PrintText
 
 Function1745f: ; 1745f
-	jp Functiona80
+	jp WaitPressAorB_BlinkCursor
 ; 17462
 
 UnknownText_0x17462: ; 0x17462

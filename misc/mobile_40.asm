@@ -6,15 +6,18 @@ Function100000: ; 100000
 	push af
 	ld a, $1
 	ld [rSVBK], a
+
 	call Function100022
 	call Function1000ba
 	call Function100675
 	call Function100057
 	call Function10016f
 	call Function100276
+
 	push bc
 	call Function100301
 	pop bc
+
 	pop af
 	ld [rSVBK], a
 	ret
@@ -313,11 +316,14 @@ Function10020b: ; 10020b
 	callba Function106464
 	call HideSprites
 	call DelayFrame
+
 	ld a, [rSVBK]
 	push af
 	ld a, $1
 	ld [rSVBK], a
+
 	callba Function17f555
+
 	pop af
 	ld [rSVBK], a
 	ret
@@ -400,7 +406,7 @@ Function1002c9: ; 1002c9
 	ld hl, wcd2a
 	bit 0, [hl]
 	ret z
-	callba Function3f6d0
+	callba CleanUpBattleRAM
 	callba LoadPokemonData
 	ret
 ; 1002dc
@@ -537,7 +543,7 @@ Function100393: ; 100393
 
 Function10039c: ; 10039c
 	ld hl, wcc60
-	ld de, wd000
+	ld de, w3_d000
 	ld bc, $0054
 	ld a, $3
 	call FarCopyWRAM
@@ -545,7 +551,7 @@ Function10039c: ; 10039c
 ; 1003ab
 
 Function1003ab: ; 1003ab
-	ld hl, wd000
+	ld hl, w3_d000
 	ld de, wcc60
 	ld bc, $0054
 	ld a, $3
@@ -555,7 +561,7 @@ Function1003ab: ; 1003ab
 
 Function1003ba: ; 1003ba
 	ld hl, wccb4
-	ld de, $d080
+	ld de, w3_d080
 	ld bc, $0054
 	ld a, $3
 	call FarCopyWRAM
@@ -563,7 +569,7 @@ Function1003ba: ; 1003ba
 ; 1003c9
 
 Function1003c9: ; 1003c9
-	ld hl, $d080
+	ld hl, w3_d080
 	ld de, wccb4
 	ld bc, $0054
 	ld a, $3
@@ -1501,7 +1507,7 @@ Function100902: ; 100902
 	ld de, SFX_4_NOTE_DITTY
 	call PlaySFX
 	callba Function104061
-	ld c, $78
+	ld c, 120
 	call DelayFrames
 	ret
 ; 10095a
@@ -1515,10 +1521,10 @@ Function100902: ; 100902
 
 Function100970: ; 100970
 	hlcoord 0, 0
-	ld de, wdc00
+	ld de, w3_dc00
 	call Function1009a5
 	hlcoord 0, 0, AttrMap
-	ld de, $dd68
+	ld de, w3_dd68
 	call Function1009a5
 	call Function1009d2
 	call Function1009ae
@@ -1526,12 +1532,12 @@ Function100970: ; 100970
 ; 100989
 
 Function100989: ; 100989
-	ld hl, wdc00
+	ld hl, w3_dc00
 	decoord 0, 0
 	call Function1009a5
 	call Function1009ae
 	callba Function104061
-	ld hl, $dd68
+	ld hl, w3_dd68
 	decoord 0, 0, AttrMap
 	call Function1009a5
 	ret
@@ -1549,23 +1555,25 @@ Function1009ae: ; 1009ae
 	push af
 	ld a, $3
 	ld [rSVBK], a
-	ld hl, $d800
+
+	ld hl, w3_d800
 	decoord 0, 0, AttrMap
-	ld c, $14
-	ld b, $12
-.asm_1009bf
+	ld c, SCREEN_WIDTH
+	ld b, SCREEN_HEIGHT
+.loop_row
 	push bc
-.asm_1009c0
+.loop_col
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_1009c0
-	ld bc, $000c
+	jr nz, .loop_col
+	ld bc, 12
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .asm_1009bf
+	jr nz, .loop_row
+
 	pop af
 	ld [rSVBK], a
 	ret
@@ -1576,16 +1584,20 @@ Function1009d2: ; 1009d2
 	push af
 	ld a, $3
 	ld [rSVBK], a
+
 	ld a, [rVBK]
 	push af
 	ld a, $1
 	ld [rVBK], a
-	ld hl, $d800
+
+	ld hl, w3_d800
 	ld de, VBGMap0
 	lb bc, $3, $24
 	call Get2bpp
+
 	pop af
 	ld [rVBK], a
+
 	pop af
 	ld [rSVBK], a
 	ret
@@ -1613,7 +1625,7 @@ Function100a09: ; 100a09
 	ld [wd431], a
 	callba Function4000
 	ld a, [wLinkMode]
-	cp $4
+	cp LINK_MOBILE
 	jr nz, .asm_100a2a
 
 	call Function100a87
@@ -2538,7 +2550,7 @@ Function101050: ; 101050
 	call Function10107d
 	ld a, [OTPartyCount]
 rept 2
-	ld hl, $c608
+	ld hl, wc608
 endr
 	ld bc, $01b3
 	call Function1010de
@@ -2548,7 +2560,7 @@ endr
 	ld [hl], d
 	ld a, $7
 	call GetSRAMBank
-	ld hl, $c608
+	ld hl, wc608
 	ld de, $a001
 	ld bc, $01b5
 	call CopyBytes
@@ -2558,28 +2570,28 @@ endr
 
 Function10107d: ; 10107d
 	xor a
-	ld hl, $c608
+	ld hl, wc608
 	ld bc, $01b5
 	call ByteFill
 	ld hl, wd26b
-	ld de, $c608
+	ld de, wc608
 	ld bc, $000b
 	call CopyBytes
 	ld hl, wd271
 	ld a, [hli]
-	ld [$c608 + 11], a
+	ld [wc608 + 11], a
 	ld a, [hl]
-	ld [$c608 + 12], a
+	ld [wc608 + 12], a
 	ld hl, OTPartyMonNicknames
-	ld de, $c608 + 13
+	ld de, wc608 + 13
 	ld bc, $000b
 	call Function1010cd
 	ld hl, OTPartyMonOT
-	ld de, $c656 + 1
+	ld de, wc656 + 1
 	ld bc, $000b
 	call Function1010cd
 	ld hl, OTPartyMon1Species
-	ld de, $c68a + 15
+	ld de, wc68a + 15
 	ld bc, $0030
 	call Function1010cd
 	ld a, $50
@@ -2707,9 +2719,9 @@ Function101181: ; 101181
 	ld bc, $000b
 
 asm_101184:
-	ld a, $c608 % $100
+	ld a, wc608 % $100
 	ld [StringBuffer2], a
-	ld a, $c608 / $100
+	ld a, wc608 / $100
 	ld [StringBuffer2 + 1], a
 	ld a, c
 	ld [StringBuffer2 + 2], a
@@ -2751,7 +2763,7 @@ asm_101184:
 	call Function1011df
 	ld d, h
 	ld e, l
-	ld hl, $c608
+	ld hl, wc608
 	call CopyBytes
 	ret
 ; 1011df
@@ -3368,11 +3380,11 @@ Function10158a: ; 10158a
 ; 10159d
 
 Function10159d: ; 10159d
-	ld de, $c608
+	ld de, wc608
 	callba Function100edf
-	ld de, $c608
+	ld de, wc608
 	ld a, $5
-	ld hl, $d800
+	ld hl, w5_d800
 	call Function10174c
 	ld a, $0
 	ld [wcd26], a
@@ -3383,11 +3395,11 @@ Function10159d: ; 10159d
 ; 1015be
 
 Function1015be: ; 1015be
-	ld de, $c608
+	ld de, wc608
 	callba Function100eed
-	ld de, $c608
+	ld de, wc608
 	ld a, $5
-	ld hl, $d800
+	ld hl, w5_d800
 	call Function10174c
 	ld a, $0
 	ld [wcd26], a
@@ -3398,11 +3410,11 @@ Function1015be: ; 1015be
 ; 1015df
 
 Function1015df: ; 1015df
-	ld de, $c608
+	ld de, wc608
 	callba Function100ef4
-	ld de, $c608
+	ld de, wc608
 	ld a, $5
-	ld hl, $d800
+	ld hl, w5_d800
 	call Function10174c
 	ld a, $0
 	ld [wcd26], a
@@ -3413,12 +3425,12 @@ Function1015df: ; 1015df
 ; 101600
 
 Function101600: ; 101600
-	ld hl, $d800
-	ld de, $c608
+	ld hl, w5_d800
+	ld de, wc608
 	ld bc, $01e0
 	ld a, $5
 	call FarCopyWRAM
-	ld de, $c608
+	ld de, wc608
 	callba Function100ee6
 	ld a, [wcd25]
 	inc a
@@ -3443,14 +3455,14 @@ Function10162a: ; 10162a
 ; 101635
 
 Function101635: ; 101635
-	ld de, $c608
+	ld de, wc608
 	ld bc, $01e0
 	call FarCopyWRAM
 	ret
 ; 10163f
 
 Function10163f: ; 10163f
-	ld hl, $c608
+	ld hl, wc608
 	ld bc, $01e0
 	call FarCopyWRAM
 	ret
@@ -3458,34 +3470,34 @@ Function10163f: ; 10163f
 
 Function101649: ; 101649
 	ld a, $5
-	ld hl, $d800
+	ld hl, w5_d800
 	call Function101635
 	ld a, $5
-	ld de, wda00
+	ld de, w5_da00
 	call Function10163f
 	ret
 ; 10165a
 
 Function10165a: ; 10165a
 	ld a, $5
-	ld hl, wda00
+	ld hl, w5_da00
 	call Function101635
 	ret
 ; 101663
 
 Function101663: ; 101663
 	ld a, $5
-	ld hl, $d800
+	ld hl, w5_d800
 	call Function101635
 	ld a, $5
-	ld de, wdc00
+	ld de, w5_dc00
 	call Function10163f
 	ret
 ; 101674
 
 Function101674: ; 101674 ; unreferenced
 	ld a, $5
-	ld hl, wdc00
+	ld hl, w5_dc00
 	call Function101635
 	ret
 ; 10167d
@@ -4008,16 +4020,19 @@ Function1019ee: ; 1019ee
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld bc, wdc0d
-	ld de, wdc11
+
+	ld bc, w5_dc0d
+	ld de, w5_dc11
 	callba Function4e929
+
 	pop af
 	ld [rSVBK], a
+
 	ld a, c
 	ld [OtherTrainerClass], a
 	ld hl, wd26b
-	ld de, $c656
-	ld bc, $000b
+	ld de, wc656
+	ld bc, NAME_LENGTH
 	call CopyBytes
 	ld a, [wcd2f]
 	and a
@@ -4040,8 +4055,8 @@ Function101a21: ; 101a21
 	ld a, $1
 	ld [wc2d7], a
 	callba BattleIntro
-	callba Function3c000
-	callba Function3f759
+	callba SendOutFirstMons
+	callba ShowLinkBattleParticipantsAfterEnd
 	xor a
 	ld [wc2d7], a
 	ld a, $ff
@@ -4057,7 +4072,7 @@ Function101a4f: ; 101a4f
 	callba Function3f77c
 	xor a
 	ld [wc2d7], a
-	callba Function3f6d0
+	callba CleanUpBattleRAM
 	callba LoadPokemonData
 	call Function1013c0
 	ld a, [wcd25]
@@ -4940,10 +4955,10 @@ Function1020ea: ; 1020ea
 	bit 2, [hl]
 	jr nz, .asm_102110
 	call Function10218d
-	ld hl, $c608
+	ld hl, wc608
 	bit 4, [hl]
 	jr z, .asm_102110
-	ld hl, $c608
+	ld hl, wc608
 	bit 2, [hl]
 	jr nz, .asm_102110
 	call Function102112
@@ -4963,7 +4978,7 @@ Function102112: ; 102112
 	ld c, $28
 .asm_10211c
 	push hl
-	ld de, $c60f
+	ld de, wc60f
 	ld b, $1f
 .asm_102122
 	ld a, [de]
@@ -5022,7 +5037,7 @@ Function102142: ; 102142
 ; 102180
 
 Function102180: ; 102180
-	ld hl, $c608 + 1
+	ld hl, wc608 + 1
 	ld de, StringBuffer2
 	ld bc, $000b
 	call CopyBytes
@@ -5031,18 +5046,18 @@ Function102180: ; 102180
 
 Function10218d: ; 10218d
 	ld hl, wdc00
-	ld de, $c608
+	ld de, wc608
 	ld bc, $0026
 	ld a, $5
 	call FarCopyWRAM
-	ld de, $c608 + 1
+	ld de, wc608 + 1
 	ret
 ; 10219f
 
 Function10219f: ; 10219f
 	call FadeToMenu
 	call Function10218d
-	ld de, $c608 + 1
+	ld de, wc608 + 1
 	callba Function8ac4e
 	call JoyWaitAorB
 	call PlayClickSFX
@@ -5053,7 +5068,7 @@ Function10219f: ; 10219f
 Function1021b8: ; 1021b8
 	call FadeToMenu
 	call Function10218d
-	ld de, $c60f
+	ld de, wc60f
 	callba Function8ac70
 	ld a, c
 	ld [StringBuffer1], a
@@ -6336,7 +6351,7 @@ Function102a3b: ; 102a3b
 	ld a, [wcd30]
 	ld [wc74e], a
 	ld hl, PlayerName
-	ld de, $c6e7
+	ld de, wc6e7
 	ld bc, $000b
 	call CopyBytes
 	ld a, [wcd4c]
@@ -6346,12 +6361,12 @@ Function102a3b: ; 102a3b
 	ld hl, PartySpecies
 	add hl, bc
 	ld a, [hl]
-	ld [$c6d0], a
+	ld [wc6d0], a
 	ld a, [wcd4c]
 	dec a
 	ld hl, PartyMonOT
 	call SkipNames
-	ld de, $c6f2
+	ld de, wc6f2
 	ld bc, $000b
 	call CopyBytes
 	ld a, [wcd4c]
@@ -6359,7 +6374,7 @@ Function102a3b: ; 102a3b
 	ld hl, PartyMon1ID
 	call GetPartyLocation
 	ld a, [hli]
-	ld [$c6ff], a
+	ld [wc6ff], a
 	ld a, [hl]
 	ld [wc700], a
 	ld a, [wcd4c]
@@ -6367,9 +6382,9 @@ Function102a3b: ; 102a3b
 	ld hl, PartyMon1DVs
 	call GetPartyLocation
 	ld a, [hli]
-	ld [$c6fd], a
+	ld [wc6fd], a
 	ld a, [hl]
-	ld [$c6fe], a
+	ld [wc6fe], a
 	ld a, [wcd4c]
 	dec a
 	ld hl, PartyMon1Species
@@ -6606,11 +6621,11 @@ Function102c48: ; 102c48
 	ld a, $0
 	call GetSRAMBank
 	ld hl, $a600
-	ld de, $c608
+	ld de, wc608
 	ld bc, $002f
 	call Function102c71
 	call CloseSRAM
-	ld hl, $c608
+	ld hl, wc608
 	ld de, wda00
 	ld bc, $01e0
 	ld a, $5
@@ -6644,12 +6659,12 @@ Function102c87: ; 102c87
 	ld [wcf64], a
 	ld a, $0
 	ld hl, $a600
-	ld de, $c608
+	ld de, wc608
 	ld bc, $011a
 	call Function102d3e
 	call Function102cee
 	ld a, $0
-	ld hl, $c608
+	ld hl, wc608
 	ld de, $a600
 	ld bc, $011a
 	call Function102d3e
@@ -6659,12 +6674,12 @@ Function102c87: ; 102c87
 	ld [wcf64], a
 	ld a, $5
 	ld hl, wda00
-	ld de, $c608
+	ld de, wc608
 	ld bc, $011a
 	call FarCopyWRAM
 	call Function102cee
 	ld a, $5
-	ld hl, $c608
+	ld hl, wc608
 	ld de, wda00
 	ld bc, $011a
 	call FarCopyWRAM
@@ -6712,7 +6727,7 @@ Function102cee: ; 102cee
 ; 102d34
 
 Function102d34: ; 102d34
-	ld hl, $c608
+	ld hl, wc608
 	ld bc, $002f
 	call AddNTimes
 	ret

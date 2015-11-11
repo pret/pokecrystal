@@ -1438,7 +1438,7 @@ RareCandy: ; ef14
 	ld bc, $0004
 	predef PrintTempMonStats
 
-	call Functiona80
+	call WaitPressAorB_BlinkCursor
 
 	xor a ; PARTYMON
 	ld [MonType], a
@@ -1921,7 +1921,7 @@ Functionf279: ; f279 (3:7279)
 	ld [hBGMapMode], a
 	ld c, $32
 	call DelayFrames
-	jp Functiona80
+	jp WaitPressAorB_BlinkCursor
 
 Functionf299: ; f299 (3:7299)
 	call WontHaveAnyEffectMessage
@@ -2943,7 +2943,7 @@ Functionf789: ; f789
 	ld hl, UsedItemText
 	call PrintText
 	call Play_SFX_FULL_HEAL
-	call Functiona80
+	call WaitPressAorB_BlinkCursor
 	; fallthrough
 ; f795
 

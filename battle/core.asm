@@ -3,7 +3,7 @@ BattleCore:
 ; Core components of the battle engine.
 
 
-Function3c000: ; 3c000
+SendOutFirstMons: ; 3c000
 	xor a
 	ld [wBattleParticipantsNotFainted], a
 	ld [wc6fc], a
@@ -2506,7 +2506,7 @@ WinTrainerBattle: ; 3cfa4
 
 .mobile
 	call Function3ebd8
-	ld c, $28
+	ld c, 40
 	call DelayFrames
 	ld c, $4
 	callba Function4ea0a
@@ -2514,12 +2514,12 @@ WinTrainerBattle: ; 3cfa4
 
 .battle_tower
 	call Function3ebd8
-	ld c, $28
+	ld c, 40
 	call DelayFrames
 	call EmptyBattleTextBox
 	ld c, $3
 	callba BattleTowerText
-	call Functiona80
+	call WaitPressAorB_BlinkCursor
 	ld hl, wPayDayMoney
 	ld a, [hli]
 	or [hl]
@@ -3135,7 +3135,7 @@ LostBattle: ; 3d38e
 	call EmptyBattleTextBox
 	ld c, 2
 	callba BattleTowerText
-	call Functiona80
+	call WaitPressAorB_BlinkCursor
 	call ClearTileMap
 	call WhiteBGMap
 	ret
@@ -7713,7 +7713,7 @@ endr
 	predef PrintTempMonStats
 	ld c, $1e
 	call DelayFrames
-	call Functiona80
+	call WaitPressAorB_BlinkCursor
 	call Call_LoadTempTileMapToTileMap
 	xor a ; PARTYMON
 	ld [MonType], a
@@ -8474,8 +8474,8 @@ StartBattle: ; 3f4c1
 	ld a, [TimeOfDayPal]
 	push af
 	call BattleIntro
-	call Function3c000
-	call Function3f69e
+	call SendOutFirstMons
+	call ExitBattle
 	pop af
 	ld [TimeOfDayPal], a
 	scf
@@ -8483,8 +8483,9 @@ StartBattle: ; 3f4c1
 ; 3f4d9
 
 
-Function3f4d9: ; 3f4d9
-	call Function3c000
+_SendOutFirstMons: ; 3f4d9
+; unreferenced
+	call SendOutFirstMons
 	ret
 ; 3f4dd
 
@@ -8716,9 +8717,9 @@ Function3f662: ; 3f662
 ; 3f69e
 
 
-Function3f69e: ; 3f69e
+ExitBattle: ; 3f69e
 	call Function3f6a5
-	call Function3f6d0
+	call CleanUpBattleRAM
 	ret
 ; 3f6a5
 
@@ -8726,7 +8727,7 @@ Function3f6a5: ; 3f6a5
 	ld a, [wLinkMode]
 	and a
 	jr z, .not_linked
-	call Function3f759
+	call ShowLinkBattleParticipantsAfterEnd
 	ld c, 150
 	call DelayFrames
 	call Function3f77c
@@ -8736,7 +8737,7 @@ Function3f6a5: ; 3f6a5
 	ld a, [wBattleResult]
 	and $f
 	ret nz
-	call Function3f71d
+	call CheckPayDay
 	xor a
 	ld [wd1e9], a
 	predef Function421e6
@@ -8744,7 +8745,7 @@ Function3f6a5: ; 3f6a5
 	ret
 ; 3f6d0
 
-Function3f6d0: ; 3f6d0
+CleanUpBattleRAM: ; 3f6d0
 	call Function3f998
 	xor a
 	ld [Danger], a
@@ -8777,7 +8778,7 @@ Function3f6d0: ; 3f6d0
 	ret
 ; 3f71d
 
-Function3f71d: ; 3f71d
+CheckPayDay: ; 3f71d
 	ld hl, wPayDayMoney
 	ld a, [hli]
 	or [hl]
@@ -8786,21 +8787,21 @@ Function3f71d: ; 3f71d
 	ret z
 	ld a, [wc73d]
 	and a
-	jr z, .asm_3f73d
+	jr z, .okay
 	ld hl, wPayDayMoney + 2
 	sla [hl]
 	dec hl
 	rl [hl]
 	dec hl
 	rl [hl]
-	jr nc, .asm_3f73d
+	jr nc, .okay
 	ld a, $ff
 rept 2
 	ld [hli], a
 endr
 	ld [hl], a
 
-.asm_3f73d
+.okay
 	ld hl, wPayDayMoney + 2
 	ld de, Money + 2
 	call Function3d0be
@@ -8814,7 +8815,7 @@ endr
 	ret
 ; 3f759
 
-Function3f759: ; 3f759
+ShowLinkBattleParticipantsAfterEnd: ; 3f759
 	callba MobileFn_1060df
 	callba BackupMobileEventIndex
 	ld a, [CurOTMon]
@@ -8829,13 +8830,15 @@ Function3f759: ; 3f759
 
 Function3f77c: ; 3f77c
 	callba CheckMobileBattleError
-	jp c, Function3f80f
-	call Function3f830
+	jp c, .Mobile_InvalidBattle
+	call IsMobileBattle2
 	jr nz, .proceed
+
 	ld hl, wcd2a
 	bit 4, [hl]
 	jr z, .proceed
-	callba Function2b930
+
+	callba DetermineLinkBattleResult
 
 .proceed
 	ld a, [wBattleResult]
@@ -8843,17 +8846,17 @@ Function3f77c: ; 3f77c
 	cp $1
 	jr c, .victory
 	jr z, .loss
-	callba MobileFn_106107
+	callba MobileFn_SaveBattleResult_Draw
 	ld de, .Draw
 	jr .store_result
 
 .victory
-	callba MobileFn_1060fb
+	callba MobileFn_SaveBattleResult_Win
 	ld de, .Win
 	jr .store_result
 
 .loss
-	callba MobileFn_106101
+	callba MobileFn_SaveBattleResult_Lose
 	ld de, .Lose
 	jr .store_result
 
@@ -8872,13 +8875,13 @@ Function3f77c: ; 3f77c
 
 	call CloseSRAM
 
-	call Function3f830
-	jr z, .asm_3f7ee
-	call Functiona80
+	call IsMobileBattle2
+	jr z, .mobile
+	call WaitPressAorB_BlinkCursor
 	call ClearTileMap
 	ret
 
-.asm_3f7ee
+.mobile
 	ld c, 200
 	call DelayFrames
 	call ClearTileMap
@@ -8894,11 +8897,11 @@ Function3f77c: ; 3f77c
 ; 3f80f
 
 
-Function3f80f: ; 3f80f
+.Mobile_InvalidBattle: ; 3f80f
 	hlcoord 6, 8
 	ld de, .Invalid
 	call PlaceString
-	ld c, $c8
+	ld c, 200
 	call DelayFrames
 	call ClearTileMap
 	ret
@@ -8909,7 +8912,7 @@ Function3f80f: ; 3f80f
 ; 3f830
 
 
-Function3f830: ; 3f830
+IsMobileBattle2: ; 3f830
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	ret
@@ -8919,7 +8922,9 @@ Function3f830: ; 3f830
 Function3f836: ; 3f836
 	ld a, BANK(sLinkBattleStats)
 	call GetSRAMBank
+
 	call Function3f85f
+
 	call CloseSRAM
 	hlcoord 0, 0, AttrMap
 	xor a
@@ -8931,7 +8936,7 @@ Function3f836: ; 3f836
 	call SetPalettes
 	ld c, $8
 	call DelayFrames
-	call Functiona80
+	call WaitPressAorB_BlinkCursor
 	ret
 ; 3f85f
 
@@ -9634,7 +9639,7 @@ BattleStartMessage: ; 3fc8b
 	pop hl
 	call StdBattleTextBox
 
-	call Function3f830
+	call IsMobileBattle2
 	ret nz
 
 	ld c, $2

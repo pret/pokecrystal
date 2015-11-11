@@ -757,6 +757,7 @@ AlreadyFailed:: ; c6fb
 
 wc6fc:: ds 1
 wc6fd:: ds 1
+wc6fe::
 wPlayerMinimized:: ds 1 ; c6fe
 wc6ff::
 PlayerScreens:: ; c6ff
@@ -2741,7 +2742,9 @@ wPokeAnimStructEnd::
 SECTION "WRAM 3", WRAMX, BANK [3]
 
 w3_d000:: ; d000
-	ds $90
+	ds $80
+w3_d080::
+	ds $10
 w3_d090::
 	ds $70
 
@@ -2753,7 +2756,9 @@ BT_TrainerTextIndex::
 	ds $600
 
 wBTChoiceOfLvlGroup::
-w3_d800:: ds 1
+w3_d800:: ds $400
+w3_dc00:: ds $168
+w3_dd68::
 
 
 SECTION "GBC Video", WRAMX, BANK [5]
@@ -2819,7 +2824,18 @@ BattleAnimTemps:: ; d419
 w5_d422:: ds $32
 wBattleAnimEnd::
 	ds $e
+; d462
 
+SECTION "WRAM 5 MOBILE", WRAMX [$d800], BANK [5]
+w5_d800:: ds $200
+w5_da00:: ds $200
+w5_dc00:: ds $d
+w5_dc0d:: ds 4
+w5_dc11:: ds 9
+w5_dc1a:: ds $c
+w5_dc26:: ds $c
+w5_dc32:: ds $c
+w5_dc3e:: ds $c
 
 SECTION "WRAM 6", WRAMX, BANK [6]
 
