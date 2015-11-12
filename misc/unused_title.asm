@@ -67,7 +67,7 @@ endr
 	ld [rSVBK], a
 
 	ld hl, UnusedTitleBG_Palettes
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $40
 	call CopyBytes
 

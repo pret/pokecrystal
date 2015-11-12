@@ -2874,7 +2874,7 @@ Script_warpmod: ; 0x97a65
 ;     map_id (MapIdParam)
 
 	call GetScriptByte
-	ld [wdcac], a
+	ld [BackupWarpNumber], a
 	call GetScriptByte
 	ld [BackupMapGroup], a
 	call GetScriptByte
@@ -2985,7 +2985,7 @@ Script_reloadmappart:: ; 0x97ae3
 Script_warpcheck: ; 0x97af6
 ; script command 0x8e
 
-	call Function224a
+	call WarpCheck
 	ret nc
 	callba SetAll_ScriptFlags3
 	ret

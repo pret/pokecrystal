@@ -2367,7 +2367,7 @@ Function41401: ; 41401 (10:5401)
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, Unkn1Pals
+	ld hl, wMapPals
 	ld bc, $40
 	xor a
 	call ByteFill

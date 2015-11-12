@@ -804,7 +804,7 @@ Function108638: ; 108638
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_109107
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $0040
 	call CopyBytes
 	pop af
@@ -850,7 +850,7 @@ Function108689: ; 108689
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_109107
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $0040
 	call CopyBytes
 	pop af
@@ -894,7 +894,7 @@ Function1086f4: ; 1086f4
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_109107
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $0040
 	call CopyBytes
 	pop af
@@ -1459,7 +1459,7 @@ Function108b45: ; 108b45
 	ld a, $5
 	ld [rSVBK], a
 	ld de, $7fff
-	ld hl, Unkn1Pals
+	ld hl, wMapPals
 	ld a, e
 	ld [hli], a
 	ld d, a
@@ -1537,7 +1537,7 @@ Function108b98: ; 108b98
 	ld hl, Palette_108b98
 
 .asm_108bb0
-	ld de, Unkn1Pals + 8 * 7
+	ld de, wMapPals + 8 * 7
 	ld bc, $0040
 	call CopyBytes
 	pop af

@@ -39,7 +39,7 @@ _TimeOfDayPals:: ; 8c011
 
 
 ; save bg palette 8
-	ld hl, Unkn1Pals + 8 * 7 ; Unkn1Pals + 7 pals
+	ld hl, wMapPals + 8 * 7 ; wMapPals + 7 pals
 
 ; save wram bank
 	ld a, [rSVBK]
@@ -70,7 +70,7 @@ _TimeOfDayPals:: ; 8c011
 
 
 ; restore bg palette 8
-	ld hl, Unkn2Pals - 1 ; last byte in Unkn1Pals
+	ld hl, Unkn2Pals - 1 ; last byte in wMapPals
 
 ; save wram bank
 	ld a, [rSVBK]
@@ -172,12 +172,12 @@ Function8c0c1: ; 8c0c1
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, Unkn1Pals
+	ld hl, wMapPals
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	ld hl, Unkn1Pals + 8
+	ld hl, wMapPals + 8
 	ld c, $6
 .asm_8c0d4
 	ld a, e

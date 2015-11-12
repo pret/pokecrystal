@@ -270,7 +270,7 @@ MapSetupCommands: ; 15440
 	dba EnterMapConnection ; 18
 	dba LoadWarpData ; 19
 	dba LoadMapAttributes ; 1a
-	dba LoadMapAttributes_IgnoreHidden ; 1b
+	dba LoadMapAttributes_SkipPeople ; 1b
 	dba ClearBGPalettes ; 1c
 	dba FadeOutPalettes ; 1d
 	dba FadeInPalettes ; 1e
@@ -318,7 +318,7 @@ LoadObjectsRunCallback_02: ; 154d7
 	ret
 ; 154ea (5:54ea)
 
-Function154ea: ; 154ea
+; unreferenced
 	ret
 ; 154eb
 
@@ -333,20 +333,21 @@ DelayLoadingNewSprites: ; 154f1
 	set 6, [hl]
 	ret
 
-Function154f7: ; 154f7
+CheckReplaceKrisSprite: ; 154f7
 	nop
-	call Function1550c
+	call .CheckBiking
 	jr c, .ok
-	call Function1554e
+	call .CheckSurfing
 	jr c, .ok
-	call Function1551a
+	call .CheckSurfing2
 	jr c, .ok
 	ret
+
 .ok
 	call ReplaceKrisSprite
 	ret
 
-Function1550c: ; 1550c (5:550c)
+.CheckBiking: ; 1550c (5:550c)
 	and a
 	ld hl, BikeFlags
 	bit 1, [hl]
@@ -356,7 +357,7 @@ Function1550c: ; 1550c (5:550c)
 	scf
 	ret
 
-Function1551a: ; 1551a (5:551a)
+.CheckSurfing2: ; 1551a (5:551a)
 	ld a, [PlayerState]
 	cp PLAYER_NORMAL
 	jr z, .nope
@@ -367,11 +368,11 @@ Function1551a: ; 1551a (5:551a)
 	cp PLAYER_SURF_PIKA
 	jr z, .surfing
 	call GetMapPermission
-	cp $3
+	cp INDOOR
 	jr z, .checkbiking
-	cp $5
+	cp PERM_5
 	jr z, .checkbiking
-	cp $7
+	cp DUNGEON
 	jr z, .checkbiking
 	jr .nope
 .checkbiking
@@ -383,21 +384,22 @@ Function1551a: ; 1551a (5:551a)
 	ld [PlayerState], a
 	scf
 	ret
+
 .nope
 	and a
 	ret
 
-Function1554e: ; 1554e (5:554e)
+.CheckSurfing: ; 1554e (5:554e)
 	call CheckOnWater
 	jr nz, .ret_nc
 	ld a, [PlayerState]
 	cp PLAYER_SURF
-	jr z, .surfing
+	jr z, ._surfing
 	cp PLAYER_SURF_PIKA
-	jr z, .surfing
+	jr z, ._surfing
 	ld a, PLAYER_SURF
 	ld [PlayerState], a
-.surfing
+._surfing
 	scf
 	ret
 .ret_nc

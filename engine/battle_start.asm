@@ -26,7 +26,7 @@ Predef_StartBattle: ; 8c20f
 	ld a, $5
 	ld [rSVBK], a
 
-	ld hl, Unkn1Pals
+	ld hl, wMapPals
 	ld bc, $0040
 	xor a
 	call ByteFill
@@ -659,7 +659,7 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	ld [rSVBK], a
 	call .copypals
 	push hl
-	ld de, Unkn1Pals + 8 * 7
+	ld de, wMapPals + 8 * 7
 	ld bc, $8
 	call CopyBytes
 	pop hl
@@ -678,7 +678,7 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	ret
 
 .copypals: ; 8c677 (23:4677)
-	ld de, Unkn1Pals + 8 * 7
+	ld de, wMapPals + 8 * 7
 	call .copy
 	ld de, BGPals + 8 * 7
 	call .copy

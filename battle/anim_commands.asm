@@ -1437,7 +1437,7 @@ Functioncc91a: ; cc91a
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, BGPals
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld a, [rBGP]
 	ld b, a
 	ld c, $7

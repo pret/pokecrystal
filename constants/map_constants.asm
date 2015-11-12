@@ -494,6 +494,11 @@ MAP_NONE   EQU 0
 	const _ROOF
 
 ; connection directions
+	const_def
+	const EAST_F
+	const WEST_F
+	const SOUTH_F
+	const NORTH_F
 
 	const_def
 	shift_const EAST

@@ -1621,7 +1621,7 @@ Functione0c37: ; e0c37 (38:4c37)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e0c93
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $48
 	call CopyBytes
 	pop af

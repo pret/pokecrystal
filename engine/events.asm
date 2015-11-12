@@ -342,7 +342,7 @@ CheckTrainerBattle3: ; 96867
 	call CheckTrainerBattle2
 	jr nc, .nope
 
-	ld a, 1
+	ld a, PLAYEREVENT_SEENBYTRAINER
 	scf
 	ret
 
@@ -359,10 +359,10 @@ CheckTileEvent: ; 96874
 	jr z, .bit2
 
 	callba CheckMovingOffEdgeOfMap
-	jr c, .return4
+	jr c, .map_connection
 
 	call CheckWarpTile
-	jr c, .return6
+	jr c, .warp_tile
 
 .bit2
 	call CheckBit1_ScriptFlags3
@@ -390,21 +390,21 @@ CheckTileEvent: ; 96874
 	xor a
 	ret
 
-.return4
-	ld a, 4
+.map_connection
+	ld a, PLAYEREVENT_CONNECTION
 	scf
 	ret
 
-.return6
+.warp_tile
 	ld a, [PlayerStandingTile]
 	call CheckPitTile
-	jr nz, .pittile
-	ld a, 6
+	jr nz, .not_pit
+	ld a, PLAYEREVENT_FALL
 	scf
 	ret
 
-.pittile
-	ld a, 5
+.not_pit
+	ld a, PLAYEREVENT_WARP
 	scf
 	ret
 
@@ -711,7 +711,7 @@ TryReadSign: ; 96a38
 	ret
 
 .IsSign
-	ld a, [wd040]
+	ld a, [EngineBuffer3]
 	ld hl, .signs
 	rst JumpTable
 	ret
@@ -749,7 +749,7 @@ TryReadSign: ; 96a38
 
 .read
 	call PlayTalkObject
-	ld hl, wd041
+	ld hl, EngineBuffer4
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -811,7 +811,7 @@ endr
 
 
 CheckSignFlag: ; 96ad8
-	ld hl, wd041
+	ld hl, EngineBuffer4
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -820,7 +820,7 @@ CheckSignFlag: ; 96ad8
 	call GetFarHalfword
 	ld e, l
 	ld d, h
-	ld b, $2 ; check
+	ld b, CHECK_FLAG
 	call EventFlagAction
 	ld a, c
 	and a

@@ -1532,7 +1532,7 @@ Function170cc6: ; 170cc6
 	ld hl, LZ_1715a4
 	ld de, wd000
 	call Decompress
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld hl, VTiles0
 	lb bc, $6, $53
 	call Get2bpp
@@ -1957,7 +1957,7 @@ Function171ccd: ; 171ccd (5c:5ccd)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_171d71
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $40
 	call CopyBytes
 	ld hl, MovementAnimation
@@ -2120,7 +2120,7 @@ Function172eb9:
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_172edf
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $40
 	call CopyBytes
 	ld hl, Palette_172edf

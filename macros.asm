@@ -209,3 +209,5 @@ rept 7
 endr
 	db \1
 ENDM
+
+palettes EQUS "* 8"

@@ -768,11 +768,11 @@ Function17aba0: ; 17aba0 (5e:6ba0)
 Function17abcf: ; 17abcf (5e:6bcf)
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(Unkn1Pals)
+	ld a, BANK(wMapPals)
 	ld [rSVBK], a
 
 	ld hl, Palette_17ac55
-	ld de, Unkn1Pals ; $d000
+	ld de, wMapPals ; $d000
 	ld bc, $30
 	call CopyBytes
 

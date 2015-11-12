@@ -4820,7 +4820,7 @@ CutDownTreeOrGrass: ; c810
 
 CheckOverworldTileArrays: ; c840
 	push bc
-	ld a, [wd199]
+	ld a, [wTileset]
 	ld de, 3
 	call IsInArray
 	pop bc
@@ -6230,7 +6230,7 @@ FishFunction: ; cf8e
 	ret
 
 .facingwater
-	call Function2d19
+	call GetFishingGroup
 	and a
 	jr nz, .goodtofish
 	ld a, $4
@@ -10958,7 +10958,7 @@ RepelWoreOffScript:: ; 0x13619
 
 SignpostItemScript:: ; 0x13625
 	loadfont
-	copybytetovar Unkn2Pals
+	copybytetovar EngineBuffer3
 	itemtotext 0, 0
 	writetext .found_text
 	giveitem ITEM_FROM_MEM
@@ -13885,7 +13885,7 @@ Function245af:: ; 245af
 	ld [hBGMapMode], a
 	inc a
 	ld [hInMenu], a
-	call Function2471a
+	call ClearObjectStructsa
 	call Function24764
 	call Function247dd
 	call Function245f1
@@ -14105,7 +14105,7 @@ Function24706: ; 24706 (9:4706)
 	jr nz, .asm_24713
 	ret
 
-Function2471a: ; 2471a
+ClearObjectStructsa: ; 2471a
 ; Get the value of (wcf95):(wcf96,wcf97) and store it in wd144.
 	ld hl, wcf96
 	ld a, [hli]
@@ -25461,7 +25461,7 @@ Function48e14: ; 48e14 (12:4e14)
 
 Function48e47: ; 48e47 (12:4e47)
 	ld hl, Palette_48e5c
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $8
 	ld a, $5
 	call FarCopyWRAM
@@ -25623,7 +25623,7 @@ MenuDataHeader_0x4930a: ; 0x4930a
 	db 17, 19 ; end coords
 ; 4930f
 
-Function4930f: ; 4930f (12:530f)
+Function4930f: ; 4930f (mobile)
 	ld a, b
 	cp $ff
 	jr nz, .asm_49317
@@ -25679,15 +25679,15 @@ Function49346: ; 49346 (12:5346)
 	ret
 
 Function49351: ; 49351 (12:5351)
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld hl, Palette_493e1
 	ld bc, $28
-	ld a, $5 ; BANK(Unkn1Pals)
+	ld a, $5 ; BANK(wMapPals)
 	call FarCopyWRAM
-	ld de, Unkn1Pals + $38
+	ld de, wMapPals + $38
 	ld hl, Palette_49418
 	ld bc, $8
-	ld a, $5 ; BANK(Unkn1Pals)
+	ld a, $5 ; BANK(wMapPals)
 	call FarCopyWRAM
 	ret
 
@@ -25767,7 +25767,7 @@ Palette_493e1: ; 493e1
 
 Function49409:: ; 49409
 	ld hl, Palette_49418
-	ld de, Unkn1Pals + 8 * 7
+	ld de, wMapPals + 8 * 7
 	ld bc, 8
 	ld a, $5
 	call FarCopyWRAM
@@ -25783,19 +25783,19 @@ Palette_49418: ; 49418
 
 Function49420:: ; 49420 (12:5420)
 	ld hl, MansionPalette4
-	ld de, Unkn1Pals + $30
+	ld de, wMapPals + $30
 	ld bc, $8
-	ld a, $5 ; BANK(Unkn1Pals)
+	ld a, $5 ; BANK(wMapPals)
 	call FarCopyWRAM
 	ret
 ; 4942f (12:542f)
 
 Function4942f: ; 4942f
 	call Function49351
-	ld de, Unkn1Pals + $38
+	ld de, wMapPals + $38
 	ld hl, Palette_49478
 	ld bc, $8
-	ld a, $5 ; BANK(Unkn1Pals)
+	ld a, $5 ; BANK(wMapPals)
 	call FarCopyWRAM
 	call Function49346
 	hlcoord 0, 0, AttrMap
@@ -25856,19 +25856,19 @@ Function49496: ; 49496
 	ret
 ; 494ac
 
-Function494ac: ; 494ac
-	ld a, [wd199]
-	cp $15
+LoadSpecialMapPalette: ; 494ac
+	ld a, [wTileset]
+	cp TILESET_GOLDENROD_POKECOM_CENTER_2F_MOBILE
 	jr z, .pokecom_2f
-	cp $16
+	cp TILESET_BATTLE_TOWER
 	jr z, .battle_tower
-	cp $1d
+	cp TILESET_ICE_PATH
 	jr z, .ice_path
-	cp $5
+	cp TILESET_HOUSE_1
 	jr z, .house
-	cp $1b
+	cp TILESET_RADIO_TOWER
 	jr z, .radio_tower
-	cp $d
+	cp TILESET_CELADON_MANSION
 	jr z, .mansion_mobile
 	jr .do_nothing
 
@@ -25913,9 +25913,9 @@ Function494ac: ; 494ac
 
 LoadPokeComPalette: ; 494f2
 	ld a, $5
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld hl, PokeComPalette
-	ld bc, $40
+	ld bc, 8 palettes
 	call FarCopyWRAM
 	ret
 ; 49501
@@ -25926,9 +25926,9 @@ INCLUDE "tilesets/pokecom.pal"
 
 LoadBattleTowerPalette: ; 49541
 	ld a, $5
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld hl, BattleTowerPalette
-	ld bc, $40
+	ld bc, 8 palettes
 	call FarCopyWRAM
 	ret
 ; 49550
@@ -25939,9 +25939,9 @@ INCLUDE "tilesets/battle_tower.pal"
 
 LoadIcePathPalette: ; 49590
 	ld a, $5
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld hl, IcePathPalette
-	ld bc, $40
+	ld bc, 8 palettes
 	call FarCopyWRAM
 	ret
 ; 4959f
@@ -25952,9 +25952,9 @@ INCLUDE "tilesets/ice_path.pal"
 
 LoadHousePalette: ; 495df
 	ld a, $5
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld hl, HousePalette
-	ld bc, $40
+	ld bc, 8 palettes
 	call FarCopyWRAM
 	ret
 ; 495ee
@@ -25965,9 +25965,9 @@ INCLUDE "tilesets/house.pal"
 
 LoadRadioTowerPalette: ; 4962e
 	ld a, $5
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld hl, RadioTowerPalette
-	ld bc, $40
+	ld bc, 8 palettes
 	call FarCopyWRAM
 	ret
 ; 4963d
@@ -26028,24 +26028,24 @@ MansionPalette4: ; 496bd
 
 LoadMansionPalette: ; 496c5
 	ld a, $5
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld hl, MansionPalette1
-	ld bc, $40
+	ld bc, 8 palettes
 	call FarCopyWRAM
 	ld a, $5
-	ld de, Unkn1Pals + $20
+	ld de, wMapPals + 4 palettes
 	ld hl, MansionPalette2
-	ld bc, 8
+	ld bc, 1 palettes
 	call FarCopyWRAM
 	ld a, $5
-	ld de, Unkn1Pals + $18
+	ld de, wMapPals + 3 palettes
 	ld hl, MansionPalette3
-	ld bc, 8
+	ld bc, 1 palettes
 	call FarCopyWRAM
 	ld a, $5
-	ld de, Unkn1Pals + $30
+	ld de, wMapPals + 6 palettes
 	ld hl, MansionPalette4
-	ld bc, 8
+	ld bc, 1 palettes
 	call FarCopyWRAM
 	ret
 ; 496fe
@@ -26059,8 +26059,8 @@ MansionPalette2: ; 496fe
 
 Function49706: ; 49706
 	ld hl, Palette_49732
-	ld de, Unkn1Pals
-	ld bc, 8
+	ld de, wMapPals
+	ld bc, 1 palettes
 	ld a, $5
 	call FarCopyWRAM
 	callba Function96a4
@@ -26068,7 +26068,7 @@ Function49706: ; 49706
 	callba Function96b3
 	ld hl, Palette_4973a
 	ld de, Unkn2Pals
-	ld bc, 8
+	ld bc, 1 palettes
 	ld a, $5
 	call FarCopyWRAM
 	ret
@@ -26090,7 +26090,7 @@ Palette_4973a: ; 4973a
 
 Function49742: ; 49742
 	ld hl, Palette_49757
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $40
 	ld a, $5
 	call FarCopyWRAM
@@ -26194,7 +26194,7 @@ endr
 
 Function49811: ; 49811
 	ld hl, Palette_49826
-	ld de, Unkn1Pals + $10
+	ld de, wMapPals + $10
 	ld bc, $30
 	ld a, $5
 	call FarCopyWRAM
@@ -34425,7 +34425,7 @@ CheckEdgeWarp: ; 80226
 	and 3
 	cp e
 	jr nz, .asm_80259
-	call Function224a ; CheckFallPit?
+	call WarpCheck ; CheckFallPit?
 	jr nc, .asm_80259
 
 	call StandInPlace
@@ -36322,7 +36322,7 @@ Function8220f: ; 8220f
 rept 3
 	add hl, hl
 endr
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	add hl, de
 	ld de, wc608
 	ld bc, 8
@@ -48687,7 +48687,7 @@ IntroScene1: ; e495b (39:495b)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_365ad
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $80
 	call CopyBytes
 	ld hl, Palette_365ad
@@ -48760,7 +48760,7 @@ IntroScene3: ; e49fd (39:49fd)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e5edd
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $80
 	call CopyBytes
 	ld hl, Palette_e5edd
@@ -48825,7 +48825,7 @@ IntroScene5: ; e4a7a (39:4a7a)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_365ad
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $80
 	call CopyBytes
 	ld hl, Palette_365ad
@@ -48922,7 +48922,7 @@ IntroScene7: ; e4b3f (39:4b3f)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e5edd
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $80
 	call CopyBytes
 	ld hl, Palette_e5edd
@@ -49072,7 +49072,7 @@ IntroScene11: ; e4c86 (39:4c86)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_365ad
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $80
 	call CopyBytes
 	ld hl, Palette_365ad
@@ -49197,7 +49197,7 @@ IntroScene13: ; e4d6d (39:4d6d)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e5edd
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $80
 	call CopyBytes
 	ld hl, Palette_e5edd
@@ -49306,7 +49306,7 @@ IntroScene15: ; e4e40 (39:4e40)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e77dd
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $80
 	call CopyBytes
 	ld hl, Palette_e77dd
@@ -49380,7 +49380,7 @@ IntroScene17: ; e4ef5 (39:4ef5)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e6d6d
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $80
 	call CopyBytes
 	ld hl, Palette_e6d6d
@@ -49454,7 +49454,7 @@ IntroScene19: ; e4f7e (39:4f7e)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e77dd
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $80
 	call CopyBytes
 	ld hl, Palette_e77dd
@@ -49622,7 +49622,7 @@ IntroScene26: ; e50bb (39:50bb)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e679d
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $80
 	call CopyBytes
 	ld hl, Palette_e679d
@@ -49948,7 +49948,7 @@ endr
 	ld bc, $8
 	call CopyBytes
 	pop bc
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld a, c
 	add e
 	ld e, a
@@ -53588,14 +53588,14 @@ RefreshMapSprites: ; 1047f0
 	callba ReturnFromMapSetupScript
 	call Function2914
 	callba Function579d
-	callba Function154f7
+	callba CheckReplaceKrisSprite
 	ld hl, wPlayerSpriteSetupFlags
 	bit 6, [hl]
-	jr nz, .asm_104817
+	jr nz, .skip
 	ld hl, VramState
 	set 0, [hl]
 	call Function2e31
-.asm_104817
+.skip
 	ld a, [wPlayerSpriteSetupFlags]
 	and $1c
 	ld [wPlayerSpriteSetupFlags], a
@@ -53615,6 +53615,7 @@ CheckMovingOffEdgeOfMap:: ; 104820 (41:4820)
 	jr z, .right
 	and a
 	ret
+
 .down
 	ld a, [PlayerMapY]
 	sub 4
@@ -53625,6 +53626,7 @@ CheckMovingOffEdgeOfMap:: ; 104820 (41:4820)
 	jr z, .ok
 	and a
 	ret
+
 .up
 	ld a, [PlayerMapY]
 	sub 4
@@ -53632,6 +53634,7 @@ CheckMovingOffEdgeOfMap:: ; 104820 (41:4820)
 	jr z, .ok
 	and a
 	ret
+
 .left
 	ld a, [PlayerMapX]
 	sub $4
@@ -53639,6 +53642,7 @@ CheckMovingOffEdgeOfMap:: ; 104820 (41:4820)
 	jr z, .ok
 	and a
 	ret
+
 .right
 	ld a, [PlayerMapX]
 	sub 4
@@ -53649,6 +53653,7 @@ CheckMovingOffEdgeOfMap:: ; 104820 (41:4820)
 	jr z, .ok
 	and a
 	ret
+
 .ok
 	scf
 	ret

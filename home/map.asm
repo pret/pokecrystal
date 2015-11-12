@@ -219,27 +219,29 @@ ReturnToMapFromSubmenu:: ; 222a
 ; 2238
 
 CheckWarpTile:: ; 2238
-	call Function2252
+	call GetDestinationWarpNumber
 	ret nc
+
 	push bc
 	callba Function149af
 	pop bc
 	ret nc
-	call Function22a7
+
+	call CopyWarpData
 	scf
 	ret
 ; 224a
 
 
 
-Function224a:: ; 224a
-	call Function2252
+WarpCheck:: ; 224a
+	call GetDestinationWarpNumber
 	ret nc
-	call Function22a7
+	call CopyWarpData
 	ret
 ; 2252
 
-Function2252:: ; 2252
+GetDestinationWarpNumber:: ; 2252
 	callba Function1499a
 	ret nc
 
@@ -247,7 +249,7 @@ Function2252:: ; 2252
 	push af
 
 	call SwitchToMapScriptHeaderBank
-	call Function2266
+	call .GetDestinationWarpNumber
 
 	pop de
 	ld a, d
@@ -255,7 +257,7 @@ Function2252:: ; 2252
 	ret
 ; 2266
 
-Function2266:: ; 2266
+.GetDestinationWarpNumber ; 2266
 	ld a, [PlayerMapY]
 	sub $4
 	ld e, a
@@ -265,48 +267,49 @@ Function2266:: ; 2266
 	ld a, [wCurrMapWarpCount]
 	and a
 	ret z
+
 	ld c, a
 	ld hl, wCurrMapWarpHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-.asm_227e
+.loop
 	push hl
 	ld a, [hli]
 	cp e
-	jr nz, .asm_2289
+	jr nz, .next
 	ld a, [hli]
 	cp d
-	jr nz, .asm_2289
-	jr .asm_2296
+	jr nz, .next
+	jr .found_warp
 
-.asm_2289
+.next
 	pop hl
-	ld a, $5
+	ld a, 5
 	add l
 	ld l, a
-	jr nc, .asm_2291
+	jr nc, .okay
 	inc h
 
-.asm_2291
+.okay
 	dec c
-	jr nz, .asm_227e
+	jr nz, .loop
 	xor a
 	ret
 
-.asm_2296
+.found_warp
 	pop hl
-	call Function22a3
-	ret nc
+	call .IncreaseHLTwice
+	ret nc ; never encountered
+
 	ld a, [wCurrMapWarpCount]
 	inc a
 	sub c
 	ld c, a
 	scf
 	ret
-; 22a3
 
-Function22a3:: ; 22a3
+.IncreaseHLTwice
 rept 2
 	inc hl
 endr
@@ -314,12 +317,12 @@ endr
 	ret
 ; 22a7
 
-Function22a7:: ; 22a7
+CopyWarpData:: ; 22a7
 	ld a, [hROMBank]
 	push af
 
 	call SwitchToMapScriptHeaderBank
-	call Function22b4
+	call .CopyWarpData
 
 	pop af
 	rst Bankswitch
@@ -327,7 +330,7 @@ Function22a7:: ; 22a7
 	ret
 ; 22b4
 
-Function22b4:: ; 22b4
+.CopyWarpData ; 22b4
 	push bc
 	ld hl, wCurrMapWarpHeaderPointer
 	ld a, [hli]
@@ -335,29 +338,30 @@ Function22b4:: ; 22b4
 	ld l, a
 	ld a, c
 	dec a
-	ld bc, $0005
+	ld bc, 5 ; warp size
 	call AddNTimes
-	ld bc, $0002
+	ld bc, 2 ; warp number
 	add hl, bc
 	ld a, [hli]
 	cp $ff
-	jr nz, .asm_22d0
-	ld hl, wdcac
+	jr nz, .skip
+	ld hl, BackupWarpNumber
 	ld a, [hli]
 
-.asm_22d0
+.skip
 	pop bc
-	ld [wd146], a
+	ld [wNextWarp], a
 	ld a, [hli]
-	ld [wd147], a
+	ld [wNextMapGroup], a
 	ld a, [hli]
-	ld [wd148], a
+	ld [wNextMapNumber], a
+
 	ld a, c
-	ld [wd149], a
+	ld [wPrevWarp], a
 	ld a, [MapGroup]
-	ld [wd14a], a
+	ld [wPrevMapGroup], a
 	ld a, [MapNumber]
-	ld [wd14b], a
+	ld [wPrevMapNumber], a
 	scf
 	ret
 ; 22ee
@@ -382,40 +386,40 @@ CheckIndoorMap:: ; 22f4
 	ret
 ; 2300
 
-Function2300:: ; 2300
+Function2300:: ; unreferenced
 	cp INDOOR
 	ret z
 	cp GATE
 	ret z
-	cp $5
+	cp PERM_5
 	ret
 ; 2309
 
 
 LoadMapAttributes:: ; 2309
-	call Function2326
+	call CopyMapHeaders
 	call SwitchToMapScriptHeaderBank
-	call Function234f
+	call ReadMapScripts
 	xor a
 	call ReadMapEventHeader
 	ret
 ; 2317
 
-LoadMapAttributes_IgnoreHidden:: ; 2317
-	call Function2326
+LoadMapAttributes_SkipPeople:: ; 2317
+	call CopyMapHeaders
 	call SwitchToMapScriptHeaderBank
-	call Function234f
+	call ReadMapScripts
 	ld a, $1
 	call ReadMapEventHeader
 	ret
 ; 2326
 
-Function2326:: ; 2326
-	call Function2c3d
+CopyMapHeaders:: ; 2326
+	call PartiallyCopyMapHeader
 	call SwitchToMapBank
 	call GetSecondaryMapHeaderPointer
-	call Function235c
-	call Function2368
+	call CopySecondMapHeader
+	call GetMapConnections
 	ret
 ; 2336
 
@@ -431,14 +435,16 @@ endr
 	call ReadWarps
 	call ReadCoordEvents
 	call ReadSignposts
+
 	pop af
 	and a
 	ret nz
+
 	call ReadObjectEvents
 	ret
 ; 234f
 
-Function234f:: ; 234f
+ReadMapScripts:: ; 234f
 	ld hl, MapScriptHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
@@ -448,19 +454,19 @@ Function234f:: ; 234f
 	ret
 ; 235c
 
-Function235c:: ; 235c
+CopySecondMapHeader:: ; 235c
 	ld de, MapHeader
-	ld c, $c
-.asm_2361
+	ld c, 12 ; size of the second map header
+.loop
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_2361
+	jr nz, .loop
 	ret
 ; 2368
 
-Function2368:: ; 2368
+GetMapConnections:: ; 2368
 	ld a, $ff
 	ld [NorthConnectedMapGroup], a
 	ld [SouthConnectedMapGroup], a
@@ -470,29 +476,29 @@ Function2368:: ; 2368
 	ld a, [MapConnections]
 	ld b, a
 
-	bit 3, b
-	jr z, .asm_2384
+	bit NORTH_F, b
+	jr z, .no_north
 	ld de, NorthMapConnection
 	call GetMapConnection
-.asm_2384
+.no_north
 
-	bit 2, b
-	jr z, .asm_238e
+	bit SOUTH_F, b
+	jr z, .no_south
 	ld de, SouthMapConnection
 	call GetMapConnection
-.asm_238e
+.no_south
 
-	bit 1, b
-	jr z, .asm_2398
+	bit WEST_F, b
+	jr z, .no_west
 	ld de, WestMapConnection
 	call GetMapConnection
-.asm_2398
+.no_west
 
-	bit 0, b
-	jr z, .asm_23a2
+	bit EAST_F, b
+	jr z, .no_east
 	ld de, EastMapConnection
 	call GetMapConnection
-.asm_23a2
+.no_east
 
 	ret
 ; 23a3
@@ -568,11 +574,13 @@ ReadCoordEvents:: ; 23f1
 	ld a, l
 	ld [wCurrentMapXYTriggerHeaderPointer], a
 	ld a, h
-	ld [wdc00], a
+	ld [wCurrentMapXYTriggerHeaderPointer + 1], a
+
 	ld a, c
 	and a
 	ret z
-	ld bc, $0008
+
+	ld bc, 8
 	call AddNTimes
 	ret
 ; 2408
@@ -582,93 +590,108 @@ ReadSignposts:: ; 2408
 	ld c, a
 	ld [wCurrentMapSignpostCount], a
 	ld a, l
-	ld [wdc02], a
+	ld [wCurrentMapSignpostHeaderPointer], a
 	ld a, h
-	ld [wdc03], a
+	ld [wCurrentMapSignpostHeaderPointer + 1], a
+
 	ld a, c
 	and a
 	ret z
-	ld bc, $0005
+
+	ld bc, 5
 	call AddNTimes
 	ret
 ; 241f
 
 ReadObjectEvents:: ; 241f
 	push hl
-	call Function2471
+	call ClearObjectStructs
 	pop de
-	ld hl, MapObjects + OBJECT_LENGTH
+	ld hl, Map1Object
 	ld a, [de]
 	inc de
-	ld [wdc04], a
+	ld [wCurrentMapPersonEventCount], a
 	ld a, e
-	ld [wdc05], a
+	ld [wCurrentMapPersonEventHeaderPointer], a
 	ld a, d
-	ld [wdc06], a
-	ld a, [wdc04]
-	call Function2457
-	ld a, [wdc04]
+	ld [wCurrentMapPersonEventHeaderPointer + 1], a
+
+	ld a, [wCurrentMapPersonEventCount]
+	call CopyMapObjectHeaders
+
+; get NUM_OBJECTS - [wCurrentMapPersonEventCount]
+	ld a, [wCurrentMapPersonEventCount]
 	ld c, a
-	ld a, $10
+	ld a, NUM_OBJECTS ; - 1
 	sub c
-	jr z, .asm_2454
-	ld bc, $0001
+	jr z, .skip
+	; jr c, .skip
+
+; stupid waste of time and space
+	ld bc, 1
 	add hl, bc
-	ld bc, $0010
-.asm_244a
-	ld [hl], $0
+; Fill the remaining sprite IDs and y coords with 0 and -1, respectively.
+; Bleeds into wObjectMasks due to a bug.  Uncomment the above subtraction
+; to fix.
+	ld bc, OBJECT_LENGTH
+.loop
+	ld [hl],  0
 	inc hl
-	ld [hl], $ff
+	ld [hl], -1
 	dec hl
 	add hl, bc
 	dec a
-	jr nz, .asm_244a
+	jr nz, .loop
 
-.asm_2454
+.skip
 	ld h, d
 	ld l, e
 	ret
 ; 2457
 
-Function2457:: ; 2457
+CopyMapObjectHeaders:: ; 2457
 	and a
 	ret z
+
 	ld c, a
-.asm_245a
+.loop
 	push bc
 	push hl
 	ld a, $ff
 	ld [hli], a
-	ld b, $d
-.asm_2461
+	ld b, MAPOBJECT_E - MAPOBJECT_SPRITE
+.loop2
 	ld a, [de]
 	inc de
 	ld [hli], a
 	dec b
-	jr nz, .asm_2461
+	jr nz, .loop2
+
 	pop hl
-	ld bc, $0010
+	ld bc, OBJECT_LENGTH
 	add hl, bc
 	pop bc
 	dec c
-	jr nz, .asm_245a
+	jr nz, .loop
 	ret
 ; 2471
 
-Function2471:: ; 2471
+ClearObjectStructs:: ; 2471
 	ld hl, Object1Struct
 	ld bc, OBJECT_STRUCT_LENGTH * (NUM_OBJECT_STRUCTS - 1)
 	xor a
 	call ByteFill
+
+; Just to make sure (this is rather pointless)
 	ld hl, Object1Struct
 	ld de, OBJECT_STRUCT_LENGTH
 	ld c, NUM_OBJECT_STRUCTS - 1
 	xor a
-.asm_2484
+.loop
 	ld [hl], a
 	add hl, de
 	dec c
-	jr nz, .asm_2484
+	jr nz, .loop
 	ret
 ; 248a
 
@@ -681,34 +704,35 @@ RestoreFacingAfterWarp:: ; 248a
 	ld h, [hl]
 	ld l, a
 rept 3
-	inc hl
+	inc hl ; get to the warp coords
 endr
 	ld a, [WarpNumber]
 	dec a
 	ld c, a
-	ld b, $0
-	ld a, $5
+	ld b, 0
+	ld a, 5
 	call AddNTimes
 	ld a, [hli]
 	ld [YCoord], a
 	ld a, [hli]
 	ld [XCoord], a
+	; destination warp number
 	ld a, [hli]
 	cp $ff
-	jr nz, .asm_24b3
-	call Function24ba
+	jr nz, .skip
+	call .backup
 
-.asm_24b3
+.skip
 	callba GetCoordOfUpperLeftCorner
 	ret
 ; 24ba
 
-Function24ba:: ; 24ba
-	ld a, [wd149]
-	ld [wdcac], a
-	ld a, [wd14a]
+.backup
+	ld a, [wPrevWarp]
+	ld [BackupWarpNumber], a
+	ld a, [wPrevMapGroup]
 	ld [BackupMapGroup], a
-	ld a, [wd14b]
+	ld a, [wPrevMapNumber]
 	ld [BackupMapNumber], a
 	ret
 ; 24cd
@@ -1415,7 +1439,7 @@ Function2821:: ; 2821
 	ld [rVBK], a
 	pop af
 	ld [rSVBK], a
-	ld a, [wd199]
+	ld a, [wTileset]
 	cp $1
 	jr z, .asm_286f
 	cp $2
@@ -1836,6 +1860,7 @@ CheckFacingSign:: ; 2a8b
 	ld a, [wCurrentMapSignpostCount]
 	and a
 	ret z
+
 	ld c, a
 	ld a, [hROMBank]
 	push af
@@ -1849,7 +1874,7 @@ CheckFacingSign:: ; 2a8b
 
 CheckIfFacingTileCoordIsSign:: ; 2aaa
 ; Checks to see if you are facing a signpost.  If so, copies it into EngineBuffer1 and sets carry.
-	ld hl, wdc02
+	ld hl, wCurrentMapSignpostHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1954,7 +1979,7 @@ CheckStandingOnXYTrigger:: ; 2ae7
 .copytrigger
 	pop hl
 	ld de, EngineBuffer1
-	ld bc, $0008 ; xy-trigger size
+	ld bc, 8 ; xy-trigger size
 	call CopyBytes
 	scf
 	ret
@@ -2160,15 +2185,19 @@ GetAnyMapBank:: ; 2c31
 	ret
 ; 2c3d
 
-Function2c3d:: ; 2c3d
+PartiallyCopyMapHeader:: ; 2c3d
+; Copy second map header bank, tileset, permission, and second map header address
+; from the current map's map header.
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(MapGroupPointers)
 	rst Bankswitch
+
 	call GetMapHeaderPointer
-	ld de, wd197 + 1
-	ld bc, $0005
+	ld de, wSecondMapHeaderBank
+	ld bc, MapHeader - wSecondMapHeaderBank
 	call CopyBytes
+
 	pop af
 	rst Bankswitch
 	ret
@@ -2220,7 +2249,7 @@ GetSecondaryMapHeaderPointer:: ; 0x2c7d
 ; returns the current map's secondary map header pointer in hl.
 	push bc
 	push de
-	ld de, $0003 ; secondary map header pointer (offset within header)
+	ld de, 3 ; secondary map header pointer (offset within header)
 	call GetMapHeaderMember
 	ld l, c
 	ld h, b
@@ -2233,7 +2262,7 @@ GetMapPermission:: ; 2c8a
 	push hl
 	push de
 	push bc
-	ld de, 2
+	ld de, 2 ; permission
 	call GetMapHeaderMember
 	ld a, c
 	pop bc
@@ -2250,7 +2279,7 @@ GetAnyMapPermission:: ; 2c99
 	push hl
 	push de
 	push bc
-	ld de, $0002
+	ld de, 2 ; permission
 	call GetAnyMapHeaderMember
 	ld a, c
 	pop bc
@@ -2260,7 +2289,7 @@ GetAnyMapPermission:: ; 2c99
 ; 2ca7
 
 GetAnyMapTileset:: ; 2ca7
-	ld de, $0001
+	ld de, 1 ; tileset
 	call GetAnyMapHeaderMember
 	ld a, c
 	ret
@@ -2271,9 +2300,11 @@ GetWorldMapLocation:: ; 0x2caf
 	push hl
 	push de
 	push bc
-	ld de, 5
+
+	ld de, 5 ; landmark
 	call GetAnyMapHeaderMember
 	ld a, c
+
 	pop bc
 	pop de
 	pop hl
@@ -2343,21 +2374,25 @@ GetMapHeaderPhoneServiceNybble:: ; 2d05
 GetPhoneServiceTimeOfDayByte:: ; 2d0d
 	push hl
 	push bc
+
 	ld de, 7 ; phone service and time of day
 	call GetMapHeaderMember
 	ld a, c
+
 	pop bc
 	pop hl
 	ret
 ; 2d19
 
-Function2d19:: ; 2d19
+GetFishingGroup:: ; 2d19
 	push de
 	push hl
 	push bc
+
 	ld de, 8 ; fishing group
 	call GetMapHeaderMember
 	ld a, c
+
 	pop bc
 	pop hl
 	pop de
@@ -2370,7 +2405,7 @@ LoadTilesetHeader:: ; 2d27
 
 	ld hl, Tilesets
 	ld bc, Tileset01 - Tileset00
-	ld a, [wd199]
+	ld a, [wTileset]
 	call AddNTimes
 
 	ld de, TilesetBank

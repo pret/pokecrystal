@@ -610,7 +610,7 @@ Function8b6bb: ; 8b6bb
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_8b6d5
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $0018
 	call CopyBytes
 	pop af

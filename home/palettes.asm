@@ -95,7 +95,7 @@ DmgToCgbBGPals:: ; c9f
 
 ; copy & reorder bg pal buffer
 	ld hl, BGPals ; to
-	ld de, Unkn1Pals ; from
+	ld de, wMapPals ; from
 ; order
 	ld a, [rBGP]
 	ld b, a

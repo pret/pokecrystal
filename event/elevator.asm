@@ -113,7 +113,7 @@ Function134c0: ; 134c0
 	ld bc, 4
 	call AddNTimes
 	inc hl
-	ld de, wdcac
+	ld de, BackupWarpNumber
 	ld a, [EngineBuffer1]
 	ld bc, 3
 	call FarCopyBytes

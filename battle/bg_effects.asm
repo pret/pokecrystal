@@ -2571,7 +2571,7 @@ Functionc8e52: ; c8e52 (32:4e52)
 	push bc
 	push af
 	ld hl, BGPals ; BGPals
-	ld de, Unkn1Pals ; wd000
+	ld de, wMapPals ; wd000
 	ld b, a
 	ld c, $1
 	call CopyPals
@@ -2598,7 +2598,7 @@ Functionc8e7f: ; c8e7f (32:4e7f)
 	push bc
 	push af
 	ld hl, BGPals + 8
-	ld de, Unkn1Pals + 8
+	ld de, wMapPals + 8
 	ld b, a
 	ld c, $1
 	call CopyPals

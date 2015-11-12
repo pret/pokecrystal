@@ -1677,12 +1677,21 @@ CurPartyLevel:: ; d143
 	ds 1
 
 wd144:: ds 2
+
+; used when following a map warp
+wNextWarp::
 wd146:: ds 1
+wNextMapGroup::
 wd147:: ds 1
+wNextMapNumber::
 wd148:: ds 1
+wPrevWarp::
 wd149:: ds 1
+wPrevMapGroup::
 wd14a:: ds 1
+wPrevMapNumber::
 wd14b:: ds 1
+
 wd14c:: ds 1 ; used in FollowNotExact
 wd14d:: ds 1 ; used in FollowNotExact
 wd14e:: ds 1
@@ -1710,10 +1719,11 @@ wd192:: ds 1
 wd193:: ds 1
 wd194:: dw
 wd196:: ds 1
-wd197:: ds 2
-wd199:: ds 1
+wd197:: ds 1
+wSecondMapHeaderBank:: ds 1
+wTileset:: ds 1
 wPermission:: ds 1
-	ds 2
+wSecondMapHeaderAddr:: dw
 
 ; width/height are in blocks (2x2 walkable tiles, 4x4 graphics tiles)
 MapHeader:: ; d19d
@@ -2194,7 +2204,7 @@ ENDM
 	object_struct Object12
 
 wd6de::
-	ds 64
+	ds $40
 
 map_object: MACRO
 \1Object::
@@ -2481,9 +2491,12 @@ wCurrentMapXYTriggerCount:: ds 1
 wCurrentMapXYTriggerHeaderPointer:: ds 1
 wdc00:: ds 1
 wCurrentMapSignpostCount:: ds 1
+wCurrentMapSignpostHeaderPointer::
 wdc02:: ds 1
 wdc03:: ds 1
+wCurrentMapPersonEventCount::
 wdc04:: ds 1
+wCurrentMapPersonEventHeaderPointer::
 wdc05:: ds 1
 wdc06:: ds 1
 wCurrMapTriggerCount:: ds 1
@@ -2589,10 +2602,10 @@ VisitedSpawns:: ; dca5
 wdca9:: ds 1
 wdcaa:: ds 1
 wdcab:: ds 1
-wdcac:: ds 1
-
 ; used on maps like second floor pokécenter, which are reused, so we know which
 ; map to return to
+BackupWarpNumber:: ; dcac
+	ds 1
 BackupMapGroup:: ; dcad
 	ds 1
 BackupMapNumber:: ; dcae
@@ -2803,7 +2816,7 @@ w3_dd68::
 SECTION "GBC Video", WRAMX, BANK [5]
 
 ; 8 4-color palettes
-Unkn1Pals:: ds 8 * 8 ; d000
+wMapPals:: ds 8 * 8 ; d000
 Unkn2Pals:: ds 8 * 8 ; d040
 BGPals::    ds 8 * 8 ; d080
 OBPals::    ds 8 * 8 ; d0c0

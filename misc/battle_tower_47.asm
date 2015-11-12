@@ -2888,7 +2888,7 @@ Function11d323: ; 11d323
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_11d33a
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, 16 * 8
 	call CopyBytes
 	pop af
@@ -3015,7 +3015,7 @@ Function11d3ef: ; 11d3ef
 	ld a, [hli]
 	ld b, a
 	push hl
-	ld hl, Unkn1Pals
+	ld hl, wMapPals
 	add hl, de
 	ld a, [wcd2d]
 	ld e, a
