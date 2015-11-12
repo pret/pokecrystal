@@ -594,7 +594,7 @@ Function103fd: ; 103fd
 	ld [Options], a
 	ld a, $8
 	ld [PartyMenuActionText], a
-	call WhiteBGMap
+	call ClearBGPalettes
 	callba Function5004f
 	callba Function50405
 	callba Function503e0
@@ -922,7 +922,7 @@ Function105dc: ; 105dc (4:45dc)
 	ret
 
 .asm_1066c: ; 1066c (4:466c)
-	call WhiteBGMap
+	call ClearBGPalettes
 	jr .asm_1067e
 
 .BattleOnly: ; 10671 (4:4671)
@@ -1401,7 +1401,7 @@ Function108d4: ; 108d4 (4:48d4)
 
 
 Function10955: ; 10955
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
 	call DisableLCD

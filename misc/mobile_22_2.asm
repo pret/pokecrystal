@@ -574,7 +574,7 @@ Function8b664: ; 8b664 (22:7664)
 	ret
 
 Function8b677: ; 8b677
-	call WhiteBGMap
+	call ClearBGPalettes
 	call DisableLCD
 	call Function8b690
 	call Function8b6bb

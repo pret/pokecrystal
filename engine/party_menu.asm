@@ -2,10 +2,10 @@ SelectMonFromParty: ; 50000
 	call DisableSpriteUpdates
 	xor a
 	ld [PartyMenuActionText], a
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function5003f
 	call WaitBGMap
-	call Function32f9
+	call SetPalettes
 	call DelayFrame
 	call PartyMenuSelect
 	call Function2b74
@@ -17,12 +17,12 @@ Function5001d: ; 5001d
 	ld a, b
 	ld [PartyMenuActionText], a
 	call DisableSpriteUpdates
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function5003f
 	call WaitBGMap
 	ld b, $a
 	call GetSGBLayout
-	call Function32f9
+	call SetPalettes
 	call DelayFrame
 	call PartyMenuSelect
 	call Function2b74
@@ -57,43 +57,42 @@ WritePartyMenuTilemap: ; 0x5005f
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "
 	call ByteFill ; blank the tilemap
-	call Function50396 ; This reads from a pointer table???
+	call GetPartyMenuTilemapPointers ; This reads from a pointer table???
 .loop
 	ld a, [hli]
-	cp -1
-	jr z, .asm_50084 ; 0x5007a $8
+	cp $ff
+	jr z, .end ; 0x5007a $8
 	push hl
-	ld hl, .jumptable
+	ld hl, .Jumptable
 	rst JumpTable
 	pop hl
 	jr .loop ; 0x50082 $f3
-
-.asm_50084
+.end
 	pop af
 	ld [Options], a
 	ret
 ; 0x50089
 
-.jumptable: ; 50089
-	dw .displaynicks ; 0
-	dw .drawhpbars ; 1
-	dw Function50138 ; 2
-	dw Function50176 ; 3
-	dw Function501b2 ; 4
-	dw Function501e0 ; 5
-	dw Function5022f ; 6
-	dw Function502b1 ; 7
-	dw Function50307 ; 8
+.Jumptable: ; 50089
+	dw PlacePartyNicknames
+	dw PlacePartyHPBar
+	dw PlacePartyMenuHPDigits
+	dw PlacePartyMonLevel
+	dw PlacePartyMonStatus
+	dw PlacePartyMonTMHMCompatibility
+	dw PlacePartyMonEvoStoneCompatibility
+	dw PlacePartyMonGender
+	dw PlacePartyMonMobileBattleSelection
 ; 5009b
 
-.displaynicks: ; 5009b
+PlacePartyNicknames: ; 5009b
 	hlcoord 3, 1
 	ld a, [PartyCount]
 	and a
-	jr z, .done
+	jr z, .end
 	ld c, a
 	ld b, $0
-.loop2
+.loop
 	push bc
 	push hl
 	push hl
@@ -103,28 +102,28 @@ WritePartyMenuTilemap: ; 0x5005f
 	pop hl
 	call PlaceString
 	pop hl
-	ld de, $0028
+	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	pop bc
 	inc b
 	dec c
-	jr nz, .loop2
+	jr nz, .loop
 
-.done
+.end
 rept 2
 	dec hl
 endr
-	ld de, .cancelstring
+	ld de, .CANCEL
 	call PlaceString
 	ret
 ; 500c8
 
-.cancelstring: ; 500c8
+.CANCEL: ; 500c8
 	db "CANCEL@"
 ; 500cf
 
 
-.drawhpbars: ; 500cf
+PlacePartyHPBar: ; 500cf
 	xor a
 	ld [wcda9], a
 	ld a, [PartyCount]
@@ -133,17 +132,17 @@ endr
 	ld c, a
 	ld b, $0
 	hlcoord 11, 2
-.loop3
+.loop
 	push bc
 	push hl
-	call Function50389
+	call PartyMenuCheckEgg
 	jr z, .skip
 	push hl
-	call _fillhpbar
+	call PlacePartymonHPBar
 	pop hl
-	ld d, 6
-	ld b, 0
-	call DrawHPBar
+	ld d, $6
+	ld b, $0
+	call DrawBattleHPBar
 	ld hl, wcd9b
 	ld a, [wcda9]
 	ld c, a
@@ -157,31 +156,31 @@ endr
 	ld hl, wcda9
 	inc [hl]
 	pop hl
-	ld de, $0028
+	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	pop bc
 	inc b
 	dec c
-	jr nz, .loop3
+	jr nz, .loop
 	ld b, $a
 	call GetSGBLayout
 	ret
 ; 50117
 
-_fillhpbar: ; 50117
+PlacePartymonHPBar: ; 50117
 	ld a, b
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, PartyMon1HP
 	call AddNTimes
 	ld a, [hli]
 	or [hl]
-	jr nz, .notfainted
+	jr nz, .not_fainted
 	xor a
 	ld e, a
 	ld c, a
 	ret
 
-.notfainted
+.not_fainted
 	dec hl
 	ld a, [hli]
 	ld b, a
@@ -191,25 +190,25 @@ _fillhpbar: ; 50117
 	ld d, a
 	ld a, [hli]
 	ld e, a
-	predef ComputeHPBarLength
+	predef DrawPartyMenuHPBar
 	ret
 ; 50138
 
-Function50138: ; 50138
+PlacePartyMenuHPDigits: ; 50138
 	ld a, [PartyCount]
 	and a
 	ret z
 	ld c, a
 	ld b, $0
 	hlcoord 13, 1
-.asm_50143
+.loop
 	push bc
 	push hl
-	call Function50389
-	jr z, .asm_5016b
+	call PartyMenuCheckEgg
+	jr z, .next
 	push hl
 	ld a, b
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, PartyMon1HP
 	call AddNTimes
 	ld e, l
@@ -219,7 +218,7 @@ Function50138: ; 50138
 	lb bc, 2, 3
 	call PrintNum
 	pop de
-	ld a, $f3
+	ld a, "/"
 	ld [hli], a
 rept 2
 	inc de
@@ -227,32 +226,32 @@ endr
 	lb bc, 2, 3
 	call PrintNum
 
-.asm_5016b
+.next
 	pop hl
-	ld de, $0028
+	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	pop bc
 	inc b
 	dec c
-	jr nz, .asm_50143
+	jr nz, .loop
 	ret
 ; 50176
 
-Function50176: ; 50176
+PlacePartyMonLevel: ; 50176
 	ld a, [PartyCount]
 	and a
 	ret z
 	ld c, a
 	ld b, 0
 	hlcoord 8, 2
-.asm_50181
+.loop
 	push bc
 	push hl
-	call Function50389
-	jr z, .asm_501a7
+	call PartyMenuCheckEgg
+	jr z, .next
 	push hl
 	ld a, b
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, PartyMon1Level
 	call AddNTimes
 	ld e, l
@@ -260,70 +259,72 @@ Function50176: ; 50176
 	pop hl
 	ld a, [de]
 	cp 100 ; This is distinct from MAX_LEVEL.
-	jr nc, .asm_501a1
+	jr nc, .ThreeDigits
 	ld a, "<LV>"
 	ld [hli], a
-	ld bc, $4102
-.asm_501a1
+	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
+	; jr .okay
+.ThreeDigits
 	lb bc, PRINTNUM_RIGHTALIGN | 1, 3
+; .okay
 	call PrintNum
 
-.asm_501a7
+.next
 	pop hl
 	ld de, SCREEN_WIDTH * 2
 	add hl, de
 	pop bc
 	inc b
 	dec c
-	jr nz, .asm_50181
+	jr nz, .loop
 	ret
 ; 501b2
 
-Function501b2: ; 501b2
+PlacePartyMonStatus: ; 501b2
 	ld a, [PartyCount]
 	and a
 	ret z
 	ld c, a
 	ld b, 0
 	hlcoord 5, 2
-.asm_501bd
+.loop
 	push bc
 	push hl
-	call Function50389
-	jr z, .asm_501d5
+	call PartyMenuCheckEgg
+	jr z, .next
 	push hl
 	ld a, b
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, PartyMon1Status
 	call AddNTimes
 	ld e, l
 	ld d, h
 	pop hl
-	call Function50d0a
+	call PlaceStatusString
 
-.asm_501d5
+.next
 	pop hl
 	ld de, SCREEN_WIDTH * 2
 	add hl, de
 	pop bc
 	inc b
 	dec c
-	jr nz, .asm_501bd
+	jr nz, .loop
 	ret
 ; 501e0
 
-Function501e0: ; 501e0
+PlacePartyMonTMHMCompatibility: ; 501e0
 	ld a, [PartyCount]
 	and a
 	ret z
 	ld c, a
 	ld b, 0
 	hlcoord 12, 2
-.asm_501eb
+.loop
 	push bc
 	push hl
-	call Function50389
-	jr z, .asm_5020a
+	call PartyMenuCheckEgg
+	jr z, .next
 	push hl
 	ld hl, PartySpecies
 	ld e, b
@@ -333,56 +334,56 @@ Function501e0: ; 501e0
 	ld [CurPartySpecies], a
 	predef CanLearnTMHMMove
 	pop hl
-	call Function50215
+	call .PlaceAbleNotAble
 	call PlaceString
 
-.asm_5020a
+.next
 	pop hl
 	ld de, SCREEN_WIDTH * 2
 	add hl, de
 	pop bc
 	inc b
 	dec c
-	jr nz, .asm_501eb
+	jr nz, .loop
 	ret
 ; 50215
 
-Function50215: ; 50215
+.PlaceAbleNotAble: ; 50215
 	ld a, c
 	and a
-	jr nz, .asm_5021d
-	ld de, String_50226
+	jr nz, .able
+	ld de, .string_not_able
 	ret
 
-.asm_5021d
-	ld de, String_50221
+.able
+	ld de, .string_able
 	ret
 ; 50221
 
-String_50221: ; 50221
+.string_able: ; 50221
 	db "ABLE@"
 ; 50226
 
-String_50226: ; 50226
+.string_not_able: ; 50226
 	db "NOT ABLE@"
 ; 5022f
 
 
-Function5022f: ; 5022f
+PlacePartyMonEvoStoneCompatibility: ; 5022f
 	ld a, [PartyCount]
 	and a
 	ret z
 	ld c, a
 	ld b, 0
 	hlcoord 12, 2
-.asm_5023a
+.loop
 	push bc
 	push hl
-	call Function50389
-	jr z, .asm_5025d
+	call PartyMenuCheckEgg
+	jr z, .next
 	push hl
 	ld a, b
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, PartyMon1Species
 	call AddNTimes
 	ld a, [hl]
@@ -393,22 +394,22 @@ Function5022f: ; 5022f
 rept 2
 	add hl, de
 endr
-	call Function50268
+	call .DetermineCompatibility
 	pop hl
 	call PlaceString
 
-.asm_5025d
+.next
 	pop hl
-	ld de, $0028
+	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	pop bc
 	inc b
 	dec c
-	jr nz, .asm_5023a
+	jr nz, .loop
 	ret
 ; 50268
 
-Function50268: ; 50268
+.DetermineCompatibility: ; 50268
 	ld de, StringBuffer1
 	ld a, BANK(EvosAttacksPointers)
 	ld bc, 2
@@ -422,15 +423,15 @@ Function50268: ; 50268
 	ld bc, $a
 	call FarCopyBytes
 	ld hl, StringBuffer1
-.asm_50287
+.loop2
 	ld a, [hli]
 	and a
-	jr z, .asm_5029f
+	jr z, .nope
 rept 2
 	inc hl
 endr
 	cp EVOLVE_ITEM
-	jr nz, .asm_50287
+	jr nz, .loop2
 rept 2
 	dec hl
 endr
@@ -439,35 +440,35 @@ endr
 rept 2
 	inc hl
 endr
-	jr nz, .asm_50287
-	ld de, String_502a3
+	jr nz, .loop2
+	ld de, .string_able
 	ret
 
-.asm_5029f
-	ld de, String_502a8
+.nope
+	ld de, .string_not_able
 	ret
 ; 502a3
 
-String_502a3: ; 502a3
+.string_able: ; 502a3
 	db "ABLE@"
 ; 502a8
-String_502a8: ; 502a8
+.string_not_able: ; 502a8
 	db "NOT ABLE@"
 ; 502b1
 
 
-Function502b1: ; 502b1
+PlacePartyMonGender: ; 502b1
 	ld a, [PartyCount]
 	and a
 	ret z
 	ld c, a
 	ld b, 0
 	hlcoord 12, 2
-.asm_502bc
+.loop
 	push bc
 	push hl
-	call Function50389
-	jr z, .asm_502e3
+	call PartyMenuCheckEgg
+	jr z, .next
 	ld [CurPartySpecies], a
 	push hl
 	ld a, b
@@ -475,86 +476,86 @@ Function502b1: ; 502b1
 	xor a
 	ld [MonType], a
 	call GetGender
-	ld de, String_502fe
-	jr c, .asm_502df
-	ld de, String_502ee
-	jr nz, .asm_502df
-	ld de, String_502f5
+	ld de, .unknown
+	jr c, .got_gender
+	ld de, .male
+	jr nz, .got_gender
+	ld de, .female
 
-.asm_502df
+.got_gender
 	pop hl
 	call PlaceString
 
-.asm_502e3
+.next
 	pop hl
-	ld de, $0028
+	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	pop bc
 	inc b
 	dec c
-	jr nz, .asm_502bc
+	jr nz, .loop
 	ret
 ; 502ee
 
-String_502ee: ; 502ee
+.male: ; 502ee
 	db "♂…MALE@"
 ; 502f5
 
-String_502f5: ; 502f5
+.female: ; 502f5
 	db "♀…FEMALE@"
 ; 502fe
 
-String_502fe: ; 502fe
+.unknown: ; 502fe
 	db "…UNKNOWN@"
 ; 50307
 
 
-Function50307: ; 50307
+PlacePartyMonMobileBattleSelection: ; 50307
 	ld a, [PartyCount]
 	and a
 	ret z
 	ld c, a
 	ld b, 0
 	hlcoord 12, 1
-.asm_50312
+.loop
 	push bc
 	push hl
-	ld de, String_50372
+	ld de, .String_Sanka_Shinai
 	call PlaceString
 	pop hl
-	ld de, $0028
+	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	pop bc
 	inc b
 	dec c
-	jr nz, .asm_50312
+	jr nz, .loop
 	ld a, l
-	ld e, $b
+	ld e, PKMN_NAME_LENGTH
 	sub e
 	ld l, a
 	ld a, h
 	sbc $0
 	ld h, a
-	ld de, String_50379
+	ld de, .String_Kettei_Yameru
 	call PlaceString
 	ld b, $3
 	ld c, $0
 	ld hl, wd002
 	ld a, [hl]
-.asm_5033b
+.loop2
 	push hl
 	push bc
 	hlcoord 12, 1
-.asm_50340
+.loop3
 	and a
-	jr z, .asm_5034a
-	ld de, $0028
+	jr z, .done
+	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	dec a
-	jr .asm_50340
+	jr .loop3
 
-.asm_5034a
-	ld de, String_5036b
+.done
+	ld de, .String_Banme
 	push hl
 	call PlaceString
 	pop hl
@@ -562,7 +563,7 @@ Function50307: ; 50307
 	push bc
 	push hl
 	ld a, c
-	ld hl, Strings_50383
+	ld hl, .Strings_1_2_3
 	call GetNthString
 	ld d, h
 	ld e, l
@@ -575,24 +576,24 @@ Function50307: ; 50307
 	inc c
 	dec b
 	ret z
-	jr .asm_5033b
+	jr .loop2
 ; 5036b
 
-String_5036b: ; 5036b
+.String_Banme: ; 5036b
 	db " ばんめ  @" ; Place
 ; 50372
-String_50372: ; 50372
+.String_Sanka_Shinai: ; 50372
 	db "さんかしない@" ; Cancel
 ; 50379
-String_50379: ; 50379
+.String_Kettei_Yameru: ; 50379
 	db "けってい  やめる@" ; Quit
 ; 50383
-Strings_50383: ; 50383
+.Strings_1_2_3: ; 50383
 	db "1@", "2@", "3@" ; 1st, 2nd, 3rd
 ; 50389
 
 
-Function50389: ; 50389
+PartyMenuCheckEgg: ; 50389
 	ld a, PartySpecies % $100
 	add b
 	ld e, a
@@ -604,15 +605,15 @@ Function50389: ; 50389
 	ret
 ; 50396
 
-Function50396: ; 50396
+GetPartyMenuTilemapPointers: ; 50396
 	ld a, [PartyMenuActionText]
 	and $f0
-	jr nz, .override
+	jr nz, .skip
 	ld a, [PartyMenuActionText]
 	and $f
 	ld e, a
 	ld d, 0
-	ld hl, .selectmonmenuoptions
+	ld hl, .Pointers
 rept 2
 	add hl, de
 endr
@@ -621,30 +622,31 @@ endr
 	ld l, a
 	ret
 
-.override
-	ld hl, .default
+.skip
+	ld hl, .Default
 	ret
 ; 503b2
 
-.selectmonmenuoptions: ; 503b2
-	dw .default
-	dw .default
-	dw .default
-	dw .unknown1
-	dw .default
-	dw .unknown2
-	dw .trade
-	dw .trade
-	dw .default
-	dw .unknown3
+.Pointers: ; 503b2
+	dw .Default
+	dw .Default
+	dw .Default
+	dw .TMHM
+	dw .Default
+	dw .EvoStone
+	dw .Gender
+	dw .Gender
+	dw .Default
+	dw .Mobile
 ; 503c6
 
-.default: db 0, 1, 2, 3, 4, -1
-.unknown1: db 0, 5, 3, 4, -1
-.unknown2: db 0, 6, 3, 4, -1
-.trade: db 0, 7, 3, 4, -1
-.unknown3: db 0, 8, 3, 4, -1
+.Default: db 0, 1, 2, 3, 4, $ff
+.TMHM: db 0, 5, 3, 4, $ff
+.EvoStone: db 0, 6, 3, 4, $ff
+.Gender: db 0, 7, 3, 4, $ff
+.Mobile: db 0, 8, 3, 4, $ff
 ; 503e0
+
 
 Function503e0: ; 503e0
 	ld hl, PartyCount
@@ -653,7 +655,7 @@ Function503e0: ; 503e0
 	ret z
 	ld c, a
 	xor a
-	ld [hConnectedMapWidth], a
+	ld [hObjectStructIndexBuffer], a
 .asm_503ea
 	push bc
 	push hl
@@ -661,9 +663,9 @@ Function503e0: ; 503e0
 	ld a, BANK(Function8e83f)
 	ld e, $0
 	rst FarCall
-	ld a, [hConnectedMapWidth]
+	ld a, [hObjectStructIndexBuffer]
 	inc a
-	ld [hConnectedMapWidth], a
+	ld [hObjectStructIndexBuffer], a
 	pop hl
 	pop bc
 	dec c
@@ -671,6 +673,7 @@ Function503e0: ; 503e0
 	callab Function8cf69
 	ret
 ; 50405
+
 Function50405: ; 50405
 	xor a
 	ld [wd0e3], a
@@ -692,7 +695,7 @@ Function50405: ; 50405
 	ld a, $1
 
 .asm_50424
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld a, $3
 	ld [wcfa8], a
 	ret
@@ -713,7 +716,7 @@ Function5042d: ; 0x5042d
 .asm_50444
 	ld a, $1
 .asm_50446
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld a, $3
 	ld [wcfa8], a
 	ret
@@ -738,7 +741,7 @@ PartyMenuSelect: ; 0x50457
 	ld a, [PartyCount]
 	inc a
 	ld b, a
-	ld a, [wcfa9] ; menu selection?
+	ld a, [MenuSelection2] ; menu selection?
 	cp b
 	jr z, .exitmenu ; CANCEL
 	ld [wd0d8], a
@@ -746,7 +749,7 @@ PartyMenuSelect: ; 0x50457
 	ld b, a
 	bit 1, b
 	jr nz, .exitmenu ; B button?
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	ld [CurPartyMon], a
 	ld c, a
@@ -773,7 +776,7 @@ PartyMenuSelect: ; 0x50457
 
 PrintPartyMenuText: ; 5049a
 	hlcoord 0, 14
-	ld bc, $0212
+	lb bc, 2, 18
 	call TextBox
 	ld a, [PartyCount]
 	and a
@@ -919,6 +922,7 @@ UnknownText_0x505bc: ; 0x505bc
 	text_jump UnknownText_0x1bc16e
 	db "@"
 ; 0x505c1
+
 
 Function505c1: ; 505c1
 	ld e, a

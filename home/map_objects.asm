@@ -428,7 +428,8 @@ Function19b8:: ; 19b8
 
 
 
-Function19e9:: ; 19e9
+LoadMovementDataPointer:: ; 19e9
+; Load the movement data pointer for person a.
 	ld [wMovementPerson], a
 	ld a, [hROMBank]
 	ld [wMovementDataPointer], a
@@ -439,12 +440,15 @@ Function19e9:: ; 19e9
 	ld a, [wMovementPerson]
 	call CheckObjectVisibility
 	ret c
+
 	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
 	ld [hl], SPRITEMOVEDATA_SCRIPTED
+
 	ld hl, OBJECT_09
 	add hl, bc
 	ld [hl], 0
+
 	ld hl, VramState
 	set 7, [hl]
 	and a
@@ -589,14 +593,15 @@ endr
 ; 1aae
 
 Function1aae:: ; 1aae
+; Switch to the movement data bank
 	ld a, [hROMBank]
 	push af
 	ld a, [hli]
 	rst Bankswitch
-
+; Load the current script byte as given by OBJECT_MOVEMENT_BYTE_INDEX, and increment OBJECT_MOVEMENT_BYTE_INDEX
 	ld a, [hli]
 	ld d, [hl]
-	ld hl, OBJECT_27
+	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
 	add hl, bc
 	add [hl]
 	ld e, a

@@ -138,7 +138,7 @@ EnterMap: ; 9673e
 	call ClearAllScriptFlags3
 
 	ld a, [hMapEntryMethod]
-	cp MAPSETUP_07
+	cp MAPSETUP_CONNECTION
 	jr nz, .dontset
 	call SetAll_ScriptFlags3
 .dontset
@@ -322,9 +322,9 @@ PlayerEvents: ; 9681f
 	ld [ScriptRunning], a
 	call DoPlayerEvent
 	ld a, [ScriptRunning]
-	cp PLAYEREVENT_4
+	cp PLAYEREVENT_CONNECTION
 	jr z, .ok2
-	cp PLAYEREVENT_9
+	cp PLAYEREVENT_JOYCHANGEFACING
 	jr z, .ok2
 
 	xor a
@@ -1050,8 +1050,10 @@ DoPlayerEvent: ; 96beb
 	ld a, [ScriptRunning]
 	and a
 	ret z
+
 	cp PLAYEREVENT_MAPSCRIPT ; run script
 	ret z
+
 	cp NUM_PLAYER_EVENTS
 	ret nc
 
@@ -1071,24 +1073,24 @@ endr
 ; 96c0c
 
 PlayerEventScriptPointers: ; 96c0c
-	dba Invalid_0x96c2d         ; 0
-	dba SeenByTrainerScript     ; 1
-	dba TalkToTrainerScript     ; 2
-	dba FindItemInBallScript    ; 3
-	dba UnknownScript_0x96c4d   ; 4
-	dba WarpToNewMapScript      ; 5
-	dba FallIntoMapScript       ; 6
-	dba Script_OverworldWhiteout   ; 7
-	dba HatchEggScript          ; 8
-	dba UnknownScript_0x96c4f   ; 9
-	dba Invalid_0x96c2d         ; 10
+	dba Invalid_0x96c2d          ; 0
+	dba SeenByTrainerScript      ; 1
+	dba TalkToTrainerScript      ; 2
+	dba FindItemInBallScript     ; 3
+	dba UnknownScript_0x96c4d    ; 4
+	dba WarpToNewMapScript       ; 5
+	dba FallIntoMapScript        ; 6
+	dba Script_OverworldWhiteout ; 7
+	dba HatchEggScript           ; 8
+	dba UnknownScript_0x96c4f    ; 9
+	dba Invalid_0x96c2d          ; 10
 ; 96c2d
 
 Invalid_0x96c2d: ; 96c2d
 	end
 ; 96c2e
 
-UnknownScript_0x96c2e: ; 96c2e
+; unreferenced
 	end
 ; 96c2f
 
@@ -1099,12 +1101,12 @@ HatchEggScript: ; 96c2f
 
 WarpToNewMapScript: ; 96c34
 	warpsound
-	newloadmap MAPSETUP_05
+	newloadmap MAPSETUP_DOOR
 	end
 ; 96c38
 
 FallIntoMapScript: ; 96c38
-	newloadmap MAPSETUP_06
+	newloadmap MAPSETUP_FALL
 	playsound SFX_KINESIS
 	applymovement PLAYER, MovementData_0x96c48
 	playsound SFX_STRENGTH
@@ -1123,7 +1125,7 @@ LandAfterPitfallScript: ; 96c4a
 ; 96c4d
 
 UnknownScript_0x96c4d: ; 4
-	reloadandreturn MAPSETUP_07
+	reloadandreturn MAPSETUP_CONNECTION
 ; 96c4f
 
 UnknownScript_0x96c4f: ; 9

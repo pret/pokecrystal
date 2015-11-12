@@ -6,7 +6,7 @@ Serial:: ; 6ef
 	push de
 	push hl
 
-	ld a, [$ffc9]
+	ld a, [hFFC9]
 	and a
 	jr nz, .asm_71c
 
@@ -77,7 +77,7 @@ Serial:: ; 6ef
 
 .asm_752
 	ld a, $1
-	ld [$ffca], a
+	ld [hFFCA], a
 	ld a, $fe
 	ld [hSerialSend], a
 
@@ -91,7 +91,7 @@ Serial:: ; 6ef
 
 Function75f:: ; 75f
 	ld a, $1
-	ld [$ffcc], a
+	ld [hFFCC], a
 .asm_763
 	ld a, [hl]
 	ld [hSerialSend], a
@@ -103,7 +103,7 @@ Function75f:: ; 75f
 .asm_76e
 	dec a
 	jr nz, .asm_76e
-	ld a, [$ffcc]
+	ld a, [hFFCC]
 	and a
 	ld a, b
 	pop bc
@@ -112,7 +112,7 @@ Function75f:: ; 75f
 	cp $fd
 	jr nz, .asm_763
 	xor a
-	ld [$ffcc], a
+	ld [hFFCC], a
 	jr .asm_763
 
 .asm_782
@@ -127,7 +127,7 @@ Function75f:: ; 75f
 
 Function78a:: ; 78a
 	xor a
-	ld [$ffca], a
+	ld [hFFCA], a
 	ld a, [hLinkPlayerNumber]
 	cp $2
 	jr nz, .asm_79b
@@ -137,7 +137,7 @@ Function78a:: ; 78a
 	ld [rSC], a
 
 .asm_79b
-	ld a, [$ffca]
+	ld a, [hFFCA]
 	and a
 	jr nz, .asm_7e5
 	ld a, [hLinkPlayerNumber]
@@ -182,7 +182,7 @@ Function78a:: ; 78a
 
 .asm_7e5
 	xor a
-	ld [$ffca], a
+	ld [hFFCA], a
 	ld a, [rIE]
 	and $f
 	sub $8
@@ -251,7 +251,7 @@ Function83b:: ; 83b
 	ld de, wcf51
 	ld c, $2
 	ld a, $1
-	ld [$ffcc], a
+	ld [hFFCC], a
 .asm_847
 	call DelayFrame
 	ld a, [hl]
@@ -259,10 +259,10 @@ Function83b:: ; 83b
 	call Function78a
 	ld b, a
 	inc hl
-	ld a, [$ffcc]
+	ld a, [hFFCC]
 	and a
 	ld a, $0
-	ld [$ffcc], a
+	ld [hFFCC], a
 	jr nz, .asm_847
 	ld a, b
 	ld [de], a

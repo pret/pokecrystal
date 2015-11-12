@@ -371,7 +371,7 @@ Function11c1ca: ; 11c1ca
 	ld a, [MenuSelection2]
 	dec a
 	call Function11c254
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearScreen
 	call Function11d323

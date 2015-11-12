@@ -6,7 +6,7 @@ Function1dd702: ; 1dd702
 ; 1dd709
 
 Function1dd709: ; 1dd709
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
 	call DisableLCD

@@ -303,16 +303,44 @@ hide_person: macro
 	db movement_hide_person ; $3d
 	endm
 
-	enum movement_show_person
-show_person: macro
-	db movement_show_person ; $3e
+	enum movement_step_sleep_1
+step_sleep_1: macro
+	db movement_step_sleep_1 ; $3e
 	endm
 
-__enum__ = $45
+	enum movement_step_sleep_2
+step_sleep_2: macro
+	db movement_step_sleep_2 ; $3f
+	endm
 
-	enum movement_accelerate_last
-accelerate_last: macro
-	db movement_accelerate_last ; $45
+	enum movement_step_sleep_3
+step_sleep_3: macro
+	db movement_step_sleep_3 ; $40
+	endm
+
+	enum movement_step_sleep_4
+step_sleep_4: macro
+	db movement_step_sleep_4 ; $41
+	endm
+
+	enum movement_step_sleep_5
+step_sleep_5: macro
+	db movement_step_sleep_5 ; $42
+	endm
+
+	enum movement_step_sleep_6
+step_sleep_6: macro
+	db movement_step_sleep_6 ; $43
+	endm
+
+	enum movement_step_sleep_7
+step_sleep_7: macro
+	db movement_step_sleep_7 ; $44
+	endm
+
+	enum movement_step_sleep_8
+step_sleep_8: macro
+	db movement_step_sleep_8 ; $45
 	endm
 
 	enum movement_step_sleep
@@ -331,6 +359,11 @@ __enum__ = $49
 	enum movement_remove_person
 remove_person: macro
 	db movement_remove_person ; $49
+	endm
+
+	enum movement_step_loop
+step_loop: macro
+	db movement_step_loop ; $4a
 	endm
 
 __enum__ = $4c
@@ -362,9 +395,9 @@ fish_got_bite: macro
 	db movement_fish_got_bite ; $51
 	endm
 
-	enum movement_fish_got_bite_2
-fish_got_bite_2: macro
-	db movement_fish_got_bite_2 ; $52
+	enum movement_fish_cast_rod
+fish_cast_rod: macro
+	db movement_fish_cast_rod ; $52
 	endm
 
 	enum movement_hide_emote

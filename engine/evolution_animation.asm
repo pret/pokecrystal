@@ -372,7 +372,7 @@ INCBIN "gfx/evo/bubble_large.2bpp"
 INCBIN "gfx/evo/bubble.2bpp"
 
 Function4e881: ; 4e881
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
 	call DisableLCD
@@ -405,7 +405,7 @@ UnknownText_0x4e8bd: ; 0x4e8bd
 
 
 Function4e8c2: ; 4e8c2
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
 	call DisableLCD

@@ -655,7 +655,7 @@ Function467b: ; 467b
 	ld hl, OBJECT_12
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_27
+	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
 	add hl, bc
 rept 3
 	ld [hli], a
@@ -848,28 +848,28 @@ RestoreDefaultMovement: ; 4769
 ; 4780
 
 ClearObjectStructField27: ; 4780
-	ld hl, OBJECT_27
+	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
 	add hl, bc
 	ld [hl], 0
 	ret
 ; 4787
 
 IncrementObjectStructField27: ; 4787
-	ld hl, OBJECT_27
+	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
 	add hl, bc
 	inc [hl]
 	ret
 ; 478d
 
 DecrementObjectStructField27: ; 478d
-	ld hl, OBJECT_27
+	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
 	add hl, bc
 	dec [hl]
 	ret
 ; 4793
 
 JumptoObjectStructField27: ; 4793
-	ld hl, OBJECT_27
+	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
 	add hl, bc
 	ld a, [hl]
 	pop hl
@@ -1043,17 +1043,17 @@ Function47dd: ; 47dd
 
 .ObeyDPad: ; 487c
 	ld hl, Function5000
-	jp Function5041
+	jp HandleMovementData
 ; 4882
 
 .Movement08: ; 4882
 	ld hl, Function5015
-	jp Function5041
+	jp HandleMovementData
 ; 4888
 
 .Movement09: ; 4888
 	ld hl, Function5026
-	jp Function5041
+	jp HandleMovementData
 ; 488e
 
 .Movement0a: ; 488e
@@ -1070,7 +1070,7 @@ Function47dd: ; 47dd
 
 .Movement0d: ; 4897
 	ld hl, Function5000
-	jp Function5041
+	jp HandleMovementData
 ; 489d
 
 .Movement0e: ; 489d
@@ -1079,12 +1079,12 @@ Function47dd: ; 47dd
 
 .Follow: ; 48a0
 	ld hl, Function54e6
-	jp Function5041
+	jp HandleMovementData
 ; 48a6
 
 .Script: ; 48a6
 	ld hl, Function500e
-	jp Function5041
+	jp HandleMovementData
 ; 48ac
 
 .Strength: ; 48ac
@@ -1149,12 +1149,15 @@ Function47dd: ; 47dd
 	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld d, [hl]
+
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld e, [hl]
+
 	ld hl, OBJECT_32
 	add hl, bc
 	ld a, [hl]
+
 	push bc
 	call GetObjectStruct
 	ld hl, OBJECT_DIRECTION_WALKING
@@ -1162,6 +1165,7 @@ Function47dd: ; 47dd
 	ld a, [hl]
 	cp STANDING
 	jr z, .standing
+
 	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [hl]
@@ -2400,11 +2404,14 @@ UpdateJumpPosition: ; 4fd5
 ; 5000
 
 Function5000: ; unscripted?
+; copy [wc3de] to [wc2df]
 	ld a, [wc2de]
 	ld hl, wc2df
 	ld [hl], a
-	ld a, $3e
+; load [wc2de] with movement_step_sleep_1
+	ld a, movement_step_sleep_1
 	ld [wc2de], a
+; recover the previous value of [wc2de]
 	ld a, [hl]
 	ret
 ; 500e
@@ -2416,7 +2423,7 @@ Function500e: ; scripted
 ; 5015
 
 Function5015: ; 5015
-	ld hl, OBJECT_27
+	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
 	add hl, bc
 	ld e, [hl]
 	inc [hl]
@@ -2431,7 +2438,7 @@ Function5015: ; 5015
 ; 5026
 
 Function5026: ; 5026
-	ld hl, OBJECT_27
+	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
 	add hl, bc
 	ld e, [hl]
 	inc [hl]
@@ -2446,16 +2453,16 @@ Function5026: ; 5026
 ; 5037
 
 Function5037: ; 5037
-	ld hl, Function503d
-	jp Function5041
+	ld hl, GetMovementPerson
+	jp HandleMovementData
 ; 503d
 
-Function503d: ; 503d
+GetMovementPerson: ; 503d
 	ld a, [wMovementPerson]
 	ret
 ; 5041
 
-Function5041: ; 5041
+HandleMovementData: ; 5041
 	call CopyMovementPointer
 .loop
 	xor a
@@ -2484,7 +2491,7 @@ GetMovementByte: ; 505e
 	jp [hl]
 ; 5065
 
-Function5065: ; 5065
+ContinueReadingMovement: ; 5065
 	ld a, 1
 	ld [wc2ea], a
 	ret
@@ -2563,7 +2570,8 @@ Function54e6: ; 54e6
 .done
 	call Function550a
 	ret c
-	ld a, $3e
+
+	ld a, movement_step_sleep_1
 	ret
 ; 550a
 
@@ -2585,7 +2593,7 @@ Function550a: ; 550a
 .nope
 	ld a, $ff
 	ld [wObjectFollow_Follower], a
-	ld a, $47
+	ld a, movement_step_end
 	scf
 	ret
 ; 5529
@@ -2696,6 +2704,7 @@ Function5582: ; 5582
 Function55ac: ; 55ac
 	call FindFirstEmptyObjectStruct
 	ret nc
+
 	ld d, h
 	ld e, l
 	callba Function8286
@@ -2703,11 +2712,14 @@ Function55ac: ; 55ac
 ; 55b9
 
 Function55b9: ; 55b9
+; load into wc2f0:
+; -1, -1, [de], [de + 1], [de + 2], [hMapObjectIndexBuffer], [MapX], [MapY], -1
 	ld hl, wc2f0
 	ld [hl], -1
 	inc hl
 	ld [hl], -1
 	inc hl
+
 	ld a, [de]
 	inc de
 	ld [hli], a
@@ -2716,8 +2728,10 @@ Function55b9: ; 55b9
 	ld [hli], a
 	ld a, [de]
 	ld [hli], a
+
 	ld a, [hMapObjectIndexBuffer]
 	ld [hli], a
+
 	push hl
 	ld hl, OBJECT_MAP_X
 	add hl, bc
@@ -2726,6 +2740,7 @@ Function55b9: ; 55b9
 	add hl, bc
 	ld e, [hl]
 	pop hl
+
 	ld [hl], d
 	inc hl
 	ld [hl], e
@@ -2786,17 +2801,21 @@ Function561d: ; 561d
 Function5629: ; 5629
 	cp NUM_OBJECTS
 	ret nc
+
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp -1
 	ret z
+
 	cp NUM_OBJECT_STRUCTS
 	ret nc
+
 	call GetObjectStruct
 	call GetObjectSprite
 	ret z
+
 	call Function5673
 	ret
 ; 5645
@@ -2977,9 +2996,9 @@ Function56cd: ; 56cd
 
 .ok7
 	ld a, d
-	ld [$ffbf], a
+	ld [hFFBF], a
 .loop
-	ld a, [$ffbf]
+	ld a, [hFFBF]
 	ld d, a
 	ld a, [hUsedSpriteTile]
 	add e
@@ -3180,7 +3199,7 @@ ResetFollower: ; 5847
 	cp -1
 	ret z
 	call GetObjectStruct
-	callba Function58e3
+	callba Function58e3 ; no need to bankswitch
 	ld a, -1
 	ld [wObjectFollow_Follower], a
 	ret
@@ -3294,16 +3313,19 @@ Function58e3: ; 58e3
 	add hl, bc
 	ld a, [hl]
 	cp -1
-	jp z, Function5903
+	jp z, Function5903 ; a jr would have been appropriate here
+
 	push bc
 	call GetMapObject
 	ld hl, MAPOBJECT_MOVEMENT
 	add hl, bc
 	ld a, [hl]
 	pop bc
+
 	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
 	ld [hl], a
+
 	ld hl, OBJECT_09
 	add hl, bc
 	ld [hl], 0
@@ -3322,6 +3344,7 @@ Function5903: ; 5903
 	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
 	ld [hl], a
+
 	ld hl, OBJECT_09
 	add hl, bc
 	ld [hl], 0
@@ -3495,7 +3518,7 @@ Function59f3: ; 59f3
 .next
 	ld a, [hli]
 	ld d, a
-	and %11110000
+	and $f0
 	ret z
 	cp c
 	jr nz, .next
@@ -3503,20 +3526,20 @@ Function59f3: ; 59f3
 	push bc
 	push hl
 	ld a, d
-	and %00001111
-	call Function5ac2
-	call Function5a0d
+	and $f
+	call .GetObjectStructPointer
+	call .asm_5a0d
 	pop hl
 	pop bc
 	jr .next
 ; 5a0d
 
-Function5a0d: ; 5a0d
+.asm_5a0d: ; 5a0d
 	ld hl, OBJECT_SPRITE_TILE
 	add hl, bc
 	ld a, [hl]
 	and %01111111
-	ld [$ffc1], a
+	ld [hFFC1], a
 
 	xor a
 	bit 7, [hl]
@@ -3550,7 +3573,7 @@ Function5a0d: ; 5a0d
 	jr z, .skip4
 	or %10000000
 .skip4
-	ld [$ffc2], a
+	ld [hFFC2], a
 
 	ld hl, OBJECT_SPRITE_X
 	add hl, bc
@@ -3565,7 +3588,7 @@ Function5a0d: ; 5a0d
 	ld e, a
 	ld a, [wd14c]
 	add e
-	ld [$ffbf], a
+	ld [hFFBF], a
 
 	ld hl, OBJECT_SPRITE_Y
 	add hl, bc
@@ -3580,7 +3603,7 @@ Function5a0d: ; 5a0d
 	ld e, a
 	ld a, [wd14d]
 	add e
-	ld [$ffc0], a
+	ld [hFFC0], a
 
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
@@ -3609,14 +3632,14 @@ Function5a0d: ; 5a0d
 	jr nc, .full
 
 .addsprite
-	ld a, [$ffc0]
+	ld a, [hFFC0]
 	add [hl]
 	inc hl
 
 	ld [bc], a
 	inc c
 
-	ld a, [$ffbf]
+	ld a, [hFFBF]
 	add [hl]
 	inc hl
 
@@ -3626,7 +3649,7 @@ Function5a0d: ; 5a0d
 	ld e, [hl]
 	inc hl
 
-	ld a, [$ffc1]
+	ld a, [hFFC1]
 	bit 2, e
 	jr z, .nope1
 	xor a
@@ -3640,7 +3663,7 @@ Function5a0d: ; 5a0d
 	ld a, e
 	bit 1, a
 	jr z, .nope2
-	ld a, [$ffc2]
+	ld a, [hFFC2]
 	or e
 .nope2
 	and %11110000
@@ -3665,7 +3688,7 @@ Function5a0d: ; 5a0d
 	ret
 ; 5ac2
 
-Function5ac2: ; 5ac2
+.GetObjectStructPointer: ; 5ac2
 	ld c, a
 	ld b, 0
 	ld hl, .Addresses

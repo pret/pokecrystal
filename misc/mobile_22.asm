@@ -1801,7 +1801,7 @@ Function89b07: ; 89b07
 ; 89b14
 
 Function89b14: ; 89b14
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function89b07
 	call Function89b00
 	ret
@@ -1814,7 +1814,7 @@ Function89b1e: ; 89b1e (22:5b1e)
 
 Function89b28: ; 89b28 (22:5b28)
 	call Function891de
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893e2
 	call Call_ExitMenu
 	call Function891ab
@@ -2414,7 +2414,7 @@ Function89eb9: ; 89eb9 (22:5eb9)
 	jp Function89e36
 
 Function89ee1: ; 89ee1 (22:5ee1)
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893e2
 	call Function8923c
 	callba Function4a3a7
@@ -2602,7 +2602,7 @@ Function89fed: ; 89fed (22:5fed)
 
 Function89ff6: ; 89ff6 (22:5ff6)
 	call Function891fe
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call Function89807
 	call Function89492
@@ -2937,14 +2937,14 @@ Function8a241: ; 8a241 (22:6241)
 	ret
 .asm_8a254
 	call Function891de
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Call_ExitMenu
 	call Function891de
 	and a
 	ret
 
 Function8a262: ; 8a262 (22:6262)
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893e2
 	call Function8923c
 	callba Function4a3a7
@@ -3501,7 +3501,7 @@ Jumptable_8a671: ; 8a671 (22:6671)
 
 Function8a679: ; 8a679 (22:6679)
 	call Function891de
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call OpenSRAMBank4
 	call Function8931b
@@ -3546,7 +3546,7 @@ Function8a6c5: ; 8a6c5 (22:66c5)
 
 Function8a6cd: ; 8a6cd (22:66cd)
 	call Function891de
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call OpenSRAMBank4
 	call Function8931b
@@ -3594,7 +3594,7 @@ Function8a6cd: ; 8a6cd (22:66cd)
 .asm_8a73f
 	call CloseSRAM
 .asm_8a742
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function89448
 	call Function891d3
 	call Function8b677
@@ -3657,7 +3657,7 @@ Function8a78c: ; 8a78c (22:678c)
 	call DelayFrame
 	call JoyTextDelay
 	call Function891de
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call OpenSRAMBank4
 	pop bc
@@ -3687,7 +3687,7 @@ Function8a7cb: ; 8a7cb (22:67cb)
 	pop af
 	ld [MenuSelection], a
 	call Function891de
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call OpenSRAMBank4
 	call Function8931b
@@ -3781,7 +3781,7 @@ Function8a8a1: ; 8a8a1 (22:68a1)
 
 Function8a8c3: ; 8a8c3 (22:68c3)
 	call Function891de
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call OpenSRAMBank4
 	call Function8931b
@@ -3969,7 +3969,7 @@ Function8aa0a: ; 8aa0a (22:6a0a)
 	call Function89381
 	call CloseSRAM
 	call Function891fe
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call Function89807
 	call Function89492
@@ -4027,7 +4027,7 @@ Function8aa73: ; 8aa73 (22:6a73)
 	call Function89193
 .asm_8aa9d
 	call Function891fe
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call Function89807
 	call Function89492
@@ -4101,7 +4101,7 @@ Function8ab11: ; 8ab11 (22:6b11)
 
 Function8ab3b: ; 8ab3b (22:6b3b)
 	call Function891fe
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call Function89807
 	call Function89492
@@ -4140,7 +4140,7 @@ Function8ab77: ; 8ab77 (22:6b77)
 	ret
 
 Function8ab93: ; 8ab93 (22:6b93)
-	call WhiteBGMap
+	call ClearBGPalettes
 	call LoadStandardMenuDataHeader
 	callba Function105688
 	call ClearSprites
@@ -4183,7 +4183,7 @@ Function8aba9: ; 8aba9
 	call PlayClickSFX
 .asm_8abe5
 	call Function891de
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call OpenSRAMBank4
 	call Function8931b
@@ -4228,7 +4228,7 @@ Function8ac4e: ; 8ac4e
 	ld [MenuSelection], a
 	push de
 	call Function891de
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	pop bc
 	call Function89844
@@ -4337,7 +4337,7 @@ Function8ad0b: ; 8ad0b
 	ld a, [MenuSelection]
 	ld [wd02f], a
 	call Function891de
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call OpenSRAMBank4
 	call Function8931b

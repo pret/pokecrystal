@@ -530,7 +530,7 @@ CompareLong:: ; 31e4
 ; 31f3
 
 
-WhiteBGMap:: ; 31f3
+ClearBGPalettes:: ; 31f3
 	call ClearPalettes
 WaitBGMap:: ; 31f6
 ; Tell VBlank to update BG Map

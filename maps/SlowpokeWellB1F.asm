@@ -56,7 +56,7 @@ GruntM1Script:
 	clearevent EVENT_AZALEA_TOWN_SLOWPOKES
 	clearevent EVENT_KURTS_HOUSE_SLOWPOKE
 	clearevent EVENT_KURTS_HOUSE_KURT_1
-	special FadeBlackBGMap
+	special FadeOutPalettes
 	special HealParty
 	pause 15
 	warp KURTS_HOUSE, $3, $3
@@ -121,15 +121,15 @@ KurtSlowpokeWellVictoryMovementData:
 	step_left
 	step_left
 	step_up
-	accelerate_last
-	accelerate_last
-	accelerate_last
+	step_sleep_8
+	step_sleep_8
+	step_sleep_8
 	step_left
 	step_up
 	step_up
-	accelerate_last
-	accelerate_last
-	accelerate_last
+	step_sleep_8
+	step_sleep_8
+	step_sleep_8
 	turn_head_left
 	step_end
 

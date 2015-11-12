@@ -1,6 +1,6 @@
 ; Audio interfaces.
 
-SoundRestart:: ; 3b4e
+MapSetup_Sound_Off:: ; 3b4e
 
 	push hl
 	push de
@@ -9,11 +9,11 @@ SoundRestart:: ; 3b4e
 
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(_SoundRestart)
+	ld a, BANK(_MapSetup_Sound_Off)
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 
-	call _SoundRestart
+	call _MapSetup_Sound_Off
 
 	pop af
 	ld [hROMBank], a
@@ -81,7 +81,7 @@ PlayMusic:: ; 3b97
 
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(_PlayMusic) ; and BANK(_SoundRestart)
+	ld a, BANK(_PlayMusic) ; and BANK(_MapSetup_Sound_Off)
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 
@@ -93,7 +93,7 @@ PlayMusic:: ; 3b97
 	jr .end
 
 .nomusic
-	call _SoundRestart
+	call _MapSetup_Sound_Off
 
 .end
 	pop af

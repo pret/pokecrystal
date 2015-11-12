@@ -131,7 +131,7 @@ Function109847:: ; 109847
 	ld a, $5
 	ld [rSVBK], a
 
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
 
@@ -210,7 +210,7 @@ Function109847:: ; 109847
 	jr .asm_1098de
 
 .asm_1098ee
-	call WhiteBGMap
+	call ClearBGPalettes
 	xor a
 	ld [hLCDStatCustom], a
 	ld [hBGMapAddress], a

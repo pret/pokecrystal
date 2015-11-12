@@ -68,14 +68,18 @@ hPrintNum10        EQU $ffbc
 
 hUsedSpriteIndex   EQU $ffbd
 hUsedSpriteTile    EQU $ffbe
+hFFBF              EQU $ffbf
+hFFC0              EQU $ffc0
+hFFC1              EQU $ffc1
+hFFC2              EQU $ffc2
 hMoneyTemp         EQU $ffc3
 
 hLCDStatCustom     EQU $ffc6
 
 hFFC9              EQU $ffc9
-
+hFFCA              EQU $ffca
 hLinkPlayerNumber  EQU $ffcb
-
+hFFCC              EQU $ffcc
 hSerialSend        EQU $ffcd
 hSerialReceive     EQU $ffce
 

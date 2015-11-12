@@ -1079,9 +1079,11 @@ ApplyMovement: ; 971fa
 	ld a, c
 	callba SetFlagsForMovement_1
 	pop bc
+
 	push bc
 	call SetFlagsForMovement_2
 	pop bc
+
 	call GetScriptByte
 	ld l, a
 	call GetScriptByte
@@ -1090,6 +1092,7 @@ ApplyMovement: ; 971fa
 	ld b, a
 	call GetMovementData
 	ret c
+
 	ld a, SCRIPT_WAIT_MOVEMENT
 	ld [ScriptMode], a
 	call StopScript
@@ -1102,6 +1105,7 @@ SetFlagsForMovement_2: ; 0x97221
 ; 0x97228
 
 Script_applymovement2: ; 0x97228
+; apply movement to last talked
 ; script command 0x6a
 ; parameters:
 ;     data (MovementPointerLabelParam)
@@ -1426,12 +1430,12 @@ ShowEmoteScript: ; 973b6
 
 .Show
 	show_emote
-	show_person
+	step_sleep_1
 	step_end
 
 .Hide
 	hide_emote
-	show_person
+	step_sleep_1
 	step_end
 ; 973c7
 
@@ -1460,8 +1464,8 @@ Script_earthquake: ; 0x973c7
 ; 973eb
 
 EarthquakeMovement: ; 973eb
-	step_shake 16
-	step_sleep 16
+	step_shake 16 ; the 16 gets overwritten with the script byte
+	step_sleep 16 ; the 16 gets overwritten with the lower 6 bits of the script byte
 	step_end
 EarthquakeMovementEnd
 ; 973f0
@@ -2847,6 +2851,7 @@ Script_warp: ; 0x97a1d
 	call LoadMapStatus
 	call StopScript
 	ret
+
 .not_ok
 	call GetScriptByte
 	call GetScriptByte
@@ -3117,6 +3122,7 @@ Script_end: ; 0x97b74
 	call ExitScriptSubroutine
 	jr c, .resume
 	ret
+
 .resume
 	xor a
 	ld [ScriptRunning], a

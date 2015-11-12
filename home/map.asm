@@ -209,8 +209,8 @@ endr
 	ret
 ; 222a
 
-Function222a:: ; 222a
-	ld a, MAPSETUP_10
+ReturnToMapFromSubmenu:: ; 222a
+	ld a, MAPSETUP_SUBMENU
 	ld [hMapEntryMethod], a
 	callba RunMapSetupScript
 	xor a
@@ -1099,13 +1099,14 @@ Call_a_de:: ; 26b7
 ; 26c7
 
 GetMovementData:: ; 26c7
+; Initialize the movement data for person c at b:hl
 	ld a, [hROMBank]
 	push af
 	ld a, b
 	rst Bankswitch
 
 	ld a, c
-	call Function19e9
+	call LoadMovementDataPointer
 
 	pop hl
 	ld a, h
@@ -1964,7 +1965,7 @@ FadeToMenu:: ; 2b29
 	xor a
 	ld [hBGMapMode], a
 	call LoadStandardMenuDataHeader
-	callba FadeBlackBGMap
+	callba FadeOutPalettes
 	call ClearSprites
 	call DisableSpriteUpdates
 	ret
@@ -1972,7 +1973,7 @@ FadeToMenu:: ; 2b29
 
 
 Function2b3c:: ; 2b3c
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function2bae
 	call UpdateSprites
 	call Call_ExitMenu
@@ -1981,7 +1982,7 @@ Function2b3c:: ; 2b3c
 ; 2b4d
 
 Function2b4d:: ; 2b4d
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Call_ExitMenu
 	call Function2bae
 	call UpdateSprites
@@ -1993,7 +1994,7 @@ Function2b5c:: ; 2b5c
 	call GetSGBLayout
 	callba Function49409
 	call Function3200
-	callba FadeInBGMap
+	callba FadeInPalettes
 	call EnableSpriteUpdates
 	ret
 ; 2b74
@@ -2003,7 +2004,7 @@ Function2b74:: ; 0x2b74
 	push af
 	ld a, $1
 	ld [wc2ce], a
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call Function2bae
 	hlcoord 0, 12

@@ -65,14 +65,14 @@ SpecialsPointers:: ; c029
 	add_special Special_SlotMachine
 	add_special Special_CardFlip
 	add_special Special_DummyNonfunctionalGameCornerGame
-	add_special Special_WhiteBGMapBufferScreen
-	add_special FadeBlackBGMap
+	add_special Special_ClearBGPalettesBufferScreen
+	add_special FadeOutPalettes
 	add_special Special_BattleTowerFade
 	add_special Special_FadeBlackQuickly
-	add_special FadeInBGMap
+	add_special FadeInPalettes
 	add_special Special_FadeInQuickly
 	add_special Special_ReloadSpritesNoPalettes
-	add_special WhiteBGMap
+	add_special ClearBGPalettes
 	add_special UpdateTimePals
 	add_special ClearTileMap
 	add_special UpdateSprites
@@ -465,8 +465,8 @@ UnknownText_0xc3d6: ; 0xc3d6
 	db "@"
 ; 0xc3db
 
-Special_WhiteBGMapBufferScreen: ; c3db
-	call WhiteBGMap
+Special_ClearBGPalettesBufferScreen: ; c3db
+	call ClearBGPalettes
 	call BufferScreen
 	ret
 ; c3e2

@@ -17,28 +17,28 @@ endr
 ; 15377
 
 MapSetupScripts: ; 15377
-	dw MapSetupScript1
-	dw MapSetupScript2
-	dw MapSetupScript3
-	dw MapSetupScript4
-	dw MapSetupScript5
-	dw MapSetupScript6
-	dw MapSetupScript7
-	dw MapSetupScript8
-	dw MapSetupScript9
-	dw MapSetupScript10
-	dw MapSetupScript11
-	dw MapSetupScript12
+	dw MapSetupScript_Warp
+	dw MapSetupScript_Continue
+	dw MapSetupScript_ReloadMap
+	dw MapSetupScript_Teleport
+	dw MapSetupScript_Door
+	dw MapSetupScript_Fall
+	dw MapSetupScript_Connection
+	dw MapSetupScript_LinkReturn
+	dw MapSetupScript_Train
+	dw MapSetupScript_Submenu
+	dw MapSetupScript_BadWarp
+	dw MapSetupScript_Fly
 ; 1538f
 
-MapSetupScript4: ; 1538f
+MapSetupScript_Teleport: ; 1538f
 	db map_prolong_sprites
 
-MapSetupScript12: ; 15390
+MapSetupScript_Fly: ; 15390
 	db map_fade_out_palettes
 	db map_keep_roam
 
-MapSetupScript1: ; 15392
+MapSetupScript_Warp: ; 15392
 	db map_lcd_off
 	db map_sound_off
 	db map_load_spawn
@@ -63,7 +63,7 @@ MapSetupScript1: ; 15392
 	db map_wildmons
 	db map_end_setup_script
 
-MapSetupScript11: ; 153a9
+MapSetupScript_BadWarp: ; 153a9
 	db map_load_spawn
 	db map_attributes
 	db map_change_callback
@@ -87,7 +87,7 @@ MapSetupScript11: ; 153a9
 	db map_wildmons
 	db map_end_setup_script
 
-MapSetupScript7: ; 153bf
+MapSetupScript_Connection: ; 153bf
 	db map_animations_off
 	db map_load_connection
 	db map_attributes
@@ -106,13 +106,13 @@ MapSetupScript7: ; 153bf
 	db map_animations_on
 	db map_end_setup_script
 
-MapSetupScript6: ; 153d0
+MapSetupScript_Fall: ; 153d0
 	db map_prolong_sprites
 
-MapSetupScript5: ; 153d1
+MapSetupScript_Door: ; 153d1
 	db map_fade_out_palettes
 
-MapSetupScript9: ; 153d2
+MapSetupScript_Train: ; 153d2
 	db map_load_warp
 	db map_attributes
 	db map_warp_face
@@ -135,7 +135,7 @@ MapSetupScript9: ; 153d2
 	db map_update_roam
 	db map_end_setup_script
 
-MapSetupScript3: ; 153e7
+MapSetupScript_ReloadMap: ; 153e7
 	db map_fade
 	db map_clear_bg_palettes
 	db map_lcd_off
@@ -153,7 +153,7 @@ MapSetupScript3: ; 153e7
 	db map_wildmons
 	db map_end_setup_script
 
-MapSetupScript8: ; 153f7
+MapSetupScript_LinkReturn: ; 153f7
 	db map_fade
 	db map_lcd_off
 	db map_sound_off
@@ -172,7 +172,7 @@ MapSetupScript8: ; 153f7
 	db map_text_scroll_off
 	db map_end_setup_script
 
-MapSetupScript2: ; 15408
+MapSetupScript_Continue: ; 15408
 	db map_lcd_off
 	db map_sound_off
 	db map_attributes_2
@@ -192,7 +192,7 @@ MapSetupScript2: ; 15408
 	db map_wildmons
 	db map_end_setup_script
 
-MapSetupScript10: ; 1541a
+MapSetupScript_Submenu: ; 1541a
 	db map_load_blocks
 	db map_connection_blocks
 	db map_end_setup_script
@@ -245,7 +245,7 @@ endr
 MapSetupCommands: ; 15440
 	dba EnableLCD ; 00
 	dba DisableLCD ; 01
-	dba SoundRestart ; 02
+	dba MapSetup_Sound_Off ; 02
 	dba PlayMapMusic ; 03
 	dba RestartMapMusic ; 04
 	dba FadeToMapMusic ; 05
@@ -271,9 +271,9 @@ MapSetupCommands: ; 15440
 	dba LoadWarpData ; 19
 	dba LoadMapAttributes ; 1a
 	dba LoadMapAttributes_IgnoreHidden ; 1b
-	dba WhiteBGMap ; 1c
-	dba FadeBlackBGMap ; 1d
-	dba FadeInBGMap ; 1e
+	dba ClearBGPalettes ; 1c
+	dba FadeOutPalettes ; 1d
+	dba FadeInPalettes ; 1e
 	dba GetCoordOfUpperLeftCorner ; 1f
 	dba RestoreFacingAfterWarp ; 20
 	dba SpawnInFacingDown ; 21

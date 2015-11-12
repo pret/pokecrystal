@@ -35,7 +35,7 @@ OfficerScript_0x550ec:
 	writebyte $0
 	special Special_MagnetTrain
 	warpcheck
-	newloadmap MAPSETUP_09
+	newloadmap MAPSETUP_TRAIN
 	applymovement PLAYER, .MovementBoardTheTrain
 	wait $14
 	end

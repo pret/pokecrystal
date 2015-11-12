@@ -561,7 +561,7 @@ Function17d2ce: ; 17d2ce
 	ld a, d
 	ld [MusicFadeIDHi], a
 	call PlayMusic
-	call Function222a
+	call ReturnToMapFromSubmenu
 	call Function2b3c
 	ret
 ; 17d314
@@ -626,7 +626,7 @@ Function17d370: ; 17d370
 	ld [wcd79], a
 	dec a
 	ld [wcd6c], a
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearScreen
 	callba Function104061
@@ -672,7 +672,7 @@ Function17d370: ; 17d370
 ; 17d3f6
 
 Function17d3f6: ; 17d3f6
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearScreen
 	callba Function104061
@@ -1245,7 +1245,7 @@ Function17d78d: ; 17d78d
 	call CloseSRAM
 	xor a
 	ld [wcd77], a
-	call WhiteBGMap
+	call ClearBGPalettes
 	ret
 ; 17d7b4
 

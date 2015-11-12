@@ -283,7 +283,7 @@ Function1704e1: ; 1704e1
 ; 1704f1
 
 Function1704f1: ; 1704f1
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearScreen
 .asm_1704fa
@@ -1590,7 +1590,7 @@ Function1719ed: ; 1719ed (5c:59ed)
 	ld [wcd4a], a
 	dec a
 	ld [wcd4b], a
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	callba Function171d2b
 	callba Function104061
@@ -1883,7 +1883,7 @@ Function171c2c: ; 171c2c (5c:5c2c)
 	dec [hl]
 	ret nz
 	call ExitMenu
-	call WhiteBGMap
+	call ClearBGPalettes
 	jr asm_171c60
 
 Function171c39: ; 171c39 (5c:5c39)
@@ -1895,7 +1895,7 @@ Function171c41: ; 171c41 (5c:5c41)
 	ld hl, wcd4c
 	dec [hl]
 	ret nz
-	call WhiteBGMap
+	call ClearBGPalettes
 	callba Function106462
 	callba Function106464
 	ld a, $2

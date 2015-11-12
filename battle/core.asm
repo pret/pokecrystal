@@ -2527,7 +2527,7 @@ WinTrainerBattle: ; 3cfa4
 	or [hl]
 	ret nz
 	call ClearTileMap
-	call WhiteBGMap
+	call ClearBGPalettes
 	ret
 ; 3d02b
 
@@ -2911,7 +2911,7 @@ ForcePlayerMonChoice: ; 3d227
 
 .enemy_fainted_mobile_error
 	call ClearSprites
-	call WhiteBGMap
+	call ClearBGPalettes
 	call _LoadHPBar
 	call ExitMenu
 	call LoadTileMapToTempTileMap
@@ -2995,7 +2995,7 @@ IsMobileBattle: ; 3d2f1
 ; 3d2f7
 
 Function3d2f7: ; 3d2f7
-	call WhiteBGMap
+	call ClearBGPalettes
 Function3d2fa: ; switch to fullscreen menu?
 	callba Function5004f
 	callba Function50405
@@ -3137,7 +3137,7 @@ LostBattle: ; 3d38e
 	callba BattleTowerText
 	call WaitPressAorB_BlinkCursor
 	call ClearTileMap
-	call WhiteBGMap
+	call ClearBGPalettes
 	ret
 
 .not_canlose
@@ -5290,7 +5290,7 @@ Function3e234: ; 3e234
 	ld a, [wItemAttributeParamBuffer]
 	cp $3
 	jr z, .asm_3e24a
-	call WhiteBGMap
+	call ClearBGPalettes
 
 .asm_3e24a
 	xor a
@@ -5332,7 +5332,7 @@ BattleMenu_PKMN: ; 3e28d
 Function3e290:
 	call ExitMenu
 	call LoadStandardMenuDataHeader
-	call WhiteBGMap
+	call ClearBGPalettes
 Function3e299:
 	call Function3d2fa
 	xor a
@@ -8816,7 +8816,7 @@ endr
 	bit 0, a
 	ret z
 	call ClearTileMap
-	call WhiteBGMap
+	call ClearBGPalettes
 	ret
 ; 3f759
 

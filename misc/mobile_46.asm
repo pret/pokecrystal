@@ -43,7 +43,7 @@ asm_11800b
 	pop af
 	ld [rSVBK], a
 	call Function118452
-	call Function222a
+	call ReturnToMapFromSubmenu
 Function11805e: ; 11805e (46:405e)
 	ret
 ; 11805f
@@ -84,7 +84,7 @@ Function11805f: ; 11805f
 	pop af
 	ld [rSVBK], a
 	call Function118452
-	call Function222a
+	call ReturnToMapFromSubmenu
 	ret
 ; 1180b8
 
@@ -130,7 +130,7 @@ Function1180b8: ; 1180b8
 	pop af
 	ld [rSVBK], a
 	call Function118452
-	call Function222a
+	call ReturnToMapFromSubmenu
 	ret
 ; 11811a
 
@@ -180,7 +180,7 @@ Function118125: ; 118125
 	ld [rSVBK], a
 	call Function118452
 	call Function118180
-	call Function222a
+	call ReturnToMapFromSubmenu
 	ret
 ; 118180
 
@@ -262,7 +262,7 @@ Function1181da: ; 1181da
 	pop af
 	ld [rSVBK], a
 	call Function118452
-	call Function222a
+	call ReturnToMapFromSubmenu
 	ret
 ; 118233
 
@@ -374,7 +374,7 @@ Function1182d5: ; 1182d5
 	pop af
 	ld [rSVBK], a
 	call Function118452
-	call Function222a
+	call ReturnToMapFromSubmenu
 	ret
 ; 118329
 
@@ -482,7 +482,7 @@ Function1183cb: ; 1183cb
 	ld a, $f
 	ld [rIE], a
 	ld a, $1
-	ld [$ffc9], a
+	ld [hFFC9], a
 	ld [hMobile], a
 	ei
 	callba Function106462
@@ -512,7 +512,7 @@ Function118440: ; 118440
 Function118452: ; 118452
 	di
 	xor a
-	ld [$ffc9], a
+	ld [hFFC9], a
 	ld [hMobile], a
 	ld [hVBlank], a
 	call NormalSpeed
@@ -5682,7 +5682,7 @@ Function11a9c0: ; 11a9c0
 ; 11a9ce
 
 Function11a9ce: ; 11a9ce
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function2bae
 	call Call_ExitMenu
 	callba Function106462
@@ -5950,7 +5950,7 @@ Function11acb7: ; 11acb7
 ; 11ad1b
 
 Function11ad1b: ; 11ad1b
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	callba Function17c000

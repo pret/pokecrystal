@@ -125,7 +125,7 @@ Function108089: ; 108089
 Function1080b7: ; 1080b7
 	xor a
 	ld [wJumptableIndex], a
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	call DisableLCD
@@ -188,7 +188,7 @@ Function1080b7: ; 1080b7
 Function108157: ; 108157
 	xor a
 	ld [wJumptableIndex], a
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	call DisableLCD
@@ -508,7 +508,7 @@ Function10830e: ; 10830e
 ; 10839b
 
 Function10839b: ; 10839b
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	call DisableLCD
@@ -643,7 +643,7 @@ Function10842c: ; 10842c
 ; 1084d7
 
 Function1084d7: ; 1084d7
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	call DisableLCD
@@ -712,7 +712,7 @@ Function1084d7: ; 1084d7
 ; 108589
 
 Function108589: ; 108589
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	call DisableLCD
@@ -781,7 +781,7 @@ Function108589: ; 108589
 
 Function108638: ; 108638
 	callba Function8d03d
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	xor a
@@ -817,7 +817,7 @@ Function108638: ; 108638
 
 Function108689: ; 108689
 	callba Function8d03d
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	xor a
@@ -862,7 +862,7 @@ Function108689: ; 108689
 ; 1086f4
 
 Function1086f4: ; 1086f4
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	xor a
@@ -1162,7 +1162,7 @@ Function108919: ; 108919
 	ld c, $28
 	call Function1082cc
 	callba Function8d03d
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	call DisableLCD

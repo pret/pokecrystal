@@ -35,7 +35,7 @@ OfficerScript_0x18a81e:
 	writebyte $1
 	special Special_MagnetTrain
 	warpcheck
-	newloadmap MAPSETUP_09
+	newloadmap MAPSETUP_TRAIN
 	applymovement PLAYER, .MovementBoardTheTrain
 	wait $14
 	end

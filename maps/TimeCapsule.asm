@@ -39,7 +39,7 @@ TimeCapsule_Initialize:
 
 MapTimeCapsuleSignpost1Script:
 	special Special_TimeCapsule
-	newloadmap MAPSETUP_08
+	newloadmap MAPSETUP_LINKRETURN
 	end
 
 ChrisScript_0x19351a:

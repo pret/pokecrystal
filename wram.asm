@@ -321,10 +321,10 @@ ScriptVar:: ; c2dd
 wc2de:: ds 1
 wc2df:: ds 3
 wMovementPerson:: ds 1
-wMovementDataPointer:: ds 3
+wMovementDataPointer:: ds 3 ; dba
 wc2e6:: ds 4
 wc2ea:: ds 1
-wMovementPointer:: ds 2
+wMovementPointer:: ds 2 ; c2eb
 	ds 3
 wc2f0:: ds 1
 wc2f1:: ds 1
@@ -334,7 +334,8 @@ wc2f4:: ds 1
 wc2f5:: ds 1
 wc2f6:: ds 1
 wc2f7:: ds 1
-wc2f8:: ds 2
+wc2f8:: ds 1
+	ds 1
 
 TileDown:: ; c2fa
 	ds 1
@@ -1478,6 +1479,10 @@ wd014:: ds 2
 wd016:: ds 1
 wMartItem8BCD::
 wd017:: ds 1
+
+wd018_Mon:: party_struct wd018_Mon
+	ds wd018_Mon - @
+
 wd018:: ds 1
 wd019:: ds 1
 wMartItem9BCD::
@@ -1506,6 +1511,7 @@ CurFruitTree::
 CurInput::
 EngineBuffer1:: ; d03e
 	ds 1
+
 wd03f::
 wJumpStdScriptBuffer::
 CurFruit:: ; d03f
@@ -2153,7 +2159,7 @@ object_struct: MACRO
 \1Palette:: ds 1
 \1Walking:: ds 1
 \1Direction:: ds 1
-	ds 1
+\1Object09:: ds 1
 \1StepDuration:: ds 1
 \1Action:: ds 1
 \1Object12:: ds 1

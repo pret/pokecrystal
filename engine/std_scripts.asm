@@ -302,7 +302,7 @@ RadioTowerRocketsScript:
 	end
 
 BugContestResultsWarpScript:
-	special WhiteBGMap
+	special ClearBGPalettes
 	scall BugContestResults_CopyContestantsToResults
 	setevent EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
 	clearevent EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY

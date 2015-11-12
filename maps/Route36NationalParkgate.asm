@@ -83,7 +83,7 @@ Route36NationalParkgate_MapScriptHeader:
 	loadmovesprites
 	spriteface PLAYER, LEFT
 	playsound SFX_EXIT_BUILDING
-	special FadeBlackBGMap
+	special FadeOutPalettes
 	waitbutton
 	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, $21, $12
 	end
@@ -166,7 +166,7 @@ Route36OfficerScriptContest:
 	special Special_GiveParkBalls
 	spriteface PLAYER, LEFT
 	playsound SFX_EXIT_BUILDING
-	special FadeBlackBGMap
+	special FadeOutPalettes
 	waitbutton
 	special Special_SelectRandomBugContestContestants
 	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, $21, $12

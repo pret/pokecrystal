@@ -42,9 +42,9 @@ UnknownScript_0x60bab:
 	loadmovesprites
 	special RestartMapMusic
 	cry AMPHAROS
-	special FadeBlackBGMap
+	special FadeOutPalettes
 	pause 10
-	special FadeInBGMap
+	special FadeInPalettes
 	loadfont
 	writetext UnknownText_0x60f3d
 	closetext
@@ -116,10 +116,10 @@ UnknownScript_0x60c51:
 	cry AMPHAROS
 	closetext
 	loadmovesprites
-	special FadeBlackBGMap
-	special FadeInBGMap
-	special FadeBlackBGMap
-	special FadeInBGMap
+	special FadeOutPalettes
+	special FadeInPalettes
+	special FadeOutPalettes
+	special FadeInPalettes
 	end
 
 ItemFragment_0x60c66:
@@ -131,8 +131,8 @@ MovementData_0x60c68:
 	slow_step_right
 	slow_step_up
 	slow_step_up
-	accelerate_last
-	accelerate_last
+	step_sleep_8
+	step_sleep_8
 	step_end
 
 MovementData_0x60c70:
@@ -153,7 +153,7 @@ MovementData_0x60c79:
 	slow_step_up
 	slow_step_up
 	slow_step_up
-	accelerate_last
+	step_sleep_8
 	step_end
 
 UnknownText_0x60c81:

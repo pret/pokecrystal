@@ -7708,7 +7708,7 @@ Function117699: ; 117699 (45:7699)
 	ld hl, wc708
 	ld bc, $11
 	call ByteFill
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	callba Function171c87
 	callba Function104061
@@ -7726,7 +7726,7 @@ Function1176ee: ; 1176ee (45:76ee)
 	jr Function1176ee
 .asm_117709
 	callba Function8cf53
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearScreen
 	call ClearSprites
 	ret
@@ -8172,7 +8172,7 @@ Function117a94: ; 0x117a94
 	ld [wcf64], a
 	ld [wcf65], a
 	ld [wcf66], a
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	callba Function172e78
 	callba Function104000
@@ -8180,7 +8180,7 @@ Function117a94: ; 0x117a94
 ; 0x117ab4
 
 Function117ab4: ; 0x117ab4
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	callba Function172e78
 	callba Function172eb9
@@ -8197,7 +8197,7 @@ Function117acd: ; 0x117acd
 	callba Function104000
 	jr Function117acd
 .asm_117ae2
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	ret
 

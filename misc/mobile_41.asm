@@ -951,7 +951,7 @@ Function106442: ; 106442
 	call Function3e32
 	xor a
 	ld [hMobile], a
-	ld [$ffc9], a
+	ld [hFFC9], a
 	ld a, [wcd25]
 	inc a
 	ld [wcd25], a

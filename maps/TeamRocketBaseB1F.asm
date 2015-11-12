@@ -445,9 +445,9 @@ ExplodingTrap22:
 	end
 
 VoltorbExplodingTrap:
-	special FadeBlackBGMap
+	special FadeOutPalettes
 	cry VOLTORB
-	special FadeInBGMap
+	special FadeInPalettes
 	setlasttalked $ff
 	writecode VAR_BATTLETYPE, BATTLETYPE_TRAP
 	loadpokedata VOLTORB, 23
@@ -455,9 +455,9 @@ VoltorbExplodingTrap:
 	end
 
 GeodudeExplodingTrap:
-	special FadeBlackBGMap
+	special FadeOutPalettes
 	cry GEODUDE
-	special FadeInBGMap
+	special FadeInPalettes
 	setlasttalked $ff
 	writecode VAR_BATTLETYPE, BATTLETYPE_TRAP
 	loadpokedata GEODUDE, 21
@@ -465,9 +465,9 @@ GeodudeExplodingTrap:
 	end
 
 KoffingExplodingTrap:
-	special FadeBlackBGMap
+	special FadeOutPalettes
 	cry KOFFING
-	special FadeInBGMap
+	special FadeInPalettes
 	setlasttalked $ff
 	writecode VAR_BATTLETYPE, BATTLETYPE_TRAP
 	loadpokedata KOFFING, 21

@@ -39,7 +39,7 @@ SailorScript_0x748c0:
 	waitbutton
 	applymovement PLAYER, MovementData_0x74a30
 	playsound SFX_EXIT_BUILDING
-	special FadeBlackBGMap
+	special FadeOutPalettes
 	waitbutton
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iffalse UnknownScript_0x7490a

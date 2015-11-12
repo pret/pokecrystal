@@ -40,7 +40,7 @@ NamingScreen: ; 116c1
 ; 116f8
 
 Function116f8: ; 116f8
-	call WhiteBGMap
+	call ClearBGPalettes
 	ld b, $8
 	call GetSGBLayout
 	call DisableLCD

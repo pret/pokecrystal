@@ -139,7 +139,7 @@ endr
 ; 126b7
 
 .Clear ; 126b7
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Call_ExitMenu
 	call Function2bae
 	call .DrawMenuAccount_
@@ -529,7 +529,7 @@ StartMenu_Pokemon: ; 12976
 .choosemenu
 	xor a
 	ld [PartyMenuActionText], a ; Choose a POKéMON.
-	call WhiteBGMap
+	call ClearBGPalettes
 
 .menu
 	callba Function5004f
@@ -1449,7 +1449,7 @@ MonMenu_RockSmash: ; 12f3b
 ; 12f50
 
 MonMenu_SweetScent: ; 12f50
-	callba DoMovementFunctionc
+	callba SweetScentFromMenu
 	ld b, $4
 	ld a, $2
 	ret
@@ -1466,7 +1466,7 @@ Function12f5b: ; 12f5b
 	ld a, b
 	ld [Options], a
 	push af
-	call WhiteBGMap
+	call ClearBGPalettes
 	pop af
 	ret
 ; 12f73
@@ -1527,7 +1527,7 @@ ManagePokemonMoves: ; 12fba
 	call MoveScreenLoop
 	pop af
 	ld [Options], a
-	call WhiteBGMap
+	call ClearBGPalettes
 
 .egg
 	ld a, $0
@@ -1753,7 +1753,7 @@ String_1316b: ; 1316b
 ; 13172
 
 SetUpMoveScreenBG: ; 13172
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
 	xor a

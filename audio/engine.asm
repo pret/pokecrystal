@@ -6,7 +6,7 @@
 ; 	FadeMusic
 ; 	PlayStereoSFX
 
-_SoundRestart:: ; e8000
+_MapSetup_Sound_Off:: ; e8000
 ; restart sound operation
 ; clear all relevant hardware registers & wram
 	push hl
@@ -63,7 +63,7 @@ MusicFadeRestart: ; e803d
 	push af
 	ld a, [MusicFadeIDLo]
 	push af
-	call _SoundRestart
+	call _MapSetup_Sound_Off
 	pop af
 	ld [MusicFadeIDLo], a
 	pop af
@@ -3161,7 +3161,7 @@ ChannelPointers: ; e8fd9
 
 ClearChannels:: ; e8fe9
 ; runs ClearChannel for all 4 channels
-; doesn't seem to be used, but functionally identical to SoundRestart
+; doesn't seem to be used, but functionally identical to MapSetup_Sound_Off
 	ld hl, rNR50
 	xor a
 rept 2

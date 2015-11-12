@@ -48,7 +48,7 @@ Function100022: ; 100022
 
 Function100057: ; 100057
 	call Function1000a4
-	call Function222a
+	call ReturnToMapFromSubmenu
 	ld hl, VramState
 	res 1, [hl]
 	ret
@@ -74,7 +74,7 @@ Function100063: ; 100063
 Function100082: ; 100082
 	xor a
 	ld hl, OverworldMap
-	ld bc, 1300
+	ld bc, OverworldMapEnd - OverworldMap
 	call ByteFill
 	di
 	call DoubleSpeed
@@ -312,7 +312,7 @@ Function10016f: ; 10016f
 Function10020b: ; 10020b
 	xor a
 	ld [wc303], a
-	callba FadeBlackBGMap
+	callba FadeOutPalettes
 	callba Function106464
 	call HideSprites
 	call DelayFrame
@@ -412,7 +412,7 @@ Function1002c9: ; 1002c9
 ; 1002dc
 
 Function1002dc: ; 1002dc
-	ld a, MAPSETUP_08
+	ld a, MAPSETUP_LINKRETURN
 	ld [hMapEntryMethod], a
 	callba RunMapSetupScript
 	xor a
@@ -3048,7 +3048,7 @@ Function10138b: ; 10138b
 ; 1013aa
 
 Function1013aa: ; 1013aa
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Call_ExitMenu
 	call Function2bae
 	callba Function106464

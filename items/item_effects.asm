@@ -714,7 +714,7 @@ endr
 	and a
 	jr z, .toss
 
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearTileMap
 
 .toss
@@ -1866,7 +1866,7 @@ UseItem_SelectMon: ; f1f9 (3:71f9)
 	push hl
 	push de
 	push bc
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Functionf21c
 	pop bc
 	pop de

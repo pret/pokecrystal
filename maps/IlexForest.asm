@@ -572,8 +572,8 @@ MovementData_0x6eed2:
 	big_step_down
 	fix_facing
 	jump_step_up
-	accelerate_last
-	accelerate_last
+	step_sleep_8
+	step_sleep_8
 	remove_fixed_facing
 	big_step_up
 	big_step_up
@@ -664,8 +664,8 @@ MovementData_0x6ef23:
 	big_step_left
 	fix_facing
 	jump_step_right
-	accelerate_last
-	accelerate_last
+	step_sleep_8
+	step_sleep_8
 	remove_fixed_facing
 	big_step_left
 	big_step_left
@@ -694,8 +694,8 @@ MovementData_0x6ef3d:
 	big_step_left
 	fix_facing
 	jump_step_right
-	accelerate_last
-	accelerate_last
+	step_sleep_8
+	step_sleep_8
 	remove_fixed_facing
 	big_step_right
 	big_step_right

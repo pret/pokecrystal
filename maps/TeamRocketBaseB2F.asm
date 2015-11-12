@@ -155,11 +155,11 @@ UnknownScript_0x6d091:
 	writetext UnknownText_0x6da97
 	closetext
 	loadmovesprites
-	special FadeBlackBGMap
+	special FadeOutPalettes
 	special Mobile_HealParty
 	playsound SFX_FULL_HEAL
 	special HealParty
-	special FadeInBGMap
+	special FadeInPalettes
 	loadfont
 	writetext UnknownText_0x6daf7
 	closetext
@@ -449,17 +449,17 @@ MovementData_0x6d254:
 	step_end
 
 MovementData_0x6d258:
-	accelerate_last
+	step_sleep_8
 	step_left
 	step_left
 	turn_head_up
-	accelerate_last
+	step_sleep_8
 	step_right
 	step_right
 	step_right
 	step_right
 	turn_head_up
-	accelerate_last
+	step_sleep_8
 	step_left
 	step_left
 	turn_head_down

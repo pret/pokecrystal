@@ -140,7 +140,7 @@ Function16c0dc: ; 16c0dc
 ; 16c0ec
 
 Function16c0ec: ; 16c0ec
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearScreen
 	push af
 	ld a, $ff
@@ -885,7 +885,7 @@ Function16d42e: ; 16d42e
 
 Function16d43b: ; 16d43b
 	call LoadStandardMenuDataHeader
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
 	callba Function16d421

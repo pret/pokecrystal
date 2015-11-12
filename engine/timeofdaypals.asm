@@ -116,7 +116,7 @@ _UpdateTimePals:: ; 8c070
 	ret
 ; 8c079
 
-FadeInBGMap:: ; 8c079
+FadeInPalettes:: ; 8c079
 	ld c, $12
 	call GetTimePalFade
 	ld b, $4
@@ -124,7 +124,7 @@ FadeInBGMap:: ; 8c079
 	ret
 ; 8c084
 
-FadeBlackBGMap:: ; 8c084
+FadeOutPalettes:: ; 8c084
 	call Function8c0c1
 	ld c, $9
 	call GetTimePalFade

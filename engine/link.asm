@@ -1,6 +1,6 @@
 LinkCommunications: ; 28000
-	call WhiteBGMap
-	ld c, $50
+	call ClearBGPalettes
+	ld c, 80
 	call DelayFrames
 	call ClearScreen
 	call ClearSprites
@@ -8,7 +8,7 @@ LinkCommunications: ; 28000
 	xor a
 	ld [hSCX], a
 	ld [hSCY], a
-	ld c, $50
+	ld c, 80
 	call DelayFrames
 	call ClearScreen
 	call UpdateSprites
@@ -431,7 +431,7 @@ Function28177: ; 28177
 	ld de, OTName
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	call Function222a
+	call ReturnToMapFromSubmenu
 	ld a, [wc2d7]
 	push af
 	ld a, $1
@@ -509,7 +509,7 @@ UnknownText_0x283ed: ; 0x283ed
 
 Function283f2: ; 283f2
 	ld a, $1
-	ld [$ffcc], a
+	ld [hFFCC], a
 .asm_283f6
 	ld a, [hl]
 	ld [hSerialSend], a
@@ -521,14 +521,14 @@ Function283f2: ; 283f2
 .asm_28401
 	dec a
 	jr nz, .asm_28401
-	ld a, [$ffcc]
+	ld a, [hFFCC]
 	and a
 	ld a, b
 	pop bc
 	jr z, .asm_28411
 	dec hl
 	xor a
-	ld [$ffcc], a
+	ld [hFFCC], a
 	jr .asm_283f6
 
 .asm_28411
@@ -2172,7 +2172,7 @@ Function28fa1: ; 28fa1
 Function28fdb: ; 28fdb
 	xor a
 	ld [wJumptableIndex], a
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	call DisableLCD
@@ -2495,7 +2495,7 @@ Function29220: ; 29220
 ; 29229
 
 Function29229: ; 29229
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
 	call DisableLCD
@@ -2623,7 +2623,7 @@ Function292ec: ; 292ec
 
 Function292f6: ; 292f6
 	push af
-	call WhiteBGMap
+	call ClearBGPalettes
 	call WaitTop
 	ld a, VBGMap1 / $100
 	ld [hBGMapAddress + 1], a
@@ -3902,7 +3902,7 @@ Function29dba: ; 29dba
 
 Function29e0c: ; 29e0c
 	xor a
-	ld [$ffca], a
+	ld [hFFCA], a
 	ld a, [wcf5b]
 	ld h, a
 	ld a, [wcf5c]

@@ -60,7 +60,7 @@ Pokedex: ; 40000
 ; 40063
 
 InitPokedex: ; 40063
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	call Function414b7
@@ -487,7 +487,7 @@ Function4034f: ; 4034f
 	ld [wcf64], a
 	pop af
 	ld [wcf65], a
-	call WhiteBGMap
+	call ClearBGPalettes
 	call DisableLCD
 	call Function414fb
 	call Function4038d

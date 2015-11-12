@@ -1,6 +1,6 @@
 Reset:: ; 150
 	di
-	call SoundRestart
+	call MapSetup_Sound_Off
 	xor a
 	ld [hMapAnims], a
 	call ClearPalettes
@@ -168,7 +168,7 @@ Init:: ; 17d
 
 	predef Function9853
 
-	call SoundRestart
+	call MapSetup_Sound_Off
 	xor a
 	ld [wMapMusic], a
 	jp GameInit

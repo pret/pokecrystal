@@ -1,6 +1,6 @@
 _TitleScreen: ; 10ed67
 
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	

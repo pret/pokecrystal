@@ -176,8 +176,8 @@ MovementData_0x1884eb:
 	jump_step_up
 	db $38 ; movement
 	remove_fixed_facing
-	accelerate_last
-	accelerate_last
+	step_sleep_8
+	step_sleep_8
 	step_down
 	step_down
 	step_end
