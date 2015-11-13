@@ -75,7 +75,7 @@ Function8cf7a: ; 8cf7a
 ; 8cfa8
 
 Function8cfa8: ; 8cfa8 (23:4fa8)
-	ld hl, wc314
+	ld hl, wSpriteAnimationStructs
 	ld e, 10
 
 .loop

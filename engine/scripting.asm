@@ -2987,12 +2987,12 @@ Script_warpcheck: ; 0x97af6
 
 	call WarpCheck
 	ret nc
-	callba SetAll_ScriptFlags3
+	callba EnableEvents
 	ret
 ; 0x97b01
 
-Function97b01: ; 0x97b01
-	callba SetAll_ScriptFlags3
+Script_enableevents: ; unreferenced
+	callba EnableEvents
 	ret
 ; 0x97b08
 

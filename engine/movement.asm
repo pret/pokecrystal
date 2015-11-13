@@ -79,7 +79,7 @@ MovementPointers: ; 5075
 	dw Movement_teleport_to           ; 4d
 	dw Movement_skyfall               ; 4e
 	dw Movement_step_wait5            ; 4f
-	dw Movement_50                    ; 50
+	dw Movement_step_bump                    ; 50
 	dw Movement_fish_got_bite         ; 51
 	dw Movement_fish_cast_rod         ; 52
 	dw Movement_hide_emote            ; 53
@@ -95,28 +95,28 @@ MovementPointers: ; 5075
 Movement_teleport_from: ; 5129
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $c
+	ld [hl], OBJECT_09_VALUE_0C
 	ret
 ; 5130
 
 Movement_teleport_to: ; 5130
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $d
+	ld [hl], OBJECT_09_VALUE_0D
 	ret
 ; 5137
 
 Movement_skyfall: ; 5137
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $e
+	ld [hl], OBJECT_09_VALUE_0E
 	ret
 ; 513e
 
 Movement_59: ; 513e
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $19
+	ld [hl], OBJECT_09_VALUE_19
 	ret
 ; 5145
 
@@ -136,7 +136,7 @@ Movement_step_wait5: ; 5145
 	ld [hl], a
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $3
+	ld [hl], OBJECT_09_VALUE_03
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld [hl], STANDING
@@ -159,7 +159,7 @@ Movement_58: ; 516a
 	ld [hl], STANDING
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $12
+	ld [hl], OBJECT_09_VALUE_12
 	ret
 ; 5189
 
@@ -169,7 +169,7 @@ Movement_fish_got_bite: ; 5189
 	ld [hl], $6
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $10
+	ld [hl], OBJECT_09_VALUE_10
 	ret
 ; 5196
 
@@ -183,7 +183,7 @@ Movement_rock_smash: ; 5196
 	ld [hl], $1
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $11
+	ld [hl], OBJECT_09_VALUE_11
 	ret
 ; 51ab
 
@@ -193,7 +193,7 @@ Movement_fish_cast_rod: ; 51ab
 	ld [hl], $6
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $1
+	ld [hl], OBJECT_09_VALUE_01
 	ret
 ; 51b8
 
@@ -219,7 +219,7 @@ Movement_step_end: ; 51c1
 
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $1
+	ld [hl], OBJECT_09_VALUE_01
 	ret
 ; 51db
 
@@ -240,7 +240,7 @@ Movement_48: ; 51db
 
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $3
+	ld [hl], OBJECT_09_VALUE_03
 
 	ld hl, VramState
 	res 7, [hl]
@@ -268,7 +268,7 @@ Movement_4b: ; 5210
 
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $4
+	ld [hl], OBJECT_09_VALUE_04
 
 	ld hl, VramState
 	res 7, [hl]
@@ -276,52 +276,52 @@ Movement_4b: ; 5210
 ; 5222
 
 Movement_step_sleep_1: ; 5222
-	ld a, $1
-	jr Function5247
+	ld a, 1
+	jr Movement_step_sleep_common
 
 Movement_step_sleep_2: ; 5226
-	ld a, $2
-	jr Function5247
+	ld a, 2
+	jr Movement_step_sleep_common
 
 Movement_step_sleep_3: ; 522a
-	ld a, $3
-	jr Function5247
+	ld a, 3
+	jr Movement_step_sleep_common
 
 Movement_step_sleep_4: ; 522e
-	ld a, $4
-	jr Function5247
+	ld a, 4
+	jr Movement_step_sleep_common
 
 Movement_step_sleep_5: ; 5232
-	ld a, $5
-	jr Function5247
+	ld a, 5
+	jr Movement_step_sleep_common
 
 Movement_step_sleep_6: ; 5236
-	ld a, $6
-	jr Function5247
+	ld a, 6
+	jr Movement_step_sleep_common
 
 Movement_step_sleep_7: ; 523a
-	ld a, $7
-	jr Function5247
+	ld a, 7
+	jr Movement_step_sleep_common
 
 Movement_step_sleep_8: ; 523e
-	ld a, $8
-	jr Function5247
+	ld a, 8
+	jr Movement_step_sleep_common
 
 Movement_step_sleep: ; 5242
 ; parameters:
 ;	duration (DecimalParam)
 
 	call GetMovementByte
-	jr Function5247
+	jr Movement_step_sleep_common
 
-Function5247: ; 5247
+Movement_step_sleep_common: ; 5247
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
 
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $3
+	ld [hl], OBJECT_09_VALUE_03
 
 	ld hl, OBJECT_11
 	add hl, bc
@@ -333,14 +333,14 @@ Function5247: ; 5247
 	ret
 ; 525f
 
-Movement_50: ; 525f
+Movement_step_bump: ; 525f
 	ld a, $1
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $b
+	ld [hl], OBJECT_09_VALUE_0B
 	ld hl, OBJECT_11
 	add hl, bc
 	ld [hl], $3
@@ -357,7 +357,7 @@ Movement_56: ; 5279
 	ld [hl], a
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $3
+	ld [hl], OBJECT_09_VALUE_03
 	ld hl, OBJECT_11
 	add hl, bc
 	ld [hl], $b
@@ -726,7 +726,7 @@ HalfStep: ; 5400
 	ld [hl], $2
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $a
+	ld [hl], OBJECT_09_VALUE_0A
 	ret
 ; 5412
 
@@ -756,13 +756,13 @@ NormalStep: ; 5412
 
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $2
+	ld [hl], OBJECT_09_VALUE_02
 	ret
 
 .asm_543f
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $6
+	ld [hl], OBJECT_09_VALUE_06
 	ret
 ; 5446
 
@@ -778,13 +778,13 @@ TurningStep: ; 5446
 	jr z, .asm_5461
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $2
+	ld [hl], OBJECT_09_VALUE_02
 	ret
 
 .asm_5461
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $6
+	ld [hl], OBJECT_09_VALUE_06
 	ret
 ; 5468
 
@@ -801,13 +801,13 @@ SlideStep: ; 5468
 	jr z, .asm_5483
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $2
+	ld [hl], OBJECT_09_VALUE_02
 	ret
 
 .asm_5483
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $6
+	ld [hl], OBJECT_09_VALUE_06
 	ret
 ; 548a
 
@@ -830,12 +830,12 @@ JumpStep: ; 548a
 	jr z, .asm_54b1
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $8
+	ld [hl], OBJECT_09_VALUE_08
 	ret
 
 .asm_54b1
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $9
+	ld [hl], OBJECT_09_VALUE_09
 	ret
 ; 54b8

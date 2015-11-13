@@ -2,45 +2,45 @@
 INCLUDE "engine/facings.asm"
 
 SpriteMovementData:: ; 4273
-	; function,         facing, ?, ?, ?, ?
-	db SPRITEMOVEFN_00, DOWN,  $01, $02, $00, $00 ; 00
-	db SPRITEMOVEFN_STANDING, DOWN,  $01, $0c, $00, $00 ; 01
-	db SPRITEMOVEFN_RANDOM_WALK_XY, DOWN,  $01, $00, $00, $00 ; 02
-	db SPRITEMOVEFN_SLOW_RANDOM_SPIN, DOWN,  $01, $00, $00, $00 ; 03
-	db SPRITEMOVEFN_RANDOM_WALK_Y, DOWN,  $01, $00, $00, $00 ; 04
-	db SPRITEMOVEFN_RANDOM_WALK_X, DOWN,  $01, $00, $00, $00 ; 05
-	db SPRITEMOVEFN_STANDING, DOWN,  $01, $00, $00, $00 ; 06
-	db SPRITEMOVEFN_STANDING, UP,    $01, $00, $00, $00 ; 07
-	db SPRITEMOVEFN_STANDING, LEFT,  $01, $00, $00, $00 ; 08
-	db SPRITEMOVEFN_STANDING, RIGHT, $01, $00, $00, $00 ; 09
-	db SPRITEMOVEFN_FAST_RANDOM_SPIN, DOWN,  $01, $00, $00, $00 ; 0a
-	db SPRITEMOVEFN_OBEY_DPAD, DOWN,  $01, $02, $00, $00 ; 0b
-	db SPRITEMOVEFN_08, DOWN,  $01, $00, $00, $00 ; 0c
-	db SPRITEMOVEFN_09, DOWN,  $01, $00, $00, $00 ; 0d
-	db SPRITEMOVEFN_0A, DOWN,  $01, $00, $00, $00 ; 0e
-	db SPRITEMOVEFN_0B, DOWN,  $01, $00, $00, $00 ; 0f
-	db SPRITEMOVEFN_0C, DOWN,  $01, $00, $00, $00 ; 10
-	db SPRITEMOVEFN_0D, DOWN,  $01, $00, $00, $00 ; 11
-	db SPRITEMOVEFN_0E, DOWN,  $01, $00, $00, $00 ; 12
-	db SPRITEMOVEFN_FOLLOW, DOWN,  $01, $02, $00, $00 ; 13
-	db SPRITEMOVEFN_SCRIPTED, DOWN,  $01, $02, $00, $00 ; 14
-	db SPRITEMOVEFN_BIG_SNORLAX, DOWN,  $09, $2e, $01, $c0 ; 15
-	db SPRITEMOVEFN_BOUNCE, DOWN,  $0a, $2e, $00, $00 ; 16
-	db SPRITEMOVEFN_STANDING, DOWN,  $01, $0c, $00, $00 ; 17
-	db SPRITEMOVEFN_STANDING, DOWN,  $01, $2e, $10, $00 ; 18
-	db SPRITEMOVEFN_STRENGTH, DOWN,  $01, $2e, $00, $40 ; 19
-	db SPRITEMOVEFN_FOLLOWNOTEXACT, DOWN,  $01, $02, $00, $00 ; 1a
-	db SPRITEMOVEFN_13, DOWN,  $00, $8e, $01, $00 ; 1b
-	db SPRITEMOVEFN_14, DOWN,  $08, $8e, $02, $00 ; 1c
-	db SPRITEMOVEFN_17, DOWN,  $00, $82, $00, $00 ; 1d
+	; function, facing, ?, ?, ?, ?
+	db SPRITEMOVEFN_00,                    DOWN,  $01, $02, $00, $00 ; 00
+	db SPRITEMOVEFN_STANDING,              DOWN,  $01, $0c, $00, $00 ; 01
+	db SPRITEMOVEFN_RANDOM_WALK_XY,        DOWN,  $01, $00, $00, $00 ; 02
+	db SPRITEMOVEFN_SLOW_RANDOM_SPIN,      DOWN,  $01, $00, $00, $00 ; 03
+	db SPRITEMOVEFN_RANDOM_WALK_Y,         DOWN,  $01, $00, $00, $00 ; 04
+	db SPRITEMOVEFN_RANDOM_WALK_X,         DOWN,  $01, $00, $00, $00 ; 05
+	db SPRITEMOVEFN_STANDING,              DOWN,  $01, $00, $00, $00 ; 06
+	db SPRITEMOVEFN_STANDING,              UP,    $01, $00, $00, $00 ; 07
+	db SPRITEMOVEFN_STANDING,              LEFT,  $01, $00, $00, $00 ; 08
+	db SPRITEMOVEFN_STANDING,              RIGHT, $01, $00, $00, $00 ; 09
+	db SPRITEMOVEFN_FAST_RANDOM_SPIN,      DOWN,  $01, $00, $00, $00 ; 0a
+	db SPRITEMOVEFN_OBEY_DPAD,             DOWN,  $01, $02, $00, $00 ; 0b
+	db SPRITEMOVEFN_08,                    DOWN,  $01, $00, $00, $00 ; 0c
+	db SPRITEMOVEFN_09,                    DOWN,  $01, $00, $00, $00 ; 0d
+	db SPRITEMOVEFN_0A,                    DOWN,  $01, $00, $00, $00 ; 0e
+	db SPRITEMOVEFN_0B,                    DOWN,  $01, $00, $00, $00 ; 0f
+	db SPRITEMOVEFN_0C,                    DOWN,  $01, $00, $00, $00 ; 10
+	db SPRITEMOVEFN_0D,                    DOWN,  $01, $00, $00, $00 ; 11
+	db SPRITEMOVEFN_0E,                    DOWN,  $01, $00, $00, $00 ; 12
+	db SPRITEMOVEFN_FOLLOW,                DOWN,  $01, $02, $00, $00 ; 13
+	db SPRITEMOVEFN_SCRIPTED,              DOWN,  $01, $02, $00, $00 ; 14
+	db SPRITEMOVEFN_BIG_SNORLAX,           DOWN,  $09, $2e, $01, $c0 ; 15
+	db SPRITEMOVEFN_BOUNCE,                DOWN,  $0a, $2e, $00, $00 ; 16
+	db SPRITEMOVEFN_STANDING,              DOWN,  $01, $0c, $00, $00 ; 17
+	db SPRITEMOVEFN_STANDING,              DOWN,  $01, $2e, $10, $00 ; 18
+	db SPRITEMOVEFN_STRENGTH,              DOWN,  $01, $2e, $00, $40 ; 19
+	db SPRITEMOVEFN_FOLLOWNOTEXACT,        DOWN,  $01, $02, $00, $00 ; 1a
+	db SPRITEMOVEFN_13,                    DOWN,  $00, $8e, $01, $00 ; 1b
+	db SPRITEMOVEFN_14,                    DOWN,  $08, $8e, $02, $00 ; 1c
+	db SPRITEMOVEFN_17,                    DOWN,  $00, $82, $00, $00 ; 1d
 	db SPRITEMOVEFN_SPIN_COUNTERCLOCKWISE, LEFT,  $01, $00, $00, $00 ; 1e
-	db SPRITEMOVEFN_SPIN_CLOCKWISE, RIGHT, $01, $00, $00, $00 ; 1f
-	db SPRITEMOVEFN_STRENGTH, DOWN,  $0c, $2e, $01, $c0 ; 20
-	db SPRITEMOVEFN_STRENGTH, DOWN,  $0d, $2e, $01, $c0 ; 21
-	db SPRITEMOVEFN_1A, DOWN,  $0e, $8e, $01, $00 ; 22
-	db SPRITEMOVEFN_1B, DOWN,  $0f, $8e, $02, $00 ; 23
-	db SPRITEMOVEFN_RANDOM_WALK_XY, DOWN,  $01, $00, $00, $20 ; 24
-	db SPRITEMOVEFN_00, DOWN,  $01, $00, $00, $00 ; 25
+	db SPRITEMOVEFN_SPIN_CLOCKWISE,        RIGHT, $01, $00, $00, $00 ; 1f
+	db SPRITEMOVEFN_STRENGTH,              DOWN,  $0c, $2e, $01, $c0 ; 20
+	db SPRITEMOVEFN_STRENGTH,              DOWN,  $0d, $2e, $01, $c0 ; 21
+	db SPRITEMOVEFN_1A,                    DOWN,  $0e, $8e, $01, $00 ; 22
+	db SPRITEMOVEFN_1B,                    DOWN,  $0f, $8e, $02, $00 ; 23
+	db SPRITEMOVEFN_RANDOM_WALK_XY,        DOWN,  $01, $00, $00, $20 ; 24
+	db SPRITEMOVEFN_00,                    DOWN,  $01, $00, $00, $00 ; 25
 ; 4357
 
 
@@ -156,11 +156,13 @@ Function43f3: ; 43f3
 	ld a, [hl]
 	and a
 	jr z, .zero
+
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	bit 5, [hl]
 	jr nz, .bit5
-	cp 1
+
+	cp OBJECT_09_VALUE_01
 	jr z, .one
 	jr .ok
 
@@ -178,7 +180,7 @@ Function43f3: ; 43f3
 	ld a, [hl]
 	and a
 	ret z
-	cp 1
+	cp OBJECT_09_VALUE_01
 	ret z
 
 .ok
@@ -892,6 +894,7 @@ IncrementObjectStructField28: ; 47a2
 ; 47a8
 
 JumptoObjectStructField28: ; 47a8
+; anonymous jumptable
 	ld hl, OBJECT_28
 	add hl, bc
 	ld a, [hl]
@@ -931,7 +934,7 @@ Function47bc: ; 47bc
 	call Function467b
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 1
+	ld [hl], OBJECT_09_VALUE_01
 	ret
 ; 47dd
 
@@ -1037,7 +1040,7 @@ Function47dd: ; 47dd
 	ld [hl], 1
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 5
+	ld [hl], OBJECT_09_VALUE_05
 	ret
 ; 487c
 
@@ -1121,7 +1124,7 @@ Function47dd: ; 47dd
 	call Function463f
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $f
+	ld [hl], OBJECT_09_VALUE_0F
 	ret
 
 .ok2
@@ -1223,7 +1226,7 @@ Function47dd: ; 47dd
 	ld [hl], 9
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 4
+	ld [hl], OBJECT_09_VALUE_04
 	ret
 ; 496e
 
@@ -1237,7 +1240,7 @@ Function47dd: ; 47dd
 	ld [hl], 10
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 4
+	ld [hl], OBJECT_09_VALUE_04
 	ret
 ; 4984
 
@@ -1274,7 +1277,7 @@ Function47dd: ; 47dd
 	ld [hl], a
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 3
+	ld [hl], OBJECT_09_VALUE_03
 	call IncrementObjectStructField27
 	ret
 ; 49b8
@@ -1351,7 +1354,7 @@ Function47dd: ; 47dd
 	ld [hl], 0
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $13
+	ld [hl], OBJECT_09_VALUE_13
 	ret
 ; 4a21
 
@@ -1372,7 +1375,7 @@ Function47dd: ; 47dd
 	ld [hl], 0
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $13
+	ld [hl], OBJECT_09_VALUE_13
 	ret
 ; 4a46
 
@@ -1411,7 +1414,7 @@ endr
 	ld [hl], e
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $13
+	ld [hl], OBJECT_09_VALUE_13
 	ret
 ; 4a81
 
@@ -1438,7 +1441,7 @@ endr
 	ld [hl], a
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $13
+	ld [hl], OBJECT_09_VALUE_13
 	ret
 ; 4aa8
 
@@ -1476,7 +1479,7 @@ endr
 	ld [hl], a
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], $15
+	ld [hl], OBJECT_09_VALUE_15
 	ret
 ; 4ade
 
@@ -1512,13 +1515,13 @@ endr
 	jr z, .load_6
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 7
+	ld [hl], OBJECT_09_VALUE_07
 	ret
 
 .load_6
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 6
+	ld [hl], OBJECT_09_VALUE_06
 	ret
 
 Function4b17: ; 4b17
@@ -1553,37 +1556,38 @@ Function4b2d: ; 4b2d
 	ld [hl], 1
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 3
+	ld [hl], OBJECT_09_VALUE_03
 	ret
 ; 4b45
 
 Pointers4b45: ; 4b45
-	dw Function47bc
-	dw Function47dd
-	dw Function4e2b
-	dw Function4ddd
-	dw Function4e21
-	dw Function4e0c
-	dw Function4e56
-	dw Function4e47
-	dw Function4b86
-	dw Function4bbf
-	dw Function4e83
-	dw Function4dff
-	dw Function4c18
-	dw Function4c89
-	dw Function4d14
-	dw Function4ecd
-	dw Function4d7e
-	dw Function4daf
-	dw Function4dc8
-	dw Function4f04
-	dw Function4f33
-	dw Function4f33
-	dw Function4f77
-	dw Function4f7a
-	dw Function4df0
-	dw Function4f83
+; These pointers use OBJECT_09.  See constants/sprite_constants.asm
+	dw Function47bc ; 00
+	dw Function47dd ; 01
+	dw Function4e2b ; 02
+	dw Function4ddd ; 03
+	dw Function4e21 ; 04
+	dw Function4e0c ; 05
+	dw Function4e56 ; 06
+	dw Function4e47 ; 07
+	dw Function4b86 ; 08
+	dw Function4bbf ; 09
+	dw Function4e83 ; 0a
+	dw Function4dff ; 0b
+	dw Function4c18 ; 0c
+	dw Function4c89 ; 0d
+	dw Function4d14 ; 0e
+	dw Function4ecd ; 0f
+	dw Function4d7e ; 10
+	dw Function4daf ; 11
+	dw Function4dc8 ; 12
+	dw Function4f04 ; 13
+	dw Function4f33 ; 14
+	dw Function4f33 ; 15
+	dw Function4f77 ; 16
+	dw Function4f7a ; 17
+	dw Function4df0 ; 18
+	dw Function4f83 ; 19
 ; 4b79
 
 Function4b79: ; 4b79
@@ -1593,7 +1597,7 @@ Function4b79: ; 4b79
 	ret nz
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 1
+	ld [hl], OBJECT_09_VALUE_01
 	ret
 ; 4b86
 
@@ -1629,7 +1633,7 @@ Function4ba9: ; 4ba9
 	call Function4600
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 1
+	ld [hl], OBJECT_09_VALUE_01
 	ret
 ; 4bbf
 
@@ -1686,7 +1690,7 @@ Function4bfd: ; 4bfd
 	call Function4600
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 1
+	ld [hl], OBJECT_09_VALUE_01
 	ret
 ; 4c18
 
@@ -1762,7 +1766,7 @@ Function4c5d: ; 4c5d
 	ld [hl], 0
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 1
+	ld [hl], OBJECT_09_VALUE_01
 	ret
 ; 4c89
 
@@ -1861,7 +1865,7 @@ Function4d01: ; 4d01
 	ld [hl], 0
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 1
+	ld [hl], OBJECT_09_VALUE_01
 	ret
 ; 4d14
 
@@ -1934,7 +1938,7 @@ Function4d6b: ; 4d6b
 	ld [hl], 0
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 1
+	ld [hl], OBJECT_09_VALUE_01
 	ret
 ; 4d7e
 
@@ -1970,7 +1974,7 @@ Function4d94: ; 4d94
 	ld [hl], 0
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 1
+	ld [hl], OBJECT_09_VALUE_01
 	ret
 ; 4daf
 
@@ -2021,7 +2025,7 @@ Function4ddd: ; 4ddd
 	ret nz
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 1
+	ld [hl], OBJECT_09_VALUE_01
 	ret
 ; 4df0
 
@@ -2043,7 +2047,7 @@ Function4dff: ; 4dff
 	ret nz
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 1
+	ld [hl], OBJECT_09_VALUE_01
 	ret
 ; 4e0c
 
@@ -2055,7 +2059,7 @@ Function4e0c: ; 4e0c
 
 Function4e13: ; 4e13
 	call RestoreDefaultMovement
-	call Function1a47
+	call GetInitialFacing
 	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], a
@@ -2084,7 +2088,7 @@ Function4e2b: ; 4e2b
 	ld [hl], STANDING
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 1
+	ld [hl], OBJECT_09_VALUE_01
 	ret
 ; 4e47
 
@@ -2126,7 +2130,7 @@ Function4e65: ; 4e65
 	ld [hl], STANDING
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 1
+	ld [hl], OBJECT_09_VALUE_01
 	ret
 ; 4e83
 
@@ -2183,7 +2187,7 @@ Function4ec0: ; 4ec0
 	ret nz
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 1
+	ld [hl], OBJECT_09_VALUE_01
 	ret
 ; 4ecd
 
@@ -2215,7 +2219,7 @@ Function4ecd: ; 4ecd
 	ld [hl], STANDING
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 1
+	ld [hl], OBJECT_09_VALUE_01
 	ret
 ; 4f04
 
@@ -2347,7 +2351,7 @@ Function4f99: ; 4f99
 	ld [hl], 0
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 1
+	ld [hl], OBJECT_09_VALUE_01
 	ret
 ; 4fb2
 
@@ -2404,7 +2408,7 @@ UpdateJumpPosition: ; 4fd5
 ; 5000
 
 Function5000: ; unscripted?
-; copy [wc3de] to [wc2df]
+; copy [wc2de] to [wc2df]
 	ld a, [wc2de]
 	ld hl, wc2df
 	ld [hl], a
@@ -3188,7 +3192,7 @@ SetFollowerIfVisible: ; 582c
 	ld [hl], SPRITEMOVEDATA_FOLLOWING
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 0
+	ld [hl], OBJECT_09_VALUE_00
 	ld a, [hObjectStructIndexBuffer]
 	ld [wObjectFollow_Follower], a
 	ret
@@ -3328,7 +3332,7 @@ Function58e3: ; 58e3
 
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 0
+	ld [hl], OBJECT_09_VALUE_00
 	ret
 ; 5903
 
@@ -3347,7 +3351,7 @@ Function5903: ; 5903
 
 	ld hl, OBJECT_09
 	add hl, bc
-	ld [hl], 0
+	ld [hl], OBJECT_09_VALUE_00
 	ret
 
 .standing_movefns

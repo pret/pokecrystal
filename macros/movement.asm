@@ -388,7 +388,10 @@ step_wait5: macro
 	db movement_step_wait5 ; $4f
 	endm
 
-__enum__ = $51
+	enum movement_step_bump
+step_bump: macro
+	db movement_step_bump ; $50
+	endm
 
 	enum movement_fish_got_bite
 fish_got_bite: macro

@@ -319,7 +319,8 @@ ScriptVar:: ; c2dd
 	ds 1
 
 wc2de:: ds 1
-wc2df:: ds 3
+wc2df:: ds 1
+	ds 2
 wMovementPerson:: ds 1
 wMovementDataPointer:: ds 3 ; dba
 wc2e6:: ds 4
@@ -1568,6 +1569,7 @@ wTempTrainerEventFlagLo::
 
 wTempTrainerEventFlagHi::
 MovementAnimation:: ; d042
+EngineBuffer5::
 	ds 1
 
 wTempTrainerClass::
@@ -2089,6 +2091,11 @@ ScriptFlags:: ; d434
 ScriptFlags2:: ; d435
 	ds 1
 ScriptFlags3:: ; d436
+; bit 0: count steps
+; bit 1: xy triggers
+; bit 2: warps and connections
+; bit 4: wild encounters
+; bit 5: unknown
 	ds 1
 
 ScriptMode:: ; d437
@@ -2198,7 +2205,7 @@ wd4d0:: ds 1
 wd4d1:: ds 1
 	ds 4
 
-ObjectStructs::
+ObjectStructs:: ; d4d6
 object_struct: MACRO
 \1Struct::
 \1Sprite:: ds 1

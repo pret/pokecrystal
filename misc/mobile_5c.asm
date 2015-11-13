@@ -1960,7 +1960,7 @@ Function171ccd: ; 171ccd (5c:5ccd)
 	ld de, wMapPals
 	ld bc, $40
 	call CopyBytes
-	ld hl, MovementAnimation
+	ld hl, EngineBuffer5
 	ld a, $ff
 	ld [hli], a
 	ld a, $7f

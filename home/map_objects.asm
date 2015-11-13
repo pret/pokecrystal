@@ -508,7 +508,7 @@ endr
 	ret
 ; 1a47
 
-Function1a47:: ; 1a47
+GetInitialFacing:: ; 1a47
 	push bc
 	push de
 	ld e, a

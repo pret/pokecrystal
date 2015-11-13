@@ -2369,7 +2369,7 @@ CheckFacingObject:: ; 6fd9
 	ld bc, ObjectStructs ; redundant
 	ld a, 0
 	ld [hMapObjectIndexBuffer], a
-	call Function7041
+	call IsNPCAtCoord
 	ret nc
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
@@ -2392,14 +2392,14 @@ Function7009: ; 7009
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld e, [hl]
-	jr Function7041
+	jr IsNPCAtCoord
 ; 7015
 
 Function7015: ; unreferenced
 	ld a, [hMapObjectIndexBuffer]
 	call GetObjectStruct
 	call Function7021
-	call Function7041
+	call IsNPCAtCoord
 	ret
 
 Function7021: ; 7021
@@ -2432,21 +2432,24 @@ Function7021: ; 7021
 	ret
 ; 7041
 
-Function7041: ; 7041
+IsNPCAtCoord: ; 7041
 	ld bc, ObjectStructs
 	xor a
 .loop
 	ld [hObjectStructIndexBuffer], a
 	call GetObjectSprite
 	jr z, .next
+
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 7, [hl]
 	jr nz, .next
+
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	bit 7, [hl]
 	jr z, .got
+
 	call Function7171
 	jr nc, .ok
 	jr .ok2
@@ -3631,7 +3634,7 @@ Function8286: ; 8286
 
 	ld hl, OBJECT_09
 	add hl, de
-	ld [hl], $0
+	ld [hl], OBJECT_09_VALUE_00
 
 	ld hl, OBJECT_FACING_STEP
 	add hl, de
@@ -3882,7 +3885,7 @@ FollowNotExact:: ; 839e
 	ld [hl], SPRITEMOVEDATA_FOLLOWNOTEXACT
 	ld hl, OBJECT_09
 	add hl, de
-	ld [hl], $0
+	ld [hl], OBJECT_09_VALUE_00
 	ret
 ; 8417
 
@@ -33993,7 +33996,7 @@ SECTION "bank20", ROMX, BANK[$20]
 DoPlayerMovement:: ; 80000
 
 	call GetMovementInput
-	ld a, $3e ; standing
+	ld a, movement_step_sleep_1
 	ld [MovementAnimation], a
 	xor a
 	ld [wd041], a
@@ -34039,7 +34042,7 @@ GetPlayerMovement: ; 8002d
 	cp PLAYER_BIKE
 	jr z, .Normal
 	cp PLAYER_SLIP
-	jr z, .Board
+	jr z, .Ice
 
 .Normal
 	call CheckForcedMovementInput
@@ -34067,7 +34070,7 @@ GetPlayerMovement: ; 8002d
 	ret c
 	jr .NotMoving
 
-.Board
+.Ice
 	call CheckForcedMovementInput
 	call GetMovementAction
 	call CheckTileMovement
@@ -34095,7 +34098,7 @@ GetPlayerMovement: ; 8002d
 	jr z, .Standing
 
 ; Walking into an edge warp won't bump.
-	ld a, [wd041]
+	ld a, [EngineBuffer4]
 	and a
 	jr nz, .CantMove
 	call PlayBump
@@ -34268,13 +34271,13 @@ TryStep: ; 8016b
 	jr z, TrySurfStep
 
 	call CheckLandPermissions
-	jr c, .asm_801be
+	jr c, .bump
 
 	call IsNPCInFront
 	and a
-	jr z, .asm_801be
+	jr z, .bump
 	cp 2
-	jr z, .asm_801be
+	jr z, .bump
 
 	ld a, [PlayerStandingTile]
 	call CheckIceTile
@@ -34282,7 +34285,7 @@ TryStep: ; 8016b
 
 ; Downhill riding is slower when not moving down.
 	call CheckRiding
-	jr nz, .asm_801ae
+	jr nz, .walk
 
 	ld hl, BikeFlags
 	bit 2, [hl] ; downhill
@@ -34303,7 +34306,7 @@ TryStep: ; 8016b
 	scf
 	ret
 
-.asm_801ae
+.walk
 	ld a, STEP_WALK
 	call DoStep
 	scf
@@ -34319,7 +34322,7 @@ TryStep: ; 8016b
 	xor a
 	ret
 
-.asm_801be
+.bump
 	xor a
 	ret
 ; 801c0
@@ -34417,13 +34420,13 @@ CheckEdgeWarp: ; 80226
 	add hl, de
 	ld a, [PlayerStandingTile]
 	cp [hl]
-	jr nz, .asm_80259
+	jr nz, .nope
 
 	ld a, 1
 	ld [wd041], a
 	ld a, [WalkingDirection]
 	cp STANDING
-	jr z, .asm_80259
+	jr z, .nope
 
 	ld e, a
 	ld a, [PlayerDirection]
@@ -34431,16 +34434,16 @@ CheckEdgeWarp: ; 80226
 	rrca
 	and 3
 	cp e
-	jr nz, .asm_80259
-	call WarpCheck ; CheckFallPit?
-	jr nc, .asm_80259
+	jr nz, .nope
+	call WarpCheck
+	jr nc, .nope
 
 	call StandInPlace
 	scf
 	ld a, 1
 	ret
 
-.asm_80259
+.nope
 	xor a
 	ret
 
@@ -34488,28 +34491,52 @@ endr
 	dw .WalkInPlace
 
 .Slow
-	db $08, $09, $0a, $0b
+	slow_step_down
+	slow_step_up
+	slow_step_left
+	slow_step_right
 .Walk
-	db $0c, $0d, $0e, $0f
+	step_down
+	step_up
+	step_left
+	step_right
 .Bike
-	db $10, $11, $12, $13
+	big_step_down
+	big_step_up
+	big_step_left
+	big_step_right
 .Ledge
-	db $30, $31, $32, $33
+	jump_step_down
+	jump_step_up
+	jump_step_left
+	jump_step_right
 .Ice
-	db $1c, $1d, $1e, $1f
+	fast_slide_step_down
+	fast_slide_step_up
+	fast_slide_step_left
+	fast_slide_step_right
 .BackwardsLedge
-	db $31, $30, $33, $32
+	jump_step_up
+	jump_step_down
+	jump_step_right
+	jump_step_left
 .Turn
-	db $04, $05, $06, $07
+	half_step_down
+	half_step_up
+	half_step_left
+	half_step_right
 .WalkInPlace
-	db $80, $81, $82, $83
+	db $80 + movement_turn_head_down
+	db $80 + movement_turn_head_up
+	db $80 + movement_turn_head_left
+	db $80 + movement_turn_head_right
 ; 802b3
 
 
 StandInPlace: ; 802b3
 	ld a, 0
 	ld [wd04e], a
-	ld a, $3e ; standing
+	ld a, movement_step_sleep_1
 	ld [MovementAnimation], a
 	xor a
 	ret
@@ -34519,7 +34546,7 @@ StandInPlace: ; 802b3
 WalkInPlace: ; 802bf
 	ld a, 0
 	ld [wd04e], a
-	ld a, $50 ; walking
+	ld a, movement_step_bump
 	ld [MovementAnimation], a
 	xor a
 	ret
@@ -34529,7 +34556,7 @@ WalkInPlace: ; 802bf
 CheckForcedMovementInput: ; 802cb
 ; When sliding on ice, input is forced to remain in the same direction.
 
-	call Function80404
+	call CheckStandingOnIce
 	ret nc
 
 	ld a, [wd04e]
@@ -34542,7 +34569,7 @@ CheckForcedMovementInput: ; 802cb
 	ld hl, .data_802e8
 	add hl, de
 	ld a, [CurInput]
-	and A_BUTTON | B_BUTTON | SELECT | START
+	and BUTTONS
 	or [hl]
 	ld [CurInput], a
 	ret
@@ -34613,33 +34640,39 @@ GetMovementAction: ; 802ec
 
 
 IsNPCInFront: ; 80341
-
+; Returns 0 if there is an NPC in front that you can't move
+; Returns 1 if there is no NPC in front
+; Returns 2 if there is a movable NPC in front
 	ld a, 0
 	ld [hMapObjectIndexBuffer], a
+; Load the next X coordinate into d
 	ld a, [PlayerMapX]
 	ld d, a
 	ld a, [WalkingX]
 	add d
 	ld d, a
+; Load the next Y coordinate into e
 	ld a, [PlayerMapY]
 	ld e, a
 	ld a, [WalkingY]
 	add e
 	ld e, a
+; Find an object struct with coordinates equal to d,e
 	ld bc, ObjectStructs ; redundant
-	callba Function7041
-	jr nc, .asm_80369
+	callba IsNPCAtCoord
+	jr nc, .nope
 	call Function8036f
-	jr c, .asm_8036c
+	jr c, .no_bump
 
+; .bump
 	xor a
 	ret
 
-.asm_80369
+.nope
 	ld a, 1
 	ret
 
-.asm_8036c
+.no_bump
 	ld a, 2
 	ret
 ; 8036f
@@ -34648,27 +34681,27 @@ IsNPCInFront: ; 80341
 Function8036f: ; 8036f
 
 	ld hl, BikeFlags
-	bit 0, [hl]
-	jr z, .asm_8039c
+	bit 0, [hl] ; using strength
+	jr z, .nope
 
-	ld hl, $7
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld a, [hl]
-	cp $ff
-	jr nz, .asm_8039c
+	cp STANDING
+	jr nz, .nope
 
-	ld hl, $6
+	ld hl, OBJECT_PALETTE
 	add hl, bc
 	bit 6, [hl]
-	jr z, .asm_8039c
+	jr z, .nope
 
-	ld hl, $5
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	set 2, [hl]
 
 	ld a, [WalkingDirection]
 	ld d, a
-	ld hl, $20
+	ld hl, OBJECT_32
 	add hl, bc
 	ld a, [hl]
 	and $fc
@@ -34678,7 +34711,7 @@ Function8036f: ; 8036f
 	scf
 	ret
 
-.asm_8039c
+.nope
 	xor a
 	ret
 ; 8039e
@@ -34799,24 +34832,24 @@ WaterToLandSprite: ; 803f9
 ; 80404
 
 
-Function80404:: ; 80404
+CheckStandingOnIce:: ; 80404
 	ld a, [wd04e]
 	cp 0
-	jr z, .asm_80420
+	jr z, .nope
 	cp $f0
-	jr z, .asm_80420
+	jr z, .nope
 	ld a, [PlayerStandingTile]
 	call CheckIceTile
-	jr nc, .asm_8041e
+	jr nc, .yep
 	ld a, [PlayerState]
 	cp PLAYER_SLIP
-	jr nz, .asm_80420
+	jr nz, .nope
 
-.asm_8041e
+.yep
 	scf
 	ret
 
-.asm_80420
+.nope
 	and a
 	ret
 ; 80422
@@ -34824,7 +34857,7 @@ Function80404:: ; 80404
 
 Function80422:: ; 80422
 	ld hl, wc2de
-	ld a, $3e ; standing
+	ld a, movement_step_sleep_1
 	cp [hl]
 	ret z
 	ld [hl], a

@@ -29,7 +29,7 @@ MartDialog: ; 15a61
 	ld a, 0
 	ld [EngineBuffer1], a
 	xor a
-	ld [MovementAnimation], a
+	ld [EngineBuffer5], a
 	call StandardMart
 	ret
 ; 15a6e
@@ -129,7 +129,7 @@ LoadMartPointer: ; 15b10
 	ld bc, 16
 	call ByteFill
 	xor a
-	ld [MovementAnimation], a
+	ld [EngineBuffer5], a
 	ld [wBargainShopFlags], a
 	ld [FacingDirection], a
 	ret
@@ -157,10 +157,10 @@ endr
 
 StandardMart: ; 15b47
 .loop
-	ld a, [MovementAnimation]
+	ld a, [EngineBuffer5]
 	ld hl, .MartFunctions
 	rst JumpTable
-	ld [MovementAnimation], a
+	ld [EngineBuffer5], a
 	cp $ff
 	jr nz, .loop
 	ret
