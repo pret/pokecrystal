@@ -357,7 +357,7 @@ TilePermissions:: ; c2fe
 
 	ds 1
 
-SECTION "PARTY ICONS", WRAM0 [$c300]
+SECTION "c300", WRAM0 [$c300]
 ; wc300 - wc313 is a 10x2 dictionary.
 wDict_c300:: ds 10 * 2
 	ds wDict_c300 - @
@@ -392,9 +392,10 @@ wc364:: ds 16 ; c364
 wc374:: ds 16 ; c374
 wc384:: ds 16 ; c384
 wc394:: ds 16 ; c394
-wc3a4:: ds 8  ; c3a4
-wc3ac:: ds 8  ; c3ac
+wc3a4:: ds 16 ; c3a4
 ; wPartyMonMenuIconAnimsEnd::
+	ds -8
+wc3ac:: ds 8 ; c3ac
 wc3b4:: ds 1 ; something to do with wc314
 wc3b5:: ds 1
 
@@ -411,6 +412,8 @@ wc3bd:: ds 1
 wc3be:: ds 1
 wc3bf:: ds 1
 wc3c0:: ds 1
+; wc300_data_end
+
 wc3c1:: ds 11
 wc3cc:: ds 1
 wc3cd:: ds 31
@@ -672,6 +675,7 @@ PlayerSpdLevel:: ; c6ce
 PlayerSAtkLevel:: ; c6cf
 	ds 1
 wc6d0::
+wPokedexDataStart::
 PlayerSDefLevel:: ; c6d0
 	ds 1
 wc6d1::
@@ -906,8 +910,8 @@ wc7d0:: ds 1
 wc7d1:: ds 1
 wc7d2:: ds 1
 wc7d3:: ds 1
-wc7d4:: ds 1
-wc7d5:: ds 1
+wc7d4:: ds 1 ; Index of the topmost visible item in a scrolling menu
+wc7d5:: ds 1 ; Which row the cursor is at in a scrolling menu (0-6)
 wc7d6:: ds 1
 wc7d7:: ds 1
 wc7d8:: ds 1
@@ -925,8 +929,14 @@ wc7e3:: ds 1
 wc7e4:: ds 1
 IF DEF(CRYSTAL11)
 wPokedexStatus::
+ELSE
+wPokedexDataEnd::
 ENDC
-	ds 3
+	ds 1
+IF DEF(CRYSTAL11)
+wPokedexDataEnd::
+ENDC
+	ds 2
 
 wMiscEnd::
 
@@ -1694,11 +1704,14 @@ wd14b:: ds 1
 
 wd14c:: ds 1 ; used in FollowNotExact
 wd14d:: ds 1 ; used in FollowNotExact
+; Player movement
 wd14e:: ds 1
 wd14f:: ds 1
 wd150:: ds 1
 wd151:: ds 1
+wBGMapAnchorLo::
 wd152:: ds 1
+wBGMapAnchorHi::
 wd153:: ds 1
 
 UsedSprites:: ds 64
@@ -2174,8 +2187,8 @@ object_struct: MACRO
 \1Action:: ds 1
 \1Object12:: ds 1
 \1Facing:: ds 1
-\1StandingTile:: ds 1
-\1NextTile:: ds 1
+\1StandingTile:: ds 1 ; collision
+\1NextTile:: ds 1     ; collision
 \1MapX:: ds 1
 \1MapY:: ds 1
 \1NextMapX:: ds 1
@@ -2262,17 +2275,31 @@ CurTimeOfDay:: ; d848
 wSecretID:: ds 1
 wd84b:: ds 1
 StatusFlags:: ; d84c
+	; 0 - pokedex
+	; 1 - unown dex
+	; 2 - 
+	; 3 - pokerus
+	; 4 - rocket signal
+	; 5 - wild encounters on/off
+	; 6 - hall of fame
+	; 7 - bug contest on
 	ds 1
 StatusFlags2:: ; d84d
+	; 0 - rockets
+	; 1 - 
+	; 2 - bug contest timer
+	; 3 - 
+	; 4 - bike shop call
+	; 5 - pokerus
+	; 6 - berry juice?
+	; 7 - rockets in mahogany
 	ds 1
 
 Money:: ; d84e
 	ds 3
 
-wd851::
 wMomsMoney:: ; d851
 	ds 3
-wBankOfMomMode::
 wMomSavingMoney:: ; d854
 	ds 1
 

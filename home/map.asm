@@ -1232,128 +1232,129 @@ UnmaskObject:: ; 271e
 ; 272a
 
 
-Function272a:: ; 272a
+ScrollMapDown:: ; 272a
 	hlcoord 0, 0
 	ld de, BGMapBuffer
-	call Function27b7
-	ld c, $28
+	call BackupBGMapRow
+	ld c, 2 * SCREEN_WIDTH
 	call FarCallScrollBGMapPalettes
-	ld a, [wd152]
+	ld a, [wBGMapAnchorLo]
 	ld e, a
-	ld a, [wd153]
+	ld a, [wBGMapAnchorHi]
 	ld d, a
-	call Function27d3
+	call UpdateBGMapRow
 	ld a, $1
 	ld [hBGMapUpdate], a
 	ret
 ; 2748
 
-Function2748:: ; 2748
-	hlcoord 0, 16
+ScrollMapUp:: ; 2748
+	hlcoord 0, SCREEN_HEIGHT - 2
 	ld de, BGMapBuffer
-	call Function27b7
-	ld c, $28
+	call BackupBGMapRow
+	ld c, 2 * SCREEN_WIDTH
 	call FarCallScrollBGMapPalettes
-	ld a, [wd152]
+	ld a, [wBGMapAnchorLo]
 	ld l, a
-	ld a, [wd153]
+	ld a, [wBGMapAnchorHi]
 	ld h, a
 	ld bc, $0200
 	add hl, bc
+; cap d at VBGMap1 / $100
 	ld a, h
-	and $3
-	or $98
+	and %00000011
+	or VBGMap0 / $100
 	ld e, l
 	ld d, a
-	call Function27d3
+	call UpdateBGMapRow
 	ld a, $1
 	ld [hBGMapUpdate], a
 	ret
 ; 2771
 
-Function2771:: ; 2771
+ScrollMapLeft:: ; 2771
 	hlcoord 0, 0
 	ld de, BGMapBuffer
-	call Function27c0
-	ld c, $24
+	call BackupBGMapColumn
+	ld c, 2 * SCREEN_HEIGHT
 	call FarCallScrollBGMapPalettes
-	ld a, [wd152]
+	ld a, [wBGMapAnchorLo]
 	ld e, a
-	ld a, [wd153]
+	ld a, [wBGMapAnchorHi]
 	ld d, a
-	call Function27f8
+	call UpdateBGMapColumn
 	ld a, $1
 	ld [hBGMapUpdate], a
 	ret
 ; 278f
 
-Function278f:: ; 278f
-	hlcoord 18, 0
+ScrollMapRight:: ; 278f
+	hlcoord SCREEN_WIDTH - 2, 0
 	ld de, BGMapBuffer
-	call Function27c0
-	ld c, $24
+	call BackupBGMapColumn
+	ld c, 2 * SCREEN_HEIGHT
 	call FarCallScrollBGMapPalettes
-	ld a, [wd152]
+	ld a, [wBGMapAnchorLo]
 	ld e, a
-	and $e0
+	and %11100000
 	ld b, a
 	ld a, e
-	add $12
-	and $1f
+	add SCREEN_HEIGHT
+	and %00011111
 	or b
 	ld e, a
-	ld a, [wd153]
+	ld a, [wBGMapAnchorHi]
 	ld d, a
-	call Function27f8
+	call UpdateBGMapColumn
 	ld a, $1
 	ld [hBGMapUpdate], a
 	ret
 ; 27b7
 
-Function27b7:: ; 27b7
-	ld c, $28
-.asm_27b9
+BackupBGMapRow:: ; 27b7
+	ld c, 2 * SCREEN_WIDTH
+.loop
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_27b9
+	jr nz, .loop
 	ret
 ; 27c0
 
-Function27c0:: ; 27c0
-	ld c, $12
-.asm_27c2
+BackupBGMapColumn:: ; 27c0
+	ld c, SCREEN_HEIGHT
+.loop
 	ld a, [hli]
 	ld [de], a
 	inc de
 	ld a, [hl]
 	ld [de], a
 	inc de
-	ld a, $13
+	ld a, SCREEN_WIDTH - 1
 	add l
 	ld l, a
-	jr nc, .asm_27cf
+	jr nc, .skip
 	inc h
 
-.asm_27cf
+.skip
 	dec c
-	jr nz, .asm_27c2
+	jr nz, .loop
 	ret
 ; 27d3
 
-Function27d3:: ; 27d3
+UpdateBGMapRow:: ; 27d3
 	ld hl, BGMapBufferPtrs
 	push de
-	call .asm_27df
+	call .iteration
 	pop de
 	ld a, $20
 	add e
 	ld e, a
 
-.asm_27df
-	ld c, $a
-.asm_27e1
+.iteration
+	ld c, 10
+.loop
 	ld a, e
 	ld [hli], a
 	ld a, d
@@ -1369,16 +1370,16 @@ endr
 	or b
 	ld e, a
 	dec c
-	jr nz, .asm_27e1
-	ld a, $14
-	ld [$ffdc], a
+	jr nz, .loop
+	ld a, SCREEN_WIDTH
+	ld [hFFDC], a
 	ret
 ; 27f8
 
-Function27f8:: ; 27f8
+UpdateBGMapColumn:: ; 27f8
 	ld hl, BGMapBufferPtrs
-	ld c, $12
-.asm_27fd
+	ld c, SCREEN_HEIGHT
+.loop
 	ld a, e
 	ld [hli], a
 	ld a, d
@@ -1386,72 +1387,81 @@ Function27f8:: ; 27f8
 	ld a, $20
 	add e
 	ld e, a
-	jr nc, .asm_280e
+	jr nc, .skip
 	inc d
+; cap d at VBGMap1 / $100
 	ld a, d
 	and $3
-	or $98
+	or VBGMap0 / $100
 	ld d, a
 
-.asm_280e
+.skip
 	dec c
-	jr nz, .asm_27fd
-	ld a, $12
-	ld [$ffdc], a
+	jr nz, .loop
+	ld a, SCREEN_HEIGHT
+	ld [hFFDC], a
 	ret
 ; 2816
 
-Function2816:: ; 2816
+; unreferenced
 	ld hl, BGMapBuffer
-	ld bc, $0078
+	ld bc, SGBPredef - BGMapBuffer
 	xor a
 	call ByteFill
 	ret
 ; 2821
 
-Function2821:: ; 2821
+LoadTileset:: ; 2821
 	ld hl, TilesetAddress
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld a, [TilesetBank]
 	ld e, a
+
 	ld a, [rSVBK]
 	push af
 	ld a, $6
 	ld [rSVBK], a
+
 	ld a, e
 	ld de, w6_d000
 	call FarDecompress
+
 	ld hl, w6_d000
 	ld de, VTiles2
 	ld bc, $60 tiles
 	call CopyBytes
+
 	ld a, [rVBK]
 	push af
 	ld a, $1
 	ld [rVBK], a
+
 	ld hl, w6_d600
 	ld de, VTiles2
 	ld bc, $60 tiles
 	call CopyBytes
+
 	pop af
 	ld [rVBK], a
+
 	pop af
 	ld [rSVBK], a
-	ld a, [wTileset]
-	cp $1
-	jr z, .asm_286f
-	cp $2
-	jr z, .asm_286f
-	cp $4
-	jr z, .asm_286f
-	jr .asm_2875
 
-.asm_286f
+	ld a, [wTileset]
+	cp TILESET_JOHTO_1
+	jr z, .load_roof
+	cp TILESET_JOHTO_2
+	jr z, .load_roof
+	cp TILESET_BATTLE_TOWER_OUTSIDE
+	jr z, .load_roof
+	jr .skip_roof
+
+.load_roof
 	callba LoadMapGroupRoof
 
-.asm_2875
+.skip_roof
 	xor a
 	ld [hTileAnimFrame], a
 	ret
@@ -1497,40 +1507,40 @@ SaveScreen:: ; 289d
 	ld [hMapObjectIndexBuffer], a
 	ld a, [wd151]
 	and a
-	jr z, .asm_28cb
-	cp $1
-	jr z, .asm_28c0
-	cp $2
-	jr z, .asm_28d4
-	cp $3
-	jr z, .asm_28da
+	jr z, .down
+	cp UP
+	jr z, .up
+	cp LEFT
+	jr z, .left
+	cp RIGHT
+	jr z, .right
 	ret
 
-.asm_28c0
+.up
 	ld de, wdcbf
 	ld a, [hMapObjectIndexBuffer]
 	ld c, a
 	ld b, $0
 	add hl, bc
-	jr .asm_28ce
+	jr .vertical
 
-.asm_28cb
+.down
 	ld de, XCoord + 1
 
-.asm_28ce
+.vertical
 	ld b, $6
 	ld c, $4
 	jr Function28f7
 
-.asm_28d4
+.left
 	ld de, XCoord + 2
 	inc hl
-	jr .asm_28dd
+	jr .horizontal
 
-.asm_28da
+.right
 	ld de, XCoord + 1
 
-.asm_28dd
+.horizontal
 	ld b, $5
 	ld c, $5
 	jr Function28f7
@@ -1543,54 +1553,56 @@ LoadNeighboringBlockData:: ; 28e3
 	ld l, a
 	ld a, [MapWidth]
 	add $6
-	ld [hMapObjectIndexBuffer], a
+	ld [hConnectionStripLength], a
 	ld de, XCoord + 1
 	ld b, $6
 	ld c, $5
 
 Function28f7:: ; 28f7
-.asm_28f7
+.loop1
 	push bc
 	push hl
 	push de
-.asm_28fa
+.loop2
 	ld a, [de]
 	inc de
 	ld [hli], a
 	dec b
-	jr nz, .asm_28fa
+	jr nz, .loop2
 	pop de
 	ld a, e
 	add $6
 	ld e, a
-	jr nc, .asm_2908
+	jr nc, .okay
 	inc d
 
-.asm_2908
+.okay
 	pop hl
-	ld a, [hMapObjectIndexBuffer]
+	ld a, [hConnectionStripLength]
 	ld c, a
 	ld b, $0
 	add hl, bc
 	pop bc
 	dec c
-	jr nz, .asm_28f7
+	jr nz, .loop1
 	ret
 ; 2914
 
 Function2914:: ; 2914
 	xor a
 	ld [TilePermissions], a
-	call Function296c
-	call Function294d
+	call GetLeftRightCollision
+	call GetUpDownCollision
+; get coords of current tile
 	ld a, [PlayerMapX]
 	ld d, a
 	ld a, [PlayerMapY]
 	ld e, a
-	call Function2a3c
+	call GetCoordTile
 	ld [PlayerStandingTile], a
 	call Function29ff
 	ret nz
+
 	ld a, [PlayerStandingTile]
 	and 7
 	ld hl, .data_2945
@@ -1610,37 +1622,41 @@ Function2914:: ; 2914
 	db 1, 2, 4, 8, 9, 10, 5, 6
 ; 294d
 
-Function294d:: ; 294d
+GetUpDownCollision:: ; 294d
 	ld a, [PlayerMapX]
 	ld d, a
 	ld a, [PlayerMapY]
 	ld e, a
+
 	push de
 	inc e
-	call Function2a3c
+	call GetCoordTile
 	ld [TileDown], a
 	call Function298b
+
 	pop de
 	dec e
-	call Function2a3c
+	call GetCoordTile
 	ld [TileUp], a
 	call Function29a8
 	ret
 ; 296c
 
-Function296c:: ; 296c
+GetLeftRightCollision:: ; 296c
 	ld a, [PlayerMapX]
 	ld d, a
 	ld a, [PlayerMapY]
 	ld e, a
+
 	push de
 	dec d
-	call Function2a3c
+	call GetCoordTile
 	ld [TileLeft], a
 	call Function29e2
+
 	pop de
 	inc d
-	call Function2a3c
+	call GetCoordTile
 	ld [TileRight], a
 	call Function29c5
 	ret
@@ -1650,7 +1666,7 @@ Function298b:: ; 298b
 	call Function29ff
 	ret nz
 	ld a, [TileDown]
-	and $7
+	and 7
 	cp $2
 	jr z, .ok
 	cp $6
@@ -1660,7 +1676,7 @@ Function298b:: ; 298b
 
 .ok
 	ld a, [TilePermissions]
-	or $8
+	or FACE_DOWN
 	ld [TilePermissions], a
 	ret
 ; 29a8
@@ -1669,7 +1685,7 @@ Function29a8:: ; 29a8
 	call Function29ff
 	ret nz
 	ld a, [TileUp]
-	and $7
+	and 7
 	cp $3
 	jr z, .ok
 	cp $4
@@ -1679,7 +1695,7 @@ Function29a8:: ; 29a8
 
 .ok
 	ld a, [TilePermissions]
-	or $4
+	or FACE_UP
 	ld [TilePermissions], a
 	ret
 ; 29c5
@@ -1688,7 +1704,7 @@ Function29c5:: ; 29c5
 	call Function29ff
 	ret nz
 	ld a, [TileRight]
-	and $7
+	and 7
 	cp $1
 	jr z, .ok
 	cp $5
@@ -1698,7 +1714,7 @@ Function29c5:: ; 29c5
 
 .ok
 	ld a, [TilePermissions]
-	or $1
+	or FACE_RIGHT
 	ld [TilePermissions], a
 	ret
 ; 29e2
@@ -1707,7 +1723,7 @@ Function29e2:: ; 29e2
 	call Function29ff
 	ret nz
 	ld a, [TileLeft]
-	and $7
+	and 7
 	cp $0
 	jr z, .ok
 	cp $4
@@ -1717,7 +1733,7 @@ Function29e2:: ; 29e2
 
 .ok
 	ld a, [TilePermissions]
-	or $2
+	or FACE_LEFT
 	ld [TilePermissions], a
 	ret
 ; 29ff
@@ -1778,7 +1794,8 @@ endr
 ; 2a3c
 
 
-Function2a3c:: ; 2a3c
+GetCoordTile:: ; 2a3c
+; Get the collision byte for tile d, e
 	call GetBlockLocation
 	ld a, [hl]
 	and a
@@ -2065,7 +2082,7 @@ Function2bae:: ; 2bae
 	call SwitchToAnyMapBank
 	callba Function8c001
 	call OverworldTextModeSwitch
-	call Function2821
+	call LoadTileset
 	ld a, 9
 	call SkipMusic
 	pop af

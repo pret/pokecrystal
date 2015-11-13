@@ -65,12 +65,8 @@ InitPokedex: ; 40063
 	call ClearTileMap
 	call Function414b7
 
-	ld hl, wc6d0
-IF DEF(CRYSTAL11)
-	ld bc, $0116
-ELSE
-	ld bc, $0115
-ENDC
+	ld hl, wPokedexDataStart
+	ld bc, wPokedexDataEnd - wPokedexDataStart
 	xor a
 	call ByteFill
 

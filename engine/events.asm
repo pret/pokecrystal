@@ -511,7 +511,7 @@ CheckTimeEvents: ; 9693a
 	jr nz, .nothing
 
 	ld hl, StatusFlags2
-	bit 2, [hl]
+	bit 2, [hl] ; bug contest
 	jr z, .do_daily
 
 	callba CheckBugContestTimer

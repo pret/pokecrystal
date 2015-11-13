@@ -96,6 +96,7 @@ hOAMUpdate         EQU $ffd8
 hSPBuffer          EQU $ffd9
 
 hBGMapUpdate       EQU $ffdb
+hFFDC              EQU $ffdc
 
 hMapAnims          EQU $ffde
 hTileAnimFrame     EQU $ffdf

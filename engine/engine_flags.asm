@@ -22,7 +22,7 @@ ENDM
 	engine_flag wMomSavingMoney, 0 ; mom saving money ; $8
 	engine_flag wMomSavingMoney, 7 ; dst
 
-	engine_flag wdc39, 0
+	engine_flag wdc39, 0 ; unused, possibly related to a 2-day timer
 
 	engine_flag StatusFlags, 0 ; pokedex
 	engine_flag StatusFlags, 1 ; unown dex
@@ -31,7 +31,7 @@ ENDM
 	engine_flag StatusFlags, 6 ; credits skip
 	engine_flag StatusFlags, 7 ; bug contest on   ; $10
 	engine_flag StatusFlags2, 2 ; bug contest timer
-	engine_flag StatusFlags2, 1
+	engine_flag StatusFlags2, 1 ; ???
 	engine_flag StatusFlags2, 0 ; rockets in radio tower
 	engine_flag StatusFlags2, 4 ; bike shop call enabled (1024 bike steps reqd)
 	engine_flag StatusFlags2, 5 ; give pokerus
@@ -71,14 +71,14 @@ ENDM
 	engine_flag UnlockedUnowns, 7 ; 8
 
 	; fly
-	engine_flag VisitedSpawns, 0 ; your house
-	engine_flag VisitedSpawns, 1 ; viridian pokecenter
-	engine_flag VisitedSpawns, 2 ; pallet
-	engine_flag VisitedSpawns, 3 ; viridian
-	engine_flag VisitedSpawns, 4 ; pewter
-	engine_flag VisitedSpawns, 5 ; cerulean ; $38
-	engine_flag VisitedSpawns, 6 ; rock tunnel
-	engine_flag VisitedSpawns, 7 ; vermilion
+	engine_flag VisitedSpawns, 0     ; your house
+	engine_flag VisitedSpawns, 1     ; viridian pokecenter
+	engine_flag VisitedSpawns, 2     ; pallet
+	engine_flag VisitedSpawns, 3     ; viridian
+	engine_flag VisitedSpawns, 4     ; pewter
+	engine_flag VisitedSpawns, 5     ; cerulean ; $38
+	engine_flag VisitedSpawns, 6     ; rock tunnel
+	engine_flag VisitedSpawns, 7     ; vermilion
 	engine_flag VisitedSpawns + 1, 0 ; lavender
 	engine_flag VisitedSpawns + 1, 1 ; saffron
 	engine_flag VisitedSpawns + 1, 2 ; celadon
@@ -88,6 +88,7 @@ ENDM
 	engine_flag VisitedSpawns + 1, 6 ; new bark
 	engine_flag VisitedSpawns + 1, 7 ; cherrygrove
 	engine_flag VisitedSpawns + 2, 0 ; violet
+	                                 ; union cave
 	engine_flag VisitedSpawns + 2, 2 ; azalea
 	engine_flag VisitedSpawns + 2, 3 ; cianwood
 	engine_flag VisitedSpawns + 2, 4 ; goldenrod
@@ -97,6 +98,7 @@ ENDM
 	engine_flag VisitedSpawns + 3, 0 ; lake of rage
 	engine_flag VisitedSpawns + 3, 1 ; blackthorn
 	engine_flag VisitedSpawns + 3, 2 ; silver cave
+	                                 ; fast ship
 	engine_flag VisitedSpawns + 3, 4 ; unused
 
 	engine_flag wLuckyNumberShowFlag, 0 ; lucky number show
@@ -157,7 +159,7 @@ ENDM
 
 	engine_flag wDailyPhoneItemFlags, 0 ; beverly has nugget
 	engine_flag wDailyPhoneItemFlags, 1 ; jose has star piece
-	engine_flag wDailyPhoneItemFlags, 2 ; wade has item (see bittable1 $032b-e)
+	engine_flag wDailyPhoneItemFlags, 2 ; wade has item (see EVENT_WADE_HAS_*** in constants/event_flags.asm)
 	engine_flag wDailyPhoneItemFlags, 3 ; gina has leaf stone  ; $80
 	engine_flag wDailyPhoneItemFlags, 4 ; alan has fire stone
 	engine_flag wDailyPhoneItemFlags, 5 ; liz has thunderstone
@@ -165,7 +167,7 @@ ENDM
 	engine_flag wDailyPhoneItemFlags, 7 ; tully has water stone
 
 	engine_flag wDailyPhoneItemFlags + 1, 0 ; tiffany has pink bow
-	engine_flag wDailyPhoneItemFlags + 1, 1 ; wilton has item (see bittable1 $032f-31)
+	engine_flag wDailyPhoneItemFlags + 1, 1 ; wilton has item (see EVENT_WILTON_HAS_*** in constants/event_flags.asm)
 
 	engine_flag wDailyPhoneTimeOfDayFlags, 0
 	engine_flag wDailyPhoneTimeOfDayFlags, 1  ; $88

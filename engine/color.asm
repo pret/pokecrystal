@@ -318,7 +318,7 @@ Function8bec: ; 8bec
 	lb bc, 6, 4
 	ld a, [EnemySafeguardCount]
 	and $3
-	call Function9663
+	call FillBoxCGB
 	call LoadDETile
 	ret
 ; 8c1d
@@ -394,7 +394,7 @@ endr
 .asm_8c82
 	lb bc, 2, 8
 	ld a, e
-	call Function9663
+	call FillBoxCGB
 	ret
 ; 8c8a
 
@@ -618,7 +618,7 @@ Function9643: ; 9643
 	ret
 ; 9663
 
-Function9663: ; 9663
+FillBoxCGB: ; 9663
 .row
 	push bc
 	push hl
@@ -752,7 +752,7 @@ Function96f3: ; 96f3
 .asm_9712
 	lb bc, 2, 8
 	ld a, e
-	call Function9663
+	call FillBoxCGB
 	ret
 ; 971a
 

@@ -34,40 +34,40 @@ Predef_LoadSGBLayoutCGB: ; 8d59
 ; 8d7a
 
 .jumptable: ; 8d7a
-	dw Function8db8
-	dw Function8ddb
-	dw Function8eb9
-	dw Function8edb
-	dw Function8f70
-	dw Function906e
-	dw Function90f8
-	dw Function9122
-	dw Function91ad
-	dw Function91c8
-	dw Function91d1
-	dw Function91e4
-	dw Function9228
-	dw Function9251
-	dw Function9373
-	dw Function93a6
-	dw Function93ba
-	dw Function9195
-	dw Function9499
-	dw Function94d0
-	dw Function93d3
-	dw Function9289
-	dw Function903e
-	dw Function8fca
-	dw Function925e
-	dw Function94fa
-	dw Function9529
-	dw Function9555
-	dw Function9578
-	dw Function9591
-	dw Function9542
+	dw _CGB00
+	dw _CGB01
+	dw _CGB02
+	dw _CGB03
+	dw _CGB04
+	dw _CGB05
+	dw _CGB06
+	dw _CGB07
+	dw _CGB08
+	dw _CGB09
+	dw _CGB0a
+	dw _CGB0b
+	dw _CGB0c
+	dw _CGB0d
+	dw _CGB0e
+	dw _CGB0f
+	dw _CGB10
+	dw _CGB11
+	dw _CGB12
+	dw _CGB13
+	dw _CGB14
+	dw _CGB15
+	dw _CGB16
+	dw _CGB17
+	dw _CGB18
+	dw _CGB19
+	dw _CGB1a
+	dw _CGB1b
+	dw _CGB1c
+	dw _CGB1d
+	dw _CGB1e
 ; 8db8
 
-Function8db8: ; 8db8
+_CGB00: ; 8db8
 	ld hl, PalPacket_9c66 + 1
 	ld de, wMapPals
 	ld c, $4
@@ -82,7 +82,7 @@ Function8db8: ; 8db8
 	call CopyPalettes
 	jr Function8e23
 
-Function8ddb: ; 8ddb
+_CGB01: ; 8ddb
 	ld de, wMapPals
 	call Function9729
 	push hl
@@ -126,25 +126,25 @@ Function8e23: ; 8e23
 	ld a, $2
 	call ByteFill
 	hlcoord 0, 4, AttrMap
-	ld bc, $080a
+	lb bc, 8, 10
 	ld a, $0
-	call Function9663
+	call FillBoxCGB
 	hlcoord 10, 0, AttrMap
-	ld bc, $070a
+	lb bc, 7, 10
 	ld a, $1
-	call Function9663
+	call FillBoxCGB
 	hlcoord 0, 0, AttrMap
-	ld bc, $040a
+	lb bc, 4, 10
 	ld a, $2
-	call Function9663
+	call FillBoxCGB
 	hlcoord 10, 7, AttrMap
-	ld bc, $050a
+	lb bc, 5, 10
 	ld a, $3
-	call Function9663
+	call FillBoxCGB
 	hlcoord 10, 11, AttrMap
-	ld bc, $0109
+	lb bc, 1, 9
 	ld a, $4
-	call Function9663
+	call FillBoxCGB
 	hlcoord 0, 12, AttrMap
 	ld bc, $0078
 	ld a, $7
@@ -189,7 +189,7 @@ Function8e9f: ; 8e9f
 	ret
 ; 8eb9
 
-Function8eb9: ; 8eb9
+_CGB02: ; 8eb9
 	ld a, [PlayerGender]
 	bit 0, a
 	jr z, .asm_8ec5
@@ -210,7 +210,7 @@ Function8eb9: ; 8eb9
 	ret
 ; 8edb
 
-Function8edb: ; 8edb
+_CGB03: ; 8edb
 	ld de, wMapPals
 	ld a, [wcda1]
 	ld l, a
@@ -234,25 +234,25 @@ endr
 	call FarCopyWRAM
 	call Function9699
 	hlcoord 0, 0, AttrMap
-	ld bc, $0814
+	lb bc, 8, SCREEN_WIDTH
 	ld a, $1
-	call Function9663
+	call FillBoxCGB
 	hlcoord 10, 16, AttrMap
 	ld bc, $000a
 	ld a, $2
 	call ByteFill
 	hlcoord 13, 5, AttrMap
-	ld bc, $0202
+	lb bc, 2, 2
 	ld a, $3
-	call Function9663
+	call FillBoxCGB
 	hlcoord 15, 5, AttrMap
-	ld bc, $0202
+	lb bc, 2, 2
 	ld a, $4
-	call Function9663
+	call FillBoxCGB
 	hlcoord 17, 5, AttrMap
-	ld bc, $0202
+	lb bc, 2, 2
 	ld a, $5
-	call Function9663
+	call FillBoxCGB
 	call Function96b3
 	call Function96a4
 	ld a, $1
@@ -285,7 +285,7 @@ Unknown_8f6a: ; 8f6a
 	RGB 17, 31, 31
 ; 8f70
 
-Function8f70: ; 8f70
+_CGB04: ; 8f70
 	ld de, wMapPals
 	ld a, $1d
 	call GetAthPalletFromPalettes9df6
@@ -304,9 +304,9 @@ Function8f70: ; 8f70
 .asm_8f90
 	call Function9699
 	hlcoord 1, 1, AttrMap
-	ld bc, $0707
+	lb bc, 7, 7
 	ld a, $1
-	call Function9663
+	call FillBoxCGB
 	call Function971a
 	ld hl, Palette8fc2
 	ld de, Unkn2Pals + $38
@@ -333,7 +333,7 @@ Palette8fc2: ; 8fc2
 	RGB 00, 00, 00
 ; 8fca
 
-Function8fca: ; 8fca
+_CGB17: ; 8fca
 	ld de, wMapPals
 	ld a, $1d
 	call GetAthPalletFromPalettes9df6
@@ -353,9 +353,9 @@ Function8fca: ; 8fca
 .asm_8fed
 	call Function9699
 	hlcoord 1, 4, AttrMap
-	ld bc, $0707
+	lb bc, 7, 7
 	ld a, $1
-	call Function9663
+	call FillBoxCGB
 	call Function971a
 	call Function96b3
 	call Function96a4
@@ -376,9 +376,9 @@ Function9009: ; 9009
 .asm_901a
 	call Function9699
 	hlcoord 1, 1, AttrMap
-	ld bc, $0707
+	lb bc, 7, 7
 	ld a, $1
-	call Function9663
+	call FillBoxCGB
 	call Function971a
 	call Function96b3
 	call Function96a4
@@ -394,7 +394,7 @@ Palette9036: ; 9036
 	RGB 00, 00, 00
 ; 903e
 
-Function903e: ; 903e
+_CGB16: ; 903e
 	ld de, wMapPals
 	ld a, $1d
 	call GetAthPalletFromPalettes9df6
@@ -404,9 +404,9 @@ Function903e: ; 903e
 	call Function9643
 	call Function9699
 	hlcoord 7, 5, AttrMap
-	ld bc, $0707
+	lb bc, 7, 7
 	ld a, $1
-	call Function9663
+	call FillBoxCGB
 	call Function971a
 	call Function96b3
 	call Function96a4
@@ -415,7 +415,7 @@ Function903e: ; 903e
 	ret
 ; 906e
 
-Function906e: ; 906e
+_CGB05: ; 906e
 	ld hl, Palettes_b7a9
 	ld de, wMapPals
 	ld bc, $0080
@@ -423,41 +423,41 @@ Function906e: ; 906e
 	call FarCopyWRAM
 	call Function9699
 	hlcoord 0, 2, AttrMap
-	ld bc, $0a03
+	lb bc, 10, 3
 	ld a, $2
-	call Function9663
+	call FillBoxCGB
 	hlcoord 17, 2, AttrMap
-	ld bc, $0a03
+	lb bc, 10, 3
 	ld a, $2
-	call Function9663
+	call FillBoxCGB
 	hlcoord 0, 4, AttrMap
-	ld bc, $0603
+	lb bc, 6, 3
 	ld a, $3
-	call Function9663
+	call FillBoxCGB
 	hlcoord 17, 4, AttrMap
-	ld bc, $0603
+	lb bc, 6, 3
 	ld a, $3
-	call Function9663
+	call FillBoxCGB
 	hlcoord 0, 6, AttrMap
-	ld bc, $0203
+	lb bc, 2, 3
 	ld a, $4
-	call Function9663
+	call FillBoxCGB
 	hlcoord 17, 6, AttrMap
-	ld bc, $0203
+	lb bc, 2, 3
 	ld a, $4
-	call Function9663
+	call FillBoxCGB
 	hlcoord 4, 2, AttrMap
-	ld bc, $020c
+	lb bc, 2, 12
 	ld a, $1
-	call Function9663
+	call FillBoxCGB
 	hlcoord 3, 2, AttrMap
-	ld bc, $0a01
+	lb bc, 10, 1
 	ld a, $1
-	call Function9663
+	call FillBoxCGB
 	hlcoord 16, 2, AttrMap
-	ld bc, $0a01
+	lb bc, 10, 1
 	ld a, $1
-	call Function9663
+	call FillBoxCGB
 	hlcoord 0, 12, AttrMap
 	ld bc, $0078
 	ld a, $7
@@ -469,7 +469,7 @@ Function906e: ; 906e
 	ret
 ; 90f8
 
-Function90f8: ; 90f8
+_CGB06: ; 90f8
 	ld hl, PalPacket_9ca6 + 1
 	call CopyFourPalettes
 	call Function9699
@@ -478,9 +478,9 @@ Function90f8: ; 90f8
 	call GetAthPalletFromPalettes9df6
 	call LoadHLPaletteIntoDE
 	hlcoord 0, 6, AttrMap
-	ld bc, $0c14
+	lb bc, 12, SCREEN_WIDTH
 	ld a, $1
-	call Function9663
+	call FillBoxCGB
 	call Function96b3
 	call Function96a4
 	ld a, $1
@@ -488,7 +488,7 @@ Function90f8: ; 90f8
 	ret
 ; 9122
 
-Function9122: ; 9122
+_CGB07: ; 9122
 	ld b, 0
 	ld hl, Jumptable_912d
 rept 2
@@ -561,7 +561,7 @@ Function9180: ; 9180
 	ret
 ; 9195
 
-Function9195: ; 9195
+_CGB11: ; 9195
 	ld hl, Palettes_b789
 	ld de, wMapPals
 	ld bc, $0028
@@ -573,7 +573,7 @@ Function9195: ; 9195
 	ret
 ; 91ad
 
-Function91ad: ; 91ad
+_CGB08: ; 91ad
 	ld hl, Palettes_b641
 	ld de, wMapPals
 	ld bc, $0080
@@ -586,14 +586,14 @@ Function91ad: ; 91ad
 	ret
 ; 91c8
 
-Function91c8: ; 91c8
+_CGB09: ; 91c8
 	call Functionb1de
 	ld a, $9
 	ld [SGBPredef], a
 	ret
 ; 91d1
 
-Function91d1: ; 91d1
+_CGB0a: ; 91d1
 	ld hl, PalPacket_9c56 + 1
 	call CopyFourPalettes
 	call Function8e9f
@@ -603,7 +603,7 @@ Function91d1: ; 91d1
 	ret
 ; 91e4
 
-Function91e4: ; 91e4
+_CGB0b: ; 91e4
 	ld de, wMapPals
 	ld a, c
 	and a
@@ -638,7 +638,7 @@ Function91e4: ; 91e4
 	ret
 ; 9228
 
-Function9228: ; 9228
+_CGB0c: ; 9228
 	ld hl, Palettes_b6f1
 	ld de, wMapPals
 	ld bc, $0028
@@ -657,7 +657,7 @@ Function9228: ; 9228
 	ret
 ; 9251
 
-Function9251: ; 9251
+_CGB0d: ; 9251
 	ld hl, PalPacket_9cb6 + 1
 	call CopyFourPalettes
 	call Function9699
@@ -665,7 +665,7 @@ Function9251: ; 9251
 	ret
 ; 925e
 
-Function925e: ; 925e
+_CGB18: ; 925e
 	ld hl, PalPacket_9bc6 + 1
 	call CopyFourPalettes
 	ld de, Unkn2Pals
@@ -688,7 +688,7 @@ Function925e: ; 925e
 	ret
 ; 9289
 
-Function9289: ; 9289
+_CGB15: ; 9289
 	ld de, wMapPals
 	xor a
 	call Function976b
@@ -728,7 +728,7 @@ Function9289: ; 9289
 .asm_92e3
 	call ByteFill
 	hlcoord 14, 1, AttrMap
-	ld bc, $0705
+	lb bc, 7, 5
 	ld a, [PlayerGender]
 	and a
 	ld a, $0
@@ -736,45 +736,45 @@ Function9289: ; 9289
 	ld a, $1
 
 .asm_92f6
-	call Function9663
+	call FillBoxCGB
 	hlcoord 18, 1, AttrMap
 	ld [hl], $1
 	hlcoord 2, 11, AttrMap
-	ld bc, $0204
+	lb bc, 2, 4
 	ld a, $1
-	call Function9663
+	call FillBoxCGB
 	hlcoord 6, 11, AttrMap
-	ld bc, $0204
+	lb bc, 2, 4
 	ld a, $2
-	call Function9663
+	call FillBoxCGB
 	hlcoord 10, 11, AttrMap
-	ld bc, $0204
+	lb bc, 2, 4
 	ld a, $3
-	call Function9663
+	call FillBoxCGB
 	hlcoord 14, 11, AttrMap
-	ld bc, $0204
+	lb bc, 2, 4
 	ld a, $4
-	call Function9663
+	call FillBoxCGB
 	hlcoord 2, 14, AttrMap
-	ld bc, $0204
+	lb bc, 2, 4
 	ld a, $5
-	call Function9663
+	call FillBoxCGB
 	hlcoord 6, 14, AttrMap
-	ld bc, $0204
+	lb bc, 2, 4
 	ld a, $6
-	call Function9663
+	call FillBoxCGB
 	hlcoord 10, 14, AttrMap
-	ld bc, $0204
+	lb bc, 2, 4
 	ld a, $7
-	call Function9663
+	call FillBoxCGB
 	ld a, [PlayerGender]
 	and a
 	push af
 	jr z, .asm_935d
 	hlcoord 14, 14, AttrMap
-	ld bc, $0204
+	lb bc, 2, 4
 	ld a, $1
-	call Function9663
+	call FillBoxCGB
 
 .asm_935d
 	pop af
@@ -793,7 +793,7 @@ Function9289: ; 9289
 	ret
 ; 9373
 
-Function9373: ; 9373
+_CGB0e: ; 9373
 	ld de, wMapPals
 	ld a, $10
 	call GetAthPalletFromPalettes9df6
@@ -809,9 +809,9 @@ endr
 	call Function9643
 	call Function9699
 	hlcoord 11, 1, AttrMap
-	ld bc, $0209
+	lb bc, 2, 9
 	ld a, $1
-	call Function9663
+	call FillBoxCGB
 	call Function96b3
 	call Function96a4
 	ld a, $1
@@ -819,7 +819,7 @@ endr
 	ret
 ; 93a6
 
-Function93a6: ; 93a6
+_CGB0f: ; 93a6
 	ld hl, PalPacket_9c46 + 1
 	call CopyFourPalettes
 	call Function9699
@@ -830,7 +830,7 @@ Function93a6: ; 93a6
 	ret
 ; 93ba
 
-Function93ba: ; 93ba
+_CGB10: ; 93ba
 	ld de, wMapPals
 	ld a, $1d
 	call GetAthPalletFromPalettes9df6
@@ -843,7 +843,7 @@ Function93ba: ; 93ba
 	ret
 ; 93d3
 
-Function93d3: ; 93d3
+_CGB14: ; 93d3
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
 	jr z, .asm_93e6
@@ -865,25 +865,25 @@ Function93d3: ; 93d3
 	call FarCopyWRAM
 	call Function9699
 	hlcoord 0, 0, AttrMap
-	ld bc, $010a
+	lb bc, 1, 10
 	ld a, $1
-	call Function9663
+	call FillBoxCGB
 	hlcoord 10, 0, AttrMap
-	ld bc, $010a
+	lb bc, 1, 10
 	ld a, $2
-	call Function9663
+	call FillBoxCGB
 	hlcoord 7, 2, AttrMap
-	ld bc, $0901
+	lb bc, 9, 1
 	ld a, $3
-	call Function9663
+	call FillBoxCGB
 	hlcoord 0, 7, AttrMap
-	ld bc, $0305
+	lb bc, 3, 5
 	ld a, $4
-	call Function9663
+	call FillBoxCGB
 	hlcoord 0, 3, AttrMap
-	ld bc, $0305
+	lb bc, 3, 5
 	ld a, $5
-	call Function9663
+	call FillBoxCGB
 	call Function96b3
 	call Function96a4
 	ld a, $1
@@ -945,8 +945,8 @@ Palettes_9469: ; 9469
 	RGB 00, 00, 00
 ; 9499
 
-Function9499: ; 9499
-	call Function91c8
+_CGB12: ; 9499
+	call _CGB09
 	ld de, $0014
 	hlcoord 0, 0, AttrMap
 	ld a, [wMenuBorderTopCoord]
@@ -975,23 +975,23 @@ Function9499: ; 9499
 	inc a
 	ld c, a
 	ld a, $0
-	call Function9663
+	call FillBoxCGB
 	call Function96b3
 	ret
 ; 94d0
 
-Function94d0: ; 94d0
+_CGB13: ; 94d0
 	ld hl, PalPacket_9ba6 + 1
 	call CopyFourPalettes
 	call Function9699
 	hlcoord 0, 4, AttrMap
-	ld bc, $0a14
+	lb bc, 10, SCREEN_WIDTH
 	ld a, $2
-	call Function9663
+	call FillBoxCGB
 	hlcoord 0, 6, AttrMap
-	ld bc, $0614
+	lb bc, 6, SCREEN_WIDTH
 	ld a, $1
-	call Function9663
+	call FillBoxCGB
 	call Function96b3
 	call Function96a4
 	ld a, $1
@@ -999,7 +999,7 @@ Function94d0: ; 94d0
 	ret
 ; 94fa
 
-Function94fa: ; 94fa
+_CGB19: ; 94fa
 	ld de, wMapPals
 	ld a, $4e
 	call GetAthPalletFromPalettes9df6
@@ -1023,7 +1023,7 @@ Palette_9521: ; 9521
 	RGB 00, 00, 00
 ; 9529
 
-Function9529: ; 9529
+_CGB1a: ; 9529
 	ld de, wMapPals
 	ld a, [CurPartySpecies]
 	ld bc, TempMonDVs
@@ -1035,7 +1035,7 @@ Function9529: ; 9529
 	ret
 ; 9542
 
-Function9542: ; 9542
+_CGB1e: ; 9542
 	ld de, wMapPals
 	ld a, [CurPartySpecies]
 	call Function9775
@@ -1045,7 +1045,7 @@ Function9542: ; 9542
 	ret
 ; 9555
 
-Function9555: ; 9555
+_CGB1b: ; 9555
 	ld hl, PalPacket_9cc6 + 1
 	call CopyFourPalettes
 	ld hl, Palettes_b681
@@ -1061,7 +1061,7 @@ Function9555: ; 9555
 	ret
 ; 9578
 
-Function9578: ; 9578
+_CGB1c: ; 9578
 	ld de, wMapPals
 	ld a, [CurPartySpecies]
 	ld bc, TempMonDVs
@@ -1073,7 +1073,7 @@ Function9578: ; 9578
 	ret
 ; 9591
 
-Function9591: ; 9591
+_CGB1d: ; 9591
 	ld hl, Palette95e0
 	ld de, wMapPals
 	ld bc, $0010
@@ -1082,25 +1082,25 @@ Function9591: ; 9591
 	call Function96a4
 	call Function9699
 	hlcoord 3, 7, AttrMap
-	ld bc, $080e
+	lb bc, 8, 14
 	ld a, $1
-	call Function9663
+	call FillBoxCGB
 	hlcoord 1, 5, AttrMap
-	ld bc, $0112
+	lb bc, 1, 18
 	ld a, $1
-	call Function9663
+	call FillBoxCGB
 	hlcoord 1, 16, AttrMap
-	ld bc, $0112
+	lb bc, 1, 18
 	ld a, $1
-	call Function9663
+	call FillBoxCGB
 	hlcoord 0, 0, AttrMap
-	ld bc, $1102
+	lb bc, 17, 2
 	ld a, $1
-	call Function9663
+	call FillBoxCGB
 	hlcoord 18, 5, AttrMap
-	ld bc, $0c01
+	lb bc, 12, 1
 	ld a, $1
-	call Function9663
+	call FillBoxCGB
 	call Function96b3
 	ret
 ; 95e0

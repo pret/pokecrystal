@@ -347,7 +347,9 @@ FarCallScrollBGMapPalettes:: ; dbd
 	push af
 	ld a, BANK(ScrollBGMapPalettes)
 	rst Bankswitch
+
 	call ScrollBGMapPalettes
+
 	pop af
 	rst Bankswitch
 	ret

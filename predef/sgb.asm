@@ -33,12 +33,12 @@ Predef_LoadSGBLayout: ; 864c
 	dw .SGB05
 	dw .SGB06
 	dw .SGB07
-	dw .SGB08_1d
+	dw .SGB08
 	dw .SGB09
 	dw .SGB0a
 	dw .SGB0b
 	dw .SGB0c
-	dw .SGB0d_15
+	dw .SGB0d
 	dw .SGB0e
 	dw .SGB0f
 	dw .SGB10
@@ -46,7 +46,7 @@ Predef_LoadSGBLayout: ; 864c
 	dw .SGB12
 	dw .SGB13
 	dw .SGB14
-	dw .SGB0d_15
+	dw .SGB15
 	dw .SGB16
 	dw .SGB17
 	dw .SGB18
@@ -54,7 +54,7 @@ Predef_LoadSGBLayout: ; 864c
 	dw .SGB1a
 	dw .SGB1b
 	dw .SGB1c
-	dw .SGB08_1d
+	dw .SGB1d
 	dw .SGB1e
 ; 86ad
 
@@ -67,10 +67,12 @@ Predef_LoadSGBLayout: ; 864c
 .SGB01: ; 86b4
 	ld hl, BlkPacket_9aa6
 	call Function9809
+
 	ld hl, PalPacket_9ce6
 	ld de, wcda9
 	ld bc, $0010
 	call CopyBytes
+
 	ld a, [PlayerHPPal]
 	ld l, a
 	ld h, 0
@@ -79,6 +81,7 @@ rept 2
 endr
 	ld de, Palettes_a8be
 	add hl, de
+
 	ld a, [hli]
 	ld [wcda9 + 3], a
 	ld a, [hli]
@@ -87,12 +90,14 @@ endr
 	ld [wcda9 + 5], a
 	ld a, [hl]
 	ld [wcda9 + 6], a
+
 	ld a, [EnemyHPPal]
 	ld l, a
 	ld h, $0
 rept 2
 	add hl, hl
 endr
+
 	ld de, Palettes_a8be
 	add hl, de
 	ld a, [hli]
@@ -103,11 +108,14 @@ endr
 	ld [wcda9 + 11], a
 	ld a, [hl]
 	ld [wcda9 + 12], a
+
 	ld hl, PalPacket_9cf6
 	ld de, wcda9 + $10
 	ld bc, $0010
 	call CopyBytes
+
 	call Function9729
+
 	ld a, [hli]
 	ld [wcda9 + $13], a
 	ld a, [hli]
@@ -125,6 +133,7 @@ endr
 	ld [wcda9 + $1b], a
 	ld a, [hl]
 	ld [wcda9 + $1c], a
+
 	ld hl, wcda9
 	ld de, wcda9 + $10
 	ld a, $1
@@ -137,11 +146,13 @@ endr
 	ld de, wcda9
 	ld bc, $0010
 	call CopyBytes
+
 	ld hl, wcda9 + 1
 	ld [hl], $10
 rept 2
 	inc hl
 endr
+
 	ld a, [PlayerHPPal]
 	add $2f
 	ld [hl], a
@@ -298,7 +309,8 @@ endr
 	ret
 ; 8860
 
-.SGB08_1d: ; 8860
+.SGB08:
+.SGB1d: ; 8860
 	ld hl, PalPacket_9cb6
 	ld de, BlkPacket_9a86
 	ret
@@ -414,7 +426,8 @@ endr
 	ret
 ; 891a
 
-.SGB0d_15: ; 891a
+.SGB0d:
+.SGB15: ; 891a
 	ld hl, PalPacket_9cb6
 	ld de, BlkPacket_9a86
 	ret

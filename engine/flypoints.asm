@@ -496,7 +496,7 @@ Function91d9b: ; 91d9b
 
 .asm_91db7
 	ld a, [StatusFlags]
-	bit 6, a
+	bit 6, a ; hall of fame
 	ret z
 	ld a, [hWY]
 	and a

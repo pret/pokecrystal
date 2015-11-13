@@ -717,7 +717,7 @@ Function46a6: ; 46a6
 	ld e, a
 
 	push bc
-	call Function2a3c
+	call GetCoordTile
 	pop bc
 
 	ld hl, OBJECT_STANDING_TILE
@@ -922,7 +922,7 @@ Function47bc: ; 47bc
 	add hl, bc
 	ld e, [hl]
 	push bc
-	call Function2a3c
+	call GetCoordTile
 	pop bc
 	ld hl, OBJECT_STANDING_TILE
 	add hl, bc
@@ -2874,7 +2874,7 @@ Function5688: ; 5688
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld e, [hl]
-	call Function2a3c
+	call GetCoordTile
 	pop bc
 	ld hl, OBJECT_STANDING_TILE
 	add hl, bc
