@@ -16,7 +16,7 @@ AI_SwitchOrTryItem: ; 38000
 	bit SUBSTATUS_CANT_RUN, a
 	jr nz, DontSwitch
 
-	ld a, [wc731]
+	ld a, [wEnemyWrapCount]
 	and a
 	jr nz, DontSwitch
 
@@ -44,15 +44,15 @@ DontSwitch: ; 38041
 ; 38045
 
 SwitchOften: ; 38045
-	callab Function34941
-	ld a, [wc717]
+	callab CheckAbleToSwitch
+	ld a, [wEnemySwitchMonParam]
 	and $f0
 	jp z, DontSwitch
 
 	cp $10
 	jr nz, .not_10
 	call Random
-	cp $80
+	cp 1 + 50 percent
 	jr c, .switch
 	jp DontSwitch
 .not_10
@@ -60,35 +60,35 @@ SwitchOften: ; 38045
 	cp $20
 	jr nz, .not_20
 	call Random
-	cp 200
+	cp -1 + 79 percent
 	jr c, .switch
 	jp DontSwitch
 .not_20
 
 	; $30
 	call Random
-	cp 10
+	cp 4 percent
 	jp c, DontSwitch
 
 .switch
-	ld a, [wc717]
+	ld a, [wEnemySwitchMonParam]
 	and $f
 	inc a
 	; In register 'a' is the number (1-6) of the Pkmn to switch to
-	ld [wc718], a
+	ld [wEnemySwitchMonIndex], a
 	jp AI_TrySwitch
 ; 38083
 
 SwitchRarely: ; 38083
-	callab Function34941
-	ld a, [wc717]
+	callab CheckAbleToSwitch
+	ld a, [wEnemySwitchMonParam]
 	and $f0
 	jp z, DontSwitch
 
 	cp $10
 	jr nz, .not_10
 	call Random
-	cp 20
+	cp 8 percent
 	jr c, .switch
 	jp DontSwitch
 .not_10
@@ -96,34 +96,34 @@ SwitchRarely: ; 38083
 	cp $20
 	jr nz, .not_20
 	call Random
-	cp 30
+	cp 12 percent
 	jr c, .switch
 	jp DontSwitch
 .not_20
 
 	; $30
 	call Random
-	cp 200
+	cp -1 + 79 percent
 	jp c, DontSwitch
 
 .switch
-	ld a, [wc717]
+	ld a, [wEnemySwitchMonParam]
 	and $f
 	inc a
-	ld [wc718], a
+	ld [wEnemySwitchMonIndex], a
 	jp AI_TrySwitch
 ; 380c1
 
 SwitchSometimes: ; 380c1
-	callab Function34941
-	ld a, [wc717]
+	callab CheckAbleToSwitch
+	ld a, [wEnemySwitchMonParam]
 	and $f0
 	jp z, DontSwitch
 
 	cp $10
 	jr nz, .not_10
 	call Random
-	cp 50
+	cp -1 + 20 percent
 	jr c, .switch
 	jp DontSwitch
 .not_10
@@ -131,21 +131,21 @@ SwitchSometimes: ; 380c1
 	cp $20
 	jr nz, .not_20
 	call Random
-	cp $80
+	cp 1 + 50 percent
 	jr c, .switch
 	jp DontSwitch
 .not_20
 
 	; $30
 	call Random
-	cp 50
+	cp -1 + 20 percent
 	jp c, DontSwitch
 
 .switch
-	ld a, [wc717]
+	ld a, [wEnemySwitchMonParam]
 	and $f
 	inc a
-	ld [wc718], a
+	ld [wEnemySwitchMonIndex], a
 	jp AI_TrySwitch
 ; 380ff
 
@@ -163,9 +163,9 @@ AI_TryItem: ; 38105
 	and a
 	ret nz
 
-	ld a, [wc650]
+	ld a, [wEnemyTrainerItem1]
 	ld b, a
-	ld a, [wc651]
+	ld a, [wEnemyTrainerItem2]
 	or b
 	ret z
 
@@ -180,7 +180,7 @@ AI_TryItem: ; 38105
 	ld b, h
 	ld c, l
 	ld hl, AI_Items
-	ld de, wc650
+	ld de, wEnemyTrainerItem1
 .loop
 	ld a, [hl]
 	and a
@@ -225,7 +225,7 @@ endr
 	xor a
 	ld [de], a
 	inc a
-	ld [wc70f], a
+	ld [wEnemyGoesFirst], a
 
 	ld hl, EnemySubStatus3
 	res SUBSTATUS_BIDE, [hl]
@@ -233,7 +233,7 @@ endr
 	xor a
 	ld [EnemyFuryCutterCount], a
 	ld [EnemyProtectCount], a
-	ld [wc72c], a
+	ld [wEnemyRageCounter], a
 
 	ld hl, EnemySubStatus4
 	res SUBSTATUS_RAGE, [hl]
@@ -250,7 +250,7 @@ endr
 	ld d, a
 	ld e, 0
 	ld hl, OTPartyMon1Level
-	ld bc, OTPartyMon2 - OTPartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 .next
 	ld a, [hl]
 	cp e
@@ -314,7 +314,7 @@ AI_Items: ; 39196
 	bit ALWAYS_USE_F, a
 	jp nz, .Use
 	call Random
-	cp 50
+	cp -1 + 20 percent
 	jp c, .Use
 	jp .DontUse
 
@@ -326,7 +326,7 @@ AI_Items: ; 39196
 	cp 4
 	jr c, .FailToxicCheck
 	call Random
-	cp $80
+	cp 1 + 50 percent
 	jp c, .Use
 .FailToxicCheck
 	ld a, [EnemyMonStatus]
@@ -367,7 +367,7 @@ AI_Items: ; 39196
 	callab AICheckEnemyQuarterHP
 	jp nc, .UseHealItem
 	call Random
-	cp $80
+	cp 1 + 50 percent
 	jp c, .UseHealItem
 	jp .DontUse
 
@@ -375,7 +375,7 @@ AI_Items: ; 39196
 	callab AICheckEnemyQuarterHP
 	jp c, .DontUse
 	call Random
-	cp $32
+	cp -1 + 20 percent
 	jp c, .DontUse
 	jr .UseHealItem
 
@@ -385,7 +385,7 @@ AI_Items: ; 39196
 	callab AICheckEnemyQuarterHP
 	jp nc, .UseHealItem
 	call Random
-	cp $32
+	cp -1 + 20 percent
 	jp nc, .DontUse
 
 .UseHealItem: ; 38281 (e:4281)
@@ -418,44 +418,44 @@ AI_Items: ; 39196
 
 .asm_382ae: ; This appears to be unused
 	callab AICheckEnemyMaxHP
-	jr c, .asm_382e4
+	jr c, .dont_use
 	push bc
 	ld de, EnemyMonMaxHP + 1
 	ld hl, EnemyMonHP + 1
 	ld a, [de]
 	sub [hl]
-	jr z, .asm_382e7
+	jr z, .check_40_percent
 	dec hl
 	dec de
 	ld c, a
 	sbc [hl]
 	and a
-	jr nz, .asm_382e7
+	jr nz, .check_40_percent
 	ld a, c
 	cp b
-	jp c, .asm_382d5
+	jp c, .check_50_percent
 	callab AICheckEnemyQuarterHP
-	jr c, .asm_382e7
+	jr c, .check_40_percent
 
-.asm_382d5
+.check_50_percent
 	pop bc
 	ld a, [bc]
 	bit UNKNOWN_USE_F, a
 	jp z, .Use
 	call Random
-	cp $80
+	cp 1 + 50 percent
 	jp c, .Use
 
-.asm_382e4
+.dont_use
 	jp .DontUse
 
-.asm_382e7
+.check_40_percent
 	pop bc
 	ld a, [bc]
 	bit UNKNOWN_USE_F, a
 	jp z, .DontUse
 	call Random
-	cp $64
+	cp 1 + 39 percent
 	jp c, .Use
 	jp .DontUse
 ; 382f9
@@ -517,13 +517,13 @@ AI_Items: ; 39196
 	bit ALWAYS_USE_F, a
 	jp nz, .Use
 	call Random
-	cp $80
+	cp 1 + 50 percent
 	jp c, .DontUse
 	ld a, [bc]
 	bit CONTEXT_USE_F, a
 	jp nz, .Use
 	call Random
-	cp $80
+	cp 1 + 50 percent
 	jp c, .DontUse
 	jp .Use
 .notfirstturnout
@@ -531,7 +531,7 @@ AI_Items: ; 39196
 	bit ALWAYS_USE_F, a
 	jp z, .DontUse
 	call Random
-	cp $32
+	cp -1 + 20 percent
 	jp nc, .DontUse
 	jp .Use
 
@@ -665,7 +665,7 @@ EnemyPotionFinish: ; 38436
 	xor a
 	ld [wd10a], a
 	call AIUsedItemSound
-	predef Functionc6e0
+	predef AnimateHPBar
 	jp AIUpdateHUD
 
 
@@ -685,7 +685,7 @@ AI_TrySwitch: ; 3844b
 	inc d
 .fainted
 	push bc
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	dec c
@@ -701,16 +701,17 @@ AI_TrySwitch: ; 3844b
 AI_Switch: ; 3846c
 	ld a, $1
 	ld [wEnemyIsSwitching], a
-	ld [wc70f], a
+	ld [wEnemyGoesFirst], a
 	ld hl, EnemySubStatus4
 	res SUBSTATUS_RAGE, [hl]
 	xor a
 	ld [hBattleTurn], a
-	callab Function3dc5b
+	callab PursuitSwitch
+
 	push af
 	ld a, [CurOTMon]
 	ld hl, OTPartyMon1Status
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -718,18 +719,20 @@ AI_Switch: ; 3846c
 	ld bc, $0004
 	call CopyBytes
 	pop af
+
 	jr c, .skiptext
 	ld hl, TextJump_EnemyWithdrew
 	call PrintText
+
 .skiptext
-	ld a, $1
+	ld a, 1
 	ld [wd264], a
 	callab NewEnemyMonStatus
 	callab ResetEnemyStatLevels
 	ld hl, PlayerSubStatus1
 	res SUBSTATUS_IN_LOVE, [hl]
-	callba Function3d4e1
-	callba Function3d57a
+	callba EnemySwitch
+	callba ResetBattleParticipants
 	xor a
 	ld [wd264], a
 	ld a, [wLinkMode]
@@ -754,7 +757,7 @@ Function384d5: ; This appears to be unused
 AI_HealStatus: ; 384e0
 	ld a, [CurOTMon]
 	ld hl, OTPartyMon1Status
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	xor a
 	ld [hl], a

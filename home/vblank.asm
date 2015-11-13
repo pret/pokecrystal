@@ -64,7 +64,7 @@ VBlank0:: ; 2b1
 ; sound
 
 	; inc frame counter
-	ld hl, $ff9b
+	ld hl, hVBlankCounter
 	inc [hl]
 
 	; advance random variables
@@ -418,7 +418,7 @@ VBlank6:: ; 436
 	ld [hROMBankBackup], a
 
 	; inc frame counter
-	ld hl, $ff9b
+	ld hl, hVBlankCounter
 	inc [hl]
 
 	call UpdateCGBPals

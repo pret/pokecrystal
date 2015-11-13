@@ -343,14 +343,14 @@ Functionc81c0: ; c81c0 (32:41c0)
 	call ClearBox
 	pop bc
 	xor a
-	ld [hBGMapThird], a ; $ff00+$d5
+	ld [hBGMapThird], a
 	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ret
 
 Functionc81e3: ; c81e3 (32:41e3)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call EndBattleBGEffect
 	ret
 
@@ -441,13 +441,13 @@ Functionc825a: ; c825a (32:425a)
 .asm_c8271
 	call ClearBox
 	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	pop bc
 	ret
 
 Functionc827a: ; c827a (32:427a)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call EndBattleBGEffect
 	ret
 
@@ -507,13 +507,13 @@ Functionc82c7: ; c82c7 (32:42c7)
 .asm_c82de
 	call ClearBox
 	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	pop bc
 	ret
 
 Functionc82e7: ; c82e7 (32:42e7)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call EndBattleBGEffect
 	ret
 
@@ -595,9 +595,9 @@ Functionc831d: ; c831d (32:431d)
 	jr nz, .asm_c8344
 .asm_c8355
 	xor a
-	ld [hBGMapThird], a ; $ff00+$d5
+	ld [hBGMapThird], a
 	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call Functionc80e5
 	ld hl, $3
 	add hl, bc
@@ -606,7 +606,7 @@ Functionc831d: ; c831d (32:431d)
 
 Functionc8365: ; c8365 (32:4365)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ld hl, $3
 	add hl, bc
 	ld a, [hl]
@@ -723,7 +723,7 @@ endr
 .asm_c841d
 	call Functionc80e5
 	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ret
 .asm_c8425
 	call Functionc843b
@@ -731,7 +731,7 @@ endr
 
 Functionc842a: ; c842a (32:442a)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ld hl, $1
 	add hl, bc
 	ld [hl], $0
@@ -739,7 +739,7 @@ Functionc842a: ; c842a (32:442a)
 
 Functionc8434: ; c8434 (32:4434)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call EndBattleBGEffect
 	ret
 
@@ -902,7 +902,7 @@ Functionc854e: ; c854e (32:454e)
 	call Functionc8f69
 
 Functionc8557: ; c8557 (32:4557)
-	ld a, [hLCDStatCustom] ; $ff00+$c6
+	ld a, [hLCDStatCustom]
 	and a
 	ret z
 	push bc
@@ -967,7 +967,7 @@ Functionc85a2: ; c85a2 (32:45a2)
 	call Functionc80e5
 	call Functionc8eca
 	ld a, $42
-	ld [hLCDStatCustom], a ; $ff00+$c6
+	ld [hLCDStatCustom], a
 	xor a
 	ld [hLCDStatCustom + 1], a
 	ld a, $5e
@@ -1042,7 +1042,7 @@ Functionc8610: ; c8610 (32:4610)
 	call Functionc80e5
 	call Functionc8eca
 	ld a, $43
-	ld [hLCDStatCustom], a ; $ff00+$c6
+	ld [hLCDStatCustom], a
 	xor a
 	ld [hLCDStatCustom + 1], a
 	ld a, $5f
@@ -1530,7 +1530,7 @@ Functionc88a5: ; c88a5 (32:48a5)
 	sub d
 	ld d, a
 	ld h, LYOverridesBackup / $100
-	ld a, [hSCY] ; $ff00+$d0
+	ld a, [hSCY]
 	or a
 	jr nz, .asm_c88d0
 	ld a, [hLCDStatCustom + 1]
@@ -1546,7 +1546,7 @@ Functionc88a5: ; c88a5 (32:48a5)
 	ld l, a
 	ld [hl], $0
 .asm_c88d6
-	ld a, [hSCY] ; $ff00+$d0
+	ld a, [hSCY]
 	ld l, a
 	ld a, [hLCDStatCustom + 1]
 	sub l
@@ -1953,7 +1953,7 @@ Functionc8ae5: ; c8ae5 (32:4ae5)
 	ret
 
 Functionc8b00: ; c8b00 (32:4b00)
-	ld a, [hCGB] ; $ff00+$e6
+	ld a, [hCGB]
 	and a
 	jr nz, asm_c8b7a
 	call Functionc80d7 ;  ;  ; call does not return
@@ -1969,7 +1969,7 @@ Functionc8b0e: ; c8b0e (32:4b0e)
 	ld a, $e4
 	call Functionc8ecb
 	ld a, $47
-	ld [hLCDStatCustom], a ; $ff00+$c6
+	ld [hLCDStatCustom], a
 	xor a
 	ld [hLCDStatCustom + 1], a
 	ld a, $60
@@ -2266,7 +2266,7 @@ Functionc8cab: ; c8cab (32:4cab)
 	call Functionc80e5
 	call Functionc8eca
 	ld a, $43
-	ld [hLCDStatCustom], a ; $ff00+$c6
+	ld [hLCDStatCustom], a
 	xor a
 	ld [hLCDStatCustom + 1], a
 	ld a, $37
@@ -2307,7 +2307,7 @@ Functionc8ce1: ; c8ce1 (32:4ce1)
 	push af
 	call DelayFrame
 	pop af
-	ld [hSCY], a ; $ff00+$d0
+	ld [hSCY], a
 	xor $ff
 	inc a
 	ld [OTPartyMon3SpclAtk], a
@@ -2318,7 +2318,7 @@ Functionc8cf9: ; c8cf9 (32:4cf9)
 	jr nc, .asm_c8cff
 	xor a
 .asm_c8cff
-	ld [hSCX], a ; $ff00+$cf
+	ld [hSCX], a
 	ret
 
 Functionc8d02: ; c8d02 (32:4d02)
@@ -2326,7 +2326,7 @@ Functionc8d02: ; c8d02 (32:4d02)
 	jr nc, .asm_c8d08
 	xor a
 .asm_c8d08
-	ld [hSCY], a ; $ff00+$d0
+	ld [hSCY], a
 	ret
 
 Functionc8d0b: ; c8d0b (32:4d0b)
@@ -2373,7 +2373,7 @@ Functionc8d3a: ; c8d3a (32:4d3a)
 	jr nc, .asm_c8d53
 	ld d, $6
 	call Functionc905d
-	ld [hSCX], a ; $ff00+$cf
+	ld [hSCX], a
 	ld hl, $3
 	add hl, bc
 	ld a, [hl]
@@ -2382,7 +2382,7 @@ Functionc8d3a: ; c8d3a (32:4d3a)
 	ret
 .asm_c8d53
 	xor a
-	ld [hSCX], a ; $ff00+$cf
+	ld [hSCX], a
 	ret
 
 Functionc8d57: ; c8d57 (32:4d57)
@@ -2410,7 +2410,7 @@ Functionc8d57: ; c8d57 (32:4d57)
 	ret
 
 Functionc8d77: ; c8d77 (32:4d77)
-	ld a, [hCGB] ; $ff00+$e6
+	ld a, [hCGB]
 	and a
 	jr nz, asm_c8dd4
 	push de
@@ -2469,7 +2469,7 @@ Functionc8daa: ; c8daa (32:4daa)
 Functionc8dc9: ; c8dc9 (32:4dc9)
 	call Functionc8f19
 	ld a, $e4
-	ld [rBGP], a ; $ff00+$47
+	ld [rBGP], a
 	call EndBattleBGEffect
 	ret
 asm_c8dd4: ; c8dd4 (32:4dd4)
@@ -2563,15 +2563,15 @@ Functionc8e49: ; c8e49 (32:4e49)
 
 Functionc8e52: ; c8e52 (32:4e52)
 	ld h, a
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld a, h
 	push bc
 	push af
 	ld hl, BGPals ; BGPals
-	ld de, Unkn1Pals ; wd000
+	ld de, wMapPals ; wd000
 	ld b, a
 	ld c, $1
 	call CopyPals
@@ -2583,22 +2583,22 @@ Functionc8e52: ; c8e52 (32:4e52)
 	call CopyPals
 	pop bc
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld a, $1
-	ld [hCGBPalUpdate], a ; $ff00+$e5
+	ld [hCGBPalUpdate], a
 	ret
 
 Functionc8e7f: ; c8e7f (32:4e7f)
 	ld h, a
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld a, h
 	push bc
 	push af
 	ld hl, BGPals + 8
-	ld de, Unkn1Pals + 8
+	ld de, wMapPals + 8
 	ld b, a
 	ld c, $1
 	call CopyPals
@@ -2610,9 +2610,9 @@ Functionc8e7f: ; c8e7f (32:4e7f)
 	call CopyPals
 	pop bc
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld a, $1
-	ld [hCGBPalUpdate], a ; $ff00+$e5
+	ld [hCGBPalUpdate], a
 	ret
 
 Functionc8eac: ; c8eac (32:4eac)
@@ -2660,7 +2660,7 @@ Functionc8ecb: ; c8ecb (32:4ecb)
 	ret
 
 Functionc8ede: ; c8ede (32:4ede)
-	ld [hLCDStatCustom], a ; $ff00+$c6
+	ld [hLCDStatCustom], a
 	call Functionc9038
 	jr nz, .asm_c8eea
 	ld de, $36
@@ -2675,7 +2675,7 @@ Functionc8ede: ; c8ede (32:4ede)
 	ret
 
 Functionc8ef4: ; c8ef4 (32:4ef4)
-	ld [hLCDStatCustom], a ; $ff00+$c6
+	ld [hLCDStatCustom], a
 	call Functionc9038
 	jr nz, .asm_c8f00
 	ld de, $36
@@ -2695,15 +2695,15 @@ Functionc8f0a: ; c8f0a (32:4f0a)
 	ld [hLCDStatCustom + 2], a
 	call Functionc8eca
 	xor a
-	ld [hLCDStatCustom], a ; $ff00+$c6
+	ld [hLCDStatCustom], a
 	call EndBattleBGEffect
 	ret
 
 Functionc8f19: ; c8f19 (32:4f19)
 	xor a
-	ld [hLCDStatCustom], a ; $ff00+$c6
+	ld [hLCDStatCustom], a
 	ld a, $e4
-	ld [rBGP], a ; $ff00+$47
+	ld [rBGP], a
 	ld [wcfc7], a
 	ld [wcfc9], a
 	ld [hLCDStatCustom + 1], a
@@ -2902,7 +2902,7 @@ Functionc901b: ; c901b (32:501b)
 Functionc9038: ; c9038 (32:5038)
 	ld hl, $2
 	add hl, bc
-	ld a, [hBattleTurn] ; $ff00+$e4
+	ld a, [hBattleTurn]
 	and $1
 	xor [hl]
 	ret
@@ -2910,7 +2910,7 @@ Functionc9038: ; c9038 (32:5038)
 Functionc9042: ; c9042 (32:5042)
 	ld hl, $2
 	add hl, bc
-	ld a, [hBattleTurn] ; $ff00+$e4
+	ld a, [hBattleTurn]
 	and $1
 	xor [hl]
 	jr nz, .asm_c9053
@@ -2923,7 +2923,7 @@ Functionc9042: ; c9042 (32:5042)
 	ret
 
 Functionc9059: ; c9059 (32:5059)
-	ld a, [hSGB] ; $ff00+$e7
+	ld a, [hSGB]
 	and a
 	ret
 

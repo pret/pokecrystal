@@ -28,7 +28,7 @@ UnknownScript_0x196e56:
 	writetext UnknownText_0x196fa8
 	keeptextopen
 	waitbutton
-	giveitem MYSTERY_EGG, $1
+	giveitem MYSTERY_EGG
 	writetext UnknownText_0x196fd2
 	playsound SFX_KEY_ITEM
 	waitbutton
@@ -69,9 +69,9 @@ UnknownScript_0x196eb0:
 	writetext UnknownText_0x197476
 	yesorno
 	iffalse UnknownScript_0x196ec3
-	verbosegiveitem EXP_SHARE, 1
+	verbosegiveitem EXP_SHARE
 	iffalse UnknownScript_0x196ec7
-	takeitem RED_SCALE, 1
+	takeitem RED_SCALE
 	jump UnknownScript_0x196eaa
 
 UnknownScript_0x196ec3:

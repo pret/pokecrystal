@@ -10,8 +10,8 @@ Function17c000: ; 17c000
 	xor a
 	call ByteFill
 
-	call Functione51
-	call Functione5f
+	call LoadStandardFont
+	call LoadFontsExtra
 
 	ld hl, HaveWantMap
 	decoord 0, 0
@@ -48,11 +48,11 @@ Function17c000: ; 17c000
 	ld a, [rSVBK]
 	push af
 
-	ld a, 5 ; BANK(Unkn1Pals)
+	ld a, 5 ; BANK(wMapPals)
 	ld [rSVBK], a
 
 	ld hl, HaveWantPals
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $80
 	call CopyBytes
 
@@ -178,48 +178,50 @@ HaveWantPals: ; 17cff3
 	RGB  0,  0,  0
 
 
-Function17d073: ; 17d073
-.asm_17d073
+CheckStringForErrors: ; 17d073
+; Valid character ranges:
+; $00, $05 - $13, $19 - $1c, $26 - $34, $3a - $3e, $40 - $48, $60 - $ff
+.loop
 	ld a, [de]
 	inc de
 	and a
-	jr z, .asm_17d0ae
+	jr z, .NextChar
 	cp $60
-	jr nc, .asm_17d0ae
+	jr nc, .NextChar
 	cp $4e
-	jr z, .asm_17d0ae
-	cp $50
-	jr z, .asm_17d0b1
+	jr z, .NextChar
+	cp "@"
+	jr z, .Done
 	cp $5
-	jr c, .asm_17d0ac
-	cp $14
-	jr c, .asm_17d0ae
+	jr c, .Fail
+	cp "<PLAY_G>"
+	jr c, .NextChar
 	cp $19
-	jr c, .asm_17d0ac
+	jr c, .Fail
 	cp $1d
-	jr c, .asm_17d0ae
+	jr c, .NextChar
 	cp $26
-	jr c, .asm_17d0ac
+	jr c, .Fail
 	cp $35
-	jr c, .asm_17d0ae
+	jr c, .NextChar
 	cp $3a
-	jr c, .asm_17d0ac
+	jr c, .Fail
 	cp $3f
-	jr c, .asm_17d0ae
+	jr c, .NextChar
 	cp $40
-	jr c, .asm_17d0ac
+	jr c, .Fail
 	cp $49
-	jr c, .asm_17d0ae
+	jr c, .NextChar
 
-.asm_17d0ac
+.Fail
 	scf
 	ret
 
-.asm_17d0ae
+.NextChar
 	dec c
-	jr nz, .asm_17d073
+	jr nz, .loop
 
-.asm_17d0b1
+.Done
 	and a
 	ret
 ; 17d0b3
@@ -281,18 +283,18 @@ Function17d0f3: ; 17d0f3
 	ld a, $50
 	ld [de], a
 	ld a, [$c608 + 11]
-	ld [wc731], a
+	ld [wEnemyWrapCount], a
 	ld a, [$c608 + 12]
-	ld [wc732], a
+	ld [wPlayerCharging], a
 	ld hl, $c608 + 26
 	ld a, [hli]
-	ld [wc72f], a
+	ld [wEnemyTrappingMove], a
 	ld a, [hl]
-	ld [wc730], a
+	ld [wPlayerWrapCount], a
 	ld bc, $c608 + 5
 	callba GetCaughtGender
 	ld a, c
-	ld [wc733], a
+	ld [wEnemyCharging], a
 	call SpeechTextBox
 	call FadeToMenu
 	callba Function10804d
@@ -410,7 +412,7 @@ Function17d1f1: ; 17d1f1
 	ld hl, PartyMon1DVs
 	ld a, [PartyCount]
 	dec a
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	predef GetUnownLetter
 	callab Functionfba18
@@ -462,7 +464,7 @@ Function17d246: ; 17d246
 	ld a, [ScriptVar]
 	cp $5
 	jr nz, .asm_17d25d
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $3
 	ret z
 	jr c, .asm_17d25d
@@ -470,7 +472,7 @@ Function17d246: ; 17d246
 	jr .asm_17d260
 
 .asm_17d25d
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 
 .asm_17d260
 	ld [ScriptVar], a
@@ -559,7 +561,7 @@ Function17d2ce: ; 17d2ce
 	ld a, d
 	ld [MusicFadeIDHi], a
 	call PlayMusic
-	call Function222a
+	call ReturnToMapFromSubmenu
 	call Function2b3c
 	ret
 ; 17d314
@@ -624,7 +626,7 @@ Function17d370: ; 17d370
 	ld [wcd79], a
 	dec a
 	ld [wcd6c], a
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearScreen
 	callba Function104061
@@ -662,7 +664,7 @@ Function17d370: ; 17d370
 	ld a, $6
 	call GetSRAMBank
 	ld hl, $a006
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $1000
 	call CopyBytes
 	call CloseSRAM
@@ -670,7 +672,7 @@ Function17d370: ; 17d370
 ; 17d3f6
 
 Function17d3f6: ; 17d3f6
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearScreen
 	callba Function104061
@@ -703,7 +705,7 @@ Function17d405:
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_17eff6
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $0040
 	call CopyBytes
 	call SetPalettes
@@ -983,7 +985,7 @@ Function17d5f6: ; 17d5f6
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, $c608
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $0040
 	call CopyBytes
 	ld a, $4
@@ -1237,13 +1239,13 @@ Function17d78d: ; 17d78d
 	call GetSRAMBank
 	ld hl, $a006
 	add hl, bc
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $1000
 	call CopyBytes
 	call CloseSRAM
 	xor a
 	ld [wcd77], a
-	call WhiteBGMap
+	call ClearBGPalettes
 	ret
 ; 17d7b4
 
@@ -1361,7 +1363,7 @@ Function17d85d: ; 17d85d
 	ld a, [hli]
 	ld d, a
 	push hl
-	ld hl, Unkn1Pals
+	ld hl, wMapPals
 	add hl, de
 	ld de, wcc60
 .asm_17d86c
@@ -1430,7 +1432,7 @@ Function17d85d: ; 17d85d
 	ld a, $3
 	ld [rSVBK], a
 	ld hl, $c608
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld b, $0
 	call CopyBytes
 	ld a, $4
@@ -1465,7 +1467,7 @@ Function17d902: ; 17d902
 	call Function17e41e
 	call Function17e32b
 	pop de
-	ld hl, Unkn1Pals
+	ld hl, wMapPals
 	add hl, de
 	ld de, wcc60
 .asm_17d918
@@ -1926,19 +1928,19 @@ Function17dc1f: ; 17dc1f
 	ld a, $5c
 	ld [wc70e], a
 	ld a, $1
-	ld [wc70f], a
+	ld [wEnemyGoesFirst], a
 	ld hl, wc708
 	call LoadMenuDataHeader
 	call InterpretMenu2
 	jr nc, .asm_17dc6e
 	ld a, $2
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 
 .asm_17dc6e
 	call WriteBackup
 	pop af
 	ld [rSVBK], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $1
 	jr nz, .asm_17dc85
 	ld a, [$c68a]
@@ -1982,7 +1984,7 @@ Function17dca9: ; 17dca9
 Function17dcaf:
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, Unkn1Pals
+	ld hl, wMapPals
 	ld de, $0008
 	ld c, $8
 .asm_17dcbb
@@ -2153,7 +2155,7 @@ Function17dd49: ; 17dd49
 	jr .asm_17ddc9
 
 .asm_17ddb7
-	ld a, [wc70f]
+	ld a, [wEnemyGoesFirst]
 	ld l, a
 	ld a, [wc710]
 	ld h, a
@@ -2217,7 +2219,7 @@ Function17ddcd: ; 17ddcd
 	jr nz, .asm_17de26
 	ld a, [wc70e]
 	ld l, a
-	ld a, [wc70f]
+	ld a, [wEnemyGoesFirst]
 	ld h, a
 	jr .asm_17de2e
 
@@ -2275,7 +2277,7 @@ Function17de32: ; 17de32
 .asm_17de78
 	ld a, [wc70e]
 	ld l, a
-	ld a, [wc70f]
+	ld a, [wEnemyGoesFirst]
 	ld h, a
 	jr .asm_17de8a
 
@@ -2398,7 +2400,7 @@ Function17ded9: ; 17ded9
 	ld a, [hli]
 	ld b, a
 	push hl
-	callba SetPkmnCaughtData
+	callba SetPartymonCaughtData
 	pop hl
 	pop bc
 	jr .asm_17df5e
@@ -2585,7 +2587,7 @@ Function17e026: ; 17e026
 	ld b, a
 	push hl
 	call CloseSRAM
-	callba Function4db92
+	callba SetBoxMonCaughtData
 	ld a, $1
 	call GetSRAMBank
 	pop hl
@@ -2877,7 +2879,7 @@ Function17e1a1: ; 17e1a1
 	jr .asm_17e250
 
 .asm_17e23e
-	ld a, [wc70f]
+	ld a, [wEnemyGoesFirst]
 	ld l, a
 	ld a, [wc710]
 	ld h, a
@@ -3123,7 +3125,7 @@ Function17e3c3: ; 17e3c3
 	ld a, $1
 	ld [rSVBK], a
 	callba MobileFn_106155
-	callba Function106187
+	callba BackupMobileEventIndex
 	pop af
 	ld [rSVBK], a
 	ret
@@ -3163,7 +3165,7 @@ Function17e409: ; 17e409
 ; 17e40f
 
 Function17e40f: ; 17e40f
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	add hl, de
 	jr Function17e41e
 
@@ -3855,7 +3857,7 @@ endr
 	ld b, a
 	ld a, [wcd57]
 	ld c, a
-	call Function31a4
+	call MobilePrintNum
 	ld a, l
 	ld [wcd52], a
 	ld a, h
@@ -4246,7 +4248,7 @@ Function17f2cb: ; 17f2cb
 	ld b, $1
 	ld a, [wcd54]
 	ld c, a
-	call Function31a4
+	call MobilePrintNum
 	ld a, l
 	ld [wcd52], a
 	ld a, h
@@ -4417,7 +4419,7 @@ endr
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	ld hl, Unkn1Pals
+	ld hl, wMapPals
 	add hl, de
 	ld e, l
 	ld d, h
@@ -4562,7 +4564,7 @@ endr
 	ld b, a
 	ld a, [wcd58]
 	ld c, a
-	call Function31a4
+	call MobilePrintNum
 	ld a, l
 	ld [wcd52], a
 	ld a, h

@@ -22,7 +22,7 @@ Pokedex: ; 40000
 	ld [hInMenu], a
 
 	xor a
-	ld [$ffde], a
+	ld [hMapAnims], a
 	call InitPokedex
 	call DelayFrame
 
@@ -60,7 +60,7 @@ Pokedex: ; 40000
 ; 40063
 
 InitPokedex: ; 40063
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	call Function414b7
@@ -209,7 +209,7 @@ Function40136: ; 40136 (10:4136)
 
 Function4013c: ; 4013c (10:413c)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call ClearSprites
 	xor a
 	hlcoord 0, 0, AttrMap
@@ -226,7 +226,7 @@ Function4013c: ; 4013c (10:413c)
 	call Function41af7
 	call Function4074c
 	ld a, $5
-	ld [hSCX], a ; $ff00+$cf
+	ld [hSCX], a
 	ld a, [wc7d4]
 	cp $1
 	ld a, $4a
@@ -234,9 +234,9 @@ Function4013c: ; 4013c (10:413c)
 	ld a, $47
 
 .asm_4017b
-	ld [hWX], a ; $ff00+$d1
+	ld [hWX], a
 	xor a
-	ld [hWY], a ; $ff00+$d2
+	ld [hWY], a
 	call WaitBGMap
 	call Function41af7
 	ld a, $ff
@@ -272,7 +272,7 @@ Function401ae: ; 401ae (10:41ae)
 	ret nc
 	call Function41148
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call Function40b0f
 	call Function41ad7
 	call Function41af7
@@ -293,9 +293,9 @@ Function401ae: ; 401ae (10:41ae)
 	ld a, $7
 	ld [wJumptableIndex], a
 	xor a
-	ld [hSCX], a ; $ff00+$cf
+	ld [hSCX], a
 	ld a, $a7
-	ld [hWX], a ; $ff00+$d1
+	ld [hWX], a
 	call DelayFrame
 	ret
 
@@ -304,9 +304,9 @@ Function401ae: ; 401ae (10:41ae)
 	ld a, $5
 	ld [wJumptableIndex], a
 	xor a
-	ld [hSCX], a ; $ff00+$cf
+	ld [hSCX], a
 	ld a, $a7
-	ld [hWX], a ; $ff00+$d1
+	ld [hWX], a
 	call DelayFrame
 	ret
 
@@ -320,7 +320,7 @@ Function40217: ; 40217 (10:4217)
 	xor a
 	ld [wPokedexStatus], a
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call ClearSprites
 	call Function41478
 	call Function407fd
@@ -331,7 +331,7 @@ Function40217: ; 40217 (10:4217)
 	call Function40ba0
 	call WaitBGMap
 	ld a, $a7
-	ld [hWX], a ; $ff00+$d1
+	ld [hWX], a
 	call Function40bb1
 	ld [CurPartySpecies], a
 	ld a, $4
@@ -392,7 +392,7 @@ Function402aa: ; 402aa (10:42aa)
 	xor a
 	ld [wPokedexStatus], a
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call Function407fd
 	call Function4134f
 	call Function41478
@@ -487,7 +487,7 @@ Function4034f: ; 4034f
 	ld [wcf64], a
 	pop af
 	ld [wcf65], a
-	call WhiteBGMap
+	call ClearBGPalettes
 	call DisableLCD
 	call Function414fb
 	call Function4038d
@@ -509,7 +509,7 @@ Function4038d: ; 4038d
 
 Function4039d: ; 4039d (10:439d)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call ClearSprites
 	call Function4087c
 	call Function4134f
@@ -615,7 +615,7 @@ Function4043a: ; 4043a (10:443a)
 
 Function40443: ; 40443 (10:4443)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call ClearSprites
 	call Function408f0
 	call Function4134f
@@ -723,7 +723,7 @@ Function40501: ; 40501
 
 Function4050a: ; 4050a (10:450a)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	xor a
 	hlcoord 0, 0, AttrMap
 	ld bc, $168
@@ -739,11 +739,11 @@ Function4050a: ; 4050a (10:450a)
 	call Function41af7
 	call Function40962
 	ld a, $5
-	ld [hSCX], a ; $ff00+$cf
+	ld [hSCX], a
 	ld a, $4a
-	ld [hWX], a ; $ff00+$d1
+	ld [hWX], a
 	xor a
-	ld [hWY], a ; $ff00+$d2
+	ld [hWY], a
 	call WaitBGMap
 	call Function41af7
 	callba Function1de1d1
@@ -768,7 +768,7 @@ Function40562: ; 40562 (10:4562)
 	ret nc
 	call Function41281
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call Function40b0f
 	call Function41ad7
 	call Function41af7
@@ -797,9 +797,9 @@ Function40562: ; 40562 (10:4562)
 	ld a, $5
 	ld [wJumptableIndex], a
 	xor a
-	ld [hSCX], a ; $ff00+$cf
+	ld [hSCX], a
 	ld a, $a7
-	ld [hWX], a ; $ff00+$d1
+	ld [hWX], a
 	ret
 
 Function405bd: ; 405bd (10:45bd)
@@ -838,7 +838,7 @@ Function405df: ; 405df (10:45df)
 	ld hl, PokedexLZ
 	ld de, VTiles2 tile $31
 	lb bc, BANK(PokedexLZ), $3a
-	call Functione73
+	call DecompressRequest2bpp
 
 .asm_4060f
 	ret
@@ -876,14 +876,14 @@ Function40610: ; 40610 (10:4610)
 .asm_40635
 	push af
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	pop af
 	call Function40654
 	call Function41a58
 	call Function40658
 	callba Functionfba2e
 	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call DelayFrame
 	call DelayFrame
 	ret
@@ -1773,7 +1773,7 @@ String_40ee4: ; 40ee4
 
 Function40f08: ; 40f08 (10:4f08)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	hlcoord 0, 12
 	ld bc, $412
 	call Function40ad5
@@ -1781,7 +1781,7 @@ Function40f08: ; 40f08 (10:4f08)
 	hlcoord 1, 14
 	call PlaceString
 	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ld c, $40
 	call DelayFrames
 	ld de, SFX_CHANGE_DEX_MODE
@@ -1861,7 +1861,7 @@ Function40f84: ; 40f84
 
 Function40fa8: ; 40fa8 (10:4fa8)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	hlcoord 9, 3
 	ld bc, $408
 	ld a, $7f
@@ -1873,7 +1873,7 @@ Function40fa8: ; 40fa8 (10:4fa8)
 	hlcoord 9, 6
 	call Function40fcd
 	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ret
 
 Function40fcd: ; 40fcd (10:4fcd)
@@ -2363,16 +2363,16 @@ Function413fe: ; 413fe (10:53fe)
 	jp FillBoxWithByte
 
 Function41401: ; 41401 (10:5401)
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
-	ld hl, Unkn1Pals
+	ld [rSVBK], a
+	ld hl, wMapPals
 	ld bc, $40
 	xor a
 	call ByteFill
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 
 Function41415: ; 41415
 	ld a, $ff
@@ -2487,7 +2487,7 @@ Function414b7: ; 414b7
 	xor a
 	call ByteFill
 	call Function414fb
-	call Functione5f
+	call LoadFontsExtra
 	ld hl, VTiles2 tile $60
 	ld bc, $0200
 	call Function41504
@@ -2511,7 +2511,7 @@ Function414b7: ; 414b7
 	ret
 
 Function414fb: ; 414fb
-	call Functione51
+	call LoadStandardFont
 	ld hl, VTiles1
 	ld bc, $0800
 

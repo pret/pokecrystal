@@ -43,7 +43,7 @@ UnknownScript_0x19e0e4:
 	checkevent EVENT_KENJI_ON_BREAK
 	iffalse UnknownScript_0x19e127
 	scall UnknownScript_0x19e137
-	verbosegiveitem PP_UP, 1
+	verbosegiveitem PP_UP
 	iffalse UnknownScript_0x19e118
 	clearevent EVENT_KENJI_ON_BREAK
 	special Special_SampleKenjiBreakCountdown
@@ -199,7 +199,7 @@ UnknownScript_0x19e1b8:
 	checkevent EVENT_GOT_IRON_FROM_PARRY
 	iftrue UnknownScript_0x19e218
 	scall UnknownScript_0x19e146
-	verbosegiveitem IRON, 1
+	verbosegiveitem IRON
 	iffalse UnknownScript_0x19e13f
 	setevent EVENT_GOT_IRON_FROM_PARRY
 	jump UnknownScript_0x19e127
@@ -211,7 +211,7 @@ UnknownScript_0x19e219:
 	loadfont
 	writetext UnknownText_0x19e52c
 	closetext
-	verbosegiveitem IRON, 1
+	verbosegiveitem IRON
 	iffalse UnknownScript_0x19e13f
 	clearevent EVENT_PARRY_IRON
 	setevent EVENT_GOT_IRON_FROM_PARRY
@@ -539,12 +539,12 @@ Route45_MapEventHeader:
 	person_event SPRITE_POKEFAN_M, 65, 15, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerHikerMichael, -1
 	person_event SPRITE_POKEFAN_M, 28, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerHikerParry, -1
 	person_event SPRITE_POKEFAN_M, 65, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 1, TrainerHikerTimothy, -1
-	person_event SPRITE_BLACK_BELT, 50, 11, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerBlackbeltKenji, -1
+	person_event SPRITE_BLACK_BELT, 50, 11, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerBlackbeltKenji, -1
 	person_event SPRITE_COOLTRAINER_M, 18, 17, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerCooltrainermRyan, -1
-	person_event SPRITE_COOLTRAINER_F, 36, 5, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainerfKelly, -1
-	person_event SPRITE_FRUIT_TREE, 82, 16, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x19e294, -1
-	person_event SPRITE_POKE_BALL, 51, 6, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19e296, EVENT_ROUTE_45_NUGGET
-	person_event SPRITE_POKE_BALL, 66, 5, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19e298, EVENT_ROUTE_45_REVIVE
-	person_event SPRITE_POKE_BALL, 20, 6, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19e29a, EVENT_ROUTE_45_ELIXER
-	person_event SPRITE_POKE_BALL, 33, 7, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19e29c, EVENT_ROUTE_45_MAX_POTION
-	person_event SPRITE_YOUNGSTER, 70, 4, SPRITEMOVEDATA_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x19e269, -1
+	person_event SPRITE_COOLTRAINER_F, 36, 5, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerCooltrainerfKelly, -1
+	person_event SPRITE_FRUIT_TREE, 82, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x19e294, -1
+	person_event SPRITE_POKE_BALL, 51, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19e296, EVENT_ROUTE_45_NUGGET
+	person_event SPRITE_POKE_BALL, 66, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19e298, EVENT_ROUTE_45_REVIVE
+	person_event SPRITE_POKE_BALL, 20, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19e29a, EVENT_ROUTE_45_ELIXER
+	person_event SPRITE_POKE_BALL, 33, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19e29c, EVENT_ROUTE_45_MAX_POTION
+	person_event SPRITE_YOUNGSTER, 70, 4, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x19e269, -1

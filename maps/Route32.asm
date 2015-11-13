@@ -57,7 +57,7 @@ UnknownScript_0x190489:
 UnknownScript_0x19048f:
 	writetext UnknownText_0x190925
 	keeptextopen
-	verbosegiveitem MIRACLE_SEED, 1
+	verbosegiveitem MIRACLE_SEED
 	iffalse UnknownScript_0x1904a9
 	setevent EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
 	jump UnknownScript_0x1904a5
@@ -98,7 +98,7 @@ FisherScript_0x1904ce:
 	iftrue UnknownScript_0x1904e3
 	writetext UnknownText_0x191133
 	keeptextopen
-	verbosegiveitem TM_ROAR, 1
+	verbosegiveitem TM_ROAR
 	iffalse UnknownScript_0x1904e7
 	setevent EVENT_GOT_TM05_ROAR
 UnknownScript_0x1904e3:
@@ -455,7 +455,7 @@ FriedaScript:
 .MetFrieda
 	writetext FriedaGivesGiftText
 	keeptextopen
-	verbosegiveitem POISON_BARB, 1
+	verbosegiveitem POISON_BARB
 	iffalse FriedaDoneScript
 	setevent EVENT_GOT_POISON_BARB_FROM_FRIEDA
 	writetext FriedaGaveGiftText
@@ -950,13 +950,13 @@ Route32_MapEventHeader:
 	person_event SPRITE_FISHER, 56, 12, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerFisherRalph1, -1
 	person_event SPRITE_FISHER, 48, 6, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherHenry, -1
 	person_event SPRITE_YOUNGSTER, 22, 12, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterAlbert, -1
-	person_event SPRITE_YOUNGSTER, 63, 4, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterGordon, -1
+	person_event SPRITE_YOUNGSTER, 63, 4, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterGordon, -1
 	person_event SPRITE_YOUNGSTER, 45, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerCamperRoland, -1
 	person_event SPRITE_LASS, 30, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerPicnickerLiz1, -1
 	person_event SPRITE_COOLTRAINER_M, 8, 19, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 0, 0, CooltrainerMScript_0x19046f, -1
 	person_event SPRITE_YOUNGSTER, 82, 11, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperPeter, -1
 	person_event SPRITE_FISHER, 70, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x1904f2, EVENT_SLOWPOKE_WELL_ROCKETS
-	person_event SPRITE_POKE_BALL, 53, 6, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x190773, EVENT_ROUTE_32_GREAT_BALL
+	person_event SPRITE_POKE_BALL, 53, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x190773, EVENT_ROUTE_32_GREAT_BALL
 	person_event SPRITE_FISHER, 13, 15, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x1904ce, -1
 	person_event SPRITE_LASS, 67, 12, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 0, 0, FriedaScript, EVENT_ROUTE_32_FRIEDA_OF_FRIDAY
-	person_event SPRITE_POKE_BALL, 30, 3, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x190775, EVENT_ROUTE_32_REPEL
+	person_event SPRITE_POKE_BALL, 30, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x190775, EVENT_ROUTE_32_REPEL

@@ -18,7 +18,7 @@ FishingGuruScript_0x69b55:
 	iffalse UnknownScript_0x69b74
 	writetext UnknownText_0x69be8
 	keeptextopen
-	verbosegiveitem OLD_ROD, 1
+	verbosegiveitem OLD_ROD
 	writetext UnknownText_0x69c1b
 	closetext
 	loadmovesprites

@@ -49,7 +49,7 @@ ColosseumScript_Initialize:
 
 MapColosseumSignpost1Script:
 	special Special_Colosseum
-	newloadmap $f8
+	newloadmap MAPSETUP_LINKRETURN
 	end
 
 ChrisScript_0x193499:

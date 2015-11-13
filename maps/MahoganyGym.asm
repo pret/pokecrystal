@@ -35,7 +35,7 @@ PryceScript_0x199a9e:
 	setevent EVENT_BEAT_BOARDER_DOUGLAS
 	writetext UnknownText_0x199d55
 	keeptextopen
-	verbosegiveitem TM_ICY_WIND, 1
+	verbosegiveitem TM_ICY_WIND
 	iffalse UnknownScript_0x199af4
 	setevent EVENT_GOT_TM16_ICY_WIND
 	writetext UnknownText_0x199def
@@ -387,5 +387,5 @@ MahoganyGym_MapEventHeader:
 	person_event SPRITE_ROCKER, 17, 0, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBoarderRonald, -1
 	person_event SPRITE_BUENA, 17, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerSkierClarissa, -1
 	person_event SPRITE_ROCKER, 9, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBoarderBrad, -1
-	person_event SPRITE_ROCKER, 4, 2, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBoarderDouglas, -1
+	person_event SPRITE_ROCKER, 4, 2, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBoarderDouglas, -1
 	person_event SPRITE_GYM_GUY, 15, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, MahoganyGymGuyScript, -1

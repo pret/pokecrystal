@@ -6,7 +6,7 @@
 ; 	FadeMusic
 ; 	PlayStereoSFX
 
-_SoundRestart:: ; e8000
+_MapSetup_Sound_Off:: ; e8000
 ; restart sound operation
 ; clear all relevant hardware registers & wram
 	push hl
@@ -26,7 +26,7 @@ _SoundRestart:: ; e8000
 .clearsound
 ;   sound channel   1      2      3      4
 	xor a
-	ld [hli], a ; rNR10, $ff15, rNR30, $ff1f ; sweep = 0
+	ld [hli], a ; rNR10, rNR20, rNR30, rNR40 ; sweep = 0
 
 	ld [hli], a ; rNR11, rNR21, rNR31, rNR41 ; length/wavepattern = 0
 	ld a, $08
@@ -63,7 +63,7 @@ MusicFadeRestart: ; e803d
 	push af
 	ld a, [MusicFadeIDLo]
 	push af
-	call _SoundRestart
+	call _MapSetup_Sound_Off
 	pop af
 	ld [MusicFadeIDLo], a
 	pop af
@@ -345,7 +345,7 @@ UpdateChannels: ; e8125
 	ld a, [rNR52]
 	and a, %10001101 ; ch2 off
 	ld [rNR52], a
-	ld hl, $ff15
+	ld hl, rNR20
 	call ClearChannel
 	ret
 .asm_e8204
@@ -418,39 +418,39 @@ rept 4
 endr
 	ld de, WaveSamples
 	add hl, de
-	; load wavepattern into $ff30-$ff3f
+	; load wavepattern into rWave_0-rWave_f
 	ld a, [hli]
-	ld [$ff30], a
+	ld [rWave_0], a
 	ld a, [hli]
-	ld [$ff31], a
+	ld [rWave_1], a
 	ld a, [hli]
-	ld [$ff32], a
+	ld [rWave_2], a
 	ld a, [hli]
-	ld [$ff33], a
+	ld [rWave_3], a
 	ld a, [hli]
-	ld [$ff34], a
+	ld [rWave_4], a
 	ld a, [hli]
-	ld [$ff35], a
+	ld [rWave_5], a
 	ld a, [hli]
-	ld [$ff36], a
+	ld [rWave_6], a
 	ld a, [hli]
-	ld [$ff37], a
+	ld [rWave_7], a
 	ld a, [hli]
-	ld [$ff38], a
+	ld [rWave_8], a
 	ld a, [hli]
-	ld [$ff39], a
+	ld [rWave_9], a
 	ld a, [hli]
-	ld [$ff3a], a
+	ld [rWave_a], a
 	ld a, [hli]
-	ld [$ff3b], a
+	ld [rWave_b], a
 	ld a, [hli]
-	ld [$ff3c], a
+	ld [rWave_c], a
 	ld a, [hli]
-	ld [$ff3d], a
+	ld [rWave_d], a
 	ld a, [hli]
-	ld [$ff3e], a
+	ld [rWave_e], a
 	ld a, [hli]
-	ld [$ff3f], a
+	ld [rWave_f], a
 	pop hl
 	ld a, [wc293]
 	and a, $f0
@@ -475,7 +475,7 @@ endr
 	ld a, [rNR52]
 	and a, %10000111 ; ch4 off
 	ld [rNR52], a
-	ld hl, $ff1f
+	ld hl, rNR40
 	call ClearChannel
 	ret
 .asm_e82d4
@@ -613,6 +613,7 @@ FadeMusic: ; e8358
 	jr z, .novolume
 	dec a
 	jr .updatevolume
+
 .novolume
 	; make sure volume is off
 	xor a
@@ -660,6 +661,7 @@ FadeMusic: ; e8358
 	ld hl, MusicFade
 	set 7, [hl]
 	ret
+
 .fadein
 	; are we done?
 	cp a, $07
@@ -3159,7 +3161,7 @@ ChannelPointers: ; e8fd9
 
 ClearChannels:: ; e8fe9
 ; runs ClearChannel for all 4 channels
-; doesn't seem to be used, but functionally identical to SoundRestart
+; doesn't seem to be used, but functionally identical to MapSetup_Sound_Off
 	ld hl, rNR50
 	xor a
 rept 2
@@ -3177,12 +3179,12 @@ endr
 ; e8ffe
 
 ClearChannel: ; e8ffe
-; input: hl = beginning hw sound register (rNR10, $ff15, rNR30, $ff1f)
+; input: hl = beginning hw sound register (rNR10, rNR20, rNR30, rNR40)
 ; output: 00 00 80 00 80
 
 ;   sound channel   1      2      3      4
 	xor a
-	ld [hli], a ; rNR10, $ff15, rNR30, $ff1f ; sweep = 0
+	ld [hli], a ; rNR10, rNR20, rNR30, rNR40 ; sweep = 0
 
 	ld [hli], a ; rNR11, rNR21, rNR31, rNR41 ; length/wavepattern = 0
 	ld a, $08

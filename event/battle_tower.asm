@@ -302,7 +302,7 @@ VerifyUniqueness: ; 8b2e9
 
 .nextmon: ; 8b31a
 	push bc
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	inc de
 	pop bc

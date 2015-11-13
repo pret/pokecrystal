@@ -23,7 +23,7 @@ UnknownText_0x88013: ; 0x88013
 ; 0x88018
 
 Special_SelectApricornForKurt: ; 88018
-	call LoadMenuDataHeader_0x1d75
+	call LoadStandardMenuDataHeader
 	ld c, $1
 	xor a
 	ld [wd0e4], a
@@ -40,7 +40,7 @@ Special_SelectApricornForKurt: ; 88018
 	and a
 	jr z, .done
 	ld [CurItem], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld c, a
 	push bc
 	call Kurt_PrintTextHowMany
@@ -67,7 +67,7 @@ Kurt_SelectApricorn: ; 88055
 	ld [hBGMapMode], a
 	call Function352f
 	call UpdateSprites
-	call Function350c
+	call HandleScrollingMenu
 	ld a, [wcf73]
 	cp $2
 	jr z, .nope
@@ -98,9 +98,9 @@ Kurt_SelectApricorn: ; 88055
 	db 4, 7
 	db 1
 	dbw 0, Buffer1
-	dbw BANK(.Name), .Name
-	dbw BANK(.Quantity), .Quantity
-	dbw BANK(NULL), NULL
+	dba .Name
+	dba .Quantity
+	dba NULL
 
 .Name: ; 8809f
 	ld a, [MenuSelection]
@@ -135,7 +135,7 @@ Kurt_SelectQuantity: ; 880c2
 .loop
 	xor a
 	ld [hBGMapMode], a
-	call Function1cbb
+	call MenuBox
 	call UpdateSprites
 	call .PlaceApricornName
 	call PlaceApricornQuantity
@@ -166,7 +166,7 @@ Kurt_SelectQuantity: ; 880c2
 	db 0, 0, -1, 0 ; XXX
 
 .PlaceApricornName: ; 88116
-	call GetMemTileCoord
+	call MenuBoxCoord2Tile
 	ld de, $0015
 	add hl, de
 	ld d, h
@@ -176,7 +176,7 @@ Kurt_SelectQuantity: ; 880c2
 ; 88126
 
 PlaceApricornQuantity: ; 88126
-	call GetMemTileCoord
+	call MenuBoxCoord2Tile
 	ld de, $0032
 	add hl, de
 	ld [hl], "×"
@@ -233,7 +233,7 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 	xor a
 	ld [ItemCountBuffer], a
 	ld a, -1
-	ld [MiscBuffer2], a
+	ld [wd002], a
 
 ; Search for [CurItem] in the bag.
 .loop1
@@ -253,7 +253,7 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 ; Increment the result counter and store the bag index of the match.
 	ld d, $0
 	push hl
-	ld hl, MiscBuffer2
+	ld hl, wd002
 	add hl, de
 	inc e
 	ld a, [ItemCountBuffer]
@@ -271,7 +271,7 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 	jr z, .done
 	dec a
 	jr z, .OnlyOne
-	ld hl, MiscBuffer2
+	ld hl, wd002
 
 .loop2
 	ld a, [hl]
@@ -316,7 +316,7 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 	jr nz, .loop2
 
 .OnlyOne
-	ld hl, MiscBuffer2
+	ld hl, wd002
 .loop4
 	ld a, [hl]
 	cp -1

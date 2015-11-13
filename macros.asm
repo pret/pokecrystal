@@ -175,4 +175,39 @@ bcd: MACRO
 	endr
 ENDM
 
+tiles EQUS "* $10"
 tile EQUS "+ $10 *"
+
+partymon: MACRO
+	db \1
+	db \2
+	db \3, \4, \5, \6
+	dw \7
+	dt \8
+rept 8
+	shift
+endr
+rept 5
+	bigdw \1
+	shift
+endr
+	db \1, \2
+	db \3, \4, \5, \6
+rept 6
+	shift
+endr
+	db \1
+	db \2, \3, \4
+	db \5
+	db \6, \7
+rept 7
+	shift
+endr
+rept 7
+	bigdw \1
+	shift
+endr
+	db \1
+ENDM
+
+palettes EQUS "* 8"

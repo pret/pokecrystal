@@ -32,6 +32,8 @@ hJoyDown           EQU $ffa8
 hJoyLast           EQU $ffa9
 hInMenu            EQU $ffaa
 
+hFillBox           EQU $ffad
+
 hMapObjectIndexBuffer EQU $ffaf
 hObjectStructIndexBuffer EQU $ffb0
 
@@ -60,13 +62,24 @@ hPrintNum4         EQU $ffb6
 hPrintNum5         EQU $ffb7
 hPrintNum6         EQU $ffb8
 hPrintNum7         EQU $ffb9
+hPrintNum8         EQU $ffba
+hPrintNum9         EQU $ffbb
+hPrintNum10        EQU $ffbc
 
 hUsedSpriteIndex   EQU $ffbd
 hUsedSpriteTile    EQU $ffbe
+hFFBF              EQU $ffbf
+hFFC0              EQU $ffc0
+hFFC1              EQU $ffc1
+hFFC2              EQU $ffc2
 hMoneyTemp         EQU $ffc3
 
 hLCDStatCustom     EQU $ffc6
 
+hFFC9              EQU $ffc9
+hFFCA              EQU $ffca
+hLinkPlayerNumber  EQU $ffcb
+hFFCC              EQU $ffcc
 hSerialSend        EQU $ffcd
 hSerialReceive     EQU $ffce
 
@@ -74,7 +87,7 @@ hSCX               EQU $ffcf
 hSCY               EQU $ffd0
 hWX                EQU $ffd1
 hWY                EQU $ffd2
-
+hTilesPerCycle     EQU $ffd3
 hBGMapMode         EQU $ffd4
 hBGMapThird        EQU $ffd5
 hBGMapAddress      EQU $ffd6
@@ -84,6 +97,7 @@ hSPBuffer          EQU $ffd9
 
 hBGMapUpdate       EQU $ffdb
 
+hMapAnims          EQU $ffde
 hTileAnimFrame     EQU $ffdf
 
 hLastTalked        EQU $ffe0

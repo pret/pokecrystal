@@ -20,7 +20,7 @@ GentlemanScript_0x1917e9:
 UnknownScript_0x191802:
 	writetext UnknownText_0x191a3d
 	keeptextopen
-	verbosegiveitem RARE_CANDY, 1
+	verbosegiveitem RARE_CANDY
 	iffalse UnknownScript_0x19181f
 	setevent EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT
 	writetext UnknownText_0x191a72
@@ -69,7 +69,7 @@ UnknownScript_0x191844:
 	writetext UnknownText_0x191c5a
 	keeptextopen
 	waitbutton
-	giveitem LOST_ITEM, $1
+	giveitem LOST_ITEM
 	iffalse UnknownScript_0x191865
 	disappear $6
 	writetext UnknownText_0x191d0a
@@ -312,4 +312,4 @@ PokemonFanClub_MapEventHeader:
 	person_event SPRITE_FISHER, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x191824, -1
 	person_event SPRITE_TEACHER, 2, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 0, 0, TeacherScript_0x19186b, -1
 	person_event SPRITE_FAIRY, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, FairyScript_0x19186e, EVENT_VERMILION_FAN_CLUB_DOLL
-	person_event SPRITE_ODDISH, 3, 7, SPRITEMOVEDATA_16, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OddishScript_0x191871, -1
+	person_event SPRITE_ODDISH, 3, 7, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OddishScript_0x191871, -1

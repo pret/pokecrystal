@@ -1,4 +1,4 @@
-BattleCommand58: ; 376c2
+BattleCommand_PerishSong: ; 376c2
 ; perishsong
 
 

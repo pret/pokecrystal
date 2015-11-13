@@ -34,16 +34,16 @@ PredefPointers:: ; 856b
 	add_predef Predef1
 	add_predef HealParty
 	add_predef FlagPredef
-	add_predef Functionc699
+	add_predef DrawPartyMenuHPBar
 	add_predef FillPP
 	add_predef TryAddMonToParty
 	add_predef Functionda96
 	add_predef SentGetPkmnIntoFromBox
 	add_predef SentPkmnIntoBox
 	add_predef GiveEgg
-	add_predef Functionc6e0
+	add_predef AnimateHPBar
 	add_predef CalcPkmnStats
-	add_predef Functione17b
+	add_predef CalcPkmnStatC
 	add_predef CanLearnTMHMMove
 	add_predef GetTMHMMove
 	add_predef Function28eef ; $ 10
@@ -54,8 +54,8 @@ PredefPointers:: ; 856b
 	add_predef UpdateEnemyHUD
 	add_predef StartBattle
 	add_predef FillInExpBar
-	add_predef Function3f43d ; $18
-	add_predef Function3f47c
+	add_predef GetMonBackpic ; $18
+	add_predef GetMonFrontpic
 	add_predef LearnLevelMoves
 	add_predef FillMoves
 	add_predef Function421e6
@@ -63,7 +63,7 @@ PredefPointers:: ; 856b
 	add_predef Function28f24
 	add_predef CopyPkmnToTempMon
 	add_predef ListMoves ; $20
-	add_predef Function50d2e
+	add_predef PlaceNonFaintStatus
 	add_predef Function50cdb
 	add_predef Function50c50
 	add_predef GetGender
@@ -95,13 +95,13 @@ PredefPointers:: ; 856b
 	add_predef Function5108b
 	add_predef GetTrainerPic
 	add_predef DecompressPredef ; $40
-	add_predef Function347d3
+	add_predef CheckTypeMatchup
 	add_predef ConvertMon_1to2
 	add_predef Functionfb877
-	add_predef Functiond0000
-	add_predef Function50d0a
-	add_predef Functiond00a3
-	add_predef Functiond008e
+	add_predef AnimateMon_Slow_Normal
+	add_predef PlaceStatusString
+	add_predef LoadMonAnimation
+	add_predef AnimateFrontpic
 	add_predef Functiond0669 ; $48
 	add_predef Functiond066e
 	dbw $ff, Function2d43 ; ????

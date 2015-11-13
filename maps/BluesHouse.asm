@@ -30,10 +30,10 @@ UnknownScript_0x19b0de:
 	writetext UnknownText_0x19b266
 	closetext
 	loadmovesprites
-	special FadeBlackBGMap
+	special FadeOutPalettes
 	playmusic MUSIC_HEAL
 	pause 60
-	special FadeInBGMap
+	special FadeInPalettes
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x19b296
@@ -158,4 +158,4 @@ BluesHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_DAISY, 3, 2, SPRITEMOVEDATA_03, 0, 0, -1, -1, 0, 0, 0, DaisyScript_0x19b0d0, -1
+	person_event SPRITE_DAISY, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, 0, 0, DaisyScript_0x19b0d0, -1

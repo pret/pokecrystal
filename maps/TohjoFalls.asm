@@ -25,4 +25,4 @@ TohjoFalls_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKE_BALL, 6, 2, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18db02, EVENT_TOHJO_FALLS_MOON_STONE
+	person_event SPRITE_POKE_BALL, 6, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x18db02, EVENT_TOHJO_FALLS_MOON_STONE

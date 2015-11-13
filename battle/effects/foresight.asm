@@ -1,4 +1,4 @@
-BattleCommand57: ; 376a0
+BattleCommand_Foresight: ; 376a0
 ; foresight
 
 	ld a, [AttackMissed]
@@ -19,5 +19,5 @@ BattleCommand57: ; 376a0
 	jp StdBattleTextBox
 
 .failed
-	jp Function37354
+	jp FailForesight
 ; 376c2

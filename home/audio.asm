@@ -1,6 +1,6 @@
 ; Audio interfaces.
 
-SoundRestart:: ; 3b4e
+MapSetup_Sound_Off:: ; 3b4e
 
 	push hl
 	push de
@@ -9,11 +9,11 @@ SoundRestart:: ; 3b4e
 
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(_SoundRestart)
+	ld a, BANK(_MapSetup_Sound_Off)
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 
-	call _SoundRestart
+	call _MapSetup_Sound_Off
 
 	pop af
 	ld [hROMBank], a
@@ -81,7 +81,7 @@ PlayMusic:: ; 3b97
 
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(_PlayMusic) ; and BANK(_SoundRestart)
+	ld a, BANK(_PlayMusic) ; and BANK(_MapSetup_Sound_Off)
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 
@@ -93,7 +93,7 @@ PlayMusic:: ; 3b97
 	jr .end
 
 .nomusic
-	call _SoundRestart
+	call _MapSetup_Sound_Off
 
 .end
 	pop af
@@ -312,13 +312,13 @@ VolumeOff:: ; 3ca3
 	ret
 ; 3ca8
 
-Function3ca8:: ; 3ca8
+FadeOutMusic:: ; 3ca8
 	ld a, 4
 	ld [MusicFade], a
 	ret
 ; 3cae
 
-CrankUpTheVolume:: ; 3cae
+FadeInMusic:: ; 3cae
 	ld a, 4 | 1 << 7
 	ld [MusicFade], a
 	ret
@@ -326,11 +326,12 @@ CrankUpTheVolume:: ; 3cae
 
 SkipMusic:: ; 3cb4
 ; Skip a frames of music.
+.loop
 	and a
 	ret z
 	dec a
 	call UpdateSound
-	jr SkipMusic
+	jr .loop
 ; 3cbc
 
 FadeToMapMusic:: ; 3cbc

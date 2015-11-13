@@ -12,7 +12,7 @@ GymGuyScript_0x5ad0b:
 	iftrue UnknownScript_0x5ad22
 	writetext UnknownText_0x5ad2a
 	keeptextopen
-	verbosegiveitem KINGS_ROCK, 1
+	verbosegiveitem KINGS_ROCK
 	iffalse UnknownScript_0x5ad20
 	setevent EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL
 UnknownScript_0x5ad20:
@@ -73,5 +73,5 @@ SlowpokeWellB2F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_GYM_GUY, 4, 5, SPRITEMOVEDATA_02, 2, 1, -1, -1, 0, 0, 1, GymGuyScript_0x5ad0b, -1
-	person_event SPRITE_POKE_BALL, 5, 15, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5ad28, EVENT_SLOWPOKE_WELL_B2F_TM_RAIN_DANCE
+	person_event SPRITE_GYM_GUY, 4, 5, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, 0, 0, 1, GymGuyScript_0x5ad0b, -1
+	person_event SPRITE_POKE_BALL, 5, 15, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5ad28, EVENT_SLOWPOKE_WELL_B2F_TM_RAIN_DANCE

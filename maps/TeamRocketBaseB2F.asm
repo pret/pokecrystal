@@ -155,11 +155,11 @@ UnknownScript_0x6d091:
 	writetext UnknownText_0x6da97
 	closetext
 	loadmovesprites
-	special FadeBlackBGMap
+	special FadeOutPalettes
 	special Mobile_HealParty
 	playsound SFX_FULL_HEAL
 	special HealParty
-	special FadeInBGMap
+	special FadeInPalettes
 	loadfont
 	writetext UnknownText_0x6daf7
 	closetext
@@ -276,7 +276,7 @@ UnknownScript_0x6d184:
 	loadfont
 	writetext UnknownText_0x6d809
 	keeptextopen
-	verbosegiveitem HM_WHIRLPOOL, 1
+	verbosegiveitem HM_WHIRLPOOL
 	setevent EVENT_GOT_HM06_WHIRLPOOL
 	writetext UnknownText_0x6d8f8
 	closetext
@@ -449,17 +449,17 @@ MovementData_0x6d254:
 	step_end
 
 MovementData_0x6d258:
-	accelerate_last
+	step_sleep_8
 	step_left
 	step_left
 	turn_head_up
-	accelerate_last
+	step_sleep_8
 	step_right
 	step_right
 	step_right
 	step_right
 	turn_head_up
-	accelerate_last
+	step_sleep_8
 	step_left
 	step_left
 	turn_head_down
@@ -956,13 +956,13 @@ TeamRocketBaseB2F_MapEventHeader:
 	person_event SPRITE_ROCKET_GIRL, 16, 20, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_EXECUTIVE
 	person_event SPRITE_LANCE, 13, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_LANCE
 	person_event SPRITE_DRAGON, 13, 9, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_DRAGONITE
-	person_event SPRITE_VOLTORB, 5, 7, SPRITEMOVEDATA_16, 0, 0, -1, -1, 0, 0, 0, VoltorbScript_0x6d101, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
-	person_event SPRITE_VOLTORB, 7, 7, SPRITEMOVEDATA_16, 0, 0, -1, -1, 0, 0, 0, VoltorbScript_0x6d12c, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
-	person_event SPRITE_VOLTORB, 9, 7, SPRITEMOVEDATA_16, 0, 0, -1, -1, 0, 0, 0, VoltorbScript_0x6d157, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
-	person_event SPRITE_VOLTORB, 5, 22, SPRITEMOVEDATA_16, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
-	person_event SPRITE_VOLTORB, 7, 22, SPRITEMOVEDATA_16, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
-	person_event SPRITE_VOLTORB, 9, 22, SPRITEMOVEDATA_16, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
+	person_event SPRITE_VOLTORB, 5, 7, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, 0, 0, VoltorbScript_0x6d101, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
+	person_event SPRITE_VOLTORB, 7, 7, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, 0, 0, VoltorbScript_0x6d12c, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
+	person_event SPRITE_VOLTORB, 9, 7, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, 0, 0, VoltorbScript_0x6d157, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
+	person_event SPRITE_VOLTORB, 5, 22, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
+	person_event SPRITE_VOLTORB, 7, 22, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
+	person_event SPRITE_VOLTORB, 9, 22, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
 	person_event SPRITE_ROCKET, 13, 25, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM17, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_ROCKET, 1, 4, SPRITEMOVEDATA_0A, 0, 0, -1, -1, 0, 2, 1, TrainerGruntM18, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_ROCKET, 1, 4, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, 2, 1, TrainerGruntM18, EVENT_TEAM_ROCKET_BASE_POPULATION
 	person_event SPRITE_ROCKET, 14, 21, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 2, 4, TrainerGruntM19, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_POKE_BALL, 10, 3, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6d20d, EVENT_TEAM_ROCKET_BASE_B2F_TM_THIEF
+	person_event SPRITE_POKE_BALL, 10, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6d20d, EVENT_TEAM_ROCKET_BASE_B2F_TM_THIEF

@@ -145,5 +145,5 @@ Route3_MapEventHeader:
 	db 4
 	person_event SPRITE_FISHER, 12, 26, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerFirebreatherOtis, -1
 	person_event SPRITE_YOUNGSTER, 7, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerYoungsterWarren, -1
-	person_event SPRITE_YOUNGSTER, 3, 16, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerYoungsterJimmy, -1
-	person_event SPRITE_FISHER, 5, 49, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerFirebreatherBurt, -1
+	person_event SPRITE_YOUNGSTER, 3, 16, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerYoungsterJimmy, -1
+	person_event SPRITE_FISHER, 5, 49, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerFirebreatherBurt, -1

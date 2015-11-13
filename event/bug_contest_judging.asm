@@ -1,0 +1,480 @@
+_BugContestJudging: ; 1369d
+	call ContestScore
+	callba MobileFn_105f79
+	call Function13819
+	ld a, [wd00a]
+	call LoadContestantName
+	ld a, [wd00b]
+	ld [wd265], a
+	call GetPokemonName
+	ld hl, BugContest_ThirdPlaceText
+	call PrintText
+	ld a, [EndFlypoint]
+	call LoadContestantName
+	ld a, [MovementBuffer]
+	ld [wd265], a
+	call GetPokemonName
+	ld hl, BugContest_SecondPlaceText
+	call PrintText
+	ld a, [wd002]
+	call LoadContestantName
+	ld a, [wd003]
+	ld [wd265], a
+	call GetPokemonName
+	ld hl, BugContest_FirstPlaceText
+	call PrintText
+	jp Function13807
+; 136eb
+
+BugContest_FirstPlaceText: ; 0x136eb
+	text_jump ContestJudging_FirstPlaceText
+	start_asm
+BugContest_FirstPlace: ; 136f0
+	ld de, SFX_1ST_PLACE
+	call PlaySFX
+	call WaitSFX
+	ld hl, BugContest_FirstPlaceScoreText
+	ret
+; 136fd
+
+BugContest_FirstPlaceScoreText: ; 0x136fd
+	; The winning score was @  points!
+	text_jump ContestJudging_FirstPlaceScoreText
+	db "@"
+; 0x13702
+
+BugContest_SecondPlaceText: ; 0x13702
+	; Placing second was @ , who caught a @ !@ @
+	text_jump ContestJudging_SecondPlaceText
+	start_asm
+BugContest_SecondPlace: ; 13707
+	ld de, SFX_2ND_PLACE
+	call PlaySFX
+	call WaitSFX
+	ld hl, BugContest_SecondPlaceScoreText
+	ret
+; 13714
+
+BugContest_SecondPlaceScoreText: ; 0x13714
+	; The score was @  points!
+	text_jump ContestJudging_SecondPlaceScoreText
+	db "@"
+; 0x13719
+
+BugContest_ThirdPlaceText: ; 0x13719
+	; Placing third was @ , who caught a @ !@ @
+	text_jump ContestJudging_ThirdPlaceText
+	start_asm
+; 0x1371e
+
+BugContest_ThirdPlace: ; 1371e
+	ld de, SFX_3RD_PLACE
+	call PlaySFX
+	call WaitSFX
+	ld hl, BugContest_ThirdPlaceScoreText
+	ret
+; 1372b
+
+BugContest_ThirdPlaceScoreText: ; 0x1372b
+	; The score was @  points!
+	text_jump ContestJudging_ThirdPlaceScoreText
+	db "@"
+; 0x13730
+
+LoadContestantName: ; 13730
+
+; If a = 0, get your name.
+	dec a
+	jr z, .done
+; Find the pointer for the trainer class of the Bug Catching Contestant whose ID is in a.
+	ld c, a
+	ld b, 0
+	ld hl, BugContestantPointers
+rept 2
+	add hl, bc
+endr
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+; Copy the Trainer Class to c.
+	ld a, [hli]
+	ld c, a
+; Save hl and bc for later.
+	push hl
+	push bc
+; Get the Trainer Class name and copy it into wd016.
+	callab GetTrainerClassName
+	ld hl, StringBuffer1
+	ld de, wd016
+	ld bc, TRAINER_CLASS_NAME_LENGTH
+	call CopyBytes
+	ld hl, wd016
+; Delete the trailing terminator and replace it with a space.
+.next
+	ld a, [hli]
+	cp "@"
+	jr nz, .next
+	dec hl
+	ld [hl], " "
+	inc hl
+	ld d, h
+	ld e, l
+; Restore the Trainer Class ID and Trainer ID pointer.  Save de for later.
+	pop bc
+	pop hl
+	push de
+; Get the name of the trainer with class c and ID b.
+	ld a, [hl]
+	ld b, a
+	callab GetTrainerName
+; Append the name to wd016.
+	ld hl, StringBuffer1
+	pop de
+	ld bc, NAME_LENGTH - 1
+	jp CopyBytes
+
+.done
+	ld hl, PlayerName
+	ld de, wd016
+	ld bc, NAME_LENGTH
+	jp CopyBytes
+; 13783
+
+BugContestantPointers: ; 13783
+	dw BugContestant_BugCatcherDon ; This reverts back to the player
+	dw BugContestant_BugCatcherDon
+	dw BugContestant_BugCatcherEd
+	dw BugContestant_CooltrainerMNick
+	dw BugContestant_PokefanMWilliam
+	dw BugContestant_BugCatcherBenny
+	dw BugContestant_CamperBarry
+	dw BugContestant_PicnickerCindy
+	dw BugContestant_BugCatcherJosh
+	dw BugContestant_YoungsterSamuel
+	dw BugContestant_SchoolboyKipp
+; 13799
+
+BugContestant_BugCatcherDon:
+	db BUG_CATCHER, DON
+	dbw KAKUNA,     300
+	dbw METAPOD,    285
+	dbw CATERPIE,   226
+
+BugContestant_BugCatcherEd:
+	db BUG_CATCHER, ED
+	dbw BUTTERFREE, 286
+	dbw BUTTERFREE, 251
+	dbw CATERPIE,   237
+
+BugContestant_CooltrainerMNick:
+	db COOLTRAINERM, NICK
+	dbw SCYTHER,    357
+	dbw BUTTERFREE, 349
+	dbw PINSIR,     368
+
+BugContestant_PokefanMWilliam:
+	db POKEFANM, WILLIAM
+	dbw PINSIR,     332
+	dbw BUTTERFREE, 324
+	dbw VENONAT,    321
+
+BugContestant_BugCatcherBenny:
+	db BUG_CATCHER, BUG_CATCHER_BENNY
+	dbw BUTTERFREE, 318
+	dbw WEEDLE,     295
+	dbw CATERPIE,   285
+
+BugContestant_CamperBarry:
+	db CAMPER, BARRY
+	dbw PINSIR,     366
+	dbw VENONAT,    329
+	dbw KAKUNA,     314
+
+BugContestant_PicnickerCindy:
+	db PICNICKER, CINDY
+	dbw BUTTERFREE, 341
+	dbw METAPOD,    301
+	dbw CATERPIE,   264
+
+BugContestant_BugCatcherJosh:
+	db BUG_CATCHER, JOSH
+	dbw SCYTHER,    326
+	dbw BUTTERFREE, 292
+	dbw METAPOD,    282
+
+BugContestant_YoungsterSamuel:
+	db YOUNGSTER, SAMUEL
+	dbw WEEDLE,     270
+	dbw PINSIR,     282
+	dbw CATERPIE,   251
+
+BugContestant_SchoolboyKipp:
+	db SCHOOLBOY, KIPP
+	dbw VENONAT,    267
+	dbw PARAS,      254
+	dbw KAKUNA,     259
+; 13807
+
+Function13807: ; 13807
+	ld hl, wd00a
+	ld de, -4
+	ld b, 3
+.loop
+	ld a, [hl]
+	cp 1
+	jr z, .done
+	add hl, de
+	dec b
+	jr nz, .loop
+
+.done
+	ret
+; 13819
+
+Function13819: ; 13819
+	call Function13833
+	call Function138b0
+	ld hl, wd00e
+	ld a, 1
+	ld [hli], a
+	ld a, [wContestMon]
+	ld [hli], a
+	ld a, [hProduct]
+	ld [hli], a
+	ld a, [hMultiplicand]
+	ld [hl], a
+	call Function1383e
+	ret
+; 13833
+
+Function13833: ; 13833
+	ld hl, wd002
+	ld b, 12
+	xor a
+.loop
+	ld [hli], a
+	dec b
+	jr nz, .loop
+	ret
+; 1383e
+
+Function1383e: ; 1383e
+	ld de, wd010
+	ld hl, wd004
+	ld c, 2
+	call StringCmp
+	jr c, .next
+	ld hl, EndFlypoint
+	ld de, wd00a
+	ld bc, 4
+	call CopyBytes
+	ld hl, wd002
+	ld de, EndFlypoint
+	ld bc, 4
+	call CopyBytes
+	ld hl, wd002
+	call Function138a0
+	jr .done
+
+.next
+	ld de, wd010
+	ld hl, wd008
+	ld c, 2
+	call StringCmp
+	jr c, .next2
+	ld hl, EndFlypoint
+	ld de, wd00a
+	ld bc, 4
+	call CopyBytes
+	ld hl, EndFlypoint
+	call Function138a0
+	jr .done
+
+.next2
+	ld de, wd010
+	ld hl, wd00c
+	ld c, 2
+	call StringCmp
+	jr c, .done
+	ld hl, wd00a
+	call Function138a0
+
+.done
+	ret
+; 138a0
+
+Function138a0: ; 138a0
+	ld de, wd00e
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld a, [de]
+	inc de
+	ld [hl], a
+	ret
+; 138b0
+
+Function138b0: ; 138b0
+	ld e, 0
+.loop
+	push de
+	call Special_CheckBugContestContestantFlag
+	pop de
+	jr nz, .done
+	ld a, e
+rept 2
+	inc a
+endr
+	ld [wd00e], a
+	dec a
+	ld c, a
+	ld b, 0
+	ld hl, BugContestantPointers
+rept 2
+	add hl, bc
+endr
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+rept 2
+	inc hl
+endr
+.loop2
+	call Random
+	and 3
+	cp 3
+	jr z, .loop2
+	ld c, a
+	ld b, 0
+rept 3
+	add hl, bc
+endr
+	ld a, [hli]
+	ld [wd00f], a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call Random
+	and 7
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld a, h
+	ld [wd010], a
+	ld a, l
+	ld [wd011], a
+	push de
+	call Function1383e
+	pop de
+
+.done
+	inc e
+	ld a, e
+	cp 10
+	jr nz, .loop
+	ret
+; 13900
+
+ContestScore: ; 13900
+; Determine the player's score in the Bug Catching Contest.
+
+	xor a
+	ld [hProduct], a
+	ld [hMultiplicand], a
+
+	ld a, [wContestMonSpecies] ; Species
+	and a
+	jr z, .done
+
+	; Tally the following:
+
+	; Max HP * 4
+	ld a, [wContestMonMaxHP + 1]
+	call .AddContestStat
+	ld a, [wContestMonMaxHP + 1]
+	call .AddContestStat
+	ld a, [wContestMonMaxHP + 1]
+	call .AddContestStat
+	ld a, [wContestMonMaxHP + 1]
+	call .AddContestStat
+
+	; Stats
+	ld a, [wContestMonAttack  + 1]
+	call .AddContestStat
+	ld a, [wContestMonDefense + 1]
+	call .AddContestStat
+	ld a, [wContestMonSpeed   + 1]
+	call .AddContestStat
+	ld a, [wContestMonSpclAtk + 1]
+	call .AddContestStat
+	ld a, [wContestMonSpclDef + 1]
+	call .AddContestStat
+
+	; DVs
+	ld a, [wContestMonDVs + 0]
+	ld b, a
+	and 2
+rept 2
+	add a
+endr
+	ld c, a
+
+	swap b
+	ld a, b
+	and 2
+	add a
+	add c
+	ld d, a
+
+	ld a, [wContestMonDVs + 1]
+	ld b, a
+	and 2
+	ld c, a
+
+	swap b
+	ld a, b
+	and 2
+	srl a
+rept 2
+	add c
+endr
+rept 2
+	add d
+endr
+
+	call .AddContestStat
+
+	; Remaining HP / 8
+	ld a, [wContestMonHP + 1]
+	srl a
+	srl a
+	srl a
+	call .AddContestStat
+
+	; Whether it's holding an item
+	ld a, [wContestMonItem]
+	and a
+	jr z, .done
+
+	ld a, 1
+	call .AddContestStat
+
+.done
+	ret
+; 1397f
+
+.AddContestStat: ; 1397f
+	ld hl, hMultiplicand
+	add [hl]
+	ld [hl], a
+	ret nc
+	dec hl
+	inc [hl]
+	ret
+; 13988

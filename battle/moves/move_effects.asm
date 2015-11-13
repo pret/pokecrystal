@@ -44,7 +44,7 @@ NormalHit:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -83,7 +83,7 @@ PoisonHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -107,7 +107,7 @@ LeechHit:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -133,7 +133,7 @@ BurnHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -158,7 +158,7 @@ FreezeHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -187,7 +187,7 @@ ParalyzeHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -208,8 +208,8 @@ Explosion:
 	damagevariation
 	checkhit
 	selfdestruct
-	effect0x0b
-	resulttext
+	hittargetnosub
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -229,7 +229,7 @@ DreamEater:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -252,10 +252,10 @@ AttackUp:
 	usedmovetext
 	doturn
 	attackup
-	effect0x0a
-	effect0x92
-	effect0x0c
-	statmessageuser
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -266,10 +266,10 @@ DefenseUp:
 	usedmovetext
 	doturn
 	defenseup
-	effect0x0a
-	effect0x92
-	effect0x0c
-	statmessageuser
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -278,10 +278,10 @@ SpeedUp:
 	usedmovetext
 	doturn
 	speedup
-	effect0x0a
-	effect0x92
-	effect0x0c
-	statmessageuser
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -291,10 +291,10 @@ SpecialAttackUp:
 	usedmovetext
 	doturn
 	specialattackup
-	effect0x0a
-	effect0x92
-	effect0x0c
-	statmessageuser
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -303,10 +303,10 @@ SpecialDefenseUp:
 	usedmovetext
 	doturn
 	specialdefenseup
-	effect0x0a
-	effect0x92
-	effect0x0c
-	statmessageuser
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -315,10 +315,10 @@ AccuracyUp:
 	usedmovetext
 	doturn
 	accuracyup
-	effect0x0a
-	effect0x92
-	effect0x0c
-	statmessageuser
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -328,12 +328,12 @@ EvasionUp:
 	checkobedience
 	usedmovetext
 	doturn
-	effect0x0a
+	lowersub
 	evasionup
-	effect0x92
-	effect0xa7
-	effect0x0c
-	statmessageuser
+	statupanim
+	lowersubnoanim
+	raisesub
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -343,10 +343,10 @@ AttackUp2:
 	usedmovetext
 	doturn
 	attackup2
-	effect0x0a
-	effect0x92
-	effect0x0c
-	statmessageuser
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -357,10 +357,10 @@ DefenseUp2:
 	usedmovetext
 	doturn
 	defenseup2
-	effect0x0a
-	effect0x92
-	effect0x0c
-	statmessageuser
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -370,10 +370,10 @@ SpeedUp2:
 	usedmovetext
 	doturn
 	speedup2
-	effect0x0a
-	effect0x92
-	effect0x0c
-	statmessageuser
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -382,10 +382,10 @@ SpecialAttackUp2:
 	usedmovetext
 	doturn
 	specialattackup2
-	effect0x0a
-	effect0x92
-	effect0x0c
-	statmessageuser
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -395,10 +395,10 @@ SpecialDefenseUp2:
 	usedmovetext
 	doturn
 	specialdefenseup2
-	effect0x0a
-	effect0x92
-	effect0x0c
-	statmessageuser
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -407,10 +407,10 @@ AccuracyUp2:
 	usedmovetext
 	doturn
 	accuracyup2
-	effect0x0a
-	effect0x92
-	effect0x0c
-	statmessageuser
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -419,10 +419,10 @@ EvasionUp2:
 	usedmovetext
 	doturn
 	evasionup2
-	effect0x0a
-	effect0x92
-	effect0x0c
-	statmessageuser
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
 	statupfailtext
 	endmove
 
@@ -433,10 +433,10 @@ AttackDown:
 	doturn
 	checkhit
 	attackdown
-	effect0x0a
-	effect0x91
-	effect0x0c
-	statmessagetarget
+	lowersub
+	statdownanim
+	raisesub
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -448,10 +448,10 @@ DefenseDown:
 	doturn
 	checkhit
 	defensedown
-	effect0x0a
-	effect0x91
-	effect0x0c
-	statmessagetarget
+	lowersub
+	statdownanim
+	raisesub
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -462,10 +462,10 @@ SpeedDown:
 	doturn
 	checkhit
 	speeddown
-	effect0x0a
-	effect0x91
-	effect0x0c
-	statmessagetarget
+	lowersub
+	statdownanim
+	raisesub
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -475,10 +475,10 @@ SpecialAttackDown:
 	doturn
 	checkhit
 	specialattackdown
-	effect0x0a
-	effect0x91
-	effect0x0c
-	statmessagetarget
+	lowersub
+	statdownanim
+	raisesub
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -488,10 +488,10 @@ SpecialDefenseDown:
 	doturn
 	checkhit
 	specialdefensedown
-	effect0x0a
-	effect0x91
-	effect0x0c
-	statmessagetarget
+	lowersub
+	statdownanim
+	raisesub
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -505,10 +505,10 @@ AccuracyDown:
 	doturn
 	checkhit
 	accuracydown
-	effect0x0a
-	effect0x91
-	effect0x0c
-	statmessagetarget
+	lowersub
+	statdownanim
+	raisesub
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -519,10 +519,10 @@ EvasionDown:
 	doturn
 	checkhit
 	evasiondown
-	effect0x0a
-	effect0x91
-	effect0x0c
-	statmessagetarget
+	lowersub
+	statdownanim
+	raisesub
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -533,10 +533,10 @@ AttackDown2:
 	doturn
 	checkhit
 	attackdown2
-	effect0x0a
-	effect0x91
-	effect0x0c
-	statmessagetarget
+	lowersub
+	statdownanim
+	raisesub
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -547,10 +547,10 @@ DefenseDown2:
 	doturn
 	checkhit
 	defensedown2
-	effect0x0a
-	effect0x91
-	effect0x0c
-	statmessagetarget
+	lowersub
+	statdownanim
+	raisesub
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -562,10 +562,10 @@ SpeedDown2:
 	doturn
 	checkhit
 	speeddown2
-	effect0x0a
-	effect0x91
-	effect0x0c
-	statmessagetarget
+	lowersub
+	statdownanim
+	raisesub
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -575,10 +575,10 @@ SpecialAttackDown2:
 	doturn
 	checkhit
 	specialattackdown2
-	effect0x0a
-	effect0x91
-	effect0x0c
-	statmessagetarget
+	lowersub
+	statdownanim
+	raisesub
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -588,10 +588,10 @@ SpecialDefenseDown2:
 	doturn
 	checkhit
 	specialdefensedown2
-	effect0x0a
-	effect0x91
-	effect0x0c
-	statmessagetarget
+	lowersub
+	statdownanim
+	raisesub
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -601,10 +601,10 @@ AccuracyDown2:
 	doturn
 	checkhit
 	accuracydown2
-	effect0x0a
-	effect0x91
-	effect0x0c
-	statmessagetarget
+	lowersub
+	statdownanim
+	raisesub
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -614,10 +614,10 @@ EvasionDown2:
 	doturn
 	checkhit
 	evasiondown2
-	effect0x0a
-	effect0x91
-	effect0x0c
-	statmessagetarget
+	lowersub
+	statdownanim
+	raisesub
+	statdownmessage
 	statdownfailtext
 	endmove
 
@@ -634,14 +634,14 @@ AttackDownHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
 	checkdestinybond
 	buildopponentrage
 	attackdown
-	statmessagetarget
+	statdownmessage
 	endmove
 
 Acid:
@@ -659,7 +659,7 @@ DefenseDownHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -667,7 +667,7 @@ DefenseDownHit:
 	buildopponentrage
 	effectchance
 	defensedown
-	statmessagetarget
+	statdownmessage
 	endmove
 
 Bubblebeam:
@@ -686,14 +686,14 @@ SpeedDownHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
 	checkdestinybond
 	buildopponentrage
 	speeddown
-	statmessagetarget
+	statdownmessage
 	endmove
 
 SpecialAttackDownHit:
@@ -708,14 +708,14 @@ SpecialAttackDownHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
 	checkdestinybond
 	buildopponentrage
 	specialattackdown
-	statmessagetarget
+	statdownmessage
 	endmove
 
 PsychicM:
@@ -733,14 +733,14 @@ SpecialDefenseDownHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
 	checkdestinybond
 	buildopponentrage
 	specialdefensedown
-	statmessagetarget
+	statdownmessage
 	endmove
 
 MudSlap:
@@ -757,14 +757,14 @@ AccuracyDownHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
 	checkdestinybond
 	buildopponentrage
 	accuracydown
-	statmessagetarget
+	statdownmessage
 	endmove
 
 EvasionDownHit:
@@ -779,14 +779,14 @@ EvasionDownHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
 	checkdestinybond
 	buildopponentrage
 	evasiondown
-	statmessagetarget
+	statdownmessage
 	endmove
 
 SteelWing:
@@ -802,14 +802,14 @@ DefenseUpHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
 	checkdestinybond
 	buildopponentrage
 	defenseup
-	statmessageuser
+	statupmessage
 	endmove
 
 MetalClaw:
@@ -825,14 +825,14 @@ AttackUpHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
 	checkdestinybond
 	buildopponentrage
 	attackup
-	statmessageuser
+	statupmessage
 	endmove
 
 Ancientpower:
@@ -848,7 +848,7 @@ AllUpHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -868,7 +868,7 @@ PayDay:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -898,7 +898,7 @@ Bide:
 	doturn
 	usedmovetext
 	unleashenergy
-	effect0xa3
+	resettypematchup
 	checkhit
 	hittarget
 	effect0xa5
@@ -925,7 +925,7 @@ Rampage:
 	damagevariation
 	clearmissdamage
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -958,7 +958,7 @@ MultiHit:
 	usedmovetext
 	doturn
 	startloop
-	effect0x0a
+	lowersub
 	checkhit
 	critical
 	damagestats
@@ -966,8 +966,8 @@ MultiHit:
 	stab
 	damagevariation
 	clearmissdamage
-	effect0x0b
-	resulttext
+	hittargetnosub
+	failuretext
 	checkfaint
 	criticaltext
 	cleartext
@@ -975,7 +975,7 @@ MultiHit:
 	checkdestinybond
 	buildopponentrage
 	endloop
-	effect0x0c
+	raisesub
 	kingsrock
 	endmove
 
@@ -985,7 +985,7 @@ PoisonMultiHit:
 	usedmovetext
 	doturn
 	startloop
-	effect0x0a
+	lowersub
 	checkhit
 	effectchance
 	critical
@@ -994,8 +994,8 @@ PoisonMultiHit:
 	stab
 	damagevariation
 	clearmissdamage
-	effect0x0b
-	resulttext
+	hittargetnosub
+	failuretext
 	checkfaint
 	criticaltext
 	cleartext
@@ -1003,7 +1003,7 @@ PoisonMultiHit:
 	checkdestinybond
 	buildopponentrage
 	endloop
-	effect0x0c
+	raisesub
 	kingsrock
 	poisontarget
 	endmove
@@ -1027,7 +1027,7 @@ FlinchHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1046,7 +1046,7 @@ OHKOHit:
 	stab
 	ohko
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1069,7 +1069,7 @@ RecoilHit:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1122,7 +1122,7 @@ ConfuseHit:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1169,7 +1169,7 @@ TriAttack:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1218,7 +1218,7 @@ SkyAttack:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1246,7 +1246,7 @@ HyperBeam:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1267,7 +1267,7 @@ Rage:
 	ragedamage
 	damagevariation
 	hittarget
-	resulttext
+	failuretext
 	rage
 	checkfaint
 	criticaltext
@@ -1328,7 +1328,7 @@ RazorWind:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1350,9 +1350,9 @@ Dig:
 	stab
 	damagevariation
 	checkhit
-	effect0x0b
-	effect0x0c
-	resulttext
+	hittargetnosub
+	raisesub
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1377,7 +1377,7 @@ Whirlpool:
 	damagevariation
 	clearmissdamage
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1398,9 +1398,9 @@ StaticDamage:
 	doturn
 	constantdamage
 	checkhit
-	effect0xa3
+	resettypematchup
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	checkdestinybond
 	buildopponentrage
@@ -1416,7 +1416,7 @@ Reversal:
 	stab
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	supereffectivetext
 	checkdestinybond
@@ -1430,7 +1430,7 @@ Counter:
 	doturn
 	counter
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	checkdestinybond
 	buildopponentrage
@@ -1466,7 +1466,7 @@ Snore:
 	effectchance
 	snore
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1541,7 +1541,7 @@ FalseSwipe:
 	falseswipe
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1562,7 +1562,7 @@ TripleKick:
 	usedmovetext
 	doturn
 	startloop
-	effect0x0a
+	lowersub
 	checkhit
 	critical
 	damagestats
@@ -1571,8 +1571,8 @@ TripleKick:
 	stab
 	damagevariation
 	clearmissdamage
-	effect0x0b
-	resulttext
+	hittargetnosub
+	failuretext
 	checkfaint
 	criticaltext
 	cleartext
@@ -1581,7 +1581,7 @@ TripleKick:
 	buildopponentrage
 	kickcounter
 	endloop
-	effect0x0c
+	raisesub
 	kingsrock
 	endmove
 
@@ -1597,7 +1597,7 @@ Thief:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1634,7 +1634,7 @@ FlameWheel:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1708,7 +1708,7 @@ Rollout:
 	rolloutpower
 	damagevariation
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1725,12 +1725,12 @@ Swagger:
 	switchturn
 	attackup2
 	switchturn
-	effect0x0a
-	effect0x92
-	effect0x0c
-	resulttext
+	lowersub
+	statupanim
+	raisesub
+	failuretext
 	switchturn
-	statmessageuser
+	statupmessage
 	switchturn
 	confusetarget
 	endmove
@@ -1747,7 +1747,7 @@ FuryCutter:
 	furycutter
 	damagevariation
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1776,7 +1776,7 @@ Return:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1797,7 +1797,7 @@ Present:
 	stab
 	damagevariation
 	clearmissdamage
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1818,7 +1818,7 @@ Frustration:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1846,7 +1846,7 @@ SacredFire:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1869,7 +1869,7 @@ Magnitude:
 	checkhit
 	doubleundergrounddamage
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1897,7 +1897,7 @@ Pursuit:
 	pursuit
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1917,7 +1917,7 @@ RapidSpin:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1959,7 +1959,7 @@ HiddenPower:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -1989,7 +1989,7 @@ FakeOut:
 	checkhit
 	fakeout
 	hittarget
-	resulttext
+	failuretext
 	endmove
 
 BellyDrum:
@@ -2012,7 +2012,7 @@ MirrorCoat:
 	doturn
 	mirrorcoat
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	checkdestinybond
 	buildopponentrage
@@ -2032,7 +2032,7 @@ SkullBash:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -2041,7 +2041,7 @@ SkullBash:
 	kingsrock
 	endturn
 	defenseup
-	statmessageuser
+	statupmessage
 	endmove
 
 Twister:
@@ -2057,7 +2057,7 @@ Twister:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -2079,7 +2079,7 @@ Earthquake:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -2097,8 +2097,8 @@ FutureSight:
 	futuresight
 	damagevariation
 	checkhit
-	effect0x0b
-	resulttext
+	hittargetnosub
+	failuretext
 	checkfaint
 	checkdestinybond
 	buildopponentrage
@@ -2116,7 +2116,7 @@ Gust:
 	doubleflyingdamage
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -2137,7 +2137,7 @@ Stomp:
 	checkhit
 	effectchance
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -2160,7 +2160,7 @@ Solarbeam:
 	damagevariation
 	checkhit
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -2182,7 +2182,7 @@ Thunder:
 	stab
 	damagevariation
 	hittarget
-	resulttext
+	failuretext
 	checkfaint
 	criticaltext
 	supereffectivetext
@@ -2204,15 +2204,15 @@ BeatUp:
 	movedelay
 	doturn
 	startloop
-	effect0x0a
+	lowersub
 	checkhit
 	critical
 	beatup
 	damagecalc
 	damagevariation
 	clearmissdamage
-	effect0x0b
-	resulttext
+	hittargetnosub
+	failuretext
 	checkfaint
 	criticaltext
 	cleartext
@@ -2221,7 +2221,7 @@ BeatUp:
 	buildopponentrage
 	endloop
 	effect0xa8
-	effect0x0c
+	raisesub
 	kingsrock
 	endmove
 
@@ -2231,9 +2231,9 @@ DefenseCurl:
 	doturn
 	defenseup
 	curl
-	effect0x0a
-	effect0x92
-	effect0x0c
-	statmessageuser
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
 	statupfailtext
 	endmove

@@ -48,7 +48,7 @@ MortyScript_0x99d58:
 	setevent EVENT_BEAT_MEDIUM_GRACE
 	writetext UnknownText_0x9a059
 	keeptextopen
-	verbosegiveitem TM_SHADOW_BALL, 1
+	verbosegiveitem TM_SHADOW_BALL
 	iffalse UnknownScript_0x99db5
 	setevent EVENT_GOT_TM30_SHADOW_BALL
 	writetext UnknownText_0x9a0ec
@@ -84,7 +84,7 @@ UnknownScript_0x99dc6:
 	follow PLAYER, $8
 	applymovement PLAYER, MovementData_0x99e5f
 	stopfollow
-	special FadeBlackBGMap
+	special FadeOutPalettes
 	playsound SFX_ENTER_DOOR
 	waitbutton
 	warp ECRUTEAK_CITY, $6, $1b

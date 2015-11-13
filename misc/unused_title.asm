@@ -3,7 +3,7 @@ SECTION "bank43", ROMX, BANK[$43]
 
 UnusedTitleScreen: ; 10c000
 
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearTileMap
 	call DisableLCD
 	xor a
@@ -67,7 +67,7 @@ endr
 	ld [rSVBK], a
 
 	ld hl, UnusedTitleBG_Palettes
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $40
 	call CopyBytes
 

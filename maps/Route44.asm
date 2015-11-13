@@ -73,7 +73,7 @@ UnknownScript_0x19d86a:
 	checkevent EVENT_GOT_CARBOS_FROM_VANCE
 	iftrue UnknownScript_0x19d8ca
 	scall UnknownScript_0x19d90a
-	verbosegiveitem CARBOS, 1
+	verbosegiveitem CARBOS
 	iffalse UnknownScript_0x19d903
 	setevent EVENT_GOT_CARBOS_FROM_VANCE
 	jump UnknownScript_0x19d8eb
@@ -85,7 +85,7 @@ UnknownScript_0x19d8cb:
 	loadfont
 	writetext UnknownText_0x19dc67
 	closetext
-	verbosegiveitem CARBOS, 1
+	verbosegiveitem CARBOS
 	iffalse UnknownScript_0x19d903
 	clearevent EVENT_VANCE_CARBOS
 	setevent EVENT_GOT_CARBOS_FROM_VANCE
@@ -223,17 +223,17 @@ UnknownScript_0x19d9b4:
 	checkevent EVENT_WILTON_HAS_POKE_BALL
 	iftrue UnknownScript_0x19d9db
 UnknownScript_0x19d9c9:
-	verbosegiveitem ULTRA_BALL, 1
+	verbosegiveitem ULTRA_BALL
 	iffalse UnknownScript_0x19d9e7
 	jump UnknownScript_0x19d9e1
 
 UnknownScript_0x19d9d2:
-	verbosegiveitem GREAT_BALL, 1
+	verbosegiveitem GREAT_BALL
 	iffalse UnknownScript_0x19d9e7
 	jump UnknownScript_0x19d9e1
 
 UnknownScript_0x19d9db:
-	verbosegiveitem POKE_BALL, 1
+	verbosegiveitem POKE_BALL
 	iffalse UnknownScript_0x19d9e7
 UnknownScript_0x19d9e1:
 	clearflag ENGINE_WILTON_HAS_ITEM
@@ -515,12 +515,12 @@ Route44_MapEventHeader:
 	db 11
 	person_event SPRITE_FISHER, 3, 35, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherWilton1, -1
 	person_event SPRITE_FISHER, 13, 19, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 1, TrainerFisherEdgar, -1
-	person_event SPRITE_YOUNGSTER, 9, 10, SPRITEMOVEDATA_1F, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPsychicPhil, -1
-	person_event SPRITE_SUPER_NERD, 2, 43, SPRITEMOVEDATA_1F, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerPokemaniacZach, -1
+	person_event SPRITE_YOUNGSTER, 9, 10, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPsychicPhil, -1
+	person_event SPRITE_SUPER_NERD, 2, 43, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 3, TrainerPokemaniacZach, -1
 	person_event SPRITE_YOUNGSTER, 5, 51, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerBird_keeperVance1, -1
 	person_event SPRITE_COOLTRAINER_M, 15, 41, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 5, TrainerCooltrainermAllen, -1
 	person_event SPRITE_COOLTRAINER_F, 14, 31, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 5, TrainerCooltrainerfCybil, -1
-	person_event SPRITE_FRUIT_TREE, 5, 9, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x19da40, -1
-	person_event SPRITE_POKE_BALL, 8, 30, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19da42, EVENT_ROUTE_44_MAX_REVIVE
-	person_event SPRITE_POKE_BALL, 4, 45, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19da44, EVENT_ROUTE_44_ULTRA_BALL
-	person_event SPRITE_POKE_BALL, 9, 14, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19da46, EVENT_ROUTE_44_MAX_REPEL
+	person_event SPRITE_FRUIT_TREE, 5, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x19da40, -1
+	person_event SPRITE_POKE_BALL, 8, 30, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19da42, EVENT_ROUTE_44_MAX_REVIVE
+	person_event SPRITE_POKE_BALL, 4, 45, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19da44, EVENT_ROUTE_44_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 9, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x19da46, EVENT_ROUTE_44_MAX_REPEL

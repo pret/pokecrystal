@@ -90,7 +90,7 @@ UnknownScript_0x19407b:
 	disappear $4
 	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
 	special RunCallback_04
-	special Function14168
+	special RefreshSprites
 	end
 
 LassScript_0x19408c:
@@ -135,7 +135,7 @@ FisherScript_0x1940b9:
 UnknownScript_0x1940cd:
 	writetext UnknownText_0x1944d0
 	keeptextopen
-	verbosegiveitem TM_ROCK_SMASH, 1
+	verbosegiveitem TM_ROCK_SMASH
 	iffalse UnknownScript_0x1940de
 	setevent EVENT_GOT_TM08_ROCK_SMASH
 UnknownScript_0x1940da:
@@ -254,7 +254,7 @@ UnknownScript_0x194140:
 
 UnknownScript_0x1941b4:
 	scall UnknownScript_0x1941e5
-	verbosegiveitem FIRE_STONE, 1
+	verbosegiveitem FIRE_STONE
 	iffalse UnknownScript_0x1941c6
 	clearflag ENGINE_ALAN_HAS_FIRE_STONE
 	setevent EVENT_ALAN_GAVE_FIRE_STONE
@@ -325,7 +325,7 @@ ArthurScript:
 .MetArthur
 	writetext ArthurGivesGiftText
 	keeptextopen
-	verbosegiveitem HARD_STONE, 1
+	verbosegiveitem HARD_STONE
 	iffalse ArthurDoneScript
 	setevent EVENT_GOT_HARD_STONE_FROM_ARTHUR
 	writetext ArthurGaveGiftText
@@ -681,10 +681,10 @@ Route36_MapEventHeader:
 	db 9
 	person_event SPRITE_YOUNGSTER, 13, 20, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerPsychicMark, -1
 	person_event SPRITE_YOUNGSTER, 14, 31, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerSchoolboyAlan1, -1
-	person_event SPRITE_WEIRD_TREE, 9, 35, SPRITEMOVEDATA_17, 0, 0, -1, -1, 0, 0, 0, WeirdTreeScript_0x19403c, EVENT_ROUTE_36_SUDOWOODO
+	person_event SPRITE_WEIRD_TREE, 9, 35, SPRITEMOVEDATA_SUDOWOODO, 0, 0, -1, -1, 0, 0, 0, WeirdTreeScript_0x19403c, EVENT_ROUTE_36_SUDOWOODO
 	person_event SPRITE_LASS, 8, 51, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, 0, 0, LassScript_0x1940e0, -1
 	person_event SPRITE_FISHER, 9, 44, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x1940b9, -1
-	person_event SPRITE_FRUIT_TREE, 4, 21, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x194247, -1
-	person_event SPRITE_YOUNGSTER, 6, 46, SPRITEMOVEDATA_02, 1, 1, -1, -1, 0, 0, 0, ArthurScript, EVENT_ROUTE_36_ARTHUR_OF_THURSDAY
+	person_event SPRITE_FRUIT_TREE, 4, 21, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x194247, -1
+	person_event SPRITE_YOUNGSTER, 6, 46, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, 0, 0, ArthurScript, EVENT_ROUTE_36_ARTHUR_OF_THURSDAY
 	person_event SPRITE_LASS, 12, 33, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, LassScript_0x19408c, EVENT_FLORIA_AT_SUDOWOODO
-	person_event SPRITE_SUICUNE, 6, 21, SPRITEMOVEDATA_01, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_36
+	person_event SPRITE_SUICUNE, 6, 21, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_36

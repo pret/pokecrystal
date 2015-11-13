@@ -15,7 +15,7 @@ OfficerScript_0x18abe8:
 	iftrue UnknownScript_0x18abfd
 	writetext UnknownText_0x18ac36
 	keeptextopen
-	verbosegiveitem UP_GRADE, 1
+	verbosegiveitem UP_GRADE
 	iffalse UnknownScript_0x18ac01
 	setevent EVENT_GOT_UP_GRADE
 UnknownScript_0x18abfd:

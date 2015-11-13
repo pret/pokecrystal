@@ -93,7 +93,7 @@ SantosScript:
 .MetSantos
 	writetext SantosGivesGiftText
 	keeptextopen
-	verbosegiveitem SPELL_TAG, 1
+	verbosegiveitem SPELL_TAG
 	iffalse SantosDoneScript
 	setevent EVENT_GOT_SPELL_TAG_FROM_SANTOS
 	writetext SantosGaveGiftText

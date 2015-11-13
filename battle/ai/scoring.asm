@@ -176,7 +176,7 @@ AI_Types: ; 38635
 	push de
 	ld a, 1
 	ld [hBattleTurn], a
-	callab HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
+	callab BattleCheckTypeMatchup
 	pop de
 	pop bc
 	pop hl
@@ -431,7 +431,7 @@ AI_Smart_LeechHit: ; 387f7
 	push hl
 	ld a, 1
 	ld [hBattleTurn], a
-	callab HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
+	callab BattleCheckTypeMatchup
 	pop hl
 
 ; 60% chance to discourage this move if not very effective.
@@ -512,7 +512,7 @@ AI_Smart_LockOn: ; 3881d
 
 	push hl
 	push bc
-	callba HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
+	callba BattleCheckTypeMatchup
 	ld a, [wd265]
 	cp $a
 	pop bc
@@ -576,7 +576,7 @@ AI_Smart_Explosion: ; 388a6
 
 ; Unless this is the enemy's last Pokemon...
 	push hl
-	callba CountEnemyAliveMons
+	callba FindAliveEnemyMons
 	pop hl
 	jr nc, .asm_388b7
 
@@ -981,7 +981,7 @@ AI_Smart_Whirlwind: ; 38a2a
 ; Consider player's type(s) if its moves are unknown.
 
 	push hl
-	callab Function3484e
+	callab CheckPlayerMoveTypeMatchups
 	ld a, [wc716]
 	cp 10 ; neutral
 	pop hl
@@ -1062,7 +1062,7 @@ AI_Smart_Bind: ; 38a71
 ; Bind, Wrap, Fire Spin, Clamp
 
 ; 50% chance to discourage this move if the player is already trapped.
-	ld a, [wc730]
+	ld a, [wPlayerWrapCount]
 	and a
 	jr nz, .asm_38a8b
 
@@ -1343,11 +1343,11 @@ AI_Smart_Rage: ; 38b7f
 
 ; Encourage this move based on Rage's counter.	
 .asm_38b8c
-	ld a, [wc72c]
+	ld a, [wEnemyRageCounter]
 	cp $2
 	ret c
 	dec [hl]
-	ld a, [wc72c]
+	ld a, [wEnemyRageCounter]
 	cp $3
 	ret c
 	dec [hl]
@@ -1384,7 +1384,7 @@ AI_Smart_Mimic: ; 38ba8
 
 	ld a, $1
 	ld [hBattleTurn], a
-	callab HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
+	callab BattleCheckTypeMatchup
 
 	ld a, [wd265]
 	cp $a
@@ -1504,7 +1504,7 @@ AI_Smart_Encore: ; 38c3b
 	push hl
 	ld a, [wEnemyMoveStruct + MOVE_TYPE]
 	ld hl, EnemyMonType1
-	predef Function347d3
+	predef CheckTypeMatchup
 
 	pop hl
 	ld a, [wd265]
@@ -1719,7 +1719,7 @@ AI_Smart_HealBell: ; 38d1f
 	ld b, a
 	ld c, 0
 	ld hl, OTPartyMon1HP
-	ld de, OTPartyMon2 - OTPartyMon1
+	ld de, PARTYMON_STRUCT_LENGTH
 
 .loop
 	push hl
@@ -1783,8 +1783,8 @@ AI_Smart_PriorityHit: ; 38d5a
 	ld [hBattleTurn], a
 	push hl
 	callab EnemyAttackDamage
-	callab BattleCommand_DamageCalcWithStats
-	callab BattleCommand_CalcDamageTypeMultiplier
+	callab BattleCommand_DamageCalc
+	callab BattleCommand_Stab
 	pop hl
 	ld a, [CurDamage + 1]
 	ld c, a
@@ -1830,7 +1830,7 @@ AI_Smart_Conversion2: ; 38d98
 	xor a
 	ld [hBattleTurn], a
 
-	callab HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
+	callab BattleCheckTypeMatchup
 
 	ld a, [wd265]
 	cp $a
@@ -1908,7 +1908,7 @@ AI_Smart_MeanLook: ; 38dfb
 
 ; Otherwise, discourage this move unless the player only has not very effective moves against the enemy.	
 	push hl
-	callab Function3484e
+	callab CheckPlayerMoveTypeMatchups
 	ld a, [wc716]
 	cp $b ; not very effective
 	pop hl
@@ -1933,7 +1933,7 @@ AICheckLastPlayerMon: ; 38e2e
 	ld b, a
 	ld c, 0
 	ld hl, PartyMon1HP
-	ld de, PartyMon2 - PartyMon1
+	ld de, PARTYMON_STRUCT_LENGTH
 
 .loop
 	ld a, [CurBattleMon]
@@ -2028,7 +2028,7 @@ endr
 	jp nz, AIDiscourageMove
 
 	push hl
-	callba CountEnemyAliveMons
+	callba FindAliveEnemyMons
 	pop hl
 	jr nc, .asm_38eb0
 
@@ -2160,7 +2160,7 @@ endr
 
 AI_Smart_PerishSong: ; 38f4a
 	push hl
-	callab CountEnemyAliveMons
+	callab FindAliveEnemyMons
 	pop hl
 	jr c, .no
 
@@ -2169,7 +2169,7 @@ AI_Smart_PerishSong: ; 38f4a
 	jr nz, .yes
 
 	push hl
-	callab Function3484e
+	callab CheckPlayerMoveTypeMatchups
 	ld a, [wc716]
 	cp 10 ; 1.0
 	pop hl
@@ -2431,7 +2431,7 @@ AI_Smart_BatonPass: ; 39062
 ; Consider player's type(s) if its moves are unknown.
 
 	push hl
-	callab Function3484e
+	callab CheckPlayerMoveTypeMatchups
 	ld a, [wc716]
 	cp 10 ; neutral
 	pop hl
@@ -2466,7 +2466,7 @@ AI_Smart_RapidSpin: ; 39084
 ; 80% chance to greatly encourage this move if the enemy is
 ; trapped (Bind effect), seeded, or scattered with spikes.
 
-	ld a, [wc731]
+	ld a, [wEnemyWrapCount]
 	and a
 	jr nz, .asm_39097
 
@@ -2496,7 +2496,7 @@ AI_Smart_HiddenPower: ; 3909e
 	
 ; Calculate Hidden Power's type and base power based on enemy's DVs.
 	callab HiddenPowerDamage
-	callab HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
+	callab BattleCheckTypeMatchup
 	pop hl
 
 ; Discourage Hidden Power if not very effective.
@@ -2859,7 +2859,7 @@ endr
 AI_Smart_Stomp: ; 39200
 ; 80% chance to encourage this move if the player has used Minimize.
 
-	ld a, [wc6fe]
+	ld a, [wPlayerMinimized]
 	and a
 	ret z
 
@@ -3375,13 +3375,13 @@ AIDamageCalc: ; 393e7
 	ld hl, .ConstantDamageEffects
 	call IsInArray
 	jr nc, .asm_39400
-	callab BattleCommand3f
+	callab BattleCommand_ConstantDamage
 	ret
 
 .asm_39400
 	callab EnemyAttackDamage
-	callab BattleCommand_DamageCalcWithStats
-	callab BattleCommand_CalcDamageTypeMultiplier
+	callab BattleCommand_DamageCalc
+	callab BattleCommand_Stab
 	ret
 
 .ConstantDamageEffects
@@ -3498,7 +3498,7 @@ AI_Status: ; 39453
 	push de
 	ld a, 1
 	ld [hBattleTurn], a
-	callab HowEffectiveIsTheMovetypeAgainstTheEnemyPkmn
+	callab BattleCheckTypeMatchup
 	pop de
 	pop bc
 	pop hl

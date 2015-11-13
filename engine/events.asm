@@ -138,7 +138,7 @@ EnterMap: ; 9673e
 	call ClearAllScriptFlags3
 
 	ld a, [hMapEntryMethod]
-	cp MAPSETUP_07
+	cp MAPSETUP_CONNECTION
 	jr nz, .dontset
 	call SetAll_ScriptFlags3
 .dontset
@@ -247,7 +247,7 @@ Function967d1: ; 967d1
 Function967e1: ; 967e1
 	callba RefreshMapAppearDisappear
 	callba Functiond4d2
-	callba Functionb8098
+	callba PlaceMapNameSign
 	ret
 ; 967f4
 
@@ -322,13 +322,13 @@ PlayerEvents: ; 9681f
 	ld [ScriptRunning], a
 	call DoPlayerEvent
 	ld a, [ScriptRunning]
-	cp 4
+	cp PLAYEREVENT_CONNECTION
 	jr z, .ok2
-	cp 9
+	cp PLAYEREVENT_JOYCHANGEFACING
 	jr z, .ok2
 
 	xor a
-	ld [wc2da], a
+	ld [wLandmarkSignTimer], a
 
 .ok2
 	scf
@@ -342,7 +342,7 @@ CheckTrainerBattle3: ; 96867
 	call CheckTrainerBattle2
 	jr nc, .nope
 
-	ld a, 1
+	ld a, PLAYEREVENT_SEENBYTRAINER
 	scf
 	ret
 
@@ -359,10 +359,10 @@ CheckTileEvent: ; 96874
 	jr z, .bit2
 
 	callba CheckMovingOffEdgeOfMap
-	jr c, .return4
+	jr c, .map_connection
 
 	call CheckWarpTile
-	jr c, .return6
+	jr c, .warp_tile
 
 .bit2
 	call CheckBit1_ScriptFlags3
@@ -390,21 +390,21 @@ CheckTileEvent: ; 96874
 	xor a
 	ret
 
-.return4
-	ld a, 4
+.map_connection
+	ld a, PLAYEREVENT_CONNECTION
 	scf
 	ret
 
-.return6
+.warp_tile
 	ld a, [PlayerStandingTile]
 	call CheckPitTile
-	jr nz, .pittile
-	ld a, 6
+	jr nz, .not_pit
+	ld a, PLAYEREVENT_FALL
 	scf
 	ret
 
-.pittile
-	ld a, 5
+.not_pit
+	ld a, PLAYEREVENT_WARP
 	scf
 	ret
 
@@ -711,7 +711,7 @@ TryReadSign: ; 96a38
 	ret
 
 .IsSign
-	ld a, [wd040]
+	ld a, [EngineBuffer3]
 	ld hl, .signs
 	rst JumpTable
 	ret
@@ -749,7 +749,7 @@ TryReadSign: ; 96a38
 
 .read
 	call PlayTalkObject
-	ld hl, wd041
+	ld hl, EngineBuffer4
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -811,7 +811,7 @@ endr
 
 
 CheckSignFlag: ; 96ad8
-	ld hl, wd041
+	ld hl, EngineBuffer4
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -820,7 +820,7 @@ CheckSignFlag: ; 96ad8
 	call GetFarHalfword
 	ld e, l
 	ld d, h
-	ld b, $2 ; check
+	ld b, CHECK_FLAG
 	call EventFlagAction
 	ld a, c
 	and a
@@ -899,7 +899,7 @@ PlayerMovement: ; 96af0
 CheckMenuOW: ; 96b30
 	xor a
 	ld [hMenuReturn], a
-	ld [$ffa1], a
+	ld [hMenuReturn + 1], a
 	ld a, [hJoyPressed]
 
 	bit 2, a ; SELECT
@@ -1050,14 +1050,16 @@ DoPlayerEvent: ; 96beb
 	ld a, [ScriptRunning]
 	and a
 	ret z
-	cp -1 ; run script
+
+	cp PLAYEREVENT_MAPSCRIPT ; run script
 	ret z
-	cp 10
+
+	cp NUM_PLAYER_EVENTS
 	ret nc
 
 	ld c, a
 	ld b, 0
-	ld hl, ScriptPointers96c0c
+	ld hl, PlayerEventScriptPointers
 rept 3
 	add hl,bc
 endr
@@ -1070,25 +1072,25 @@ endr
 	ret
 ; 96c0c
 
-ScriptPointers96c0c: ; 96c0c
-	dba Invalid_0x96c2d
-	dba SeenByTrainerScript
-	dba TalkToTrainerScript
-	dba FindItemInBallScript
-	dba UnknownScript_0x96c4d
-	dba WarpToNewMapScript
-	dba FallIntoMapScript
-	dba UnknownScript_0x124c8
-	dba HatchEggScript
-	dba UnknownScript_0x96c4f
-	dba Invalid_0x96c2d
+PlayerEventScriptPointers: ; 96c0c
+	dba Invalid_0x96c2d          ; 0
+	dba SeenByTrainerScript      ; 1
+	dba TalkToTrainerScript      ; 2
+	dba FindItemInBallScript     ; 3
+	dba UnknownScript_0x96c4d    ; 4
+	dba WarpToNewMapScript       ; 5
+	dba FallIntoMapScript        ; 6
+	dba Script_OverworldWhiteout ; 7
+	dba HatchEggScript           ; 8
+	dba UnknownScript_0x96c4f    ; 9
+	dba Invalid_0x96c2d          ; 10
 ; 96c2d
 
 Invalid_0x96c2d: ; 96c2d
 	end
 ; 96c2e
 
-UnknownScript_0x96c2e: ; 96c2e
+; unreferenced
 	end
 ; 96c2f
 
@@ -1099,12 +1101,12 @@ HatchEggScript: ; 96c2f
 
 WarpToNewMapScript: ; 96c34
 	warpsound
-	newloadmap MAPSETUP_05
+	newloadmap MAPSETUP_DOOR
 	end
 ; 96c38
 
 FallIntoMapScript: ; 96c38
-	newloadmap MAPSETUP_06
+	newloadmap MAPSETUP_FALL
 	playsound SFX_KINESIS
 	applymovement PLAYER, MovementData_0x96c48
 	playsound SFX_STRENGTH
@@ -1122,11 +1124,11 @@ LandAfterPitfallScript: ; 96c4a
 	end
 ; 96c4d
 
-UnknownScript_0x96c4d: ; 96c4d
-	reloadandreturn $f7
+UnknownScript_0x96c4d: ; 4
+	reloadandreturn MAPSETUP_CONNECTION
 ; 96c4f
 
-UnknownScript_0x96c4f: ; 96c4f
+UnknownScript_0x96c4f: ; 9
 	deactivatefacing $3
 	callasm SetBit4_ScriptFlags3
 	end

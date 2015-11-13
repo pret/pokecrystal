@@ -106,7 +106,7 @@ Copycat:
 	loadfont
 	writetext UnknownText_0x18b17f
 	keeptextopen
-	takeitem LOST_ITEM, 1
+	takeitem LOST_ITEM
 	setevent EVENT_RETURNED_LOST_ITEM_TO_COPYCAT
 	clearevent EVENT_COPYCATS_HOUSE_2F_DOLL
 	jump .Part14
@@ -116,7 +116,7 @@ Copycat:
 .Part14
 	writetext UnknownText_0x18b1e2
 	keeptextopen
-	verbosegiveitem PASS, 1
+	verbosegiveitem PASS
 	iffalse .Part22
 	setevent EVENT_GOT_PASS_FROM_COPYCAT
 	writetext UnknownText_0x18b214
@@ -374,7 +374,7 @@ CopycatsHouse2F_MapEventHeader:
 .PersonEvents:
 	db 6
 	person_event SPRITE_COPYCAT, 3, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, Copycat, EVENT_COPYCAT_1
-	person_event SPRITE_MOLTRES, 4, 6, SPRITEMOVEDATA_16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, CopycatsDodrio, -1
+	person_event SPRITE_MOLTRES, 4, 6, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, CopycatsDodrio, -1
 	person_event SPRITE_FAIRY, 1, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CopycatsHouse2FDoll, EVENT_COPYCATS_HOUSE_2F_DOLL
 	person_event SPRITE_MONSTER, 1, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CopycatsHouse2FDoll, -1
 	person_event SPRITE_BIRD, 1, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, CopycatsHouse2FDoll, -1

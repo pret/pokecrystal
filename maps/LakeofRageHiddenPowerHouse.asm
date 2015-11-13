@@ -12,7 +12,7 @@ HiddenPowerGuy:
 	iftrue .AlreadyGotItem
 	writetext HiddenPowerGuyText1
 	keeptextopen
-	verbosegiveitem TM_HIDDEN_POWER, 1
+	verbosegiveitem TM_HIDDEN_POWER
 	iffalse .Done
 	setevent EVENT_GOT_TM10_HIDDEN_POWER
 	writetext HiddenPowerGuyText2
@@ -83,4 +83,4 @@ LakeofRageHiddenPowerHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_FISHER, 3, 2, SPRITEMOVEDATA_03, 0, 0, -1, -1, 0, 0, 0, HiddenPowerGuy, -1
+	person_event SPRITE_FISHER, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, 0, 0, HiddenPowerGuy, -1

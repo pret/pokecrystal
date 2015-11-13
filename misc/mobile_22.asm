@@ -38,7 +38,7 @@ Function89174: ; 89174 (22:5174)
 	ret
 
 Function8917a: ; 8917a (22:517a)
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld bc, $32
 	xor a
 	call ByteFill
@@ -259,7 +259,7 @@ Function89261: ; 89261
 	call Function8920f
 	pop af
 	jr c, .done
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $2
 	jr z, .done
 	and a
@@ -484,7 +484,7 @@ Function8939a: ; 8939a
 	push bc
 	ld hl, 0
 	add hl, bc
-	ld de, DefaultFlypoint
+	ld de, wd002
 	ld c, 6
 	call Function89193
 	pop bc
@@ -499,8 +499,8 @@ Function8939a: ; 8939a
 Function893b3: ; 893b3 (22:53b3)
 	call DisableLCD
 	call ClearSprites
-	call Functione51
-	call Functione5f
+	call LoadStandardFont
+	call LoadFontsExtra
 	call Function893ef
 	call Function8942b
 	call Function89455
@@ -510,8 +510,8 @@ Function893b3: ; 893b3 (22:53b3)
 Function893cc: ; 893cc
 	call DisableLCD
 	call ClearSprites
-	call Functione51
-	call Functione5f
+	call LoadStandardFont
+	call LoadFontsExtra
 	call Function893ef
 	call Function89464
 	call EnableLCD
@@ -623,7 +623,7 @@ Function8949c: ; 8949c
 	ld a, 5
 	ld [rSVBK], a
 	ld hl, Palette_894b3
-	ld de, Unkn1Pals + 8 * 7
+	ld de, wMapPals + 8 * 7
 	ld bc, 8
 	call CopyBytes
 	pop af
@@ -674,7 +674,7 @@ endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, 24
 	call CopyBytes
 	ld hl, Palette_89557
@@ -816,16 +816,16 @@ endr
 
 
 Function895c7: ; 895c7 (22:55c7)
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, 5
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld hl, Palette_895de
 	ld de, wd030
 	ld bc, 8
 	call CopyBytes
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ret
 ; 895de (22:55de)
 
@@ -1253,7 +1253,7 @@ Function897d5: ; 897d5
 
 .asm_897f3
 	ld a, $37
-	ld [$ffad], a
+	ld [hFillBox], a
 	hlcoord 12, 3
 	lb bc, 7, 7
 	predef FillBox
@@ -1365,8 +1365,8 @@ Function898aa: ; 898aa
 
 Function898be: ; 898be
 	push bc
-	ld de, DefaultFlypoint
-	ld hl, DefaultFlypoint
+	ld de, wd002
+	ld hl, wd002
 	call Function89331
 	jr nc, .asm_898cd
 	ld de, String_89116
@@ -1801,7 +1801,7 @@ Function89b07: ; 89b07
 ; 89b14
 
 Function89b14: ; 89b14
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function89b07
 	call Function89b00
 	ret
@@ -1814,7 +1814,7 @@ Function89b1e: ; 89b1e (22:5b1e)
 
 Function89b28: ; 89b28 (22:5b28)
 	call Function891de
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893e2
 	call Call_ExitMenu
 	call Function891ab
@@ -2147,12 +2147,12 @@ Function89cdf: ; 89cdf (22:5cdf)
 
 Function89d0d: ; 89d0d (22:5d0d)
 	call Function8923c
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld c, $8
-	ld de, Unkn1Pals
+	ld de, wMapPals
 .asm_89d1c
 	push bc
 	ld hl, Palette_89d4e
@@ -2166,7 +2166,7 @@ Function89d0d: ; 89d0d (22:5d0d)
 	ld bc, $8
 	call CopyBytes
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	call SetPalettes
 	callba Function845db
 	call Function89240
@@ -2222,7 +2222,7 @@ asm_89d90: ; 89d90 (22:5d90)
 	push hl
 	call _hl_
 	call Function89dab
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	push af
 	call Function891ab
 	pop af
@@ -2253,7 +2253,7 @@ Function89dab: ; 89dab (22:5dab)
 	call PlayClickSFX
 	ld a, [wcfa3]
 	ld c, a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp c
 	jr z, .asm_89dd9
 	call Function1bee
@@ -2273,7 +2273,7 @@ Function89de0: ; 89de0 (22:5de0)
 .asm_89dea
 	call Function8a31c
 	jr z, .asm_89dfd
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld c, a
 	push bc
 	ld hl, Jumptable_89e04
@@ -2377,16 +2377,16 @@ Function89e6f: ; 89e6f (22:5e6f)
 	jp Function89e36
 
 Function89e9a: ; 89e9a (22:5e9a)
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld hl, Palette_89eb1
 	ld de, wd028
 	ld bc, $8
 	call CopyBytes
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ret
 ; 89eb1 (22:5eb1)
 
@@ -2414,7 +2414,7 @@ Function89eb9: ; 89eb9 (22:5eb9)
 	jp Function89e36
 
 Function89ee1: ; 89ee1 (22:5ee1)
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893e2
 	call Function8923c
 	callba Function4a3a7
@@ -2602,7 +2602,7 @@ Function89fed: ; 89fed (22:5fed)
 
 Function89ff6: ; 89ff6 (22:5ff6)
 	call Function891fe
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call Function89807
 	call Function89492
@@ -2782,7 +2782,7 @@ Function8a116: ; 8a116 (22:6116)
 	call Function8923c
 	call Function8a17b
 	jr c, .asm_8a16b
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wd030], a
 	dec d
 	jr z, .asm_8a140
@@ -2865,7 +2865,7 @@ Function8a1b0: ; 8a1b0
 	ld c, $12
 	call TextBox
 	hlcoord 1, 14
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld de, Strings_8a1cc
 	dec a
 	ld c, a
@@ -2927,7 +2927,7 @@ UnknownText_0x8a23c: ; 0x8a23c
 ; 0x8a241
 
 Function8a241: ; 8a241 (22:6241)
-	call LoadMenuDataHeader_0x1d75
+	call LoadStandardMenuDataHeader
 	call Function891fe
 	call Function8a262
 	jr nc, .asm_8a254
@@ -2937,14 +2937,14 @@ Function8a241: ; 8a241 (22:6241)
 	ret
 .asm_8a254
 	call Function891de
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Call_ExitMenu
 	call Function891de
 	and a
 	ret
 
 Function8a262: ; 8a262 (22:6262)
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893e2
 	call Function8923c
 	callba Function4a3a7
@@ -3104,9 +3104,9 @@ Function8a383: ; 8a383 (22:6383)
 	ret
 
 Function8a3a2: ; 8a3a2 (22:63a2)
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld e, a
 	ld d, $0
 	add hl, de
@@ -3141,7 +3141,7 @@ Function8a3df: ; 8a3df (22:63df)
 	ld hl, $a603
 	call Function89b45
 	call CloseSRAM
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	jr c, .asm_8a3f8
 	ld de, Unknown_8a408
 	call Function8a400
@@ -3383,10 +3383,10 @@ Function8a5a3: ; 8a5a3 (22:65a3)
 	ret
 
 Function8a5b6: ; 8a5b6 (22:65b6)
-	ld a, [rSVBK] ; $ff00+$70
+	ld a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld hl, Palette_8a5e5
 	ld de, wd020
 	ld bc, $18
@@ -3400,7 +3400,7 @@ Function8a5b6: ; 8a5b6 (22:65b6)
 	ld bc, $8
 	call CopyBytes
 	pop af
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ret
 ; 8a5e5 (22:65e5)
 
@@ -3455,7 +3455,7 @@ Palette_8a624: ; 8a624
 ; 8a62c
 
 Function8a62c: ; 8a62c (22:662c)
-	call LoadMenuDataHeader_0x1d75
+	call LoadStandardMenuDataHeader
 	call Function891fe
 	xor a
 	call Function8b94a
@@ -3501,7 +3501,7 @@ Jumptable_8a671: ; 8a671 (22:6671)
 
 Function8a679: ; 8a679 (22:6679)
 	call Function891de
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call OpenSRAMBank4
 	call Function8931b
@@ -3546,7 +3546,7 @@ Function8a6c5: ; 8a6c5 (22:66c5)
 
 Function8a6cd: ; 8a6cd (22:66cd)
 	call Function891de
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call OpenSRAMBank4
 	call Function8931b
@@ -3594,7 +3594,7 @@ Function8a6cd: ; 8a6cd (22:66cd)
 .asm_8a73f
 	call CloseSRAM
 .asm_8a742
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function89448
 	call Function891d3
 	call Function8b677
@@ -3620,7 +3620,7 @@ Function8a765: ; 8a765 (22:6765)
 	push bc
 	ld hl, $0
 	add hl, bc
-	ld de, DefaultFlypoint
+	ld de, wd002
 	ld c, $6
 	call Function89185
 	pop bc
@@ -3641,9 +3641,9 @@ Function8a765: ; 8a765 (22:6765)
 
 Function8a78c: ; 8a78c (22:678c)
 	call Function891fe
-	ld de, DefaultFlypoint
+	ld de, wd002
 	ld b, $5
-	callba Function116c1
+	callba NamingScreen
 	call OpenSRAMBank4
 	call Function8931b
 	push bc
@@ -3651,13 +3651,13 @@ Function8a78c: ; 8a78c (22:678c)
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	call InitName
 	call CloseSRAM
 	call DelayFrame
 	call JoyTextDelay
 	call Function891de
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call OpenSRAMBank4
 	pop bc
@@ -3687,7 +3687,7 @@ Function8a7cb: ; 8a7cb (22:67cb)
 	pop af
 	ld [MenuSelection], a
 	call Function891de
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call OpenSRAMBank4
 	call Function8931b
@@ -3701,7 +3701,7 @@ Function8a7cb: ; 8a7cb (22:67cb)
 
 Function8a818: ; 8a818 (22:6818)
 	call Function89a23
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	call Function89331
 	jr c, .asm_8a875
 	ld hl, wd008
@@ -3716,7 +3716,7 @@ Function8a818: ; 8a818 (22:6818)
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld c, $6
 	call Function89193
 	pop bc
@@ -3781,7 +3781,7 @@ Function8a8a1: ; 8a8a1 (22:68a1)
 
 Function8a8c3: ; 8a8c3 (22:68c3)
 	call Function891de
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call OpenSRAMBank4
 	call Function8931b
@@ -3851,7 +3851,7 @@ Function8a930: ; 8a930 (22:6930)
 	push bc
 	ld h, b
 	ld l, c
-	ld de, DefaultFlypoint
+	ld de, wd002
 	ld bc, $25
 	call CopyBytes
 	pop de
@@ -3865,7 +3865,7 @@ Function8a930: ; 8a930 (22:6930)
 	ld bc, $25
 	call CopyBytes
 	pop de
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld bc, $25
 	call CopyBytes
 	ld de, SFX_SWITCH_POKEMON
@@ -3885,7 +3885,7 @@ Function8a999: ; 8a999 (22:6999)
 	jr c, .asm_8a9bb
 	push bc
 	push de
-	call LoadMenuDataHeader_0x1d75
+	call LoadStandardMenuDataHeader
 	pop de
 	dec e
 	ld a, e
@@ -3969,7 +3969,7 @@ Function8aa0a: ; 8aa0a (22:6a0a)
 	call Function89381
 	call CloseSRAM
 	call Function891fe
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call Function89807
 	call Function89492
@@ -4027,7 +4027,7 @@ Function8aa73: ; 8aa73 (22:6a73)
 	call Function89193
 .asm_8aa9d
 	call Function891fe
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call Function89807
 	call Function89492
@@ -4101,7 +4101,7 @@ Function8ab11: ; 8ab11 (22:6b11)
 
 Function8ab3b: ; 8ab3b (22:6b3b)
 	call Function891fe
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call Function89807
 	call Function89492
@@ -4140,8 +4140,8 @@ Function8ab77: ; 8ab77 (22:6b77)
 	ret
 
 Function8ab93: ; 8ab93 (22:6b93)
-	call WhiteBGMap
-	call LoadMenuDataHeader_0x1d75
+	call ClearBGPalettes
+	call LoadStandardMenuDataHeader
 	callba Function105688
 	call ClearSprites
 	call Function891fe
@@ -4183,7 +4183,7 @@ Function8aba9: ; 8aba9
 	call PlayClickSFX
 .asm_8abe5
 	call Function891de
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call OpenSRAMBank4
 	call Function8931b
@@ -4228,7 +4228,7 @@ Function8ac4e: ; 8ac4e
 	ld [MenuSelection], a
 	push de
 	call Function891de
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	pop bc
 	call Function89844
@@ -4307,7 +4307,7 @@ Function8ac7c: ; 8ac7c
 
 .asm_8ace4
 	call CloseSRAM
-	call Functione51
+	call LoadStandardFont
 	ld a, [wd02f]
 	ld c, a
 	and a
@@ -4319,7 +4319,7 @@ Function8ac7c: ; 8ac7c
 	ld a, $2
 	call Function89259
 	jp c, Function8ac7c
-	call Functione51
+	call LoadStandardFont
 	pop de
 	ld c, $0
 	scf
@@ -4337,7 +4337,7 @@ Function8ad0b: ; 8ad0b
 	ld a, [MenuSelection]
 	ld [wd02f], a
 	call Function891de
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Function893cc
 	call OpenSRAMBank4
 	call Function8931b

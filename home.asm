@@ -99,7 +99,7 @@ Function2ecb:: ; 2ecb
 DisableSpriteUpdates:: ; 0x2ed3
 ; disables overworld sprite updating?
 	xor a
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ld a, [VramState]
 	res 0, a
 	ld [VramState], a
@@ -115,7 +115,7 @@ EnableSpriteUpdates:: ; 2ee4
 	set 0, a
 	ld [VramState], a
 	ld a, $1
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ret
 ; 2ef6
 
@@ -217,10 +217,10 @@ LoadTileMapToTempTileMap:: ; 309d
 ; Load TileMap into TempTileMap
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(w2_d000)
+	ld a, BANK(TempTileMap)
 	ld [rSVBK], a
 	hlcoord 0, 0
-	ld de, w2_d000
+	decoord 0, 0, TempTileMap
 	ld bc, TileMapEnd - TileMap
 	call CopyBytes
 	pop af
@@ -241,9 +241,9 @@ LoadTempTileMapToTileMap:: ; 30bf
 ; Load TempTileMap into TileMap
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(w2_d000)
+	ld a, BANK(TempTileMap)
 	ld [rSVBK], a
-	ld hl, w2_d000
+	hlcoord 0, 0, TempTileMap
 	decoord 0, 0
 	ld bc, TileMapEnd - TileMap
 	call CopyBytes
@@ -427,13 +427,13 @@ PrintNum:: ; 3198
 ; 31a4
 
 
-Function31a4:: ; 31a4
+MobilePrintNum:: ; 31a4
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(Function1061ef)
+	ld a, BANK(_MobilePrintNum)
 	rst Bankswitch
 
-	call Function1061ef
+	call _MobilePrintNum
 
 	pop af
 	rst Bankswitch
@@ -530,7 +530,7 @@ CompareLong:: ; 31e4
 ; 31f3
 
 
-WhiteBGMap:: ; 31f3
+ClearBGPalettes:: ; 31f3
 	call ClearPalettes
 WaitBGMap:: ; 31f6
 ; Tell VBlank to update BG Map
@@ -561,7 +561,7 @@ Function3200:: ; 0x3200
 ; 0x3218
 
 
-Function3218:: ; 3218
+IsCGB:: ; 3218
 	ld a, [hCGB]
 	and a
 	ret
@@ -579,9 +579,10 @@ Function321c:: ; 321c
 
 	ld a, 1
 	ld [hBGMapMode], a
-	jr Function323d
+	jr LoadDETile
 
 .dmg
+; WaitBGMap
 	ld a, 1
 	ld [hBGMapMode], a
 	ld c, 4
@@ -594,25 +595,25 @@ Function3238:: ; 3238
 	and a
 	jr z, WaitBGMap
 
-Function323d:: ; 323d
-	jr Function3246
+LoadDETile:: ; 323d
+	jr .LoadDETile
 ; 323f
 
-Function323f:: ; 323f
+.unreferenced_323f ; 323f
 	callba Function104000
 	ret
 ; 3246
 
-Function3246:: ; 3246
+.LoadDETile ; 3246
 	ld a, [hBGMapMode]
 	push af
 	xor a
 	ld [hBGMapMode], a
 
-	ld a, [$ffde]
+	ld a, [hMapAnims]
 	push af
 	xor a
-	ld [$ffde], a
+	ld [hMapAnims], a
 
 .wait
 	ld a, [rLY]
@@ -623,11 +624,11 @@ Function3246:: ; 3246
 	ld a, 1 ; BANK(VTiles3)
 	ld [rVBK], a
 	hlcoord 0, 0, AttrMap
-	call Function327b
+	call .StackPointerMagic
 	ld a, 0 ; BANK(VTiles0)
 	ld [rVBK], a
 	hlcoord 0, 0
-	call Function327b
+	call .StackPointerMagic
 
 .wait2
 	ld a, [rLY]
@@ -636,13 +637,13 @@ Function3246:: ; 3246
 	ei
 
 	pop af
-	ld [$ffde], a
+	ld [hMapAnims], a
 	pop af
 	ld [hBGMapMode], a
 	ret
 ; 327b
 
-Function327b:: ; 327b
+.StackPointerMagic ; 327b
 ; Copy all tiles to VBGMap
 	ld [hSPBuffer], sp
 	ld sp, hl
@@ -650,7 +651,7 @@ Function327b:: ; 327b
 	ld h, a
 	ld l, 0
 	ld a, SCREEN_HEIGHT
-	ld [$ffd3], a
+	ld [hTilesPerCycle], a
 	ld b, 1 << 1 ; not in v/hblank
 	ld c, rSTAT % $100
 
@@ -671,9 +672,9 @@ endr
 
 	ld de, $20 - SCREEN_WIDTH
 	add hl, de
-	ld a, [$ffd3]
+	ld a, [hTilesPerCycle]
 	dec a
-	ld [$ffd3], a
+	ld [hTilesPerCycle], a
 	jr nz, .loop
 
 	ld a, [hSPBuffer]
@@ -830,13 +831,13 @@ INCLUDE "home/pokedex_flags.asm"
 
 
 NamesPointers:: ; 33ab
-	dbw BANK(PokemonNames), PokemonNames
-	dbw BANK(MoveNames), MoveNames
+	dba PokemonNames
+	dba MoveNames
 	dbw 0, 0
-	dbw BANK(ItemNames), ItemNames
+	dba ItemNames
 	dbw 0, PartyMonOT
 	dbw 0, OTPartyMonOT
-	dbw BANK(TrainerClassNames), TrainerClassNames
+	dba TrainerClassNames
 ; 33c0
 
 Function33c0:
@@ -1146,8 +1147,8 @@ GetMoveName:: ; 34f8
 ; 350c
 
 
-Function350c:: ; 350c
-	call Function1c66
+HandleScrollingMenu:: ; 350c
+	call CopyMenuData2
 	ld a, [hROMBank]
 	push af
 
@@ -1186,7 +1187,7 @@ Function352f:: ; 352f
 	sub c
 	ld e, a
 	push de
-	call GetTileCoord
+	call Coord2Tile
 	pop bc
 	jp TextBox
 ; 354b
@@ -1242,7 +1243,7 @@ Function3574:: ; 3574
 	ld e, l
 	call Function35de
 	jr nc, .asm_3597
-	call Function2631
+	call CallMapScript
 	callba EnableScriptMode
 	scf
 	ret
@@ -1460,17 +1461,17 @@ CheckTrainerBattle:: ; 360d
 	pop af
 	ld [hLastTalked], a
 	ld a, b
-	ld [CurFruit], a
+	ld [EngineBuffer2], a
 	ld a, c
-	ld [wd040], a
+	ld [EngineBuffer3], a
 	jr Function367e
 ; 3674
 
 Function3674:: ; 3674
 	ld a, 1
-	ld [CurFruit], a
+	ld [EngineBuffer2], a
 	ld a, -1
-	ld [wd040], a
+	ld [EngineBuffer3], a
 
 Function367e:: ; 367e
 	call GetMapScriptHeaderBank
@@ -1600,20 +1601,21 @@ CheckTrainerFlag:: ; 36f5
 ; 3718
 
 
-Function3718:: ; 3718
+PrintWinLossText:: ; 3718
 	ld a, [BattleType]
 	cp BATTLETYPE_CANLOSE
-	jr .canlose
+	jr .canlose ; ??????????
 
-	ld hl, WalkingTile
+; unreferenced
+	ld hl, wWinTextPointer
 	jr .ok
 
 .canlose
 	ld a, [wBattleResult]
-	ld hl, WalkingTile
+	ld hl, wWinTextPointer
 	and $f
 	jr z, .ok
-	ld hl, wd048 + 1
+	ld hl, wLossTextPointer
 
 .ok
 	ld a, [hli]
@@ -1622,7 +1624,7 @@ Function3718:: ; 3718
 	call GetMapScriptHeaderBank
 	call FarPrintText
 	call WaitBGMap
-	call Functiona80
+	call WaitPressAorB_BlinkCursor
 	ret
 ; 3741
 
@@ -1647,7 +1649,7 @@ IsAPokemon:: ; 3741
 ; 3750
 
 
-DrawHPBar:: ; 3750
+DrawBattleHPBar:: ; 3750
 ; Draw an HP bar d tiles long at hl
 ; Fill it up to e pixels
 
@@ -1709,11 +1711,11 @@ DrawHPBar:: ; 3750
 ; 3786
 
 
-Function3786:: ; 3786
+PrepMonFrontpic:: ; 3786
 	ld a, $1
 	ld [wc2c6], a
 
-Function378b:: ; 378b
+_PrepMonFrontpic:: ; 378b
 	ld a, [CurPartySpecies]
 	call IsAPokemon
 	jr c, .not_pokemon
@@ -1723,7 +1725,7 @@ Function378b:: ; 378b
 	predef GetFrontpic
 	pop hl
 	xor a
-	ld [$ffad], a
+	ld [hFillBox], a
 	lb bc, 7, 7
 	predef FillBox
 	xor a
@@ -1890,7 +1892,7 @@ PrintBCDNumber:: ; 38bb
 	bit 5, b
 	jr z, .loop
 	bit 7, b
-	jr nz, .loop
+	jr nz, .loop ; skip currency symbol
 	ld [hl], "¥"
 	inc hl
 .loop
@@ -1940,6 +1942,7 @@ PrintBCDDigit:: ; 38f2
 	add a, "0"
 	ld [hli], a
 	jp PrintLetterDelay
+
 .zeroDigit
 	bit 7, b ; either printing leading zeroes or already reached a nonzero digit?
 	jr z, .outputDigit ; if so, print a zero digit
@@ -1965,7 +1968,7 @@ GetPartyParamLocation:: ; 3917
 
 GetPartyLocation:: ; 3927
 ; Add the length of a PartyMon struct to hl a times.
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	jp AddNTimes
 ; 392d
 
@@ -1989,57 +1992,6 @@ Function392d:: ; 392d
 
 
 INCLUDE "home/battle.asm"
-
-
-Function3ae1:: ; 3ae1
-
-GLOBAL BattleAnimations
-GLOBAL BattleAnimCommands
-
-	ld a, BANK(BattleAnimations)
-	rst Bankswitch
-
-	ld a, [hli]
-	ld [BattleAnimAddress], a
-	ld a, [hl]
-	ld [BattleAnimAddress + 1], a
-
-	ld a, BANK(BattleAnimCommands)
-	rst Bankswitch
-
-	ret
-; 3af0
-
-GetBattleAnimByte:: ; 3af0
-
-	push hl
-	push de
-
-	ld hl, BattleAnimAddress
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-
-	ld a, BANK(BattleAnimations)
-	rst Bankswitch
-
-	ld a, [de]
-	ld [BattleAnimByte], a
-	inc de
-
-	ld a, BANK(BattleAnimCommands)
-	rst Bankswitch
-
-	ld [hl], d
-	dec hl
-	ld [hl], e
-
-	pop de
-	pop hl
-
-	ld a, [BattleAnimByte]
-	ret
-; 3b0c
 
 Function3b0c:: ; 3b0c
 
@@ -2230,7 +2182,7 @@ Function3f6e:: ; 3f6e
 ; 3f7c
 
 Function3f7c:: ; 3f7c
-	call GetMemTileCoord
+	call MenuBoxCoord2Tile
 	call GetMenuBoxDims
 	dec b
 	dec c

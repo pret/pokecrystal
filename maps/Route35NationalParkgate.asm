@@ -75,9 +75,9 @@ Route35NationalParkgate_GoBackIn:
 	loadmovesprites
 	scall Route35NationalParkgate_EnterContest
 	playsound SFX_ENTER_DOOR
-	special FadeBlackBGMap
+	special FadeOutPalettes
 	waitbutton
-	warpfacing $1, NATIONAL_PARK_BUG_CONTEST, $a, $2f
+	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, $a, $2f
 	end
 
 OfficerScript_0x6a204:
@@ -96,7 +96,7 @@ OfficerScript_0x6a204:
 	iffalse Route35NationalParkgate_DeclinedToParticipate
 	checkcode VAR_PARTYCOUNT
 	if_greater_than $1, Route35NationalParkgate_LeaveTheRestBehind
-	special CheckFirstMonFainted
+	special ContestDropOffMons
 	clearevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 Route35NationalParkgate_OkayToProceed:
 	setflag ENGINE_BUG_CONTEST_TIMER
@@ -112,10 +112,10 @@ Route35NationalParkgate_OkayToProceed:
 	special Special_GiveParkBalls
 	scall Route35NationalParkgate_EnterContest
 	playsound SFX_ENTER_DOOR
-	special FadeBlackBGMap
+	special FadeOutPalettes
 	waitbutton
 	special Special_SelectRandomBugContestContestants
-	warpfacing $1, NATIONAL_PARK_BUG_CONTEST, $a, $2f
+	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, $a, $2f
 	end
 
 Route35NationalParkgate_EnterContest:
@@ -140,7 +140,7 @@ Route35NationalParkgate_LessThanFullParty: ; 6a27d
 	writetext UnknownText_0x6a4c6
 	yesorno
 	iffalse Route35NationalParkgate_DeclinedToLeaveMonsBehind
-	special CheckFirstMonFainted
+	special ContestDropOffMons
 	iftrue Route35NationalParkgate_FirstMonIsFainted
 	setevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 	writetext UnknownText_0x6a537
@@ -459,5 +459,5 @@ Route35NationalParkgate_MapEventHeader:
 .PersonEvents:
 	db 3
 	person_event SPRITE_OFFICER, 1, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OfficerScript_0x6a204, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
-	person_event SPRITE_YOUNGSTER, 5, 6, SPRITEMOVEDATA_02, 1, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x6a2d8, EVENT_ROUTE_35_NATIONAL_PARK_GATE_YOUNGSTER
+	person_event SPRITE_YOUNGSTER, 5, 6, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x6a2d8, EVENT_ROUTE_35_NATIONAL_PARK_GATE_YOUNGSTER
 	person_event SPRITE_OFFICER, 3, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OfficerScript_0x6a2ca, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY

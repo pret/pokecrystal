@@ -18,7 +18,7 @@ Celebrity:
 	iftrue .AlreadyGotItem
 	writetext CelebrityText1
 	keeptextopen
-	verbosegiveitem TM_STEEL_WING, 1
+	verbosegiveitem TM_STEEL_WING
 	iffalse .Done
 	setevent EVENT_GOT_TM47_STEEL_WING
 .Done
@@ -88,4 +88,4 @@ Route28FamousSpeechHouse_MapEventHeader:
 .PersonEvents:
 	db 2
 	person_event SPRITE_COOLTRAINER_F, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, Celebrity, -1
-	person_event SPRITE_MOLTRES, 5, 6, SPRITEMOVEDATA_16, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, CelebritysFearow, -1
+	person_event SPRITE_MOLTRES, 5, 6, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, CelebritysFearow, -1

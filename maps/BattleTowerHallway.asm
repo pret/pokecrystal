@@ -3,29 +3,29 @@ BattleTowerHallway_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x9f5bb, 0
-	dw UnknownScript_0x9f5c0, 0
+	dw .Trigger0, 0
+	dw .Trigger1, 0
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x9f5bb:
-	priorityjump UnknownScript_0x9f5c1
+.Trigger0:
+	priorityjump .ChooseBattleRoom
 	dotrigger $1
-UnknownScript_0x9f5c0:
+.Trigger1:
 	end
 
-UnknownScript_0x9f5c1:
+.ChooseBattleRoom:
 	follow $2, PLAYER
-	callasm Function_0x9f5cb
-	jump Script_WalkToChosenBattleRoom
+	callasm .asm_load_battle_room
+	jump .WalkToChosenBattleRoom
 
 
-Function_0x9f5cb:
+.asm_load_battle_room:
 	ld a, [rSVBK]
 	push af
 
-	ld a, 3
+	ld a, BANK(wBTChoiceOfLvlGroup)
 	ld [rSVBK], a
 	ld a, [wBTChoiceOfLvlGroup]
 	ld [ScriptVar], a
@@ -38,35 +38,35 @@ Function_0x9f5cb:
 ; enter different rooms for different levels to battle against
 ; at least it should look like that
 ; because all warps lead to the same room
-Script_WalkToChosenBattleRoom: ; 0x9f5dc
-	if_equal 3, Script_WalkToBattleRoomL30L40
-	if_equal 4, Script_WalkToBattleRoomL30L40
-	if_equal 5, Script_WalkToBattleRoomL50L60
-	if_equal 6, Script_WalkToBattleRoomL50L60
-	if_equal 7, Script_WalkToBattleRoomL70L80
-	if_equal 8, Script_WalkToBattleRoomL70L80
-	if_equal 9, Script_WalkToBattleRoomL90L100
-	if_equal 10, Script_WalkToBattleRoomL90L100
+.WalkToChosenBattleRoom: ; 0x9f5dc
+	if_equal 3, .L30L40
+	if_equal 4, .L30L40
+	if_equal 5, .L50L60
+	if_equal 6, .L50L60
+	if_equal 7, .L70L80
+	if_equal 8, .L70L80
+	if_equal 9, .L90L100
+	if_equal 10, .L90L100
 	applymovement $2, MovementData_0x9e57a
-	jump Script_PlayerEntersBattleRoom
+	jump .EnterBattleRoom
 
-Script_WalkToBattleRoomL30L40: ; 0x9f603
+.L30L40: ; 0x9f603
 	applymovement $2, MovementData_0x9e57c
-	jump Script_PlayerEntersBattleRoom
+	jump .EnterBattleRoom
 
-Script_WalkToBattleRoomL50L60: ; 0x9f60a
+.L50L60: ; 0x9f60a
 	applymovement $2, MovementData_0x9e586
-	jump Script_PlayerEntersBattleRoom
+	jump .EnterBattleRoom
 
-Script_WalkToBattleRoomL70L80: ; 0x9f611
+.L70L80: ; 0x9f611
 	applymovement $2, MovementData_0x9e584
-	jump Script_PlayerEntersBattleRoom
+	jump .EnterBattleRoom
 
-Script_WalkToBattleRoomL90L100: ; 0x9f618
+.L90L100: ; 0x9f618
 	applymovement $2, MovementData_0x9e582
-	jump Script_PlayerEntersBattleRoom
+	jump .EnterBattleRoom
 
-Script_PlayerEntersBattleRoom: ; 0x9f61f
+.EnterBattleRoom: ; 0x9f61f
 	faceperson PLAYER, $2
 	loadfont
 	writetext Text_PleaseStepThisWay

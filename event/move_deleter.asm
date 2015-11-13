@@ -12,20 +12,20 @@ MoveDeletion:
 	jr z, .asm_2c5bc
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Moves + 1
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [hl]
 	and a
 	jr z, .asm_2c5ca
 	ld hl, UnknownText_0x2c5ea
 	call PrintText
-	call LoadMenuDataHeader_0x1d75
+	call LoadStandardMenuDataHeader
 	callba Function12f5b
 	push af
 	call Function2b74
 	pop af
 	jr c, .asm_2c5c3
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	push af
 	ld a, [CurSpecies]
 	ld [wd265], a
@@ -116,7 +116,7 @@ Function2c5f9: ; 2c5f9
 	ld hl, PartyMon1Moves
 	add hl, bc
 	ld a, [CurPartyMon]
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	pop bc
 	push bc
@@ -145,7 +145,7 @@ Function2c5f9: ; 2c5f9
 	ld hl, PartyMon1PP
 	add hl, bc
 	ld a, [CurPartyMon]
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	pop bc
 	inc b

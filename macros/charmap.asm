@@ -2,11 +2,14 @@
 	charmap "<START>",  $00
 	charmap "<PLAY_G>", $14 ; <PLAYER> + gender
 	charmap "<DAY>",    $15
+	charmap "¯",        $1f
 	charmap "<LNBRK>",  $22
 	charmap "<POKE>",   $24
+	charmap "%",        $25
 	charmap "<RED>",    $38
 	charmap "<GREEN>",  $39
 	charmap "<ENEMY>",  $3f
+	charmap "<SHINY>",  $3f
 	charmap "<MOM>",    $49
 	charmap "<PKMN>",   $4a
 	charmap "<NEXT>",   $4e
@@ -30,12 +33,18 @@
 	charmap "<DEXEND>", $5f
 
 ; Actual characters
+	charmap "▲",        $61
+	charmap "_",        $62
 	charmap "′",        $6e
 	charmap "<LV>",     $6e
 	charmap "″",        $6f
 
 	charmap "<PO>",     $70
 	charmap "<KE>",     $71
+	charmap "◀",        $71
+	charmap "<``>",     $72
+	charmap "<''>",     $73
+	charmap "<ID>",     $73
 	charmap "№",        $74
 	charmap "…",        $75
 
@@ -123,6 +132,7 @@
 	charmap "'t",       $d5
 	charmap "'v",       $d6
 
+	charmap "←",        $df
 	charmap "'",        $e0
 	charmap "<PK>",     $e1
 	charmap "<MN>",     $e2

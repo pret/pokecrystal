@@ -98,7 +98,9 @@ FarCopyWRAM:: ; 306b
 	push af
 	ld a, [hBuffer]
 	ld [rSVBK], a
+
 	call CopyBytes
+
 	pop af
 	ld [rSVBK], a
 	ret

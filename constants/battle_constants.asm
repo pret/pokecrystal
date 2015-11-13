@@ -4,6 +4,8 @@ EGG_LEVEL EQU 5
 NUM_MOVES EQU 4
 
 REST_TURNS EQU 2
+MAX_STAT_LEVEL EQU 13
+BASE_STAT_LEVEL EQU 7
 
 	const_def
 	const ATTACK
@@ -13,6 +15,8 @@ REST_TURNS EQU 2
 	const SP_DEFENSE
 	const ACCURACY
 	const EVASION
+	const ABILITY
+NUM_LEVEL_STATS EQU const_value
 
 ; move struct
 	const_def
@@ -93,6 +97,8 @@ const_value SET 3
 	const FRZ
 	const PAR
 	const SLP ; 7 turns
+
+ALL_STATUS EQU (1 << PSN) + (1 << BRN) + (1 << FRZ) + (1 << PAR) + SLP
 
 ; substatus
 	enum_start 7, -1
@@ -344,3 +350,27 @@ SUBSTATUS_CURLED       EQU 0
 	const ENEMY_COUNTER_MOVE
 	const PLAYER_LAST_MOVE
 	const ENEMY_LAST_MOVE
+
+; wBattleAction
+	const_def
+	const BATTLEACTION_MOVE1
+	const BATTLEACTION_MOVE2
+	const BATTLEACTION_MOVE3
+	const BATTLEACTION_MOVE4
+	const BATTLEACTION_SWITCH1
+	const BATTLEACTION_SWITCH2
+	const BATTLEACTION_SWITCH3
+	const BATTLEACTION_SWITCH4
+	const BATTLEACTION_SWITCH5
+	const BATTLEACTION_SWITCH6
+	const BATTLEACTION_A
+	const BATTLEACTION_B
+	const BATTLEACTION_C
+	const BATTLEACTION_D
+	const BATTLEACTION_E
+	const BATTLEACTION_FORFEIT
+
+	const_def
+	const WIN
+	const LOSE
+	const DRAW

@@ -84,7 +84,7 @@ UnknownScript_0x1a96da:
 	checkevent EVENT_GOT_CALCIUM_FROM_ERIN
 	iftrue UnknownScript_0x1a973a
 	scall UnknownScript_0x1a9772
-	verbosegiveitem CALCIUM, 1
+	verbosegiveitem CALCIUM
 	iffalse UnknownScript_0x1a976b
 	setevent EVENT_GOT_CALCIUM_FROM_ERIN
 	jump UnknownScript_0x1a975b
@@ -96,7 +96,7 @@ UnknownScript_0x1a973b:
 	loadfont
 	writetext UnknownText_0x1a9927
 	closetext
-	verbosegiveitem CALCIUM, 1
+	verbosegiveitem CALCIUM
 	iffalse UnknownScript_0x1a976b
 	clearevent EVENT_ERIN_CALCIUM
 	setevent EVENT_GOT_CALCIUM_FROM_ERIN
@@ -264,6 +264,6 @@ Route46_MapEventHeader:
 	person_event SPRITE_POKEFAN_M, 19, 12, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerHikerBailey, -1
 	person_event SPRITE_YOUNGSTER, 14, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerCamperTed, -1
 	person_event SPRITE_LASS, 13, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 2, TrainerPicnickerErin1, -1
-	person_event SPRITE_FRUIT_TREE, 5, 7, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a978f, -1
-	person_event SPRITE_FRUIT_TREE, 6, 8, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a9791, -1
-	person_event SPRITE_POKE_BALL, 15, 1, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a978d, EVENT_ROUTE_46_X_SPEED
+	person_event SPRITE_FRUIT_TREE, 5, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a978f, -1
+	person_event SPRITE_FRUIT_TREE, 6, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a9791, -1
+	person_event SPRITE_POKE_BALL, 15, 1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a978d, EVENT_ROUTE_46_X_SPEED

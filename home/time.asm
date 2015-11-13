@@ -101,8 +101,8 @@ FixDays:: ; 5e8
 ; update dl
 	ld [hRTCDayLo], a ; DL
 
-; unknown output
-	ld a, $40 ; %1000000
+; flag for s0_ac60
+	ld a, %01000000
 	jr .set
 
 .daylo
@@ -120,8 +120,8 @@ FixDays:: ; 5e8
 ; update dl
 	ld [hRTCDayLo], a ; DL
 	
-; unknown output
-	ld a, $20 ; %100000
+; flag for s0_ac60
+	ld a, %00100000
 	
 .set
 ; update clock with modded day value
@@ -278,6 +278,7 @@ SetClock:: ; 691
 
 
 Function6c4:: ; 6c4
+; clear s0_ac60
 	xor a
 	push af
 	ld a, BANK(s0_ac60)
@@ -289,6 +290,7 @@ Function6c4:: ; 6c4
 ; 6d3
 
 Function6d3:: ; 6d3
+; append flags to s0_ac60
 	ld hl, s0_ac60
 	push af
 	ld a, BANK(s0_ac60)
@@ -301,6 +303,7 @@ Function6d3:: ; 6d3
 ; 6e3
 
 Function6e3:: ; 6e3
+; check s0_ac60
 	ld a, BANK(s0_ac60)
 	call GetSRAMBank
 	ld a, [s0_ac60]

@@ -6,7 +6,7 @@ Serial:: ; 6ef
 	push de
 	push hl
 
-	ld a, [$ffc9]
+	ld a, [hFFC9]
 	and a
 	jr nz, .asm_71c
 
@@ -14,7 +14,7 @@ Serial:: ; 6ef
 	bit 0, a
 	jr nz, .asm_721
 
-	ld a, [$ffcb]
+	ld a, [hLinkPlayerNumber]
 	inc a ; is it equal to -1?
 	jr z, .asm_726
 
@@ -24,7 +24,7 @@ Serial:: ; 6ef
 	ld a, [hSerialSend]
 	ld [rSB], a
 
-	ld a, [$ffcb]
+	ld a, [hLinkPlayerNumber]
 	cp $2
 	jr z, .asm_752
 
@@ -51,7 +51,7 @@ Serial:: ; 6ef
 
 .asm_730
 	ld [hSerialReceive], a
-	ld [$ffcb], a
+	ld [hLinkPlayerNumber], a
 	cp $2
 	jr z, .asm_74f
 
@@ -77,7 +77,7 @@ Serial:: ; 6ef
 
 .asm_752
 	ld a, $1
-	ld [$ffca], a
+	ld [hFFCA], a
 	ld a, $fe
 	ld [hSerialSend], a
 
@@ -91,7 +91,7 @@ Serial:: ; 6ef
 
 Function75f:: ; 75f
 	ld a, $1
-	ld [$ffcc], a
+	ld [hFFCC], a
 .asm_763
 	ld a, [hl]
 	ld [hSerialSend], a
@@ -103,7 +103,7 @@ Function75f:: ; 75f
 .asm_76e
 	dec a
 	jr nz, .asm_76e
-	ld a, [$ffcc]
+	ld a, [hFFCC]
 	and a
 	ld a, b
 	pop bc
@@ -112,7 +112,7 @@ Function75f:: ; 75f
 	cp $fd
 	jr nz, .asm_763
 	xor a
-	ld [$ffcc], a
+	ld [hFFCC], a
 	jr .asm_763
 
 .asm_782
@@ -127,8 +127,8 @@ Function75f:: ; 75f
 
 Function78a:: ; 78a
 	xor a
-	ld [$ffca], a
-	ld a, [$ffcb]
+	ld [hFFCA], a
+	ld a, [hLinkPlayerNumber]
 	cp $2
 	jr nz, .asm_79b
 	ld a, $1
@@ -137,10 +137,10 @@ Function78a:: ; 78a
 	ld [rSC], a
 
 .asm_79b
-	ld a, [$ffca]
+	ld a, [hFFCA]
 	and a
 	jr nz, .asm_7e5
-	ld a, [$ffcb]
+	ld a, [hLinkPlayerNumber]
 	cp $1
 	jr nz, .asm_7c0
 	call Function82b
@@ -172,7 +172,7 @@ Function78a:: ; 78a
 	dec a
 	ld [wcf5d + 1], a
 	jr nz, .asm_79b
-	ld a, [$ffcb]
+	ld a, [hLinkPlayerNumber]
 	cp $1
 	jr z, .asm_7e5
 	ld a, $ff
@@ -182,7 +182,7 @@ Function78a:: ; 78a
 
 .asm_7e5
 	xor a
-	ld [$ffca], a
+	ld [hFFCA], a
 	ld a, [rIE]
 	and $f
 	sub $8
@@ -251,7 +251,7 @@ Function83b:: ; 83b
 	ld de, wcf51
 	ld c, $2
 	ld a, $1
-	ld [$ffcc], a
+	ld [hFFCC], a
 .asm_847
 	call DelayFrame
 	ld a, [hl]
@@ -259,10 +259,10 @@ Function83b:: ; 83b
 	call Function78a
 	ld b, a
 	inc hl
-	ld a, [$ffcc]
+	ld a, [hFFCC]
 	and a
 	ld a, $0
-	ld [$ffcc], a
+	ld [hFFCC], a
 	jr nz, .asm_847
 	ld a, b
 	ld [de], a
@@ -349,7 +349,7 @@ Function8c1:: ; 8c1
 	ld a, [wcf56]
 	add b
 	ld [hSerialSend], a
-	ld a, [$ffcb]
+	ld a, [hLinkPlayerNumber]
 	cp $2
 	jr nz, .asm_8ee
 	ld a, $1
@@ -380,7 +380,7 @@ Function8f3:: ; 8f3
 Function908:: ; 908
 	xor a
 	ld [hSerialSend], a
-	ld a, [$ffcb]
+	ld a, [hLinkPlayerNumber]
 	cp $2
 	ret nz
 	ld a, $1

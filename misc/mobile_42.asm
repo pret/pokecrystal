@@ -67,10 +67,10 @@ Function10805b: ; 10805b
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld a, [$ffde]
+	ld a, [hMapAnims]
 	push af
 	xor a
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ld hl, VramState
 	ld a, [hl]
 	push af
@@ -88,7 +88,7 @@ Function10805b: ; 10805b
 	pop af
 	ld [VramState], a
 	pop af
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ret
 ; 108089
 
@@ -97,10 +97,10 @@ Function108089: ; 108089
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld a, [$ffde]
+	ld a, [hMapAnims]
 	push af
 	xor a
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ld hl, VramState
 	ld a, [hl]
 	push af
@@ -118,20 +118,20 @@ Function108089: ; 108089
 	pop af
 	ld [VramState], a
 	pop af
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ret
 ; 1080b7
 
 Function1080b7: ; 1080b7
 	xor a
 	ld [wJumptableIndex], a
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	call DisableLCD
 	call Function1081ad
 	call Function1081ca
-	call Functione51
+	call LoadStandardFont
 	call LoadFontsBattleExtra
 	ld a, $1
 	ld [rVBK], a
@@ -170,7 +170,7 @@ Function1080b7: ; 1080b7
 	ld de, VTiles0 tile $30
 	call Function1081e9
 	ld a, [wc702]
-	ld hl, wc72f
+	ld hl, wEnemyTrappingMove
 	ld de, VTiles2 tile $31
 	call Function1081e9
 	ld a, [$c6d0]
@@ -188,13 +188,13 @@ Function1080b7: ; 1080b7
 Function108157: ; 108157
 	xor a
 	ld [wJumptableIndex], a
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	call DisableLCD
 	call Function1081ad
 	call Function1081ca
-	call Functione51
+	call LoadStandardFont
 	call LoadFontsBattleExtra
 	call EnableLCD
 	xor a
@@ -284,8 +284,8 @@ Function108219: ; 108219
 	ld [CurPartySpecies], a
 	hlcoord 7, 2
 	ld d, $0
-	ld e, $3
-	predef Functiond008e
+	ld e, ANIM_MON_TRADE
+	predef AnimateFrontpic
 	ret
 ; 108229
 
@@ -293,8 +293,8 @@ Function108229: ; 108229
 	ld [CurPartySpecies], a
 	hlcoord 7, 2
 	ld d, $0
-	ld e, $3
-	predef Functiond00a3
+	ld e, ANIM_MON_TRADE
+	predef LoadMonAnimation
 	ret
 ; 108239
 
@@ -304,7 +304,7 @@ Function108239: ; 108239
 	call GetPokemonName
 	ld hl, StringBuffer1
 	pop de
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	ret
 ; 10824b
@@ -326,7 +326,7 @@ Function10824b: ; 10824b
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	call Functione51
+	call LoadStandardFont
 	call LoadFontsBattleExtra
 	callba Function106462
 	callba Function106464
@@ -508,14 +508,14 @@ Function10830e: ; 10830e
 ; 10839b
 
 Function10839b: ; 10839b
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	call DisableLCD
 	call Function1081ca
 	ld a, [wc702]
 	ld [CurPartySpecies], a
-	ld hl, wc72f
+	ld hl, wEnemyTrappingMove
 	ld de, VTiles2
 	call Function108201
 	call EnableLCD
@@ -548,9 +548,9 @@ Function10839b: ; 10839b
 	ld [hWY], a
 	ld a, [wc702]
 	ld [CurPartySpecies], a
-	ld a, [wc72f]
+	ld a, [wEnemyTrappingMove]
 	ld [TempMonDVs], a
-	ld a, [wc730]
+	ld a, [wPlayerWrapCount]
 	ld [TempMonDVs + 1], a
 	ld b, $1a
 	call GetSGBLayout
@@ -643,14 +643,14 @@ Function10842c: ; 10842c
 ; 1084d7
 
 Function1084d7: ; 1084d7
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	call DisableLCD
 	call Function1081ca
 	ld a, [wc702]
 	ld [CurPartySpecies], a
-	ld hl, wc72f
+	ld hl, wEnemyTrappingMove
 	ld de, VTiles2
 	call Function108201
 	call EnableLCD
@@ -692,16 +692,16 @@ Function1084d7: ; 1084d7
 	ld [hWY], a
 	ld a, [wc702]
 	ld [CurPartySpecies], a
-	ld a, [wc72f]
+	ld a, [wEnemyTrappingMove]
 	ld [TempMonDVs], a
-	ld a, [wc730]
+	ld a, [wPlayerWrapCount]
 	ld [TempMonDVs + 1], a
 	ld b, $1a
 	call GetSGBLayout
 	ld a, $e4
 	call DmgToCgbBGPals
 	ld a, [wc702]
-	ld hl, wc72f
+	ld hl, wEnemyTrappingMove
 	call Function10898a
 	ld a, [wc702]
 	call Function108229
@@ -712,14 +712,14 @@ Function1084d7: ; 1084d7
 ; 108589
 
 Function108589: ; 108589
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	call DisableLCD
 	call Function1081ca
 	ld a, [wc702]
 	ld [CurPartySpecies], a
-	ld hl, wc72f
+	ld hl, wEnemyTrappingMove
 	ld de, VTiles2
 	call Function108201
 	call EnableLCD
@@ -761,16 +761,16 @@ Function108589: ; 108589
 	ld [hWY], a
 	ld a, [wc702]
 	ld [CurPartySpecies], a
-	ld a, [wc72f]
+	ld a, [wEnemyTrappingMove]
 	ld [TempMonDVs], a
-	ld a, [wc730]
+	ld a, [wPlayerWrapCount]
 	ld [TempMonDVs + 1], a
 	ld b, $1a
 	call GetSGBLayout
 	ld a, $e4
 	call DmgToCgbBGPals
 	ld a, [wc702]
-	ld hl, wc72f
+	ld hl, wEnemyTrappingMove
 	call Function10898a
 	ld a, [wc702]
 	call Function108229
@@ -781,7 +781,7 @@ Function108589: ; 108589
 
 Function108638: ; 108638
 	callba Function8d03d
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	xor a
@@ -804,7 +804,7 @@ Function108638: ; 108638
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_109107
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $0040
 	call CopyBytes
 	pop af
@@ -817,7 +817,7 @@ Function108638: ; 108638
 
 Function108689: ; 108689
 	callba Function8d03d
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	xor a
@@ -850,7 +850,7 @@ Function108689: ; 108689
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_109107
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $0040
 	call CopyBytes
 	pop af
@@ -862,7 +862,7 @@ Function108689: ; 108689
 ; 1086f4
 
 Function1086f4: ; 1086f4
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	xor a
@@ -894,7 +894,7 @@ Function1086f4: ; 1086f4
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_109107
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $0040
 	call CopyBytes
 	pop af
@@ -1162,7 +1162,7 @@ Function108919: ; 108919
 	ld c, $28
 	call Function1082cc
 	callba Function8d03d
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	call DisableLCD
@@ -1210,7 +1210,7 @@ asm_108966
 	call Function108ac8
 	hlcoord 7, 2
 	xor a
-	ld [$ffad], a
+	ld [hFillBox], a
 	ld bc, $0707
 	predef FillBox
 	call WaitBGMap
@@ -1224,7 +1224,7 @@ Function10898a: ; 10898a
 	call Function108ac8
 	hlcoord 7, 2
 	xor a
-	ld [$ffad], a
+	ld [hFillBox], a
 	ld bc, $0707
 	predef FillBox
 	call WaitBGMap
@@ -1259,10 +1259,10 @@ Function1089d2:
 	call Function108a92
 	ld de, wc703
 	call Function108a9c
-	ld a, [wc733]
+	ld a, [wEnemyCharging]
 	ld de, wc724
 	call Function108aa3
-	ld de, wc731
+	ld de, wEnemyWrapCount
 	call Function108abe
 	call Function108a87
 	ret
@@ -1407,7 +1407,7 @@ Function108ad4: ; 108ad4
 	ld [rVBK], a
 	ld hl, VTiles2 tile $4a
 	lb bc, $42, $10
-	call Functiondc9
+	call Get2bpp_2
 	call DelayFrame
 	ld a, $0
 	ld [rVBK], a
@@ -1459,7 +1459,7 @@ Function108b45: ; 108b45
 	ld a, $5
 	ld [rSVBK], a
 	ld de, $7fff
-	ld hl, Unkn1Pals
+	ld hl, wMapPals
 	ld a, e
 	ld [hli], a
 	ld d, a
@@ -1537,7 +1537,7 @@ Function108b98: ; 108b98
 	ld hl, Palette_108b98
 
 .asm_108bb0
-	ld de, Unkn1Pals + 8 * 7
+	ld de, wMapPals + 8 * 7
 	ld bc, $0040
 	call CopyBytes
 	pop af
@@ -1737,7 +1737,7 @@ Function108c9b: ; 108c9b
 	dec c
 	jr nz, .asm_108ccc
 
-	ld de, wc731
+	ld de, wEnemyWrapCount
 	ld c, $2
 .asm_108cd7
 	ld a, [hli]

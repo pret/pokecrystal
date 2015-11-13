@@ -70,7 +70,7 @@ ReceptionistScript_0x560ce:
 .VeryHappy:
 	writetext UnknownText_0x5615a
 	keeptextopen
-	verbosegiveitem TM_RETURN, 1
+	verbosegiveitem TM_RETURN
 	iffalse .Done
 	setflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT
 	loadmovesprites
@@ -85,7 +85,7 @@ ReceptionistScript_0x560ce:
 .NotVeryHappy:
 	writetext UnknownText_0x561d8
 	keeptextopen
-	verbosegiveitem TM_FRUSTRATION, 1
+	verbosegiveitem TM_FRUSTRATION
 	iffalse .Done
 	setflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT
 	loadmovesprites
@@ -233,8 +233,8 @@ GoldenrodDeptStore5F_MapEventHeader:
 .PersonEvents:
 	db 6
 	person_event SPRITE_CLERK, 5, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, 0, 0, ClerkScript_0x5609c, -1
-	person_event SPRITE_LASS, 6, 3, SPRITEMOVEDATA_02, 1, 1, -1, -1, 0, 0, 0, LassScript_0x56130, -1
-	person_event SPRITE_COOLTRAINER_M, 3, 6, SPRITEMOVEDATA_03, 0, 0, -1, -1, 0, 0, 0, CooltrainerMScript_0x56133, -1
-	person_event SPRITE_POKEFAN_M, 5, 13, SPRITEMOVEDATA_02, 2, 2, -1, -1, 0, 0, 0, PokefanMScript_0x5613a, -1
+	person_event SPRITE_LASS, 6, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, 0, 0, LassScript_0x56130, -1
+	person_event SPRITE_COOLTRAINER_M, 3, 6, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, 0, 0, CooltrainerMScript_0x56133, -1
+	person_event SPRITE_POKEFAN_M, 5, 13, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, 0, 0, PokefanMScript_0x5613a, -1
 	person_event SPRITE_TWIN, 1, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TwinScript_0x56118, -1
 	person_event SPRITE_RECEPTIONIST, 5, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ReceptionistScript_0x560ce, EVENT_GOLDENROD_DEPT_STORE_5F_HAPPINESS_EVENT_LADY

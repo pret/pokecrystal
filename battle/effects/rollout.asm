@@ -1,7 +1,7 @@
 MAX_ROLLOUT_COUNT EQU 5
 
 
-BattleCommand5b: ; 37718
+BattleCommand_CheckCurl: ; 37718
 ; checkcurl
 
 	ld de, PlayerRolloutCount
@@ -25,7 +25,7 @@ BattleCommand5b: ; 37718
 ; 37734
 
 
-BattleCommand5c: ; 37734
+BattleCommand_RolloutPower: ; 37734
 ; rolloutpower
 
 	ld a, BATTLE_VARS_STATUS

@@ -220,7 +220,7 @@ EcruteakPokeCenter1F_MapEventHeader:
 .PersonEvents:
 	db 5
 	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x98eb0, -1
-	person_event SPRITE_POKEFAN_M, 6, 7, SPRITEMOVEDATA_0A, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x98eb3, -1
-	person_event SPRITE_COOLTRAINER_F, 4, 1, SPRITEMOVEDATA_03, 0, 0, -1, -1, 0, 0, 0, CooltrainerFScript_0x98ebf, -1
+	person_event SPRITE_POKEFAN_M, 6, 7, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, 0, 0, PokefanMScript_0x98eb3, -1
+	person_event SPRITE_COOLTRAINER_F, 4, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, 0, 0, CooltrainerFScript_0x98ebf, -1
 	person_event SPRITE_GYM_GUY, 1, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, GymGuyScript_0x98ec2, -1
 	person_event SPRITE_BILL, 7, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ECRUTEAK_POKE_CENTER_BILL

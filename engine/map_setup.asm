@@ -17,28 +17,28 @@ endr
 ; 15377
 
 MapSetupScripts: ; 15377
-	dw MapSetupScript1
-	dw MapSetupScript2
-	dw MapSetupScript3
-	dw MapSetupScript4
-	dw MapSetupScript5
-	dw MapSetupScript6
-	dw MapSetupScript7
-	dw MapSetupScript8
-	dw MapSetupScript9
-	dw MapSetupScript10
-	dw MapSetupScript11
-	dw MapSetupScript12
+	dw MapSetupScript_Warp
+	dw MapSetupScript_Continue
+	dw MapSetupScript_ReloadMap
+	dw MapSetupScript_Teleport
+	dw MapSetupScript_Door
+	dw MapSetupScript_Fall
+	dw MapSetupScript_Connection
+	dw MapSetupScript_LinkReturn
+	dw MapSetupScript_Train
+	dw MapSetupScript_Submenu
+	dw MapSetupScript_BadWarp
+	dw MapSetupScript_Fly
 ; 1538f
 
-MapSetupScript4: ; 1538f
+MapSetupScript_Teleport: ; 1538f
 	db map_prolong_sprites
 
-MapSetupScript12: ; 15390
+MapSetupScript_Fly: ; 15390
 	db map_fade_out_palettes
 	db map_keep_roam
 
-MapSetupScript1: ; 15392
+MapSetupScript_Warp: ; 15392
 	db map_lcd_off
 	db map_sound_off
 	db map_load_spawn
@@ -63,7 +63,7 @@ MapSetupScript1: ; 15392
 	db map_wildmons
 	db map_end_setup_script
 
-MapSetupScript11: ; 153a9
+MapSetupScript_BadWarp: ; 153a9
 	db map_load_spawn
 	db map_attributes
 	db map_change_callback
@@ -87,7 +87,7 @@ MapSetupScript11: ; 153a9
 	db map_wildmons
 	db map_end_setup_script
 
-MapSetupScript7: ; 153bf
+MapSetupScript_Connection: ; 153bf
 	db map_animations_off
 	db map_load_connection
 	db map_attributes
@@ -106,13 +106,13 @@ MapSetupScript7: ; 153bf
 	db map_animations_on
 	db map_end_setup_script
 
-MapSetupScript6: ; 153d0
+MapSetupScript_Fall: ; 153d0
 	db map_prolong_sprites
 
-MapSetupScript5: ; 153d1
+MapSetupScript_Door: ; 153d1
 	db map_fade_out_palettes
 
-MapSetupScript9: ; 153d2
+MapSetupScript_Train: ; 153d2
 	db map_load_warp
 	db map_attributes
 	db map_warp_face
@@ -135,7 +135,7 @@ MapSetupScript9: ; 153d2
 	db map_update_roam
 	db map_end_setup_script
 
-MapSetupScript3: ; 153e7
+MapSetupScript_ReloadMap: ; 153e7
 	db map_fade
 	db map_clear_bg_palettes
 	db map_lcd_off
@@ -153,7 +153,7 @@ MapSetupScript3: ; 153e7
 	db map_wildmons
 	db map_end_setup_script
 
-MapSetupScript8: ; 153f7
+MapSetupScript_LinkReturn: ; 153f7
 	db map_fade
 	db map_lcd_off
 	db map_sound_off
@@ -172,7 +172,7 @@ MapSetupScript8: ; 153f7
 	db map_text_scroll_off
 	db map_end_setup_script
 
-MapSetupScript2: ; 15408
+MapSetupScript_Continue: ; 15408
 	db map_lcd_off
 	db map_sound_off
 	db map_attributes_2
@@ -192,7 +192,7 @@ MapSetupScript2: ; 15408
 	db map_wildmons
 	db map_end_setup_script
 
-MapSetupScript10: ; 1541a
+MapSetupScript_Submenu: ; 1541a
 	db map_load_blocks
 	db map_connection_blocks
 	db map_end_setup_script
@@ -243,52 +243,52 @@ endr
 ; 15440
 
 MapSetupCommands: ; 15440
-	dbw BANK(EnableLCD), EnableLCD ; 00
-	dbw BANK(DisableLCD), DisableLCD ; 01
-	dbw BANK(SoundRestart), SoundRestart ; 02
-	dbw BANK(PlayMapMusic), PlayMapMusic ; 03
-	dbw BANK(RestartMapMusic), RestartMapMusic ; 04
-	dbw BANK(FadeToMapMusic), FadeToMapMusic ; 05
-	dbw BANK(FadeOutMapAndMusic), FadeOutMapAndMusic ; 06
-	dbw BANK(EnterMapMusic), EnterMapMusic ; 07
-	dbw BANK(ForceMapMusic), ForceMapMusic ; 08
-	dbw BANK(CrankUpTheVolume), CrankUpTheVolume ; 09
-	dbw BANK(LoadBlockData), LoadBlockData ; 0a
-	dbw BANK(LoadNeighboringBlockData), LoadNeighboringBlockData ; 0b
-	dbw BANK(SaveScreen), SaveScreen ; 0c
-	dbw BANK(BufferScreen), BufferScreen ; 0d
-	dbw BANK(LoadGraphics), LoadGraphics ; 0e
-	dbw BANK(LoadTilesetHeader), LoadTilesetHeader ; 0f
-	dbw BANK(LoadMapTimeOfDay), LoadMapTimeOfDay ; 10
-	dbw BANK(LoadMapPalettes), LoadMapPalettes ; 11
-	dbw BANK(LoadWildMonData), LoadWildMonData ; 12
-	dbw BANK(RefreshMapSprites), RefreshMapSprites ; 13
-	dbw BANK(RunCallback_05_03), RunCallback_05_03 ; 14
-	dbw BANK(RunCallback_03), RunCallback_03 ; 15
-	dbw BANK(LoadObjectsRunCallback_02), LoadObjectsRunCallback_02 ; 16
-	dbw BANK(LoadSpawnPoint), LoadSpawnPoint ; 17
-	dbw BANK(EnterMapConnection), EnterMapConnection ; 18
-	dbw BANK(LoadWarpData), LoadWarpData ; 19
-	dbw BANK(LoadMapAttributes), LoadMapAttributes ; 1a
-	dbw BANK(LoadMapAttributes_IgnoreHidden), LoadMapAttributes_IgnoreHidden ; 1b
-	dbw BANK(WhiteBGMap), WhiteBGMap ; 1c
-	dbw BANK(FadeBlackBGMap), FadeBlackBGMap ; 1d
-	dbw BANK(FadeInBGMap), FadeInBGMap ; 1e
-	dbw BANK(GetCoordOfUpperLeftCorner), GetCoordOfUpperLeftCorner ; 1f
-	dbw BANK(RestoreFacingAfterWarp), RestoreFacingAfterWarp ; 20
-	dbw BANK(SpawnInFacingDown), SpawnInFacingDown ; 21
-	dbw BANK(GetSpawnCoord), GetSpawnCoord ; 22
-	dbw BANK(RefreshPlayerCoords), RefreshPlayerCoords ; 23
-	dbw BANK(DelayClearingOldSprites), DelayClearingOldSprites ; 24
-	dbw BANK(DelayLoadingNewSprites), DelayLoadingNewSprites ; 25
-	dbw BANK(UpdateRoamMons), UpdateRoamMons ; 26
-	dbw BANK(JumpRoamMons), JumpRoamMons ; 27
-	dbw BANK(FadeOldMapMusic), FadeOldMapMusic ; 28
-	dbw BANK(ActivateMapAnims), ActivateMapAnims ; 29
-	dbw BANK(SuspendMapAnims), SuspendMapAnims ; 2a
-	dbw BANK(RetainOldPalettes), RetainOldPalettes ; 2b
-	dbw BANK(DontScrollText), DontScrollText ; 2c
-	dbw BANK(ReturnFromMapSetupScript), ReturnFromMapSetupScript ; 2d
+	dba EnableLCD ; 00
+	dba DisableLCD ; 01
+	dba MapSetup_Sound_Off ; 02
+	dba PlayMapMusic ; 03
+	dba RestartMapMusic ; 04
+	dba FadeToMapMusic ; 05
+	dba FadeOutMapAndMusic ; 06
+	dba EnterMapMusic ; 07
+	dba ForceMapMusic ; 08
+	dba FadeInMusic ; 09
+	dba LoadBlockData ; 0a
+	dba LoadNeighboringBlockData ; 0b
+	dba SaveScreen ; 0c
+	dba BufferScreen ; 0d
+	dba LoadGraphics ; 0e
+	dba LoadTilesetHeader ; 0f
+	dba LoadMapTimeOfDay ; 10
+	dba LoadMapPalettes ; 11
+	dba LoadWildMonData ; 12
+	dba RefreshMapSprites ; 13
+	dba RunCallback_05_03 ; 14
+	dba RunCallback_03 ; 15
+	dba LoadObjectsRunCallback_02 ; 16
+	dba LoadSpawnPoint ; 17
+	dba EnterMapConnection ; 18
+	dba LoadWarpData ; 19
+	dba LoadMapAttributes ; 1a
+	dba LoadMapAttributes_SkipPeople ; 1b
+	dba ClearBGPalettes ; 1c
+	dba FadeOutPalettes ; 1d
+	dba FadeInPalettes ; 1e
+	dba GetCoordOfUpperLeftCorner ; 1f
+	dba RestoreFacingAfterWarp ; 20
+	dba SpawnInFacingDown ; 21
+	dba GetSpawnCoord ; 22
+	dba RefreshPlayerCoords ; 23
+	dba DelayClearingOldSprites ; 24
+	dba DelayLoadingNewSprites ; 25
+	dba UpdateRoamMons ; 26
+	dba JumpRoamMons ; 27
+	dba FadeOldMapMusic ; 28
+	dba ActivateMapAnims ; 29
+	dba SuspendMapAnims ; 2a
+	dba RetainOldPalettes ; 2b
+	dba DontScrollText ; 2c
+	dba ReturnFromMapSetupScript ; 2d
 ; 154ca
 
 
@@ -300,13 +300,13 @@ DontScrollText: ; 154ca
 
 ActivateMapAnims: ; 154cf
 	ld a, $1
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ret
 ; 154d3
 
 SuspendMapAnims: ; 154d3
 	xor a
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ret
 ; 154d7
 
@@ -318,7 +318,7 @@ LoadObjectsRunCallback_02: ; 154d7
 	ret
 ; 154ea (5:54ea)
 
-Function154ea: ; 154ea
+; unreferenced
 	ret
 ; 154eb
 
@@ -333,20 +333,21 @@ DelayLoadingNewSprites: ; 154f1
 	set 6, [hl]
 	ret
 
-Function154f7: ; 154f7
+CheckReplaceKrisSprite: ; 154f7
 	nop
-	call Function1550c
+	call .CheckBiking
 	jr c, .ok
-	call Function1554e
+	call .CheckSurfing
 	jr c, .ok
-	call Function1551a
+	call .CheckSurfing2
 	jr c, .ok
-	ret
-.ok
-	call Special_ReplaceKrisSprite
 	ret
 
-Function1550c: ; 1550c (5:550c)
+.ok
+	call ReplaceKrisSprite
+	ret
+
+.CheckBiking: ; 1550c (5:550c)
 	and a
 	ld hl, BikeFlags
 	bit 1, [hl]
@@ -356,7 +357,7 @@ Function1550c: ; 1550c (5:550c)
 	scf
 	ret
 
-Function1551a: ; 1551a (5:551a)
+.CheckSurfing2: ; 1551a (5:551a)
 	ld a, [PlayerState]
 	cp PLAYER_NORMAL
 	jr z, .nope
@@ -367,11 +368,11 @@ Function1551a: ; 1551a (5:551a)
 	cp PLAYER_SURF_PIKA
 	jr z, .surfing
 	call GetMapPermission
-	cp $3
+	cp INDOOR
 	jr z, .checkbiking
-	cp $5
+	cp PERM_5
 	jr z, .checkbiking
-	cp $7
+	cp DUNGEON
 	jr z, .checkbiking
 	jr .nope
 .checkbiking
@@ -383,21 +384,22 @@ Function1551a: ; 1551a (5:551a)
 	ld [PlayerState], a
 	scf
 	ret
+
 .nope
 	and a
 	ret
 
-Function1554e: ; 1554e (5:554e)
+.CheckSurfing: ; 1554e (5:554e)
 	call CheckOnWater
 	jr nz, .ret_nc
 	ld a, [PlayerState]
 	cp PLAYER_SURF
-	jr z, .surfing
+	jr z, ._surfing
 	cp PLAYER_SURF_PIKA
-	jr z, .surfing
+	jr z, ._surfing
 	ld a, PLAYER_SURF
 	ld [PlayerState], a
-.surfing
+._surfing
 	scf
 	ret
 .ret_nc

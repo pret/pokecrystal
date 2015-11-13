@@ -15,7 +15,7 @@ FruitTreeScript:: ; 44000
 .fruit
 	writetext HeyItsFruitText
 	copybytetovar CurFruit
-	giveitem $ff, 1
+	giveitem ITEM_FROM_MEM
 	iffalse .packisfull
 	keeptextopen
 	writetext ObtainedFruitText

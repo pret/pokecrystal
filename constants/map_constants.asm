@@ -494,6 +494,11 @@ MAP_NONE   EQU 0
 	const _ROOF
 
 ; connection directions
+	const_def
+	const EAST_F
+	const WEST_F
+	const SOUTH_F
+	const NORTH_F
 
 	const_def
 	shift_const EAST
@@ -540,7 +545,7 @@ const_value SET 1
 	const OBJECT_SPRITE_Y
 	const OBJECT_SPRITE_X_OFFSET
 	const OBJECT_SPRITE_Y_OFFSET
-	const OBJECT_27
+	const OBJECT_MOVEMENT_BYTE_INDEX
 	const OBJECT_28
 	const OBJECT_29
 	const OBJECT_30
@@ -566,11 +571,10 @@ const_value SET 1
 	const MAPOBJECT_FLAG_HI ; d
 	const MAPOBJECT_E ; unused
 	const MAPOBJECT_F ; unused
+OBJECT_LENGTH EQU const_value
 
 MAPOBJECT_SCREEN_HEIGHT EQU 11
 MAPOBJECT_SCREEN_WIDTH EQU 12
-OBJECT_STRUCT_3_DATA_WIDTH EQU 6
-OBJECT_STRUCT_3_DATA_HEIGHT EQU 37
 
 OW_DOWN  EQU DOWN  << 2
 OW_UP    EQU UP    << 2
@@ -586,7 +590,10 @@ OW_RIGHT EQU RIGHT << 2
 	const EMOTE_BOLT ; 5
 	const EMOTE_SLEEP ; 6
 	const EMOTE_FISH ; 7
-	const EMOTE_ROD ; 8 - add directional constant
+	const EMOTE_08 ; 8
+	const EMOTE_09 ; 9
+	const EMOTE_0A ; 10
+	const EMOTE_0B ; 11
 EMOTE_MEM EQU -1
 
 	const_def

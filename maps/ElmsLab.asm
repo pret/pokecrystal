@@ -327,7 +327,7 @@ ElmAfterTheftScript:
 	keeptextopen
 	writetext ElmAfterTheftText2
 	closetext
-	takeitem MYSTERY_EGG, 1
+	takeitem MYSTERY_EGG
 	scall ElmJumpBackScript1
 	writetext ElmAfterTheftText3
 	closetext
@@ -379,7 +379,7 @@ ShowElmTogepiScript:
 ElmGiveEverstoneScript:
 	writetext ElmGiveEverstoneText1
 	keeptextopen
-	verbosegiveitem EVERSTONE, 1
+	verbosegiveitem EVERSTONE
 	iffalse ElmScript_NoRoomForEverstone
 	writetext ElmGiveEverstoneText2
 	closetext
@@ -397,7 +397,7 @@ ElmScript_NoRoomForEverstone:
 ElmGiveMasterBallScript:
 	writetext ElmGiveMasterBallText1
 	keeptextopen
-	verbosegiveitem MASTER_BALL, 1
+	verbosegiveitem MASTER_BALL
 	iffalse .notdone
 	setevent EVENT_GOT_MASTER_BALL_FROM_ELM
 	writetext ElmGiveMasterBallText2
@@ -409,7 +409,7 @@ ElmGiveMasterBallScript:
 ElmGiveTicketScript:
 	writetext ElmGiveTicketText1
 	keeptextopen
-	verbosegiveitem S_S_TICKET, 1
+	verbosegiveitem S_S_TICKET
 	setevent EVENT_GOT_SS_TICKET_FROM_ELM
 	writetext ElmGiveTicketText2
 	closetext
@@ -472,7 +472,7 @@ AideScript_GivePotions:
 	loadfont
 	writetext AideText_GiveYouPotions
 	keeptextopen
-	verbosegiveitem POTION, 1
+	verbosegiveitem POTION
 	writetext AideText_AlwaysBusy
 	closetext
 	loadmovesprites
@@ -499,7 +499,7 @@ AideScript_GiveYouBalls:
 	keeptextopen
 	itemtotext POKE_BALL, $1
 	scall AideScript_ReceiveTheBalls
-	giveitem POKE_BALL, $5
+	giveitem POKE_BALL, 5
 	writetext AideText_ExplainBalls
 	keeptextopen
 	itemnotify
@@ -1409,8 +1409,8 @@ ElmsLab_MapEventHeader:
 .PersonEvents:
 	db 6
 	person_event SPRITE_ELM, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, ProfElmScript, -1
-	person_event SPRITE_SCIENTIST, 9, 2, SPRITEMOVEDATA_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
-	person_event SPRITE_POKE_BALL, 3, 6, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, CyndaquilPokeBallScript, EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
-	person_event SPRITE_POKE_BALL, 3, 7, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, TotodilePokeBallScript, EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
-	person_event SPRITE_POKE_BALL, 3, 8, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
+	person_event SPRITE_SCIENTIST, 9, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
+	person_event SPRITE_POKE_BALL, 3, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, CyndaquilPokeBallScript, EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
+	person_event SPRITE_POKE_BALL, 3, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, TotodilePokeBallScript, EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
+	person_event SPRITE_POKE_BALL, 3, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
 	person_event SPRITE_OFFICER, 3, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, CopScript, EVENT_COP_IN_ELMS_LAB

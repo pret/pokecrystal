@@ -23,7 +23,7 @@ TeacherScript_0x5eb85:
 UnknownScript_0x5eb99:
 	writetext UnknownText_0x5ecab
 	keeptextopen
-	verbosegiveitem PINK_BOW, 1
+	verbosegiveitem PINK_BOW
 	iffalse UnknownScript_0x5ebb0
 	writetext UnknownText_0x5ecef
 	closetext
@@ -258,9 +258,9 @@ RadioTower4F_MapEventHeader:
 .PersonEvents:
 	db 7
 	person_event SPRITE_FISHER, 4, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, FisherScript_0x5eb82, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	person_event SPRITE_TEACHER, 6, 14, SPRITEMOVEDATA_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TeacherScript_0x5eb85, -1
-	person_event SPRITE_GROWLITHE, 7, 12, SPRITEMOVEDATA_16, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GrowlitheScript_0x5ebb2, -1
-	person_event SPRITE_ROCKET, 6, 5, SPRITEMOVEDATA_1F, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM10, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_TEACHER, 6, 14, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TeacherScript_0x5eb85, -1
+	person_event SPRITE_GROWLITHE, 7, 12, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GrowlitheScript_0x5ebb2, -1
+	person_event SPRITE_ROCKET, 6, 5, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM10, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	person_event SPRITE_ROCKET, 1, 14, SPRITEMOVEDATA_STANDING_LEFT, 0, 2, -1, -1, 0, 2, 2, TrainerExecutivem2, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	person_event SPRITE_ROCKET_GIRL, 4, 12, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerGruntF4, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	person_event SPRITE_SCIENTIST, 2, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerScientistRich, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

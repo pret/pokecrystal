@@ -3154,38 +3154,3 @@ String_be657: db "Dad@"
 String_be65b: db "Sister@"
 String_be662: db "Brother@"
 
-
-TalkToTrainerScript:: ; 0xbe66a
-	faceplayer
-	trainerstatus $2
-	iftrue AlreadyBeatenTrainerScript
-	loadtrainerdata
-	playrammusic
-	jump StartBattleWithMapTrainerScript
-; 0xbe675
-
-SeenByTrainerScript:: ; 0xbe675
-	loadtrainerdata
-	playrammusic
-	showemote EMOTE_SHOCK, LAST_TALKED, 30
-	callasm Function831e
-	applymovement2 MovementBuffer
-	writepersonxy LAST_TALKED
-	faceperson PLAYER, LAST_TALKED
-	jump StartBattleWithMapTrainerScript
-; 0xbe68a
-
-StartBattleWithMapTrainerScript: ; 0xbe68a
-	loadfont
-	trainertext $0
-	closetext
-	loadmovesprites
-	loadtrainerdata
-	startbattle
-	returnafterbattle
-	trainerstatus 1
-	loadvar wd04d, -1
-
-AlreadyBeatenTrainerScript:
-	scripttalkafter
-; 0xbe699

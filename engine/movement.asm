@@ -61,32 +61,32 @@ MovementPointers: ; 5075
 	dw Movement_fix_facing            ; 3b
 	dw Movement_3c                    ; 3c
 	dw Movement_hide_person           ; 3d
-	dw Movement_show_person           ; 3e
-	dw Movement_3f                    ; 3f
-	dw Movement_40                    ; 40
-	dw Movement_41                    ; 41
-	dw Movement_42                    ; 42
-	dw Movement_43                    ; 43
-	dw Movement_44                    ; 44
-	dw Movement_accelerate_last       ; 45
+	dw Movement_step_sleep_1          ; 3e
+	dw Movement_step_sleep_2          ; 3f
+	dw Movement_step_sleep_3          ; 40
+	dw Movement_step_sleep_4          ; 41
+	dw Movement_step_sleep_5          ; 42
+	dw Movement_step_sleep_6          ; 43
+	dw Movement_step_sleep_7          ; 44
+	dw Movement_step_sleep_8          ; 45
 	dw Movement_step_sleep            ; 46
 	dw Movement_step_end              ; 47
 	dw Movement_48                    ; 48
 	dw Movement_remove_person         ; 49
-	dw Movement_4a                    ; 4a
+	dw Movement_step_loop             ; 4a
 	dw Movement_4b                    ; 4b
 	dw Movement_teleport_from         ; 4c
 	dw Movement_teleport_to           ; 4d
 	dw Movement_skyfall               ; 4e
 	dw Movement_step_wait5            ; 4f
 	dw Movement_50                    ; 50
-	dw Movement_51                    ; 51
-	dw Movement_52                    ; 52
+	dw Movement_fish_got_bite         ; 51
+	dw Movement_fish_cast_rod         ; 52
 	dw Movement_hide_emote            ; 53
 	dw Movement_show_emote            ; 54
 	dw Movement_step_shake            ; 55
 	dw Movement_56                    ; 56
-	dw Movement_57                    ; 57
+	dw Movement_rock_smash            ; 57
 	dw Movement_58                    ; 58
 	dw Movement_59                    ; 59
 ; 5129
@@ -139,7 +139,7 @@ Movement_step_wait5: ; 5145
 	ld [hl], $3
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], STANDING
 	ret
 ; 516a
 
@@ -156,14 +156,14 @@ Movement_58: ; 516a
 	ld [hl], a
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], STANDING
 	ld hl, OBJECT_09
 	add hl, bc
 	ld [hl], $12
 	ret
 ; 5189
 
-Movement_51: ; 5189
+Movement_fish_got_bite: ; 5189
 	ld hl, OBJECT_11
 	add hl, bc
 	ld [hl], $6
@@ -173,7 +173,7 @@ Movement_51: ; 5189
 	ret
 ; 5196
 
-Movement_57: ; 5196
+Movement_rock_smash: ; 5196
 	call GetMovementByte
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
@@ -187,7 +187,7 @@ Movement_57: ; 5196
 	ret
 ; 51ab
 
-Movement_52: ; 51ab
+Movement_fish_cast_rod: ; 51ab
 	ld hl, OBJECT_11
 	add hl, bc
 	ld [hl], $6
@@ -197,11 +197,11 @@ Movement_52: ; 51ab
 	ret
 ; 51b8
 
-Movement_4a: ; 51b8
-	ld hl, OBJECT_27
+Movement_step_loop: ; 51b8
+	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
 	add hl, bc
 	ld [hl], $0
-	jp Function5065
+	jp ContinueReadingMovement
 ; 51c1
 
 Movement_step_end: ; 51c1
@@ -209,11 +209,14 @@ Movement_step_end: ; 51c1
 	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_27
+
+	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
 	add hl, bc
 	ld [hl], $0
+
 	ld hl, VramState
 	res 7, [hl]
+
 	ld hl, OBJECT_09
 	add hl, bc
 	ld [hl], $1
@@ -225,16 +228,20 @@ Movement_48: ; 51db
 	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_27
+
+	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
 	add hl, bc
 	ld [hl], $0
+
 	call GetMovementByte
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
+
 	ld hl, OBJECT_09
 	add hl, bc
 	ld [hl], $3
+
 	ld hl, VramState
 	res 7, [hl]
 	ret
@@ -245,10 +252,10 @@ Movement_remove_person: ; 51fd
 	ld hl, wObjectFollow_Leader
 	ld a, [hMapObjectIndexBuffer]
 	cp [hl]
-	jr nz, .asm_520a
-	ld [hl], $ff
+	jr nz, .not_leading
+	ld [hl], -1
 
-.asm_520a
+.not_leading
 	ld hl, VramState
 	res 7, [hl]
 	ret
@@ -258,43 +265,45 @@ Movement_4b: ; 5210
 	ld hl, OBJECT_11
 	add hl, bc
 	ld [hl], $1
+
 	ld hl, OBJECT_09
 	add hl, bc
 	ld [hl], $4
+
 	ld hl, VramState
 	res 7, [hl]
 	ret
 ; 5222
 
-Movement_show_person: ; 5222
+Movement_step_sleep_1: ; 5222
 	ld a, $1
 	jr Function5247
 
-Movement_3f: ; 5226
+Movement_step_sleep_2: ; 5226
 	ld a, $2
 	jr Function5247
 
-Movement_40: ; 522a
+Movement_step_sleep_3: ; 522a
 	ld a, $3
 	jr Function5247
 
-Movement_41: ; 522e
+Movement_step_sleep_4: ; 522e
 	ld a, $4
 	jr Function5247
 
-Movement_42: ; 5232
+Movement_step_sleep_5: ; 5232
 	ld a, $5
 	jr Function5247
 
-Movement_43: ; 5236
+Movement_step_sleep_6: ; 5236
 	ld a, $6
 	jr Function5247
 
-Movement_44: ; 523a
+Movement_step_sleep_7: ; 523a
 	ld a, $7
 	jr Function5247
 
-Movement_accelerate_last: ; 523e
+Movement_step_sleep_8: ; 523e
 	ld a, $8
 	jr Function5247
 
@@ -309,15 +318,18 @@ Function5247: ; 5247
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
+
 	ld hl, OBJECT_09
 	add hl, bc
 	ld [hl], $3
+
 	ld hl, OBJECT_11
 	add hl, bc
 	ld [hl], $1
+
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], STANDING
 	ret
 ; 525f
 
@@ -334,7 +346,7 @@ Movement_50: ; 525f
 	ld [hl], $3
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], STANDING
 	ret
 ; 5279
 
@@ -351,7 +363,7 @@ Movement_56: ; 5279
 	ld [hl], $b
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], STANDING
 	ret
 ; 5293
 
@@ -359,52 +371,52 @@ Movement_38: ; 5293
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	res 3, [hl]
-	jp Function5065
+	jp ContinueReadingMovement
 ; 529c
 
 Movement_39: ; 529c
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	set 3, [hl]
-	jp Function5065
+	jp ContinueReadingMovement
 ; 52a5
 
 Movement_remove_fixed_facing: ; 52a5
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	res 2, [hl]
-	jp Function5065
+	jp ContinueReadingMovement
 ; 52ae
 
 Movement_fix_facing: ; 52ae
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	set 2, [hl]
-	jp Function5065
+	jp ContinueReadingMovement
 ; 52b7
 
 Movement_3c: ; 52b7
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	res 0, [hl]
-	jp Function5065
+	jp ContinueReadingMovement
 ; 52c0
 
 Movement_hide_person: ; 52c0
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	set 0, [hl]
-	jp Function5065
+	jp ContinueReadingMovement
 ; 52c9
 
 Movement_hide_emote: ; 52c9
 	call Function5579
-	jp Function5065
+	jp ContinueReadingMovement
 ; 52cf
 
 Movement_show_emote: ; 52cf
 	call Function5547
-	jp Function5065
+	jp ContinueReadingMovement
 ; 52d5
 
 Movement_step_shake: ; 52d5
@@ -413,7 +425,7 @@ Movement_step_shake: ; 52d5
 
 	call GetMovementByte
 	call Function5565
-	jp Function5065
+	jp ContinueReadingMovement
 ; 52de
 
 Movement_turn_head_down: ; 52de
@@ -441,7 +453,7 @@ TurnHead: ; 52ee
 	ld [hl], $1
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], STANDING
 	ret
 ; 5300
 

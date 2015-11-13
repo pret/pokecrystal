@@ -1,4 +1,4 @@
-BattleCommand50: ; 37492
+BattleCommand_Thief: ; 37492
 ; thief
 
 	ld a, [hBattleTurn]

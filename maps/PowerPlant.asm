@@ -154,7 +154,7 @@ UnknownScript_0x188e8d:
 UnknownScript_0x188e93:
 	writetext UnknownText_0x18936e
 	keeptextopen
-	takeitem MACHINE_PART, 1
+	takeitem MACHINE_PART
 	setevent EVENT_RETURNED_MACHINE_PART
 	clearevent EVENT_SAFFRON_TRAIN_STATION_POPULATION
 	setevent EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
@@ -166,7 +166,7 @@ UnknownScript_0x188eac:
 	iftrue UnknownScript_0x188ec5
 	writetext UnknownText_0x1893c4
 	keeptextopen
-	verbosegiveitem TM_ZAP_CANNON, 1
+	verbosegiveitem TM_ZAP_CANNON
 	iffalse UnknownScript_0x188ec3
 	setevent EVENT_GOT_TM07_ZAP_CANNON
 	writetext UnknownText_0x1893f4
@@ -402,7 +402,7 @@ PowerPlant_MapEventHeader:
 .PersonEvents:
 	db 7
 	person_event SPRITE_OFFICER, 14, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OfficerScript_0x188df5, -1
-	person_event SPRITE_GYM_GUY, 9, 2, SPRITEMOVEDATA_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GymGuyScript_0x188e15, -1
+	person_event SPRITE_GYM_GUY, 9, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GymGuyScript_0x188e15, -1
 	person_event SPRITE_GYM_GUY, 11, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GymGuyScript_0x188e29, -1
 	person_event SPRITE_OFFICER, 3, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, OfficerScript_0x188e3d, -1
 	person_event SPRITE_GYM_GUY, 2, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GymGuyScript_0x188e51, -1

@@ -149,7 +149,7 @@ Function8b07: ; 8b07
 	call CheckCGB
 	ret z
 	ld hl, Palette8b2f
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $0008
 	ld a, $5
 	call FarCopyWRAM
@@ -275,7 +275,7 @@ endr
 
 asm_8bd7
 	push hl
-	ld hl, Unkn1Pals
+	ld hl, wMapPals
 	ld de, $0008
 .asm_8bde
 	and a
@@ -319,7 +319,7 @@ Function8bec: ; 8bec
 	ld a, [EnemySafeguardCount]
 	and $3
 	call Function9663
-	call Function323d
+	call LoadDETile
 	ret
 ; 8c1d
 
@@ -338,7 +338,7 @@ Function8c1d: ; 8c1d
 	call Function976b
 
 .asm_8c33
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	call Function9643
 	call Function9699
 	call Function96b3
@@ -412,11 +412,11 @@ endr
 	ld a, $5
 	ld [rSVBK], a
 	ld a, [hli]
-	ld [Unkn1Pals], a
-	ld [Unkn1Pals + 8 * 2], a
+	ld [wMapPals], a
+	ld [wMapPals + 8 * 2], a
 	ld a, [hl]
-	ld [Unkn1Pals + 1], a
-	ld [Unkn1Pals + 8 * 2 + 1], a
+	ld [wMapPals + 1], a
+	ld [wMapPals + 8 * 2 + 1], a
 	pop af
 	ld [rSVBK], a
 	call Function96a4
@@ -458,7 +458,7 @@ endr
 	ret
 
 .asm_8cf0
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $0008
 	ld a, $5
 	call FarCopyWRAM
@@ -525,7 +525,7 @@ INCLUDE "predef/cgb.asm"
 
 Function95f0: ; 95f0
 	ld hl, Palette_9608
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, 8
 	ld a, $5
 	call FarCopyWRAM
@@ -544,7 +544,7 @@ Palette_9608: ; 9608
 
 
 CopyFourPalettes: ; 9610
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld c, $4
 
 CopyPalettes: ; 9615
@@ -644,7 +644,7 @@ Function9673: ; 9673
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, Unkn1Pals
+	ld hl, wMapPals
 	ld c, $8
 .asm_9683
 	ld a, $ff
@@ -676,7 +676,7 @@ Function9699: ; 9699
 ; 96a4
 
 Function96a4: ; 96a4
-	ld hl, Unkn1Pals
+	ld hl, wMapPals
 	ld de, BGPals
 	ld bc, $0080
 	ld a, $5
@@ -768,7 +768,7 @@ Function971a: ; 971a
 
 Function9729: ; 9729
 	push de
-	callba Function3da85
+	callba GetPartyMonDVs
 	ld c, l
 	ld b, h
 	ld a, [TempBattleMonSpecies]
@@ -779,7 +779,7 @@ Function9729: ; 9729
 
 Function973a: ; 973a
 	push de
-	callba Function3da97
+	callba GetEnemyMonDVs
 	ld c, l
 	ld b, h
 	ld a, [TempEnemyMonSpecies]
@@ -1047,7 +1047,7 @@ Function9890:: ; 9890
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, Unkn1Pals
+	ld hl, wMapPals
 	call Function98df
 	ld hl, BGPals
 	call Function98df
@@ -1945,7 +1945,7 @@ INCLUDE "gfx/trainers/palette_pointers.asm"
 ; b1de
 
 Functionb1de: ; b1de
-	callba Function494ac
+	callba LoadSpecialMapPalette
 	jr c, .asm_b230
 
 	ld a, [wPermission]
@@ -1973,7 +1973,7 @@ endr
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, Unkn1Pals
+	ld hl, wMapPals
 	ld b, $8
 .asm_b210
 	ld a, [de]
@@ -2036,7 +2036,7 @@ rept 4
 	inc hl
 endr
 .asm_b26d
-	ld de, Unkn1Pals + 8 * 6 + 2
+	ld de, wMapPals + 8 * 6 + 2
 	ld bc, 4
 	ld a, $5
 	call FarCopyWRAM

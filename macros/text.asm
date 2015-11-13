@@ -11,7 +11,6 @@ prompt EQUS "db $58"  ; Prompt the player to end a text box (initiating some oth
 page   EQUS "db $50,"     ; Start a new Pokedex page.
 dex    EQUS "db $e8, $50" ; End a Pokedex entry.
 
-
 ; TX_RAM EQU $01
 ; TX_FAR EQU $16
 	enum_start 1

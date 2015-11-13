@@ -12,7 +12,7 @@ PokefanMScript_0x196d64:
 	iftrue UnknownScript_0x196d79
 	writetext UnknownText_0x196d82
 	keeptextopen
-	verbosegiveitem BERRY, 1
+	verbosegiveitem BERRY
 	iffalse UnknownScript_0x196d7d
 	setevent EVENT_GOT_BERRY_FROM_ROUTE_30_HOUSE
 UnknownScript_0x196d79:

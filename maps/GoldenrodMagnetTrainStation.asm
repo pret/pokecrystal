@@ -35,7 +35,7 @@ OfficerScript_0x550ec:
 	writebyte $0
 	special Special_MagnetTrain
 	warpcheck
-	newloadmap $f9
+	newloadmap MAPSETUP_TRAIN
 	applymovement PLAYER, .MovementBoardTheTrain
 	wait $14
 	end
@@ -183,4 +183,4 @@ GoldenrodMagnetTrainStation_MapEventHeader:
 .PersonEvents:
 	db 2
 	person_event SPRITE_OFFICER, 9, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, OfficerScript_0x550ec, -1
-	person_event SPRITE_GENTLEMAN, 14, 11, SPRITEMOVEDATA_02, 2, 2, -1, -1, 0, 0, 0, GentlemanScript_0x55143, EVENT_GOLDENROD_TRAIN_STATION_GENTLEMAN
+	person_event SPRITE_GENTLEMAN, 14, 11, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, 0, 0, GentlemanScript_0x55143, EVENT_GOLDENROD_TRAIN_STATION_GENTLEMAN

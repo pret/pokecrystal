@@ -1,12 +1,12 @@
 
 Function1dd702: ; 1dd702
 	call Function1dd709
-	call Functiona80
+	call WaitPressAorB_BlinkCursor
 	ret
 ; 1dd709
 
 Function1dd709: ; 1dd709
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
 	call DisableLCD

@@ -42,7 +42,7 @@ SpecialsPointers:: ; c029
 ; Map Events
 	add_special BugContestJudging
 	add_special CheckPartyFullAfterContest
-	add_special CheckFirstMonFainted
+	add_special ContestDropOffMons
 	add_special ContestReturnMons
 	add_special Special_GiveParkBalls
 	add_special Special_CheckMagikarpLength
@@ -65,18 +65,18 @@ SpecialsPointers:: ; c029
 	add_special Special_SlotMachine
 	add_special Special_CardFlip
 	add_special Special_DummyNonfunctionalGameCornerGame
-	add_special Special_WhiteBGMapBufferScreen
-	add_special FadeBlackBGMap
+	add_special Special_ClearBGPalettesBufferScreen
+	add_special FadeOutPalettes
 	add_special Special_BattleTowerFade
 	add_special Special_FadeBlackQuickly
-	add_special FadeInBGMap
+	add_special FadeInPalettes
 	add_special Special_FadeInQuickly
 	add_special Special_ReloadSpritesNoPalettes
-	add_special WhiteBGMap
+	add_special ClearBGPalettes
 	add_special UpdateTimePals
 	add_special ClearTileMap
 	add_special UpdateSprites
-	add_special Special_ReplaceKrisSprite
+	add_special ReplaceKrisSprite
 	add_special Special_GameCornerPrizeMonCheckDex
 	add_special SpecialSeenMon
 	add_special WaitSFX
@@ -124,7 +124,7 @@ SpecialsPointers:: ; c029
 	add_special ProfOaksPCBoot
 	add_special SpecialGameboyCheck
 	add_special SpecialTrainerHouse
-	add_special Function16dc7
+	add_special PhotoStudio
 	add_special InitRoamMons
 	add_special Functionc48f
 	add_special Functionc49f
@@ -139,9 +139,9 @@ SpecialsPointers:: ; c029
 	add_special Function1700b0
 	add_special Function1700ba
 	add_special Function170114
-	add_special Function170215
+	add_special BattleTowerBattle
 	add_special Function1704e1
-	add_special Function17021d
+	add_special EmptySpecial_17021d
 	add_special Function_LoadOpponentTrainerAndPokemonsWithOTSprite
 	add_special Function11ba38
 	add_special SpecialCheckForBattleTowerRules
@@ -154,7 +154,7 @@ SpecialsPointers:: ; c029
 	add_special Function4925b
 	add_special SpecialOmanyteChamber
 	add_special Function11c1ab
-	add_special Function170687
+	add_special BattleTowerAction
 	add_special Special_DisplayUnownWords
 	add_special Special_Menu_ChallengeExplanationCancel
 	add_special Function17d2b6
@@ -178,7 +178,7 @@ SpecialsPointers:: ; c029
 	add_special Function1037eb
 	add_special Function10383c
 	add_special Mobile_HealParty
-	add_special Function14168
+	add_special RefreshSprites
 	add_special Function1037c2
 	add_special Function10630f
 	add_special Function103780
@@ -465,8 +465,8 @@ UnknownText_0xc3d6: ; 0xc3d6
 	db "@"
 ; 0xc3db
 
-Special_WhiteBGMapBufferScreen: ; c3db
-	call WhiteBGMap
+Special_ClearBGPalettesBufferScreen: ; c3db
+	call ClearBGPalettes
 	call BufferScreen
 	ret
 ; c3e2

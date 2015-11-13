@@ -1,4 +1,4 @@
-BattleCommand52: ; 37536
+BattleCommand_Nightmare: ; 37536
 ; nightmare
 
 ; Can't hit an absent opponent.

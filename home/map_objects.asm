@@ -52,18 +52,18 @@ endr
 	ret
 ; 1836
 
-Function1836:: ; 1836
+DoesSpriteHaveFacings:: ; 1836
 	push de
 	push hl
 
 	ld b, a
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(Function142a7)
+	ld a, BANK(_DoesSpriteHaveFacings)
 	rst Bankswitch
 
 	ld a, b
-	call Function142a7
+	call _DoesSpriteHaveFacings
 	ld c, a
 
 	pop de
@@ -428,7 +428,8 @@ Function19b8:: ; 19b8
 
 
 
-Function19e9:: ; 19e9
+LoadMovementDataPointer:: ; 19e9
+; Load the movement data pointer for person a.
 	ld [wMovementPerson], a
 	ld a, [hROMBank]
 	ld [wMovementDataPointer], a
@@ -439,12 +440,15 @@ Function19e9:: ; 19e9
 	ld a, [wMovementPerson]
 	call CheckObjectVisibility
 	ret c
+
 	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
-	ld [hl], SPRITEMOVEDATA_14
+	ld [hl], SPRITEMOVEDATA_SCRIPTED
+
 	ld hl, OBJECT_09
 	add hl, bc
 	ld [hl], 0
+
 	ld hl, VramState
 	set 7, [hl]
 	and a
@@ -485,19 +489,19 @@ FindFirstEmptyObjectStruct:: ; 1a13
 
 
 
-Function1a2f:: ; 1a2f
+GetSpriteMovementFunction:: ; 1a2f
 	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
 	ld a, [hl]
-	cp OBJECT_STRUCT_3_DATA_HEIGHT
+	cp NUM_SPRITEMOVEDATA
 	jr c, .ok
 	xor a
 
 .ok
-	ld hl, ObjectStruct3_Data
+	ld hl, SpriteMovementData
 	ld e, a
 	ld d, 0
-rept OBJECT_STRUCT_3_DATA_WIDTH
+rept SPRITEMOVEDATA_FIELDS
 	add hl,de
 endr
 	ld a, [hl]
@@ -509,11 +513,11 @@ Function1a47:: ; 1a47
 	push de
 	ld e, a
 	ld d, 0
-	ld hl, ObjectStruct3_Data + 1
-rept OBJECT_STRUCT_3_DATA_WIDTH
+	ld hl, SpriteMovementData + 1 ; init facing
+rept SPRITEMOVEDATA_FIELDS
 	add hl,de
 endr
-	ld a, BANK(ObjectStruct3_Data)
+	ld a, BANK(SpriteMovementData)
 	call GetFarByte
 rept 2
 	add a
@@ -529,7 +533,7 @@ Function1a61:: ; 1a61
 	ld l, a
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(ObjectStruct3_Data)
+	ld a, BANK(SpriteMovementData)
 	rst Bankswitch
 	ld a, l
 	push bc
@@ -550,8 +554,8 @@ Function1a71:: ; 1a71
 	push de
 	ld e, a
 	ld d, 0
-	ld hl, ObjectStruct3_Data + 1 ; facing?
-rept OBJECT_STRUCT_3_DATA_WIDTH
+	ld hl, SpriteMovementData + 1 ; init facing
+rept SPRITEMOVEDATA_FIELDS
 	add hl, de
 endr
 	ld b, h
@@ -589,14 +593,15 @@ endr
 ; 1aae
 
 Function1aae:: ; 1aae
+; Switch to the movement data bank
 	ld a, [hROMBank]
 	push af
 	ld a, [hli]
 	rst Bankswitch
-
+; Load the current script byte as given by OBJECT_MOVEMENT_BYTE_INDEX, and increment OBJECT_MOVEMENT_BYTE_INDEX
 	ld a, [hli]
 	ld d, [hl]
-	ld hl, OBJECT_27
+	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
 	add hl, bc
 	add [hl]
 	ld e, a

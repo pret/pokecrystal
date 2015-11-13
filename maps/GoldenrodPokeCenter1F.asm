@@ -8,15 +8,15 @@ GoldenrodPokeCenter1F_MapScriptHeader:
 NurseScript_0x60f91:
 	jumpstd pokecenternurse
 
-UnknownScript_0x60f94:
-	writebyte $b
-	special Function170687
-	if_equal $b, UnknownScript_0x60f9e
+GoldenrodPokeCenter1F_GSBallTriggerLeft:
+	writebyte BATTLE_TOWER_ACTION_0B
+	special BattleTowerAction
+	if_equal MOBILE_EVENT_OBJECT_GS_BALL, .gsball
 	end
 
-UnknownScript_0x60f9e:
+.gsball:
 	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
-	iftrue UnknownScript_0x60fd8
+	iftrue .cancel
 	playsound SFX_EXIT_BUILDING
 	moveperson $3, $0, $7
 	disappear $3
@@ -27,7 +27,7 @@ UnknownScript_0x60f9e:
 	loadfont
 	writetext UnknownText_0x622f0
 	closetext
-	verbosegiveitem GS_BALL, 1
+	verbosegiveitem GS_BALL
 	setevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	setevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	writetext UnknownText_0x62359
@@ -37,18 +37,18 @@ UnknownScript_0x60f9e:
 	special RestartMapMusic
 	disappear $3
 	playsound SFX_EXIT_BUILDING
-UnknownScript_0x60fd8:
+.cancel:
 	end
 
-UnknownScript_0x60fd9:
-	writebyte $b
-	special Function170687
-	if_equal $b, UnknownScript_0x60fe3
+GoldenrodPokeCenter1F_GSBallTriggerRight:
+	writebyte BATTLE_TOWER_ACTION_0B
+	special BattleTowerAction
+	if_equal MOBILE_EVENT_OBJECT_GS_BALL, .gsball
 	end
 
-UnknownScript_0x60fe3:
+.gsball:
 	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
-	iftrue UnknownScript_0x6101d
+	iftrue .cancel
 	playsound SFX_EXIT_BUILDING
 	moveperson $3, $0, $7
 	disappear $3
@@ -59,7 +59,7 @@ UnknownScript_0x60fe3:
 	loadfont
 	writetext UnknownText_0x622f0
 	closetext
-	verbosegiveitem GS_BALL, 1
+	verbosegiveitem GS_BALL
 	setevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	setevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	writetext UnknownText_0x62359
@@ -69,7 +69,7 @@ UnknownScript_0x60fe3:
 	special RestartMapMusic
 	disappear $3
 	playsound SFX_EXIT_BUILDING
-UnknownScript_0x6101d:
+.cancel:
 	end
 
 GameboyKidScript_0x6101e:
@@ -86,13 +86,13 @@ PokefanFScript_0x61024:
 	writetext UnknownText_0x6248c
 	yesorno
 	iffalse UnknownScript_0x6104b
-	takeitem EON_MAIL, 1
+	takeitem EON_MAIL
 	iffalse UnknownScript_0x6104b
 	writetext UnknownText_0x62549
 	closetext
 	writetext UnknownText_0x624a4
 	closetext
-	verbosegiveitem REVIVE, 1
+	verbosegiveitem REVIVE
 	iffalse UnknownScript_0x61051
 	writetext UnknownText_0x624e9
 	closetext
@@ -106,7 +106,7 @@ UnknownScript_0x6104b:
 	end
 
 UnknownScript_0x61051:
-	giveitem EON_MAIL, $1
+	giveitem EON_MAIL
 	writetext UnknownText_0x6252a
 	closetext
 	loadmovesprites
@@ -810,8 +810,8 @@ GoldenrodPokeCenter1F_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 0, $7, $3, $0, UnknownScript_0x60f94, $0, $0
-	xy_trigger 0, $7, $4, $0, UnknownScript_0x60fd9, $0, $0
+	xy_trigger 0, $7, $3, $0, GoldenrodPokeCenter1F_GSBallTriggerLeft, $0, $0
+	xy_trigger 0, $7, $4, $0, GoldenrodPokeCenter1F_GSBallTriggerRight, $0, $0
 
 .Signposts:
 	db 0

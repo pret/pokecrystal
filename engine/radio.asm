@@ -1,7 +1,7 @@
 PlayRadioShow: ; b8612
 ; If we're already in the radio program proper, we don't need to be here.
-	ld a, [wd002]
-	cp 8
+	ld a, [wCurrentRadioLine]
+	cp POKE_FLUTE_RADIO
 	jr nc, .ok
 ; If Team Rocket is not occupying the radio tower, we don't need to be here.
 	ld a, [StatusFlags2]
@@ -12,11 +12,11 @@ PlayRadioShow: ; b8612
 	and a
 	jr nz, .ok
 ; Team Rocket broadcasts on all stations.
-	ld a, 7
-	ld [wd002], a
+	ld a, ROCKET_RADIO
+	ld [wCurrentRadioLine], a
 .ok
-; Jump to the currently loaded station.  The index to which we need to jump is in wd002.
-	ld a, [wd002]
+; Jump to the currently loaded station.  The index to which we need to jump is in wCurrentRadioLine.
+	ld a, [wCurrentRadioLine]
 	ld e, a
 	ld d, 0
 	ld hl, RadioJumptable
@@ -128,16 +128,16 @@ RadioJumptable: ; b863a (2e:463a)
 
 
 PrintRadioLine: ; b86ea (2e:46ea)
-	ld [wd003], a
-	ld hl, wd00c
-	ld a, [wd005]
-	cp $2
+	ld [wNextRadioLine], a
+	ld hl, wRadioText
+	ld a, [wNumRadioLinesPrinted]
+	cp 2
 	jr nc, .print
 	inc hl
-	ld [hl], $0
+	ld [hl], "<START>"
 	inc a
-	ld [wd005], a
-	cp $2
+	ld [wNumRadioLinesPrinted], a
+	cp 2
 	jr nz, .print
 	bccoord 1, 16
 	call PlaceWholeStringInBoxAtOnce
@@ -146,9 +146,9 @@ PrintRadioLine: ; b86ea (2e:46ea)
 	call PrintTextBoxText
 .skip
 	ld a, RADIO_SCROLL
-	ld [wd002], a
+	ld [wCurrentRadioLine], a
 	ld a, 100
-	ld [wd004], a
+	ld [wRadioTextDelay], a
 	ret
 ; b8718 (2e:4718)
 
@@ -170,23 +170,23 @@ ReplacePeriodsWithSpaces: ; b8718
 ; b8728
 
 RadioScroll: ; b8728 (2e:4728)
-	ld hl, wd004
+	ld hl, wRadioTextDelay
 	ld a, [hl]
 	and a
 	jr z, .proceed
 	dec [hl]
 	ret
 .proceed
-	ld a, [wd003]
-	ld [wd002], a
-	ld a, [wd005]
+	ld a, [wNextRadioLine]
+	ld [wCurrentRadioLine], a
+	ld a, [wNumRadioLinesPrinted]
 	cp 1
 	call nz, CopyBottomLineToTopLine
 	jp ClearBottomLine
 
 OaksPkmnTalk1: ; b8742 (2e:4742)
-	ld a, $5
-	ld [wd006], a
+	ld a, 5
+	ld [wOaksPkmnTalkSegmentCounter], a
 	call StartRadioStation
 	ld hl, UnknownText_0xb8820
 	ld a, OAKS_POKEMON_TALK_2
@@ -274,7 +274,7 @@ endr
 	ld [CurPartySpecies], a
 	call GetPokemonName
 	ld hl, StringBuffer1
-	ld de, wd050
+	ld de, wOaksPkmnTalkPkmnNameBuffer
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	; Now that we've chosen our wild Pokemon,
@@ -290,7 +290,7 @@ endr
 
 .overflow
 	pop bc
-	ld a, $0
+	ld a, OAKS_POKEMON_TALK
 	jp PrintRadioLine
 ; b87f2 (2e:47f2)
 
@@ -361,7 +361,7 @@ UnknownText_0xb8839: ; 0xb8839
 
 OaksPkmnTalk7: ; b883e (2e:483e)
 	ld a, [CurPartySpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, UnknownText_0xb884f
 	ld a, OAKS_POKEMON_TALK_8
@@ -517,13 +517,13 @@ endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wd006]
+	ld a, [wOaksPkmnTalkSegmentCounter]
 	dec a
-	ld [wd006], a
+	ld [wOaksPkmnTalkSegmentCounter], a
 	ld a, OAKS_POKEMON_TALK_4
 	jr nz, .ok
-	ld a, $5
-	ld [wd006], a
+	ld a, 5
+	ld [wOaksPkmnTalkSegmentCounter], a
 	ld a, OAKS_POKEMON_TALK_10
 .ok
 	jp NextRadioLine
@@ -652,9 +652,9 @@ OaksPkmnTalk10: ; b896e (2e:496e)
 	ld hl, UnknownText_0xb898e
 	call PrintText
 	ld a, OAKS_POKEMON_TALK_11
-	ld [wd002], a
+	ld [wCurrentRadioLine], a
 	ld a, 100
-	ld [wd004], a
+	ld [wRadioTextDelay], a
 	ret
 ; b898e (2e:498e)
 
@@ -669,7 +669,7 @@ UnknownText_0xb8993: ; 0xb8993
 ; 0xb8994
 
 OaksPkmnTalk11: ; b8994 (2e:4994)
-	ld hl, wd004
+	ld hl, wRadioTextDelay
 	dec [hl]
 	ret nz
 	hlcoord 9, 14
@@ -683,7 +683,7 @@ OaksPkmnTalk11: ; b8994 (2e:4994)
 ; b89a9
 
 OaksPkmnTalk12: ; b89a9 (2e:49a9)
-	ld hl, wd004
+	ld hl, wRadioTextDelay
 	dec [hl]
 	ret nz
 	hlcoord 1, 16
@@ -697,7 +697,7 @@ OaksPkmnTalk12: ; b89a9 (2e:49a9)
 ; b89c6
 
 OaksPkmnTalk13: ; b89c6 (2e:49c6)
-	ld hl, wd004
+	ld hl, wRadioTextDelay
 	dec [hl]
 	ret nz
 	hlcoord 12, 16
@@ -711,7 +711,7 @@ OaksPkmnTalk13: ; b89c6 (2e:49c6)
 ; b89d7
 
 OaksPkmnTalk14: ; b89d7 (2e:49d7)
-	ld hl, wd004
+	ld hl, wRadioTextDelay
 	dec [hl]
 	ret nz
 	ld de, $1d
@@ -719,13 +719,13 @@ OaksPkmnTalk14: ; b89d7 (2e:49d7)
 	ld hl, .terminator
 	call PrintText
 	ld a, OAKS_POKEMON_TALK_4
-	ld [wd003], a
+	ld [wNextRadioLine], a
 	xor a
-	ld [wd005], a
+	ld [wNumRadioLinesPrinted], a
 	ld a, RADIO_SCROLL
-	ld [wd002], a
+	ld [wCurrentRadioLine], a
 	ld a, 10
-	ld [wd004], a
+	ld [wRadioTextDelay], a
 	ret
 ; b89ff (2e:49ff)
 
@@ -734,9 +734,9 @@ OaksPkmnTalk14: ; b89d7 (2e:49d7)
 ; 0xb8a00
 
 PlaceRadioString: ; b8a00 (2e:4a00)
-	ld [wd002], a
+	ld [wCurrentRadioLine], a
 	ld a, 100
-	ld [wd004], a
+	ld [wRadioTextDelay], a
 	jp PlaceString
 
 CopyBottomLineToTopLine: ; b8a0b (2e:4a0b)
@@ -747,11 +747,11 @@ CopyBottomLineToTopLine: ; b8a0b (2e:4a0b)
 
 ClearBottomLine: ; b8a17 (2e:4a17)
 	hlcoord 1, 15
-	ld bc, $12
+	ld bc, SCREEN_WIDTH - 2
 	ld a, " "
 	call ByteFill
 	hlcoord 1, 16
-	ld bc, $12
+	ld bc, SCREEN_WIDTH - 2
 	ld a, " "
 	jp ByteFill
 
@@ -784,7 +784,7 @@ PokedexShow1: ; b8a46 (2e:4a46)
 	call StartRadioStation
 .loop
 	call Random
-	cp CELEBI
+	cp NUM_POKEMON
 	jr nc, .loop
 	ld c, a
 	push bc
@@ -795,7 +795,7 @@ PokedexShow1: ; b8a46 (2e:4a46)
 	inc c
 	ld a, c
 	ld [CurPartySpecies], a
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, UnknownText_0xb8b30
 	ld a, POKEDEX_SHOW_2
@@ -817,8 +817,8 @@ endr
 	push hl
 	call CopyDexEntryPart1
 	dec hl
-	ld [hl], $57
-	ld hl, wd26b
+	ld [hl], "<DONE>"
+	ld hl, wPokedexShowPointerAddr
 	call CopyRadioTextToRAM
 	pop hl
 	pop af
@@ -827,9 +827,9 @@ rept 4
 	inc hl
 endr
 	ld a, l
-	ld [wd26b], a
+	ld [wPokedexShowPointerAddr], a
 	ld a, h
-	ld [wd26c], a
+	ld [wPokedexShowPointerAddr + 1], a
 	ld a, POKEDEX_SHOW_3
 	jp PrintRadioLine
 
@@ -864,17 +864,17 @@ PokedexShow8: ; b8acc (2e:4acc)
 	jp PrintRadioLine
 
 CopyDexEntry: ; b8ad4 (2e:4ad4)
-	ld a, [wd26b]
+	ld a, [wPokedexShowPointerAddr]
 	ld l, a
-	ld a, [wd26c]
+	ld a, [wPokedexShowPointerAddr + 1]
 	ld h, a
-	ld a, [wd26d]
+	ld a, [wPokedexShowPointerBank]
 	push af
 	push hl
 	call CopyDexEntryPart1
 	dec hl
 	ld [hl], "<DONE>"
-	ld hl, wd26b
+	ld hl, wPokedexShowPointerAddr
 	call CopyRadioTextToRAM
 	pop hl
 	pop af
@@ -882,10 +882,10 @@ CopyDexEntry: ; b8ad4 (2e:4ad4)
 	ret
 
 CopyDexEntryPart1: ; b8af3 (2e:4af3)
-	ld de, wd26d
+	ld de, wPokedexShowPointerBank
 	ld bc, SCREEN_WIDTH - 1
 	call FarCopyBytes
-	ld hl, wd26b
+	ld hl, wPokedexShowPointerAddr
 	ld [hl], "<START>"
 	inc hl
 	ld [hl], "<LINE>"
@@ -914,11 +914,11 @@ CopyDexEntryPart2: ; b8b11 (2e:4b11)
 	jr nz, .loop
 .okay
 	ld a, l
-	ld [wd26b], a
+	ld [wPokedexShowPointerAddr], a
 	ld a, h
-	ld [wd26c], a
+	ld [wPokedexShowPointerAddr + 1], a
 	ld a, d
-	ld [wd26d], a
+	ld [wPokedexShowPointerBank], a
 	ret
 ; b8b30 (2e:4b30)
 
@@ -1302,9 +1302,9 @@ PeoplePlaces4: ; People
 	jp NextRadioLine
 ; b8d3e (2e:4d3e)
 
-.E4Names:          db WILL, BRUNO, KAREN, KOGA, CHAMPION ; $0b, $0d, $0e, $0f, $10
-.KantoLeaderNames: db BROCK, MISTY, LT_SURGE, ERIKA, JANINE, SABRINA, BLAINE, BLUE ; $11, $12, $13, $15, $1a, $23, $2e, $40
-.MiscNames:        db RIVAL1, POKEMON_PROF, CAL, RIVAL2, RED ; $09, $0a, $0c, $2a, $3f
+.E4Names:          db WILL, BRUNO, KAREN, KOGA, CHAMPION
+.KantoLeaderNames: db BROCK, MISTY, LT_SURGE, ERIKA, JANINE, SABRINA, BLAINE, BLUE
+.MiscNames:        db RIVAL1, POKEMON_PROF, CAL, RIVAL2, RED
                    db -1
 ; b8d51
 
@@ -1507,11 +1507,11 @@ endr
 	ld l, a
 	call CopyRadioTextToRAM
 	call Random
-	cp $a ; 6.25 percent
+	cp 4 percent
 	ld a, PLACES_AND_PEOPLE
 	jr c, .ok
 	call Random
-	cp $7b ; 48 percent
+	cp 1 + 48 percent
 	ld a, PLACES_AND_PEOPLE_4 ; People
 	jr c, .ok
 	ld a, PLACES_AND_PEOPLE_6 ; Places
@@ -1653,41 +1653,41 @@ UnknownText_0xb8ef2: ; 0xb8ef2
 PokeFluteRadio: ; b8ef7 (2e:4ef7)
 	call StartRadioStation
 	ld a, 1
-	ld [wd005], a
+	ld [wNumRadioLinesPrinted], a
 	ret
 
 UnownRadio: ; b8f00 (2e:4f00)
 	call StartRadioStation
 	ld a, 1
-	ld [wd005], a
+	ld [wNumRadioLinesPrinted], a
 	ret
 
 EvolutionRadio: ; b8f09 (2e:4f09)
 	call StartRadioStation
 	ld a, 1
-	ld [wd005], a
+	ld [wNumRadioLinesPrinted], a
 	ret
 
 BuenasPassword1: ; b8f12 (2e:4f12)
 ; Determine if we need to be here
-	call BuenasPasswordCheckMidnight
+	call BuenasPasswordCheckTime
 	jp nc, .PlayPassword
-	ld a, [wd005]
+	ld a, [wNumRadioLinesPrinted]
 	and a
 	jp z, BuenasPassword20
 	jp BuenasPassword8
 
 .PlayPassword: ; b8f22 (2e:4f22)
 	call StartRadioStation
-	ld a, [hBGMapMode] ; $ff00+$d4
+	ld a, [hBGMapMode]
 	push af
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ld de, String_b9171
 	hlcoord 2, 9
 	call PlaceString
 	pop af
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ld hl, UnknownText_0xb9182
 	ld a, BUENAS_PASSWORD_2
 	jp NextRadioLine
@@ -1698,14 +1698,14 @@ BuenasPassword2: ; b8f3f (2e:4f3f)
 	jp NextRadioLine
 
 BuenasPassword3: ; b8f47 (2e:4f47)
-	call BuenasPasswordCheckMidnight
+	call BuenasPasswordCheckTime
 	ld hl, UnknownText_0xb918c
 	jp c, BuenasPasswordAfterMidnight
 	ld a, BUENAS_PASSWORD_4
 	jp NextRadioLine
 
 BuenasPassword4: ; b8f55 (2e:4f55)
-	call BuenasPasswordCheckMidnight
+	call BuenasPasswordCheckTime
 	jp c, BuenasPassword8
 	ld a, [wBuenasPassword]
 ; If we already generated the password today, we don't need to generate a new one.
@@ -1716,7 +1716,7 @@ BuenasPassword4: ; b8f55 (2e:4f55)
 .greater_than_11
 	call Random
 	and $f
-	cp $b
+	cp NUM_PASSWORD_CATEGORIES
 	jr nc, .greater_than_11
 ; Store it in the high nybble of e.
 	swap a
@@ -1725,7 +1725,7 @@ BuenasPassword4: ; b8f55 (2e:4f55)
 .greater_than_three
 	call Random
 	and $3
-	cp $3
+	cp NUM_PASSWORDS_PER_CATEGORY
 	jr nc, .greater_than_three
 ; The high nybble of wBuenasPassword will now contain the password group index, and the low nybble contains the actual password.
 	add e
@@ -1808,7 +1808,7 @@ endr
 	ld l, c
 	add hl, de
 	ld a, [hl]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	ret
 
 .RawString: ; b8fde (2e:4fde)
@@ -1874,7 +1874,7 @@ BuenasPassword6: ; b90a4 (2e:50a4)
 	jp NextRadioLine
 
 BuenasPassword7: ; b90ac (2e:50ac)
-	call BuenasPasswordCheckMidnight
+	call BuenasPasswordCheckTime
 	ld hl, UnknownText_0xb91a0
 	jr c, BuenasPasswordAfterMidnight
 	ld a, BUENAS_PASSWORD
@@ -1951,37 +1951,37 @@ BuenasPassword19: ; b9122 (2e:5122)
 	jp NextRadioLine
 
 BuenasPassword20: ; b912a (2e:512a)
-	ld a, [hBGMapMode] ; $ff00+$d4
+	ld a, [hBGMapMode]
 	push af
 	callba NoRadioMusic
 	callba NoRadioName
 	pop af
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	ld hl, WeeklyFlags
 	res 7, [hl]
-	ld a, $4
-	ld [wd002], a
+	ld a, BUENAS_PASSWORD
+	ld [wCurrentRadioLine], a
 	xor a
-	ld [wd005], a
+	ld [wNumRadioLinesPrinted], a
 	ld hl, UnknownText_0xb91d7
 	ld a, BUENAS_PASSWORD_21
 	jp NextRadioLine
 
 BuenasPassword21: ; b9152 (2e:5152)
-	ld a, $4
-	ld [wd002], a
+	ld a, BUENAS_PASSWORD
+	ld [wCurrentRadioLine], a
 	xor a
-	ld [wd005], a
-	call BuenasPasswordCheckMidnight
+	ld [wNumRadioLinesPrinted], a
+	call BuenasPasswordCheckTime
 	jp nc, BuenasPassword1
 	ld hl, UnknownText_0xb91d7
 	ld a, BUENAS_PASSWORD_21
 	jp NextRadioLine
 
-BuenasPasswordCheckMidnight: ; b9169 (2e:5169)
+BuenasPasswordCheckTime: ; b9169 (2e:5169)
 	call UpdateTime
-	ld a, [hHours] ; $ff00+$94
-	cp $12
+	ld a, [hHours]
+	cp 18 ; 6 PM
 	ret
 ; b9171 (2e:5171)
 
@@ -2100,19 +2100,19 @@ UnknownText_0xb91d7: ; 0xb91d7
 CopyRadioTextToRAM: ; b91dc (2e:51dc)
 	ld a, [hl]
 	cp TX_FAR
-	jp z, FarJumpText
-	ld de, wd00c
+	jp z, FarCopyRadioText
+	ld de, wRadioText
 	ld bc, SCREEN_WIDTH * 2
 	jp CopyBytes
 
 StartRadioStation: ; b91eb (2e:51eb)
-	ld a, [wd005]
+	ld a, [wNumRadioLinesPrinted]
 	and a
 	ret nz
 	call RadioTerminator
 	call PrintText
 	ld hl, RadioChannelSongs
-	ld a, [wd002]
+	ld a, [wCurrentRadioLine]
 	ld c, a
 	ld b, 0
 rept 2

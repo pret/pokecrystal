@@ -71,7 +71,7 @@ SageLiScript:
 	loadfont
 	writetext UnknownText_0x184cc2
 	keeptextopen
-	verbosegiveitem HM_FLASH, 1
+	verbosegiveitem HM_FLASH
 	setevent EVENT_GOT_HM05_FLASH
 	setevent EVENT_BEAT_SAGE_LI
 	writetext UnknownText_0x184d13
@@ -349,6 +349,6 @@ SproutTower3F_MapEventHeader:
 	person_event SPRITE_SAGE, 8, 8, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerSageTroy, -1
 	person_event SPRITE_SAGE, 2, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SageLiScript, -1
 	person_event SPRITE_SAGE, 11, 11, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerSageNeal, -1
-	person_event SPRITE_POKE_BALL, 14, 6, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x184a19, EVENT_SPROUT_TOWER_3F_POTION
-	person_event SPRITE_POKE_BALL, 1, 14, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x184a1b, EVENT_SPROUT_TOWER_3F_ESCAPE_ROPE
+	person_event SPRITE_POKE_BALL, 14, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x184a19, EVENT_SPROUT_TOWER_3F_POTION
+	person_event SPRITE_POKE_BALL, 1, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x184a1b, EVENT_SPROUT_TOWER_3F_ESCAPE_ROPE
 	person_event SPRITE_SILVER, 4, 10, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RIVAL_SPROUT_TOWER

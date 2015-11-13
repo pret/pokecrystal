@@ -46,7 +46,7 @@ UnknownScript_0x1a5b36:
 
 UnknownScript_0x1a5b4a:
 	scall UnknownScript_0x1a5b7a
-	verbosegiveitem NUGGET, 1
+	verbosegiveitem NUGGET
 	iffalse UnknownScript_0x1a5b59
 	clearflag ENGINE_DEREK_HAS_NUGGET
 	jump UnknownScript_0x1a5b6e
@@ -356,10 +356,10 @@ Route39_MapEventHeader:
 	person_event SPRITE_SAILOR, 29, 13, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 5, TrainerSailorEugene, -1
 	person_event SPRITE_POKEFAN_M, 22, 10, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerPokefanmDerek1, -1
 	person_event SPRITE_POKEFAN_F, 19, 11, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerPokefanfRuth, -1
-	person_event SPRITE_TAUROS, 12, 3, SPRITEMOVEDATA_16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_TAUROS, 11, 6, SPRITEMOVEDATA_16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_TAUROS, 15, 4, SPRITEMOVEDATA_16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_TAUROS, 13, 8, SPRITEMOVEDATA_16, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 7, 13, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerPsychicNorman, -1
-	person_event SPRITE_FRUIT_TREE, 3, 9, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a5bf4, -1
+	person_event SPRITE_TAUROS, 12, 3, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
+	person_event SPRITE_TAUROS, 11, 6, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
+	person_event SPRITE_TAUROS, 15, 4, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
+	person_event SPRITE_TAUROS, 13, 8, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, 0, 0, TaurosScript_0x1a5af5, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 7, 13, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerPsychicNorman, -1
+	person_event SPRITE_FRUIT_TREE, 3, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a5bf4, -1
 	person_event SPRITE_POKEFAN_F, 22, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, PokefanFScript_0x1a5bbe, -1

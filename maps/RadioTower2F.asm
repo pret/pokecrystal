@@ -151,7 +151,7 @@ UnknownScript_0x5d800:
 	writetext UnknownText_0x5dcf4
 	keeptextopen
 	setevent EVENT_MET_BUENA
-	verbosegiveitem BLUE_CARD, 1
+	verbosegiveitem BLUE_CARD
 UnknownScript_0x5d80a:
 	writetext UnknownText_0x5de10
 	closetext
@@ -728,6 +728,6 @@ RadioTower2F_MapEventHeader:
 	person_event SPRITE_ROCKET_GIRL, 5, 10, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 3, TrainerGruntF2, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	person_event SPRITE_BLACK_BELT, 1, 0, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x5d71f, EVENT_RADIO_TOWER_BLACKBELT_BLOCKS_STAIRS
 	person_event SPRITE_BLACK_BELT, 1, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x5d722, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	person_event SPRITE_JIGGLYPUFF, 1, 12, SPRITEMOVEDATA_16, 0, 0, -1, -1, 0, 0, 0, JigglypuffScript_0x5d715, -1
+	person_event SPRITE_JIGGLYPUFF, 1, 12, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, 0, 0, JigglypuffScript_0x5d715, -1
 	person_event SPRITE_BUENA, 5, 14, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, Buena, -1
 	person_event SPRITE_RECEPTIONIST, 7, 12, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ReceptionistScript_0x5d8ff, EVENT_GOLDENROD_CITY_CIVILIANS

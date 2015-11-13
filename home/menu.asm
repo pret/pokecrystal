@@ -7,11 +7,11 @@ LoadMenuDataHeader::
 	ret
 
 CopyMenuDataHeader::
-	ld de, wcf81
-	ld bc, 16
+	ld de, wMenuDataHeader
+	ld bc, wMenuDataHeaderEnd - wMenuDataHeader
 	call CopyBytes
 	ld a, [hROMBank]
-	ld [wcf8a], a
+	ld [wMenuDataBank], a
 	ret
 ; 0x1d4b
 
@@ -52,7 +52,7 @@ MenuTextBoxBackup:: ; 1d67
 	ret
 ; 1d6e
 
-LoadMenuDataHeader_0x1d75:: ; 1d6e
+LoadStandardMenuDataHeader:: ; 1d6e
 	ld hl, MenuDataHeader_0x1d75
 	call LoadMenuDataHeader
 	ret
@@ -74,12 +74,12 @@ Call_ExitMenu:: ; 1d7d
 InterpretMenu2::
 	xor a
 	ld [hBGMapMode], a
-	call Function1cbb
+	call MenuBox
 	call UpdateSprites
 	call Function1c89
 	call Function321c
-	call Function1c66
-	ld a, [wcf91]
+	call CopyMenuData2
+	ld a, [wMenuData2Flags]
 	bit 7, a
 	jr z, .cancel
 	call Function1c10
@@ -99,15 +99,15 @@ GetMenu2:: ; 1dab
 	call LoadMenuDataHeader
 	call InterpretMenu2
 	call WriteBackup
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ret
 ; 1db8
 
-Function1db8::
+CopyNameFromMenu::
 	push hl
 	push bc
 	push af
-	ld hl, wcf86
+	ld hl, wMenuData2Pointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -126,7 +126,7 @@ endr
 
 
 YesNoBox:: ; 1dcf
-	lb bc, 14, 7
+	lb bc, SCREEN_WIDTH - 6, 7
 
 PlaceYesNoBox:: ; 1dd2
 	jr _YesNoBox
@@ -152,11 +152,11 @@ _YesNoBox:: ; 1dd9
 .okay
 	ld a, b
 	ld [wMenuBorderLeftCoord], a
-	add $5
+	add 5
 	ld [wMenuBorderRightCoord], a
 	ld a, c
 	ld [wMenuBorderTopCoord], a
-	add $4
+	add 4
 	ld [wMenuBorderBottomCoord], a
 	call BackUpTiles
 
@@ -168,7 +168,7 @@ InterpretTwoOptionMenu:: ; 1dfe
 	call WriteBackup
 	pop af
 	jr c, .no
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp 2 ; no
 	jr z, .no
 	and a
@@ -176,7 +176,7 @@ InterpretTwoOptionMenu:: ; 1dfe
 
 .no
 	ld a, 2
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	scf
 	ret
 ; 1e1d
@@ -246,10 +246,10 @@ SetUpMenu:: ; 1e70
 	ret
 
 MenuFunc_1e7f::
-	call Function1c66
+	call CopyMenuData2
 	call Function1ebd
 	call Function1ea6
-	call Function1cbb
+	call MenuBox
 	ret
 
 MenuWriteText::
@@ -274,7 +274,7 @@ Function1ea6:: ; 1ea6
 	ld a, [wMenuBorderRightCoord]
 	sub c
 	ld c, a
-	ld a, [wcf92]
+	ld a, [wMenuData2Items]
 	add a
 	inc a
 	ld b, a
@@ -305,12 +305,12 @@ Function1ebd:: ; 1ebd
 	ld d, h
 	ld e, l
 	ld a, [hl]
-	ld [wcf92], a
+	ld [wMenuData2Items], a
 	ret
 ; 1eda
 
 Function1eda:: ; 1eda
-	call GetMemTileCoord
+	call MenuBoxCoord2Tile
 	ld bc, $002a
 	add hl, bc
 .asm_1ee1
@@ -342,13 +342,13 @@ Function1efb:: ; 1efb
 Function1eff:: ; 1eff
 	call Function1c10
 	ld hl, wcfa8
-	ld a, [wcf91]
+	ld a, [wMenuData2Flags]
 	bit 3, a
 	jr z, .asm_1f0e
 	set 3, [hl]
 
 .asm_1f0e
-	ld a, [wcf91]
+	ld a, [wMenuData2Flags]
 	bit 2, a
 	jr z, .asm_1f19
 	set 5, [hl]
@@ -403,13 +403,13 @@ Function1f2a:: ; 1f2a
 
 .asm_1f57
 	call Function1ebd
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld l, a
 	ld h, $0
 	add hl, de
 	ld a, [hl]
 	ld [MenuSelection], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wMenuCursorBuffer], a
 	and a
 	ret
@@ -489,9 +489,9 @@ endr
 ResetTextRelatedRAM:: ; 1fbf
 	ld hl, wcf71
 	call .bytefill
-	ld hl, wcf81
+	ld hl, wMenuDataHeader
 	call .bytefill
-	ld hl, wcf91
+	ld hl, wMenuData2Flags
 	call .bytefill
 	ld hl, wcfa1
 	call .bytefill
@@ -527,7 +527,7 @@ Function1ff8:: ; 1ff8
 	push af
 	and $3
 	jr z, .nosound
-	ld hl, wcf81
+	ld hl, wMenuFlags
 	bit 3, [hl]
 	jr nz, .nosound
 	call PlayClickSFX

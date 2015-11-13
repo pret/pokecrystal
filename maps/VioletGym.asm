@@ -34,7 +34,7 @@ FalknerScript_0x683c2:
 	specialphonecall SPECIALCALL_ASSISTANT
 	writetext UnknownText_0x685c8
 	keeptextopen
-	verbosegiveitem TM_MUD_SLAP, 1
+	verbosegiveitem TM_MUD_SLAP
 	iffalse .NoRoomForMudSlap
 	setevent EVENT_GOT_TM31_MUD_SLAP
 	writetext UnknownText_0x68648

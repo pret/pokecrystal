@@ -236,7 +236,7 @@ ENDC
 	dw Script_halloffame
 	dw Script_credits
 	dw Script_warpfacing
-	dw Script_storetext
+	dw Script_battletowertext
 	dw Script_displaylocation
 	dw Script_trainerclassname
 	dw Script_name
@@ -440,14 +440,14 @@ Script_closetext: ; 0x96ed9
 Script_keeptextopen: ; 0x96edc
 ; script command 0x55
 
-	ld a, [$ffd8]
+	ld a, [hOAMUpdate]
 	push af
 	ld a, $1
-	ld [$ffd8], a
+	ld [hOAMUpdate], a
 	call WaitBGMap
 	call KeepTextOpen
 	pop af
-	ld [$ffd8], a
+	ld [hOAMUpdate], a
 	ret
 ; 0x96eed
 
@@ -515,7 +515,7 @@ Script_interpretmenu2: ; 0x96f30
 	ld a, [ScriptBank]
 	ld hl, InterpretMenu2
 	rst FarCall
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	jr nc, .ok
 	xor a
 .ok
@@ -537,7 +537,7 @@ Script_interpretmenu: ; 0x96f41
 	ret
 ; 0x96f52
 
-Script_storetext: ; 0x96f52
+Script_battletowertext: ; 0x96f52
 ; script command 0xa4
 ; parameters:
 ;     pointer (PointerLabelBeforeBank)
@@ -546,7 +546,7 @@ Script_storetext: ; 0x96f52
 	call SetUpTextBox
 	call GetScriptByte
 	ld c, a
-	callba StoreText
+	callba BattleTowerText
 	ret
 ; 0x96f60
 
@@ -1079,9 +1079,11 @@ ApplyMovement: ; 971fa
 	ld a, c
 	callba SetFlagsForMovement_1
 	pop bc
+
 	push bc
 	call SetFlagsForMovement_2
 	pop bc
+
 	call GetScriptByte
 	ld l, a
 	call GetScriptByte
@@ -1090,6 +1092,7 @@ ApplyMovement: ; 971fa
 	ld b, a
 	call GetMovementData
 	ret c
+
 	ld a, SCRIPT_WAIT_MOVEMENT
 	ld [ScriptMode], a
 	call StopScript
@@ -1102,6 +1105,7 @@ SetFlagsForMovement_2: ; 0x97221
 ; 0x97228
 
 Script_applymovement2: ; 0x97228
+; apply movement to last talked
 ; script command 0x6a
 ; parameters:
 ;     data (MovementPointerLabelParam)
@@ -1197,9 +1201,9 @@ ApplyPersonFacing: ; 0x9728b
 	add hl, bc
 	ld a, [hl]
 	push bc
-	call Function1836
+	call DoesSpriteHaveFacings
 	pop bc
-	jr c, .not_visible ; 0x9729c $1b
+	jr c, .not_visible ; STILL_SPRITE
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 2, [hl]
@@ -1222,7 +1226,7 @@ ApplyPersonFacing: ; 0x9728b
 ; 0x972bc
 
 .DisableTextTiles: ; 0x972bc
-	call Function217a
+	call LoadMapPart
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 .loop
@@ -1360,7 +1364,7 @@ Script_writepersonxy: ; 0x9735b
 	ld a, [hLastTalked]
 .ok
 	ld b, a
-	callba Function80a1
+	callba WritePersonXY
 	ret
 ; 0x9736f
 
@@ -1376,7 +1380,7 @@ Script_follownotexact: ; 0x9736f
 	call GetScriptByte
 	call GetScriptPerson
 	ld c, a
-	callba Function839e
+	callba FollowNotExact
 	ret
 ; 0x97384
 
@@ -1426,12 +1430,12 @@ ShowEmoteScript: ; 973b6
 
 .Show
 	show_emote
-	show_person
+	step_sleep_1
 	step_end
 
 .Hide
 	hide_emote
-	show_person
+	step_sleep_1
 	step_end
 ; 973c7
 
@@ -1460,8 +1464,8 @@ Script_earthquake: ; 0x973c7
 ; 973eb
 
 EarthquakeMovement: ; 973eb
-	step_shake 16
-	step_sleep 16
+	step_shake 16 ; the 16 gets overwritten with the script byte
+	step_sleep 16 ; the 16 gets overwritten with the lower 6 bits of the script byte
 	step_end
 EarthquakeMovementEnd
 ; 973f0
@@ -1546,7 +1550,7 @@ Script_catchtutorial: ; 0x97447
 	call GetScriptByte
 	ld [BattleType], a
 	call BufferScreen
-	callba Function4e554
+	callba CatchTutorial
 	jp Script_reloadmap
 ; 0x97459
 
@@ -1560,8 +1564,8 @@ Script_returnafterbattle: ; 0x97459
 	and $3f
 	cp $1
 	jr nz, .notblackedout ; 0x97466 $8
-	ld b, BANK(UnknownScript_0x124c1)
-	ld hl, UnknownScript_0x124c1
+	ld b, BANK(Script_BattleWhiteout)
+	ld hl, Script_BattleWhiteout
 	jp ScriptJump
 
 .notblackedout
@@ -1664,7 +1668,7 @@ endr
 	ret
 ; 0x974f3
 
-Function974f3:: ; 0x974f3
+CallCallback:: ; 0x974f3
 	ld a, [ScriptBank]
 	or $80
 	ld [ScriptBank], a
@@ -2339,7 +2343,7 @@ Script_giveitem: ; 0x977ca
 ;     quantity (SingleByteParam)
 
 	call GetScriptByte
-	cp -1
+	cp ITEM_FROM_MEM
 	jr nz, .ok ; 0x977cf $3
 	ld a, [ScriptVar]
 .ok
@@ -2370,8 +2374,8 @@ Script_takeitem: ; 0x977f0
 	ld [CurItem], a
 	call GetScriptByte
 	ld [wItemQuantityChangeBuffer], a
-	ld a, $ff
-	ld [wd107], a
+	ld a, -1
+	ld [ItemCountBuffer], a
 	ld hl, NumItems
 	call TossItem
 	ret nc
@@ -2847,6 +2851,7 @@ Script_warp: ; 0x97a1d
 	call LoadMapStatus
 	call StopScript
 	ret
+
 .not_ok
 	call GetScriptByte
 	call GetScriptByte
@@ -2869,7 +2874,7 @@ Script_warpmod: ; 0x97a65
 ;     map_id (MapIdParam)
 
 	call GetScriptByte
-	ld [wdcac], a
+	ld [BackupWarpNumber], a
 	call GetScriptByte
 	ld [BackupMapGroup], a
 	call GetScriptByte
@@ -2884,9 +2889,9 @@ Script_blackoutmod: ; 0x97a78
 ;     map_id (MapIdParam)
 
 	call GetScriptByte
-	ld [wdcb2], a
+	ld [wLastSpawnMapGroup], a
 	call GetScriptByte
-	ld [wdcb3], a
+	ld [wLastSpawnMapNumber], a
 	ret
 ; 0x97a85
 
@@ -2970,7 +2975,7 @@ Script_reloadmappart:: ; 0x97ae3
 
 	xor a
 	ld [hBGMapMode], a
-	call Function2173
+	call OverworldTextModeSwitch
 	call Function2914
 	callba Function104061
 	call UpdateSprites
@@ -2980,7 +2985,7 @@ Script_reloadmappart:: ; 0x97ae3
 Script_warpcheck: ; 0x97af6
 ; script command 0x8e
 
-	call Function224a
+	call WarpCheck
 	ret nc
 	callba SetAll_ScriptFlags3
 	ret
@@ -3117,6 +3122,7 @@ Script_end: ; 0x97b74
 	call ExitScriptSubroutine
 	jr c, .resume
 	ret
+
 .resume
 	xor a
 	ld [ScriptRunning], a

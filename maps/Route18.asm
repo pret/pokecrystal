@@ -91,5 +91,5 @@ Route18_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_YOUNGSTER, 12, 9, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperBoris, -1
+	person_event SPRITE_YOUNGSTER, 12, 9, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperBoris, -1
 	person_event SPRITE_YOUNGSTER, 6, 13, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 3, TrainerBird_keeperBob, -1

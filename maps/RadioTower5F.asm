@@ -40,7 +40,7 @@ UnknownScript_0x60011:
 	loadfont
 	writetext UnknownText_0x60246
 	keeptextopen
-	verbosegiveitem BASEMENT_KEY, 1
+	verbosegiveitem BASEMENT_KEY
 	loadmovesprites
 	dotrigger $1
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_3
@@ -117,7 +117,7 @@ UnknownScript_0x6006e:
 	loadfont
 	writetext UnknownText_0x605b2
 	keeptextopen
-	verbosegiveitem CLEAR_BELL, 1
+	verbosegiveitem CLEAR_BELL
 	writetext UnknownText_0x6062c
 	closetext
 	loadmovesprites
@@ -439,8 +439,8 @@ RadioTower5F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_GENTLEMAN, 6, 3, SPRITEMOVEDATA_03, 0, 0, -1, -1, 0, 0, 0, Director, -1
+	person_event SPRITE_GENTLEMAN, 6, 3, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, 0, 0, Director, -1
 	person_event SPRITE_ROCKET, 5, 13, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	person_event SPRITE_ROCKET_GIRL, 2, 17, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 1, TrainerExecutivef1, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	person_event SPRITE_ROCKER, 5, 13, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, Ben, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	person_event SPRITE_POKE_BALL, 5, 8, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x600fe, EVENT_RADIO_TOWER_5F_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 5, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x600fe, EVENT_RADIO_TOWER_5F_ULTRA_BALL

@@ -20,7 +20,7 @@ CianwoodPharmacist:
 	iffalse .Mart
 	writetext PharmacistGiveSecretpotionText
 	keeptextopen
-	giveitem SECRETPOTION, 1
+	giveitem SECRETPOTION
 	writetext ReceivedSecretpotionText
 	playsound SFX_KEY_ITEM
 	waitbutton

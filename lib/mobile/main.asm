@@ -3487,7 +3487,7 @@ Function111664: ; 111664 (44:5664)
 
 Function111686: ; 111686 (44:5686)
 	xor a
-	ld [rTAC], a ; $ff00+$7
+	ld [rTAC], a
 	ld c, $ff
 	ld a, [$ff00+c]
 	and $f3
@@ -3552,7 +3552,7 @@ Function1116c5:: ; 1116c5 (44:56c5)
 	jp nz, Function1118bc
 	ld hl, $c808
 	add hl, de
-	ld a, [rSB] ; $ff00+$1
+	ld a, [rSB]
 	ld [hl], a
 	ld a, $8
 	cp l
@@ -3724,7 +3724,7 @@ Function1117e7: ; 1117e7 (44:57e7)
 .asm_111803
 	ld b, $66
 .asm_111805
-	ld a, [rSB] ; $ff00+$1
+	ld a, [rSB]
 	cp b
 	jr z, .asm_111840
 	cp $d2
@@ -3791,7 +3791,7 @@ Function11186e: ; 11186e (44:586e)
 	jr nz, Function1118bc
 	xor a
 	ld [hli], a
-	ld a, [rSB] ; $ff00+$1
+	ld a, [rSB]
 	ld [$c80c], a
 	inc [hl]
 	or a
@@ -3810,7 +3810,7 @@ Function111884: ; 111884 (44:5884)
 	jr Function1118bc
 
 Function111892: ; 111892 (44:5892)
-	ld a, [rSB] ; $ff00+$1
+	ld a, [rSB]
 	ld c, a
 	call Function111664
 	ld hl, $c80a
@@ -3842,7 +3842,7 @@ Function1118bc: ; 1118bc (44:58bc)
 	ret
 
 Function1118c2: ; 1118c2 (44:58c2)
-	ld a, [rSB] ; $ff00+$1
+	ld a, [rSB]
 	ld c, a
 	ld b, $0
 	ld hl, $c812
@@ -4042,7 +4042,7 @@ asm_111a40: ; 111a40 (44:5a40)
 	ld a, $4b
 
 Function111a42: ; 111a42 (44:5a42)
-	ld [rSB], a ; $ff00+$1
+	ld [rSB], a
 	jp Function111b2e
 asm_111a47: ; 111a47 (44:5a47)
 	ld hl, $c815
@@ -4170,7 +4170,7 @@ Function111b21: ; 111b21 (44:5b21)
 	ld e, a
 	ld d, [hl]
 	ld a, [de]
-	ld [rSB], a ; $ff00+$1
+	ld [rSB], a
 	inc de
 	ld a, d
 	ld [hld], a
@@ -4180,9 +4180,9 @@ Function111b2e: ; 111b2e (44:5b2e)
 	ld hl, $c822
 	set 1, [hl]
 	ld a, $3
-	ld [rSC], a ; $ff00+$2
+	ld [rSC], a
 	ld a, $83
-	ld [rSC], a ; $ff00+$2
+	ld [rSC], a
 
 Function111b3b: ; 111b3b (44:5b3b)
 	ret
@@ -4765,7 +4765,7 @@ Function111f07: ; 111f07 (44:5f07)
 	scf
 	ret
 .asm_111f17
-	ld a, [rSC] ; $ff00+$2
+	ld a, [rSC]
 	and $80
 	jr nz, .asm_111f17
 	di

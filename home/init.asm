@@ -1,8 +1,8 @@
 Reset:: ; 150
 	di
-	call SoundRestart
+	call MapSetup_Sound_Off
 	xor a
-	ld [$ffde], a
+	ld [hMapAnims], a
 	call ClearPalettes
 	xor a
 	ld [rIF], a
@@ -109,7 +109,7 @@ Init:: ; 17d
 	call LoadPushOAM
 
 	xor a
-	ld [$ffde], a
+	ld [hMapAnims], a
 	ld [hSCX], a
 	ld [hSCY], a
 	ld [rJOYP], a
@@ -137,7 +137,7 @@ Init:: ; 17d
 	ld [rLCDC], a
 
 	ld a, -1
-	ld [$ffcb], a
+	ld [hLinkPlayerNumber], a
 
 	callba Function9890
 
@@ -168,7 +168,7 @@ Init:: ; 17d
 
 	predef Function9853
 
-	call SoundRestart
+	call MapSetup_Sound_Off
 	xor a
 	ld [wMapMusic], a
 	jp GameInit

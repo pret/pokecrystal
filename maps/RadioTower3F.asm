@@ -61,7 +61,7 @@ UnknownScript_0x5e584:
 UnknownScript_0x5e58a:
 	writetext UnknownText_0x5e7e2
 	keeptextopen
-	verbosegiveitem TM_SUNNY_DAY, 1
+	verbosegiveitem TM_SUNNY_DAY
 	iffalse UnknownScript_0x5e5a1
 	writetext UnknownText_0x5e821
 	closetext
@@ -344,8 +344,8 @@ RadioTower3F_MapEventHeader:
 .PersonEvents:
 	db 7
 	person_event SPRITE_SUPER_NERD, 4, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SuperNerdScript_0x5e553, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	person_event SPRITE_GYM_GUY, 4, 3, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GymGuyScript_0x5e556, -1
-	person_event SPRITE_COOLTRAINER_F, 3, 11, SPRITEMOVEDATA_02, 1, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x5e56a, -1
+	person_event SPRITE_GYM_GUY, 4, 3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GymGuyScript_0x5e556, -1
+	person_event SPRITE_COOLTRAINER_F, 3, 11, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x5e56a, -1
 	person_event SPRITE_ROCKET, 1, 5, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 2, 2, TrainerGruntM7, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	person_event SPRITE_ROCKET, 2, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM8, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	person_event SPRITE_ROCKET, 6, 16, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, 2, 3, TrainerGruntM9, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

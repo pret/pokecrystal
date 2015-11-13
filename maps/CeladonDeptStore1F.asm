@@ -90,5 +90,5 @@ CeladonDeptStore1F_MapEventHeader:
 .PersonEvents:
 	db 3
 	person_event SPRITE_RECEPTIONIST, 1, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ReceptionistScript_0x709e0, -1
-	person_event SPRITE_GENTLEMAN, 4, 11, SPRITEMOVEDATA_02, 1, 1, -1, -1, 0, 0, 0, GentlemanScript_0x709e3, -1
+	person_event SPRITE_GENTLEMAN, 4, 11, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, 0, 0, GentlemanScript_0x709e3, -1
 	person_event SPRITE_TEACHER, 3, 5, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, TeacherScript_0x709e6, -1

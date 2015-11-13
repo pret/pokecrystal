@@ -252,7 +252,7 @@ Function8b45c: ; 8b45c (22:745c)
 	call Function8b4fd
 	call Function89c44
 	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	pop bc
 	call Function8b3dd
 	jr nc, .asm_8b46e
@@ -574,7 +574,7 @@ Function8b664: ; 8b664 (22:7664)
 	ret
 
 Function8b677: ; 8b677
-	call WhiteBGMap
+	call ClearBGPalettes
 	call DisableLCD
 	call Function8b690
 	call Function8b6bb
@@ -610,7 +610,7 @@ Function8b6bb: ; 8b6bb
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_8b6d5
-	ld de, Unkn1Pals
+	ld de, wMapPals
 	ld bc, $0018
 	call CopyBytes
 	pop af
@@ -809,9 +809,9 @@ Function8b7bd: ; 8b7bd
 	ld a, [wd032]
 	and a
 	jr z, .asm_8b7e0
-	ld a, [wcf81]
+	ld a, [wMenuFlags]
 	set 3, a
-	ld [wcf81], a
+	ld [wMenuFlags], a
 
 .asm_8b7e0
 	ld a, [wd0e3]
@@ -828,7 +828,7 @@ Function8b7bd: ; 8b7bd
 	call Function8b75d
 	call UpdateSprites
 	call Function89209
-	call Function350c
+	call HandleScrollingMenu
 	call Function8920f
 	ld a, [wcf73]
 	cp $2
@@ -854,7 +854,7 @@ Function8b7bd: ; 8b7bd
 
 .asm_8b824
 	ld c, a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wd030], a
 	ld a, [wd0e4]
 	ld [wd031], a
@@ -863,7 +863,7 @@ Function8b7bd: ; 8b7bd
 
 Function8b832: ; 8b832
 	ld a, [wd0e4]
-	ld hl, wcf92
+	ld hl, wMenuData2Items
 	sub [hl]
 	jr nc, Function8b84b
 	xor a
@@ -872,7 +872,7 @@ Function8b832: ; 8b832
 
 Function8b83e: ; 8b83e
 	ld a, [wd0e4]
-	ld hl, wcf92
+	ld hl, wMenuData2Items
 	add [hl]
 	cp $24
 	jr c, Function8b84b
@@ -880,14 +880,14 @@ Function8b83e: ; 8b83e
 
 Function8b84b: ; 8b84b
 	ld [wd0e4], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wMenuCursorBuffer], a
 	ret
 ; 8b855
 
 Function8b855: ; 8b855
 	ld a, $28
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	ld [hli], a
 	ld c, $28
 	xor a
@@ -916,9 +916,9 @@ MenuData2_0x8b870: ; 0x8b870
 	db 5 ; items
 	db 3, 1
 	dbw 0, wd002
-	dbw BANK(Function8b880), Function8b880
-	dbw BANK(Function8b88c), Function8b88c
-	dbw BANK(Function8b8c8), Function8b8c8
+	dba Function8b880
+	dba Function8b88c
+	dba Function8b8c8
 ; 8b880
 
 Function8b880: ; 8b880
@@ -1061,7 +1061,7 @@ Function8b960: ; 8b960 (22:7960)
 	ret
 
 Function8b99f: ; 8b99f (22:799f)
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 	dec a
 	ld c, a
 	ld b, $0
@@ -1135,7 +1135,7 @@ Function8b9e9: ; 8b9e9 (22:79e9)
 	scf
 .asm_8ba0c
 	push af
-	ld hl, DefaultFlypoint
+	ld hl, wd002
 .asm_8ba10
 	ld a, [de]
 	inc de

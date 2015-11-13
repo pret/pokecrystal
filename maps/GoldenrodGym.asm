@@ -60,7 +60,7 @@ WhitneyScript_0x5400c:
 UnknownScript_0x54064:
 	writetext UnknownText_0x5428b
 	keeptextopen
-	verbosegiveitem TM_ATTRACT, 1
+	verbosegiveitem TM_ATTRACT
 	iffalse UnknownScript_0x5407b
 	setevent EVENT_GOT_TM45_ATTRACT
 	writetext UnknownText_0x54302

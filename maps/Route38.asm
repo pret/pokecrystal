@@ -6,9 +6,9 @@ Route38_MapScriptHeader:
 	db 0
 
 TrainerBird_keeperToby:
-	trainer EVENT_BEAT_BIRD_KEEPER_TOBY, BIRD_KEEPER, TOBY, Bird_keeperTobySeenText, Bird_keeperTobyBeatenText, 0, Bird_keeperTobyScript
+	trainer EVENT_BEAT_BIRD_KEEPER_TOBY, BIRD_KEEPER, TOBY, Bird_keeperTobySeenText, Bird_keeperTobyBeatenText, 0, .script
 
-Bird_keeperTobyScript:
+.script:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a1f86
@@ -17,9 +17,9 @@ Bird_keeperTobyScript:
 	end
 
 TrainerSailorHarry:
-	trainer EVENT_BEAT_SAILOR_HARRY, SAILOR, HARRY, SailorHarrySeenText, SailorHarryBeatenText, 0, SailorHarryScript
+	trainer EVENT_BEAT_SAILOR_HARRY, SAILOR, HARRY, SailorHarrySeenText, SailorHarryBeatenText, 0, .script
 
-SailorHarryScript:
+.script:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a220c
@@ -28,38 +28,38 @@ SailorHarryScript:
 	end
 
 TrainerLassDana1:
-	trainer EVENT_BEAT_LASS_DANA, LASS, DANA1, LassDana1SeenText, LassDana1BeatenText, 0, LassDana1Script
+	trainer EVENT_BEAT_LASS_DANA, LASS, DANA1, LassDana1SeenText, LassDana1BeatenText, 0, .script
 
-LassDana1Script:
+.script:
 	writecode VAR_CALLERID, PHONE_LASS_DANA
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_DANA
-	iftrue UnknownScript_0x1a1d82
+	iftrue .DanaRematch
 	checkflag ENGINE_DANA_HAS_THUNDERSTONE
-	iftrue UnknownScript_0x1a1df6
+	iftrue .TryGiveThunderstone
 	checkcellnum PHONE_LASS_DANA
-	iftrue UnknownScript_0x1a1e17
+	iftrue .NumberAccepted
 	checkevent EVENT_DANA_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x1a1d6b
+	iftrue .SecondTimeAsking
 	writetext UnknownText_0x1a20ec
 	keeptextopen
 	setevent EVENT_DANA_ASKED_FOR_PHONE_NUMBER
-	scall UnknownScript_0x1a1e0b
-	jump UnknownScript_0x1a1d6e
+	scall .AskNumber1F
+	jump .AskForPhoneNumber
 
-UnknownScript_0x1a1d6b:
-	scall UnknownScript_0x1a1e0f
-UnknownScript_0x1a1d6e:
+.SecondTimeAsking:
+	scall .AskNumber2F
+.AskForPhoneNumber:
 	askforphonenumber PHONE_LASS_DANA
-	if_equal $1, UnknownScript_0x1a1e1f
-	if_equal $2, UnknownScript_0x1a1e1b
+	if_equal $1, .PhoneFull
+	if_equal $2, .DeclinedPhoneNumber
 	trainertotext LASS, DANA1, $0
-	scall UnknownScript_0x1a1e13
-	jump UnknownScript_0x1a1e17
+	scall .RegisteredPhoneNumber
+	jump .NumberAccepted
 
-UnknownScript_0x1a1d82:
-	scall UnknownScript_0x1a1e23
+.DanaRematch:
+	scall .Rematch
 	winlosstext LassDana1BeatenText, 0
 	copybytetovar wDanaFightCount
 	if_equal 4, .Fight4
@@ -118,84 +118,84 @@ UnknownScript_0x1a1d82:
 	clearflag ENGINE_DANA
 	end
 
-UnknownScript_0x1a1df6:
-	scall UnknownScript_0x1a1e27
-	verbosegiveitem THUNDERSTONE, 1
-	iffalse UnknownScript_0x1a1e08
+.TryGiveThunderstone:
+	scall .Gift
+	verbosegiveitem THUNDERSTONE
+	iffalse .NoRoomForThunderstone
 	clearflag ENGINE_DANA_HAS_THUNDERSTONE
 	setevent EVENT_DANA_GAVE_THUNDERSTONE
-	jump UnknownScript_0x1a1e17
+	jump .NumberAccepted
 
-UnknownScript_0x1a1e08:
-	jump UnknownScript_0x1a1e2b
+.NoRoomForThunderstone:
+	jump .PackFull
 
-UnknownScript_0x1a1e0b:
+.AskNumber1F:
 	jumpstd asknumber1f
 	end
 
-UnknownScript_0x1a1e0f:
+.AskNumber2F:
 	jumpstd asknumber2f
 	end
 
-UnknownScript_0x1a1e13:
+.RegisteredPhoneNumber:
 	jumpstd registerednumberf
 	end
 
-UnknownScript_0x1a1e17:
+.NumberAccepted:
 	jumpstd numberacceptedf
 	end
 
-UnknownScript_0x1a1e1b:
+.DeclinedPhoneNumber:
 	jumpstd numberdeclinedf
 	end
 
-UnknownScript_0x1a1e1f:
+.PhoneFull:
 	jumpstd phonefullf
 	end
 
-UnknownScript_0x1a1e23:
+.Rematch:
 	jumpstd rematchf
 	end
 
-UnknownScript_0x1a1e27:
+.Gift:
 	jumpstd giftf
 	end
 
-UnknownScript_0x1a1e2b:
+.PackFull:
 	jumpstd packfullf
 	end
 
 TrainerSchoolboyChad1:
-	trainer EVENT_BEAT_SCHOOLBOY_CHAD, SCHOOLBOY, CHAD1, SchoolboyChad1SeenText, SchoolboyChad1BeatenText, 0, SchoolboyChad1Script
+	trainer EVENT_BEAT_SCHOOLBOY_CHAD, SCHOOLBOY, CHAD1, SchoolboyChad1SeenText, SchoolboyChad1BeatenText, 0, .script
 
-SchoolboyChad1Script:
+.script:
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_CHAD
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_CHAD
-	iftrue UnknownScript_0x1a1e75
+	iftrue .ChadRematch
 	checkcellnum PHONE_SCHOOLBOY_CHAD
-	iftrue UnknownScript_0x1a1ef5
+	iftrue .HaveChadsNumber
 	checkevent EVENT_CHAD_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x1a1e5e
+	iftrue .SecondTimeAsking
 	writetext UnknownText_0x1a200e
 	keeptextopen
 	setevent EVENT_CHAD_ASKED_FOR_PHONE_NUMBER
-	scall UnknownScript_0x1a1ee9
-	jump UnknownScript_0x1a1e61
+	scall .AskPhoneNumber1
+	jump .AskToRegisterNumber
 
-UnknownScript_0x1a1e5e:
-	scall UnknownScript_0x1a1eed
-UnknownScript_0x1a1e61:
+.SecondTimeAsking:
+	scall .AskPhoneNumber2
+.AskToRegisterNumber:
 	askforphonenumber PHONE_SCHOOLBOY_CHAD
-	if_equal $1, UnknownScript_0x1a1efd
-	if_equal $2, UnknownScript_0x1a1ef9
+	if_equal $1, .PhoneFull
+	if_equal $2, .SaidNo
 	trainertotext SCHOOLBOY, CHAD1, $0
-	scall UnknownScript_0x1a1ef1
-	jump UnknownScript_0x1a1ef5
+	scall .RegisteredChad
+	jump .HaveChadsNumber
 
-UnknownScript_0x1a1e75:
-	scall UnknownScript_0x1a1f01
+.ChadRematch:
+	scall .Rematch
 	winlosstext SchoolboyChad1BeatenText, 0
 	copybytetovar wChadFightCount
 	if_equal 4, .Fight4
@@ -254,38 +254,38 @@ UnknownScript_0x1a1e75:
 	clearflag ENGINE_CHAD
 	end
 
-UnknownScript_0x1a1ee9:
+.AskPhoneNumber1:
 	jumpstd asknumber1m
 	end
 
-UnknownScript_0x1a1eed:
+.AskPhoneNumber2:
 	jumpstd asknumber2m
 	end
 
-UnknownScript_0x1a1ef1:
+.RegisteredChad:
 	jumpstd registerednumberm
 	end
 
-UnknownScript_0x1a1ef5:
+.HaveChadsNumber:
 	jumpstd numberacceptedm
 	end
 
-UnknownScript_0x1a1ef9:
+.SaidNo:
 	jumpstd numberdeclinedm
 	end
 
-UnknownScript_0x1a1efd:
+.PhoneFull:
 	jumpstd phonefullm
 	end
 
-UnknownScript_0x1a1f01:
+.Rematch:
 	jumpstd rematchm
 	end
 
 TrainerBeautyValerie:
-	trainer EVENT_BEAT_BEAUTY_VALERIE, BEAUTY, VALERIE, BeautyValerieSeenText, BeautyValerieBeatenText, 0, BeautyValerieScript
+	trainer EVENT_BEAT_BEAUTY_VALERIE, BEAUTY, VALERIE, BeautyValerieSeenText, BeautyValerieBeatenText, 0, .script
 
-BeautyValerieScript:
+.script:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a2185
@@ -294,9 +294,9 @@ BeautyValerieScript:
 	end
 
 TrainerBeautyOlivia:
-	trainer EVENT_BEAT_BEAUTY_OLIVIA, BEAUTY, OLIVIA, BeautyOliviaSeenText, BeautyOliviaBeatenText, 0, BeautyOliviaScript
+	trainer EVENT_BEAT_BEAUTY_OLIVIA, BEAUTY, OLIVIA, BeautyOliviaSeenText, BeautyOliviaBeatenText, 0, .script
 
-BeautyOliviaScript:
+.script:
 	talkaftercancel
 	loadfont
 	writetext UnknownText_0x1a229a
@@ -483,9 +483,9 @@ Route38_MapEventHeader:
 .PersonEvents:
 	db 7
 	person_event SPRITE_STANDING_YOUNGSTER, 1, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerSchoolboyChad1, -1
-	person_event SPRITE_LASS, 3, 15, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerLassDana1, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 15, 12, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBird_keeperToby, -1
+	person_event SPRITE_LASS, 3, 15, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerLassDana1, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 15, 12, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBird_keeperToby, -1
 	person_event SPRITE_BUENA, 9, 19, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBeautyValerie, -1
-	person_event SPRITE_SAILOR, 5, 24, SPRITEMOVEDATA_1E, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerSailorHarry, -1
-	person_event SPRITE_FRUIT_TREE, 10, 12, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a1f33, -1
-	person_event SPRITE_BUENA, 8, 5, SPRITEMOVEDATA_0A, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBeautyOlivia, -1
+	person_event SPRITE_SAILOR, 5, 24, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 2, TrainerSailorHarry, -1
+	person_event SPRITE_FRUIT_TREE, 10, 12, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a1f33, -1
+	person_event SPRITE_BUENA, 8, 5, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 1, TrainerBeautyOlivia, -1

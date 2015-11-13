@@ -56,7 +56,7 @@ GruntM1Script:
 	clearevent EVENT_AZALEA_TOWN_SLOWPOKES
 	clearevent EVENT_KURTS_HOUSE_SLOWPOKE
 	clearevent EVENT_KURTS_HOUSE_KURT_1
-	special FadeBlackBGMap
+	special FadeOutPalettes
 	special HealParty
 	pause 15
 	warp KURTS_HOUSE, $3, $3
@@ -121,15 +121,15 @@ KurtSlowpokeWellVictoryMovementData:
 	step_left
 	step_left
 	step_up
-	accelerate_last
-	accelerate_last
-	accelerate_last
+	step_sleep_8
+	step_sleep_8
+	step_sleep_8
 	step_left
 	step_up
 	step_up
-	accelerate_last
-	accelerate_last
-	accelerate_last
+	step_sleep_8
+	step_sleep_8
+	step_sleep_8
 	turn_head_left
 	step_end
 
@@ -330,8 +330,8 @@ SlowpokeWellB1F_MapEventHeader:
 	person_event SPRITE_ROCKET, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 2, 1, TrainerGruntM1, EVENT_SLOWPOKE_WELL_ROCKETS
 	person_event SPRITE_ROCKET, 6, 5, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 2, 2, TrainerGruntM2, EVENT_SLOWPOKE_WELL_ROCKETS
 	person_event SPRITE_ROCKET_GIRL, 4, 10, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 4, TrainerGruntF1, EVENT_SLOWPOKE_WELL_ROCKETS
-	person_event SPRITE_SLOWPOKE, 4, 7, SPRITEMOVEDATA_01, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SlowpokeScript_0x5a681, EVENT_SLOWPOKE_WELL_SLOWPOKES
-	person_event SPRITE_SLOWPOKE, 2, 6, SPRITEMOVEDATA_01, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SlowpokeScript_0x5a695, EVENT_SLOWPOKE_WELL_SLOWPOKES
+	person_event SPRITE_SLOWPOKE, 4, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SlowpokeScript_0x5a681, EVENT_SLOWPOKE_WELL_SLOWPOKES
+	person_event SPRITE_SLOWPOKE, 2, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SlowpokeScript_0x5a695, EVENT_SLOWPOKE_WELL_SLOWPOKES
 	person_event SPRITE_KURT, 14, 16, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, 0, 0, KurtScript_0x5a5d5, EVENT_SLOWPOKE_WELL_KURT
-	person_event SPRITE_BOULDER, 2, 3, SPRITEMOVEDATA_19, 0, 0, -1, -1, 0, 0, 0, SlowpokeWellB1FBoulder, -1
-	person_event SPRITE_POKE_BALL, 3, 10, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5a6a3, EVENT_SLOWPOKE_WELL_B1F_SUPER_POTION
+	person_event SPRITE_BOULDER, 2, 3, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, 0, 0, SlowpokeWellB1FBoulder, -1
+	person_event SPRITE_POKE_BALL, 3, 10, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x5a6a3, EVENT_SLOWPOKE_WELL_B1F_SUPER_POTION

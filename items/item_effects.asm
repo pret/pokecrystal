@@ -210,11 +210,11 @@ LoveBall:
 ParkBall: ; e8a2
 	ld a, [wBattleMode]
 	dec a
-	jp nz, Functionf7a0
+	jp nz, UseBallInTrainerBattle
 
 	ld a, [PartyCount]
 	cp PARTY_LENGTH
-	jr nz, .asm_e8c0
+	jr nz, .room_in_party
 
 	ld a, BANK(sBoxCount)
 	call GetSRAMBank
@@ -223,9 +223,9 @@ ParkBall: ; e8a2
 	call CloseSRAM
 	jp z, Ball_BoxIsFullMessage
 
-.asm_e8c0
+.room_in_party
 	xor a
-	ld [wc64e], a
+	ld [wWildMon], a
 	ld a, [CurItem]
 	cp PARK_BALL
 	call nz, Functionedfa
@@ -239,38 +239,38 @@ ParkBall: ; e8a2
 	ld b, a
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
-	jp z, .asm_e99c
+	jp z, .catch_without_fail
 	ld a, [CurItem]
 	cp MASTER_BALL
-	jp z, .asm_e99c
+	jp z, .catch_without_fail
 	ld a, [CurItem]
 	ld c, a
 	ld hl, BallMultiplierFunctionTable
 
-.asm_e8f2
+.get_multiplier_loop
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_e906
+	jr z, .skip_or_return_from_ball_fn
 	cp c
-	jr z, .asm_e8fe
+	jr z, .call_ball_function
 rept 2
 	inc hl
 endr
-	jr .asm_e8f2
+	jr .get_multiplier_loop
 
-.asm_e8fe
+.call_ball_function
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, .asm_e906
+	ld de, .skip_or_return_from_ball_fn
 	push de
 	jp [hl]
 
-.asm_e906
+.skip_or_return_from_ball_fn
 	ld a, [CurItem]
 	cp LEVEL_BALL
 	ld a, b
-	jp z, .asm_e98e
+	jp z, .skip_hp_calc
 
 	ld a, b
 	ld [hMultiplicand + 2], a
@@ -295,7 +295,7 @@ endr
 	ld e, l
 	ld a, d
 	and a
-	jr z, .asm_e940
+	jr z, .okay_1
 
 	srl d
 	rr e
@@ -308,9 +308,9 @@ endr
 
 	ld a, c
 	and a
-	jr nz, .asm_e940
+	jr nz, .okay_1
 	ld c, $1
-.asm_e940
+.okay_1
 	ld b, e
 
 	push bc
@@ -350,15 +350,15 @@ endr
 .addstatus
 	ld a, b
 	add c
-	jr nc, .asm_e977
+	jr nc, .max_1
 	ld a, $ff
-.asm_e977
+.max_1
 
 	ld d, a
 	push de
 
 	; BUG: callba overwrites a,
-	; and GetItem takes b anyway.
+	; and GetItemHeldEffect takes b anyway.
 
 	; This is probably the reason
 	; the HELD_CATCH_CHANCE effect
@@ -368,18 +368,18 @@ endr
 
 	ld a, [BattleMonItem]
 ;	ld b, a
-	callba GetItem
+	callba GetItemHeldEffect
 	ld a, b
 	cp HELD_CATCH_CHANCE
 
 	pop de
 	ld a, d
 
-	jr nz, .asm_e98e
+	jr nz, .skip_hp_calc
 	add c
-	jr nc, .asm_e98e
+	jr nc, .skip_hp_calc
 	ld a, $ff
-.asm_e98e
+.skip_hp_calc
 
 	ld b, a
 	ld [Buffer1], a
@@ -387,23 +387,23 @@ endr
 
 	cp b
 	ld a, 0
-	jr z, .asm_e99c
-	jr nc, .asm_e99f
+	jr z, .catch_without_fail
+	jr nc, .fail_to_catch
 
-.asm_e99c
+.catch_without_fail
 	ld a, [EnemyMonSpecies]
 
-.asm_e99f
-	ld [wc64e], a
+.fail_to_catch
+	ld [wWildMon], a
 	ld c, 20
 	call DelayFrames
 
 	ld a, [CurItem]
 	cp POKE_BALL + 1 ; Assumes Master/Ultra/Great come before
-	jr c, .asm_e9b0
+	jr c, .not_kurt_ball
 	ld a, POKE_BALL
-.asm_e9b0
-	ld [wc689], a
+.not_kurt_ball
+	ld [wKickCounter], a
 
 	ld de, ANIM_THROW_POKE_BALL
 	ld a, e
@@ -416,23 +416,23 @@ endr
 	ld [wcfca], a
 	predef PlayBattleAnim
 
-	ld a, [wc64e]
+	ld a, [wWildMon]
 	and a
-	jr nz, .asm_e9f5
+	jr nz, .caught
 	ld a, [Buffer2]
 	cp $1
 	ld hl, UnknownText_0xedb5
-	jp z, .asm_ebdc
+	jp z, .shake_and_break_free
 	cp $2
 	ld hl, UnknownText_0xedba
-	jp z, .asm_ebdc
+	jp z, .shake_and_break_free
 	cp $3
 	ld hl, UnknownText_0xedbf
-	jp z, .asm_ebdc
+	jp z, .shake_and_break_free
 	cp $4
 	ld hl, UnknownText_0xedc4
-	jp z, .asm_ebdc
-.asm_e9f5
+	jp z, .shake_and_break_free
+.caught
 
 	ld hl, EnemyMonStatus
 	ld a, [hli]
@@ -492,29 +492,29 @@ endr
 
 	ld hl, EnemySubStatus5
 	bit SUBSTATUS_TRANSFORMED, [hl]
-	jr nz, .asm_ea67
-	ld hl, wc735
+	jr nz, .Transformed
+	ld hl, wWildMonMoves
 	ld de, EnemyMonMoves
 	ld bc, NUM_MOVES
 	call CopyBytes
 
-	ld hl, wc739
+	ld hl, wWildMonPP
 	ld de, EnemyMonPP
 	ld bc, NUM_MOVES
 	call CopyBytes
-.asm_ea67
+.Transformed
 
 	ld a, [EnemyMonSpecies]
-	ld [wc64e], a
+	ld [wWildMon], a
 	ld [CurPartySpecies], a
 	ld [wd265], a
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
-	jp z, .asm_ebd9
+	jp z, .FinishTutorial
 
 	callba MobileFn_10607f
 
-	ld hl, UnknownText_0xedc9
+	ld hl, Text_GotchaMonWasCaught
 	call PrintText
 
 	call ClearSprites
@@ -530,10 +530,10 @@ endr
 	call SetSeenAndCaughtMon
 	pop af
 	and a
-	jr nz, .asm_eab7
+	jr nz, .skip_pokedex
 
-	call Function2ead
-	jr z, .asm_eab7
+	call CheckReceivedDex
+	jr z, .skip_pokedex
 
 	ld hl, UnknownText_0xedf0
 	call PrintText
@@ -544,19 +544,19 @@ endr
 	ld [wd265], a
 	predef Functionfb877
 
-.asm_eab7
+.skip_pokedex
 	ld a, [BattleType]
 	cp BATTLETYPE_CONTEST
-	jp z, .asm_ebd1
+	jp z, .catch_bug_contest_mon
 	cp BATTLETYPE_CELEBI
-	jr nz, .asm_eac8
+	jr nz, .not_celebi
 	ld hl, wBattleResult
 	set 6, [hl]
-.asm_eac8
+.not_celebi
 
 	ld a, [PartyCount]
 	cp PARTY_LENGTH
-	jr z, .asm_eb3c
+	jr z, .SendToPC
 
 	xor a ; PARTYMON
 	ld [MonType], a
@@ -568,17 +568,17 @@ endr
 
 	ld a, [CurItem]
 	cp FRIEND_BALL
-	jr nz, .asm_eaf8
+	jr nz, .SkipPartyMonFriendBall
 
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1Happiness
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 
 	ld a, FRIEND_BALL_HAPPINESS
 	ld [hl], a
-.asm_eaf8
+.SkipPartyMonFriendBall
 
 	ld hl, UnknownText_0xedf5
 	call PrintText
@@ -588,7 +588,7 @@ endr
 	call GetPokemonName
 
 	call YesNoBox
-	jp c, .asm_ebe2
+	jp c, .return_from_capture
 
 	ld a, [PartyCount]
 	dec a
@@ -603,19 +603,19 @@ endr
 	xor a ; PARTYMON
 	ld [MonType], a
 	ld b, 0
-	callba Function116c1
+	callba NamingScreen
 
 	call FadeToWhite
 
-	call Functione51
+	call LoadStandardFont
 
 	pop hl
 	ld de, StringBuffer1
 	call InitName
 
-	jp .asm_ebe2
+	jp .return_from_capture
 
-.asm_eb3c
+.SendToPC
 	call ClearSprites
 
 	predef SentPkmnIntoBox
@@ -627,17 +627,17 @@ endr
 
 	ld a, [sBoxCount]
 	cp MONS_PER_BOX
-	jr nz, .asm_eb5b
+	jr nz, .BoxNotFullYet
 	ld hl, wBattleResult
 	set 7, [hl]
-.asm_eb5b
+.BoxNotFullYet
 	ld a, [CurItem]
 	cp FRIEND_BALL
-	jr nz, .asm_eb67
+	jr nz, .SkipBoxMonFriendBall
 	; Bug: overwrites the happiness of the first mon in the box!
 	ld a, FRIEND_BALL_HAPPINESS
 	ld [sBoxMon1Happiness], a
-.asm_eb67
+.SkipBoxMonFriendBall
 	call CloseSRAM
 
 	ld hl, UnknownText_0xedf5
@@ -648,7 +648,7 @@ endr
 	call GetPokemonName
 
 	call YesNoBox
-	jr c, .asm_ebaf
+	jr c, .SkipBoxMonNickname
 
 	xor a
 	ld [CurPartyMon], a
@@ -656,7 +656,7 @@ endr
 	ld [MonType], a
 	ld de, wd050
 	ld b, $0
-	callba Function116c1
+	callba NamingScreen
 
 	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
@@ -672,7 +672,7 @@ endr
 
 	call CloseSRAM
 
-.asm_ebaf
+.SkipBoxMonNickname
 	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
 
@@ -687,21 +687,21 @@ endr
 	call PrintText
 
 	call FadeToWhite
-	call Functione51
-	jr .asm_ebe2
+	call LoadStandardFont
+	jr .return_from_capture
 
-.asm_ebd1
+.catch_bug_contest_mon
 	callba BugContest_SetCaughtContestMon
-	jr .asm_ebe2
+	jr .return_from_capture
 
-.asm_ebd9
-	ld hl, UnknownText_0xedc9
+.FinishTutorial
+	ld hl, Text_GotchaMonWasCaught
 
-.asm_ebdc
+.shake_and_break_free
 	call PrintText
 	call ClearSprites
 
-.asm_ebe2
+.return_from_capture
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
 	ret z
@@ -710,11 +710,11 @@ endr
 	cp BATTLETYPE_CONTEST
 	jr z, .used_park_ball
 
-	ld a, [wc64e]
+	ld a, [wWildMon]
 	and a
 	jr z, .toss
 
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearTileMap
 
 .toss
@@ -724,7 +724,7 @@ endr
 	jp TossItem
 
 .used_park_ball
-	ld hl, wdc79
+	ld hl, wParkBallsRemaining
 	dec [hl]
 	ret
 ; ec0a
@@ -733,16 +733,16 @@ endr
 BallMultiplierFunctionTable:
 ; table of routines that increase or decrease the catch rate based on
 ; which ball is used in a certain situation.
-	dbw ULTRA_BALL, UltraBallMultiplier
-	dbw GREAT_BALL, GreatBallMultiplier
-	dbw 8,          SafariBallMultiplier ; Safari Ball, leftover from RBY
-	dbw HEAVY_BALL, HeavyBallMultiplier
-	dbw LEVEL_BALL, LevelBallMultiplier
-	dbw LURE_BALL,  LureBallMultiplier
-	dbw FAST_BALL,  FastBallMultiplier
-	dbw MOON_BALL,  MoonBallMultiplier
-	dbw LOVE_BALL,  LoveBallMultiplier
-	dbw PARK_BALL,  ParkBallMultiplier
+	dbw ULTRA_BALL,  UltraBallMultiplier
+	dbw GREAT_BALL,  GreatBallMultiplier
+	dbw SAFARI_BALL, SafariBallMultiplier ; Safari Ball, leftover from RBY
+	dbw HEAVY_BALL,  HeavyBallMultiplier
+	dbw LEVEL_BALL,  LevelBallMultiplier
+	dbw LURE_BALL,   LureBallMultiplier
+	dbw FAST_BALL,   FastBallMultiplier
+	dbw MOON_BALL,   MoonBallMultiplier
+	dbw LOVE_BALL,   LoveBallMultiplier
+	dbw PARK_BALL,   ParkBallMultiplier
 	db $ff
 
 UltraBallMultiplier:
@@ -1128,7 +1128,7 @@ UnknownText_0xedc4: ; 0xedc4
 	db "@"
 ; 0xedc9
 
-UnknownText_0xedc9: ; 0xedc9
+Text_GotchaMonWasCaught: ; 0xedc9
 	; Gotcha! @ was caught!@ @
 	text_jump UnknownText_0x1c5b17
 	start_asm
@@ -1193,12 +1193,12 @@ Thunderstone:
 WaterStone:
 LeafStone:
 SunStone: ; ee0f
-	ld b, $5
-	call Functionf1f9
+	ld b, PARTYMENUACTION_EVO_STONE
+	call UseItem_SelectMon
 
 	jp c, .asm_ee38
 
-	ld a, PartyMon1Item - PartyMon1
+	ld a, MON_ITEM
 	call GetPartyParamLocation
 
 	ld a, [hl]
@@ -1213,7 +1213,7 @@ SunStone: ; ee0f
 	and a
 	jr z, .asm_ee35
 
-	jp Functionf795
+	jp UseDisposableItem
 
 .asm_ee35
 	call WontHaveAnyEffectMessage
@@ -1230,8 +1230,8 @@ Protein:
 Iron:
 Carbos:
 Calcium: ; ee3d
-	ld b, $1
-	call Functionf1f9
+	ld b, PARTYMENUACTION_HEALING_ITEM
+	call UseItem_SelectMon
 
 	jp c, Functionee9f
 
@@ -1239,7 +1239,7 @@ Calcium: ; ee3d
 
 	call Functioneed9
 
-	ld a, PartyMon1StatExp - PartyMon1
+	ld a, MON_STAT_EXP
 	call GetPartyParamLocation
 
 	add hl, bc
@@ -1270,7 +1270,7 @@ Calcium: ; ee3d
 	ld c, HAPPINESS_USEDITEM
 	callba ChangeHappiness
 
-	jp Functionf795
+	jp UseDisposableItem
 
 
 Functionee83: ; ee83
@@ -1281,11 +1281,11 @@ Functionee83: ; ee83
 
 
 Functionee8c: ; ee8c
-	ld a, PartyMon1MaxHP - PartyMon1
+	ld a, MON_MAXHP
 	call GetPartyParamLocation
 	ld d, h
 	ld e, l
-	ld a, PartyMon1HPExp - 1 - PartyMon1
+	ld a, MON_EXP + 2
 	call GetPartyParamLocation
 	ld b, $1
 	predef_jump CalcPkmnStats
@@ -1338,11 +1338,11 @@ Functioneed9: ; eed9
 ; eeeb
 
 Table_eeeb: ; eeeb
-	db HP_UP,   PartyMon1HPExp  - PartyMon1StatExp
-	db PROTEIN, PartyMon1AtkExp - PartyMon1StatExp
-	db IRON,    PartyMon1DefExp - PartyMon1StatExp
-	db CARBOS,  PartyMon1SpdExp - PartyMon1StatExp
-	db CALCIUM, PartyMon1SpcExp - PartyMon1StatExp
+	db HP_UP,    MON_HP_EXP - MON_STAT_EXP
+	db PROTEIN, MON_ATK_EXP - MON_STAT_EXP
+	db IRON,    MON_DEF_EXP - MON_STAT_EXP
+	db CARBOS,  MON_SPD_EXP - MON_STAT_EXP
+	db CALCIUM, MON_SPC_EXP - MON_STAT_EXP
 ; eef5
 
 
@@ -1350,7 +1350,7 @@ Functioneef5: ; eef5
 	ld a, [CurPartySpecies]
 	ld [CurSpecies], a
 	ld [wd265], a
-	ld a, PartyMon1Level - PartyMon1
+	ld a, MON_LEVEL
 	call GetPartyParamLocation
 	ld a, [hl]
 	ld [CurPartyLevel], a
@@ -1363,14 +1363,14 @@ Functioneef5: ; eef5
 
 
 RareCandy: ; ef14
-	ld b, $1
-	call Functionf1f9
+	ld b, PARTYMENUACTION_HEALING_ITEM
+	call UseItem_SelectMon
 
 	jp c, Functionee9f
 
 	call Functioneef5
 
-	ld a, PartyMon1Level - PartyMon1
+	ld a, MON_LEVEL
 	call GetPartyParamLocation
 
 	ld a, [hl]
@@ -1382,10 +1382,10 @@ RareCandy: ; ef14
 	ld [CurPartyLevel], a
 	push de
 	ld d, a
-	callba Function50e47
+	callba CalcExpAtLevel
 
 	pop de
-	ld a, PartyMon1Exp - PartyMon1
+	ld a, MON_EXP
 	call GetPartyParamLocation
 
 	ld a, [hMultiplicand]
@@ -1395,7 +1395,7 @@ RareCandy: ; ef14
 	ld a, [$ffb6]
 	ld [hl], a
 
-	ld a, PartyMon1MaxHP - PartyMon1
+	ld a, MON_MAXHP
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld b, a
@@ -1403,7 +1403,7 @@ RareCandy: ; ef14
 	push bc
 	call Functionee8c
 
-	ld a, PartyMon1MaxHP + 1 - PartyMon1
+	ld a, MON_MAXHP + 1
 	call GetPartyParamLocation
 
 	pop bc
@@ -1422,7 +1422,7 @@ RareCandy: ; ef14
 	ld [hl], a
 	callba LevelUpHappinessMod
 
-	ld a, $f8
+	ld a, PARTYMENUTEXT_LEVEL_UP
 	call Functionf24a
 
 	xor a ; PARTYMON
@@ -1438,7 +1438,7 @@ RareCandy: ; ef14
 	ld bc, $0004
 	predef PrintTempMonStats
 
-	call Functiona80
+	call WaitPressAorB_BlinkCursor
 
 	xor a ; PARTYMON
 	ld [MonType], a
@@ -1450,13 +1450,13 @@ RareCandy: ; ef14
 	ld [wd1e9], a
 	callba Function421d8
 
-	jp Functionf795
+	jp UseDisposableItem
 ; efad
 
 
 HealPowder: ; efad
-	ld b, $1
-	call Functionf1f9
+	ld b, PARTYMENUACTION_HEALING_ITEM
+	call UseItem_SelectMon
 
 	jp c, Functionf29e
 
@@ -1488,8 +1488,8 @@ BurntBerry:
 IceBerry:
 MintBerry:
 Miracleberry: ; efcc
-	ld b, $1
-	call Functionf1f9
+	ld b, PARTYMENUACTION_HEALING_ITEM
+	call UseItem_SelectMon
 	jp c, Functionf29e
 
 Functionefd4: ; efd4
@@ -1502,47 +1502,47 @@ Functionefda: ; efda (3:6fda)
 	call Functionf30d
 	ld a, $1
 	ret z
-	call Functionf058
-	ld a, PartyMon1Status - PartyMon1
+	call GetItemHealingAction
+	ld a, MON_STATUS
 	call GetPartyParamLocation
 	ld a, [hl]
 	and c
-	jr nz, .asm_eff4
+	jr nz, .good
 	call Functionf009
 	ld a, $1
 	ret nc
-	ld b, $f9
-.asm_eff4
+	ld b, PARTYMENUTEXT_HEAL_CONFUSION
+.good
 	xor a
 	ld [hl], a
 	ld a, b
 	ld [PartyMenuActionText], a
-	call Functionf030
+	call HealStatus
 	call Play_SFX_FULL_HEAL
 	call Functionf279
-	call Functionf795
+	call UseDisposableItem
 	ld a, $0
 	ret
 
 Functionf009: ; f009 (3:7009)
 	call Functionf2a6
-	jr nc, .asm_f01c
+	jr nc, .nope
 	ld a, [PlayerSubStatus3]
-	bit 7, a
-	jr z, .asm_f01c
+	bit SUBSTATUS_CONFUSED, a
+	jr z, .nope
 	ld a, c
 	cp $ff
-	jr nz, .asm_f01c
+	jr nz, .nope
 	scf
 	ret
-.asm_f01c
+.nope
 	and a
 	ret
 
 Functionf01e: ; f01e (3:701e)
 	call Functionf2a6
 	ret nc
-	ld a, PartyMon1HP - PartyMon1
+	ld a, MON_HP
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld [BattleMonHP], a
@@ -1550,39 +1550,39 @@ Functionf01e: ; f01e (3:701e)
 	ld [BattleMonHP + 1], a
 	ret
 
-Functionf030: ; f030 (3:7030)
+HealStatus: ; f030 (3:7030)
 	call Functionf2a6
 	ret nc
 	xor a
 	ld [BattleMonStatus], a
 	ld hl, PlayerSubStatus5
-	res 0, [hl]
+	res SUBSTATUS_TOXIC, [hl]
 	ld hl, PlayerSubStatus1
-	res 0, [hl]
-	call Functionf058
+	res SUBSTATUS_NIGHTMARE, [hl]
+	call GetItemHealingAction
 	ld a, c
-	cp $ff
-	jr nz, .asm_f04f
+	cp %11111111
+	jr nz, .not_full_heal
 	ld hl, PlayerSubStatus3
-	res 7, [hl]
-.asm_f04f
+	res SUBSTATUS_CONFUSED, [hl]
+.not_full_heal
 	push bc
-	callba Function365d7
+	callba CalcPlayerStats
 	pop bc
 	ret
 
-Functionf058: ; f058 (3:7058)
+GetItemHealingAction: ; f058 (3:7058)
 	push hl
 	ld a, [CurItem]
-	ld hl, Table_f071
+	ld hl, .healingactions
 	ld bc, 3
 .next
 	cp [hl]
-	jr z, .asm_f068
+	jr z, .found_it
 	add hl, bc
 	jr .next
 
-.asm_f068
+.found_it
 	inc hl
 	ld b, [hl]
 	inc hl
@@ -1593,39 +1593,39 @@ Functionf058: ; f058 (3:7058)
 	ret
 ; f071 (3:7071)
 
-Table_f071: ; f071
+.healingactions: ; f071
 ; item, party menu action text, status
-	db ANTIDOTE,     $f0, 1 << PSN
-	db BURN_HEAL,    $f1, 1 << BRN
-	db ICE_HEAL,     $f2, 1 << FRZ
-	db AWAKENING,    $f3, SLP
-	db PARLYZ_HEAL,  $f4, 1 << PAR
-	db FULL_HEAL,    $f6, %11111111
-	db FULL_RESTORE, $f6, %11111111
-	db HEAL_POWDER,  $f6, %11111111
-	db PSNCUREBERRY, $f0, 1 << PSN
-	db PRZCUREBERRY, $f4, 1 << PAR
-	db BURNT_BERRY,  $f2, 1 << FRZ
-	db ICE_BERRY,    $f1, 1 << BRN
-	db MINT_BERRY,   $f3, SLP
-	db MIRACLEBERRY, $f6, %11111111
+	db ANTIDOTE,     PARTYMENUTEXT_HEAL_PSN, 1 << PSN
+	db BURN_HEAL,    PARTYMENUTEXT_HEAL_BRN, 1 << BRN
+	db ICE_HEAL,     PARTYMENUTEXT_HEAL_FRZ, 1 << FRZ
+	db AWAKENING,    PARTYMENUTEXT_HEAL_SLP, SLP
+	db PARLYZ_HEAL,  PARTYMENUTEXT_HEAL_PAR, 1 << PAR
+	db FULL_HEAL,    PARTYMENUTEXT_HEAL_ALL, %11111111
+	db FULL_RESTORE, PARTYMENUTEXT_HEAL_ALL, %11111111
+	db HEAL_POWDER,  PARTYMENUTEXT_HEAL_ALL, %11111111
+	db PSNCUREBERRY, PARTYMENUTEXT_HEAL_PSN, 1 << PSN
+	db PRZCUREBERRY, PARTYMENUTEXT_HEAL_PAR, 1 << PAR
+	db BURNT_BERRY,  PARTYMENUTEXT_HEAL_FRZ, 1 << FRZ
+	db ICE_BERRY,    PARTYMENUTEXT_HEAL_BRN, 1 << BRN
+	db MINT_BERRY,   PARTYMENUTEXT_HEAL_SLP, SLP
+	db MIRACLEBERRY, PARTYMENUTEXT_HEAL_ALL, %11111111
 	db -1, 0, 0
 ; f09e
 
 Functionf09e: ; f09e (3:709e)
-	ld hl, Jumptable_f0a3
+	ld hl, .jumptable
 	rst JumpTable
 	ret
 
-Jumptable_f0a3: ; f0a3 (3:70a3)
+.jumptable: ; f0a3 (3:70a3)
 	dw Functionf2a2
 	dw Functionf299
 	dw Functionf29e
 
 
 RevivalHerb: ; f0a9
-	ld b, $1
-	call Functionf1f9
+	ld b, PARTYMENUACTION_HEALING_ITEM
+	call UseItem_SelectMon
 	jp c, Functionf29e
 
 	call Functionf0d6
@@ -1644,8 +1644,8 @@ RevivalHerb: ; f0a9
 
 Revive:
 MaxRevive: ; f0c8
-	ld b, $1
-	call Functionf1f9
+	ld b, PARTYMENUACTION_HEALING_ITEM
+	call UseItem_SelectMon
 	jp c, Functionf29e
 
 	call Functionf0d6
@@ -1673,7 +1673,7 @@ Functionf0d6: ; f0d6
 
 	ld a, [CurPartyMon]
 	ld c, a
-	ld hl, wc664
+	ld hl, wBattleParticipantsNotFainted
 	ld b, SET_FLAG
 	predef FlagPredef
 
@@ -1692,18 +1692,18 @@ Functionf0d6: ; f0d6
 
 .asm_f117
 	call Functionf1db
-	ld a, $f7
+	ld a, PARTYMENUTEXT_REVIVE
 	ld [PartyMenuActionText], a
 	call Functionf279
-	call Functionf795
+	call UseDisposableItem
 	ld a, 0
 	ret
 ; f128
 
 
 FullRestore: ; f128
-	ld b, 1
-	call Functionf1f9
+	ld b, PARTYMENUACTION_HEALING_ITEM
+	call UseItem_SelectMon
 	jp c, Functionf29e
 
 	call Functionf30d
@@ -1724,18 +1724,18 @@ Functionf144: ; f144
 	xor a
 	ld [Danger], a
 	call Functionf2c3
-	ld a, PartyMon1Status - PartyMon1
+	ld a, MON_STATUS
 	call GetPartyParamLocation
 	xor a
 	ld [hli], a
 	ld [hl], a
-	call Functionf030
+	call HealStatus
 	call Functionf01e
 	call Functionf1db
-	ld a, $f5
+	ld a, PARTYMENUTEXT_HEAL_HP
 	ld [PartyMenuActionText], a
 	call Functionf279
-	call Functionf795
+	call UseDisposableItem
 	ld a, 0
 	ret
 ; f16a
@@ -1805,8 +1805,8 @@ Functionf192: ; f192
 
 
 Functionf1a9: ; f1a9 (3:71a9)
-	ld b, 1
-	call Functionf1f9
+	ld b, PARTYMENUACTION_HEALING_ITEM
+	call UseItem_SelectMon
 	ld a, 2
 	ret c
 
@@ -1824,10 +1824,10 @@ Functionf1a9: ; f1a9 (3:71a9)
 	call Functionf2d1
 	call Functionf01e
 	call Functionf1db
-	ld a, $f5
+	ld a, PARTYMENUTEXT_HEAL_HP
 	ld [PartyMenuActionText], a
 	call Functionf279
-	call Functionf795
+	call UseDisposableItem
 	ld a, 0
 	ret
 
@@ -1842,31 +1842,31 @@ Functionf1db: ; f1db (3:71db)
 	call AddNTimes
 	ld a, $2
 	ld [wd10a], a
-	predef_jump Functionc6e0
+	predef_jump AnimateHPBar
 
-Functionf1f9: ; f1f9 (3:71f9)
-	call Functionf20b
+UseItem_SelectMon: ; f1f9 (3:71f9)
+	call .SelectMon
 	ret c
 
 	ld a, [CurPartySpecies]
 	cp EGG
-	jr nz, .asm_f209
+	jr nz, .not_egg
 
 	call CantUseOnEggMessage
 	scf
 	ret
 
-.asm_f209
+.not_egg
 	and a
 	ret
 
-Functionf20b: ; f20b (3:720b)
+.SelectMon: ; f20b (3:720b)
 	ld a, b
 	ld [PartyMenuActionText], a
 	push hl
 	push de
 	push bc
-	call WhiteBGMap
+	call ClearBGPalettes
 	call Functionf21c
 	pop bc
 	pop de
@@ -1921,7 +1921,7 @@ Functionf279: ; f279 (3:7279)
 	ld [hBGMapMode], a
 	ld c, $32
 	call DelayFrames
-	jp Functiona80
+	jp WaitPressAorB_BlinkCursor
 
 Functionf299: ; f299 (3:7299)
 	call WontHaveAnyEffectMessage
@@ -1960,7 +1960,7 @@ Functionf2ba: ; f2ba (3:72ba)
 Functionf2c3: ; f2c3 (3:72c3)
 	call Functionf36f
 asm_f2c6: ; f2c6 (3:72c6)
-	ld a, PartyMon1HP - PartyMon1
+	ld a, MON_HP
 	call GetPartyParamLocation
 	ld [hl], d
 	inc hl
@@ -1968,7 +1968,7 @@ asm_f2c6: ; f2c6 (3:72c6)
 	jp Functionf328
 
 Functionf2d1: ; f2d1 (3:72d1)
-	ld a, PartyMon1HP + 1 - PartyMon1
+	ld a, MON_HP + 1
 	call GetPartyParamLocation
 	ld a, [hl]
 	add e
@@ -1978,11 +1978,11 @@ Functionf2d1: ; f2d1 (3:72d1)
 	ld [hl], a
 	jr c, .asm_f2f5
 	call Functionf328
-	ld a, PartyMon1HP + 1 - PartyMon1
+	ld a, MON_HP + 1
 	call GetPartyParamLocation
 	ld d, h
 	ld e, l
-	ld a, PartyMon1MaxHP + 1 - PartyMon1
+	ld a, MON_MAXHP + 1
 	call GetPartyParamLocation
 	ld a, [de]
 	sub [hl]
@@ -1997,7 +1997,7 @@ Functionf2d1: ; f2d1 (3:72d1)
 	ret
 
 Functionf2f9: ; f2f9 (3:72f9)
-	ld a, PartyMon1HP + 1 - PartyMon1
+	ld a, MON_HP + 1
 	call GetPartyParamLocation
 	ld a, [hl]
 	sub e
@@ -2035,7 +2035,7 @@ Functionf31b: ; f31b (3:731b)
 	ret
 
 Functionf328: ; f328 (3:7328)
-	ld a, PartyMon1HP - PartyMon1
+	ld a, MON_HP
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld [wd1ef], a
@@ -2061,7 +2061,7 @@ Functionf33f: ; f33f
 ; f348
 
 Functionf348: ; f348 (3:7348)
-	ld a, PartyMon1HP - PartyMon1
+	ld a, MON_HP
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld [wd1ed], a
@@ -2078,7 +2078,7 @@ Functionf356: ; f356 (3:7356)
 
 Functionf35f: ; f35f (3:735f)
 	push hl
-	ld a, PartyMon1MaxHP - PartyMon1
+	ld a, MON_MAXHP
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld [Buffer2], a
@@ -2096,7 +2096,7 @@ Functionf36f: ; f36f (3:736f)
 
 Functionf378: ; f378 (3:7378)
 	push bc
-	ld a, PartyMon1MaxHP - PartyMon1
+	ld a, MON_MAXHP
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld [hDividend + 0], a
@@ -2179,7 +2179,7 @@ Functionf3df: ; f3df (3:73df)
 	call Functionf30d
 	call Functionf2d1
 	call Functionf1db
-	ld a, $f5
+	ld a, PARTYMENUTEXT_HEAL_HP
 	call Functionf24a
 	call JoyWaitAorB
 .asm_f413
@@ -2189,35 +2189,38 @@ Functionf3df: ; f3df (3:73df)
 	ret
 
 Functionf419: ; f419 (3:7419)
+.loop
 	push bc
-	ld a, $1
+	ld a, PARTYMENUACTION_HEALING_ITEM
 	ld [PartyMenuActionText], a
 	call Functionf21c
 	pop bc
-	jr c, .asm_f43e
+	jr c, .set_carry
 	ld a, [wd0d8]
 	dec a
 	ld c, a
 	ld a, b
 	cp c
-	jr z, .asm_f440
+	jr z, .loopback
 	ld a, c
 	ld [CurPartyMon], a
 	call Functionf30d
-	jr z, .asm_f440
+	jr z, .loopback
 	call Functionf31b
-	jr nc, .asm_f440
+	jr nc, .loopback
 	xor a
 	ret
-.asm_f43e
+
+.set_carry
 	scf
 	ret
-.asm_f440
+
+.loopback
 	push bc
 	ld hl, UnknownText_0xf44a
 	call MenuTextBoxBackup
 	pop bc
-	jr Functionf419
+	jr .loop
 ; f44a (3:744a)
 
 UnknownText_0xf44a: ; 0xf44a
@@ -2234,7 +2237,7 @@ EscapeRope: ; f44f
 
 	ld a, [wd0ec]
 	cp 1
-	call z, Functionf795
+	call z, UseDisposableItem
 	ret
 ; f462
 
@@ -2285,7 +2288,7 @@ PokeDoll: ; f48f
 	dec a
 	jr nz, .asm_f4a6
 	inc a
-	ld [wd232], a
+	ld [wForcedSwitch], a
 	ld a, [wBattleResult]
 	and 3 << 6
 	or $2
@@ -2301,18 +2304,18 @@ PokeDoll: ; f48f
 
 GuardSpec: ; f4ab
 	ld hl, PlayerSubStatus4
-	bit 1, [hl]
+	bit SUBSTATUS_MIST, [hl]
 	jp nz, WontHaveAnyEffect_NotUsedMessage
-	set 1, [hl]
+	set SUBSTATUS_MIST, [hl]
 	jp Functionf789
 ; f4b8
 
 
 DireHit: ; f4b8
 	ld hl, PlayerSubStatus4
-	bit 2, [hl]
+	bit SUBSTATUS_FOCUS_ENERGY, [hl]
 	jp nz, WontHaveAnyEffect_NotUsedMessage
-	set 2, [hl]
+	set SUBSTATUS_FOCUS_ENERGY, [hl]
 	jp Functionf789
 ; f4c5
 
@@ -2324,17 +2327,17 @@ XSpecial: ; f4c5
 	call Functionf789
 
 	ld a, [CurItem]
-	ld hl, Tablef504
+	ld hl, .x_item_table
 
-.asm_f4ce
+.loop
 	cp [hl]
-	jr z, .asm_f4d5
+	jr z, .got_it
 rept 2
 	inc hl
 endr
-	jr .asm_f4ce
+	jr .loop
 
-.asm_f4d5
+.got_it
 	inc hl
 	ld b, [hl]
 	xor a
@@ -2344,8 +2347,8 @@ endr
 	callba CheckIfStatCanBeRaised
 	call WaitSFX
 
-	callba BattleCommand8c
-	callba BattleCommand8e
+	callba BattleCommand_StatUpMessage
+	callba BattleCommand_StatUpFailText
 
 	ld a, [CurBattleMon]
 	ld [CurPartyMon], a
@@ -2354,7 +2357,7 @@ endr
 	ret
 ; f504
 
-Tablef504: ; f504
+.x_item_table: ; f504
 	db X_ATTACK,  ATTACK
 	db X_DEFEND,  DEFENSE
 	db X_SPEED,   SPEED
@@ -2369,7 +2372,7 @@ PokeFlute: ; f50c
 .asm_f512
 
 	xor a
-	ld [MiscBuffer2], a
+	ld [wd002], a
 
 	ld b, $ff ^ SLP
 
@@ -2392,7 +2395,7 @@ PokeFlute: ; f50c
 	and b
 	ld [hl], a
 
-	ld a, [MiscBuffer2]
+	ld a, [wd002]
 	and a
 	ld hl, UnknownText_0xf56c
 	jp z, PrintText
@@ -2408,7 +2411,7 @@ PokeFlute: ; f50c
 
 
 .Functionf554
-	ld de, PartyMon2 - PartyMon1
+	ld de, PARTYMON_STRUCT_LENGTH
 	ld c, PARTY_LENGTH
 
 .loop
@@ -2417,7 +2420,7 @@ PokeFlute: ; f50c
 	and SLP
 	jr z, .asm_f564
 	ld a, 1
-	ld [MiscBuffer2], a
+	ld [wd002], a
 .asm_f564
 	pop af
 	and b
@@ -2518,23 +2521,23 @@ MaxEther:
 Elixer:
 Mysteryberry: ; f5bf
 	ld a, [CurItem]
-	ld [MiscBuffer2], a
+	ld [wd002], a
 
 .loop
     ; Party Screen opens to choose on which Pkmn to use the Item
-	ld b, $1
-	call Functionf1f9
+	ld b, PARTYMENUACTION_HEALING_ITEM
+	call UseItem_SelectMon
 	jp c, Functionf6e0
 
 .loop2
-	ld a, [MiscBuffer2]
+	ld a, [wd002]
 	cp MAX_ELIXER
 	jp z, Elixer_RestorePPofAllMoves
 	cp ELIXER
 	jp z, Elixer_RestorePPofAllMoves
 
 	ld hl, TextJump_RaiseThePPOfWhichMove
-	ld a, [MiscBuffer2]
+	ld a, [wd002]
 	cp PP_UP
 	jr z, .ppup
 	ld hl, TextJump_RestoreThePPOfWhichMove
@@ -2555,7 +2558,7 @@ Mysteryberry: ; f5bf
 	ld [CurMoveNum], a
 	jr nz, .loop
 	ld hl, PartyMon1Moves
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call GetMthMoveOfNthPartymon
 
 	push hl
@@ -2565,7 +2568,7 @@ Mysteryberry: ; f5bf
 	call CopyName1
 	pop hl
 
-	ld a, [MiscBuffer2]
+	ld a, [wd002]
 	cp PP_UP
 	jp nz, Functionf6a7
 
@@ -2599,7 +2602,7 @@ Mysteryberry: ; f5bf
 
 Functionf64c: ; f64c
 	call ClearPalettes
-	jp Functionf795
+	jp UseDisposableItem
 ; f652
 
 Functionf652: ; f652
@@ -2612,7 +2615,7 @@ Functionf652: ; f652
 	cp b
 	jr nz, .asm_f66c
 	ld a, [PlayerSubStatus5]
-	bit 3, a
+	bit SUBSTATUS_TRANSFORMED, a
 	jr nz, .asm_f66c
 	call .asm_f677
 
@@ -2625,7 +2628,7 @@ Functionf652: ; f652
 .asm_f677
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Moves
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld de, BattleMonMoves
 	ld b, NUM_MOVES
@@ -2641,7 +2644,7 @@ Functionf652: ; f652
 	rept NUM_MOVES + 2 ; BattleMonPP - BattleMonMoves
 	inc de
 	endr
-	ld bc, PartyMon1PP - PartyMon1Moves
+	ld bc, MON_PP - MON_MOVES
 	add hl, bc
 	ld a, [hl]
 	ld [de], a
@@ -2667,14 +2670,14 @@ Functionf6a7: ; f6a7
 
 Elixer_RestorePPofAllMoves: ; f6af
 	xor a
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	ld [hli], a
 	ld [hl], a
 	ld b, NUM_MOVES
 .moveLoop
 	push bc
 	ld hl, PartyMon1Moves
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call GetMthMoveOfNthPartymon
 	ld a, [hl]
 	and a
@@ -2686,7 +2689,7 @@ Elixer_RestorePPofAllMoves: ; f6af
 	inc [hl]
 
 .cant_restore_pp
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	inc [hl]
 	pop bc
 	dec b
@@ -2708,9 +2711,9 @@ Functionf6e0: ; f6e0
 RestorePP: ; f6e8
 	xor a ; PARTYMON
 	ld [MonType], a
-	call Functionf8ec
+	call GetMaxPPOfMove
 	ld hl, PartyMon1PP
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call GetMthMoveOfNthPartymon
 	ld a, [wd265]
 	ld b, a
@@ -2719,7 +2722,7 @@ RestorePP: ; f6e8
 	cp b
 	jr nc, .dont_restore
 
-	ld a, [MiscBuffer2]
+	ld a, [wd002]
 	cp MAX_ELIXER
 	jr z, .restore_all
 	cp MAX_ETHER
@@ -2805,7 +2808,7 @@ SacredAsh: ; f753
 	ld a, [wd0ec]
 	cp $1
 	ret nz
-	call Functionf795
+	call UseDisposableItem
 	ret
 ; f763
 
@@ -2825,7 +2828,7 @@ Function_0xf769: ; f769
 	ld hl, UnknownText_0xf778
 	call PrintText
 
-	jp Functionf795
+	jp UseDisposableItem
 ; f778
 
 UnknownText_0xf778: ; 0xf778
@@ -2940,18 +2943,18 @@ Functionf789: ; f789
 	ld hl, UsedItemText
 	call PrintText
 	call Play_SFX_FULL_HEAL
-	call Functiona80
+	call WaitPressAorB_BlinkCursor
 	; fallthrough
 ; f795
 
-Functionf795: ; f795
+UseDisposableItem: ; f795
 	ld hl, NumItems
 	ld a, 1
 	ld [wItemQuantityChangeBuffer], a
 	jp TossItem
 ; f7a0
 
-Functionf7a0: ; f7a0
+UseBallInTrainerBattle: ; f7a0
 	call Functionedfa
 	ld de, ANIM_THROW_POKE_BALL
 	ld a, e
@@ -2959,7 +2962,7 @@ Functionf7a0: ; f7a0
 	ld a, d
 	ld [FXAnimIDHi], a
 	xor a
-	ld [wc689], a
+	ld [wKickCounter], a
 	ld [hBattleTurn], a
 	ld [wcfca], a
 	predef PlayBattleAnim
@@ -2967,7 +2970,7 @@ Functionf7a0: ; f7a0
 	call PrintText
 	ld hl, DontBeAThiefText
 	call PrintText
-	jr Functionf795
+	jr UseDisposableItem
 ; f7ca
 
 WontHaveAnyEffect_NotUsedMessage: ; f7ca
@@ -3105,13 +3108,13 @@ GotOffTheItemText: ; 0xf847
 
 
 Functionf84c: ; f84c
-	ld a, PartyMon1Moves - PartyMon1
+	ld a, MON_MOVES
 	call GetPartyParamLocation
 	push hl
 	ld de, Buffer1
 	predef FillPP
 	pop hl
-	ld bc, PartyMon1PP - PartyMon1Moves
+	ld bc, MON_PP - MON_MOVES
 	add hl, bc
 	ld de, Buffer1
 	ld b, 0
@@ -3123,7 +3126,7 @@ Functionf84c: ; f84c
 	ld a, [wd265]
 	dec a
 	jr nz, .asm_f876
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	inc a
 	cp b
 	jr nz, .asm_f87d
@@ -3193,14 +3196,14 @@ ComputeMaxPP: ; f881
 ; f8b9
 
 Functionf8b9: ; f8b9
-	ld a, PartyMon1PP - PartyMon1
+	ld a, MON_PP
 	call GetPartyParamLocation
 	push hl
-	ld a, PartyMon1Moves - PartyMon1
+	ld a, MON_MOVES
 	call GetPartyParamLocation
 	pop de
 	xor a ; PARTYMON
-	ld [wcfa9], a
+	ld [MenuSelection2], a
 	ld [MonType], a
 	ld c, NUM_MOVES
 .loop
@@ -3210,7 +3213,7 @@ Functionf8b9: ; f8b9
 	push hl
 	push de
 	push bc
-	call Functionf8ec
+	call GetMaxPPOfMove
 	pop bc
 	pop de
 	ld a, [de]
@@ -3220,7 +3223,7 @@ Functionf8b9: ; f8b9
 	add b
 	ld [de], a
 	inc de
-	ld hl, wcfa9
+	ld hl, MenuSelection2
 	inc [hl]
 	pop hl
 	dec c
@@ -3229,7 +3232,7 @@ Functionf8b9: ; f8b9
 ; f8ec
 
 
-Functionf8ec: ; f8ec
+GetMaxPPOfMove: ; f8ec
 	ld a, [StringBuffer1 + 0]
 	push af
 	ld a, [StringBuffer1 + 1]
@@ -3239,7 +3242,7 @@ Functionf8ec: ; f8ec
 	and a
 
 	ld hl, PartyMon1Moves
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	jr z, .got_partymon ; PARTYMON
 
 	ld hl, OTPartyMon1Moves
@@ -3279,7 +3282,7 @@ Functionf8ec: ; f8ec
 	pop hl
 
 	push bc
-	ld bc, PartyMon1PP - PartyMon1Moves
+	ld bc, MON_PP - MON_MOVES
 	ld a, [MonType]
 	cp WILDMON
 	jr nz, .notwild
@@ -3313,7 +3316,7 @@ GetMthMoveOfNthPartymon: ; f963
 	call AddNTimes
 
 GetMthMoveOfCurrentMon: ; f969
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld c, a
 	ld b, 0
 	add hl, bc

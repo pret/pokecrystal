@@ -111,4 +111,4 @@ CeladonDeptStore3F_MapEventHeader:
 	person_event SPRITE_YOUNGSTER, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x70d31, -1
 	person_event SPRITE_GAMEBOY_KID, 1, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, GameboyKidScript_0x70d34, -1
 	person_event SPRITE_GAMEBOY_KID, 1, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GameboyKidScript_0x70d3f, -1
-	person_event SPRITE_SUPER_NERD, 4, 13, SPRITEMOVEDATA_02, 1, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SuperNerdScript_0x70d4a, -1
+	person_event SPRITE_SUPER_NERD, 4, 13, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, SuperNerdScript_0x70d4a, -1

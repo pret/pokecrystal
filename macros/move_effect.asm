@@ -14,10 +14,10 @@ endm
 	command stab
 	command damagevariation
 	command checkhit
-	command effect0x0a
-	command effect0x0b
-	command effect0x0c
-	command resulttext
+	command lowersub
+	command hittargetnosub
+	command raisesub
+	command failuretext
 	command checkfaint
 	command criticaltext
 	command supereffectivetext
@@ -144,13 +144,13 @@ endm
 	command specialdefensedown2
 	command accuracydown2
 	command evasiondown2
-	command statmessageuser
-	command statmessagetarget
+	command statupmessage
+	command statdownmessage
 	command statupfailtext
 	command statdownfailtext
 	command effectchance
-	command effect0x91
-	command effect0x92
+	command statdownanim
+	command statupanim
 	command switchturn
 	command fakeout
 	command bellydrum
@@ -167,11 +167,11 @@ endm
 	command teleport
 	command beatup
 	command ragedamage
-	command effect0xa3
+	command resettypematchup
 	command allstatsup
 	command effect0xa5
-	command effect0xa6
-	command effect0xa7
+	command raisesubnoanim
+	command lowersubnoanim
 	command effect0xa8
 	command clearmissdamage
 	command movedelay

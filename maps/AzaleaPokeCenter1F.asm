@@ -93,4 +93,4 @@ AzaleaPokeCenter1F_MapEventHeader:
 	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, NurseScript_0x18db28, -1
 	person_event SPRITE_GENTLEMAN, 6, 9, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, 0, 0, GentlemanScript_0x18db2b, -1
 	person_event SPRITE_FISHING_GURU, 1, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, FishingGuruScript_0x18db2e, -1
-	person_event SPRITE_POKEFAN_F, 4, 1, SPRITEMOVEDATA_02, 2, 1, -1, -1, 0, 0, 0, PokefanFScript_0x18db31, -1
+	person_event SPRITE_POKEFAN_F, 4, 1, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, 0, 0, 0, PokefanFScript_0x18db31, -1

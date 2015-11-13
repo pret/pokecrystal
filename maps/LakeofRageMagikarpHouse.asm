@@ -50,7 +50,7 @@ UnknownScript_0x19a6e0:
 UnknownScript_0x19a6fe:
 	writetext UnknownText_0x19a977
 	keeptextopen
-	verbosegiveitem ELIXER, 1
+	verbosegiveitem ELIXER
 	iffalse UnknownScript_0x19a711
 	writetext UnknownText_0x19a9c3
 	closetext
@@ -221,4 +221,4 @@ LakeofRageMagikarpHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_FISHING_GURU, 3, 2, SPRITEMOVEDATA_03, 0, 0, -1, -1, 0, 0, 0, FishingGuruScript_0x19a6ae, -1
+	person_event SPRITE_FISHING_GURU, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, 0, 0, FishingGuruScript_0x19a6ae, -1

@@ -16,7 +16,7 @@ Special_CheckMagikarpLength: ; fbb32
 	; Now let's compute its length based on its DVs and ID.
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Species
-	ld bc, PartyMon2 - PartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	push hl
 	ld bc, MON_DVS

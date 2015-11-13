@@ -255,6 +255,7 @@ BattleAnimations:: ; c906f
 	dw BattleAnim_253
 	dw BattleAnim_254
 	dw BattleAnim_SweetScent2
+; $100
 	dw BattleAnim_ThrowPokeBall
 	dw BattleAnim_SendOutMon
 	dw BattleAnim_ReturnMon
@@ -302,10 +303,11 @@ BattleAnim_SweetScent2: ; c929c
 ; c92c1
 
 BattleAnim_ThrowPokeBall: ; c92c1
-	anim_jumpif $0, BattleAnim_ThrowPokeBall_branch_c92f2
-	anim_jumpif $1, BattleAnim_ThrowPokeBall_branch_c9347
-	anim_jumpif $2, BattleAnim_ThrowPokeBall_branch_c9305
-	anim_jumpif $4, BattleAnim_ThrowPokeBall_branch_c9326
+	anim_jumpif NO_ITEM, .TheTrainerBlockedTheBall
+	anim_jumpif MASTER_BALL, .MasterBall
+	anim_jumpif ULTRA_BALL, .UltraBall
+	anim_jumpif GREAT_BALL, .GreatBall
+	; any other ball
 	anim_2gfx ANIM_GFX_POKE_BALL, ANIM_GFX_SMOKE
 	anim_sound $1a, SFX_THROW_BALL
 	anim_obj $15, 68, 92, $40
@@ -316,10 +318,10 @@ BattleAnim_ThrowPokeBall: ; c92c1
 	anim_sound $1, SFX_BALL_POOF
 	anim_obj $1c, 136, 64, $10
 	anim_wait 16
-	anim_jump BattleAnim_ThrowPokeBall_branch_c9392
+	anim_jump .Shake
 ; c92f2
 
-BattleAnim_ThrowPokeBall_branch_c92f2: ; c92f2
+.TheTrainerBlockedTheBall: ; c92f2
 	anim_2gfx ANIM_GFX_POKE_BALL, ANIM_GFX_HIT
 	anim_sound $1a, SFX_THROW_BALL
 	anim_obj $16, 64, 92, $20
@@ -329,7 +331,7 @@ BattleAnim_ThrowPokeBall_branch_c92f2: ; c92f2
 	anim_ret
 ; c9305
 
-BattleAnim_ThrowPokeBall_branch_c9305: ; c9305
+.UltraBall: ; c9305
 	anim_2gfx ANIM_GFX_POKE_BALL, ANIM_GFX_SMOKE
 	anim_sound $1a, SFX_THROW_BALL
 	anim_obj $15, 68, 92, $40
@@ -340,10 +342,10 @@ BattleAnim_ThrowPokeBall_branch_c9305: ; c9305
 	anim_sound $1, SFX_BALL_POOF
 	anim_obj $1c, 136, 64, $10
 	anim_wait 16
-	anim_jump BattleAnim_ThrowPokeBall_branch_c9392
+	anim_jump .Shake
 ; c9326
 
-BattleAnim_ThrowPokeBall_branch_c9326: ; c9326
+.GreatBall: ; c9326
 	anim_2gfx ANIM_GFX_POKE_BALL, ANIM_GFX_SMOKE
 	anim_sound $1a, SFX_THROW_BALL
 	anim_obj $15, 68, 92, $40
@@ -354,10 +356,10 @@ BattleAnim_ThrowPokeBall_branch_c9326: ; c9326
 	anim_sound $1, SFX_BALL_POOF
 	anim_obj $1c, 136, 64, $10
 	anim_wait 16
-	anim_jump BattleAnim_ThrowPokeBall_branch_c9392
+	anim_jump .Shake
 ; c9347
 
-BattleAnim_ThrowPokeBall_branch_c9347: ; c9347
+.MasterBall: ; c9347
 	anim_3gfx ANIM_GFX_POKE_BALL, ANIM_GFX_SMOKE, ANIM_GFX_SPEED
 	anim_sound $1a, SFX_THROW_BALL
 	anim_obj $15, 64, 92, $20
@@ -378,7 +380,7 @@ BattleAnim_ThrowPokeBall_branch_c9347: ; c9347
 	anim_obj $2b, 136, 56, $36
 	anim_obj $2b, 136, 56, $37
 	anim_wait 64
-BattleAnim_ThrowPokeBall_branch_c9392: ; c9392
+.Shake: ; c9392
 	anim_bgeffect ANIM_BG_RETURN_MON, $0, $0, $0
 	anim_wait 8
 	anim_incobj $2
@@ -392,22 +394,22 @@ BattleAnim_ThrowPokeBall_branch_c9392: ; c9392
 	anim_wait 32
 	anim_wait 8
 	anim_setvar $0
-BattleAnim_ThrowPokeBall_branch_c93aa: ; c93aa
+.Loop: ; c93aa
 	anim_wait 48
 	anim_checkpokeball
-	anim_jumpvar $1, BattleAnim_ThrowPokeBall_branch_c93bc
-	anim_jumpvar $2, BattleAnim_ThrowPokeBall_branch_c93be
+	anim_jumpvar $1, .Click
+	anim_jumpvar $2, .BreakFree
 	anim_incobj $1
 	anim_sound $1, SFX_BALL_WIGGLE
-	anim_jump BattleAnim_ThrowPokeBall_branch_c93aa
+	anim_jump .Loop
 ; c93bc
 
-BattleAnim_ThrowPokeBall_branch_c93bc: ; c93bc
+.Click: ; c93bc
 	anim_clearsprites
 	anim_ret
 ; c93be
 
-BattleAnim_ThrowPokeBall_branch_c93be: ; c93be
+.BreakFree: ; c93be
 	anim_setobj $1, $b
 	anim_sound $1, SFX_BALL_POOF
 	anim_obj $1c, 136, 64, $10

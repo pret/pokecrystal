@@ -103,13 +103,13 @@ endr
 .AccessBankOfMom: ; 162a8
 	ld hl, UnknownText_0x1665d
 	call PrintText
-	call LoadMenuDataHeader_0x1d75
+	call LoadStandardMenuDataHeader
 	ld hl, MenuDataHeader_0x166b5
 	call CopyMenuDataHeader
 	call InterpretMenu2
 	call WriteBackup
 	jr c, .cancel
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	cp $1
 	jr z, .withdraw
 	cp $2
@@ -148,7 +148,7 @@ endr
 	ld [hl], a
 	ld a, $5
 	ld [wcf64], a
-	call LoadMenuDataHeader_0x1d75
+	call LoadStandardMenuDataHeader
 	call Function16517
 	call Function1656b
 	call Function16571
@@ -216,7 +216,7 @@ endr
 	ld [hl], a
 	ld a, $5
 	ld [wcf64], a
-	call LoadMenuDataHeader_0x1d75
+	call LoadStandardMenuDataHeader
 	call Function16512
 	call Function1656b
 	call Function16571
@@ -510,7 +510,7 @@ Function16571: ; 16571
 	ld de, StringBuffer2
 	lb bc, PRINTNUM_MONEY | PRINTNUM_LEADINGZEROS | 3, 6
 	call PrintNum
-	ld a, [$ff9b]
+	ld a, [hVBlankCounter]
 	and $10
 	jr nz, .skip
 	hlcoord 13, 6

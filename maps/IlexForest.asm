@@ -339,7 +339,7 @@ BlackBeltScript_0x6edae:
 	iftrue UnknownScript_0x6edd8
 	writetext UnknownText_0x6f099
 	keeptextopen
-	verbosegiveitem HM_CUT, 1
+	verbosegiveitem HM_CUT
 	setevent EVENT_GOT_HM01_CUT
 	writetext UnknownText_0x6f141
 	closetext
@@ -365,7 +365,7 @@ RockerScript_0x6edde:
 	iftrue UnknownScript_0x6edf3
 	writetext UnknownText_0x6f21b
 	keeptextopen
-	verbosegiveitem TM_HEADBUTT, 1
+	verbosegiveitem TM_HEADBUTT
 	iffalse UnknownScript_0x6edf7
 	setevent EVENT_GOT_TM02_HEADBUTT
 UnknownScript_0x6edf3:
@@ -439,7 +439,7 @@ UnknownScript_0x6ee38:
 	end
 
 UnknownScript_0x6ee42:
-	takeitem GS_BALL, 1
+	takeitem GS_BALL
 	clearevent EVENT_FOREST_IS_RESTLESS
 	setevent EVENT_AZALEA_TOWN_KURT
 	disappear $8
@@ -572,8 +572,8 @@ MovementData_0x6eed2:
 	big_step_down
 	fix_facing
 	jump_step_up
-	accelerate_last
-	accelerate_last
+	step_sleep_8
+	step_sleep_8
 	remove_fixed_facing
 	big_step_up
 	big_step_up
@@ -664,8 +664,8 @@ MovementData_0x6ef23:
 	big_step_left
 	fix_facing
 	jump_step_right
-	accelerate_last
-	accelerate_last
+	step_sleep_8
+	step_sleep_8
 	remove_fixed_facing
 	big_step_left
 	big_step_left
@@ -694,8 +694,8 @@ MovementData_0x6ef3d:
 	big_step_left
 	fix_facing
 	jump_step_right
-	accelerate_last
-	accelerate_last
+	step_sleep_8
+	step_sleep_8
 	remove_fixed_facing
 	big_step_right
 	big_step_right
@@ -950,14 +950,14 @@ IlexForest_MapEventHeader:
 
 .PersonEvents:
 	db 11
-	person_event SPRITE_BIRD, 31, 14, SPRITEMOVEDATA_03, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, BirdScript_0x6eb8f, EVENT_ILEX_FOREST_FARFETCHD
+	person_event SPRITE_BIRD, 31, 14, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, BirdScript_0x6eb8f, EVENT_ILEX_FOREST_FARFETCHD
 	person_event SPRITE_YOUNGSTER, 28, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x6eb7b, EVENT_ILEX_FOREST_APPRENTICE
 	person_event SPRITE_BLACK_BELT, 28, 5, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, BlackBeltScript_0x6edae, EVENT_ILEX_FOREST_CHARCOAL_MASTER
 	person_event SPRITE_ROCKER, 14, 15, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, RockerScript_0x6edde, -1
-	person_event SPRITE_POKE_BALL, 32, 20, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6ee10, EVENT_ILEX_FOREST_REVIVE
+	person_event SPRITE_POKE_BALL, 32, 20, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6ee10, EVENT_ILEX_FOREST_REVIVE
 	person_event SPRITE_KURT, 29, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_ILEX_FOREST_KURT
 	person_event SPRITE_LASS, 24, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LassScript_0x6ee0d, EVENT_ILEX_FOREST_LASS
 	person_event SPRITE_YOUNGSTER, 1, 12, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 2, 0, TrainerBug_catcherWayne, -1
-	person_event SPRITE_POKE_BALL, 17, 9, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6ee12, EVENT_ILEX_FOREST_X_ATTACK
-	person_event SPRITE_POKE_BALL, 7, 17, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6ee14, EVENT_ILEX_FOREST_ANTIDOTE
-	person_event SPRITE_POKE_BALL, 1, 27, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6ee16, EVENT_ILEX_FOREST_ETHER
+	person_event SPRITE_POKE_BALL, 17, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6ee12, EVENT_ILEX_FOREST_X_ATTACK
+	person_event SPRITE_POKE_BALL, 7, 17, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6ee14, EVENT_ILEX_FOREST_ANTIDOTE
+	person_event SPRITE_POKE_BALL, 1, 27, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x6ee16, EVENT_ILEX_FOREST_ETHER

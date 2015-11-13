@@ -1,13 +1,13 @@
 Function_LoadOpponentTrainerAndPokemons: ; 1f8000
 	ld a, [rSVBK]
 	push af
-	ld a, $3
+	ld a, BANK(BT_OTTrainer)
 	ld [rSVBK], a
 	
-	; Fill BT_OTrainer with zeros
+	; Fill BT_OTTrainer with zeros
 	xor a
-	ld hl, BT_OTrainer
-	ld bc, BT_OTrainerEnd - BT_OTrainer
+	ld hl, BT_OTTrainer
+	ld bc, BT_OTTrainerEnd - BT_OTTrainer
 	call ByteFill
 	
 	; Write $ff into the Item-Slots
@@ -17,36 +17,36 @@ Function_LoadOpponentTrainerAndPokemons: ; 1f8000
 	ld [BT_OTPkmn3Item], a
 	
 	; Set BT_OTTrainer as start address to write the following data to
-	ld de, BT_OTrainer
+	ld de, BT_OTTrainer
 
 	ld a, [hRandomAdd]
 	ld b, a
-.asm_1f8022 ; loop to find a random trainer
+.resample ; loop to find a random trainer
 	call Random
 	ld a, [hRandomAdd]
 	add b
 	ld b, a ; b contains the nr of the trainer
 IF DEF(CRYSTAL11)
-	and $7f
-	cp $46
+	and (1 << 7) - 1
+	cp 70
 ELSE
-	and $1f
-	cp $15
+	and (1 << 5) - 1
+	cp 21
 ENDC
-	jr nc, .asm_1f8022
+	jr nc, .resample
 	ld b, a
 
-	ld a, BANK(sNrOfBeatenBattleTowerTrainers)
+	ld a, BANK(sBTTrainers)
 	call GetSRAMBank
 
 	ld c, BATTLETOWER_NROFTRAINERS
 	ld hl, sBTTrainers
-.asm_1f803a
+.next_trainer
 	ld a, [hli]
 	cp b
-	jr z, .asm_1f8022
+	jr z, .resample
 	dec c
-	jr nz, .asm_1f803a ; c <= 7  initialise all 7 trainers?
+	jr nz, .next_trainer ; c <= 7  initialise all 7 trainers?
 
 	ld hl, sBTTrainers
 	ld a, [sNrOfBeatenBattleTowerTrainers]
@@ -61,9 +61,9 @@ ENDC
 	push af
 ; Copy name (10 bytes) and class (1 byte) of trainer
 	ld hl, BattleTowerTrainers
-	ld bc, 11
+	ld bc, NAME_LENGTH
 	call AddNTimes
-	ld bc, 11
+	ld bc, NAME_LENGTH
 	call CopyBytes
 
 	call Function_LoadRandomBattleTowerPkmn
@@ -73,7 +73,7 @@ ENDC
 	ld bc, BATTLETOWER_TRAINERDATALENGTH
 	call AddNTimes
 	ld bc, BATTLETOWER_TRAINERDATALENGTH
-.asm_1f8070
+.copy_bt_trainer_data_loop
 	ld a, BANK(BattleTowerTrainerData)
 	call GetFarByte
 	ld [de], a
@@ -82,7 +82,7 @@ ENDC
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_1f8070
+	jr nz, .copy_bt_trainer_data_loop
 
 	pop af
 	ld [rSVBK], a
@@ -108,20 +108,20 @@ Function_LoadRandomBattleTowerPkmn: ; 1f8081
 
 	ld a, [hRandomAdd]
 	ld b, a
-.asm_1f8099
+.resample
 	call Random
 	ld a, [hRandomAdd]
 	add b
 	ld b, a
 	and $1f
-	cp (BattleTowerMons2 - BattleTowerMons1) / ($3b)
-	jr nc, .asm_1f8099
+	cp BATTLETOWER_NRMONSPERLEVELBRACKET
+	jr nc, .resample
 	; in register 'a' is the chosen Pkmn of the LevelGroup
 
 	; Check if Pkmn was already loaded before
 	; Check current and the 2 previous teams
 	; includes check if item is double at the current team
-	ld bc, BATTLETOWER_PKMNSTRUCTLENGTH + $b
+	ld bc, PARTYMON_STRUCT_LENGTH + PKMN_NAME_LENGTH
 	call AddNTimes
 	ld a, [hli]
 	ld b, a
@@ -164,17 +164,17 @@ Function_LoadRandomBattleTowerPkmn: ; 1f8081
 	cp b
 	jr z, .FindARandomBattleTowerPkmn
 
-	ld bc, BATTLETOWER_PKMNSTRUCTLENGTH + $b
+	ld bc, PARTYMON_STRUCT_LENGTH + PKMN_NAME_LENGTH
 	call CopyBytes
 
-	ld a, [wd265]
+	ld a, [wNamedObjectIndexBuffer]
 	push af
 	push de
-	ld hl, - (BATTLETOWER_PKMNSTRUCTLENGTH + $b)
+	ld hl, - (PARTYMON_STRUCT_LENGTH + PKMN_NAME_LENGTH)
 	add hl, de
 	ld a, [hl]
-	ld [wd265], a
-	ld bc, BATTLETOWER_PKMNSTRUCTLENGTH
+	ld [wNamedObjectIndexBuffer], a
+	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	push hl
 	call GetPokemonName
@@ -186,7 +186,7 @@ Function_LoadRandomBattleTowerPkmn: ; 1f8081
 
 	pop de
 	pop af
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	pop bc
 	dec c
 	jp nz, .loop
@@ -229,6 +229,7 @@ BattleTowerTrainers: ; 1f814e
 	db "KAUFMAN@@@", SWIMMERM
 	db "LANCASTER@", SKIER
 	db "McMAHILL@@", CAMPER
+; The following can only be sampled in Crystal 1.1.
 	db "OBRIEN@@@@", GENTLEMAN
 	db "FROST@@@@@", BEAUTY
 	db "MORSE@@@@@", SUPER_NERD
@@ -282,7 +283,7 @@ BattleTowerTrainers: ; 1f814e
 
 
 BattleTowerMons: ; 1f8450
-
+; 10 groups of 21 mons.
 BattleTowerMons1:
 
 	db JOLTEON

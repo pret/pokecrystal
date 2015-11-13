@@ -44,7 +44,7 @@ Jumptable_10030: ; 10030 (4:4030)
 
 Function10046: ; 10046 (4:4046)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call Function10955
 	ld a, [wcf64]
 	ld [wJumptableIndex], a
@@ -67,10 +67,10 @@ Function10067: ; 10067 (4:4067)
 	ld [wMenuCursorBuffer], a
 	ld a, [wd0df]
 	ld [wd0e4], a
-	call Function350c
+	call HandleScrollingMenu
 	ld a, [wd0e4]
 	ld [wd0df], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wItemsPocketCursor], a
 	ld b, $7
 	ld c, $3
@@ -95,10 +95,10 @@ Function100a6: ; 100a6 (4:40a6)
 	ld [wMenuCursorBuffer], a
 	ld a, [wd0e0]
 	ld [wd0e4], a
-	call Function350c
+	call HandleScrollingMenu
 	ld a, [wd0e4]
 	ld [wd0e0], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wKeyItemsPocketCursor], a
 	ld b, $3
 	ld c, $7
@@ -113,7 +113,7 @@ Function100d3: ; 100d3 (4:40d3)
 	call ClearPocketList
 	call DrawPocketName
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call WaitBGMap_DrawPackGFX
 	call Function10866
 	ret
@@ -141,7 +141,7 @@ Function100e8: ; 100e8 (4:40e8)
 	call ExitMenu
 	pop hl
 	ret c
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	call Function1086b
 	jp [hl]
@@ -203,7 +203,7 @@ Function10159: ; 10159
 	ld [Options], a
 .asm_10179
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call Function10955
 	call WaitBGMap_DrawPackGFX
 	call Function10a40
@@ -225,10 +225,10 @@ Function10198: ; 10198 (4:4198)
 	ld [wMenuCursorBuffer], a
 	ld a, [wd0e1]
 	ld [wd0e4], a
-	call Function350c
+	call HandleScrollingMenu
 	ld a, [wd0e4]
 	ld [wd0e1], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wBallsPocketCursor], a
 	ld b, $1
 	ld c, $5
@@ -301,7 +301,7 @@ Function101c5: ; 101c5 (4:41c5)
 	call ExitMenu
 	pop hl
 	ret c
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	call Function1086b
 	jp [hl]
@@ -478,7 +478,7 @@ Function10311: ; 10311
 	jr z, .NoPokemon
 	call DoItemEffect
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call Function10955
 	call WaitBGMap_DrawPackGFX
 	call Function10a40
@@ -594,7 +594,7 @@ Function103fd: ; 103fd
 	ld [Options], a
 	ld a, $8
 	ld [PartyMenuActionText], a
-	call WhiteBGMap
+	call ClearBGPalettes
 	callba Function5004f
 	callba Function50405
 	callba Function503e0
@@ -634,7 +634,7 @@ Function103fd: ; 103fd
 	pop af
 	ld [Options], a
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call Function10955
 	call WaitBGMap_DrawPackGFX
 	call Function10a40
@@ -702,7 +702,7 @@ Jumptable_104c3: ; 104c3 (4:44c3)
 
 Function104d9: ; 104d9 (4:44d9)
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call Function10955
 	ld a, [wcf64]
 	ld [wJumptableIndex], a
@@ -725,10 +725,10 @@ Function104fa: ; 104fa (4:44fa)
 	ld [wMenuCursorBuffer], a
 	ld a, [wd0df]
 	ld [wd0e4], a
-	call Function350c
+	call HandleScrollingMenu
 	ld a, [wd0e4]
 	ld [wd0df], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wItemsPocketCursor], a
 	ld b, $7
 	ld c, $3
@@ -753,10 +753,10 @@ Function10539: ; 10539 (4:4539)
 	ld [wMenuCursorBuffer], a
 	ld a, [wd0e0]
 	ld [wd0e4], a
-	call Function350c
+	call HandleScrollingMenu
 	ld a, [wd0e4]
 	ld [wd0e0], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wKeyItemsPocketCursor], a
 	ld b, $3
 	ld c, $7
@@ -771,7 +771,7 @@ Function10566: ; 10566 (4:4566)
 	call ClearPocketList
 	call DrawPocketName
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call WaitBGMap_DrawPackGFX
 	ld hl, UnknownText_0x10b0c
 	call Function10889
@@ -804,10 +804,10 @@ Function105a6: ; 105a6 (4:45a6)
 	ld [wMenuCursorBuffer], a
 	ld a, [wd0e1]
 	ld [wd0e4], a
-	call Function350c
+	call HandleScrollingMenu
 	ld a, [wd0e4]
 	ld [wd0e1], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wBallsPocketCursor], a
 	ld b, $1
 	ld c, $5
@@ -836,7 +836,7 @@ Function105dc: ; 105dc (4:45dc)
 	call ExitMenu
 	pop hl
 	ret c
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	dec a
 	call Function1086b
 	jp [hl]
@@ -915,14 +915,14 @@ Function105dc: ; 105dc (4:45dc)
 	and a
 	jr nz, .asm_1067e
 	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapMode], a
 	call Function10955
 	call WaitBGMap_DrawPackGFX
 	call Function10a40
 	ret
 
 .asm_1066c: ; 1066c (4:466c)
-	call WhiteBGMap
+	call ClearBGPalettes
 	jr .asm_1067e
 
 .BattleOnly: ; 10671 (4:4671)
@@ -1010,10 +1010,10 @@ Jumptable_106d1: ; 106d1 (4:46d1)
 	ld [wMenuCursorBuffer], a
 	ld a, [wd0df]
 	ld [wd0e4], a
-	call Function350c
+	call HandleScrollingMenu
 	ld a, [wd0e4]
 	ld [wd0df], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wItemsPocketCursor], a
 	ret
 
@@ -1026,10 +1026,10 @@ Jumptable_106d1: ; 106d1 (4:46d1)
 	ld [wMenuCursorBuffer], a
 	ld a, [wd0e0]
 	ld [wd0e4], a
-	call Function350c
+	call HandleScrollingMenu
 	ld a, [wd0e4]
 	ld [wd0e0], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wKeyItemsPocketCursor], a
 	ret
 
@@ -1051,10 +1051,10 @@ Jumptable_106d1: ; 106d1 (4:46d1)
 	ld [wMenuCursorBuffer], a
 	ld a, [wd0e1]
 	ld [wd0e4], a
-	call Function350c
+	call HandleScrollingMenu
 	ld a, [wd0e4]
 	ld [wd0e1], a
-	ld a, [wcfa9]
+	ld a, [MenuSelection2]
 	ld [wBallsPocketCursor], a
 	ret
 
@@ -1170,9 +1170,9 @@ MenuData2_0x107f7: ; 0x107f7
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, OTPartyMons
-	dbw BANK(PlaceMenuItemName), PlaceMenuItemName
-	dbw BANK(PlaceMenuItemQuantity), PlaceMenuItemQuantity
-	dbw BANK(Function244c3), Function244c3
+	dba PlaceMenuItemName
+	dba PlaceMenuItemQuantity
+	dba Function244c3
 ; 10807
 
 Function10807: ; 10807 (4:4807)
@@ -1194,9 +1194,9 @@ MenuData2_0x10816: ; 0x10816
 	db 5, 8 ; rows, columns
 	db 1 ; horizontal spacing
 	dbw 0, OTPartyMon1Exp + 2
-	dbw BANK(PlaceMenuItemName), PlaceMenuItemName
-	dbw BANK(PlaceMenuItemQuantity), PlaceMenuItemQuantity
-	dbw BANK(Function244c3), Function244c3
+	dba PlaceMenuItemName
+	dba PlaceMenuItemQuantity
+	dba Function244c3
 ; 10826
 
 Function10826: ; 10826 (4:4826)
@@ -1227,9 +1227,9 @@ MenuData2_0x1084a: ; 0x1084a
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, OTPartyMon1CaughtGender
-	dbw BANK(PlaceMenuItemName), PlaceMenuItemName
-	dbw BANK(PlaceMenuItemQuantity), PlaceMenuItemQuantity
-	dbw BANK(Function244c3), Function244c3
+	dba PlaceMenuItemName
+	dba PlaceMenuItemQuantity
+	dba Function244c3
 ; 1085a
 
 Function1085a: ; 1085a (4:485a)
@@ -1237,7 +1237,7 @@ Function1085a: ; 1085a (4:485a)
 	call InitPocket
 	pop hl
 	call CopyMenuDataHeader
-	call Function350c
+	call HandleScrollingMenu
 	ret
 
 Function10866: ; 10866 (4:4866)
@@ -1401,17 +1401,17 @@ Function108d4: ; 108d4 (4:48d4)
 
 
 Function10955: ; 10955
-	call WhiteBGMap
+	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
 	call DisableLCD
 	ld hl, PackMenuGFX
 	ld de, VTiles2
-	ld bc, $0600
+	ld bc, $60 tiles
 	ld a, BANK(PackMenuGFX)
 	call FarCopyBytes
 	hlcoord 0, 1
-	ld bc, 220
+	ld bc, 11 * SCREEN_WIDTH
 	ld a, $24
 	call ByteFill
 	hlcoord 5, 1
@@ -1419,12 +1419,12 @@ Function10955: ; 10955
 	call ClearBox
 	hlcoord 0, 0
 	ld a, $28
-	ld c, $14
-.asm_1098a
+	ld c, SCREEN_WIDTH
+.loop
 	ld [hli], a
 	inc a
 	dec c
-	jr nz, .asm_1098a
+	jr nz, .loop
 	call DrawPocketName
 	call Function109a5
 	hlcoord 0, 12
@@ -1538,9 +1538,9 @@ MenuData2_0x10a57: ; 0x10a57
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, NumItems
-	dbw BANK(PlaceMenuItemName), PlaceMenuItemName
-	dbw BANK(PlaceMenuItemQuantity), PlaceMenuItemQuantity
-	dbw BANK(Function244c3), Function244c3
+	dba PlaceMenuItemName
+	dba PlaceMenuItemQuantity
+	dba Function244c3
 ; 10a67
 
 MenuDataHeader_0x10a67: ; 0x10a67
@@ -1556,9 +1556,9 @@ MenuData2_0x10a6f: ; 0x10a6f
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, NumItems
-	dbw BANK(PlaceMenuItemName), PlaceMenuItemName
-	dbw BANK(PlaceMenuItemQuantity), PlaceMenuItemQuantity
-	dbw BANK(Function244c3), Function244c3
+	dba PlaceMenuItemName
+	dba PlaceMenuItemQuantity
+	dba Function244c3
 ; 10a7f
 
 MenuDataHeader_0x10a7f: ; 0x10a7f
@@ -1574,9 +1574,9 @@ MenuData2_0x10a87: ; 0x10a87
 	db 5, 8 ; rows, columns
 	db 1 ; horizontal spacing
 	dbw 0, NumKeyItems
-	dbw BANK(PlaceMenuItemName), PlaceMenuItemName
-	dbw BANK(PlaceMenuItemQuantity), PlaceMenuItemQuantity
-	dbw BANK(Function244c3), Function244c3
+	dba PlaceMenuItemName
+	dba PlaceMenuItemQuantity
+	dba Function244c3
 ; 10a97
 
 MenuDataHeader_0x10a97: ; 0x10a97
@@ -1592,9 +1592,9 @@ MenuData2_0x10a9f: ; 0x10a9f
 	db 5, 8 ; rows, columns
 	db 1 ; horizontal spacing
 	dbw 0, NumKeyItems
-	dbw BANK(PlaceMenuItemName), PlaceMenuItemName
-	dbw BANK(PlaceMenuItemQuantity), PlaceMenuItemQuantity
-	dbw BANK(Function244c3), Function244c3
+	dba PlaceMenuItemName
+	dba PlaceMenuItemQuantity
+	dba Function244c3
 ; 10aaf
 
 MenuDataHeader_0x10aaf: ; 0x10aaf
@@ -1610,9 +1610,9 @@ MenuData2_0x10ab7: ; 0x10ab7
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, NumBalls
-	dbw BANK(PlaceMenuItemName), PlaceMenuItemName
-	dbw BANK(PlaceMenuItemQuantity), PlaceMenuItemQuantity
-	dbw BANK(Function244c3), Function244c3
+	dba PlaceMenuItemName
+	dba PlaceMenuItemQuantity
+	dba Function244c3
 ; 10ac7
 
 MenuDataHeader_0x10ac7: ; 0x10ac7
@@ -1628,9 +1628,9 @@ MenuData2_0x10acf: ; 0x10acf
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, NumBalls
-	dbw BANK(PlaceMenuItemName), PlaceMenuItemName
-	dbw BANK(PlaceMenuItemQuantity), PlaceMenuItemQuantity
-	dbw BANK(Function244c3), Function244c3
+	dba PlaceMenuItemName
+	dba PlaceMenuItemQuantity
+	dba Function244c3
 ; 10adf
 
 UnknownText_0x10adf: ; 0x10adf

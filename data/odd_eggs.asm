@@ -44,7 +44,7 @@ GiveOddEgg: ; 1fb4b6
 	call AddNTimes
 
 	ld de, OddEggSpecies
-	ld bc, party_struct_length + 2 * PKMN_NAME_LENGTH
+	ld bc, PARTYMON_STRUCT_LENGTH + 2 * PKMN_NAME_LENGTH
 	call CopyBytes
 
 	ld a, EGG_TICKET

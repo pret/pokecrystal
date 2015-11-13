@@ -120,19 +120,19 @@ UnknownScript_0x1a5507:
 	checkevent EVENT_WADE_HAS_BITTER_BERRY
 	iftrue .BitterBerry
 .Berry
-	verbosegiveitem BERRY, 1
+	verbosegiveitem BERRY
 	iffalse .PackFull
 	jump .Done
 .Psncureberry
-	verbosegiveitem PSNCUREBERRY, 1
+	verbosegiveitem PSNCUREBERRY
 	iffalse .PackFull
 	jump .Done
 .Przcureberry
-	verbosegiveitem PRZCUREBERRY, 1
+	verbosegiveitem PRZCUREBERRY
 	iffalse .PackFull
 	jump .Done
 .BitterBerry
-	verbosegiveitem BITTER_BERRY, 1
+	verbosegiveitem BITTER_BERRY
 	iffalse .PackFull
 .Done
 	clearflag ENGINE_WADE_HAS_ITEM
@@ -201,7 +201,7 @@ UnknownScript_0x1a5584:
 	writetext UnknownText_0x1a57ba
 	keeptextopen
 	setevent EVENT_GAVE_KENYA
-	verbosegiveitem TM_NIGHTMARE, 1
+	verbosegiveitem TM_NIGHTMARE
 	iffalse UnknownScript_0x1a55b3
 	setevent EVENT_GOT_TM50_NIGHTMARE
 UnknownScript_0x1a55af:
@@ -431,9 +431,9 @@ Route31_MapEventHeader:
 .PersonEvents:
 	db 7
 	person_event SPRITE_FISHER, 7, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x1a5570, -1
-	person_event SPRITE_YOUNGSTER, 5, 9, SPRITEMOVEDATA_02, 1, 1, -1, -1, 0, 0, 0, YoungsterScript_0x1a55ed, -1
+	person_event SPRITE_YOUNGSTER, 5, 9, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, 0, 0, YoungsterScript_0x1a55ed, -1
 	person_event SPRITE_BUG_CATCHER, 13, 21, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 5, TrainerBug_catcherWade1, -1
-	person_event SPRITE_COOLTRAINER_M, 8, 33, SPRITEMOVEDATA_02, 1, 1, -1, -1, 0, 0, 0, CooltrainerMScript_0x1a55f6, -1
-	person_event SPRITE_FRUIT_TREE, 7, 16, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a55f9, -1
-	person_event SPRITE_POKE_BALL, 5, 29, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a55fb, EVENT_ROUTE_31_POTION
-	person_event SPRITE_POKE_BALL, 15, 19, SPRITEMOVEDATA_01, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a55fd, EVENT_ROUTE_31_POKE_BALL
+	person_event SPRITE_COOLTRAINER_M, 8, 33, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, 0, 0, CooltrainerMScript_0x1a55f6, -1
+	person_event SPRITE_FRUIT_TREE, 7, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a55f9, -1
+	person_event SPRITE_POKE_BALL, 5, 29, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a55fb, EVENT_ROUTE_31_POTION
+	person_event SPRITE_POKE_BALL, 15, 19, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a55fd, EVENT_ROUTE_31_POKE_BALL
