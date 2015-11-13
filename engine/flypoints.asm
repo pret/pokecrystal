@@ -828,7 +828,7 @@ TownMapMon: ; 91f7b
 ; Animation/palette
 	ld de, 0
 	ld a, $0
-	call Function3b2a
+	call _InitSpriteAnimStruct
 
 	ld hl, 3
 	add hl, bc
@@ -869,7 +869,7 @@ TownMapPlayerIcon: ; 91fa6
 	ld b, $1e ; Female
 .asm_91fd3
 	ld a, b
-	call Function3b2a
+	call _InitSpriteAnimStruct
 
 	ld hl, $3
 	add hl, bc

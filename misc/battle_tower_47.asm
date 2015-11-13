@@ -495,39 +495,39 @@ Jumptable_11c2bb: ; 11c2bb (47:42bb)
 
 Function11c2e9: ; 11c2e9 (47:42e9)
 	lb de, $1a, $0d
-	ld a, $1d
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_1D
+	call _InitSpriteAnimStruct
 	lb de, $42, $0d
-	ld a, $1d
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_1D
+	call _InitSpriteAnimStruct
 	ld hl, $c
 	add hl, bc
 	ld a, $1
 	ld [hl], a
 	lb de, $4a, $10
-	ld a, $1d
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_1D
+	call _InitSpriteAnimStruct
 	ld hl, $c
 	add hl, bc
 	ld a, $3
 	ld [hl], a
 	lb de, $50, $80
-	ld a, $1d
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_1D
+	call _InitSpriteAnimStruct
 	ld hl, $c
 	add hl, bc
 	ld a, $4
 	ld [hl], a
 	lb de, $50, $20
-	ld a, $1d
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_1D
+	call _InitSpriteAnimStruct
 	ld hl, $c
 	add hl, bc
 	ld a, $5
 	ld [hl], a
 	lb de, $50, $10
-	ld a, $1d
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_1D
+	call _InitSpriteAnimStruct
 	ld hl, $c
 	add hl, bc
 	ld a, $2

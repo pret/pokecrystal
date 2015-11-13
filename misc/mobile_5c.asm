@@ -1761,22 +1761,22 @@ Function171b42: ; 171b42 (5c:5b42)
 
 Function171b4b: ; 171b4b (5c:5b4b)
 	lb de, $40, $10
-	ld a, $1d
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_1D
+	call _InitSpriteAnimStruct
 	ld hl, $c
 	add hl, bc
 	ld a, $8
 	ld [hl], a
 	lb de, $40, $98
-	ld a, $1d
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_1D
+	call _InitSpriteAnimStruct
 	ld hl, $c
 	add hl, bc
 	ld a, $9
 	ld [hl], a
 	lb de, $8a, $70
-	ld a, $1d
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_1D
+	call _InitSpriteAnimStruct
 	ld hl, $c
 	add hl, bc
 	ld a, $a

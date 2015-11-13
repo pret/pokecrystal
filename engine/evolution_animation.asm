@@ -321,7 +321,7 @@ Function4e7e8: ; 4e7e8
 	push de
 	ld de, $4858
 	ld a, $13
-	call Function3b2a
+	call _InitSpriteAnimStruct
 	ld hl, $b
 	add hl, bc
 	ld a, [wJumptableIndex]

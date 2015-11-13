@@ -792,8 +792,8 @@ Function1736d: ; 1736d (5:736d)
 	add $4c
 	ld d, a
 	ld e, $58
-	ld a, $19
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_19
+	call _InitSpriteAnimStruct
 	ld hl, $3
 	add hl, bc
 	ld [hl], $0
@@ -821,8 +821,8 @@ Function173b3: ; 173b3 (5:73b3)
 	ld b, a
 	push hl
 	push bc
-	ld a, $1c
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_1C
+	call _InitSpriteAnimStruct
 	ld hl, $3
 	add hl, bc
 	ld [hl], $0

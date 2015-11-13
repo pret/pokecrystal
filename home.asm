@@ -2016,17 +2016,17 @@ Function3b0c:: ; 3b0c
 
 
 
-Function3b2a:: ; 3b2a
+_InitSpriteAnimStruct:: ; 3b2a
 
 	ld [wc3b8], a
 	ld a, [hROMBank]
 	push af
 
-	ld a, BANK(Function8cfd6)
+	ld a, BANK(InitSpriteAnimStruct)
 	rst Bankswitch
 	ld a, [wc3b8]
 
-	call Function8cfd6
+	call InitSpriteAnimStruct
 
 	pop af
 	rst Bankswitch

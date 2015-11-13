@@ -123,7 +123,7 @@ Functione1f1c: ; e1f1c
 .asm_e1f30
 	ld de, $341c
 	ld a, $c
-	call Function3b2a
+	call _InitSpriteAnimStruct
 	ld a, $5
 	ld [wc702], a
 	ld hl, wJumptableIndex

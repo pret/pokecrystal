@@ -380,23 +380,50 @@ wc310:: ds 1
 wc311:: ds 1
 wc312:: ds 1
 wc313:: ds 1
-; wPartyMonMenuIconAnims::
+wSpriteAnimationStructs::
+
+sprite_anim_struct: MACRO
+\1Index:: ds 1
+	ds 1
+\1AnimSeqID:: ds 1
+\1TileID:: ds 1
+\1XCoord:: ds 1
+\1YCoord:: ds 1
+\1XOffset:: ds 1
+\1YOffset:: ds 1
+\1FrameTimer:: ds 1
+	ds 1
+\1FrameIndex:: ds 1
+	ds 5
+ENDM
+
 ; Field  0: Index
 ; Fields 1-3: Loaded from Unknown_8d1c4
-wc314:: ds 16 ; c314
-wc324:: ds 16 ; c324
-wc334:: ds 16 ; c334
-wc344:: ds 16 ; c344
-wc354:: ds 16 ; c354
-wc364:: ds 16 ; c364
-wc374:: ds 16 ; c374
-wc384:: ds 16 ; c384
-wc394:: ds 16 ; c394
-wc3a4:: ds 16 ; c3a4
-; wPartyMonMenuIconAnimsEnd::
+wc314::
+SpriteAnim1:: sprite_anim_struct SpriteAnim1
+wc324::
+SpriteAnim2:: sprite_anim_struct SpriteAnim2
+wc334::
+SpriteAnim3:: sprite_anim_struct SpriteAnim3
+wc344::
+SpriteAnim4:: sprite_anim_struct SpriteAnim4
+wc354::
+SpriteAnim5:: sprite_anim_struct SpriteAnim5
+wc364::
+SpriteAnim6:: sprite_anim_struct SpriteAnim6
+wc374::
+SpriteAnim7:: sprite_anim_struct SpriteAnim7
+wc384::
+SpriteAnim8:: sprite_anim_struct SpriteAnim8
+wc394::
+SpriteAnim9:: sprite_anim_struct SpriteAnim9
+wc3a4::
+SpriteAnim10:: sprite_anim_struct SpriteAnim10
+wSpriteAnimationStructsEnd::
 	ds -8
 wc3ac:: ds 8 ; c3ac
-wc3b4:: ds 1 ; something to do with wc314
+wSpriteAnimCount::
+wc3b4:: ds 1
 wc3b5:: ds 1
 
 CurIcon:: ; c3b6

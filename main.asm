@@ -1392,8 +1392,8 @@ Function639b: ; unreferenced
 	ld a, [wcf65]
 	and $3
 	ret nz
-	ld bc, wc3a4
-	ld hl, $a
+	ld bc, SpriteAnim10
+	ld hl, SpriteAnim10FrameIndex - SpriteAnim10
 	add hl, bc ; over-the-top compicated way to load wc3ae into hl
 	ld l, [hl]
 	ld h, 0
@@ -1418,18 +1418,19 @@ endr
 	ret z
 	ld e, a
 	ld d, [hl]
-	ld a, $1
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_01
+	call _InitSpriteAnimStruct
 	ret
 ; 63ca
 
 Data63ca: ; 63ca
-	dw $505c, 0
-	dw $685c, $585c
-	dw $685c, $785c
-	dw $885c, $785c
-	dw 0, $785c
-	dw 0, $585c
+; frame 0 y, x; frame 1 y, x
+	db $5c, $50, $00, $00
+	db $5c, $68, $5c, $58
+	db $5c, $68, $5c, $78
+	db $5c, $88, $5c, $78
+	db $00, $00, $5c, $78
+	db $00, $00, $5c, $58
 ; 63e2
 
 Copyright: ; 63e2
@@ -10421,9 +10422,9 @@ Function11e9a: ; 11e9a (4:5e9a)
 	ld hl, wc300
 	ld [hli], a
 	ld [hl], a
-	ld de, $1810
-	ld a, $0
-	call Function3b2a
+	lb de, $18, $10
+	ld a, SPRITE_ANIM_INDEX_00
+	call _InitSpriteAnimStruct
 	ld hl, $2
 	add hl, bc
 	ld [hl], $0
@@ -10554,8 +10555,8 @@ Jumptable_12017: ; 12017 (4:6017)
 
 Function1201b: ; 1201b (4:601b)
 	lb de, $48, $10
-	ld a, $9
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_09
+	call _InitSpriteAnimStruct
 	ld a, c
 	ld [wc6d5], a
 	ld a, b
@@ -26260,9 +26261,9 @@ Special_CelebiShrineEvent: ; 4989a
 	xor a
 	ld [VramState], a
 	call LoadCelebiGFX
-	ld de, $750
-	ld a, $2c
-	call Function3b2a
+	lb de, $07, $50
+	ld a, SPRITE_ANIM_INDEX_2C
+	call _InitSpriteAnimStruct
 	ld hl, $3
 	add hl, bc
 	ld [hl], $84
@@ -26362,8 +26363,8 @@ Function49944: ; 49944
 	add $40
 	ld d, a
 	ld e, $0
-	ld a, $18
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_18 ; fly land
+	call _InitSpriteAnimStruct
 	ld hl, $3
 	add hl, bc
 	ld [hl], $80
@@ -39087,8 +39088,8 @@ ShakeHeadbuttTree: ; 8c80a
 	lb bc, BANK(HeadbuttTreeGFX), 8
 	call Request2bpp
 	call Function8cad3
-	ld a, $1b
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_1B
+	call _InitSpriteAnimStruct
 	ld hl, $3
 	add hl, bc
 	ld [hl], $84
@@ -39237,8 +39238,8 @@ endr
 
 Function8ca23: ; 8ca23 (23:4a23)
 	call Function8cad3
-	ld a, $17
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_17 ; leaf
+	call _InitSpriteAnimStruct
 	ld hl, $3
 	add hl, bc
 	ld [hl], $84
@@ -39287,8 +39288,8 @@ Function8ca64: ; 8ca64 (23:4a64)
 Function8ca73: ; 8ca73 (23:4a73)
 	push de
 	push af
-	ld a, $16
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_16 ; fly takeoff
+	call _InitSpriteAnimStruct
 	ld hl, $3
 	add hl, bc
 	ld [hl], $80
@@ -39375,9 +39376,9 @@ Function8caed: ; 8caed
 	xor a
 	ld [VramState], a
 	call Function8cb9b
-	ld de, $5450
-	ld a, $a
-	call Function3b2a
+	lb de, $54, $50
+	ld a, SPRITE_ANIM_INDEX_0A
+	call _InitSpriteAnimStruct
 	ld hl, $3
 	add hl, bc
 	ld [hl], $84
@@ -39409,9 +39410,9 @@ Function8cb33: ; 8cb33
 	xor a
 	ld [VramState], a
 	call Function8cb9b
-	ld de, $fc50
-	ld a, $a
-	call Function3b2a
+	lb de, $fc, $50
+	ld a, SPRITE_ANIM_INDEX_0A
+	call _InitSpriteAnimStruct
 	ld hl, $3
 	add hl, bc
 	ld [hl], $84
@@ -39507,8 +39508,8 @@ Function8cbe6: ; 8cbe6 (23:4be6)
 	add $40
 	ld d, a
 	ld e, $0
-	ld a, $18
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_18 ; fly land
+	call _InitSpriteAnimStruct
 	ld hl, $3
 	add hl, bc
 	ld [hl], $80
@@ -39840,7 +39841,7 @@ Function8ce19: ; 8ce19
 	ld d, $55
 	ld a, [wd194 + 1]
 	ld e, a
-	ld b, $15
+	ld b, SPRITE_ANIM_INDEX_15
 	ld a, [rSVBK]
 	push af
 	ld a, $1
@@ -39848,13 +39849,13 @@ Function8ce19: ; 8ce19
 	ld a, [PlayerGender]
 	bit 0, a
 	jr z, .asm_8ce31
-	ld b, $1f
+	ld b, SPRITE_ANIM_INDEX_1F
 
 .asm_8ce31
 	pop af
 	ld [rSVBK], a
 	ld a, b
-	call Function3b2a
+	call _InitSpriteAnimStruct
 	ld hl, $3
 	add hl, bc
 	ld [hl], $0
@@ -40264,15 +40265,17 @@ Function8e908: ; 8e908 (23:6908)
 	ld [CurIcon], a
 	call Function8e9db
 	ld a, [hObjectStructIndexBuffer]
-; and $f \ swap a
+; y coord
 rept 4
 	add a
 endr
 	add $1c
 	ld d, a
+; x coord
 	ld e, $10
-	ld a, $0
-	call Function8cfd6
+; type is partymon icon
+	ld a, SPRITE_ANIM_INDEX_00
+	call InitSpriteAnimStruct
 	pop af
 	ld hl, $3
 	add hl, bc
@@ -40317,9 +40320,9 @@ Function8e961: ; 8e961 (23:6961)
 	ld [CurIcon], a
 	xor a
 	call GetIconGFX
-	ld de, $2420
-	ld a, $0
-	call Function8cfd6
+	lb de, $24, $20
+	ld a, SPRITE_ANIM_INDEX_00
+	call InitSpriteAnimStruct
 	ld hl, $2
 	add hl, bc
 	ld [hl], $0
@@ -40333,8 +40336,8 @@ Function8e97d: ; 8e97d (23:697d)
 	call GetIconGFX
 	ld d, $1a
 	ld e, $24
-	ld a, $0
-	call Function8cfd6
+	ld a, SPRITE_ANIM_INDEX_00
+	call InitSpriteAnimStruct
 	ld hl, $2
 	add hl, bc
 	ld [hl], $0
@@ -41468,9 +41471,9 @@ INCBIN "gfx/misc/fast_ship.2bpp"
 ; 90d32
 
 Function90d32: ; 90d32 (24:4d32)
-	ld de, $2410
-	ld a, $d
-	call Function3b2a
+	lb de, $24, $10
+	ld a, SPRITE_ANIM_INDEX_0D
+	call _InitSpriteAnimStruct
 	ld hl, $3
 	add hl, bc
 	ld [hl], $0
@@ -41990,15 +41993,15 @@ Function9102f: ; 9102f (24:502f)
 Function9106a: ; 9106a
 	push af
 	ld de, 0
-	ld b, $a
+	ld b, SPRITE_ANIM_INDEX_0A
 	ld a, [PlayerGender]
 	bit 0, a
 	jr z, .asm_91079
-	ld b, $1e
+	ld b, SPRITE_ANIM_INDEX_1E
 
 .asm_91079
 	ld a, b
-	call Function3b2a
+	call _InitSpriteAnimStruct
 	ld hl, $3
 	add hl, bc
 	ld [hl], $10
@@ -42019,8 +42022,8 @@ Function9106a: ; 9106a
 Function91098: ; 91098
 	push af
 	ld de, 0
-	ld a, $d
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_0D
+	call _InitSpriteAnimStruct
 	ld hl, $3
 	add hl, bc
 	ld [hl], $4
@@ -42081,9 +42084,9 @@ Function910e8: ; 910e8
 
 Function910f9: ; 910f9 (24:50f9)
 	call Function90da8
-	ld de, $2454
-	ld a, $14
-	call Function3b2a
+	lb de, $24, $54
+	ld a, SPRITE_ANIM_INDEX_14
+	call _InitSpriteAnimStruct
 	ld hl, $3
 	add hl, bc
 	ld [hl], $8
@@ -42660,7 +42663,7 @@ Function91480: ; 91480 (24:5480)
 	ld [wJumptableIndex], a
 	ld a, b
 	ld [wcf64], a
-	call Function914ab
+	call DeleteSpriteAnimStruct2ToEnd
 	ret
 
 Function91492: ; 91492
@@ -42681,13 +42684,13 @@ Function91492: ; 91492
 ; 914ab
 
 
-Function914ab: ; 914ab (24:54ab)
-	ld hl, wc314 + 16
-	ld bc, $90
+DeleteSpriteAnimStruct2ToEnd: ; 914ab (24:54ab)
+	ld hl, SpriteAnim2
+	ld bc, wSpriteAnimationStructsEnd - SpriteAnim2
 	xor a
 	call ByteFill
-	ld a, $2
-	ld [wc3b4], a
+	ld a, 2
+	ld [wSpriteAnimCount], a
 	ret
 
 Function914bb: ; 914bb (24:54bb)
@@ -43160,14 +43163,14 @@ INCLUDE "data/wild/fish.asm"
 INCLUDE "engine/slot_machine.asm"
 
 
-SECTION "bank28", ROMX, BANK[$28]
+SECTION "Phone Engine", ROMX, BANK[$28]
 
 INCLUDE "engine/more_phone_scripts.asm"
 INCLUDE "engine/buena_phone_scripts.asm"
 INCLUDE "text/phone/buena.asm"
 
 
-SECTION "bank29", ROMX, BANK[$29]
+SECTION "Phone Text", ROMX, BANK[$29]
 
 INCLUDE "text/phone/anthony_overworld.asm"
 INCLUDE "text/phone/todd_overworld.asm"
@@ -45377,9 +45380,9 @@ Functione45e8: ; e45e8
 	pop af
 	ld [rSVBK], a
 	callba Function8cf53
-	ld de, $5458
-	ld a, $3
-	call Function3b2a
+	lb de, $54, $58
+	ld a, SPRITE_ANIM_INDEX_03
+	call _InitSpriteAnimStruct
 	ld hl, $7
 	add hl, bc
 	ld [hl], $a0
@@ -46057,9 +46060,9 @@ IntroScene7: ; e4b3f (39:4b3f)
 	ld [hWY], a
 	call Functione5516
 	callba Function8cf53
-	ld de, $6cd8
-	ld a, $26
-	call Function3b2a
+	lb de, $6c, $d8
+	ld a, SPRITE_ANIM_INDEX_26
+	call _InitSpriteAnimStruct
 	ld a, $f0
 	ld [wc3c0], a
 	call Functione549e
@@ -46146,16 +46149,16 @@ IntroScene10: ; e4c4f (39:4c4f)
 
 .pichu
 	lb de, $a9, $80
-	ld a, $27
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_27
+	call _InitSpriteAnimStruct
 	ld de, SFX_INTRO_PICHU
 	call PlaySFX
 	ret
 
 .wooper
 	lb de, $b0, $30
-	ld a, $28
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_28
+	call _InitSpriteAnimStruct
 	ld de, SFX_INTRO_PICHU
 	call PlaySFX
 	ret
@@ -46332,8 +46335,8 @@ IntroScene13: ; e4d6d (39:4d6d)
 	ld [hWY], a
 	callba Function8cf53
 	lb de, $6c, $58
-	ld a, $26
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_26
+	call _InitSpriteAnimStruct
 	ld de, MUSIC_CRYSTAL_OPENING
 	call PlayMusic
 	xor a
@@ -46443,11 +46446,11 @@ IntroScene15: ; e4e40 (39:4e40)
 	callba Function8cf53
 	call Functione549e
 	lb de, $40, $28
-	ld a, $2a
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_2A
+	call _InitSpriteAnimStruct
 	lb de, $60, $00
-	ld a, $2b
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_2B
+	call _InitSpriteAnimStruct
 	xor a
 	ld [wcf64], a
 	ld [wcf65], a
@@ -46595,8 +46598,8 @@ IntroScene19: ; e4f7e (39:4f7e)
 	ld [hl], $7f
 	call Functione549e
 	lb de, $60, $00
-	ld a, $2b
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_2B
+	call _InitSpriteAnimStruct
 	xor a
 	ld [wcf64], a
 	ld [wcf65], a
@@ -46891,8 +46894,8 @@ Unknown_e519c: ; e519c
 
 Functione51dc: ; e51dc (39:51dc)
 	push de
-	ld a, $29
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_29
+	call _InitSpriteAnimStruct
 	ld hl, $c
 	add hl, bc
 	ld [hl], $8
@@ -46901,8 +46904,8 @@ Functione51dc: ; e51dc (39:51dc)
 	pop de
 
 	push de
-	ld a, $29
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_29
+	call _InitSpriteAnimStruct
 	ld hl, $c
 	add hl, bc
 	ld [hl], $18
@@ -46911,8 +46914,8 @@ Functione51dc: ; e51dc (39:51dc)
 	pop de
 
 	push de
-	ld a, $29
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_29
+	call _InitSpriteAnimStruct
 	ld hl, $c
 	add hl, bc
 	ld [hl], $28
@@ -46920,8 +46923,8 @@ Functione51dc: ; e51dc (39:51dc)
 	call Function3b3c
 	pop de
 
-	ld a, $29
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_29
+	call _InitSpriteAnimStruct
 	ld hl, $c
 	add hl, bc
 	ld [hl], $38

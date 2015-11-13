@@ -7759,14 +7759,14 @@ Function117738: ; 117738 (45:7738)
 	callba Function171ccd
 	lb de, $30, $18
 	ld a, $1d
-	call Function3b2a
+	call _InitSpriteAnimStruct
 	ld hl, $c
 	add hl, bc
 	ld a, $6
 	ld [hl], a
 	lb de, $48, $20
 	ld a, $1d
-	call Function3b2a
+	call _InitSpriteAnimStruct
 	ld hl, $c
 	add hl, bc
 	ld a, $7

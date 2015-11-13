@@ -2388,14 +2388,14 @@ Function2914e: ; 2914e
 	call Function2985a
 	pop de
 	ld a, $11
-	call Function3b2a
+	call _InitSpriteAnimStruct
 	ld hl, $b
 	add hl, bc
 	pop bc
 	ld [hl], b
 	pop de
 	ld a, $12
-	call Function3b2a
+	call _InitSpriteAnimStruct
 	ld hl, $b
 	add hl, bc
 	pop bc
@@ -3082,7 +3082,7 @@ Function29611: ; 29611
 Function2961b: ; 2961b
 	lb de, $54, $58
 	ld a, $e
-	call Function3b2a
+	call _InitSpriteAnimStruct
 	call Function29114
 	ld a, $20
 	ld [wcf64], a
@@ -3092,7 +3092,7 @@ Function2961b: ; 2961b
 Function2962c: ; 2962c
 	lb de, $54, $58
 	ld a, $e
-	call Function3b2a
+	call _InitSpriteAnimStruct
 	ld hl, $b
 	add hl, bc
 	ld [hl], $1
@@ -3108,7 +3108,7 @@ Function2962c: ; 2962c
 Function29649: ; 29649
 	lb de, $54, $58
 	ld a, $f
-	call Function3b2a
+	call _InitSpriteAnimStruct
 	call Function29114
 	ld a, $10
 	ld [wcf64], a
@@ -3122,7 +3122,7 @@ Function29660: ; 29660
 	call Functioncf8
 	lb de, $28, $58
 	ld a, $10
-	call Function3b2a
+	call _InitSpriteAnimStruct
 	call Function29114
 	ld a, $40
 	ld [wcf64], a
