@@ -30,15 +30,15 @@ SpriteMovementData:: ; 4273
 	db SPRITEMOVEFN_STANDING,              DOWN,  $01, $2e, $10, $00 ; 18
 	db SPRITEMOVEFN_STRENGTH,              DOWN,  $01, $2e, $00, $40 ; 19
 	db SPRITEMOVEFN_FOLLOWNOTEXACT,        DOWN,  $01, $02, $00, $00 ; 1a
-	db SPRITEMOVEFN_13,                    DOWN,  $00, $8e, $01, $00 ; 1b
-	db SPRITEMOVEFN_14,                    DOWN,  $08, $8e, $02, $00 ; 1c
-	db SPRITEMOVEFN_17,                    DOWN,  $00, $82, $00, $00 ; 1d
+	db SPRITEMOVEFN_SHADOW,                DOWN,  $00, $8e, $01, $00 ; 1b
+	db SPRITEMOVEFN_EMOTE,                 DOWN,  $08, $8e, $02, $00 ; 1c
+	db SPRITEMOVEFN_SCREENSHAKE,           DOWN,  $00, $82, $00, $00 ; 1d
 	db SPRITEMOVEFN_SPIN_COUNTERCLOCKWISE, LEFT,  $01, $00, $00, $00 ; 1e
 	db SPRITEMOVEFN_SPIN_CLOCKWISE,        RIGHT, $01, $00, $00, $00 ; 1f
 	db SPRITEMOVEFN_STRENGTH,              DOWN,  $0c, $2e, $01, $c0 ; 20
 	db SPRITEMOVEFN_STRENGTH,              DOWN,  $0d, $2e, $01, $c0 ; 21
-	db SPRITEMOVEFN_1A,                    DOWN,  $0e, $8e, $01, $00 ; 22
-	db SPRITEMOVEFN_1B,                    DOWN,  $0f, $8e, $02, $00 ; 23
+	db SPRITEMOVEFN_BOULDERDUST,           DOWN,  $0e, $8e, $01, $00 ; 22
+	db SPRITEMOVEFN_GRASS,                 DOWN,  $0f, $8e, $02, $00 ; 23
 	db SPRITEMOVEFN_RANDOM_WALK_XY,        DOWN,  $01, $00, $00, $20 ; 24
 	db SPRITEMOVEFN_00,                    DOWN,  $01, $00, $00, $00 ; 25
 ; 4357
@@ -84,7 +84,7 @@ Function4386: ; 4386
 	res 6, [hl]
 	ld a, [XCoord]
 	ld e, a
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	add 1
@@ -94,7 +94,7 @@ Function4386: ; 4386
 	jr nc, .ok
 	ld a, [YCoord]
 	ld e, a
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	add 1
@@ -110,7 +110,7 @@ Function4386: ; 4386
 	set 6, [hl]
 	ld a, [XCoord]
 	ld e, a
-	ld hl, OBJECT_20
+	ld hl, OBJECT_INIT_X
 	add hl, bc
 	ld a, [hl]
 	add 1
@@ -120,7 +120,7 @@ Function4386: ; 4386
 	jr nc, .ok2
 	ld a, [YCoord]
 	ld e, a
-	ld hl, OBJECT_21
+	ld hl, OBJECT_INIT_Y
 	add hl, bc
 	ld a, [hl]
 	add 1
@@ -224,7 +224,8 @@ Function4448: ; 4448
 ; 444d
 
 Function444d: ; 444d
-	ld hl, OBJECT_11
+; call [4 * ObjectStructs[ObjInd, OBJECT_ACTION] + de]
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld a, [hl]
 	ld l, a
@@ -242,39 +243,39 @@ endr
 
 Pointers445f: ; 445f
 	dw Function44a3 ; 00
-	dw Function44a3 ; 01
-	dw Function44b5 ; 02
-	dw Function44aa ; 03
-	dw Function44c1 ; 04
-	dw Function44aa ; 05
-	dw Function4508 ; 06
-	dw Function44aa ; 07
-	dw Function4529 ; 08
-	dw Function44aa ; 09
-	dw Function4539 ; 0a
-	dw Function44a3 ; 0b
-	dw Function456e ; 0c
-	dw Function456e ; 0d
-	dw Function457b ; 0e
-	dw Function44a3 ; 0f
-	dw Function4582 ; 10
-	dw Function4582 ; 11
-	dw Function4589 ; 12
-	dw Function4589 ; 13
-	dw Function4590 ; 14
-	dw Function45a4 ; 15
-	dw Function45ab ; 16
-	dw Function44aa ; 17
-	dw Function45be ; 18
-	dw Function45be ; 19
-	dw Function45c5 ; 1a
-	dw Function45c5 ; 1b
-	dw Function45da ; 1c
-	dw Function44a3 ; 1d
-	dw Function45ed ; 1e
-	dw Function44a3 ; 1f
-	dw Function44e4 ; 20
-	dw Function44aa ; 21
+	dw Function44a3 ; 01 (00)
+	dw Function44b5 ; 02 (01)
+	dw Function44aa ; 03 (02)
+	dw Function44c1 ; 04 (03)
+	dw Function44aa ; 05 (04)
+	dw Function4508 ; 06 (05)
+	dw Function44aa ; 07 (06)
+	dw Function4529 ; 08 (07)
+	dw Function44aa ; 09 (08)
+	dw Function4539 ; 0a (09)
+	dw Function44a3 ; 0b (0a)
+	dw Function456e ; 0c (0b)
+	dw Function456e ; 0d (0c)
+	dw Function457b ; 0e (0d)
+	dw Function44a3 ; 0f (0e)
+	dw Function4582 ; 10 (0f)
+	dw Function4582 ; 11 (10)
+	dw Function4589 ; 12 (11)
+	dw Function4589 ; 13 (12)
+	dw Function4590 ; 14 (13)
+	dw Function45a4 ; 15 (14)
+	dw Function45ab ; 16 (15)
+	dw Function44aa ; 17 (16)
+	dw Function45be ; 18 (17)
+	dw Function45be ; 19 (18)
+	dw Function45c5 ; 1a (19)
+	dw Function45c5 ; 1b (1a)
+	dw Function45da ; 1c (1b)
+	dw Function44a3 ; 1d (1c)
+	dw Function45ed ; 1e (1d)
+	dw Function44a3 ; 1f (1e)
+	dw Function44e4 ; 20 (1f)
+	dw Function44aa ; 21 (20)
 ; 44a3
 
 Function44a3: ; 44a3
@@ -286,7 +287,7 @@ Function44a3: ; 44a3
 
 Function44aa: ; 44aa
 	call GetSpriteDirection
-	or 0
+	or 0 ; useless
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], a
@@ -556,17 +557,17 @@ Function45ed: ; 45ed
 
 Function4600: ; 4600
 
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [hl]
-	ld hl, OBJECT_NEXT_MAP_X
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld [hl], a
 
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [hl]
-	ld hl, OBJECT_NEXT_MAP_Y
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld [hl], a
 
@@ -588,17 +589,17 @@ Function4600: ; 4600
 
 Function462a: ; 462a
 
-	ld hl, OBJECT_NEXT_MAP_X
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld [hl], a
 
-	ld hl, OBJECT_NEXT_MAP_Y
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld [hl], a
 
@@ -662,7 +663,7 @@ Function467b: ; 467b
 rept 3
 	ld [hli], a
 endr
-	ld [hl], a
+	ld [hl], a ; OBJECT_30
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld [hl], STANDING
@@ -675,8 +676,8 @@ Function4690: ; 4690
 	ld [hl], a
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	bit 2, [hl]
-	jr nz, .ok
+	bit FIXED_FACING, [hl]
+	jr nz, GetCurTile
 
 rept 2
 	add a
@@ -685,12 +686,7 @@ endr
 	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], a
-
-.ok
-	; fallthrough
-; 46a6
-
-Function46a6: ; 46a6
+GetCurTile: ; 46a6
 
 	call GetStepVector
 
@@ -699,21 +695,21 @@ Function46a6: ; 46a6
 	ld [hl], a
 
 	ld a, d
-	call Function4730
-	ld hl, OBJECT_NEXT_MAP_X
+	call GetStepVectorSign
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	add [hl]
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld [hl], a
 	ld d, a
 
 	ld a, e
-	call Function4730
-	ld hl, OBJECT_NEXT_MAP_Y
+	call GetStepVectorSign
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	add [hl]
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld [hl], a
 	ld e, a
@@ -729,7 +725,7 @@ Function46a6: ; 46a6
 	ret
 ; 46d7
 
-Function46d7: ; 46d7
+AddStepVector: ; 46d7
 
 	call GetStepVector
 
@@ -789,13 +785,15 @@ StepVectors: ; 4700
 	db  4,  0,  4, 4
 ; 4730
 
-Function4730: ; 4730
+GetStepVectorSign: ; 4730
 	add a
-	ret z
+	ret z  ; 0 or 128
+
 	ld a, 1
-	ret nc
+	ret nc ; 1 - 127
+
 	ld a, -1
-	ret
+	ret    ; 129 - 255
 ; 4738
 
 Function4738: ; 4738
@@ -804,7 +802,7 @@ Function4738: ; 4738
 	ld a, [hl]
 	and %00000011
 	ld [wd151], a
-	call Function46d7
+	call AddStepVector
 	ld a, [wd14e]
 	add d
 	ld [wd14e], a
@@ -849,28 +847,28 @@ RestoreDefaultMovement: ; 4769
 	ret
 ; 4780
 
-ClearObjectStructField27: ; 4780
+ClearObjectMovementByteIndex: ; 4780
 	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
 	add hl, bc
 	ld [hl], 0
 	ret
 ; 4787
 
-IncrementObjectStructField27: ; 4787
+IncrementObjectMovementByteIndex: ; 4787
 	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
 	add hl, bc
 	inc [hl]
 	ret
 ; 478d
 
-DecrementObjectStructField27: ; 478d
+DecrementObjectMovementByteIndex: ; 478d
 	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
 	add hl, bc
 	dec [hl]
 	ret
 ; 4793
 
-JumptoObjectStructField27: ; 4793
+JumptoObjectMovementByteIndex: ; 4793
 	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
 	add hl, bc
 	ld a, [hl]
@@ -893,7 +891,7 @@ IncrementObjectStructField28: ; 47a2
 	ret
 ; 47a8
 
-JumptoObjectStructField28: ; 47a8
+Object28AnonymousJumptable: ; 47a8
 ; anonymous jumptable
 	ld hl, OBJECT_28
 	add hl, bc
@@ -918,10 +916,10 @@ SetValueObjectStructField28: ; 47b6
 ; 47bc
 
 Function47bc: ; 47bc
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld d, [hl]
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld e, [hl]
 	push bc
@@ -1011,7 +1009,7 @@ Function47dd: ; 47dd
 	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], a
-	jp Function4b1d
+	jp RandomStepDuration_Slow
 ; 4851
 
 .RandomSpin2: ; 4851
@@ -1029,13 +1027,13 @@ Function47dd: ; 47dd
 
 .keep
 	ld [hl], a
-	jp Function4b26
+	jp RandomStepDuration_Fast
 ; 4869
 
 .Standing: ; 4869
 	call Function462a
 	call Function467b
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], 1
 	ld hl, OBJECT_09
@@ -1091,7 +1089,7 @@ Function47dd: ; 47dd
 ; 48ac
 
 .Strength: ; 48ac
-	call JumptoObjectStructField27
+	call JumptoObjectMovementByteIndex
 	dw .Strength_Start
 	dw .Strength_Stop
 ; 48b3
@@ -1109,7 +1107,7 @@ Function47dd: ; 47dd
 	res 2, [hl]
 	jr z, .ok
 
-	ld hl, OBJECT_32
+	ld hl, OBJECT_RANGE
 	add hl, bc
 	ld a, [hl]
 	and %00000011
@@ -1120,7 +1118,7 @@ Function47dd: ; 47dd
 
 	ld de, SFX_STRENGTH
 	call PlaySFX
-	call Function5538
+	call SpawnStrengthBoulderDust
 	call Function463f
 	ld hl, OBJECT_09
 	add hl, bc
@@ -1137,7 +1135,7 @@ Function47dd: ; 47dd
 	ret
 
 .on_pit
-	call IncrementObjectStructField27
+	call IncrementObjectMovementByteIndex
 	; fallthrough
 ; 48f8
 
@@ -1149,15 +1147,15 @@ Function47dd: ; 47dd
 ; 48ff
 
 .FollowNotExact: ; 48ff
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld d, [hl]
 
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld e, [hl]
 
-	ld hl, OBJECT_32
+	ld hl, OBJECT_RANGE
 	add hl, bc
 	ld a, [hl]
 
@@ -1169,7 +1167,7 @@ Function47dd: ; 47dd
 	cp STANDING
 	jr z, .standing
 
-	ld hl, OBJECT_NEXT_MAP_X
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
@@ -1183,7 +1181,7 @@ Function47dd: ; 47dd
 	jr .done
 
 .equal
-	ld hl, OBJECT_NEXT_MAP_Y
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
@@ -1210,7 +1208,7 @@ Function47dd: ; 47dd
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld [hl], STANDING
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], 1
 	ret
@@ -1221,7 +1219,7 @@ Function47dd: ; 47dd
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld [hl], STANDING
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], 9
 	ld hl, OBJECT_09
@@ -1235,7 +1233,7 @@ Function47dd: ; 47dd
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld [hl], STANDING
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], 10
 	ld hl, OBJECT_09
@@ -1245,14 +1243,14 @@ Function47dd: ; 47dd
 ; 4984
 
 .MovementSpinCounterclockwise: ; 4984
-	call JumptoObjectStructField27
+	call JumptoObjectMovementByteIndex
 	dw .MovementSpinInit
 	dw .MovementSpinRepeat
 	dw .MovementSpinTurnLeft
 ; 498d
 
 .MovementSpinClockwise: ; 498d
-	call JumptoObjectStructField27
+	call JumptoObjectMovementByteIndex
 	dw .MovementSpinInit
 	dw .MovementSpinRepeat
 	dw .MovementSpinTurnRight
@@ -1260,25 +1258,25 @@ Function47dd: ; 47dd
 
 .MovementSpinInit: ; 4996
 	call Function467b
-	call IncrementObjectStructField27
+	call IncrementObjectMovementByteIndex
 	; fallthrough
 ; 499c
 
 .MovementSpinRepeat: ; 499c
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], 1
-	ld hl, OBJECT_32
+	ld hl, OBJECT_RANGE
 	add hl, bc
 	ld a, [hl]
-	ld a, $10
+	ld a, 16
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
 	ld hl, OBJECT_09
 	add hl, bc
 	ld [hl], OBJECT_09_VALUE_03
-	call IncrementObjectStructField27
+	call IncrementObjectMovementByteIndex
 	ret
 ; 49b8
 
@@ -1316,13 +1314,13 @@ Function47dd: ; 47dd
 	ld a, [hl]
 	pop hl
 	ld [hl], a
-	call DecrementObjectStructField27
+	call DecrementObjectMovementByteIndex
 	ret
 ; 49e5
 
 .Movement13: ; 49e5
 	call ._Movement13_14_1a_1b
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], $7
 	ld hl, OBJECT_STEP_DURATION
@@ -1361,7 +1359,7 @@ Function47dd: ; 47dd
 .Movement14: ; 4a21
 	call Function467b
 	call ._Movement13_14_1a_1b
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], 8
 	ld hl, OBJECT_STEP_DURATION
@@ -1382,7 +1380,7 @@ Function47dd: ; 47dd
 .Movement1a: ; 4a46
 	call Function467b
 	call ._Movement13_14_1a_1b
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], $e
 	ld hl, OBJECT_STEP_DURATION
@@ -1429,7 +1427,7 @@ endr
 .Movement1b: ; 4a89
 	call Function467b
 	call ._Movement13_14_1a_1b
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], $f
 	ld hl, OBJECT_STEP_DURATION
@@ -1446,7 +1444,7 @@ endr
 ; 4aa8
 
 ._Movement13_14_1a_1b: ; 4aa8
-	ld hl, OBJECT_32
+	ld hl, OBJECT_RANGE
 	add hl, bc
 	ld a, [hl]
 	push bc
@@ -1464,10 +1462,10 @@ endr
 
 .Movement17: ; 4abc
 	call Function467b
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], 0
-	ld hl, OBJECT_32
+	ld hl, OBJECT_RANGE
 	add hl, bc
 	ld a, [hl]
 	call ._Movement17
@@ -1506,7 +1504,7 @@ endr
 	call Function6ec1
 	jr c, Function4b17
 	call Function463f
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], 2
 	ld hl, wd4cf
@@ -1530,28 +1528,28 @@ Function4b17: ; 4b17
 	; fallthrough
 ; 4b1d
 
-Function4b1d: ; 4b1d
+RandomStepDuration_Slow: ; 4b1d
 	call Random
 	ld a, [hRandomAdd]
 	and %01111111
-	jr Function4b2d
+	jr SetRandomStepDuration
 ; 4b26
 
-Function4b26: ; 4b26
+RandomStepDuration_Fast: ; 4b26
 	call Random
 	ld a, [hRandomAdd]
 	and %00011111
 	; fallthrough
 ; 4b2d
 
-Function4b2d: ; 4b2d
+SetRandomStepDuration: ; 4b2d
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld [hl], STANDING
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], 1
 	ld hl, OBJECT_09
@@ -1602,20 +1600,21 @@ Function4b79: ; 4b79
 ; 4b86
 
 Function4b86: ; 4b86
-	call JumptoObjectStructField28
+	call Object28AnonymousJumptable
+; anonymous jumptable
 	dw Function4b8d
 	dw Function4ba9
 ; 4b8d
 
 Function4b8d: ; 4b8d
-	call Function46d7
+	call AddStepVector
 	call UpdateJumpPosition
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
 	call Function4600
-	call Function46a6
+	call GetCurTile
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res 3, [hl]
@@ -1624,7 +1623,7 @@ Function4b8d: ; 4b8d
 ; 4ba9
 
 Function4ba9: ; 4ba9
-	call Function46d7
+	call AddStepVector
 	call UpdateJumpPosition
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
@@ -1638,7 +1637,8 @@ Function4ba9: ; 4ba9
 ; 4bbf
 
 Function4bbf: ; 4bbf
-	call JumptoObjectStructField28
+	call Object28AnonymousJumptable
+; anonymous jumptable
 	dw Function4bca
 	dw Function4bd2
 	dw Function4bf2
@@ -1671,7 +1671,7 @@ Function4bd2: ; 4bd2
 ; 4bf2
 
 Function4bf2: ; 4bf2
-	call Function46a6
+	call GetCurTile
 	ld hl, wd150
 	set 7, [hl]
 	call IncrementObjectStructField28
@@ -1695,7 +1695,8 @@ Function4bfd: ; 4bfd
 ; 4c18
 
 Function4c18: ; 4c18
-	call JumptoObjectStructField28
+	call Object28AnonymousJumptable
+; anonymous jumptable
 	dw Function4c23
 	dw Function4c32
 	dw Function4c42
@@ -1714,7 +1715,7 @@ Function4c23: ; 4c23
 ; 4c32
 
 Function4c32: ; 4c32
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], 4
 	ld hl, OBJECT_STEP_DURATION
@@ -1743,7 +1744,7 @@ Function4c42: ; 4c42
 ; 4c5d
 
 Function4c5d: ; 4c5d
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], 4
 	ld hl, OBJECT_31
@@ -1771,7 +1772,8 @@ Function4c5d: ; 4c5d
 ; 4c89
 
 Function4c89: ; 4c89
-	call JumptoObjectStructField28
+	call Object28AnonymousJumptable
+; anonymous jumptable
 	dw Function4c9a
 	dw Function4caa
 	dw Function4cb3
@@ -1782,7 +1784,7 @@ Function4c89: ; 4c89
 ; 4c9a
 
 Function4c9a: ; 4c9a
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], 0
 	ld hl, OBJECT_STEP_DURATION
@@ -1816,7 +1818,7 @@ Function4cb3: ; 4cb3
 ; 4cc9
 
 Function4cc9: ; 4cc9
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], 4
 	ld hl, OBJECT_31
@@ -1847,7 +1849,7 @@ Function4ceb: ; 4ceb
 ; 4cf5
 
 Function4cf5: ; 4cf5
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], 4
 	ld hl, OBJECT_STEP_DURATION
@@ -1870,7 +1872,8 @@ Function4d01: ; 4d01
 ; 4d14
 
 Function4d14: ; 4d14
-	call JumptoObjectStructField28
+	call Object28AnonymousJumptable
+; anonymous jumptable
 	dw Function4d1f
 	dw Function4d2e
 	dw Function4d4f
@@ -1878,7 +1881,7 @@ Function4d14: ; 4d14
 ; 4d1f
 
 Function4d1f: ; 4d1f
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], 0
 	ld hl, OBJECT_STEP_DURATION
@@ -1893,7 +1896,7 @@ Function4d2e: ; 4d2e
 	add hl, bc
 	dec [hl]
 	ret nz
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], 2
 	ld hl, OBJECT_12
@@ -1943,7 +1946,8 @@ Function4d6b: ; 4d6b
 ; 4d7e
 
 Function4d7e: ; 4d7e
-	call JumptoObjectStructField28
+	call Object28AnonymousJumptable
+; anonymous jumptable
 	dw Function4d85
 	dw Function4d94
 ; 4d85
@@ -1993,7 +1997,7 @@ Function4db5: ; 4db5
 	ld a, 0
 
 .yes
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], a
 	ret
@@ -2009,7 +2013,7 @@ Function4dc8: ; 4dc8
 	ld a, 5
 
 .yes
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], a
 	jp Function4b79
@@ -2052,7 +2056,8 @@ Function4dff: ; 4dff
 ; 4e0c
 
 Function4e0c: ; 4e0c
-	call JumptoObjectStructField28
+	call Object28AnonymousJumptable
+; anonymous jumptable
 	dw Function4e13
 	dw Function4e21
 ; 4e13
@@ -2077,7 +2082,7 @@ Function4e21: ; 4e21
 
 Function4e2b: ; 4e2b
 	call Function4fb2
-	call Function46d7
+	call AddStepVector
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
@@ -2093,18 +2098,19 @@ Function4e2b: ; 4e2b
 ; 4e47
 
 Function4e47: ; 4e47
-	call Function46d7
+	call AddStepVector
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
 	call Function4600
-	jp Function4b1d
+	jp RandomStepDuration_Slow
 ; 4e56
 
 Function4e56: ; 4e56
 ; AnimateStep?
-	call JumptoObjectStructField28
+	call Object28AnonymousJumptable
+; anonymous jumptable
 	dw Function4e5d
 	dw Function4e65
 ; 4e5d
@@ -2122,6 +2128,7 @@ Function4e65: ; 4e65
 	add hl, bc
 	dec [hl]
 	ret nz
+
 	ld hl, wd150
 	set 6, [hl]
 	call Function4600
@@ -2135,7 +2142,8 @@ Function4e65: ; 4e65
 ; 4e83
 
 Function4e83: ; 4e83
-	call JumptoObjectStructField28
+	call Object28AnonymousJumptable
+; anonymous jumptable
 	dw Function4e8e
 	dw Function4ea4
 	dw Function4ead
@@ -2192,16 +2200,16 @@ Function4ec0: ; 4ec0
 ; 4ecd
 
 Function4ecd: ; 4ecd
-	call Function46d7
+	call AddStepVector
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
 	push bc
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld d, [hl]
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld e, [hl]
 	ld hl, OBJECT_MAP_OBJECT_INDEX
@@ -2259,7 +2267,8 @@ Function4f04: ; 4f04
 ; 4f33
 
 Function4f33: ; 4f33
-	call JumptoObjectStructField28
+	call Object28AnonymousJumptable
+; anonymous jumptable
 	dw Function4f3a
 	dw Function4f43
 ; 4f3a
@@ -2312,24 +2321,26 @@ Function4f6c: ; 4f6c
 ; 4f77
 
 Function4f77: ; 4f77
-	call JumptoObjectStructField28 ; ????
+	call Object28AnonymousJumptable ; ????
 ; 4f7a
 
 Function4f7a: ; 4f7a
-	call JumptoObjectStructField28
+	call Object28AnonymousJumptable
+; anonymous jumptable
 	dw Function4f83
 	dw Function4f83
 	dw Function4f83
 ; 4f83
 
 Function4f83: ; 4f83
-	call JumptoObjectStructField28
+	call Object28AnonymousJumptable
+; anonymous jumptable
 	dw Function4f8a
 	dw Function4f99
 ; 4f8a
 
 Function4f8a: ; 4f8a
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], $10
 	ld hl, OBJECT_STEP_DURATION
@@ -2602,79 +2613,80 @@ Function550a: ; 550a
 	ret
 ; 5529
 
-Function5529: ; 5529
+SpawnShadow: ; 5529
 	push bc
-	ld de, .data_5535
-	call Function55b9
-	call Function55ac
+	ld de, .ShadowObject
+	call CopyTempObjectData
+	call InitTempObject
 	pop bc
 	ret
 
-.data_5535
-	db $00, $05, $1b
+.ShadowObject
+	; vtile, palette, movement
+	db $00, PAL_OW_SILVER, SPRITEMOVEDATA_SHADOW
 ; 5538
 
-Function5538: ; 5538
+SpawnStrengthBoulderDust: ; 5538
 	push bc
-	ld de, .data_5544
-	call Function55b9
-	call Function55ac
+	ld de, .BoulderDustObject
+	call CopyTempObjectData
+	call InitTempObject
 	pop bc
 	ret
 
-.data_5544
-	db $00, $05, $22
+.BoulderDustObject
+	db $00, PAL_OW_SILVER, SPRITEMOVEDATA_BOULDERDUST
 ; 5547
 
-Function5547: ; 5547
+SpawnEmote: ; 5547
 	push bc
-	ld de, .data_5553
-	call Function55b9
-	call Function55ac
+	ld de, .EmoteObject
+	call CopyTempObjectData
+	call InitTempObject
 	pop bc
 	ret
 
-.data_5553
-	db $00, $05, $1c
+.EmoteObject
+	db $00, PAL_OW_SILVER, SPRITEMOVEDATA_EMOTE
 ; 5556
 
-Function5556: ; 5556
+ShakeGrass: ; 5556
 	push bc
 	ld de, .data_5562
-	call Function55b9
-	call Function55ac
+	call CopyTempObjectData
+	call InitTempObject
 	pop bc
 	ret
 
 .data_5562
-	db $00, $06, $23
+	db $00, PAL_OW_TREE, SPRITEMOVEDATA_GRASS
 ; 5565
 
-Function5565: ; 5565
+ShakeScreen: ; 5565
 	push bc
 	push af
-	ld de, .data_5576
-	call Function55b9
+	ld de, .ScreenShakeObject
+	call CopyTempObjectData
 	pop af
-	ld [wc2f5], a
-	call Function55ac
+	ld [wTempObjectCopyRange], a
+	call InitTempObject
 	pop bc
 	ret
 
-.data_5576
-	db $00, $05, $1d
+.ScreenShakeObject
+	db $00, PAL_OW_SILVER, SPRITEMOVEDATA_SCREENSHAKE
 ; 5579
 
-Function5579: ; 5579
+DespawnEmote: ; 5579
 	push bc
 	ld a, [hMapObjectIndexBuffer]
 	ld c, a
-	call Function5582
+	call .DeleteEmote
 	pop bc
 	ret
 ; 5582
 
-Function5582: ; 5582
+.DeleteEmote: ; 5582
 	ld de, ObjectStructs
 	ld a, NUM_OBJECT_STRUCTS
 .loop
@@ -2705,20 +2717,21 @@ Function5582: ; 5582
 	ret
 ; 55ac
 
-Function55ac: ; 55ac
+InitTempObject: ; 55ac
 	call FindFirstEmptyObjectStruct
 	ret nc
 
 	ld d, h
 	ld e, l
-	callba Function8286
+	callba CopyTempObjectToObjectStruct
 	ret
 ; 55b9
 
-Function55b9: ; 55b9
-; load into wc2f0:
-; -1, -1, [de], [de + 1], [de + 2], [hMapObjectIndexBuffer], [MapX], [MapY], -1
-	ld hl, wc2f0
+CopyTempObjectData: ; 55b9
+; load into wTempObjectCopy:
+; -1, -1, [de], [de + 1], [de + 2], [hMapObjectIndexBuffer], [NextMapX], [NextMapY], -1
+; This spawns the object at the same place as whichever object is loaded into bc.
+	ld hl, wTempObjectCopyMapObjectIndex
 	ld [hl], -1
 	inc hl
 	ld [hl], -1
@@ -2737,10 +2750,10 @@ Function55b9: ; 55b9
 	ld [hli], a
 
 	push hl
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld d, [hl]
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld e, [hl]
 	pop hl
@@ -2872,10 +2885,10 @@ Function5680: ; 5680
 
 Function5688: ; 5688
 	push bc
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld d, [hl]
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld e, [hl]
 	call GetCoordTile
@@ -2888,10 +2901,10 @@ Function5688: ; 5688
 ; 56a3
 
 Function56a3: ; 56a3
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld d, [hl]
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld e, [hl]
 	inc d
@@ -3612,7 +3625,7 @@ Function59f3: ; 59f3
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld a, [hl]
-	cp -1
+	cp STANDING
 	jp z, .done
 	cp NUM_FACINGS
 	jp nc, .done

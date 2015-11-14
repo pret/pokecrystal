@@ -127,7 +127,7 @@ Movement_step_wait5: ; 5145
 	ld hl, OBJECT_12
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], $4
 	call GetMovementByte
@@ -164,7 +164,7 @@ Movement_58: ; 516a
 ; 5189
 
 Movement_fish_got_bite: ; 5189
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], $6
 	ld hl, OBJECT_09
@@ -178,7 +178,7 @@ Movement_rock_smash: ; 5196
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], $1
 	ld hl, OBJECT_09
@@ -188,7 +188,7 @@ Movement_rock_smash: ; 5196
 ; 51ab
 
 Movement_fish_cast_rod: ; 51ab
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], $6
 	ld hl, OBJECT_09
@@ -262,7 +262,7 @@ Movement_remove_person: ; 51fd
 ; 5210
 
 Movement_4b: ; 5210
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], $1
 
@@ -323,7 +323,7 @@ Movement_step_sleep_common: ; 5247
 	add hl, bc
 	ld [hl], OBJECT_09_VALUE_03
 
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], $1
 
@@ -341,7 +341,7 @@ Movement_step_bump: ; 525f
 	ld hl, OBJECT_09
 	add hl, bc
 	ld [hl], OBJECT_09_VALUE_0B
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], $3
 	ld hl, OBJECT_DIRECTION_WALKING
@@ -358,7 +358,7 @@ Movement_56: ; 5279
 	ld hl, OBJECT_09
 	add hl, bc
 	ld [hl], OBJECT_09_VALUE_03
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], $b
 	ld hl, OBJECT_DIRECTION_WALKING
@@ -384,14 +384,14 @@ Movement_39: ; 529c
 Movement_remove_fixed_facing: ; 52a5
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	res 2, [hl]
+	res FIXED_FACING, [hl]
 	jp ContinueReadingMovement
 ; 52ae
 
 Movement_fix_facing: ; 52ae
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	set 2, [hl]
+	set FIXED_FACING, [hl]
 	jp ContinueReadingMovement
 ; 52b7
 
@@ -410,12 +410,12 @@ Movement_hide_person: ; 52c0
 ; 52c9
 
 Movement_hide_emote: ; 52c9
-	call Function5579
+	call DespawnEmote
 	jp ContinueReadingMovement
 ; 52cf
 
 Movement_show_emote: ; 52cf
-	call Function5547
+	call SpawnEmote
 	jp ContinueReadingMovement
 ; 52d5
 
@@ -424,7 +424,7 @@ Movement_step_shake: ; 52d5
 ;	displacement (DecimalParam)
 
 	call GetMovementByte
-	call Function5565
+	call ShakeScreen
 	jp ContinueReadingMovement
 ; 52de
 
@@ -448,7 +448,7 @@ TurnHead: ; 52ee
 	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], $1
 	ld hl, OBJECT_DIRECTION_WALKING
@@ -721,7 +721,7 @@ HalfStep: ; 5400
 	ld hl, OBJECT_29
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], $2
 	ld hl, OBJECT_09
@@ -733,7 +733,7 @@ HalfStep: ; 5400
 NormalStep: ; 5412
 	call Function4690
 	call Function463f
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], $2
 	ld hl, OBJECT_STANDING_TILE
@@ -746,7 +746,7 @@ NormalStep: ; 5412
 	jr c, .asm_5430
 
 .asm_542d
-	call Function5556
+	call ShakeGrass
 
 .asm_5430
 	ld hl, wd4cf
@@ -769,7 +769,7 @@ NormalStep: ; 5412
 TurningStep: ; 5446
 	call Function4690
 	call Function463f
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], $4
 	ld hl, wd4cf
@@ -792,7 +792,7 @@ TurningStep: ; 5446
 SlideStep: ; 5468
 	call Function4690
 	call Function463f
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], $1
 	ld hl, wd4cf
@@ -820,10 +820,10 @@ JumpStep: ; 548a
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res 3, [hl]
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], $2
-	call Function5529
+	call SpawnShadow
 	ld hl, wd4cf
 	ld a, [hMapObjectIndexBuffer]
 	cp [hl]

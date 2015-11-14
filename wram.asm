@@ -327,15 +327,17 @@ wc2e6:: ds 4
 wc2ea:: ds 1
 wMovementPointer:: ds 2 ; c2eb
 	ds 3
-wc2f0:: ds 1
-wc2f1:: ds 1
-wc2f2:: ds 1
-wc2f3:: ds 1
-wc2f4:: ds 1
-wc2f5:: ds 1
-wc2f6:: ds 1
-wc2f7:: ds 1
-wc2f8:: ds 1
+
+wTempObjectCopyMapObjectIndex:: ds 1 ; c2f0
+wTempObjectCopySprite:: ds 1 ; c2f1
+wTempObjectCopySpriteVTile:: ds 1 ; c2f2
+wTempObjectCopyPalette:: ds 1 ; c2f3
+wTempObjectCopyMovement:: ds 1 ; c2f4
+wTempObjectCopyRange:: ds 1 ; c2f5
+wTempObjectCopyX:: ds 1 ; c2f6
+wTempObjectCopyY:: ds 1 ; c2f7
+wTempObjectCopyRadius:: ds 1 ; c2f8
+
 	ds 1
 
 TileDown:: ; c2fa
@@ -1743,7 +1745,7 @@ wd152:: ds 1
 wBGMapAnchorHi::
 wd153:: ds 1
 
-UsedSprites:: ds 64
+UsedSprites:: ds 64 ; d154
 UsedSpritesEnd::
 	ds UsedSprites - @
 
@@ -2222,11 +2224,11 @@ object_struct: MACRO
 \1Object12:: ds 1
 \1Facing:: ds 1
 \1StandingTile:: ds 1 ; collision
-\1NextTile:: ds 1     ; collision
-\1MapX:: ds 1
-\1MapY:: ds 1
+\1CurTile:: ds 1     ; collision
 \1NextMapX:: ds 1
 \1NextMapY:: ds 1
+\1MapX:: ds 1
+\1MapY:: ds 1
 	ds 3
 \1SpriteX:: ds 1
 \1SpriteY:: ds 1
@@ -2548,8 +2550,8 @@ wCurrentCaller:: ds 2
 wCurrMapWarpCount:: ds 1
 wCurrMapWarpHeaderPointer:: ds 1
 wdbfd:: ds 1
-wCurrentMapXYTriggerCount:: ds 1
-wCurrentMapXYTriggerHeaderPointer:: ds 1
+wCurrentNextMapXYTriggerCount:: ds 1
+wCurrentNextMapXYTriggerHeaderPointer:: ds 1
 wdc00:: ds 1
 wCurrentMapSignpostCount:: ds 1
 wCurrentMapSignpostHeaderPointer::

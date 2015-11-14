@@ -1508,19 +1508,19 @@ FacingPlayerDistance:: ; 36ad
 ; Return carry if the sprite at bc is facing the player,
 ; and its distance in d.
 
-	ld hl, OBJECT_MAP_X ; x
+	ld hl, OBJECT_NEXT_MAP_X ; x
 	add hl, bc
 	ld d, [hl]
 
-	ld hl, OBJECT_MAP_Y ; y
+	ld hl, OBJECT_NEXT_MAP_Y ; y
 	add hl, bc
 	ld e, [hl]
 
-	ld a, [PlayerMapX]
+	ld a, [PlayerNextMapX]
 	cp d
 	jr z, .CheckY
 
-	ld a, [PlayerMapY]
+	ld a, [PlayerNextMapY]
 	cp e
 	jr z, .CheckX
 
@@ -1528,7 +1528,7 @@ FacingPlayerDistance:: ; 36ad
 	ret
 
 .CheckY
-	ld a, [PlayerMapY]
+	ld a, [PlayerNextMapY]
 	sub e
 	jr z, .NotFacing
 	jr nc, .Above
@@ -1546,7 +1546,7 @@ FacingPlayerDistance:: ; 36ad
 	jr .CheckFacing
 
 .CheckX
-	ld a, [PlayerMapX]
+	ld a, [PlayerNextMapX]
 	sub d
 	jr z, .NotFacing
 	jr nc, .Left

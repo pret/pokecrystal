@@ -2178,10 +2178,10 @@ Function6ec1: ; 6ec1
 Function6f07: ; 6f07
 	call Function6f5f
 	ret c
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld d, [hl]
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld e, [hl]
 	ld hl, OBJECT_PALETTE
@@ -2351,14 +2351,14 @@ CheckFacingObject:: ; 6fd9
 	call CheckCounterTile
 	jr nz, .asm_6ff1
 
-	ld a, [PlayerMapX]
+	ld a, [PlayerNextMapX]
 	sub d
 	cpl
 	inc a
 	add d
 	ld d, a
 
-	ld a, [PlayerMapY]
+	ld a, [PlayerNextMapY]
 	sub e
 	cpl
 	inc a
@@ -2386,10 +2386,10 @@ CheckFacingObject:: ; 6fd9
 
 
 Function7009: ; 7009
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld d, [hl]
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld e, [hl]
 	jr IsNPCAtCoord
@@ -2403,10 +2403,10 @@ Function7015: ; unreferenced
 	ret
 
 Function7021: ; 7021
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld d, [hl]
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld e, [hl]
 	call GetSpriteDirection
@@ -2455,12 +2455,12 @@ IsNPCAtCoord: ; 7041
 	jr .ok2
 
 .got
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
 	jr nz, .ok
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
@@ -2474,12 +2474,12 @@ IsNPCAtCoord: ; 7041
 	jr nz, .setcarry
 
 .ok
-	ld hl, OBJECT_NEXT_MAP_X
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
 	jr nz, .next
-	ld hl, OBJECT_NEXT_MAP_Y
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
@@ -2508,7 +2508,7 @@ IsNPCAtCoord: ; 7041
 ; 70a4
 
 Function70a4: ; 70a4
-	ld hl, OBJECT_22
+	ld hl, OBJECT_RADIUS
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -2517,7 +2517,7 @@ Function70a4: ; 70a4
 	jr z, .asm_70c7
 	ld e, a
 	ld d, a
-	ld hl, OBJECT_20
+	ld hl, OBJECT_INIT_X
 	add hl, bc
 	ld a, [hl]
 	sub d
@@ -2525,7 +2525,7 @@ Function70a4: ; 70a4
 	ld a, [hl]
 	add e
 	ld e, a
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
@@ -2534,7 +2534,7 @@ Function70a4: ; 70a4
 	jr z, .asm_70eb
 
 .asm_70c7
-	ld hl, OBJECT_22
+	ld hl, OBJECT_RADIUS
 	add hl, bc
 	ld a, [hl]
 	swap a
@@ -2542,7 +2542,7 @@ Function70a4: ; 70a4
 	jr z, .asm_70e9
 	ld e, a
 	ld d, a
-	ld hl, OBJECT_21
+	ld hl, OBJECT_INIT_Y
 	add hl, bc
 	ld a, [hl]
 	sub d
@@ -2550,7 +2550,7 @@ Function70a4: ; 70a4
 	ld a, [hl]
 	add e
 	ld e, a
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp d
@@ -2568,7 +2568,7 @@ Function70a4: ; 70a4
 ; 70ed
 
 Function70ed: ; 70ed
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [XCoord]
 	cp [hl]
@@ -2579,7 +2579,7 @@ Function70ed: ; 70ed
 	jr c, .asm_7111
 
 .asm_70fe
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [YCoord]
 	cp [hl]
@@ -2599,9 +2599,9 @@ Function70ed: ; 70ed
 ; 7113
 
 Function7113: ; unreferenced
-	ld a, [PlayerMapX]
+	ld a, [PlayerNextMapX]
 	ld d, a
-	ld a, [PlayerMapY]
+	ld a, [PlayerNextMapY]
 	ld e, a
 	ld bc, ObjectStructs
 	xor a
@@ -2619,12 +2619,12 @@ Function7113: ; unreferenced
 	jr .asm_7160
 
 .asm_7136
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
 	jr nz, .asm_714e
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
@@ -2635,12 +2635,12 @@ Function7113: ; unreferenced
 	jr .asm_716f
 
 .asm_714e
-	ld hl, OBJECT_NEXT_MAP_Y
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
 	jr nz, .asm_7160
-	ld hl, OBJECT_NEXT_MAP_X
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
@@ -2666,14 +2666,14 @@ Function7113: ; unreferenced
 
 
 Function7171: ; 7171
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, d
 	sub [hl]
 	jr c, .asm_718b
 	cp $2
 	jr nc, .asm_718b
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, e
 	sub [hl]
@@ -3235,7 +3235,7 @@ GetSpawnCoord: ; 8029
 	ld a, $0
 	ld [hObjectStructIndexBuffer], a
 	ld de, ObjectStructs
-	call Function8116
+	call CopyMapObjectToObjectStruct
 	ld a, $0
 	ld [wd4cf], a
 	ret
@@ -3281,10 +3281,10 @@ WritePersonXY:: ; 80a1
 	call CheckObjectVisibility
 	ret c
 
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld d, [hl]
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld e, [hl]
 	ld a, [hMapObjectIndexBuffer]
@@ -3298,23 +3298,23 @@ RefreshPlayerCoords: ; 80b8
 	ld a, [XCoord]
 	add 4
 	ld d, a
-	ld hl, PlayerMapX
+	ld hl, PlayerNextMapX
 	sub [hl]
 	ld [hl], d
 	ld hl, MapObjects + MAPOBJECT_X_COORD
 	ld [hl], d
-	ld hl, PlayerNextMapX
+	ld hl, PlayerMapX
 	ld [hl], d
 	ld d, a
 	ld a, [YCoord]
 	add 4
 	ld e, a
-	ld hl, PlayerMapY
+	ld hl, PlayerNextMapY
 	sub [hl]
 	ld [hl], e
 	ld hl, MapObjects + MAPOBJECT_Y_COORD
 	ld [hl], e
-	ld hl, PlayerNextMapY
+	ld hl, PlayerMapY
 	ld [hl], e
 	ld e, a
 	ld a, [wObjectFollow_Leader]
@@ -3328,6 +3328,7 @@ CopyObjectStruct:: ; 80e7
 	call CheckObjectMask
 	and a
 	ret nz ; masked
+
 	ld hl, ObjectStructs + OBJECT_STRUCT_LENGTH * 1
 	ld a, 1
 	ld de, OBJECT_STRUCT_LENGTH
@@ -3342,77 +3343,87 @@ CopyObjectStruct:: ; 80e7
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
 	scf
-	ret
+	ret ; overflow
 
 .done
 	ld d, h
 	ld e, l
-	call Function8116
+	call CopyMapObjectToObjectStruct
 	ld hl, VramState
 	bit 7, [hl]
 	ret z
+
 	ld hl, OBJECT_FLAGS2
 	add hl, de
 	set 5, [hl]
 	ret
 ; 8116
 
-Function8116: ; 8116
-	call Function811d
-	call Function8286
+CopyMapObjectToObjectStruct: ; 8116
+	call .CopyMapObjectToTempObject
+	call CopyTempObjectToObjectStruct
 	ret
 ; 811d
 
-Function811d: ; 811d
+.CopyMapObjectToTempObject: ; 811d
 	ld a, [hObjectStructIndexBuffer]
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld [hl], a
+
 	ld a, [hMapObjectIndexBuffer]
-	ld [wc2f0], a
+	ld [wTempObjectCopyMapObjectIndex], a
+
 	ld hl, MAPOBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
-	ld [wc2f1], a
-	call Function180e
-	ld [wc2f2], a
+	ld [wTempObjectCopySprite], a
+
+	call GetSpriteVTile
+	ld [wTempObjectCopySpriteVTile], a
+
 	ld a, [hl]
 	call GetSpritePalette
-	ld [wc2f3], a
+	ld [wTempObjectCopyPalette], a
+
 	ld hl, MAPOBJECT_COLOR
 	add hl, bc
 	ld a, [hl]
 	and $f0
-	jr z, .no_color
+	jr z, .skip_color_override
 	swap a
-	and $7
-	ld [wc2f3], a
+	and $7 ; OAM_PALETTE
+	ld [wTempObjectCopyPalette], a
 
-.no_color
+.skip_color_override
 	ld hl, MAPOBJECT_MOVEMENT
 	add hl, bc
 	ld a, [hl]
-	ld [wc2f4], a
+	ld [wTempObjectCopyMovement], a
+
 	ld hl, MAPOBJECT_RANGE
 	add hl, bc
 	ld a, [hl]
-	ld [wc2f5], a
+	ld [wTempObjectCopyRange], a
+
 	ld hl, MAPOBJECT_X_COORD
 	add hl, bc
 	ld a, [hl]
-	ld [wc2f6], a
+	ld [wTempObjectCopyX], a
+
 	ld hl, MAPOBJECT_Y_COORD
 	add hl, bc
 	ld a, [hl]
-	ld [wc2f7], a
+	ld [wTempObjectCopyY], a
+
 	ld hl, MAPOBJECT_RADIUS
 	add hl, bc
 	ld a, [hl]
-	ld [wc2f8], a
+	ld [wTempObjectCopyRadius], a
 	ret
 ; 8177
 
-Function8177: ; 8177
+InitializeVisibleSprites: ; 8177
 	ld bc, MapObjects + OBJECT_LENGTH
 	ld a, 1
 .loop
@@ -3422,35 +3433,42 @@ Function8177: ; 8177
 	ld a, [hl]
 	and a
 	jr z, .next
+
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp -1
 	jr nz, .next
+
 	ld a, [XCoord]
 	ld d, a
 	ld a, [YCoord]
 	ld e, a
+
 	ld hl, MAPOBJECT_X_COORD
 	add hl, bc
 	ld a, [hl]
 	add 1
 	sub d
 	jr c, .next
+
 	cp MAPOBJECT_SCREEN_WIDTH
 	jr nc, .next
+
 	ld hl, MAPOBJECT_Y_COORD
 	add hl, bc
 	ld a, [hl]
 	add 1
 	sub e
 	jr c, .next
+
 	cp MAPOBJECT_SCREEN_HEIGHT
 	jr nc, .next
+
 	push bc
 	call CopyObjectStruct
 	pop bc
-	jp c, Function81c9
+	jp c, .ret
 
 .next
 	ld hl, OBJECT_LENGTH
@@ -3464,7 +3482,7 @@ Function8177: ; 8177
 	ret
 ; 81c9
 
-Function81c9: ; 81c9
+.ret: ; 81c9
 	ret
 ; 81ca
 
@@ -3473,12 +3491,12 @@ Function81ca:: ; 81ca
 	ld a, [wd151]
 	cp $ff
 	ret z
-	ld hl, Table81d6
+	ld hl, .jumptable
 	rst JumpTable
 	ret
 ; 81d6
 
-Table81d6: ; 81d6
+.jumptable: ; 81d6
 	dw Function81e5
 	dw Function81de
 	dw Function8232
@@ -3602,32 +3620,33 @@ Function823e: ; 823e
 ; 8286
 
 
-Function8286: ; 8286
-	ld a, [wc2f0]
+CopyTempObjectToObjectStruct: ; 8286
+	ld a, [wTempObjectCopyMapObjectIndex]
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, de
 	ld [hl], a
 
-	ld a, [wc2f4]
+	ld a, [wTempObjectCopyMovement]
 	call Function1a61
-	ld a, [wc2f3]
+
+	ld a, [wTempObjectCopyPalette]
 	ld hl, OBJECT_PALETTE
 	add hl, de
 	or [hl]
 	ld [hl], a
 
-	ld a, [wc2f7]
-	call Function82d5
+	ld a, [wTempObjectCopyY]
+	call .InitYCoord
 
-	ld a, [wc2f6]
-	call Function82f1
+	ld a, [wTempObjectCopyX]
+	call .InitXCoord
 
-	ld a, [wc2f1]
+	ld a, [wTempObjectCopySprite]
 	ld hl, OBJECT_SPRITE
 	add hl, de
 	ld [hl], a
 
-	ld a, [wc2f2]
+	ld a, [wTempObjectCopySpriteVTile]
 	ld hl, OBJECT_SPRITE_TILE
 	add hl, de
 	ld [hl], a
@@ -3638,13 +3657,13 @@ Function8286: ; 8286
 
 	ld hl, OBJECT_FACING_STEP
 	add hl, de
-	ld [hl], $ff
+	ld [hl], STANDING
 
-	ld a, [wc2f8]
-	call Function830d
+	ld a, [wTempObjectCopyRadius]
+	call .InitRadius
 
-	ld a, [wc2f5]
-	ld hl, OBJECT_32
+	ld a, [wTempObjectCopyRange]
+	ld hl, OBJECT_RANGE
 	add hl, de
 	ld [hl], a
 
@@ -3652,13 +3671,15 @@ Function8286: ; 8286
 	ret
 ; 82d5
 
-Function82d5: ; 82d5
-	ld hl, OBJECT_21
+.InitYCoord: ; 82d5
+	ld hl, OBJECT_INIT_Y
 	add hl, de
 	ld [hl], a
-	ld hl, OBJECT_MAP_Y
+
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, de
 	ld [hl], a
+
 	ld hl, YCoord
 	sub [hl]
 	and $f
@@ -3671,11 +3692,11 @@ Function82d5: ; 82d5
 	ret
 ; 82f1
 
-Function82f1: ; 82f1
-	ld hl, OBJECT_20
+.InitXCoord: ; 82f1
+	ld hl, OBJECT_INIT_X
 	add hl, de
 	ld [hl], a
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, de
 	ld [hl], a
 	ld hl, XCoord
@@ -3690,7 +3711,7 @@ Function82f1: ; 82f1
 	ret
 ; 830d
 
-Function830d: ; 830d
+.InitRadius: ; 830d
 	ld h, a
 	inc a
 	and $f
@@ -3699,7 +3720,7 @@ Function830d: ; 830d
 	add $10
 	and $f0
 	or l
-	ld hl, OBJECT_22
+	ld hl, OBJECT_RADIUS
 	add hl, de
 	ld [hl], a
 	ret
@@ -3749,19 +3770,19 @@ TrainerWalkToPlayer: ; 831e
 	call GetObjectStruct
 
 ; get last talked coords, load to bc
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [hl]
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld c, [hl]
 	ld b, a
 
 ; get player coords, load to de
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, de
 	ld a, [hl]
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, de
 	ld e, [hl]
 	ld d, a
@@ -3815,15 +3836,15 @@ FollowNotExact:: ; 839e
 	ret c
 
 ; Person 2 is now in bc, person 1 is now in de
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [hl]
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld c, [hl]
 	ld b, a
 
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, de
 	ld a, [hl]
 	cp b
@@ -3837,7 +3858,7 @@ FollowNotExact:: ; 839e
 	jr .continue
 
 .same_x
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, de
 	ld a, [hl]
 	cp c
@@ -3850,7 +3871,7 @@ FollowNotExact:: ; 839e
 	dec c
 
 .continue
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, de
 	ld [hl], b
 	ld a, b
@@ -3863,7 +3884,7 @@ FollowNotExact:: ; 839e
 	ld hl, OBJECT_SPRITE_X
 	add hl, de
 	ld [hl], a
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, de
 	ld [hl], c
 	ld a, c
@@ -3877,7 +3898,7 @@ FollowNotExact:: ; 839e
 	add hl, de
 	ld [hl], a
 	ld a, [hObjectStructIndexBuffer]
-	ld hl, OBJECT_32
+	ld hl, OBJECT_RANGE
 	add hl, de
 	ld [hl], a
 	ld hl, OBJECT_MOVEMENTTYPE
@@ -3920,10 +3941,10 @@ GetRelativeFacing:: ; 8417
 ; load the coordinates of object d into bc
 	ld a, d
 	call GetObjectStruct
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [hl]
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld c, [hl]
 	ld b, a
@@ -3931,10 +3952,10 @@ GetRelativeFacing:: ; 8417
 ; load the coordinates of object e into de
 	ld a, e
 	call GetObjectStruct
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld d, [hl]
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld e, [hl]
 	pop bc
@@ -4014,15 +4035,15 @@ Function848a: ; 848a
 Function849d: ; 849d
 	ld a, [wObjectFollow_Leader]
 	call GetObjectStruct
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld d, [hl]
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld e, [hl]
 	ld a, [wObjectFollow_Follower]
 	call GetObjectStruct
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, d
 	cp [hl]
@@ -4038,7 +4059,7 @@ Function849d: ; 849d
 	ret
 
 .check_y
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, e
 	cp [hl]
@@ -34646,13 +34667,13 @@ IsNPCInFront: ; 80341
 	ld a, 0
 	ld [hMapObjectIndexBuffer], a
 ; Load the next X coordinate into d
-	ld a, [PlayerMapX]
+	ld a, [PlayerNextMapX]
 	ld d, a
 	ld a, [WalkingX]
 	add d
 	ld d, a
 ; Load the next Y coordinate into e
-	ld a, [PlayerMapY]
+	ld a, [PlayerNextMapY]
 	ld e, a
 	ld a, [WalkingY]
 	add e
@@ -34701,7 +34722,7 @@ Function8036f: ; 8036f
 
 	ld a, [WalkingDirection]
 	ld d, a
-	ld hl, OBJECT_32
+	ld hl, OBJECT_RANGE
 	add hl, bc
 	ld a, [hl]
 	and $fc
@@ -50405,17 +50426,17 @@ Function10433a: ; 10433a (41:433a)
 	ret
 ; 104350
 
-ShockEmote:    INCBIN "gfx/emotes/shock.2bpp"
-QuestionEmote: INCBIN "gfx/emotes/question.2bpp"
-HappyEmote:    INCBIN "gfx/emotes/happy.2bpp"
-SadEmote:      INCBIN "gfx/emotes/sad.2bpp"
-HeartEmote:    INCBIN "gfx/emotes/heart.2bpp"
-BoltEmote:     INCBIN "gfx/emotes/bolt.2bpp"
-SleepEmote:    INCBIN "gfx/emotes/sleep.2bpp"
-FishEmote:     INCBIN "gfx/emotes/fish.2bpp"
-FishingRodGFX1: INCBIN "gfx/misc/fishing1.2bpp"
+ShockEmote:     INCBIN "gfx/emotes/shock.2bpp"
+QuestionEmote:  INCBIN "gfx/emotes/question.2bpp"
+HappyEmote:     INCBIN "gfx/emotes/happy.2bpp"
+SadEmote:       INCBIN "gfx/emotes/sad.2bpp"
+HeartEmote:     INCBIN "gfx/emotes/heart.2bpp"
+BoltEmote:      INCBIN "gfx/emotes/bolt.2bpp"
+SleepEmote:     INCBIN "gfx/emotes/sleep.2bpp"
+FishEmote:      INCBIN "gfx/emotes/fish.2bpp"
+JumpShadowGFX:  INCBIN "gfx/misc/shadow.2bpp"
 FishingRodGFX2: INCBIN "gfx/misc/fishing2.2bpp"
-FishingRodGFX3: INCBIN "gfx/misc/fishing3.2bpp"
+BoulderDustGFX: INCBIN "gfx/misc/boulderdust.2bpp"
 FishingRodGFX4: INCBIN "gfx/misc/fishing4.2bpp"
 
 
@@ -50770,7 +50791,7 @@ CheckMovingOffEdgeOfMap:: ; 104820 (41:4820)
 	ret
 
 .down
-	ld a, [PlayerMapY]
+	ld a, [PlayerNextMapY]
 	sub 4
 	ld b, a
 	ld a, [MapHeight]
@@ -50781,7 +50802,7 @@ CheckMovingOffEdgeOfMap:: ; 104820 (41:4820)
 	ret
 
 .up
-	ld a, [PlayerMapY]
+	ld a, [PlayerNextMapY]
 	sub 4
 	cp -1
 	jr z, .ok
@@ -50789,7 +50810,7 @@ CheckMovingOffEdgeOfMap:: ; 104820 (41:4820)
 	ret
 
 .left
-	ld a, [PlayerMapX]
+	ld a, [PlayerNextMapX]
 	sub $4
 	cp -1
 	jr z, .ok
@@ -50797,7 +50818,7 @@ CheckMovingOffEdgeOfMap:: ; 104820 (41:4820)
 	ret
 
 .right
-	ld a, [PlayerMapX]
+	ld a, [PlayerNextMapX]
 	sub 4
 	ld b, a
 	ld a, [MapWidth]

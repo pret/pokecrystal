@@ -368,7 +368,7 @@ CheckTileEvent: ; 96874
 	call CheckCoordEventScriptFlag
 	jr z, .coord_events_disabled
 
-	call CheckCurrentMapXYTriggers
+	call CheckCurrentNextMapXYTriggers
 	jr c, .coord_event
 
 .coord_events_disabled

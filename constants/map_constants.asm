@@ -529,18 +529,18 @@ const_value SET 1
 	const OBJECT_FACING
 	const OBJECT_09
 	const OBJECT_STEP_DURATION
-	const OBJECT_11
+	const OBJECT_ACTION
 	const OBJECT_12
 	const OBJECT_FACING_STEP
 	const OBJECT_STANDING_TILE
 	const OBJECT_NEXT_TILE
-	const OBJECT_MAP_X
-	const OBJECT_MAP_Y
 	const OBJECT_NEXT_MAP_X
 	const OBJECT_NEXT_MAP_Y
-	const OBJECT_20
-	const OBJECT_21
-	const OBJECT_22
+	const OBJECT_MAP_X
+	const OBJECT_MAP_Y
+	const OBJECT_INIT_X
+	const OBJECT_INIT_Y
+	const OBJECT_RADIUS
 	const OBJECT_SPRITE_X
 	const OBJECT_SPRITE_Y
 	const OBJECT_SPRITE_X_OFFSET
@@ -550,7 +550,7 @@ const_value SET 1
 	const OBJECT_29
 	const OBJECT_30
 	const OBJECT_31
-	const OBJECT_32
+	const OBJECT_RANGE
 ; 33-39 are not used
 
 ; map object struct
@@ -651,3 +651,5 @@ NUM_SPAWNS EQU const_value
 	const PALETTE_NITE
 	const PALETTE_MORN
 	const PALETTE_DARK
+
+FIXED_FACING EQU 2

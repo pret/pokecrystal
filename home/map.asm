@@ -258,10 +258,10 @@ GetDestinationWarpNumber:: ; 2252
 ; 2266
 
 .GetDestinationWarpNumber ; 2266
-	ld a, [PlayerMapY]
+	ld a, [PlayerNextMapY]
 	sub $4
 	ld e, a
-	ld a, [PlayerMapX]
+	ld a, [PlayerNextMapX]
 	sub $4
 	ld d, a
 	ld a, [wCurrMapWarpCount]
@@ -570,11 +570,11 @@ ReadWarps:: ; 23da
 ReadCoordEvents:: ; 23f1
 	ld a, [hli]
 	ld c, a
-	ld [wCurrentMapXYTriggerCount], a
+	ld [wCurrentNextMapXYTriggerCount], a
 	ld a, l
-	ld [wCurrentMapXYTriggerHeaderPointer], a
+	ld [wCurrentNextMapXYTriggerHeaderPointer], a
 	ld a, h
-	ld [wCurrentMapXYTriggerHeaderPointer + 1], a
+	ld [wCurrentNextMapXYTriggerHeaderPointer + 1], a
 
 	ld a, c
 	and a
@@ -1594,9 +1594,9 @@ Function2914:: ; 2914
 	call GetLeftRightCollision
 	call GetUpDownCollision
 ; get coords of current tile
-	ld a, [PlayerMapX]
+	ld a, [PlayerNextMapX]
 	ld d, a
-	ld a, [PlayerMapY]
+	ld a, [PlayerNextMapY]
 	ld e, a
 	call GetCoordTile
 	ld [PlayerStandingTile], a
@@ -1623,9 +1623,9 @@ Function2914:: ; 2914
 ; 294d
 
 GetUpDownCollision:: ; 294d
-	ld a, [PlayerMapX]
+	ld a, [PlayerNextMapX]
 	ld d, a
-	ld a, [PlayerMapY]
+	ld a, [PlayerNextMapY]
 	ld e, a
 
 	push de
@@ -1643,9 +1643,9 @@ GetUpDownCollision:: ; 294d
 ; 296c
 
 GetLeftRightCollision:: ; 296c
-	ld a, [PlayerMapX]
+	ld a, [PlayerNextMapX]
 	ld d, a
-	ld a, [PlayerMapY]
+	ld a, [PlayerNextMapY]
 	ld e, a
 
 	push de
@@ -1772,10 +1772,10 @@ endr
 	ld h, [hl]
 	ld l, a
 
-	ld a, [PlayerMapX]
+	ld a, [PlayerNextMapX]
 	add d
 	ld d, a
-	ld a, [PlayerMapY]
+	ld a, [PlayerNextMapY]
 	add e
 	ld e, a
 	ld a, [hl]
@@ -1928,9 +1928,9 @@ CheckIfFacingTileCoordIsSign:: ; 2aaa
 	ret
 ; 2ad4
 
-CheckCurrentMapXYTriggers:: ; 2ad4
+CheckCurrentNextMapXYTriggers:: ; 2ad4
 ; If there are no xy triggers, we don't need to be here.
-	ld a, [wCurrentMapXYTriggerCount]
+	ld a, [wCurrentNextMapXYTriggerCount]
 	and a
 	ret z
 ; Copy the trigger count into c.
@@ -1947,7 +1947,7 @@ CheckCurrentMapXYTriggers:: ; 2ad4
 
 CheckStandingOnXYTrigger:: ; 2ae7
 ; Checks to see if you are standing on an xy-trigger.  If yes, copies the trigger to EngineBuffer1 and sets carry.
-	ld hl, wCurrentMapXYTriggerHeaderPointer
+	ld hl, wCurrentNextMapXYTriggerHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1955,10 +1955,10 @@ CheckStandingOnXYTrigger:: ; 2ae7
 	call CheckTriggers
 	ld b, a
 ; Load your current coordinates into de.  This will be used to check if your position is in the xy-trigger table for the current map.
-	ld a, [PlayerMapX]
+	ld a, [PlayerNextMapX]
 	sub 4
 	ld d, a
-	ld a, [PlayerMapY]
+	ld a, [PlayerNextMapY]
 	sub 4
 	ld e, a
 

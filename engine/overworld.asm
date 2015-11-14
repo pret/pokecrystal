@@ -732,9 +732,9 @@ EmotesPointers: ; 144d
 	emote_header BoltEmote, 4, VTiles1 tile $78
 	emote_header SleepEmote, 4, VTiles1 tile $78
 	emote_header FishEmote, 4, VTiles1 tile $78
-	emote_header FishingRodGFX1, 1, VTiles1 tile $7c
+	emote_header JumpShadowGFX, 1, VTiles1 tile $7c
 	emote_header FishingRodGFX2, 2, VTiles1 tile $7c
-	emote_header FishingRodGFX3, 2, VTiles1 tile $7e
+	emote_header BoulderDustGFX, 2, VTiles1 tile $7e
 	emote_header FishingRodGFX4, 1, VTiles1 tile $7e
 ; 14495
 

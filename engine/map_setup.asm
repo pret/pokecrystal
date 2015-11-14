@@ -311,10 +311,10 @@ SuspendMapAnims: ; 154d3
 ; 154d7
 
 LoadObjectsRunCallback_02: ; 154d7
-	ld a, $2
+	ld a, 2
 	call RunMapCallback
 	callba LoadObjectMasks
-	callba Function8177
+	callba InitializeVisibleSprites
 	ret
 ; 154ea (5:54ea)
 

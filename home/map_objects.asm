@@ -6,7 +6,9 @@ GetSpritePalette:: ; 17ff
 	push de
 	push bc
 	ld c, a
+
 	callba _GetSpritePalette
+
 	ld a, c
 	pop bc
 	pop de
@@ -15,7 +17,7 @@ GetSpritePalette:: ; 17ff
 ; 180e
 
 
-Function180e:: ; 180e
+GetSpriteVTile:: ; 180e
 	push hl
 	push bc
 	ld hl, UsedSprites + 2
@@ -571,7 +573,7 @@ endr
 	ld [hl], a
 	ld a, [bc]
 	inc bc
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, de
 	ld [hl], a
 	ld a, [bc]
@@ -659,6 +661,7 @@ GetObjectSprite:: ; 1af1
 ; 1af8
 
 SetSpriteDirection:: ; 1af8
+	; preserves other flags
 	push af
 	ld hl, OBJECT_FACING
 	add hl, bc
