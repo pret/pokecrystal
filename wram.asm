@@ -974,12 +974,12 @@ wc7e8:: ds 24
 
 SECTION "Overworld Map", WRAM0 [$c800]
 
-wc800::
 OverworldMap:: ; c800
-; too lazy to reconcile these labels
-;	ds 1300
+	ds 1300
+OverworldMapEnd::
+	ds OverworldMap - @
 
-	ds 1
+wc800::	ds 1
 wc801:: ds 1
 wc802:: ds 1
 wc803:: ds 4
@@ -1111,10 +1111,7 @@ wccb4:: ds 1
 wccb5:: ds 3
 wccb8:: ds 1
 wccb9:: ds 1
-wccba:: ds 90
-OverworldMapEnd::
-
-	ds 12
+wccba:: ds 102
 
 SECTION "Video", WRAM0
 CreditsPos::
