@@ -1464,26 +1464,28 @@ CheckTrainerBattle:: ; 360d
 	ld [EngineBuffer2], a
 	ld a, c
 	ld [EngineBuffer3], a
-	jr Function367e
+	jr LoadTrainer_continue
 ; 3674
 
-Function3674:: ; 3674
+TalkToTrainer:: ; 3674
 	ld a, 1
 	ld [EngineBuffer2], a
 	ld a, -1
 	ld [EngineBuffer3], a
 
-Function367e:: ; 367e
+LoadTrainer_continue:: ; 367e
 	call GetMapScriptHeaderBank
 	ld [EngineBuffer1], a
+
 	ld a, [hLastTalked]
 	call GetMapObject
+
 	ld hl, MAPOBJECT_SCRIPT_POINTER
 	add hl, bc
 	ld a, [EngineBuffer1]
 	call GetFarHalfword
-	ld de, wd041
-	ld bc, $000d
+	ld de, wTempTrainerHeader
+	ld bc, wTempTrainerHeaderEnd - wTempTrainerHeader
 	ld a, [EngineBuffer1]
 	call FarCopyBytes
 	xor a
@@ -1537,12 +1539,12 @@ FacingPlayerDistance:: ; 36ad
 	cpl
 	inc a
 	ld d, a
-	ld e, UP << 2
+	ld e, OW_UP
 	jr .CheckFacing
 
 .Above
 	ld d, a
-	ld e, DOWN << 2
+	ld e, OW_DOWN
 	jr .CheckFacing
 
 .CheckX
@@ -1555,12 +1557,12 @@ FacingPlayerDistance:: ; 36ad
 	cpl
 	inc a
 	ld d, a
-	ld e, LEFT << 2
+	ld e, OW_LEFT
 	jr .CheckFacing
 
 .Left
 	ld d, a
-	ld e, RIGHT << 2
+	ld e, OW_RIGHT
 
 .CheckFacing
 	call GetSpriteDirection

@@ -635,21 +635,23 @@ TryObjectEvent: ; 969b5
 	jp [hl]
 
 .nope_bugged
+	; pop bc
 	xor a
 	ret
 
 .pointers
-	dbw 0, .zero
-	dbw 1, .one
-	dbw 2, .two
-	dbw 3, .three
-	dbw 4, .four
-	dbw 5, .five
-	dbw 6, .six
+	dbw PERSONTYPE_SCRIPT, .script
+	dbw PERSONTYPE_ITEMFRAGMENT, .itemfragment
+	dbw PERSONTYPE_TRAINER, .trainer
+	; the remaining four are dummy events
+	dbw PERSONTYPE_3, .three
+	dbw PERSONTYPE_4, .four
+	dbw PERSONTYPE_5, .five
+	dbw PERSONTYPE_6, .six
 	db -1
 ; 96a04
 
-.zero ; 96a04
+.script ; 96a04
 	ld hl, MAPOBJECT_SCRIPT_POINTER
 	add hl, bc
 	ld a, [hli]
@@ -657,11 +659,10 @@ TryObjectEvent: ; 969b5
 	ld l, a
 	call GetMapScriptHeaderBank
 	call CallScript
-;	ld a, -1
 	ret
 ; 96a12
 
-.one ; 96a12
+.itemfragment ; 96a12
 	ld hl, MAPOBJECT_SCRIPT_POINTER
 	add hl, bc
 	ld a, [hli]
@@ -671,14 +672,14 @@ TryObjectEvent: ; 969b5
 	ld de, EngineBuffer1
 	ld bc, 2
 	call FarCopyBytes
-	ld a, 3
+	ld a, PLAYEREVENT_ITEMBALL
 	scf
 	ret
 ; 96a29
 
-.two ; 96a29
-	call Function3674
-	ld a, 2
+.trainer ; 96a29
+	call TalkToTrainer
+	ld a, PLAYEREVENT_TALKTOTRAINER
 	scf
 	ret
 ; 96a30
@@ -729,16 +730,16 @@ TryReadSign: ; 96a38
 ; 96a59
 
 .up
-	ld b, UP << 2
+	ld b, OW_UP
 	jr .checkdir
 .down
-	ld b, DOWN << 2
+	ld b, OW_DOWN
 	jr .checkdir
 .right
-	ld b, RIGHT << 2
+	ld b, OW_RIGHT
 	jr .checkdir
 .left
-	ld b, LEFT << 2
+	ld b, OW_LEFT
 	jr .checkdir
 
 .checkdir

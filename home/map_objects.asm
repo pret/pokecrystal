@@ -124,7 +124,18 @@ GetTileCollision:: ; 185d
 ; 1875
 
 
-Function1875:: ; 1875
+CheckGrassTile:: ; 1875
+	; and %00110111
+	; cp $10
+	; ret c
+	; cp $30
+	; jr nc, .okay
+	; scf
+	; ret
+	; .okay
+	; xor a
+	; ret
+
 	ld d, a
 	and $f0
 	cp $10
@@ -140,7 +151,7 @@ Function1875:: ; 1875
 	ret z
 	scf
 	ret
-
+; For some reason, the above code is duplicated down here.
 .ok_20
 	ld a, d
 	and 7

@@ -197,12 +197,12 @@ Function4427: ; 4427
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 0, [hl]
-	jr nz, Function44a3
+	jr nz, SetFacingStanding
 
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	bit 6, [hl]
-	jr nz, Function44a3
+	jr nz, SetFacingStanding
 
 	bit 5, [hl]
 	jr nz, Function4448
@@ -215,7 +215,7 @@ Function4440: ; 4440
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 0, [hl]
-	jr nz, Function44a3
+	jr nz, SetFacingStanding
 	; fallthrough
 ; 4448
 
@@ -243,33 +243,33 @@ endr
 ; 445f
 
 Pointers445f: ; 445f
-	dw Function44a3, Function44a3 ; 00
-	dw Function44b5, Function44aa ; 01
-	dw Function44c1, Function44aa ; 02
-	dw Function4508, Function44aa ; 03
-	dw Function4529, Function44aa ; 04
-	dw Function4539, Function44a3 ; 05
+	dw SetFacingStanding, SetFacingStanding ; 00
+	dw Function44b5, SetFacingCurrent ; 01
+	dw Function44c1, SetFacingCurrent ; 02
+	dw Function4508, SetFacingCurrent ; 03
+	dw Function4529, SetFacingCurrent ; 04
+	dw Function4539, SetFacingStanding ; 05
 	dw Function456e, Function456e ; 06
-	dw Function457b, Function44a3 ; 07
+	dw Function457b, SetFacingStanding ; 07
 	dw Function4582, Function4582 ; 08
 	dw Function4589, Function4589 ; 09
 	dw Function4590, Function45a4 ; 0a
-	dw Function45ab, Function44aa ; 0c
+	dw Function45ab, SetFacingCurrent ; 0c
 	dw Function45be, Function45be ; 0b
 	dw Function45c5, Function45c5 ; 0d
-	dw Function45da, Function44a3 ; 0e
-	dw Function45ed, Function44a3 ; 0f
-	dw Function44e4, Function44aa ; 10
+	dw Function45da, SetFacingStanding ; 0e
+	dw Function45ed, SetFacingStanding ; 0f
+	dw Function44e4, SetFacingCurrent ; 10
 ; 44a3
 
-Function44a3: ; 44a3
+SetFacingStanding: ; 44a3
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
-	ld [hl], -1
+	ld [hl], STANDING
 	ret
 ; 44aa
 
-Function44aa: ; 44aa
+SetFacingCurrent: ; 44aa
 	call GetSpriteDirection
 	or 0 ; useless
 	ld hl, OBJECT_FACING_STEP
@@ -284,26 +284,28 @@ Function44b5: ; 44b5
 	ld a, [hl]
 	and 1
 	jr nz, Function44c1
-	jp Function44aa
+	jp SetFacingCurrent
 ; 44c1
 
 Function44c1: ; 44c1
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 3, [hl]
-	jp nz, Function44aa
+	jp nz, SetFacingCurrent
+
 	ld hl, OBJECT_12
 	add hl, bc
 	ld a, [hl]
 	inc a
 	and %00001111
 	ld [hl], a
+
 	rrca
 	rrca
 	and %00000011
 	ld d, a
 	call GetSpriteDirection
-	or 0
+	or 0 ; useless
 	or d
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
@@ -315,7 +317,7 @@ Function44e4: ; 44e4
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 3, [hl]
-	jp nz, Function44aa
+	jp nz, SetFacingCurrent
 	ld hl, OBJECT_12
 	add hl, bc
 	ld a, [hl]
@@ -327,7 +329,7 @@ Function44e4: ; 44e4
 	and %00000011
 	ld d, a
 	call GetSpriteDirection
-	or 0
+	or 0 ; useless
 	or d
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
@@ -339,7 +341,7 @@ Function4508: ; 4508
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 3, [hl]
-	jp nz, Function44aa
+	jp nz, SetFacingCurrent
 	ld hl, OBJECT_12
 	add hl, bc
 	inc [hl]
@@ -350,7 +352,7 @@ Function4508: ; 4508
 	and %00000011
 	ld d, a
 	call GetSpriteDirection
-	or 0
+	or 0 ; useless
 	or d
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
@@ -363,7 +365,7 @@ Function4529: ; 4529
 	ld hl, OBJECT_FACING
 	add hl, bc
 	ld a, [hl]
-	or 0
+	or 0 ; useless
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], a
@@ -372,7 +374,7 @@ Function4529: ; 4529
 
 Function4539: ; 4539
 	call Function453f
-	jp Function44a3
+	jp SetFacingStanding
 ; 453f
 
 Function453f: ; 453f
@@ -409,7 +411,7 @@ Function453f: ; 453f
 ; 456a
 
 .Directions ; 456a
-	db DOWN << 2, RIGHT << 2, UP << 2, LEFT << 2
+	db OW_DOWN, OW_RIGHT, OW_UP, OW_LEFT
 ; 456e
 
 Function456e: ; 456e
@@ -562,12 +564,12 @@ Function4600: ; 4600
 	add hl, bc
 	ld [hl], a
 
-	call Function4661
+	call SetTallGrassFlags
 	ld hl, OBJECT_NEXT_TILE
 	add hl, bc
 	ld a, [hl]
 
-	call Function4679
+	call UselessAndA
 	ret
 ; 462a
 
@@ -593,30 +595,30 @@ Function462a: ; 462a
 Function463f: ; 463f
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	bit 3, [hl]
+	bit 3, [hl] ; is current tile grass?
 	jr z, .ok
 	ld hl, OBJECT_NEXT_TILE
 	add hl, bc
 	ld a, [hl]
-	call Function4661
+	call SetTallGrassFlags
 
 .ok
 	ld hl, OBJECT_NEXT_TILE
 	add hl, bc
 	ld a, [hl]
-	call Function4679
-	ret c
+	call UselessAndA
+	ret c ; never happens
 	ld hl, OBJECT_STANDING_TILE
 	add hl, bc
 	ld a, [hl]
-	call Function4679
+	call UselessAndA
 	ret
 ; 4661
 
-Function4661: ; 4661
+SetTallGrassFlags: ; 4661
 	call CheckSuperTallGrassTile
 	jr z, .set
-	call Function1875
+	call CheckGrassTile
 	jr c, .reset
 
 .set
@@ -632,7 +634,7 @@ Function4661: ; 4661
 	ret
 ; 4679
 
-Function4679: ; 4679
+UselessAndA: ; 4679
 	and a
 	ret
 ; 467b
@@ -661,7 +663,7 @@ Function4690: ; 4690
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit FIXED_FACING, [hl]
-	jr nz, GetStandingTile
+	jr nz, GetNextTile
 
 rept 2
 	add a
@@ -670,8 +672,8 @@ endr
 	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], a
-GetStandingTile: ; 46a6
 
+GetNextTile: ; 46a6
 	call GetStepVector
 
 	ld hl, OBJECT_STEP_DURATION
@@ -852,7 +854,7 @@ DecrementObjectMovementByteIndex: ; 478d
 	ret
 ; 4793
 
-JumptoObjectMovementByteIndex: ; 4793
+MovementAnonymousJumptable: ; 4793
 	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
 	add hl, bc
 	ld a, [hl]
@@ -1073,7 +1075,7 @@ Function47dd: ; 47dd
 ; 48ac
 
 .Strength: ; 48ac
-	call JumptoObjectMovementByteIndex
+	call MovementAnonymousJumptable
 	dw .Strength_Start
 	dw .Strength_Stop
 ; 48b3
@@ -1120,8 +1122,6 @@ Function47dd: ; 47dd
 
 .on_pit
 	call IncrementObjectMovementByteIndex
-	; fallthrough
-; 48f8
 
 .Strength_Stop: ; 48f8
 	ld hl, OBJECT_DIRECTION_WALKING
@@ -1227,14 +1227,14 @@ Function47dd: ; 47dd
 ; 4984
 
 .MovementSpinCounterclockwise: ; 4984
-	call JumptoObjectMovementByteIndex
+	call MovementAnonymousJumptable
 	dw .MovementSpinInit
 	dw .MovementSpinRepeat
 	dw .MovementSpinTurnLeft
 ; 498d
 
 .MovementSpinClockwise: ; 498d
-	call JumptoObjectMovementByteIndex
+	call MovementAnonymousJumptable
 	dw .MovementSpinInit
 	dw .MovementSpinRepeat
 	dw .MovementSpinTurnRight
@@ -1243,9 +1243,6 @@ Function47dd: ; 47dd
 .MovementSpinInit: ; 4996
 	call Function467b
 	call IncrementObjectMovementByteIndex
-	; fallthrough
-; 499c
-
 .MovementSpinRepeat: ; 499c
 	ld hl, OBJECT_ACTION
 	add hl, bc
@@ -1271,7 +1268,7 @@ Function47dd: ; 47dd
 ; 49c0
 
 .DirectionData_Counterclockwise ; 49c0
-	db RIGHT << 2, LEFT << 2, DOWN << 2, UP << 2
+	db OW_RIGHT, OW_LEFT, OW_DOWN, OW_UP
 ; 49c4
 
 .MovementSpinTurnRight: ; 49c4
@@ -1281,7 +1278,7 @@ Function47dd: ; 47dd
 ; 49cc
 
 .DirectionData_Clockwise ; 49cc
-	db LEFT << 2, RIGHT << 2, UP << 2, DOWN << 2
+	db OW_LEFT, OW_RIGHT, OW_UP, OW_DOWN
 ; 49d0
 
 .MovementSpinNextFacing: ; 49d0
@@ -1485,16 +1482,19 @@ endr
 
 .RandomWalkContinue: ; 4af0
 	call Function4690
-	call Function6ec1
-	jr c, Function4b17
+	call Function6ec1 ; check whether the object can move in that direction
+	jr c, .NewDuration
+
 	call Function463f
 	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], PERSON_ACTION_02
+
 	ld hl, wd4cf
 	ld a, [hMapObjectIndexBuffer]
 	cp [hl]
 	jr z, .load_6
+
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_07
@@ -1506,12 +1506,9 @@ endr
 	ld [hl], STEP_TYPE_06
 	ret
 
-Function4b17: ; 4b17
+.NewDuration: ; 4b17
 	call Function467b
 	call Function462a
-	; fallthrough
-; 4b1d
-
 RandomStepDuration_Slow: ; 4b1d
 	call Random
 	ld a, [hRandomAdd]
@@ -1598,7 +1595,7 @@ Function4b8d: ; 4b8d
 	dec [hl]
 	ret nz
 	call Function4600
-	call GetStandingTile
+	call GetNextTile
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res 3, [hl]
@@ -1655,7 +1652,7 @@ Function4bd2: ; 4bd2
 ; 4bf2
 
 Function4bf2: ; 4bf2
-	call GetStandingTile
+	call GetNextTile
 	ld hl, wPlayerStepFlags
 	set 7, [hl]
 	call IncrementObjectStructField28
@@ -2880,7 +2877,7 @@ Function5688: ; 5688
 	ld hl, OBJECT_NEXT_TILE
 	add hl, bc
 	ld [hl], a
-	callba Function463f
+	callba Function463f ; no need to farcall
 	ret
 ; 56a3
 

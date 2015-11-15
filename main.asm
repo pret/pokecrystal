@@ -2123,23 +2123,24 @@ Function6ec1: ; 6ec1
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	bit 5, [hl]
-	jr z, .asm_6ed9
+	jr z, .not_bit_5
+
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	bit 4, [hl]
+	bit 4, [hl] ; lost
 	push hl
 	push bc
 	call Function6f2c
 	pop bc
 	pop hl
 	ret c
-	jr .asm_6ee9
+	jr .resume
 
-.asm_6ed9
+.not_bit_5
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 4, [hl]
-	jr nz, .asm_6ee9
+	jr nz, .resume
 	push hl
 	push bc
 	call Function6f07
@@ -2147,9 +2148,9 @@ Function6ec1: ; 6ec1
 	pop hl
 	ret c
 
-.asm_6ee9
+.resume
 	bit 6, [hl]
-	jr nz, .asm_6ef5
+	jr nz, .bit_6
 
 	push hl
 	push bc
@@ -2158,18 +2159,20 @@ Function6ec1: ; 6ec1
 	pop hl
 	ret c
 
-.asm_6ef5
+.bit_6
 	bit 5, [hl]
-	jr nz, .asm_6f05
+	jr nz, .bit_5
 	push hl
 	call Function70a4
 	pop hl
 	ret c
+
 	push hl
 	call Function70ed
 	pop hl
 	ret c
-.asm_6f05
+
+.bit_5
 	and a
 	ret
 ; 6f07
@@ -34881,6 +34884,7 @@ Function80422:: ; 80422
 	ld a, movement_step_sleep_1
 	cp [hl]
 	ret z
+
 	ld [hl], a
 	ld a, 0
 	ld [wd04e], a

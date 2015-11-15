@@ -750,7 +750,7 @@ NormalStep: ; 5412
 	call CheckSuperTallGrassTile
 	jr z, .shake_grass
 
-	call Function1875
+	call CheckGrassTile
 	jr c, .skip_grass
 
 .shake_grass

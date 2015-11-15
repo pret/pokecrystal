@@ -1566,6 +1566,7 @@ EngineBuffer3::
 
 wd041::
 EngineBuffer4::
+wTempTrainerHeader::
 wTempTrainerEventFlagLo::
 	ds 1
 
@@ -1600,6 +1601,7 @@ wScriptAfterPointer::
 wd04b:: ds 2
 wd04d:: ds 1
 MenuItemsListEnd::
+wTempTrainerHeaderEnd::
 wd04e:: ds 2
 wOaksPkmnTalkPkmnNameBuffer::
 wd050:: ds PKMN_NAME_LENGTH +- 1
@@ -2222,19 +2224,27 @@ object_struct: MACRO
 \1Action:: ds 1
 \1Object12:: ds 1
 \1Facing:: ds 1
-\1NextTile:: ds 1 ; collision
-\1StandingTile:: ds 1     ; collision
+\1NextTile:: ds 1     ; collision
+\1StandingTile:: ds 1 ; collision
 \1NextMapX:: ds 1
 \1NextMapY:: ds 1
 \1MapX:: ds 1
 \1MapY:: ds 1
-	ds 3
+\1ObjectInitX:: ds 1
+\1ObjectInitY:: ds 1
+\1Radius:: ds 1
 \1SpriteX:: ds 1
 \1SpriteY:: ds 1
 \1SpriteXOffset:: ds 1
 \1SpriteYOffset:: ds 1
-	ds 6
+\1MovementByteIndex:: ds 1
+\1Object28:: ds 1
+\1Object29:: ds 1
+\1Object30:: ds 1
+\1Object31:: ds 1
+\1Range:: ds 1
 	ds 7
+\1StructEnd::
 ENDM
 
 	object_struct Player
@@ -2250,10 +2260,12 @@ ENDM
 	object_struct Object10
 	object_struct Object11
 	object_struct Object12
+ObjectStructsEnd::
 
 wd6de::
 	ds $40
 
+MapObjects:: ; d71e
 map_object: MACRO
 \1Object::
 \1ObjectStructID::  ds 1
@@ -2271,7 +2283,6 @@ map_object: MACRO
 	ds 2
 endm
 
-MapObjects:: ; d71e
 	map_object Player
 	map_object Map1
 	map_object Map2
@@ -2288,6 +2299,7 @@ MapObjects:: ; d71e
 	map_object Map13
 	map_object Map14
 	map_object Map15
+MapObjectsEnd::
 
 wObjectMasks:: ds NUM_OBJECTS ; d81e
 
@@ -2319,6 +2331,7 @@ StatusFlags:: ; d84c
 	; 6 - hall of fame
 	; 7 - bug contest on
 	ds 1
+
 StatusFlags2:: ; d84d
 	; 0 - rockets
 	; 1 - 
