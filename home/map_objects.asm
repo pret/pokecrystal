@@ -80,14 +80,14 @@ DoesSpriteHaveFacings:: ; 1836
 
 
 Function184a:: ; 184a
-	ld a, [PlayerStandingTile]
+	ld a, [PlayerNextTile]
 	call GetTileCollision
 	ld b, a
 	ret
 ; 1852
 
 CheckOnWater:: ; 1852
-	ld a, [PlayerStandingTile]
+	ld a, [PlayerNextTile]
 	call GetTileCollision
 	sub 1
 	ret z
@@ -211,7 +211,7 @@ CheckWaterfallTile:: ; 18bd
 ; 18c3
 
 CheckStandingOnEntrance:: ; 18c3
-	ld a, [PlayerStandingTile]
+	ld a, [PlayerNextTile]
 	cp $71 ; door
 	ret z
 	cp $79
@@ -447,7 +447,7 @@ LoadMovementDataPointer:: ; 19e9
 	add hl, bc
 	ld [hl], SPRITEMOVEDATA_SCRIPTED
 
-	ld hl, OBJECT_09
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], 0
 

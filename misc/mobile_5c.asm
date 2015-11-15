@@ -1297,7 +1297,7 @@ Function_LoadOpponentTrainerAndPokemonsWithOTSprite: ; 0x170b44
 	ld [hUsedSpriteIndex], a
 	ld a, [hl]
 	ld [hUsedSpriteTile], a
-	callba Function143c8
+	callba GetUsedSprite
 	ret
 ; 170b90
 

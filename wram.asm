@@ -1735,15 +1735,14 @@ wd14b:: ds 1
 
 wd14c:: ds 1 ; used in FollowNotExact
 wd14d:: ds 1 ; used in FollowNotExact
+
 ; Player movement
-wd14e:: ds 1
-wd14f:: ds 1
-wd150:: ds 1
-wd151:: ds 1
-wBGMapAnchorLo::
-wd152:: ds 1
-wBGMapAnchorHi::
-wd153:: ds 1
+wPlayerStepVectorX:: ds 1
+wPlayerStepVectorY:: ds 1
+wPlayerStepFlags:: ds 1
+wPlayerStepDirection:: ds 1
+
+wBGMapAnchor:: ds 2
 
 UsedSprites:: ds 64 ; d154
 UsedSpritesEnd::
@@ -2218,13 +2217,13 @@ object_struct: MACRO
 \1Palette:: ds 1
 \1Walking:: ds 1
 \1Direction:: ds 1
-\1Object09:: ds 1
+\1StepType:: ds 1
 \1StepDuration:: ds 1
 \1Action:: ds 1
 \1Object12:: ds 1
 \1Facing:: ds 1
-\1StandingTile:: ds 1 ; collision
-\1CurTile:: ds 1     ; collision
+\1NextTile:: ds 1 ; collision
+\1StandingTile:: ds 1     ; collision
 \1NextMapX:: ds 1
 \1NextMapY:: ds 1
 \1MapX:: ds 1

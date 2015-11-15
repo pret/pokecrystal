@@ -252,7 +252,7 @@ Function967e1: ; 967e1
 ; 967f4
 
 Function967f4: ; 967f4
-	ld a, [wd150]
+	ld a, [wPlayerStepFlags]
 	bit 5, a
 	jr z, .events
 	bit 6, a
@@ -273,7 +273,7 @@ Function967f4: ; 967f4
 ; 96812
 
 Function96812: ; 96812
-	ld hl, wd150
+	ld hl, wPlayerStepFlags
 	bit 6, [hl]
 	ret z
 
@@ -396,7 +396,7 @@ CheckTileEvent: ; 96874
 	ret
 
 .warp_tile
-	ld a, [PlayerStandingTile]
+	ld a, [PlayerNextTile]
 	call CheckPitTile
 	jr nz, .not_pit
 	ld a, PLAYEREVENT_FALL

@@ -13,11 +13,11 @@ _ReplaceKrisSprite:: ; 14135
 	ld [hUsedSpriteIndex], a
 	ld a, [UsedSprites + 1]
 	ld [hUsedSpriteTile], a
-	call Function143c8
+	call GetUsedSprite
 	ret
 ; 14146
 
-Function14146: ; 14146
+Function14146: ; mobile
 	ld hl, wSpriteFlags
 	ld a, [hl]
 	push af
@@ -29,7 +29,7 @@ Function14146: ; 14146
 	ret
 ; 14157
 
-Function14157: ; 14157
+Function14157: ; mobile
 	ld hl, wSpriteFlags
 	ld a, [hl]
 	push af
@@ -168,23 +168,23 @@ endr
 RunCallback_04: ; 14209
 	ld a, $4
 	call RunMapCallback
-	call Function1439b
-	call Function14215
+	call GetUsedSprites
+	call .LoadMiscTiles
 	ret
 ; 14215
 
-Function14215: ; 14215
+.LoadMiscTiles: ; 14215
 	ld a, [wSpriteFlags]
 	bit 6, a
 	ret nz
-	ld c, EMOTE_08
+
+	ld c, EMOTE_SHADOW
 	callba LoadEmote
 	call GetMapPermission
 	call CheckOutdoorMap
 	ld c, EMOTE_0B
 	jr z, .outdoor
-	ld c, EMOTE_0A
-
+	ld c, EMOTE_BOULDER_DUST
 .outdoor
 	callba LoadEmote
 	ret
@@ -575,29 +575,34 @@ GetSpriteLength: ; 14386
 ; 1439b
 
 
-Function1439b: ; 1439b
+GetUsedSprites: ; 1439b
 	ld hl, UsedSprites
 	ld c, SPRITE_GFX_LIST_CAPACITY
+
 .loop
 	ld a, [wSpriteFlags]
 	res 5, a
 	ld [wSpriteFlags], a
+
 	ld a, [hli]
 	and a
 	jr z, .done
 	ld [hUsedSpriteIndex], a
+
 	ld a, [hli]
 	ld [hUsedSpriteTile], a
+
 	bit 7, a
 	jr z, .dont_set
+
 	ld a, [wSpriteFlags]
-	set 5, a
+	set 5, a ; load VBank0
 	ld [wSpriteFlags], a
 
 .dont_set
 	push bc
 	push hl
-	call Function143c8
+	call GetUsedSprite
 	pop hl
 	pop bc
 	dec c
@@ -607,7 +612,7 @@ Function1439b: ; 1439b
 	ret
 ; 143c8
 
-Function143c8: ; 143c8
+GetUsedSprite: ; 143c8
 	ld a, [hUsedSpriteIndex]
 	call SafeGetSprite
 	ld a, [hUsedSpriteTile]
@@ -632,14 +637,17 @@ endr
 	ld d, h
 	ld e, l
 	pop hl
+
 	ld a, [wSpriteFlags]
 	bit 5, a
 	jr nz, .done
 	bit 6, a
 	jr nz, .done
+
 	ld a, [hUsedSpriteIndex]
 	call _DoesSpriteHaveFacings
 	jr c, .done
+
 	ld a, h
 	add $8
 	ld h, a
@@ -716,7 +724,7 @@ LoadEmote:: ; 1442f
 emote_header: MACRO
 	dw \1
 	db \2 tiles, BANK(\1)
-	dw \3
+	dw VTiles1 tile \3
 ENDM
 
 EmotesPointers: ; 144d
@@ -724,18 +732,18 @@ EmotesPointers: ; 144d
 ; db length, bank
 ; dw dest address
 
-	emote_header ShockEmote, 4, VTiles1 tile $78
-	emote_header QuestionEmote, 4, VTiles1 tile $78
-	emote_header HappyEmote, 4, VTiles1 tile $78
-	emote_header SadEmote, 4, VTiles1 tile $78
-	emote_header HeartEmote, 4, VTiles1 tile $78
-	emote_header BoltEmote, 4, VTiles1 tile $78
-	emote_header SleepEmote, 4, VTiles1 tile $78
-	emote_header FishEmote, 4, VTiles1 tile $78
-	emote_header JumpShadowGFX, 1, VTiles1 tile $7c
-	emote_header FishingRodGFX2, 2, VTiles1 tile $7c
-	emote_header BoulderDustGFX, 2, VTiles1 tile $7e
-	emote_header FishingRodGFX4, 1, VTiles1 tile $7e
+	emote_header ShockEmote,     4, $78
+	emote_header QuestionEmote,  4, $78
+	emote_header HappyEmote,     4, $78
+	emote_header SadEmote,       4, $78
+	emote_header HeartEmote,     4, $78
+	emote_header BoltEmote,      4, $78
+	emote_header SleepEmote,     4, $78
+	emote_header FishEmote,      4, $78
+	emote_header JumpShadowGFX,  1, $7c
+	emote_header FishingRodGFX2, 2, $7c
+	emote_header BoulderDustGFX, 2, $7e
+	emote_header FishingRodGFX4, 1, $7e
 ; 14495
 
 

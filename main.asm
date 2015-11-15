@@ -1526,9 +1526,9 @@ Function6473: ; 6473
 	ld a, VBGMap0 / $100
 	call Function64b9
 	xor a
-	ld [wd152], a
-	ld a, $98
-	ld [wd153], a
+	ld [wBGMapAnchor], a
+	ld a, VBGMap0 / $100
+	ld [wBGMapAnchor + 1], a
 	xor a
 	ld [hSCX], a
 	ld [hSCY], a
@@ -2188,7 +2188,7 @@ Function6f07: ; 6f07
 	add hl, bc
 	bit 7, [hl]
 	jp nz, Function6fa1
-	ld hl, OBJECT_STANDING_TILE
+	ld hl, OBJECT_NEXT_TILE
 	add hl, bc
 	ld a, [hl]
 	ld d, a
@@ -2202,7 +2202,7 @@ Function6f07: ; 6f07
 Function6f2c: ; 6f2c
 	call Function6f5f
 	ret c
-	ld hl, OBJECT_STANDING_TILE
+	ld hl, OBJECT_NEXT_TILE
 	add hl, bc
 	ld a, [hl]
 	call GetTileCollision
@@ -2213,7 +2213,7 @@ Function6f2c: ; 6f2c
 ; 6f3e
 
 Function6f3e: ; 6f3e
-	ld hl, OBJECT_STANDING_TILE
+	ld hl, OBJECT_NEXT_TILE
 	add hl, bc
 	ld a, [hl]
 	call Function6f7f
@@ -2239,7 +2239,7 @@ Function6f3e: ; 6f3e
 ; 6f5f
 
 Function6f5f: ; 6f5f
-	ld hl, OBJECT_NEXT_TILE
+	ld hl, OBJECT_STANDING_TILE
 	add hl, bc
 	ld a, [hl]
 	call Function6f7f
@@ -3488,7 +3488,7 @@ InitializeVisibleSprites: ; 8177
 
 Function81ca:: ; 81ca
 	nop
-	ld a, [wd151]
+	ld a, [wPlayerStepDirection]
 	cp $ff
 	ret z
 	ld hl, .jumptable
@@ -3651,9 +3651,9 @@ CopyTempObjectToObjectStruct: ; 8286
 	add hl, de
 	ld [hl], a
 
-	ld hl, OBJECT_09
+	ld hl, OBJECT_STEP_TYPE
 	add hl, de
-	ld [hl], OBJECT_09_VALUE_00
+	ld [hl], STEP_TYPE_00
 
 	ld hl, OBJECT_FACING_STEP
 	add hl, de
@@ -3904,9 +3904,9 @@ FollowNotExact:: ; 839e
 	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, de
 	ld [hl], SPRITEMOVEDATA_FOLLOWNOTEXACT
-	ld hl, OBJECT_09
+	ld hl, OBJECT_STEP_TYPE
 	add hl, de
-	ld [hl], OBJECT_09_VALUE_00
+	ld [hl], STEP_TYPE_00
 	ret
 ; 8417
 
@@ -5381,7 +5381,7 @@ Script_UsedWaterfall: ; 0xcb20
 CheckContinueWaterfall: ; cb38
 	xor a
 	ld [ScriptVar], a
-	ld a, [PlayerStandingTile]
+	ld a, [PlayerNextTile]
 	call CheckWaterfallTile
 	ret z
 	callba MobileFn_1060c1
@@ -6325,7 +6325,7 @@ Script_NotEvenANibble2: ; 0xd027
 	writetext UnknownText_0xd0a9
 
 Script_NotEvenANibble_FallThrough: ; 0xd02d
-	loademote EMOTE_08
+	loademote EMOTE_SHADOW
 	callasm PutTheRodAway
 	loadmovesprites
 	end
@@ -6396,7 +6396,7 @@ Script_FishCastRod: ; 0xd07c
 	reloadmappart
 	loadvar hBGMapMode, $0
 	special UpdateTimePals
-	loademote EMOTE_09
+	loademote EMOTE_ROD
 	callasm LoadFishingGFX
 	loademote EMOTE_SHOCK
 	applymovement PLAYER, MovementData_0xd093
@@ -7291,7 +7291,7 @@ GetItemPrice: ; d486
 
 
 Functiond497:: ; d497 (3:5497)
-	ld a, [wd150]
+	ld a, [wPlayerStepFlags]
 	and a
 	ret z
 	bit 7, a
@@ -7311,9 +7311,9 @@ Functiond497:: ; d497 (3:5497)
 	jr .asm_d4b8
 .asm_d4b8
 	call Functiond4e5
-	ld a, [wd14e]
+	ld a, [wPlayerStepVectorX]
 	ld d, a
-	ld a, [wd14f]
+	ld a, [wPlayerStepVectorY]
 	ld e, a
 	ld a, [wd14c]
 	sub d
@@ -7324,9 +7324,9 @@ Functiond497:: ; d497 (3:5497)
 	ret
 
 Functiond4d2:: ; d4d2 (3:54d2)
-	ld a, [wd14e]
+	ld a, [wPlayerStepVectorX]
 	ld d, a
-	ld a, [wd14f]
+	ld a, [wPlayerStepVectorY]
 	ld e, a
 	ld a, [hSCX]
 	add d
@@ -7372,7 +7372,7 @@ Jumptable_d4f2: ; d4f2 (3:54f2)
 	ret
 
 Functiond511: ; d511 (3:5511)
-	ld a, [wd151]
+	ld a, [wPlayerStepDirection]
 	and a
 	jr nz, .asm_d51c
 	ld hl, YCoord
@@ -7398,7 +7398,7 @@ Functiond511: ; d511 (3:5511)
 	ret
 
 Functiond536: ; d536 (3:5536)
-	ld a, [wd151]
+	ld a, [wPlayerStepDirection]
 	and a
 	jr z, .asm_d549
 	cp $1
@@ -7434,24 +7434,24 @@ Functiond536: ; d536 (3:5536)
 	ret
 
 Functiond571: ; d571 (3:5571)
-	ld a, [wd152]
+	ld a, [wBGMapAnchor]
 	add $40
-	ld [wd152], a
-	jr nc, .asm_d586
-	ld a, [wd153]
+	ld [wBGMapAnchor], a
+	jr nc, .not_overflowed
+	ld a, [wBGMapAnchor + 1]
 	inc a
 	and $3
-	or $98
-	ld [wd153], a
-.asm_d586
+	or VBGMap0 / $100
+	ld [wBGMapAnchor + 1], a
+.not_overflowed
 	ld hl, wd196
 	inc [hl]
 	ld a, [hl]
-	cp $2
-	jr nz, .asm_d594
+	cp $2 ; was 1
+	jr nz, .skip
 	ld [hl], $0
 	call Functiond595
-.asm_d594
+.skip
 	ret
 
 Functiond595: ; d595 (3:5595)
@@ -7465,24 +7465,24 @@ Functiond595: ; d595 (3:5595)
 	ret
 
 Functiond5a2: ; d5a2 (3:55a2)
-	ld a, [wd152]
+	ld a, [wBGMapAnchor]
 	sub $40
-	ld [wd152], a
-	jr nc, .asm_d5b7
-	ld a, [wd153]
+	ld [wBGMapAnchor], a
+	jr nc, .not_underflowed
+	ld a, [wBGMapAnchor + 1]
 	dec a
 	and $3
-	or $98
-	ld [wd153], a
-.asm_d5b7
+	or VBGMap0 / $100
+	ld [wBGMapAnchor + 1], a
+.not_underflowed
 	ld hl, wd196
 	dec [hl]
 	ld a, [hl]
-	cp $ff
-	jr nz, .asm_d5c5
+	cp $ff ; was 0
+	jr nz, .skip
 	ld [hl], $1
 	call Functiond5c6
-.asm_d5c5
+.skip
 	ret
 
 Functiond5c6: ; d5c6 (3:55c6)
@@ -7498,7 +7498,7 @@ Functiond5c6: ; d5c6 (3:55c6)
 	ret
 
 Functiond5d5: ; d5d5 (3:55d5)
-	ld a, [wd152]
+	ld a, [wBGMapAnchor]
 	ld e, a
 	and $e0
 	ld d, a
@@ -7506,7 +7506,7 @@ Functiond5d5: ; d5d5 (3:55d5)
 	sub $2
 	and $1f
 	or d
-	ld [wd152], a
+	ld [wBGMapAnchor], a
 	ld hl, wd197
 	dec [hl]
 	ld a, [hl]
@@ -7527,7 +7527,7 @@ Functiond5f4: ; d5f4 (3:55f4)
 	ret
 
 Functiond5fe: ; d5fe (3:55fe)
-	ld a, [wd152]
+	ld a, [wBGMapAnchor]
 	ld e, a
 	and $e0
 	ld d, a
@@ -7535,7 +7535,7 @@ Functiond5fe: ; d5fe (3:55fe)
 	add $2
 	and $1f
 	or d
-	ld [wd152], a
+	ld [wBGMapAnchor], a
 	ld hl, wd197
 	inc [hl]
 	ld a, [hl]
@@ -11364,7 +11364,7 @@ Function140ed:: ; 140ed
 INCLUDE "engine/overworld.asm"
 
 Function1499a:: ; 1499a
-	ld a, [PlayerStandingTile]
+	ld a, [PlayerNextTile]
 	cp $60
 	jr z, .asm_149ad
 	cp $68
@@ -11381,7 +11381,7 @@ Function1499a:: ; 1499a
 ; 149af
 
 Function149af:: ; 149af
-	ld a, [PlayerStandingTile]
+	ld a, [PlayerNextTile]
 	cp $70
 	jr z, .asm_149c4
 	cp $76
@@ -11401,7 +11401,7 @@ Function149af:: ; 149af
 CheckWarpCollision: ; 149c6
 	ld de, 1
 	ld hl, .blocks
-	ld a, [PlayerStandingTile]
+	ld a, [PlayerNextTile]
 	call IsInArray
 	ret
 ; 149d3
@@ -11420,7 +11420,7 @@ CheckWarpCollision: ; 149c6
 ; 149dd
 
 CheckGrassCollision:: ; 149dd
-	ld a, [PlayerStandingTile]
+	ld a, [PlayerNextTile]
 	ld hl, .blocks
 	ld de, 1
 	call IsInArray
@@ -11460,7 +11460,7 @@ CheckCutCollision: ; 149f5
 ; 14a07
 
 Function14a07:: ; 14a07
-	ld a, [PlayerStandingTile]
+	ld a, [PlayerNextTile]
 	ld de, $1f
 	cp $71 ; door
 	ret z
@@ -34139,7 +34139,7 @@ CheckTileMovement: ; 800b7
 ; Tiles such as waterfalls and warps move the player
 ; in a given direction, overriding input.
 
-	ld a, [PlayerStandingTile]
+	ld a, [PlayerNextTile]
 	ld c, a
 	call CheckWhirlpoolTile
 	jr c, .asm_800c4
@@ -34300,7 +34300,7 @@ TryStep: ; 8016b
 	cp 2
 	jr z, .bump
 
-	ld a, [PlayerStandingTile]
+	ld a, [PlayerNextTile]
 	call CheckIceTile
 	jr nc, .ice
 
@@ -34387,7 +34387,7 @@ TrySurfStep: ; 801c0
 
 
 TryJumpLedge: ; 801f3
-	ld a, [PlayerStandingTile]
+	ld a, [PlayerNextTile]
 	ld e, a
 	and $f0
 	cp $a0 ; ledge
@@ -34439,7 +34439,7 @@ CheckEdgeWarp: ; 80226
 	ld d, 0
 	ld hl, .EdgeWarps
 	add hl, de
-	ld a, [PlayerStandingTile]
+	ld a, [PlayerNextTile]
 	cp [hl]
 	jr nz, .nope
 
@@ -34647,7 +34647,7 @@ GetMovementAction: ; 802ec
 ;	tile collision pointer
 .table1
 	db STANDING, FACE_CURRENT, 0, 0
-	dw PlayerStandingTile
+	dw PlayerNextTile
 .table2
 	db RIGHT, FACE_RIGHT,  1,  0
 	dw TileRight
@@ -34859,7 +34859,7 @@ CheckStandingOnIce:: ; 80404
 	jr z, .nope
 	cp $f0
 	jr z, .nope
-	ld a, [PlayerStandingTile]
+	ld a, [PlayerNextTile]
 	call CheckIceTile
 	jr nc, .yep
 	ld a, [PlayerState]
@@ -50406,23 +50406,23 @@ Function104309:
 	ret
 
 Function10433a: ; 10433a (41:433a)
-	ld b, $4
-.asm_10433c
-	ld c, $14
-.asm_10433e
+	ld b, 4
+.outer_loop
+	ld c, 20
+.inner_loop
 	ld a, [de]
 	ld [hli], a
 	inc de
 	dec c
-	jr nz, .asm_10433e
+	jr nz, .inner_loop
 	ld a, l
-	add $c
+	add $20 - 20
 	ld l, a
 	ld a, h
 	adc $0
 	ld h, a
 	dec b
-	jr nz, .asm_10433c
+	jr nz, .outer_loop
 	ret
 ; 104350
 
@@ -50460,7 +50460,7 @@ RunCallback_03: ; 1045c4
 
 EnterMapConnection: ; 1045d6
 ; Return carry if a connection has been entered.
-	ld a, [wd151]
+	ld a, [wPlayerStepDirection]
 	and a
 	jp z, EnterSouthConnection
 	cp 1
@@ -50687,9 +50687,9 @@ LoadMapTimeOfDay: ; 104750
 
 Function104770: ; 104770 (41:4770)
 	ld a, $98
-	ld [wd153], a
+	ld [wBGMapAnchor + 1], a
 	xor a
-	ld [wd152], a
+	ld [wBGMapAnchor], a
 	ld [hSCY], a
 	ld [hSCX], a
 	callba Function5958
@@ -50776,7 +50776,7 @@ RefreshMapSprites: ; 1047f0
 	ret
 
 CheckMovingOffEdgeOfMap:: ; 104820 (41:4820)
-	ld a, [wd151]
+	ld a, [wPlayerStepDirection]
 	cp STANDING
 	ret z
 	and a ; DOWN

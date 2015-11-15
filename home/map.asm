@@ -1238,9 +1238,9 @@ ScrollMapDown:: ; 272a
 	call BackupBGMapRow
 	ld c, 2 * SCREEN_WIDTH
 	call FarCallScrollBGMapPalettes
-	ld a, [wBGMapAnchorLo]
+	ld a, [wBGMapAnchor]
 	ld e, a
-	ld a, [wBGMapAnchorHi]
+	ld a, [wBGMapAnchor + 1]
 	ld d, a
 	call UpdateBGMapRow
 	ld a, $1
@@ -1254,9 +1254,9 @@ ScrollMapUp:: ; 2748
 	call BackupBGMapRow
 	ld c, 2 * SCREEN_WIDTH
 	call FarCallScrollBGMapPalettes
-	ld a, [wBGMapAnchorLo]
+	ld a, [wBGMapAnchor]
 	ld l, a
-	ld a, [wBGMapAnchorHi]
+	ld a, [wBGMapAnchor + 1]
 	ld h, a
 	ld bc, $0200
 	add hl, bc
@@ -1278,9 +1278,9 @@ ScrollMapLeft:: ; 2771
 	call BackupBGMapColumn
 	ld c, 2 * SCREEN_HEIGHT
 	call FarCallScrollBGMapPalettes
-	ld a, [wBGMapAnchorLo]
+	ld a, [wBGMapAnchor]
 	ld e, a
-	ld a, [wBGMapAnchorHi]
+	ld a, [wBGMapAnchor + 1]
 	ld d, a
 	call UpdateBGMapColumn
 	ld a, $1
@@ -1294,7 +1294,7 @@ ScrollMapRight:: ; 278f
 	call BackupBGMapColumn
 	ld c, 2 * SCREEN_HEIGHT
 	call FarCallScrollBGMapPalettes
-	ld a, [wBGMapAnchorLo]
+	ld a, [wBGMapAnchor]
 	ld e, a
 	and %11100000
 	ld b, a
@@ -1303,7 +1303,7 @@ ScrollMapRight:: ; 278f
 	and %00011111
 	or b
 	ld e, a
-	ld a, [wBGMapAnchorHi]
+	ld a, [wBGMapAnchor + 1]
 	ld d, a
 	call UpdateBGMapColumn
 	ld a, $1
@@ -1505,7 +1505,7 @@ SaveScreen:: ; 289d
 	ld a, [MapWidth]
 	add $6
 	ld [hMapObjectIndexBuffer], a
-	ld a, [wd151]
+	ld a, [wPlayerStepDirection]
 	and a
 	jr z, .down
 	cp UP
@@ -1599,11 +1599,11 @@ Function2914:: ; 2914
 	ld a, [PlayerNextMapY]
 	ld e, a
 	call GetCoordTile
-	ld [PlayerStandingTile], a
+	ld [PlayerNextTile], a
 	call Function29ff
 	ret nz
 
-	ld a, [PlayerStandingTile]
+	ld a, [PlayerNextTile]
 	and 7
 	ld hl, .data_2945
 	add l
