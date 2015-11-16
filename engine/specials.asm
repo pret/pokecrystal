@@ -160,7 +160,7 @@ SpecialsPointers:: ; c029
 	add_special Function17d2b6
 	add_special Function17d2ce
 	add_special Function17f53d
-	add_special Function103612
+	add_special AskMobileOrCable
 	add_special SpecialHoOhChamber
 	add_special Function102142
 	add_special Special_CelebiShrineEvent
@@ -180,7 +180,7 @@ SpecialsPointers:: ; c029
 	add_special Mobile_HealParty
 	add_special RefreshSprites
 	add_special Function1037c2
-	add_special Function10630f
+	add_special Mobile_DummyReturnFalse
 	add_special Function103780
 	add_special Function10387b
 	add_special Function4ae12

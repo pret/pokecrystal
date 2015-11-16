@@ -56,11 +56,11 @@ NurseScript_0x98eb0:
 	jumpstd pokecenternurse
 
 PokefanMScript_0x98eb3:
-	special Function10630f
-	iftrue UnknownScript_0x98ebc
+	special Mobile_DummyReturnFalse
+	iftrue .mobile
 	jumptextfaceplayer UnknownText_0x99155
 
-UnknownScript_0x98ebc:
+.mobile:
 	jumptextfaceplayer UnknownText_0x991aa
 
 CooltrainerFScript_0x98ebf:

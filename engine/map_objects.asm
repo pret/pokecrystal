@@ -3053,7 +3053,7 @@ Function57bc: ; 57bc
 	ret
 
 .ok
-	ld a, 0
+	ld a, PERSON_ACTION_00
 	ld [PlayerAction], a
 	ret
 ; 57ca

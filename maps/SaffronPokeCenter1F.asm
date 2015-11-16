@@ -9,24 +9,24 @@ NurseScript_0x18a47d:
 	jumpstd pokecenternurse
 
 TeacherScript_0x18a480:
-	special Function10630f
-	iftrue UnknownScript_0x18a489
+	special Mobile_DummyReturnFalse
+	iftrue .mobile
 	jumptextfaceplayer UnknownText_0x18a4a3
 
-UnknownScript_0x18a489:
+.mobile:
 	jumptextfaceplayer UnknownText_0x18a532
 
 FisherScript_0x18a48c:
 	faceplayer
 	loadfont
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue UnknownScript_0x18a49a
+	iftrue .SolvedKantoPowerCrisis
 	writetext UnknownText_0x18a5d3
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x18a49a:
+.SolvedKantoPowerCrisis:
 	writetext UnknownText_0x18a62e
 	closetext
 	loadmovesprites

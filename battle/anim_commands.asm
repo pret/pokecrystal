@@ -1172,7 +1172,7 @@ BattleAnimCmd_BeatUp: ; cc776 (33:4776)
 .done
 	pop af
 	ld [CurPartySpecies], a ; CurPartySpecies
-	ld b, $1
+	ld b, SCGB_01
 	call GetSGBLayout
 	pop af
 	ld [rSVBK], a

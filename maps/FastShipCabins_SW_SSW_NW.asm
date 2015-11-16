@@ -43,15 +43,15 @@ TrainerGuitaristClyde:
 
 GuitaristClydeScript:
 	talkaftercancel
-	special Function10630f
-	iftrue UnknownScript_0x75aa5
+	special Mobile_DummyReturnFalse
+	iftrue .mobile
 	loadfont
 	writetext UnknownText_0x75d65
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x75aa5:
+.mobile:
 	loadfont
 	writetext UnknownText_0x75cfe
 	closetext

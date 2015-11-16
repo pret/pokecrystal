@@ -72,10 +72,10 @@ LinkReceptionistScript_Trade:
 	writetext Text_TradeReceptionistIntro
 	yesorno
 	iffalse .Cancel
-	special Function10630f
+	special Mobile_DummyReturnFalse ; always returns false
 	iffalse .NoMobile
 	writetext Text_TradeReceptionistMobile
-	special Function103612
+	special AskMobileOrCable
 	iffalse .Cancel
 	if_equal $1, .Mobile
 .NoMobile:
@@ -174,10 +174,10 @@ LinkReceptionistScript_Battle:
 	writetext Text_BattleReceptionistIntro
 	yesorno
 	iffalse .Cancel
-	special Function10630f
+	special Mobile_DummyReturnFalse ; always returns false
 	iffalse .NoMobile
 	writetext Text_BattleReceptionistMobile
-	special Function103612
+	special AskMobileOrCable
 	iffalse .Cancel
 	if_equal $1, .Mobile
 .NoMobile:

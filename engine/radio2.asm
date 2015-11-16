@@ -402,3 +402,263 @@ PlacesAndPeopleName:  db "Places & People@"
 LetsAllSingName:      db "Let's All Sing!@"
 PokeFluteStationName: db "# FLUTE@"
 ; 9191c
+
+
+Function9191c: ; 9191c
+	ld hl, Options
+	ld a, [hl]
+	push af
+	set 4, [hl]
+	ld a, [hInMenu]
+	push af
+	ld a, $1
+	ld [hInMenu], a
+	ld a, [VramState]
+	push af
+	xor a
+	ld [VramState], a
+	call ClearBGPalettes
+	call ClearTileMap
+	call ClearSprites
+	call DisableLCD
+	call Function90c4e
+	callba Function8cf53
+	ld a, 8
+	call SkipMusic
+	ld a, $e3
+	ld [rLCDC], a
+	call Function90d56
+	ld [wd002], a
+	ld [wd003], a
+	xor a
+	ld [hBGMapMode], a
+	call Function91a04
+	call Function3200
+	ld a, [wd002]
+	call Function9106a
+	ld a, [wd003]
+	call Function91098
+	ld a, c
+	ld [wd004], a
+	ld a, b
+	ld [wd005], a
+	ld b, SCGB_02
+	call GetSGBLayout
+	call SetPalettes
+	ld a, [hCGB]
+	and a
+	jr z, .asm_9198b
+	ld a, $e4
+	call Functioncf8
+	call DelayFrame
+
+.asm_9198b
+	ld a, [wd002]
+	cp KANTO_LANDMARK
+	jr nc, .asm_9199b
+	ld d, KANTO_LANDMARK - 1
+	ld e, 1
+	call Function919b0
+	jr .asm_919a1
+
+.asm_9199b
+	call Function910e8
+	call Function919b0
+
+.asm_919a1
+	pop af
+	ld [VramState], a
+	pop af
+	ld [hInMenu], a
+	pop af
+	ld [Options], a
+	call ClearBGPalettes
+	ret
+; 919b0
+
+Function919b0: ; 919b0
+.asm_919b0
+	call JoyTextDelay
+	ld hl, hJoyPressed
+	ld a, [hl]
+	and B_BUTTON
+	ret nz
+	ld hl, hJoyLast
+	ld a, [hl]
+	and D_UP
+	jr nz, .asm_919d4
+	ld a, [hl]
+	and D_DOWN
+	jr nz, .asm_919e1
+.asm_919c7
+	push de
+	callba Function8cf69
+	pop de
+	call DelayFrame
+	jr .asm_919b0
+
+.asm_919d4
+	ld hl, wd003
+	ld a, [hl]
+	cp d
+	jr c, .asm_919de
+	ld a, e
+	dec a
+	ld [hl], a
+
+.asm_919de
+	inc [hl]
+	jr .asm_919ec
+
+.asm_919e1
+	ld hl, wd003
+	ld a, [hl]
+	cp e
+	jr nz, .asm_919eb
+	ld a, d
+	inc a
+	ld [hl], a
+
+.asm_919eb
+	dec [hl]
+
+.asm_919ec
+	push de
+	ld a, [wd003]
+	call Function910b4
+	ld a, [wd004]
+	ld c, a
+	ld a, [wd005]
+	ld b, a
+	ld a, [wd003]
+	call Function910d4
+	pop de
+	jr .asm_919c7
+; 91a04
+
+Function91a04: ; 91a04
+	ld a, [wd002]
+	cp KANTO_LANDMARK
+	jr nc, .asm_91a0f
+	ld e, $0
+	jr .asm_91a11
+
+.asm_91a0f
+	ld e, $1
+
+.asm_91a11
+	callba Function91ae1
+	ld a, $7
+	ld bc, 6
+	hlcoord 1, 0
+	call ByteFill
+	hlcoord 0, 0
+	ld [hl], $6
+	hlcoord 7, 0
+	ld [hl], $17
+	hlcoord 7, 1
+	ld [hl], $16
+	hlcoord 7, 2
+	ld [hl], $26
+	ld a, $7
+	ld bc, NAME_LENGTH
+	hlcoord 8, 2
+	call ByteFill
+	hlcoord 19, 2
+	ld [hl], $17
+	ld a, [wd003]
+	call Function910b4
+	callba TownMapPals
+	ret
+; 91a53
+
+PlayRadio: ; 91a53
+	ld hl, Options
+	ld a, [hl]
+	push af
+	set 4, [hl]
+	call .PlayStation
+	ld c, 100
+	call DelayFrames
+.loop
+	call JoyTextDelay
+	ld a, [hJoyPressed]
+	and A_BUTTON | B_BUTTON
+	jr nz, .stop
+	ld a, [wc6da]
+	ld l, a
+	ld a, [wc6db]
+	ld h, a
+	ld a, [wc6d9]
+	and a
+	jr z, .zero
+	rst FarCall
+
+.zero
+	call DelayFrame
+	jr .loop
+
+.stop
+	pop af
+	ld [Options], a
+	call Function91492
+	ret
+; 91a87
+
+.PlayStation: ; 91a87
+	ld a, -1
+	ld [EnemyTurnsTaken], a
+	ld hl, .StationPointers
+	ld d, $0
+rept 2
+	add hl, de
+endr
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, .jump_return
+	push de
+	jp [hl]
+
+.jump_return
+	push de
+	hlcoord 0, 12
+	lb bc, 4, 18
+	call TextBox
+	hlcoord 1, 14
+	ld [hl], $72
+	pop de
+	hlcoord 2, 14
+	call PlaceString
+	ld h, b
+	ld l, c
+	ld [hl], $73
+	call WaitBGMap
+	ret
+; 91ab9
+
+.StationPointers: ; 91ab9
+	dw .OakOrPnP
+	dw LoadStation_OaksPokemonTalk
+	dw LoadStation_PokedexShow
+	dw LoadStation_PokemonMusic
+	dw LoadStation_LuckyChannel
+	dw LoadStation_UnownRadio
+	dw LoadStation_PlacesAndPeople
+	dw LoadStation_LetsAllSing
+	dw LoadStation_RocketRadio
+; 91acb
+
+.OakOrPnP: ; 91acb
+	call IsInJohto
+	and a
+	jr nz, .kanto
+	call UpdateTime
+	ld a, [TimeOfDay]
+	and a
+	jp z, LoadStation_PokedexShow
+	jp LoadStation_OaksPokemonTalk
+
+.kanto
+	jp LoadStation_PlacesAndPeople
+; 91ae1

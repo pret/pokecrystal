@@ -146,7 +146,7 @@ Function8e23: ; 8e23
 	ld a, $4
 	call FillBoxCGB
 	hlcoord 0, 12, AttrMap
-	ld bc, $0078
+	ld bc, 6 * SCREEN_WIDTH
 	ld a, $7
 	call ByteFill
 	ld hl, Palettes_979c

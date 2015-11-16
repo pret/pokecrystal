@@ -3146,7 +3146,7 @@ LostBattle: ; 3d38e
 	jr nz, .LostLinkBattle
 
 ; Greyscale
-	ld b, 0
+	ld b, SCGB_00
 	call GetSGBLayout
 	call SetPalettes
 	jr .end
@@ -7375,7 +7375,7 @@ FinishBattleAnim: ; 3ee27
 	push bc
 	push de
 	push hl
-	ld b, $1
+	ld b, SCGB_01
 	call GetSGBLayout
 	call SetPalettes
 	call DelayFrame
@@ -8510,7 +8510,7 @@ BattleIntro: ; 3f4dd
 	callba ClearBattleRAM
 	call InitEnemy
 	call BackUpVBGMap2
-	ld b, $0
+	ld b, SCGB_00
 	call GetSGBLayout
 	ld hl, rLCDC
 	res 6, [hl]
@@ -8936,7 +8936,7 @@ Function3f836: ; 3f836
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	call Function3200
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	call SetPalettes
 	ld c, $8
@@ -9438,7 +9438,7 @@ InitBattleDisplay: ; 3fb6c
 	ld [rWY], a
 	call WaitBGMap
 	call HideSprites
-	ld b, $1
+	ld b, SCGB_01
 	call GetSGBLayout
 	call SetPalettes
 	ld a, $90
@@ -9488,7 +9488,7 @@ GetTrainerBackpic: ; 3fbff
 
 ; What gender are we?
 	ld a, [wPlayerSpriteSetupFlags]
-	bit 2, a
+	bit 2, a ; transformed to male
 	jr nz, .Chris
 	ld a, [PlayerGender]
 	bit 0, a

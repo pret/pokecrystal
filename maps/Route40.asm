@@ -68,11 +68,11 @@ LassScript_0x1a61c4:
 	jumptextfaceplayer UnknownText_0x1a6429
 
 PokefanMScript_0x1a61c7:
-	special Function10630f
-	iftrue UnknownScript_0x1a61d0
+	special Mobile_DummyReturnFalse
+	iftrue .mobile
 	jumptextfaceplayer UnknownText_0x1a646a
 
-UnknownScript_0x1a61d0:
+.mobile:
 	jumptextfaceplayer UnknownText_0x1a649b
 
 LassScript_0x1a61d3:

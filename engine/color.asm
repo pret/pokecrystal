@@ -1,4 +1,4 @@
-
+PALPACKET_LENGTH EQU $10
 INCLUDE "predef/sgb.asm"
 
 SHINY_ATK_BIT EQU 5
@@ -89,7 +89,7 @@ Function8aa4: ; 8aa4
 	push bc
 	ld hl, PalPacket_9ce6
 	ld de, wcda9
-	ld bc, PalPacket_9cf6 - PalPacket_9ce6
+	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	pop bc
 	pop de
@@ -232,7 +232,7 @@ Function8b81: ; 8b81
 	push af
 	ld hl, PalPacket_9ce6
 	ld de, wcda9
-	ld bc, $0010
+	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	pop af
 	call Function9775
@@ -437,7 +437,7 @@ endr
 	push hl
 	ld hl, PalPacket_9ce6
 	ld de, wcda9
-	ld bc, $0010
+	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	pop hl
 rept 2
@@ -792,7 +792,7 @@ Function974b: ; 974b
 	and a
 	jp nz, Function97f9
 	ld a, [wPlayerSpriteSetupFlags]
-	bit 2, a
+	bit 2, a ; transformed to male
 	jr nz, .male
 	ld a, [PlayerGender]
 	and a
@@ -1212,7 +1212,7 @@ Function99d8: ; 99d8
 	ld a, $e4
 	ld [rBGP], a
 	ld de, VTiles1
-	ld bc, $0140
+	ld bc, 20 tiles
 	call CopyData
 	ld b, $12
 .asm_99ea
@@ -1367,6 +1367,7 @@ BlkPacket_9b86: ; 9a86
 ; 9b96
 
 ; 9b96
+
 PalPacket_9b96:	db $51, $48, $00, $49, $00, $4a, $00, $4b, $00, $00, $00, $00, $00, $00, $00, $00
 PalPacket_9ba6:	db $51, $2b, $00, $24, $00, $20, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 PalPacket_9bb6:	db $51, $41, $00, $42, $00, $43, $00, $44, $00, $00, $00, $00, $00, $00, $00, $00

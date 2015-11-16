@@ -1,3 +1,17 @@
+Function91ae1: ; 91ae1
+	ld a, e
+	and a
+	jr nz, .kanto
+	call Function91ff2
+	call FillJohtoMap
+	ret
+
+.kanto
+	call Function91ff2
+	call FillKantoMap
+	ret
+; 91af3
+
 _FlyMap: ; 91af3
 	call ClearBGPalettes
 	call ClearTileMap
@@ -419,14 +433,18 @@ Function91d11: ; 91d11
 	ld [hBGMapMode], a
 	ld a, $1
 	ld [hInMenu], a
+
 	ld de, GFX_922d1
 	ld hl, VTiles0 tile $7f
 	lb bc, BANK(GFX_922d1), 1
 	call Request2bpp ; actually 1bpp
+
 	call Function91ed0
+
 	ld hl, VTiles0 tile $78
 	ld c, $4
 	call Request2bpp
+
 	call Function91ff2
 	call FillKantoMap
 	call Function91de9
@@ -445,27 +463,27 @@ Function91d11: ; 91d11
 	ld [hBGMapMode], a
 	xor a
 	call Function91e1e
-.asm_91d6e
+.loop
 	call JoyTextDelay
 	ld hl, hJoyPressed
 	ld a, [hl]
 	and A_BUTTON | B_BUTTON
-	jr nz, .asm_91d8f
+	jr nz, .a_b
 	ld a, [hJoypadDown]
 	and SELECT
-	jr nz, .asm_91d87
+	jr nz, .select
 	call Function91d9b
 	call Function91dcd
-	jr .asm_91d8a
+	jr .next
 
-.asm_91d87
+.select
 	call Function91e5a
 
-.asm_91d8a
+.next
 	call DelayFrame
-	jr .asm_91d6e
+	jr .loop
 
-.asm_91d8f
+.a_b
 	call ClearSprites
 	pop af
 	ld [wd003], a
@@ -914,3 +932,137 @@ GFX_922e1: ; 922e1
 INCBIN "gfx/unknown/0922e1.2bpp"
 GFX_92301: ; 92301
 INCBIN "gfx/unknown/092301.2bpp"
+Function92311: ; unreferenced
+	xor a
+	ld [wd002], a
+	call ClearBGPalettes
+	call ClearTileMap
+	call ClearSprites
+	ld hl, hInMenu
+	ld a, [hl]
+	push af
+	ld [hl], $1
+	xor a
+	ld [hBGMapMode], a
+	callba Function8cf53
+	call Function91ff2
+	ld de, GFX_922e1
+	ld hl, VTiles2 tile $30
+	lb bc, BANK(GFX_922e1), 6
+	call Request1bpp
+	call FillKantoMap
+	call TownMapBubble
+	call TownMapPals
+	ld hl, VBGMap1
+	call TownMapBGUpdate
+	call FillJohtoMap
+	call TownMapBubble
+	call TownMapPals
+	ld hl, VBGMap0
+	call TownMapBGUpdate
+	call TownMapMon
+	ld a, c
+	ld [wd003], a
+	ld a, b
+	ld [wd004], a
+	ld b, SCGB_02
+	call GetSGBLayout
+	call SetPalettes
+.loop
+	call JoyTextDelay
+	ld hl, hJoyPressed
+	ld a, [hl]
+	and B_BUTTON
+	jr nz, .pressedB
+	ld a, [hl]
+	and A_BUTTON
+	jr nz, .pressedA
+	call Function923b8
+	call GetMapCursorCoordinates
+	callba Function8cf69
+	call DelayFrame
+	jr .loop
+
+.pressedB
+	ld a, -1
+	jr .asm_9239f
+
+.pressedA
+	ld a, [wd002]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	ld de, Flypoints + 1
+	add hl, de
+	ld a, [hl]
+
+.asm_9239f
+	ld [wd002], a
+	pop af
+	ld [hInMenu], a
+	call ClearBGPalettes
+	ld a, $90
+	ld [hWY], a
+	xor a
+	ld [hBGMapAddress], a
+	ld a, VBGMap0 / $100
+	ld [hBGMapAddress + 1], a
+	ld a, [wd002]
+	ld e, a
+	ret
+; 923b8
+
+Function923b8: ; 923b8
+	ld hl, hJoyLast
+	ld a, [hl]
+	and D_DOWN | D_RIGHT
+	jr nz, .asm_923c6
+	ld a, [hl]
+	and D_UP | D_LEFT
+	jr nz, .asm_923d3
+	ret
+
+.asm_923c6
+	ld hl, wd002
+	ld a, [hl]
+	cp FLY_INDIGO
+	jr c, .asm_923d0
+	ld [hl], -1
+.asm_923d0
+	inc [hl]
+	jr .asm_923dd
+
+.asm_923d3
+	ld hl, wd002
+	ld a, [hl]
+	and a
+	jr nz, .asm_923dc
+	ld [hl], FLY_INDIGO + 1
+.asm_923dc
+	dec [hl]
+
+.asm_923dd
+	ld a, [wd002]
+	cp KANTO_FLYPOINT
+	jr c, .johto
+
+	call FillKantoMap
+	xor a
+	ld b, $9c
+	jr .asm_923f3
+
+.johto
+	call FillJohtoMap
+	ld a, $90
+	ld b, $98
+
+.asm_923f3
+	ld [hWY], a
+	ld a, b
+	ld [hBGMapAddress + 1], a
+	call TownMapBubble
+	call WaitBGMap
+	xor a
+	ld [hBGMapMode], a
+	ret
+; 92402

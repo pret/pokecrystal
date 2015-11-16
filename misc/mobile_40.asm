@@ -7686,9 +7686,9 @@ Unknown_1035d7: ; 1035d7
 	dw Unknown_103608
 	dw Unknown_1035fe
 
-	dw Function103612
-	dw Function103612
-	dw Function103612
+	dw AskMobileOrCable
+	dw AskMobileOrCable
+	dw AskMobileOrCable
 
 Unknown_1035e7: ; 1035e7
 	dwcoord 0, 6
@@ -7719,18 +7719,18 @@ Unknown_103608: ; 103608
 	db 2, 2, 3
 ; 103612
 
-Function103612: ; 103612
+AskMobileOrCable: ; 103612
 	ld hl, MenuDataHeader_103640
 	call LoadMenuDataHeader
 	ld a, [wdc40]
 	and $f
-	jr z, .asm_103622
+	jr z, .skip_load
 	ld [wMenuCursorBuffer], a
 
-.asm_103622
+.skip_load
 	call InterpretMenu2
 	call WriteBackup
-	jr c, .asm_10363b
+	jr c, .pressed_b
 	ld a, [MenuSelection2]
 	ld [ScriptVar], a
 	ld c, a
@@ -7740,7 +7740,7 @@ Function103612: ; 103612
 	ld [wdc40], a
 	ret
 
-.asm_10363b
+.pressed_b
 	xor a
 	ld [ScriptVar], a
 	ret

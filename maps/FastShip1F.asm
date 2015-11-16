@@ -30,11 +30,11 @@ FastShip1F_MapScriptHeader:
 	blackoutmod FAST_SHIP_CABINS_SW_SSW_NW
 	clearevent EVENT_FAST_SHIP_HAS_ARRIVED
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
-	iftrue .Vermilion
+	iftrue .SkipGrandpa
 	dotrigger $2
 	end
 
-.Vermilion:
+.SkipGrandpa:
 	dotrigger $0
 	end
 
@@ -115,10 +115,10 @@ SailorScript_0x751d0:
 SailorScript_0x751e4:
 	jumptextfaceplayer UnknownText_0x753c0
 
-UnknownScript_0x751e7:
+WorriedGrandpaTriggerRight:
 	moveperson $5, $14, $6
 
-UnknownScript_0x751eb:
+WorriedGrandpaTriggerLeft:
 	appear $5
 	applymovement $5, MovementData_0x7521b
 	playsound SFX_TACKLE
@@ -287,7 +287,7 @@ FastShip1F_MapEventHeader:
 
 .Warps:
 	db 12
-	warp_def $1, $19, 255, FAST_SHIP_1F
+	warp_def $1, $19, -1, FAST_SHIP_1F
 	warp_def $8, $1b, 1, FAST_SHIP_CABINS_NNW_NNE_NE
 	warp_def $8, $17, 2, FAST_SHIP_CABINS_NNW_NNE_NE
 	warp_def $8, $13, 3, FAST_SHIP_CABINS_NNW_NNE_NE
@@ -302,8 +302,8 @@ FastShip1F_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 2, $6, $18, $0, UnknownScript_0x751eb, $0, $0
-	xy_trigger 2, $6, $19, $0, UnknownScript_0x751e7, $0, $0
+	xy_trigger 2, $6, $18, $0, WorriedGrandpaTriggerLeft, $0, $0
+	xy_trigger 2, $6, $19, $0, WorriedGrandpaTriggerRight, $0, $0
 
 .Signposts:
 	db 0

@@ -742,7 +742,7 @@ OakSpeech: ; 0x5f99
 	ld [TrainerClass], a
 	call Intro_PrepTrainerPic
 
-	ld b, $1c
+	ld b, SCGB_1C
 	call GetSGBLayout
 	call Intro_FadeInFrontpic
 
@@ -763,7 +763,7 @@ OakSpeech: ; 0x5f99
 	ld [TempMonDVs], a
 	ld [TempMonDVs + 1], a
 
-	ld b, $1c
+	ld b, SCGB_1C
 	call GetSGBLayout
 	call Intro_WipeInFrontpic
 
@@ -780,7 +780,7 @@ OakSpeech: ; 0x5f99
 	ld [TrainerClass], a
 	call Intro_PrepTrainerPic
 
-	ld b, $1c
+	ld b, SCGB_1C
 	call GetSGBLayout
 	call Intro_FadeInFrontpic
 
@@ -793,7 +793,7 @@ OakSpeech: ; 0x5f99
 	ld [CurPartySpecies], a
 	callba DrawIntroPlayerPic
 
-	ld b, $1c
+	ld b, SCGB_1C
 	call GetSGBLayout
 	call Intro_FadeInFrontpic
 
@@ -863,7 +863,7 @@ NamePlayer: ; 0x6074
 	ld [CurPartySpecies], a
 	callba DrawIntroPlayerPic
 
-	ld b, $1c
+	ld b, SCGB_1C
 	call GetSGBLayout
 	call Function4f0
 
@@ -1102,7 +1102,7 @@ Function6219: ; 6219
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	call UpdateTimePals
 	ld a, [wcf64]
@@ -10458,7 +10458,7 @@ Function11e9a: ; 11e9a (4:5e9a)
 	ld a, $e3
 	ld [rLCDC], a
 	call Function11f74
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	call WaitBGMap
 	call WaitTop
@@ -13233,7 +13233,7 @@ Function16be4: ; 16be4
 	ld [TempMonDVs], a
 	ld [TempMonDVs + 1], a
 
-	ld b, $1c
+	ld b, SCGB_1C
 	call GetSGBLayout
 	call SetPalettes
 
@@ -13791,7 +13791,7 @@ Pokepic:: ; 244e3
 	call MenuBox
 	call UpdateSprites
 	call Function321c
-	ld b, $12
+	ld b, SCGB_12
 	call GetSGBLayout
 	xor a
 	ld [hBGMapMode], a
@@ -15772,7 +15772,7 @@ Function2513b: ; 2513b (9:513b)
 	call Function253b0
 	call EnableLCD
 	call WaitBGMap
-	ld b, $15
+	ld b, SCGB_15
 	call GetSGBLayout
 	call SetPalettes
 	call WaitBGMap
@@ -18171,1064 +18171,7 @@ Function29fe4: ; unreferenced
 	ret
 ; 29ff8
 
-LoadWildMonData: ; 29ff8
-	call _GrassWildmonLookup
-	jr c, .copy
-	ld hl, wd25a
-	xor a
-	ld [hli], a
-	ld [hli], a
-	ld [hl], a
-	jr .done_copy
-.copy
-	inc hl
-	inc hl
-	ld de, wd25a
-	ld bc, $3
-	call CopyBytes
-.done_copy
-	call _WaterWildmonLookup
-	ld a, $0
-	jr nc, .no_copy
-	inc hl
-	inc hl
-	ld a, [hl]
-.no_copy
-	ld [wd25d], a
-	ret
-
-Function2a01f: ; 2a01f
-	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	xor a
-	call ByteFill
-	ld a, e
-	and a
-	jr nz, .kanto
-	decoord 0, 0
-	ld hl, JohtoGrassWildMons
-	call Function2a052
-	ld hl, JohtoWaterWildMons
-	call Function2a06e
-	call Function2a0b7
-	call Function2a0cf
-	ret
-
-.kanto
-	decoord 0, 0
-	ld hl, KantoGrassWildMons
-	call Function2a052
-	ld hl, KantoWaterWildMons
-	jp Function2a06e
-; 2a052
-
-Function2a052: ; 2a052
-.loop
-	ld a, [hl]
-	cp $ff
-	ret z
-	push hl
-	ld a, [hli]
-	ld b, a
-	ld a, [hli]
-	ld c, a
-rept 3
-	inc hl
-endr
-	ld a, $15
-	call Function2a088
-	jr nc, .next
-	ld [de], a
-	inc de
-
-.next
-	pop hl
-	ld bc, $2f
-	add hl, bc
-	jr .loop
-; 2a06e
-
-Function2a06e: ; 2a06e
-.loop
-	ld a, [hl]
-	cp $ff
-	ret z
-	push hl
-	ld a, [hli]
-	ld b, a
-	ld a, [hli]
-	ld c, a
-	inc hl
-	ld a, $3
-	call Function2a088
-	jr nc, .next
-	ld [de], a
-	inc de
-
-.next
-	pop hl
-	ld bc, 9
-	add hl, bc
-	jr .loop
-; 2a088
-
-Function2a088: ; 2a088
-	inc hl
-.loop
-	push af
-	ld a, [wd265]
-	cp [hl]
-	jr z, .found
-rept 2
-	inc hl
-endr
-	pop af
-	dec a
-	jr nz, .loop
-	and a
-	ret
-
-.found
-	pop af
-	jp Function2a09c
-; 2a09c
-
-Function2a09c: ; 2a09c
-	push de
-	call GetWorldMapLocation
-	ld c, a
-	hlcoord 0, 0
-	ld de, SCREEN_WIDTH * SCREEN_HEIGHT
-.loop
-	ld a, [hli]
-	cp c
-	jr z, .found
-	dec de
-	ld a, e
-	or d
-	jr nz, .loop
-	ld a, c
-	pop de
-	scf
-	ret
-
-.found
-	pop de
-	and a
-	ret
-; 2a0b7
-
-Function2a0b7: ; 2a0b7
-	ld a, [wRoamMon1Species]
-	ld b, a
-	ld a, [wd265]
-	cp b
-	ret nz
-	ld a, [wRoamMon1MapGroup]
-	ld b, a
-	ld a, [wRoamMon1MapNumber]
-	ld c, a
-	call Function2a09c
-	ret nc
-	ld [de], a
-	inc de
-	ret
-; 2a0cf
-
-Function2a0cf: ; 2a0cf
-	ld a, [wRoamMon2Species]
-	ld b, a
-	ld a, [wd265]
-	cp b
-	ret nz
-	ld a, [wRoamMon2MapGroup]
-	ld b, a
-	ld a, [wRoamMon2MapNumber]
-	ld c, a
-	call Function2a09c
-	ret nc
-	ld [de], a
-	inc de
-	ret
-; 2a0e7
-
-TryWildEncounter:: ; 2a0e7
-; Try to trigger a wild encounter.
-	call .EncounterRate
-	jr nc, .no_battle
-	call ChooseWildEncounter
-	jr nz, .no_battle
-	call CheckRepelEffect
-	jr nc, .no_battle
-	xor a
-	ret
-
-.no_battle
-	xor a ; BATTLETYPE_NORMAL
-	ld [TempWildMonSpecies], a
-	ld [BattleType], a
-	ld a, 1
-	and a
-	ret
-; 2a103
-
-.EncounterRate: ; 2a103
-	call GetMapEncounterRate
-	call ApplyMusicEffectOnEncounterRate
-	call ApplyCleanseTagEffectOnEncounterRate
-	call Random
-	cp b
-	ret
-; 2a111
-
-GetMapEncounterRate: ; 2a111
-	ld hl, wd25a
-	call CheckOnWater
-	ld a, 3
-	jr z, .ok
-	ld a, [TimeOfDay]
-.ok
-	ld c, a
-	ld b, 0
-	add hl, bc
-	ld b, [hl]
-	ret
-; 2a124
-
-ApplyMusicEffectOnEncounterRate:: ; 2a124
-; Pokemon March and Ruins of Alph signal double encounter rate.
-; Pokemon Lullaby halves encounter rate.
-	ld a, [wMapMusic]
-	cp MUSIC_POKEMON_MARCH
-	jr z, .double
-	cp MUSIC_RUINS_OF_ALPH_RADIO
-	jr z, .double
-	cp MUSIC_POKEMON_LULLABY
-	ret nz
-	srl b
-	ret
-
-.double
-	sla b
-	ret
-; 2a138
-
-ApplyCleanseTagEffectOnEncounterRate:: ; 2a138
-; Cleanse Tag halves encounter rate.
-	ld hl, PartyMon1Item
-	ld de, PARTYMON_STRUCT_LENGTH
-	ld a, [PartyCount]
-	ld c, a
-.loop
-	ld a, [hl]
-	cp CLEANSE_TAG
-	jr z, .cleansetag
-	add hl, de
-	dec c
-	jr nz, .loop
-	ret
-
-.cleansetag
-	srl b
-	ret
-; 2a14f
-
-ChooseWildEncounter: ; 2a14f
-	call LoadWildMonDataPointer
-	jp nc, .nowildbattle
-	call CheckEncounterRoamMon
-	jp c, .startwildbattle
-
-rept 3
-	inc hl
-endr
-	call CheckOnWater
-	ld de, .WaterMonTable
-	jr z, .watermon
-rept 2
-	inc hl
-endr
-	ld a, [TimeOfDay]
-	ld bc, $e
-	call AddNTimes
-	ld de, .GrassMonTable
-
-.watermon
-; hl contains the pointer to the wild mon data, let's save that to the stack
-	push hl
-.randomloop
-	call Random
-	cp 100
-	jr nc, .randomloop
-	inc a ; 1 <= a <= 100
-	ld b, a
-	ld h, d
-	ld l, e
-; This next loop chooses which mon to load up.
-.prob_bracket_loop
-	ld a, [hli]
-	cp b
-	jr nc, .got_it
-	inc hl
-	jr .prob_bracket_loop
-
-.got_it
-	ld c, [hl]
-	ld b, 0
-	pop hl
-	add hl, bc ; this selects our mon
-	ld a, [hli]
-	ld b, a
-; If the Pokemon is encountered by surfing, we need to give the levels some variety.
-	call CheckOnWater
-	jr nz, .ok
-; Check if we buff the wild mon, and by how much.
-	call Random
-	cp 35 percent
-	jr c, .ok
-	inc b
-	cp 65 percent
-	jr c, .ok
-	inc b
-	cp 85 percent
-	jr c, .ok
-	inc b
-	cp 95 percent
-	jr c, .ok
-	inc b
-; Store the level
-.ok
-	ld a, b
-	ld [CurPartyLevel], a
-	ld b, [hl]
-	; ld a, b
-	call ValidateTempWildMonSpecies
-	jr c, .nowildbattle
-
-	ld a, b ; This is in the wrong place.
-	cp UNOWN
-	jr nz, .done
-
-	ld a, [UnlockedUnowns]
-	and a
-	jr z, .nowildbattle
-
-.done
-	jr .loadwildmon
-
-.nowildbattle
-	ld a, 1
-	and a
-	ret
-
-.loadwildmon
-	ld a, b
-	ld [TempWildMonSpecies], a
-
-.startwildbattle
-	xor a
-	ret
-; 2a1cb
-
-.GrassMonTable: ; 2a1cb
-	db 30,  $0 ; 30% chance
-	db 60,  $2 ; 30% chance
-	db 80,  $4 ; 20% chance
-	db 90,  $6 ; 10% chance
-	db 95,  $8 ;  5% chance
-	db 99,  $a ;  4% chance
-	db 100, $c ;  1% chance
-; 2a1d9
-
-.WaterMonTable: ; 2a1d9
-	db 60,  $0 ; 60% chance
-	db 90,  $2 ; 30% chance
-	db 100, $4 ; 10% chance
-; 2a1df
-
-CheckRepelEffect:: ; 2a1df
-; If there is no active Repel, there's no need to be here.
-	ld a, [wRepelEffect]
-	and a
-	jr z, .encounter
-; Get the first Pokemon in your party that isn't fainted.
-	ld hl, PartyMon1HP
-	ld bc, PARTYMON_STRUCT_LENGTH - 1
-.loop
-	ld a, [hli]
-	or [hl]
-	jr nz, .ok
-	add hl, bc
-	jr .loop
-
-.ok
-; to PartyMonLevel
-rept 4
-	dec hl
-endr
-
-	ld a, [CurPartyLevel]
-	cp [hl]
-	jr nc, .encounter
-	and a
-	ret
-
-.encounter
-	scf
-	ret
-; 2a200
-
-LoadWildMonDataPointer: ; 2a200
-	call CheckOnWater
-	jr z, _WaterWildmonLookup
-
-_GrassWildmonLookup: ; 2a205
-	ld hl, SwarmGrassWildMons
-	ld bc, GRASS_WILDDATA_LENGTH
-	call _SwarmWildmonCheck
-	ret c
-	ld hl, JohtoGrassWildMons
-	ld de, KantoGrassWildMons
-	call _JohtoWildmonCheck
-	ld bc, GRASS_WILDDATA_LENGTH
-	jr _NormalWildmonOK
-
-_WaterWildmonLookup: ; 2a21d
-	ld hl, SwarmWaterWildMons
-	ld bc, WATER_WILDDATA_LENGTH
-	call _SwarmWildmonCheck
-	ret c
-	ld hl, JohtoWaterWildMons
-	ld de, KantoWaterWildMons
-	call _JohtoWildmonCheck
-	ld bc, WATER_WILDDATA_LENGTH
-	jr _NormalWildmonOK
-
-_JohtoWildmonCheck
-	call IsInJohto
-	and a
-	ret z
-	ld h, d
-	ld l, e
-	ret
-
-_SwarmWildmonCheck
-	call CopyCurrMapDE
-	push hl
-	ld hl, SwarmFlags
-	bit 2, [hl]
-	pop hl
-	jr z, .CheckYanma
-	ld a, [wdfcc]
-	cp d
-	jr nz, .CheckYanma
-	ld a, [wdfcd]
-	cp e
-	jr nz, .CheckYanma
-	call LookUpWildmonsForMapDE
-	jr nc, _NoSwarmWildmon
-	scf
-	ret
-
-.CheckYanma
-	push hl
-	ld hl, SwarmFlags
-	bit 3, [hl]
-	pop hl
-	jr z, _NoSwarmWildmon
-	ld a, [wdc5a]
-	cp d
-	jr nz, _NoSwarmWildmon
-	ld a, [wdc5b]
-	cp e
-	jr nz, _NoSwarmWildmon
-	call LookUpWildmonsForMapDE
-	jr nc, _NoSwarmWildmon
-	scf
-	ret
-
-_NoSwarmWildmon
-	and a
-	ret
-
-_NormalWildmonOK
-	call CopyCurrMapDE
-	jr LookUpWildmonsForMapDE
-; 2a27f
-
-CopyCurrMapDE: ; 2a27f
-	ld a, [MapGroup]
-	ld d, a
-	ld a, [MapNumber]
-	ld e, a
-	ret
-; 2a288
-
-LookUpWildmonsForMapDE: ; 2a288
-	push hl
-	ld a, [hl]
-	inc a
-	jr z, .nope
-	ld a, d
-	cp [hl]
-	jr nz, .next
-	inc hl
-	ld a, e
-	cp [hl]
-	jr z, .yup
-
-.next
-	pop hl
-	add hl, bc
-	jr LookUpWildmonsForMapDE
-
-.nope
-	pop hl
-	and a
-	ret
-
-.yup
-	pop hl
-	scf
-	ret
-; 2a2a0
-
-
-InitRoamMons: ; 2a2a0
-; initialize wRoamMon structs
-
-; species
-	ld a, RAIKOU
-	ld [wRoamMon1Species], a
-	ld a, ENTEI
-	ld [wRoamMon2Species], a
-;	ld a, SUICUNE
-;	ld [wRoamMon3Species], a
-
-; level
-	ld a, 40
-	ld [wRoamMon1Level], a
-	ld [wRoamMon2Level], a
-;	ld [wRoamMon3Level], a
-
-; raikou starting map
-	ld a, GROUP_ROUTE_42
-	ld [wRoamMon1MapGroup], a
-	ld a, MAP_ROUTE_42
-	ld [wRoamMon1MapNumber], a
-
-; entei starting map
-	ld a, GROUP_ROUTE_37
-	ld [wRoamMon2MapGroup], a
-	ld a, MAP_ROUTE_37
-	ld [wRoamMon2MapNumber], a
-
-; suicune starting map
-;	ld a, GROUP_ROUTE_38
-;	ld [wRoamMon3MapGroup], a
-;	ld a, MAP_ROUTE_38
-;	ld [wRoamMon3MapNumber], a
-
-; hp
-	xor a ; generate new stats
-	ld [wRoamMon1HP], a
-	ld [wRoamMon2HP], a
-;	ld [wRoamMon3HP], a
-
-	ret
-; 2a2ce
-
-
-CheckEncounterRoamMon: ; 2a2ce
-	push hl
-; Don't trigger an encounter if we're on water.
-	call CheckOnWater
-	jr z, .DontEncounterRoamMon
-; Load the current map group and number to de
-	call CopyCurrMapDE
-; Randomly select a beast.
-	call Random
-	cp 100 ; 25/64 chance
-	jr nc, .DontEncounterRoamMon
-	and %00000011 ; Of that, a 3/4 chance.  Running total: 75/256, or around 29.3%.
-	jr z, .DontEncounterRoamMon
-	dec a ; 1/3 chance that it's Entei, 1/3 chance that it's Raikou
-; Compare its current location with yours
-	ld hl, wRoamMon1MapGroup
-	ld c, a
-	ld b, 0
-	ld a, 7 ; length of the RoamMon struct
-	call AddNTimes
-	ld a, d
-	cp [hl]
-	jr nz, .DontEncounterRoamMon
-	inc hl
-	ld a, e
-	cp [hl]
-	jr nz, .DontEncounterRoamMon
-; We've decided to take on a beast, so stage its information for battle.
-rept 3
-	dec hl
-endr
-	ld a, [hli]
-	ld [TempWildMonSpecies], a
-	ld a, [hl]
-	ld [CurPartyLevel], a
-	ld a, BATTLETYPE_ROAMING
-	ld [BattleType], a
-
-	pop hl
-	scf
-	ret
-
-.DontEncounterRoamMon
-	pop hl
-	and a
-	ret
-; 2a30d
-
-
-UpdateRoamMons: ; 2a30d
-	ld a, [wRoamMon1MapGroup]
-	cp GROUP_N_A
-	jr z, .SkipRaikou
-	ld b, a
-	ld a, [wRoamMon1MapNumber]
-	ld c, a
-	call .Update
-	ld a, b
-	ld [wRoamMon1MapGroup], a
-	ld a, c
-	ld [wRoamMon1MapNumber], a
-
-.SkipRaikou
-	ld a, [wRoamMon2MapGroup]
-	cp GROUP_N_A
-	jr z, .SkipEntei
-	ld b, a
-	ld a, [wRoamMon2MapNumber]
-	ld c, a
-	call .Update
-	ld a, b
-	ld [wRoamMon2MapGroup], a
-	ld a, c
-	ld [wRoamMon2MapNumber], a
-
-.SkipEntei
-	ld a, [wRoamMon3MapGroup]
-	cp GROUP_N_A
-	jr z, .SkipSuicune
-	ld b, a
-	ld a, [wRoamMon3MapNumber]
-	ld c, a
-	call .Update
-	ld a, b
-	ld [wRoamMon3MapGroup], a
-	ld a, c
-	ld [wRoamMon3MapNumber], a
-
-.SkipSuicune
-	jp _BackUpMapIndices
-; 2a355
-
-
-.Update: ; 2a355
-	ld hl, RoamMaps
-.loop
-; Are we at the end of the table?
-	ld a, [hl]
-	cp -1
-	ret z
-; Is this the correct entry?
-	ld a, b
-	cp [hl]
-	jr nz, .next
-	inc hl
-	ld a, c
-	cp [hl]
-	jr z, .yes
-; We don't have the correct entry yet, so let's continue.  A 0 terminates each entry.
-.next
-	ld a, [hli]
-	and a
-	jr nz, .next
-	jr .loop
-
-; We have the correct entry now, so let's choose a random map from it.
-.yes
-	inc hl
-	ld d, h
-	ld e, l
-.update_loop
-	ld h, d
-	ld l, e
-; Choose which map to warp to.
-	call Random
-	and $1f ; 1/8n chance it moves to a completely random map, where n is the number of roaming connections from the current map.
-	jr z, JumpRoamMon
-	and 3
-	cp [hl]
-	jr nc, .update_loop ; invalid index, try again
-	inc hl
-	ld c, a
-	ld b, $0
-rept 2
-	add hl, bc
-endr
-	ld a, [wdfe7]
-	cp [hl]
-	jr nz, .done
-	inc hl
-	ld a, [wdfe6]
-	cp [hl]
-	jr z, .update_loop
-	dec hl
-
-.done
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-	ret
-
-JumpRoamMons: ; 2a394
-	ld a, [wRoamMon1MapGroup]
-	cp GROUP_N_A
-	jr z, .SkipRaikou
-	call JumpRoamMon
-	ld a, b
-	ld [wRoamMon1MapGroup], a
-	ld a, c
-	ld [wRoamMon1MapNumber], a
-.SkipRaikou
-
-	ld a, [wRoamMon2MapGroup]
-	cp GROUP_N_A
-	jr z, .SkipEntei
-	call JumpRoamMon
-	ld a, b
-	ld [wRoamMon2MapGroup], a
-	ld a, c
-	ld [wRoamMon2MapNumber], a
-.SkipEntei
-
-	ld a, [wRoamMon3MapGroup]
-	cp GROUP_N_A
-	jr z, .SkipSuicune
-	call JumpRoamMon
-	ld a, b
-	ld [wRoamMon3MapGroup], a
-	ld a, c
-	ld [wRoamMon3MapNumber], a
-.SkipSuicune
-
-	jp _BackUpMapIndices
-
-JumpRoamMon: ; 2a3cd
-.loop
-	ld hl, RoamMaps
-.innerloop1 ; This loop is completely unnecessary.
-	call Random ; Choose a random number
-	and $f ; Take the lower nybble only.  This gives a number between 0 and 15.
-	cp $10 ; If the number is greater than or equal to 16, loop back and try again.
-	jr nc, .innerloop1 ; I'm sure you can guess why this check is bogus.
-	inc a
-	ld b, a
-.innerloop2 ; Loop to get hl to the address of the chosen roam map.
-	dec b
-	jr z, .ok
-.innerloop3 ; Loop to skip the current roam map, which is terminated by a 0.
-	ld a, [hli]
-	and a
-	jr nz, .innerloop3
-	jr .innerloop2
-; Check to see if the selected map is the one the player is currently in.  If so, try again.
-.ok
-	ld a, [MapGroup]
-	cp [hl]
-	jr nz, .done
-	inc hl
-	ld a, [MapNumber]
-	cp [hl]
-	jr z, .loop
-	dec hl
-; Return the map group and number in bc.
-.done
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-	ret
-; 2a3f6
-
-_BackUpMapIndices: ; 2a3f6
-	ld a, [wdfe4]
-	ld [wdfe6], a
-	ld a, [wdfe5]
-	ld [wdfe7], a
-	ld a, [MapNumber]
-	ld [wdfe4], a
-	ld a, [MapGroup]
-	ld [wdfe5], a
-	ret
-; 2a40f
-
-RoamMaps: ; 2a40f
-; Maps that roaming monsters can be on,
-; and possible maps they can jump to.
-; Notably missing are Route 40 and
-; Route 41, which are water routes.
-	roam_map ROUTE_29, 2, ROUTE_30, ROUTE_46
-	roam_map ROUTE_30, 2, ROUTE_29, ROUTE_31
-	roam_map ROUTE_31, 3, ROUTE_30, ROUTE_32, ROUTE_36
-	roam_map ROUTE_32, 3, ROUTE_36, ROUTE_31, ROUTE_33
-	roam_map ROUTE_33, 2, ROUTE_32, ROUTE_34
-	roam_map ROUTE_34, 2, ROUTE_33, ROUTE_35
-	roam_map ROUTE_35, 2, ROUTE_34, ROUTE_36
-	roam_map ROUTE_36, 4, ROUTE_35, ROUTE_31, ROUTE_32, ROUTE_37
-	roam_map ROUTE_37, 3, ROUTE_36, ROUTE_38, ROUTE_42
-	roam_map ROUTE_38, 3, ROUTE_37, ROUTE_39, ROUTE_42
-	roam_map ROUTE_39, 1, ROUTE_38
-	roam_map ROUTE_42, 4, ROUTE_43, ROUTE_44, ROUTE_37, ROUTE_38
-	roam_map ROUTE_43, 2, ROUTE_42, ROUTE_44
-	roam_map ROUTE_44, 3, ROUTE_42, ROUTE_43, ROUTE_45
-	roam_map ROUTE_45, 2, ROUTE_44, ROUTE_46
-	roam_map ROUTE_46, 2, ROUTE_45, ROUTE_29
-	db -1
-; 2a4a0
-
-ValidateTempWildMonSpecies: ; 2a4a0
-; Due to a development oversight, this function is called with the wild Pokemon's level, not its species, in a.
-	and a
-	jr z, .nowildmon ; = 0
-	cp NUM_POKEMON + 1 ; 252
-	jr nc, .nowildmon ; >= 252
-	and a ; 1 <= Species <= 251
-	ret
-
-.nowildmon
-	scf
-	ret
-; 2a4ab
-
-RandomPhoneRareWildMon: ; 2a4ab
-; Related to the phone?
-	callba GetCallerLocation
-	ld d, b
-	ld e, c
-	ld hl, JohtoGrassWildMons
-	ld bc, GRASS_WILDDATA_LENGTH
-	call LookUpWildmonsForMapDE
-	jr c, .GetGrassmon
-	ld hl, KantoGrassWildMons
-	call LookUpWildmonsForMapDE
-	jr nc, .done
-
-.GetGrassmon
-	push hl
-	ld bc, 5 + 4 * 2 ; Location of the level of the 5th wild Pokemon in that map
-	add hl, bc
-	ld a, [TimeOfDay]
-	ld bc, 7 * 2
-	call AddNTimes
-.randloop1
-	call Random
-	and $3
-	jr z, .randloop1
-	dec a
-	ld c, a
-	ld b, $0
-rept 2
-	add hl, bc
-endr
-; We now have the pointer to one of the last (rarest) three wild Pokemon found in that area.
-	inc hl
-	ld c, [hl] ; Contains the species index of this rare Pokemon
-	pop hl
-	ld de, 5 + 0 * 2
-	add hl, de
-	inc hl ; Species index of the most common Pokemon on that route
-	ld b, 4
-.loop2
-	ld a, [hli]
-	cp c ; Compare this most common Pokemon with the rare one stored in c.
-	jr z, .done
-	inc hl
-	dec b
-	jr nz, .loop2
-; This Pokemon truly is rare.
-	push bc
-	dec c
-	ld a, c
-	call CheckSeenMon
-	pop bc
-	jr nz, .done
-; Since we haven't seen it, have the caller tell us about it.
-	ld de, StringBuffer1
-	call CopyName1
-	ld a, c
-	ld [wd265], a
-	call GetPokemonName
-	ld hl, UnknownText_0x2a51a
-	call PrintText
-	xor a
-	ld [ScriptVar], a
-	ret
-
-.done
-	ld a, $1
-	ld [ScriptVar], a
-	ret
-; 2a51a
-
-UnknownText_0x2a51a: ; 0x2a51a
-	; I just saw some rare @  in @ . I'll call you if I see another rare #MON, OK?
-	text_jump UnknownText_0x1bd34b
-	db "@"
-; 0x2a51f
-
-RandomPhoneWildMon: ; 2a51f
-	callba GetCallerLocation
-	ld d, b
-	ld e, c
-	ld hl, JohtoGrassWildMons
-	ld bc, GRASS_WILDDATA_LENGTH
-	call LookUpWildmonsForMapDE
-	jr c, .ok
-	ld hl, KantoGrassWildMons
-	call LookUpWildmonsForMapDE
-
-.ok
-	ld bc, 5 + 0 * 2
-	add hl, bc
-	ld a, [TimeOfDay]
-	inc a
-	ld bc, 7 * 2
-.loop
-	dec a
-	jr z, .done
-	add hl, bc
-	jr .loop
-
-.done
-	call Random
-	and $3
-	ld c, a
-	ld b, $0
-rept 2
-	add hl, bc
-endr
-	inc hl
-	ld a, [hl]
-	ld [wd265], a
-	call GetPokemonName
-	ld hl, StringBuffer1
-	ld de, StringBuffer4
-	ld bc, PKMN_NAME_LENGTH
-	jp CopyBytes
-; 2a567
-
-RandomPhoneMon: ; 2a567
-; Get a random monster owned by the trainer who's calling.
-	callba GetCallerLocation
-	ld hl, TrainerGroups
-	ld a, d
-	dec a
-	ld c, a
-	ld b, 0
-rept 2
-	add hl, bc
-endr
-	ld a, BANK(TrainerGroups)
-	call GetFarHalfword
-
-.skip_trainer
-	dec e
-	jr z, .skipped
-.skip
-	ld a, BANK(Trainers)
-	call GetFarByte
-	inc hl
-	cp -1
-	jr nz, .skip
-	jr .skip_trainer
-.skipped
-
-.skip_name
-	ld a, BANK(Trainers)
-	call GetFarByte
-	inc hl
-	cp "@"
-	jr nz, .skip_name
-
-	ld a, BANK(Trainers)
-	call GetFarByte
-	inc hl
-	ld bc, 2
-	cp 0
-	jr z, .got_mon_length
-	ld bc, 2 + NUM_MOVES
-	cp 1
-	jr z, .got_mon_length
-	ld bc, 2 + 1
-	cp 2
-	jr z, .got_mon_length
-	ld bc, 2 + 1 + NUM_MOVES
-.got_mon_length
-
-	ld e, 0
-	push hl
-.count_mon
-	inc e
-	add hl, bc
-	ld a, BANK(Trainers)
-	call GetFarByte
-	cp -1
-	jr nz, .count_mon
-	pop hl
-
-.rand
-	call Random
-	and 7
-	cp e
-	jr nc, .rand
-
-	inc a
-.get_mon
-	dec a
-	jr z, .got_mon
-	add hl, bc
-	jr .get_mon
-.got_mon
-
-	inc hl ; species
-	ld a, BANK(Trainers)
-	call GetFarByte
-	ld [wd265], a
-	call GetPokemonName
-	ld hl, StringBuffer1
-	ld de, StringBuffer4
-	ld bc, PKMN_NAME_LENGTH
-	jp CopyBytes
-; 2a5e9
-
-
-JohtoGrassWildMons: ; 0x2a5e9
-INCLUDE "data/wild/johto_grass.asm"
-
-JohtoWaterWildMons: ; 0x2b11d
-INCLUDE "data/wild/johto_water.asm"
-
-KantoGrassWildMons: ; 0x2b274
-INCLUDE "data/wild/kanto_grass.asm"
-
-KantoWaterWildMons: ; 0x2b7f7
-INCLUDE "data/wild/kanto_water.asm"
-
-SwarmGrassWildMons: ; 0x2b8d0
-INCLUDE "data/wild/swarm_grass.asm"
-
-SwarmWaterWildMons: ; 0x2b92f
-INCLUDE "data/wild/swarm_water.asm"
-
+INCLUDE "engine/wildmons.asm"
 
 DetermineLinkBattleResult: ; 2b930
 	callba UpdateEnemyMonInParty
@@ -19672,7 +18615,7 @@ _ShowLinkBattleParticipants: ; 2c1b2
 	ld [hli], a
 	ld [hl], $6a
 	callba Function2c10d ; no need to callba
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	call SetPalettes
 	ld a, $e4
@@ -23856,7 +22799,7 @@ Function4820d: ; 4820d (12:420d)
 	call Function48d30
 	pop bc
 	call ClearTileMap
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	ld hl, wd479
 	set 1, [hl]
@@ -25549,7 +24492,7 @@ Function4925b: ; 4925b
 	call ClearBGPalettes
 	call ClearScreen
 	call DelayFrame
-	ld b, $14
+	ld b, SCGB_14
 	call GetSGBLayout
 	xor a
 	ld [wItemAttributeParamBuffer], a
@@ -26643,7 +25586,7 @@ MainMenu: ; 49cdc
 	xor a
 	ld [wc2d7], a
 	call Function49ed0
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	call SetPalettes
 	ld hl, GameTimerPause
@@ -27847,7 +26790,7 @@ Function4a6ab: ; 4a6ab (12:66ab)
 	ld a, $2
 	call Function1ff8
 	call ClearBGPalettes
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	callba Function11c1ab
 	pop bc
@@ -28353,7 +27296,7 @@ Function4a94e: ; 4a94e
 	xor a
 	ld [wd018], a
 	ld [wd019], a
-	ld b, $14
+	ld b, SCGB_14
 	call GetSGBLayout
 	call SetPalettes
 	call Function4aa22
@@ -29659,7 +28602,7 @@ Function4d3ab: ; 4d3ab
 
 _ResetClock: ; 4d3b1
 	callba Function8000
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	call LoadStandardFont
 	call LoadFontsExtra
@@ -29935,7 +28878,7 @@ ClockResetPassword: ; 4d41e
 
 Function4d54c: ; 4d54c
 	callba Function8000
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	call LoadStandardFont
 	call LoadFontsExtra
@@ -30078,7 +29021,7 @@ Function4d81e: ; 4d81e
 	ld [TempMonDVs], a
 	ld a, [wPlayerWrapCount]
 	ld [TempMonDVs + 1], a
-	ld b, $1a
+	ld b, SCGB_1A
 	call GetSGBLayout
 	ld a, $e4
 	call DmgToCgbBGPals
@@ -31168,7 +30111,7 @@ Function4df45: ; 4df45 (13:5f45)
 	callba DrawPartyMenuHPBar
 	ld hl, wcda1
 	call SetHPPal
-	ld b, $3
+	ld b, SCGB_03
 	call GetSGBLayout
 	call DelayFrame
 	ret
@@ -31714,7 +30657,7 @@ EggStatsScreen: ; 4e33a
 	ld [hBGMapMode], a
 	ld hl, wcda1
 	call SetHPPal
-	ld b, $3
+	ld b, SCGB_03
 	call GetSGBLayout
 	call Function4df8f
 	ld de, EggString
@@ -38423,7 +37366,7 @@ endr
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
-	ld b, $1a
+	ld b, SCGB_1A
 	call GetSGBLayout
 	call SetPalettes
 	call Function86635
@@ -38561,7 +37504,7 @@ Function86692: ; 86692
 	ld de, String_866fb
 	call PlaceString
 	call WaitBGMap
-	ld b, $1a
+	ld b, SCGB_1A
 	call GetSGBLayout
 	call SetPalettes
 	decoord 6, 5
@@ -38722,7 +37665,7 @@ Function86810: ; 86810
 	xor a
 	ld [hBGMapMode], a
 	ld [CurPartySpecies], a
-	ld b, $1a
+	ld b, SCGB_1A
 	call GetSGBLayout
 	call SetPalettes
 	call Function86635
@@ -39127,7 +38070,7 @@ BlindingFlash: ; 8c7e1
 	set 2, [hl]
 	callba Function8c0e5
 	callba Function8c001
-	ld b, $9
+	ld b, SCGB_09
 	call GetSGBLayout
 	callba Function49409
 	callba FadeInPalettes
@@ -40018,7 +38961,7 @@ Function8ceae: ; 8ceae
 	ld [TimeOfDayPal], a
 	ld a, $1
 	ld [wPermission], a
-	ld b, $9
+	ld b, SCGB_09
 	call GetSGBLayout
 	call UpdateTimePals
 	ld a, [rBGP]
@@ -40628,7 +39571,7 @@ InitClock: ; 90672 (24:4672)
 	call Function4dd
 	call ClearTileMap
 	call ClearSprites
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	xor a
 	ld [hBGMapMode], a
@@ -41458,7 +40401,7 @@ Function90bea: ; 90bea (24:4bea)
 	ld [wc6db], a
 	call Function90d9e
 	call Function90da8
-	ld b, $2
+	ld b, SCGB_02
 	call GetSGBLayout
 	call SetPalettes
 	ld a, [hCGB]
@@ -42803,419 +41746,7 @@ INCBIN "gfx/unknown/0915db.tilemap.rle"
 ; 9163e
 
 INCLUDE "engine/radio2.asm"
-
-Function9191c: ; 9191c
-	ld hl, Options
-	ld a, [hl]
-	push af
-	set 4, [hl]
-	ld a, [hInMenu]
-	push af
-	ld a, $1
-	ld [hInMenu], a
-	ld a, [VramState]
-	push af
-	xor a
-	ld [VramState], a
-	call ClearBGPalettes
-	call ClearTileMap
-	call ClearSprites
-	call DisableLCD
-	call Function90c4e
-	callba Function8cf53
-	ld a, 8
-	call SkipMusic
-	ld a, $e3
-	ld [rLCDC], a
-	call Function90d56
-	ld [wd002], a
-	ld [wd003], a
-	xor a
-	ld [hBGMapMode], a
-	call Function91a04
-	call Function3200
-	ld a, [wd002]
-	call Function9106a
-	ld a, [wd003]
-	call Function91098
-	ld a, c
-	ld [wd004], a
-	ld a, b
-	ld [wd005], a
-	ld b, $2
-	call GetSGBLayout
-	call SetPalettes
-	ld a, [hCGB]
-	and a
-	jr z, .asm_9198b
-	ld a, $e4
-	call Functioncf8
-	call DelayFrame
-
-.asm_9198b
-	ld a, [wd002]
-	cp KANTO_LANDMARK
-	jr nc, .asm_9199b
-	ld d, KANTO_LANDMARK - 1
-	ld e, 1
-	call Function919b0
-	jr .asm_919a1
-
-.asm_9199b
-	call Function910e8
-	call Function919b0
-
-.asm_919a1
-	pop af
-	ld [VramState], a
-	pop af
-	ld [hInMenu], a
-	pop af
-	ld [Options], a
-	call ClearBGPalettes
-	ret
-; 919b0
-
-Function919b0: ; 919b0
-.asm_919b0
-	call JoyTextDelay
-	ld hl, hJoyPressed
-	ld a, [hl]
-	and B_BUTTON
-	ret nz
-	ld hl, hJoyLast
-	ld a, [hl]
-	and D_UP
-	jr nz, .asm_919d4
-	ld a, [hl]
-	and D_DOWN
-	jr nz, .asm_919e1
-.asm_919c7
-	push de
-	callba Function8cf69
-	pop de
-	call DelayFrame
-	jr .asm_919b0
-
-.asm_919d4
-	ld hl, wd003
-	ld a, [hl]
-	cp d
-	jr c, .asm_919de
-	ld a, e
-	dec a
-	ld [hl], a
-
-.asm_919de
-	inc [hl]
-	jr .asm_919ec
-
-.asm_919e1
-	ld hl, wd003
-	ld a, [hl]
-	cp e
-	jr nz, .asm_919eb
-	ld a, d
-	inc a
-	ld [hl], a
-
-.asm_919eb
-	dec [hl]
-
-.asm_919ec
-	push de
-	ld a, [wd003]
-	call Function910b4
-	ld a, [wd004]
-	ld c, a
-	ld a, [wd005]
-	ld b, a
-	ld a, [wd003]
-	call Function910d4
-	pop de
-	jr .asm_919c7
-; 91a04
-
-Function91a04: ; 91a04
-	ld a, [wd002]
-	cp KANTO_LANDMARK
-	jr nc, .asm_91a0f
-	ld e, $0
-	jr .asm_91a11
-
-.asm_91a0f
-	ld e, $1
-
-.asm_91a11
-	callba Function91ae1
-	ld a, $7
-	ld bc, 6
-	hlcoord 1, 0
-	call ByteFill
-	hlcoord 0, 0
-	ld [hl], $6
-	hlcoord 7, 0
-	ld [hl], $17
-	hlcoord 7, 1
-	ld [hl], $16
-	hlcoord 7, 2
-	ld [hl], $26
-	ld a, $7
-	ld bc, NAME_LENGTH
-	hlcoord 8, 2
-	call ByteFill
-	hlcoord 19, 2
-	ld [hl], $17
-	ld a, [wd003]
-	call Function910b4
-	callba TownMapPals
-	ret
-; 91a53
-
-PlayRadio: ; 91a53
-	ld hl, Options
-	ld a, [hl]
-	push af
-	set 4, [hl]
-	call .PlayStation
-	ld c, 100
-	call DelayFrames
-.loop
-	call JoyTextDelay
-	ld a, [hJoyPressed]
-	and A_BUTTON | B_BUTTON
-	jr nz, .stop
-	ld a, [wc6da]
-	ld l, a
-	ld a, [wc6db]
-	ld h, a
-	ld a, [wc6d9]
-	and a
-	jr z, .zero
-	rst FarCall
-
-.zero
-	call DelayFrame
-	jr .loop
-
-.stop
-	pop af
-	ld [Options], a
-	call Function91492
-	ret
-; 91a87
-
-.PlayStation: ; 91a87
-	ld a, -1
-	ld [EnemyTurnsTaken], a
-	ld hl, .StationPointers
-	ld d, $0
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld de, .jump_return
-	push de
-	jp [hl]
-
-.jump_return
-	push de
-	hlcoord 0, 12
-	lb bc, 4, 18
-	call TextBox
-	hlcoord 1, 14
-	ld [hl], $72
-	pop de
-	hlcoord 2, 14
-	call PlaceString
-	ld h, b
-	ld l, c
-	ld [hl], $73
-	call WaitBGMap
-	ret
-; 91ab9
-
-.StationPointers: ; 91ab9
-	dw Function91acb
-	dw LoadStation_OaksPokemonTalk
-	dw LoadStation_PokedexShow
-	dw LoadStation_PokemonMusic
-	dw LoadStation_LuckyChannel
-	dw LoadStation_UnownRadio
-	dw LoadStation_PlacesAndPeople
-	dw LoadStation_LetsAllSing
-	dw LoadStation_RocketRadio
-; 91acb
-
-Function91acb: ; 91acb
-	call IsInJohto
-	and a
-	jr nz, .kanto
-	call UpdateTime
-	ld a, [TimeOfDay]
-	and a
-	jp z, LoadStation_PokedexShow
-	jp LoadStation_OaksPokemonTalk
-
-.kanto
-	jp LoadStation_PlacesAndPeople
-; 91ae1
-
-Function91ae1: ; 91ae1
-	ld a, e
-	and a
-	jr nz, .kanto
-	call Function91ff2
-	call FillJohtoMap
-	ret
-
-.kanto
-	call Function91ff2
-	call FillKantoMap
-	ret
-; 91af3
-
-
-INCLUDE "engine/flypoints.asm"
-
-Function92311: ; unreferenced
-	xor a
-	ld [wd002], a
-	call ClearBGPalettes
-	call ClearTileMap
-	call ClearSprites
-	ld hl, hInMenu
-	ld a, [hl]
-	push af
-	ld [hl], $1
-	xor a
-	ld [hBGMapMode], a
-	callba Function8cf53
-	call Function91ff2
-	ld de, GFX_922e1
-	ld hl, VTiles2 tile $30
-	lb bc, BANK(GFX_922e1), 6
-	call Request1bpp
-	call FillKantoMap
-	call TownMapBubble
-	call TownMapPals
-	ld hl, VBGMap1
-	call TownMapBGUpdate
-	call FillJohtoMap
-	call TownMapBubble
-	call TownMapPals
-	ld hl, VBGMap0
-	call TownMapBGUpdate
-	call TownMapMon
-	ld a, c
-	ld [wd003], a
-	ld a, b
-	ld [wd004], a
-	ld b, $2
-	call GetSGBLayout
-	call SetPalettes
-.loop
-	call JoyTextDelay
-	ld hl, hJoyPressed
-	ld a, [hl]
-	and B_BUTTON
-	jr nz, .pressedB
-	ld a, [hl]
-	and A_BUTTON
-	jr nz, .pressedA
-	call Function923b8
-	call GetMapCursorCoordinates
-	callba Function8cf69
-	call DelayFrame
-	jr .loop
-
-.pressedB
-	ld a, -1
-	jr .asm_9239f
-
-.pressedA
-	ld a, [wd002]
-	ld l, a
-	ld h, 0
-	add hl, hl
-	ld de, Flypoints + 1
-	add hl, de
-	ld a, [hl]
-
-.asm_9239f
-	ld [wd002], a
-	pop af
-	ld [hInMenu], a
-	call ClearBGPalettes
-	ld a, $90
-	ld [hWY], a
-	xor a
-	ld [hBGMapAddress], a
-	ld a, VBGMap0 / $100
-	ld [hBGMapAddress + 1], a
-	ld a, [wd002]
-	ld e, a
-	ret
-; 923b8
-
-Function923b8: ; 923b8
-	ld hl, hJoyLast
-	ld a, [hl]
-	and D_DOWN | D_RIGHT
-	jr nz, .asm_923c6
-	ld a, [hl]
-	and D_UP | D_LEFT
-	jr nz, .asm_923d3
-	ret
-
-.asm_923c6
-	ld hl, wd002
-	ld a, [hl]
-	cp FLY_INDIGO
-	jr c, .asm_923d0
-	ld [hl], -1
-.asm_923d0
-	inc [hl]
-	jr .asm_923dd
-
-.asm_923d3
-	ld hl, wd002
-	ld a, [hl]
-	and a
-	jr nz, .asm_923dc
-	ld [hl], FLY_INDIGO + 1
-.asm_923dc
-	dec [hl]
-
-.asm_923dd
-	ld a, [wd002]
-	cp KANTO_FLYPOINT
-	jr c, .johto
-
-	call FillKantoMap
-	xor a
-	ld b, $9c
-	jr .asm_923f3
-
-.johto
-	call FillJohtoMap
-	ld a, $90
-	ld b, $98
-
-.asm_923f3
-	ld [hWY], a
-	ld a, b
-	ld [hBGMapAddress + 1], a
-	call TownMapBubble
-	call WaitBGMap
-	xor a
-	ld [hBGMapMode], a
-	ret
-; 92402
-
-
+INCLUDE "engine/town_map.asm"
 INCLUDE "data/wild/fish.asm"
 INCLUDE "engine/slot_machine.asm"
 
@@ -44541,7 +43072,7 @@ DisplayCaughtContestMonStats: ; cc000
 	ld [Options], a
 
 	call WaitBGMap
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	call SetPalettes
 	ret
@@ -44778,571 +43309,7 @@ CopyrightGFX:: ; e4000
 INCBIN "gfx/misc/copyright.2bpp"
 ; e41d0
 
-_OptionsMenu: ; e41d0
-	ld hl, hInMenu
-	ld a, [hl]
-	push af
-	ld [hl], $1
-	call ClearBGPalettes
-	hlcoord 0, 0
-	ld b, $10
-	ld c, $12
-	call TextBox
-	hlcoord 2, 2
-	ld de, StringOptions
-	call PlaceString
-	xor a
-	ld [wJumptableIndex], a
-	ld c, $6 ;number of items on the menu minus 1 (for cancel)
-.asm_e41f3 ;this next will display the settings of each option when the menu is opened
-	push bc
-	xor a
-	ld [hJoyLast], a
-	call GetOptionPointer
-	pop bc
-	ld hl, wJumptableIndex
-	inc [hl]
-	dec c
-	jr nz, .asm_e41f3
-	call Functione4512
-	xor a
-	ld [wJumptableIndex], a
-	inc a
-	ld [hBGMapMode], a
-	call WaitBGMap
-	ld b, $8
-	call GetSGBLayout
-	call SetPalettes
-.asm_e4217
-	call JoyTextDelay
-	ld a, [hJoyPressed]
-	and START | B_BUTTON
-	jr nz, .ExitOptions
-	call OptionsControl
-	jr c, .asm_e422a
-	call GetOptionPointer
-	jr c, .ExitOptions
-
-.asm_e422a
-	call Functione455c
-	ld c, 3
-	call DelayFrames
-	jr .asm_e4217
-
-.ExitOptions
-	ld de, SFX_TRANSACTION
-	call PlaySFX
-	call WaitSFX
-	pop af
-	ld [hInMenu], a
-	ret
-; e4241
-
-StringOptions: ; e4241
-	db "TEXT SPEED", $22
-	db "        :", $22
-	db "BATTLE SCENE", $22
-	db "        :", $22
-	db "BATTLE STYLE", $22
-	db "        :", $22
-	db "SOUND", $22
-	db "        :", $22
-	db "PRINT", $22
-	db "        :", $22
-	db "MENU ACCOUNT", $22
-	db "        :", $22
-	db "FRAME", $22
-	db "        :TYPE", $22
-	db "CANCEL@"
-; e42d6
-
-
-GetOptionPointer: ; e42d6
-	ld a, [wJumptableIndex] ;load the cursor position to a
-	ld e, a ;copy it to de
-	ld d, 0
-	ld hl, .Pointers
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl] ;jump to the code of the current highlighted item
-; e42e5
-
-.Pointers
-	dw Options_TextSpeed
-	dw Options_BattleScene
-	dw Options_BattleStyle
-	dw Options_Sound
-	dw Options_Print
-	dw Options_MenuAccount
-	dw Options_Frame
-	dw Options_Cancel
-; e42f5
-
-
-Options_TextSpeed: ; e42f5
-	call GetTextSpeed
-	ld a, [hJoyPressed]
-	bit 5, a
-	jr nz, .LeftPressed
-	bit 4, a
-	jr z, .NonePressed
-	ld a, c ;right pressed
-	cp $2
-	jr c, .Increase
-	ld c, $ff
-
-.Increase
-	inc c
-	ld a, e
-	jr .Save
-
-.LeftPressed
-	ld a, c
-	and a
-	jr nz, .Decrease
-	ld c, $3
-
-.Decrease
-	dec c
-	ld a, d
-
-.Save
-	ld b, a
-	ld a, [Options]
-	and $f0
-	or b
-	ld [Options], a
-
-.NonePressed
-	ld b, 0
-	ld hl, .Strings
-rept 2
-	add hl, bc
-endr
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	hlcoord 11, 3
-	call PlaceString
-	and a
-	ret
-; e4331
-
-.Strings
-	dw .Fast
-	dw .Mid
-	dw .Slow
-
-.Fast
-	db "FAST@"
-.Mid
-	db "MID @"
-.Slow
-	db "SLOW@"
-; e4346
-
-
-GetTextSpeed: ; e4346
-	ld a, [Options] ;This converts the number of frames, to 0,1,2 representing speed
-	and 7
-	cp 5 ;5 frames of delay is slow
-	jr z, .slow
-	cp 1 ;1 frame of delay is fast
-	jr z, .fast
-	ld c, 1 ;set it to mid if not one of the above
-	lb de, 1, 5
-	ret
-
-.slow
-	ld c, 2
-	lb de, 3, 1
-	ret
-
-.fast
-	ld c, 0
-	lb de, 5, 3
-	ret
-; e4365
-
-
-Options_BattleScene: ; e4365
-	ld hl, Options
-	ld a, [hJoyPressed]
-	bit 5, a
-	jr nz, .LeftPressed
-	bit 4, a
-	jr z, .NonePressed
-	bit 7, [hl]
-	jr nz, .ToggleOn
-	jr .ToggleOff
-
-.LeftPressed
-	bit 7, [hl]
-	jr z, .ToggleOff
-	jr .ToggleOn
-
-.NonePressed
-	bit 7, [hl]
-	jr z, .ToggleOn
-	jr .ToggleOff
-
-.ToggleOn
-	res 7, [hl]
-	ld de, .On
-	jr .Display
-
-.ToggleOff
-	set 7, [hl]
-	ld de, .Off
-
-.Display
-	hlcoord 11, 5
-	call PlaceString
-	and a
-	ret
-; e4398
-
-.On
-	db "ON @"
-.Off
-	db "OFF@"
-; e43a0
-
-
-Options_BattleStyle: ; e43a0
-	ld hl, Options
-	ld a, [hJoyPressed]
-	bit 5, a
-	jr nz, .LeftPressed
-	bit 4, a
-	jr z, .NonePressed
-	bit 6, [hl]
-	jr nz, .ToggleShift
-	jr .ToggleSet
-
-.LeftPressed
-	bit 6, [hl]
-	jr z, .ToggleSet
-	jr .ToggleShift
-
-.NonePressed
-	bit 6, [hl]
-	jr nz, .ToggleSet
-
-.ToggleShift
-	res 6, [hl]
-	ld de, .Shift
-	jr .Display
-
-.ToggleSet
-	set 6, [hl]
-	ld de, .Set
-
-.Display
-	hlcoord 11, 7
-	call PlaceString
-	and a
-	ret
-; e43d1
-
-.Shift
-	db "SHIFT@"
-.Set
-	db "SET  @"
-; e43dd
-
-
-Options_Sound: ; e43dd
-	ld hl, Options
-	ld a, [hJoyPressed]
-	bit 5, a
-	jr nz, .LeftPressed
-	bit 4, a
-	jr z, .NonePressed
-	bit 5, [hl]
-	jr nz, .SetMono
-	jr .SetStereo
-
-.LeftPressed
-	bit 5, [hl]
-	jr z, .SetStereo
-	jr .SetMono
-
-.NonePressed
-	bit 5, [hl]
-	jr nz, .ToggleStereo
-	jr .ToggleMono
-
-.SetMono
-	res 5, [hl]
-	call RestartMapMusic
-
-.ToggleMono
-	ld de, .Mono
-	jr .Display
-
-.SetStereo
-	set 5, [hl]
-	call RestartMapMusic
-
-.ToggleStereo
-	ld de, .Stereo
-
-.Display
-	hlcoord 11, 9
-	call PlaceString
-	and a
-	ret
-; e4416
-
-.Mono
-	db "MONO  @"
-.Stereo
-	db "STEREO@"
-; e4424
-
-
-Options_Print: ; e4424
-	call GetPrinterSetting
-	ld a, [hJoyPressed]
-	bit 5, a
-	jr nz, .LeftPressed
-	bit 4, a
-	jr z, .NonePressed
-	ld a, c
-	cp $4
-	jr c, .Increase
-	ld c, $ff
-
-.Increase
-	inc c
-	ld a, e
-	jr .Save
-
-.LeftPressed
-	ld a, c
-	and a
-	jr nz, .Decrease
-	ld c, $5
-
-.Decrease
-	dec c
-	ld a, d
-
-.Save
-	ld b, a
-	ld [GBPrinter], a
-
-.NonePressed
-	ld b, $0
-	ld hl, .Strings
-rept 2
-	add hl, bc
-endr
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	hlcoord 11, 11
-	call PlaceString
-	and a
-	ret
-; e445a
-
-.Strings
-	dw .Lightest
-	dw .Lighter
-	dw .Normal
-	dw .Darker
-	dw .Darkest
-
-.Lightest
-	db "LIGHTEST@"
-.Lighter
-	db "LIGHTER @"
-.Normal
-	db "NORMAL  @"
-.Darker
-	db "DARKER  @"
-.Darkest
-	db "DARKEST @"
-; e4491
-
-
-GetPrinterSetting: ; e4491
-	ld a, [GBPrinter] ;converts from the stored printer setting to 0,1,2,3,4
-	and a
-	jr z, .IsLightest
-	cp $20
-	jr z, .IsLight
-	cp $60
-	jr z, .IsDark
-	cp $7f
-	jr z, .IsDarkest
-	ld c, $2 ;normal if none of the above
-	ld de, $2060 ;the 2 values next to this setting
-	ret
-
-.IsLightest
-	ld c, $0
-	ld de, $7f20 ;the 2 values next to this setting
-	ret
-
-.IsLight
-	ld c, $1
-	ld de, $40 ;the 2 values next to this setting
-	ret
-
-.IsDark
-	ld c, $3
-	ld de, $407f ;the 2 values next to this setting
-	ret
-
-.IsDarkest
-	ld c, $4
-	ld de, $6000 ;the 2 values next to this setting
-	ret
-; e44c1
-
-Options_MenuAccount: ; e44c1
-	ld hl, Options2
-	ld a, [hJoyPressed]
-	bit 5, a
-	jr nz, .LeftPressed
-	bit 4, a
-	jr z, .NonePressed
-	bit 0, [hl]
-	jr nz, .ToggleOff
-	jr .ToggleOn
-
-.LeftPressed
-	bit 0, [hl]
-	jr z, .ToggleOn
-	jr .ToggleOff
-
-.NonePressed
-	bit 0, [hl]
-	jr nz, .ToggleOn
-
-.ToggleOff
-	res 0, [hl]
-	ld de, .Off
-	jr .Display
-
-.ToggleOn
-	set 0, [hl]
-	ld de, .On
-
-.Display
-	hlcoord 11, 13
-	call PlaceString
-	and a
-	ret
-; e44f2
-
-.Off
-	db "OFF@"
-.On
-	db "ON @"
-; e44fa
-
-
-Options_Frame: ; e44fa
-	ld hl, TextBoxFrame
-	ld a, [hJoyPressed]
-	bit 5, a
-	jr nz, .LeftPressed
-	bit 4, a
-	jr nz, .RightPressed
-	and a
-	ret
-
-.RightPressed
-	ld a, [hl]
-	inc a
-	jr .Save
-
-.LeftPressed
-	ld a, [hl]
-	dec a
-
-.Save
-	and $7
-	ld [hl], a
-	; fallthrough
-; e4512
-
-Functione4512: ; e4512
-	ld a, [TextBoxFrame]
-	hlcoord 16, 15 ;where on the screen the number is drawn
-	add "1"
-	ld [hl], a
-	call LoadFontsExtra
-	and a
-	ret
-; e4520
-
-Options_Cancel: ; e4520
-	ld a, [hJoyPressed]
-	and A_BUTTON
-	jr nz, .Exit
-	and a
-	ret
-
-.Exit
-	scf
-	ret
-; e452a
-
-OptionsControl: ; e452a
-	ld hl, wJumptableIndex
-	ld a, [hJoyLast]
-	cp D_DOWN
-	jr z, .DownPressed
-	cp D_UP
-	jr z, .UpPressed
-	and a
-	ret
-
-.DownPressed
-	ld a, [hl] ;load the cursor position to a
-	cp $7 ;maximum number of items in option menu
-	jr nz, .CheckFive
-	ld [hl], $0
-	scf
-	ret
-
-.CheckFive ;I have no idea why this exists...
-	cp $5
-	jr nz, .Increase
-	ld [hl], $5
-
-.Increase
-	inc [hl]
-	scf
-	ret
-
-.UpPressed
-	ld a, [hl]
-	cp $6
-	jr nz, .NotSix
-	ld [hl], $5 ;Another thing where I'm not sure why it exists
-	scf
-	ret
-
-.NotSix
-	and a
-	jr nz, .Decrease
-	ld [hl], $8 ;number of option items +1
-
-.Decrease
-	dec [hl]
-	scf
-	ret
-; e455c
+INCLUDE "engine/options_menu.asm"
 
 Functione455c: ; e455c
 	hlcoord 1, 1
@@ -45377,7 +43344,7 @@ Functione4579: ; e4579
 	ld a, $90
 	ld [hWY], a
 	call WaitBGMap
-	ld b, $19
+	ld b, SCGB_19
 	call GetSGBLayout
 	call SetPalettes
 	ld c, 10
@@ -45418,24 +43385,30 @@ Functione45e8: ; e45e8
 	ld hl, VTiles2
 	lb bc, BANK(GameFreakLogo), $1c
 	call Get1bpp
+
 	ld a, [rSVBK]
 	push af
 	ld a, $6
 	ld [rSVBK], a
+
 	ld hl, IntroLogoGFX
 	ld de, w6_d000
 	ld a, BANK(IntroLogoGFX)
 	call FarDecompress
+
 	ld hl, VTiles0
 	ld de, w6_d000
-	ld bc, $180
+	lb bc, 1, 8 tiles
 	call Request2bpp
+
 	ld hl, VTiles1
-	ld de, w6_d000 + $800
-	ld bc, $180
+	ld de, w6_d000 + $80 tiles
+	lb bc, 1, 8 tiles
 	call Request2bpp
+
 	pop af
 	ld [rSVBK], a
+
 	callba Function8cf53
 	lb de, $54, $58
 	ld a, SPRITE_ANIM_INDEX_03
@@ -48496,7 +46469,7 @@ Functionfb8c8: ; fb8c8
 	ld [TempMonDVs], a
 	ld a, [hl]
 	ld [TempMonDVs + 1], a
-	ld b, $1c
+	ld b, SCGB_1C
 	call GetSGBLayout
 	call SetPalettes
 	ret
@@ -50911,7 +48884,7 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	call ClearTileMap
 	call EnableLCD
 	call WaitBGMap
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	call SetPalettes
 	pop de
@@ -52212,7 +50185,7 @@ Function105153: ; 105153 (41:5153)
 	ld [hl], $41
 	call EnableLCD
 	call WaitBGMap
-	ld b, $1d
+	ld b, SCGB_1D
 	call GetSGBLayout
 	call SetPalettes
 	ret
@@ -52390,7 +50363,7 @@ Function105777: ; 105777 (41:5777)
 	call ClearTileMap
 	call EnableLCD
 	call WaitBGMap
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	call SetPalettes
 	ret
@@ -53285,7 +51258,7 @@ Function1dc381: ; 1dc381
 	hlcoord 0, 0
 	call _PrepMonFrontpic
 	call WaitBGMap
-	ld b, $3
+	ld b, SCGB_03
 	call GetSGBLayout
 	call SetPalettes
 	ret
@@ -53323,27 +51296,27 @@ Function1dc47b: ; 1dc47b
 	call PlaceString
 	hlcoord 16, 7
 	ld de, TempMonAttack
-	call Function1dc507
+	call .PrintTempMonStats
 	hlcoord 16, 9
 	ld de, TempMonDefense
-	call Function1dc507
+	call .PrintTempMonStats
 	hlcoord 16, 11
 	ld de, TempMonSpclAtk
-	call Function1dc507
+	call .PrintTempMonStats
 	hlcoord 16, 13
 	ld de, TempMonSpclDef
-	call Function1dc507
+	call .PrintTempMonStats
 	hlcoord 16, 15
 	ld de, TempMonSpeed
-	call Function1dc507
+	call .PrintTempMonStats
 	call WaitBGMap
-	ld b, $3
+	ld b, SCGB_03
 	call GetSGBLayout
 	call SetPalettes
 	ret
 ; 1dc507
 
-Function1dc507: ; 1dc507
+.PrintTempMonStats: ; 1dc507
 	lb bc, 2, 3
 	call PrintNum
 	ret
@@ -53360,16 +51333,16 @@ Function1dc50e: ; 1dc50e
 
 Function1dc51a: ; 1dc51a
 	and a
-	jr z, .asm_1dc525
+	jr z, .no_move
 
 	ld [wd265], a
 	call GetMoveName
-	jr .asm_1dc528
+	jr .got_string
 
-.asm_1dc525
+.no_move
 	ld de, String1dc584
 
-.asm_1dc528
+.got_string
 	call PlaceString
 	ret
 ; 1dc52c

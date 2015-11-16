@@ -9,11 +9,11 @@ NurseScript_0x18820f:
 	jumpstd pokecenternurse
 
 SuperNerdScript_0x188212:
-	special Function10630f
-	iftrue UnknownScript_0x18821b
+	special Mobile_DummyReturnFalse
+	iftrue .mobile
 	jumptextfaceplayer UnknownText_0x188221
 
-UnknownScript_0x18821b:
+.mobile:
 	jumptextfaceplayer UnknownText_0x18828c
 
 GymGuyScript_0x18821e:
