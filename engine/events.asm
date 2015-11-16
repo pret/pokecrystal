@@ -245,7 +245,7 @@ Function967d1: ; 967d1
 ; 967e1
 
 Function967e1: ; 967e1
-	callba RefreshMapAppearDisappear
+	callba _UpdateSprites
 	callba Functiond4d2
 	callba PlaceMapNameSign
 	ret

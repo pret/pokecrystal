@@ -28,41 +28,33 @@ Script_ForcedMovement:: ; 0x1253d
 ; 0x12564
 
 .MovementData_up: ; 0x12564
-	step_wait5
-	big_step_down
+	step_dig 16
 	turn_in_down
-	step_wait5
-	big_step_down
+	step_dig 16
 	turn_head_down
 	step_end
 ; 0x1256b
 
 .MovementData_down: ; 0x1256b
-	step_wait5
-	big_step_down
+	step_dig 16
 	turn_in_up
-	step_wait5
-	big_step_down
+	step_dig 16
 	turn_head_up
 	step_end
 ; 0x12572
 
 .MovementData_right: ; 0x12572
-	step_wait5
-	big_step_down
+	step_dig 16
 	turn_in_left
-	step_wait5
-	big_step_down
+	step_dig 16
 	turn_head_left
 	step_end
 ; 0x12579
 
 .MovementData_left: ; 0x12579
-	step_wait5
-	big_step_down
+	step_dig 16
 	turn_in_right
-	step_wait5
-	big_step_down
+	step_dig 16
 	turn_head_right
 	step_end
 ; 0x12580

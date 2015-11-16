@@ -269,20 +269,20 @@ MAX_OUTDOOR_SPRITES EQU 23
 
 	const_def
 	const STEP_TYPE_00
-	const STEP_TYPE_01 ; standing
+	const STEP_TYPE_01
 	const STEP_TYPE_02 ; walking
-	const STEP_TYPE_03 ; bumping
+	const STEP_TYPE_03 ; stationary
 	const STEP_TYPE_04
 	const STEP_TYPE_05
 	const STEP_TYPE_06
 	const STEP_TYPE_07
 	const STEP_TYPE_08
 	const STEP_TYPE_09
-	const STEP_TYPE_0A
-	const STEP_TYPE_0B
-	const STEP_TYPE_0C
-	const STEP_TYPE_0D
-	const STEP_TYPE_0E
+	const STEP_TYPE_0A ; half step
+	const STEP_TYPE_0B ; bump
+	const STEP_TYPE_TELEPORT_FROM
+	const STEP_TYPE_TELEPORT_TO
+	const STEP_TYPE_SKYFALL
 	const STEP_TYPE_0F
 	const STEP_TYPE_10
 	const STEP_TYPE_11
@@ -313,3 +313,37 @@ MAX_OUTDOOR_SPRITES EQU 23
 	const PERSON_ACTION_0E
 	const PERSON_ACTION_0F
 	const PERSON_ACTION_10
+
+	const_def
+	const FACING_00
+	const FACING_01
+	const FACING_02
+	const FACING_03
+	const FACING_04
+	const FACING_05
+	const FACING_06
+	const FACING_07
+	const FACING_08
+	const FACING_09
+	const FACING_0A
+	const FACING_0B
+	const FACING_0C
+	const FACING_0D
+	const FACING_0E
+	const FACING_0F
+	const FACING_10
+	const FACING_11
+	const FACING_12
+	const FACING_13
+	const FACING_14
+	const FACING_15
+	const FACING_16
+	const FACING_17
+	const FACING_18
+	const FACING_19
+	const FACING_1A
+	const FACING_1B
+	const FACING_1C
+	const FACING_1D
+	const FACING_1E
+	const FACING_1F

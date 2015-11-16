@@ -185,7 +185,7 @@ Facing21: ; shadow
 	db  0,  8, 4 | X_FLIP, $fc
 ; 41a3
 
-Facing23: ; big doll
+Facing23: ; big snorlax or lapras doll
 	db 16 ; #
 	db  0,  0, 0, $00
 	db  0,  8, 0, $01
@@ -221,7 +221,7 @@ Facing27: ; 41f5
 	db  8,  0, X_FLIP, $07
 ; 4206
 
-Facing22: ; 4206
+Facing22: ; big doll other than snorlax or lapras
 	db 14 ; #
 	db  0,  0, 0, $00
 	db  0,  8, 0, $01

@@ -1522,7 +1522,7 @@ Function6473: ; 6473
 	xor a
 	ld [hBGMapMode], a
 	ld [hWY], a
-	callba Function64db ; no need to callba
+	callba Function64db ; no need to farcall
 	ld a, VBGMap0 / $100
 	call Function64b9
 	xor a
@@ -5571,26 +5571,25 @@ UsedDigOrEscapeRopeScript: ; 0xcc3c
 	closetext
 	loadmovesprites
 	playsound SFX_WARP_TO
-	applymovement PLAYER, MovementData_0xcc59
+	applymovement PLAYER, .DigOut
 	farscall Script_AbortBugContest
 	special WarpToSpawnPoint
 	writecode VAR_MOVEMENT, $0
 	newloadmap MAPSETUP_DOOR
 	playsound SFX_WARP_FROM
-	applymovement PLAYER, MovementData_0xcc5d
+	applymovement PLAYER, .DigReturn
 	end
 ; 0xcc59
 
-MovementData_0xcc59: ; 0xcc59
-	step_wait5
-	turn_away_down
+.DigOut: ; 0xcc59
+	step_dig 32
 	hide_person
 	step_end
 ; 0xcc5d
 
-MovementData_0xcc5d: ; 0xcc5d
-	return_dig $58
-	turn_away_down
+.DigReturn: ; 0xcc5d
+	show_person
+	return_dig 32
 	step_end
 ; 0xcc61
 
@@ -5669,22 +5668,22 @@ Script_UsedTeleport: ; 0xccbb
 	reloadmappart
 	loadmovesprites
 	playsound SFX_WARP_TO
-	applymovement PLAYER, MovementData_0xcce1
+	applymovement PLAYER, .TeleportFrom
 	farscall Script_AbortBugContest
 	special WarpToSpawnPoint
 	writecode VAR_MOVEMENT, $0
 	newloadmap MAPSETUP_TELEPORT
 	playsound SFX_WARP_FROM
-	applymovement PLAYER, MovementData_0xcce3
+	applymovement PLAYER, .TeleportTo
 	end
 ; 0xcce1
 
-MovementData_0xcce1: ; cce1
+.TeleportFrom: ; cce1
 	teleport_from
 	step_end
 ; cce3
 
-MovementData_0xcce3: ; cce3
+.TeleportTo: ; cce3
 	teleport_to
 	step_end
 ; cce5
@@ -50690,7 +50689,7 @@ LoadMapTimeOfDay: ; 104750
 	ret
 
 Function104770: ; 104770 (41:4770)
-	ld a, $98
+	ld a, VBGMap0 / $100
 	ld [wBGMapAnchor + 1], a
 	xor a
 	ld [wBGMapAnchor], a

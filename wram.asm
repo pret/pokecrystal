@@ -325,6 +325,7 @@ wMovementPerson:: ds 1
 wMovementDataPointer:: ds 3 ; dba
 wc2e6:: ds 4
 wc2ea:: ds 1
+wc2eb::
 wMovementPointer:: ds 2 ; c2eb
 	ds 3
 
@@ -2219,7 +2220,7 @@ object_struct: MACRO
 \1StepType:: ds 1
 \1StepDuration:: ds 1
 \1Action:: ds 1
-\1Object12:: ds 1
+\1ObjectStepFrame:: ds 1
 \1Facing:: ds 1
 \1NextTile:: ds 1     ; collision
 \1StandingTile:: ds 1 ; collision

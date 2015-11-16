@@ -1284,7 +1284,7 @@ Script_disappear: ; 0x972ee
 	ld a, [hMapObjectIndexBuffer]
 	ld b, 1 ; set
 	call ApplyEventActionAppearDisappear
-	callba RefreshMapAppearDisappear
+	callba _UpdateSprites
 	ret
 ; 0x9730b
 

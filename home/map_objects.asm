@@ -649,7 +649,7 @@ UpdateSprites:: ; 1ad2
 	bit 0, a
 	ret z
 	callba Function55e0
-	callba RefreshMapAppearDisappear
+	callba _UpdateSprites
 	ret
 ; 1ae5
 
