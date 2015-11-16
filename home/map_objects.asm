@@ -542,7 +542,7 @@ endr
 ; 1a61
 
 
-Function1a61:: ; 1a61
+CopySpriteMovementData:: ; 1a61
 	ld l, a
 	ld a, [hROMBank]
 	push af
@@ -551,7 +551,7 @@ Function1a61:: ; 1a61
 	ld a, l
 	push bc
 
-	call Function1a71
+	call .CopyData
 
 	pop bc
 	pop af
@@ -560,10 +560,11 @@ Function1a61:: ; 1a61
 	ret
 ; 1a71
 
-Function1a71:: ; 1a71
+.CopyData ; 1a71
 	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, de
 	ld [hl], a
+
 	push de
 	ld e, a
 	ld d, 0
@@ -574,29 +575,34 @@ endr
 	ld b, h
 	ld c, l
 	pop de
+
 	ld a, [bc]
 	inc bc
 	rlca
 	rlca
-	and $c
+	and %00001100
 	ld hl, OBJECT_FACING
 	add hl, de
 	ld [hl], a
+
 	ld a, [bc]
 	inc bc
 	ld hl, OBJECT_ACTION
 	add hl, de
 	ld [hl], a
+
 	ld a, [bc]
 	inc bc
 	ld hl, OBJECT_FLAGS1
 	add hl, de
 	ld [hl], a
+
 	ld a, [bc]
 	inc bc
 	ld hl, OBJECT_FLAGS2
 	add hl, de
 	ld [hl], a
+
 	ld a, [bc]
 	inc bc
 	ld hl, OBJECT_PALETTE
@@ -648,6 +654,7 @@ UpdateSprites:: ; 1ad2
 	ld a, [VramState]
 	bit 0, a
 	ret z
+
 	callba Function55e0
 	callba _UpdateSprites
 	ret

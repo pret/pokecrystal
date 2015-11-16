@@ -3248,7 +3248,7 @@ PlayerObjectTemplate: ; 8071
 ; A dummy map object used to initialize the player object.
 ; Shorter than the actual amount copied by two bytes.
 ; Said bytes seem to be unused.
-	person_event SPRITE_CHRIS, -4, -4, SPRITEMOVEDATA_PLAYER, 15, 15, -1, -1, 0, 0, 0, 0, -1
+	person_event SPRITE_CHRIS, -4, -4, SPRITEMOVEDATA_PLAYER, 15, 15, -1, -1, 0, PERSONTYPE_SCRIPT, 0, 0, -1
 ; 807e
 
 CopyDECoordsToMapObject:: ; 807e
@@ -3630,7 +3630,7 @@ CopyTempObjectToObjectStruct: ; 8286
 	ld [hl], a
 
 	ld a, [wTempObjectCopyMovement]
-	call Function1a61
+	call CopySpriteMovementData
 
 	ld a, [wTempObjectCopyPalette]
 	ld hl, OBJECT_PALETTE
