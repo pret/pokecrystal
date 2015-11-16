@@ -8,44 +8,44 @@ sprite_movement_data: macro
 	dn \6, 0
 	endm
 	; function,                                              facing, action,              flags1, flags2, palette flags
-	sprite_movement_data SPRITEMOVEFN_00,                    DOWN,   PERSON_ACTION_01,    $02,    $00,    %0000 ; 00
-	sprite_movement_data SPRITEMOVEFN_STANDING,              DOWN,   PERSON_ACTION_01,    $0c,    $00,    %0000 ; 01
-	sprite_movement_data SPRITEMOVEFN_RANDOM_WALK_XY,        DOWN,   PERSON_ACTION_01,    $00,    $00,    %0000 ; 02
-	sprite_movement_data SPRITEMOVEFN_SLOW_RANDOM_SPIN,      DOWN,   PERSON_ACTION_01,    $00,    $00,    %0000 ; 03
-	sprite_movement_data SPRITEMOVEFN_RANDOM_WALK_Y,         DOWN,   PERSON_ACTION_01,    $00,    $00,    %0000 ; 04
-	sprite_movement_data SPRITEMOVEFN_RANDOM_WALK_X,         DOWN,   PERSON_ACTION_01,    $00,    $00,    %0000 ; 05
-	sprite_movement_data SPRITEMOVEFN_STANDING,              DOWN,   PERSON_ACTION_01,    $00,    $00,    %0000 ; 06
-	sprite_movement_data SPRITEMOVEFN_STANDING,              UP,     PERSON_ACTION_01,    $00,    $00,    %0000 ; 07
-	sprite_movement_data SPRITEMOVEFN_STANDING,              LEFT,   PERSON_ACTION_01,    $00,    $00,    %0000 ; 08
-	sprite_movement_data SPRITEMOVEFN_STANDING,              RIGHT,  PERSON_ACTION_01,    $00,    $00,    %0000 ; 09
-	sprite_movement_data SPRITEMOVEFN_FAST_RANDOM_SPIN,      DOWN,   PERSON_ACTION_01,    $00,    $00,    %0000 ; 0a
-	sprite_movement_data SPRITEMOVEFN_OBEY_DPAD,             DOWN,   PERSON_ACTION_01,    $02,    $00,    %0000 ; 0b
-	sprite_movement_data SPRITEMOVEFN_08,                    DOWN,   PERSON_ACTION_01,    $00,    $00,    %0000 ; 0c
-	sprite_movement_data SPRITEMOVEFN_09,                    DOWN,   PERSON_ACTION_01,    $00,    $00,    %0000 ; 0d
-	sprite_movement_data SPRITEMOVEFN_0A,                    DOWN,   PERSON_ACTION_01,    $00,    $00,    %0000 ; 0e
-	sprite_movement_data SPRITEMOVEFN_0B,                    DOWN,   PERSON_ACTION_01,    $00,    $00,    %0000 ; 0f
-	sprite_movement_data SPRITEMOVEFN_0C,                    DOWN,   PERSON_ACTION_01,    $00,    $00,    %0000 ; 10
-	sprite_movement_data SPRITEMOVEFN_0D,                    DOWN,   PERSON_ACTION_01,    $00,    $00,    %0000 ; 11
-	sprite_movement_data SPRITEMOVEFN_0E,                    DOWN,   PERSON_ACTION_01,    $00,    $00,    %0000 ; 12
-	sprite_movement_data SPRITEMOVEFN_FOLLOW,                DOWN,   PERSON_ACTION_01,    $02,    $00,    %0000 ; 13
-	sprite_movement_data SPRITEMOVEFN_SCRIPTED,              DOWN,   PERSON_ACTION_01,    $02,    $00,    %0000 ; 14
+	sprite_movement_data SPRITEMOVEFN_00,                    DOWN,   PERSON_ACTION_STAND,    $02,    $00,    %0000 ; 00
+	sprite_movement_data SPRITEMOVEFN_STANDING,              DOWN,   PERSON_ACTION_STAND,    $0c,    $00,    %0000 ; 01
+	sprite_movement_data SPRITEMOVEFN_RANDOM_WALK_XY,        DOWN,   PERSON_ACTION_STAND,    $00,    $00,    %0000 ; 02
+	sprite_movement_data SPRITEMOVEFN_SLOW_RANDOM_SPIN,      DOWN,   PERSON_ACTION_STAND,    $00,    $00,    %0000 ; 03
+	sprite_movement_data SPRITEMOVEFN_RANDOM_WALK_Y,         DOWN,   PERSON_ACTION_STAND,    $00,    $00,    %0000 ; 04
+	sprite_movement_data SPRITEMOVEFN_RANDOM_WALK_X,         DOWN,   PERSON_ACTION_STAND,    $00,    $00,    %0000 ; 05
+	sprite_movement_data SPRITEMOVEFN_STANDING,              DOWN,   PERSON_ACTION_STAND,    $00,    $00,    %0000 ; 06
+	sprite_movement_data SPRITEMOVEFN_STANDING,              UP,     PERSON_ACTION_STAND,    $00,    $00,    %0000 ; 07
+	sprite_movement_data SPRITEMOVEFN_STANDING,              LEFT,   PERSON_ACTION_STAND,    $00,    $00,    %0000 ; 08
+	sprite_movement_data SPRITEMOVEFN_STANDING,              RIGHT,  PERSON_ACTION_STAND,    $00,    $00,    %0000 ; 09
+	sprite_movement_data SPRITEMOVEFN_FAST_RANDOM_SPIN,      DOWN,   PERSON_ACTION_STAND,    $00,    $00,    %0000 ; 0a
+	sprite_movement_data SPRITEMOVEFN_OBEY_DPAD,             DOWN,   PERSON_ACTION_STAND,    $02,    $00,    %0000 ; 0b
+	sprite_movement_data SPRITEMOVEFN_08,                    DOWN,   PERSON_ACTION_STAND,    $00,    $00,    %0000 ; 0c
+	sprite_movement_data SPRITEMOVEFN_09,                    DOWN,   PERSON_ACTION_STAND,    $00,    $00,    %0000 ; 0d
+	sprite_movement_data SPRITEMOVEFN_0A,                    DOWN,   PERSON_ACTION_STAND,    $00,    $00,    %0000 ; 0e
+	sprite_movement_data SPRITEMOVEFN_0B,                    DOWN,   PERSON_ACTION_STAND,    $00,    $00,    %0000 ; 0f
+	sprite_movement_data SPRITEMOVEFN_0C,                    DOWN,   PERSON_ACTION_STAND,    $00,    $00,    %0000 ; 10
+	sprite_movement_data SPRITEMOVEFN_0D,                    DOWN,   PERSON_ACTION_STAND,    $00,    $00,    %0000 ; 11
+	sprite_movement_data SPRITEMOVEFN_0E,                    DOWN,   PERSON_ACTION_STAND,    $00,    $00,    %0000 ; 12
+	sprite_movement_data SPRITEMOVEFN_FOLLOW,                DOWN,   PERSON_ACTION_STAND,    $02,    $00,    %0000 ; 13
+	sprite_movement_data SPRITEMOVEFN_SCRIPTED,              DOWN,   PERSON_ACTION_STAND,    $02,    $00,    %0000 ; 14
 	sprite_movement_data SPRITEMOVEFN_BIG_SNORLAX,           DOWN,   PERSON_ACTION_09,    $2e,    $01,    %1100 ; 15
 	sprite_movement_data SPRITEMOVEFN_BOUNCE,                DOWN,   PERSON_ACTION_0A,    $2e,    $00,    %0000 ; 16
-	sprite_movement_data SPRITEMOVEFN_STANDING,              DOWN,   PERSON_ACTION_01,    $0c,    $00,    %0000 ; 17
-	sprite_movement_data SPRITEMOVEFN_STANDING,              DOWN,   PERSON_ACTION_01,    $2e,    $10,    %0000 ; 18
-	sprite_movement_data SPRITEMOVEFN_STRENGTH,              DOWN,   PERSON_ACTION_01,    $2e,    $00,    %0100 ; 19
-	sprite_movement_data SPRITEMOVEFN_FOLLOWNOTEXACT,        DOWN,   PERSON_ACTION_01,    $02,    $00,    %0000 ; 1a
+	sprite_movement_data SPRITEMOVEFN_STANDING,              DOWN,   PERSON_ACTION_STAND,    $0c,    $00,    %0000 ; 17
+	sprite_movement_data SPRITEMOVEFN_STANDING,              DOWN,   PERSON_ACTION_STAND,    $2e,    $10,    %0000 ; 18
+	sprite_movement_data SPRITEMOVEFN_STRENGTH,              DOWN,   PERSON_ACTION_STAND,    $2e,    $00,    %0100 ; 19
+	sprite_movement_data SPRITEMOVEFN_FOLLOWNOTEXACT,        DOWN,   PERSON_ACTION_STAND,    $02,    $00,    %0000 ; 1a
 	sprite_movement_data SPRITEMOVEFN_SHADOW,                DOWN,   PERSON_ACTION_00,    $8e,    $01,    %0000 ; 1b
-	sprite_movement_data SPRITEMOVEFN_EMOTE,                 DOWN,   PERSON_ACTION_08,    $8e,    $02,    %0000 ; 1c
+	sprite_movement_data SPRITEMOVEFN_EMOTE,                 DOWN,   PERSON_ACTION_EMOTE,    $8e,    $02,    %0000 ; 1c
 	sprite_movement_data SPRITEMOVEFN_SCREENSHAKE,           DOWN,   PERSON_ACTION_00,    $82,    $00,    %0000 ; 1d
-	sprite_movement_data SPRITEMOVEFN_SPIN_COUNTERCLOCKWISE, LEFT,   PERSON_ACTION_01,    $00,    $00,    %0000 ; 1e
-	sprite_movement_data SPRITEMOVEFN_SPIN_CLOCKWISE,        RIGHT,  PERSON_ACTION_01,    $00,    $00,    %0000 ; 1f
+	sprite_movement_data SPRITEMOVEFN_SPIN_COUNTERCLOCKWISE, LEFT,   PERSON_ACTION_STAND,    $00,    $00,    %0000 ; 1e
+	sprite_movement_data SPRITEMOVEFN_SPIN_CLOCKWISE,        RIGHT,  PERSON_ACTION_STAND,    $00,    $00,    %0000 ; 1f
 	sprite_movement_data SPRITEMOVEFN_STRENGTH,              DOWN,   PERSON_ACTION_0C,    $2e,    $01,    %1100 ; 20
 	sprite_movement_data SPRITEMOVEFN_STRENGTH,              DOWN,   PERSON_ACTION_0D,    $2e,    $01,    %1100 ; 21
 	sprite_movement_data SPRITEMOVEFN_BOULDERDUST,           DOWN,   PERSON_ACTION_0E,    $8e,    $01,    %0000 ; 22
 	sprite_movement_data SPRITEMOVEFN_GRASS,                 DOWN,   PERSON_ACTION_0F,    $8e,    $02,    %0000 ; 23
-	sprite_movement_data SPRITEMOVEFN_RANDOM_WALK_XY,        DOWN,   PERSON_ACTION_01,    $00,    $00,    %0010 ; 24
-	sprite_movement_data SPRITEMOVEFN_00,                    DOWN,   PERSON_ACTION_01,    $00,    $00,    %0000 ; 25
+	sprite_movement_data SPRITEMOVEFN_RANDOM_WALK_XY,        DOWN,   PERSON_ACTION_STAND,    $00,    $00,    %0010 ; 24
+	sprite_movement_data SPRITEMOVEFN_00,                    DOWN,   PERSON_ACTION_STAND,    $00,    $00,    %0000 ; 25
 ; 4357
 
 
@@ -167,7 +167,7 @@ Function43f3: ; 43f3
 	bit 5, [hl]
 	jr nz, .bit5
 
-	cp STEP_TYPE_01
+	cp STEP_TYPE_STANDING
 	jr z, .one
 	jr .ok
 
@@ -186,7 +186,7 @@ Function43f3: ; 43f3
 	ld a, [hl]
 	and a
 	ret z
-	cp STEP_TYPE_01
+	cp STEP_TYPE_STANDING
 	ret z
 
 .ok
@@ -246,22 +246,22 @@ endr
 
 Pointers445f: ; 445f
 	dw SetFacingStanding, SetFacingStanding ; 00
-	dw Function44b5, SetFacingCurrent ; 01
-	dw Function44c1, SetFacingCurrent ; 02
-	dw Function4508, SetFacingCurrent ; 03
-	dw Function4529, SetFacingCurrent ; 04
-	dw Function4539, SetFacingStanding ; 05
-	dw Function456e, Function456e ; 06
-	dw Function457b, SetFacingStanding ; 07
-	dw Function4582, Function4582 ; 08
-	dw Function4589, Function4589 ; 09
-	dw Function4590, Function45a4 ; 0a
-	dw Function45ab, SetFacingCurrent ; 0c
-	dw Function45be, Function45be ; 0b
-	dw Function45c5, Function45c5 ; 0d
-	dw Function45da, SetFacingStanding ; 0e
-	dw Function45ed, SetFacingStanding ; 0f
-	dw Function44e4, SetFacingCurrent ; 10
+	dw Function44b5,      SetFacingCurrent ; 01 standing?
+	dw Function44c1,      SetFacingCurrent ; 02 walking?
+	dw Function4508,      SetFacingCurrent ; 03 bumping?
+	dw Function4529,      SetFacingCurrent ; 04
+	dw Function4539,      SetFacingStanding ; 05
+	dw Function456e,      Function456e ; 06
+	dw Function457b,      SetFacingStanding ; 07
+	dw Function4582,      Function4582 ; 08
+	dw Function4589,      Function4589 ; 09
+	dw Function4590,      Function45a4 ; 0a
+	dw Function45ab,      SetFacingCurrent ; 0c
+	dw Function45be,      Function45be ; 0b
+	dw Function45c5,      Function45c5 ; 0d
+	dw Function45da,      SetFacingStanding ; 0e
+	dw Function45ed,      SetFacingStanding ; 0f
+	dw Function44e4,      SetFacingCurrent ; 10
 ; 44a3
 
 SetFacingStanding: ; 44a3
@@ -444,10 +444,10 @@ Function457b: ; 457b
 	ret
 ; 4582
 
-Function4582: ; 4582
+Function4582: ; 4582 emote
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
-	ld [hl], FACING_14
+	ld [hl], FACING_EMOTE
 	ret
 ; 4589
 
@@ -930,7 +930,7 @@ Function47bc: ; 47bc
 	call Function467b
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_01
+	ld [hl], STEP_TYPE_STANDING
 	ret
 ; 47dd
 
@@ -1033,7 +1033,7 @@ Function47dd: ; 47dd
 	call Function467b
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_01
+	ld [hl], PERSON_ACTION_STAND
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_05
@@ -1206,7 +1206,7 @@ Function47dd: ; 47dd
 	ld [hl], STANDING
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_01
+	ld [hl], PERSON_ACTION_STAND
 	ret
 ; 4958
 
@@ -1258,7 +1258,7 @@ Function47dd: ; 47dd
 .MovementSpinRepeat: ; 499c
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_01
+	ld [hl], PERSON_ACTION_STAND
 	ld hl, OBJECT_RANGE
 	add hl, bc
 	ld a, [hl]
@@ -1354,7 +1354,7 @@ Function47dd: ; 47dd
 	call ._MovementShadow_Grass_Emote_BoulderDust
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_08
+	ld [hl], PERSON_ACTION_EMOTE
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], 0
@@ -1500,9 +1500,9 @@ endr
 	call Function463f
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_02
+	ld [hl], PERSON_ACTION_STEP
 
-	ld hl, wd4cf
+	ld hl, wCenteredObject
 	ld a, [hMapObjectIndexBuffer]
 	cp [hl]
 	jr z, .load_6
@@ -1515,7 +1515,7 @@ endr
 .load_6
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_06
+	ld [hl], STEP_TYPE_PLAYER_WALK
 	ret
 
 .NewDuration: ; 4b17
@@ -1541,7 +1541,7 @@ SetRandomStepDuration: ; 4b2d
 	ld [hl], STANDING
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_01
+	ld [hl], PERSON_ACTION_STAND
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_03
@@ -1552,19 +1552,19 @@ Pointers4b45: ; 4b45
 ; These pointers use OBJECT_STEP_TYPE.  See constants/sprite_constants.asm
 	dw Function47bc ; 00
 	dw Function47dd ; 01
-	dw Function4e2b ; 02
+	dw Function4e2b ; 02 npc walk
 	dw Function4ddd ; 03
 	dw Function4e21 ; 04
 	dw Function4e0c ; 05
-	dw Function4e56 ; 06
+	dw Function4e56 ; 06 player walk
 	dw Function4e47 ; 07
-	dw Function4b86 ; 08
-	dw Function4bbf ; 09
-	dw Function4e83 ; 0a
+	dw Function4b86 ; 08 npc jump step
+	dw Function4bbf ; 09 player jump step
+	dw Function4e83 ; 0a half step
 	dw Function4dff ; 0b
-	dw Function4c18 ; 0c
-	dw Function4c89 ; 0d
-	dw Function4d14 ; 0e
+	dw Function4c18 ; 0c teleport from
+	dw Function4c89 ; 0d teleport to
+	dw Function4d14 ; 0e skyfall
 	dw Function4ecd ; 0f
 	dw Function4d7e ; 10
 	dw Function4daf ; 11
@@ -1585,7 +1585,7 @@ Function4b79: ; 4b79
 	ret nz
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_01
+	ld [hl], STEP_TYPE_STANDING
 	ret
 ; 4b86
 
@@ -1622,7 +1622,7 @@ Function4ba9: ; 4ba9
 	call Function4600
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_01
+	ld [hl], STEP_TYPE_STANDING
 	ret
 ; 4bbf
 
@@ -1674,7 +1674,7 @@ Function4bfd: ; 4bfd
 	call Function4600
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_01
+	ld [hl], STEP_TYPE_STANDING
 	ret
 ; 4c18
 
@@ -1698,7 +1698,7 @@ Function4c23: ; 4c23
 Function4c32: ; 4c32
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_04
+	ld [hl], PERSON_ACTION_SPIN
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
@@ -1724,7 +1724,7 @@ Function4c42: ; 4c42
 Function4c5d: ; 4c5d
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_04
+	ld [hl], PERSON_ACTION_SPIN
 	ld hl, OBJECT_31
 	add hl, bc
 	inc [hl]
@@ -1745,7 +1745,7 @@ Function4c5d: ; 4c5d
 	ld [hl], 0
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_01
+	ld [hl], STEP_TYPE_STANDING
 	ret
 ; 4c89
 
@@ -1795,7 +1795,7 @@ Function4cb3: ; 4cb3
 Function4cc9: ; 4cc9
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_04
+	ld [hl], PERSON_ACTION_SPIN
 	ld hl, OBJECT_31
 	add hl, bc
 	inc [hl]
@@ -1823,7 +1823,7 @@ Function4ceb: ; 4ceb
 Function4cf5: ; 4cf5
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_04
+	ld [hl], PERSON_ACTION_SPIN
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
@@ -1837,7 +1837,7 @@ Function4d01: ; 4d01
 	ld [hl], 0
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_01
+	ld [hl], STEP_TYPE_STANDING
 	ret
 ; 4d14
 
@@ -1865,7 +1865,7 @@ Function4d2e: ; 4d2e
 	ret nz
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_02
+	ld [hl], PERSON_ACTION_STEP
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
 	ld [hl], 0
@@ -1902,7 +1902,7 @@ Function4d6b: ; 4d6b
 	ld [hl], 0
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_01
+	ld [hl], STEP_TYPE_STANDING
 	ret
 ; 4d7e
 
@@ -1936,7 +1936,7 @@ Function4d94: ; 4d94
 	ld [hl], 0
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_01
+	ld [hl], STEP_TYPE_STANDING
 	ret
 ; 4daf
 
@@ -1950,7 +1950,7 @@ Function4db5: ; 4db5
 	add hl, bc
 	ld a, [hl]
 	and %00000001
-	ld a, PERSON_ACTION_01
+	ld a, PERSON_ACTION_STAND
 	jr z, .yes
 	ld a, PERSON_ACTION_00
 
@@ -1966,9 +1966,9 @@ Function4dc8: ; 4dc8
 	add hl, bc
 	ld a, [hl]
 	and %00000001
-	ld a, PERSON_ACTION_04
+	ld a, PERSON_ACTION_SPIN
 	jr z, .yes
-	ld a, PERSON_ACTION_05
+	ld a, PERSON_ACTION_SPIN_FLICKER
 
 .yes
 	ld hl, OBJECT_ACTION
@@ -1987,7 +1987,7 @@ Function4ddd: ; 4ddd
 	ret nz
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_01
+	ld [hl], STEP_TYPE_STANDING
 	ret
 ; 4df0
 
@@ -2009,7 +2009,7 @@ Function4dff: ; 4dff
 	ret nz
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_01
+	ld [hl], STEP_TYPE_STANDING
 	ret
 ; 4e0c
 
@@ -2048,7 +2048,7 @@ Function4e2b: ; 4e2b
 	ld [hl], STANDING
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_01
+	ld [hl], STEP_TYPE_STANDING
 	ret
 ; 4e47
 
@@ -2089,7 +2089,7 @@ Function4e65: ; 4e65
 	ld [hl], STANDING
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_01
+	ld [hl], STEP_TYPE_STANDING
 	ret
 ; 4e83
 
@@ -2138,7 +2138,7 @@ Function4ec0: ; 4ec0
 	ret nz
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_01
+	ld [hl], STEP_TYPE_STANDING
 	ret
 ; 4ecd
 
@@ -2170,7 +2170,7 @@ Function4ecd: ; 4ecd
 	ld [hl], STANDING
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_01
+	ld [hl], STEP_TYPE_STANDING
 	ret
 ; 4f04
 
@@ -2302,7 +2302,7 @@ Function4f99: ; 4f99
 	ld [hl], 0
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_01
+	ld [hl], STEP_TYPE_STANDING
 	ret
 ; 4fb2
 
@@ -2731,17 +2731,19 @@ Function55e0:: ; 55e0
 	ret
 ; 5602
 
-Function5602: ; 5602
-	call Function5645
-	ld a, 0
-	call Function5629
+Function5602: ; 5602, called at battle start
+	call Function5645 ; clear sprites
+	ld a, PLAYER
+	call Function5629 ; respawn player
+
 	ld a, [wd459]
 	bit 7, a
 	jr z, .ok
+
 	ld a, [hLastTalked]
 	and a
 	jr z, .ok
-	call Function5629
+	call Function5629 ; respawn opponent
 
 .ok
 	call _UpdateSprites
@@ -2749,9 +2751,9 @@ Function5602: ; 5602
 ; 561d
 
 Function561d: ; 561d
-	call Function5645
-	ld a, 0
-	call Function5629
+	call Function5645 ; clear sprites
+	ld a, PLAYER
+	call Function5629 ; respawn player
 	call _UpdateSprites
 	ret
 ; 5629
@@ -2783,7 +2785,7 @@ Function5645: ; 5645
 	ld bc, ObjectStructs
 .loop
 	ld [hMapObjectIndexBuffer], a
-	call Function5680
+	call SetFacing_Standing
 	ld hl, OBJECT_STRUCT_LENGTH
 	add hl, bc
 	ld b, h
@@ -2799,9 +2801,9 @@ Function565c: ; 565c
 	push bc
 	call Function56cd
 	pop bc
-	jr c, Function5680
+	jr c, SetFacing_Standing
 	call Function56a3
-	jr c, Function5680
+	jr c, SetFacing_Standing
 	call Function5688
 	callba Function4440
 	xor a
@@ -2810,13 +2812,13 @@ Function565c: ; 565c
 
 Function5673: ; 5673
 	call Function56a3
-	jr c, Function5680
-	callba Function4440
+	jr c, SetFacing_Standing
+	callba Function4440 ; no need to farcall
 	xor a
 	ret
 ; 5680
 
-Function5680: ; 5680
+SetFacing_Standing: ; 5680
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], STANDING

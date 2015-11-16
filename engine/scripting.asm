@@ -241,7 +241,7 @@ ENDC
 	dw Script_trainerclassname
 	dw Script_name
 	dw Script_wait
-	dw Script_unknown0xa9
+	dw Script_check_save
 ; 0x96e05
 
 StartScript: ; 0x96e05
@@ -415,10 +415,10 @@ Script_repeattext: ; 0x96ebb
 	call GetScriptByte
 	ld h, a
 	cp -1
-	jr nz, .done ; 0x96ec5 $11
+	jr nz, .done
 	ld a, l
 	cp -1
-	jr nz, .done ; 0x96eca $c
+	jr nz, .done
 	ld hl, wd44e
 	ld a, [hli]
 	ld b, a
@@ -456,7 +456,7 @@ Script_yesorno: ; 0x96eed
 
 	call YesNoBox
 	ld a, 0
-	jr c, .no ; 0x96ef2 $2
+	jr c, .no
 	ld a, 1
 .no
 	ld [ScriptVar], a
@@ -567,12 +567,12 @@ Script_verbosegiveitem: ; 0x96f60
 ; 0x96f76
 
 
-Function96f76: ; 96f76
+ret_96f76: ; 96f76
 	ret
 ; 96f77
 
 GiveItemScript: ; 96f77
-	callasm Function96f76
+	callasm ret_96f76
 	writetext ReceivedItemText
 	iffalse .Full
 	waitbutton
@@ -792,16 +792,16 @@ Script_askforphonenumber: ; 0x970be
 ;     number (SingleByteParam)
 
 	call YesNoBox
-	jr c, .refused ; 0x970c1 $13
+	jr c, .refused
 	call GetScriptByte
 	ld c, a
 	callba AddPhoneNumber
-	jr c, .phonefull ; 0x970cd $3
+	jr c, .phonefull
 	xor a
-	jr .done ; 0x970d0 $9
+	jr .done
 .phonefull
 	ld a, 1
-	jr .done ; 0x970d4 $5
+	jr .done
 .refused
 	call GetScriptByte
 	ld a, 2
@@ -1196,7 +1196,7 @@ ApplyPersonFacing: ; 0x9728b
 	ld a, d
 	push de
 	call CheckObjectVisibility
-	jr c, .not_visible ; 0x97290 $27
+	jr c, .not_visible
 	ld hl, OBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
@@ -1207,13 +1207,13 @@ ApplyPersonFacing: ; 0x9728b
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 2, [hl]
-	jr nz, .not_visible ; 0x972a4 $13
+	jr nz, .not_visible
 	pop de
 	ld a, e
 	call SetSpriteDirection
 	ld hl, VramState
 	bit 6, [hl]
-	jr nz, .text_state ; 0x972b0 $3
+	jr nz, .text_state
 	call .DisableTextTiles
 .text_state
 	call UpdateSprites
@@ -1235,7 +1235,7 @@ ApplyPersonFacing: ; 0x9728b
 	dec bc
 	ld a, b
 	or c
-	jr nz, .loop ; 0x972cb $f8
+	jr nz, .loop
 	ret
 ; 0x972ce
 
@@ -1299,9 +1299,9 @@ ApplyEventActionAppearDisappear: ; 0x9730b
 	ld d, [hl]
 	ld a, -1
 	cp e
-	jr nz, .okay ; 0x9731a $5
+	jr nz, .okay
 	cp d
-	jr nz, .okay ; 0x9731d $2
+	jr nz, .okay
 	xor a
 	ret
 .okay
@@ -1391,7 +1391,7 @@ Script_loademote: ; 0x97384
 
 	call GetScriptByte
 	cp -1
-	jr nz, .not_var_emote ; 0x97389 $3
+	jr nz, .not_var_emote
 	ld a, [ScriptVar]
 .not_var_emote
 	ld c, a
@@ -1563,21 +1563,21 @@ Script_returnafterbattle: ; 0x97459
 	ld a, [wBattleResult]
 	and $3f
 	cp $1
-	jr nz, .notblackedout ; 0x97466 $8
+	jr nz, .notblackedout
 	ld b, BANK(Script_BattleWhiteout)
 	ld hl, Script_BattleWhiteout
 	jp ScriptJump
 
 .notblackedout
 	bit 0, d
-	jr z, .was_wild ; 0x97472 $8
+	jr z, .was_wild
 	callba MomTriesToBuySomething
-	jr .done ; 0x9747a $12
+	jr .done
 
 .was_wild
 	ld a, [wBattleResult]
 	bit 7, a
-	jr z, .done ; 0x97481 $b
+	jr z, .done
 	ld b, BANK(Script_SpecialBillCall)
 	ld de, Script_SpecialBillCall
 	callba LoadScriptBDE
@@ -1643,12 +1643,18 @@ Script_2ptcall: ; 0x974be
 	; fallthrough
 
 ScriptCall: ; 0x974cb
+; Bug: The script stack has a capacity of 5 scripts, yet there is
+; nothing to stop you from pushing a sixth script.  The high part
+; of the script address can then be overwritten by modifications
+; to ScriptDelay, causing the script to return to the rst/interrupt
+; space.
+
 	push de
-	ld hl, wd43c
+	ld hl, wScriptStackSize
 	ld e, [hl]
 	inc [hl]
 	ld d, $0
-	ld hl, wd43d
+	ld hl, wScriptStackBA1
 rept 3
 	add hl, de
 endr
@@ -1751,8 +1757,8 @@ Script_if_equal: ; 0x97540
 	call GetScriptByte
 	ld hl, ScriptVar
 	cp [hl]
-	jr z, Script_2jump ; 0x97547 $b5
-	jr SkipTwoScriptBytes ; 0x97549 $4b
+	jr z, Script_2jump
+	jr SkipTwoScriptBytes
 ; 0x9754b
 
 Script_if_not_equal: ; 0x9754b
@@ -1764,8 +1770,8 @@ Script_if_not_equal: ; 0x9754b
 	call GetScriptByte
 	ld hl, ScriptVar
 	cp [hl]
-	jr nz, Script_2jump ; 0x97552 $aa
-	jr SkipTwoScriptBytes ; 0x97554 $40
+	jr nz, Script_2jump
+	jr SkipTwoScriptBytes
 ; 0x97556
 
 Script_if_greater_than: ; 0x97556
@@ -1778,8 +1784,8 @@ Script_if_greater_than: ; 0x97556
 	ld b, a
 	call GetScriptByte
 	cp b
-	jr c, Script_2jump ; 0x9755e $9e
-	jr SkipTwoScriptBytes ; 0x97560 $34
+	jr c, Script_2jump
+	jr SkipTwoScriptBytes
 ; 0x97562
 
 Script_if_less_than: ; 0x97562
@@ -1792,8 +1798,8 @@ Script_if_less_than: ; 0x97562
 	ld b, a
 	ld a, [ScriptVar]
 	cp b
-	jr c, Script_2jump ; 0x9756a $92
-	jr SkipTwoScriptBytes ; 0x9756c $28
+	jr c, Script_2jump
+	jr SkipTwoScriptBytes
 ; 0x9756e
 
 Script_jumpstd: ; 0x9756e
@@ -1802,7 +1808,7 @@ Script_jumpstd: ; 0x9756e
 ;     predefined_script (MultiByteParam)
 
 	call StdScript
-	jr ScriptJump ; 0x97571 $2a
+	jr ScriptJump
 ; 0x97573
 
 Script_callstd: ; 0x97573
@@ -1870,7 +1876,7 @@ Script_checktriggers: ; 0x975c2
 ; script command 0x13
 
 	call CheckTriggers
-	jr z, .asm_975cb ; 0x975c5 $4
+	jr z, .asm_975cb
 	ld [ScriptVar], a
 	ret
 .asm_975cb
@@ -1892,7 +1898,7 @@ Script_checkmaptriggers: ; 0x975d1
 	call GetMapTrigger
 	ld a, d
 	or e
-	jr z, .asm_975e5 ; 0x975de $5
+	jr z, .asm_975e5
 	ld a, [de]
 	ld [ScriptVar], a
 	ret
@@ -1911,7 +1917,7 @@ Script_dotrigger: ; 0x975eb
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-	jr Unknown_975fd ; 0x975f3 $8
+	jr Unknown_975fd
 ; 0x975f5
 
 Script_domaptrigger: ; 0x975f5
@@ -1931,7 +1937,7 @@ Unknown_975fd: ; 0x975fd
 	call GetMapTrigger
 	ld a, d
 	or e
-	jr z, .asm_97608 ; 0x97602 $4
+	jr z, .asm_97608
 	call GetScriptByte
 	ld [de], a
 .asm_97608
@@ -2012,28 +2018,31 @@ Script_random: ; 0x97640
 	ld [ScriptVar], a
 	and a
 	ret z
+
 	ld c, a
-	call Function97673
+	call .Divide256byC
 	and a
-	jr z, .asm_9765f ; 0x9764d $10
+	jr z, .no_restriction ; 256 % b == 0
 	ld b, a
 	xor a
 	sub b
 	ld b, a
-.asm_97653
+.loop
 	push bc
 	call Random
 	pop bc
-	ld a, [$ffe1]
+	ld a, [hRandomAdd]
 	cp b
-	jr nc, .asm_97653 ; 0x9765b $f6
-	jr .asm_97666 ; 0x9765d $7
-.asm_9765f
+	jr nc, .loop
+	jr .finish
+
+.no_restriction
 	push bc
 	call Random
 	pop bc
-	ld a, [$ffe1]
-.asm_97666
+	ld a, [hRandomAdd]
+
+.finish
 	push af
 	ld a, [ScriptVar]
 	ld c, a
@@ -2043,14 +2052,14 @@ Script_random: ; 0x97640
 	ret
 ; 0x97673
 
-Function97673: ; 0x97673
+.Divide256byC: ; 0x97673
 	xor a
 	ld b, a
 	sub c
-.asm_97676
+.mod_loop
 	inc b
 	sub c
-	jr nc, .asm_97676 ; 0x97678 $fc
+	jr nc, .mod_loop
 	dec b
 	add c
 	ret
@@ -2119,7 +2128,7 @@ Script_pokenamemem: ; 0x976ae
 
 	call GetScriptByte
 	and a
-	jr nz, .gotit ; 0x976b2 $3
+	jr nz, .gotit
 	ld a, [ScriptVar]
 .gotit
 	ld [wd265], a
@@ -2149,13 +2158,13 @@ Script_itemtotext: ; 0x976d5
 
 	call GetScriptByte
 	and a
-	jr nz, .ok ; 0x976d9 $3
+	jr nz, .ok
 	ld a, [ScriptVar]
 .ok
 	ld [wd265], a
 	call GetItemName
 	ld de, StringBuffer1
-	jr ConvertMemToText ; 0x976e7 $d7
+	jr ConvertMemToText
 ; 0x976e9
 
 Script_mapnametotext: ; 0x976e9
@@ -2183,7 +2192,7 @@ Script_displaylocation: ; 0x97701
 ;     memory (SingleByteParam)
 
 	call GetScriptByte
-	jr ConvertLandmarkToText ; 0x97704 $ee
+	jr ConvertLandmarkToText
 ; 0x97706
 
 Script_trainertotext: ; 0x97706
@@ -2198,7 +2207,7 @@ Script_trainertotext: ; 0x97706
 	call GetScriptByte
 	ld b, a
 	callba GetTrainerName
-	jr ConvertMemToText ; 0x97714 $aa
+	jr ConvertMemToText
 ; 0x97716
 
 Script_name: ; 0x97716
@@ -2227,7 +2236,7 @@ Script_trainerclassname: ; 0x9772b
 
 	ld a, TRAINER_NAME
 	ld [wNamedObjectTypeBuffer], a
-	jr ContinueToGetName ; 0x97730 $ea
+	jr ContinueToGetName
 ; 0x97732
 
 Script_readmoney: ; 0x97732
@@ -2344,7 +2353,7 @@ Script_giveitem: ; 0x977ca
 
 	call GetScriptByte
 	cp ITEM_FROM_MEM
-	jr nz, .ok ; 0x977cf $3
+	jr nz, .ok
 	ld a, [ScriptVar]
 .ok
 	ld [CurItem], a
@@ -2352,7 +2361,7 @@ Script_giveitem: ; 0x977ca
 	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
 	call ReceiveItem
-	jr nc, .full ; 0x977e3 $6
+	jr nc, .full
 	ld a, $1
 	ld [ScriptVar], a
 	ret
@@ -2718,7 +2727,7 @@ Script_checkevent: ; 0x979a4
 	call EventFlagAction
 	ld a, c
 	and a
-	jr z, .false ; 0x979b3 $2
+	jr z, .false
 	ld a, 1
 .false
 	ld [ScriptVar], a
@@ -2766,7 +2775,7 @@ Script_checkflag: ; 0x979d7
 	call _EngineFlagAction
 	ld a, c
 	and a
-	jr z, .false ; 0x979e6 $2
+	jr z, .false
 	ld a, 1
 .false
 	ld [ScriptVar], a
@@ -2835,7 +2844,7 @@ Script_warp: ; 0x97a1d
 ; This seems to be some sort of error handling case.
 	call GetScriptByte
 	and a
-	jr z, .not_ok ; 0x97a21 $27
+	jr z, .not_ok
 	ld [MapGroup], a
 	call GetScriptByte
 	ld [MapNumber], a
@@ -3080,14 +3089,14 @@ Script_pause: ; 0x97b47
 
 	call GetScriptByte
 	and a
-	jr z, .loop ; 0x97b4b $3
+	jr z, .loop
 	ld [ScriptDelay], a
 .loop
 	ld c, 2
 	call DelayFrames
 	ld hl, ScriptDelay
 	dec [hl]
-	jr nz, .loop ; 0x97b59 $f5
+	jr nz, .loop
 	ret
 ; 0x97b5c
 
@@ -3098,7 +3107,7 @@ Script_deactivatefacing: ; 0x97b5c
 
 	call GetScriptByte
 	and a
-	jr z, .no_time ; 0x97b60 $3
+	jr z, .no_time
 	ld [ScriptDelay], a
 .no_time
 	ld a, SCRIPT_WAIT
@@ -3149,14 +3158,14 @@ Script_return: ; 0x97b8c
 ExitScriptSubroutine: ; 0x97b9a
 ; Return carry if there's no parent to return to.
 
-	ld hl, wd43c
+	ld hl, wScriptStackSize
 	ld a, [hl]
 	and a
-	jr z, .done ; 0x97b9f $1d
+	jr z, .done
 	dec [hl]
 	ld e, [hl]
 	ld d, $0
-	ld hl, wd43d
+	ld hl, wScriptStackBA1
 rept 3
 	add hl,de
 endr
@@ -3181,7 +3190,7 @@ Script_resetfuncs: ; 0x97bc0
 ; script command 0x93
 
 	xor a
-	ld [wd43c], a
+	ld [wScriptStackSize], a
 	ld [ScriptRunning], a
 	ld a, SCRIPT_OFF
 	ld [ScriptMode], a
@@ -3231,22 +3240,22 @@ Script_wait: ; 0x97c05
 	call DelayFrames
 	pop af
 	dec a
-	jr nz, .loop ; 0x97c11 $f6
+	jr nz, .loop
 	pop bc
 	ret
 ; 0x97c15
 
-Script_unknown0xa9: ; 0x97c15
+Script_check_save: ; 0x97c15
 ; script command 0xa9
 
-	callba Function4cffe
+	callba CheckSave
 	ld a, c
 	ld [ScriptVar], a
 	ret
 ; 0x97c20
 
 
-Function97c20: ; 97c20 unreferenced
+; 97c20 unreferenced
 	ld a, [.byte]
 	ld [ScriptVar], a
 	ret

@@ -496,9 +496,9 @@ Function14da0: ; 14da0
 ValidateSave: ; 14da9
 	ld a, BANK(s1_a008)
 	call GetSRAMBank
-	ld a, $63
+	ld a, 99
 	ld [s1_a008], a
-	ld a, $7f
+	ld a, " "
 	ld [s1_ad0f], a
 	jp CloseSRAM
 ; 14dbb
@@ -564,9 +564,9 @@ Function14e13: ; 14e13
 ValidateBackupSave: ; 14e2d
 	ld a, BANK(s0_b208)
 	call GetSRAMBank
-	ld a, $63
+	ld a, 99
 	ld [s0_b208], a
-	ld a, $7f
+	ld a, " "
 	ld [s0_bf0f], a
 	call CloseSRAM
 	ret
@@ -661,7 +661,7 @@ TryLoadSaveFile: ; 14ea5 (5:4ea5)
 .corrupt
 	ld a, [Options]
 	push af
-	set 4, a
+	set NO_TEXT_SCROLL, a
 	ld [Options], a
 	ld hl, UnknownText_0x1529c
 	call PrintText
@@ -735,10 +735,10 @@ Function14f84: ; 14f84
 	ld a, BANK(s1_a008)
 	call GetSRAMBank
 	ld a, [s1_a008]
-	cp $63
+	cp 99
 	jr nz, .nope
 	ld a, [s1_ad0f]
-	cp $7f
+	cp " "
 	jr nz, .nope
 	ld hl, sOptions
 	ld de, Options
@@ -757,10 +757,10 @@ Function14faf: ; 14faf
 	ld a, BANK(s0_b208)
 	call GetSRAMBank
 	ld a, [s0_b208]
-	cp $63
+	cp 99
 	jr nz, .nope
 	ld a, [s0_bf0f]
-	cp $7f
+	cp " "
 	jr nz, .nope
 	ld hl, sBackupOptions
 	ld de, Options

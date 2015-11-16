@@ -62,7 +62,7 @@ SECTION "SRAM Bank 1", SRAM, BANK [1]
 
 sOptions:: ds OptionsEnd - Options
 
-s1_a008:: ds 1
+s1_a008:: ds 1 ; loaded with 99, used to check save corruption
 
 sGameData::
 sPlayerData::  ds wPlayerDataEnd - wPlayerData
@@ -75,7 +75,7 @@ sGameDataEnd::
 ; ad0d
 
 sChecksum::   ds 2
-s1_ad0f::     ds 1
+s1_ad0f::     ds 1 ; loaded with 0x7f, used to check save corruption
 
 ; ad10
 	box sBox

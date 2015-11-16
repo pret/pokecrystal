@@ -2154,7 +2154,7 @@ Function6ec1: ; 6ec1
 
 	push hl
 	push bc
-	call Function7009
+	call WillPersonBumpIntoSomeoneElse
 	pop bc
 	pop hl
 	ret c
@@ -2163,12 +2163,12 @@ Function6ec1: ; 6ec1
 	bit 5, [hl]
 	jr nz, .bit_5
 	push hl
-	call Function70a4
+	call HasPersonReachedMovementLimit
 	pop hl
 	ret c
 
 	push hl
-	call Function70ed
+	call IsPersonMovingOffEdgeOfScreen
 	pop hl
 	ret c
 
@@ -2388,7 +2388,7 @@ CheckFacingObject:: ; 6fd9
 ; 7009
 
 
-Function7009: ; 7009
+WillPersonBumpIntoSomeoneElse: ; 7009
 	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld d, [hl]
@@ -2401,11 +2401,11 @@ Function7009: ; 7009
 Function7015: ; unreferenced
 	ld a, [hMapObjectIndexBuffer]
 	call GetObjectStruct
-	call Function7021
+	call .CheckWillBeFacingNPC
 	call IsNPCAtCoord
 	ret
 
-Function7021: ; 7021
+.CheckWillBeFacingNPC: ; 7021
 	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld d, [hl]
@@ -2510,14 +2510,14 @@ IsNPCAtCoord: ; 7041
 	ret
 ; 70a4
 
-Function70a4: ; 70a4
+HasPersonReachedMovementLimit: ; 70a4
 	ld hl, OBJECT_RADIUS
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_70e9
+	jr z, .nope
 	and $f
-	jr z, .asm_70c7
+	jr z, .check_y
 	ld e, a
 	ld d, a
 	ld hl, OBJECT_INIT_X
@@ -2532,17 +2532,17 @@ Function70a4: ; 70a4
 	add hl, bc
 	ld a, [hl]
 	cp d
-	jr z, .asm_70eb
+	jr z, .yes
 	cp e
-	jr z, .asm_70eb
+	jr z, .yes
 
-.asm_70c7
+.check_y
 	ld hl, OBJECT_RADIUS
 	add hl, bc
 	ld a, [hl]
 	swap a
 	and $f
-	jr z, .asm_70e9
+	jr z, .nope
 	ld e, a
 	ld d, a
 	ld hl, OBJECT_INIT_Y
@@ -2557,46 +2557,46 @@ Function70a4: ; 70a4
 	add hl, bc
 	ld a, [hl]
 	cp d
-	jr z, .asm_70eb
+	jr z, .yes
 	cp e
-	jr z, .asm_70eb
+	jr z, .yes
 
-.asm_70e9
+.nope
 	xor a
 	ret
 
-.asm_70eb
+.yes
 	scf
 	ret
 ; 70ed
 
-Function70ed: ; 70ed
+IsPersonMovingOffEdgeOfScreen: ; 70ed
 	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [XCoord]
 	cp [hl]
-	jr z, .asm_70fe
-	jr nc, .asm_7111
+	jr z, .check_y
+	jr nc, .yes
 	add $9
 	cp [hl]
-	jr c, .asm_7111
+	jr c, .yes
 
-.asm_70fe
+.check_y
 	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [YCoord]
 	cp [hl]
-	jr z, .asm_710f
-	jr nc, .asm_7111
+	jr z, .nope
+	jr nc, .yes
 	add $8
 	cp [hl]
-	jr c, .asm_7111
+	jr c, .yes
 
-.asm_710f
+.nope
 	and a
 	ret
 
-.asm_7111
+.yes
 	scf
 	ret
 ; 7113
@@ -2611,46 +2611,46 @@ Function7113: ; unreferenced
 .loop
 	ld [hObjectStructIndexBuffer], a
 	call GetObjectSprite
-	jr z, .asm_7160
+	jr z, .next
 	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
 	ld a, [hl]
 	cp SPRITEMOVEDATA_SNORLAX
-	jr nz, .asm_7136
+	jr nz, .not_snorlax
 	call Function7171
-	jr c, .asm_716f
-	jr .asm_7160
+	jr c, .yes
+	jr .next
 
-.asm_7136
+.not_snorlax
 	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
-	jr nz, .asm_714e
+	jr nz, .check_current_coords
 	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
-	jr nz, .asm_714e
+	jr nz, .check_current_coords
 	ld a, [hObjectStructIndexBuffer]
 	cp $0
-	jr z, .asm_7160
-	jr .asm_716f
+	jr z, .next
+	jr .yes
 
-.asm_714e
+.check_current_coords
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
-	jr nz, .asm_7160
+	jr nz, .next
 	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
-	jr nz, .asm_7160
-	jr .asm_716f
+	jr nz, .next
+	jr .yes
 
-.asm_7160
+.next
 	ld hl, OBJECT_STRUCT_LENGTH
 	add hl, bc
 	ld b, h
@@ -2662,7 +2662,7 @@ Function7113: ; unreferenced
 	xor a
 	ret
 
-.asm_716f
+.yes
 	scf
 	ret
 ; 7171
@@ -2673,20 +2673,20 @@ Function7171: ; 7171
 	add hl, bc
 	ld a, d
 	sub [hl]
-	jr c, .asm_718b
+	jr c, .nope
 	cp $2
-	jr nc, .asm_718b
+	jr nc, .nope
 	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, e
 	sub [hl]
-	jr c, .asm_718b
+	jr c, .nope
 	cp $2
-	jr nc, .asm_718b
+	jr nc, .nope
 	scf
 	ret
 
-.asm_718b
+.nope
 	and a
 	ret
 ; 718d
@@ -3221,14 +3221,14 @@ GetSpawnCoord: ; 8029
 	call GetMapObject
 	ld hl, MAPOBJECT_COLOR
 	add hl, bc
-	ln e, (1 << 3) | PAL_OW_RED, $0
+	ln e, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT
 	ld a, [wPlayerSpriteSetupFlags]
 	bit 2, a
 	jr nz, .ok
 	ld a, [PlayerGender]
 	bit 0, a
 	jr z, .ok
-	ln e, (1 << 3) | PAL_OW_BLUE, $0
+	ln e, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT
 
 .ok
 	ld [hl], e
@@ -3239,8 +3239,8 @@ GetSpawnCoord: ; 8029
 	ld [hObjectStructIndexBuffer], a
 	ld de, ObjectStructs
 	call CopyMapObjectToObjectStruct
-	ld a, $0
-	ld [wd4cf], a
+	ld a, PLAYER
+	ld [wCenteredObject], a
 	ret
 ; 8071
 
@@ -3322,7 +3322,7 @@ RefreshPlayerCoords: ; 80b8
 	ld e, a
 	ld a, [wObjectFollow_Leader]
 	cp $0
-	ret nz
+	ret nz ; wtf
 	ret
 ; 80e7
 
@@ -5306,15 +5306,15 @@ FlyFunction: ; ca3b
 	farscall Script_AbortBugContest
 	special WarpToSpawnPoint
 	callasm DelayLoadingNewSprites
-	writecode VAR_MOVEMENT, $0
+	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	newloadmap MAPSETUP_FLY
 	callasm Function8cb33
 	special WaitSFX
-	callasm Functioncacb
+	callasm .ReturnFromFly
 	end
 ; 0xcacb
 
-Functioncacb: ; cacb
+.ReturnFromFly: ; cacb
 	callba Function561d
 	call DelayFrame
 	call ReplaceKrisSprite
@@ -5574,7 +5574,7 @@ UsedDigOrEscapeRopeScript: ; 0xcc3c
 	applymovement PLAYER, .DigOut
 	farscall Script_AbortBugContest
 	special WarpToSpawnPoint
-	writecode VAR_MOVEMENT, $0
+	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	newloadmap MAPSETUP_DOOR
 	playsound SFX_WARP_FROM
 	applymovement PLAYER, .DigReturn
@@ -5671,7 +5671,7 @@ Script_UsedTeleport: ; 0xccbb
 	applymovement PLAYER, .TeleportFrom
 	farscall Script_AbortBugContest
 	special WarpToSpawnPoint
-	writecode VAR_MOVEMENT, $0
+	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	newloadmap MAPSETUP_TELEPORT
 	playsound SFX_WARP_FROM
 	applymovement PLAYER, .TeleportTo
@@ -6336,17 +6336,17 @@ Script_NotEvenANibble_FallThrough: ; 0xd02d
 Script_GotABite: ; 0xd035
 	scall Script_FishCastRod
 	callasm Fishing_CheckFacingUp
-	iffalse .FacingUp
-	applymovement PLAYER, MovementData_0xd062
+	iffalse .NotFacingUp
+	applymovement PLAYER, .Movement_FacingUp
 	jump .FightTheHookedPokemon
 ; 0xd046
 
-.FacingUp: ; 0xd046
-	applymovement PLAYER, MovementData_0xd05c
+.NotFacingUp: ; 0xd046
+	applymovement PLAYER, .Movement_NotFacingUp
 
 .FightTheHookedPokemon: ; 0xd04a
 	pause 40
-	applymovement PLAYER, MovementData_0xd069
+	applymovement PLAYER, .Movement_RestoreRod
 	writetext UnknownText_0xd0a4
 	callasm PutTheRodAway
 	loadmovesprites
@@ -6356,7 +6356,7 @@ Script_GotABite: ; 0xd035
 	end
 ; 0xd05c
 
-MovementData_0xd05c: ; d05c
+.Movement_NotFacingUp: ; d05c
 	fish_got_bite
 	fish_got_bite
 	fish_got_bite
@@ -6365,7 +6365,7 @@ MovementData_0xd05c: ; d05c
 	step_end
 ; d062
 
-MovementData_0xd062: ; d062
+.Movement_FacingUp: ; d062
 	fish_got_bite
 	fish_got_bite
 	fish_got_bite
@@ -6375,7 +6375,7 @@ MovementData_0xd062: ; d062
 	step_end
 ; d069
 
-MovementData_0xd069: ; d069
+.Movement_RestoreRod: ; d069
 	hide_emote
 	fish_cast_rod
 	step_end
@@ -6384,7 +6384,7 @@ MovementData_0xd069: ; d069
 Fishing_CheckFacingUp: ; d06c
 	ld a, [PlayerDirection]
 	and $c
-	cp $4
+	cp OW_UP
 	ld a, $1
 	jr z, .up
 	xor a
@@ -6532,7 +6532,7 @@ BikeFunction: ; d0b3
 Script_GetOnBike: ; 0xd13e
 	reloadmappart
 	special UpdateTimePals
-	writecode VAR_MOVEMENT, $1
+	writecode VAR_MOVEMENT, PLAYER_BIKE
 	writetext UnknownText_0xd17c
 	closetext
 	loadmovesprites
@@ -6541,7 +6541,7 @@ Script_GetOnBike: ; 0xd13e
 ; 0xd14e
 
 Script_GetOnBike_Register: ; 0xd14e
-	writecode VAR_MOVEMENT, $1
+	writecode VAR_MOVEMENT, PLAYER_BIKE
 	loadmovesprites
 	special ReplaceKrisSprite
 	end
@@ -6554,11 +6554,11 @@ Functiond156: ; unreferenced
 Script_GetOffBike: ; 0xd158
 	reloadmappart
 	special UpdateTimePals
-	writecode VAR_MOVEMENT, $0
+	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	writetext UnknownText_0xd181
 	closetext
 
-UnknownScript_0xd163:
+FinishGettingOffBike:
 	loadmovesprites
 	special ReplaceKrisSprite
 	special PlayMapMusic
@@ -6566,8 +6566,8 @@ UnknownScript_0xd163:
 ; 0xd16b
 
 Script_GetOffBike_Register: ; 0xd16b
-	writecode VAR_MOVEMENT, $0
-	jump UnknownScript_0xd163
+	writecode VAR_MOVEMENT, PLAYER_NORMAL
+	jump FinishGettingOffBike
 ; 0xd171
 
 UnknownScript_0xd171: ; 0xd171
@@ -29402,7 +29402,7 @@ endr
 	ret
 
 
-Function4cffe:: ; 4cffe
+CheckSave:: ; 4cffe
 	ld a, BANK(s1_a008)
 	call GetSRAMBank
 	ld a, [s1_a008]

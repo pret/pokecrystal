@@ -2108,9 +2108,13 @@ ScriptBank:: ; d439
 ScriptPos:: ; d43a
 	ds 2
 
-wd43c:: ds 1
-wd43d:: ds 16
-
+wScriptStackSize:: ds 1
+wScriptStackBA1:: ds 3
+wScriptStackBA2:: ds 3
+wScriptStackBA3:: ds 3
+wScriptStackBA4:: ds 3
+wScriptStackBA5:: ds 3
+	ds 1
 ScriptDelay:: ; d44d
 	ds 1
 
@@ -2201,7 +2205,7 @@ CurDay:: ; d4cb
 	ds 1
 wObjectFollow_Leader:: ds 1
 wObjectFollow_Follower:: ds 1
-wd4cf:: ds 1
+wCenteredObject:: ds 1
 wd4d0:: ds 1
 wd4d1:: ds 1
 	ds 4

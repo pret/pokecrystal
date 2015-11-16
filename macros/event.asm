@@ -1068,7 +1068,7 @@ wait: macro
 	db \1 ; duration
 	endm
 
-	enum unknown0xa9_command
-unknown0xa9: macro
-	db unknown0xa9_command
+	enum check_save_command
+check_save: macro
+	db check_save_command
 	endm

@@ -87,7 +87,7 @@ MovementPointers: ; 5075
 	dw Movement_step_shake            ; 55
 	dw Movement_56                    ; 56
 	dw Movement_rock_smash            ; 57
-	dw Movement_return_dig                    ; 58
+	dw Movement_return_dig            ; 58
 	dw Movement_59                    ; 59
 ; 5129
 
@@ -129,7 +129,7 @@ Movement_step_dig: ; 5145
 	ld [hl], a
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_04
+	ld [hl], PERSON_ACTION_SPIN
 	call GetMovementByte
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
@@ -159,17 +159,17 @@ Movement_return_dig: ; 516a
 	ld [hl], STANDING
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_12
+	ld [hl], STEP_TYPE_RETURN_DIG
 	ret
 ; 5189
 
 Movement_fish_got_bite: ; 5189
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_06
+	ld [hl], PERSON_ACTION_FISHING
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_10
+	ld [hl], STEP_TYPE_GOT_BITE
 	ret
 ; 5196
 
@@ -180,20 +180,20 @@ Movement_rock_smash: ; 5196
 	ld [hl], a
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_01
+	ld [hl], PERSON_ACTION_STAND
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_11
+	ld [hl], STEP_TYPE_ROCK_SMASH
 	ret
 ; 51ab
 
 Movement_fish_cast_rod: ; 51ab
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_06
+	ld [hl], PERSON_ACTION_FISHING
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_01
+	ld [hl], STEP_TYPE_STANDING
 	ret
 ; 51b8
 
@@ -219,7 +219,7 @@ Movement_step_end: ; 51c1
 
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_01
+	ld [hl], STEP_TYPE_STANDING
 	ret
 ; 51db
 
@@ -264,7 +264,7 @@ Movement_remove_person: ; 51fd
 Movement_4b: ; 5210
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_01
+	ld [hl], PERSON_ACTION_STAND
 
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
@@ -325,7 +325,7 @@ Movement_step_sleep_common: ; 5247
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_01
+	ld [hl], PERSON_ACTION_STAND
 
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
@@ -341,11 +341,11 @@ Movement_step_bump: ; 525f
 
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_0B
+	ld [hl], STEP_TYPE_BUMP
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_03
+	ld [hl], PERSON_ACTION_BUMP
 
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
@@ -457,7 +457,7 @@ TurnHead: ; 52ee
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_01
+	ld [hl], PERSON_ACTION_STAND
 
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
@@ -732,11 +732,11 @@ HalfStep: ; 5400
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_02
+	ld [hl], PERSON_ACTION_STEP
 
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_0A
+	ld [hl], STEP_TYPE_HALF_STEP
 	ret
 ; 5412
 
@@ -745,7 +745,7 @@ NormalStep: ; 5412
 	call Function463f
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_02
+	ld [hl], PERSON_ACTION_STEP
 
 	ld hl, OBJECT_NEXT_TILE
 	add hl, bc
@@ -760,20 +760,20 @@ NormalStep: ; 5412
 	call ShakeGrass
 
 .skip_grass
-	ld hl, wd4cf
+	ld hl, wCenteredObject
 	ld a, [hMapObjectIndexBuffer]
 	cp [hl]
-	jr z, .step_type_06
+	jr z, .player
 
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_02
+	ld [hl], STEP_TYPE_NPC_WALK
 	ret
 
-.step_type_06
+.player
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_06
+	ld [hl], STEP_TYPE_PLAYER_WALK
 	ret
 ; 5446
 
@@ -783,22 +783,22 @@ TurningStep: ; 5446
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_04
+	ld [hl], PERSON_ACTION_SPIN
 
-	ld hl, wd4cf
+	ld hl, wCenteredObject
 	ld a, [hMapObjectIndexBuffer]
 	cp [hl]
-	jr z, .step_type_06
+	jr z, .player
 
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_02
+	ld [hl], STEP_TYPE_NPC_WALK
 	ret
 
-.step_type_06
+.player
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_06
+	ld [hl], STEP_TYPE_PLAYER_WALK
 	ret
 ; 5468
 
@@ -809,22 +809,22 @@ SlideStep: ; 5468
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_01
+	ld [hl], PERSON_ACTION_STAND
 
-	ld hl, wd4cf
+	ld hl, wCenteredObject
 	ld a, [hMapObjectIndexBuffer]
 	cp [hl]
-	jr z, .step_type_06
+	jr z, .player
 
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_02
+	ld [hl], STEP_TYPE_NPC_WALK
 	ret
 
-.step_type_06
+.player
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_06
+	ld [hl], STEP_TYPE_PLAYER_WALK
 	ret
 ; 548a
 
@@ -841,23 +841,23 @@ JumpStep: ; 548a
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_02
+	ld [hl], PERSON_ACTION_STEP
 
 	call SpawnShadow
 
-	ld hl, wd4cf
+	ld hl, wCenteredObject
 	ld a, [hMapObjectIndexBuffer]
 	cp [hl]
-	jr z, .step_type_09
+	jr z, .player
 
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_08
+	ld [hl], STEP_TYPE_NPC_JUMP
 	ret
 
-.step_type_09
+.player
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_09
+	ld [hl], STEP_TYPE_PLAYER_JUMP
 	ret
 ; 54b8
