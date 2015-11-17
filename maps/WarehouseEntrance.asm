@@ -186,7 +186,7 @@ OlderHaircutBrotherScript:
 .DoHaircut:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	iftrue .AlreadyGotHaircut
-	special Function24ae8
+	special PlaceMoneyTopRightOW
 	writetext UnknownText_0x7c5f9
 	yesorno
 	iffalse .Refused
@@ -222,7 +222,7 @@ OlderHaircutBrotherScript:
 
 .then:
 	takemoney $0, 500
-	special Function24ae8
+	special PlaceMoneyTopRightOW
 	writetext UnknownText_0x7c6b8
 	closetext
 	loadmovesprites
@@ -269,7 +269,7 @@ YoungerHaircutBrotherScript:
 .DoHaircut:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	iftrue .AlreadyGotHaircut
-	special Function24ae8
+	special PlaceMoneyTopRightOW
 	writetext UnknownText_0x7c75c
 	yesorno
 	iffalse .Refused
@@ -305,7 +305,7 @@ YoungerHaircutBrotherScript:
 
 .then:
 	takemoney $0, 300
-	special Function24ae8
+	special PlaceMoneyTopRightOW
 	writetext UnknownText_0x7c80e
 	closetext
 	loadmovesprites
@@ -343,21 +343,21 @@ YoungerHaircutBrotherScript:
 
 UnknownScript_0x7c2bb:
 	writetext HaircutBrosText_SlightlyHappier
-	special Functionc472
+	special PlayCurMonCry
 	closetext
 	loadmovesprites
 	end
 
 UnknownScript_0x7c2c4:
 	writetext HaircutBrosText_Happier
-	special Functionc472
+	special PlayCurMonCry
 	closetext
 	loadmovesprites
 	end
 
 UnknownScript_0x7c2cd:
 	writetext HaircutBrosText_MuchHappier
-	special Functionc472
+	special PlayCurMonCry
 	closetext
 	loadmovesprites
 	end

@@ -101,14 +101,14 @@ SpecialsPointers:: ; c029
 	add_special SpecialCheckPokerus
 	add_special Special_DisplayCoinCaseBalance
 	add_special Special_DisplayMoneyAndCoinBalance
-	add_special Function24ae8
+	add_special PlaceMoneyTopRightOW
 	add_special Special_CheckForLuckyNumberWinners
 	add_special Special_CheckLuckyNumberShowFlag
 	add_special Special_ResetLuckyNumberShowFlag
 	add_special Special_PrintTodaysLuckyNumber
 	add_special Special_SelectApricornForKurt
 	add_special SpecialNameRater
-	add_special Functionc2da
+	add_special Special_DisplayLinkRecord
 	add_special GetFirstPokemonHappiness
 	add_special CheckFirstMonIsEgg
 	add_special RandomPhoneRareWildMon
@@ -120,15 +120,17 @@ SpecialsPointers:: ; c029
 	add_special Special_YoungerHaircutBrother
 	add_special Special_OlderHaircutBrother
 	add_special Special_DaisyMassage
-	add_special Functionc472
+	add_special PlayCurMonCry
 	add_special ProfOaksPCBoot
 	add_special SpecialGameboyCheck
 	add_special SpecialTrainerHouse
 	add_special PhotoStudio
 	add_special InitRoamMons
-	add_special Functionc48f
-	add_special Functionc49f
-	add_special Functionc4ac
+	add_special Special_FadeOutMusic
+	add_special Diploma
+	add_special PrintDiploma
+
+	; Crystal
 	add_special Function11ac3e
 	add_special Function11b444
 	add_special Function11b5e8
@@ -151,7 +153,7 @@ SpecialsPointers:: ; c029
 	add_special Function101220
 	add_special Function101225
 	add_special Function101231
-	add_special Function4925b
+	add_special Special_MoveTutor
 	add_special SpecialOmanyteChamber
 	add_special Function11c1ab
 	add_special BattleTowerAction
@@ -292,14 +294,14 @@ Special_TownMap: ; c2c0
 
 Special_UnownPrinter: ; c2cd
 	call FadeToMenu
-	callba Function16be4
+	callba UnownPrinter
 	call Function2b4d
 	ret
 ; c2da
 
-Functionc2da: ; c2da
+Special_DisplayLinkRecord: ; c2da
 	call FadeToMenu
-	callba Function3f836
+	callba DisplayLinkRecord
 	call Function2b4d
 	ret
 ; c2e7
@@ -307,7 +309,7 @@ Functionc2da: ; c2da
 Special_KrissHousePC: ; c2e7
 	xor a
 	ld [ScriptVar], a
-	callba Function156d9
+	callba _KrissHousePC
 	ld a, c
 	ld [ScriptVar], a
 	ret
@@ -586,7 +588,7 @@ SpecialSnorlaxAwake: ; 0xc43d
 	db $ff
 
 
-Functionc472: ; c472
+PlayCurMonCry: ; c472
 	ld a, [CurPartySpecies]
 	jp PlayCry
 ; c478
@@ -614,7 +616,7 @@ SpecialGameboyCheck: ; c478
 	ret
 
 
-Functionc48f: ; c48f
+Special_FadeOutMusic: ; c48f
 	ld a, MUSIC_NONE % $100
 	ld [MusicFadeIDLo], a
 	ld a, MUSIC_NONE / $100
@@ -624,16 +626,16 @@ Functionc48f: ; c48f
 	ret
 ; c49f
 
-Functionc49f: ; c49f
+Diploma: ; c49f
 	call FadeToMenu
-	callba Function1dd702
+	callba _Diploma
 	call Function2b4d
 	ret
 ; c4ac
 
-Functionc4ac: ; c4ac
+PrintDiploma: ; c4ac
 	call FadeToMenu
-	callba Function84688
+	callba _PrintDiploma
 	call Function2b4d
 	ret
 ; c4b9

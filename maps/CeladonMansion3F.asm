@@ -22,7 +22,7 @@ UnknownScript_0x7167e:
 	waitbutton
 	writetext UnknownText_0x71760
 	keeptextopen
-	special Functionc49f
+	special Diploma
 	writetext UnknownText_0x71763
 	closetext
 	loadmovesprites
@@ -43,7 +43,7 @@ UnknownScript_0x716a4:
 	writetext UnknownText_0x717d8
 	yesorno
 	iffalse UnknownScript_0x716b0
-	special Functionc4ac
+	special PrintDiploma
 	loadmovesprites
 	end
 

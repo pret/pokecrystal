@@ -470,7 +470,7 @@ endr
 
 
 BuyMenuLoop: ; 15cef
-	callba Function24ae8
+	callba PlaceMoneyTopRightOW
 	call UpdateSprites
 	ld hl, MenuDataHeader_Buy
 	call CopyMenuDataHeader
@@ -875,7 +875,7 @@ Function15ee0: ; 15ee0
 .okay_to_sell
 	ld hl, Text_Mart_SellHowMany
 	call PrintText
-	callba Function24af8
+	callba PlaceMoneyTopRightMenu
 	callba Function24fe1
 	call ExitMenu
 	jr c, .declined
@@ -899,7 +899,7 @@ Function15ee0: ; 15ee0
 	ld hl, Text_Mart_SoldForAmount
 	call PrintTextBoxText
 	call PlayTransactionSound
-	callba Function24af0
+	callba PlaceMoneyBottomLeftOW
 	call JoyWaitAorB
 
 .declined

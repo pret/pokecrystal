@@ -158,7 +158,7 @@ UnknownScript_0x1850d7:
 	playsound SFX_EXIT_BUILDING
 	disappear $5
 	waitbutton
-	special Functionc48f
+	special Special_FadeOutMusic
 	pause 20
 	playmapmusic
 	end

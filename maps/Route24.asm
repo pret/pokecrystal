@@ -21,7 +21,7 @@ RocketScript_0x1adbfa:
 	loadfont
 	writetext UnknownText_0x1addc0
 	keeptextopen
-	special Functionc48f
+	special Special_FadeOutMusic
 	writetext UnknownText_0x1adee1
 	closetext
 	loadmovesprites

@@ -19,7 +19,7 @@ UnknownScript_0x74492:
 	moveperson $2, $12, $b
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Functionc48f
+	special Special_FadeOutMusic
 	pause 15
 	appear $2
 	applymovement $2, MovementData_0x74539
@@ -33,7 +33,7 @@ UnknownScript_0x74492:
 UnknownScript_0x744b5:
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Functionc48f
+	special Special_FadeOutMusic
 	pause 15
 	appear $2
 	applymovement $2, MovementData_0x74542

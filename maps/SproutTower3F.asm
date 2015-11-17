@@ -18,7 +18,7 @@ UnknownScript_0x184946:
 UnknownScript_0x184947:
 	spriteface PLAYER, UP
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Functionc48f
+	special Special_FadeOutMusic
 	playsound SFX_TACKLE
 	playsound SFX_ELEVATOR
 	earthquake 79

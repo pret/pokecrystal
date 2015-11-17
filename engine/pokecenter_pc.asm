@@ -179,7 +179,7 @@ PC_WaitPlaySFX: ; 156d0
 	ret
 ; 156d9
 
-Function156d9: ; 156d9
+_KrissHousePC: ; 156d9
 	call PC_PlayBootSound
 	ld hl, UnknownText_0x156ff
 	call PC_DisplayText

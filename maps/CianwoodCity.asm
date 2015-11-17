@@ -66,7 +66,7 @@ UnknownScript_0x1a001e:
 	applymovement $c, MovementData_0x1a00ec
 	disappear $c
 	pause 20
-	special Functionc48f
+	special Special_FadeOutMusic
 	playmapmusic
 	pause 10
 .Done

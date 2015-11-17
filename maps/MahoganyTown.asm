@@ -51,7 +51,7 @@ UnknownScript_0x190039:
 UnknownScript_0x190040:
 	loadfont
 	writetext UnknownText_0x1900b0
-	special Function24ae8
+	special PlaceMoneyTopRightOW
 	yesorno
 	iffalse UnknownScript_0x190072
 	checkmoney $0, 300
@@ -61,7 +61,7 @@ UnknownScript_0x190040:
 	waitbutton
 	playsound SFX_TRANSACTION
 	takemoney $0, 300
-	special Function24ae8
+	special PlaceMoneyTopRightOW
 	writetext UnknownText_0x19014a
 	closetext
 	loadmovesprites

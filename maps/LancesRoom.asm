@@ -44,12 +44,12 @@ UnknownScript_0x180e53:
 	end
 
 UnknownScript_0x180e6a:
-	special Functionc48f
+	special Special_FadeOutMusic
 	applymovement PLAYER, MovementData_0x180f38
 	jump LanceScript_0x180e7b
 
 UnknownScript_0x180e74:
-	special Functionc48f
+	special Special_FadeOutMusic
 	applymovement PLAYER, MovementData_0x180f3c
 LanceScript_0x180e7b:
 	spriteface $2, LEFT

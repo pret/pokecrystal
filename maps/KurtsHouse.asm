@@ -40,7 +40,7 @@ KurtScript_0x18e178:
 	writetext UnknownText_0x18e473
 	closetext
 	loadmovesprites
-	special Functionc48f
+	special Special_FadeOutMusic
 	setevent EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
 	checkcode VAR_FACING
 	if_equal UP, .RunAround
@@ -287,7 +287,7 @@ KurtScript_0x18e178:
 	setevent EVENT_FOREST_IS_RESTLESS
 	clearevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	clearevent EVENT_GAVE_GS_BALL_TO_KURT
-	special Functionc48f
+	special Special_FadeOutMusic
 	pause 20
 	showemote EMOTE_SHOCK, $2, 30
 	checkcode VAR_FACING

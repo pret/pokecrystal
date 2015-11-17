@@ -9,7 +9,7 @@ GoldenrodVendingMachine:
 	loadfont
 	writetext GoldenrodVendingText
 .Start
-	special Function24ae8
+	special PlaceMoneyTopRightOW
 	loadmenudata .MenuData
 	interpretmenu2
 	writebackup

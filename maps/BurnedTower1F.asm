@@ -49,7 +49,7 @@ UnknownScript_0x185c0d:
 
 UnknownScript_0x185c25:
 	showemote EMOTE_SHOCK, $4, 15
-	special Functionc48f
+	special Special_FadeOutMusic
 	pause 15
 	spriteface $4, RIGHT
 	pause 15
@@ -98,7 +98,7 @@ UnknownScript_0x185c80:
 	loadmovesprites
 	dotrigger $2
 	setevent EVENT_RIVAL_BURNED_TOWER
-	special Functionc48f
+	special Special_FadeOutMusic
 	pause 15
 	earthquake 50
 	showemote EMOTE_SHOCK, PLAYER, 15

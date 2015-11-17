@@ -1,5 +1,5 @@
 
-Function1dd702: ; 1dd702
+_Diploma: ; 1dd702
 	call Function1dd709
 	call WaitPressAorB_BlinkCursor
 	ret

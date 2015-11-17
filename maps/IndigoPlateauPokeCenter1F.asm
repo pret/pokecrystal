@@ -55,7 +55,7 @@ UnknownScript_0x180053:
 	appear $5
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Functionc48f
+	special Special_FadeOutMusic
 	pause 15
 	applymovement $5, MovementData_0x180164
 	playmusic MUSIC_RIVAL_ENCOUNTER
@@ -76,7 +76,7 @@ UnknownScript_0x180094:
 	appear $5
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Functionc48f
+	special Special_FadeOutMusic
 	pause 15
 	applymovement $5, MovementData_0x18016b
 	playmusic MUSIC_RIVAL_ENCOUNTER

@@ -70,7 +70,7 @@ UnknownScript_0x18c8f4:
 	loadmovesprites
 UnknownScript_0x18c8f9:
 	applymovement $3, MovementData_0x18c9b3
-	special Functionc48f
+	special Special_FadeOutMusic
 	pause 30
 	special RestartMapMusic
 	disappear $3

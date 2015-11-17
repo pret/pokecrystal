@@ -581,7 +581,7 @@ Script_LeftTimeCapsule:
 
 MapPokeCenter2FSignpost0Script:
 	refreshscreen $0
-	special Functionc2da
+	special Special_DisplayLinkRecord
 	loadmovesprites
 	end
 

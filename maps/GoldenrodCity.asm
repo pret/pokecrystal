@@ -61,21 +61,21 @@ MoveTutor:
 .Flamethrower:
 	writebyte $1
 	writetext UnknownText_0x1991cf
-	special Function4925b
+	special Special_MoveTutor
 	if_equal $0, .TeachMove
 	jump .Incompatible
 
 .Thunderbolt:
 	writebyte $2
 	writetext UnknownText_0x1991cf
-	special Function4925b
+	special Special_MoveTutor
 	if_equal $0, .TeachMove
 	jump .Incompatible
 
 .IceBeam:
 	writebyte $3
 	writetext UnknownText_0x1991cf
-	special Function4925b
+	special Special_MoveTutor
 	if_equal $0, .TeachMove
 	jump .Incompatible
 

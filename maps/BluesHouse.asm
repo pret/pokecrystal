@@ -37,7 +37,7 @@ UnknownScript_0x19b0de:
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x19b296
-	special Functionc472
+	special PlayCurMonCry
 	keeptextopen
 	writetext UnknownText_0x19b2aa
 	closetext
