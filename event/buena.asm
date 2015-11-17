@@ -250,7 +250,7 @@ Function8b0e2: ; 8b0e2
 	xor a
 	ld [wcf76], a
 	ld [hBGMapMode], a
-	call Function352f
+	call InitScrollingMenu
 	call UpdateSprites
 	call HandleScrollingMenu
 	ld a, [MenuSelection]

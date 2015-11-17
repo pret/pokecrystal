@@ -1173,7 +1173,7 @@ Function3524:: ; 3524
 	jp SetPalettes
 ; 352f
 
-Function352f:: ; 352f
+InitScrollingMenu:: ; 352f
 	ld a, [wMenuBorderTopCoord]
 	dec a
 	ld b, a
@@ -1192,7 +1192,7 @@ Function352f:: ; 352f
 	jp TextBox
 ; 354b
 
-Function354b:: ; 354b
+Function354b:: ; 354b joypad
 	call DelayFrame
 
 	ld a, [hInMenu]

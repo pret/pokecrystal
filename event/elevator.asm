@@ -127,7 +127,7 @@ Function134dd: ; 134dd
 	call Elevator_GetCurrentFloorText
 	ld hl, Elevator_MenuDataHeader
 	call CopyMenuDataHeader
-	call Function352f
+	call InitScrollingMenu
 	call UpdateSprites
 	xor a
 	ld [wd0e4], a

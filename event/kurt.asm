@@ -65,7 +65,7 @@ Kurt_SelectApricorn: ; 88055
 	ld [wMenuCursorBuffer], a
 	xor a
 	ld [hBGMapMode], a
-	call Function352f
+	call InitScrollingMenu
 	call UpdateSprites
 	call HandleScrollingMenu
 	ld a, [wcf73]
