@@ -227,7 +227,7 @@ Function1e35:: ; 1e35
 	ret
 ; 1e5d
 
-Function1e5d:: ; 1e5d
+DoNthMenu:: ; 1e5d
 	call MenuFunc_1e7f
 	call MenuWriteText
 	call Function1eff
@@ -438,7 +438,7 @@ Function1f79:: ; 1f79
 	ret
 ; 1f8d
 
-Function1f8d:: ; 1f8d
+PlaceNthMenuStrings:: ; 1f8d
 	push de
 	ld a, [MenuSelection]
 	call Function1fb1
@@ -464,7 +464,7 @@ endr
 	ret
 ; 1fa7
 
-Function1fa7:: ; 1fa7
+MenuJumptable:: ; 1fa7
 	ld a, [MenuSelection]
 	call Function1fb1
 	ld a, [hli]

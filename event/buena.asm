@@ -11,7 +11,7 @@ SpecialBuenasPassword: ; 8af6b
 	add $2
 	ld [wMenuBorderRightCoord], a
 	call BackUpTiles
-	call Function1e5d ; menu
+	call DoNthMenu ; menu
 	callba Function4ae5e
 	ld b, $0
 	ld a, [MenuSelection]
