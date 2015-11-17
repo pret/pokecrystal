@@ -494,7 +494,7 @@ StartMenu_Pokedex: ; 12937
 StartMenu_Pokegear: ; 1294c
 
 	call FadeToMenu
-	callba Function90b8d
+	callba PokeGear
 	call Function2b3c
 	ld a, 0
 	ret

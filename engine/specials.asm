@@ -285,7 +285,7 @@ SpecialNameRater: ; c2b9
 
 Special_TownMap: ; c2c0
 	call FadeToMenu
-	callba Function9191c
+	callba _TownMap
 	call Function2b4d
 	ret
 ; c2cd

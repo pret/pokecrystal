@@ -289,16 +289,19 @@ CopyPals:: ; d50
 ; d79
 
 
-Functiond79:: ; d79
+ClearVBank1:: ; d79
 	ld a, [hCGB]
 	and a
 	ret z
+
 	ld a, 1
 	ld [rVBK], a
+
 	ld hl, VTiles0
-	ld bc, $2000
+	ld bc, VRAM_End - VTiles0
 	xor a
 	call ByteFill
+
 	ld a, 0
 	ld [rVBK], a
 	ret
