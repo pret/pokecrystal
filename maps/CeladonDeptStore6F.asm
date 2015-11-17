@@ -7,9 +7,9 @@ CeladonDeptStore6F_MapScriptHeader:
 
 	; callbacks
 
-	dbw 1, UnknownScript_0x71175
+	dbw 1, .Callback
 
-UnknownScript_0x71175:
+.Callback:
 	changeblock $c, $0, $3
 	return
 

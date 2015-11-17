@@ -12,7 +12,7 @@ SpecialBuenasPassword: ; 8af6b
 	ld [wMenuBorderRightCoord], a
 	call BackUpTiles
 	call DoNthMenu ; menu
-	callba Function4ae5e
+	callba Buena_ExitMenu
 	ld b, $0
 	ld a, [MenuSelection]
 	ld c, a

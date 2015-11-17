@@ -166,7 +166,7 @@ SpecialsPointers:: ; c029
 	add_special SpecialHoOhChamber
 	add_special Function102142
 	add_special Special_CelebiShrineEvent
-	add_special Function49bf9
+	add_special CheckCaughtCelebi
 	add_special SpecialPokeSeer
 	add_special SpecialBuenasPassword
 	add_special SpecialBuenaPrize
@@ -174,7 +174,7 @@ SpecialsPointers:: ; c029
 	add_special Special_SampleKenjiBreakCountdown
 	add_special SpecialBeastsCheck
 	add_special SpecialMonCheck
-	add_special Functionc225
+	add_special Special_SetPlayerPalette
 	add_special Function170bd2
 	add_special Mobile_SelectThreeMons
 	add_special Function1037eb
@@ -185,9 +185,9 @@ SpecialsPointers:: ; c029
 	add_special Mobile_DummyReturnFalse
 	add_special Function103780
 	add_special Function10387b
-	add_special Function4ae12
+	add_special AskRememberPassword
 	add_special LoadMapPalettes
-	add_special Function4a927
+	add_special FindItemInPCOrBag
 	add_special Special_InitialSetDSTFlag
 	add_special Special_InitialClearDSTFlag
 	add_special SpecialNone
@@ -197,10 +197,10 @@ SpecialNone: ; c224
 	ret
 ; c225
 
-Functionc225: ; c225
+Special_SetPlayerPalette: ; c225
 	ld a, [ScriptVar]
 	ld d, a
-	callba Function57e2
+	callba SetPlayerPalette
 	ret
 ; c230
 

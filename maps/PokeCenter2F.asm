@@ -431,8 +431,8 @@ PokeCenter2F_CheckGender:
 	loadmovesprites
 	playsound SFX_TINGLE
 	applymovement PLAYER, MovementData_0x192d17
-	writebyte $80
-	special Functionc225
+	writebyte (1 << 7) | (PAL_OW_RED << 4)
+	special Special_SetPlayerPalette
 	applymovement PLAYER, MovementData_0x192d1c
 	setflag ENGINE_KRIS_IN_CABLE_CLUB
 	special ReplaceKrisSprite
@@ -458,8 +458,8 @@ Script_CleanUpFemaleFlagAfterTrade:
 	clearflag ENGINE_KRIS_IN_CABLE_CLUB
 	playsound SFX_TINGLE
 	applymovement PLAYER, MovementData_0x192d17
-	writebyte $90
-	special Functionc225
+	writebyte (1 << 7) | (PAL_OW_BLUE << 4)
+	special Special_SetPlayerPalette
 	applymovement PLAYER, MovementData_0x192d1c
 	special ReplaceKrisSprite
 	applymovement PLAYER, MovementData_0x192d2a
@@ -480,8 +480,8 @@ Script_CleanUpFemaleFlagAfterBattle:
 	clearflag ENGINE_KRIS_IN_CABLE_CLUB
 	playsound SFX_TINGLE
 	applymovement PLAYER, MovementData_0x192d17
-	writebyte $90
-	special Functionc225
+	writebyte (1 << 7) | (PAL_OW_BLUE << 4)
+	special Special_SetPlayerPalette
 	applymovement PLAYER, MovementData_0x192d1c
 	special ReplaceKrisSprite
 	applymovement PLAYER, MovementData_0x192d2a
@@ -539,8 +539,8 @@ TimeCapsuleScript_CheckPlayerGender:
 	loadmovesprites
 	playsound SFX_TINGLE
 	applymovement PLAYER, MovementData_0x192d17
-	writebyte $80
-	special Functionc225
+	writebyte (1 << 7) | (PAL_OW_RED << 4)
+	special Special_SetPlayerPalette
 	applymovement PLAYER, MovementData_0x192d22
 	faceperson PLAYER, $4
 	setflag ENGINE_KRIS_IN_CABLE_CLUB
@@ -568,8 +568,8 @@ Script_LeftTimeCapsule:
 	clearflag ENGINE_KRIS_IN_CABLE_CLUB
 	playsound SFX_TINGLE
 	applymovement PLAYER, MovementData_0x192d17
-	writebyte $90
-	special Functionc225
+	writebyte (1 << 7) | (PAL_OW_BLUE << 4)
+	special Special_SetPlayerPalette
 	applymovement PLAYER, MovementData_0x192d1c
 	special ReplaceKrisSprite
 	applymovement PLAYER, MovementData_0x192cfc

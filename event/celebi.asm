@@ -337,18 +337,18 @@ Function49bf3: ; 49bf3
 	ret
 ; 49bf9
 
-Function49bf9: ; 49bf9
+CheckCaughtCelebi: ; 49bf9
 	ld a, [wBattleResult]
 	bit 6, a
-	jr z, .asm_49c07
+	jr z, .false
 	ld a, $1
 	ld [ScriptVar], a
-	jr .asm_49c0b
+	jr .done
 
-.asm_49c07
+.false
 	xor a
 	ld [ScriptVar], a
 
-.asm_49c0b
+.done
 	ret
 ; 49c0c

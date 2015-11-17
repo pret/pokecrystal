@@ -37,7 +37,7 @@ PredefPointers:: ; 856b
 	add_predef DrawPartyMenuHPBar
 	add_predef FillPP
 	add_predef TryAddMonToParty
-	add_predef Functionda96
+	add_predef AddTempmonToParty
 	add_predef SentGetPkmnIntoFromBox
 	add_predef SentPkmnIntoBox
 	add_predef GiveEgg

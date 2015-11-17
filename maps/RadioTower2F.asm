@@ -104,7 +104,7 @@ Buena:
 	if_equal 30, UnknownScript_0x5d87f
 	playmusic MUSIC_BUENAS_PASSWORD
 	writetext UnknownText_0x5de35
-	special Function4ae12
+	special AskRememberPassword
 	iffalse UnknownScript_0x5d81e
 	writetext UnknownText_0x5de84
 	closetext

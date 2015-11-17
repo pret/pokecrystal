@@ -460,7 +460,7 @@ UnknownScript_0x6ee42:
 	startbattle
 	returnafterbattle
 	pause 20
-	special Function49bf9
+	special CheckCaughtCelebi
 	iffalse UnknownScript_0x6ee8e
 	appear $7
 	applymovement $7, MovementData_0x6ef4e

@@ -8347,7 +8347,7 @@ FillPP: ; da6d
 	ret
 ; da96
 
-Functionda96: ; da96
+AddTempmonToParty: ; da96
 	ld hl, PartyCount
 	ld a, [hl]
 	cp PARTY_LENGTH
@@ -8362,6 +8362,7 @@ Functionda96: ; da96
 	ld a, [CurPartySpecies]
 	ld [hli], a
 	ld [hl], $ff
+
 	ld hl, PartyMon1Species
 	ld a, [PartyCount]
 	dec a
@@ -8371,6 +8372,7 @@ Functionda96: ; da96
 	ld d, h
 	ld hl, TempMonSpecies
 	call CopyBytes
+
 	ld hl, PartyMonOT
 	ld a, [PartyCount]
 	dec a
@@ -8382,6 +8384,7 @@ Functionda96: ; da96
 	call SkipNames
 	ld bc, NAME_LENGTH
 	call CopyBytes
+
 	ld hl, PartyMonNicknames
 	ld a, [PartyCount]
 	dec a
@@ -8397,7 +8400,7 @@ Functionda96: ; da96
 	ld a, [CurPartySpecies]
 	ld [wNamedObjectIndexBuffer], a
 	cp EGG
-	jr z, .owned
+	jr z, .egg
 	dec a
 	call SetSeenAndCaughtMon
 	ld hl, PartyMon1Happiness
@@ -8406,7 +8409,7 @@ Functionda96: ; da96
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld [hl], BASE_HAPPINESS
-.owned
+.egg
 
 	ld a, [CurPartySpecies]
 	cp UNOWN
@@ -21858,24 +21861,24 @@ Function4a91e: ; 4a91e
 ; 4a927
 
 
-Function4a927: ; 4a927
+FindItemInPCOrBag: ; 4a927
 	ld a, [ScriptVar]
 	ld [CurItem], a
 	ld hl, PCItems
 	call CheckItem
-	jr c, .asm_4a948
+	jr c, .found
 
 	ld a, [ScriptVar]
 	ld [CurItem], a
 	ld hl, NumItems
 	call CheckItem
-	jr c, .asm_4a948
+	jr c, .found
 
 	xor a
 	ld [ScriptVar], a
 	ret
 
-.asm_4a948
+.found
 	ld a, 1
 	ld [ScriptVar], a
 	ret
@@ -22593,22 +22596,22 @@ Function4adb2: ; 4adb2
 Function4adc2: ; 4adc2
 	ld a, [wd002]
 	cp $ff
-	jr nz, .asm_4ade5
+	jr nz, .skip
 	ld a, [wd003]
 	cp $ff
-	jr nz, .asm_4addd
+	jr nz, .skip2
 	ld a, [wd004]
 	ld [wd002], a
 	ld a, $ff
 	ld [wd004], a
-	jr .asm_4ade5
+	jr .skip
 
-.asm_4addd
+.skip2
 	ld [wd002], a
 	ld a, $ff
 	ld [wd003], a
 
-.asm_4ade5
+.skip
 	ld a, [wd003]
 	cp $ff
 	ret nz
@@ -22635,18 +22638,18 @@ Function4adf7: ; 4adf7
 	ret
 ; 4ae12
 
-Function4ae12: ; 4ae12
-	call Function4ae1f
+AskRememberPassword: ; 4ae12
+	call .DoMenu
 	ld a, $0
-	jr c, .asm_4ae1b
+	jr c, .okay
 	ld a, $1
 
-.asm_4ae1b
+.okay
 	ld [ScriptVar], a
 	ret
 ; 4ae1f
 
-Function4ae1f: ; 4ae1f
+.DoMenu: ; 4ae1f
 	lb bc, 14, 7
 	push bc
 	ld hl, YesNoMenuDataHeader
@@ -22665,23 +22668,23 @@ Function4ae1f: ; 4ae1f
 	push af
 	ld c, 15
 	call DelayFrames
-	call Function4ae5e
+	call Buena_ExitMenu
 	pop af
-	jr c, .asm_4ae57
+	jr c, .refused
 	ld a, [MenuSelection2]
 	cp $2
-	jr z, .asm_4ae57
+	jr z, .refused
 	and a
 	ret
 
-.asm_4ae57
+.refused
 	ld a, $2
 	ld [MenuSelection2], a
 	scf
 	ret
 ; 4ae5e
 
-Function4ae5e: ; 4ae5e
+Buena_ExitMenu: ; 4ae5e
 	ld a, [hOAMUpdate]
 	push af
 	call ExitMenu
@@ -33360,7 +33363,6 @@ SECTION "Phone Engine", ROMX, BANK[$28]
 
 INCLUDE "engine/more_phone_scripts.asm"
 INCLUDE "engine/buena_phone_scripts.asm"
-INCLUDE "text/phone/buena.asm"
 
 
 SECTION "Phone Text", ROMX, BANK[$29]

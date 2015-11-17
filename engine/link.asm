@@ -1916,7 +1916,7 @@ Function28b87: ; 28b87
 	ld de, TempMonSpecies
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	predef Functionda96
+	predef AddTempmonToParty
 	ld a, [PartyCount]
 	dec a
 	ld [CurPartyMon], a
