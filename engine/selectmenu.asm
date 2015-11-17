@@ -158,7 +158,7 @@ UseRegisteredItem: ; 133c3
 	call ResetWindow
 	call FadeToMenu
 	call DoItemEffect
-	call Function2b3c
+	call ReturnToCallingMenu
 	call LoadMoveSprites
 	and a
 	ret

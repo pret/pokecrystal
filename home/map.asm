@@ -2014,7 +2014,7 @@ FadeToMenu:: ; 2b29
 ; 2b3c
 
 
-Function2b3c:: ; 2b3c
+ReturnToCallingMenu:: ; 2b3c
 	call ClearBGPalettes
 	call Function2bae
 	call UpdateSprites
@@ -2023,7 +2023,7 @@ Function2b3c:: ; 2b3c
 	jr Function2b5c
 ; 2b4d
 
-Function2b4d:: ; 2b4d
+ExitAllMenus:: ; 2b4d
 	call ClearBGPalettes
 	call Call_ExitMenu
 	call Function2bae

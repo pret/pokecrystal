@@ -324,7 +324,7 @@ Function17d0f3: ; 17d0f3
 	ld [de], a
 
 .asm_17d180
-	call Function2b3c
+	call ReturnToCallingMenu
 	call RestartMapMusic
 	ret
 ; 17d187
@@ -562,7 +562,7 @@ Function17d2ce: ; 17d2ce
 	ld [MusicFadeIDHi], a
 	call PlayMusic
 	call ReturnToMapFromSubmenu
-	call Function2b3c
+	call ReturnToCallingMenu
 	ret
 ; 17d314
 
@@ -4674,7 +4674,7 @@ Function17f53d: ; 17f53d
 	call Function17f555
 	pop af
 	ld [rSVBK], a
-	call Function2b4d
+	call ExitAllMenus
 	ret
 ; 17f555
 

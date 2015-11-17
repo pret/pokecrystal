@@ -192,7 +192,7 @@ OverworldHatchEgg:: ; 16f5e
 	call ResetWindow
 	call LoadStandardMenuDataHeader
 	call Function16f70
-	call Function2b4d
+	call ExitAllMenus
 	call RestartMapMusic
 	jp LoadMoveSprites
 ; 16f70

@@ -377,7 +377,7 @@ BuyMenu: ; 15c62
 .loop
 	call BuyMenuLoop ; menu loop
 	jr nc, .loop
-	call Function2b3c
+	call ReturnToCallingMenu
 	ret
 ; 15c7d
 

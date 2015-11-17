@@ -2523,7 +2523,7 @@ Unknown_100fc0: ; 100fc0
 	db -1
 
 Unknown_100feb: ; 100feb
-	dbwww $00, sPartyScratch1, SCRATCHMON_STRUCT_LENGTH * PARTY_LENGTH, NULL
+	dbwww $00, sPartyMail, MAIL_STRUCT_LENGTH * PARTY_LENGTH, NULL
 	db -1
 
 Unknown_100ff3: ; 100ff3

@@ -1,4 +1,4 @@
-Function25105: ; 25105
+TrainerCard: ; 25105
 	ld a, [VramState]
 	push af
 	xor a
@@ -211,16 +211,18 @@ Function25279: ; 25279 (9:5279)
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_LEFT
-	jr nz, .asm_2528d
+	jr nz, .left
 	ld a, [hl]
 	and D_RIGHT
-	jr nz, .asm_25293
+	jr nz, .right
 	ret
-.asm_2528d
+
+.left
 	ld a, $2
 	ld [wJumptableIndex], a
 	ret
-.asm_25293
+
+.right
 	ld a, $0
 	ld [wJumptableIndex], a
 	ret
@@ -466,24 +468,26 @@ Function25438: ; 25438 (9:5438)
 	jr Function25448
 
 Function25448: ; 25448 (9:5448)
+; copy flag array pointer
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
+; get flag array
 	ld d, a
 	ld a, [de]
 	ld c, a
 	ld de, Sprites
 	ld b, 8
-.asm_25453
+.loop
 	srl c
 	push bc
-	jr nc, .asm_25472
+	jr nc, .skip_badge
 	push hl
-	ld a, [hli]
+	ld a, [hli] ; y
 	ld b, a
-	ld a, [hli]
+	ld a, [hli] ; x
 	ld c, a
-	ld a, [hli]
+	ld a, [hli] ; pal
 	ld [wcf66], a
 	ld a, [wcf64]
 	add l
@@ -495,60 +499,64 @@ Function25448: ; 25448 (9:5448)
 	ld [wcf65], a
 	call Function2547b
 	pop hl
-.asm_25472
-	ld bc, $b
+.skip_badge
+	ld bc, $b ; 3 + 2 * 4
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .asm_25453
+	jr nz, .loop
 	ret
 
 Function2547b: ; 2547b (9:547b)
 	ld a, [wcf65]
 	and $80
-	jr nz, .asm_25487
-	ld hl, Unknown_254a7
-	jr .asm_2548a
-.asm_25487
-	ld hl, Unknown_254b8
-.asm_2548a
+	jr nz, .xflip
+	ld hl, .facing1
+	jr .loop
+.xflip
+	ld hl, .facing2
+.loop
 	ld a, [hli]
 	cp $ff
 	ret z
 	add b
 	ld [de], a
 	inc de
+
 	ld a, [hli]
 	add c
 	ld [de], a
 	inc de
+
 	ld a, [wcf65]
 	and $7f
 	add [hl]
 	ld [de], a
 	inc hl
 	inc de
+
 	ld a, [wcf66]
 	add [hl]
 	ld [de], a
 	inc hl
 	inc de
-	jr .asm_2548a
+	jr .loop
 ; 254a7 (9:54a7)
 
-Unknown_254a7: ; 254a7
-	db $00, $00, $00, $00
-	db $00, $08, $01, $00
-	db $08, $00, $02, $00
-	db $08, $08, $03, $00
-	db $ff
+.facing1: ; 254a7
+	; y, x, tile, OAM attributes
+	db 0, 0, 0, 0
+	db 0, 8, 1, 0
+	db 8, 0, 2, 0
+	db 8, 8, 3, 0
+	db -1
 
-Unknown_254b8: ; 254b8
-	db $00, $00, $01, $20
-	db $00, $08, $00, $20
-	db $08, $00, $03, $20
-	db $08, $08, $02, $20
-	db $ff
+.facing2: ; 254b8
+	db 0, 0, 1, X_FLIP
+	db 0, 8, 0, X_FLIP
+	db 8, 0, 3, X_FLIP
+	db 8, 8, 2, X_FLIP
+	db -1
 
 Unknown_254c9: ; 254c9
 ; Template OAM data for each badge on the trainer card.
@@ -560,43 +568,43 @@ Unknown_254c9: ; 254c9
 	dw JohtoBadges
 
 	; Zephyrbadge
-	db $68, $18, $00
+	db $68, $18, 0
 	db $00, $20, $24, $20 | $80
 	db $00, $20, $24, $20 | $80
 
 	; Hivebadge
-	db $68, $38, $00
+	db $68, $38, 0
 	db $04, $20, $24, $20 | $80
 	db $04, $20, $24, $20 | $80
 
 	; Plainbadge
-	db $68, $58, $00
+	db $68, $58, 0
 	db $08, $20, $24, $20 | $80
 	db $08, $20, $24, $20 | $80
 
 	; Fogbadge
-	db $68, $78, $00
+	db $68, $78, 0
 	db $0c, $20, $24, $20 | $80
 	db $0c, $20, $24, $20 | $80
 
 	; Mineralbadge
-	db $80, $38, $00
+	db $80, $38, 0
 	db $10, $20, $24, $20 | $80
 	db $10, $20, $24, $20 | $80
 
 	; Stormbadge
-	db $80, $18, $00
+	db $80, $18, 0
 	db $14, $20, $24, $20 | $80
 	db $14, $20, $24, $20 | $80
 
 	; Glacierbadge
-	db $80, $58, $00
+	db $80, $58, 0
 	db $18, $20, $24, $20 | $80
 	db $18, $20, $24, $20 | $80
 
 	; Risingbadge
 	; X-flips on alternate cycles.
-	db $80, $78, $00
+	db $80, $78, 0
 	db $1c, $20, $24, $20 | $80
 	db $1c | $80, $20, $24, $20 | $80
 ; 25523

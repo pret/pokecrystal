@@ -285,7 +285,7 @@ ENDC
 
 	callba InitDecorations
 
-	callba DeleteScratchmons
+	callba DeletePartyMonMail
 
 	callba DeleteMobileEventIndex
 
@@ -9297,14 +9297,14 @@ Functione039: ; e039
 	ld a, [wLinkMode]
 	and a
 	ret nz
-	ld a, BANK(sPartyScratch1)
+	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	ld hl, PartyCount
 	ld a, [CurPartyMon]
 	cp [hl]
 	jr z, .asm_e131
-	ld hl, sPartyScratch1
-	ld bc, SCRATCHMON_STRUCT_LENGTH
+	ld hl, sPartyMail
+	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	push hl
 	add hl, bc
@@ -9314,11 +9314,11 @@ Functione039: ; e039
 .asm_e11a
 	push bc
 	push hl
-	ld bc, SCRATCHMON_STRUCT_LENGTH
+	ld bc, MAIL_STRUCT_LENGTH
 	call CopyBytes
 	pop hl
 	push hl
-	ld bc, SCRATCHMON_STRUCT_LENGTH
+	ld bc, MAIL_STRUCT_LENGTH
 	add hl, bc
 	pop de
 	pop bc
@@ -9789,7 +9789,7 @@ InitNickname: ; e3de
 	ld de, StringBuffer1
 	call InitName
 	ld a, $4 ; XXX could this be in bank 4 in pokered?
-	ld hl, Function2b4d
+	ld hl, ExitAllMenus
 	rst FarCall
 	ret
 ; e3fd
@@ -9841,7 +9841,7 @@ UnknownText_0xe43a: ; 0xe43a
 ; 0xe43f
 
 Functione43f: ; e43f (3:643f)
-	call Function2b3c
+	call ReturnToCallingMenu
 	ret
 
 Functione443: ; e443 (3:6443)
@@ -10414,7 +10414,7 @@ INCLUDE "engine/tmhm.asm"
 
 INCLUDE "engine/namingscreen.asm"
 
-Function11e75: ; 11e75 (4:5e75)
+Function11e75: ; 11e75 (mail?)
 	ld hl, wc6d0
 	ld [hl], e
 	inc hl
@@ -17957,197 +17957,7 @@ endr
 PokedexDataPointerTable: ; 0x44378
 INCLUDE "data/pokedex/entry_pointers.asm"
 
-
-Function4456e: ; 4456e
-	ld a, MON_ITEM
-	call GetPartyParamLocation
-	ld d, [hl]
-	callba ItemIsMail
-	jr nc, .asm_445be
-	call Function44648
-	cp $a
-	jr nc, .asm_445be
-	ld bc, SCRATCHMON_STRUCT_LENGTH
-	ld hl, s0_a835
-	call AddNTimes
-	ld d, h
-	ld e, l
-	ld a, [CurPartyMon]
-	ld bc, SCRATCHMON_STRUCT_LENGTH
-	ld hl, sPartyScratch1
-	call AddNTimes
-	push hl
-	ld a, BANK(s0_a834)
-	call GetSRAMBank
-	ld bc, SCRATCHMON_STRUCT_LENGTH
-	call CopyBytes
-	pop hl
-	xor a
-	ld bc, SCRATCHMON_STRUCT_LENGTH
-	call ByteFill
-	ld a, MON_ITEM
-	call GetPartyParamLocation
-	ld [hl], $0
-	ld hl, s0_a834
-	inc [hl]
-	call CloseSRAM
-	xor a
-	ret
-
-.asm_445be
-	scf
-	ret
-; 445c0
-
-Function445c0: ; 445c0 (11:45c0)
-	ld a, BANK(s0_a834)
-	call GetSRAMBank
-	ld a, b
-	push bc
-	ld hl, s0_a835
-	ld bc, SCRATCHMON_STRUCT_LENGTH
-	call AddNTimes
-	push hl
-	add hl, bc
-	pop de
-	pop bc
-.loop
-	ld a, b
-	cp $9
-	jr z, .done
-	push bc
-	ld bc, SCRATCHMON_STRUCT_LENGTH
-	call CopyBytes
-	pop bc
-	inc b
-	jr .loop
-.done
-	ld h, d
-	ld l, e
-	xor a
-	ld bc, SCRATCHMON_STRUCT_LENGTH
-	call ByteFill
-	ld hl, s0_a834
-	dec [hl]
-	jp CloseSRAM
-; 445f4 (11:45f4)
-
-ReadMailMessage: ; 445f4
-	ld a, b
-	ld hl, s0_a835
-	ld bc, SCRATCHMON_STRUCT_LENGTH
-	call AddNTimes
-	ld d, h
-	ld e, l
-	callba ReadAnyMail
-	ret
-
-Function44607: ; 44607
-	ld a, BANK(s0_a834)
-	call GetSRAMBank
-	push bc
-	ld a, b
-	ld bc, SCRATCHMON_STRUCT_LENGTH
-	ld hl, s0_a835
-	call AddNTimes
-	push hl
-	ld a, [CurPartyMon]
-	ld bc, SCRATCHMON_STRUCT_LENGTH
-	ld hl, sPartyScratch1
-	call AddNTimes
-	ld d, h
-	ld e, l
-	pop hl
-	push hl
-	ld bc, SCRATCHMON_STRUCT_LENGTH
-	call CopyBytes
-	pop hl
-	ld de, PARTYMON_STRUCT_LENGTH - MON_MOVES
-	add hl, de
-	ld d, [hl]
-	ld a, [CurPartyMon]
-	ld hl, PartyMon1Item
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
-	ld [hl], d
-	call CloseSRAM
-	pop bc
-	jp Function445c0
-; 44648 (11:4648)
-
-Function44648: ; 44648
-	ld a, BANK(s0_a834)
-	call GetSRAMBank
-	ld a, [s0_a834]
-	ld c, a
-	jp CloseSRAM
-; 44654
-
-Function44654:: ; 44654
-	push bc
-	push de
-	callba SelectMonFromParty
-	ld a, $2
-	jr c, .asm_446c6
-	ld a, [CurPartyMon]
-	ld hl, PartyMon1Item
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
-	ld d, [hl]
-	callba ItemIsMail
-	ld a, $3
-	jr nc, .asm_446c6
-	ld a, BANK(sPartyScratch1)
-	call GetSRAMBank
-	ld a, [CurPartyMon]
-	ld hl, sPartyScratch1
-	ld bc, SCRATCHMON_STRUCT_LENGTH
-	call AddNTimes
-	ld d, h
-	ld e, l
-	pop hl
-	pop bc
-
-	ld a, $20
-	ld [wd265], a
-.asm_44691
-	ld a, [de]
-	ld c, a
-	ld a, b
-	call GetFarByte
-	cp "@"
-	jr z, .asm_446ab
-	cp c
-	ld a, $0
-	jr nz, .asm_446c1
-	inc hl
-	inc de
-	ld a, [wd265]
-	dec a
-	ld [wd265], a
-	jr nz, .asm_44691
-
-.asm_446ab
-	callba CheckCurPartyMonFainted
-	ld a, $4
-	jr c, .asm_446c1
-	xor a
-	ld [wPokemonWithdrawDepositParameter], a
-	callba Functione039
-	ld a, $1
-
-.asm_446c1
-	call CloseSRAM
-	jr .asm_446c8
-
-.asm_446c6
-	pop de
-	pop bc
-
-.asm_446c8
-	ld [ScriptVar], a
-	ret
-; 446cc
+INCLUDE "engine/mail.asm"
 
 GivePokeItem:: ; 446cc
 	ld a, [PartyCount]
@@ -18162,14 +17972,14 @@ GivePokeItem:: ; 446cc
 	pop af
 	push bc
 	push af
-	ld hl, sPartyScratch1
+	ld hl, sPartyMail
 	ld bc, $2f
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld hl, wd002
 	ld bc, $21
-	ld a, BANK(sPartyScratch1)
+	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	call CopyBytes
 	pop af
@@ -18199,43 +18009,43 @@ GivePokeItem:: ; 446cc
 ; 44725
 
 
-BackupScratchmons: ; 44725
-	ld a, BANK(sPartyScratch1)
+BackupPartyMonMail: ; 44725
+	ld a, BANK(sPartyMail)
 	call GetSRAMBank
-	ld hl, sPartyScratch1
-	ld de, sPartyScratch2
-	ld bc, 6 * SCRATCHMON_STRUCT_LENGTH
+	ld hl, sPartyMail
+	ld de, sPartyMailBackup
+	ld bc, 6 * MAIL_STRUCT_LENGTH
 	call CopyBytes
-	ld hl, s0_a834
-	ld de, s0_aa0b
-	ld bc, 1 + 10 * SCRATCHMON_STRUCT_LENGTH
+	ld hl, sMailboxCount
+	ld de, sMailboxCountBackup
+	ld bc, 1 + 10 * MAIL_STRUCT_LENGTH
 	call CopyBytes
 	jp CloseSRAM
 ; 44745
 
-RestoreScratchmons: ; 44745 (11:4745)
-	ld a, BANK(sPartyScratch1)
+RestorePartyMonMail: ; 44745 (11:4745)
+	ld a, BANK(sPartyMail)
 	call GetSRAMBank
-	ld hl, sPartyScratch2
-	ld de, sPartyScratch1
-	ld bc, 6 * SCRATCHMON_STRUCT_LENGTH
+	ld hl, sPartyMailBackup
+	ld de, sPartyMail
+	ld bc, 6 * MAIL_STRUCT_LENGTH
 	call CopyBytes
-	ld hl, s0_aa0b
-	ld de, s0_a834
-	ld bc, 1 + 10 * SCRATCHMON_STRUCT_LENGTH
+	ld hl, sMailboxCountBackup
+	ld de, sMailboxCount
+	ld bc, 1 + 10 * MAIL_STRUCT_LENGTH
 	call CopyBytes
 	jp CloseSRAM
 
-DeleteScratchmons: ; 44765 (11:4765)
-	ld a, BANK(sPartyScratch1)
+DeletePartyMonMail: ; 44765 (11:4765)
+	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	xor a
-	ld hl, sPartyScratch1
-	ld bc, 6 * SCRATCHMON_STRUCT_LENGTH
+	ld hl, sPartyMail
+	ld bc, 6 * MAIL_STRUCT_LENGTH
 	call ByteFill
 	xor a
-	ld hl, s0_a834
-	ld bc, 1 + 10 * SCRATCHMON_STRUCT_LENGTH
+	ld hl, sMailboxCount
+	ld bc, 1 + 10 * MAIL_STRUCT_LENGTH
 	call ByteFill
 	jp CloseSRAM
 ; 44781 (11:4781)
@@ -18284,9 +18094,9 @@ _KrisMailBoxMenu: ; 0x447a0
 InitMail: ; 0x447b9
 ; initialize wd0f2 and beyond with incrementing values, one per mail
 ; set z if no mail
-	ld a, BANK(s0_a834)
+	ld a, BANK(sMailboxCount)
 	call GetSRAMBank
-	ld a, [s0_a834]
+	ld a, [sMailboxCount]
 	call CloseSRAM
 	ld hl, wd0f2
 	ld [hli], a
@@ -18312,10 +18122,10 @@ InitMail: ; 0x447b9
 
 Function447da: ; 0x447da
 	dec a
-	ld hl, s0_a835 + MON_HP - 1
-	ld bc, SCRATCHMON_STRUCT_LENGTH
+	ld hl, sMailbox + MON_HP - 1
+	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
-	ld a, BANK(s0_a834)
+	ld a, BANK(sMailboxCount)
 	call GetSRAMBank
 	ld de, StringBuffer2
 	push de
@@ -18396,7 +18206,7 @@ Function4484a: ; 0x4484a
 	dec a
 	ld b, a
 	call ReadMailMessage
-	jp Function2b3c
+	jp ReturnToCallingMenu
 ; 0x44877
 
 .PutInPack ; 0x44877
@@ -18439,10 +18249,10 @@ Function4484a: ; 0x4484a
 
 .Function448bb: ; 0x448bb
 	push af
-	ld a, BANK(s0_a834)
+	ld a, BANK(sMailboxCount)
 	call GetSRAMBank
 	pop af
-	ld hl, s0_a835 + $2e
+	ld hl, sMailbox + $2e
 	ld bc, $2f
 	call AddNTimes
 	ld a, [hl]
@@ -18455,7 +18265,7 @@ Function4484a: ; 0x4484a
 	xor a
 	ld [PartyMenuActionText], a
 	call ClearBGPalettes
-.asm_448dc
+.try_again
 	callba Function5004f
 	callba Function50405
 	callba Function503e0
@@ -18465,25 +18275,25 @@ Function4484a: ; 0x4484a
 	call SetPalettes
 	call DelayFrame
 	callba PartyMenuSelect
-	jr c, .asm_44939
+	jr c, .exit
 	ld a, [CurPartySpecies]
 	cp EGG
-	jr z, .asm_44923
+	jr z, .egg
 	ld a, MON_ITEM
 	call GetPartyParamLocation
 	ld a, [hl]
 	and a
-	jr z, .asm_4492b
+	jr z, .attach_mail
 	ld hl, .HoldingMailText
 	call PrintText
-	jr .asm_448dc
+	jr .try_again
 
-.asm_44923
+.egg
 	ld hl, .EggText
 	call PrintText
-	jr .asm_448dc
+	jr .try_again
 
-.asm_4492b
+.attach_mail
 	ld a, [MenuSelection]
 	dec a
 	ld b, a
@@ -18491,8 +18301,8 @@ Function4484a: ; 0x4484a
 	ld hl, .MailMovedText
 	call PrintText
 
-.asm_44939
-	jp Function2b3c
+.exit
+	jp ReturnToCallingMenu
 ; 0x4493c
 
 .HoldingMailText ; 0x4493c
@@ -18720,7 +18530,7 @@ Special_MoveTutor: ; 4925b
 	ld [ScriptVar], a
 
 .asm_492a1
-	call Function2b3c
+	call ReturnToCallingMenu
 	ret
 ; 492a5
 
@@ -19924,7 +19734,7 @@ Function4a94e: ; 4a94e
 	jr c, .asm_4a974
 
 .asm_4a990
-	call Function2b3c
+	call ReturnToCallingMenu
 	ld hl, wd002
 	ld a, -1
 	ld bc, 3
@@ -19937,7 +19747,7 @@ Function4a94e: ; 4a94e
 	jr c, .asm_4a9b0
 	call Function4a9d7
 	jr c, .asm_4a974
-	call Function2b3c
+	call ReturnToCallingMenu
 	and a
 
 .asm_4a9af
@@ -24838,27 +24648,27 @@ _SwitchPartyMons:
 	pop de
 	ld hl, wd002
 	call .CopyName
-	ld hl, sPartyScratch1
+	ld hl, sPartyMail
 	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
-	ld bc, SCRATCHMON_STRUCT_LENGTH
+	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	push hl
 	ld de, wd002
-	ld bc, SCRATCHMON_STRUCT_LENGTH
-	ld a, BANK(sPartyScratch1)
+	ld bc, MAIL_STRUCT_LENGTH
+	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	call CopyBytes
-	ld hl, sPartyScratch1
+	ld hl, sPartyMail
 	ld a, [Buffer3]
-	ld bc, SCRATCHMON_STRUCT_LENGTH
+	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	pop de
 	push hl
-	ld bc, SCRATCHMON_STRUCT_LENGTH
+	ld bc, MAIL_STRUCT_LENGTH
 	call CopyBytes
 	pop de
 	ld hl, wd002
-	ld bc, SCRATCHMON_STRUCT_LENGTH
+	ld bc, MAIL_STRUCT_LENGTH
 	call CopyBytes
 	call CloseSRAM
 	pop bc
@@ -31402,8 +31212,8 @@ INCLUDE "engine/radio.asm"
 
 ReadPartyMonMail: ; b9229
 	ld a, [CurPartyMon]
-	ld hl, sPartyScratch1
-	ld bc, SCRATCHMON_STRUCT_LENGTH
+	ld hl, sPartyMail
+	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -31416,7 +31226,7 @@ ReadAnyMail: ; b9237
 	call LoadFontsExtra
 	pop de
 	push de
-	ld a, BANK(sPartyScratch1)
+	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	callba Function1de5c8
 	call CloseSRAM
@@ -41337,24 +41147,25 @@ INCBIN "gfx/misc/pokegear.2bpp.lz"
 ; 1de5c8
 
 Function1de5c8: ; 1de5c8
+; reads mail message at de
 	ld c, $0
 	ld hl, $29
 	add hl, de
 	ld a, [hli]
-	cp $84
+	cp "E"
 	ret nz
 	ld a, [hli]
 	inc c
-	cp $85
+	cp "F"
 	ret z
 	inc c
-	cp $86
+	cp "G"
 	ret z
 	inc c
-	cp $88
+	cp "I"
 	ret z
 	inc c
-	cp $92
+	cp "S"
 	ret z
 	ld c, $0
 	ret

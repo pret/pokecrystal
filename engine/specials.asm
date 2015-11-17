@@ -216,7 +216,7 @@ Special_GameCornerPrizeMonCheckDex: ; c230
 	ld a, [ScriptVar]
 	ld [wd265], a
 	callba Functionfb877
-	call Function2b4d
+	call ExitAllMenus
 	ret
 ; c252
 
@@ -288,21 +288,21 @@ SpecialNameRater: ; c2b9
 Special_TownMap: ; c2c0
 	call FadeToMenu
 	callba _TownMap
-	call Function2b4d
+	call ExitAllMenus
 	ret
 ; c2cd
 
 Special_UnownPrinter: ; c2cd
 	call FadeToMenu
 	callba UnownPrinter
-	call Function2b4d
+	call ExitAllMenus
 	ret
 ; c2da
 
 Special_DisplayLinkRecord: ; c2da
 	call FadeToMenu
 	callba DisplayLinkRecord
-	call Function2b4d
+	call ExitAllMenus
 	ret
 ; c2e7
 
@@ -383,7 +383,7 @@ Special_UnownPuzzle: ; c360
 	callba Functione1190
 	ld a, [wd0ec]
 	ld [ScriptVar], a
-	call Function2b4d
+	call ExitAllMenus
 	ret
 ; c373
 
@@ -425,7 +425,7 @@ Special_StartGameCornerGame: ; c39a
 	ld l, a
 	pop af
 	rst FarCall
-	call Function2b4d
+	call ExitAllMenus
 	ret
 ; c3ae
 
@@ -629,14 +629,14 @@ Special_FadeOutMusic: ; c48f
 Diploma: ; c49f
 	call FadeToMenu
 	callba _Diploma
-	call Function2b4d
+	call ExitAllMenus
 	ret
 ; c4ac
 
 PrintDiploma: ; c4ac
 	call FadeToMenu
 	callba _PrintDiploma
-	call Function2b4d
+	call ExitAllMenus
 	ret
 ; c4b9
 

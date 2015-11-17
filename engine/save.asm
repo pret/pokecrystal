@@ -1,4 +1,4 @@
-Function14a1a: ; 14a1a
+SaveMenu: ; 14a1a
 	call LoadStandardMenuDataHeader
 	callba Function5e9a
 	call SpeechTextBox
@@ -30,7 +30,7 @@ Function14a58: ; 14a58
 	call Function14e13
 	call SaveBackupPokemonData
 	call SaveBackupChecksum
-	callba BackupScratchmons
+	callba BackupPartyMonMail
 	callba Function1406a
 	call ClearWRAMStateAfterSave
 	ret
@@ -106,7 +106,7 @@ Function14ad5: ; 14ad5
 	call SaveBackupPlayerData
 	call SaveBackupPokemonData
 	call SaveBackupChecksum
-	callba BackupScratchmons
+	callba BackupPartyMonMail
 	callba BackupMobileEventIndex
 	callba Function1406a
 	call LoadBox
@@ -284,7 +284,7 @@ SaveGameData_: ; 14c10
 	call SaveBackupPokemonData
 	call SaveBackupChecksum
 	call UpdateStackTop
-	callba BackupScratchmons
+	callba BackupPartyMonMail
 	callba BackupMobileEventIndex
 	callba Function1406a
 	ld a, BANK(s1_be45)
@@ -630,7 +630,7 @@ TryLoadSaveFile: ; 14ea5 (5:4ea5)
 	call LoadPlayerData
 	call LoadPokemonData
 	call LoadBox
-	callba RestoreScratchmons
+	callba RestorePartyMonMail
 	callba RestoreMobileEventIndex
 	callba Function1050ea
 	call ValidateBackupSave
@@ -647,7 +647,7 @@ TryLoadSaveFile: ; 14ea5 (5:4ea5)
 	call LoadBackupPlayerData
 	call LoadBackupPokemonData
 	call LoadBox
-	callba RestoreScratchmons
+	callba RestorePartyMonMail
 	callba RestoreMobileEventIndex
 	callba Function1050ea
 	call ValidateSave

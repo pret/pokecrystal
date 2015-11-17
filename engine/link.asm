@@ -834,9 +834,9 @@ Function28595: ; 28595
 	ld de, wc9f4
 	ld a, $20
 	call Function28682
-	ld a, BANK(sPartyScratch1)
+	ld a, BANK(sPartyMail)
 	call GetSRAMBank
-	ld hl, sPartyScratch1
+	ld hl, sPartyMail
 	ld b, PARTY_LENGTH
 .loop2
 	push bc
@@ -847,7 +847,7 @@ Function28595: ; 28595
 	pop bc
 	dec b
 	jr nz, .loop2
-	ld hl, sPartyScratch1
+	ld hl, sPartyMail
 	ld b, PARTY_LENGTH
 .loop3
 	push bc
@@ -859,7 +859,7 @@ Function28595: ; 28595
 	dec b
 	jr nz, .loop3
 	ld b, PARTY_LENGTH
-	ld de, sPartyScratch1
+	ld de, sPartyMail
 	ld hl, wc9f9
 .loop4
 	push bc
@@ -883,7 +883,7 @@ Function28595: ; 28595
 
 .next
 	pop de
-	ld hl, SCRATCHMON_STRUCT_LENGTH
+	ld hl, MAIL_STRUCT_LENGTH
 	add hl, de
 	ld d, h
 	ld e, l
@@ -1744,15 +1744,15 @@ Function28b87: ; 28b87
 	jp Function28ea3
 
 .asm_28c7b
-	ld hl, sPartyScratch1
+	ld hl, sPartyMail
 	ld a, [wd002]
-	ld bc, SCRATCHMON_STRUCT_LENGTH
+	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
-	ld a, BANK(sPartyScratch1)
+	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	ld d, h
 	ld e, l
-	ld bc, SCRATCHMON_STRUCT_LENGTH
+	ld bc, MAIL_STRUCT_LENGTH
 	add hl, bc
 	ld a, [wd002]
 	ld c, a
@@ -1762,24 +1762,24 @@ Function28b87: ; 28b87
 	cp $6
 	jr z, .asm_28ca6
 	push bc
-	ld bc, SCRATCHMON_STRUCT_LENGTH
+	ld bc, MAIL_STRUCT_LENGTH
 	call CopyBytes
 	pop bc
 	jr .asm_28c96
 
 .asm_28ca6
-	ld hl, sPartyScratch1
+	ld hl, sPartyMail
 	ld a, [PartyCount]
 	dec a
-	ld bc, SCRATCHMON_STRUCT_LENGTH
+	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	push hl
 	ld hl, wc9f4
 	ld a, [wd003]
-	ld bc, SCRATCHMON_STRUCT_LENGTH
+	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	pop de
-	ld bc, SCRATCHMON_STRUCT_LENGTH
+	ld bc, MAIL_STRUCT_LENGTH
 	call CopyBytes
 	call CloseSRAM
 	ld hl, PlayerName

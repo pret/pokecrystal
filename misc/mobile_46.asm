@@ -5842,7 +5842,7 @@ Function11ac3e: ; 11ac3e
 	call FadeToMenu
 	callab InefficientlyClear121BytesAtwc300
 	call Function11ac51
-	call Function2b3c
+	call ReturnToCallingMenu
 	ret
 ; 11ac51
 
@@ -7697,7 +7697,7 @@ Function11b7e5: ; 11b7e5
 	ld [de], a
 
 .asm_11b872
-	call Function2b3c
+	call ReturnToCallingMenu
 	call RestartMapMusic
 	ret
 ; 11b879
@@ -7919,7 +7919,7 @@ Function11b98f: ; 11b98f
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
-	ld hl, sPartyScratch1
+	ld hl, sPartyMail
 	ld bc, PARTYMON_STRUCT_LENGTH - 1
 	ld a, [wcd2a]
 .loop5

@@ -422,7 +422,7 @@ StartMenu_Quit: ; 128f0
 ; Retire from the bug catching contest.
 
 	ld hl, .EndTheContestText
-	call Function12cf5
+	call StartMenuYesNo
 	jr c, .DontEndContest
 	ld a, BANK(BugCatchingContestReturnToGateScript)
 	ld hl, BugCatchingContestReturnToGateScript
@@ -444,7 +444,7 @@ StartMenu_Save: ; 1290b
 ; Save the game.
 
 	call BufferScreen
-	callba Function14a1a
+	callba SaveMenu
 	jr nc, .asm_12919
 	ld a, 0
 	ret
@@ -468,8 +468,8 @@ StartMenu_Status: ; 12928
 ; Player status.
 
 	call FadeToMenu
-	callba Function25105
-	call Function2b3c
+	callba TrainerCard
+	call ReturnToCallingMenu
 	ld a, 0
 	ret
 ; 12937
@@ -483,7 +483,7 @@ StartMenu_Pokedex: ; 12937
 
 	call FadeToMenu
 	callba Pokedex
-	call Function2b3c
+	call ReturnToCallingMenu
 
 .asm_12949
 	ld a, 0
@@ -495,7 +495,7 @@ StartMenu_Pokegear: ; 1294c
 
 	call FadeToMenu
 	callba PokeGear
-	call Function2b3c
+	call ReturnToCallingMenu
 	ld a, 0
 	ret
 ; 1295b
@@ -507,12 +507,13 @@ StartMenu_Pack: ; 1295b
 	callba Pack
 	ld a, [wcf66]
 	and a
-	jr nz, .asm_12970
-	call Function2b3c
+	jr nz, .used_item
+	call ReturnToCallingMenu
 	ld a, 0
 	ret
-.asm_12970
-	call Function2b4d
+
+.used_item
+	call ExitAllMenus
 	ld a, 4
 	ret
 ; 12976
@@ -556,19 +557,19 @@ StartMenu_Pokemon: ; 12976
 	jr z, .quit
 
 .return
-	call Function2b3c
+	call ReturnToCallingMenu
 	ld a, 0
 	ret
 
 .quit
 	ld a, b
 	push af
-	call Function2b4d
+	call ExitAllMenus
 	pop af
 	ret
 ; 129d5
 
-Function129d5: ; 129d5
+HasNoItems: ; 129d5
 	ld a, [NumItems]
 	and a
 	ret nz
@@ -580,15 +581,15 @@ Function129d5: ; 129d5
 	ret nz
 	ld hl, TMsHMs
 	ld b, NUM_TMS + NUM_HMS
-.asm_129e9
+.loop
 	ld a, [hli]
 	and a
-	jr nz, .asm_129f2
+	jr nz, .done
 	dec b
-	jr nz, .asm_129e9
+	jr nz, .loop
 	scf
 	ret
-.asm_129f2
+.done
 	and a
 	ret
 
@@ -882,7 +883,7 @@ Function12bd9: ; 12bd9
 	jr .asm_12c08
 
 .asm_12bf4
-	call Function12cea
+	call GiveItemToPokemon
 	ld hl, MadeHoldText
 	call MenuTextBoxBackup
 	call GivePartyItem
@@ -897,17 +898,17 @@ Function12bd9: ; 12bd9
 	ld [wd265], a
 	call GetItemName
 	ld hl, SwitchAlreadyHoldingText
-	call Function12cf5
+	call StartMenuYesNo
 	jr c, .asm_12c4b
 
-	call Function12cea
+	call GiveItemToPokemon
 	ld a, [wd265]
 	push af
 	ld a, [CurItem]
 	ld [wd265], a
 	pop af
 	ld [CurItem], a
-	call Function12cdf
+	call ReceiveItemFromPokemon
 	jr nc, .asm_12c3c
 
 	ld hl, TookAndMadeHoldText
@@ -920,7 +921,7 @@ Function12bd9: ; 12bd9
 .asm_12c3c
 	ld a, [wd265]
 	ld [CurItem], a
-	call Function12cdf
+	call ReceiveItemFromPokemon
 	ld hl, ItemStorageIsFullText
 	call MenuTextBoxBackup
 
@@ -953,7 +954,7 @@ TakePartyItem: ; 12c60
 	jr z, .asm_12c8c
 
 	ld [CurItem], a
-	call Function12cdf
+	call ReceiveItemFromPokemon
 	jr nc, .asm_12c94
 
 	callba ItemIsMail
@@ -1045,7 +1046,7 @@ GetPartyItemLocation: ; 12cd7
 ; 12cdf
 
 
-Function12cdf: ; 12cdf
+ReceiveItemFromPokemon: ; 12cdf
 	ld a, $1
 	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
@@ -1053,13 +1054,13 @@ Function12cdf: ; 12cdf
 ; 12cea
 
 
-Function12cea: ; 12cea (4:6cea)
+GiveItemToPokemon: ; 12cea (4:6cea)
 	ld a, $1
 	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
 	jp TossItem
 
-Function12cf5: ; 12cf5
+StartMenuYesNo: ; 12cf5
 	call MenuTextBox
 	call YesNoBox
 	jp ExitMenu
@@ -1071,7 +1072,7 @@ Function12cfe: ; 12cfe (4:6cfe)
 	callba Function11e75
 	ld hl, PlayerName
 	ld de, wd023
-	ld bc, $a
+	ld bc, NAME_LENGTH - 1
 	call CopyBytes
 	ld hl, PlayerID
 	ld bc, $2
@@ -1082,14 +1083,14 @@ Function12cfe: ; 12cfe (4:6cfe)
 	ld a, [CurItem]
 	ld [de], a
 	ld a, [CurPartyMon]
-	ld hl, sPartyScratch1
-	ld bc, SCRATCHMON_STRUCT_LENGTH
+	ld hl, sPartyMail
+	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld hl, wd002
-	ld bc, SCRATCHMON_STRUCT_LENGTH
-	ld a, BANK(sPartyScratch1)
+	ld bc, MAIL_STRUCT_LENGTH
+	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	call CopyBytes
 	call CloseSRAM
@@ -1127,11 +1128,11 @@ MonMailAction: ; 12d45
 
 .take
 	ld hl, .sendmailtopctext
-	call Function12cf5
+	call StartMenuYesNo
 	jr c, .RemoveMailToBag
 	ld a, [CurPartyMon]
 	ld b, a
-	callba Function4456e
+	callba SendMailToPC
 	jr c, .MailboxFull
 	ld hl, .sentmailtopctext
 	call MenuTextBoxBackup
@@ -1144,12 +1145,12 @@ MonMailAction: ; 12d45
 
 .RemoveMailToBag
 	ld hl, .mailwilllosemessagetext
-	call Function12cf5
+	call StartMenuYesNo
 	jr c, .done
 	call GetPartyItemLocation
 	ld a, [hl]
 	ld [CurItem], a
-	call Function12cdf
+	call ReceiveItemFromPokemon
 	jr nc, .BagIsFull
 	call GetPartyItemLocation
 	ld [hl], $0

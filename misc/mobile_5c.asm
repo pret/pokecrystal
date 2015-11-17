@@ -278,7 +278,7 @@ Function1704e1: ; 1704e1
 	call FadeToMenu
 	call Function17021e
 	call Function1704f1
-	call Function2b3c
+	call ReturnToCallingMenu
 	ret
 ; 1704f1
 
