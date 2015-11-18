@@ -149,7 +149,7 @@ INCBIN "gfx/misc/fast_ship.2bpp"
 ; 90d32
 
 Function90d32: ; 90d32 (24:4d32)
-	lb de, $24, $10
+	depixel 4, 2, 4, 0
 	ld a, SPRITE_ANIM_INDEX_0D
 	call _InitSpriteAnimStruct
 	ld hl, $3
@@ -762,7 +762,7 @@ Function910e8: ; 910e8
 
 Function910f9: ; 910f9 (24:50f9)
 	call Function90da8
-	lb de, $24, $54
+	depixel 4, 10, 4, 4
 	ld a, SPRITE_ANIM_INDEX_14
 	call _InitSpriteAnimStruct
 	ld hl, $3

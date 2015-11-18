@@ -3080,7 +3080,7 @@ Function29611: ; 29611
 ; 2961b
 
 Function2961b: ; 2961b
-	lb de, $54, $58
+	depixel 10, 11, 4, 0
 	ld a, $e
 	call _InitSpriteAnimStruct
 	call Function29114
@@ -3090,7 +3090,7 @@ Function2961b: ; 2961b
 ; 2962c
 
 Function2962c: ; 2962c
-	lb de, $54, $58
+	depixel 10, 11, 4, 0
 	ld a, $e
 	call _InitSpriteAnimStruct
 	ld hl, $b
@@ -3106,7 +3106,7 @@ Function2962c: ; 2962c
 ; 29649
 
 Function29649: ; 29649
-	lb de, $54, $58
+	depixel 10, 11, 4, 0
 	ld a, $f
 	call _InitSpriteAnimStruct
 	call Function29114
@@ -3120,7 +3120,7 @@ Function29649: ; 29649
 Function29660: ; 29660
 	ld a, $e4
 	call Functioncf8
-	lb de, $28, $58
+	depixel 5, 11
 	ld a, $10
 	call _InitSpriteAnimStruct
 	call Function29114

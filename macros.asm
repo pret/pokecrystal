@@ -211,3 +211,13 @@ endr
 ENDM
 
 palettes EQUS "* 8"
+
+ldpixel: MACRO
+if _NARG == 5
+	lb \1, \2 * 8 + \4, \3 * 8 + \5
+else
+	lb \1, \2 * 8, \3 * 8
+endc
+	endm
+
+depixel EQUS "ldpixel de,"

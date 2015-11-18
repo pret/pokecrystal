@@ -492,7 +492,7 @@ Function10830e: ; 10830e
 	ld c, $50
 	call DelayFrames
 	call Function108bec
-	lb de, $54, $58
+	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_20
 	call _InitSpriteAnimStruct
 	ld de, SFX_BALL_POOF
@@ -527,7 +527,7 @@ Function10839b: ; 10839b
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	lb de, $54, $58
+	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_21
 	call _InitSpriteAnimStruct
 	call Function108b45
@@ -627,7 +627,7 @@ Function10842c: ; 10842c
 	ld c, $50
 	call DelayFrames
 	call Function108c2b
-	lb de, $54, $58
+	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_20
 	call _InitSpriteAnimStruct
 	ld de, SFX_BALL_POOF
@@ -671,7 +671,7 @@ Function1084d7: ; 1084d7
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	lb de, $54, $58
+	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_21
 	call _InitSpriteAnimStruct
 	call Function108b45
@@ -740,7 +740,7 @@ Function108589: ; 108589
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	lb de, $54, $58
+	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_21
 	call _InitSpriteAnimStruct
 	call Function108b45
@@ -927,7 +927,7 @@ endr
 	ld [hSCX], a
 	cp $f8
 	jr nz, .asm_10878a
-	lb de, $54, $58
+	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_22
 	call _InitSpriteAnimStruct
 
@@ -953,7 +953,7 @@ endr
 	jr .asm_1087c4
 
 .asm_1087a9
-	lb de, $54, $58
+	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_22
 	call _InitSpriteAnimStruct
 	xor a
@@ -985,7 +985,7 @@ Function1087cf: ; 1087cf
 	call Function1082f0
 	call Function108af4
 	call Function108b5a
-	lb de, $4a, $50
+	depixel 9, 10, 2, 0
 	ld a, SPRITE_ANIM_INDEX_25
 	call _InitSpriteAnimStruct
 	ld de, SFX_FORESIGHT
@@ -994,7 +994,7 @@ Function1087cf: ; 1087cf
 	call Function1082cc
 	xor a
 	ld [wcf64], a
-	lb de, $4a, $50
+	depixel 9, 10, 2, 0
 	ld a, SPRITE_ANIM_INDEX_23
 	call _InitSpriteAnimStruct
 .asm_1087fc
@@ -1021,7 +1021,7 @@ Function108811: ; 108811
 	call PlaySFX
 	ld c, $3c
 	call Function1082cc
-	lb de, $f2, $50
+	depixel 30, 10, 2, 0
 	ld a, SPRITE_ANIM_INDEX_24
 	call _InitSpriteAnimStruct
 	call Function1082b7
@@ -1044,7 +1044,7 @@ Function108838: ; 108838
 Function10884c: ; 10884c
 	ld c, 80
 	call DelayFrames
-	lb de, $f2, $50
+	depixel 30, 10, 2, 0
 	ld a, SPRITE_ANIM_INDEX_24
 	call _InitSpriteAnimStruct
 	call Function1082b7
@@ -1068,7 +1068,7 @@ Function108863: ; 108863
 
 .asm_108879
 	callba Function8d03d
-	lb de, $4a, $50
+	depixel 9, 10, 2, 0
 	ld a, SPRITE_ANIM_INDEX_25
 	call _InitSpriteAnimStruct
 	ld de, SFX_GLASS_TING_2
@@ -1105,13 +1105,13 @@ endr
 	jr .asm_1088e7
 
 .asm_1088c5
-	lb de, $54, $58
+	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_22
 	call _InitSpriteAnimStruct
 	jr .asm_1088e7
 
 .asm_1088cf
-	lb de, $54, $58
+	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_22
 	call _InitSpriteAnimStruct
 	xor a

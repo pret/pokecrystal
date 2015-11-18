@@ -1069,7 +1069,7 @@ StartMenuYesNo: ; 12cf5
 
 Function12cfe: ; 12cfe (4:6cfe)
 	ld de, wd002
-	callba Function11e75
+	callba ComposeMailMessage
 	ld hl, PlayerName
 	ld de, wd023
 	ld bc, NAME_LENGTH - 1

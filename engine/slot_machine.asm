@@ -1037,7 +1037,7 @@ Function92d20: ; 92d20
 	call Function92fc0
 	push bc
 	push af
-	lb de, $60, $68
+	depixel 12, 13
 	ld a, SPRITE_ANIM_INDEX_06
 	call _InitSpriteAnimStruct
 	ld hl, $e
@@ -1096,7 +1096,7 @@ Function92d7e: ; 92d7e
 	add hl, bc
 	ld [hl], $0
 	push bc
-	lb de, $60, $00
+	depixel 12, 0
 	ld a, SPRITE_ANIM_INDEX_07
 	call _InitSpriteAnimStruct
 	pop bc
@@ -2063,7 +2063,7 @@ Function932fc: ; 932fc (24:72fc)
 	add hl, bc
 	dec [hl]
 	push bc
-	lb de, $60, $6c
+	depixel 12, 13, 0, 4
 	ld a, SPRITE_ANIM_INDEX_08
 	call _InitSpriteAnimStruct
 	pop bc

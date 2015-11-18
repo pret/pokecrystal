@@ -173,7 +173,7 @@ Function117f5: ; 117f5 (4:57f5)
 	ld hl, wc300
 	ld [hli], a
 	ld [hl], a
-	lb de, $24, $20
+	depixel 4, 4, 4, 0
 	ld a, SPRITE_ANIM_INDEX_0A
 	call _InitSpriteAnimStruct
 	ld hl, $1
@@ -230,7 +230,7 @@ Function11847: ; 11847 (4:5847)
 	ld b, SPRITE_ANIM_INDEX_1E
 .asm_11873
 	ld a, b
-	lb de, $24, $20
+	depixel 4, 4, 4, 0
 	call _InitSpriteAnimStruct
 	ret
 
@@ -400,10 +400,10 @@ Jumptable_11977: ; 11977 (4:5977)
 
 
 Function1197b: ; 1197b (4:597b)
-	lb de, $50, $18
+	depixel 10, 3
 	call Function1189c
 	jr nz, .asm_11985
-	ld d, $40
+	ld d, 8 * 8
 .asm_11985
 	ld a, SPRITE_ANIM_INDEX_02
 	call _InitSpriteAnimStruct

@@ -5,7 +5,7 @@ Special_CelebiShrineEvent: ; 4989a
 	xor a
 	ld [VramState], a
 	call LoadCelebiGFX
-	lb de, $07, $50
+	depixel 0, 10, 7, 0
 	ld a, SPRITE_ANIM_INDEX_2C
 	call _InitSpriteAnimStruct
 	ld hl, $3

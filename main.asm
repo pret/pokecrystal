@@ -9795,29 +9795,29 @@ InitNickname: ; e3de
 ; e3fd
 
 _BillsPC: ; e3fd
-	call Functione40a
+	call .CheckCanUsePC
 	ret c
-	call Functione41c
-	call Functione443
-	jp Functione43f
+	call .LogIn
+	call .UseBillsPC
+	jp .LogOut
 
-Functione40a: ; e40a (3:640a)
+.CheckCanUsePC: ; e40a (3:640a)
 	ld a, [PartyCount]
 	and a
 	ret nz
-	ld hl, UnknownText_0xe417
+	ld hl, .Text_GottaHavePokemon
 	call MenuTextBoxBackup
 	scf
 	ret
 ; e417 (3:6417)
 
-UnknownText_0xe417: ; 0xe417
+.Text_GottaHavePokemon: ; 0xe417
 	; You gotta have #MON to call!
 	text_jump UnknownText_0x1c1006
 	db "@"
 ; 0xe41c
 
-Functione41c: ; e41c (3:641c)
+.LogIn: ; e41c (3:641c)
 	xor a
 	ld [hBGMapMode], a
 	call LoadStandardMenuDataHeader
@@ -9826,7 +9826,7 @@ Functione41c: ; e41c (3:641c)
 	ld a, [hl]
 	push af
 	set NO_TEXT_SCROLL, [hl]
-	ld hl, UnknownText_0xe43a
+	ld hl, .Text_What
 	call PrintText
 	pop af
 	ld [Options], a
@@ -9834,17 +9834,17 @@ Functione41c: ; e41c (3:641c)
 	ret
 ; e43a (3:643a)
 
-UnknownText_0xe43a: ; 0xe43a
+.Text_What: ; 0xe43a
 	; What?
 	text_jump UnknownText_0x1c1024
 	db "@"
 ; 0xe43f
 
-Functione43f: ; e43f (3:643f)
+.LogOut: ; e43f (3:643f)
 	call ReturnToCallingMenu
 	ret
 
-Functione443: ; e443 (3:6443)
+.UseBillsPC: ; e443 (3:6443)
 	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
 	ld a, $1
@@ -9917,9 +9917,9 @@ BillsPC_SeeYa: ; e4cb
 
 BillsPC_MovePKMNMenu: ; e4cd
 	call LoadStandardMenuDataHeader
-	callba Function44781
+	callba IsAnyMonHoldingMail
 	jr nc, .no_mail
-	ld hl, UnknownText_0xe4f9
+	ld hl, .Text_MonHoldingMail
 	call PrintText
 	jr .quit
 
@@ -9936,7 +9936,7 @@ BillsPC_MovePKMNMenu: ; e4cd
 	ret
 ; e4f9
 
-UnknownText_0xe4f9: ; 0xe4f9
+.Text_MonHoldingMail: ; 0xe4f9
 	; There is a #MON holding MAIL. Please remove the MAIL.
 	text_jump UnknownText_0x1c102b
 	db "@"
@@ -9955,32 +9955,32 @@ BillsPC_DepositMenu: ; e4fe (3:64fe)
 Functione512: ; unused
 	ld a, [PartyCount]
 	and a
-	jr z, .asm_e51e
+	jr z, .no_pkmn
 	cp 2
-	jr c, .asm_e526
+	jr c, .only_one_pkmn
 	and a
 	ret
 
-.asm_e51e
-	ld hl, UnknownText_0xe52e
+.no_pkmn
+	ld hl, .Text_NoPKMN
 	call MenuTextBoxBackup
 	scf
 	ret
 
-.asm_e526
-	ld hl, UnknownText_0xe533
+.only_one_pkmn
+	ld hl, .Text_ItsYourLastPKMN
 	call MenuTextBoxBackup
 	scf
 	ret
 ; e52e
 
-UnknownText_0xe52e: ; 0xe52e
+.Text_NoPKMN: ; 0xe52e
 	; You don't have a single #MON!
 	text_jump UnknownText_0x1c1062
 	db "@"
 ; 0xe533
 
-UnknownText_0xe533: ; 0xe533
+.Text_ItsYourLastPKMN: ; 0xe533
 	; You can't deposit your last #MON!
 	text_jump UnknownText_0x1c1080
 	db "@"
@@ -10407,506 +10407,10 @@ UnknownText_0xfa06: ; 0xfa06
 SECTION "bank4", ROMX, BANK[$4]
 
 INCLUDE "engine/pack.asm"
-
 INCLUDE "engine/time.asm"
-
 INCLUDE "engine/tmhm.asm"
-
 INCLUDE "engine/namingscreen.asm"
-
-Function11e75: ; 11e75 (mail?)
-	ld hl, wc6d0
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	ld a, [hMapAnims]
-	push af
-	xor a
-	ld [hMapAnims], a
-	ld a, [hInMenu]
-	push af
-	ld a, $1
-	ld [hInMenu], a
-	call Function11e9a
-	call DelayFrame
-.asm_11e8e
-	call Function11fc0
-	jr nc, .asm_11e8e
-	pop af
-	ld [hInMenu], a
-	pop af
-	ld [hMapAnims], a
-	ret
-
-Function11e9a: ; 11e9a (4:5e9a)
-	call ClearBGPalettes
-	call DisableLCD
-	call Function11c51
-	ld de, VTiles0 tile $00
-	ld hl, GFX_11ef4
-	ld bc, $80
-	ld a, BANK(GFX_11ef4)
-	call FarCopyBytes
-	xor a
-	ld hl, wc300
-	ld [hli], a
-	ld [hl], a
-	lb de, $18, $10
-	ld a, SPRITE_ANIM_INDEX_00
-	call _InitSpriteAnimStruct
-	ld hl, $2
-	add hl, bc
-	ld [hl], $0
-	call Function11f84
-	ld a, $e3
-	ld [rLCDC], a
-	call Function11f74
-	ld b, SCGB_08
-	call GetSGBLayout
-	call WaitBGMap
-	call WaitTop
-	ld a, %11100100
-	call DmgToCgbBGPals
-	ld a, %11100100
-	call Functioncf8
-	call Function11be0
-	ld hl, wc6d0
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld hl, $10
-	add hl, de
-	ld [hl], $4e
-	ret
-; 11ef4 (4:5ef4)
-
-GFX_11ef4: ; 11ef4
-INCBIN "gfx/unknown/011ef4.2bpp"
-; 11f74
-
-Function11f74: ; 11f74 (4:5f74)
-	ld a, $21
-	ld [wc6d3], a
-	ret
-; 11f7a (4:5f7a)
-
-String_11f7a: ; dummied out
-	db "メールを かいてね@"
-; 11f84
-
-Function11f84: ; 11f84 (4:5f84)
-	call WaitTop
-	hlcoord 0, 0
-	ld bc, 6 * SCREEN_WIDTH
-	ld a, $60
-	call ByteFill
-	hlcoord 0, 6
-	ld bc, 12 * SCREEN_WIDTH
-	ld a, " "
-	call ByteFill
-	hlcoord 1, 1
-	lb bc, 4, SCREEN_WIDTH - 2
-	call ClearBox
-	ld de, String_121dd
-
-Function11fa9: ; 11fa9 (4:5fa9)
-	hlcoord 1, 7
-	ld b, 6
-.next
-	ld c, SCREEN_WIDTH - 1
-.loop
-	ld a, [de]
-	ld [hli], a
-	inc de
-	dec c
-	jr nz, .loop
-	push de
-	ld de, 21
-	add hl, de
-	pop de
-	dec b
-	jr nz, .next
-	ret
-
-Function11fc0: ; 11fc0 (4:5fc0)
-	call JoyTextDelay
-	ld a, [wJumptableIndex]
-	bit 7, a
-	jr nz, .asm_11fdb
-	call Function12008
-	callba Function8cf62
-	call Function11feb
-	call DelayFrame
-	and a
-	ret
-.asm_11fdb
-	callab Function8cf53
-	call ClearSprites
-	xor a
-	ld [hSCX], a
-	ld [hSCY], a
-	scf
-	ret
-
-Function11feb: ; 11feb (4:5feb)
-	xor a
-	ld [hBGMapMode], a
-	hlcoord 1, 1
-	lb bc, 4, 18
-	call ClearBox
-	ld hl, wc6d0
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	hlcoord 2, 2
-	call PlaceString
-	ld a, $1
-	ld [hBGMapMode], a
-	ret
-
-Function12008: ; 12008 (4:6008)
-	ld a, [wJumptableIndex]
-	ld e, a
-	ld d, 0
-	ld hl, Jumptable_12017
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
-
-Jumptable_12017: ; 12017 (4:6017)
-	dw Function1201b
-	dw Function1203a
-
-
-Function1201b: ; 1201b (4:601b)
-	lb de, $48, $10
-	ld a, SPRITE_ANIM_INDEX_09
-	call _InitSpriteAnimStruct
-	ld a, c
-	ld [wc6d5], a
-	ld a, b
-	ld [wc6d6], a
-	ld hl, $1
-	add hl, bc
-	ld a, [hl]
-	ld hl, $e
-	add hl, bc
-	ld [hl], a
-	ld hl, wJumptableIndex
-	inc [hl]
-	ret
-
-Function1203a: ; 1203a (4:603a)
-	ld hl, hJoyPressed ; $ffa7
-	ld a, [hl]
-	and A_BUTTON
-	jr nz, .a
-	ld a, [hl]
-	and B_BUTTON
-	jr nz, .b
-	ld a, [hl]
-	and START
-	jr nz, .start
-	ld a, [hl]
-	and SELECT
-	jr nz, .select
-	ret
-
-.a
-	call Function12185
-	cp $1
-	jr z, .select
-	cp $2
-	jr z, .b
-	cp $3
-	jr z, .asm_120a1
-	call Function11c11
-	call Function121ac
-	jr c, .start
-	ld hl, wc6d2
-	ld a, [hl]
-	cp $10
-	ret nz
-	inc [hl]
-	call Function11bd0
-	ld [hl], $f2
-	dec hl
-	ld [hl], $4e
-	ret
-
-.start
-	ld hl, wc6d5
-	ld c, [hl]
-	inc hl
-	ld b, [hl]
-	ld hl, $c
-	add hl, bc
-	ld [hl], $9
-	ld hl, $d
-	add hl, bc
-	ld [hl], $5
-	ret
-
-.b
-	call Function11bbc
-	ld hl, wc6d2
-	ld a, [hl]
-	cp $10
-	ret nz
-	dec [hl]
-	call Function11bd0
-	ld [hl], $f2
-	inc hl
-	ld [hl], $4e
-	ret
-
-.asm_120a1
-	call Function11bf7
-	ld hl, wJumptableIndex
-	set 7, [hl]
-	ret
-
-.select
-	ld hl, wcf64
-	ld a, [hl]
-	xor $1
-	ld [hl], a
-	jr nz, .asm_120ba
-	ld de, String_121dd
-	call Function11fa9
-	ret
-.asm_120ba
-	ld de, String_1224f
-	call Function11fa9
-	ret
-
-Function120c1: ; 120c1 (4:60c1)
-	call Function1210c
-	ld hl, $d
-	add hl, bc
-	ld a, [hl]
-	ld e, a
-	swap e
-	ld hl, $7
-	add hl, bc
-	ld [hl], e
-	cp $5
-	ld de, Unknown_120f8
-	ld a, $0
-	jr nz, .asm_120df
-	ld de, Unknown_12102
-	ld a, $1
-.asm_120df
-	ld hl, $e
-	add hl, bc
-	add [hl]
-	ld hl, $1
-	add hl, bc
-	ld [hl], a
-	ld hl, $c
-	add hl, bc
-	ld l, [hl]
-	ld h, $0
-	add hl, de
-	ld a, [hl]
-	ld hl, $6
-	add hl, bc
-	ld [hl], a
-	ret
-; 120f8 (4:60f8)
-
-Unknown_120f8: ; 120f8
-	db $00, $10, $20, $30, $40, $50, $60, $70, $80, $90
-Unknown_12102: ; 12102
-	db $00, $00, $00, $30, $30, $30, $60, $60, $60, $60
-; 1210c
-
-Function1210c: ; 1210c (4:610c)
-	ld hl, hJoyLast
-	ld a, [hl]
-	and D_UP
-	jr nz, .up
-	ld a, [hl]
-	and D_DOWN
-	jr nz, .down
-	ld a, [hl]
-	and D_LEFT
-	jr nz, .left
-	ld a, [hl]
-	and D_RIGHT
-	jr nz, .right
-	ret
-.right
-	call Function1218b
-	and a
-	jr nz, .asm_12138
-	ld hl, $c
-	add hl, bc
-	ld a, [hl]
-	cp $9
-	jr nc, .asm_12135
-	inc [hl]
-	ret
-.asm_12135
-	ld [hl], $0
-	ret
-.asm_12138
-	cp $3
-	jr nz, .asm_1213d
-	xor a
-.asm_1213d
-	ld e, a
-	add a
-	add e
-	ld hl, $c
-	add hl, bc
-	ld [hl], a
-	ret
-.left
-	call Function1218b
-	and a
-	jr nz, .asm_12159
-	ld hl, $c
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_12156
-	dec [hl]
-	ret
-.asm_12156
-	ld [hl], $9
-	ret
-.asm_12159
-	cp $1
-	jr nz, .asm_1215f
-	ld a, $4
-.asm_1215f
-rept 2
-	dec a
-endr
-	ld e, a
-	add a
-	add e
-	ld hl, $c
-	add hl, bc
-	ld [hl], a
-	ret
-.down
-	ld hl, $d
-	add hl, bc
-	ld a, [hl]
-	cp $5
-	jr nc, .asm_12175
-	inc [hl]
-	ret
-.asm_12175
-	ld [hl], $0
-	ret
-.up
-	ld hl, $d
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_12182
-	dec [hl]
-	ret
-.asm_12182
-	ld [hl], $5
-	ret
-
-Function12185: ; 12185 (4:6185)
-	ld hl, wc6d5
-	ld c, [hl]
-	inc hl
-	ld b, [hl]
-
-Function1218b: ; 1218b (4:618b)
-	ld hl, $d
-	add hl, bc
-	ld a, [hl]
-	cp $5
-	jr nz, .asm_121aa
-	ld hl, $c
-	add hl, bc
-	ld a, [hl]
-	cp $3
-	jr c, .asm_121a4
-	cp $6
-	jr c, .asm_121a7
-	ld a, $3
-	ret
-.asm_121a4
-	ld a, $1
-	ret
-.asm_121a7
-	ld a, $2
-	ret
-.asm_121aa
-	xor a
-	ret
-
-Function121ac: ; 121ac (4:61ac)
-	ld a, [wc6d7]
-	jp Function11b17
-; 121b2 (4:61b2)
-
-Function121b2: ; unreferenced
-	ld a, [wc6d2]
-	and a
-	ret z
-	cp $11
-	jr nz, .asm_121c3
-	push hl
-	ld hl, wc6d2
-rept 2
-	dec [hl]
-endr
-	jr .asm_121c8
-
-.asm_121c3
-	push hl
-	ld hl, wc6d2
-	dec [hl]
-
-.asm_121c8
-	call Function11bd0
-	ld c, [hl]
-	pop hl
-.asm_121cd
-	ld a, [hli]
-	cp $ff
-	jp z, Function11b27
-	cp c
-	jr z, .asm_121d9
-	inc hl
-	jr .asm_121cd
-
-.asm_121d9
-	ld a, [hl]
-	jp Function11b23
-; 121dd
-
-String_121dd: ; 122dd
-	db "A B C D E F G H I J"
-	db "K L M N O P Q R S T"
-	db "U V W X Y Z   , ? !"
-	db "1 2 3 4 5 6 7 8 9 0"
-	db "<PK> <MN> <PO> <KE> é ♂ ♀ ¥ … ×"
-	db "lower  DEL   END   "
-; 1224f
-
-String_1224f: ; 1224f
-	db "a b c d e f g h i j"
-	db "k l m n o p q r s t"
-	db "u v w x y z   . - /"
-	db "'d 'l 'm 'r 's 't 'v & ( )"
-	db "<``> <''> [ ] ' : ;      "
-	db "UPPER  DEL   END   "
-; 122c1
+INCLUDE "engine/compose_mail.asm"
 
 Script_AbortBugContest: ; 0x122c1
 	checkflag ENGINE_BUG_CONTEST_TIMER
@@ -30083,7 +29587,7 @@ Function8caed: ; 8caed
 	xor a
 	ld [VramState], a
 	call Function8cb9b
-	lb de, $54, $50
+	depixel 10, 10, 4, 0
 	ld a, SPRITE_ANIM_INDEX_0A
 	call _InitSpriteAnimStruct
 	ld hl, $3
@@ -30117,7 +29621,7 @@ Function8cb33: ; 8cb33
 	xor a
 	ld [VramState], a
 	call Function8cb9b
-	lb de, $fc, $50
+	depixel 31, 10, 4, 0
 	ld a, SPRITE_ANIM_INDEX_0A
 	call _InitSpriteAnimStruct
 	ld hl, $3
@@ -32438,7 +31942,7 @@ Functione45e8: ; e45e8
 	ld [rSVBK], a
 
 	callba Function8cf53
-	lb de, $54, $58
+	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_03
 	call _InitSpriteAnimStruct
 	ld hl, $7
@@ -33118,7 +32622,7 @@ IntroScene7: ; e4b3f (39:4b3f)
 	ld [hWY], a
 	call Functione5516
 	callba Function8cf53
-	lb de, $6c, $d8
+	depixel 13, 27, 4, 0
 	ld a, SPRITE_ANIM_INDEX_26
 	call _InitSpriteAnimStruct
 	ld a, $f0
@@ -33206,7 +32710,7 @@ IntroScene10: ; e4c4f (39:4c4f)
 	ret
 
 .pichu
-	lb de, $a9, $80
+	depixel 21, 16, 1, 0
 	ld a, SPRITE_ANIM_INDEX_27
 	call _InitSpriteAnimStruct
 	ld de, SFX_INTRO_PICHU
@@ -33214,7 +32718,7 @@ IntroScene10: ; e4c4f (39:4c4f)
 	ret
 
 .wooper
-	lb de, $b0, $30
+	depixel 22, 6
 	ld a, SPRITE_ANIM_INDEX_28
 	call _InitSpriteAnimStruct
 	ld de, SFX_INTRO_PICHU
@@ -33392,7 +32896,7 @@ IntroScene13: ; e4d6d (39:4d6d)
 	ld a, $90
 	ld [hWY], a
 	callba Function8cf53
-	lb de, $6c, $58
+	depixel 13, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_26
 	call _InitSpriteAnimStruct
 	ld de, MUSIC_CRYSTAL_OPENING
@@ -33503,10 +33007,10 @@ IntroScene15: ; e4e40 (39:4e40)
 	ld [hWY], a
 	callba Function8cf53
 	call Functione549e
-	lb de, $40, $28
+	depixel 8, 5
 	ld a, SPRITE_ANIM_INDEX_2A
 	call _InitSpriteAnimStruct
-	lb de, $60, $00
+	depixel 12, 0
 	ld a, SPRITE_ANIM_INDEX_2B
 	call _InitSpriteAnimStruct
 	xor a
@@ -33655,7 +33159,7 @@ IntroScene19: ; e4f7e (39:4f7e)
 	ld [hli], a
 	ld [hl], $7f
 	call Functione549e
-	lb de, $60, $00
+	depixel 12, 0
 	ld a, SPRITE_ANIM_INDEX_2B
 	call _InitSpriteAnimStruct
 	xor a

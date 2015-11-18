@@ -7757,14 +7757,14 @@ Jumptable_117728: ; 117728 (45:7728)
 
 Function117738: ; 117738 (45:7738)
 	callba Function171ccd
-	lb de, $30, $18
+	depixel 6, 3
 	ld a, $1d
 	call _InitSpriteAnimStruct
 	ld hl, $c
 	add hl, bc
 	ld a, $6
 	ld [hl], a
-	lb de, $48, $20
+	depixel 9, 4
 	ld a, $1d
 	call _InitSpriteAnimStruct
 	ld hl, $c

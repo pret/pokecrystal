@@ -1859,21 +1859,21 @@ Function171b42: ; 171b42 (5c:5b42)
 	jr Function171b42
 
 Function171b4b: ; 171b4b (5c:5b4b)
-	lb de, $40, $10
+	depixel 8, 2
 	ld a, SPRITE_ANIM_INDEX_1D
 	call _InitSpriteAnimStruct
 	ld hl, $c
 	add hl, bc
 	ld a, $8
 	ld [hl], a
-	lb de, $40, $98
+	depixel 8, 19
 	ld a, SPRITE_ANIM_INDEX_1D
 	call _InitSpriteAnimStruct
 	ld hl, $c
 	add hl, bc
 	ld a, $9
 	ld [hl], a
-	lb de, $8a, $70
+	depixel 17, 14, 2, 0
 	ld a, SPRITE_ANIM_INDEX_1D
 	call _InitSpriteAnimStruct
 	ld hl, $c

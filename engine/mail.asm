@@ -286,13 +286,13 @@ DeletePartyMonMail: ; 44765 (11:4765)
 ; 44781 (11:4781)
 
 
-Function44781: ; 44781
+IsAnyMonHoldingMail: ; 44781
 	ld a, [PartyCount]
 	and a
-	jr z, .asm_4479e
+	jr z, .no_mons
 	ld e, a
 	ld hl, PartyMon1Item
-.asm_4478b
+.loop
 	ld d, [hl]
 	push hl
 	push de
@@ -303,9 +303,9 @@ Function44781: ; 44781
 	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	dec e
-	jr nz, .asm_4478b
+	jr nz, .loop
 
-.asm_4479e
+.no_mons
 	and a
 	ret
 ; 447a0
@@ -327,30 +327,30 @@ _KrisMailBoxMenu: ; 0x447a0
 	db "@"
 
 InitMail: ; 0x447b9
-; initialize wd0f2 and beyond with incrementing values, one per mail
+; initialize wMailboxCount and beyond with incrementing values, one per mail
 ; set z if no mail
 	ld a, BANK(sMailboxCount)
 	call GetSRAMBank
 	ld a, [sMailboxCount]
 	call CloseSRAM
-	ld hl, wd0f2
+	ld hl, wMailboxCount
 	ld [hli], a
 	and a
 
 	jr z, .done ; if no mail, we're done
 
-	; load values in memory with incrementing values starting at wd0f2
+	; load values in memory with incrementing values starting at wMailboxCount
 	ld b, a
-	ld a, $1
+	ld a, 1
 .loop
 	ld [hli], a
 	inc a
 	dec b
 	jr nz, .loop
 .done
-	ld [hl], $ff ; terminate
+	ld [hl], -1 ; terminate
 
-	ld a, [wd0f2]
+	ld a, [wMailboxCount]
 	and a
 	ret
 ; 0x447da
@@ -385,7 +385,7 @@ MailboxPC: ; 0x44806
 	xor a
 	ld [OBPals + 8 * 6], a
 	ld a, $1
-	ld [wd0f1], a
+	ld [wCurMessageIndex], a
 .loop
 	call InitMail
 	ld hl, MenuData4494c
@@ -394,7 +394,8 @@ MailboxPC: ; 0x44806
 	ld [hBGMapMode], a
 	call InitScrollingMenu
 	call UpdateSprites
-	ld a, [wd0f1]
+
+	ld a, [wCurMessageIndex]
 	ld [wMenuCursorBuffer], a
 	ld a, [OBPals + 8 * 6]
 	ld [wd0e4], a
@@ -402,7 +403,8 @@ MailboxPC: ; 0x44806
 	ld a, [wd0e4]
 	ld [OBPals + 8 * 6], a
 	ld a, [MenuSelection2]
-	ld [wd0f1], a
+	ld [wCurMessageIndex], a
+
 	ld a, [wcf73]
 	cp $2
 	jr z, .exit
@@ -558,7 +560,7 @@ Function4484a: ; 0x4484a
 MenuData4494c: ; 0x4494c
 	db %01000000 ; flags
 	db 1, 8 ; start coords
-	db $a, $12 ; end coords
+	db 10, 18 ; end coords
 	dw .MenuData2
 	db 1 ; default option
 
@@ -566,7 +568,7 @@ MenuData4494c: ; 0x4494c
 	db %00010000 ; flags
 	db 4, 0 ; rows/columns?
 	db 1 ; horizontal spacing?
-	dbw 0,wd0f2 ; text pointer
+	dbw 0, wMailboxCount ; text pointer
 	dba Function447fb
 	dbw 0,0
 	dbw 0,0

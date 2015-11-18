@@ -615,7 +615,7 @@ endr
 	dw .nine
 	dw .ten
 	dw .eleven
-	dw .twelve
+	dw .twelve      ; blinking cursor
 	dw .thirteen
 	dw .fourteen
 	dw .fifteen

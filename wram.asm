@@ -387,18 +387,22 @@ wc313:: ds 1
 wSpriteAnimationStructs::
 
 sprite_anim_struct: MACRO
-\1Index:: ds 1
-	ds 1
-\1AnimSeqID:: ds 1
-\1TileID:: ds 1
-\1XCoord:: ds 1
-\1YCoord:: ds 1
-\1XOffset:: ds 1
-\1YOffset:: ds 1
-\1FrameTimer:: ds 1
-	ds 1
-\1FrameIndex:: ds 1
-	ds 5
+\1Index:: ds 1      ; 0
+\1Sprite01:: ds 1   ; 1
+\1AnimSeqID:: ds 1  ; 2
+\1TileID:: ds 1     ; 3
+\1XCoord:: ds 1     ; 4
+\1YCoord:: ds 1     ; 5
+\1XOffset:: ds 1    ; 6
+\1YOffset:: ds 1    ; 7
+\1FrameTimer:: ds 1 ; 8 
+\1Sprite09:: ds 1   ; 9
+\1FrameIndex:: ds 1 ; a
+\1Sprite0b:: ds 1
+\1Sprite0c:: ds 1
+\1Sprite0d:: ds 1
+\1Sprite0e:: ds 1
+\1Sprite0f:: ds 1
 ENDM
 
 ; Field  0: Index
@@ -1658,15 +1662,19 @@ VramState:: ; d0ed
 
 wBattleResult:: ds 1
 wd0ef:: ds 1
-wd0f0::
-CurMart:: ; d0f0
-	; ds 16
-	ds 1
-wd0f1:: ds 1
-wd0f2:: ds 14
+CurMart:: ds 16
+	ds CurMart - @
+wd0f0:: ds 1
+wd0f1::
+wCurMessageIndex:: ds 1
+wd0f2::
+wMailboxCount:: ds 1
+wMailboxItems:: ds MAILBOX_CAPACITY
+wMailboxEnd:: ds 1 ; d1fe
+	ds 2
 CurMartEnd::
-wd100:: ds 1
 
+wd100:: ds 1
 wd101:: ds 1
 wd102:: ds 1
 wd103:: ds 1
