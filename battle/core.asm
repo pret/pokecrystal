@@ -8745,7 +8745,7 @@ Function3f6a5: ; 3f6a5
 	call CheckPayDay
 	xor a
 	ld [wd1e9], a
-	predef Function421e6
+	predef EvolveAfterBattle
 	callba Function2ed44
 	ret
 ; 3f6d0

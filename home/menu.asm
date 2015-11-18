@@ -546,7 +546,7 @@ PlayClickSFX:: ; 2009
 	ret
 ; 0x2012
 
-Function2012:: ; 2012
+MenuTextBoxWaitButton:: ; 2012
 	call MenuTextBox
 	call CloseText
 	call ExitMenu

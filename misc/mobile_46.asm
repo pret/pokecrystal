@@ -7676,7 +7676,7 @@ Function11b7e5: ; 11b7e5
 	ld [wd1e9], a
 	ld a, $2
 	ld [wLinkMode], a
-	callba Function421d8
+	callba EvolvePokemon
 	xor a
 	ld [wLinkMode], a
 	callba Function14a58

@@ -1664,6 +1664,7 @@ wd0e4:: ds 4
 wQueuedScriptBank:: ds 1
 wQueuedScriptAddr:: ds 2
 wd0eb:: ds 1
+wFieldMoveSucceeded::
 wd0ec:: ds 1
 
 VramState:: ; d0ed

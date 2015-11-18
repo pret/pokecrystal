@@ -330,7 +330,7 @@ Function90e3f: ; 90e3f
 .kanto
 	ld e, 1
 .ok
-	callba Function91ae1
+	callba PokegearMap
 	ld a, $7
 	ld bc, $12
 	hlcoord 1, 2
@@ -1919,7 +1919,8 @@ endr
 .kanto
 	jp LoadStation_PlacesAndPeople
 ; 91ae1
-Function91ae1: ; 91ae1
+
+PokegearMap: ; 91ae1
 	ld a, e
 	and a
 	jr nz, .kanto

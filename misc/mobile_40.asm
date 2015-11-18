@@ -6465,7 +6465,7 @@ Function102b32: ; 102b32
 	ld [CurPartyMon], a
 	ld a, $1
 	ld [wd1e9], a
-	callba Function421d8
+	callba EvolvePokemon
 	call Function102d9a
 	call Function102dd3
 	call Function102dec
@@ -6769,7 +6769,7 @@ Function102d48: ; 102d48
 	ld hl, PartyMon1DVs
 	call AddNTimes
 	predef GetUnownLetter
-	callba Functionfba18
+	callba UpdateUnownDex
 	ld a, [wdef4]
 	and a
 	jr nz, .asm_102d98

@@ -219,7 +219,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 
 	push de
 
-	callba Function4dbb8
+	callba SetEggMonCaughtData
 	callba MobileFn_10608d
 	ld a, [CurPartyMon]
 	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)

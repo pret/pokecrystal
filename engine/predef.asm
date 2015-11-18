@@ -58,7 +58,7 @@ PredefPointers:: ; 856b
 	add_predef GetMonFrontpic
 	add_predef LearnLevelMoves
 	add_predef FillMoves
-	add_predef Function421e6
+	add_predef EvolveAfterBattle
 	add_predef Function28f63
 	add_predef Function28f24
 	add_predef CopyPkmnToTempMon
@@ -97,7 +97,7 @@ PredefPointers:: ; 856b
 	add_predef DecompressPredef ; $40
 	add_predef CheckTypeMatchup
 	add_predef ConvertMon_1to2
-	add_predef Functionfb877
+	add_predef NewPokedexEntry
 	add_predef AnimateMon_Slow_Normal
 	add_predef PlaceStatusString
 	add_predef LoadMonAnimation

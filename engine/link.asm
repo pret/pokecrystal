@@ -1920,7 +1920,7 @@ Function28b87: ; 28b87
 	ld a, [PartyCount]
 	dec a
 	ld [CurPartyMon], a
-	callab Function421d8
+	callab EvolvePokemon
 	call ClearScreen
 	call Function28ef8
 	call Function28eff

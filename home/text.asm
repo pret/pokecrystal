@@ -714,7 +714,7 @@ FarString:: ; 13d4
 	ret
 ; 13e0
 
-Function13e0:: ; 13e0
+PokeFluteTerminatorCharacter:: ; 13e0
 	ld hl, .stop
 	ret
 

@@ -664,7 +664,7 @@ UnknownText_0x12a5b: ; 0x12a5b
 
 CantUseItem: ; 12a60
 	ld hl, CantUseItemText
-	call Function2012
+	call MenuTextBoxWaitButton
 	ret
 ; 12a67
 
@@ -1241,14 +1241,14 @@ OpenPartyStats: ; 12e00
 
 MonMenu_Cut: ; 12e1b
 	callba CutFunction
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	cp $1
-	jr nz, .asm_12e2d
+	jr nz, .Fail
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12e2d
+.Fail
 	ld a, $3
 	ret
 ; 12e30
@@ -1256,160 +1256,161 @@ MonMenu_Cut: ; 12e1b
 
 MonMenu_Fly: ; 12e30
 	callba FlyFunction
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	cp $2
-	jr z, .asm_12e4c
+	jr z, .Fail
 	cp $0
-	jr z, .asm_12e4f
+	jr z, .Error
 	callba MobileFn_1060b5
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12e4c
+.Fail
 	ld a, $3
 	ret
 
-.asm_12e4f
+.Error
 	ld a, $0
 	ret
 
-.asm_12e52
+.Unused
 	ld a, $1
 	ret
 ; 12e55
 
 MonMenu_Flash: ; 12e55
 	callba Functionc8ac
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	cp $1
-	jr nz, .asm_12e67
+	jr nz, .Fail
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12e67
+.Fail
 	ld a, $3
 	ret
 ; 12e6a
 
 MonMenu_Strength: ; 12e6a
 	callba StrengthFunction
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	cp $1
-	jr nz, .asm_12e7c
+	jr nz, .Fail
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12e7c
+.Fail
 	ld a, $3
 	ret
 ; 12e7f
 
 MonMenu_Whirlpool: ; 12e7f
 	callba WhirlpoolFunction
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	cp $1
-	jr nz, .asm_12e91
+	jr nz, .Fail
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12e91
+.Fail
 	ld a, $3
 	ret
 ; 12e94
 
 MonMenu_Waterfall: ; 12e94
 	callba Functioncade
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	cp $1
-	jr nz, .asm_12ea6
+	jr nz, .Fail
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12ea6
+.Fail
 	ld a, $3
 	ret
 ; 12ea9
 
 MonMenu_Teleport: ; 12ea9
 	callba TeleportFunction
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	and a
-	jr z, .asm_12eba
+	jr z, .Fail
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12eba
+.Fail
 	ld a, $3
 	ret
 ; 12ebd
 
 MonMenu_Surf: ; 12ebd
 	callba SurfFunction
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	and a
-	jr z, .asm_12ece
+	jr z, .Fail
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12ece
+.Fail
 	ld a, $3
 	ret
 ; 12ed1
 
 MonMenu_Dig: ; 12ed1
 	callba DigFunction
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	cp $1
-	jr nz, .asm_12ee3
+	jr nz, .Fail
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12ee3
+.Fail
 	ld a, $3
 	ret
 ; 12ee6
 
 MonMenu_Softboiled_MilkDrink: ; 12ee6
-	call Function12f05
-	jr nc, .asm_12ef3
-	callba Functionf3df
-	jr .asm_12ef9
+	call .CheckMonHasEnoughHP
+	jr nc, .NotEnoughHP
+	callba Softboiled_MilkDrinkFunction
+	jr .finish
 
-.asm_12ef3
-	ld hl, UnknownText_0x12f00
+.NotEnoughHP
+	ld hl, .Text_NotEnoughHP
 	call PrintText
 
-.asm_12ef9
+.finish
 	xor a
 	ld [PartyMenuActionText], a
 	ld a, $3
 	ret
 ; 12f00
 
-UnknownText_0x12f00: ; 0x12f00
+.Text_NotEnoughHP: ; 0x12f00
 	; Not enough HP!
 	text_jump UnknownText_0x1c1ce3
 	db "@"
 ; 0x12f05
 
-Function12f05: ; 12f05
+.CheckMonHasEnoughHP: ; 12f05
+; Need to have at least (MaxHP / 5) HP left.
 	ld a, MON_MAXHP
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld [hDividend + 0], a
 	ld a, [hl]
 	ld [hDividend + 1], a
-	ld a, $5
+	ld a, 5
 	ld [hDivisor], a
-	ld b, $2
+	ld b, 2
 	call Divide
 	ld a, MON_HP + 1
 	call GetPartyParamLocation
@@ -1423,28 +1424,28 @@ Function12f05: ; 12f05
 
 MonMenu_Headbutt: ; 12f26
 	callba HeadbuttFunction
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	cp $1
-	jr nz, .asm_12f38
+	jr nz, .Fail
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12f38
+.Fail
 	ld a, $3
 	ret
 ; 12f3b
 
 MonMenu_RockSmash: ; 12f3b
 	callba RockSmashFunction
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	cp $1
-	jr nz, .asm_12f4d
+	jr nz, .Fail
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12f4d
+.Fail
 	ld a, $3
 	ret
 ; 12f50

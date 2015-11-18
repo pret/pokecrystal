@@ -839,92 +839,92 @@ YouHaveNoPKMNString: ; 0x50556
 	db "You have no <PK><MN>!@"
 
 
-Function50566: ; 50566
+PrintPartyMenuActionText: ; 50566
 	ld a, [CurPartyMon]
 	ld hl, PartyMonNicknames
 	call GetNick
 	ld a, [PartyMenuActionText]
 	and $f
-	ld hl, Unknown_5057b
-	call Function505c1
+	ld hl, .MenuActionTexts
+	call .PrintText
 	ret
 ; 5057b
 
-Unknown_5057b: ; 5057b
-	dw UnknownText_0x50594
-	dw UnknownText_0x5059e
-	dw UnknownText_0x505a3
-	dw UnknownText_0x505a8
-	dw UnknownText_0x50599
-	dw UnknownText_0x5058f
-	dw UnknownText_0x505ad
-	dw UnknownText_0x505b2
-	dw UnknownText_0x505b7
-	dw UnknownText_0x505bc
+.MenuActionTexts: ; 5057b
+	dw .Text_CuredOfPoison
+	dw .Text_BurnWasHealed
+	dw .Text_Defrosted
+	dw .Text_WokeUp
+	dw .Text_RidOfParalysis
+	dw .Text_RecoveredSomeHP
+	dw .Text_HealthReturned
+	dw .Text_Revitalized
+	dw .Text_GrewToLevel
+	dw .Text_CameToItsSenses
 ; 5058f
 
-UnknownText_0x5058f: ; 0x5058f
+.Text_RecoveredSomeHP: ; 0x5058f
 	; recovered @ HP!
 	text_jump UnknownText_0x1bc0a2
 	db "@"
 ; 0x50594
 
-UnknownText_0x50594: ; 0x50594
+.Text_CuredOfPoison: ; 0x50594
 	; 's cured of poison.
 	text_jump UnknownText_0x1bc0bb
 	db "@"
 ; 0x50599
 
-UnknownText_0x50599: ; 0x50599
+.Text_RidOfParalysis: ; 0x50599
 	; 's rid of paralysis.
 	text_jump UnknownText_0x1bc0d2
 	db "@"
 ; 0x5059e
 
-UnknownText_0x5059e: ; 0x5059e
+.Text_BurnWasHealed: ; 0x5059e
 	; 's burn was healed.
 	text_jump UnknownText_0x1bc0ea
 	db "@"
 ; 0x505a3
 
-UnknownText_0x505a3: ; 0x505a3
+.Text_Defrosted: ; 0x505a3
 	; was defrosted.
 	text_jump UnknownText_0x1bc101
 	db "@"
 ; 0x505a8
 
-UnknownText_0x505a8: ; 0x505a8
+.Text_WokeUp: ; 0x505a8
 	; woke up.
 	text_jump UnknownText_0x1bc115
 	db "@"
 ; 0x505ad
 
-UnknownText_0x505ad: ; 0x505ad
+.Text_HealthReturned: ; 0x505ad
 	; 's health returned.
 	text_jump UnknownText_0x1bc123
 	db "@"
 ; 0x505b2
 
-UnknownText_0x505b2: ; 0x505b2
+.Text_Revitalized: ; 0x505b2
 	; is revitalized.
 	text_jump UnknownText_0x1bc13a
 	db "@"
 ; 0x505b7
 
-UnknownText_0x505b7: ; 0x505b7
+.Text_GrewToLevel: ; 0x505b7
 	; grew to level @ !@ @
 	text_jump UnknownText_0x1bc14f
 	db "@"
 ; 0x505bc
 
-UnknownText_0x505bc: ; 0x505bc
+.Text_CameToItsSenses: ; 0x505bc
 	; came to its senses.
 	text_jump UnknownText_0x1bc16e
 	db "@"
 ; 0x505c1
 
 
-Function505c1: ; 505c1
+.PrintText: ; 505c1
 	ld e, a
 	ld d, 0
 rept 2
@@ -935,7 +935,7 @@ endr
 	ld l, a
 	ld a, [Options]
 	push af
-	set 4, a
+	set NO_TEXT_SCROLL, a
 	ld [Options], a
 	call PrintText
 	pop af

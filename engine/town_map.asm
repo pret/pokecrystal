@@ -147,7 +147,7 @@ Function91a04: ; 91a04
 	ld e, $1
 
 .okay
-	callba Function91ae1
+	callba PokegearMap
 	ld a, $7
 	ld bc, 6
 	hlcoord 1, 0

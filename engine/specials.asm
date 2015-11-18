@@ -215,7 +215,7 @@ Special_GameCornerPrizeMonCheckDex: ; c230
 	call FadeToMenu
 	ld a, [ScriptVar]
 	ld [wd265], a
-	callba Functionfb877
+	callba NewPokedexEntry
 	call ExitAllMenus
 	ret
 ; c252

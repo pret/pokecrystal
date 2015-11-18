@@ -303,7 +303,7 @@ Function17d0f3: ; 17d0f3
 	ld [wd1e9], a
 	ld a, $2
 	ld [wLinkMode], a
-	callba Function421d8
+	callba EvolvePokemon
 	xor a
 	ld [wLinkMode], a
 	callba Function14a58
@@ -415,7 +415,7 @@ Function17d1f1: ; 17d1f1
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	predef GetUnownLetter
-	callab Functionfba18
+	callab UpdateUnownDex
 	ld a, [wdef4]
 	and a
 	jr nz, .asm_17d223
@@ -2362,7 +2362,7 @@ Function17ded9: ; 17ded9
 	push hl
 	push bc
 	predef TryAddMonToParty
-	callba Function4db49
+	callba SetCaughtData
 	pop bc
 	pop hl
 	bit 1, b
@@ -2400,7 +2400,7 @@ Function17ded9: ; 17ded9
 	ld a, [hli]
 	ld b, a
 	push hl
-	callba SetPartymonCaughtData
+	callba SetGiftPartyMonCaughtData
 	pop hl
 	pop bc
 	jr .asm_17df5e
@@ -2558,7 +2558,7 @@ Function17e026: ; 17e026
 	push hl
 	callba LoadEnemyMon
 	callba SentPkmnIntoBox
-	callba Function4db83
+	callba SetBoxMonCaughtData
 	pop hl
 	pop bc
 	ld a, BANK(sBoxMonNicknames)
@@ -2587,7 +2587,7 @@ Function17e026: ; 17e026
 	ld b, a
 	push hl
 	call CloseSRAM
-	callba SetBoxMonCaughtData
+	callba SetGiftBoxMonCaughtData
 	ld a, $1
 	call GetSRAMBank
 	pop hl
