@@ -7965,7 +7965,7 @@ Function10378c: ; 10378c
 
 .asm_10379c
 	push bc
-	callba Function14ab2
+	callba Link_SaveGame
 	pop bc
 	jr c, .asm_1037b5
 	ld a, $1

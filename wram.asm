@@ -1418,7 +1418,7 @@ Options:: ; cfcc
 ; bit 7: battle scene off/on
 	ds 1
 
-wcfcd:: ds 1
+wSaveFileExists:: ds 1
 
 TextBoxFrame:: ; cfce
 ; bits 0-2: textbox frame 0-7

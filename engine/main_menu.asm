@@ -150,7 +150,7 @@ Function49da4: ; 49da4
 	nop
 	nop
 	nop
-	ld a, [wcfcd]
+	ld a, [wSaveFileExists]
 	and a
 	jr nz, .next
 	ld a, $0
@@ -220,7 +220,7 @@ Function49de4: ; 49de4
 ; 49e09
 
 Function49e09: ; 49e09
-	ld a, [wcfcd]
+	ld a, [wSaveFileExists]
 	and a
 	ret z
 	xor a
@@ -256,7 +256,7 @@ Function49e27: ; 49e27
 
 
 Function49e3d: ; 49e3d
-	ld a, [wcfcd]
+	ld a, [wSaveFileExists]
 	and a
 	ret z
 	call Function6e3
@@ -566,7 +566,7 @@ Function4a0c2: ; 4a0c2 (12:60c2)
 	pop af
 	and a
 	jr nz, .asm_4a0f9
-	callba Function1509a
+	callba _SaveData
 .asm_4a0f9
 	ld c, 5
 	call DelayFrames

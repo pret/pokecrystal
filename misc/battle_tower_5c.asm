@@ -409,10 +409,10 @@ CopyBTTrainer_FromBT_OT_TowBT_OTTemp: ; 1704a2
 	pop af
 	ld [rSVBK], a
 
-	ld a, BANK(s1_be45)
+	ld a, BANK(sSaveType)
 	call GetSRAMBank
 	ld a, $2
-	ld [s1_be45], a
+	ld [sSaveType], a
 	ld hl, sNrOfBeatenBattleTowerTrainers
 	inc [hl]
 	call CloseSRAM

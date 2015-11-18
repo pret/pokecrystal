@@ -5,10 +5,10 @@ AskTimer:: ; 591
 	push af
 	ld a, [hMobile]
 	and a
-	jr z, .asm_59a
+	jr z, .not_mobile
 	call Timer
 
-.asm_59a
+.not_mobile
 	pop af
 	reti
 ; 59c
@@ -190,7 +190,7 @@ FixTime:: ; 61d
 Function658:: ; 658
 	xor a
 	ld [StringBuffer2], a
-	ld a, $0
+	ld a, $0 ; useless
 	ld [StringBuffer2 + 3], a
 	jr Function677
 
@@ -202,7 +202,7 @@ Function663:: ; 663
 	ld [StringBuffer2 + 2], a
 	ld a, [hSeconds]
 	ld [StringBuffer2 + 3], a
-	jr Function677
+	jr Function677 ; useless
 
 Function677:: ; 677
 	callba Function140ed
@@ -211,13 +211,13 @@ Function677:: ; 677
 
 
 
-Function67e:: ; 67e
-	call Function685
+PanicResetClock:: ; 67e
+	call .ClearhRTC
 	call SetClock
 	ret
 ; 685
 
-Function685:: ; 685
+.ClearhRTC ; 685
 	xor a
 	ld [hRTCSeconds], a
 	ld [hRTCMinutes], a

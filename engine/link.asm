@@ -3969,7 +3969,7 @@ Function29e53: ; 29e53
 Special_TryQuickSave: ; 29e66
 	ld a, [wd265]
 	push af
-	callba Function14ab2
+	callba Link_SaveGame
 	ld a, $1
 	jr nc, .asm_29e75
 	xor a

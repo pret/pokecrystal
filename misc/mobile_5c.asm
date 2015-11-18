@@ -652,18 +652,18 @@ Function1706ee: ; 1706ee (5c:46ee)
 	ret
 
 Function17071b: ; 17071b (5c:471b)
-	ld a, BANK(s1_be45)
+	ld a, BANK(sSaveType)
 	call GetSRAMBank
 	ld a, $3
-	ld [s1_be45], a
+	ld [sSaveType], a
 	call CloseSRAM
 	ret
 
 Function170729: ; 170729 (5c:4729)
-	ld a, BANK(s1_be45)
+	ld a, BANK(sSaveType)
 	call GetSRAMBank
 	ld a, $4
-	ld [s1_be45], a
+	ld [sSaveType], a
 	call CloseSRAM
 	ret
 
@@ -704,8 +704,8 @@ Function17075f: ; 17075f (5c:475f)
 	ret
 
 Function170778: ; 170778 (5c:4778)
-	ld hl, s1_be45
-	ld a, BANK(s1_be45)
+	ld hl, sSaveType
+	ld a, BANK(sSaveType)
 	call GetSRAMBank
 	ld a, [hl]
 	ld [ScriptVar], a
@@ -728,10 +728,10 @@ Function170799: ; 170799 (5c:4799)
 Function17079d: ; 17079d (5c:479d)
 	ld c, $0
 asm_17079f: ; 17079f (5c:479f)
-	ld a, BANK(s1_be45)
+	ld a, BANK(sSaveType)
 	call GetSRAMBank
 	ld a, c
-	ld [s1_be45], a
+	ld [sSaveType], a
 	call CloseSRAM
 	ret
 
@@ -868,7 +868,7 @@ Function170881: ; 170881 (5c:4881)
 	ret
 
 Function17089a: ; 17089a
-	ld a, [wcfcd]
+	ld a, [wSaveFileExists]
 	and a
 	jr z, .asm_1708ad
 	callba Function14bcb

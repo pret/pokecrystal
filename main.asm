@@ -494,7 +494,7 @@ Function5df0: ; 5df0
 	call DelayFrames
 	ld c, $1
 	callba Function4802f
-	callba Function1509a
+	callba _SaveData
 	ld a, $8
 	ld [MusicFade], a
 	ld a, MUSIC_NONE % $100
@@ -1466,7 +1466,7 @@ CopyrightString: ; 63fd
 ; 642e
 
 GameInit:: ; 642e
-	callba Function14f1c
+	callba TryLoadSaveData
 	call ResetTextRelatedRAM
 	call ClearBGPalettes
 	call ClearTileMap
@@ -9924,7 +9924,7 @@ BillsPC_MovePKMNMenu: ; e4cd
 	jr .quit
 
 .no_mail
-	callba Function14b34
+	callba StartMovePkmnWOMail_SaveGame
 	jr c, .quit
 	callba _MovePKMNWithoutMail
 	call ReturnToMapFromSubmenu
@@ -11219,7 +11219,7 @@ Unknown_1404e: ; Unreferenced
 ; 14056
 
 
-Function14056: ; 14056
+StageRTCTimeForSave: ; 14056
 	call UpdateTime
 	ld hl, wRTC
 	ld a, [CurDay]
@@ -11233,7 +11233,7 @@ Function14056: ; 14056
 	ret
 ; 1406a
 
-Function1406a: ; 1406a
+SaveRTC: ; 1406a
 	ld a, $a
 	ld [MBC3SRamEnable], a
 	call LatchClock
@@ -14969,12 +14969,12 @@ Function2c642: ; 2c642 (b:4642)
 	call Function2c6ac
 	ld [de], a
 	inc de
-	ld a, BANK(s0_abe4)
+	ld a, BANK(sBackupMysteryGiftItem)
 	call GetSRAMBank
-	ld a, [s0_abe4]
+	ld a, [sBackupMysteryGiftItem]
 	ld [de], a
 	inc de
-	ld a, [s0_abe4 + 1]
+	ld a, [sBackupMysteryGiftItem + 1]
 	ld [de], a
 	ld a, $14
 	ld [wca00], a
@@ -20677,7 +20677,7 @@ EmptyAllSRAMBanks: ; 4cf1f
 ; 4cf45
 
 
-Function4cf45: ; 4cf45 (13:4f45)
+SaveMenu_LoadDETile: ; 4cf45 (13:4f45)
 	ld a, [hCGB]
 	and a
 	jp z, WaitBGMap
@@ -38369,7 +38369,7 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	ld c, a
 	callba MysteryGiftGetItemHeldEffect
 	ld a, c
-	ld [s0_abe4], a
+	ld [sBackupMysteryGiftItem], a
 	ld [wNamedObjectIndexBuffer], a
 	call CloseSRAM
 	call GetItemName
@@ -39434,10 +39434,10 @@ Function1050c8: ; 1050c8
 ; 1050d9
 
 
-Function1050d9: ; 1050d9
+BackupMysteryGift: ; 1050d9
 	call GetMysteryGiftBank
 	ld hl, sMysteryGiftItem
-	ld de, s0_abe4
+	ld de, sBackupMysteryGiftItem
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -39447,9 +39447,9 @@ Function1050d9: ; 1050d9
 ; 1050ea
 
 
-Function1050ea: ; 1050ea (41:50ea)
+RestoreMysteryGift: ; 1050ea (41:50ea)
 	call GetMysteryGiftBank
-	ld hl, s0_abe4
+	ld hl, sBackupMysteryGiftItem
 	ld de, sMysteryGiftItem
 	ld a, [hli]
 	ld [de], a
@@ -39470,7 +39470,7 @@ Function1050fb: ; 1050fb (41:50fb)
 
 
 GetMysteryGiftBank: ; 105106
-	ld a, BANK(s0_abe4)
+	ld a, BANK(sBackupMysteryGiftItem)
 	jp GetSRAMBank
 ; 10510b
 

@@ -15,15 +15,16 @@ mailmsg: MACRO
 	ds 3
 \1MailType:: ds 1
 endm
-
+; a600
 sPartyMail::
-sPartyMon1Mail:: mailmsg sPartyMon1Mail
-sPartyMon2Mail:: mailmsg sPartyMon2Mail
-sPartyMon3Mail:: mailmsg sPartyMon3Mail
-sPartyMon4Mail:: mailmsg sPartyMon4Mail
-sPartyMon5Mail:: mailmsg sPartyMon5Mail
-sPartyMon6Mail:: mailmsg sPartyMon6Mail
+sPartyMon1Mail::       mailmsg sPartyMon1Mail
+sPartyMon2Mail::       mailmsg sPartyMon2Mail
+sPartyMon3Mail::       mailmsg sPartyMon3Mail
+sPartyMon4Mail::       mailmsg sPartyMon4Mail
+sPartyMon5Mail::       mailmsg sPartyMon5Mail
+sPartyMon6Mail::       mailmsg sPartyMon6Mail
 
+; a71a
 sPartyMailBackup::
 sPartyMon1MailBackup:: mailmsg sPartyMon1MailBackup
 sPartyMon2MailBackup:: mailmsg sPartyMon2MailBackup
@@ -32,35 +33,38 @@ sPartyMon4MailBackup:: mailmsg sPartyMon4MailBackup
 sPartyMon5MailBackup:: mailmsg sPartyMon5MailBackup
 sPartyMon6MailBackup:: mailmsg sPartyMon6MailBackup
 
+; a834
 sMailboxCount:: ds 1
 sMailbox::
-sMailbox1:: mailmsg sMailbox1
-sMailbox2:: mailmsg sMailbox2
-sMailbox3:: mailmsg sMailbox3
-sMailbox4:: mailmsg sMailbox4
-sMailbox5:: mailmsg sMailbox5
-sMailbox6:: mailmsg sMailbox6
-sMailbox7:: mailmsg sMailbox7
-sMailbox8:: mailmsg sMailbox8
-sMailbox9:: mailmsg sMailbox9
-sMailbox10:: mailmsg sMailbox10
+sMailbox1::            mailmsg sMailbox1
+sMailbox2::            mailmsg sMailbox2
+sMailbox3::            mailmsg sMailbox3
+sMailbox4::            mailmsg sMailbox4
+sMailbox5::            mailmsg sMailbox5
+sMailbox6::            mailmsg sMailbox6
+sMailbox7::            mailmsg sMailbox7
+sMailbox8::            mailmsg sMailbox8
+sMailbox9::            mailmsg sMailbox9
+sMailbox10::           mailmsg sMailbox10
 
+; aa0b
 sMailboxCountBackup:: ds 1
 sMailboxBackup::
-sMailbox1Backup:: mailmsg sMailbox1Backup
-sMailbox2Backup:: mailmsg sMailbox2Backup
-sMailbox3Backup:: mailmsg sMailbox3Backup
-sMailbox4Backup:: mailmsg sMailbox4Backup
-sMailbox5Backup:: mailmsg sMailbox5Backup
-sMailbox6Backup:: mailmsg sMailbox6Backup
-sMailbox7Backup:: mailmsg sMailbox7Backup
-sMailbox8Backup:: mailmsg sMailbox8Backup
-sMailbox9Backup:: mailmsg sMailbox9Backup
-sMailbox10Backup:: mailmsg sMailbox10Backup
+sMailbox1Backup::      mailmsg sMailbox1Backup
+sMailbox2Backup::      mailmsg sMailbox2Backup
+sMailbox3Backup::      mailmsg sMailbox3Backup
+sMailbox4Backup::      mailmsg sMailbox4Backup
+sMailbox5Backup::      mailmsg sMailbox5Backup
+sMailbox6Backup::      mailmsg sMailbox6Backup
+sMailbox7Backup::      mailmsg sMailbox7Backup
+sMailbox8Backup::      mailmsg sMailbox8Backup
+sMailbox9Backup::      mailmsg sMailbox9Backup
+sMailbox10Backup::     mailmsg sMailbox10Backup
 
+; abe2
 sMysteryGiftItem:: ds 1
 s0_abe3:: ds 1
-s0_abe4:: ds 1
+sBackupMysteryGiftItem:: ds 1
 s0_abe5:: ds 1
 s0_abe6:: ds 10
 s0_abf0:: ds 10
@@ -71,7 +75,7 @@ sMysteryGiftTrainerHouseFlag:: ds 1
 s0_abfe:: ds 12
 sMysteryGiftTrainer:: ds (1 + 1 + NUM_MOVES) * PARTY_LENGTH + 1
 	ds 1
-s0_abe4End::
+sBackupMysteryGiftItemEnd::
 
 	ds $30
 
@@ -145,7 +149,9 @@ sMobileEventIndex:: ds 1
 sCrystalData::
 	ds wCrystalDataEnd - wCrystalData
 sMobileEventIndexBackup:: ds 1
-s1_be45:: ds 1
+sSaveType:: ds 1
+; 0: normal
+; 2: battle tower
 
 ; data of the BattleTower must be in SRAM because you can save and leave between battles
 sBattleTower:: ; be46

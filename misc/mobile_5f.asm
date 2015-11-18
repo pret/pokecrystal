@@ -3111,7 +3111,7 @@ Function17e3ac: ; 17e3ac
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	callba Function14e13
+	callba SaveChecksum
 	pop af
 	ld [rSVBK], a
 	ret
