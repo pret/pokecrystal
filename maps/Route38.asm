@@ -311,7 +311,7 @@ MapRoute38Signpost1Script:
 	jumptext UnknownText_0x1a2324
 
 FruitTreeScript_0x1a1f33:
-	fruittree $3
+	fruittree FRUITTREE_ROUTE_38
 
 Bird_keeperTobySeenText:
 	text "Fly high into the"

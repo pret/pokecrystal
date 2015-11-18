@@ -11329,39 +11329,39 @@ Function140ed:: ; 140ed
 	ld a, [StringBuffer2 + 3]
 	sub [hl]
 	dec hl
-	jr nc, .asm_14102
+	jr nc, .okay_secs
 	add 60
-.asm_14102
+.okay_secs
 	ld [de], a
 	dec de
 
 	ld a, [StringBuffer2 + 2]
 	sbc [hl]
 	dec hl
-	jr nc, .asm_1410d
+	jr nc, .okay_mins
 	add 60
-.asm_1410d
+.okay_mins
 	ld [de], a
 	dec de
 
 	ld a, [StringBuffer2 + 1]
 	sbc [hl]
 	dec hl
-	jr nc, .asm_14118
+	jr nc, .okay_hrs
 	add 24
-.asm_14118
+.okay_hrs
 	ld [de], a
 	dec de
 
 	ld a, [StringBuffer2]
 	sbc [hl]
 	dec hl
-	jr nc, .asm_14128
+	jr nc, .okay_days
 	add 140
 	ld c, 7
 	call SimpleDivide
 
-.asm_14128
+.okay_days
 	ld [de], a
 	ret
 ; 1412a
@@ -11371,16 +11371,16 @@ INCLUDE "engine/overworld.asm"
 Function1499a:: ; 1499a
 	ld a, [PlayerNextTile]
 	cp $60
-	jr z, .asm_149ad
+	jr z, .warp
 	cp $68
-	jr z, .asm_149ad
+	jr z, .warp
 	and $f0
 	cp $70
-	jr z, .asm_149ad
+	jr z, .warp
 	and a
 	ret
 
-.asm_149ad
+.warp
 	scf
 	ret
 ; 149af
@@ -11388,17 +11388,17 @@ Function1499a:: ; 1499a
 Function149af:: ; 149af
 	ld a, [PlayerNextTile]
 	cp $70
-	jr z, .asm_149c4
+	jr z, .not_warp
 	cp $76
-	jr z, .asm_149c4
+	jr z, .not_warp
 	cp $78
-	jr z, .asm_149c4
+	jr z, .not_warp
 	cp $7e
-	jr z, .asm_149c4
+	jr z, .not_warp
 	scf
 	ret
 
-.asm_149c4
+.not_warp
 	xor a
 	ret
 ; 149c6
@@ -17958,399 +17958,6 @@ PokedexDataPointerTable: ; 0x44378
 INCLUDE "data/pokedex/entry_pointers.asm"
 
 INCLUDE "engine/mail.asm"
-
-GivePokeItem:: ; 446cc
-	ld a, [PartyCount]
-	dec a
-	push af
-	push bc
-	ld hl, PartyMon1Item
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
-	pop bc
-	ld [hl], b
-	pop af
-	push bc
-	push af
-	ld hl, sPartyMail
-	ld bc, $2f
-	call AddNTimes
-	ld d, h
-	ld e, l
-	ld hl, wd002
-	ld bc, $21
-	ld a, BANK(sPartyMail)
-	call GetSRAMBank
-	call CopyBytes
-	pop af
-	push af
-	ld hl, PartyMonOT
-	ld bc, NAME_LENGTH
-	call AddNTimes
-	ld bc, $a
-	call CopyBytes
-	pop af
-	ld hl, PartyMon1ID
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hl]
-	ld [de], a
-	inc de
-	ld a, [CurPartySpecies]
-	ld [de], a
-	inc de
-	pop bc
-	ld a, b
-	ld [de], a
-	jp CloseSRAM
-; 44725
-
-
-BackupPartyMonMail: ; 44725
-	ld a, BANK(sPartyMail)
-	call GetSRAMBank
-	ld hl, sPartyMail
-	ld de, sPartyMailBackup
-	ld bc, 6 * MAIL_STRUCT_LENGTH
-	call CopyBytes
-	ld hl, sMailboxCount
-	ld de, sMailboxCountBackup
-	ld bc, 1 + 10 * MAIL_STRUCT_LENGTH
-	call CopyBytes
-	jp CloseSRAM
-; 44745
-
-RestorePartyMonMail: ; 44745 (11:4745)
-	ld a, BANK(sPartyMail)
-	call GetSRAMBank
-	ld hl, sPartyMailBackup
-	ld de, sPartyMail
-	ld bc, 6 * MAIL_STRUCT_LENGTH
-	call CopyBytes
-	ld hl, sMailboxCountBackup
-	ld de, sMailboxCount
-	ld bc, 1 + 10 * MAIL_STRUCT_LENGTH
-	call CopyBytes
-	jp CloseSRAM
-
-DeletePartyMonMail: ; 44765 (11:4765)
-	ld a, BANK(sPartyMail)
-	call GetSRAMBank
-	xor a
-	ld hl, sPartyMail
-	ld bc, 6 * MAIL_STRUCT_LENGTH
-	call ByteFill
-	xor a
-	ld hl, sMailboxCount
-	ld bc, 1 + 10 * MAIL_STRUCT_LENGTH
-	call ByteFill
-	jp CloseSRAM
-; 44781 (11:4781)
-
-
-Function44781: ; 44781
-	ld a, [PartyCount]
-	and a
-	jr z, .asm_4479e
-	ld e, a
-	ld hl, PartyMon1Item
-.asm_4478b
-	ld d, [hl]
-	push hl
-	push de
-	callba ItemIsMail
-	pop de
-	pop hl
-	ret c
-	ld bc, PARTYMON_STRUCT_LENGTH
-	add hl, bc
-	dec e
-	jr nz, .asm_4478b
-
-.asm_4479e
-	and a
-	ret
-; 447a0
-
-_KrisMailBoxMenu: ; 0x447a0
-	call InitMail
-	jr z, .nomail
-	call LoadStandardMenuDataHeader
-	call Function44806
-	jp WriteBackup
-
-.nomail
-	ld hl, .EmptyMailboxText
-	jp MenuTextBoxBackup
-; 0x447b4
-
-.EmptyMailboxText ; 0x447b4
-	text_jump _EmptyMailboxText
-	db "@"
-
-InitMail: ; 0x447b9
-; initialize wd0f2 and beyond with incrementing values, one per mail
-; set z if no mail
-	ld a, BANK(sMailboxCount)
-	call GetSRAMBank
-	ld a, [sMailboxCount]
-	call CloseSRAM
-	ld hl, wd0f2
-	ld [hli], a
-	and a
-
-	jr z, .done ; if no mail, we're done
-
-	; load values in memory with incrementing values starting at wd0f2
-	ld b, a
-	ld a, $1
-.loop
-	ld [hli], a
-	inc a
-	dec b
-	jr nz, .loop
-.done
-	ld [hl], $ff ; terminate
-
-	ld a, [wd0f2]
-	and a
-	ret
-; 0x447da
-
-Function447da: ; 0x447da
-	dec a
-	ld hl, sMailbox + MON_HP - 1
-	ld bc, MAIL_STRUCT_LENGTH
-	call AddNTimes
-	ld a, BANK(sMailboxCount)
-	call GetSRAMBank
-	ld de, StringBuffer2
-	push de
-	ld bc, NAME_LENGTH - 1
-	call CopyBytes
-	ld a, "@"
-	ld [de], a
-	call CloseSRAM
-	pop de
-	ret
-; 0x447fb
-
-Function447fb: ; 0x447fb
-	push de
-	ld a, [MenuSelection]
-	call Function447da
-	pop hl
-	jp PlaceString
-; 0x44806
-
-Function44806: ; 0x44806
-	xor a
-	ld [OBPals + 8 * 6], a
-	ld a, $1
-	ld [wd0f1], a
-.asm_4480f
-	call InitMail
-	ld hl, MenuData4494c
-	call CopyMenuDataHeader
-	xor a
-	ld [hBGMapMode], a
-	call InitScrollingMenu
-	call UpdateSprites
-	ld a, [wd0f1]
-	ld [wMenuCursorBuffer], a
-	ld a, [OBPals + 8 * 6]
-	ld [wd0e4], a
-	call HandleScrollingMenu
-	ld a, [wd0e4]
-	ld [OBPals + 8 * 6], a
-	ld a, [MenuSelection2]
-	ld [wd0f1], a
-	ld a, [wcf73]
-	cp $2
-	jr z, .asm_44848
-	call Function4484a
-	jr .asm_4480f
-
-.asm_44848
-	xor a
-	ret
-; 0x4484a
-
-Function4484a: ; 0x4484a
-	ld hl, MenuData44964
-	call LoadMenuDataHeader
-	call InterpretMenu2
-	call ExitMenu
-	jr c, .asm_44860
-	ld a, [MenuSelection2]
-	dec a
-	ld hl, .JumpTable
-	rst JumpTable
-
-.asm_44860
-	ret
-; 0x44861
-
-.JumpTable
-	dw .ReadMail
-	dw .PutInPack
-	dw .AttachMail
-	dw .Cancel
-
-.ReadMail ; 0x44869
-	call FadeToMenu
-	ld a, [MenuSelection]
-	dec a
-	ld b, a
-	call ReadMailMessage
-	jp ReturnToCallingMenu
-; 0x44877
-
-.PutInPack ; 0x44877
-	ld hl, .MessageLostText
-	call MenuTextBox
-	call YesNoBox
-	call ExitMenu
-	ret c
-	ld a, [MenuSelection]
-	dec a
-	call .Function448bb
-	ld a, $1
-	ld [wItemQuantityChangeBuffer], a
-	ld hl, NumItems
-	call ReceiveItem
-	jr c, .asm_4489e
-	ld hl, .PackFullText
-	jp MenuTextBoxBackup
-
-.asm_4489e
-	ld a, [MenuSelection]
-	dec a
-	ld b, a
-	call Function445c0
-	ld hl, .PutAwayText
-	jp MenuTextBoxBackup
-; 0x448ac
-
-.PutAwayText ; 0x448ac
-	text_jump ClearedMailPutAwayText
-	db "@"
-
-.PackFullText ; 0x448b1
-	text_jump MailPackFullText
-	db "@"
-
-.MessageLostText ; 0x448b6
-	text_jump MailMessageLostText
-	db "@"
-
-.Function448bb: ; 0x448bb
-	push af
-	ld a, BANK(sMailboxCount)
-	call GetSRAMBank
-	pop af
-	ld hl, sMailbox + $2e
-	ld bc, $2f
-	call AddNTimes
-	ld a, [hl]
-	ld [CurItem], a
-	jp CloseSRAM
-; 0x448d2
-
-.AttachMail ; 0x448d2
-	call FadeToMenu
-	xor a
-	ld [PartyMenuActionText], a
-	call ClearBGPalettes
-.try_again
-	callba Function5004f
-	callba Function50405
-	callba Function503e0
-	callba WritePartyMenuTilemap
-	callba PrintPartyMenuText
-	call WaitBGMap
-	call SetPalettes
-	call DelayFrame
-	callba PartyMenuSelect
-	jr c, .exit
-	ld a, [CurPartySpecies]
-	cp EGG
-	jr z, .egg
-	ld a, MON_ITEM
-	call GetPartyParamLocation
-	ld a, [hl]
-	and a
-	jr z, .attach_mail
-	ld hl, .HoldingMailText
-	call PrintText
-	jr .try_again
-
-.egg
-	ld hl, .EggText
-	call PrintText
-	jr .try_again
-
-.attach_mail
-	ld a, [MenuSelection]
-	dec a
-	ld b, a
-	call Function44607
-	ld hl, .MailMovedText
-	call PrintText
-
-.exit
-	jp ReturnToCallingMenu
-; 0x4493c
-
-.HoldingMailText ; 0x4493c
-	text_jump MailAlreadyHoldingItemText
-	db "@"
-
-.EggText ; 0x44941
-	text_jump MailEggText
-	db "@"
-
-.MailMovedText ; 0x44946
-	text_jump MailMovedFromBoxText
-	db "@"
-
-.Cancel
-	ret
-
-MenuData4494c: ; 0x4494c
-	db %01000000 ; flags
-	db 1, 8 ; start coords
-	db $a, $12 ; end coords
-	dw .MenuData2
-	db 1 ; default option
-
-.MenuData2
-	db %00010000 ; flags
-	db 4, 0 ; rows/columns?
-	db 1 ; horizontal spacing?
-	dbw 0,wd0f2 ; text pointer
-	dba Function447fb
-	dbw 0,0
-	dbw 0,0
-
-MenuData44964: ; 0x44964
-	db %01000000 ; flags
-	db 0, 0 ; start coords
-	db 9, $d ; end coords
-	dw .MenuData2
-	db 1 ; default option
-
-.MenuData2
-	db %10000000 ; flags
-	db 4 ; items
-	db "READ MAIL@"
-	db "PUT IN PACK@"
-	db "ATTACH MAIL@"
-	db "CANCEL@"
-
 
 SECTION "bank12", ROMX, BANK[$12]
 

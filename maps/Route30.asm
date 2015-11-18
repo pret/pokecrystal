@@ -229,10 +229,10 @@ ItemFragment_0x1a17f5:
 	db ANTIDOTE, 1
 
 FruitTreeScript_0x1a17f7:
-	fruittree $2
+	fruittree FRUITTREE_ROUTE_30_1
 
 FruitTreeScript_0x1a17f9:
-	fruittree $5
+	fruittree FRUITTREE_ROUTE_30_2
 
 MapRoute30SignpostItem4:
 	dwb EVENT_ROUTE_30_HIDDEN_POTION, POTION

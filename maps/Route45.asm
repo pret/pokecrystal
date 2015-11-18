@@ -282,7 +282,7 @@ MapRoute45Signpost0Script:
 	jumptext UnknownText_0x19e8fe
 
 FruitTreeScript_0x19e294:
-	fruittree $c
+	fruittree FRUITTREE_ROUTE_45
 
 ItemFragment_0x19e296:
 	db NUGGET, 1

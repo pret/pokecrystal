@@ -157,10 +157,10 @@ ItemFragment_0x1a978d:
 	db X_SPEED, 1
 
 FruitTreeScript_0x1a978f:
-	fruittree $4
+	fruittree FRUITTREE_ROUTE_46_1
 
 FruitTreeScript_0x1a9791:
-	fruittree $a
+	fruittree FRUITTREE_ROUTE_46_2
 
 HikerBaileySeenText:
 	text "Awright! I'll show"

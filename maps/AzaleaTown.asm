@@ -198,7 +198,7 @@ AzaleaTownMartSign:
 	jumpstd martsign
 
 WhiteApricornTree:
-	fruittree $14
+	fruittree FRUITTREE_AZALEA_TOWN
 
 MapAzaleaTownSignpostItem8:
 	dwb EVENT_AZALEA_TOWN_HIDDEN_FULL_HEAL, FULL_HEAL

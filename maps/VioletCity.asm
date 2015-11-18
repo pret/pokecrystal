@@ -87,7 +87,7 @@ ItemFragment_0x1a8423:
 	db RARE_CANDY, 1
 
 FruitTreeScript_0x1a8425:
-	fruittree $9
+	fruittree FRUITTREE_VIOLET_CITY
 
 MapVioletCitySignpostItem6:
 	dwb EVENT_VIOLET_CITY_HIDDEN_HYPER_POTION, HYPER_POTION

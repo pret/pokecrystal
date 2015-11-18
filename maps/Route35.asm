@@ -261,7 +261,7 @@ ItemFragment_0x19ca7c:
 	db TM_ROLLOUT, 1
 
 FruitTreeScript_0x19ca7e:
-	fruittree $b
+	fruittree FRUITTREE_ROUTE_35
 
 CamperIvanSeenText:
 	text "I've been getting"

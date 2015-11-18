@@ -137,7 +137,7 @@ MapRoute33Signpost0Script:
 	jumptext UnknownText_0x1ac279
 
 FruitTreeScript_0x1ac0ea:
-	fruittree $6
+	fruittree FRUITTREE_ROUTE_33
 
 HikerAnthony2SeenText:
 	text "I came through the"

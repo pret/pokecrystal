@@ -239,7 +239,7 @@ MapRoute26Signpost0Script:
 	jumptext UnknownText_0x1a5364
 
 FruitTreeScript_0x1a4ec2:
-	fruittree $e
+	fruittree FRUITTREE_ROUTE_26
 
 ItemFragment_0x1a4ec4:
 	db MAX_ELIXER, 1

@@ -2881,8 +2881,11 @@ w3_d100:: ; BattleTower OpponentTrainer-Data (length = 0xe0 = $a + $1 + 3*$3b + 
 BT_OTTrainer:: battle_tower_struct BT_OT
 ; d1e0	
 	ds $20
+; d200
 BT_TrainerTextIndex::
-	ds $600
+	ds $be
+w3_d2be::
+	ds $542
 
 wBTChoiceOfLvlGroup::
 w3_d800:: ds $400

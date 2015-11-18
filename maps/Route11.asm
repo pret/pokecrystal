@@ -53,7 +53,7 @@ MapRoute11Signpost0Script:
 	jumptext UnknownText_0x68238
 
 FruitTreeScript_0x68055:
-	fruittree $18
+	fruittree FRUITTREE_ROUTE_11
 
 MapRoute11SignpostItem1:
 	dwb EVENT_ROUTE_11_HIDDEN_REVIVE, REVIVE

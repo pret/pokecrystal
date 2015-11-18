@@ -67,7 +67,7 @@ MapRoute8Signpost0Script:
 	jumptext UnknownText_0x6c2b7
 
 FruitTreeScript_0x6c06c:
-	fruittree $1b
+	fruittree FRUITTREE_ROUTE_8
 
 BikerDwayneSeenText:
 	text "We're the KANTO"

@@ -57,7 +57,7 @@ ItemFragment_0x1ac304:
 	db ELIXER, 1
 
 FruitTreeScript_0x1ac306:
-	fruittree $19
+	fruittree FRUITTREE_ROUTE_2
 
 MapRoute2SignpostItem2:
 	dwb EVENT_ROUTE_2_HIDDEN_MAX_ETHER, MAX_ETHER

@@ -99,13 +99,13 @@ MapRoute37Signpost0Script:
 	jumptext UnknownText_0x1a9197
 
 FruitTreeScript_0x1a8e09:
-	fruittree $11
+	fruittree FRUITTREE_ROUTE_37_1
 
 FruitTreeScript_0x1a8e0b:
-	fruittree $12
+	fruittree FRUITTREE_ROUTE_37_2
 
 FruitTreeScript_0x1a8e0d:
-	fruittree $13
+	fruittree FRUITTREE_ROUTE_37_3
 
 MapRoute37SignpostItem1:
 	dwb EVENT_ROUTE_37_HIDDEN_ETHER, ETHER

@@ -90,6 +90,7 @@ Function1700c4: ; 1700c4
 	push af
 	ld a, $3
 	ld [rSVBK], a
+
 	call Function17042c
 	ld a, $5
 	call GetSRAMBank
@@ -244,14 +245,112 @@ Function17020c: ; 17020c
 	inc de
 	and a
 	ret z
-.asm_170210
+
+.loop
 	add hl, bc
 	dec a
-	jr nz, .asm_170210
+	jr nz, .loop
 	ret
 ; 170215
 
 INCLUDE "misc/battle_tower_5c.asm"
+
+
+Function17042c: ; 17042c
+	ld hl, w3_d2be
+	ld a, 7
+.loop
+	push af
+	push hl
+	ld c, 18
+.loop2
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	and a
+	jr z, .empty
+	cp $f
+	jr nc, .exit_inner_loop
+	push hl
+	ld hl, Unknown_170470
+	dec a
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [hl]
+	pop hl
+	cp b
+	jr c, .exit_inner_loop
+	jr z, .exit_inner_loop
+	jr .next_iteration
+
+.empty
+	ld a, b
+	cp $fc
+	jr nc, .exit_inner_loop
+
+.next_iteration
+	dec c
+	jr nz, .loop2
+	jr .dont_copy
+
+.exit_inner_loop
+	pop de
+	push de
+	ld hl, Unknown_17047e
+	ld bc, BATTLETOWER_TRAINERDATALENGTH
+	call CopyBytes
+
+.dont_copy
+	pop hl
+	ld de, $00e0
+	add hl, de
+	pop af
+	dec a
+	jr nz, .loop
+	ret
+; 170470
+
+Unknown_170470:
+	db $12, $24, $45, $45, $42, $42, $45, $42, $27, $27, $45, $27, $42, $24
+
+Unknown_17047e:
+	db $03, $04, $05, $08
+	db $03, $05, $0e, $06
+	db $03, $02, $00, $00
+	db $39, $07, $07, $04
+	db $00, $05, $04, $07
+	db $01, $05, $00, $00
+	db $0f, $05, $14, $07
+	db $05, $05, $11, $0c
+	db $0c, $06, $06, $04
+
+
+CopyBTTrainer_FromBT_OT_TowBT_OTTemp: ; 1704a2
+; copy the BattleTower-Trainer data that lies at 'BT_OTTrainer' to 'wBT_OTTemp'
+	ld a, [rSVBK]
+	push af
+	ld a, $3 ; BANK(BT_OTTrainer)
+	ld [rSVBK], a
+
+	ld hl, BT_OTTrainer ; $d100
+	ld de, wBT_OTTemp ; $c608
+	ld bc, BATTLE_TOWER_STRUCT_LENGTH
+	call CopyBytes
+
+	pop af
+	ld [rSVBK], a
+
+	ld a, BANK(sSaveType)
+	call GetSRAMBank
+	ld a, $2
+	ld [sSaveType], a
+	ld hl, sNrOfBeatenBattleTowerTrainers
+	inc [hl]
+	call CloseSRAM
+SkipBattleTowerTrainer: ; 1704c9
+	ret
+; 1704ca
 
 Function1704ca: ; 1704ca
 	ld a, [$be46]

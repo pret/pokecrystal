@@ -2341,7 +2341,7 @@ Script_checkpokeitem: ; 977b7
 	ld d, a
 	ld a, [ScriptBank]
 	ld b, a
-	callba Function44654
+	callba CheckPokeItem
 	ret
 ; 977ca
 

@@ -359,7 +359,7 @@ MapRoute36Signpost0Script:
 	jumptext UnknownText_0x1949ee
 
 FruitTreeScript_0x194247:
-	fruittree $d
+	fruittree FRUITTREE_ROUTE_36
 
 MovementData_0x194249:
 	db $56 ; movement

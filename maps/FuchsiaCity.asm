@@ -46,7 +46,7 @@ FuchsiaCityMartSign:
 	jumpstd martsign
 
 FruitTreeScript_0x194b43:
-	fruittree $1e
+	fruittree FRUITTREE_FUCHSIA_CITY
 
 UnknownText_0x194b45:
 	text "One of the ELITE"

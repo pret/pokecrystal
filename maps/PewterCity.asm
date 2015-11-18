@@ -58,10 +58,10 @@ PewterCityMartSign:
 	jumpstd martsign
 
 FruitTreeScript_0x18c03e:
-	fruittree $1c
+	fruittree FRUITTREE_PEWTER_CITY_1
 
 FruitTreeScript_0x18c040:
-	fruittree $1d
+	fruittree FRUITTREE_PEWTER_CITY_2
 
 UnknownText_0x18c042:
 	text "Have you visited"

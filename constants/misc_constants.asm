@@ -35,6 +35,7 @@ NUM_BOXES    EQU 14
 ; mail
 MAIL_STRUCT_LENGTH EQU $2f
 MAILBOX_CAPACITY   EQU 10
+MAIL_MSG_LENGTH    EQU $20
 
 ; hall of fame
 HOF_MON_LENGTH = 1 + 2 + 2 + 1 + (PKMN_NAME_LENGTH +- 1) ; species, id, dvs, level, nick

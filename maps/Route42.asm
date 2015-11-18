@@ -194,13 +194,13 @@ ItemFragment_0x1a934b:
 	db SUPER_POTION, 1
 
 FruitTreeScript_0x1a934d:
-	fruittree $15
+	fruittree FRUITTREE_ROUTE_42_1
 
 FruitTreeScript_0x1a934f:
-	fruittree $16
+	fruittree FRUITTREE_ROUTE_42_2
 
 FruitTreeScript_0x1a9351:
-	fruittree $17
+	fruittree FRUITTREE_ROUTE_42_3
 
 MapRoute42SignpostItem4:
 	dwb EVENT_ROUTE_42_HIDDEN_MAX_POTION, MAX_POTION

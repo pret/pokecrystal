@@ -165,7 +165,7 @@ MapRoute39Signpost0Script:
 	jumptext UnknownText_0x1a6036
 
 FruitTreeScript_0x1a5bf4:
-	fruittree $f
+	fruittree FRUITTREE_ROUTE_39
 
 MapRoute39SignpostItem3:
 	dwb EVENT_ROUTE_39_HIDDEN_NUGGET, NUGGET

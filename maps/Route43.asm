@@ -312,7 +312,7 @@ MapRoute43Signpost2Script:
 	jumptext UnknownText_0x19d6c9
 
 FruitTreeScript_0x19d266:
-	fruittree $8
+	fruittree FRUITTREE_ROUTE_43
 
 ItemFragment_0x19d268:
 	db MAX_ETHER, 1

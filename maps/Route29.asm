@@ -204,7 +204,7 @@ MapRoute29Signpost1Script:
 	jumptext UnknownText_0x1a15b9
 
 FruitTreeScript_0x1a1089:
-	fruittree $1
+	fruittree FRUITTREE_ROUTE_29
 
 ItemFragment_0x1a108b:
 	db POTION, 1

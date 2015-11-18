@@ -293,7 +293,7 @@ MapRoute44Signpost1Script:
 	jumptext UnknownText_0x19dfcc
 
 FruitTreeScript_0x19da40:
-	fruittree $10
+	fruittree FRUITTREE_ROUTE_44
 
 ItemFragment_0x19da42:
 	db MAX_REVIVE, 1

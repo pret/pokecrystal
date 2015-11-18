@@ -31,7 +31,7 @@ MapRoute1Signpost0Script:
 	jumptext UnknownText_0x1ac675
 
 FruitTreeScript_0x1ac581:
-	fruittree $1a
+	fruittree FRUITTREE_ROUTE_1
 
 SchoolboyDannySeenText:
 	text "If trainers meet,"
