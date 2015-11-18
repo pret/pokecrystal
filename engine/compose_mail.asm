@@ -1,4 +1,4 @@
-ComposeMailMessage: ; 11e75 (mail?)
+_ComposeMailMessage: ; 11e75 (mail?)
 	ld hl, wc6d0
 	ld [hl], e
 	inc hl

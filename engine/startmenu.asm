@@ -937,10 +937,10 @@ GivePartyItem: ; 12c4c
 	ld [hl], a
 	ld d, a
 	callba ItemIsMail
-	jr nc, .asm_12c5f
-	call Function12cfe
+	jr nc, .done
+	call ComposeMailMessage
 
-.asm_12c5f
+.done
 	ret
 ; 12c60
 
@@ -1067,15 +1067,15 @@ StartMenuYesNo: ; 12cf5
 ; 12cfe
 
 
-Function12cfe: ; 12cfe (4:6cfe)
-	ld de, wd002
-	callba ComposeMailMessage
+ComposeMailMessage: ; 12cfe (4:6cfe)
+	ld de, wTempMailMessage
+	callba _ComposeMailMessage
 	ld hl, PlayerName
-	ld de, wd023
+	ld de, wTempMailAuthor
 	ld bc, NAME_LENGTH - 1
 	call CopyBytes
 	ld hl, PlayerID
-	ld bc, $2
+	ld bc, 2
 	call CopyBytes
 	ld a, [CurPartySpecies]
 	ld [de], a
@@ -1088,7 +1088,7 @@ Function12cfe: ; 12cfe (4:6cfe)
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, wd002
+	ld hl, wTempMail
 	ld bc, MAIL_STRUCT_LENGTH
 	ld a, BANK(sPartyMail)
 	call GetSRAMBank

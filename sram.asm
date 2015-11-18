@@ -9,13 +9,6 @@ sScratch::
 
 SECTION "SRAM Bank 0", SRAM [$a600], BANK [0]
 
-mailmsg: MACRO
-\1Message:: ds MAIL_MSG_LENGTH
-\1MessageEnd:: ds 1
-\1Author:: ds NAME_LENGTH
-\1AuthorID:: ds 2
-\1MailType:: ds 1
-endm
 ; a600
 sPartyMail::
 sPartyMon1Mail::       mailmsg sPartyMon1Mail

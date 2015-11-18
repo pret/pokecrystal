@@ -145,6 +145,15 @@ battle_tower_struct: MACRO
 \1TrainerEnd::
 endm
 
+mailmsg: MACRO
+\1Message:: ds MAIL_MSG_LENGTH
+\1MessageEnd:: ds 1
+\1Author:: ds NAME_LENGTH +- 1
+\1AuthorID:: ds 2
+\1Species:: ds 1
+\1MailType:: ds 1
+endm
+
 INCLUDE "vram.asm"
 
 SECTION "Stack", WRAM0
@@ -1462,6 +1471,10 @@ SECTION "WRAM 1", WRAMX, BANK [1]
 wd000:: ds 1
 DefaultSpawnpoint::
 wd001:: ds 1
+
+wTempMail:: mailmsg wTempMail
+	ds wTempMail - @
+
 wd002::
 PhoneScriptBank::
 LuckyNumberDigit1Buffer::
