@@ -533,9 +533,9 @@ StartMenu_Pokemon: ; 12976
 	call ClearBGPalettes
 
 .menu
-	callba Function5004f
-	callba Function50405
-	callba Function503e0
+	callba LoadPartyMenuGFX
+	callba InitPartyMenuWithCancel
+	callba InitPartyMenuGFX
 
 .menunoreload
 	callba WritePartyMenuTilemap
@@ -684,7 +684,7 @@ PartyMonItemName: ; 12a6c
 
 
 CancelPokemonAction: ; 12a79
-	callba Function50405
+	callba InitPartyMenuWithCancel
 	callba Function8ea71
 	ld a, 1
 	ret
@@ -746,10 +746,10 @@ SwitchPartyMons: ; 12aec
 
 	ld a, [CurPartyMon]
 	inc a
-	ld [wd0e3], a
+	ld [wSwitchMon], a
 
 	callba Function8ea8c
-	callba Function5042d
+	callba InitPartyMenuNoCancel
 
 	ld a, 4
 	ld [PartyMenuActionText], a
@@ -758,7 +758,7 @@ SwitchPartyMons: ; 12aec
 
 	hlcoord 0, 1
 	ld bc, 20 * 2
-	ld a, [wd0e3]
+	ld a, [wSwitchMon]
 	dec a
 	call AddNTimes
 	ld [hl], "▷"
@@ -775,9 +775,9 @@ SwitchPartyMons: ; 12aec
 	xor a
 	ld [PartyMenuActionText], a
 
-	callba Function5004f
-	callba Function50405
-	callba Function503e0
+	callba LoadPartyMenuGFX
+	callba InitPartyMenuWithCancel
+	callba InitPartyMenuGFX
 
 	ld a, 1
 	ret
@@ -1476,7 +1476,7 @@ Function12f5b: ; 12f5b
 Function12f73: ; 12f73
 	call SetUpMoveScreenBG
 	ld de, Unknown_12fb2
-	call Function1bb1
+	call InitMenu3
 	call Function131ef
 	ld hl, wcfa5
 	set 6, [hl]
@@ -1505,7 +1505,7 @@ Function12f9f: ; 12f9f
 Function12fa0: ; 12fa0
 	push af
 	xor a
-	ld [wd0e3], a
+	ld [wSwitchMon], a
 	ld hl, wcfa5
 	res 6, [hl]
 	call ClearSprites
@@ -1543,7 +1543,7 @@ MoveScreenLoop: ; 12fd5
 	call SetUpMoveScreenBG
 	call Function132d3
 	ld de, Unknown_13163
-	call Function1bb1
+	call InitMenu3
 .loop
 	call Function131ef
 	ld hl, wcfa5

@@ -1357,8 +1357,8 @@ wcf98:: ds 3
 wcf9b:: ds 3
 wcf9e:: ds 3
 wMenuData2End::
+wMenuData3::
 wcfa1:: ds 1
-
 wcfa2:: ds 1
 wcfa3:: ds 1
 wcfa4:: ds 1
@@ -1366,6 +1366,7 @@ wcfa5:: ds 1 ; dynamic menu flags?
 wcfa6:: ds 1 ; dynamic menu flags?
 wcfa7:: ds 1
 wcfa8:: ds 1
+wMenuData3End::
 MenuSelection2:: ds 1
 wcfaa:: ds 1
 wcfab:: ds 1
@@ -1648,6 +1649,7 @@ CurMoveNum:: ; d0d5
 
 wd0d6:: ds 1
 wd0d7:: ds 1
+wPartyMenuCursor::
 wd0d8:: ds 1
 wItemsPocketCursor:: ds 1
 wKeyItemsPocketCursor:: ds 1
@@ -1659,6 +1661,7 @@ wd0e0:: ds 1
 wd0e1:: ds 1
 wd0e2:: ds 1
 wMoveSwapBuffer::
+wSwitchMon::
 wd0e3:: ds 1
 wd0e4:: ds 4
 wQueuedScriptBank:: ds 1
@@ -2284,10 +2287,10 @@ ENDM
 	object_struct Object10
 	object_struct Object11
 	object_struct Object12
-ObjectStructsEnd::
+ObjectStructsEnd:: ; d6de
 
-wd6de::
-	ds $40
+wCmdQueue:: ds CMDQUEUE_CAPACITY * CMDQUEUE_ENTRY_SIZE
+	ds $28
 
 MapObjects:: ; d71e
 map_object: MACRO

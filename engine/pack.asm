@@ -595,9 +595,9 @@ Function103fd: ; 103fd
 	ld a, $8
 	ld [PartyMenuActionText], a
 	call ClearBGPalettes
-	callba Function5004f
-	callba Function50405
-	callba Function503e0
+	callba LoadPartyMenuGFX
+	callba InitPartyMenuWithCancel
+	callba InitPartyMenuGFX
 .asm_10427
 	callba WritePartyMenuTilemap
 	callba PrintPartyMenuText

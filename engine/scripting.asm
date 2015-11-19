@@ -2153,7 +2153,7 @@ CopyConvertedText: ; 976c8
 Script_itemtotext: ; 976d5
 ; script command 0x41
 ; parameters:
-;     item (ItemLabelByte)
+;     item (ItemLabelByte); use 0 to draw from ScriptVar
 ;     memory (SingleByteParam)
 
 	call GetScriptByte
@@ -2923,7 +2923,7 @@ Script_writecmdqueue: ; 97a8b
 	ld d, a
 	ld a, [ScriptBank]
 	ld b, a
-	callba Function97e31
+	callba WriteCmdQueue ; no need to farcall
 	ret
 ; 97a9e
 
@@ -2936,7 +2936,7 @@ Script_delcmdqueue: ; 97a9e
 	ld [ScriptVar], a
 	call GetScriptByte
 	ld b, a
-	callba Function97e5c
+	callba DelCmdQueue ; no need to farcall
 	ret c
 	ld a, 1
 	ld [ScriptVar], a

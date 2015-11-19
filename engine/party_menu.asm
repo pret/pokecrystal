@@ -30,15 +30,15 @@ Function5001d: ; 5001d
 ; 5003f
 
 Function5003f: ; 5003f
-	call Function5004f
-	call Function50405
-	call Function503e0
+	call LoadPartyMenuGFX
+	call InitPartyMenuWithCancel
+	call InitPartyMenuGFX
 	call WritePartyMenuTilemap
 	call PrintPartyMenuText
 	ret
 ; 5004f
 
-Function5004f: ; 5004f
+LoadPartyMenuGFX: ; 5004f
 	call LoadFontsBattleExtra
 	callab Function8ad1 ; engine/color.asm
 	callab InefficientlyClear121BytesAtwc300
@@ -648,7 +648,7 @@ endr
 ; 503e0
 
 
-Function503e0: ; 503e0
+InitPartyMenuGFX: ; 503e0
 	ld hl, PartyCount
 	ld a, [hli]
 	and a
@@ -656,7 +656,7 @@ Function503e0: ; 503e0
 	ld c, a
 	xor a
 	ld [hObjectStructIndexBuffer], a
-.asm_503ea
+.loop
 	push bc
 	push hl
 	ld hl, Function8e83f
@@ -669,60 +669,62 @@ Function503e0: ; 503e0
 	pop hl
 	pop bc
 	dec c
-	jr nz, .asm_503ea
+	jr nz, .loop
 	callab Function8cf69
 	ret
 ; 50405
 
-Function50405: ; 50405
+InitPartyMenuWithCancel: ; 50405
+; with cancel
 	xor a
-	ld [wd0e3], a
-	ld de, Unknown_5044f
-	call Function1bb1
+	ld [wSwitchMon], a
+	ld de, PartyMenuAttributes
+	call InitMenu3
 	ld a, [PartyCount]
 	inc a
-	ld [wcfa3], a
+	ld [wcfa3], a ; list length
 	dec a
 	ld b, a
-	ld a, [wd0d8]
+	ld a, [wPartyMenuCursor]
 	and a
-	jr z, .asm_50422
+	jr z, .skip
 	inc b
 	cp b
-	jr c, .asm_50424
+	jr c, .done
 
-.asm_50422
+.skip
 	ld a, $1
 
-.asm_50424
+.done
 	ld [MenuSelection2], a
-	ld a, $3
+	ld a, A_BUTTON | B_BUTTON
 	ld [wcfa8], a
 	ret
 ; 5042d
 
-Function5042d: ; 0x5042d
-	ld de, Unknown_5044f
-	call Function1bb1
+InitPartyMenuNoCancel: ; 0x5042d
+; no cancel
+	ld de, PartyMenuAttributes
+	call InitMenu3
 	ld a, [PartyCount]
-	ld [wcfa3], a
+	ld [wcfa3], a ; list length
 	ld b, a
-	ld a, [wd0d8]
+	ld a, [wPartyMenuCursor]
 	and a
-	jr z, .asm_50444
+	jr z, .skip
 	inc b
 	cp b
-	jr c, .asm_50446
-.asm_50444
+	jr c, .done
+.skip
 	ld a, $1
-.asm_50446
+.done
 	ld [MenuSelection2], a
-	ld a, $3
+	ld a, A_BUTTON | B_BUTTON
 	ld [wcfa8], a
 	ret
 ; 5044f (14:444f)
 
-Unknown_5044f: ; 5044f
+PartyMenuAttributes: ; 5044f
 ; cursor y
 ; cursor x
 ; list length
@@ -744,7 +746,7 @@ PartyMenuSelect: ; 0x50457
 	ld a, [MenuSelection2] ; menu selection?
 	cp b
 	jr z, .exitmenu ; CANCEL
-	ld [wd0d8], a
+	ld [wPartyMenuCursor], a
 	ld a, [hJoyLast]
 	ld b, a
 	bit 1, b

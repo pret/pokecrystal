@@ -1984,7 +1984,7 @@ Function100c74: ; 100c74
 
 Function100c98: ; 100c98
 	ld de, Unknown_100cad
-	call Function1bb1
+	call InitMenu3
 	ld a, [wd0eb]
 	inc a
 	ld [wcfa3], a
@@ -6305,7 +6305,7 @@ Function1029cf: ; 1029cf
 	ld hl, wcd4b
 	set 1, [hl]
 	ld de, Unknown_102a33
-	call Function1bb1
+	call InitMenu3
 	ld a, [wcd4a]
 	inc a
 	ld [wcd4a], a
@@ -6478,7 +6478,7 @@ Function102b4e: ; 102b4e
 	ld a, [MenuSelection2]
 	push af
 	ld de, Unknown_102b73
-	call Function1bb1
+	call InitMenu3
 	pop af
 	ld [MenuSelection2], a
 	ld a, [OTPartyCount]
@@ -6503,7 +6503,7 @@ Function102b7b: ; 102b7b
 	ld a, [MenuSelection2]
 	push af
 	ld de, Unknown_102b94
-	call Function1bb1
+	call InitMenu3
 	pop af
 	ld [MenuSelection2], a
 	ld a, [PartyCount]

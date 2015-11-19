@@ -2997,10 +2997,10 @@ IsMobileBattle: ; 3d2f1
 Function3d2f7: ; 3d2f7
 	call ClearBGPalettes
 Function3d2fa: ; switch to fullscreen menu?
-	callba Function5004f
-	callba Function50405
+	callba LoadPartyMenuGFX
+	callba InitPartyMenuWithCancel
 	callba Function8e85
-	callba Function503e0
+	callba InitPartyMenuGFX
 	ret
 ; 3d313
 
@@ -5719,7 +5719,7 @@ MoveSelectionScreen: ; 3e4bc
 
 .asm_3e58e
 	call MoveInfoBox
-	ld a, [wd0e3]
+	ld a, [wSwitchMon]
 	and a
 	jr z, .asm_3e5a3
 	hlcoord 5, 13
@@ -5742,7 +5742,7 @@ MoveSelectionScreen: ; 3e4bc
 	push af
 
 	xor a
-	ld [wd0e3], a
+	ld [wSwitchMon], a
 	ld a, [MenuSelection2]
 	dec a
 	ld [MenuSelection2], a
@@ -5838,7 +5838,7 @@ endr
 ; 3e643
 
 .asm_3e643 ; 3e643
-	ld a, [wd0e3]
+	ld a, [wSwitchMon]
 	and a
 	jr z, .asm_3e6bf
 	ld hl, BattleMonMoves
@@ -5856,14 +5856,14 @@ endr
 	ld a, [hl]
 	and $f
 	ld b, a
-	ld a, [wd0e3]
+	ld a, [wSwitchMon]
 	swap a
 	add b
 	ld [hl], a
 	jr .asm_3e682
 
 .asm_3e671
-	ld a, [wd0e3]
+	ld a, [wSwitchMon]
 	cp b
 	jr nz, .asm_3e682
 	ld a, [hl]
@@ -5890,12 +5890,12 @@ endr
 
 .asm_3e69e
 	xor a
-	ld [wd0e3], a
+	ld [wSwitchMon], a
 	jp MoveSelectionScreen
 
 .asm_3e6a5
 	push hl
-	ld a, [wd0e3]
+	ld a, [wSwitchMon]
 	dec a
 	ld c, a
 	ld b, 0
@@ -5917,7 +5917,7 @@ endr
 
 .asm_3e6bf
 	ld a, [MenuSelection2]
-	ld [wd0e3], a
+	ld [wSwitchMon], a
 	jp MoveSelectionScreen
 ; 3e6c8
 

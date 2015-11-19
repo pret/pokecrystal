@@ -7,61 +7,61 @@ IcePathB1F_MapScriptHeader:
 
 	; callbacks
 
-	dbw 3, UnknownScript_0x7e4be
+	dbw 3, .SetUpStoneTable
 
-UnknownScript_0x7e4be:
-	writecmdqueue CmdQueue_0x7e4c2
+.SetUpStoneTable:
+	writecmdqueue .CommandQueue
 	return
 
-CmdQueue_0x7e4c2:
-	dbw 2, StoneTable_0x7e4c7 ; check if any stones are sitting on a warp
+.CommandQueue:
+	dbw 2, .StoneTable ; check if any stones are sitting on a warp
 	db 0, 0 ; filler
 
-StoneTable_0x7e4c7:
+.StoneTable:
 	db 3, 2 ; warp, person
-	dw UnknownScript_0x7e4d8
+	dw .Boulder1
 
 	db 4, 3 ; warp, person
-	dw UnknownScript_0x7e4e0
+	dw .Boulder2
 
 	db 5, 4 ; warp, person
-	dw UnknownScript_0x7e4e8
+	dw .Boulder3
 
 	db 6, 5 ; warp, person
-	dw UnknownScript_0x7e4f0
+	dw .Boulder4
 
-	db $ff ; end
+	db -1 ; end
 
-UnknownScript_0x7e4d8:
+.Boulder1:
 	disappear 2
 	clearevent EVENT_BOULDER_IN_ICE_PATH_1A
-	jump UnknownScript_0x7e4f8
+	jump .FinishBoulder
 
-UnknownScript_0x7e4e0:
+.Boulder2:
 	disappear 3
 	clearevent EVENT_BOULDER_IN_ICE_PATH_2A
-	jump UnknownScript_0x7e4f8
+	jump .FinishBoulder
 
-UnknownScript_0x7e4e8:
+.Boulder3:
 	disappear 4
 	clearevent EVENT_BOULDER_IN_ICE_PATH_3A
-	jump UnknownScript_0x7e4f8
+	jump .FinishBoulder
 
-UnknownScript_0x7e4f0:
+.Boulder4:
 	disappear 5
 	clearevent EVENT_BOULDER_IN_ICE_PATH_4A
-	jump UnknownScript_0x7e4f8
+	jump .FinishBoulder
 
-UnknownScript_0x7e4f8:
+.FinishBoulder:
 	pause 30
-	scall UnknownScript_0x7e504
+	scall .BoulderFallsThrough
 	loadfont
 	writetext UnknownText_0x7e512
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x7e504:
+.BoulderFallsThrough:
 	playsound SFX_STRENGTH
 	earthquake 80
 	end

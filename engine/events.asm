@@ -168,7 +168,7 @@ Function9676d: ; 9676d
 HandleMap: ; 96773
 	call ResetOverworldDelay
 	call Function967c1
-	callba Function97e08
+	callba HandleCmdQueue ; no need to farcall
 	call MapEvents
 
 ; Not immediately entering a connected map will cause problems.

@@ -1875,9 +1875,9 @@ UseItem_SelectMon: ; f1f9 (3:71f9)
 	ret
 
 ChoosePkmnToUseItemOn: ; f21c (3:721c)
-	callba Function5004f
-	callba Function50405
-	callba Function503e0
+	callba LoadPartyMenuGFX
+	callba InitPartyMenuWithCancel
+	callba InitPartyMenuGFX
 	callba WritePartyMenuTilemap
 	callba PrintPartyMenuText
 	call WaitBGMap

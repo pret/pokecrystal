@@ -503,9 +503,9 @@ Function4484a: ; 0x4484a
 	ld [PartyMenuActionText], a
 	call ClearBGPalettes
 .try_again
-	callba Function5004f
-	callba Function50405
-	callba Function503e0
+	callba LoadPartyMenuGFX
+	callba InitPartyMenuWithCancel
+	callba InitPartyMenuGFX
 	callba WritePartyMenuTilemap
 	callba PrintPartyMenuText
 	call WaitBGMap

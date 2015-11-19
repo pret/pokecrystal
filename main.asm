@@ -14741,9 +14741,9 @@ Function2c7fb: ; 2c7fb
 	call ClearBGPalettes
 
 Function2c80a: ; 2c80a
-	callba Function5004f
-	callba Function50405
-	callba Function503e0
+	callba LoadPartyMenuGFX
+	callba InitPartyMenuWithCancel
+	callba InitPartyMenuGFX
 	ld a, $3
 	ld [PartyMenuActionText], a
 .loopback
@@ -18255,8 +18255,8 @@ Function4aa22: ; 4aa22
 	call ClearBGPalettes
 
 Function4aa25: ; 4aa25
-	callba Function5004f
-	callba Function50405
+	callba LoadPartyMenuGFX
+	callba InitPartyMenuWithCancel
 	call Function4aad3
 
 Function4aa34: ; 4aa34
@@ -36275,7 +36275,7 @@ RunCallback_05_03: ; 1045b0
 	call RunMapCallback
 
 RunCallback_03: ; 1045c4
-	callba Function97df9
+	callba ClearCmdQueue
 	ld a, $3
 	call RunMapCallback
 	call GetMapHeaderTimeOfDayNybble

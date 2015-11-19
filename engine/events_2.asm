@@ -335,8 +335,8 @@ DoBikeStep:: ; 97db3
 	ret
 ; 97df9
 
-Function97df9:: ; 97df9
-	ld hl, wd6de
+ClearCmdQueue:: ; 97df9
+	ld hl, wCmdQueue
 	ld de, 6
 	ld c, 4
 	xor a
@@ -348,8 +348,8 @@ Function97df9:: ; 97df9
 	ret
 ; 97e08
 
-Function97e08:: ; 97e08
-	ld hl, wd6de
+HandleCmdQueue:: ; 97e08
+	ld hl, wCmdQueue
 	xor a
 .loop
 	ld [hMapObjectIndexBuffer], a
@@ -359,106 +359,106 @@ Function97e08:: ; 97e08
 	push hl
 	ld b, h
 	ld c, l
-	call Function97e79
+	call HandleQueuedCommand
 	pop hl
 
 .skip
-	ld de, $0006
+	ld de, CMDQUEUE_ENTRY_SIZE
 	add hl, de
 	ld a, [hMapObjectIndexBuffer]
 	inc a
-	cp $4
+	cp CMDQUEUE_CAPACITY
 	jr nz, .loop
 	ret
 ; 97e25
 
-Function97e25: ; 97e25
-	ld hl, wd6de
-	ld bc, 6
+GetNthCmdQueueEntry: ; 97e25 unreferenced
+	ld hl, wCmdQueue
+	ld bc, CMDQUEUE_ENTRY_SIZE
 	call AddNTimes
 	ld b, h
 	ld c, l
 	ret
 ; 97e31
 
-Function97e31:: ; 97e31
+WriteCmdQueue:: ; 97e31
 	push bc
 	push de
-	call Function97e45
+	call .GetNextEmptyEntry
 	ld d, h
 	ld e, l
 	pop hl
 	pop bc
 	ret c
 	ld a, b
-	ld bc, $0005
+	ld bc, CMDQUEUE_ENTRY_SIZE - 1
 	call FarCopyBytes
 	xor a
 	ld [hl], a
 	ret
 ; 97e45
 
-Function97e45: ; 97e45
-	ld hl, wd6de
-	ld de, $0006
-	ld c, $4
-.asm_97e4d
+.GetNextEmptyEntry: ; 97e45
+	ld hl, wCmdQueue
+	ld de, CMDQUEUE_ENTRY_SIZE
+	ld c, CMDQUEUE_CAPACITY
+.loop
 	ld a, [hl]
 	and a
-	jr z, .asm_97e57
+	jr z, .done
 	add hl, de
 	dec c
-	jr nz, .asm_97e4d
+	jr nz, .loop
 	scf
 	ret
 
-.asm_97e57
-	ld a, $4
+.done
+	ld a, CMDQUEUE_CAPACITY
 	sub c
 	and a
 	ret
 ; 97e5c
 
-Function97e5c:: ; 97e5c
-	ld hl, wd6de
-	ld de, $0006
-	ld c, $4
-.asm_97e64
+DelCmdQueue:: ; 97e5c
+	ld hl, wCmdQueue
+	ld de, CMDQUEUE_ENTRY_SIZE
+	ld c, CMDQUEUE_CAPACITY
+.loop
 	ld a, [hl]
 	cp b
-	jr z, .asm_97e6e
+	jr z, .done
 	add hl, de
 	dec c
-	jr nz, .asm_97e64
+	jr nz, .loop
 	and a
 	ret
 
-.asm_97e6e
+.done
 	xor a
 	ld [hl], a
 	scf
 	ret
 ; 97e72
 
-Function97e72: ; 97e72
-	ld hl, 0
+_DelCmdQueue: ; 97e72
+	ld hl, CMDQUEUE_TYPE
 	add hl, bc
 	ld [hl], 0
 	ret
 ; 97e79
 
-Function97e79: ; 97e79
-	ld hl, 0
+HandleQueuedCommand: ; 97e79
+	ld hl, CMDQUEUE_TYPE
 	add hl, bc
 	ld a, [hl]
 	cp 5
-	jr c, .asm_97e83
+	jr c, .okay
 	xor a
 
-.asm_97e83
+.okay
 	ld e, a
 	ld d, 0
-	ld hl, Table97e94
+	ld hl, .Jumptable_ba
 rept 3
 	add hl, de
 endr
@@ -472,16 +472,16 @@ endr
 	ret
 ; 97e94
 
-Table97e94: ; 97e94
-	dba Function97eb7
-	dba Function97eb8
-	dba Function97f42
-	dba Function97ef9
-	dba Function97ebc
+.Jumptable_ba: ; 97e94
+	dba CmdQueue_Null
+	dba CmdQueue_Null2
+	dba CmdQueue_StoneTable
+	dba CmdQueue_Type3
+	dba CmdQueue_Type4
 ; 97ea3
 
-Function97ea3: ; 97ea3
-	ld hl, $0005
+CmdQueueAnonymousJumptable: ; 97ea3
+	ld hl, CMDQUEUE_05
 	add hl, bc
 	ld a, [hl]
 	pop hl
@@ -489,45 +489,44 @@ Function97ea3: ; 97ea3
 	ret
 ; 97eab
 
-Function97eab: ; 97eab
-	ld hl, $0005
+CmdQueueAnonJT_Increment: ; 97eab
+	ld hl, CMDQUEUE_05
 	add hl, bc
 	inc [hl]
 	ret
 ; 97eb1
 
-Function97eb1: ; 97eb1
-	ld hl, $0005
+CmdQueueAnonJT_Decrement: ; 97eb1
+	ld hl, CMDQUEUE_05
 	add hl, bc
 	dec [hl]
 	ret
 ; 97eb7
 
-Function97eb7: ; 97eb7
+CmdQueue_Null: ; 97eb7
 	ret
 ; 97eb8
 
-Function97eb8: ; 97eb8
+CmdQueue_Null2: ; 97eb8
 	call ret_2f3e
 	ret
 ; 97ebc
 
-Function97ebc: ; 97ebc
-	call Function97ea3
-	dw Function97ec3
-	dw Function97ecd
+CmdQueue_Type4: ; 97ebc
+	call CmdQueueAnonymousJumptable
+	; anonymous jumptable
+	dw .zero
+	dw .one
 ; 97ec3
 
-Function97ec3: ; 97ec3
+.zero: ; 97ec3
 	ld a, [hSCY]
-	ld hl, $0004
+	ld hl, 4
 	add hl, bc
 	ld [hl], a
-	call Function97eab
-; 97ecd
-
-Function97ecd: ; 97ecd
-	ld hl, $0001
+	call CmdQueueAnonJT_Increment
+.one: ; 97ecd
+	ld hl, 1
 	add hl, bc
 	ld a, [hl]
 	dec a
@@ -535,7 +534,7 @@ Function97ecd: ; 97ecd
 	jr z, .asm_97eee
 	and $1
 	jr z, .asm_97ee4
-	ld hl, $0002
+	ld hl, 2
 	add hl, bc
 	ld a, [hSCY]
 	sub [hl]
@@ -543,7 +542,7 @@ Function97ecd: ; 97ecd
 	ret
 
 .asm_97ee4
-	ld hl, $0002
+	ld hl, 2
 	add hl, bc
 	ld a, [hSCY]
 	add [hl]
@@ -551,61 +550,60 @@ Function97ecd: ; 97ecd
 	ret
 
 .asm_97eee
-	ld hl, $0004
+	ld hl, 4
 	add hl, bc
 	ld a, [hl]
 	ld [hSCY], a
-	call Function97e72
+	call _DelCmdQueue
 	ret
 ; 97ef9
 
-Function97ef9: ; 97ef9
-	call Function97ea3
-	dw Function97f02
-	dw Function97f0a
-	dw Function97f1b
+CmdQueue_Type3: ; 97ef9
+	call CmdQueueAnonymousJumptable
+	; anonymous jumptable
+	dw .zero
+	dw .one
+	dw .two
 ; 97f02
 
-Function97f02: ; 97f02
-	call Function97f38
-	jr z, Function97f2c
-	call Function97eab
-; 97f0a
+.zero: ; 97f02
+	call .IsPlayerFacingDown
+	jr z, .PlayerNotFacingDown
+	call CmdQueueAnonJT_Increment
+.one: ; 97f0a
+	call .IsPlayerFacingDown
+	jr z, .PlayerNotFacingDown
+	call CmdQueueAnonJT_Increment
 
-Function97f0a: ; 97f0a
-	call Function97f38
-	jr z, Function97f2c
-	call Function97eab
-
-	ld hl, $0002
+	ld hl, 2
 	add hl, bc
 	ld a, [hl]
 	ld [wd173], a
 	ret
 ; 97f1b
 
-Function97f1b: ; 97f1b
-	call Function97f38
-	jr z, Function97f2c
-	call Function97eb1
+.two: ; 97f1b
+	call .IsPlayerFacingDown
+	jr z, .PlayerNotFacingDown
+	call CmdQueueAnonJT_Decrement
 
-	ld hl, $0003
+	ld hl, 3
 	add hl, bc
 	ld a, [hl]
 	ld [wd173], a
 	ret
 ; 97f2c
 
-Function97f2c: ; 97f2c
+.PlayerNotFacingDown: ; 97f2c
 	ld a, $7f
 	ld [wd173], a
-	ld hl, $0005
+	ld hl, 5
 	add hl, bc
 	ld [hl], 0
 	ret
 ; 97f38
 
-Function97f38: ; 97f38
+.IsPlayerFacingDown: ; 97f38
 	push bc
 	ld bc, PlayerStruct
 	call GetSpriteDirection
@@ -614,50 +612,50 @@ Function97f38: ; 97f38
 	ret
 ; 97f42
 
-Function97f42: ; 97f42
+CmdQueue_StoneTable: ; 97f42
 	ld de, PlayerStruct
-	ld a, $d
-.asm_97f47
+	ld a, NUM_OBJECT_STRUCTS
+.loop
 	push af
 
-	ld hl, 0
+	ld hl, OBJECT_SPRITE
 	add hl, de
 	ld a, [hl]
 	and a
-	jr z, .asm_97f71
+	jr z, .next
 
-	ld hl, $0003
+	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, de
 	ld a, [hl]
-	cp $19
-	jr nz, .asm_97f71
+	cp STEP_TYPE_19
+	jr nz, .next
 
-	ld hl, $000e
+	ld hl, OBJECT_NEXT_TILE
 	add hl, de
 	ld a, [hl]
 	call CheckPitTile
-	jr nz, .asm_97f71
+	jr nz, .next
 
-	ld hl, $0007
+	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, de
 	ld a, [hl]
-	cp $ff
-	jr nz, .asm_97f71
-	call Function3567
-	jr c, .asm_97f7c
+	cp STANDING
+	jr nz, .next
+	call HandleStoneQueue
+	jr c, .fall_down_hole
 
-.asm_97f71
-	ld hl, $0028
+.next
+	ld hl, OBJECT_STRUCT_LENGTH
 	add hl, de
 	ld d, h
 	ld e, l
 
 	pop af
 	dec a
-	jr nz, .asm_97f47
+	jr nz, .loop
 	ret
 
-.asm_97f7c
+.fall_down_hole
 	pop af
 	ret
 ; 97f7e

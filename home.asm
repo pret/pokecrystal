@@ -1214,12 +1214,12 @@ Function354b:: ; 354b joypad
 ; 3567
 
 
-Function3567:: ; 3567
+HandleStoneQueue:: ; 3567
 	ld a, [hROMBank]
 	push af
 
 	call SwitchToMapScriptHeaderBank
-	call Function3574
+	call .WarpAction
 
 	pop bc
 	ld a, b
@@ -1227,39 +1227,39 @@ Function3567:: ; 3567
 	ret
 ; 3574
 
-Function3574:: ; 3574
-	ld hl, $0001
+.WarpAction ; 3574
+	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, de
 	ld a, [hl]
 	cp $ff
-	jr z, .asm_3597
+	jr z, .nope
 
 	ld l, a
 	push hl
-	call Function3599
+	call .IsPersonOnWarp
 	pop hl
-	jr nc, .asm_3597
+	jr nc, .nope
 	ld d, a
 	ld e, l
-	call Function35de
-	jr nc, .asm_3597
+	call .IsObjectInStoneTable
+	jr nc, .nope
 	call CallMapScript
 	callba EnableScriptMode
 	scf
 	ret
 
-.asm_3597
+.nope
 	and a
 	ret
 ; 3599
 
-Function3599:: ; 3599
+.IsPersonOnWarp ; 3599
 	push de
 
-	ld hl, $0010
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, de
 	ld a, [hl]
-	ld hl, $0011
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, de
 	ld e, [hl]
 
@@ -1268,93 +1268,93 @@ Function3599:: ; 3599
 	ld a, e
 	sub 4
 	ld e, a
-	call Function35b0
+	call .check_on_warp
 
 	pop de
 	ret
 ; 35b0
 
-Function35b0:: ; 35b0
-	ld hl, wCurrentCaller + 3
+.check_on_warp ; 35b0
+	ld hl, wCurrMapWarpHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wCurrentCaller + 2]
+	ld a, [wCurrMapWarpCount]
 	and a
-	jr z, .asm_35d3
+	jr z, .nope2
 
 .loop
 	push af
 	ld a, [hl]
 	cp e
-	jr nz, .asm_35c8
+	jr nz, .not_on_warp
 	inc hl
 	ld a, [hld]
 	cp d
-	jr nz, .asm_35c8
-	jr .asm_35d5
+	jr nz, .not_on_warp
+	jr .found_warp
 
-.asm_35c8
-	ld a, $5
+.not_on_warp
+	ld a, 5
 	add l
 	ld l, a
-	jr nc, .asm_35cf
+	jr nc, .no_carry
 	inc h
-.asm_35cf
+.no_carry
 
 	pop af
 	dec a
 	jr nz, .loop
 
-.asm_35d3
+.nope2
 	and a
 	ret
 
-.asm_35d5
+.found_warp
 	pop af
 	ld d, a
-	ld a, [wCurrentCaller + 2]
+	ld a, [wCurrMapWarpCount]
 	sub d
 	inc a
 	scf
 	ret
 ; 35de
 
-Function35de:: ; 35de
+.IsObjectInStoneTable ; 35de
 	inc e
-	ld hl, $0001
+	ld hl, CMDQUEUE_ADDR
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-.asm_35e6
+.loop2
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_35fc
+	jr z, .nope3
 	cp d
-	jr nz, .asm_35f7
+	jr nz, .next_inc3
 	ld a, [hli]
 	cp e
-	jr nz, .asm_35f8
+	jr nz, .next_inc2
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jr .asm_35fe
+	jr .yes
 
-.asm_35f7
+.next_inc3
 	inc hl
 
-.asm_35f8
+.next_inc2
 rept 2
 	inc hl
 endr
-	jr .asm_35e6
+	jr .loop2
 
-.asm_35fc
+.nope3
 	and a
 	ret
 
-.asm_35fe
+.yes
 	scf
 	ret
 ; 3600
