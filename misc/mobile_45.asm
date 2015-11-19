@@ -5750,7 +5750,7 @@ Function1161d5: ; 1161d5
 	pop af
 	ld [rSVBK], a
 
-	callba Function104061
+	callba ReloadMapPart
 	ld a, $8
 	ld [MusicFade], a
 	ld de, MUSIC_MOBILE_ADAPTER
@@ -5931,7 +5931,7 @@ Function11636e: ; 11636e
 	call UpdateSprites
 	pop af
 	ld [rSVBK], a
-	callba Function104061
+	callba ReloadMapPart
 	ld a, $8
 	ld [MusicFade], a
 	ld a, [wc2c0]
@@ -5975,7 +5975,7 @@ Function1163c0: ; 1163c0
 	callba Function14157
 	pop af
 	ld [rSVBK], a
-	callba Function104061
+	callba ReloadMapPart
 	ld a, [wLinkMode]
 	cp $4
 	jr z, .asm_11642a
@@ -6006,7 +6006,7 @@ Function116441: ; 116441
 	callba Function17d405
 	ld a, $90
 	ld [hWY], a
-	callba Function104061
+	callba ReloadMapPart
 	ld a, $8
 	ld [MusicFade], a
 	ld a, [wc2c0]
@@ -7711,7 +7711,7 @@ Function117699: ; 117699 (45:7699)
 	call ClearBGPalettes
 	call ClearSprites
 	callba Function171c87
-	callba Function104061
+	callba ReloadMapPart
 	callba Function8cf53
 	ret
 
@@ -7722,7 +7722,7 @@ Function1176ee: ; 1176ee (45:76ee)
 	jr nz, .asm_117709
 	call Function117719
 	callba Function8cf69
-	callba Function104061
+	callba ReloadMapPart
 	jr Function1176ee
 .asm_117709
 	callba Function8cf53
@@ -7978,7 +7978,7 @@ Function1178aa: ; 1178aa (45:78aa)
 	call LoadMenuDataHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
-	callba Function104061
+	callba ReloadMapPart
 	hlcoord 16, 8
 	ld de, String_1179c5
 	call PlaceString
@@ -8077,7 +8077,7 @@ Function117984: ; 117984 (45:7984)
 	call LoadMenuDataHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
-	callba Function104061
+	callba ReloadMapPart
 	hlcoord 1, 14
 	ld de, String_1179e1
 	call PlaceString
@@ -8184,7 +8184,7 @@ Function117ab4: ; 0x117ab4
 	call ClearSprites
 	callba Function172e78
 	callba Function172eb9
-	callba Function104061
+	callba ReloadMapPart
 	ret
 ; 0x117acd
 
@@ -8299,12 +8299,12 @@ Function117b4f:
 	jr nz, .asm_117ba4 ; 0x117b93 $f
 	call ExitMenu
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	jp Function117cdd
 .asm_117ba4
 	call ExitMenu
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	ld a, $80
 	ld [wJumptableIndex], a
 	ret
@@ -8387,7 +8387,7 @@ Function117c4a:
 	call LoadMenuDataHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
-	callba Function104061
+	callba ReloadMapPart
 	ld hl, MobileStadiumSuccessText
 	call PrintText
 	ld a, [rSVBK]

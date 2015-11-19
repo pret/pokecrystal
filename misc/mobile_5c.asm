@@ -391,7 +391,7 @@ Function1704f1: ; 1704f1
 	bit 7, a
 	jr nz, .asm_17050f
 	call Function170510
-	callba Function104061
+	callba ReloadMapPart
 	jr .asm_1704fa
 
 .asm_17050f
@@ -1692,7 +1692,7 @@ Function1719ed: ; 1719ed (5c:59ed)
 	call ClearBGPalettes
 	call ClearSprites
 	callba Function171d2b
-	callba Function104061
+	callba ReloadMapPart
 	callba Function8cf53
 	ret
 
@@ -1703,7 +1703,7 @@ Function171a11: ; 171a11 (5c:5a11)
 	jr nz, .asm_171a2c
 	call Function171a36
 	callba Function8cf69
-	callba Function104061
+	callba ReloadMapPart
 	jr Function171a11
 .asm_171a2c
 	callba Function8cf53
@@ -1960,7 +1960,7 @@ Function171beb: ; 171beb (5c:5beb)
 	call LoadMenuDataHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
-	callba Function104061
+	callba ReloadMapPart
 	hlcoord 1, 14
 	ld de, String_171c73
 	call PlaceString

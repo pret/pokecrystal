@@ -4463,7 +4463,7 @@ Function119f98: ; 119f98
 	and a
 	jr z, .asm_119fd4
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	callba Function115dc3
 	ld a, [wcd33]
 	ld [wcf66], a
@@ -4480,14 +4480,14 @@ Function119f98: ; 119f98
 	ld [wc30d], a
 	ld a, $1
 	ld [wc314], a
-	callba Function104061
+	callba ReloadMapPart
 	and a
 	ret
 
 .asm_119fef
 	call ExitMenu
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	ld a, [wcd45]
 	ld [wcf66], a
 	callba Function115dc3
@@ -4562,7 +4562,7 @@ Function11a00e: ; 11a00e
 	callba Function106462
 	callba Function106464
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	callba Function115d99
 	ld c, $0
 	callba Function115e18
@@ -4585,7 +4585,7 @@ Function11a0ca: ; 11a0ca
 	callba Function106462
 	callba Function106464
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	callba Function115d99
 	ld c, $0
 	callba Function115e18
@@ -4677,7 +4677,7 @@ Function11a192: ; 11a192
 	and a
 	jr nz, .asm_11a1b6
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	call Function11a63c
 	hlcoord 4, 2
 	ld de, String_11a6d2
@@ -4687,7 +4687,7 @@ Function11a192: ; 11a192
 
 .asm_11a1b6
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	ld a, [wcd45]
 	ld [wcf66], a
 	ld [wcd80], a
@@ -4818,7 +4818,7 @@ Function11a235: ; 11a235
 	and a
 	jr nz, .asm_11a2c4
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	ld a, [wcd46]
 	cp $0
 	jr z, .asm_11a2b4
@@ -4840,7 +4840,7 @@ Function11a235: ; 11a235
 
 .asm_11a2c4
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	and a
 	ret
 ; 11a2cf
@@ -4919,7 +4919,7 @@ Function11a33a: ; 11a33a
 
 .asm_11a346
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	callba Function115dc3
 	and a
 	ret
@@ -4963,7 +4963,7 @@ Function11a38d: ; 11a38d
 	and a
 	jr nz, .asm_11a3b1
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	call Function11a63c
 	hlcoord 4, 2
 	ld de, String_11a6d2
@@ -4973,7 +4973,7 @@ Function11a38d: ; 11a38d
 
 .asm_11a3b1
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	ld a, [wcd45]
 	ld [wcf66], a
 	ld [wcd80], a
@@ -5038,7 +5038,7 @@ Function11a41b: ; 11a41b
 	and a
 	jr nz, .asm_11a43f
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	call Function11a63c
 	hlcoord 4, 2
 	ld de, String_11a6d2
@@ -5048,7 +5048,7 @@ Function11a41b: ; 11a41b
 
 .asm_11a43f
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	ld a, $1c
 	ld [wcf66], a
 	ld [wcd80], a
@@ -5109,7 +5109,7 @@ Function11a49e: ; 11a49e
 	and a
 	jr nz, .asm_11a4c7
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	call Function11a63c
 	hlcoord 4, 2
 	ld de, String_11a6d2
@@ -5121,7 +5121,7 @@ Function11a49e: ; 11a49e
 
 .asm_11a4c7
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	ld a, [wcd46]
 	ld [wcf66], a
 	ld [wcd80], a
@@ -5156,7 +5156,7 @@ Function11a4fe: ; 11a4fe
 	and a
 	jr nz, .asm_11a522
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	call Function11a63c
 	hlcoord 4, 2
 	ld de, String_11a6d2
@@ -5166,7 +5166,7 @@ Function11a4fe: ; 11a4fe
 
 .asm_11a522
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	ld a, [wcd45]
 	ld [wcf66], a
 	ld [wcd80], a
@@ -5195,7 +5195,7 @@ Function11a536: ; 11a536
 	call Function11a9f0
 	jr nz, .asm_11a562
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 
 .asm_11a562
 	scf
@@ -5271,7 +5271,7 @@ Function11a5b9: ; 11a5b9
 	ld b, $4
 	ld c, $12
 	call Function3eea
-	callba Function104061
+	callba ReloadMapPart
 	call UpdateSprites
 	ld c, $0
 	callba Function115e18
@@ -5306,7 +5306,7 @@ Function11a5f5: ; 11a5f5
 	hlcoord 15, 7
 	ld a, $ed
 	ld [hl], a
-	callba Function104061
+	callba ReloadMapPart
 	ret
 ; 11a63c
 
@@ -5840,7 +5840,7 @@ UnknownText_0x11ac1f: ; 0x11ac1f
 Function11ac3e: ; 11ac3e
 	call SpeechTextBox
 	call FadeToMenu
-	callab InefficientlyClear121BytesAtwc300
+	callab ClearSpriteAnims
 	call Function11ac51
 	call ReturnToCallingMenu
 	ret
@@ -5881,7 +5881,7 @@ Function11ac51: ; 11ac51
 	ld a, $78
 	ld [wc3b5], a
 	callba Function8cf7a
-	callba Function104061
+	callba ReloadMapPart
 	jr .asm_11ac82
 
 .asm_11aca8
@@ -6025,7 +6025,7 @@ Function11ad95: ; 11ad95
 	hlcoord 10, 10, AttrMap
 	ld bc, $0808
 	call Function11afd6
-	callba Function104061
+	callba ReloadMapPart
 	call Function11ad8a
 	ld a, $1
 	ld [MenuSelection2], a
@@ -6104,7 +6104,7 @@ Function11adc4:
 
 .asm_11ae2e
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	ret
 ; 11ae38
 
@@ -6142,7 +6142,7 @@ Function11ae4e: ; 11ae4e
 	hlcoord 9, 12, AttrMap
 	lb bc, 6, 11
 	call Function11afd6
-	callba Function104061
+	callba ReloadMapPart
 	call Function11ad8a
 	ld a, $1
 	ld [MenuSelection2], a
@@ -6210,7 +6210,7 @@ Function11ae98:
 .asm_11aef7
 	call ExitMenu
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	ret
 ; 11af04
 
@@ -6233,7 +6233,7 @@ Function11af04: ; 11af04
 	hlcoord 9, 12, AttrMap
 	lb bc, 6, 11
 	call Function11afd6
-	callba Function104061
+	callba ReloadMapPart
 	call Function11ad8a
 	ld a, $2
 	ld [MenuSelection2], a
@@ -6301,7 +6301,7 @@ Function11af4e:
 .asm_11afaa
 	call ExitMenu
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	ret
 ; 11afb7
 

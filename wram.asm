@@ -372,8 +372,8 @@ TilePermissions:: ; c2fe
 
 SECTION "c300", WRAM0 [$c300]
 ; wc300 - wc313 is a 10x2 dictionary.
-wDict_c300:: ds 10 * 2
-	ds wDict_c300 - @
+wSpriteAnimDict:: ds 10 * 2
+	ds wSpriteAnimDict - @
 wc300:: ds 1
 wc301:: ds 1
 wc302:: ds 1
@@ -456,7 +456,7 @@ wc3bd:: ds 1
 wc3be:: ds 1
 wc3bf:: ds 1
 wc3c0:: ds 1
-; wc300_data_end
+wSpriteAnimsEnd::
 
 wc3c1:: ds 11
 wc3cc:: ds 1

@@ -1495,7 +1495,7 @@ Function100902: ; 100902
 	call PrintNum
 	ld de, SFX_TWO_PC_BEEPS
 	call PlaySFX
-	callba Function104061
+	callba ReloadMapPart
 	ld c, $3c
 	call DelayFrames
 	ret
@@ -1506,7 +1506,7 @@ Function100902: ; 100902
 	call PlaceString
 	ld de, SFX_4_NOTE_DITTY
 	call PlaySFX
-	callba Function104061
+	callba ReloadMapPart
 	ld c, 120
 	call DelayFrames
 	ret
@@ -1536,7 +1536,7 @@ Function100989: ; 100989
 	decoord 0, 0
 	call Function1009a5
 	call Function1009ae
-	callba Function104061
+	callba ReloadMapPart
 	ld hl, w3_dd68
 	decoord 0, 0, AttrMap
 	call Function1009a5

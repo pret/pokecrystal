@@ -1588,7 +1588,7 @@ Function28f7:: ; 28f7
 	ret
 ; 2914
 
-Function2914:: ; 2914
+GetMovementPermissions:: ; 2914
 	xor a
 	ld [TilePermissions], a
 	call GetLeftRightCollision

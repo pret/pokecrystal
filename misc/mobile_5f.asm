@@ -81,7 +81,7 @@ Function17c000: ; 17c000
 	ld [rVBK], a
 
 	call EnableLCD
-	callba Function104061
+	callba ReloadMapPart
 	ret
 ; 17c083
 
@@ -629,7 +629,7 @@ Function17d370: ; 17d370
 	call ClearBGPalettes
 	call ClearSprites
 	call ClearScreen
-	callba Function104061
+	callba ReloadMapPart
 	call DisableLCD
 	ld hl, VTiles1 tile $6e
 	ld de, $c608
@@ -675,7 +675,7 @@ Function17d3f6: ; 17d3f6
 	call ClearBGPalettes
 	call ClearSprites
 	call ClearScreen
-	callba Function104061
+	callba ReloadMapPart
 
 Function17d405:
 	call DisableLCD
@@ -721,7 +721,7 @@ Function17d45a: ; 17d45a
 	bit 7, a
 	jr nz, .asm_17d46f
 	call Function17d474
-	callba Function104061
+	callba ReloadMapPart
 	jr .asm_17d45a
 
 .asm_17d46f
@@ -935,7 +935,7 @@ endr
 	call Function17e451
 	call Function17e55b
 	call Function17e5af
-	callba Function104061
+	callba ReloadMapPart
 	jp Function17e438
 ; 17d5be
 

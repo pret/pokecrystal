@@ -1761,7 +1761,7 @@ SetUpMoveScreenBG: ; 13172
 	xor a
 	ld [hBGMapMode], a
 	callba Functionfb571
-	callba InefficientlyClear121BytesAtwc300
+	callba ClearSpriteAnims
 	ld a, [CurPartyMon]
 	ld e, a
 	ld d, $0

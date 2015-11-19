@@ -173,7 +173,7 @@ Function17a78f: ; 17a78f (5e:678f)
 	ret
 
 .asm_17a79f
-	callba Function104061
+	callba ReloadMapPart
 	ret
 ; 17a7a6 (5e:67a6)
 

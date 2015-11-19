@@ -385,7 +385,7 @@ Function11c1ca: ; 11c1ca
 	ld de, VTiles0
 	call Decompress
 	call EnableLCD
-	callba Function104061
+	callba ReloadMapPart
 	callba Function8cf53
 	callba LoadPokemonData
 	callba Function40c30
@@ -443,7 +443,7 @@ Function11c283: ; 11c283
 	jr nz, .asm_11c2a2
 	call Function11c2ac
 	callba Function8cf69
-	callba Function104061
+	callba ReloadMapPart
 	jr .asm_11c283
 
 .asm_11c2a2
@@ -782,7 +782,7 @@ Function11c4be: ; 11c4be (47:44be)
 	hlcoord 0, 14, AttrMap
 	ld bc, $28
 	call ByteFill
-	callba Function104061
+	callba ReloadMapPart
 	ret
 ; 11c4db (47:44db)
 
@@ -978,7 +978,7 @@ Function11c618: ; 11c618 (47:4618)
 	hlcoord 0, 6, AttrMap
 	ld bc, $c8
 	call ByteFill
-	callba Function104061
+	callba ReloadMapPart
 	ret
 ; 11c62a (47:462a)
 
@@ -1585,7 +1585,7 @@ Function11c9ab: ; 11c9ab (47:49ab)
 	hlcoord 0, 6, AttrMap
 	ld bc, $c8
 	call ByteFill
-	callba Function104061
+	callba ReloadMapPart
 	ret
 
 Function11c9bd: ; 11c9bd (47:49bd)
@@ -1672,7 +1672,7 @@ Function11ca19: ; 11ca19 (47:4a19)
 	add hl, de
 	dec c
 	jr nz, .asm_11ca22
-	callba Function104061
+	callba ReloadMapPart
 	ret
 ; 11ca38 (47:4a38)
 
@@ -2089,7 +2089,7 @@ Function11cdaa: ; 11cdaa (47:4daa)
 	hlcoord 0, 12, AttrMap
 	ld bc, $50
 	call ByteFill
-	callba Function104061
+	callba ReloadMapPart
 	ret
 ; 11cdc7 (47:4dc7)
 

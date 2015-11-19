@@ -93,7 +93,7 @@ Function8919e: ; 8919e (22:519e)
 
 Function891ab: ; 891ab
 	call Function89240
-	callba Function104061
+	callba ReloadMapPart
 	call Function8923c
 	ret
 ; 891b8

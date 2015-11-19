@@ -2985,8 +2985,8 @@ Script_reloadmappart:: ; 97ae3
 	xor a
 	ld [hBGMapMode], a
 	call OverworldTextModeSwitch
-	call Function2914
-	callba Function104061
+	call GetMovementPermissions
+	callba ReloadMapPart
 	call UpdateSprites
 	ret
 ; 97af6
