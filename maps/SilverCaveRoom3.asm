@@ -6,7 +6,7 @@ SilverCaveRoom3_MapScriptHeader:
 	db 0
 
 RedScript_0x18c603:
-	special Special_FadeOutMusic
+	special Special_RotatePalettesRightMusic
 	faceplayer
 	loadfont
 	writetext UnknownText_0x18c637
@@ -17,7 +17,7 @@ RedScript_0x18c603:
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	special Special_FadeOutMusic
+	special Special_RotatePalettesRightMusic
 	loadfont
 	writetext UnknownText_0x18c63f
 	closetext
@@ -26,7 +26,7 @@ RedScript_0x18c603:
 	special Special_ReloadSpritesNoPalettes
 	disappear $2
 	pause 15
-	special Special_FadeInQuickly
+	special Special_RotatePalettesLeftQuickly
 	pause 30
 	special HealParty
 	refreshscreen $0

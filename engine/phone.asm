@@ -604,7 +604,7 @@ Phone_StartRinging: ; 9033f
 	call PlaySFX
 	call Phone_CallerTextbox
 	call UpdateSprites
-	callba Function4d188
+	callba PhoneRing_LoadEDTile
 	ret
 ; 90355
 
@@ -614,7 +614,7 @@ HangUp_Wait20Frames: ; 90355
 Phone_Wait20Frames
 	ld c, 20
 	call DelayFrames
-	callba Function4d188
+	callba PhoneRing_LoadEDTile
 	ret
 ; 90363
 

@@ -579,7 +579,7 @@ Function321c:: ; 321c
 
 	ld a, 1
 	ld [hBGMapMode], a
-	jr LoadDETile
+	jr LoadEDTile
 
 .dmg
 ; WaitBGMap
@@ -595,8 +595,8 @@ Function3238:: ; 3238
 	and a
 	jr z, WaitBGMap
 
-LoadDETile:: ; 323d
-	jr .LoadDETile
+LoadEDTile:: ; 323d
+	jr .LoadEDTile
 ; 323f
 
 .unreferenced_323f ; 323f
@@ -604,7 +604,7 @@ LoadDETile:: ; 323d
 	ret
 ; 3246
 
-.LoadDETile ; 3246
+.LoadEDTile ; 3246
 	ld a, [hBGMapMode]
 	push af
 	xor a

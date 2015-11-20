@@ -84,7 +84,7 @@ endr
 
 Function8c2a0: ; 8c2a0
 	call LoadTrainerBattlePokeballTiles
-	ld hl, VBGMap0
+	hlbgcoord 0, 0
 	call Function8c2cf
 	ret
 ; 8c2aa

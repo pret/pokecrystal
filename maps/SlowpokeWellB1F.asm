@@ -34,7 +34,7 @@ GruntM1Script:
 	disappear $4
 	disappear $5
 	pause 15
-	special Special_FadeInQuickly
+	special Special_RotatePalettesLeftQuickly
 	disappear $8
 	moveperson $8, $b, $6
 	appear $8
@@ -56,7 +56,7 @@ GruntM1Script:
 	clearevent EVENT_AZALEA_TOWN_SLOWPOKES
 	clearevent EVENT_KURTS_HOUSE_SLOWPOKE
 	clearevent EVENT_KURTS_HOUSE_KURT_1
-	special FadeOutPalettes
+	special RotatePalettesRightPalettes
 	special HealParty
 	pause 15
 	warp KURTS_HOUSE, $3, $3

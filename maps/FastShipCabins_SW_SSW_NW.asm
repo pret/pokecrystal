@@ -70,7 +70,7 @@ FastShipBed:
 	playmusic MUSIC_HEAL
 	pause 60
 	special RestartMapMusic
-	special Special_FadeInQuickly
+	special Special_RotatePalettesLeftQuickly
 	loadfont
 	writetext FastShipBedText2
 	closetext

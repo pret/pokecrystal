@@ -31,7 +31,7 @@ endr
 	call CopyBytes
 
 	ld hl, UnusedTitleBG_Tilemap
-	ld de, VBGMap0
+	debgcoord 0, 0
 	ld bc, 32 * 32
 .copy
 	ld a, 0

@@ -7,7 +7,7 @@ PlayWhirlpoolSound: ; 8c7d4
 ; 8c7e1
 
 BlindingFlash: ; 8c7e1
-	callba FadeOutPalettes
+	callba RotatePalettesRightPalettes
 	ld hl, StatusFlags
 	set 2, [hl]
 	callba Function8c0e5
@@ -15,7 +15,7 @@ BlindingFlash: ; 8c7e1
 	ld b, SCGB_09
 	call GetSGBLayout
 	callba Function49409
-	callba FadeInPalettes
+	callba RotatePalettesLeftPalettes
 	ret
 ; 8c80a
 

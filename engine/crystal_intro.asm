@@ -506,7 +506,7 @@ IntroScene1: ; e495b (39:495b)
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap001
-	ld de, VBGMap0 tile $00
+	debgcoord 0, 0
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a
@@ -517,7 +517,7 @@ IntroScene1: ; e495b (39:495b)
 	ld de, VTiles0 tile $00
 	call Functione54c2
 	ld hl, IntroTilemap002
-	ld de, VBGMap0 tile $00
+	debgcoord 0, 0
 	call Functione54fa
 	ld a, [rSVBK]
 	push af
@@ -582,7 +582,7 @@ IntroScene3: ; e49fd (39:49fd)
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap003
-	ld de, VBGMap0 tile $00
+	debgcoord 0, 0
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a
@@ -590,7 +590,7 @@ IntroScene3: ; e49fd (39:49fd)
 	ld de, VTiles2 tile $00
 	call Functione54c2
 	ld hl, IntroTilemap004
-	ld de, VBGMap0 tile $00
+	debgcoord 0, 0
 	call Functione54fa
 	ld a, [rSVBK]
 	push af
@@ -644,7 +644,7 @@ IntroScene5: ; e4a7a (39:4a7a)
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap005
-	ld de, VBGMap0 tile $00
+	debgcoord 0, 0
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a
@@ -655,7 +655,7 @@ IntroScene5: ; e4a7a (39:4a7a)
 	ld de, VTiles0 tile $00
 	call Functione54c2
 	ld hl, IntroTilemap006
-	ld de, VBGMap0 tile $00
+	debgcoord 0, 0
 	call Functione54fa
 	ld a, [rSVBK]
 	push af
@@ -738,7 +738,7 @@ IntroScene7: ; e4b3f (39:4b3f)
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap003
-	ld de, VBGMap0 tile $00
+	debgcoord 0, 0
 	call Functione54fa
 	ld hl, IntroPichuWooperGFX
 	ld de, VTiles0 tile $00
@@ -752,7 +752,7 @@ IntroScene7: ; e4b3f (39:4b3f)
 	ld de, VTiles2 tile $00
 	call Functione54c2
 	ld hl, IntroTilemap004
-	ld de, VBGMap0 tile $00
+	debgcoord 0, 0
 	call Functione54fa
 	ld a, [rSVBK]
 	push af
@@ -894,7 +894,7 @@ IntroScene11: ; e4c86 (39:4c86)
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap007
-	ld de, VBGMap0 tile $00
+	debgcoord 0, 0
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a
@@ -902,7 +902,7 @@ IntroScene11: ; e4c86 (39:4c86)
 	ld de, VTiles2 tile $00
 	call Functione54c2
 	ld hl, IntroTilemap008
-	ld de, VBGMap0 tile $00
+	debgcoord 0, 0
 	call Functione54fa
 	ld a, [rSVBK]
 	push af
@@ -1016,7 +1016,7 @@ IntroScene13: ; e4d6d (39:4d6d)
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap003
-	ld de, VBGMap0 tile $00
+	debgcoord 0, 0
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a
@@ -1027,7 +1027,7 @@ IntroScene13: ; e4d6d (39:4d6d)
 	ld de, VTiles2 tile $00
 	call Functione54c2
 	ld hl, IntroTilemap004
-	ld de, VBGMap0 tile $00
+	debgcoord 0, 0
 	call Functione54fa
 	ld a, [rSVBK]
 	push af
@@ -1120,7 +1120,7 @@ IntroScene15: ; e4e40 (39:4e40)
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap009
-	ld de, VBGMap0 tile $00
+	debgcoord 0, 0
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a
@@ -1135,7 +1135,7 @@ IntroScene15: ; e4e40 (39:4e40)
 	lb bc, BANK(GFX_e7a5d), 1
 	call Request2bpp
 	ld hl, IntroTilemap010
-	ld de, VBGMap0 tile $00
+	debgcoord 0, 0
 	call Functione54fa
 	call Functione541b
 	ld a, [rSVBK]
@@ -1202,7 +1202,7 @@ IntroScene17: ; e4ef5 (39:4ef5)
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap011
-	ld de, VBGMap0 tile $00
+	debgcoord 0, 0
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a
@@ -1210,7 +1210,7 @@ IntroScene17: ; e4ef5 (39:4ef5)
 	ld de, VTiles1 tile $00
 	call Functione54de
 	ld hl, IntroTilemap012
-	ld de, VBGMap0 tile $00
+	debgcoord 0, 0
 	call Functione54fa
 	ld a, [rSVBK]
 	push af
@@ -1268,7 +1268,7 @@ IntroScene19: ; e4f7e (39:4f7e)
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap013
-	ld de, VBGMap0 tile $00
+	debgcoord 0, 0
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a
@@ -1283,7 +1283,7 @@ IntroScene19: ; e4f7e (39:4f7e)
 	lb bc, BANK(GFX_e7a5d), 1
 	call Request2bpp
 	ld hl, IntroTilemap014
-	ld de, VBGMap0 tile $00
+	debgcoord 0, 0
 	call Functione54fa
 	call Functione541b
 	ld a, [rSVBK]
@@ -1444,7 +1444,7 @@ IntroScene26: ; e50bb (39:50bb)
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap015
-	ld de, VBGMap0 tile $00
+	debgcoord 0, 0
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a
@@ -1452,7 +1452,7 @@ IntroScene26: ; e50bb (39:50bb)
 	ld de, VTiles2 tile $00
 	call Functione54c2
 	ld hl, IntroTilemap017
-	ld de, VBGMap0 tile $00
+	debgcoord 0, 0
 	call Functione54fa
 	ld a, [rSVBK]
 	push af

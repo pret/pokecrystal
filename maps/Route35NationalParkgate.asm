@@ -75,7 +75,7 @@ Route35NationalParkgate_GoBackIn:
 	loadmovesprites
 	scall Route35NationalParkgate_EnterContest
 	playsound SFX_ENTER_DOOR
-	special FadeOutPalettes
+	special RotatePalettesRightPalettes
 	waitbutton
 	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, $a, $2f
 	end
@@ -112,7 +112,7 @@ Route35NationalParkgate_OkayToProceed:
 	special Special_GiveParkBalls
 	scall Route35NationalParkgate_EnterContest
 	playsound SFX_ENTER_DOOR
-	special FadeOutPalettes
+	special RotatePalettesRightPalettes
 	waitbutton
 	special Special_SelectRandomBugContestContestants
 	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, $a, $2f

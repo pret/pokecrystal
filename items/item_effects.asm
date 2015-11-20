@@ -605,7 +605,7 @@ endr
 	ld b, 0
 	callba NamingScreen
 
-	call FadeToWhite
+	call RotateThreePalettesRight
 
 	call LoadStandardFont
 
@@ -686,7 +686,7 @@ endr
 	ld hl, Text_SentToBillsPC
 	call PrintText
 
-	call FadeToWhite
+	call RotateThreePalettesRight
 	call LoadStandardFont
 	jr .return_from_capture
 

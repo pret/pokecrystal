@@ -15,7 +15,7 @@ InitClock: ; 90672 (24:4672)
 	ld [MusicFadeIDHi], a
 	ld c, 8
 	call DelayFrames
-	call Function4dd
+	call RotateFourPalettesLeft
 	call ClearTileMap
 	call ClearSprites
 	ld b, SCGB_08
@@ -37,7 +37,7 @@ InitClock: ; 90672 (24:4672)
 	call Request1bpp
 	call .ClearScreen
 	call WaitBGMap
-	call Function4a3
+	call RotateFourPalettesRight
 	ld hl, UnknownText_0x90874
 	call PrintText
 	ld hl, wc608

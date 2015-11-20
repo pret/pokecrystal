@@ -1,4 +1,4 @@
-Function4802f: ; 4802f (12:402f)
+InitMobileProfile: ; 4802f (12:402f)
 	xor a
 	set 6, a
 	ld [wd002], a

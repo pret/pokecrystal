@@ -449,7 +449,7 @@ UnknownScript_0x6ee42:
 	loadmovesprites
 	pause 20
 	showemote EMOTE_SHOCK, PLAYER, 20
-	special Special_FadeOutMusic
+	special Special_RotatePalettesRightMusic
 	applymovement PLAYER, MovementData_0x6ef58
 	pause 30
 	spriteface PLAYER, DOWN

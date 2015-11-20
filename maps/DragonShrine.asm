@@ -130,7 +130,7 @@ DragonShrineTestScript:
 	writetext UnknownText_0x18d916
 	closetext
 	loadmovesprites
-	special Special_FadeOutMusic
+	special Special_RotatePalettesRightMusic
 	applymovement $5, MovementData_0x18d2da
 	loadfont
 	writetext UnknownText_0x18d974

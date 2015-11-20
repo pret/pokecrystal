@@ -103,7 +103,7 @@ UnknownScript_0x19c0aa:
 UnknownScript_0x19c0ae:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_FadeOutMusic
+	special Special_RotatePalettesRightMusic
 	pause 15
 	appear $3
 	applymovement $3, MovementData_0x19c1ce

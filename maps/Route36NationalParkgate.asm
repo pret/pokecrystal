@@ -74,7 +74,7 @@ Route36NationalParkgate_MapScriptHeader:
 	appear $d
 	applymovement PLAYER, MovementData_0x6add1
 	pause 15
-	special Special_FadeInQuickly
+	special Special_RotatePalettesLeftQuickly
 	jumpstd bugcontestresults
 
 .GoBackToContest:
@@ -83,7 +83,7 @@ Route36NationalParkgate_MapScriptHeader:
 	loadmovesprites
 	spriteface PLAYER, LEFT
 	playsound SFX_EXIT_BUILDING
-	special FadeOutPalettes
+	special RotatePalettesRightPalettes
 	waitbutton
 	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, $21, $12
 	end
@@ -166,7 +166,7 @@ Route36OfficerScriptContest:
 	special Special_GiveParkBalls
 	spriteface PLAYER, LEFT
 	playsound SFX_EXIT_BUILDING
-	special FadeOutPalettes
+	special RotatePalettesRightPalettes
 	waitbutton
 	special Special_SelectRandomBugContestContestants
 	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, $21, $12

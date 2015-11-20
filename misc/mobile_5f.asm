@@ -1973,7 +1973,7 @@ MenuData2_17dc96:
 Function17dc9f: ; 17dc9f
 	call Function17e415
 	call Function17e41e
-	call Function4dd
+	call RotateFourPalettesLeft
 	ret
 ; 17dca9
 
@@ -1997,7 +1997,7 @@ Function17dcaf:
 	add hl, de
 	dec c
 	jr nz, .asm_17dcbb
-	call FadeToWhite
+	call RotateThreePalettesRight
 	ld a, $4
 	ld [rSVBK], a
 	ret

@@ -364,7 +364,7 @@ NewPokedexEntry: ; fb877
 	pop af
 	ld [wPokedexStatus], a
 	call MaxVolume
-	call FadeToWhite
+	call RotateThreePalettesRight
 	ld a, [hSCX]
 	add $fb
 	ld [hSCX], a

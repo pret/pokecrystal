@@ -10,7 +10,7 @@ Script_OverworldWhiteout:: ; 0x124c8
 Script_Whiteout: ; 0x124ce
 	writetext .WhitedOutText
 	closetext
-	special FadeOutPalettes
+	special RotatePalettesRightPalettes
 	pause 40
 	special HealParty
 	checkflag ENGINE_BUG_CONTEST_TIMER
@@ -37,7 +37,7 @@ OverworldBGMap: ; 124fa
 	call ClearScreen
 	call Function3200
 	call HideSprites
-	call Function4f0
+	call RotateThreePalettesLeft
 	ret
 ; 1250a
 

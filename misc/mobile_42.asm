@@ -241,13 +241,13 @@ Function1081ad: ; 1081ad
 Function1081ca: ; 1081ca
 	ld a, $1
 	ld [rVBK], a
-	ld hl, VBGMap0
+	hlbgcoord 0, 0
 	ld bc, $0800
 	ld a, $0
 	call ByteFill
 	ld a, $0
 	ld [rVBK], a
-	ld hl, VBGMap0
+	hlbgcoord 0, 0
 	ld bc, $0800
 	ld a, $7f
 	call ByteFill
@@ -1669,10 +1669,10 @@ UnknownText_0x108c68: ; 0x108c68
 
 Function108c6d: ; 108c6d
 	ld hl, LZ_108fe7
-	ld de, VBGMap0
+	debgcoord 0, 0
 	call Decompress
 	ld hl, LZ_108fe7
-	ld de, VBGMap1
+	debgcoord 0, 0, VBGMap1
 	call Decompress
 	ret
 ; 108c80
@@ -1681,10 +1681,10 @@ Function108c80: ; 108c80
 	ld a, $1
 	ld [rVBK], a
 	ld hl, LZ_1090a7
-	ld de, VBGMap0
+	debgcoord 0, 0
 	call Decompress
 	ld hl, LZ_1090a7
-	ld de, VBGMap1
+	debgcoord 0, 0, VBGMap1
 	call Decompress
 	ld a, $0
 	ld [rVBK], a

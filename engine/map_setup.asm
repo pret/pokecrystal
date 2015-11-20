@@ -249,10 +249,10 @@ MapSetupCommands: ; 15440
 	dba PlayMapMusic ; 03
 	dba RestartMapMusic ; 04
 	dba FadeToMapMusic ; 05
-	dba FadeOutMapAndMusic ; 06
+	dba RotatePalettesRightMapAndMusic ; 06
 	dba EnterMapMusic ; 07
 	dba ForceMapMusic ; 08
-	dba FadeInMusic ; 09
+	dba RotatePalettesLeftMusic ; 09
 	dba LoadBlockData ; 0a
 	dba LoadNeighboringBlockData ; 0b
 	dba SaveScreen ; 0c
@@ -272,8 +272,8 @@ MapSetupCommands: ; 15440
 	dba LoadMapAttributes ; 1a
 	dba LoadMapAttributes_SkipPeople ; 1b
 	dba ClearBGPalettes ; 1c
-	dba FadeOutPalettes ; 1d
-	dba FadeInPalettes ; 1e
+	dba RotatePalettesRightPalettes ; 1d
+	dba RotatePalettesLeftPalettes ; 1e
 	dba GetCoordOfUpperLeftCorner ; 1f
 	dba RestoreFacingAfterWarp ; 20
 	dba SpawnInFacingDown ; 21
@@ -417,14 +417,14 @@ RetainOldPalettes: ; 1556d
 	callba _UpdateTimePals
 	ret
 
-FadeOutMapAndMusic: ; 15574
+RotatePalettesRightMapAndMusic: ; 15574
 	ld e, 0
 	ld a, [MusicFadeIDLo]
 	ld d, 0
 	ld a, [MusicFadeIDHi]
 	ld a, $4
 	ld [MusicFade], a
-	call FadeToWhite
+	call RotateThreePalettesRight
 	ret
 ; 15587
 

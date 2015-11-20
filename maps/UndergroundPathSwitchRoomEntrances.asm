@@ -80,7 +80,7 @@ TeacherScript_0x7ca7d:
 UnknownScript_0x7ca80:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_FadeOutMusic
+	special Special_RotatePalettesRightMusic
 	pause 15
 	playsound SFX_EXIT_BUILDING
 	appear $c
@@ -99,7 +99,7 @@ UnknownScript_0x7ca80:
 UnknownScript_0x7caaa:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_FadeOutMusic
+	special Special_RotatePalettesRightMusic
 	pause 15
 	playsound SFX_EXIT_BUILDING
 	appear $c

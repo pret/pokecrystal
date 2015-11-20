@@ -21,7 +21,7 @@ RocketScript_0x1adbfa:
 	loadfont
 	writetext UnknownText_0x1addc0
 	keeptextopen
-	special Special_FadeOutMusic
+	special Special_RotatePalettesRightMusic
 	writetext UnknownText_0x1adee1
 	closetext
 	loadmovesprites
@@ -29,7 +29,7 @@ RocketScript_0x1adbfa:
 	special Special_ReloadSpritesNoPalettes
 	disappear $2
 	pause 25
-	special Special_FadeInQuickly
+	special Special_RotatePalettesLeftQuickly
 	playmapmusic
 	end
 

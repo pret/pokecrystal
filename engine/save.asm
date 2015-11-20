@@ -1,9 +1,9 @@
 SaveMenu: ; 14a1a
 	call LoadStandardMenuDataHeader
-	callba Function5e9a
+	callba DisplaySaveInfoOnSave
 	call SpeechTextBox
 	call UpdateSprites
-	callba SaveMenu_LoadDETile
+	callba SaveMenu_LoadEDTile
 	ld hl, UnknownText_0x15283
 	call SaveTheGame_yesorno
 	jr nz, .refused
@@ -19,7 +19,7 @@ SaveMenu: ; 14a1a
 .refused
 	call ExitMenu
 	call Functiond90
-	callba SaveMenu_LoadDETile
+	callba SaveMenu_LoadEDTile
 	scf
 	ret
 

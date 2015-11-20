@@ -42,9 +42,9 @@ UnknownScript_0x60bab:
 	loadmovesprites
 	special RestartMapMusic
 	cry AMPHAROS
-	special FadeOutPalettes
+	special RotatePalettesRightPalettes
 	pause 10
-	special FadeInPalettes
+	special RotatePalettesLeftPalettes
 	loadfont
 	writetext UnknownText_0x60f3d
 	closetext
@@ -116,10 +116,10 @@ UnknownScript_0x60c51:
 	cry AMPHAROS
 	closetext
 	loadmovesprites
-	special FadeOutPalettes
-	special FadeInPalettes
-	special FadeOutPalettes
-	special FadeInPalettes
+	special RotatePalettesRightPalettes
+	special RotatePalettesLeftPalettes
+	special RotatePalettesRightPalettes
+	special RotatePalettesLeftPalettes
 	end
 
 ItemFragment_0x60c66:

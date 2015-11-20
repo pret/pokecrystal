@@ -140,7 +140,7 @@ UnknownScript_0x5d7be:
 	writetext UnknownText_0x5e054
 	closetext
 	loadmovesprites
-	special Special_FadeOutMusic
+	special Special_RotatePalettesRightMusic
 	pause 20
 	special RestartMapMusic
 	checkcode VAR_BLUECARDBALANCE
@@ -169,7 +169,7 @@ UnknownScript_0x5d81e:
 	closetext
 	loadmovesprites
 	spriteface $b, RIGHT
-	special Special_FadeOutMusic
+	special Special_RotatePalettesRightMusic
 	pause 20
 	special RestartMapMusic
 	end
@@ -200,7 +200,7 @@ UnknownScript_0x5d845:
 	closetext
 	loadmovesprites
 	spriteface $b, RIGHT
-	special Special_FadeOutMusic
+	special Special_RotatePalettesRightMusic
 	pause 20
 	special RestartMapMusic
 	end

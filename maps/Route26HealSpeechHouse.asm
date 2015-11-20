@@ -17,7 +17,7 @@ TeacherScript_0x7b125:
 	playmusic MUSIC_HEAL
 	special HealParty
 	pause 60
-	special Special_FadeInQuickly
+	special Special_RotatePalettesLeftQuickly
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x7b18b

@@ -43,7 +43,7 @@ TwinScript_0x75ebb:
 	appear $4
 	spriteface PLAYER, UP
 	spriteface $4, UP
-	special Special_FadeInQuickly
+	special Special_RotatePalettesLeftQuickly
 	spriteface $3, DOWN
 	showemote EMOTE_SHOCK, $3, 15
 	applymovement $4, MovementData_0x7600c

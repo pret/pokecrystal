@@ -66,11 +66,11 @@ SpecialsPointers:: ; c029
 	add_special Special_CardFlip
 	add_special Special_DummyNonfunctionalGameCornerGame
 	add_special Special_ClearBGPalettesBufferScreen
-	add_special FadeOutPalettes
+	add_special RotatePalettesRightPalettes
 	add_special Special_BattleTowerFade
 	add_special Special_FadeBlackQuickly
-	add_special FadeInPalettes
-	add_special Special_FadeInQuickly
+	add_special RotatePalettesLeftPalettes
+	add_special Special_RotatePalettesLeftQuickly
 	add_special Special_ReloadSpritesNoPalettes
 	add_special ClearBGPalettes
 	add_special UpdateTimePals
@@ -126,7 +126,7 @@ SpecialsPointers:: ; c029
 	add_special SpecialTrainerHouse
 	add_special PhotoStudio
 	add_special InitRoamMons
-	add_special Special_FadeOutMusic
+	add_special Special_RotatePalettesRightMusic
 	add_special Diploma
 	add_special PrintDiploma
 
@@ -616,7 +616,7 @@ SpecialGameboyCheck: ; c478
 	ret
 
 
-Special_FadeOutMusic: ; c48f
+Special_RotatePalettesRightMusic: ; c48f
 	ld a, MUSIC_NONE % $100
 	ld [MusicFadeIDLo], a
 	ld a, MUSIC_NONE / $100

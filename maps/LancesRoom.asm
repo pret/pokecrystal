@@ -44,12 +44,12 @@ UnknownScript_0x180e53:
 	end
 
 UnknownScript_0x180e6a:
-	special Special_FadeOutMusic
+	special Special_RotatePalettesRightMusic
 	applymovement PLAYER, MovementData_0x180f38
 	jump LanceScript_0x180e7b
 
 UnknownScript_0x180e74:
-	special Special_FadeOutMusic
+	special Special_RotatePalettesRightMusic
 	applymovement PLAYER, MovementData_0x180f3c
 LanceScript_0x180e7b:
 	spriteface $2, LEFT
@@ -125,7 +125,7 @@ LanceScript_0x180e7b:
 	pause 30
 	loadmovesprites
 	applymovement $3, MovementData_0x180f5b
-	special FadeOutPalettes
+	special RotatePalettesRightPalettes
 	pause 15
 	warpfacing UP, HALL_OF_FAME, $4, $d
 	end

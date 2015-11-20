@@ -57,11 +57,12 @@ sMailbox10Backup::     mailmsg sMailbox10Backup
 
 ; abe2
 sMysteryGiftItem:: ds 1
-s0_abe3:: ds 1
+sMysteryGiftUnlocked:: ds 1
 sBackupMysteryGiftItem:: ds 1
 s0_abe5:: ds 1
 s0_abe6:: ds 10
-s0_abf0:: ds 10
+sMysteryGiftDecorationsReceived:: flag_array NUM_NON_TROPHY_DECOS
+	ds 4
 sMysteryGiftTimer:: ds 1
 sMysteryGiftTimerStartDay:: ds 1
 	ds 1
@@ -73,12 +74,11 @@ sBackupMysteryGiftItemEnd::
 
 	ds $30
 
-s0_ac60:: ds 8
+sRTCStatusFlags:: ds 8
 sLuckyNumberDay:: ds 1
 sLuckyIDNumber:: ds 2
 
-	ds $b200 - $ac6b
-
+SECTION "Backup Save", SRAM [$b200], BANK [0]
 sBackupOptions:: ds OptionsEnd - Options
 
 s0_b208:: ds 1

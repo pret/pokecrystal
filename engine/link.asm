@@ -493,7 +493,7 @@ Function283b2: ; 283b2
 	pop hl
 	bccoord 1, 14
 	call PlaceWholeStringInBoxAtOnce
-	call FadeToWhite
+	call RotateThreePalettesRight
 	call ClearScreen
 	ld b, $8
 	call GetSGBLayout
@@ -1583,7 +1583,7 @@ Function28ade: ; 28ade
 	jr nz, .asm_28ade
 
 Function28b22: ; 28b22
-	call FadeToWhite
+	call RotateThreePalettesRight
 	call ClearScreen
 	ld b, $8
 	call GetSGBLayout
@@ -2191,7 +2191,7 @@ Function28fdb: ; 28fdb
 	ld [rVBK], a
 
 .asm_2900b
-	ld hl, VBGMap0
+	hlbgcoord 0, 0
 	ld bc, sScratch - VBGMap0
 	ld a, " "
 	call ByteFill
@@ -2372,7 +2372,7 @@ Function2914e: ; 2914e
 	push af
 	call DisableLCD
 	callab Function8cf53
-	ld hl, $9874
+	hlbgcoord 20, 3
 	ld bc, $c
 	ld a, $60
 	call ByteFill
@@ -2500,7 +2500,7 @@ Function29229: ; 29229
 	call ClearSprites
 	call DisableLCD
 	callab Function8cf53
-	ld hl, VBGMap0
+	hlbgcoord 0, 0
 	ld bc, sScratch - VBGMap0
 	ld a, " "
 	call ByteFill

@@ -312,7 +312,7 @@ Function10016f: ; 10016f
 Function10020b: ; 10020b
 	xor a
 	ld [wc303], a
-	callba FadeOutPalettes
+	callba RotatePalettesRightPalettes
 	callba Function106464
 	call HideSprites
 	call DelayFrame
@@ -1591,7 +1591,7 @@ Function1009d2: ; 1009d2
 	ld [rVBK], a
 
 	ld hl, w3_d800
-	ld de, VBGMap0
+	debgcoord 0, 0
 	lb bc, $3, $24
 	call Get2bpp
 

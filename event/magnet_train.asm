@@ -158,7 +158,7 @@ endr
 ; 8cd27
 
 DrawMagnetTrain: ; 8cd27
-	ld hl, VBGMap0
+	hlbgcoord 0, 0
 	xor a
 .asm_8cd2b
 	call GetMagnetTrainBGTiles
@@ -167,19 +167,19 @@ DrawMagnetTrain: ; 8cd27
 	inc a
 	cp $12
 	jr c, .asm_8cd2b
-	ld hl, VBGMap0 tile $0c
+	hlbgcoord 0, 6
 	ld de, MagnetTrainTilemap1
 	ld c, 20
 	call .FillLine
-	ld hl, VBGMap0 tile $0e
+	hlbgcoord 0, 7
 	ld de, MagnetTrainTilemap2
 	ld c, 20
 	call .FillLine
-	ld hl, VBGMap0 tile $10
+	hlbgcoord 0, 8
 	ld de, MagnetTrainTilemap3
 	ld c, 20
 	call .FillLine
-	ld hl, VBGMap0 tile $12
+	hlbgcoord 0, 9
 	ld de, MagnetTrainTilemap4
 	ld c, 20
 	call .FillLine
@@ -262,25 +262,25 @@ SetMagnetTrainPals: ; 8cdc3
 	ld [rVBK], a
 
 	; bushes
-	ld hl, VBGMap0
-	ld bc, 8 tiles
+	hlbgcoord 0, 0
+	ld bc, 4 bgrows
 	ld a, $2
 	call ByteFill
 
 	; train
-	ld hl, VBGMap0 tile $08
-	ld bc, 20 tiles
+	hlbgcoord 0, 4
+	ld bc, 10 bgrows
 	xor a
 	call ByteFill
 
 	; more bushes
-	ld hl, VBGMap0 tile $1c
-	ld bc, 8 tiles
+	hlbgcoord 0, 14
+	ld bc, 4 bgrows
 	ld a, $2
 	call ByteFill
 
 	; train window
-	ld hl, VBGMap0 tile $10 + 7
+	hlbgcoord 7, 8
 	ld bc, 6
 	ld a, $4
 	call ByteFill

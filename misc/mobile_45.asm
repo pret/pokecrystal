@@ -8407,7 +8407,7 @@ Function117c4a:
 	add hl, de
 	dec c
 	jr nz, .asm_117c71 ; 0x117c7b $f4
-	call FadeToWhite
+	call RotateThreePalettesRight
 	pop af
 	ld [rSVBK], a
 	ld a, $80

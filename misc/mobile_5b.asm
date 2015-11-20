@@ -169,7 +169,7 @@ Function16c108: ; 16c108
 	call Function16c130
 	call Function16c145
 	call Function16c15c
-	ld hl, VBGMap0
+	hlbgcoord 0, 0
 	call Function16cc73
 	call Function16cc02
 	xor a
@@ -795,7 +795,7 @@ Function16cc62: ; 16cc62
 ; 16cc6e
 
 Function16cc6e: ; 16cc6e
-	ld hl, VBGMap1
+	hlbgcoord 0, 0, VBGMap1
 	jr Function16cc73
 
 Function16cc73:
@@ -925,19 +925,19 @@ rept 2
 	inc c
 endr
 	ld a, $7
-.asm_16d630
+.loop
 	push bc
 	push hl
-.asm_16d632
+.loop2
 	ld [hli], a
 	dec c
-	jr nz, .asm_16d632
+	jr nz, .loop2
 	pop hl
-	ld de, $0014
+	ld de, SCREEN_WIDTH
 	add hl, de
 	pop bc
 	dec b
-	jr nz, .asm_16d630
+	jr nz, .loop
 	ret
 ; 16d640
 
@@ -950,20 +950,20 @@ Function16d640: ; 16d640
 	inc a
 	ld [hl], a
 	pop hl
-	ld de, $0014
+	ld de, SCREEN_WIDTH
 	add hl, de
-.asm_16d64f
+.loop
 	push hl
 	ld a, $33
 	ld [hli], a
-	ld a, $7f
+	ld a, " "
 	call Function16d66d
 	ld [hl], $34
 	pop hl
-	ld de, $0014
+	ld de, SCREEN_WIDTH
 	add hl, de
 	dec b
-	jr nz, .asm_16d64f
+	jr nz, .loop
 	ld a, $35
 	ld [hli], a
 	ld a, $36
@@ -974,10 +974,10 @@ Function16d640: ; 16d640
 
 Function16d66d: ; 16d66d
 	ld d, c
-.asm_16d66e
+.loop
 	ld [hli], a
 	dec d
-	jr nz, .asm_16d66e
+	jr nz, .loop
 	ret
 ; 16d673
 
@@ -1044,11 +1044,11 @@ Function16d6ce: ; 16d6ce
 
 Function16d6e1: ; 16d6e1
 	hlcoord 4, 10
-	ld b, $1
-	ld c, $a
+	ld b, 1
+	ld c, 10
 	predef Function28eef
 	hlcoord 5, 11
-	ld de, String_16d701
+	ld de, .Waiting
 	call PlaceString
 	call WaitBGMap
 	call Function3200
@@ -1056,7 +1056,7 @@ Function16d6e1: ; 16d6e1
 	jp DelayFrames
 ; 16d701
 
-String_16d701: ; 16d701
+.Waiting: ; 16d701
 	db "WAITING..!@"
 ; 16d70c
 

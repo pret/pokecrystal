@@ -18,7 +18,7 @@ UnknownScript_0x184946:
 UnknownScript_0x184947:
 	spriteface PLAYER, UP
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_FadeOutMusic
+	special Special_RotatePalettesRightMusic
 	playsound SFX_TACKLE
 	playsound SFX_ELEVATOR
 	earthquake 79
@@ -51,7 +51,7 @@ UnknownScript_0x184947:
 	special Special_ReloadSpritesNoPalettes
 	disappear $8
 	waitbutton
-	special Special_FadeInQuickly
+	special Special_RotatePalettesLeftQuickly
 	dotrigger $1
 	special RestartMapMusic
 	end

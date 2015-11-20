@@ -55,7 +55,7 @@ UnknownScript_0x180053:
 	appear $5
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_FadeOutMusic
+	special Special_RotatePalettesRightMusic
 	pause 15
 	applymovement $5, MovementData_0x180164
 	playmusic MUSIC_RIVAL_ENCOUNTER
@@ -76,7 +76,7 @@ UnknownScript_0x180094:
 	appear $5
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_FadeOutMusic
+	special Special_RotatePalettesRightMusic
 	pause 15
 	applymovement $5, MovementData_0x18016b
 	playmusic MUSIC_RIVAL_ENCOUNTER
@@ -154,7 +154,7 @@ TeleportGuyScript:
 	closetext
 	loadmovesprites
 	playsound SFX_WARP_TO
-	special FadeOutPalettes
+	special RotatePalettesRightPalettes
 	waitbutton
 	warp NEW_BARK_TOWN, $d, $6
 	end

@@ -95,7 +95,7 @@ UnknownScript_0x6006e:
 	disappear $3
 	disappear $4
 	pause 15
-	special Special_FadeInQuickly
+	special Special_RotatePalettesLeftQuickly
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_1
 	setevent EVENT_CLEARED_RADIO_TOWER
 	clearflag ENGINE_ROCKETS_IN_RADIO_TOWER

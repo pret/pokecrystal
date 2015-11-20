@@ -8569,7 +8569,7 @@ BackUpVBGMap2: ; 3f568
 	ld a, $1
 	ld [rVBK], a
 	ld de, w6_d000
-	ld hl, VBGMap0 ; VBGMap2
+	hlbgcoord 0, 0 ; VBGMap2
 	lb bc, BANK(BackUpVBGMap2), $40
 	call Request2bpp
 	pop af
@@ -9460,7 +9460,7 @@ InitBattleDisplay: ; 3fb6c
 	call ByteFill
 
 	ld de, w6_d000
-	ld hl, VBGMap0
+	hlbgcoord 0, 0
 	lb bc, BANK(.BlankBGMap), $40
 	call Request2bpp
 

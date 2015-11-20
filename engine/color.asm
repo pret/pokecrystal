@@ -319,7 +319,7 @@ Function8bec: ; 8bec
 	ld a, [EnemySafeguardCount]
 	and $3
 	call FillBoxCGB
-	call LoadDETile
+	call LoadEDTile
 	ret
 ; 8c1d
 
@@ -702,7 +702,7 @@ Function96b3: ; 96b3
 
 .asm_96d0
 	hlcoord 0, 0, AttrMap
-	ld de, VBGMap0
+	debgcoord 0, 0
 	ld b, $12
 	ld a, $1
 	ld [rVBK], a
@@ -1293,7 +1293,7 @@ ClearBytes: ; 0x9a5b
 
 DrawDefaultTiles: ; 0x9a64
 ; Draw 240 tiles (2/3 of the screen) from tiles in VRAM
-	ld hl, VBGMap0 ; BG Map 0
+	hlbgcoord 0, 0 ; BG Map 0
 	ld de, 32 - 20
 	ld a, $80 ; starting tile
 	ld c, 12 + 1

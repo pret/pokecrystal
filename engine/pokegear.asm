@@ -2332,7 +2332,7 @@ FlyMap: ; 91c90
 	call TownMapBubble
 	call TownMapPals
 
-	ld hl, VBGMap0 ; BG Map 0
+	hlbgcoord 0, 0 ; BG Map 0
 	call TownMapBGUpdate
 
 	call TownMapMon
@@ -2371,12 +2371,12 @@ Function91d11: ; 91d11
 	call FillKantoMap
 	call Function91de9
 	call TownMapPals
-	ld hl, VBGMap1
+	hlbgcoord 0, 0, VBGMap1
 	call TownMapBGUpdate
 	call FillJohtoMap
 	call Function91de9
 	call TownMapPals
-	ld hl, VBGMap0
+	hlbgcoord 0, 0
 	call TownMapBGUpdate
 	ld b, $2
 	call GetSGBLayout
@@ -2875,12 +2875,12 @@ Function92311: ; unreferenced
 	call FillKantoMap
 	call TownMapBubble
 	call TownMapPals
-	ld hl, VBGMap1
+	hlbgcoord 0, 0, VBGMap1
 	call TownMapBGUpdate
 	call FillJohtoMap
 	call TownMapBubble
 	call TownMapPals
-	ld hl, VBGMap0
+	hlbgcoord 0, 0
 	call TownMapBGUpdate
 	call TownMapMon
 	ld a, c

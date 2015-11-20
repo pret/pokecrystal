@@ -240,7 +240,7 @@ Function49e09: ; 49e09
 
 
 Function49e27: ; 49e27
-	call Function6e3
+	call CheckRTCStatus
 	and $80
 	jr nz, .asm_49e39
 	hlcoord 0, 14
@@ -259,7 +259,7 @@ Function49e3d: ; 49e3d
 	ld a, [wSaveFileExists]
 	and a
 	ret z
-	call Function6e3
+	call CheckRTCStatus
 	and $80
 	jp nz, Function49e75
 	call UpdateTime
@@ -560,7 +560,7 @@ Function4a0c2: ; 4a0c2 (12:60c2)
 	ld c, 2
 	call DelayFrames
 	ld c, $1
-	call Function4802f
+	call InitMobileProfile
 	push af
 	call ClearBGPalettes
 	pop af

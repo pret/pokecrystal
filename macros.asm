@@ -221,3 +221,16 @@ endc
 	endm
 
 depixel EQUS "ldpixel de,"
+
+bgcoord: MACRO
+IF _NARG == 4
+	ld \1, \3 * $20 + \2 + \4
+ELSE
+	ld \1, \3 * $20 + \2 + VBGMap0
+ENDC
+ENDM
+
+hlbgcoord EQUS "bgcoord hl,"
+debgcoord EQUS "bgcoord de,"
+bcbgcoord EQUS "bgcoord bc,"
+bgrows EQUS "* $20"

@@ -2007,7 +2007,7 @@ FadeToMenu:: ; 2b29
 	xor a
 	ld [hBGMapMode], a
 	call LoadStandardMenuDataHeader
-	callba FadeOutPalettes
+	callba RotatePalettesRightPalettes
 	call ClearSprites
 	call DisableSpriteUpdates
 	ret
@@ -2036,7 +2036,7 @@ Function2b5c:: ; 2b5c
 	call GetSGBLayout
 	callba Function49409
 	call Function3200
-	callba FadeInPalettes
+	callba RotatePalettesLeftPalettes
 	call EnableSpriteUpdates
 	ret
 ; 2b74

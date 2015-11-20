@@ -26,7 +26,7 @@ Function926f7: ; 926f7 (24:66f7)
 	call PlayMusic
 	call DelayFrame
 	call DisableLCD
-	ld hl, VBGMap0 tile $00
+	hlbgcoord 0, 0
 	lb bc, 4, 0
 	ld a, $7f
 	call ByteFill

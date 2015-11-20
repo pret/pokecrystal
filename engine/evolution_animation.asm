@@ -378,7 +378,7 @@ Function4e881: ; 4e881
 	call DisableLCD
 	call LoadStandardFont
 	call LoadFontsBattleExtra
-	ld hl, VBGMap0
+	hlbgcoord 0, 0
 	ld bc, VBGMap1 - VBGMap0
 	ld a, " "
 	call ByteFill
@@ -411,7 +411,7 @@ Function4e8c2: ; 4e8c2
 	call DisableLCD
 	call LoadStandardFont
 	call LoadFontsBattleExtra
-	ld hl, VBGMap0
+	hlbgcoord 0, 0
 	ld bc, VBGMap1 - VBGMap0
 	ld a, " "
 	call ByteFill
@@ -446,7 +446,7 @@ Function4e906: ; 4e906
 	ld bc, w6_d400 - w6_d000
 	ld a, " "
 	call ByteFill
-	ld hl, VBGMap0
+	hlbgcoord 0, 0
 	ld de, w6_d000
 	ld b, $0
 	ld c, $40

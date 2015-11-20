@@ -30,7 +30,7 @@ UnknownScript_0x198018:
 	moveperson $b, $b, $b
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_FadeOutMusic
+	special Special_RotatePalettesRightMusic
 	pause 15
 	appear $b
 	applymovement $b, MovementData_0x198134
@@ -40,7 +40,7 @@ UnknownScript_0x198018:
 UnknownScript_0x198034:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_FadeOutMusic
+	special Special_RotatePalettesRightMusic
 	pause 15
 	appear $b
 	applymovement $b, MovementData_0x19813c

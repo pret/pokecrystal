@@ -55,7 +55,7 @@ LanceScript_0x6dffc:
 UnknownScript_0x6e019:
 	spriteface PLAYER, LEFT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_FadeOutMusic
+	special Special_RotatePalettesRightMusic
 	appear $a
 	applymovement $a, MovementData_0x6e164
 	spriteface PLAYER, LEFT
