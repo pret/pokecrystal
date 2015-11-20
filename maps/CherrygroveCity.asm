@@ -431,7 +431,7 @@ GuideGentNoText:
 	done
 
 UnknownText_0x19c4e2:
-	text $56, " ", $56, " ", $56
+	text "<......> <......> <......>"
 
 	para "You got a #MON"
 	line "at the LAB."
@@ -439,7 +439,7 @@ UnknownText_0x19c4e2:
 	para "What a waste."
 	line "A wimp like you."
 
-	para $56, " ", $56, " ", $56
+	para "<......> <......> <......>"
 
 	para "Don't you get what"
 	line "I'm saying?"
@@ -457,7 +457,7 @@ UnknownText_0x19c57f:
 	done
 
 UnknownText_0x19c59e:
-	text $56, " ", $56, " ", $56
+	text "<......> <......> <......>"
 
 	para "My name's ???."
 
@@ -473,7 +473,7 @@ UnknownText_0x19c5e6:
 	done
 
 UnknownText_0x19c608:
-	text $56, " ", $56, " ", $56
+	text "<......> <......> <......>"
 
 	para "My name's ???."
 

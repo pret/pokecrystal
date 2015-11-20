@@ -87,7 +87,7 @@ MovementData_0x740fd:
 	step_end
 
 UnknownText_0x74105:
-	text $56, " ", $56, " ", $56
+	text "<......> <......> <......>"
 
 	para "It's been a while,"
 	line "<PLAYER>."
@@ -107,7 +107,7 @@ UnknownText_0x74105:
 	done
 
 UnknownText_0x7419d:
-	text $56, " ", $56, " ", $56
+	text "<......> <......> <......>"
 
 	para "I thought I raised"
 	line "my #MON to be"
@@ -120,7 +120,7 @@ UnknownText_0x7419d:
 	done
 
 UnknownText_0x741fa:
-	text $56, " ", $56, " ", $56
+	text "<......> <......> <......>"
 
 	para "…You won, fair"
 	line "and square."
@@ -146,7 +146,7 @@ UnknownText_0x741fa:
 	done
 
 UnknownText_0x742e0:
-	text $56, " ", $56, " ", $56
+	text "<......> <......> <......>"
 
 	para "I've repaid my"
 	line "debt to you."
