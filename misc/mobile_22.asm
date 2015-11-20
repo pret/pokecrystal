@@ -665,9 +665,10 @@ Function894dc: ; 894dc
 	push af
 	ld a, 5
 	ld [rSVBK], a
+
 	ld c, d
 	ld b, 0
-	ld hl, Unknown_89509
+	ld hl, .PalettePointers
 rept 2
 	add hl, bc
 endr
@@ -675,25 +676,26 @@ endr
 	ld h, [hl]
 	ld l, a
 	ld de, wMapPals
-	ld bc, 24
+	ld bc, 3 palettes
 	call CopyBytes
-	ld hl, Palette_89557
-	ld de, wd018
-	ld bc, 24
+	ld hl, .Pals345
+	ld de, wMapPals + 3 palettes
+	ld bc, 3 palettes
 	call CopyBytes
+
 	pop af
 	ld [rSVBK], a
 	pop bc
 	ret
 ; 89509
 
-Unknown_89509: ; 89509
-	dw Palette_8950f
-	dw Palette_89527
-	dw Palette_8953f
+.PalettePointers: ; 89509
+	dw .Pals012a
+	dw .Pals012b
+	dw .Pals012c
 ; 8950f
 
-Palette_8950f: ; 8950f
+.Pals012a: ; 8950f
 	RGB 31, 31, 31
 	RGB 10, 17, 13
 	RGB 10, 08, 22
@@ -709,7 +711,7 @@ Palette_8950f: ; 8950f
 	RGB 10, 17, 13
 	RGB 00, 00, 00
 
-Palette_89527: ; 89527
+.Pals012b: ; 89527
 	RGB 31, 31, 31
 	RGB 30, 22, 11
 	RGB 31, 08, 15
@@ -725,7 +727,7 @@ Palette_89527: ; 89527
 	RGB 30, 22, 11
 	RGB 00, 00, 00
 
-Palette_8953f: ; 8953f
+.Pals012c: ; 8953f
 	RGB 31, 31, 31
 	RGB 15, 20, 26
 	RGB 25, 07, 20
@@ -741,7 +743,7 @@ Palette_8953f: ; 8953f
 	RGB 15, 20, 26
 	RGB 00, 00, 00
 
-Palette_89557: ; 89557
+.Pals345: ; 89557
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 13, 00

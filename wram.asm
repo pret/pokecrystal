@@ -1536,6 +1536,8 @@ wd016:: ds 1
 wMartItem8BCD::
 wd017:: ds 1
 
+	ds wd00d - @
+wd00d_MonOT:: ds NAME_LENGTH
 wd018_Mon:: party_struct wd018_Mon
 	ds wd018_Mon - @
 
@@ -1620,6 +1622,7 @@ MenuItemsListEnd::
 wTempTrainerHeaderEnd::
 wd04e:: ds 2
 wOaksPkmnTalkPkmnNameBuffer::
+wd050_MonNick::
 wd050:: ds PKMN_NAME_LENGTH +- 1
 wd05a:: ds 12
 wd066:: ds 10
@@ -2998,7 +3001,8 @@ SECTION "WRAM 6", WRAMX, BANK [6]
 
 w6_d000:: ds $400
 w6_d400:: ds $200
-w6_d600:: ds $600
+w6_d600:: ds $200
+w6_d800::
 
 INCLUDE "sram.asm"
 

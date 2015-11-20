@@ -48,6 +48,8 @@ PIC_POINTERS              EQU $48
 UNOWN_PIC_POINTERS        EQU $49
 TRAINER_PIC_POINTERS      EQU $4A
 
+PICS_FIX                  EQU $36
+
 PICS_1                    EQU $48
 PICS_2                    EQU $49
 PICS_3                    EQU $4A
