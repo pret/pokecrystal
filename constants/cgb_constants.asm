@@ -30,3 +30,6 @@
 	const SCGB_1C
 	const SCGB_1D
 	const SCGB_1E
+
+SCGB_FC  EQU -4
+SCGB_RAM EQU -1

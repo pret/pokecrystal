@@ -1244,7 +1244,7 @@ Function8220f: ; 8220f
 rept 3
 	add hl, hl
 endr
-	ld de, wMapPals
+	ld de, UnknBGPals
 	add hl, de
 	ld de, wc608
 	ld bc, 8

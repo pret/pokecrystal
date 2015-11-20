@@ -20,7 +20,7 @@ Function5001d: ; 5001d
 	call ClearBGPalettes
 	call Function5003f
 	call WaitBGMap
-	ld b, $a
+	ld b, SCGB_0A
 	call GetSGBLayout
 	call SetPalettes
 	call DelayFrame
@@ -149,7 +149,7 @@ PlacePartyHPBar: ; 500cf
 	ld b, $0
 	add hl, bc
 	call SetHPPal
-	ld b, $fc
+	ld b, SCGB_FC
 	call GetSGBLayout
 
 .skip
@@ -162,7 +162,7 @@ PlacePartyHPBar: ; 500cf
 	inc b
 	dec c
 	jr nz, .loop
-	ld b, $a
+	ld b, SCGB_0A
 	call GetSGBLayout
 	ret
 ; 50117

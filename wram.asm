@@ -2896,7 +2896,7 @@ w2_d188:: ds 1
 wPokeAnimStructEnd::
 
 
-SECTION "WRAM 3", WRAMX, BANK [3]
+SECTION "Battle Tower", WRAMX, BANK [3]
 
 w3_d000:: ; d000
 	ds $80
@@ -2912,9 +2912,9 @@ BT_OTTrainer:: battle_tower_struct BT_OT
 ; d200
 BT_TrainerTextIndex::
 	ds $be
-w3_d2be::
-	ds $542
+w3_d2be:: ds 1
 
+SECTION "WRAM 3 part 2", WRAMX [$d800], BANK [3]
 wBTChoiceOfLvlGroup::
 w3_d800:: ds $400
 w3_dc00:: ds $168
@@ -2924,10 +2924,10 @@ w3_dd68::
 SECTION "GBC Video", WRAMX, BANK [5]
 
 ; 8 4-color palettes
-wMapPals:: ds 8 * 8 ; d000
-Unkn2Pals:: ds 8 * 8 ; d040
-BGPals::    ds 8 * 8 ; d080
-OBPals::    ds 8 * 8 ; d0c0
+UnknBGPals:: ds 8 palettes ; d000
+UnknOBPals:: ds 8 palettes ; d040
+BGPals::     ds 8 palettes ; d080
+OBPals::     ds 8 palettes ; d0c0
 
 LYOverrides:: ; d100
 	ds SCREEN_HEIGHT_PX

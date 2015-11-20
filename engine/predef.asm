@@ -92,7 +92,7 @@ PredefPointers:: ; 856b
 	add_predef PartyMonItemName
 	add_predef GetFrontpic
 	add_predef GetBackpic
-	add_predef Function5108b
+	add_predef FrontpicPredef
 	add_predef GetTrainerPic
 	add_predef DecompressPredef ; $40
 	add_predef CheckTypeMatchup

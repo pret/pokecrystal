@@ -650,7 +650,7 @@ Function1723c: ; 1723c (5:723c)
 	ld hl, BattleMonDVs
 	predef GetUnownLetter
 	pop de
-	predef_jump Function5108b
+	predef_jump FrontpicPredef
 
 Function17254: ; 17254 (5:7254)
 	push af
@@ -775,7 +775,7 @@ Function1728f: ; 1728f (5:728f)
 
 Function17363: ; 17363 (5:7363)
 	ld [PlayerHPPal], a
-	ld b, $b
+	ld b, SCGB_0B
 	ld c, $0
 	jp GetSGBLayout
 

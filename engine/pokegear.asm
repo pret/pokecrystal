@@ -1952,7 +1952,7 @@ _FlyMap: ; 91af3
 	call Request1bpp
 	call FlyMap
 	call Function91c8f
-	ld b, $2
+	ld b, SCGB_02
 	call GetSGBLayout
 	call SetPalettes
 .loop
@@ -2378,7 +2378,7 @@ Function91d11: ; 91d11
 	call TownMapPals
 	hlbgcoord 0, 0
 	call TownMapBGUpdate
-	ld b, $2
+	ld b, SCGB_02
 	call GetSGBLayout
 	call SetPalettes
 	xor a

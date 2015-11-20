@@ -2916,7 +2916,7 @@ ForcePlayerMonChoice: ; 3d227
 	call ExitMenu
 	call LoadTileMapToTempTileMap
 	call WaitBGMap
-	call ClearSGB
+	call GetMemSGBLayout
 	call SetPalettes
 	xor a
 	ld c, a
@@ -2935,7 +2935,7 @@ ForcePlayerMonChoice: ; 3d227
 	call DelayFrame
 	call _LoadHPBar
 	call WriteBackup
-	call ClearSGB
+	call GetMemSGBLayout
 	call SetPalettes
 	call SendOutPkmnText
 	call NewBattleMonStatus
@@ -5372,7 +5372,7 @@ Function3e299:
 	call _LoadHPBar
 	call WriteBackup
 	call LoadTileMapToTempTileMap
-	call ClearSGB
+	call GetMemSGBLayout
 	call SetPalettes
 	jp BattleMenu
 ; 3e2f5
@@ -5454,7 +5454,7 @@ Function3e358: ; 3e358
 	call ClearSprites
 	call _LoadHPBar
 	call WriteBackup
-	call ClearSGB
+	call GetMemSGBLayout
 	call SetPalettes
 	ld a, [CurPartyMon]
 	ld [CurBattleMon], a
@@ -8450,7 +8450,7 @@ Function3f486: ; 3f486
 	ld hl, EnemyMonDVs
 	predef GetUnownLetter
 	ld de, VTiles2
-	predef Function5108b
+	predef FrontpicPredef
 	pop af
 	ld [CurPartySpecies], a
 	ret
@@ -8659,7 +8659,7 @@ InitEnemyWildmon: ; 3f607
 	ld [wdef4], a
 .skip_unown
 	ld de, VTiles2
-	predef Function5108b
+	predef FrontpicPredef
 	xor a
 	ld [TrainerClass], a
 	ld [hFillBox], a

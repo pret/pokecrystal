@@ -5786,7 +5786,7 @@ Function116294: ; 116294
 	ld bc, $0010
 	call CopyBytes
 	ld hl, Palette_11734e
-	ld de, wMapPals + 8 * 7
+	ld de, UnknBGPals + 8 * 7
 	ld bc, $0008
 	call CopyBytes
 	call SetPalettes
@@ -5912,7 +5912,7 @@ Function11636e: ; 11636e
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, BGPals
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $0040
 	call CopyBytes
 	pop af
@@ -5955,7 +5955,7 @@ Function1163c0: ; 1163c0
 	call ByteFill
 	call DelayFrame
 	callba Function14146
-	ld b, $9
+	ld b, SCGB_09
 	call GetSGBLayout
 	ld a, [rSVBK]
 	push af

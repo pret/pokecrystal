@@ -848,7 +848,7 @@ Function4e289: ; 4e289 (13:6289)
 	ret c
 	call Function4e307
 	ld de, VTiles2 tile $00
-	predef Function5108b
+	predef FrontpicPredef
 	hlcoord 0, 0
 	ld d, $0
 	ld e, $2
@@ -1051,7 +1051,7 @@ Function4e497: ; 4e497 (13:6497)
 	ld [wc2c6], a
 	call Function4e307
 	ld de, VTiles2 tile $00
-	predef Function5108b
+	predef FrontpicPredef
 	pop de
 	hlcoord 0, 0
 	ld d, $0

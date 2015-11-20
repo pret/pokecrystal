@@ -495,7 +495,7 @@ Function283b2: ; 283b2
 	call PlaceWholeStringInBoxAtOnce
 	call RotateThreePalettesRight
 	call ClearScreen
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	call Function3200
 	ret
@@ -1585,7 +1585,7 @@ Function28ade: ; 28ade
 Function28b22: ; 28b22
 	call RotateThreePalettesRight
 	call ClearScreen
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	call Function3200
 	xor a
@@ -1889,7 +1889,7 @@ Function28b87: ; 28b87
 	call DelayFrames
 	call ClearTileMap
 	call LoadFontsBattleExtra
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	ld a, [hLinkPlayerNumber]
 	cp $1
@@ -2401,7 +2401,7 @@ Function2914e: ; 2914e
 	pop bc
 	ld [hl], b
 	call WaitBGMap
-	ld b, $1b
+	ld b, SCGB_1B
 	call GetSGBLayout
 	ld a, $e4
 	call DmgToCgbBGPals
@@ -2672,7 +2672,7 @@ Function29348: ; 29348
 	lb bc, 3, 12
 	call Function297db
 	call WaitBGMap
-	ld b, $1b
+	ld b, SCGB_1B
 	call GetSGBLayout
 	ld a, $e4
 	call DmgToCgbBGPals
@@ -2812,7 +2812,7 @@ Function2942e: ; 2942e
 	ld [TempMonDVs], a
 	ld a, [wPlayerMinimized]
 	ld [TempMonDVs + 1], a
-	ld b, $1a
+	ld b, SCGB_1A
 	call GetSGBLayout
 	ld a, $e4
 	call DmgToCgbBGPals
@@ -2838,7 +2838,7 @@ Function29461: ; 29461
 	ld [TempMonDVs], a
 	ld a, [wPlayerWrapCount]
 	ld [TempMonDVs + 1], a
-	ld b, $1a
+	ld b, SCGB_1A
 	call GetSGBLayout
 	ld a, $e4
 	call DmgToCgbBGPals

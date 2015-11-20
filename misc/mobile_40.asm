@@ -6825,7 +6825,7 @@ Function102dd3: ; 102dd3
 
 Function102dec: ; 102dec
 	ld hl, Unknown_1032e2
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld bc, $0020
 	ld a, $5
 	call FarCopyWRAM

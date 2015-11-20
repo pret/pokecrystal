@@ -144,7 +144,7 @@ _TitleScreen: ; 10ed67
 	
 ; Update palette colors
 	ld hl, TitleScreenPalettes
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, 4 * 32
 	call CopyBytes
 	
@@ -220,7 +220,7 @@ _TitleScreen: ; 10ed67
 	ld [hBGMapMode], a
 	
 	xor a
-	ld [wMapPals + 2], a
+	ld [UnknBGPals + 2], a
 	
 ; Play starting sound effect
 	call SFXChannelsOff
@@ -231,7 +231,7 @@ _TitleScreen: ; 10ed67
 ; 10eea7
 
 SuicuneFrameIterator: ; 10eea7
-	ld hl, wMapPals + 2
+	ld hl, UnknBGPals + 2
 	ld a, [hl]
 	ld c, a
 	inc [hl]

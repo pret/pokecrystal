@@ -8,7 +8,7 @@ _DummyGame: ; e1e5b (38:5e5b)
 
 Functione1e67: ; e1e67 (38:5e67)
 	call DisableLCD
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	callab Function8cf53
 	ld hl, LZ_e2221

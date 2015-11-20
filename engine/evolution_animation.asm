@@ -52,11 +52,11 @@ _EvolutionAnimation: ; 4e607
 	ld [PlayerHPPal], a
 
 	ld c, $0
-	call Function4e703
+	call .GetSGBLayout
 	ld a, [Buffer1]
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
-	call Function4e708
+	call .PlaceFrontpic
 
 	ld de, VTiles2
 	ld hl, VTiles2 tile $31
@@ -65,11 +65,11 @@ _EvolutionAnimation: ; 4e607
 
 	ld a, $31
 	ld [wd1ec], a
-	call Evolution_FlashFrontpics
+	call .ReplaceFrontpic
 	ld a, [Buffer2]
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
-	call Function4e711
+	call .LoadFrontpic
 	ld a, [Buffer1]
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
@@ -90,14 +90,14 @@ _EvolutionAnimation: ; 4e607
 	call DelayFrames
 
 	ld c, $1
-	call Function4e703
-	call Function4e726
-	jr c, .pressed_b
+	call .GetSGBLayout
+	call .AnimationSequence
+	jr c, .cancel_evo
 
-	ld a, $cf
+	ld a, -7 * 7
 	ld [wd1ec], a
 
-	call Evolution_FlashFrontpics
+	call .ReplaceFrontpic
 	xor a
 	ld [wd1ed], a
 
@@ -105,7 +105,7 @@ _EvolutionAnimation: ; 4e607
 	ld [PlayerHPPal], a
 
 	ld c, $0
-	call Function4e703
+	call .GetSGBLayout
 	call Function4e7a6
 	callba Function8cf53
 	call Function4e794
@@ -134,7 +134,7 @@ _EvolutionAnimation: ; 4e607
 .asm_4e6de
 	ret
 
-.pressed_b
+.cancel_evo
 	ld a, $1
 	ld [wd1ed], a
 
@@ -142,7 +142,7 @@ _EvolutionAnimation: ; 4e607
 	ld [PlayerHPPal], a
 
 	ld c, $0
-	call Function4e703
+	call .GetSGBLayout
 	call Function4e7a6
 	callba Function8cf53
 	call Function4e794
@@ -153,38 +153,38 @@ _EvolutionAnimation: ; 4e607
 	ret
 ; 4e703
 
-Function4e703: ; 4e703
-	ld b, $b
+.GetSGBLayout: ; 4e703
+	ld b, SCGB_0B
 	jp GetSGBLayout
 ; 4e708
 
-Function4e708: ; 4e708
+.PlaceFrontpic: ; 4e708
 	call GetBaseData
 	hlcoord 7, 2
 	jp PrepMonFrontpic
 ; 4e711
 
-Function4e711: ; 4e711
+.LoadFrontpic: ; 4e711
 	call GetBaseData
 	ld a, $1
 	ld [wc2c6], a
 	ld de, VTiles2
-	predef Function5108b
+	predef FrontpicPredef
 	xor a
 	ld [wc2c6], a
 	ret
 ; 4e726
 
-Function4e726: ; 4e726
+.AnimationSequence: ; 4e726
 	call ClearJoypad
-	lb bc, 1, 14
+	lb bc, 1, 2 * 7 ; flash b times, wait c frames in between
 .loop
 	push bc
-	call Evolution_CheckPressedB
+	call .WaitFrames_CheckPressedB
 	pop bc
-	jr c, .pressed_b
+	jr c, .exit_sequence
 	push bc
-	call Evolution_NextFrame
+	call .Flash
 	pop bc
 	inc b
 rept 2
@@ -194,31 +194,30 @@ endr
 	and a
 	ret
 
-.pressed_b
+.exit_sequence
 	scf
 	ret
 ; 4e741
 
-Evolution_NextFrame: ; 4e741
-.loop
-	ld a, -49
+.Flash: ; 4e741
+	ld a, -7 * 7 ; new stage
 	ld [wd1ec], a
-	call Evolution_FlashFrontpics
-	ld a, 49
+	call .ReplaceFrontpic
+	ld a, 7 * 7 ; previous stage
 	ld [wd1ec], a
-	call Evolution_FlashFrontpics
+	call .ReplaceFrontpic
 	dec b
-	jr nz, .loop
+	jr nz, .Flash
 	ret
 ; 4e755
 
-Evolution_FlashFrontpics: ; 4e755
+.ReplaceFrontpic: ; 4e755
 	push bc
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 7, 2
 	lb bc, 7, 7
-	ld de, $d
+	ld de, SCREEN_WIDTH - 7
 .loop1
 	push bc
 .loop2
@@ -238,8 +237,7 @@ Evolution_FlashFrontpics: ; 4e755
 	ret
 ; 4e779
 
-Evolution_CheckPressedB: ; 4e779
-.loop
+.WaitFrames_CheckPressedB: ; 4e779
 	call DelayFrame
 	push bc
 	call JoyTextDelay
@@ -247,16 +245,16 @@ Evolution_CheckPressedB: ; 4e779
 	pop bc
 	and B_BUTTON
 	jr nz, .pressed_b
-.loop2
+.loop3
 	dec c
-	jr nz, .loop
+	jr nz, .WaitFrames_CheckPressedB
 	and a
 	ret
 
 .pressed_b
 	ld a, [wd1e9]
 	and a
-	jr nz, .loop2
+	jr nz, .loop3
 	scf
 	ret
 ; 4e794
@@ -281,18 +279,18 @@ Function4e7a6: ; 4e7a6
 	ld a, [hl]
 	push af
 	ld [hl], $0
-.asm_4e7b8
+.loop
 	call Function4e7cf
-	jr nc, .asm_4e7c2
+	jr nc, .done
 	call Function4e80c
-	jr .asm_4e7b8
+	jr .loop
 
-.asm_4e7c2
+.done
 	ld c, $20
-.asm_4e7c4
+.loop2
 	call Function4e80c
 	dec c
-	jr nz, .asm_4e7c4
+	jr nz, .loop2
 	pop af
 	ld [wJumptableIndex], a
 	ret
@@ -319,7 +317,7 @@ Function4e7cf: ; 4e7cf
 
 Function4e7e8: ; 4e7e8
 	push de
-	ld de, $4858
+	lb de, $48, $58
 	ld a, $13
 	call _InitSpriteAnimStruct
 	ld hl, $b
@@ -342,6 +340,7 @@ Function4e7e8: ; 4e7e8
 Function4e80c: ; 4e80c
 	push bc
 	callab Function8cf69
+	; a = (([hVBlankCounter] + 4) / 2) % NUM_PALETTES
 	ld a, [hVBlankCounter]
 	and $e
 	srl a
@@ -350,9 +349,9 @@ rept 2
 endr
 	and $7
 	ld b, a
-	ld hl, Sprites + 3
-	ld c, $28
-.asm_4e823
+	ld hl, Sprites + 3 ; attributes
+	ld c, 40
+.loop
 	ld a, [hl]
 	or b
 	ld [hli], a
@@ -360,7 +359,7 @@ rept 3
 	inc hl
 endr
 	dec c
-	jr nz, .asm_4e823
+	jr nz, .loop
 	pop bc
 	call DelayFrame
 	ret

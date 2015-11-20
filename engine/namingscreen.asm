@@ -41,7 +41,7 @@ NamingScreen: ; 116c1
 
 Function116f8: ; 116f8
 	call ClearBGPalettes
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	call DisableLCD
 	call Function11c51

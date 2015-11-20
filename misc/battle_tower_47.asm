@@ -11,6 +11,12 @@ IF DEF(CRYSTAL11)
 	ld hl, BT_OTTrainerClass
 ELSE
 	ld hl, BT_OTName + 5
+; BUG ALERT
+; Instead of loading the Trainer Class, this routine
+; loads the 6th character in the Trainer's name, then
+; uses it to get the gender of the trainer.
+; As a consequence, the enemy trainer's dialog will
+; always be sampled from the female array.
 ENDC
 	ld a, [hl]
 	dec a
@@ -2888,7 +2894,7 @@ Function11d323: ; 11d323
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_11d33a
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, 16 * 8
 	call CopyBytes
 	pop af
@@ -3015,7 +3021,7 @@ Function11d3ef: ; 11d3ef
 	ld a, [hli]
 	ld b, a
 	push hl
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	add hl, de
 	ld a, [wcd2d]
 	ld e, a
@@ -4174,7 +4180,7 @@ Unknown_11f23c:
 	db $ac, $05, $15, $00
 	db $00, $00, $09, $00
 
-BTTrainerClassGenders:
+BTTrainerClassGenders: ; 11f2f0
 	db MALE   ; FALKNER
 	db FEMALE ; WHITNEY
 	db FEMALE ; BUGSY

@@ -748,9 +748,8 @@ ClearPalettes:: ; 3317
 ; 333e
 
 
-ClearSGB:: ; 333e
-	ld b, $ff
-
+GetMemSGBLayout:: ; 333e
+	ld b, SCGB_RAM
 GetSGBLayout:: ; 3340
 ; load sgb packets unless dmg
 

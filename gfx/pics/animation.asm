@@ -1113,7 +1113,7 @@ Functiond066e: ; d066e
 	push bc
 	push hl
 	ld de, VTiles2
-	predef Function5108b
+	predef FrontpicPredef
 	pop hl
 	pop bc
 	ld d, 0

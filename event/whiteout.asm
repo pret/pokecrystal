@@ -42,7 +42,7 @@ OverworldBGMap: ; 124fa
 ; 1250a
 
 BattleBGMap: ; 1250a
-	ld b, $0
+	ld b, SCGB_00
 	call GetSGBLayout
 	call SetPalettes
 	ret

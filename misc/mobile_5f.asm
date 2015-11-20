@@ -48,11 +48,11 @@ Function17c000: ; 17c000
 	ld a, [rSVBK]
 	push af
 
-	ld a, 5 ; BANK(wMapPals)
+	ld a, 5 ; BANK(UnknBGPals)
 	ld [rSVBK], a
 
 	ld hl, HaveWantPals
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $80
 	call CopyBytes
 
@@ -664,7 +664,7 @@ Function17d370: ; 17d370
 	ld a, $6
 	call GetSRAMBank
 	ld hl, $a006
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	call CopyBytes
 	call CloseSRAM
@@ -705,7 +705,7 @@ Function17d405:
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_17eff6
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $0040
 	call CopyBytes
 	call SetPalettes
@@ -985,7 +985,7 @@ Function17d5f6: ; 17d5f6
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, $c608
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $0040
 	call CopyBytes
 	ld a, $4
@@ -1239,7 +1239,7 @@ Function17d78d: ; 17d78d
 	call GetSRAMBank
 	ld hl, $a006
 	add hl, bc
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	call CopyBytes
 	call CloseSRAM
@@ -1363,7 +1363,7 @@ Function17d85d: ; 17d85d
 	ld a, [hli]
 	ld d, a
 	push hl
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	add hl, de
 	ld de, wcc60
 .asm_17d86c
@@ -1432,7 +1432,7 @@ Function17d85d: ; 17d85d
 	ld a, $3
 	ld [rSVBK], a
 	ld hl, $c608
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld b, $0
 	call CopyBytes
 	ld a, $4
@@ -1467,7 +1467,7 @@ Function17d902: ; 17d902
 	call Function17e41e
 	call Function17e32b
 	pop de
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	add hl, de
 	ld de, wcc60
 .asm_17d918
@@ -1984,7 +1984,7 @@ Function17dca9: ; 17dca9
 Function17dcaf:
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	ld de, $0008
 	ld c, $8
 .asm_17dcbb
@@ -3165,7 +3165,7 @@ Function17e409: ; 17e409
 ; 17e40f
 
 Function17e40f: ; 17e40f
-	ld de, wMapPals
+	ld de, UnknBGPals
 	add hl, de
 	jr Function17e41e
 
@@ -4419,7 +4419,7 @@ endr
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	add hl, de
 	ld e, l
 	ld d, h

@@ -9925,7 +9925,7 @@ PokepicYesOrNo:: ; 24528
 	call CopyMenuDataHeader
 	call ClearMenuBoxInterior
 	call WaitBGMap
-	call ClearSGB
+	call GetMemSGBLayout
 	xor a
 	ld [hBGMapMode], a
 	call OverworldTextModeSwitch
@@ -12161,7 +12161,7 @@ _ReturnToBattle_UseBall: ; 2715c
 .continue
 	callba GetMonFrontpic
 	callba _LoadBattleFontsHPBar
-	call ClearSGB
+	call GetMemSGBLayout
 	call WriteBackup
 	call LoadStandardMenuDataHeader
 	call WaitBGMap
@@ -15449,7 +15449,7 @@ Function48e14: ; 48e14 (12:4e14)
 
 Function48e47: ; 48e47 (12:4e47)
 	ld hl, Palette_48e5c
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $8
 	ld a, $5
 	call FarCopyWRAM
@@ -15613,17 +15613,17 @@ MenuDataHeader_0x4930a: ; 0x4930a
 
 Function4930f: ; 4930f (mobile)
 	ld a, b
-	cp $ff
-	jr nz, .asm_49317
+	cp SCGB_RAM
+	jr nz, .not_ram
 	ld a, [SGBPredef]
-.asm_49317
+.not_ram
 	push af
 	callba Function9673
 	pop af
 	ld l, a
 	ld h, 0
 	add hl, hl
-	ld de, Jumptable_49330
+	ld de, .jumptable
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
@@ -15635,7 +15635,7 @@ Function4930f: ; 4930f (mobile)
 	ret
 ; 49330 (12:5330)
 
-Jumptable_49330: ; 49330
+.jumptable: ; 49330
 	dw Function4936e
 	dw Function4942f
 	dw Function49706
@@ -15667,15 +15667,15 @@ Function49346: ; 49346 (12:5346)
 	ret
 
 Function49351: ; 49351 (12:5351)
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld hl, Palette_493e1
 	ld bc, $28
-	ld a, $5 ; BANK(wMapPals)
+	ld a, $5 ; BANK(UnknBGPals)
 	call FarCopyWRAM
-	ld de, wMapPals + $38
+	ld de, UnknBGPals + $38
 	ld hl, Palette_49418
 	ld bc, $8
-	ld a, $5 ; BANK(wMapPals)
+	ld a, $5 ; BANK(UnknBGPals)
 	call FarCopyWRAM
 	ret
 
@@ -15755,7 +15755,7 @@ Palette_493e1: ; 493e1
 
 Function49409:: ; 49409
 	ld hl, Palette_49418
-	ld de, wMapPals + 8 * 7
+	ld de, UnknBGPals + 8 * 7
 	ld bc, 8
 	ld a, $5
 	call FarCopyWRAM
@@ -15771,19 +15771,19 @@ Palette_49418: ; 49418
 
 Function49420:: ; 49420 (12:5420)
 	ld hl, MansionPalette4
-	ld de, wMapPals + $30
+	ld de, UnknBGPals + $30
 	ld bc, $8
-	ld a, $5 ; BANK(wMapPals)
+	ld a, $5 ; BANK(UnknBGPals)
 	call FarCopyWRAM
 	ret
 ; 4942f (12:542f)
 
 Function4942f: ; 4942f
 	call Function49351
-	ld de, wMapPals + $38
+	ld de, UnknBGPals + $38
 	ld hl, Palette_49478
 	ld bc, $8
-	ld a, $5 ; BANK(wMapPals)
+	ld a, $5 ; BANK(UnknBGPals)
 	call FarCopyWRAM
 	call Function49346
 	hlcoord 0, 0, AttrMap
@@ -15901,7 +15901,7 @@ LoadSpecialMapPalette: ; 494ac
 
 LoadPokeComPalette: ; 494f2
 	ld a, $5
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld hl, PokeComPalette
 	ld bc, 8 palettes
 	call FarCopyWRAM
@@ -15914,7 +15914,7 @@ INCLUDE "tilesets/pokecom.pal"
 
 LoadBattleTowerPalette: ; 49541
 	ld a, $5
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld hl, BattleTowerPalette
 	ld bc, 8 palettes
 	call FarCopyWRAM
@@ -15927,7 +15927,7 @@ INCLUDE "tilesets/battle_tower.pal"
 
 LoadIcePathPalette: ; 49590
 	ld a, $5
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld hl, IcePathPalette
 	ld bc, 8 palettes
 	call FarCopyWRAM
@@ -15940,7 +15940,7 @@ INCLUDE "tilesets/ice_path.pal"
 
 LoadHousePalette: ; 495df
 	ld a, $5
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld hl, HousePalette
 	ld bc, 8 palettes
 	call FarCopyWRAM
@@ -15953,7 +15953,7 @@ INCLUDE "tilesets/house.pal"
 
 LoadRadioTowerPalette: ; 4962e
 	ld a, $5
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld hl, RadioTowerPalette
 	ld bc, 8 palettes
 	call FarCopyWRAM
@@ -16016,22 +16016,22 @@ MansionPalette4: ; 496bd
 
 LoadMansionPalette: ; 496c5
 	ld a, $5
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld hl, MansionPalette1
 	ld bc, 8 palettes
 	call FarCopyWRAM
 	ld a, $5
-	ld de, wMapPals + 4 palettes
+	ld de, UnknBGPals + 4 palettes
 	ld hl, MansionPalette2
 	ld bc, 1 palettes
 	call FarCopyWRAM
 	ld a, $5
-	ld de, wMapPals + 3 palettes
+	ld de, UnknBGPals + 3 palettes
 	ld hl, MansionPalette3
 	ld bc, 1 palettes
 	call FarCopyWRAM
 	ld a, $5
-	ld de, wMapPals + 6 palettes
+	ld de, UnknBGPals + 6 palettes
 	ld hl, MansionPalette4
 	ld bc, 1 palettes
 	call FarCopyWRAM
@@ -16047,7 +16047,7 @@ MansionPalette2: ; 496fe
 
 Function49706: ; 49706
 	ld hl, Palette_49732
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, 1 palettes
 	ld a, $5
 	call FarCopyWRAM
@@ -16055,7 +16055,7 @@ Function49706: ; 49706
 	call Function49346
 	callba Function96b3
 	ld hl, Palette_4973a
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld bc, 1 palettes
 	ld a, $5
 	call FarCopyWRAM
@@ -16078,7 +16078,7 @@ Palette_4973a: ; 4973a
 
 Function49742: ; 49742
 	ld hl, Palette_49757
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $40
 	ld a, $5
 	call FarCopyWRAM
@@ -16182,7 +16182,7 @@ endr
 
 Function49811: ; 49811
 	ld hl, Palette_49826
-	ld de, wMapPals + $10
+	ld de, UnknBGPals + $10
 	ld bc, $30
 	ld a, $5
 	call FarCopyWRAM
@@ -18422,7 +18422,7 @@ Function4d7fd: ; 4d7fd
 	ld [CurSpecies], a
 	call GetBaseData
 	pop de
-	predef Function5108b
+	predef FrontpicPredef
 	ret
 ; 4d81e
 
@@ -20604,7 +20604,7 @@ GetFrontpic: ; 51077
 	ret
 ; 5108b
 
-Function5108b: ; 5108b
+FrontpicPredef: ; 5108b
 	ld a, [CurPartySpecies]
 	ld [CurSpecies], a
 	call IsAPokemon
@@ -24146,7 +24146,7 @@ LoadGraphics: ; 1047cf
 	ret
 
 LoadMapPalettes: ; 1047eb
-	ld b, $9
+	ld b, SCGB_09
 	jp GetSGBLayout
 ; 1047f0
 

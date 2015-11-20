@@ -524,7 +524,7 @@ IntroScene1: ; e495b (39:495b)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_365ad
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $80
 	call CopyBytes
 	ld hl, Palette_365ad
@@ -597,7 +597,7 @@ IntroScene3: ; e49fd (39:49fd)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e5edd
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $80
 	call CopyBytes
 	ld hl, Palette_e5edd
@@ -662,7 +662,7 @@ IntroScene5: ; e4a7a (39:4a7a)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_365ad
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $80
 	call CopyBytes
 	ld hl, Palette_365ad
@@ -759,7 +759,7 @@ IntroScene7: ; e4b3f (39:4b3f)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e5edd
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $80
 	call CopyBytes
 	ld hl, Palette_e5edd
@@ -909,7 +909,7 @@ IntroScene11: ; e4c86 (39:4c86)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_365ad
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $80
 	call CopyBytes
 	ld hl, Palette_365ad
@@ -1034,7 +1034,7 @@ IntroScene13: ; e4d6d (39:4d6d)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e5edd
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $80
 	call CopyBytes
 	ld hl, Palette_e5edd
@@ -1143,7 +1143,7 @@ IntroScene15: ; e4e40 (39:4e40)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e77dd
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $80
 	call CopyBytes
 	ld hl, Palette_e77dd
@@ -1217,7 +1217,7 @@ IntroScene17: ; e4ef5 (39:4ef5)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e6d6d
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $80
 	call CopyBytes
 	ld hl, Palette_e6d6d
@@ -1291,7 +1291,7 @@ IntroScene19: ; e4f7e (39:4f7e)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e77dd
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $80
 	call CopyBytes
 	ld hl, Palette_e77dd
@@ -1459,7 +1459,7 @@ IntroScene26: ; e50bb (39:50bb)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e679d
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $80
 	call CopyBytes
 	ld hl, Palette_e679d
@@ -1785,7 +1785,7 @@ endr
 	ld bc, $8
 	call CopyBytes
 	pop bc
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld a, c
 	add e
 	ld e, a

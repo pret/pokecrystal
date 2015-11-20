@@ -4,12 +4,12 @@ Predef_LoadSGBLayout: ; 864c
 	jp nz, Predef_LoadSGBLayoutCGB
 
 	ld a, b
-	cp $ff
-	jr nz, .asm_865a
+	cp SCGB_RAM
+	jr nz, .not_ram
 	ld a, [SGBPredef]
 
-.asm_865a
-	cp $fc
+.not_ram
+	cp SCGB_FC
 	jp z, Function8ade
 	ld l, a
 	ld h, 0
@@ -136,7 +136,7 @@ endr
 
 	ld hl, wcda9
 	ld de, wcda9 + $10
-	ld a, $1
+	ld a, SCGB_01
 	ld [SGBPredef], a
 	ret
 ; 873c
@@ -341,7 +341,7 @@ endr
 .SGB0c: ; 8884
 	ld hl, PalPacket_9b96
 	ld de, BlkPacket_9b56
-	ld a, $8
+	ld a, SCGB_08
 	ld [SGBPredef], a
 	ret
 ; 8890
@@ -377,7 +377,7 @@ endr
 	ld hl, wcda9 + 1
 	ld [hld], a
 	ld de, BlkPacket_9a86
-	ld a, $9
+	ld a, SCGB_09
 	ld [SGBPredef], a
 	ret
 ; 88cd

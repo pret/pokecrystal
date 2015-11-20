@@ -28,9 +28,9 @@ Function926f7: ; 926f7 (24:66f7)
 	call DisableLCD
 	hlbgcoord 0, 0
 	lb bc, 4, 0
-	ld a, $7f
+	ld a, " "
 	call ByteFill
-	ld b, $5
+	ld b, SCGB_05
 	call GetSGBLayout
 	callab Function8cf53
 	ld hl, wc6d0

@@ -2029,10 +2029,8 @@ ExitAllMenus:: ; 2b4d
 	call Function2bae
 	call UpdateSprites
 	call Functiond90
-; 2b5c
-
 Function2b5c:: ; 2b5c
-	ld b, $9
+	ld b, SCGB_09
 	call GetSGBLayout
 	callba Function49409
 	call Function3200
@@ -2056,7 +2054,7 @@ Function2b74:: ; 0x2b74
 	set 0, [hl]
 	call UpdateSprites
 	call Function3200
-	ld b, $9
+	ld b, SCGB_09
 	call GetSGBLayout
 	callba Function49409
 	call UpdateTimePals

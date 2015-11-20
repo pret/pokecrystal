@@ -1621,7 +1621,7 @@ Functione0c37: ; e0c37 (38:4c37)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e0c93
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $48
 	call CopyBytes
 	pop af
@@ -1751,7 +1751,7 @@ Functione1190: ; e1190
 	ld a, $93
 	ld [rLCDC], a
 	call WaitBGMap
-	ld b, $18
+	ld b, SCGB_18
 	call GetSGBLayout
 	ld a, $e4
 	call DmgToCgbBGPals

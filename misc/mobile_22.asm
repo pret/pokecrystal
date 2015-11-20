@@ -623,7 +623,7 @@ Function8949c: ; 8949c
 	ld a, 5
 	ld [rSVBK], a
 	ld hl, Palette_894b3
-	ld de, wMapPals + 8 * 7
+	ld de, UnknBGPals + 8 * 7
 	ld bc, 8
 	call CopyBytes
 	pop af
@@ -675,11 +675,11 @@ endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, 3 palettes
 	call CopyBytes
 	ld hl, .Pals345
-	ld de, wMapPals + 3 palettes
+	ld de, UnknBGPals + 3 palettes
 	ld bc, 3 palettes
 	call CopyBytes
 
@@ -2154,7 +2154,7 @@ Function89d0d: ; 89d0d (22:5d0d)
 	ld a, $5
 	ld [rSVBK], a
 	ld c, $8
-	ld de, wMapPals
+	ld de, UnknBGPals
 .asm_89d1c
 	push bc
 	ld hl, Palette_89d4e
@@ -3394,7 +3394,7 @@ Function8a5b6: ; 8a5b6 (22:65b6)
 	ld bc, $18
 	call CopyBytes
 	ld hl, Palette_8a5fd
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld bc, $8
 	call CopyBytes
 	ld hl, Palette_8a605
@@ -3441,7 +3441,7 @@ Function8a60d: ; 8a60d
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_8a624
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld bc, $0008
 	call CopyBytes
 	pop af

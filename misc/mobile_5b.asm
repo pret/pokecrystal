@@ -179,7 +179,7 @@ Function16c108: ; 16c108
 ; 16c130
 
 Function16c130: ; 16c130
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld hl, Unknown_16c903
 	ld bc, 8
 	ld a, $5
@@ -274,7 +274,7 @@ Function16c943: ; 16c943
 	ld [rSVBK], a
 	ld a, $ff
 	ld bc, $0008
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call ByteFill
 	pop af
 	ld [rSVBK], a
@@ -291,7 +291,7 @@ Function16c943: ; 16c943
 	call Function16cab6
 	call Function16cabb
 	ld d, a
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cabb
 	cp d
@@ -305,7 +305,7 @@ Function16c943: ; 16c943
 	jr nz, .asm_16c981
 
 .asm_16c988
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cadc
 
@@ -314,7 +314,7 @@ Function16c943: ; 16c943
 	call Function16cab6
 	call Function16cad8
 	ld d, a
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cad8
 	cp d
@@ -328,7 +328,7 @@ Function16c943: ; 16c943
 	jr nz, .asm_16c9a9
 
 .asm_16c9b0
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cb08
 
@@ -337,7 +337,7 @@ Function16c943: ; 16c943
 	call Function16cab6
 	call Function16cac4
 	ld d, a
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cac4
 	cp d
@@ -351,7 +351,7 @@ Function16c943: ; 16c943
 	jr nz, .asm_16c9d1
 
 .asm_16c9d8
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cae8
 
@@ -402,7 +402,7 @@ Function16ca11: ; 16ca11
 	ld e, $0
 	ld a, $0
 .asm_16ca28
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cabb
 	cp $1f
@@ -416,12 +416,12 @@ Function16ca11: ; 16ca11
 	jr nz, .asm_16ca37
 
 .asm_16ca3f
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cadc
 
 .asm_16ca48
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cad8
 	cp $1f
@@ -435,12 +435,12 @@ Function16ca11: ; 16ca11
 	jr nz, .asm_16ca57
 
 .asm_16ca5f
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cb08
 
 .asm_16ca68
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cac4
 	cp $1f
@@ -454,7 +454,7 @@ Function16ca11: ; 16ca11
 	jr nz, .asm_16ca77
 
 .asm_16ca7f
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cae8
 
@@ -752,7 +752,7 @@ Function16cc25: ; 16cc25
 	ld de, wd008
 	call Function16cc41
 	ld hl, Unknown_16cfb1
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	call Function16cc41
 	ld hl, Unknown_16cfb9
 	ld de, wd048
@@ -890,7 +890,7 @@ Function16d43b: ; 16d43b
 	call ClearSprites
 	callba Function16d421
 	callba Function16d42e
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	call SetPalettes
 	call WaitBGMap

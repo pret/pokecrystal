@@ -367,11 +367,11 @@ UnknownText_0x19851a:
 UnknownText_0x1985b0:
 	text "SLOWPOKE: …"
 
-	para $56, " ", $56, " ", $56
+	para "<......> <......> <......>"
 	done
 
 UnknownText_0x1985c3:
-	text $56, " ", $56, "Yawn?"
+	text "<......> <......>Yawn?"
 	done
 
 WoosterText:

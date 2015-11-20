@@ -160,7 +160,7 @@ MovementData_0x185cd3:
 	step_end
 
 UnknownText_0x185cd9:
-	text $56, " ", $56, " ", $56
+	text "<......> <......> <......>"
 
 	para "…Oh, it's you."
 

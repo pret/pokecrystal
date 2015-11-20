@@ -175,7 +175,7 @@ Function118125: ; 118125
 	cp [hl]
 	jr nz, .asm_11813e
 	xor a
-	ld [wMapPals], a
+	ld [UnknBGPals], a
 	pop af
 	ld [rSVBK], a
 	call Function118452
@@ -1067,7 +1067,7 @@ Function11878d: ; 11878d (46:478d)
 	set 0, [hl]
 	ld a, $6
 	ld [rSVBK], a
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	ld a, [hl]
 	sla a
@@ -1462,7 +1462,7 @@ Function118a65: ; 118a65
 	ld de, wcc60
 	ld bc, $80
 	call CopyBytes
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	jp Function118b10
 ; 118a7a
@@ -1472,7 +1472,7 @@ Function118a7a: ; 118a7a
 	ld de, wcc60
 	ld bc, $80
 	call CopyBytes
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	jp Function118b10
 ; 118a8f
@@ -1482,7 +1482,7 @@ Function118a8f: ; 118a8f
 	ld de, wcc60
 	ld bc, $80
 	call CopyBytes
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	jp Function118b10
 ; 118aa4
@@ -1504,7 +1504,7 @@ Function118abc: ; 118abc (46:4abc)
 	ld de, wcc60
 	ld bc, $80
 	call CopyBytes
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	jr Function118b10
 ; 118ad0 (46:4ad0)
@@ -1514,7 +1514,7 @@ Function118ad0:
 	ld de, wcc60
 	ld bc, $80
 	call CopyBytes
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	jr Function118b10
 
@@ -2101,7 +2101,7 @@ Function119009:
 	ld a, $40
 	ld [wcd89], a
 	ld hl, wc314 + 48 + 2
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	ld a, $2c
 	jp Function119e2b
@@ -2115,7 +2115,7 @@ Function119054: ; 119054
 	ld e, a
 	ld a, [wcd50]
 	ld d, a
-	ld a, [wMapPals]
+	ld a, [UnknBGPals]
 	ld c, a
 	ld a, [wd001]
 	ld b, a
@@ -2127,7 +2127,7 @@ Function119054: ; 119054
 	ld a, $6
 	ld [rSVBK], a
 	ld hl, wd002
-	ld a, [wMapPals]
+	ld a, [UnknBGPals]
 	ld c, a
 	ld a, [wd001]
 	ld b, a
@@ -2174,7 +2174,7 @@ Function1190d0: ; 1190d0
 	ld de, wcc60
 	call Function1191ad
 	ret c
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	jp Function118b10
 ; 1190ec
@@ -2194,7 +2194,7 @@ Function1190ec: ; 1190ec
 	call CloseSRAM
 	ld a, $6
 	call GetSRAMBank
-	ld a, [wMapPals]
+	ld a, [UnknBGPals]
 	ld c, a
 	ld a, [wd001]
 	ld b, a
@@ -2207,7 +2207,7 @@ Function1190ec: ; 1190ec
 	jr z, .asm_11913e
 	ld a, $6
 	ld [rSVBK], a
-	ld a, [wMapPals]
+	ld a, [UnknBGPals]
 	ld c, a
 	ld a, [wd001]
 	ld b, a
@@ -2674,7 +2674,7 @@ Function1193fb:
 	ld a, $8
 	ld [wcd3c], a
 	call Function119ed8
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	jp Function118b10
 ; 119413
@@ -2682,7 +2682,7 @@ Function1193fb:
 Function119413: ; 119413
 	ld a, $6
 	call GetSRAMBank
-	ld a, [wMapPals]
+	ld a, [UnknBGPals]
 	ld c, a
 	ld a, [wd001]
 	ld b, a
@@ -3039,7 +3039,7 @@ Function119648: ; 119648 (46:5648)
 	ld [wcd3c], a
 	call Function119ed8
 	call Function118b24
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	ld a, $2a
 	jp Function119e2b
@@ -3334,7 +3334,7 @@ Function1197dc:
 	xor a
 	ld [de], a
 	call Function118b24
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	ld a, $2a
 	jp Function119e2b
@@ -3533,14 +3533,14 @@ Function119973: ; 119973
 	xor a
 	ld [wcf65], a
 	ld [StringBuffer2 + 10], a
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld a, $20
 	jp Function119e2b
 ; 119987
 
 Function119987: ; 119987
 	ld hl, wd001
-	ld a, [wMapPals]
+	ld a, [UnknBGPals]
 	or [hl]
 	jr z, .asm_1199a0
 	ld a, [wcf64]
@@ -3702,13 +3702,13 @@ Function1199e2: ; 1199e2
 	ld [StringBuffer2 + 12], a
 
 Function119ac9:
-	ld a, [wMapPals]
+	ld a, [UnknBGPals]
 	ld l, a
 	ld a, [wd001]
 	ld h, a
 	dec hl
 	ld a, l
-	ld [wMapPals], a
+	ld [UnknBGPals], a
 	ld a, h
 	ld [wd001], a
 	ld a, [wcf64]

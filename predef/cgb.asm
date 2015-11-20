@@ -8,12 +8,12 @@ CheckCGB: ; 8d55
 
 Predef_LoadSGBLayoutCGB: ; 8d59
 	ld a, b
-	cp $ff
-	jr nz, .asm_8d61
+	cp SCGB_RAM
+	jr nz, .not_ram
 	ld a, [SGBPredef]
 
-.asm_8d61
-	cp -4
+.not_ram
+	cp SCGB_FC
 	jp z, Function96f3
 	call Function9673
 	ld l, a
@@ -69,21 +69,21 @@ Predef_LoadSGBLayoutCGB: ; 8d59
 
 _CGB00: ; 8db8
 	ld hl, PalPacket_9c66 + 1
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld c, $4
 	call CopyPalettes
 	ld hl, PalPacket_9c66 + 1
-	ld de, wMapPals + $20
+	ld de, UnknBGPals + $20
 	ld c, $4
 	call CopyPalettes
 	ld hl, PalPacket_9c66 + 1
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld c, $2
 	call CopyPalettes
 	jr Function8e23
 
 _CGB01: ; 8ddb
-	ld de, wMapPals
+	ld de, UnknBGPals
 	call Function9729
 	push hl
 	call Function9643
@@ -110,12 +110,12 @@ endr
 	call Function9643
 	ld hl, Palettes_a8ca
 	call Function9643
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	pop hl
 	call Function9643
 	pop hl
 	call Function9643
-	ld a, $1
+	ld a, SCGB_01
 	ld [SGBPredef], a
 	call Function96a4
 
@@ -150,7 +150,7 @@ Function8e23: ; 8e23
 	ld a, $7
 	call ByteFill
 	ld hl, Palettes_979c
-	ld de, Unkn2Pals + $10
+	ld de, UnknOBPals + $10
 	ld bc, $0030
 	ld a, $5
 	call FarCopyWRAM
@@ -168,7 +168,7 @@ Function8e8b: ; 8e8b
 	ld hl, Palette_b309
 
 .asm_8e93
-	ld de, wMapPals + 8 * 7
+	ld de, UnknBGPals + 8 * 7
 	ld bc, $0008
 	ld a, $5
 	call FarCopyWRAM
@@ -182,7 +182,7 @@ Function8e9f: ; 8e9f
 	ld hl, Palette_b309
 
 .asm_8ead
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $0008
 	ld a, $5
 	call FarCopyWRAM
@@ -200,7 +200,7 @@ _CGB02: ; 8eb9
 	ld hl, Palettes_b729
 
 .asm_8ec8
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $0030
 	ld a, $5
 	call FarCopyWRAM
@@ -211,7 +211,7 @@ _CGB02: ; 8eb9
 ; 8edb
 
 _CGB03: ; 8edb
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld a, [wcda1]
 	ld l, a
 	ld h, $0
@@ -228,7 +228,7 @@ endr
 	ld hl, Palettes_a8ca
 	call Function9643
 	ld hl, Palette8f52
-	ld de, wMapPals + 8 * 3
+	ld de, UnknBGPals + 8 * 3
 	ld bc, $0018
 	ld a, $5
 	call FarCopyWRAM
@@ -286,7 +286,7 @@ Unknown_8f6a: ; 8f6a
 ; 8f70
 
 _CGB04: ; 8f70
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld a, $1d
 	call GetAthPalletFromPalettes9df6
 	call LoadHLPaletteIntoDE
@@ -309,7 +309,7 @@ _CGB04: ; 8f70
 	call FillBoxCGB
 	call Function971a
 	ld hl, Palette8fc2
-	ld de, Unkn2Pals + $38
+	ld de, UnknOBPals + $38
 	ld bc, $0008
 	ld a, $5
 	call FarCopyWRAM
@@ -334,7 +334,7 @@ Palette8fc2: ; 8fc2
 ; 8fca
 
 _CGB17: ; 8fca
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld a, $1d
 	call GetAthPalletFromPalettes9df6
 	call LoadHLPaletteIntoDE
@@ -395,7 +395,7 @@ Palette9036: ; 9036
 ; 903e
 
 _CGB16: ; 903e
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld a, $1d
 	call GetAthPalletFromPalettes9df6
 	call LoadHLPaletteIntoDE
@@ -417,7 +417,7 @@ _CGB16: ; 903e
 
 _CGB05: ; 906e
 	ld hl, Palettes_b7a9
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $0080
 	ld a, $5
 	call FarCopyWRAM
@@ -473,7 +473,7 @@ _CGB06: ; 90f8
 	ld hl, PalPacket_9ca6 + 1
 	call CopyFourPalettes
 	call Function9699
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld a, $3c
 	call GetAthPalletFromPalettes9df6
 	call LoadHLPaletteIntoDE
@@ -508,10 +508,10 @@ Jumptable_912d: ; 912d
 
 Function9133: ; 9133
 	ld hl, Palette_914e
-	ld de, wMapPals
+	ld de, UnknBGPals
 	call LoadHLPaletteIntoDE
 	ld hl, Palette_9156
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld bc, $0010
 	ld a, $5
 	call FarCopyWRAM
@@ -538,11 +538,11 @@ Palette_9156: ; 9156
 ; 9166
 
 Function9166: ; 9166
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld a, $38
 	call GetAthPalletFromPalettes9df6
 	call LoadHLPaletteIntoDE
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld a, $39
 	call GetAthPalletFromPalettes9df6
 	call LoadHLPaletteIntoDE
@@ -553,7 +553,7 @@ Function9166: ; 9166
 Function9180: ; 9180
 	ld hl, PalPacket_9c36 + 1
 	call CopyFourPalettes
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld a, $3a
 	call GetAthPalletFromPalettes9df6
 	call LoadHLPaletteIntoDE
@@ -563,7 +563,7 @@ Function9180: ; 9180
 
 _CGB11: ; 9195
 	ld hl, Palettes_b789
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $0028
 	ld a, $5
 	call FarCopyWRAM
@@ -575,7 +575,7 @@ _CGB11: ; 9195
 
 _CGB08: ; 91ad
 	ld hl, Palettes_b641
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $0080
 	ld a, $5
 	call FarCopyWRAM
@@ -588,7 +588,7 @@ _CGB08: ; 91ad
 
 _CGB09: ; 91c8
 	call Functionb1de
-	ld a, $9
+	ld a, SCGB_09
 	ld [SGBPredef], a
 	ret
 ; 91d1
@@ -604,7 +604,7 @@ _CGB0a: ; 91d1
 ; 91e4
 
 _CGB0b: ; 91e4
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld a, c
 	and a
 	jr z, .asm_91f5
@@ -624,7 +624,7 @@ _CGB0b: ; 91e4
 	call Function974b
 	call Function9643
 	ld hl, Palettes_979c
-	ld de, Unkn2Pals + $10
+	ld de, UnknOBPals + $10
 	ld bc, $0030
 	ld a, $5
 	call FarCopyWRAM
@@ -640,16 +640,16 @@ _CGB0b: ; 91e4
 
 _CGB0c: ; 9228
 	ld hl, Palettes_b6f1
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $0028
 	ld a, $5
 	call FarCopyWRAM
 	ld hl, Palettes_b719
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld bc, $0010
 	ld a, $5
 	call FarCopyWRAM
-	ld a, $8
+	ld a, SCGB_08
 	ld [SGBPredef], a
 	call Function96a4
 	ld a, $1
@@ -668,7 +668,7 @@ _CGB0d: ; 9251
 _CGB18: ; 925e
 	ld hl, PalPacket_9bc6 + 1
 	call CopyFourPalettes
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld a, $4c
 	call GetAthPalletFromPalettes9df6
 	call LoadHLPaletteIntoDE
@@ -676,7 +676,7 @@ _CGB18: ; 925e
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, Unkn2Pals
+	ld hl, UnknOBPals
 	ld a, $1f
 	ld [hli], a
 	ld a, $0
@@ -689,7 +689,7 @@ _CGB18: ; 925e
 ; 9289
 
 _CGB15: ; 9289
-	ld de, wMapPals
+	ld de, UnknBGPals
 	xor a
 	call Function976b
 	call Function9643
@@ -794,7 +794,7 @@ _CGB15: ; 9289
 ; 9373
 
 _CGB0e: ; 9373
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld a, $10
 	call GetAthPalletFromPalettes9df6
 	call LoadHLPaletteIntoDE
@@ -831,7 +831,7 @@ _CGB0f: ; 93a6
 ; 93ba
 
 _CGB10: ; 93ba
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld a, $1d
 	call GetAthPalletFromPalettes9df6
 	call LoadHLPaletteIntoDE
@@ -859,7 +859,7 @@ _CGB14: ; 93d3
 	ld hl, Palettes_9439
 
 .asm_93e9
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $0040
 	ld a, $5
 	call FarCopyWRAM
@@ -1000,15 +1000,15 @@ _CGB13: ; 94d0
 ; 94fa
 
 _CGB19: ; 94fa
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld a, $4e
 	call GetAthPalletFromPalettes9df6
 	call LoadHLPaletteIntoDE
 	ld hl, Palette_9521
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	call LoadHLPaletteIntoDE
 	ld hl, Palette_9521
-	ld de, Unkn2Pals + 8
+	ld de, UnknOBPals + 8
 	call LoadHLPaletteIntoDE
 	call Function9699
 	call Function96b3
@@ -1024,7 +1024,7 @@ Palette_9521: ; 9521
 ; 9529
 
 _CGB1a: ; 9529
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld a, [CurPartySpecies]
 	ld bc, TempMonDVs
 	call Function974b
@@ -1036,7 +1036,7 @@ _CGB1a: ; 9529
 ; 9542
 
 _CGB1e: ; 9542
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld a, [CurPartySpecies]
 	call Function9775
 	call Function9643
@@ -1049,11 +1049,11 @@ _CGB1b: ; 9555
 	ld hl, PalPacket_9cc6 + 1
 	call CopyFourPalettes
 	ld hl, Palettes_b681
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld bc, $0008
 	ld a, $5
 	call FarCopyWRAM
-	ld de, Unkn2Pals + $38
+	ld de, UnknOBPals + $38
 	ld a, $1c
 	call GetAthPalletFromPalettes9df6
 	call LoadHLPaletteIntoDE
@@ -1062,7 +1062,7 @@ _CGB1b: ; 9555
 ; 9578
 
 _CGB1c: ; 9578
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld a, [CurPartySpecies]
 	ld bc, TempMonDVs
 	call Function9764
@@ -1075,7 +1075,7 @@ _CGB1c: ; 9578
 
 _CGB1d: ; 9591
 	ld hl, Palette95e0
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $0010
 	ld a, $5
 	call FarCopyWRAM

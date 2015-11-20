@@ -117,7 +117,7 @@ Function8ad1: ; 8ad1
 	ret
 ; 8ade
 
-Function8ade: ; 8ade
+Function8ade: ; 8ade SGB layout $fc
 	ld hl, wcd9b
 	ld a, [wcda9]
 	ld e, a
@@ -149,7 +149,7 @@ Function8b07: ; 8b07
 	call CheckCGB
 	ret z
 	ld hl, Palette8b2f
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $0008
 	ld a, $5
 	call FarCopyWRAM
@@ -200,7 +200,7 @@ Function8b4d: ; 8b4d
 	jp Function9809
 
 .asm_8b5c
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld a, $3b
 	call GetAthPalletFromPalettes9df6
 	jp LoadHLPaletteIntoDE
@@ -216,7 +216,7 @@ Function8b67: ; 8b67
 	jp Function9809
 
 .asm_8b76
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld a, $3c
 	call GetAthPalletFromPalettes9df6
 	jp LoadHLPaletteIntoDE
@@ -248,7 +248,7 @@ Function8b81: ; 8b81
 	jp Function9809
 
 .asm_8bb2
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld a, c
 	call Function9775
 	call Function9643
@@ -275,7 +275,7 @@ endr
 
 asm_8bd7
 	push hl
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	ld de, $0008
 .asm_8bde
 	and a
@@ -338,7 +338,7 @@ Function8c1d: ; 8c1d
 	call Function976b
 
 .asm_8c33
-	ld de, wMapPals
+	ld de, UnknBGPals
 	call Function9643
 	call Function9699
 	call Function96b3
@@ -412,11 +412,11 @@ endr
 	ld a, $5
 	ld [rSVBK], a
 	ld a, [hli]
-	ld [wMapPals], a
-	ld [wMapPals + 8 * 2], a
+	ld [UnknBGPals], a
+	ld [UnknBGPals + 8 * 2], a
 	ld a, [hl]
-	ld [wMapPals + 1], a
-	ld [wMapPals + 8 * 2 + 1], a
+	ld [UnknBGPals + 1], a
+	ld [UnknBGPals + 8 * 2 + 1], a
 	pop af
 	ld [rSVBK], a
 	call Function96a4
@@ -458,7 +458,7 @@ endr
 	ret
 
 .asm_8cf0
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $0008
 	ld a, $5
 	call FarCopyWRAM
@@ -525,7 +525,7 @@ INCLUDE "predef/cgb.asm"
 
 Function95f0: ; 95f0
 	ld hl, Palette_9608
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, 8
 	ld a, $5
 	call FarCopyWRAM
@@ -544,7 +544,7 @@ Palette_9608: ; 9608
 
 
 CopyFourPalettes: ; 9610
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld c, $4
 
 CopyPalettes: ; 9615
@@ -644,9 +644,9 @@ Function9673: ; 9673
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, wMapPals
-	ld c, $8
-.asm_9683
+	ld hl, UnknBGPals
+	ld c, 8
+.loop
 	ld a, $ff
 rept 4
 	ld [hli], a
@@ -656,7 +656,7 @@ rept 4
 	ld [hli], a
 endr
 	dec c
-	jr nz, .asm_9683
+	jr nz, .loop
 	pop af
 	ld [rSVBK], a
 	pop hl
@@ -676,7 +676,7 @@ Function9699: ; 9699
 ; 96a4
 
 Function96a4: ; 96a4
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	ld de, BGPals
 	ld bc, $0080
 	ld a, $5
@@ -728,7 +728,7 @@ Function96b3: ; 96b3
 	ret
 ; 96f3
 
-Function96f3: ; 96f3
+Function96f3: ; 96f3 CGB layout $fc
 	ld hl, wcd9b
 	ld a, [wcda9]
 	ld e, a
@@ -759,7 +759,7 @@ Function96f3: ; 96f3
 
 Function971a: ; 971a
 	ld hl, Palettes_b681
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld bc, $0010
 	ld a, $5
 	call FarCopyWRAM
@@ -843,7 +843,7 @@ Function977a: ; 977a
 	dec c
 	jr nz, .asm_9787
 	ld hl, Palettes_979c
-	ld de, Unkn2Pals + 8 * 2
+	ld de, UnknOBPals + 8 * 2
 	ld bc, $0010
 	ld a, $5
 	call FarCopyWRAM
@@ -1047,7 +1047,7 @@ Function9890:: ; 9890
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function98df
 	ld hl, BGPals
 	call Function98df
@@ -1058,13 +1058,13 @@ Function9890:: ; 9890
 
 Function98df: ; 98df
 	ld c, $40
-.asm_98e1
+.loop
 	ld a, $ff
 	ld [hli], a
 	ld a, $7f
 	ld [hli], a
 	dec c
-	jr nz, .asm_98e1
+	jr nz, .loop
 	ret
 ; 98eb
 
@@ -1974,7 +1974,7 @@ endr
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	ld b, $8
 .asm_b210
 	ld a, [de]
@@ -2010,9 +2010,9 @@ endr
 	ld bc, $40
 	ld hl, MapObjectPals
 	call AddNTimes
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld bc, $40
-	ld a, $5 ; BANK(Unkn2Pals)
+	ld a, $5 ; BANK(UnknOBPals)
 	call FarCopyWRAM
 
 	ld a, [wPermission]
@@ -2037,7 +2037,7 @@ rept 4
 	inc hl
 endr
 .asm_b26d
-	ld de, wMapPals + 8 * 6 + 2
+	ld de, UnknBGPals + 8 * 6 + 2
 	ld bc, 4
 	ld a, $5
 	call FarCopyWRAM
