@@ -16,20 +16,20 @@ ReadAnyMail: ; b9237
 	push de
 	ld a, BANK(sPartyMail)
 	call GetSRAMBank
-	callba Function1de5c8
+	callba IsMailEuropean
 	call CloseSRAM
 	ld a, c
-	ld de, GFX_1de5e6
+	ld de, StandardEnglishFont
 	or a
 	jr z, .asm_b9268
-	ld de, GFX_1de9e6
+	ld de, FrenchGermanFont
 	sub $3
 	jr c, .asm_b9268
-	ld de, GFX_1dede6
+	ld de, SpanishItalianFont
 
 .asm_b9268
 	ld hl, VTiles1
-	lb bc, BANK(GFX_1de5e6), $80
+	lb bc, BANK(StandardEnglishFont), $80
 	call Get1bpp
 	pop de
 	call Functionb92b8

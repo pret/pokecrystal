@@ -363,23 +363,23 @@ Function28177: ; 28177
 .asm_282cc
 	push bc
 	push de
-	callba Function1de5c8
+	callba IsMailEuropean
 	ld a, c
 	or a
-	jr z, .asm_282ee
+	jr z, .next
 	sub $3
-	jr nc, .asm_282e4
-	callba Function1df203
-	jr .asm_282ee
+	jr nc, .skip
+	callba DeutenEnglischenPost
+	jr .next
 
-.asm_282e4
+.skip
 	cp $2
-	jr nc, .asm_282ee
-	callba Function1df220
+	jr nc, .next
+	callba HandleSpanishItalianMail
 
-.asm_282ee
+.next
 	pop de
-	ld hl, $2f
+	ld hl, MAIL_STRUCT_LENGTH
 	add hl, de
 	ld d, h
 	ld e, l
@@ -802,62 +802,77 @@ Function284f6: ; 284f6
 ; 28595
 
 Function28595: ; 28595
-	ld de, OverworldMap
-	ld a, $fd
-	ld b, $6
+	ld de, wc800
+	ld a, EGG
+	ld b, PARTY_LENGTH
 .loop1
 	ld [de], a
 	inc de
 	dec b
 	jr nz, .loop1
+	; de = $c806
 	ld hl, PlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
+	; de = $c811
 	ld hl, PartyCount
-	ld bc, 8
+	ld bc, 1 + PARTY_LENGTH + 1
 	call CopyBytes
+	; de = $c819
 	ld hl, PlayerID
 	ld bc, 2
 	call CopyBytes
+	; de = $c81b
 	ld hl, PartyMon1Species
-	ld bc, $120
+	ld bc, PARTY_LENGTH * PARTYMON_STRUCT_LENGTH
 	call CopyBytes
+	; de = $c93b
 	ld hl, PartyMonOT
-	ld bc, $42
+	ld bc, PARTY_LENGTH * NAME_LENGTH
 	call CopyBytes
+	; de = $c97d
 	ld hl, PartyMonNicknames
-	ld bc, $42
+	ld bc, PARTY_LENGTH * PKMN_NAME_LENGTH
 	call CopyBytes
+	; de = $c9bf
+
+; Okay, we did all that.  Now, are we in the trade center?
 	ld a, [wLinkMode]
 	cp LINK_TRADECENTER
 	ret nz
+
+; Fill 32 bytes at wc9f4 with $05
 	ld de, wc9f4
 	ld a, $20
 	call Function28682
+
+; Copy all the mail messages to $ca14
 	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	ld hl, sPartyMail
 	ld b, PARTY_LENGTH
 .loop2
 	push bc
-	ld bc, $21
+	ld bc, MAIL_MSG_LENGTH + 1
 	call CopyBytes
-	ld bc, $e
+	ld bc, MAIL_STRUCT_LENGTH - MAIL_MSG_LENGTH - 1
 	add hl, bc
 	pop bc
 	dec b
 	jr nz, .loop2
+; Copy the mail metadata to $cada
 	ld hl, sPartyMail
 	ld b, PARTY_LENGTH
 .loop3
 	push bc
-	ld bc, $21
+	ld bc, MAIL_MSG_LENGTH + 1
 	add hl, bc
-	ld bc, $e
+	ld bc, MAIL_STRUCT_LENGTH - MAIL_MSG_LENGTH - 1
 	call CopyBytes
 	pop bc
 	dec b
 	jr nz, .loop3
+
 	ld b, PARTY_LENGTH
 	ld de, sPartyMail
 	ld hl, wc9f9
@@ -866,20 +881,20 @@ Function28595: ; 28595
 	push hl
 	push de
 	push hl
-	callba Function1de5c8
+	callba IsMailEuropean
 	pop de
 	ld a, c
 	or a
 	jr z, .next
 	sub $3
-	jr nc, .skip
-	callba Function1df1e6
+	jr nc, .italian_spanish
+	callba HandleFrenchGermanMail
 	jr .next
 
-.skip
+.italian_spanish
 	cp $2
 	jr nc, .next
-	callba Function1df220
+	callba HandleSpanishItalianMail
 
 .next
 	pop de

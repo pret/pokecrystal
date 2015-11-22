@@ -175,7 +175,7 @@ LearnMove: ; 6508
 	ld hl, PartyMonNicknames
 	call GetNick
 	ld hl, StringBuffer1
-	ld de, wd050
+	ld de, wd050_MonNick
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
@@ -187,6 +187,10 @@ LearnMove: ; 6508
 	ld d, h
 	ld e, l
 	ld b, NUM_MOVES
+; Get the first empty move slot.  This routine also serves to
+; determine whether the Pokemon learning the moves already has
+; all four slots occupied, in which case one would need to be
+; deleted.
 .next
 	ld a, [hl]
 	and a
@@ -194,7 +198,8 @@ LearnMove: ; 6508
 	inc hl
 	dec b
 	jr nz, .next
-
+; If we're here, we enter the routine for forgetting a move
+; to make room for the new move we're trying to learn.
 	push de
 	call ForgetMove
 	pop de
@@ -217,7 +222,7 @@ LearnMove: ; 6508
 .not_disabled
 
 	call GetMoveName
-	ld hl, UnknownText_0x6684
+	ld hl, UnknownText_0x6684 ; 1, 2 and…
 	call PrintText
 	pop de
 	pop hl
@@ -268,18 +273,18 @@ LearnMove: ; 6508
 	jp .learned
 
 .cancel
-	ld hl, UnknownText_0x6675
+	ld hl, UnknownText_0x6675 ; Stop learning <MOVE>?
 	call PrintText
 	call YesNoBox
 	jp c, .loop
 
-	ld hl, UnknownText_0x667a
+	ld hl, UnknownText_0x667a ; <MON> did not learn <MOVE>.
 	call PrintText
 	ld b, 0
 	ret
 
 .learned
-	ld hl, UnknownText_0x666b
+	ld hl, UnknownText_0x666b ; <MON> learned <MOVE>!
 	call PrintText
 	ld b, 1
 	ret
@@ -311,6 +316,7 @@ ForgetMove: ; 65d3
 	ld a, SCREEN_WIDTH * 2
 	ld [Buffer1], a
 	predef ListMoves
+	; wMenuData3
 	ld a, $4
 	ld [wcfa1], a
 	ld a, $6
@@ -368,32 +374,38 @@ ForgetMove: ; 65d3
 ; 666b
 
 UnknownText_0x666b: ; 666b
+; <MON> learned <MOVE>!
 	text_jump UnknownText_0x1c5660
 	db "@"
 ; 6670
 
 UnknownText_0x6670: ; 6670
+; Which move should be forgotten?
 	text_jump UnknownText_0x1c5678
 	db "@"
 ; 6675
 
 UnknownText_0x6675: ; 6675
+; Stop learning <MOVE>?
 	text_jump UnknownText_0x1c5699
 	db "@"
 ; 667a
 
 UnknownText_0x667a: ; 667a
+; <MON> did not learn <MOVE>.
 	text_jump UnknownText_0x1c56af
 	db "@"
 ; 667f
 
 UnknownText_0x667f: ; 667f
+; <MON> is trying to learn <MOVE>. But <MON> can't learn more than
+; four moves. Delete an older move to make room for <MOVE>?
 	text_jump UnknownText_0x1c56c9
 	db "@"
 ; 6684
 
 UnknownText_0x6684: ; 6684
-	text_jump UnknownText_0x1c5740
+	text_jump UnknownText_0x1c5740 ; 1, 2 and…
 	start_asm
 	push de
 	ld de, SFX_SWITCH_POKEMON
@@ -404,11 +416,13 @@ UnknownText_0x6684: ; 6684
 ; 6695
 
 UnknownText_0x6695: ; 6695
+; Poof! <MON> forgot <MOVE>. And…
 	text_jump UnknownText_0x1c574e
 	db "@"
 ; 669a
 
 UnknownText_0x669a: ; 669a
+; HM moves can't be forgotten now.
 	text_jump UnknownText_0x1c5772
 	db "@"
 ; 669f
@@ -27142,10 +27156,14 @@ PokegearGFX: ; 1de2e4
 INCBIN "gfx/misc/pokegear.2bpp.lz"
 ; 1de5c8
 
-Function1de5c8: ; 1de5c8
-; reads mail message at de
+IsMailEuropean: ; 1de5c8
+; return 1 if French
+; return 2 if German
+; return 3 if Italian
+; return 4 if Spanish
+; return 0 if none of the above
 	ld c, $0
-	ld hl, $29
+	ld hl, sPartyMon1MailAuthorNationality - sPartyMon1Mail
 	add hl, de
 	ld a, [hli]
 	cp "E"
@@ -27168,92 +27186,107 @@ Function1de5c8: ; 1de5c8
 ; 1de5e6
 
 ; The regular font.
-GFX_1de5e6: ; 1de5e6
-INCBIN "gfx/unknown/1de5e6.2bpp"
+StandardEnglishFont: ; 1de5e6
+INCBIN "gfx/font/english.1bpp"
 
 ; An extended font.
-GFX_1de9e6: ; 1de9e6
-INCBIN "gfx/unknown/1de9e6.2bpp"
+FrenchGermanFont: ; 1de9e6
+INCBIN "gfx/font/french_german.1bpp"
 
 ; An even more extended font.
-GFX_1dede6: ; 1dede6
-INCBIN "gfx/unknown/1dede6.2bpp"
+SpanishItalianFont: ; 1dede6
+INCBIN "gfx/font/spanish_italian.1bpp"
 
-Function1df1e6: ; 1df1e6
-	ld b, $21
+HandleFrenchGermanMail: ; 1df1e6
+; called if mail is french or german
+; fix 's 't 'v
+	ld b, sPartyMon1MailAuthor - sPartyMon1Mail
 	ld h, d
 	ld l, e
-.asm_1df1ea
+.loop
 	ld a, [hl]
-	cp $dc
-	jr nz, .asm_1df1f3
-	ld a, $d4
-	jr .asm_1df1fd
+	cp $dc ; 's in french/german font
+	jr nz, .check_intermediate_chars
+	ld a, "'s"
+	jr .replace
 
-.asm_1df1f3
-	sub $d4
-	jr c, .asm_1df1fe
-	cp $3
-	jr nc, .asm_1df1fe
+.check_intermediate_chars
+	sub "'s"
+	jr c, .dont_replace
+	cp "'v" - "'s" + 1
+	jr nc, .dont_replace
 	add $cd
 
-.asm_1df1fd
+.replace
 	ld [hl], a
 
-.asm_1df1fe
+.dont_replace
 	inc hl
 	dec b
-	jr nz, .asm_1df1ea
+	jr nz, .loop
 	ret
 ; 1df203
 
-Function1df203: ; 1df203
-	ld b, $21
+LireLeCourrierAnglais:
+DeutenEnglischenPost: ; 1df203
+; Cette fonction convertit certains des caractères anglais pour
+; leur équivalent dans le jeu de caractères français.
+; Diese Funktion wandelt bestimmte englische Zeichen, um ihre
+; Entsprechung in der Deutschen-Zeichensatz.
+	ld b, sPartyMon1MailAuthor - sPartyMon1Mail
 	ld h, d
 	ld l, e
-.asm_1df207
+.loop
 	ld a, [hl]
-	cp $d4
-	jr nz, .asm_1df210
+	cp "'s"
+	jr nz, .check_intermediate_chars
 	ld a, $dc
-	jr .asm_1df21a
+	jr .replace
 
-.asm_1df210
+.check_intermediate_chars
 	sub $cd
-	jr c, .asm_1df21b
-	cp $3
-	jr nc, .asm_1df21b
-	add $d4
+	jr c, .dont_replace
+	cp "'v" - "'s" + 1
+	jr nc, .dont_replace
+	add "'s"
 
-.asm_1df21a
+.replace
 	ld [hl], a
 
-.asm_1df21b
+.dont_replace
 	inc hl
 	dec b
-	jr nz, .asm_1df207
+	jr nz, .loop
 	ret
 ; 1df220
 
-Function1df220: ; 1df220
-	ld b, $21
+HandleSpanishItalianMail: ; 1df220
+LeerCorreosIngleses:
+LeggiPostaInglese:
+; This function converts certain characters between
+; the English and Spanish/Italian character sets.
+; Esta función convierte ciertos caracteres entre
+; el juego de caracteres Inglés y Español.
+; Questa funzione converte alcuni caratteri tra
+; l'inglese e il set di caratteri italiani.
+	ld b, sPartyMon1MailAuthor - sPartyMon1Mail
 	ld h, d
 	ld l, e
-.asm_1df224
+.loop
 	ld a, [hl]
 	and $f0
 	cp $d0
-	jr nz, .asm_1df233
+	jr nz, .dont_replace
 	ld a, [hl]
 	add $8
 	and $f
 	or $d0
 	ld [hl], a
 
-.asm_1df233
+.dont_replace
 	inc hl
 	dec b
-	jr nz, .asm_1df224
+	jr nz, .loop
 	ret
 ; 1df238
 
@@ -27342,5 +27375,3 @@ INCBIN "misc/stadium2_2.bin"
 ELSE
 INCBIN "misc/stadium2_1.bin"
 ENDC
-
-

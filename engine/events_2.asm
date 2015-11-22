@@ -275,7 +275,7 @@ DoBikeStep:: ; 97db3
 	; if we've already gotten the call, we don't have to
 	; be here.
 	ld hl, StatusFlags2
-	bit 4, [hl]
+	bit 4, [hl] ; bike shop call
 	jr z, .NoCall
 
 	; If we're not on the bike, we don't have to be here.
@@ -326,7 +326,7 @@ DoBikeStep:: ; 97db3
 	xor a
 	ld [wSpecialPhoneCallID + 1], a
 	ld hl, StatusFlags2
-	res 4, [hl]
+	res 4, [hl] ; bike shop call
 	scf
 	ret
 
