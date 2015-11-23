@@ -476,7 +476,7 @@ Function4034f: ; 4034f
 	push af
 	ld a, [wJumptableIndex]
 	push af
-	callba Function8442c
+	callba PrintDexEntry
 	pop af
 	ld [wJumptableIndex], a
 	pop af

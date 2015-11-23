@@ -489,7 +489,7 @@ Function4484a: ; 0x4484a
 	ld a, BANK(sMailboxCount)
 	call GetSRAMBank
 	pop af
-	ld hl, sMailbox1MailType
+	ld hl, sMailbox1Type
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [hl]

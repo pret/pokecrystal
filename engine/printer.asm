@@ -653,7 +653,7 @@ Function84425: ; 84425
 	ret
 ; 8442c
 
-Function8442c: ; 8442c
+PrintDexEntry: ; 8442c
 	ld a, [wcf65]
 	push af
 	ld hl, VTiles1
@@ -661,7 +661,7 @@ Function8442c: ; 8442c
 	lb bc, BANK(FontInversed), $80
 	call Request1bpp
 	xor a
-	ld [$ffac], a
+	ld [hPrinter], a
 	call Function8474c
 	ld a, [rIE]
 	push af
@@ -720,7 +720,7 @@ Function8442c: ; 8442c
 	ret
 ; 844bc
 
-Function844bc: ; 844bc (21:44bc)
+PrintPCBox: ; 844bc (21:44bc)
 	ld a, [wcf65]
 	push af
 	ld a, $9
@@ -728,13 +728,13 @@ Function844bc: ; 844bc (21:44bc)
 	ld a, e
 	ld [wd004], a
 	ld a, d
-	ld [StartFlypoint], a
+	ld [wd005], a
 	ld a, b
-	ld [EndFlypoint], a
+	ld [wd006], a
 	ld a, c
-	ld [MovementBuffer], a
+	ld [wd007], a
 	xor a
-	ld [$ffac], a
+	ld [hPrinter], a
 	ld [wd003], a
 	call Function8474c
 	ld a, [rIE]
@@ -801,11 +801,11 @@ Function84559: ; 84559 (21:4559)
 	call Function843f0
 	ret
 
-Function84560: ; 84560
+PrintUnownStamp: ; 84560
 	ld a, [wcf65]
 	push af
 	xor a
-	ld [$ffac], a
+	ld [hPrinter], a
 	call Function8474c
 	ld a, [rIE]
 	push af
@@ -861,7 +861,7 @@ Function84560: ; 84560
 	ret
 ; 845d4
 
-Function845d4: ; 845d4
+PrintMail: ; 845d4
 	call Function845db
 	call Function84425
 	ret
@@ -871,7 +871,7 @@ Function845db: ; 845db
 	ld a, [wcf65]
 	push af
 	xor a
-	ld [$ffac], a
+	ld [hPrinter], a
 	call Function8474c
 	ld a, [rIE]
 	push af
@@ -903,11 +903,11 @@ Function845db: ; 845db
 	ret
 ; 8461a
 
-Function8461a: ; 8461a
+PrintPartymon: ; 8461a
 	ld a, [wcf65]
 	push af
 	xor a
-	ld [$ffac], a
+	ld [hPrinter], a
 	call Function8474c
 	ld a, [rIE]
 	push af
@@ -962,7 +962,7 @@ _PrintDiploma: ; 84688
 	push af
 	callba Function1dd709
 	xor a
-	ld [$ffac], a
+	ld [hPrinter], a
 	call Function8474c
 	ld a, [rIE]
 	push af
@@ -1040,7 +1040,7 @@ Function846f6: ; 846f6
 
 .asm_84722
 	ld a, $1
-	ld [$ffac], a
+	ld [hPrinter], a
 	scf
 	ret
 ; 84728
@@ -1205,15 +1205,15 @@ Function84817: ; 84817 (21:4817)
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	ld a, " "
 	call ByteFill
-	call Function84a0e
+	call Printer_PlaceEmptyBoxSlotString
 	hlcoord 0, 0
 	ld bc, 9 * SCREEN_WIDTH
 	ld a, " "
 	call ByteFill
-	call Function849e9
-	call Function849d7
+	call Printer_PlaceSideBorders
+	call Printer_PlaceTopBorder
 	hlcoord 4, 3
-	ld de, String_84865
+	ld de, .String_PokemonList
 	call PlaceString
 	ld a, [wd007]
 	ld bc, BOX_NAME_LENGTH
@@ -1231,7 +1231,7 @@ Function84817: ; 84817 (21:4817)
 	ret
 ; 84865 (21:4865)
 
-String_84865:
+.String_PokemonList:
 	db "#MON LIST@"
 ; 8486f
 
@@ -1240,8 +1240,8 @@ Function8486f: ; 8486f (21:486f)
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	ld a, " "
 	call ByteFill
-	call Function84a0e
-	call Function849e9
+	call Printer_PlaceEmptyBoxSlotString
+	call Printer_PlaceSideBorders
 	ld a, [wd003]
 	and a
 	ret nz
@@ -1257,8 +1257,8 @@ Function84893: ; 84893 (21:4893)
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	ld a, " "
 	call ByteFill
-	call Function84a0e
-	call Function849e9
+	call Printer_PlaceEmptyBoxSlotString
+	call Printer_PlaceSideBorders
 	ld a, [wd003]
 	and a
 	ret nz
@@ -1274,12 +1274,12 @@ Function848b7: ; 848b7 (21:48b7)
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	ld a, " "
 	call ByteFill
-	call Function84a0e
+	call Printer_PlaceEmptyBoxSlotString
 	hlcoord 1, 15
 	lb bc, 2, 18
 	call ClearBox
-	call Function849e9
-	call Function849fc
+	call Printer_PlaceSideBorders
+	call Printer_PlaceBottomBorders
 	ld a, [wd003]
 	and a
 	ret nz
@@ -1291,7 +1291,7 @@ Function848b7: ; 848b7 (21:48b7)
 	ret
 
 Function848e7: ; 848e7 (21:48e7)
-	ld a, [EndFlypoint]
+	ld a, [wd006]
 	call GetSRAMBank
 
 Function848ed: ; 848ed (21:48ed)
@@ -1318,7 +1318,7 @@ Function848ed: ; 848ed (21:48ed)
 	push hl
 	call PlaceString
 	ld a, [CurPartySpecies]
-	cp $fd
+	cp EGG
 	pop hl
 	jr z, .ok2
 	ld bc, $b
@@ -1326,7 +1326,7 @@ Function848ed: ; 848ed (21:48ed)
 	call Function8498a
 	ld bc, $9
 	add hl, bc
-	ld a, $f3
+	ld a, "/"
 	ld [hli], a
 	push hl
 	ld bc, $e
@@ -1336,7 +1336,7 @@ Function848ed: ; 848ed (21:48ed)
 	push hl
 	ld a, [wd004]
 	ld l, a
-	ld a, [StartFlypoint]
+	ld a, [wd005]
 	ld h, a
 	ld bc, $372
 	add hl, bc
@@ -1354,7 +1354,7 @@ Function848ed: ; 848ed (21:48ed)
 	push hl
 	ld a, [wd004]
 	ld l, a
-	ld a, [StartFlypoint]
+	ld a, [wd005]
 	ld h, a
 	ld bc, $35
 	add hl, bc
@@ -1387,7 +1387,7 @@ Function8498a: ; 8498a (21:498a)
 	push hl
 	ld a, [wd004]
 	ld l, a
-	ld a, [StartFlypoint]
+	ld a, [wd005]
 	ld h, a
 	ld bc, $2b
 	add hl, bc
@@ -1421,7 +1421,7 @@ Function849c6: ; 849c6 (21:49c6)
 	ld d, $0
 	ld a, [wd004]
 	ld l, a
-	ld a, [StartFlypoint]
+	ld a, [wd005]
 	ld h, a
 	add hl, de
 	ld e, l
@@ -1429,62 +1429,62 @@ Function849c6: ; 849c6 (21:49c6)
 	pop hl
 	ret
 
-Function849d7: ; 849d7 (21:49d7)
+Printer_PlaceTopBorder: ; 849d7 (21:49d7)
 	hlcoord 0, 0
 	ld a, "┌"
 	ld [hli], a
 	ld a, "─"
 	ld c, SCREEN_WIDTH - 2
-.asm_849e1
+.loop
 	ld [hli], a
 	dec c
-	jr nz, .asm_849e1
+	jr nz, .loop
 	ld a, "┐"
 	ld [hl], a
 	ret
 
-Function849e9: ; 849e9 (21:49e9)
+Printer_PlaceSideBorders: ; 849e9 (21:49e9)
 	hlcoord 0, 0
 	ld de, SCREEN_WIDTH - 1
 	ld c, SCREEN_HEIGHT
-.asm_849f1
+.loop
 	ld a, "│"
 	ld [hl], a
 	add hl, de
 	ld a, "│"
 	ld [hli], a
 	dec c
-	jr nz, .asm_849f1
+	jr nz, .loop
 	ret
 
-Function849fc: ; 849fc (21:49fc)
+Printer_PlaceBottomBorders: ; 849fc (21:49fc)
 	hlcoord 0, 17
 	ld a, "└"
 	ld [hli], a
 	ld a, "─"
 	ld c, SCREEN_WIDTH - 2
-.asm_84a06
+.loop
 	ld [hli], a
 	dec c
-	jr nz, .asm_84a06
+	jr nz, .loop
 	ld a, "┘"
 	ld [hl], a
 	ret
 
-Function84a0e: ; 84a0e (21:4a0e)
+Printer_PlaceEmptyBoxSlotString: ; 84a0e (21:4a0e)
 	hlcoord 2, 0
 	ld c, $6
-.asm_84a13
+.loop
 	push bc
 	push hl
 	ld de, String84a25
 	call PlaceString
 	pop hl
-	ld bc, $3c
+	ld bc, 3 * SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	dec c
-	jr nz, .asm_84a13
+	jr nz, .loop
 	ret
 ; 84a25 (21:4a25)
 

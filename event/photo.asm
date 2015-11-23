@@ -81,7 +81,7 @@ UnownPrinter: ; 16be4
 .pressed_a
 	ld a, [wJumptableIndex]
 	push af
-	callba Function84560
+	callba PrintUnownStamp
 	call RestartMapMusic
 	pop af
 	ld [wJumptableIndex], a
@@ -248,9 +248,9 @@ PhotoStudio: ; 16dc7
 	ld hl, .Text_HoldStill
 	call PrintText
 	call DisableSpriteUpdates
-	callba Function8461a
+	callba PrintPartymon
 	call Function2b74
-	ld a, [$ffac]
+	ld a, [hPrinter]
 	and a
 	jr nz, .cancel
 	ld hl, .Text_Presto

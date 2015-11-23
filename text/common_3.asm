@@ -279,7 +279,7 @@ UnknownText_0x1c04c6: ; 1c04c6
 ; 1c04e9
 
 UnknownText_0x1c04e9: ; 1c04e9
-	text_from_ram wc903
+	text_from_ram wMysteryGiftPartnerName
 	text " sent"
 	line "@"
 	text_from_ram StringBuffer1
@@ -288,7 +288,7 @@ UnknownText_0x1c04e9: ; 1c04e9
 ; 1c04fa
 
 UnknownText_0x1c04fa: ; 1c04fa
-	text_from_ram wc903
+	text_from_ram wMysteryGiftPartnerName
 	text " sent"
 	line "@"
 	text_from_ram StringBuffer1

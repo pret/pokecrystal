@@ -14,7 +14,7 @@ INCLUDE "macros/predef.asm"
 INCLUDE "macros/rst.asm"
 INCLUDE "macros/mobile.asm"
 INCLUDE "macros/trainer.asm"
-
+INCLUDE "macros/trade_anim.asm"
 
 
 RGB: MACRO

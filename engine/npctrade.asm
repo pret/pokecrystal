@@ -18,10 +18,14 @@ TRADE_WRONG    EQU 2
 TRADE_COMPLETE EQU 3
 TRADE_AFTER    EQU 4
 
+TRADE_EITHER_GENDER EQU 0
+TRADE_MALE_ONLY EQU 1
+TRADE_FEMALE_ONLY EQU 2
+
 NPCTrade:: ; fcba8
 	ld a, e
 	ld [wJumptableIndex], a
-	call Functionfcc59
+	call Trade_GetDialog
 	ld b, CHECK_FLAG
 	call TradeFlagAction
 	ld a, TRADE_AFTER
@@ -57,8 +61,8 @@ NPCTrade:: ; fcba8
 	ld hl, ConnectLinkCableText
 	call PrintText
 
-	call Functionfcc63
-	call Functionfcc07
+	call DoNPCTrade
+	call .TradeAnimation
 	call GetTradeMonNames
 
 	ld hl, TradedForText
@@ -73,13 +77,13 @@ NPCTrade:: ; fcba8
 	ret
 ; fcc07
 
-Functionfcc07: ; fcc07
+.TradeAnimation: ; fcc07
 	call DisableSpriteUpdates
 	ld a, [wJumptableIndex]
 	push af
 	ld a, [wcf64]
 	push af
-	predef Function28f24
+	predef TradeAnimation
 	pop af
 	ld [wcf64], a
 	pop af
@@ -118,7 +122,7 @@ CheckTradeGender: ; fcc23
 ; fcc4a
 
 TradeFlagAction: ; fcc4a
-	ld hl, wd960
+	ld hl, wTradeFlags
 	ld a, [wJumptableIndex]
 	ld c, a
 	predef FlagPredef
@@ -127,7 +131,7 @@ TradeFlagAction: ; fcc4a
 	ret
 ; fcc59
 
-Functionfcc59: ; fcc59
+Trade_GetDialog: ; fcc59
 	ld e, TRADE_DIALOG
 	call GetTradeAttribute
 	ld a, [hl]
@@ -135,74 +139,74 @@ Functionfcc59: ; fcc59
 	ret
 ; fcc63
 
-Functionfcc63: ; fcc63
+DoNPCTrade: ; fcc63
 	ld e, TRADE_GIVEMON
 	call GetTradeAttribute
 	ld a, [hl]
-	ld [wc6d0], a
+	ld [wPlayerTrademonSpecies], a
 
 	ld e, TRADE_GETMON
 	call GetTradeAttribute
 	ld a, [hl]
-	ld [wc702], a
+	ld [wOTTrademonSpecies], a
 
-	ld a, [wc6d0]
-	ld de, wc6d1
-	call Functionfcde8
-	call Functionfcdf4
+	ld a, [wPlayerTrademonSpecies]
+	ld de, wPlayerTrademonSpeciesName
+	call GetTradeMonName
+	call CopyTradeName
 
-	ld a, [wc702]
-	ld de, wc703
-	call Functionfcde8
-	call Functionfcdf4
+	ld a, [wOTTrademonSpecies]
+	ld de, wOTTrademonSpeciesName
+	call GetTradeMonName
+	call CopyTradeName
 
 	ld hl, PartyMonOT
 	ld bc, NAME_LENGTH
-	call Functionfcdd7
-	ld de, wc6f2
-	call Functionfcdf4
+	call Trade_GetAttributeOfCurrentPartymon
+	ld de, wPlayerTrademonOTName
+	call CopyTradeName
 
 	ld hl, PlayerName
-	ld de, wc6e7
-	call Functionfcdf4
+	ld de, wPlayerTrademonSenderName
+	call CopyTradeName
 
 	ld hl, PartyMon1ID
 	ld bc, PARTYMON_STRUCT_LENGTH
-	call Functionfcdd7
-	ld de, wc6ff
-	call Functionfce0f
+	call Trade_GetAttributeOfCurrentPartymon
+	ld de, wPlayerTrademonID
+	call Trade_CopyTwoBytes
 
 	ld hl, PartyMon1DVs
 	ld bc, PARTYMON_STRUCT_LENGTH
-	call Functionfcdd7
-	ld de, wc6fd
-	call Functionfce0f
+	call Trade_GetAttributeOfCurrentPartymon
+	ld de, wPlayerTrademonDVs
+	call Trade_CopyTwoBytes
 
 	ld hl, PartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
-	call Functionfcdd7
+	call Trade_GetAttributeOfCurrentPartymon
 	ld b, h
 	ld c, l
 	callba GetCaughtGender
 	ld a, c
-	ld [wc701], a
+	ld [wPlayerTrademonCaughtData], a
 
 	ld e, TRADE_DIALOG
 	call GetTradeAttribute
 	ld a, [hl]
-	cp TRADE_COMPLETE
+	cp 3
 	ld a, 1
-	jr c, .asm_fcce6
+	jr c, .okay
 	ld a, 2
-.asm_fcce6
-	ld [wEnemyCharging], a
+.okay
+	ld [wOTTrademonCaughtData], a
 
 	ld hl, PartyMon1Level
 	ld bc, PARTYMON_STRUCT_LENGTH
-	call Functionfcdd7
+	call Trade_GetAttributeOfCurrentPartymon
 	ld a, [hl]
 	ld [CurPartyLevel], a
-	ld a, [wc702]
+	ld a, [wOTTrademonSpecies]
 	ld [CurPartySpecies], a
 	xor a
 	ld [MonType], a
@@ -214,66 +218,66 @@ Functionfcc63: ; fcc63
 	call GetTradeAttribute
 	ld a, [hl]
 	cp TRADE_COMPLETE
-	ld b, 0
+	ld b, RESET_FLAG
 	jr c, .asm_fcd1c
-	ld b, 1
+	ld b, SET_FLAG
 .asm_fcd1c
 	callba SetGiftPartyMonCaughtData
 
 	ld e, TRADE_NICK
 	call GetTradeAttribute
-	ld de, wc70e
-	call Functionfcdf4
+	ld de, wOTTrademonNickname
+	call CopyTradeName
 
 	ld hl, PartyMonNicknames
 	ld bc, PKMN_NAME_LENGTH
-	call Functionfcdde
-	ld hl, wc70e
-	call Functionfcdf4
+	call Trade_GetAttributeOfLastPartymon
+	ld hl, wOTTrademonNickname
+	call CopyTradeName
 
 	ld e, TRADE_OT_NAME
 	call GetTradeAttribute
 	push hl
-	ld de, wc724
-	call Functionfcdf4
+	ld de, wOTTrademonOTName
+	call CopyTradeName
 	pop hl
-	ld de, wc719
-	call Functionfcdf4
+	ld de, wOTTrademonSenderName
+	call CopyTradeName
 
 	ld hl, PartyMonOT
 	ld bc, NAME_LENGTH
-	call Functionfcdde
-	ld hl, wc724
-	call Functionfcdf4
+	call Trade_GetAttributeOfLastPartymon
+	ld hl, wOTTrademonOTName
+	call CopyTradeName
 
 	ld e, TRADE_DVS
 	call GetTradeAttribute
-	ld de, wEnemyTrappingMove
-	call Functionfce0f
+	ld de, wOTTrademonDVs
+	call Trade_CopyTwoBytes
 
 	ld hl, PartyMon1DVs
 	ld bc, PARTYMON_STRUCT_LENGTH
-	call Functionfcdde
-	ld hl, wEnemyTrappingMove
-	call Functionfce0f
+	call Trade_GetAttributeOfLastPartymon
+	ld hl, wOTTrademonDVs
+	call Trade_CopyTwoBytes
 
 	ld e, TRADE_OT_ID
 	call GetTradeAttribute
-	ld de, wPlayerCharging
-	call Functionfce15
+	ld de, wOTTrademonID + 1
+	call Trade_CopyTwoBytesReverseEndian
 
 	ld hl, PartyMon1ID
 	ld bc, PARTYMON_STRUCT_LENGTH
-	call Functionfcdde
-	ld hl, wEnemyWrapCount
-	call Functionfce0f
+	call Trade_GetAttributeOfLastPartymon
+	ld hl, wOTTrademonID
+	call Trade_CopyTwoBytes
 
 	ld e, TRADE_ITEM
 	call GetTradeAttribute
 	push hl
 	ld hl, PartyMon1Item
 	ld bc, PARTYMON_STRUCT_LENGTH
-	call Functionfcdde
+	call Trade_GetAttributeOfLastPartymon
 	pop hl
 	ld a, [hl]
 	ld [de], a
@@ -315,13 +319,13 @@ endr
 	ret
 ; 0xfcdd7
 
-Functionfcdd7: ; fcdd7
+Trade_GetAttributeOfCurrentPartymon: ; fcdd7
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ret
 ; fcdde
 
-Functionfcdde: ; fcdde
+Trade_GetAttributeOfLastPartymon: ; fcdde
 	ld a, [PartyCount]
 	dec a
 	call AddNTimes
@@ -330,7 +334,7 @@ Functionfcdde: ; fcdde
 	ret
 ; fcde8
 
-Functionfcde8: ; fcde8
+GetTradeMonName: ; fcde8
 	push de
 	ld [wd265], a
 	call GetBasePokemonName
@@ -339,29 +343,31 @@ Functionfcde8: ; fcde8
 	ret
 ; fcdf4
 
-Functionfcdf4: ; fcdf4
+CopyTradeName: ; fcdf4
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	ret
 ; fcdfb
 
 Functionfcdfb: ; fcdfb
+; unreferenced
 	ld bc, 4
 	call CopyBytes
-	ld a, $50
+	ld a, "@"
 	ld [de], a
 	ret
 ; fce05
 
 Functionfce05: ; fce05
+; unreferenced
 	ld bc, 3
 	call CopyBytes
-	ld a, $50
+	ld a, "@"
 	ld [de], a
 	ret
 ; fce0f
 
-Functionfce0f: ; fce0f
+Trade_CopyTwoBytes: ; fce0f
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -370,7 +376,7 @@ Functionfce0f: ; fce0f
 	ret
 ; fce15
 
-Functionfce15: ; fce15
+Trade_CopyTwoBytesReverseEndian: ; fce15
 	ld a, [hli]
 	ld [de], a
 	dec de
@@ -383,18 +389,18 @@ GetTradeMonNames: ; fce1b
 	ld e, TRADE_GETMON
 	call GetTradeAttribute
 	ld a, [hl]
-	call Functionfcde8
+	call GetTradeMonName
 
 	ld de, StringBuffer2
-	call Functionfcdf4
+	call CopyTradeName
 
 	ld e, TRADE_GIVEMON
 	call GetTradeAttribute
 	ld a, [hl]
-	call Functionfcde8
+	call GetTradeMonName
 
 	ld de, wd050
-	call Functionfcdf4
+	call CopyTradeName
 
 	ld hl, StringBuffer1
 .loop
@@ -423,13 +429,22 @@ GetTradeMonNames: ; fce1b
 
 
 NPCTrades: ; fce58
-	db 0, ABRA,       MACHOP,     "MUSCLE@@@@@", $37, $66, GOLD_BERRY,   $54, $92, "MIKE@@@@@@@", 0, 0
-	db 0, BELLSPROUT, ONIX,       "ROCKY@@@@@@", $96, $66, BITTER_BERRY, $1e, $bf, "KYLE@@@@@@@", 0, 0
-	db 1, KRABBY,     VOLTORB,    "VOLTY@@@@@@", $98, $88, PRZCUREBERRY, $05, $72, "TIM@@@@@@@@", 0, 0
-	db 3, DRAGONAIR,  DODRIO,     "DORIS@@@@@@", $77, $66, SMOKE_BALL,   $1b, $01, "EMY@@@@@@@@", 2, 0
-	db 2, HAUNTER,    XATU,       "PAUL@@@@@@@", $96, $86, MYSTERYBERRY, $00, $3d, "CHRIS@@@@@@", 0, 0
-	db 3, CHANSEY,    AERODACTYL, "AEROY@@@@@@", $96, $66, GOLD_BERRY,   $7b, $67, "KIM@@@@@@@@", 0, 0
-	db 0, DUGTRIO,    MAGNETON,   "MAGGIE@@@@@", $96, $66, METAL_COAT,   $a2, $c3, "FOREST@@@@@", 0, 0
+npctrade: MACRO
+	db \1, \2, \3, \4
+	dw \5
+	db \6
+	dw \7
+	db \8, \9, 0
+ENDM
+
+
+	npctrade 0, ABRA,       MACHOP,     "MUSCLE@@@@@", $6637, GOLD_BERRY,   $9254, "MIKE@@@@@@@", TRADE_EITHER_GENDER
+	npctrade 0, BELLSPROUT, ONIX,       "ROCKY@@@@@@", $6696, BITTER_BERRY, $bf1e, "KYLE@@@@@@@", TRADE_EITHER_GENDER
+	npctrade 1, KRABBY,     VOLTORB,    "VOLTY@@@@@@", $8898, PRZCUREBERRY, $7205, "TIM@@@@@@@@", TRADE_EITHER_GENDER
+	npctrade 3, DRAGONAIR,  DODRIO,     "DORIS@@@@@@", $6677, SMOKE_BALL,   $011b, "EMY@@@@@@@@", TRADE_FEMALE_ONLY
+	npctrade 2, HAUNTER,    XATU,       "PAUL@@@@@@@", $8696, MYSTERYBERRY, $3d00, "CHRIS@@@@@@", TRADE_EITHER_GENDER
+	npctrade 3, CHANSEY,    AERODACTYL, "AEROY@@@@@@", $6696, GOLD_BERRY,   $677b, "KIM@@@@@@@@", TRADE_EITHER_GENDER
+	npctrade 0, DUGTRIO,    MAGNETON,   "MAGGIE@@@@@", $6696, METAL_COAT,   $c3a2, "FOREST@@@@@", TRADE_EITHER_GENDER
 ; fcf38
 
 

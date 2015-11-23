@@ -2547,41 +2547,41 @@ String_e36f1: ; e36f1
 ; e36f9
 
 Functione36f9: ; e36f9 (38:76f9)
-	ld hl, MenuDataHeader_0xe377b
+	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
 	call InterpretMenu2
 	call ExitMenu
 	ret c
 	ld a, [MenuSelection2]
 	cp $1
-	jr z, .asm_e3734
+	jr z, .Switch
 	cp $2
-	jr z, .asm_e3745
+	jr z, .Name
 	cp $3
-	jr z, .asm_e3717
+	jr z, .Print
 	and a
 	ret
 
-.asm_e3717
+.Print
 	call GetBoxCount
 	and a
-	jr z, .asm_e372f
+	jr z, .EmptyBox
 	ld e, l
 	ld d, h
 	ld a, [MenuSelection]
 	dec a
 	ld c, a
-	callba Function844bc
+	callba PrintPCBox
 	call Functione35e2
 	and a
 	ret
 
-.asm_e372f
+.EmptyBox
 	call Functione37be
 	and a
 	ret
 
-.asm_e3734
+.Switch
 	ld a, [MenuSelection]
 	dec a
 	ld e, a
@@ -2591,8 +2591,8 @@ Functione36f9: ; e36f9 (38:76f9)
 	callba ChangeBoxSaveGame
 	ret
 
-.asm_e3745
-	ld b, $4
+.Name
+	ld b, $4 ; box
 	ld de, wd002
 	callba NamingScreen
 	call ClearTileMap
@@ -2616,15 +2616,15 @@ Functione36f9: ; e36f9 (38:76f9)
 
 	hlcoord 11, 7 ; XXX
 
-MenuDataHeader_0xe377b: ; 0xe377b
+.MenuDataHeader: ; 0xe377b
 	db $40 ; flags
 	db 04, 11 ; start coords
 	db 13, 19 ; end coords
-	dw MenuData2_0xe3783
+	dw .MenuData2
 	db 1 ; default option
 ; 0xe3783
 
-MenuData2_0xe3783: ; 0xe3783
+.MenuData2: ; 0xe3783
 	db $80 ; flags
 	db 4 ; items
 	db "SWITCH@"

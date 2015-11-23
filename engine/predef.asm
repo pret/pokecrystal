@@ -59,8 +59,8 @@ PredefPointers:: ; 856b
 	add_predef LearnLevelMoves
 	add_predef FillMoves
 	add_predef EvolveAfterBattle
-	add_predef Function28f63
-	add_predef Function28f24
+	add_predef TradeAnimationPlayer2
+	add_predef TradeAnimation
 	add_predef CopyPkmnToTempMon
 	add_predef ListMoves ; $20
 	add_predef PlaceNonFaintStatus

@@ -41,14 +41,12 @@ ReadAnyMail: ; b9237
 	call SetPalettes
 	xor a
 	ld [hJoyPressed], a
-	call Functionb929a
+	call .loop
 	call ClearBGPalettes
 	call DisableLCD
 	call LoadStandardFont
 	jp EnableLCD
-; b929a
 
-Functionb929a: ; b929a
 .loop
 	call GetJoypad
 	ld a, [hJoyPressed]
@@ -61,7 +59,7 @@ Functionb929a: ; b929a
 .pressed_start
 	ld a, [wJumptableIndex]
 	push af
-	callab Function845d4
+	callab PrintMail ; printer
 	pop af
 	ld [wJumptableIndex], a
 	jr .loop

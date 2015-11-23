@@ -161,9 +161,9 @@ Function49da4: ; 49da4
 	cp $1
 	ld a, $1
 	ret nz
-	ld a, BANK(s0_abe5)
+	ld a, BANK(sNumDailyMysteryGiftPartnerIDs)
 	call GetSRAMBank
-	ld a, [s0_abe5]
+	ld a, [sNumDailyMysteryGiftPartnerIDs]
 	cp $ff
 	call CloseSRAM
 	jr nz, .done

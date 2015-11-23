@@ -59,17 +59,17 @@ sMailbox10Backup::     mailmsg sMailbox10Backup
 sMysteryGiftItem:: ds 1
 sMysteryGiftUnlocked:: ds 1
 sBackupMysteryGiftItem:: ds 1
-s0_abe5:: ds 1
-s0_abe6:: ds 10
+sNumDailyMysteryGiftPartnerIDs:: ds 1
+sDailyMysteryGiftPartnerIDs:: ds 5 * 2 ; maximum 5 per day, 2 bytes per ID
 sMysteryGiftDecorationsReceived:: flag_array NUM_NON_TROPHY_DECOS
 	ds 4
 sMysteryGiftTimer:: ds 1
 sMysteryGiftTimerStartDay:: ds 1
 	ds 1
 sMysteryGiftTrainerHouseFlag:: ds 1
-s0_abfe:: ds 12
-sMysteryGiftTrainer:: ds (1 + 1 + NUM_MOVES) * PARTY_LENGTH + 1
-	ds 1
+sMysteryGiftPartnerName:: ds NAME_LENGTH
+s0_ac09:: ds 1
+sMysteryGiftTrainer:: ds (1 + 1 + NUM_MOVES) * PARTY_LENGTH + 2
 sBackupMysteryGiftItemEnd::
 
 	ds $30

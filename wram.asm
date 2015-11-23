@@ -152,8 +152,10 @@ mailmsg: MACRO
 \1AuthorNationality:: ds 2
 \1AuthorID:: ds 2
 \1Species:: ds 1
-\1MailType:: ds 1
+\1Type:: ds 1
+\1End::
 endm
+
 
 INCLUDE "vram.asm"
 
@@ -542,7 +544,8 @@ wc64e:: ds 1
 	ds 1
 wEnemyTrainerItem1:: ds 1
 wEnemyTrainerItem2:: ds 1
-wc652:: ds 4
+wEnemyTrainerBaseReward:: ds 1
+wEnemyTrainerAIFlags:: ds 3
 wc656::
 OTName:: ds NAME_LENGTH ; c656
 
@@ -688,8 +691,7 @@ PlayerDamageTaken:: ; c682
 EnemyDamageTaken:: ; c684
 	ds 2
 
-wc686:: ds 2
-wc688:: ds 1
+wBattleReward:: ds 3
 wKickCounter::
 wPresentPower:: ds 1
 wc68a::
@@ -719,6 +721,24 @@ PlayerSpdLevel:: ; c6ce
 	ds 1
 PlayerSAtkLevel:: ; c6cf
 	ds 1
+
+trademon: MACRO
+\1Species:: ds 1 ; wc6d0 | wc702
+\1SpeciesName:: ds PKMN_NAME_LENGTH ; wc6d1 | wc703
+\1Nickname:: ds PKMN_NAME_LENGTH ; wc6dc | wc70e
+\1SenderName:: ds NAME_LENGTH ; wc6e7 | wc719
+\1OTName:: ds NAME_LENGTH ; wc6f2 | wc724
+\1DVs:: ds 2 ; wc6fd | wc72f
+\1ID:: ds 2 ; wc6ff | wc731
+\1CaughtData:: ds 1 ; wc701 | wc733
+\1End::
+ENDM
+
+wPlayerTrademon:: trademon wPlayerTrademon
+wOTTrademon::     trademon wOTTrademon
+
+	ds wPlayerTrademon - @
+
 wc6d0::
 wPokedexDataStart::
 PlayerSDefLevel:: ; c6d0
@@ -920,12 +940,19 @@ wc729:: ds 2
 wPlayerRageCounter:: ds 1
 wEnemyRageCounter:: ds 1
 wc72d:: ds 1 ; if 0 then PrintButItFailed
+wc72e::
 wPlayerTrappingMove:: ds 1
+wc72f::
 wEnemyTrappingMove:: ds 1
+wc730::
 wPlayerWrapCount:: ds 1
+wc731::
 wEnemyWrapCount:: ds 1
+wc732::
 wPlayerCharging:: ds 1
-wEnemyCharging:: ds 1
+wEnemyCharging::
+wc733:: ds 1
+wTradeAnimPointer::
 wc734::
 BattleEnded:: ; c734
 	ds 1
@@ -935,7 +962,7 @@ wc735:: ds 1
 wc736:: ds 3
 wWildMonPP::
 wc739:: ds 4
-wc73d:: ds 1
+wAmuletCoin:: ds 1
 wc73e:: ds 1
 wPlayerJustGotFrozen:: ds 1
 wEnemyJustGotFrozen:: ds 1
@@ -1006,6 +1033,8 @@ wc820:: ds 1
 wc821:: ds 15
 wc830:: ds 16
 wc840:: ds 16
+wMysteryGiftTrainerData:: ds (1 + 1 + NUM_MOVES) * PARTY_LENGTH + 2
+	ds wMysteryGiftTrainerData - @
 wc850:: ds 16
 wc860:: ds 16
 wc870:: ds 16
@@ -1018,9 +1047,9 @@ wc8d0:: ds 16
 wc8e0:: ds 16
 wc8f0:: ds 16
 wc900:: ds 1
-wc901:: ds 1
-wc902:: ds 1
-wc903:: ds 12
+wMysteryGiftPartnerID:: ds 2
+wMysteryGiftPartnerName:: ds NAME_LENGTH
+wc90e:: ds 1
 wc90f:: ds 1
 wc910:: ds 1
 wc911:: ds 1
@@ -2432,7 +2461,7 @@ PlayerState:: ; d95d
 	ds 1
 
 wHallOfFameCount:: ds 2
-wd960:: ds 2
+wTradeFlags:: ds 2
 MooMooBerries:: ; d962
 	ds 1 ; how many berries fed to MooMoo
 UndergroundSwitchPositions:: ; d963

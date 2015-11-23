@@ -2532,48 +2532,48 @@ WinTrainerBattle: ; 3cfa4
 ; 3d02b
 
 Function3d02b: ; 3d02b
-	ld a, [wc73d]
+	ld a, [wAmuletCoin]
 	and a
-	call nz, Function3d099
-	call Function3d0b1
+	call nz, .DoubleReward
+	call .CheckMaxedOutMomMoney
 	push af
 	ld a, $0
-	jr nc, .asm_3d044
+	jr nc, .okay
 	ld a, [wMomSavingMoney]
 	and $7
 	cp $3
-	jr nz, .asm_3d044
+	jr nz, .okay
 	inc a
 
-.asm_3d044
+.okay
 	ld b, a
 	ld c, $4
-.asm_3d047
+.loop
 	ld a, b
 	and a
-	jr z, .asm_3d052
-	call Function3d081
+	jr z, .loop2
+	call .SendMoneyToMom
 	dec c
 	dec b
-	jr .asm_3d047
+	jr .loop
 
-.asm_3d052
+.loop2
 	ld a, c
 	and a
-	jr z, .asm_3d05c
-	call Function3d08d
+	jr z, .done
+	call .AddMoneyToWallet
 	dec c
-	jr .asm_3d052
+	jr .loop2
 
-.asm_3d05c
-	call Function3d099
-	call Function3d099
+.done
+	call .DoubleReward
+	call .DoubleReward
 	pop af
 	jr nc, .KeepItAll
 	ld a, [wMomSavingMoney]
 	and $7
 	jr z, .KeepItAll
-	ld hl, SentToMomTexts
+	ld hl, .SentToMomTexts
 	dec a
 	ld c, a
 	ld b, 0
@@ -2590,26 +2590,26 @@ endr
 	jp StdBattleTextBox
 ; 3d081
 
-Function3d081: ; 3d081
+.SendMoneyToMom: ; 3d081
 	push bc
-	ld hl, wc688
+	ld hl, wBattleReward + 2
 	ld de, wMomsMoney + 2
-	call Function3d0be
+	call AddBattleMoneyToAccount
 	pop bc
 	ret
 ; 3d08d
 
-Function3d08d: ; 3d08d
+.AddMoneyToWallet: ; 3d08d
 	push bc
-	ld hl, wc688
+	ld hl, wBattleReward + 2
 	ld de, Money + 2
-	call Function3d0be
+	call AddBattleMoneyToAccount
 	pop bc
 	ret
 ; 3d099
 
-Function3d099: ; 3d099
-	ld hl, wc688
+.DoubleReward: ; 3d099
+	ld hl, wBattleReward + 2
 	sla [hl]
 	dec hl
 	rl [hl]
@@ -2624,14 +2624,14 @@ endr
 	ret
 ; 3d0ab
 
-SentToMomTexts: ; 3d0ab
+.SentToMomTexts: ; 3d0ab
 	dw SentSomeToMomText
 	dw SentHalfToMomText
 	dw SentAllToMomText
 ; 3d0b1
 
 
-Function3d0b1: ; 3d0b1
+.CheckMaxedOutMomMoney: ; 3d0b1
 	ld hl, wMomsMoney + 2
 	ld a, [hld]
 	cp 999999 % $100
@@ -2642,7 +2642,7 @@ Function3d0b1: ; 3d0b1
 	ret
 ; 3d0be
 
-Function3d0be: ; 3d0be
+AddBattleMoneyToAccount: ; 3d0be
 	ld c, $3
 	and a
 	push de
@@ -2653,14 +2653,14 @@ Function3d0be: ; 3d0be
 	callba MobileFn_106008
 	pop bc
 	pop hl
-.asm_3d0ce
+.loop
 	ld a, [de]
 	adc [hl]
 	ld [de], a
 	dec de
 	dec hl
 	dec c
-	jr nz, .asm_3d0ce
+	jr nz, .loop
 	pop hl
 	ld a, [hld]
 	cp 999999 % $100
@@ -2823,7 +2823,7 @@ PlayerMonFaintHappinessMod: ; 3d1aa
 	ld a, [CurBattleMon]
 	ld c, a
 	ld hl, wBattleParticipantsNotFainted
-	ld b, $0
+	ld b, RESET_FLAG
 	predef FlagPredef
 	ld hl, EnemySubStatus3
 	res SUBSTATUS_IN_LOOP, [hl]
@@ -5602,7 +5602,7 @@ CheckAmuletCoin: ; 3e4a8
 	cp HELD_AMULET_COIN
 	ret nz
 	ld a, 1
-	ld [wc73d], a
+	ld [wAmuletCoin], a
 	ret
 ; 3e4bc
 
@@ -6716,7 +6716,7 @@ endr
 	ld a, [TempEnemyMonSpecies]
 	dec a
 	ld c, a
-	ld b, 1 ; set
+	ld b, SET_FLAG
 	ld hl, PokedexSeen
 	predef FlagPredef
 
@@ -7741,7 +7741,7 @@ endr
 	ld hl, EvolvableFlags
 	ld a, [CurPartyMon]
 	ld c, a
-	ld b, $1
+	ld b, SET_FLAG
 	predef FlagPredef
 	pop af
 	ld [CurPartyLevel], a
@@ -8790,7 +8790,7 @@ CheckPayDay: ; 3f71d
 	inc hl
 	or [hl]
 	ret z
-	ld a, [wc73d]
+	ld a, [wAmuletCoin]
 	and a
 	jr z, .okay
 	ld hl, wPayDayMoney + 2
@@ -8809,7 +8809,7 @@ endr
 .okay
 	ld hl, wPayDayMoney + 2
 	ld de, Money + 2
-	call Function3d0be
+	call AddBattleMoneyToAccount
 	ld hl, BattleText_PlayerPickuedUpPayDayMoney
 	call StdBattleTextBox
 	ld a, [InBattleTowerBattle]
