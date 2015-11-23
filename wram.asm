@@ -959,6 +959,9 @@ BattleEnded:: ; c734
 
 wWildMonMoves::
 wc735:: ds 1
+wLinkPlayer1Name:: ds NAME_LENGTH
+wLinkPlayer2Name:: ds NAME_LENGTH
+	ds wLinkPlayer1Name - @
 wc736:: ds 3
 wWildMonPP::
 wc739:: ds 4
