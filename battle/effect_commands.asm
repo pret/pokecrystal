@@ -9028,7 +9028,7 @@ BatonPass_LinkPlayerSwitch: ; 37a67
 	ld [wd0ec], a
 
 	call LoadStandardMenuDataHeader
-	ld hl, Function3e8e4
+	ld hl, LinkBattleSendReceiveAction
 	call CallBattleCore
 	call WriteBackup
 
@@ -9044,7 +9044,7 @@ BatonPass_LinkEnemySwitch: ; 37a82
 	ret z
 
 	call LoadStandardMenuDataHeader
-	ld hl, Function3e8e4
+	ld hl, LinkBattleSendReceiveAction
 	call CallBattleCore
 
 	ld a, [OTPartyCount]

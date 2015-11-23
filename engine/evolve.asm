@@ -9,7 +9,7 @@ EvolvePokemon: ; 421d8
 
 EvolveAfterBattle: ; 421e6
 	xor a
-	ld [wd268], a
+	ld [wMonTriedToEvolve], a
 	dec a
 	ld [CurPartyMon], a
 	push hl
@@ -201,7 +201,7 @@ endr
 	ld a, [TempMonLevel]
 	ld [CurPartyLevel], a
 	ld a, $1
-	ld [wd268], a
+	ld [wMonTriedToEvolve], a
 
 	push hl
 
@@ -349,7 +349,7 @@ Evolution_ReturnToMap: ; 423ff
 	ld a, [wBattleMode]
 	and a
 	ret nz
-	ld a, [wd268]
+	ld a, [wMonTriedToEvolve]
 	and a
 	call nz, RestartMapMusic
 	ret

@@ -477,9 +477,9 @@ BuyMenuLoop: ; 15cef
 	ld a, [wd045]
 	ld [wMenuCursorBuffer], a
 	ld a, [wd045 + 1]
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	call HandleScrollingMenu
-	ld a, [wd0e4]
+	ld a, [wMenuScrollPosition]
 	ld [wd045 + 1], a
 	ld a, [MenuSelection2]
 	ld [wd045], a
@@ -658,7 +658,7 @@ MenuDataHeader_Buy: ; 0x15e18
 	dbw 0, CurMart
 	dba PlaceMenuItemName
 	dba .PrintBCDPrices
-	dba Function244c3
+	dba UpdateItemDescription
 ; 15e30
 
 .PrintBCDPrices: ; 15e30

@@ -590,9 +590,9 @@ Function15985: ; 0x15985
 	ld a, [wd0d7]
 	ld [wMenuCursorBuffer], a
 	ld a, [wd0dd]
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	call HandleScrollingMenu
-	ld a, [wd0e4]
+	ld a, [wMenuScrollPosition]
 	ld [wd0dd], a
 	ld a, [MenuSelection2]
 	ld [wd0d7], a
@@ -659,7 +659,7 @@ MenuData15a08: ; 0x15a08
 	dbw 0, PCItems
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
-	dba Function244c3
+	dba UpdateItemDescription
 
 PC_DisplayText: ; 15a20
 	call MenuTextBox

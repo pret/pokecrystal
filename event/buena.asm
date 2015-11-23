@@ -66,7 +66,7 @@ SpecialBuenasPassword: ; 8af6b
 
 SpecialBuenaPrize: ; 8afd4
 	xor a
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	ld a, $1
 	ld [MenuSelection], a
 	call Function8b0d6

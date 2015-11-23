@@ -399,7 +399,7 @@ PopulateDecoCategoryMenu: ; 2695b
 	ld [hBGMapMode], a
 	call InitScrollingMenu
 	xor a
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	call HandleScrollingMenu
 	ld a, [wcf73]
 	cp 2

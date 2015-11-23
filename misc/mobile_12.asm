@@ -346,7 +346,7 @@ Function48304: ; 48304 (12:4304)
 	call Function48cdc
 	ld a, [wMenuCursorBuffer]
 	ld b, a
-	ld a, [wd0e4]
+	ld a, [wMenuScrollPosition]
 	ld c, a
 	push bc
 	ld a, [wd474]
@@ -358,7 +358,7 @@ Function48304: ; 48304 (12:4304)
 	ld [wMenuCursorBuffer], a
 	ld a, $29
 .asm_4833f
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	callba Function104148
 .asm_48348
 	call HandleScrollingMenu
@@ -370,7 +370,7 @@ Function48304: ; 48304 (12:4304)
 	ld a, b
 	ld [wMenuCursorBuffer], a
 	ld a, c
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	ld a, d
 	push af
 	call ExitMenu
@@ -398,21 +398,21 @@ Function48383: ; 48383 (12:4383)
 	and a
 	jr .asm_483b7
 .asm_48390
-	ld a, [wd0e4]
+	ld a, [wMenuScrollPosition]
 	sub d
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	jr nc, .asm_483af
 	xor a
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	jr .asm_483af
 .asm_4839f
-	ld a, [wd0e4]
+	ld a, [wMenuScrollPosition]
 	add d
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	cp e
 	jr c, .asm_483af
 	ld a, e
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	jr .asm_483af
 .asm_483af
 	ld hl, MenuSelection2

@@ -40,7 +40,7 @@ Function2805d: ; 2805d
 	call Function28499
 	call Function28434
 	xor a
-	ld [wcf56], a
+	ld [wPlayerLinkAction], a
 	call Function87d
 	ld a, [hLinkPlayerNumber]
 	cp $2
@@ -474,7 +474,7 @@ Function283b2: ; 283b2
 	ld b, $a
 .asm_283b7
 	call DelayFrame
-	call Function908
+	call LinkCommunicationsSignalDataReceived
 	dec b
 	jr nz, .asm_283b7
 	xor a
@@ -1213,7 +1213,7 @@ Function287e3: ; 287e3
 	call Function28ef8
 	callba Function16d673
 	xor a
-	ld hl, wcf51
+	ld hl, wOtherPlayerLinkMode
 rept 3
 	ld [hli], a
 endr
@@ -1221,7 +1221,7 @@ endr
 	ld a, $1
 	ld [MenuSelection2], a
 	inc a
-	ld [wcf56], a
+	ld [wPlayerLinkAction], a
 	jp Function2888b
 ; 28803
 
@@ -1468,9 +1468,9 @@ Function28926: ; 28926
 	ld [MenuSelection2], a
 	dec a
 	ld [wd002], a
-	ld [wcf56], a
+	ld [wPlayerLinkAction], a
 	callba Function16d6ce
-	ld a, [wcf51]
+	ld a, [wOtherPlayerLinkMode]
 	cp $f
 	jp z, Function287e3
 	ld [wd003], a
@@ -1483,7 +1483,7 @@ Function28926: ; 28926
 	jp nc, Function28b87
 	xor a
 	ld [wcf57], a
-	ld [wcf52], a
+	ld [wOtherPlayerLinkAction], a
 	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
@@ -1497,7 +1497,7 @@ Function28926: ; 28926
 .asm_28a58
 	xor a
 	ld [wcf57], a
-	ld [wcf52], a
+	ld [wOtherPlayerLinkAction], a
 	ld a, [wd003]
 	ld hl, OTPartySpecies
 	ld c, a
@@ -1524,7 +1524,7 @@ Function28926: ; 28926
 	ld de, String28ece
 	call PlaceString
 	ld a, $1
-	ld [wcf56], a
+	ld [wPlayerLinkAction], a
 	callba Function16d6ce
 	ld c, $64
 	call DelayFrames
@@ -1591,9 +1591,9 @@ Function28ade: ; 28ade
 	ld a, $ec
 	ldcoord_a 9, 17
 	ld a, $f
-	ld [wcf56], a
+	ld [wPlayerLinkAction], a
 	callba Function16d6ce
-	ld a, [wcf51]
+	ld a, [wOtherPlayerLinkMode]
 	cp $f
 	jr nz, .asm_28ade
 
@@ -1634,7 +1634,7 @@ String_28b61: ; 28b61
 ; 28b68
 
 Function28b68: ; 28b68
-	ld a, [wcf51]
+	ld a, [wOtherPlayerLinkMode]
 	hlcoord 6, 9
 	ld bc, SCREEN_WIDTH
 	call AddNTimes
@@ -1662,7 +1662,7 @@ Function28b77: ; 28b77
 Function28b87: ; 28b87
 	xor a
 	ld [wcf57], a
-	ld [wcf52], a
+	ld [wOtherPlayerLinkAction], a
 	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
@@ -1731,7 +1731,7 @@ Function28b87: ; 28b87
 
 .asm_28c33
 	ld a, $1
-	ld [wcf56], a
+	ld [wPlayerLinkAction], a
 	hlcoord 0, 12
 	ld b, 4
 	ld c, 18
@@ -1744,9 +1744,9 @@ Function28b87: ; 28b87
 
 .asm_28c54
 	ld a, $2
-	ld [wcf56], a
+	ld [wPlayerLinkAction], a
 	callba Function16d6ce
-	ld a, [wcf51]
+	ld a, [wOtherPlayerLinkMode]
 	dec a
 	jr nz, .asm_28c7b
 	hlcoord 0, 12
@@ -1959,7 +1959,7 @@ Function28b87: ; 28b87
 
 .asm_28e49
 	ld a, b
-	ld [wcf56], a
+	ld [wPlayerLinkAction], a
 	push bc
 	call Function862
 	pop bc
@@ -1969,7 +1969,7 @@ Function28b87: ; 28b87
 	ld a, b
 	and a
 	jr z, .asm_28e63
-	ld a, [wcf52]
+	ld a, [wOtherPlayerLinkAction]
 	cp b
 	jr nz, .asm_28e49
 
@@ -2148,11 +2148,11 @@ Function29c67: ; 29c67
 ; 29c7b
 
 Special_EnterTimeCapsule: ; 29c7b
-	ld c, $a
+	ld c, 10
 	call DelayFrames
 	ld a, $4
 	call Function29f17
-	ld c, $28
+	ld c, 40
 	call DelayFrames
 	xor a
 	ld [hVBlank], a
@@ -2210,15 +2210,15 @@ Special_AbortLink: ; 29c92
 ; 29ce8
 
 Special_SetBitsForLinkTradeRequest: ; 29ce8
-	ld a, $1
-	ld [wcf56], a
+	ld a, LINK_TRADECENTER - 1
+	ld [wPlayerLinkAction], a
 	ld [wd265], a
 	ret
 ; 29cf1
 
 Special_SetBitsForBattleRequest: ; 29cf1
-	ld a, $2
-	ld [wcf56], a
+	ld a, LINK_COLOSSEUM - 1
+	ld [wPlayerLinkAction], a
 	ld [wd265], a
 	ret
 ; 29cfa
@@ -2232,14 +2232,14 @@ Special_SetBitsForTimeCapsuleRequest: ; 29cfa
 	ld [rSC], a
 	ld a, $80
 	ld [rSC], a
-	xor a
-	ld [wcf56], a
+	xor a ; LINK_TIMECAPSULE - 1
+	ld [wPlayerLinkAction], a
 	ld [wd265], a
 	ret
 ; 29d11
 
 Special_WaitForLinkedFriend: ; 29d11
-	ld a, [wcf56]
+	ld a, [wPlayerLinkAction]
 	and a
 	jr z, .asm_29d2f
 	ld a, $2
@@ -2295,9 +2295,9 @@ Special_WaitForLinkedFriend: ; 29d11
 	jr .asm_29d39
 
 .asm_29d79
-	call Function908
+	call LinkCommunicationsSignalDataReceived
 	call DelayFrame
-	call Function908
+	call LinkCommunicationsSignalDataReceived
 	ld c, $32
 	call DelayFrames
 	ld a, $1
@@ -2312,7 +2312,7 @@ Special_WaitForLinkedFriend: ; 29d11
 
 Special_CheckLinkTimeout: ; 29d92
 	ld a, $1
-	ld [wcf56], a
+	ld [wPlayerLinkAction], a
 	ld hl, wcf5b
 	ld a, $3
 	ld [hli], a
@@ -2334,7 +2334,7 @@ Special_CheckLinkTimeout: ; 29d92
 
 Function29dba: ; 29dba
 	ld a, $5
-	ld [wcf56], a
+	ld [wPlayerLinkAction], a
 	ld hl, wcf5b
 	ld a, $3
 	ld [hli], a
@@ -2355,17 +2355,17 @@ Function29dba: ; 29dba
 	ld a, b
 	or c
 	jr nz, .asm_29de0
-	ld a, [wcf51]
+	ld a, [wOtherPlayerLinkMode]
 	cp $5
 	jr nz, .asm_29e03
 	ld a, $6
-	ld [wcf56], a
+	ld [wPlayerLinkAction], a
 	ld hl, wcf5b
 	ld a, $1
 	ld [hli], a
 	ld [hl], $32
 	call Function29e0c
-	ld a, [wcf51]
+	ld a, [wOtherPlayerLinkMode]
 	cp $6
 	jr z, .asm_29e08
 
@@ -2426,7 +2426,7 @@ Function29e47: ; 29e47
 	ld b, $a
 .asm_29e49
 	call DelayFrame
-	call Function908
+	call LinkCommunicationsSignalDataReceived
 	dec b
 	jr nz, .asm_29e49
 	ret
@@ -2467,14 +2467,14 @@ Special_CheckBothSelectedSameRoom: ; 29e82
 	ld a, [wd265]
 	call Function29f17
 	push af
-	call Function908
+	call LinkCommunicationsSignalDataReceived
 	call DelayFrame
-	call Function908
+	call LinkCommunicationsSignalDataReceived
 	pop af
 	ld b, a
 	ld a, [wd265]
 	cp b
-	jr nz, .asm_29eaa
+	jr nz, .fail
 	ld a, [wd265]
 	inc a
 	ld [wLinkMode], a
@@ -2484,7 +2484,7 @@ Special_CheckBothSelectedSameRoom: ; 29e82
 	ld [ScriptVar], a
 	ret
 
-.asm_29eaa
+.fail
 	xor a
 	ld [ScriptVar], a
 	ret
@@ -2532,14 +2532,14 @@ Special_CloseLink: ; 29eee
 ; 29efa
 
 Special_FailedLinkToPast: ; 29efa
-	ld c, $28
+	ld c, 40
 	call DelayFrames
 	ld a, $e
 	jp Function29f17
 ; 29f04
 
 Function29f04: ; 29f04
-	ld c, $3
+	ld c, 3
 	call DelayFrames
 	ld a, -1
 	ld [hLinkPlayerNumber], a
@@ -2553,26 +2553,26 @@ Function29f04: ; 29f04
 
 Function29f17: ; 29f17
 	add $d0
-	ld [wcf56], a
+	ld [wPlayerLinkAction], a
 	ld [wcf57], a
 	ld a, $2
 	ld [hVBlank], a
 	call DelayFrame
 	call DelayFrame
-.asm_29f29
+.receive_loop
 	call Function83b
-	ld a, [wcf51]
+	ld a, [wOtherPlayerLinkMode]
 	ld b, a
 	and $f0
 	cp $d0
-	jr z, .asm_29f40
-	ld a, [wcf52]
+	jr z, .done
+	ld a, [wOtherPlayerLinkAction]
 	ld b, a
 	and $f0
 	cp $d0
-	jr nz, .asm_29f29
+	jr nz, .receive_loop
 
-.asm_29f40
+.done
 	xor a
 	ld [hVBlank], a
 	ld a, b

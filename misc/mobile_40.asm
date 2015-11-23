@@ -171,6 +171,7 @@ Function1000fa: ; 1000fa
 	ld [hFFC9], a
 	ld [hMobile], a
 	ei
+
 	ld a, [wLinkMode]
 	push af
 	xor a
@@ -1620,78 +1621,81 @@ Function1009f3: ; 1009f3
 	ret
 ; 100a09
 
-Function100a09: ; 100a09
-	call Function100a2e
+_LinkBattleSendReceiveAction: ; 100a09
+	call .StageForSend
 	ld [wd431], a
-	callba Function4000
+	callba PlaceWaitingText
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
-	jr nz, .asm_100a2a
+	jr nz, .not_mobile
 
 	call Function100a87
 	call Function100da5
 	callba FinishBattleAnim
-	jr .asm_100a2d
+	jr .done
 
-.asm_100a2a
+.not_mobile
 	call Function100a53
 
-.asm_100a2d
+.done
 	ret
 ; 100a2e
 
-Function100a2e: ; 100a2e
-	ld a, [wd0ec]
+.StageForSend: ; 100a2e
+	ld a, [wPlayerAction]
 	and a
-	jr nz, .asm_100a48
+	jr nz, .switch
 	ld a, [CurPlayerMove]
-	ld b, $e
+	ld b, BATTLEACTION_E
 	cp STRUGGLE
-	jr z, .asm_100a4f
-	ld b, $d
+	jr z, .struggle
+	ld b, BATTLEACTION_D
 	cp $ff
-	jr z, .asm_100a4f
+	jr z, .struggle
 	ld a, [CurMoveNum]
-	jr .asm_100a50
+	jr .use_move
 
-.asm_100a48
+.switch
 	ld a, [CurPartyMon]
-	add $4
-	jr .asm_100a50
+	add BATTLEACTION_SWITCH1
+	jr .use_move
 
-.asm_100a4f
+.struggle
 	ld a, b
 
-.asm_100a50
+.use_move
 	and $f
 	ret
 ; 100a53
 
 Function100a53: ; 100a53
 	ld a, [wd431]
-	ld [wcf56], a
+	ld [wPlayerLinkAction], a
 	ld a, $ff
-	ld [wcf52], a
-.asm_100a5e
-	call Function8c1
+	ld [wOtherPlayerLinkAction], a
+.waiting
+	call LinkCommunicationsSendReceive
 	call DelayFrame
-	ld a, [wcf52]
+	ld a, [wOtherPlayerLinkAction]
 	inc a
-	jr z, .asm_100a5e
-	ld b, $a
-.asm_100a6c
+	jr z, .waiting
+
+	ld b, 10
+.receive
 	call DelayFrame
-	call Function8c1
+	call LinkCommunicationsSendReceive
 	dec b
-	jr nz, .asm_100a6c
-	ld b, $a
-.asm_100a77
+	jr nz, .receive
+
+	ld b, 10
+.acknowledge
 	call DelayFrame
-	call Function908
+	call LinkCommunicationsSignalDataReceived
 	dec b
-	jr nz, .asm_100a77
-	ld a, [wcf52]
-	ld [wd430], a
+	jr nz, .acknowledge
+
+	ld a, [wOtherPlayerLinkAction]
+	ld [wBattleAction], a
 	ret
 ; 100a87
 
@@ -1850,10 +1854,10 @@ Function100b7a: ; 100b7a
 	ret
 ; 100b9f
 
-Function100b9f: ; 100b9f
+MobileMoveSelectionScreen: ; 100b9f
 	xor a
 	ld [wd0e3], a
-	callba Function3e786
+	callba CheckPlayerHasUsableMoves
 	ret z
 	call Function100dd8
 	jp c, xor_a_dec_a
@@ -2148,7 +2152,7 @@ Function100db0: ; 100db0
 
 Function100dc0: ; 100dc0
 	ld a, [wLinkMode]
-	cp $4
+	cp LINK_MOBILE
 	jr nz, .asm_100dd0
 	ld hl, wcd2a
 	bit 3, [hl]
@@ -2794,16 +2798,16 @@ Function1011f1: ; 1011f1
 	res 4, [hl]
 	ld hl, GameTimerPause
 	bit 7, [hl]
-	jr z, .asm_101210
+	jr z, .skip
 	ld hl, wdc41
 	set 4, [hl]
 
-.asm_101210
+.skip
 	call Function10209c
 	xor a
 	ld [wdc5f], a
 	ld [wdc60], a
-	ld a, $4
+	ld a, LINK_MOBILE
 	ld [wLinkMode], a
 	ret
 ; 101220
@@ -7958,16 +7962,16 @@ Function10378c: ; 10378c
 	ld c, $0
 	ld hl, SwarmFlags
 	bit 4, [hl]
-	jr nz, .asm_10379c
+	jr nz, .already_set
 	ld c, $1
 	ld hl, SwarmFlags
 	set 4, [hl]
 
-.asm_10379c
+.already_set
 	push bc
 	callba Link_SaveGame
 	pop bc
-	jr c, .asm_1037b5
+	jr c, .failed_to_save
 	ld a, $1
 	ld [ScriptVar], a
 	ld a, c
@@ -7976,7 +7980,7 @@ Function10378c: ; 10378c
 	callba Function1006fd
 	ret
 
-.asm_1037b5
+.failed_to_save
 	xor a
 	ld [ScriptVar], a
 	ld a, c
@@ -7989,19 +7993,19 @@ Function10378c: ; 10378c
 
 Function1037c2: ; 1037c2
 	call Function103823
-	jr c, .asm_1037de
+	jr c, .nope
 	ld a, [wdc5f]
 	and a
-	jr z, .asm_1037de
+	jr z, .nope
 	ld hl, UnknownText_0x1037e6
 	call PrintText
 	call YesNoBox
-	jr c, .asm_1037de
+	jr c, .nope
 	ld a, $1
 	ld [ScriptVar], a
 	ret
 
-.asm_1037de
+.nope
 	xor a
 	ld [wdc5f], a
 	ld [ScriptVar], a

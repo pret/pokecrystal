@@ -26,7 +26,7 @@ Special_SelectApricornForKurt: ; 88018
 	call LoadStandardMenuDataHeader
 	ld c, $1
 	xor a
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	ld [wKurtApricornQuantity], a
 .loop
 	push bc

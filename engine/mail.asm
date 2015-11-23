@@ -398,9 +398,9 @@ MailboxPC: ; 0x44806
 	ld a, [wCurMessageIndex]
 	ld [wMenuCursorBuffer], a
 	ld a, [OBPals + 8 * 6]
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	call HandleScrollingMenu
-	ld a, [wd0e4]
+	ld a, [wMenuScrollPosition]
 	ld [OBPals + 8 * 6], a
 	ld a, [MenuSelection2]
 	ld [wCurMessageIndex], a

@@ -1298,9 +1298,10 @@ wcf41:: ds 1
 wcf42:: ds 2
 wcf44:: ds 1
 wcf45:: ds 12
-wcf51:: ds 1
-wcf52:: ds 4
-wcf56:: ds 1
+; addresses dealing with serial comms
+wOtherPlayerLinkMode:: ds 1
+wOtherPlayerLinkAction:: ds 4
+wPlayerLinkAction:: ds 1
 wcf57:: ds 4
 wcf5b:: ds 1
 wcf5c:: ds 1
@@ -1509,6 +1510,18 @@ wd001:: ds 1
 wTempMail:: mailmsg wTempMail
 	ds wTempMail - @
 
+wSeerAction:: ds 1
+wSeerNickname:: ds PKMN_NAME_LENGTH
+wSeerCaughtLocation:: ds 17
+wSeerTimeOfDay:: ds NAME_LENGTH
+wSeerOTName:: ds NAME_LENGTH
+wSeerOTNameGrammar:: ds 1
+wSeerCaughtLevelString:: ds 4
+wSeerCaughtLevel:: ds 1
+wSeerCaughtData:: ds 1
+wSeerCaughtGender:: ds 1
+	ds wSeerAction - @
+
 wd002::
 PhoneScriptBank::
 LuckyNumberDigit1Buffer::
@@ -1683,7 +1696,7 @@ CurBattleMon:: ; d0d4
 CurMoveNum:: ; d0d5
 	ds 1
 
-wd0d6:: ds 1
+wLastPocket:: ds 1
 wd0d7:: ds 1
 wPartyMenuCursor::
 wd0d8:: ds 1
@@ -1692,18 +1705,22 @@ wKeyItemsPocketCursor:: ds 1
 wBallsPocketCursor:: ds 1
 wTMHMPocketCursor:: ds 1
 wd0dd:: ds 2
-wd0df:: ds 1
-wd0e0:: ds 1
-wd0e1:: ds 1
-wd0e2:: ds 1
+wItemsPocketScrollPosition:: ds 1
+wKeyItemsPocketScrollPosition:: ds 1
+wBallsPocketScrollPosition:: ds 1
+wTMHMPocketScrollPosition:: ds 1
 wMoveSwapBuffer::
 wSwitchMon::
 wd0e3:: ds 1
-wd0e4:: ds 4
+wMenuScrollPosition:: ds 4
 wQueuedScriptBank:: ds 1
 wQueuedScriptAddr:: ds 2
 wd0eb:: ds 1
 wFieldMoveSucceeded::
+wPlayerAction::
+; 0 - use move
+; 1 - use item
+; 2 - switch
 wd0ec:: ds 1
 
 VramState:: ; d0ed
@@ -2034,7 +2051,7 @@ TrainerClass:: ; d233
 UnownLetter:: ; d234
 	ds 1
 
-wd235:: ds 1
+wMoveSelectionMenuType:: ds 1
 
 CurBaseData:: ; d236
 BaseDexNo:: ; d236
@@ -2098,9 +2115,9 @@ wNamedObjectIndexBuffer::
 wCurTMHM::
 wTypeMatchup::
 wd265:: ds 1
-wd266:: ds 1
-wd267:: ds 1
-wd268:: ds 1
+wFailedToFlee:: ds 1
+wNumFleeAttempts:: ds 1
+wMonTriedToEvolve:: ds 1
 
 TimeOfDay:: ; d269
 	ds 1

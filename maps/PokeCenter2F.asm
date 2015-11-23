@@ -91,7 +91,7 @@ LinkReceptionistScript_Trade:
 	writetext Text_PleaseWait
 	special Special_CheckLinkTimeout
 	iffalse .LinkTimedOut
-	copybytetovar wcf51
+	copybytetovar wOtherPlayerLinkMode
 	iffalse .LinkedToFirstGen
 	special Special_CheckBothSelectedSameRoom
 	iffalse .IncompatibleRooms
@@ -193,7 +193,7 @@ LinkReceptionistScript_Battle:
 	writetext Text_PleaseWait
 	special Special_CheckLinkTimeout
 	iffalse .LinkTimedOut
-	copybytetovar wcf51
+	copybytetovar wOtherPlayerLinkMode
 	iffalse .LinkedToFirstGen
 	special Special_CheckBothSelectedSameRoom
 	iffalse .IncompatibleRooms
@@ -320,7 +320,7 @@ LinkReceptionistScript_TimeCapsule:
 	writetext Text_PleaseWait
 	special Special_CheckLinkTimeout
 	iffalse .LinkTimedOut
-	copybytetovar wcf51
+	copybytetovar wOtherPlayerLinkMode
 	iffalse .OK
 	special Special_CheckBothSelectedSameRoom
 	writetext Text_IncompatibleRooms

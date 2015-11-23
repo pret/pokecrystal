@@ -880,10 +880,10 @@ Text_TX_MOVE:: ; 1480
 ; [$03][addr]
 
 	ld a, [hli]
-	ld [wd0e4 + 2], a
+	ld [wMenuScrollPosition + 2], a
 	ld c, a
 	ld a, [hli]
-	ld [wd0e4 + 2 + 1], a
+	ld [wMenuScrollPosition + 2 + 1], a
 	ld b, a
 	ret
 ; 148b

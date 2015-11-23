@@ -2362,7 +2362,7 @@ _ChangeBox: ; e35aa (38:75aa)
 	ld hl, _ChangeBox_menudataheader
 	call CopyMenuDataHeader
 	xor a
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	hlcoord 0, 4
 	lb bc, 8, 9
 	call TextBox

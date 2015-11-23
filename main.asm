@@ -4,7 +4,7 @@ INCLUDE "includes.asm"
 SECTION "bank1", ROMX, BANK[$1]
 
 
-Function4000:: ; 4000
+PlaceWaitingText:: ; 4000
 	hlcoord 3, 10
 	ld b, 1
 	ld c, 11
@@ -5710,11 +5710,11 @@ TossTMHM: ; d3d8
 	ld [hl], a
 	ld [wItemQuantityBuffer], a
 	jr nz, .yup
-	ld a, [wd0e2]
+	ld a, [wTMHMPocketScrollPosition]
 	and a
 	jr z, .yup
 	dec a
-	ld [wd0e2], a
+	ld [wTMHMPocketScrollPosition], a
 
 .yup
 	scf
@@ -9901,7 +9901,7 @@ endr
 ; 244c3
 
 
-Function244c3: ; 0x244c3
+UpdateItemDescription: ; 0x244c3
 	ld a, [MenuSelection]
 	ld [CurSpecies], a
 	hlcoord 0, 12
@@ -10216,7 +10216,7 @@ MenuJoyAction: ; 24609
 	ld hl, wcfa6
 	bit 7, [hl]
 	jp z, xor_a
-	ld hl, wd0e4
+	ld hl, wMenuScrollPosition
 	ld a, [hl]
 	and a
 	jr z, .xor_dec_up
@@ -10231,7 +10231,7 @@ MenuJoyAction: ; 24609
 	ld hl, wcfa6
 	bit 7, [hl]
 	jp z, xor_a
-	ld hl, wd0e4
+	ld hl, wMenuScrollPosition
 	ld a, [wMenuData2Items]
 	add [hl]
 	ld b, a
@@ -10246,7 +10246,7 @@ MenuJoyAction: ; 24609
 ; 246fc
 
 Function246fc: ; 246fc
-	ld a, [wd0e4]
+	ld a, [wMenuScrollPosition]
 	ld c, a
 	ld a, [MenuSelection2]
 	add c
@@ -10276,10 +10276,10 @@ ClearObjectStructsa: ; 2471a
 	ld a, [wcf95]
 	call GetFarByte
 	ld [wd144], a
-; if ([wd144] + 1) < [wMenuData2Items] + [wd0e4]: [wd0e4] = max(([wd144] + 1) - [wMenuData2Items], 0)
+; if ([wd144] + 1) < [wMenuData2Items] + [wMenuScrollPosition]: [wMenuScrollPosition] = max(([wd144] + 1) - [wMenuData2Items], 0)
 	ld a, [wMenuData2Items]
 	ld c, a
-	ld a, [wd0e4]
+	ld a, [wMenuScrollPosition]
 	add c
 	ld c, a
 	ld a, [wd144]
@@ -10295,10 +10295,10 @@ ClearObjectStructsa: ; 2471a
 	xor a
 
 .store
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 
 .skip
-	ld a, [wd0e4]
+	ld a, [wMenuScrollPosition]
 	ld c, a
 	ld a, [wMenuCursorBuffer]
 	add c
@@ -10311,7 +10311,7 @@ ClearObjectStructsa: ; 2471a
 
 .asm_2475a
 	xor a
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	ld a, $1
 	ld [wMenuCursorBuffer], a
 
@@ -10413,7 +10413,7 @@ Function247f0: ; 247f0
 	ld a, [wMenuData2Flags]
 	bit 4, a
 	jr z, .asm_2480d
-	ld a, [wd0e4]
+	ld a, [wMenuScrollPosition]
 	and a
 	jr z, .asm_2480d
 	ld a, [wMenuBorderTopCoord]
@@ -10431,7 +10431,7 @@ Function247f0: ; 247f0
 	ld b, a
 	ld c, $0
 .asm_2481a
-	ld a, [wd0e4]
+	ld a, [wMenuScrollPosition]
 	add c
 	ld [wcf77], a
 	ld a, c
@@ -10508,7 +10508,7 @@ Function2488b: ; 2488b
 	and a
 	jr z, .asm_248b7
 	ld b, a
-	ld a, [wd0e4]
+	ld a, [wMenuScrollPosition]
 	cp b
 	jr nc, .asm_248b7
 	ld c, a
@@ -10558,7 +10558,7 @@ Function248d5: ; 248d5
 	push de
 	push hl
 	ld e, a
-	ld a, [wd0e4]
+	ld a, [wMenuScrollPosition]
 	add e
 	ld e, a
 	ld d, $0
@@ -13540,7 +13540,7 @@ Function2c974: ; 2c974 (b:4974)
 	ld a, [MenuSelection2]
 	dec a
 	ld b, a
-	ld a, [wd0e2]
+	ld a, [wTMHMPocketScrollPosition]
 	add b
 	ld b, a
 	ld a, [wd265]
@@ -13584,7 +13584,7 @@ Function2c9b1: ; 2c9b1 (b:49b1)
 	ld a, b
 	bit 7, a
 	jr nz, .skip
-	ld hl, wd0e2
+	ld hl, wTMHMPocketScrollPosition
 	ld a, [hl]
 	and a
 	jp z, Function2c915
@@ -13605,7 +13605,7 @@ Function2c9b1: ; 2c9b1 (b:49b1)
 	jr z, .loop
 	dec b
 	jr nz, .loop
-	ld hl, wd0e2
+	ld hl, wTMHMPocketScrollPosition
 	inc [hl]
 	call Function2c9e2
 	jp Function2c946
@@ -13737,7 +13737,7 @@ String_2caae: ; 2caae
 
 Function2cab5: ; 2cab5 (b:4ab5)
 	ld hl, TMsHMs
-	ld a, [wd0e2]
+	ld a, [wTMHMPocketScrollPosition]
 	ld b, a
 	inc b
 	ld c, 0
@@ -13820,11 +13820,11 @@ Function2cb0c: ; 2cb0c (b:4b0c)
 	dec a
 	ld [hl], a
 	ret nz
-	ld a, [wd0e2]
+	ld a, [wTMHMPocketScrollPosition]
 	and a
 	ret z
 	dec a
-	ld [wd0e2], a
+	ld [wTMHMPocketScrollPosition], a
 	ret
 
 Function2cb2a: ; 2cb2a (b:4b2a)
@@ -14186,7 +14186,7 @@ rept 3
 endr
 	ld [hl], a
 
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	ld [CriticalHit], a
 	ld [BattleMonSpecies], a
 	ld [wBattleParticipantsNotFainted], a

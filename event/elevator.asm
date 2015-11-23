@@ -130,7 +130,7 @@ Function134dd: ; 134dd
 	call InitScrollingMenu
 	call UpdateSprites
 	xor a
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	call HandleScrollingMenu
 	call WriteBackup
 	ld a, [wcf73]

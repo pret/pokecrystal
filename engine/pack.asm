@@ -1,7 +1,7 @@
 
 Pack: ; 10000
 	ld hl, Options
-	set 4, [hl]
+	set NO_TEXT_SCROLL, [hl]
 	call Function1068a
 .loop
 	call JoyTextDelay
@@ -14,9 +14,9 @@ Pack: ; 10000
 
 .done
 	ld a, [wcf65]
-	ld [wd0d6], a
+	ld [wLastPocket], a
 	ld hl, Options
-	res 4, [hl]
+	res NO_TEXT_SCROLL, [hl]
 	ret
 ; 10026
 
@@ -65,11 +65,11 @@ Function10067: ; 10067 (4:4067)
 	call CopyMenuDataHeader
 	ld a, [wItemsPocketCursor]
 	ld [wMenuCursorBuffer], a
-	ld a, [wd0df]
-	ld [wd0e4], a
+	ld a, [wItemsPocketScrollPosition]
+	ld [wMenuScrollPosition], a
 	call HandleScrollingMenu
-	ld a, [wd0e4]
-	ld [wd0df], a
+	ld a, [wMenuScrollPosition]
+	ld [wItemsPocketScrollPosition], a
 	ld a, [MenuSelection2]
 	ld [wItemsPocketCursor], a
 	ld b, $7
@@ -93,11 +93,11 @@ Function100a6: ; 100a6 (4:40a6)
 	call CopyMenuDataHeader
 	ld a, [wKeyItemsPocketCursor]
 	ld [wMenuCursorBuffer], a
-	ld a, [wd0e0]
-	ld [wd0e4], a
+	ld a, [wKeyItemsPocketScrollPosition]
+	ld [wMenuScrollPosition], a
 	call HandleScrollingMenu
-	ld a, [wd0e4]
-	ld [wd0e0], a
+	ld a, [wMenuScrollPosition]
+	ld [wKeyItemsPocketScrollPosition], a
 	ld a, [MenuSelection2]
 	ld [wKeyItemsPocketCursor], a
 	ld b, $3
@@ -164,7 +164,7 @@ MenuData2_0x1012c: ; 0x1012c
 
 Jumptable_10137: ; 10137
 	dw Function10159
-	dw Function10492_ret
+	dw QuitItemSubmenu
 ; 1013b
 
 MenuDataHeader_0x1013b: ; 0x1013b
@@ -185,8 +185,8 @@ MenuData2_0x10143: ; 0x10143
 
 Jumptable_10153: ; 10153
 	dw Function10159
-	dw Function103fd
-	dw Function10492_ret
+	dw GiveItem
+	dw QuitItemSubmenu
 ; 10159
 
 Function10159: ; 10159
@@ -223,11 +223,11 @@ Function10198: ; 10198 (4:4198)
 	call CopyMenuDataHeader
 	ld a, [wBallsPocketCursor]
 	ld [wMenuCursorBuffer], a
-	ld a, [wd0e1]
-	ld [wd0e4], a
+	ld a, [wBallsPocketScrollPosition]
+	ld [wMenuScrollPosition], a
 	call HandleScrollingMenu
-	ld a, [wd0e4]
-	ld [wd0e1], a
+	ld a, [wMenuScrollPosition]
+	ld [wBallsPocketScrollPosition], a
 	ld a, [MenuSelection2]
 	ld [wBallsPocketCursor], a
 	ld b, $1
@@ -267,32 +267,32 @@ Function101c5: ; 101c5 (4:41c5)
 	jr .tossable_unselectable
 
 .usable
-	ld hl, MenuDataHeader_0x10249
+	ld hl, MenuDataHeader_UsableKeyItem
 	ld de, Jumptable_1026a
 	jr .build_menu
 
 .selectable_usable
-	ld hl, MenuDataHeader_0x10274
+	ld hl, MenuDataHeader_UsableItem
 	ld de, Jumptable_10291
 	jr .build_menu
 
 .tossable_selectable
-	ld hl, MenuDataHeader_0x10299
+	ld hl, MenuDataHeader_UnusableItem
 	ld de, Jumptable_102ac
 	jr .build_menu
 
 .tossable_unselectable
-	ld hl, MenuDataHeader_0x102b0
+	ld hl, MenuDataHeader_UnusableKeyItem
 	ld de, Jumptable_102c7
 	jr .build_menu
 
 .unusable
-	ld hl, MenuDataHeader_0x102cd
+	ld hl, MenuDataHeader_HoldableKeyItem
 	ld de, Jumptable_102ea
 	jr .build_menu
 
 .selectable_unusable
-	ld hl, MenuDataHeader_0x102f2
+	ld hl, MenuDataHeader_HoldableItem
 	ld de, Jumptable_1030b
 .build_menu
 	push de
@@ -307,15 +307,15 @@ Function101c5: ; 101c5 (4:41c5)
 	jp [hl]
 ; 10249 (4:4249)
 
-MenuDataHeader_0x10249: ; 0x10249
+MenuDataHeader_UsableKeyItem: ; 0x10249
 	db $40 ; flags
 	db 01, 13 ; start coords
 	db 11, 19 ; end coords
-	dw MenuData2_0x10251
+	dw .MenuData2
 	db 1 ; default option
 ; 0x10251
 
-MenuData2_0x10251: ; 0x10251
+.MenuData2: ; 0x10251
 	db $c0 ; flags
 	db 5 ; items
 	db "USE@"
@@ -326,22 +326,22 @@ MenuData2_0x10251: ; 0x10251
 ; 0x1026a
 
 Jumptable_1026a: ; 1026a
-	dw Function10311
-	dw Function103fd
-	dw Function10364
-	dw Function103c2
-	dw Function10492_ret
+	dw UseItem
+	dw GiveItem
+	dw TossMenu
+	dw RegisterItem
+	dw QuitItemSubmenu
 ; 10274
 
-MenuDataHeader_0x10274: ; 0x10274
+MenuDataHeader_UsableItem: ; 0x10274
 	db $40 ; flags
 	db 03, 13 ; start coords
 	db 11, 19 ; end coords
-	dw MenuData2_0x1027c
+	dw .MenuData2
 	db 1 ; default option
 ; 0x1027c
 
-MenuData2_0x1027c: ; 0x1027c
+.MenuData2: ; 0x1027c
 	db $c0 ; flags
 	db 4 ; items
 	db "USE@"
@@ -351,21 +351,21 @@ MenuData2_0x1027c: ; 0x1027c
 ; 0x10291
 
 Jumptable_10291: ; 10291
-	dw Function10311
-	dw Function103fd
-	dw Function10364
-	dw Function10492_ret
+	dw UseItem
+	dw GiveItem
+	dw TossMenu
+	dw QuitItemSubmenu
 ; 10299
 
-MenuDataHeader_0x10299: ; 0x10299
+MenuDataHeader_UnusableItem: ; 0x10299
 	db %01000000 ; flags
 	db 07, 13 ; start coords
 	db 11, 19 ; end coords
-	dw MenuData2_0x102a1
+	dw .MenuData2
 	db 1 ; default option
 ; 0x102a1
 
-MenuData2_0x102a1: ; 0x102a1
+.MenuData2: ; 0x102a1
 	db $c0 ; flags
 	db 2 ; items
 	db "USE@"
@@ -373,19 +373,19 @@ MenuData2_0x102a1: ; 0x102a1
 ; 0x102ac
 
 Jumptable_102ac: ; 102ac
-	dw Function10311
-	dw Function10492_ret
+	dw UseItem
+	dw QuitItemSubmenu
 ; 102b0
 
-MenuDataHeader_0x102b0: ; 0x102b0
+MenuDataHeader_UnusableKeyItem: ; 0x102b0
 	db %01000000 ; flags
 	db 05, 13 ; start coords
 	db 11, 19 ; end coords
-	dw MenuData2_0x102b8
+	dw .MenuData2
 	db 1 ; default option
 ; 0x102b8
 
-MenuData2_0x102b8: ; 0x102b8
+.MenuData2: ; 0x102b8
 	db $c0 ; flags
 	db 3 ; items
 	db "USE@"
@@ -394,20 +394,20 @@ MenuData2_0x102b8: ; 0x102b8
 ; 0x102c7
 
 Jumptable_102c7: ; 102c7
-	dw Function10311
-	dw Function103c2
-	dw Function10492_ret
+	dw UseItem
+	dw RegisterItem
+	dw QuitItemSubmenu
 ; 102cd
 
-MenuDataHeader_0x102cd: ; 0x102cd
+MenuDataHeader_HoldableKeyItem: ; 0x102cd
 	db $40 ; flags
 	db 03, 13 ; start coords
 	db 11, 19 ; end coords
-	dw MenuData2_0x102d5
+	dw .MenuData2
 	db 1 ; default option
 ; 0x102d5
 
-MenuData2_0x102d5: ; 0x102d5
+.MenuData2: ; 0x102d5
 	db $c0 ; flags
 	db 4 ; items
 	db "GIVE@"
@@ -417,21 +417,21 @@ MenuData2_0x102d5: ; 0x102d5
 ; 0x102ea
 
 Jumptable_102ea: ; 102ea
-	dw Function103fd
-	dw Function10364
-	dw Function103c2
-	dw Function10492_ret
+	dw GiveItem
+	dw TossMenu
+	dw RegisterItem
+	dw QuitItemSubmenu
 ; 102f2
 
-MenuDataHeader_0x102f2: ; 0x102f2
+MenuDataHeader_HoldableItem: ; 0x102f2
 	db $40 ; flags
 	db 05, 13 ; start coords
 	db 11, 19 ; end coords
-	dw MenuData2_0x102fa
+	dw .MenuData2
 	db 1 ; default option
 ; 0x102fa
 
-MenuData2_0x102fa: ; 0x102fa
+.MenuData2: ; 0x102fa
 	db $c0 ; flags
 	db 3 ; items
 	db "GIVE@"
@@ -440,12 +440,12 @@ MenuData2_0x102fa: ; 0x102fa
 ; 0x1030b
 
 Jumptable_1030b: ; 1030b
-	dw Function103fd
-	dw Function10364
-	dw Function10492_ret
+	dw GiveItem
+	dw TossMenu
+	dw QuitItemSubmenu
 ; 10311
 
-Function10311: ; 10311
+UseItem: ; 10311
 	callba CheckItemMenu
 	ld a, [wItemAttributeParamBuffer]
 	ld hl, .jumptable
@@ -464,7 +464,7 @@ Function10311: ; 10311
 ; 1035c
 
 .Oak: ; 1032d (4:432d)
-	ld hl, UnknownText_0x10af3
+	ld hl, Text_ThisIsntTheTime
 	call Function10889
 	ret
 
@@ -498,30 +498,30 @@ Function10311: ; 10311
 	ret
 ; 10364 (4:4364)
 
-Function10364: ; 10364
-	ld hl, UnknownText_0x10ae4
+TossMenu: ; 10364
+	ld hl, Text_ThrowAwayHowMany
 	call Function10889
 	callba Function24fbf
 	push af
 	call ExitMenu
 	pop af
-	jr c, .asm_1039c
-	call Function10a1d
-	ld hl, UnknownText_0x10ae9
+	jr c, .finish
+	call Pack_GetItemName
+	ld hl, Text_ConfirmThrowAway
 	call MenuTextBox
 	call YesNoBox
 	push af
 	call ExitMenu
 	pop af
-	jr c, .asm_1039c
+	jr c, .finish
 	ld hl, NumItems
-	ld a, [wd107]
+	ld a, [ItemCountBuffer]
 	call TossItem
-	call Function10a1d
-	ld hl, UnknownText_0x10aee
+	call Pack_GetItemName
+	ld hl, Text_ThrewAway
 	call Function10889
 
-.asm_1039c
+.finish
 	ret
 ; 1039d
 
@@ -538,23 +538,23 @@ Function1039d: ; 1039d
 .asm_103aa
 	xor a
 	ld [wBallsPocketCursor], a
-	ld [wd0e1], a
+	ld [wBallsPocketScrollPosition], a
 	ret
 
 .asm_103b2
 	xor a
 	ld [wItemsPocketCursor], a
-	ld [wd0df], a
+	ld [wItemsPocketScrollPosition], a
 	ret
 
 .asm_103ba
 	xor a
 	ld [wKeyItemsPocketCursor], a
-	ld [wd0e0], a
+	ld [wKeyItemsPocketScrollPosition], a
 	ret
 ; 103c2
 
-Function103c2: ; 103c2
+RegisterItem: ; 103c2
 	callba CheckSelectableItem
 	ld a, [wItemAttributeParamBuffer]
 	and a
@@ -564,27 +564,27 @@ Function103c2: ; 103c2
 	rrca
 	and $c0
 	ld b, a
-	ld a, [wd107]
+	ld a, [ItemCountBuffer]
 	inc a
 	and $3f
 	or b
 	ld [WhichRegisteredItem], a
 	ld a, [CurItem]
 	ld [RegisteredItem], a
-	call Function10a1d
+	call Pack_GetItemName
 	ld de, SFX_FULL_HEAL
 	call WaitPlaySFX
-	ld hl, UnknownText_0x10afd
+	ld hl, Text_RegisteredItem
 	call Function10889
 	ret
 
 .asm_103f6
-	ld hl, UnknownText_0x10b02
+	ld hl, Text_CantRegister
 	call Function10889
 	ret
 ; 103fd
 
-Function103fd: ; 103fd
+GiveItem: ; 103fd
 	ld a, [PartyCount]
 	and a
 	jp z, Function10486
@@ -652,7 +652,7 @@ TextJump_AnEGGCantHoldAnItem: ; 0x1048d
 	db "@"
 ; 0x10492
 
-Function10492_ret: ; 10492
+QuitItemSubmenu: ; 10492
 	ret
 ; 10493
 
@@ -661,18 +661,18 @@ BattlePack: ; 10493
 	ld hl, Options
 	set 4, [hl]
 	call Function1068a
-.asm_1049b
+.loop
 	call JoyTextDelay
 	ld a, [wJumptableIndex]
 	bit 7, a
-	jr nz, .asm_104ad
+	jr nz, .end
 	call Function104b9
 	call DelayFrame
-	jr .asm_1049b
+	jr .loop
 
-.asm_104ad
+.end
 	ld a, [wcf65]
-	ld [wd0d6], a
+	ld [wLastPocket], a
 	ld hl, Options
 	res 4, [hl]
 	ret
@@ -723,11 +723,11 @@ Function104fa: ; 104fa (4:44fa)
 	call CopyMenuDataHeader
 	ld a, [wItemsPocketCursor]
 	ld [wMenuCursorBuffer], a
-	ld a, [wd0df]
-	ld [wd0e4], a
+	ld a, [wItemsPocketScrollPosition]
+	ld [wMenuScrollPosition], a
 	call HandleScrollingMenu
-	ld a, [wd0e4]
-	ld [wd0df], a
+	ld a, [wMenuScrollPosition]
+	ld [wItemsPocketScrollPosition], a
 	ld a, [MenuSelection2]
 	ld [wItemsPocketCursor], a
 	ld b, $7
@@ -751,11 +751,11 @@ Function10539: ; 10539 (4:4539)
 	call CopyMenuDataHeader
 	ld a, [wKeyItemsPocketCursor]
 	ld [wMenuCursorBuffer], a
-	ld a, [wd0e0]
-	ld [wd0e4], a
+	ld a, [wKeyItemsPocketScrollPosition]
+	ld [wMenuScrollPosition], a
 	call HandleScrollingMenu
-	ld a, [wd0e4]
-	ld [wd0e0], a
+	ld a, [wMenuScrollPosition]
+	ld [wKeyItemsPocketScrollPosition], a
 	ld a, [MenuSelection2]
 	ld [wKeyItemsPocketCursor], a
 	ld b, $3
@@ -773,7 +773,7 @@ Function10566: ; 10566 (4:4566)
 	xor a
 	ld [hBGMapMode], a
 	call WaitBGMap_DrawPackGFX
-	ld hl, UnknownText_0x10b0c
+	ld hl, Text_PackEmptyString
 	call Function10889
 	call Function10866
 	ret
@@ -802,11 +802,11 @@ Function105a6: ; 105a6 (4:45a6)
 	call CopyMenuDataHeader
 	ld a, [wBallsPocketCursor]
 	ld [wMenuCursorBuffer], a
-	ld a, [wd0e1]
-	ld [wd0e4], a
+	ld a, [wBallsPocketScrollPosition]
+	ld [wMenuScrollPosition], a
 	call HandleScrollingMenu
-	ld a, [wd0e4]
-	ld [wd0e1], a
+	ld a, [wMenuScrollPosition]
+	ld [wBallsPocketScrollPosition], a
 	ld a, [MenuSelection2]
 	ld [wBallsPocketCursor], a
 	ld b, $1
@@ -898,7 +898,7 @@ Function105dc: ; 105dc (4:45dc)
 
 
 .Oak: ; 10645 (4:4645)
-	ld hl, UnknownText_0x10af3
+	ld hl, Text_ThisIsntTheTime
 	call Function10889
 	ret
 
@@ -951,7 +951,7 @@ Function105dc: ; 105dc (4:45dc)
 Function1068a: ; 1068a
 	xor a
 	ld [wJumptableIndex], a
-	ld a, [wd0d6]
+	ld a, [wLastPocket]
 	and $3
 	ld [wcf65], a
 	inc a
@@ -1008,33 +1008,33 @@ Jumptable_106d1: ; 106d1 (4:46d1)
 	call CopyMenuDataHeader
 	ld a, [wItemsPocketCursor]
 	ld [wMenuCursorBuffer], a
-	ld a, [wd0df]
-	ld [wd0e4], a
+	ld a, [wItemsPocketScrollPosition]
+	ld [wMenuScrollPosition], a
 	call HandleScrollingMenu
-	ld a, [wd0e4]
-	ld [wd0df], a
+	ld a, [wMenuScrollPosition]
+	ld [wItemsPocketScrollPosition], a
 	ld a, [MenuSelection2]
 	ld [wItemsPocketCursor], a
 	ret
 
 .KeyItemsPocket: ; 106ff (4:46ff)
-	ld a, $2
+	ld a, 2
 	call InitPocket
 	ld hl, MenuDataHeader_0x10a97
 	call CopyMenuDataHeader
 	ld a, [wKeyItemsPocketCursor]
 	ld [wMenuCursorBuffer], a
-	ld a, [wd0e0]
-	ld [wd0e4], a
+	ld a, [wKeyItemsPocketScrollPosition]
+	ld [wMenuScrollPosition], a
 	call HandleScrollingMenu
-	ld a, [wd0e4]
-	ld [wd0e0], a
+	ld a, [wMenuScrollPosition]
+	ld [wKeyItemsPocketScrollPosition], a
 	ld a, [MenuSelection2]
 	ld [wKeyItemsPocketCursor], a
 	ret
 
 .TMHMPocket: ; 10726 (4:4726)
-	ld a, $3
+	ld a, 3
 	call InitPocket
 	call WaitBGMap_DrawPackGFX
 	callba Function2c76f
@@ -1043,17 +1043,17 @@ Jumptable_106d1: ; 106d1 (4:46d1)
 	ret
 
 .BallsPocket: ; 1073b (4:473b)
-	ld a, $1
+	ld a, 1
 	call InitPocket
 	ld hl, MenuDataHeader_0x10ac7
 	call CopyMenuDataHeader
 	ld a, [wBallsPocketCursor]
 	ld [wMenuCursorBuffer], a
-	ld a, [wd0e1]
-	ld [wd0e4], a
+	ld a, [wBallsPocketScrollPosition]
+	ld [wMenuScrollPosition], a
 	call HandleScrollingMenu
-	ld a, [wd0e4]
-	ld [wd0e1], a
+	ld a, [wMenuScrollPosition]
+	ld [wBallsPocketScrollPosition], a
 	ld a, [MenuSelection2]
 	ld [wBallsPocketCursor], a
 	ret
@@ -1120,17 +1120,17 @@ Function1076f: ; 1076f
 	ret
 ; 107bb
 
-Function107bb: ; 107bb
+TutorialPack: ; 107bb
 	call Function106a5
 	ld a, [InputType]
 	or a
-	jr z, .asm_107ca
+	jr z, .loop
 	callba _DudeAutoInput_RightA
 
-.asm_107ca
+.loop
 	call Function107d7
 	call Function1076f
-	jr c, .asm_107ca
+	jr c, .loop
 	xor a
 	ld [wcf66], a
 	ret
@@ -1138,13 +1138,13 @@ Function107bb: ; 107bb
 
 Function107d7: ; 107d7
 	ld a, [wJumptableIndex]
-	ld hl, Jumptable_107e1
+	ld hl, .jumptable
 	call Function1086b
 	jp [hl]
 ; 107e1
 
 
-Jumptable_107e1: ; 107e1 (4:47e1)
+.jumptable: ; 107e1 (4:47e1)
 	dw Function107e9
 	dw Function1083b
 	dw Function10807
@@ -1161,22 +1161,22 @@ MenuDataHeader_0x107ef: ; 0x107ef
 	db $40 ; flags
 	db 01, 07 ; start coords
 	db 11, 19 ; end coords
-	dw MenuData2_0x107f7
+	dw .MenuData2
 	db 1 ; default option
 ; 0x107f7
 
-MenuData2_0x107f7: ; 0x107f7
+.MenuData2: ; 0x107f7
 	db $ae ; flags
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, OTPartyMons
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
-	dba Function244c3
+	dba UpdateItemDescription
 ; 10807
 
 Function10807: ; 10807 (4:4807)
-	ld a, $2
+	ld a, 2
 	ld hl, MenuDataHeader_0x1080e
 	jr Function1085a
 ; 1080e (4:480e)
@@ -1185,22 +1185,22 @@ MenuDataHeader_0x1080e: ; 0x1080e
 	db $40 ; flags
 	db 01, 07 ; start coords
 	db 11, 19 ; end coords
-	dw MenuData2_0x10816
+	dw .MenuData2
 	db 1 ; default option
 ; 0x10816
 
-MenuData2_0x10816: ; 0x10816
+.MenuData2: ; 0x10816
 	db $ae ; flags
 	db 5, 8 ; rows, columns
 	db 1 ; horizontal spacing
 	dbw 0, OTPartyMon1Exp + 2
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
-	dba Function244c3
+	dba UpdateItemDescription
 ; 10826
 
 Function10826: ; 10826 (4:4826)
-	ld a, $3
+	ld a, 3
 	call InitPocket
 	call WaitBGMap_DrawPackGFX
 	callba Function2c76f
@@ -1209,7 +1209,7 @@ Function10826: ; 10826 (4:4826)
 	ret
 
 Function1083b: ; 1083b (4:483b)
-	ld a, $1
+	ld a, 1
 	ld hl, MenuDataHeader_0x10842
 	jr Function1085a
 ; 10842 (4:4842)
@@ -1218,18 +1218,18 @@ MenuDataHeader_0x10842: ; 0x10842
 	db $40 ; flags
 	db 01, 07 ; start coords
 	db 11, 19 ; end coords
-	dw MenuData2_0x1084a
+	dw .MenuData2
 	db 1 ; default option
 ; 0x1084a
 
-MenuData2_0x1084a: ; 0x1084a
+.MenuData2: ; 0x1084a
 	db $ae ; flags
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, OTPartyMon1CaughtGender
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
-	dba Function244c3
+	dba UpdateItemDescription
 ; 1085a
 
 Function1085a: ; 1085a (4:485a)
@@ -1374,7 +1374,7 @@ Function108d4: ; 108d4 (4:48d4)
 	ret
 .asm_10923
 	callba Function2490c
-	ld hl, UnknownText_0x10b07
+	ld hl, Text_MoveItemWhere
 	call Function10889
 	scf
 	ret
@@ -1410,13 +1410,19 @@ Function10955: ; 10955
 	ld bc, $60 tiles
 	ld a, BANK(PackMenuGFX)
 	call FarCopyBytes
+
+; Background (blue if male, pink if female)
 	hlcoord 0, 1
 	ld bc, 11 * SCREEN_WIDTH
 	ld a, $24
 	call ByteFill
+
+; This is where the items themselves will be listed.
 	hlcoord 5, 1
 	lb bc, 11, 15
 	call ClearBox
+
+; ◀▶ POCKET       ▼▲ ITEMS
 	hlcoord 0, 0
 	ld a, $28
 	ld c, SCREEN_WIDTH
@@ -1425,31 +1431,34 @@ Function10955: ; 10955
 	inc a
 	dec c
 	jr nz, .loop
+
 	call DrawPocketName
-	call Function109a5
-	hlcoord 0, 12
-	lb bc, 4, 18
+	call PlacePackGFX
+
+; Place the textbox for displaying the item description
+	hlcoord 0, SCREEN_HEIGHT - 4 - 2
+	lb bc, 4, SCREEN_WIDTH - 2
 	call TextBox
 	call EnableLCD
 	call DrawPackGFX
 	ret
 ; 109a5
 
-Function109a5: ; 109a5
+PlacePackGFX: ; 109a5
 	hlcoord 0, 3
 	ld a, $50
-	ld de, 15
+	ld de, SCREEN_WIDTH - 5
 	ld b, 3
-.asm_109af
+.row
 	ld c, 5
-.asm_109b1
+.column
 	ld [hli], a
 	inc a
 	dec c
-	jr nz, .asm_109b1
+	jr nz, .column
 	add hl, de
 	dec b
-	jr nz, .asm_109af
+	jr nz, .row
 	ret
 ; 109bb
 
@@ -1487,21 +1496,33 @@ DrawPocketName: ; 109bb
 ; 109e1
 
 .tilemap: ; 109e1
-	db $00, $04, $04, $04, $01,  $06, $07, $08, $09, $0a,  $02, $05, $05, $05, $03
-	db $00, $04, $04, $04, $01,  $15, $16, $17, $18, $19,  $02, $05, $05, $05, $03
-	db $00, $04, $04, $04, $01,  $0b, $0c, $0d, $0e, $0f,  $02, $05, $05, $05, $03
-	db $00, $04, $04, $04, $01,  $10, $11, $12, $13, $14,  $02, $05, $05, $05, $03
+	db $00, $04, $04, $04, $01 ; top border
+	db $06, $07, $08, $09, $0a ; Items
+	db $02, $05, $05, $05, $03 ; bottom border
+
+	db $00, $04, $04, $04, $01 ; top border
+	db $15, $16, $17, $18, $19 ; Balls
+	db $02, $05, $05, $05, $03 ; bottom border
+
+	db $00, $04, $04, $04, $01 ; top border
+	db $0b, $0c, $0d, $0e, $0f ; Key Items
+	db $02, $05, $05, $05, $03 ; bottom border
+
+	db $00, $04, $04, $04, $01 ; top border
+	db $10, $11, $12, $13, $14 ; TM/HM
+	db $02, $05, $05, $05, $03 ; bottom border
 ; 10a1d
 
-Function10a1d: ; 10a1d
+Pack_GetItemName: ; 10a1d
 	ld a, [CurItem]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	call CopyName1
 	ret
 ; 10a2a
 
-Function10a2a: ; 10a2a
+Pack_ClearTilemap: ; 10a2a
+; unreferenced
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "
@@ -1540,7 +1561,7 @@ MenuData2_0x10a57: ; 0x10a57
 	dbw 0, NumItems
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
-	dba Function244c3
+	dba UpdateItemDescription
 ; 10a67
 
 MenuDataHeader_0x10a67: ; 0x10a67
@@ -1558,7 +1579,7 @@ MenuData2_0x10a6f: ; 0x10a6f
 	dbw 0, NumItems
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
-	dba Function244c3
+	dba UpdateItemDescription
 ; 10a7f
 
 MenuDataHeader_0x10a7f: ; 0x10a7f
@@ -1576,7 +1597,7 @@ MenuData2_0x10a87: ; 0x10a87
 	dbw 0, NumKeyItems
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
-	dba Function244c3
+	dba UpdateItemDescription
 ; 10a97
 
 MenuDataHeader_0x10a97: ; 0x10a97
@@ -1594,7 +1615,7 @@ MenuData2_0x10a9f: ; 0x10a9f
 	dbw 0, NumKeyItems
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
-	dba Function244c3
+	dba UpdateItemDescription
 ; 10aaf
 
 MenuDataHeader_0x10aaf: ; 0x10aaf
@@ -1612,7 +1633,7 @@ MenuData2_0x10ab7: ; 0x10ab7
 	dbw 0, NumBalls
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
-	dba Function244c3
+	dba UpdateItemDescription
 ; 10ac7
 
 MenuDataHeader_0x10ac7: ; 0x10ac7
@@ -1630,34 +1651,34 @@ MenuData2_0x10acf: ; 0x10acf
 	dbw 0, NumBalls
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
-	dba Function244c3
+	dba UpdateItemDescription
 ; 10adf
 
-UnknownText_0x10adf: ; 0x10adf
+Text_PackNoItems: ; 0x10adf
 	; No items.
 	text_jump UnknownText_0x1c0b9a
 	db "@"
 ; 0x10ae4
 
-UnknownText_0x10ae4: ; 0x10ae4
+Text_ThrowAwayHowMany: ; 0x10ae4
 	; Throw away how many?
 	text_jump UnknownText_0x1c0ba5
 	db "@"
 ; 0x10ae9
 
-UnknownText_0x10ae9: ; 0x10ae9
+Text_ConfirmThrowAway: ; 0x10ae9
 	; Throw away @ @ (S)?
 	text_jump UnknownText_0x1c0bbb
 	db "@"
 ; 0x10aee
 
-UnknownText_0x10aee: ; 0x10aee
+Text_ThrewAway: ; 0x10aee
 	; Threw away @ (S).
 	text_jump UnknownText_0x1c0bd8
 	db "@"
 ; 0x10af3
 
-UnknownText_0x10af3: ; 0x10af3
+Text_ThisIsntTheTime: ; 0x10af3
 	; OAK:  ! This isn't the time to use that!
 	text_jump UnknownText_0x1c0bee
 	db "@"
@@ -1669,25 +1690,25 @@ TextJump_YouDontHaveAPkmn: ; 0x10af8
 	db "@"
 ; 0x10afd
 
-UnknownText_0x10afd: ; 0x10afd
+Text_RegisteredItem: ; 0x10afd
 	; Registered the @ .
 	text_jump UnknownText_0x1c0c2e
 	db "@"
 ; 0x10b02
 
-UnknownText_0x10b02: ; 0x10b02
+Text_CantRegister: ; 0x10b02
 	; You can't register that item.
 	text_jump UnknownText_0x1c0c45
 	db "@"
 ; 0x10b07
 
-UnknownText_0x10b07: ; 0x10b07
+Text_MoveItemWhere: ; 0x10b07
 	; Where should this be moved to?
 	text_jump UnknownText_0x1c0c63
 	db "@"
 ; 0x10b0c
 
-UnknownText_0x10b0c: ; 0x10b0c
+Text_PackEmptyString: ; 0x10b0c
 	;
 	text_jump UnknownText_0x1c0c83
 	db "@"
