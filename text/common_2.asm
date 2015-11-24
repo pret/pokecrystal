@@ -108,7 +108,7 @@ UnknownText_0x1bc14f: ; 0x1bc14f
 	line "level @"
 	deciram CurPartyLevel, 1, 3
 	text "!@"
-	sound0
+	sound_dex_fanfare_50_79
 	text_waitbutton
 	db "@"
 ; 0x1bc16d
@@ -1575,7 +1575,7 @@ UnknownText_0x1bd3be: ; 0x1bd3be
 	line "@"
 	text_from_ram StringBuffer1
 	text "!@"
-	sound0x0F
+	sound_item
 	text_waitbutton
 	db "@"
 ; 0x1bd3d6
@@ -1613,7 +1613,7 @@ UnknownText_0x1bd429: ; 0x1bd429
 ; 0x1bd445
 
 UnknownText_0x1bd445: ; 0x1bd445
-	sound0x0A
+	sound_dex_fanfare_80_109
 	interpret_data
 	db "@"
 ; 0x1bd448

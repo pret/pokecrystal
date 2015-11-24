@@ -519,7 +519,7 @@ TradedForText: ; 0xfcf80
 	ret
 
 .done
-	; sound0x0A
+	; sound_dex_fanfare_80_109
 	; interpret_data
 	text_jump UnknownText_0x1bd445
 	db "@"

@@ -73,7 +73,7 @@ interpret_data: macro
 	endm
 
 	enum TX_SOUND_0B
-sound0: macro
+sound_dex_fanfare_50_79: macro
 	db TX_SOUND_0B
 	endm
 
@@ -89,33 +89,33 @@ link_wait_button: macro
 	endm
 
 	enum TX_SOUND_0E
-sound1: macro
+sound_dex_fanfare_20_49: macro
 	db TX_SOUND_0E
 	endm
 
 	enum TX_SOUND_0F
-sound0x0F: macro
+sound_item: macro
 	db TX_SOUND_0F
 	endm
 
 	enum TX_SOUND_10
-sound0x02: macro
+sound_caught_mon: macro
 	db TX_SOUND_10
 	endm
 
 	enum TX_SOUND_11
-sound0x0A: macro
+sound_dex_fanfare_80_109: macro
 	db TX_SOUND_11
 	endm
 
 	enum TX_SOUND_12
-sound0x12: macro
+sound_fanfare: macro
 	db TX_SOUND_12
 	endm
 
 	enum TX_SOUND_13
-sound0x2C: macro
-	db $13
+sound_slot_machine_start: macro
+	db TX_SOUND_13
 	endm
 
 	enum TX_STRINGBUFFER

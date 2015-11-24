@@ -396,7 +396,7 @@ BattleText_StringBuffer1GrewToLevel: ; 0x80c9c
 	line "level @"
 	deciram CurPartyLevel, 1, 3
 	text "!@"
-	sound0
+	sound_dex_fanfare_50_79
 	db "@"
 ; 0x80cb9
 

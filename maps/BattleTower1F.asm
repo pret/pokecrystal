@@ -525,7 +525,7 @@ Text_PlayerGotFive: ; 0x9eb7e
 	line "@"
 	text_from_ram StringBuffer4
 	text "!@"
-	sound0x0F
+	sound_item
 	text_waitbutton
 	db "@"
 

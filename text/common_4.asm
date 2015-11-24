@@ -338,10 +338,10 @@ UnknownText_0x1c4797: ; 0x1c4797
 UnknownText_0x1c47d4: ; 0x1c47d4
 	text "Hm… I see you met"
 	line "@"
-	text_from_ram wd003
+	text_from_ram wSeerNickname
 	text " here:"
 	cont "@"
-	text_from_ram wd00e
+	text_from_ram wSeerCaughtLocation
 	text "!"
 	prompt
 ; 0x1c47fa
@@ -349,11 +349,11 @@ UnknownText_0x1c47d4: ; 0x1c47d4
 UnknownText_0x1c47fa: ; 0x1c47fa
 	text "The time was"
 	line "@"
-	text_from_ram wd01f
+	text_from_ram wSeerTimeOfDay
 	text "!"
 
 	para "Its level was @"
-	text_from_ram wd036
+	text_from_ram wSeerCaughtLevelString
 	text "!"
 
 	para "Am I good or what?"
@@ -362,21 +362,21 @@ UnknownText_0x1c47fa: ; 0x1c47fa
 
 UnknownText_0x1c4837: ; 0x1c4837
 	text "Hm… @"
-	text_from_ram wd003
+	text_from_ram wSeerNickname
 	text ""
 	line "came from @"
-	text_from_ram wd02a
+	text_from_ram wSeerOTName
 	text ""
 	cont "in a trade?"
 
 	para "@"
-	text_from_ram wd00e
+	text_from_ram wSeerCaughtLocation
 	text ""
 	line "was where @"
-	text_from_ram wd02a
+	text_from_ram wSeerOTName
 	text ""
 	cont "met @"
-	text_from_ram wd003
+	text_from_ram wSeerNickname
 	text "!"
 	prompt
 ; 0x1c487f
@@ -393,7 +393,7 @@ UnknownText_0x1c487f: ; 0x1c487f
 	para "I can't tell where"
 	line "you met it, but it"
 	cont "was at level @"
-	text_from_ram wd036
+	text_from_ram wSeerCaughtLevelString
 	text "."
 
 	para "Am I good or what?"
@@ -434,7 +434,7 @@ UnknownText_0x1c49c6: ; 0x1c49c6
 	line "grown a little."
 
 	para "@"
-	text_from_ram wd003
+	text_from_ram wSeerNickname
 	text " seems"
 	line "to be becoming"
 	cont "more confident."
@@ -445,7 +445,7 @@ UnknownText_0x1c4a21: ; 0x1c4a21
 	text "Incidentally…"
 
 	para "@"
-	text_from_ram wd003
+	text_from_ram wSeerNickname
 	text " has"
 	line "grown. It's gained"
 	cont "much strength."
@@ -459,7 +459,7 @@ UnknownText_0x1c4a5b: ; 0x1c4a5b
 	line "grown mighty!"
 
 	para "This @"
-	text_from_ram wd003
+	text_from_ram wSeerNickname
 	text ""
 	line "must have come"
 
@@ -483,12 +483,12 @@ UnknownText_0x1c4ae5: ; 0x1c4ae5
 	para "seen a #MON as"
 	line "mighty as this"
 	cont "@"
-	text_from_ram wd003
+	text_from_ram wSeerNickname
 	text "."
 
 	para "I'm sure that"
 	line "seeing @"
-	text_from_ram wd003
+	text_from_ram wSeerNickname
 	text ""
 	para "in battle would"
 	line "excite anyone."
@@ -859,13 +859,13 @@ UnknownText_0x1c51d7: ; 0x1c51d7
 ; 0x1c51f4
 
 UnknownText_0x1c51f4: ; 0x1c51f4
-	text_from_ram wd006
+	text_from_ram wMobileParticipant1Nickname
 	text ","
 	line "@"
-	text_from_ram wd00c
+	text_from_ram wMobileParticipant2Nickname
 	text " and"
 	cont "@"
-	text_from_ram wd012
+	text_from_ram wMobileParticipant3Nickname
 	text "."
 
 	para "Use these three?"
@@ -989,7 +989,7 @@ UnknownText_0x1c5580: ; 0x1c5580
 ; 0x1c5588
 
 UnknownText_0x1c5588: ; 0x1c5588
-	text $56
+	text "<......>"
 	done
 ; 0x1c558b
 
@@ -1050,7 +1050,7 @@ UnknownText_0x1c5660: ; 0x1c5660
 	line "@"
 	text_from_ram StringBuffer2
 	text "!@"
-	sound0
+	sound_dex_fanfare_50_79
 	text_waitbutton
 	db "@"
 ; 0x1c5677
@@ -1189,7 +1189,7 @@ UnknownText_0x1c5823: ; 0x1c5823
 ; 0x1c5824
 
 UnknownText_0x1c5824: ; 0x1c5824
-	text $56
+	text "<......>"
 	done
 ; 0x1c5827
 
@@ -1367,7 +1367,7 @@ UnknownText_0x1c5b17: ; 0x1c5b17
 	text_from_ram EnemyMonNick
 	text ""
 	line "was caught!@"
-	sound0x02
+	sound_caught_mon
 	db "@"
 ; 0x1c5b34
 
@@ -1396,7 +1396,7 @@ UnknownText_0x1c5b53: ; 0x1c5b53
 	text "'s data"
 	line "was newly added to"
 	cont "the #DEX.@"
-	sound0x2C
+	sound_slot_machine_start
 	text_waitbutton
 	db "@"
 ; 0x1c5b7e
@@ -1514,7 +1514,7 @@ UnknownText_0x1c5cf1: ; 0x1c5cf1
 UnknownText_0x1c5d03: ; 0x1c5d03
 	text "There was a trophy"
 	line "inside!@"
-	sound0
+	sound_dex_fanfare_50_79
 	text ""
 	para "@"
 	text_from_ram PlayerName

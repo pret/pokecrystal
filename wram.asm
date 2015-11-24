@@ -1528,17 +1528,20 @@ LuckyNumberDigit1Buffer::
 wCurrentRadioLine::
 wMovementBufferCount::
 wMartItem1BCD::
+wBugContestFirstPlacePersonID::
 	ds 1
 wd003::
 LuckyNumberDigit2Buffer::
 PhoneCallerLo::
 wNextRadioLine::
 wMovementBufferPerson::
+wBugContestFirstPlaceMon::
 	ds 1
 wd004::
 LuckyNumberDigit3Buffer::
 PhoneCallerHi::
 wRadioTextDelay::
+wBugContestFirstPlaceScore::
 	ds 1
 wd005::
 LuckyNumberDigit4Buffer::
@@ -1547,18 +1550,24 @@ wNumRadioLinesPrinted::
 wMartItem2BCD::
 	ds 1
 wd006::
+wMobileParticipant1Nickname::
 LuckyNumberDigit5Buffer::
 EndFlypoint:: ; d006
 wOaksPkmnTalkSegmentCounter::
+wBugContestSecondPlacePersonID::
 	ds 1
 
 wd007::
 MovementBuffer:: ; d007
+wBugContestSecondPlaceMon::
 	ds 1
 
 wMartItem3BCD::
+wBugContestSecondPlaceScore::
 wd008:: ds 2
+wBugContestThirdPlacePersonID::
 wd00a:: ds 1
+wBugContestThirdPlaceMon::
 wMartItem4BCD::
 wd00b:: ds 1
 
@@ -1566,18 +1575,25 @@ wRadioText:: ds 2 * SCREEN_WIDTH
 wRadioTextEnd::
 	ds wRadioText - @
 
+wMobileParticipant2Nickname::
+wBugContestThirdPlaceScore::
 wd00c:: ds 1
 wd00d:: ds 1
 wMartItem5BCD::
+wBugContestTempPersonID::
 wd00e:: ds 1
+wBugContestTempMon::
 wd00f:: ds 1
+wBugContestTempScore::
 wd010:: ds 1
 wMartItem6BCD::
 wd011:: ds 1
+wMobileParticipant3Nickname::
 wd012:: ds 1
 wd013:: ds 1
 wMartItem7BCD::
 wd014:: ds 2
+wBugContestWinnerName::
 wd016:: ds 1
 wMartItem8BCD::
 wd017:: ds 1
