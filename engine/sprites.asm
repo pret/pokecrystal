@@ -889,7 +889,7 @@ endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, $fff0
+	ld de, -$10
 	add hl, de
 	ld e, l
 	ld d, h
