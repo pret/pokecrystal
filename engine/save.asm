@@ -288,13 +288,13 @@ SaveGameData_: ; 14c10
 	callba BackupPartyMonMail
 	callba BackupMobileEventIndex
 	callba SaveRTC
-	ld a, BANK(sSaveType)
+	ld a, BANK(sBattleTowerChallengeState)
 	call GetSRAMBank
-	ld a, [sSaveType]
+	ld a, [sBattleTowerChallengeState]
 	cp $4
 	jr nz, .ok
 	xor a
-	ld [sSaveType], a
+	ld [sBattleTowerChallengeState], a
 .ok
 	call CloseSRAM
 	ret
@@ -438,10 +438,10 @@ Unknown_14d2c: ; 14d2c
 ; 14d5c
 
 Function14d5c: ; 14d5c
-	ld a, BANK(sSaveType)
+	ld a, BANK(sBattleTowerChallengeState)
 	call GetSRAMBank
 	xor a
-	ld [sSaveType], a
+	ld [sBattleTowerChallengeState], a
 	jp CloseSRAM
 ; 14d68
 
@@ -788,13 +788,13 @@ LoadPlayerData: ; 14fd7 (5:4fd7)
 	ld bc, wMapDataEnd - wMapData
 	call CopyBytes
 	call CloseSRAM
-	ld a, BANK(sSaveType)
+	ld a, BANK(sBattleTowerChallengeState)
 	call GetSRAMBank
-	ld a, [sSaveType]
+	ld a, [sBattleTowerChallengeState]
 	cp $4
 	jr nz, .not_4
 	ld a, $3
-	ld [sSaveType], a
+	ld [sBattleTowerChallengeState], a
 .not_4
 	call CloseSRAM
 	ret

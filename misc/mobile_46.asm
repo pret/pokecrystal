@@ -175,7 +175,7 @@ Function118125: ; 118125
 	cp [hl]
 	jr nz, .asm_11813e
 	xor a
-	ld [UnknBGPals], a
+	ld [w3_d000], a
 	pop af
 	ld [rSVBK], a
 	call Function118452
@@ -197,33 +197,37 @@ Function118180: ; 118180
 	ld de, $a89c
 	ld bc, $0016
 	call CopyBytes
+
 	ld a, [rSVBK]
 	push af
 	ld a, $3
 	ld [rSVBK], a
-	ld de, $d202
+
+	ld de, w3_d202
 	ld c, $96
-	callba Function17d0b3
-	jr c, .asm_1181d0
-	ld de, $d202
-	ld bc, $0196
-	callba Function17d1e1
-	jr c, .asm_1181d0
-	ld hl, $d202
+	callba CheckStringForErrors_IgnoreTerminator
+	jr c, .return_d3
+
+	ld de, w3_d202
+	lb bc, 1, $96
+	callba CheckStringContainsLessThanBNextCharacters
+	jr c, .return_d3
+
+	ld hl, w3_d202
 	ld de, $a8b2
 	ld bc, $0096
 	call CopyBytes
-.asm_1181c9
+.reset_banks
 	pop af
 	ld [rSVBK], a
 	call CloseSRAM
 	ret
 
-.asm_1181d0
+.return_d3
 	ld a, $d3
 	ld [wc300], a
 	ld [ScriptVar], a
-	jr .asm_1181c9
+	jr .reset_banks
 ; 1181da
 
 Function1181da: ; 1181da
@@ -7549,8 +7553,8 @@ Function11b6b4: ; 11b6b4
 
 .asm_11b70f
 	ld de, $c63d
-	ld bc, $0105
-	callba Function17d1e1
+	lb bc, 1, 5
+	callba CheckStringContainsLessThanBNextCharacters
 	jr nc, .asm_11b723
 	callba Function17d187
 
@@ -7563,8 +7567,8 @@ Function11b6b4: ; 11b6b4
 
 .asm_11b736
 	ld de, $c642
-	ld bc, $0105
-	callba Function17d1e1
+	lb bc, 1, 5
+	callba CheckStringContainsLessThanBNextCharacters
 	jr nc, .asm_11b74a
 	callba Function17d199
 
@@ -7577,8 +7581,8 @@ Function11b6b4: ; 11b6b4
 
 .asm_11b75d
 	ld de, $c647
-	ld bc, $0221
-	callba Function17d1e1
+	lb bc, 2, $21
+	callba CheckStringContainsLessThanBNextCharacters
 	jr c, .asm_11b770
 	ld a, b
 	cp $2
@@ -7596,8 +7600,8 @@ Function11b6b4: ; 11b6b4
 
 .asm_11b789
 	ld de, $c668
-	ld bc, $0105
-	callba Function17d1e1
+	lb bc, 1, 5
+	callba CheckStringContainsLessThanBNextCharacters
 	jr nc, .asm_11b79d
 	callba Function17d1c9
 

@@ -6,7 +6,7 @@ Function17c000: ; 17c000
 	call DisableLCD
 
 	ld hl, VTiles2
-	ld bc, $310
+	ld bc, $31 tiles
 	xor a
 	call ByteFill
 
@@ -61,7 +61,7 @@ Function17c000: ; 17c000
 
 	ld hl, MobileSelectGFX
 	ld de, VTiles0 tile $30
-	ld bc, $200
+	ld bc, $20 tiles
 	call CopyBytes
 
 	ld a, 1
@@ -69,12 +69,12 @@ Function17c000: ; 17c000
 
 	ld hl, HaveWantGFX
 	ld de, VTiles2
-	ld bc, $800
+	ld bc, $80 tiles
 	call CopyBytes
 
 	ld hl, HaveWantGFX + $800
 	ld de, VTiles1
-	ld bc, $100
+	ld bc, $10 tiles
 	call CopyBytes
 
 	xor a
@@ -226,46 +226,48 @@ CheckStringForErrors: ; 17d073
 	ret
 ; 17d0b3
 
-Function17d0b3: ; 17d0b3
-.asm_17d0b3
+CheckStringForErrors_IgnoreTerminator: ; 17d0b3
+; Find control chars
+.loop
 	ld a, [de]
 	inc de
 	and a
-	jr z, .asm_17d0ee
-	cp $60
-	jr nc, .asm_17d0ee
-	cp $4e
-	jr z, .asm_17d0ee
-	cp $50
-	jr z, .asm_17d0ee
-	cp $5
-	jr c, .asm_17d0ec
-	cp $14
-	jr c, .asm_17d0ee
-	cp $19
-	jr c, .asm_17d0ec
-	cp $1d
-	jr c, .asm_17d0ee
-	cp $26
-	jr c, .asm_17d0ec
-	cp $35
-	jr c, .asm_17d0ee
-	cp $3a
-	jr c, .asm_17d0ec
-	cp $3f
-	jr c, .asm_17d0ee
-	cp $40
-	jr c, .asm_17d0ec
-	cp $49
-	jr c, .asm_17d0ee
+	jr z, .next
+	cp "<DEXEND>" + 1
+	jr nc, .next
+	cp "<NEXT>"
+	jr z, .next
+	cp "@"
+	jr z, .next
 
-.asm_17d0ec
+	cp $5
+	jr c, .end
+	cp "<PLAY_G>"
+	jr c, .next
+	cp $19
+	jr c, .end
+	cp $1d
+	jr c, .next
+	cp "%" + 1
+	jr c, .end
+	cp $35
+	jr c, .next
+	cp "<GREEN>" + 1
+	jr c, .end
+	cp "<ENEMY>"
+	jr c, .next
+	cp "<ENEMY>" + 1
+	jr c, .end
+	cp "<MOM>"
+	jr c, .next
+
+.end
 	scf
 	ret
 
-.asm_17d0ee
+.next
 	dec c
-	jr nz, .asm_17d0b3
+	jr nz, .loop
 	and a
 	ret
 ; 17d0f3
@@ -380,22 +382,22 @@ Function17d1c9: ; 17d1c9
 	ret
 ; 17d1e1
 
-Function17d1e1: ; 17d1e1
-.asm_17d1e1
+CheckStringContainsLessThanBNextCharacters: ; 17d1e1
+.loop
 	ld a, [de]
 	inc de
-	cp $4e
-	jr nz, .asm_17d1ea
+	cp "<NEXT>"
+	jr nz, .next_char
 	dec b
-	jr z, .asm_17d1ef
+	jr z, .done
 
-.asm_17d1ea
+.next_char
 	dec c
-	jr nz, .asm_17d1e1
+	jr nz, .loop
 	and a
 	ret
 
-.asm_17d1ef
+.done
 	scf
 	ret
 ; 17d1f1
@@ -440,18 +442,18 @@ Function17d1f1: ; 17d1f1
 Special_Menu_ChallengeExplanationCancel: ; 17d224
 	ld a, [ScriptVar]
 	and a
-	jr nz, .asm_17d234
+	jr nz, .English
 	ld a, $4
 	ld [ScriptVar], a
 	ld hl, MenuDataHeader_17d26a ; Japanese Menu, where you can choose 'News' as an option
-	jr .asm_17d23c
+	jr .Load_Interpret
 
-.asm_17d234
+.English
 	ld a, $4
 	ld [ScriptVar], a
 	ld hl, MenuDataHeader_ChallengeExplanationCancel ; English Menu
 
-.asm_17d23c
+.Load_Interpret
 	call LoadMenuDataHeader
 	call Function17d246
 	call WriteBackup
@@ -460,25 +462,25 @@ Special_Menu_ChallengeExplanationCancel: ; 17d224
 
 Function17d246: ; 17d246
 	call InterpretMenu2
-	jr c, .asm_17d264
+	jr c, .Exit
 	ld a, [ScriptVar]
 	cp $5
-	jr nz, .asm_17d25d
+	jr nz, .UseMenuSelection2
 	ld a, [MenuSelection2]
 	cp $3
 	ret z
-	jr c, .asm_17d25d
+	jr c, .UseMenuSelection2
 	dec a
-	jr .asm_17d260
+	jr .LoadToScriptVar
 
-.asm_17d25d
+.UseMenuSelection2
 	ld a, [MenuSelection2]
 
-.asm_17d260
+.LoadToScriptVar
 	ld [ScriptVar], a
 	ret
 
-.asm_17d264
+.Exit
 	ld a, $4
 	ld [ScriptVar], a
 	ret
@@ -494,8 +496,8 @@ MenuDataHeader_17d26a: ; 17d26a
 MenuData2_17d272: ; 17d272
 	db $a0 ; flags
 	db 4
-	db "ニュース", $1f, "よみこむ@"
-	db "ニュース", $1f, "みる@"
+	db "ニュース¯よみこむ@"
+	db "ニュース¯みる@"
 	db "せつめい@"
 	db "やめる@"
 ; 17d28f
@@ -633,27 +635,27 @@ Function17d370: ; 17d370
 	call DisableLCD
 	ld hl, VTiles1 tile $6e
 	ld de, $c608
-	ld bc, $0010
+	ld bc, 1 tiles
 	call CopyBytes
 	ld a, $1
 	ld [rVBK], a
 	ld hl, PokemonNewsGFX
 	ld de, VTiles1
-	ld bc, $0480
+	ld bc, $48 tiles
 	call CopyBytes
 	xor a
 	ld hl, VTiles2 tile $7f
-	ld bc, $0010
+	ld bc, 1 tiles
 	call ByteFill
 	ld hl, $c608
 	ld de, VTiles1 tile $6e
-	ld bc, $0010
+	ld bc, 1 tiles
 	call CopyBytes
 	xor a
 	ld [rVBK], a
 	ld hl, GFX_17eb7e
 	ld de, VTiles2 tile $60
-	ld bc, $0010
+	ld bc, 1 tiles
 	call CopyBytes
 	call EnableLCD
 	call Function17d60b
@@ -681,21 +683,21 @@ Function17d405:
 	call DisableLCD
 	ld hl, VTiles1 tile $6e
 	ld de, $c608
-	ld bc, $0010
+	ld bc, 1 tiles
 	call CopyBytes
 	ld a, $1
 	ld [rVBK], a
 	ld hl, PokemonNewsGFX
 	ld de, VTiles1
-	ld bc, $0480
+	ld bc, $48 tiles
 	call CopyBytes
 	xor a
 	ld hl, VTiles2 tile $7f
-	ld bc, $0010
+	ld bc, 1 tiles
 	call ByteFill
 	ld hl, $c608
 	ld de, VTiles1 tile $6e
-	ld bc, $0010
+	ld bc, 1 tiles
 	call CopyBytes
 	xor a
 	ld [rVBK], a

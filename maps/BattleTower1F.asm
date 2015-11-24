@@ -27,7 +27,7 @@ BattleTower1F_MapScriptHeader:
 	end
 
 .priorityjump1:
-	priorityjump UnknownScript_0x9e555
+	priorityjump BattleTower_LeftWithoutSaving
 	writebyte BATTLE_TOWER_ACTION_04
 	special BattleTowerAction
 	writebyte BATTLE_TOWER_ACTION_06
@@ -119,7 +119,7 @@ Script_GivePlayerHisPrize: ; 0x9e47a
 	special BattleTowerAction
 	writebyte BATTLE_TOWER_ACTION_1B
 	special BattleTowerAction
-	if_equal $12, Script_YourPackIsStuffedFull
+	if_equal POTION, Script_YourPackIsStuffedFull
 	itemtotext $0, $1
 	giveitem ITEM_FROM_MEM, 5
 	writetext Text_PlayerGotFive
@@ -236,9 +236,9 @@ UnknownScript_0x9e550:
 	loadmovesprites
 	end
 
-UnknownScript_0x9e555:
+BattleTower_LeftWithoutSaving:
 	loadfont
-	writetext UnknownText_0x9ee18
+	writetext Text_BattleTower_LeftWithoutSaving
 	closetext
 	jump UnknownScript_0x9e4b0
 
@@ -610,7 +610,7 @@ Text_BattleTowerRules: ; 0x9ed72
 	line "placed on them."
 	done
 
-UnknownText_0x9ee18:
+Text_BattleTower_LeftWithoutSaving:
 	text "Excuse me!"
 	line "You didn't SAVE"
 

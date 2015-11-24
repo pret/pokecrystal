@@ -2976,11 +2976,17 @@ BT_OTTrainer:: battle_tower_struct BT_OT
 ; d1e0	
 	ds $20
 ; d200
-BT_TrainerTextIndex::
-	ds $be
-w3_d2be:: ds 1
+BT_TrainerTextIndex:: ds 2
+w3_d202:: battle_tower_struct w3_d202
+w3_d2e2:: battle_tower_struct w3_d2e2
+w3_d3c2:: battle_tower_struct w3_d3c2
+w3_d4a2:: battle_tower_struct w3_d4a2
+w3_d582:: battle_tower_struct w3_d582
+w3_d662:: battle_tower_struct w3_d662
+w3_d742:: battle_tower_struct w3_d742
+; d822
+	ds -$22
 
-SECTION "WRAM 3 part 2", WRAMX [$d800], BANK [3]
 wBTChoiceOfLvlGroup::
 w3_d800:: ds $400
 w3_dc00:: ds $168

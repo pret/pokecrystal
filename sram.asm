@@ -143,20 +143,21 @@ sMobileEventIndex:: ds 1
 sCrystalData::
 	ds wCrystalDataEnd - wCrystalData
 sMobileEventIndexBackup:: ds 1
-sSaveType:: ds 1
+
+SECTION "SRAM Battle Tower", SRAM, BANK [1]
+; data of the BattleTower must be in SRAM because you can save and leave between battles
+sBattleTowerChallengeState:: ds 1
 ; 0: normal
 ; 2: battle tower
 
-; data of the BattleTower must be in SRAM because you can save and leave between battles
 sBattleTower:: ; be46
-sNrOfBeatenBattleTowerTrainers::
-sbe46:: ds 1
+sNrOfBeatenBattleTowerTrainers:: ds 1
 sbe47:: ds 1
 ; The 7 trainers of the BattleTower are saved here, so nobody appears more than once
 sBTTrainers:: ; sbe48
 	ds 7
 sbe4f:: ds 1
-sbe50:: ds 1
+sBattleTowerReward:: ds 1
 ; Pkmn of previous trainer
 sBTPkmnOfTrainers:: ; 0xbe51
 sBTPkmnPrevTrainer1::
