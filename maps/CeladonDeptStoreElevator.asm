@@ -8,12 +8,12 @@ CeladonDeptStoreElevator_MapScriptHeader:
 MapCeladonDeptStoreElevatorSignpost0Script:
 	loadfont
 	elevator Elevator_0x713be
-	loadmovesprites
+	closetext
 	iffalse UnknownScript_0x713bd
 	pause 5
 	playsound SFX_ELEVATOR
 	earthquake 60
-	waitbutton
+	waitsfx
 UnknownScript_0x713bd:
 	end
 

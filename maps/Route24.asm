@@ -10,10 +10,10 @@ RocketScript_0x1adbfa:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x1adc2e
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x1add67, -1
-	loadtrainer GRUNTM, 31
+	scriptedtrainerdata GRUNTM, 31
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -23,8 +23,8 @@ RocketScript_0x1adbfa:
 	keeptextopen
 	special Special_RotatePalettesRightMusic
 	writetext UnknownText_0x1adee1
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
 	disappear $2

@@ -8,15 +8,15 @@ CherrygroveEvolutionSpeechHouse_MapScriptHeader:
 YoungsterScript_0x196cb2:
 	loadfont
 	writetext UnknownText_0x196cc3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 LassScript_0x196cb9:
 	loadfont
 	writetext UnknownText_0x196cfc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CherrygroveEvolutionSpeechHouseBookshelf:

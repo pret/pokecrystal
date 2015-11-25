@@ -38,10 +38,10 @@ UnknownScript_0x180bd6:
 	earthquake 80
 	changeblock $4, $e, $2a
 	reloadmappart
-	loadmovesprites
+	closetext
 	dotrigger $1
 	setevent EVENT_KARENS_ROOM_ENTRANCE_CLOSED
-	waitbutton
+	waitsfx
 	end
 
 KarenScript_0x180bee:
@@ -50,29 +50,29 @@ KarenScript_0x180bee:
 	checkevent EVENT_BEAT_ELITE_4_KAREN
 	iftrue UnknownScript_0x180c1c
 	writetext UnknownText_0x180c27
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x180cf8, 0
-	loadtrainer KAREN, 1
+	scriptedtrainerdata KAREN, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_ELITE_4_KAREN
 	loadfont
 	writetext UnknownText_0x180d29
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_ENTER_DOOR
 	changeblock $4, $2, $16
 	reloadmappart
-	loadmovesprites
+	closetext
 	setevent EVENT_KARENS_ROOM_EXIT_OPEN
-	waitbutton
+	waitsfx
 	end
 
 UnknownScript_0x180c1c:
 	writetext UnknownText_0x180d29
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MovementData_0x180c22:

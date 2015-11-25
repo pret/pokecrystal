@@ -75,8 +75,8 @@ UnknownScript_0x7a542:
 
 UnknownScript_0x7a549:
 	writetext UnknownText_0x7a850
+	waitbutton
 	closetext
-	loadmovesprites
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x7a55d
 	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
@@ -122,20 +122,20 @@ MomScript_0x7a582:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue UnknownScript_0x7a5a9
 	writetext UnknownText_0x7a8b5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7a5a9:
 	writetext UnknownText_0x7a8e5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7a5af:
 	writetext UnknownText_0x7a957
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7a5b5:
@@ -143,8 +143,8 @@ UnknownScript_0x7a5b5:
 UnknownScript_0x7a5b8:
 	setevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	special Special_BankOfMom
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 NeighborScript:
@@ -174,8 +174,8 @@ NeighborScript:
 
 .Main
 	writetext NeighborText
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $6, RIGHT
 	end
 

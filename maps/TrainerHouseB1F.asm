@@ -33,25 +33,25 @@ UnknownScript_0x9b3aa:
 	iffalse UnknownScript_0x9b3ed
 	setflag ENGINE_FOUGHT_IN_TRAINER_HALL_TODAY
 	writetext UnknownText_0x9b4a2
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x9b401
 	loadfont
 	writetext UnknownText_0x9b587
+	waitbutton
 	closetext
-	loadmovesprites
 	special SpecialTrainerHouse
 	iffalse UnknownScript_0x9b3dc
 	winlosstext UnknownText_0x9b578, 0
 	setlasttalked $3
-	loadtrainer CAL, CAL2
+	scriptedtrainerdata CAL, CAL2
 	startbattle
 	returnafterbattle
 	iffalse UnknownScript_0x9b3e8
 UnknownScript_0x9b3dc:
 	winlosstext UnknownText_0x9b578, 0
 	setlasttalked $3
-	loadtrainer CAL, CAL3
+	scriptedtrainerdata CAL, CAL3
 	startbattle
 	returnafterbattle
 UnknownScript_0x9b3e8:
@@ -60,15 +60,15 @@ UnknownScript_0x9b3e8:
 
 UnknownScript_0x9b3ed:
 	writetext UnknownText_0x9b4d6
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x9b41d
 	end
 
 UnknownScript_0x9b3f7:
 	writetext UnknownText_0x9b51d
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x9b41d
 	end
 

@@ -9,11 +9,11 @@ TrainerSupernerdHugh:
 	trainer EVENT_BEAT_SUPER_NERD_HUGH, SUPER_NERD, HUGH, SupernerdHughSeenText, SupernerdHughBeatenText, 0, SupernerdHughScript
 
 SupernerdHughScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x7e10e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ItemFragment_0x7e0de:

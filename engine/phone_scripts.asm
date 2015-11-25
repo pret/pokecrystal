@@ -188,7 +188,7 @@ BillPhoneScript1: ; 0xbcfc5
 
 BillPhoneScript2: ; 0xbd007
 	farwritetext BillPhoneNewlyFullText
-	closetext
+	waitbutton
 	end
 
 ; Elm

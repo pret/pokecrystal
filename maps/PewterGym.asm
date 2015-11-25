@@ -11,10 +11,10 @@ BrockScript_0x1a2864:
 	checkflag ENGINE_BOULDERBADGE
 	iftrue .FightDone
 	writetext UnknownText_0x1a28d0
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x1a29bb, 0
-	loadtrainer BROCK, 1
+	scriptedtrainerdata BROCK, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_BROCK
@@ -22,28 +22,28 @@ BrockScript_0x1a2864:
 	loadfont
 	writetext UnknownText_0x1a2a3d
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_BOULDERBADGE
 	writetext UnknownText_0x1a2a57
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FightDone
 	writetext UnknownText_0x1a2ada
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCamperJerry:
 	trainer EVENT_BEAT_CAMPER_JERRY, CAMPER, JERRY, CamperJerrySeenText, CamperJerryBeatenText, 0, CamperJerryScript
 
 CamperJerryScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a2c0f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PewterGymGuyScript:
@@ -52,14 +52,14 @@ PewterGymGuyScript:
 	checkevent EVENT_BEAT_BROCK
 	iftrue .PewterGymGuyWinScript
 	writetext PewterGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .PewterGymGuyWinScript
 	writetext PewterGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PewterGymStatue:

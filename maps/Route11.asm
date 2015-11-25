@@ -9,44 +9,44 @@ TrainerYoungsterOwen:
 	trainer EVENT_BEAT_YOUNGSTER_OWEN, YOUNGSTER, OWEN, YoungsterOwenSeenText, YoungsterOwenBeatenText, 0, YoungsterOwenScript
 
 YoungsterOwenScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x680b2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerYoungsterJason:
 	trainer EVENT_BEAT_YOUNGSTER_JASON, YOUNGSTER, JASON, YoungsterJasonSeenText, YoungsterJasonBeatenText, 0, YoungsterJasonScript
 
 YoungsterJasonScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x6814a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPsychicHerman:
 	trainer EVENT_BEAT_PSYCHIC_HERMAN, PSYCHIC_T, HERMAN, PsychicHermanSeenText, PsychicHermanBeatenText, 0, PsychicHermanScript
 
 PsychicHermanScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x6817b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPsychicFidel:
 	trainer EVENT_BEAT_PSYCHIC_FIDEL, PSYCHIC_T, FIDEL, PsychicFidelSeenText, PsychicFidelBeatenText, 0, PsychicFidelScript
 
 PsychicFidelScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x681ec
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute11Signpost0Script:

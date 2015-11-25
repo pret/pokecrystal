@@ -6,20 +6,20 @@ Route30_MapScriptHeader:
 	db 0
 
 YoungsterScript_0x1a1673:
-	waitbutton
+	waitsfx
 	playmusic MUSIC_JOHTO_TRAINER_BATTLE
 	loadfont
 	writetext UnknownText_0x1a1806
 	pause 30
-	loadmovesprites
+	closetext
 	playsound SFX_TACKLE
 	applymovement $8, MovementData_0x1a17fe
 	loadfont
 	faceplayer
 	writetext UnknownText_0x1a181c
-	closetext
+	waitbutton
 	spriteface $2, UP
-	loadmovesprites
+	closetext
 	playsound SFX_TACKLE
 	applymovement $7, MovementData_0x1a1802
 	special RestartMapMusic
@@ -30,7 +30,7 @@ TrainerYoungsterJoey:
 
 YoungsterJoey1Script:
 	writecode VAR_CALLERID, PHONE_YOUNGSTER_JOEY
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_JOEY
 	iftrue UnknownScript_0x1a16e0
@@ -76,7 +76,7 @@ UnknownScript_0x1a16e0:
 	checkflag ENGINE_FLYPOINT_GOLDENROD
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer YOUNGSTER, JOEY1
+	scriptedtrainerdata YOUNGSTER, JOEY1
 	startbattle
 	returnafterbattle
 	loadvar wJoeyFightCount, 1
@@ -84,7 +84,7 @@ UnknownScript_0x1a16e0:
 	end
 
 .LoadFight1
-	loadtrainer YOUNGSTER, JOEY2
+	scriptedtrainerdata YOUNGSTER, JOEY2
 	startbattle
 	returnafterbattle
 	loadvar wJoeyFightCount, 2
@@ -92,7 +92,7 @@ UnknownScript_0x1a16e0:
 	end
 
 .LoadFight2
-	loadtrainer YOUNGSTER, JOEY3
+	scriptedtrainerdata YOUNGSTER, JOEY3
 	startbattle
 	returnafterbattle
 	loadvar wJoeyFightCount, 3
@@ -100,7 +100,7 @@ UnknownScript_0x1a16e0:
 	end
 
 .LoadFight3
-	loadtrainer YOUNGSTER, JOEY4
+	scriptedtrainerdata YOUNGSTER, JOEY4
 	startbattle
 	returnafterbattle
 	loadvar wJoeyFightCount, 4
@@ -108,7 +108,7 @@ UnknownScript_0x1a16e0:
 	end
 
 .LoadFight4
-	loadtrainer YOUNGSTER, JOEY5
+	scriptedtrainerdata YOUNGSTER, JOEY5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_JOEY
@@ -128,7 +128,7 @@ UnknownScript_0x1a176e:
 UnknownScript_0x1a176f:
 	loadfont
 	writetext UnknownText_0x1a1bc0
-	closetext
+	waitbutton
 	verbosegiveitem HP_UP
 	iffalse UnknownScript_0x1a179f
 	clearevent EVENT_JOEY_HP_UP
@@ -176,22 +176,22 @@ TrainerYoungsterMikey:
 	trainer EVENT_BEAT_YOUNGSTER_MIKEY, YOUNGSTER, MIKEY, YoungsterMikeySeenText, YoungsterMikeyBeatenText, 0, YoungsterMikeyScript
 
 YoungsterMikeyScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a197d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBug_catcherDon:
 	trainer EVENT_BEAT_BUG_CATCHER_DON, BUG_CATCHER, DON, Bug_catcherDonSeenText, Bug_catcherDonBeatenText, 0, Bug_catcherDonScript
 
 Bug_catcherDonScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a1a1c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x1a17d2:
@@ -200,14 +200,14 @@ YoungsterScript_0x1a17d2:
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x1a17e0
 	writetext UnknownText_0x1a1a6a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1a17e0:
 	writetext UnknownText_0x1a1a94
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CooltrainerFScript_0x1a17e6:

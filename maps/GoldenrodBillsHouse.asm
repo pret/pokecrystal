@@ -15,35 +15,35 @@ BillsHouseBill:
 	iffalse UnknownScript_0x54c19
 	writetext UnknownText_0x54d3f
 	keeptextopen
-	waitbutton
+	waitsfx
 	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x54c13
 	writetext UnknownText_0x54dae
 	playsound SFX_CAUGHT_MON
-	waitbutton
+	waitsfx
 	givepoke EEVEE, 20
 	setevent EVENT_GOT_EEVEE
 	writetext UnknownText_0x54dc1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x54c13:
 	writetext UnknownText_0x54e02
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x54c19:
 	writetext UnknownText_0x54e2d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x54c1f:
 	writetext UnknownText_0x54e42
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 BillsMom:
@@ -52,14 +52,14 @@ BillsMom:
 	checkevent EVENT_MET_BILL
 	iffalse UnknownScript_0x54c33
 	writetext UnknownText_0x54ea8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x54c33:
 	writetext UnknownText_0x54f4e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 BillsSister:
@@ -71,22 +71,22 @@ BillsSister:
 	askforphonenumber PHONE_BILL
 	if_equal $1, UnknownScript_0x54c64
 	if_equal $2, UnknownScript_0x54c5e
-	waitbutton
+	waitsfx
 	addcellnum PHONE_BILL
 	writetext UnknownText_0x54fd9
 	playsound SFX_REGISTER_PHONE_NUMBER
-	waitbutton
+	waitsfx
 	keeptextopen
 UnknownScript_0x54c58: ;0x54c58
 	writetext UnknownText_0x55069
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x54c5e:
 	writetext UnknownText_0x54ff3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x54c64:

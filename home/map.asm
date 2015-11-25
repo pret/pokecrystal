@@ -1091,7 +1091,7 @@ MapTextbox:: ; 269a
 	call Function2e31
 	ld a, 1
 	ld [hOAMUpdate], a
-	call Function321c
+	call ApplyTilemap
 	pop hl
 	call PrintTextBoxText
 	xor a
@@ -2043,7 +2043,7 @@ Function2b5c:: ; 2b5c
 Function2b74:: ; 0x2b74
 	push af
 	ld a, $1
-	ld [wc2ce], a
+	ld [wSpriteUpdatesEnabled], a
 	call ClearBGPalettes
 	call ClearSprites
 	call Function2bae

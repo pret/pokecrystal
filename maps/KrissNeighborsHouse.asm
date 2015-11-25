@@ -30,7 +30,7 @@ KrissNeighborsHouseRadio:
 	musicfadeout MUSIC_NEW_BARK_TOWN, $10
 	writetext KrisNeighborRadioText4
 	pause 45
-	loadmovesprites
+	closetext
 	setevent EVENT_LISTENED_TO_INITIAL_RADIO
 	end
 .NormalRadio
@@ -39,7 +39,7 @@ KrissNeighborsHouseRadio:
 	loadfont
 	writetext KrisNeighborRadioText4
 	pause 45
-	loadmovesprites
+	closetext
 	end
 
 KrissNeighborsDaughterText:

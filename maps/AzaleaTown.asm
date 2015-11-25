@@ -49,8 +49,8 @@ UnknownScript_0x198049:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x19814d
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_RIVAL_AZALEA_TOWN
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x198071
@@ -58,7 +58,7 @@ UnknownScript_0x198049:
 	iftrue UnknownScript_0x198081
 	winlosstext UnknownText_0x1981e6, UnknownText_0x19835b
 	setlasttalked $b
-	loadtrainer RIVAL1, RIVAL1_6
+	scriptedtrainerdata RIVAL1, RIVAL1_6
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -67,7 +67,7 @@ UnknownScript_0x198049:
 UnknownScript_0x198071:
 	winlosstext UnknownText_0x1981e6, UnknownText_0x19835b
 	setlasttalked $b
-	loadtrainer RIVAL1, RIVAL1_4
+	scriptedtrainerdata RIVAL1, RIVAL1_4
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -76,7 +76,7 @@ UnknownScript_0x198071:
 UnknownScript_0x198081:
 	winlosstext UnknownText_0x1981e6, UnknownText_0x19835b
 	setlasttalked $b
-	loadtrainer RIVAL1, RIVAL1_5
+	scriptedtrainerdata RIVAL1, RIVAL1_5
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -86,14 +86,14 @@ UnknownScript_0x198091:
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	writetext UnknownText_0x198233
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, LEFT
 	applymovement $b, MovementData_0x198144
 	playsound SFX_EXIT_BUILDING
 	disappear $b
 	dotrigger $0
-	waitbutton
+	waitsfx
 	playmapmusic
 	end
 
@@ -109,14 +109,14 @@ GrampsScript_0x1980b1:
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iftrue UnknownScript_0x1980bf
 	writetext UnknownText_0x19841b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1980bf:
 	writetext UnknownText_0x198473
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TeacherScript_0x1980c5:
@@ -131,8 +131,8 @@ SlowpokeScript_0x1980cb:
 	pause 60
 	writetext UnknownText_0x1985c3
 	cry SLOWPOKE
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 WoosterScript:
@@ -141,8 +141,8 @@ WoosterScript:
 	loadfont
 	writetext WoosterText
 	cry QUAGSIRE
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1980e5:
@@ -154,23 +154,23 @@ UnknownScript_0x1980e5:
 	writetext UnknownText_0x19860b
 	keeptextopen
 	writetext UnknownText_0x198628
-	closetext
+	waitbutton
 	verbosegiveitem GS_BALL
 	spriteface $d, LEFT
 	setflag ENGINE_HAVE_EXAMINED_GS_BALL
 	clearevent EVENT_ILEX_FOREST_LASS
 	setevent EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
 	dotrigger $0
-	loadmovesprites
+	closetext
 	end
 
 KurtOutsideScript_0x19810c:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x198628
-	closetext
+	waitbutton
 	spriteface $d, LEFT
-	loadmovesprites
+	closetext
 	end
 
 AzaleaTownSign:

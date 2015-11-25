@@ -59,8 +59,8 @@ UnknownScript_0x985a3:
 	spriteface PLAYER, RIGHT
 	loadfont
 	writetext UnknownText_0x98712
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $4, MovementData_0x98625
 	spriteface $4, LEFT
 	end
@@ -71,8 +71,8 @@ TrainerSageGaku:
 SageGakuScript:
 	loadfont
 	writetext UnknownText_0x98938
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSageMasa:
@@ -81,8 +81,8 @@ TrainerSageMasa:
 SageMasaScript:
 	loadfont
 	writetext UnknownText_0x98a35
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSageKoji:
@@ -97,8 +97,8 @@ SageKojiScript:
 	writetext UnknownText_0x98c6c
 	keeptextopen
 	writetext UnknownText_0x98cac
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $7, MovementData_0x98628
 	spriteface $7, UP
 	setevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
@@ -108,8 +108,8 @@ SageKojiScript:
 UnknownScript_0x9861b:
 	loadfont
 	writetext UnknownText_0x98db5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MovementData_0x98622:

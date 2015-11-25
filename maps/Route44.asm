@@ -10,7 +10,7 @@ TrainerBird_keeperVance1:
 
 Bird_keeperVance1Script:
 	writecode VAR_CALLERID, PHONE_BIRDKEEPER_VANCE
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_VANCE
 	iftrue UnknownScript_0x19d86a
@@ -48,7 +48,7 @@ UnknownScript_0x19d86a:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer BIRD_KEEPER, VANCE1
+	scriptedtrainerdata BIRD_KEEPER, VANCE1
 	startbattle
 	returnafterbattle
 	loadvar wVanceFightCount, 1
@@ -56,7 +56,7 @@ UnknownScript_0x19d86a:
 	end
 
 .LoadFight1
-	loadtrainer BIRD_KEEPER, VANCE2
+	scriptedtrainerdata BIRD_KEEPER, VANCE2
 	startbattle
 	returnafterbattle
 	loadvar wVanceFightCount, 2
@@ -64,7 +64,7 @@ UnknownScript_0x19d86a:
 	end
 
 .LoadFight2
-	loadtrainer BIRD_KEEPER, VANCE3
+	scriptedtrainerdata BIRD_KEEPER, VANCE3
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_VANCE
@@ -84,7 +84,7 @@ UnknownScript_0x19d8ca:
 UnknownScript_0x19d8cb:
 	loadfont
 	writetext UnknownText_0x19dc67
-	closetext
+	waitbutton
 	verbosegiveitem CARBOS
 	iffalse UnknownScript_0x19d903
 	clearevent EVENT_VANCE_CARBOS
@@ -140,11 +140,11 @@ TrainerPsychicPhil:
 	trainer EVENT_BEAT_PSYCHIC_PHIL, PSYCHIC_T, PHIL, PsychicPhilSeenText, PsychicPhilBeatenText, 0, PsychicPhilScript
 
 PsychicPhilScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19dcfc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFisherWilton1:
@@ -152,7 +152,7 @@ TrainerFisherWilton1:
 
 FisherWilton1Script:
 	writecode VAR_CALLERID, PHONE_FISHER_WILTON
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_WILTON
 	iftrue UnknownScript_0x19d96e
@@ -192,7 +192,7 @@ UnknownScript_0x19d96e:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer FISHER, WILTON1
+	scriptedtrainerdata FISHER, WILTON1
 	startbattle
 	returnafterbattle
 	loadvar wWiltonFightCount, 1
@@ -200,7 +200,7 @@ UnknownScript_0x19d96e:
 	end
 
 .LoadFight1
-	loadtrainer FISHER, WILTON2
+	scriptedtrainerdata FISHER, WILTON2
 	startbattle
 	returnafterbattle
 	loadvar wWiltonFightCount, 2
@@ -208,7 +208,7 @@ UnknownScript_0x19d96e:
 	end
 
 .LoadFight2
-	loadtrainer FISHER, WILTON3
+	scriptedtrainerdata FISHER, WILTON3
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_WILTON
@@ -246,44 +246,44 @@ TrainerFisherEdgar:
 	trainer EVENT_BEAT_FISHER_EDGAR, FISHER, EDGAR, FisherEdgarSeenText, FisherEdgarBeatenText, 0, FisherEdgarScript
 
 FisherEdgarScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19db6f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainerfCybil:
 	trainer EVENT_BEAT_COOLTRAINERF_CYBIL, COOLTRAINERF, CYBIL, CooltrainerfCybilSeenText, CooltrainerfCybilBeatenText, 0, CooltrainerfCybilScript
 
 CooltrainerfCybilScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19df4d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokemaniacZach:
 	trainer EVENT_BEAT_POKEMANIAC_ZACH, POKEMANIAC, ZACH, PokemaniacZachSeenText, PokemaniacZachBeatenText, 0, PokemaniacZachScript
 
 PokemaniacZachScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19dd7e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainermAllen:
 	trainer EVENT_BEAT_COOLTRAINERM_ALLEN, COOLTRAINERM, ALLEN, CooltrainermAllenSeenText, CooltrainermAllenBeatenText, 0, CooltrainermAllenScript
 
 CooltrainermAllenScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19de66
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute44Signpost0Script:

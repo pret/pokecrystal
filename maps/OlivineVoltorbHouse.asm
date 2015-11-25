@@ -9,8 +9,8 @@ Tim:
 	faceplayer
 	loadfont
 	trade $2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TimsHouseBookshelf:

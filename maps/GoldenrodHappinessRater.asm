@@ -20,38 +20,38 @@ TeacherScript_0x54953:
 
 UnknownScript_0x54973:
 	writetext UnknownText_0x549fc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x54979:
 	writetext UnknownText_0x54a2c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x5497f:
 	writetext UnknownText_0x54a5a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x54985:
 	writetext UnknownText_0x54a8e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x5498b:
 	writetext UnknownText_0x54a9f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x54991:
 	writetext UnknownText_0x54ad1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokefanMScript_0x54997:

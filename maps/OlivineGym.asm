@@ -11,17 +11,17 @@ JasmineScript_0x9c12f:
 	checkevent EVENT_BEAT_JASMINE
 	iftrue .FightDone
 	writetext UnknownText_0x9c1b9
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x9c2bb, 0
-	loadtrainer JASMINE, 1
+	scriptedtrainerdata JASMINE, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_JASMINE
 	loadfont
 	writetext UnknownText_0x9c33a
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_MINERALBADGE
 	checkcode VAR_BADGES
 	scall OlivineGymTriggerRockets
@@ -34,15 +34,15 @@ JasmineScript_0x9c12f:
 	iffalse UnknownScript_0x9c176
 	setevent EVENT_GOT_TM23_IRON_TAIL
 	writetext UnknownText_0x9c3a5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x9c172:
 	writetext UnknownText_0x9c3d1
-	closetext
+	waitbutton
 UnknownScript_0x9c176:
-	loadmovesprites
+	closetext
 	end
 
 OlivineGymTriggerRockets:
@@ -64,22 +64,22 @@ OlivineGymGuyScript:
 	iffalse .OlivineGymGuyPreScript
 	loadfont
 	writetext OlivineGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .OlivineGymGuyWinScript
 	loadfont
 	writetext OlivineGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .OlivineGymGuyPreScript
 	loadfont
 	writetext OlivineGymGuyPreText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 OlivineGymStatue:

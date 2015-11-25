@@ -26,11 +26,11 @@ Oak:
 
 .CheckPokedex
 	writetext OakLabDexCheckText
-	closetext
+	waitbutton
 	special ProfOaksPCBoot
 	writetext OakLabGoodbyeText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .OpenMtSilver

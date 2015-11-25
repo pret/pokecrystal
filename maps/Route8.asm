@@ -9,55 +9,55 @@ TrainerBikerDwayne:
 	trainer EVENT_BEAT_BIKER_DWAYNE, BIKER, DWAYNE, BikerDwayneSeenText, BikerDwayneBeatenText, 0, BikerDwayneScript
 
 BikerDwayneScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x6c0c8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBikerHarris:
 	trainer EVENT_BEAT_BIKER_HARRIS, BIKER, HARRIS, BikerHarrisSeenText, BikerHarrisBeatenText, 0, BikerHarrisScript
 
 BikerHarrisScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x6c143
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBikerZeke:
 	trainer EVENT_BEAT_BIKER_ZEKE, BIKER, ZEKE, BikerZekeSeenText, BikerZekeBeatenText, 0, BikerZekeScript
 
 BikerZekeScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x6c1a3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSupernerdSam:
 	trainer EVENT_BEAT_SUPER_NERD_SAM, SUPER_NERD, SAM, SupernerdSamSeenText, SupernerdSamBeatenText, 0, SupernerdSamScript
 
 SupernerdSamScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x6c219
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSupernerdTom:
 	trainer EVENT_BEAT_SUPER_NERD_TOM, SUPER_NERD, TOM, SupernerdTomSeenText, SupernerdTomBeatenText, 0, SupernerdTomScript
 
 SupernerdTomScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x6c27e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute8Signpost1Script:

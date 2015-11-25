@@ -19,31 +19,31 @@ OfficerScript_0x69d37:
 	iffalse .refused
 	writetext UnknownText_0x69e48
 	keeptextopen
-	waitbutton
+	waitsfx
 	checkcode VAR_PARTYCOUNT
 	if_equal PARTY_LENGTH, .partyfull
 	writetext UnknownText_0x69eb8
 	playsound SFX_KEY_ITEM
-	waitbutton
+	waitsfx
 	givepoke SPEAROW, 10, NO_ITEM, 1, GiftSpearowName, GiftSpearowOTName
 	givepokeitem GiftSpearowMail
 	setevent EVENT_GOT_KENYA
 .alreadyhavekenya:
 	writetext UnknownText_0x69ed6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .partyfull:
 	writetext UnknownText_0x69f56
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .refused:
 	writetext UnknownText_0x69f74
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .questcomplete:
@@ -54,9 +54,9 @@ OfficerScript_0x69d37:
 	setevent EVENT_GOT_HP_UP_FROM_RANDY
 .gothpup:
 	writetext UnknownText_0x69fd9
-	closetext
+	waitbutton
 .bagfull:
-	loadmovesprites
+	closetext
 	end
 
 GiftSpearowMail:
@@ -76,14 +76,14 @@ PokefanFScript_0x69dc6:
 	checkevent EVENT_FOUGHT_SUDOWOODO
 	iftrue .aftersudowoodo
 	writetext UnknownText_0x6a00a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .aftersudowoodo:
 	writetext UnknownText_0x6a09a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FisherScript_0x69dda:

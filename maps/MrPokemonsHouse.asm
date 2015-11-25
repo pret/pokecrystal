@@ -21,17 +21,17 @@ UnknownScript_0x196e56:
 	spriteface $2, DOWN
 	loadfont
 	writetext UnknownText_0x196f66
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x196f5a
 	loadfont
 	writetext UnknownText_0x196fa8
 	keeptextopen
-	waitbutton
+	waitsfx
 	giveitem MYSTERY_EGG
 	writetext UnknownText_0x196fd2
 	playsound SFX_KEY_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
 	setevent EVENT_GOT_MYSTERY_EGG_FROM_MR_POKEMON
 	blackoutmod CHERRYGROVE_CITY
@@ -43,8 +43,8 @@ UnknownScript_0x196e56:
 	spriteface $2, DOWN
 	spriteface $3, LEFT
 	writetext UnknownText_0x1970b7
+	waitbutton
 	closetext
-	loadmovesprites
 	jump UnknownScript_0x196ec9
 
 GentlemanScript_0x196e97:
@@ -55,14 +55,14 @@ GentlemanScript_0x196e97:
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x196eaa
 	writetext UnknownText_0x197134
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x196eaa:
 	writetext UnknownText_0x19714a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x196eb0:
@@ -76,9 +76,9 @@ UnknownScript_0x196eb0:
 
 UnknownScript_0x196ec3:
 	writetext UnknownText_0x19750d
-	closetext
+	waitbutton
 UnknownScript_0x196ec7:
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x196ec9:
@@ -88,26 +88,26 @@ UnknownScript_0x196ec9:
 	loadfont
 	writetext UnknownText_0x197185
 	keeptextopen
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x1973cc
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	setflag ENGINE_POKEDEX
 	writetext UnknownText_0x1973de
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, DOWN
 	applymovement $3, MovementData_0x196f61
 	playsound SFX_EXIT_BUILDING
 	disappear $3
-	waitbutton
+	waitsfx
 	special RestartMapMusic
 	pause 15
 	spriteface PLAYER, UP
 	loadfont
 	writetext UnknownText_0x1970ed
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
 	playmusic MUSIC_HEAL
@@ -118,8 +118,8 @@ UnknownScript_0x196ec9:
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x197134
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_RIVAL_NEW_BARK_TOWN
 	setevent EVENT_KRISS_HOUSE_1F_NEIGHBOR
 	clearevent EVENT_KRISS_NEIGHBORS_HOUSE_NEIGHBOR

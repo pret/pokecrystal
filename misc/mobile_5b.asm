@@ -908,22 +908,21 @@ INCBIN "gfx/unknown/16d5cd.tilemap"
 Tilemap_16d5f5:
 INCBIN "gfx/unknown/16d5f5.tilemap"
 
-Function16d61d: ; 16d61d
+_LinkTextbox: ; 16d61d
 	ld h, d
 	ld l, e
 	push bc
 	push hl
-	call Function16d640
+	call .draw_border
 	pop hl
 	pop bc
+
 	ld de, AttrMap - TileMap
 	add hl, de
-rept 2
 	inc b
-endr
-rept 2
+	inc b
 	inc c
-endr
+	inc c
 	ld a, $7
 .loop
 	push bc
@@ -941,43 +940,44 @@ endr
 	ret
 ; 16d640
 
-Function16d640: ; 16d640
+.draw_border: ; 16d640
 	push hl
 	ld a, $30
 	ld [hli], a
 	inc a
-	call Function16d66d
+	call .fill_row
 	inc a
 	ld [hl], a
 	pop hl
 	ld de, SCREEN_WIDTH
 	add hl, de
-.loop
+.loop3
 	push hl
 	ld a, $33
 	ld [hli], a
 	ld a, " "
-	call Function16d66d
+	call .fill_row
 	ld [hl], $34
 	pop hl
 	ld de, SCREEN_WIDTH
 	add hl, de
 	dec b
-	jr nz, .loop
+	jr nz, .loop3
+
 	ld a, $35
 	ld [hli], a
 	ld a, $36
-	call Function16d66d
+	call .fill_row
 	ld [hl], $37
 	ret
 ; 16d66d
 
-Function16d66d: ; 16d66d
+.fill_row: ; 16d66d
 	ld d, c
-.loop
+.loop4
 	ld [hli], a
 	dec d
-	jr nz, .loop
+	jr nz, .loop4
 	ret
 ; 16d673
 
@@ -1028,8 +1028,8 @@ Function16d6ae: ; 16d6ae
 	ret
 ; 16d6ca
 
-Function16d6ca: ; 16d6ca
-	call Function16d61d
+LinkTextbox: ; 16d6ca
+	call _LinkTextbox
 	ret
 ; 16d6ce
 
@@ -1046,7 +1046,7 @@ Function16d6e1: ; 16d6e1
 	hlcoord 4, 10
 	ld b, 1
 	ld c, 10
-	predef Function28eef
+	predef Predef_LinkTextbox
 	hlcoord 5, 11
 	ld de, .Waiting
 	call PlaceString

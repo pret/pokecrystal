@@ -29,8 +29,8 @@ UnknownScript_0x19eea0:
 	applymovement $2, MovementData_0x19efed
 	loadfont
 	writetext UnknownText_0x19f006
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, DOWN
 	applymovement $2, MovementData_0x19effa
 	spriteface PLAYER, LEFT
@@ -55,8 +55,8 @@ UnknownScript_0x19eee0:
 	applymovement $2, MovementData_0x19eff4
 	loadfont
 	writetext UnknownText_0x19f006
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, UP
 	applymovement $2, MovementData_0x19effd
 	spriteface PLAYER, LEFT
@@ -71,77 +71,77 @@ TrainerSchoolboyDudley:
 	trainer EVENT_BEAT_SCHOOLBOY_DUDLEY, SCHOOLBOY, DUDLEY, SchoolboyDudleySeenText, SchoolboyDudleyBeatenText, 0, SchoolboyDudleyScript
 
 SchoolboyDudleyScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19f1b5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerLassEllen:
 	trainer EVENT_BEAT_LASS_ELLEN, LASS, ELLEN, LassEllenSeenText, LassEllenBeatenText, 0, LassEllenScript
 
 LassEllenScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19f208
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSchoolboyJoe:
 	trainer EVENT_BEAT_SCHOOLBOY_JOE, SCHOOLBOY, JOE, SchoolboyJoeSeenText, SchoolboyJoeBeatenText, 0, SchoolboyJoeScript
 
 SchoolboyJoeScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19f25c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerLassLaura:
 	trainer EVENT_BEAT_LASS_LAURA, LASS, LAURA, LassLauraSeenText, LassLauraBeatenText, 0, LassLauraScript
 
 LassLauraScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19f2a6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCamperLloyd:
 	trainer EVENT_BEAT_CAMPER_LLOYD, CAMPER, LLOYD, CamperLloydSeenText, CamperLloydBeatenText, 0, CamperLloydScript
 
 CamperLloydScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19f2f8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerLassShannon:
 	trainer EVENT_BEAT_LASS_SHANNON, LASS, SHANNON, LassShannonSeenText, LassShannonBeatenText, 0, LassShannonScript
 
 LassShannonScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19f35b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSupernerdPat:
 	trainer EVENT_BEAT_SUPER_NERD_PAT, SUPER_NERD, PAT, SupernerdPatSeenText, SupernerdPatBeatenText, 0, SupernerdPatScript
 
 SupernerdPatScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19f41a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CooltrainerMScript_0x19efac:
@@ -158,19 +158,19 @@ CooltrainerMScript_0x19efac:
 	setevent EVENT_CLEARED_NUGGET_BRIDGE
 UnknownScript_0x19efc7:
 	writetext UnknownText_0x19f49d
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x19f4fd, 0
-	loadtrainer COOLTRAINERM, KEVIN
+	scriptedtrainerdata COOLTRAINERM, KEVIN
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_COOLTRAINERM_KEVIN
 	loadfont
 UnknownScript_0x19efda:
 	writetext UnknownText_0x19f520
-	closetext
+	waitbutton
 UnknownScript_0x19efde:
-	loadmovesprites
+	closetext
 	end
 
 MapRoute25Signpost0Script:

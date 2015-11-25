@@ -23,19 +23,19 @@ UnknownScript_0x1883de:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x1884fb
+	waitbutton
 	closetext
-	loadmovesprites
 	showemote EMOTE_SHOCK, $2, 15
 	applymovement $2, MovementData_0x1884f7
 	loadfont
 	writetext UnknownText_0x188574
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x1884f5
 	loadfont
 	writetext UnknownText_0x1885a5
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x1884e8
 	playsound SFX_EXIT_BUILDING
 	disappear $2
@@ -45,7 +45,7 @@ UnknownScript_0x1883de:
 	dotrigger $0
 	domaptrigger ROUTE_25, $1
 	domaptrigger POWER_PLANT, $0
-	waitbutton
+	waitsfx
 	special RestartMapMusic
 	pause 15
 	spriteface PLAYER, DOWN
@@ -58,10 +58,10 @@ MistyScript_0x188432:
 	checkflag ENGINE_CASCADEBADGE
 	iftrue .FightDone
 	writetext UnknownText_0x188674
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x18870c, 0
-	loadtrainer MISTY, 1
+	scriptedtrainerdata MISTY, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_MISTY
@@ -71,45 +71,45 @@ MistyScript_0x188432:
 	loadfont
 	writetext UnknownText_0x188768
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_CASCADEBADGE
 .FightDone
 	writetext UnknownText_0x188782
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmerfDiana:
 	trainer EVENT_BEAT_SWIMMERF_DIANA, SWIMMERF, DIANA, SwimmerfDianaSeenText, SwimmerfDianaBeatenText, 0, SwimmerfDianaScript
 
 SwimmerfDianaScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x188856
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmerfBriana:
 	trainer EVENT_BEAT_SWIMMERF_BRIANA, SWIMMERF, BRIANA, SwimmerfBrianaSeenText, SwimmerfBrianaBeatenText, 0, SwimmerfBrianaScript
 
 SwimmerfBrianaScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1888c0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmermParker:
 	trainer EVENT_BEAT_SWIMMERM_PARKER, SWIMMERM, PARKER, SwimmermParkerSeenText, SwimmermParkerBeatenText, 0, SwimmermParkerScript
 
 SwimmermParkerScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x188943
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CeruleanGymGuyScript:
@@ -118,14 +118,14 @@ CeruleanGymGuyScript:
 	checkevent EVENT_BEAT_MISTY
 	iftrue .CeruleanGymGuyWinScript
 	writetext CeruleanGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .CeruleanGymGuyWinScript
 	writetext CeruleanGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapCeruleanGymSignpostItem0:
@@ -137,8 +137,8 @@ CeruleanGymStatue1:
 	iffalse CeruleanGymStatue
 	loadfont
 	writetext CeruleanGymNote1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CeruleanGymStatue2:
@@ -146,8 +146,8 @@ CeruleanGymStatue2:
 	iffalse CeruleanGymStatue
 	loadfont
 	writetext CeruleanGymNote2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CeruleanGymStatue:

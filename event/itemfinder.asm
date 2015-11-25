@@ -33,7 +33,7 @@ ItemFinder: ; 12580
 	special UpdateTimePals
 	callasm .ItemfinderSound
 	writetext .Text_FoundSomething
-	loadmovesprites
+	closetext
 	end
 ; 0x125ba
 
@@ -41,7 +41,7 @@ ItemFinder: ; 12580
 	reloadmappart
 	special UpdateTimePals
 	writetext .Text_FoundNothing
-	loadmovesprites
+	closetext
 	end
 ; 0x125c3
 

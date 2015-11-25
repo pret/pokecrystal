@@ -9,11 +9,11 @@ TrainerCooltrainermJake:
 	trainer EVENT_BEAT_COOLTRAINERM_JAKE, COOLTRAINERM, JAKE, CooltrainermJakeSeenText, CooltrainermJakeBeatenText, 0, CooltrainermJakeScript
 
 CooltrainermJakeScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a4f08
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainermGaven3:
@@ -21,7 +21,7 @@ TrainerCooltrainermGaven3:
 
 CooltrainermGaven3Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERM_GAVEN
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_GAVEN
 	iftrue UnknownScript_0x1a4d79
@@ -59,7 +59,7 @@ UnknownScript_0x1a4d79:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer COOLTRAINERM, GAVEN3
+	scriptedtrainerdata COOLTRAINERM, GAVEN3
 	startbattle
 	returnafterbattle
 	loadvar wGavenFightCount, 1
@@ -67,7 +67,7 @@ UnknownScript_0x1a4d79:
 	end
 
 .LoadFight1
-	loadtrainer COOLTRAINERM, GAVEN1
+	scriptedtrainerdata COOLTRAINERM, GAVEN1
 	startbattle
 	returnafterbattle
 	loadvar wGavenFightCount, 2
@@ -75,7 +75,7 @@ UnknownScript_0x1a4d79:
 	end
 
 .LoadFight2
-	loadtrainer COOLTRAINERM, GAVEN2
+	scriptedtrainerdata COOLTRAINERM, GAVEN2
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_GAVEN
@@ -113,11 +113,11 @@ TrainerCooltrainerfJoyce:
 	trainer EVENT_BEAT_COOLTRAINERF_JOYCE, COOLTRAINERF, JOYCE, CooltrainerfJoyceSeenText, CooltrainerfJoyceBeatenText, 0, CooltrainerfJoyceScript
 
 CooltrainerfJoyceScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a50d7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainerfBeth1:
@@ -125,7 +125,7 @@ TrainerCooltrainerfBeth1:
 
 CooltrainerfBeth1Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERF_BETH
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_BETH
 	iftrue UnknownScript_0x1a4e35
@@ -163,7 +163,7 @@ UnknownScript_0x1a4e35:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer COOLTRAINERF, BETH1
+	scriptedtrainerdata COOLTRAINERF, BETH1
 	startbattle
 	returnafterbattle
 	loadvar wBethFightCount, 1
@@ -171,7 +171,7 @@ UnknownScript_0x1a4e35:
 	end
 
 .LoadFight1
-	loadtrainer COOLTRAINERF, BETH2
+	scriptedtrainerdata COOLTRAINERF, BETH2
 	startbattle
 	returnafterbattle
 	loadvar wBethFightCount, 2
@@ -179,7 +179,7 @@ UnknownScript_0x1a4e35:
 	end
 
 .LoadFight2
-	loadtrainer COOLTRAINERF, BETH3
+	scriptedtrainerdata COOLTRAINERF, BETH3
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_BETH
@@ -217,22 +217,22 @@ TrainerPsychicRichard:
 	trainer EVENT_BEAT_PSYCHIC_RICHARD, PSYCHIC_T, RICHARD, PsychicRichardSeenText, PsychicRichardBeatenText, 0, PsychicRichardScript
 
 PsychicRichardScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a5278
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFisherScott:
 	trainer EVENT_BEAT_FISHER_SCOTT, FISHER, SCOTT, FisherScottSeenText, FisherScottBeatenText, 0, FisherScottScript
 
 FisherScottScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a5326
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute26Signpost0Script:

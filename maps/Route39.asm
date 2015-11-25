@@ -9,8 +9,8 @@ TaurosScript_0x1a5af5:
 	loadfont
 	writetext UnknownText_0x1a5bf9
 	cry MILTANK
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokefanmDerek1:
@@ -18,7 +18,7 @@ TrainerPokefanmDerek1:
 
 PokefanmDerek1Script:
 	writecode VAR_CALLERID, PHONE_POKEFANM_DEREK
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_DEREK_HAS_NUGGET
 	iftrue UnknownScript_0x1a5b4a
@@ -56,8 +56,8 @@ UnknownScript_0x1a5b59:
 
 UnknownScript_0x1a5b5c:
 	writetext UnknownText_0x1a5dec
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1a5b62:
@@ -96,33 +96,33 @@ TrainerPokefanfRuth:
 	trainer EVENT_BEAT_POKEFANF_RUTH, POKEFANF, RUTH, PokefanfRuthSeenText, PokefanfRuthBeatenText, 0, PokefanfRuthScript
 
 PokefanfRuthScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a5db2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSailorEugene:
 	trainer EVENT_BEAT_SAILOR_EUGENE, SAILOR, EUGENE, SailorEugeneSeenText, SailorEugeneBeatenText, 0, SailorEugeneScript
 
 SailorEugeneScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a5c4d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPsychicNorman:
 	trainer EVENT_BEAT_PSYCHIC_NORMAN, PSYCHIC_T, NORMAN, PsychicNormanSeenText, PsychicNormanBeatenText, 0, PsychicNormanScript
 
 PsychicNormanScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a5e57
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokefanFScript_0x1a5bbe:
@@ -133,26 +133,26 @@ PokefanFScript_0x1a5bbe:
 	checkevent EVENT_BEAT_POKEFANF_JAIME
 	iftrue UnknownScript_0x1a5bdf
 	writetext UnknownText_0x1a5ee8
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x1a5f17, 0
-	loadtrainer POKEFANF, JAIME
+	scriptedtrainerdata POKEFANF, JAIME
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_POKEFANF_JAIME
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x1a5bdf:
 	writetext UnknownText_0x1a5f31
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1a5be5:
 	writetext UnknownText_0x1a5ec4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute39Signpost2Script:

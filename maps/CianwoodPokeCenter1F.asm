@@ -17,15 +17,15 @@ CianwoodGymGuyScript:
 	iftrue .CianwoodGymGuyWinScript
 	loadfont
 	writetext CianwoodGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .CianwoodGymGuyWinScript
 	loadfont
 	writetext CianwoodGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SuperNerdScript_0x9dbea:

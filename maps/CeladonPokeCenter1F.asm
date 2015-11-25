@@ -28,15 +28,15 @@ SuperNerdScript_0x71e2e:
 	special SpecialBeastsCheck
 	iftrue UnknownScript_0x71e48
 	writetext UnknownText_0x7201a
-	closetext
+	waitbutton
 UnknownScript_0x71e46:
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x71e48:
 	writetext UnknownText_0x71f65
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcode VAR_FACING
 	if_equal $1, UnknownScript_0x71e5a
 	applymovement $6, MovementData_0x71e6b
@@ -47,7 +47,7 @@ UnknownScript_0x71e5a:
 UnknownScript_0x71e5e:
 	disappear $6
 	playsound SFX_EXIT_BUILDING
-	waitbutton
+	waitsfx
 	end
 
 MovementData_0x71e65:

@@ -1,11 +1,11 @@
 Function1700b0: ; 1700b0
-	call Function17021e
+	call Bank5c_ClearJumptableRAM
 	callba Function118121
 	ret
 ; 1700ba
 
 Function1700ba: ; 1700ba
-	call Function17021e
+	call Bank5c_ClearJumptableRAM
 	callba Function11811a
 	ret
 ; 1700c4
@@ -17,21 +17,22 @@ Function1700c4: ; 1700c4
 	ld [rSVBK], a
 
 	call Function17042c
+
 	ld a, $5
 	call GetSRAMBank
 	ld a, $1
 	ld [$be45], a
 	xor a
 	ld [$be46], a
-	ld hl, $dffc
+	ld hl, w3_dffc
 	ld de, $aa41
 	ld bc, $0004
 	call CopyBytes
-	ld hl, $d202
+	ld hl, w3_d202
 	ld de, $aa8e
-	ld bc, $0594
+	ld bc, 7 * $cc ; length of battle tower struct from japanese games?
 	call CopyBytes
-	ld hl, $aa5d
+	ld hl, $aa5d ; some sort of count
 	ld a, [hl]
 	inc [hl]
 	inc hl
@@ -42,7 +43,7 @@ Function1700c4: ; 1700c4
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, $dffc
+	ld hl, w3_dffc
 	ld bc, $0004
 	call CopyBytes
 	call CloseSRAM
@@ -52,7 +53,7 @@ Function1700c4: ; 1700c4
 ; 170114
 
 Function170114: ; 170114
-	call Function17021e
+	call Bank5c_ClearJumptableRAM
 	call Function170121
 	callba Function11805f
 	ret
@@ -62,7 +63,7 @@ Function170121: ; 170121
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $a948
-	ld de, $c608
+	ld de, wMisc
 	ld bc, $00f6
 	call CopyBytes
 	call CloseSRAM
@@ -71,27 +72,29 @@ Function170121: ; 170121
 ; 170139
 
 Function170139: ; 170139
+; Convert the 4-digit decimal number at 5:aa41 into binary
 	ld a, $5
 	call GetSRAMBank
 	ld de, $aa41
 	ld h, $0
 	ld l, h
-	ld bc, $03e8
-	call Function17020c
-	ld bc, $0064
-	call Function17020c
-	ld bc, $000a
-	call Function17020c
+	ld bc, 1000
+	call .DecToBin
+	ld bc, 100
+	call .DecToBin
+	ld bc, 10
+	call .DecToBin
 	ld a, [de]
 	ld c, a
 	ld b, $0
 	add hl, bc
 	call CloseSRAM
+; Store that number in wMisc
 	ld a, h
-	ld [$c608], a
+	ld [wMisc], a
 	ld a, l
-	ld [$c608 + 1], a
-	ld hl, $c628
+	ld [wMisc + 1], a
+	ld hl, wBT_OTTempPkmn1DVs
 	ld a, [PlayerID]
 	ld [hli], a
 	ld a, [PlayerID + 1]
@@ -108,26 +111,26 @@ Function170139: ; 170139
 	ld bc, PlayerID
 	ld de, PlayerGender
 	callba Function4e929
-	ld de, $c62c + 5
+	ld de, wBT_OTTempPkmn1CaughtGender
 	ld a, c
 	ld [de], a
 	inc de
-	ld a, $df
+	ld a, PartyMons % $100
 	ld [wcd49], a
-	ld a, $dc
+	ld a, PartyMons / $100
 	ld [wcd4a], a
-	ld a, $41
+	ld a, PartyMonNicknames % $100
 	ld [wcd4b], a
-	ld a, $de
+	ld a, PartyMonNicknames / $100
 	ld [wcd4c], a
-	ld a, $3
-.asm_1701ac
+	ld a, 3
+.CopyLoop
 	push af
 	ld a, [wcd49]
 	ld l, a
 	ld a, [wcd4a]
 	ld h, a
-	ld bc, $0030
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 	ld a, l
 	ld [wcd49], a
@@ -145,7 +148,7 @@ Function170139: ; 170139
 	ld [wcd4c], a
 	pop af
 	dec a
-	jr nz, .asm_1701ac
+	jr nz, .CopyLoop
 	ld a, $4
 	call GetSRAMBank
 	ld hl, $a013
@@ -157,7 +160,7 @@ Function170139: ; 170139
 	ld hl, $a894
 	ld bc, $0006
 	call CopyBytes
-	ld hl, $c608
+	ld hl, wMisc
 	ld de, $a948
 	ld bc, $00f6
 	call CopyBytes
@@ -165,16 +168,16 @@ Function170139: ; 170139
 	ret
 ; 17020c
 
-Function17020c: ; 17020c
+.DecToBin: ; 17020c
 	ld a, [de]
 	inc de
 	and a
 	ret z
 
-.loop
+.digit_loop
 	add hl, bc
 	dec a
-	jr nz, .loop
+	jr nz, .digit_loop
 	ret
 ; 170215
 
@@ -189,7 +192,7 @@ EmptySpecial_17021d: ; 17021d
 	ret
 ; 17021e
 
-Function17021e: ; 17021e
+Bank5c_ClearJumptableRAM: ; 17021e
 	xor a
 	ld [wcf63], a
 	ld [wcf64], a
@@ -508,7 +511,7 @@ BT_ChrisName: ; 170426
 
 Function17042c: ; 17042c
 	ld hl, w3_d202TrainerData
-	ld a, 7
+	ld a, BATTLETOWER_NROFTRAINERS
 .loop
 	push af
 	push hl
@@ -521,7 +524,7 @@ Function17042c: ; 17042c
 	ld a, [hli]
 	and a
 	jr z, .empty
-	cp $f
+	cp 15
 	jr nc, .copy_data
 
 	push hl
@@ -615,7 +618,7 @@ CopyBTTrainer_FromBT_OT_TowBT_OTTemp: ; 1704a2
 	ld [rSVBK], a
 
 	ld hl, BT_OTTrainer ; $d100
-	ld de, wBT_OTTemp ; $c608
+	ld de, wBT_OTTemp ; wMisc
 	ld bc, BATTLE_TOWER_STRUCT_LENGTH
 	call CopyBytes
 
@@ -632,7 +635,9 @@ CopyBTTrainer_FromBT_OT_TowBT_OTTemp: ; 1704a2
 SkipBattleTowerTrainer: ; 1704c9
 	ret
 ; 1704ca
+
 Function1704ca: ; 1704ca
+; unreferenced mobile function
 	ld a, [$be46]
 	cp $7
 	jr c, .asm_1704d3
@@ -653,36 +658,37 @@ Function1704ca: ; 1704ca
 ; 1704e1
 
 Function1704e1: ; 1704e1
+; unreferenced special
 	call SpeechTextBox
 	call FadeToMenu
-	call Function17021e
-	call Function1704f1
+	call Bank5c_ClearJumptableRAM
+	call .JumptableLoop
 	call ReturnToCallingMenu
 	ret
 ; 1704f1
 
-Function1704f1: ; 1704f1
+.JumptableLoop: ; 1704f1
 	call ClearBGPalettes
 	call ClearSprites
 	call ClearScreen
-.asm_1704fa
+.loop
 	call JoyTextDelay
 	ld a, [wJumptableIndex]
 	bit 7, a
-	jr nz, .asm_17050f
-	call Function170510
+	jr nz, .done
+	call .DoJumptable
 	callba ReloadMapPart
-	jr .asm_1704fa
+	jr .loop
 
-.asm_17050f
+.done
 	ret
 ; 170510
 
-Function170510: ; 170510
+.DoJumptable: ; 170510
 	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
-	ld hl, Jumptable_17051f
+	ld hl, .jumptable
 rept 2
 	add hl, de
 endr
@@ -692,13 +698,13 @@ endr
 	jp [hl]
 ; 17051f
 
-Jumptable_17051f: ; 17051f
-	dw Function170525
-	dw Function170571
-	dw Function170577
+.jumptable: ; 17051f
+	dw .Jumptable_0
+	dw .Jumptable_1
+	dw .Jumptable_2
 ; 170525
 
-Function170525: ; 170525
+.Jumptable_0: ; 170525
 	ld a, $5
 	call GetSRAMBank
 
@@ -708,7 +714,7 @@ Function170525: ; 170525
 	call CopyBytes
 
 	ld hl, $a8b2
-	ld de, $c608
+	ld de, wMisc
 	ld bc, $0096
 	call CopyBytes
 
@@ -717,117 +723,117 @@ Function170525: ; 170525
 	ld de, StringBuffer3
 	call PlaceString
 	hlcoord 1, 3
-	ld de, String_170676
+	ld de, .String_Mail
 	call PlaceString
 	hlcoord 4, 3
 	ld de, StringBuffer4
 	call PlaceString
 	hlcoord 8, 3
-	ld de, String_17067a
+	ld de, .String_PastReaders
 	call PlaceString
-	call Function1705b7
-	call Function1705f0
-	jr Function1705b2
+	call .DrawBorder
+	call .PlaceTextItems
+	jr .NextJumptableFunction
 
 
-Function170571:
+.Jumptable_1:
 	call SetPalettes
-	call Function1705b2
+	call .NextJumptableFunction
 
 
-Function170577:
+.Jumptable_2:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and $1
-	jr nz, .asm_1705ac
+	and A_BUTTON
+	jr nz, .pressed_a_or_b
 	ld a, [hl]
-	and $2
-	jr nz, .asm_1705ac
+	and B_BUTTON
+	jr nz, .pressed_a_or_b
 	ld a, [hl]
-	and $40
-	jr nz, .asm_17058f
+	and D_UP
+	jr nz, .pressed_up
 	ld a, [hl]
-	and $80
-	jr nz, .asm_17059d
+	and D_DOWN
+	jr nz, .pressed_down
 	ret
 
-.asm_17058f
+.pressed_up
 	ld a, [wcf64]
 	and a
 	ret z
-	sub $f
+	sub 15
 	ld [wcf64], a
-	call Function1705f0
+	call .PlaceTextItems
 	ret
 
-.asm_17059d
+.pressed_down
 	ld a, [wcf64]
-	cp $3c
+	cp 60
 	ret z
-	add $f
+	add 15
 	ld [wcf64], a
-	call Function1705f0
+	call .PlaceTextItems
 	ret
 
-.asm_1705ac
+.pressed_a_or_b
 	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
 
-Function1705b2:
+.NextJumptableFunction:
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 ; 1705b7
 
-Function1705b7: ; 1705b7
+.DrawBorder: ; 1705b7
 	hlcoord 0, 4
 	ld a, $79
 	ld [hli], a
-	ld c, $12
-.asm_1705bf
+	ld c, SCREEN_WIDTH - 2
+.top_border_loop
 	ld a, $7a
 	ld [hli], a
 	dec c
-	jr nz, .asm_1705bf
+	jr nz, .top_border_loop
 	ld a, $7b
 	ld [hli], a
-	ld de, $0014
-	ld c, $c
-.asm_1705cd
+	ld de, SCREEN_WIDTH
+	ld c, 12
+.left_border_loop
 	ld a, $7c
 	ld [hl], a
 	add hl, de
 	dec c
-	jr nz, .asm_1705cd
+	jr nz, .left_border_loop
 	ld a, $7d
 	ld [hli], a
-	ld c, $12
-.asm_1705d9
+	ld c, SCREEN_WIDTH - 2
+.bottom_border_loop
 	ld a, $7a
 	ld [hli], a
 	dec c
-	jr nz, .asm_1705d9
+	jr nz, .bottom_border_loop
 	ld a, $7e
 	ld [hl], a
-	ld de, $ffec
+	ld de, -SCREEN_WIDTH
 	add hl, de
-	ld c, $c
-.asm_1705e8
+	ld c, 12
+.right_border_loop
 	ld a, $7c
 	ld [hl], a
 	add hl, de
 	dec c
-	jr nz, .asm_1705e8
+	jr nz, .right_border_loop
 	ret
 ; 1705f0
 
-Function1705f0: ; 1705f0
-	call Function17064b
-	call Function17065d
+.PlaceTextItems: ; 1705f0
+	call .ClearBox
+	call .PlaceUpDownArrows
 	ld a, $50
 	ld [wcd4e], a
-	ld hl, $c608
+	ld hl, wMisc
 	ld a, [wcf64]
 	ld c, a
 	xor a
@@ -836,19 +842,20 @@ Function1705f0: ; 1705f0
 	push hl
 	pop bc
 	hlcoord 1, 6
-	ld a, $6
-.asm_17060c
+	ld a, 6
+.loop1
 	push af
 	push hl
-	ld a, $3
-.asm_170610
+	ld a, 3
+.loop2
 	push af
 	ld de, wcd49
 	ld a, [bc]
 	and a
-	jr z, .asm_170625
-	ld a, $5
-.asm_17061a
+	jr z, .fill_with_e3
+; .copy
+	ld a, 5
+.loop3a
 	push af
 	ld a, [bc]
 	ld [de], a
@@ -856,12 +863,12 @@ Function1705f0: ; 1705f0
 	inc de
 	pop af
 	dec a
-	jr nz, .asm_17061a
-	jr .asm_170631
+	jr nz, .loop3a
+	jr .rejoin
 
-.asm_170625
-	ld a, $5
-.asm_170627
+.fill_with_e3
+	ld a, 5
+.loop3b
 	push af
 	ld a, $e3
 	ld [de], a
@@ -869,68 +876,68 @@ Function1705f0: ; 1705f0
 	inc bc
 	pop af
 	dec a
-	jr nz, .asm_170627
+	jr nz, .loop3b
 
-.asm_170631
+.rejoin
 	ld de, wcd49
 	push bc
 	call PlaceString
-	ld de, $0006
+	ld de, 6
 	add hl, de
 	pop bc
 	pop af
 	dec a
-	jr nz, .asm_170610
+	jr nz, .loop2
 	pop hl
-	ld de, $0028
+	ld de, $28
 	add hl, de
 	pop af
 	dec a
-	jr nz, .asm_17060c
+	jr nz, .loop1
 	ret
 ; 17064b
 
-Function17064b: ; 17064b
+.ClearBox: ; 17064b
 	hlcoord 1, 5
 	xor a
-	ld b, $c
-.asm_170651
-	ld c, $12
-.asm_170653
+	ld b, 12
+.clearbox_row
+	ld c, SCREEN_WIDTH - 2
+.clearbox_column
 	ld [hli], a
 	dec c
-	jr nz, .asm_170653
+	jr nz, .clearbox_column
 rept 2
 	inc hl
 endr
 	dec b
-	jr nz, .asm_170651
+	jr nz, .clearbox_row
 	ret
 ; 17065d
 
-Function17065d: ; 17065d
+.PlaceUpDownArrows: ; 17065d
 	ld a, [wcf64]
 	and a
-	jr z, .asm_170669
+	jr z, .nope
 	hlcoord 18, 5
-	ld a, $61
+	ld a, "▲"
 	ld [hl], a
 
-.asm_170669
+.nope
 	ld a, [wcf64]
-	cp $3c
+	cp 60
 	ret z
 	hlcoord 18, 16
-	ld a, $ee
+	ld a, "▼"
 	ld [hl], a
 	ret
 ; 170676
 
-String_170676: ; 170676
+.String_Mail: ; 170676
 	db "ルーム@"
 ; 17067a
 
-String_17067a: ; 17067a
+.String_PastReaders: ; 17067a
 	db "れきだいりーダーいちらん@"
 ; 170687
 
@@ -1477,7 +1484,7 @@ Function170a01: ; 170a01
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $b023
-	ld de, $c608
+	ld de, wMisc
 	ld bc, $0069
 	call CopyBytes
 	ld a, [$a825]
@@ -1496,14 +1503,14 @@ Function170a33: ; 170a33
 	ld a, $0
 	call GetSRAMBank
 	ld hl, wRTC
-	ld de, $c608
+	ld de, wMisc
 	ld bc, $0004
 	call CopyBytes
 	call CloseSRAM
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $b08c
-	ld de, $c608
+	ld de, wMisc
 	ld c, $4
 .asm_170a54
 	ld a, [de]

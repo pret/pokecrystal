@@ -12,10 +12,10 @@ JanineScript_0x195db9:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x195f35
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x195fa1, 0
-	loadtrainer JANINE, 1
+	scriptedtrainerdata JANINE, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_JANINE
@@ -31,7 +31,7 @@ JanineScript_0x195db9:
 	loadfont
 	writetext UnknownText_0x195feb
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_SOULBADGE
 	jump UnknownScript_0x195e02
 .FightDone
@@ -47,8 +47,8 @@ UnknownScript_0x195e02:
 	setevent EVENT_GOT_TM06_TOXIC
 UnknownScript_0x195e15:
 	writetext UnknownText_0x196074
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FuschiaGym1Script_0x195e1b:
@@ -64,10 +64,10 @@ UnknownScript_0x195e2c:
 	checkevent EVENT_BEAT_LASS_ALICE
 	iftrue UnknownScript_0x195e4f
 	writetext UnknownText_0x1960e6
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x196126, 0
-	loadtrainer LASS, ALICE
+	scriptedtrainerdata LASS, ALICE
 	startbattle
 	iftrue UnknownScript_0x195e4a
 	returnafterbattle
@@ -81,8 +81,8 @@ UnknownScript_0x195e4a:
 
 UnknownScript_0x195e4f:
 	writetext UnknownText_0x196139
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FuschiaGym2Script_0x195e55:
@@ -98,10 +98,10 @@ UnknownScript_0x195e66:
 	checkevent EVENT_BEAT_LASS_LINDA
 	iftrue UnknownScript_0x195e89
 	writetext UnknownText_0x196166
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x19617b, 0
-	loadtrainer LASS, LINDA
+	scriptedtrainerdata LASS, LINDA
 	startbattle
 	iftrue UnknownScript_0x195e84
 	returnafterbattle
@@ -115,8 +115,8 @@ UnknownScript_0x195e84:
 
 UnknownScript_0x195e89:
 	writetext UnknownText_0x196199
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FuschiaGym3Script_0x195e8f:
@@ -132,10 +132,10 @@ UnknownScript_0x195ea0:
 	checkevent EVENT_BEAT_PICNICKER_CINDY
 	iftrue UnknownScript_0x195ec3
 	writetext UnknownText_0x1961bb
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x1961f1, 0
-	loadtrainer PICNICKER, CINDY
+	scriptedtrainerdata PICNICKER, CINDY
 	startbattle
 	iftrue UnknownScript_0x195ebe
 	returnafterbattle
@@ -149,8 +149,8 @@ UnknownScript_0x195ebe:
 
 UnknownScript_0x195ec3:
 	writetext UnknownText_0x19620c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FuschiaGym4Script_0x195ec9:
@@ -166,10 +166,10 @@ UnknownScript_0x195eda:
 	checkevent EVENT_BEAT_CAMPER_BARRY
 	iftrue UnknownScript_0x195efd
 	writetext UnknownText_0x196228
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x19624a, 0
-	loadtrainer CAMPER, BARRY
+	scriptedtrainerdata CAMPER, BARRY
 	startbattle
 	iftrue UnknownScript_0x195ef8
 	returnafterbattle
@@ -183,8 +183,8 @@ UnknownScript_0x195ef8:
 
 UnknownScript_0x195efd:
 	writetext UnknownText_0x19626b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FuchsiaGymGuyScript:
@@ -193,14 +193,14 @@ FuchsiaGymGuyScript:
 	checkevent EVENT_BEAT_JANINE
 	iftrue .FuchsiaGymGuyWinScript
 	writetext FuchsiaGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FuchsiaGymGuyWinScript
 	writetext FuchsiaGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FuchsiaGymStatue:

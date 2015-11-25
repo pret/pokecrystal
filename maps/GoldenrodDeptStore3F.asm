@@ -9,7 +9,7 @@ ClerkScript_0x55db8:
 	faceplayer
 	loadfont
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_3F
-	loadmovesprites
+	closetext
 	end
 
 SuperNerdScript_0x55dc0:

@@ -58,12 +58,12 @@ SacredAshScript: ; 0x50821
 	special RotatePalettesLeftPalettes
 	special RotatePalettesRightPalettes
 	special RotatePalettesLeftPalettes
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x50845
 	playsound SFX_CAUGHT_MON
+	waitsfx
 	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x50845
 

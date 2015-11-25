@@ -16,7 +16,7 @@ ResetWindow:: ; 2dba
 ; 2dcf
 
 
-LoadMoveSprites:: ; 2dcf
+CloseText:: ; 2dcf
 	ld a, [hOAMUpdate]
 	push af
 	ld a, $1

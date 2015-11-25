@@ -17,21 +17,21 @@ GoodRodGuru:
 	keeptextopen
 	verbosegiveitem GOOD_ROD
 	writetext GaveGoodRodText
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_GOT_GOOD_ROD
 	end
 
 .DontWantIt
 	writetext DontWantGoodRodText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .AlreadyGotItem
 	writetext HaveGoodRodText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GoodRodHouseBookshelf:

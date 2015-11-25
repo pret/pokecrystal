@@ -15,8 +15,8 @@ DiglettScript_0x188050:
 	loadfont
 	writetext UnknownText_0x1880e7
 	cry DIGLETT
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x18805a:

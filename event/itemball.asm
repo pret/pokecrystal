@@ -7,17 +7,17 @@ FindItemInBallScript:: ; 0x122ce
 	playsound SFX_ITEM
 	pause 60
 	itemnotify
-	loadmovesprites
+	closetext
 	end
 ; 0x122e3
 
 .no_room: ; 0x122e3
 	loadfont
 	writetext .text_found
-	closetext
+	waitbutton
 	writetext .text_bag_full
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x122ee
 

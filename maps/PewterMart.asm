@@ -8,7 +8,7 @@ PewterMart_MapScriptHeader:
 ClerkScript_0x1a2dcb:
 	loadfont
 	pokemart MARTTYPE_STANDARD, MART_PEWTER
-	loadmovesprites
+	closetext
 	end
 
 YoungsterScript_0x1a2dd2:

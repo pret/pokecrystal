@@ -108,44 +108,44 @@ TrainerSupernerdEric:
 	trainer EVENT_BEAT_SUPER_NERD_ERIC, SUPER_NERD, ERIC, SupernerdEricSeenText, SupernerdEricBeatenText, 0, SupernerdEricScript
 
 SupernerdEricScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x7c36c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSupernerdTeru:
 	trainer EVENT_BEAT_SUPER_NERD_TERU, SUPER_NERD, TERU, SupernerdTeruSeenText, SupernerdTeruBeatenText, 0, SupernerdTeruScript
 
 SupernerdTeruScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x7c410
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokemaniacIssac:
 	trainer EVENT_BEAT_POKEMANIAC_ISSAC, POKEMANIAC, ISSAC, PokemaniacIssacSeenText, PokemaniacIssacBeatenText, 0, PokemaniacIssacScript
 
 PokemaniacIssacScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x7c498
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokemaniacDonald:
 	trainer EVENT_BEAT_POKEMANIAC_DONALD, POKEMANIAC, DONALD, PokemaniacDonaldSeenText, PokemaniacDonaldBeatenText, 0, PokemaniacDonaldScript
 
 PokemaniacDonaldScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x7c52f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GrannyScript_0x7c132:
@@ -157,7 +157,7 @@ GrannyScript_0x7c132:
 
 .Open:
 	pokemart MARTTYPE_BITTER, MART_UNDERGROUND
-	loadmovesprites
+	closetext
 	end
 
 GrampsScript_0x7c146:
@@ -172,7 +172,7 @@ GrampsScript_0x7c146:
 	checkmorn
 	iffalse WarehouseEntranceScript_ShopClosed
 	pokemart MARTTYPE_BARGAIN, 0
-	loadmovesprites
+	closetext
 	end
 
 OlderHaircutBrotherScript:
@@ -224,8 +224,8 @@ OlderHaircutBrotherScript:
 	takemoney $0, 500
 	special PlaceMoneyTopRightOW
 	writetext UnknownText_0x7c6b8
+	waitbutton
 	closetext
-	loadmovesprites
 	special RotatePalettesRightPalettes
 	playmusic MUSIC_HEAL
 	pause 60
@@ -233,7 +233,7 @@ OlderHaircutBrotherScript:
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x7c6d8
-	closetext
+	waitbutton
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x7c2bb
 	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
@@ -242,20 +242,20 @@ OlderHaircutBrotherScript:
 
 .Refused:
 	writetext UnknownText_0x7c6ea
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .NotEnoughMoney:
 	writetext UnknownText_0x7c709
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .AlreadyGotHaircut:
 	writetext UnknownText_0x7c72b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungerHaircutBrotherScript:
@@ -307,8 +307,8 @@ YoungerHaircutBrotherScript:
 	takemoney $0, 300
 	special PlaceMoneyTopRightOW
 	writetext UnknownText_0x7c80e
+	waitbutton
 	closetext
-	loadmovesprites
 	special RotatePalettesRightPalettes
 	playmusic MUSIC_HEAL
 	pause 60
@@ -316,7 +316,7 @@ YoungerHaircutBrotherScript:
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x7c82a
-	closetext
+	waitbutton
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x7c2bb
 	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
@@ -325,41 +325,41 @@ YoungerHaircutBrotherScript:
 
 .Refused:
 	writetext UnknownText_0x7c842
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .NotEnoughMoney:
 	writetext UnknownText_0x7c85b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .AlreadyGotHaircut:
 	writetext UnknownText_0x7c87b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7c2bb:
 	writetext HaircutBrosText_SlightlyHappier
 	special PlayCurMonCry
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7c2c4:
 	writetext HaircutBrosText_Happier
 	special PlayCurMonCry
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7c2cd:
 	writetext HaircutBrosText_MuchHappier
 	special PlayCurMonCry
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 BasementDoorScript::
@@ -369,31 +369,31 @@ BasementDoorScript::
 	checkitem BASEMENT_KEY
 	iftrue .Unlock
 	writetext UnknownText_0x7c5b0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Unlock:
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x7c5d6
+	waitbutton
 	closetext
-	loadmovesprites
 	changeblock $12, $6, $2e
 	reloadmappart
-	loadmovesprites
+	closetext
 	setevent EVENT_USED_BASEMENT_KEY
 	end
 
 .Open:
 	writetext UnknownText_0x7c5c3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 WarehouseEntranceScript_ShopClosed:
 	writetext UnknownText_0x7c904
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ItemFragment_0x7c306:

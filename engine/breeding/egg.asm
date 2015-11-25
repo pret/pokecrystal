@@ -194,7 +194,7 @@ OverworldHatchEgg:: ; 16f5e
 	call Function16f70
 	call ExitAllMenus
 	call RestartMapMusic
-	jp LoadMoveSprites
+	jp CloseText
 ; 16f70
 
 Function16f70: ; 16f70 (5:6f70)

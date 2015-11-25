@@ -8,7 +8,7 @@ SaffronMart_MapScriptHeader:
 ClerkScript_0x18a3bf:
 	loadfont
 	pokemart MARTTYPE_STANDARD, MART_SAFFRON
-	loadmovesprites
+	closetext
 	end
 
 CooltrainerMScript_0x18a3c6:

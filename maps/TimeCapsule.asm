@@ -45,8 +45,8 @@ MapTimeCapsuleSignpost1Script:
 ChrisScript_0x19351a:
 	loadfont
 	writetext UnknownText_0x193521
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x193521:

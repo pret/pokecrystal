@@ -46,26 +46,26 @@ SailorScript_0x75160:
 	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	iftrue .Olivine
 	writetext UnknownText_0x7523b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Olivine
 	writetext UnknownText_0x7529b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Arrived:
 	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	iftrue ._Olivine
 	writetext UnknownText_0x754be
+	waitbutton
 	closetext
-	loadmovesprites
 	scall .LetThePlayerOut
 	playsound SFX_EXIT_BUILDING
 	special RotatePalettesRightPalettes
-	waitbutton
+	waitsfx
 	setevent EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
 	domaptrigger VERMILION_PORT, $1
 	warp VERMILION_PORT, $7, $11
@@ -73,12 +73,12 @@ SailorScript_0x75160:
 
 ._Olivine
 	writetext UnknownText_0x7548d
+	waitbutton
 	closetext
-	loadmovesprites
 	scall .LetThePlayerOut
 	playsound SFX_EXIT_BUILDING
 	special RotatePalettesRightPalettes
-	waitbutton
+	waitsfx
 	setevent EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
 	domaptrigger OLIVINE_PORT, $1
 	warp OLIVINE_PORT, $7, $17
@@ -102,14 +102,14 @@ SailorScript_0x751d0:
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue .Vermilion
 	writetext UnknownText_0x752f9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Vermilion:
 	writetext UnknownText_0x7534f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SailorScript_0x751e4:
@@ -126,8 +126,8 @@ WorriedGrandpaTriggerLeft:
 	applymovement $5, MovementData_0x75220
 	loadfont
 	writetext UnknownText_0x75412
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, RIGHT
 	applymovement $5, MovementData_0x75222
 	disappear $5

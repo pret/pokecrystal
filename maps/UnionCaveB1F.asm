@@ -9,44 +9,44 @@ TrainerPokemaniacAndrew:
 	trainer EVENT_BEAT_POKEMANIAC_ANDREW, POKEMANIAC, ANDREW, PokemaniacAndrewSeenText, PokemaniacAndrewBeatenText, 0, PokemaniacAndrewScript
 
 PokemaniacAndrewScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5a181
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokemaniacCalvin:
 	trainer EVENT_BEAT_POKEMANIAC_CALVIN, POKEMANIAC, CALVIN, PokemaniacCalvinSeenText, PokemaniacCalvinBeatenText, 0, PokemaniacCalvinScript
 
 PokemaniacCalvinScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5a230
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerHikerPhillip:
 	trainer EVENT_BEAT_HIKER_PHILLIP, HIKER, PHILLIP, HikerPhillipSeenText, HikerPhillipBeatenText, 0, HikerPhillipScript
 
 HikerPhillipScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5a073
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerHikerLeonard:
 	trainer EVENT_BEAT_HIKER_LEONARD, HIKER, LEONARD, HikerLeonardSeenText, HikerLeonardBeatenText, 0, HikerLeonardScript
 
 HikerLeonardScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5a0fb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ItemFragment_0x5a016:

@@ -9,8 +9,8 @@ SelectMenu:: ; 13327
 	ld b, BANK(ItemMayBeRegisteredText)
 	ld hl, ItemMayBeRegisteredText
 	call MapTextbox
-	call CloseText
-	jp LoadMoveSprites
+	call WaitButton
+	jp CloseText
 ; 13340
 
 
@@ -141,7 +141,7 @@ UseRegisteredItem: ; 133c3
 .NoFunction ; 133df
 	call LoadFont
 	call CantUseItem
-	call LoadMoveSprites
+	call CloseText
 	and a
 	ret
 ; 133ea
@@ -149,7 +149,7 @@ UseRegisteredItem: ; 133c3
 .Current ; 133ea
 	call LoadFont
 	call DoItemEffect
-	call LoadMoveSprites
+	call CloseText
 	and a
 	ret
 ; 133f5
@@ -159,7 +159,7 @@ UseRegisteredItem: ; 133c3
 	call FadeToMenu
 	call DoItemEffect
 	call ReturnToCallingMenu
-	call LoadMoveSprites
+	call CloseText
 	and a
 	ret
 ; 13406
@@ -185,7 +185,7 @@ UseRegisteredItem: ; 133c3
 
 ._cantuse
 	call CantUseItem
-	call LoadMoveSprites
+	call CloseText
 	and a
 	ret
 ; 1342d

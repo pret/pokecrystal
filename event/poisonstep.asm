@@ -114,7 +114,7 @@ DoPoisonStep:: ; 505da
 	loadfont
 	callasm .CheckWhitedOut
 	iffalse .whiteout
-	loadmovesprites
+	closetext
 	end
 ; 50677
 

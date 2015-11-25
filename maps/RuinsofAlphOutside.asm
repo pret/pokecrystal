@@ -56,8 +56,8 @@ ScientistScript_0x58043:
 UnknownScript_0x58044:
 	loadfont
 	writetext UnknownText_0x580c7
+	waitbutton
 	closetext
-	loadmovesprites
 	playmusic MUSIC_SHOW_ME_AROUND
 	follow $3, PLAYER
 	applymovement $3, MovementData_0x580ba
@@ -78,24 +78,24 @@ FisherScript_0x58061:
 	keeptextopen
 .Next
 	writetext UnknownText_0x58420
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x58076:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x58449
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x5807e:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5848e
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $6, UP
 	end
 
@@ -103,11 +103,11 @@ TrainerPsychicNathan:
 	trainer EVENT_BEAT_PSYCHIC_NATHAN, PSYCHIC_T, NATHAN, PsychicNathanSeenText, PsychicNathanBeatenText, 0, PsychicNathanScript
 
 PsychicNathanScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5830e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 
@@ -115,11 +115,11 @@ TrainerSuperNerdStan:
 	trainer EVENT_BEAT_SUPER_NERD_STAN, SUPER_NERD, STAN, UnknownText_0x581e5, UnknownText_0x58217, 0, UnknownScript_0x580a9
 
 UnknownScript_0x580a9:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x58250
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 

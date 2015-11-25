@@ -23,17 +23,17 @@ CianwoodPharmacist:
 	giveitem SECRETPOTION
 	writetext ReceivedSecretpotionText
 	playsound SFX_KEY_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
 	setevent EVENT_GOT_SECRETPOTION_FROM_PHARMACY
 	writetext PharmacistDescribeSecretpotionText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Mart
 	pokemart MARTTYPE_PHARMACY, MART_CIANWOOD
-	loadmovesprites
+	closetext
 	end
 
 CianwoodPharmacyBookshelf:

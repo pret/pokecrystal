@@ -70,8 +70,8 @@ BattleTowerHallway_MapScriptHeader:
 	faceperson PLAYER, $2
 	loadfont
 	writetext Text_PleaseStepThisWay
+	waitbutton
 	closetext
-	loadmovesprites
 	stopfollow
 	applymovement PLAYER, MovementData_0x9e576
 	warpcheck

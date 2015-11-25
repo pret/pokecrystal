@@ -9,8 +9,8 @@ MoveDeleter:
 	faceplayer
 	loadfont
 	special MoveDeletion
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MoveDeletersHouseBookshelf:

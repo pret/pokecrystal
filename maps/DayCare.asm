@@ -28,31 +28,31 @@ GrampsScript_0x62f8f:
 	iftrue UnknownScript_0x62fbd
 	writetext UnknownText_0x630ce
 	keeptextopen
-	loadmovesprites
+	closetext
 	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x62fb6
 	special Function117656
 	loadfont
 	writetext UnknownText_0x631ae
 	playsound SFX_KEY_ITEM
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x631c3
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_GOT_ODD_EGG
 	end
 
 UnknownScript_0x62fb6:
 	loadfont
 	writetext UnknownText_0x63237
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x62fbd:
 	special Special_DayCareMan
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GrannyScript_0x62fc3:
@@ -61,14 +61,14 @@ GrannyScript_0x62fc3:
 	checkflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
 	iftrue UnknownScript_0x62fd1
 	special Special_DayCareLady
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x62fd1:
 	writetext UnknownText_0x62fda
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 DayCareBookshelf:

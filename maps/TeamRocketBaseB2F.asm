@@ -50,8 +50,8 @@ UnknownScript_0x6cfac:
 	appear $2
 	loadfont
 	writetext UnknownText_0x6d2ad
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
 	applymovement PLAYER, MovementData_0x6d21f
@@ -61,8 +61,8 @@ UnknownScript_0x6cfac:
 	applymovement $2, MovementData_0x6d22f
 	loadfont
 	writetext UnknownText_0x6d2c3
+	waitbutton
 	closetext
-	loadmovesprites
 	cry DRAGONITE
 	spriteface $3, LEFT
 	spriteface PLAYER, LEFT
@@ -74,19 +74,19 @@ UnknownScript_0x6cfac:
 	applymovement $4, MovementData_0x6d244
 	loadfont
 	writetext UnknownText_0x6d38c
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, RIGHT
 	applymovement $3, MovementData_0x6d241
 	loadfont
 	writetext UnknownText_0x6d3bd
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x6d24a
 	applymovement $3, MovementData_0x6d248
 	winlosstext UnknownText_0x6d45c, 0
 	setlasttalked $3
-	loadtrainer EXECUTIVEF, 2
+	scriptedtrainerdata EXECUTIVEF, 2
 	startbattle
 	disappear $5
 	setevent EVENT_TEAM_ROCKET_BASE_B2F_EXECUTIVE
@@ -96,8 +96,8 @@ UnknownScript_0x6cfac:
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEF_2
 	loadfont
 	writetext UnknownText_0x6d4c6
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
 	disappear $2
@@ -112,22 +112,22 @@ UnknownScript_0x6cfac:
 	spriteface $4, DOWN
 	loadfont
 	writetext UnknownText_0x6d5d8
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $4, MovementData_0x6d250
 	spriteface PLAYER, UP
 	loadfont
 	writetext UnknownText_0x6d64e
+	waitbutton
 	closetext
-	loadmovesprites
 	follow $4, PLAYER
 	applymovement $4, MovementData_0x6d254
 	stopfollow
 	applymovement $4, MovementData_0x6d258
 	loadfont
 	writetext UnknownText_0x6d6cf
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $4, MovementData_0x6d267
 	disappear $4
 
@@ -138,8 +138,8 @@ UnknownScript_0x6d075:
 UnknownScript_0x6d07a:
 	loadfont
 	writetext UnknownText_0x6d7ea
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x6d278
 	end
 
@@ -153,8 +153,8 @@ UnknownScript_0x6d08b:
 UnknownScript_0x6d091:
 	loadfont
 	writetext UnknownText_0x6da97
+	waitbutton
 	closetext
-	loadmovesprites
 	special RotatePalettesRightPalettes
 	special Mobile_HealParty
 	playsound SFX_FULL_HEAL
@@ -162,8 +162,8 @@ UnknownScript_0x6d091:
 	special RotatePalettesLeftPalettes
 	loadfont
 	writetext UnknownText_0x6daf7
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $1
 	setevent EVENT_LANCE_HEALED_YOU_IN_TEAM_ROCKET_BASE
 	checkcode VAR_FACING
@@ -181,38 +181,38 @@ TrainerGruntM17:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_17, GRUNTM, 17, GruntM17SeenText, GruntM17BeatenText, 0, GruntM17Script
 
 GruntM17Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x6db88
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGruntM18:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_18, GRUNTM, 18, GruntM18SeenText, GruntM18BeatenText, 0, GruntM18Script
 
 GruntM18Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x6dc1a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGruntM19:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_19, GRUNTM, 19, GruntM19SeenText, GruntM19BeatenText, 0, GruntM19Script
 
 GruntM19Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x6dcd1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 VoltorbScript_0x6d101:
 	cry ELECTRODE
-	loadpokedata ELECTRODE, 23
+	scriptedpokedata ELECTRODE, 23
 	startbattle
 	iftrue UnknownScript_0x6d182
 	disappear $6
@@ -230,7 +230,7 @@ VoltorbScript_0x6d101:
 
 VoltorbScript_0x6d12c:
 	cry ELECTRODE
-	loadpokedata ELECTRODE, 23
+	scriptedpokedata ELECTRODE, 23
 	startbattle
 	iftrue UnknownScript_0x6d182
 	disappear $7
@@ -248,7 +248,7 @@ VoltorbScript_0x6d12c:
 
 VoltorbScript_0x6d157:
 	cry ELECTRODE
-	loadpokedata ELECTRODE, 23
+	scriptedpokedata ELECTRODE, 23
 	startbattle
 	iftrue UnknownScript_0x6d182
 	disappear $8
@@ -279,13 +279,13 @@ UnknownScript_0x6d184:
 	verbosegiveitem HM_WHIRLPOOL
 	setevent EVENT_GOT_HM06_WHIRLPOOL
 	writetext UnknownText_0x6d8f8
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $4, DOWN
 	loadfont
 	writetext UnknownText_0x6d994
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, DOWN
 	applymovement $4, MovementData_0x6d283
 	disappear $4
@@ -313,19 +313,19 @@ MapTeamRocketBaseB2FSignpost1Script:
 	checkevent EVENT_LEARNED_HAIL_GIOVANNI
 	iftrue UnknownScript_0x6d1e8
 	writetext UnknownText_0x6dd39
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6d1e8:
 	writetext UnknownText_0x6dd6b
-	closetext
+	waitbutton
 	playsound SFX_ENTER_DOOR
 	changeblock $e, $c, $7
 	reloadmappart
-	loadmovesprites
+	closetext
 	setevent EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER
-	waitbutton
+	waitsfx
 	end
 
 MapTeamRocketBaseB2FSignpost21Script:
@@ -333,14 +333,14 @@ MapTeamRocketBaseB2FSignpost21Script:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x6d207
 	writetext UnknownText_0x6dda7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6d207:
 	writetext UnknownText_0x6de03
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ItemFragment_0x6d20d:

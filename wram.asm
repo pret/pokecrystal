@@ -311,7 +311,7 @@ AutoInputLength:: ; c2cb
 
 wc2cc:: ds 1
 wc2cd:: ds 1
-wc2ce:: ds 1
+wSpriteUpdatesEnabled:: ds 1
 wc2cf:: ds 1
 wc2d0:: ds 4
 wc2d4:: ds 1
@@ -512,15 +512,15 @@ TileMapEnd::
 
 
 SECTION "Battle", WRAM0
-	party_struct OddEgg
+wOddEgg:: party_struct OddEgg
 wOddEggName:: ds PKMN_NAME_LENGTH
 wOddEggOTName:: ds PKMN_NAME_LENGTH
-	ds -70
+	ds wOddEgg - @
 
 wBT_OTTemp:: battle_tower_struct wBT_OTTemp
 	ds wBT_OTTemp - @
 
-wMisc::
+wMisc:: ; ds $28 * 6
 wBattle::
 wc608::
 
@@ -1679,7 +1679,7 @@ wd048:: ds 1
 wLossTextPointer:: ds 2
 wScriptAfterPointer::
 wd04b:: ds 2
-wd04d:: ds 1
+wRunningTrainerBattleScript:: ds 1
 MenuItemsListEnd::
 wTempTrainerHeaderEnd::
 wd04e:: ds 2
@@ -2221,7 +2221,7 @@ wd453:: ds 1
 wd454:: ds 1
 	ds 4
 
-wd459:: ds 2
+wBattleScriptFlags:: ds 2
 wPlayerSpriteSetupFlags:: ds 1
 wMapReentryScriptQueueFlag:: ds 1 ; MemScriptFlag
 wMapReentryScriptBank:: ds 1 ; MemScriptBank
@@ -2990,8 +2990,8 @@ w3_d742:: battle_tower_struct w3_d742
 wBTChoiceOfLvlGroup::
 w3_d800:: ds $400
 w3_dc00:: ds $168
-w3_dd68::
-
+w3_dd68:: ds $294
+w3_dffc:: ds 4
 
 SECTION "GBC Video", WRAMX, BANK [5]
 

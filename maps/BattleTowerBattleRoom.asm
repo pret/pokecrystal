@@ -24,12 +24,12 @@ Script_BattleRoomLoop: ; 0x9f425
 	special Function_LoadOpponentTrainerAndPokemonsWithOTSprite
 	appear $2
 	warpsound
-	waitbutton
+	waitsfx
 	applymovement $2, MovementData_0x9e592
 	loadfont
 	battletowertext 1
 	keeptextopen
-	loadmovesprites
+	closetext
 	special BattleTowerBattle ; calls predef startbattle
 	special RotatePalettesRightPalettes
 	reloadmap
@@ -43,8 +43,8 @@ Script_BattleRoomLoop: ; 0x9f425
 	applymovement PLAYER, MovementData_0x9e5a7
 	loadfont
 	writetext Text_YourPkmnWillBeHealedToFullHealth
+	waitbutton
 	closetext
-	loadmovesprites
 	playmusic MUSIC_HEAL
 	special RotatePalettesRightPalettes
 	special LoadMapPalettes
@@ -56,7 +56,7 @@ Script_BattleRoomLoop: ; 0x9f425
 	yesorno
 	iffalse Script_DontBattleNextOpponent
 Script_ContinueAndBattleNextOpponent: ; 0x9f477
-	loadmovesprites
+	closetext
 	applymovement PLAYER, MovementData_0x9e5a9
 	applymovement $3, MovementData_0x9e5a1
 	jump Script_BattleRoomLoop
@@ -72,7 +72,7 @@ Script_DontBattleNextOpponent: ; 0x9f483
 	writebyte BATTLE_TOWER_ACTION_03
 	special BattleTowerAction
 	playsound SFX_SAVE
-	waitbutton
+	waitsfx
 	special RotatePalettesRightPalettes
 	special Reset
 Script_DontSaveAndEndTheSession: ; 0x9f4a3
@@ -83,7 +83,7 @@ Script_DontSaveAndEndTheSession: ; 0x9f4a3
 	special BattleTowerAction
 	writebyte BATTLE_TOWER_ACTION_06
 	special BattleTowerAction
-	loadmovesprites
+	closetext
 	special RotatePalettesRightPalettes
 	warpfacing UP, BATTLE_TOWER_1F, $7, $7
 	loadfont
@@ -97,8 +97,8 @@ Script_FailedBattleTowerChallenge:
 	special BattleTowerAction
 	loadfont
 	writetext Text_ThanksForVisiting
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Script_BeatenAllTrainers: ; 0x9f4d9
@@ -115,8 +115,8 @@ UnknownScript_0x9f4eb:
 	special BattleTowerAction
 	loadfont
 	writetext Text_TooMuchTimeElapsedNoRegister
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x9f4f7:
@@ -127,8 +127,8 @@ UnknownScript_0x9f4f7:
 	loadfont
 	writetext Text_ThanksForVisiting
 	writetext Text_WeHopeToServeYouAgain
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 

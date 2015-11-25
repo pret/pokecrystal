@@ -30,10 +30,10 @@ HoOhScript_0x77244:
 	writetext UnknownText_0x77260
 	cry HO_OH
 	pause 15
-	loadmovesprites
+	closetext
 	setevent EVENT_FOUGHT_HO_OH
 	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
-	loadpokedata HO_OH, 60
+	scriptedpokedata HO_OH, 60
 	startbattle
 	disappear $2
 	returnafterbattle

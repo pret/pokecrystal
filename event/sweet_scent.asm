@@ -11,12 +11,12 @@ UnknownScript_0x506c8: ; 0x506c8
 	special UpdateTimePals
 	callasm GetPartyNick
 	writetext UnknownText_0x50726
-	closetext
+	waitbutton
 	callasm SweetScentEncounter
 	iffalse UnknownScript_0x506e9
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue UnknownScript_0x506e5
-	battlecheck
+	setup_random_encounter
 	startbattle
 	returnafterbattle
 	end
@@ -28,8 +28,8 @@ UnknownScript_0x506e5: ; 0x506e5
 
 UnknownScript_0x506e9: ; 0x506e9
 	writetext UnknownText_0x5072b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x506ef
 

@@ -9,8 +9,8 @@ TeacherScript_0x7b125:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x7b14d
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
 	special Mobile_HealParty
@@ -21,8 +21,8 @@ TeacherScript_0x7b125:
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x7b18b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route26HealHouseBookshelf:

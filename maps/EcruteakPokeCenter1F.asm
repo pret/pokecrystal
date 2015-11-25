@@ -20,7 +20,7 @@ UnknownScript_0x98e64:
 	pause 30
 	playsound SFX_EXIT_BUILDING
 	appear $6
-	waitbutton
+	waitsfx
 	applymovement $6, MovementData_0x98ec5
 	applymovement PLAYER, MovementData_0x98ed4
 	spriteface $2, UP
@@ -40,8 +40,8 @@ UnknownScript_0x98e64:
 
 UnknownScript_0x98e95:
 	writetext UnknownText_0x98f22
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, DOWN
 	applymovement $6, MovementData_0x98ece
 	playsound SFX_EXIT_BUILDING
@@ -49,7 +49,7 @@ UnknownScript_0x98e95:
 	clearevent EVENT_MET_BILL
 	setflag ENGINE_TIME_CAPSULE
 	dotrigger $1
-	waitbutton
+	waitsfx
 	end
 
 NurseScript_0x98eb0:

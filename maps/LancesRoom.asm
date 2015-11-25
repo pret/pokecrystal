@@ -38,7 +38,7 @@ UnknownScript_0x180e53:
 	earthquake 80
 	changeblock $4, $16, $34
 	reloadmappart
-	loadmovesprites
+	closetext
 	dotrigger $1
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	end
@@ -55,23 +55,23 @@ LanceScript_0x180e7b:
 	spriteface $2, LEFT
 	loadfont
 	writetext UnknownText_0x180f67
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x1810a4, 0
 	setlasttalked $2
-	loadtrainer CHAMPION, LANCE
+	scriptedtrainerdata CHAMPION, LANCE
 	startbattle
 	reloadmapmusic
 	returnafterbattle
 	setevent EVENT_BEAT_CHAMPION_LANCE
 	loadfont
 	writetext UnknownText_0x181132
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_ENTER_DOOR
 	changeblock $4, $0, $b
 	reloadmappart
-	loadmovesprites
+	closetext
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	musicfadeout MUSIC_BEAUTY_ENCOUNTER, $10
 	pause 30
@@ -83,8 +83,8 @@ LanceScript_0x180e7b:
 	applymovement $3, MovementData_0x180f41
 	loadfont
 	writetext UnknownText_0x1811dd
+	waitbutton
 	closetext
-	loadmovesprites
 	appear $4
 	applymovement $4, MovementData_0x180f46
 	follow $3, $4
@@ -94,20 +94,20 @@ LanceScript_0x180e7b:
 	spriteface $2, LEFT
 	loadfont
 	writetext UnknownText_0x18121b
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $3, MovementData_0x180f4c
 	spriteface PLAYER, LEFT
 	loadfont
 	writetext UnknownText_0x18134b
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x180f4f
 	spriteface PLAYER, UP
 	loadfont
 	writetext UnknownText_0x18137b
+	waitbutton
 	closetext
-	loadmovesprites
 	follow $2, PLAYER
 	spriteface $3, UP
 	spriteface $4, UP
@@ -123,7 +123,7 @@ LanceScript_0x180e7b:
 	loadfont
 	writetext UnknownText_0x1813c5
 	pause 30
-	loadmovesprites
+	closetext
 	applymovement $3, MovementData_0x180f5b
 	special RotatePalettesRightPalettes
 	pause 15

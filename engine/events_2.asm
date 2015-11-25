@@ -142,7 +142,7 @@ RandomEncounter:: ; 97cc0
 ; 97cf9
 
 WildBattleScript: ; 97cf9
-	battlecheck
+	setup_random_encounter
 	startbattle
 	returnafterbattle
 	end

@@ -143,7 +143,7 @@ ScriptCommandTable: ; 96cb1
 	dw Script_pocketisfull
 	dw Script_loadfont
 	dw Script_refreshscreen
-	dw Script_loadmovesprites
+	dw Script_closetext
 	dw Script_loadbytec2cf
 	dw Script_farwritetext
 	dw Script_writetext
@@ -156,26 +156,26 @@ IF _CRYSTAL
 	dw Script_farjumptext
 ENDC
 	dw Script_jumptext
-	dw Script_closetext
+	dw Script_waitbutton
 	dw Script_keeptextopen
 	dw Script_pokepic
-	dw Script_pokepicyesorno
+	dw Script_closepokepic
 	dw Script_interpretmenu
 	dw Script_interpretmenu2
 	dw Script_loadpikachudata
-	dw Script_battlecheck
-	dw Script_loadtrainerdata
-	dw Script_loadpokedata
-	dw Script_loadtrainer
+	dw Script_setup_random_encounter
+	dw Script_memtrainerdata
+	dw Script_scriptedpokedata
+	dw Script_scriptedtrainerdata
 	dw Script_startbattle
 	dw Script_returnafterbattle
 	dw Script_catchtutorial
 	dw Script_trainertext
-	dw Script_trainerstatus
+	dw Script_trainerflagaction
 	dw Script_winlosstext
 	dw Script_scripttalkafter
-	dw Script_talkaftercancel
-	dw Script_talkaftercheck
+	dw Script_end_if_just_battled
+	dw Script_check_just_battled
 	dw Script_setlasttalked
 	dw Script_applymovement
 	dw Script_applymovement2
@@ -200,13 +200,13 @@ ENDC
 	dw Script_writecmdqueue
 	dw Script_delcmdqueue
 	dw Script_playmusic
-	dw Script_playrammusic
+	dw Script_encountermusic
 	dw Script_musicfadeout
 	dw Script_playmapmusic
 	dw Script_reloadmapmusic
 	dw Script_cry
 	dw Script_playsound
-	dw Script_waitbutton
+	dw Script_waitsfx
 	dw Script_warpsound
 	dw Script_specialsound
 	dw Script_passtoengine
@@ -347,8 +347,8 @@ JumpTextFacePlayerScript: ; 96e79
 JumpTextScript: ; 96e7a
 	loadfont
 	repeattext -1, -1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 96e81
 
@@ -431,10 +431,10 @@ Script_repeattext: ; 96ebb
 	ret
 ; 96ed9
 
-Script_closetext: ; 96ed9
+Script_waitbutton: ; 96ed9
 ; script command 0x54
 
-	jp CloseText
+	jp WaitButton
 ; 96edc
 
 Script_keeptextopen: ; 96edc
@@ -455,9 +455,9 @@ Script_yesorno: ; 96eed
 ; script command 0x4e
 
 	call YesNoBox
-	ld a, 0
+	ld a, FALSE
 	jr c, .no
-	ld a, 1
+	ld a, TRUE
 .no
 	ld [ScriptVar], a
 	ret
@@ -502,10 +502,10 @@ Script_pokepic: ; 96f16
 	ret
 ; 96f29
 
-Script_pokepicyesorno: ; 96f29
+Script_closepokepic: ; 96f29
 ; script command 0x57
 
-	callba PokepicYesOrNo
+	callba ClosePokepic
 	ret
 ; 96f30
 
@@ -575,9 +575,9 @@ GiveItemScript: ; 96f77
 	callasm ret_96f76
 	writetext ReceivedItemText
 	iffalse .Full
-	waitbutton
+	waitsfx
 	specialsound
-	closetext
+	waitbutton
 	itemnotify
 	end
 
@@ -611,7 +611,7 @@ Script_verbosegiveitem2: ; 96f8e
 	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
 	call ReceiveItem
-	ld a, 1
+	ld a, TRUE
 	jr c, .ok2
 	xor a
 .ok2
@@ -748,7 +748,7 @@ Script_elevator: ; 9707c
 	ld b, a
 	callba Elevator
 	ret c
-	ld a, $1
+	ld a, TRUE
 	ld [ScriptVar], a
 	ret
 ; 97099
@@ -885,7 +885,7 @@ Script_scripttalkafter: ; 97125
 	jp ScriptJump
 ; 97132
 
-Script_trainerstatus: ; 97132
+Script_trainerflagaction: ; 97132
 ; script command 0x63
 ; parameters:
 ;     action (SingleByteParam)
@@ -902,7 +902,7 @@ Script_trainerstatus: ; 97132
 	ld a, c
 	and a
 	ret z
-	ld a, 1
+	ld a, TRUE
 	ld [ScriptVar], a
 	ret
 ; 9714c
@@ -926,21 +926,21 @@ Script_winlosstext: ; 9714c
 	ret
 ; 97163
 
-Script_talkaftercancel: ; 97163
+Script_end_if_just_battled: ; 97163
 ; script command 0x66
 
-	ld a, [wd04d]
+	ld a, [wRunningTrainerBattleScript]
 	and a
 	ret z
 	jp Script_end
 ; 9716b
 
-Script_talkaftercheck: ; 9716b
+Script_check_just_battled: ; 9716b
 ; script command 0x67
 
-	ld a, 1
+	ld a, TRUE
 	ld [ScriptVar], a
-	ld a, [wd04d]
+	ld a, [wRunningTrainerBattleScript]
 	and a
 	ret nz
 	xor a
@@ -948,7 +948,7 @@ Script_talkaftercheck: ; 9716b
 	ret
 ; 9717a
 
-Script_playrammusic: ; 9717a
+Script_encountermusic: ; 9717a
 ; script command 0x80
 
 	ld a, [OtherTrainerClass]
@@ -1011,7 +1011,7 @@ Script_playsound: ; 971b7
 	ret
 ; 971c3
 
-Script_waitbutton: ; 971c3
+Script_waitsfx: ; 971c3
 ; script command 0x86
 
 	call WaitSFX
@@ -1481,19 +1481,19 @@ Script_loadpikachudata: ; 973f0
 	ret
 ; 973fb
 
-Script_battlecheck: ; 973fb
+Script_setup_random_encounter: ; 973fb
 ; script command 0x5b
 
 	xor a
-	ld [wd459], a
+	ld [wBattleScriptFlags], a
 	ret
 ; 97400
 
-Script_loadtrainerdata: ; 97400
+Script_memtrainerdata: ; 97400
 ; script command 0x5c
 
 	ld a, (1 << 7) | 1
-	ld [wd459], a
+	ld [wBattleScriptFlags], a
 	ld a, [WalkingDirection]
 	ld [OtherTrainerClass], a
 	ld a, [FacingDirection]
@@ -1501,14 +1501,14 @@ Script_loadtrainerdata: ; 97400
 	ret
 ; 97412
 
-Script_loadpokedata: ; 97412
+Script_scriptedpokedata: ; 97412
 ; script command 0x5d
 ; parameters:
 ;     pokemon (PokemonParam)
 ;     level (DecimalParam)
 
 	ld a, (1 << 7)
-	ld [wd459], a
+	ld [wBattleScriptFlags], a
 	call GetScriptByte
 	ld [TempWildMonSpecies], a
 	call GetScriptByte
@@ -1516,14 +1516,14 @@ Script_loadpokedata: ; 97412
 	ret
 ; 97424
 
-Script_loadtrainer: ; 97424
+Script_scriptedtrainerdata: ; 97424
 ; script command 0x5e
 ; parameters:
 ;     trainer_group (TrainerGroupParam)
 ;     trainer_id (TrainerIdParam)
 
 	ld a, (1 << 7) | 1
-	ld [wd459], a
+	ld [wBattleScriptFlags], a
 	call GetScriptByte
 	ld [OtherTrainerClass], a
 	call GetScriptByte
@@ -1557,7 +1557,7 @@ Script_catchtutorial: ; 97447
 Script_returnafterbattle: ; 97459
 ; script command 0x60
 
-	ld hl, wd459
+	ld hl, wBattleScriptFlags
 	ld d, [hl]
 	ld [hl], $0
 	ld a, [wBattleResult]
@@ -1589,7 +1589,7 @@ Script_reloadmap: ; 97491
 ; script command 0x7b
 
 	xor a
-	ld [wd459], a
+	ld [wBattleScriptFlags], a
 	ld a, MAPSETUP_RELOADMAP
 	ld [hMapEntryMethod], a
 	ld a, $1
@@ -2362,7 +2362,7 @@ Script_giveitem: ; 977ca
 	ld hl, NumItems
 	call ReceiveItem
 	jr nc, .full
-	ld a, $1
+	ld a, TRUE
 	ld [ScriptVar], a
 	ret
 .full
@@ -2388,7 +2388,7 @@ Script_takeitem: ; 977f0
 	ld hl, NumItems
 	call TossItem
 	ret nc
-	ld a, $1
+	ld a, TRUE
 	ld [ScriptVar], a
 	ret
 ; 97812
@@ -2405,7 +2405,7 @@ Script_checkitem: ; 97812
 	ld hl, NumItems
 	call CheckItem
 	ret nc
-	ld a, 1
+	ld a, TRUE
 	ld [ScriptVar], a
 	ret
 ; 97829
@@ -2534,7 +2534,7 @@ Script_checktime: ; 978ae
 	call GetScriptByte
 	and c
 	ret z
-	ld a, $1
+	ld a, TRUE
 	ld [ScriptVar], a
 	ret
 ; 978c3
@@ -2551,7 +2551,7 @@ Script_checkpoke: ; 978c3
 	ld de, 1
 	call IsInArray
 	ret nc
-	ld a, 1
+	ld a, TRUE
 	ld [ScriptVar], a
 	ret
 ; 978da
@@ -2567,7 +2567,7 @@ Script_addcellnum: ; 978da
 	ld c, a
 	callba AddPhoneNumber
 	ret nc
-	ld a, $1
+	ld a, TRUE
 	ld [ScriptVar], a
 	ret
 ; 978ef
@@ -2583,7 +2583,7 @@ Script_delcellnum: ; 978ef
 	ld c, a
 	callba DelCellNum
 	ret nc
-	ld a, $1
+	ld a, TRUE
 	ld [ScriptVar], a
 	ret
 ; 97904
@@ -2600,7 +2600,7 @@ Script_checkcellnum: ; 97904
 	ld c, a
 	callba CheckCellNum
 	ret nc
-	ld a, $1
+	ld a, TRUE
 	ld [ScriptVar], a
 	ret
 ; 97919
@@ -2624,7 +2624,7 @@ Script_checkphonecall: ; 97926
 	ld a, [wSpecialPhoneCallID]
 	and a
 	jr z, .ok
-	ld a, 1
+	ld a, TRUE
 .ok
 	ld [ScriptVar], a
 	ret
@@ -2728,7 +2728,7 @@ Script_checkevent: ; 979a4
 	ld a, c
 	and a
 	jr z, .false
-	ld a, 1
+	ld a, TRUE
 .false
 	ld [ScriptVar], a
 	ret
@@ -2743,7 +2743,7 @@ Script_setflag: ; 979bb
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	ld b, 1 ; set
+	ld b, SET_FLAG
 	call _EngineFlagAction
 	ret
 ; 979c9
@@ -2757,7 +2757,7 @@ Script_clearflag: ; 979c9
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	ld b, 0 ; clear
+	ld b, RESET_FLAG
 	call _EngineFlagAction
 	ret
 ; 979d7
@@ -2776,7 +2776,7 @@ Script_checkflag: ; 979d7
 	ld a, c
 	and a
 	jr z, .false
-	ld a, 1
+	ld a, TRUE
 .false
 	ld [ScriptVar], a
 	ret
@@ -3053,15 +3053,15 @@ Script_loadbytec2cf: ; 97b27
 ; 97b2e
 
 
-LoadMoveSpritesScript: ; 97b2e
-	loadmovesprites
+CloseTextScript: ; 97b2e
+	closetext
 ; 97b2f
 
-Script_loadmovesprites: ; 97b2f
+Script_closetext: ; 97b2f
 ; script command 0x49
 
 	call Function2e20
-	call LoadMoveSprites
+	call CloseText
 	ret
 ; 97b36
 

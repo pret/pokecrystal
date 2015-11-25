@@ -21,8 +21,8 @@ UnknownScript_0x58f6d:
 UnknownScript_0x58f6e:
 	loadfont
 	writetext UnknownText_0x58f89
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $0
 	setevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	clearevent EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_FISHER

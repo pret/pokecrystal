@@ -44,14 +44,14 @@ UnknownScript_0x190470:
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	iftrue UnknownScript_0x19048f
 	writetext UnknownText_0x1907ab
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x190489:
 	writetext UnknownText_0x190820
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19048f:
@@ -64,15 +64,15 @@ UnknownScript_0x19048f:
 
 UnknownScript_0x19049f:
 	writetext UnknownText_0x1908b0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1904a5:
 	writetext UnknownText_0x190a15
-	closetext
+	waitbutton
 UnknownScript_0x1904a9:
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x1904ab:
@@ -80,8 +80,8 @@ UnknownScript_0x1904ab:
 	spriteface PLAYER, RIGHT
 	loadfont
 	writetext UnknownText_0x190790
+	waitbutton
 	closetext
-	loadmovesprites
 	follow PLAYER, $9
 	applymovement PLAYER, MovementData_0x190789
 	stopfollow
@@ -103,9 +103,9 @@ FisherScript_0x1904ce:
 	setevent EVENT_GOT_TM05_ROAR
 UnknownScript_0x1904e3:
 	writetext UnknownText_0x19118c
-	closetext
+	waitbutton
 UnknownScript_0x1904e7:
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x1904e9:
@@ -122,36 +122,36 @@ UnknownScript_0x1904f3:
 	yesorno
 	iffalse UnknownScript_0x190503
 	writetext UnknownText_0x190acf
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x190503:
 	writetext UnknownText_0x190afc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCamperRoland:
 	trainer EVENT_BEAT_CAMPER_ROLAND, CAMPER, ROLAND, CamperRolandSeenText, CamperRolandBeatenText, 0, CamperRolandScript
 
 CamperRolandScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x190faa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFisherJustin:
 	trainer EVENT_BEAT_FISHER_JUSTIN, FISHER, JUSTIN, FisherJustinSeenText, FisherJustinBeatenText, 0, FisherJustinScript
 
 FisherJustinScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x190b4e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFisherRalph1:
@@ -159,7 +159,7 @@ TrainerFisherRalph1:
 
 FisherRalph1Script:
 	writecode VAR_CALLERID, PHONE_FISHER_RALPH
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_RALPH
 	iftrue UnknownScript_0x19057d
@@ -207,7 +207,7 @@ UnknownScript_0x19057d:
 	checkflag ENGINE_FLYPOINT_ECRUTEAK
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer FISHER, RALPH1
+	scriptedtrainerdata FISHER, RALPH1
 	startbattle
 	returnafterbattle
 	loadvar wRalphFightCount, 1
@@ -215,7 +215,7 @@ UnknownScript_0x19057d:
 	end
 
 .LoadFight1
-	loadtrainer FISHER, RALPH2
+	scriptedtrainerdata FISHER, RALPH2
 	startbattle
 	returnafterbattle
 	loadvar wRalphFightCount, 2
@@ -223,7 +223,7 @@ UnknownScript_0x19057d:
 	end
 
 .LoadFight2
-	loadtrainer FISHER, RALPH3
+	scriptedtrainerdata FISHER, RALPH3
 	startbattle
 	returnafterbattle
 	loadvar wRalphFightCount, 3
@@ -231,7 +231,7 @@ UnknownScript_0x19057d:
 	end
 
 .LoadFight3
-	loadtrainer FISHER, RALPH4
+	scriptedtrainerdata FISHER, RALPH4
 	startbattle
 	returnafterbattle
 	loadvar wRalphFightCount, 4
@@ -239,7 +239,7 @@ UnknownScript_0x19057d:
 	end
 
 .LoadFight4
-	loadtrainer FISHER, RALPH5
+	scriptedtrainerdata FISHER, RALPH5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_RALPH
@@ -247,8 +247,8 @@ UnknownScript_0x19057d:
 
 UnknownScript_0x1905f1:
 	writetext UnknownText_0x190c37
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1905f7:
@@ -283,11 +283,11 @@ TrainerFisherHenry:
 	trainer EVENT_BEAT_FISHER_HENRY, FISHER, HENRY, FisherHenrySeenText, FisherHenryBeatenText, 0, FisherHenryScript
 
 FisherHenryScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x190df2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPicnickerLiz1:
@@ -295,7 +295,7 @@ TrainerPicnickerLiz1:
 
 PicnickerLiz1Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_LIZ
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_LIZ
 	iftrue UnknownScript_0x19066d
@@ -341,7 +341,7 @@ UnknownScript_0x19066d:
 	checkflag ENGINE_FLYPOINT_ECRUTEAK
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer PICNICKER, LIZ1
+	scriptedtrainerdata PICNICKER, LIZ1
 	startbattle
 	returnafterbattle
 	loadvar wLizFightCount, 1
@@ -349,7 +349,7 @@ UnknownScript_0x19066d:
 	end
 
 .LoadFight1
-	loadtrainer PICNICKER, LIZ2
+	scriptedtrainerdata PICNICKER, LIZ2
 	startbattle
 	returnafterbattle
 	loadvar wLizFightCount, 2
@@ -357,7 +357,7 @@ UnknownScript_0x19066d:
 	end
 
 .LoadFight2
-	loadtrainer PICNICKER, LIZ3
+	scriptedtrainerdata PICNICKER, LIZ3
 	startbattle
 	returnafterbattle
 	loadvar wLizFightCount, 3
@@ -365,7 +365,7 @@ UnknownScript_0x19066d:
 	end
 
 .LoadFight3
-	loadtrainer PICNICKER, LIZ4
+	scriptedtrainerdata PICNICKER, LIZ4
 	startbattle
 	returnafterbattle
 	loadvar wLizFightCount, 4
@@ -373,7 +373,7 @@ UnknownScript_0x19066d:
 	end
 
 .LoadFight4
-	loadtrainer PICNICKER, LIZ5
+	scriptedtrainerdata PICNICKER, LIZ5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_LIZ
@@ -411,33 +411,33 @@ TrainerYoungsterAlbert:
 	trainer EVENT_BEAT_YOUNGSTER_ALBERT, YOUNGSTER, ALBERT, YoungsterAlbertSeenText, YoungsterAlbertBeatenText, 0, YoungsterAlbertScript
 
 YoungsterAlbertScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x190e82
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerYoungsterGordon:
 	trainer EVENT_BEAT_YOUNGSTER_GORDON, YOUNGSTER, GORDON, YoungsterGordonSeenText, YoungsterGordonBeatenText, 0, YoungsterGordonScript
 
 YoungsterGordonScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x190f49
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBird_keeperPeter:
 	trainer EVENT_BEAT_BIRD_KEEPER_PETER, BIRD_KEEPER, PETER, Bird_keeperPeterSeenText, Bird_keeperPeterBeatenText, 0, Bird_keeperPeterScript
 
 Bird_keeperPeterScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1910d4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FriedaScript:
@@ -459,21 +459,21 @@ FriedaScript:
 	iffalse FriedaDoneScript
 	setevent EVENT_GOT_POISON_BARB_FROM_FRIEDA
 	writetext FriedaGaveGiftText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FriedaFridayScript:
 	writetext FriedaFridayText
-	closetext
+	waitbutton
 FriedaDoneScript:
-	loadmovesprites
+	closetext
 	end
 
 FriedaNotFridayScript:
 	writetext FriedaNotFridayText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ItemFragment_0x190773:

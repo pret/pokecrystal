@@ -25,44 +25,44 @@ TrainerSwimmerfDawn:
 	trainer EVENT_BEAT_SWIMMERF_DAWN, SWIMMERF, DAWN, SwimmerfDawnSeenText, SwimmerfDawnBeatenText, 0, SwimmerfDawnScript
 
 SwimmerfDawnScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19ebad
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmermHarold:
 	trainer EVENT_BEAT_SWIMMERM_HAROLD, SWIMMERM, HAROLD, SwimmermHaroldSeenText, SwimmermHaroldBeatenText, 0, SwimmermHaroldScript
 
 SwimmermHaroldScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19eab4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmermJerome:
 	trainer EVENT_BEAT_SWIMMERM_JEROME, SWIMMERM, JEROME, SwimmermJeromeSeenText, SwimmermJeromeBeatenText, 0, SwimmermJeromeScript
 
 SwimmermJeromeScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19ec7e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmermTucker:
 	trainer EVENT_BEAT_SWIMMERM_TUCKER, SWIMMERM, TUCKER, SwimmermTuckerSeenText, SwimmermTuckerBeatenText, 0, SwimmermTuckerScript
 
 SwimmermTuckerScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19eb3b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FisherScript_0x19ea4d:
@@ -71,14 +71,14 @@ FisherScript_0x19ea4d:
 	checkevent EVENT_CINNABAR_ROCKS_CLEARED
 	iftrue UnknownScript_0x19ea5b
 	writetext UnknownText_0x19ecaf
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19ea5b:
 	writetext UnknownText_0x19ed24
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FisherScript_0x19ea61:
@@ -87,14 +87,14 @@ FisherScript_0x19ea61:
 	checkevent EVENT_CINNABAR_ROCKS_CLEARED
 	iftrue UnknownScript_0x19ea6f
 	writetext UnknownText_0x19ed45
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19ea6f:
 	writetext UnknownText_0x19ed7d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute19Signpost0Script:

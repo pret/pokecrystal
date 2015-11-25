@@ -15,8 +15,8 @@ LavenderNameRater:
 	faceplayer
 	loadfont
 	special SpecialNameRater
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 LavenderNameRaterBookshelf:

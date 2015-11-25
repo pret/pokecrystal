@@ -45,8 +45,8 @@ BlackthornGym2F_MapScriptHeader:
 	scall .FX
 	loadfont
 	writetext BlackthornGym2FBoulderFellText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FX
@@ -62,22 +62,22 @@ TrainerCooltrainermCody:
 	trainer EVENT_BEAT_COOLTRAINERM_CODY, COOLTRAINERM, CODY, CooltrainermCodySeenText, CooltrainermCodyBeatenText, 0, CooltrainermCodyScript
 
 CooltrainermCodyScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1957d5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainerfFran:
 	trainer EVENT_BEAT_COOLTRAINERF_FRAN, COOLTRAINERF, FRAN, CooltrainerfFranSeenText, CooltrainerfFranBeatenText, 0, CooltrainerfFranScript
 
 CooltrainerfFranScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x195883
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CooltrainermCodySeenText:

@@ -8,7 +8,7 @@ ViridianMart_MapScriptHeader:
 ClerkScript_0x9b5e7:
 	loadfont
 	pokemart MARTTYPE_STANDARD, MART_VIRIDIAN
-	loadmovesprites
+	closetext
 	end
 
 LassScript_0x9b5ee:

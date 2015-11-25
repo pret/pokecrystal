@@ -9,33 +9,33 @@ TrainerBird_keeperTheo:
 	trainer EVENT_BEAT_BIRD_KEEPER_THEO, BIRD_KEEPER, THEO, Bird_keeperTheoSeenText, Bird_keeperTheoBeatenText, 0, Bird_keeperTheoScript
 
 Bird_keeperTheoScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5b2df
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGentlemanPreston:
 	trainer EVENT_BEAT_GENTLEMAN_PRESTON, GENTLEMAN, PRESTON, GentlemanPrestonSeenText, GentlemanPrestonBeatenText, 0, GentlemanPrestonScript
 
 GentlemanPrestonScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5b457
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSailorTerrell:
 	trainer EVENT_BEAT_SAILOR_TERRELL, SAILOR, TERRELL, SailorTerrellSeenText, SailorTerrellBeatenText, 0, SailorTerrellScript
 
 SailorTerrellScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5b384
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ItemFragment_0x5b279:

@@ -25,7 +25,7 @@ UnknownScript_0x5a31c:
 SurfScript_0x5a31f:
 	faceplayer
 	cry LAPRAS
-	loadpokedata LAPRAS, 20
+	scriptedpokedata LAPRAS, 20
 	startbattle
 	disappear $7
 	setflag ENGINE_UNION_CAVE_LAPRAS
@@ -36,33 +36,33 @@ TrainerCooltrainermNick:
 	trainer EVENT_BEAT_COOLTRAINERM_NICK, COOLTRAINERM, NICK, CooltrainermNickSeenText, CooltrainermNickBeatenText, 0, CooltrainermNickScript
 
 CooltrainermNickScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5a3f0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainerfGwen:
 	trainer EVENT_BEAT_COOLTRAINERF_GWEN, COOLTRAINERF, GWEN, CooltrainerfGwenSeenText, CooltrainerfGwenBeatenText, 0, CooltrainerfGwenScript
 
 CooltrainerfGwenScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5a488
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainerfEmma:
 	trainer EVENT_BEAT_COOLTRAINERF_EMMA, COOLTRAINERF, EMMA, CooltrainerfEmmaSeenText, CooltrainerfEmmaBeatenText, 0, CooltrainerfEmmaScript
 
 CooltrainerfEmmaScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5a52b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ItemFragment_0x5a36a:

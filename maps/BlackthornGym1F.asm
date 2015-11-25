@@ -31,17 +31,17 @@ ClairScript_0x194e24:
 	checkevent EVENT_BEAT_CLAIR
 	iftrue .FightDone
 	writetext UnknownText_0x194efa
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x194fd6, 0
-	loadtrainer CLAIR, 1
+	scriptedtrainerdata CLAIR, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_CLAIR
 	loadfont
 	writetext UnknownText_0x19500e
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_BEAT_COOLTRAINERM_PAUL
 	setevent EVENT_BEAT_COOLTRAINERM_CODY
 	setevent EVENT_BEAT_COOLTRAINERM_MIKE
@@ -53,8 +53,8 @@ ClairScript_0x194e24:
 	end
 .FightDone
 	writetext UnknownText_0x195162
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x194e69:
@@ -67,7 +67,7 @@ UnknownScript_0x194e69:
 	itemtotext TM_DRAGONBREATH, $0
 	writetext UnknownText_0x1951bf
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
 	setevent EVENT_GOT_TM24_DRAGONBREATH
 	writetext UnknownText_0x1951d1
@@ -76,47 +76,47 @@ UnknownScript_0x194e69:
 
 UnknownScript_0x194e8e:
 	writetext UnknownText_0x19524f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x194e94:
 	writetext UnknownText_0x195272
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainermPaul:
 	trainer EVENT_BEAT_COOLTRAINERM_PAUL, COOLTRAINERM, PAUL, CooltrainermPaulSeenText, CooltrainermPaulBeatenText, 0, CooltrainermPaulScript
 
 CooltrainermPaulScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1953f1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainermMike:
 	trainer EVENT_BEAT_COOLTRAINERM_MIKE, COOLTRAINERM, MIKE, CooltrainermMikeSeenText, CooltrainermMikeBeatenText, 0, CooltrainermMikeScript
 
 CooltrainermMikeScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x195467
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainerfLola:
 	trainer EVENT_BEAT_COOLTRAINERF_LOLA, COOLTRAINERF, LOLA, CooltrainerfLolaSeenText, CooltrainerfLolaBeatenText, 0, CooltrainerfLolaScript
 
 CooltrainerfLolaScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x195516
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 BlackthornGymGuyScript:
@@ -125,14 +125,14 @@ BlackthornGymGuyScript:
 	checkevent EVENT_BEAT_CLAIR
 	iftrue .BlackthornGymGuyWinScript
 	writetext BlackthornGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .BlackthornGymGuyWinScript
 	writetext BlackthornGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 BlackthornGymStatue:

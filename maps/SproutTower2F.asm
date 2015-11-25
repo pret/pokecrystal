@@ -9,22 +9,22 @@ TrainerSageNico:
 	trainer EVENT_BEAT_SAGE_NICO, SAGE, NICO, SageNicoSeenText, SageNicoBeatenText, 0, SageNicoScript
 
 SageNicoScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1847ff
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSageEdmond:
 	trainer EVENT_BEAT_SAGE_EDMOND, SAGE, EDMOND, SageEdmondSeenText, SageEdmondBeatenText, 0, SageEdmondScript
 
 SageEdmondScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x18486f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapSproutTower2FSignpost0Script:

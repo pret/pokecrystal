@@ -18,14 +18,14 @@ CooltrainerMScript_0x184009:
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x184017
 	writetext UnknownText_0x1840bc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x184017:
 	writetext UnknownText_0x184144
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SuperNerdScript_0x18401d:
@@ -35,30 +35,30 @@ CeruleanCitySlowbro:
 	loadfont
 	writetext CeruleanCitySlowbroText
 	cry SLOWBRO
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CooltrainerFScript_0x18402a:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x1841fa
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $5, LEFT
 	loadfont
 	writetext UnknownText_0x184229
+	waitbutton
 	closetext
-	loadmovesprites
 	loadfont
 	writetext CeruleanCitySlowbroText
 	cry SLOWBRO
+	waitbutton
 	closetext
-	loadmovesprites
 	loadfont
 	writetext UnknownText_0x18424b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FisherScript_0x18404a:
@@ -70,50 +70,50 @@ FisherScript_0x18404a:
 	iftrue UnknownScript_0x18405e
 UnknownScript_0x184058:
 	writetext UnknownText_0x18424e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x18405e:
 	writetext UnknownText_0x184275
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x184064:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x1842a9
+	waitbutton
 	closetext
-	loadmovesprites
 	checkevent EVENT_FOUND_BERSERK_GENE_IN_CERULEAN_CITY
 	iffalse UnknownScript_0x184072
 	end
 
 UnknownScript_0x184072:
-	waitbutton
+	waitsfx
 	playsound SFX_SECOND_PART_OF_ITEMFINDER
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
-	waitbutton
+	waitsfx
 	playsound SFX_SECOND_PART_OF_ITEMFINDER
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
-	waitbutton
+	waitsfx
 	playsound SFX_SECOND_PART_OF_ITEMFINDER
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
-	waitbutton
+	waitsfx
 	playsound SFX_SECOND_PART_OF_ITEMFINDER
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
-	waitbutton
+	waitsfx
 	showemote EMOTE_SHOCK, $7, 15
 	spriteface $7, LEFT
 	loadfont
 	writetext UnknownText_0x1842ee
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CeruleanCitySign:

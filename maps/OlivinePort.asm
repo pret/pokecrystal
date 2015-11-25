@@ -30,17 +30,17 @@ SailorScript_0x748c0:
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74919
 	writetext UnknownText_0x74a55
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, DOWN
 	pause 10
 	playsound SFX_EXIT_BUILDING
 	disappear $2
-	waitbutton
+	waitsfx
 	applymovement PLAYER, MovementData_0x74a30
 	playsound SFX_EXIT_BUILDING
 	special RotatePalettesRightPalettes
-	waitbutton
+	waitsfx
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iffalse UnknownScript_0x7490a
 	clearevent EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
@@ -63,8 +63,8 @@ UnknownScript_0x7490a:
 
 UnknownScript_0x74919:
 	writetext UnknownText_0x74a80
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7491f:
@@ -92,30 +92,30 @@ UnknownScript_0x7494e:
 	checkitem S_S_TICKET
 	iffalse UnknownScript_0x7496d
 	writetext UnknownText_0x74b11
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	applymovement PLAYER, MovementData_0x74a37
 	jump SailorScript_0x748c0
 
 UnknownScript_0x7496d:
 	writetext UnknownText_0x74b41
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x74a34
 	end
 
 UnknownScript_0x74977:
 	writetext UnknownText_0x74ba8
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x74a34
 	end
 
 UnknownScript_0x74981:
 	writetext UnknownText_0x74bce
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x74a34
 	end
 
@@ -124,14 +124,14 @@ UnknownScript_0x7498b:
 
 UnknownScript_0x7498c:
 	writetext UnknownText_0x74af6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x74992:
 	writetext UnknownText_0x74af6
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x74a34
 	end
 
@@ -157,8 +157,8 @@ UnknownScript_0x749c0:
 	checkitem S_S_TICKET
 	iffalse UnknownScript_0x749ec
 	writetext UnknownText_0x74b11
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x749e5
@@ -171,20 +171,20 @@ UnknownScript_0x749e5:
 
 UnknownScript_0x749ec:
 	writetext UnknownText_0x74b41
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x749f2:
 	writetext UnknownText_0x74ba8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x749f8:
 	writetext UnknownText_0x74bce
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SailorScript_0x749fe:
@@ -194,8 +194,8 @@ FishingGuruScript_0x74a01:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x74bf4
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $5, UP
 	end
 
@@ -203,8 +203,8 @@ FishingGuruScript_0x74a0c:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x74c35
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $6, UP
 	end
 
@@ -212,8 +212,8 @@ YoungsterScript_0x74a17:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x74c76
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $7, DOWN
 	end
 
@@ -221,8 +221,8 @@ CooltrainerFScript_0x74a22:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x74ca2
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $8, DOWN
 	end
 

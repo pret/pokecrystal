@@ -13,10 +13,10 @@ BlackBeltScript_0x7e1f6:
 	checkevent EVENT_BEAT_BLACKBELT_KIYO
 	iftrue UnknownScript_0x7e217
 	writetext UnknownText_0x7e24d
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x7e2a9, 0
-	loadtrainer BLACKBELT_T, KIYO
+	scriptedtrainerdata BLACKBELT_T, KIYO
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_BLACKBELT_KIYO
@@ -24,24 +24,24 @@ BlackBeltScript_0x7e1f6:
 UnknownScript_0x7e217:
 	writetext UnknownText_0x7e2c0
 	keeptextopen
-	waitbutton
+	waitsfx
 	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x7e237
 	writetext UnknownText_0x7e355
 	playsound SFX_CAUGHT_MON
-	waitbutton
+	waitsfx
 	givepoke TYROGUE, 10
 	setevent EVENT_GOT_TYROGUE_FROM_KIYO
 UnknownScript_0x7e231:
 	writetext UnknownText_0x7e36a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7e237:
 	writetext UnknownText_0x7e3df
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MountMortarB1FBoulder:

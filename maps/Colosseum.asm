@@ -55,8 +55,8 @@ MapColosseumSignpost1Script:
 ChrisScript_0x193499:
 	loadfont
 	writetext .FriendReadyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FriendReadyText:

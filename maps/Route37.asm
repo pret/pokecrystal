@@ -23,33 +23,33 @@ TrainerTwinsAnnandanne1:
 	trainer EVENT_BEAT_TWINS_ANN_AND_ANNE, TWINS, ANNANDANNE1, TwinsAnnandanne1SeenText, TwinsAnnandanne1BeatenText, 0, TwinsAnnandanne1Script
 
 TwinsAnnandanne1Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a8e62
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerTwinsAnnandanne2:
 	trainer EVENT_BEAT_TWINS_ANN_AND_ANNE, TWINS, ANNANDANNE2, TwinsAnnandanne2SeenText, TwinsAnnandanne2BeatenText, 0, TwinsAnnandanne2Script
 
 TwinsAnnandanne2Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a8eec
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPsychicGreg:
 	trainer EVENT_BEAT_PSYCHIC_GREG, PSYCHIC_T, GREG, PsychicGregSeenText, PsychicGregBeatenText, 0, PsychicGregScript
 
 PsychicGregScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a8f80
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SunnyScript:
@@ -78,21 +78,21 @@ SunnyScript:
 	iffalse SunnyDoneScript
 	setevent EVENT_GOT_MAGNET_FROM_SUNNY
 	writetext SunnyGaveGiftText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SunnySundayScript:
 	writetext SunnySundayText
-	closetext
+	waitbutton
 SunnyDoneScript:
-	loadmovesprites
+	closetext
 	end
 
 SunnyNotSundayScript:
 	writetext SunnyNotSundayText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute37Signpost0Script:

@@ -138,8 +138,8 @@ PokeCenterNurseScript:
 	spriteface LAST_TALKED, DOWN
 	pause 10
 
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .pokerus
@@ -148,14 +148,14 @@ PokeCenterNurseScript:
 	iftrue .pokerus_comcenter
 
 	farwritetext UnknownText_0x1b0241
+	waitbutton
 	closetext
-	loadmovesprites
 	jump .pokerus_done
 
 .pokerus_comcenter
 	farwritetext UnknownText_0x1b02d6
+	waitbutton
 	closetext
-	loadmovesprites
 
 .pokerus_done
 	setflag ENGINE_POKERUS
@@ -183,9 +183,9 @@ MerchandiseShelfScript:
 TownMapScript:
 	loadfont
 	farwritetext TownMapText
-	closetext
+	waitbutton
 	special Special_TownMap
-	loadmovesprites
+	closetext
 	end
 
 WindowScript:
@@ -194,8 +194,8 @@ WindowScript:
 TVScript:
 	loadfont
 	farwritetext TVText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 HomepageScript:
@@ -205,7 +205,7 @@ Radio1Script:
 	loadfont
 	writebyte $0
 	special MapRadio
-	loadmovesprites
+	closetext
 	end
 
 Radio2Script:
@@ -213,7 +213,7 @@ Radio2Script:
 	loadfont
 	writebyte $4
 	special MapRadio
-	loadmovesprites
+	closetext
 	end
 
 TrashCanScript: ; 0xbc1a5
@@ -222,7 +222,7 @@ TrashCanScript: ; 0xbc1a5
 PCScript:
 	loadfont
 	special PokemonCenterPC
-	loadmovesprites
+	closetext
 	end
 
 ElevatorButtonScript:
@@ -319,7 +319,7 @@ BugContestResultsScript:
 	clearevent EVENT_CONTEST_OFFICER_HAS_BERRY
 	loadfont
 	farwritetext ContestResults_ReadyToJudgeText
-	closetext
+	waitbutton
 	special BugContestJudging
 	RAM2MEM $0
 	if_equal 1, BugContestResults_FirstPlace
@@ -327,7 +327,7 @@ BugContestResultsScript:
 	if_equal 3, BugContestResults_ThirdPlace
 	farwritetext ContestResults_ConsolationPrizeText
 	keeptextopen
-	waitbutton
+	waitsfx
 	verbosegiveitem BERRY
 	iffalse BugContestResults_NoRoomForBerry
 
@@ -345,16 +345,16 @@ BugContestResults_FinishUp
 	checkevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 	iffalse BugContestResults_DidNotLeaveMons
 	farwritetext ContestResults_ReturnPartyText
-	closetext
+	waitbutton
 	special ContestReturnMons
 BugContestResults_DidNotLeaveMons
 	special CheckPartyFullAfterContest
 	if_equal $0, BugContestResults_CleanUp
 	if_equal $2, BugContestResults_CleanUp
 	farwritetext ContestResults_PartyFullText
-	closetext
+	waitbutton
 BugContestResults_CleanUp
-	loadmovesprites
+	closetext
 	dotrigger $0
 	domaptrigger ROUTE_35_NATIONAL_PARK_GATE, $0
 	setevent EVENT_BUG_CATCHING_CONTESTANT_1A
@@ -386,7 +386,7 @@ BugContestResults_FirstPlace ; 0xbc31e
 	setevent EVENT_GAVE_KURT_APRICORNS
 	itemtotext SUN_STONE, $1
 	farwritetext ContestResults_PlayerWonAPrizeText
-	closetext
+	waitbutton
 	verbosegiveitem SUN_STONE
 	iffalse BugContestResults_NoRoomForSunStone
 	jump BugContestResults_ReturnAfterWinnersPrize
@@ -395,7 +395,7 @@ BugContestResults_FirstPlace ; 0xbc31e
 BugContestResults_SecondPlace ; 0xbc332
 	itemtotext EVERSTONE, $1
 	farwritetext ContestResults_PlayerWonAPrizeText
-	closetext
+	waitbutton
 	verbosegiveitem EVERSTONE
 	iffalse BugContestResults_NoRoomForEverstone
 	jump BugContestResults_ReturnAfterWinnersPrize
@@ -404,7 +404,7 @@ BugContestResults_SecondPlace ; 0xbc332
 BugContestResults_ThirdPlace ; 0xbc343
 	itemtotext GOLD_BERRY, $1
 	farwritetext ContestResults_PlayerWonAPrizeText
-	closetext
+	waitbutton
 	verbosegiveitem GOLD_BERRY
 	iffalse BugContestResults_NoRoomForGoldBerry
 	jump BugContestResults_ReturnAfterWinnersPrize
@@ -793,7 +793,7 @@ AskNumber2MScript:
 RegisteredNumberMScript:
 	farwritetext RegisteredNumber1Text
 	playsound SFX_REGISTER_PHONE_NUMBER
-	waitbutton
+	waitsfx
 	keeptextopen
 	end
 
@@ -822,103 +822,103 @@ NumberAcceptedMScript:
 
 .Jack
 	farwritetext JackNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Huey
 	farwritetext HueyNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Gaven
 	farwritetext GavenNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Jose
 	farwritetext JoseNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Joey
 	farwritetext JoeyNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Wade
 	farwritetext WadeNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Ralph
 	farwritetext RalphNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Anthony
 	farwritetext AnthonyNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Todd
 	farwritetext ToddNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Irwin
 	farwritetext IrwinNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Arnie
 	farwritetext ArnieNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Alan
 	farwritetext AlanNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Chad
 	farwritetext ChadNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Derek
 	farwritetext DerekNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Tully
 	farwritetext TullyNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Brent
 	farwritetext BrentNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Vance
 	farwritetext VanceNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Wilton
 	farwritetext WiltonNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Kenji
 	farwritetext KenjiNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Parry
 	farwritetext ParryNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 NumberDeclinedMScript:
@@ -946,103 +946,103 @@ NumberDeclinedMScript:
 
 .Jack
 	farwritetext JackNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Huey
 	farwritetext HueyNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Gaven
 	farwritetext GavenNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Jose
 	farwritetext JoseNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Joey
 	farwritetext JoeyNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Wade
 	farwritetext WadeNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Ralph
 	farwritetext RalphNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Anthony
 	farwritetext AnthonyNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Todd
 	farwritetext ToddNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Irwin
 	farwritetext IrwinNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Arnie
 	farwritetext ArnieNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Alan
 	farwritetext AlanNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Chad
 	farwritetext ChadNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Derek
 	farwritetext DerekNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Tully
 	farwritetext TullyNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Brent
 	farwritetext BrentNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Vance
 	farwritetext VanceNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Wilton
 	farwritetext WiltonNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Kenji
 	farwritetext KenjiNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Parry
 	farwritetext ParryNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PhoneFullMScript:
@@ -1070,103 +1070,103 @@ PhoneFullMScript:
 
 .Jack
 	farwritetext JackPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Huey
 	farwritetext HueyPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Gaven
 	farwritetext GavenPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Jose
 	farwritetext JosePhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Joey
 	farwritetext JoeyPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Wade
 	farwritetext WadePhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Ralph
 	farwritetext RalphPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Anthony
 	farwritetext AnthonyPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Todd
 	farwritetext ToddPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Irwin
 	farwritetext IrwinPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Arnie
 	farwritetext ArniePhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Alan
 	farwritetext AlanPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Chad
 	farwritetext ChadPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Derek
 	farwritetext DerekPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Tully
 	farwritetext TullyPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Brent
 	farwritetext BrentPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Vance
 	farwritetext VancePhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Wilton
 	farwritetext WiltonPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Kenji
 	farwritetext KenjiPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Parry
 	farwritetext ParryPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 RematchMScript:
@@ -1191,88 +1191,88 @@ RematchMScript:
 
 .Jack
 	farwritetext JackRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Huey
 	farwritetext HueyRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Gaven
 	farwritetext GavenRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Jose
 	farwritetext JoseRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Joey
 	farwritetext JoeyRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Wade
 	farwritetext WadeRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Ralph
 	farwritetext RalphRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Anthony
 	farwritetext AnthonyRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Todd
 	farwritetext ToddRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Arnie
 	farwritetext ArnieRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Alan
 	farwritetext AlanRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Chad
 	farwritetext ChadRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Tully
 	farwritetext TullyRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Brent
 	farwritetext BrentRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Vance
 	farwritetext VanceRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Wilton
 	farwritetext WiltonRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Parry
 	farwritetext ParryRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GiftMScript:
@@ -1330,58 +1330,58 @@ PackFullMScript:
 
 .Huey
 	farwritetext HueyPackFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Jose
 	farwritetext JosePackFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Joey
 	farwritetext JoeyPackFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Wade
 	farwritetext WadePackFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Alan
 	farwritetext AlanPackFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Derek
 	farwritetext DerekPackFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Tully
 	farwritetext TullyPackFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Vance
 	farwritetext VancePackFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Wilton
 	farwritetext WiltonPackFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Kenji
 	farwritetext KenjiPackFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Parry
 	farwritetext ParryPackFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 RematchGiftMScript:
@@ -1484,7 +1484,7 @@ AskNumber2FScript:
 RegisteredNumberFScript:
 	farwritetext RegisteredNumber2Text
 	playsound SFX_REGISTER_PHONE_NUMBER
-	waitbutton
+	waitsfx
 	keeptextopen
 	end
 
@@ -1501,43 +1501,43 @@ NumberAcceptedFScript: ; 0xbcbd3
 
 .Beverly
 	farwritetext BeverlyNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Beth
 	farwritetext BethNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Reena
 	farwritetext ReenaNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Liz
 	farwritetext LizNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Gina
 	farwritetext GinaNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Dana
 	farwritetext DanaNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Tiffany
 	farwritetext TiffanyNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Erin
 	farwritetext ErinNumberAcceptedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 NumberDeclinedFScript:
@@ -1553,43 +1553,43 @@ NumberDeclinedFScript:
 
 .Beverly
 	farwritetext BeverlyNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Beth
 	farwritetext BethNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Reena
 	farwritetext ReenaNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Liz
 	farwritetext LizNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Gina
 	farwritetext GinaNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Dana
 	farwritetext DanaNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Tiffany
 	farwritetext TiffanyNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Erin
 	farwritetext ErinNumberDeclinedText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PhoneFullFScript:
@@ -1605,43 +1605,43 @@ PhoneFullFScript:
 
 .Beverly
 	farwritetext BeverlyPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Beth
 	farwritetext BethPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Reena
 	farwritetext ReenaPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Liz
 	farwritetext LizPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Gina
 	farwritetext GinaPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Dana
 	farwritetext DanaPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Tiffany
 	farwritetext TiffanyPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Erin
 	farwritetext ErinPhoneFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 RematchFScript:
@@ -1656,38 +1656,38 @@ RematchFScript:
 
 .Beth
 	farwritetext BethRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Reena
 	farwritetext ReenaRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Liz
 	farwritetext LizRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Gina
 	farwritetext GinaRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Dana
 	farwritetext DanaRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Tiffany
 	farwritetext TiffanyRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Erin
 	farwritetext ErinRematchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GiftFScript:
@@ -1724,28 +1724,28 @@ PackFullFScript:
 
 .Beverly
 	farwritetext BeverlyPackFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Gina
 	farwritetext GinaPackFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Dana
 	farwritetext DanaPackFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Tiffany
 	farwritetext TiffanyPackFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .Erin
 	farwritetext ErinPackFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 RematchGiftFScript:
@@ -1762,8 +1762,8 @@ GymStatue1Script:
 	mapnametotext $0
 	loadfont
 	farwritetext GymStatue_CityGymText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GymStatue2Script:
@@ -1772,23 +1772,23 @@ GymStatue2Script:
 	farwritetext GymStatue_CityGymText
 	keeptextopen
 	farwritetext GymStatue_WinningTrainersText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ReceiveItemScript: ; 0xbcdb9
-	waitbutton
+	waitsfx
 	farwritetext ReceivedItemText
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	end
 ; 0xbcdc3
 
 ReceiveTogepiEggScript: ; 0xbcdc3
-	waitbutton
+	waitsfx
 	farwritetext ReceivedItemText
 	playsound SFX_GET_EGG_FROM_DAYCARE_LADY
-	waitbutton
+	waitsfx
 	end
 ; 0xbcdcd
 
@@ -1800,8 +1800,8 @@ GameCornerCoinVendorScript: ; 0xbcdcd
 	checkitem COIN_CASE
 	iftrue CoinVendor_IntroScript
 	farwritetext CoinVendor_NoCoinCaseText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbcde0
 
@@ -1825,10 +1825,10 @@ CoinVendor_Buy50CoinsScript: ; 0xbcdf7
 	if_equal $2, CoinVendor_NotEnoughMoneyScript
 	givecoins 50
 	takemoney $0, 1000
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	farwritetext CoinVendor_Buy50CoinsText
-	closetext
+	waitbutton
 	jump CoinVendor_SellCoinsMenuScript
 ; 0xbce1b
 
@@ -1839,31 +1839,31 @@ CoinVendor_Buy500CoinsScript: ; 0xbce1b
 	if_equal $2, CoinVendor_NotEnoughMoneyScript
 	givecoins 500
 	takemoney $0, 10000
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	farwritetext CoinVendor_Buy500CoinsText
-	closetext
+	waitbutton
 	jump CoinVendor_SellCoinsMenuScript
 ; 0xbce3f
 
 CoinVendor_NotEnoughMoneyScript: ; 0xbce3f
 	farwritetext CoinVendor_NotEnoughMoneyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbce46
 
 CoinVendor_CoinCaseFullScript: ; 0xbce46
 	farwritetext CoinVendor_CoinCaseFullText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbce4d
 
 CoinVendor_CancelScript: ; 0xbce4d
 	farwritetext CoinVendor_CancelText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xbce54
 
@@ -1892,20 +1892,20 @@ HappinessCheckScript:
 	if_less_than 50, .Unhappy
 	if_less_than 150, .KindaHappy
 	farwritetext HappinessText3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .KindaHappy
 	farwritetext HappinessText2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Unhappy
 	farwritetext HappinessText1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Movement_ContestResults_WalkAfterWarp: ; bcea1

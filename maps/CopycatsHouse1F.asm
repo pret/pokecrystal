@@ -14,22 +14,22 @@ PokefanFScript_0x18ad16:
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x18ad24
 	writetext UnknownText_0x18ad95
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x18ad24:
 	writetext UnknownText_0x18add3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ClefairyScript_0x18ad2a:
 	loadfont
 	writetext UnknownText_0x18ae4b
 	cry BLISSEY
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x18ad34:

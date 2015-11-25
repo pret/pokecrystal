@@ -46,8 +46,8 @@ LanceScript_0x70022:
 	iffalse UnknownScript_0x7004e
 UnknownScript_0x70035:
 	writetext UnknownText_0x702c6
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_WARP_TO
 	applymovement $2, MovementData_0x70155
 	disappear $2
@@ -58,8 +58,8 @@ UnknownScript_0x70035:
 
 UnknownScript_0x7004e:
 	writetext UnknownText_0x70371
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_REFUSED_TO_HELP_LANCE_AT_LAKE_OF_RAGE
 	end
 
@@ -76,8 +76,8 @@ GyaradosScript_0x70063:
 	writetext UnknownText_0x703cb
 	pause 15
 	cry GYARADOS
-	loadmovesprites
-	loadpokedata GYARADOS, 30
+	closetext
+	scriptedpokedata GYARADOS, 30
 	writecode VAR_BATTLETYPE, BATTLETYPE_SHINY
 	startbattle
 	if_equal $1, UnknownScript_0x7007a
@@ -86,12 +86,12 @@ UnknownScript_0x7007a:
 	returnafterbattle
 	loadfont
 	giveitem RED_SCALE
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x703df
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
-	loadmovesprites
+	closetext
 	dotrigger $0
 	appear $2
 	end
@@ -102,14 +102,14 @@ GrampsScript_0x7008e:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x7009c
 	writetext UnknownText_0x703f8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7009c:
 	writetext UnknownText_0x70421
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SuperNerdScript_0x700a2:
@@ -126,58 +126,58 @@ MapLakeofRageSignpost1Script:
 	writetext UnknownText_0x70903
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x700b8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x700b8:
 	keeptextopen
 	special Special_MagikarpHouseSign
-	loadmovesprites
+	closetext
 	end
 
 TrainerFisherAndre:
 	trainer EVENT_BEAT_FISHER_ANDRE, FISHER, ANDRE, FisherAndreSeenText, FisherAndreBeatenText, 0, FisherAndreScript
 
 FisherAndreScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x7058f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFisherRaymond:
 	trainer EVENT_BEAT_FISHER_RAYMOND, FISHER, RAYMOND, FisherRaymondSeenText, FisherRaymondBeatenText, 0, FisherRaymondScript
 
 FisherRaymondScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x70611
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainermAaron:
 	trainer EVENT_BEAT_COOLTRAINERM_AARON, COOLTRAINERM, AARON, CooltrainermAaronSeenText, CooltrainermAaronBeatenText, 0, CooltrainermAaronScript
 
 CooltrainermAaronScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x7069c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainerfLois:
 	trainer EVENT_BEAT_COOLTRAINERF_LOIS, COOLTRAINERF, LOIS, CooltrainerfLoisSeenText, CooltrainerfLoisBeatenText, 0, CooltrainerfLoisScript
 
 CooltrainerfLoisScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x70752
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 WesleyScript:
@@ -199,21 +199,21 @@ WesleyScript:
 	iffalse WesleyDoneScript
 	setevent EVENT_GOT_BLACKBELT_FROM_WESLEY
 	writetext WesleyGaveGiftText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 WesleyWednesdayScript:
 	writetext WesleyWednesdayText
-	closetext
+	waitbutton
 WesleyDoneScript:
-	loadmovesprites
+	closetext
 	end
 
 WesleyNotWednesdayScript:
 	writetext WesleyNotWednesdayText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ItemFragment_0x70148:

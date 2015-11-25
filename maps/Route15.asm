@@ -9,66 +9,66 @@ TrainerTeacherColette:
 	trainer EVENT_BEAT_TEACHER_COLETTE, TEACHER, COLETTE, TeacherColetteSeenText, TeacherColetteBeatenText, 0, TeacherColetteScript
 
 TeacherColetteScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1aa60d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerTeacherHillary:
 	trainer EVENT_BEAT_TEACHER_HILLARY, TEACHER, HILLARY, TeacherHillarySeenText, TeacherHillaryBeatenText, 0, TeacherHillaryScript
 
 TeacherHillaryScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1aa6ca
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSchoolboyKipp:
 	trainer EVENT_BEAT_SCHOOLBOY_KIP, SCHOOLBOY, KIPP, SchoolboyKippSeenText, SchoolboyKippBeatenText, 0, SchoolboyKippScript
 
 SchoolboyKippScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1aa740
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSchoolboyTommy:
 	trainer EVENT_BEAT_SCHOOLBOY_TOMMY, SCHOOLBOY, TOMMY, SchoolboyTommySeenText, SchoolboyTommyBeatenText, 0, SchoolboyTommyScript
 
 SchoolboyTommyScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1aa7bc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSchoolboyJohnny:
 	trainer EVENT_BEAT_SCHOOLBOY_JOHNNY, SCHOOLBOY, JOHNNY, SchoolboyJohnnySeenText, SchoolboyJohnnyBeatenText, 0, SchoolboyJohnnyScript
 
 SchoolboyJohnnyScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1aa84a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSchoolboyBilly:
 	trainer EVENT_BEAT_SCHOOLBOY_BILLY, SCHOOLBOY, BILLY, SchoolboyBillySeenText, SchoolboyBillyBeatenText, 0, SchoolboyBillyScript
 
 SchoolboyBillyScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1aa8b0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute15Signpost0Script:

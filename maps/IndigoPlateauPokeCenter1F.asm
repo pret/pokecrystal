@@ -84,8 +84,8 @@ UnknownScript_0x180094:
 UnknownScript_0x1800ce:
 	loadfont
 	writetext UnknownText_0x1801f5
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x1800f3
@@ -93,7 +93,7 @@ UnknownScript_0x1800ce:
 	iftrue UnknownScript_0x180103
 	winlosstext UnknownText_0x180295, UnknownText_0x1802fd
 	setlasttalked $5
-	loadtrainer RIVAL2, 6
+	scriptedtrainerdata RIVAL2, 6
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -102,7 +102,7 @@ UnknownScript_0x1800ce:
 UnknownScript_0x1800f3:
 	winlosstext UnknownText_0x180295, UnknownText_0x1802fd
 	setlasttalked $5
-	loadtrainer RIVAL2, 4
+	scriptedtrainerdata RIVAL2, 4
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -111,7 +111,7 @@ UnknownScript_0x1800f3:
 UnknownScript_0x180103:
 	winlosstext UnknownText_0x180295, UnknownText_0x1802fd
 	setlasttalked $5
-	loadtrainer RIVAL2, 5
+	scriptedtrainerdata RIVAL2, 5
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -121,8 +121,8 @@ UnknownScript_0x180113:
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	writetext UnknownText_0x1802a4
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, DOWN
 	applymovement $5, MovementData_0x180172
 	disappear $5
@@ -138,7 +138,7 @@ NurseScript_0x18012c:
 ClerkScript_0x18012f:
 	loadfont
 	pokemart MARTTYPE_STANDARD, MART_INDIGO_PLATEAU
-	loadmovesprites
+	closetext
 	end
 
 CooltrainerMScript_0x180136:
@@ -151,26 +151,26 @@ TeleportGuyScript:
 	yesorno
 	iffalse .No
 	writetext TeleportGuyYesText
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_WARP_TO
 	special RotatePalettesRightPalettes
-	waitbutton
+	waitsfx
 	warp NEW_BARK_TOWN, $d, $6
 	end
 
 .No
 	writetext TeleportGuyNoText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 AbraScript:
 	loadfont
 	writetext AbraText
 	cry ABRA
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MovementData_0x180164:

@@ -17,8 +17,8 @@ OfficerScript_0x18a81e:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .MagnetTrainToGoldenrod
 	writetext UnknownText_0x18a8a9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .MagnetTrainToGoldenrod:
@@ -28,8 +28,8 @@ OfficerScript_0x18a81e:
 	checkitem PASS
 	iffalse .PassNotInBag
 	writetext UnknownText_0x18a917
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x18a88f
 	applymovement PLAYER, MovementData_0x18a898
 	writebyte $1
@@ -46,14 +46,14 @@ OfficerScript_0x18a81e:
 
 .PassNotInBag:
 	writetext UnknownText_0x18a956
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .DecidedNotToRide:
 	writetext UnknownText_0x18a978
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Script_ArriveFromGoldenrod:
@@ -62,8 +62,8 @@ Script_ArriveFromGoldenrod:
 	applymovement $2, MovementData_0x18a894
 	loadfont
 	writetext UnknownText_0x18a993
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GymGuyScript_0x18a875:
@@ -72,14 +72,14 @@ GymGuyScript_0x18a875:
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x18a883
 	writetext UnknownText_0x18a9ca
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x18a883:
 	writetext UnknownText_0x18aa61
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TeacherScript_0x18a889:

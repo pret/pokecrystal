@@ -18,14 +18,14 @@ LassScript_0x19932a:
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x199338
 	writetext UnknownText_0x19938d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x199338:
 	writetext UnknownText_0x19940d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokefanMScript_0x19933e:
@@ -34,14 +34,14 @@ PokefanMScript_0x19933e:
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x19934c
 	writetext UnknownText_0x199460
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19934c:
 	writetext UnknownText_0x1994ae
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CooltrainerMScript_0x199352:
@@ -56,14 +56,14 @@ FisherScript_0x199358:
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x199366
 	writetext UnknownText_0x1995fc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x199366:
 	writetext UnknownText_0x19964b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x19936c:

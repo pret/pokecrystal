@@ -20,21 +20,21 @@ FishingGuruScript_0x69b55:
 	keeptextopen
 	verbosegiveitem OLD_ROD
 	writetext UnknownText_0x69c1b
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_GOT_OLD_ROD
 	end
 
 UnknownScript_0x69b74:
 	writetext UnknownText_0x69c6c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x69b7a:
 	writetext UnknownText_0x69c8d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CooltrainerFScript_0x69b80:

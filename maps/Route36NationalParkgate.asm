@@ -65,8 +65,8 @@ Route36NationalParkgate_MapScriptHeader:
 	yesorno
 	iffalse .GoBackToContest
 	writetext UnknownText_0x6b2c5
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
 	scall .CopyContestants
@@ -79,12 +79,12 @@ Route36NationalParkgate_MapScriptHeader:
 
 .GoBackToContest:
 	writetext UnknownText_0x6b300
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, LEFT
 	playsound SFX_EXIT_BUILDING
 	special RotatePalettesRightPalettes
-	waitbutton
+	waitsfx
 	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, $21, $12
 	end
 
@@ -155,19 +155,19 @@ Route36OfficerScriptContest:
 	special PlayMapMusic
 	writetext UnknownText_0x6ae87
 	keeptextopen
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x6aeb1
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x6aecc
+	waitbutton
 	closetext
-	loadmovesprites
 	setflag ENGINE_BUG_CONTEST_TIMER
 	special Special_GiveParkBalls
 	spriteface PLAYER, LEFT
 	playsound SFX_EXIT_BUILDING
 	special RotatePalettesRightPalettes
-	waitbutton
+	waitsfx
 	special Special_SelectRandomBugContestContestants
 	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, $21, $12
 	end
@@ -190,38 +190,38 @@ Route36OfficerScriptContest:
 	keeptextopen
 	writetext UnknownText_0x6b055
 	playsound SFX_GOT_SAFARI_BALLS
-	waitbutton
+	waitsfx
 	keeptextopen
 	jump .ResumeStartingContest
 
 .DecidedNotToJoinContest:
 	writetext UnknownText_0x6b0c6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .RefusedToLeaveMons:
 	writetext UnknownText_0x6b081
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FirstMonIsFainted:
 	writetext UnknownText_0x6b0f2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .BoxFull:
 	writetext UnknownText_0x6b166
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FirstMonIsEgg:
 	writetext UnknownText_0x6b209
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route36Officer_ContestHasConcluded:
@@ -234,8 +234,8 @@ Route36Officer_ContestHasConcluded:
 	checkevent EVENT_CONTEST_OFFICER_HAS_BERRY
 	iftrue .Berry
 	writetext UnknownText_0x6b32b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Sunstone:
@@ -244,7 +244,7 @@ Route36Officer_ContestHasConcluded:
 	verbosegiveitem SUN_STONE
 	iffalse .BagFull
 	clearevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
-	loadmovesprites
+	closetext
 	end
 
 .Everstone:
@@ -253,7 +253,7 @@ Route36Officer_ContestHasConcluded:
 	verbosegiveitem EVERSTONE
 	iffalse .BagFull
 	clearevent EVENT_CONTEST_OFFICER_HAS_EVERSTONE
-	loadmovesprites
+	closetext
 	end
 
 .GoldBerry:
@@ -262,7 +262,7 @@ Route36Officer_ContestHasConcluded:
 	verbosegiveitem GOLD_BERRY
 	iffalse .BagFull
 	clearevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
-	loadmovesprites
+	closetext
 	end
 
 .Berry:
@@ -271,13 +271,13 @@ Route36Officer_ContestHasConcluded:
 	verbosegiveitem BERRY
 	iffalse .BagFull
 	clearevent EVENT_CONTEST_OFFICER_HAS_BERRY
-	loadmovesprites
+	closetext
 	end
 
 .BagFull:
 	writetext UnknownText_0x6b910
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 _ContestNotOn:
@@ -289,8 +289,8 @@ OfficerScript_0x6acf4:
 	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue Route36Officer_ContestHasConcluded
 	writetext UnknownText_0x6b370
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route36Parkgate_DayToText:
@@ -303,14 +303,14 @@ YoungsterScript_0x6ad06:
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad14
 	writetext UnknownText_0x6b399
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6ad14:
 	writetext UnknownText_0x6b3c4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x6ad1a:
@@ -319,14 +319,14 @@ YoungsterScript_0x6ad1a:
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad28
 	writetext UnknownText_0x6b40f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6ad28:
 	writetext UnknownText_0x6b440
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 RockerScript_0x6ad2e:
@@ -335,14 +335,14 @@ RockerScript_0x6ad2e:
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad3c
 	writetext UnknownText_0x6b462
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6ad3c:
 	writetext UnknownText_0x6b496
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokefanMScript_0x6ad42:
@@ -351,14 +351,14 @@ PokefanMScript_0x6ad42:
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad50
 	writetext UnknownText_0x6b4da
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6ad50:
 	writetext UnknownText_0x6b50a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x6ad56:
@@ -367,14 +367,14 @@ YoungsterScript_0x6ad56:
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad64
 	writetext UnknownText_0x6b54e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6ad64:
 	writetext UnknownText_0x6b57c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x6ad6a:
@@ -383,14 +383,14 @@ YoungsterScript_0x6ad6a:
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad78
 	writetext UnknownText_0x6b5b0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6ad78:
 	writetext UnknownText_0x6b5dd
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 LassScript_0x6ad7e:
@@ -399,14 +399,14 @@ LassScript_0x6ad7e:
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad8c
 	writetext UnknownText_0x6b64b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6ad8c:
 	writetext UnknownText_0x6b698
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x6ad92:
@@ -415,14 +415,14 @@ YoungsterScript_0x6ad92:
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ada0
 	writetext UnknownText_0x6b6b8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6ada0:
 	writetext UnknownText_0x6b6e9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x6ada6:
@@ -431,14 +431,14 @@ YoungsterScript_0x6ada6:
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6adb4
 	writetext UnknownText_0x6b71b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6adb4:
 	writetext UnknownText_0x6b740
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x6adba:
@@ -447,14 +447,14 @@ YoungsterScript_0x6adba:
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6adc8
 	writetext UnknownText_0x6b76f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6adc8:
 	writetext UnknownText_0x6b7af
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6adce:

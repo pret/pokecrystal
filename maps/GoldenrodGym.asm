@@ -21,10 +21,10 @@ WhitneyScript_0x5400c:
 	iftrue .FightDone
 	loadfont
 	writetext UnknownText_0x54122
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x541a5, 0
-	loadtrainer WHITNEY, 1
+	scriptedtrainerdata WHITNEY, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_WHITNEY
@@ -39,8 +39,8 @@ WhitneyScript_0x5400c:
 	checkevent EVENT_MADE_WHITNEY_CRY
 	iffalse .StoppedCrying
 	writetext UnknownText_0x541f4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .StoppedCrying
@@ -50,10 +50,10 @@ WhitneyScript_0x5400c:
 	iftrue UnknownScript_0x54064
 	writetext UnknownText_0x54222
 	keeptextopen
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x54273
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_PLAINBADGE
 	checkcode VAR_BADGES
 	scall GoldenrodGymTriggerRockets
@@ -64,15 +64,15 @@ UnknownScript_0x54064:
 	iffalse UnknownScript_0x5407b
 	setevent EVENT_GOT_TM45_ATTRACT
 	writetext UnknownText_0x54302
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x54077:
 	writetext UnknownText_0x54360
-	closetext
+	waitbutton
 UnknownScript_0x5407b:
-	loadmovesprites
+	closetext
 	end
 
 GoldenrodGymTriggerRockets:
@@ -90,11 +90,11 @@ TrainerLassCarrie:
 	trainer EVENT_BEAT_LASS_CARRIE, LASS, CARRIE, LassCarrieSeenText, LassCarrieBeatenText, 0, LassCarrieScript
 
 LassCarrieScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext LassCarrieOWText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 WhitneyCriesScript:
@@ -103,8 +103,8 @@ WhitneyCriesScript:
 	spriteface PLAYER, DOWN
 	loadfont
 	writetext BridgetWhitneyCriesText
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $4, BridgetWalksAwayMovement
 	dotrigger $0
 	clearevent EVENT_MADE_WHITNEY_CRY
@@ -114,33 +114,33 @@ TrainerLassBridget:
 	trainer EVENT_BEAT_LASS_BRIDGET, LASS, BRIDGET, LassBridgetSeenText, LassBridgetBeatenText, 0, LassBridgetScript
 
 LassBridgetScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext LassBridgetOWText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBeautyVictoria:
 	trainer EVENT_BEAT_BEAUTY_VICTORIA, BEAUTY, VICTORIA, BeautyVictoriaSeenText, BeautyVictoriaBeatenText, 0, BeautyVictoriaScript
 
 BeautyVictoriaScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext BeautyVictoriaOWText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBeautySamantha:
 	trainer EVENT_BEAT_BEAUTY_SAMANTHA, BEAUTY, SAMANTHA, BeautySamanthaSeenText, BeautySamanthaBeatenText, 0, BeautySamanthaScript
 
 BeautySamanthaScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext BeautySamanthaOWText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GoldenrodGymGuyScript:
@@ -149,15 +149,15 @@ GoldenrodGymGuyScript:
 	iftrue .GoldenrodGymGuyWinScript
 	loadfont
 	writetext GoldenrodGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .GoldenrodGymGuyWinScript
 	loadfont
 	writetext GoldenrodGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GoldenrodGymStatue:

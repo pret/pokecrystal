@@ -98,26 +98,26 @@ MoveTutor:
 
 .Refused:
 	writetext UnknownText_0x1990b4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Refused2:
 	writetext UnknownText_0x199107
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .TeachMove:
 	writetext UnknownText_0x19913a
 	keeptextopen
 	takecoins 4000
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	special Special_DisplayCoinCaseBalance
 	writetext UnknownText_0x19918b
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcode VAR_FACING
 	if_equal $2, .WalkAroundPlayer
 	applymovement $10, MovementData_0x198a5f
@@ -130,19 +130,19 @@ MoveTutor:
 	disappear $10
 	clearevent EVENT_GOLDENROD_GAME_CORNER_MOVE_TUTOR
 	setflag ENGINE_DAILY_MOVE_TUTOR
-	waitbutton
+	waitsfx
 	end
 
 .Incompatible:
 	writetext UnknownText_0x1991a4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .NotEnoughMoney:
 	writetext UnknownText_0x1991ac
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokefanMScript_0x1989e3:
@@ -157,14 +157,14 @@ CooltrainerFScript_0x1989e9:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .ClearedRadioTower
 	writetext UnknownText_0x198ae6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .ClearedRadioTower:
 	writetext UnknownText_0x198b2d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CooltrainerFScript_0x1989fd:
@@ -173,14 +173,14 @@ CooltrainerFScript_0x1989fd:
 	checkflag ENGINE_RADIO_CARD
 	iftrue .GotRadioCard
 	writetext UnknownText_0x198b73
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .GotRadioCard:
 	writetext UnknownText_0x198c14
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x198a11:
@@ -198,8 +198,8 @@ RocketScript_0x198a1a:
 	keeptextopen
 	faceplayer
 	writetext UnknownText_0x198d2a
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $9, UP
 	end
 

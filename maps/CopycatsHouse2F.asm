@@ -53,8 +53,8 @@ Copycat:
 .Part3
 	writetext UnknownText_0x18b316
 .Part4
+	waitbutton
 	closetext
-	loadmovesprites
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part5
 	applymovement $2, MovementData_0x18afd0
@@ -68,8 +68,8 @@ Copycat:
 	special RunCallback_04
 	loadfont
 	writetext UnknownText_0x18b028
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Part7
@@ -82,8 +82,8 @@ Copycat:
 .Part8
 	writetext UnknownText_0x18b366
 .Part9
+	waitbutton
 	closetext
-	loadmovesprites
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part10
 	applymovement $2, MovementData_0x18afd0
@@ -97,8 +97,8 @@ Copycat:
 	special RunCallback_04
 	loadfont
 	writetext UnknownText_0x18b116
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM
 	end
 
@@ -120,8 +120,8 @@ Copycat:
 	iffalse .Part22
 	setevent EVENT_GOT_PASS_FROM_COPYCAT
 	writetext UnknownText_0x18b214
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Part15
@@ -147,8 +147,8 @@ Copycat:
 .Part18
 	writetext UnknownText_0x18b415
 .Part19
+	waitbutton
 	closetext
-	loadmovesprites
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part20
 	applymovement $2, MovementData_0x18afd0
@@ -162,9 +162,9 @@ Copycat:
 	special RunCallback_04
 	loadfont
 	writetext UnknownText_0x18b2f5
-	closetext
+	waitbutton
 .Part22
-	loadmovesprites
+	closetext
 	end
 
 CopycatsDodrio:
@@ -173,8 +173,8 @@ CopycatsDodrio:
 	cry DODRIO
 	keeptextopen
 	writetext CopycatsDodrioText2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CopycatsHouse2FDoll:

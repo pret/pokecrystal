@@ -11,17 +11,17 @@ FalknerScript_0x683c2:
 	checkevent EVENT_BEAT_FALKNER
 	iftrue .FightDone
 	writetext UnknownText_0x68473
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x6854a, 0
-	loadtrainer FALKNER, 1
+	scriptedtrainerdata FALKNER, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_FALKNER
 	loadfont
 	writetext UnknownText_0x685af
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_ZEPHYRBADGE
 	checkcode VAR_BADGES
 	scall VioletGymTriggerRockets
@@ -38,15 +38,15 @@ FalknerScript_0x683c2:
 	iffalse .NoRoomForMudSlap
 	setevent EVENT_GOT_TM31_MUD_SLAP
 	writetext UnknownText_0x68648
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .SpeechAfterTM:
 	writetext UnknownText_0x68735
-	closetext
+	waitbutton
 .NoRoomForMudSlap:
-	loadmovesprites
+	closetext
 	end
 
 VioletGymTriggerRockets:
@@ -64,22 +64,22 @@ TrainerBird_keeperRod:
 	trainer EVENT_BEAT_BIRD_KEEPER_ROD, BIRD_KEEPER, ROD, Bird_keeperRodSeenText, Bird_keeperRodBeatenText, 0, Bird_keeperRodScript
 
 Bird_keeperRodScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x68837
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBird_keeperAbe:
 	trainer EVENT_BEAT_BIRD_KEEPER_ABE, BIRD_KEEPER, ABE, Bird_keeperAbeSeenText, Bird_keeperAbeBeatenText, 0, Bird_keeperAbeScript
 
 Bird_keeperAbeScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x688c7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 VioletGymGuyScript:
@@ -88,14 +88,14 @@ VioletGymGuyScript:
 	checkevent EVENT_BEAT_FALKNER
 	iftrue .VioletGymGuyWinScript
 	writetext VioletGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .VioletGymGuyWinScript
 	writetext VioletGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 VioletGymStatue:

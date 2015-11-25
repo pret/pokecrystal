@@ -67,7 +67,7 @@ KrissHouseRadio:
 	musicfadeout MUSIC_NEW_BARK_TOWN, $10
 	writetext KrisRadioText4
 	pause 45
-	loadmovesprites
+	closetext
 	setevent EVENT_LISTENED_TO_INITIAL_RADIO
 	end
 
@@ -78,7 +78,7 @@ KrissHouseRadio:
 	loadfont
 	writetext KrisRadioText4
 	pause 45
-	loadmovesprites
+	closetext
 	end
 
 KrissHouseBookshelf:
@@ -88,7 +88,7 @@ KrissHousePC:
 	loadfont
 	special Special_KrissHousePC
 	iftrue .Warp
-	loadmovesprites
+	closetext
 	end
 .Warp
 	warp NONE, $0, $0

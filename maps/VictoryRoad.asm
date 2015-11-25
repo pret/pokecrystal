@@ -49,8 +49,8 @@ UnknownScript_0x744d4:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x7455f
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_RIVAL_VICTORY_ROAD
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x744ff
@@ -58,7 +58,7 @@ UnknownScript_0x744d4:
 	iftrue UnknownScript_0x7450f
 	winlosstext UnknownText_0x7463d, UnknownText_0x747aa
 	setlasttalked $2
-	loadtrainer RIVAL1, RIVAL1_15
+	scriptedtrainerdata RIVAL1, RIVAL1_15
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -67,7 +67,7 @@ UnknownScript_0x744d4:
 UnknownScript_0x744ff:
 	winlosstext UnknownText_0x7463d, UnknownText_0x747aa
 	setlasttalked $2
-	loadtrainer RIVAL1, RIVAL1_13
+	scriptedtrainerdata RIVAL1, RIVAL1_13
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -76,7 +76,7 @@ UnknownScript_0x744ff:
 UnknownScript_0x7450f:
 	winlosstext UnknownText_0x7463d, UnknownText_0x747aa
 	setlasttalked $2
-	loadtrainer RIVAL1, RIVAL1_14
+	scriptedtrainerdata RIVAL1, RIVAL1_14
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -86,8 +86,8 @@ UnknownScript_0x7451f:
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	writetext UnknownText_0x746ce
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ItemFragment_0x74529:

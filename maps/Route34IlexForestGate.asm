@@ -33,8 +33,8 @@ UnknownScript_0x62d3d:
 	spriteface PLAYER, DOWN
 	loadfont
 	writetext UnknownText_0x62e41
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $5, MovementData_0x62d9a
 UnknownScript_0x62d62:
 	end
@@ -53,23 +53,23 @@ TeacherScript_0x62d63:
 	setevent EVENT_GOT_TM12_SWEET_SCENT
 UnknownScript_0x62d7e:
 	writetext UnknownText_0x62df6
-	closetext
+	waitbutton
 UnknownScript_0x62d82:
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x62d84:
 	writetext UnknownText_0x62e41
 	keeptextopen
-	loadmovesprites
+	closetext
 	end
 
 ButterfreeScript_0x62d8a:
 	loadfont
 	writetext UnknownText_0x62e83
 	cry BUTTERFREE
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 LassScript_0x62d94:

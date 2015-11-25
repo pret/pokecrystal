@@ -21,11 +21,11 @@ TrainerSageChow:
 	trainer EVENT_BEAT_SAGE_CHOW, SAGE, CHOW, SageChowSeenText, SageChowBeatenText, 0, SageChowScript
 
 SageChowScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x184583
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ItemFragment_0x18451e:

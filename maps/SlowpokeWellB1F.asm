@@ -12,11 +12,11 @@ TrainerGruntM29:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_29, GRUNTM, 29, GruntM29SeenText, GruntM29BeatenText, 0, GruntM29Script
 
 GruntM29Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext TrainerGruntM29SlowpokeProfitText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGruntM1:
@@ -25,8 +25,8 @@ TrainerGruntM1:
 GruntM1Script:
 	loadfont
 	writetext TrainerGruntM1WhenTalkText
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
 	disappear $2
@@ -42,8 +42,8 @@ GruntM1Script:
 	spriteface PLAYER, RIGHT
 	loadfont
 	writetext KurtLeaveSlowpokeWellText
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_CLEARED_SLOWPOKE_WELL
 	variablesprite SPRITE_AZALEA_ROCKET, SPRITE_SILVER
 	domaptrigger AZALEA_TOWN, $1
@@ -66,22 +66,22 @@ TrainerGruntM2:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_2, GRUNTM, 2, GruntM2SeenText, GruntM2BeatenText, 0, GruntM2Script
 
 GruntM2Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5aaf2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGruntF1:
 	trainer EVENT_BEAT_ROCKET_GRUNTF_1, GRUNTF, 1, GruntF1SeenText, GruntF1BeatenText, 0, GruntF1Script
 
 GruntF1Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5ab8d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SlowpokeScript_0x5a681:
@@ -91,13 +91,13 @@ SlowpokeScript_0x5a681:
 	writetext UnknownText_0x5abcb
 	yesorno
 	iftrue UnknownScript_0x5a68f
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x5a68f:
 	writetext UnknownText_0x5ac09
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SlowpokeScript_0x5a695:
@@ -105,8 +105,8 @@ SlowpokeScript_0x5a695:
 	loadfont
 	writetext UnknownText_0x5ac61
 	cry SLOWPOKE
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SlowpokeWellB1FBoulder:

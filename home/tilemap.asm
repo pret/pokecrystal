@@ -16,7 +16,7 @@ Function1c10:: ; 0x1c10
 WriteBackup:: ; 0x1c17
 	push af
 	call ExitMenu
-	call Function321c
+	call ApplyTilemap
 	call UpdateSprites
 	pop af
 	ret

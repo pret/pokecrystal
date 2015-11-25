@@ -45,8 +45,8 @@ GrampsScript_0x7803d:
 	faceplayer
 	loadfont
 	special Special_DayCareManOutside
+	waitbutton
 	closetext
-	loadmovesprites
 	if_equal $1, UnknownScript_0x7805a
 	clearflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
 	checkcode VAR_FACING
@@ -66,13 +66,13 @@ UnknownScript_0x7805b:
 DaycareMon1Script_0x78065:
 	loadfont
 	special Special_DayCareMon1
-	loadmovesprites
+	closetext
 	end
 
 DaycareMon2Script_0x7806b:
 	loadfont
 	special Special_DayCareMon2
-	loadmovesprites
+	closetext
 	end
 
 TrainerCamperTodd1:
@@ -80,7 +80,7 @@ TrainerCamperTodd1:
 
 CamperTodd1Script:
 	writecode VAR_CALLERID, PHONE_CAMPER_TODD
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_TODD
 	iftrue UnknownScript_0x780bd
@@ -128,7 +128,7 @@ UnknownScript_0x780bd:
 	checkflag ENGINE_FLYPOINT_CIANWOOD
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer CAMPER, TODD1
+	scriptedtrainerdata CAMPER, TODD1
 	startbattle
 	returnafterbattle
 	loadvar wToddFightCount, 1
@@ -136,7 +136,7 @@ UnknownScript_0x780bd:
 	end
 
 .LoadFight1
-	loadtrainer CAMPER, TODD2
+	scriptedtrainerdata CAMPER, TODD2
 	startbattle
 	returnafterbattle
 	loadvar wToddFightCount, 2
@@ -144,7 +144,7 @@ UnknownScript_0x780bd:
 	end
 
 .LoadFight2
-	loadtrainer CAMPER, TODD3
+	scriptedtrainerdata CAMPER, TODD3
 	startbattle
 	returnafterbattle
 	loadvar wToddFightCount, 3
@@ -152,7 +152,7 @@ UnknownScript_0x780bd:
 	end
 
 .LoadFight3
-	loadtrainer CAMPER, TODD4
+	scriptedtrainerdata CAMPER, TODD4
 	startbattle
 	returnafterbattle
 	loadvar wToddFightCount, 4
@@ -160,7 +160,7 @@ UnknownScript_0x780bd:
 	end
 
 .LoadFight4
-	loadtrainer CAMPER, TODD5
+	scriptedtrainerdata CAMPER, TODD5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_TODD
@@ -168,8 +168,8 @@ UnknownScript_0x780bd:
 
 UnknownScript_0x78131:
 	writetext UnknownText_0x78532
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x78137:
@@ -205,7 +205,7 @@ TrainerPicnickerGina1:
 
 PicnickerGina1Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_GINA
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_GINA
 	iftrue UnknownScript_0x7819f
@@ -253,7 +253,7 @@ UnknownScript_0x7819f:
 	checkflag ENGINE_FLYPOINT_MAHOGANY
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer PICNICKER, GINA1
+	scriptedtrainerdata PICNICKER, GINA1
 	startbattle
 	returnafterbattle
 	loadvar wGinaFightCount, 1
@@ -261,7 +261,7 @@ UnknownScript_0x7819f:
 	end
 
 .LoadFight1
-	loadtrainer PICNICKER, GINA2
+	scriptedtrainerdata PICNICKER, GINA2
 	startbattle
 	returnafterbattle
 	loadvar wGinaFightCount, 2
@@ -269,7 +269,7 @@ UnknownScript_0x7819f:
 	end
 
 .LoadFight2
-	loadtrainer PICNICKER, GINA3
+	scriptedtrainerdata PICNICKER, GINA3
 	startbattle
 	returnafterbattle
 	loadvar wGinaFightCount, 3
@@ -277,7 +277,7 @@ UnknownScript_0x7819f:
 	end
 
 .LoadFight3
-	loadtrainer PICNICKER, GINA4
+	scriptedtrainerdata PICNICKER, GINA4
 	startbattle
 	returnafterbattle
 	loadvar wGinaFightCount, 4
@@ -285,7 +285,7 @@ UnknownScript_0x7819f:
 	end
 
 .LoadFight4
-	loadtrainer PICNICKER, GINA5
+	scriptedtrainerdata PICNICKER, GINA5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_GINA
@@ -347,104 +347,104 @@ OfficerScript_0x7824c:
 	iftrue UnknownScript_0x78270
 	playmusic MUSIC_OFFICER_ENCOUNTER
 	writetext UnknownText_0x785e4
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x78609, 0
-	loadtrainer OFFICER, KEITH
+	scriptedtrainerdata OFFICER, KEITH
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_OFFICER_KEITH
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x78270:
 	writetext UnknownText_0x78624
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x78276:
 	writetext UnknownText_0x7866a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerYoungsterSamuel:
 	trainer EVENT_BEAT_YOUNGSTER_SAMUEL, YOUNGSTER, SAMUEL, YoungsterSamuelSeenText, YoungsterSamuelBeatenText, 0, YoungsterSamuelScript
 
 YoungsterSamuelScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x783d8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerYoungsterIan:
 	trainer EVENT_BEAT_YOUNGSTER_IAN, YOUNGSTER, IAN, YoungsterIanSeenText, YoungsterIanBeatenText, 0, YoungsterIanScript
 
 YoungsterIanScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x78469
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokefanmBrandon:
 	trainer EVENT_BEAT_POKEFANM_BRANDON, POKEFANM, BRANDON, PokefanmBrandonSeenText, PokefanmBrandonBeatenText, 0, PokefanmBrandonScript
 
 PokefanmBrandonScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x786fc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainerfIrene:
 	trainer EVENT_BEAT_COOLTRAINERF_IRENE, COOLTRAINERF, IRENE, CooltrainerfIreneSeenText, CooltrainerfIreneBeatenText, 0, CooltrainerfIreneScript
 
 CooltrainerfIreneScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
 	iftrue UnknownScript_0x782d2
 	writetext UnknownText_0x7877f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x782d2:
 	writetext UnknownText_0x787ad
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainerfJenn:
 	trainer EVENT_BEAT_COOLTRAINERF_JENN, COOLTRAINERF, JENN, CooltrainerfJennSeenText, CooltrainerfJennBeatenText, 0, CooltrainerfJennScript
 
 CooltrainerfJennScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
 	iftrue UnknownScript_0x782f2
 	writetext UnknownText_0x78836
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x782f2:
 	writetext UnknownText_0x78866
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainerfKate:
 	trainer EVENT_BEAT_COOLTRAINERF_KATE, COOLTRAINERF, KATE, CooltrainerfKateSeenText, CooltrainerfKateBeatenText, 0, CooltrainerfKateScript
 
 CooltrainerfKateScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
 	iftrue UnknownScript_0x78319
@@ -455,9 +455,9 @@ CooltrainerfKateScript:
 	setevent EVENT_GOT_SOFT_SAND_FROM_KATE
 UnknownScript_0x78319:
 	writetext UnknownText_0x7892b
-	closetext
+	waitbutton
 UnknownScript_0x7831d:
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x7831f:

@@ -17,9 +17,9 @@ GrannyScript_0x18b634:
 	setevent EVENT_GOT_CLEANSE_TAG
 UnknownScript_0x18b649:
 	writetext UnknownText_0x18b6a7
-	closetext
+	waitbutton
 UnknownScript_0x18b64d:
-	loadmovesprites
+	closetext
 	end
 
 TeacherScript_0x18b64f:

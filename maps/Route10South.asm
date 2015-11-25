@@ -9,22 +9,22 @@ TrainerHikerJim:
 	trainer EVENT_BEAT_HIKER_JIM, HIKER, JIM, HikerJimSeenText, HikerJimBeatenText, 0, HikerJimScript
 
 HikerJimScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ae43b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokefanmRobert:
 	trainer EVENT_BEAT_POKEFANM_ROBERT, POKEFANM, ROBERT, PokefanmRobertSeenText, PokefanmRobertBeatenText, 0, PokefanmRobertScript
 
 PokefanmRobertScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ae4a9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute10SouthSignpost0Script:

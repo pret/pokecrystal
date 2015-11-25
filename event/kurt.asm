@@ -139,7 +139,7 @@ Kurt_SelectQuantity: ; 880c2
 	call UpdateSprites
 	call .PlaceApricornName
 	call PlaceApricornQuantity
-	call Function321c
+	call ApplyTilemap
 	callba Function27a28
 	jr nc, .loop
 

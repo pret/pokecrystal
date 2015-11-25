@@ -46,7 +46,7 @@ PredefPointers:: ; 856b
 	add_predef CalcPkmnStatC
 	add_predef CanLearnTMHMMove
 	add_predef GetTMHMMove
-	add_predef Function28eef ; $ 10
+	add_predef Predef_LinkTextbox ; $ 10
 	add_predef PrintMoveDesc
 	add_predef UpdatePlayerHUD
 	add_predef FillBox

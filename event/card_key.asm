@@ -34,6 +34,6 @@ _CardKey: ; 50779
 ; 507af
 
 .CardKeyScript: ; 0x507af
-	loadmovesprites
+	closetext
 	farjump MapRadioTower3FSignpost2Script
 ; 0x507b4

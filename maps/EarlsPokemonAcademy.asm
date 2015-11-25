@@ -20,14 +20,14 @@ AcademyEarl:
 	yesorno
 	iffalse .Done
 	writetext UnknownText_0x68c7b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Done
 	writetext UnknownText_0x68d31
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x68a83:
@@ -37,8 +37,8 @@ GameboyKidScript_0x68a86:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x68dda
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $4, DOWN
 	end
 
@@ -46,8 +46,8 @@ GameboyKidScript_0x68a91:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x68e07
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $5, DOWN
 	end
 
@@ -66,32 +66,32 @@ AcademyBlackboard:
 	if_equal $3, .Sleep
 	if_equal $4, .Burn
 	if_equal $5, .Freeze
-	loadmovesprites
+	closetext
 	end
 
 .Poison
 	writetext AcademyPoisonText
-	closetext
+	waitbutton
 	jump .Loop
 
 .Paralysis
 	writetext AcademyParalysisText
-	closetext
+	waitbutton
 	jump .Loop
 
 .Sleep
 	writetext AcademySleepText
-	closetext
+	waitbutton
 	jump .Loop
 
 .Burn
 	writetext AcademyBurnText
-	closetext
+	waitbutton
 	jump .Loop
 
 .Freeze:
 	writetext AcademyFreezeText
-	closetext
+	waitbutton
 	jump .Loop
 
 .MenuHeader
@@ -128,9 +128,9 @@ AcademyNotebook:
 	yesorno
 	iffalse .Done
 	writetext AcademyNotebookText3
-	closetext
+	waitbutton
 .Done
-	loadmovesprites
+	closetext
 	end
 
 AcademyStickerMachine:

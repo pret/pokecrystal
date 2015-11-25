@@ -30,10 +30,10 @@ LugiaScript_0x18c518:
 	writetext UnknownText_0x18c531
 	cry LUGIA
 	pause 15
-	loadmovesprites
+	closetext
 	setevent EVENT_FOUGHT_LUGIA
 	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
-	loadpokedata LUGIA, 60
+	scriptedpokedata LUGIA, 60
 	startbattle
 	disappear $2
 	returnafterbattle

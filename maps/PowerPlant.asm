@@ -18,21 +18,21 @@ UnknownScript_0x188dc4:
 UnknownScript_0x188dc5:
 	playsound SFX_CALL
 	showemote EMOTE_SHOCK, $2, 15
-	waitbutton
+	waitsfx
 	pause 30
 	applymovement $2, MovementData_0x188ed5
 	spriteface $3, DOWN
 	spriteface $4, DOWN
 	loadfont
 	writetext UnknownText_0x188f22
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, LEFT
 	spriteface PLAYER, RIGHT
 	loadfont
 	writetext UnknownText_0x188f7f
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, DOWN
 	applymovement $2, MovementData_0x188eda
 	dotrigger $0
@@ -46,20 +46,20 @@ OfficerScript_0x188df5:
 	checkevent EVENT_MET_MANAGER_AT_POWER_PLANT
 	iftrue UnknownScript_0x188e09
 	writetext UnknownText_0x188ee0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x188e09:
 	writetext UnknownText_0x188f7f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x188e0f:
 	writetext UnknownText_0x188fa2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GymGuyScript_0x188e15:
@@ -68,14 +68,14 @@ GymGuyScript_0x188e15:
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e23
 	writetext UnknownText_0x188fcf
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x188e23:
 	writetext UnknownText_0x189038
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GymGuyScript_0x188e29:
@@ -84,14 +84,14 @@ GymGuyScript_0x188e29:
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e37
 	writetext UnknownText_0x189079
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x188e37:
 	writetext UnknownText_0x1890ef
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 OfficerScript_0x188e3d:
@@ -100,14 +100,14 @@ OfficerScript_0x188e3d:
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e4b
 	writetext UnknownText_0x18910e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x188e4b:
 	writetext UnknownText_0x18917f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GymGuyScript_0x188e51:
@@ -116,14 +116,14 @@ GymGuyScript_0x188e51:
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e5f
 	writetext UnknownText_0x1891c2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x188e5f:
 	writetext UnknownText_0x189225
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PowerPlantManager:
@@ -136,8 +136,8 @@ PowerPlantManager:
 	checkevent EVENT_MET_MANAGER_AT_POWER_PLANT
 	iftrue UnknownScript_0x188e8d
 	writetext UnknownText_0x189264
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_MET_MANAGER_AT_POWER_PLANT
 	clearevent EVENT_CERULEAN_GYM_ROCKET
 	clearevent EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM
@@ -147,8 +147,8 @@ PowerPlantManager:
 
 UnknownScript_0x188e8d:
 	writetext UnknownText_0x189308
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x188e93:
@@ -170,23 +170,23 @@ UnknownScript_0x188eac:
 	iffalse UnknownScript_0x188ec3
 	setevent EVENT_GOT_TM07_ZAP_CANNON
 	writetext UnknownText_0x1893f4
-	closetext
+	waitbutton
 UnknownScript_0x188ec3:
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x188ec5:
 	writetext UnknownText_0x189475
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GymGuyScript_0x188ecb:
 	faceplayer
 	loadfont
 	trade $6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PowerPlantBookshelf:

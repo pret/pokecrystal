@@ -48,147 +48,147 @@ SailorScript_0x76767:
 	checkevent EVENT_FAST_SHIP_INFORMED_ABOUT_LAZY_SAILOR
 	iftrue UnknownScript_0x76787
 	writetext UnknownText_0x7687b
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_FAST_SHIP_INFORMED_ABOUT_LAZY_SAILOR
 	clearevent EVENT_FAST_SHIP_CABINS_NNW_NNE_NE_SAILOR
 	end
 
 UnknownScript_0x76787:
 	writetext UnknownText_0x76907
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7678d:
 	writetext UnknownText_0x7692e
 	checkevent EVENT_FAST_SHIP_FOUND_GIRL
 	iffalse UnknownScript_0x76799
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x76799:
 	keeptextopen
 	writetext UnknownText_0x7696d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x767a0:
 	writetext UnknownText_0x7699d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSailorJeff:
 	trainer EVENT_BEAT_SAILOR_JEFF, SAILOR, JEFF, SailorJeffSeenText, SailorJeffBeatenText, 0, SailorJeffScript
 
 SailorJeffScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x76a38
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPicnickerDebra:
 	trainer EVENT_BEAT_PICNICKER_DEBRA, PICNICKER, DEBRA, PicnickerDebraSeenText, PicnickerDebraBeatenText, 0, PicnickerDebraScript
 
 PicnickerDebraScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x76a99
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerJugglerFritz:
 	trainer EVENT_BEAT_JUGGLER_FRITZ, JUGGLER, FRITZ, JugglerFritzSeenText, JugglerFritzBeatenText, 0, JugglerFritzScript
 
 JugglerFritzScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x76b02
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSailorGarrett:
 	trainer EVENT_BEAT_SAILOR_GARRETT, SAILOR, GARRETT, SailorGarrettSeenText, SailorGarrettBeatenText, 0, SailorGarrettScript
 
 SailorGarrettScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x76b7a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFisherJonah:
 	trainer EVENT_BEAT_FISHER_JONAH, FISHER, JONAH, FisherJonahSeenText, FisherJonahBeatenText, 0, FisherJonahScript
 
 FisherJonahScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x76c22
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBlackbeltWai:
 	trainer EVENT_BEAT_BLACKBELT_WAI, BLACKBELT_T, WAI, BlackbeltWaiSeenText, BlackbeltWaiBeatenText, 0, BlackbeltWaiScript
 
 BlackbeltWaiScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x76c9e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSailorKenneth:
 	trainer EVENT_BEAT_SAILOR_KENNETH, SAILOR, KENNETH, SailorKennethSeenText, SailorKennethBeatenText, 0, SailorKennethScript
 
 SailorKennethScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x76d5f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerTeacherShirley:
 	trainer EVENT_BEAT_TEACHER_SHIRLEY, TEACHER, SHIRLEY, TeacherShirleySeenText, TeacherShirleyBeatenText, 0, TeacherShirleyScript
 
 TeacherShirleyScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x76de1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSchoolboyNate:
 	trainer EVENT_BEAT_SCHOOLBOY_NATE, SCHOOLBOY, NATE, SchoolboyNateSeenText, SchoolboyNateBeatenText, 0, SchoolboyNateScript
 
 SchoolboyNateScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x76e3d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSchoolboyRicky:
 	trainer EVENT_BEAT_SCHOOLBOY_RICKY, SCHOOLBOY, RICKY, SchoolboyRickySeenText, SchoolboyRickyBeatenText, 0, SchoolboyRickyScript
 
 SchoolboyRickyScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x76eb6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FashShipB1FTrashcan:

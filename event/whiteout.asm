@@ -9,7 +9,7 @@ Script_OverworldWhiteout:: ; 0x124c8
 
 Script_Whiteout: ; 0x124ce
 	writetext .WhitedOutText
-	closetext
+	waitbutton
 	special RotatePalettesRightPalettes
 	pause 40
 	special HealParty

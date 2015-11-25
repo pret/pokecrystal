@@ -11,21 +11,21 @@ CooltrainerMScript_0x71670:
 	writetext UnknownText_0x716ce
 	checkcode VAR_DEXCAUGHT
 	if_greater_than 248, UnknownScript_0x7167e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7167e:
 	keeptextopen
 	writetext UnknownText_0x71725
 	playsound SFX_DEX_FANFARE_230_PLUS
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x71760
 	keeptextopen
 	special Diploma
 	writetext UnknownText_0x71763
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_ENABLE_DIPLOMA_PRINTING
 	end
 
@@ -35,8 +35,8 @@ GymGuyScript_0x71696:
 	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
 	iftrue UnknownScript_0x716a4
 	writetext UnknownText_0x717b4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x716a4:
@@ -44,19 +44,19 @@ UnknownScript_0x716a4:
 	yesorno
 	iffalse UnknownScript_0x716b0
 	special PrintDiploma
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x716b0:
 	writetext UnknownText_0x71830
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x716b6:
 	writetext UnknownText_0x71863
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SuperNerdScript_0x716bc:

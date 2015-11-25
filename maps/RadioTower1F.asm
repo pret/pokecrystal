@@ -11,14 +11,14 @@ ReceptionistScript_0x5cd29:
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue UnknownScript_0x5cd37
 	writetext UnknownText_0x5ce77
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x5cd37:
 	writetext UnknownText_0x5ce81
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GentlemanScript_0x5cd3d:
@@ -35,18 +35,18 @@ GentlemanScript_0x5cd3d:
 	iftrue .GameOver
 	writetext UnknownText_0x5cf3a
 	keeptextopen
-	loadmovesprites
+	closetext
 	applymovement $6, MovementData_0x5ce71
 	loadfont
 	writetext UnknownText_0x5cf5a
 	keeptextopen
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x5cf79
 	playsound SFX_DEX_FANFARE_20_49
-	waitbutton
+	waitsfx
 	keeptextopen
 	special Special_CheckForLuckyNumberWinners
-	loadmovesprites
+	closetext
 	applymovement $6, MovementData_0x5ce74
 	loadfont
 	if_equal 1, .FirstPlace
@@ -56,14 +56,14 @@ GentlemanScript_0x5cd3d:
 
 .GameOver
 	writetext UnknownText_0x5cf7e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FirstPlace
 	writetext UnknownText_0x5cfb5
 	playsound SFX_1ST_PLACE
-	waitbutton
+	waitsfx
 	keeptextopen
 	giveitem MASTER_BALL
 	iffalse .BagFull
@@ -74,7 +74,7 @@ GentlemanScript_0x5cd3d:
 .SecondPlace
 	writetext UnknownText_0x5d023
 	playsound SFX_2ND_PLACE
-	waitbutton
+	waitsfx
 	keeptextopen
 	giveitem EXP_SHARE
 	iffalse .BagFull
@@ -85,7 +85,7 @@ GentlemanScript_0x5cd3d:
 .ThirdPlace
 	writetext UnknownText_0x5d076
 	playsound SFX_3RD_PLACE
-	waitbutton
+	waitsfx
 	keeptextopen
 	giveitem PP_UP
 	iffalse .BagFull
@@ -95,14 +95,14 @@ GentlemanScript_0x5cd3d:
 
 .NoPrize
 	writetext UnknownText_0x5d0c0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .BagFull:
 	writetext UnknownText_0x5d0e6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CooltrainerFScript_0x5cdd5:
@@ -117,27 +117,27 @@ CooltrainerFScript_0x5cdd5:
 	yesorno
 	iffalse UnknownScript_0x5ce42
 	playsound SFX_ELEVATOR_END
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x5d231
 	yesorno
 	iffalse UnknownScript_0x5ce42
 	playsound SFX_ELEVATOR_END
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x5d282
 	yesorno
 	iftrue UnknownScript_0x5ce42
 	playsound SFX_ELEVATOR_END
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x5d2bc
 	yesorno
 	iffalse UnknownScript_0x5ce42
 	playsound SFX_ELEVATOR_END
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x5d30e
 	yesorno
 	iftrue UnknownScript_0x5ce42
 	playsound SFX_ELEVATOR_END
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x5d37b
 	keeptextopen
 	stringtotext RadioCardText, $1
@@ -147,8 +147,8 @@ CooltrainerFScript_0x5cdd5:
 	setflag ENGINE_RADIO_CARD
 UnknownScript_0x5ce2d:
 	writetext UnknownText_0x5d3e5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 RadioCardText:
@@ -161,14 +161,14 @@ UnknownScript_0x5ce3e:
 UnknownScript_0x5ce42:
 	playsound SFX_WRONG
 	writetext UnknownText_0x5d409
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x5ce4b:
 	writetext UnknownText_0x5d443
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 LassScript_0x5ce51:
@@ -181,11 +181,11 @@ TrainerGruntM3:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_3, GRUNTM, 3, GruntM3SeenText, GruntM3BeatenText, 0, GruntM3Script
 
 GruntM3Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5d5a2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRadioTower1FSignpost0Script:

@@ -9,46 +9,46 @@ SuperNerdScript_0x73049:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x730de
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FisherScript_0x73051:
 	loadfont
 	writetext UnknownText_0x73129
+	waitbutton
 	closetext
-	loadmovesprites
 	faceplayer
 	loadfont
 	writetext UnknownText_0x7313a
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $3, LEFT
 	end
 
 FisherScript_0x73062:
 	loadfont
 	writetext UnknownText_0x7316a
+	waitbutton
 	closetext
-	loadmovesprites
 	faceplayer
 	loadfont
 	writetext UnknownText_0x73178
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $4, RIGHT
 	end
 
 FisherScript_0x73073:
 	loadfont
 	writetext UnknownText_0x731ae
+	waitbutton
 	closetext
-	loadmovesprites
 	faceplayer
 	loadfont
 	writetext UnknownText_0x731bd
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $5, RIGHT
 	end
 
@@ -57,26 +57,26 @@ TeacherScript_0x73084:
 	iftrue UnknownScript_0x7309a
 	loadfont
 	writetext UnknownText_0x73201
+	waitbutton
 	closetext
-	loadmovesprites
 	faceplayer
 	loadfont
 	writetext UnknownText_0x73212
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $6, LEFT
 	end
 
 UnknownScript_0x7309a:
 	loadfont
 	writetext UnknownText_0x73254
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $6, RIGHT
 	loadfont
 	writetext UnknownText_0x73278
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $6, LEFT
 	end
 
@@ -92,9 +92,9 @@ CeladonCafeTrashcan:
 	itemtotext LEFTOVERS, $0
 	writetext FoundLeftoversText
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
-	loadmovesprites
+	closetext
 	setevent EVENT_FOUND_LEFTOVERS_IN_CELADON_CAFE
 	end
 
@@ -104,8 +104,8 @@ CeladonCafeTrashcan:
 	writetext FoundLeftoversText
 	keeptextopen
 	writetext NoRoomForLeftoversText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .TrashEmpty

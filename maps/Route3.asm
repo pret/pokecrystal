@@ -9,44 +9,44 @@ TrainerFirebreatherOtis:
 	trainer EVENT_BEAT_FIREBREATHER_OTIS, FIREBREATHER, OTIS, FirebreatherOtisSeenText, FirebreatherOtisBeatenText, 0, FirebreatherOtisScript
 
 FirebreatherOtisScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1adff7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerYoungsterWarren:
 	trainer EVENT_BEAT_YOUNGSTER_WARREN, YOUNGSTER, WARREN, YoungsterWarrenSeenText, YoungsterWarrenBeatenText, 0, YoungsterWarrenScript
 
 YoungsterWarrenScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ae051
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerYoungsterJimmy:
 	trainer EVENT_BEAT_YOUNGSTER_JIMMY, YOUNGSTER, JIMMY, YoungsterJimmySeenText, YoungsterJimmyBeatenText, 0, YoungsterJimmyScript
 
 YoungsterJimmyScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ae0a9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFirebreatherBurt:
 	trainer EVENT_BEAT_FIREBREATHER_BURT, FIREBREATHER, BURT, FirebreatherBurtSeenText, FirebreatherBurtBeatenText, 0, FirebreatherBurtScript
 
 FirebreatherBurtScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ae118
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute3Signpost0Script:

@@ -9,22 +9,22 @@ TrainerBird_keeperToby:
 	trainer EVENT_BEAT_BIRD_KEEPER_TOBY, BIRD_KEEPER, TOBY, Bird_keeperTobySeenText, Bird_keeperTobyBeatenText, 0, .script
 
 .script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a1f86
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSailorHarry:
 	trainer EVENT_BEAT_SAILOR_HARRY, SAILOR, HARRY, SailorHarrySeenText, SailorHarryBeatenText, 0, .script
 
 .script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a220c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerLassDana1:
@@ -32,7 +32,7 @@ TrainerLassDana1:
 
 .script:
 	writecode VAR_CALLERID, PHONE_LASS_DANA
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_DANA
 	iftrue .DanaRematch
@@ -80,7 +80,7 @@ TrainerLassDana1:
 	checkflag ENGINE_FLYPOINT_CIANWOOD
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer LASS, DANA1
+	scriptedtrainerdata LASS, DANA1
 	startbattle
 	returnafterbattle
 	loadvar wDanaFightCount, 1
@@ -88,7 +88,7 @@ TrainerLassDana1:
 	end
 
 .LoadFight1
-	loadtrainer LASS, DANA2
+	scriptedtrainerdata LASS, DANA2
 	startbattle
 	returnafterbattle
 	loadvar wDanaFightCount, 2
@@ -96,7 +96,7 @@ TrainerLassDana1:
 	end
 
 .LoadFight2
-	loadtrainer LASS, DANA3
+	scriptedtrainerdata LASS, DANA3
 	startbattle
 	returnafterbattle
 	loadvar wDanaFightCount, 3
@@ -104,7 +104,7 @@ TrainerLassDana1:
 	end
 
 .LoadFight3
-	loadtrainer LASS, DANA4
+	scriptedtrainerdata LASS, DANA4
 	startbattle
 	returnafterbattle
 	loadvar wDanaFightCount, 4
@@ -112,7 +112,7 @@ TrainerLassDana1:
 	end
 
 .LoadFight4
-	loadtrainer LASS, DANA5
+	scriptedtrainerdata LASS, DANA5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_DANA
@@ -170,7 +170,7 @@ TrainerSchoolboyChad1:
 
 .script:
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_CHAD
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_CHAD
 	iftrue .ChadRematch
@@ -216,7 +216,7 @@ TrainerSchoolboyChad1:
 	checkflag ENGINE_FLYPOINT_MAHOGANY
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer SCHOOLBOY, CHAD1
+	scriptedtrainerdata SCHOOLBOY, CHAD1
 	startbattle
 	returnafterbattle
 	loadvar wChadFightCount, 1
@@ -224,7 +224,7 @@ TrainerSchoolboyChad1:
 	end
 
 .LoadFight1
-	loadtrainer SCHOOLBOY, CHAD2
+	scriptedtrainerdata SCHOOLBOY, CHAD2
 	startbattle
 	returnafterbattle
 	loadvar wChadFightCount, 2
@@ -232,7 +232,7 @@ TrainerSchoolboyChad1:
 	end
 
 .LoadFight2
-	loadtrainer SCHOOLBOY, CHAD3
+	scriptedtrainerdata SCHOOLBOY, CHAD3
 	startbattle
 	returnafterbattle
 	loadvar wChadFightCount, 3
@@ -240,7 +240,7 @@ TrainerSchoolboyChad1:
 	end
 
 .LoadFight3
-	loadtrainer SCHOOLBOY, CHAD4
+	scriptedtrainerdata SCHOOLBOY, CHAD4
 	startbattle
 	returnafterbattle
 	loadvar wChadFightCount, 4
@@ -248,7 +248,7 @@ TrainerSchoolboyChad1:
 	end
 
 .LoadFight4
-	loadtrainer SCHOOLBOY, CHAD5
+	scriptedtrainerdata SCHOOLBOY, CHAD5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_CHAD
@@ -286,22 +286,22 @@ TrainerBeautyValerie:
 	trainer EVENT_BEAT_BEAUTY_VALERIE, BEAUTY, VALERIE, BeautyValerieSeenText, BeautyValerieBeatenText, 0, .script
 
 .script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a2185
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBeautyOlivia:
 	trainer EVENT_BEAT_BEAUTY_OLIVIA, BEAUTY, OLIVIA, BeautyOliviaSeenText, BeautyOliviaBeatenText, 0, .script
 
 .script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a229a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute38Signpost0Script:

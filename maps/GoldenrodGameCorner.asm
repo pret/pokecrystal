@@ -32,8 +32,8 @@ PokefanMScript_0x56c1a:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5718a
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $d, RIGHT
 	end
 
@@ -44,7 +44,7 @@ ReceptionistScript_0x56c28:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x56e50
-	closetext
+	waitbutton
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x56cc3
 	writetext UnknownText_0x56e8b
@@ -97,34 +97,34 @@ UnknownScript_0x56ca1:
 	end
 
 UnknownScript_0x56ca6:
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x56ebd
-	closetext
+	waitbutton
 	jump UnknownScript_0x56c36
 
 UnknownScript_0x56cb1:
 	writetext UnknownText_0x56ecb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x56cb7:
 	writetext UnknownText_0x56ee8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x56cbd:
 	writetext UnknownText_0x56f09
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x56cc3:
 	writetext UnknownText_0x56f35
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 
@@ -148,7 +148,7 @@ ReceptionistScript_0x56d01:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x56e50
-	closetext
+	waitbutton
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x56cc3
 UnknownScript_0x56d0c:
@@ -170,10 +170,10 @@ UnknownScript_0x56d26:
 	pokenamemem ABRA, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x56ebd
-	closetext
+	waitbutton
 	writebyte ABRA
 	special Special_GameCornerPrizeMonCheckDex
 	givepoke ABRA, 5
@@ -188,10 +188,10 @@ UnknownScript_0x56d54:
 	pokenamemem CUBONE, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x56ebd
-	closetext
+	waitbutton
 	writebyte CUBONE
 	special Special_GameCornerPrizeMonCheckDex
 	givepoke CUBONE, 15
@@ -206,10 +206,10 @@ UnknownScript_0x56d82:
 	pokenamemem WOBBUFFET, $0
 	scall UnknownScript_0x56ca1
 	iffalse UnknownScript_0x56cbd
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x56ebd
-	closetext
+	waitbutton
 	writebyte WOBBUFFET
 	special Special_GameCornerPrizeMonCheckDex
 	givepoke WOBBUFFET, 15
@@ -237,8 +237,8 @@ PharmacistScript_0x56df1:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x56f55
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface LAST_TALKED, LEFT
 	end
 
@@ -246,8 +246,8 @@ PokefanMScript_0x56dfc:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x56f9e
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $7, RIGHT
 	end
 
@@ -255,8 +255,8 @@ CooltrainerMScript_0x56e07:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x56ff4
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $8, LEFT
 	end
 
@@ -264,8 +264,8 @@ PokefanFScript_0x56e12:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5702b
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $9, RIGHT
 	end
 
@@ -276,8 +276,8 @@ GentlemanScript_0x56e20:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x570b1
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $b, RIGHT
 	end
 
@@ -293,20 +293,20 @@ MapGoldenrodGameCornerSignpost17Script:
 	refreshscreen $0
 	writebyte $0
 	special Special_SlotMachine
-	loadmovesprites
+	closetext
 	end
 
 MapGoldenrodGameCornerSignpost7Script:
 	refreshscreen $0
 	writebyte $1
 	special Special_SlotMachine
-	loadmovesprites
+	closetext
 	end
 
 MapGoldenrodGameCornerSignpost29Script:
 	refreshscreen $0
 	special Special_CardFlip
-	loadmovesprites
+	closetext
 	end
 
 UnknownText_0x56e50:

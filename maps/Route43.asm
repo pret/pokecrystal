@@ -23,22 +23,22 @@ TrainerCamperSpencer:
 	trainer EVENT_BEAT_CAMPER_SPENCER, CAMPER, SPENCER, CamperSpencerSeenText, CamperSpencerBeatenText, 0, CamperSpencerScript
 
 CamperSpencerScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19d57e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokemaniacBen:
 	trainer EVENT_BEAT_POKEMANIAC_BEN, POKEMANIAC, BEN, PokemaniacBenSeenText, PokemaniacBenBeatenText, 0, PokemaniacBenScript
 
 PokemaniacBenScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19d2d2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokemaniacBrent1:
@@ -46,7 +46,7 @@ TrainerPokemaniacBrent1:
 
 PokemaniacBrent1Script:
 	writecode VAR_CALLERID, PHONE_POKEMANIAC_BRENT
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_BRENT
 	iftrue UnknownScript_0x19d0cf
@@ -88,7 +88,7 @@ UnknownScript_0x19d0cf:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer POKEMANIAC, BRENT1
+	scriptedtrainerdata POKEMANIAC, BRENT1
 	startbattle
 	returnafterbattle
 	loadvar wBrentFightCount, 1
@@ -96,7 +96,7 @@ UnknownScript_0x19d0cf:
 	end
 
 .LoadFight1
-	loadtrainer POKEMANIAC, BRENT2
+	scriptedtrainerdata POKEMANIAC, BRENT2
 	startbattle
 	returnafterbattle
 	loadvar wBrentFightCount, 2
@@ -104,7 +104,7 @@ UnknownScript_0x19d0cf:
 	end
 
 .LoadFight2
-	loadtrainer POKEMANIAC, BRENT3
+	scriptedtrainerdata POKEMANIAC, BRENT3
 	startbattle
 	returnafterbattle
 	loadvar wBrentFightCount, 3
@@ -112,7 +112,7 @@ UnknownScript_0x19d0cf:
 	end
 
 .LoadFight3
-	loadtrainer POKEMANIAC, BRENT4
+	scriptedtrainerdata POKEMANIAC, BRENT4
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_BRENT
@@ -150,22 +150,22 @@ TrainerPokemaniacRon:
 	trainer EVENT_BEAT_POKEMANIAC_RON, POKEMANIAC, RON, PokemaniacRonSeenText, PokemaniacRonBeatenText, 0, PokemaniacRonScript
 
 PokemaniacRonScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19d3f8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFisherMarvin:
 	trainer EVENT_BEAT_FISHER_MARVIN, FISHER, MARVIN, FisherMarvinSeenText, FisherMarvinBeatenText, 0, FisherMarvinScript
 
 FisherMarvinScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19d4d3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPicnickerTiffany3:
@@ -173,7 +173,7 @@ TrainerPicnickerTiffany3:
 
 PicnickerTiffany3Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_TIFFANY
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_TIFFANY
 	iftrue UnknownScript_0x19d1c1
@@ -219,7 +219,7 @@ UnknownScript_0x19d1c1:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer PICNICKER, TIFFANY3
+	scriptedtrainerdata PICNICKER, TIFFANY3
 	startbattle
 	returnafterbattle
 	loadvar wTiffanyFightCount, 1
@@ -227,7 +227,7 @@ UnknownScript_0x19d1c1:
 	end
 
 .LoadFight1
-	loadtrainer PICNICKER, TIFFANY1
+	scriptedtrainerdata PICNICKER, TIFFANY1
 	startbattle
 	returnafterbattle
 	loadvar wTiffanyFightCount, 2
@@ -235,7 +235,7 @@ UnknownScript_0x19d1c1:
 	end
 
 .LoadFight2
-	loadtrainer PICNICKER, TIFFANY2
+	scriptedtrainerdata PICNICKER, TIFFANY2
 	startbattle
 	returnafterbattle
 	loadvar wTiffanyFightCount, 3
@@ -243,7 +243,7 @@ UnknownScript_0x19d1c1:
 	end
 
 .LoadFight3
-	loadtrainer PICNICKER, TIFFANY4
+	scriptedtrainerdata PICNICKER, TIFFANY4
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_TIFFANY
@@ -262,8 +262,8 @@ UnknownScript_0x19d230:
 
 UnknownScript_0x19d233:
 	writetext UnknownText_0x19d64b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19d239:

@@ -9,44 +9,44 @@ TrainerFisherKyle:
 	trainer EVENT_BEAT_FISHER_KYLE, FISHER, KYLE, FisherKyleSeenText, FisherKyleBeatenText, 0, FisherKyleScript
 
 FisherKyleScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a7238
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFisherMartin:
 	trainer EVENT_BEAT_FISHER_MARTIN, FISHER, MARTIN, FisherMartinSeenText, FisherMartinBeatenText, 0, FisherMartinScript
 
 FisherMartinScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a704c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFisherStephen:
 	trainer EVENT_BEAT_FISHER_STEPHEN, FISHER, STEPHEN, FisherStephenSeenText, FisherStephenBeatenText, 0, FisherStephenScript
 
 FisherStephenScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a70d4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFisherBarney:
 	trainer EVENT_BEAT_FISHER_BARNEY, FISHER, BARNEY, FisherBarneySeenText, FisherBarneyBeatenText, 0, FisherBarneyScript
 
 FisherBarneyScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a716d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute12Signpost0Script:

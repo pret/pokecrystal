@@ -25,15 +25,15 @@ UnknownScript_0x7408e:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x74105
+	waitbutton
 	closetext
-	loadmovesprites
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x740c3
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x740d3
 	winlosstext UnknownText_0x7419d, UnknownText_0x742e0
 	setlasttalked $2
-	loadtrainer RIVAL2, 3
+	scriptedtrainerdata RIVAL2, 3
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -42,7 +42,7 @@ UnknownScript_0x7408e:
 UnknownScript_0x740c3:
 	winlosstext UnknownText_0x7419d, UnknownText_0x742e0
 	setlasttalked $2
-	loadtrainer RIVAL2, 1
+	scriptedtrainerdata RIVAL2, 1
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -51,7 +51,7 @@ UnknownScript_0x740c3:
 UnknownScript_0x740d3:
 	winlosstext UnknownText_0x7419d, UnknownText_0x742e0
 	setlasttalked $2
-	loadtrainer RIVAL2, 2
+	scriptedtrainerdata RIVAL2, 2
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -61,8 +61,8 @@ UnknownScript_0x740e3:
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	writetext UnknownText_0x741fa
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x740fd
 	disappear $2
 	dotrigger $1

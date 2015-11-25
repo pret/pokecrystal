@@ -23,8 +23,8 @@ HallOfFameScript:
 	spriteface PLAYER, RIGHT
 	loadfont
 	writetext HallOfFame_LanceText
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, UP
 	applymovement PLAYER, HallOfFame_SlowlyApproachMachine
 	dotrigger $1

@@ -73,14 +73,14 @@ SageScript_0x98062:
 	checkflag ENGINE_FOGBADGE
 	iftrue .BlockPassage_GotFogBadge
 	writetext UnknownText_0x980d1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .BlockPassage_GotFogBadge:
 	writetext UnknownText_0x98131
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .CheckForClearBell:
@@ -91,14 +91,14 @@ SageScript_0x98062:
 	checkitem CLEAR_BELL
 	iftrue .RingClearBell
 	writetext UnknownText_0x981a4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .RingClearBell:
 	writetext UnknownText_0x98250
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $1
 	setevent EVENT_RANG_CLEAR_BELL_2
 	clearevent EVENT_RANG_CLEAR_BELL_1
@@ -107,14 +107,14 @@ SageScript_0x98062:
 
 .AllowedThrough:
 	writetext UnknownText_0x9837e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Event000:
 	writetext UnknownText_0x98391
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SageScript_0x980b0:
@@ -123,14 +123,14 @@ SageScript_0x980b0:
 	checkevent EVENT_GOT_CLEAR_BELL
 	iftrue .GotClearBell
 	writetext UnknownText_0x9840b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .GotClearBell:
 	writetext UnknownText_0x9846f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GrampsScript_0x980c4:

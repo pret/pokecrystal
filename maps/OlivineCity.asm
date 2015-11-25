@@ -29,13 +29,13 @@ UnknownScript_0x1a8833:
 	pause 15
 	playsound SFX_ENTER_DOOR
 	appear $5
-	waitbutton
+	waitsfx
 	applymovement $5, MovementData_0x1a88d2
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x1a88fa
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x1a88f4
 	spriteface PLAYER, RIGHT
 	applymovement $5, MovementData_0x1a88db
@@ -53,13 +53,13 @@ UnknownScript_0x1a886b:
 	pause 15
 	playsound SFX_ENTER_DOOR
 	appear $5
-	waitbutton
+	waitsfx
 	applymovement $5, MovementData_0x1a88d6
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x1a88fa
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x1a88f7
 	spriteface PLAYER, RIGHT
 	applymovement $5, MovementData_0x1a88e8
@@ -79,14 +79,14 @@ StandingYoungsterScript_0x1a88a6:
 	random $2
 	if_equal $0, UnknownScript_0x1a88b4
 	writetext UnknownText_0x1a8b04
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1a88b4:
 	writetext UnknownText_0x1a8b41
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SailorScript_0x1a88ba:

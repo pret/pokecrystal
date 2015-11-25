@@ -16,13 +16,13 @@ GymGuyScript_0x5ad0b:
 	iffalse UnknownScript_0x5ad20
 	setevent EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL
 UnknownScript_0x5ad20:
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x5ad22:
 	writetext UnknownText_0x5adf2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ItemFragment_0x5ad28:

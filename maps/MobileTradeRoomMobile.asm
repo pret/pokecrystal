@@ -25,10 +25,10 @@ MapMobileTradeRoomMobileSignpost0Script:
 	refreshscreen $0
 	special Function1037c2
 	writetext MobileTradeRoomMobile_EstablishingCommsText
-	closetext
+	waitbutton
 	reloadmappart
 	special Function101231
-	loadmovesprites
+	closetext
 	end
 
 MobileTradeRoomMobile_EstablishingCommsText:

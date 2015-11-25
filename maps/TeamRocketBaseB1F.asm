@@ -231,11 +231,11 @@ NoSecurityCamera:
 TrainerCameraGrunt1:
 	loadfont
 	writetext CameraGrunt1SeenText
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext CameraGrunt1BeatenText, 0
 	setlasttalked $2
-	loadtrainer GRUNTM, 20
+	scriptedtrainerdata GRUNTM, 20
 	startbattle
 	disappear $2
 	returnafterbattle
@@ -244,11 +244,11 @@ TrainerCameraGrunt1:
 TrainerCameraGrunt2:
 	loadfont
 	writetext CameraGrunt2SeenText
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext CameraGrunt2BeatenText, 0
 	setlasttalked $2
-	loadtrainer GRUNTM, 21
+	scriptedtrainerdata GRUNTM, 21
 	startbattle
 	disappear $2
 	returnafterbattle
@@ -450,7 +450,7 @@ VoltorbExplodingTrap:
 	special RotatePalettesLeftPalettes
 	setlasttalked $ff
 	writecode VAR_BATTLETYPE, BATTLETYPE_TRAP
-	loadpokedata VOLTORB, 23
+	scriptedpokedata VOLTORB, 23
 	startbattle
 	end
 
@@ -460,7 +460,7 @@ GeodudeExplodingTrap:
 	special RotatePalettesLeftPalettes
 	setlasttalked $ff
 	writecode VAR_BATTLETYPE, BATTLETYPE_TRAP
-	loadpokedata GEODUDE, 21
+	scriptedpokedata GEODUDE, 21
 	startbattle
 	end
 
@@ -470,7 +470,7 @@ KoffingExplodingTrap:
 	special RotatePalettesLeftPalettes
 	setlasttalked $ff
 	writecode VAR_BATTLETYPE, BATTLETYPE_TRAP
-	loadpokedata KOFFING, 21
+	scriptedpokedata KOFFING, 21
 	startbattle
 	end
 
@@ -481,22 +481,22 @@ TrainerScientistJed:
 	trainer EVENT_BEAT_SCIENTIST_JED, SCIENTIST, JED, ScientistJedSeenText, ScientistJedBeatenText, 0, ScientistJedScript
 
 ScientistJedScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x6cc16
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGruntM16:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_16, GRUNTM, 16, GruntM16SeenText, GruntM16BeatenText, 0, GruntM16Script
 
 GruntM16Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x6cd1b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapTeamRocketBaseB1FSignpost5Script:
@@ -511,8 +511,8 @@ MapTeamRocketBaseB1FSignpost0Script:
 	iftrue UnknownScript_0x6cabe
 	writetext UnknownText_0x6cdad
 	playsound SFX_TALLY
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_TURNED_OFF_SECURITY_CAMERAS
 	setevent EVENT_SECURITY_CAMERA_1
 	setevent EVENT_SECURITY_CAMERA_2
@@ -523,8 +523,8 @@ MapTeamRocketBaseB1FSignpost0Script:
 
 UnknownScript_0x6cabe:
 	writetext UnknownText_0x6cdd0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ItemFragment_0x6cac4:

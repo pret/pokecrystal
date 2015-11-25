@@ -39,7 +39,7 @@ UnknownScript_0x7709a:
 	appear $4
 	spriteface $2, RIGHT
 	cry CLEFAIRY
-	waitbutton
+	waitsfx
 	pause 30
 	follow $2, $3
 	cry CLEFAIRY

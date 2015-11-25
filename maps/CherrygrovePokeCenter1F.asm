@@ -20,14 +20,14 @@ TeacherScript_0x196976:
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x196984
 	writetext UnknownText_0x1969f1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x196984:
 	writetext UnknownText_0x196a46
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x19698a:

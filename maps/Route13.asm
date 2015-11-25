@@ -9,55 +9,55 @@ TrainerPokefanmAlex:
 	trainer EVENT_BEAT_POKEFANM_ALEX, POKEFANM, ALEX, PokefanmAlexSeenText, PokefanmAlexBeatenText, 0, PokefanmAlexScript
 
 PokefanmAlexScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a24e3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokefanmJoshua:
 	trainer EVENT_BEAT_POKEFANM_JOSHUA, POKEFANM, JOSHUA, PokefanmJoshuaSeenText, PokefanmJoshuaBeatenText, 0, PokefanmJoshuaScript
 
 PokefanmJoshuaScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a254f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBird_keeperPerry:
 	trainer EVENT_BEAT_BIRD_KEEPER_PERRY, BIRD_KEEPER, PERRY, Bird_keeperPerrySeenText, Bird_keeperPerryBeatenText, 0, Bird_keeperPerryScript
 
 Bird_keeperPerryScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a25db
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBird_keeperBret:
 	trainer EVENT_BEAT_BIRD_KEEPER_BRET, BIRD_KEEPER, BRET, Bird_keeperBretSeenText, Bird_keeperBretBeatenText, 0, Bird_keeperBretScript
 
 Bird_keeperBretScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a2662
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerHikerKenny:
 	trainer EVENT_BEAT_HIKER_KENNY, HIKER, KENNY, HikerKennySeenText, HikerKennyBeatenText, 0, HikerKennyScript
 
 HikerKennyScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a26c2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute13Signpost0Script:

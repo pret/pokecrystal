@@ -9,11 +9,11 @@ TrainerGentlemanAlfred:
 	trainer EVENT_BEAT_GENTLEMAN_ALFRED, GENTLEMAN, ALFRED, GentlemanAlfredSeenText, GentlemanAlfredBeatenText, 0, GentlemanAlfredScript
 
 GentlemanAlfredScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5b13e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSailorHuey1:
@@ -21,7 +21,7 @@ TrainerSailorHuey1:
 
 SailorHuey1Script:
 	writecode VAR_CALLERID, PHONE_SAILOR_HUEY
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_HUEY
 	iftrue UnknownScript_0x5afc7
@@ -61,7 +61,7 @@ UnknownScript_0x5afc7:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer SAILOR, HUEY1
+	scriptedtrainerdata SAILOR, HUEY1
 	startbattle
 	returnafterbattle
 	loadvar wHueyFightCount, 1
@@ -69,7 +69,7 @@ UnknownScript_0x5afc7:
 	end
 
 .LoadFight1
-	loadtrainer SAILOR, HUEY2
+	scriptedtrainerdata SAILOR, HUEY2
 	startbattle
 	returnafterbattle
 	loadvar wHueyFightCount, 2
@@ -77,7 +77,7 @@ UnknownScript_0x5afc7:
 	end
 
 .LoadFight2
-	loadtrainer SAILOR, HUEY3
+	scriptedtrainerdata SAILOR, HUEY3
 	startbattle
 	returnafterbattle
 	loadvar wHueyFightCount, 3
@@ -85,7 +85,7 @@ UnknownScript_0x5afc7:
 	end
 
 .LoadFight3
-	loadtrainer SAILOR, HUEY4
+	scriptedtrainerdata SAILOR, HUEY4
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_HUEY
@@ -105,7 +105,7 @@ UnknownScript_0x5b03e:
 UnknownScript_0x5b03f:
 	loadfont
 	writetext UnknownText_0x5b1b6
-	closetext
+	waitbutton
 	verbosegiveitem PROTEIN
 	iffalse UnknownScript_0x5b06f
 	clearevent EVENT_HUEY_PROTEIN

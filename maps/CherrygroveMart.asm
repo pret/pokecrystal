@@ -10,12 +10,12 @@ ClerkScript_0x19680a:
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x196817
 	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x196817:
 	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE_DEX
-	loadmovesprites
+	closetext
 	end
 
 CooltrainerMScript_0x19681d:
@@ -24,14 +24,14 @@ CooltrainerMScript_0x19681d:
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x19682b
 	writetext UnknownText_0x196834
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19682b:
 	writetext UnknownText_0x196873
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x196831:

@@ -22,20 +22,20 @@ Celebrity:
 	iffalse .Done
 	setevent EVENT_GOT_TM47_STEEL_WING
 .Done
-	loadmovesprites
+	closetext
 	end
 .AlreadyGotItem
 	writetext CelebrityText2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CelebritysFearow:
 	loadfont
 	writetext CelebritysFearowText
 	cry FEAROW
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CelebrityHouseBookshelf:

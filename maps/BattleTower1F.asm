@@ -21,8 +21,8 @@ BattleTower1F_MapScriptHeader:
 	if_equal $4, .SkipEverything
 	loadfont
 	writetext UnknownText_0x9f037
+	waitbutton
 	closetext
-	loadmovesprites
 	priorityjump UnknownScript_0x9e44e
 	end
 
@@ -43,9 +43,9 @@ MapBattleTower1FSignpost0Script:
 	yesorno
 	iffalse UnknownScript_0x9e3e0
 	writetext Text_BattleTowerRules
-	closetext
+	waitbutton
 UnknownScript_0x9e3e0:
-	loadmovesprites
+	closetext
 	end
 
 ReceptionistScript_0x9e3e2:
@@ -72,7 +72,7 @@ Script_ChoseChallenge: ; 0x9e40f
 	writebyte BATTLE_TOWER_ACTION_1A ; ResetBattleTowerTrainerSRAM
 	special BattleTowerAction
 	special SpecialCheckForBattleTowerRules
-	if_not_equal $0, Script_CloseText
+	if_not_equal $0, Script_WaitButton
 	writetext Text_SaveBeforeEnteringBattleRoom
 	yesorno
 	iffalse Script_Menu_ChallengeExplanationCancel
@@ -88,14 +88,14 @@ Script_ChoseChallenge: ; 0x9e40f
 	writebyte BATTLE_TOWER_ACTION_11
 	special BattleTowerAction
 	writetext Text_RightThisWayToYourBattleRoom
+	waitbutton
 	closetext
-	loadmovesprites
 	writebyte BATTLE_TOWER_ACTION_1E
 	special BattleTowerAction
 	jump UnknownScript_0x9e454
 
 UnknownScript_0x9e44e:
-	loadmovesprites
+	closetext
 	writebyte BATTLE_TOWER_ACTION_08
 	special BattleTowerAction
 UnknownScript_0x9e454:
@@ -125,13 +125,13 @@ Script_GivePlayerHisPrize: ; 0x9e47a
 	writetext Text_PlayerGotFive
 	writebyte BATTLE_TOWER_ACTION_1D
 	special BattleTowerAction
-	loadmovesprites
+	closetext
 	end
 
 Script_YourPackIsStuffedFull: ; 0x9e498
 	writetext Text_YourPackIsStuffedFull
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Script_BattleTowerIntroductionYesNo: ; 0x9e49e
@@ -147,18 +147,18 @@ UnknownScript_0x9e4a8:
 
 UnknownScript_0x9e4b0:
 	writetext Text_WeHopeToServeYouAgain
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x9e4b6:
 	special Function17f53d
-	loadmovesprites
+	closetext
 	end
 
-Script_CloseText: ; 0x9e4bb
+Script_WaitButton: ; 0x9e4bb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 
@@ -176,9 +176,9 @@ UnknownScript_0x9e4be:
 	writetext Text_ReceivedAListOfLeadersOnTheHonorRoll
 	spriteface $2, LEFT
 	writetext Text_PleaseConfirmOnThisMonitor
-	closetext
+	waitbutton
 	spriteface $2, DOWN
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x9e4ea:
@@ -189,7 +189,7 @@ UnknownScript_0x9e4ea:
 	special BattleTowerAction
 	if_not_equal $0, Script_MayNotEnterABattleRoomUnderL70
 	special SpecialCheckForBattleTowerRules
-	if_not_equal $0, Script_CloseText
+	if_not_equal $0, Script_WaitButton
 	writebyte BATTLE_TOWER_ACTION_05
 	special BattleTowerAction
 	if_equal $0, UnknownScript_0x9e512
@@ -213,41 +213,41 @@ UnknownScript_0x9e515:
 	writebyte BATTLE_TOWER_ACTION_12
 	special BattleTowerAction
 	writetext Text_RightThisWayToYourBattleRoom
-	closetext
+	waitbutton
 	jump UnknownScript_0x9e44e
 
 UnknownScript_0x9e53b:
 	writetext UnknownText_0x9f076
-	closetext
+	waitbutton
 	jump UnknownScript_0x9e4b0
 
 Script_APkmnLevelExceeds: ; 0x9e542
 	writetext Text_APkmnLevelExceeds
-	closetext
+	waitbutton
 	jump Script_Menu_ChallengeExplanationCancel
 
 Script_MayNotEnterABattleRoomUnderL70: ; 0x9e549
 	writetext Text_MayNotEnterABattleRoomUnderL70
-	closetext
+	waitbutton
 	jump Script_Menu_ChallengeExplanationCancel
 
 UnknownScript_0x9e550:
 	special Function17f53d
-	loadmovesprites
+	closetext
 	end
 
 BattleTower_LeftWithoutSaving:
 	loadfont
 	writetext Text_BattleTower_LeftWithoutSaving
-	closetext
+	waitbutton
 	jump UnknownScript_0x9e4b0
 
 YoungsterScript_0x9e55d:
 	faceplayer
 	loadfont
 	writetext Text_BattleTowerYoungster
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $3, RIGHT
 	end
 
@@ -526,7 +526,7 @@ Text_PlayerGotFive: ; 0x9eb7e
 	text_from_ram StringBuffer4
 	text "!@"
 	sound_item
-	text_waitbutton
+	text_waitsfx
 	db "@"
 
 Text_YourPackIsStuffedFull: ; 0x9eb94

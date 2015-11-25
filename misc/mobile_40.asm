@@ -838,7 +838,7 @@ Jumptable_10052a: ; 10052a
 Function100534: ; 100534
 	call Function100513
 	call UpdateSprites
-	call Function321c
+	call ApplyTilemap
 	ld a, [wcd28]
 	inc a
 	ld [wcd28], a
@@ -1847,7 +1847,7 @@ Function100b7a: ; 100b7a
 	callba Function24085
 	callba MobileTextBorder
 	call UpdateSprites
-	call Function321c
+	call ApplyTilemap
 	callba Function2411a
 	ld hl, wcfa5
 	set 7, [hl]
@@ -6006,7 +6006,7 @@ Function1027eb: ; 1027eb
 	ld c, $12
 	ld d, h
 	ld e, l
-	callba Function16d61d
+	callba _LinkTextbox
 	ld de, String_102804
 	hlcoord 2, 16
 	call PlaceString
@@ -6302,7 +6302,7 @@ Function1029cf: ; 1029cf
 	ld c, $8
 	ld d, h
 	ld e, l
-	callba Function16d61d
+	callba _LinkTextbox
 	ld de, String_102a26
 	hlcoord 12, 8
 	call PlaceString
@@ -6812,7 +6812,7 @@ Function102dc3: ; 102dc3
 	ld c, $12
 	ld d, h
 	ld e, l
-	callba Function16d61d
+	callba _LinkTextbox
 	ret
 ; 102dd3
 
@@ -6855,7 +6855,7 @@ Function102e07: ; 102e07
 	ld c, $b
 	ld d, h
 	ld e, l
-	callba Function16d61d
+	callba _LinkTextbox
 
 .asm_102e28
 	ld de, String_102e32

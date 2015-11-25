@@ -12,8 +12,8 @@ RhydonScript_0x9c592:
 	loadfont
 	writetext UnknownText_0x9c5f0
 	cry RHYDON
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 OlivineHouseBetaBookshelf1:

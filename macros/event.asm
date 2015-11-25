@@ -491,9 +491,9 @@ refreshscreen: macro
 	db \1 ; dummy
 	endm
 
-	enum loadmovesprites_command
-loadmovesprites: macro
-	db loadmovesprites_command
+	enum closetext_command
+closetext: macro
+	db closetext_command
 	endm
 
 	enum loadbytec2cf_command
@@ -559,9 +559,9 @@ jumptext: macro
 	dw \1 ; text_pointer
 	endm
 
-	enum closetext_command
-closetext: macro
-	db closetext_command
+	enum waitbutton_command
+waitbutton: macro
+	db waitbutton_command
 	endm
 
 	enum keeptextopen_command
@@ -575,9 +575,9 @@ pokepic: macro
 	db \1 ; pokemon
 	endm
 
-	enum pokepicyesorno_command
-pokepicyesorno: macro
-	db pokepicyesorno_command
+	enum closepokepic_command
+closepokepic: macro
+	db closepokepic_command
 	endm
 
 	enum interpretmenu_command
@@ -595,26 +595,26 @@ loadpikachudata: macro
 	db loadpikachudata_command
 	endm
 
-	enum battlecheck_command
-battlecheck: macro
-	db battlecheck_command
+	enum setup_random_encounter_command
+setup_random_encounter: macro
+	db setup_random_encounter_command
 	endm
 
-	enum loadtrainerdata_command
-loadtrainerdata: macro
-	db loadtrainerdata_command
+	enum memtrainerdata_command
+memtrainerdata: macro
+	db memtrainerdata_command
 	endm
 
-	enum loadpokedata_command
-loadpokedata: macro
-	db loadpokedata_command
+	enum scriptedpokedata_command
+scriptedpokedata: macro
+	db scriptedpokedata_command
 	db \1 ; pokemon
 	db \2 ; level
 	endm
 
-	enum loadtrainer_command
-loadtrainer: macro
-	db loadtrainer_command
+	enum scriptedtrainerdata_command
+scriptedtrainerdata: macro
+	db scriptedtrainerdata_command
 	db \1 ; trainer_group
 	db \2 ; trainer_id
 	endm
@@ -641,9 +641,9 @@ trainertext: macro
 	db \1 ; which_text
 	endm
 
-	enum trainerstatus_command
-trainerstatus: macro
-	db trainerstatus_command
+	enum trainerflagaction_command
+trainerflagaction: macro
+	db trainerflagaction_command
 	db \1 ; action
 	endm
 
@@ -659,14 +659,14 @@ scripttalkafter: macro
 	db scripttalkafter_command
 	endm
 
-	enum talkaftercancel_command
-talkaftercancel: macro
-	db talkaftercancel_command
+	enum end_if_just_battled_command
+end_if_just_battled: macro
+	db end_if_just_battled_command
 	endm
 
-	enum talkaftercheck_command
-talkaftercheck: macro
-	db talkaftercheck_command
+	enum check_just_battled_command
+check_just_battled: macro
+	db check_just_battled_command
 	endm
 
 	enum setlasttalked_command
@@ -822,9 +822,9 @@ playmusic: macro
 	dw \1 ; music_pointer
 	endm
 
-	enum playrammusic_command
-playrammusic: macro
-	db playrammusic_command
+	enum encountermusic_command
+encountermusic: macro
+	db encountermusic_command
 	endm
 
 	enum musicfadeout_command
@@ -856,9 +856,9 @@ playsound: macro
 	dw \1 ; sound_pointer
 	endm
 
-	enum waitbutton_command
-waitbutton: macro
-	db waitbutton_command
+	enum waitsfx_command
+waitsfx: macro
+	db waitsfx_command
 	endm
 
 	enum warpsound_command

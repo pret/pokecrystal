@@ -9,8 +9,8 @@ SeerScript:
 	faceplayer
 	loadfont
 	special SpecialPokeSeer
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokeSeersHouse_MapEventHeader:

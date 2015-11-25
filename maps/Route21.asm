@@ -9,33 +9,33 @@ TrainerSwimmermSeth:
 	trainer EVENT_BEAT_SWIMMERM_SETH, SWIMMERM, SETH, SwimmermSethSeenText, SwimmermSethBeatenText, 0, SwimmermSethScript
 
 SwimmermSethScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ac873
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmerfNikki:
 	trainer EVENT_BEAT_SWIMMERF_NIKKI, SWIMMERF, NIKKI, SwimmerfNikkiSeenText, SwimmerfNikkiBeatenText, 0, SwimmerfNikkiScript
 
 SwimmerfNikkiScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ac8f1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFisherArnold:
 	trainer EVENT_BEAT_FISHER_ARNOLD, FISHER, ARNOLD, FisherArnoldSeenText, FisherArnoldBeatenText, 0, FisherArnoldScript
 
 FisherArnoldScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ac95c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SwimmermSethSeenText:

@@ -38,10 +38,10 @@ UnknownScript_0x1809ad:
 	earthquake 80
 	changeblock $4, $e, $2a
 	reloadmappart
-	loadmovesprites
+	closetext
 	dotrigger $1
 	setevent EVENT_BRUNOS_ROOM_ENTRANCE_CLOSED
-	waitbutton
+	waitsfx
 	end
 
 BrunoScript_0x1809c5:
@@ -50,29 +50,29 @@ BrunoScript_0x1809c5:
 	checkevent EVENT_BEAT_ELITE_4_BRUNO
 	iftrue UnknownScript_0x1809f3
 	writetext UnknownText_0x1809fe
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x180b23, 0
-	loadtrainer BRUNO, 1
+	scriptedtrainerdata BRUNO, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_ELITE_4_BRUNO
 	loadfont
 	writetext UnknownText_0x180b3c
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_ENTER_DOOR
 	changeblock $4, $2, $16
 	reloadmappart
-	loadmovesprites
+	closetext
 	setevent EVENT_BRUNOS_ROOM_EXIT_OPEN
-	waitbutton
+	waitsfx
 	end
 
 UnknownScript_0x1809f3:
 	writetext UnknownText_0x180b3c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MovementData_0x1809f9:

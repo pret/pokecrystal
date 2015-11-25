@@ -9,22 +9,22 @@ TrainerLassConnie:
 	trainer EVENT_BEAT_LASS_CONNIE, LASS, CONNIE1, LassConnie1SeenText, LassConnie1BeatenText, 0, LassConnie1Script
 
 LassConnie1Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5b63c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSailorKent:
 	trainer EVENT_BEAT_SAILOR_KENT, SAILOR, KENT, SailorKentSeenText, SailorKentBeatenText, 0, SailorKentScript
 
 SailorKentScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5b584
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SailorKentSeenText:

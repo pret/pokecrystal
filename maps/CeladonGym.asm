@@ -11,10 +11,10 @@ ErikaScript_0x72a6a:
 	checkflag ENGINE_RAINBOWBADGE
 	iftrue .FightDone
 	writetext UnknownText_0x72b28
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x72c3e, 0
-	loadtrainer ERIKA, 1
+	scriptedtrainerdata ERIKA, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_ERIKA
@@ -25,7 +25,7 @@ ErikaScript_0x72a6a:
 	loadfont
 	writetext UnknownText_0x72c96
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_RAINBOWBADGE
 .FightDone
 	checkevent EVENT_GOT_TM19_GIGA_DRAIN
@@ -37,63 +37,63 @@ ErikaScript_0x72a6a:
 	setevent EVENT_GOT_TM19_GIGA_DRAIN
 UnknownScript_0x72aae:
 	writetext UnknownText_0x72d8f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerLassMichelle:
 	trainer EVENT_BEAT_LASS_MICHELLE, LASS, MICHELLE, LassMichelleSeenText, LassMichelleBeatenText, 0, LassMichelleScript
 
 LassMichelleScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x72e30
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPicnickerTanya:
 	trainer EVENT_BEAT_PICNICKER_TANYA, PICNICKER, TANYA, PicnickerTanyaSeenText, PicnickerTanyaBeatenText, 0, PicnickerTanyaScript
 
 PicnickerTanyaScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x72e8e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBeautyJulia:
 	trainer EVENT_BEAT_BEAUTY_JULIA, BEAUTY, JULIA, BeautyJuliaSeenText, BeautyJuliaBeatenText, 0, BeautyJuliaScript
 
 BeautyJuliaScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x72f01
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerTwinsJoandzoe1:
 	trainer EVENT_BEAT_TWINS_JO_AND_ZOE, TWINS, JOANDZOE1, TwinsJoandzoe1SeenText, TwinsJoandzoe1BeatenText, 0, TwinsJoandzoe1Script
 
 TwinsJoandzoe1Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x72f70
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerTwinsJoandzoe2:
 	trainer EVENT_BEAT_TWINS_JO_AND_ZOE, TWINS, JOANDZOE2, TwinsJoandzoe2SeenText, TwinsJoandzoe2BeatenText, 0, TwinsJoandzoe2Script
 
 TwinsJoandzoe2Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x72fc0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CeladonGymStatue:

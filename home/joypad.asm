@@ -313,7 +313,7 @@ JoyWaitAorB:: ; a36
 	jr .loop
 ; a46
 
-CloseText:: ; a46
+WaitButton:: ; a46
 	ld a, [hOAMUpdate]
 	push af
 	ld a, 1

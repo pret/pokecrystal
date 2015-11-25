@@ -82,14 +82,14 @@ YoungsterScript_0x6eb7b:
 	checkevent EVENT_HERDED_FARFETCHD
 	iftrue UnknownScript_0x6eb89
 	writetext UnknownText_0x6ef5c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6eb89:
 	writetext UnknownText_0x6f019
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 BirdScript_0x6eb8f:
@@ -111,8 +111,8 @@ UnknownScript_0x6ebba:
 	keeptextopen
 	writetext UnknownText_0x6f086
 	cry FARFETCH_D
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x6ee8f
 	moveperson $2, $f, $19
 	disappear $2
@@ -318,8 +318,8 @@ UnknownScript_0x6ed96:
 	loadfont
 	writetext UnknownText_0x6f086
 	cry FARFETCH_D
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6eda1:
@@ -327,8 +327,8 @@ UnknownScript_0x6eda1:
 	loadfont
 	writetext UnknownText_0x6f086
 	cry FARFETCH_D
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcode VAR_FACING
 	end
 
@@ -342,8 +342,8 @@ BlackBeltScript_0x6edae:
 	verbosegiveitem HM_CUT
 	setevent EVENT_GOT_HM01_CUT
 	writetext UnknownText_0x6f141
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_ILEX_FOREST_FARFETCHD
 	setevent EVENT_ILEX_FOREST_APPRENTICE
 	setevent EVENT_ILEX_FOREST_CHARCOAL_MASTER
@@ -354,8 +354,8 @@ BlackBeltScript_0x6edae:
 
 UnknownScript_0x6edd8:
 	writetext UnknownText_0x6f1c0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 RockerScript_0x6edde:
@@ -370,20 +370,20 @@ RockerScript_0x6edde:
 	setevent EVENT_GOT_TM02_HEADBUTT
 UnknownScript_0x6edf3:
 	writetext UnknownText_0x6f26d
-	closetext
+	waitbutton
 UnknownScript_0x6edf7:
-	loadmovesprites
+	closetext
 	end
 
 TrainerBug_catcherWayne:
 	trainer EVENT_BEAT_BUG_CATCHER_WAYNE, BUG_CATCHER, WAYNE, Bug_catcherWayneSeenText, Bug_catcherWayneBeatenText, 0, Bug_catcherWayneScript
 
 Bug_catcherWayneScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x6f571
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 LassScript_0x6ee0d:
@@ -435,7 +435,7 @@ UnknownScript_0x6ee38:
 	writetext UnknownText_0x6f394
 	yesorno
 	iftrue UnknownScript_0x6ee42
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x6ee42:
@@ -445,8 +445,8 @@ UnknownScript_0x6ee42:
 	disappear $8
 	clearevent EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
 	writetext UnknownText_0x6f43b
+	waitbutton
 	closetext
-	loadmovesprites
 	pause 20
 	showemote EMOTE_SHOCK, PLAYER, 20
 	special Special_RotatePalettesRightMusic
@@ -456,7 +456,7 @@ UnknownScript_0x6ee42:
 	pause 20
 	clearflag ENGINE_HAVE_EXAMINED_GS_BALL
 	special Special_CelebiShrineEvent
-	loadpokedata CELEBI, 30
+	scriptedpokedata CELEBI, 30
 	startbattle
 	returnafterbattle
 	pause 20
@@ -466,8 +466,8 @@ UnknownScript_0x6ee42:
 	applymovement $7, MovementData_0x6ef4e
 	loadfont
 	writetext UnknownText_0x6f452
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $7, MovementData_0x6ef53
 	disappear $7
 UnknownScript_0x6ee8e:

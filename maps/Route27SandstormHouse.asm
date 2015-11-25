@@ -24,15 +24,15 @@ SandstormHouseWoman:
 	setevent EVENT_GOT_TM37_SANDSTORM
 .AlreadyGotItem
 	writetext SandstormHouseSandstormDescription
-	closetext
+	waitbutton
 .Done
-	loadmovesprites
+	closetext
 	end
 
 .Disloyal
 	writetext SandstormHouseWomanDisloyalText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SandstormHouseBookshelf:

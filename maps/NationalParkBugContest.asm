@@ -9,80 +9,80 @@ YoungsterScript_0x5c8ec:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5c94c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x5c8f4:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5c973
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 RockerScript_0x5c8fc:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5c9a3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokefanMScript_0x5c904:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5c9cc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x5c90c:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5ca15
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x5c914:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5ca52
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 LassScript_0x5c91c:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5ca8f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x5c924:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5cac8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x5c92c:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5cb25
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x5c934:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5cb64
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapNationalParkBugContestSignpost0Script:

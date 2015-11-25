@@ -9,33 +9,33 @@ TrainerBug_catcherRob:
 	trainer EVENT_BEAT_BUG_CATCHER_ROB, BUG_CATCHER, ROB, Bug_catcherRobSeenText, Bug_catcherRobBeatenText, 0, Bug_catcherRobScript
 
 Bug_catcherRobScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ac34d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBug_catcherEd:
 	trainer EVENT_BEAT_BUG_CATCHER_ED, BUG_CATCHER, ED, Bug_catcherEdSeenText, Bug_catcherEdBeatenText, 0, Bug_catcherEdScript
 
 Bug_catcherEdScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ac3cf
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBug_catcherDoug:
 	trainer EVENT_BEAT_BUG_CATCHER_DOUG, BUG_CATCHER, DOUG, Bug_catcherDougSeenText, Bug_catcherDougBeatenText, 0, Bug_catcherDougScript
 
 Bug_catcherDougScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ac423
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute2Signpost0Script:

@@ -34,7 +34,7 @@ MapMobileBattleRoomSignpost0Script:
 .one_:
 	writetext MobileBattleRoom_HealText
 	pause 20
-	loadmovesprites
+	closetext
 	special RotatePalettesRightPalettes
 	playmusic MUSIC_HEAL
 	special LoadMapPalettes
@@ -50,11 +50,11 @@ MapMobileBattleRoomSignpost0Script:
 .one:
 	special Function10387b
 	writetext MobileBattleRoom_EstablishingCommsText
-	closetext
+	waitbutton
 	reloadmappart
 	special Function101225
 .false:
-	loadmovesprites
+	closetext
 	end
 
 MobileBattleRoom_EstablishingCommsText:

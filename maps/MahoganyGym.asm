@@ -11,17 +11,17 @@ PryceScript_0x199a9e:
 	checkevent EVENT_BEAT_PRYCE
 	iftrue .FightDone
 	writetext UnknownText_0x199b8d
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x199cb3, 0
-	loadtrainer PRYCE, 1
+	scriptedtrainerdata PRYCE, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_PRYCE
 	loadfont
 	writetext UnknownText_0x199d3b
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_GLACIERBADGE
 	checkcode VAR_BADGES
 	scall MahoganyGymTriggerRockets
@@ -39,15 +39,15 @@ PryceScript_0x199a9e:
 	iffalse UnknownScript_0x199af4
 	setevent EVENT_GOT_TM16_ICY_WIND
 	writetext UnknownText_0x199def
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x199af0:
 	writetext UnknownText_0x199e59
-	closetext
+	waitbutton
 UnknownScript_0x199af4:
-	loadmovesprites
+	closetext
 	end
 
 MahoganyGymTriggerRockets:
@@ -65,55 +65,55 @@ TrainerSkierRoxanne:
 	trainer EVENT_BEAT_SKIER_ROXANNE, SKIER, ROXANNE, SkierRoxanneSeenText, SkierRoxanneBeatenText, 0, SkierRoxanneScript
 
 SkierRoxanneScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19a116
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSkierClarissa:
 	trainer EVENT_BEAT_SKIER_CLARISSA, SKIER, CLARISSA, SkierClarissaSeenText, SkierClarissaBeatenText, 0, SkierClarissaScript
 
 SkierClarissaScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19a18f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBoarderRonald:
 	trainer EVENT_BEAT_BOARDER_RONALD, BOARDER, RONALD, BoarderRonaldSeenText, BoarderRonaldBeatenText, 0, BoarderRonaldScript
 
 BoarderRonaldScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x199f2d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBoarderBrad:
 	trainer EVENT_BEAT_BOARDER_BRAD, BOARDER, BRAD, BoarderBradSeenText, BoarderBradBeatenText, 0, BoarderBradScript
 
 BoarderBradScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x199fdd
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBoarderDouglas:
 	trainer EVENT_BEAT_BOARDER_DOUGLAS, BOARDER, DOUGLAS, BoarderDouglasSeenText, BoarderDouglasBeatenText, 0, BoarderDouglasScript
 
 BoarderDouglasScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19a047
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MahoganyGymGuyScript:
@@ -122,14 +122,14 @@ MahoganyGymGuyScript:
 	checkevent EVENT_BEAT_PRYCE
 	iftrue .MahoganyGymGuyWinScript
 	writetext MahoganyGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .MahoganyGymGuyWinScript
 	writetext MahoganyGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MahoganyGymStatue:

@@ -20,9 +20,9 @@ OfficerScript_0x18abe8:
 	setevent EVENT_GOT_UP_GRADE
 UnknownScript_0x18abfd:
 	writetext UnknownText_0x18aca8
-	closetext
+	waitbutton
 UnknownScript_0x18ac01:
-	loadmovesprites
+	closetext
 	end
 
 UnknownText_0x18ac03:

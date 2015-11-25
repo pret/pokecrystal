@@ -9,7 +9,7 @@ FruitTreeScript:: ; 44000
 	callasm CheckFruitTree
 	iffalse .fruit
 	writetext NothingHereText
-	closetext
+	waitbutton
 	jump .end
 
 .fruit
@@ -27,10 +27,10 @@ FruitTreeScript:: ; 44000
 .packisfull
 	keeptextopen
 	writetext FruitPackIsFullText
-	closetext
+	waitbutton
 
 .end
-	loadmovesprites
+	closetext
 	end
 ; 44041
 

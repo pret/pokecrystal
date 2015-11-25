@@ -30,8 +30,8 @@ UnknownScript_0x184947:
 	applymovement $8, MovementData_0x184a22
 	loadfont
 	writetext UnknownText_0x184a27
+	waitbutton
 	closetext
-	loadmovesprites
 	showemote EMOTE_SHOCK, $8, 15
 	spriteface $8, DOWN
 	pause 15
@@ -39,18 +39,18 @@ UnknownScript_0x184947:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x184aec
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $8, UP
 	loadfont
 	writetext UnknownText_0x184bc8
 	pause 15
-	loadmovesprites
+	closetext
 	playsound SFX_WARP_TO
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
 	disappear $8
-	waitbutton
+	waitsfx
 	special Special_RotatePalettesLeftQuickly
 	dotrigger $1
 	special RestartMapMusic
@@ -62,10 +62,10 @@ SageLiScript:
 	checkevent EVENT_GOT_HM05_FLASH
 	iftrue UnknownScript_0x1849d1
 	writetext SageLiSeenText
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext SageLiBeatenText, 0
-	loadtrainer SAGE, LI
+	scriptedtrainerdata SAGE, LI
 	startbattle
 	returnafterbattle
 	loadfont
@@ -75,47 +75,47 @@ SageLiScript:
 	setevent EVENT_GOT_HM05_FLASH
 	setevent EVENT_BEAT_SAGE_LI
 	writetext UnknownText_0x184d13
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1849d1:
 	writetext UnknownText_0x184d88
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSageJin:
 	trainer EVENT_BEAT_SAGE_JIN, SAGE, JIN, SageJinSeenText, SageJinBeatenText, 0, SageJinScript
 
 SageJinScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x184dfa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSageTroy:
 	trainer EVENT_BEAT_SAGE_TROY, SAGE, TROY, SageTroySeenText, SageTroyBeatenText, 0, SageTroyScript
 
 SageTroyScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x184ea4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSageNeal:
 	trainer EVENT_BEAT_SAGE_NEAL, SAGE, NEAL, SageNealSeenText, SageNealBeatenText, 0, SageNealScript
 
 SageNealScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x184f12
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapSproutTower3FSignpost3Script:

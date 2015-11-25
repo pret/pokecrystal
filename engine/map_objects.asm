@@ -2736,7 +2736,7 @@ Function5602: ; 5602, called at battle start
 	ld a, PLAYER
 	call Function5629 ; respawn player
 
-	ld a, [wd459]
+	ld a, [wBattleScriptFlags]
 	bit 7, a
 	jr z, .ok
 

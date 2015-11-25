@@ -20,15 +20,15 @@ FishingGuruScript_0x7f484:
 	setevent EVENT_GOT_SUPER_ROD
 UnknownScript_0x7f4a0:
 	writetext UnknownText_0x7f57c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7f4a6:
 	writetext UnknownText_0x7f5ec
-	closetext
+	waitbutton
 UnknownScript_0x7f4aa:
-	loadmovesprites
+	closetext
 	end
 
 SuperRodHouseBookshelf:

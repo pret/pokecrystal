@@ -9,22 +9,22 @@ TrainerPokefanmRex:
 	trainer EVENT_BEAT_POKEFANM_REX, POKEFANM, REX, PokefanmRexSeenText, PokefanmRexBeatenText, 0, PokefanmRexScript
 
 PokefanmRexScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ad9ff
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokefanmAllan:
 	trainer EVENT_BEAT_POKEFANM_ALLAN, POKEFANM, ALLAN, PokefanmAllanSeenText, PokefanmAllanBeatenText, 0, PokefanmAllanScript
 
 PokefanmAllanScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ada88
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokefanMScript_0x1ad951:

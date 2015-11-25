@@ -35,22 +35,22 @@ ClerkScript_0x5609c:
 
 .neither:
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_5F_1
-	loadmovesprites
+	closetext
 	end
 
 .onlyheadbutt:
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_5F_2
-	loadmovesprites
+	closetext
 	end
 
 .onlyrocksmash:
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_5F_3
-	loadmovesprites
+	closetext
 	end
 
 .both:
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_5F_4
-	loadmovesprites
+	closetext
 	end
 
 ReceptionistScript_0x560ce:
@@ -73,13 +73,13 @@ ReceptionistScript_0x560ce:
 	verbosegiveitem TM_RETURN
 	iffalse .Done
 	setflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT
-	loadmovesprites
+	closetext
 	end
 
 .SomewhatHappy:
 	writetext UnknownText_0x561a6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .NotVeryHappy:
@@ -88,14 +88,14 @@ ReceptionistScript_0x560ce:
 	verbosegiveitem TM_FRUSTRATION
 	iffalse .Done
 	setflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT
-	loadmovesprites
+	closetext
 	end
 
 .EventIsOver:
 	writetext UnknownText_0x56202
-	closetext
+	waitbutton
 .Done:
-	loadmovesprites
+	closetext
 	end
 
 TwinScript_0x56118:
@@ -104,15 +104,15 @@ TwinScript_0x56118:
 	special SpecialGameboyCheck
 	if_not_equal $2, .NotGBC ; This is a dummy check from Gold and Silver.  In normal gameplay, this would not be checked.
 	writetext UnknownText_0x56241
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_UnlockMysteryGift
 	end
 
 .NotGBC:
 	writetext UnknownText_0x56279
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 LassScript_0x56130:
@@ -122,8 +122,8 @@ CooltrainerMScript_0x56133:
 	faceplayer
 	loadfont
 	trade $0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokefanMScript_0x5613a:

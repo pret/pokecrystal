@@ -16,7 +16,7 @@ GoldenrodVendingMachine:
 	if_equal $1, .FreshWater
 	if_equal $2, .SodaPop
 	if_equal $3, .Lemonade
-	loadmovesprites
+	closetext
 	end
 
 .FreshWater
@@ -56,12 +56,12 @@ GoldenrodVendingMachine:
 
 .NotEnoughMoney
 	writetext GoldenrodVendingNoMoneyText
-	closetext
+	waitbutton
 	jump .Start
 
 .NotEnoughSpace
 	writetext GoldenrodVendingNoSpaceText
-	closetext
+	waitbutton
 	jump .Start
 
 .MenuData

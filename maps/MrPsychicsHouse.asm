@@ -17,9 +17,9 @@ MrPsychic:
 	setevent EVENT_GOT_TM29_PSYCHIC
 .AlreadyGotItem
 	writetext MrPsychicText2
-	closetext
+	waitbutton
 .Done
-	loadmovesprites
+	closetext
 	end
 
 MrPsychicsHouseBookshelf:

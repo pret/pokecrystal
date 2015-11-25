@@ -22,13 +22,13 @@ VermilionMachop:
 	loadfont
 	writetext UnknownText_0x1aaaca
 	cry MACHOP
+	waitbutton
 	closetext
-	loadmovesprites
 	earthquake 30
 	loadfont
 	writetext UnknownText_0x1aaae2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SuperNerdScript_0x1aa99b:
@@ -39,17 +39,17 @@ VermilionSnorlax:
 	special SpecialSnorlaxAwake
 	iftrue UnknownScript_0x1aa9ab
 	writetext UnknownText_0x1aab64
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1aa9ab:
 	writetext UnknownText_0x1aab84
 	pause 15
 	cry SNORLAX
-	loadmovesprites
+	closetext
 	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
-	loadpokedata SNORLAX, 50
+	scriptedpokedata SNORLAX, 50
 	startbattle
 	disappear $6
 	setevent EVENT_FOUGHT_SNORLAX
@@ -66,20 +66,20 @@ VermilionGymBadgeGuy:
 	if_greater_than 13, .MostBadges
 	if_greater_than 9, .SomeBadges
 	writetext UnknownText_0x1aabc8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .SomeBadges
 	writetext UnknownText_0x1aac2b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .MostBadges
 	writetext UnknownText_0x1aac88
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .AllBadges
@@ -90,9 +90,9 @@ VermilionGymBadgeGuy:
 	setevent EVENT_GOT_HP_UP_FROM_VERMILION_GUY
 .AlreadyGotItem
 	writetext UnknownText_0x1aad4a
-	closetext
+	waitbutton
 .Done
-	loadmovesprites
+	closetext
 	end
 
 VermilionCitySign:

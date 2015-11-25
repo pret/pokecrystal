@@ -30,7 +30,7 @@ CeladonVendingMachine:
 	if_equal $1, .FreshWater
 	if_equal $2, .SodaPop
 	if_equal $3, .Lemonade
-	loadmovesprites
+	closetext
 	end
 
 .FreshWater
@@ -70,12 +70,12 @@ CeladonVendingMachine:
 
 .NotEnoughMoney
 	writetext CeladonVendingNoMoneyText
-	closetext
+	waitbutton
 	jump .Start
 
 .NotEnoughSpace
 	writetext CeladonVendingNoSpaceText
-	closetext
+	waitbutton
 	jump .Start
 
 .MenuData

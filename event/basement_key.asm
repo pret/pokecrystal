@@ -29,6 +29,6 @@ _BasementKey: ; 507b4
 ; 507e1
 
 .BasementKeyScript: ; 0x507e1
-	loadmovesprites
+	closetext
 	farjump BasementDoorScript
 ; 0x507e6

@@ -9,60 +9,60 @@ TrainerFirebreatherLyle:
 	trainer EVENT_BEAT_FIREBREATHER_LYLE, FIREBREATHER, LYLE, FirebreatherLyleSeenText, FirebreatherLyleBeatenText, 0, FirebreatherLyleScript
 
 FirebreatherLyleScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x75b52
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBug_catcherKen:
 	trainer EVENT_BEAT_BUG_CATCHER_KEN, BUG_CATCHER, KEN, Bug_catcherKenSeenText, Bug_catcherKenBeatenText, 0, Bug_catcherKenScript
 
 Bug_catcherKenScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x75bd5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBeautyCassie:
 	trainer EVENT_BEAT_BEAUTY_CASSIE, BEAUTY, CASSIE, BeautyCassieSeenText, BeautyCassieBeatenText, 0, BeautyCassieScript
 
 BeautyCassieScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x75c43
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGuitaristClyde:
 	trainer EVENT_BEAT_GUITARIST_CLYDE, GUITARIST, CLYDE, GuitaristClydeSeenText, GuitaristClydeBeatenText, 0, GuitaristClydeScript
 
 GuitaristClydeScript:
-	talkaftercancel
+	end_if_just_battled
 	special Mobile_DummyReturnFalse
 	iftrue .mobile
 	loadfont
 	writetext UnknownText_0x75d65
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .mobile:
 	loadfont
 	writetext UnknownText_0x75cfe
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FastShipBed:
 	loadfont
 	writetext FastShipBedText1
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
 	special Mobile_HealParty
@@ -73,8 +73,8 @@ FastShipBed:
 	special Special_RotatePalettesLeftQuickly
 	loadfont
 	writetext FastShipBedText2
+	waitbutton
 	closetext
-	loadmovesprites
 	checkevent EVENT_FAST_SHIP_HAS_ARRIVED
 	iftrue UnknownScript_0x75ae1
 	checkevent EVENT_FAST_SHIP_FOUND_GIRL
@@ -91,16 +91,16 @@ UnknownScript_0x75ae2:
 	iftrue UnknownScript_0x75af7
 	loadfont
 	writetext FastShipArrivedVermilionText
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_FAST_SHIP_HAS_ARRIVED
 	end
 
 UnknownScript_0x75af7:
 	loadfont
 	writetext FastShipArrivedOlivineText
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_FAST_SHIP_HAS_ARRIVED
 	end
 

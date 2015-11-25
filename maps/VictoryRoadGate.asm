@@ -28,15 +28,15 @@ UnknownScript_0x9ba04:
 	checkcode VAR_BADGES
 	if_greater_than 7, UnknownScript_0x9ba19
 	writetext UnknownText_0x9ba5f
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x9ba27
 	end
 
 UnknownScript_0x9ba19:
 	writetext UnknownText_0x9bab4
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $1
 	end
 

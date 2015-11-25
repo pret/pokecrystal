@@ -11,15 +11,15 @@ TwinScript_0x9cc76:
 	checkevent EVENT_HEALED_MOOMOO
 	iftrue .FeedingMooMoo
 	writetext Text_MoomooIsSick
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, RIGHT
 	end
 
 .FeedingMooMoo:
 	writetext Text_WereFeedingMoomoo
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, RIGHT
 	end
 
@@ -29,15 +29,15 @@ TwinScript_0x9cc90:
 	checkevent EVENT_HEALED_MOOMOO
 	iftrue .FeedingMooMoo
 	writetext Text_MoomooIsSick
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $3, LEFT
 	end
 
 .FeedingMooMoo:
 	writetext Text_WereFeedingMoomoo
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $3, LEFT
 	end
 
@@ -52,8 +52,8 @@ TaurosScript_0x9ccaa:
 	writetext Text_ItsCryIsWeak
 	checkevent EVENT_TALKED_TO_FARMER_ABOUT_MOOMOO
 	iftrue .GiveBerry
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .GiveBerry:
@@ -71,24 +71,24 @@ TaurosScript_0x9ccaa:
 	if_equal 5, .FiveBerries
 	if_equal 7, .SevenBerries
 	writetext Text_GaveBerry
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .ThreeBerries:
 	writetext Text_GaveBerry
 	keeptextopen
 	writetext Text_LittleHealthier
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FiveBerries:
 	writetext Text_GaveBerry
 	keeptextopen
 	writetext Text_QuiteHealthy
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .SevenBerries:
@@ -98,28 +98,28 @@ TaurosScript_0x9ccaa:
 	keeptextopen
 	special RestartMapMusic
 	writetext Text_TotallyHealthy
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_HEALED_MOOMOO
 	end
 
 .NoBerriesInBag:
 	writetext Text_NoBerries
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Refused:
 	writetext Text_RefusedToGiveBerry
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .HappyCow:
 	writetext UnknownText_0x9cd92
 	cry MILTANK
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Text_MoomooIsSick:

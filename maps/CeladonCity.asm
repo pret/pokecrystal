@@ -19,8 +19,8 @@ CeladonCityPoliwrath:
 	loadfont
 	writetext CeladonCityPoliwrathText
 	cry POLIWRATH
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TeacherScript_0x1a9f50:

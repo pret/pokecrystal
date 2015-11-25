@@ -17,14 +17,14 @@ GymGuyScript_0x188bda:
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188be8
 	writetext UnknownText_0x188c26
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x188be8:
 	writetext UnknownText_0x188c9e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CooltrainerFScript_0x188bee:

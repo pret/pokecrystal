@@ -17,7 +17,7 @@ PlaceWaitingText:: ; 4000
 	jr .proceed
 
 .notinbattle
-	predef Function28eef
+	predef Predef_LinkTextbox
 
 .proceed
 	hlcoord 4, 11
@@ -3410,7 +3410,7 @@ Script_Cut: ; 0xc802
 	writetext UnknownText_0xc7c4
 	reloadmappart
 	callasm CutDownTreeOrGrass
-	loadmovesprites
+	closetext
 	end
 ; 0xc810
 
@@ -3565,7 +3565,7 @@ Script_UseFlash: ; 0xc8e6
 	special UpdateTimePals
 	writetext UnknownText_0xc8f3
 	callasm BlindingFlash
-	loadmovesprites
+	closetext
 	end
 ; 0xc8f3
 
@@ -3662,8 +3662,8 @@ SurfFromMenuScript: ; c983
 
 UsedSurfScript: ; c986
 	writetext UsedSurfText ; "used SURF!"
+	waitbutton
 	closetext
-	loadmovesprites
 
 	callasm Functionc9a2 ; empty function
 
@@ -3806,7 +3806,7 @@ AskSurfScript: ; ca2c
 	writetext AskSurfText
 	yesorno
 	iftrue UsedSurfScript
-	loadmovesprites
+	closetext
 	end
 ; ca36
 
@@ -3962,8 +3962,8 @@ Script_WaterfallFromMenu: ; 0xcb1c
 Script_UsedWaterfall: ; 0xcb20
 	callasm GetPartyNick
 	writetext UnknownText_0xcb51
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_BUBBLEBEAM
 .loop
 	applymovement PLAYER, WaterfallStep
@@ -4031,7 +4031,7 @@ Script_AskWaterfall: ; 0xcb86
 	writetext UnknownText_0xcb90
 	yesorno
 	iftrue Script_UsedWaterfall
-	loadmovesprites
+	closetext
 	end
 ; 0xcb90
 
@@ -4159,8 +4159,8 @@ UsedDigScript: ; 0xcc35
 	writetext UnknownText_0xcc1c
 
 UsedDigOrEscapeRopeScript: ; 0xcc3c
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_WARP_TO
 	applymovement PLAYER, .DigOut
 	farscall Script_AbortBugContest
@@ -4257,7 +4257,7 @@ Script_UsedTeleport: ; 0xccbb
 	writetext UnknownText_0xccb1
 	pause 60
 	reloadmappart
-	loadmovesprites
+	closetext
 	playsound SFX_WARP_TO
 	applymovement PLAYER, .TeleportFrom
 	farscall Script_AbortBugContest
@@ -4347,7 +4347,7 @@ Script_UsedStrength: ; 0xcd2d
 	cry 0
 	pause 3
 	writetext UnknownText_0xcd46
-	loadmovesprites
+	closetext
 	end
 ; 0xcd41
 
@@ -4381,7 +4381,7 @@ AskStrengthScript:
 	writetext UnknownText_0xcd69
 	yesorno
 	iftrue Script_UsedStrength
-	loadmovesprites
+	closetext
 	end
 ; 0xcd69
 
@@ -4525,7 +4525,7 @@ Script_UsedWhirlpool: ; 0xce0f
 	writetext UnknownText_0xcdd9
 	reloadmappart
 	callasm DisappearWhirlpool
-	loadmovesprites
+	closetext
 	end
 ; 0xce1d
 
@@ -4584,7 +4584,7 @@ Script_AskWhirlpoolOW: ; 0xce6e
 	writetext UnknownText_0xce78
 	yesorno
 	iftrue Script_UsedWhirlpool
-	loadmovesprites
+	closetext
 	end
 ; 0xce78
 
@@ -4642,16 +4642,16 @@ HeadbuttScript: ; 0xceab
 
 	callasm TreeMonEncounter
 	iffalse .no_battle
-	loadmovesprites
-	battlecheck
+	closetext
+	setup_random_encounter
 	startbattle
 	returnafterbattle
 	end
 
 .no_battle
 	writetext UnknownText_0xcea2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xcec9
 
@@ -4676,7 +4676,7 @@ AskHeadbuttScript: ; 0xcedc
 	writetext UnknownText_0xcee6
 	yesorno
 	iftrue HeadbuttScript
-	loadmovesprites
+	closetext
 	end
 ; 0xcee6
 
@@ -4742,7 +4742,7 @@ RockSmashFromMenuScript: ; 0xcf2e
 RockSmashScript: ; cf32
 	callasm GetPartyNick
 	writetext UnknownText_0xcf58
-	loadmovesprites
+	closetext
 	special WaitSFX
 	playsound SFX_STRENGTH
 	earthquake 84
@@ -4752,7 +4752,7 @@ RockSmashScript: ; cf32
 	callasm RockMonEncounter
 	copybytetovar TempWildMonSpecies
 	iffalse .done
-	battlecheck
+	setup_random_encounter
 	startbattle
 	returnafterbattle
 .done
@@ -4776,7 +4776,7 @@ AskRockSmashScript: ; 0xcf5d
 	writetext UnknownText_0xcf77
 	yesorno
 	iftrue RockSmashScript
-	loadmovesprites
+	closetext
 	end
 .no
 	jumptext UnknownText_0xcf72
@@ -4920,7 +4920,7 @@ Script_NotEvenANibble2: ; 0xd027
 Script_NotEvenANibble_FallThrough: ; 0xd02d
 	loademote EMOTE_SHADOW
 	callasm PutTheRodAway
-	loadmovesprites
+	closetext
 	end
 ; 0xd035
 
@@ -4940,8 +4940,8 @@ Script_GotABite: ; 0xd035
 	applymovement PLAYER, .Movement_RestoreRod
 	writetext UnknownText_0xd0a4
 	callasm PutTheRodAway
-	loadmovesprites
-	battlecheck
+	closetext
+	setup_random_encounter
 	startbattle
 	returnafterbattle
 	end
@@ -5125,15 +5125,15 @@ Script_GetOnBike: ; 0xd13e
 	special UpdateTimePals
 	writecode VAR_MOVEMENT, PLAYER_BIKE
 	writetext UnknownText_0xd17c
+	waitbutton
 	closetext
-	loadmovesprites
 	special ReplaceKrisSprite
 	end
 ; 0xd14e
 
 Script_GetOnBike_Register: ; 0xd14e
 	writecode VAR_MOVEMENT, PLAYER_BIKE
-	loadmovesprites
+	closetext
 	special ReplaceKrisSprite
 	end
 ; 0xd156
@@ -5147,10 +5147,10 @@ Script_GetOffBike: ; 0xd158
 	special UpdateTimePals
 	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	writetext UnknownText_0xd181
-	closetext
+	waitbutton
 
 FinishGettingOffBike:
-	loadmovesprites
+	closetext
 	special ReplaceKrisSprite
 	special PlayMapMusic
 	end
@@ -5163,8 +5163,8 @@ Script_GetOffBike_Register: ; 0xd16b
 
 UnknownScript_0xd171: ; 0xd171
 	writetext UnknownText_0xd177
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0xd177
 
@@ -5218,7 +5218,7 @@ AskCutScript: ; 0xd1a9
 	callasm .CheckMap
 	iftrue Script_Cut
 .script_d1b8
-	loadmovesprites
+	closetext
 	end
 ; 0xd1ba
 
@@ -9044,7 +9044,7 @@ Special_GiveParkBalls: ; 135db
 
 BugCatchingContestBattleScript:: ; 0x135eb
 	writecode VAR_BATTLETYPE, BATTLETYPE_CONTEST
-	battlecheck
+	setup_random_encounter
 	startbattle
 	returnafterbattle
 	copybytetovar wParkBallsRemaining
@@ -9056,7 +9056,7 @@ BugCatchingContestOverScript:: ; 0x135f8
 	playsound SFX_ELEVATOR_END
 	loadfont
 	writetext UnknownText_0x1360f
-	closetext
+	waitbutton
 	jump BugCatchingContestReturnToGateScript
 ; 0x13603
 
@@ -9064,10 +9064,10 @@ BugCatchingContestOutOfBallsScript: ; 0x13603
 	playsound SFX_ELEVATOR_END
 	loadfont
 	writetext UnknownText_0x13614
-	closetext
+	waitbutton
 
 BugCatchingContestReturnToGateScript: ; 0x1360b
-	loadmovesprites
+	closetext
 	jumpstd bugcontestresultswarp
 ; 0x1360f
 
@@ -9086,8 +9086,8 @@ UnknownText_0x13614: ; 0x13614
 RepelWoreOffScript:: ; 0x13619
 	loadfont
 	writetext .text
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x13620
 
@@ -9113,10 +9113,10 @@ SignpostItemScript:: ; 0x13625
 .bag_full: ; 0x1363e
 	keeptextopen
 	writetext .no_room_text
-	closetext
+	waitbutton
 
 .finish: ; 13643
-	loadmovesprites
+	closetext
 	end
 ; 0x13645
 
@@ -9917,11 +9917,11 @@ UpdateItemDescription: ; 0x244c3
 ; 0x244e3
 
 Pokepic:: ; 244e3
-	ld hl, MenuDataHeader_0x24547
+	ld hl, PokepicMenuDataHeader
 	call CopyMenuDataHeader
 	call MenuBox
 	call UpdateSprites
-	call Function321c
+	call ApplyTilemap
 	ld b, SCGB_12
 	call GetSGBLayout
 	xor a
@@ -9946,8 +9946,8 @@ Pokepic:: ; 244e3
 	ret
 ; 24528
 
-PokepicYesOrNo:: ; 24528
-	ld hl, MenuDataHeader_0x24547
+ClosePokepic:: ; 24528
+	ld hl, PokepicMenuDataHeader
 	call CopyMenuDataHeader
 	call ClearMenuBoxInterior
 	call WaitBGMap
@@ -9955,13 +9955,13 @@ PokepicYesOrNo:: ; 24528
 	xor a
 	ld [hBGMapMode], a
 	call OverworldTextModeSwitch
-	call Function321c
+	call ApplyTilemap
 	call UpdateSprites
 	call LoadStandardFont
 	ret
 ; 24547
 
-MenuDataHeader_0x24547: ; 0x24547
+PokepicMenuDataHeader: ; 0x24547
 	db $40 ; flags
 	db 04, 06 ; start coords
 	db 13, 14 ; end coords
@@ -10051,7 +10051,7 @@ Function245af:: ; 245af
 	call Function24764
 	call Function247dd
 	call Function245f1
-	call Function321c
+	call ApplyTilemap
 	xor a
 	ld [hBGMapMode], a
 	ret
@@ -17539,7 +17539,7 @@ Buena_ExitMenu: ; 4ae5e
 	call DelayFrame
 	ld a, $1
 	ld [hOAMUpdate], a
-	call Function321c
+	call ApplyTilemap
 	pop af
 	ld [hOAMUpdate], a
 	ret
@@ -17856,7 +17856,7 @@ PhoneRing_LoadEDTile: ; 4d188
 	ld a, [hCGB]
 	and a
 	jp z, WaitBGMap
-	ld a, [wc2ce]
+	ld a, [wSpriteUpdatesEnabled]
 	cp $0
 	jp z, WaitBGMap
 
@@ -22686,16 +22686,16 @@ INCLUDE "engine/phone_scripts.asm"
 
 TalkToTrainerScript:: ; 0xbe66a
 	faceplayer
-	trainerstatus CHECK_FLAG
+	trainerflagaction CHECK_FLAG
 	iftrue AlreadyBeatenTrainerScript
-	loadtrainerdata
-	playrammusic
+	memtrainerdata
+	encountermusic
 	jump StartBattleWithMapTrainerScript
 ; 0xbe675
 
 SeenByTrainerScript:: ; 0xbe675
-	loadtrainerdata
-	playrammusic
+	memtrainerdata
+	encountermusic
 	showemote EMOTE_SHOCK, LAST_TALKED, 30
 	callasm TrainerWalkToPlayer
 	applymovement2 MovementBuffer
@@ -22707,13 +22707,13 @@ SeenByTrainerScript:: ; 0xbe675
 StartBattleWithMapTrainerScript: ; 0xbe68a
 	loadfont
 	trainertext $0
+	waitbutton
 	closetext
-	loadmovesprites
-	loadtrainerdata
+	memtrainerdata
 	startbattle
 	returnafterbattle
-	trainerstatus SET_FLAG
-	loadvar wd04d, -1
+	trainerflagaction SET_FLAG
+	loadvar wRunningTrainerBattleScript, -1
 
 AlreadyBeatenTrainerScript:
 	scripttalkafter
@@ -24096,7 +24096,7 @@ LoadMapTimeOfDay: ; 104750
 	ld hl, VramState
 	res 6, [hl]
 	ld a, $1
-	ld [wc2ce], a
+	ld [wSpriteUpdatesEnabled], a
 	callba Function8c0e5
 	callba Function8c001
 	call OverworldTextModeSwitch

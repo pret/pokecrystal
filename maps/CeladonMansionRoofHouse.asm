@@ -15,8 +15,8 @@ PharmacistScript_0x71afd:
 	checknite
 	iftrue UnknownScript_0x71b14
 	writetext UnknownText_0x71b4a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x71b14:
@@ -27,9 +27,9 @@ UnknownScript_0x71b14:
 	setevent EVENT_GOT_TM03_CURSE
 UnknownScript_0x71b21:
 	writetext UnknownText_0x71db3
-	closetext
+	waitbutton
 UnknownScript_0x71b25:
-	loadmovesprites
+	closetext
 	end
 
 UnknownText_0x71b27:

@@ -15,24 +15,24 @@ MrFujisPsyduck:
 	loadfont
 	writetext MrFujisPsyduckText
 	cry PSYDUCK
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MrFujisNidorino:
 	loadfont
 	writetext MrFujisNidorinoText
 	cry NIDORINO
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MrFujisPidgey:
 	loadfont
 	writetext MrFujisPidgeyText
 	cry PIDGEY
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MrFujisHouseBookshelf:

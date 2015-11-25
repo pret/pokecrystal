@@ -11,14 +11,14 @@ OfficerScript_0x19ab0b:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19ab19
 	writetext UnknownText_0x19ab1f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19ab19:
 	writetext UnknownText_0x19ab65
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x19ab1f:

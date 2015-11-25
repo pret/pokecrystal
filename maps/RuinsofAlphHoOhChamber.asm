@@ -50,14 +50,14 @@ UnknownScript_0x58596:
 	reloadmappart
 	earthquake 50
 	dotrigger $1
-	loadmovesprites
+	closetext
 	end
 
 MapRuinsofAlphHoOhChamberSignpost2Script:
 	refreshscreen $0
 	writebyte $3
 	special Special_UnownPuzzle
-	loadmovesprites
+	closetext
 	iftrue UnknownScript_0x585ba
 	end
 
@@ -75,7 +75,7 @@ UnknownScript_0x585ba:
 	earthquake 80
 	applymovement PLAYER, MovementData_0x58610
 	playsound SFX_KINESIS
-	waitbutton
+	waitsfx
 	pause 20
 	warpcheck
 	end
@@ -91,7 +91,7 @@ MapRuinsofAlphHoOhChamberSignpost4Script:
 	writetext UnknownText_0x58612
 	writebyte $3
 	special Special_DisplayUnownWords
-	loadmovesprites
+	closetext
 	end
 
 MapRuinsofAlphHoOhChamberSignpost5Script:
@@ -101,14 +101,14 @@ MapRuinsofAlphHoOhChamberSignpost5Script:
 	writetext UnknownText_0x58644
 	writebyte $3
 	special Special_DisplayUnownWords
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x58609:
 	loadfont
 	writetext UnknownText_0x58665
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MovementData_0x58610:

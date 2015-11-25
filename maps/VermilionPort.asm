@@ -42,17 +42,17 @@ SailorScript_0x74dc4:
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74e1a
 	writetext UnknownText_0x74f06
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, DOWN
 	pause 10
 	playsound SFX_EXIT_BUILDING
 	disappear $2
-	waitbutton
+	waitsfx
 	applymovement PLAYER, MovementData_0x74ef1
 	playsound SFX_EXIT_BUILDING
 	special RotatePalettesRightPalettes
-	waitbutton
+	waitsfx
 	setevent EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
 	clearevent EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
 	clearevent EVENT_BEAT_POKEMANIAC_ETHAN
@@ -73,8 +73,8 @@ SailorScript_0x74dc4:
 
 UnknownScript_0x74e1a:
 	writetext UnknownText_0x74f31
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x74e20:
@@ -99,30 +99,30 @@ UnknownScript_0x74e20:
 	checkitem S_S_TICKET
 	iffalse UnknownScript_0x74e68
 	writetext UnknownText_0x74fc2
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	applymovement PLAYER, MovementData_0x74ef8
 	jump SailorScript_0x74dc4
 
 UnknownScript_0x74e68:
 	writetext UnknownText_0x74ff2
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x74ef5
 	end
 
 UnknownScript_0x74e72:
 	writetext UnknownText_0x75059
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x74ef5
 	end
 
 UnknownScript_0x74e7c:
 	writetext UnknownText_0x75080
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x74ef5
 	end
 
@@ -131,14 +131,14 @@ UnknownScript_0x74e86:
 
 UnknownScript_0x74e87:
 	writetext UnknownText_0x74fa7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x74e8d:
 	writetext UnknownText_0x74fa7
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x74ef5
 	end
 
@@ -161,36 +161,36 @@ SailorScript_0x74e97:
 	checkitem S_S_TICKET
 	iffalse UnknownScript_0x74ed4
 	writetext UnknownText_0x74fc2
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	applymovement PLAYER, MovementData_0x74efe
 	jump SailorScript_0x74dc4
 
 UnknownScript_0x74ed4:
 	writetext UnknownText_0x74ff2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x74eda:
 	writetext UnknownText_0x75059
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x74ee0:
 	writetext UnknownText_0x75080
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SuperNerdScript_0x74ee6:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x750a6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapVermilionPortSignpostItem0:

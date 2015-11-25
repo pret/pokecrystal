@@ -22,17 +22,17 @@ MortyScript_0x99d58:
 	checkevent EVENT_BEAT_MORTY
 	iftrue .FightDone
 	writetext UnknownText_0x99e65
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x9a00a, 0
-	loadtrainer MORTY, 1
+	scriptedtrainerdata MORTY, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_MORTY
 	loadfont
 	writetext UnknownText_0x9a043
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_FOGBADGE
 	checkcode VAR_BADGES
 	scall EcruteakGymTriggerRockets
@@ -52,15 +52,15 @@ MortyScript_0x99d58:
 	iffalse UnknownScript_0x99db5
 	setevent EVENT_GOT_TM30_SHADOW_BALL
 	writetext UnknownText_0x9a0ec
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x99db1:
 	writetext UnknownText_0x9a145
-	closetext
+	waitbutton
 UnknownScript_0x99db5:
-	loadmovesprites
+	closetext
 	end
 
 EcruteakGymTriggerRockets:
@@ -79,14 +79,14 @@ UnknownScript_0x99dc6:
 	applymovement $8, MovementData_0x99e63
 	loadfont
 	writetext UnknownText_0x9a49c
+	waitbutton
 	closetext
-	loadmovesprites
 	follow PLAYER, $8
 	applymovement PLAYER, MovementData_0x99e5f
 	stopfollow
 	special RotatePalettesRightPalettes
 	playsound SFX_ENTER_DOOR
-	waitbutton
+	waitsfx
 	warp ECRUTEAK_CITY, $6, $1b
 	end
 
@@ -94,44 +94,44 @@ TrainerSageJeffrey:
 	trainer EVENT_BEAT_SAGE_JEFFREY, SAGE, JEFFREY, SageJeffreySeenText, SageJeffreyBeatenText, 0, SageJeffreyScript
 
 SageJeffreyScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x9a263
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSagePing:
 	trainer EVENT_BEAT_SAGE_PING, SAGE, PING, SagePingSeenText, SagePingBeatenText, 0, SagePingScript
 
 SagePingScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x9a2b7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerMediumMartha:
 	trainer EVENT_BEAT_MEDIUM_MARTHA, MEDIUM, MARTHA, MediumMarthaSeenText, MediumMarthaBeatenText, 0, MediumMarthaScript
 
 MediumMarthaScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x9a318
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerMediumGrace:
 	trainer EVENT_BEAT_MEDIUM_GRACE, MEDIUM, GRACE, MediumGraceSeenText, MediumGraceBeatenText, 0, MediumGraceScript
 
 MediumGraceScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x9a38a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 EcruteakGymGuyScript:
@@ -140,14 +140,14 @@ EcruteakGymGuyScript:
 	checkevent EVENT_BEAT_MORTY
 	iftrue .EcruteakGymGuyWinScript
 	writetext EcruteakGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .EcruteakGymGuyWinScript
 	writetext EcruteakGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 EcruteakGymStatue:

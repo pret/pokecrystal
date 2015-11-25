@@ -16,8 +16,8 @@ SailorScript_0x9c8c1:
 	setevent EVENT_GOT_HM04_STRENGTH
 UnknownScript_0x9c8d3:
 	writetext UnknownText_0x9c965
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FishingGuruScript_0x9c8d9:

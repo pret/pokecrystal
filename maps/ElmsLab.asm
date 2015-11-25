@@ -59,30 +59,30 @@ ElmsLab_ElmGetsEmail:
 	writetext ElmText_Accepted
 	keeptextopen
 	writetext ElmText_ResearchAmbitions
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_GLASS_TING
 	pause 30
 	showemote EMOTE_SHOCK, $2, 10
 	spriteface $2, DOWN
 	loadfont
 	writetext ElmText_GotAnEmail
+	waitbutton
 	closetext
-	loadmovesprites
 	loadfont
 	spriteface $2, RIGHT
 	writetext ElmText_MissionFromMrPokemon
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, ElmsLab_ElmToDefaultPositionMovement1
 	spriteface PLAYER, UP
 	applymovement $2, ElmsLab_ElmToDefaultPositionMovement2
 	spriteface PLAYER, RIGHT
 	loadfont
 	writetext ElmText_ChooseAPokemon
-	closetext
+	waitbutton
 	dotrigger $1
-	loadmovesprites
+	closetext
 	end
 
 ProfElmScript:
@@ -111,8 +111,8 @@ ElmCheckEverstone:
 	special Special_FindThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	writetext UnknownText_0x79a40
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ElmEggHatchedScript:
@@ -141,16 +141,16 @@ ElmCheckGotEggAgain:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue ElmDescribesMrPokemonScript
 	writetext ElmText_LetYourMonBattleIt
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 LabTryToLeaveScript:
 	spriteface $2, DOWN
 	loadfont
 	writetext LabWhereGoingText
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x78f70
 	end
 
@@ -161,8 +161,8 @@ CyndaquilPokeBallScript:
 	refreshscreen $0
 	pokepic CYNDAQUIL
 	cry CYNDAQUIL
-	closetext
-	pokepicyesorno
+	waitbutton
+	closepokepic
 	loadfont
 	writetext TakeCyndaquilText
 	yesorno
@@ -171,14 +171,14 @@ CyndaquilPokeBallScript:
 	setevent EVENT_GOT_CYNDAQUIL_FROM_ELM
 	writetext ChoseStarterText
 	keeptextopen
-	waitbutton
+	waitsfx
 	pokenamemem CYNDAQUIL, $0
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
-	waitbutton
+	waitsfx
 	keeptextopen
 	givepoke CYNDAQUIL, 5, BERRY
-	loadmovesprites
+	closetext
 	checkcode VAR_FACING
 	if_equal $3, ElmDirectionsScript
 	applymovement PLAYER, AfterCyndaquilMovement
@@ -191,8 +191,8 @@ TotodilePokeBallScript:
 	refreshscreen $0
 	pokepic TOTODILE
 	cry TOTODILE
-	closetext
-	pokepicyesorno
+	waitbutton
+	closepokepic
 	loadfont
 	writetext TakeTotodileText
 	yesorno
@@ -201,14 +201,14 @@ TotodilePokeBallScript:
 	setevent EVENT_GOT_TOTODILE_FROM_ELM
 	writetext ChoseStarterText
 	keeptextopen
-	waitbutton
+	waitsfx
 	pokenamemem TOTODILE, $0
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
-	waitbutton
+	waitsfx
 	keeptextopen
 	givepoke TOTODILE, 5, BERRY
-	loadmovesprites
+	closetext
 	applymovement PLAYER, AfterTotodileMovement
 	jump ElmDirectionsScript
 
@@ -219,8 +219,8 @@ ChikoritaPokeBallScript:
 	refreshscreen $0
 	pokepic CHIKORITA
 	cry CHIKORITA
-	closetext
-	pokepicyesorno
+	waitbutton
+	closepokepic
 	loadfont
 	writetext TakeChikoritaText
 	yesorno
@@ -229,46 +229,46 @@ ChikoritaPokeBallScript:
 	setevent EVENT_GOT_CHIKORITA_FROM_ELM
 	writetext ChoseStarterText
 	keeptextopen
-	waitbutton
+	waitsfx
 	pokenamemem CHIKORITA, $0
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
-	waitbutton
+	waitsfx
 	keeptextopen
 	givepoke CHIKORITA, 5, BERRY
-	loadmovesprites
+	closetext
 	applymovement PLAYER, AfterChikoritaMovement
 	jump ElmDirectionsScript
 
 DidntChooseStarterScript:
 	writetext DidntChooseStarterText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ElmDirectionsScript:
 	spriteface PLAYER, UP
 	loadfont
 	writetext ElmDirectionsText1
+	waitbutton
 	closetext
-	loadmovesprites
 	addcellnum PHONE_ELM
 	loadfont
 	writetext GotElmsNumberText
 	playsound SFX_REGISTER_PHONE_NUMBER
+	waitsfx
 	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, LEFT
 	loadfont
 	writetext ElmDirectionsText2
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, DOWN
 	loadfont
 	writetext ElmDirectionsText3
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_GOT_A_POKEMON_FROM_ELM
 	setevent EVENT_RIVAL_CHERRYGROVE_CITY
 	dotrigger $5
@@ -277,15 +277,15 @@ ElmDirectionsScript:
 
 ElmDescribesMrPokemonScript:
 	writetext ElmDescribesMrPokemonText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 LookAtElmPokeBallScript:
 	loadfont
 	writetext ElmPokeBallText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ElmsLabHealingMachine:
@@ -293,15 +293,15 @@ ElmsLabHealingMachine:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue .CanHeal
 	writetext ElmsLabHealingMachineText1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .CanHeal
 	writetext ElmsLabHealingMachineText2
 	yesorno
 	iftrue ElmsLabHealingMachine_HealParty
-	loadmovesprites
+	closetext
 	end
 
 ElmsLabHealingMachine_HealParty:
@@ -312,12 +312,12 @@ ElmsLabHealingMachine_HealParty:
 	special HealMachineAnim
 	pause 30
 	special RestartMapMusic
-	loadmovesprites
+	closetext
 	end
 
 ElmAfterTheftDoneScript:
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ElmAfterTheftScript:
@@ -326,11 +326,11 @@ ElmAfterTheftScript:
 	iffalse ElmAfterTheftDoneScript
 	keeptextopen
 	writetext ElmAfterTheftText2
-	closetext
+	waitbutton
 	takeitem MYSTERY_EGG
 	scall ElmJumpBackScript1
 	writetext ElmAfterTheftText3
-	closetext
+	waitbutton
 	scall ElmJumpBackScript2
 	writetext ElmAfterTheftText4
 	keeptextopen
@@ -342,33 +342,33 @@ ElmAfterTheftScript:
 	clearevent EVENT_ROUTE_30_YOUNGSTER_JOEY
 	setevent EVENT_ROUTE_30_BATTLE
 	writetext ElmAfterTheftText6
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $6
 	end
 
 ElmStudyingEggScript:
 	writetext ElmStudyingEggText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ElmAideHasEggScript:
 	writetext ElmAideHasEggText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ElmWaitingEggHatchScript:
 	writetext ElmWaitingEggHatchText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ShowElmTogepiScript:
 	writetext ShowElmTogepiText1
+	waitbutton
 	closetext
-	loadmovesprites
 	showemote EMOTE_SHOCK, $2, 15
 	setevent EVENT_SHOWED_TOGEPI_TO_ELM
 	loadfont
@@ -382,16 +382,16 @@ ElmGiveEverstoneScript:
 	verbosegiveitem EVERSTONE
 	iffalse ElmScript_NoRoomForEverstone
 	writetext ElmGiveEverstoneText2
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_GOT_EVERSTONE_FROM_ELM
 	end
 
 ElmScript_CallYou:
 	writetext ElmText_CallYou
-	closetext
+	waitbutton
 ElmScript_NoRoomForEverstone:
-	loadmovesprites
+	closetext
 	end
 
 ElmGiveMasterBallScript:
@@ -401,9 +401,9 @@ ElmGiveMasterBallScript:
 	iffalse .notdone
 	setevent EVENT_GOT_MASTER_BALL_FROM_ELM
 	writetext ElmGiveMasterBallText2
-	closetext
+	waitbutton
 .notdone
-	loadmovesprites
+	closetext
 	end
 
 ElmGiveTicketScript:
@@ -412,12 +412,12 @@ ElmGiveTicketScript:
 	verbosegiveitem S_S_TICKET
 	setevent EVENT_GOT_SS_TICKET_FROM_ELM
 	writetext ElmGiveTicketText2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ElmJumpBackScript1:
-	loadmovesprites
+	closetext
 	checkcode VAR_FACING
 	if_equal DOWN, ElmJumpDownScript
 	if_equal UP, ElmJumpUpScript
@@ -426,7 +426,7 @@ ElmJumpBackScript1:
 	end
 
 ElmJumpBackScript2:
-	loadmovesprites
+	closetext
 	checkcode VAR_FACING
 	if_equal DOWN, ElmJumpUpScript
 	if_equal UP, ElmJumpDownScript
@@ -474,8 +474,8 @@ AideScript_GivePotions:
 	keeptextopen
 	verbosegiveitem POTION
 	writetext AideText_AlwaysBusy
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $2
 	end
 
@@ -503,7 +503,7 @@ AideScript_GiveYouBalls:
 	writetext AideText_ExplainBalls
 	keeptextopen
 	itemnotify
-	loadmovesprites
+	closetext
 	dotrigger $2
 	end
 
@@ -521,26 +521,26 @@ ElmsAideScript:
 	checkevent EVENT_GOT_MYSTERY_EGG_FROM_MR_POKEMON
 	iftrue AideScript_TheftTestimony
 	writetext AideText_AlwaysBusy
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 AideScript_TheftTestimony:
 	writetext AideText_TheftTestimony
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 AideScript_ExplainBalls:
 	writetext AideText_ExplainBalls
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 AideScript_AfterTheft:
 	writetext AideText_AfterTheft
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MeetCopScript2:
@@ -555,8 +555,8 @@ CopScript:
 	keeptextopen
 	special SpecialNameRival
 	writetext ElmsLabOfficerText2
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $7, OfficerLeavesMovement
 	disappear $7
 	dotrigger $2
@@ -572,14 +572,14 @@ ElmsLabWindow:
 
 .BreakIn
 	writetext ElmsLabWindowText2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Normal
 	writetext ElmsLabWindowText1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ElmsLabTravelTip1:

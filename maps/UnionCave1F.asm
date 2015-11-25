@@ -9,55 +9,55 @@ TrainerPokemaniacLarry:
 	trainer EVENT_BEAT_POKEMANIAC_LARRY, POKEMANIAC, LARRY, PokemaniacLarrySeenText, PokemaniacLarryBeatenText, 0, PokemaniacLarryScript
 
 PokemaniacLarryScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x59d31
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerHikerRussell:
 	trainer EVENT_BEAT_HIKER_RUSSELL, HIKER, RUSSELL, HikerRussellSeenText, HikerRussellBeatenText, 0, HikerRussellScript
 
 HikerRussellScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x59c6c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerHikerDaniel:
 	trainer EVENT_BEAT_HIKER_DANIEL, HIKER, DANIEL, HikerDanielSeenText, HikerDanielBeatenText, 0, HikerDanielScript
 
 HikerDanielScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x59dc9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFirebreatherBill:
 	trainer EVENT_BEAT_FIREBREATHER_BILL, FIREBREATHER, BILL, FirebreatherBillSeenText, FirebreatherBillBeatenText, 0, FirebreatherBillScript
 
 FirebreatherBillScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x59e6f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFirebreatherRay:
 	trainer EVENT_BEAT_FIREBREATHER_RAY, FIREBREATHER, RAY, FirebreatherRaySeenText, FirebreatherRayBeatenText, 0, FirebreatherRayScript
 
 FirebreatherRayScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x59efc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ItemFragment_0x59c00:

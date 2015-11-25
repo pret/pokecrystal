@@ -38,8 +38,8 @@ KurtScript_0x18e178:
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iftrue .ClearedSlowpokeWell
 	writetext UnknownText_0x18e473
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_RotatePalettesRightMusic
 	setevent EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
 	checkcode VAR_FACING
@@ -49,7 +49,7 @@ KurtScript_0x18e178:
 	applymovement $2, MovementData_0x18e466
 	playsound SFX_EXIT_BUILDING
 	disappear $2
-	waitbutton
+	waitsfx
 	special RestartMapMusic
 	end
 
@@ -59,7 +59,7 @@ KurtScript_0x18e178:
 	applymovement $2, MovementData_0x18e46c
 	playsound SFX_EXIT_BUILDING
 	disappear $2
-	waitbutton
+	waitsfx
 	special RestartMapMusic
 	end
 
@@ -94,7 +94,7 @@ KurtScript_0x18e178:
 	checkevent EVENT_DRAGON_SHRINE_QUESTION_2
 	iftrue .CheckApricorns
 	writetext UnknownText_0x18e6c9
-	closetext
+	waitbutton
 .CheckApricorns:
 	checkitem RED_APRICORN
 	iftrue .AskApricorn
@@ -114,13 +114,13 @@ KurtScript_0x18e178:
 	iftrue .ThatTurnedOutGreat
 	checkevent EVENT_DRAGON_SHRINE_QUESTION_2
 	iftrue .IMakeBallsFromApricorns
-	loadmovesprites
+	closetext
 	end
 
 .IMakeBallsFromApricorns:
 	writetext UnknownText_0x18e6c9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .AskApricorn:
@@ -168,23 +168,23 @@ KurtScript_0x18e178:
 	setflag ENGINE_KURT_MAKING_BALLS
 .WaitForApricorns:
 	writetext UnknownText_0x18e779
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Cancel:
 	writetext UnknownText_0x18e7bc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ._ThatTurnedOutGreat:
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 .ThatTurnedOutGreat:
 	writetext UnknownText_0x18e82a
-	closetext
+	waitbutton
 .NoRoomForBall:
-	loadmovesprites
+	closetext
 	end
 
 .GiveLevelBall:
@@ -263,8 +263,8 @@ KurtScript_0x18e178:
 	checkitem GS_BALL
 	iffalse .NoGSBall
 	writetext UnknownText_0x18e8ab
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_GAVE_GS_BALL_TO_KURT
 	takeitem GS_BALL
 	setflag ENGINE_KURT_MAKING_BALLS
@@ -274,16 +274,16 @@ KurtScript_0x18e178:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iffalse .NotMakingBalls
 	writetext UnknownText_0x18e934
-	closetext
+	waitbutton
 	writetext UnknownText_0x18e949
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .NotMakingBalls:
 	writetext UnknownText_0x18e95c
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_FOREST_IS_RESTLESS
 	clearevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	clearevent EVENT_GAVE_GS_BALL_TO_KURT
@@ -305,7 +305,7 @@ KurtScript_0x18e178:
 	playsound SFX_EXIT_BUILDING
 	disappear $2
 	clearevent EVENT_AZALEA_TOWN_KURT
-	waitbutton
+	waitsfx
 	special RestartMapMusic
 	domaptrigger AZALEA_TOWN, $2
 	end
@@ -319,26 +319,26 @@ KurtMakingBallsScript:
 	checkevent EVENT_BUGGING_KURT_TOO_MUCH
 	iffalse Script_FirstTimeBuggingKurt
 	writetext UnknownText_0x18e7d8
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $5, UP
 	end
 
 Script_FirstTimeBuggingKurt:
 	writetext UnknownText_0x18e863
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $5, UP
 	setevent EVENT_BUGGING_KURT_TOO_MUCH
 	end
 
 KurtScript_ImCheckingItNow:
 	writetext UnknownText_0x18e934
-	closetext
+	waitbutton
 	spriteface $5, UP
 	writetext UnknownText_0x18e949
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 KurtsGranddaughter1:
@@ -357,29 +357,29 @@ KurtsGranddaughter1:
 	iftrue .Lonely
 	loadfont
 	writetext KurtsGranddaughterSlowpokeGoneText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .SlowpokeBack
 	loadfont
 	writetext KurtsGranddaughterSlowpokeBackText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Lonely
 	loadfont
 	writetext KurtsGranddaughterLonelyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Dad
 	loadfont
 	writetext KurtsGranddaughterDadText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 KurtsGranddaughter2:
@@ -389,23 +389,23 @@ KurtsGranddaughter2Subscript:
 	checkevent EVENT_GAVE_GS_BALL_TO_KURT
 	iftrue .GSBall
 	writetext KurtsGranddaughterHelpText
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $6, RIGHT
 	end
 
 .GSBall
 	writetext KurtsGranddaughterGSBallText
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $6, RIGHT
 	end
 
 KurtsGranddaughterFunScript:
 	loadfont
 	writetext KurtsGranddaughterFunText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 KurtsHouseSlowpoke:
@@ -413,8 +413,8 @@ KurtsHouseSlowpoke:
 	loadfont
 	writetext KurtsHouseSlowpokeText
 	cry SLOWPOKE
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 KurtsHouseOakPhoto:

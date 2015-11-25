@@ -31,8 +31,8 @@ UnknownScript_0x1a088c:
 	writetext UnknownText_0x1a0a6b
 	keeptextopen
 	writetext UnknownText_0x1a0a71
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $1
 	end
 
@@ -43,11 +43,11 @@ TrainerPsychicGilbert:
 	trainer EVENT_BEAT_PSYCHIC_GILBERT, PSYCHIC_T, GILBERT, PsychicGilbertSeenText, PsychicGilbertBeatenText, 0, PsychicGilbertScript
 
 PsychicGilbertScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a0dd2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBird_keeperJose2:
@@ -55,7 +55,7 @@ TrainerBird_keeperJose2:
 
 Bird_keeperJose2Script:
 	writecode VAR_CALLERID, PHONE_BIRDKEEPER_JOSE
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_JOSE
 	iftrue UnknownScript_0x1a08ff
@@ -95,7 +95,7 @@ UnknownScript_0x1a08ff:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer BIRD_KEEPER, JOSE2
+	scriptedtrainerdata BIRD_KEEPER, JOSE2
 	startbattle
 	returnafterbattle
 	loadvar wJoseFightCount, 1
@@ -103,7 +103,7 @@ UnknownScript_0x1a08ff:
 	end
 
 .LoadFight1
-	loadtrainer BIRD_KEEPER, JOSE1
+	scriptedtrainerdata BIRD_KEEPER, JOSE1
 	startbattle
 	returnafterbattle
 	loadvar wJoseFightCount, 2
@@ -111,7 +111,7 @@ UnknownScript_0x1a08ff:
 	end
 
 .LoadFight2
-	loadtrainer BIRD_KEEPER, JOSE3
+	scriptedtrainerdata BIRD_KEEPER, JOSE3
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_JOSE
@@ -167,22 +167,22 @@ TrainerCooltrainermBlake:
 	trainer EVENT_BEAT_COOLTRAINERM_BLAKE, COOLTRAINERM, BLAKE, CooltrainermBlakeSeenText, CooltrainermBlakeBeatenText, 0, CooltrainermBlakeScript
 
 CooltrainermBlakeScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a0b0b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainermBrian:
 	trainer EVENT_BEAT_COOLTRAINERM_BRIAN, COOLTRAINERM, BRIAN, CooltrainermBrianSeenText, CooltrainermBrianBeatenText, 0, CooltrainermBrianScript
 
 CooltrainermBrianScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a0bac
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainerfReena:
@@ -190,7 +190,7 @@ TrainerCooltrainerfReena:
 
 CooltrainerfReena1Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERF_REENA
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_REENA
 	iftrue UnknownScript_0x1a09e9
@@ -228,7 +228,7 @@ UnknownScript_0x1a09e9:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer COOLTRAINERF, REENA1
+	scriptedtrainerdata COOLTRAINERF, REENA1
 	startbattle
 	returnafterbattle
 	loadvar wReenaFightCount, 1
@@ -236,7 +236,7 @@ UnknownScript_0x1a09e9:
 	end
 
 .LoadFight1
-	loadtrainer COOLTRAINERF, REENA2
+	scriptedtrainerdata COOLTRAINERF, REENA2
 	startbattle
 	returnafterbattle
 	loadvar wReenaFightCount, 2
@@ -244,7 +244,7 @@ UnknownScript_0x1a09e9:
 	end
 
 .LoadFight2
-	loadtrainer COOLTRAINERF, REENA3
+	scriptedtrainerdata COOLTRAINERF, REENA3
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_REENA
@@ -282,11 +282,11 @@ TrainerCooltrainerfMegan:
 	trainer EVENT_BEAT_COOLTRAINERF_MEGAN, COOLTRAINERF, MEGAN, CooltrainerfMeganSeenText, CooltrainerfMeganBeatenText, 0, CooltrainerfMeganScript
 
 CooltrainerfMeganScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a0cce
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute27Signpost0Script:

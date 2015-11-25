@@ -11,10 +11,10 @@ SurgeScript_0x1920a5:
 	checkflag ENGINE_THUNDERBADGE
 	iftrue .FightDone
 	writetext UnknownText_0x192142
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x192238, 0
-	loadtrainer LT_SURGE, 1
+	scriptedtrainerdata LT_SURGE, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_LTSURGE
@@ -24,50 +24,50 @@ SurgeScript_0x1920a5:
 	loadfont
 	writetext UnknownText_0x192277
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_THUNDERBADGE
 	writetext UnknownText_0x192291
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FightDone
 	writetext UnknownText_0x192303
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGentlemanGregory:
 	trainer EVENT_BEAT_GENTLEMAN_GREGORY, GENTLEMAN, GREGORY, GentlemanGregorySeenText, GentlemanGregoryBeatenText, 0, GentlemanGregoryScript
 
 GentlemanGregoryScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1923b0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGuitaristVincent:
 	trainer EVENT_BEAT_GUITARIST_VINCENT, GUITARIST, VINCENT, GuitaristVincentSeenText, GuitaristVincentBeatenText, 0, GuitaristVincentScript
 
 GuitaristVincentScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19244b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerJugglerHorton:
 	trainer EVENT_BEAT_JUGGLER_HORTON, JUGGLER, HORTON, JugglerHortonSeenText, JugglerHortonBeatenText, 0, JugglerHortonScript
 
 JugglerHortonScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1924d6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 VermilionGymGuyScript:
@@ -76,14 +76,14 @@ VermilionGymGuyScript:
 	checkevent EVENT_BEAT_LTSURGE
 	iftrue .VermilionGymGuyWinScript
 	writetext VermilionGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .VermilionGymGuyWinScript
 	writetext VermilionGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapVermilionGymSignpost14Script:

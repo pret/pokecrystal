@@ -31,20 +31,20 @@ SuperNerdScript_0x1a46e8:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1a46fc
 	writetext UnknownText_0x1a477a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1a46fc:
 	writetext UnknownText_0x1a47f3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1a4702:
 	writetext UnknownText_0x1a4865
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GrampsScript_0x1a4708:
@@ -59,14 +59,14 @@ BlackBeltScript_0x1a470e:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1a471c
 	writetext UnknownText_0x1a494a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1a471c:
 	writetext UnknownText_0x1a4983
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CooltrainerFScript_0x1a4722:
@@ -97,21 +97,21 @@ SantosScript:
 	iffalse SantosDoneScript
 	setevent EVENT_GOT_SPELL_TAG_FROM_SANTOS
 	writetext SantosGaveGiftText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SantosSaturdayScript:
 	writetext SantosSaturdayText
-	closetext
+	waitbutton
 SantosDoneScript:
-	loadmovesprites
+	closetext
 	end
 
 SantosNotSaturdayScript:
 	writetext SantosNotSaturdayText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 BlackthornCitySign:

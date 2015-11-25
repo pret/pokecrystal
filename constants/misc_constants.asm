@@ -48,6 +48,9 @@ RESET_FLAG EQU 0
 SET_FLAG   EQU 1
 CHECK_FLAG EQU 2
 
+; Boolean checks
+FALSE EQU 0
+TRUE  EQU 1
 
 ; joypad
 

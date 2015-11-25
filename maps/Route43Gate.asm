@@ -64,7 +64,7 @@ UnknownScript_0x19ac1d:
 
 UnknownScript_0x19ac28:
 	keeptextopen
-	loadmovesprites
+	closetext
 	applymovement $3, MovementData_0x19acaa
 	applymovement $4, MovementData_0x19acc1
 	dotrigger $1
@@ -96,7 +96,7 @@ UnknownScript_0x19ac67:
 
 UnknownScript_0x19ac72:
 	keeptextopen
-	loadmovesprites
+	closetext
 	applymovement $4, MovementData_0x19accd
 	applymovement $3, MovementData_0x19acb5
 	dotrigger $1
@@ -116,14 +116,14 @@ OfficerScript_0x19ac85:
 	verbosegiveitem TM_SLUDGE_BOMB
 	iffalse UnknownScript_0x19aca0
 	setevent EVENT_GOT_TM36_SLUDGE_BOMB
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x19ac9c:
 	writetext UnknownText_0x19ae2d
-	closetext
+	waitbutton
 UnknownScript_0x19aca0:
-	loadmovesprites
+	closetext
 	end
 
 MovementData_0x19aca2:

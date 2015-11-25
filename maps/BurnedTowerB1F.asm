@@ -52,12 +52,12 @@ UnknownScript_0x18616b:
 	spriteface PLAYER, LEFT
 	applymovement $3, MovementData_0x186236
 	disappear $3
-	waitbutton
+	waitsfx
 	playsound SFX_WARP_FROM
 	spriteface PLAYER, RIGHT
 	applymovement $4, MovementData_0x18623b
 	disappear $4
-	waitbutton
+	waitsfx
 	pause 15
 	playsound SFX_WARP_FROM
 	spriteface PLAYER, UP
@@ -73,7 +73,7 @@ UnknownScript_0x18616b:
 	applymovement $5, MovementData_0x186253
 	spriteface PLAYER, DOWN
 	disappear $5
-	waitbutton
+	waitsfx
 	special RestartMapMusic
 	dotrigger $1
 	setevent EVENT_RELEASED_THE_BEASTS
@@ -89,7 +89,7 @@ UnknownScript_0x18616b:
 	refreshscreen $0
 	changeblock $6, $e, $1b
 	reloadmappart
-	loadmovesprites
+	closetext
 	dotrigger $1
 	end
 
@@ -97,8 +97,8 @@ SuperNerdScript_0x186212:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x18626a
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcode VAR_FACING
 	if_equal $1, UnknownScript_0x186226
 	applymovement $a, MovementData_0x186263
@@ -109,7 +109,7 @@ UnknownScript_0x186226:
 UnknownScript_0x18622a:
 	disappear $a
 	playsound SFX_EXIT_BUILDING
-	waitbutton
+	waitsfx
 	end
 
 ItemFragment_0x186231:

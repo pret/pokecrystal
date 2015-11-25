@@ -17,9 +17,9 @@ PokefanMScript_0x196d64:
 	setevent EVENT_GOT_BERRY_FROM_ROUTE_30_HOUSE
 UnknownScript_0x196d79:
 	writetext UnknownText_0x196dec
-	closetext
+	waitbutton
 UnknownScript_0x196d7d:
-	loadmovesprites
+	closetext
 	end
 
 Route30BerrySpeechHouseBookshelf:

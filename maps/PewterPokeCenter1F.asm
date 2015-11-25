@@ -15,8 +15,8 @@ JigglypuffScript_0x1a2eed:
 	loadfont
 	writetext UnknownText_0x1a2f5d
 	cry JIGGLYPUFF
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 BugCatcherScript_0x1a2ef7:
@@ -26,8 +26,8 @@ PokefanMScript_0x1a2efa:
 	faceplayer
 	loadfont
 	trade $4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x1a2f01:

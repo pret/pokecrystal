@@ -9,8 +9,8 @@ Emy:
 	faceplayer
 	loadfont
 	trade $3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 EmysHouseBookshelf:

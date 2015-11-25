@@ -19,14 +19,14 @@ CooltrainerMScript_0x9a5fb:
 	setevent EVENT_GOT_ITEMFINDER
 UnknownScript_0x9a614:
 	writetext UnknownText_0x9a70e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x9a61a:
 	writetext UnknownText_0x9a805
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokedexScript_0x9a620:
@@ -34,20 +34,20 @@ PokedexScript_0x9a620:
 	writetext UnknownText_0x9a826
 	yesorno
 	iftrue UnknownScript_0x9a62a
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x9a62a:
 	writetext UnknownText_0x9a84c
 	yesorno
 	iftrue UnknownScript_0x9a633
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x9a633:
 	writetext UnknownText_0x9a902
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ItemFinderHouseRadio:

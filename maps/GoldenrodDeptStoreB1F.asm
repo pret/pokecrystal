@@ -53,8 +53,8 @@ MachopScript_0x7d7b9:
 	loadfont
 	writetext UnknownText_0x7d8bb
 	cry MACHOKE
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ItemFragment_0x7d7c3:

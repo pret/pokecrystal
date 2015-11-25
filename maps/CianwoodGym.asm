@@ -11,13 +11,13 @@ ChuckScript_0x9d60f:
 	checkevent EVENT_BEAT_CHUCK
 	iftrue .FightDone
 	writetext UnknownText_0x9d6f9
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, RIGHT
 	loadfont
 	writetext UnknownText_0x9d76f
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $7, MovementData_0x9d6f3
 	playsound SFX_STRENGTH
 	earthquake 80
@@ -26,17 +26,17 @@ ChuckScript_0x9d60f:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x9d78a
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x9d7f6, 0
-	loadtrainer CHUCK, 1
+	scriptedtrainerdata CHUCK, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_CHUCK
 	loadfont
 	writetext UnknownText_0x9d835
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_STORMBADGE
 	checkcode VAR_BADGES
 	scall CianwoodGymTriggerRockets
@@ -53,15 +53,15 @@ ChuckScript_0x9d60f:
 	iffalse UnknownScript_0x9d67f
 	setevent EVENT_GOT_TM01_DYNAMICPUNCH
 	writetext UnknownText_0x9d8da
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x9d67b:
 	writetext UnknownText_0x9d930
-	closetext
+	waitbutton
 UnknownScript_0x9d67f:
-	loadmovesprites
+	closetext
 	end
 
 CianwoodGymTriggerRockets:
@@ -79,44 +79,44 @@ TrainerBlackbeltYoshi:
 	trainer EVENT_BEAT_BLACKBELT_YOSHI, BLACKBELT_T, YOSHI, BlackbeltYoshiSeenText, BlackbeltYoshiBeatenText, 0, BlackbeltYoshiScript
 
 BlackbeltYoshiScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x9d9fa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBlackbeltLao:
 	trainer EVENT_BEAT_BLACKBELT_LAO, BLACKBELT_T, LAO, BlackbeltLaoSeenText, BlackbeltLaoBeatenText, 0, BlackbeltLaoScript
 
 BlackbeltLaoScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x9da61
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBlackbeltNob:
 	trainer EVENT_BEAT_BLACKBELT_NOB, BLACKBELT_T, NOB, BlackbeltNobSeenText, BlackbeltNobBeatenText, 0, BlackbeltNobScript
 
 BlackbeltNobScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x9dac0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBlackbeltLung:
 	trainer EVENT_BEAT_BLACKBELT_LUNG, BLACKBELT_T, LUNG, BlackbeltLungSeenText, BlackbeltLungBeatenText, 0, BlackbeltLungScript
 
 BlackbeltLungScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x9db14
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CianwoodGymBoulder:

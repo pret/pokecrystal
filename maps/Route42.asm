@@ -32,7 +32,7 @@ TrainerFisherTully1:
 
 FisherTully1Script:
 	writecode VAR_CALLERID, PHONE_FISHER_TULLY
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_TULLY
 	iftrue UnknownScript_0x1a927f
@@ -76,7 +76,7 @@ UnknownScript_0x1a927f:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer FISHER, TULLY1
+	scriptedtrainerdata FISHER, TULLY1
 	startbattle
 	returnafterbattle
 	loadvar wTullyFightCount, 1
@@ -84,7 +84,7 @@ UnknownScript_0x1a927f:
 	end
 
 .LoadFight1
-	loadtrainer FISHER, TULLY2
+	scriptedtrainerdata FISHER, TULLY2
 	startbattle
 	returnafterbattle
 	loadvar wTullyFightCount, 2
@@ -92,7 +92,7 @@ UnknownScript_0x1a927f:
 	end
 
 .LoadFight2
-	loadtrainer FISHER, TULLY3
+	scriptedtrainerdata FISHER, TULLY3
 	startbattle
 	returnafterbattle
 	loadvar wTullyFightCount, 3
@@ -100,7 +100,7 @@ UnknownScript_0x1a927f:
 	end
 
 .LoadFight3
-	loadtrainer FISHER, TULLY4
+	scriptedtrainerdata FISHER, TULLY4
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_TULLY
@@ -157,22 +157,22 @@ TrainerPokemaniacShane:
 	trainer EVENT_BEAT_POKEMANIAC_SHANE, POKEMANIAC, SHANE, PokemaniacShaneSeenText, PokemaniacShaneBeatenText, 0, PokemaniacShaneScript
 
 PokemaniacShaneScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a94d6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerHikerBenjamin:
 	trainer EVENT_BEAT_HIKER_BENJAMIN, HIKER, BENJAMIN, HikerBenjaminSeenText, HikerBenjaminBeatenText, 0, HikerBenjaminScript
 
 HikerBenjaminScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a943f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute42Signpost0Script:

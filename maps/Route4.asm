@@ -9,33 +9,33 @@ TrainerBird_keeperHank:
 	trainer EVENT_BEAT_BIRD_KEEPER_HANK, BIRD_KEEPER, HANK, Bird_keeperHankSeenText, Bird_keeperHankBeatenText, 0, Bird_keeperHankScript
 
 Bird_keeperHankScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ae258
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPicnickerHope:
 	trainer EVENT_BEAT_PICNICKER_HOPE, PICNICKER, HOPE, PicnickerHopeSeenText, PicnickerHopeBeatenText, 0, PicnickerHopeScript
 
 PicnickerHopeScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ae320
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPicnickerSharon:
 	trainer EVENT_BEAT_PICNICKER_SHARON, PICNICKER, SHARON, PicnickerSharonSeenText, PicnickerSharonBeatenText, 0, PicnickerSharonScript
 
 PicnickerSharonScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ae369
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute4Signpost0Script:

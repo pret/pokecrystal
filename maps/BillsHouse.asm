@@ -121,7 +121,7 @@ UnknownScript_0x18963b:
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_EVERSTONE_FROM_BILLS_GRANDPA
 	setevent EVENT_GAVE_KURT_APRICORNS
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x189652:
@@ -132,7 +132,7 @@ UnknownScript_0x189652:
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_LEAF_STONE_FROM_BILLS_GRANDPA
 	setevent EVENT_GAVE_KURT_APRICORNS
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x189669:
@@ -143,7 +143,7 @@ UnknownScript_0x189669:
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_WATER_STONE_FROM_BILLS_GRANDPA
 	setevent EVENT_GAVE_KURT_APRICORNS
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x189680:
@@ -154,7 +154,7 @@ UnknownScript_0x189680:
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_FIRE_STONE_FROM_BILLS_GRANDPA
 	setevent EVENT_GAVE_KURT_APRICORNS
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x189697:
@@ -162,7 +162,7 @@ UnknownScript_0x189697:
 	verbosegiveitem THUNDERSTONE
 	iffalse UnknownScript_0x1896cc
 	setevent EVENT_GOT_THUNDERSTONE_FROM_BILLS_GRANDPA
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x1896a5:
@@ -172,8 +172,8 @@ UnknownScript_0x1896a5:
 
 UnknownScript_0x1896aa:
 	writetext UnknownText_0x189784
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1896b0:
@@ -188,24 +188,24 @@ UnknownScript_0x1896b5:
 
 UnknownScript_0x1896ba:
 	writetext UnknownText_0x18980e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1896c0:
 	writetext UnknownText_0x18982a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1896c6:
 	writetext UnknownText_0x189891
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1896cc:
-	loadmovesprites
+	closetext
 	end
 
 UnknownText_0x1896ce:

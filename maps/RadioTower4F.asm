@@ -16,8 +16,8 @@ TeacherScript_0x5eb85:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x5eb99
 	writetext UnknownText_0x5ec68
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x5eb99:
@@ -26,68 +26,68 @@ UnknownScript_0x5eb99:
 	verbosegiveitem PINK_BOW
 	iffalse UnknownScript_0x5ebb0
 	writetext UnknownText_0x5ecef
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_GOT_PINK_BOW_FROM_MARY
 	end
 
 UnknownScript_0x5ebac:
 	writetext UnknownText_0x5ed2c
-	closetext
+	waitbutton
 UnknownScript_0x5ebb0:
-	loadmovesprites
+	closetext
 	end
 
 GrowlitheScript_0x5ebb2:
 	loadfont
 	writetext UnknownText_0x5ed66
 	cry MEOWTH
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGruntM10:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_10, GRUNTM, 10, GruntM10SeenText, GruntM10BeatenText, 0, GruntM10Script
 
 GruntM10Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5ede2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerExecutivem2:
 	trainer EVENT_BEAT_ROCKET_EXECUTIVEM_2, EXECUTIVEM, 2, Executivem2SeenText, Executivem2BeatenText, 0, Executivem2Script
 
 Executivem2Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5ee69
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGruntF4:
 	trainer EVENT_BEAT_ROCKET_GRUNTF_4, GRUNTF, 4, GruntF4SeenText, GruntF4BeatenText, 0, GruntF4Script
 
 GruntF4Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5ef31
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerScientistRich:
 	trainer EVENT_BEAT_SCIENTIST_RICH, SCIENTIST, RICH, ScientistRichSeenText, ScientistRichBeatenText, 0, ScientistRichScript
 
 ScientistRichScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5efcb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRadioTower4FSignpost0Script:

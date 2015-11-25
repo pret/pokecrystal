@@ -24,16 +24,16 @@ JanineImpersonatorScript_0x196462:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x19652e
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $5, MovementData_0x196486
 	faceplayer
 	variablesprite SPRITE_JANINE_IMPERSONATOR, SPRITE_JANINE
 	special RunCallback_04
 	loadfont
 	writetext UnknownText_0x19654e
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $5, MovementData_0x196486
 	faceplayer
 	variablesprite SPRITE_JANINE_IMPERSONATOR, SPRITE_LASS

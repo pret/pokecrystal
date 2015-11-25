@@ -9,14 +9,14 @@ ClerkScript_0x55b5d:
 	faceplayer
 	loadfont
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_2F_1
-	loadmovesprites
+	closetext
 	end
 
 ClerkScript_0x55b65:
 	faceplayer
 	loadfont
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_2F_2
-	loadmovesprites
+	closetext
 	end
 
 YoungsterScript_0x55b6d:

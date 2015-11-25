@@ -23,14 +23,14 @@ FisherScript_0x1a83bb:
 
 UnknownScript_0x1a83cb:
 	writetext UnknownText_0x1a84ac
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1a83d1:
 	writetext UnknownText_0x1a84cb
+	waitbutton
 	closetext
-	loadmovesprites
 	playmusic MUSIC_SHOW_ME_AROUND
 	follow $2, PLAYER
 	applymovement $2, MovementData_0x1a842a
@@ -40,14 +40,14 @@ UnknownScript_0x1a83d1:
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x1a84f9
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x1a8465
 	applymovement $2, MovementData_0x1a8463
 	playsound SFX_ENTER_DOOR
 	disappear $2
 	clearevent EVENT_EARLS_ACADEMY_EARL
-	waitbutton
+	waitsfx
 	end
 
 LassScript_0x1a8403:

@@ -15,7 +15,7 @@ MapCeladonGameCornerPrizeRoomSignpost0Script:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x7293e
-	closetext
+	waitbutton
 	checkitem COIN_CASE
 	iffalse CeladonPrizeRoom_NoCoinCase
 	writetext UnknownText_0x72974
@@ -68,34 +68,34 @@ CeladonPrizeRoom_askbuy:
 	end
 
 CeladonPrizeRoom_purchased:
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x729ad
-	closetext
+	waitbutton
 	jump CeladonPrizeRoom_tmcounterloop
 
 CeladonPrizeRoom_notenoughcoins:
 	writetext UnknownText_0x729bb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CeladonPrizeRoom_notenoughroom:
 	writetext UnknownText_0x729d8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CeladonPrizeRoom_cancel:
 	writetext UnknownText_0x729f2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CeladonPrizeRoom_NoCoinCase:
 	writetext UnknownText_0x72a14
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 
@@ -119,7 +119,7 @@ MapCeladonGameCornerPrizeRoomSignpost1Script:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x7293e
-	closetext
+	waitbutton
 	checkitem COIN_CASE
 	iffalse CeladonPrizeRoom_NoCoinCase
 .loop:
@@ -141,10 +141,10 @@ MapCeladonGameCornerPrizeRoomSignpost1Script:
 	pokenamemem PIKACHU, $0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x729ad
-	closetext
+	waitbutton
 	writebyte PIKACHU
 	special Special_GameCornerPrizeMonCheckDex
 	givepoke PIKACHU, 25
@@ -159,10 +159,10 @@ MapCeladonGameCornerPrizeRoomSignpost1Script:
 	pokenamemem PORYGON, $0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x729ad
-	closetext
+	waitbutton
 	writebyte PORYGON
 	special Special_GameCornerPrizeMonCheckDex
 	givepoke PORYGON, 15
@@ -177,10 +177,10 @@ MapCeladonGameCornerPrizeRoomSignpost1Script:
 	pokenamemem LARVITAR, $0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x729ad
-	closetext
+	waitbutton
 	writebyte LARVITAR
 	special Special_GameCornerPrizeMonCheckDex
 	givepoke LARVITAR, 40

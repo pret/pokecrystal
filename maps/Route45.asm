@@ -10,7 +10,7 @@ TrainerBlackbeltKenji:
 
 BlackbeltKenji3Script:
 	writecode VAR_CALLERID, PHONE_BLACKBELT_KENJI
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkcellnum PHONE_BLACKBELT_KENJI
 	iftrue UnknownScript_0x19e0e4
@@ -18,7 +18,7 @@ BlackbeltKenji3Script:
 	iftrue UnknownScript_0x19e0cd
 	special Special_SampleKenjiBreakCountdown
 	writetext UnknownText_0x19e5e2
-	closetext
+	waitbutton
 	setevent EVENT_KENJI_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19e11b
 	jump UnknownScript_0x19e0d0
@@ -51,14 +51,14 @@ UnknownScript_0x19e0e4:
 
 UnknownScript_0x19e10c:
 	writetext UnknownText_0x19e634
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19e112:
 	writetext UnknownText_0x19e66c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19e118:
@@ -113,22 +113,22 @@ TrainerHikerErik:
 	trainer EVENT_BEAT_HIKER_ERIK, HIKER, ERIK, HikerErikSeenText, HikerErikBeatenText, 0, HikerErikScript
 
 HikerErikScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19e301
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerHikerMichael:
 	trainer EVENT_BEAT_HIKER_MICHAEL, HIKER, MICHAEL, HikerMichaelSeenText, HikerMichaelBeatenText, 0, HikerMichaelScript
 
 HikerMichaelScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19e3b1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerHikerParry:
@@ -136,7 +136,7 @@ TrainerHikerParry:
 
 HikerParry3Script:
 	writecode VAR_CALLERID, PHONE_HIKER_PARRY
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_PARRY
 	iftrue UnknownScript_0x19e1b8
@@ -174,7 +174,7 @@ UnknownScript_0x19e1b8:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer HIKER, PARRY3
+	scriptedtrainerdata HIKER, PARRY3
 	startbattle
 	returnafterbattle
 	loadvar wParryFightCount, 1
@@ -182,7 +182,7 @@ UnknownScript_0x19e1b8:
 	end
 
 .LoadFight1
-	loadtrainer HIKER, PARRY1
+	scriptedtrainerdata HIKER, PARRY1
 	startbattle
 	returnafterbattle
 	loadvar wParryFightCount, 2
@@ -190,7 +190,7 @@ UnknownScript_0x19e1b8:
 	end
 
 .LoadFight2
-	loadtrainer HIKER, PARRY2
+	scriptedtrainerdata HIKER, PARRY2
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_PARRY
@@ -210,7 +210,7 @@ UnknownScript_0x19e218:
 UnknownScript_0x19e219:
 	loadfont
 	writetext UnknownText_0x19e52c
-	closetext
+	waitbutton
 	verbosegiveitem IRON
 	iffalse UnknownScript_0x19e13f
 	clearevent EVENT_PARRY_IRON
@@ -221,33 +221,33 @@ TrainerHikerTimothy:
 	trainer EVENT_BEAT_HIKER_TIMOTHY, HIKER, TIMOTHY, HikerTimothySeenText, HikerTimothyBeatenText, 0, HikerTimothyScript
 
 HikerTimothyScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19e4f1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainermRyan:
 	trainer EVENT_BEAT_COOLTRAINERM_RYAN, COOLTRAINERM, RYAN, CooltrainermRyanSeenText, CooltrainermRyanBeatenText, 0, CooltrainermRyanScript
 
 CooltrainermRyanScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19e70d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainerfKelly:
 	trainer EVENT_BEAT_COOLTRAINERF_KELLY, COOLTRAINERF, KELLY, CooltrainerfKellySeenText, CooltrainerfKellyBeatenText, 0, CooltrainerfKellyScript
 
 CooltrainerfKellyScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19e7d1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x19e269:
@@ -256,26 +256,26 @@ YoungsterScript_0x19e269:
 	checkevent EVENT_BEAT_CAMPER_QUENTIN
 	iftrue UnknownScript_0x19e285
 	writetext UnknownText_0x19e87f
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x19e899, 0
-	loadtrainer CAMPER, QUENTIN
+	scriptedtrainerdata CAMPER, QUENTIN
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_CAMPER_QUENTIN
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x19e285:
 	writetext UnknownText_0x19e8bb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19e28b:
 	writetext UnknownText_0x19e830
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute45Signpost0Script:

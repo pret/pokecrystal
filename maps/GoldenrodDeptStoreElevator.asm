@@ -8,12 +8,12 @@ GoldenrodDeptStoreElevator_MapScriptHeader:
 MapGoldenrodDeptStoreElevatorSignpost0Script:
 	loadfont
 	elevator Elevator_0x566e0
-	loadmovesprites
+	closetext
 	iffalse .Done
 	pause 5
 	playsound SFX_ELEVATOR
 	earthquake 60
-	waitbutton
+	waitsfx
 	checkevent EVENT_WAREHOUSE_BLOCKED_OFF
 	iftrue .Done
 	checkevent EVENT_WAREHOUSE_LAYOUT_1

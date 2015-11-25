@@ -45,8 +45,8 @@ LanceScript_0x6dffc:
 	applymovement $2, MovementData_0x6e12a
 	loadfont
 	writetext UnknownText_0x6e179
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x6e12c
 	disappear $2
 	dotrigger $1
@@ -62,8 +62,8 @@ UnknownScript_0x6e019:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x6e267
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_TACKLE
 	applymovement PLAYER, MovementData_0x6e175
 	applymovement $a, MovementData_0x6e16d
@@ -88,19 +88,19 @@ UnknownScript_0x6e056:
 	spriteface $3, DOWN
 	loadfont
 	writetext UnknownText_0x6e400
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $3, MovementData_0x6e142
 	winlosstext UnknownText_0x6e511, 0
 	setlasttalked $3
-	loadtrainer EXECUTIVEM, 4
+	scriptedtrainerdata EXECUTIVEM, 4
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_4
 	loadfont
 	writetext UnknownText_0x6e548
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $3, MovementData_0x6e144
 	playsound SFX_TACKLE
 	applymovement $3, MovementData_0x6e147
@@ -111,8 +111,8 @@ UnknownScript_0x6e056:
 MoltresScript_0x6e091:
 	loadfont
 	writetext UnknownText_0x6e585
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_LEARNED_HAIL_GIOVANNI
 	end
 
@@ -120,11 +120,11 @@ TrainerGruntF5:
 	trainer EVENT_BEAT_ROCKET_GRUNTF_5, GRUNTF, 5, GruntF5SeenText, GruntF5BeatenText, 0, GruntF5Script
 
 GruntF5Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x6e611
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_LEARNED_SLOWPOKETAIL
 	end
 
@@ -132,11 +132,11 @@ TrainerGruntM28:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_28, GRUNTM, 28, GruntM28SeenText, GruntM28BeatenText, 0, GruntM28Script
 
 GruntM28Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x6e737
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_LEARNED_RATICATE_TAIL
 	end
 
@@ -144,22 +144,22 @@ TrainerScientistRoss:
 	trainer EVENT_BEAT_SCIENTIST_ROSS, SCIENTIST, ROSS, ScientistRossSeenText, ScientistRossBeatenText, 0, ScientistRossScript
 
 ScientistRossScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x6e822
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerScientistMitch:
 	trainer EVENT_BEAT_SCIENTIST_MITCH, SCIENTIST, MITCH, ScientistMitchSeenText, ScientistMitchBeatenText, 0, ScientistMitchScript
 
 ScientistMitchScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x6e90a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 BossDoor:
@@ -176,19 +176,19 @@ BossDoor:
 
 .NeedsPassword
 	writetext UnknownText_0x6e970
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .OpenSesame
 	writetext UnknownText_0x6e9a3
-	closetext
+	waitbutton
 	playsound SFX_ENTER_DOOR
 	changeblock $a, $8, $7
 	reloadmappart
-	loadmovesprites
+	closetext
 	setevent EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE
-	waitbutton
+	waitsfx
 	end
 
 MapTeamRocketBaseB3FSignpost9Script:

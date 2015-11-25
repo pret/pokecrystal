@@ -24,7 +24,7 @@ UnknownScript_0x9f568:
 	special BattleTowerAction
 	playsound SFX_ELEVATOR
 	earthquake 60
-	waitbutton
+	waitsfx
 	follow $2, PLAYER
 	applymovement $2, MovementData_0x9e578
 	stopfollow

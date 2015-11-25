@@ -9,22 +9,22 @@ TrainerPokemaniacMiller:
 	trainer EVENT_BEAT_POKEMANIAC_MILLER, POKEMANIAC, MILLER, PokemaniacMillerSeenText, PokemaniacMillerBeatenText, 0, PokemaniacMillerScript
 
 PokemaniacMillerScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x7debd
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSupernerdMarkus:
 	trainer EVENT_BEAT_SUPER_NERD_MARKUS, SUPER_NERD, MARKUS, SupernerdMarkusSeenText, SupernerdMarkusBeatenText, 0, SupernerdMarkusScript
 
 SupernerdMarkusScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x7df97
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MountMortar1FBoulder:

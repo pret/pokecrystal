@@ -50,19 +50,19 @@ UnknownScript_0x1a001e:
 	applymovement $c, MovementData_0x1a00e7
 	loadfont
 	writetext UnknownText_0x1a0433
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x1a05a1, 0
 	setlasttalked $c
-	loadtrainer MYSTICALMAN, EUSINE
+	scriptedtrainerdata MYSTICALMAN, EUSINE
 	startbattle
 	reloadmapmusic
 	returnafterbattle
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x1a05c3
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $c, MovementData_0x1a00ec
 	disappear $c
 	pause 20
@@ -82,8 +82,8 @@ PokefanFScript_0x1a0084:
 	checkevent EVENT_BEAT_CHUCK
 	iftrue UnknownScript_0x1a009c
 	writetext UnknownText_0x1a0163
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1a009c:
@@ -96,9 +96,9 @@ UnknownScript_0x1a009c:
 	keeptextopen
 UnknownScript_0x1a00ad:
 	writetext UnknownText_0x1a0277
-	closetext
+	waitbutton
 UnknownScript_0x1a00b1:
-	loadmovesprites
+	closetext
 	end
 
 StandingYoungsterScript_0x1a00b3:

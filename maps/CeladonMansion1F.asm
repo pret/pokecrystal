@@ -12,24 +12,24 @@ CeladonMansion1FMeowth:
 	loadfont
 	writetext CeladonMansion1FMeowthText
 	cry MEOWTH
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CeladonMansion1FClefairy:
 	loadfont
 	writetext CeladonMansion1FClefairyText
 	cry CLEFAIRY
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CeladonMansion1FNidoranF:
 	loadfont
 	writetext CeladonMansion1FNidoranFText
 	cry NIDORAN_F
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CeladonMansionManagersSuiteSign:

@@ -11,17 +11,17 @@ BugsyScript:
 	checkevent EVENT_BEAT_BUGSY
 	iftrue .FightDone
 	writetext BugsyText_INeverLose
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext BugsyText_ResearchIncomplete, 0
-	loadtrainer BUGSY, 1
+	scriptedtrainerdata BUGSY, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_BUGSY
 	loadfont
 	writetext Text_ReceivedHiveBadge
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_HIVEBADGE
 	checkcode VAR_BADGES
 	scall AzaleaGymTriggerRockets
@@ -38,15 +38,15 @@ BugsyScript:
 	iffalse .NoRoomForFuryCutter
 	setevent EVENT_GOT_TM49_FURY_CUTTER
 	writetext BugsyText_FuryCutterSpeech
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .GotFuryCutter:
 	writetext BugsyText_BugMonsAreDeep
-	closetext
+	waitbutton
 .NoRoomForFuryCutter:
-	loadmovesprites
+	closetext
 	end
 
 AzaleaGymTriggerRockets:
@@ -64,55 +64,55 @@ TrainerTwinsAmyandmay1:
 	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY1, TwinsAmyandmay1SeenText, TwinsAmyandmay1BeatenText, 0, .AfterScript
 
 .AfterScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext TwinsAmyandmay1AfterBattleText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerTwinsAmyandmay2:
 	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY2, TwinsAmyandmay2SeenText, TwinsAmyandmay2BeatenText, 0, .AfterScript
 
 .AfterScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext TwinsAmyandmay2AfterBattleText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBug_catcherbenny:
 	trainer EVENT_BEAT_BUG_CATCHER_BENNY, BUG_CATCHER, BUG_CATCHER_BENNY, Bug_catcherbennySeenText, Bug_catcherbennyBeatenText, 0, .AfterScript
 
 .AfterScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext Bug_catcherbennyAfterBattleText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBug_catcherAl:
 	trainer EVENT_BEAT_BUG_CATCHER_AL, BUG_CATCHER, AL, Bug_catcherAlSeenText, Bug_catcherAlBeatenText, 0, .AfterScript
 
 .AfterScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext Bug_catcherAlAfterBattleText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBug_catcherJosh:
 	trainer EVENT_BEAT_BUG_CATCHER_JOSH, BUG_CATCHER, JOSH, Bug_catcherJoshSeenText, Bug_catcherJoshBeatenText, 0, .AfterScript
 
 .AfterScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext Bug_catcherJoshAfterBattleText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 AzaleaGymGuyScript:
@@ -121,15 +121,15 @@ AzaleaGymGuyScript:
 	iftrue .AzaleaGymGuyWinScript
 	loadfont
 	writetext AzaleaGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .AzaleaGymGuyWinScript
 	loadfont
 	writetext AzaleaGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 AzaleaGymStatue:

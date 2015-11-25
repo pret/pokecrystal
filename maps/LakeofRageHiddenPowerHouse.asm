@@ -16,14 +16,14 @@ HiddenPowerGuy:
 	iffalse .Done
 	setevent EVENT_GOT_TM10_HIDDEN_POWER
 	writetext HiddenPowerGuyText2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .AlreadyGotItem
 	writetext HiddenPowerGuyText3
-	closetext
+	waitbutton
 .Done
-	loadmovesprites
+	closetext
 	end
 
 HiddenPowerHouseBookshelf:

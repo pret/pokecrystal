@@ -33,33 +33,33 @@ TrainerGruntM24:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_24, GRUNTM, 24, GruntM24SeenText, GruntM24BeatenText, 0, GruntM24Script
 
 GruntM24Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x7da48
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGruntM14:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_14, GRUNTM, 14, GruntM14SeenText, GruntM14BeatenText, 0, GruntM14Script
 
 GruntM14Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x7db01
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGruntM15:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_15, GRUNTM, 15, GruntM15SeenText, GruntM15BeatenText, 0, GruntM15Script
 
 GruntM15Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x7db8e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GentlemanScript_0x7d9bf:
@@ -78,8 +78,8 @@ GentlemanScript_0x7d9bf:
 	keeptextopen
 UnknownScript_0x7d9de:
 	writetext UnknownText_0x7dc8d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ItemFragment_0x7d9e4:

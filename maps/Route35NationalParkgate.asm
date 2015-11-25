@@ -65,18 +65,18 @@ Route35NationalParkGate_LeavingContestEarly:
 	yesorno
 	iffalse Route35NationalParkgate_GoBackIn
 	writetext UnknownText_0x6a7db
+	waitbutton
 	closetext
-	loadmovesprites
 	jumpstd bugcontestresultswarp
 
 Route35NationalParkgate_GoBackIn:
 	writetext UnknownText_0x6a823
+	waitbutton
 	closetext
-	loadmovesprites
 	scall Route35NationalParkgate_EnterContest
 	playsound SFX_ENTER_DOOR
 	special RotatePalettesRightPalettes
-	waitbutton
+	waitsfx
 	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, $a, $2f
 	end
 
@@ -105,15 +105,15 @@ Route35NationalParkgate_OkayToProceed:
 	keeptextopen
 	writetext UnknownText_0x6a3c7
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x6a3e2
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_GiveParkBalls
 	scall Route35NationalParkgate_EnterContest
 	playsound SFX_ENTER_DOOR
 	special RotatePalettesRightPalettes
-	waitbutton
+	waitsfx
 	special Special_SelectRandomBugContestContestants
 	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, $a, $2f
 	end
@@ -147,44 +147,44 @@ Route35NationalParkgate_LessThanFullParty: ; 6a27d
 	keeptextopen
 	writetext UnknownText_0x6a56b
 	playsound SFX_GOT_SAFARI_BALLS
-	waitbutton
+	waitsfx
 	keeptextopen
 	jump Route35NationalParkgate_OkayToProceed
 
 Route35NationalParkgate_DeclinedToParticipate:
 	writetext UnknownText_0x6a5dc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route35NationalParkgate_DeclinedToLeaveMonsBehind:
 	writetext UnknownText_0x6a597
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route35NationalParkgate_FirstMonIsFainted:
 	writetext UnknownText_0x6a608
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route35NationalParkgate_NoRoomInBox:
 	writetext UnknownText_0x6a67c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route35NationalParkgate_FirstMonIsEgg:
 	writetext UnknownText_0x6a71f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route35NationalParkgate_ContestIsOver:
 	writetext UnknownText_0x6a84f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route35NationalParkgate_NoContestToday:
@@ -196,8 +196,8 @@ OfficerScript_0x6a2ca:
 	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue Route35NationalParkgate_ContestIsOver
 	writetext UnknownText_0x6a894
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x6a2d8:

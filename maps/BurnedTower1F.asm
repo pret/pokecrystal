@@ -41,8 +41,8 @@ UnknownScript_0x185c0d:
 	applymovement $3, MovementData_0x185cd3
 	loadfont
 	writetext UnknownText_0x185ecc
+	waitbutton
 	closetext
-	loadmovesprites
 	moveperson $3, $9, $e
 	dotrigger $1
 	end
@@ -58,15 +58,15 @@ UnknownScript_0x185c25:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x185cd9
+	waitbutton
 	closetext
-	loadmovesprites
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x185c60
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x185c70
 	winlosstext UnknownText_0x185d9b, UnknownText_0x185e2c
 	setlasttalked $4
-	loadtrainer RIVAL1, RIVAL1_9
+	scriptedtrainerdata RIVAL1, RIVAL1_9
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -75,7 +75,7 @@ UnknownScript_0x185c25:
 UnknownScript_0x185c60:
 	winlosstext UnknownText_0x185d9b, UnknownText_0x185e2c
 	setlasttalked $4
-	loadtrainer RIVAL1, RIVAL1_7
+	scriptedtrainerdata RIVAL1, RIVAL1_7
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -84,7 +84,7 @@ UnknownScript_0x185c60:
 UnknownScript_0x185c70:
 	winlosstext UnknownText_0x185d9b, UnknownText_0x185e2c
 	setlasttalked $4
-	loadtrainer RIVAL1, RIVAL1_8
+	scriptedtrainerdata RIVAL1, RIVAL1_8
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -94,8 +94,8 @@ UnknownScript_0x185c80:
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	writetext UnknownText_0x185de2
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $2
 	setevent EVENT_RIVAL_BURNED_TOWER
 	special Special_RotatePalettesRightMusic
@@ -103,7 +103,7 @@ UnknownScript_0x185c80:
 	earthquake 50
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playsound SFX_ENTER_DOOR
-	waitbutton
+	waitsfx
 	changeblock $a, $8, $25
 	reloadmappart
 	pause 15
@@ -112,8 +112,8 @@ UnknownScript_0x185c80:
 	showemote EMOTE_SHOCK, $4, 20
 	loadfont
 	writetext UnknownText_0x185e75
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_HOLE_IN_BURNED_TOWER
 	pause 15
 	warpcheck

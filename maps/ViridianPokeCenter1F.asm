@@ -14,14 +14,14 @@ CooltrainerMScript_0x9b693:
 	checkevent EVENT_BLUE_IN_CINNABAR
 	iftrue .BlueReturned
 	writetext UnknownText_0x9b6ad
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .BlueReturned
 	writetext UnknownText_0x9b6f5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CooltrainerFScript_0x9b6a7:

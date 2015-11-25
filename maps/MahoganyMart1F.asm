@@ -35,13 +35,13 @@ PharmacistScript_0x6c367:
 	checkevent EVENT_DECIDED_TO_HELP_LANCE
 	iftrue UnknownScript_0x6c375
 	pokemart MARTTYPE_STANDARD, MART_MAHOGANY_1
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x6c375:
 	writetext UnknownText_0x6c46b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 BlackBeltScript_0x6c37b:
@@ -50,14 +50,14 @@ BlackBeltScript_0x6c37b:
 	checkevent EVENT_DECIDED_TO_HELP_LANCE
 	iftrue UnknownScript_0x6c389
 	writetext UnknownText_0x6c494
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6c389:
 	writetext UnknownText_0x6c501
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6c38f:
@@ -65,7 +65,7 @@ UnknownScript_0x6c38f:
 	loadfont
 	writetext UnknownText_0x6c52a
 	pause 15
-	loadmovesprites
+	closetext
 	playsound SFX_TACKLE
 	applymovement $5, MovementData_0x6c3f6
 	applymovement $3, MovementData_0x6c3fb
@@ -75,8 +75,8 @@ UnknownScript_0x6c38f:
 	applymovement $4, MovementData_0x6c407
 	loadfont
 	writetext UnknownText_0x6c549
+	waitbutton
 	closetext
-	loadmovesprites
 	follow $4, PLAYER
 	applymovement $4, MovementData_0x6c40a
 	applymovement $2, MovementData_0x6c403
@@ -84,30 +84,30 @@ UnknownScript_0x6c38f:
 	stopfollow
 	loadfont
 	writetext UnknownText_0x6c59e
-	closetext
+	waitbutton
 	showemote EMOTE_SHOCK, $2, 10
 	playsound SFX_FAINT
 	changeblock $6, $2, $1e
 	reloadmappart
-	loadmovesprites
+	closetext
 	setevent EVENT_UNCOVERED_STAIRCASE_IN_MAHOGANY_MART
 	spriteface $4, LEFT
 	loadfont
 	writetext UnknownText_0x6c5ba
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $4, MovementData_0x6c412
 	playsound SFX_EXIT_BUILDING
 	disappear $4
 	dotrigger $0
-	waitbutton
+	waitsfx
 	end
 
 GrannyScript_0x6c3ee:
 	faceplayer
 	loadfont
 	pokemart MARTTYPE_STANDARD, MART_MAHOGANY_2
-	loadmovesprites
+	closetext
 	end
 
 MovementData_0x6c3f6:

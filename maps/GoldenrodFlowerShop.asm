@@ -22,7 +22,7 @@ FlowerShopTeacherScript:
 	keeptextopen
 	verbosegiveitem SQUIRTBOTTLE
 	setevent EVENT_GOT_SQUIRTBOTTLE
-	loadmovesprites
+	closetext
 	setevent EVENT_FLORIA_AT_SUDOWOODO
 	clearevent EVENT_FLORIA_AT_FLOWER_SHOP
 	end
@@ -31,8 +31,8 @@ FlowerShopTeacherScript:
 	spriteface $2, LEFT
 	loadfont
 	writetext UnknownText_0x5552e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .GotSquirtbottle:
@@ -52,8 +52,8 @@ FlowerShopFloriaScript:
 	checkevent EVENT_GOT_SQUIRTBOTTLE
 	iftrue .GotSquirtbottle
 	writetext UnknownText_0x55561
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_TALKED_TO_FLORIA_AT_FLOWER_SHOP
 	setevent EVENT_FLORIA_AT_FLOWER_SHOP
 	clearevent EVENT_FLORIA_AT_SUDOWOODO
@@ -61,14 +61,14 @@ FlowerShopFloriaScript:
 
 .GotSquirtbottle:
 	writetext UnknownText_0x555e6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FoughtSudowoodo:
 	writetext UnknownText_0x55604
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FlowerShopShelf1:

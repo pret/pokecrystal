@@ -46,7 +46,7 @@ text_low: macro
 	endm
 
 	enum WAIT_BUTTON
-text_waitbutton: macro
+text_waitsfx: macro
 	db WAIT_BUTTON
 	endm
 

@@ -38,10 +38,10 @@ UnknownScript_0x180742:
 	earthquake 80
 	changeblock $4, $e, $2a
 	reloadmappart
-	loadmovesprites
+	closetext
 	dotrigger $1
 	setevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
-	waitbutton
+	waitsfx
 	end
 
 KogaScript_0x18075a:
@@ -50,29 +50,29 @@ KogaScript_0x18075a:
 	checkevent EVENT_BEAT_ELITE_4_KOGA
 	iftrue UnknownScript_0x180788
 	writetext UnknownText_0x180793
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x1808a9, 0
-	loadtrainer KOGA, 1
+	scriptedtrainerdata KOGA, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_ELITE_4_KOGA
 	loadfont
 	writetext UnknownText_0x1808ca
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_ENTER_DOOR
 	changeblock $4, $2, $16
 	reloadmappart
-	loadmovesprites
+	closetext
 	setevent EVENT_KOGAS_ROOM_EXIT_OPEN
-	waitbutton
+	waitsfx
 	end
 
 UnknownScript_0x180788:
 	writetext UnknownText_0x1808ca
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MovementData_0x18078e:

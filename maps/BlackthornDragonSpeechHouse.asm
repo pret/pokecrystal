@@ -12,8 +12,8 @@ EkansScript_0x19594c:
 	loadfont
 	writetext UnknownText_0x1959ee
 	cry DRATINI
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x195956:

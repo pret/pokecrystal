@@ -24,8 +24,8 @@ UnknownScript_0x733f3:
 	spriteface PLAYER, UP
 	loadfont
 	writetext UnknownText_0x73496
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x73405
 	end
 

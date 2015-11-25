@@ -9,11 +9,11 @@ TrainerBird_keeperBryan:
 	trainer EVENT_BEAT_BIRD_KEEPER_BRYAN, BIRD_KEEPER, BRYAN, Bird_keeperBryanSeenText, Bird_keeperBryanBeatenText, 0, Bird_keeperBryanScript
 
 Bird_keeperBryanScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19cc87
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerJugglerIrwin:
@@ -21,7 +21,7 @@ TrainerJugglerIrwin:
 
 JugglerIrwin1Script:
 	writecode VAR_CALLERID, PHONE_JUGGLER_IRWIN
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkcellnum PHONE_JUGGLER_IRWIN
 	iftrue UnknownScript_0x19c90f
@@ -75,44 +75,44 @@ TrainerCamperIvan:
 	trainer EVENT_BEAT_CAMPER_IVAN, CAMPER, IVAN, CamperIvanSeenText, CamperIvanBeatenText, 0, CamperIvanScript
 
 CamperIvanScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19cac4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCamperElliot:
 	trainer EVENT_BEAT_CAMPER_ELLIOT, CAMPER, ELLIOT, CamperElliotSeenText, CamperElliotBeatenText, 0, CamperElliotScript
 
 CamperElliotScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19cb47
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPicnickerBrooke:
 	trainer EVENT_BEAT_PICNICKER_BROOKE, PICNICKER, BROOKE, PicnickerBrookeSeenText, PicnickerBrookeBeatenText, 0, PicnickerBrookeScript
 
 PicnickerBrookeScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19cbba
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPicnickerKim:
 	trainer EVENT_BEAT_PICNICKER_KIM, PICNICKER, KIM, PicnickerKimSeenText, PicnickerKimBeatenText, 0, PicnickerKimScript
 
 PicnickerKimScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19cc21
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBug_catcherArnie1:
@@ -120,7 +120,7 @@ TrainerBug_catcherArnie1:
 
 Bug_catcherArnie1Script:
 	writecode VAR_CALLERID, PHONE_BUG_CATCHER_ARNIE
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_ARNIE
 	iftrue UnknownScript_0x19c9bb
@@ -168,7 +168,7 @@ UnknownScript_0x19c9bb:
 	checkflag ENGINE_FLYPOINT_LAKE_OF_RAGE
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer BUG_CATCHER, ARNIE1
+	scriptedtrainerdata BUG_CATCHER, ARNIE1
 	startbattle
 	returnafterbattle
 	loadvar wArnieFightCount, 1
@@ -176,7 +176,7 @@ UnknownScript_0x19c9bb:
 	end
 
 .LoadFight1
-	loadtrainer BUG_CATCHER, ARNIE2
+	scriptedtrainerdata BUG_CATCHER, ARNIE2
 	startbattle
 	returnafterbattle
 	loadvar wArnieFightCount, 2
@@ -184,7 +184,7 @@ UnknownScript_0x19c9bb:
 	end
 
 .LoadFight2
-	loadtrainer BUG_CATCHER, ARNIE3
+	scriptedtrainerdata BUG_CATCHER, ARNIE3
 	startbattle
 	returnafterbattle
 	loadvar wArnieFightCount, 3
@@ -192,7 +192,7 @@ UnknownScript_0x19c9bb:
 	end
 
 .LoadFight3
-	loadtrainer BUG_CATCHER, ARNIE4
+	scriptedtrainerdata BUG_CATCHER, ARNIE4
 	startbattle
 	returnafterbattle
 	loadvar wArnieFightCount, 4
@@ -200,7 +200,7 @@ UnknownScript_0x19c9bb:
 	end
 
 .LoadFight4
-	loadtrainer BUG_CATCHER, ARNIE5
+	scriptedtrainerdata BUG_CATCHER, ARNIE5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_ARNIE
@@ -208,19 +208,19 @@ UnknownScript_0x19c9bb:
 
 UnknownScript_0x19ca2f:
 	writetext UnknownText_0x19ce38
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFirebreatherWalt:
 	trainer EVENT_BEAT_FIREBREATHER_WALT, FIREBREATHER, WALT, FirebreatherWaltSeenText, FirebreatherWaltBeatenText, 0, FirebreatherWaltScript
 
 FirebreatherWaltScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x19cebc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 OfficerScript_0x19ca49:
@@ -232,26 +232,26 @@ OfficerScript_0x19ca49:
 	iftrue UnknownScript_0x19ca6d
 	playmusic MUSIC_OFFICER_ENCOUNTER
 	writetext UnknownText_0x19ceea
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x19cf06, 0
-	loadtrainer OFFICER, DIRK
+	scriptedtrainerdata OFFICER, DIRK
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_OFFICER_DIRK
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x19ca6d:
 	writetext UnknownText_0x19cf0f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19ca73:
 	writetext UnknownText_0x19cf56
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute35Signpost1Script:

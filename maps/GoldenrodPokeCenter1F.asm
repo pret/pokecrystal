@@ -26,13 +26,13 @@ GoldenrodPokeCenter1F_GSBallTriggerLeft:
 	spriteface PLAYER, UP
 	loadfont
 	writetext UnknownText_0x622f0
-	closetext
+	waitbutton
 	verbosegiveitem GS_BALL
 	setevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	setevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	writetext UnknownText_0x62359
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $3, MovementData_0x61060
 	special RestartMapMusic
 	disappear $3
@@ -58,13 +58,13 @@ GoldenrodPokeCenter1F_GSBallTriggerRight:
 	spriteface PLAYER, UP
 	loadfont
 	writetext UnknownText_0x622f0
-	closetext
+	waitbutton
 	verbosegiveitem GS_BALL
 	setevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	setevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	writetext UnknownText_0x62359
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $3, MovementData_0x6106c
 	special RestartMapMusic
 	disappear $3
@@ -82,34 +82,34 @@ PokefanFScript_0x61024:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x623fb
-	closetext
+	waitbutton
 	writetext UnknownText_0x6248c
 	yesorno
 	iffalse UnknownScript_0x6104b
 	takeitem EON_MAIL
 	iffalse UnknownScript_0x6104b
 	writetext UnknownText_0x62549
-	closetext
+	waitbutton
 	writetext UnknownText_0x624a4
-	closetext
+	waitbutton
 	verbosegiveitem REVIVE
 	iffalse UnknownScript_0x61051
 	writetext UnknownText_0x624e9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6104b:
 	writetext UnknownText_0x62509
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x61051:
 	giveitem EON_MAIL
 	writetext UnknownText_0x6252a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MovementData_0x6105a:

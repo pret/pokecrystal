@@ -11,14 +11,14 @@ WardensGranddaughter:
 	checkevent EVENT_TALKED_TO_WARDENS_GRANDDAUGHTER
 	iftrue .AlreadyMet
 	writetext WardensGranddaughterText1
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_TALKED_TO_WARDENS_GRANDDAUGHTER
 	end
 .AlreadyMet
 	writetext WardensGranddaughterText2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 WardenPhoto:

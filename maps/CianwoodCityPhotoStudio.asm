@@ -12,16 +12,16 @@ FishingGuruScript_0x9e0e0:
 	yesorno
 	iffalse UnknownScript_0x9e0f3
 	writetext UnknownText_0x9e142
-	closetext
+	waitbutton
 	special PhotoStudio
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x9e0f3:
 	writetext UnknownText_0x9e156
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x9e0f9:

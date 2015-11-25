@@ -15,8 +15,8 @@ PokefanMScript_0x72123:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x72215
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $4, LEFT
 	end
 
@@ -24,8 +24,8 @@ TeacherScript_0x7212e:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x72242
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $5, RIGHT
 	end
 
@@ -33,8 +33,8 @@ FishingGuruScript_0x72139:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x72295
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $6, RIGHT
 	end
 
@@ -55,8 +55,8 @@ FisherScript_0x72144:
 	setevent EVENT_GOT_COINS_FROM_GAMBLER_AT_CELADON
 .UnknownScript_0x72169
 	writetext UnknownText_0x72345
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface LAST_TALKED, LEFT
 	end
 
@@ -69,15 +69,15 @@ FisherScript_0x72144:
 
 UnknownScript_0x7217b:
 	writetext UnknownText_0x7238a
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface LAST_TALKED, LEFT
 	end
 
 UnknownScript_0x72184:
 	writetext UnknownText_0x723d9
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface LAST_TALKED, LEFT
 	end
 
@@ -88,8 +88,8 @@ GrampsScript_0x72190:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x724ad
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $a, LEFT
 	end
 
@@ -105,20 +105,20 @@ MapCeladonGameCornerSignpost35Script:
 	refreshscreen $0
 	writebyte $0
 	special Special_SlotMachine
-	loadmovesprites
+	closetext
 	end
 
 MapCeladonGameCornerSignpost16Script:
 	refreshscreen $0
 	writebyte $1
 	special Special_SlotMachine
-	loadmovesprites
+	closetext
 	end
 
 MapCeladonGameCornerSignpost11Script:
 	refreshscreen $0
 	special Special_CardFlip
-	loadmovesprites
+	closetext
 	end
 
 MapCeladonGameCornerSignpost32Script:
@@ -127,9 +127,9 @@ MapCeladonGameCornerSignpost32Script:
 MapCeladonGameCornerSignpost9Script:
 	loadfont
 	writetext UnknownText_0x72567
-	closetext
+	waitbutton
 	special Special_CardFlip
-	loadmovesprites
+	closetext
 	end
 
 MovementData_0x721cd:

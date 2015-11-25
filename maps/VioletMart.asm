@@ -8,7 +8,7 @@ VioletMart_MapScriptHeader:
 ClerkScript_0x68295:
 	loadfont
 	pokemart MARTTYPE_STANDARD, MART_VIOLET
-	loadmovesprites
+	closetext
 	end
 
 GrannyScript_0x6829c:

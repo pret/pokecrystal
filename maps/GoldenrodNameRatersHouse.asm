@@ -9,8 +9,8 @@ GentlemanScript_0x5577c:
 	faceplayer
 	loadfont
 	special SpecialNameRater
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GoldenrodNameRatersHouseBookshelf:

@@ -9,110 +9,110 @@ TrainerSwimmerfKaylee:
 	trainer EVENT_BEAT_SWIMMERF_KAYLEE, SWIMMERF, KAYLEE, SwimmerfKayleeSeenText, SwimmerfKayleeBeatenText, 0, SwimmerfKayleeScript
 
 SwimmerfKayleeScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a6c7f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmerfSusie:
 	trainer EVENT_BEAT_SWIMMERF_SUSIE, SWIMMERF, SUSIE, SwimmerfSusieSeenText, SwimmerfSusieBeatenText, 0, SwimmerfSusieScript
 
 SwimmerfSusieScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a6d11
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmerfDenise:
 	trainer EVENT_BEAT_SWIMMERF_DENISE, SWIMMERF, DENISE, SwimmerfDeniseSeenText, SwimmerfDeniseBeatenText, 0, SwimmerfDeniseScript
 
 SwimmerfDeniseScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a6d79
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmerfKara:
 	trainer EVENT_BEAT_SWIMMERF_KARA, SWIMMERF, KARA, SwimmerfKaraSeenText, SwimmerfKaraBeatenText, 0, SwimmerfKaraScript
 
 SwimmerfKaraScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a6e58
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmerfWendy:
 	trainer EVENT_BEAT_SWIMMERF_WENDY, SWIMMERF, WENDY, SwimmerfWendySeenText, SwimmerfWendyBeatenText, 0, SwimmerfWendyScript
 
 SwimmerfWendyScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a6ec2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmermCharlie:
 	trainer EVENT_BEAT_SWIMMERM_CHARLIE, SWIMMERM, CHARLIE, SwimmermCharlieSeenText, SwimmermCharlieBeatenText, 0, SwimmermCharlieScript
 
 SwimmermCharlieScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a696e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmermGeorge:
 	trainer EVENT_BEAT_SWIMMERM_GEORGE, SWIMMERM, GEORGE, SwimmermGeorgeSeenText, SwimmermGeorgeBeatenText, 0, SwimmermGeorgeScript
 
 SwimmermGeorgeScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a69d4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmermBerke:
 	trainer EVENT_BEAT_SWIMMERM_BERKE, SWIMMERM, BERKE, SwimmermBerkeSeenText, SwimmermBerkeBeatenText, 0, SwimmermBerkeScript
 
 SwimmermBerkeScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a6aa4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmermKirk:
 	trainer EVENT_BEAT_SWIMMERM_KIRK, SWIMMERM, KIRK, SwimmermKirkSeenText, SwimmermKirkBeatenText, 0, SwimmermKirkScript
 
 SwimmermKirkScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a6b6c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmermMathew:
 	trainer EVENT_BEAT_SWIMMERM_MATHEW, SWIMMERM, MATHEW, SwimmermMathewSeenText, SwimmermMathewBeatenText, 0, SwimmermMathewScript
 
 SwimmermMathewScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a6bed
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route41Rock:

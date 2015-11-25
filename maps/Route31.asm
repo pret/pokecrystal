@@ -23,7 +23,7 @@ TrainerBug_catcherWade1:
 
 Bug_catcherWade1Script:
 	writecode VAR_CALLERID, PHONE_BUG_CATCHER_WADE
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_WADE
 	iftrue .WadeRematch
@@ -34,7 +34,7 @@ Bug_catcherWade1Script:
 	checkevent EVENT_WADE_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskAgain
 	writetext UnknownText_0x1a5671
-	closetext
+	waitbutton
 	setevent EVENT_WADE_ASKED_FOR_PHONE_NUMBER
 	scall .AskPhoneNumberSTD
 	jump .Continue
@@ -71,7 +71,7 @@ Bug_catcherWade1Script:
 	checkflag ENGINE_FLYPOINT_GOLDENROD
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer BUG_CATCHER, WADE1
+	scriptedtrainerdata BUG_CATCHER, WADE1
 	startbattle
 	returnafterbattle
 	loadvar wWadeFightCount, 1
@@ -79,7 +79,7 @@ Bug_catcherWade1Script:
 	end
 
 .LoadFight1
-	loadtrainer BUG_CATCHER, WADE2
+	scriptedtrainerdata BUG_CATCHER, WADE2
 	startbattle
 	returnafterbattle
 	loadvar wWadeFightCount, 2
@@ -87,7 +87,7 @@ Bug_catcherWade1Script:
 	end
 
 .LoadFight2
-	loadtrainer BUG_CATCHER, WADE3
+	scriptedtrainerdata BUG_CATCHER, WADE3
 	startbattle
 	returnafterbattle
 	loadvar wWadeFightCount, 3
@@ -95,7 +95,7 @@ Bug_catcherWade1Script:
 	end
 
 .LoadFight3
-	loadtrainer BUG_CATCHER, WADE4
+	scriptedtrainerdata BUG_CATCHER, WADE4
 	startbattle
 	returnafterbattle
 	loadvar wWadeFightCount, 4
@@ -103,7 +103,7 @@ Bug_catcherWade1Script:
 	end
 
 .LoadFight4
-	loadtrainer BUG_CATCHER, WADE5
+	scriptedtrainerdata BUG_CATCHER, WADE5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_WADE
@@ -184,8 +184,8 @@ FisherScript_0x1a5570:
 	checkevent EVENT_GOT_KENYA
 	iftrue .TryGiveKenya
 	writetext UnknownText_0x1a56d9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .TryGiveKenya:
@@ -206,33 +206,33 @@ FisherScript_0x1a5570:
 	setevent EVENT_GOT_TM50_NIGHTMARE
 .DescribeNightmare:
 	writetext UnknownText_0x1a5896
-	closetext
+	waitbutton
 .NoRoomForItems:
-	loadmovesprites
+	closetext
 	end
 
 .WrongMail:
 	writetext UnknownText_0x1a5921
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .NoMail:
 	writetext UnknownText_0x1a5939
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Refused:
 	writetext UnknownText_0x1a5972
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .LastMon:
 	writetext UnknownText_0x1a5991
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ReceivedSpearowMailText:

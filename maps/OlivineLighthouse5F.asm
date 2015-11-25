@@ -9,22 +9,22 @@ TrainerBird_keeperDenis:
 	trainer EVENT_BEAT_BIRD_KEEPER_DENIS, BIRD_KEEPER, DENIS, Bird_keeperDenisSeenText, Bird_keeperDenisBeatenText, 0, Bird_keeperDenisScript
 
 Bird_keeperDenisScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x60ac3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSailorErnest:
 	trainer EVENT_BEAT_SAILOR_ERNEST, SAILOR, ERNEST, SailorErnestSeenText, SailorErnestBeatenText, 0, SailorErnestScript
 
 SailorErnestScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x60a1f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ItemFragment_0x609aa:

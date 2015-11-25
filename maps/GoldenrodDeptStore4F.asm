@@ -9,7 +9,7 @@ ClerkScript_0x55ee9:
 	faceplayer
 	loadfont
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_4F
-	loadmovesprites
+	closetext
 	end
 
 CooltrainerMScript_0x55ef1:
@@ -22,8 +22,8 @@ GameboyKidScript_0x55ef7:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x55f74
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $5, DOWN
 	end
 

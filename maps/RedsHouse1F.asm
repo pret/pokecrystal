@@ -17,14 +17,14 @@ RedsMom:
 	checkevent EVENT_MET_REDS_MOM
 	iftrue .MetAlready
 	writetext RedsMomText1
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_MET_REDS_MOM
 	end
 .MetAlready
 	writetext RedsMomText2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 RedsHouse1FTV:

@@ -17,8 +17,8 @@ JasmineScript_0x60b91:
 	setevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
 UnknownScript_0x60ba5:
 	writetext UnknownText_0x60d64
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x60bab:
@@ -29,8 +29,8 @@ UnknownScript_0x60bab:
 	keeptextopen
 	takeitem SECRETPOTION
 	writetext UnknownText_0x60dea
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, RIGHT
 	pause 15
 	spriteface $3, LEFT
@@ -39,7 +39,7 @@ UnknownScript_0x60bab:
 	writetext UnknownText_0x60e44
 	pause 60
 	keeptextopen
-	loadmovesprites
+	closetext
 	special RestartMapMusic
 	cry AMPHAROS
 	special RotatePalettesRightPalettes
@@ -47,8 +47,8 @@ UnknownScript_0x60bab:
 	special RotatePalettesLeftPalettes
 	loadfont
 	writetext UnknownText_0x60f3d
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $3, RIGHT
 	pause 10
 	spriteface $3, LEFT
@@ -60,8 +60,8 @@ UnknownScript_0x60bab:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x60e6c
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_JASMINE_RETURNED_TO_GYM
 	clearevent EVENT_OLIVINE_GYM_JASMINE
 	checkcode VAR_FACING
@@ -83,15 +83,15 @@ UnknownScript_0x60c1e:
 
 UnknownScript_0x60c25:
 	writetext UnknownText_0x60edf
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $2, RIGHT
 	pause 15
 	spriteface $3, LEFT
 	loadfont
 	writetext UnknownText_0x60ef1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x60c39:
@@ -107,15 +107,15 @@ MonsterScript_0x60c3a:
 	special PlaySlowCry
 	keeptextopen
 	writetext UnknownText_0x60f19
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x60c51:
 	writetext UnknownText_0x60f3d
 	cry AMPHAROS
+	waitbutton
 	closetext
-	loadmovesprites
 	special RotatePalettesRightPalettes
 	special RotatePalettesLeftPalettes
 	special RotatePalettesRightPalettes

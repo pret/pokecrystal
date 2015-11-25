@@ -8,7 +8,7 @@ BlackthornMart_MapScriptHeader:
 ClerkScript_0x195a5d:
 	loadfont
 	pokemart MARTTYPE_STANDARD, MART_BLACKTHORN
-	loadmovesprites
+	closetext
 	end
 
 CooltrainerMScript_0x195a64:

@@ -44,8 +44,8 @@ UnknownScript_0x19002f:
 UnknownScript_0x190039:
 	loadfont
 	writetext UnknownText_0x1901a6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x190040:
@@ -58,31 +58,31 @@ UnknownScript_0x190040:
 	if_equal $2, UnknownScript_0x19006c
 	giveitem RAGECANDYBAR
 	iffalse UnknownScript_0x190078
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	takemoney $0, 300
 	special PlaceMoneyTopRightOW
 	writetext UnknownText_0x19014a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19006c:
 	writetext UnknownText_0x19015b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x190072:
 	writetext UnknownText_0x190178
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x190078:
 	writetext UnknownText_0x190188
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GrampsScript_0x19007e:
@@ -91,14 +91,14 @@ GrampsScript_0x19007e:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19008c
 	writetext UnknownText_0x1901e5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19008c:
 	writetext UnknownText_0x19021d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FisherScript_0x190092:

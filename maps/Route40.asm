@@ -24,44 +24,44 @@ TrainerSwimmerfElaine:
 	trainer EVENT_BEAT_SWIMMERF_ELAINE, SWIMMERF, ELAINE, SwimmerfElaineSeenText, SwimmerfElaineBeatenText, 0, SwimmerfElaineScript
 
 SwimmerfElaineScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a637b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmerfPaula:
 	trainer EVENT_BEAT_SWIMMERF_PAULA, SWIMMERF, PAULA, SwimmerfPaulaSeenText, SwimmerfPaulaBeatenText, 0, SwimmerfPaulaScript
 
 SwimmerfPaulaScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a63f5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmermSimon:
 	trainer EVENT_BEAT_SWIMMERM_SIMON, SWIMMERM, SIMON, SwimmermSimonSeenText, SwimmermSimonBeatenText, 0, SwimmermSimonScript
 
 SwimmermSimonScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a6282
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmermRandall:
 	trainer EVENT_BEAT_SWIMMERM_RANDALL, SWIMMERM, RANDALL, SwimmermRandallSeenText, SwimmermRandallBeatenText, 0, SwimmermRandallScript
 
 SwimmermRandallScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a62fa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 LassScript_0x1a61c4:
@@ -100,21 +100,21 @@ MonicaScript:
 	iffalse MonicaDoneScript
 	setevent EVENT_GOT_SHARP_BEAK_FROM_MONICA
 	writetext MonicaGaveGiftText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MonicaMondayScript:
 	writetext MonicaMondayText
-	closetext
+	waitbutton
 MonicaDoneScript:
-	loadmovesprites
+	closetext
 	end
 
 MonicaNotMondayScript:
 	writetext MonicaNotMondayText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute40Signpost0Script:

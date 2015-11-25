@@ -41,7 +41,7 @@ UnknownScript_0x18c8b8:
 	loadfont
 	writetext UnknownText_0x18c9b8
 	pause 30
-	loadmovesprites
+	closetext
 	showemote EMOTE_SHOCK, PLAYER, 15
 	spriteface PLAYER, LEFT
 	playmusic MUSIC_CLAIR
@@ -54,20 +54,20 @@ UnknownScript_0x18c8b8:
 	itemtotext TM_DRAGONBREATH, $0
 	writetext UnknownText_0x18c9fb
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
 	setevent EVENT_GOT_TM24_DRAGONBREATH
 	writetext UnknownText_0x18ca0d
 	keeptextopen
 	writetext UnknownText_0x18caf1
+	waitbutton
 	closetext
-	loadmovesprites
 	jump UnknownScript_0x18c8f9
 
 UnknownScript_0x18c8f4:
 	writetext UnknownText_0x18ca8b
+	waitbutton
 	closetext
-	loadmovesprites
 UnknownScript_0x18c8f9:
 	applymovement $3, MovementData_0x18c9b3
 	special Special_RotatePalettesRightMusic
@@ -81,44 +81,44 @@ TrainerCooltrainermDarin:
 	trainer EVENT_BEAT_COOLTRAINERM_DARIN, COOLTRAINERM, DARIN, CooltrainermDarinSeenText, CooltrainermDarinBeatenText, 0, CooltrainermDarinScript
 
 CooltrainermDarinScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x18cd82
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainerfCara:
 	trainer EVENT_BEAT_COOLTRAINERF_CARA, COOLTRAINERF, CARA, CooltrainerfCaraSeenText, CooltrainerfCaraBeatenText, 0, CooltrainerfCaraScript
 
 CooltrainerfCaraScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x18ce11
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerTwinsLeaandpia1:
 	trainer EVENT_BEAT_TWINS_LEA_AND_PIA, TWINS, LEAANDPIA1, TwinsLeaandpia1SeenText, TwinsLeaandpia1BeatenText, 0, TwinsLeaandpia1Script
 
 TwinsLeaandpia1Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x18ced3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerTwinsLeaandpia2:
 	trainer EVENT_BEAT_TWINS_LEA_AND_PIA, TWINS, LEAANDPIA1, TwinsLeaandpia2SeenText, TwinsLeaandpia2BeatenText, 0, TwinsLeaandpia2Script
 
 TwinsLeaandpia2Script:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x18cf0f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokeBallScript_0x18c95a:
@@ -129,9 +129,9 @@ PokeBallScript_0x18c95a:
 	itemtotext DRAGON_FANG, $0
 	writetext UnknownText_0x18cf41
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x18c970:
@@ -140,8 +140,8 @@ UnknownScript_0x18c970:
 	writetext UnknownText_0x18cf41
 	keeptextopen
 	writetext UnknownText_0x18cf51
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SilverScript_0x18c97e:
@@ -151,16 +151,16 @@ SilverScript_0x18c97e:
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x18c995
 	writetext UnknownText_0x18cc83
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_GAVE_KURT_APRICORNS
 	special RestartMapMusic
 	end
 
 UnknownScript_0x18c995:
 	writetext UnknownText_0x18cd2d
+	waitbutton
 	closetext
-	loadmovesprites
 	special RestartMapMusic
 	end
 

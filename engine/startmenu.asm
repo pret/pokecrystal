@@ -61,8 +61,8 @@ endr
 .MenuReturns
 	dw .Reopen
 	dw .Exit
-	dw .ExitMenuCallFuncLoadMoveSprites
-	dw .ExitMenuRunScriptLoadMoveSprites
+	dw .ExitMenuCallFuncCloseText
+	dw .ExitMenuRunScriptCloseText
 	dw .ExitMenuRunScript
 	dw .ReturnEnd
 	dw .ReturnRedraw
@@ -78,7 +78,7 @@ endr
 .ReturnEnd
 	call ExitMenu
 .ReturnEnd2
-	call LoadMoveSprites
+	call CloseText
 	call UpdateTimePals
 	ret
 
@@ -115,14 +115,14 @@ endr
 	ret
 ; 12699
 
-.ExitMenuRunScriptLoadMoveSprites ; 12699
+.ExitMenuRunScriptCloseText ; 12699
 	call ExitMenu
 	ld a, HMENURETURN_SCRIPT
 	ld [hMenuReturn], a
 	jr .ReturnEnd2
 ; 126a2
 
-.ExitMenuCallFuncLoadMoveSprites ; 126a2
+.ExitMenuCallFuncCloseText ; 126a2
 	call ExitMenu
 	ld hl, wQueuedScriptAddr
 	ld a, [hli]

@@ -9,14 +9,14 @@ ClerkScript_0x71004:
 	faceplayer
 	loadfont
 	pokemart MARTTYPE_STANDARD, MART_CELADON_5F_1
-	loadmovesprites
+	closetext
 	end
 
 ClerkScript_0x7100c:
 	faceplayer
 	loadfont
 	pokemart MARTTYPE_STANDARD, MART_CELADON_5F_2
-	loadmovesprites
+	closetext
 	end
 
 GentlemanScript_0x71014:

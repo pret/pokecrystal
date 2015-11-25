@@ -9,7 +9,7 @@ GrampsScript_0x771a8:
 	faceplayer
 	loadfont
 	pokemart MARTTYPE_STANDARD, MART_MT_MOON
-	loadmovesprites
+	closetext
 	end
 
 LassScript_0x771b0:

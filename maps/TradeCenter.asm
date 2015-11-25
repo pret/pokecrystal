@@ -45,8 +45,8 @@ MapTradeCenterSignpost1Script:
 ChrisScript_0x19340b:
 	loadfont
 	writetext .FriendReadyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FriendReadyText:

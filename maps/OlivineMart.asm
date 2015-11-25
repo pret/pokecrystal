@@ -8,7 +8,7 @@ OlivineMart_MapScriptHeader:
 ClerkScript_0x9cac7:
 	loadfont
 	pokemart MARTTYPE_STANDARD, MART_OLIVINE
-	loadmovesprites
+	closetext
 	end
 
 CooltrainerFScript_0x9cace:

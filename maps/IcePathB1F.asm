@@ -57,8 +57,8 @@ IcePathB1F_MapScriptHeader:
 	scall .BoulderFallsThrough
 	loadfont
 	writetext UnknownText_0x7e512
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .BoulderFallsThrough:

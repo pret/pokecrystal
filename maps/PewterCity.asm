@@ -27,13 +27,13 @@ GrampsScript_0x18c00f:
 	keeptextopen
 	verbosegiveitem SILVER_WING
 	setevent EVENT_GOT_SILVER_WING
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x18c023:
 	writetext UnknownText_0x18c1aa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PewterCitySign:

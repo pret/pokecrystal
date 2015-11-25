@@ -43,17 +43,17 @@ UnknownScript_0x59192:
 	spriteface $4, DOWN
 	loadfont
 	writetext UnknownText_0x59278
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $4, MovementData_0x59274
 	loadfont
 	writetext UnknownText_0x592fa
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	setflag ENGINE_UNOWN_DEX
 	writetext UnknownText_0x59311
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $4, MovementData_0x59276
 	dotrigger $0
 	special RestartMapMusic
@@ -65,14 +65,14 @@ ScientistScript_0x591d1:
 	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x591df
 	writetext UnknownText_0x59311
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x591df:
 	writetext UnknownText_0x5935f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ScientistScript_0x591e5:
@@ -85,26 +85,26 @@ ScientistScript_0x591e5:
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x591ff
 	writetext UnknownText_0x593ed
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x591ff:
 	writetext UnknownText_0x59478
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x59205:
 	writetext UnknownText_0x59445
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x5920b:
 	writetext UnknownText_0x594cb
+	waitbutton
 	closetext
-	loadmovesprites
 	clearevent EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS
 	end
 
@@ -116,20 +116,20 @@ ScientistScript_0x59214:
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x59228
 	writetext UnknownText_0x5954f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x59228:
 	writetext UnknownText_0x595cb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x5922e:
 	writetext UnknownText_0x59769
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRuinsofAlphResearchCenterSignpost1Script:
@@ -140,14 +140,14 @@ MapRuinsofAlphResearchCenterSignpost1Script:
 	if_equal 26, UnknownScript_0x59247
 UnknownScript_0x59241:
 	writetext UnknownText_0x597b6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x59247:
 	writetext UnknownText_0x597d9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRuinsofAlphResearchCenterSignpost2Script:
@@ -158,15 +158,15 @@ MapRuinsofAlphResearchCenterSignpost2Script:
 	if_equal 26, UnknownScript_0x59260
 UnknownScript_0x5925a:
 	writetext UnknownText_0x5980e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x59260:
 	writetext UnknownText_0x5982d
-	closetext
+	waitbutton
 	special Special_UnownPrinter
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x59269:

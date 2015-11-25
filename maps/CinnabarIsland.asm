@@ -16,8 +16,8 @@ CinnabarIslandBlue:
 	faceplayer
 	loadfont
 	writetext CinnabarIslandBlueText
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_WARP_TO
 	applymovement $2, CinnabarIslandBlueTeleport
 	disappear $2

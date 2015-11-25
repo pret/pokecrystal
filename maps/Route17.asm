@@ -18,44 +18,44 @@ TrainerBikerCharles:
 	trainer EVENT_BEAT_BIKER_CHARLES, BIKER, CHARLES, BikerCharlesSeenText, BikerCharlesBeatenText, 0, BikerCharlesScript
 
 BikerCharlesScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ad293
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBikerRiley:
 	trainer EVENT_BEAT_BIKER_RILEY, BIKER, RILEY, BikerRileySeenText, BikerRileyBeatenText, 0, BikerRileyScript
 
 BikerRileyScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ad13b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBikerJoel:
 	trainer EVENT_BEAT_BIKER_JOEL, BIKER, JOEL, BikerJoelSeenText, BikerJoelBeatenText, 0, BikerJoelScript
 
 BikerJoelScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ad196
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBikerGlenn:
 	trainer EVENT_BEAT_BIKER_GLENN, BIKER, GLENN, BikerGlennSeenText, BikerGlennBeatenText, 0, BikerGlennScript
 
 BikerGlennScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ad225
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute17SignpostItem0:

@@ -14,14 +14,14 @@ FishingGuruScript_0x191606:
 	checkevent EVENT_FOUGHT_SNORLAX
 	iftrue UnknownScript_0x191614
 	writetext UnknownText_0x191620
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x191614:
 	writetext UnknownText_0x191698
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SailorScript_0x19161a:

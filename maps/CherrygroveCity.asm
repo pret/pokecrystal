@@ -31,33 +31,33 @@ CherrygroveCityGuideGent:
 	jump .Yes
 .Yes
 	writetext GuideGentTourText1
+	waitbutton
 	closetext
-	loadmovesprites
 	playmusic MUSIC_SHOW_ME_AROUND
 	follow $2, PLAYER
 	applymovement $2, MovementData_0x19c195
 	loadfont
 	writetext GuideGentPokeCenterText
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x19c19b
 	spriteface PLAYER, UP
 	loadfont
 	writetext GuideGentMartText
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x19c1a3
 	spriteface PLAYER, UP
 	loadfont
 	writetext GuideGentRoute30Text
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x19c1ac
 	spriteface PLAYER, LEFT
 	loadfont
 	writetext GuideGentSeaText
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement $2, MovementData_0x19c1b6
 	spriteface PLAYER, UP
 	pause 60
@@ -72,8 +72,8 @@ CherrygroveCityGuideGent:
 	writetext GotMapCardText
 	keeptextopen
 	writetext GuideGentPokegearText
+	waitbutton
 	closetext
-	loadmovesprites
 	stopfollow
 	special RestartMapMusic
 	spriteface PLAYER, UP
@@ -81,7 +81,7 @@ CherrygroveCityGuideGent:
 	playsound SFX_ENTER_DOOR
 	disappear $2
 	clearevent EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
-	waitbutton
+	waitsfx
 	end
 
 .UnknownScript_0x19c097
@@ -93,8 +93,8 @@ CherrygroveCityGuideGent:
 
 .No
 	writetext GuideGentNoText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19c0aa:
@@ -111,15 +111,15 @@ UnknownScript_0x19c0ae:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x19c4e2
+	waitbutton
 	closetext
-	loadmovesprites
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x19c0ee
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x19c104
 	winlosstext UnknownText_0x19c57f, UnknownText_0x19c5e6
 	setlasttalked $3
-	loadtrainer RIVAL1, RIVAL1_3
+	scriptedtrainerdata RIVAL1, RIVAL1_3
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	reloadmapmusic
@@ -130,7 +130,7 @@ UnknownScript_0x19c0ae:
 UnknownScript_0x19c0ee:
 	winlosstext UnknownText_0x19c57f, UnknownText_0x19c5e6
 	setlasttalked $3
-	loadtrainer RIVAL1, RIVAL1_1
+	scriptedtrainerdata RIVAL1, RIVAL1_1
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	reloadmapmusic
@@ -141,7 +141,7 @@ UnknownScript_0x19c0ee:
 UnknownScript_0x19c104:
 	winlosstext UnknownText_0x19c57f, UnknownText_0x19c5e6
 	setlasttalked $3
-	loadtrainer RIVAL1, RIVAL1_2
+	scriptedtrainerdata RIVAL1, RIVAL1_2
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	reloadmapmusic
@@ -153,16 +153,16 @@ UnknownScript_0x19c11a:
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	writetext UnknownText_0x19c608
+	waitbutton
 	closetext
-	loadmovesprites
 	jump UnknownScript_0x19c12f
 
 UnknownScript_0x19c126:
 	playmusic MUSIC_RIVAL_AFTER
 	loadfont
 	writetext UnknownText_0x19c59e
+	waitbutton
 	closetext
-	loadmovesprites
 UnknownScript_0x19c12f:
 	playsound SFX_TACKLE
 	applymovement PLAYER, MovementData_0x19c1d4
@@ -180,14 +180,14 @@ TeacherScript_0x19c146:
 	checkflag ENGINE_MAP_CARD
 	iftrue UnknownScript_0x19c154
 	writetext UnknownText_0x19c650
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19c154:
 	writetext UnknownText_0x19c6a8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x19c15a:
@@ -196,14 +196,14 @@ YoungsterScript_0x19c15a:
 	checkflag ENGINE_POKEDEX
 	iftrue UnknownScript_0x19c168
 	writetext UnknownText_0x19c6d6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19c168:
 	writetext UnknownText_0x19c701
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MysticWaterGuy:
@@ -218,9 +218,9 @@ MysticWaterGuy:
 	setevent EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE
 UnknownScript_0x19c183:
 	writetext UnknownText_0x19c7c1
-	closetext
+	waitbutton
 UnknownScript_0x19c187:
-	loadmovesprites
+	closetext
 	end
 
 CherrygroveCitySign:

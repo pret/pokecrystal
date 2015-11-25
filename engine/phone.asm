@@ -443,9 +443,9 @@ Script_ReceivePhoneCall: ; 0x90241
 	refreshscreen $0
 	callasm RingTwice_StartCall
 	ptcall wd048
-	closetext
+	waitbutton
 	callasm HangUp
-	loadmovesprites
+	closetext
 	callasm InitCallReceiveDelay
 	end
 ; 0x90255

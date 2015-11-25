@@ -20,14 +20,14 @@ YoungsterScript_0x7e6a9:
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x7e6b7
 	writetext UnknownText_0x7e779
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7e6b7:
 	writetext UnknownText_0x7e7ed
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x7e6bd:

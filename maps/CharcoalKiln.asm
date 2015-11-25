@@ -13,20 +13,20 @@ CharcoalKilnBoss:
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iftrue .SavedSlowpoke
 	writetext CharcoalKilnBossText1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .SavedSlowpoke
 	writetext CharcoalKilnBossText2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .GotCut
 	writetext CharcoalKilnBossText3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CharcoalKilnApprentice:
@@ -37,8 +37,8 @@ CharcoalKilnApprentice:
 	checkevent EVENT_GOT_HM01_CUT
 	iftrue .Thanks
 	writetext CharcoalKilnApprenticeText1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Thanks
@@ -47,14 +47,14 @@ CharcoalKilnApprentice:
 	verbosegiveitem CHARCOAL
 	iffalse .Done
 	setevent EVENT_GOT_CHARCOAL_IN_CHARCOAL_KILN
-	loadmovesprites
+	closetext
 	end
 
 .YoureTheCoolest
 	writetext CharcoalKilnApprenticeText3
-	closetext
+	waitbutton
 .Done
-	loadmovesprites
+	closetext
 	end
 
 CharcoalKilnFarfetchd:
@@ -62,8 +62,8 @@ CharcoalKilnFarfetchd:
 	loadfont
 	writetext FarfetchdText
 	cry FARFETCH_D
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CharcoalKilnBookshelf:

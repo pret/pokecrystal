@@ -11,10 +11,10 @@ SabrinaScript_0x189c2e:
 	checkflag ENGINE_MARSHBADGE
 	iftrue .FightDone
 	writetext UnknownText_0x189cdf
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x189df4, 0
-	loadtrainer SABRINA, 1
+	scriptedtrainerdata SABRINA, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_SABRINA
@@ -25,61 +25,61 @@ SabrinaScript_0x189c2e:
 	loadfont
 	writetext UnknownText_0x189e95
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_MARSHBADGE
 	writetext UnknownText_0x189ead
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FightDone
 	writetext UnknownText_0x189f6c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerMediumRebecca:
 	trainer EVENT_BEAT_MEDIUM_REBECCA, MEDIUM, REBECCA, MediumRebeccaSeenText, MediumRebeccaBeatenText, 0, MediumRebeccaScript
 
 MediumRebeccaScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x18a034
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPsychicFranklin:
 	trainer EVENT_BEAT_PSYCHIC_FRANKLIN, PSYCHIC_T, FRANKLIN, PsychicFranklinSeenText, PsychicFranklinBeatenText, 0, PsychicFranklinScript
 
 PsychicFranklinScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x18a0a6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerMediumDoris:
 	trainer EVENT_BEAT_MEDIUM_DORIS, MEDIUM, DORIS, MediumDorisSeenText, MediumDorisBeatenText, 0, MediumDorisScript
 
 MediumDorisScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x18a136
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPsychicJared:
 	trainer EVENT_BEAT_PSYCHIC_JARED, PSYCHIC_T, JARED, PsychicJaredSeenText, PsychicJaredBeatenText, 0, PsychicJaredScript
 
 PsychicJaredScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x18a1b3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SaffronGymGuyScript:
@@ -88,14 +88,14 @@ SaffronGymGuyScript:
 	checkevent EVENT_BEAT_SABRINA
 	iftrue .SaffronGymGuyWinScript
 	writetext SaffronGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .SaffronGymGuyWinScript
 	writetext SaffronGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SaffronGymStatue:

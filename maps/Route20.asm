@@ -17,33 +17,33 @@ TrainerSwimmerfNicole:
 	trainer EVENT_BEAT_SWIMMERF_NICOLE, SWIMMERF, NICOLE, SwimmerfNicoleSeenText, SwimmerfNicoleBeatenText, 0, SwimmerfNicoleScript
 
 SwimmerfNicoleScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1acd93
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmerfLori:
 	trainer EVENT_BEAT_SWIMMERF_LORI, SWIMMERF, LORI, SwimmerfLoriSeenText, SwimmerfLoriBeatenText, 0, SwimmerfLoriScript
 
 SwimmerfLoriScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ace15
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmermCameron:
 	trainer EVENT_BEAT_SWIMMERM_CAMERON, SWIMMERM, CAMERON, SwimmermCameronSeenText, SwimmermCameronBeatenText, 0, SwimmermCameronScript
 
 SwimmermCameronScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1ace8b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute20Signpost0Script:

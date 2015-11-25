@@ -53,16 +53,16 @@ Script_TradeCenterClosed:
 	faceplayer
 	loadfont
 	writetext Text_TradeRoomClosed
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Script_BattleRoomClosed:
 	faceplayer
 	loadfont
 	writetext Text_BattleRoomClosed
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 LinkReceptionistScript_Trade:
@@ -96,8 +96,8 @@ LinkReceptionistScript_Trade:
 	special Special_CheckBothSelectedSameRoom
 	iffalse .IncompatibleRooms
 	writetext Text_PleaseComeIn2
+	waitbutton
 	closetext
-	loadmovesprites
 	scall PokeCenter2F_CheckGender
 	warpcheck
 	end
@@ -105,20 +105,20 @@ LinkReceptionistScript_Trade:
 .FriendNotReady:
 	special Special_AbortLink
 	writetext Text_FriendNotReady
-	loadmovesprites
+	closetext
 	end
 
 .LinkedToFirstGen:
 	special Special_FailedLinkToPast
 	writetext Text_CantLinkToThePast
 	special Special_CloseLink
-	loadmovesprites
+	closetext
 	end
 
 .IncompatibleRooms:
 	writetext Text_IncompatibleRooms
 	special Special_CloseLink
-	loadmovesprites
+	closetext
 	end
 
 .LinkTimedOut:
@@ -130,7 +130,7 @@ LinkReceptionistScript_Trade:
 .AbortLink:
 	special Special_AbortLink
 .Cancel:
-	loadmovesprites
+	closetext
 	end
 
 .Mobile:
@@ -151,14 +151,14 @@ LinkReceptionistScript_Trade:
 	iffalse .Mobile_DidNotSave
 	special Function1011f1
 	writetext Text_PleaseComeIn2
+	waitbutton
 	closetext
-	loadmovesprites
 	writebyte $0
 	end
 
 .Mobile_DidNotSave:
 	writetext Text_PleaseComeAgain
-	loadmovesprites
+	closetext
 	writebyte $1
 	end
 
@@ -198,8 +198,8 @@ LinkReceptionistScript_Battle:
 	special Special_CheckBothSelectedSameRoom
 	iffalse .IncompatibleRooms
 	writetext Text_PleaseComeIn2
+	waitbutton
 	closetext
-	loadmovesprites
 	scall PokeCenter2F_CheckGender
 	warpcheck
 	end
@@ -207,20 +207,20 @@ LinkReceptionistScript_Battle:
 .FriendNotReady:
 	special Special_AbortLink
 	writetext Text_FriendNotReady
-	loadmovesprites
+	closetext
 	end
 
 .LinkedToFirstGen:
 	special Special_FailedLinkToPast
 	writetext Text_CantLinkToThePast
 	special Special_CloseLink
-	loadmovesprites
+	closetext
 	end
 
 .IncompatibleRooms:
 	writetext Text_IncompatibleRooms
 	special Special_CloseLink
-	loadmovesprites
+	closetext
 	end
 
 .LinkTimedOut:
@@ -232,7 +232,7 @@ LinkReceptionistScript_Battle:
 .AbortLink:
 	special Special_AbortLink
 .Cancel:
-	loadmovesprites
+	closetext
 	end
 
 .Mobile:
@@ -255,14 +255,14 @@ LinkReceptionistScript_Battle:
 	iffalse .Mobile_DidNotSave
 	special Function1011f1
 	writetext Text_PleaseComeIn2
+	waitbutton
 	closetext
-	loadmovesprites
 	writebyte $0
 	end
 
 .Mobile_DidNotSave:
 	writetext Text_PleaseComeAgain
-	loadmovesprites
+	closetext
 	writebyte $1
 	end
 
@@ -276,9 +276,9 @@ LinkReceptionistScript_Battle:
 
 .Mobile_InvalidParty:
 	writetext Text_BrokeStadiumRules
-	closetext
+	waitbutton
 .Mobile_DidNotSelect:
-	loadmovesprites
+	closetext
 	writebyte $0
 	end
 
@@ -290,8 +290,8 @@ Script_TimeCapsuleClosed:
 	faceplayer
 	loadfont
 	writetext Text_TimeCapsuleClosed
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 LinkReceptionistScript_TimeCapsule:
@@ -325,14 +325,14 @@ LinkReceptionistScript_TimeCapsule:
 	special Special_CheckBothSelectedSameRoom
 	writetext Text_IncompatibleRooms
 	special Special_CloseLink
-	loadmovesprites
+	closetext
 	end
 
 .OK:
 	special Special_EnterTimeCapsule
 	writetext Text_PleaseComeIn2
+	waitbutton
 	closetext
-	loadmovesprites
 	scall TimeCapsuleScript_CheckPlayerGender
 	warpcheck
 	end
@@ -340,7 +340,7 @@ LinkReceptionistScript_TimeCapsule:
 .FriendNotReady:
 	special Special_AbortLink
 	writetext Text_FriendNotReady
-	loadmovesprites
+	closetext
 	end
 
 .LinkTimedOut:
@@ -351,22 +351,22 @@ LinkReceptionistScript_TimeCapsule:
 	writetext Text_PleaseComeAgain
 .Cancel:
 	special Special_AbortLink
-	loadmovesprites
+	closetext
 	end
 
 .MonTooNew:
 	writetext Text_RejectNewMon
-	loadmovesprites
+	closetext
 	end
 
 .MonMoveTooNew:
 	writetext Text_RejectMonWithNewMove
-	loadmovesprites
+	closetext
 	end
 
 .MonHasMail:
 	writetext Text_RejectMonWithMail
-	loadmovesprites
+	closetext
 	end
 
 Script_LeftCableTradeCenter:
@@ -421,14 +421,14 @@ PokeCenter2F_CheckGender:
 	applymovement PLAYER, MovementData_0x192ce2
 	loadfont
 	writetext Text_OhPleaseWait
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement2 MovementData_0x192cdc
 	spriteface PLAYER, LEFT
 	loadfont
 	writetext Text_ChangeTheLook
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_TINGLE
 	applymovement PLAYER, MovementData_0x192d17
 	writebyte (1 << 7) | (PAL_OW_RED << 4)
@@ -438,8 +438,8 @@ PokeCenter2F_CheckGender:
 	special ReplaceKrisSprite
 	loadfont
 	writetext Text_LikeTheLook
+	waitbutton
 	closetext
-	loadmovesprites
 	showemote EMOTE_SHOCK, PLAYER, 15
 	applymovement PLAYER, MovementData_0x192ce5
 	end
@@ -527,16 +527,16 @@ TimeCapsuleScript_CheckPlayerGender:
 .FemaleContinue:
 	loadfont
 	writetext Text_OhPleaseWait
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcode VAR_FACING
 	if_not_equal UP, .FemaleChangeApperance
 	spriteface PLAYER, LEFT
 .FemaleChangeApperance:
 	loadfont
 	writetext Text_ChangeTheLook
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_TINGLE
 	applymovement PLAYER, MovementData_0x192d17
 	writebyte (1 << 7) | (PAL_OW_RED << 4)
@@ -547,8 +547,8 @@ TimeCapsuleScript_CheckPlayerGender:
 	special ReplaceKrisSprite
 	loadfont
 	writetext Text_LikeTheLook
+	waitbutton
 	closetext
-	loadmovesprites
 	showemote EMOTE_SHOCK, PLAYER, 15
 	applymovement PLAYER, MovementData_0x192d2d
 	end
@@ -582,7 +582,7 @@ Script_LeftTimeCapsule:
 MapPokeCenter2FSignpost0Script:
 	refreshscreen $0
 	special Special_DisplayLinkRecord
-	loadmovesprites
+	closetext
 	end
 
 OfficerScript_0x192c9a:
@@ -595,27 +595,27 @@ OfficerScript_0x192c9a:
 	iffalse .RefusedGift
 	writetext Text_MysteryGiftDeliveryGuy_HereYouGo
 	keeptextopen
-	waitbutton
+	waitsfx
 	special Special_GetMysteryGiftItem
 	iffalse .BagIsFull
 	itemnotify
 	setevent EVENT_MYSTERY_GIFT_DELIVERY_GUY
 .AlreadyGotGift:
 	writetext Text_MysteryGiftDeliveryGuy_Outro
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .BagIsFull:
 	writetext Text_MysteryGiftDeliveryGuy_NoRoom
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .RefusedGift:
 	writetext Text_MysteryGiftDeliveryGuy_SaidNo
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MovementData_0x192cca:

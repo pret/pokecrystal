@@ -17,14 +17,14 @@ OfficerScript_0x1926ea:
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x1926f8
 	writetext UnknownText_0x1926fe
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1926f8:
 	writetext UnknownText_0x1927cb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x1926fe:

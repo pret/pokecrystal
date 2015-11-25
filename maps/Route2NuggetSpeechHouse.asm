@@ -17,9 +17,9 @@ FisherScript_0x9b847:
 	setevent EVENT_GOT_NUGGET_FROM_GUY
 .GotItem
 	writetext UnknownText_0x9b8e5
-	closetext
+	waitbutton
 .Done
-	loadmovesprites
+	closetext
 	end
 
 Route2NuggetSpeechHouseBookshelf:

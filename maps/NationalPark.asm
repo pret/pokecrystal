@@ -23,9 +23,9 @@ TeacherScript_0x5c008:
 	setevent EVENT_GOT_QUICK_CLAW
 UnknownScript_0x5c01d:
 	writetext UnknownText_0x5c30d
-	closetext
+	waitbutton
 UnknownScript_0x5c021:
-	loadmovesprites
+	closetext
 	end
 
 YoungsterScript_0x5c023:
@@ -42,16 +42,16 @@ GrowlitheScript_0x5c02c:
 	loadfont
 	writetext UnknownText_0x5c416
 	cry PERSIAN
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GameboyKidScript_0x5c037:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5c42a
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface $e, DOWN
 	end
 
@@ -60,7 +60,7 @@ TrainerSchoolboyJack1:
 
 SchoolboyJack1Script:
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_JACK
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_JACK
 	iftrue UnknownScript_0x5c088
@@ -106,7 +106,7 @@ UnknownScript_0x5c088:
 	checkflag ENGINE_FLYPOINT_OLIVINE
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer SCHOOLBOY, JACK1
+	scriptedtrainerdata SCHOOLBOY, JACK1
 	startbattle
 	returnafterbattle
 	loadvar wJackFightCount, 1
@@ -114,7 +114,7 @@ UnknownScript_0x5c088:
 	end
 
 .LoadFight1
-	loadtrainer SCHOOLBOY, JACK2
+	scriptedtrainerdata SCHOOLBOY, JACK2
 	startbattle
 	returnafterbattle
 	loadvar wJackFightCount, 2
@@ -122,7 +122,7 @@ UnknownScript_0x5c088:
 	end
 
 .LoadFight2
-	loadtrainer SCHOOLBOY, JACK3
+	scriptedtrainerdata SCHOOLBOY, JACK3
 	startbattle
 	returnafterbattle
 	loadvar wJackFightCount, 3
@@ -130,7 +130,7 @@ UnknownScript_0x5c088:
 	end
 
 .LoadFight3
-	loadtrainer SCHOOLBOY, JACK4
+	scriptedtrainerdata SCHOOLBOY, JACK4
 	startbattle
 	returnafterbattle
 	loadvar wJackFightCount, 4
@@ -138,7 +138,7 @@ UnknownScript_0x5c088:
 	end
 
 .LoadFight4
-	loadtrainer SCHOOLBOY, JACK5
+	scriptedtrainerdata SCHOOLBOY, JACK5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_JACK
@@ -176,11 +176,11 @@ TrainerPokefanmWilliam:
 	trainer EVENT_BEAT_POKEFANM_WILLIAM, POKEFANM, WILLIAM, PokefanmWilliamSeenText, PokefanmWilliamBeatenText, 0, PokefanmWilliamScript
 
 PokefanmWilliamScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5c645
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokefanfBeverly1:
@@ -188,7 +188,7 @@ TrainerPokefanfBeverly1:
 
 PokefanfBeverly1Script:
 	writecode VAR_CALLERID, PHONE_POKEFAN_BEVERLY
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_BEVERLY_HAS_NUGGET
 	iftrue UnknownScript_0x5c177
@@ -226,8 +226,8 @@ UnknownScript_0x5c186:
 
 UnknownScript_0x5c189:
 	writetext UnknownText_0x5c68a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x5c18f:
@@ -266,11 +266,11 @@ TrainerLassKrise:
 	trainer EVENT_BEAT_LASS_KRISE, LASS, KRISE, LassKriseSeenText, LassKriseBeatenText, 0, LassKriseScript
 
 LassKriseScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x5c71d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapNationalParkSignpost0Script:

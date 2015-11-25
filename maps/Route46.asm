@@ -9,11 +9,11 @@ TrainerCamperTed:
 	trainer EVENT_BEAT_CAMPER_TED, CAMPER, TED, CamperTedSeenText, CamperTedBeatenText, 0, CamperTedScript
 
 CamperTedScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a9851
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPicnickerErin1:
@@ -21,7 +21,7 @@ TrainerPicnickerErin1:
 
 PicnickerErin1Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_ERIN
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	checkflag ENGINE_ERIN
 	iftrue UnknownScript_0x1a96da
@@ -59,7 +59,7 @@ UnknownScript_0x1a96da:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
 .LoadFight0
-	loadtrainer PICNICKER, ERIN1
+	scriptedtrainerdata PICNICKER, ERIN1
 	startbattle
 	returnafterbattle
 	loadvar wErinFightCount, 1
@@ -67,7 +67,7 @@ UnknownScript_0x1a96da:
 	end
 
 .LoadFight1
-	loadtrainer PICNICKER, ERIN2
+	scriptedtrainerdata PICNICKER, ERIN2
 	startbattle
 	returnafterbattle
 	loadvar wErinFightCount, 2
@@ -75,7 +75,7 @@ UnknownScript_0x1a96da:
 	end
 
 .LoadFight2
-	loadtrainer PICNICKER, ERIN3
+	scriptedtrainerdata PICNICKER, ERIN3
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_ERIN
@@ -95,7 +95,7 @@ UnknownScript_0x1a973a:
 UnknownScript_0x1a973b:
 	loadfont
 	writetext UnknownText_0x1a9927
-	closetext
+	waitbutton
 	verbosegiveitem CALCIUM
 	iffalse UnknownScript_0x1a976b
 	clearevent EVENT_ERIN_CALCIUM
@@ -143,11 +143,11 @@ TrainerHikerBailey:
 	trainer EVENT_BEAT_HIKER_BAILEY, HIKER, BAILEY, HikerBaileySeenText, HikerBaileyBeatenText, 0, HikerBaileyScript
 
 HikerBaileyScript:
-	talkaftercancel
+	end_if_just_battled
 	loadfont
 	writetext UnknownText_0x1a97e8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute46Signpost0Script:
