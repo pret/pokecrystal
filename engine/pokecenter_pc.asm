@@ -188,7 +188,7 @@ _KrissHousePC: ; 156d9
 	and a
 	jr nz, .asm_156f9
 	call OverworldTextModeSwitch
-	call Function321c
+	call ApplyTilemap
 	call UpdateSprites
 	call PC_PlayShutdownSound
 	ld c, $0
@@ -466,16 +466,16 @@ UnknownText_0x158c7: ; 0x158c7
 
 
 Function158cc: ; 0x158cc
-	ld a, [wc2ce]
+	ld a, [wSpriteUpdatesEnabled]
 	push af
 	ld a, $0
-	ld [wc2ce], a
+	ld [wSpriteUpdatesEnabled], a
 	callba CheckItemMenu
 	ld a, [wItemAttributeParamBuffer]
 	ld hl, .jumptable
 	rst JumpTable
 	pop af
-	ld [wc2ce], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 ; 0x158e7
 
@@ -577,10 +577,10 @@ Function15985: ; 0x15985
 	xor a
 	ld [wd0e3], a
 .asm_15989
-	ld a, [wc2ce]
+	ld a, [wSpriteUpdatesEnabled]
 	push af
 	ld a, $0
-	ld [wc2ce], a
+	ld [wSpriteUpdatesEnabled], a
 	ld hl, MenuData15a08
 	call CopyMenuDataHeader
 	hlcoord 0, 0
@@ -597,7 +597,7 @@ Function15985: ; 0x15985
 	ld a, [MenuSelection2]
 	ld [wd0d7], a
 	pop af
-	ld [wc2ce], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, [wd0e3]
 	and a
 	jr nz, .asm_159d8

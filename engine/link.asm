@@ -1378,7 +1378,7 @@ Function28926: ; 28926
 	hlcoord 0, 15
 	ld b, $1
 	ld c, $12
-	call Function28eef
+	call Predef_LinkTextbox
 	hlcoord 2, 16
 	ld de, String28ab4
 	call PlaceString
@@ -1487,7 +1487,7 @@ Function28926: ; 28926
 	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
-	call Function28eef
+	call Predef_LinkTextbox
 	callba Function4d354
 	ld hl, UnknownText_0x28aaf
 	bccoord 1, 14
@@ -1509,7 +1509,7 @@ Function28926: ; 28926
 	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
-	call Function28eef
+	call Predef_LinkTextbox
 	callba Function4d354
 	ld hl, UnknownText_0x28ac4
 	bccoord 1, 14
@@ -1519,7 +1519,7 @@ Function28926: ; 28926
 	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
-	call Function28eef
+	call Predef_LinkTextbox
 	hlcoord 1, 14
 	ld de, String28ece
 	call PlaceString
@@ -1666,7 +1666,7 @@ Function28b87: ; 28b87
 	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
-	call Function28eef
+	call Predef_LinkTextbox
 	callba Function4d354
 	ld a, [wd002]
 	ld hl, PartySpecies
@@ -1695,7 +1695,7 @@ Function28b87: ; 28b87
 	hlcoord 10, 7
 	ld b, $3
 	ld c, $7
-	call Function28eef
+	call Predef_LinkTextbox
 	ld de, String28eab
 	hlcoord 12, 8
 	call PlaceString
@@ -1735,7 +1735,7 @@ Function28b87: ; 28b87
 	hlcoord 0, 12
 	ld b, 4
 	ld c, 18
-	call Function28eef
+	call Predef_LinkTextbox
 	hlcoord 1, 14
 	ld de, String28ece
 	call PlaceString
@@ -1752,7 +1752,7 @@ Function28b87: ; 28b87
 	hlcoord 0, 12
 	ld b, 4
 	ld c, 18
-	call Function28eef
+	call Predef_LinkTextbox
 	hlcoord 1, 14
 	ld de, String28ece
 	call PlaceString
@@ -1982,7 +1982,7 @@ Function28b87: ; 28b87
 	hlcoord 0, 12
 	ld b, 4
 	ld c, 18
-	call Function28eef
+	call Predef_LinkTextbox
 	hlcoord 1, 14
 	ld de, String28ebd
 	call PlaceString
@@ -2019,10 +2019,10 @@ String28ece: ; 28ece
 	next "was canceled!@"
 
 
-Function28eef: ; 28eef
+Predef_LinkTextbox: ; 28eef
 	ld d, h
 	ld e, l
-	callba Function16d6ca
+	callba LinkTextbox
 	ret
 ; 28ef8
 
@@ -2041,11 +2041,11 @@ Function28f09: ; 28f09
 	hlcoord 0, 0
 	ld b, 6
 	ld c, 18
-	call Function28eef
+	call Predef_LinkTextbox
 	hlcoord 0, 8
 	ld b, 6
 	ld c, 18
-	call Function28eef
+	call Predef_LinkTextbox
 	callba Functionfb60d
 	ret
 ; 28f24

@@ -124,7 +124,7 @@ Special_DisplayUnownWords: ; 8ae68
 	ld [hBGMapMode], a
 	call MenuBox
 	call UpdateSprites
-	call Function321c
+	call ApplyTilemap
 	call MenuBoxCoord2Tile
 	inc hl
 	ld d, $0

@@ -311,7 +311,7 @@ AutoInputLength:: ; c2cb
 
 wc2cc:: ds 1
 wc2cd:: ds 1
-wc2ce:: ds 1
+wSpriteUpdatesEnabled:: ds 1
 wc2cf:: ds 1
 wc2d0:: ds 4
 wc2d4:: ds 1
@@ -1679,7 +1679,7 @@ wd048:: ds 1
 wLossTextPointer:: ds 2
 wScriptAfterPointer::
 wd04b:: ds 2
-wd04d:: ds 1
+wRunningTrainerBattleScript:: ds 1
 MenuItemsListEnd::
 wTempTrainerHeaderEnd::
 wd04e:: ds 2
@@ -2221,7 +2221,7 @@ wd453:: ds 1
 wd454:: ds 1
 	ds 4
 
-wd459:: ds 2
+wBattleScriptFlags:: ds 2
 wPlayerSpriteSetupFlags:: ds 1
 wMapReentryScriptQueueFlag:: ds 1 ; MemScriptFlag
 wMapReentryScriptBank:: ds 1 ; MemScriptBank

@@ -1290,7 +1290,7 @@ Function118936:
 	call LoadMenuDataHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
-	call Function321c
+	call ApplyTilemap
 	hlcoord 16, 8, AttrMap
 	ld a, $40
 	or [hl]
@@ -4745,7 +4745,7 @@ Function11a207: ; 11a207
 	call LoadMenuDataHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
-	call Function321c
+	call ApplyTilemap
 	hlcoord 16, 8
 	ld de, String_11a2cf
 	call PlaceString

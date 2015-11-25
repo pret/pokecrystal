@@ -150,13 +150,13 @@ Function891fe: ; 891fe
 
 Function89209: ; 89209
 	ld a, 1
-	ld [wc2ce], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 ; 8920f
 
 Function8920f: ; 8920f
 	ld a, 0
-	ld [wc2ce], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 ; 89215
 

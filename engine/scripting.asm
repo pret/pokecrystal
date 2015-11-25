@@ -929,7 +929,7 @@ Script_winlosstext: ; 9714c
 Script_talkaftercancel: ; 97163
 ; script command 0x66
 
-	ld a, [wd04d]
+	ld a, [wRunningTrainerBattleScript]
 	and a
 	ret z
 	jp Script_end
@@ -940,7 +940,7 @@ Script_talkaftercheck: ; 9716b
 
 	ld a, 1
 	ld [ScriptVar], a
-	ld a, [wd04d]
+	ld a, [wRunningTrainerBattleScript]
 	and a
 	ret nz
 	xor a
@@ -1485,7 +1485,7 @@ Script_battlecheck: ; 973fb
 ; script command 0x5b
 
 	xor a
-	ld [wd459], a
+	ld [wBattleScriptFlags], a
 	ret
 ; 97400
 
@@ -1493,7 +1493,7 @@ Script_loadtrainerdata: ; 97400
 ; script command 0x5c
 
 	ld a, (1 << 7) | 1
-	ld [wd459], a
+	ld [wBattleScriptFlags], a
 	ld a, [WalkingDirection]
 	ld [OtherTrainerClass], a
 	ld a, [FacingDirection]
@@ -1508,7 +1508,7 @@ Script_loadpokedata: ; 97412
 ;     level (DecimalParam)
 
 	ld a, (1 << 7)
-	ld [wd459], a
+	ld [wBattleScriptFlags], a
 	call GetScriptByte
 	ld [TempWildMonSpecies], a
 	call GetScriptByte
@@ -1523,7 +1523,7 @@ Script_loadtrainer: ; 97424
 ;     trainer_id (TrainerIdParam)
 
 	ld a, (1 << 7) | 1
-	ld [wd459], a
+	ld [wBattleScriptFlags], a
 	call GetScriptByte
 	ld [OtherTrainerClass], a
 	call GetScriptByte
@@ -1557,7 +1557,7 @@ Script_catchtutorial: ; 97447
 Script_returnafterbattle: ; 97459
 ; script command 0x60
 
-	ld hl, wd459
+	ld hl, wBattleScriptFlags
 	ld d, [hl]
 	ld [hl], $0
 	ld a, [wBattleResult]
@@ -1589,7 +1589,7 @@ Script_reloadmap: ; 97491
 ; script command 0x7b
 
 	xor a
-	ld [wd459], a
+	ld [wBattleScriptFlags], a
 	ld a, MAPSETUP_RELOADMAP
 	ld [hMapEntryMethod], a
 	ld a, $1

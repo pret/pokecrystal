@@ -1028,7 +1028,7 @@ Function16d6ae: ; 16d6ae
 	ret
 ; 16d6ca
 
-Function16d6ca: ; 16d6ca
+LinkTextbox: ; 16d6ca
 	call Function16d61d
 	ret
 ; 16d6ce
@@ -1046,7 +1046,7 @@ Function16d6e1: ; 16d6e1
 	hlcoord 4, 10
 	ld b, 1
 	ld c, 10
-	predef Function28eef
+	predef Predef_LinkTextbox
 	hlcoord 5, 11
 	ld de, .Waiting
 	call PlaceString

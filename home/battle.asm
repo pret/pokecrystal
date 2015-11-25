@@ -285,7 +285,7 @@ BattleTextBox:: ; 3ac3
 	call SpeechTextBox
 	call MobileTextBorder
 	call UpdateSprites
-	call Function321c
+	call ApplyTilemap
 	pop hl
 	call PrintTextBoxText
 	ret

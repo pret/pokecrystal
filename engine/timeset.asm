@@ -6,7 +6,7 @@ InitClock: ; 90672 (24:4672)
 	ld [hInMenu], a
 
 	ld a, $0
-	ld [wc2ce], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, $10
 	ld [MusicFade], a
 	ld a, MUSIC_NONE % $100
@@ -436,7 +436,7 @@ Special_SetDayOfWeek: ; 90913
 	ld [hl], $f5
 	hlcoord 10, 5
 	call Function909de
-	call Function321c
+	call ApplyTilemap
 	ld c, 10
 	call DelayFrames
 .asm_9096a

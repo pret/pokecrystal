@@ -77,7 +77,7 @@ InterpretMenu2::
 	call MenuBox
 	call UpdateSprites
 	call Function1c89
-	call Function321c
+	call ApplyTilemap
 	call CopyMenuData2
 	ld a, [wMenuData2Flags]
 	bit 7, a
@@ -262,7 +262,7 @@ MenuWriteText::
 	push af
 	ld a, $1
 	ld [hOAMUpdate], a
-	call Function321c
+	call ApplyTilemap
 	pop af
 	ld [hOAMUpdate], a
 	ret

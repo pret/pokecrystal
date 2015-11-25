@@ -192,7 +192,7 @@ SetUpTextBox:: ; 106c
 	push hl
 	call SpeechTextBox
 	call UpdateSprites
-	call Function321c
+	call ApplyTilemap
 	pop hl
 	ret
 ; 1078

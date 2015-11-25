@@ -2,7 +2,7 @@ RTC:: ; 46f
 ; update time and time-sensitive palettes
 
 ; rtc enabled?
-	ld a, [wc2ce]
+	ld a, [wSpriteUpdatesEnabled]
 	cp 0
 	ret z
 	

@@ -104,13 +104,13 @@ DisableSpriteUpdates:: ; 0x2ed3
 	res 0, a
 	ld [VramState], a
 	ld a, $0
-	ld [wc2ce], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 ; 0x2ee4
 
 EnableSpriteUpdates:: ; 2ee4
 	ld a, $1
-	ld [wc2ce], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, [VramState]
 	set 0, a
 	ld [VramState], a
@@ -568,12 +568,12 @@ IsCGB:: ; 3218
 ; 321c
 
 
-Function321c:: ; 321c
+ApplyTilemap:: ; 321c
 	ld a, [hCGB]
 	and a
 	jr z, .dmg
 
-	ld a, [wc2ce]
+	ld a, [wSpriteUpdatesEnabled]
 	cp 0
 	jr z, .dmg
 
@@ -1488,7 +1488,7 @@ LoadTrainer_continue:: ; 367e
 	ld a, [EngineBuffer1]
 	call FarCopyBytes
 	xor a
-	ld [wd04d], a
+	ld [wRunningTrainerBattleScript], a
 	scf
 	ret
 ; 36a5

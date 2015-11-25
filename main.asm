@@ -17,7 +17,7 @@ PlaceWaitingText:: ; 4000
 	jr .proceed
 
 .notinbattle
-	predef Function28eef
+	predef Predef_LinkTextbox
 
 .proceed
 	hlcoord 4, 11
@@ -9921,7 +9921,7 @@ Pokepic:: ; 244e3
 	call CopyMenuDataHeader
 	call MenuBox
 	call UpdateSprites
-	call Function321c
+	call ApplyTilemap
 	ld b, SCGB_12
 	call GetSGBLayout
 	xor a
@@ -9955,7 +9955,7 @@ PokepicYesOrNo:: ; 24528
 	xor a
 	ld [hBGMapMode], a
 	call OverworldTextModeSwitch
-	call Function321c
+	call ApplyTilemap
 	call UpdateSprites
 	call LoadStandardFont
 	ret
@@ -10051,7 +10051,7 @@ Function245af:: ; 245af
 	call Function24764
 	call Function247dd
 	call Function245f1
-	call Function321c
+	call ApplyTilemap
 	xor a
 	ld [hBGMapMode], a
 	ret
@@ -17539,7 +17539,7 @@ Buena_ExitMenu: ; 4ae5e
 	call DelayFrame
 	ld a, $1
 	ld [hOAMUpdate], a
-	call Function321c
+	call ApplyTilemap
 	pop af
 	ld [hOAMUpdate], a
 	ret
@@ -17856,7 +17856,7 @@ PhoneRing_LoadEDTile: ; 4d188
 	ld a, [hCGB]
 	and a
 	jp z, WaitBGMap
-	ld a, [wc2ce]
+	ld a, [wSpriteUpdatesEnabled]
 	cp $0
 	jp z, WaitBGMap
 
@@ -22713,7 +22713,7 @@ StartBattleWithMapTrainerScript: ; 0xbe68a
 	startbattle
 	returnafterbattle
 	trainerstatus SET_FLAG
-	loadvar wd04d, -1
+	loadvar wRunningTrainerBattleScript, -1
 
 AlreadyBeatenTrainerScript:
 	scripttalkafter
@@ -24096,7 +24096,7 @@ LoadMapTimeOfDay: ; 104750
 	ld hl, VramState
 	res 6, [hl]
 	ld a, $1
-	ld [wc2ce], a
+	ld [wSpriteUpdatesEnabled], a
 	callba Function8c0e5
 	callba Function8c001
 	call OverworldTextModeSwitch
