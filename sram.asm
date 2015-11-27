@@ -135,7 +135,36 @@ s1_b277::
 sLinkBattleStatsEnd::
 
 sHallOfFame:: ; b2c0
-	ds HOF_LENGTH * NUM_HOF_TEAMS
+sHallOfFame01:: hall_of_fame sHallOfFame01
+sHallOfFame02:: hall_of_fame sHallOfFame02
+sHallOfFame03:: hall_of_fame sHallOfFame03
+sHallOfFame04:: hall_of_fame sHallOfFame04
+sHallOfFame05:: hall_of_fame sHallOfFame05
+sHallOfFame06:: hall_of_fame sHallOfFame06
+sHallOfFame07:: hall_of_fame sHallOfFame07
+sHallOfFame08:: hall_of_fame sHallOfFame08
+sHallOfFame09:: hall_of_fame sHallOfFame09
+sHallOfFame10:: hall_of_fame sHallOfFame10
+sHallOfFame11:: hall_of_fame sHallOfFame11
+sHallOfFame12:: hall_of_fame sHallOfFame12
+sHallOfFame13:: hall_of_fame sHallOfFame13
+sHallOfFame14:: hall_of_fame sHallOfFame14
+sHallOfFame15:: hall_of_fame sHallOfFame15
+sHallOfFame16:: hall_of_fame sHallOfFame16
+sHallOfFame17:: hall_of_fame sHallOfFame17
+sHallOfFame18:: hall_of_fame sHallOfFame18
+sHallOfFame19:: hall_of_fame sHallOfFame19
+sHallOfFame20:: hall_of_fame sHallOfFame20
+sHallOfFame21:: hall_of_fame sHallOfFame21
+sHallOfFame22:: hall_of_fame sHallOfFame22
+sHallOfFame23:: hall_of_fame sHallOfFame23
+sHallOfFame24:: hall_of_fame sHallOfFame24
+sHallOfFame25:: hall_of_fame sHallOfFame25
+sHallOfFame26:: hall_of_fame sHallOfFame26
+sHallOfFame27:: hall_of_fame sHallOfFame27
+sHallOfFame28:: hall_of_fame sHallOfFame28
+sHallOfFame29:: hall_of_fame sHallOfFame29
+sHallOfFame30:: hall_of_fame sHallOfFame30
 sHallOfFameEnd::
 
 sMobileEventIndex:: ds 1
@@ -152,7 +181,7 @@ sBattleTowerChallengeState:: ds 1
 
 sBattleTower:: ; be46
 sNrOfBeatenBattleTowerTrainers:: ds 1
-sbe47:: ds 1
+sBTChoiceOfLevelGroup:: ds 1
 ; The 7 trainers of the BattleTower are saved here, so nobody appears more than once
 sBTTrainers:: ; sbe48
 	ds 7

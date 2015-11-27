@@ -47,23 +47,23 @@ BattleTowerHallway_MapScriptHeader:
 	if_equal 8, .L70L80
 	if_equal 9, .L90L100
 	if_equal 10, .L90L100
-	applymovement $2, MovementData_0x9e57a
+	applymovement $2, MovementData_BattleTowerHallwayWalkTo1020Room
 	jump .EnterBattleRoom
 
 .L30L40: ; 0x9f603
-	applymovement $2, MovementData_0x9e57c
+	applymovement $2, MovementData_BattleTowerHallwayWalkTo3040Room
 	jump .EnterBattleRoom
 
 .L50L60: ; 0x9f60a
-	applymovement $2, MovementData_0x9e586
+	applymovement $2, MovementData_BattleTowerHallwayWalkTo5060Room
 	jump .EnterBattleRoom
 
 .L70L80: ; 0x9f611
-	applymovement $2, MovementData_0x9e584
+	applymovement $2, MovementData_BattleTowerHallwayWalkTo7080Room
 	jump .EnterBattleRoom
 
 .L90L100: ; 0x9f618
-	applymovement $2, MovementData_0x9e582
+	applymovement $2, MovementData_BattleTowerHallwayWalkTo90100Room
 	jump .EnterBattleRoom
 
 .EnterBattleRoom: ; 0x9f61f
@@ -73,7 +73,7 @@ BattleTowerHallway_MapScriptHeader:
 	waitbutton
 	closetext
 	stopfollow
-	applymovement PLAYER, MovementData_0x9e576
+	applymovement PLAYER, MovementData_BattleTowerHallwayPlayerEntersBattleRoom
 	warpcheck
 	end
 

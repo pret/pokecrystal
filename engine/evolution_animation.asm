@@ -389,14 +389,14 @@ Function4e881: ; 4e881
 	ld [hSCY], a
 	ld [hSCX], a
 	call EnableLCD
-	ld hl, UnknownText_0x4e8bd
+	ld hl, .SavingRecordDontTurnOff
 	call PrintText
 	call Function3200
 	call SetPalettes
 	ret
 ; 4e8bd
 
-UnknownText_0x4e8bd: ; 0x4e8bd
+.SavingRecordDontTurnOff: ; 0x4e8bd
 	; SAVING RECORD… DON'T TURN OFF!
 	text_jump UnknownText_0x1bd39e
 	db "@"
@@ -418,15 +418,15 @@ Function4e8c2: ; 4e8c2
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	xor a
 	call ByteFill
-	ld hl, wd000
-	ld c, $40
-.asm_4e8ee
-	ld a, -1
+	ld hl, wd000 ; UnknBGPals
+	ld c, 4 * $10
+.load_white_palettes
+	ld a, (palred 31 + palgreen 31 + palblue 31) % $100
 	ld [hli], a
-	ld a, " "
+	ld a, (palred 31 + palgreen 31 + palblue 31) / $100
 	ld [hli], a
 	dec c
-	jr nz, .asm_4e8ee
+	jr nz, .load_white_palettes
 	xor a
 	ld [hSCY], a
 	ld [hSCX], a

@@ -116,7 +116,7 @@ _UpdateTimePals:: ; 8c070
 	ret
 ; 8c079
 
-RotatePalettesLeftPalettes:: ; 8c079
+FadeInPalettes:: ; 8c079
 	ld c, $12
 	call GetTimePalFade
 	ld b, $4
@@ -124,7 +124,7 @@ RotatePalettesLeftPalettes:: ; 8c079
 	ret
 ; 8c084
 
-RotatePalettesRightPalettes:: ; 8c084
+FadeOutPalettes:: ; 8c084
 	call Function8c0c1
 	ld c, $9
 	call GetTimePalFade
@@ -150,7 +150,7 @@ endr
 	ret
 ; 8c0ab
 
-Special_RotatePalettesLeftQuickly: ; 8c0ab
+Special_FadeInQuickly: ; 8c0ab
 	ld c, $0
 	call GetTimePalFade
 	ld b, $4

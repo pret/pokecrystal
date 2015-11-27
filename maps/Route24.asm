@@ -29,7 +29,7 @@ RocketScript_0x1adbfa:
 	special Special_ReloadSpritesNoPalettes
 	disappear $2
 	pause 25
-	special Special_RotatePalettesLeftQuickly
+	special Special_FadeInQuickly
 	playmapmusic
 	end
 

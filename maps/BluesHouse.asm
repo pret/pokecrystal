@@ -30,10 +30,10 @@ UnknownScript_0x19b0de:
 	writetext UnknownText_0x19b266
 	waitbutton
 	closetext
-	special RotatePalettesRightPalettes
+	special FadeOutPalettes
 	playmusic MUSIC_HEAL
 	pause 60
-	special RotatePalettesLeftPalettes
+	special FadeInPalettes
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x19b296

@@ -42,9 +42,9 @@ UnknownScript_0x60bab:
 	closetext
 	special RestartMapMusic
 	cry AMPHAROS
-	special RotatePalettesRightPalettes
+	special FadeOutPalettes
 	pause 10
-	special RotatePalettesLeftPalettes
+	special FadeInPalettes
 	loadfont
 	writetext UnknownText_0x60f3d
 	waitbutton
@@ -116,10 +116,10 @@ UnknownScript_0x60c51:
 	cry AMPHAROS
 	waitbutton
 	closetext
-	special RotatePalettesRightPalettes
-	special RotatePalettesLeftPalettes
-	special RotatePalettesRightPalettes
-	special RotatePalettesLeftPalettes
+	special FadeOutPalettes
+	special FadeInPalettes
+	special FadeOutPalettes
+	special FadeInPalettes
 	end
 
 ItemFragment_0x60c66:

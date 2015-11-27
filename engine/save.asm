@@ -182,7 +182,7 @@ AskOverwriteSaveFile: ; 14b89
 	ld a, [wSaveFileExists]
 	and a
 	jr z, .erase
-	call Function14bcb
+	call CompareLoadedAndSavedPlayerID
 	jr z, .yoursavefile
 	ld hl, UnknownText_0x15297
 	call SaveTheGame_yesorno
@@ -223,7 +223,7 @@ SaveTheGame_yesorno: ; 14baf
 	ret
 ; 14bcb
 
-Function14bcb: ; 14bcb
+CompareLoadedAndSavedPlayerID: ; 14bcb
 	ld a, BANK(sPlayerData)
 	call GetSRAMBank
 	ld hl, sPlayerData + (PlayerID - wPlayerData)
@@ -291,7 +291,7 @@ SaveGameData_: ; 14c10
 	ld a, BANK(sBattleTowerChallengeState)
 	call GetSRAMBank
 	ld a, [sBattleTowerChallengeState]
-	cp $4
+	cp BATTLETOWER_RECEIVED_REWARD
 	jr nz, .ok
 	xor a
 	ld [sBattleTowerChallengeState], a
@@ -373,7 +373,7 @@ ErasePreviousSave: ; 14cbb
 	call EraseLinkBattleStats
 	call EraseMysteryGift
 	call SaveData
-	call Function14d5c
+	call EraseBattleTowerStatus
 	ld a, BANK(sStackTop)
 	call GetSRAMBank
 	xor a
@@ -437,7 +437,7 @@ Unknown_14d2c: ; 14d2c
 	db $11, $0c, $0c, $06, $06, $04
 ; 14d5c
 
-Function14d5c: ; 14d5c
+EraseBattleTowerStatus: ; 14d5c
 	ld a, BANK(sBattleTowerChallengeState)
 	call GetSRAMBank
 	xor a
@@ -486,7 +486,7 @@ Function14d93: ; 14d93
 ; 14da0
 
 
-Function14da0: ; 14da0
+HallOfFame_InitSaveIfNeeded: ; 14da0
 	ld a, [wSavedAtLeastOnce]
 	and a
 	ret nz
@@ -512,7 +512,7 @@ SaveOptions: ; 14dbb
 	ld bc, OptionsEnd - Options
 	call CopyBytes
 	ld a, [Options]
-	and $ef
+	and $ff ^ (1 << NO_TEXT_SCROLL)
 	ld [sOptions], a
 	jp CloseSRAM
 ; 14dd7
@@ -791,9 +791,9 @@ LoadPlayerData: ; 14fd7 (5:4fd7)
 	ld a, BANK(sBattleTowerChallengeState)
 	call GetSRAMBank
 	ld a, [sBattleTowerChallengeState]
-	cp $4
+	cp BATTLETOWER_RECEIVED_REWARD
 	jr nz, .not_4
-	ld a, $3
+	ld a, BATTLETOWER_WON_CHALLENGE
 	ld [sBattleTowerChallengeState], a
 .not_4
 	call CloseSRAM

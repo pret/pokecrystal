@@ -4108,7 +4108,7 @@ Function119d93: ; 119d93 (46:5d93)
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld de, PartyMon1Level
 	ld a, [PartyCount]
-.asm_119daf
+.party_loop
 	push af
 	ld a, [de]
 	push hl
@@ -4119,17 +4119,18 @@ Function119d93: ; 119d93 (46:5d93)
 	pop de
 	pop hl
 	cp [hl]
-	jr z, .asm_119dbd
-	jr nc, .asm_119dc6
-.asm_119dbd
+	jr z, .equal
+	jr nc, .exceeds
+.equal
 	pop af
 	dec a
-	jr nz, .asm_119daf
+	jr nz, .party_loop
 	pop af
 	ld [rSVBK], a
 	and a
 	ret
-.asm_119dc6
+
+.exceeds
 	pop af
 	ld a, $4
 	ld [wcf66], a
@@ -4143,40 +4144,41 @@ Function119dd1: ; 119dd1 (46:5dd1)
 	push af
 	ld a, [wcd4f]
 	cp 70 / 10
-	jr nc, .asm_119e08
+	jr nc, .level_70_or_more
 	ld a, $1
 	ld [rSVBK], a
 	ld hl, PartyMon1Level
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld de, PartySpecies
 	ld a, [PartyCount]
-.asm_119deb
+.loop
 	push af
 	ld a, [de]
 	cp MEWTWO
-	jr z, .asm_119dfd
+	jr z, .uber
 	cp MEW
-	jr z, .asm_119dfd
+	jr z, .uber
 	cp LUGIA
-	jr c, .asm_119e02
+	jr c, .next
 	cp NUM_POKEMON + 1
-	jr nc, .asm_119e02
-.asm_119dfd
+	jr nc, .next
+.uber
 	ld a, [hl]
 	cp 70
-	jr c, .asm_119e0d
-.asm_119e02
+	jr c, .uber_under_70
+.next
 	add hl, bc
 	inc de
 	pop af
 	dec a
-	jr nz, .asm_119deb
-.asm_119e08
+	jr nz, .loop
+.level_70_or_more
 	pop af
 	ld [rSVBK], a
 	and a
 	ret
-.asm_119e0d
+
+.uber_under_70
 	pop af
 	ld a, [de]
 	ld [wd265], a
@@ -7707,7 +7709,7 @@ Function11b7e5: ; 11b7e5
 ; 11b879
 
 Function11b879: ; 11b879
-	callba Function17089a
+	callba BattleTower_CheckSaveFileExistsAndIsYours
 	ld a, [ScriptVar]
 	and a
 	ret z

@@ -272,8 +272,8 @@ MapSetupCommands: ; 15440
 	dba LoadMapAttributes ; 1a
 	dba LoadMapAttributes_SkipPeople ; 1b
 	dba ClearBGPalettes ; 1c
-	dba RotatePalettesRightPalettes ; 1d
-	dba RotatePalettesLeftPalettes ; 1e
+	dba FadeOutPalettes ; 1d
+	dba FadeInPalettes ; 1e
 	dba GetCoordOfUpperLeftCorner ; 1f
 	dba RestoreFacingAfterWarp ; 20
 	dba SpawnInFacingDown ; 21

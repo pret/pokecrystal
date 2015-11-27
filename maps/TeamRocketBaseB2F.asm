@@ -106,7 +106,7 @@ UnknownScript_0x6cfac:
 	disappear $d
 	disappear $e
 	pause 15
-	special Special_RotatePalettesLeftQuickly
+	special Special_FadeInQuickly
 	dotrigger $2
 	clearevent EVENT_TEAM_ROCKET_BASE_B2F_LANCE
 	spriteface $4, DOWN
@@ -155,11 +155,11 @@ UnknownScript_0x6d091:
 	writetext UnknownText_0x6da97
 	waitbutton
 	closetext
-	special RotatePalettesRightPalettes
+	special FadeOutPalettes
 	special Mobile_HealParty
 	playsound SFX_FULL_HEAL
 	special HealParty
-	special RotatePalettesLeftPalettes
+	special FadeInPalettes
 	loadfont
 	writetext UnknownText_0x6daf7
 	waitbutton

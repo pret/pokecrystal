@@ -10,7 +10,7 @@ Script_OverworldWhiteout:: ; 0x124c8
 Script_Whiteout: ; 0x124ce
 	writetext .WhitedOutText
 	waitbutton
-	special RotatePalettesRightPalettes
+	special FadeOutPalettes
 	pause 40
 	special HealParty
 	checkflag ENGINE_BUG_CONTEST_TIMER

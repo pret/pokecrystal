@@ -64,7 +64,7 @@ SailorScript_0x75160:
 	closetext
 	scall .LetThePlayerOut
 	playsound SFX_EXIT_BUILDING
-	special RotatePalettesRightPalettes
+	special FadeOutPalettes
 	waitsfx
 	setevent EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
 	domaptrigger VERMILION_PORT, $1
@@ -77,7 +77,7 @@ SailorScript_0x75160:
 	closetext
 	scall .LetThePlayerOut
 	playsound SFX_EXIT_BUILDING
-	special RotatePalettesRightPalettes
+	special FadeOutPalettes
 	waitsfx
 	setevent EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
 	domaptrigger OLIVINE_PORT, $1

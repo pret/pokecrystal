@@ -3,21 +3,21 @@ BattleTowerBattleRoom_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw Script_EnterBattleRoom, 0
-	dw UnknownScript_0x9f420, 0
+	dw .EnterBattleRoom, 0
+	dw .DummyTrigger, 0
 
 .MapCallbacks:
 	db 0
 
-Script_EnterBattleRoom: ; 0x9f419
+.EnterBattleRoom: ; 0x9f419
 	disappear $2
 	priorityjump Script_BattleRoom
 	dotrigger $1
-UnknownScript_0x9f420:
+.DummyTrigger:
 	end
 
 Script_BattleRoom: ; 0x9f421
-	applymovement PLAYER, MovementData_0x9e58c
+	applymovement PLAYER, MovementData_BattleTowerBattleRoomPlayerWalksIn
 ; beat all 7 opponents in a row
 Script_BattleRoomLoop: ; 0x9f425
 	writebyte $2
@@ -25,31 +25,31 @@ Script_BattleRoomLoop: ; 0x9f425
 	appear $2
 	warpsound
 	waitsfx
-	applymovement $2, MovementData_0x9e592
+	applymovement $2, MovementData_BattleTowerBattleRoomOpponentWalksIn
 	loadfont
 	battletowertext 1
 	keeptextopen
 	closetext
 	special BattleTowerBattle ; calls predef startbattle
-	special RotatePalettesRightPalettes
+	special FadeOutPalettes
 	reloadmap
 	if_not_equal $0, Script_FailedBattleTowerChallenge
 	copybytetovar wNrOfBeatenBattleTowerTrainers ; wcf64
 	if_equal BATTLETOWER_NROFTRAINERS, Script_BeatenAllTrainers
-	applymovement $2, MovementData_0x9e597
+	applymovement $2, MovementData_BattleTowerBattleRoomOpponentWalksOut
 	warpsound
 	disappear $2
-	applymovement $3, MovementData_0x9e59c
-	applymovement PLAYER, MovementData_0x9e5a7
+	applymovement $3, MovementData_BattleTowerBattleRoomReceptionistWalksToPlayer
+	applymovement PLAYER, MovementData_BattleTowerBattleRoomPlayerTurnsToFaceReceptionist
 	loadfont
 	writetext Text_YourPkmnWillBeHealedToFullHealth
 	waitbutton
 	closetext
 	playmusic MUSIC_HEAL
-	special RotatePalettesRightPalettes
+	special FadeOutPalettes
 	special LoadMapPalettes
 	pause 60
-	special RotatePalettesLeftPalettes
+	special FadeInPalettes
 	special RestartMapMusic
 	loadfont
 	writetext Text_NextUpOpponentNo
@@ -57,43 +57,43 @@ Script_BattleRoomLoop: ; 0x9f425
 	iffalse Script_DontBattleNextOpponent
 Script_ContinueAndBattleNextOpponent: ; 0x9f477
 	closetext
-	applymovement PLAYER, MovementData_0x9e5a9
-	applymovement $3, MovementData_0x9e5a1
+	applymovement PLAYER, MovementData_BattleTowerBattleRoomPlayerTurnsToFaceNextOpponent
+	applymovement $3, MovementData_BattleTowerBattleRoomReceptionistWalksAway
 	jump Script_BattleRoomLoop
 
 Script_DontBattleNextOpponent: ; 0x9f483
 	writetext Text_SaveAndEndTheSession
 	yesorno
 	iffalse Script_DontSaveAndEndTheSession
-	writebyte BATTLE_TOWER_ACTION_07
+	writebyte BATTLETOWERACTION_SAVELEVELGROUP ; save level group
 	special BattleTowerAction
-	writebyte BATTLE_TOWER_ACTION_1F
+	writebyte BATTLETOWERACTION_CHOOSEREWARD ; choose reward
 	special BattleTowerAction
-	writebyte BATTLE_TOWER_ACTION_03
+	writebyte BATTLETOWERACTION_03 ; quicksave
 	special BattleTowerAction
 	playsound SFX_SAVE
 	waitsfx
-	special RotatePalettesRightPalettes
+	special FadeOutPalettes
 	special Reset
 Script_DontSaveAndEndTheSession: ; 0x9f4a3
 	writetext Text_CancelYourBattleRoomChallenge
 	yesorno
 	iffalse Script_ContinueAndBattleNextOpponent
-	writebyte BATTLE_TOWER_ACTION_04
+	writebyte BATTLETOWERACTION_CHALLENGECANCELED
 	special BattleTowerAction
-	writebyte BATTLE_TOWER_ACTION_06
+	writebyte BATTLETOWERACTION_06
 	special BattleTowerAction
 	closetext
-	special RotatePalettesRightPalettes
+	special FadeOutPalettes
 	warpfacing UP, BATTLE_TOWER_1F, $7, $7
 	loadfont
-	jump UnknownScript_0x9e4b0
+	jump Script_BattleTowerHopeToServeYouAgain
 
 Script_FailedBattleTowerChallenge:
 	pause 60
 	special Special_BattleTowerFade
 	warpfacing UP, BATTLE_TOWER_1F, $7, $7
-	writebyte BATTLE_TOWER_ACTION_04
+	writebyte BATTLETOWERACTION_CHALLENGECANCELED
 	special BattleTowerAction
 	loadfont
 	writetext Text_ThanksForVisiting
@@ -105,13 +105,13 @@ Script_BeatenAllTrainers: ; 0x9f4d9
 	pause 60
 	special Special_BattleTowerFade
 	warpfacing UP, BATTLE_TOWER_1F, $7, $7
-BattleTowerBattleRoomScript_0x9f4e4:
+Script_BeatenAllTrainers2:
 	loadfont
 	writetext Text_CongratulationsYouveBeatenAllTheTrainers
 	jump Script_GivePlayerHisPrize
 
-UnknownScript_0x9f4eb:
-	writebyte BATTLE_TOWER_ACTION_04
+UnreferencedScript_0x9f4eb:
+	writebyte BATTLETOWERACTION_CHALLENGECANCELED
 	special BattleTowerAction
 	loadfont
 	writetext Text_TooMuchTimeElapsedNoRegister
@@ -119,10 +119,10 @@ UnknownScript_0x9f4eb:
 	closetext
 	end
 
-UnknownScript_0x9f4f7:
-	writebyte BATTLE_TOWER_ACTION_04
+UnreferencedScript_0x9f4f7:
+	writebyte BATTLETOWERACTION_CHALLENGECANCELED
 	special BattleTowerAction
-	writebyte BATTLE_TOWER_ACTION_06
+	writebyte BATTLETOWERACTION_06
 	special BattleTowerAction
 	loadfont
 	writetext Text_ThanksForVisiting
@@ -132,7 +132,7 @@ UnknownScript_0x9f4f7:
 	end
 
 
-UnknownText_0x9f50b:
+Text_ReturnedAfterSave_Mobile:
 	text "You'll be returned"
 	line "after you SAVE."
 	done

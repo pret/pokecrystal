@@ -66,11 +66,11 @@ SpecialsPointers:: ; c029
 	add_special Special_CardFlip
 	add_special Special_DummyNonfunctionalGameCornerGame
 	add_special Special_ClearBGPalettesBufferScreen
-	add_special RotatePalettesRightPalettes
+	add_special FadeOutPalettes
 	add_special Special_BattleTowerFade
 	add_special Special_FadeBlackQuickly
-	add_special RotatePalettesLeftPalettes
-	add_special Special_RotatePalettesLeftQuickly
+	add_special FadeInPalettes
+	add_special Special_FadeInQuickly
 	add_special Special_ReloadSpritesNoPalettes
 	add_special ClearBGPalettes
 	add_special UpdateTimePals

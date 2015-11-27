@@ -52,12 +52,12 @@ SacredAshScript: ; 0x50821
 	special HealParty
 	reloadmappart
 	playsound SFX_WARP_TO
-	special RotatePalettesRightPalettes
-	special RotatePalettesLeftPalettes
-	special RotatePalettesRightPalettes
-	special RotatePalettesLeftPalettes
-	special RotatePalettesRightPalettes
-	special RotatePalettesLeftPalettes
+	special FadeOutPalettes
+	special FadeInPalettes
+	special FadeOutPalettes
+	special FadeInPalettes
+	special FadeOutPalettes
+	special FadeInPalettes
 	waitsfx
 	writetext UnknownText_0x50845
 	playsound SFX_CAUGHT_MON

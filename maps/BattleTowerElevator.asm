@@ -3,43 +3,43 @@ BattleTowerElevator_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x9f562, 0
-	dw UnknownScript_0x9f567, 0
+	dw .Trigger0, 0
+	dw .Trigger1, 0
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x9f562:
-	priorityjump UnknownScript_0x9f568
+.Trigger0:
+	priorityjump .RideElevator
 	dotrigger $1
 
-UnknownScript_0x9f567:
+.Trigger1:
 	end
 
-UnknownScript_0x9f568:
+.RideElevator:
 	follow $2, PLAYER
-	applymovement $2, MovementData_0x9f58f
-	applymovement PLAYER, MovementData_0x9f592
-	writebyte BATTLE_TOWER_ACTION_0A
+	applymovement $2, MovementData_BattleTowerElevatorReceptionistWalksIn
+	applymovement PLAYER, MovementData_BattleTowerElevatorPlayerWalksIn
+	writebyte BATTLETOWERACTION_0A
 	special BattleTowerAction
 	playsound SFX_ELEVATOR
 	earthquake 60
 	waitsfx
 	follow $2, PLAYER
-	applymovement $2, MovementData_0x9e578
+	applymovement $2, MovementData_BattleTowerElevatorExitElevator
 	stopfollow
 	warpsound
 	disappear $2
-	applymovement PLAYER, MovementData_0x9e578
+	applymovement PLAYER, MovementData_BattleTowerElevatorExitElevator
 	warpcheck
 	end
 
-MovementData_0x9f58f:
+MovementData_BattleTowerElevatorReceptionistWalksIn:
 	step_right
 	turn_head_down
 	step_end
 
-MovementData_0x9f592:
+MovementData_BattleTowerElevatorPlayerWalksIn:
 	turn_head_down
 	step_end
 
@@ -60,4 +60,4 @@ BattleTowerElevator_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_RECEPTIONIST, 2, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, MovementData_0x9f58f, -1
+	person_event SPRITE_RECEPTIONIST, 2, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, MovementData_BattleTowerElevatorReceptionistWalksIn, -1

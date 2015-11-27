@@ -1,5 +1,5 @@
 HallOfFame:: ; 0x8640e
-	call Function8648e
+	call HallOfFame_FadeOutMusic
 	ld a, [StatusFlags]
 	push af
 	ld a, 1
@@ -12,7 +12,7 @@ HallOfFame:: ; 0x8640e
 	ld hl, StatusFlags
 	set 6, [hl] ; hall of fame
 
-	callba Function14da0
+	callba HallOfFame_InitSaveIfNeeded
 
 	ld hl, wHallOfFameCount
 	ld a, [hl]
@@ -26,10 +26,10 @@ HallOfFame:: ; 0x8640e
 
 	xor a
 	ld [wc2cd], a
-	call Function864c3
+	call AnimateHallOfFame
 	pop af
 	ld b, a
-	callba Function109847
+	callba Credits
 	ret
 ; 0x86455
 
@@ -38,9 +38,9 @@ RedCredits:: ; 86455
 	ld [MusicFadeIDLo], a
 	ld a, MUSIC_NONE / $100
 	ld [MusicFadeIDHi], a
-	ld a, $a
+	ld a, 10
 	ld [MusicFade], a
-	callba RotatePalettesRightPalettes
+	callba FadeOutPalettes
 	xor a
 	ld [VramState], a
 	ld [hMapAnims], a
@@ -52,18 +52,18 @@ RedCredits:: ; 86455
 	ld [wSpawnAfterChampion], a
 	ld a, [StatusFlags]
 	ld b, a
-	callba Function109847
+	callba Credits
 	ret
 ; 8648e
 
-Function8648e: ; 8648e
+HallOfFame_FadeOutMusic: ; 8648e
 	ld a, MUSIC_NONE % $100
 	ld [MusicFadeIDLo], a
 	ld a, MUSIC_NONE / $100
 	ld [MusicFadeIDHi], a
 	ld a, 10
 	ld [MusicFade], a
-	callba RotatePalettesRightPalettes
+	callba FadeOutPalettes
 	xor a
 	ld [VramState], a
 	ld [hMapAnims], a
@@ -72,7 +72,7 @@ Function8648e: ; 8648e
 	jp DelayFrames
 ; 864b4
 
-Function864b4: ; 864b4
+HallOfFame_PlayMusicDE: ; 864b4
 	push de
 	ld de, MUSIC_NONE
 	call PlayMusic
@@ -82,29 +82,29 @@ Function864b4: ; 864b4
 	ret
 ; 864c3
 
-Function864c3: ; 864c3
+AnimateHallOfFame: ; 864c3
 	xor a
 	ld [wJumptableIndex], a
-	call Function8671c
+	call LoadHOFTeam
 	jr c, .done
-	ld de, SCREEN_WIDTH
-	call Function864b4
+	ld de, MUSIC_HALL_OF_FAME
+	call HallOfFame_PlayMusicDE
 	xor a
 	ld [wcf64], a
 .loop
 	ld a, [wcf64]
-	cp 6
+	cp PARTY_LENGTH
 	jr nc, .done
-	ld hl, wc608 + 1
-	ld bc, $10
+	ld hl, wHallOfFameTempMon1
+	ld bc, wHallOfFameTempMon1End - wHallOfFameTempMon1
 	call AddNTimes
 	ld a, [hl]
 	cp -1
 	jr z, .done
 	push hl
-	call Function865b5
+	call AnimateHOFMonEntrance
 	pop hl
-	call Function8650c
+	call .DisplayNewHallOfFamer
 	jr c, .done
 	ld hl, wcf64
 	inc [hl]
@@ -120,9 +120,9 @@ Function864c3: ; 864c3
 	ret
 ; 8650c
 
-Function8650c: ; 8650c
-	call Function86748
-	ld de, String_8652c
+.DisplayNewHallOfFamer: ; 8650c
+	call DisplayHOFMon
+	ld de, .String_NewHallOfFamer
 	hlcoord 1, 2
 	call PlaceString
 	call WaitBGMap
@@ -135,7 +135,7 @@ Function8650c: ; 8650c
 	ret
 ; 8652c
 
-String_8652c:
+.String_NewHallOfFamer:
 	db "New Hall of Famer!@"
 ; 8653f
 
@@ -227,7 +227,7 @@ GetHallOfFameParty: ; 8653f
 	ret
 ; 865b5
 
-Function865b5: ; 865b5
+AnimateHOFMonEntrance: ; 865b5
 	push hl
 	call ClearBGPalettes
 	callba Function4e906
@@ -265,7 +265,7 @@ endr
 	ld b, SCGB_1A
 	call GetSGBLayout
 	call SetPalettes
-	call Function86635
+	call HOF_SlideBackpic
 	xor a
 	ld [wc2c6], a
 	hlcoord 0, 0
@@ -278,23 +278,23 @@ endr
 	xor a
 	ld [hBGMapMode], a
 	ld [hSCY], a
-	call Function86643
+	call HOF_SlideFrontpic
 	ret
 ; 86635
 
-Function86635: ; 86635
-.loop
+HOF_SlideBackpic:
+.backpicloop
 	ld a, [hSCX]
 	cp $70
 	ret z
 	add $4
 	ld [hSCX], a
 	call DelayFrame
-	jr .loop
+	jr .backpicloop
 ; 86643
 
-Function86643: ; 86643
-.loop
+HOF_SlideFrontpic:
+.frontpicloop
 	ld a, [hSCX]
 	and a
 	ret z
@@ -303,7 +303,7 @@ rept 2
 endr
 	ld [hSCX], a
 	call DelayFrame
-	jr .loop
+	jr .frontpicloop
 ; 86650
 
 _HallOfFamePC: ; 86650
@@ -311,7 +311,7 @@ _HallOfFamePC: ; 86650
 	xor a
 	ld [wJumptableIndex], a
 .loop
-	call Function8671c
+	call LoadHOFTeam
 	ret c
 	call Function86665
 	ret c
@@ -361,8 +361,8 @@ Function86692: ; 86692
 	ld a, [wcf64]
 	cp $6
 	jr nc, .fail
-	ld hl, wc608 + 1
-	ld bc, $10
+	ld hl, wHallOfFameTempMon1
+	ld bc, wHallOfFameTempMon1End - wHallOfFameTempMon1
 	call AddNTimes
 	ld a, [hl]
 	cp $ff
@@ -376,8 +376,8 @@ Function86692: ; 86692
 	push hl
 	call ClearBGPalettes
 	pop hl
-	call Function86748
-	ld a, [wc608]
+	call DisplayHOFMon
+	ld a, [wHallOfFameTempWinCount]
 	cp 200 + 1
 	jr c, .print_num_hof
 	ld de, String_866fc
@@ -391,7 +391,7 @@ Function86692: ; 86692
 	hlcoord 1, 2
 	call PlaceString
 	hlcoord 2, 2
-	ld de, wc608
+	ld de, wHallOfFameTempWinCount
 	lb bc, 1, 3
 	call PrintNum
 	hlcoord 11, 2
@@ -423,10 +423,10 @@ String_8670c:
 ; 8671c
 
 
-Function8671c: ; 8671c
+LoadHOFTeam: ; 8671c
 	ld a, [wJumptableIndex]
 	cp NUM_HOF_TEAMS
-	jr nc, .full
+	jr nc, .invalid
 	ld hl, sHallOfFame
 	ld bc, HOF_LENGTH
 	call AddNTimes
@@ -434,23 +434,23 @@ Function8671c: ; 8671c
 	call GetSRAMBank
 	ld a, [hl]
 	and a
-	jr z, .fail
-	ld de, wc608
+	jr z, .absent
+	ld de, wHallOfFameTemp
 	ld bc, HOF_LENGTH
 	call CopyBytes
 	call CloseSRAM
 	and a
 	ret
 
-.fail
+.absent
 	call CloseSRAM
 
-.full
+.invalid
 	scf
 	ret
 ; 86748
 
-Function86748: ; 86748
+DisplayHOFMon: ; 86748
 	xor a
 	ld [hBGMapMode], a
 	ld a, [hli]
@@ -466,7 +466,7 @@ Function86748: ; 86748
 	ld a, [hli]
 	ld [TempMonLevel], a
 	ld de, StringBuffer2
-	ld bc, 10
+	ld bc, PKMN_NAME_LENGTH - 1
 	call CopyBytes
 	ld a, "@"
 	ld [StringBuffer2 + 10], a
@@ -564,7 +564,7 @@ Function86810: ; 86810
 	ld b, SCGB_1A
 	call GetSGBLayout
 	call SetPalettes
-	call Function86635
+	call HOF_SlideBackpic
 	xor a
 	ld [wc2c6], a
 	hlcoord 0, 0
@@ -583,7 +583,7 @@ Function86810: ; 86810
 	xor a
 	ld [hBGMapMode], a
 	ld [hSCY], a
-	call Function86643
+	call HOF_SlideFrontpic
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 2

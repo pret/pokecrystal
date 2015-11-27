@@ -234,3 +234,7 @@ hlbgcoord EQUS "bgcoord hl,"
 debgcoord EQUS "bgcoord de,"
 bcbgcoord EQUS "bgcoord bc,"
 bgrows EQUS "* $20"
+
+palred EQUS "$0400 *"
+palgreen EQUS "$0020 *"
+palblue EQUS "$0001 *"

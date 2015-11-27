@@ -125,7 +125,7 @@ LanceScript_0x180e7b:
 	pause 30
 	closetext
 	applymovement $3, MovementData_0x180f5b
-	special RotatePalettesRightPalettes
+	special FadeOutPalettes
 	pause 15
 	warpfacing UP, HALL_OF_FAME, $4, $d
 	end

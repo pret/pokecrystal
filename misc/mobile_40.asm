@@ -313,7 +313,7 @@ Function10016f: ; 10016f
 Function10020b: ; 10020b
 	xor a
 	ld [wc303], a
-	callba RotatePalettesRightPalettes
+	callba FadeOutPalettes
 	callba Function106464
 	call HideSprites
 	call DelayFrame
