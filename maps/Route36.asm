@@ -115,7 +115,7 @@ LassScript_0x19408c:
 	closetext
 	clearevent EVENT_FLORIA_AT_FLOWER_SHOP
 	checkcode VAR_FACING
-	if_equal $1, UnknownScript_0x1940ac
+	if_equal UP, UnknownScript_0x1940ac
 	applymovement ROUTE36_LASS2, MovementData_0x19424e
 	disappear ROUTE36_LASS2
 	end

@@ -23,7 +23,7 @@ ElmsLab_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, ElmsLab_PutElmAtLaptop
+	dbw 2, .Callback_MoveElm
 
 .Trigger0:
 	priorityjump ElmsLab_AutowalkUpToElm
@@ -44,7 +44,7 @@ ElmsLab_MapScriptHeader:
 .Trigger5:
 	end
 
-ElmsLab_PutElmAtLaptop:
+.Callback_MoveElm:
 	checktriggers
 	iftrue .Skip
 	moveperson ELMSLAB_ELM, $3, $4
@@ -188,7 +188,7 @@ CyndaquilPokeBallScript:
 	givepoke CYNDAQUIL, 5, BERRY
 	closetext
 	checkcode VAR_FACING
-	if_equal $3, ElmDirectionsScript
+	if_equal RIGHT, ElmDirectionsScript
 	applymovement PLAYER, AfterCyndaquilMovement
 	jump ElmDirectionsScript
 

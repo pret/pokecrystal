@@ -136,7 +136,7 @@ MoveTutor:
 	waitbutton
 	closetext
 	checkcode VAR_FACING
-	if_equal $2, .WalkAroundPlayer
+	if_equal LEFT, .WalkAroundPlayer
 	applymovement GOLDENRODCITY_POKEFAN_M2, MovementData_0x198a5f
 	jump .GoInside
 

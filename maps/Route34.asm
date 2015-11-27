@@ -65,7 +65,7 @@ GrampsScript_0x7803d:
 	if_equal $1, UnknownScript_0x7805a
 	clearflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
 	checkcode VAR_FACING
-	if_equal $3, UnknownScript_0x7805b
+	if_equal RIGHT, UnknownScript_0x7805b
 	applymovement ROUTE34_GRAMPS, MovementData_0x78333
 	playsound SFX_ENTER_DOOR
 	disappear ROUTE34_GRAMPS

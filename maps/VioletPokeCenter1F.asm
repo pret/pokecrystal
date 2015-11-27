@@ -37,7 +37,7 @@ UnknownScript_0x694d7:
 	waitbutton
 	closetext
 	checkcode VAR_FACING
-	if_equal $1, .UnknownScript_0x69511
+	if_equal UP, .UnknownScript_0x69511
 	spriteface PLAYER, DOWN
 	applymovement VIOLETPOKECENTER1F_SCIENTIST, MovementData_0x69549
 	playsound SFX_EXIT_BUILDING

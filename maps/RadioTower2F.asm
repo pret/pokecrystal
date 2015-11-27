@@ -124,7 +124,7 @@ Buena:
 	closetext
 	spriteface RADIOTOWER2F_BUENA, RIGHT
 	checkcode VAR_FACING
-	if_not_equal $3, UnknownScript_0x5d7be
+	if_not_equal RIGHT, UnknownScript_0x5d7be
 	applymovement PLAYER, MovementData_0x5d921
 UnknownScript_0x5d7be:
 	spriteface PLAYER, RIGHT

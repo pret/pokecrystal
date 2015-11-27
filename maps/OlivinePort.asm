@@ -170,7 +170,7 @@ UnknownScript_0x749c0:
 	closetext
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	checkcode VAR_FACING
-	if_equal $3, UnknownScript_0x749e5
+	if_equal RIGHT, UnknownScript_0x749e5
 	applymovement PLAYER, MovementData_0x74a3f
 	jump SailorScript_0x748c0
 
