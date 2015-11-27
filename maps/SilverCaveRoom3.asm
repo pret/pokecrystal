@@ -26,7 +26,7 @@ RedScript_0x18c603:
 	special Special_ReloadSpritesNoPalettes
 	disappear $2
 	pause 15
-	special Special_RotatePalettesLeftQuickly
+	special Special_FadeInQuickly
 	pause 30
 	special HealParty
 	refreshscreen $0

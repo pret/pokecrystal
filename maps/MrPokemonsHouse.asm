@@ -114,7 +114,7 @@ UnknownScript_0x196ec9:
 	special Mobile_HealParty
 	special HealParty
 	pause 60
-	special Special_RotatePalettesLeftQuickly
+	special Special_FadeInQuickly
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x197134

@@ -51,7 +51,7 @@ UnknownScript_0x184947:
 	special Special_ReloadSpritesNoPalettes
 	disappear $8
 	waitbutton
-	special Special_RotatePalettesLeftQuickly
+	special Special_FadeInQuickly
 	dotrigger $1
 	special RestartMapMusic
 	end

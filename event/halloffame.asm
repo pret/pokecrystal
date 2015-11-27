@@ -40,7 +40,7 @@ RedCredits:: ; 86455
 	ld [MusicFadeIDHi], a
 	ld a, $a
 	ld [MusicFade], a
-	callba RotatePalettesRightPalettes
+	callba FadeOutPalettes
 	xor a
 	ld [VramState], a
 	ld [hMapAnims], a
@@ -63,7 +63,7 @@ Function8648e: ; 8648e
 	ld [MusicFadeIDHi], a
 	ld a, 10
 	ld [MusicFade], a
-	callba RotatePalettesRightPalettes
+	callba FadeOutPalettes
 	xor a
 	ld [VramState], a
 	ld [hMapAnims], a

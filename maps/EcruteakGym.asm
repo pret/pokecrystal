@@ -84,7 +84,7 @@ UnknownScript_0x99dc6:
 	follow PLAYER, $8
 	applymovement PLAYER, MovementData_0x99e5f
 	stopfollow
-	special RotatePalettesRightPalettes
+	special FadeOutPalettes
 	playsound SFX_ENTER_DOOR
 	waitbutton
 	warp ECRUTEAK_CITY, $6, $1b

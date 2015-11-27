@@ -31,7 +31,7 @@ Script_BattleRoomLoop: ; 0x9f425
 	keeptextopen
 	loadmovesprites
 	special BattleTowerBattle ; calls predef startbattle
-	special RotatePalettesRightPalettes
+	special FadeOutPalettes
 	reloadmap
 	if_not_equal $0, Script_FailedBattleTowerChallenge
 	copybytetovar wNrOfBeatenBattleTowerTrainers ; wcf64
@@ -46,10 +46,10 @@ Script_BattleRoomLoop: ; 0x9f425
 	closetext
 	loadmovesprites
 	playmusic MUSIC_HEAL
-	special RotatePalettesRightPalettes
+	special FadeOutPalettes
 	special LoadMapPalettes
 	pause 60
-	special RotatePalettesLeftPalettes
+	special FadeInPalettes
 	special RestartMapMusic
 	loadfont
 	writetext Text_NextUpOpponentNo
@@ -73,7 +73,7 @@ Script_DontBattleNextOpponent: ; 0x9f483
 	special BattleTowerAction
 	playsound SFX_SAVE
 	waitbutton
-	special RotatePalettesRightPalettes
+	special FadeOutPalettes
 	special Reset
 Script_DontSaveAndEndTheSession: ; 0x9f4a3
 	writetext Text_CancelYourBattleRoomChallenge
@@ -84,7 +84,7 @@ Script_DontSaveAndEndTheSession: ; 0x9f4a3
 	writebyte BATTLE_TOWER_ACTION_06
 	special BattleTowerAction
 	loadmovesprites
-	special RotatePalettesRightPalettes
+	special FadeOutPalettes
 	warpfacing UP, BATTLE_TOWER_1F, $7, $7
 	loadfont
 	jump UnknownScript_0x9e4b0

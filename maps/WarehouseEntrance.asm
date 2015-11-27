@@ -226,10 +226,10 @@ OlderHaircutBrotherScript:
 	writetext UnknownText_0x7c6b8
 	closetext
 	loadmovesprites
-	special RotatePalettesRightPalettes
+	special FadeOutPalettes
 	playmusic MUSIC_HEAL
 	pause 60
-	special RotatePalettesLeftPalettes
+	special FadeInPalettes
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x7c6d8
@@ -309,10 +309,10 @@ YoungerHaircutBrotherScript:
 	writetext UnknownText_0x7c80e
 	closetext
 	loadmovesprites
-	special RotatePalettesRightPalettes
+	special FadeOutPalettes
 	playmusic MUSIC_HEAL
 	pause 60
-	special RotatePalettesLeftPalettes
+	special FadeInPalettes
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x7c82a
