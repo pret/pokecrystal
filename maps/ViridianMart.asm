@@ -1,3 +1,8 @@
+const_value set 2
+	const VIRIDIANMART_CLERK
+	const VIRIDIANMART_LASS
+	const VIRIDIANMART_COOLTRAINER_M
+
 ViridianMart_MapScriptHeader:
 .MapTriggers:
 	db 0

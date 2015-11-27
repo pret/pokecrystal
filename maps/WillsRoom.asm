@@ -1,3 +1,6 @@
+const_value set 2
+	const WILLSROOM_WILL
+
 WillsRoom_MapScriptHeader:
 .MapTriggers:
 	db 2

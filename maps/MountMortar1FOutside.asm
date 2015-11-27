@@ -1,3 +1,7 @@
+const_value set 2
+	const MOUNTMORTAR1FOUTSIDE_POKE_BALL1
+	const MOUNTMORTAR1FOUTSIDE_POKE_BALL2
+
 MountMortar1FOutside_MapScriptHeader:
 .MapTriggers:
 	db 0

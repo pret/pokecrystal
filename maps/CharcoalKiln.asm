@@ -1,3 +1,8 @@
+const_value set 2
+	const CHARCOALKILN_BLACK_BELT
+	const CHARCOALKILN_YOUNGSTER
+	const CHARCOALKILN_MOLTRES
+
 CharcoalKiln_MapScriptHeader:
 .MapTriggers:
 	db 0

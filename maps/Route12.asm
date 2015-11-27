@@ -1,3 +1,11 @@
+const_value set 2
+	const ROUTE12_FISHER1
+	const ROUTE12_FISHER2
+	const ROUTE12_FISHER3
+	const ROUTE12_FISHER4
+	const ROUTE12_POKE_BALL1
+	const ROUTE12_POKE_BALL2
+
 Route12_MapScriptHeader:
 .MapTriggers:
 	db 0

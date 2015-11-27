@@ -1,3 +1,7 @@
+const_value set 2
+	const CELADONGAMECORNERPRIZEROOM_GENTLEMAN
+	const CELADONGAMECORNERPRIZEROOM_PHARMACIST
+
 CeladonGameCornerPrizeRoom_MapScriptHeader:
 .MapTriggers:
 	db 0

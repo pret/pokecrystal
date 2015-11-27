@@ -1,3 +1,7 @@
+const_value set 2
+	const ECRUTEAKITEMFINDERHOUSE_COOLTRAINER_M
+	const ECRUTEAKITEMFINDERHOUSE_POKEDEX
+
 EcruteakItemfinderHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

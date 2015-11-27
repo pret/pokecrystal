@@ -1,3 +1,7 @@
+const_value set 2
+	const COLOSSEUM_CHRIS1
+	const COLOSSEUM_CHRIS2
+
 Colosseum_MapScriptHeader:
 .MapTriggers:
 	db 3
@@ -29,13 +33,13 @@ Colosseum_MapScriptHeader:
 ColosseumScript_SetWhichChris:
 	special Special_CableClubCheckWhichChris
 	iffalse .Chris2
-	disappear $3
-	appear $2
+	disappear COLOSSEUM_CHRIS2
+	appear COLOSSEUM_CHRIS1
 	return
 
 .Chris2:
-	disappear $2
-	appear $3
+	disappear COLOSSEUM_CHRIS1
+	appear COLOSSEUM_CHRIS2
 	return
 
 ColosseumScript_InitializeCB:

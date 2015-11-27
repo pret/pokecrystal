@@ -1,3 +1,11 @@
+const_value set 2
+	const WISETRIOSROOM_SAGE1
+	const WISETRIOSROOM_SAGE2
+	const WISETRIOSROOM_SAGE3
+	const WISETRIOSROOM_SAGE4
+	const WISETRIOSROOM_SAGE5
+	const WISETRIOSROOM_SAGE6
+
 WiseTriosRoom_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -50,10 +58,10 @@ SageScript_0x985a0:
 	jumptextfaceplayer UnknownText_0x987af
 
 UnknownScript_0x985a3:
-	spriteface $4, UP
+	spriteface WISETRIOSROOM_SAGE3, UP
 	spriteface PLAYER, DOWN
-	showemote EMOTE_SHOCK, $4, 20
-	follow PLAYER, $4
+	showemote EMOTE_SHOCK, WISETRIOSROOM_SAGE3, 20
+	follow PLAYER, WISETRIOSROOM_SAGE3
 	applymovement PLAYER, MovementData_0x98622
 	stopfollow
 	spriteface PLAYER, RIGHT
@@ -61,8 +69,8 @@ UnknownScript_0x985a3:
 	writetext UnknownText_0x98712
 	waitbutton
 	closetext
-	applymovement $4, MovementData_0x98625
-	spriteface $4, LEFT
+	applymovement WISETRIOSROOM_SAGE3, MovementData_0x98625
+	spriteface WISETRIOSROOM_SAGE3, LEFT
 	end
 
 TrainerSageGaku:
@@ -92,15 +100,15 @@ SageKojiScript:
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	iftrue UnknownScript_0x9861b
 	pause 10
-	showemote EMOTE_SHOCK, $7, 20
+	showemote EMOTE_SHOCK, WISETRIOSROOM_SAGE6, 20
 	loadfont
 	writetext UnknownText_0x98c6c
 	keeptextopen
 	writetext UnknownText_0x98cac
 	waitbutton
 	closetext
-	applymovement $7, MovementData_0x98628
-	spriteface $7, UP
+	applymovement WISETRIOSROOM_SAGE6, MovementData_0x98628
+	spriteface WISETRIOSROOM_SAGE6, UP
 	setevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	dotrigger $1
 	end

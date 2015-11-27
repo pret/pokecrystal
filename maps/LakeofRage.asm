@@ -1,3 +1,17 @@
+const_value set 2
+	const LAKEOFRAGE_LANCE
+	const LAKEOFRAGE_GRAMPS
+	const LAKEOFRAGE_SUPER_NERD1
+	const LAKEOFRAGE_COOLTRAINER_F1
+	const LAKEOFRAGE_FISHER1
+	const LAKEOFRAGE_FISHER2
+	const LAKEOFRAGE_COOLTRAINER_M
+	const LAKEOFRAGE_COOLTRAINER_F2
+	const LAKEOFRAGE_GYARADOS
+	const LAKEOFRAGE_SUPER_NERD2
+	const LAKEOFRAGE_POKE_BALL1
+	const LAKEOFRAGE_POKE_BALL2
+
 LakeofRage_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -27,11 +41,11 @@ LakeofRage_MapScriptHeader:
 .Wesley
 	checkcode VAR_WEEKDAY
 	if_equal WEDNESDAY, .WesleyAppears
-	disappear $b
+	disappear LAKEOFRAGE_SUPER_NERD2
 	return
 
 .WesleyAppears
-	appear $b
+	appear LAKEOFRAGE_SUPER_NERD2
 	return
 
 LanceScript_0x70022:
@@ -49,8 +63,8 @@ UnknownScript_0x70035:
 	waitbutton
 	closetext
 	playsound SFX_WARP_TO
-	applymovement $2, MovementData_0x70155
-	disappear $2
+	applymovement LAKEOFRAGE_LANCE, MovementData_0x70155
+	disappear LAKEOFRAGE_LANCE
 	clearevent EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
 	setevent EVENT_DECIDED_TO_HELP_LANCE
 	domaptrigger MAHOGANY_MART_1F, $1
@@ -81,7 +95,7 @@ GyaradosScript_0x70063:
 	writecode VAR_BATTLETYPE, BATTLETYPE_SHINY
 	startbattle
 	if_equal $1, UnknownScript_0x7007a
-	disappear $a
+	disappear LAKEOFRAGE_GYARADOS
 UnknownScript_0x7007a:
 	returnafterbattle
 	loadfont
@@ -93,7 +107,7 @@ UnknownScript_0x7007a:
 	itemnotify
 	closetext
 	dotrigger $0
-	appear $2
+	appear LAKEOFRAGE_LANCE
 	end
 
 GrampsScript_0x7008e:

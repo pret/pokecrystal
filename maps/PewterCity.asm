@@ -1,3 +1,10 @@
+const_value set 2
+	const PEWTERCITY_COOLTRAINER_F
+	const PEWTERCITY_BUG_CATCHER
+	const PEWTERCITY_GRAMPS
+	const PEWTERCITY_FRUIT_TREE1
+	const PEWTERCITY_FRUIT_TREE2
+
 PewterCity_MapScriptHeader:
 .MapTriggers:
 	db 0

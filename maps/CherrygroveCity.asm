@@ -1,3 +1,10 @@
+const_value set 2
+	const CHERRYGROVECITY_GRAMPS
+	const CHERRYGROVECITY_SILVER
+	const CHERRYGROVECITY_TEACHER
+	const CHERRYGROVECITY_YOUNGSTER
+	const CHERRYGROVECITY_FISHER
+
 CherrygroveCity_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -34,34 +41,34 @@ CherrygroveCityGuideGent:
 	waitbutton
 	closetext
 	playmusic MUSIC_SHOW_ME_AROUND
-	follow $2, PLAYER
-	applymovement $2, MovementData_0x19c195
+	follow CHERRYGROVECITY_GRAMPS, PLAYER
+	applymovement CHERRYGROVECITY_GRAMPS, MovementData_0x19c195
 	loadfont
 	writetext GuideGentPokeCenterText
 	waitbutton
 	closetext
-	applymovement $2, MovementData_0x19c19b
+	applymovement CHERRYGROVECITY_GRAMPS, MovementData_0x19c19b
 	spriteface PLAYER, UP
 	loadfont
 	writetext GuideGentMartText
 	waitbutton
 	closetext
-	applymovement $2, MovementData_0x19c1a3
+	applymovement CHERRYGROVECITY_GRAMPS, MovementData_0x19c1a3
 	spriteface PLAYER, UP
 	loadfont
 	writetext GuideGentRoute30Text
 	waitbutton
 	closetext
-	applymovement $2, MovementData_0x19c1ac
+	applymovement CHERRYGROVECITY_GRAMPS, MovementData_0x19c1ac
 	spriteface PLAYER, LEFT
 	loadfont
 	writetext GuideGentSeaText
 	waitbutton
 	closetext
-	applymovement $2, MovementData_0x19c1b6
+	applymovement CHERRYGROVECITY_GRAMPS, MovementData_0x19c1b6
 	spriteface PLAYER, UP
 	pause 60
-	spriteface $2, LEFT
+	spriteface CHERRYGROVECITY_GRAMPS, LEFT
 	spriteface PLAYER, RIGHT
 	loadfont
 	writetext GuideGentGiftText
@@ -77,9 +84,9 @@ CherrygroveCityGuideGent:
 	stopfollow
 	special RestartMapMusic
 	spriteface PLAYER, UP
-	applymovement $2, MovementData_0x19c1cb
+	applymovement CHERRYGROVECITY_GRAMPS, MovementData_0x19c1cb
 	playsound SFX_ENTER_DOOR
-	disappear $2
+	disappear CHERRYGROVECITY_GRAMPS
 	clearevent EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
 	waitsfx
 	end
@@ -98,15 +105,15 @@ CherrygroveCityGuideGent:
 	end
 
 UnknownScript_0x19c0aa:
-	moveperson $3, $27, $7
+	moveperson CHERRYGROVECITY_SILVER, $27, $7
 
 UnknownScript_0x19c0ae:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_RotatePalettesRightMusic
 	pause 15
-	appear $3
-	applymovement $3, MovementData_0x19c1ce
+	appear CHERRYGROVECITY_SILVER
+	applymovement CHERRYGROVECITY_SILVER, MovementData_0x19c1ce
 	spriteface PLAYER, RIGHT
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
@@ -167,8 +174,8 @@ UnknownScript_0x19c12f:
 	playsound SFX_TACKLE
 	applymovement PLAYER, MovementData_0x19c1d4
 	spriteface PLAYER, LEFT
-	applymovement $3, MovementData_0x19c1da
-	disappear $3
+	applymovement CHERRYGROVECITY_SILVER, MovementData_0x19c1da
+	disappear CHERRYGROVECITY_SILVER
 	dotrigger $0
 	special HealParty
 	playmapmusic

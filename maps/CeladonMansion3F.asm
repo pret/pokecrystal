@@ -1,3 +1,9 @@
+const_value set 2
+	const CELADONMANSION3F_COOLTRAINER_M
+	const CELADONMANSION3F_GYM_GUY
+	const CELADONMANSION3F_SUPER_NERD
+	const CELADONMANSION3F_FISHER
+
 CeladonMansion3F_MapScriptHeader:
 .MapTriggers:
 	db 0

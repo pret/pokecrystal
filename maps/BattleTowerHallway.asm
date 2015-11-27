@@ -1,3 +1,6 @@
+const_value set 2
+	const BATTLETOWERHALLWAY_RECEPTIONIST
+
 BattleTowerHallway_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -16,7 +19,7 @@ BattleTowerHallway_MapScriptHeader:
 	end
 
 .ChooseBattleRoom:
-	follow $2, PLAYER
+	follow BATTLETOWERHALLWAY_RECEPTIONIST, PLAYER
 	callasm .asm_load_battle_room
 	jump .WalkToChosenBattleRoom
 
@@ -47,27 +50,27 @@ BattleTowerHallway_MapScriptHeader:
 	if_equal 8, .L70L80
 	if_equal 9, .L90L100
 	if_equal 10, .L90L100
-	applymovement $2, MovementData_BattleTowerHallwayWalkTo1020Room
+	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo1020Room
 	jump .EnterBattleRoom
 
 .L30L40: ; 0x9f603
-	applymovement $2, MovementData_BattleTowerHallwayWalkTo3040Room
+	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo3040Room
 	jump .EnterBattleRoom
 
 .L50L60: ; 0x9f60a
-	applymovement $2, MovementData_BattleTowerHallwayWalkTo5060Room
+	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo5060Room
 	jump .EnterBattleRoom
 
 .L70L80: ; 0x9f611
-	applymovement $2, MovementData_BattleTowerHallwayWalkTo7080Room
+	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo7080Room
 	jump .EnterBattleRoom
 
 .L90L100: ; 0x9f618
-	applymovement $2, MovementData_BattleTowerHallwayWalkTo90100Room
+	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo90100Room
 	jump .EnterBattleRoom
 
 .EnterBattleRoom: ; 0x9f61f
-	faceperson PLAYER, $2
+	faceperson PLAYER, BATTLETOWERHALLWAY_RECEPTIONIST
 	loadfont
 	writetext Text_PleaseStepThisWay
 	waitbutton

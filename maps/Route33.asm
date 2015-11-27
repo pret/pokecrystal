@@ -1,3 +1,8 @@
+const_value set 2
+	const ROUTE33_POKEFAN_M
+	const ROUTE33_LASS
+	const ROUTE33_FRUIT_TREE
+
 Route33_MapScriptHeader:
 .MapTriggers:
 	db 0

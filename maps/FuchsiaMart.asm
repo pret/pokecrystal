@@ -1,3 +1,8 @@
+const_value set 2
+	const FUCHSIAMART_CLERK
+	const FUCHSIAMART_FISHER
+	const FUCHSIAMART_COOLTRAINER_F
+
 FuchsiaMart_MapScriptHeader:
 .MapTriggers:
 	db 0

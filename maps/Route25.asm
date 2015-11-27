@@ -1,3 +1,16 @@
+const_value set 2
+	const ROUTE25_MISTY
+	const ROUTE25_COOLTRAINER_M1
+	const ROUTE25_YOUNGSTER1
+	const ROUTE25_LASS1
+	const ROUTE25_YOUNGSTER2
+	const ROUTE25_LASS2
+	const ROUTE25_YOUNGSTER3
+	const ROUTE25_LASS3
+	const ROUTE25_SUPER_NERD
+	const ROUTE25_COOLTRAINER_M2
+	const ROUTE25_POKE_BALL
+
 Route25_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -16,52 +29,52 @@ UnknownScript_0x19ee9f:
 	end
 
 UnknownScript_0x19eea0:
-	showemote EMOTE_HEART, $2, 15
+	showemote EMOTE_HEART, ROUTE25_MISTY, 15
 	pause 30
-	showemote EMOTE_SHOCK, $3, 10
-	spriteface $2, DOWN
-	applymovement $3, MovementData_0x19efe8
-	disappear $3
+	showemote EMOTE_SHOCK, ROUTE25_COOLTRAINER_M1, 10
+	spriteface ROUTE25_MISTY, DOWN
+	applymovement ROUTE25_COOLTRAINER_M1, MovementData_0x19efe8
+	disappear ROUTE25_COOLTRAINER_M1
 	pause 15
 	playmusic MUSIC_BEAUTY_ENCOUNTER
-	spriteface $2, UP
+	spriteface ROUTE25_MISTY, UP
 	pause 10
-	applymovement $2, MovementData_0x19efed
+	applymovement ROUTE25_MISTY, MovementData_0x19efed
 	loadfont
 	writetext UnknownText_0x19f006
 	waitbutton
 	closetext
 	spriteface PLAYER, DOWN
-	applymovement $2, MovementData_0x19effa
+	applymovement ROUTE25_MISTY, MovementData_0x19effa
 	spriteface PLAYER, LEFT
-	applymovement $2, MovementData_0x19f000
-	disappear $2
+	applymovement ROUTE25_MISTY, MovementData_0x19f000
+	disappear ROUTE25_MISTY
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
 	dotrigger $0
 	special RestartMapMusic
 	end
 
 UnknownScript_0x19eee0:
-	showemote EMOTE_HEART, $2, 15
+	showemote EMOTE_HEART, ROUTE25_MISTY, 15
 	pause 30
-	showemote EMOTE_SHOCK, $3, 10
-	spriteface $2, DOWN
-	applymovement $3, MovementData_0x19efea
-	disappear $3
+	showemote EMOTE_SHOCK, ROUTE25_COOLTRAINER_M1, 10
+	spriteface ROUTE25_MISTY, DOWN
+	applymovement ROUTE25_COOLTRAINER_M1, MovementData_0x19efea
+	disappear ROUTE25_COOLTRAINER_M1
 	pause 15
 	playmusic MUSIC_BEAUTY_ENCOUNTER
-	spriteface $2, UP
+	spriteface ROUTE25_MISTY, UP
 	pause 10
-	applymovement $2, MovementData_0x19eff4
+	applymovement ROUTE25_MISTY, MovementData_0x19eff4
 	loadfont
 	writetext UnknownText_0x19f006
 	waitbutton
 	closetext
 	spriteface PLAYER, UP
-	applymovement $2, MovementData_0x19effd
+	applymovement ROUTE25_MISTY, MovementData_0x19effd
 	spriteface PLAYER, LEFT
-	applymovement $2, MovementData_0x19f000
-	disappear $2
+	applymovement ROUTE25_MISTY, MovementData_0x19f000
+	disappear ROUTE25_MISTY
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
 	dotrigger $0
 	special RestartMapMusic

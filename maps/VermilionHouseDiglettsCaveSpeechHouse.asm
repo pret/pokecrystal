@@ -1,3 +1,6 @@
+const_value set 2
+	const VERMILIONHOUSEDIGLETTSCAVESPEECHHOUSE_GENTLEMAN
+
 VermilionHouseDiglettsCaveSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

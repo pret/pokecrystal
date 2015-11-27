@@ -1,3 +1,18 @@
+const_value set 2
+	const ROUTE34_YOUNGSTER1
+	const ROUTE34_YOUNGSTER2
+	const ROUTE34_YOUNGSTER3
+	const ROUTE34_LASS
+	const ROUTE34_OFFICER
+	const ROUTE34_POKEFAN_M
+	const ROUTE34_GRAMPS
+	const ROUTE34_DAYCARE_MON_1
+	const ROUTE34_DAYCARE_MON_2
+	const ROUTE34_COOLTRAINER_F1
+	const ROUTE34_COOLTRAINER_F2
+	const ROUTE34_COOLTRAINER_F3
+	const ROUTE34_POKE_BALL
+
 Route34_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -51,16 +66,16 @@ GrampsScript_0x7803d:
 	clearflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
 	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x7805b
-	applymovement $8, MovementData_0x78333
+	applymovement ROUTE34_GRAMPS, MovementData_0x78333
 	playsound SFX_ENTER_DOOR
-	disappear $8
+	disappear ROUTE34_GRAMPS
 UnknownScript_0x7805a:
 	end
 
 UnknownScript_0x7805b:
-	applymovement $8, MovementData_0x78337
+	applymovement ROUTE34_GRAMPS, MovementData_0x78337
 	playsound SFX_ENTER_DOOR
-	disappear $8
+	disappear ROUTE34_GRAMPS
 	end
 
 DaycareMon1Script_0x78065:

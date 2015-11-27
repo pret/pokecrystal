@@ -1,3 +1,8 @@
+const_value set 2
+	const GOLDENRODDEPTSTORE3F_CLERK
+	const GOLDENRODDEPTSTORE3F_SUPER_NERD
+	const GOLDENRODDEPTSTORE3F_ROCKER
+
 GoldenrodDeptStore3F_MapScriptHeader:
 .MapTriggers:
 	db 0

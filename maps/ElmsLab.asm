@@ -1,14 +1,22 @@
+const_value set 2
+	const ELMSLAB_ELM
+	const ELMSLAB_SCIENTIST
+	const ELMSLAB_POKE_BALL1
+	const ELMSLAB_POKE_BALL2
+	const ELMSLAB_POKE_BALL3
+	const ELMSLAB_OFFICER
+
 ElmsLab_MapScriptHeader:
 .MapTriggers:
 	db 6
 
 	; triggers
-	dw UnknownScript_0x78b7a, 0
-	dw UnknownScript_0x78b7e, 0
-	dw UnknownScript_0x78b7f, 0
-	dw UnknownScript_0x78b80, 0
-	dw UnknownScript_0x78b81, 0
-	dw UnknownScript_0x78b82, 0
+	dw .Trigger0, 0
+	dw .Trigger1, 0
+	dw .Trigger2, 0
+	dw .Trigger3, 0
+	dw .Trigger4, 0
+	dw .Trigger5, 0
 
 .MapCallbacks:
 	db 1
@@ -17,36 +25,36 @@ ElmsLab_MapScriptHeader:
 
 	dbw 2, ElmsLab_PutElmAtLaptop
 
-UnknownScript_0x78b7a:
+.Trigger0:
 	priorityjump ElmsLab_AutowalkUpToElm
 	end
 
-UnknownScript_0x78b7e:
+.Trigger1:
 	end
 
-UnknownScript_0x78b7f:
+.Trigger2:
 	end
 
-UnknownScript_0x78b80:
+.Trigger3:
 	end
 
-UnknownScript_0x78b81:
+.Trigger4:
 	end
 
-UnknownScript_0x78b82:
+.Trigger5:
 	end
 
 ElmsLab_PutElmAtLaptop:
 	checktriggers
 	iftrue .Skip
-	moveperson $2, $3, $4
+	moveperson ELMSLAB_ELM, $3, $4
 .Skip:
 	return
 
 ElmsLab_AutowalkUpToElm:
 	applymovement PLAYER, ElmsLab_WalkUpToElmMovement
-	showemote EMOTE_SHOCK, $2, 15
-	spriteface $2, RIGHT
+	showemote EMOTE_SHOCK, ELMSLAB_ELM, 15
+	spriteface ELMSLAB_ELM, RIGHT
 	loadfont
 	writetext ElmText_Intro
 ElmsLab_RefuseLoop:
@@ -63,20 +71,20 @@ ElmsLab_ElmGetsEmail:
 	closetext
 	playsound SFX_GLASS_TING
 	pause 30
-	showemote EMOTE_SHOCK, $2, 10
-	spriteface $2, DOWN
+	showemote EMOTE_SHOCK, ELMSLAB_ELM, 10
+	spriteface ELMSLAB_ELM, DOWN
 	loadfont
 	writetext ElmText_GotAnEmail
 	waitbutton
 	closetext
 	loadfont
-	spriteface $2, RIGHT
+	spriteface ELMSLAB_ELM, RIGHT
 	writetext ElmText_MissionFromMrPokemon
 	waitbutton
 	closetext
-	applymovement $2, ElmsLab_ElmToDefaultPositionMovement1
+	applymovement ELMSLAB_ELM, ElmsLab_ElmToDefaultPositionMovement1
 	spriteface PLAYER, UP
-	applymovement $2, ElmsLab_ElmToDefaultPositionMovement2
+	applymovement ELMSLAB_ELM, ElmsLab_ElmToDefaultPositionMovement2
 	spriteface PLAYER, RIGHT
 	loadfont
 	writetext ElmText_ChooseAPokemon
@@ -146,7 +154,7 @@ ElmCheckGotEggAgain:
 	end
 
 LabTryToLeaveScript:
-	spriteface $2, DOWN
+	spriteface ELMSLAB_ELM, DOWN
 	loadfont
 	writetext LabWhereGoingText
 	waitbutton
@@ -157,7 +165,7 @@ LabTryToLeaveScript:
 CyndaquilPokeBallScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
-	spriteface $2, DOWN
+	spriteface ELMSLAB_ELM, DOWN
 	refreshscreen $0
 	pokepic CYNDAQUIL
 	cry CYNDAQUIL
@@ -167,7 +175,7 @@ CyndaquilPokeBallScript:
 	writetext TakeCyndaquilText
 	yesorno
 	iffalse DidntChooseStarterScript
-	disappear $4
+	disappear ELMSLAB_POKE_BALL1
 	setevent EVENT_GOT_CYNDAQUIL_FROM_ELM
 	writetext ChoseStarterText
 	keeptextopen
@@ -187,7 +195,7 @@ CyndaquilPokeBallScript:
 TotodilePokeBallScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
-	spriteface $2, DOWN
+	spriteface ELMSLAB_ELM, DOWN
 	refreshscreen $0
 	pokepic TOTODILE
 	cry TOTODILE
@@ -197,7 +205,7 @@ TotodilePokeBallScript:
 	writetext TakeTotodileText
 	yesorno
 	iffalse DidntChooseStarterScript
-	disappear $5
+	disappear ELMSLAB_POKE_BALL2
 	setevent EVENT_GOT_TOTODILE_FROM_ELM
 	writetext ChoseStarterText
 	keeptextopen
@@ -215,7 +223,7 @@ TotodilePokeBallScript:
 ChikoritaPokeBallScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
-	spriteface $2, DOWN
+	spriteface ELMSLAB_ELM, DOWN
 	refreshscreen $0
 	pokepic CHIKORITA
 	cry CHIKORITA
@@ -225,7 +233,7 @@ ChikoritaPokeBallScript:
 	writetext TakeChikoritaText
 	yesorno
 	iffalse DidntChooseStarterScript
-	disappear $6
+	disappear ELMSLAB_POKE_BALL3
 	setevent EVENT_GOT_CHIKORITA_FROM_ELM
 	writetext ChoseStarterText
 	keeptextopen
@@ -259,12 +267,12 @@ ElmDirectionsScript:
 	waitsfx
 	waitbutton
 	closetext
-	spriteface $2, LEFT
+	spriteface ELMSLAB_ELM, LEFT
 	loadfont
 	writetext ElmDirectionsText2
 	waitbutton
 	closetext
-	spriteface $2, DOWN
+	spriteface ELMSLAB_ELM, DOWN
 	loadfont
 	writetext ElmDirectionsText3
 	waitbutton
@@ -369,7 +377,7 @@ ShowElmTogepiScript:
 	writetext ShowElmTogepiText1
 	waitbutton
 	closetext
-	showemote EMOTE_SHOCK, $2, 15
+	showemote EMOTE_SHOCK, ELMSLAB_ELM, 15
 	setevent EVENT_SHOWED_TOGEPI_TO_ELM
 	loadfont
 	writetext ShowElmTogepiText2
@@ -435,37 +443,37 @@ ElmJumpBackScript2:
 	end
 
 ElmJumpUpScript:
-	applymovement $2, ElmJumpUpMovement
+	applymovement ELMSLAB_ELM, ElmJumpUpMovement
 	loadfont
 	end
 
 ElmJumpDownScript:
-	applymovement $2, ElmJumpDownMovement
+	applymovement ELMSLAB_ELM, ElmJumpDownMovement
 	loadfont
 	end
 
 ElmJumpLeftScript:
-	applymovement $2, ElmJumpLeftMovement
+	applymovement ELMSLAB_ELM, ElmJumpLeftMovement
 	loadfont
 	end
 
 ElmJumpRightScript:
-	applymovement $2, ElmJumpRightMovement
+	applymovement ELMSLAB_ELM, ElmJumpRightMovement
 	loadfont
 	end
 
 AideScript_WalkPotions1:
-	applymovement $3, AideWalksRight1
+	applymovement ELMSLAB_SCIENTIST, AideWalksRight1
 	spriteface PLAYER, DOWN
 	scall AideScript_GivePotions
-	applymovement $3, AideWalksLeft1
+	applymovement ELMSLAB_SCIENTIST, AideWalksLeft1
 	end
 
 AideScript_WalkPotions2:
-	applymovement $3, AideWalksRight2
+	applymovement ELMSLAB_SCIENTIST, AideWalksRight2
 	spriteface PLAYER, DOWN
 	scall AideScript_GivePotions
-	applymovement $3, AideWalksLeft2
+	applymovement ELMSLAB_SCIENTIST, AideWalksLeft2
 	end
 
 AideScript_GivePotions:
@@ -480,17 +488,17 @@ AideScript_GivePotions:
 	end
 
 AideScript_WalkBalls1:
-	applymovement $3, AideWalksRight1
+	applymovement ELMSLAB_SCIENTIST, AideWalksRight1
 	spriteface PLAYER, DOWN
 	scall AideScript_GiveYouBalls
-	applymovement $3, AideWalksLeft1
+	applymovement ELMSLAB_SCIENTIST, AideWalksLeft1
 	end
 
 AideScript_WalkBalls2:
-	applymovement $3, AideWalksRight2
+	applymovement ELMSLAB_SCIENTIST, AideWalksRight2
 	spriteface PLAYER, DOWN
 	scall AideScript_GiveYouBalls
-	applymovement $3, AideWalksLeft2
+	applymovement ELMSLAB_SCIENTIST, AideWalksLeft2
 	end
 
 AideScript_GiveYouBalls:
@@ -549,7 +557,7 @@ MeetCopScript2:
 MeetCopScript:
 	applymovement PLAYER, MeetCopScript_WalkUp
 CopScript:
-	spriteface $7, LEFT
+	spriteface ELMSLAB_OFFICER, LEFT
 	loadfont
 	writetext ElmsLabOfficerText1
 	keeptextopen
@@ -557,8 +565,8 @@ CopScript:
 	writetext ElmsLabOfficerText2
 	waitbutton
 	closetext
-	applymovement $7, OfficerLeavesMovement
-	disappear $7
+	applymovement ELMSLAB_OFFICER, OfficerLeavesMovement
+	disappear ELMSLAB_OFFICER
 	dotrigger $2
 	end
 

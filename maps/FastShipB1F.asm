@@ -1,3 +1,17 @@
+const_value set 2
+	const FASTSHIPB1F_SAILOR1
+	const FASTSHIPB1F_SAILOR2
+	const FASTSHIPB1F_SAILOR3
+	const FASTSHIPB1F_LASS
+	const FASTSHIPB1F_SUPER_NERD
+	const FASTSHIPB1F_SAILOR4
+	const FASTSHIPB1F_FISHER
+	const FASTSHIPB1F_BLACK_BELT
+	const FASTSHIPB1F_SAILOR5
+	const FASTSHIPB1F_TEACHER
+	const FASTSHIPB1F_YOUNGSTER1
+	const FASTSHIPB1F_YOUNGSTER2
+
 FastShipB1F_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -18,21 +32,21 @@ UnknownScript_0x7673b:
 UnknownScript_0x7673c:
 	checkevent EVENT_FAST_SHIP_B1F_SAILOR_RIGHT
 	iftrue UnknownScript_0x76766
-	applymovement $3, MovementData_0x76876
-	moveperson $2, $1e, $6
-	appear $2
+	applymovement FASTSHIPB1F_SAILOR2, MovementData_0x76876
+	moveperson FASTSHIPB1F_SAILOR1, $1e, $6
+	appear FASTSHIPB1F_SAILOR1
 	pause 5
-	disappear $3
+	disappear FASTSHIPB1F_SAILOR2
 	end
 
 UnknownScript_0x76751:
 	checkevent EVENT_FAST_SHIP_B1F_SAILOR_LEFT
 	iftrue UnknownScript_0x76766
-	applymovement $2, MovementData_0x76871
-	moveperson $3, $1f, $6
-	appear $3
+	applymovement FASTSHIPB1F_SAILOR1, MovementData_0x76871
+	moveperson FASTSHIPB1F_SAILOR2, $1f, $6
+	appear FASTSHIPB1F_SAILOR2
 	pause 5
-	disappear $2
+	disappear FASTSHIPB1F_SAILOR1
 	end
 
 UnknownScript_0x76766:

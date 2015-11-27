@@ -1,3 +1,5 @@
+const_value set 2
+
 RuinsofAlphHoOhChamber_MapScriptHeader:
 .MapTriggers:
 	db 2

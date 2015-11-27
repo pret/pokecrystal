@@ -1,3 +1,10 @@
+const_value set 2
+	const KURTSHOUSE_KURT1
+	const KURTSHOUSE_TWIN1
+	const KURTSHOUSE_SLOWPOKE
+	const KURTSHOUSE_KURT2
+	const KURTSHOUSE_TWIN2
+
 KurtsHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -16,17 +23,17 @@ UnknownScript_0x18e154:
 	iftrue UnknownScript_0x18e177
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue UnknownScript_0x18e16f
-	disappear $5
-	appear $2
-	disappear $6
-	appear $3
+	disappear KURTSHOUSE_KURT2
+	appear KURTSHOUSE_KURT1
+	disappear KURTSHOUSE_TWIN2
+	appear KURTSHOUSE_TWIN1
 	return
 
 UnknownScript_0x18e16f:
-	disappear $2
-	appear $5
-	disappear $3
-	appear $6
+	disappear KURTSHOUSE_KURT1
+	appear KURTSHOUSE_KURT2
+	disappear KURTSHOUSE_TWIN1
+	appear KURTSHOUSE_TWIN2
 UnknownScript_0x18e177:
 	return
 
@@ -46,9 +53,9 @@ KurtScript_0x18e178:
 	if_equal UP, .RunAround
 	spriteface PLAYER, DOWN
 	playsound SFX_FLY
-	applymovement $2, MovementData_0x18e466
+	applymovement KURTSHOUSE_KURT1, MovementData_0x18e466
 	playsound SFX_EXIT_BUILDING
-	disappear $2
+	disappear KURTSHOUSE_KURT1
 	waitsfx
 	special RestartMapMusic
 	end
@@ -56,9 +63,9 @@ KurtScript_0x18e178:
 .RunAround:
 	spriteface PLAYER, DOWN
 	playsound SFX_FLY
-	applymovement $2, MovementData_0x18e46c
+	applymovement KURTSHOUSE_KURT1, MovementData_0x18e46c
 	playsound SFX_EXIT_BUILDING
-	disappear $2
+	disappear KURTSHOUSE_KURT1
 	waitsfx
 	special RestartMapMusic
 	end
@@ -289,21 +296,21 @@ KurtScript_0x18e178:
 	clearevent EVENT_GAVE_GS_BALL_TO_KURT
 	special Special_RotatePalettesRightMusic
 	pause 20
-	showemote EMOTE_SHOCK, $2, 30
+	showemote EMOTE_SHOCK, KURTSHOUSE_KURT1, 30
 	checkcode VAR_FACING
 	if_equal UP, .GSBallRunAround
 	spriteface PLAYER, DOWN
 	playsound SFX_FLY
-	applymovement $2, MovementData_0x18e466
+	applymovement KURTSHOUSE_KURT1, MovementData_0x18e466
 	jump .KurtHasLeftTheBuilding
 
 .GSBallRunAround:
 	spriteface PLAYER, DOWN
 	playsound SFX_FLY
-	applymovement $2, MovementData_0x18e46c
+	applymovement KURTSHOUSE_KURT1, MovementData_0x18e46c
 .KurtHasLeftTheBuilding:
 	playsound SFX_EXIT_BUILDING
-	disappear $2
+	disappear KURTSHOUSE_KURT1
 	clearevent EVENT_AZALEA_TOWN_KURT
 	waitsfx
 	special RestartMapMusic
@@ -321,21 +328,21 @@ KurtMakingBallsScript:
 	writetext UnknownText_0x18e7d8
 	waitbutton
 	closetext
-	spriteface $5, UP
+	spriteface KURTSHOUSE_KURT2, UP
 	end
 
 Script_FirstTimeBuggingKurt:
 	writetext UnknownText_0x18e863
 	waitbutton
 	closetext
-	spriteface $5, UP
+	spriteface KURTSHOUSE_KURT2, UP
 	setevent EVENT_BUGGING_KURT_TOO_MUCH
 	end
 
 KurtScript_ImCheckingItNow:
 	writetext UnknownText_0x18e934
 	waitbutton
-	spriteface $5, UP
+	spriteface KURTSHOUSE_KURT2, UP
 	writetext UnknownText_0x18e949
 	waitbutton
 	closetext
@@ -391,14 +398,14 @@ KurtsGranddaughter2Subscript:
 	writetext KurtsGranddaughterHelpText
 	waitbutton
 	closetext
-	spriteface $6, RIGHT
+	spriteface KURTSHOUSE_TWIN2, RIGHT
 	end
 
 .GSBall
 	writetext KurtsGranddaughterGSBallText
 	waitbutton
 	closetext
-	spriteface $6, RIGHT
+	spriteface KURTSHOUSE_TWIN2, RIGHT
 	end
 
 KurtsGranddaughterFunScript:

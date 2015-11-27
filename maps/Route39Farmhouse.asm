@@ -1,3 +1,7 @@
+const_value set 2
+	const ROUTE39FARMHOUSE_POKEFAN_M
+	const ROUTE39FARMHOUSE_POKEFAN_F
+
 Route39Farmhouse_MapScriptHeader:
 .MapTriggers:
 	db 0

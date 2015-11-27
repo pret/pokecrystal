@@ -1,3 +1,14 @@
+const_value set 2
+	const SLOWPOKEWELLB1F_ROCKET1
+	const SLOWPOKEWELLB1F_ROCKET2
+	const SLOWPOKEWELLB1F_ROCKET3
+	const SLOWPOKEWELLB1F_ROCKET_GIRL
+	const SLOWPOKEWELLB1F_SLOWPOKE1
+	const SLOWPOKEWELLB1F_SLOWPOKE2
+	const SLOWPOKEWELLB1F_KURT
+	const SLOWPOKEWELLB1F_BOULDER
+	const SLOWPOKEWELLB1F_POKE_BALL
+
 SlowpokeWellB1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -29,16 +40,16 @@ GruntM1Script:
 	closetext
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
-	disappear $2
-	disappear $3
-	disappear $4
-	disappear $5
+	disappear SLOWPOKEWELLB1F_ROCKET1
+	disappear SLOWPOKEWELLB1F_ROCKET2
+	disappear SLOWPOKEWELLB1F_ROCKET3
+	disappear SLOWPOKEWELLB1F_ROCKET_GIRL
 	pause 15
 	special Special_FadeInQuickly
-	disappear $8
-	moveperson $8, $b, $6
-	appear $8
-	applymovement $8, KurtSlowpokeWellVictoryMovementData
+	disappear SLOWPOKEWELLB1F_KURT
+	moveperson SLOWPOKEWELLB1F_KURT, $b, $6
+	appear SLOWPOKEWELLB1F_KURT
+	applymovement SLOWPOKEWELLB1F_KURT, KurtSlowpokeWellVictoryMovementData
 	spriteface PLAYER, RIGHT
 	loadfont
 	writetext KurtLeaveSlowpokeWellText

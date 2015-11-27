@@ -1,3 +1,6 @@
+const_value set 2
+	const GOLDENRODNAMERATERSHOUSE_GENTLEMAN
+
 GoldenrodNameRatersHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,12 @@
+const_value set 2
+	const FASTSHIPCABINS_NNW_NNE_NE_COOLTRAINER_M
+	const FASTSHIPCABINS_NNW_NNE_NE_COOLTRAINER_F
+	const FASTSHIPCABINS_NNW_NNE_NE_SUPER_NERD
+	const FASTSHIPCABINS_NNW_NNE_NE_POKEFAN_M
+	const FASTSHIPCABINS_NNW_NNE_NE_SAILOR
+	const FASTSHIPCABINS_NNW_NNE_NE_GENTLEMAN
+	const FASTSHIPCABINS_NNW_NNE_NE_PHARMACIST
+
 FastShipCabins_NNW_NNE_NE_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -92,16 +101,16 @@ SailorScript_0x755f1:
 	domaptrigger FAST_SHIP_B1F, $1
 	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x75629
-	applymovement $6, MovementData_0x75637
+	applymovement FASTSHIPCABINS_NNW_NNE_NE_SAILOR, MovementData_0x75637
 	playsound SFX_EXIT_BUILDING
-	disappear $6
+	disappear FASTSHIPCABINS_NNW_NNE_NE_SAILOR
 	waitsfx
 	end
 
 UnknownScript_0x75629:
-	applymovement $6, MovementData_0x7563c
+	applymovement FASTSHIPCABINS_NNW_NNE_NE_SAILOR, MovementData_0x7563c
 	playsound SFX_EXIT_BUILDING
-	disappear $6
+	disappear FASTSHIPCABINS_NNW_NNE_NE_SAILOR
 	waitsfx
 	end
 

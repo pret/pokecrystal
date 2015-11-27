@@ -1,3 +1,7 @@
+const_value set 2
+	const SEAFOAMGYM_BLAINE
+	const SEAFOAMGYM_GYM_GUY
+
 SeafoamGym_MapScriptHeader:
 .MapTriggers:
 	db 1
@@ -23,7 +27,7 @@ BlaineScript_0x1ab4fb:
 	scriptedtrainerdata BLAINE, 1
 	startbattle
 	iftrue .ReturnAfterBattle
-	appear $3
+	appear SEAFOAMGYM_GYM_GUY
 .ReturnAfterBattle
 	returnafterbattle
 	setevent EVENT_BEAT_BLAINE

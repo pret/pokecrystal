@@ -1,3 +1,7 @@
+const_value set 2
+	const ROUTE18_YOUNGSTER1
+	const ROUTE18_YOUNGSTER2
+
 Route18_MapScriptHeader:
 .MapTriggers:
 	db 0

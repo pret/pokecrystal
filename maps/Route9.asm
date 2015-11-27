@@ -1,3 +1,11 @@
+const_value set 2
+	const ROUTE9_YOUNGSTER1
+	const ROUTE9_LASS1
+	const ROUTE9_YOUNGSTER2
+	const ROUTE9_LASS2
+	const ROUTE9_POKEFAN_M1
+	const ROUTE9_POKEFAN_M2
+
 Route9_MapScriptHeader:
 .MapTriggers:
 	db 0

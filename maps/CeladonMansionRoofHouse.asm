@@ -1,3 +1,6 @@
+const_value set 2
+	const CELADONMANSIONROOFHOUSE_PHARMACIST
+
 CeladonMansionRoofHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

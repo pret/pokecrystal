@@ -1,3 +1,6 @@
+const_value set 2
+	const GOLDENRODBIKESHOP_CLERK
+
 GoldenrodBikeShop_MapScriptHeader:
 .MapTriggers:
 	db 0

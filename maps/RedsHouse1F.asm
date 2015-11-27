@@ -1,3 +1,6 @@
+const_value set 2
+	const REDSHOUSE1F_REDS_MOM
+
 RedsHouse1F_MapScriptHeader:
 .MapTriggers:
 	db 1

@@ -1,3 +1,20 @@
+const_value set 2
+	const GOLDENRODCITY_POKEFAN_M1
+	const GOLDENRODCITY_YOUNGSTER1
+	const GOLDENRODCITY_COOLTRAINER_F1
+	const GOLDENRODCITY_COOLTRAINER_F2
+	const GOLDENRODCITY_YOUNGSTER2
+	const GOLDENRODCITY_LASS
+	const GOLDENRODCITY_GRAMPS
+	const GOLDENRODCITY_ROCKET1
+	const GOLDENRODCITY_ROCKET2
+	const GOLDENRODCITY_ROCKET3
+	const GOLDENRODCITY_ROCKET4
+	const GOLDENRODCITY_ROCKET5
+	const GOLDENRODCITY_ROCKET6
+	const GOLDENRODCITY_ROCKET7
+	const GOLDENRODCITY_POKEFAN_M2
+
 GoldenrodCity_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -27,13 +44,13 @@ GoldenrodCity_MapScriptHeader:
 	if_equal WEDNESDAY, .MoveTutorAppear
 	if_equal SATURDAY, .MoveTutorAppear
 .MoveTutorDisappear
-	disappear $10
+	disappear GOLDENRODCITY_POKEFAN_M2
 	return
 
 .MoveTutorAppear
 	checkflag ENGINE_DAILY_MOVE_TUTOR
 	iftrue .MoveTutorDone
-	appear $10
+	appear GOLDENRODCITY_POKEFAN_M2
 .MoveTutorDone
 	return
 
@@ -120,14 +137,14 @@ MoveTutor:
 	closetext
 	checkcode VAR_FACING
 	if_equal $2, .WalkAroundPlayer
-	applymovement $10, MovementData_0x198a5f
+	applymovement GOLDENRODCITY_POKEFAN_M2, MovementData_0x198a5f
 	jump .GoInside
 
 .WalkAroundPlayer:
-	applymovement $10, MovementData_0x198a63
+	applymovement GOLDENRODCITY_POKEFAN_M2, MovementData_0x198a63
 .GoInside:
 	playsound SFX_ENTER_DOOR
-	disappear $10
+	disappear GOLDENRODCITY_POKEFAN_M2
 	clearevent EVENT_GOLDENROD_GAME_CORNER_MOVE_TUTOR
 	setflag ENGINE_DAILY_MOVE_TUTOR
 	waitsfx
@@ -200,7 +217,7 @@ RocketScript_0x198a1a:
 	writetext UnknownText_0x198d2a
 	waitbutton
 	closetext
-	spriteface $9, UP
+	spriteface GOLDENRODCITY_ROCKET1, UP
 	end
 
 RocketScript_0x198a29:

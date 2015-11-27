@@ -1,3 +1,6 @@
+const_value set 2
+	const ICEPATHB2FBLACKTHORNSIDE_POKE_BALL
+
 IcePathB2FBlackthornSide_MapScriptHeader:
 .MapTriggers:
 	db 0

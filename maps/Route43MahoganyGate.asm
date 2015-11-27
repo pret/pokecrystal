@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE43MAHOGANYGATE_OFFICER
+
 Route43MahoganyGate_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,7 @@
+const_value set 2
+	const FUCHSIABILLSPEECHHOUSE_POKEFAN_F
+	const FUCHSIABILLSPEECHHOUSE_YOUNGSTER
+
 FuchsiaBillSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

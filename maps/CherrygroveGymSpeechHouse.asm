@@ -1,3 +1,7 @@
+const_value set 2
+	const CHERRYGROVEGYMSPEECHHOUSE_POKEFAN_M
+	const CHERRYGROVEGYMSPEECHHOUSE_BUG_CATCHER
+
 CherrygroveGymSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

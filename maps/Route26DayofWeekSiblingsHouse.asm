@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE26DAYOFWEEKSIBLINGSHOUSE_POKEDEX
+
 Route26DayofWeekSiblingsHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,9 @@
+const_value set 2
+	const POKECENTER2F_LINK_RECEPTIONIST1
+	const POKECENTER2F_LINK_RECEPTIONIST2
+	const POKECENTER2F_LINK_RECEPTIONIST3
+	const POKECENTER2F_OFFICER
+
 PokeCenter2F_MapScriptHeader:
 .MapTriggers:
 	db 6
@@ -45,7 +51,7 @@ PokeCenter2F_MapScriptHeader:
 	end
 
 PokeCenter2F_AppearMysteryGiftDeliveryGuy:
-	appear $5
+	appear POKECENTER2F_OFFICER
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	end
 
@@ -384,9 +390,9 @@ Script_LeftMobileTradeRoom:
 	end
 
 Script_WalkOutOfMobileTradeRoom:
-	applymovement $2, MovementData_0x192d0b
+	applymovement POKECENTER2F_LINK_RECEPTIONIST1, MovementData_0x192d0b
 	applymovement PLAYER, MovementData_0x192d0f
-	applymovement $2, MovementData_0x192d14
+	applymovement POKECENTER2F_LINK_RECEPTIONIST1, MovementData_0x192d14
 	end
 
 Script_LeftCableColosseum:
@@ -404,9 +410,9 @@ Script_LeftMobileBattleRoom:
 	end
 
 Script_WalkOutOfMobileBattleRoom:
-	applymovement $3, MovementData_0x192d0b
+	applymovement POKECENTER2F_LINK_RECEPTIONIST2, MovementData_0x192d0b
 	applymovement PLAYER, MovementData_0x192d0f
-	applymovement $3, MovementData_0x192d14
+	applymovement POKECENTER2F_LINK_RECEPTIONIST2, MovementData_0x192d14
 	end
 
 PokeCenter2F_CheckGender:
@@ -447,13 +453,13 @@ PokeCenter2F_CheckGender:
 Script_CleanUpFemaleFlagAfterTrade:
 	checkflag ENGINE_KRIS_IN_CABLE_CLUB
 	iftrue .Female
-	applymovement $2, MovementData_0x192d04
+	applymovement POKECENTER2F_LINK_RECEPTIONIST1, MovementData_0x192d04
 	applymovement PLAYER, MovementData_0x192cf5
-	applymovement $2, MovementData_0x192cfe
+	applymovement POKECENTER2F_LINK_RECEPTIONIST1, MovementData_0x192cfe
 	end
 
 .Female:
-	applymovement $2, MovementData_0x192d04
+	applymovement POKECENTER2F_LINK_RECEPTIONIST1, MovementData_0x192d04
 	applymovement PLAYER, MovementData_0x192d28
 	clearflag ENGINE_KRIS_IN_CABLE_CLUB
 	playsound SFX_TINGLE
@@ -463,19 +469,19 @@ Script_CleanUpFemaleFlagAfterTrade:
 	applymovement PLAYER, MovementData_0x192d1c
 	special ReplaceKrisSprite
 	applymovement PLAYER, MovementData_0x192d2a
-	applymovement $2, MovementData_0x192cfe
+	applymovement POKECENTER2F_LINK_RECEPTIONIST1, MovementData_0x192cfe
 	end
 
 Script_CleanUpFemaleFlagAfterBattle:
 	checkflag ENGINE_KRIS_IN_CABLE_CLUB
 	iftrue .Female
-	applymovement $3, MovementData_0x192d04
+	applymovement POKECENTER2F_LINK_RECEPTIONIST2, MovementData_0x192d04
 	applymovement PLAYER, MovementData_0x192cf5
-	applymovement $3, MovementData_0x192cfe
+	applymovement POKECENTER2F_LINK_RECEPTIONIST2, MovementData_0x192cfe
 	end
 
 .Female:
-	applymovement $3, MovementData_0x192d04
+	applymovement POKECENTER2F_LINK_RECEPTIONIST2, MovementData_0x192d04
 	applymovement PLAYER, MovementData_0x192d28
 	clearflag ENGINE_KRIS_IN_CABLE_CLUB
 	playsound SFX_TINGLE
@@ -485,7 +491,7 @@ Script_CleanUpFemaleFlagAfterBattle:
 	applymovement PLAYER, MovementData_0x192d1c
 	special ReplaceKrisSprite
 	applymovement PLAYER, MovementData_0x192d2a
-	applymovement $3, MovementData_0x192cfe
+	applymovement POKECENTER2F_LINK_RECEPTIONIST2, MovementData_0x192cfe
 	end
 
 TimeCapsuleScript_CheckPlayerGender:
@@ -542,7 +548,7 @@ TimeCapsuleScript_CheckPlayerGender:
 	writebyte (1 << 7) | (PAL_OW_RED << 4)
 	special Special_SetPlayerPalette
 	applymovement PLAYER, MovementData_0x192d22
-	faceperson PLAYER, $4
+	faceperson PLAYER, POKECENTER2F_LINK_RECEPTIONIST3
 	setflag ENGINE_KRIS_IN_CABLE_CLUB
 	special ReplaceKrisSprite
 	loadfont
@@ -557,13 +563,13 @@ Script_LeftTimeCapsule:
 	special Special_AbortLink
 	checkflag ENGINE_KRIS_IN_CABLE_CLUB
 	iftrue .Female
-	applymovement $4, MovementData_0x192d08
+	applymovement POKECENTER2F_LINK_RECEPTIONIST3, MovementData_0x192d08
 	applymovement PLAYER, MovementData_0x192cf9
-	applymovement $4, MovementData_0x192d01
+	applymovement POKECENTER2F_LINK_RECEPTIONIST3, MovementData_0x192d01
 	jump .Done
 
 .Female:
-	applymovement $4, MovementData_0x192d08
+	applymovement POKECENTER2F_LINK_RECEPTIONIST3, MovementData_0x192d08
 	applymovement PLAYER, MovementData_0x192cfc
 	clearflag ENGINE_KRIS_IN_CABLE_CLUB
 	playsound SFX_TINGLE
@@ -573,7 +579,7 @@ Script_LeftTimeCapsule:
 	applymovement PLAYER, MovementData_0x192d1c
 	special ReplaceKrisSprite
 	applymovement PLAYER, MovementData_0x192cfc
-	applymovement $4, MovementData_0x192d01
+	applymovement POKECENTER2F_LINK_RECEPTIONIST3, MovementData_0x192d01
 .Done:
 	dotrigger $0
 	domaptrigger TIME_CAPSULE, $0

@@ -1,3 +1,12 @@
+const_value set 2
+	const POWERPLANT_OFFICER1
+	const POWERPLANT_GYM_GUY1
+	const POWERPLANT_GYM_GUY2
+	const POWERPLANT_OFFICER2
+	const POWERPLANT_GYM_GUY3
+	const POWERPLANT_FISHER
+	const POWERPLANT_GYM_GUY4
+
 PowerPlant_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -17,24 +26,24 @@ UnknownScript_0x188dc4:
 
 UnknownScript_0x188dc5:
 	playsound SFX_CALL
-	showemote EMOTE_SHOCK, $2, 15
+	showemote EMOTE_SHOCK, POWERPLANT_OFFICER1, 15
 	waitsfx
 	pause 30
-	applymovement $2, MovementData_0x188ed5
-	spriteface $3, DOWN
-	spriteface $4, DOWN
+	applymovement POWERPLANT_OFFICER1, MovementData_0x188ed5
+	spriteface POWERPLANT_GYM_GUY1, DOWN
+	spriteface POWERPLANT_GYM_GUY2, DOWN
 	loadfont
 	writetext UnknownText_0x188f22
 	waitbutton
 	closetext
-	spriteface $2, LEFT
+	spriteface POWERPLANT_OFFICER1, LEFT
 	spriteface PLAYER, RIGHT
 	loadfont
 	writetext UnknownText_0x188f7f
 	waitbutton
 	closetext
 	spriteface PLAYER, DOWN
-	applymovement $2, MovementData_0x188eda
+	applymovement POWERPLANT_OFFICER1, MovementData_0x188eda
 	dotrigger $0
 	end
 

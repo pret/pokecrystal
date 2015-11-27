@@ -1,3 +1,5 @@
+const_value set 2
+
 DragonsDen1F_MapScriptHeader:
 .MapTriggers:
 	db 0

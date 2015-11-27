@@ -1,3 +1,8 @@
+const_value set 2
+	const RUINSOFALPHINNERCHAMBER_FISHER
+	const RUINSOFALPHINNERCHAMBER_TEACHER
+	const RUINSOFALPHINNERCHAMBER_GRAMPS
+
 RuinsofAlphInnerChamber_MapScriptHeader:
 .MapTriggers:
 	db 2

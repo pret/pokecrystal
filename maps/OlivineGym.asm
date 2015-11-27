@@ -1,3 +1,7 @@
+const_value set 2
+	const OLIVINEGYM_JASMINE
+	const OLIVINEGYM_GYM_GUY
+
 OlivineGym_MapScriptHeader:
 .MapTriggers:
 	db 0

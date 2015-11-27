@@ -1,3 +1,8 @@
+const_value set 2
+	const CERULEANPOLICESTATION_FISHING_GURU
+	const CERULEANPOLICESTATION_POKEFAN_F
+	const CERULEANPOLICESTATION_DIGLETT
+
 CeruleanPoliceStation_MapScriptHeader:
 .MapTriggers:
 	db 0

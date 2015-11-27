@@ -1,3 +1,12 @@
+const_value set 2
+	const OLIVINEPORT_SAILOR1
+	const OLIVINEPORT_SAILOR2
+	const OLIVINEPORT_SAILOR3
+	const OLIVINEPORT_FISHING_GURU1
+	const OLIVINEPORT_FISHING_GURU2
+	const OLIVINEPORT_YOUNGSTER
+	const OLIVINEPORT_COOLTRAINER_F
+
 OlivinePort_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -18,7 +27,7 @@ UnknownScript_0x748ad:
 
 UnknownScript_0x748b1:
 	applymovement PLAYER, MovementData_0x74a32
-	appear $2
+	appear OLIVINEPORT_SAILOR1
 	dotrigger $0
 	setevent EVENT_GAVE_KURT_APRICORNS
 	blackoutmod OLIVINE_CITY
@@ -32,10 +41,10 @@ SailorScript_0x748c0:
 	writetext UnknownText_0x74a55
 	waitbutton
 	closetext
-	spriteface $2, DOWN
+	spriteface OLIVINEPORT_SAILOR1, DOWN
 	pause 10
 	playsound SFX_EXIT_BUILDING
-	disappear $2
+	disappear OLIVINEPORT_SAILOR1
 	waitsfx
 	applymovement PLAYER, MovementData_0x74a30
 	playsound SFX_EXIT_BUILDING
@@ -56,7 +65,7 @@ SailorScript_0x748c0:
 	clearevent EVENT_BEAT_BLACKBELT_WAI
 UnknownScript_0x7490a:
 	clearevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
-	appear $2
+	appear OLIVINEPORT_SAILOR1
 	domaptrigger FAST_SHIP_1F, $1
 	warp FAST_SHIP_1F, $19, $1
 	end
@@ -68,7 +77,7 @@ UnknownScript_0x74919:
 	end
 
 UnknownScript_0x7491f:
-	spriteface $4, RIGHT
+	spriteface OLIVINEPORT_SAILOR3, RIGHT
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x7498b
 	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
@@ -196,7 +205,7 @@ FishingGuruScript_0x74a01:
 	writetext UnknownText_0x74bf4
 	waitbutton
 	closetext
-	spriteface $5, UP
+	spriteface OLIVINEPORT_FISHING_GURU1, UP
 	end
 
 FishingGuruScript_0x74a0c:
@@ -205,7 +214,7 @@ FishingGuruScript_0x74a0c:
 	writetext UnknownText_0x74c35
 	waitbutton
 	closetext
-	spriteface $6, UP
+	spriteface OLIVINEPORT_FISHING_GURU2, UP
 	end
 
 YoungsterScript_0x74a17:
@@ -214,7 +223,7 @@ YoungsterScript_0x74a17:
 	writetext UnknownText_0x74c76
 	waitbutton
 	closetext
-	spriteface $7, DOWN
+	spriteface OLIVINEPORT_YOUNGSTER, DOWN
 	end
 
 CooltrainerFScript_0x74a22:
@@ -223,7 +232,7 @@ CooltrainerFScript_0x74a22:
 	writetext UnknownText_0x74ca2
 	waitbutton
 	closetext
-	spriteface $8, DOWN
+	spriteface OLIVINEPORT_COOLTRAINER_F, DOWN
 	end
 
 MapOlivinePortSignpostItem0:

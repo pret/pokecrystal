@@ -1,3 +1,8 @@
+const_value set 2
+	const ROUTE6_POKEFAN_M1
+	const ROUTE6_POKEFAN_M2
+	const ROUTE6_POKEFAN_M3
+
 Route6_MapScriptHeader:
 .MapTriggers:
 	db 0

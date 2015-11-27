@@ -1,3 +1,7 @@
+const_value set 2
+	const DAYCARE_GRAMPS
+	const DAYCARE_GRANNY
+
 DayCare_MapScriptHeader:
 .MapTriggers:
 	db 0

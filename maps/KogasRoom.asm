@@ -1,3 +1,6 @@
+const_value set 2
+	const KOGASROOM_KOGA
+
 KogasRoom_MapScriptHeader:
 .MapTriggers:
 	db 2

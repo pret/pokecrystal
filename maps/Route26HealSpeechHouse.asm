@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE26HEALSPEECHHOUSE_TEACHER
+
 Route26HealSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

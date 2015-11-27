@@ -1,3 +1,11 @@
+const_value set 2
+	const ROUTE8_BIKER1
+	const ROUTE8_BIKER2
+	const ROUTE8_BIKER3
+	const ROUTE8_SUPER_NERD1
+	const ROUTE8_SUPER_NERD2
+	const ROUTE8_FRUIT_TREE
+
 Route8_MapScriptHeader:
 .MapTriggers:
 	db 0

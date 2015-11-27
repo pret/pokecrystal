@@ -1,3 +1,10 @@
+const_value set 2
+	const RADIOTOWER5F_GENTLEMAN
+	const RADIOTOWER5F_ROCKET
+	const RADIOTOWER5F_ROCKET_GIRL
+	const RADIOTOWER5F_ROCKER
+	const RADIOTOWER5F_POKE_BALL
+
 RadioTower5F_MapScriptHeader:
 .MapTriggers:
 	db 3
@@ -20,13 +27,13 @@ UnknownScript_0x60010:
 	end
 
 UnknownScript_0x60011:
-	spriteface $2, UP
-	showemote EMOTE_SHOCK, $2, 15
+	spriteface RADIOTOWER5F_GENTLEMAN, UP
+	showemote EMOTE_SHOCK, RADIOTOWER5F_GENTLEMAN, 15
 	loadfont
 	writetext UnknownText_0x60128
 	waitbutton
 	closetext
-	applymovement $2, MovementData_0x60109
+	applymovement RADIOTOWER5F_GENTLEMAN, MovementData_0x60109
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x60147
@@ -76,7 +83,7 @@ Executivef1Script:
 UnknownScript_0x6006e:
 	applymovement PLAYER, MovementData_0x60125
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	spriteface $3, RIGHT
+	spriteface RADIOTOWER5F_ROCKET, RIGHT
 	loadfont
 	writetext UnknownText_0x603d1
 	waitbutton
@@ -92,8 +99,8 @@ UnknownScript_0x6006e:
 	closetext
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
-	disappear $3
-	disappear $4
+	disappear RADIOTOWER5F_ROCKET
+	disappear RADIOTOWER5F_ROCKET_GIRL
 	pause 15
 	special Special_FadeInQuickly
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_1
@@ -109,10 +116,10 @@ UnknownScript_0x6006e:
 	setevent EVENT_BLACKTHORN_CITY_SUPER_NERD_BLOCKS_GYM
 	clearevent EVENT_BLACKTHORN_CITY_SUPER_NERD_DOES_NOT_BLOCK_GYM
 	special PlayMapMusic
-	disappear $2
-	moveperson $2, $c, $0
-	appear $2
-	applymovement $2, MovementData_0x6010f
+	disappear RADIOTOWER5F_GENTLEMAN
+	moveperson RADIOTOWER5F_GENTLEMAN, $c, $0
+	appear RADIOTOWER5F_GENTLEMAN
+	applymovement RADIOTOWER5F_GENTLEMAN, MovementData_0x6010f
 	spriteface PLAYER, RIGHT
 	loadfont
 	writetext UnknownText_0x605b2
@@ -128,9 +135,9 @@ UnknownScript_0x6006e:
 	jump UnknownScript_0x600f1
 
 UnknownScript_0x600f1:
-	applymovement $2, MovementData_0x6011a
+	applymovement RADIOTOWER5F_GENTLEMAN, MovementData_0x6011a
 	playsound SFX_EXIT_BUILDING
-	disappear $2
+	disappear RADIOTOWER5F_GENTLEMAN
 	end
 
 Ben:

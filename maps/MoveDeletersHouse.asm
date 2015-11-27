@@ -1,3 +1,6 @@
+const_value set 2
+	const MOVEDELETERSHOUSE_SUPER_NERD
+
 MoveDeletersHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

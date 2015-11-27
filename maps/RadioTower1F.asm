@@ -1,3 +1,11 @@
+const_value set 2
+	const RADIOTOWER1F_RECEPTIONIST
+	const RADIOTOWER1F_LASS
+	const RADIOTOWER1F_YOUNGSTER
+	const RADIOTOWER1F_ROCKET
+	const RADIOTOWER1F_GENTLEMAN
+	const RADIOTOWER1F_COOLTRAINER_F
+
 RadioTower1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -36,7 +44,7 @@ GentlemanScript_0x5cd3d:
 	writetext UnknownText_0x5cf3a
 	keeptextopen
 	closetext
-	applymovement $6, MovementData_0x5ce71
+	applymovement RADIOTOWER1F_GENTLEMAN, MovementData_0x5ce71
 	loadfont
 	writetext UnknownText_0x5cf5a
 	keeptextopen
@@ -47,7 +55,7 @@ GentlemanScript_0x5cd3d:
 	keeptextopen
 	special Special_CheckForLuckyNumberWinners
 	closetext
-	applymovement $6, MovementData_0x5ce74
+	applymovement RADIOTOWER1F_GENTLEMAN, MovementData_0x5ce74
 	loadfont
 	if_equal 1, .FirstPlace
 	if_equal 2, .SecondPlace

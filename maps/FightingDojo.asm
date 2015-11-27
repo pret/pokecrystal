@@ -1,3 +1,7 @@
+const_value set 2
+	const FIGHTINGDOJO_BLACK_BELT
+	const FIGHTINGDOJO_POKE_BALL
+
 FightingDojo_MapScriptHeader:
 .MapTriggers:
 	db 0

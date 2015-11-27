@@ -1,3 +1,6 @@
+const_value set 2
+	const CERULEANGYMBADGESPEECHHOUSE_POKEFAN_M
+
 CeruleanGymBadgeSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

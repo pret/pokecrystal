@@ -1,3 +1,12 @@
+const_value set 2
+	const AZALEAGYM_BUGSY
+	const AZALEAGYM_BUG_CATCHER1
+	const AZALEAGYM_BUG_CATCHER2
+	const AZALEAGYM_BUG_CATCHER3
+	const AZALEAGYM_TWIN1
+	const AZALEAGYM_TWIN2
+	const AZALEAGYM_GYM_GUY
+
 AzaleaGym_MapScriptHeader:
 .MapTriggers:
 	db 0

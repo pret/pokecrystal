@@ -1,3 +1,11 @@
+const_value set 2
+	const CERULEANCITY_COOLTRAINER_M
+	const CERULEANCITY_SUPER_NERD
+	const CERULEANCITY_SLOWPOKE
+	const CERULEANCITY_COOLTRAINER_F
+	const CERULEANCITY_FISHER
+	const CERULEANCITY_YOUNGSTER
+
 CeruleanCity_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -45,7 +53,7 @@ CooltrainerFScript_0x18402a:
 	writetext UnknownText_0x1841fa
 	waitbutton
 	closetext
-	spriteface $5, LEFT
+	spriteface CERULEANCITY_COOLTRAINER_F, LEFT
 	loadfont
 	writetext UnknownText_0x184229
 	waitbutton
@@ -108,8 +116,8 @@ UnknownScript_0x184072:
 	waitsfx
 	playsound SFX_TRANSACTION
 	waitsfx
-	showemote EMOTE_SHOCK, $7, 15
-	spriteface $7, LEFT
+	showemote EMOTE_SHOCK, CERULEANCITY_YOUNGSTER, 15
+	spriteface CERULEANCITY_YOUNGSTER, LEFT
 	loadfont
 	writetext UnknownText_0x1842ee
 	waitbutton

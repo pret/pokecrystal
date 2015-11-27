@@ -1,3 +1,8 @@
+const_value set 2
+	const CHERRYGROVEMART_CLERK
+	const CHERRYGROVEMART_COOLTRAINER_M
+	const CHERRYGROVEMART_YOUNGSTER
+
 CherrygroveMart_MapScriptHeader:
 .MapTriggers:
 	db 0

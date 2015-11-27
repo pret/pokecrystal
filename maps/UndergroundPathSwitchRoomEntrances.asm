@@ -1,3 +1,16 @@
+const_value set 2
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_PHARMACIST1
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_PHARMACIST2
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_ROCKET1
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_ROCKET2
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_ROCKET3
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_ROCKET_GIRL
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_TEACHER
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_SUPER_NERD
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_POKE_BALL1
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_POKE_BALL2
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
+
 UndergroundPathSwitchRoomEntrances_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -83,14 +96,14 @@ UnknownScript_0x7ca80:
 	special Special_RotatePalettesRightMusic
 	pause 15
 	playsound SFX_EXIT_BUILDING
-	appear $c
+	appear UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
 	waitsfx
-	applymovement $c, MovementData_0x7ce87
+	applymovement UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER, MovementData_0x7ce87
 	spriteface PLAYER, RIGHT
 	scall UnknownScript_0x7cad4
-	applymovement $c, MovementData_0x7ce92
+	applymovement UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER, MovementData_0x7ce92
 	playsound SFX_EXIT_BUILDING
-	disappear $c
+	disappear UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
 	dotrigger $1
 	waitsfx
 	playmapmusic
@@ -102,14 +115,14 @@ UnknownScript_0x7caaa:
 	special Special_RotatePalettesRightMusic
 	pause 15
 	playsound SFX_EXIT_BUILDING
-	appear $c
+	appear UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
 	waitsfx
-	applymovement $c, MovementData_0x7ce8c
+	applymovement UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER, MovementData_0x7ce8c
 	spriteface PLAYER, RIGHT
 	scall UnknownScript_0x7cad4
-	applymovement $c, MovementData_0x7ce97
+	applymovement UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER, MovementData_0x7ce97
 	playsound SFX_EXIT_BUILDING
-	disappear $c
+	disappear UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
 	dotrigger $1
 	waitsfx
 	playmapmusic

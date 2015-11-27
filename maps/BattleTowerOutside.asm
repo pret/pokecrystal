@@ -1,3 +1,9 @@
+const_value set 2
+	const BATTLETOWEROUTSIDE_STANDING_YOUNGSTER
+	const BATTLETOWEROUTSIDE_BUENA
+	const BATTLETOWEROUTSIDE_SAILOR
+	const BATTLETOWEROUTSIDE_LASS
+
 BattleTowerOutside_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,11 @@
+const_value set 2
+	const SAFFRONGYM_SABRINA
+	const SAFFRONGYM_GRANNY1
+	const SAFFRONGYM_YOUNGSTER1
+	const SAFFRONGYM_GRANNY2
+	const SAFFRONGYM_YOUNGSTER2
+	const SAFFRONGYM_GYM_GUY
+
 SaffronGym_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,17 @@
+const_value set 2
+	const ROUTE36NATIONALPARKGATE_OFFICER1
+	const ROUTE36NATIONALPARKGATE_YOUNGSTER1
+	const ROUTE36NATIONALPARKGATE_YOUNGSTER2
+	const ROUTE36NATIONALPARKGATE_ROCKER
+	const ROUTE36NATIONALPARKGATE_POKEFAN_M
+	const ROUTE36NATIONALPARKGATE_YOUNGSTER3
+	const ROUTE36NATIONALPARKGATE_YOUNGSTER4
+	const ROUTE36NATIONALPARKGATE_LASS
+	const ROUTE36NATIONALPARKGATE_YOUNGSTER5
+	const ROUTE36NATIONALPARKGATE_YOUNGSTER6
+	const ROUTE36NATIONALPARKGATE_YOUNGSTER7
+	const ROUTE36NATIONALPARKGATE_OFFICER2
+
 Route36NationalParkgate_MapScriptHeader:
 .MapTriggers:
 	db 3
@@ -45,13 +59,13 @@ Route36NationalParkgate_MapScriptHeader:
 	if_equal SATURDAY, .SetContestOfficer
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue .SetContestOfficer
-	disappear $2
-	appear $d
+	disappear ROUTE36NATIONALPARKGATE_OFFICER1
+	appear ROUTE36NATIONALPARKGATE_OFFICER2
 	return
 
 .SetContestOfficer:
-	appear $2
-	disappear $d
+	appear ROUTE36NATIONALPARKGATE_OFFICER1
+	disappear ROUTE36NATIONALPARKGATE_OFFICER2
 .Return:
 	return
 
@@ -70,8 +84,8 @@ Route36NationalParkgate_MapScriptHeader:
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
 	scall .CopyContestants
-	disappear $2
-	appear $d
+	disappear ROUTE36NATIONALPARKGATE_OFFICER1
+	appear ROUTE36NATIONALPARKGATE_OFFICER2
 	applymovement PLAYER, MovementData_0x6add1
 	pause 15
 	special Special_FadeInQuickly
@@ -91,43 +105,43 @@ Route36NationalParkgate_MapScriptHeader:
 .CopyContestants:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_1A
 	iftrue .Not1
-	appear $3
+	appear ROUTE36NATIONALPARKGATE_YOUNGSTER1
 .Not1:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_2A
 	iftrue .Not2
-	appear $4
+	appear ROUTE36NATIONALPARKGATE_YOUNGSTER2
 .Not2:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_3A
 	iftrue .Not3
-	appear $5
+	appear ROUTE36NATIONALPARKGATE_ROCKER
 .Not3:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_4A
 	iftrue .Not4
-	appear $6
+	appear ROUTE36NATIONALPARKGATE_POKEFAN_M
 .Not4:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_5A
 	iftrue .Not5
-	appear $7
+	appear ROUTE36NATIONALPARKGATE_YOUNGSTER3
 .Not5:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_6A
 	iftrue .Not6
-	appear $8
+	appear ROUTE36NATIONALPARKGATE_YOUNGSTER4
 .Not6:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_7A
 	iftrue .Not7
-	appear $9
+	appear ROUTE36NATIONALPARKGATE_LASS
 .Not7:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_8A
 	iftrue .Not8
-	appear $a
+	appear ROUTE36NATIONALPARKGATE_YOUNGSTER5
 .Not8:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_9A
 	iftrue .Not9
-	appear $b
+	appear ROUTE36NATIONALPARKGATE_YOUNGSTER6
 .Not9:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_10A
 	iftrue .Not10
-	appear $c
+	appear ROUTE36NATIONALPARKGATE_YOUNGSTER7
 .Not10:
 	special UpdateSprites
 	end

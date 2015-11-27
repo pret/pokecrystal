@@ -1,3 +1,8 @@
+const_value set 2
+	const OLIVINEMART_CLERK
+	const OLIVINEMART_COOLTRAINER_F
+	const OLIVINEMART_LASS
+
 OlivineMart_MapScriptHeader:
 .MapTriggers:
 	db 0

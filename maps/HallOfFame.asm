@@ -1,3 +1,6 @@
+const_value set 2
+	const HALLOFFAME_LANCE
+
 HallOfFame_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -17,15 +20,15 @@ HallOfFame_MapScriptHeader:
 	end
 
 HallOfFameScript:
-	follow $2, PLAYER
-	applymovement $2, HallOfFame_WalkUpWithLance
+	follow HALLOFFAME_LANCE, PLAYER
+	applymovement HALLOFFAME_LANCE, HallOfFame_WalkUpWithLance
 	stopfollow
 	spriteface PLAYER, RIGHT
 	loadfont
 	writetext HallOfFame_LanceText
 	waitbutton
 	closetext
-	spriteface $2, UP
+	spriteface HALLOFFAME_LANCE, UP
 	applymovement PLAYER, HallOfFame_SlowlyApproachMachine
 	dotrigger $1
 	pause 15

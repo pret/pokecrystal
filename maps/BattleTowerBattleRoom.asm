@@ -1,3 +1,7 @@
+const_value set 2
+	const BATTLETOWERBATTLEROOM_YOUNGSTER
+	const BATTLETOWERBATTLEROOM_RECEPTIONIST
+
 BattleTowerBattleRoom_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -10,7 +14,7 @@ BattleTowerBattleRoom_MapScriptHeader:
 	db 0
 
 .EnterBattleRoom: ; 0x9f419
-	disappear $2
+	disappear BATTLETOWERBATTLEROOM_YOUNGSTER
 	priorityjump Script_BattleRoom
 	dotrigger $1
 .DummyTrigger:
@@ -22,10 +26,10 @@ Script_BattleRoom: ; 0x9f421
 Script_BattleRoomLoop: ; 0x9f425
 	writebyte $2
 	special Function_LoadOpponentTrainerAndPokemonsWithOTSprite
-	appear $2
+	appear BATTLETOWERBATTLEROOM_YOUNGSTER
 	warpsound
 	waitsfx
-	applymovement $2, MovementData_BattleTowerBattleRoomOpponentWalksIn
+	applymovement BATTLETOWERBATTLEROOM_YOUNGSTER, MovementData_BattleTowerBattleRoomOpponentWalksIn
 	loadfont
 	battletowertext 1
 	keeptextopen
@@ -36,10 +40,10 @@ Script_BattleRoomLoop: ; 0x9f425
 	if_not_equal $0, Script_FailedBattleTowerChallenge
 	copybytetovar wNrOfBeatenBattleTowerTrainers ; wcf64
 	if_equal BATTLETOWER_NROFTRAINERS, Script_BeatenAllTrainers
-	applymovement $2, MovementData_BattleTowerBattleRoomOpponentWalksOut
+	applymovement BATTLETOWERBATTLEROOM_YOUNGSTER, MovementData_BattleTowerBattleRoomOpponentWalksOut
 	warpsound
-	disappear $2
-	applymovement $3, MovementData_BattleTowerBattleRoomReceptionistWalksToPlayer
+	disappear BATTLETOWERBATTLEROOM_YOUNGSTER
+	applymovement BATTLETOWERBATTLEROOM_RECEPTIONIST, MovementData_BattleTowerBattleRoomReceptionistWalksToPlayer
 	applymovement PLAYER, MovementData_BattleTowerBattleRoomPlayerTurnsToFaceReceptionist
 	loadfont
 	writetext Text_YourPkmnWillBeHealedToFullHealth
@@ -58,7 +62,7 @@ Script_BattleRoomLoop: ; 0x9f425
 Script_ContinueAndBattleNextOpponent: ; 0x9f477
 	closetext
 	applymovement PLAYER, MovementData_BattleTowerBattleRoomPlayerTurnsToFaceNextOpponent
-	applymovement $3, MovementData_BattleTowerBattleRoomReceptionistWalksAway
+	applymovement BATTLETOWERBATTLEROOM_RECEPTIONIST, MovementData_BattleTowerBattleRoomReceptionistWalksAway
 	jump Script_BattleRoomLoop
 
 Script_DontBattleNextOpponent: ; 0x9f483

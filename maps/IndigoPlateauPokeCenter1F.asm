@@ -1,3 +1,11 @@
+const_value set 2
+	const INDIGOPLATEAUPOKECENTER1F_NURSE
+	const INDIGOPLATEAUPOKECENTER1F_CLERK
+	const INDIGOPLATEAUPOKECENTER1F_COOLTRAINER_M
+	const INDIGOPLATEAUPOKECENTER1F_SILVER
+	const INDIGOPLATEAUPOKECENTER1F_GRAMPS
+	const INDIGOPLATEAUPOKECENTER1F_JYNX
+
 IndigoPlateauPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 1
@@ -51,13 +59,13 @@ UnknownScript_0x180053:
 	if_equal THURSDAY, UnknownScript_0x18012b
 	if_equal FRIDAY, UnknownScript_0x18012b
 	if_equal SATURDAY, UnknownScript_0x18012b
-	moveperson $5, $11, $9
-	appear $5
+	moveperson INDIGOPLATEAUPOKECENTER1F_SILVER, $11, $9
+	appear INDIGOPLATEAUPOKECENTER1F_SILVER
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_RotatePalettesRightMusic
 	pause 15
-	applymovement $5, MovementData_0x180164
+	applymovement INDIGOPLATEAUPOKECENTER1F_SILVER, MovementData_0x180164
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	spriteface PLAYER, RIGHT
 	jump UnknownScript_0x1800ce
@@ -73,12 +81,12 @@ UnknownScript_0x180094:
 	if_equal THURSDAY, UnknownScript_0x18012b
 	if_equal FRIDAY, UnknownScript_0x18012b
 	if_equal SATURDAY, UnknownScript_0x18012b
-	appear $5
+	appear INDIGOPLATEAUPOKECENTER1F_SILVER
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_RotatePalettesRightMusic
 	pause 15
-	applymovement $5, MovementData_0x18016b
+	applymovement INDIGOPLATEAUPOKECENTER1F_SILVER, MovementData_0x18016b
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	spriteface PLAYER, LEFT
 UnknownScript_0x1800ce:
@@ -124,8 +132,8 @@ UnknownScript_0x180113:
 	waitbutton
 	closetext
 	spriteface PLAYER, DOWN
-	applymovement $5, MovementData_0x180172
-	disappear $5
+	applymovement INDIGOPLATEAUPOKECENTER1F_SILVER, MovementData_0x180172
+	disappear INDIGOPLATEAUPOKECENTER1F_SILVER
 	dotrigger $0
 	playmapmusic
 	setflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT

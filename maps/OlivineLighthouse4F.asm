@@ -1,3 +1,7 @@
+const_value set 2
+	const OLIVINELIGHTHOUSE4F_SAILOR
+	const OLIVINELIGHTHOUSE4F_LASS
+
 OlivineLighthouse4F_MapScriptHeader:
 .MapTriggers:
 	db 0

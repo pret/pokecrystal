@@ -1,3 +1,6 @@
+const_value set 2
+	const TOHJOFALLS_POKE_BALL
+
 TohjoFalls_MapScriptHeader:
 .MapTriggers:
 	db 0

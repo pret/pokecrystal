@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE12SUPERRODHOUSE_FISHING_GURU
+
 Route12SuperRodHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

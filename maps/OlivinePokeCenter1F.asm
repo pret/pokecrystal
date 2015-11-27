@@ -1,3 +1,9 @@
+const_value set 2
+	const OLIVINEPOKECENTER1F_NURSE
+	const OLIVINEPOKECENTER1F_FISHING_GURU
+	const OLIVINEPOKECENTER1F_FISHER
+	const OLIVINEPOKECENTER1F_TEACHER
+
 OlivinePokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,8 @@
+const_value set 2
+	const ROCKTUNNELB1F_POKE_BALL1
+	const ROCKTUNNELB1F_POKE_BALL2
+	const ROCKTUNNELB1F_POKE_BALL3
+
 RockTunnelB1F_MapScriptHeader:
 .MapTriggers:
 	db 0

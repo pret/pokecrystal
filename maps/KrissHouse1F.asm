@@ -1,3 +1,10 @@
+const_value set 2
+	const KRISSHOUSE1F_MOM1
+	const KRISSHOUSE1F_MOM2
+	const KRISSHOUSE1F_MOM3
+	const KRISSHOUSE1F_MOM4
+	const KRISSHOUSE1F_POKEFAN_F
+
 KrissHouse1F_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -20,15 +27,15 @@ UnknownScript_0x7a4d8:
 
 UnknownScript_0x7a4db:
 	playmusic MUSIC_MOM
-	showemote EMOTE_SHOCK, $2, 15
+	showemote EMOTE_SHOCK, KRISSHOUSE1F_MOM1, 15
 	spriteface PLAYER, LEFT
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x7a4f2
-	applymovement $2, MovementData_0x7a5fc
+	applymovement KRISSHOUSE1F_MOM1, MovementData_0x7a5fc
 	jump UnknownScript_0x7a4f6
 
 UnknownScript_0x7a4f2:
-	applymovement $2, MovementData_0x7a5fe
+	applymovement KRISSHOUSE1F_MOM1, MovementData_0x7a5fe
 UnknownScript_0x7a4f6:
 	loadfont
 	writetext UnknownText_0x7a604
@@ -84,16 +91,16 @@ UnknownScript_0x7a549:
 	jump UnknownScript_0x7a56b
 
 UnknownScript_0x7a55d:
-	applymovement $2, MovementData_0x7a600
+	applymovement KRISSHOUSE1F_MOM1, MovementData_0x7a600
 	jump UnknownScript_0x7a56b
 
 UnknownScript_0x7a564:
-	applymovement $2, MovementData_0x7a602
+	applymovement KRISSHOUSE1F_MOM1, MovementData_0x7a602
 	jump UnknownScript_0x7a56b
 
 UnknownScript_0x7a56b:
 	special RestartMapMusic
-	spriteface $2, LEFT
+	spriteface KRISSHOUSE1F_MOM1, LEFT
 	end
 
 UnknownScript_0x7a572:
@@ -176,7 +183,7 @@ NeighborScript:
 	writetext NeighborText
 	waitbutton
 	closetext
-	spriteface $6, RIGHT
+	spriteface KRISSHOUSE1F_POKEFAN_F, RIGHT
 	end
 
 TVScript:

@@ -1,3 +1,12 @@
+const_value set 2
+	const ROUTE37_WEIRD_TREE1
+	const ROUTE37_WEIRD_TREE2
+	const ROUTE37_YOUNGSTER
+	const ROUTE37_FRUIT_TREE1
+	const ROUTE37_BUG_CATCHER
+	const ROUTE37_FRUIT_TREE2
+	const ROUTE37_FRUIT_TREE3
+
 Route37_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -12,11 +21,11 @@ Route37_MapScriptHeader:
 SunnyCallback:
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, .SunnyAppears
-	disappear $6
+	disappear ROUTE37_BUG_CATCHER
 	return
 
 .SunnyAppears
-	appear $6
+	appear ROUTE37_BUG_CATCHER
 	return
 
 TrainerTwinsAnnandanne1:

@@ -1,3 +1,7 @@
+const_value set 2
+	const ROUTE5CLEANSETAGSPEECHHOUSE_GRANNY
+	const ROUTE5CLEANSETAGSPEECHHOUSE_TEACHER
+
 Route5CleanseTagSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

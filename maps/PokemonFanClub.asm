@@ -1,3 +1,11 @@
+const_value set 2
+	const POKEMONFANCLUB_GENTLEMAN
+	const POKEMONFANCLUB_RECEPTIONIST
+	const POKEMONFANCLUB_FISHER
+	const POKEMONFANCLUB_TEACHER
+	const POKEMONFANCLUB_FAIRY
+	const POKEMONFANCLUB_ODDISH
+
 PokemonFanClub_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -71,7 +79,7 @@ UnknownScript_0x191844:
 	waitsfx
 	giveitem LOST_ITEM
 	iffalse UnknownScript_0x191865
-	disappear $6
+	disappear POKEMONFANCLUB_FAIRY
 	writetext UnknownText_0x191d0a
 	playsound SFX_KEY_ITEM
 	waitsfx

@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE42ECRUTEAKGATE_OFFICER
+
 Route42EcruteakGate_MapScriptHeader:
 .MapTriggers:
 	db 0

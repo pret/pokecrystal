@@ -1,3 +1,11 @@
+const_value set 2
+	const SPROUTTOWER1F_SAGE1
+	const SPROUTTOWER1F_SAGE2
+	const SPROUTTOWER1F_GRANNY
+	const SPROUTTOWER1F_TEACHER
+	const SPROUTTOWER1F_SAGE3
+	const SPROUTTOWER1F_POKE_BALL
+
 SproutTower1F_MapScriptHeader:
 .MapTriggers:
 	db 0

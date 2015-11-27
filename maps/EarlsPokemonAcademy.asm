@@ -1,3 +1,11 @@
+const_value set 2
+	const EARLSPOKEMONACADEMY_FISHER
+	const EARLSPOKEMONACADEMY_YOUNGSTER1
+	const EARLSPOKEMONACADEMY_GAMEBOY_KID1
+	const EARLSPOKEMONACADEMY_GAMEBOY_KID2
+	const EARLSPOKEMONACADEMY_YOUNGSTER2
+	const EARLSPOKEMONACADEMY_POKEDEX
+
 EarlsPokemonAcademy_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,7 +14,7 @@ EarlsPokemonAcademy_MapScriptHeader:
 	db 0
 
 AcademyEarl:
-	applymovement $2, MovementData_0x68b2d
+	applymovement EARLSPOKEMONACADEMY_FISHER, MovementData_0x68b2d
 	faceplayer
 	loadfont
 	writetext UnknownText_0x68b3b
@@ -39,7 +47,7 @@ GameboyKidScript_0x68a86:
 	writetext UnknownText_0x68dda
 	waitbutton
 	closetext
-	spriteface $4, DOWN
+	spriteface EARLSPOKEMONACADEMY_GAMEBOY_KID1, DOWN
 	end
 
 GameboyKidScript_0x68a91:
@@ -48,7 +56,7 @@ GameboyKidScript_0x68a91:
 	writetext UnknownText_0x68e07
 	waitbutton
 	closetext
-	spriteface $5, DOWN
+	spriteface EARLSPOKEMONACADEMY_GAMEBOY_KID2, DOWN
 	end
 
 YoungsterScript_0x68a9c:

@@ -1,3 +1,12 @@
+const_value set 2
+	const MAHOGANYGYM_PRYCE
+	const MAHOGANYGYM_BUENA1
+	const MAHOGANYGYM_ROCKER1
+	const MAHOGANYGYM_BUENA2
+	const MAHOGANYGYM_ROCKER2
+	const MAHOGANYGYM_ROCKER3
+	const MAHOGANYGYM_GYM_GUY
+
 MahoganyGym_MapScriptHeader:
 .MapTriggers:
 	db 0

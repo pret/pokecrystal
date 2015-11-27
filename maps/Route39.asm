@@ -1,3 +1,15 @@
+const_value set 2
+	const ROUTE39_SAILOR
+	const ROUTE39_POKEFAN_M
+	const ROUTE39_POKEFAN_F1
+	const ROUTE39_TAUROS1
+	const ROUTE39_TAUROS2
+	const ROUTE39_TAUROS3
+	const ROUTE39_TAUROS4
+	const ROUTE39_STANDING_YOUNGSTER
+	const ROUTE39_FRUIT_TREE
+	const ROUTE39_POKEFAN_F2
+
 Route39_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,6 @@
+const_value set 2
+	const WHIRLISLANDNE_POKE_BALL
+
 WhirlIslandNE_MapScriptHeader:
 .MapTriggers:
 	db 0

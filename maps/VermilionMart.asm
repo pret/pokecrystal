@@ -1,3 +1,8 @@
+const_value set 2
+	const VERMILIONMART_CLERK
+	const VERMILIONMART_SUPER_NERD
+	const VERMILIONMART_BUENA
+
 VermilionMart_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,7 @@
+const_value set 2
+	const ROUTE10SOUTH_POKEFAN_M1
+	const ROUTE10SOUTH_POKEFAN_M2
+
 Route10South_MapScriptHeader:
 .MapTriggers:
 	db 0

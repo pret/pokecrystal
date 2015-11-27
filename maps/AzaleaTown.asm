@@ -1,3 +1,17 @@
+const_value set 2
+	const AZALEATOWN_AZALEA_ROCKET1
+	const AZALEATOWN_GRAMPS
+	const AZALEATOWN_TEACHER
+	const AZALEATOWN_YOUNGSTER
+	const AZALEATOWN_SLOWPOKE1
+	const AZALEATOWN_SLOWPOKE2
+	const AZALEATOWN_SLOWPOKE3
+	const AZALEATOWN_SLOWPOKE4
+	const AZALEATOWN_FRUIT_TREE
+	const AZALEATOWN_AZALEA_ROCKET2
+	const AZALEATOWN_AZALEA_ROCKET3
+	const AZALEATOWN_KURT_OUTSIDE
+
 AzaleaTown_MapScriptHeader:
 .MapTriggers:
 	db 3
@@ -27,13 +41,13 @@ AzaleaTown_MapScriptHeader:
 	return
 
 UnknownScript_0x198018:
-	moveperson $b, $b, $b
+	moveperson AZALEATOWN_AZALEA_ROCKET2, $b, $b
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_RotatePalettesRightMusic
 	pause 15
-	appear $b
-	applymovement $b, MovementData_0x198134
+	appear AZALEATOWN_AZALEA_ROCKET2
+	applymovement AZALEATOWN_AZALEA_ROCKET2, MovementData_0x198134
 	spriteface PLAYER, DOWN
 	jump UnknownScript_0x198049
 
@@ -42,8 +56,8 @@ UnknownScript_0x198034:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_RotatePalettesRightMusic
 	pause 15
-	appear $b
-	applymovement $b, MovementData_0x19813c
+	appear AZALEATOWN_AZALEA_ROCKET2
+	applymovement AZALEATOWN_AZALEA_ROCKET2, MovementData_0x19813c
 	spriteface PLAYER, UP
 UnknownScript_0x198049:
 	playmusic MUSIC_RIVAL_ENCOUNTER
@@ -89,9 +103,9 @@ UnknownScript_0x198091:
 	waitbutton
 	closetext
 	spriteface PLAYER, LEFT
-	applymovement $b, MovementData_0x198144
+	applymovement AZALEATOWN_AZALEA_ROCKET2, MovementData_0x198144
 	playsound SFX_EXIT_BUILDING
-	disappear $b
+	disappear AZALEATOWN_AZALEA_ROCKET2
 	dotrigger $0
 	waitsfx
 	playmapmusic
@@ -150,13 +164,13 @@ UnknownScript_0x1980e5:
 	loadfont
 	writetext UnknownText_0x1985df
 	keeptextopen
-	spriteface $d, RIGHT
+	spriteface AZALEATOWN_KURT_OUTSIDE, RIGHT
 	writetext UnknownText_0x19860b
 	keeptextopen
 	writetext UnknownText_0x198628
 	waitbutton
 	verbosegiveitem GS_BALL
-	spriteface $d, LEFT
+	spriteface AZALEATOWN_KURT_OUTSIDE, LEFT
 	setflag ENGINE_HAVE_EXAMINED_GS_BALL
 	clearevent EVENT_ILEX_FOREST_LASS
 	setevent EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
@@ -169,7 +183,7 @@ KurtOutsideScript_0x19810c:
 	loadfont
 	writetext UnknownText_0x198628
 	waitbutton
-	spriteface $d, LEFT
+	spriteface AZALEATOWN_KURT_OUTSIDE, LEFT
 	closetext
 	end
 

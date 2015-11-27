@@ -1,3 +1,10 @@
+const_value set 2
+	const MAHOGANYMART1F_PHARMACIST
+	const MAHOGANYMART1F_BLACK_BELT
+	const MAHOGANYMART1F_LANCE
+	const MAHOGANYMART1F_DRAGON
+	const MAHOGANYMART1F_GRANNY
+
 MahoganyMart1F_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -67,38 +74,38 @@ UnknownScript_0x6c38f:
 	pause 15
 	closetext
 	playsound SFX_TACKLE
-	applymovement $5, MovementData_0x6c3f6
-	applymovement $3, MovementData_0x6c3fb
+	applymovement MAHOGANYMART1F_DRAGON, MovementData_0x6c3f6
+	applymovement MAHOGANYMART1F_BLACK_BELT, MovementData_0x6c3fb
 	pause 15
-	disappear $5
+	disappear MAHOGANYMART1F_DRAGON
 	pause 15
-	applymovement $4, MovementData_0x6c407
+	applymovement MAHOGANYMART1F_LANCE, MovementData_0x6c407
 	loadfont
 	writetext UnknownText_0x6c549
 	waitbutton
 	closetext
-	follow $4, PLAYER
-	applymovement $4, MovementData_0x6c40a
-	applymovement $2, MovementData_0x6c403
-	applymovement $4, MovementData_0x6c40e
+	follow MAHOGANYMART1F_LANCE, PLAYER
+	applymovement MAHOGANYMART1F_LANCE, MovementData_0x6c40a
+	applymovement MAHOGANYMART1F_PHARMACIST, MovementData_0x6c403
+	applymovement MAHOGANYMART1F_LANCE, MovementData_0x6c40e
 	stopfollow
 	loadfont
 	writetext UnknownText_0x6c59e
 	waitbutton
-	showemote EMOTE_SHOCK, $2, 10
+	showemote EMOTE_SHOCK, MAHOGANYMART1F_PHARMACIST, 10
 	playsound SFX_FAINT
 	changeblock $6, $2, $1e
 	reloadmappart
 	closetext
 	setevent EVENT_UNCOVERED_STAIRCASE_IN_MAHOGANY_MART
-	spriteface $4, LEFT
+	spriteface MAHOGANYMART1F_LANCE, LEFT
 	loadfont
 	writetext UnknownText_0x6c5ba
 	waitbutton
 	closetext
-	applymovement $4, MovementData_0x6c412
+	applymovement MAHOGANYMART1F_LANCE, MovementData_0x6c412
 	playsound SFX_EXIT_BUILDING
-	disappear $4
+	disappear MAHOGANYMART1F_LANCE
 	dotrigger $0
 	waitsfx
 	end

@@ -1,3 +1,8 @@
+const_value set 2
+	const OLIVINECAFE_SAILOR1
+	const OLIVINECAFE_FISHING_GURU
+	const OLIVINECAFE_SAILOR2
+
 OlivineCafe_MapScriptHeader:
 .MapTriggers:
 	db 0

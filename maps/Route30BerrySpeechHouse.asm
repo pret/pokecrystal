@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE30BERRYSPEECHHOUSE_POKEFAN_M
+
 Route30BerrySpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

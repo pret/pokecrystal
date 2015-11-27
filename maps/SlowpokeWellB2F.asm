@@ -1,3 +1,7 @@
+const_value set 2
+	const SLOWPOKEWELLB2F_GYM_GUY
+	const SLOWPOKEWELLB2F_POKE_BALL
+
 SlowpokeWellB2F_MapScriptHeader:
 .MapTriggers:
 	db 0

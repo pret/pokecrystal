@@ -1,3 +1,9 @@
+const_value set 2
+	const SILVERCAVEROOM1_POKE_BALL1
+	const SILVERCAVEROOM1_POKE_BALL2
+	const SILVERCAVEROOM1_POKE_BALL3
+	const SILVERCAVEROOM1_POKE_BALL4
+
 SilverCaveRoom1_MapScriptHeader:
 .MapTriggers:
 	db 0

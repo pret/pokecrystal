@@ -1,3 +1,7 @@
+const_value set 2
+	const RUINSOFALPHKABUTOCHAMBER_RECEPTIONIST
+	const RUINSOFALPHKABUTOCHAMBER_SCIENTIST
+
 RuinsofAlphKabutoChamber_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -100,7 +104,7 @@ UnknownScript_0x587c0:
 	writetext UnknownText_0x588f5
 	waitbutton
 	closetext
-	spriteface $3, UP
+	spriteface RUINSOFALPHKABUTOCHAMBER_SCIENTIST, UP
 	end
 
 UnknownScript_0x587c9:

@@ -1,3 +1,14 @@
+const_value set 2
+	const CELADONGAMECORNER_CLERK
+	const CELADONGAMECORNER_RECEPTIONIST
+	const CELADONGAMECORNER_POKEFAN_M
+	const CELADONGAMECORNER_TEACHER
+	const CELADONGAMECORNER_FISHING_GURU
+	const CELADONGAMECORNER_FISHER1
+	const CELADONGAMECORNER_FISHER2
+	const CELADONGAMECORNER_GYM_GUY
+	const CELADONGAMECORNER_GRAMPS
+
 CeladonGameCorner_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -17,7 +28,7 @@ PokefanMScript_0x72123:
 	writetext UnknownText_0x72215
 	waitbutton
 	closetext
-	spriteface $4, LEFT
+	spriteface CELADONGAMECORNER_POKEFAN_M, LEFT
 	end
 
 TeacherScript_0x7212e:
@@ -26,7 +37,7 @@ TeacherScript_0x7212e:
 	writetext UnknownText_0x72242
 	waitbutton
 	closetext
-	spriteface $5, RIGHT
+	spriteface CELADONGAMECORNER_TEACHER, RIGHT
 	end
 
 FishingGuruScript_0x72139:
@@ -35,7 +46,7 @@ FishingGuruScript_0x72139:
 	writetext UnknownText_0x72295
 	waitbutton
 	closetext
-	spriteface $6, RIGHT
+	spriteface CELADONGAMECORNER_FISHING_GURU, RIGHT
 	end
 
 FisherScript_0x72144:
@@ -90,7 +101,7 @@ GrampsScript_0x72190:
 	writetext UnknownText_0x724ad
 	waitbutton
 	closetext
-	spriteface $a, LEFT
+	spriteface CELADONGAMECORNER_GRAMPS, LEFT
 	end
 
 MapCeladonGameCornerSignpost36Script:

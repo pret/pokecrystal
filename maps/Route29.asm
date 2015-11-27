@@ -1,3 +1,13 @@
+const_value set 2
+	const ROUTE29_COOLTRAINER_M1
+	const ROUTE29_YOUNGSTER
+	const ROUTE29_TEACHER1
+	const ROUTE29_FRUIT_TREE
+	const ROUTE29_FISHER
+	const ROUTE29_COOLTRAINER_M2
+	const ROUTE29_TEACHER2
+	const ROUTE29_POKE_BALL
+
 Route29_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -24,19 +34,19 @@ TuscanyCallback:
 	iftrue .DoesTuscanyAppear
 
 .TuscanyDisappears
-	disappear $8
+	disappear ROUTE29_TEACHER2
 	return
 
 .DoesTuscanyAppear
 	checkcode VAR_WEEKDAY
 	if_not_equal TUESDAY, .TuscanyDisappears
-	appear $8
+	appear ROUTE29_TEACHER2
 	return
 
 UnknownScript_0x1a0f6d:
-	spriteface $2, UP
-	showemote EMOTE_SHOCK, $2, 15
-	applymovement $2, MovementData_0x1a108d
+	spriteface ROUTE29_COOLTRAINER_M1, UP
+	showemote EMOTE_SHOCK, ROUTE29_COOLTRAINER_M1, 15
+	applymovement ROUTE29_COOLTRAINER_M1, MovementData_0x1a108d
 	spriteface PLAYER, LEFT
 	setevent EVENT_DUDE_TALKED_TO_YOU
 	loadfont
@@ -44,12 +54,12 @@ UnknownScript_0x1a0f6d:
 	yesorno
 	iffalse UnknownScript_0x1a0fd9
 	closetext
-	follow $2, PLAYER
-	applymovement $2, MovementData_0x1a109a
+	follow ROUTE29_COOLTRAINER_M1, PLAYER
+	applymovement ROUTE29_COOLTRAINER_M1, MovementData_0x1a109a
 	stopfollow
 	scriptedpokedata RATTATA, 5
 	catchtutorial BATTLETYPE_TUTORIAL
-	spriteface $2, UP
+	spriteface ROUTE29_COOLTRAINER_M1, UP
 	loadfont
 	writetext UnknownText_0x1a114d
 	waitbutton
@@ -59,9 +69,9 @@ UnknownScript_0x1a0f6d:
 	end
 
 UnknownScript_0x1a0fa3:
-	spriteface $2, UP
-	showemote EMOTE_SHOCK, $2, 15
-	applymovement $2, MovementData_0x1a1094
+	spriteface ROUTE29_COOLTRAINER_M1, UP
+	showemote EMOTE_SHOCK, ROUTE29_COOLTRAINER_M1, 15
+	applymovement ROUTE29_COOLTRAINER_M1, MovementData_0x1a1094
 	spriteface PLAYER, LEFT
 	setevent EVENT_DUDE_TALKED_TO_YOU
 	loadfont
@@ -69,12 +79,12 @@ UnknownScript_0x1a0fa3:
 	yesorno
 	iffalse UnknownScript_0x1a0fe5
 	closetext
-	follow $2, PLAYER
-	applymovement $2, MovementData_0x1a10a1
+	follow ROUTE29_COOLTRAINER_M1, PLAYER
+	applymovement ROUTE29_COOLTRAINER_M1, MovementData_0x1a10a1
 	stopfollow
 	scriptedpokedata RATTATA, 5
 	catchtutorial BATTLETYPE_TUTORIAL
-	spriteface $2, UP
+	spriteface ROUTE29_COOLTRAINER_M1, UP
 	loadfont
 	writetext UnknownText_0x1a114d
 	waitbutton
@@ -87,7 +97,7 @@ UnknownScript_0x1a0fd9:
 	writetext UnknownText_0x1a1197
 	waitbutton
 	closetext
-	applymovement $2, MovementData_0x1a109a
+	applymovement ROUTE29_COOLTRAINER_M1, MovementData_0x1a109a
 	dotrigger $0
 	end
 
@@ -95,7 +105,7 @@ UnknownScript_0x1a0fe5:
 	writetext UnknownText_0x1a1197
 	waitbutton
 	closetext
-	applymovement $2, MovementData_0x1a10a1
+	applymovement ROUTE29_COOLTRAINER_M1, MovementData_0x1a10a1
 	dotrigger $0
 	end
 

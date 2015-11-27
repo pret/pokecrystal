@@ -1,3 +1,12 @@
+const_value set 2
+	const ROUTE31_FISHER
+	const ROUTE31_YOUNGSTER
+	const ROUTE31_BUG_CATCHER
+	const ROUTE31_COOLTRAINER_M
+	const ROUTE31_FRUIT_TREE
+	const ROUTE31_POKE_BALL1
+	const ROUTE31_POKE_BALL2
+
 Route31_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE24_ROCKET
+
 Route24_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -27,7 +30,7 @@ RocketScript_0x1adbfa:
 	closetext
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
-	disappear $2
+	disappear ROUTE24_ROCKET
 	pause 25
 	special Special_FadeInQuickly
 	playmapmusic

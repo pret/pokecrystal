@@ -1,3 +1,8 @@
+const_value set 2
+	const PEWTERGYM_BROCK
+	const PEWTERGYM_YOUNGSTER
+	const PEWTERGYM_GYM_GUY
+
 PewterGym_MapScriptHeader:
 .MapTriggers:
 	db 0

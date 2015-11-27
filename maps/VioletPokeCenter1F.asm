@@ -1,3 +1,10 @@
+const_value set 2
+	const VIOLETPOKECENTER1F_NURSE
+	const VIOLETPOKECENTER1F_GAMEBOY_KID
+	const VIOLETPOKECENTER1F_GENTLEMAN
+	const VIOLETPOKECENTER1F_YOUNGSTER
+	const VIOLETPOKECENTER1F_SCIENTIST
+
 VioletPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -32,18 +39,18 @@ UnknownScript_0x694d7:
 	checkcode VAR_FACING
 	if_equal $1, .UnknownScript_0x69511
 	spriteface PLAYER, DOWN
-	applymovement $6, MovementData_0x69549
+	applymovement VIOLETPOKECENTER1F_SCIENTIST, MovementData_0x69549
 	playsound SFX_EXIT_BUILDING
-	disappear $6
+	disappear VIOLETPOKECENTER1F_SCIENTIST
 	waitsfx
 	end
 
 .UnknownScript_0x69511
-	applymovement $6, MovementData_0x6954e
+	applymovement VIOLETPOKECENTER1F_SCIENTIST, MovementData_0x6954e
 	spriteface PLAYER, DOWN
-	applymovement $6, MovementData_0x69551
+	applymovement VIOLETPOKECENTER1F_SCIENTIST, MovementData_0x69551
 	playsound SFX_EXIT_BUILDING
-	disappear $6
+	disappear VIOLETPOKECENTER1F_SCIENTIST
 	waitsfx
 	end
 

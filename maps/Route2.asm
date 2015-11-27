@@ -1,3 +1,13 @@
+const_value set 2
+	const ROUTE2_BUG_CATCHER1
+	const ROUTE2_BUG_CATCHER2
+	const ROUTE2_BUG_CATCHER3
+	const ROUTE2_POKE_BALL1
+	const ROUTE2_POKE_BALL2
+	const ROUTE2_POKE_BALL3
+	const ROUTE2_POKE_BALL4
+	const ROUTE2_FRUIT_TREE
+
 Route2_MapScriptHeader:
 .MapTriggers:
 	db 0

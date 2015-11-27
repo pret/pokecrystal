@@ -1,3 +1,6 @@
+const_value set 2
+	const KARENSROOM_KAREN
+
 KarensRoom_MapScriptHeader:
 .MapTriggers:
 	db 2

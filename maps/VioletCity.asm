@@ -1,3 +1,13 @@
+const_value set 2
+	const VIOLETCITY_FISHER
+	const VIOLETCITY_LASS
+	const VIOLETCITY_SUPER_NERD
+	const VIOLETCITY_GRAMPS
+	const VIOLETCITY_YOUNGSTER
+	const VIOLETCITY_FRUIT_TREE
+	const VIOLETCITY_POKE_BALL1
+	const VIOLETCITY_POKE_BALL2
+
 VioletCity_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -13,7 +23,7 @@ VioletCity_MapScriptHeader:
 	return
 
 FisherScript_0x1a83bb:
-	applymovement $2, MovementData_0x1a8465
+	applymovement VIOLETCITY_FISHER, MovementData_0x1a8465
 	faceplayer
 	loadfont
 	writetext UnknownText_0x1a8473
@@ -32,20 +42,20 @@ UnknownScript_0x1a83d1:
 	waitbutton
 	closetext
 	playmusic MUSIC_SHOW_ME_AROUND
-	follow $2, PLAYER
-	applymovement $2, MovementData_0x1a842a
+	follow VIOLETCITY_FISHER, PLAYER
+	applymovement VIOLETCITY_FISHER, MovementData_0x1a842a
 	spriteface PLAYER, UP
-	applymovement $2, MovementData_0x1a8465
+	applymovement VIOLETCITY_FISHER, MovementData_0x1a8465
 	stopfollow
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x1a84f9
 	waitbutton
 	closetext
-	applymovement $2, MovementData_0x1a8465
-	applymovement $2, MovementData_0x1a8463
+	applymovement VIOLETCITY_FISHER, MovementData_0x1a8465
+	applymovement VIOLETCITY_FISHER, MovementData_0x1a8463
 	playsound SFX_ENTER_DOOR
-	disappear $2
+	disappear VIOLETCITY_FISHER
 	clearevent EVENT_EARLS_ACADEMY_EARL
 	waitsfx
 	end

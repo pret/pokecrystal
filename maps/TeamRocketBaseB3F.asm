@@ -1,3 +1,19 @@
+const_value set 2
+	const TEAMROCKETBASEB3F_LANCE
+	const TEAMROCKETBASEB3F_ROCKET1
+	const TEAMROCKETBASEB3F_MOLTRES
+	const TEAMROCKETBASEB3F_ROCKET_GIRL
+	const TEAMROCKETBASEB3F_ROCKET2
+	const TEAMROCKETBASEB3F_SCIENTIST1
+	const TEAMROCKETBASEB3F_SCIENTIST2
+	const TEAMROCKETBASEB3F_ROCKET3
+	const TEAMROCKETBASEB3F_SILVER
+	const TEAMROCKETBASEB3F_POKE_BALL1
+	const TEAMROCKETBASEB3F_POKE_BALL2
+	const TEAMROCKETBASEB3F_POKE_BALL3
+	const TEAMROCKETBASEB3F_POKE_BALL4
+	const TEAMROCKETBASEB3F_POKE_BALL5
+
 TeamRocketBaseB3F_MapScriptHeader:
 .MapTriggers:
 	db 4
@@ -40,15 +56,15 @@ TeamRocketBaseB3F_MapScriptHeader:
 LanceScript_0x6dffc:
 	spriteface PLAYER, LEFT
 	pause 5
-	spriteface $4, RIGHT
+	spriteface TEAMROCKETBASEB3F_MOLTRES, RIGHT
 	pause 20
-	applymovement $2, MovementData_0x6e12a
+	applymovement TEAMROCKETBASEB3F_LANCE, MovementData_0x6e12a
 	loadfont
 	writetext UnknownText_0x6e179
 	waitbutton
 	closetext
-	applymovement $2, MovementData_0x6e12c
-	disappear $2
+	applymovement TEAMROCKETBASEB3F_LANCE, MovementData_0x6e12c
+	disappear TEAMROCKETBASEB3F_LANCE
 	dotrigger $1
 	end
 
@@ -56,8 +72,8 @@ UnknownScript_0x6e019:
 	spriteface PLAYER, LEFT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_RotatePalettesRightMusic
-	appear $a
-	applymovement $a, MovementData_0x6e164
+	appear TEAMROCKETBASEB3F_SILVER
+	applymovement TEAMROCKETBASEB3F_SILVER, MovementData_0x6e164
 	spriteface PLAYER, LEFT
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
@@ -66,8 +82,8 @@ UnknownScript_0x6e019:
 	closetext
 	playsound SFX_TACKLE
 	applymovement PLAYER, MovementData_0x6e175
-	applymovement $a, MovementData_0x6e16d
-	disappear $a
+	applymovement TEAMROCKETBASEB3F_SILVER, MovementData_0x6e16d
+	disappear TEAMROCKETBASEB3F_SILVER
 	dotrigger $2
 	special RestartMapMusic
 	end
@@ -83,14 +99,14 @@ UnknownScript_0x6e052:
 	applymovement PLAYER, MovementData_0x6e13a
 UnknownScript_0x6e056:
 	pause 30
-	showemote EMOTE_SHOCK, $3, 15
+	showemote EMOTE_SHOCK, TEAMROCKETBASEB3F_ROCKET1, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	spriteface $3, DOWN
+	spriteface TEAMROCKETBASEB3F_ROCKET1, DOWN
 	loadfont
 	writetext UnknownText_0x6e400
 	waitbutton
 	closetext
-	applymovement $3, MovementData_0x6e142
+	applymovement TEAMROCKETBASEB3F_ROCKET1, MovementData_0x6e142
 	winlosstext UnknownText_0x6e511, 0
 	setlasttalked $3
 	scriptedtrainerdata EXECUTIVEM, 4
@@ -101,10 +117,10 @@ UnknownScript_0x6e056:
 	writetext UnknownText_0x6e548
 	waitbutton
 	closetext
-	applymovement $3, MovementData_0x6e144
+	applymovement TEAMROCKETBASEB3F_ROCKET1, MovementData_0x6e144
 	playsound SFX_TACKLE
-	applymovement $3, MovementData_0x6e147
-	disappear $3
+	applymovement TEAMROCKETBASEB3F_ROCKET1, MovementData_0x6e147
+	disappear TEAMROCKETBASEB3F_ROCKET1
 	dotrigger $3
 	end
 

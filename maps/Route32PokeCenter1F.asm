@@ -1,3 +1,8 @@
+const_value set 2
+	const ROUTE32POKECENTER1F_NURSE
+	const ROUTE32POKECENTER1F_FISHING_GURU
+	const ROUTE32POKECENTER1F_COOLTRAINER_F
+
 Route32PokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 0

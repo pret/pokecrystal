@@ -1,3 +1,6 @@
+const_value set 2
+	const BLUESHOUSE_DAISY
+
 BluesHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

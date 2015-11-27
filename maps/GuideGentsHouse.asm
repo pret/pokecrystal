@@ -1,3 +1,6 @@
+const_value set 2
+	const GUIDEGENTSHOUSE_GRAMPS
+
 GuideGentsHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

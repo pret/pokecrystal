@@ -1,3 +1,6 @@
+const_value set 2
+	const SILVERCAVEROOM3_RED
+
 SilverCaveRoom3_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -24,7 +27,7 @@ RedScript_0x18c603:
 	closetext
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
-	disappear $2
+	disappear SILVERCAVEROOM3_RED
 	pause 15
 	special Special_FadeInQuickly
 	pause 30

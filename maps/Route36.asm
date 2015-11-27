@@ -1,3 +1,14 @@
+const_value set 2
+	const ROUTE36_YOUNGSTER1
+	const ROUTE36_YOUNGSTER2
+	const ROUTE36_WEIRD_TREE
+	const ROUTE36_LASS1
+	const ROUTE36_FISHER
+	const ROUTE36_FRUIT_TREE
+	const ROUTE36_YOUNGSTER3
+	const ROUTE36_LASS2
+	const ROUTE36_SUICUNE
+
 Route36_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -22,11 +33,11 @@ UnknownScript_0x19400e:
 ArthurCallback:
 	checkcode VAR_WEEKDAY
 	if_equal THURSDAY, .ArthurAppears
-	disappear $8
+	disappear ROUTE36_YOUNGSTER3
 	return
 
 .ArthurAppears
-	appear $8
+	appear ROUTE36_YOUNGSTER3
 	return
 
 UnknownScript_0x19401b:
@@ -34,8 +45,8 @@ UnknownScript_0x19401b:
 	pause 15
 	playsound SFX_WARP_FROM
 	spriteface PLAYER, UP
-	applymovement $a, MovementData_0x194262
-	disappear $a
+	applymovement ROUTE36_SUICUNE, MovementData_0x194262
+	disappear ROUTE36_SUICUNE
 	spriteface PLAYER, DOWN
 	pause 10
 	dotrigger $0
@@ -48,7 +59,7 @@ WeirdTreeScript_0x19403c:
 	iftrue UnknownScript_0x19404a
 	waitsfx
 	playsound SFX_SANDSTORM
-	applymovement $4, MovementData_0x194249
+	applymovement ROUTE36_WEIRD_TREE, MovementData_0x194249
 	end
 
 UnknownScript_0x19404a:
@@ -66,7 +77,7 @@ WateredWeirdTreeScript::
 	closetext
 	waitsfx
 	playsound SFX_SANDSTORM
-	applymovement $4, MovementData_0x194249
+	applymovement ROUTE36_WEIRD_TREE, MovementData_0x194249
 	loadfont
 	writetext UnknownText_0x1942aa
 	waitbutton
@@ -75,7 +86,7 @@ WateredWeirdTreeScript::
 	startbattle
 	setevent EVENT_FOUGHT_SUDOWOODO
 	if_equal $2, UnknownScript_0x19407b
-	disappear $4
+	disappear ROUTE36_WEIRD_TREE
 	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
 	returnafterbattle
 	end
@@ -86,8 +97,8 @@ UnknownScript_0x194079:
 
 UnknownScript_0x19407b:
 	returnafterbattle
-	applymovement $4, MovementData_0x19424b
-	disappear $4
+	applymovement ROUTE36_WEIRD_TREE, MovementData_0x19424b
+	disappear ROUTE36_WEIRD_TREE
 	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
 	special RunCallback_04
 	special RefreshSprites
@@ -105,13 +116,13 @@ LassScript_0x19408c:
 	clearevent EVENT_FLORIA_AT_FLOWER_SHOP
 	checkcode VAR_FACING
 	if_equal $1, UnknownScript_0x1940ac
-	applymovement $9, MovementData_0x19424e
-	disappear $9
+	applymovement ROUTE36_LASS2, MovementData_0x19424e
+	disappear ROUTE36_LASS2
 	end
 
 UnknownScript_0x1940ac:
-	applymovement $9, MovementData_0x194258
-	disappear $9
+	applymovement ROUTE36_LASS2, MovementData_0x194258
+	disappear ROUTE36_LASS2
 	end
 
 UnknownScript_0x1940b3:

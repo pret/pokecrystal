@@ -1,3 +1,8 @@
+const_value set 2
+	const MOUNTMOONSQUARE_FAIRY1
+	const MOUNTMOONSQUARE_FAIRY2
+	const MOUNTMOONSQUARE_ROCK
+
 MountMoonSquare_MapScriptHeader:
 .MapTriggers:
 	db 1
@@ -22,7 +27,7 @@ UnknownScript_0x77093:
 	return
 
 UnknownScript_0x77097:
-	disappear $4
+	disappear MOUNTMOONSQUARE_ROCK
 	return
 
 UnknownScript_0x7709a:
@@ -32,41 +37,41 @@ UnknownScript_0x7709a:
 	if_not_equal MONDAY, .NoDancing
 	checknite
 	iffalse .NoDancing
-	appear $2
-	appear $3
+	appear MOUNTMOONSQUARE_FAIRY1
+	appear MOUNTMOONSQUARE_FAIRY2
 	applymovement PLAYER, MovementData_0x77121
 	pause 15
-	appear $4
-	spriteface $2, RIGHT
+	appear MOUNTMOONSQUARE_ROCK
+	spriteface MOUNTMOONSQUARE_FAIRY1, RIGHT
 	cry CLEFAIRY
 	waitsfx
 	pause 30
-	follow $2, $3
+	follow MOUNTMOONSQUARE_FAIRY1, MOUNTMOONSQUARE_FAIRY2
 	cry CLEFAIRY
-	applymovement $2, MovementData_0x77123
+	applymovement MOUNTMOONSQUARE_FAIRY1, MovementData_0x77123
 	cry CLEFAIRY
-	applymovement $2, MovementData_0x77126
+	applymovement MOUNTMOONSQUARE_FAIRY1, MovementData_0x77126
 	cry CLEFAIRY
-	applymovement $2, MovementData_0x77128
+	applymovement MOUNTMOONSQUARE_FAIRY1, MovementData_0x77128
 	cry CLEFAIRY
-	applymovement $2, MovementData_0x7712b
+	applymovement MOUNTMOONSQUARE_FAIRY1, MovementData_0x7712b
 	cry CLEFAIRY
-	applymovement $2, MovementData_0x7712d
+	applymovement MOUNTMOONSQUARE_FAIRY1, MovementData_0x7712d
 	stopfollow
-	applymovement $3, MovementData_0x77130
-	follow $2, $3
-	applymovement $2, MovementData_0x77132
+	applymovement MOUNTMOONSQUARE_FAIRY2, MovementData_0x77130
+	follow MOUNTMOONSQUARE_FAIRY1, MOUNTMOONSQUARE_FAIRY2
+	applymovement MOUNTMOONSQUARE_FAIRY1, MovementData_0x77132
 	stopfollow
-	spriteface $2, DOWN
+	spriteface MOUNTMOONSQUARE_FAIRY1, DOWN
 	pause 10
-	showemote EMOTE_SHOCK, $2, 15
-	spriteface $2, DOWN
+	showemote EMOTE_SHOCK, MOUNTMOONSQUARE_FAIRY1, 15
+	spriteface MOUNTMOONSQUARE_FAIRY1, DOWN
 	cry CLEFAIRY
 	pause 15
-	follow $2, $3
-	applymovement $2, MovementData_0x77134
-	disappear $2
-	disappear $3
+	follow MOUNTMOONSQUARE_FAIRY1, MOUNTMOONSQUARE_FAIRY2
+	applymovement MOUNTMOONSQUARE_FAIRY1, MovementData_0x77134
+	disappear MOUNTMOONSQUARE_FAIRY1
+	disappear MOUNTMOONSQUARE_FAIRY2
 	stopfollow
 	clearevent EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE
 	setflag ENGINE_MT_MOON_SQUARE_CLEFAIRY

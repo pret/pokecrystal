@@ -1,3 +1,7 @@
+const_value set 2
+	const OLIVINEPUNISHMENTSPEECHHOUSE_POKEFAN_M
+	const OLIVINEPUNISHMENTSPEECHHOUSE_LASS
+
 OlivinePunishmentSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

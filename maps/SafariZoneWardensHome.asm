@@ -1,3 +1,6 @@
+const_value set 2
+	const SAFARIZONEWARDENSHOME_LASS
+
 SafariZoneWardensHome_MapScriptHeader:
 .MapTriggers:
 	db 0

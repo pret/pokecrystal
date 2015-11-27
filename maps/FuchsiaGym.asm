@@ -1,3 +1,11 @@
+const_value set 2
+	const FUCHSIAGYM_JANINE
+	const FUCHSIAGYM_FUCHSIA_GYM_1
+	const FUCHSIAGYM_FUCHSIA_GYM_2
+	const FUCHSIAGYM_FUCHSIA_GYM_3
+	const FUCHSIAGYM_FUCHSIA_GYM_4
+	const FUCHSIAGYM_GYM_GUY
+
 FuchsiaGym_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -8,7 +16,7 @@ FuchsiaGym_MapScriptHeader:
 JanineScript_0x195db9:
 	checkflag ENGINE_SOULBADGE
 	iftrue .FightDone
-	applymovement $2, MovementData_0x195f27
+	applymovement FUCHSIAGYM_JANINE, MovementData_0x195f27
 	faceplayer
 	loadfont
 	writetext UnknownText_0x195f35
@@ -54,7 +62,7 @@ UnknownScript_0x195e15:
 FuschiaGym1Script_0x195e1b:
 	checkevent EVENT_BEAT_LASS_ALICE
 	iftrue UnknownScript_0x195e2c
-	applymovement $3, MovementData_0x195f27
+	applymovement FUCHSIAGYM_FUCHSIA_GYM_1, MovementData_0x195f27
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_LASS
 	special RunCallback_04
@@ -88,7 +96,7 @@ UnknownScript_0x195e4f:
 FuschiaGym2Script_0x195e55:
 	checkevent EVENT_BEAT_LASS_LINDA
 	iftrue UnknownScript_0x195e66
-	applymovement $4, MovementData_0x195f27
+	applymovement FUCHSIAGYM_FUCHSIA_GYM_2, MovementData_0x195f27
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_LASS
 	special RunCallback_04
@@ -122,7 +130,7 @@ UnknownScript_0x195e89:
 FuschiaGym3Script_0x195e8f:
 	checkevent EVENT_BEAT_PICNICKER_CINDY
 	iftrue UnknownScript_0x195ea0
-	applymovement $5, MovementData_0x195f27
+	applymovement FUCHSIAGYM_FUCHSIA_GYM_3, MovementData_0x195f27
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_LASS
 	special RunCallback_04
@@ -156,7 +164,7 @@ UnknownScript_0x195ec3:
 FuschiaGym4Script_0x195ec9:
 	checkevent EVENT_BEAT_CAMPER_BARRY
 	iftrue UnknownScript_0x195eda
-	applymovement $6, MovementData_0x195f27
+	applymovement FUCHSIAGYM_FUCHSIA_GYM_4, MovementData_0x195f27
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
 	special RunCallback_04

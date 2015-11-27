@@ -1,3 +1,8 @@
+const_value set 2
+	const CELADONDEPTSTORE1F_RECEPTIONIST
+	const CELADONDEPTSTORE1F_GENTLEMAN
+	const CELADONDEPTSTORE1F_TEACHER
+
 CeladonDeptStore1F_MapScriptHeader:
 .MapTriggers:
 	db 0

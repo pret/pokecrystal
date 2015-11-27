@@ -1,3 +1,9 @@
+const_value set 2
+	const ECRUTEAKHOUSE_SAGE1
+	const ECRUTEAKHOUSE_SAGE2
+	const ECRUTEAKHOUSE_SAGE3
+	const ECRUTEAKHOUSE_GRAMPS
+
 EcruteakHouse_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -45,21 +51,21 @@ EcruteakHouse_MapScriptHeader:
 EcruteakHouse_XYTrigger1:
 	checkevent EVENT_RANG_CLEAR_BELL_2
 	iftrue EcruteakHouse_XYTrigger_DontMove
-	applymovement $3, MovementData_0x980c7
-	moveperson $2, $4, $6
-	appear $2
+	applymovement ECRUTEAKHOUSE_SAGE2, MovementData_0x980c7
+	moveperson ECRUTEAKHOUSE_SAGE1, $4, $6
+	appear ECRUTEAKHOUSE_SAGE1
 	pause 5
-	disappear $3
+	disappear ECRUTEAKHOUSE_SAGE2
 	end
 
 EcruteakHouse_XYTrigger2:
 	checkevent EVENT_RANG_CLEAR_BELL_1
 	iftrue EcruteakHouse_XYTrigger_DontMove
-	applymovement $2, MovementData_0x980cc
-	moveperson $3, $5, $6
-	appear $3
+	applymovement ECRUTEAKHOUSE_SAGE1, MovementData_0x980cc
+	moveperson ECRUTEAKHOUSE_SAGE2, $5, $6
+	appear ECRUTEAKHOUSE_SAGE2
 	pause 5
-	disappear $2
+	disappear ECRUTEAKHOUSE_SAGE1
 	end
 
 EcruteakHouse_XYTrigger_DontMove:

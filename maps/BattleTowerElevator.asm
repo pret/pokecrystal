@@ -1,3 +1,6 @@
+const_value set 2
+	const BATTLETOWERELEVATOR_RECEPTIONIST
+
 BattleTowerElevator_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -17,19 +20,19 @@ BattleTowerElevator_MapScriptHeader:
 	end
 
 .RideElevator:
-	follow $2, PLAYER
-	applymovement $2, MovementData_BattleTowerElevatorReceptionistWalksIn
+	follow BATTLETOWERELEVATOR_RECEPTIONIST, PLAYER
+	applymovement BATTLETOWERELEVATOR_RECEPTIONIST, MovementData_BattleTowerElevatorReceptionistWalksIn
 	applymovement PLAYER, MovementData_BattleTowerElevatorPlayerWalksIn
 	writebyte BATTLETOWERACTION_0A
 	special BattleTowerAction
 	playsound SFX_ELEVATOR
 	earthquake 60
 	waitsfx
-	follow $2, PLAYER
-	applymovement $2, MovementData_BattleTowerElevatorExitElevator
+	follow BATTLETOWERELEVATOR_RECEPTIONIST, PLAYER
+	applymovement BATTLETOWERELEVATOR_RECEPTIONIST, MovementData_BattleTowerElevatorExitElevator
 	stopfollow
 	warpsound
-	disappear $2
+	disappear BATTLETOWERELEVATOR_RECEPTIONIST
 	applymovement PLAYER, MovementData_BattleTowerElevatorExitElevator
 	warpcheck
 	end

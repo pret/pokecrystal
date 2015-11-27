@@ -1,3 +1,11 @@
+const_value set 2
+	const VICTORYROAD_SILVER
+	const VICTORYROAD_POKE_BALL1
+	const VICTORYROAD_POKE_BALL2
+	const VICTORYROAD_POKE_BALL3
+	const VICTORYROAD_POKE_BALL4
+	const VICTORYROAD_POKE_BALL5
+
 VictoryRoad_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -16,16 +24,16 @@ UnknownScript_0x74491:
 	end
 
 UnknownScript_0x74492:
-	moveperson $2, $12, $b
+	moveperson VICTORYROAD_SILVER, $12, $b
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_RotatePalettesRightMusic
 	pause 15
-	appear $2
-	applymovement $2, MovementData_0x74539
+	appear VICTORYROAD_SILVER
+	applymovement VICTORYROAD_SILVER, MovementData_0x74539
 	scall UnknownScript_0x744d4
-	applymovement $2, MovementData_0x7454c
-	disappear $2
+	applymovement VICTORYROAD_SILVER, MovementData_0x7454c
+	disappear VICTORYROAD_SILVER
 	dotrigger $1
 	playmapmusic
 	end
@@ -35,11 +43,11 @@ UnknownScript_0x744b5:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_RotatePalettesRightMusic
 	pause 15
-	appear $2
-	applymovement $2, MovementData_0x74542
+	appear VICTORYROAD_SILVER
+	applymovement VICTORYROAD_SILVER, MovementData_0x74542
 	scall UnknownScript_0x744d4
-	applymovement $2, MovementData_0x74555
-	disappear $2
+	applymovement VICTORYROAD_SILVER, MovementData_0x74555
+	disappear VICTORYROAD_SILVER
 	dotrigger $1
 	playmapmusic
 	end

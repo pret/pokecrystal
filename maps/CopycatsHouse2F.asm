@@ -1,3 +1,11 @@
+const_value set 2
+	const COPYCATSHOUSE2F_COPYCAT1
+	const COPYCATSHOUSE2F_MOLTRES
+	const COPYCATSHOUSE2F_FAIRY
+	const COPYCATSHOUSE2F_MONSTER
+	const COPYCATSHOUSE2F_BIRD
+	const COPYCATSHOUSE2F_COPYCAT2
+
 CopycatsHouse2F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -12,12 +20,12 @@ CopycatsHouse2F_MapScriptHeader:
 CopycatsHouse2FCallback:
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part1
-	disappear $7
-	appear $2
+	disappear COPYCATSHOUSE2F_COPYCAT2
+	appear COPYCATSHOUSE2F_COPYCAT1
 	jump .Done
 .Part1
-	disappear $2
-	appear $7
+	disappear COPYCATSHOUSE2F_COPYCAT1
+	appear COPYCATSHOUSE2F_COPYCAT2
 .Done
 	return
 
@@ -31,13 +39,13 @@ Copycat:
 	iftrue .Part12
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part1
-	applymovement $2, MovementData_0x18afd0
+	applymovement COPYCATSHOUSE2F_COPYCAT1, MovementData_0x18afd0
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_CHRIS
 	jump .Part2
 
 .Part1
-	applymovement $7, MovementData_0x18afd0
+	applymovement COPYCATSHOUSE2F_COPYCAT2, MovementData_0x18afd0
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
 .Part2
@@ -57,11 +65,11 @@ Copycat:
 	closetext
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part5
-	applymovement $2, MovementData_0x18afd0
+	applymovement COPYCATSHOUSE2F_COPYCAT1, MovementData_0x18afd0
 	jump .Part6
 
 .Part5
-	applymovement $7, MovementData_0x18afd0
+	applymovement COPYCATSHOUSE2F_COPYCAT2, MovementData_0x18afd0
 .Part6
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
@@ -86,11 +94,11 @@ Copycat:
 	closetext
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part10
-	applymovement $2, MovementData_0x18afd0
+	applymovement COPYCATSHOUSE2F_COPYCAT1, MovementData_0x18afd0
 	jump .Part11
 
 .Part10
-	applymovement $7, MovementData_0x18afd0
+	applymovement COPYCATSHOUSE2F_COPYCAT2, MovementData_0x18afd0
 .Part11
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
@@ -127,13 +135,13 @@ Copycat:
 .Part15
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part16
-	applymovement $2, MovementData_0x18afd0
+	applymovement COPYCATSHOUSE2F_COPYCAT1, MovementData_0x18afd0
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_CHRIS
 	jump .Part17
 
 .Part16
-	applymovement $7, MovementData_0x18afd0
+	applymovement COPYCATSHOUSE2F_COPYCAT2, MovementData_0x18afd0
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
 .Part17
@@ -151,11 +159,11 @@ Copycat:
 	closetext
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part20
-	applymovement $2, MovementData_0x18afd0
+	applymovement COPYCATSHOUSE2F_COPYCAT1, MovementData_0x18afd0
 	jump .Part21
 
 .Part20
-	applymovement $7, MovementData_0x18afd0
+	applymovement COPYCATSHOUSE2F_COPYCAT2, MovementData_0x18afd0
 .Part21
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS

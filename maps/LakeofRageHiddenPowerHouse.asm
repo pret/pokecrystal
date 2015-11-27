@@ -1,3 +1,6 @@
+const_value set 2
+	const LAKEOFRAGEHIDDENPOWERHOUSE_FISHER
+
 LakeofRageHiddenPowerHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

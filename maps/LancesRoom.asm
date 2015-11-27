@@ -1,3 +1,8 @@
+const_value set 2
+	const LANCESROOM_LANCE
+	const LANCESROOM_TEACHER
+	const LANCESROOM_OAK
+
 LancesRoom_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -52,7 +57,7 @@ UnknownScript_0x180e74:
 	special Special_RotatePalettesRightMusic
 	applymovement PLAYER, MovementData_0x180f3c
 LanceScript_0x180e7b:
-	spriteface $2, LEFT
+	spriteface LANCESROOM_LANCE, LEFT
 	loadfont
 	writetext UnknownText_0x180f67
 	waitbutton
@@ -75,56 +80,56 @@ LanceScript_0x180e7b:
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	musicfadeout MUSIC_BEAUTY_ENCOUNTER, $10
 	pause 30
-	showemote EMOTE_SHOCK, $2, 15
-	spriteface $2, DOWN
+	showemote EMOTE_SHOCK, LANCESROOM_LANCE, 15
+	spriteface LANCESROOM_LANCE, DOWN
 	pause 10
 	spriteface PLAYER, DOWN
-	appear $3
-	applymovement $3, MovementData_0x180f41
+	appear LANCESROOM_TEACHER
+	applymovement LANCESROOM_TEACHER, MovementData_0x180f41
 	loadfont
 	writetext UnknownText_0x1811dd
 	waitbutton
 	closetext
-	appear $4
-	applymovement $4, MovementData_0x180f46
-	follow $3, $4
-	applymovement $3, MovementData_0x180f49
+	appear LANCESROOM_OAK
+	applymovement LANCESROOM_OAK, MovementData_0x180f46
+	follow LANCESROOM_TEACHER, LANCESROOM_OAK
+	applymovement LANCESROOM_TEACHER, MovementData_0x180f49
 	stopfollow
-	spriteface $4, UP
-	spriteface $2, LEFT
+	spriteface LANCESROOM_OAK, UP
+	spriteface LANCESROOM_LANCE, LEFT
 	loadfont
 	writetext UnknownText_0x18121b
 	waitbutton
 	closetext
-	applymovement $3, MovementData_0x180f4c
+	applymovement LANCESROOM_TEACHER, MovementData_0x180f4c
 	spriteface PLAYER, LEFT
 	loadfont
 	writetext UnknownText_0x18134b
 	waitbutton
 	closetext
-	applymovement $2, MovementData_0x180f4f
+	applymovement LANCESROOM_LANCE, MovementData_0x180f4f
 	spriteface PLAYER, UP
 	loadfont
 	writetext UnknownText_0x18137b
 	waitbutton
 	closetext
-	follow $2, PLAYER
-	spriteface $3, UP
-	spriteface $4, UP
-	applymovement $2, MovementData_0x180f53
+	follow LANCESROOM_LANCE, PLAYER
+	spriteface LANCESROOM_TEACHER, UP
+	spriteface LANCESROOM_OAK, UP
+	applymovement LANCESROOM_LANCE, MovementData_0x180f53
 	stopfollow
 	playsound SFX_EXIT_BUILDING
-	disappear $2
+	disappear LANCESROOM_LANCE
 	applymovement PLAYER, MovementData_0x180f55
 	playsound SFX_EXIT_BUILDING
 	disappear PLAYER
-	applymovement $3, MovementData_0x180f57
-	showemote EMOTE_SHOCK, $3, 15
+	applymovement LANCESROOM_TEACHER, MovementData_0x180f57
+	showemote EMOTE_SHOCK, LANCESROOM_TEACHER, 15
 	loadfont
 	writetext UnknownText_0x1813c5
 	pause 30
 	closetext
-	applymovement $3, MovementData_0x180f5b
+	applymovement LANCESROOM_TEACHER, MovementData_0x180f5b
 	special FadeOutPalettes
 	pause 15
 	warpfacing UP, HALL_OF_FAME, $4, $d

@@ -1,3 +1,7 @@
+const_value set 2
+	const SILPHCO1F_RECEPTIONIST
+	const SILPHCO1F_OFFICER
+
 SilphCo1F_MapScriptHeader:
 .MapTriggers:
 	db 0

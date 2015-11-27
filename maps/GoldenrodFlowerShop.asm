@@ -1,3 +1,7 @@
+const_value set 2
+	const GOLDENRODFLOWERSHOP_TEACHER
+	const GOLDENRODFLOWERSHOP_LASS
+
 GoldenrodFlowerShop_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -28,7 +32,7 @@ FlowerShopTeacherScript:
 	end
 
 .Lalala:
-	spriteface $2, LEFT
+	spriteface GOLDENRODFLOWERSHOP_TEACHER, LEFT
 	loadfont
 	writetext UnknownText_0x5552e
 	waitbutton

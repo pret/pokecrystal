@@ -1,3 +1,8 @@
+const_value set 2
+	const WHIRLISLANDB2F_POKE_BALL1
+	const WHIRLISLANDB2F_POKE_BALL2
+	const WHIRLISLANDB2F_POKE_BALL3
+
 WhirlIslandB2F_MapScriptHeader:
 .MapTriggers:
 	db 0

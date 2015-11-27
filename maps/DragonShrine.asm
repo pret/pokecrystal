@@ -1,3 +1,9 @@
+const_value set 2
+	const DRAGONSHRINE_ELDER1
+	const DRAGONSHRINE_ELDER2
+	const DRAGONSHRINE_ELDER3
+	const DRAGONSHRINE_CLAIR
+
 DragonShrine_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -18,7 +24,7 @@ DragonShrine_MapScriptHeader:
 
 DragonShrineTestScript:
 	applymovement PLAYER, MovementData_0x18d2bf
-	applymovement $2, MovementData_0x18d2c7
+	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2c7
 	loadfont
 	writetext UnknownText_0x18d2ea
 	keeptextopen
@@ -89,12 +95,12 @@ DragonShrineTestScript:
 	iftrue .Question2
 .WrongAnswer:
 	closetext
-	spriteface $2, LEFT
+	spriteface DRAGONSHRINE_ELDER1, LEFT
 	loadfont
 	writetext UnknownText_0x18d7f6
 	waitbutton
 	closetext
-	spriteface $2, DOWN
+	spriteface DRAGONSHRINE_ELDER1, DOWN
 	loadfont
 	writetext UnknownText_0x18d816
 	waitbutton
@@ -118,41 +124,41 @@ DragonShrineTestScript:
 	playsound SFX_ENTER_DOOR
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_CLAIR
-	appear $5
+	appear DRAGONSHRINE_CLAIR
 	waitsfx
 	spriteface PLAYER, DOWN
 	pause 30
-	applymovement $5, MovementData_0x18d2d4
-	spriteface $5, RIGHT
+	applymovement DRAGONSHRINE_CLAIR, MovementData_0x18d2d4
+	spriteface DRAGONSHRINE_CLAIR, RIGHT
 	spriteface PLAYER, LEFT
-	spriteface $2, LEFT
+	spriteface DRAGONSHRINE_ELDER1, LEFT
 	loadfont
 	writetext UnknownText_0x18d916
 	waitbutton
 	closetext
 	special Special_RotatePalettesRightMusic
-	applymovement $5, MovementData_0x18d2da
+	applymovement DRAGONSHRINE_CLAIR, MovementData_0x18d2da
 	loadfont
 	writetext UnknownText_0x18d974
 	waitbutton
 	closetext
-	applymovement $5, MovementData_0x18d2dd
+	applymovement DRAGONSHRINE_CLAIR, MovementData_0x18d2dd
 	loadfont
 	writetext UnknownText_0x18d983
 	waitbutton
 	closetext
-	applymovement $2, MovementData_0x18d2c9
-	spriteface $5, UP
+	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2c9
+	spriteface DRAGONSHRINE_CLAIR, UP
 	loadfont
 	writetext UnknownText_0x18d520
 	waitbutton
 	closetext
-	showemote EMOTE_SHOCK, $5, 15
+	showemote EMOTE_SHOCK, DRAGONSHRINE_CLAIR, 15
 	loadfont
 	writetext UnknownText_0x18d9ae
 	waitbutton
 	closetext
-	applymovement $5, MovementData_0x18d2e0
+	applymovement DRAGONSHRINE_CLAIR, MovementData_0x18d2e0
 	loadfont
 	writetext UnknownText_0x18d9bf
 	waitbutton
@@ -168,9 +174,9 @@ DragonShrineTestScript:
 	writetext UnknownText_0x18da0b
 	waitbutton
 	closetext
-	applymovement $2, MovementData_0x18d2ce
-	spriteface $5, UP
-	applymovement $2, MovementData_0x18d2d1
+	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2ce
+	spriteface DRAGONSHRINE_CLAIR, UP
+	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2d1
 	spriteface PLAYER, UP
 	loadfont
 	writetext UnknownText_0x18d5a3
@@ -180,9 +186,9 @@ DragonShrineTestScript:
 	writetext UnknownText_0x18dab4
 	waitbutton
 	closetext
-	applymovement $5, MovementData_0x18d2e3
+	applymovement DRAGONSHRINE_CLAIR, MovementData_0x18d2e3
 	playsound SFX_ENTER_DOOR
-	disappear $5
+	disappear DRAGONSHRINE_CLAIR
 	waitsfx
 	setevent EVENT_GAVE_KURT_APRICORNS
 	end

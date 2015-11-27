@@ -1,3 +1,11 @@
+const_value set 2
+	const CELADONGYM_ERIKA
+	const CELADONGYM_LASS1
+	const CELADONGYM_LASS2
+	const CELADONGYM_BUENA
+	const CELADONGYM_TWIN1
+	const CELADONGYM_TWIN2
+
 CeladonGym_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,8 @@
+const_value set 2
+	const GOLDENRODHAPPINESSRATER_TEACHER
+	const GOLDENRODHAPPINESSRATER_POKEFAN_M
+	const GOLDENRODHAPPINESSRATER_TWIN
+
 GoldenrodHappinessRater_MapScriptHeader:
 .MapTriggers:
 	db 0

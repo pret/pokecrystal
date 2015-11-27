@@ -1,3 +1,13 @@
+const_value set 2
+	const ROUTE26_COOLTRAINER_M1
+	const ROUTE26_COOLTRAINER_M2
+	const ROUTE26_COOLTRAINER_F1
+	const ROUTE26_COOLTRAINER_F2
+	const ROUTE26_YOUNGSTER
+	const ROUTE26_FISHER
+	const ROUTE26_FRUIT_TREE
+	const ROUTE26_POKE_BALL
+
 Route26_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,7 @@
+const_value set 2
+	const PALLETTOWN_TEACHER
+	const PALLETTOWN_FISHER
+
 PalletTown_MapScriptHeader:
 .MapTriggers:
 	db 0

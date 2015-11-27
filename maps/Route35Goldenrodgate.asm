@@ -1,3 +1,8 @@
+const_value set 2
+	const ROUTE35GOLDENRODGATE_OFFICER
+	const ROUTE35GOLDENRODGATE_POKEFAN_F
+	const ROUTE35GOLDENRODGATE_FISHER
+
 Route35Goldenrodgate_MapScriptHeader:
 .MapTriggers:
 	db 0

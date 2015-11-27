@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE7SAFFRONGATE_OFFICER
+
 Route7SaffronGate_MapScriptHeader:
 .MapTriggers:
 	db 0

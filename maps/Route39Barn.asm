@@ -1,3 +1,8 @@
+const_value set 2
+	const ROUTE39BARN_TWIN1
+	const ROUTE39BARN_TWIN2
+	const ROUTE39BARN_TAUROS
+
 Route39Barn_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -13,14 +18,14 @@ TwinScript_0x9cc76:
 	writetext Text_MoomooIsSick
 	waitbutton
 	closetext
-	spriteface $2, RIGHT
+	spriteface ROUTE39BARN_TWIN1, RIGHT
 	end
 
 .FeedingMooMoo:
 	writetext Text_WereFeedingMoomoo
 	waitbutton
 	closetext
-	spriteface $2, RIGHT
+	spriteface ROUTE39BARN_TWIN1, RIGHT
 	end
 
 TwinScript_0x9cc90:
@@ -31,14 +36,14 @@ TwinScript_0x9cc90:
 	writetext Text_MoomooIsSick
 	waitbutton
 	closetext
-	spriteface $3, LEFT
+	spriteface ROUTE39BARN_TWIN2, LEFT
 	end
 
 .FeedingMooMoo:
 	writetext Text_WereFeedingMoomoo
 	waitbutton
 	closetext
-	spriteface $3, LEFT
+	spriteface ROUTE39BARN_TWIN2, LEFT
 	end
 
 TaurosScript_0x9ccaa:

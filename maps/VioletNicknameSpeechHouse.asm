@@ -1,3 +1,8 @@
+const_value set 2
+	const VIOLETNICKNAMESPEECHHOUSE_TEACHER
+	const VIOLETNICKNAMESPEECHHOUSE_LASS
+	const VIOLETNICKNAMESPEECHHOUSE_BIRD
+
 VioletNicknameSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,11 @@
+const_value set 2
+	const TEAMROCKETBASEB1F_ROCKET1
+	const TEAMROCKETBASEB1F_ROCKET2
+	const TEAMROCKETBASEB1F_SCIENTIST
+	const TEAMROCKETBASEB1F_POKE_BALL1
+	const TEAMROCKETBASEB1F_POKE_BALL2
+	const TEAMROCKETBASEB1F_POKE_BALL3
+
 TeamRocketBaseB1F_MapScriptHeader:
 .MapTriggers:
 	db 1
@@ -16,7 +24,7 @@ UnknownScript_0x6c65a:
 	end
 
 UnknownScript_0x6c65b:
-	disappear $2
+	disappear TEAMROCKETBASEB1F_ROCKET1
 	return
 
 SecurityCamera1a:
@@ -27,18 +35,18 @@ SecurityCamera1a:
 	iftrue NoSecurityCamera
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	moveperson $2, $13, $2
-	appear $2
+	moveperson TEAMROCKETBASEB1F_ROCKET1, $13, $2
+	appear TEAMROCKETBASEB1F_ROCKET1
 	spriteface PLAYER, LEFT
-	applymovement $2, SecurityCameraMovement1
+	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement1
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	moveperson $2, $13, $2
-	appear $2
-	applymovement $2, SecurityCameraMovement1
+	moveperson TEAMROCKETBASEB1F_ROCKET1, $13, $2
+	appear TEAMROCKETBASEB1F_ROCKET1
+	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement1
 	scall TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
 	setevent EVENT_SECURITY_CAMERA_1
@@ -52,18 +60,18 @@ SecurityCamera1b:
 	iftrue NoSecurityCamera
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	moveperson $2, $13, $3
-	appear $2
+	moveperson TEAMROCKETBASEB1F_ROCKET1, $13, $3
+	appear TEAMROCKETBASEB1F_ROCKET1
 	spriteface PLAYER, LEFT
-	applymovement $2, SecurityCameraMovement1
+	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement1
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	moveperson $2, $13, $3
-	appear $2
-	applymovement $2, SecurityCameraMovement1
+	moveperson TEAMROCKETBASEB1F_ROCKET1, $13, $3
+	appear TEAMROCKETBASEB1F_ROCKET1
+	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement1
 	scall TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
 	setevent EVENT_SECURITY_CAMERA_1
@@ -77,19 +85,19 @@ SecurityCamera2a:
 	iftrue NoSecurityCamera
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	moveperson $2, $4, $7
-	appear $2
+	moveperson TEAMROCKETBASEB1F_ROCKET1, $4, $7
+	appear TEAMROCKETBASEB1F_ROCKET1
 	spriteface PLAYER, LEFT
-	applymovement $2, SecurityCameraMovement2
+	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement2
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface PLAYER, RIGHT
-	moveperson $2, $c, $5
-	appear $2
-	applymovement $2, SecurityCameraMovement3
+	moveperson TEAMROCKETBASEB1F_ROCKET1, $c, $5
+	appear TEAMROCKETBASEB1F_ROCKET1
+	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement3
 	scall TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
 	setevent EVENT_SECURITY_CAMERA_2
@@ -103,19 +111,19 @@ SecurityCamera2b:
 	iftrue NoSecurityCamera
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	moveperson $2, $4, $8
-	appear $2
+	moveperson TEAMROCKETBASEB1F_ROCKET1, $4, $8
+	appear TEAMROCKETBASEB1F_ROCKET1
 	spriteface PLAYER, LEFT
-	applymovement $2, SecurityCameraMovement4
+	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement4
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface PLAYER, RIGHT
-	moveperson $2, $c, $5
-	appear $2
-	applymovement $2, SecurityCameraMovement5
+	moveperson TEAMROCKETBASEB1F_ROCKET1, $c, $5
+	appear TEAMROCKETBASEB1F_ROCKET1
+	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement5
 	scall TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
 	setevent EVENT_SECURITY_CAMERA_2
@@ -129,19 +137,19 @@ SecurityCamera3a:
 	iftrue NoSecurityCamera
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	moveperson $2, $13, $6
-	appear $2
+	moveperson TEAMROCKETBASEB1F_ROCKET1, $13, $6
+	appear TEAMROCKETBASEB1F_ROCKET1
 	spriteface PLAYER, LEFT
-	applymovement $2, SecurityCameraMovement1
+	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement1
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface PLAYER, RIGHT
-	moveperson $2, $19, $b
-	appear $2
-	applymovement $2, SecurityCameraMovement6
+	moveperson TEAMROCKETBASEB1F_ROCKET1, $19, $b
+	appear TEAMROCKETBASEB1F_ROCKET1
+	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement6
 	scall TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
 	setevent EVENT_SECURITY_CAMERA_3
@@ -155,19 +163,19 @@ SecurityCamera3b:
 	iftrue NoSecurityCamera
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	moveperson $2, $13, $7
-	appear $2
+	moveperson TEAMROCKETBASEB1F_ROCKET1, $13, $7
+	appear TEAMROCKETBASEB1F_ROCKET1
 	spriteface PLAYER, LEFT
-	applymovement $2, SecurityCameraMovement1
+	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement1
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface PLAYER, RIGHT
-	moveperson $2, $19, $c
-	appear $2
-	applymovement $2, SecurityCameraMovement7
+	moveperson TEAMROCKETBASEB1F_ROCKET1, $19, $c
+	appear TEAMROCKETBASEB1F_ROCKET1
+	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement7
 	scall TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
 	setevent EVENT_SECURITY_CAMERA_3
@@ -181,19 +189,19 @@ SecurityCamera4:
 	iftrue NoSecurityCamera
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	moveperson $2, $11, $10
-	appear $2
+	moveperson TEAMROCKETBASEB1F_ROCKET1, $11, $10
+	appear TEAMROCKETBASEB1F_ROCKET1
 	spriteface PLAYER, LEFT
-	applymovement $2, SecurityCameraMovement1
+	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement1
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface PLAYER, RIGHT
-	moveperson $2, $19, $b
-	appear $2
-	applymovement $2, SecurityCameraMovement8
+	moveperson TEAMROCKETBASEB1F_ROCKET1, $19, $b
+	appear TEAMROCKETBASEB1F_ROCKET1
+	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement8
 	scall TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
 	setevent EVENT_SECURITY_CAMERA_4
@@ -207,19 +215,19 @@ SecurityCamera5:
 	iftrue NoSecurityCamera
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	moveperson $2, $3, $10
-	appear $2
+	moveperson TEAMROCKETBASEB1F_ROCKET1, $3, $10
+	appear TEAMROCKETBASEB1F_ROCKET1
 	spriteface PLAYER, LEFT
-	applymovement $2, SecurityCameraMovement1
+	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement1
 	scall TrainerCameraGrunt1
 	if_equal $1, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface PLAYER, RIGHT
-	moveperson $2, $e, $10
-	appear $2
-	applymovement $2, SecurityCameraMovement9
+	moveperson TEAMROCKETBASEB1F_ROCKET1, $e, $10
+	appear TEAMROCKETBASEB1F_ROCKET1
+	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement9
 	scall TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
 	setevent EVENT_SECURITY_CAMERA_5
@@ -237,7 +245,7 @@ TrainerCameraGrunt1:
 	setlasttalked $2
 	scriptedtrainerdata GRUNTM, 20
 	startbattle
-	disappear $2
+	disappear TEAMROCKETBASEB1F_ROCKET1
 	returnafterbattle
 	end
 
@@ -250,7 +258,7 @@ TrainerCameraGrunt2:
 	setlasttalked $2
 	scriptedtrainerdata GRUNTM, 21
 	startbattle
-	disappear $2
+	disappear TEAMROCKETBASEB1F_ROCKET1
 	returnafterbattle
 	end
 

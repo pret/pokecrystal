@@ -1,3 +1,9 @@
+const_value set 2
+	const VIOLETGYM_FALKNER
+	const VIOLETGYM_YOUNGSTER1
+	const VIOLETGYM_YOUNGSTER2
+	const VIOLETGYM_GYM_GUY
+
 VioletGym_MapScriptHeader:
 .MapTriggers:
 	db 0

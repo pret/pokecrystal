@@ -1,3 +1,9 @@
+const_value set 2
+	const VIRIDIANCITY_GRAMPS1
+	const VIRIDIANCITY_GRAMPS2
+	const VIRIDIANCITY_FISHER
+	const VIRIDIANCITY_YOUNGSTER
+
 ViridianCity_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,9 @@
+const_value set 2
+	const CIANWOODPOKECENTER1F_NURSE
+	const CIANWOODPOKECENTER1F_LASS
+	const CIANWOODPOKECENTER1F_GYM_GUY
+	const CIANWOODPOKECENTER1F_SUPER_NERD
+
 CianwoodPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 0

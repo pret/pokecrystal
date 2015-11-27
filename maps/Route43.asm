@@ -1,3 +1,13 @@
+const_value set 2
+	const ROUTE43_SUPER_NERD1
+	const ROUTE43_SUPER_NERD2
+	const ROUTE43_SUPER_NERD3
+	const ROUTE43_FISHER
+	const ROUTE43_LASS
+	const ROUTE43_YOUNGSTER
+	const ROUTE43_FRUIT_TREE
+	const ROUTE43_POKE_BALL
+
 Route43_MapScriptHeader:
 .MapTriggers:
 	db 0

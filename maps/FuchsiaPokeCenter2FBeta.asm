@@ -1,3 +1,5 @@
+const_value set 2
+
 FuchsiaPokeCenter2FBeta_MapScriptHeader:
 .MapTriggers:
 	db 0

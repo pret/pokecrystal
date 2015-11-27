@@ -1,3 +1,14 @@
+const_value set 2
+	const WAREHOUSEENTRANCE_SUPER_NERD1
+	const WAREHOUSEENTRANCE_SUPER_NERD2
+	const WAREHOUSEENTRANCE_SUPER_NERD3
+	const WAREHOUSEENTRANCE_SUPER_NERD4
+	const WAREHOUSEENTRANCE_POKE_BALL
+	const WAREHOUSEENTRANCE_GRAMPS
+	const WAREHOUSEENTRANCE_SUPER_NERD5
+	const WAREHOUSEENTRANCE_SUPER_NERD6
+	const WAREHOUSEENTRANCE_GRANNY
+
 WarehouseEntrance_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -52,56 +63,56 @@ WarehouseEntrance_MapScriptHeader:
 	if_equal SATURDAY, .Saturday
 
 .Sunday:
-	disappear $7
-	disappear $8
-	appear $9
-	appear $a
+	disappear WAREHOUSEENTRANCE_GRAMPS
+	disappear WAREHOUSEENTRANCE_SUPER_NERD5
+	appear WAREHOUSEENTRANCE_SUPER_NERD6
+	appear WAREHOUSEENTRANCE_GRANNY
 	return
 
 .Monday:
-	disappear $7
+	disappear WAREHOUSEENTRANCE_GRAMPS
 	checkmorn
 	iffalse .NotMondayMorning
-	appear $7
+	appear WAREHOUSEENTRANCE_GRAMPS
 .NotMondayMorning:
-	disappear $8
-	disappear $9
-	disappear $a
+	disappear WAREHOUSEENTRANCE_SUPER_NERD5
+	disappear WAREHOUSEENTRANCE_SUPER_NERD6
+	disappear WAREHOUSEENTRANCE_GRANNY
 	return
 
 .Tuesday:
-	disappear $7
-	appear $8
-	disappear $9
-	disappear $a
+	disappear WAREHOUSEENTRANCE_GRAMPS
+	appear WAREHOUSEENTRANCE_SUPER_NERD5
+	disappear WAREHOUSEENTRANCE_SUPER_NERD6
+	disappear WAREHOUSEENTRANCE_GRANNY
 	return
 
 .Wednesday:
-	disappear $7
-	disappear $8
-	appear $9
-	disappear $a
+	disappear WAREHOUSEENTRANCE_GRAMPS
+	disappear WAREHOUSEENTRANCE_SUPER_NERD5
+	appear WAREHOUSEENTRANCE_SUPER_NERD6
+	disappear WAREHOUSEENTRANCE_GRANNY
 	return
 
 .Thursday:
-	disappear $7
-	appear $8
-	disappear $9
-	disappear $a
+	disappear WAREHOUSEENTRANCE_GRAMPS
+	appear WAREHOUSEENTRANCE_SUPER_NERD5
+	disappear WAREHOUSEENTRANCE_SUPER_NERD6
+	disappear WAREHOUSEENTRANCE_GRANNY
 	return
 
 .Friday:
-	disappear $7
-	disappear $8
-	appear $9
-	disappear $a
+	disappear WAREHOUSEENTRANCE_GRAMPS
+	disappear WAREHOUSEENTRANCE_SUPER_NERD5
+	appear WAREHOUSEENTRANCE_SUPER_NERD6
+	disappear WAREHOUSEENTRANCE_GRANNY
 	return
 
 .Saturday:
-	disappear $7
-	appear $8
-	disappear $9
-	appear $a
+	disappear WAREHOUSEENTRANCE_GRAMPS
+	appear WAREHOUSEENTRANCE_SUPER_NERD5
+	disappear WAREHOUSEENTRANCE_SUPER_NERD6
+	appear WAREHOUSEENTRANCE_GRANNY
 	return
 
 TrainerSupernerdEric:

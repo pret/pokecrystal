@@ -1,3 +1,8 @@
+const_value set 2
+	const ROUTE21_SWIMMER_GIRL
+	const ROUTE21_SWIMMER_GUY
+	const ROUTE21_FISHER
+
 Route21_MapScriptHeader:
 .MapTriggers:
 	db 0

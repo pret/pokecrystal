@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE15FUCHSIAGATE_OFFICER
+
 Route15FuchsiaGate_MapScriptHeader:
 .MapTriggers:
 	db 0

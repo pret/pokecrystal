@@ -1,3 +1,10 @@
+const_value set 2
+	const BURNEDTOWER1F_ROCK
+	const BURNEDTOWER1F_SUPER_NERD
+	const BURNEDTOWER1F_SILVER
+	const BURNEDTOWER1F_MORTY
+	const BURNEDTOWER1F_POKE_BALL
+
 BurnedTower1F_MapScriptHeader:
 .MapTriggers:
 	db 3
@@ -36,25 +43,25 @@ UnknownScript_0x185bf8:
 	return
 
 UnknownScript_0x185c0d:
-	spriteface $3, DOWN
-	showemote EMOTE_SHOCK, $3, 15
-	applymovement $3, MovementData_0x185cd3
+	spriteface BURNEDTOWER1F_SUPER_NERD, DOWN
+	showemote EMOTE_SHOCK, BURNEDTOWER1F_SUPER_NERD, 15
+	applymovement BURNEDTOWER1F_SUPER_NERD, MovementData_0x185cd3
 	loadfont
 	writetext UnknownText_0x185ecc
 	waitbutton
 	closetext
-	moveperson $3, $9, $e
+	moveperson BURNEDTOWER1F_SUPER_NERD, $9, $e
 	dotrigger $1
 	end
 
 UnknownScript_0x185c25:
-	showemote EMOTE_SHOCK, $4, 15
+	showemote EMOTE_SHOCK, BURNEDTOWER1F_SILVER, 15
 	special Special_RotatePalettesRightMusic
 	pause 15
-	spriteface $4, RIGHT
+	spriteface BURNEDTOWER1F_SILVER, RIGHT
 	pause 15
 	applymovement PLAYER, MovementData_0x185ccd
-	applymovement $4, MovementData_0x185ccf
+	applymovement BURNEDTOWER1F_SILVER, MovementData_0x185ccf
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x185cd9
@@ -109,7 +116,7 @@ UnknownScript_0x185c80:
 	pause 15
 	applymovement PLAYER, MovementData_0x185cd1
 	playsound SFX_KINESIS
-	showemote EMOTE_SHOCK, $4, 20
+	showemote EMOTE_SHOCK, BURNEDTOWER1F_SILVER, 20
 	loadfont
 	writetext UnknownText_0x185e75
 	waitbutton

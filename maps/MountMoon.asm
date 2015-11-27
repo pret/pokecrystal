@@ -1,3 +1,6 @@
+const_value set 2
+	const MOUNTMOON_SILVER
+
 MountMoon_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -21,7 +24,7 @@ UnknownScript_0x7408e:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_RotatePalettesRightMusic
 	pause 15
-	applymovement $2, MovementData_0x740f9
+	applymovement MOUNTMOON_SILVER, MovementData_0x740f9
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x74105
@@ -63,8 +66,8 @@ UnknownScript_0x740e3:
 	writetext UnknownText_0x741fa
 	waitbutton
 	closetext
-	applymovement $2, MovementData_0x740fd
-	disappear $2
+	applymovement MOUNTMOON_SILVER, MovementData_0x740fd
+	disappear MOUNTMOON_SILVER
 	dotrigger $1
 	setevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	playmapmusic

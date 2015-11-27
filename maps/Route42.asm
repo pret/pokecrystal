@@ -1,3 +1,14 @@
+const_value set 2
+	const ROUTE42_FISHER
+	const ROUTE42_POKEFAN_M
+	const ROUTE42_SUPER_NERD
+	const ROUTE42_FRUIT_TREE1
+	const ROUTE42_FRUIT_TREE2
+	const ROUTE42_FRUIT_TREE3
+	const ROUTE42_POKE_BALL1
+	const ROUTE42_POKE_BALL2
+	const ROUTE42_SUICUNE
+
 Route42_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -19,8 +30,8 @@ UnknownScript_0x1a9218:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	pause 15
 	playsound SFX_WARP_FROM
-	applymovement $a, MovementData_0x1a9356
-	disappear $a
+	applymovement ROUTE42_SUICUNE, MovementData_0x1a9356
+	disappear ROUTE42_SUICUNE
 	pause 10
 	dotrigger $0
 	clearevent EVENT_SAW_SUICUNE_ON_ROUTE_36

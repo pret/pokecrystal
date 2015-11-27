@@ -1,3 +1,19 @@
+const_value set 2
+	const ROUTE32_FISHER1
+	const ROUTE32_FISHER2
+	const ROUTE32_FISHER3
+	const ROUTE32_YOUNGSTER1
+	const ROUTE32_YOUNGSTER2
+	const ROUTE32_YOUNGSTER3
+	const ROUTE32_LASS1
+	const ROUTE32_COOLTRAINER_M
+	const ROUTE32_YOUNGSTER4
+	const ROUTE32_FISHER4
+	const ROUTE32_POKE_BALL1
+	const ROUTE32_FISHER5
+	const ROUTE32_LASS2
+	const ROUTE32_POKE_BALL2
+
 Route32_MapScriptHeader:
 .MapTriggers:
 	db 3
@@ -26,11 +42,11 @@ UnknownScript_0x190462:
 FriedaCallback:
 	checkcode VAR_WEEKDAY
 	if_equal FRIDAY, .FriedaAppears
-	disappear $e
+	disappear ROUTE32_LASS2
 	return
 
 .FriedaAppears
-	appear $e
+	appear ROUTE32_LASS2
 	return
 
 CooltrainerMScript_0x19046f:
@@ -76,19 +92,19 @@ UnknownScript_0x1904a9:
 	end
 
 UnknownScript_0x1904ab:
-	spriteface $9, LEFT
+	spriteface ROUTE32_COOLTRAINER_M, LEFT
 	spriteface PLAYER, RIGHT
 	loadfont
 	writetext UnknownText_0x190790
 	waitbutton
 	closetext
-	follow PLAYER, $9
+	follow PLAYER, ROUTE32_COOLTRAINER_M
 	applymovement PLAYER, MovementData_0x190789
 	stopfollow
 	spriteface PLAYER, DOWN
 	scall UnknownScript_0x190470
-	applymovement $9, MovementData_0x19078c
-	applymovement $9, MovementData_0x19078e
+	applymovement ROUTE32_COOLTRAINER_M, MovementData_0x19078c
+	applymovement ROUTE32_COOLTRAINER_M, MovementData_0x19078e
 	end
 
 FisherScript_0x1904ce:
@@ -109,7 +125,7 @@ UnknownScript_0x1904e7:
 	end
 
 UnknownScript_0x1904e9:
-	spriteface $b, DOWN
+	spriteface ROUTE32_FISHER4, DOWN
 	spriteface PLAYER, UP
 	jump UnknownScript_0x1904f3
 

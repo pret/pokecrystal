@@ -1,3 +1,9 @@
+const_value set 2
+	const CELADONDEPTSTORE2F_CLERK1
+	const CELADONDEPTSTORE2F_CLERK2
+	const CELADONDEPTSTORE2F_POKEFAN_M
+	const CELADONDEPTSTORE2F_YOUNGSTER
+
 CeladonDeptStore2F_MapScriptHeader:
 .MapTriggers:
 	db 0

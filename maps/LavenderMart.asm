@@ -1,3 +1,8 @@
+const_value set 2
+	const LAVENDERMART_CLERK
+	const LAVENDERMART_POKEFAN_M
+	const LAVENDERMART_ROCKER
+
 LavenderMart_MapScriptHeader:
 .MapTriggers:
 	db 0

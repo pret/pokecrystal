@@ -1,3 +1,17 @@
+const_value set 2
+	const CIANWOODCITY_STANDING_YOUNGSTER
+	const CIANWOODCITY_POKEFAN_M
+	const CIANWOODCITY_LASS
+	const CIANWOODCITY_ROCK1
+	const CIANWOODCITY_ROCK2
+	const CIANWOODCITY_ROCK3
+	const CIANWOODCITY_ROCK4
+	const CIANWOODCITY_ROCK5
+	const CIANWOODCITY_ROCK6
+	const CIANWOODCITY_POKEFAN_F
+	const CIANWOODCITY_SUPER_NERD
+	const CIANWOODCITY_SUICUNE
+
 CianwoodCity_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -23,7 +37,7 @@ CianwoodCity_MapScriptHeader:
 	setevent EVENT_EUSINE_IN_BURNED_TOWER
 	checkevent EVENT_FOUGHT_EUSINE
 	iffalse UnknownScript_0x1a001d
-	disappear $c
+	disappear CIANWOODCITY_SUPER_NERD
 UnknownScript_0x1a001d:
 	return
 
@@ -32,12 +46,12 @@ UnknownScript_0x1a001e:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	pause 15
 	playsound SFX_WARP_FROM
-	applymovement $d, MovementData_0x1a00da
+	applymovement CIANWOODCITY_SUICUNE, MovementData_0x1a00da
 	spriteface PLAYER, DOWN
 	pause 15
 	playsound SFX_WARP_FROM
-	applymovement $d, MovementData_0x1a00e0
-	disappear $d
+	applymovement CIANWOODCITY_SUICUNE, MovementData_0x1a00e0
+	disappear CIANWOODCITY_SUICUNE
 	pause 10
 	dotrigger $0
 	clearevent EVENT_SAW_SUICUNE_ON_ROUTE_42
@@ -46,8 +60,8 @@ UnknownScript_0x1a001e:
 	iftrue .Done
 	setevent EVENT_FOUGHT_EUSINE
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
-	appear $c
-	applymovement $c, MovementData_0x1a00e7
+	appear CIANWOODCITY_SUPER_NERD
+	applymovement CIANWOODCITY_SUPER_NERD, MovementData_0x1a00e7
 	loadfont
 	writetext UnknownText_0x1a0433
 	waitbutton
@@ -63,8 +77,8 @@ UnknownScript_0x1a001e:
 	writetext UnknownText_0x1a05c3
 	waitbutton
 	closetext
-	applymovement $c, MovementData_0x1a00ec
-	disappear $c
+	applymovement CIANWOODCITY_SUPER_NERD, MovementData_0x1a00ec
+	disappear CIANWOODCITY_SUPER_NERD
 	pause 20
 	special Special_RotatePalettesRightMusic
 	playmapmusic

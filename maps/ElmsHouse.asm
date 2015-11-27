@@ -1,3 +1,7 @@
+const_value set 2
+	const ELMSHOUSE_TEACHER
+	const ELMSHOUSE_BUG_CATCHER
+
 ElmsHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

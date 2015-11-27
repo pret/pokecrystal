@@ -1,3 +1,7 @@
+const_value set 2
+	const ROUTE28FAMOUSSPEECHHOUSE_COOLTRAINER_F
+	const ROUTE28FAMOUSSPEECHHOUSE_MOLTRES
+
 Route28FamousSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 1

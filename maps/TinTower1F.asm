@@ -1,3 +1,15 @@
+const_value set 2
+	const TINTOWER1F_SUICUNE
+	const TINTOWER1F_RAIKOU
+	const TINTOWER1F_ENTEI
+	const TINTOWER1F_SUPER_NERD
+	const TINTOWER1F_SAGE1
+	const TINTOWER1F_SAGE2
+	const TINTOWER1F_SAGE3
+	const TINTOWER1F_SAGE4
+	const TINTOWER1F_SAGE5
+	const TINTOWER1F_SAGE6
+
 TinTower1F_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -34,38 +46,38 @@ UnknownScript_0x18502f:
 UnknownScript_0x185047:
 	checkevent EVENT_FOUGHT_HO_OH
 	iffalse UnknownScript_0x18504f
-	appear $5
+	appear TINTOWER1F_SUPER_NERD
 UnknownScript_0x18504f:
 	return
 
 UnknownScript_0x185050:
 	checkevent EVENT_FOUGHT_SUICUNE
 	iftrue UnknownScript_0x185077
-	appear $2
+	appear TINTOWER1F_SUICUNE
 	writebyte RAIKOU
 	special SpecialMonCheck
 	iftrue UnknownScript_0x185065
-	appear $3
+	appear TINTOWER1F_RAIKOU
 	jump UnknownScript_0x185067
 
 UnknownScript_0x185065:
-	disappear $3
+	disappear TINTOWER1F_RAIKOU
 UnknownScript_0x185067:
 	writebyte ENTEI
 	special SpecialMonCheck
 	iftrue UnknownScript_0x185074
-	appear $4
+	appear TINTOWER1F_ENTEI
 	jump UnknownScript_0x185076
 
 UnknownScript_0x185074:
-	disappear $4
+	disappear TINTOWER1F_ENTEI
 UnknownScript_0x185076:
 	return
 
 UnknownScript_0x185077:
-	disappear $2
-	disappear $3
-	disappear $4
+	disappear TINTOWER1F_SUICUNE
+	disappear TINTOWER1F_RAIKOU
+	disappear TINTOWER1F_ENTEI
 	clearevent EVENT_TIN_TOWER_1F_WISE_TRIO_1
 	setevent EVENT_TIN_TOWER_1F_WISE_TRIO_2
 	return
@@ -83,40 +95,40 @@ UnknownScript_0x18508f:
 	writebyte RAIKOU
 	special SpecialMonCheck
 	iftrue UnknownScript_0x1850b6
-	applymovement $3, MovementData_0x1851d0
+	applymovement TINTOWER1F_RAIKOU, MovementData_0x1851d0
 	spriteface PLAYER, LEFT
 	cry RAIKOU
 	pause 10
 	playsound SFX_WARP_FROM
-	applymovement $3, MovementData_0x1851d4
-	disappear $3
+	applymovement TINTOWER1F_RAIKOU, MovementData_0x1851d4
+	disappear TINTOWER1F_RAIKOU
 	playsound SFX_EXIT_BUILDING
 	waitsfx
 UnknownScript_0x1850b6:
 	writebyte ENTEI
 	special SpecialMonCheck
 	iftrue UnknownScript_0x1850d7
-	applymovement $4, MovementData_0x1851da
+	applymovement TINTOWER1F_ENTEI, MovementData_0x1851da
 	spriteface PLAYER, RIGHT
 	cry ENTEI
 	pause 10
 	playsound SFX_WARP_FROM
-	applymovement $4, MovementData_0x1851de
-	disappear $4
+	applymovement TINTOWER1F_ENTEI, MovementData_0x1851de
+	disappear TINTOWER1F_ENTEI
 	playsound SFX_EXIT_BUILDING
 	waitsfx
 UnknownScript_0x1850d7:
 	spriteface PLAYER, UP
 	pause 10
 	applymovement PLAYER, MovementData_0x1851e8
-	applymovement $2, MovementData_0x1851e4
+	applymovement TINTOWER1F_SUICUNE, MovementData_0x1851e4
 	cry SUICUNE
 	pause 20
 	scriptedpokedata SUICUNE, 40
 	writecode VAR_BATTLETYPE, BATTLETYPE_SUICUNE
 	startbattle
 	reloadmapmusic
-	disappear $2
+	disappear TINTOWER1F_SUICUNE
 	setevent EVENT_FOUGHT_SUICUNE
 	setevent EVENT_SAW_SUICUNE_ON_ROUTE_42
 	domaptrigger ROUTE_42, $0
@@ -131,32 +143,32 @@ UnknownScript_0x1850d7:
 	spriteface PLAYER, DOWN
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
 	playsound SFX_ENTER_DOOR
-	moveperson $5, $a, $f
-	appear $5
-	applymovement $5, MovementData_0x1851ec
+	moveperson TINTOWER1F_SUPER_NERD, $a, $f
+	appear TINTOWER1F_SUPER_NERD
+	applymovement TINTOWER1F_SUPER_NERD, MovementData_0x1851ec
 	playsound SFX_ENTER_DOOR
-	moveperson $6, $9, $f
-	appear $6
-	applymovement $6, MovementData_0x1851f5
+	moveperson TINTOWER1F_SAGE1, $9, $f
+	appear TINTOWER1F_SAGE1
+	applymovement TINTOWER1F_SAGE1, MovementData_0x1851f5
 	playsound SFX_ENTER_DOOR
-	moveperson $7, $9, $f
-	appear $7
-	applymovement $7, MovementData_0x1851fb
+	moveperson TINTOWER1F_SAGE2, $9, $f
+	appear TINTOWER1F_SAGE2
+	applymovement TINTOWER1F_SAGE2, MovementData_0x1851fb
 	playsound SFX_ENTER_DOOR
-	moveperson $8, $9, $f
-	appear $8
-	applymovement $8, MovementData_0x1851fe
-	moveperson $6, $7, $d
-	moveperson $7, $9, $d
-	moveperson $8, $b, $d
+	moveperson TINTOWER1F_SAGE3, $9, $f
+	appear TINTOWER1F_SAGE3
+	applymovement TINTOWER1F_SAGE3, MovementData_0x1851fe
+	moveperson TINTOWER1F_SAGE1, $7, $d
+	moveperson TINTOWER1F_SAGE2, $9, $d
+	moveperson TINTOWER1F_SAGE3, $b, $d
 	spriteface PLAYER, RIGHT
 	loadfont
 	writetext UnknownText_0x185203
 	waitbutton
 	closetext
-	applymovement $5, MovementData_0x1851f1
+	applymovement TINTOWER1F_SUPER_NERD, MovementData_0x1851f1
 	playsound SFX_EXIT_BUILDING
-	disappear $5
+	disappear TINTOWER1F_SUPER_NERD
 	waitsfx
 	special Special_RotatePalettesRightMusic
 	pause 20

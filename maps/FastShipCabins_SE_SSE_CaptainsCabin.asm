@@ -1,3 +1,16 @@
+const_value set 2
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_CAPTAIN
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN1
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN2
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_POKEFAN_M1
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN3
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN4
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_SUPER_NERD1
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_POKEFAN_M2
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_POKEFAN_F
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_SUPER_NERD2
+
 FastShipCabins_SE_SSE_CaptainsCabin_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -25,7 +38,7 @@ UnknownScript_0x75eb5:
 	end
 
 TwinScript_0x75ebb:
-	spriteface $5, RIGHT
+	spriteface FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN2, RIGHT
 	loadfont
 	writetext UnknownText_0x761e0
 	waitbutton
@@ -37,17 +50,17 @@ TwinScript_0x75ebb:
 	closetext
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
-	disappear $5
+	disappear FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN2
 	applymovement PLAYER, MovementData_0x76004
-	moveperson $4, $3, $13
-	appear $4
+	moveperson FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN1, $3, $13
+	appear FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN1
 	spriteface PLAYER, UP
-	spriteface $4, UP
+	spriteface FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN1, UP
 	special Special_FadeInQuickly
-	spriteface $3, DOWN
-	showemote EMOTE_SHOCK, $3, 15
-	applymovement $4, MovementData_0x7600c
-	spriteface $3, RIGHT
+	spriteface FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN, DOWN
+	showemote EMOTE_SHOCK, FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN, 15
+	applymovement FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN1, MovementData_0x7600c
+	spriteface FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN, RIGHT
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue UnknownScript_0x75f03
 	loadfont
@@ -62,8 +75,8 @@ UnknownScript_0x75f03:
 	waitbutton
 	closetext
 UnknownScript_0x75f09:
-	spriteface $5, DOWN
-	applymovement $3, MovementData_0x76010
+	spriteface FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN2, DOWN
+	applymovement FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN, MovementData_0x76010
 	loadfont
 	writetext UnknownText_0x76143
 	keeptextopen

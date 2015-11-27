@@ -1,3 +1,8 @@
+const_value set 2
+	const ROUTE35NATIONALPARKGATE_OFFICER1
+	const ROUTE35NATIONALPARKGATE_YOUNGSTER
+	const ROUTE35NATIONALPARKGATE_OFFICER2
+
 Route35NationalParkgate_MapScriptHeader:
 .MapTriggers:
 	db 3
@@ -43,20 +48,20 @@ Route35NationalParkgate_CheckIfContestDay:
 	if_equal SATURDAY, Route35NationalParkgate_IsContestDay
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue Route35NationalParkgate_Yes
-	disappear $2
-	appear $3
-	appear $4
+	disappear ROUTE35NATIONALPARKGATE_OFFICER1
+	appear ROUTE35NATIONALPARKGATE_YOUNGSTER
+	appear ROUTE35NATIONALPARKGATE_OFFICER2
 	return
 
 Route35NationalParkgate_IsContestDay:
-	appear $2
-	disappear $3
-	disappear $4
+	appear ROUTE35NATIONALPARKGATE_OFFICER1
+	disappear ROUTE35NATIONALPARKGATE_YOUNGSTER
+	disappear ROUTE35NATIONALPARKGATE_OFFICER2
 	return
 
 Route35NationalParkGate_LeavingContestEarly:
 	applymovement PLAYER, MovementData_0x6a2e2
-	spriteface $2, RIGHT
+	spriteface ROUTE35NATIONALPARKGATE_OFFICER1, RIGHT
 	loadfont
 	checkcode VAR_CONTESTMINUTES
 	addvar $1

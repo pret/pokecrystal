@@ -1,3 +1,8 @@
+const_value set 2
+	const VIOLETMART_CLERK
+	const VIOLETMART_GRANNY
+	const VIOLETMART_COOLTRAINER_M
+
 VioletMart_MapScriptHeader:
 .MapTriggers:
 	db 0

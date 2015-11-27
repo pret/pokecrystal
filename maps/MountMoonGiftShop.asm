@@ -1,3 +1,9 @@
+const_value set 2
+	const MOUNTMOONGIFTSHOP_GRAMPS1
+	const MOUNTMOONGIFTSHOP_GRAMPS2
+	const MOUNTMOONGIFTSHOP_LASS1
+	const MOUNTMOONGIFTSHOP_LASS2
+
 MountMoonGiftShop_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,7 @@
+const_value set 2
+	const ILEXFORESTAZALEAGATE_OFFICER
+	const ILEXFORESTAZALEAGATE_GRANNY
+
 IlexForestAzaleaGate_MapScriptHeader:
 .MapTriggers:
 	db 0

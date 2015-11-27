@@ -1,3 +1,12 @@
+const_value set 2
+	const SPROUTTOWER3F_SAGE1
+	const SPROUTTOWER3F_SAGE2
+	const SPROUTTOWER3F_SAGE3
+	const SPROUTTOWER3F_SAGE4
+	const SPROUTTOWER3F_POKE_BALL1
+	const SPROUTTOWER3F_POKE_BALL2
+	const SPROUTTOWER3F_SILVER
+
 SproutTower3F_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -27,21 +36,21 @@ UnknownScript_0x184947:
 	playsound SFX_ELEVATOR
 	earthquake 79
 	applymovement PLAYER, MovementData_0x184a1d
-	applymovement $8, MovementData_0x184a22
+	applymovement SPROUTTOWER3F_SILVER, MovementData_0x184a22
 	loadfont
 	writetext UnknownText_0x184a27
 	waitbutton
 	closetext
-	showemote EMOTE_SHOCK, $8, 15
-	spriteface $8, DOWN
+	showemote EMOTE_SHOCK, SPROUTTOWER3F_SILVER, 15
+	spriteface SPROUTTOWER3F_SILVER, DOWN
 	pause 15
-	applymovement $8, MovementData_0x184a24
+	applymovement SPROUTTOWER3F_SILVER, MovementData_0x184a24
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x184aec
 	waitbutton
 	closetext
-	spriteface $8, UP
+	spriteface SPROUTTOWER3F_SILVER, UP
 	loadfont
 	writetext UnknownText_0x184bc8
 	pause 15
@@ -49,7 +58,7 @@ UnknownScript_0x184947:
 	playsound SFX_WARP_TO
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
-	disappear $8
+	disappear SPROUTTOWER3F_SILVER
 	waitsfx
 	special Special_FadeInQuickly
 	dotrigger $1

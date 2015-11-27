@@ -1,3 +1,10 @@
+const_value set 2
+	const VERMILIONGYM_SURGE
+	const VERMILIONGYM_GENTLEMAN
+	const VERMILIONGYM_ROCKER
+	const VERMILIONGYM_SUPER_NERD
+	const VERMILIONGYM_GYM_GUY
+
 VermilionGym_MapScriptHeader:
 .MapTriggers:
 	db 0

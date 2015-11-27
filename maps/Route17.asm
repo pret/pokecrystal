@@ -1,3 +1,9 @@
+const_value set 2
+	const ROUTE17_BIKER1
+	const ROUTE17_BIKER2
+	const ROUTE17_BIKER3
+	const ROUTE17_BIKER4
+
 Route17_MapScriptHeader:
 .MapTriggers:
 	db 0

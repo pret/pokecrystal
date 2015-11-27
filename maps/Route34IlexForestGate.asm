@@ -1,3 +1,9 @@
+const_value set 2
+	const ROUTE34ILEXFORESTGATE_TEACHER1
+	const ROUTE34ILEXFORESTGATE_BUTTERFREE
+	const ROUTE34ILEXFORESTGATE_LASS
+	const ROUTE34ILEXFORESTGATE_TEACHER2
+
 Route34IlexForestGate_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -12,22 +18,22 @@ Route34IlexForestGate_MapScriptHeader:
 UnknownScript_0x62d2d:
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iffalse UnknownScript_0x62d38
-	disappear $2
-	appear $5
+	disappear ROUTE34ILEXFORESTGATE_TEACHER1
+	appear ROUTE34ILEXFORESTGATE_TEACHER2
 	return
 
 UnknownScript_0x62d38:
-	disappear $5
-	appear $2
+	disappear ROUTE34ILEXFORESTGATE_TEACHER2
+	appear ROUTE34ILEXFORESTGATE_TEACHER1
 	return
 
 UnknownScript_0x62d3d:
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iffalse UnknownScript_0x62d62
-	showemote EMOTE_SHOCK, $5, 20
-	spriteface $5, LEFT
+	showemote EMOTE_SHOCK, ROUTE34ILEXFORESTGATE_TEACHER2, 20
+	spriteface ROUTE34ILEXFORESTGATE_TEACHER2, LEFT
 	spriteface PLAYER, RIGHT
-	follow PLAYER, $5
+	follow PLAYER, ROUTE34ILEXFORESTGATE_TEACHER2
 	applymovement PLAYER, MovementData_0x62d97
 	stopfollow
 	spriteface PLAYER, DOWN
@@ -35,7 +41,7 @@ UnknownScript_0x62d3d:
 	writetext UnknownText_0x62e41
 	waitbutton
 	closetext
-	applymovement $5, MovementData_0x62d9a
+	applymovement ROUTE34ILEXFORESTGATE_TEACHER2, MovementData_0x62d9a
 UnknownScript_0x62d62:
 	end
 

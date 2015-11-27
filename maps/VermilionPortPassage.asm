@@ -1,3 +1,6 @@
+const_value set 2
+	const VERMILIONPORTPASSAGE_TEACHER
+
 VermilionPortPassage_MapScriptHeader:
 .MapTriggers:
 	db 0

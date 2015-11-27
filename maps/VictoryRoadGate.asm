@@ -1,3 +1,8 @@
+const_value set 2
+	const VICTORYROADGATE_OFFICER
+	const VICTORYROADGATE_BLACK_BELT1
+	const VICTORYROADGATE_BLACK_BELT2
+
 VictoryRoadGate_MapScriptHeader:
 .MapTriggers:
 	db 2

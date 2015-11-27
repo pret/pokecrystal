@@ -1,3 +1,16 @@
+const_value set 2
+	const ROUTE35_YOUNGSTER1
+	const ROUTE35_YOUNGSTER2
+	const ROUTE35_LASS1
+	const ROUTE35_LASS2
+	const ROUTE35_YOUNGSTER3
+	const ROUTE35_FISHER
+	const ROUTE35_BUG_CATCHER
+	const ROUTE35_SUPER_NERD
+	const ROUTE35_OFFICER
+	const ROUTE35_FRUIT_TREE
+	const ROUTE35_POKE_BALL
+
 Route35_MapScriptHeader:
 .MapTriggers:
 	db 0

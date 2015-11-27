@@ -1,3 +1,8 @@
+const_value set 2
+	const RUINSOFALPHRESEARCHCENTER_SCIENTIST1
+	const RUINSOFALPHRESEARCHCENTER_SCIENTIST2
+	const RUINSOFALPHRESEARCHCENTER_SCIENTIST3
+
 RuinsofAlphResearchCenter_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -26,12 +31,12 @@ UnknownScript_0x59185:
 	return
 
 UnknownScript_0x5918b:
-	moveperson $4, $3, $7
-	appear $4
+	moveperson RUINSOFALPHRESEARCHCENTER_SCIENTIST3, $3, $7
+	appear RUINSOFALPHRESEARCHCENTER_SCIENTIST3
 	return
 
 UnknownScript_0x59192:
-	applymovement $4, MovementData_0x5926f
+	applymovement RUINSOFALPHRESEARCHCENTER_SCIENTIST3, MovementData_0x5926f
 	playsound SFX_BOOT_PC
 	pause 60
 	playsound SFX_SWITCH_POKEMON
@@ -40,12 +45,12 @@ UnknownScript_0x59192:
 	pause 30
 	playsound SFX_TRANSACTION
 	pause 30
-	spriteface $4, DOWN
+	spriteface RUINSOFALPHRESEARCHCENTER_SCIENTIST3, DOWN
 	loadfont
 	writetext UnknownText_0x59278
 	waitbutton
 	closetext
-	applymovement $4, MovementData_0x59274
+	applymovement RUINSOFALPHRESEARCHCENTER_SCIENTIST3, MovementData_0x59274
 	loadfont
 	writetext UnknownText_0x592fa
 	playsound SFX_ITEM
@@ -54,7 +59,7 @@ UnknownScript_0x59192:
 	writetext UnknownText_0x59311
 	waitbutton
 	closetext
-	applymovement $4, MovementData_0x59276
+	applymovement RUINSOFALPHRESEARCHCENTER_SCIENTIST3, MovementData_0x59276
 	dotrigger $0
 	special RestartMapMusic
 	end

@@ -1,3 +1,10 @@
+const_value set 2
+	const CELADONDEPTSTORE3F_CLERK
+	const CELADONDEPTSTORE3F_YOUNGSTER
+	const CELADONDEPTSTORE3F_GAMEBOY_KID1
+	const CELADONDEPTSTORE3F_GAMEBOY_KID2
+	const CELADONDEPTSTORE3F_SUPER_NERD
+
 CeladonDeptStore3F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -21,7 +28,7 @@ GameboyKidScript_0x70d34:
 	writetext UnknownText_0x70d86
 	waitbutton
 	closetext
-	spriteface $4, DOWN
+	spriteface CELADONDEPTSTORE3F_GAMEBOY_KID1, DOWN
 	end
 
 GameboyKidScript_0x70d3f:
@@ -30,7 +37,7 @@ GameboyKidScript_0x70d3f:
 	writetext UnknownText_0x70dc7
 	waitbutton
 	closetext
-	spriteface $5, DOWN
+	spriteface CELADONDEPTSTORE3F_GAMEBOY_KID2, DOWN
 	end
 
 SuperNerdScript_0x70d4a:

@@ -1,3 +1,7 @@
+const_value set 2
+	const ROUTE36RUINSOFALPHGATE_OFFICER
+	const ROUTE36RUINSOFALPHGATE_GRAMPS
+
 Route36RuinsofAlphgate_MapScriptHeader:
 .MapTriggers:
 	db 0

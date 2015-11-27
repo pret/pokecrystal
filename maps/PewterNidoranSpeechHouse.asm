@@ -1,3 +1,7 @@
+const_value set 2
+	const PEWTERNIDORANSPEECHHOUSE_SUPER_NERD
+	const PEWTERNIDORANSPEECHHOUSE_GROWLITHE
+
 PewterNidoranSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

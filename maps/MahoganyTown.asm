@@ -1,3 +1,9 @@
+const_value set 2
+	const MAHOGANYTOWN_POKEFAN_M
+	const MAHOGANYTOWN_GRAMPS
+	const MAHOGANYTOWN_FISHER
+	const MAHOGANYTOWN_LASS
+
 MahoganyTown_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -23,14 +29,14 @@ MahoganyTown_MapScriptHeader:
 	return
 
 UnknownScript_0x190013:
-	showemote EMOTE_SHOCK, $2, 15
-	applymovement $2, MovementData_0x1900a9
-	follow PLAYER, $2
+	showemote EMOTE_SHOCK, MAHOGANYTOWN_POKEFAN_M, 15
+	applymovement MAHOGANYTOWN_POKEFAN_M, MovementData_0x1900a9
+	follow PLAYER, MAHOGANYTOWN_POKEFAN_M
 	applymovement PLAYER, MovementData_0x1900a7
 	stopfollow
 	spriteface PLAYER, RIGHT
 	scall UnknownScript_0x19002f
-	applymovement $2, MovementData_0x1900ad
+	applymovement MAHOGANYTOWN_POKEFAN_M, MovementData_0x1900ad
 	end
 
 PokefanMScript_0x19002e:

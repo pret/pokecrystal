@@ -1,3 +1,11 @@
+const_value set 2
+	const GOLDENRODDEPTSTORE5F_CLERK
+	const GOLDENRODDEPTSTORE5F_LASS
+	const GOLDENRODDEPTSTORE5F_COOLTRAINER_M
+	const GOLDENRODDEPTSTORE5F_POKEFAN_M
+	const GOLDENRODDEPTSTORE5F_TWIN
+	const GOLDENRODDEPTSTORE5F_RECEPTIONIST
+
 GoldenrodDeptStore5F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -12,11 +20,11 @@ GoldenrodDeptStore5F_MapScriptHeader:
 .CheckIfSunday:
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, .yes
-	disappear $7
+	disappear GOLDENRODDEPTSTORE5F_RECEPTIONIST
 	return
 
 .yes:
-	appear $7
+	appear GOLDENRODDEPTSTORE5F_RECEPTIONIST
 	return
 
 ClerkScript_0x5609c:

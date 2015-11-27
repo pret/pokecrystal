@@ -1,3 +1,12 @@
+const_value set 2
+	const ECRUTEAKCITY_GRAMPS1
+	const ECRUTEAKCITY_GRAMPS2
+	const ECRUTEAKCITY_LASS1
+	const ECRUTEAKCITY_LASS2
+	const ECRUTEAKCITY_FISHER
+	const ECRUTEAKCITY_YOUNGSTER
+	const ECRUTEAKCITY_GRAMPS3
+
 EcruteakCity_MapScriptHeader:
 .MapTriggers:
 	db 0

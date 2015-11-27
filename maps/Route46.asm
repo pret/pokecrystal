@@ -1,3 +1,11 @@
+const_value set 2
+	const ROUTE46_POKEFAN_M
+	const ROUTE46_YOUNGSTER
+	const ROUTE46_LASS
+	const ROUTE46_FRUIT_TREE1
+	const ROUTE46_FRUIT_TREE2
+	const ROUTE46_POKE_BALL
+
 Route46_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,6 @@
+const_value set 2
+	const LAKEOFRAGEMAGIKARPHOUSE_FISHING_GURU
+
 LakeofRageMagikarpHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

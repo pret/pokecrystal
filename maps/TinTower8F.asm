@@ -1,3 +1,8 @@
+const_value set 2
+	const TINTOWER8F_POKE_BALL1
+	const TINTOWER8F_POKE_BALL2
+	const TINTOWER8F_POKE_BALL3
+
 TinTower8F_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,9 @@
+const_value set 2
+	const ROUTE3_FISHER1
+	const ROUTE3_YOUNGSTER1
+	const ROUTE3_YOUNGSTER2
+	const ROUTE3_FISHER2
+
 Route3_MapScriptHeader:
 .MapTriggers:
 	db 0

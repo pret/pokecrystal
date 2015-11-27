@@ -1,3 +1,8 @@
+const_value set 2
+	const CELADONDEPTSTORE4F_CLERK
+	const CELADONDEPTSTORE4F_SUPER_NERD
+	const CELADONDEPTSTORE4F_YOUNGSTER
+
 CeladonDeptStore4F_MapScriptHeader:
 .MapTriggers:
 	db 0

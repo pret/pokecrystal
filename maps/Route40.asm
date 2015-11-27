@@ -1,3 +1,17 @@
+const_value set 2
+	const ROUTE40_OLIVINE_RIVAL1
+	const ROUTE40_OLIVINE_RIVAL2
+	const ROUTE40_SWIMMER_GIRL1
+	const ROUTE40_SWIMMER_GIRL2
+	const ROUTE40_ROCK1
+	const ROUTE40_ROCK2
+	const ROUTE40_ROCK3
+	const ROUTE40_LASS1
+	const ROUTE40_BUENA
+	const ROUTE40_POKEFAN_M
+	const ROUTE40_LASS2
+	const ROUTE40_STANDING_YOUNGSTER
+
 Route40_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -13,11 +27,11 @@ MonicaCallback:
 	clearevent EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
 	checkcode VAR_WEEKDAY
 	if_equal MONDAY, .MonicaAppears
-	disappear $a
+	disappear ROUTE40_BUENA
 	return
 
 .MonicaAppears
-	appear $a
+	appear ROUTE40_BUENA
 	return
 
 TrainerSwimmerfElaine:

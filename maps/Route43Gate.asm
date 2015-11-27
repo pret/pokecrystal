@@ -1,3 +1,8 @@
+const_value set 2
+	const ROUTE43GATE_OFFICER
+	const ROUTE43GATE_ROCKET1
+	const ROUTE43GATE_ROCKET2
+
 Route43Gate_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -40,11 +45,11 @@ UnknownScript_0x19abda:
 
 UnknownScript_0x19abea:
 	applymovement PLAYER, MovementData_0x19aca2
-	showemote EMOTE_SHOCK, $4, 15
-	applymovement $4, MovementData_0x19acbb
-	spriteface $3, UP
-	showemote EMOTE_SHOCK, $3, 15
-	applymovement $3, MovementData_0x19aca4
+	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET2, 15
+	applymovement ROUTE43GATE_ROCKET2, MovementData_0x19acbb
+	spriteface ROUTE43GATE_ROCKET1, UP
+	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET1, 15
+	applymovement ROUTE43GATE_ROCKET1, MovementData_0x19aca4
 	loadfont
 	writetext UnknownText_0x19acd2
 	keeptextopen
@@ -65,18 +70,18 @@ UnknownScript_0x19ac1d:
 UnknownScript_0x19ac28:
 	keeptextopen
 	closetext
-	applymovement $3, MovementData_0x19acaa
-	applymovement $4, MovementData_0x19acc1
+	applymovement ROUTE43GATE_ROCKET1, MovementData_0x19acaa
+	applymovement ROUTE43GATE_ROCKET2, MovementData_0x19acc1
 	dotrigger $1
 	special RestartMapMusic
 	end
 
 UnknownScript_0x19ac38:
-	showemote EMOTE_SHOCK, $3, 15
-	applymovement $3, MovementData_0x19acaf
-	spriteface $4, DOWN
-	showemote EMOTE_SHOCK, $4, 15
-	applymovement $4, MovementData_0x19acc7
+	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET1, 15
+	applymovement ROUTE43GATE_ROCKET1, MovementData_0x19acaf
+	spriteface ROUTE43GATE_ROCKET2, DOWN
+	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET2, 15
+	applymovement ROUTE43GATE_ROCKET2, MovementData_0x19acc7
 	loadfont
 	writetext UnknownText_0x19acd2
 	keeptextopen
@@ -97,8 +102,8 @@ UnknownScript_0x19ac67:
 UnknownScript_0x19ac72:
 	keeptextopen
 	closetext
-	applymovement $4, MovementData_0x19accd
-	applymovement $3, MovementData_0x19acb5
+	applymovement ROUTE43GATE_ROCKET2, MovementData_0x19accd
+	applymovement ROUTE43GATE_ROCKET1, MovementData_0x19acb5
 	dotrigger $1
 	special RestartMapMusic
 	end

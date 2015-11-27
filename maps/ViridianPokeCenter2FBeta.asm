@@ -1,3 +1,5 @@
+const_value set 2
+
 ViridianPokeCenter2FBeta_MapScriptHeader:
 .MapTriggers:
 	db 0

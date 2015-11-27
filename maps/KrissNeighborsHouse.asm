@@ -1,3 +1,7 @@
+const_value set 2
+	const KRISSNEIGHBORSHOUSE_COOLTRAINER_F
+	const KRISSNEIGHBORSHOUSE_POKEFAN_F
+
 KrissNeighborsHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

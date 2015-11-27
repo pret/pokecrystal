@@ -1,3 +1,8 @@
+const_value set 2
+	const AZALEAMART_CLERK
+	const AZALEAMART_COOLTRAINER_M
+	const AZALEAMART_BUG_CATCHER
+
 AzaleaMart_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,8 @@
+const_value set 2
+	const SPROUTTOWER2F_SAGE1
+	const SPROUTTOWER2F_SAGE2
+	const SPROUTTOWER2F_POKE_BALL
+
 SproutTower2F_MapScriptHeader:
 .MapTriggers:
 	db 0

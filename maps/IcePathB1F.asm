@@ -1,3 +1,10 @@
+const_value set 2
+	const ICEPATHB1F_BOULDER1
+	const ICEPATHB1F_BOULDER2
+	const ICEPATHB1F_BOULDER3
+	const ICEPATHB1F_BOULDER4
+	const ICEPATHB1F_POKE_BALL
+
 IcePathB1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -33,22 +40,22 @@ IcePathB1F_MapScriptHeader:
 	db -1 ; end
 
 .Boulder1:
-	disappear 2
+	disappear ICEPATHB1F_BOULDER1
 	clearevent EVENT_BOULDER_IN_ICE_PATH_1A
 	jump .FinishBoulder
 
 .Boulder2:
-	disappear 3
+	disappear ICEPATHB1F_BOULDER2
 	clearevent EVENT_BOULDER_IN_ICE_PATH_2A
 	jump .FinishBoulder
 
 .Boulder3:
-	disappear 4
+	disappear ICEPATHB1F_BOULDER3
 	clearevent EVENT_BOULDER_IN_ICE_PATH_3A
 	jump .FinishBoulder
 
 .Boulder4:
-	disappear 5
+	disappear ICEPATHB1F_BOULDER4
 	clearevent EVENT_BOULDER_IN_ICE_PATH_4A
 	jump .FinishBoulder
 

@@ -1,3 +1,6 @@
+const_value set 2
+	const CIANWOODCITYPHOTOSTUDIO_FISHING_GURU
+
 CianwoodCityPhotoStudio_MapScriptHeader:
 .MapTriggers:
 	db 0

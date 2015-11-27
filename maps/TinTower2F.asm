@@ -1,3 +1,5 @@
+const_value set 2
+
 TinTower2F_MapScriptHeader:
 .MapTriggers:
 	db 0

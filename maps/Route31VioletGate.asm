@@ -1,3 +1,7 @@
+const_value set 2
+	const ROUTE31VIOLETGATE_OFFICER
+	const ROUTE31VIOLETGATE_COOLTRAINER_F
+
 Route31VioletGate_MapScriptHeader:
 .MapTriggers:
 	db 0

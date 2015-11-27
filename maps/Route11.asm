@@ -1,3 +1,10 @@
+const_value set 2
+	const ROUTE11_YOUNGSTER1
+	const ROUTE11_YOUNGSTER2
+	const ROUTE11_YOUNGSTER3
+	const ROUTE11_YOUNGSTER4
+	const ROUTE11_FRUIT_TREE
+
 Route11_MapScriptHeader:
 .MapTriggers:
 	db 0

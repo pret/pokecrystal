@@ -1,3 +1,12 @@
+const_value set 2
+	const ROUTE38_STANDING_YOUNGSTER1
+	const ROUTE38_LASS
+	const ROUTE38_STANDING_YOUNGSTER2
+	const ROUTE38_BUENA1
+	const ROUTE38_SAILOR
+	const ROUTE38_FRUIT_TREE
+	const ROUTE38_BUENA2
+
 Route38_MapScriptHeader:
 .MapTriggers:
 	db 0

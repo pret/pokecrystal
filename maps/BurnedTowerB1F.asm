@@ -1,3 +1,14 @@
+const_value set 2
+	const BURNEDTOWERB1F_BOULDER
+	const BURNEDTOWERB1F_RAIKOU1
+	const BURNEDTOWERB1F_ENTEI1
+	const BURNEDTOWERB1F_SUICUNE1
+	const BURNEDTOWERB1F_RAIKOU2
+	const BURNEDTOWERB1F_ENTEI2
+	const BURNEDTOWERB1F_SUICUNE2
+	const BURNEDTOWERB1F_POKE_BALL
+	const BURNEDTOWERB1F_SUPER_NERD
+
 BurnedTowerB1F_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -29,50 +40,50 @@ UnknownScript_0x18616a:
 UnknownScript_0x18616b:
 	playmusic MUSIC_NONE
 	pause 30
-	appear $3
+	appear BURNEDTOWERB1F_RAIKOU1
 	spriteface PLAYER, UP
 	pause 5
-	disappear $6
+	disappear BURNEDTOWERB1F_RAIKOU2
 	pause 15
 	cry RAIKOU
-	appear $4
+	appear BURNEDTOWERB1F_ENTEI1
 	spriteface PLAYER, UP
 	pause 5
-	disappear $7
+	disappear BURNEDTOWERB1F_ENTEI2
 	pause 15
 	cry ENTEI
-	appear $5
+	appear BURNEDTOWERB1F_SUICUNE1
 	spriteface PLAYER, UP
 	pause 5
-	disappear $8
+	disappear BURNEDTOWERB1F_SUICUNE2
 	pause 15
 	cry SUICUNE
 	pause 15
 	playsound SFX_WARP_FROM
 	spriteface PLAYER, LEFT
-	applymovement $3, MovementData_0x186236
-	disappear $3
+	applymovement BURNEDTOWERB1F_RAIKOU1, MovementData_0x186236
+	disappear BURNEDTOWERB1F_RAIKOU1
 	waitsfx
 	playsound SFX_WARP_FROM
 	spriteface PLAYER, RIGHT
-	applymovement $4, MovementData_0x18623b
-	disappear $4
+	applymovement BURNEDTOWERB1F_ENTEI1, MovementData_0x18623b
+	disappear BURNEDTOWERB1F_ENTEI1
 	waitsfx
 	pause 15
 	playsound SFX_WARP_FROM
 	spriteface PLAYER, UP
-	applymovement $5, MovementData_0x186241
+	applymovement BURNEDTOWERB1F_SUICUNE1, MovementData_0x186241
 	playsound SFX_WARP_FROM
 	spriteface PLAYER, DOWN
-	applymovement $5, MovementData_0x186248
+	applymovement BURNEDTOWERB1F_SUICUNE1, MovementData_0x186248
 	spriteface PLAYER, UP
 	pause 20
 	cry SUICUNE
 	pause 30
 	playsound SFX_WARP_FROM
-	applymovement $5, MovementData_0x186253
+	applymovement BURNEDTOWERB1F_SUICUNE1, MovementData_0x186253
 	spriteface PLAYER, DOWN
-	disappear $5
+	disappear BURNEDTOWERB1F_SUICUNE1
 	waitsfx
 	special RestartMapMusic
 	dotrigger $1
@@ -85,7 +96,7 @@ UnknownScript_0x18616b:
 	clearevent EVENT_ECRUTEAK_CITY_GRAMPS
 	setevent EVENT_BURNED_TOWER_MORTY
 	setevent EVENT_BURNED_TOWER_1F_EUSINE
-	appear $a
+	appear BURNEDTOWERB1F_SUPER_NERD
 	refreshscreen $0
 	changeblock $6, $e, $1b
 	reloadmappart
@@ -101,13 +112,13 @@ SuperNerdScript_0x186212:
 	closetext
 	checkcode VAR_FACING
 	if_equal $1, UnknownScript_0x186226
-	applymovement $a, MovementData_0x186263
+	applymovement BURNEDTOWERB1F_SUPER_NERD, MovementData_0x186263
 	jump UnknownScript_0x18622a
 
 UnknownScript_0x186226:
-	applymovement $a, MovementData_0x18625c
+	applymovement BURNEDTOWERB1F_SUPER_NERD, MovementData_0x18625c
 UnknownScript_0x18622a:
-	disappear $a
+	disappear BURNEDTOWERB1F_SUPER_NERD
 	playsound SFX_EXIT_BUILDING
 	waitsfx
 	end

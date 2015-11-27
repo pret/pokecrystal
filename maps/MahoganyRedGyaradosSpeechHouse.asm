@@ -1,3 +1,7 @@
+const_value set 2
+	const MAHOGANYREDGYARADOSSPEECHHOUSE_BLACK_BELT
+	const MAHOGANYREDGYARADOSSPEECHHOUSE_TEACHER
+
 MahoganyRedGyaradosSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

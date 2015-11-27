@@ -1,3 +1,11 @@
+const_value set 2
+	const CERULEANGYM_ROCKET
+	const CERULEANGYM_MISTY
+	const CERULEANGYM_SWIMMER_GIRL1
+	const CERULEANGYM_SWIMMER_GIRL2
+	const CERULEANGYM_SWIMMER_GUY
+	const CERULEANGYM_GYM_GUY
+
 CeruleanGym_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -17,28 +25,28 @@ UnknownScript_0x1883da:
 	end
 
 UnknownScript_0x1883de:
-	applymovement $2, MovementData_0x1884e3
+	applymovement CERULEANGYM_ROCKET, MovementData_0x1884e3
 	playsound SFX_TACKLE
-	applymovement $2, MovementData_0x1884eb
+	applymovement CERULEANGYM_ROCKET, MovementData_0x1884eb
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x1884fb
 	waitbutton
 	closetext
-	showemote EMOTE_SHOCK, $2, 15
-	applymovement $2, MovementData_0x1884f7
+	showemote EMOTE_SHOCK, CERULEANGYM_ROCKET, 15
+	applymovement CERULEANGYM_ROCKET, MovementData_0x1884f7
 	loadfont
 	writetext UnknownText_0x188574
 	waitbutton
 	closetext
-	applymovement $2, MovementData_0x1884f5
+	applymovement CERULEANGYM_ROCKET, MovementData_0x1884f5
 	loadfont
 	writetext UnknownText_0x1885a5
 	waitbutton
 	closetext
-	applymovement $2, MovementData_0x1884e8
+	applymovement CERULEANGYM_ROCKET, MovementData_0x1884e8
 	playsound SFX_EXIT_BUILDING
-	disappear $2
+	disappear CERULEANGYM_ROCKET
 	setevent EVENT_MET_ROCKET_GRUNT_AT_CERULEAN_GYM
 	clearevent EVENT_ROUTE_24_ROCKET
 	clearevent EVENT_ROUTE_25_MISTY_BOYFRIEND

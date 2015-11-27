@@ -1,3 +1,6 @@
+const_value set 2
+	const BLACKTHORNDODRIOTRADEHOUSE_LASS
+
 BlackthornDodrioTradeHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

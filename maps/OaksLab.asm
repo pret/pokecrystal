@@ -1,3 +1,9 @@
+const_value set 2
+	const OAKSLAB_OAK
+	const OAKSLAB_SCIENTIST1
+	const OAKSLAB_SCIENTIST2
+	const OAKSLAB_SCIENTIST3
+
 OaksLab_MapScriptHeader:
 .MapTriggers:
 	db 0

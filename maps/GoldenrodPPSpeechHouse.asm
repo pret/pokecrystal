@@ -1,3 +1,7 @@
+const_value set 2
+	const GOLDENRODPPSPEECHHOUSE_FISHER
+	const GOLDENRODPPSPEECHHOUSE_LASS
+
 GoldenrodPPSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

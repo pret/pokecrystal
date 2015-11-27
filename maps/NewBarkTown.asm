@@ -1,3 +1,8 @@
+const_value set 2
+	const NEWBARKTOWN_TEACHER
+	const NEWBARKTOWN_FISHER
+	const NEWBARKTOWN_SILVER
+
 NewBarkTown_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -25,19 +30,19 @@ NewBarkTown_MapScriptHeader:
 
 UnknownScript_0x1a8016:
 	playmusic MUSIC_MOM
-	spriteface $2, LEFT
+	spriteface NEWBARKTOWN_TEACHER, LEFT
 	loadfont
 	writetext UnknownText_0x1a8134
 	waitbutton
 	closetext
 	spriteface PLAYER, RIGHT
-	applymovement $2, MovementData_0x1a80d4
+	applymovement NEWBARKTOWN_TEACHER, MovementData_0x1a80d4
 	loadfont
 	writetext UnknownText_0x1a813e
 	waitbutton
 	closetext
-	follow $2, PLAYER
-	applymovement $2, MovementData_0x1a80e0
+	follow NEWBARKTOWN_TEACHER, PLAYER
+	applymovement NEWBARKTOWN_TEACHER, MovementData_0x1a80e0
 	stopfollow
 	loadfont
 	writetext UnknownText_0x1a815e
@@ -48,20 +53,20 @@ UnknownScript_0x1a8016:
 
 UnknownScript_0x1a8041:
 	playmusic MUSIC_MOM
-	spriteface $2, LEFT
+	spriteface NEWBARKTOWN_TEACHER, LEFT
 	loadfont
 	writetext UnknownText_0x1a8134
 	waitbutton
 	closetext
 	spriteface PLAYER, RIGHT
-	applymovement $2, MovementData_0x1a80d9
+	applymovement NEWBARKTOWN_TEACHER, MovementData_0x1a80d9
 	spriteface PLAYER, UP
 	loadfont
 	writetext UnknownText_0x1a813e
 	waitbutton
 	closetext
-	follow $2, PLAYER
-	applymovement $2, MovementData_0x1a80e6
+	follow NEWBARKTOWN_TEACHER, PLAYER
+	applymovement NEWBARKTOWN_TEACHER, MovementData_0x1a80e6
 	stopfollow
 	loadfont
 	writetext UnknownText_0x1a815e
@@ -110,20 +115,20 @@ SilverScript_0x1a809e:
 	writetext UnknownText_0x1a82a6
 	waitbutton
 	closetext
-	spriteface $4, LEFT
+	spriteface NEWBARKTOWN_SILVER, LEFT
 	loadfont
 	writetext UnknownText_0x1a82cd
 	waitbutton
 	closetext
-	follow PLAYER, $4
+	follow PLAYER, NEWBARKTOWN_SILVER
 	applymovement PLAYER, MovementData_0x1a80ed
 	stopfollow
 	pause 5
-	spriteface $4, DOWN
+	spriteface NEWBARKTOWN_SILVER, DOWN
 	pause 5
 	playsound SFX_TACKLE
 	applymovement PLAYER, MovementData_0x1a80f0
-	applymovement $4, MovementData_0x1a80f5
+	applymovement NEWBARKTOWN_SILVER, MovementData_0x1a80f5
 	end
 
 MapNewBarkTownSignpost0Script:

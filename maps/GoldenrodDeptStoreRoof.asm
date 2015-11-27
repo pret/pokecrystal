@@ -1,3 +1,13 @@
+const_value set 2
+	const GOLDENRODDEPTSTOREROOF_CLERK
+	const GOLDENRODDEPTSTOREROOF_POKEFAN_F
+	const GOLDENRODDEPTSTOREROOF_FISHER
+	const GOLDENRODDEPTSTOREROOF_TWIN
+	const GOLDENRODDEPTSTOREROOF_SUPER_NERD
+	const GOLDENRODDEPTSTOREROOF_POKEFAN_M
+	const GOLDENRODDEPTSTOREROOF_TEACHER
+	const GOLDENRODDEPTSTOREROOF_BUG_CATCHER
+
 GoldenrodDeptStoreRoof_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -48,7 +58,7 @@ FisherScript_0x56749:
 	writetext UnknownText_0x567d2
 	waitbutton
 	closetext
-	spriteface $4, UP
+	spriteface GOLDENRODDEPTSTOREROOF_FISHER, UP
 	end
 
 TwinScript_0x56754:
@@ -59,12 +69,12 @@ SuperNerdScript_0x56757:
 	writetext UnknownText_0x56867
 	waitbutton
 	closetext
-	spriteface $6, UP
+	spriteface GOLDENRODDEPTSTOREROOF_SUPER_NERD, UP
 	loadfont
 	writetext UnknownText_0x56871
 	waitbutton
 	closetext
-	spriteface $6, RIGHT
+	spriteface GOLDENRODDEPTSTOREROOF_SUPER_NERD, RIGHT
 	end
 
 PokefanMScript_0x5676a:

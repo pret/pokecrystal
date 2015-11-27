@@ -1,3 +1,8 @@
+const_value set 2
+	const SAFFRONMART_CLERK
+	const SAFFRONMART_COOLTRAINER_M
+	const SAFFRONMART_COOLTRAINER_F
+
 SaffronMart_MapScriptHeader:
 .MapTriggers:
 	db 0

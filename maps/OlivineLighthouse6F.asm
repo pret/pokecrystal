@@ -1,3 +1,8 @@
+const_value set 2
+	const OLIVINELIGHTHOUSE6F_JASMINE
+	const OLIVINELIGHTHOUSE6F_MONSTER
+	const OLIVINELIGHTHOUSE6F_POKE_BALL
+
 OlivineLighthouse6F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -31,9 +36,9 @@ UnknownScript_0x60bab:
 	writetext UnknownText_0x60dea
 	waitbutton
 	closetext
-	spriteface $2, RIGHT
+	spriteface OLIVINELIGHTHOUSE6F_JASMINE, RIGHT
 	pause 15
-	spriteface $3, LEFT
+	spriteface OLIVINELIGHTHOUSE6F_MONSTER, LEFT
 	loadfont
 	playmusic MUSIC_HEAL
 	writetext UnknownText_0x60e44
@@ -49,13 +54,13 @@ UnknownScript_0x60bab:
 	writetext UnknownText_0x60f3d
 	waitbutton
 	closetext
-	spriteface $3, RIGHT
+	spriteface OLIVINELIGHTHOUSE6F_MONSTER, RIGHT
 	pause 10
-	spriteface $3, LEFT
+	spriteface OLIVINELIGHTHOUSE6F_MONSTER, LEFT
 	pause 10
-	spriteface $3, RIGHT
+	spriteface OLIVINELIGHTHOUSE6F_MONSTER, RIGHT
 	pause 10
-	spriteface $3, LEFT
+	spriteface OLIVINELIGHTHOUSE6F_MONSTER, LEFT
 	pause 10
 	faceplayer
 	loadfont
@@ -67,27 +72,27 @@ UnknownScript_0x60bab:
 	checkcode VAR_FACING
 	if_equal $0, UnknownScript_0x60c17
 	if_equal $3, UnknownScript_0x60c1e
-	applymovement $2, MovementData_0x60c68
-	disappear $2
+	applymovement OLIVINELIGHTHOUSE6F_JASMINE, MovementData_0x60c68
+	disappear OLIVINELIGHTHOUSE6F_JASMINE
 	end
 
 UnknownScript_0x60c17:
-	applymovement $2, MovementData_0x60c70
-	disappear $2
+	applymovement OLIVINELIGHTHOUSE6F_JASMINE, MovementData_0x60c70
+	disappear OLIVINELIGHTHOUSE6F_JASMINE
 	end
 
 UnknownScript_0x60c1e:
-	applymovement $2, MovementData_0x60c79
-	disappear $2
+	applymovement OLIVINELIGHTHOUSE6F_JASMINE, MovementData_0x60c79
+	disappear OLIVINELIGHTHOUSE6F_JASMINE
 	end
 
 UnknownScript_0x60c25:
 	writetext UnknownText_0x60edf
 	waitbutton
 	closetext
-	spriteface $2, RIGHT
+	spriteface OLIVINELIGHTHOUSE6F_JASMINE, RIGHT
 	pause 15
-	spriteface $3, LEFT
+	spriteface OLIVINELIGHTHOUSE6F_MONSTER, LEFT
 	loadfont
 	writetext UnknownText_0x60ef1
 	waitbutton

@@ -1,3 +1,16 @@
+const_value set 2
+	const ROUTE30_YOUNGSTER1
+	const ROUTE30_YOUNGSTER2
+	const ROUTE30_YOUNGSTER3
+	const ROUTE30_BUG_CATCHER
+	const ROUTE30_YOUNGSTER4
+	const ROUTE30_MONSTER1
+	const ROUTE30_MONSTER2
+	const ROUTE30_FRUIT_TREE1
+	const ROUTE30_FRUIT_TREE2
+	const ROUTE30_COOLTRAINER_F
+	const ROUTE30_POKE_BALL
+
 Route30_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -13,15 +26,15 @@ YoungsterScript_0x1a1673:
 	pause 30
 	closetext
 	playsound SFX_TACKLE
-	applymovement $8, MovementData_0x1a17fe
+	applymovement ROUTE30_MONSTER2, MovementData_0x1a17fe
 	loadfont
 	faceplayer
 	writetext UnknownText_0x1a181c
 	waitbutton
-	spriteface $2, UP
+	spriteface ROUTE30_YOUNGSTER1, UP
 	closetext
 	playsound SFX_TACKLE
-	applymovement $7, MovementData_0x1a1802
+	applymovement ROUTE30_MONSTER1, MovementData_0x1a1802
 	special RestartMapMusic
 	end
 

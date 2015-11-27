@@ -1,3 +1,10 @@
+const_value set 2
+	const MRFUJISHOUSE_SUPER_NERD
+	const MRFUJISHOUSE_LASS
+	const MRFUJISHOUSE_RHYDON
+	const MRFUJISHOUSE_GROWLITHE
+	const MRFUJISHOUSE_MOLTRES
+
 MrFujisHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

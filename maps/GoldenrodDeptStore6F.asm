@@ -1,3 +1,7 @@
+const_value set 2
+	const GOLDENRODDEPTSTORE6F_LASS
+	const GOLDENRODDEPTSTORE6F_SUPER_NERD
+
 GoldenrodDeptStore6F_MapScriptHeader:
 .MapTriggers:
 	db 0

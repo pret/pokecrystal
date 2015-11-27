@@ -1,3 +1,10 @@
+const_value set 2
+	const GOLDENRODPOKECENTER1F_NURSE
+	const GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
+	const GOLDENRODPOKECENTER1F_GAMEBOY_KID
+	const GOLDENRODPOKECENTER1F_LASS
+	const GOLDENRODPOKECENTER1F_POKEFAN_F
+
 GoldenrodPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -18,11 +25,11 @@ GoldenrodPokeCenter1F_GSBallTriggerLeft:
 	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	iftrue .cancel
 	playsound SFX_EXIT_BUILDING
-	moveperson $3, $0, $7
-	disappear $3
-	appear $3
+	moveperson GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, $0, $7
+	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
+	appear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playmusic MUSIC_SHOW_ME_AROUND
-	applymovement $3, MovementData_0x6105a
+	applymovement GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, MovementData_0x6105a
 	spriteface PLAYER, UP
 	loadfont
 	writetext UnknownText_0x622f0
@@ -33,9 +40,9 @@ GoldenrodPokeCenter1F_GSBallTriggerLeft:
 	writetext UnknownText_0x62359
 	waitbutton
 	closetext
-	applymovement $3, MovementData_0x61060
+	applymovement GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, MovementData_0x61060
 	special RestartMapMusic
-	disappear $3
+	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playsound SFX_EXIT_BUILDING
 .cancel:
 	end
@@ -50,11 +57,11 @@ GoldenrodPokeCenter1F_GSBallTriggerRight:
 	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	iftrue .cancel
 	playsound SFX_EXIT_BUILDING
-	moveperson $3, $0, $7
-	disappear $3
-	appear $3
+	moveperson GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, $0, $7
+	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
+	appear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playmusic MUSIC_SHOW_ME_AROUND
-	applymovement $3, MovementData_0x61065
+	applymovement GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, MovementData_0x61065
 	spriteface PLAYER, UP
 	loadfont
 	writetext UnknownText_0x622f0
@@ -65,9 +72,9 @@ GoldenrodPokeCenter1F_GSBallTriggerRight:
 	writetext UnknownText_0x62359
 	waitbutton
 	closetext
-	applymovement $3, MovementData_0x6106c
+	applymovement GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, MovementData_0x6106c
 	special RestartMapMusic
-	disappear $3
+	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playsound SFX_EXIT_BUILDING
 .cancel:
 	end

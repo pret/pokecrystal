@@ -1,3 +1,6 @@
+const_value set 2
+	const LAVENDERNAMERATER_GENTLEMAN
+
 LavenderNameRater_MapScriptHeader:
 .MapTriggers:
 	db 1

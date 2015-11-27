@@ -1,3 +1,7 @@
+const_value set 2
+	const TRADECENTER_CHRIS1
+	const TRADECENTER_CHRIS2
+
 TradeCenter_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -23,13 +27,13 @@ TradeCenter_MapScriptHeader:
 TradeCenter_SetWhichChris:
 	special Special_CableClubCheckWhichChris
 	iffalse .Chris2
-	disappear $3
-	appear $2
+	disappear TRADECENTER_CHRIS2
+	appear TRADECENTER_CHRIS1
 	return
 
 .Chris2:
-	disappear $2
-	appear $3
+	disappear TRADECENTER_CHRIS1
+	appear TRADECENTER_CHRIS2
 	return
 
 TradeCenter_Initialize:

@@ -1,3 +1,6 @@
+const_value set 2
+	const BILLSHOUSE_GRAMPS
+
 BillsHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

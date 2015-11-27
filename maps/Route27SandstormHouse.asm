@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE27SANDSTORMHOUSE_GRANNY
+
 Route27SandstormHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

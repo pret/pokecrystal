@@ -1,3 +1,7 @@
+const_value set 2
+	const TIMECAPSULE_CHRIS1
+	const TIMECAPSULE_CHRIS2
+
 TimeCapsule_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -23,13 +27,13 @@ TimeCapsule_MapScriptHeader:
 TimeCapsule_SetWhichChris:
 	special Special_CableClubCheckWhichChris
 	iffalse .Chris2
-	disappear $3
-	appear $2
+	disappear TIMECAPSULE_CHRIS2
+	appear TIMECAPSULE_CHRIS1
 	return
 
 .Chris2:
-	disappear $2
-	appear $3
+	disappear TIMECAPSULE_CHRIS1
+	appear TIMECAPSULE_CHRIS2
 	return
 
 TimeCapsule_Initialize:

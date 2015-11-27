@@ -1,3 +1,6 @@
+const_value set 2
+	const POKESEERSHOUSE_GRANNY
+
 PokeSeersHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

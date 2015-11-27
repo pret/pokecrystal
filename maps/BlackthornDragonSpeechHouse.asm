@@ -1,3 +1,7 @@
+const_value set 2
+	const BLACKTHORNDRAGONSPEECHHOUSE_GRANNY
+	const BLACKTHORNDRAGONSPEECHHOUSE_EKANS
+
 BlackthornDragonSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

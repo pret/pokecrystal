@@ -1,3 +1,6 @@
+const_value set 2
+	const TINTOWERROOF_HO_OH
+
 TinTowerRoof_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -17,11 +20,11 @@ UnknownScript_0x77230:
 	jump UnknownScript_0x77241
 
 UnknownScript_0x7723e:
-	appear $2
+	appear TINTOWERROOF_HO_OH
 	return
 
 UnknownScript_0x77241:
-	disappear $2
+	disappear TINTOWERROOF_HO_OH
 	return
 
 HoOhScript_0x77244:
@@ -35,7 +38,7 @@ HoOhScript_0x77244:
 	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
 	scriptedpokedata HO_OH, 60
 	startbattle
-	disappear $2
+	disappear TINTOWERROOF_HO_OH
 	returnafterbattle
 	setevent EVENT_SET_WHEN_FOUGHT_HO_OH
 	end

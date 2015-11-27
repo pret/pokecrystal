@@ -1,3 +1,7 @@
+const_value set 2
+	const TRAINERHOUSEB1F_RECEPTIONIST
+	const TRAINERHOUSEB1F_CHRIS
+
 TrainerHouseB1F_MapScriptHeader:
 .MapTriggers:
 	db 1

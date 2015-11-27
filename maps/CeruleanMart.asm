@@ -1,3 +1,8 @@
+const_value set 2
+	const CERULEANMART_CLERK
+	const CERULEANMART_COOLTRAINER_M
+	const CERULEANMART_COOLTRAINER_F
+
 CeruleanMart_MapScriptHeader:
 .MapTriggers:
 	db 0

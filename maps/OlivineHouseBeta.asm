@@ -1,3 +1,7 @@
+const_value set 2
+	const OLIVINEHOUSEBETA_TEACHER
+	const OLIVINEHOUSEBETA_RHYDON
+
 OlivineHouseBeta_MapScriptHeader:
 .MapTriggers:
 	db 0

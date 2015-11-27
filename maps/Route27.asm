@@ -1,3 +1,14 @@
+const_value set 2
+	const ROUTE27_COOLTRAINER_M1
+	const ROUTE27_COOLTRAINER_M2
+	const ROUTE27_COOLTRAINER_F1
+	const ROUTE27_COOLTRAINER_F2
+	const ROUTE27_YOUNGSTER1
+	const ROUTE27_YOUNGSTER2
+	const ROUTE27_POKE_BALL1
+	const ROUTE27_POKE_BALL2
+	const ROUTE27_FISHER
+
 Route27_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -16,15 +27,15 @@ UnknownScript_0x1a0872:
 	end
 
 UnknownScript_0x1a0873:
-	spriteface $a, LEFT
-	showemote EMOTE_SHOCK, $a, 15
-	applymovement $a, MovementData_0x1a0a66
+	spriteface ROUTE27_FISHER, LEFT
+	showemote EMOTE_SHOCK, ROUTE27_FISHER, 15
+	applymovement ROUTE27_FISHER, MovementData_0x1a0a66
 	jump UnknownScript_0x1a088c
 
 UnknownScript_0x1a0881:
-	spriteface $a, LEFT
-	showemote EMOTE_SHOCK, $a, 15
-	applymovement $a, MovementData_0x1a0a69
+	spriteface ROUTE27_FISHER, LEFT
+	showemote EMOTE_SHOCK, ROUTE27_FISHER, 15
+	applymovement ROUTE27_FISHER, MovementData_0x1a0a69
 UnknownScript_0x1a088c:
 	spriteface PLAYER, RIGHT
 	loadfont

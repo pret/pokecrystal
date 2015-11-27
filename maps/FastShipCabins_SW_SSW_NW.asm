@@ -1,3 +1,9 @@
+const_value set 2
+	const FASTSHIPCABINS_SW_SSW_NW_FISHER
+	const FASTSHIPCABINS_SW_SSW_NW_BUG_CATCHER
+	const FASTSHIPCABINS_SW_SSW_NW_BUENA
+	const FASTSHIPCABINS_SW_SSW_NW_ROCKER
+
 FastShipCabins_SW_SSW_NW_MapScriptHeader:
 .MapTriggers:
 	db 0

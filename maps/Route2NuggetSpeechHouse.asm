@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE2NUGGETSPEECHHOUSE_FISHER
+
 Route2NuggetSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

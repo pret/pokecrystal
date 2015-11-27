@@ -1,3 +1,14 @@
+const_value set 2
+	const BLACKTHORNCITY_SUPER_NERD1
+	const BLACKTHORNCITY_SUPER_NERD2
+	const BLACKTHORNCITY_GRAMPS1
+	const BLACKTHORNCITY_GRAMPS2
+	const BLACKTHORNCITY_BLACK_BELT
+	const BLACKTHORNCITY_COOLTRAINER_F1
+	const BLACKTHORNCITY_YOUNGSTER1
+	const BLACKTHORNCITY_YOUNGSTER2
+	const BLACKTHORNCITY_COOLTRAINER_F2
+
 BlackthornCity_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -16,11 +27,11 @@ BlackthornCity_MapScriptHeader:
 .Santos
 	checkcode VAR_WEEKDAY
 	if_equal SATURDAY, .SantosAppears
-	disappear $9
+	disappear BLACKTHORNCITY_YOUNGSTER2
 	return
 
 .SantosAppears
-	appear $9
+	appear BLACKTHORNCITY_YOUNGSTER2
 	return
 
 SuperNerdScript_0x1a46e8:

@@ -1,3 +1,12 @@
+const_value set 2
+	const ROUTE15_YOUNGSTER1
+	const ROUTE15_YOUNGSTER2
+	const ROUTE15_YOUNGSTER3
+	const ROUTE15_YOUNGSTER4
+	const ROUTE15_TEACHER1
+	const ROUTE15_TEACHER2
+	const ROUTE15_POKE_BALL
+
 Route15_MapScriptHeader:
 .MapTriggers:
 	db 0

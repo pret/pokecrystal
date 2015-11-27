@@ -1,3 +1,7 @@
+const_value set 2
+	const ROUTE40BATTLETOWERGATE_ROCKER
+	const ROUTE40BATTLETOWERGATE_TWIN
+
 Route40BattleTowerGate_MapScriptHeader:
 .MapTriggers:
 	db 0

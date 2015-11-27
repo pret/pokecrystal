@@ -1,3 +1,9 @@
+const_value set 2
+	const SAFFRONTRAINSTATION_OFFICER
+	const SAFFRONTRAINSTATION_GYM_GUY
+	const SAFFRONTRAINSTATION_TEACHER
+	const SAFFRONTRAINSTATION_LASS
+
 SaffronTrainStation_MapScriptHeader:
 .MapTriggers:
 	db 1
@@ -30,7 +36,7 @@ OfficerScript_0x18a81e:
 	writetext UnknownText_0x18a917
 	waitbutton
 	closetext
-	applymovement $2, MovementData_0x18a88f
+	applymovement SAFFRONTRAINSTATION_OFFICER, MovementData_0x18a88f
 	applymovement PLAYER, MovementData_0x18a898
 	writebyte $1
 	special Special_MagnetTrain
@@ -57,9 +63,9 @@ OfficerScript_0x18a81e:
 	end
 
 Script_ArriveFromGoldenrod:
-	applymovement $2, MovementData_0x18a88f
+	applymovement SAFFRONTRAINSTATION_OFFICER, MovementData_0x18a88f
 	applymovement PLAYER, MovementData_0x18a8a1
-	applymovement $2, MovementData_0x18a894
+	applymovement SAFFRONTRAINSTATION_OFFICER, MovementData_0x18a894
 	loadfont
 	writetext UnknownText_0x18a993
 	waitbutton

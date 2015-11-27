@@ -1,3 +1,6 @@
+const_value set 2
+	const OLIVINEGOODRODHOUSE_FISHING_GURU
+
 OlivineGoodRodHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

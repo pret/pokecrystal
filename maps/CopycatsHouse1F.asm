@@ -1,3 +1,8 @@
+const_value set 2
+	const COPYCATSHOUSE1F_POKEFAN_M
+	const COPYCATSHOUSE1F_POKEFAN_F
+	const COPYCATSHOUSE1F_CLEFAIRY
+
 CopycatsHouse1F_MapScriptHeader:
 .MapTriggers:
 	db 0

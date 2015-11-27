@@ -1,3 +1,7 @@
+const_value set 2
+	const VIRIDIANGYM_BLUE
+	const VIRIDIANGYM_GYM_GUY
+
 ViridianGym_MapScriptHeader:
 .MapTriggers:
 	db 0

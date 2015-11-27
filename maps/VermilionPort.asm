@@ -1,3 +1,8 @@
+const_value set 2
+	const VERMILIONPORT_SAILOR1
+	const VERMILIONPORT_SAILOR2
+	const VERMILIONPORT_SUPER_NERD
+
 VermilionPort_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -25,7 +30,7 @@ VermilionPort_MapScriptHeader:
 
 UnknownScript_0x74da6:
 	applymovement PLAYER, MovementData_0x74ef3
-	appear $2
+	appear VERMILIONPORT_SAILOR1
 	dotrigger $0
 	setevent EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
 	setevent EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
@@ -44,10 +49,10 @@ SailorScript_0x74dc4:
 	writetext UnknownText_0x74f06
 	waitbutton
 	closetext
-	spriteface $2, DOWN
+	spriteface VERMILIONPORT_SAILOR1, DOWN
 	pause 10
 	playsound SFX_EXIT_BUILDING
-	disappear $2
+	disappear VERMILIONPORT_SAILOR1
 	waitsfx
 	applymovement PLAYER, MovementData_0x74ef1
 	playsound SFX_EXIT_BUILDING
@@ -66,7 +71,7 @@ SailorScript_0x74dc4:
 	clearevent EVENT_BEAT_SCHOOLBOY_NATE
 	clearevent EVENT_BEAT_SCHOOLBOY_RICKY
 	setevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
-	appear $2
+	appear VERMILIONPORT_SAILOR1
 	domaptrigger FAST_SHIP_1F, $1
 	warp FAST_SHIP_1F, $19, $1
 	end
@@ -78,7 +83,7 @@ UnknownScript_0x74e1a:
 	end
 
 UnknownScript_0x74e20:
-	spriteface $3, RIGHT
+	spriteface VERMILIONPORT_SAILOR2, RIGHT
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74e86
 	checkevent EVENT_RECEIVED_BALLS_FROM_KURT

@@ -1,3 +1,6 @@
+const_value set 2
+	const CELADONMANSIONROOF_FISHER
+
 CeladonMansionRoof_MapScriptHeader:
 .MapTriggers:
 	db 0

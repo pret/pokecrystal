@@ -1,3 +1,8 @@
+const_value set 2
+	const GOLDENRODBILLSHOUSE_BILL
+	const GOLDENRODBILLSHOUSE_POKEFAN_F
+	const GOLDENRODBILLSHOUSE_TWIN
+
 GoldenrodBillsHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,7 @@
+const_value set 2
+	const ICEPATHB3F_POKE_BALL
+	const ICEPATHB3F_ROCK
+
 IcePathB3F_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,9 @@
+const_value set 2
+	const SAFFRONPOKECENTER1F_NURSE
+	const SAFFRONPOKECENTER1F_TEACHER
+	const SAFFRONPOKECENTER1F_FISHER
+	const SAFFRONPOKECENTER1F_YOUNGSTER
+
 SaffronPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,12 @@
+const_value set 2
+	const ECRUTEAKGYM_MORTY
+	const ECRUTEAKGYM_SAGE1
+	const ECRUTEAKGYM_SAGE2
+	const ECRUTEAKGYM_GRANNY1
+	const ECRUTEAKGYM_GRANNY2
+	const ECRUTEAKGYM_GYM_GUY
+	const ECRUTEAKGYM_GRAMPS
+
 EcruteakGym_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -76,12 +85,12 @@ EcruteakGymTriggerRockets:
 
 UnknownScript_0x99dc6:
 	applymovement PLAYER, MovementData_0x99e5d
-	applymovement $8, MovementData_0x99e63
+	applymovement ECRUTEAKGYM_GRAMPS, MovementData_0x99e63
 	loadfont
 	writetext UnknownText_0x9a49c
 	waitbutton
 	closetext
-	follow PLAYER, $8
+	follow PLAYER, ECRUTEAKGYM_GRAMPS
 	applymovement PLAYER, MovementData_0x99e5f
 	stopfollow
 	special FadeOutPalettes

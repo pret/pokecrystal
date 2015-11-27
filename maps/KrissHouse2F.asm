@@ -1,3 +1,9 @@
+const_value set 2
+	const KRISSHOUSE2F_CONSOLE
+	const KRISSHOUSE2F_DOLL_1
+	const KRISSHOUSE2F_DOLL_2
+	const KRISSHOUSE2F_BIG_DOLL
+
 KrissHouse2F_MapScriptHeader:
 .MapTriggers:
 	db 0

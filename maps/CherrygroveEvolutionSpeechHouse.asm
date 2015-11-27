@@ -1,3 +1,7 @@
+const_value set 2
+	const CHERRYGROVEEVOLUTIONSPEECHHOUSE_LASS
+	const CHERRYGROVEEVOLUTIONSPEECHHOUSE_YOUNGSTER
+
 CherrygroveEvolutionSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

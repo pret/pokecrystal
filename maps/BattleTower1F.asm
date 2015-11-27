@@ -1,3 +1,10 @@
+const_value set 2
+	const BATTLETOWER1F_RECEPTIONIST
+	const BATTLETOWER1F_YOUNGSTER
+	const BATTLETOWER1F_COOLTRAINER_F
+	const BATTLETOWER1F_BUG_CATCHER
+	const BATTLETOWER1F_GRANNY
+
 BattleTower1F_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -103,12 +110,12 @@ Script_WalkToBattleTowerElevator:
 	domaptrigger BATTLE_TOWER_BATTLE_ROOM, $0
 	domaptrigger BATTLE_TOWER_ELEVATOR, $0
 	domaptrigger BATTLE_TOWER_HALLWAY, $0
-	follow $2, PLAYER
-	applymovement $2, MovementData_BattleTower1FWalkToElevator
+	follow BATTLETOWER1F_RECEPTIONIST, PLAYER
+	applymovement BATTLETOWER1F_RECEPTIONIST, MovementData_BattleTower1FWalkToElevator
 	writebyte BATTLETOWERACTION_0A
 	special BattleTowerAction
 	warpsound
-	disappear $2
+	disappear BATTLETOWER1F_RECEPTIONIST
 	stopfollow
 	applymovement PLAYER, MovementData_BattleTowerHallwayPlayerEntersBattleRoom
 	warpcheck
@@ -174,10 +181,10 @@ UnreferencedScript_0x9e4be:
 	if_equal $a, Script_Menu_ChallengeExplanationCancel
 	if_not_equal $0, UnknownScript_0x9e550
 	writetext Text_ReceivedAListOfLeadersOnTheHonorRoll
-	spriteface $2, LEFT
+	spriteface BATTLETOWER1F_RECEPTIONIST, LEFT
 	writetext Text_PleaseConfirmOnThisMonitor
 	waitbutton
-	spriteface $2, DOWN
+	spriteface BATTLETOWER1F_RECEPTIONIST, DOWN
 	closetext
 	end
 
@@ -248,7 +255,7 @@ YoungsterScript_0x9e55d:
 	writetext Text_BattleTowerYoungster
 	waitbutton
 	closetext
-	spriteface $3, RIGHT
+	spriteface BATTLETOWER1F_YOUNGSTER, RIGHT
 	end
 
 CooltrainerFScript_0x9e568:

@@ -1,3 +1,9 @@
+const_value set 2
+	const FUCHSIAPOKECENTER1F_NURSE
+	const FUCHSIAPOKECENTER1F_COOLTRAINER_M
+	const FUCHSIAPOKECENTER1F_COOLTRAINER_F
+	const FUCHSIAPOKECENTER1F_JANINE_IMPERSONATOR
+
 FuchsiaPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 1
@@ -26,7 +32,7 @@ JanineImpersonatorScript_0x196462:
 	writetext UnknownText_0x19652e
 	waitbutton
 	closetext
-	applymovement $5, MovementData_0x196486
+	applymovement FUCHSIAPOKECENTER1F_JANINE_IMPERSONATOR, MovementData_0x196486
 	faceplayer
 	variablesprite SPRITE_JANINE_IMPERSONATOR, SPRITE_JANINE
 	special RunCallback_04
@@ -34,7 +40,7 @@ JanineImpersonatorScript_0x196462:
 	writetext UnknownText_0x19654e
 	waitbutton
 	closetext
-	applymovement $5, MovementData_0x196486
+	applymovement FUCHSIAPOKECENTER1F_JANINE_IMPERSONATOR, MovementData_0x196486
 	faceplayer
 	variablesprite SPRITE_JANINE_IMPERSONATOR, SPRITE_LASS
 	special RunCallback_04

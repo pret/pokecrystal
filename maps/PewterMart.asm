@@ -1,3 +1,8 @@
+const_value set 2
+	const PEWTERMART_CLERK
+	const PEWTERMART_YOUNGSTER
+	const PEWTERMART_SUPER_NERD
+
 PewterMart_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,11 @@
+const_value set 2
+	const GOLDENRODGYM_WHITNEY
+	const GOLDENRODGYM_LASS1
+	const GOLDENRODGYM_LASS2
+	const GOLDENRODGYM_BUENA1
+	const GOLDENRODGYM_BUENA2
+	const GOLDENRODGYM_GYM_GUY
+
 GoldenrodGym_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -98,14 +106,14 @@ LassCarrieScript:
 	end
 
 WhitneyCriesScript:
-	showemote EMOTE_SHOCK, $4, 15
-	applymovement $4, BridgetWalksUpMovement
+	showemote EMOTE_SHOCK, GOLDENRODGYM_LASS2, 15
+	applymovement GOLDENRODGYM_LASS2, BridgetWalksUpMovement
 	spriteface PLAYER, DOWN
 	loadfont
 	writetext BridgetWhitneyCriesText
 	waitbutton
 	closetext
-	applymovement $4, BridgetWalksAwayMovement
+	applymovement GOLDENRODGYM_LASS2, BridgetWalksAwayMovement
 	dotrigger $0
 	clearevent EVENT_MADE_WHITNEY_CRY
 	end

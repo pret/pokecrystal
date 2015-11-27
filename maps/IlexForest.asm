@@ -1,3 +1,16 @@
+const_value set 2
+	const ILEXFOREST_BIRD
+	const ILEXFOREST_YOUNGSTER1
+	const ILEXFOREST_BLACK_BELT
+	const ILEXFOREST_ROCKER
+	const ILEXFOREST_POKE_BALL1
+	const ILEXFOREST_KURT
+	const ILEXFOREST_LASS
+	const ILEXFOREST_YOUNGSTER2
+	const ILEXFOREST_POKE_BALL2
+	const ILEXFOREST_POKE_BALL3
+	const ILEXFOREST_POKE_BALL4
+
 IlexForest_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -27,53 +40,53 @@ UnknownScript_0x6eb34:
 	return
 
 UnknownScript_0x6eb35:
-	moveperson $2, $e, $1f
-	appear $2
+	moveperson ILEXFOREST_BIRD, $e, $1f
+	appear ILEXFOREST_BIRD
 	return
 
 UnknownScript_0x6eb3c:
-	moveperson $2, $f, $19
-	appear $2
+	moveperson ILEXFOREST_BIRD, $f, $19
+	appear ILEXFOREST_BIRD
 	return
 
 UnknownScript_0x6eb43:
-	moveperson $2, $14, $18
-	appear $2
+	moveperson ILEXFOREST_BIRD, $14, $18
+	appear ILEXFOREST_BIRD
 	return
 
 UnknownScript_0x6eb4a:
-	moveperson $2, $1d, $16
-	appear $2
+	moveperson ILEXFOREST_BIRD, $1d, $16
+	appear ILEXFOREST_BIRD
 	return
 
 UnknownScript_0x6eb51:
-	moveperson $2, $1c, $1f
-	appear $2
+	moveperson ILEXFOREST_BIRD, $1c, $1f
+	appear ILEXFOREST_BIRD
 	return
 
 UnknownScript_0x6eb58:
-	moveperson $2, $18, $23
-	appear $2
+	moveperson ILEXFOREST_BIRD, $18, $23
+	appear ILEXFOREST_BIRD
 	return
 
 UnknownScript_0x6eb5f:
-	moveperson $2, $16, $1f
-	appear $2
+	moveperson ILEXFOREST_BIRD, $16, $1f
+	appear ILEXFOREST_BIRD
 	return
 
 UnknownScript_0x6eb66:
-	moveperson $2, $f, $1d
-	appear $2
+	moveperson ILEXFOREST_BIRD, $f, $1d
+	appear ILEXFOREST_BIRD
 	return
 
 UnknownScript_0x6eb6d:
-	moveperson $2, $a, $23
-	appear $2
+	moveperson ILEXFOREST_BIRD, $a, $23
+	appear ILEXFOREST_BIRD
 	return
 
 UnknownScript_0x6eb74:
-	moveperson $2, $6, $1c
-	appear $2
+	moveperson ILEXFOREST_BIRD, $6, $1c
+	appear ILEXFOREST_BIRD
 	return
 
 YoungsterScript_0x6eb7b:
@@ -113,64 +126,64 @@ UnknownScript_0x6ebba:
 	cry FARFETCH_D
 	waitbutton
 	closetext
-	applymovement $2, MovementData_0x6ee8f
-	moveperson $2, $f, $19
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6ee8f
+	moveperson ILEXFOREST_BIRD, $f, $19
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $2
 	end
 
 UnknownScript_0x6ebd9:
 	scall UnknownScript_0x6eda1
 	if_equal $0, UnknownScript_0x6ebf1
-	applymovement $2, MovementData_0x6ee95
-	moveperson $2, $14, $18
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6ee95
+	moveperson ILEXFOREST_BIRD, $14, $18
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $3
 	end
 
 UnknownScript_0x6ebf1:
-	applymovement $2, MovementData_0x6ee9e
-	moveperson $2, $f, $1d
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6ee9e
+	moveperson ILEXFOREST_BIRD, $f, $1d
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $8
 	end
 
 UnknownScript_0x6ec02:
 	scall UnknownScript_0x6eda1
 	if_equal $2, UnknownScript_0x6ec1a
-	applymovement $2, MovementData_0x6eea4
-	moveperson $2, $1d, $16
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6eea4
+	moveperson ILEXFOREST_BIRD, $1d, $16
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $4
 	end
 
 UnknownScript_0x6ec1a:
-	applymovement $2, MovementData_0x6eeab
-	moveperson $2, $f, $19
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6eeab
+	moveperson ILEXFOREST_BIRD, $f, $19
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $2
 	end
 
 UnknownScript_0x6ec2b:
 	scall UnknownScript_0x6eda1
 	if_equal $1, UnknownScript_0x6ec43
-	applymovement $2, MovementData_0x6eeb1
-	moveperson $2, $1c, $1f
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6eeb1
+	moveperson ILEXFOREST_BIRD, $1c, $1f
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $5
 	end
 
 UnknownScript_0x6ec43:
-	applymovement $2, MovementData_0x6eeb8
-	moveperson $2, $14, $18
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6eeb8
+	moveperson ILEXFOREST_BIRD, $14, $18
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $3
 	end
 
@@ -179,52 +192,52 @@ UnknownScript_0x6ec54:
 	if_equal $1, UnknownScript_0x6ec85
 	if_equal $2, UnknownScript_0x6ec74
 	if_equal $3, UnknownScript_0x6ec96
-	applymovement $2, MovementData_0x6eebd
-	moveperson $2, $18, $23
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6eebd
+	moveperson ILEXFOREST_BIRD, $18, $23
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $6
 	end
 
 UnknownScript_0x6ec74:
-	applymovement $2, MovementData_0x6eec7
-	moveperson $2, $16, $1f
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6eec7
+	moveperson ILEXFOREST_BIRD, $16, $1f
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $7
 	end
 
 UnknownScript_0x6ec85:
-	applymovement $2, MovementData_0x6eecc
-	moveperson $2, $1d, $16
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6eecc
+	moveperson ILEXFOREST_BIRD, $1d, $16
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $4
 	end
 
 UnknownScript_0x6ec96:
-	applymovement $2, MovementData_0x6eed2
-	moveperson $2, $1d, $16
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6eed2
+	moveperson ILEXFOREST_BIRD, $1d, $16
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $4
 	end
 
 UnknownScript_0x6eca7:
 	scall UnknownScript_0x6eda1
 	if_equal $3, UnknownScript_0x6ecbf
-	applymovement $2, MovementData_0x6eee6
-	moveperson $2, $16, $1f
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6eee6
+	moveperson ILEXFOREST_BIRD, $16, $1f
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $7
 	end
 
 UnknownScript_0x6ecbf:
-	applymovement $2, MovementData_0x6eeef
-	moveperson $2, $1c, $1f
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6eeef
+	moveperson ILEXFOREST_BIRD, $1c, $1f
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $5
 	end
 
@@ -232,26 +245,26 @@ UnknownScript_0x6ecd0:
 	scall UnknownScript_0x6eda1
 	if_equal $0, UnknownScript_0x6ecfd
 	if_equal $2, UnknownScript_0x6ecec
-	applymovement $2, MovementData_0x6eef8
-	moveperson $2, $f, $1d
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6eef8
+	moveperson ILEXFOREST_BIRD, $f, $1d
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $8
 	end
 
 UnknownScript_0x6ecec:
-	applymovement $2, MovementData_0x6ef00
-	moveperson $2, $18, $23
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6ef00
+	moveperson ILEXFOREST_BIRD, $18, $23
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $6
 	end
 
 UnknownScript_0x6ecfd:
-	applymovement $2, MovementData_0x6ef09
-	moveperson $2, $1c, $1f
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6ef09
+	moveperson ILEXFOREST_BIRD, $1c, $1f
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $5
 	end
 
@@ -260,26 +273,26 @@ UnknownScript_0x6ed0e:
 	if_equal $1, UnknownScript_0x6ed3f
 	if_equal $2, UnknownScript_0x6ed3f
 	if_equal $3, UnknownScript_0x6ed2e
-	applymovement $2, MovementData_0x6ef10
-	moveperson $2, $a, $23
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6ef10
+	moveperson ILEXFOREST_BIRD, $a, $23
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $9
 	end
 
 UnknownScript_0x6ed2e:
-	applymovement $2, MovementData_0x6ef18
-	moveperson $2, $16, $1f
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6ef18
+	moveperson ILEXFOREST_BIRD, $16, $1f
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $7
 	end
 
 UnknownScript_0x6ed3f:
-	applymovement $2, MovementData_0x6ef1e
-	moveperson $2, $f, $19
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6ef1e
+	moveperson ILEXFOREST_BIRD, $f, $19
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $2
 	end
 
@@ -287,29 +300,29 @@ UnknownScript_0x6ed50:
 	scall UnknownScript_0x6eda1
 	if_equal $0, UnknownScript_0x6ed85
 	if_equal $3, UnknownScript_0x6ed74
-	applymovement $2, MovementData_0x6ef23
-	moveperson $2, $6, $1c
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6ef23
+	moveperson ILEXFOREST_BIRD, $6, $1c
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $a
-	appear $4
+	appear ILEXFOREST_BLACK_BELT
 	setevent EVENT_CHARCOAL_KILN_BOSS
 	setevent EVENT_HERDED_FARFETCHD
 	end
 
 UnknownScript_0x6ed74:
-	applymovement $2, MovementData_0x6ef33
-	moveperson $2, $f, $1d
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6ef33
+	moveperson ILEXFOREST_BIRD, $f, $1d
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $8
 	end
 
 UnknownScript_0x6ed85:
-	applymovement $2, MovementData_0x6ef3d
-	moveperson $2, $f, $1d
-	disappear $2
-	appear $2
+	applymovement ILEXFOREST_BIRD, MovementData_0x6ef3d
+	moveperson ILEXFOREST_BIRD, $f, $1d
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
 	loadvar FarfetchdPosition, $8
 	end
 
@@ -442,7 +455,7 @@ UnknownScript_0x6ee42:
 	takeitem GS_BALL
 	clearevent EVENT_FOREST_IS_RESTLESS
 	setevent EVENT_AZALEA_TOWN_KURT
-	disappear $8
+	disappear ILEXFOREST_LASS
 	clearevent EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
 	writetext UnknownText_0x6f43b
 	waitbutton
@@ -462,14 +475,14 @@ UnknownScript_0x6ee42:
 	pause 20
 	special CheckCaughtCelebi
 	iffalse UnknownScript_0x6ee8e
-	appear $7
-	applymovement $7, MovementData_0x6ef4e
+	appear ILEXFOREST_KURT
+	applymovement ILEXFOREST_KURT, MovementData_0x6ef4e
 	loadfont
 	writetext UnknownText_0x6f452
 	waitbutton
 	closetext
-	applymovement $7, MovementData_0x6ef53
-	disappear $7
+	applymovement ILEXFOREST_KURT, MovementData_0x6ef53
+	disappear ILEXFOREST_KURT
 UnknownScript_0x6ee8e:
 	end
 

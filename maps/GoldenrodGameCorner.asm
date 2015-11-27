@@ -1,3 +1,17 @@
+const_value set 2
+	const GOLDENRODGAMECORNER_CLERK
+	const GOLDENRODGAMECORNER_RECEPTIONIST1
+	const GOLDENRODGAMECORNER_RECEPTIONIST2
+	const GOLDENRODGAMECORNER_PHARMACIST1
+	const GOLDENRODGAMECORNER_PHARMACIST2
+	const GOLDENRODGAMECORNER_POKEFAN_M1
+	const GOLDENRODGAMECORNER_COOLTRAINER_M
+	const GOLDENRODGAMECORNER_POKEFAN_F
+	const GOLDENRODGAMECORNER_COOLTRAINER_F
+	const GOLDENRODGAMECORNER_GENTLEMAN
+	const GOLDENRODGAMECORNER_POKEFAN_M2
+	const GOLDENRODGAMECORNER_POKEFAN_M3
+
 GoldenrodGameCorner_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -18,13 +32,13 @@ UnknownScript_0x56bf9:
 	if_equal WEDNESDAY, UnknownScript_0x56c11
 	if_equal SATURDAY, UnknownScript_0x56c11
 UnknownScript_0x56c0e:
-	appear $d
+	appear GOLDENRODGAMECORNER_POKEFAN_M3
 	return
 
 UnknownScript_0x56c11:
 	checkflag ENGINE_DAILY_MOVE_TUTOR
 	iftrue UnknownScript_0x56c19
-	disappear $d
+	disappear GOLDENRODGAMECORNER_POKEFAN_M3
 UnknownScript_0x56c19: ;0x56c19
 	return
 
@@ -34,7 +48,7 @@ PokefanMScript_0x56c1a:
 	writetext UnknownText_0x5718a
 	waitbutton
 	closetext
-	spriteface $d, RIGHT
+	spriteface GOLDENRODGAMECORNER_POKEFAN_M3, RIGHT
 	end
 
 ClerkScript_0x56c25:
@@ -248,7 +262,7 @@ PokefanMScript_0x56dfc:
 	writetext UnknownText_0x56f9e
 	waitbutton
 	closetext
-	spriteface $7, RIGHT
+	spriteface GOLDENRODGAMECORNER_POKEFAN_M1, RIGHT
 	end
 
 CooltrainerMScript_0x56e07:
@@ -257,7 +271,7 @@ CooltrainerMScript_0x56e07:
 	writetext UnknownText_0x56ff4
 	waitbutton
 	closetext
-	spriteface $8, LEFT
+	spriteface GOLDENRODGAMECORNER_COOLTRAINER_M, LEFT
 	end
 
 PokefanFScript_0x56e12:
@@ -266,7 +280,7 @@ PokefanFScript_0x56e12:
 	writetext UnknownText_0x5702b
 	waitbutton
 	closetext
-	spriteface $9, RIGHT
+	spriteface GOLDENRODGAMECORNER_POKEFAN_F, RIGHT
 	end
 
 CooltrainerFScript_0x56e1d:
@@ -278,7 +292,7 @@ GentlemanScript_0x56e20:
 	writetext UnknownText_0x570b1
 	waitbutton
 	closetext
-	spriteface $b, RIGHT
+	spriteface GOLDENRODGAMECORNER_GENTLEMAN, RIGHT
 	end
 
 PokefanMScript_0x56e2b:

@@ -1,3 +1,13 @@
+const_value set 2
+	const BLACKTHORNGYM2F_COOLTRAINER_M
+	const BLACKTHORNGYM2F_COOLTRAINER_F
+	const BLACKTHORNGYM2F_BOULDER1
+	const BLACKTHORNGYM2F_BOULDER2
+	const BLACKTHORNGYM2F_BOULDER3
+	const BLACKTHORNGYM2F_BOULDER4
+	const BLACKTHORNGYM2F_BOULDER5
+	const BLACKTHORNGYM2F_BOULDER6
+
 BlackthornGym2F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -29,15 +39,15 @@ BlackthornGym2F_MapScriptHeader:
 	db $ff ; end
 
 .Disappear4
-	disappear 4
+	disappear BLACKTHORNGYM2F_BOULDER1
 	jump .Fall
 
 .Disappear5
-	disappear 5
+	disappear BLACKTHORNGYM2F_BOULDER2
 	jump .Fall
 
 .Disappear6
-	disappear 6
+	disappear BLACKTHORNGYM2F_BOULDER3
 	jump .Fall
 
 .Fall

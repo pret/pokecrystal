@@ -1,3 +1,14 @@
+const_value set 2
+	const DRAGONSDENB1F_POKE_BALL1
+	const DRAGONSDENB1F_CLAIR
+	const DRAGONSDENB1F_SILVER
+	const DRAGONSDENB1F_COOLTRAINER_M
+	const DRAGONSDENB1F_COOLTRAINER_F
+	const DRAGONSDENB1F_TWIN1
+	const DRAGONSDENB1F_TWIN2
+	const DRAGONSDENB1F_POKE_BALL2
+	const DRAGONSDENB1F_POKE_BALL3
+
 DragonsDenB1F_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -22,22 +33,22 @@ UnknownScript_0x18c89e:
 UnknownScript_0x18c89f:
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iftrue UnknownScript_0x18c8a8
-	disappear $4
+	disappear DRAGONSDENB1F_SILVER
 	return
 
 UnknownScript_0x18c8a8:
 	checkcode VAR_WEEKDAY
 	if_equal TUESDAY, UnknownScript_0x18c8b5
 	if_equal THURSDAY, UnknownScript_0x18c8b5
-	disappear $4
+	disappear DRAGONSDENB1F_SILVER
 	return
 
 UnknownScript_0x18c8b5:
-	appear $4
+	appear DRAGONSDENB1F_SILVER
 	return
 
 UnknownScript_0x18c8b8:
-	appear $3
+	appear DRAGONSDENB1F_CLAIR
 	loadfont
 	writetext UnknownText_0x18c9b8
 	pause 30
@@ -45,7 +56,7 @@ UnknownScript_0x18c8b8:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	spriteface PLAYER, LEFT
 	playmusic MUSIC_CLAIR
-	applymovement $3, MovementData_0x18c9ae
+	applymovement DRAGONSDENB1F_CLAIR, MovementData_0x18c9ae
 	loadfont
 	writetext UnknownText_0x18c9bf
 	keeptextopen
@@ -69,11 +80,11 @@ UnknownScript_0x18c8f4:
 	waitbutton
 	closetext
 UnknownScript_0x18c8f9:
-	applymovement $3, MovementData_0x18c9b3
+	applymovement DRAGONSDENB1F_CLAIR, MovementData_0x18c9b3
 	special Special_RotatePalettesRightMusic
 	pause 30
 	special RestartMapMusic
-	disappear $3
+	disappear DRAGONSDENB1F_CLAIR
 	dotrigger $0
 	end
 
@@ -124,7 +135,7 @@ TwinsLeaandpia2Script:
 PokeBallScript_0x18c95a:
 	giveitem DRAGON_FANG
 	iffalse UnknownScript_0x18c970
-	disappear $2
+	disappear DRAGONSDENB1F_POKE_BALL1
 	loadfont
 	itemtotext DRAGON_FANG, $0
 	writetext UnknownText_0x18cf41

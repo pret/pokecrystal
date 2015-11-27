@@ -1,3 +1,11 @@
+const_value set 2
+	const VERMILIONCITY_TEACHER
+	const VERMILIONCITY_GRAMPS
+	const VERMILIONCITY_MACHOP
+	const VERMILIONCITY_SUPER_NERD
+	const VERMILIONCITY_BIG_SNORLAX
+	const VERMILIONCITY_POKEFAN_M
+
 VermilionCity_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -51,7 +59,7 @@ UnknownScript_0x1aa9ab:
 	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
 	scriptedpokedata SNORLAX, 50
 	startbattle
-	disappear $6
+	disappear VERMILIONCITY_BIG_SNORLAX
 	setevent EVENT_FOUGHT_SNORLAX
 	returnafterbattle
 	end

@@ -1,3 +1,10 @@
+const_value set 2
+	const CELADONPOKECENTER1F_NURSE
+	const CELADONPOKECENTER1F_GENTLEMAN
+	const CELADONPOKECENTER1F_PHARMACIST
+	const CELADONPOKECENTER1F_COOLTRAINER_F
+	const CELADONPOKECENTER1F_SUPER_NERD
+
 CeladonPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -39,13 +46,13 @@ UnknownScript_0x71e48:
 	closetext
 	checkcode VAR_FACING
 	if_equal $1, UnknownScript_0x71e5a
-	applymovement $6, MovementData_0x71e6b
+	applymovement CELADONPOKECENTER1F_SUPER_NERD, MovementData_0x71e6b
 	jump UnknownScript_0x71e5e
 
 UnknownScript_0x71e5a:
-	applymovement $6, MovementData_0x71e65
+	applymovement CELADONPOKECENTER1F_SUPER_NERD, MovementData_0x71e65
 UnknownScript_0x71e5e:
-	disappear $6
+	disappear CELADONPOKECENTER1F_SUPER_NERD
 	playsound SFX_EXIT_BUILDING
 	waitsfx
 	end

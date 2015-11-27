@@ -1,3 +1,6 @@
+const_value set 2
+	const BRUNOSROOM_BRUNO
+
 BrunosRoom_MapScriptHeader:
 .MapTriggers:
 	db 2

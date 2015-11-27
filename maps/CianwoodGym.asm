@@ -1,3 +1,14 @@
+const_value set 2
+	const CIANWOODGYM_CHUCK
+	const CIANWOODGYM_BLACK_BELT1
+	const CIANWOODGYM_BLACK_BELT2
+	const CIANWOODGYM_BLACK_BELT3
+	const CIANWOODGYM_BLACK_BELT4
+	const CIANWOODGYM_BOULDER1
+	const CIANWOODGYM_BOULDER2
+	const CIANWOODGYM_BOULDER3
+	const CIANWOODGYM_BOULDER4
+
 CianwoodGym_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -13,15 +24,15 @@ ChuckScript_0x9d60f:
 	writetext UnknownText_0x9d6f9
 	waitbutton
 	closetext
-	spriteface $2, RIGHT
+	spriteface CIANWOODGYM_CHUCK, RIGHT
 	loadfont
 	writetext UnknownText_0x9d76f
 	waitbutton
 	closetext
-	applymovement $7, MovementData_0x9d6f3
+	applymovement CIANWOODGYM_BOULDER1, MovementData_0x9d6f3
 	playsound SFX_STRENGTH
 	earthquake 80
-	disappear $7
+	disappear CIANWOODGYM_BOULDER1
 	pause 30
 	faceplayer
 	loadfont

@@ -1,3 +1,6 @@
+const_value set 2
+	const CIANWOODPHARMACY_PHARMACIST
+
 CianwoodPharmacy_MapScriptHeader:
 .MapTriggers:
 	db 1

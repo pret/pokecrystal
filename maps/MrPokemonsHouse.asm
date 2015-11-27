@@ -1,3 +1,7 @@
+const_value set 2
+	const MRPOKEMONSHOUSE_GENTLEMAN
+	const MRPOKEMONSHOUSE_OAK
+
 MrPokemonsHouse_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -17,8 +21,8 @@ UnknownScript_0x196e55:
 	end
 
 UnknownScript_0x196e56:
-	showemote EMOTE_SHOCK, $2, 15
-	spriteface $2, DOWN
+	showemote EMOTE_SHOCK, MRPOKEMONSHOUSE_GENTLEMAN, 15
+	spriteface MRPOKEMONSHOUSE_GENTLEMAN, DOWN
 	loadfont
 	writetext UnknownText_0x196f66
 	waitbutton
@@ -37,11 +41,11 @@ UnknownScript_0x196e56:
 	blackoutmod CHERRYGROVE_CITY
 	writetext UnknownText_0x196feb
 	keeptextopen
-	spriteface $2, RIGHT
+	spriteface MRPOKEMONSHOUSE_GENTLEMAN, RIGHT
 	writetext UnknownText_0x197092
 	keeptextopen
-	spriteface $2, DOWN
-	spriteface $3, LEFT
+	spriteface MRPOKEMONSHOUSE_GENTLEMAN, DOWN
+	spriteface MRPOKEMONSHOUSE_OAK, LEFT
 	writetext UnknownText_0x1970b7
 	waitbutton
 	closetext
@@ -83,7 +87,7 @@ UnknownScript_0x196ec7:
 
 UnknownScript_0x196ec9:
 	playmusic MUSIC_PROF_OAK
-	applymovement $3, MovementData_0x196f5d
+	applymovement MRPOKEMONSHOUSE_OAK, MovementData_0x196f5d
 	spriteface PLAYER, RIGHT
 	loadfont
 	writetext UnknownText_0x197185
@@ -97,9 +101,9 @@ UnknownScript_0x196ec9:
 	waitbutton
 	closetext
 	spriteface PLAYER, DOWN
-	applymovement $3, MovementData_0x196f61
+	applymovement MRPOKEMONSHOUSE_OAK, MovementData_0x196f61
 	playsound SFX_EXIT_BUILDING
-	disappear $3
+	disappear MRPOKEMONSHOUSE_OAK
 	waitsfx
 	special RestartMapMusic
 	pause 15

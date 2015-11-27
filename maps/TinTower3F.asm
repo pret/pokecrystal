@@ -1,3 +1,6 @@
+const_value set 2
+	const TINTOWER3F_POKE_BALL
+
 TinTower3F_MapScriptHeader:
 .MapTriggers:
 	db 0

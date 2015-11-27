@@ -1,3 +1,8 @@
+const_value set 2
+	const ECRUTEAKMART_CLERK
+	const ECRUTEAKMART_SUPER_NERD
+	const ECRUTEAKMART_GRANNY
+
 EcruteakMart_MapScriptHeader:
 .MapTriggers:
 	db 0

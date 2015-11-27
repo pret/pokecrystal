@@ -1,3 +1,6 @@
+const_value set 2
+	const CINNABARISLAND_BLUE
+
 CinnabarIsland_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -19,8 +22,8 @@ CinnabarIslandBlue:
 	waitbutton
 	closetext
 	playsound SFX_WARP_TO
-	applymovement $2, CinnabarIslandBlueTeleport
-	disappear $2
+	applymovement CINNABARISLAND_BLUE, CinnabarIslandBlueTeleport
+	disappear CINNABARISLAND_BLUE
 	clearevent EVENT_VIRIDIAN_GYM_BLUE
 	end
 

@@ -1,3 +1,10 @@
+const_value set 2
+	const CELADONCAFE_SUPER_NERD
+	const CELADONCAFE_FISHER1
+	const CELADONCAFE_FISHER2
+	const CELADONCAFE_FISHER3
+	const CELADONCAFE_TEACHER
+
 CeladonCafe_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -23,7 +30,7 @@ FisherScript_0x73051:
 	writetext UnknownText_0x7313a
 	waitbutton
 	closetext
-	spriteface $3, LEFT
+	spriteface CELADONCAFE_FISHER1, LEFT
 	end
 
 FisherScript_0x73062:
@@ -36,7 +43,7 @@ FisherScript_0x73062:
 	writetext UnknownText_0x73178
 	waitbutton
 	closetext
-	spriteface $4, RIGHT
+	spriteface CELADONCAFE_FISHER2, RIGHT
 	end
 
 FisherScript_0x73073:
@@ -49,7 +56,7 @@ FisherScript_0x73073:
 	writetext UnknownText_0x731bd
 	waitbutton
 	closetext
-	spriteface $5, RIGHT
+	spriteface CELADONCAFE_FISHER3, RIGHT
 	end
 
 TeacherScript_0x73084:
@@ -64,7 +71,7 @@ TeacherScript_0x73084:
 	writetext UnknownText_0x73212
 	waitbutton
 	closetext
-	spriteface $6, LEFT
+	spriteface CELADONCAFE_TEACHER, LEFT
 	end
 
 UnknownScript_0x7309a:
@@ -72,12 +79,12 @@ UnknownScript_0x7309a:
 	writetext UnknownText_0x73254
 	waitbutton
 	closetext
-	spriteface $6, RIGHT
+	spriteface CELADONCAFE_TEACHER, RIGHT
 	loadfont
 	writetext UnknownText_0x73278
 	waitbutton
 	closetext
-	spriteface $6, LEFT
+	spriteface CELADONCAFE_TEACHER, LEFT
 	end
 
 EatathonContestPoster:

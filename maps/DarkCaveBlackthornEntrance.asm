@@ -1,3 +1,8 @@
+const_value set 2
+	const DARKCAVEBLACKTHORNENTRANCE_PHARMACIST
+	const DARKCAVEBLACKTHORNENTRANCE_POKE_BALL1
+	const DARKCAVEBLACKTHORNENTRANCE_POKE_BALL2
+
 DarkCaveBlackthornEntrance_MapScriptHeader:
 .MapTriggers:
 	db 0

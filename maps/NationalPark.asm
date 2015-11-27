@@ -1,3 +1,19 @@
+const_value set 2
+	const NATIONALPARK_LASS1
+	const NATIONALPARK_POKEFAN_F1
+	const NATIONALPARK_TEACHER1
+	const NATIONALPARK_YOUNGSTER1
+	const NATIONALPARK_YOUNGSTER2
+	const NATIONALPARK_TEACHER2
+	const NATIONALPARK_GROWLITHE
+	const NATIONALPARK_YOUNGSTER3
+	const NATIONALPARK_POKEFAN_F2
+	const NATIONALPARK_POKEFAN_M
+	const NATIONALPARK_LASS2
+	const NATIONALPARK_POKE_BALL1
+	const NATIONALPARK_GAMEBOY_KID
+	const NATIONALPARK_POKE_BALL2
+
 NationalPark_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -52,7 +68,7 @@ GameboyKidScript_0x5c037:
 	writetext UnknownText_0x5c42a
 	waitbutton
 	closetext
-	spriteface $e, DOWN
+	spriteface NATIONALPARK_GAMEBOY_KID, DOWN
 	end
 
 TrainerSchoolboyJack1:

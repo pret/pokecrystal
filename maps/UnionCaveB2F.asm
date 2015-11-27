@@ -1,3 +1,11 @@
+const_value set 2
+	const UNIONCAVEB2F_ROCKER
+	const UNIONCAVEB2F_COOLTRAINER_F1
+	const UNIONCAVEB2F_COOLTRAINER_F2
+	const UNIONCAVEB2F_POKE_BALL1
+	const UNIONCAVEB2F_POKE_BALL2
+	const UNIONCAVEB2F_SURF
+
 UnionCaveB2F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -15,11 +23,11 @@ UnknownScript_0x5a30d:
 	checkcode VAR_WEEKDAY
 	if_equal FRIDAY, UnknownScript_0x5a31c
 UnknownScript_0x5a319:
-	disappear $7
+	disappear UNIONCAVEB2F_SURF
 	return
 
 UnknownScript_0x5a31c:
-	appear $7
+	appear UNIONCAVEB2F_SURF
 	return
 
 SurfScript_0x5a31f:
@@ -27,7 +35,7 @@ SurfScript_0x5a31f:
 	cry LAPRAS
 	scriptedpokedata LAPRAS, 20
 	startbattle
-	disappear $7
+	disappear UNIONCAVEB2F_SURF
 	setflag ENGINE_UNION_CAVE_LAPRAS
 	returnafterbattle
 	end

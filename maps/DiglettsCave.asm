@@ -1,3 +1,6 @@
+const_value set 2
+	const DIGLETTSCAVE_POKEFAN_M
+
 DiglettsCave_MapScriptHeader:
 .MapTriggers:
 	db 0
