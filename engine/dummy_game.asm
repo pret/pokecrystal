@@ -47,7 +47,7 @@ Functione1ebb: ; e1ebb (38:5ebb)
 	bit 7, a
 	jr nz, .asm_e1ed0
 	call Functione1ed2
-	callab Function8cf69
+	callab PlaySpriteAnimations
 	call DelayFrame
 	and a
 	ret
@@ -89,7 +89,7 @@ Functione1ef3: ; e1ef3
 ; e1efb
 
 Functione1efb: ; e1efb
-	call Functione00ed
+	call ret_e00ed
 	jr nc, .asm_e1f06
 	ld hl, wJumptableIndex
 	set 7, [hl]
@@ -251,7 +251,7 @@ Functione1fcc: ; e1fcc
 	inc [hl]
 
 Functione2000: ; e2000
-	call Functione00ed
+	call ret_e00ed
 	jr nc, .asm_e200b
 	ld hl, wJumptableIndex
 	set 7, [hl]

@@ -425,7 +425,7 @@ Function81adb: ; 81adb
 .asm_81b7a
 	ld a, [wd265]
 	ld [TrainerClass], a
-	callab Function3957b
+	callab GetTrainerAttributes
 	ld de, StringBuffer1
 	hlcoord 4, 1
 	call PlaceString

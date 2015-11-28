@@ -670,7 +670,7 @@ InitPartyMenuGFX: ; 503e0
 	pop bc
 	dec c
 	jr nz, .loop
-	callab Function8cf69
+	callab PlaySpriteAnimations
 	ret
 ; 50405
 

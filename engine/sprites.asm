@@ -12,12 +12,12 @@ Function8cf53: ; 8cf53
 ; 8cf62
 
 Function8cf62: ; 8cf62
-	call Function8cf69
+	call PlaySpriteAnimations
 	call DelayFrame
 	ret
 ; 8cf69
 
-Function8cf69: ; 8cf69
+PlaySpriteAnimations: ; 8cf69
 	push hl
 	push de
 	push bc
@@ -35,7 +35,7 @@ Function8cf69: ; 8cf69
 ; 8cf7a
 
 Function8cf7a: ; 8cf7a
-	ld hl, wc314
+	ld hl, wSpriteAnimationStructs
 	ld e, 10 ; There are 10 structs here.
 
 .loop
@@ -114,10 +114,10 @@ Function8cfa8: ; 8cfa8 (23:4fa8)
 	ret
 
 InitSpriteAnimStruct:: ; 8cfd6
-; Find if there's any room in the wc314 array, which is 10x16
+; Find if there's any room in the wSpriteAnimationStructs array, which is 10x16
 	push de
 	push af
-	ld hl, wc314
+	ld hl, wSpriteAnimationStructs
 	ld e, 10
 .loop
 	ld a, [hl]
@@ -221,8 +221,8 @@ Function8d036: ; 8d036
 
 
 Function8d03d: ; 8d03d (23:503d)
-; Clear the index field of every struct in the wc314 array.
-	ld hl, wc314
+; Clear the index field of every struct in the wSpriteAnimationStructs array.
+	ld hl, wSpriteAnimationStructs
 	ld bc, $10
 	ld e, 10
 	xor a
@@ -622,7 +622,7 @@ endr
 	dw .sixteen
 	dw .seventeen
 	dw .eighteen
-	dw .nineteen
+	dw .nineteen    ; finish egg hatching animation
 	dw .twenty
 	dw .twentyone
 	dw .twentytwo   ; flying sprite
@@ -761,7 +761,7 @@ endr
 	ld a, [hl]
 	add $3
 	ld [hl], a
-	call .asm_8d6de
+	call .ApplyYOffset
 	ld hl, $7
 	add hl, bc
 	ld [hl], a
@@ -779,7 +779,7 @@ endr
 	inc a
 	ld [hl], a
 	ld d, $2
-	call .asm_8d6de
+	call .ApplyYOffset
 	ld hl, $7
 	add hl, bc
 	ld [hl], a
@@ -818,13 +818,13 @@ endr
 	ld a, [hl]
 	push af
 	push de
-	call .asm_8d6de
+	call .ApplyYOffset
 	ld hl, $7
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call .asm_8d6e2
+	call .ApplyXOffset
 	ld hl, $6
 	add hl, bc
 	ld [hl], a
@@ -856,13 +856,13 @@ endr
 	ld a, [hl]
 	push af
 	push de
-	call .asm_8d6de
+	call .ApplyYOffset
 	ld hl, $7
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call .asm_8d6e2
+	call .ApplyXOffset
 	ld hl, $6
 	add hl, bc
 	ld [hl], a
@@ -947,14 +947,14 @@ endr
 .asm_8d462
 	ld a, e
 	ld d, $20
-	call .asm_8d6de
+	call .ApplyYOffset
 	ld hl, $7
 	add hl, bc
 	ld [hl], a
 	ret
 
 .thirteen: ; 8d46e (23:546e)
-	callab Functione00ed
+	callab ret_e00ed
 	ret
 
 .fifteen: ; 8d475 (23:5475)
@@ -1014,7 +1014,7 @@ endr
 	jr c, .asm_8d4cd
 	dec [hl]
 	ld d, $28
-	call .asm_8d6de
+	call .ApplyYOffset
 	ld hl, $7
 	add hl, bc
 	ld [hl], a
@@ -1049,7 +1049,7 @@ endr
 	ld hl, $c
 	add hl, bc
 	ld a, [hl]
-	call Function8e72c
+	call ApplyYOffset
 	ld hl, $7
 	add hl, bc
 	ld [hl], a
@@ -1108,33 +1108,36 @@ endr
 	ret
 
 .nineteen: ; 8d54a (23:554a)
-	ld hl, $c
+	ld hl, SpriteAnim1Sprite0c - SpriteAnim1
 	add hl, bc
 	ld a, [hl]
 	cp $80
-	jr nc, .asm_8d574
+	jr nc, .finish_nineteen
 	ld d, a
 	add $8
 	ld [hl], a
-	ld hl, $b
+	ld hl, SpriteAnim1Sprite0b - SpriteAnim1
 	add hl, bc
 	ld a, [hl]
 	xor $20
 	ld [hl], a
+
 	push af
 	push de
-	call .asm_8d6de
-	ld hl, $7
+	call .ApplyYOffset
+	ld hl, SpriteAnim1YOffset - SpriteAnim1
 	add hl, bc
 	ld [hl], a
+
 	pop de
 	pop af
-	call .asm_8d6e2
-	ld hl, $6
+	call .ApplyXOffset
+	ld hl, SpriteAnim1XOffset - SpriteAnim1
 	add hl, bc
 	ld [hl], a
 	ret
-.asm_8d574
+
+.finish_nineteen
 	call Function8d036
 	ret
 
@@ -1165,13 +1168,13 @@ rept 3
 endr
 	push af
 	push de
-	call .asm_8d6de
+	call .ApplyYOffset
 	ld hl, $7
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call .asm_8d6e2
+	call .ApplyXOffset
 	ld hl, $6
 	add hl, bc
 	ld [hl], a
@@ -1207,7 +1210,7 @@ endr
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	call .asm_8d6e2
+	call .ApplyXOffset
 	ld hl, $6
 	add hl, bc
 	ld [hl], a
@@ -1230,7 +1233,7 @@ endr
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	call .asm_8d6e2
+	call .ApplyXOffset
 	ld hl, $6
 	add hl, bc
 	ld [hl], a
@@ -1263,7 +1266,7 @@ endr
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	call .asm_8d6e2
+	call .ApplyXOffset
 	ld hl, $6
 	add hl, bc
 	ld [hl], a
@@ -1294,7 +1297,7 @@ endr
 	xor $ff
 	inc a
 	ld d, $20
-	call .asm_8d6de
+	call .ApplyYOffset
 	ld hl, $7
 	add hl, bc
 	ld [hl], a
@@ -1313,7 +1316,7 @@ endr
 	xor $ff
 	inc a
 	ld d, $20
-	call .asm_8d6de
+	call .ApplyYOffset
 	ld hl, $7
 	add hl, bc
 	ld [hl], a
@@ -1332,13 +1335,13 @@ endr
 	ld a, [hl]
 	push af
 	push de
-	call .asm_8d6de
+	call .ApplyYOffset
 	ld hl, $7
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call .asm_8d6e2
+	call .ApplyXOffset
 	ld hl, $6
 	add hl, bc
 	ld [hl], a
@@ -1393,12 +1396,12 @@ endr
 	ret
 ; 8d6de
 
-.asm_8d6de: ; 8d6de (23:56de)
-	call Function8e72c
+.ApplyYOffset: ; 8d6de (23:56de)
+	call ApplyYOffset
 	ret
 
-.asm_8d6e2: ; 8d6e2 (23:56e2)
-	call Function8e72a
+.ApplyXOffset: ; 8d6e2 (23:56e2)
+	call ApplyXOffset
 	ret
 ; 8d6e6 (23:56e6)
 
@@ -2839,17 +2842,17 @@ Unknown_8e706: ; Broken 2bpp pointers
 	dbbw $10, $24, $672a ; 16-tile 2bpp at 24:672a (inside Function926f7)
 	dbbw $10, $21, $672a ; 16-tile 2bpp at 21:672a (inside Function8671c)
 
-Function8e72a: ; 8e72a
+ApplyXOffset: ; 8e72a
 	add $10
-Function8e72c: ; 8e72c
+ApplyYOffset: ; 8e72c
 	and $3f
 	cp $20
-	jr nc, .asm_8e737
+	jr nc, .xflip
 	call Function8e741
 	ld a, h
 	ret
 
-.asm_8e737
+.xflip
 	and $1f
 	call Function8e741
 	ld a, h
@@ -2862,7 +2865,7 @@ Function8e741: ; 8e741
 	ld e, a
 	ld a, d
 	ld d, 0
-	ld hl, Unknown_8e75d
+	ld hl, .sinewave
 rept 2
 	add hl, de
 endr
@@ -2870,54 +2873,54 @@ endr
 	inc hl
 	ld d, [hl]
 	ld hl, 0
-.asm_8e750
+.loop
 	srl a
-	jr nc, .asm_8e755
+	jr nc, .skip_add
 	add hl, de
 
-.asm_8e755
+.skip_add
 	sla e
 	rl d
 	and a
-	jr nz, .asm_8e750
+	jr nz, .loop
 	ret
 ; 8e75d
 
-Unknown_8e75d: ; 8e75d
+.sinewave: ; 8e75d
 	sine_wave $100
 
 
-Function8e79d: ; 8e79d
+AnimateEndOfExpBar: ; 8e79d
 	ld a, [hSGB]
-	ld de, GFX_8e7f4
+	ld de, EndOfExpBarGFX
 	and a
-	jr z, .asm_8e7a8
-	ld de, GFX_8e804
+	jr z, .load
+	ld de, SGBEndOfExpBarGFX
 
-.asm_8e7a8
-	ld hl, VTiles0
-	lb bc, BANK(GFX_8e7f4), 1
+.load
+	ld hl, VTiles0 tile $00
+	lb bc, BANK(EndOfExpBarGFX), 1
 	call Request2bpp
 	ld c, $8
 	ld d, $0
-.asm_8e7b5
+.loop
 	push bc
-	call Function8e7c6
+	call .AnimateFrame
 	call DelayFrame
 	pop bc
 rept 2
 	inc d
 endr
 	dec c
-	jr nz, .asm_8e7b5
+	jr nz, .loop
 	call ClearSprites
 	ret
 ; 8e7c6
 
-Function8e7c6: ; 8e7c6
+.AnimateFrame: ; 8e7c6
 	ld hl, Sprites
 	ld c, $8
-.asm_8e7cb
+.anim_loop
 	ld a, c
 	and a
 	ret z
@@ -2927,32 +2930,35 @@ Function8e7c6: ; 8e7c6
 	sla a
 	sla a
 	push af
+
 	push de
 	push hl
-	call Function8e72c
+	call ApplyYOffset
 	pop hl
 	pop de
-	add $68
+	add 13 * 8
 	ld [hli], a
+
 	pop af
 	push de
 	push hl
-	call Function8e72a
+	call ApplyXOffset
 	pop hl
 	pop de
-	add $54
+	add 10 * 8 + 4
 	ld [hli], a
+
 	ld a, $0
 	ld [hli], a
-	ld a, $6
+	ld a, $6 ; OBJ 6
 	ld [hli], a
-	jr .asm_8e7cb
+	jr .anim_loop
 ; 8e7f4
 
-GFX_8e7f4: ; 8e7f4
-INCBIN "gfx/unknown/08e7f4.2bpp"
-GFX_8e804: ; 8e804
-INCBIN "gfx/unknown/08e804.2bpp"
+EndOfExpBarGFX: ; 8e7f4
+INCBIN "gfx/battle/expbarend.2bpp"
+SGBEndOfExpBarGFX: ; 8e804
+INCBIN "gfx/battle/expbarend_sgb.2bpp"
 
 ClearSpriteAnims: ; 8e814
 	push hl

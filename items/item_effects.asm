@@ -1206,7 +1206,7 @@ SunStone: ; ee0f
 	jr z, .NoEffect
 
 	ld a, $1
-	ld [wd1e9], a
+	ld [wForceEvolution], a
 	callba EvolvePokemon
 
 	ld a, [wMonTriedToEvolve]
@@ -1447,7 +1447,7 @@ RareCandy: ; ef14
 	predef LearnLevelMoves
 
 	xor a
-	ld [wd1e9], a
+	ld [wForceEvolution], a
 	callba EvolvePokemon
 
 	jp UseDisposableItem

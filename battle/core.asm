@@ -1,9 +1,6 @@
-BattleCore:
-
 ; Core components of the battle engine.
-
-
-SendOutFirstMons: ; 3c000
+BattleCore:
+DoBattle: ; 3c000
 	xor a
 	ld [wBattleParticipantsNotFainted], a
 	ld [wc6fc], a
@@ -83,8 +80,8 @@ SendOutFirstMons: ; 3c000
 	ld [CurPartySpecies], a
 	ld [TempBattleMonSpecies], a
 	hlcoord 1, 5
-	ld a, $9
-	call Function3d490
+	ld a, 9
+	call SlideBattlePicOut
 	call LoadTileMapToTempTileMap
 	call ResetBattleParticipants
 	call InitBattleMon
@@ -113,7 +110,7 @@ SendOutFirstMons: ; 3c000
 	call SpikesDamage
 
 .not_linked_2
-	jp Function3c12f
+	jp BattleTurn
 
 .tutorial_debug
 	jp BattleMenu
@@ -130,33 +127,33 @@ WildFled_EnemyFled_LinkBattleCanceled: ; 3c0e5
 	ld a, [wLinkMode]
 	and a
 	ld hl, BattleText_WildFled
-	jr z, .asm_3c115
+	jr z, .print_text
 
 	ld a, [wBattleResult]
 	and $c0
 	ld [wBattleResult], a
 	ld hl, BattleText_EnemyFled
 	call CheckMobileBattleError
-	jr nc, .asm_3c115
+	jr nc, .print_text
 
 	ld hl, wcd2a
 	bit 4, [hl]
-	jr nz, .asm_3c118
+	jr nz, .skip_text
 
 	ld hl, BattleText_LinkErrorBattleCanceled
 
-.asm_3c115
+.print_text
 	call StdBattleTextBox
 
-.asm_3c118
+.skip_text
 	call StopDangerSound
 	call CheckMobileBattleError
-	jr c, .asm_3c126
+	jr c, .skip_sfx
 
 	ld de, SFX_RUN
 	call PlaySFX
 
-.asm_3c126
+.skip_sfx
 	call SetPlayerTurn
 	ld a, 1
 	ld [BattleEnded], a
@@ -164,7 +161,7 @@ WildFled_EnemyFled_LinkBattleCanceled: ; 3c0e5
 ; 3c12f
 
 
-Function3c12f: ; 3c12f
+BattleTurn: ; 3c12f
 .loop
 	call MobileFn_3c1bf
 	call CheckContestBattleOver
@@ -2489,8 +2486,8 @@ WinTrainerBattle: ; 3cfa4
 	bit 0, a
 	jr nz, .battle_tower
 
-	call Function3ebd8
-	ld c, $28
+	call BattleWinSlideInEnemyTrainerFrontpic
+	ld c, 40
 	call DelayFrames
 	ld a, [BattleType]
 	cp BATTLETYPE_CANLOSE
@@ -2506,7 +2503,7 @@ WinTrainerBattle: ; 3cfa4
 	jp Function3d02b
 
 .mobile
-	call Function3ebd8
+	call BattleWinSlideInEnemyTrainerFrontpic
 	ld c, 40
 	call DelayFrames
 	ld c, $4
@@ -2514,7 +2511,7 @@ WinTrainerBattle: ; 3cfa4
 	ret
 
 .battle_tower
-	call Function3ebd8
+	call BattleWinSlideInEnemyTrainerFrontpic
 	ld c, 40
 	call DelayFrames
 	call EmptyBattleTextBox
@@ -3111,7 +3108,7 @@ LostBattle: ; 3d38e
 	hlcoord 0, 0
 	lb bc, 8, 21
 	call ClearBox
-	call Function3ebd8
+	call BattleWinSlideInEnemyTrainerFrontpic
 
 	ld c, 40
 	call DelayFrames
@@ -3128,7 +3125,7 @@ LostBattle: ; 3d38e
 	hlcoord 0, 0
 	lb bc, 8, 21
 	call ClearBox
-	call Function3ebd8
+	call BattleWinSlideInEnemyTrainerFrontpic
 
 	ld c, 40
 	call DelayFrames
@@ -3180,7 +3177,7 @@ LostBattle: ; 3d38e
 	hlcoord 0, 0
 	lb bc, 8, 21
 	call ClearBox
-	call Function3ebd8
+	call BattleWinSlideInEnemyTrainerFrontpic
 
 	ld c, 40
 	call DelayFrames
@@ -3260,31 +3257,31 @@ MonFaintedAnimation: ; 3d444
 ; 3d490
 
 
-Function3d490: ; 3d490
+SlideBattlePicOut: ; 3d490
 	ld [hMapObjectIndexBuffer], a
 	ld c, a
-.asm_3d493
+.loop
 	push bc
 	push hl
 	ld b, $7
-.asm_3d497
+.loop2
 	push hl
-	call Function3d4ae
+	call .DoFrame
 	pop hl
 	ld de, SCREEN_WIDTH
 	add hl, de
 	dec b
-	jr nz, .asm_3d497
+	jr nz, .loop2
 	ld c, 2
 	call DelayFrames
 	pop hl
 	pop bc
 	dec c
-	jr nz, .asm_3d493
+	jr nz, .loop
 	ret
 ; 3d4ae
 
-Function3d4ae: ; 3d4ae
+.DoFrame: ; 3d4ae
 	ld a, [hMapObjectIndexBuffer]
 	ld c, a
 	cp $8
@@ -3413,8 +3410,8 @@ ResetEnemyBattleVars: ; 3d557
 	xor a
 	ld [wPlayerWrapCount], a
 	hlcoord 18, 0
-	ld a, $8
-	call Function3d490
+	ld a, 8
+	call SlideBattlePicOut
 	call EmptyBattleTextBox
 	jp LoadStandardMenuDataHeader
 ; 3d57a
@@ -4478,21 +4475,21 @@ HandleHealingItems: ; 3dcf9
 	call SetPlayerTurn
 	call HandleHPHealingItem
 	call UseHeldStatusHealingItem
-	call HandleStatusHealingItem
+	call UseConfusionHealingItem
 	call SetEnemyTurn
 	call HandleHPHealingItem
 	call UseHeldStatusHealingItem
-	jp HandleStatusHealingItem
+	jp UseConfusionHealingItem
 
 .player_1
 	call SetEnemyTurn
 	call HandleHPHealingItem
 	call UseHeldStatusHealingItem
-	call HandleStatusHealingItem
+	call UseConfusionHealingItem
 	call SetPlayerTurn
 	call HandleHPHealingItem
 	call UseHeldStatusHealingItem
-	jp HandleStatusHealingItem
+	jp UseConfusionHealingItem
 ; 3dd2f
 
 HandleHPHealingItem: ; 3dd2f
@@ -4672,7 +4669,7 @@ UseHeldStatusHealingItem: ; 3dde9
 ; 3de51
 
 
-HandleStatusHealingItem: ; 3de51
+UseConfusionHealingItem: ; 3de51
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVar
 	bit SUBSTATUS_CONFUSED, a
@@ -4692,7 +4689,7 @@ HandleStatusHealingItem: ; 3de51
 	res SUBSTATUS_CONFUSED, [hl]
 	call GetItemName
 	call ItemRecoveryAnim
-	ld hl, BattleText_0x80dab
+	ld hl, BattleText_ItemHealedConfusion
 	call StdBattleTextBox
 	ld a, [hBattleTurn]
 	and a
@@ -6874,7 +6871,7 @@ Function3ebc7: ; 3ebc7
 	ret
 ; 3ebd8
 
-Function3ebd8: ; 3ebd8
+BattleWinSlideInEnemyTrainerFrontpic: ; 3ebd8
 	xor a
 	ld [TempEnemyMonSpecies], a
 	call FinishBattleAnim
@@ -6883,12 +6880,12 @@ Function3ebd8: ; 3ebd8
 	ld de, VTiles2
 	callab GetTrainerPic
 	hlcoord 19, 0
-	ld c, $0
+	ld c, 0
 
 .outer_loop
 	inc c
 	ld a, c
-	cp $7
+	cp 7
 	ret z
 	xor a
 	ld [hBGMapMode], a
@@ -6898,9 +6895,9 @@ Function3ebd8: ; 3ebd8
 	push hl
 
 .inner_loop
-	call Function3ec1a
+	call .CopyColumn
 	inc hl
-	ld a, $7
+	ld a, 7
 	add d
 	ld d, a
 	dec c
@@ -6908,7 +6905,7 @@ Function3ebd8: ; 3ebd8
 
 	ld a, $1
 	ld [hBGMapMode], a
-	ld c, $4
+	ld c, 4
 	call DelayFrames
 	pop hl
 	pop bc
@@ -6916,11 +6913,11 @@ Function3ebd8: ; 3ebd8
 	jr .outer_loop
 ; 3ec1a
 
-Function3ec1a: ; 3ec1a
+.CopyColumn: ; 3ec1a
 	push hl
 	push de
 	push bc
-	ld e, $7
+	ld e, 7
 
 .loop
 	ld [hl], d
@@ -6970,7 +6967,7 @@ ApplyPrzEffectOnSpeed: ; 3ec39
 	ld [hli], a
 	or b
 	jr nz, .player_ok
-	ld b, $1
+	ld b, $1 ; min speed
 
 .player_ok
 	ld [hl], b
@@ -6991,7 +6988,7 @@ ApplyPrzEffectOnSpeed: ; 3ec39
 	ld [hli], a
 	or b
 	jr nz, .enemy_ok
-	ld b, $1
+	ld b, $1 ; min speed
 
 .enemy_ok
 	ld [hl], b
@@ -7014,7 +7011,7 @@ ApplyBrnEffectOnAttack: ; 3ec76
 	ld [hli], a
 	or b
 	jr nz, .player_ok
-	ld b, $1
+	ld b, $1 ; min attack
 
 .player_ok
 	ld [hl], b
@@ -7033,7 +7030,7 @@ ApplyBrnEffectOnAttack: ; 3ec76
 	ld [hli], a
 	or b
 	jr nz, .enemy_ok
-	ld b, $1
+	ld b, $1 ; min attack
 
 .enemy_ok
 	ld [hl], b
@@ -7423,6 +7420,7 @@ GiveExperiencePoints: ; 3ee3b
 	and a
 	pop bc
 	jp z, .skip_stats
+
 	ld hl, MON_STAT_EXP + 1
 	add hl, bc
 	ld d, h
@@ -7767,35 +7765,37 @@ endr
 ; 3f0d4
 
 Function3f0d4: ; 3f0d4
+; count number of battle participants
 	ld a, [wBattleParticipantsNotFainted]
 	ld b, a
-	ld c, $6
-	ld d, $0
-.asm_3f0dc
+	ld c, PARTY_LENGTH
+	ld d, 0
+.loop
 	xor a
 	srl b
 	adc d
 	ld d, a
 	dec c
-	jr nz, .asm_3f0dc
-	cp $2
+	jr nz, .loop
+	cp 2
 	ret c
+
 	ld [wd265], a
 	ld hl, EnemyMonBaseStats
-	ld c, $7
-.asm_3f0ef
+	ld c, EnemyMonEnd - EnemyMonBaseStats
+.loop2
 	xor a
 	ld [hDividend + 0], a
 	ld a, [hl]
 	ld [hDividend + 1], a
 	ld a, [wd265]
 	ld [hDivisor], a
-	ld b, $2
+	ld b, 2
 	call Divide
 	ld a, [hQuotient + 2]
 	ld [hli], a
 	dec c
-	jr nz, .asm_3f0ef
+	jr nz, .loop2
 	ret
 ; 3f106
 
@@ -7941,12 +7941,12 @@ endr
 	call PrintPlayerHUD
 	ld hl, BattleMonNick
 	ld de, StringBuffer1
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	call Function3dfe
 	ld de, SFX_HIT_END_OF_EXP_BAR
 	call PlaySFX
-	callba Function8e79d
+	callba AnimateEndOfExpBar
 	call WaitSFX
 	ld hl, BattleText_StringBuffer1GrewToLevel
 	call StdBattleTextBox
@@ -8481,7 +8481,7 @@ StartBattle: ; 3f4c1
 	ld a, [TimeOfDayPal]
 	push af
 	call BattleIntro
-	call SendOutFirstMons
+	call DoBattle
 	call ExitBattle
 	pop af
 	ld [TimeOfDayPal], a
@@ -8490,9 +8490,9 @@ StartBattle: ; 3f4c1
 ; 3f4d9
 
 
-_SendOutFirstMons: ; 3f4d9
+_DoBattle: ; 3f4d9
 ; unreferenced
-	call SendOutFirstMons
+	call DoBattle
 	ret
 ; 3f4dd
 
@@ -8586,7 +8586,7 @@ InitEnemyTrainer: ; 3f594
 	callba MobileFn_10606a
 	xor a
 	ld [TempEnemyMonSpecies], a
-	callab Function3957b
+	callab GetTrainerAttributes
 	callab ReadTrainerParty
 
 	ld a, [TrainerClass]
@@ -8746,7 +8746,7 @@ Function3f6a5: ; 3f6a5
 	ret nz
 	call CheckPayDay
 	xor a
-	ld [wd1e9], a
+	ld [wForceEvolution], a
 	predef EvolveAfterBattle
 	callba Function2ed44
 	ret
@@ -9427,7 +9427,7 @@ InitBattleDisplay: ; 3fb6c
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
-	callba SlideBattlePics
+	callba BattleIntroSlidingPics
 	ld a, $1
 	ld [hBGMapMode], a
 	ld a, $31

@@ -317,15 +317,15 @@ PrintLetterDelay:: ; 313d
 ; 	mid:  3 frames
 ; 	slow: 5 frames
 
-; TextBoxFrame + 1[!0] and A or B override text speed with a one-frame delay.
-; Options[4] and TextBoxFrame + 1[!1] disable the delay.
+; TextBoxFlags[!0] and A or B override text speed with a one-frame delay.
+; Options[4] and TextBoxFlags[!1] disable the delay.
 
 	ld a, [Options]
 	bit NO_TEXT_SCROLL, a
 	ret nz
 
 ; non-scrolling text?
-	ld a, [TextBoxFrame + 1]
+	ld a, [TextBoxFlags]
 	bit 1, a
 	ret z
 
@@ -342,7 +342,7 @@ PrintLetterDelay:: ; 313d
 	ld [hl], a
 
 ; force fast scroll?
-	ld a, [TextBoxFrame + 1]
+	ld a, [TextBoxFlags]
 	bit 0, a
 	jr z, .fast
 

@@ -422,7 +422,7 @@ Function171a11: ; 171a11 (5c:5a11)
 	bit 7, a
 	jr nz, .asm_171a2c
 	call Function171a36
-	callba Function8cf69
+	callba PlaySpriteAnimations
 	callba ReloadMapPart
 	jr Function171a11
 .asm_171a2c

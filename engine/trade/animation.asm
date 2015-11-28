@@ -206,7 +206,7 @@ DoTradeAnimation: ; 29082
 	bit 7, a
 	jr nz, .finished
 	call .DoTradeAnimCommand
-	callab Function8cf69
+	callab PlaySpriteAnimations
 	ld hl, wcf65
 	inc [hl]
 	call DelayFrame

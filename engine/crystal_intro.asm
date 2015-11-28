@@ -52,7 +52,7 @@ Functione4579: ; e4579
 	bit 7, a
 	jr nz, .finish
 	call PlaceGameFreakPresents
-	callba Function8cf69
+	callba PlaySpriteAnimations
 	call DelayFrame
 	jr .joy_loop
 
@@ -406,7 +406,7 @@ CrystalIntro: ; e48ac
 	bit 7, a
 	jr nz, .done
 	call IntroSceneJumper
-	callba Function8cf69
+	callba PlaySpriteAnimations
 	call DelayFrame
 	jp .loop
 

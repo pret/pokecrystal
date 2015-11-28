@@ -672,7 +672,7 @@ PrintDexEntry: ; 8442c
 	call Function84000
 	ld a, $10
 	ld [wcbfa], a
-	callba Function1dc1b0
+	callba PrintPage1
 	call ClearTileMap
 	ld a, $e4
 	call DmgToCgbBGPals
@@ -694,7 +694,7 @@ PrintDexEntry: ; 8442c
 	call Function84000
 	ld a, $3
 	ld [wcbfa], a
-	callba Function1dc213
+	callba PrintPage2
 	call Function84742
 	ld a, $4
 	ld [wcf65], a

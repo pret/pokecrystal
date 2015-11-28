@@ -21,7 +21,7 @@ EvolutionAnimation: ; 4e5e1
 	pop de
 	pop hl
 
-	ld a, [wd1ed]
+	ld a, [Buffer4]
 	and a
 	ret z
 
@@ -99,7 +99,7 @@ _EvolutionAnimation: ; 4e607
 
 	call .ReplaceFrontpic
 	xor a
-	ld [wd1ed], a
+	ld [Buffer4], a
 
 	ld a, [Buffer2]
 	ld [PlayerHPPal], a
@@ -136,7 +136,7 @@ _EvolutionAnimation: ; 4e607
 
 .cancel_evo
 	ld a, $1
-	ld [wd1ed], a
+	ld [Buffer4], a
 
 	ld a, [Buffer1]
 	ld [PlayerHPPal], a
@@ -252,7 +252,7 @@ endr
 	ret
 
 .pressed_b
-	ld a, [wd1e9]
+	ld a, [wForceEvolution]
 	and a
 	jr nz, .loop3
 	scf
@@ -270,7 +270,7 @@ Function4e794: ; 4e794
 ; 4e7a6
 
 Function4e7a6: ; 4e7a6
-	ld a, [wd1ed]
+	ld a, [Buffer4]
 	and a
 	ret nz
 	ld de, SFX_EVOLVED
@@ -286,7 +286,7 @@ Function4e7a6: ; 4e7a6
 	jr .loop
 
 .done
-	ld c, $20
+	ld c, 32
 .loop2
 	call Function4e80c
 	dec c
@@ -299,7 +299,7 @@ Function4e7a6: ; 4e7a6
 Function4e7cf: ; 4e7cf
 	ld hl, wJumptableIndex
 	ld a, [hl]
-	cp $20
+	cp 32
 	ret nc
 	ld d, a
 	inc [hl]
@@ -317,8 +317,8 @@ Function4e7cf: ; 4e7cf
 
 Function4e7e8: ; 4e7e8
 	push de
-	lb de, $48, $58
-	ld a, $13
+	depixel 9, 11
+	ld a, SPRITE_ANIM_INDEX_13
 	call _InitSpriteAnimStruct
 	ld hl, $b
 	add hl, bc
@@ -339,7 +339,7 @@ Function4e7e8: ; 4e7e8
 
 Function4e80c: ; 4e80c
 	push bc
-	callab Function8cf69
+	callab PlaySpriteAnimations
 	; a = (([hVBlankCounter] + 4) / 2) % NUM_PALETTES
 	ld a, [hVBlankCounter]
 	and $e
@@ -369,88 +369,3 @@ endr
 EvolutionGFX:
 INCBIN "gfx/evo/bubble_large.2bpp"
 INCBIN "gfx/evo/bubble.2bpp"
-
-Function4e881: ; 4e881
-	call ClearBGPalettes
-	call ClearTileMap
-	call ClearSprites
-	call DisableLCD
-	call LoadStandardFont
-	call LoadFontsBattleExtra
-	hlbgcoord 0, 0
-	ld bc, VBGMap1 - VBGMap0
-	ld a, " "
-	call ByteFill
-	hlcoord 0, 0, AttrMap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	xor a
-	call ByteFill
-	xor a
-	ld [hSCY], a
-	ld [hSCX], a
-	call EnableLCD
-	ld hl, .SavingRecordDontTurnOff
-	call PrintText
-	call Function3200
-	call SetPalettes
-	ret
-; 4e8bd
-
-.SavingRecordDontTurnOff: ; 0x4e8bd
-	; SAVING RECORD… DON'T TURN OFF!
-	text_jump UnknownText_0x1bd39e
-	db "@"
-; 0x4e8c2
-
-
-Function4e8c2: ; 4e8c2
-	call ClearBGPalettes
-	call ClearTileMap
-	call ClearSprites
-	call DisableLCD
-	call LoadStandardFont
-	call LoadFontsBattleExtra
-	hlbgcoord 0, 0
-	ld bc, VBGMap1 - VBGMap0
-	ld a, " "
-	call ByteFill
-	hlcoord 0, 0, AttrMap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	xor a
-	call ByteFill
-	ld hl, wd000 ; UnknBGPals
-	ld c, 4 * $10
-.load_white_palettes
-	ld a, (palred 31 + palgreen 31 + palblue 31) % $100
-	ld [hli], a
-	ld a, (palred 31 + palgreen 31 + palblue 31) / $100
-	ld [hli], a
-	dec c
-	jr nz, .load_white_palettes
-	xor a
-	ld [hSCY], a
-	ld [hSCX], a
-	call EnableLCD
-	call Function3200
-	call SetPalettes
-	ret
-; 4e906
-
-Function4e906: ; 4e906
-	ld a, [rSVBK]
-	push af
-	ld a, $6
-	ld [rSVBK], a
-	ld hl, w6_d000
-	ld bc, w6_d400 - w6_d000
-	ld a, " "
-	call ByteFill
-	hlbgcoord 0, 0
-	ld de, w6_d000
-	ld b, $0
-	ld c, $40
-	call Request2bpp
-	pop af
-	ld [rSVBK], a
-	ret
-; 4e929

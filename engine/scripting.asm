@@ -316,11 +316,11 @@ Script_jumptextfaceplayer: ; 96e45
 ;     text_pointer (RawTextPointerLabelParam)
 
 	ld a, [ScriptBank]
-	ld [wd44e], a
+	ld [wScriptTextBank], a
 	call GetScriptByte
-	ld [wd44f], a
+	ld [wScriptTextAddr], a
 	call GetScriptByte
-	ld [wd450], a
+	ld [wScriptTextAddr + 1], a
 	ld b, BANK(JumpTextFacePlayerScript)
 	ld hl, JumpTextFacePlayerScript
 	jp ScriptJump
@@ -332,11 +332,11 @@ Script_jumptext: ; 96e5f
 ;     text_pointer (RawTextPointerLabelParam)
 
 	ld a, [ScriptBank]
-	ld [wd44e], a
+	ld [wScriptTextBank], a
 	call GetScriptByte
-	ld [wd44f], a
+	ld [wScriptTextAddr], a
 	call GetScriptByte
-	ld [wd450], a
+	ld [wScriptTextAddr + 1], a
 	ld b, BANK(JumpTextScript)
 	ld hl, JumpTextScript
 	jp ScriptJump
@@ -361,11 +361,11 @@ Script_farjumptext: ; 96e81
 ;     text_pointer (PointerLabelBeforeBank)
 
 	call GetScriptByte
-	ld [wd44e], a
+	ld [wScriptTextBank], a
 	call GetScriptByte
-	ld [wd44f], a
+	ld [wScriptTextAddr], a
 	call GetScriptByte
-	ld [wd450], a
+	ld [wScriptTextAddr + 1], a
 	ld b, BANK(JumpTextScript)
 	ld hl, JumpTextScript
 	jp ScriptJump
@@ -419,7 +419,7 @@ Script_repeattext: ; 96ebb
 	ld a, l
 	cp -1
 	jr nz, .done
-	ld hl, wd44e
+	ld hl, wScriptTextBank
 	ld a, [hli]
 	ld b, a
 	ld a, [hli]
@@ -427,6 +427,7 @@ Script_repeattext: ; 96ebb
 	ld l, a
 	call MapTextbox
 	ret
+
 .done
 	ret
 ; 96ed9
@@ -1862,11 +1863,11 @@ Script_priorityjump: ; 975aa
 ;     pointer (ScriptPointerLabelParam)
 
 	ld a, [ScriptBank]
-	ld [wd44e], a
+	ld [wPriorityScriptBank], a
 	call GetScriptByte
-	ld [wd44f], a
+	ld [wPriorityScriptAddr], a
 	call GetScriptByte
-	ld [wd450], a
+	ld [wPriorityScriptAddr + 1], a
 	ld hl, ScriptFlags
 	set 3, [hl]
 	ret
@@ -3217,8 +3218,6 @@ Script_credits: ; 97bf3
 ; script command 0xa2
 
 	callba RedCredits
-	; fallthrough
-
 DisplayCredits:
 	call Script_resetfuncs
 	ld a, $3

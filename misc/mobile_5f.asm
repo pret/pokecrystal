@@ -302,7 +302,7 @@ Function17d0f3: ; 17d0f3
 	callba Function10804d
 	callba Function17d1f1
 	ld a, $1
-	ld [wd1e9], a
+	ld [wForceEvolution], a
 	ld a, $2
 	ld [wLinkMode], a
 	callba EvolvePokemon

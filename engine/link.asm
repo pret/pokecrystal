@@ -1891,7 +1891,7 @@ Function28b87: ; 28b87
 	dec a
 	ld [CurPartyMon], a
 	ld a, $1
-	ld [wd1e9], a
+	ld [wForceEvolution], a
 	ld a, [wd003]
 	push af
 	ld hl, OTPartySpecies

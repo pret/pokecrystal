@@ -92,7 +92,7 @@ Function919b0: ; 919b0
 	jr nz, .pressed_down
 .loop2
 	push de
-	callba Function8cf69
+	callba PlaySpriteAnimations
 	pop de
 	call DelayFrame
 	jr .loop

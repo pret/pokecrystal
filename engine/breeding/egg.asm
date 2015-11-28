@@ -678,7 +678,7 @@ Function1727f: ; 1727f (5:727f)
 	push hl
 	push de
 	push bc
-	callab Function8cf69
+	callab PlaySpriteAnimations
 	call DelayFrame
 	pop bc
 	pop de
@@ -789,9 +789,9 @@ Function1736d: ; 1736d (5:736d)
 	ret nc
 	swap a
 	srl a
-	add $4c
+	add 9 * 8 + 4
 	ld d, a
-	ld e, $58
+	ld e, 11 * 8
 	ld a, SPRITE_ANIM_INDEX_19
 	call _InitSpriteAnimStruct
 	ld hl, $3
@@ -807,10 +807,10 @@ INCBIN "gfx/unknown/017393.2bpp"
 
 Function173b3: ; 173b3 (5:73b3)
 	callba Function8cf53
-	ld hl, Unknown_173ef
+	ld hl, .SpriteData
 .loop
 	ld a, [hli]
-	cp $ff
+	cp -1
 	jr z, .done
 	ld e, a
 	ld a, [hli]
@@ -823,16 +823,16 @@ Function173b3: ; 173b3 (5:73b3)
 	push bc
 	ld a, SPRITE_ANIM_INDEX_1C
 	call _InitSpriteAnimStruct
-	ld hl, $3
+	ld hl, SpriteAnim1TileID - SpriteAnim1
 	add hl, bc
 	ld [hl], $0
 	pop de
 	ld a, e
-	ld hl, $1
+	ld hl, SpriteAnim1Sprite01 - SpriteAnim1
 	add hl, bc
 	add [hl]
 	ld [hl], a
-	ld hl, $b
+	ld hl, SpriteAnim1Sprite0b - SpriteAnim1
 	add hl, bc
 	ld [hl], d
 	pop hl
@@ -844,19 +844,19 @@ Function173b3: ; 173b3 (5:73b3)
 	ret
 ; 173ef (5:73ef)
 
-Unknown_173ef: ; 173ef
+.SpriteData: ; 173ef
 ; Probably OAM.
-	db $54, $48, $00, $3c
-	db $5c, $48, $01, $04
-	db $54, $50, $00, $30
-	db $5c, $50, $01, $10
-	db $54, $58, $02, $24
-	db $5c, $58, $03, $1c
-	db $50, $4c, $00, $36
-	db $60, $4c, $01, $0a
-	db $50, $54, $02, $2a
-	db $60, $54, $03, $16
-	db $ff
+	dsprite 10, 4,  9, 0, $00, $3c
+	dsprite 11, 4,  9, 0, $01, $04
+	dsprite 10, 4, 10, 0, $00, $30
+	dsprite 11, 4, 10, 0, $01, $10
+	dsprite 10, 4, 11, 0, $02, $24
+	dsprite 11, 4, 11, 0, $03, $1c
+	dsprite 10, 0,  9, 4, $00, $36
+	dsprite 12, 0,  9, 4, $01, $0a
+	dsprite 10, 0, 10, 4, $02, $2a
+	dsprite 12, 0, 10, 4, $03, $16
+	db -1
 ; 17418
 
 Function17418: ; 17418 (5:7418)

@@ -43,7 +43,7 @@ Special_MagnetTrain: ; 8cc04
 	jr z, .initialize
 	bit 7, a
 	jr nz, .done
-	callab Function8cf69
+	callab PlaySpriteAnimations
 	call Function8cdf7
 	call Function8cc99
 	call Function3b0c
@@ -426,7 +426,7 @@ Function8cea2: ; 8cea2
 ; 8ceae
 
 Function8ceae: ; 8ceae
-	callba Function8cf69
+	callba PlaySpriteAnimations
 	call Function8cdf7
 	call Function8cc99
 	call Function3b0c

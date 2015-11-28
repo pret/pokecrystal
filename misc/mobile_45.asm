@@ -7721,7 +7721,7 @@ Function1176ee: ; 1176ee (45:76ee)
 	bit 7, a
 	jr nz, .asm_117709
 	call Function117719
-	callba Function8cf69
+	callba PlaySpriteAnimations
 	callba ReloadMapPart
 	jr Function1176ee
 .asm_117709

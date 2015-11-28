@@ -723,15 +723,15 @@ PokeFluteTerminatorCharacter:: ; 13e0
 
 
 PlaceWholeStringInBoxAtOnce:: ; 13e5
-	ld a, [TextBoxFrame + 1]
+	ld a, [TextBoxFlags]
 	push af
 	set 1, a
-	ld [TextBoxFrame + 1], a
+	ld [TextBoxFlags], a
 
 	call DoTextUntilTerminator
 
 	pop af
-	ld [TextBoxFrame + 1], a
+	ld [TextBoxFlags], a
 	ret
 ; 13f6
 

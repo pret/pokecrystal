@@ -24,7 +24,7 @@ PokeGear: ; 90b8d (24:4b8d)
 	bit 7, a
 	jr nz, .done
 	call Function90f04
-	callba Function8cf69
+	callba PlaySpriteAnimations
 	call DelayFrame
 	jr .loop
 
@@ -1966,7 +1966,7 @@ _FlyMap: ; 91af3
 	jr nz, .pressedA
 	call FlyMapScroll
 	call GetMapCursorCoordinates
-	callba Function8cf69
+	callba PlaySpriteAnimations
 	call DelayFrame
 	jr .loop
 
@@ -2901,7 +2901,7 @@ Function92311: ; unreferenced
 	jr nz, .pressedA
 	call Function923b8
 	call GetMapCursorCoordinates
-	callba Function8cf69
+	callba PlaySpriteAnimations
 	call DelayFrame
 	jr .loop
 

@@ -1,4 +1,4 @@
-SlideBattlePics: ; 4e980
+BattleIntroSlidingPics: ; 4e980
 	ld a, [rSVBK]
 	push af
 	ld a, $5

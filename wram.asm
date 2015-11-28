@@ -1014,7 +1014,7 @@ wc7d7:: ds 1
 wc7d8:: ds 1
 wc7d9:: ds 1
 wc7da:: ds 1
-wc7db:: ds 1
+wDexSearchSlowpokeFrame:: ds 1
 wc7dc:: ds 1
 wc7dd:: ds 1
 wc7de:: ds 1
@@ -1493,7 +1493,7 @@ wSaveFileExists:: ds 1
 TextBoxFrame:: ; cfce
 ; bits 0-2: textbox frame 0-7
 	ds 1
-
+TextBoxFlags::
 	ds 1
 
 GBPrinter:: ; cfd0
@@ -2011,7 +2011,7 @@ TilesetPalettes:: ; d1e6
 EvolvableFlags:: ; d1e8
 	flag_array PARTY_LENGTH
 
-wd1e9:: ds 1
+wForceEvolution:: ds 1
 MagikarpLength::
 Buffer1:: ; d1ea
 	ds 1
@@ -2161,9 +2161,6 @@ TimeOfDay:: ; d269
 	ds 1
 
 	ds 1
-SECTION "Enemy Party", WRAMX, BANK [1]
-OTPlayerName:: ds NAME_LENGTH
-	ds OTPlayerName - @
 wPokedexShowPointerAddr::
 wd26b:: ds 1
 wd26c:: ds 1
@@ -2171,9 +2168,13 @@ wPokedexShowPointerBank::
 wd26d:: ds 1
 	ds 3
 wd271:: ds 5
-OTPlayerID::
 wd276:: ds 10
+	ds wd26b - @
 
+SECTION "Enemy Party", WRAMX, BANK [1]
+OTPlayerName:: ds NAME_LENGTH
+OTPlayerID:: ds 2
+	ds 8
 OTPartyCount::   ds 1 ; d280
 OTPartySpecies:: ds PARTY_LENGTH ; d281
 OTPartyEnd::     ds 1
@@ -2204,6 +2205,7 @@ MapEventStatus:: ; d433
 	ds 1
 
 ScriptFlags:: ; d434
+; bit 3: priority jump
 	ds 1
 ScriptFlags2:: ; d435
 	ds 1
@@ -2234,7 +2236,11 @@ wScriptStackBA5:: ds 3
 ScriptDelay:: ; d44d
 	ds 1
 
+wPriorityScriptBank::
+wScriptTextBank::
 wd44e:: ds 1
+wPriorityScriptAddr::
+wScriptTextAddr::
 wd44f:: ds 1
 wd450:: ds 1
 wd451:: ds 1

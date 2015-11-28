@@ -491,11 +491,11 @@ endr
 	bit 3, [hl]
 	jr z, .nope
 
-	ld hl, ScriptDelay + 2
+	ld hl, wPriorityScriptAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [ScriptDelay + 1]
+	ld a, [wPriorityScriptBank]
 	call CallScript
 	scf
 	ret

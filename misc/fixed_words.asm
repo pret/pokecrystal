@@ -362,7 +362,7 @@ Function11c283: ; 11c283
 	bit 7, a
 	jr nz, .exit
 	call .DoJumptableFunction
-	callba Function8cf69
+	callba PlaySpriteAnimations
 	callba ReloadMapPart
 	jr .loop
 

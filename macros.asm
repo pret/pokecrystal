@@ -238,3 +238,7 @@ bgrows EQUS "* $20"
 palred EQUS "$0400 *"
 palgreen EQUS "$0020 *"
 palblue EQUS "$0001 *"
+
+dsprite: MACRO
+	db \1 * 8 + \2, \3 * 8 + \4, \5, \6
+endm

@@ -2011,7 +2011,7 @@ Function100cb5: ; 100cb5
 	call Function100dd2
 	callba Function241ba
 	push bc
-	callba Function8cf69
+	callba PlaySpriteAnimations
 	callba Function10402d
 	call Function100dfd
 	pop bc
@@ -2065,7 +2065,7 @@ Function100d22: ; 100d22
 	call Function100dd2
 	callba Function241ba
 	push bc
-	callba Function8cf69
+	callba PlaySpriteAnimations
 	callba Function10402d
 	call Function100dfd
 	pop bc
@@ -4059,7 +4059,7 @@ Function101a21: ; 101a21
 	ld a, $1
 	ld [wc2d7], a
 	callba BattleIntro
-	callba SendOutFirstMons
+	callba DoBattle
 	callba ShowLinkBattleParticipantsAfterEnd
 	xor a
 	ld [wc2d7], a
@@ -6468,7 +6468,7 @@ Function102b32: ; 102b32
 	dec a
 	ld [CurPartyMon], a
 	ld a, $1
-	ld [wd1e9], a
+	ld [wForceEvolution], a
 	callba EvolvePokemon
 	call Function102d9a
 	call Function102dd3

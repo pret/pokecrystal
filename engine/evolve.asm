@@ -78,7 +78,7 @@ endr
 	cp EVOLVE_ITEM
 	jp z, .item
 
-	ld a, [wd1e9]
+	ld a, [wForceEvolution]
 	and a
 	jp nz, .dont_evolve_2
 
@@ -179,7 +179,7 @@ endr
 	cp b
 	jp nz, .dont_evolve_3
 
-	ld a, [wd1e9]
+	ld a, [wForceEvolution]
 	and a
 	jp z, .dont_evolve_3
 	ld a, [wLinkMode]

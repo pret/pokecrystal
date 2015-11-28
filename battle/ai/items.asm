@@ -20,7 +20,7 @@ AI_SwitchOrTryItem: ; 38000
 	and a
 	jr nz, DontSwitch
 
-	ld hl, TrainerClassAttributes + 5
+	ld hl, TrainerClassAttributes + TRNATTR_AI_ITEM_SWITCH
 	ld a, [InBattleTowerBattle] ; Load always the first TrainerClass for BattleTower-Trainers
 	and a
 	jr nz, .ok

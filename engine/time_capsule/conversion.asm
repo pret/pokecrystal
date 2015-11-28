@@ -359,7 +359,7 @@ NewPokedexEntry: ; fb877
 	call WaitPressAorB_BlinkCursor
 	ld a, $1
 	ld [wPokedexStatus], a
-	callba Function4424d
+	callba DisplayDexEntry
 	call WaitPressAorB_BlinkCursor
 	pop af
 	ld [wPokedexStatus], a

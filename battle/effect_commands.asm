@@ -7496,14 +7496,14 @@ endr
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_CONFUSE_HIT
-	jr z, .asm_36d99
+	jr z, .got_effect
 	cp EFFECT_SNORE
-	jr z, .asm_36d99
+	jr z, .got_effect
 	cp EFFECT_SWAGGER
-	jr z, .asm_36d99
+	jr z, .got_effect
 	call AnimateCurrentMove
 
-.asm_36d99
+.got_effect
 	ld de, ANIM_CONFUSED
 	call PlayOpponentBattleAnim
 
@@ -7513,11 +7513,11 @@ endr
 	call GetOpponentItem
 	ld a, b
 	cp HELD_HEAL_STATUS
-	jr z, .asm_36db0
+	jr z, .heal_confusion
 	cp HELD_HEAL_CONFUSION
 	ret nz
-.asm_36db0
-	ld hl, HandleStatusHealingItem
+.heal_confusion
+	ld hl, UseConfusionHealingItem
 	jp CallBattleCore
 ; 36db6
 

@@ -400,7 +400,7 @@ Function1082c6: ; 1082c6
 Function1082cc: ; 1082cc
 .asm_1082cc
 	push bc
-	callba Function8cf69
+	callba PlaySpriteAnimations
 	pop bc
 	call DelayFrame
 	dec c
@@ -410,7 +410,7 @@ Function1082cc: ; 1082cc
 
 Function1082db: ; 1082db
 .asm_1082db
-	callba Function8cf69
+	callba PlaySpriteAnimations
 	callba Functiond00b4
 	callba Function10402d
 	jr nc, .asm_1082db
@@ -431,7 +431,7 @@ Function1082fa: ; 1082fa
 	call Function108b78
 	push hl
 	push bc
-	callba Function8cf69
+	callba PlaySpriteAnimations
 	pop bc
 	pop hl
 	call DelayFrame

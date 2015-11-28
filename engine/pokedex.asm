@@ -323,7 +323,7 @@ Function40217: ; 40217 (10:4217)
 	call Function4134f
 	call Function40bb1
 	ld [wc2d6], a
-	callba Function4424d
+	callba DisplayDexEntry
 	call Function40ba0
 	call WaitBGMap
 	ld a, $a7
@@ -378,7 +378,7 @@ Function40292: ; 40292
 	ld [wPokedexStatus], a
 	call Function40bb1
 	ld [wc2d6], a
-	callba Function4424d
+	callba DisplayDexEntry
 	call WaitBGMap
 	ret
 ; 402aa
@@ -394,7 +394,7 @@ Function402aa: ; 402aa (10:42aa)
 	call Function41478
 	call Function40bb1
 	ld [wc2d6], a
-	callba Function4424d
+	callba DisplayDexEntry
 	call Function40ba0
 	call Function4143b
 	call WaitBGMap
@@ -498,7 +498,7 @@ Function4034f: ; 4034f
 Function4038d: ; 4038d
 	call Function407fd
 	call Function40bb1
-	callba Function4424d
+	callba DisplayDexEntry
 	call Function40ba0
 	ret
 ; 4039d
@@ -621,8 +621,8 @@ Function40443: ; 40443 (10:4443)
 	ld [wc7d6], a
 	call Function40fa8
 	xor a
-	ld [wc7db], a
-	callba Function44207
+	ld [wDexSearchSlowpokeFrame], a
+	callba DoDexSearchSlowpokeFrame
 	call WaitBGMap
 	ld a, $10
 	call Function41423
@@ -679,7 +679,7 @@ Function404b0: ; 404b0
 
 Function404b7: ; 404b7
 	call Function41086
-	callba Function441cf
+	callba AnimateDexSearchSlowpoke
 	ld a, [wc7d7]
 	and a
 	jr nz, .asm_404dc
@@ -2557,7 +2557,6 @@ Function41a2c: ; 41a2c
 	ret
 ; 41a58
 
-
 Function41a58: ; 41a58 (10:5a58)
 	ld a, [UnownLetter]
 	push af
@@ -2576,3 +2575,68 @@ Function41a58: ; 41a58 (10:5a58)
 	pop af
 	ld [UnownLetter], a
 	ret
+; 41a7f
+
+Function41a7f: ; 41a7f
+	xor a
+	ld [hBGMapMode], a
+	callba Function1de247
+	call Function41af7
+	call DisableLCD
+	call LoadStandardFont
+	call LoadFontsExtra
+	call Function414b7
+	call Function4147b
+	ld a, [wd265]
+	ld [CurPartySpecies], a
+	call Function407fd
+	call Function40ba0
+	hlcoord 0, 17
+	ld [hl], $3b
+	inc hl
+	ld bc, $13
+	ld a, " "
+	call ByteFill
+	callba DisplayDexEntry
+	call EnableLCD
+	call WaitBGMap
+	call GetBaseData
+	ld de, VTiles2
+	predef GetFrontpic
+	ld a, $4
+	call Function41423
+	ld a, [CurPartySpecies]
+	call PlayCry
+	ret
+; 41ad7
+
+
+Function41ad7: ; 41ad7 (10:5ad7)
+	ld a, $3
+	ld [hBGMapMode], a
+	ld c, 4
+	call DelayFrames
+	ret
+
+Function41ae1: ; 41ae1 (10:5ae1)
+	ld a, $4
+	ld [hBGMapMode], a
+	ld c, 4
+	call DelayFrames
+	ret
+
+Function41aeb: ; 41aeb (10:5aeb)
+	ld a, [hCGB]
+	and a
+	jr z, .asm_41af3
+	call Function41ae1
+.asm_41af3
+	call Function41ad7
+	ret
+
+
+Function41af7: ; 41af7
+	xor a
+	ld [hBGMapMode], a
+	ret
+; 41afb

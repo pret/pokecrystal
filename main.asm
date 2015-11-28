@@ -169,264 +169,7 @@ Function64db: ; 64db
 	ret
 ; 6508
 
-LearnMove: ; 6508
-	call LoadTileMapToTempTileMap
-	ld a, [CurPartyMon]
-	ld hl, PartyMonNicknames
-	call GetNick
-	ld hl, StringBuffer1
-	ld de, wd050_MonNick
-	ld bc, PKMN_NAME_LENGTH
-	call CopyBytes
-
-.loop
-	ld hl, PartyMon1Moves
-	ld bc, PARTYMON_STRUCT_LENGTH
-	ld a, [CurPartyMon]
-	call AddNTimes
-	ld d, h
-	ld e, l
-	ld b, NUM_MOVES
-; Get the first empty move slot.  This routine also serves to
-; determine whether the Pokemon learning the moves already has
-; all four slots occupied, in which case one would need to be
-; deleted.
-.next
-	ld a, [hl]
-	and a
-	jr z, .learn
-	inc hl
-	dec b
-	jr nz, .next
-; If we're here, we enter the routine for forgetting a move
-; to make room for the new move we're trying to learn.
-	push de
-	call ForgetMove
-	pop de
-	jp c, .cancel
-
-	push hl
-	push de
-	ld [wd265], a
-
-	ld b, a
-	ld a, [wBattleMode]
-	and a
-	jr z, .not_disabled
-	ld a, [DisabledMove]
-	cp b
-	jr nz, .not_disabled
-	xor a
-	ld [DisabledMove], a
-	ld [PlayerDisableCount], a
-.not_disabled
-
-	call GetMoveName
-	ld hl, UnknownText_0x6684 ; 1, 2 and…
-	call PrintText
-	pop de
-	pop hl
-
-.learn
-	ld a, [wd262]
-	ld [hl], a
-	ld bc, MON_PP - MON_MOVES
-	add hl, bc
-
-	push hl
-	push de
-	dec a
-	ld hl, Moves + MOVE_PP
-	ld bc, MOVE_LENGTH
-	call AddNTimes
-	ld a, BANK(Moves)
-	call GetFarByte
-	pop de
-	pop hl
-
-	ld [hl], a
-
-	ld a, [wBattleMode]
-	and a
-	jp z, .learned
-
-	ld a, [CurPartyMon]
-	ld b, a
-	ld a, [CurBattleMon]
-	cp b
-	jp nz, .learned
-
-	ld a, [PlayerSubStatus5]
-	bit SUBSTATUS_TRANSFORMED, a
-	jp nz, .learned
-
-	ld h, d
-	ld l, e
-	ld de, BattleMonMoves
-	ld bc, NUM_MOVES
-	call CopyBytes
-	ld bc, PartyMon1PP - (PartyMon1Moves + NUM_MOVES)
-	add hl, bc
-	ld de, BattleMonPP
-	ld bc, NUM_MOVES
-	call CopyBytes
-	jp .learned
-
-.cancel
-	ld hl, UnknownText_0x6675 ; Stop learning <MOVE>?
-	call PrintText
-	call YesNoBox
-	jp c, .loop
-
-	ld hl, UnknownText_0x667a ; <MON> did not learn <MOVE>.
-	call PrintText
-	ld b, 0
-	ret
-
-.learned
-	ld hl, UnknownText_0x666b ; <MON> learned <MOVE>!
-	call PrintText
-	ld b, 1
-	ret
-; 65d3
-
-ForgetMove: ; 65d3
-	push hl
-	ld hl, UnknownText_0x667f
-	call PrintText
-	call YesNoBox
-	pop hl
-	ret c
-	ld bc, -NUM_MOVES
-	add hl, bc
-	push hl
-	ld de, wListMoves_MoveIndicesBuffer
-	ld bc, NUM_MOVES
-	call CopyBytes
-	pop hl
-.loop
-	push hl
-	ld hl, UnknownText_0x6670
-	call PrintText
-	hlcoord 5, 2
-	ld b, NUM_MOVES * 2
-	ld c, MOVE_NAME_LENGTH
-	call TextBox
-	hlcoord 5 + 2, 2 + 2
-	ld a, SCREEN_WIDTH * 2
-	ld [Buffer1], a
-	predef ListMoves
-	; wMenuData3
-	ld a, $4
-	ld [wcfa1], a
-	ld a, $6
-	ld [wcfa2], a
-	ld a, [wd0eb]
-	inc a
-	ld [wcfa3], a
-	ld a, $1
-	ld [wcfa4], a
-	ld [MenuSelection2], a
-	ld [wcfaa], a
-	ld a, $3
-	ld [wcfa8], a
-	ld a, $20
-	ld [wcfa5], a
-	xor a
-	ld [wcfa6], a
-	ld a, $20
-	ld [wcfa7], a
-	call Function1bc9
-	push af
-	call Call_LoadTempTileMapToTileMap
-	pop af
-	pop hl
-	bit 1, a
-	jr nz, .cancel
-	push hl
-	ld a, [MenuSelection2]
-	dec a
-	ld c, a
-	ld b, 0
-	add hl, bc
-	ld a, [hl]
-	push af
-	push bc
-	call IsHMMove
-	pop bc
-	pop de
-	ld a, d
-	jr c, .hmmove
-	pop hl
-	add hl, bc
-	and a
-	ret
-
-.hmmove
-	ld hl, UnknownText_0x669a
-	call PrintText
-	pop hl
-	jr .loop
-
-.cancel
-	scf
-	ret
-; 666b
-
-UnknownText_0x666b: ; 666b
-; <MON> learned <MOVE>!
-	text_jump UnknownText_0x1c5660
-	db "@"
-; 6670
-
-UnknownText_0x6670: ; 6670
-; Which move should be forgotten?
-	text_jump UnknownText_0x1c5678
-	db "@"
-; 6675
-
-UnknownText_0x6675: ; 6675
-; Stop learning <MOVE>?
-	text_jump UnknownText_0x1c5699
-	db "@"
-; 667a
-
-UnknownText_0x667a: ; 667a
-; <MON> did not learn <MOVE>.
-	text_jump UnknownText_0x1c56af
-	db "@"
-; 667f
-
-UnknownText_0x667f: ; 667f
-; <MON> is trying to learn <MOVE>. But <MON> can't learn more than
-; four moves. Delete an older move to make room for <MOVE>?
-	text_jump UnknownText_0x1c56c9
-	db "@"
-; 6684
-
-UnknownText_0x6684: ; 6684
-	text_jump UnknownText_0x1c5740 ; 1, 2 and…
-	start_asm
-	push de
-	ld de, SFX_SWITCH_POKEMON
-	call PlaySFX
-	pop de
-	ld hl, UnknownText_0x6695
-	ret
-; 6695
-
-UnknownText_0x6695: ; 6695
-; Poof! <MON> forgot <MOVE>. And…
-	text_jump UnknownText_0x1c574e
-	db "@"
-; 669a
-
-UnknownText_0x669a: ; 669a
-; HM moves can't be forgotten now.
-	text_jump UnknownText_0x1c5772
-	db "@"
-; 669f
-
+INCLUDE "engine/learn.asm"
 
 CheckNickErrors:: ; 669f
 ; error-check monster nick before use
@@ -494,215 +237,19 @@ CheckNickErrors:: ; 669f
 .textcommands ; 66cf
 ; table defining which characters are actually text commands
 ; format:
-	;   ≥    <
-	db $00, $05
-	db $14, $19
-	db $1d, $26
-	db $35, $3a
-	db $3f, $40
-	db $49, $5d
-	db $5e, $7f
-	db $ff ; end
+	;      ≥           <
+	db "<START>",  $04       + 1
+	db "<PLAY_G>", $18       + 1
+	db $1d,        "%"       + 1
+	db $35,        "<GREEN>" + 1
+	db "<ENEMY>",  "<ENEMY>" + 1
+	db $49,        "<TM>"    + 1
+	db "<ROCKET>", "┘"       + 1
+	db -1 ; end
 ; 66de
 
 
-_Multiply:: ; 66de
-
-; hMultiplier is one byte.
-	ld a, 8
-	ld b, a
-
-	xor a
-	ld [hMultiplicand - 1], a
-	ld [hMathBuffer + 1], a
-	ld [hMathBuffer + 2], a
-	ld [hMathBuffer + 3], a
-	ld [hMathBuffer + 4], a
-
-
-.loop
-	ld a, [hMultiplier]
-	srl a
-	ld [hMultiplier], a
-	jr nc, .next
-
-	ld a, [hMathBuffer + 4]
-	ld c, a
-	ld a, [hMultiplicand + 2]
-	add c
-	ld [hMathBuffer + 4], a
-
-	ld a, [hMathBuffer + 3]
-	ld c, a
-	ld a, [hMultiplicand + 1]
-	adc c
-	ld [hMathBuffer + 3], a
-
-	ld a, [hMathBuffer + 2]
-	ld c, a
-	ld a, [hMultiplicand + 0]
-	adc c
-	ld [hMathBuffer + 2], a
-
-	ld a, [hMathBuffer + 1]
-	ld c, a
-	ld a, [hMultiplicand - 1]
-	adc c
-	ld [hMathBuffer + 1], a
-
-.next
-	dec b
-	jr z, .done
-
-
-; hMultiplicand <<= 1
-
-	ld a, [hMultiplicand + 2]
-	add a
-	ld [hMultiplicand + 2], a
-
-	ld a, [hMultiplicand + 1]
-	rla
-	ld [hMultiplicand + 1], a
-
-	ld a, [hMultiplicand + 0]
-	rla
-	ld [hMultiplicand + 0], a
-
-	ld a, [hMultiplicand - 1]
-	rla
-	ld [hMultiplicand - 1], a
-
-	jr .loop
-
-
-.done
-	ld a, [hMathBuffer + 4]
-	ld [hProduct + 3], a
-
-	ld a, [hMathBuffer + 3]
-	ld [hProduct + 2], a
-
-	ld a, [hMathBuffer + 2]
-	ld [hProduct + 1], a
-
-	ld a, [hMathBuffer + 1]
-	ld [hProduct + 0], a
-
-	ret
-; 673e
-
-
-_Divide:: ; 673e
-	xor a
-	ld [hMathBuffer + 0], a
-	ld [hMathBuffer + 1], a
-	ld [hMathBuffer + 2], a
-	ld [hMathBuffer + 3], a
-	ld [hMathBuffer + 4], a
-
-	ld a, 9
-	ld e, a
-
-.loop
-	ld a, [hMathBuffer + 0]
-	ld c, a
-	ld a, [hDividend + 1]
-	sub c
-	ld d, a
-
-	ld a, [hDivisor]
-	ld c, a
-	ld a, [hDividend + 0]
-	sbc c
-	jr c, .asm_6767
-
-	ld [hDividend + 0], a
-
-	ld a, d
-	ld [hDividend + 1], a
-
-	ld a, [hMathBuffer + 4]
-	inc a
-	ld [hMathBuffer + 4], a
-
-	jr .loop
-
-.asm_6767
-	ld a, b
-	cp 1
-	jr z, .done
-
-	ld a, [hMathBuffer + 4]
-	add a
-	ld [hMathBuffer + 4], a
-
-	ld a, [hMathBuffer + 3]
-	rla
-	ld [hMathBuffer + 3], a
-
-	ld a, [hMathBuffer + 2]
-	rla
-	ld [hMathBuffer + 2], a
-
-	ld a, [hMathBuffer + 1]
-	rla
-	ld [hMathBuffer + 1], a
-
-	dec e
-	jr nz, .asm_6798
-
-	ld e, 8
-	ld a, [hMathBuffer + 0]
-	ld [hDivisor], a
-	xor a
-	ld [hMathBuffer + 0], a
-
-	ld a, [hDividend + 1]
-	ld [hDividend + 0], a
-
-	ld a, [hDividend + 2]
-	ld [hDividend + 1], a
-
-	ld a, [hDividend + 3]
-	ld [hDividend + 2], a
-
-.asm_6798
-	ld a, e
-	cp 1
-	jr nz, .asm_679e
-	dec b
-
-.asm_679e
-	ld a, [hDivisor]
-	srl a
-	ld [hDivisor], a
-
-	ld a, [hMathBuffer + 0]
-	rr a
-	ld [hMathBuffer + 0], a
-
-	jr .loop
-
-.done
-	ld a, [hDividend + 1]
-	ld [hDivisor], a
-
-	ld a, [hMathBuffer + 4]
-	ld [hDividend + 3], a
-
-	ld a, [hMathBuffer + 3]
-	ld [hDividend + 2], a
-
-	ld a, [hMathBuffer + 2]
-	ld [hDividend + 1], a
-
-	ld a, [hMathBuffer + 1]
-	ld [hDividend + 0], a
-
-	ret
-; 67c1
-
+INCLUDE "engine/math.asm"
 
 ItemAttributes: ; 67c1
 INCLUDE "items/item_attributes.asm"
@@ -14291,12 +13838,12 @@ SECTION "Tileset Data 4", ROMX, BANK[TILESETS_4]
 INCLUDE "tilesets/data_4.asm"
 
 
-SECTION "bankD", ROMX, BANK[$D]
+SECTION "Effect Commands", ROMX, BANK[$D]
 
 INCLUDE "battle/effect_commands.asm"
 
 
-SECTION "bankE", ROMX, BANK[$E]
+SECTION "Enemy Trainers", ROMX, BANK[$E]
 
 INCLUDE "battle/ai/items.asm"
 
@@ -14326,8 +13873,8 @@ GetTrainerClassName: ; 3952d
 	ret
 ; 39550
 
-Function39550: ; 39550
-	ld hl, wd26b
+GetOTName: ; 39550
+	ld hl, OTPlayerName
 	ld a, [wLinkMode]
 	and a
 	jr nz, .ok
@@ -14352,13 +13899,13 @@ Function39550: ; 39550
 	ret
 ; 3957b
 
-Function3957b: ; 3957b
+GetTrainerAttributes: ; 3957b
 	ld a, [TrainerClass]
 	ld c, a
-	call Function39550
+	call GetOTName
 	ld a, [TrainerClass]
 	dec a
-	ld hl, TrainerClassAttributes
+	ld hl, TrainerClassAttributes + TRNATTR_ITEM1
 	ld bc, NUM_TRAINER_ATTRIBUTES
 	call AddNTimes
 	ld de, wEnemyTrainerItem1
@@ -14374,414 +13921,14 @@ Function3957b: ; 3957b
 
 INCLUDE "trainers/attributes.asm"
 
-
-ReadTrainerParty: ; 39771
-	ld a, [InBattleTowerBattle]
-	bit 0, a
-	ret nz
-
-	ld a, [wLinkMode]
-	and a
-	ret nz
-
-	ld hl, OTPartyCount
-	xor a
-	ld [hli], a
-	dec a
-	ld [hl], a
-
-	ld hl, OTPartyMons
-	ld bc, OTPartyMonsEnd - OTPartyMons
-	xor a
-	call ByteFill
-
-	ld a, [OtherTrainerClass]
-	cp CAL
-	jr nz, .not_cal2
-	ld a, [OtherTrainerID]
-	cp CAL2
-	jr z, .cal2
-	ld a, [OtherTrainerClass]
-.not_cal2
-
-	dec a
-	ld c, a
-	ld b, 0
-	ld hl, TrainerGroups
-rept 2
-	add hl, bc
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-
-	ld a, [OtherTrainerID]
-	ld b, a
-.skip_trainer
-	dec b
-	jr z, .got_trainer
-.loop
-	ld a, [hli]
-	cp $ff
-	jr nz, .loop
-	jr .skip_trainer
-.got_trainer
-
-.skip_name
-	ld a, [hli]
-	cp "@"
-	jr nz, .skip_name
-
-	ld a, [hli]
-	ld c, a
-	ld b, 0
-	ld d, h
-	ld e, l
-	ld hl, TrainerTypes
-rept 2
-	add hl, bc
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld bc, .done
-	push bc
-	jp [hl]
-
-.done
-	jp ComputeTrainerReward
-
-.cal2
-	ld a, BANK(sMysteryGiftTrainer)
-	call GetSRAMBank
-	ld de, sMysteryGiftTrainer
-	call TrainerType2
-	call CloseSRAM
-	jr .done
-; 397e3
-
-TrainerTypes: ; 397e3
-	dw TrainerType1 ; level, species
-	dw TrainerType2 ; level, species, moves
-	dw TrainerType3 ; level, species, item
-	dw TrainerType4 ; level, species, item, moves
-; 397eb
-
-TrainerType1: ; 397eb
-; normal (level, species)
-	ld h, d
-	ld l, e
-.loop
-	ld a, [hli]
-	cp $ff
-	ret z
-
-	ld [CurPartyLevel], a
-	ld a, [hli]
-	ld [CurPartySpecies], a
-	ld a, OTPARTYMON
-	ld [MonType], a
-	push hl
-	predef TryAddMonToParty
-	pop hl
-	jr .loop
-; 39806
-
-TrainerType2: ; 39806
-; moves
-	ld h, d
-	ld l, e
-.loop
-	ld a, [hli]
-	cp $ff
-	ret z
-
-	ld [CurPartyLevel], a
-	ld a, [hli]
-	ld [CurPartySpecies], a
-	ld a, OTPARTYMON
-	ld [MonType], a
-
-	push hl
-	predef TryAddMonToParty
-	ld a, [OTPartyCount]
-	dec a
-	ld hl, OTPartyMon1Moves
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
-	ld d, h
-	ld e, l
-	pop hl
-
-	ld b, NUM_MOVES
-.copy_moves
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec b
-	jr nz, .copy_moves
-
-	push hl
-
-	ld a, [OTPartyCount]
-	dec a
-	ld hl, OTPartyMon1Species
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
-	ld d, h
-	ld e, l
-	ld hl, MON_PP
-	add hl, de
-	push hl
-	ld hl, MON_MOVES
-	add hl, de
-	pop de
-
-	ld b, NUM_MOVES
-.copy_pp
-	ld a, [hli]
-	and a
-	jr z, .copied_pp
-
-	push hl
-	push bc
-	dec a
-	ld hl, Moves + MOVE_PP
-	ld bc, MOVE_LENGTH
-	call AddNTimes
-	ld a, BANK(Moves)
-	call GetFarByte
-	pop bc
-	pop hl
-
-	ld [de], a
-	inc de
-	dec b
-	jr nz, .copy_pp
-.copied_pp
-
-	pop hl
-	jr .loop
-; 39871
-
-TrainerType3: ; 39871
-; item
-	ld h, d
-	ld l, e
-.loop
-	ld a, [hli]
-	cp $ff
-	ret z
-
-	ld [CurPartyLevel], a
-	ld a, [hli]
-	ld [CurPartySpecies], a
-	ld a, OTPARTYMON
-	ld [MonType], a
-	push hl
-	predef TryAddMonToParty
-	ld a, [OTPartyCount]
-	dec a
-	ld hl, OTPartyMon1Item
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
-	ld d, h
-	ld e, l
-	pop hl
-	ld a, [hli]
-	ld [de], a
-	jr .loop
-; 3989d (e:589d)
-
-TrainerType4: ; 3989d
-; item + moves
-	ld h, d
-	ld l, e
-.loop
-	ld a, [hli]
-	cp $ff
-	ret z
-
-	ld [CurPartyLevel], a
-	ld a, [hli]
-	ld [CurPartySpecies], a
-
-	ld a, OTPARTYMON
-	ld [MonType], a
-
-	push hl
-	predef TryAddMonToParty
-	ld a, [OTPartyCount]
-	dec a
-	ld hl, OTPartyMon1Item
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
-	ld d, h
-	ld e, l
-	pop hl
-
-	ld a, [hli]
-	ld [de], a
-
-	push hl
-	ld a, [OTPartyCount]
-	dec a
-	ld hl, OTPartyMon1Moves
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
-	ld d, h
-	ld e, l
-	pop hl
-
-	ld b, NUM_MOVES
-.copy_moves
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec b
-	jr nz, .copy_moves
-
-	push hl
-
-	ld a, [OTPartyCount]
-	dec a
-	ld hl, OTPartyMon1
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
-	ld d, h
-	ld e, l
-	ld hl, MON_PP
-	add hl, de
-
-	push hl
-	ld hl, MON_MOVES
-	add hl, de
-	pop de
-
-	ld b, NUM_MOVES
-.copy_pp
-	ld a, [hli]
-	and a
-	jr z, .copied_pp
-
-	push hl
-	push bc
-	dec a
-	ld hl, Moves + MOVE_PP
-	ld bc, MOVE_LENGTH
-	call AddNTimes
-	ld a, BANK(Moves)
-	call GetFarByte
-	pop bc
-	pop hl
-
-	ld [de], a
-	inc de
-	dec b
-	jr nz, .copy_pp
-.copied_pp
-
-	pop hl
-	jr .loop
-; 3991b
-
-ComputeTrainerReward: ; 3991b (e:591b)
-	ld hl, hProduct
-	xor a
-rept 3
-	ld [hli], a
-endr
-	ld a, [wEnemyTrainerBaseReward]
-	ld [hli], a
-	ld a, [CurPartyLevel]
-	ld [hl], a
-	call Multiply
-	ld hl, wBattleReward
-	xor a
-	ld [hli], a
-	ld a, [hProduct + 2]
-	ld [hli], a
-	ld a, [hProduct + 3]
-	ld [hl], a
-	ret
-
-
-Battle_GetTrainerName:: ; 39939
-	ld a, [InBattleTowerBattle]
-	bit 0, a
-	ld hl, wd26b
-	jp nz, CopyTrainerName
-
-	ld a, [OtherTrainerID]
-	ld b, a
-	ld a, [OtherTrainerClass]
-	ld c, a
-
-GetTrainerName:: ; 3994c
-	ld a, c
-	cp CAL
-	jr nz, .not_cal2
-
-	ld a, BANK(sMysteryGiftTrainerHouseFlag)
-	call GetSRAMBank
-	ld a, [sMysteryGiftTrainerHouseFlag]
-	and a
-	call CloseSRAM
-	jr z, .not_cal2
-
-	ld a, BANK(sMysteryGiftPartnerName)
-	call GetSRAMBank
-	ld hl, sMysteryGiftPartnerName
-	call CopyTrainerName
-	jp CloseSRAM
-
-.not_cal2
-	dec c
-	push bc
-	ld b, 0
-	ld hl, TrainerGroups
-rept 2
-	add hl, bc
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	pop bc
-
-.loop
-	dec b
-	jr z, CopyTrainerName
-
-.skip
-	ld a, [hli]
-	cp $ff
-	jr nz, .skip
-	jr .loop
-
-CopyTrainerName: ; 39984
-	ld de, StringBuffer1
-	push de
-	ld bc, NAME_LENGTH
-	call CopyBytes
-	pop de
-	ret
-; 39990
-
-Function39990: ; 39990
-; This function is useless.
-	ld de, StringBuffer1
-	push de
-	ld bc, NAME_LENGTH
-	pop de
-	ret
-; 39999
+INCLUDE "trainers/read_party.asm"
 
 INCLUDE "trainers/trainer_pointers.asm"
 
 INCLUDE "trainers/trainers.asm"
 
 
-SECTION "bankF", ROMX, BANK[$F]
+SECTION "Battle Core", ROMX, BANK[$F]
 
 INCLUDE "battle/core.asm"
 
@@ -14793,72 +13940,6 @@ SECTION "bank10", ROMX, BANK[$10]
 
 INCLUDE "engine/pokedex.asm"
 
-
-Function41a7f: ; 41a7f
-	xor a
-	ld [hBGMapMode], a
-	callba Function1de247
-	call Function41af7
-	call DisableLCD
-	call LoadStandardFont
-	call LoadFontsExtra
-	call Function414b7
-	call Function4147b
-	ld a, [wd265]
-	ld [CurPartySpecies], a
-	call Function407fd
-	call Function40ba0
-	hlcoord 0, 17
-	ld [hl], $3b
-	inc hl
-	ld bc, $13
-	ld a, " "
-	call ByteFill
-	callba Function4424d
-	call EnableLCD
-	call WaitBGMap
-	call GetBaseData
-	ld de, VTiles2
-	predef GetFrontpic
-	ld a, $4
-	call Function41423
-	ld a, [CurPartySpecies]
-	call PlayCry
-	ret
-; 41ad7
-
-
-Function41ad7: ; 41ad7 (10:5ad7)
-	ld a, $3
-	ld [hBGMapMode], a
-	ld c, 4
-	call DelayFrames
-	ret
-
-Function41ae1: ; 41ae1 (10:5ae1)
-	ld a, $4
-	ld [hBGMapMode], a
-	ld c, 4
-	call DelayFrames
-	ret
-
-Function41aeb: ; 41aeb (10:5aeb)
-	ld a, [hCGB]
-	and a
-	jr z, .asm_41af3
-	call Function41ae1
-.asm_41af3
-	call Function41ad7
-	ret
-
-
-Function41af7: ; 41af7
-	xor a
-	ld [hBGMapMode], a
-	ret
-; 41afb
-
-
 INCLUDE "battle/moves/moves.asm"
 
 INCLUDE "engine/evolve.asm"
@@ -14867,233 +13948,10 @@ SECTION "bank11", ROMX, BANK[$11]
 
 INCLUDE "engine/fruit_trees.asm"
 
+INCLUDE "battle/ai/move.asm"
 
-AIChooseMove: ; 440ce
-; Score each move in EnemyMonMoves starting from Buffer1. Lower is better.
-; Pick the move with the lowest score.
-
-; Wildmons attack at random.
-	ld a, [wBattleMode]
-	dec a
-	ret z
-
-	ld a, [wLinkMode]
-	and a
-	ret nz
-
-; No use picking a move if there's no choice.
-	callba CheckSubstatus_RechargeChargedRampageBideRollout
-	ret nz
-
-
-; The default score is 20. Unusable moves are given a score of 80.
-	ld a, 20
-	ld hl, Buffer1
-rept 3
-	ld [hli], a
-endr
-	ld [hl], a
-
-; Don't pick disabled moves.
-	ld a, [EnemyDisabledMove]
-	and a
-	jr z, .CheckPP
-
-	ld hl, EnemyMonMoves
-	ld c, 0
-.CheckDisabledMove
-	cp [hl]
-	jr z, .ScoreDisabledMove
-	inc c
-	inc hl
-	jr .CheckDisabledMove
-.ScoreDisabledMove
-	ld hl, Buffer1
-	ld b, 0
-	add hl, bc
-	ld [hl], 80
-
-; Don't pick moves with 0 PP.
-.CheckPP
-	ld hl, Buffer1 - 1
-	ld de, EnemyMonPP
-	ld b, 0
-.CheckMovePP
-	inc b
-	ld a, b
-	cp EnemyMonMovesEnd - EnemyMonMoves + 1
-	jr z, .ApplyLayers
-	inc hl
-	ld a, [de]
-	inc de
-	and $3f
-	jr nz, .CheckMovePP
-	ld [hl], 80
-	jr .CheckMovePP
-
-
-; Apply AI scoring layers depending on the trainer class.
-.ApplyLayers
-	ld hl, TrainerClassAttributes + 3
-
-	; If we have a battle in BattleTower just load the Attributes of the first TrainerClass (Falkner)
-	; so we have always the same AI, regardless of the loaded class of trainer
-	ld a, [InBattleTowerBattle]
-	bit 0, a
-	jr nz, .battle_tower_skip
-
-	ld a, [TrainerClass]
-	dec a
-	ld bc, 7 ; Trainer2AI - Trainer1AI
-	call AddNTimes
-
-.battle_tower_skip
-	lb bc, CHECK_FLAG, 0
-	push bc
-	push hl
-
-.CheckLayer
-	pop hl
-	pop bc
-
-	ld a, c
-	cp 16 ; up to 16 scoring layers
-	jr z, .DecrementScores
-
-	push bc
-	ld d, BANK(TrainerClassAttributes)
-	predef FlagPredef
-	ld d, c
-	pop bc
-
-	inc c
-	push bc
-	push hl
-
-	ld a, d
-	and a
-	jr z, .CheckLayer
-
-	ld hl, AIScoringPointers
-	dec c
-	ld b, 0
-rept 2
-	add hl, bc
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, BANK(AIScoring)
-	call FarCall_hl
-
-	jr .CheckLayer
-
-; Decrement the scores of all moves one by one until one reaches 0.
-.DecrementScores
-	ld hl, Buffer1
-	ld de, EnemyMonMoves
-	ld c, EnemyMonMovesEnd - EnemyMonMoves
-
-.DecrementNextScore
-	; If the enemy has no moves, this will infinite.
-	ld a, [de]
-	inc de
-	and a
-	jr z, .DecrementScores
-
-	; We are done whenever a score reaches 0
-	dec [hl]
-	jr z, .PickLowestScoreMoves
-
-	; If we just decremented the fourth move's score, go back to the first move
-	inc hl
-	dec c
-	jr z, .DecrementScores
-
-	jr .DecrementNextScore
-
-; In order to avoid bias towards the moves located first in memory, increment the scores
-; that were decremented one more time than the rest (in case there was a tie).
-; This means that the minimum score will be 1.
-.PickLowestScoreMoves
-	ld a, c
-
-.move_loop
-	inc [hl]
-	dec hl
-	inc a
-	cp NUM_MOVES + 1
-	jr nz, .move_loop
-
-	ld hl, Buffer1
-	ld de, EnemyMonMoves
-	ld c, NUM_MOVES
-
-; Give a score of 0 to a blank move	
-.loop2
-	ld a, [de]
-	and a
-	jr nz, .skip_load
-	ld [hl], a
-
-; Disregard the move if its score is not 1	
-.skip_load
-	ld a, [hl]
-	dec a
-	jr z, .keep
-	xor a
-	ld [hli], a
-	jr .after_toss
-
-.keep
-	ld a, [de]
-	ld [hli], a
-.after_toss
-	inc de
-	dec c
-	jr nz, .loop2
-
-; Randomly choose one of the moves with a score of 1 	
-.ChooseMove
-	ld hl, Buffer1
-	call Random
-	and 3
-	ld c, a
-	ld b, 0
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .ChooseMove
-
-	ld [CurEnemyMove], a
-	ld a, c
-	ld [CurEnemyMoveNum], a
-	ret
-; 441af
-
-
-AIScoringPointers: ; 441af
-	dw AI_Basic
-	dw AI_Setup
-	dw AI_Types
-	dw AI_Offensive
-	dw AI_Smart
-	dw AI_Opportunist
-	dw AI_Aggressive
-	dw AI_Cautious
-	dw AI_Status
-	dw AI_Risky
-	dw AI_None
-	dw AI_None
-	dw AI_None
-	dw AI_None
-	dw AI_None
-	dw AI_None
-; 441cf
-
-
-Function441cf: ; 441cf
-	ld hl, Unknown_441fc
+AnimateDexSearchSlowpoke: ; 441cf
+	ld hl, .FrameIDs
 	ld b, 25
 .loop
 	ld a, [hli]
@@ -15101,53 +13959,54 @@ Function441cf: ; 441cf
 	; Wrap around
 	cp $fe
 	jr nz, .ok
-	ld hl, Unknown_441fc
+	ld hl, .FrameIDs
 	ld a, [hli]
 .ok
 
-	ld [wc7db], a
+	ld [wDexSearchSlowpokeFrame], a
 	ld a, [hli]
 	ld c, a
 	push bc
 	push hl
-	call Function44207
+	call DoDexSearchSlowpokeFrame
 	pop hl
 	pop bc
 	call DelayFrames
 	dec b
 	jr nz, .loop
 	xor a
-	ld [wc7db], a
-	call Function44207
+	ld [wDexSearchSlowpokeFrame], a
+	call DoDexSearchSlowpokeFrame
 	ld c, 32
 	call DelayFrames
 	ret
 ; 441fc
 
-Unknown_441fc: ; 441fc
+.FrameIDs: ; 441fc
+	; frame ID, duration
 	db 0, 7
 	db 1, 7
 	db 2, 7
 	db 3, 7
 	db 4, 7
-	db $fe
+	db -2
 ; 44207
 
 
-Function44207: ; 44207
-	ld a, [wc7db]
-	ld hl, Unknown_44228
+DoDexSearchSlowpokeFrame: ; 44207
+	ld a, [wDexSearchSlowpokeFrame]
+	ld hl, .SpriteData
 	ld de, Sprites
-.asm_44210
+.loop
 	ld a, [hli]
-	cp $ff
+	cp -1
 	ret z
 	ld [de], a
 	inc de
 	ld a, [hli]
 	ld [de], a
 	inc de
-	ld a, [wc7db]
+	ld a, [wDexSearchSlowpokeFrame]
 	ld b, a
 	add a
 	add b
@@ -15158,50 +14017,53 @@ Function44207: ; 44207
 	ld a, [hli]
 	ld [de], a
 	inc de
-	jr .asm_44210
+	jr .loop
 ; 44228
 
-Unknown_44228: ; 44228
-	db $58, $48, $00, $00
-	db $58, $50, $01, $00
-	db $58, $58, $02, $00
-	db $60, $48, $10, $00
-	db $60, $50, $11, $00
-	db $60, $58, $12, $00
-	db $68, $48, $20, $00
-	db $68, $50, $21, $00
-	db $68, $58, $22, $00
-	db $ff
+.SpriteData: ; 44228
+	dsprite 11, 0,  9, 0, $00, $00
+	dsprite 11, 0, 10, 0, $01, $00
+	dsprite 11, 0, 11, 0, $02, $00
+	dsprite 12, 0,  9, 0, $10, $00
+	dsprite 12, 0, 10, 0, $11, $00
+	dsprite 12, 0, 11, 0, $12, $00
+	dsprite 13, 0,  9, 0, $20, $00
+	dsprite 13, 0, 10, 0, $21, $00
+	dsprite 13, 0, 11, 0, $22, $00
+	db -1
 ; 4424d
 
-Function4424d: ; 4424d
+DisplayDexEntry: ; 4424d
 	call GetPokemonName
 	hlcoord 9, 3
-	call PlaceString
+	call PlaceString ; mon species
 	ld a, [wd265]
 	ld b, a
-	call Function44333
+	call GetDexEntryPointer
 	ld a, b
 	push af
 	hlcoord 9, 5
-	call FarString
+	call FarString ; dex species
 	ld h, b
 	ld l, c
 	push de
+; Print dex number
 	hlcoord 2, 8
-	ld a, $5c
+	ld a, $5c ; No
 	ld [hli], a
-	ld a, $5d
+	ld a, $5d ; .
 	ld [hli], a
 	ld de, wd265
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
+; Check to see if we caught it.  Get out of here if we haven't.
 	ld a, [wd265]
 	dec a
 	call CheckCaughtMon
 	pop hl
 	pop bc
 	ret z
+; Get the height of the Pokemon.
 	ld a, [CurPartySpecies]
 	ld [CurSpecies], a
 	inc hl
@@ -15217,7 +14079,7 @@ rept 2
 endr
 	ld a, d
 	or e
-	jr z, .asm_442b0
+	jr z, .skip_height
 	push hl
 	push de
 	ld hl, [sp+$0]
@@ -15227,11 +14089,11 @@ endr
 	lb bc, 2, 36
 	call PrintNum
 	hlcoord 14, 7
-	ld [hl], "<ROCKET>"
+	ld [hl], $5e ; ft symbol
 	pop af
 	pop hl
 
-.asm_442b0
+.skip_height
 	pop af
 	push af
 	inc hl
@@ -15242,32 +14104,34 @@ endr
 	ld e, h
 	ld a, e
 	or d
-	jr z, .skip
+	jr z, .skip_weight
 	push de
 	ld hl, [sp+$0]
 	ld d, h
 	ld e, l
 	hlcoord 11, 9
-	lb bc, 2, 69
+	lb bc, 2, PRINTNUM_RIGHTALIGN | 5
 	call PrintNum
 	pop de
 
-.skip
+.skip_weight
+; Page 1
 	lb bc, 5, SCREEN_WIDTH - 2
 	hlcoord 2, 11
 	call ClearBox
 	hlcoord 1, 10
-	ld bc, $13
-	ld a, $61
+	ld bc, SCREEN_WIDTH - 1
+	ld a, $61 ; horizontal divider
 	call ByteFill
+	; page number
 	hlcoord 1, 9
-	ld [hl], "<CONT>"
+	ld [hl], $55
 	inc hl
-	ld [hl], "<CONT>"
+	ld [hl], $55
 	hlcoord 1, 10
-	ld [hl], "<......>"
+	ld [hl], $56 ; P.
 	inc hl
-	ld [hl], "<DONE>"
+	ld [hl], $57 ; 1
 	pop de
 	inc de
 	pop af
@@ -15278,23 +14142,26 @@ endr
 	ld a, [wPokedexStatus]
 	or a
 	ret z
+
+; Page 2
 	push bc
 	push de
 	lb bc, 5, SCREEN_WIDTH - 2
 	hlcoord 2, 11
 	call ClearBox
 	hlcoord 1, 10
-	ld bc, $13
+	ld bc, SCREEN_WIDTH - 1
 	ld a, $61
 	call ByteFill
+	; page number
 	hlcoord 1, 9
-	ld [hl], "<CONT>"
+	ld [hl], $55
 	inc hl
-	ld [hl], "<CONT>"
+	ld [hl], $55
 	hlcoord 1, 10
-	ld [hl], "<......>"
+	ld [hl], $56 ; P.
 	inc hl
-	ld [hl], "<PROMPT>"
+	ld [hl], $58 ; 2
 	pop de
 	inc de
 	pop af
@@ -15307,7 +14174,8 @@ String_44331: ; 44331
 	db "#@"
 ; 44333
 
-Function44333: ; 44333
+GetDexEntryPointer: ; 44333
+; return dex entry pointer b:de
 	push hl
 	ld hl, PokedexDataPointerTable
 	ld a, b
@@ -15324,7 +14192,7 @@ endr
 	rlca
 	rlca
 	and $3
-	ld hl, PokedexEntryBanks
+	ld hl, .PokedexEntryBanks
 	ld d, 0
 	ld e, a
 	add hl, de
@@ -15334,7 +14202,7 @@ endr
 	ret
 ; 44351
 
-PokedexEntryBanks: ; 44351
+.PokedexEntryBanks: ; 44351
 
 GLOBAL PokedexEntries1
 GLOBAL PokedexEntries2
@@ -15347,22 +14215,26 @@ GLOBAL PokedexEntries4
 	db BANK(PokedexEntries4)
 ; 44355
 
-Function44355: ; 44355
-	call Function44333
+GetDexEntryPagePointer: ; 44355
+	call GetDexEntryPointer ; b:de
 	push hl
 	ld h, d
 	ld l, e
+; skip species name
 .loop1
 	ld a, b
 	call GetFarByte
 	inc hl
 	cp "@"
 	jr nz, .loop1
+; skip height and weight
 rept 4
 	inc hl
 endr
+; if c != 1: skip entry
 	dec c
 	jr z, .done
+; skip entry
 .loop2
 	ld a, b
 	call GetFarByte
@@ -17000,7 +15872,7 @@ Function4aad3: ; 4aad3
 	jr nz, .loop
 
 	call Function4aa7a
-	callba Function8cf69
+	callba PlaySpriteAnimations
 	ret
 ; 4aafb
 
@@ -19232,6 +18104,92 @@ endr
 ; 4e5e1
 
 INCLUDE "engine/evolution_animation.asm"
+
+Function4e881: ; 4e881
+	call ClearBGPalettes
+	call ClearTileMap
+	call ClearSprites
+	call DisableLCD
+	call LoadStandardFont
+	call LoadFontsBattleExtra
+	hlbgcoord 0, 0
+	ld bc, VBGMap1 - VBGMap0
+	ld a, " "
+	call ByteFill
+	hlcoord 0, 0, AttrMap
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	xor a
+	call ByteFill
+	xor a
+	ld [hSCY], a
+	ld [hSCX], a
+	call EnableLCD
+	ld hl, .SavingRecordDontTurnOff
+	call PrintText
+	call Function3200
+	call SetPalettes
+	ret
+; 4e8bd
+
+.SavingRecordDontTurnOff: ; 0x4e8bd
+	; SAVING RECORD… DON'T TURN OFF!
+	text_jump UnknownText_0x1bd39e
+	db "@"
+; 0x4e8c2
+
+
+Function4e8c2: ; 4e8c2
+	call ClearBGPalettes
+	call ClearTileMap
+	call ClearSprites
+	call DisableLCD
+	call LoadStandardFont
+	call LoadFontsBattleExtra
+	hlbgcoord 0, 0
+	ld bc, VBGMap1 - VBGMap0
+	ld a, " "
+	call ByteFill
+	hlcoord 0, 0, AttrMap
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	xor a
+	call ByteFill
+	ld hl, wd000 ; UnknBGPals
+	ld c, 4 * $10
+.load_white_palettes
+	ld a, (palred 31 + palgreen 31 + palblue 31) % $100
+	ld [hli], a
+	ld a, (palred 31 + palgreen 31 + palblue 31) / $100
+	ld [hli], a
+	dec c
+	jr nz, .load_white_palettes
+	xor a
+	ld [hSCY], a
+	ld [hSCX], a
+	call EnableLCD
+	call Function3200
+	call SetPalettes
+	ret
+; 4e906
+
+Function4e906: ; 4e906
+	ld a, [rSVBK]
+	push af
+	ld a, $6
+	ld [rSVBK], a
+	ld hl, w6_d000
+	ld bc, w6_d400 - w6_d000
+	ld a, " "
+	call ByteFill
+	hlbgcoord 0, 0
+	ld de, w6_d000
+	ld b, $0
+	ld c, $40
+	call Request2bpp
+	pop af
+	ld [rSVBK], a
+	ret
+; 4e929
+
 
 Function4e929: ; mobile function
 	ld h, b
@@ -23094,7 +22052,7 @@ Unknown_e00ed:
 ; Graphics for an unused Game Corner
 ; game were meant to be here.
 
-Functione00ed: ; e00ed (38:40ed)
+ret_e00ed: ; e00ed (38:40ed)
 	ret
 ; e00ee (38:40ee)
 
@@ -24422,7 +23380,7 @@ UnownFont: ; 1dc000
 INCBIN "gfx/misc/unown_font.2bpp"
 ; 1dc1b0
 
-Function1dc1b0: ; 1dc1b0
+PrintPage1: ; 1dc1b0
 	hlcoord 0, 0
 	ld de, wca90
 	ld bc, 17 * SCREEN_WIDTH
@@ -24454,8 +23412,8 @@ Function1dc1b0: ; 1dc1b0
 	push af
 	ld a, [wd265]
 	ld b, a
-	ld c, $1
-	callba Function44355
+	ld c, 1 ; get page 1
+	callba GetDexEntryPagePointer
 	pop af
 	ld a, b
 	ld hl, wcb6d
@@ -24465,16 +23423,16 @@ Function1dc1b0: ; 1dc1b0
 	ld de, SCREEN_WIDTH
 	add hl, de
 	ld b, $f
-.asm_1dc20a
+.column_loop
 	ld [hl], $37
 	add hl, de
 	dec b
-	jr nz, .asm_1dc20a
+	jr nz, .column_loop
 	ld [hl], $3a
 	ret
 ; 1dc213
 
-Function1dc213: ; 1dc213
+PrintPage2: ; 1dc213
 	ld hl, wca90
 	ld bc, $a0
 	ld a, " "
@@ -24482,11 +23440,11 @@ Function1dc213: ; 1dc213
 	ld hl, wca90
 	ld a, $36
 	ld b, $6
-	call Function1dc26a
+	call .FillColumn
 	ld hl, wcaa3
 	ld a, $37
 	ld b, $6
-	call Function1dc26a
+	call .FillColumn
 	ld hl, wcb08
 	ld [hl], $38
 	inc hl
@@ -24504,8 +23462,8 @@ Function1dc213: ; 1dc213
 	push af
 	ld a, [wd265]
 	ld b, a
-	ld c, $2
-	callba Function44355
+	ld c, 2 ; get page 2
+	callba GetDexEntryPagePointer
 	pop af
 	ld hl, wcaa5
 	ld a, b
@@ -24513,14 +23471,14 @@ Function1dc213: ; 1dc213
 	ret
 ; 1dc26a
 
-Function1dc26a: ; 1dc26a
+.FillColumn: ; 1dc26a
 	push de
 	ld de, SCREEN_WIDTH
-.asm_1dc26e
+.column_loop
 	ld [hl], a
 	add hl, de
 	dec b
-	jr nz, .asm_1dc26e
+	jr nz, .column_loop
 	pop de
 	ret
 ; 1dc275
