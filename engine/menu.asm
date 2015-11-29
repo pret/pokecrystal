@@ -4,7 +4,7 @@ Function2400e:: ; 2400e
 	rst FarCall
 	call Function24085
 	call UpdateSprites
-	call Function321c
+	call ApplyTilemap
 	call Function2408f
 	ret
 ; 24022
@@ -16,7 +16,7 @@ Function24022:: ; 24022
 	call Function24085
 	callba MobileTextBorder
 	call UpdateSprites
-	call Function321c
+	call ApplyTilemap
 	call Function2408f
 	ret
 ; 2403c
@@ -28,7 +28,7 @@ Function2403c:: ; 2403c
 	call Function24085
 	callba MobileTextBorder
 	call UpdateSprites
-	call Function321c
+	call ApplyTilemap
 	call Function2411a
 	ld hl, wcfa5
 	set 7, [hl]

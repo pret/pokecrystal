@@ -59,7 +59,7 @@ MovementPointers: ; 5075
 	dw Movement_39                    ; 39
 	dw Movement_remove_fixed_facing   ; 3a
 	dw Movement_fix_facing            ; 3b
-	dw Movement_3c                    ; 3c
+	dw Movement_show_person           ; 3c
 	dw Movement_hide_person           ; 3d
 	dw Movement_step_sleep_1          ; 3e
 	dw Movement_step_sleep_2          ; 3f
@@ -78,8 +78,8 @@ MovementPointers: ; 5075
 	dw Movement_teleport_from         ; 4c
 	dw Movement_teleport_to           ; 4d
 	dw Movement_skyfall               ; 4e
-	dw Movement_step_wait5            ; 4f
-	dw Movement_50                    ; 50
+	dw Movement_step_dig              ; 4f
+	dw Movement_step_bump             ; 50
 	dw Movement_fish_got_bite         ; 51
 	dw Movement_fish_cast_rod         ; 52
 	dw Movement_hide_emote            ; 53
@@ -87,67 +87,67 @@ MovementPointers: ; 5075
 	dw Movement_step_shake            ; 55
 	dw Movement_56                    ; 56
 	dw Movement_rock_smash            ; 57
-	dw Movement_58                    ; 58
+	dw Movement_return_dig            ; 58
 	dw Movement_59                    ; 59
 ; 5129
 
 
 Movement_teleport_from: ; 5129
-	ld hl, OBJECT_09
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $c
+	ld [hl], STEP_TYPE_TELEPORT_FROM
 	ret
 ; 5130
 
 Movement_teleport_to: ; 5130
-	ld hl, OBJECT_09
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $d
+	ld [hl], STEP_TYPE_TELEPORT_TO
 	ret
 ; 5137
 
 Movement_skyfall: ; 5137
-	ld hl, OBJECT_09
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $e
+	ld [hl], STEP_TYPE_SKYFALL
 	ret
 ; 513e
 
 Movement_59: ; 513e
-	ld hl, OBJECT_09
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $19
+	ld [hl], STEP_TYPE_19
 	ret
 ; 5145
 
-Movement_step_wait5: ; 5145
+Movement_step_dig: ; 5145
 	call GetSpriteDirection
 	rlca
 	rlca
-	ld hl, OBJECT_12
+	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], $4
+	ld [hl], PERSON_ACTION_SPIN
 	call GetMovementByte
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_09
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $3
+	ld [hl], STEP_TYPE_03
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld [hl], STANDING
 	ret
 ; 516a
 
-Movement_58: ; 516a
+Movement_return_dig: ; 516a
 	call GetSpriteDirection
 	rlca
 	rlca
-	ld hl, OBJECT_12
+	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
 	ld [hl], a
 	call GetMovementByte
@@ -157,19 +157,19 @@ Movement_58: ; 516a
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld [hl], STANDING
-	ld hl, OBJECT_09
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $12
+	ld [hl], STEP_TYPE_RETURN_DIG
 	ret
 ; 5189
 
 Movement_fish_got_bite: ; 5189
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], $6
-	ld hl, OBJECT_09
+	ld [hl], PERSON_ACTION_FISHING
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $10
+	ld [hl], STEP_TYPE_GOT_BITE
 	ret
 ; 5196
 
@@ -178,22 +178,22 @@ Movement_rock_smash: ; 5196
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], $1
-	ld hl, OBJECT_09
+	ld [hl], PERSON_ACTION_STAND
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $11
+	ld [hl], STEP_TYPE_ROCK_SMASH
 	ret
 ; 51ab
 
 Movement_fish_cast_rod: ; 51ab
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], $6
-	ld hl, OBJECT_09
+	ld [hl], PERSON_ACTION_FISHING
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $1
+	ld [hl], STEP_TYPE_STANDING
 	ret
 ; 51b8
 
@@ -217,9 +217,9 @@ Movement_step_end: ; 51c1
 	ld hl, VramState
 	res 7, [hl]
 
-	ld hl, OBJECT_09
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $1
+	ld [hl], STEP_TYPE_STANDING
 	ret
 ; 51db
 
@@ -238,9 +238,9 @@ Movement_48: ; 51db
 	add hl, bc
 	ld [hl], a
 
-	ld hl, OBJECT_09
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $3
+	ld [hl], STEP_TYPE_03
 
 	ld hl, VramState
 	res 7, [hl]
@@ -262,13 +262,13 @@ Movement_remove_person: ; 51fd
 ; 5210
 
 Movement_4b: ; 5210
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], $1
+	ld [hl], PERSON_ACTION_STAND
 
-	ld hl, OBJECT_09
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $4
+	ld [hl], STEP_TYPE_04
 
 	ld hl, VramState
 	res 7, [hl]
@@ -276,56 +276,56 @@ Movement_4b: ; 5210
 ; 5222
 
 Movement_step_sleep_1: ; 5222
-	ld a, $1
-	jr Function5247
+	ld a, 1
+	jr Movement_step_sleep_common
 
 Movement_step_sleep_2: ; 5226
-	ld a, $2
-	jr Function5247
+	ld a, 2
+	jr Movement_step_sleep_common
 
 Movement_step_sleep_3: ; 522a
-	ld a, $3
-	jr Function5247
+	ld a, 3
+	jr Movement_step_sleep_common
 
 Movement_step_sleep_4: ; 522e
-	ld a, $4
-	jr Function5247
+	ld a, 4
+	jr Movement_step_sleep_common
 
 Movement_step_sleep_5: ; 5232
-	ld a, $5
-	jr Function5247
+	ld a, 5
+	jr Movement_step_sleep_common
 
 Movement_step_sleep_6: ; 5236
-	ld a, $6
-	jr Function5247
+	ld a, 6
+	jr Movement_step_sleep_common
 
 Movement_step_sleep_7: ; 523a
-	ld a, $7
-	jr Function5247
+	ld a, 7
+	jr Movement_step_sleep_common
 
 Movement_step_sleep_8: ; 523e
-	ld a, $8
-	jr Function5247
+	ld a, 8
+	jr Movement_step_sleep_common
 
 Movement_step_sleep: ; 5242
 ; parameters:
 ;	duration (DecimalParam)
 
 	call GetMovementByte
-	jr Function5247
+	jr Movement_step_sleep_common
 
-Function5247: ; 5247
+Movement_step_sleep_common: ; 5247
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
 
-	ld hl, OBJECT_09
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $3
+	ld [hl], STEP_TYPE_03
 
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], $1
+	ld [hl], PERSON_ACTION_STAND
 
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
@@ -333,17 +333,20 @@ Function5247: ; 5247
 	ret
 ; 525f
 
-Movement_50: ; 525f
-	ld a, $1
+Movement_step_bump: ; 525f
+	ld a, 1
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_09
+
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $b
-	ld hl, OBJECT_11
+	ld [hl], STEP_TYPE_BUMP
+
+	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], $3
+	ld [hl], PERSON_ACTION_BUMP
+
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld [hl], STANDING
@@ -351,16 +354,19 @@ Movement_50: ; 525f
 ; 5279
 
 Movement_56: ; 5279
-	ld a, $18
+	ld a, 24
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_09
+
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $3
-	ld hl, OBJECT_11
+	ld [hl], STEP_TYPE_03
+
+	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], $b
+	ld [hl], PERSON_ACTION_0B
+
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld [hl], STANDING
@@ -370,52 +376,52 @@ Movement_56: ; 5279
 Movement_38: ; 5293
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	res 3, [hl]
+	res SLIDING, [hl]
 	jp ContinueReadingMovement
 ; 529c
 
 Movement_39: ; 529c
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	set 3, [hl]
+	set SLIDING, [hl]
 	jp ContinueReadingMovement
 ; 52a5
 
 Movement_remove_fixed_facing: ; 52a5
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	res 2, [hl]
+	res FIXED_FACING, [hl]
 	jp ContinueReadingMovement
 ; 52ae
 
 Movement_fix_facing: ; 52ae
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	set 2, [hl]
+	set FIXED_FACING, [hl]
 	jp ContinueReadingMovement
 ; 52b7
 
-Movement_3c: ; 52b7
+Movement_show_person: ; 52b7
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	res 0, [hl]
+	res INVISIBLE, [hl]
 	jp ContinueReadingMovement
 ; 52c0
 
 Movement_hide_person: ; 52c0
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	set 0, [hl]
+	set INVISIBLE, [hl]
 	jp ContinueReadingMovement
 ; 52c9
 
 Movement_hide_emote: ; 52c9
-	call Function5579
+	call DespawnEmote
 	jp ContinueReadingMovement
 ; 52cf
 
 Movement_show_emote: ; 52cf
-	call Function5547
+	call SpawnEmote
 	jp ContinueReadingMovement
 ; 52d5
 
@@ -424,7 +430,7 @@ Movement_step_shake: ; 52d5
 ;	displacement (DecimalParam)
 
 	call GetMovementByte
-	call Function5565
+	call ShakeScreen
 	jp ContinueReadingMovement
 ; 52de
 
@@ -448,9 +454,11 @@ TurnHead: ; 52ee
 	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_11
+
+	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], $1
+	ld [hl], PERSON_ACTION_STAND
+
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld [hl], STANDING
@@ -721,70 +729,76 @@ HalfStep: ; 5400
 	ld hl, OBJECT_29
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_11
+
+	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], $2
-	ld hl, OBJECT_09
+	ld [hl], PERSON_ACTION_STEP
+
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $a
+	ld [hl], STEP_TYPE_HALF_STEP
 	ret
 ; 5412
 
 NormalStep: ; 5412
 	call Function4690
 	call Function463f
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], $2
-	ld hl, OBJECT_STANDING_TILE
+	ld [hl], PERSON_ACTION_STEP
+
+	ld hl, OBJECT_NEXT_TILE
 	add hl, bc
 	ld a, [hl]
 	call CheckSuperTallGrassTile
-	jr z, .asm_542d
+	jr z, .shake_grass
 
-	call Function1875
-	jr c, .asm_5430
+	call CheckGrassTile
+	jr c, .skip_grass
 
-.asm_542d
-	call Function5556
+.shake_grass
+	call ShakeGrass
 
-.asm_5430
-	ld hl, wd4cf
+.skip_grass
+	ld hl, wCenteredObject
 	ld a, [hMapObjectIndexBuffer]
 	cp [hl]
-	jr z, .asm_543f
+	jr z, .player
 
-	ld hl, OBJECT_09
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $2
+	ld [hl], STEP_TYPE_NPC_WALK
 	ret
 
-.asm_543f
-	ld hl, OBJECT_09
+.player
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $6
+	ld [hl], STEP_TYPE_PLAYER_WALK
 	ret
 ; 5446
 
 TurningStep: ; 5446
 	call Function4690
 	call Function463f
-	ld hl, OBJECT_11
+
+	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], $4
-	ld hl, wd4cf
+	ld [hl], PERSON_ACTION_SPIN
+
+	ld hl, wCenteredObject
 	ld a, [hMapObjectIndexBuffer]
 	cp [hl]
-	jr z, .asm_5461
-	ld hl, OBJECT_09
+	jr z, .player
+
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $2
+	ld [hl], STEP_TYPE_NPC_WALK
 	ret
 
-.asm_5461
-	ld hl, OBJECT_09
+.player
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $6
+	ld [hl], STEP_TYPE_PLAYER_WALK
 	ret
 ; 5468
 
@@ -792,22 +806,25 @@ TurningStep: ; 5446
 SlideStep: ; 5468
 	call Function4690
 	call Function463f
-	ld hl, OBJECT_11
+
+	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], $1
-	ld hl, wd4cf
+	ld [hl], PERSON_ACTION_STAND
+
+	ld hl, wCenteredObject
 	ld a, [hMapObjectIndexBuffer]
 	cp [hl]
-	jr z, .asm_5483
-	ld hl, OBJECT_09
+	jr z, .player
+
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $2
+	ld [hl], STEP_TYPE_NPC_WALK
 	ret
 
-.asm_5483
-	ld hl, OBJECT_09
+.player
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $6
+	ld [hl], STEP_TYPE_PLAYER_WALK
 	ret
 ; 548a
 
@@ -817,25 +834,30 @@ JumpStep: ; 548a
 	ld hl, OBJECT_31
 	add hl, bc
 	ld [hl], $0
+
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res 3, [hl]
-	ld hl, OBJECT_11
+
+	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], $2
-	call Function5529
-	ld hl, wd4cf
+	ld [hl], PERSON_ACTION_STEP
+
+	call SpawnShadow
+
+	ld hl, wCenteredObject
 	ld a, [hMapObjectIndexBuffer]
 	cp [hl]
-	jr z, .asm_54b1
-	ld hl, OBJECT_09
+	jr z, .player
+
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $8
+	ld [hl], STEP_TYPE_NPC_JUMP
 	ret
 
-.asm_54b1
-	ld hl, OBJECT_09
+.player
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $9
+	ld [hl], STEP_TYPE_PLAYER_JUMP
 	ret
 ; 54b8

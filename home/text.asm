@@ -192,7 +192,7 @@ SetUpTextBox:: ; 106c
 	push hl
 	call SpeechTextBox
 	call UpdateSprites
-	call Function321c
+	call ApplyTilemap
 	pop hl
 	ret
 ; 1078
@@ -714,7 +714,7 @@ FarString:: ; 13d4
 	ret
 ; 13e0
 
-Function13e0:: ; 13e0
+PokeFluteTerminatorCharacter:: ; 13e0
 	ld hl, .stop
 	ret
 
@@ -880,10 +880,10 @@ Text_TX_MOVE:: ; 1480
 ; [$03][addr]
 
 	ld a, [hli]
-	ld [wd0e4 + 2], a
+	ld [wMenuScrollPosition + 2], a
 	ld c, a
 	ld a, [hli]
-	ld [wd0e4 + 2 + 1], a
+	ld [wMenuScrollPosition + 2 + 1], a
 	ld b, a
 	ret
 ; 148b

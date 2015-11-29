@@ -6,7 +6,7 @@ Function17c000: ; 17c000
 	call DisableLCD
 
 	ld hl, VTiles2
-	ld bc, $310
+	ld bc, $31 tiles
 	xor a
 	call ByteFill
 
@@ -48,11 +48,11 @@ Function17c000: ; 17c000
 	ld a, [rSVBK]
 	push af
 
-	ld a, 5 ; BANK(wMapPals)
+	ld a, 5 ; BANK(UnknBGPals)
 	ld [rSVBK], a
 
 	ld hl, HaveWantPals
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $80
 	call CopyBytes
 
@@ -61,7 +61,7 @@ Function17c000: ; 17c000
 
 	ld hl, MobileSelectGFX
 	ld de, VTiles0 tile $30
-	ld bc, $200
+	ld bc, $20 tiles
 	call CopyBytes
 
 	ld a, 1
@@ -69,19 +69,19 @@ Function17c000: ; 17c000
 
 	ld hl, HaveWantGFX
 	ld de, VTiles2
-	ld bc, $800
+	ld bc, $80 tiles
 	call CopyBytes
 
 	ld hl, HaveWantGFX + $800
 	ld de, VTiles1
-	ld bc, $100
+	ld bc, $10 tiles
 	call CopyBytes
 
 	xor a
 	ld [rVBK], a
 
 	call EnableLCD
-	callba Function104061
+	callba ReloadMapPart
 	ret
 ; 17c083
 
@@ -226,46 +226,48 @@ CheckStringForErrors: ; 17d073
 	ret
 ; 17d0b3
 
-Function17d0b3: ; 17d0b3
-.asm_17d0b3
+CheckStringForErrors_IgnoreTerminator: ; 17d0b3
+; Find control chars
+.loop
 	ld a, [de]
 	inc de
 	and a
-	jr z, .asm_17d0ee
-	cp $60
-	jr nc, .asm_17d0ee
-	cp $4e
-	jr z, .asm_17d0ee
-	cp $50
-	jr z, .asm_17d0ee
-	cp $5
-	jr c, .asm_17d0ec
-	cp $14
-	jr c, .asm_17d0ee
-	cp $19
-	jr c, .asm_17d0ec
-	cp $1d
-	jr c, .asm_17d0ee
-	cp $26
-	jr c, .asm_17d0ec
-	cp $35
-	jr c, .asm_17d0ee
-	cp $3a
-	jr c, .asm_17d0ec
-	cp $3f
-	jr c, .asm_17d0ee
-	cp $40
-	jr c, .asm_17d0ec
-	cp $49
-	jr c, .asm_17d0ee
+	jr z, .next
+	cp "<DEXEND>" + 1
+	jr nc, .next
+	cp "<NEXT>"
+	jr z, .next
+	cp "@"
+	jr z, .next
 
-.asm_17d0ec
+	cp $5
+	jr c, .end
+	cp "<PLAY_G>"
+	jr c, .next
+	cp $19
+	jr c, .end
+	cp $1d
+	jr c, .next
+	cp "%" + 1
+	jr c, .end
+	cp $35
+	jr c, .next
+	cp "<GREEN>" + 1
+	jr c, .end
+	cp "<ENEMY>"
+	jr c, .next
+	cp "<ENEMY>" + 1
+	jr c, .end
+	cp "<MOM>"
+	jr c, .next
+
+.end
 	scf
 	ret
 
-.asm_17d0ee
+.next
 	dec c
-	jr nz, .asm_17d0b3
+	jr nz, .loop
 	and a
 	ret
 ; 17d0f3
@@ -303,7 +305,7 @@ Function17d0f3: ; 17d0f3
 	ld [wd1e9], a
 	ld a, $2
 	ld [wLinkMode], a
-	callba Function421d8
+	callba EvolvePokemon
 	xor a
 	ld [wLinkMode], a
 	callba Function14a58
@@ -324,7 +326,7 @@ Function17d0f3: ; 17d0f3
 	ld [de], a
 
 .asm_17d180
-	call Function2b3c
+	call ReturnToCallingMenu
 	call RestartMapMusic
 	ret
 ; 17d187
@@ -380,22 +382,22 @@ Function17d1c9: ; 17d1c9
 	ret
 ; 17d1e1
 
-Function17d1e1: ; 17d1e1
-.asm_17d1e1
+CheckStringContainsLessThanBNextCharacters: ; 17d1e1
+.loop
 	ld a, [de]
 	inc de
-	cp $4e
-	jr nz, .asm_17d1ea
+	cp "<NEXT>"
+	jr nz, .next_char
 	dec b
-	jr z, .asm_17d1ef
+	jr z, .done
 
-.asm_17d1ea
+.next_char
 	dec c
-	jr nz, .asm_17d1e1
+	jr nz, .loop
 	and a
 	ret
 
-.asm_17d1ef
+.done
 	scf
 	ret
 ; 17d1f1
@@ -415,7 +417,7 @@ Function17d1f1: ; 17d1f1
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	predef GetUnownLetter
-	callab Functionfba18
+	callab UpdateUnownDex
 	ld a, [wdef4]
 	and a
 	jr nz, .asm_17d223
@@ -440,18 +442,18 @@ Function17d1f1: ; 17d1f1
 Special_Menu_ChallengeExplanationCancel: ; 17d224
 	ld a, [ScriptVar]
 	and a
-	jr nz, .asm_17d234
+	jr nz, .English
 	ld a, $4
 	ld [ScriptVar], a
 	ld hl, MenuDataHeader_17d26a ; Japanese Menu, where you can choose 'News' as an option
-	jr .asm_17d23c
+	jr .Load_Interpret
 
-.asm_17d234
+.English
 	ld a, $4
 	ld [ScriptVar], a
 	ld hl, MenuDataHeader_ChallengeExplanationCancel ; English Menu
 
-.asm_17d23c
+.Load_Interpret
 	call LoadMenuDataHeader
 	call Function17d246
 	call WriteBackup
@@ -460,25 +462,25 @@ Special_Menu_ChallengeExplanationCancel: ; 17d224
 
 Function17d246: ; 17d246
 	call InterpretMenu2
-	jr c, .asm_17d264
+	jr c, .Exit
 	ld a, [ScriptVar]
 	cp $5
-	jr nz, .asm_17d25d
+	jr nz, .UseMenuSelection2
 	ld a, [MenuSelection2]
 	cp $3
 	ret z
-	jr c, .asm_17d25d
+	jr c, .UseMenuSelection2
 	dec a
-	jr .asm_17d260
+	jr .LoadToScriptVar
 
-.asm_17d25d
+.UseMenuSelection2
 	ld a, [MenuSelection2]
 
-.asm_17d260
+.LoadToScriptVar
 	ld [ScriptVar], a
 	ret
 
-.asm_17d264
+.Exit
 	ld a, $4
 	ld [ScriptVar], a
 	ret
@@ -494,8 +496,8 @@ MenuDataHeader_17d26a: ; 17d26a
 MenuData2_17d272: ; 17d272
 	db $a0 ; flags
 	db 4
-	db "ニュース", $1f, "よみこむ@"
-	db "ニュース", $1f, "みる@"
+	db "ニュース¯よみこむ@"
+	db "ニュース¯みる@"
 	db "せつめい@"
 	db "やめる@"
 ; 17d28f
@@ -562,7 +564,7 @@ Function17d2ce: ; 17d2ce
 	ld [MusicFadeIDHi], a
 	call PlayMusic
 	call ReturnToMapFromSubmenu
-	call Function2b3c
+	call ReturnToCallingMenu
 	ret
 ; 17d314
 
@@ -629,31 +631,31 @@ Function17d370: ; 17d370
 	call ClearBGPalettes
 	call ClearSprites
 	call ClearScreen
-	callba Function104061
+	callba ReloadMapPart
 	call DisableLCD
 	ld hl, VTiles1 tile $6e
 	ld de, $c608
-	ld bc, $0010
+	ld bc, 1 tiles
 	call CopyBytes
 	ld a, $1
 	ld [rVBK], a
 	ld hl, PokemonNewsGFX
 	ld de, VTiles1
-	ld bc, $0480
+	ld bc, $48 tiles
 	call CopyBytes
 	xor a
 	ld hl, VTiles2 tile $7f
-	ld bc, $0010
+	ld bc, 1 tiles
 	call ByteFill
 	ld hl, $c608
 	ld de, VTiles1 tile $6e
-	ld bc, $0010
+	ld bc, 1 tiles
 	call CopyBytes
 	xor a
 	ld [rVBK], a
 	ld hl, GFX_17eb7e
 	ld de, VTiles2 tile $60
-	ld bc, $0010
+	ld bc, 1 tiles
 	call CopyBytes
 	call EnableLCD
 	call Function17d60b
@@ -664,7 +666,7 @@ Function17d370: ; 17d370
 	ld a, $6
 	call GetSRAMBank
 	ld hl, $a006
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	call CopyBytes
 	call CloseSRAM
@@ -675,27 +677,27 @@ Function17d3f6: ; 17d3f6
 	call ClearBGPalettes
 	call ClearSprites
 	call ClearScreen
-	callba Function104061
+	callba ReloadMapPart
 
 Function17d405:
 	call DisableLCD
 	ld hl, VTiles1 tile $6e
 	ld de, $c608
-	ld bc, $0010
+	ld bc, 1 tiles
 	call CopyBytes
 	ld a, $1
 	ld [rVBK], a
 	ld hl, PokemonNewsGFX
 	ld de, VTiles1
-	ld bc, $0480
+	ld bc, $48 tiles
 	call CopyBytes
 	xor a
 	ld hl, VTiles2 tile $7f
-	ld bc, $0010
+	ld bc, 1 tiles
 	call ByteFill
 	ld hl, $c608
 	ld de, VTiles1 tile $6e
-	ld bc, $0010
+	ld bc, 1 tiles
 	call CopyBytes
 	xor a
 	ld [rVBK], a
@@ -705,7 +707,7 @@ Function17d405:
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_17eff6
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $0040
 	call CopyBytes
 	call SetPalettes
@@ -721,7 +723,7 @@ Function17d45a: ; 17d45a
 	bit 7, a
 	jr nz, .asm_17d46f
 	call Function17d474
-	callba Function104061
+	callba ReloadMapPart
 	jr .asm_17d45a
 
 .asm_17d46f
@@ -935,7 +937,7 @@ endr
 	call Function17e451
 	call Function17e55b
 	call Function17e5af
-	callba Function104061
+	callba ReloadMapPart
 	jp Function17e438
 ; 17d5be
 
@@ -985,7 +987,7 @@ Function17d5f6: ; 17d5f6
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, $c608
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $0040
 	call CopyBytes
 	ld a, $4
@@ -1239,7 +1241,7 @@ Function17d78d: ; 17d78d
 	call GetSRAMBank
 	ld hl, $a006
 	add hl, bc
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	call CopyBytes
 	call CloseSRAM
@@ -1363,7 +1365,7 @@ Function17d85d: ; 17d85d
 	ld a, [hli]
 	ld d, a
 	push hl
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	add hl, de
 	ld de, wcc60
 .asm_17d86c
@@ -1432,7 +1434,7 @@ Function17d85d: ; 17d85d
 	ld a, $3
 	ld [rSVBK], a
 	ld hl, $c608
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld b, $0
 	call CopyBytes
 	ld a, $4
@@ -1467,7 +1469,7 @@ Function17d902: ; 17d902
 	call Function17e41e
 	call Function17e32b
 	pop de
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	add hl, de
 	ld de, wcc60
 .asm_17d918
@@ -1973,7 +1975,7 @@ MenuData2_17dc96:
 Function17dc9f: ; 17dc9f
 	call Function17e415
 	call Function17e41e
-	call Function4dd
+	call RotateFourPalettesLeft
 	ret
 ; 17dca9
 
@@ -1984,7 +1986,7 @@ Function17dca9: ; 17dca9
 Function17dcaf:
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	ld de, $0008
 	ld c, $8
 .asm_17dcbb
@@ -1997,7 +1999,7 @@ Function17dcaf:
 	add hl, de
 	dec c
 	jr nz, .asm_17dcbb
-	call FadeToWhite
+	call RotateThreePalettesRight
 	ld a, $4
 	ld [rSVBK], a
 	ret
@@ -2362,7 +2364,7 @@ Function17ded9: ; 17ded9
 	push hl
 	push bc
 	predef TryAddMonToParty
-	callba Function4db49
+	callba SetCaughtData
 	pop bc
 	pop hl
 	bit 1, b
@@ -2400,7 +2402,7 @@ Function17ded9: ; 17ded9
 	ld a, [hli]
 	ld b, a
 	push hl
-	callba SetPartymonCaughtData
+	callba SetGiftPartyMonCaughtData
 	pop hl
 	pop bc
 	jr .asm_17df5e
@@ -2558,7 +2560,7 @@ Function17e026: ; 17e026
 	push hl
 	callba LoadEnemyMon
 	callba SentPkmnIntoBox
-	callba Function4db83
+	callba SetBoxMonCaughtData
 	pop hl
 	pop bc
 	ld a, BANK(sBoxMonNicknames)
@@ -2587,7 +2589,7 @@ Function17e026: ; 17e026
 	ld b, a
 	push hl
 	call CloseSRAM
-	callba SetBoxMonCaughtData
+	callba SetGiftBoxMonCaughtData
 	ld a, $1
 	call GetSRAMBank
 	pop hl
@@ -3111,7 +3113,7 @@ Function17e3ac: ; 17e3ac
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	callba Function14e13
+	callba SaveChecksum
 	pop af
 	ld [rSVBK], a
 	ret
@@ -3165,7 +3167,7 @@ Function17e409: ; 17e409
 ; 17e40f
 
 Function17e40f: ; 17e40f
-	ld de, wMapPals
+	ld de, UnknBGPals
 	add hl, de
 	jr Function17e41e
 
@@ -4419,7 +4421,7 @@ endr
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	add hl, de
 	ld e, l
 	ld d, h
@@ -4674,7 +4676,7 @@ Function17f53d: ; 17f53d
 	call Function17f555
 	pop af
 	ld [rSVBK], a
-	call Function2b4d
+	call ExitAllMenus
 	ret
 ; 17f555
 

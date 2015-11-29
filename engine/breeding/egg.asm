@@ -192,7 +192,7 @@ OverworldHatchEgg:: ; 16f5e
 	call ResetWindow
 	call LoadStandardMenuDataHeader
 	call Function16f70
-	call Function2b4d
+	call ExitAllMenus
 	call RestartMapMusic
 	jp LoadMoveSprites
 ; 16f70
@@ -219,7 +219,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 
 	push de
 
-	callba Function4dbb8
+	callba SetEggMonCaughtData
 	callba MobileFn_10608d
 	ld a, [CurPartyMon]
 	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
@@ -650,7 +650,7 @@ Function1723c: ; 1723c (5:723c)
 	ld hl, BattleMonDVs
 	predef GetUnownLetter
 	pop de
-	predef_jump Function5108b
+	predef_jump FrontpicPredef
 
 Function17254: ; 17254 (5:7254)
 	push af
@@ -775,7 +775,7 @@ Function1728f: ; 1728f (5:728f)
 
 Function17363: ; 17363 (5:7363)
 	ld [PlayerHPPal], a
-	ld b, $b
+	ld b, SCGB_0B
 	ld c, $0
 	jp GetSGBLayout
 
@@ -792,8 +792,8 @@ Function1736d: ; 1736d (5:736d)
 	add $4c
 	ld d, a
 	ld e, $58
-	ld a, $19
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_19
+	call _InitSpriteAnimStruct
 	ld hl, $3
 	add hl, bc
 	ld [hl], $0
@@ -821,8 +821,8 @@ Function173b3: ; 173b3 (5:73b3)
 	ld b, a
 	push hl
 	push bc
-	ld a, $1c
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_1C
+	call _InitSpriteAnimStruct
 	ld hl, $3
 	add hl, bc
 	ld [hl], $0

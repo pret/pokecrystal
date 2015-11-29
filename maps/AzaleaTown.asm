@@ -30,7 +30,7 @@ UnknownScript_0x198018:
 	moveperson $b, $b, $b
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Functionc48f
+	special Special_RotatePalettesRightMusic
 	pause 15
 	appear $b
 	applymovement $b, MovementData_0x198134
@@ -40,7 +40,7 @@ UnknownScript_0x198018:
 UnknownScript_0x198034:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Functionc48f
+	special Special_RotatePalettesRightMusic
 	pause 15
 	appear $b
 	applymovement $b, MovementData_0x19813c
@@ -198,7 +198,7 @@ AzaleaTownMartSign:
 	jumpstd martsign
 
 WhiteApricornTree:
-	fruittree $14
+	fruittree FRUITTREE_AZALEA_TOWN
 
 MapAzaleaTownSignpostItem8:
 	dwb EVENT_AZALEA_TOWN_HIDDEN_FULL_HEAL, FULL_HEAL
@@ -367,11 +367,11 @@ UnknownText_0x19851a:
 UnknownText_0x1985b0:
 	text "SLOWPOKE: …"
 
-	para $56, " ", $56, " ", $56
+	para "<......> <......> <......>"
 	done
 
 UnknownText_0x1985c3:
-	text $56, " ", $56, "Yawn?"
+	text "<......> <......>Yawn?"
 	done
 
 WoosterText:
@@ -481,15 +481,15 @@ AzaleaTown_MapEventHeader:
 
 .PersonEvents:
 	db 12
-	person_event SPRITE_AZALEA_ROCKET, 9, 31, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, AzaleaRocketScript_0x1980ab, EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
-	person_event SPRITE_GRAMPS, 9, 21, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, 0, 0, 0, GrampsScript_0x1980b1, -1
-	person_event SPRITE_TEACHER, 13, 15, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, TeacherScript_0x1980c5, -1
-	person_event SPRITE_YOUNGSTER, 9, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, YoungsterScript_0x1980c8, -1
-	person_event SPRITE_SLOWPOKE, 17, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, SlowpokeScript_0x1980cb, EVENT_AZALEA_TOWN_SLOWPOKES
-	person_event SPRITE_SLOWPOKE, 9, 18, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, SlowpokeScript_0x1980cb, EVENT_AZALEA_TOWN_SLOWPOKES
-	person_event SPRITE_SLOWPOKE, 9, 29, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, SlowpokeScript_0x1980cb, EVENT_AZALEA_TOWN_SLOWPOKES
-	person_event SPRITE_SLOWPOKE, 15, 15, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, SlowpokeScript_0x1980cb, EVENT_AZALEA_TOWN_SLOWPOKES
-	person_event SPRITE_FRUIT_TREE, 2, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, WhiteApricornTree, -1
-	person_event SPRITE_AZALEA_ROCKET, 10, 11, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_RIVAL_AZALEA_TOWN
-	person_event SPRITE_AZALEA_ROCKET, 16, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, AzaleaRocketScript_0x1980ae, EVENT_SLOWPOKE_WELL_ROCKETS
-	person_event SPRITE_KURT_OUTSIDE, 5, 6, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 0, 0, KurtOutsideScript_0x19810c, EVENT_AZALEA_TOWN_KURT
+	person_event SPRITE_AZALEA_ROCKET, 9, 31, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, AzaleaRocketScript_0x1980ab, EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
+	person_event SPRITE_GRAMPS, 9, 21, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrampsScript_0x1980b1, -1
+	person_event SPRITE_TEACHER, 13, 15, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, TeacherScript_0x1980c5, -1
+	person_event SPRITE_YOUNGSTER, 9, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x1980c8, -1
+	person_event SPRITE_SLOWPOKE, 17, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SlowpokeScript_0x1980cb, EVENT_AZALEA_TOWN_SLOWPOKES
+	person_event SPRITE_SLOWPOKE, 9, 18, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SlowpokeScript_0x1980cb, EVENT_AZALEA_TOWN_SLOWPOKES
+	person_event SPRITE_SLOWPOKE, 9, 29, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SlowpokeScript_0x1980cb, EVENT_AZALEA_TOWN_SLOWPOKES
+	person_event SPRITE_SLOWPOKE, 15, 15, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SlowpokeScript_0x1980cb, EVENT_AZALEA_TOWN_SLOWPOKES
+	person_event SPRITE_FRUIT_TREE, 2, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, WhiteApricornTree, -1
+	person_event SPRITE_AZALEA_ROCKET, 10, 11, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_AZALEA_TOWN
+	person_event SPRITE_AZALEA_ROCKET, 16, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, AzaleaRocketScript_0x1980ae, EVENT_SLOWPOKE_WELL_ROCKETS
+	person_event SPRITE_KURT_OUTSIDE, 5, 6, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, KurtOutsideScript_0x19810c, EVENT_AZALEA_TOWN_KURT

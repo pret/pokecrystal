@@ -1,5 +1,5 @@
 
-Function1dd702: ; 1dd702
+_Diploma: ; 1dd702
 	call Function1dd709
 	call WaitPressAorB_BlinkCursor
 	ret
@@ -31,7 +31,7 @@ Function1dd709: ; 1dd709
 	call PlaceString
 	call EnableLCD
 	call WaitBGMap
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	call SetPalettes
 	call DelayFrame

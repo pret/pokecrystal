@@ -610,7 +610,7 @@ Function8b6bb: ; 8b6bb
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_8b6d5
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $0018
 	call CopyBytes
 	pop af
@@ -805,7 +805,7 @@ Function8b7bd: ; 8b7bd
 	ld a, [wd030]
 	ld [wMenuCursorBuffer], a
 	ld a, [wd031]
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	ld a, [wd032]
 	and a
 	jr z, .asm_8b7e0
@@ -856,13 +856,13 @@ Function8b7bd: ; 8b7bd
 	ld c, a
 	ld a, [MenuSelection2]
 	ld [wd030], a
-	ld a, [wd0e4]
+	ld a, [wMenuScrollPosition]
 	ld [wd031], a
 	ret
 ; 8b832
 
 Function8b832: ; 8b832
-	ld a, [wd0e4]
+	ld a, [wMenuScrollPosition]
 	ld hl, wMenuData2Items
 	sub [hl]
 	jr nc, Function8b84b
@@ -871,7 +871,7 @@ Function8b832: ; 8b832
 ; 8b83e
 
 Function8b83e: ; 8b83e
-	ld a, [wd0e4]
+	ld a, [wMenuScrollPosition]
 	ld hl, wMenuData2Items
 	add [hl]
 	cp $24
@@ -879,7 +879,7 @@ Function8b83e: ; 8b83e
 	ld a, $24
 
 Function8b84b: ; 8b84b
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	ld a, [MenuSelection2]
 	ld [wMenuCursorBuffer], a
 	ret
@@ -994,7 +994,7 @@ endr
 	hlcoord 19, 13
 	ld a, $11
 	ld [hl], a
-	ld a, [wd0e4]
+	ld a, [wMenuScrollPosition]
 	cp $24
 	ret c
 	hlcoord 0, 13
@@ -1018,7 +1018,7 @@ String_8b938: db "いれる ところを えらんでください@" ; Please sel
 Function8b94a: ; 8b94a
 	ld [wd033], a
 	xor a
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	ld [wd032], a
 	ld [wd0e3], a
 	ld [wd031], a

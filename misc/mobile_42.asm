@@ -241,13 +241,13 @@ Function1081ad: ; 1081ad
 Function1081ca: ; 1081ca
 	ld a, $1
 	ld [rVBK], a
-	ld hl, VBGMap0
+	hlbgcoord 0, 0
 	ld bc, $0800
 	ld a, $0
 	call ByteFill
 	ld a, $0
 	ld [rVBK], a
-	ld hl, VBGMap0
+	hlbgcoord 0, 0
 	ld bc, $0800
 	ld a, $7f
 	call ByteFill
@@ -276,7 +276,7 @@ Function108201: ; 108201
 	ld [CurSpecies], a
 	call GetBaseData
 	pop de
-	predef Function5108b
+	predef FrontpicPredef
 	ret
 ; 108219
 
@@ -459,7 +459,7 @@ Function10830e: ; 10830e
 	ld [TempMonDVs], a
 	ld a, [$c6fe]
 	ld [TempMonDVs + 1], a
-	ld b, $1a
+	ld b, SCGB_1A
 	call GetSGBLayout
 	ld a, $e4
 	call DmgToCgbBGPals
@@ -492,14 +492,14 @@ Function10830e: ; 10830e
 	ld c, $50
 	call DelayFrames
 	call Function108bec
-	lb de, $54, $58
-	ld a, $20
-	call Function3b2a
+	depixel 10, 11, 4, 0
+	ld a, SPRITE_ANIM_INDEX_20
+	call _InitSpriteAnimStruct
 	ld de, SFX_BALL_POOF
 	call PlaySFX
 	hlcoord 0, 0
 	ld bc, $00f0
-	ld a, $7f
+	ld a, " "
 	call ByteFill
 	ld c, $50
 	call Function1082cc
@@ -527,9 +527,9 @@ Function10839b: ; 10839b
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	lb de, $54, $58
-	ld a, $21
-	call Function3b2a
+	depixel 10, 11, 4, 0
+	ld a, SPRITE_ANIM_INDEX_21
+	call _InitSpriteAnimStruct
 	call Function108b45
 	ld a, $1
 	call Function108b98
@@ -552,7 +552,7 @@ Function10839b: ; 10839b
 	ld [TempMonDVs], a
 	ld a, [wPlayerWrapCount]
 	ld [TempMonDVs + 1], a
-	ld b, $1a
+	ld b, SCGB_1A
 	call GetSGBLayout
 	ld a, $e4
 	call DmgToCgbBGPals
@@ -594,7 +594,7 @@ Function10842c: ; 10842c
 	ld [TempMonDVs], a
 	ld a, [$c6fe]
 	ld [TempMonDVs + 1], a
-	ld b, $1a
+	ld b, SCGB_1A
 	call GetSGBLayout
 	ld a, $e4
 	call DmgToCgbBGPals
@@ -627,14 +627,14 @@ Function10842c: ; 10842c
 	ld c, $50
 	call DelayFrames
 	call Function108c2b
-	lb de, $54, $58
-	ld a, $20
-	call Function3b2a
+	depixel 10, 11, 4, 0
+	ld a, SPRITE_ANIM_INDEX_20
+	call _InitSpriteAnimStruct
 	ld de, SFX_BALL_POOF
 	call PlaySFX
 	hlcoord 0, 0
 	ld bc, $00f0
-	ld a, $7f
+	ld a, " "
 	call ByteFill
 	ld c, $50
 	call Function1082cc
@@ -671,9 +671,9 @@ Function1084d7: ; 1084d7
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	lb de, $54, $58
-	ld a, $21
-	call Function3b2a
+	depixel 10, 11, 4, 0
+	ld a, SPRITE_ANIM_INDEX_21
+	call _InitSpriteAnimStruct
 	call Function108b45
 	ld a, $1
 	call Function108b98
@@ -696,7 +696,7 @@ Function1084d7: ; 1084d7
 	ld [TempMonDVs], a
 	ld a, [wPlayerWrapCount]
 	ld [TempMonDVs + 1], a
-	ld b, $1a
+	ld b, SCGB_1A
 	call GetSGBLayout
 	ld a, $e4
 	call DmgToCgbBGPals
@@ -740,9 +740,9 @@ Function108589: ; 108589
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	lb de, $54, $58
-	ld a, $21
-	call Function3b2a
+	depixel 10, 11, 4, 0
+	ld a, SPRITE_ANIM_INDEX_21
+	call _InitSpriteAnimStruct
 	call Function108b45
 	ld a, $1
 	call Function108b98
@@ -765,7 +765,7 @@ Function108589: ; 108589
 	ld [TempMonDVs], a
 	ld a, [wPlayerWrapCount]
 	ld [TempMonDVs + 1], a
-	ld b, $1a
+	ld b, SCGB_1A
 	call GetSGBLayout
 	ld a, $e4
 	call DmgToCgbBGPals
@@ -804,7 +804,7 @@ Function108638: ; 108638
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_109107
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $0040
 	call CopyBytes
 	pop af
@@ -850,7 +850,7 @@ Function108689: ; 108689
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_109107
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $0040
 	call CopyBytes
 	pop af
@@ -894,7 +894,7 @@ Function1086f4: ; 1086f4
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_109107
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $0040
 	call CopyBytes
 	pop af
@@ -927,9 +927,9 @@ endr
 	ld [hSCX], a
 	cp $f8
 	jr nz, .asm_10878a
-	lb de, $54, $58
-	ld a, $22
-	call Function3b2a
+	depixel 10, 11, 4, 0
+	ld a, SPRITE_ANIM_INDEX_22
+	call _InitSpriteAnimStruct
 
 .asm_10878a
 	ld c, $1
@@ -953,9 +953,9 @@ endr
 	jr .asm_1087c4
 
 .asm_1087a9
-	lb de, $54, $58
-	ld a, $22
-	call Function3b2a
+	depixel 10, 11, 4, 0
+	ld a, SPRITE_ANIM_INDEX_22
+	call _InitSpriteAnimStruct
 	xor a
 	call Function108ad4
 	jr .asm_1087c4
@@ -985,18 +985,18 @@ Function1087cf: ; 1087cf
 	call Function1082f0
 	call Function108af4
 	call Function108b5a
-	lb de, $4a, $50
-	ld a, $25
-	call Function3b2a
+	depixel 9, 10, 2, 0
+	ld a, SPRITE_ANIM_INDEX_25
+	call _InitSpriteAnimStruct
 	ld de, SFX_FORESIGHT
 	call PlaySFX
 	ld c, $a
 	call Function1082cc
 	xor a
 	ld [wcf64], a
-	lb de, $4a, $50
-	ld a, $23
-	call Function3b2a
+	depixel 9, 10, 2, 0
+	ld a, SPRITE_ANIM_INDEX_23
+	call _InitSpriteAnimStruct
 .asm_1087fc
 	ld a, [hSCY]
 	cp $90
@@ -1021,9 +1021,9 @@ Function108811: ; 108811
 	call PlaySFX
 	ld c, $3c
 	call Function1082cc
-	lb de, $f2, $50
-	ld a, $24
-	call Function3b2a
+	depixel 30, 10, 2, 0
+	ld a, SPRITE_ANIM_INDEX_24
+	call _InitSpriteAnimStruct
 	call Function1082b7
 	ld de, SFX_THROW_BALL
 	call PlaySFX
@@ -1042,11 +1042,11 @@ Function108838: ; 108838
 ; 10884c
 
 Function10884c: ; 10884c
-	ld c, $50
+	ld c, 80
 	call DelayFrames
-	lb de, $f2, $50
-	ld a, $24
-	call Function3b2a
+	depixel 30, 10, 2, 0
+	ld a, SPRITE_ANIM_INDEX_24
+	call _InitSpriteAnimStruct
 	call Function1082b7
 	ld de, SFX_THROW_BALL
 	call PlaySFX
@@ -1068,9 +1068,9 @@ Function108863: ; 108863
 
 .asm_108879
 	callba Function8d03d
-	lb de, $4a, $50
-	ld a, $25
-	call Function3b2a
+	depixel 9, 10, 2, 0
+	ld a, SPRITE_ANIM_INDEX_25
+	call _InitSpriteAnimStruct
 	ld de, SFX_GLASS_TING_2
 	call PlaySFX
 	call Function108af4
@@ -1105,15 +1105,15 @@ endr
 	jr .asm_1088e7
 
 .asm_1088c5
-	lb de, $54, $58
-	ld a, $22
-	call Function3b2a
+	depixel 10, 11, 4, 0
+	ld a, SPRITE_ANIM_INDEX_22
+	call _InitSpriteAnimStruct
 	jr .asm_1088e7
 
 .asm_1088cf
-	lb de, $54, $58
-	ld a, $22
-	call Function3b2a
+	depixel 10, 11, 4, 0
+	ld a, SPRITE_ANIM_INDEX_22
+	call _InitSpriteAnimStruct
 	xor a
 	call Function108ad4
 	jr .asm_1088e7
@@ -1423,7 +1423,7 @@ Function108af4: ; 108af4
 	and $1
 	jr z, .asm_108b1c
 	ld hl, Palette_109187
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld bc, $0040
 	call CopyBytes
 	ld hl, Palette_109187
@@ -1434,7 +1434,7 @@ Function108af4: ; 108af4
 
 .asm_108b1c
 	ld hl, Palette_109147
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld bc, $0040
 	call CopyBytes
 	ld hl, Palette_109147
@@ -1459,7 +1459,7 @@ Function108b45: ; 108b45
 	ld a, $5
 	ld [rSVBK], a
 	ld de, $7fff
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	ld a, e
 	ld [hli], a
 	ld d, a
@@ -1537,7 +1537,7 @@ Function108b98: ; 108b98
 	ld hl, Palette_108b98
 
 .asm_108bb0
-	ld de, wMapPals + 8 * 7
+	ld de, UnknBGPals + 8 * 7
 	ld bc, $0040
 	call CopyBytes
 	pop af
@@ -1669,10 +1669,10 @@ UnknownText_0x108c68: ; 0x108c68
 
 Function108c6d: ; 108c6d
 	ld hl, LZ_108fe7
-	ld de, VBGMap0
+	debgcoord 0, 0
 	call Decompress
 	ld hl, LZ_108fe7
-	ld de, VBGMap1
+	debgcoord 0, 0, VBGMap1
 	call Decompress
 	ret
 ; 108c80
@@ -1681,10 +1681,10 @@ Function108c80: ; 108c80
 	ld a, $1
 	ld [rVBK], a
 	ld hl, LZ_1090a7
-	ld de, VBGMap0
+	debgcoord 0, 0
 	call Decompress
 	ld hl, LZ_1090a7
-	ld de, VBGMap1
+	debgcoord 0, 0, VBGMap1
 	call Decompress
 	ld a, $0
 	ld [rVBK], a

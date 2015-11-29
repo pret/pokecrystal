@@ -186,20 +186,20 @@ UnknownText_0x1ec3e5: ; 0x1ec3e5
 ; 0x1ec402
 
 UnknownText_0x1ec402: ; 0x1ec402
-	text $56, $56, $56
-	line $56, $56, "Battle?"
+	text "<......><......><......>"
+	line "<......><......>Battle?"
 	done
 ; 0x1ec411
 
 UnknownText_0x1ec411: ; 0x1ec411
-	text $56, $56, $56
-	line $56, $56, "I won?"
+	text "<......><......><......>"
+	line "<......><......>I won?"
 	done
 ; 0x1ec41f
 
 UnknownText_0x1ec41f: ; 0x1ec41f
-	text $56, $56, $56
-	line $56, $56, "I lost?"
+	text "<......><......><......>"
+	line "<......><......>I lost?"
 	done
 ; 0x1ec42e
 

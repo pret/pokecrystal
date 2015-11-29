@@ -66,7 +66,7 @@ UnknownScript_0x1a001e:
 	applymovement $c, MovementData_0x1a00ec
 	disappear $c
 	pause 20
-	special Functionc48f
+	special Special_RotatePalettesRightMusic
 	playmapmusic
 	pause 10
 .Done
@@ -401,15 +401,15 @@ CianwoodCity_MapEventHeader:
 
 .PersonEvents:
 	db 12
-	person_event SPRITE_STANDING_YOUNGSTER, 37, 21, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, StandingYoungsterScript_0x1a00b3, -1
-	person_event SPRITE_POKEFAN_M, 33, 17, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, 0, 0, PokefanMScript_0x1a00b6, -1
-	person_event SPRITE_LASS, 42, 14, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, 0, 0, 0, LassScript_0x1a00b9, -1
-	person_event SPRITE_ROCK, 16, 8, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
-	person_event SPRITE_ROCK, 17, 9, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
-	person_event SPRITE_ROCK, 25, 4, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
-	person_event SPRITE_ROCK, 29, 5, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
-	person_event SPRITE_ROCK, 27, 10, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
-	person_event SPRITE_ROCK, 19, 4, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, 0, 0, CianwoodCityRock, -1
-	person_event SPRITE_POKEFAN_F, 46, 10, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, 0, 0, PokefanFScript_0x1a0084, -1
-	person_event SPRITE_SUPER_NERD, 21, 11, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_CIANWOOD_CITY_EUSINE
-	person_event SPRITE_SUICUNE, 14, 10, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
+	person_event SPRITE_STANDING_YOUNGSTER, 37, 21, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, StandingYoungsterScript_0x1a00b3, -1
+	person_event SPRITE_POKEFAN_M, 33, 17, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x1a00b6, -1
+	person_event SPRITE_LASS, 42, 14, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LassScript_0x1a00b9, -1
+	person_event SPRITE_ROCK, 16, 8, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CianwoodCityRock, -1
+	person_event SPRITE_ROCK, 17, 9, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CianwoodCityRock, -1
+	person_event SPRITE_ROCK, 25, 4, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CianwoodCityRock, -1
+	person_event SPRITE_ROCK, 29, 5, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CianwoodCityRock, -1
+	person_event SPRITE_ROCK, 27, 10, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CianwoodCityRock, -1
+	person_event SPRITE_ROCK, 19, 4, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CianwoodCityRock, -1
+	person_event SPRITE_POKEFAN_F, 46, 10, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokefanFScript_0x1a0084, -1
+	person_event SPRITE_SUPER_NERD, 21, 11, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_CIANWOOD_CITY_EUSINE
+	person_event SPRITE_SUICUNE, 14, 10, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY

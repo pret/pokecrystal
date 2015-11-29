@@ -31,7 +31,7 @@ endr
 	call CopyBytes
 
 	ld hl, UnusedTitleBG_Tilemap
-	ld de, VBGMap0
+	debgcoord 0, 0
 	ld bc, 32 * 32
 .copy
 	ld a, 0
@@ -67,12 +67,12 @@ endr
 	ld [rSVBK], a
 
 	ld hl, UnusedTitleBG_Palettes
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $40
 	call CopyBytes
 
 	ld hl, UnusedTitleFG_Palettes
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld bc, $40
 	call CopyBytes
 

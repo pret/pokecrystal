@@ -130,7 +130,7 @@ DragonShrineTestScript:
 	writetext UnknownText_0x18d916
 	closetext
 	loadmovesprites
-	special Functionc48f
+	special Special_RotatePalettesRightMusic
 	applymovement $5, MovementData_0x18d2da
 	loadfont
 	writetext UnknownText_0x18d974
@@ -681,7 +681,7 @@ DragonShrine_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_ELDER, 1, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, ElderScript_0x18d1a5, EVENT_GAVE_KURT_APRICORNS
-	person_event SPRITE_ELDER, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, ElderScript_0x18d205, EVENT_GAVE_KURT_APRICORNS
-	person_event SPRITE_ELDER, 4, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 0, 0, ElderScript_0x18d20d, EVENT_GAVE_KURT_APRICORNS
-	person_event SPRITE_CLAIR, 8, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ObjectEvent, EVENT_DRAGON_SHRINE_CLAIR
+	person_event SPRITE_ELDER, 1, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ElderScript_0x18d1a5, EVENT_GAVE_KURT_APRICORNS
+	person_event SPRITE_ELDER, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ElderScript_0x18d205, EVENT_GAVE_KURT_APRICORNS
+	person_event SPRITE_ELDER, 4, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ElderScript_0x18d20d, EVENT_GAVE_KURT_APRICORNS
+	person_event SPRITE_CLAIR, 8, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_DRAGON_SHRINE_CLAIR

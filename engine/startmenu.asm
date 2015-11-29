@@ -422,7 +422,7 @@ StartMenu_Quit: ; 128f0
 ; Retire from the bug catching contest.
 
 	ld hl, .EndTheContestText
-	call Function12cf5
+	call StartMenuYesNo
 	jr c, .DontEndContest
 	ld a, BANK(BugCatchingContestReturnToGateScript)
 	ld hl, BugCatchingContestReturnToGateScript
@@ -444,7 +444,7 @@ StartMenu_Save: ; 1290b
 ; Save the game.
 
 	call BufferScreen
-	callba Function14a1a
+	callba SaveMenu
 	jr nc, .asm_12919
 	ld a, 0
 	ret
@@ -468,8 +468,8 @@ StartMenu_Status: ; 12928
 ; Player status.
 
 	call FadeToMenu
-	callba Function25105
-	call Function2b3c
+	callba TrainerCard
+	call ReturnToCallingMenu
 	ld a, 0
 	ret
 ; 12937
@@ -483,7 +483,7 @@ StartMenu_Pokedex: ; 12937
 
 	call FadeToMenu
 	callba Pokedex
-	call Function2b3c
+	call ReturnToCallingMenu
 
 .asm_12949
 	ld a, 0
@@ -494,8 +494,8 @@ StartMenu_Pokedex: ; 12937
 StartMenu_Pokegear: ; 1294c
 
 	call FadeToMenu
-	callba Function90b8d
-	call Function2b3c
+	callba PokeGear
+	call ReturnToCallingMenu
 	ld a, 0
 	ret
 ; 1295b
@@ -507,12 +507,13 @@ StartMenu_Pack: ; 1295b
 	callba Pack
 	ld a, [wcf66]
 	and a
-	jr nz, .asm_12970
-	call Function2b3c
+	jr nz, .used_item
+	call ReturnToCallingMenu
 	ld a, 0
 	ret
-.asm_12970
-	call Function2b4d
+
+.used_item
+	call ExitAllMenus
 	ld a, 4
 	ret
 ; 12976
@@ -532,9 +533,9 @@ StartMenu_Pokemon: ; 12976
 	call ClearBGPalettes
 
 .menu
-	callba Function5004f
-	callba Function50405
-	callba Function503e0
+	callba LoadPartyMenuGFX
+	callba InitPartyMenuWithCancel
+	callba InitPartyMenuGFX
 
 .menunoreload
 	callba WritePartyMenuTilemap
@@ -556,19 +557,19 @@ StartMenu_Pokemon: ; 12976
 	jr z, .quit
 
 .return
-	call Function2b3c
+	call ReturnToCallingMenu
 	ld a, 0
 	ret
 
 .quit
 	ld a, b
 	push af
-	call Function2b4d
+	call ExitAllMenus
 	pop af
 	ret
 ; 129d5
 
-Function129d5: ; 129d5
+HasNoItems: ; 129d5
 	ld a, [NumItems]
 	and a
 	ret nz
@@ -580,15 +581,15 @@ Function129d5: ; 129d5
 	ret nz
 	ld hl, TMsHMs
 	ld b, NUM_TMS + NUM_HMS
-.asm_129e9
+.loop
 	ld a, [hli]
 	and a
-	jr nz, .asm_129f2
+	jr nz, .done
 	dec b
-	jr nz, .asm_129e9
+	jr nz, .loop
 	scf
 	ret
-.asm_129f2
+.done
 	and a
 	ret
 
@@ -663,7 +664,7 @@ UnknownText_0x12a5b: ; 0x12a5b
 
 CantUseItem: ; 12a60
 	ld hl, CantUseItemText
-	call Function2012
+	call MenuTextBoxWaitButton
 	ret
 ; 12a67
 
@@ -683,7 +684,7 @@ PartyMonItemName: ; 12a6c
 
 
 CancelPokemonAction: ; 12a79
-	callba Function50405
+	callba InitPartyMenuWithCancel
 	callba Function8ea71
 	ld a, 1
 	ret
@@ -745,10 +746,10 @@ SwitchPartyMons: ; 12aec
 
 	ld a, [CurPartyMon]
 	inc a
-	ld [wd0e3], a
+	ld [wSwitchMon], a
 
 	callba Function8ea8c
-	callba Function5042d
+	callba InitPartyMenuNoCancel
 
 	ld a, 4
 	ld [PartyMenuActionText], a
@@ -757,7 +758,7 @@ SwitchPartyMons: ; 12aec
 
 	hlcoord 0, 1
 	ld bc, 20 * 2
-	ld a, [wd0e3]
+	ld a, [wSwitchMon]
 	dec a
 	call AddNTimes
 	ld [hl], "▷"
@@ -774,9 +775,9 @@ SwitchPartyMons: ; 12aec
 	xor a
 	ld [PartyMenuActionText], a
 
-	callba Function5004f
-	callba Function50405
-	callba Function503e0
+	callba LoadPartyMenuGFX
+	callba InitPartyMenuWithCancel
+	callba InitPartyMenuGFX
 
 	ld a, 1
 	ret
@@ -882,7 +883,7 @@ Function12bd9: ; 12bd9
 	jr .asm_12c08
 
 .asm_12bf4
-	call Function12cea
+	call GiveItemToPokemon
 	ld hl, MadeHoldText
 	call MenuTextBoxBackup
 	call GivePartyItem
@@ -897,17 +898,17 @@ Function12bd9: ; 12bd9
 	ld [wd265], a
 	call GetItemName
 	ld hl, SwitchAlreadyHoldingText
-	call Function12cf5
+	call StartMenuYesNo
 	jr c, .asm_12c4b
 
-	call Function12cea
+	call GiveItemToPokemon
 	ld a, [wd265]
 	push af
 	ld a, [CurItem]
 	ld [wd265], a
 	pop af
 	ld [CurItem], a
-	call Function12cdf
+	call ReceiveItemFromPokemon
 	jr nc, .asm_12c3c
 
 	ld hl, TookAndMadeHoldText
@@ -920,7 +921,7 @@ Function12bd9: ; 12bd9
 .asm_12c3c
 	ld a, [wd265]
 	ld [CurItem], a
-	call Function12cdf
+	call ReceiveItemFromPokemon
 	ld hl, ItemStorageIsFullText
 	call MenuTextBoxBackup
 
@@ -936,10 +937,10 @@ GivePartyItem: ; 12c4c
 	ld [hl], a
 	ld d, a
 	callba ItemIsMail
-	jr nc, .asm_12c5f
-	call Function12cfe
+	jr nc, .done
+	call ComposeMailMessage
 
-.asm_12c5f
+.done
 	ret
 ; 12c60
 
@@ -953,7 +954,7 @@ TakePartyItem: ; 12c60
 	jr z, .asm_12c8c
 
 	ld [CurItem], a
-	call Function12cdf
+	call ReceiveItemFromPokemon
 	jr nc, .asm_12c94
 
 	callba ItemIsMail
@@ -1045,7 +1046,7 @@ GetPartyItemLocation: ; 12cd7
 ; 12cdf
 
 
-Function12cdf: ; 12cdf
+ReceiveItemFromPokemon: ; 12cdf
 	ld a, $1
 	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
@@ -1053,28 +1054,28 @@ Function12cdf: ; 12cdf
 ; 12cea
 
 
-Function12cea: ; 12cea (4:6cea)
+GiveItemToPokemon: ; 12cea (4:6cea)
 	ld a, $1
 	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
 	jp TossItem
 
-Function12cf5: ; 12cf5
+StartMenuYesNo: ; 12cf5
 	call MenuTextBox
 	call YesNoBox
 	jp ExitMenu
 ; 12cfe
 
 
-Function12cfe: ; 12cfe (4:6cfe)
-	ld de, wd002
-	callba Function11e75
+ComposeMailMessage: ; 12cfe (4:6cfe)
+	ld de, wTempMailMessage
+	callba _ComposeMailMessage
 	ld hl, PlayerName
-	ld de, wd023
-	ld bc, $a
+	ld de, wTempMailAuthor
+	ld bc, NAME_LENGTH - 1
 	call CopyBytes
 	ld hl, PlayerID
-	ld bc, $2
+	ld bc, 2
 	call CopyBytes
 	ld a, [CurPartySpecies]
 	ld [de], a
@@ -1082,14 +1083,14 @@ Function12cfe: ; 12cfe (4:6cfe)
 	ld a, [CurItem]
 	ld [de], a
 	ld a, [CurPartyMon]
-	ld hl, sPartyScratch1
-	ld bc, SCRATCHMON_STRUCT_LENGTH
+	ld hl, sPartyMail
+	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, wd002
-	ld bc, SCRATCHMON_STRUCT_LENGTH
-	ld a, BANK(sPartyScratch1)
+	ld hl, wTempMail
+	ld bc, MAIL_STRUCT_LENGTH
+	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	call CopyBytes
 	call CloseSRAM
@@ -1127,11 +1128,11 @@ MonMailAction: ; 12d45
 
 .take
 	ld hl, .sendmailtopctext
-	call Function12cf5
+	call StartMenuYesNo
 	jr c, .RemoveMailToBag
 	ld a, [CurPartyMon]
 	ld b, a
-	callba Function4456e
+	callba SendMailToPC
 	jr c, .MailboxFull
 	ld hl, .sentmailtopctext
 	call MenuTextBoxBackup
@@ -1144,12 +1145,12 @@ MonMailAction: ; 12d45
 
 .RemoveMailToBag
 	ld hl, .mailwilllosemessagetext
-	call Function12cf5
+	call StartMenuYesNo
 	jr c, .done
 	call GetPartyItemLocation
 	ld a, [hl]
 	ld [CurItem], a
-	call Function12cdf
+	call ReceiveItemFromPokemon
 	jr nc, .BagIsFull
 	call GetPartyItemLocation
 	ld [hl], $0
@@ -1240,14 +1241,14 @@ OpenPartyStats: ; 12e00
 
 MonMenu_Cut: ; 12e1b
 	callba CutFunction
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	cp $1
-	jr nz, .asm_12e2d
+	jr nz, .Fail
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12e2d
+.Fail
 	ld a, $3
 	ret
 ; 12e30
@@ -1255,160 +1256,161 @@ MonMenu_Cut: ; 12e1b
 
 MonMenu_Fly: ; 12e30
 	callba FlyFunction
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	cp $2
-	jr z, .asm_12e4c
+	jr z, .Fail
 	cp $0
-	jr z, .asm_12e4f
+	jr z, .Error
 	callba MobileFn_1060b5
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12e4c
+.Fail
 	ld a, $3
 	ret
 
-.asm_12e4f
+.Error
 	ld a, $0
 	ret
 
-.asm_12e52
+.Unused
 	ld a, $1
 	ret
 ; 12e55
 
 MonMenu_Flash: ; 12e55
 	callba Functionc8ac
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	cp $1
-	jr nz, .asm_12e67
+	jr nz, .Fail
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12e67
+.Fail
 	ld a, $3
 	ret
 ; 12e6a
 
 MonMenu_Strength: ; 12e6a
 	callba StrengthFunction
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	cp $1
-	jr nz, .asm_12e7c
+	jr nz, .Fail
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12e7c
+.Fail
 	ld a, $3
 	ret
 ; 12e7f
 
 MonMenu_Whirlpool: ; 12e7f
 	callba WhirlpoolFunction
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	cp $1
-	jr nz, .asm_12e91
+	jr nz, .Fail
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12e91
+.Fail
 	ld a, $3
 	ret
 ; 12e94
 
 MonMenu_Waterfall: ; 12e94
 	callba Functioncade
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	cp $1
-	jr nz, .asm_12ea6
+	jr nz, .Fail
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12ea6
+.Fail
 	ld a, $3
 	ret
 ; 12ea9
 
 MonMenu_Teleport: ; 12ea9
 	callba TeleportFunction
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	and a
-	jr z, .asm_12eba
+	jr z, .Fail
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12eba
+.Fail
 	ld a, $3
 	ret
 ; 12ebd
 
 MonMenu_Surf: ; 12ebd
 	callba SurfFunction
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	and a
-	jr z, .asm_12ece
+	jr z, .Fail
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12ece
+.Fail
 	ld a, $3
 	ret
 ; 12ed1
 
 MonMenu_Dig: ; 12ed1
 	callba DigFunction
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	cp $1
-	jr nz, .asm_12ee3
+	jr nz, .Fail
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12ee3
+.Fail
 	ld a, $3
 	ret
 ; 12ee6
 
 MonMenu_Softboiled_MilkDrink: ; 12ee6
-	call Function12f05
-	jr nc, .asm_12ef3
-	callba Functionf3df
-	jr .asm_12ef9
+	call .CheckMonHasEnoughHP
+	jr nc, .NotEnoughHP
+	callba Softboiled_MilkDrinkFunction
+	jr .finish
 
-.asm_12ef3
-	ld hl, UnknownText_0x12f00
+.NotEnoughHP
+	ld hl, .Text_NotEnoughHP
 	call PrintText
 
-.asm_12ef9
+.finish
 	xor a
 	ld [PartyMenuActionText], a
 	ld a, $3
 	ret
 ; 12f00
 
-UnknownText_0x12f00: ; 0x12f00
+.Text_NotEnoughHP: ; 0x12f00
 	; Not enough HP!
 	text_jump UnknownText_0x1c1ce3
 	db "@"
 ; 0x12f05
 
-Function12f05: ; 12f05
+.CheckMonHasEnoughHP: ; 12f05
+; Need to have at least (MaxHP / 5) HP left.
 	ld a, MON_MAXHP
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld [hDividend + 0], a
 	ld a, [hl]
 	ld [hDividend + 1], a
-	ld a, $5
+	ld a, 5
 	ld [hDivisor], a
-	ld b, $2
+	ld b, 2
 	call Divide
 	ld a, MON_HP + 1
 	call GetPartyParamLocation
@@ -1422,28 +1424,28 @@ Function12f05: ; 12f05
 
 MonMenu_Headbutt: ; 12f26
 	callba HeadbuttFunction
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	cp $1
-	jr nz, .asm_12f38
+	jr nz, .Fail
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12f38
+.Fail
 	ld a, $3
 	ret
 ; 12f3b
 
 MonMenu_RockSmash: ; 12f3b
 	callba RockSmashFunction
-	ld a, [wd0ec]
+	ld a, [wFieldMoveSucceeded]
 	cp $1
-	jr nz, .asm_12f4d
+	jr nz, .Fail
 	ld b, $4
 	ld a, $2
 	ret
 
-.asm_12f4d
+.Fail
 	ld a, $3
 	ret
 ; 12f50
@@ -1474,7 +1476,7 @@ Function12f5b: ; 12f5b
 Function12f73: ; 12f73
 	call SetUpMoveScreenBG
 	ld de, Unknown_12fb2
-	call Function1bb1
+	call InitMenu3
 	call Function131ef
 	ld hl, wcfa5
 	set 6, [hl]
@@ -1503,7 +1505,7 @@ Function12f9f: ; 12f9f
 Function12fa0: ; 12fa0
 	push af
 	xor a
-	ld [wd0e3], a
+	ld [wSwitchMon], a
 	ld hl, wcfa5
 	res 6, [hl]
 	call ClearSprites
@@ -1541,7 +1543,7 @@ MoveScreenLoop: ; 12fd5
 	call SetUpMoveScreenBG
 	call Function132d3
 	ld de, Unknown_13163
-	call Function1bb1
+	call InitMenu3
 .loop
 	call Function131ef
 	ld hl, wcfa5
@@ -1759,7 +1761,7 @@ SetUpMoveScreenBG: ; 13172
 	xor a
 	ld [hBGMapMode], a
 	callba Functionfb571
-	callba InefficientlyClear121BytesAtwc300
+	callba ClearSpriteAnims
 	ld a, [CurPartyMon]
 	ld e, a
 	ld d, $0
@@ -1793,7 +1795,7 @@ SetUpMoveScreenBG: ; 13172
 	call PrintLevel
 	ld hl, PlayerHPPal
 	call SetHPPal
-	ld b, $e
+	ld b, SCGB_0E
 	call GetSGBLayout
 	hlcoord 16, 0
 	lb bc, 1, 3

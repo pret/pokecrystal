@@ -50,7 +50,7 @@ BEHIND_BG EQU 1 << OAM_PRIORITY
 Facing00:
 Facing02:
 Facing24:
-Facing26: ; 408b
+Facing26: ; standing down
 	db 4 ; #
 	db  0,  0, 0, $00
 	db  0,  8, 0, $01
@@ -58,7 +58,7 @@ Facing26: ; 408b
 	db  8,  8, 2, $03
 ; 409c
 
-Facing01: ; 409c
+Facing01: ; walking down 1
 	db 4 ; #
 	db  0,  0, 0, $80
 	db  0,  8, 0, $81
@@ -66,7 +66,7 @@ Facing01: ; 409c
 	db  8,  8, 2, $83
 ; 40ad
 
-Facing03: ; 40ad
+Facing03: ; walking down 2
 	db 4 ; #
 	db  0,  8, X_FLIP, $80
 	db  0,  0, X_FLIP, $81
@@ -75,7 +75,7 @@ Facing03: ; 40ad
 ; 40be
 
 Facing04:
-Facing06: ; 40be
+Facing06: ; standing up
 	db 4 ; #
 	db  0,  0, 0, $04
 	db  0,  8, 0, $05
@@ -83,7 +83,7 @@ Facing06: ; 40be
 	db  8,  8, 2, $07
 ; 40cf
 
-Facing05: ; 40cf
+Facing05: ; walking up 1
 	db 4 ; #
 	db  0,  0, 0, $84
 	db  0,  8, 0, $85
@@ -91,7 +91,7 @@ Facing05: ; 40cf
 	db  8,  8, 2, $87
 ; 40e0
 
-Facing07: ; 40e0
+Facing07: ; walking up 2
 	db 4 ; #
 	db  0,  8, X_FLIP, $84
 	db  0,  0, X_FLIP, $85
@@ -100,7 +100,7 @@ Facing07: ; 40e0
 ; 40f1
 
 Facing08:
-Facing10: ; 40f1
+Facing10: ; standing left
 	db 4 ; #
 	db  0,  0, 0, $08
 	db  0,  8, 0, $09
@@ -109,7 +109,7 @@ Facing10: ; 40f1
 ; 4102
 
 Facing12:
-Facing14: ; 4102
+Facing14: ; standing right
 	db 4 ; #
 	db  0,  8, X_FLIP, $08
 	db  0,  0, X_FLIP, $09
@@ -118,7 +118,7 @@ Facing14: ; 4102
 ; 4113
 
 Facing09:
-Facing11: ; 4113
+Facing11: ; walking left
 	db 4 ; #
 	db  0,  0, 0, $88
 	db  0,  8, 0, $89
@@ -127,7 +127,7 @@ Facing11: ; 4113
 ; 4124
 
 Facing13:
-Facing15: ; 4124
+Facing15: ; walking right
 	db 4 ; #
 	db  0,  8, X_FLIP, $88
 	db  0,  0, X_FLIP, $89
@@ -135,7 +135,7 @@ Facing15: ; 4124
 	db  8,  0, 2 | X_FLIP, $8b
 ; 4135
 
-Facing16: ; 4135
+Facing16: ; fishing down
 	db 5 ; #
 	db  0,  0, 0, $00
 	db  0,  8, 0, $01
@@ -144,7 +144,7 @@ Facing16: ; 4135
 	db 16,  0, 4, $fc
 ; 414a
 
-Facing17: ; 414a
+Facing17: ; fishing up
 	db 5 ; #
 	db  0,  0, 0, $04
 	db  0,  8, 0, $05
@@ -153,7 +153,7 @@ Facing17: ; 414a
 	db -8,  0, 4, $fc
 ; 415f
 
-Facing18: ; 415f
+Facing18: ; fishing left
 	db 5 ; #
 	db  0,  0, 0, $08
 	db  0,  8, 0, $09
@@ -162,7 +162,7 @@ Facing18: ; 415f
 	db  5, -8, 4 | X_FLIP, $fd
 ; 4174
 
-Facing19: ; 4174
+Facing19: ; fishing right
 	db 5 ; #
 	db  0,  8, X_FLIP, $08
 	db  0,  0, X_FLIP, $09
@@ -171,7 +171,7 @@ Facing19: ; 4174
 	db  5, 16, 4, $fd
 ; 4189
 
-Facing20: ; 4189
+Facing20: ; emote
 	db 4 ; #
 	db  0,  0, 4, $f8
 	db  0,  8, 4, $f9
@@ -179,13 +179,13 @@ Facing20: ; 4189
 	db  8,  8, 4, $fb
 ; 419a
 
-Facing21: ; 419a
+Facing21: ; shadow
 	db 2 ; #
 	db  0,  0, 4, $fc
 	db  0,  8, 4 | X_FLIP, $fc
 ; 41a3
 
-Facing23: ; 41a3
+Facing23: ; big snorlax or lapras doll
 	db 16 ; #
 	db  0,  0, 0, $00
 	db  0,  8, 0, $01
@@ -221,7 +221,7 @@ Facing27: ; 41f5
 	db  8,  0, X_FLIP, $07
 ; 4206
 
-Facing22: ; 4206
+Facing22: ; big doll other than snorlax or lapras
 	db 14 ; #
 	db  0,  0, 0, $00
 	db  0,  8, 0, $01
@@ -239,7 +239,7 @@ Facing22: ; 4206
 	db 24, 16, 0, $0b
 ; 423f
 
-Facing28: ; 423f
+Facing28: ; boulder dust 1
 	db 4 ; #
 	db  0,  0, 4, $fe
 	db  0,  8, 4, $fe
@@ -247,7 +247,7 @@ Facing28: ; 423f
 	db  8,  8, 4, $fe
 ; 4250
 
-Facing29: ; 4250
+Facing29: ; boulder dust 2
 	db 4 ; #
 	db  0,  0, 4, $ff
 	db  0,  8, 4, $ff

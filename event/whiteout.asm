@@ -37,12 +37,12 @@ OverworldBGMap: ; 124fa
 	call ClearScreen
 	call Function3200
 	call HideSprites
-	call Function4f0
+	call RotateThreePalettesLeft
 	ret
 ; 1250a
 
 BattleBGMap: ; 1250a
-	ld b, $0
+	ld b, SCGB_00
 	call GetSGBLayout
 	call SetPalettes
 	ret

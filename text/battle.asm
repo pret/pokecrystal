@@ -194,7 +194,7 @@ BattleText_EnemyPkmnFainted: ; 0x809a8
 
 GotMoneyForWinningText:
 	text "<PLAYER> got ¥@"
-	deciram wc686, 3, 6
+	deciram wBattleReward, 3, 6
 	text ""
 	line "for winning!"
 	prompt
@@ -213,7 +213,7 @@ TiedAgainstText: ; 0x809eb
 
 SentSomeToMomText:
 	text "<PLAYER> got ¥@"
-	deciram wc686, 3, 6
+	deciram wBattleReward, 3, 6
 	text ""
 	line "for winning!"
 	cont "Sent some to MOM!"
@@ -396,7 +396,7 @@ BattleText_StringBuffer1GrewToLevel: ; 0x80c9c
 	line "level @"
 	deciram CurPartyLevel, 1, 3
 	text "!@"
-	sound0
+	sound_dex_fanfare_50_79
 	db "@"
 ; 0x80cb9
 

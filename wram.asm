@@ -145,6 +145,18 @@ battle_tower_struct: MACRO
 \1TrainerEnd::
 endm
 
+mailmsg: MACRO
+\1Message:: ds MAIL_MSG_LENGTH
+\1MessageEnd:: ds 1
+\1Author:: ds PLAYER_NAME_LENGTH
+\1AuthorNationality:: ds 2
+\1AuthorID:: ds 2
+\1Species:: ds 1
+\1Type:: ds 1
+\1End::
+endm
+
+
 INCLUDE "vram.asm"
 
 SECTION "Stack", WRAM0
@@ -299,7 +311,7 @@ AutoInputLength:: ; c2cb
 
 wc2cc:: ds 1
 wc2cd:: ds 1
-wc2ce:: ds 1
+wSpriteUpdatesEnabled:: ds 1
 wc2cf:: ds 1
 wc2d0:: ds 4
 wc2d4:: ds 1
@@ -319,22 +331,26 @@ ScriptVar:: ; c2dd
 	ds 1
 
 wc2de:: ds 1
-wc2df:: ds 3
+wc2df:: ds 1
+	ds 2
 wMovementPerson:: ds 1
 wMovementDataPointer:: ds 3 ; dba
 wc2e6:: ds 4
 wc2ea:: ds 1
+wc2eb::
 wMovementPointer:: ds 2 ; c2eb
 	ds 3
-wc2f0:: ds 1
-wc2f1:: ds 1
-wc2f2:: ds 1
-wc2f3:: ds 1
-wc2f4:: ds 1
-wc2f5:: ds 1
-wc2f6:: ds 1
-wc2f7:: ds 1
-wc2f8:: ds 1
+
+wTempObjectCopyMapObjectIndex:: ds 1 ; c2f0
+wTempObjectCopySprite:: ds 1 ; c2f1
+wTempObjectCopySpriteVTile:: ds 1 ; c2f2
+wTempObjectCopyPalette:: ds 1 ; c2f3
+wTempObjectCopyMovement:: ds 1 ; c2f4
+wTempObjectCopyRange:: ds 1 ; c2f5
+wTempObjectCopyX:: ds 1 ; c2f6
+wTempObjectCopyY:: ds 1 ; c2f7
+wTempObjectCopyRadius:: ds 1 ; c2f8
+
 	ds 1
 
 TileDown:: ; c2fa
@@ -357,10 +373,10 @@ TilePermissions:: ; c2fe
 
 	ds 1
 
-SECTION "PARTY ICONS", WRAM0 [$c300]
+SECTION "c300", WRAM0 [$c300]
 ; wc300 - wc313 is a 10x2 dictionary.
-wDict_c300:: ds 10 * 2
-	ds wDict_c300 - @
+wSpriteAnimDict:: ds 10 * 2
+	ds wSpriteAnimDict - @
 wc300:: ds 1
 wc301:: ds 1
 wc302:: ds 1
@@ -380,22 +396,54 @@ wc310:: ds 1
 wc311:: ds 1
 wc312:: ds 1
 wc313:: ds 1
-; wPartyMonMenuIconAnims::
+wSpriteAnimationStructs::
+
+sprite_anim_struct: MACRO
+\1Index:: ds 1      ; 0
+\1Sprite01:: ds 1   ; 1
+\1AnimSeqID:: ds 1  ; 2
+\1TileID:: ds 1     ; 3
+\1XCoord:: ds 1     ; 4
+\1YCoord:: ds 1     ; 5
+\1XOffset:: ds 1    ; 6
+\1YOffset:: ds 1    ; 7
+\1FrameTimer:: ds 1 ; 8 
+\1Sprite09:: ds 1   ; 9
+\1FrameIndex:: ds 1 ; a
+\1Sprite0b:: ds 1
+\1Sprite0c:: ds 1
+\1Sprite0d:: ds 1
+\1Sprite0e:: ds 1
+\1Sprite0f:: ds 1
+ENDM
+
 ; Field  0: Index
 ; Fields 1-3: Loaded from Unknown_8d1c4
-wc314:: ds 16 ; c314
-wc324:: ds 16 ; c324
-wc334:: ds 16 ; c334
-wc344:: ds 16 ; c344
-wc354:: ds 16 ; c354
-wc364:: ds 16 ; c364
-wc374:: ds 16 ; c374
-wc384:: ds 16 ; c384
-wc394:: ds 16 ; c394
-wc3a4:: ds 8  ; c3a4
-wc3ac:: ds 8  ; c3ac
-; wPartyMonMenuIconAnimsEnd::
-wc3b4:: ds 1 ; something to do with wc314
+wc314::
+SpriteAnim1:: sprite_anim_struct SpriteAnim1
+wc324::
+SpriteAnim2:: sprite_anim_struct SpriteAnim2
+wc334::
+SpriteAnim3:: sprite_anim_struct SpriteAnim3
+wc344::
+SpriteAnim4:: sprite_anim_struct SpriteAnim4
+wc354::
+SpriteAnim5:: sprite_anim_struct SpriteAnim5
+wc364::
+SpriteAnim6:: sprite_anim_struct SpriteAnim6
+wc374::
+SpriteAnim7:: sprite_anim_struct SpriteAnim7
+wc384::
+SpriteAnim8:: sprite_anim_struct SpriteAnim8
+wc394::
+SpriteAnim9:: sprite_anim_struct SpriteAnim9
+wc3a4::
+SpriteAnim10:: sprite_anim_struct SpriteAnim10
+wSpriteAnimationStructsEnd::
+	ds -8
+wc3ac:: ds 8 ; c3ac
+wSpriteAnimCount::
+wc3b4:: ds 1
 wc3b5:: ds 1
 
 CurIcon:: ; c3b6
@@ -411,6 +459,8 @@ wc3bd:: ds 1
 wc3be:: ds 1
 wc3bf:: ds 1
 wc3c0:: ds 1
+wSpriteAnimsEnd::
+
 wc3c1:: ds 11
 wc3cc:: ds 1
 wc3cd:: ds 31
@@ -494,7 +544,8 @@ wc64e:: ds 1
 	ds 1
 wEnemyTrainerItem1:: ds 1
 wEnemyTrainerItem2:: ds 1
-wc652:: ds 4
+wEnemyTrainerBaseReward:: ds 1
+wEnemyTrainerAIFlags:: ds 3
 wc656::
 OTName:: ds NAME_LENGTH ; c656
 
@@ -640,8 +691,7 @@ PlayerDamageTaken:: ; c682
 EnemyDamageTaken:: ; c684
 	ds 2
 
-wc686:: ds 2
-wc688:: ds 1
+wBattleReward:: ds 3
 wKickCounter::
 wPresentPower:: ds 1
 wc68a::
@@ -671,7 +721,26 @@ PlayerSpdLevel:: ; c6ce
 	ds 1
 PlayerSAtkLevel:: ; c6cf
 	ds 1
+
+trademon: MACRO
+\1Species:: ds 1 ; wc6d0 | wc702
+\1SpeciesName:: ds PKMN_NAME_LENGTH ; wc6d1 | wc703
+\1Nickname:: ds PKMN_NAME_LENGTH ; wc6dc | wc70e
+\1SenderName:: ds NAME_LENGTH ; wc6e7 | wc719
+\1OTName:: ds NAME_LENGTH ; wc6f2 | wc724
+\1DVs:: ds 2 ; wc6fd | wc72f
+\1ID:: ds 2 ; wc6ff | wc731
+\1CaughtData:: ds 1 ; wc701 | wc733
+\1End::
+ENDM
+
+wPlayerTrademon:: trademon wPlayerTrademon
+wOTTrademon::     trademon wOTTrademon
+
+	ds wPlayerTrademon - @
+
 wc6d0::
+wPokedexDataStart::
 PlayerSDefLevel:: ; c6d0
 	ds 1
 wc6d1::
@@ -871,22 +940,32 @@ wc729:: ds 2
 wPlayerRageCounter:: ds 1
 wEnemyRageCounter:: ds 1
 wc72d:: ds 1 ; if 0 then PrintButItFailed
+wc72e::
 wPlayerTrappingMove:: ds 1
+wc72f::
 wEnemyTrappingMove:: ds 1
+wc730::
 wPlayerWrapCount:: ds 1
+wc731::
 wEnemyWrapCount:: ds 1
+wc732::
 wPlayerCharging:: ds 1
-wEnemyCharging:: ds 1
+wEnemyCharging::
+wc733:: ds 1
+wTradeAnimPointer::
 wc734::
 BattleEnded:: ; c734
 	ds 1
 
 wWildMonMoves::
 wc735:: ds 1
+wLinkPlayer1Name:: ds NAME_LENGTH
+wLinkPlayer2Name:: ds NAME_LENGTH
+	ds wLinkPlayer1Name - @
 wc736:: ds 3
 wWildMonPP::
 wc739:: ds 4
-wc73d:: ds 1
+wAmuletCoin:: ds 1
 wc73e:: ds 1
 wPlayerJustGotFrozen:: ds 1
 wEnemyJustGotFrozen:: ds 1
@@ -906,8 +985,8 @@ wc7d0:: ds 1
 wc7d1:: ds 1
 wc7d2:: ds 1
 wc7d3:: ds 1
-wc7d4:: ds 1
-wc7d5:: ds 1
+wc7d4:: ds 1 ; Index of the topmost visible item in a scrolling menu
+wc7d5:: ds 1 ; Which row the cursor is at in a scrolling menu (0-6)
 wc7d6:: ds 1
 wc7d7:: ds 1
 wc7d8:: ds 1
@@ -925,8 +1004,14 @@ wc7e3:: ds 1
 wc7e4:: ds 1
 IF DEF(CRYSTAL11)
 wPokedexStatus::
+ELSE
+wPokedexDataEnd::
 ENDC
-	ds 3
+	ds 1
+IF DEF(CRYSTAL11)
+wPokedexDataEnd::
+ENDC
+	ds 2
 
 wMiscEnd::
 
@@ -934,12 +1019,12 @@ wc7e8:: ds 24
 
 SECTION "Overworld Map", WRAM0 [$c800]
 
-wc800::
 OverworldMap:: ; c800
-; too lazy to reconcile these labels
-;	ds 1300
+	ds 1300
+OverworldMapEnd::
+	ds OverworldMap - @
 
-	ds 1
+wc800::	ds 1
 wc801:: ds 1
 wc802:: ds 1
 wc803:: ds 4
@@ -951,6 +1036,8 @@ wc820:: ds 1
 wc821:: ds 15
 wc830:: ds 16
 wc840:: ds 16
+wMysteryGiftTrainerData:: ds (1 + 1 + NUM_MOVES) * PARTY_LENGTH + 2
+	ds wMysteryGiftTrainerData - @
 wc850:: ds 16
 wc860:: ds 16
 wc870:: ds 16
@@ -963,9 +1050,9 @@ wc8d0:: ds 16
 wc8e0:: ds 16
 wc8f0:: ds 16
 wc900:: ds 1
-wc901:: ds 1
-wc902:: ds 1
-wc903:: ds 12
+wMysteryGiftPartnerID:: ds 2
+wMysteryGiftPartnerName:: ds NAME_LENGTH
+wc90e:: ds 1
 wc90f:: ds 1
 wc910:: ds 1
 wc911:: ds 1
@@ -1071,10 +1158,7 @@ wccb4:: ds 1
 wccb5:: ds 3
 wccb8:: ds 1
 wccb9:: ds 1
-wccba:: ds 90
-OverworldMapEnd::
-
-	ds 12
+wccba:: ds 102
 
 SECTION "Video", WRAM0
 CreditsPos::
@@ -1214,9 +1298,10 @@ wcf41:: ds 1
 wcf42:: ds 2
 wcf44:: ds 1
 wcf45:: ds 12
-wcf51:: ds 1
-wcf52:: ds 4
-wcf56:: ds 1
+; addresses dealing with serial comms
+wOtherPlayerLinkMode:: ds 1
+wOtherPlayerLinkAction:: ds 4
+wPlayerLinkAction:: ds 1
 wcf57:: ds 4
 wcf5b:: ds 1
 wcf5c:: ds 1
@@ -1306,8 +1391,8 @@ wcf98:: ds 3
 wcf9b:: ds 3
 wcf9e:: ds 3
 wMenuData2End::
+wMenuData3::
 wcfa1:: ds 1
-
 wcfa2:: ds 1
 wcfa3:: ds 1
 wcfa4:: ds 1
@@ -1315,6 +1400,7 @@ wcfa5:: ds 1 ; dynamic menu flags?
 wcfa6:: ds 1 ; dynamic menu flags?
 wcfa7:: ds 1
 wcfa8:: ds 1
+wMenuData3End::
 MenuSelection2:: ds 1
 wcfaa:: ds 1
 wcfab:: ds 1
@@ -1380,7 +1466,7 @@ Options:: ; cfcc
 ; bit 7: battle scene off/on
 	ds 1
 
-wcfcd:: ds 1
+wSaveFileExists:: ds 1
 
 TextBoxFrame:: ; cfce
 ; bits 0-2: textbox frame 0-7
@@ -1420,23 +1506,42 @@ SECTION "WRAM 1", WRAMX, BANK [1]
 wd000:: ds 1
 DefaultSpawnpoint::
 wd001:: ds 1
+
+wTempMail:: mailmsg wTempMail
+	ds wTempMail - @
+
+wSeerAction:: ds 1
+wSeerNickname:: ds PKMN_NAME_LENGTH
+wSeerCaughtLocation:: ds 17
+wSeerTimeOfDay:: ds NAME_LENGTH
+wSeerOTName:: ds NAME_LENGTH
+wSeerOTNameGrammar:: ds 1
+wSeerCaughtLevelString:: ds 4
+wSeerCaughtLevel:: ds 1
+wSeerCaughtData:: ds 1
+wSeerCaughtGender:: ds 1
+	ds wSeerAction - @
+
 wd002::
 PhoneScriptBank::
 LuckyNumberDigit1Buffer::
 wCurrentRadioLine::
 wMovementBufferCount::
 wMartItem1BCD::
+wBugContestFirstPlacePersonID::
 	ds 1
 wd003::
 LuckyNumberDigit2Buffer::
 PhoneCallerLo::
 wNextRadioLine::
 wMovementBufferPerson::
+wBugContestFirstPlaceMon::
 	ds 1
 wd004::
 LuckyNumberDigit3Buffer::
 PhoneCallerHi::
 wRadioTextDelay::
+wBugContestFirstPlaceScore::
 	ds 1
 wd005::
 LuckyNumberDigit4Buffer::
@@ -1445,18 +1550,24 @@ wNumRadioLinesPrinted::
 wMartItem2BCD::
 	ds 1
 wd006::
+wMobileParticipant1Nickname::
 LuckyNumberDigit5Buffer::
 EndFlypoint:: ; d006
 wOaksPkmnTalkSegmentCounter::
+wBugContestSecondPlacePersonID::
 	ds 1
 
 wd007::
 MovementBuffer:: ; d007
+wBugContestSecondPlaceMon::
 	ds 1
 
 wMartItem3BCD::
+wBugContestSecondPlaceScore::
 wd008:: ds 2
+wBugContestThirdPlacePersonID::
 wd00a:: ds 1
+wBugContestThirdPlaceMon::
 wMartItem4BCD::
 wd00b:: ds 1
 
@@ -1464,22 +1575,31 @@ wRadioText:: ds 2 * SCREEN_WIDTH
 wRadioTextEnd::
 	ds wRadioText - @
 
+wMobileParticipant2Nickname::
+wBugContestThirdPlaceScore::
 wd00c:: ds 1
 wd00d:: ds 1
 wMartItem5BCD::
+wBugContestTempPersonID::
 wd00e:: ds 1
+wBugContestTempMon::
 wd00f:: ds 1
+wBugContestTempScore::
 wd010:: ds 1
 wMartItem6BCD::
 wd011:: ds 1
+wMobileParticipant3Nickname::
 wd012:: ds 1
 wd013:: ds 1
 wMartItem7BCD::
 wd014:: ds 2
+wBugContestWinnerName::
 wd016:: ds 1
 wMartItem8BCD::
 wd017:: ds 1
 
+	ds wd00d - @
+wd00d_MonOT:: ds NAME_LENGTH
 wd018_Mon:: party_struct wd018_Mon
 	ds wd018_Mon - @
 
@@ -1526,11 +1646,13 @@ EngineBuffer3::
 
 wd041::
 EngineBuffer4::
+wTempTrainerHeader::
 wTempTrainerEventFlagLo::
 	ds 1
 
 wTempTrainerEventFlagHi::
 MovementAnimation:: ; d042
+EngineBuffer5::
 	ds 1
 
 wTempTrainerClass::
@@ -1557,10 +1679,12 @@ wd048:: ds 1
 wLossTextPointer:: ds 2
 wScriptAfterPointer::
 wd04b:: ds 2
-wd04d:: ds 1
+wRunningTrainerBattleScript:: ds 1
 MenuItemsListEnd::
+wTempTrainerHeaderEnd::
 wd04e:: ds 2
 wOaksPkmnTalkPkmnNameBuffer::
+wd050_MonNick::
 wd050:: ds PKMN_NAME_LENGTH +- 1
 wd05a:: ds 12
 wd066:: ds 10
@@ -1588,24 +1712,31 @@ CurBattleMon:: ; d0d4
 CurMoveNum:: ; d0d5
 	ds 1
 
-wd0d6:: ds 1
+wLastPocket:: ds 1
 wd0d7:: ds 1
+wPartyMenuCursor::
 wd0d8:: ds 1
 wItemsPocketCursor:: ds 1
 wKeyItemsPocketCursor:: ds 1
 wBallsPocketCursor:: ds 1
 wTMHMPocketCursor:: ds 1
 wd0dd:: ds 2
-wd0df:: ds 1
-wd0e0:: ds 1
-wd0e1:: ds 1
-wd0e2:: ds 1
+wItemsPocketScrollPosition:: ds 1
+wKeyItemsPocketScrollPosition:: ds 1
+wBallsPocketScrollPosition:: ds 1
+wTMHMPocketScrollPosition:: ds 1
 wMoveSwapBuffer::
+wSwitchMon::
 wd0e3:: ds 1
-wd0e4:: ds 4
+wMenuScrollPosition:: ds 4
 wQueuedScriptBank:: ds 1
 wQueuedScriptAddr:: ds 2
 wd0eb:: ds 1
+wFieldMoveSucceeded::
+wPlayerAction::
+; 0 - use move
+; 1 - use item
+; 2 - switch
 wd0ec:: ds 1
 
 VramState:: ; d0ed
@@ -1617,15 +1748,19 @@ VramState:: ; d0ed
 
 wBattleResult:: ds 1
 wd0ef:: ds 1
-wd0f0::
-CurMart:: ; d0f0
-	; ds 16
-	ds 1
-wd0f1:: ds 1
-wd0f2:: ds 14
+CurMart:: ds 16
+	ds CurMart - @
+wd0f0:: ds 1
+wd0f1::
+wCurMessageIndex:: ds 1
+wd0f2::
+wMailboxCount:: ds 1
+wMailboxItems:: ds MAILBOX_CAPACITY
+wMailboxEnd:: ds 1 ; d1fe
+	ds 2
 CurMartEnd::
-wd100:: ds 1
 
+wd100:: ds 1
 wd101:: ds 1
 wd102:: ds 1
 wd103:: ds 1
@@ -1694,14 +1829,16 @@ wd14b:: ds 1
 
 wd14c:: ds 1 ; used in FollowNotExact
 wd14d:: ds 1 ; used in FollowNotExact
-wd14e:: ds 1
-wd14f:: ds 1
-wd150:: ds 1
-wd151:: ds 1
-wd152:: ds 1
-wd153:: ds 1
 
-UsedSprites:: ds 64
+; Player movement
+wPlayerStepVectorX:: ds 1
+wPlayerStepVectorY:: ds 1
+wPlayerStepFlags:: ds 1
+wPlayerStepDirection:: ds 1
+
+wBGMapAnchor:: ds 2
+
+UsedSprites:: ds 64 ; d154
 UsedSpritesEnd::
 	ds UsedSprites - @
 
@@ -1930,7 +2067,7 @@ TrainerClass:: ; d233
 UnownLetter:: ; d234
 	ds 1
 
-wd235:: ds 1
+wMoveSelectionMenuType:: ds 1
 
 CurBaseData:: ; d236
 BaseDexNo:: ; d236
@@ -1994,9 +2131,9 @@ wNamedObjectIndexBuffer::
 wCurTMHM::
 wTypeMatchup::
 wd265:: ds 1
-wd266:: ds 1
-wd267:: ds 1
-wd268:: ds 1
+wFailedToFlee:: ds 1
+wNumFleeAttempts:: ds 1
+wMonTriedToEvolve:: ds 1
 
 TimeOfDay:: ; d269
 	ds 1
@@ -2049,6 +2186,11 @@ ScriptFlags:: ; d434
 ScriptFlags2:: ; d435
 	ds 1
 ScriptFlags3:: ; d436
+; bit 0: count steps
+; bit 1: xy triggers
+; bit 2: warps and connections
+; bit 4: wild encounters
+; bit 5: unknown
 	ds 1
 
 ScriptMode:: ; d437
@@ -2060,9 +2202,13 @@ ScriptBank:: ; d439
 ScriptPos:: ; d43a
 	ds 2
 
-wd43c:: ds 1
-wd43d:: ds 16
-
+wScriptStackSize:: ds 1
+wScriptStackBA1:: ds 3
+wScriptStackBA2:: ds 3
+wScriptStackBA3:: ds 3
+wScriptStackBA4:: ds 3
+wScriptStackBA5:: ds 3
+	ds 1
 ScriptDelay:: ; d44d
 	ds 1
 
@@ -2075,7 +2221,7 @@ wd453:: ds 1
 wd454:: ds 1
 	ds 4
 
-wd459:: ds 2
+wBattleScriptFlags:: ds 2
 wPlayerSpriteSetupFlags:: ds 1
 wMapReentryScriptQueueFlag:: ds 1 ; MemScriptFlag
 wMapReentryScriptBank:: ds 1 ; MemScriptBank
@@ -2153,12 +2299,12 @@ CurDay:: ; d4cb
 	ds 1
 wObjectFollow_Leader:: ds 1
 wObjectFollow_Follower:: ds 1
-wd4cf:: ds 1
+wCenteredObject:: ds 1
 wd4d0:: ds 1
 wd4d1:: ds 1
 	ds 4
 
-ObjectStructs::
+ObjectStructs:: ; d4d6
 object_struct: MACRO
 \1Struct::
 \1Sprite:: ds 1
@@ -2169,24 +2315,32 @@ object_struct: MACRO
 \1Palette:: ds 1
 \1Walking:: ds 1
 \1Direction:: ds 1
-\1Object09:: ds 1
+\1StepType:: ds 1
 \1StepDuration:: ds 1
 \1Action:: ds 1
-\1Object12:: ds 1
+\1ObjectStepFrame:: ds 1
 \1Facing:: ds 1
-\1StandingTile:: ds 1
-\1NextTile:: ds 1
-\1MapX:: ds 1
-\1MapY:: ds 1
+\1NextTile:: ds 1     ; collision
+\1StandingTile:: ds 1 ; collision
 \1NextMapX:: ds 1
 \1NextMapY:: ds 1
-	ds 3
+\1MapX:: ds 1
+\1MapY:: ds 1
+\1ObjectInitX:: ds 1
+\1ObjectInitY:: ds 1
+\1Radius:: ds 1
 \1SpriteX:: ds 1
 \1SpriteY:: ds 1
 \1SpriteXOffset:: ds 1
 \1SpriteYOffset:: ds 1
-	ds 6
+\1MovementByteIndex:: ds 1
+\1Object28:: ds 1
+\1Object29:: ds 1
+\1Object30:: ds 1
+\1Object31:: ds 1
+\1Range:: ds 1
 	ds 7
+\1StructEnd::
 ENDM
 
 	object_struct Player
@@ -2202,10 +2356,12 @@ ENDM
 	object_struct Object10
 	object_struct Object11
 	object_struct Object12
+ObjectStructsEnd:: ; d6de
 
-wd6de::
-	ds $40
+wCmdQueue:: ds CMDQUEUE_CAPACITY * CMDQUEUE_ENTRY_SIZE
+	ds $28
 
+MapObjects:: ; d71e
 map_object: MACRO
 \1Object::
 \1ObjectStructID::  ds 1
@@ -2223,7 +2379,6 @@ map_object: MACRO
 	ds 2
 endm
 
-MapObjects:: ; d71e
 	map_object Player
 	map_object Map1
 	map_object Map2
@@ -2240,6 +2395,7 @@ MapObjects:: ; d71e
 	map_object Map13
 	map_object Map14
 	map_object Map15
+MapObjectsEnd::
 
 wObjectMasks:: ds NUM_OBJECTS ; d81e
 
@@ -2262,17 +2418,32 @@ CurTimeOfDay:: ; d848
 wSecretID:: ds 1
 wd84b:: ds 1
 StatusFlags:: ; d84c
+	; 0 - pokedex
+	; 1 - unown dex
+	; 2 - 
+	; 3 - pokerus
+	; 4 - rocket signal
+	; 5 - wild encounters on/off
+	; 6 - hall of fame
+	; 7 - bug contest on
 	ds 1
+
 StatusFlags2:: ; d84d
+	; 0 - rockets
+	; 1 - 
+	; 2 - bug contest timer
+	; 3 - 
+	; 4 - bike shop call
+	; 5 - pokerus
+	; 6 - berry juice?
+	; 7 - rockets in mahogany
 	ds 1
 
 Money:: ; d84e
 	ds 3
 
-wd851::
 wMomsMoney:: ; d851
 	ds 3
-wBankOfMomMode::
 wMomSavingMoney:: ; d854
 	ds 1
 
@@ -2325,8 +2496,8 @@ RegisteredItem:: ; d95c
 PlayerState:: ; d95d
 	ds 1
 
-wd95e:: ds 2
-wd960:: ds 2
+wHallOfFameCount:: ds 2
+wTradeFlags:: ds 2
 MooMooBerries:: ; d962
 	ds 1 ; how many berries fed to MooMoo
 UndergroundSwitchPositions:: ; d963
@@ -2487,8 +2658,8 @@ wCurrentCaller:: ds 2
 wCurrMapWarpCount:: ds 1
 wCurrMapWarpHeaderPointer:: ds 1
 wdbfd:: ds 1
-wCurrentMapXYTriggerCount:: ds 1
-wCurrentMapXYTriggerHeaderPointer:: ds 1
+wCurrentNextMapXYTriggerCount:: ds 1
+wCurrentNextMapXYTriggerHeaderPointer:: ds 1
 wdc00:: ds 1
 wCurrentMapSignpostCount:: ds 1
 wCurrentMapSignpostHeaderPointer::
@@ -2791,7 +2962,7 @@ w2_d188:: ds 1
 wPokeAnimStructEnd::
 
 
-SECTION "WRAM 3", WRAMX, BANK [3]
+SECTION "Battle Tower", WRAMX, BANK [3]
 
 w3_d000:: ; d000
 	ds $80
@@ -2804,8 +2975,17 @@ w3_d100:: ; BattleTower OpponentTrainer-Data (length = 0xe0 = $a + $1 + 3*$3b + 
 BT_OTTrainer:: battle_tower_struct BT_OT
 ; d1e0	
 	ds $20
-BT_TrainerTextIndex::
-	ds $600
+; d200
+BT_TrainerTextIndex:: ds 2
+w3_d202:: battle_tower_struct w3_d202
+w3_d2e2:: battle_tower_struct w3_d2e2
+w3_d3c2:: battle_tower_struct w3_d3c2
+w3_d4a2:: battle_tower_struct w3_d4a2
+w3_d582:: battle_tower_struct w3_d582
+w3_d662:: battle_tower_struct w3_d662
+w3_d742:: battle_tower_struct w3_d742
+; d822
+	ds -$22
 
 wBTChoiceOfLvlGroup::
 w3_d800:: ds $400
@@ -2816,10 +2996,10 @@ w3_dd68::
 SECTION "GBC Video", WRAMX, BANK [5]
 
 ; 8 4-color palettes
-wMapPals:: ds 8 * 8 ; d000
-Unkn2Pals:: ds 8 * 8 ; d040
-BGPals::    ds 8 * 8 ; d080
-OBPals::    ds 8 * 8 ; d0c0
+UnknBGPals:: ds 8 palettes ; d000
+UnknOBPals:: ds 8 palettes ; d040
+BGPals::     ds 8 palettes ; d080
+OBPals::     ds 8 palettes ; d0c0
 
 LYOverrides:: ; d100
 	ds SCREEN_HEIGHT_PX
@@ -2893,7 +3073,8 @@ SECTION "WRAM 6", WRAMX, BANK [6]
 
 w6_d000:: ds $400
 w6_d400:: ds $200
-w6_d600:: ds $600
+w6_d600:: ds $200
+w6_d800::
 
 INCLUDE "sram.asm"
 

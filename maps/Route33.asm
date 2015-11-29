@@ -137,7 +137,7 @@ MapRoute33Signpost0Script:
 	jumptext UnknownText_0x1ac279
 
 FruitTreeScript_0x1ac0ea:
-	fruittree $6
+	fruittree FRUITTREE_ROUTE_33
 
 HikerAnthony2SeenText:
 	text "I came through the"
@@ -206,6 +206,6 @@ Route33_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_POKEFAN_M, 13, 6, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 2, TrainerHikerAnthony, -1
-	person_event SPRITE_LASS, 16, 13, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, LassScript_0x1ac002, -1
-	person_event SPRITE_FRUIT_TREE, 16, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1ac0ea, -1
+	person_event SPRITE_POKEFAN_M, 13, 6, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 2, TrainerHikerAnthony, -1
+	person_event SPRITE_LASS, 16, 13, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, LassScript_0x1ac002, -1
+	person_event SPRITE_FRUIT_TREE, 16, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1ac0ea, -1

@@ -175,7 +175,7 @@ Function118125: ; 118125
 	cp [hl]
 	jr nz, .asm_11813e
 	xor a
-	ld [wMapPals], a
+	ld [w3_d000], a
 	pop af
 	ld [rSVBK], a
 	call Function118452
@@ -197,33 +197,37 @@ Function118180: ; 118180
 	ld de, $a89c
 	ld bc, $0016
 	call CopyBytes
+
 	ld a, [rSVBK]
 	push af
 	ld a, $3
 	ld [rSVBK], a
-	ld de, $d202
+
+	ld de, w3_d202
 	ld c, $96
-	callba Function17d0b3
-	jr c, .asm_1181d0
-	ld de, $d202
-	ld bc, $0196
-	callba Function17d1e1
-	jr c, .asm_1181d0
-	ld hl, $d202
+	callba CheckStringForErrors_IgnoreTerminator
+	jr c, .return_d3
+
+	ld de, w3_d202
+	lb bc, 1, $96
+	callba CheckStringContainsLessThanBNextCharacters
+	jr c, .return_d3
+
+	ld hl, w3_d202
 	ld de, $a8b2
 	ld bc, $0096
 	call CopyBytes
-.asm_1181c9
+.reset_banks
 	pop af
 	ld [rSVBK], a
 	call CloseSRAM
 	ret
 
-.asm_1181d0
+.return_d3
 	ld a, $d3
 	ld [wc300], a
 	ld [ScriptVar], a
-	jr .asm_1181c9
+	jr .reset_banks
 ; 1181da
 
 Function1181da: ; 1181da
@@ -1067,7 +1071,7 @@ Function11878d: ; 11878d (46:478d)
 	set 0, [hl]
 	ld a, $6
 	ld [rSVBK], a
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	ld a, [hl]
 	sla a
@@ -1286,7 +1290,7 @@ Function118936:
 	call LoadMenuDataHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
-	call Function321c
+	call ApplyTilemap
 	hlcoord 16, 8, AttrMap
 	ld a, $40
 	or [hl]
@@ -1462,7 +1466,7 @@ Function118a65: ; 118a65
 	ld de, wcc60
 	ld bc, $80
 	call CopyBytes
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	jp Function118b10
 ; 118a7a
@@ -1472,7 +1476,7 @@ Function118a7a: ; 118a7a
 	ld de, wcc60
 	ld bc, $80
 	call CopyBytes
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	jp Function118b10
 ; 118a8f
@@ -1482,7 +1486,7 @@ Function118a8f: ; 118a8f
 	ld de, wcc60
 	ld bc, $80
 	call CopyBytes
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	jp Function118b10
 ; 118aa4
@@ -1504,7 +1508,7 @@ Function118abc: ; 118abc (46:4abc)
 	ld de, wcc60
 	ld bc, $80
 	call CopyBytes
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	jr Function118b10
 ; 118ad0 (46:4ad0)
@@ -1514,7 +1518,7 @@ Function118ad0:
 	ld de, wcc60
 	ld bc, $80
 	call CopyBytes
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	jr Function118b10
 
@@ -2101,7 +2105,7 @@ Function119009:
 	ld a, $40
 	ld [wcd89], a
 	ld hl, wc314 + 48 + 2
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	ld a, $2c
 	jp Function119e2b
@@ -2115,7 +2119,7 @@ Function119054: ; 119054
 	ld e, a
 	ld a, [wcd50]
 	ld d, a
-	ld a, [wMapPals]
+	ld a, [UnknBGPals]
 	ld c, a
 	ld a, [wd001]
 	ld b, a
@@ -2127,7 +2131,7 @@ Function119054: ; 119054
 	ld a, $6
 	ld [rSVBK], a
 	ld hl, wd002
-	ld a, [wMapPals]
+	ld a, [UnknBGPals]
 	ld c, a
 	ld a, [wd001]
 	ld b, a
@@ -2174,7 +2178,7 @@ Function1190d0: ; 1190d0
 	ld de, wcc60
 	call Function1191ad
 	ret c
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	jp Function118b10
 ; 1190ec
@@ -2194,7 +2198,7 @@ Function1190ec: ; 1190ec
 	call CloseSRAM
 	ld a, $6
 	call GetSRAMBank
-	ld a, [wMapPals]
+	ld a, [UnknBGPals]
 	ld c, a
 	ld a, [wd001]
 	ld b, a
@@ -2207,7 +2211,7 @@ Function1190ec: ; 1190ec
 	jr z, .asm_11913e
 	ld a, $6
 	ld [rSVBK], a
-	ld a, [wMapPals]
+	ld a, [UnknBGPals]
 	ld c, a
 	ld a, [wd001]
 	ld b, a
@@ -2674,7 +2678,7 @@ Function1193fb:
 	ld a, $8
 	ld [wcd3c], a
 	call Function119ed8
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	jp Function118b10
 ; 119413
@@ -2682,7 +2686,7 @@ Function1193fb:
 Function119413: ; 119413
 	ld a, $6
 	call GetSRAMBank
-	ld a, [wMapPals]
+	ld a, [UnknBGPals]
 	ld c, a
 	ld a, [wd001]
 	ld b, a
@@ -3039,7 +3043,7 @@ Function119648: ; 119648 (46:5648)
 	ld [wcd3c], a
 	call Function119ed8
 	call Function118b24
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	ld a, $2a
 	jp Function119e2b
@@ -3334,7 +3338,7 @@ Function1197dc:
 	xor a
 	ld [de], a
 	call Function118b24
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $1000
 	ld a, $2a
 	jp Function119e2b
@@ -3533,14 +3537,14 @@ Function119973: ; 119973
 	xor a
 	ld [wcf65], a
 	ld [StringBuffer2 + 10], a
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld a, $20
 	jp Function119e2b
 ; 119987
 
 Function119987: ; 119987
 	ld hl, wd001
-	ld a, [wMapPals]
+	ld a, [UnknBGPals]
 	or [hl]
 	jr z, .asm_1199a0
 	ld a, [wcf64]
@@ -3702,13 +3706,13 @@ Function1199e2: ; 1199e2
 	ld [StringBuffer2 + 12], a
 
 Function119ac9:
-	ld a, [wMapPals]
+	ld a, [UnknBGPals]
 	ld l, a
 	ld a, [wd001]
 	ld h, a
 	dec hl
 	ld a, l
-	ld [wMapPals], a
+	ld [UnknBGPals], a
 	ld a, h
 	ld [wd001], a
 	ld a, [wcf64]
@@ -4463,7 +4467,7 @@ Function119f98: ; 119f98
 	and a
 	jr z, .asm_119fd4
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	callba Function115dc3
 	ld a, [wcd33]
 	ld [wcf66], a
@@ -4480,14 +4484,14 @@ Function119f98: ; 119f98
 	ld [wc30d], a
 	ld a, $1
 	ld [wc314], a
-	callba Function104061
+	callba ReloadMapPart
 	and a
 	ret
 
 .asm_119fef
 	call ExitMenu
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	ld a, [wcd45]
 	ld [wcf66], a
 	callba Function115dc3
@@ -4562,7 +4566,7 @@ Function11a00e: ; 11a00e
 	callba Function106462
 	callba Function106464
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	callba Function115d99
 	ld c, $0
 	callba Function115e18
@@ -4585,7 +4589,7 @@ Function11a0ca: ; 11a0ca
 	callba Function106462
 	callba Function106464
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	callba Function115d99
 	ld c, $0
 	callba Function115e18
@@ -4677,7 +4681,7 @@ Function11a192: ; 11a192
 	and a
 	jr nz, .asm_11a1b6
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	call Function11a63c
 	hlcoord 4, 2
 	ld de, String_11a6d2
@@ -4687,7 +4691,7 @@ Function11a192: ; 11a192
 
 .asm_11a1b6
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	ld a, [wcd45]
 	ld [wcf66], a
 	ld [wcd80], a
@@ -4741,7 +4745,7 @@ Function11a207: ; 11a207
 	call LoadMenuDataHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
-	call Function321c
+	call ApplyTilemap
 	hlcoord 16, 8
 	ld de, String_11a2cf
 	call PlaceString
@@ -4818,7 +4822,7 @@ Function11a235: ; 11a235
 	and a
 	jr nz, .asm_11a2c4
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	ld a, [wcd46]
 	cp $0
 	jr z, .asm_11a2b4
@@ -4840,7 +4844,7 @@ Function11a235: ; 11a235
 
 .asm_11a2c4
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	and a
 	ret
 ; 11a2cf
@@ -4919,7 +4923,7 @@ Function11a33a: ; 11a33a
 
 .asm_11a346
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	callba Function115dc3
 	and a
 	ret
@@ -4963,7 +4967,7 @@ Function11a38d: ; 11a38d
 	and a
 	jr nz, .asm_11a3b1
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	call Function11a63c
 	hlcoord 4, 2
 	ld de, String_11a6d2
@@ -4973,7 +4977,7 @@ Function11a38d: ; 11a38d
 
 .asm_11a3b1
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	ld a, [wcd45]
 	ld [wcf66], a
 	ld [wcd80], a
@@ -5038,7 +5042,7 @@ Function11a41b: ; 11a41b
 	and a
 	jr nz, .asm_11a43f
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	call Function11a63c
 	hlcoord 4, 2
 	ld de, String_11a6d2
@@ -5048,7 +5052,7 @@ Function11a41b: ; 11a41b
 
 .asm_11a43f
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	ld a, $1c
 	ld [wcf66], a
 	ld [wcd80], a
@@ -5109,7 +5113,7 @@ Function11a49e: ; 11a49e
 	and a
 	jr nz, .asm_11a4c7
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	call Function11a63c
 	hlcoord 4, 2
 	ld de, String_11a6d2
@@ -5121,7 +5125,7 @@ Function11a49e: ; 11a49e
 
 .asm_11a4c7
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	ld a, [wcd46]
 	ld [wcf66], a
 	ld [wcd80], a
@@ -5156,7 +5160,7 @@ Function11a4fe: ; 11a4fe
 	and a
 	jr nz, .asm_11a522
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	call Function11a63c
 	hlcoord 4, 2
 	ld de, String_11a6d2
@@ -5166,7 +5170,7 @@ Function11a4fe: ; 11a4fe
 
 .asm_11a522
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	ld a, [wcd45]
 	ld [wcf66], a
 	ld [wcd80], a
@@ -5195,7 +5199,7 @@ Function11a536: ; 11a536
 	call Function11a9f0
 	jr nz, .asm_11a562
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 
 .asm_11a562
 	scf
@@ -5271,7 +5275,7 @@ Function11a5b9: ; 11a5b9
 	ld b, $4
 	ld c, $12
 	call Function3eea
-	callba Function104061
+	callba ReloadMapPart
 	call UpdateSprites
 	ld c, $0
 	callba Function115e18
@@ -5306,7 +5310,7 @@ Function11a5f5: ; 11a5f5
 	hlcoord 15, 7
 	ld a, $ed
 	ld [hl], a
-	callba Function104061
+	callba ReloadMapPart
 	ret
 ; 11a63c
 
@@ -5840,9 +5844,9 @@ UnknownText_0x11ac1f: ; 0x11ac1f
 Function11ac3e: ; 11ac3e
 	call SpeechTextBox
 	call FadeToMenu
-	callab InefficientlyClear121BytesAtwc300
+	callab ClearSpriteAnims
 	call Function11ac51
-	call Function2b3c
+	call ReturnToCallingMenu
 	ret
 ; 11ac51
 
@@ -5881,7 +5885,7 @@ Function11ac51: ; 11ac51
 	ld a, $78
 	ld [wc3b5], a
 	callba Function8cf7a
-	callba Function104061
+	callba ReloadMapPart
 	jr .asm_11ac82
 
 .asm_11aca8
@@ -6025,7 +6029,7 @@ Function11ad95: ; 11ad95
 	hlcoord 10, 10, AttrMap
 	ld bc, $0808
 	call Function11afd6
-	callba Function104061
+	callba ReloadMapPart
 	call Function11ad8a
 	ld a, $1
 	ld [MenuSelection2], a
@@ -6104,7 +6108,7 @@ Function11adc4:
 
 .asm_11ae2e
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	ret
 ; 11ae38
 
@@ -6142,7 +6146,7 @@ Function11ae4e: ; 11ae4e
 	hlcoord 9, 12, AttrMap
 	lb bc, 6, 11
 	call Function11afd6
-	callba Function104061
+	callba ReloadMapPart
 	call Function11ad8a
 	ld a, $1
 	ld [MenuSelection2], a
@@ -6210,7 +6214,7 @@ Function11ae98:
 .asm_11aef7
 	call ExitMenu
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	ret
 ; 11af04
 
@@ -6233,7 +6237,7 @@ Function11af04: ; 11af04
 	hlcoord 9, 12, AttrMap
 	lb bc, 6, 11
 	call Function11afd6
-	callba Function104061
+	callba ReloadMapPart
 	call Function11ad8a
 	ld a, $2
 	ld [MenuSelection2], a
@@ -6301,7 +6305,7 @@ Function11af4e:
 .asm_11afaa
 	call ExitMenu
 	call ExitMenu
-	callba Function104061
+	callba ReloadMapPart
 	ret
 ; 11afb7
 
@@ -7549,8 +7553,8 @@ Function11b6b4: ; 11b6b4
 
 .asm_11b70f
 	ld de, $c63d
-	ld bc, $0105
-	callba Function17d1e1
+	lb bc, 1, 5
+	callba CheckStringContainsLessThanBNextCharacters
 	jr nc, .asm_11b723
 	callba Function17d187
 
@@ -7563,8 +7567,8 @@ Function11b6b4: ; 11b6b4
 
 .asm_11b736
 	ld de, $c642
-	ld bc, $0105
-	callba Function17d1e1
+	lb bc, 1, 5
+	callba CheckStringContainsLessThanBNextCharacters
 	jr nc, .asm_11b74a
 	callba Function17d199
 
@@ -7577,8 +7581,8 @@ Function11b6b4: ; 11b6b4
 
 .asm_11b75d
 	ld de, $c647
-	ld bc, $0221
-	callba Function17d1e1
+	lb bc, 2, $21
+	callba CheckStringContainsLessThanBNextCharacters
 	jr c, .asm_11b770
 	ld a, b
 	cp $2
@@ -7596,8 +7600,8 @@ Function11b6b4: ; 11b6b4
 
 .asm_11b789
 	ld de, $c668
-	ld bc, $0105
-	callba Function17d1e1
+	lb bc, 1, 5
+	callba CheckStringContainsLessThanBNextCharacters
 	jr nc, .asm_11b79d
 	callba Function17d1c9
 
@@ -7676,7 +7680,7 @@ Function11b7e5: ; 11b7e5
 	ld [wd1e9], a
 	ld a, $2
 	ld [wLinkMode], a
-	callba Function421d8
+	callba EvolvePokemon
 	xor a
 	ld [wLinkMode], a
 	callba Function14a58
@@ -7697,7 +7701,7 @@ Function11b7e5: ; 11b7e5
 	ld [de], a
 
 .asm_11b872
-	call Function2b3c
+	call ReturnToCallingMenu
 	call RestartMapMusic
 	ret
 ; 11b879
@@ -7919,7 +7923,7 @@ Function11b98f: ; 11b98f
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
-	ld hl, sPartyScratch1
+	ld hl, sPartyMail
 	ld bc, PARTYMON_STRUCT_LENGTH - 1
 	ld a, [wcd2a]
 .loop5

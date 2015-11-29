@@ -1,4 +1,4 @@
-
+PALPACKET_LENGTH EQU $10
 INCLUDE "predef/sgb.asm"
 
 SHINY_ATK_BIT EQU 5
@@ -89,7 +89,7 @@ Function8aa4: ; 8aa4
 	push bc
 	ld hl, PalPacket_9ce6
 	ld de, wcda9
-	ld bc, PalPacket_9cf6 - PalPacket_9ce6
+	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	pop bc
 	pop de
@@ -117,7 +117,7 @@ Function8ad1: ; 8ad1
 	ret
 ; 8ade
 
-Function8ade: ; 8ade
+Function8ade: ; 8ade SGB layout $fc
 	ld hl, wcd9b
 	ld a, [wcda9]
 	ld e, a
@@ -149,7 +149,7 @@ Function8b07: ; 8b07
 	call CheckCGB
 	ret z
 	ld hl, Palette8b2f
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $0008
 	ld a, $5
 	call FarCopyWRAM
@@ -200,7 +200,7 @@ Function8b4d: ; 8b4d
 	jp Function9809
 
 .asm_8b5c
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld a, $3b
 	call GetAthPalletFromPalettes9df6
 	jp LoadHLPaletteIntoDE
@@ -216,7 +216,7 @@ Function8b67: ; 8b67
 	jp Function9809
 
 .asm_8b76
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld a, $3c
 	call GetAthPalletFromPalettes9df6
 	jp LoadHLPaletteIntoDE
@@ -232,7 +232,7 @@ Function8b81: ; 8b81
 	push af
 	ld hl, PalPacket_9ce6
 	ld de, wcda9
-	ld bc, $0010
+	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	pop af
 	call Function9775
@@ -248,7 +248,7 @@ Function8b81: ; 8b81
 	jp Function9809
 
 .asm_8bb2
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld a, c
 	call Function9775
 	call Function9643
@@ -275,7 +275,7 @@ endr
 
 asm_8bd7
 	push hl
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	ld de, $0008
 .asm_8bde
 	and a
@@ -318,8 +318,8 @@ Function8bec: ; 8bec
 	lb bc, 6, 4
 	ld a, [EnemySafeguardCount]
 	and $3
-	call Function9663
-	call LoadDETile
+	call FillBoxCGB
+	call LoadEDTile
 	ret
 ; 8c1d
 
@@ -338,7 +338,7 @@ Function8c1d: ; 8c1d
 	call Function976b
 
 .asm_8c33
-	ld de, wMapPals
+	ld de, UnknBGPals
 	call Function9643
 	call Function9699
 	call Function96b3
@@ -394,7 +394,7 @@ endr
 .asm_8c82
 	lb bc, 2, 8
 	ld a, e
-	call Function9663
+	call FillBoxCGB
 	ret
 ; 8c8a
 
@@ -412,11 +412,11 @@ endr
 	ld a, $5
 	ld [rSVBK], a
 	ld a, [hli]
-	ld [wMapPals], a
-	ld [wMapPals + 8 * 2], a
+	ld [UnknBGPals], a
+	ld [UnknBGPals + 8 * 2], a
 	ld a, [hl]
-	ld [wMapPals + 1], a
-	ld [wMapPals + 8 * 2 + 1], a
+	ld [UnknBGPals + 1], a
+	ld [UnknBGPals + 8 * 2 + 1], a
 	pop af
 	ld [rSVBK], a
 	call Function96a4
@@ -437,7 +437,7 @@ endr
 	push hl
 	ld hl, PalPacket_9ce6
 	ld de, wcda9
-	ld bc, $0010
+	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	pop hl
 rept 2
@@ -458,7 +458,7 @@ endr
 	ret
 
 .asm_8cf0
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, $0008
 	ld a, $5
 	call FarCopyWRAM
@@ -525,7 +525,7 @@ INCLUDE "predef/cgb.asm"
 
 Function95f0: ; 95f0
 	ld hl, Palette_9608
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, 8
 	ld a, $5
 	call FarCopyWRAM
@@ -544,7 +544,7 @@ Palette_9608: ; 9608
 
 
 CopyFourPalettes: ; 9610
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld c, $4
 
 CopyPalettes: ; 9615
@@ -618,7 +618,7 @@ Function9643: ; 9643
 	ret
 ; 9663
 
-Function9663: ; 9663
+FillBoxCGB: ; 9663
 .row
 	push bc
 	push hl
@@ -644,9 +644,9 @@ Function9673: ; 9673
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, wMapPals
-	ld c, $8
-.asm_9683
+	ld hl, UnknBGPals
+	ld c, 8
+.loop
 	ld a, $ff
 rept 4
 	ld [hli], a
@@ -656,7 +656,7 @@ rept 4
 	ld [hli], a
 endr
 	dec c
-	jr nz, .asm_9683
+	jr nz, .loop
 	pop af
 	ld [rSVBK], a
 	pop hl
@@ -676,7 +676,7 @@ Function9699: ; 9699
 ; 96a4
 
 Function96a4: ; 96a4
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	ld de, BGPals
 	ld bc, $0080
 	ld a, $5
@@ -702,7 +702,7 @@ Function96b3: ; 96b3
 
 .asm_96d0
 	hlcoord 0, 0, AttrMap
-	ld de, VBGMap0
+	debgcoord 0, 0
 	ld b, $12
 	ld a, $1
 	ld [rVBK], a
@@ -728,7 +728,7 @@ Function96b3: ; 96b3
 	ret
 ; 96f3
 
-Function96f3: ; 96f3
+Function96f3: ; 96f3 CGB layout $fc
 	ld hl, wcd9b
 	ld a, [wcda9]
 	ld e, a
@@ -752,14 +752,14 @@ Function96f3: ; 96f3
 .asm_9712
 	lb bc, 2, 8
 	ld a, e
-	call Function9663
+	call FillBoxCGB
 	ret
 ; 971a
 
 
 Function971a: ; 971a
 	ld hl, Palettes_b681
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld bc, $0010
 	ld a, $5
 	call FarCopyWRAM
@@ -792,7 +792,7 @@ Function974b: ; 974b
 	and a
 	jp nz, Function97f9
 	ld a, [wPlayerSpriteSetupFlags]
-	bit 2, a
+	bit 2, a ; transformed to male
 	jr nz, .male
 	ld a, [PlayerGender]
 	and a
@@ -843,7 +843,7 @@ Function977a: ; 977a
 	dec c
 	jr nz, .asm_9787
 	ld hl, Palettes_979c
-	ld de, Unkn2Pals + 8 * 2
+	ld de, UnknOBPals + 8 * 2
 	ld bc, $0010
 	ld a, $5
 	call FarCopyWRAM
@@ -1047,7 +1047,7 @@ Function9890:: ; 9890
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function98df
 	ld hl, BGPals
 	call Function98df
@@ -1058,13 +1058,13 @@ Function9890:: ; 9890
 
 Function98df: ; 98df
 	ld c, $40
-.asm_98e1
+.loop
 	ld a, $ff
 	ld [hli], a
 	ld a, $7f
 	ld [hli], a
 	dec c
-	jr nz, .asm_98e1
+	jr nz, .loop
 	ret
 ; 98eb
 
@@ -1212,7 +1212,7 @@ Function99d8: ; 99d8
 	ld a, $e4
 	ld [rBGP], a
 	ld de, VTiles1
-	ld bc, $0140
+	ld bc, 20 tiles
 	call CopyData
 	ld b, $12
 .asm_99ea
@@ -1293,7 +1293,7 @@ ClearBytes: ; 0x9a5b
 
 DrawDefaultTiles: ; 0x9a64
 ; Draw 240 tiles (2/3 of the screen) from tiles in VRAM
-	ld hl, VBGMap0 ; BG Map 0
+	hlbgcoord 0, 0 ; BG Map 0
 	ld de, 32 - 20
 	ld a, $80 ; starting tile
 	ld c, 12 + 1
@@ -1367,6 +1367,7 @@ BlkPacket_9b86: ; 9a86
 ; 9b96
 
 ; 9b96
+
 PalPacket_9b96:	db $51, $48, $00, $49, $00, $4a, $00, $4b, $00, $00, $00, $00, $00, $00, $00, $00
 PalPacket_9ba6:	db $51, $2b, $00, $24, $00, $20, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 PalPacket_9bb6:	db $51, $41, $00, $42, $00, $43, $00, $44, $00, $00, $00, $00, $00, $00, $00, $00
@@ -1973,7 +1974,7 @@ endr
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	ld b, $8
 .asm_b210
 	ld a, [de]
@@ -2009,9 +2010,9 @@ endr
 	ld bc, $40
 	ld hl, MapObjectPals
 	call AddNTimes
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld bc, $40
-	ld a, $5 ; BANK(Unkn2Pals)
+	ld a, $5 ; BANK(UnknOBPals)
 	call FarCopyWRAM
 
 	ld a, [wPermission]
@@ -2036,7 +2037,7 @@ rept 4
 	inc hl
 endr
 .asm_b26d
-	ld de, wMapPals + 8 * 6 + 2
+	ld de, UnknBGPals + 8 * 6 + 2
 	ld bc, 4
 	ld a, $5
 	call FarCopyWRAM

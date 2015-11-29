@@ -26,8 +26,8 @@ Predef_StartBattle: ; 8c20f
 	ld a, $5
 	ld [rSVBK], a
 
-	ld hl, wMapPals
-	ld bc, $0040
+	ld hl, UnknBGPals
+	ld bc, 8 palettes
 	xor a
 	call ByteFill
 
@@ -84,7 +84,7 @@ endr
 
 Function8c2a0: ; 8c2a0
 	call LoadTrainerBattlePokeballTiles
-	ld hl, VBGMap0
+	hlbgcoord 0, 0
 	call Function8c2cf
 	ret
 ; 8c2aa
@@ -308,9 +308,11 @@ StartTrainerBattle_Flash: ; 8c3ab (23:43ab)
 
 StartTrainerBattle_SetUpForWavyOutro: ; 8c3e8 (23:43e8)
 	callba Function5602
-	ld a, $5
+	ld a, $5 ; BANK(LYOverrides)
 	ld [rSVBK], a
+
 	call StartTrainerBattle_NextScene
+
 	ld a, $43
 	ld [hLCDStatCustom], a
 	xor a
@@ -342,8 +344,8 @@ StartTrainerBattle_SineWave: ; 8c408 (23:4408)
 	ld d, [hl]
 	add [hl]
 	ld [hl], a
-	ld a, $90
-	ld bc, wd100
+	ld a, LYOverridesEnd - LYOverrides
+	ld bc, LYOverrides
 	ld e, $0
 
 .loop
@@ -364,7 +366,7 @@ StartTrainerBattle_SineWave: ; 8c408 (23:4408)
 
 StartTrainerBattle_SetUpForSpinOutro: ; 8c43d (23:443d)
 	callba Function5602
-	ld a, $5
+	ld a, $5 ; BANK(LYOverrides)
 	ld [rSVBK], a
 	call StartTrainerBattle_NextScene
 	xor a
@@ -507,7 +509,7 @@ endr
 
 StartTrainerBattle_SetUpForRandomScatterOutro: ; 8c578 (23:4578)
 	callba Function5602
-	ld a, $5
+	ld a, $5 ; BANK(LYOverrides)
 	ld [rSVBK], a
 	call StartTrainerBattle_NextScene
 	ld a, $10
@@ -659,7 +661,7 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	ld [rSVBK], a
 	call .copypals
 	push hl
-	ld de, wMapPals + 8 * 7
+	ld de, UnknBGPals + 8 * 7
 	ld bc, $8
 	call CopyBytes
 	pop hl
@@ -678,15 +680,15 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	ret
 
 .copypals: ; 8c677 (23:4677)
-	ld de, wMapPals + 8 * 7
+	ld de, UnknBGPals + 8 * 7
 	call .copy
 	ld de, BGPals + 8 * 7
 	call .copy
-	ld de, Unkn2Pals + 8 * 6
+	ld de, UnknOBPals + 8 * 6
 	call .copy
 	ld de, OBPals + 8 * 6
 	call .copy
-	ld de, Unkn2Pals + 8 * 7
+	ld de, UnknOBPals + 8 * 7
 	call .copy
 	ld de, OBPals + 8 * 7
 
@@ -739,10 +741,12 @@ WipeLYOverrides: ; 8c6d8
 	push af
 	ld a, $5
 	ld [rSVBK], a
+
 	ld hl, LYOverrides
 	call .wipe
 	ld hl, LYOverridesBackup
 	call .wipe
+
 	pop af
 	ld [rSVBK], a
 	ret

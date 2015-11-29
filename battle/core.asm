@@ -7,7 +7,7 @@ SendOutFirstMons: ; 3c000
 	xor a
 	ld [wBattleParticipantsNotFainted], a
 	ld [wc6fc], a
-	ld [wd0ec], a
+	ld [wPlayerAction], a
 	ld [BattleEnded], a
 	inc a
 	ld [wd264], a
@@ -302,7 +302,7 @@ HandleBetweenTurnEffects: ; 3c1d6
 	call HandleHealingItems
 	call UpdateBattleMonInParty
 	call LoadTileMapToTempTileMap
-	jp Function3c4df
+	jp HandleEncore
 ; 3c23c
 
 CheckFaint_PlayerThenEnemy: ; 3c23c
@@ -461,7 +461,7 @@ DetermineMoveOrder: ; 3c314
 	jr z, .use_move
 	sub BATTLEACTION_SWITCH1
 	jr c, .use_move
-	ld a, [wd0ec]
+	ld a, [wPlayerAction]
 	cp $2
 	jr nz, .switch
 	ld a, [hLinkPlayerNumber]
@@ -486,7 +486,7 @@ DetermineMoveOrder: ; 3c314
 	jp .enemy_first
 
 .use_move
-	ld a, [wd0ec]
+	ld a, [wPlayerAction]
 	and a
 	jp nz, .player_first
 	call CompareMovePriority
@@ -629,7 +629,7 @@ ParsePlayerAction: ; 3c434
 	jr .encored
 
 .not_encored
-	ld a, [wd0ec]
+	ld a, [wPlayerAction]
 	cp $2
 	jr z, .reset_rage
 	and a
@@ -638,7 +638,7 @@ ParsePlayerAction: ; 3c434
 	and 1 << SUBSTATUS_BIDE
 	jr nz, .locked_in
 	xor a
-	ld [wd235], a
+	ld [wMoveSelectionMenuType], a
 	inc a ; POUND
 	ld [FXAnimIDLo], a
 	call MoveSelectionScreen
@@ -714,23 +714,23 @@ ParsePlayerAction: ; 3c434
 	ret
 ; 3c4df
 
-Function3c4df: ; 3c4df
+HandleEncore: ; 3c4df
 	ld a, [hLinkPlayerNumber]
 	cp $1
-	jr z, .asm_3c4ea
-	call .asm_3c4ed
-	jr .asm_3c518
+	jr z, .player_1
+	call .do_player
+	jr .do_enemy
 
-.asm_3c4ea
-	call .asm_3c518
-.asm_3c4ed
+.player_1
+	call .do_enemy
+.do_player
 	ld hl, PlayerSubStatus5
 	bit SUBSTATUS_ENCORED, [hl]
 	ret z
 	ld a, [PlayerEncoreCount]
 	dec a
 	ld [PlayerEncoreCount], a
-	jr z, .asm_3c50a
+	jr z, .end_player_encore
 	ld hl, BattleMonPP
 	ld a, [CurMoveNum]
 	ld c, a
@@ -740,21 +740,21 @@ Function3c4df: ; 3c4df
 	and $3f
 	ret nz
 
-.asm_3c50a
+.end_player_encore
 	ld hl, PlayerSubStatus5
 	res SUBSTATUS_ENCORED, [hl]
 	call SetEnemyTurn
 	ld hl, BattleText_TargetsEncoreEnded
 	jp StdBattleTextBox
 
-.asm_3c518
+.do_enemy
 	ld hl, EnemySubStatus5
 	bit SUBSTATUS_ENCORED, [hl]
 	ret z
 	ld a, [EnemyEncoreCount]
 	dec a
 	ld [EnemyEncoreCount], a
-	jr z, .asm_3c535
+	jr z, .end_enemy_encore
 	ld hl, EnemyMonPP
 	ld a, [CurEnemyMoveNum]
 	ld c, a
@@ -764,7 +764,7 @@ Function3c4df: ; 3c4df
 	and $3f
 	ret nz
 
-.asm_3c535
+.end_enemy_encore
 	ld hl, EnemySubStatus5
 	res SUBSTATUS_ENCORED, [hl]
 	call SetPlayerTurn
@@ -972,7 +972,7 @@ Battle_EnemyFirst: ; 3c5fe
 	jp z, HandlePlayerMonFaint
 	call RefreshBattleHuds
 	xor a
-	ld [wd0ec], a
+	ld [wPlayerAction], a
 	ret
 ; 3c664
 
@@ -1022,7 +1022,7 @@ Battle_PlayerFirst: ; 3c664
 	jp z, HandleEnemyMonFaint
 	call RefreshBattleHuds
 	xor a
-	ld [wd0ec], a
+	ld [wPlayerAction], a
 	ret
 ; 3c6cf
 
@@ -2004,7 +2004,8 @@ GetMaxHP: ; 3ccac
 	ret
 ; 3ccc2
 
-Function3ccc2: ; 3ccc2
+GetHalfHP: ; 3ccc2
+; unreferenced
 	ld hl, BattleMonHP
 	ld a, [hBattleTurn]
 	and a
@@ -2160,22 +2161,22 @@ HandleEnemyMonFaint: ; 3cd55
 	jp c, WildFled_EnemyFled_LinkBattleCanceled
 
 	ld a, $1
-	ld [wd0ec], a
+	ld [wPlayerAction], a
 	call Function3cf4a
 	jp z, WildFled_EnemyFled_LinkBattleCanceled
-	jr Function3cdca
+	jr DoubleSwitch
 
 .player_mon_not_fainted
 	ld a, $1
-	ld [wd0ec], a
+	ld [wPlayerAction], a
 	call Function3cf4a
 	jp z, WildFled_EnemyFled_LinkBattleCanceled
 	xor a
-	ld [wd0ec], a
+	ld [wPlayerAction], a
 	ret
 ; 3cdca
 
-Function3cdca: ; 3cdca
+DoubleSwitch: ; 3cdca
 	ld a, [hLinkPlayerNumber]
 	cp $1
 	jr z, .player_1
@@ -2201,7 +2202,7 @@ Function3cdca: ; 3cdca
 
 .done
 	xor a
-	ld [wd0ec], a
+	ld [wPlayerAction], a
 	ret
 ; 3ce01
 
@@ -2412,14 +2413,14 @@ CheckEnemyTrainerDefeated: ; 3cf35
 Function3cf4a: ; 3cf4a
 	ld hl, EnemyHPPal
 	ld e, HP_BAR_LENGTH_PX
-	call Function3e12e
+	call UpdateHPPal
 	call WaitBGMap
 	callba Function2c012
 	ld a, [wLinkMode]
 	and a
 	jr z, .not_linked
 
-	call Function3e8e4
+	call LinkBattleSendReceiveAction
 	ld a, [wBattleAction]
 	cp BATTLEACTION_FORFEIT
 	ret z
@@ -2459,7 +2460,7 @@ EnemyPartyMonEntrance: ; 3cf78
 	call SpikesDamage
 	xor a
 	ld [wEnemyMoveStruct + MOVE_ANIM], a
-	ld [wd0ec], a
+	ld [wPlayerAction], a
 	inc a
 	ret
 ; 3cfa4
@@ -2532,48 +2533,48 @@ WinTrainerBattle: ; 3cfa4
 ; 3d02b
 
 Function3d02b: ; 3d02b
-	ld a, [wc73d]
+	ld a, [wAmuletCoin]
 	and a
-	call nz, Function3d099
-	call Function3d0b1
+	call nz, .DoubleReward
+	call .CheckMaxedOutMomMoney
 	push af
 	ld a, $0
-	jr nc, .asm_3d044
+	jr nc, .okay
 	ld a, [wMomSavingMoney]
 	and $7
 	cp $3
-	jr nz, .asm_3d044
+	jr nz, .okay
 	inc a
 
-.asm_3d044
+.okay
 	ld b, a
 	ld c, $4
-.asm_3d047
+.loop
 	ld a, b
 	and a
-	jr z, .asm_3d052
-	call Function3d081
+	jr z, .loop2
+	call .SendMoneyToMom
 	dec c
 	dec b
-	jr .asm_3d047
+	jr .loop
 
-.asm_3d052
+.loop2
 	ld a, c
 	and a
-	jr z, .asm_3d05c
-	call Function3d08d
+	jr z, .done
+	call .AddMoneyToWallet
 	dec c
-	jr .asm_3d052
+	jr .loop2
 
-.asm_3d05c
-	call Function3d099
-	call Function3d099
+.done
+	call .DoubleReward
+	call .DoubleReward
 	pop af
 	jr nc, .KeepItAll
 	ld a, [wMomSavingMoney]
 	and $7
 	jr z, .KeepItAll
-	ld hl, SentToMomTexts
+	ld hl, .SentToMomTexts
 	dec a
 	ld c, a
 	ld b, 0
@@ -2590,26 +2591,26 @@ endr
 	jp StdBattleTextBox
 ; 3d081
 
-Function3d081: ; 3d081
+.SendMoneyToMom: ; 3d081
 	push bc
-	ld hl, wc688
+	ld hl, wBattleReward + 2
 	ld de, wMomsMoney + 2
-	call Function3d0be
+	call AddBattleMoneyToAccount
 	pop bc
 	ret
 ; 3d08d
 
-Function3d08d: ; 3d08d
+.AddMoneyToWallet: ; 3d08d
 	push bc
-	ld hl, wc688
+	ld hl, wBattleReward + 2
 	ld de, Money + 2
-	call Function3d0be
+	call AddBattleMoneyToAccount
 	pop bc
 	ret
 ; 3d099
 
-Function3d099: ; 3d099
-	ld hl, wc688
+.DoubleReward: ; 3d099
+	ld hl, wBattleReward + 2
 	sla [hl]
 	dec hl
 	rl [hl]
@@ -2624,14 +2625,14 @@ endr
 	ret
 ; 3d0ab
 
-SentToMomTexts: ; 3d0ab
+.SentToMomTexts: ; 3d0ab
 	dw SentSomeToMomText
 	dw SentHalfToMomText
 	dw SentAllToMomText
 ; 3d0b1
 
 
-Function3d0b1: ; 3d0b1
+.CheckMaxedOutMomMoney: ; 3d0b1
 	ld hl, wMomsMoney + 2
 	ld a, [hld]
 	cp 999999 % $100
@@ -2642,7 +2643,7 @@ Function3d0b1: ; 3d0b1
 	ret
 ; 3d0be
 
-Function3d0be: ; 3d0be
+AddBattleMoneyToAccount: ; 3d0be
 	ld c, $3
 	and a
 	push de
@@ -2653,14 +2654,14 @@ Function3d0be: ; 3d0be
 	callba MobileFn_106008
 	pop bc
 	pop hl
-.asm_3d0ce
+.loop
 	ld a, [de]
 	adc [hl]
 	ld [de], a
 	dec de
 	dec hl
 	dec c
-	jr nz, .asm_3d0ce
+	jr nz, .loop
 	pop hl
 	ld a, [hld]
 	cp 999999 % $100
@@ -2813,17 +2814,17 @@ HandlePlayerMonFaint: ; 3d14e
 	and a
 	ret nz
 	ld a, $1
-	ld [wd0ec], a
+	ld [wPlayerAction], a
 	call Function3cf4a
 	jp z, WildFled_EnemyFled_LinkBattleCanceled
-	jp Function3cdca
+	jp DoubleSwitch
 ; 3d1aa
 
 PlayerMonFaintHappinessMod: ; 3d1aa
 	ld a, [CurBattleMon]
 	ld c, a
 	ld hl, wBattleParticipantsNotFainted
-	ld b, $0
+	ld b, RESET_FLAG
 	predef FlagPredef
 	ld hl, EnemySubStatus3
 	res SUBSTATUS_IN_LOOP, [hl]
@@ -2896,12 +2897,12 @@ ForcePlayerMonChoice: ; 3d227
 	and a
 	jr z, .skip_link
 	ld a, $1
-	ld [wd0ec], a
-	call Function3e8e4
+	ld [wPlayerAction], a
+	call LinkBattleSendReceiveAction
 
 .skip_link
 	xor a
-	ld [wd0ec], a
+	ld [wPlayerAction], a
 	call CheckMobileBattleError
 	jr c, .enemy_fainted_mobile_error
 	ld hl, EnemyMonHP
@@ -2916,7 +2917,7 @@ ForcePlayerMonChoice: ; 3d227
 	call ExitMenu
 	call LoadTileMapToTempTileMap
 	call WaitBGMap
-	call ClearSGB
+	call GetMemSGBLayout
 	call SetPalettes
 	xor a
 	ld c, a
@@ -2935,7 +2936,7 @@ ForcePlayerMonChoice: ; 3d227
 	call DelayFrame
 	call _LoadHPBar
 	call WriteBackup
-	call ClearSGB
+	call GetMemSGBLayout
 	call SetPalettes
 	call SendOutPkmnText
 	call NewBattleMonStatus
@@ -2997,10 +2998,10 @@ IsMobileBattle: ; 3d2f1
 Function3d2f7: ; 3d2f7
 	call ClearBGPalettes
 Function3d2fa: ; switch to fullscreen menu?
-	callba Function5004f
-	callba Function50405
+	callba LoadPartyMenuGFX
+	callba InitPartyMenuWithCancel
 	callba Function8e85
-	callba Function503e0
+	callba InitPartyMenuGFX
 	ret
 ; 3d313
 
@@ -3146,7 +3147,7 @@ LostBattle: ; 3d38e
 	jr nz, .LostLinkBattle
 
 ; Greyscale
-	ld b, 0
+	ld b, SCGB_00
 	call GetSGBLayout
 	call SetPalettes
 	jr .end
@@ -3344,7 +3345,7 @@ EnemySwitch: ; 3d4e1
 	xor a
 	ld [wBattleParticipantsNotFainted], a
 	ld [wc6fc], a
-	ld [wd0ec], a
+	ld [wPlayerAction], a
 	inc a
 	ld [wEnemyIsSwitching], a
 	call LoadTileMapToTempTileMap
@@ -3938,9 +3939,9 @@ TryToRunAwayFromBattle: ; 3d8b3
 	jp .can_escape
 
 .no_flee_item
-	ld a, [wd267]
+	ld a, [wNumFleeAttempts]
 	inc a
-	ld [wd267], a
+	ld [wNumFleeAttempts], a
 	ld a, [hli]
 	ld [hStringCmpString2 + 0], a
 	ld a, [hl]
@@ -3981,12 +3982,12 @@ TryToRunAwayFromBattle: ; 3d8b3
 	ld a, [hQuotient + 1]
 	and a
 	jr nz, .can_escape
-	ld a, [wd267]
+	ld a, [wNumFleeAttempts]
 	ld c, a
 .loop
 	dec c
 	jr z, .cant_escape_2
-	ld b, $1e
+	ld b, 30
 	ld a, [hQuotient + 2]
 	add b
 	ld [hQuotient + 2], a
@@ -4000,7 +4001,7 @@ TryToRunAwayFromBattle: ; 3d8b3
 	cp b
 	jr nc, .can_escape
 	ld a, $1
-	ld [wd0ec], a
+	ld [wPlayerAction], a
 	ld hl, BattleText_CantEscape2
 	jr .print_inescapable_text
 
@@ -4014,7 +4015,7 @@ TryToRunAwayFromBattle: ; 3d8b3
 .print_inescapable_text
 	call StdBattleTextBox
 	ld a, $1
-	ld [wd266], a
+	ld [wFailedToFlee], a
 	call LoadTileMapToTempTileMap
 	and a
 	ret
@@ -4026,12 +4027,12 @@ TryToRunAwayFromBattle: ; 3d8b3
 	jr z, .fled
 	call LoadTileMapToTempTileMap
 	xor a
-	ld [wd0ec], a
+	ld [wPlayerAction], a
 	ld a, $f
 	ld [CurMoveNum], a
 	xor a
 	ld [CurPlayerMove], a
-	call Function3e8e4
+	call LinkBattleSendReceiveAction
 	call Call_LoadTempTileMapToTileMap
 	call CheckMobileBattleError
 	jr c, .mobile
@@ -4886,7 +4887,7 @@ DrawPlayerHUD: ; 3df58
 
 UpdatePlayerHPPal: ; 3df98
 	ld hl, PlayerHPPal
-	jp Function3e12e
+	jp UpdateHPPal
 ; 3df9e
 
 CheckDanger: ; 3df9e
@@ -4917,7 +4918,7 @@ CheckDanger: ; 3df9e
 PrintPlayerHUD: ; 3dfbf
 	ld de, BattleMonNick
 	hlcoord 10, 7
-	call Function3e138
+	call ret_3e138
 	call PlaceString
 
 	push bc
@@ -5005,7 +5006,7 @@ DrawEnemyHUD: ; 3e043
 	call GetBaseData
 	ld de, EnemyMonNick
 	hlcoord 1, 0
-	call Function3e138
+	call ret_3e138
 	call PlaceString
 	ld h, b
 	ld l, c
@@ -5028,12 +5029,12 @@ DrawEnemyHUD: ; 3e043
 	ld [MonType], a
 	callab GetGender
 	ld a, " "
-	jr c, .asm_3e09a
+	jr c, .got_gender
 	ld a, "♂"
-	jr nz, .asm_3e09a
+	jr nz, .got_gender
 	ld a, "♀"
 
-.asm_3e09a
+.got_gender
 	hlcoord 9, 1
 	ld [hl], a
 
@@ -5044,16 +5045,16 @@ DrawEnemyHUD: ; 3e043
 	predef PlaceNonFaintStatus
 	pop hl
 	pop bc
-	jr nz, .asm_3e0be
+	jr nz, .skip_level
 	ld a, b
 	cp " "
-	jr nz, .asm_3e0b5
+	jr nz, .print_level
 	dec hl
-.asm_3e0b5
+.print_level
 	ld a, [EnemyMonLevel]
 	ld [TempMonLevel], a
 	call PrintLevel
-.asm_3e0be
+.skip_level
 
 	ld hl, EnemyMonHP
 	ld a, [hli]
@@ -5061,14 +5062,14 @@ DrawEnemyHUD: ; 3e043
 	ld a, [hld]
 	ld [hMultiplicand + 2], a
 	or [hl]
-	jr nz, .asm_3e0d1
+	jr nz, .not_fainted
 
 	ld c, a
 	ld e, a
 	ld d, HP_BAR_LENGTH
-	jp .asm_3e11a
+	jp .draw_bar
 
-.asm_3e0d1
+.not_fainted
 	xor a
 	ld [hMultiplicand], a
 	ld a, HP_BAR_LENGTH_PX
@@ -5081,7 +5082,7 @@ DrawEnemyHUD: ; 3e043
 	ld [hMultiplier], a
 	ld a, b
 	and a
-	jr z, .asm_3e105
+	jr z, .less_than_256_max
 	ld a, [hMultiplier]
 	srl b
 	rr a
@@ -5099,12 +5100,12 @@ DrawEnemyHUD: ; 3e043
 	ld a, b
 	ld [hProduct + 2], a
 
-.asm_3e105
+.less_than_256_max
 	ld a, [hProduct + 2]
 	ld [hDividend + 0], a
 	ld a, [hProduct + 3]
 	ld [hDividend + 1], a
-	ld a, $2
+	ld a, 2
 	ld b, a
 	call Divide
 	ld a, [hQuotient + 2]
@@ -5113,7 +5114,7 @@ DrawEnemyHUD: ; 3e043
 	ld d, a
 	ld c, a
 
-.asm_3e11a
+.draw_bar
 	xor a
 	ld [wd10a], a
 	hlcoord 2, 2
@@ -5124,11 +5125,11 @@ DrawEnemyHUD: ; 3e043
 
 UpdateEnemyHPPal: ; 3e127
 	ld hl, EnemyHPPal
-	call Function3e12e
+	call UpdateHPPal
 	ret
 ; 3e12e
 
-Function3e12e: ; 3e12e
+UpdateHPPal: ; 3e12e
 	ld b, [hl]
 	call SetHPPal
 	ld a, [hl]
@@ -5137,7 +5138,7 @@ Function3e12e: ; 3e12e
 	jp FinishBattleAnim
 ; 3e138
 
-Function3e138: ; 3e138
+ret_3e138: ; 3e138
 	ret
 ; 3e139
 
@@ -5192,7 +5193,7 @@ BattleMenu: ; 3e139
 
 BattleMenu_Fight: ; 3e192
 	xor a
-	ld [wd267], a
+	ld [wNumFleeAttempts], a
 	call Call_LoadTempTileMapToTileMap
 	and a
 	ret
@@ -5242,13 +5243,13 @@ BattleMenu_Pack: ; 3e1c7
 	jr z, .contest
 
 	callba BattlePack
-	ld a, [wd0ec]
+	ld a, [wPlayerAction]
 	and a
 	jr z, .didnt_use_item
 	jr .got_item
 
 .tutorial
-	callba Function107bb
+	callba TutorialPack
 	ld a, POKE_BALL
 	ld [CurItem], a
 	call DoItemEffect
@@ -5372,7 +5373,7 @@ Function3e299:
 	call _LoadHPBar
 	call WriteBackup
 	call LoadTileMapToTempTileMap
-	call ClearSGB
+	call GetMemSGBLayout
 	call SetPalettes
 	jp BattleMenu
 ; 3e2f5
@@ -5448,13 +5449,13 @@ Function3e358: ; 3e358
 	ld a, [CurBattleMon]
 	ld [LastPlayerMon], a
 	ld a, $2
-	ld [wd0ec], a
+	ld [wPlayerAction], a
 	call ClearPalettes
 	call DelayFrame
 	call ClearSprites
 	call _LoadHPBar
 	call WriteBackup
-	call ClearSGB
+	call GetMemSGBLayout
 	call SetPalettes
 	ld a, [CurPartyMon]
 	ld [CurBattleMon], a
@@ -5468,7 +5469,7 @@ PlayerSwitch: ; 3e3ad
 	and a
 	jr z, .not_linked
 	call LoadStandardMenuDataHeader
-	call Function3e8e4
+	call LinkBattleSendReceiveAction
 	call WriteBackup
 
 .not_linked
@@ -5585,9 +5586,9 @@ BattleMenu_Run: ; 3e489
 	ld de, EnemyMonSpeed
 	call TryToRunAwayFromBattle
 	ld a, $0
-	ld [wd266], a
+	ld [wFailedToFlee], a
 	ret c
-	ld a, [wd0ec]
+	ld a, [wPlayerAction]
 	and a
 	ret nz
 	jp BattleMenu
@@ -5602,33 +5603,33 @@ CheckAmuletCoin: ; 3e4a8
 	cp HELD_AMULET_COIN
 	ret nz
 	ld a, 1
-	ld [wc73d], a
+	ld [wAmuletCoin], a
 	ret
 ; 3e4bc
 
 MoveSelectionScreen: ; 3e4bc
 	call IsMobileBattle
-	jr nz, .asm_3e4c8
-	callba Function100b9f
+	jr nz, .not_mobile
+	callba MobileMoveSelectionScreen
 	ret
 
-.asm_3e4c8
+.not_mobile
 	ld hl, EnemyMonMoves
-	ld a, [wd235]
+	ld a, [wMoveSelectionMenuType]
 	dec a
-	jr z, .asm_3e4e2
+	jr z, .got_menu_type
 	dec a
-	jr z, .asm_3e4dd
-	call Function3e786
-	ret z
+	jr z, .ether_elixer_menu
+	call CheckPlayerHasUsableMoves
+	ret z ; use Struggle
 	ld hl, BattleMonMoves
-	jr .asm_3e4e2
+	jr .got_menu_type
 
-.asm_3e4dd
+.ether_elixer_menu
 	ld a, MON_MOVES
 	call GetPartyParamLocation
 
-.asm_3e4e2
+.got_menu_type
 	ld de, wListMoves_MoveIndicesBuffer
 	ld bc, NUM_MOVES
 	call CopyBytes
@@ -5638,44 +5639,44 @@ MoveSelectionScreen: ; 3e4bc
 	hlcoord 4, 17 - NUM_MOVES - 1
 	ld b, 4
 	ld c, 14
-	ld a, [wd235]
+	ld a, [wMoveSelectionMenuType]
 	cp $2
-	jr nz, .asm_3e503
+	jr nz, .got_dims
 	hlcoord 4, 17 - NUM_MOVES - 1 - 4
 	ld b, 4
 	ld c, 14
-.asm_3e503
+.got_dims
 	call TextBox
 
 	hlcoord 6, 17 - NUM_MOVES
-	ld a, [wd235]
+	ld a, [wMoveSelectionMenuType]
 	cp $2
-	jr nz, .asm_3e513
+	jr nz, .got_start_coord
 	hlcoord 6, 17 - NUM_MOVES - 4
-.asm_3e513
+.got_start_coord
 	ld a, SCREEN_WIDTH
 	ld [Buffer1], a
 	predef ListMoves
 
 	ld b, 5
-	ld a, [wd235]
+	ld a, [wMoveSelectionMenuType]
 	cp $2
 	ld a, 17 - NUM_MOVES
-	jr nz, .asm_3e52c
+	jr nz, .got_default_coord
 	ld b, 5
 	ld a, 17 - NUM_MOVES - 4
 
-.asm_3e52c
+.got_default_coord
 	ld [wcfa1], a
 	ld a, b
 	ld [wcfa2], a
-	ld a, [wd235]
+	ld a, [wMoveSelectionMenuType]
 	cp $1
-	jr z, .asm_3e53e
+	jr z, .skip_inc
 	ld a, [CurMoveNum]
 	inc a
 
-.asm_3e53e
+.skip_inc
 	ld [MenuSelection2], a
 	ld a, $1
 	ld [wcfaa], a
@@ -5685,19 +5686,19 @@ MoveSelectionScreen: ; 3e4bc
 	ld a, $1
 	ld [wcfa4], a
 	ld c, $2c
-	ld a, [wd235]
+	ld a, [wMoveSelectionMenuType]
 	dec a
 	ld b, $c1
-	jr z, .asm_3e569
+	jr z, .okay
 	dec a
 	ld b, $c3
-	jr z, .asm_3e569
+	jr z, .okay
 	ld a, [wLinkMode]
 	and a
-	jr nz, .asm_3e569
+	jr nz, .okay
 	ld b, $c7
 
-.asm_3e569
+.okay
 	ld a, b
 	ld [wcfa8], a
 	ld a, c
@@ -5706,64 +5707,64 @@ MoveSelectionScreen: ; 3e4bc
 	ld [wcfa6], a
 	ld a, $10
 	ld [wcfa7], a
-.asm_3e57a
-	ld a, [wd235]
+.menu_loop
+	ld a, [wMoveSelectionMenuType]
 	and a
-	jr z, .asm_3e58e
+	jr z, .battle_player_moves
 	dec a
-	jr nz, .asm_3e5a3
+	jr nz, .interpret_joypad
 	hlcoord 11, 14
 	ld de, .string_3e61c
 	call PlaceString
-	jr .asm_3e5a3
+	jr .interpret_joypad
 
-.asm_3e58e
+.battle_player_moves
 	call MoveInfoBox
-	ld a, [wd0e3]
+	ld a, [wMoveSwapBuffer]
 	and a
-	jr z, .asm_3e5a3
+	jr z, .interpret_joypad
 	hlcoord 5, 13
 	ld bc, SCREEN_WIDTH
 	dec a
 	call AddNTimes
 	ld [hl], "▷"
 
-.asm_3e5a3
+.interpret_joypad
 	ld a, $1
 	ld [hBGMapMode], a
 	call Function1bd3
-	bit 6, a ; D_UP
-	jp nz, .asm_3e61d
-	bit 7, a ; D_DOWN
-	jp nz, .asm_3e62e
-	bit 2, a ; B_BUTTON
-	jp nz, .asm_3e643
-	bit 1, a ; A_BUTTON
+	bit D_UP_F, a
+	jp nz, .pressed_up
+	bit D_DOWN_F, a
+	jp nz, .pressed_down
+	bit SELECT_F, a
+	jp nz, .pressed_select
+	bit B_BUTTON_F, a
 	push af
 
 	xor a
-	ld [wd0e3], a
+	ld [wMoveSwapBuffer], a
 	ld a, [MenuSelection2]
 	dec a
 	ld [MenuSelection2], a
 	ld b, a
-	ld a, [wd235]
+	ld a, [wMoveSelectionMenuType]
 	dec a
-	jr nz, .asm_3e5d0
+	jr nz, .not_enemy_moves_process_b
 
 	pop af
 	ret
 
-.asm_3e5d0
+.not_enemy_moves_process_b
 	dec a
 	ld a, b
 	ld [CurMoveNum], a
-	jr nz, .asm_3e5d9
+	jr nz, .use_move
 
 	pop af
 	ret
 
-.asm_3e5d9
+.use_move
 	pop af
 	ret nz
 
@@ -5774,16 +5775,16 @@ MoveSelectionScreen: ; 3e4bc
 	add hl, bc
 	ld a, [hl]
 	and $3f
-	jr z, .asm_3e610
+	jr z, .no_pp_left
 	ld a, [PlayerDisableCount]
 	swap a
 	and $f
 	dec a
 	cp c
-	jr z, .asm_3e60b
+	jr z, .move_disabled
 	ld a, [wc6e1]
 	and a
-	jr nz, .asm_3e606
+	jr nz, .skip2
 	ld a, [MenuSelection2]
 	ld hl, BattleMonMoves
 	ld c, a
@@ -5791,19 +5792,19 @@ MoveSelectionScreen: ; 3e4bc
 	add hl, bc
 	ld a, [hl]
 
-.asm_3e606
+.skip2
 	ld [CurPlayerMove], a
 	xor a
 	ret
 
-.asm_3e60b
+.move_disabled
 	ld hl, BattleText_TheMoveIsDisabled
-	jr .asm_3e613
+	jr .place_textbox_start_over
 
-.asm_3e610
+.no_pp_left
 	ld hl, BattleText_TheresNoPPLeftForThisMove
 
-.asm_3e613
+.place_textbox_start_over
 	call StdBattleTextBox
 	call Call_LoadTempTileMapToTileMap
 	jp MoveSelectionScreen
@@ -5813,17 +5814,17 @@ MoveSelectionScreen: ; 3e4bc
 	db "@"
 ; 3e61d
 
-.asm_3e61d
+.pressed_up
 	ld a, [MenuSelection2]
 	and a
-	jp nz, .asm_3e57a
+	jp nz, .menu_loop
 	ld a, [wd0eb]
 	inc a
 	ld [MenuSelection2], a
-	jp .asm_3e57a
+	jp .menu_loop
 ; 3e62e
 
-.asm_3e62e ; 3e62e
+.pressed_down ; 3e62e
 	ld a, [MenuSelection2]
 	ld b, a
 	ld a, [wd0eb]
@@ -5831,20 +5832,20 @@ rept 2
 	inc a
 endr
 	cp b
-	jp nz, .asm_3e57a
+	jp nz, .menu_loop
 	ld a, $1
 	ld [MenuSelection2], a
-	jp .asm_3e57a
+	jp .menu_loop
 ; 3e643
 
-.asm_3e643 ; 3e643
-	ld a, [wd0e3]
+.pressed_select ; 3e643
+	ld a, [wMoveSwapBuffer]
 	and a
-	jr z, .asm_3e6bf
+	jr z, .start_swap
 	ld hl, BattleMonMoves
-	call .asm_3e6a5
+	call .swap_bytes
 	ld hl, BattleMonPP
-	call .asm_3e6a5
+	call .swap_bytes
 	ld hl, PlayerDisableCount
 	ld a, [hl]
 	swap a
@@ -5852,20 +5853,20 @@ endr
 	ld b, a
 	ld a, [MenuSelection2]
 	cp b
-	jr nz, .asm_3e671
+	jr nz, .not_swapping_disabled_move
 	ld a, [hl]
 	and $f
 	ld b, a
-	ld a, [wd0e3]
+	ld a, [wMoveSwapBuffer]
 	swap a
 	add b
 	ld [hl], a
-	jr .asm_3e682
+	jr .swap_moves_in_party_struct
 
-.asm_3e671
-	ld a, [wd0e3]
+.not_swapping_disabled_move
+	ld a, [wMoveSwapBuffer]
 	cp b
-	jr nz, .asm_3e682
+	jr nz, .swap_moves_in_party_struct
 	ld a, [hl]
 	and $f
 	ld b, a
@@ -5874,28 +5875,29 @@ endr
 	add b
 	ld [hl], a
 
-.asm_3e682
+.swap_moves_in_party_struct
+; Fixes the COOLTRAINER glitch
 	ld a, [PlayerSubStatus5]
 	bit SUBSTATUS_TRANSFORMED, a
-	jr nz, .asm_3e69e
+	jr nz, .transformed
 	ld hl, PartyMon1Moves
 	ld a, [CurBattleMon]
 	call GetPartyLocation
 	push hl
-	call .asm_3e6a5
+	call .swap_bytes
 	pop hl
 	ld bc, MON_PP - MON_MOVES
 	add hl, bc
-	call .asm_3e6a5
+	call .swap_bytes
 
-.asm_3e69e
+.transformed
 	xor a
-	ld [wd0e3], a
+	ld [wMoveSwapBuffer], a
 	jp MoveSelectionScreen
 
-.asm_3e6a5
+.swap_bytes
 	push hl
-	ld a, [wd0e3]
+	ld a, [wMoveSwapBuffer]
 	dec a
 	ld c, a
 	ld b, 0
@@ -5915,9 +5917,9 @@ endr
 	ld [de], a
 	ret
 
-.asm_3e6bf
+.start_swap
 	ld a, [MenuSelection2]
-	ld [wd0e3], a
+	ld [wMoveSwapBuffer], a
 	jp MoveSelectionScreen
 ; 3e6c8
 
@@ -5933,21 +5935,21 @@ MoveInfoBox: ; 3e6c8
 
 	ld a, [PlayerDisableCount]
 	and a
-	jr z, .asm_3e6f4
+	jr z, .not_disabled
 
 	swap a
 	and $f
 	ld b, a
 	ld a, [MenuSelection2]
 	cp b
-	jr nz, .asm_3e6f4
+	jr nz, .not_disabled
 
 	hlcoord 1, 10
 	ld de, .Disabled
 	call PlaceString
 	jr .done
 
-.asm_3e6f4
+.not_disabled
 	ld hl, MenuSelection2
 	dec [hl]
 	call SetPlayerTurn
@@ -5974,7 +5976,7 @@ MoveInfoBox: ; 3e6c8
 	ld a, [hl]
 	and $3f
 	ld [StringBuffer1], a
-	call Function3e75f
+	call .PrintPP
 
 	hlcoord 1, 9
 	ld de, .Type
@@ -6000,7 +6002,7 @@ MoveInfoBox: ; 3e6c8
 ; 3e75f
 
 
-Function3e75f: ; 3e75f
+.PrintPP: ; 3e75f
 	hlcoord 5, 11
 	ld a, [wLinkMode] ; What's the point of this check?
 	cp LINK_MOBILE
@@ -6023,13 +6025,13 @@ endr
 	ret
 ; 3e786
 
-Function3e786: ; 3e786
+CheckPlayerHasUsableMoves: ; 3e786
 	ld a, STRUGGLE
 	ld [CurPlayerMove], a
 	ld a, [PlayerDisableCount]
 	and a
 	ld hl, BattleMonPP
-	jr nz, .asm_3e79f
+	jr nz, .disabled
 
 	ld a, [hli]
 	or [hl]
@@ -6039,29 +6041,29 @@ Function3e786: ; 3e786
 	or [hl]
 	and $3f
 	ret nz
-	jr .asm_3e7b4
+	jr .force_struggle
 
-.asm_3e79f
+.disabled
 	swap a
 	and $f
 	ld b, a
 	ld d, $5
 	xor a
-.asm_3e7a7
+.loop
 	dec d
-	jr z, .asm_3e7b2
+	jr z, .done
 	ld c, [hl]
 	inc hl
 	dec b
-	jr z, .asm_3e7a7
+	jr z, .loop
 	or c
-	jr .asm_3e7a7
+	jr .loop
 
-.asm_3e7b2
+.done
 	and a
 	ret nz
 
-.asm_3e7b4
+.force_struggle
 	ld hl, BattleText_PkmnHasNoMovesLeft
 	call StdBattleTextBox
 	ld c, 60
@@ -6081,9 +6083,9 @@ ParseEnemyAction: ; 3e7c1
 	jr z, .not_linked
 	call EmptyBattleTextBox
 	call LoadTileMapToTempTileMap
-	ld a, [wd0ec]
+	ld a, [wPlayerAction]
 	and a
-	call z, Function3e8e4
+	call z, LinkBattleSendReceiveAction
 	call Call_LoadTempTileMapToTileMap
 	ld a, [wBattleAction]
 	cp BATTLEACTION_E
@@ -6247,8 +6249,8 @@ CheckSubstatus_RechargeChargedRampageBideRollout: ; 3e8d1
 	ret
 ; 3e8e4
 
-Function3e8e4: ; 3e8e4
-	callba Function100a09
+LinkBattleSendReceiveAction: ; 3e8e4
+	callba _LinkBattleSendReceiveAction
 	ret
 ; 3e8eb
 
@@ -6569,13 +6571,13 @@ LoadEnemyMon: ; 3e8eb
 	xor a
 	ld [hli], a
 
-; Full HP...
+; Full HP..
 	ld a, [EnemyMonMaxHP]
 	ld [hli], a
 	ld a, [EnemyMonMaxHP + 1]
 	ld [hl], a
 
-; ...unless it's a RoamMon
+; ..unless it's a RoamMon
 	ld a, [BattleType]
 	cp a, BATTLETYPE_ROAMING
 	jr nz, .Moves
@@ -6678,7 +6680,7 @@ endr
 	call CopyBytes
 
 .Finish
-; Only the first five base stats are copied...
+; Only the first five base stats are copied..
 	ld hl, BaseStats
 	ld de, EnemyMonBaseStats
 	ld b, BaseSpecialDefense - BaseStats
@@ -6716,7 +6718,7 @@ endr
 	ld a, [TempEnemyMonSpecies]
 	dec a
 	ld c, a
-	ld b, 1 ; set
+	ld b, SET_FLAG
 	ld hl, PokedexSeen
 	predef FlagPredef
 
@@ -7375,7 +7377,7 @@ FinishBattleAnim: ; 3ee27
 	push bc
 	push de
 	push hl
-	ld b, $1
+	ld b, SCGB_01
 	call GetSGBLayout
 	call SetPalettes
 	call DelayFrame
@@ -7741,7 +7743,7 @@ endr
 	ld hl, EvolvableFlags
 	ld a, [CurPartyMon]
 	ld c, a
-	ld b, $1
+	ld b, SET_FLAG
 	predef FlagPredef
 	pop af
 	ld [CurPartyLevel], a
@@ -8450,7 +8452,7 @@ Function3f486: ; 3f486
 	ld hl, EnemyMonDVs
 	predef GetUnownLetter
 	ld de, VTiles2
-	predef Function5108b
+	predef FrontpicPredef
 	pop af
 	ld [CurPartySpecies], a
 	ret
@@ -8510,7 +8512,7 @@ BattleIntro: ; 3f4dd
 	callba ClearBattleRAM
 	call InitEnemy
 	call BackUpVBGMap2
-	ld b, $0
+	ld b, SCGB_00
 	call GetSGBLayout
 	ld hl, rLCDC
 	res 6, [hl]
@@ -8569,7 +8571,7 @@ BackUpVBGMap2: ; 3f568
 	ld a, $1
 	ld [rVBK], a
 	ld de, w6_d000
-	ld hl, VBGMap0 ; VBGMap2
+	hlbgcoord 0, 0 ; VBGMap2
 	lb bc, BANK(BackUpVBGMap2), $40
 	call Request2bpp
 	pop af
@@ -8659,7 +8661,7 @@ InitEnemyWildmon: ; 3f607
 	ld [wdef4], a
 .skip_unown
 	ld de, VTiles2
-	predef Function5108b
+	predef FrontpicPredef
 	xor a
 	ld [TrainerClass], a
 	ld [hFillBox], a
@@ -8745,7 +8747,7 @@ Function3f6a5: ; 3f6a5
 	call CheckPayDay
 	xor a
 	ld [wd1e9], a
-	predef Function421e6
+	predef EvolveAfterBattle
 	callba Function2ed44
 	ret
 ; 3f6d0
@@ -8759,8 +8761,8 @@ CleanUpBattleRAM: ; 3f6d0
 	ld [AttackMissed], a
 	ld [TempWildMonSpecies], a
 	ld [OtherTrainerClass], a
-	ld [wd266], a
-	ld [wd267], a
+	ld [wFailedToFlee], a
+	ld [wNumFleeAttempts], a
 	ld [wForcedSwitch], a
 	ld [wd0d8], a
 	ld [wKeyItemsPocketCursor], a
@@ -8768,13 +8770,13 @@ CleanUpBattleRAM: ; 3f6d0
 	ld [wd0d2], a
 	ld [CurMoveNum], a
 	ld [wBallsPocketCursor], a
-	ld [wd0d6], a
-	ld [wd0e4], a
-	ld [wd0e0], a
-	ld [wd0df], a
-	ld [wd0e1], a
+	ld [wLastPocket], a
+	ld [wMenuScrollPosition], a
+	ld [wKeyItemsPocketScrollPosition], a
+	ld [wItemsPocketScrollPosition], a
+	ld [wBallsPocketScrollPosition], a
 	ld hl, PlayerSubStatus1
-	ld b, $18
+	ld b, EnemyFuryCutterCount - PlayerSubStatus1
 .loop
 	ld [hli], a
 	dec b
@@ -8790,7 +8792,7 @@ CheckPayDay: ; 3f71d
 	inc hl
 	or [hl]
 	ret z
-	ld a, [wc73d]
+	ld a, [wAmuletCoin]
 	and a
 	jr z, .okay
 	ld hl, wPayDayMoney + 2
@@ -8809,7 +8811,7 @@ endr
 .okay
 	ld hl, wPayDayMoney + 2
 	ld de, Money + 2
-	call Function3d0be
+	call AddBattleMoneyToAccount
 	ld hl, BattleText_PlayerPickuedUpPayDayMoney
 	call StdBattleTextBox
 	ld a, [InBattleTowerBattle]
@@ -8924,7 +8926,7 @@ IsMobileBattle2: ; 3f830
 ; 3f836
 
 
-Function3f836: ; 3f836
+DisplayLinkRecord: ; 3f836
 	ld a, BANK(sLinkBattleStats)
 	call GetSRAMBank
 
@@ -8936,7 +8938,7 @@ Function3f836: ; 3f836
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	call Function3200
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	call SetPalettes
 	ld c, $8
@@ -9438,7 +9440,7 @@ InitBattleDisplay: ; 3fb6c
 	ld [rWY], a
 	call WaitBGMap
 	call HideSprites
-	ld b, $1
+	ld b, SCGB_01
 	call GetSGBLayout
 	call SetPalettes
 	ld a, $90
@@ -9460,7 +9462,7 @@ InitBattleDisplay: ; 3fb6c
 	call ByteFill
 
 	ld de, w6_d000
-	ld hl, VBGMap0
+	hlbgcoord 0, 0
 	lb bc, BANK(.BlankBGMap), $40
 	call Request2bpp
 
@@ -9488,7 +9490,7 @@ GetTrainerBackpic: ; 3fbff
 
 ; What gender are we?
 	ld a, [wPlayerSpriteSetupFlags]
-	bit 2, a
+	bit 2, a ; transformed to male
 	jr nz, .Chris
 	ld a, [PlayerGender]
 	bit 0, a

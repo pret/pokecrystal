@@ -35,6 +35,7 @@
 ; Actual characters
 	charmap "▲",        $61
 	charmap "_",        $62
+	charmap "<COLON>",  $6d ; necessary because ":" is already used
 	charmap "′",        $6e
 	charmap "<LV>",     $6e
 	charmap "″",        $6f

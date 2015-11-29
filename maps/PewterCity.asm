@@ -58,10 +58,10 @@ PewterCityMartSign:
 	jumpstd martsign
 
 FruitTreeScript_0x18c03e:
-	fruittree $1c
+	fruittree FRUITTREE_PEWTER_CITY_1
 
 FruitTreeScript_0x18c040:
-	fruittree $1d
+	fruittree FRUITTREE_PEWTER_CITY_2
 
 UnknownText_0x18c042:
 	text "Have you visited"
@@ -174,8 +174,8 @@ PewterCity_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_COOLTRAINER_F, 11, 19, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, CooltrainerFScript_0x18c009, -1
-	person_event SPRITE_BUG_CATCHER, 29, 14, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, BugCatcherScript_0x18c00c, -1
-	person_event SPRITE_GRAMPS, 17, 29, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, GrampsScript_0x18c00f, -1
-	person_event SPRITE_FRUIT_TREE, 3, 32, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x18c03e, -1
-	person_event SPRITE_FRUIT_TREE, 3, 30, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x18c040, -1
+	person_event SPRITE_COOLTRAINER_F, 11, 19, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x18c009, -1
+	person_event SPRITE_BUG_CATCHER, 29, 14, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, BugCatcherScript_0x18c00c, -1
+	person_event SPRITE_GRAMPS, 17, 29, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, GrampsScript_0x18c00f, -1
+	person_event SPRITE_FRUIT_TREE, 3, 32, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x18c03e, -1
+	person_event SPRITE_FRUIT_TREE, 3, 30, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x18c040, -1

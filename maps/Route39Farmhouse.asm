@@ -20,7 +20,7 @@ UnknownScript_0x9cec5:
 	checkitem MOOMOO_MILK
 	iftrue UnknownScript_0x9cf08
 	writetext UnknownText_0x9cfe1
-	special Function24ae8
+	special PlaceMoneyTopRightOW
 	yesorno
 	iffalse UnknownScript_0x9cf02
 	checkmoney $0, 500
@@ -28,7 +28,7 @@ UnknownScript_0x9cec5:
 	giveitem MOOMOO_MILK
 	iffalse UnknownScript_0x9cefc
 	takemoney $0, 500
-	special Function24ae8
+	special PlaceMoneyTopRightOW
 	waitbutton
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x9d05d
@@ -207,5 +207,5 @@ Route39Farmhouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKEFAN_M, 2, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, PokefanMScript_0x9ceb4, -1
-	person_event SPRITE_POKEFAN_F, 4, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, PokefanFScript_0x9cf0e, -1
+	person_event SPRITE_POKEFAN_M, 2, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x9ceb4, -1
+	person_event SPRITE_POKEFAN_F, 4, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, PokefanFScript_0x9cf0e, -1

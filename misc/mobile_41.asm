@@ -743,7 +743,9 @@ endr
 	ret
 ; 10630f
 
-Function10630f: ; 10630f
+; functions related to the cable club and various NPC scripts referencing mobile communications
+
+Mobile_DummyReturnFalse: ; 10630f
 	xor a
 	ld [ScriptVar], a
 	ret
@@ -766,8 +768,10 @@ MobileFn_106314: mobile ; 106314
 
 Function10632f: ; 10632f
 	or a
-	mobile
+	ret
 
+Function106331: ; 106331 - called by Mobile_DummyReturnFalse in Crystal-J
+	; check ~[4:b000] == [7:a800]
 	ld a, $4
 	call GetSRAMBank
 	ld a, [$b000]
@@ -781,17 +785,22 @@ Function10632f: ; 10632f
 	call CloseSRAM
 	ld a, c
 	cp b
-	jr nz, .asm_106359
+	jr nz, .nope
+
+	; check [7:a800] != 0
 	and a
-	jr z, .asm_106359
-	and $8f
+	jr z, .nope
+
+	; check !([7:a800] & %01110000)
+	and %10001111
 	cp c
-	jr nz, .asm_106359
+	jr nz, .nope
+
 	ld c, a
 	scf
 	ret
 
-.asm_106359
+.nope
 	xor a
 	ld c, a
 	ret

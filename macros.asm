@@ -14,7 +14,7 @@ INCLUDE "macros/predef.asm"
 INCLUDE "macros/rst.asm"
 INCLUDE "macros/mobile.asm"
 INCLUDE "macros/trainer.asm"
-
+INCLUDE "macros/trade_anim.asm"
 
 
 RGB: MACRO
@@ -211,3 +211,26 @@ endr
 ENDM
 
 palettes EQUS "* 8"
+
+ldpixel: MACRO
+if _NARG == 5
+	lb \1, \2 * 8 + \4, \3 * 8 + \5
+else
+	lb \1, \2 * 8, \3 * 8
+endc
+	endm
+
+depixel EQUS "ldpixel de,"
+
+bgcoord: MACRO
+IF _NARG == 4
+	ld \1, \3 * $20 + \2 + \4
+ELSE
+	ld \1, \3 * $20 + \2 + VBGMap0
+ENDC
+ENDM
+
+hlbgcoord EQUS "bgcoord hl,"
+debgcoord EQUS "bgcoord de,"
+bcbgcoord EQUS "bgcoord bc,"
+bgrows EQUS "* $20"

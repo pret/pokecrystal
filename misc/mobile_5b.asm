@@ -169,7 +169,7 @@ Function16c108: ; 16c108
 	call Function16c130
 	call Function16c145
 	call Function16c15c
-	ld hl, VBGMap0
+	hlbgcoord 0, 0
 	call Function16cc73
 	call Function16cc02
 	xor a
@@ -179,7 +179,7 @@ Function16c108: ; 16c108
 ; 16c130
 
 Function16c130: ; 16c130
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld hl, Unknown_16c903
 	ld bc, 8
 	ld a, $5
@@ -274,7 +274,7 @@ Function16c943: ; 16c943
 	ld [rSVBK], a
 	ld a, $ff
 	ld bc, $0008
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call ByteFill
 	pop af
 	ld [rSVBK], a
@@ -291,7 +291,7 @@ Function16c943: ; 16c943
 	call Function16cab6
 	call Function16cabb
 	ld d, a
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cabb
 	cp d
@@ -305,7 +305,7 @@ Function16c943: ; 16c943
 	jr nz, .asm_16c981
 
 .asm_16c988
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cadc
 
@@ -314,7 +314,7 @@ Function16c943: ; 16c943
 	call Function16cab6
 	call Function16cad8
 	ld d, a
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cad8
 	cp d
@@ -328,7 +328,7 @@ Function16c943: ; 16c943
 	jr nz, .asm_16c9a9
 
 .asm_16c9b0
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cb08
 
@@ -337,7 +337,7 @@ Function16c943: ; 16c943
 	call Function16cab6
 	call Function16cac4
 	ld d, a
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cac4
 	cp d
@@ -351,7 +351,7 @@ Function16c943: ; 16c943
 	jr nz, .asm_16c9d1
 
 .asm_16c9d8
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cae8
 
@@ -402,7 +402,7 @@ Function16ca11: ; 16ca11
 	ld e, $0
 	ld a, $0
 .asm_16ca28
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cabb
 	cp $1f
@@ -416,12 +416,12 @@ Function16ca11: ; 16ca11
 	jr nz, .asm_16ca37
 
 .asm_16ca3f
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cadc
 
 .asm_16ca48
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cad8
 	cp $1f
@@ -435,12 +435,12 @@ Function16ca11: ; 16ca11
 	jr nz, .asm_16ca57
 
 .asm_16ca5f
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cb08
 
 .asm_16ca68
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cac4
 	cp $1f
@@ -454,7 +454,7 @@ Function16ca11: ; 16ca11
 	jr nz, .asm_16ca77
 
 .asm_16ca7f
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	call Function16cab6
 	call Function16cae8
 
@@ -752,7 +752,7 @@ Function16cc25: ; 16cc25
 	ld de, wd008
 	call Function16cc41
 	ld hl, Unknown_16cfb1
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	call Function16cc41
 	ld hl, Unknown_16cfb9
 	ld de, wd048
@@ -795,7 +795,7 @@ Function16cc62: ; 16cc62
 ; 16cc6e
 
 Function16cc6e: ; 16cc6e
-	ld hl, VBGMap1
+	hlbgcoord 0, 0, VBGMap1
 	jr Function16cc73
 
 Function16cc73:
@@ -890,7 +890,7 @@ Function16d43b: ; 16d43b
 	call ClearSprites
 	callba Function16d421
 	callba Function16d42e
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	call SetPalettes
 	call WaitBGMap
@@ -925,19 +925,19 @@ rept 2
 	inc c
 endr
 	ld a, $7
-.asm_16d630
+.loop
 	push bc
 	push hl
-.asm_16d632
+.loop2
 	ld [hli], a
 	dec c
-	jr nz, .asm_16d632
+	jr nz, .loop2
 	pop hl
-	ld de, $0014
+	ld de, SCREEN_WIDTH
 	add hl, de
 	pop bc
 	dec b
-	jr nz, .asm_16d630
+	jr nz, .loop
 	ret
 ; 16d640
 
@@ -950,20 +950,20 @@ Function16d640: ; 16d640
 	inc a
 	ld [hl], a
 	pop hl
-	ld de, $0014
+	ld de, SCREEN_WIDTH
 	add hl, de
-.asm_16d64f
+.loop
 	push hl
 	ld a, $33
 	ld [hli], a
-	ld a, $7f
+	ld a, " "
 	call Function16d66d
 	ld [hl], $34
 	pop hl
-	ld de, $0014
+	ld de, SCREEN_WIDTH
 	add hl, de
 	dec b
-	jr nz, .asm_16d64f
+	jr nz, .loop
 	ld a, $35
 	ld [hli], a
 	ld a, $36
@@ -974,10 +974,10 @@ Function16d640: ; 16d640
 
 Function16d66d: ; 16d66d
 	ld d, c
-.asm_16d66e
+.loop
 	ld [hli], a
 	dec d
-	jr nz, .asm_16d66e
+	jr nz, .loop
 	ret
 ; 16d673
 
@@ -1028,7 +1028,7 @@ Function16d6ae: ; 16d6ae
 	ret
 ; 16d6ca
 
-Function16d6ca: ; 16d6ca
+LinkTextbox: ; 16d6ca
 	call Function16d61d
 	ret
 ; 16d6ce
@@ -1044,11 +1044,11 @@ Function16d6ce: ; 16d6ce
 
 Function16d6e1: ; 16d6e1
 	hlcoord 4, 10
-	ld b, $1
-	ld c, $a
-	predef Function28eef
+	ld b, 1
+	ld c, 10
+	predef Predef_LinkTextbox
 	hlcoord 5, 11
-	ld de, String_16d701
+	ld de, .Waiting
 	call PlaceString
 	call WaitBGMap
 	call Function3200
@@ -1056,7 +1056,7 @@ Function16d6e1: ; 16d6e1
 	jp DelayFrames
 ; 16d701
 
-String_16d701: ; 16d701
+.Waiting: ; 16d701
 	db "WAITING..!@"
 ; 16d70c
 

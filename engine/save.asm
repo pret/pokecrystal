@@ -1,13 +1,13 @@
-Function14a1a: ; 14a1a
+SaveMenu: ; 14a1a
 	call LoadStandardMenuDataHeader
-	callba Function5e9a
+	callba DisplaySaveInfoOnSave
 	call SpeechTextBox
 	call UpdateSprites
-	callba Function4cf45
+	callba SaveMenu_LoadEDTile
 	ld hl, UnknownText_0x15283
 	call SaveTheGame_yesorno
 	jr nz, .refused
-	call CheckForExistingSaveFile
+	call AskOverwriteSaveFile
 	jr c, .refused
 	call SetWRAMStateForSave
 	call _SavingDontTurnOffThePower
@@ -15,36 +15,37 @@ Function14a1a: ; 14a1a
 	call ExitMenu
 	and a
 	ret
+
 .refused
 	call ExitMenu
 	call Functiond90
-	callba Function4cf45
+	callba SaveMenu_LoadEDTile
 	scf
 	ret
 
 Function14a58: ; 14a58
 	call SetWRAMStateForSave
-	callba Function14056
-	callba Function1050d9
+	callba StageRTCTimeForSave
+	callba BackupMysteryGift
 	call SavePokemonData
-	call Function14e13
+	call SaveChecksum
 	call SaveBackupPokemonData
 	call SaveBackupChecksum
-	callba BackupScratchmons
-	callba Function1406a
+	callba BackupPartyMonMail
+	callba SaveRTC
 	call ClearWRAMStateAfterSave
 	ret
 ; 14a83
 
 
-Function14a83: ; 14a83 (5:4a83)
+ChangeBoxSaveGame: ; 14a83 (5:4a83)
 	push de
 	ld hl, UnknownText_0x152a1
 	call MenuTextBox
 	call YesNoBox
 	call ExitMenu
 	jr c, .refused
-	call CheckForExistingSaveFile
+	call AskOverwriteSaveFile
 	jr c, .refused
 	call SetWRAMStateForSave
 	call SavingDontTurnOffThePower
@@ -61,8 +62,8 @@ Function14a83: ; 14a83 (5:4a83)
 	pop de
 	ret
 
-Function14ab2: ; 14ab2
-	call CheckForExistingSaveFile
+Link_SaveGame: ; 14ab2
+	call AskOverwriteSaveFile
 	jr c, .refused
 	call SetWRAMStateForSave
 	call _SavingDontTurnOffThePower
@@ -73,7 +74,7 @@ Function14ab2: ; 14ab2
 	ret
 ; 14ac2
 
-Function14ac2: ; 14ac2
+MovePkmnWOMail_SaveGame: ; 14ac2
 	call SetWRAMStateForSave
 	push de
 	call SaveBox
@@ -93,46 +94,46 @@ Function14ad5: ; 14ad5
 	ld a, e
 	ld [wCurBox], a
 	ld a, $1
-	ld [wcfcd], a
-	callba Function14056
-	callba Function1050d9
+	ld [wSaveFileExists], a
+	callba StageRTCTimeForSave
+	callba BackupMysteryGift
 	call ValidateSave
 	call SaveOptions
 	call SavePlayerData
 	call SavePokemonData
-	call Function14e13
+	call SaveChecksum
 	call ValidateBackupSave
 	call SaveBackupOptions
 	call SaveBackupPlayerData
 	call SaveBackupPokemonData
 	call SaveBackupChecksum
-	callba BackupScratchmons
+	callba BackupPartyMonMail
 	callba BackupMobileEventIndex
-	callba Function1406a
+	callba SaveRTC
 	call LoadBox
 	call ClearWRAMStateAfterSave
 	ld de, SFX_SAVE
 	call PlaySFX
-	ld c, $18
+	ld c, 24
 	call DelayFrames
 	ret
 ; 14b34
 
-Function14b34: ; 14b34
+StartMovePkmnWOMail_SaveGame: ; 14b34
 	ld hl, UnknownText_0x152a6
 	call MenuTextBox
 	call YesNoBox
 	call ExitMenu
-	jr c, .asm_14b52
-	call CheckForExistingSaveFile
-	jr c, .asm_14b52
+	jr c, .refused
+	call AskOverwriteSaveFile
+	jr c, .refused
 	call SetWRAMStateForSave
 	call _SavingDontTurnOffThePower
 	call ClearWRAMStateAfterSave
 	and a
 	ret
 
-.asm_14b52
+.refused
 	scf
 	ret
 ; 14b54
@@ -177,8 +178,8 @@ SaveGameData: ; 14b85
 	ret
 ; 14b89
 
-CheckForExistingSaveFile: ; 14b89
-	ld a, [wcfcd]
+AskOverwriteSaveFile: ; 14b89
+	ld a, [wSaveFileExists]
 	and a
 	jr z, .erase
 	call Function14bcb
@@ -269,31 +270,31 @@ SavedTheGame: ; 14be6
 
 SaveGameData_: ; 14c10
 	ld a, 1
-	ld [wcfcd], a
-	callba Function14056
-	callba Function1050d9
+	ld [wSaveFileExists], a
+	callba StageRTCTimeForSave
+	callba BackupMysteryGift
 	call ValidateSave
 	call SaveOptions
 	call SavePlayerData
 	call SavePokemonData
 	call SaveBox
-	call Function14e13
+	call SaveChecksum
 	call ValidateBackupSave
 	call SaveBackupOptions
 	call SaveBackupPlayerData
 	call SaveBackupPokemonData
 	call SaveBackupChecksum
 	call UpdateStackTop
-	callba BackupScratchmons
+	callba BackupPartyMonMail
 	callba BackupMobileEventIndex
-	callba Function1406a
-	ld a, BANK(s1_be45)
+	callba SaveRTC
+	ld a, BANK(sBattleTowerChallengeState)
 	call GetSRAMBank
-	ld a, [s1_be45]
+	ld a, [sBattleTowerChallengeState]
 	cp $4
 	jr nz, .ok
 	xor a
-	ld [s1_be45], a
+	ld [sBattleTowerChallengeState], a
 .ok
 	call CloseSRAM
 	ret
@@ -371,7 +372,7 @@ ErasePreviousSave: ; 14cbb
 	call EraseHallOfFame
 	call EraseLinkBattleStats
 	call EraseMysteryGift
-	call Function14d68
+	call SaveData
 	call Function14d5c
 	ld a, BANK(sStackTop)
 	call GetSRAMBank
@@ -395,10 +396,10 @@ EraseLinkBattleStats: ; 14ce2
 ; 14cf4
 
 EraseMysteryGift: ; 14cf4
-	ld a, BANK(s0_abe4)
+	ld a, BANK(sBackupMysteryGiftItem)
 	call GetSRAMBank
-	ld hl, s0_abe4
-	ld bc, s0_abe4End - s0_abe4
+	ld hl, sBackupMysteryGiftItem
+	ld bc, sBackupMysteryGiftItemEnd - sBackupMysteryGiftItem
 	xor a
 	call ByteFill
 	jp CloseSRAM
@@ -437,15 +438,15 @@ Unknown_14d2c: ; 14d2c
 ; 14d5c
 
 Function14d5c: ; 14d5c
-	ld a, BANK(s1_be45)
+	ld a, BANK(sBattleTowerChallengeState)
 	call GetSRAMBank
 	xor a
-	ld [s1_be45], a
+	ld [sBattleTowerChallengeState], a
 	jp CloseSRAM
 ; 14d68
 
-Function14d68: ; 14d68
-	call Function1509a
+SaveData: ; 14d68
+	call _SaveData
 	ret
 ; 14d6c
 
@@ -496,9 +497,9 @@ Function14da0: ; 14da0
 ValidateSave: ; 14da9
 	ld a, BANK(s1_a008)
 	call GetSRAMBank
-	ld a, $63
+	ld a, 99
 	ld [s1_a008], a
-	ld a, $7f
+	ld a, " "
 	ld [s1_ad0f], a
 	jp CloseSRAM
 ; 14dbb
@@ -547,7 +548,7 @@ SaveBox: ; 14e0c
 	ret
 ; 14e13
 
-Function14e13: ; 14e13
+SaveChecksum: ; 14e13
 	ld hl, sGameData
 	ld bc, sGameDataEnd - sGameData
 	ld a, BANK(sGameData)
@@ -564,9 +565,9 @@ Function14e13: ; 14e13
 ValidateBackupSave: ; 14e2d
 	ld a, BANK(s0_b208)
 	call GetSRAMBank
-	ld a, $63
+	ld a, 99
 	ld [s0_b208], a
-	ld a, $7f
+	ld a, " "
 	ld [s0_bf0f], a
 	call CloseSRAM
 	ret
@@ -630,9 +631,9 @@ TryLoadSaveFile: ; 14ea5 (5:4ea5)
 	call LoadPlayerData
 	call LoadPokemonData
 	call LoadBox
-	callba RestoreScratchmons
+	callba RestorePartyMonMail
 	callba RestoreMobileEventIndex
-	callba Function1050ea
+	callba RestoreMysteryGift
 	call ValidateBackupSave
 	call SaveBackupOptions
 	call SaveBackupPlayerData
@@ -647,21 +648,21 @@ TryLoadSaveFile: ; 14ea5 (5:4ea5)
 	call LoadBackupPlayerData
 	call LoadBackupPokemonData
 	call LoadBox
-	callba RestoreScratchmons
+	callba RestorePartyMonMail
 	callba RestoreMobileEventIndex
-	callba Function1050ea
+	callba RestoreMysteryGift
 	call ValidateSave
 	call SaveOptions
 	call SavePlayerData
 	call SavePokemonData
-	call Function14e13
+	call SaveChecksum
 	and a
 	ret
 
 .corrupt
 	ld a, [Options]
 	push af
-	set 4, a
+	set NO_TEXT_SCROLL, a
 	ld [Options], a
 	ld hl, UnknownText_0x1529c
 	call PrintText
@@ -671,11 +672,11 @@ TryLoadSaveFile: ; 14ea5 (5:4ea5)
 	ret
 
 
-Function14f1c: ; 14f1c
+TryLoadSaveData: ; 14f1c
 	xor a
-	ld [wcfcd], a
-	call Function14f84
-	ld a, [wcfcd]
+	ld [wSaveFileExists], a
+	call CheckPrimarySaveFile
+	ld a, [wSaveFileExists]
 	and a
 	jr z, .backup
 
@@ -693,8 +694,8 @@ Function14f1c: ; 14f1c
 	ret
 
 .backup
-	call Function14faf
-	ld a, [wcfcd]
+	call CheckBackupSaveFile
+	ld a, [wSaveFileExists]
 	and a
 	jr z, .corrupt
 
@@ -716,7 +717,7 @@ Function14f1c: ; 14f1c
 	ld de, Options
 	ld bc, OptionsEnd - Options
 	call CopyBytes
-	call Function67e
+	call PanicResetClock
 	ret
 ; 14f7c
 
@@ -731,14 +732,14 @@ DefaultOptions: ; 14f7c
 	db $00
 ; 14f84
 
-Function14f84: ; 14f84
+CheckPrimarySaveFile: ; 14f84
 	ld a, BANK(s1_a008)
 	call GetSRAMBank
 	ld a, [s1_a008]
-	cp $63
+	cp 99
 	jr nz, .nope
 	ld a, [s1_ad0f]
-	cp $7f
+	cp " "
 	jr nz, .nope
 	ld hl, sOptions
 	ld de, Options
@@ -746,28 +747,28 @@ Function14f84: ; 14f84
 	call CopyBytes
 	call CloseSRAM
 	ld a, $1
-	ld [wcfcd], a
+	ld [wSaveFileExists], a
 
 .nope
 	call CloseSRAM
 	ret
 ; 14faf
 
-Function14faf: ; 14faf
+CheckBackupSaveFile: ; 14faf
 	ld a, BANK(s0_b208)
 	call GetSRAMBank
 	ld a, [s0_b208]
-	cp $63
+	cp 99
 	jr nz, .nope
 	ld a, [s0_bf0f]
-	cp $7f
+	cp " "
 	jr nz, .nope
 	ld hl, sBackupOptions
 	ld de, Options
 	ld bc, OptionsEnd - Options
 	call CopyBytes
 	ld a, $2
-	ld [wcfcd], a
+	ld [wSaveFileExists], a
 
 .nope
 	call CloseSRAM
@@ -787,14 +788,14 @@ LoadPlayerData: ; 14fd7 (5:4fd7)
 	ld bc, wMapDataEnd - wMapData
 	call CopyBytes
 	call CloseSRAM
-	ld a, BANK(s1_be45)
+	ld a, BANK(sBattleTowerChallengeState)
 	call GetSRAMBank
-	ld a, [s1_be45]
+	ld a, [sBattleTowerChallengeState]
 	cp $4
-	jr nz, .asm_15008
+	jr nz, .not_4
 	ld a, $3
-	ld [s1_be45], a
-.asm_15008
+	ld [sBattleTowerChallengeState], a
+.not_4
 	call CloseSRAM
 	ret
 
@@ -822,10 +823,10 @@ VerifyChecksum: ; 15028 (5:5028)
 	call Checksum
 	ld a, [sChecksum + 0]
 	cp e
-	jr nz, .asm_15040
+	jr nz, .fail
 	ld a, [sChecksum + 1]
 	cp d
-.asm_15040
+.fail
 	push af
 	call CloseSRAM
 	pop af
@@ -863,17 +864,17 @@ VerifyBackupChecksum: ; 1507c (5:507c)
 	call Checksum
 	ld a, [sBackupChecksum + 0]
 	cp e
-	jr nz, .asm_15094
+	jr nz, .fail
 	ld a, [sBackupChecksum + 1]
 	cp d
-.asm_15094
+.fail
 	push af
 	call CloseSRAM
 	pop af
 	ret
 
 
-Function1509a: ; 1509a
+_SaveData: ; 1509a
 	ld a, BANK(sCrystalData)
 	call GetSRAMBank
 	ld hl, wCrystalData

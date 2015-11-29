@@ -29,7 +29,7 @@ MartDialog: ; 15a61
 	ld a, 0
 	ld [EngineBuffer1], a
 	xor a
-	ld [MovementAnimation], a
+	ld [EngineBuffer5], a
 	call StandardMart
 	ret
 ; 15a6e
@@ -129,7 +129,7 @@ LoadMartPointer: ; 15b10
 	ld bc, 16
 	call ByteFill
 	xor a
-	ld [MovementAnimation], a
+	ld [EngineBuffer5], a
 	ld [wBargainShopFlags], a
 	ld [FacingDirection], a
 	ret
@@ -157,10 +157,10 @@ endr
 
 StandardMart: ; 15b47
 .loop
-	ld a, [MovementAnimation]
+	ld a, [EngineBuffer5]
 	ld hl, .MartFunctions
 	rst JumpTable
-	ld [MovementAnimation], a
+	ld [EngineBuffer5], a
 	cp $ff
 	jr nz, .loop
 	ret
@@ -377,7 +377,7 @@ BuyMenu: ; 15c62
 .loop
 	call BuyMenuLoop ; menu loop
 	jr nc, .loop
-	call Function2b3c
+	call ReturnToCallingMenu
 	ret
 ; 15c7d
 
@@ -470,16 +470,16 @@ endr
 
 
 BuyMenuLoop: ; 15cef
-	callba Function24ae8
+	callba PlaceMoneyTopRightOW
 	call UpdateSprites
 	ld hl, MenuDataHeader_Buy
 	call CopyMenuDataHeader
 	ld a, [wd045]
 	ld [wMenuCursorBuffer], a
 	ld a, [wd045 + 1]
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	call HandleScrollingMenu
-	ld a, [wd0e4]
+	ld a, [wMenuScrollPosition]
 	ld [wd045 + 1], a
 	ld a, [MenuSelection2]
 	ld [wd045], a
@@ -658,7 +658,7 @@ MenuDataHeader_Buy: ; 0x15e18
 	dbw 0, CurMart
 	dba PlaceMenuItemName
 	dba .PrintBCDPrices
-	dba Function244c3
+	dba UpdateItemDescription
 ; 15e30
 
 .PrintBCDPrices: ; 15e30
@@ -875,7 +875,7 @@ Function15ee0: ; 15ee0
 .okay_to_sell
 	ld hl, Text_Mart_SellHowMany
 	call PrintText
-	callba Function24af8
+	callba PlaceMoneyTopRightMenu
 	callba Function24fe1
 	call ExitMenu
 	jr c, .declined
@@ -899,7 +899,7 @@ Function15ee0: ; 15ee0
 	ld hl, Text_Mart_SoldForAmount
 	call PrintTextBoxText
 	call PlayTransactionSound
-	callba Function24af0
+	callba PlaceMoneyBottomLeftOW
 	call JoyWaitAorB
 
 .declined

@@ -151,8 +151,8 @@ TrainerHouse1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_RECEPTIONIST, 11, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ReceptionistScript_0x9af67, -1
-	person_event SPRITE_COOLTRAINER_M, 11, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, 0, 0, CooltrainerMScript_0x9af6a, -1
-	person_event SPRITE_COOLTRAINER_F, 2, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerFScript_0x9af6d, -1
-	person_event SPRITE_YOUNGSTER, 8, 4, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, YoungsterScript_0x9af70, -1
-	person_event SPRITE_GENTLEMAN, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, GentlemanScript_0x9af73, -1
+	person_event SPRITE_RECEPTIONIST, 11, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, ReceptionistScript_0x9af67, -1
+	person_event SPRITE_COOLTRAINER_M, 11, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x9af6a, -1
+	person_event SPRITE_COOLTRAINER_F, 2, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x9af6d, -1
+	person_event SPRITE_YOUNGSTER, 8, 4, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x9af70, -1
+	person_event SPRITE_GENTLEMAN, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GentlemanScript_0x9af73, -1

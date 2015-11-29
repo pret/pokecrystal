@@ -104,13 +104,13 @@ DisableSpriteUpdates:: ; 0x2ed3
 	res 0, a
 	ld [VramState], a
 	ld a, $0
-	ld [wc2ce], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 ; 0x2ee4
 
 EnableSpriteUpdates:: ; 2ee4
 	ld a, $1
-	ld [wc2ce], a
+	ld [wSpriteUpdatesEnabled], a
 	ld a, [VramState]
 	set 0, a
 	ld [VramState], a
@@ -568,18 +568,18 @@ IsCGB:: ; 3218
 ; 321c
 
 
-Function321c:: ; 321c
+ApplyTilemap:: ; 321c
 	ld a, [hCGB]
 	and a
 	jr z, .dmg
 
-	ld a, [wc2ce]
+	ld a, [wSpriteUpdatesEnabled]
 	cp 0
 	jr z, .dmg
 
 	ld a, 1
 	ld [hBGMapMode], a
-	jr LoadDETile
+	jr LoadEDTile
 
 .dmg
 ; WaitBGMap
@@ -595,8 +595,8 @@ Function3238:: ; 3238
 	and a
 	jr z, WaitBGMap
 
-LoadDETile:: ; 323d
-	jr .LoadDETile
+LoadEDTile:: ; 323d
+	jr .LoadEDTile
 ; 323f
 
 .unreferenced_323f ; 323f
@@ -604,7 +604,7 @@ LoadDETile:: ; 323d
 	ret
 ; 3246
 
-.LoadDETile ; 3246
+.LoadEDTile ; 3246
 	ld a, [hBGMapMode]
 	push af
 	xor a
@@ -748,9 +748,8 @@ ClearPalettes:: ; 3317
 ; 333e
 
 
-ClearSGB:: ; 333e
-	ld b, $ff
-
+GetMemSGBLayout:: ; 333e
+	ld b, SCGB_RAM
 GetSGBLayout:: ; 3340
 ; load sgb packets unless dmg
 
@@ -1173,7 +1172,7 @@ Function3524:: ; 3524
 	jp SetPalettes
 ; 352f
 
-Function352f:: ; 352f
+InitScrollingMenu:: ; 352f
 	ld a, [wMenuBorderTopCoord]
 	dec a
 	ld b, a
@@ -1192,7 +1191,7 @@ Function352f:: ; 352f
 	jp TextBox
 ; 354b
 
-Function354b:: ; 354b
+Function354b:: ; 354b joypad
 	call DelayFrame
 
 	ld a, [hInMenu]
@@ -1214,12 +1213,12 @@ Function354b:: ; 354b
 ; 3567
 
 
-Function3567:: ; 3567
+HandleStoneQueue:: ; 3567
 	ld a, [hROMBank]
 	push af
 
 	call SwitchToMapScriptHeaderBank
-	call Function3574
+	call .WarpAction
 
 	pop bc
 	ld a, b
@@ -1227,39 +1226,39 @@ Function3567:: ; 3567
 	ret
 ; 3574
 
-Function3574:: ; 3574
-	ld hl, $0001
+.WarpAction ; 3574
+	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, de
 	ld a, [hl]
 	cp $ff
-	jr z, .asm_3597
+	jr z, .nope
 
 	ld l, a
 	push hl
-	call Function3599
+	call .IsPersonOnWarp
 	pop hl
-	jr nc, .asm_3597
+	jr nc, .nope
 	ld d, a
 	ld e, l
-	call Function35de
-	jr nc, .asm_3597
+	call .IsObjectInStoneTable
+	jr nc, .nope
 	call CallMapScript
 	callba EnableScriptMode
 	scf
 	ret
 
-.asm_3597
+.nope
 	and a
 	ret
 ; 3599
 
-Function3599:: ; 3599
+.IsPersonOnWarp ; 3599
 	push de
 
-	ld hl, $0010
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, de
 	ld a, [hl]
-	ld hl, $0011
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, de
 	ld e, [hl]
 
@@ -1268,93 +1267,93 @@ Function3599:: ; 3599
 	ld a, e
 	sub 4
 	ld e, a
-	call Function35b0
+	call .check_on_warp
 
 	pop de
 	ret
 ; 35b0
 
-Function35b0:: ; 35b0
-	ld hl, wCurrentCaller + 3
+.check_on_warp ; 35b0
+	ld hl, wCurrMapWarpHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wCurrentCaller + 2]
+	ld a, [wCurrMapWarpCount]
 	and a
-	jr z, .asm_35d3
+	jr z, .nope2
 
 .loop
 	push af
 	ld a, [hl]
 	cp e
-	jr nz, .asm_35c8
+	jr nz, .not_on_warp
 	inc hl
 	ld a, [hld]
 	cp d
-	jr nz, .asm_35c8
-	jr .asm_35d5
+	jr nz, .not_on_warp
+	jr .found_warp
 
-.asm_35c8
-	ld a, $5
+.not_on_warp
+	ld a, 5
 	add l
 	ld l, a
-	jr nc, .asm_35cf
+	jr nc, .no_carry
 	inc h
-.asm_35cf
+.no_carry
 
 	pop af
 	dec a
 	jr nz, .loop
 
-.asm_35d3
+.nope2
 	and a
 	ret
 
-.asm_35d5
+.found_warp
 	pop af
 	ld d, a
-	ld a, [wCurrentCaller + 2]
+	ld a, [wCurrMapWarpCount]
 	sub d
 	inc a
 	scf
 	ret
 ; 35de
 
-Function35de:: ; 35de
+.IsObjectInStoneTable ; 35de
 	inc e
-	ld hl, $0001
+	ld hl, CMDQUEUE_ADDR
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-.asm_35e6
+.loop2
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_35fc
+	jr z, .nope3
 	cp d
-	jr nz, .asm_35f7
+	jr nz, .next_inc3
 	ld a, [hli]
 	cp e
-	jr nz, .asm_35f8
+	jr nz, .next_inc2
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jr .asm_35fe
+	jr .yes
 
-.asm_35f7
+.next_inc3
 	inc hl
 
-.asm_35f8
+.next_inc2
 rept 2
 	inc hl
 endr
-	jr .asm_35e6
+	jr .loop2
 
-.asm_35fc
+.nope3
 	and a
 	ret
 
-.asm_35fe
+.yes
 	scf
 	ret
 ; 3600
@@ -1464,30 +1463,32 @@ CheckTrainerBattle:: ; 360d
 	ld [EngineBuffer2], a
 	ld a, c
 	ld [EngineBuffer3], a
-	jr Function367e
+	jr LoadTrainer_continue
 ; 3674
 
-Function3674:: ; 3674
+TalkToTrainer:: ; 3674
 	ld a, 1
 	ld [EngineBuffer2], a
 	ld a, -1
 	ld [EngineBuffer3], a
 
-Function367e:: ; 367e
+LoadTrainer_continue:: ; 367e
 	call GetMapScriptHeaderBank
 	ld [EngineBuffer1], a
+
 	ld a, [hLastTalked]
 	call GetMapObject
+
 	ld hl, MAPOBJECT_SCRIPT_POINTER
 	add hl, bc
 	ld a, [EngineBuffer1]
 	call GetFarHalfword
-	ld de, wd041
-	ld bc, $000d
+	ld de, wTempTrainerHeader
+	ld bc, wTempTrainerHeaderEnd - wTempTrainerHeader
 	ld a, [EngineBuffer1]
 	call FarCopyBytes
 	xor a
-	ld [wd04d], a
+	ld [wRunningTrainerBattleScript], a
 	scf
 	ret
 ; 36a5
@@ -1508,19 +1509,19 @@ FacingPlayerDistance:: ; 36ad
 ; Return carry if the sprite at bc is facing the player,
 ; and its distance in d.
 
-	ld hl, OBJECT_MAP_X ; x
+	ld hl, OBJECT_NEXT_MAP_X ; x
 	add hl, bc
 	ld d, [hl]
 
-	ld hl, OBJECT_MAP_Y ; y
+	ld hl, OBJECT_NEXT_MAP_Y ; y
 	add hl, bc
 	ld e, [hl]
 
-	ld a, [PlayerMapX]
+	ld a, [PlayerNextMapX]
 	cp d
 	jr z, .CheckY
 
-	ld a, [PlayerMapY]
+	ld a, [PlayerNextMapY]
 	cp e
 	jr z, .CheckX
 
@@ -1528,7 +1529,7 @@ FacingPlayerDistance:: ; 36ad
 	ret
 
 .CheckY
-	ld a, [PlayerMapY]
+	ld a, [PlayerNextMapY]
 	sub e
 	jr z, .NotFacing
 	jr nc, .Above
@@ -1537,16 +1538,16 @@ FacingPlayerDistance:: ; 36ad
 	cpl
 	inc a
 	ld d, a
-	ld e, UP << 2
+	ld e, OW_UP
 	jr .CheckFacing
 
 .Above
 	ld d, a
-	ld e, DOWN << 2
+	ld e, OW_DOWN
 	jr .CheckFacing
 
 .CheckX
-	ld a, [PlayerMapX]
+	ld a, [PlayerNextMapX]
 	sub d
 	jr z, .NotFacing
 	jr nc, .Left
@@ -1555,12 +1556,12 @@ FacingPlayerDistance:: ; 36ad
 	cpl
 	inc a
 	ld d, a
-	ld e, LEFT << 2
+	ld e, OW_LEFT
 	jr .CheckFacing
 
 .Left
 	ld d, a
-	ld e, RIGHT << 2
+	ld e, OW_RIGHT
 
 .CheckFacing
 	call GetSpriteDirection
@@ -2016,17 +2017,17 @@ Function3b0c:: ; 3b0c
 
 
 
-Function3b2a:: ; 3b2a
+_InitSpriteAnimStruct:: ; 3b2a
 
 	ld [wc3b8], a
 	ld a, [hROMBank]
 	push af
 
-	ld a, BANK(Function8cfd6)
+	ld a, BANK(InitSpriteAnimStruct)
 	rst Bankswitch
 	ld a, [wc3b8]
 
-	call Function8cfd6
+	call InitSpriteAnimStruct
 
 	pop af
 	rst Bankswitch

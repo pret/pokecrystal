@@ -136,17 +136,17 @@ endr
 	big_step_right
 ; 1bb1
 
-Function1bb1:: ; 1bb1
+InitMenu3:: ; 1bb1
 	push hl
 	push bc
 	ld hl, wcfa1
 	ld b, $8
-.asm_1bb8
+.loop
 	ld a, [de]
 	inc de
 	ld [hli], a
 	dec b
-	jr nz, .asm_1bb8
+	jr nz, .loop
 	ld a, $1
 rept 2
 	ld [hli], a

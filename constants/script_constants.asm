@@ -3,34 +3,34 @@ PLAYER      EQU  0
 LAST_TALKED EQU -2
 
 	const_def
-	const VAR_STRINGBUFFER2
-	const VAR_PARTYCOUNT
-	const VAR_BATTLERESULT
-	const VAR_BATTLETYPE
-	const VAR_TIMEOFDAY
-	const VAR_DEXCAUGHT
-	const VAR_DEXSEEN
-	const VAR_BADGES
-	const VAR_MOVEMENT
-	const VAR_FACING
-	const VAR_HOUR
-	const VAR_WEEKDAY
-	const VAR_MAPGROUP
-	const VAR_MAPNUMBER
-	const VAR_UNOWNCOUNT
-	const VAR_ROOFPALETTE
-	const VAR_BOXSPACE
-	const VAR_CONTESTMINUTES
-	const VAR_XCOORD
-	const VAR_YCOORD
-	const VAR_SPECIALPHONECALL
-	const VAR_15
-	const VAR_KURT_APRICORNS
-	const VAR_CALLERID
-	const VAR_BLUECARDBALANCE
-	const VAR_BUENASPASSWORD
-	const VAR_KENJI_BREAK
-NUM_VARS EQU const_value
+	const VAR_STRINGBUFFER2    ; 00
+	const VAR_PARTYCOUNT       ; 01
+	const VAR_BATTLERESULT     ; 02
+	const VAR_BATTLETYPE       ; 03
+	const VAR_TIMEOFDAY        ; 04
+	const VAR_DEXCAUGHT        ; 05
+	const VAR_DEXSEEN          ; 06
+	const VAR_BADGES           ; 07
+	const VAR_MOVEMENT         ; 08
+	const VAR_FACING           ; 09
+	const VAR_HOUR             ; 0a
+	const VAR_WEEKDAY          ; 0b
+	const VAR_MAPGROUP         ; 0c
+	const VAR_MAPNUMBER        ; 0d
+	const VAR_UNOWNCOUNT       ; 0e
+	const VAR_ROOFPALETTE      ; 0f
+	const VAR_BOXSPACE         ; 10
+	const VAR_CONTESTMINUTES   ; 11
+	const VAR_XCOORD           ; 12
+	const VAR_YCOORD           ; 13
+	const VAR_SPECIALPHONECALL ; 14
+	const VAR_15               ; 15
+	const VAR_KURT_APRICORNS   ; 16
+	const VAR_CALLERID         ; 17
+	const VAR_BLUECARDBALANCE  ; 18
+	const VAR_BUENASPASSWORD   ; 19
+	const VAR_KENJI_BREAK      ; 1a
+NUM_VARS EQU const_value       ; 1b
 
 RETVAR_STRBUF2 EQU (0 << 6)
 RETVAR_ADDR_DE EQU (1 << 6)

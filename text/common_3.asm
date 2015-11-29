@@ -279,7 +279,7 @@ UnknownText_0x1c04c6: ; 1c04c6
 ; 1c04e9
 
 UnknownText_0x1c04e9: ; 1c04e9
-	text_from_ram wc903
+	text_from_ram wMysteryGiftPartnerName
 	text " sent"
 	line "@"
 	text_from_ram StringBuffer1
@@ -288,7 +288,7 @@ UnknownText_0x1c04e9: ; 1c04e9
 ; 1c04fa
 
 UnknownText_0x1c04fa: ; 1c04fa
-	text_from_ram wc903
+	text_from_ram wMysteryGiftPartnerName
 	text " sent"
 	line "@"
 	text_from_ram StringBuffer1
@@ -931,7 +931,7 @@ UnknownText_0x1c0dba: ; 1c0dba
 	text_from_ram StringBuffer1
 	text " came"
 	line "out of its EGG!@"
-	sound0x02
+	sound_caught_mon
 	text_waitbutton
 	db "@"
 ; 1c0dd7
@@ -1145,7 +1145,7 @@ ContestJudging_FirstPlaceText: ; 1c10fa
 	interpret_data
 	text "…"
 	para "@"
-	text_from_ram wd016
+	text_from_ram wBugContestWinnerName
 	text ","
 	line "who caught a"
 	cont "@"
@@ -1158,7 +1158,7 @@ ContestJudging_FirstPlaceScoreText: ; 1c113f
 	text ""
 	para "The winning score"
 	line "was @"
-	deciram wd004, 2, 3
+	deciram wBugContestFirstPlaceScore, 2, 3
 	text " points!"
 	prompt
 ; 1c1166
@@ -1166,7 +1166,7 @@ ContestJudging_FirstPlaceScoreText: ; 1c113f
 ContestJudging_SecondPlaceText: ; 1c1166
 	text "Placing second was"
 	line "@"
-	text_from_ram wd016
+	text_from_ram wBugContestWinnerName
 	text ","
 	para "who caught a"
 	line "@"
@@ -1179,7 +1179,7 @@ ContestJudging_SecondPlaceScoreText: ; 1c1196
 	text ""
 	para "The score was"
 	line "@"
-	deciram wd008, 2, 3
+	deciram wBugContestSecondPlaceScore, 2, 3
 	text " points!"
 	prompt
 ; 1c11b5
@@ -1187,7 +1187,7 @@ ContestJudging_SecondPlaceScoreText: ; 1c1196
 ContestJudging_ThirdPlaceText: ; 1c11b5
 	text "Placing third was"
 	line "@"
-	text_from_ram wd016
+	text_from_ram wBugContestWinnerName
 	text ","
 	para "who caught a"
 	line "@"
@@ -1200,7 +1200,7 @@ ContestJudging_ThirdPlaceScoreText: ; 1c11e4
 	text ""
 	para "The score was"
 	line "@"
-	deciram wd00c, 2, 3
+	deciram wBugContestThirdPlaceScore, 2, 3
 	text " points!"
 	prompt
 ; 1c1203
@@ -1641,7 +1641,7 @@ UnknownText_0x1c1b03: ; 1c1b03
 
 UnknownText_0x1c1b2c: ; 1c1b2c
 	text "Took @"
-	text_from_ram wd050
+	text_from_ram wd050_MonNick
 	text "'s"
 	line "@"
 	text_from_ram StringBuffer1
@@ -1656,7 +1656,7 @@ UnknownText_0x1c1b2c: ; 1c1b2c
 
 UnknownText_0x1c1b57: ; 1c1b57
 	text "Made @"
-	text_from_ram wd050
+	text_from_ram wd050_MonNick
 	text ""
 	line "hold @"
 	text_from_ram StringBuffer2
@@ -1671,7 +1671,7 @@ UnknownText_0x1c1b6f: ; 1c1b6f
 ; 1c1b8e
 
 UnknownText_0x1c1b8e: ; 1c1b8e
-	text_from_ram wd050
+	text_from_ram wd050_MonNick
 	text " isn't"
 	line "holding anything."
 	prompt
@@ -1688,13 +1688,13 @@ UnknownText_0x1c1bc4: ; 1c1bc4
 	text_from_ram StringBuffer1
 	text ""
 	line "from @"
-	text_from_ram wd050
+	text_from_ram wd050_MonNick
 	text "."
 	prompt
 ; 1c1bdc
 
 UnknownText_0x1c1bdc: ; 1c1bdc
-	text_from_ram wd050
+	text_from_ram wd050_MonNick
 	text " is"
 	line "already holding"
 

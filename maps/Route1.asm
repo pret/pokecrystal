@@ -31,7 +31,7 @@ MapRoute1Signpost0Script:
 	jumptext UnknownText_0x1ac675
 
 FruitTreeScript_0x1ac581:
-	fruittree $1a
+	fruittree FRUITTREE_ROUTE_1
 
 SchoolboyDannySeenText:
 	text "If trainers meet,"
@@ -91,6 +91,6 @@ Route1_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_YOUNGSTER, 12, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 2, 4, TrainerSchoolboyDanny, -1
-	person_event SPRITE_COOLTRAINER_F, 25, 9, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 2, 2, TrainerCooltrainerfQuinn, -1
-	person_event SPRITE_FRUIT_TREE, 7, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1ac581, -1
+	person_event SPRITE_YOUNGSTER, 12, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 4, TrainerSchoolboyDanny, -1
+	person_event SPRITE_COOLTRAINER_F, 25, 9, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 2, TrainerCooltrainerfQuinn, -1
+	person_event SPRITE_FRUIT_TREE, 7, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1ac581, -1

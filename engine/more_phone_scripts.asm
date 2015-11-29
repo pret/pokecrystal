@@ -56,468 +56,468 @@ UnknownScript_0xa0074:
 
 UnknownScript_0xa007c:
 	checkcode VAR_CALLERID
-	if_equal $5, UnknownScript_0xa00c2
-	if_equal $b, UnknownScript_0xa00c8
-	if_equal $d, UnknownScript_0xa00ce
-	if_equal $f, UnknownScript_0xa00d4
-	if_equal $10, UnknownScript_0xa00da
-	if_equal $11, UnknownScript_0xa00e0
-	if_equal $13, UnknownScript_0xa00e6
-	if_equal $14, UnknownScript_0xa00ec
-	if_equal $17, UnknownScript_0xa00f2
-	if_equal $18, UnknownScript_0xa00f8
-	if_equal $1b, UnknownScript_0xa00fe
-	if_equal $1c, UnknownScript_0xa0104
-	if_equal $1d, UnknownScript_0xa010a
-	if_equal $1e, UnknownScript_0xa0110
-	if_equal $20, UnknownScript_0xa0116
-	if_equal $21, UnknownScript_0xa011c
-	if_equal $23, UnknownScript_0xa0122
+	if_equal PHONE_SCHOOLBOY_JACK, .Jack
+	if_equal PHONE_COOLTRAINERM_GAVEN, .Gaven
+	if_equal PHONE_BIRDKEEPER_JOSE, .Jose
+	if_equal PHONE_YOUNGSTER_JOEY, .Joey
+	if_equal PHONE_BUG_CATCHER_WADE, .Wade
+	if_equal PHONE_FISHER_RALPH, .Ralph
+	if_equal PHONE_HIKER_ANTHONY, .Anthony
+	if_equal PHONE_CAMPER_TODD, .Todd
+	if_equal PHONE_BUG_CATCHER_ARNIE, .Arnie
+	if_equal PHONE_SCHOOLBOY_ALAN, .Alan
+	if_equal PHONE_SCHOOLBOY_CHAD, .Chad
+	if_equal PHONE_POKEFANM_DEREK, .Derek
+	if_equal PHONE_FISHER_TULLY, .Tully
+	if_equal PHONE_POKEMANIAC_BRENT, .Brent
+	if_equal PHONE_BIRDKEEPER_VANCE, .Vance
+	if_equal PHONE_FISHER_WILTON, .Wilton
+	if_equal PHONE_HIKER_PARRY, .Parry
 
-UnknownScript_0xa00c2:
+.Jack:
 	farwritetext UnknownText_0x1740c0
 	keeptextopen
 	end
 
-UnknownScript_0xa00c8:
+.Gaven:
 	farwritetext UnknownText_0x174a24
 	keeptextopen
 	end
 
-UnknownScript_0xa00ce:
+.Jose:
 	farwritetext UnknownText_0x174f2f
 	keeptextopen
 	end
 
-UnknownScript_0xa00d4:
+.Joey:
 	farwritetext UnknownText_0x175530
 	keeptextopen
 	end
 
-UnknownScript_0xa00da:
+.Wade:
 	farwritetext UnknownText_0x1757d4
 	keeptextopen
 	end
 
-UnknownScript_0xa00e0:
+.Ralph:
 	farwritetext UnknownText_0x175bc4
 	keeptextopen
 	end
 
-UnknownScript_0xa00e6:
+.Anthony:
 	farwritetext UnknownText_0x176a2f
 	keeptextopen
 	end
 
-UnknownScript_0xa00ec:
+.Todd:
 	farwritetext UnknownText_0x176e5d
 	keeptextopen
 	end
 
-UnknownScript_0xa00f2:
+.Arnie:
 	farwritetext UnknownText_0x649dc
 	keeptextopen
 	end
 
-UnknownScript_0xa00f8:
+.Alan:
 	farwritetext UnknownText_0x64cbd
 	keeptextopen
 	end
 
-UnknownScript_0xa00fe:
+.Chad:
 	farwritetext UnknownText_0x65271
 	keeptextopen
 	end
 
-UnknownScript_0xa0104:
+.Derek:
 	farwritetext UnknownText_0x65ab2
 	keeptextopen
 	end
 
-UnknownScript_0xa010a:
+.Tully:
 	farwritetext UnknownText_0x65de4
 	keeptextopen
 	end
 
-UnknownScript_0xa0110:
+.Brent:
 	farwritetext UnknownText_0x660be
 	keeptextopen
 	end
 
-UnknownScript_0xa0116:
+.Vance:
 	farwritetext UnknownText_0x66980
 	keeptextopen
 	end
 
-UnknownScript_0xa011c:
+.Wilton:
 	farwritetext UnknownText_0x66afc
 	keeptextopen
 	end
 
-UnknownScript_0xa0122:
+.Parry:
 	farwritetext UnknownText_0x66f9f
 	keeptextopen
 	end
 
 UnknownScript_0xa0128:
 	checkcode VAR_CALLERID
-	if_equal $6, UnknownScript_0xa014a
-	if_equal $c, UnknownScript_0xa0150
-	if_equal $e, UnknownScript_0xa0156
-	if_equal $12, UnknownScript_0xa015c
-	if_equal $15, UnknownScript_0xa0162
-	if_equal $1a, UnknownScript_0xa0168
-	if_equal $1f, UnknownScript_0xa016e
-	if_equal $24, UnknownScript_0xa0174
+	if_equal PHONE_POKEFAN_BEVERLY, .Beverly
+	if_equal PHONE_COOLTRAINERF_BETH, .Beth
+	if_equal PHONE_COOLTRAINERF_REENA, .Reena
+	if_equal PHONE_PICNICKER_LIZ, .Liz
+	if_equal PHONE_PICNICKER_GINA, .Gina
+	if_equal PHONE_LASS_DANA, .Dana
+	if_equal PHONE_PICNICKER_TIFFANY, .Tiffany
+	if_equal PHONE_PICNICKER_ERIN, .Erin
 
-UnknownScript_0xa014a:
+.Beverly:
 	farwritetext UnknownText_0x174688
 	keeptextopen
 	end
 
-UnknownScript_0xa0150:
+.Beth:
 	farwritetext UnknownText_0x174c7f
 	keeptextopen
 	end
 
-UnknownScript_0xa0156:
+.Reena:
 	farwritetext UnknownText_0x1752f5
 	keeptextopen
 	end
 
-UnknownScript_0xa015c:
+.Liz:
 	farwritetext UnknownText_0x175fda
 	keeptextopen
 	end
 
-UnknownScript_0xa0162:
+.Gina:
 	farwritetext UnknownText_0x1771fd
 	keeptextopen
 	end
 
-UnknownScript_0xa0168:
+.Dana:
 	farwritetext UnknownText_0x64f74
 	keeptextopen
 	end
 
-UnknownScript_0xa016e:
+.Tiffany:
 	farwritetext UnknownText_0x665ad
 	keeptextopen
 	end
 
-UnknownScript_0xa0174:
+.Erin:
 	farwritetext UnknownText_0x6717a
 	keeptextopen
 	end
 
 UnknownScript_0xa017a:
 	checkcode VAR_CALLERID
-	if_equal $5, UnknownScript_0xa01c0
-	if_equal $b, UnknownScript_0xa01c6
-	if_equal $d, UnknownScript_0xa01cc
-	if_equal $f, UnknownScript_0xa01d2
-	if_equal $10, UnknownScript_0xa01d8
-	if_equal $11, UnknownScript_0xa01de
-	if_equal $13, UnknownScript_0xa01e4
-	if_equal $14, UnknownScript_0xa01ea
-	if_equal $17, UnknownScript_0xa01f0
-	if_equal $18, UnknownScript_0xa01f6
-	if_equal $1b, UnknownScript_0xa01fc
-	if_equal $1c, UnknownScript_0xa0202
-	if_equal $1d, UnknownScript_0xa0208
-	if_equal $1e, UnknownScript_0xa020e
-	if_equal $20, UnknownScript_0xa0214
-	if_equal $21, UnknownScript_0xa021a
-	if_equal $23, UnknownScript_0xa0220
+	if_equal PHONE_SCHOOLBOY_JACK, .Jack
+	if_equal PHONE_COOLTRAINERM_GAVEN, .Gaven
+	if_equal PHONE_BIRDKEEPER_JOSE, .Jose
+	if_equal PHONE_YOUNGSTER_JOEY, .Joey
+	if_equal PHONE_BUG_CATCHER_WADE, .Wade
+	if_equal PHONE_FISHER_RALPH, .Ralph
+	if_equal PHONE_HIKER_ANTHONY, .Anthony
+	if_equal PHONE_CAMPER_TODD, .Todd
+	if_equal PHONE_BUG_CATCHER_ARNIE, .Arnie
+	if_equal PHONE_SCHOOLBOY_ALAN, .Alan
+	if_equal PHONE_SCHOOLBOY_CHAD, .Chad
+	if_equal PHONE_POKEFANM_DEREK, .Derek
+	if_equal PHONE_FISHER_TULLY, .Tully
+	if_equal PHONE_POKEMANIAC_BRENT, .Brent
+	if_equal PHONE_BIRDKEEPER_VANCE, .Vance
+	if_equal PHONE_FISHER_WILTON, .Wilton
+	if_equal PHONE_HIKER_PARRY, .Parry
 
-UnknownScript_0xa01c0:
+.Jack:
 	farwritetext UnknownText_0x174106
 	keeptextopen
 	end
 
-UnknownScript_0xa01c6:
+.Gaven:
 	farwritetext UnknownText_0x174a80
 	keeptextopen
 	end
 
-UnknownScript_0xa01cc:
+.Jose:
 	farwritetext UnknownText_0x174f90
 	keeptextopen
 	end
 
-UnknownScript_0xa01d2:
+.Joey:
 	farwritetext UnknownText_0x175591
 	keeptextopen
 	end
 
-UnknownScript_0xa01d8:
+.Wade:
 	farwritetext UnknownText_0x175869
 	keeptextopen
 	end
 
-UnknownScript_0xa01de:
+.Ralph:
 	farwritetext UnknownText_0x175c24
 	keeptextopen
 	end
 
-UnknownScript_0xa01e4:
+.Anthony:
 	farwritetext UnknownText_0x176aef
 	keeptextopen
 	end
 
-UnknownScript_0xa01ea:
+.Todd:
 	farwritetext UnknownText_0x176e9c
 	keeptextopen
 	end
 
-UnknownScript_0xa01f0:
+.Arnie:
 	farwritetext UnknownText_0x64a13
 	keeptextopen
 	end
 
-UnknownScript_0xa01f6:
+.Alan:
 	farwritetext UnknownText_0x64cf3
 	keeptextopen
 	end
 
-UnknownScript_0xa01fc:
+.Chad:
 	farwritetext UnknownText_0x65318
 	keeptextopen
 	end
 
-UnknownScript_0xa0202:
+.Derek:
 	farwritetext UnknownText_0x65b29
 	keeptextopen
 	end
 
-UnknownScript_0xa0208:
+.Tully:
 	farwritetext UnknownText_0x65e42
 	keeptextopen
 	end
 
-UnknownScript_0xa020e:
+.Brent:
 	farwritetext UnknownText_0x6613c
 	keeptextopen
 	end
 
-UnknownScript_0xa0214:
+.Vance:
 	farwritetext UnknownText_0x669b2
 	keeptextopen
 	end
 
-UnknownScript_0xa021a:
+.Wilton:
 	farwritetext UnknownText_0x66b3e
 	keeptextopen
 	end
 
-UnknownScript_0xa0220:
+.Parry:
 	farwritetext UnknownText_0x66fc0
 	keeptextopen
 	end
 
 UnknownScript_0xa0226:
 	checkcode VAR_CALLERID
-	if_equal $6, UnknownScript_0xa0248
-	if_equal $c, UnknownScript_0xa024e
-	if_equal $e, UnknownScript_0xa0254
-	if_equal $12, UnknownScript_0xa025a
-	if_equal $15, UnknownScript_0xa0260
-	if_equal $1a, UnknownScript_0xa0266
-	if_equal $1f, UnknownScript_0xa026c
-	if_equal $24, UnknownScript_0xa0272
+	if_equal PHONE_POKEFAN_BEVERLY, .Beverly
+	if_equal PHONE_COOLTRAINERF_BETH, .Beth
+	if_equal PHONE_COOLTRAINERF_REENA, .Reena
+	if_equal PHONE_PICNICKER_LIZ, .Liz
+	if_equal PHONE_PICNICKER_GINA, .Gina
+	if_equal PHONE_LASS_DANA, .Dana
+	if_equal PHONE_PICNICKER_TIFFANY, .Tiffany
+	if_equal PHONE_PICNICKER_ERIN, .Erin
 
-UnknownScript_0xa0248:
+.Beverly:
 	farwritetext UnknownText_0x1746c3
 	keeptextopen
 	end
 
-UnknownScript_0xa024e:
+.Beth:
 	farwritetext UnknownText_0x174cf6
 	keeptextopen
 	end
 
-UnknownScript_0xa0254:
+.Reena:
 	farwritetext UnknownText_0x17536b
 	keeptextopen
 	end
 
-UnknownScript_0xa025a:
+.Liz:
 	farwritetext UnknownText_0x17602d
 	keeptextopen
 	end
 
-UnknownScript_0xa0260:
+.Gina:
 	farwritetext UnknownText_0x177237
 	keeptextopen
 	end
 
-UnknownScript_0xa0266:
+.Dana:
 	farwritetext UnknownText_0x64fb2
 	keeptextopen
 	end
 
-UnknownScript_0xa026c:
+.Tiffany:
 	farwritetext UnknownText_0x66605
 	keeptextopen
 	end
 
-UnknownScript_0xa0272:
+.Erin:
 	farwritetext UnknownText_0x671a4
 	keeptextopen
 	end
 
 UnknownScript_0xa0278:
 	checkcode VAR_CALLERID
-	if_equal $5, UnknownScript_0xa02be
-	if_equal $b, UnknownScript_0xa02c4
-	if_equal $d, UnknownScript_0xa02ca
-	if_equal $f, UnknownScript_0xa02d0
-	if_equal $10, UnknownScript_0xa02d6
-	if_equal $11, UnknownScript_0xa02dc
-	if_equal $13, UnknownScript_0xa02e2
-	if_equal $14, UnknownScript_0xa02e8
-	if_equal $17, UnknownScript_0xa02ee
-	if_equal $18, UnknownScript_0xa02f4
-	if_equal $1b, UnknownScript_0xa02fa
-	if_equal $1c, UnknownScript_0xa0300
-	if_equal $1d, UnknownScript_0xa0306
-	if_equal $1e, UnknownScript_0xa030c
-	if_equal $20, UnknownScript_0xa0312
-	if_equal $21, UnknownScript_0xa0318
-	if_equal $23, UnknownScript_0xa031e
+	if_equal PHONE_SCHOOLBOY_JACK, .Jack
+	if_equal PHONE_COOLTRAINERM_GAVEN, .Gaven
+	if_equal PHONE_BIRDKEEPER_JOSE, .Jose
+	if_equal PHONE_YOUNGSTER_JOEY, .Joey
+	if_equal PHONE_BUG_CATCHER_WADE, .Wade
+	if_equal PHONE_FISHER_RALPH, .Ralph
+	if_equal PHONE_HIKER_ANTHONY, .Anthony
+	if_equal PHONE_CAMPER_TODD, .Todd
+	if_equal PHONE_BUG_CATCHER_ARNIE, .Arnie
+	if_equal PHONE_SCHOOLBOY_ALAN, .Alan
+	if_equal PHONE_SCHOOLBOY_CHAD, .Chad
+	if_equal PHONE_POKEFANM_DEREK, .Derek
+	if_equal PHONE_FISHER_TULLY, .Tully
+	if_equal PHONE_POKEMANIAC_BRENT, .Brent
+	if_equal PHONE_BIRDKEEPER_VANCE, .Vance
+	if_equal PHONE_FISHER_WILTON, .Wilton
+	if_equal PHONE_HIKER_PARRY, .Parry
 
-UnknownScript_0xa02be:
+.Jack:
 	farwritetext UnknownText_0x174165
 	keeptextopen
 	end
 
-UnknownScript_0xa02c4:
+.Gaven:
 	farwritetext UnknownText_0x174b2d
 	keeptextopen
 	end
 
-UnknownScript_0xa02ca:
+.Jose:
 	farwritetext UnknownText_0x174ffd
 	keeptextopen
 	end
 
-UnknownScript_0xa02d0:
+.Joey:
 	farwritetext UnknownText_0x175611
 	keeptextopen
 	end
 
-UnknownScript_0xa02d6:
+.Wade:
 	farwritetext UnknownText_0x1758e4
 	keeptextopen
 	end
 
-UnknownScript_0xa02dc:
+.Ralph:
 	farwritetext UnknownText_0x175c9f
 	keeptextopen
 	end
 
-UnknownScript_0xa02e2:
+.Anthony:
 	farwritetext UnknownText_0x176b45
 	keeptextopen
 	end
 
-UnknownScript_0xa02e8:
+.Todd:
 	farwritetext UnknownText_0x176eee
 	keeptextopen
 	end
 
-UnknownScript_0xa02ee:
+.Arnie:
 	farwritetext UnknownText_0x64a71
 	keeptextopen
 	end
 
-UnknownScript_0xa02f4:
+.Alan:
 	farwritetext UnknownText_0x64d4f
 	keeptextopen
 	end
 
-UnknownScript_0xa02fa:
+.Chad:
 	farwritetext UnknownText_0x65399
 	keeptextopen
 	end
 
-UnknownScript_0xa0300:
+.Derek:
 	farwritetext UnknownText_0x65bc8
 	keeptextopen
 	end
 
-UnknownScript_0xa0306:
+.Tully:
 	farwritetext UnknownText_0x65eac
 	keeptextopen
 	end
 
-UnknownScript_0xa030c:
+.Brent:
 	farwritetext UnknownText_0x6618c
 	keeptextopen
 	end
 
-UnknownScript_0xa0312:
+.Vance:
 	farwritetext UnknownText_0x669ed
 	keeptextopen
 	end
 
-UnknownScript_0xa0318:
+.Wilton:
 	farwritetext UnknownText_0x66b8f
 	keeptextopen
 	end
 
-UnknownScript_0xa031e:
+.Parry:
 	farwritetext UnknownText_0x67001
 	keeptextopen
 	end
 
 UnknownScript_0xa0324:
 	checkcode VAR_CALLERID
-	if_equal $6, UnknownScript_0xa0346
-	if_equal $c, UnknownScript_0xa034c
-	if_equal $e, UnknownScript_0xa0352
-	if_equal $12, UnknownScript_0xa0358
-	if_equal $15, UnknownScript_0xa035e
-	if_equal $1a, UnknownScript_0xa0364
-	if_equal $1f, UnknownScript_0xa036a
-	if_equal $24, UnknownScript_0xa0370
+	if_equal PHONE_POKEFAN_BEVERLY, .Beverly
+	if_equal PHONE_COOLTRAINERF_BETH, .Beth
+	if_equal PHONE_COOLTRAINERF_REENA, .Reena
+	if_equal PHONE_PICNICKER_LIZ, .Liz
+	if_equal PHONE_PICNICKER_GINA, .Gina
+	if_equal PHONE_LASS_DANA, .Dana
+	if_equal PHONE_PICNICKER_TIFFANY, .Tiffany
+	if_equal PHONE_PICNICKER_ERIN, .Erin
 
-UnknownScript_0xa0346:
+.Beverly:
 	farwritetext UnknownText_0x174734
 	keeptextopen
 	end
 
-UnknownScript_0xa034c:
+.Beth:
 	farwritetext UnknownText_0x174d86
 	keeptextopen
 	end
 
-UnknownScript_0xa0352:
+.Reena:
 	farwritetext UnknownText_0x1753c5
 	keeptextopen
 	end
 
-UnknownScript_0xa0358:
+.Liz:
 	farwritetext UnknownText_0x176095
 	keeptextopen
 	end
 
-UnknownScript_0xa035e:
+.Gina:
 	farwritetext UnknownText_0x177297
 	keeptextopen
 	end
 
-UnknownScript_0xa0364:
+.Dana:
 	farwritetext UnknownText_0x6501c
 	keeptextopen
 	end
 
-UnknownScript_0xa036a:
+.Tiffany:
 	farwritetext UnknownText_0x66688
 	keeptextopen
 	end
 
-UnknownScript_0xa0370:
+.Erin:
 	farwritetext UnknownText_0x671eb
 	keeptextopen
 	end
@@ -532,150 +532,150 @@ UnknownScript_0xa037e:
 
 UnknownScript_0xa0386:
 	checkcode VAR_CALLERID
-	if_equal $5, UnknownScript_0xa03cc
-	if_equal $7, UnknownScript_0xa03d2
-	if_equal $b, UnknownScript_0xa03d8
-	if_equal $d, UnknownScript_0xa03de
-	if_equal $f, UnknownScript_0xa03e4
-	if_equal $10, UnknownScript_0xa03ea
-	if_equal $11, UnknownScript_0xa03f0
-	if_equal $13, UnknownScript_0xa03f6
-	if_equal $14, UnknownScript_0xa03fc
-	if_equal $17, UnknownScript_0xa0402
-	if_equal $18, UnknownScript_0xa0408
-	if_equal $1b, UnknownScript_0xa040e
-	if_equal $1d, UnknownScript_0xa0414
-	if_equal $1e, UnknownScript_0xa041a
-	if_equal $20, UnknownScript_0xa0420
-	if_equal $21, UnknownScript_0xa0426
-	if_equal $23, UnknownScript_0xa042c
+	if_equal PHONE_SCHOOLBOY_JACK, .Jack
+	if_equal PHONE_SAILOR_HUEY, .Huey
+	if_equal PHONE_COOLTRAINERM_GAVEN, .Gaven
+	if_equal PHONE_BIRDKEEPER_JOSE, .Jose
+	if_equal PHONE_YOUNGSTER_JOEY, .Joey
+	if_equal PHONE_BUG_CATCHER_WADE, .Wade
+	if_equal PHONE_FISHER_RALPH, .Ralph
+	if_equal PHONE_HIKER_ANTHONY, .Anthony
+	if_equal PHONE_CAMPER_TODD, .Todd
+	if_equal PHONE_BUG_CATCHER_ARNIE, .Arnie
+	if_equal PHONE_SCHOOLBOY_ALAN, .Alan
+	if_equal PHONE_SCHOOLBOY_CHAD, .Chad
+	if_equal PHONE_FISHER_TULLY, .Tully
+	if_equal PHONE_POKEMANIAC_BRENT, .Brent
+	if_equal PHONE_BIRDKEEPER_VANCE, .Vance
+	if_equal PHONE_FISHER_WILTON, .Wilton
+	if_equal PHONE_HIKER_PARRY, .Parry
 
-UnknownScript_0xa03cc:
+.Jack:
 	farwritetext UnknownText_0x1741e1
 	keeptextopen
 	end
 
-UnknownScript_0xa03d2:
+.Huey:
 	farwritetext UnknownText_0x1748ea
 	keeptextopen
 	end
 
-UnknownScript_0xa03d8:
+.Gaven:
 	farwritetext UnknownText_0x174bc5
 	keeptextopen
 	end
 
-UnknownScript_0xa03de:
+.Jose:
 	farwritetext UnknownText_0x17507d
 	keeptextopen
 	end
 
-UnknownScript_0xa03e4:
+.Joey:
 	farwritetext UnknownText_0x175693
 	keeptextopen
 	end
 
-UnknownScript_0xa03ea:
+.Wade:
 	farwritetext UnknownText_0x175976
 	keeptextopen
 	end
 
-UnknownScript_0xa03f0:
+.Ralph:
 	farwritetext UnknownText_0x175d40
 	keeptextopen
 	end
 
-UnknownScript_0xa03f6:
+.Anthony:
 	farwritetext UnknownText_0x176bee
 	keeptextopen
 	end
 
-UnknownScript_0xa03fc:
+.Todd:
 	farwritetext UnknownText_0x176f60
 	keeptextopen
 	end
 
-UnknownScript_0xa0402:
+.Arnie:
 	farwritetext UnknownText_0x64ada
 	keeptextopen
 	end
 
-UnknownScript_0xa0408:
+.Alan:
 	farwritetext UnknownText_0x64da4
 	keeptextopen
 	end
 
-UnknownScript_0xa040e:
+.Chad:
 	farwritetext UnknownText_0x65419
 	keeptextopen
 	end
 
-UnknownScript_0xa0414:
+.Tully:
 	farwritetext UnknownText_0x65f17
 	keeptextopen
 	end
 
-UnknownScript_0xa041a:
+.Brent:
 	farwritetext UnknownText_0x66214
 	keeptextopen
 	end
 
-UnknownScript_0xa0420:
+.Vance:
 	farwritetext UnknownText_0x66a3a
 	keeptextopen
 	end
 
-UnknownScript_0xa0426:
+.Wilton:
 	farwritetext UnknownText_0x66bf3
 	keeptextopen
 	end
 
-UnknownScript_0xa042c:
+.Parry:
 	farwritetext UnknownText_0x67096
 	keeptextopen
 	end
 
 UnknownScript_0xa0432:
 	checkcode VAR_CALLERID
-	if_equal $c, UnknownScript_0xa0450
-	if_equal $e, UnknownScript_0xa0456
-	if_equal $12, UnknownScript_0xa045c
-	if_equal $15, UnknownScript_0xa0462
-	if_equal $1a, UnknownScript_0xa0468
-	if_equal $1f, UnknownScript_0xa046e
-	if_equal $24, UnknownScript_0xa0474
+	if_equal PHONE_COOLTRAINERF_BETH, .Beth
+	if_equal PHONE_COOLTRAINERF_REENA, .Reena
+	if_equal PHONE_PICNICKER_LIZ, .Liz
+	if_equal PHONE_PICNICKER_GINA, .Gina
+	if_equal PHONE_LASS_DANA, .Dana
+	if_equal PHONE_PICNICKER_TIFFANY, .Tiffany
+	if_equal PHONE_PICNICKER_ERIN, .Erin
 
-UnknownScript_0xa0450:
+.Beth:
 	farwritetext UnknownText_0x174e4e
 	keeptextopen
 	end
 
-UnknownScript_0xa0456:
+.Reena:
 	farwritetext UnknownText_0x17543a
 	keeptextopen
 	end
 
-UnknownScript_0xa045c:
+.Liz:
 	farwritetext UnknownText_0x17610a
 	keeptextopen
 	end
 
-UnknownScript_0xa0462:
+.Gina:
 	farwritetext UnknownText_0x1772e2
 	keeptextopen
 	end
 
-UnknownScript_0xa0468:
+.Dana:
 	farwritetext UnknownText_0x65091
 	keeptextopen
 	end
 
-UnknownScript_0xa046e:
+.Tiffany:
 	farwritetext UnknownText_0x66730
 	keeptextopen
 	end
 
-UnknownScript_0xa0474:
+.Erin:
 	farwritetext UnknownText_0x6722e
 	keeptextopen
 	end
@@ -690,147 +690,147 @@ UnknownScript_0xa047f:
 
 UnknownScript_0xa0484:
 	checkcode VAR_CALLERID
-	if_equal $5, UnknownScript_0xa04d6
-	if_equal $7, UnknownScript_0xa04db
-	if_equal $b, UnknownScript_0xa04e0
-	if_equal $d, UnknownScript_0xa04e5
-	if_equal $f, UnknownScript_0xa04ea
-	if_equal $10, UnknownScript_0xa04ef
-	if_equal $11, UnknownScript_0xa04f4
-	if_equal $13, UnknownScript_0xa04f9
-	if_equal $14, UnknownScript_0xa04fe
-	if_equal $16, UnknownScript_0xa0503
-	if_equal $17, UnknownScript_0xa0508
-	if_equal $18, UnknownScript_0xa050d
-	if_equal $1b, UnknownScript_0xa0512
-	if_equal $1c, UnknownScript_0xa0517
-	if_equal $1d, UnknownScript_0xa051c
-	if_equal $1e, UnknownScript_0xa0521
-	if_equal $20, UnknownScript_0xa0526
-	if_equal $21, UnknownScript_0xa052b
-	if_equal $22, UnknownScript_0xa0530
-	if_equal $23, UnknownScript_0xa0535
+	if_equal PHONE_SCHOOLBOY_JACK, .Jack
+	if_equal PHONE_SAILOR_HUEY, .Huey
+	if_equal PHONE_COOLTRAINERM_GAVEN, .Gaven
+	if_equal PHONE_BIRDKEEPER_JOSE, .Jose
+	if_equal PHONE_YOUNGSTER_JOEY, .Joey
+	if_equal PHONE_BUG_CATCHER_WADE, .Wade
+	if_equal PHONE_FISHER_RALPH, .Ralph
+	if_equal PHONE_HIKER_ANTHONY, .Anthony
+	if_equal PHONE_CAMPER_TODD, .Todd
+	if_equal PHONE_JUGGLER_IRWIN, .Irwin
+	if_equal PHONE_BUG_CATCHER_ARNIE, .Arnie
+	if_equal PHONE_SCHOOLBOY_ALAN, .Alan
+	if_equal PHONE_SCHOOLBOY_CHAD, .Chad
+	if_equal PHONE_POKEFANM_DEREK, .Derek
+	if_equal PHONE_FISHER_TULLY, .Tully
+	if_equal PHONE_POKEMANIAC_BRENT, .Brent
+	if_equal PHONE_BIRDKEEPER_VANCE, .Vance
+	if_equal PHONE_FISHER_WILTON, .Wilton
+	if_equal PHONE_BLACKBELT_KENJI, .Kenji
+	if_equal PHONE_HIKER_PARRY, .Parry
 
-UnknownScript_0xa04d6:
+.Jack:
 	farwritetext UnknownText_0x174251
 	end
 
-UnknownScript_0xa04db:
+.Huey:
 	farwritetext UnknownText_0x174962
 	end
 
-UnknownScript_0xa04e0:
+.Gaven:
 	farwritetext UnknownText_0x174c0e
 	end
 
-UnknownScript_0xa04e5:
+.Jose:
 	farwritetext UnknownText_0x175106
 	end
 
-UnknownScript_0xa04ea:
+.Joey:
 	farwritetext UnknownText_0x17570a
 	end
 
-UnknownScript_0xa04ef:
+.Wade:
 	farwritetext UnknownText_0x1759e7
 	end
 
-UnknownScript_0xa04f4:
+.Ralph:
 	farwritetext UnknownText_0x175db7
 	end
 
-UnknownScript_0xa04f9:
+.Anthony:
 	farwritetext UnknownText_0x176c47
 	end
 
-UnknownScript_0xa04fe:
+.Todd:
 	farwritetext UnknownText_0x176fdb
 	end
 
-UnknownScript_0xa0503:
+.Irwin:
 	farwritetext UnknownText_0x64000
 	end
 
-UnknownScript_0xa0508:
+.Arnie:
 	farwritetext UnknownText_0x64b48
 	end
 
-UnknownScript_0xa050d:
+.Alan:
 	farwritetext UnknownText_0x64e1f
 	end
 
-UnknownScript_0xa0512:
+.Chad:
 	farwritetext UnknownText_0x65471
 	end
 
-UnknownScript_0xa0517:
+.Derek:
 	farwritetext UnknownText_0x65c4e
 	end
 
-UnknownScript_0xa051c:
+.Tully:
 	farwritetext UnknownText_0x65f6e
 	end
 
-UnknownScript_0xa0521:
+.Brent:
 	farwritetext UnknownText_0x662a9
 	end
 
-UnknownScript_0xa0526:
+.Vance:
 	farwritetext UnknownText_0x66a93
 	end
 
-UnknownScript_0xa052b:
+.Wilton:
 	farwritetext UnknownText_0x66c58
 	end
 
-UnknownScript_0xa0530:
+.Kenji:
 	farwritetext UnknownText_0x66dab
 	end
 
-UnknownScript_0xa0535:
+.Parry:
 	farwritetext UnknownText_0x670eb
 	end
 
 UnknownScript_0xa053a:
 	checkcode VAR_CALLERID
-	if_equal $6, UnknownScript_0xa055c
-	if_equal $c, UnknownScript_0xa0561
-	if_equal $e, UnknownScript_0xa0566
-	if_equal $12, UnknownScript_0xa056b
-	if_equal $15, UnknownScript_0xa0570
-	if_equal $1a, UnknownScript_0xa0575
-	if_equal $1f, UnknownScript_0xa057a
-	if_equal $24, UnknownScript_0xa057f
+	if_equal PHONE_POKEFAN_BEVERLY, .Beverly
+	if_equal PHONE_COOLTRAINERF_BETH, .Beth
+	if_equal PHONE_COOLTRAINERF_REENA, .Reena
+	if_equal PHONE_PICNICKER_LIZ, .Liz
+	if_equal PHONE_PICNICKER_GINA, .Gina
+	if_equal PHONE_LASS_DANA, .Dana
+	if_equal PHONE_PICNICKER_TIFFANY, .Tiffany
+	if_equal PHONE_PICNICKER_ERIN, .Erin
 
-UnknownScript_0xa055c:
+.Beverly:
 	farwritetext UnknownText_0x1747ac
 	end
 
-UnknownScript_0xa0561:
+.Beth:
 	farwritetext UnknownText_0x174eb7
 	end
 
-UnknownScript_0xa0566:
+.Reena:
 	farwritetext UnknownText_0x175488
 	end
 
-UnknownScript_0xa056b:
+.Liz:
 	farwritetext UnknownText_0x17620a
 	end
 
-UnknownScript_0xa0570:
+.Gina:
 	farwritetext UnknownText_0x177361
 	end
 
-UnknownScript_0xa0575:
+.Dana:
 	farwritetext UnknownText_0x650e2
 	end
 
-UnknownScript_0xa057a:
+.Tiffany:
 	farwritetext UnknownText_0x667f7
 	end
 
-UnknownScript_0xa057f:
+.Erin:
 	farwritetext UnknownText_0x67281
 	end
 
@@ -856,15 +856,15 @@ UnknownScript_0xa05a0:
 
 UnknownScript_0xa05a4:
 	checkcode VAR_CALLERID
-	if_equal $10, UnknownScript_0xa05ae
-	if_equal $1c, UnknownScript_0xa05b6
+	if_equal PHONE_BUG_CATCHER_WADE, .Wade
+	if_equal PHONE_POKEFANM_DEREK, .Derek
 
-UnknownScript_0xa05ae:
+.Wade:
 	farwritetext UnknownText_0x1759f7
 	keeptextopen
 	jump UnknownScript_0xa0484
 
-UnknownScript_0xa05b6:
+.Derek:
 	farwritetext UnknownText_0x65c66
 	keeptextopen
 	jump UnknownScript_0xa0484
@@ -896,57 +896,57 @@ UnknownScript_0xa05de:
 
 UnknownScript_0xa05e6:
 	checkcode VAR_CALLERID
-	if_equal $d, UnknownScript_0xa0600
-	if_equal $10, UnknownScript_0xa0605
-	if_equal $18, UnknownScript_0xa060a
-	if_equal $1c, UnknownScript_0xa060f
-	if_equal $1d, UnknownScript_0xa0614
-	if_equal $21, UnknownScript_0xa0619
+	if_equal PHONE_BIRDKEEPER_JOSE, .Jose
+	if_equal PHONE_BUG_CATCHER_WADE, .Wade
+	if_equal PHONE_SCHOOLBOY_ALAN, .Alan
+	if_equal PHONE_POKEFANM_DEREK, .Derek
+	if_equal PHONE_FISHER_TULLY, .Tully
+	if_equal PHONE_FISHER_WILTON, .Wilton
 
-UnknownScript_0xa0600:
+.Jose:
 	farwritetext UnknownText_0x175116
 	end
 
-UnknownScript_0xa0605:
+.Wade:
 	farwritetext UnknownText_0x175a60
 	end
 
-UnknownScript_0xa060a:
+.Alan:
 	farwritetext UnknownText_0x64e2f
 	end
 
-UnknownScript_0xa060f:
+.Derek:
 	farwritetext UnknownText_0x65cf9
 	end
 
-UnknownScript_0xa0614:
+.Tully:
 	farwritetext UnknownText_0x65f88
 	end
 
-UnknownScript_0xa0619:
+.Wilton:
 	farwritetext UnknownText_0x66c6b
 	end
 
 UnknownScript_0xa061e:
 	checkcode VAR_CALLERID
-	if_equal $6, UnknownScript_0xa0630
-	if_equal $15, UnknownScript_0xa0635
-	if_equal $1a, UnknownScript_0xa063a
-	if_equal $1f, UnknownScript_0xa063f
+	if_equal PHONE_POKEFAN_BEVERLY, .Beverly
+	if_equal PHONE_PICNICKER_GINA, .Gina
+	if_equal PHONE_LASS_DANA, .Dana
+	if_equal PHONE_PICNICKER_TIFFANY, .Tiffany
 
-UnknownScript_0xa0630:
+.Beverly:
 	farwritetext UnknownText_0x1747cc
 	end
 
-UnknownScript_0xa0635:
+.Gina:
 	farwritetext UnknownText_0x1773e7
 	end
 
-UnknownScript_0xa063a:
+.Dana:
 	farwritetext UnknownText_0x650ec
 	end
 
-UnknownScript_0xa063f:
+.Tiffany:
 	farwritetext UnknownText_0x66801
 	end
 

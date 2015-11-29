@@ -1,9 +1,8 @@
 PYTHON := python
 MD5 := md5sum -c --quiet
 
-.SUFFIXES:
 .SUFFIXES: .asm .o .gbc .png .2bpp .1bpp .lz .pal .bin .blk .tilemap
-.PHONY: all clean crystal pngs
+.PHONY: all clean crystal crystal11 pngs
 .SECONDEXPANSION:
 
 poketools := extras/pokemontools
@@ -53,6 +52,8 @@ roms := pokecrystal.gbc
 
 all: $(roms)
 crystal: pokecrystal.gbc
+
+crystal11: pokecrystal11.gbc
 
 clean:
 	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)

@@ -292,10 +292,9 @@ fix_facing: macro
 	db movement_fix_facing ; $3b
 	endm
 
-	enum movement_return_dig
-return_dig: macro
-	db movement_return_dig
-	db \1
+	enum movement_show_person
+show_person: macro
+	db movement_show_person ; $3c
 	endm
 
 	enum movement_hide_person
@@ -354,6 +353,8 @@ step_end: macro
 	db movement_step_end ; $47
 	endm
 
+; Whatever Movement_48 is, it takes a one-byte parameter
+
 __enum__ = $49
 
 	enum movement_remove_person
@@ -383,12 +384,16 @@ skyfall: macro
 	db movement_skyfall ; $4e
 	endm
 
-	enum movement_step_wait5
-step_wait5: macro
-	db movement_step_wait5 ; $4f
+	enum movement_step_dig
+step_dig: macro
+	db movement_step_dig ; $4f
+	db \1
 	endm
 
-__enum__ = $51
+	enum movement_step_bump
+step_bump: macro
+	db movement_step_bump ; $50
+	endm
 
 	enum movement_fish_got_bite
 fish_got_bite: macro
@@ -420,5 +425,11 @@ __enum__ = $57
 	enum movement_rock_smash
 rock_smash: macro
 	db movement_rock_smash ; $57
+	db \1
+	endm
+
+	enum movement_return_dig
+return_dig: macro
+	db movement_return_dig ; $58
 	db \1
 	endm

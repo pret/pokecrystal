@@ -72,10 +72,10 @@ LinkReceptionistScript_Trade:
 	writetext Text_TradeReceptionistIntro
 	yesorno
 	iffalse .Cancel
-	special Function10630f
+	special Mobile_DummyReturnFalse ; always returns false
 	iffalse .NoMobile
 	writetext Text_TradeReceptionistMobile
-	special Function103612
+	special AskMobileOrCable
 	iffalse .Cancel
 	if_equal $1, .Mobile
 .NoMobile:
@@ -91,7 +91,7 @@ LinkReceptionistScript_Trade:
 	writetext Text_PleaseWait
 	special Special_CheckLinkTimeout
 	iffalse .LinkTimedOut
-	copybytetovar wcf51
+	copybytetovar wOtherPlayerLinkMode
 	iffalse .LinkedToFirstGen
 	special Special_CheckBothSelectedSameRoom
 	iffalse .IncompatibleRooms
@@ -174,10 +174,10 @@ LinkReceptionistScript_Battle:
 	writetext Text_BattleReceptionistIntro
 	yesorno
 	iffalse .Cancel
-	special Function10630f
+	special Mobile_DummyReturnFalse ; always returns false
 	iffalse .NoMobile
 	writetext Text_BattleReceptionistMobile
-	special Function103612
+	special AskMobileOrCable
 	iffalse .Cancel
 	if_equal $1, .Mobile
 .NoMobile:
@@ -193,7 +193,7 @@ LinkReceptionistScript_Battle:
 	writetext Text_PleaseWait
 	special Special_CheckLinkTimeout
 	iffalse .LinkTimedOut
-	copybytetovar wcf51
+	copybytetovar wOtherPlayerLinkMode
 	iffalse .LinkedToFirstGen
 	special Special_CheckBothSelectedSameRoom
 	iffalse .IncompatibleRooms
@@ -320,7 +320,7 @@ LinkReceptionistScript_TimeCapsule:
 	writetext Text_PleaseWait
 	special Special_CheckLinkTimeout
 	iffalse .LinkTimedOut
-	copybytetovar wcf51
+	copybytetovar wOtherPlayerLinkMode
 	iffalse .OK
 	special Special_CheckBothSelectedSameRoom
 	writetext Text_IncompatibleRooms
@@ -431,8 +431,8 @@ PokeCenter2F_CheckGender:
 	loadmovesprites
 	playsound SFX_TINGLE
 	applymovement PLAYER, MovementData_0x192d17
-	writebyte $80
-	special Functionc225
+	writebyte (1 << 7) | (PAL_OW_RED << 4)
+	special Special_SetPlayerPalette
 	applymovement PLAYER, MovementData_0x192d1c
 	setflag ENGINE_KRIS_IN_CABLE_CLUB
 	special ReplaceKrisSprite
@@ -458,8 +458,8 @@ Script_CleanUpFemaleFlagAfterTrade:
 	clearflag ENGINE_KRIS_IN_CABLE_CLUB
 	playsound SFX_TINGLE
 	applymovement PLAYER, MovementData_0x192d17
-	writebyte $90
-	special Functionc225
+	writebyte (1 << 7) | (PAL_OW_BLUE << 4)
+	special Special_SetPlayerPalette
 	applymovement PLAYER, MovementData_0x192d1c
 	special ReplaceKrisSprite
 	applymovement PLAYER, MovementData_0x192d2a
@@ -480,8 +480,8 @@ Script_CleanUpFemaleFlagAfterBattle:
 	clearflag ENGINE_KRIS_IN_CABLE_CLUB
 	playsound SFX_TINGLE
 	applymovement PLAYER, MovementData_0x192d17
-	writebyte $90
-	special Functionc225
+	writebyte (1 << 7) | (PAL_OW_BLUE << 4)
+	special Special_SetPlayerPalette
 	applymovement PLAYER, MovementData_0x192d1c
 	special ReplaceKrisSprite
 	applymovement PLAYER, MovementData_0x192d2a
@@ -539,8 +539,8 @@ TimeCapsuleScript_CheckPlayerGender:
 	loadmovesprites
 	playsound SFX_TINGLE
 	applymovement PLAYER, MovementData_0x192d17
-	writebyte $80
-	special Functionc225
+	writebyte (1 << 7) | (PAL_OW_RED << 4)
+	special Special_SetPlayerPalette
 	applymovement PLAYER, MovementData_0x192d22
 	faceperson PLAYER, $4
 	setflag ENGINE_KRIS_IN_CABLE_CLUB
@@ -568,8 +568,8 @@ Script_LeftTimeCapsule:
 	clearflag ENGINE_KRIS_IN_CABLE_CLUB
 	playsound SFX_TINGLE
 	applymovement PLAYER, MovementData_0x192d17
-	writebyte $90
-	special Functionc225
+	writebyte (1 << 7) | (PAL_OW_BLUE << 4)
+	special Special_SetPlayerPalette
 	applymovement PLAYER, MovementData_0x192d1c
 	special ReplaceKrisSprite
 	applymovement PLAYER, MovementData_0x192cfc
@@ -581,7 +581,7 @@ Script_LeftTimeCapsule:
 
 MapPokeCenter2FSignpost0Script:
 	refreshscreen $0
-	special Functionc2da
+	special Special_DisplayLinkRecord
 	loadmovesprites
 	end
 
@@ -1040,7 +1040,7 @@ PokeCenter2F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_LINK_RECEPTIONIST, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LinkReceptionistScript_Trade, -1
-	person_event SPRITE_LINK_RECEPTIONIST, 2, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LinkReceptionistScript_Battle, -1
-	person_event SPRITE_LINK_RECEPTIONIST, 3, 13, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, LinkReceptionistScript_TimeCapsule, -1
-	person_event SPRITE_OFFICER, 1, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, OfficerScript_0x192c9a, EVENT_MYSTERY_GIFT_DELIVERY_GUY
+	person_event SPRITE_LINK_RECEPTIONIST, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, LinkReceptionistScript_Trade, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 2, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, LinkReceptionistScript_Battle, -1
+	person_event SPRITE_LINK_RECEPTIONIST, 3, 13, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, LinkReceptionistScript_TimeCapsule, -1
+	person_event SPRITE_OFFICER, 1, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, OfficerScript_0x192c9a, EVENT_MYSTERY_GIFT_DELIVERY_GUY

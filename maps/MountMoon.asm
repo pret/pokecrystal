@@ -19,7 +19,7 @@ UnknownScript_0x7408d:
 UnknownScript_0x7408e:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Functionc48f
+	special Special_RotatePalettesRightMusic
 	pause 15
 	applymovement $2, MovementData_0x740f9
 	playmusic MUSIC_RIVAL_ENCOUNTER
@@ -87,7 +87,7 @@ MovementData_0x740fd:
 	step_end
 
 UnknownText_0x74105:
-	text $56, " ", $56, " ", $56
+	text "<......> <......> <......>"
 
 	para "It's been a while,"
 	line "<PLAYER>."
@@ -107,7 +107,7 @@ UnknownText_0x74105:
 	done
 
 UnknownText_0x7419d:
-	text $56, " ", $56, " ", $56
+	text "<......> <......> <......>"
 
 	para "I thought I raised"
 	line "my #MON to be"
@@ -120,7 +120,7 @@ UnknownText_0x7419d:
 	done
 
 UnknownText_0x741fa:
-	text $56, " ", $56, " ", $56
+	text "<......> <......> <......>"
 
 	para "…You won, fair"
 	line "and square."
@@ -146,7 +146,7 @@ UnknownText_0x741fa:
 	done
 
 UnknownText_0x742e0:
-	text $56, " ", $56, " ", $56
+	text "<......> <......> <......>"
 
 	para "I've repaid my"
 	line "debt to you."
@@ -182,4 +182,4 @@ MountMoon_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_SILVER, 3, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_MT_MOON_RIVAL
+	person_event SPRITE_SILVER, 3, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_RIVAL

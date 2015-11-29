@@ -31,8 +31,8 @@ _TitleScreen: ; 10ed67
 	
 	
 ; Clear screen palettes
-	ld hl, VBGMap0
-	ld bc, $0280
+	hlbgcoord 0, 0
+	ld bc, 20 bgrows
 	xor a
 	call ByteFill
 	
@@ -42,8 +42,8 @@ _TitleScreen: ; 10ed67
 ; BG Map 1:
 
 ; line 0 (copyright)
-	ld hl, VBGMap1
-	ld bc, $0020 ; one row
+	hlbgcoord 0, 0, VBGMap1
+	ld bc, 1 bgrows
 	ld a, 7 ; palette
 	call ByteFill
 
@@ -53,41 +53,41 @@ _TitleScreen: ; 10ed67
 ; Apply logo gradient:
 
 ; lines 3-4
-	ld hl, VBGMap0 tile $06 ; (0,3)
-	ld bc, $0040 ; 2 rows
+	hlbgcoord 0, 3
+	ld bc, 2 bgrows
 	ld a, 2
 	call ByteFill
 ; line 5
-	ld hl, VBGMap0 tile $0a ; (0,5)
-	ld bc, $0020 ; 1 row
+	hlbgcoord 0, 5
+	ld bc, 1 bgrows
 	ld a, 3
 	call ByteFill
 ; line 6
-	ld hl, VBGMap0 tile $0c ; (0,6)
-	ld bc, $0020 ; 1 row
+	hlbgcoord 0, 6
+	ld bc, 1 bgrows
 	ld a, 4
 	call ByteFill
 ; line 7
-	ld hl, VBGMap0 tile $0e ; (0,7)
-	ld bc, $0020 ; 1 row
+	hlbgcoord 0, 7
+	ld bc, 1 bgrows
 	ld a, 5
 	call ByteFill
 ; lines 8-9
-	ld hl, VBGMap0 tile $10 ; (0,8)
-	ld bc, $0040 ; 2 rows
+	hlbgcoord 0, 8
+	ld bc, 2 bgrows
 	ld a, 6
 	call ByteFill
 	
 
 ; 'CRYSTAL VERSION'
-	ld hl, $9925 ; (5,9)
-	ld bc, $000b ; length of version text
+	hlbgcoord 5, 9
+	ld bc, NAME_LENGTH ; length of version text
 	ld a, 1
 	call ByteFill
 	
 ; Suicune gfx
-	ld hl, VBGMap0 tile $18 ; (0,12)
-	ld bc, $00c0 ; the rest of the screen
+	hlbgcoord 0, 12
+	ld bc, 6 bgrows ; the rest of the screen
 	ld a, 8
 	call ByteFill
 	
@@ -109,9 +109,9 @@ _TitleScreen: ; 10ed67
 	
 	
 ; Clear screen tiles
-	ld hl, VBGMap0
-	ld bc, $0800
-	ld a, $7f
+	hlbgcoord 0, 0
+	ld bc, 64 bgrows
+	ld a, " "
 	call ByteFill
 	
 ; Draw Pokemon logo
@@ -122,7 +122,7 @@ _TitleScreen: ; 10ed67
 	call DrawTitleGraphic
 	
 ; Draw copyright text
-	ld hl, $9c03 ; BGMap1(3,0)
+	hlbgcoord 3, 0, VBGMap1
 	lb bc, 1, 13
 	ld d, $c
 	ld e, $10
@@ -144,7 +144,7 @@ _TitleScreen: ; 10ed67
 	
 ; Update palette colors
 	ld hl, TitleScreenPalettes
-	ld de, wMapPals
+	ld de, UnknBGPals
 	ld bc, 4 * 32
 	call CopyBytes
 	
@@ -220,7 +220,7 @@ _TitleScreen: ; 10ed67
 	ld [hBGMapMode], a
 	
 	xor a
-	ld [wMapPals + 2], a
+	ld [UnknBGPals + 2], a
 	
 ; Play starting sound effect
 	call SFXChannelsOff
@@ -231,7 +231,7 @@ _TitleScreen: ; 10ed67
 ; 10eea7
 
 SuicuneFrameIterator: ; 10eea7
-	ld hl, wMapPals + 2
+	ld hl, UnknBGPals + 2
 	ld a, [hl]
 	ld c, a
 	inc [hl]
@@ -270,7 +270,7 @@ SuicuneFrameIterator: ; 10eea7
 LoadSuicuneFrame: ; 10eed2
 	hlcoord 6, 12
 	ld b, 6
-.row
+.bgrows
 	ld c, 8
 .col
 	ld a, d
@@ -288,7 +288,7 @@ LoadSuicuneFrame: ; 10eed2
 	add d
 	ld d, a
 	dec b
-	jr nz, .row
+	jr nz, .bgrows
 	ret
 ; 10eeef
 
@@ -298,8 +298,8 @@ DrawTitleGraphic: ; 10eeef
 ;   b: height
 ;   c: width
 ;   d: tile to start drawing from
-;   e: number of tiles to advance for each row
-.row
+;   e: number of tiles to advance for each bgrows
+.bgrows
 	push de
 	push bc
 	push hl
@@ -318,7 +318,7 @@ DrawTitleGraphic: ; 10eeef
 	add d
 	ld d, a
 	dec b
-	jr nz, .row
+	jr nz, .bgrows
 	ret
 ; 10ef06
 

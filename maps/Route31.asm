@@ -7,14 +7,14 @@ Route31_MapScriptHeader:
 
 	; callbacks
 
-	dbw 5, UnknownScript_0x1a543c
+	dbw 5, .CheckMomCall
 
-UnknownScript_0x1a543c:
+.CheckMomCall:
 	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
-	iffalse UnknownScript_0x1a5443
+	iffalse .DoMomCall
 	return
 
-UnknownScript_0x1a5443:
+.DoMomCall:
 	specialphonecall SPECIALCALL_WORRIED
 	return
 
@@ -26,31 +26,31 @@ Bug_catcherWade1Script:
 	talkaftercancel
 	loadfont
 	checkflag ENGINE_WADE
-	iftrue UnknownScript_0x1a5493
+	iftrue .WadeRematch
 	checkflag ENGINE_WADE_HAS_ITEM
-	iftrue UnknownScript_0x1a5507
+	iftrue .WadeItem
 	checkcellnum PHONE_BUG_CATCHER_WADE
-	iftrue UnknownScript_0x1a5558
+	iftrue .AcceptedNumberSTD
 	checkevent EVENT_WADE_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x1a547c
+	iftrue .AskAgain
 	writetext UnknownText_0x1a5671
 	closetext
 	setevent EVENT_WADE_ASKED_FOR_PHONE_NUMBER
-	scall UnknownScript_0x1a554c
-	jump UnknownScript_0x1a547f
+	scall .AskPhoneNumberSTD
+	jump .Continue
 
-UnknownScript_0x1a547c:
-	scall UnknownScript_0x1a5550
-UnknownScript_0x1a547f:
+.AskAgain:
+	scall .AskAgainSTD
+.Continue:
 	askforphonenumber PHONE_BUG_CATCHER_WADE
-	if_equal $1, UnknownScript_0x1a5560
-	if_equal $2, UnknownScript_0x1a555c
+	if_equal $1, .PhoneFullSTD
+	if_equal $2, .DeclinedNumberSTD
 	trainertotext BUG_CATCHER, WADE1, $0
-	scall UnknownScript_0x1a5554
-	jump UnknownScript_0x1a5558
+	scall .RegisterNumberSTD
+	jump .AcceptedNumberSTD
 
-UnknownScript_0x1a5493:
-	scall UnknownScript_0x1a5564
+.WadeRematch:
+	scall .RematchSTD
 	winlosstext Bug_catcherWade1BeatenText, 0
 	copybytetovar wWadeFightCount
 	if_equal 4, .Fight4
@@ -109,8 +109,8 @@ UnknownScript_0x1a5493:
 	clearflag ENGINE_WADE
 	end
 
-UnknownScript_0x1a5507:
-	scall UnknownScript_0x1a5568
+.WadeItem:
+	scall .ItemSTD
 	checkevent EVENT_WADE_HAS_BERRY
 	iftrue .Berry
 	checkevent EVENT_WADE_HAS_PSNCUREBERRY
@@ -136,43 +136,43 @@ UnknownScript_0x1a5507:
 	iffalse .PackFull
 .Done
 	clearflag ENGINE_WADE_HAS_ITEM
-	jump UnknownScript_0x1a5558
+	jump .AcceptedNumberSTD
 .PackFull
-	jump UnknownScript_0x1a556c
+	jump .PackFullSTD
 
-UnknownScript_0x1a554c:
+.AskPhoneNumberSTD:
 	jumpstd asknumber1m
 	end
 
-UnknownScript_0x1a5550:
+.AskAgainSTD:
 	jumpstd asknumber2m
 	end
 
-UnknownScript_0x1a5554:
+.RegisterNumberSTD:
 	jumpstd registerednumberm
 	end
 
-UnknownScript_0x1a5558:
+.AcceptedNumberSTD:
 	jumpstd numberacceptedm
 	end
 
-UnknownScript_0x1a555c:
+.DeclinedNumberSTD:
 	jumpstd numberdeclinedm
 	end
 
-UnknownScript_0x1a5560:
+.PhoneFullSTD:
 	jumpstd phonefullm
 	end
 
-UnknownScript_0x1a5564:
+.RematchSTD:
 	jumpstd rematchm
 	end
 
-UnknownScript_0x1a5568:
+.ItemSTD:
 	jumpstd giftm
 	end
 
-UnknownScript_0x1a556c:
+.PackFullSTD:
 	jumpstd packfullm
 	end
 
@@ -180,64 +180,64 @@ FisherScript_0x1a5570:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_TM50_NIGHTMARE
-	iftrue UnknownScript_0x1a55af
+	iftrue .DescribeNightmare
 	checkevent EVENT_GOT_KENYA
-	iftrue UnknownScript_0x1a5584
+	iftrue .TryGiveKenya
 	writetext UnknownText_0x1a56d9
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x1a5584:
+.TryGiveKenya:
 	writetext UnknownText_0x1a5761
 	keeptextopen
 	checkpokeitem ReceivedSpearowMailText
-	if_equal $0, UnknownScript_0x1a55b5
-	if_equal $2, UnknownScript_0x1a55c1
-	if_equal $3, UnknownScript_0x1a55bb
-	if_equal $4, UnknownScript_0x1a55c7
+	if_equal $0, .WrongMail
+	if_equal $2, .Refused
+	if_equal $3, .NoMail
+	if_equal $4, .LastMon
 	writetext UnknownText_0x1a5790
 	keeptextopen
 	writetext UnknownText_0x1a57ba
 	keeptextopen
 	setevent EVENT_GAVE_KENYA
 	verbosegiveitem TM_NIGHTMARE
-	iffalse UnknownScript_0x1a55b3
+	iffalse .NoRoomForItems
 	setevent EVENT_GOT_TM50_NIGHTMARE
-UnknownScript_0x1a55af:
+.DescribeNightmare:
 	writetext UnknownText_0x1a5896
 	closetext
-UnknownScript_0x1a55b3:
+.NoRoomForItems:
 	loadmovesprites
 	end
 
-UnknownScript_0x1a55b5:
+.WrongMail:
 	writetext UnknownText_0x1a5921
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x1a55bb:
+.NoMail:
 	writetext UnknownText_0x1a5939
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x1a55c1:
+.Refused:
 	writetext UnknownText_0x1a5972
 	closetext
 	loadmovesprites
 	end
 
-UnknownScript_0x1a55c7:
+.LastMon:
 	writetext UnknownText_0x1a5991
 	closetext
 	loadmovesprites
 	end
 
 ReceivedSpearowMailText:
-	db "DARK CAVE leads", $4E
-	db "to another road@"
+	db   "DARK CAVE leads"
+	next "to another road@"
 
 YoungsterScript_0x1a55ed:
 	jumptextfaceplayer UnknownText_0x1a59d5
@@ -252,7 +252,7 @@ CooltrainerMScript_0x1a55f6:
 	jumptextfaceplayer UnknownText_0x1a55ff
 
 FruitTreeScript_0x1a55f9:
-	fruittree $7
+	fruittree FRUITTREE_ROUTE_31
 
 ItemFragment_0x1a55fb:
 	db POTION, 1
@@ -430,10 +430,10 @@ Route31_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_FISHER, 7, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, FisherScript_0x1a5570, -1
-	person_event SPRITE_YOUNGSTER, 5, 9, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, 0, 0, YoungsterScript_0x1a55ed, -1
-	person_event SPRITE_BUG_CATCHER, 13, 21, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 2, 5, TrainerBug_catcherWade1, -1
-	person_event SPRITE_COOLTRAINER_M, 8, 33, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, 0, 0, CooltrainerMScript_0x1a55f6, -1
-	person_event SPRITE_FRUIT_TREE, 7, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, FruitTreeScript_0x1a55f9, -1
-	person_event SPRITE_POKE_BALL, 5, 29, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a55fb, EVENT_ROUTE_31_POTION
-	person_event SPRITE_POKE_BALL, 15, 19, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x1a55fd, EVENT_ROUTE_31_POKE_BALL
+	person_event SPRITE_FISHER, 7, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FisherScript_0x1a5570, -1
+	person_event SPRITE_YOUNGSTER, 5, 9, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x1a55ed, -1
+	person_event SPRITE_BUG_CATCHER, 13, 21, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 5, TrainerBug_catcherWade1, -1
+	person_event SPRITE_COOLTRAINER_M, 8, 33, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x1a55f6, -1
+	person_event SPRITE_FRUIT_TREE, 7, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a55f9, -1
+	person_event SPRITE_POKE_BALL, 5, 29, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x1a55fb, EVENT_ROUTE_31_POTION
+	person_event SPRITE_POKE_BALL, 15, 19, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x1a55fd, EVENT_ROUTE_31_POKE_BALL

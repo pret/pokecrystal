@@ -48,7 +48,7 @@ Tileset03Anim: ; 0xfc01b
 	dw NULL,  AnimateFlowerTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
-	dw NULL,  NextTileFrame8
+	dw NULL,  StandingTileFrame8
 	dw NULL,  DoneTileAnimation
 ; 0xfc047
 
@@ -62,7 +62,7 @@ Tileset25Anim: ; 0xfc047
 	dw NULL,  AnimateFlowerTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
-	dw NULL,  NextTileFrame8
+	dw NULL,  StandingTileFrame8
 	dw NULL,  DoneTileAnimation
 ; 0xfc073
 
@@ -77,7 +77,7 @@ Tileset31Anim: ; 0xfc073
 	dw NULL,  AnimateFlowerTile
 	dw VTiles2 tile $14, AnimateWaterTile
 	dw NULL,  TileAnimationPalette
-	dw NULL,  NextTileFrame8
+	dw NULL,  StandingTileFrame8
 	dw NULL,  DoneTileAnimation
 ; 0xfc0a3
 
@@ -93,7 +93,7 @@ Tileset01Anim: ; 0xfc0a3
 	dw WhirlpoolFrames3, AnimateWhirlpoolTile
 	dw WhirlpoolFrames4, AnimateWhirlpoolTile
 	dw NULL,  WaitTileAnimation
-	dw NULL,  NextTileFrame8
+	dw NULL,  StandingTileFrame8
 	dw NULL,  DoneTileAnimation
 ; 0xfc0d7
 
@@ -136,7 +136,7 @@ Tileset09Anim: ; 0xfc12f
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
-	dw NULL,  NextTileFrame8
+	dw NULL,  StandingTileFrame8
 	dw NULL,  DoneTileAnimation
 ; 0xfc15f
 
@@ -147,7 +147,7 @@ Tileset15Anim: ; 0xfc15f
 	dw NULL,  WaitTileAnimation
 	dw NULL,  SafariFountainAnim1
 	dw NULL,  WaitTileAnimation
-	dw NULL,  NextTileFrame8
+	dw NULL,  StandingTileFrame8
 	dw NULL,  DoneTileAnimation
 ; 0xfc17f
 
@@ -239,7 +239,7 @@ Tileset23Anim: ; 0xfc27f
 	dw SproutPillarTilePointer4,  AnimateSproutPillarTile
 	dw SproutPillarTilePointer1,  AnimateSproutPillarTile
 	dw SproutPillarTilePointer2,  AnimateSproutPillarTile
-	dw NULL,  NextTileFrame
+	dw NULL,  StandingTileFrame
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -302,7 +302,7 @@ WaitTileAnimation: ; fc2fe
 	ret
 ; fc2ff
 
-NextTileFrame8: ; fc2ff
+StandingTileFrame8: ; fc2ff
 	ld a, [TileAnimationTimer]
 	inc a
 	and a, 7
@@ -806,7 +806,7 @@ AnimateSproutPillarTile: ; fc645
 ; fc673
 
 
-NextTileFrame: ; fc673
+StandingTileFrame: ; fc673
 	ld hl, TileAnimationTimer
 	inc [hl]
 	ret
@@ -958,7 +958,7 @@ TileAnimationPalette: ; fc6d7
 	jr z, .color2
 	
 .color1
-	ld hl, wMapPals + $1a ; pal 3 color 1
+	ld hl, UnknBGPals + $1a ; pal 3 color 1
 	ld a, [hli]
 	ld [rBGPD], a
 	ld a, [hli]
@@ -966,7 +966,7 @@ TileAnimationPalette: ; fc6d7
 	jr .end
 	
 .color0
-	ld hl, wMapPals + $18 ; pal 3 color 0
+	ld hl, UnknBGPals + $18 ; pal 3 color 0
 	ld a, [hli]
 	ld [rBGPD], a
 	ld a, [hli]
@@ -974,7 +974,7 @@ TileAnimationPalette: ; fc6d7
 	jr .end
 	
 .color2
-	ld hl, wMapPals + $1c ; pal 3 color 2
+	ld hl, UnknBGPals + $1c ; pal 3 color 2
 	ld a, [hli]
 	ld [rBGPD], a
 	ld a, [hli]
@@ -1011,11 +1011,11 @@ FlickeringCaveEntrancePalette: ; fc71e
 	ld a, [hVBlankCounter]
 	and %00000010
 	jr nz, .bit1set
-	ld hl, wMapPals + $20 ; pal 4 color 0
+	ld hl, UnknBGPals + $20 ; pal 4 color 0
 	jr .okay
 
 .bit1set
-	ld hl, wMapPals + $22 ; pal 4 color 2
+	ld hl, UnknBGPals + $22 ; pal 4 color 2
 
 .okay
 	ld a, [hli]

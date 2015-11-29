@@ -41,7 +41,7 @@ NamingScreen: ; 116c1
 
 Function116f8: ; 116f8
 	call ClearBGPalettes
-	ld b, $8
+	ld b, SCGB_08
 	call GetSGBLayout
 	call DisableLCD
 	call Function11c51
@@ -173,9 +173,9 @@ Function117f5: ; 117f5 (4:57f5)
 	ld hl, wc300
 	ld [hli], a
 	ld [hl], a
-	ld de, $2420
-	ld a, $a
-	call Function3b2a
+	depixel 4, 4, 4, 0
+	ld a, SPRITE_ANIM_INDEX_0A
+	call _InitSpriteAnimStruct
 	ld hl, $1
 	add hl, bc
 	ld [hl], $0
@@ -220,18 +220,18 @@ Function11847: ; 11847 (4:5847)
 	ld [hli], a
 	ld [hl], a
 	pop de
-	ld b, $a
+	ld b, SPRITE_ANIM_INDEX_0A
 	ld a, d
 	cp $7a
 	jr nz, .asm_11873
 	ld a, e
 	cp $40
 	jr nz, .asm_11873
-	ld b, $1e
+	ld b, SPRITE_ANIM_INDEX_1E
 .asm_11873
 	ld a, b
-	ld de, $2420
-	call Function3b2a
+	depixel 4, 4, 4, 0
+	call _InitSpriteAnimStruct
 	ret
 
 Function1187b: ; 1187b (4:587b)
@@ -400,13 +400,13 @@ Jumptable_11977: ; 11977 (4:5977)
 
 
 Function1197b: ; 1197b (4:597b)
-	lb de, $50, $18
+	depixel 10, 3
 	call Function1189c
 	jr nz, .asm_11985
-	ld d, $40
+	ld d, 8 * 8
 .asm_11985
-	ld a, $2
-	call Function3b2a
+	ld a, SPRITE_ANIM_INDEX_02
+	call _InitSpriteAnimStruct
 	ld a, c
 	ld [wc6d5], a
 	ld a, b

@@ -1165,30 +1165,30 @@ endr
 	cp $f
 	jr z, .asm_e2bf5
 	ld b, a
-	call Functione3396
+	call GetBoxPointer
 	ld a, b
 	call GetSRAMBank
 	push hl
-	ld bc, $35
+	ld bc, sBoxMon1Level - sBox
 	add hl, bc
-	ld bc, $20
+	ld bc, BOXMON_STRUCT_LENGTH
 	ld a, e
 	call AddNTimes
 	ld a, [hl]
 	ld [TempMonLevel], a
 	pop hl
 	push hl
-	ld bc, $17
+	ld bc, sBoxMon1Item - sBox
 	add hl, bc
-	ld bc, $20
+	ld bc, BOXMON_STRUCT_LENGTH
 	ld a, e
 	call AddNTimes
 	ld a, [hl]
 	ld [TempMonItem], a
 	pop hl
-	ld bc, $2b
+	ld bc, sBoxMon1DVs - sBox
 	add hl, bc
-	ld bc, $20
+	ld bc, BOXMON_STRUCT_LENGTH
 	ld a, e
 	call AddNTimes
 	ld de, TempMonDVs
@@ -1201,19 +1201,19 @@ endr
 	ret
 .asm_e2bc6
 	ld hl, PartyMon1Level
-	ld bc, $30
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, e
 	call AddNTimes
 	ld a, [hl]
 	ld [TempMonLevel], a
 	ld hl, PartyMon1Item
-	ld bc, $30
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, e
 	call AddNTimes
 	ld a, [hl]
 	ld [TempMonItem], a
 	ld hl, PartyMon1DVs
-	ld bc, $30
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, e
 	call AddNTimes
 	ld de, TempMonDVs
@@ -1228,21 +1228,21 @@ endr
 	ld a, BANK(sBox)
 	call GetSRAMBank
 	ld hl, sBoxMon1Level
-	ld bc, $20
+	ld bc, BOXMON_STRUCT_LENGTH
 	ld a, e
 	call AddNTimes
 	ld a, [hl]
 	ld [TempMonLevel], a
 
 	ld hl, sBoxMon1Item
-	ld bc, $20
+	ld bc, BOXMON_STRUCT_LENGTH
 	ld a, e
 	call AddNTimes
 	ld a, [hl]
 	ld [TempMonItem], a
 
 	ld hl, sBoxMon1DVs
-	ld bc, $20
+	ld bc, BOXMON_STRUCT_LENGTH
 	ld a, e
 	call AddNTimes
 	ld de, TempMonDVs
@@ -1307,6 +1307,7 @@ Functione2c6e: ; e2c6e (38:6c6e)
 	ld de, String_e2c67
 	call PlaceString
 	ret
+
 .asm_e2c7c
 	inc de
 	ld a, [de]
@@ -1320,36 +1321,38 @@ Functione2c6e: ; e2c6e (38:6c6e)
 	cp $f
 	jr z, .asm_e2cf1
 	push hl
-	call Functione3396
+	call GetBoxPointer
 	ld a, b
 	call GetSRAMBank
 	push hl
-	ld bc, $16
+	ld bc, sBoxMons - sBox
 	add hl, bc
-	ld bc, $20
+	ld bc, BOXMON_STRUCT_LENGTH
 	ld a, e
 	call AddNTimes
 	ld a, [hl]
 	pop hl
 	and a
 	jr z, .asm_e2cc2
-	ld bc, $372
+	ld bc, sBoxMonNicknames - sBox
 	add hl, bc
-	ld bc, $b
+	ld bc, PKMN_NAME_LENGTH
 	ld a, e
 	call AddNTimes
 	ld de, StringBuffer1
-	ld bc, $b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	call CloseSRAM
 	pop hl
 	ld de, StringBuffer1
 	call PlaceString
 	ret
+
 .asm_e2cc2
 	call CloseSRAM
 	pop hl
 	jr .asm_e2d23
+
 .asm_e2cc8
 	push hl
 	ld hl, PartySpecies
@@ -1359,19 +1362,21 @@ Functione2c6e: ; e2c6e (38:6c6e)
 	and a
 	jr z, .asm_e2cee
 	ld hl, PartyMonNicknames
-	ld bc, $b
+	ld bc, PKMN_NAME_LENGTH
 	ld a, e
 	call AddNTimes
 	ld de, StringBuffer1
-	ld bc, $b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	pop hl
 	ld de, StringBuffer1
 	call PlaceString
 	ret
+
 .asm_e2cee
 	pop hl
 	jr .asm_e2d23
+
 .asm_e2cf1
 	push hl
 	ld a, BANK(sBox)
@@ -1394,6 +1399,7 @@ Functione2c6e: ; e2c6e (38:6c6e)
 	ld de, StringBuffer1
 	call PlaceString
 	ret
+
 .asm_e2d1f
 	call CloseSRAM
 	pop hl
@@ -1422,7 +1428,7 @@ Functione2d30: ; e2d30 (38:6d30)
 	cp $f
 	jr z, .asm_e2db7
 	ld b, a
-	call Functione3396
+	call GetBoxPointer
 	ld a, b
 	call GetSRAMBank
 	inc hl
@@ -1447,6 +1453,7 @@ Functione2d30: ; e2d30 (38:6d30)
 	inc a
 	ld [wd004], a
 	jr .asm_e2d57
+
 .asm_e2d79
 	call CloseSRAM
 	ld a, $ff
@@ -1455,6 +1462,7 @@ Functione2d30: ; e2d30 (38:6d30)
 	inc a
 	ld [wcb2c], a
 	ret
+
 .asm_e2d87
 	ld hl, PartySpecies
 .asm_e2d8a
@@ -1478,6 +1486,7 @@ Functione2d30: ; e2d30 (38:6d30)
 	inc a
 	ld [wd004], a
 	jr .asm_e2d8a
+
 .asm_e2dac
 	ld a, $ff
 	ld [de], a
@@ -1485,6 +1494,7 @@ Functione2d30: ; e2d30 (38:6d30)
 	inc a
 	ld [wcb2c], a
 	ret
+
 .asm_e2db7
 	ld a, BANK(sBox)
 	call GetSRAMBank
@@ -1510,6 +1520,7 @@ Functione2d30: ; e2d30 (38:6d30)
 	inc a
 	ld [wd004], a
 	jr .asm_e2dbf
+
 .asm_e2de1
 	call CloseSRAM
 	ld a, $ff
@@ -1538,10 +1549,11 @@ Functione2e01: ; e2e01 (38:6e01)
 	jr nz, .asm_e2e0b
 	call ClearSprites
 	ret
+
 .asm_e2e0b
 	ld hl, Unknown_e2e2b
 	ld de, Sprites
-.done1
+.loop
 	ld a, [hl]
 	cp $ff
 	ret z
@@ -1561,7 +1573,7 @@ Functione2e01: ; e2e01 (38:6e01)
 	ld a, [hli]
 	ld [de], a
 	inc de
-	jr .done1
+	jr .loop
 ; e2e2b (38:6e2b)
 
 Unknown_e2e2b: ; e2e2b
@@ -1795,11 +1807,11 @@ Functione2fd6: ; e2fd6 (38:6fd6)
 	ld a, BANK(sBox)
 	call GetSRAMBank
 	ld hl, sBoxSpecies
-	call Functione3357
+	call CopySpeciesToTemp
 	ld hl, sBoxMonNicknames
-	call Functione3363
+	call CopyNicknameToTemp
 	ld hl, sBoxMonOT
-	call Functione3376
+	call CopyOTNameToTemp
 	ld hl, sBoxMons
 	ld bc, BOXMON_STRUCT_LENGTH
 	ld a, [CurPartyMon]
@@ -1813,11 +1825,11 @@ Functione2fd6: ; e2fd6 (38:6fd6)
 
 .asm_e3020
 	ld hl, PartySpecies
-	call Functione3357
+	call CopySpeciesToTemp
 	ld hl, PartyMonNicknames
-	call Functione3363
+	call CopyNicknameToTemp
 	ld hl, PartyMonOT
-	call Functione3376
+	call CopyOTNameToTemp
 	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [CurPartyMon]
@@ -1829,27 +1841,27 @@ Functione2fd6: ; e2fd6 (38:6fd6)
 
 .asm_e3048
 	ld b, a
-	call Functione3396
+	call GetBoxPointer
 	ld a, b
 	call GetSRAMBank
 	push hl
 	inc hl
-	call Functione3357
+	call CopySpeciesToTemp
 	pop hl
 	push hl
-	ld bc, $372
+	ld bc, sBoxMonNicknames - sBox
 	add hl, bc
-	call Functione3363
+	call CopyNicknameToTemp
 	pop hl
 	push hl
-	ld bc, $296
+	ld bc, sBoxMonOT - sBox
 	add hl, bc
-	call Functione3376
+	call CopyOTNameToTemp
 	pop hl
-	ld bc, $16
+	ld bc, sBoxMons - sBox
 	add hl, bc
-	ld bc, $20
-	call Functione3389
+	ld bc, BOXMON_STRUCT_LENGTH
+	call CopyMonToTemp
 	call CloseSRAM
 	callba Function5088b
 	ret
@@ -2141,7 +2153,7 @@ Functione32b0: ; e32b0
 	ld a, [wcb31]
 	dec a
 	ld e, a
-	callba Function14ac2
+	callba MovePkmnWOMail_SaveGame
 	ld a, [wcb30]
 	ld hl, wcb2f
 	add [hl]
@@ -2149,14 +2161,14 @@ Functione32b0: ; e32b0
 	ld a, $1
 	call GetSRAMBank
 	ld hl, sBoxSpecies
-	call Functione3357
+	call CopySpeciesToTemp
 	ld hl, sBoxMonNicknames
-	call Functione3363
+	call CopyNicknameToTemp
 	ld hl, sBoxMonOT
-	call Functione3376
+	call CopyOTNameToTemp
 	ld hl, sBoxMons
 	ld bc, BOXMON_STRUCT_LENGTH
-	call Functione3389
+	call CopyMonToTemp
 	call CloseSRAM
 	callba Function5088b
 	ld a, PC_DEPOSIT
@@ -2169,7 +2181,7 @@ Functione32fa: ; e32fa
 	ld a, [wcb2e]
 	dec a
 	ld e, a
-	callba Function14ac2
+	callba MovePkmnWOMail_SaveGame
 	ld a, [wcb2b]
 	ld hl, wcb2a
 	add [hl]
@@ -2184,14 +2196,14 @@ Functione3316: ; e3316
 	add [hl]
 	ld [CurPartyMon], a
 	ld hl, PartySpecies
-	call Functione3357
+	call CopySpeciesToTemp
 	ld hl, PartyMonNicknames
-	call Functione3363
+	call CopyNicknameToTemp
 	ld hl, PartyMonOT
-	call Functione3376
+	call CopyOTNameToTemp
 	ld hl, PartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
-	call Functione3389
+	call CopyMonToTemp
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
 	callba Functione039
@@ -2207,7 +2219,7 @@ Functione3346: ; e3346
 	ret
 ; e3357
 
-Functione3357: ; e3357 (38:7357)
+CopySpeciesToTemp: ; e3357 (38:7357)
 	ld a, [CurPartyMon]
 	ld c, a
 	ld b, $0
@@ -2216,36 +2228,36 @@ Functione3357: ; e3357 (38:7357)
 	ld [CurPartySpecies], a
 	ret
 
-Functione3363: ; e3363 (38:7363)
-	ld bc, $b
+CopyNicknameToTemp: ; e3363 (38:7363)
+	ld bc, PKMN_NAME_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld de, wd002
-	ld bc, $b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	ret
 
-Functione3376: ; e3376 (38:7376)
-	ld bc, $b
+CopyOTNameToTemp: ; e3376 (38:7376)
+	ld bc, NAME_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld de, wd00d
-	ld bc, $b
+	ld bc, NAME_LENGTH
 	call CopyBytes
 	ret
 
-Functione3389: ; e3389 (38:7389)
+CopyMonToTemp: ; e3389 (38:7389)
 	ld a, [CurPartyMon]
 	call AddNTimes
-	ld de, wd018
+	ld de, wd018_Mon
 	call CopyBytes
 	ret
 
-Functione3396: ; e3396 (38:7396)
+GetBoxPointer: ; e3396 (38:7396)
 	dec b
 	ld c, b
 	ld b, 0
-	ld hl, Unknown_e33a6
+	ld hl, .boxes
 rept 3
 	add hl, bc
 endr
@@ -2257,7 +2269,7 @@ endr
 	ret
 ; e33a6 (38:73a6)
 
-Unknown_e33a6: ; e33a6
+.boxes: ; e33a6
 	;  bank, address
 	dba sBox1
 	dba sBox2
@@ -2350,7 +2362,7 @@ _ChangeBox: ; e35aa (38:75aa)
 	ld hl, _ChangeBox_menudataheader
 	call CopyMenuDataHeader
 	xor a
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	hlcoord 0, 4
 	lb bc, 8, 9
 	call TextBox
@@ -2535,52 +2547,52 @@ String_e36f1: ; e36f1
 ; e36f9
 
 Functione36f9: ; e36f9 (38:76f9)
-	ld hl, MenuDataHeader_0xe377b
+	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
 	call InterpretMenu2
 	call ExitMenu
 	ret c
 	ld a, [MenuSelection2]
 	cp $1
-	jr z, .asm_e3734
+	jr z, .Switch
 	cp $2
-	jr z, .asm_e3745
+	jr z, .Name
 	cp $3
-	jr z, .asm_e3717
+	jr z, .Print
 	and a
 	ret
 
-.asm_e3717
+.Print
 	call GetBoxCount
 	and a
-	jr z, .asm_e372f
+	jr z, .EmptyBox
 	ld e, l
 	ld d, h
 	ld a, [MenuSelection]
 	dec a
 	ld c, a
-	callba Function844bc
+	callba PrintPCBox
 	call Functione35e2
 	and a
 	ret
 
-.asm_e372f
+.EmptyBox
 	call Functione37be
 	and a
 	ret
 
-.asm_e3734
+.Switch
 	ld a, [MenuSelection]
 	dec a
 	ld e, a
 	ld a, [wCurBox]
 	cp e
 	ret z
-	callba Function14a83
+	callba ChangeBoxSaveGame
 	ret
 
-.asm_e3745
-	ld b, $4
+.Name
+	ld b, $4 ; box
 	ld de, wd002
 	callba NamingScreen
 	call ClearTileMap
@@ -2604,15 +2616,15 @@ Functione36f9: ; e36f9 (38:76f9)
 
 	hlcoord 11, 7 ; XXX
 
-MenuDataHeader_0xe377b: ; 0xe377b
+.MenuDataHeader: ; 0xe377b
 	db $40 ; flags
 	db 04, 11 ; start coords
 	db 13, 19 ; end coords
-	dw MenuData2_0xe3783
+	dw .MenuData2
 	db 1 ; default option
 ; 0xe3783
 
-MenuData2_0xe3783: ; 0xe3783
+.MenuData2: ; 0xe3783
 	db $80 ; flags
 	db 4 ; items
 	db "SWITCH@"

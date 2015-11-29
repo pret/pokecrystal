@@ -77,7 +77,7 @@ InterpretMenu2::
 	call MenuBox
 	call UpdateSprites
 	call Function1c89
-	call Function321c
+	call ApplyTilemap
 	call CopyMenuData2
 	ld a, [wMenuData2Flags]
 	bit 7, a
@@ -227,7 +227,7 @@ Function1e35:: ; 1e35
 	ret
 ; 1e5d
 
-Function1e5d:: ; 1e5d
+DoNthMenu:: ; 1e5d
 	call MenuFunc_1e7f
 	call MenuWriteText
 	call Function1eff
@@ -262,7 +262,7 @@ MenuWriteText::
 	push af
 	ld a, $1
 	ld [hOAMUpdate], a
-	call Function321c
+	call ApplyTilemap
 	pop af
 	ld [hOAMUpdate], a
 	ret
@@ -438,7 +438,7 @@ Function1f79:: ; 1f79
 	ret
 ; 1f8d
 
-Function1f8d:: ; 1f8d
+PlaceNthMenuStrings:: ; 1f8d
 	push de
 	ld a, [MenuSelection]
 	call Function1fb1
@@ -464,7 +464,7 @@ endr
 	ret
 ; 1fa7
 
-Function1fa7:: ; 1fa7
+MenuJumptable:: ; 1fa7
 	ld a, [MenuSelection]
 	call Function1fb1
 	ld a, [hli]
@@ -546,7 +546,7 @@ PlayClickSFX:: ; 2009
 	ret
 ; 0x2012
 
-Function2012:: ; 2012
+MenuTextBoxWaitButton:: ; 2012
 	call MenuTextBox
 	call CloseText
 	call ExitMenu

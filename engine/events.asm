@@ -24,13 +24,13 @@ OverworldLoop:: ; 966b0
 ; 966cb
 
 
-ClearAllScriptFlags3: ; 966cb
+DisableEvents: ; 966cb
 	xor a
 	ld [ScriptFlags3], a
 	ret
 ; 966d0
 
-SetAll_ScriptFlags3:: ; 966d0
+EnableEvents:: ; 966d0
 	ld a, $ff
 	ld [ScriptFlags3], a
 	ret
@@ -42,73 +42,73 @@ CheckBit5_ScriptFlags3: ; 966d6
 	ret
 ; 966dc
 
-ResetBit2_ScriptFlags3: ; 966dc
+DisableWarpsConnxns: ; 966dc
 	ld hl, ScriptFlags3
 	res 2, [hl]
 	ret
 ; 966e2
 
-ResetBit1_ScriptFlags3: ; 966e2
+DisableCoordEvents: ; 966e2
 	ld hl, ScriptFlags3
 	res 1, [hl]
 	ret
 ; 966e8
 
-ResetBit0_ScriptFlags3: ; 966e8
+DisableStepCount: ; 966e8
 	ld hl, ScriptFlags3
 	res 0, [hl]
 	ret
 ; 966ee
 
-ResetBit4_ScriptFlags3: ; 966ee
+DisableWildEncounters: ; 966ee
 	ld hl, ScriptFlags3
 	res 4, [hl]
 	ret
 ; 966f4
 
-SetBit2_ScriptFlags3: ; 966f4
+EnableWarpsConnxns: ; 966f4
 	ld hl, ScriptFlags3
 	set 2, [hl]
 	ret
 ; 966fa
 
-SetBit1_ScriptFlags3: ; 966fa
+EnableCoordEvents: ; 966fa
 	ld hl, ScriptFlags3
 	set 1, [hl]
 	ret
 ; 96700
 
-SetBit0_ScriptFlags3: ; 96700
+EnableStepCount: ; 96700
 	ld hl, ScriptFlags3
 	set 0, [hl]
 	ret
 ; 96706
 
-SetBit4_ScriptFlags3: ; 96706
+EnableWildEncounters: ; 96706
 	ld hl, ScriptFlags3
 	set 4, [hl]
 	ret
 ; 9670c
 
-CheckBit2_ScriptFlags3: ; 9670c
+CheckWarpConnxnScriptFlag: ; 9670c
 	ld hl, ScriptFlags3
 	bit 2, [hl]
 	ret
 ; 96712
 
-CheckBit1_ScriptFlags3: ; 96712
+CheckCoordEventScriptFlag: ; 96712
 	ld hl, ScriptFlags3
 	bit 1, [hl]
 	ret
 ; 96718
 
-CheckBit0_ScriptFlags3: ; 96718
+CheckStepCountScriptFlag: ; 96718
 	ld hl, ScriptFlags3
 	bit 0, [hl]
 	ret
 ; 9671e
 
-CheckBit4_ScriptFlags3: ; 9671e
+CheckWildEncountersScriptFlag: ; 9671e
 	ld hl, ScriptFlags3
 	bit 4, [hl]
 	ret
@@ -135,13 +135,13 @@ EnterMap: ; 9673e
 	ld [wd454], a
 	call SetUpFiveStepWildEncounterCooldown
 	callba RunMapSetupScript
-	call ClearAllScriptFlags3
+	call DisableEvents
 
 	ld a, [hMapEntryMethod]
 	cp MAPSETUP_CONNECTION
-	jr nz, .dontset
-	call SetAll_ScriptFlags3
-.dontset
+	jr nz, .dont_enable
+	call EnableEvents
+.dont_enable
 
 	ld a, [hMapEntryMethod]
 	cp MAPSETUP_RELOADMAP
@@ -168,7 +168,7 @@ Function9676d: ; 9676d
 HandleMap: ; 96773
 	call ResetOverworldDelay
 	call Function967c1
-	callba Function97e08
+	callba HandleCmdQueue ; no need to farcall
 	call MapEvents
 
 ; Not immediately entering a connected map will cause problems.
@@ -197,7 +197,7 @@ MapEvents: ; 96795
 
 .events ; 967a1
 	call PlayerEvents
-	call ClearAllScriptFlags3
+	call DisableEvents
 	callba ScriptEvents
 	ret
 ; 967ae
@@ -238,28 +238,28 @@ Function967c1: ; 967c1
 ; 967d1
 
 Function967d1: ; 967d1
-	callba Function576a
+	callba Function576a ; engine/map_objects.asm
 	callba Functiond497
 	call Function96812
 	ret
 ; 967e1
 
 Function967e1: ; 967e1
-	callba RefreshMapAppearDisappear
+	callba _UpdateSprites
 	callba Functiond4d2
 	callba PlaceMapNameSign
 	ret
 ; 967f4
 
 Function967f4: ; 967f4
-	ld a, [wd150]
+	ld a, [wPlayerStepFlags]
 	bit 5, a
 	jr z, .events
 	bit 6, a
 	jr z, .noevents
 	bit 4, a
 	jr nz, .noevents
-	call SetAll_ScriptFlags3
+	call EnableEvents
 
 .events
 	ld a, 0 ; events
@@ -273,7 +273,7 @@ Function967f4: ; 967f4
 ; 96812
 
 Function96812: ; 96812
-	ld hl, wd150
+	ld hl, wPlayerStepFlags
 	bit 6, [hl]
 	ret z
 
@@ -355,8 +355,8 @@ CheckTrainerBattle3: ; 96867
 CheckTileEvent: ; 96874
 ; Check for warps, tile triggers or wild battles.
 
-	call CheckBit2_ScriptFlags3
-	jr z, .bit2
+	call CheckWarpConnxnScriptFlag
+	jr z, .connections_disabled
 
 	callba CheckMovingOffEdgeOfMap
 	jr c, .map_connection
@@ -364,22 +364,22 @@ CheckTileEvent: ; 96874
 	call CheckWarpTile
 	jr c, .warp_tile
 
-.bit2
-	call CheckBit1_ScriptFlags3
-	jr z, .bit1
+.connections_disabled
+	call CheckCoordEventScriptFlag
+	jr z, .coord_events_disabled
 
-	call CheckCurrentMapXYTriggers
-	jr c, .movement
+	call CheckCurrentNextMapXYTriggers
+	jr c, .coord_event
 
-.bit1
-	call CheckBit0_ScriptFlags3
-	jr z, .bit0
+.coord_events_disabled
+	call CheckStepCountScriptFlag
+	jr z, .step_count_disabled
 
 	call CountStep
 	ret c
 
-.bit0
-	call CheckBit4_ScriptFlags3
+.step_count_disabled
+	call CheckWildEncountersScriptFlag
 	jr z, .ok
 
 	call RandomEncounter
@@ -396,7 +396,7 @@ CheckTileEvent: ; 96874
 	ret
 
 .warp_tile
-	ld a, [PlayerStandingTile]
+	ld a, [PlayerNextTile]
 	call CheckPitTile
 	jr nz, .not_pit
 	ld a, PLAYEREVENT_FALL
@@ -408,8 +408,8 @@ CheckTileEvent: ; 96874
 	scf
 	ret
 
-.movement
-	ld hl, MovementAnimation
+.coord_event
+	ld hl, EngineBuffer5
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -511,7 +511,7 @@ CheckTimeEvents: ; 9693a
 	jr nz, .nothing
 
 	ld hl, StatusFlags2
-	bit 2, [hl]
+	bit 2, [hl] ; bug contest
 	jr z, .do_daily
 
 	callba CheckBugContestTimer
@@ -552,7 +552,7 @@ OWPlayerInput: ; 96974
 	jr nz, .NoAction
 
 ; Can't perform button actions while sliding on ice.
-	callba Function80404
+	callba CheckStandingOnIce
 	jr c, .NoAction
 
 	call CheckAPressOW
@@ -635,21 +635,23 @@ TryObjectEvent: ; 969b5
 	jp [hl]
 
 .nope_bugged
+	; pop bc
 	xor a
 	ret
 
 .pointers
-	dbw 0, .zero
-	dbw 1, .one
-	dbw 2, .two
-	dbw 3, .three
-	dbw 4, .four
-	dbw 5, .five
-	dbw 6, .six
+	dbw PERSONTYPE_SCRIPT, .script
+	dbw PERSONTYPE_ITEMFRAGMENT, .itemfragment
+	dbw PERSONTYPE_TRAINER, .trainer
+	; the remaining four are dummy events
+	dbw PERSONTYPE_3, .three
+	dbw PERSONTYPE_4, .four
+	dbw PERSONTYPE_5, .five
+	dbw PERSONTYPE_6, .six
 	db -1
 ; 96a04
 
-.zero ; 96a04
+.script ; 96a04
 	ld hl, MAPOBJECT_SCRIPT_POINTER
 	add hl, bc
 	ld a, [hli]
@@ -657,11 +659,10 @@ TryObjectEvent: ; 969b5
 	ld l, a
 	call GetMapScriptHeaderBank
 	call CallScript
-;	ld a, -1
 	ret
 ; 96a12
 
-.one ; 96a12
+.itemfragment ; 96a12
 	ld hl, MAPOBJECT_SCRIPT_POINTER
 	add hl, bc
 	ld a, [hli]
@@ -671,14 +672,14 @@ TryObjectEvent: ; 969b5
 	ld de, EngineBuffer1
 	ld bc, 2
 	call FarCopyBytes
-	ld a, 3
+	ld a, PLAYEREVENT_ITEMBALL
 	scf
 	ret
 ; 96a29
 
-.two ; 96a29
-	call Function3674
-	ld a, 2
+.trainer ; 96a29
+	call TalkToTrainer
+	ld a, PLAYEREVENT_TALKTOTRAINER
 	scf
 	ret
 ; 96a30
@@ -729,16 +730,16 @@ TryReadSign: ; 96a38
 ; 96a59
 
 .up
-	ld b, UP << 2
+	ld b, OW_UP
 	jr .checkdir
 .down
-	ld b, DOWN << 2
+	ld b, OW_DOWN
 	jr .checkdir
 .right
-	ld b, RIGHT << 2
+	ld b, OW_RIGHT
 	jr .checkdir
 .left
-	ld b, LEFT << 2
+	ld b, OW_LEFT
 	jr .checkdir
 
 .checkdir
@@ -1077,12 +1078,12 @@ PlayerEventScriptPointers: ; 96c0c
 	dba SeenByTrainerScript      ; 1
 	dba TalkToTrainerScript      ; 2
 	dba FindItemInBallScript     ; 3
-	dba UnknownScript_0x96c4d    ; 4
+	dba EdgeWarpScript           ; 4
 	dba WarpToNewMapScript       ; 5
 	dba FallIntoMapScript        ; 6
 	dba Script_OverworldWhiteout ; 7
 	dba HatchEggScript           ; 8
-	dba UnknownScript_0x96c4f    ; 9
+	dba ChangeDirectionScript    ; 9
 	dba Invalid_0x96c2d          ; 10
 ; 96c2d
 
@@ -1124,13 +1125,13 @@ LandAfterPitfallScript: ; 96c4a
 	end
 ; 96c4d
 
-UnknownScript_0x96c4d: ; 4
+EdgeWarpScript: ; 4
 	reloadandreturn MAPSETUP_CONNECTION
 ; 96c4f
 
-UnknownScript_0x96c4f: ; 9
-	deactivatefacing $3
-	callasm SetBit4_ScriptFlags3
+ChangeDirectionScript: ; 9
+	deactivatefacing 3
+	callasm EnableWildEncounters
 	end
 ; 96c56
 

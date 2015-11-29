@@ -1,168 +1,170 @@
 BuenaPhoneScript1:
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
-	iftrue UnknownScript_0xa0b73
+	iftrue BuenaPhoneScript_Rocket
 	checkcode VAR_HOUR
-	if_greater_than 17, UnknownScript_0xa0b4b
-	scall UnknownScript_0xa0b32
-	jump UnknownScript_0xa0c0e
+	if_greater_than 17, BuenaPhoneScript_AfterMidnight1
+	scall BuenaPhoneScript_CheckTimeOfDay1
+	jump BuenaPhoneScript_Random1
 
 BuenaPhoneScript2:
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
-	iftrue UnknownScript_0xa0b73
-	scall UnknownScript_0xa0b4f
-	jump UnknownScript_0xa0b77
+	iftrue BuenaPhoneScript_Rocket
+	scall BuenaPhoneScript_CheckTimeOfDay2
+	jump BuenaPhoneScript_Random2
 
-UnknownScript_0xa0b32:
+BuenaPhoneScript_CheckTimeOfDay1:
 	checkmorn
-	iftrue UnknownScript_0xa0b41
+	iftrue .morn
 	checkday
-	iftrue UnknownScript_0xa0b46
+	iftrue .day
 	writetext UnknownText_0xa0d42
 	keeptextopen
 	end
 
-UnknownScript_0xa0b41:
+.morn:
 	writetext UnknownText_0xa0c28
 	keeptextopen
 	end
 
-UnknownScript_0xa0b46:
+.day:
 	writetext UnknownText_0xa0c72
 	keeptextopen
 	end
 
-UnknownScript_0xa0b4b:
+BuenaPhoneScript_AfterMidnight1:
 	writetext UnknownText_0xa0caf
 	end
 
-UnknownScript_0xa0b4f:
+BuenaPhoneScript_CheckTimeOfDay2:
 	checkcode VAR_HOUR
-	if_greater_than 17, UnknownScript_0xa0b6e
+	if_greater_than 17, BuenaPhoneScript_AfterMidnight2
 	checkmorn
-	iftrue UnknownScript_0xa0b64
+	iftrue .morn
 	checkday
-	iftrue UnknownScript_0xa0b69
+	iftrue .day
 	writetext UnknownText_0xa0e29
 	keeptextopen
 	end
 
-UnknownScript_0xa0b64:
+.morn:
 	writetext UnknownText_0xa0d96
 	keeptextopen
 	end
 
-UnknownScript_0xa0b69:
+.day:
 	writetext UnknownText_0xa0dcf
 	keeptextopen
 	end
 
-UnknownScript_0xa0b6e:
+BuenaPhoneScript_AfterMidnight2:
 	writetext UnknownText_0xa0e01
 	keeptextopen
 	end
 
-UnknownScript_0xa0b73:
+BuenaPhoneScript_Rocket:
 	writetext UnknownText_0xa0e5e
 	end
 
-UnknownScript_0xa0b77:
+BuenaPhoneScript_Random2:
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0xa0b82
+	iftrue .PostE4
 	random 11
-	jump UnknownScript_0xa0b84
+	jump .Jumptable
 
-UnknownScript_0xa0b82:
+.PostE4:
 	random 14
 
-UnknownScript_0xa0b84:
-	if_equal 0, UnknownScript_0xa0bbc
-	if_equal 1, UnknownScript_0xa0bc2
-	if_equal 2, UnknownScript_0xa0bc8
-	if_equal 3, UnknownScript_0xa0bce
-	if_equal 4, UnknownScript_0xa0bd4
-	if_equal 5, UnknownScript_0xa0bda
-	if_equal 6, UnknownScript_0xa0be0
-	if_equal 7, UnknownScript_0xa0be6
-	if_equal 8, UnknownScript_0xa0bec
-	if_equal 9, UnknownScript_0xa0bf2
-	if_equal 10, UnknownScript_0xa0bf8
-	if_equal 11, UnknownScript_0xa0bfe
-	if_equal 12, UnknownScript_0xa0c04
-	if_equal 13, UnknownScript_0xa0c0a
+.Jumptable:
+	if_equal 0, .zero
+	if_equal 1, .one
+	if_equal 2, .two
+	if_equal 3, .three
+	if_equal 4, .four
+	if_equal 5, .five
+	if_equal 6, .six
+	if_equal 7, .seven
+	if_equal 8, .eight
+	if_equal 9, .nine
+	if_equal 10, .ten
+	if_equal 11, .eleven
+	if_equal 12, .twelve
+	if_equal 13, .thirteen
 
-UnknownScript_0xa0bbc:
+.zero:
 	writetext UnknownText_0xa0efb
-	jump UnknownScript_0xa0c0d
+	jump .finish
 
-UnknownScript_0xa0bc2:
+.one:
 	writetext UnknownText_0xa0fcf
-	jump UnknownScript_0xa0c0d
+	jump .finish
 
-UnknownScript_0xa0bc8:
+.two:
 	writetext UnknownText_0xa109d
-	jump UnknownScript_0xa0c0d
+	jump .finish
 
-UnknownScript_0xa0bce:
+.three:
 	writetext UnknownText_0xa1143
-	jump UnknownScript_0xa0c0d
+	jump .finish
 
-UnknownScript_0xa0bd4:
+.four:
 	writetext UnknownText_0xa1244
-	jump UnknownScript_0xa0c0d
+	jump .finish
 
-UnknownScript_0xa0bda:
+.five:
 	writetext UnknownText_0xa1318
-	jump UnknownScript_0xa0c0d
+	jump .finish
 
-UnknownScript_0xa0be0:
+.six:
 	writetext UnknownText_0xa13d8
-	jump UnknownScript_0xa0c0d
+	jump .finish
 
-UnknownScript_0xa0be6:
+.seven:
 	writetext UnknownText_0xa1488
-	jump UnknownScript_0xa0c0d
+	jump .finish
 
-UnknownScript_0xa0bec:
+.eight:
 	writetext UnknownText_0xa15de
-	jump UnknownScript_0xa0c0d
+	jump .finish
 
-UnknownScript_0xa0bf2:
+.nine:
 	writetext UnknownText_0xa1717
-	jump UnknownScript_0xa0c0d
+	jump .finish
 
-UnknownScript_0xa0bf8:
+.ten:
 	writetext UnknownText_0xa183d
-	jump UnknownScript_0xa0c0d
+	jump .finish
 
-UnknownScript_0xa0bfe:
+.eleven:
 	writetext UnknownText_0xa19b1
-	jump UnknownScript_0xa0c0d
+	jump .finish
 
-UnknownScript_0xa0c04:
+.twelve:
 	writetext UnknownText_0xa1ac0
-	jump UnknownScript_0xa0c0d
+	jump .finish
 
-UnknownScript_0xa0c0a:
+.thirteen:
 	writetext UnknownText_0xa1bed
 
-UnknownScript_0xa0c0d:
+.finish:
 	end
 
-UnknownScript_0xa0c0e:
+BuenaPhoneScript_Random1:
 	random 3
-	if_equal 0, UnknownScript_0xa0c1c
-	if_equal 1, UnknownScript_0xa0c20
-	if_equal 2, UnknownScript_0xa0c24
+	if_equal 0, .zero
+	if_equal 1, .one
+	if_equal 2, .two
 
-UnknownScript_0xa0c1c:
+.zero:
 	writetext UnknownText_0xa1c88
 	end
 
-UnknownScript_0xa0c20:
+.one:
 	writetext UnknownText_0xa1d5f
 	end
 
-UnknownScript_0xa0c24:
+.two:
 	writetext UnknownText_0xa1e2f
 	end
 ; a0c28
+
+INCLUDE "text/phone/buena.asm"

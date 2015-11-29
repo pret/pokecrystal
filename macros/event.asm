@@ -293,9 +293,9 @@ checktime: macro
 	db \1 ; time
 	endm
 
-checkmorn EQUS "checktime 1"
-checkday  EQUS "checktime 2"
-checknite EQUS "checktime 4"
+checkmorn EQUS "checktime 1 << MORN"
+checkday  EQUS "checktime 1 << DAY"
+checknite EQUS "checktime 1 << NITE"
 
 	enum checkpoke_command
 checkpoke: macro
@@ -496,9 +496,9 @@ loadmovesprites: macro
 	db loadmovesprites_command
 	endm
 
-	enum loadbytec1ce_command
-loadbytec1ce: macro
-	db loadbytec1ce_command
+	enum loadbytec2cf_command
+loadbytec2cf: macro
+	db loadbytec2cf_command
 	db \1 ; byte
 	endm
 
@@ -544,12 +544,14 @@ jumptextfaceplayer: macro
 	dw \1 ; text_pointer
 	endm
 
+; IF _CRYSTAL
 	enum farjumptext_command
 farjumptext: macro
 	db farjumptext_command
 	db BANK(\1)
 	dw \1
 	endm
+; ENDC
 
 	enum jumptext_command
 jumptext: macro
@@ -1068,7 +1070,7 @@ wait: macro
 	db \1 ; duration
 	endm
 
-	enum unknown0xa9_command
-unknown0xa9: macro
-	db unknown0xa9_command
+	enum check_save_command
+check_save: macro
+	db check_save_command
 	endm

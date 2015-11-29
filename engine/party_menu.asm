@@ -20,7 +20,7 @@ Function5001d: ; 5001d
 	call ClearBGPalettes
 	call Function5003f
 	call WaitBGMap
-	ld b, $a
+	ld b, SCGB_0A
 	call GetSGBLayout
 	call SetPalettes
 	call DelayFrame
@@ -30,18 +30,18 @@ Function5001d: ; 5001d
 ; 5003f
 
 Function5003f: ; 5003f
-	call Function5004f
-	call Function50405
-	call Function503e0
+	call LoadPartyMenuGFX
+	call InitPartyMenuWithCancel
+	call InitPartyMenuGFX
 	call WritePartyMenuTilemap
 	call PrintPartyMenuText
 	ret
 ; 5004f
 
-Function5004f: ; 5004f
+LoadPartyMenuGFX: ; 5004f
 	call LoadFontsBattleExtra
 	callab Function8ad1 ; engine/color.asm
-	callab InefficientlyClear121BytesAtwc300
+	callab ClearSpriteAnims
 	ret
 ; 5005f
 
@@ -149,7 +149,7 @@ PlacePartyHPBar: ; 500cf
 	ld b, $0
 	add hl, bc
 	call SetHPPal
-	ld b, $fc
+	ld b, SCGB_FC
 	call GetSGBLayout
 
 .skip
@@ -162,7 +162,7 @@ PlacePartyHPBar: ; 500cf
 	inc b
 	dec c
 	jr nz, .loop
-	ld b, $a
+	ld b, SCGB_0A
 	call GetSGBLayout
 	ret
 ; 50117
@@ -648,7 +648,7 @@ endr
 ; 503e0
 
 
-Function503e0: ; 503e0
+InitPartyMenuGFX: ; 503e0
 	ld hl, PartyCount
 	ld a, [hli]
 	and a
@@ -656,7 +656,7 @@ Function503e0: ; 503e0
 	ld c, a
 	xor a
 	ld [hObjectStructIndexBuffer], a
-.asm_503ea
+.loop
 	push bc
 	push hl
 	ld hl, Function8e83f
@@ -669,60 +669,62 @@ Function503e0: ; 503e0
 	pop hl
 	pop bc
 	dec c
-	jr nz, .asm_503ea
+	jr nz, .loop
 	callab Function8cf69
 	ret
 ; 50405
 
-Function50405: ; 50405
+InitPartyMenuWithCancel: ; 50405
+; with cancel
 	xor a
-	ld [wd0e3], a
-	ld de, Unknown_5044f
-	call Function1bb1
+	ld [wSwitchMon], a
+	ld de, PartyMenuAttributes
+	call InitMenu3
 	ld a, [PartyCount]
 	inc a
-	ld [wcfa3], a
+	ld [wcfa3], a ; list length
 	dec a
 	ld b, a
-	ld a, [wd0d8]
+	ld a, [wPartyMenuCursor]
 	and a
-	jr z, .asm_50422
+	jr z, .skip
 	inc b
 	cp b
-	jr c, .asm_50424
+	jr c, .done
 
-.asm_50422
+.skip
 	ld a, $1
 
-.asm_50424
+.done
 	ld [MenuSelection2], a
-	ld a, $3
+	ld a, A_BUTTON | B_BUTTON
 	ld [wcfa8], a
 	ret
 ; 5042d
 
-Function5042d: ; 0x5042d
-	ld de, Unknown_5044f
-	call Function1bb1
+InitPartyMenuNoCancel: ; 0x5042d
+; no cancel
+	ld de, PartyMenuAttributes
+	call InitMenu3
 	ld a, [PartyCount]
-	ld [wcfa3], a
+	ld [wcfa3], a ; list length
 	ld b, a
-	ld a, [wd0d8]
+	ld a, [wPartyMenuCursor]
 	and a
-	jr z, .asm_50444
+	jr z, .skip
 	inc b
 	cp b
-	jr c, .asm_50446
-.asm_50444
+	jr c, .done
+.skip
 	ld a, $1
-.asm_50446
+.done
 	ld [MenuSelection2], a
-	ld a, $3
+	ld a, A_BUTTON | B_BUTTON
 	ld [wcfa8], a
 	ret
 ; 5044f (14:444f)
 
-Unknown_5044f: ; 5044f
+PartyMenuAttributes: ; 5044f
 ; cursor y
 ; cursor x
 ; list length
@@ -744,7 +746,7 @@ PartyMenuSelect: ; 0x50457
 	ld a, [MenuSelection2] ; menu selection?
 	cp b
 	jr z, .exitmenu ; CANCEL
-	ld [wd0d8], a
+	ld [wPartyMenuCursor], a
 	ld a, [hJoyLast]
 	ld b, a
 	bit 1, b
@@ -839,92 +841,92 @@ YouHaveNoPKMNString: ; 0x50556
 	db "You have no <PK><MN>!@"
 
 
-Function50566: ; 50566
+PrintPartyMenuActionText: ; 50566
 	ld a, [CurPartyMon]
 	ld hl, PartyMonNicknames
 	call GetNick
 	ld a, [PartyMenuActionText]
 	and $f
-	ld hl, Unknown_5057b
-	call Function505c1
+	ld hl, .MenuActionTexts
+	call .PrintText
 	ret
 ; 5057b
 
-Unknown_5057b: ; 5057b
-	dw UnknownText_0x50594
-	dw UnknownText_0x5059e
-	dw UnknownText_0x505a3
-	dw UnknownText_0x505a8
-	dw UnknownText_0x50599
-	dw UnknownText_0x5058f
-	dw UnknownText_0x505ad
-	dw UnknownText_0x505b2
-	dw UnknownText_0x505b7
-	dw UnknownText_0x505bc
+.MenuActionTexts: ; 5057b
+	dw .Text_CuredOfPoison
+	dw .Text_BurnWasHealed
+	dw .Text_Defrosted
+	dw .Text_WokeUp
+	dw .Text_RidOfParalysis
+	dw .Text_RecoveredSomeHP
+	dw .Text_HealthReturned
+	dw .Text_Revitalized
+	dw .Text_GrewToLevel
+	dw .Text_CameToItsSenses
 ; 5058f
 
-UnknownText_0x5058f: ; 0x5058f
+.Text_RecoveredSomeHP: ; 0x5058f
 	; recovered @ HP!
 	text_jump UnknownText_0x1bc0a2
 	db "@"
 ; 0x50594
 
-UnknownText_0x50594: ; 0x50594
+.Text_CuredOfPoison: ; 0x50594
 	; 's cured of poison.
 	text_jump UnknownText_0x1bc0bb
 	db "@"
 ; 0x50599
 
-UnknownText_0x50599: ; 0x50599
+.Text_RidOfParalysis: ; 0x50599
 	; 's rid of paralysis.
 	text_jump UnknownText_0x1bc0d2
 	db "@"
 ; 0x5059e
 
-UnknownText_0x5059e: ; 0x5059e
+.Text_BurnWasHealed: ; 0x5059e
 	; 's burn was healed.
 	text_jump UnknownText_0x1bc0ea
 	db "@"
 ; 0x505a3
 
-UnknownText_0x505a3: ; 0x505a3
+.Text_Defrosted: ; 0x505a3
 	; was defrosted.
 	text_jump UnknownText_0x1bc101
 	db "@"
 ; 0x505a8
 
-UnknownText_0x505a8: ; 0x505a8
+.Text_WokeUp: ; 0x505a8
 	; woke up.
 	text_jump UnknownText_0x1bc115
 	db "@"
 ; 0x505ad
 
-UnknownText_0x505ad: ; 0x505ad
+.Text_HealthReturned: ; 0x505ad
 	; 's health returned.
 	text_jump UnknownText_0x1bc123
 	db "@"
 ; 0x505b2
 
-UnknownText_0x505b2: ; 0x505b2
+.Text_Revitalized: ; 0x505b2
 	; is revitalized.
 	text_jump UnknownText_0x1bc13a
 	db "@"
 ; 0x505b7
 
-UnknownText_0x505b7: ; 0x505b7
+.Text_GrewToLevel: ; 0x505b7
 	; grew to level @ !@ @
 	text_jump UnknownText_0x1bc14f
 	db "@"
 ; 0x505bc
 
-UnknownText_0x505bc: ; 0x505bc
+.Text_CameToItsSenses: ; 0x505bc
 	; came to its senses.
 	text_jump UnknownText_0x1bc16e
 	db "@"
 ; 0x505c1
 
 
-Function505c1: ; 505c1
+.PrintText: ; 505c1
 	ld e, a
 	ld d, 0
 rept 2
@@ -935,7 +937,7 @@ endr
 	ld l, a
 	ld a, [Options]
 	push af
-	set 4, a
+	set NO_TEXT_SCROLL, a
 	ld [Options], a
 	call PrintText
 	pop af

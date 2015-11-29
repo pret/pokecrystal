@@ -6,7 +6,9 @@ GetSpritePalette:: ; 17ff
 	push de
 	push bc
 	ld c, a
+
 	callba _GetSpritePalette
+
 	ld a, c
 	pop bc
 	pop de
@@ -15,7 +17,7 @@ GetSpritePalette:: ; 17ff
 ; 180e
 
 
-Function180e:: ; 180e
+GetSpriteVTile:: ; 180e
 	push hl
 	push bc
 	ld hl, UsedSprites + 2
@@ -78,14 +80,14 @@ DoesSpriteHaveFacings:: ; 1836
 
 
 Function184a:: ; 184a
-	ld a, [PlayerStandingTile]
+	ld a, [PlayerNextTile]
 	call GetTileCollision
 	ld b, a
 	ret
 ; 1852
 
 CheckOnWater:: ; 1852
-	ld a, [PlayerStandingTile]
+	ld a, [PlayerNextTile]
 	call GetTileCollision
 	sub 1
 	ret z
@@ -122,7 +124,18 @@ GetTileCollision:: ; 185d
 ; 1875
 
 
-Function1875:: ; 1875
+CheckGrassTile:: ; 1875
+	; and %00110111
+	; cp $10
+	; ret c
+	; cp $30
+	; jr nc, .okay
+	; scf
+	; ret
+	; .okay
+	; xor a
+	; ret
+
 	ld d, a
 	and $f0
 	cp $10
@@ -138,7 +151,7 @@ Function1875:: ; 1875
 	ret z
 	scf
 	ret
-
+; For some reason, the above code is duplicated down here.
 .ok_20
 	ld a, d
 	and 7
@@ -209,7 +222,7 @@ CheckWaterfallTile:: ; 18bd
 ; 18c3
 
 CheckStandingOnEntrance:: ; 18c3
-	ld a, [PlayerStandingTile]
+	ld a, [PlayerNextTile]
 	cp $71 ; door
 	ret z
 	cp $79
@@ -445,7 +458,7 @@ LoadMovementDataPointer:: ; 19e9
 	add hl, bc
 	ld [hl], SPRITEMOVEDATA_SCRIPTED
 
-	ld hl, OBJECT_09
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], 0
 
@@ -508,7 +521,7 @@ endr
 	ret
 ; 1a47
 
-Function1a47:: ; 1a47
+GetInitialFacing:: ; 1a47
 	push bc
 	push de
 	ld e, a
@@ -529,7 +542,7 @@ endr
 ; 1a61
 
 
-Function1a61:: ; 1a61
+CopySpriteMovementData:: ; 1a61
 	ld l, a
 	ld a, [hROMBank]
 	push af
@@ -538,7 +551,7 @@ Function1a61:: ; 1a61
 	ld a, l
 	push bc
 
-	call Function1a71
+	call .CopyData
 
 	pop bc
 	pop af
@@ -547,10 +560,11 @@ Function1a61:: ; 1a61
 	ret
 ; 1a71
 
-Function1a71:: ; 1a71
+.CopyData ; 1a71
 	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, de
 	ld [hl], a
+
 	push de
 	ld e, a
 	ld d, 0
@@ -561,29 +575,34 @@ endr
 	ld b, h
 	ld c, l
 	pop de
+
 	ld a, [bc]
 	inc bc
 	rlca
 	rlca
-	and $c
+	and %00001100
 	ld hl, OBJECT_FACING
 	add hl, de
 	ld [hl], a
+
 	ld a, [bc]
 	inc bc
-	ld hl, OBJECT_11
+	ld hl, OBJECT_ACTION
 	add hl, de
 	ld [hl], a
+
 	ld a, [bc]
 	inc bc
 	ld hl, OBJECT_FLAGS1
 	add hl, de
 	ld [hl], a
+
 	ld a, [bc]
 	inc bc
 	ld hl, OBJECT_FLAGS2
 	add hl, de
 	ld [hl], a
+
 	ld a, [bc]
 	inc bc
 	ld hl, OBJECT_PALETTE
@@ -635,8 +654,9 @@ UpdateSprites:: ; 1ad2
 	ld a, [VramState]
 	bit 0, a
 	ret z
+
 	callba Function55e0
-	callba RefreshMapAppearDisappear
+	callba _UpdateSprites
 	ret
 ; 1ae5
 
@@ -659,6 +679,7 @@ GetObjectSprite:: ; 1af1
 ; 1af8
 
 SetSpriteDirection:: ; 1af8
+	; preserves other flags
 	push af
 	ld hl, OBJECT_FACING
 	add hl, bc

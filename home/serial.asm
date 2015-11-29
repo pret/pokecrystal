@@ -247,8 +247,8 @@ Function833:: ; 833
 ; 83b
 
 Function83b:: ; 83b
-	ld hl, wcf56
-	ld de, wcf51
+	ld hl, wPlayerLinkAction
+	ld de, wOtherPlayerLinkMode
 	ld c, $2
 	ld a, $1
 	ld [hFFCC], a
@@ -274,7 +274,7 @@ Function83b:: ; 83b
 
 Function862:: ; 862
 	call LoadTileMapToTempTileMap
-	callab Function4000
+	callab PlaceWaitingText
 	call Function87d
 	jp Call_LoadTempTileMapToTileMap
 ; 871
@@ -282,102 +282,106 @@ Function862:: ; 862
 
 Function871:: ; 871
 	call LoadTileMapToTempTileMap
-	callab Function4000
+	callab PlaceWaitingText
 	jp Function87d
 ; 87d
 
-
+; One "giant" leap for machinekind
 
 Function87d:: ; 87d
 	ld a, $ff
-	ld [wcf52], a
-.asm_882
-	call Function8c1
+	ld [wOtherPlayerLinkAction], a
+.loop
+	call LinkCommunicationsSendReceive
 	call DelayFrame
 	call Function82b
-	jr z, .asm_89e
+	jr z, .check
 	push hl
 	ld hl, wcf5c
 	dec [hl]
-	jr nz, .asm_89d
+	jr nz, .skip
 	dec hl
 	dec [hl]
-	jr nz, .asm_89d
+	jr nz, .skip
 	pop hl
 	xor a
 	jp Function833
 
-.asm_89d
+.skip
 	pop hl
 
-.asm_89e
-	ld a, [wcf52]
+.check
+	ld a, [wOtherPlayerLinkAction]
 	inc a
-	jr z, .asm_882
-	ld b, $a
-.asm_8a6
+	jr z, .loop
+
+	ld b, 10
+.receive
 	call DelayFrame
-	call Function8c1
+	call LinkCommunicationsSendReceive
 	dec b
-	jr nz, .asm_8a6
-	ld b, $a
-.asm_8b1
+	jr nz, .receive
+
+	ld b, 10
+.acknowledge
 	call DelayFrame
-	call Function908
+	call LinkCommunicationsSignalDataReceived
 	dec b
-	jr nz, .asm_8b1
-	ld a, [wcf52]
-	ld [wcf51], a
+	jr nz, .acknowledge
+
+	ld a, [wOtherPlayerLinkAction]
+	ld [wOtherPlayerLinkMode], a
 	ret
 ; 8c1
 
-Function8c1:: ; 8c1
+LinkCommunicationsSendReceive:: ; 8c1
 	push bc
-	ld b, $60
+	ld b, SERIAL_TIMECAPSULE
 	ld a, [wLinkMode]
-	cp $1
-	jr z, .asm_8d7
-	ld b, $60
-	jr c, .asm_8d7
-	cp $2
-	ld b, $70
-	jr z, .asm_8d7
-	ld b, $80
+	cp LINK_TIMECAPSULE
+	jr z, .got_high_nybble
+	ld b, SERIAL_TIMECAPSULE
+	jr c, .got_high_nybble
+	cp LINK_TRADECENTER
+	ld b, SERIAL_TRADECENTER
+	jr z, .got_high_nybble
+	ld b, SERIAL_BATTLE
 
-.asm_8d7
-	call Function8f3
-	ld a, [wcf56]
+.got_high_nybble
+	call .Receive
+	ld a, [wPlayerLinkAction]
 	add b
 	ld [hSerialSend], a
 	ld a, [hLinkPlayerNumber]
 	cp $2
-	jr nz, .asm_8ee
+	jr nz, .player_1
 	ld a, $1
 	ld [rSC], a
 	ld a, $81
 	ld [rSC], a
 
-.asm_8ee
-	call Function8f3
+.player_1
+	call .Receive
 	pop bc
 	ret
 ; 8f3
 
-Function8f3:: ; 8f3
+.Receive ; 8f3
 	ld a, [hSerialReceive]
-	ld [wcf51], a
+	ld [wOtherPlayerLinkMode], a
 	and $f0
 	cp b
 	ret nz
 	xor a
 	ld [hSerialReceive], a
-	ld a, [wcf51]
+	ld a, [wOtherPlayerLinkMode]
 	and $f
-	ld [wcf52], a
+	ld [wOtherPlayerLinkAction], a
 	ret
 ; 908
 
-Function908:: ; 908
+LinkCommunicationsSignalDataReceived:: ; 908
+; Let the other system know that the data has been received.
 	xor a
 	ld [hSerialSend], a
 	ld a, [hLinkPlayerNumber]

@@ -6,7 +6,7 @@ SilverCaveRoom3_MapScriptHeader:
 	db 0
 
 RedScript_0x18c603:
-	special Functionc48f
+	special Special_RotatePalettesRightMusic
 	faceplayer
 	loadfont
 	writetext UnknownText_0x18c637
@@ -17,7 +17,7 @@ RedScript_0x18c603:
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	special Functionc48f
+	special Special_RotatePalettesRightMusic
 	loadfont
 	writetext UnknownText_0x18c63f
 	closetext
@@ -63,4 +63,4 @@ SilverCaveRoom3_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_RED, 10, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, RedScript_0x18c603, EVENT_RED_IN_MT_SILVER
+	person_event SPRITE_RED, 10, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, RedScript_0x18c603, EVENT_RED_IN_MT_SILVER

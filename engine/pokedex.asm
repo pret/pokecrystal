@@ -65,12 +65,8 @@ InitPokedex: ; 40063
 	call ClearTileMap
 	call Function414b7
 
-	ld hl, wc6d0
-IF DEF(CRYSTAL11)
-	ld bc, $0116
-ELSE
-	ld bc, $0115
-ENDC
+	ld hl, wPokedexDataStart
+	ld bc, wPokedexDataEnd - wPokedexDataStart
 	xor a
 	call ByteFill
 
@@ -480,7 +476,7 @@ Function4034f: ; 4034f
 	push af
 	ld a, [wJumptableIndex]
 	push af
-	callba Function8442c
+	callba PrintDexEntry
 	pop af
 	ld [wJumptableIndex], a
 	pop af
@@ -2367,7 +2363,7 @@ Function41401: ; 41401 (10:5401)
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, wMapPals
+	ld hl, UnknBGPals
 	ld bc, $40
 	xor a
 	call ByteFill

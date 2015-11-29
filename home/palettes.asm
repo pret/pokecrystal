@@ -95,7 +95,7 @@ DmgToCgbBGPals:: ; c9f
 
 ; copy & reorder bg pal buffer
 	ld hl, BGPals ; to
-	ld de, wMapPals ; from
+	ld de, UnknBGPals ; from
 ; order
 	ld a, [rBGP]
 	ld b, a
@@ -143,7 +143,7 @@ DmgToCgbObjPals:: ; ccb
 
 ; copy & reorder obj pal buffer
 	ld hl, OBPals ; to
-	ld de, Unkn2Pals ; from
+	ld de, UnknOBPals ; from
 ; order
 	ld a, [rOBP0]
 	ld b, a
@@ -182,7 +182,7 @@ Functioncf8:: ; cf8
 	ld [rSVBK], a
 
 	ld hl, OBPals
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld a, [rOBP0]
 	ld b, a
 	ld c, $1
@@ -216,7 +216,7 @@ Functiond24:: ; d24
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, OBPals + 8
-	ld de, Unkn2Pals + 8
+	ld de, UnknOBPals + 8
 	ld a, [rOBP1]
 	ld b, a
 	ld c, $1
@@ -289,16 +289,19 @@ CopyPals:: ; d50
 ; d79
 
 
-Functiond79:: ; d79
+ClearVBank1:: ; d79
 	ld a, [hCGB]
 	and a
 	ret z
+
 	ld a, 1
 	ld [rVBK], a
+
 	ld hl, VTiles0
-	ld bc, $2000
+	ld bc, VRAM_End - VTiles0
 	xor a
 	call ByteFill
+
 	ld a, 0
 	ld [rVBK], a
 	ret
@@ -347,7 +350,9 @@ FarCallScrollBGMapPalettes:: ; dbd
 	push af
 	ld a, BANK(ScrollBGMapPalettes)
 	rst Bankswitch
+
 	call ScrollBGMapPalettes
+
 	pop af
 	rst Bankswitch
 	ret

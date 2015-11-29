@@ -101,14 +101,14 @@ SpecialsPointers:: ; c029
 	add_special SpecialCheckPokerus
 	add_special Special_DisplayCoinCaseBalance
 	add_special Special_DisplayMoneyAndCoinBalance
-	add_special Function24ae8
+	add_special PlaceMoneyTopRightOW
 	add_special Special_CheckForLuckyNumberWinners
 	add_special Special_CheckLuckyNumberShowFlag
 	add_special Special_ResetLuckyNumberShowFlag
 	add_special Special_PrintTodaysLuckyNumber
 	add_special Special_SelectApricornForKurt
 	add_special SpecialNameRater
-	add_special Functionc2da
+	add_special Special_DisplayLinkRecord
 	add_special GetFirstPokemonHappiness
 	add_special CheckFirstMonIsEgg
 	add_special RandomPhoneRareWildMon
@@ -120,15 +120,17 @@ SpecialsPointers:: ; c029
 	add_special Special_YoungerHaircutBrother
 	add_special Special_OlderHaircutBrother
 	add_special Special_DaisyMassage
-	add_special Functionc472
+	add_special PlayCurMonCry
 	add_special ProfOaksPCBoot
 	add_special SpecialGameboyCheck
 	add_special SpecialTrainerHouse
 	add_special PhotoStudio
 	add_special InitRoamMons
-	add_special Functionc48f
-	add_special Functionc49f
-	add_special Functionc4ac
+	add_special Special_RotatePalettesRightMusic
+	add_special Diploma
+	add_special PrintDiploma
+
+	; Crystal
 	add_special Function11ac3e
 	add_special Function11b444
 	add_special Function11b5e8
@@ -151,7 +153,7 @@ SpecialsPointers:: ; c029
 	add_special Function101220
 	add_special Function101225
 	add_special Function101231
-	add_special Function4925b
+	add_special Special_MoveTutor
 	add_special SpecialOmanyteChamber
 	add_special Function11c1ab
 	add_special BattleTowerAction
@@ -160,11 +162,11 @@ SpecialsPointers:: ; c029
 	add_special Function17d2b6
 	add_special Function17d2ce
 	add_special Function17f53d
-	add_special Function103612
+	add_special AskMobileOrCable
 	add_special SpecialHoOhChamber
 	add_special Function102142
 	add_special Special_CelebiShrineEvent
-	add_special Function49bf9
+	add_special CheckCaughtCelebi
 	add_special SpecialPokeSeer
 	add_special SpecialBuenasPassword
 	add_special SpecialBuenaPrize
@@ -172,7 +174,7 @@ SpecialsPointers:: ; c029
 	add_special Special_SampleKenjiBreakCountdown
 	add_special SpecialBeastsCheck
 	add_special SpecialMonCheck
-	add_special Functionc225
+	add_special Special_SetPlayerPalette
 	add_special Function170bd2
 	add_special Mobile_SelectThreeMons
 	add_special Function1037eb
@@ -180,12 +182,12 @@ SpecialsPointers:: ; c029
 	add_special Mobile_HealParty
 	add_special RefreshSprites
 	add_special Function1037c2
-	add_special Function10630f
+	add_special Mobile_DummyReturnFalse
 	add_special Function103780
 	add_special Function10387b
-	add_special Function4ae12
+	add_special AskRememberPassword
 	add_special LoadMapPalettes
-	add_special Function4a927
+	add_special FindItemInPCOrBag
 	add_special Special_InitialSetDSTFlag
 	add_special Special_InitialClearDSTFlag
 	add_special SpecialNone
@@ -195,10 +197,10 @@ SpecialNone: ; c224
 	ret
 ; c225
 
-Functionc225: ; c225
+Special_SetPlayerPalette: ; c225
 	ld a, [ScriptVar]
 	ld d, a
-	callba Function57e2
+	callba SetPlayerPalette
 	ret
 ; c230
 
@@ -213,8 +215,8 @@ Special_GameCornerPrizeMonCheckDex: ; c230
 	call FadeToMenu
 	ld a, [ScriptVar]
 	ld [wd265], a
-	callba Functionfb877
-	call Function2b4d
+	callba NewPokedexEntry
+	call ExitAllMenus
 	ret
 ; c252
 
@@ -285,29 +287,29 @@ SpecialNameRater: ; c2b9
 
 Special_TownMap: ; c2c0
 	call FadeToMenu
-	callba Function9191c
-	call Function2b4d
+	callba _TownMap
+	call ExitAllMenus
 	ret
 ; c2cd
 
 Special_UnownPrinter: ; c2cd
 	call FadeToMenu
-	callba Function16be4
-	call Function2b4d
+	callba UnownPrinter
+	call ExitAllMenus
 	ret
 ; c2da
 
-Functionc2da: ; c2da
+Special_DisplayLinkRecord: ; c2da
 	call FadeToMenu
-	callba Function3f836
-	call Function2b4d
+	callba DisplayLinkRecord
+	call ExitAllMenus
 	ret
 ; c2e7
 
 Special_KrissHousePC: ; c2e7
 	xor a
 	ld [ScriptVar], a
-	callba Function156d9
+	callba _KrissHousePC
 	ld a, c
 	ld [ScriptVar], a
 	ret
@@ -381,7 +383,7 @@ Special_UnownPuzzle: ; c360
 	callba Functione1190
 	ld a, [wd0ec]
 	ld [ScriptVar], a
-	call Function2b4d
+	call ExitAllMenus
 	ret
 ; c373
 
@@ -423,7 +425,7 @@ Special_StartGameCornerGame: ; c39a
 	ld l, a
 	pop af
 	rst FarCall
-	call Function2b4d
+	call ExitAllMenus
 	ret
 ; c3ae
 
@@ -586,7 +588,7 @@ SpecialSnorlaxAwake: ; 0xc43d
 	db $ff
 
 
-Functionc472: ; c472
+PlayCurMonCry: ; c472
 	ld a, [CurPartySpecies]
 	jp PlayCry
 ; c478
@@ -614,7 +616,7 @@ SpecialGameboyCheck: ; c478
 	ret
 
 
-Functionc48f: ; c48f
+Special_RotatePalettesRightMusic: ; c48f
 	ld a, MUSIC_NONE % $100
 	ld [MusicFadeIDLo], a
 	ld a, MUSIC_NONE / $100
@@ -624,17 +626,17 @@ Functionc48f: ; c48f
 	ret
 ; c49f
 
-Functionc49f: ; c49f
+Diploma: ; c49f
 	call FadeToMenu
-	callba Function1dd702
-	call Function2b4d
+	callba _Diploma
+	call ExitAllMenus
 	ret
 ; c4ac
 
-Functionc4ac: ; c4ac
+PrintDiploma: ; c4ac
 	call FadeToMenu
-	callba Function84688
-	call Function2b4d
+	callba _PrintDiploma
+	call ExitAllMenus
 	ret
 ; c4b9
 

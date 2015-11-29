@@ -11,8 +11,8 @@ SpecialBuenasPassword: ; 8af6b
 	add $2
 	ld [wMenuBorderRightCoord], a
 	call BackUpTiles
-	call Function1e5d ; menu
-	callba Function4ae5e
+	call DoNthMenu ; menu
+	callba Buena_ExitMenu
 	ld b, $0
 	ld a, [MenuSelection]
 	ld c, a
@@ -66,7 +66,7 @@ SpecialBuenasPassword: ; 8af6b
 
 SpecialBuenaPrize: ; 8afd4
 	xor a
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	ld a, $1
 	ld [MenuSelection], a
 	call Function8b0d6
@@ -250,7 +250,7 @@ Function8b0e2: ; 8b0e2
 	xor a
 	ld [wcf76], a
 	ld [hBGMapMode], a
-	call Function352f
+	call InitScrollingMenu
 	call UpdateSprites
 	call HandleScrollingMenu
 	ld a, [MenuSelection]

@@ -27,7 +27,7 @@ BattleTower1F_MapScriptHeader:
 	end
 
 .priorityjump1:
-	priorityjump UnknownScript_0x9e555
+	priorityjump BattleTower_LeftWithoutSaving
 	writebyte BATTLE_TOWER_ACTION_04
 	special BattleTowerAction
 	writebyte BATTLE_TOWER_ACTION_06
@@ -119,7 +119,7 @@ Script_GivePlayerHisPrize: ; 0x9e47a
 	special BattleTowerAction
 	writebyte BATTLE_TOWER_ACTION_1B
 	special BattleTowerAction
-	if_equal $12, Script_YourPackIsStuffedFull
+	if_equal POTION, Script_YourPackIsStuffedFull
 	itemtotext $0, $1
 	giveitem ITEM_FROM_MEM, 5
 	writetext Text_PlayerGotFive
@@ -236,9 +236,9 @@ UnknownScript_0x9e550:
 	loadmovesprites
 	end
 
-UnknownScript_0x9e555:
+BattleTower_LeftWithoutSaving:
 	loadfont
-	writetext UnknownText_0x9ee18
+	writetext Text_BattleTower_LeftWithoutSaving
 	closetext
 	jump UnknownScript_0x9e4b0
 
@@ -525,7 +525,7 @@ Text_PlayerGotFive: ; 0x9eb7e
 	line "@"
 	text_from_ram StringBuffer4
 	text "!@"
-	sound0x0F
+	sound_item
 	text_waitbutton
 	db "@"
 
@@ -610,7 +610,7 @@ Text_BattleTowerRules: ; 0x9ed72
 	line "placed on them."
 	done
 
-UnknownText_0x9ee18:
+Text_BattleTower_LeftWithoutSaving:
 	text "Excuse me!"
 	line "You didn't SAVE"
 
@@ -808,8 +808,8 @@ BattleTower1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_RECEPTIONIST, 6, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, ReceptionistScript_0x9e3e2, -1
-	person_event SPRITE_YOUNGSTER, 9, 14, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, YoungsterScript_0x9e55d, -1
-	person_event SPRITE_COOLTRAINER_F, 9, 4, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, CooltrainerFScript_0x9e568, -1
-	person_event SPRITE_BUG_CATCHER, 3, 1, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, BugCatcherScript_0x9e56b, -1
-	person_event SPRITE_GRANNY, 3, 14, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, 0, 0, GrannyScript_0x9e56e, -1
+	person_event SPRITE_RECEPTIONIST, 6, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ReceptionistScript_0x9e3e2, -1
+	person_event SPRITE_YOUNGSTER, 9, 14, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x9e55d, -1
+	person_event SPRITE_COOLTRAINER_F, 9, 4, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x9e568, -1
+	person_event SPRITE_BUG_CATCHER, 3, 1, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, BugCatcherScript_0x9e56b, -1
+	person_event SPRITE_GRANNY, 3, 14, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrannyScript_0x9e56e, -1

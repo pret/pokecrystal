@@ -93,7 +93,7 @@ Function8919e: ; 8919e (22:519e)
 
 Function891ab: ; 891ab
 	call Function89240
-	callba Function104061
+	callba ReloadMapPart
 	call Function8923c
 	ret
 ; 891b8
@@ -150,13 +150,13 @@ Function891fe: ; 891fe
 
 Function89209: ; 89209
 	ld a, 1
-	ld [wc2ce], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 ; 8920f
 
 Function8920f: ; 8920f
 	ld a, 0
-	ld [wc2ce], a
+	ld [wSpriteUpdatesEnabled], a
 	ret
 ; 89215
 
@@ -623,7 +623,7 @@ Function8949c: ; 8949c
 	ld a, 5
 	ld [rSVBK], a
 	ld hl, Palette_894b3
-	ld de, wMapPals + 8 * 7
+	ld de, UnknBGPals + 8 * 7
 	ld bc, 8
 	call CopyBytes
 	pop af
@@ -665,35 +665,37 @@ Function894dc: ; 894dc
 	push af
 	ld a, 5
 	ld [rSVBK], a
+
 	ld c, d
 	ld b, 0
-	ld hl, Unknown_89509
+	ld hl, .PalettePointers
 rept 2
 	add hl, bc
 endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, wMapPals
-	ld bc, 24
+	ld de, UnknBGPals
+	ld bc, 3 palettes
 	call CopyBytes
-	ld hl, Palette_89557
-	ld de, wd018
-	ld bc, 24
+	ld hl, .Pals345
+	ld de, UnknBGPals + 3 palettes
+	ld bc, 3 palettes
 	call CopyBytes
+
 	pop af
 	ld [rSVBK], a
 	pop bc
 	ret
 ; 89509
 
-Unknown_89509: ; 89509
-	dw Palette_8950f
-	dw Palette_89527
-	dw Palette_8953f
+.PalettePointers: ; 89509
+	dw .Pals012a
+	dw .Pals012b
+	dw .Pals012c
 ; 8950f
 
-Palette_8950f: ; 8950f
+.Pals012a: ; 8950f
 	RGB 31, 31, 31
 	RGB 10, 17, 13
 	RGB 10, 08, 22
@@ -709,7 +711,7 @@ Palette_8950f: ; 8950f
 	RGB 10, 17, 13
 	RGB 00, 00, 00
 
-Palette_89527: ; 89527
+.Pals012b: ; 89527
 	RGB 31, 31, 31
 	RGB 30, 22, 11
 	RGB 31, 08, 15
@@ -725,7 +727,7 @@ Palette_89527: ; 89527
 	RGB 30, 22, 11
 	RGB 00, 00, 00
 
-Palette_8953f: ; 8953f
+.Pals012c: ; 8953f
 	RGB 31, 31, 31
 	RGB 15, 20, 26
 	RGB 25, 07, 20
@@ -741,7 +743,7 @@ Palette_8953f: ; 8953f
 	RGB 15, 20, 26
 	RGB 00, 00, 00
 
-Palette_89557: ; 89557
+.Pals345: ; 89557
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 13, 00
@@ -2152,7 +2154,7 @@ Function89d0d: ; 89d0d (22:5d0d)
 	ld a, $5
 	ld [rSVBK], a
 	ld c, $8
-	ld de, wMapPals
+	ld de, UnknBGPals
 .asm_89d1c
 	push bc
 	ld hl, Palette_89d4e
@@ -3392,7 +3394,7 @@ Function8a5b6: ; 8a5b6 (22:65b6)
 	ld bc, $18
 	call CopyBytes
 	ld hl, Palette_8a5fd
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld bc, $8
 	call CopyBytes
 	ld hl, Palette_8a605
@@ -3439,7 +3441,7 @@ Function8a60d: ; 8a60d
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_8a624
-	ld de, Unkn2Pals
+	ld de, UnknOBPals
 	ld bc, $0008
 	call CopyBytes
 	pop af

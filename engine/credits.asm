@@ -637,10 +637,10 @@ GetCreditsPalette: ; 109b2c
 	
 	push af
 	push hl
-	add wMapPals % $100
+	add UnknBGPals % $100
 	ld e, a
 	ld a, 0
-	adc wMapPals / $100
+	adc UnknBGPals / $100
 	ld d, a
 	ld bc, 24
 	call CopyBytes

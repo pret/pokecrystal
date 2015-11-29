@@ -45,11 +45,11 @@ endr
 ; 16254
 
 .CheckIfBankInitialized: ; 16254
-	ld a, [wBankOfMomMode]
+	ld a, [wMomSavingMoney]
 	bit 7, a
 	jr nz, .savingmoneyalready
 	set 7, a
-	ld [wBankOfMomMode], a
+	ld [wMomSavingMoney], a
 	ld a, $1
 	jr .done_0
 
@@ -75,7 +75,7 @@ endr
 	ld a, %10000000
 
 .done_1
-	ld [wBankOfMomMode], a
+	ld [wMomSavingMoney], a
 	ld hl, UnknownText_0x16653
 	call PrintText
 	ld a, $8
@@ -168,7 +168,7 @@ endr
 	ld de, StringBuffer2 + 3
 	ld bc, 3
 	call CopyBytes
-	ld bc, wd851
+	ld bc, wMomsMoney
 	ld de, StringBuffer2
 	callba GiveMoney
 	jr c, .CantDepositThatMuch
@@ -176,7 +176,7 @@ endr
 	ld de, Money
 	callba TakeMoney
 	ld hl, StringBuffer2
-	ld de, wd851
+	ld de, wMomsMoney
 	ld bc, 3
 	call CopyBytes
 	ld de, SFX_TRANSACTION
@@ -232,7 +232,7 @@ endr
 	ld de, StringBuffer2 + 3
 	ld bc, 3
 	call CopyBytes
-	ld de, wd851
+	ld de, wMomsMoney
 	ld bc, StringBuffer2
 	callba CompareMoney
 	jr c, .InsufficientFundsInBank
@@ -241,7 +241,7 @@ endr
 	callba GiveMoney
 	jr c, .NotEnoughRoomInWallet
 	ld bc, StringBuffer2 + 3
-	ld de, wd851
+	ld de, wMomsMoney
 	callba TakeMoney
 	ld hl, StringBuffer2
 	ld de, Money
@@ -279,7 +279,7 @@ endr
 	call YesNoBox
 	jr c, .StopSavingMoney
 	ld a, $81
-	ld [wBankOfMomMode], a
+	ld [wMomSavingMoney], a
 	ld hl, UnknownText_0x16685
 	call PrintText
 	ld a, $8
@@ -288,7 +288,7 @@ endr
 
 .StopSavingMoney
 	ld a, $80
-	ld [wBankOfMomMode], a
+	ld [wMomSavingMoney], a
 	ld a, $7
 	ld [wJumptableIndex], a
 	ret
@@ -461,7 +461,7 @@ Function1651a: ; 1651a
 	ld de, String_16699
 	call PlaceString
 	hlcoord 12, 2
-	ld de, wd851
+	ld de, wMomsMoney
 	lb bc, PRINTNUM_MONEY | 3, 6
 	call PrintNum
 	hlcoord 1, 4

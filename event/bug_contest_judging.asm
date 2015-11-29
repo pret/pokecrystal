@@ -2,24 +2,24 @@ _BugContestJudging: ; 1369d
 	call ContestScore
 	callba MobileFn_105f79
 	call Function13819
-	ld a, [wd00a]
+	ld a, [wBugContestThirdPlacePersonID]
 	call LoadContestantName
-	ld a, [wd00b]
-	ld [wd265], a
+	ld a, [wBugContestThirdPlaceMon]
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, BugContest_ThirdPlaceText
 	call PrintText
-	ld a, [EndFlypoint]
+	ld a, [wBugContestSecondPlacePersonID]
 	call LoadContestantName
-	ld a, [MovementBuffer]
-	ld [wd265], a
+	ld a, [wBugContestSecondPlaceMon]
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, BugContest_SecondPlaceText
 	call PrintText
-	ld a, [wd002]
+	ld a, [wBugContestFirstPlacePersonID]
 	call LoadContestantName
-	ld a, [wd003]
-	ld [wd265], a
+	ld a, [wBugContestFirstPlaceMon]
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, BugContest_FirstPlaceText
 	call PrintText
@@ -85,7 +85,7 @@ LoadContestantName: ; 13730
 
 ; If a = 0, get your name.
 	dec a
-	jr z, .done
+	jr z, .player
 ; Find the pointer for the trainer class of the Bug Catching Contestant whose ID is in a.
 	ld c, a
 	ld b, 0
@@ -102,13 +102,13 @@ endr
 ; Save hl and bc for later.
 	push hl
 	push bc
-; Get the Trainer Class name and copy it into wd016.
+; Get the Trainer Class name and copy it into wBugContestWinnerName.
 	callab GetTrainerClassName
 	ld hl, StringBuffer1
-	ld de, wd016
+	ld de, wBugContestWinnerName
 	ld bc, TRAINER_CLASS_NAME_LENGTH
 	call CopyBytes
-	ld hl, wd016
+	ld hl, wBugContestWinnerName
 ; Delete the trailing terminator and replace it with a space.
 .next
 	ld a, [hli]
@@ -127,15 +127,15 @@ endr
 	ld a, [hl]
 	ld b, a
 	callab GetTrainerName
-; Append the name to wd016.
+; Append the name to wBugContestWinnerName.
 	ld hl, StringBuffer1
 	pop de
 	ld bc, NAME_LENGTH - 1
 	jp CopyBytes
 
-.done
+.player
 	ld hl, PlayerName
-	ld de, wd016
+	ld de, wBugContestWinnerName
 	ld bc, NAME_LENGTH
 	jp CopyBytes
 ; 13783
@@ -216,7 +216,7 @@ BugContestant_SchoolboyKipp:
 ; 13807
 
 Function13807: ; 13807
-	ld hl, wd00a
+	ld hl, wBugContestThirdPlacePersonID
 	ld de, -4
 	ld b, 3
 .loop
@@ -232,9 +232,9 @@ Function13807: ; 13807
 ; 13819
 
 Function13819: ; 13819
-	call Function13833
-	call Function138b0
-	ld hl, wd00e
+	call ClearContestResults
+	call ComputeAIContestantScores
+	ld hl, wBugContestTempPersonID
 	ld a, 1
 	ld [hli], a
 	ld a, [wContestMon]
@@ -243,12 +243,12 @@ Function13819: ; 13819
 	ld [hli], a
 	ld a, [hMultiplicand]
 	ld [hl], a
-	call Function1383e
+	call DetermineContestWinners
 	ret
 ; 13833
 
-Function13833: ; 13833
-	ld hl, wd002
+ClearContestResults: ; 13833
+	ld hl, wBugContestFirstPlacePersonID
 	ld b, 12
 	xor a
 .loop
@@ -258,69 +258,66 @@ Function13833: ; 13833
 	ret
 ; 1383e
 
-Function1383e: ; 1383e
-	ld de, wd010
-	ld hl, wd004
+DetermineContestWinners: ; 1383e
+	ld de, wBugContestTempScore
+	ld hl, wBugContestFirstPlaceScore
 	ld c, 2
 	call StringCmp
-	jr c, .next
-	ld hl, EndFlypoint
-	ld de, wd00a
+	jr c, .not_first_place
+	ld hl, wBugContestSecondPlacePersonID
+	ld de, wBugContestThirdPlacePersonID
 	ld bc, 4
 	call CopyBytes
-	ld hl, wd002
-	ld de, EndFlypoint
+	ld hl, wBugContestFirstPlacePersonID
+	ld de, wBugContestSecondPlacePersonID
 	ld bc, 4
 	call CopyBytes
-	ld hl, wd002
-	call Function138a0
+	ld hl, wBugContestFirstPlacePersonID
+	call CopyTempContestant
 	jr .done
 
-.next
-	ld de, wd010
-	ld hl, wd008
+.not_first_place
+	ld de, wBugContestTempScore
+	ld hl, wBugContestSecondPlaceScore
 	ld c, 2
 	call StringCmp
-	jr c, .next2
-	ld hl, EndFlypoint
-	ld de, wd00a
+	jr c, .not_second_place
+	ld hl, wBugContestSecondPlacePersonID
+	ld de, wBugContestThirdPlacePersonID
 	ld bc, 4
 	call CopyBytes
-	ld hl, EndFlypoint
-	call Function138a0
+	ld hl, wBugContestSecondPlacePersonID
+	call CopyTempContestant
 	jr .done
 
-.next2
-	ld de, wd010
-	ld hl, wd00c
+.not_second_place
+	ld de, wBugContestTempScore
+	ld hl, wBugContestThirdPlaceScore
 	ld c, 2
 	call StringCmp
 	jr c, .done
-	ld hl, wd00a
-	call Function138a0
+	ld hl, wBugContestThirdPlacePersonID
+	call CopyTempContestant
 
 .done
 	ret
 ; 138a0
 
-Function138a0: ; 138a0
-	ld de, wd00e
+CopyTempContestant: ; 138a0
+; Could've just called CopyBytes.
+	ld de, wBugContestTempPersonID
+rept 3
 	ld a, [de]
 	inc de
 	ld [hli], a
-	ld a, [de]
-	inc de
-	ld [hli], a
-	ld a, [de]
-	inc de
-	ld [hli], a
+endr
 	ld a, [de]
 	inc de
 	ld [hl], a
 	ret
 ; 138b0
 
-Function138b0: ; 138b0
+ComputeAIContestantScores: ; 138b0
 	ld e, 0
 .loop
 	push de
@@ -331,7 +328,7 @@ Function138b0: ; 138b0
 rept 2
 	inc a
 endr
-	ld [wd00e], a
+	ld [wBugContestTempPersonID], a
 	dec a
 	ld c, a
 	ld b, 0
@@ -356,7 +353,7 @@ rept 3
 	add hl, bc
 endr
 	ld a, [hli]
-	ld [wd00f], a
+	ld [wBugContestTempMon], a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -366,11 +363,11 @@ endr
 	ld b, 0
 	add hl, bc
 	ld a, h
-	ld [wd010], a
+	ld [wBugContestTempScore], a
 	ld a, l
-	ld [wd011], a
+	ld [wBugContestTempScore + 1], a
 	push de
-	call Function1383e
+	call DetermineContestWinners
 	pop de
 
 .done

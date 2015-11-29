@@ -40,7 +40,7 @@ KurtScript_0x18e178:
 	writetext UnknownText_0x18e473
 	closetext
 	loadmovesprites
-	special Functionc48f
+	special Special_RotatePalettesRightMusic
 	setevent EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
 	checkcode VAR_FACING
 	if_equal UP, .RunAround
@@ -287,7 +287,7 @@ KurtScript_0x18e178:
 	setevent EVENT_FOREST_IS_RESTLESS
 	clearevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	clearevent EVENT_GAVE_GS_BALL_TO_KURT
-	special Functionc48f
+	special Special_RotatePalettesRightMusic
 	pause 20
 	showemote EMOTE_SHOCK, $2, 30
 	checkcode VAR_FACING
@@ -696,8 +696,8 @@ KurtsHouse_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_KURT, 2, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, KurtScript_0x18e178, EVENT_KURTS_HOUSE_KURT_1
-	person_event SPRITE_TWIN, 3, 5, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, 0, 0, KurtsGranddaughter1, EVENT_KURTS_HOUSE_GRANDDAUGHTER_1
-	person_event SPRITE_SLOWPOKE, 3, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 0, 0, KurtsHouseSlowpoke, EVENT_KURTS_HOUSE_SLOWPOKE
-	person_event SPRITE_KURT, 3, 14, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, 0, 0, KurtScript_0x18e3bd, EVENT_KURTS_HOUSE_KURT_2
-	person_event SPRITE_TWIN, 4, 11, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, 0, 0, KurtsGranddaughter2, EVENT_KURTS_HOUSE_GRANDDAUGHTER_2
+	person_event SPRITE_KURT, 2, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, KurtScript_0x18e178, EVENT_KURTS_HOUSE_KURT_1
+	person_event SPRITE_TWIN, 3, 5, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, KurtsGranddaughter1, EVENT_KURTS_HOUSE_GRANDDAUGHTER_1
+	person_event SPRITE_SLOWPOKE, 3, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, KurtsHouseSlowpoke, EVENT_KURTS_HOUSE_SLOWPOKE
+	person_event SPRITE_KURT, 3, 14, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, KurtScript_0x18e3bd, EVENT_KURTS_HOUSE_KURT_2
+	person_event SPRITE_TWIN, 4, 11, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, KurtsGranddaughter2, EVENT_KURTS_HOUSE_GRANDDAUGHTER_2

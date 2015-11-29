@@ -26,11 +26,11 @@ Function926f7: ; 926f7 (24:66f7)
 	call PlayMusic
 	call DelayFrame
 	call DisableLCD
-	ld hl, VBGMap0 tile $00
+	hlbgcoord 0, 0
 	lb bc, 4, 0
-	ld a, $7f
+	ld a, " "
 	call ByteFill
-	ld b, $5
+	ld b, SCGB_05
 	call GetSGBLayout
 	callab Function8cf53
 	ld hl, wc6d0
@@ -1037,9 +1037,9 @@ Function92d20: ; 92d20
 	call Function92fc0
 	push bc
 	push af
-	ld de, $6068
-	ld a, $6
-	call Function3b2a
+	depixel 12, 13
+	ld a, SPRITE_ANIM_INDEX_06
+	call _InitSpriteAnimStruct
 	ld hl, $e
 	add hl, bc
 	pop af
@@ -1096,9 +1096,9 @@ Function92d7e: ; 92d7e
 	add hl, bc
 	ld [hl], $0
 	push bc
-	ld de, $6000
-	ld a, $7
-	call Function3b2a
+	depixel 12, 0
+	ld a, SPRITE_ANIM_INDEX_07
+	call _InitSpriteAnimStruct
 	pop bc
 	xor a
 	ld [wcf64], a
@@ -2063,9 +2063,9 @@ Function932fc: ; 932fc (24:72fc)
 	add hl, bc
 	dec [hl]
 	push bc
-	ld de, $606c
-	ld a, $8
-	call Function3b2a
+	depixel 12, 13, 0, 4
+	ld a, SPRITE_ANIM_INDEX_08
+	call _InitSpriteAnimStruct
 	pop bc
 	ret
 ; 93316 (24:7316)

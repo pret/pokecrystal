@@ -240,7 +240,7 @@ UnknownText_0x62b26:
 	line "OFFICE received an"
 	cont "e-mail. It says…"
 
-	para $56, " ", $56, " ", $56
+	para "<......> <......> <......>"
 
 	para "To the #COM"
 	line "CENTER staff…"
@@ -260,7 +260,7 @@ UnknownText_0x62b26:
 	para "the world can link"
 	line "without barriers!"
 
-	para $56, " ", $56, " ", $56
+	para "<......> <......> <......>"
 	done
 
 GoldenrodPokeComCenter2FMobile_MapEventHeader:
@@ -283,6 +283,6 @@ GoldenrodPokeComCenter2FMobile_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_SCIENTIST, 28, 4, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, (1 << 3) | PAL_OW_RED, 0, 0, ScientistScript_0x625d1, -1
-	person_event SPRITE_SCIENTIST, 27, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, ScientistScript_0x625d4, -1
-	person_event SPRITE_SCIENTIST, 29, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ScientistScript_0x625d7, -1
+	person_event SPRITE_SCIENTIST, 28, 4, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, ScientistScript_0x625d1, -1
+	person_event SPRITE_SCIENTIST, 27, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, ScientistScript_0x625d4, -1
+	person_event SPRITE_SCIENTIST, 29, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, ScientistScript_0x625d7, -1

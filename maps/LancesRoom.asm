@@ -44,12 +44,12 @@ UnknownScript_0x180e53:
 	end
 
 UnknownScript_0x180e6a:
-	special Functionc48f
+	special Special_RotatePalettesRightMusic
 	applymovement PLAYER, MovementData_0x180f38
 	jump LanceScript_0x180e7b
 
 UnknownScript_0x180e74:
-	special Functionc48f
+	special Special_RotatePalettesRightMusic
 	applymovement PLAYER, MovementData_0x180f3c
 LanceScript_0x180e7b:
 	spriteface $2, LEFT
@@ -358,6 +358,6 @@ LancesRoom_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_LANCE, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, 0, 0, LanceScript_0x180e7b, -1
-	person_event SPRITE_TEACHER, 7, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, 0, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
-	person_event SPRITE_OAK, 7, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, 0, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
+	person_event SPRITE_LANCE, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LanceScript_0x180e7b, -1
+	person_event SPRITE_TEACHER, 7, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
+	person_event SPRITE_OAK, 7, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY

@@ -5,10 +5,10 @@ AskTimer:: ; 591
 	push af
 	ld a, [hMobile]
 	and a
-	jr z, .asm_59a
+	jr z, .not_mobile
 	call Timer
 
-.asm_59a
+.not_mobile
 	pop af
 	reti
 ; 59c
@@ -101,7 +101,7 @@ FixDays:: ; 5e8
 ; update dl
 	ld [hRTCDayLo], a ; DL
 
-; flag for s0_ac60
+; flag for sRTCStatusFlags
 	ld a, %01000000
 	jr .set
 
@@ -120,7 +120,7 @@ FixDays:: ; 5e8
 ; update dl
 	ld [hRTCDayLo], a ; DL
 	
-; flag for s0_ac60
+; flag for sRTCStatusFlags
 	ld a, %00100000
 	
 .set
@@ -190,7 +190,7 @@ FixTime:: ; 61d
 Function658:: ; 658
 	xor a
 	ld [StringBuffer2], a
-	ld a, $0
+	ld a, $0 ; useless
 	ld [StringBuffer2 + 3], a
 	jr Function677
 
@@ -202,7 +202,7 @@ Function663:: ; 663
 	ld [StringBuffer2 + 2], a
 	ld a, [hSeconds]
 	ld [StringBuffer2 + 3], a
-	jr Function677
+	jr Function677 ; useless
 
 Function677:: ; 677
 	callba Function140ed
@@ -211,13 +211,13 @@ Function677:: ; 677
 
 
 
-Function67e:: ; 67e
-	call Function685
+PanicResetClock:: ; 67e
+	call .ClearhRTC
 	call SetClock
 	ret
 ; 685
 
-Function685:: ; 685
+.ClearhRTC ; 685
 	xor a
 	ld [hRTCSeconds], a
 	ld [hRTCMinutes], a
@@ -277,23 +277,23 @@ SetClock:: ; 691
 ; 6c4
 
 
-Function6c4:: ; 6c4
-; clear s0_ac60
+ClearRTCStatus:: ; 6c4
+; clear sRTCStatusFlags
 	xor a
 	push af
-	ld a, BANK(s0_ac60)
+	ld a, BANK(sRTCStatusFlags)
 	call GetSRAMBank
 	pop af
-	ld [s0_ac60], a
+	ld [sRTCStatusFlags], a
 	call CloseSRAM
 	ret
 ; 6d3
 
-Function6d3:: ; 6d3
-; append flags to s0_ac60
-	ld hl, s0_ac60
+RecordRTCStatus:: ; 6d3
+; append flags to sRTCStatusFlags
+	ld hl, sRTCStatusFlags
 	push af
-	ld a, BANK(s0_ac60)
+	ld a, BANK(sRTCStatusFlags)
 	call GetSRAMBank
 	pop af
 	or [hl]
@@ -302,11 +302,11 @@ Function6d3:: ; 6d3
 	ret
 ; 6e3
 
-Function6e3:: ; 6e3
-; check s0_ac60
-	ld a, BANK(s0_ac60)
+CheckRTCStatus:: ; 6e3
+; check sRTCStatusFlags
+	ld a, BANK(sRTCStatusFlags)
 	call GetSRAMBank
-	ld a, [s0_ac60]
+	ld a, [sRTCStatusFlags]
 	call CloseSRAM
 	ret
 ; 6ef

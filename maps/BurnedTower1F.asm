@@ -49,7 +49,7 @@ UnknownScript_0x185c0d:
 
 UnknownScript_0x185c25:
 	showemote EMOTE_SHOCK, $4, 15
-	special Functionc48f
+	special Special_RotatePalettesRightMusic
 	pause 15
 	spriteface $4, RIGHT
 	pause 15
@@ -98,7 +98,7 @@ UnknownScript_0x185c80:
 	loadmovesprites
 	dotrigger $2
 	setevent EVENT_RIVAL_BURNED_TOWER
-	special Functionc48f
+	special Special_RotatePalettesRightMusic
 	pause 15
 	earthquake 50
 	showemote EMOTE_SHOCK, PLAYER, 15
@@ -160,7 +160,7 @@ MovementData_0x185cd3:
 	step_end
 
 UnknownText_0x185cd9:
-	text $56, " ", $56, " ", $56
+	text "<......> <......> <......>"
 
 	para "…Oh, it's you."
 
@@ -309,8 +309,8 @@ BurnedTower1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_ROCK, 4, 15, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, 0, 0, BurnedTower1FRock, -1
-	person_event SPRITE_SUPER_NERD, 12, 12, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, 0, 0, SuperNerdScript_0x185cbc, EVENT_BURNED_TOWER_1F_EUSINE
-	person_event SPRITE_SILVER, 9, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, 2, 3, ObjectEvent, EVENT_RIVAL_BURNED_TOWER
-	person_event SPRITE_MORTY, 14, 14, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, (1 << 3) | PAL_OW_BROWN, 0, 0, MortyScript_0x185cbf, EVENT_BURNED_TOWER_MORTY
-	person_event SPRITE_POKE_BALL, 2, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, 1, 0, ItemFragment_0x185ccb, EVENT_BURNED_TOWER_1F_HP_UP
+	person_event SPRITE_ROCK, 4, 15, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BurnedTower1FRock, -1
+	person_event SPRITE_SUPER_NERD, 12, 12, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x185cbc, EVENT_BURNED_TOWER_1F_EUSINE
+	person_event SPRITE_SILVER, 9, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 3, ObjectEvent, EVENT_RIVAL_BURNED_TOWER
+	person_event SPRITE_MORTY, 14, 14, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, MortyScript_0x185cbf, EVENT_BURNED_TOWER_MORTY
+	person_event SPRITE_POKE_BALL, 2, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x185ccb, EVENT_BURNED_TOWER_1F_HP_UP

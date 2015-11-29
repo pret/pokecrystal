@@ -26,7 +26,7 @@ Special_SelectApricornForKurt: ; 88018
 	call LoadStandardMenuDataHeader
 	ld c, $1
 	xor a
-	ld [wd0e4], a
+	ld [wMenuScrollPosition], a
 	ld [wKurtApricornQuantity], a
 .loop
 	push bc
@@ -65,7 +65,7 @@ Kurt_SelectApricorn: ; 88055
 	ld [wMenuCursorBuffer], a
 	xor a
 	ld [hBGMapMode], a
-	call Function352f
+	call InitScrollingMenu
 	call UpdateSprites
 	call HandleScrollingMenu
 	ld a, [wcf73]
@@ -139,7 +139,7 @@ Kurt_SelectQuantity: ; 880c2
 	call UpdateSprites
 	call .PlaceApricornName
 	call PlaceApricornQuantity
-	call Function321c
+	call ApplyTilemap
 	callba Function27a28
 	jr nc, .loop
 

@@ -37,7 +37,7 @@ UnknownScript_0x19b0de:
 	special RestartMapMusic
 	loadfont
 	writetext UnknownText_0x19b296
-	special Functionc472
+	special PlayCurMonCry
 	keeptextopen
 	writetext UnknownText_0x19b2aa
 	closetext
@@ -158,4 +158,4 @@ BluesHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_DAISY, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, 0, 0, DaisyScript_0x19b0d0, -1
+	person_event SPRITE_DAISY, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, DaisyScript_0x19b0d0, -1
