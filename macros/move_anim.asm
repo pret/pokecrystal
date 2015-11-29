@@ -1,6 +1,6 @@
 anim_wait: macro
 if \1 >= $d0
-	flip out
+warn "Values above $d0 are reserved for commands (gave \1)"
 endc
 	db \1
 	endm

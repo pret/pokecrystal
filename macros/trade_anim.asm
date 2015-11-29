@@ -3,12 +3,24 @@
 	short_command tradeanim_show_givemon_data
 	short_command tradeanim_show_getmon_data
 	short_command tradeanim_enter_link_tube
-__enum__ set $5
+	short_command tradeanim_04 ; unused
 	short_command tradeanim_exit_link_tube
 	short_command tradeanim_tube_to_ot
-__enum__ set $e
+	short_command tradeanim_tube_to_ot_2 ; unused
+	short_command tradeanim_tube_to_ot_3 ; unused
+	short_command tradeanim_tube_to_ot_4 ; unused
+	short_command tradeanim_tube_to_ot_5 ; unused
+	short_command tradeanim_tube_to_ot_6 ; unused
+	short_command tradeanim_tube_to_ot_7 ; unused
+	short_command tradeanim_tube_to_ot_8 ; unused
 	short_command tradeanim_tube_to_player
-__enum__ set $16
+	short_command tradeanim_tube_to_player_2 ; unused
+	short_command tradeanim_tube_to_player_3 ; unused
+	short_command tradeanim_tube_to_player_4 ; unused
+	short_command tradeanim_tube_to_player_5 ; unused
+	short_command tradeanim_tube_to_player_6 ; unused
+	short_command tradeanim_tube_to_player_7 ; unused
+	short_command tradeanim_tube_to_player_8 ; unused
 	short_command tradeanim_sent_to_ot_text
 	short_command tradeanim_ot_bids_farewell
 	short_command tradeanim_take_care_of_text
@@ -19,13 +31,13 @@ __enum__ set $16
 	short_command tradeanim_1d
 	short_command tradeanim_1e
 	short_command tradeanim_scroll_out_right
-__enum__ set $21
+	short_command tradeanim_scroll_out_right_2 ; unused
 	short_command tradeanim_wait_80
 	short_command tradeanim_wait_40
 	short_command tradeanim_rocking_ball
 	short_command tradeanim_drop_ball
 	short_command tradeanim_wait_anim
-__enum__ set $27
+	short_command tradeanim_wait_anim_2 ; unused
 	short_command tradeanim_poof
 	short_command tradeanim_bulge_through_tube
 	short_command tradeanim_give_trademon_sfx

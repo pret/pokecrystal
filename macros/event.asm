@@ -174,7 +174,7 @@ ENDM
 	command giveitem
 	command_macro
 	db \1 ; item
-if _NARG == 2
+if _NARG >= 2
 	db \2 ; quantity
 else
 	db 1
@@ -184,7 +184,7 @@ endc
 	command takeitem
 	command_macro
 	db \1 ; item
-if _NARG == 2
+if _NARG >= 2
 	db \2 ; quantity
 else
 	db 1
@@ -837,7 +837,7 @@ checknite EQUS "checktime 1 << NITE"
 	command verbosegiveitem
 	command_macro
 	db \1 ; item
-if _NARG == 2
+if _NARG >= 2
 	db \2 ; quantity
 else
 	db 1
