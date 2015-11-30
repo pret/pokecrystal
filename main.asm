@@ -21944,13 +21944,13 @@ Functione0000: ; e0000
 	call GetSRAMBank
 	ld hl, sScratch
 	ld bc, 0
-.asm_e000b
+.loop
 	push bc
 	push hl
 	push bc
 	ld de, wd002
-	call Functione004e
-	call Functione0057
+	call .Copy
+	call .Decompress
 	ld hl, Unknown_e008b
 	pop bc
 rept 2
@@ -21960,7 +21960,7 @@ endr
 	ld e, a
 	ld d, [hl]
 	ld hl, wd012
-	call Functione004e
+	call .Copy
 	pop hl
 	ld bc, $10
 	add hl, bc
@@ -21968,10 +21968,11 @@ endr
 	inc c
 	ld a, c
 	cp $31
-	jr c, .asm_e000b
+	jr c, .loop
+
 	ld hl, OverworldMap
 	ld de, sScratch
-	ld bc, $310
+	ld bc, $31 tiles
 	call CopyBytes
 	pop hl
 	ld de, sScratch
@@ -21983,69 +21984,76 @@ endr
 	ret
 ; e004e
 
-Functione004e: ; e004e
+.Copy: ; e004e
 	ld c, $10
-.asm_e0050
+.loop_copy
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_e0050
+	jr nz, .loop_copy
 	ret
 ; e0057
 
-Functione0057: ; e0057
+.Decompress: ; e0057
 	ld hl, wd012
 	ld e, $80
-	ld d, $8
-.asm_e005e
+	ld d, 8
+.loop_decompress
 	push hl
 	ld hl, wd002
-	call Functione0078
+	call .CountSetBit
 	pop hl
 	ld a, b
 	ld [hli], a
 	push hl
 	ld hl, wd003
-	call Functione0078
+	call .CountSetBit
 	pop hl
 	ld a, b
 	ld [hli], a
 	srl e
 	dec d
-	jr nz, .asm_e005e
+	jr nz, .loop_decompress
 	ret
 ; e0078
 
-Functione0078: ; e0078
-	ld b, $0
-	ld c, $8
-.asm_e007c
+.CountSetBit: ; e0078
+	ld b, 0
+	ld c, 8
+.loop_count
 	ld a, [hli]
 	and e
-	jr z, .asm_e0083
+	jr z, .clear
 	scf
-	jr .asm_e0084
+	jr .apply
 
-.asm_e0083
+.clear
 	and a
 
-.asm_e0084
+.apply
 	rr b
 	inc hl
 	dec c
-	jr nz, .asm_e007c
+	jr nz, .loop_count
 	ret
 ; e008b
 
+overworldmaptile EQUS "dw OverworldMap + $10 *"
+overworldmaprect: MACRO
+y = 0
+rept \1
+x = \1 * (\2 +- 1) + y
+rept \2
+	overworldmaptile x
+x = x +- \2
+endr
+y = y + 1
+endr
+endm
+
 Unknown_e008b: ; e008b
-	dw wcaa0, wca30, wc9c0, wc950, wc8e0, wc870, wc800
-	dw wcab0, wca40, wc9d0, wc960, wc8f0, wc880, wc810
-	dw wcac0, wca50, wc9e0, wc970, wc900, wc890, wc820
-	dw wcad0, wca60, wc9f0, wc980, wc910, wc8a0, wc830
-	dw wcae0, wca70, wca00, wc990, wc920, wc8b0, wc840
-	dw wcaf0, wca80, wca10, wc9a0, wc930, wc8c0, wc850
-	dw wcb00, wca90, wca20, wc9b0, wc940, wc8d0, wc860
+	overworldmaprect 7, 7
 ; e00ed
 
 Unknown_e00ed:
@@ -22073,127 +22081,7 @@ SECTION "bank3E", ROMX, BANK[$3E]
 
 INCLUDE "gfx/font.asm"
 INCLUDE "engine/time_capsule/conversion.asm"
-
-UpdateUnownDex: ; fba18
-	ld a, [UnownLetter]
-	ld c, a
-	ld b, 26
-	ld hl, UnownDex
-.loop
-	ld a, [hli]
-	and a
-	jr z, .done
-	cp c
-	ret z
-	dec b
-	jr nz, .loop
-	ret
-
-.done
-	dec hl
-	ld [hl], c
-	ret
-; fba2e
-
-
-PrintUnownWord: ; fba2e (3e:7a2e)
-	hlcoord 4, 15
-	ld bc, 12
-	ld a, " "
-	call ByteFill
-	ld a, [wc7dd]
-	ld e, a
-	ld d, 0
-	ld hl, UnownDex
-	add hl, de
-	ld a, [hl]
-	ld e, a
-	ld d, 0
-	ld hl, UnownWords
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld e, a
-	ld d, [hl]
-	hlcoord 4, 15
-.loop
-	ld a, [de]
-	cp -1
-	ret z
-	inc de
-	ld [hli], a
-	jr .loop
-; fba5a (3e:7a5a)
-
-UnownWords: ; fba5a
-	dw UnownWord1
-	dw UnownWord1
-	dw UnownWord2
-	dw UnownWord3
-	dw UnownWord4
-	dw UnownWord5
-	dw UnownWord6
-	dw UnownWord7
-	dw UnownWord8
-	dw UnownWord9
-	dw UnownWord10
-	dw UnownWord11
-	dw UnownWord12
-	dw UnownWord13
-	dw UnownWord14
-	dw UnownWord15
-	dw UnownWord16
-	dw UnownWord17
-	dw UnownWord18
-	dw UnownWord19
-	dw UnownWord20
-	dw UnownWord21
-	dw UnownWord22
-	dw UnownWord23
-	dw UnownWord24
-	dw UnownWord25
-	dw UnownWord26
-; fba90
-
-unownword: macro
-x = 1
-	rept STRLEN(\1)
-	db STRSUB(\1, x, 1) - $40
-x = x + 1
-	endr
-	db -1
-endm
-
-
-UnownWord1:	 unownword "ANGRY"
-UnownWord2:	 unownword "BEAR"
-UnownWord3:	 unownword "CHASE"
-UnownWord4:	 unownword "DIRECT"
-UnownWord5:	 unownword "ENGAGE"
-UnownWord6:	 unownword "FIND"
-UnownWord7:	 unownword "GIVE"
-UnownWord8:	 unownword "HELP"
-UnownWord9:	 unownword "INCREASE"
-UnownWord10: unownword "JOIN"
-UnownWord11: unownword "KEEP"
-UnownWord12: unownword "LAUGH"
-UnownWord13: unownword "MAKE"
-UnownWord14: unownword "NUZZLE"
-UnownWord15: unownword "OBSERVE"
-UnownWord16: unownword "PERFORM"
-UnownWord17: unownword "QUICKEN"
-UnownWord18: unownword "REASSURE"
-UnownWord19: unownword "SEARCH"
-UnownWord20: unownword "TELL"
-UnownWord21: unownword "UNDO"
-UnownWord22: unownword "VANISH"
-UnownWord23: unownword "WANT"
-UnownWord24: unownword "XXXXX"
-UnownWord25: unownword "YIELD"
-UnownWord26: unownword "ZOOM"
-; fbb32
-
+INCLUDE "engine/unowndex.asm"
 INCLUDE "event/magikarp.asm"
 
 INCLUDE "battle/hidden_power.asm"
@@ -22213,608 +22101,7 @@ INCLUDE "misc/mobile_40.asm"
 
 SECTION "bank41", ROMX, BANK[$41]
 
-Function104000:: ; 104000
-	ld hl, Function104006
-	jp Function104177
-; 104006
-
-Function104006: ; 104006
-	decoord 0, 0, AttrMap
-	ld hl, wBackupAttrMap
-	call Function104263
-	decoord 0, 0
-	ld hl, wBackupTilemap
-	call Function10425f
-	ld a, $0
-	ld [rVBK], a
-	ld hl, wBackupTilemap
-	call Function10419d
-	ld a, $1
-	ld [rVBK], a
-	ld hl, wBackupAttrMap
-	call Function10419d
-	ret
-; 10402d
-
-Function10402d:: ; 10402d
-	ld hl, Function104033
-	jp Function104177
-; 104033
-
-Function104033: ; 104033
-	decoord 0, 0
-	ld hl, wBackupTilemap
-	call Function10425f
-	ld a, $0
-	ld [rVBK], a
-	ld hl, wBackupTilemap
-	call Function10419d
-	ret
-; 104047
-
-Function104047: ; 104047
-	ld hl, Function10404d
-	jp Function104177
-; 10404d
-
-Function10404d: ; 10404d
-	decoord 0, 0, AttrMap
-	ld hl, wBackupAttrMap
-	call Function104263
-	ld a, $1
-	ld [rVBK], a
-	ld hl, wBackupAttrMap
-	call Function10419d
-	ret
-; 104061
-
-ReloadMapPart:: ; 104061
-	ld hl, Function104067
-	jp Function104177
-; 104067
-
-Function104067: ; 104067
-	decoord 0, 0, AttrMap
-	ld hl, wBackupAttrMap
-	call Function104263
-	decoord 0, 0
-	ld hl, wBackupTilemap
-	call Function10425f
-	call DelayFrame
-	di
-	ld a, [rVBK]
-	push af
-	ld a, $1
-	ld [rVBK], a
-	ld hl, wBackupAttrMap
-	call Function1041ad
-	ld a, $0
-	ld [rVBK], a
-	ld hl, wBackupTilemap
-	call Function1041ad
-	pop af
-	ld [rVBK], a
-	ei
-	ret
-
-Function104099: ; 104099
-	ld hl, ReloadMapPart ; useless
-	ld hl, Function1040a2
-	jp Function104177
-; 1040a2
-
-Function1040a2: ; 1040a2
-	decoord 0, 0, AttrMap
-	ld hl, wBackupAttrMap
-	call Function104263
-	decoord 0, 0
-	ld hl, wBackupTilemap
-	call Function10425f
-	call DelayFrame
-	di
-	ld a, [rVBK]
-	push af
-	ld a, $1
-	ld [rVBK], a
-	ld hl, wBackupAttrMap
-	call Function1041c1
-	ld a, $0
-	ld [rVBK], a
-	ld hl, wBackupTilemap
-	call Function1041c1
-	pop af
-	ld [rVBK], a
-	ei
-	ret
-; 1040d4
-
-Function1040d4: ; 1040d4
-	ld hl, Function1040da
-	jp Function104177
-; 1040da
-
-Function1040da: ; 1040da
-	ld a, $1
-	ld [rVBK], a
-	ld a, $3
-	ld [rSVBK], a
-	ld de, w3_d800
-	ld a, [hBGMapAddress + 1]
-	ld [rHDMA1], a
-	ld a, [hBGMapAddress]
-	ld [rHDMA2], a
-	ld a, d
-	ld [rHDMA3], a
-	ld a, e
-	ld [rHDMA4], a
-	ld a, $23
-	ld [hDMATransfer], a
-	call Function1041a4
-	ret
-; 1040fb
-
-Function1040fb: ; 1040fb
-	ld hl, Function104101
-	jp Function104177
-; 104101
-
-Function104101: ; 104101
-	ld a, $1
-	ld [rVBK], a
-	ld a, $3
-	ld [rSVBK], a
-	ld hl, w3_d800
-	call Function10419d
-	ret
-; 104110
-
-Function104110:: ; 104110
-	ld hl, Function104116
-	jp Function104177
-; 104116
-
-Function104116: ; 104116
-	decoord 0, 0, AttrMap
-	ld hl, wBackupAttrMap
-	call Function104263
-	decoord 0, 0
-	ld hl, wBackupTilemap
-	call Function10425f
-	call DelayFrame
-	di
-	ld a, [rVBK]
-	push af
-	ld a, $1
-	ld [rVBK], a
-	ld hl, wBackupAttrMap
-	call Function1041b7
-	ld a, $0
-	ld [rVBK], a
-	ld hl, wBackupTilemap
-	call Function1041b7
-	pop af
-	ld [rVBK], a
-	ei
-	ret
-; 104148
-
-Function104148: ; 104148 (41:4148)
-	ld hl, Function10414e
-	jp Function104177
-; 10414e (41:414e)
-
-Function10414e: ; 10414e
-	decoord 0, 0, AttrMap
-	ld hl, wBackupAttrMap
-	call Function104263
-	ld c, $ff
-	decoord 0, 0
-	ld hl, wBackupTilemap
-	call Function104265
-	ld a, $1
-	ld [rVBK], a
-	ld hl, wBackupAttrMap
-	call Function1041ad
-	ld a, $0
-	ld [rVBK], a
-	ld hl, wBackupTilemap
-	call Function1041ad
-	ret
-; 104177
-
-Function104177: ; 104177
-	ld a, [hBGMapMode]
-	push af
-	ld a, [hMapAnims]
-	push af
-	xor a
-	ld [hBGMapMode], a
-	ld [hMapAnims], a
-	ld a, [rSVBK]
-	push af
-	ld a, 6
-	ld [rSVBK], a
-	ld a, [rVBK]
-	push af
-	call ._hl_
-	pop af
-	ld [rVBK], a
-	pop af
-	ld [rSVBK], a
-	pop af
-	ld [hMapAnims], a
-	pop af
-	ld [hBGMapMode], a
-	ret
-; 10419c
-
-._hl_: ; 10419c
-	jp [hl]
-; 10419d
-
-
-Function10419d: ; 10419d (41:419d)
-	call Function10424e
-	ld a, $23
-	ld [hDMATransfer], a
-
-Function1041a4: ; 104a14
-.asm_1041a4
-	call DelayFrame
-	ld a, [hDMATransfer]
-	and a
-	jr nz, .asm_1041a4
-	ret
-
-Function1041ad: ; 1041ad (41:41ad)
-	ld a, [hBGMapAddress + 1]
-	ld d, a
-	ld a, [hBGMapAddress]
-	ld e, a
-	ld c, $24
-	jr Function104209
-
-Function1041b7: ; 1041b7 (41:41b7)
-	ld a, [hBGMapAddress + 1]
-	ld d, a
-	ld a, [hBGMapAddress]
-	ld e, a
-	ld c, $24
-	jr asm_104205
-; 1041c1 (41:41c1)
-
-Function1041c1: ; 1041c1
-	ld a, [hBGMapAddress + 1]
-	ld d, a
-	ld a, [hBGMapAddress]
-	ld e, a
-	ld c, $24
-	ld a, h
-	ld [rHDMA1], a
-	ld a, l
-	and $f0
-	ld [rHDMA2], a
-	ld a, d
-	and $1f
-	ld [rHDMA3], a
-	ld a, e
-	and $f0
-	ld [rHDMA4], a
-	ld a, c
-	dec c
-	or $80
-	ld b, a
-	ld a, $7f
-	sub c
-	ld d, a
-.loop1
-	ld a, [rLY]
-	cp d
-	jr nc, .loop1
-.loop2
-	ld a, [rSTAT]
-	and $3
-	jr z, .loop2
-	ld a, b
-	ld [rHDMA5], a
-	ld a, [rLY]
-	inc c
-	ld hl, rLY
-.loop3
-	cp [hl]
-	jr z, .loop3
-	ld a, [hl]
-	dec c
-	jr nz, .loop3
-	ld hl, rHDMA5
-	res 7, [hl]
-	ret
-; 104205
-
-asm_104205:
-	ld b, $7b
-	jr asm_10420b
-
-
-Function104209:
-; LY magic
-	ld b, $7f
-asm_10420b:
-	ld a, h
-	ld [rHDMA1], a
-	ld a, l
-	and $f0 ; high nybble
-	ld [rHDMA2], a
-	ld a, d
-	and $1f ; lower 5 bits
-	ld [rHDMA3], a
-	ld a, e
-	and $f0 ; high nybble
-	ld [rHDMA4], a
-	ld a, c
-	dec c
-	or $80 ; set 7, a
-	ld e, a
-	ld a, b
-	sub c
-	ld d, a
-.ly_loop
-	ld a, [rLY]
-	cp d
-	jr nc, .ly_loop
-
-	di
-.rstat_loop_1
-	ld a, [rSTAT]
-	and $3
-	jr nz, .rstat_loop_1
-.rstat_loop_2
-	ld a, [rSTAT]
-	and $3
-	jr z, .rstat_loop_2
-	ld a, e
-	ld [rHDMA5], a
-	ld a, [rLY]
-	inc c
-	ld hl, rLY
-.final_ly_loop
-	cp [hl]
-	jr z, .final_ly_loop
-	ld a, [hl]
-	dec c
-	jr nz, .final_ly_loop
-	ld hl, rHDMA5
-	res 7, [hl]
-	ei
-
-	ret
-; 10424e
-
-
-Function10424e: ; 10424e (41:424e)
-	ld a, h
-	ld [rHDMA1], a
-	ld a, l
-	ld [rHDMA2], a
-	ld a, [hBGMapAddress + 1]
-	and $1f
-	ld [rHDMA3], a
-	ld a, [hBGMapAddress]
-	ld [rHDMA4], a
-	ret
-
-Function10425f: ; 10425f (41:425f)
-	ld c, " "
-	jr Function104265
-
-Function104263: ; 104263 (41:4263)
-	ld c, $0
-
-Function104265: ; 104265 (41:4265)
-; back up the value of c to hMapObjectIndexBuffer
-	ld a, [hMapObjectIndexBuffer]
-	push af
-	ld a, c
-	ld [hMapObjectIndexBuffer], a
-
-; for each row on the screen
-	ld c, SCREEN_HEIGHT
-.loop1
-; for each tile in the row
-	ld b, SCREEN_WIDTH
-.loop2
-; copy from de to hl
-	ld a, [de]
-	inc de
-	ld [hli], a
-	dec b
-	jr nz, .loop2
-
-; load the original value of c into hl 12 times
-	ld a, [hMapObjectIndexBuffer]
-	ld b, 12
-.loop3
-	ld [hli], a
-	dec b
-	jr nz, .loop3
-
-	dec c
-	jr nz, .loop1
-
-; restore the original value of hMapObjectIndexBuffer
-	pop af
-	ld [hMapObjectIndexBuffer], a
-	ret
-
-
-_Get2bpp:: ; 104284
-	; 2bpp when [rLCDC] & $80
-	; switch to WRAM bank 6
-	ld a, [rSVBK]
-	push af
-	ld a, $6
-	ld [rSVBK], a
-
-	push bc
-	push hl
-
-	; Copy c tiles of the 2bpp from b:de to wBackupTilemap
-	ld a, b ; bank
-	ld l, c ; number of tiles
-	ld h, $0
-rept 4
-	add hl, hl ; multiply by 16 (16 bytes of a 2bpp = 8 x 8 tile)
-endr
-	ld b, h
-	ld c, l
-	ld h, d ; address
-	ld l, e
-	ld de, wBackupTilemap
-	call FarCopyBytes
-	
-	pop hl
-	pop bc
-
-	push bc
-	call DelayFrame
-	pop bc
-
-	ld d, h
-	ld e, l
-	ld hl, wBackupTilemap
-	call Function104209
-
-	; restore the previous bank
-	pop af
-	ld [rSVBK], a
-	ret
-; 1042b2
-
-_Get1bpp:: ; 1042b2
-	; 1bpp when [rLCDC] & $80
-.loop
-	ld a, c
-	cp $10
-	jp c, .bankswitch
-	jp z, .bankswitch
-	push bc
-	push hl
-	push de
-	ld c, $10
-	call .bankswitch
-	pop de
-	ld hl, $80
-	add hl, de
-	ld d, h
-	ld e, l
-	pop hl
-	lb bc, 1, 0
-	add hl, bc
-	pop bc
-	ld a, c
-	sub $10
-	ld c, a
-	jr .loop
-; 1042d6
-
-.bankswitch: ; 1042d6
-	ld a, [rSVBK]
-	push af
-	ld a, $6
-	ld [rSVBK], a
-
-	push bc
-	push hl
-
-	ld a, b
-	ld l, c
-	ld h, $0
-rept 3
-	add hl, hl ; multiply by 8
-endr
-	ld c, l
-	ld b, h
-	ld h, d
-	ld l, e
-	ld de, wBackupTilemap
-	call FarCopyBytesDouble_DoubleBankSwitch
-
-	pop hl
-	pop bc
-
-	push bc
-	call DelayFrame
-	pop bc
-
-	ld d, h
-	ld e, l
-	ld hl, wBackupTilemap
-	call Function104209
-
-	pop af
-	ld [rSVBK], a
-	ret
-; 104303
-
-Function104303: ; 104303
-	ld hl, Function104309
-	jp Function104177
-; 104309
-
-Function104309:
-	ld hl, wBackupTilemap
-	decoord 0, 0
-	call Function10433a
-	ld hl, wBackupTilemap + $80
-	decoord 0, 0, AttrMap
-	call Function10433a
-	ld a, $1
-	ld [rVBK], a
-	ld c, $8
-	ld hl, wBackupTilemap + $80
-	debgcoord 0, 0, VBGMap1
-	call Function104209
-	ld a, $0
-	ld [rVBK], a
-	ld c, $8
-	ld hl, wBackupTilemap
-	debgcoord 0, 0, VBGMap1
-	call Function104209
-	ret
-
-Function10433a: ; 10433a (41:433a)
-	ld b, 4
-.outer_loop
-	ld c, SCREEN_WIDTH
-.inner_loop
-	ld a, [de]
-	ld [hli], a
-	inc de
-	dec c
-	jr nz, .inner_loop
-	ld a, l
-	add $20 - SCREEN_WIDTH
-	ld l, a
-	ld a, h
-	adc $0
-	ld h, a
-	dec b
-	jr nz, .outer_loop
-	ret
-; 104350
-
-ShockEmote:     INCBIN "gfx/emotes/shock.2bpp"
-QuestionEmote:  INCBIN "gfx/emotes/question.2bpp"
-HappyEmote:     INCBIN "gfx/emotes/happy.2bpp"
-SadEmote:       INCBIN "gfx/emotes/sad.2bpp"
-HeartEmote:     INCBIN "gfx/emotes/heart.2bpp"
-BoltEmote:      INCBIN "gfx/emotes/bolt.2bpp"
-SleepEmote:     INCBIN "gfx/emotes/sleep.2bpp"
-FishEmote:      INCBIN "gfx/emotes/fish.2bpp"
-JumpShadowGFX:  INCBIN "gfx/misc/shadow.2bpp"
-FishingRodGFX2: INCBIN "gfx/misc/fishing2.2bpp"
-BoulderDustGFX: INCBIN "gfx/misc/boulderdust.2bpp"
-FishingRodGFX4: INCBIN "gfx/misc/fishing4.2bpp"
+INCLUDE "misc/gfx_41.asm"
 
 INCLUDE "engine/warp_connection.asm"
 
@@ -22941,362 +22228,7 @@ UnownFont: ; 1dc000
 INCBIN "gfx/misc/unown_font.2bpp"
 ; 1dc1b0
 
-PrintPage1: ; 1dc1b0
-	hlcoord 0, 0
-	ld de, wca90
-	ld bc, 17 * SCREEN_WIDTH
-	call CopyBytes
-	ld hl, wcab5
-	ld a, $62
-	ld [hli], a
-	inc a
-	ld [hl], a
-	ld hl, wcac9
-	ld a, $64
-	ld [hli], a
-	inc a
-	ld [hl], a
-	ld hl, wcb45
-	ld a, " "
-	ld [hli], a
-	ld [hl], a
-	ld hl, wcb59
-	ld a, $61
-	ld [hli], a
-	ld [hl], a
-	ld hl, wcb6e
-	lb bc, 5, 18
-	call ClearBox
-	ld a, [wd265]
-	dec a
-	call CheckCaughtMon
-	push af
-	ld a, [wd265]
-	ld b, a
-	ld c, 1 ; get page 1
-	callba GetDexEntryPagePointer
-	pop af
-	ld a, b
-	ld hl, wcb6d
-	call nz, FarString
-	ld hl, wcaa3
-	ld [hl], $35
-	ld de, SCREEN_WIDTH
-	add hl, de
-	ld b, $f
-.column_loop
-	ld [hl], $37
-	add hl, de
-	dec b
-	jr nz, .column_loop
-	ld [hl], $3a
-	ret
-; 1dc213
-
-PrintPage2: ; 1dc213
-	ld hl, wca90
-	ld bc, $a0
-	ld a, " "
-	call ByteFill
-	ld hl, wca90
-	ld a, $36
-	ld b, $6
-	call .FillColumn
-	ld hl, wcaa3
-	ld a, $37
-	ld b, $6
-	call .FillColumn
-	ld hl, wcb08
-	ld [hl], $38
-	inc hl
-	ld a, $39
-	ld bc, SCREEN_HEIGHT
-	call ByteFill
-	ld [hl], $3a
-	ld hl, wcb1c
-	ld bc, SCREEN_WIDTH
-	ld a, $32
-	call ByteFill
-	ld a, [wd265]
-	dec a
-	call CheckCaughtMon
-	push af
-	ld a, [wd265]
-	ld b, a
-	ld c, 2 ; get page 2
-	callba GetDexEntryPagePointer
-	pop af
-	ld hl, wcaa5
-	ld a, b
-	call nz, FarString
-	ret
-; 1dc26a
-
-.FillColumn: ; 1dc26a
-	push de
-	ld de, SCREEN_WIDTH
-.column_loop
-	ld [hl], a
-	add hl, de
-	dec b
-	jr nz, .column_loop
-	pop de
-	ret
-; 1dc275
-
-GBPrinterStrings:
-String_1dc275: db "@"
-String_1dc276: next " CHECKING LINK...@"
-String_1dc289: next "  TRANSMITTING...@"
-String_1dc29c: next "    PRINTING...@"
-String_1dc2ad:
-	db   " Printer Error 1"
-	next ""
-	next "Check the Game Boy"
-	next "Printer Manual."
-	db   "@"
-String_1dc2e2:
-	db   " Printer Error 2"
-	next ""
-	next "Check the Game Boy"
-	next "Printer Manual."
-	db   "@"
-String_1dc317:
-	db   " Printer Error 3"
-	next ""
-	next "Check the Game Boy"
-	next "Printer Manual."
-	db   "@"
-String_1dc34c:
-	db   " Printer Error 4"
-	next ""
-	next "Check the Game Boy"
-	next "Printer Manual."
-	db   "@"
-; 1dc381
-
-Function1dc381: ; 1dc381
-	call ClearBGPalettes
-	call ClearTileMap
-	call ClearSprites
-	xor a
-	ld [hBGMapMode], a
-	call LoadFontsBattleExtra
-
-	ld de, MobileHPIcon
-	ld hl, VTiles2 tile $71
-	lb bc, BANK(MobileHPIcon), 1
-	call Request1bpp
-
-	ld de, MobileLvIcon
-	ld hl, VTiles2 tile $6e
-	lb bc, BANK(MobileLvIcon), 1
-	call Request1bpp
-
-	ld de, ShinyIcon
-	ld hl, VTiles2 tile $3f
-	lb bc, BANK(ShinyIcon), 1
-	call Get2bpp
-
-	xor a
-	ld [MonType], a
-	callba CopyPkmnToTempMon
-	hlcoord 0, 7
-	ld b, 9
-	ld c, 18
-	call TextBox
-	hlcoord 8, 2
-	ld a, [TempMonLevel]
-	call Function383d
-	hlcoord 12, 2
-	ld [hl], "◀" ; Filled left triangle
-	inc hl
-	ld de, TempMonMaxHP
-	lb bc, 2, 3
-	call PrintNum
-	ld a, [CurPartySpecies]
-	ld [wd265], a
-	ld [CurSpecies], a
-	ld hl, PartyMonNicknames
-	call Function1dc50e
-	hlcoord 8, 4
-	call PlaceString
-	hlcoord 9, 6
-	ld [hl], "/"
-	call GetPokemonName
-	hlcoord 10, 6
-	call PlaceString
-	hlcoord 8, 0
-	ld [hl], "№"
-	inc hl
-	ld [hl], "."
-	inc hl
-	ld de, wd265
-	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
-	call PrintNum
-	hlcoord 1, 9
-	ld de, String1dc550
-	call PlaceString
-	ld hl, PartyMonOT
-	call Function1dc50e
-	hlcoord 4, 9
-	call PlaceString
-	hlcoord 1, 11
-	ld de, String1dc559
-	call PlaceString
-	hlcoord 4, 11
-	ld de, TempMonID
-	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
-	call PrintNum
-	hlcoord 1, 14
-	ld de, String1dc554
-	call PlaceString
-	hlcoord 7, 14
-	ld a, [TempMonMoves + 0]
-	call Function1dc51a
-	call Function1dc52c
-	ld hl, TempMonDVs
-	predef GetUnownLetter
-	ld hl, wc2c6
-	xor a
-	ld [hl], a
-	ld a, [CurPartySpecies]
-	cp UNOWN
-	jr z, .asm_1dc469
-	inc [hl]
-
-.asm_1dc469
-	hlcoord 0, 0
-	call _PrepMonFrontpic
-	call WaitBGMap
-	ld b, SCGB_03
-	call GetSGBLayout
-	call SetPalettes
-	ret
-; 1dc47b
-
-Function1dc47b: ; 1dc47b
-	call ClearBGPalettes
-	call ClearTileMap
-	call ClearSprites
-	xor a
-	ld [hBGMapMode], a
-	call LoadFontsBattleExtra
-	xor a
-	ld [MonType], a
-	callba CopyPkmnToTempMon
-	hlcoord 0, 0
-	ld b, 15
-	ld c, 18
-	call TextBox
-	ld bc, SCREEN_WIDTH
-	decoord 0, 0
-	hlcoord 0, 1
-	call CopyBytes
-	hlcoord 7, 0
-	ld a, [TempMonMoves + 1]
-	call Function1dc51a
-	hlcoord 7, 2
-	ld a, [TempMonMoves + 2]
-	call Function1dc51a
-	hlcoord 7, 4
-	ld a, [TempMonMoves + 3]
-	call Function1dc51a
-	hlcoord 7, 7
-	ld de, String1dc55d
-	call PlaceString
-	hlcoord 16, 7
-	ld de, TempMonAttack
-	call .PrintTempMonStats
-	hlcoord 16, 9
-	ld de, TempMonDefense
-	call .PrintTempMonStats
-	hlcoord 16, 11
-	ld de, TempMonSpclAtk
-	call .PrintTempMonStats
-	hlcoord 16, 13
-	ld de, TempMonSpclDef
-	call .PrintTempMonStats
-	hlcoord 16, 15
-	ld de, TempMonSpeed
-	call .PrintTempMonStats
-	call WaitBGMap
-	ld b, SCGB_03
-	call GetSGBLayout
-	call SetPalettes
-	ret
-; 1dc507
-
-.PrintTempMonStats: ; 1dc507
-	lb bc, 2, 3
-	call PrintNum
-	ret
-; 1dc50e
-
-Function1dc50e: ; 1dc50e
-	ld bc, NAME_LENGTH
-	ld a, [CurPartyMon]
-	call AddNTimes
-	ld e, l
-	ld d, h
-	ret
-; 1dc51a
-
-Function1dc51a: ; 1dc51a
-	and a
-	jr z, .no_move
-
-	ld [wd265], a
-	call GetMoveName
-	jr .got_string
-
-.no_move
-	ld de, String1dc584
-
-.got_string
-	call PlaceString
-	ret
-; 1dc52c
-
-Function1dc52c: ; 1dc52c
-	callba GetGender
-	ld a, " "
-	jr c, .got_gender
-	ld a, "♂"
-	jr nz, .got_gender
-	ld a, "♀"
-
-.got_gender
-	hlcoord 17, 2
-	ld [hl], a
-	ld bc, TempMonDVs
-	callba CheckShininess
-	ret nc
-	hlcoord 18, 2
-	ld [hl], "<SHINY>"
-	ret
-; 1dc550
-
-String1dc550: ; 1dc550
-	db "OT/@"
-
-String1dc554: ; 1dc554
-	db "MOVE@"
-
-String1dc559: ; 1dc559
-	db "<ID>№.@"
-
-String1dc55d: ; 1dc55d
-	db   "ATTACK"
-	next "DEFENSE"
-	next "SPCL.ATK"
-	next "SPCL.DEF"
-	next "SPEED"
-	db   "@"
-
-String1dc584: ; 1dc584
-	db "------------@"
-; 1dc591
+INCLUDE "misc/printer_77.asm"
 
 MobileHPIcon: ; 1dc591
 INCBIN "gfx/mobile/hp.1bpp"
