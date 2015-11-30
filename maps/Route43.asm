@@ -65,7 +65,7 @@ PokemaniacBrent1Script:
 	checkevent EVENT_BRENT_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19d0b8
 	writetext UnknownText_0x19d359
-	keeptextopen
+	buttonsound
 	setevent EVENT_BRENT_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19d12c
 	jump UnknownScript_0x19d0bb
@@ -196,7 +196,7 @@ PicnickerTiffany3Script:
 	checkevent EVENT_TIFFANY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19d1aa
 	writetext UnknownText_0x19d618
-	keeptextopen
+	buttonsound
 	setevent EVENT_TIFFANY_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19d239
 	jump UnknownScript_0x19d1ad

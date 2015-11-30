@@ -22,7 +22,7 @@ CianwoodPharmacist:
 	checkevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
 	iffalse .Mart
 	writetext PharmacistGiveSecretpotionText
-	keeptextopen
+	buttonsound
 	giveitem SECRETPOTION
 	writetext ReceivedSecretpotionText
 	playsound SFX_KEY_ITEM

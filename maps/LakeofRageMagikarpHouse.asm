@@ -52,7 +52,7 @@ UnknownScript_0x19a6e0:
 
 UnknownScript_0x19a6fe:
 	writetext UnknownText_0x19a977
-	keeptextopen
+	buttonsound
 	verbosegiveitem ELIXER
 	iffalse UnknownScript_0x19a711
 	writetext UnknownText_0x19a9c3

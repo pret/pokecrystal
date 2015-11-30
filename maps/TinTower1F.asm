@@ -200,7 +200,7 @@ SageScript_0x185188:
 	checkevent EVENT_GOT_RAINBOW_WING
 	iftrue UnknownScript_0x1851b0
 	writetext UnknownText_0x185629
-	keeptextopen
+	buttonsound
 	verbosegiveitem RAINBOW_WING
 	closetext
 	refreshscreen $0

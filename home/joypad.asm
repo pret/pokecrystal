@@ -392,7 +392,7 @@ SimpleWaitPressAorB:: ; aa5
 	ret
 ; aaf
 
-KeepTextOpen:: ; aaf
+ButtonSound:: ; aaf
 	ld a, [wLinkMode]
 	and a
 	jr nz, .link

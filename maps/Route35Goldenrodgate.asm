@@ -23,7 +23,7 @@ OfficerScript_0x69d37:
 	yesorno
 	iffalse .refused
 	writetext UnknownText_0x69e48
-	keeptextopen
+	buttonsound
 	waitsfx
 	checkcode VAR_PARTYCOUNT
 	if_equal PARTY_LENGTH, .partyfull
@@ -53,7 +53,7 @@ OfficerScript_0x69d37:
 
 .questcomplete:
 	writetext UnknownText_0x69f8b
-	keeptextopen
+	buttonsound
 	verbosegiveitem HP_UP
 	iffalse .bagfull
 	setevent EVENT_GOT_HP_UP_FROM_RANDY

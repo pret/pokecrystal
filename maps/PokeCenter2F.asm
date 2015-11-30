@@ -600,7 +600,7 @@ OfficerScript_0x192c9a:
 	yesorno
 	iffalse .RefusedGift
 	writetext Text_MysteryGiftDeliveryGuy_HereYouGo
-	keeptextopen
+	buttonsound
 	waitsfx
 	special Special_GetMysteryGiftItem
 	iffalse .BagIsFull

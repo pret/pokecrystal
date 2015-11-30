@@ -16,7 +16,7 @@ PharmacistScript_0x18c720:
 	checkevent EVENT_GOT_BLACKGLASSES_IN_DARK_CAVE
 	iftrue UnknownScript_0x18c735
 	writetext UnknownText_0x18c73f
-	keeptextopen
+	buttonsound
 	verbosegiveitem BLACKGLASSES
 	iffalse UnknownScript_0x18c739
 	setevent EVENT_GOT_BLACKGLASSES_IN_DARK_CAVE

@@ -33,7 +33,7 @@ GentlemanScript_0x5cd3d:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x5ceba
-	keeptextopen
+	buttonsound
 	special Special_CheckLuckyNumberShowFlag
 	iffalse .skip
 	special Special_ResetLuckyNumberShowFlag
@@ -42,17 +42,17 @@ GentlemanScript_0x5cd3d:
 	checkflag ENGINE_LUCKY_NUMBER_SHOW
 	iftrue .GameOver
 	writetext UnknownText_0x5cf3a
-	keeptextopen
+	buttonsound
 	closetext
 	applymovement RADIOTOWER1F_GENTLEMAN, MovementData_0x5ce71
 	loadfont
 	writetext UnknownText_0x5cf5a
-	keeptextopen
+	buttonsound
 	waitsfx
 	writetext UnknownText_0x5cf79
 	playsound SFX_DEX_FANFARE_20_49
 	waitsfx
-	keeptextopen
+	buttonsound
 	special Special_CheckForLuckyNumberWinners
 	closetext
 	applymovement RADIOTOWER1F_GENTLEMAN, MovementData_0x5ce74
@@ -72,7 +72,7 @@ GentlemanScript_0x5cd3d:
 	writetext UnknownText_0x5cfb5
 	playsound SFX_1ST_PLACE
 	waitsfx
-	keeptextopen
+	buttonsound
 	giveitem MASTER_BALL
 	iffalse .BagFull
 	itemnotify
@@ -83,7 +83,7 @@ GentlemanScript_0x5cd3d:
 	writetext UnknownText_0x5d023
 	playsound SFX_2ND_PLACE
 	waitsfx
-	keeptextopen
+	buttonsound
 	giveitem EXP_SHARE
 	iffalse .BagFull
 	itemnotify
@@ -94,7 +94,7 @@ GentlemanScript_0x5cd3d:
 	writetext UnknownText_0x5d076
 	playsound SFX_3RD_PLACE
 	waitsfx
-	keeptextopen
+	buttonsound
 	giveitem PP_UP
 	iffalse .BagFull
 	itemnotify
@@ -147,11 +147,11 @@ CooltrainerFScript_0x5cdd5:
 	playsound SFX_ELEVATOR_END
 	waitsfx
 	writetext UnknownText_0x5d37b
-	keeptextopen
+	buttonsound
 	stringtotext RadioCardText, $1
 	scall UnknownScript_0x5ce3e
 	writetext UnknownText_0x5d3c0
-	keeptextopen
+	buttonsound
 	setflag ENGINE_RADIO_CARD
 UnknownScript_0x5ce2d:
 	writetext UnknownText_0x5d3e5

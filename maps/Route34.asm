@@ -106,7 +106,7 @@ CamperTodd1Script:
 	checkevent EVENT_TODD_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x780a6
 	writetext UnknownText_0x784f0
-	keeptextopen
+	buttonsound
 	setevent EVENT_TODD_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x78137
 	jump UnknownScript_0x780a9
@@ -231,7 +231,7 @@ PicnickerGina1Script:
 	checkevent EVENT_GINA_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x78188
 	writetext UnknownText_0x785b8
-	keeptextopen
+	buttonsound
 	setevent EVENT_GINA_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x78228
 	jump UnknownScript_0x7818b
@@ -464,7 +464,7 @@ CooltrainerfKateScript:
 	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
 	iftrue UnknownScript_0x78319
 	writetext UnknownText_0x788e2
-	keeptextopen
+	buttonsound
 	verbosegiveitem SOFT_SAND
 	iffalse UnknownScript_0x7831d
 	setevent EVENT_GOT_SOFT_SAND_FROM_KATE

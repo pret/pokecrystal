@@ -18,17 +18,17 @@ BuenaPhoneScript_CheckTimeOfDay1:
 	checkday
 	iftrue .day
 	writetext UnknownText_0xa0d42
-	keeptextopen
+	buttonsound
 	end
 
 .morn:
 	writetext UnknownText_0xa0c28
-	keeptextopen
+	buttonsound
 	end
 
 .day:
 	writetext UnknownText_0xa0c72
-	keeptextopen
+	buttonsound
 	end
 
 BuenaPhoneScript_AfterMidnight1:
@@ -43,22 +43,22 @@ BuenaPhoneScript_CheckTimeOfDay2:
 	checkday
 	iftrue .day
 	writetext UnknownText_0xa0e29
-	keeptextopen
+	buttonsound
 	end
 
 .morn:
 	writetext UnknownText_0xa0d96
-	keeptextopen
+	buttonsound
 	end
 
 .day:
 	writetext UnknownText_0xa0dcf
-	keeptextopen
+	buttonsound
 	end
 
 BuenaPhoneScript_AfterMidnight2:
 	writetext UnknownText_0xa0e01
-	keeptextopen
+	buttonsound
 	end
 
 BuenaPhoneScript_Rocket:

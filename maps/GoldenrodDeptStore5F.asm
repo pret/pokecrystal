@@ -70,14 +70,14 @@ ReceptionistScript_0x560ce:
 	iftrue .EventIsOver
 	special GetFirstPokemonHappiness
 	writetext UnknownText_0x56143
-	keeptextopen
+	buttonsound
 	if_greater_than $95, .VeryHappy
 	if_greater_than $31, .SomewhatHappy
 	jump .NotVeryHappy
 
 .VeryHappy:
 	writetext UnknownText_0x5615a
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_RETURN
 	iffalse .Done
 	setflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT
@@ -92,7 +92,7 @@ ReceptionistScript_0x560ce:
 
 .NotVeryHappy:
 	writetext UnknownText_0x561d8
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_FRUSTRATION
 	iffalse .Done
 	setflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT

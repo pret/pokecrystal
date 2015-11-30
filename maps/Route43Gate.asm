@@ -52,7 +52,7 @@ UnknownScript_0x19abea:
 	applymovement ROUTE43GATE_ROCKET1, MovementData_0x19aca4
 	loadfont
 	writetext UnknownText_0x19acd2
-	keeptextopen
+	buttonsound
 	checkmoney $0, 999
 	if_equal $0, UnknownScript_0x19ac12
 	jump UnknownScript_0x19ac1d
@@ -68,7 +68,7 @@ UnknownScript_0x19ac1d:
 	jump UnknownScript_0x19ac28
 
 UnknownScript_0x19ac28:
-	keeptextopen
+	buttonsound
 	closetext
 	applymovement ROUTE43GATE_ROCKET1, MovementData_0x19acaa
 	applymovement ROUTE43GATE_ROCKET2, MovementData_0x19acc1
@@ -84,7 +84,7 @@ UnknownScript_0x19ac38:
 	applymovement ROUTE43GATE_ROCKET2, MovementData_0x19acc7
 	loadfont
 	writetext UnknownText_0x19acd2
-	keeptextopen
+	buttonsound
 	checkmoney $0, 999
 	if_equal $0, UnknownScript_0x19ac5c
 	jump UnknownScript_0x19ac67
@@ -100,7 +100,7 @@ UnknownScript_0x19ac67:
 	jump UnknownScript_0x19ac72
 
 UnknownScript_0x19ac72:
-	keeptextopen
+	buttonsound
 	closetext
 	applymovement ROUTE43GATE_ROCKET2, MovementData_0x19accd
 	applymovement ROUTE43GATE_ROCKET1, MovementData_0x19acb5
@@ -117,7 +117,7 @@ OfficerScript_0x19ac85:
 	checkevent EVENT_GOT_TM36_SLUDGE_BOMB
 	iftrue UnknownScript_0x19ac9c
 	writetext UnknownText_0x19ad9b
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_SLUDGE_BOMB
 	iffalse UnknownScript_0x19aca0
 	setevent EVENT_GOT_TM36_SLUDGE_BOMB

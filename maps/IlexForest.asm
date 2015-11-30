@@ -122,7 +122,7 @@ IlexForestFarfetchdScript:
 	faceplayer
 	loadfont
 	writetext Text_ItsTheMissingPokemon
-	keeptextopen
+	buttonsound
 	writetext Text_Kwaaaa
 	cry FARFETCH_D
 	waitbutton
@@ -353,7 +353,7 @@ BlackBeltScript_0x6edae:
 	checkevent EVENT_GOT_HM01_CUT
 	iftrue .AlreadyGotCut
 	writetext UnknownText_0x6f099
-	keeptextopen
+	buttonsound
 	verbosegiveitem HM_CUT
 	setevent EVENT_GOT_HM01_CUT
 	writetext UnknownText_0x6f141
@@ -379,7 +379,7 @@ RockerScript_0x6edde:
 	checkevent EVENT_GOT_TM02_HEADBUTT
 	iftrue UnknownScript_0x6edf3
 	writetext UnknownText_0x6f21b
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_HEADBUTT
 	iffalse UnknownScript_0x6edf7
 	setevent EVENT_GOT_TM02_HEADBUTT

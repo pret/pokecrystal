@@ -181,11 +181,11 @@ TuscanyScript:
 	checkevent EVENT_MET_TUSCANY_OF_TUESDAY
 	iftrue .MetTuscany
 	writetext MeetTuscanyText
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_TUSCANY_OF_TUESDAY
 .MetTuscany
 	writetext TuscanyGivesGiftText
-	keeptextopen
+	buttonsound
 	verbosegiveitem PINK_BOW
 	iffalse TuscanyDoneScript
 	setevent EVENT_GOT_PINK_BOW_FROM_TUSCANY

@@ -68,7 +68,7 @@ CeladonVendingMachine:
 	pause 10
 	playsound SFX_ENTER_DOOR
 	writetext CeladonClangText
-	keeptextopen
+	buttonsound
 	itemnotify
 	jump .Start
 

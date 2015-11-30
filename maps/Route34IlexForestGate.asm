@@ -53,7 +53,7 @@ TeacherScript_0x62d63:
 	checkevent EVENT_GOT_TM12_SWEET_SCENT
 	iftrue UnknownScript_0x62d7e
 	writetext UnknownText_0x62d9d
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_SWEET_SCENT
 	iffalse UnknownScript_0x62d82
 	setevent EVENT_GOT_TM12_SWEET_SCENT
@@ -66,7 +66,7 @@ UnknownScript_0x62d82:
 
 UnknownScript_0x62d84:
 	writetext UnknownText_0x62e41
-	keeptextopen
+	buttonsound
 	closetext
 	end
 

@@ -33,7 +33,7 @@ JasmineScript_0x9c12f:
 	checkevent EVENT_GOT_TM23_IRON_TAIL
 	iftrue UnknownScript_0x9c172
 	writetext UnknownText_0x9c354
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_IRON_TAIL
 	iffalse UnknownScript_0x9c176
 	setevent EVENT_GOT_TM23_IRON_TAIL

@@ -15,13 +15,13 @@ SandstormHouseWoman:
 	iftrue .AlreadyGotItem
 	special GetFirstPokemonHappiness
 	writetext SandstormHouseWomanText1
-	keeptextopen
+	buttonsound
 	if_greater_than $95, .Loyal
 	jump .Disloyal
 
 .Loyal
 	writetext SandstormHouseWomanLoyalText
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_SANDSTORM
 	iffalse .Done
 	setevent EVENT_GOT_TM37_SANDSTORM

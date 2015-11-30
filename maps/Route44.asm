@@ -32,7 +32,7 @@ Bird_keeperVance1Script:
 	checkevent EVENT_VANCE_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19d853
 	writetext UnknownText_0x19dbf3
-	keeptextopen
+	buttonsound
 	setevent EVENT_VANCE_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19d8df
 	jump UnknownScript_0x19d856
@@ -176,7 +176,7 @@ FisherWilton1Script:
 	checkevent EVENT_WILTON_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19d957
 	writetext UnknownText_0x19daa8
-	keeptextopen
+	buttonsound
 	setevent EVENT_WILTON_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19d8df
 	jump UnknownScript_0x19d95a

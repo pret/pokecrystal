@@ -72,12 +72,12 @@ CherrygroveCityGuideGent:
 	spriteface PLAYER, RIGHT
 	loadfont
 	writetext GuideGentGiftText
-	keeptextopen
+	buttonsound
 	stringtotext .mapcardname, $1
 	scall .UnknownScript_0x19c097
 	setflag ENGINE_MAP_CARD
 	writetext GotMapCardText
-	keeptextopen
+	buttonsound
 	writetext GuideGentPokegearText
 	waitbutton
 	closetext
@@ -219,7 +219,7 @@ MysticWaterGuy:
 	checkevent EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE
 	iftrue UnknownScript_0x19c183
 	writetext UnknownText_0x19c766
-	keeptextopen
+	buttonsound
 	verbosegiveitem MYSTIC_WATER
 	iffalse UnknownScript_0x19c187
 	setevent EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE

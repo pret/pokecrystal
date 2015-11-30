@@ -160,7 +160,7 @@ HikerParry3Script:
 	checkevent EVENT_PARRY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19e1a1
 	writetext UnknownText_0x19e434
-	keeptextopen
+	buttonsound
 	setevent EVENT_PARRY_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19e11b
 	jump UnknownScript_0x19e1a4

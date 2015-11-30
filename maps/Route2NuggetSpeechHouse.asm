@@ -14,7 +14,7 @@ FisherScript_0x9b847:
 	checkevent EVENT_GOT_NUGGET_FROM_GUY
 	iftrue .GotItem
 	writetext UnknownText_0x9b865
-	keeptextopen
+	buttonsound
 	verbosegiveitem NUGGET
 	iffalse .Done
 	setevent EVENT_GOT_NUGGET_FROM_GUY

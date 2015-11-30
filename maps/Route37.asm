@@ -71,17 +71,17 @@ SunnyScript:
 	checkevent EVENT_MET_SUNNY_OF_SUNDAY
 	iftrue .MetSunny
 	writetext MeetSunnyText
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_SUNNY_OF_SUNDAY
 .MetSunny
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Kris
 	writetext SunnyGivesGiftText1
-	keeptextopen
+	buttonsound
 	jump .next
 .Kris
 	writetext SunnyGivesGiftText2
-	keeptextopen
+	buttonsound
 .next
 	verbosegiveitem MAGNET
 	iffalse SunnyDoneScript

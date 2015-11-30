@@ -55,7 +55,7 @@ FisherScript_0x72144:
 	checkevent EVENT_GOT_COINS_FROM_GAMBLER_AT_CELADON
 	iftrue .UnknownScript_0x72169
 	writetext UnknownText_0x722dc
-	keeptextopen
+	buttonsound
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x7217b
 	checkcoins 9998

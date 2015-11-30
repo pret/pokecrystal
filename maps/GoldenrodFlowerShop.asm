@@ -23,7 +23,7 @@ FlowerShopTeacherScript:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x554c2
-	keeptextopen
+	buttonsound
 	verbosegiveitem SQUIRTBOTTLE
 	setevent EVENT_GOT_SQUIRTBOTTLE
 	closetext

@@ -27,11 +27,11 @@ DragonShrineTestScript:
 	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2c7
 	loadfont
 	writetext UnknownText_0x18d2ea
-	keeptextopen
+	buttonsound
 .Question1:
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	writetext UnknownText_0x18d3bc
-	keeptextopen
+	buttonsound
 	loadmenudata MenuDataHeader_0x18d215
 	interpretmenu2
 	writebackup
@@ -43,7 +43,7 @@ DragonShrineTestScript:
 .Question2:
 	setevent EVENT_DRAGON_SHRINE_QUESTION_2
 	writetext UnknownText_0x18d3d3
-	keeptextopen
+	buttonsound
 	loadmenudata MenuDataHeader_0x18d234
 	interpretmenu2
 	writebackup
@@ -53,7 +53,7 @@ DragonShrineTestScript:
 .Question3:
 	setevent EVENT_DRAGON_SHRINE_QUESTION_3
 	writetext UnknownText_0x18d3f3
-	keeptextopen
+	buttonsound
 	loadmenudata MenuDataHeader_0x18d258
 	interpretmenu2
 	writebackup
@@ -63,7 +63,7 @@ DragonShrineTestScript:
 .Question4:
 	setevent EVENT_DRAGON_SHRINE_QUESTION_4
 	writetext UnknownText_0x18d420
-	keeptextopen
+	buttonsound
 	loadmenudata MenuDataHeader_0x18d283
 	interpretmenu2
 	writebackup
@@ -73,7 +73,7 @@ DragonShrineTestScript:
 .Question5:
 	setevent EVENT_DRAGON_SHRINE_QUESTION_5
 	writetext UnknownText_0x18d44a
-	keeptextopen
+	buttonsound
 	loadmenudata MenuDataHeader_0x18d2a5
 	interpretmenu2
 	writebackup
@@ -84,7 +84,7 @@ DragonShrineTestScript:
 	checkevent EVENT_DRAGON_SHRINE_QUESTION_5
 	iftrue .PassedTheTest
 	writetext UnknownText_0x18d82d
-	keeptextopen
+	buttonsound
 	checkevent EVENT_DRAGON_SHRINE_QUESTION_4
 	iftrue .Question5
 	checkevent EVENT_DRAGON_SHRINE_QUESTION_3
@@ -170,7 +170,7 @@ DragonShrineTestScript:
 	dotrigger $1
 	domaptrigger DRAGONS_DEN_B1F, $1
 	writetext UnknownText_0x18d9f2
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x18da0b
 	waitbutton
 	closetext

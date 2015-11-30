@@ -68,33 +68,33 @@ PokeCenterNurseScript:
 	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
 	iftrue .morn_comcenter
 	farwritetext UnknownText_0x1b0000
-	keeptextopen
+	buttonsound
 	jump .ok
 .morn_comcenter
 	farwritetext UnknownText_0x1b008a
-	keeptextopen
+	buttonsound
 	jump .ok
 
 .day
 	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
 	iftrue .day_comcenter
 	farwritetext UnknownText_0x1b002b
-	keeptextopen
+	buttonsound
 	jump .ok
 .day_comcenter
 	farwritetext UnknownText_0x1b00d6
-	keeptextopen
+	buttonsound
 	jump .ok
 
 .nite
 	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
 	iftrue .nite_comcenter
 	farwritetext UnknownText_0x1b004f
-	keeptextopen
+	buttonsound
 	jump .ok
 .nite_comcenter
 	farwritetext UnknownText_0x1b011b
-	keeptextopen
+	buttonsound
 	jump .ok
 
 .ok
@@ -326,20 +326,20 @@ BugContestResultsScript:
 	if_equal 2, BugContestResults_SecondPlace
 	if_equal 3, BugContestResults_ThirdPlace
 	farwritetext ContestResults_ConsolationPrizeText
-	keeptextopen
+	buttonsound
 	waitsfx
 	verbosegiveitem BERRY
 	iffalse BugContestResults_NoRoomForBerry
 
 BugContestResults_DidNotWin
 	farwritetext ContestResults_DidNotWinText
-	keeptextopen
+	buttonsound
 	jump BugContestResults_FinishUp
 ; 0xbc2b1
 
 BugContestResults_ReturnAfterWinnersPrize ; 0xbc2b1
 	farwritetext ContestResults_JoinUsNextTimeText
-	keeptextopen
+	buttonsound
 
 BugContestResults_FinishUp
 	checkevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
@@ -412,28 +412,28 @@ BugContestResults_ThirdPlace ; 0xbc343
 
 BugContestResults_NoRoomForSunStone ; 0xbc354
 	farwritetext UnknownText_0x1b08cc
-	keeptextopen
+	buttonsound
 	setevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
 	jump BugContestResults_ReturnAfterWinnersPrize
 ; 0xbc35f
 
 BugContestResults_NoRoomForEverstone ; 0xbc35f
 	farwritetext UnknownText_0x1b08cc
-	keeptextopen
+	buttonsound
 	setevent EVENT_CONTEST_OFFICER_HAS_EVERSTONE
 	jump BugContestResults_ReturnAfterWinnersPrize
 ; 0xbc36a
 
 BugContestResults_NoRoomForGoldBerry ; 0xbc36a
 	farwritetext UnknownText_0x1b08cc
-	keeptextopen
+	buttonsound
 	setevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
 	jump BugContestResults_ReturnAfterWinnersPrize
 ; 0xbc375
 
 BugContestResults_NoRoomForBerry ; 0xbc375
 	farwritetext UnknownText_0x1b08cc
-	keeptextopen
+	buttonsound
 	setevent EVENT_CONTEST_OFFICER_HAS_BERRY
 	jump BugContestResults_DidNotWin
 ; 0xbc380
@@ -794,7 +794,7 @@ RegisteredNumberMScript:
 	farwritetext RegisteredNumber1Text
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitsfx
-	keeptextopen
+	buttonsound
 	end
 
 NumberAcceptedMScript:
@@ -1287,31 +1287,31 @@ GiftMScript:
 
 .Jose
 	farwritetext JoseGiftText
-	keeptextopen
+	buttonsound
 	end
 .Wade
 	farwritetext WadeGiftText
-	keeptextopen
+	buttonsound
 	end
 .Alan
 	farwritetext AlanGiftText
-	keeptextopen
+	buttonsound
 	end
 .Derek
 	farwritetext DerekGiftText
-	keeptextopen
+	buttonsound
 	end
 .Tully
 	farwritetext TullyGiftText
-	keeptextopen
+	buttonsound
 	end
 .Wilton
 	farwritetext WiltonGiftText
-	keeptextopen
+	buttonsound
 	end
 .Kenji
 	farwritetext KenjiGiftText
-	keeptextopen
+	buttonsound
 	end
 
 PackFullMScript:
@@ -1394,19 +1394,19 @@ RematchGiftMScript:
 
 .Huey
 	farwritetext HueyRematchGiftText
-	keeptextopen
+	buttonsound
 	end
 .Joey
 	farwritetext JoeyRematchGiftText
-	keeptextopen
+	buttonsound
 	end
 .Vance
 	farwritetext VanceRematchGiftText
-	keeptextopen
+	buttonsound
 	end
 .Parry
 	farwritetext ParryRematchGiftText
-	keeptextopen
+	buttonsound
 	end
 
 AskNumber1FScript:
@@ -1485,7 +1485,7 @@ RegisteredNumberFScript:
 	farwritetext RegisteredNumber2Text
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitsfx
-	keeptextopen
+	buttonsound
 	end
 
 NumberAcceptedFScript: ; 0xbcbd3
@@ -1699,19 +1699,19 @@ GiftFScript:
 
 .Beverly
 	farwritetext BeverlyGiftText
-	keeptextopen
+	buttonsound
 	end
 .Gina
 	farwritetext GinaGiftText
-	keeptextopen
+	buttonsound
 	end
 .Dana
 	farwritetext DanaGiftText
-	keeptextopen
+	buttonsound
 	end
 .Tiffany
 	farwritetext TiffanyGiftText
-	keeptextopen
+	buttonsound
 	end
 
 PackFullFScript:
@@ -1755,7 +1755,7 @@ RematchGiftFScript:
 .Erin
 	loadfont
 	farwritetext ErinRematchGiftText
-	keeptextopen
+	buttonsound
 	end
 
 GymStatue1Script:
@@ -1770,7 +1770,7 @@ GymStatue2Script:
 	mapnametotext $0
 	loadfont
 	farwritetext GymStatue_CityGymText
-	keeptextopen
+	buttonsound
 	farwritetext GymStatue_WinningTrainersText
 	waitbutton
 	closetext
@@ -1796,7 +1796,7 @@ GameCornerCoinVendorScript: ; 0xbcdcd
 	faceplayer
 	loadfont
 	farwritetext CoinVendor_WelcomeText
-	keeptextopen
+	buttonsound
 	checkitem COIN_CASE
 	iftrue CoinVendor_IntroScript
 	farwritetext CoinVendor_NoCoinCaseText

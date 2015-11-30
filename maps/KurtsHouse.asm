@@ -72,7 +72,7 @@ KurtScript_0x18e178:
 
 .ClearedSlowpokeWell:
 	writetext UnknownText_0x18e615
-	keeptextopen
+	buttonsound
 	verbosegiveitem LURE_BALL
 	iffalse .NoRoomForBall
 	setevent EVENT_KURT_GAVE_YOU_LURE_BALL
@@ -132,7 +132,7 @@ KurtScript_0x18e178:
 
 .AskApricorn:
 	writetext UnknownText_0x18e736
-	keeptextopen
+	buttonsound
 	setevent EVENT_DRAGON_SHRINE_QUESTION_2
 	special Special_SelectApricornForKurt
 	if_equal $0, .Cancel
@@ -198,7 +198,7 @@ KurtScript_0x18e178:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
-	keeptextopen
+	buttonsound
 	verbosegiveitem2 LEVEL_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_RED_APRICORN
@@ -208,7 +208,7 @@ KurtScript_0x18e178:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
-	keeptextopen
+	buttonsound
 	verbosegiveitem2 LURE_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_BLU_APRICORN
@@ -218,7 +218,7 @@ KurtScript_0x18e178:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
-	keeptextopen
+	buttonsound
 	verbosegiveitem2 MOON_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_YLW_APRICORN
@@ -228,7 +228,7 @@ KurtScript_0x18e178:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
-	keeptextopen
+	buttonsound
 	verbosegiveitem2 FRIEND_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_GRN_APRICORN
@@ -238,7 +238,7 @@ KurtScript_0x18e178:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
-	keeptextopen
+	buttonsound
 	verbosegiveitem2 FAST_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_WHT_APRICORN
@@ -248,7 +248,7 @@ KurtScript_0x18e178:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
-	keeptextopen
+	buttonsound
 	verbosegiveitem2 HEAVY_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_BLK_APRICORN
@@ -258,7 +258,7 @@ KurtScript_0x18e178:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
-	keeptextopen
+	buttonsound
 	verbosegiveitem2 LOVE_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_PNK_APRICORN

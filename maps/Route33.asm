@@ -29,7 +29,7 @@ HikerAnthony2Script:
 	checkevent EVENT_ANTHONY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1ac03a
 	writetext UnknownText_0x1ac153
-	keeptextopen
+	buttonsound
 	setevent EVENT_ANTHONY_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1ac0cb
 	jump UnknownScript_0x1ac03d

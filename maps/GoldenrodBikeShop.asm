@@ -20,7 +20,7 @@ ClerkScript_0x54750:
 	yesorno
 	iffalse UnknownScript_0x5477b
 	writetext UnknownText_0x547f8
-	keeptextopen
+	buttonsound
 	waitsfx
 	giveitem BICYCLE
 	writetext UnknownText_0x54848

@@ -92,7 +92,7 @@ PokefanFScript_0x1a0084:
 	checkevent EVENT_GOT_HM02_FLY
 	iftrue UnknownScript_0x1a00ad
 	writetext UnknownText_0x1a00f1
-	keeptextopen
+	buttonsound
 	checkevent EVENT_BEAT_CHUCK
 	iftrue UnknownScript_0x1a009c
 	writetext UnknownText_0x1a0163
@@ -102,12 +102,12 @@ PokefanFScript_0x1a0084:
 
 UnknownScript_0x1a009c:
 	writetext UnknownText_0x1a01e3
-	keeptextopen
+	buttonsound
 	verbosegiveitem HM_FLY
 	iffalse UnknownScript_0x1a00b1
 	setevent EVENT_GOT_HM02_FLY
 	writetext UnknownText_0x1a021d
-	keeptextopen
+	buttonsound
 UnknownScript_0x1a00ad:
 	writetext UnknownText_0x1a0277
 	waitbutton

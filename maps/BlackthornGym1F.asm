@@ -68,7 +68,7 @@ UnknownScript_0x194e69:
 	checkevent EVENT_GOT_TM24_DRAGONBREATH
 	iftrue UnknownScript_0x194e94
 	writetext UnknownText_0x195196
-	keeptextopen
+	buttonsound
 	giveitem TM_DRAGONBREATH
 	iffalse UnknownScript_0x194e8e
 	itemtotext TM_DRAGONBREATH, $0
@@ -78,7 +78,7 @@ UnknownScript_0x194e69:
 	itemnotify
 	setevent EVENT_GOT_TM24_DRAGONBREATH
 	writetext UnknownText_0x1951d1
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0x194e94
 
 UnknownScript_0x194e8e:

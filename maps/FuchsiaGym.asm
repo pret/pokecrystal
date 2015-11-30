@@ -49,7 +49,7 @@ UnknownScript_0x195e02:
 	checkevent EVENT_GOT_TM06_TOXIC
 	iftrue UnknownScript_0x195e15
 	writetext UnknownText_0x196002
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_TOXIC
 	iffalse UnknownScript_0x195e15
 	setevent EVENT_GOT_TM06_TOXIC

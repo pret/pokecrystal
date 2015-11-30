@@ -40,7 +40,7 @@ UnknownScript_0x1a088c:
 	spriteface PLAYER, RIGHT
 	loadfont
 	writetext UnknownText_0x1a0a6b
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x1a0a71
 	waitbutton
 	closetext
@@ -77,7 +77,7 @@ Bird_keeperJose2Script:
 	checkevent EVENT_JOSE_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a08e8
 	writetext UnknownText_0x1a0e42
-	keeptextopen
+	buttonsound
 	setevent EVENT_JOSE_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a0957
 	jump UnknownScript_0x1a08eb
@@ -210,7 +210,7 @@ CooltrainerfReena1Script:
 	checkevent EVENT_REENA_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a09d2
 	writetext UnknownText_0x1a0c35
-	keeptextopen
+	buttonsound
 	setevent EVENT_REENA_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a0a2f
 	jump UnknownScript_0x1a09d5

@@ -41,7 +41,7 @@ UnknownScript_0x19b0de:
 	loadfont
 	writetext UnknownText_0x19b296
 	special PlayCurMonCry
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x19b2aa
 	waitbutton
 	closetext

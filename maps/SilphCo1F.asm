@@ -18,7 +18,7 @@ OfficerScript_0x18abe8:
 	checkevent EVENT_GOT_UP_GRADE
 	iftrue UnknownScript_0x18abfd
 	writetext UnknownText_0x18ac36
-	keeptextopen
+	buttonsound
 	verbosegiveitem UP_GRADE
 	iffalse UnknownScript_0x18ac01
 	setevent EVENT_GOT_UP_GRADE

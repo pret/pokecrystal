@@ -18,7 +18,7 @@ GrampsScript_0x189538:
 	checkevent EVENT_MET_BILLS_GRANDPA
 	iftrue UnknownScript_0x189553
 	writetext UnknownText_0x1896ce
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_BILLS_GRANDPA
 UnknownScript_0x189553:
 	checkevent EVENT_SHOWED_PICHU_TO_BILLS_GRANDPA
@@ -32,7 +32,7 @@ UnknownScript_0x189553:
 	checkevent EVENT_SHOWED_LICKITUNG_TO_BILLS_GRANDPA
 	iftrue UnknownScript_0x18963b
 	writetext UnknownText_0x1898c0
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x189732
 	yesorno
 	iffalse UnknownScript_0x1896aa
@@ -46,7 +46,7 @@ UnknownScript_0x189553:
 
 UnknownScript_0x189592:
 	writetext UnknownText_0x1898ff
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x189732
 	yesorno
 	iffalse UnknownScript_0x1896aa
@@ -60,7 +60,7 @@ UnknownScript_0x189592:
 
 UnknownScript_0x1895b3:
 	writetext UnknownText_0x189953
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x189732
 	yesorno
 	iffalse UnknownScript_0x1896aa
@@ -76,7 +76,7 @@ UnknownScript_0x1895d4:
 	checkver
 	iftrue UnknownScript_0x1895f9
 	writetext UnknownText_0x1899fe
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x189732
 	yesorno
 	iffalse UnknownScript_0x1896aa
@@ -90,7 +90,7 @@ UnknownScript_0x1895d4:
 
 UnknownScript_0x1895f9:
 	writetext UnknownText_0x189a57
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x189732
 	yesorno
 	iffalse UnknownScript_0x1896aa
@@ -104,7 +104,7 @@ UnknownScript_0x1895f9:
 
 UnknownScript_0x18961a:
 	writetext UnknownText_0x189ab1
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x189732
 	yesorno
 	iffalse UnknownScript_0x1896aa
@@ -170,7 +170,7 @@ UnknownScript_0x189697:
 
 UnknownScript_0x1896a5:
 	writetext UnknownText_0x189760
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0x1896aa:
@@ -181,12 +181,12 @@ UnknownScript_0x1896aa:
 
 UnknownScript_0x1896b0:
 	writetext UnknownText_0x1897a6
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0x1896b5:
 	writetext UnknownText_0x1897e1
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0x1896ba:

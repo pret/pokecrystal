@@ -33,7 +33,7 @@ TeacherScript_0x5c008:
 	checkevent EVENT_GOT_QUICK_CLAW
 	iftrue UnknownScript_0x5c01d
 	writetext UnknownText_0x5c265
-	keeptextopen
+	buttonsound
 	verbosegiveitem QUICK_CLAW
 	iffalse UnknownScript_0x5c021
 	setevent EVENT_GOT_QUICK_CLAW
@@ -85,7 +85,7 @@ SchoolboyJack1Script:
 	checkevent EVENT_JACK_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x5c071
 	writetext UnknownText_0x5c4f3
-	keeptextopen
+	buttonsound
 	setevent EVENT_JACK_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x5c0fc
 	jump UnknownScript_0x5c074
@@ -215,7 +215,7 @@ PokefanfBeverly1Script:
 	checkevent EVENT_BEVERLY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x5c160
 	writetext UnknownText_0x5c5bd
-	keeptextopen
+	buttonsound
 	setevent EVENT_BEVERLY_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x5c18f
 	jump UnknownScript_0x5c163

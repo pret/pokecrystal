@@ -39,7 +39,7 @@ ErikaScript_0x72a6a:
 	checkevent EVENT_GOT_TM19_GIGA_DRAIN
 	iftrue UnknownScript_0x72aae
 	writetext UnknownText_0x72cb0
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_GIGA_DRAIN
 	iffalse UnknownScript_0x72aae
 	setevent EVENT_GOT_TM19_GIGA_DRAIN

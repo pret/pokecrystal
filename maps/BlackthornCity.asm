@@ -99,11 +99,11 @@ SantosScript:
 	checkevent EVENT_MET_SANTOS_OF_SATURDAY
 	iftrue .MetSantos
 	writetext MeetSantosText
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_SANTOS_OF_SATURDAY
 .MetSantos
 	writetext SantosGivesGiftText
-	keeptextopen
+	buttonsound
 	verbosegiveitem SPELL_TAG
 	iffalse SantosDoneScript
 	setevent EVENT_GOT_SPELL_TAG_FROM_SANTOS

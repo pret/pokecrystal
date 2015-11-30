@@ -46,7 +46,7 @@ UnknownScript_0x60011:
 	returnafterbattle
 	loadfont
 	writetext UnknownText_0x60246
-	keeptextopen
+	buttonsound
 	verbosegiveitem BASEMENT_KEY
 	closetext
 	dotrigger $1
@@ -123,7 +123,7 @@ UnknownScript_0x6006e:
 	spriteface PLAYER, RIGHT
 	loadfont
 	writetext UnknownText_0x605b2
-	keeptextopen
+	buttonsound
 	verbosegiveitem CLEAR_BELL
 	writetext UnknownText_0x6062c
 	waitbutton

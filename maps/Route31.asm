@@ -199,16 +199,16 @@ FisherScript_0x1a5570:
 
 .TryGiveKenya:
 	writetext UnknownText_0x1a5761
-	keeptextopen
+	buttonsound
 	checkpokeitem ReceivedSpearowMailText
 	if_equal $0, .WrongMail
 	if_equal $2, .Refused
 	if_equal $3, .NoMail
 	if_equal $4, .LastMon
 	writetext UnknownText_0x1a5790
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x1a57ba
-	keeptextopen
+	buttonsound
 	setevent EVENT_GAVE_KENYA
 	verbosegiveitem TM_NIGHTMARE
 	iffalse .NoRoomForItems

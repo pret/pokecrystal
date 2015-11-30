@@ -145,7 +145,7 @@ FisherScript_0x1940b9:
 
 UnknownScript_0x1940cd:
 	writetext UnknownText_0x1944d0
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_ROCK_SMASH
 	iffalse UnknownScript_0x1940de
 	setevent EVENT_GOT_TM08_ROCK_SMASH
@@ -188,7 +188,7 @@ SchoolboyAlan1Script:
 	checkevent EVENT_ALAN_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x194129
 	writetext UnknownText_0x1947aa
-	keeptextopen
+	buttonsound
 	setevent EVENT_ALAN_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1941c9
 	jump UnknownScript_0x19412c
@@ -331,11 +331,11 @@ ArthurScript:
 	checkevent EVENT_MET_ARTHUR_OF_THURSDAY
 	iftrue .MetArthur
 	writetext MeetArthurText
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_ARTHUR_OF_THURSDAY
 .MetArthur
 	writetext ArthurGivesGiftText
-	keeptextopen
+	buttonsound
 	verbosegiveitem HARD_STONE
 	iffalse ArthurDoneScript
 	setevent EVENT_GOT_HARD_STONE_FROM_ARTHUR

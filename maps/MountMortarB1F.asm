@@ -32,7 +32,7 @@ BlackBeltScript_0x7e1f6:
 	loadfont
 UnknownScript_0x7e217:
 	writetext UnknownText_0x7e2c0
-	keeptextopen
+	buttonsound
 	waitsfx
 	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x7e237

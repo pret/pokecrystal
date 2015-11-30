@@ -61,7 +61,7 @@ ReceptionistScript_0x9e3e2:
 	if_equal $3, Script_BeatenAllTrainers2 ; maps/BattleTowerBattleRoom.asm
 	loadfont
 	writetext Text_BattleTowerWelcomesYou
-	keeptextopen
+	buttonsound
 	writebyte BATTLETOWERACTION_00 ; if new save file: bit 1, [sbe4f]
 	special BattleTowerAction
 	if_not_equal $0, Script_Menu_ChallengeExplanationCancel

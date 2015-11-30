@@ -105,11 +105,11 @@ MonicaScript:
 	checkevent EVENT_MET_MONICA_OF_MONDAY
 	iftrue .MetMonica
 	writetext MeetMonicaText
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_MONICA_OF_MONDAY
 .MetMonica
 	writetext MonicaGivesGiftText
-	keeptextopen
+	buttonsound
 	verbosegiveitem SHARP_BEAK
 	iffalse MonicaDoneScript
 	setevent EVENT_GOT_SHARP_BEAK_FROM_MONICA

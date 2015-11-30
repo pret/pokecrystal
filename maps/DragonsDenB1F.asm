@@ -59,7 +59,7 @@ UnknownScript_0x18c8b8:
 	applymovement DRAGONSDENB1F_CLAIR, MovementData_0x18c9ae
 	loadfont
 	writetext UnknownText_0x18c9bf
-	keeptextopen
+	buttonsound
 	giveitem TM_DRAGONBREATH
 	iffalse UnknownScript_0x18c8f4
 	itemtotext TM_DRAGONBREATH, $0
@@ -69,7 +69,7 @@ UnknownScript_0x18c8b8:
 	itemnotify
 	setevent EVENT_GOT_TM24_DRAGONBREATH
 	writetext UnknownText_0x18ca0d
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x18caf1
 	waitbutton
 	closetext
@@ -149,7 +149,7 @@ UnknownScript_0x18c970:
 	loadfont
 	itemtotext DRAGON_FANG, $0
 	writetext UnknownText_0x18cf41
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x18cf51
 	waitbutton
 	closetext

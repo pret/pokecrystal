@@ -97,7 +97,7 @@ UnknownScript_0x7494e:
 	yesorno
 	iffalse UnknownScript_0x74992
 	writetext UnknownText_0x74ada
-	keeptextopen
+	buttonsound
 	checkitem S_S_TICKET
 	iffalse UnknownScript_0x7496d
 	writetext UnknownText_0x74b11
@@ -162,7 +162,7 @@ UnknownScript_0x749c0:
 	yesorno
 	iffalse UnknownScript_0x7498c
 	writetext UnknownText_0x74ada
-	keeptextopen
+	buttonsound
 	checkitem S_S_TICKET
 	iffalse UnknownScript_0x749ec
 	writetext UnknownText_0x74b11

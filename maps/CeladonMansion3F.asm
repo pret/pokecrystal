@@ -22,12 +22,12 @@ CooltrainerMScript_0x71670:
 	end
 
 UnknownScript_0x7167e:
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x71725
 	playsound SFX_DEX_FANFARE_230_PLUS
 	waitsfx
 	writetext UnknownText_0x71760
-	keeptextopen
+	buttonsound
 	special Diploma
 	writetext UnknownText_0x71763
 	waitbutton

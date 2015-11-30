@@ -247,7 +247,7 @@ GruntF3Script:
 MapUndergroundPathSwitchRoomEntrancesSignpost0Script:
 	loadfont
 	writetext UnknownText_0x7d554
-	keeptextopen
+	buttonsound
 	checkevent EVENT_SWITCH_1
 	iftrue UnknownScript_0x7cbcb
 	writetext UnknownText_0x7d617
@@ -272,7 +272,7 @@ UnknownScript_0x7cbcb:
 MapUndergroundPathSwitchRoomEntrancesSignpost1Script:
 	loadfont
 	writetext UnknownText_0x7d643
-	keeptextopen
+	buttonsound
 	checkevent EVENT_SWITCH_2
 	iftrue UnknownScript_0x7cc00
 	writetext UnknownText_0x7d617
@@ -297,7 +297,7 @@ UnknownScript_0x7cc00:
 MapUndergroundPathSwitchRoomEntrancesSignpost2Script:
 	loadfont
 	writetext UnknownText_0x7d65a
-	keeptextopen
+	buttonsound
 	checkevent EVENT_SWITCH_3
 	iftrue UnknownScript_0x7cc35
 	writetext UnknownText_0x7d617
@@ -322,7 +322,7 @@ UnknownScript_0x7cc35:
 MapUndergroundPathSwitchRoomEntrancesSignpost3Script:
 	loadfont
 	writetext UnknownText_0x7d671
-	keeptextopen
+	buttonsound
 	checkevent EVENT_EMERGENCY_SWITCH
 	iftrue UnknownScript_0x7cc70
 	writetext UnknownText_0x7d617

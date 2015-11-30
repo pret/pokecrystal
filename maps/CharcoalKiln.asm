@@ -48,7 +48,7 @@ CharcoalKilnApprentice:
 
 .Thanks
 	writetext CharcoalKilnApprenticeText2
-	keeptextopen
+	buttonsound
 	verbosegiveitem CHARCOAL
 	iffalse .Done
 	setevent EVENT_GOT_CHARCOAL_IN_CHARCOAL_KILN

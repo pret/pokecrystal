@@ -18,7 +18,7 @@ JasmineScript_0x60b91:
 	checkevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
 	iftrue UnknownScript_0x60ba5
 	writetext UnknownText_0x60c81
-	keeptextopen
+	buttonsound
 	setevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
 UnknownScript_0x60ba5:
 	writetext UnknownText_0x60d64
@@ -31,7 +31,7 @@ UnknownScript_0x60bab:
 	yesorno
 	iffalse UnknownScript_0x60c25
 	writetext UnknownText_0x60dc3
-	keeptextopen
+	buttonsound
 	takeitem SECRETPOTION
 	writetext UnknownText_0x60dea
 	waitbutton
@@ -43,7 +43,7 @@ UnknownScript_0x60bab:
 	playmusic MUSIC_HEAL
 	writetext UnknownText_0x60e44
 	pause 60
-	keeptextopen
+	buttonsound
 	closetext
 	special RestartMapMusic
 	cry AMPHAROS
@@ -110,7 +110,7 @@ MonsterScript_0x60c3a:
 	writetext UnknownText_0x60f03
 	writebyte AMPHAROS
 	special PlaySlowCry
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x60f19
 	waitbutton
 	closetext

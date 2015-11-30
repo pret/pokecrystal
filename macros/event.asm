@@ -564,9 +564,9 @@ waitbutton: macro
 	db waitbutton_command
 	endm
 
-	enum keeptextopen_command
-keeptextopen: macro
-	db keeptextopen_command
+	enum buttonsound_command
+buttonsound: macro
+	db buttonsound_command
 	endm
 
 	enum pokepic_command

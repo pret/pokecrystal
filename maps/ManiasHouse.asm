@@ -21,7 +21,7 @@ ManiaScript:
 	special SpecialGiveShuckle
 	iffalse .partyfull
 	writetext ManiaText_TakeCareOfShuckle
-	keeptextopen
+	buttonsound
 	waitsfx
 	writetext ManiaText_GotShuckle
 	playsound SFX_KEY_ITEM

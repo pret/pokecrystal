@@ -127,7 +127,7 @@ MoveTutor:
 
 .TeachMove:
 	writetext UnknownText_0x19913a
-	keeptextopen
+	buttonsound
 	takecoins 4000
 	waitsfx
 	playsound SFX_TRANSACTION
@@ -212,7 +212,7 @@ GrampsScript_0x198a17:
 RocketScript_0x198a1a:
 	loadfont
 	writetext UnknownText_0x198d0d
-	keeptextopen
+	buttonsound
 	faceplayer
 	writetext UnknownText_0x198d2a
 	waitbutton

@@ -57,7 +57,7 @@ FisherScript_0x1a9a75:
 	checkevent EVENT_GOT_TM42_DREAM_EATER
 	iftrue UnknownScript_0x1a9a8a
 	writetext UnknownText_0x1a9cc4
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_DREAM_EATER
 	iffalse UnknownScript_0x1a9a8e
 	setevent EVENT_GOT_TM42_DREAM_EATER

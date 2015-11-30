@@ -35,7 +35,7 @@ GentlemanScript_0x7ee6c:
 
 .UnknownScript_0x7ee80:
 	writetext UnknownText_0x7f0a1
-	keeptextopen
+	buttonsound
 	stringtotext .expncardname, $1
 	scall .UnknownScript_0x7ee94
 	setflag ENGINE_EXPN_CARD

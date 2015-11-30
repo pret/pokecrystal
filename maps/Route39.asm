@@ -41,7 +41,7 @@ PokefanmDerek1Script:
 	checkevent EVENT_DEREK_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a5b33
 	writetext UnknownText_0x1a5cf8
-	keeptextopen
+	buttonsound
 	setevent EVENT_DEREK_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a5b62
 	jump UnknownScript_0x1a5b36

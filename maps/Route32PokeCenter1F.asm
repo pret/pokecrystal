@@ -22,7 +22,7 @@ FishingGuruScript_0x69b55:
 	yesorno
 	iffalse UnknownScript_0x69b74
 	writetext UnknownText_0x69be8
-	keeptextopen
+	buttonsound
 	verbosegiveitem OLD_ROD
 	writetext UnknownText_0x69c1b
 	waitbutton

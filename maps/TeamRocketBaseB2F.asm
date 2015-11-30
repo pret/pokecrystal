@@ -291,7 +291,7 @@ UnknownScript_0x6d184:
 	spriteface PLAYER, RIGHT
 	loadfont
 	writetext UnknownText_0x6d809
-	keeptextopen
+	buttonsound
 	verbosegiveitem HM_WHIRLPOOL
 	setevent EVENT_GOT_HM06_WHIRLPOOL
 	writetext UnknownText_0x6d8f8

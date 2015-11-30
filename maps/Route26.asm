@@ -40,7 +40,7 @@ CooltrainermGaven3Script:
 	checkevent EVENT_GAVEN_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a4d62
 	writetext UnknownText_0x1a4fe4
-	keeptextopen
+	buttonsound
 	setevent EVENT_GAVEN_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a4dbf
 	jump UnknownScript_0x1a4d65
@@ -144,7 +144,7 @@ CooltrainerfBeth1Script:
 	checkevent EVENT_BETH_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a4e1e
 	writetext UnknownText_0x1a51d9
-	keeptextopen
+	buttonsound
 	setevent EVENT_BETH_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a4e7b
 	jump UnknownScript_0x1a4e21

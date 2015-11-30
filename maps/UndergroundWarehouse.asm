@@ -77,14 +77,14 @@ GentlemanScript_0x7d9bf:
 	checkevent EVENT_RECEIVED_CARD_KEY
 	iftrue UnknownScript_0x7d9de
 	writetext UnknownText_0x7dbc6
-	keeptextopen
+	buttonsound
 	verbosegiveitem CARD_KEY
 	setevent EVENT_RECEIVED_CARD_KEY
 	setevent EVENT_WAREHOUSE_LAYOUT_1
 	clearevent EVENT_WAREHOUSE_LAYOUT_2
 	clearevent EVENT_WAREHOUSE_LAYOUT_3
 	writetext UnknownText_0x7dc5b
-	keeptextopen
+	buttonsound
 UnknownScript_0x7d9de:
 	writetext UnknownText_0x7dc8d
 	waitbutton

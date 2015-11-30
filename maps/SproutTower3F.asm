@@ -79,7 +79,7 @@ SageLiScript:
 	returnafterbattle
 	loadfont
 	writetext UnknownText_0x184cc2
-	keeptextopen
+	buttonsound
 	verbosegiveitem HM_FLASH
 	setevent EVENT_GOT_HM05_FLASH
 	setevent EVENT_BEAT_SAGE_LI

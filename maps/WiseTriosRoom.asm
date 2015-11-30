@@ -103,7 +103,7 @@ SageKojiScript:
 	showemote EMOTE_SHOCK, WISETRIOSROOM_SAGE6, 20
 	loadfont
 	writetext UnknownText_0x98c6c
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x98cac
 	waitbutton
 	closetext

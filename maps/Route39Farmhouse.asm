@@ -36,7 +36,7 @@ UnknownScript_0x9cec5:
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x9d05d
-	keeptextopen
+	buttonsound
 	itemnotify
 	closetext
 	end
@@ -79,7 +79,7 @@ PokefanFScript_0x9cf0e:
 
 UnknownScript_0x9cf22:
 	writetext UnknownText_0x9d156
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_SNORE
 	iffalse UnknownScript_0x9cf33
 	setevent EVENT_GOT_TM13_SNORE_FROM_MOOMOO_FARM

@@ -19,7 +19,7 @@ MomPhoneScript: ; 0xbceaa
 	checkevent EVENT_IN_YOUR_ROOM
 	iftrue MomPhoneHangUpScript
 	farwritetext MomPhoneGreetingText
-	keeptextopen
+	buttonsound
 	mapnametotext $0
 	checkcode VAR_ROOFPALETTE
 	if_equal $1, UnknownScript_0xbcee7
@@ -28,7 +28,7 @@ MomPhoneScript: ; 0xbceaa
 
 UnknownScript_0xbcedf: ; 0xbcedf
 	farwritetext UnknownText_0x1b4021
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0xbcf37
 
 UnknownScript_0xbcee7: ; 0xbcee7
@@ -39,17 +39,17 @@ UnknownScript_0xbcee7: ; 0xbcee7
 	if_equal GROUP_AZALEA_TOWN, .azalea
 	if_equal GROUP_GOLDENROD_CITY, .goldenrod
 	farwritetext MomPhoneGenericAreaText
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0xbcf37
 
 .newbark ; 0xbcf05
 	farwritetext MomPhoneNewBarkText
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0xbcf37
 
 .cherrygrove ; 0xbcf0d
 	farwritetext MomPhoneCherrygroveText
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0xbcf37
 
 .violet ; 0xbcf15
@@ -64,12 +64,12 @@ UnknownScript_0xbcee7: ; 0xbcee7
 
 UnknownScript_0xbcf27: ; 0xbcf27
 	farwritetext UnknownText_0x1b411c
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0xbcf37
 
 UnknownScript_0xbcf2f: ; 0xbcf2f
 	farwritetext UnknownText_0x1b4150
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0xbcf37
 
 UnknownScript_0xbcf37: ; 0xbcf37
@@ -113,13 +113,13 @@ UnknownScript_0xbcf79: ; 0xbcf79
 MomPhoneSaveMoneyScript: ; 0xbcf87
 	setflag ENGINE_MOM_SAVING_MONEY
 	farwritetext UnknownText_0x1b4289
-	keeptextopen
+	buttonsound
 	jump MomPhoneHangUpScript
 
 MomPhoneWontSaveMoneyScript: ; 0xbcf92
 	clearflag ENGINE_MOM_SAVING_MONEY
 	farwritetext MomPhoneWontSaveMoneyText
-	keeptextopen
+	buttonsound
 	jump MomPhoneHangUpScript
 
 MomPhoneHangUpScript: ; 0xbcf9d
@@ -155,22 +155,22 @@ BillPhoneScript1: ; 0xbcfc5
 	checknite
 	iftrue .nitegreet
 	farwritetext BillPhoneMornGreetingText
-	keeptextopen
+	buttonsound
 	jump .main
 
 .daygreet ; 0xbcfd7
 	farwritetext BillPhoneDayGreetingText
-	keeptextopen
+	buttonsound
 	jump .main
 
 .nitegreet ; 0xbcfdf
 	farwritetext BillPhoneNiteGreetingText
-	keeptextopen
+	buttonsound
 	jump .main
 
 .main ; 0xbcfe7
 	farwritetext BillPhoneGeneriText
-	keeptextopen
+	buttonsound
 	checkcode VAR_BOXSPACE
 	RAM2MEM $0
 	if_equal $0, .full
@@ -1937,102 +1937,102 @@ UnknownScript_0xbde4e:
 
 .Jack:
 	farwritetext UnknownText_0x1b4dc5
-	keeptextopen
+	buttonsound
 	end
 
 .Huey:
 	farwritetext UnknownText_0x1b5073
-	keeptextopen
+	buttonsound
 	end
 
 .Gaven:
 	farwritetext UnknownText_0x1b5270
-	keeptextopen
+	buttonsound
 	end
 
 .Jose:
 	farwritetext UnknownText_0x1b55ae
-	keeptextopen
+	buttonsound
 	end
 
 .Joey:
 	farwritetext UnknownText_0x1b589a
-	keeptextopen
+	buttonsound
 	end
 
 .Wade:
 	farwritetext UnknownText_0x1b5a3b
-	keeptextopen
+	buttonsound
 	end
 
 .Ralph:
 	farwritetext UnknownText_0x1b5c10
-	keeptextopen
+	buttonsound
 	end
 
 .Anthony:
 	farwritetext UnknownText_0x1b5f7a
-	keeptextopen
+	buttonsound
 	end
 
 .Todd:
 	farwritetext UnknownText_0x1b60f5
-	keeptextopen
+	buttonsound
 	end
 
 .Irwin:
 	farwritetext UnknownText_0x1b638c
-	keeptextopen
+	buttonsound
 	end
 
 .Arnie:
 	farwritetext UnknownText_0x1b6454
-	keeptextopen
+	buttonsound
 	end
 
 .Alan:
 	farwritetext UnknownText_0x1b659d
-	keeptextopen
+	buttonsound
 	end
 
 .Chad:
 	farwritetext UnknownText_0x1b67e2
-	keeptextopen
+	buttonsound
 	end
 
 .Derek:
 	farwritetext UnknownText_0x1b69a8
-	keeptextopen
+	buttonsound
 	end
 
 .Tully:
 	farwritetext UnknownText_0x1b6b39
-	keeptextopen
+	buttonsound
 	end
 
 .Brent:
 	farwritetext UnknownText_0x1b6c96
-	keeptextopen
+	buttonsound
 	end
 
 .Vance:
 	farwritetext UnknownText_0x1b7019
-	keeptextopen
+	buttonsound
 	end
 
 .Wilton:
 	farwritetext UnknownText_0x1b71d5
-	keeptextopen
+	buttonsound
 	end
 
 .Kenji:
 	farwritetext UnknownText_0x1b730b
-	keeptextopen
+	buttonsound
 	end
 
 .Parry:
 	farwritetext UnknownText_0x1b73c7
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdf22:
@@ -2060,102 +2060,102 @@ UnknownScript_0xbdf22:
 
 .Jack:
 	farwritetext UnknownText_0x1b4ded
-	keeptextopen
+	buttonsound
 	end
 
 .Huey:
 	farwritetext UnknownText_0x1b509b
-	keeptextopen
+	buttonsound
 	end
 
 .Gaven:
 	farwritetext UnknownText_0x1b52a5
-	keeptextopen
+	buttonsound
 	end
 
 .Jose:
 	farwritetext UnknownText_0x1b55da
-	keeptextopen
+	buttonsound
 	end
 
 .Joey:
 	farwritetext UnknownText_0x1b58c2
-	keeptextopen
+	buttonsound
 	end
 
 .Wade:
 	farwritetext UnknownText_0x1b5a74
-	keeptextopen
+	buttonsound
 	end
 
 .Ralph:
 	farwritetext UnknownText_0x1b5c63
-	keeptextopen
+	buttonsound
 	end
 
 .Anthony:
 	farwritetext UnknownText_0x1b5f9e
-	keeptextopen
+	buttonsound
 	end
 
 .Todd:
 	farwritetext UnknownText_0x1b611b
-	keeptextopen
+	buttonsound
 	end
 
 .Irwin:
 	farwritetext UnknownText_0x1b63a8
-	keeptextopen
+	buttonsound
 	end
 
 .Arnie:
 	farwritetext UnknownText_0x1b647e
-	keeptextopen
+	buttonsound
 	end
 
 .Alan:
 	farwritetext UnknownText_0x1b65c7
-	keeptextopen
+	buttonsound
 	end
 
 .Chad:
 	farwritetext UnknownText_0x1b680e
-	keeptextopen
+	buttonsound
 	end
 
 .Derek:
 	farwritetext UnknownText_0x1b69d2
-	keeptextopen
+	buttonsound
 	end
 
 .Tully:
 	farwritetext UnknownText_0x1b6b65
-	keeptextopen
+	buttonsound
 	end
 
 .Brent:
 	farwritetext UnknownText_0x1b6cc6
-	keeptextopen
+	buttonsound
 	end
 
 .Vance:
 	farwritetext UnknownText_0x1b7057
-	keeptextopen
+	buttonsound
 	end
 
 .Wilton:
 	farwritetext UnknownText_0x1b71fc
-	keeptextopen
+	buttonsound
 	end
 
 .Kenji:
 	farwritetext UnknownText_0x1b7331
-	keeptextopen
+	buttonsound
 	end
 
 .Parry:
 	farwritetext UnknownText_0x1b73ef
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbdfec:
@@ -2183,102 +2183,102 @@ UnknownScript_0xbdfec:
 
 .Jack:
 	farwritetext UnknownText_0x1b4e16
-	keeptextopen
+	buttonsound
 	end
 
 .Huey:
 	farwritetext UnknownText_0x1b50c2
-	keeptextopen
+	buttonsound
 	end
 
 .Gaven:
 	farwritetext UnknownText_0x1b52cc
-	keeptextopen
+	buttonsound
 	end
 
 .Jose:
 	farwritetext UnknownText_0x1b55fc
-	keeptextopen
+	buttonsound
 	end
 
 .Joey:
 	farwritetext UnknownText_0x1b58ea
-	keeptextopen
+	buttonsound
 	end
 
 .Wade:
 	farwritetext UnknownText_0x1b5a9f
-	keeptextopen
+	buttonsound
 	end
 
 .Ralph:
 	farwritetext UnknownText_0x1b5cb6
-	keeptextopen
+	buttonsound
 	end
 
 .Anthony:
 	farwritetext UnknownText_0x1b5fc9
-	keeptextopen
+	buttonsound
 	end
 
 .Todd:
 	farwritetext UnknownText_0x1b6149
-	keeptextopen
+	buttonsound
 	end
 
 .Irwin:
 	farwritetext UnknownText_0x1b63c4
-	keeptextopen
+	buttonsound
 	end
 
 .Arnie:
 	farwritetext UnknownText_0x1b64a8
-	keeptextopen
+	buttonsound
 	end
 
 .Alan:
 	farwritetext UnknownText_0x1b65e3
-	keeptextopen
+	buttonsound
 	end
 
 .Chad:
 	farwritetext UnknownText_0x1b6836
-	keeptextopen
+	buttonsound
 	end
 
 .Derek:
 	farwritetext UnknownText_0x1b69f8
-	keeptextopen
+	buttonsound
 	end
 
 .Tully:
 	farwritetext UnknownText_0x1b6b92
-	keeptextopen
+	buttonsound
 	end
 
 .Brent:
 	farwritetext UnknownText_0x1b6cf6
-	keeptextopen
+	buttonsound
 	end
 
 .Vance:
 	farwritetext UnknownText_0x1b7092
-	keeptextopen
+	buttonsound
 	end
 
 .Wilton:
 	farwritetext UnknownText_0x1b722a
-	keeptextopen
+	buttonsound
 	end
 
 .Kenji:
 	farwritetext UnknownText_0x1b7357
-	keeptextopen
+	buttonsound
 	end
 
 .Parry:
 	farwritetext UnknownText_0x1b7417
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe0b6:
@@ -2298,42 +2298,42 @@ UnknownScript_0xbe0b6:
 
 .Beverly:
 	farwritetext UnknownText_0x1b4f21
-	keeptextopen
+	buttonsound
 	end
 
 .Beth:
 	farwritetext UnknownText_0x1b53f7
-	keeptextopen
+	buttonsound
 	end
 
 .Reena:
 	farwritetext UnknownText_0x1b5702
-	keeptextopen
+	buttonsound
 	end
 
 .Liz:
 	farwritetext UnknownText_0x1b5d9f
-	keeptextopen
+	buttonsound
 	end
 
 .Gina:
 	farwritetext UnknownText_0x1b626a
-	keeptextopen
+	buttonsound
 	end
 
 .Dana:
 	farwritetext UnknownText_0x1b66c8
-	keeptextopen
+	buttonsound
 	end
 
 .Tiffany:
 	farwritetext UnknownText_0x1b6e7c
-	keeptextopen
+	buttonsound
 	end
 
 .Erin:
 	farwritetext UnknownText_0x1b751a
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe112:
@@ -2349,42 +2349,42 @@ UnknownScript_0xbe112:
 
 .Beverly:
 	farwritetext UnknownText_0x1b4f4d
-	keeptextopen
+	buttonsound
 	end
 
 .Beth:
 	farwritetext UnknownText_0x1b5424
-	keeptextopen
+	buttonsound
 	end
 
 .Reena:
 	farwritetext UnknownText_0x1b572e
-	keeptextopen
+	buttonsound
 	end
 
 .Liz:
 	farwritetext UnknownText_0x1b5dcc
-	keeptextopen
+	buttonsound
 	end
 
 .Gina:
 	farwritetext UnknownText_0x1b6296
-	keeptextopen
+	buttonsound
 	end
 
 .Dana:
 	farwritetext UnknownText_0x1b66ec
-	keeptextopen
+	buttonsound
 	end
 
 .Tiffany:
 	farwritetext UnknownText_0x1b6ea6
-	keeptextopen
+	buttonsound
 	end
 
 .Erin:
 	farwritetext UnknownText_0x1b7548
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe164:
@@ -2400,42 +2400,42 @@ UnknownScript_0xbe164:
 
 .Beverly:
 	farwritetext UnknownText_0x1b4f75
-	keeptextopen
+	buttonsound
 	end
 
 .Beth:
 	farwritetext UnknownText_0x1b5446
-	keeptextopen
+	buttonsound
 	end
 
 .Reena:
 	farwritetext UnknownText_0x1b575a
-	keeptextopen
+	buttonsound
 	end
 
 .Liz:
 	farwritetext UnknownText_0x1b5df8
-	keeptextopen
+	buttonsound
 	end
 
 .Gina:
 	farwritetext UnknownText_0x1b62c5
-	keeptextopen
+	buttonsound
 	end
 
 .Dana:
 	farwritetext UnknownText_0x1b6713
-	keeptextopen
+	buttonsound
 	end
 
 .Tiffany:
 	farwritetext UnknownText_0x1b6ec9
-	keeptextopen
+	buttonsound
 	end
 
 .Erin:
 	farwritetext UnknownText_0x1b756f
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe1b6:
@@ -2467,102 +2467,102 @@ UnknownScript_0xbe1b6:
 
 .Jack:
 	farwritetext UnknownText_0x1b4e3e
-	keeptextopen
+	buttonsound
 	end
 
 .Huey:
 	farwritetext UnknownText_0x1b50e9
-	keeptextopen
+	buttonsound
 	end
 
 .Gaven:
 	farwritetext UnknownText_0x1b5301
-	keeptextopen
+	buttonsound
 	end
 
 .Jose:
 	farwritetext UnknownText_0x1b5628
-	keeptextopen
+	buttonsound
 	end
 
 .Joey:
 	farwritetext UnknownText_0x1b5912
-	keeptextopen
+	buttonsound
 	end
 
 .Wade:
 	farwritetext UnknownText_0x1b5ad8
-	keeptextopen
+	buttonsound
 	end
 
 .Ralph:
 	farwritetext UnknownText_0x1b5d09
-	keeptextopen
+	buttonsound
 	end
 
 .Anthony:
 	farwritetext UnknownText_0x1b5ff6
-	keeptextopen
+	buttonsound
 	end
 
 .Todd:
 	farwritetext UnknownText_0x1b616e
-	keeptextopen
+	buttonsound
 	end
 
 .Irwin:
 	farwritetext UnknownText_0x1b63e3
-	keeptextopen
+	buttonsound
 	end
 
 .Arnie:
 	farwritetext UnknownText_0x1b64d2
-	keeptextopen
+	buttonsound
 	end
 
 .Alan:
 	farwritetext UnknownText_0x1b660d
-	keeptextopen
+	buttonsound
 	end
 
 .Chad:
 	farwritetext UnknownText_0x1b6862
-	keeptextopen
+	buttonsound
 	end
 
 .Derek:
 	farwritetext UnknownText_0x1b6a22
-	keeptextopen
+	buttonsound
 	end
 
 .Tully:
 	farwritetext UnknownText_0x1b6bb9
-	keeptextopen
+	buttonsound
 	end
 
 .Brent:
 	farwritetext UnknownText_0x1b6d26
-	keeptextopen
+	buttonsound
 	end
 
 .Vance:
 	farwritetext UnknownText_0x1b70e7
-	keeptextopen
+	buttonsound
 	end
 
 .Wilton:
 	farwritetext UnknownText_0x1b725c
-	keeptextopen
+	buttonsound
 	end
 
 .Kenji:
 	farwritetext UnknownText_0x1b737f
-	keeptextopen
+	buttonsound
 	end
 
 .Parry:
 	farwritetext UnknownText_0x1b743f
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe28a:
@@ -2590,102 +2590,102 @@ UnknownScript_0xbe28a:
 
 .Jack:
 	farwritetext UnknownText_0x1b4e72
-	keeptextopen
+	buttonsound
 	end
 
 .Huey:
 	farwritetext UnknownText_0x1b511a
-	keeptextopen
+	buttonsound
 	end
 
 .Gaven:
 	farwritetext UnknownText_0x1b5335
-	keeptextopen
+	buttonsound
 	end
 
 .Jose:
 	farwritetext UnknownText_0x1b564c
-	keeptextopen
+	buttonsound
 	end
 
 .Joey:
 	farwritetext UnknownText_0x1b5948
-	keeptextopen
+	buttonsound
 	end
 
 .Wade:
 	farwritetext UnknownText_0x1b5b0b
-	keeptextopen
+	buttonsound
 	end
 
 .Ralph:
 	farwritetext UnknownText_0x1b5d21
-	keeptextopen
+	buttonsound
 	end
 
 .Anthony:
 	farwritetext UnknownText_0x1b6017
-	keeptextopen
+	buttonsound
 	end
 
 .Todd:
 	farwritetext UnknownText_0x1b618f
-	keeptextopen
+	buttonsound
 	end
 
 .Irwin:
 	farwritetext UnknownText_0x1b6407
-	keeptextopen
+	buttonsound
 	end
 
 .Arnie:
 	farwritetext UnknownText_0x1b6506
-	keeptextopen
+	buttonsound
 	end
 
 .Alan:
 	farwritetext UnknownText_0x1b6624
-	keeptextopen
+	buttonsound
 	end
 
 .Chad:
 	farwritetext UnknownText_0x1b6890
-	keeptextopen
+	buttonsound
 	end
 
 .Derek:
 	farwritetext UnknownText_0x1b6a56
-	keeptextopen
+	buttonsound
 	end
 
 .Tully:
 	farwritetext UnknownText_0x1b6bef
-	keeptextopen
+	buttonsound
 	end
 
 .Brent:
 	farwritetext UnknownText_0x1b6d57
-	keeptextopen
+	buttonsound
 	end
 
 .Vance:
 	farwritetext UnknownText_0x1b7112
-	keeptextopen
+	buttonsound
 	end
 
 .Wilton:
 	farwritetext UnknownText_0x1b7283
-	keeptextopen
+	buttonsound
 	end
 
 .Kenji:
 	farwritetext UnknownText_0x1b7397
-	keeptextopen
+	buttonsound
 	end
 
 .Parry:
 	farwritetext UnknownText_0x1b746f
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe354:
@@ -2713,102 +2713,102 @@ UnknownScript_0xbe354:
 
 .Jack:
 	farwritetext UnknownText_0x1b4e9e
-	keeptextopen
+	buttonsound
 	end
 
 .Huey:
 	farwritetext UnknownText_0x1b5154
-	keeptextopen
+	buttonsound
 	end
 
 .Gaven:
 	farwritetext UnknownText_0x1b535f
-	keeptextopen
+	buttonsound
 	end
 
 .Jose:
 	farwritetext UnknownText_0x1b5670
-	keeptextopen
+	buttonsound
 	end
 
 .Joey:
 	farwritetext UnknownText_0x1b597c
-	keeptextopen
+	buttonsound
 	end
 
 .Wade:
 	farwritetext UnknownText_0x1b5b37
-	keeptextopen
+	buttonsound
 	end
 
 .Ralph:
 	farwritetext UnknownText_0x1b5d39
-	keeptextopen
+	buttonsound
 	end
 
 .Anthony:
 	farwritetext UnknownText_0x1b6041
-	keeptextopen
+	buttonsound
 	end
 
 .Todd:
 	farwritetext UnknownText_0x1b61bd
-	keeptextopen
+	buttonsound
 	end
 
 .Irwin:
 	farwritetext UnknownText_0x1b642c
-	keeptextopen
+	buttonsound
 	end
 
 .Arnie:
 	farwritetext UnknownText_0x1b6539
-	keeptextopen
+	buttonsound
 	end
 
 .Alan:
 	farwritetext UnknownText_0x1b663b
-	keeptextopen
+	buttonsound
 	end
 
 .Chad:
 	farwritetext UnknownText_0x1b68ba
-	keeptextopen
+	buttonsound
 	end
 
 .Derek:
 	farwritetext UnknownText_0x1b6a8b
-	keeptextopen
+	buttonsound
 	end
 
 .Tully:
 	farwritetext UnknownText_0x1b6c23
-	keeptextopen
+	buttonsound
 	end
 
 .Brent:
 	farwritetext UnknownText_0x1b6d88
-	keeptextopen
+	buttonsound
 	end
 
 .Vance:
 	farwritetext UnknownText_0x1b7132
-	keeptextopen
+	buttonsound
 	end
 
 .Wilton:
 	farwritetext UnknownText_0x1b72a5
-	keeptextopen
+	buttonsound
 	end
 
 .Kenji:
 	farwritetext UnknownText_0x1b73af
-	keeptextopen
+	buttonsound
 	end
 
 .Parry:
 	farwritetext UnknownText_0x1b749b
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe41e:
@@ -2828,42 +2828,42 @@ UnknownScript_0xbe41e:
 
 .Beverly:
 	farwritetext UnknownText_0x1b4fa1
-	keeptextopen
+	buttonsound
 	end
 
 .Beth:
 	farwritetext UnknownText_0x1b5472
-	keeptextopen
+	buttonsound
 	end
 
 .Reena:
 	farwritetext UnknownText_0x1b5786
-	keeptextopen
+	buttonsound
 	end
 
 .Liz:
 	farwritetext UnknownText_0x1b5e25
-	keeptextopen
+	buttonsound
 	end
 
 .Gina:
 	farwritetext UnknownText_0x1b62f1
-	keeptextopen
+	buttonsound
 	end
 
 .Dana:
 	farwritetext UnknownText_0x1b6738
-	keeptextopen
+	buttonsound
 	end
 
 .Tiffany:
 	farwritetext UnknownText_0x1b6ef3
-	keeptextopen
+	buttonsound
 	end
 
 .Erin:
 	farwritetext UnknownText_0x1b758f
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe47a:
@@ -2879,42 +2879,42 @@ UnknownScript_0xbe47a:
 
 .Beverly:
 	farwritetext UnknownText_0x1b4fda
-	keeptextopen
+	buttonsound
 	end
 
 .Beth:
 	farwritetext UnknownText_0x1b54a6
-	keeptextopen
+	buttonsound
 	end
 
 .Reena:
 	farwritetext UnknownText_0x1b57b7
-	keeptextopen
+	buttonsound
 	end
 
 .Liz:
 	farwritetext UnknownText_0x1b5e59
-	keeptextopen
+	buttonsound
 	end
 
 .Gina:
 	farwritetext UnknownText_0x1b630e
-	keeptextopen
+	buttonsound
 	end
 
 .Dana:
 	farwritetext UnknownText_0x1b6757
-	keeptextopen
+	buttonsound
 	end
 
 .Tiffany:
 	farwritetext UnknownText_0x1b6f1c
-	keeptextopen
+	buttonsound
 	end
 
 .Erin:
 	farwritetext UnknownText_0x1b75ac
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe4cc:
@@ -2930,42 +2930,42 @@ UnknownScript_0xbe4cc:
 
 .Beverly:
 	farwritetext UnknownText_0x1b5004
-	keeptextopen
+	buttonsound
 	end
 
 .Beth:
 	farwritetext UnknownText_0x1b54d4
-	keeptextopen
+	buttonsound
 	end
 
 .Reena:
 	farwritetext UnknownText_0x1b57e8
-	keeptextopen
+	buttonsound
 	end
 
 .Liz:
 	farwritetext UnknownText_0x1b5e8e
-	keeptextopen
+	buttonsound
 	end
 
 .Gina:
 	farwritetext UnknownText_0x1b6331
-	keeptextopen
+	buttonsound
 	end
 
 .Dana:
 	farwritetext UnknownText_0x1b6776
-	keeptextopen
+	buttonsound
 	end
 
 .Tiffany:
 	farwritetext UnknownText_0x1b6f37
-	keeptextopen
+	buttonsound
 	end
 
 .Erin:
 	farwritetext UnknownText_0x1b75c9
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe51e:
@@ -2990,92 +2990,92 @@ UnknownScript_0xbe51e:
 
 .Jack:
 	farwritetext UnknownText_0x1b4ecd
-	keeptextopen
+	buttonsound
 	end
 
 .Unknown:
 	farwritetext UnknownText_0x1b518b
-	keeptextopen
+	buttonsound
 	end
 
 .Gaven:
 	farwritetext UnknownText_0x1b5393
-	keeptextopen
+	buttonsound
 	end
 
 .Jose:
 	farwritetext UnknownText_0x1b5694
-	keeptextopen
+	buttonsound
 	end
 
 .Joey:
 	farwritetext UnknownText_0x1b59b2
-	keeptextopen
+	buttonsound
 	end
 
 .Wade:
 	farwritetext UnknownText_0x1b5b68
-	keeptextopen
+	buttonsound
 	end
 
 .Ralph:
 	farwritetext UnknownText_0x1b5d51
-	keeptextopen
+	buttonsound
 	end
 
 .Anthony:
 	farwritetext UnknownText_0x1b606f
-	keeptextopen
+	buttonsound
 	end
 
 .Todd:
 	farwritetext UnknownText_0x1b61f2
-	keeptextopen
+	buttonsound
 	end
 
 .Arnie:
 	farwritetext UnknownText_0x1b656c
-	keeptextopen
+	buttonsound
 	end
 
 .Alan:
 	farwritetext UnknownText_0x1b6652
-	keeptextopen
+	buttonsound
 	end
 
 .Chad:
 	farwritetext UnknownText_0x1b68e8
-	keeptextopen
+	buttonsound
 	end
 
 .Derek:
 	farwritetext UnknownText_0x1b6ac2
-	keeptextopen
+	buttonsound
 	end
 
 .Tully:
 	farwritetext UnknownText_0x1b6c56
-	keeptextopen
+	buttonsound
 	end
 
 .Brent:
 	farwritetext UnknownText_0x1b6db9
-	keeptextopen
+	buttonsound
 	end
 
 .Vance:
 	farwritetext UnknownText_0x1b7161
-	keeptextopen
+	buttonsound
 	end
 
 .Wilton:
 	farwritetext UnknownText_0x1b72d0
-	keeptextopen
+	buttonsound
 	end
 
 .Parry:
 	farwritetext UnknownText_0x1b74c8
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe5d0:
@@ -3091,42 +3091,42 @@ UnknownScript_0xbe5d0:
 
 .Beverly:
 	farwritetext UnknownText_0x1b502b
-	keeptextopen
+	buttonsound
 	end
 
 .Beth:
 	farwritetext UnknownText_0x1b5510
-	keeptextopen
+	buttonsound
 	end
 
 .Reena:
 	farwritetext UnknownText_0x1b5819
-	keeptextopen
+	buttonsound
 	end
 
 .Liz:
 	farwritetext UnknownText_0x1b5ebe
-	keeptextopen
+	buttonsound
 	end
 
 .Gina:
 	farwritetext UnknownText_0x1b6352
-	keeptextopen
+	buttonsound
 	end
 
 .Dana:
 	farwritetext UnknownText_0x1b6795
-	keeptextopen
+	buttonsound
 	end
 
 .Tiffany:
 	farwritetext UnknownText_0x1b6f60
-	keeptextopen
+	buttonsound
 	end
 
 .Erin:
 	farwritetext UnknownText_0x1b75e5
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xbe622:
@@ -3134,7 +3134,7 @@ UnknownScript_0xbe622:
 	farscall UnknownScript_0xbde3f
 	if_equal $0, UnknownScript_0xbe636
 	farwritetext UnknownText_0x1b518b
-	keeptextopen
+	buttonsound
 	farjump UnknownScript_0xa0484
 
 UnknownScript_0xbe636:
@@ -3142,7 +3142,7 @@ UnknownScript_0xbe636:
 
 UnknownScript_0xbe63a:
 	farwritetext UnknownText_0x1b522b
-	keeptextopen
+	buttonsound
 	farjump UnknownScript_0xa0484
 ; be643
 

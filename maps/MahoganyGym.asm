@@ -43,7 +43,7 @@ PryceScript_0x199a9e:
 	setevent EVENT_BEAT_BOARDER_BRAD
 	setevent EVENT_BEAT_BOARDER_DOUGLAS
 	writetext UnknownText_0x199d55
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_ICY_WIND
 	iffalse UnknownScript_0x199af4
 	setevent EVENT_GOT_TM16_ICY_WIND

@@ -24,10 +24,10 @@ GentlemanScript_0x1917e9:
 	yesorno
 	iffalse UnknownScript_0x19181b
 	writetext UnknownText_0x191911
-	keeptextopen
+	buttonsound
 UnknownScript_0x191802:
 	writetext UnknownText_0x191a3d
-	keeptextopen
+	buttonsound
 	verbosegiveitem RARE_CANDY
 	iffalse UnknownScript_0x19181f
 	setevent EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT
@@ -73,9 +73,9 @@ UnknownScript_0x191838:
 	end
 
 UnknownScript_0x191844:
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x191c5a
-	keeptextopen
+	buttonsound
 	waitsfx
 	giveitem LOST_ITEM
 	iffalse UnknownScript_0x191865

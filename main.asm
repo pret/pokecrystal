@@ -8658,7 +8658,7 @@ SignpostItemScript:: ; 0x13625
 ; 0x1363e
 
 .bag_full: ; 0x1363e
-	keeptextopen
+	buttonsound
 	writetext .no_room_text
 	waitbutton
 
@@ -22604,7 +22604,7 @@ Function10424e: ; 10424e (41:424e)
 	ret
 
 Function10425f: ; 10425f (41:425f)
-	ld c, $7f
+	ld c, " "
 	jr Function104265
 
 Function104263: ; 104263 (41:4263)

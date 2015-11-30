@@ -157,7 +157,7 @@ IF _CRYSTAL
 ENDC
 	dw Script_jumptext
 	dw Script_waitbutton
-	dw Script_keeptextopen
+	dw Script_buttonsound
 	dw Script_pokepic
 	dw Script_closepokepic
 	dw Script_interpretmenu
@@ -438,7 +438,7 @@ Script_waitbutton: ; 96ed9
 	jp WaitButton
 ; 96edc
 
-Script_keeptextopen: ; 96edc
+Script_buttonsound: ; 96edc
 ; script command 0x55
 
 	ld a, [hOAMUpdate]
@@ -446,7 +446,7 @@ Script_keeptextopen: ; 96edc
 	ld a, $1
 	ld [hOAMUpdate], a
 	call WaitBGMap
-	call KeepTextOpen
+	call ButtonSound
 	pop af
 	ld [hOAMUpdate], a
 	ret
@@ -583,7 +583,7 @@ GiveItemScript: ; 96f77
 	end
 
 .Full
-	keeptextopen
+	buttonsound
 	pocketisfull
 	end
 ; 96f89

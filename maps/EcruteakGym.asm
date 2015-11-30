@@ -56,7 +56,7 @@ MortyScript_0x99d58:
 	setevent EVENT_BEAT_MEDIUM_MARTHA
 	setevent EVENT_BEAT_MEDIUM_GRACE
 	writetext UnknownText_0x9a059
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_SHADOW_BALL
 	iffalse UnknownScript_0x99db5
 	setevent EVENT_GOT_TM30_SHADOW_BALL

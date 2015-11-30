@@ -39,7 +39,7 @@ UnknownScript_0x7a4f2:
 UnknownScript_0x7a4f6:
 	loadfont
 	writetext UnknownText_0x7a604
-	keeptextopen
+	buttonsound
 	stringtotext GearName, $1
 	scall UnknownScript_0x7a57e
 	setflag ENGINE_POKEGEAR
@@ -49,7 +49,7 @@ UnknownScript_0x7a4f6:
 	setevent EVENT_KRISS_HOUSE_MOM_1
 	clearevent EVENT_KRISS_HOUSE_MOM_2
 	writetext UnknownText_0x7a6bd
-	keeptextopen
+	buttonsound
 	special Special_SetDayOfWeek
 UnknownScript_0x7a519:
 	writetext UnknownText_0x7a742
@@ -72,12 +72,12 @@ UnknownScript_0x7a531:
 
 UnknownScript_0x7a53b:
 	writetext UnknownText_0x7a7cb
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0x7a549
 
 UnknownScript_0x7a542:
 	writetext UnknownText_0x7a807
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0x7a549
 
 UnknownScript_0x7a549:
@@ -166,17 +166,17 @@ NeighborScript:
 
 .MornScript
 	writetext NeighborMornIntroText
-	keeptextopen
+	buttonsound
 	jump .Main
 
 .DayScript
 	writetext NeighborDayIntroText
-	keeptextopen
+	buttonsound
 	jump .Main
 
 .NiteScript
 	writetext NeighborNiteIntroText
-	keeptextopen
+	buttonsound
 	jump .Main
 
 .Main

@@ -18,7 +18,7 @@ CooltrainerMScript_0x9a5fb:
 	yesorno
 	iffalse UnknownScript_0x9a61a
 	writetext UnknownText_0x9a6b5
-	keeptextopen
+	buttonsound
 	verbosegiveitem ITEMFINDER
 	setevent EVENT_GOT_ITEMFINDER
 UnknownScript_0x9a614:

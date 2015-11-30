@@ -83,7 +83,7 @@ UnknownScript_0x7678d:
 	end
 
 UnknownScript_0x76799:
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x7696d
 	waitbutton
 	closetext

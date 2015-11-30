@@ -204,7 +204,7 @@ OlderHaircutBrotherScript:
 	checkmoney $0, 500
 	if_equal $2, .NotEnoughMoney
 	writetext UnknownText_0x7c69a
-	keeptextopen
+	buttonsound
 	special Special_YoungerHaircutBrother
 	if_equal $0, .Refused
 	if_equal $1, .Refused
@@ -287,7 +287,7 @@ YoungerHaircutBrotherScript:
 	checkmoney $0, 300
 	if_equal $2, .NotEnoughMoney
 	writetext UnknownText_0x7c7f1
-	keeptextopen
+	buttonsound
 	special Special_OlderHaircutBrother
 	if_equal $0, .Refused
 	if_equal $1, .Refused

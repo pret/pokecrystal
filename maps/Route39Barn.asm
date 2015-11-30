@@ -53,7 +53,7 @@ TaurosScript_0x9ccaa:
 	writetext Text_WeakMoo
 	writebyte MILTANK
 	special PlaySlowCry
-	keeptextopen
+	buttonsound
 	writetext Text_ItsCryIsWeak
 	checkevent EVENT_TALKED_TO_FARMER_ABOUT_MOOMOO
 	iftrue .GiveBerry
@@ -62,7 +62,7 @@ TaurosScript_0x9ccaa:
 	end
 
 .GiveBerry:
-	keeptextopen
+	buttonsound
 	writetext Text_AskGiveBerry
 	yesorno
 	iffalse .Refused
@@ -82,7 +82,7 @@ TaurosScript_0x9ccaa:
 
 .ThreeBerries:
 	writetext Text_GaveBerry
-	keeptextopen
+	buttonsound
 	writetext Text_LittleHealthier
 	waitbutton
 	closetext
@@ -90,7 +90,7 @@ TaurosScript_0x9ccaa:
 
 .FiveBerries:
 	writetext Text_GaveBerry
-	keeptextopen
+	buttonsound
 	writetext Text_QuiteHealthy
 	waitbutton
 	closetext
@@ -100,7 +100,7 @@ TaurosScript_0x9ccaa:
 	playmusic MUSIC_HEAL
 	writetext Text_GaveBerry
 	pause 60
-	keeptextopen
+	buttonsound
 	special RestartMapMusic
 	writetext Text_TotallyHealthy
 	waitbutton

@@ -72,7 +72,7 @@ UnknownScript_0x190489:
 
 UnknownScript_0x19048f:
 	writetext UnknownText_0x190925
-	keeptextopen
+	buttonsound
 	verbosegiveitem MIRACLE_SEED
 	iffalse UnknownScript_0x1904a9
 	setevent EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
@@ -113,7 +113,7 @@ FisherScript_0x1904ce:
 	checkevent EVENT_GOT_TM05_ROAR
 	iftrue UnknownScript_0x1904e3
 	writetext UnknownText_0x191133
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_ROAR
 	iffalse UnknownScript_0x1904e7
 	setevent EVENT_GOT_TM05_ROAR
@@ -186,7 +186,7 @@ FisherRalph1Script:
 	checkevent EVENT_RALPH_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x190566
 	writetext UnknownText_0x190bf8
-	keeptextopen
+	buttonsound
 	setevent EVENT_RALPH_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1905f7
 	jump UnknownScript_0x190569
@@ -320,7 +320,7 @@ PicnickerLiz1Script:
 	checkevent EVENT_LIZ_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x190656
 	writetext UnknownText_0x191060
-	keeptextopen
+	buttonsound
 	setevent EVENT_LIZ_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1906e1
 	jump UnknownScript_0x190659
@@ -466,11 +466,11 @@ FriedaScript:
 	checkevent EVENT_MET_FRIEDA_OF_FRIDAY
 	iftrue .MetFrieda
 	writetext MeetFriedaText
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_FRIEDA_OF_FRIDAY
 .MetFrieda
 	writetext FriedaGivesGiftText
-	keeptextopen
+	buttonsound
 	verbosegiveitem POISON_BARB
 	iffalse FriedaDoneScript
 	setevent EVENT_GOT_POISON_BARB_FROM_FRIEDA

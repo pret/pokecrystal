@@ -21,7 +21,7 @@ UnknownScript_0x9b38b:
 	checkflag ENGINE_FOUGHT_IN_TRAINER_HALL_TODAY
 	iftrue UnknownScript_0x9b3f7
 	writetext UnknownText_0x9b420
-	keeptextopen
+	buttonsound
 	special SpecialTrainerHouse
 	iffalse UnknownScript_0x9b3a6
 	trainertotext CAL, CAL2, $0
@@ -31,7 +31,7 @@ UnknownScript_0x9b3a6:
 	trainertotext CAL, CAL3, $0
 UnknownScript_0x9b3aa:
 	writetext UnknownText_0x9b46a
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x9b487
 	yesorno
 	iffalse UnknownScript_0x9b3ed

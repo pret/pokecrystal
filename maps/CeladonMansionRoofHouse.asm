@@ -14,7 +14,7 @@ PharmacistScript_0x71afd:
 	checkevent EVENT_GOT_TM03_CURSE
 	iftrue UnknownScript_0x71b21
 	writetext UnknownText_0x71b27
-	keeptextopen
+	buttonsound
 	checknite
 	iftrue UnknownScript_0x71b14
 	writetext UnknownText_0x71b4a
@@ -24,7 +24,7 @@ PharmacistScript_0x71afd:
 
 UnknownScript_0x71b14:
 	writetext UnknownText_0x71ba3
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_CURSE
 	iffalse UnknownScript_0x71b25
 	setevent EVENT_GOT_TM03_CURSE

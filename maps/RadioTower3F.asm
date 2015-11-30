@@ -69,7 +69,7 @@ UnknownScript_0x5e584:
 
 UnknownScript_0x5e58a:
 	writetext UnknownText_0x5e7e2
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_SUNNY_DAY
 	iffalse UnknownScript_0x5e5a1
 	writetext UnknownText_0x5e821

@@ -113,7 +113,7 @@ Copycat:
 .Part12
 	loadfont
 	writetext UnknownText_0x18b17f
-	keeptextopen
+	buttonsound
 	takeitem LOST_ITEM
 	setevent EVENT_RETURNED_LOST_ITEM_TO_COPYCAT
 	clearevent EVENT_COPYCATS_HOUSE_2F_DOLL
@@ -123,7 +123,7 @@ Copycat:
 	loadfont
 .Part14
 	writetext UnknownText_0x18b1e2
-	keeptextopen
+	buttonsound
 	verbosegiveitem PASS
 	iffalse .Part22
 	setevent EVENT_GOT_PASS_FROM_COPYCAT
@@ -179,7 +179,7 @@ CopycatsDodrio:
 	loadfont
 	writetext CopycatsDodrioText1
 	cry DODRIO
-	keeptextopen
+	buttonsound
 	writetext CopycatsDodrioText2
 	waitbutton
 	closetext

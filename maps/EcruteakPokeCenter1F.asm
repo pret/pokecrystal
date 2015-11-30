@@ -42,7 +42,7 @@ UnknownScript_0x98e64:
 	pause 10
 	loadfont
 	writetext UnknownText_0x98ed8
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0x98e95
 
 UnknownScript_0x98e95:

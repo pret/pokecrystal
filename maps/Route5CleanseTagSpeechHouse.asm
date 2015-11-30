@@ -15,7 +15,7 @@ GrannyScript_0x18b634:
 	checkevent EVENT_GOT_CLEANSE_TAG
 	iftrue UnknownScript_0x18b649
 	writetext UnknownText_0x18b655
-	keeptextopen
+	buttonsound
 	verbosegiveitem CLEANSE_TAG
 	iffalse UnknownScript_0x18b64d
 	setevent EVENT_GOT_CLEANSE_TAG

@@ -57,7 +57,7 @@ WhitneyScript_0x5400c:
 	checkflag ENGINE_PLAINBADGE
 	iftrue UnknownScript_0x54064
 	writetext UnknownText_0x54222
-	keeptextopen
+	buttonsound
 	waitsfx
 	writetext UnknownText_0x54273
 	playsound SFX_GET_BADGE
@@ -67,7 +67,7 @@ WhitneyScript_0x5400c:
 	scall GoldenrodGymTriggerRockets
 UnknownScript_0x54064:
 	writetext UnknownText_0x5428b
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_ATTRACT
 	iffalse UnknownScript_0x5407b
 	setevent EVENT_GOT_TM45_ATTRACT

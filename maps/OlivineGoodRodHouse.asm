@@ -17,7 +17,7 @@ GoodRodGuru:
 	yesorno
 	iffalse .DontWantIt
 	writetext GiveGoodRodText
-	keeptextopen
+	buttonsound
 	verbosegiveitem GOOD_ROD
 	writetext GaveGoodRodText
 	waitbutton

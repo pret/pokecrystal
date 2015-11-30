@@ -15,7 +15,7 @@ TeacherScript_0x54953:
 	loadfont
 	special GetFirstPokemonHappiness
 	writetext UnknownText_0x549a3
-	keeptextopen
+	buttonsound
 	if_greater_than $f9, UnknownScript_0x54973
 	if_greater_than $c7, UnknownScript_0x54979
 	if_greater_than $95, UnknownScript_0x5497f

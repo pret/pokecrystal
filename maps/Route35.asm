@@ -41,7 +41,7 @@ JugglerIrwin1Script:
 	checkevent EVENT_IRWIN_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19c8ec
 	writetext UnknownText_0x19cd5a
-	keeptextopen
+	buttonsound
 	setevent EVENT_IRWIN_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19c903
 	jump UnknownScript_0x19c8ef
@@ -144,7 +144,7 @@ Bug_catcherArnie1Script:
 	checkevent EVENT_ARNIE_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19c9a4
 	writetext UnknownText_0x19cdf6
-	keeptextopen
+	buttonsound
 	setevent EVENT_ARNIE_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19c903
 	jump UnknownScript_0x19c9a7

@@ -39,7 +39,7 @@ FalknerScript_0x683c2:
 	domaptrigger ELMS_LAB, $2
 	specialphonecall SPECIALCALL_ASSISTANT
 	writetext UnknownText_0x685c8
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_MUD_SLAP
 	iffalse .NoRoomForMudSlap
 	setevent EVENT_GOT_TM31_MUD_SLAP

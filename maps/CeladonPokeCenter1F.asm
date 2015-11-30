@@ -28,7 +28,7 @@ SuperNerdScript_0x71e2e:
 	faceplayer
 	loadfont
 	writetext UnknownText_0x71f22
-	keeptextopen
+	buttonsound
 	writebyte SUICUNE
 	special SpecialMonCheck
 	iffalse UnknownScript_0x71e46

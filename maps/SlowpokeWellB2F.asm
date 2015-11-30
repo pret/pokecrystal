@@ -15,7 +15,7 @@ GymGuyScript_0x5ad0b:
 	checkevent EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL
 	iftrue UnknownScript_0x5ad22
 	writetext UnknownText_0x5ad2a
-	keeptextopen
+	buttonsound
 	verbosegiveitem KINGS_ROCK
 	iffalse UnknownScript_0x5ad20
 	setevent EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL

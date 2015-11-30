@@ -23,7 +23,7 @@ RocketScript_0x1adbfa:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
 	writetext UnknownText_0x1addc0
-	keeptextopen
+	buttonsound
 	special Special_RotatePalettesRightMusic
 	writetext UnknownText_0x1adee1
 	waitbutton

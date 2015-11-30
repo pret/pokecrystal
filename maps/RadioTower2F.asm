@@ -162,7 +162,7 @@ UnknownScript_0x5d7be:
 
 UnknownScript_0x5d800:
 	writetext UnknownText_0x5dcf4
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_BUENA
 	verbosegiveitem BLUE_CARD
 UnknownScript_0x5d80a:
@@ -286,7 +286,7 @@ UnknownScript_0x5d8d0:
 	writetext UnknownText_0x5e2f3
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitsfx
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x5e310
 	waitbutton
 	closetext
@@ -315,14 +315,14 @@ ReceptionistScript_0x5d8ff:
 	checkitem BLUE_CARD
 	iffalse UnknownScript_0x5d90f
 	writetext UnknownText_0x5e392
-	keeptextopen
+	buttonsound
 	special SpecialBuenaPrize
 	closetext
 	end
 
 UnknownScript_0x5d90f:
 	writetext UnknownText_0x5e3d8
-	keeptextopen
+	buttonsound
 	closetext
 	end
 

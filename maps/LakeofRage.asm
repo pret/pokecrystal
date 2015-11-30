@@ -53,7 +53,7 @@ LanceScript_0x70022:
 	iftrue UnknownScript_0x70057
 	loadfont
 	writetext UnknownText_0x70157
-	keeptextopen
+	buttonsound
 	faceplayer
 	writetext UnknownText_0x701b4
 	yesorno
@@ -145,7 +145,7 @@ MapLakeofRageSignpost1Script:
 	end
 
 UnknownScript_0x700b8:
-	keeptextopen
+	buttonsound
 	special Special_MagikarpHouseSign
 	closetext
 	end
@@ -204,11 +204,11 @@ WesleyScript:
 	checkevent EVENT_MET_WESLEY_OF_WEDNESDAY
 	iftrue .MetWesley
 	writetext MeetWesleyText
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_WESLEY_OF_WEDNESDAY
 .MetWesley
 	writetext WesleyGivesGiftText
-	keeptextopen
+	buttonsound
 	verbosegiveitem BLACKBELT
 	iffalse WesleyDoneScript
 	setevent EVENT_GOT_BLACKBELT_FROM_WESLEY

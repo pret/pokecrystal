@@ -875,7 +875,7 @@ Special_DayCareMon1: ; 17421
 	ld a, [wDaycareLady]
 	bit 0, a
 	jr z, Function1745f
-	call KeepTextOpen
+	call ButtonSound
 	ld hl, wBreedMon2Nick
 	call Function1746c
 	jp PrintText
@@ -888,7 +888,7 @@ Special_DayCareMon2: ; 17440
 	ld a, [wDaycareMan]
 	bit 0, a
 	jr z, Function1745f
-	call KeepTextOpen
+	call ButtonSound
 	ld hl, wBreedMon1Nick
 	call Function1746c
 	jp PrintText

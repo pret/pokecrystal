@@ -52,7 +52,7 @@ YoungsterJoey1Script:
 	checkevent EVENT_JOEY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a16c9
 	writetext UnknownText_0x1a18c2
-	keeptextopen
+	buttonsound
 	setevent EVENT_JOEY_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a1783
 	jump UnknownScript_0x1a16cc

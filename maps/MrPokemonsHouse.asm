@@ -30,7 +30,7 @@ UnknownScript_0x196e56:
 	applymovement PLAYER, MovementData_0x196f5a
 	loadfont
 	writetext UnknownText_0x196fa8
-	keeptextopen
+	buttonsound
 	waitsfx
 	giveitem MYSTERY_EGG
 	writetext UnknownText_0x196fd2
@@ -40,10 +40,10 @@ UnknownScript_0x196e56:
 	setevent EVENT_GOT_MYSTERY_EGG_FROM_MR_POKEMON
 	blackoutmod CHERRYGROVE_CITY
 	writetext UnknownText_0x196feb
-	keeptextopen
+	buttonsound
 	spriteface MRPOKEMONSHOUSE_GENTLEMAN, RIGHT
 	writetext UnknownText_0x197092
-	keeptextopen
+	buttonsound
 	spriteface MRPOKEMONSHOUSE_GENTLEMAN, DOWN
 	spriteface MRPOKEMONSHOUSE_OAK, LEFT
 	writetext UnknownText_0x1970b7
@@ -91,7 +91,7 @@ UnknownScript_0x196ec9:
 	spriteface PLAYER, RIGHT
 	loadfont
 	writetext UnknownText_0x197185
-	keeptextopen
+	buttonsound
 	waitsfx
 	writetext UnknownText_0x1973cc
 	playsound SFX_ITEM

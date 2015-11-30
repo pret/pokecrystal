@@ -109,7 +109,7 @@ CeladonCafeTrashcan:
 	loadfont
 	itemtotext LEFTOVERS, $0
 	writetext FoundLeftoversText
-	keeptextopen
+	buttonsound
 	writetext NoRoomForLeftoversText
 	waitbutton
 	closetext

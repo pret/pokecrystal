@@ -163,10 +163,10 @@ UnknownScript_0x1980e5:
 	applymovement PLAYER, MovementData_0x198148
 	loadfont
 	writetext UnknownText_0x1985df
-	keeptextopen
+	buttonsound
 	spriteface AZALEATOWN_KURT_OUTSIDE, RIGHT
 	writetext UnknownText_0x19860b
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x198628
 	waitbutton
 	verbosegiveitem GS_BALL

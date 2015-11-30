@@ -82,7 +82,7 @@ FisherScript_0x58061:
 	iftrue .Next
 	setevent EVENT_TALKED_TO_RUINS_COWARD
 	writetext UnknownText_0x583a4
-	keeptextopen
+	buttonsound
 .Next
 	writetext UnknownText_0x58420
 	waitbutton

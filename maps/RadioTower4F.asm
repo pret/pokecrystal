@@ -31,7 +31,7 @@ TeacherScript_0x5eb85:
 
 UnknownScript_0x5eb99:
 	writetext UnknownText_0x5ecab
-	keeptextopen
+	buttonsound
 	verbosegiveitem PINK_BOW
 	iffalse UnknownScript_0x5ebb0
 	writetext UnknownText_0x5ecef

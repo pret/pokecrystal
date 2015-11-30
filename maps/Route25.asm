@@ -165,7 +165,7 @@ CooltrainerMScript_0x19efac:
 	checkevent EVENT_CLEARED_NUGGET_BRIDGE
 	iftrue UnknownScript_0x19efc7
 	writetext UnknownText_0x19f43b
-	keeptextopen
+	buttonsound
 	verbosegiveitem NUGGET
 	iffalse UnknownScript_0x19efde
 	setevent EVENT_CLEARED_NUGGET_BRIDGE

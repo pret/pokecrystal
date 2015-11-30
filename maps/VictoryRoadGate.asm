@@ -29,7 +29,7 @@ OfficerScript_0x9ba03:
 UnknownScript_0x9ba04:
 	loadfont
 	writetext UnknownText_0x9ba29
-	keeptextopen
+	buttonsound
 	checkcode VAR_BADGES
 	if_greater_than 7, UnknownScript_0x9ba19
 	writetext UnknownText_0x9ba5f

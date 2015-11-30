@@ -31,7 +31,7 @@ GrampsScript_0x62f8f:
 	checkevent EVENT_GOT_ODD_EGG
 	iftrue UnknownScript_0x62fbd
 	writetext UnknownText_0x630ce
-	keeptextopen
+	buttonsound
 	closetext
 	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x62fb6

@@ -32,7 +32,7 @@ Script_BattleRoomLoop: ; 0x9f425
 	applymovement BATTLETOWERBATTLEROOM_YOUNGSTER, MovementData_BattleTowerBattleRoomOpponentWalksIn
 	loadfont
 	battletowertext 1
-	keeptextopen
+	buttonsound
 	closetext
 	special BattleTowerBattle ; calls predef startbattle
 	special FadeOutPalettes

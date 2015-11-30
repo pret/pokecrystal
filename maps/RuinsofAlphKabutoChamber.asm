@@ -99,7 +99,7 @@ ScientistScript_0x587a8:
 	checkevent EVENT_SOLVED_KABUTO_PUZZLE
 	iffalse UnknownScript_0x587c0
 	writetext UnknownText_0x589b8
-	keeptextopen
+	buttonsound
 UnknownScript_0x587c0:
 	writetext UnknownText_0x588f5
 	waitbutton

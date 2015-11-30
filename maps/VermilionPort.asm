@@ -100,7 +100,7 @@ UnknownScript_0x74e20:
 	yesorno
 	iffalse UnknownScript_0x74e8d
 	writetext UnknownText_0x74f8b
-	keeptextopen
+	buttonsound
 	checkitem S_S_TICKET
 	iffalse UnknownScript_0x74e68
 	writetext UnknownText_0x74fc2
@@ -162,7 +162,7 @@ SailorScript_0x74e97:
 	yesorno
 	iffalse UnknownScript_0x74e87
 	writetext UnknownText_0x74f8b
-	keeptextopen
+	buttonsound
 	checkitem S_S_TICKET
 	iffalse UnknownScript_0x74ed4
 	writetext UnknownText_0x74fc2

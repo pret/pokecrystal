@@ -19,7 +19,7 @@ BillsHouseBill:
 	yesorno
 	iffalse UnknownScript_0x54c19
 	writetext UnknownText_0x54d3f
-	keeptextopen
+	buttonsound
 	waitsfx
 	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x54c13
@@ -81,7 +81,7 @@ BillsSister:
 	writetext UnknownText_0x54fd9
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitsfx
-	keeptextopen
+	buttonsound
 UnknownScript_0x54c58: ;0x54c58
 	writetext UnknownText_0x55069
 	waitbutton
@@ -96,7 +96,7 @@ UnknownScript_0x54c5e:
 
 UnknownScript_0x54c64:
 	writetext UnknownText_0x55046
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0x54c5e
 
 BillsHouseBookshelf1:

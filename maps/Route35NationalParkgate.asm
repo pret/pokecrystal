@@ -107,7 +107,7 @@ Route35NationalParkgate_OkayToProceed:
 	setflag ENGINE_BUG_CONTEST_TIMER
 	special PlayMapMusic
 	writetext UnknownText_0x6a39d
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x6a3c7
 	playsound SFX_ITEM
 	waitsfx
@@ -149,11 +149,11 @@ Route35NationalParkgate_LessThanFullParty: ; 6a27d
 	iftrue Route35NationalParkgate_FirstMonIsFainted
 	setevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 	writetext UnknownText_0x6a537
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x6a56b
 	playsound SFX_GOT_SAFARI_BALLS
 	waitsfx
-	keeptextopen
+	buttonsound
 	jump Route35NationalParkgate_OkayToProceed
 
 Route35NationalParkgate_DeclinedToParticipate:
