@@ -79,17 +79,17 @@ Functione45e8: ; e45e8
 	ld [rSVBK], a
 
 	ld hl, IntroLogoGFX
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	ld a, BANK(IntroLogoGFX)
 	call FarDecompress
 
 	ld hl, VTiles0
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	lb bc, 1, 8 tiles
 	call Request2bpp
 
 	ld hl, VTiles1
-	ld de, w6_d000 + $80 tiles
+	ld de, wBackupTilemap + $80 tiles
 	lb bc, 1, 8 tiles
 	call Request2bpp
 
@@ -1886,7 +1886,7 @@ Functione541b: ; e541b (39:541b)
 	push af
 	ld a, $6
 	ld [rSVBK], a
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	decoord 0, 0
 	ld b, SCREEN_HEIGHT
 .asm_e542a
@@ -2000,10 +2000,10 @@ Functione54c2: ; e54c2 (39:54c2)
 	ld a, $6
 	ld [rSVBK], a
 	push de
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	call Decompress
 	pop hl
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	ld bc, $180
 	call Request2bpp
 	pop af
@@ -2016,10 +2016,10 @@ Functione54de: ; e54de (39:54de)
 	ld a, $6
 	ld [rSVBK], a
 	push de
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	call Decompress
 	pop hl
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	ld bc, $1ff
 	call Request2bpp
 	pop af
@@ -2032,10 +2032,10 @@ Functione54fa: ; e54fa (39:54fa)
 	ld a, $6
 	ld [rSVBK], a
 	push de
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	call Decompress
 	pop hl
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	ld bc, $140
 	call Request2bpp
 	pop af

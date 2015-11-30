@@ -418,12 +418,12 @@ Function17d1f1: ; 17d1f1
 	call AddNTimes
 	predef GetUnownLetter
 	callab UpdateUnownDex
-	ld a, [wdef4]
+	ld a, [wFirstUnownSeen]
 	and a
 	jr nz, .asm_17d223
 
 	ld a, [UnownLetter]
-	ld [wdef4], a
+	ld [wFirstUnownSeen], a
 
 .asm_17d223
 	ret

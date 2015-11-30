@@ -31,7 +31,7 @@ Pokedex: ; 40000
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .exit
-	call Function4010b
+	call Pokedex_Main
 	call DelayFrame
 	jr .main
 
@@ -40,8 +40,8 @@ Pokedex: ; 40000
 	call PlaySFX
 	call WaitSFX
 	call ClearSprites
-	ld a, [wc7d4]
-	ld [wd959], a
+	ld a, [wCurrentDexMode]
+	ld [wLastDexMode], a
 
 	pop af
 	ld [hInMenu], a
@@ -63,7 +63,7 @@ InitPokedex: ; 40063
 	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
-	call Function414b7
+	call Pokedex_LoadGFX
 
 	ld hl, wPokedexDataStart
 	ld bc, wPokedexDataEnd - wPokedexDataStart
@@ -76,78 +76,78 @@ InitPokedex: ; 40063
 	ld [wcf65], a
 	ld [wcf66], a
 
-	call Function400a2
+	call Pokedex_CheckUnlockedUnownMode
 
-	ld a, [wd959]
-	ld [wc7d4], a
+	ld a, [wLastDexMode]
+	ld [wCurrentDexMode], a
 
-	call Function40bdc
-	call Function400b4
-	call Function400ed
+	call Pokedex_ChangeMode
+	call Pokedex_InitCursorPosition
+	call Pokedex_GetLandmark
 	callba Function1de247
-	call Function41af7
+	call Pokedex_ResetBGMapMode
 	ret
 ; 400a2
 
-Function400a2: ; 400a2
+Pokedex_CheckUnlockedUnownMode: ; 400a2
 	ld a, [StatusFlags]
 	bit 1, a
-	jr nz, .asm_400ae
+	jr nz, .unlocked
 
 	xor a
-	ld [wc7dc], a
+	ld [wUnlockedUnownMode], a
 	ret
 
-.asm_400ae
-	ld a, 1
-	ld [wc7dc], a
+.unlocked
+	ld a, TRUE
+	ld [wUnlockedUnownMode], a
 	ret
 ; 400b4
 
-Function400b4: ; 400b4
-	ld hl, wc6d0
-	ld a, [wc2d6]
+Pokedex_InitCursorPosition: ; 400b4
+	ld hl, wPokedexDataStart
+	ld a, [wLastDexEntry]
 	and a
-	jr z, .asm_400ec
-	cp $fc
-	jr nc, .asm_400ec
+	jr z, .done
+	cp NUM_POKEMON + 1
+	jr nc, .done
 
 	ld b, a
-	ld a, [wc7d2]
+	ld a, [wDexListingEnd]
 	cp $8
-	jr c, .asm_400db
+	jr c, .only_one_page
 
 	sub $7
 	ld c, a
-.asm_400cc
+.loop1
 	ld a, b
 	cp [hl]
-	jr z, .asm_400ec
+	jr z, .done
 	inc hl
-	ld a, [wc7d0]
+	ld a, [wDexListingPage]
 	inc a
-	ld [wc7d0], a
+	ld [wDexListingPage], a
 	dec c
-	jr nz, .asm_400cc
+	jr nz, .loop1
 
-.asm_400db
+.only_one_page
 	ld c, $7
-.asm_400dd
+.loop2
 	ld a, b
 	cp [hl]
-	jr z, .asm_400ec
+	jr z, .done
 	inc hl
-	ld a, [wc7d1]
+	ld a, [wDexListingCursor]
 	inc a
-	ld [wc7d1], a
+	ld [wDexListingCursor], a
 	dec c
-	jr nz, .asm_400dd
+	jr nz, .loop2
 
-.asm_400ec
+.done
 	ret
 ; 400ed
 
-Function400ed: ; 400ed
+Pokedex_GetLandmark: ; 400ed
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
@@ -155,7 +155,7 @@ Function400ed: ; 400ed
 	call GetWorldMapLocation
 
 	cp SPECIAL_MAP
-	jr nz, .asm_40107
+	jr nz, .load
 
 	ld a, [BackupMapGroup]
 	ld b, a
@@ -163,20 +163,20 @@ Function400ed: ; 400ed
 	ld c, a
 	call GetWorldMapLocation
 
-.asm_40107
-	ld [wc7e4], a
+.load
+	ld [wDexCurrentLocation], a
 	ret
 ; 4010b
 
-Function4010b: ; 4010b
+Pokedex_Main: ; 4010b
 	ld a, [wJumptableIndex]
-	ld hl, Jumptable_40115
-	call Function41432
+	ld hl, .Jumptable
+	call Pokedex_LoadPointer
 	jp [hl]
 ; 40115
 
 
-Jumptable_40115: ; 40115 (10:4115)
+.Jumptable: ; 40115 (10:4115)
 	dw Function4013c
 	dw Function401ae
 	dw Function40217
@@ -188,17 +188,17 @@ Jumptable_40115: ; 40115 (10:4115)
 	dw Function403be
 	dw Function4050a
 	dw Function40562
-	dw Function405bd
+	dw Pokedex_UnownMode ; Unown Dex
 	dw Function405df
-	dw Function40136
+	dw Pokedex_CloseDex ; Exit
 
 
-Function40131: ; 40131 (10:4131)
+Pokedex_IncrementDexPointer: ; 40131 (10:4131)
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
-Function40136: ; 40136 (10:4136)
+Pokedex_CloseDex: ; 40136 (10:4136)
 	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
@@ -209,45 +209,46 @@ Function4013c: ; 4013c (10:413c)
 	call ClearSprites
 	xor a
 	hlcoord 0, 0, AttrMap
-	ld bc, $168
+	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	call ByteFill
-	callba Function1de171
+	callba DrawPokedexListWindow
 	hlcoord 0, 17
 	ld de, String_START_SEARCH
-	call Function40acd
+	call Pokedex_PlaceString
 	ld a, $7
 	ld [wc7d3], a
 	call Function40b0f
-	call Function41aeb
-	call Function41af7
+	call Pokedex_SetBGMapMode_3ifDMG_4ifCGB
+	call Pokedex_ResetBGMapMode
 	call Function4074c
 	ld a, $5
 	ld [hSCX], a
-	ld a, [wc7d4]
-	cp $1
-	ld a, $4a
-	jr z, .asm_4017b
-	ld a, $47
 
-.asm_4017b
+	ld a, [wCurrentDexMode]
+	cp DEXMODE_OLD
+	ld a, $4a
+	jr z, .okay
+	ld a, $47
+.okay
 	ld [hWX], a
 	xor a
 	ld [hWY], a
 	call WaitBGMap
-	call Function41af7
-	ld a, $ff
+
+	call Pokedex_ResetBGMapMode
+	ld a, -1
 	ld [CurPartySpecies], a
 	ld a, $4
 	call Function41423
 	call Function41148
-	callba Function1de171
+	callba DrawPokedexListWindow
 	hlcoord 0, 17
 	ld de, String_START_SEARCH
-	call Function40acd
+	call Pokedex_PlaceString
 	ld a, $7
 	ld [wc7d3], a
 	call Function40b0f
-	call Function40131
+	call Pokedex_IncrementDexPointer
 	ret
 
 Function401ae: ; 401ae (10:41ae)
@@ -270,13 +271,13 @@ Function401ae: ; 401ae (10:41ae)
 	xor a
 	ld [hBGMapMode], a
 	call Function40b0f
-	call Function41ad7
-	call Function41af7
+	call Pokedex_SetBGMapMode3
+	call Pokedex_ResetBGMapMode
 	ret
 
 .a
-	call Function40bb1
-	call Function40bd0
+	call Pokedex_GetMonAtCursorPosition
+	call Pokedex_CheckSeen
 	ret z
 	ld a, $2
 	ld [wJumptableIndex], a
@@ -318,23 +319,23 @@ Function40217: ; 40217 (10:4217)
 	xor a
 	ld [hBGMapMode], a
 	call ClearSprites
-	call Function41478
+	call Pokedex_LoadCurrentFootprint
 	call Function407fd
 	call Function4134f
-	call Function40bb1
-	ld [wc2d6], a
+	call Pokedex_GetMonAtCursorPosition
+	ld [wLastDexEntry], a
 	callba DisplayDexEntry
-	call Function40ba0
+	call Pokedex_DrawFootprint
 	call WaitBGMap
 	ld a, $a7
 	ld [hWX], a
-	call Function40bb1
+	call Pokedex_GetMonAtCursorPosition
 	ld [CurPartySpecies], a
 	ld a, $4
 	call Function41423
 	ld a, [CurPartySpecies]
 	call PlayCry
-	call Function40131
+	call Pokedex_IncrementDexPointer
 	ret
 
 Function40258: ; 40258 (10:4258)
@@ -347,25 +348,25 @@ Function40258: ; 40258 (10:4258)
 	ld a, [hl]
 	and A_BUTTON
 	jr nz, .a
-	call Function4066c
+	call Pokedex_NextOrPreviousDexEntry
 	ret nc
-	call Function40131
+	call Pokedex_IncrementDexPointer
 	ret
 
 .a
 	ld a, [wc7d8]
 	ld hl, Jumptable_402f2
-	call Function41432
+	call Pokedex_LoadPointer
 	jp [hl]
 
 .b
 	ld a, [LastVolume]
 	and a
-	jr z, .asm_40288
+	jr z, .max_volume
 	ld a, $77
 	ld [LastVolume], a
 
-.asm_40288
+.max_volume
 	call MaxVolume
 	ld a, [wcf64]
 	ld [wJumptableIndex], a
@@ -376,8 +377,8 @@ Function40292: ; 40292
 	ld a, [wPokedexStatus]
 	xor $1
 	ld [wPokedexStatus], a
-	call Function40bb1
-	ld [wc2d6], a
+	call Pokedex_GetMonAtCursorPosition
+	ld [wLastDexEntry], a
 	callba DisplayDexEntry
 	call WaitBGMap
 	ret
@@ -391,14 +392,14 @@ Function402aa: ; 402aa (10:42aa)
 	ld [hBGMapMode], a
 	call Function407fd
 	call Function4134f
-	call Function41478
-	call Function40bb1
-	ld [wc2d6], a
+	call Pokedex_LoadCurrentFootprint
+	call Pokedex_GetMonAtCursorPosition
+	ld [wLastDexEntry], a
 	callba DisplayDexEntry
-	call Function40ba0
+	call Pokedex_DrawFootprint
 	call Function4143b
 	call WaitBGMap
-	call Function40bb1
+	call Pokedex_GetMonAtCursorPosition
 	ld [CurPartySpecies], a
 	ld a, $4
 	call Function41423
@@ -410,11 +411,12 @@ Function402aa: ; 402aa (10:42aa)
 ; 402e8 (10:42e8)
 
 Unknown_402e8: ; 402e8
-	dw $0430
+	db D_RIGHT | D_LEFT, 4
 	dwcoord 1, 17
 	dwcoord 6, 17
 	dwcoord 11, 17
 	dwcoord 15, 17
+
 ; 402f2
 
 Jumptable_402f2: ; 402f2
@@ -433,8 +435,8 @@ Function402fa: ; 402fa
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	call Function40bb1
-	ld a, [wc7e4]
+	call Pokedex_GetMonAtCursorPosition
+	ld a, [wDexCurrentLocation]
 	ld e, a
 	predef Function91d11
 	call Function41401
@@ -449,7 +451,7 @@ Function402fa: ; 402fa
 	call Function4038d
 	call Function4143b
 	call WaitBGMap
-	call Function40bb1
+	call Pokedex_GetMonAtCursorPosition
 	ld [CurPartySpecies], a
 	ld a, $4
 	call Function41423
@@ -457,7 +459,7 @@ Function402fa: ; 402fa
 ; 40340
 
 Function40340: ; 40340
-	call Function40bb1
+	call Pokedex_GetMonAtCursorPosition
 	ld a, [wd265]
 	call GetCryIndex
 	ld e, c
@@ -485,7 +487,7 @@ Function4034f: ; 4034f
 	ld [wcf65], a
 	call ClearBGPalettes
 	call DisableLCD
-	call Function414fb
+	call Pokedex_LoadInvertedFont
 	call Function4038d
 	call EnableLCD
 	call WaitBGMap
@@ -497,9 +499,9 @@ Function4034f: ; 4034f
 
 Function4038d: ; 4038d
 	call Function407fd
-	call Function40bb1
+	call Pokedex_GetMonAtCursorPosition
 	callba DisplayDexEntry
-	call Function40ba0
+	call Pokedex_DrawFootprint
 	ret
 ; 4039d
 
@@ -509,17 +511,17 @@ Function4039d: ; 4039d (10:439d)
 	call ClearSprites
 	call Function4087c
 	call Function4134f
-	ld a, [wc7d4]
+	ld a, [wCurrentDexMode]
 	ld [wc7d8], a
 	call Function40e5b
 	call WaitBGMap
 	ld a, $10
 	call Function41423
-	call Function40131
+	call Pokedex_IncrementDexPointer
 	ret
 
 Function403be: ; 403be (10:43be)
-	ld a, [wc7dc]
+	ld a, [wUnlockedUnownMode]
 	and a
 	jr nz, .asm_403c9
 	ld de, Unknown_403f3
@@ -542,7 +544,7 @@ Function403be: ; 403be (10:43be)
 .asm_403e0
 	ld a, [wc7d8]
 	ld hl, Jumptable_40405
-	call Function41432
+	call Pokedex_LoadPointer
 	jp [hl]
 
 .asm_403ea
@@ -553,17 +555,17 @@ Function403be: ; 403be (10:43be)
 ; 403f3 (10:43f3)
 
 Unknown_403f3: ; 403f3
-	dw $03c0
-	dwcoord 2, 4
-	dwcoord 2, 6
-	dwcoord 2, 8
+	db D_UP | D_DOWN, 3
+	dwcoord 2,  4
+	dwcoord 2,  6
+	dwcoord 2,  8
 ; 403fb
 
 Unknown_403fb: ; 403fb
-	dw $04c0
-	dwcoord 2, 4
-	dwcoord 2, 6
-	dwcoord 2, 8
+	db D_UP | D_DOWN, 4
+	dwcoord 2,  4
+	dwcoord 2,  6
+	dwcoord 2,  8
 	dwcoord 2, 10
 ; 40405
 
@@ -585,17 +587,17 @@ Function40411: ; 40411 (10:4411)
 Function40415: ; 40415 (10:4415)
 	ld b, $2
 Function40417: ; 40417 (10:4417)
-	ld a, [wc7d4]
+	ld a, [wCurrentDexMode]
 	cp b
 	jr z, .asm_40431
 	ld a, b
-	ld [wc7d4], a
-	call Function40bdc
+	ld [wCurrentDexMode], a
+	call Pokedex_ChangeMode
 	call Function40f08
 	xor a
-	ld [wc7d0], a
-	ld [wc7d1], a
-	call Function400b4
+	ld [wDexListingPage], a
+	ld [wDexListingCursor], a
+	call Pokedex_InitCursorPosition
 
 .asm_40431
 	call Function41401
@@ -626,7 +628,7 @@ Function40443: ; 40443 (10:4443)
 	call WaitBGMap
 	ld a, $10
 	call Function41423
-	call Function40131
+	call Pokedex_IncrementDexPointer
 	ret
 
 Function40471: ; 40471 (10:4471)
@@ -646,7 +648,7 @@ Function40471: ; 40471 (10:4471)
 .asm_4048b
 	ld a, [wc7d8]
 	ld hl, Jumptable_404a8
-	call Function41432
+	call Pokedex_LoadPointer
 	jp [hl]
 
 .asm_40495
@@ -657,7 +659,7 @@ Function40471: ; 40471 (10:4471)
 ; 4049e (10:449e)
 
 Unknown_4049e: ; 4049e
-	dw $04c0
+	db D_UP | D_DOWN, 4
 	dwcoord 2, 4
 	dwcoord 2, 6
 	dwcoord 2, 13
@@ -683,7 +685,7 @@ Function404b7: ; 404b7
 	ld a, [wc7d7]
 	and a
 	jr nz, .asm_404dc
-	call Function40bdc
+	call Pokedex_ChangeMode
 	call Function41107
 	xor a
 	ld [hBGMapMode], a
@@ -694,16 +696,16 @@ Function404b7: ; 404b7
 	ret
 
 .asm_404dc
-	ld [wc7d2], a
-	ld a, [wc7d0]
+	ld [wDexListingEnd], a
+	ld a, [wDexListingPage]
 	ld [wc7e0], a
-	ld a, [wc7d1]
+	ld a, [wDexListingCursor]
 	ld [wc7e1], a
-	ld a, [wc2d6]
+	ld a, [wLastDexEntry]
 	ld [wcf65], a
 	xor a
-	ld [wc7d0], a
-	ld [wc7d1], a
+	ld [wDexListingPage], a
+	ld [wDexListingCursor], a
 	call Function41401
 	ld a, $9
 	ld [wJumptableIndex], a
@@ -722,17 +724,17 @@ Function4050a: ; 4050a (10:450a)
 	ld [hBGMapMode], a
 	xor a
 	hlcoord 0, 0, AttrMap
-	ld bc, $168
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
-	call Function41ae1
-	call Function41af7
-	callba Function1de1d1
+	call Pokedex_SetBGMapMode4
+	call Pokedex_ResetBGMapMode
+	callba DrawPokedexSearchResultsWindow
 	call Function409cf
 	ld a, $4
 	ld [wc7d3], a
 	call Function40b0f
-	call Function41ad7
-	call Function41af7
+	call Pokedex_SetBGMapMode3
+	call Pokedex_ResetBGMapMode
 	call Function40962
 	ld a, $5
 	ld [hSCX], a
@@ -741,15 +743,15 @@ Function4050a: ; 4050a (10:450a)
 	xor a
 	ld [hWY], a
 	call WaitBGMap
-	call Function41af7
-	callba Function1de1d1
+	call Pokedex_ResetBGMapMode
+	callba DrawPokedexSearchResultsWindow
 	call Function409cf
 	call Function41281
 	ld a, $ff
 	ld [CurPartySpecies], a
 	ld a, $4
 	call Function41423
-	call Function40131
+	call Pokedex_IncrementDexPointer
 	ret
 
 Function40562: ; 40562 (10:4562)
@@ -766,13 +768,13 @@ Function40562: ; 40562 (10:4562)
 	xor a
 	ld [hBGMapMode], a
 	call Function40b0f
-	call Function41ad7
-	call Function41af7
+	call Pokedex_SetBGMapMode3
+	call Pokedex_ResetBGMapMode
 	ret
 
 .asm_40583
-	call Function40bb1
-	call Function40bd0
+	call Pokedex_GetMonAtCursorPosition
+	call Pokedex_CheckSeen
 	ret z
 	ld a, $2
 	ld [wJumptableIndex], a
@@ -782,14 +784,14 @@ Function40562: ; 40562 (10:4562)
 
 .asm_40595
 	ld a, [wc7e0]
-	ld [wc7d0], a
+	ld [wDexListingPage], a
 	ld a, [wc7e1]
-	ld [wc7d1], a
+	ld [wDexListingCursor], a
 	ld a, [wcf65]
-	ld [wc2d6], a
+	ld [wLastDexEntry], a
 	call Function41401
 	call ClearSprites
-	call Function40bdc
+	call Pokedex_ChangeMode
 	ld a, $5
 	ld [wJumptableIndex], a
 	xor a
@@ -798,45 +800,45 @@ Function40562: ; 40562 (10:4562)
 	ld [hWX], a
 	ret
 
-Function405bd: ; 405bd (10:45bd)
-	call Function41a2c
+Pokedex_UnownMode: ; 405bd (10:45bd)
+	call Pokedex_LoadUnownFont
 	call Function409f1
 	xor a
 	ld [wc7dd], a
 	call Function41a58
 	call Function40658
-	callba Functionfba2e
+	callba PrintUnownWord
 	call WaitBGMap
 	ld a, $16
 	call Function41423
-	call Function40131
+	call Pokedex_IncrementDexPointer
 	ret
 
 Function405df: ; 405df (10:45df)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
 	and A_BUTTON | B_BUTTON
-	jr nz, .asm_405eb
+	jr nz, .a_b
 	call Function40610
 	ret
 
-.asm_405eb
+.a_b
 	call Function41401
 	ld a, $7
 	ld [wJumptableIndex], a
 	call DelayFrame
-	call Function41a24
-	jr nz, .asm_40603
+	call Pokedex_CheckSGB
+	jr nz, .decompress
 	callba Function1ddf26
-	jr .asm_4060f
+	jr .done
 
-.asm_40603
+.decompress
 	ld hl, PokedexLZ
 	ld de, VTiles2 tile $31
 	lb bc, BANK(PokedexLZ), $3a
 	call DecompressRequest2bpp
 
-.asm_4060f
+.done
 	ret
 
 Function40610: ; 40610 (10:4610)
@@ -859,7 +861,7 @@ Function40610: ; 40610 (10:4610)
 	ret nc
 	ld a, [hl]
 	inc [hl]
-	jr .asm_40635
+	jr .update
 
 .left
 	ld hl, wc7dd
@@ -869,7 +871,7 @@ Function40610: ; 40610 (10:4610)
 	ld a, [hl]
 	dec [hl]
 
-.asm_40635
+.update
 	push af
 	xor a
 	ld [hBGMapMode], a
@@ -877,7 +879,7 @@ Function40610: ; 40610 (10:4610)
 	call Function40654
 	call Function41a58
 	call Function40658
-	callba Functionfba2e
+	callba PrintUnownWord
 	ld a, $1
 	ld [hBGMapMode], a
 	call DelayFrame
@@ -904,11 +906,11 @@ endr
 	ld [hl], c
 	ret
 
-Function4066c: ; 4066c (10:466c)
-	ld a, [wc7d1]
-	ld [wc7e2], a
-	ld a, [wc7d0]
-	ld [wc7e3], a
+Pokedex_NextOrPreviousDexEntry: ; 4066c (10:466c)
+	ld a, [wDexListingCursor]
+	ld [wBackupDexListingCursor], a
+	ld a, [wDexListingPage]
+	ld [wBackupDexListingPage], a
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_UP
@@ -922,43 +924,43 @@ Function4066c: ; 4066c (10:466c)
 .up
 	ld a, [wc7d3]
 	ld d, a
-	ld a, [wc7d2]
+	ld a, [wDexListingEnd]
 	ld e, a
 	call Function406ea
-	jr nc, .asm_406b7
-	call Function40bb1
-	call Function40bd0
-	jr nz, .asm_406b5
+	jr nc, .nope
+	call Pokedex_GetMonAtCursorPosition
+	call Pokedex_CheckSeen
+	jr nz, .yep
 	jr .up
 
 .down
 	ld a, [wc7d3]
 	ld d, a
-	ld a, [wc7d2]
+	ld a, [wDexListingEnd]
 	ld e, a
 	call Function406fe
-	jr nc, .asm_406b7
-	call Function40bb1
-	call Function40bd0
-	jr nz, .asm_406b5
+	jr nc, .nope
+	call Pokedex_GetMonAtCursorPosition
+	call Pokedex_CheckSeen
+	jr nz, .yep
 	jr .down
 
-.asm_406b5
+.yep
 	scf
 	ret
 
-.asm_406b7
-	ld a, [wc7e2]
-	ld [wc7d1], a
-	ld a, [wc7e3]
-	ld [wc7d0], a
+.nope
+	ld a, [wBackupDexListingCursor]
+	ld [wDexListingCursor], a
+	ld a, [wBackupDexListingPage]
+	ld [wDexListingPage], a
 	and a
 	ret
 
 Function406c5: ; 406c5 (10:46c5)
 	ld a, [wc7d3]
 	ld d, a
-	ld a, [wc7d2]
+	ld a, [wDexListingEnd]
 	ld e, a
 	ld hl, hJoyLast
 	ld a, [hl]
@@ -979,14 +981,14 @@ Function406c5: ; 406c5 (10:46c5)
 	jr asm_4073d
 
 Function406ea: ; 406ea (10:46ea)
-	ld hl, wc7d1
+	ld hl, wDexListingCursor
 	ld a, [hl]
 	and a
 	jr z, .asm_406f4
 	dec [hl]
 	jr asm_4073f
 .asm_406f4
-	ld hl, wc7d0
+	ld hl, wDexListingPage
 	ld a, [hl]
 	and a
 	jr z, asm_4073d
@@ -994,7 +996,7 @@ Function406ea: ; 406ea (10:46ea)
 	jr asm_4073f
 
 Function406fe: ; 406fe (10:46fe)
-	ld hl, wc7d1
+	ld hl, wDexListingCursor
 	ld a, [hl]
 	inc a
 	cp e
@@ -1004,14 +1006,14 @@ Function406fe: ; 406fe (10:46fe)
 	inc [hl]
 	jr asm_4073f
 .asm_4070c
-	ld hl, wc7d0
+	ld hl, wDexListingPage
 	add [hl]
 	cp e
 	jr nc, asm_4073d
 	inc [hl]
 	jr asm_4073f
 asm_40716: ; 40716 (10:4716)
-	ld hl, wc7d0
+	ld hl, wDexListingPage
 	ld a, [hl]
 	and a
 	jr z, asm_4073d
@@ -1025,7 +1027,7 @@ asm_40716: ; 40716 (10:4716)
 	ld [hl], a
 	jr asm_4073f
 asm_40728: ; 40728 (10:4728)
-	ld hl, wc7d0
+	ld hl, wDexListingPage
 	ld a, d
 	add a
 	add [hl]
@@ -1065,20 +1067,20 @@ Function40741: ; 40741
 Function4074c: ; 4074c (10:474c)
 	hlcoord 0, 17
 	ld de, String_START_SEARCH
-	call Function40acd
+	call Pokedex_PlaceString
 	ld a, $32
 	hlcoord 0, 0
-	ld bc, $168
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	hlcoord 0, 0
 	lb bc, 7, 7
-	call Function40ad5
+	call Pokedex_PlaceBorder
 	hlcoord 0, 9
 	ld bc, $607
-	call Function40ad5
+	call Pokedex_PlaceBorder
 	hlcoord 1, 11
 	ld de, String_SEEN
-	call Function40acd
+	call Pokedex_PlaceString
 	ld hl, PokedexSeen ; wdeb9 (aliases: EndPokedexSeen)
 	ld b, EndPokedexSeen - PokedexSeen
 	call CountSetBits
@@ -1088,7 +1090,7 @@ Function4074c: ; 4074c (10:474c)
 	call PrintNum
 	hlcoord 1, 14
 	ld de, String_OWN
-	call Function40acd
+	call Pokedex_PlaceString
 	ld hl, PokedexCaught
 	ld b, EndPokedexCaught - PokedexCaught
 	call CountSetBits
@@ -1098,7 +1100,7 @@ Function4074c: ; 4074c (10:474c)
 	call PrintNum
 	hlcoord 1, 17
 	ld de, String_SELECT_OPTION
-	call Function40acd
+	call Pokedex_PlaceString
 	hlcoord 8, 1
 	ld b, $7
 	ld a, $5a
@@ -1115,7 +1117,7 @@ Function4074c: ; 4074c (10:474c)
 	ld [hl], $54
 	hlcoord 8, 16
 	ld [hl], $5b
-	call Function40ab2
+	call Pokedex_PlaceFrontpicTopLeftCorner
 	ret
 ; 407e1 (10:47e1)
 
@@ -1130,10 +1132,10 @@ String_START_SEARCH: ; 407f2
 ; 407fd
 
 Function407fd: ; 407fd
-	call Function40aa6
+	call Pokedex_FillBackgroundColor2
 	hlcoord 0, 0
 	ld bc, $0f12
-	call Function40ad5
+	call Pokedex_PlaceBorder
 	hlcoord 19, 0
 	ld [hl], $34
 	hlcoord 19, 1
@@ -1151,14 +1153,14 @@ Function407fd: ; 407fd
 	call ByteFill
 	hlcoord 9, 7
 	ld de, Unknown_40852
-	call Function40acd
+	call Pokedex_PlaceString
 	hlcoord 9, 9
 	ld de, Unknown_4085c
-	call Function40acd
+	call Pokedex_PlaceString
 	hlcoord 0, 17
 	ld de, Unknown_40867
-	call Function40acd
-	call Function40ab2
+	call Pokedex_PlaceString
+	call Pokedex_PlaceFrontpicTopLeftCorner
 	ret
 ; 4084f
 
@@ -1173,20 +1175,20 @@ Unknown_40867: ; 40867
 ; 4087c
 
 Function4087c: ; 4087c (10:487c)
-	call Function40aa6
+	call Pokedex_FillBackgroundColor2
 	hlcoord 0, 2
 	lb bc, 8, 18
-	call Function40ad5
+	call Pokedex_PlaceBorder
 	hlcoord 0, 12
 	lb bc, 4, 18
-	call Function40ad5
+	call Pokedex_PlaceBorder
 	hlcoord 0, 1
 	ld de, Unknown_408b2
-	call Function40acd
+	call Pokedex_PlaceString
 	hlcoord 3, 4
 	ld de, String_408bd
 	call PlaceString
-	ld a, [wc7dc]
+	ld a, [wUnlockedUnownMode]
 	and a
 	ret z
 	hlcoord 3, 10
@@ -1211,19 +1213,19 @@ String_408e5: ; 408e5
 ; 408f0
 
 Function408f0: ; 408f0 (10:48f0)
-	call Function40aa6
+	call Pokedex_FillBackgroundColor2
 	hlcoord 0, 2
 	lb bc, 14, 18
-	call Function40ad5
+	call Pokedex_PlaceBorder
 	hlcoord 0, 1
 	ld de, Unknown_4092a
-	call Function40acd
+	call Pokedex_PlaceString
 	hlcoord 8, 4
 	ld de, Unknown_40935
-	call Function40acd
+	call Pokedex_PlaceString
 	hlcoord 8, 6
 	ld de, Unknown_40935
-	call Function40acd
+	call Pokedex_PlaceString
 	hlcoord 3, 4
 	ld de, String_40940
 	call PlaceString
@@ -1254,13 +1256,13 @@ String_4094c: ; 4094c
 ; 40962
 
 Function40962: ; 40962 (10:4962)
-	call Function40aa6
+	call Pokedex_FillBackgroundColor2
 	hlcoord 0, 0
 	lb bc, 7, 7
-	call Function40ad5
+	call Pokedex_PlaceBorder
 	hlcoord 0, 11
 	lb bc, 5, 18
-	call Function40ad5
+	call Pokedex_PlaceBorder
 	hlcoord 1, 12
 	ld de, String_409ae
 	call PlaceString
@@ -1280,7 +1282,7 @@ Function40962: ; 40962 (10:4962)
 	ld [hl], $69
 	hlcoord 8, 10
 	ld [hl], $6a
-	call Function40ab2
+	call Pokedex_PlaceFrontpicTopLeftCorner
 	ret
 ; 409ae (10:49ae)
 
@@ -1310,28 +1312,28 @@ Function409cf: ; 409cf (10:49cf)
 	ret
 
 Function409f1: ; 409f1 (10:49f1)
-	call Function40aa6
+	call Pokedex_FillBackgroundColor2
 	hlcoord 2, 1
 	lb bc, 10, 13
-	call Function40ad5
+	call Pokedex_PlaceBorder
 	hlcoord 2, 14
 	lb bc, 1, 13
-	call Function40ad5
+	call Pokedex_PlaceBorder
 	hlcoord 2, 15
 	ld [hl], $3d
 	hlcoord 16, 15
 	ld [hl], $3e
 	hlcoord 6, 5
-	call Function40ab5
+	call Pokedex_PlaceFrontpicAtHL
 	ld de, 0
 	ld b, 0
 	ld c, 26
-.asm_40a1d
+.loop
 	ld hl, UnownDex
 	add hl, de
 	ld a, [hl]
 	and a
-	jr z, .asm_40a39
+	jr z, .done
 	push af
 	ld hl, Unknown_40a3e
 rept 4
@@ -1341,19 +1343,20 @@ endr
 	ld h, [hl]
 	ld l, a
 	pop af
-	add $3f
+	add $40 - 1 ; Unown A
 	ld [hl], a
 	inc de
 	inc b
 	dec c
-	jr nz, .asm_40a1d
-.asm_40a39
+	jr nz, .loop
+.done
 	ld a, b
 	ld [wc7de], a
 	ret
 ; 40a3e (10:4a3e)
 
 Unknown_40a3e: ; 40a3e
+;           letter, cursor
 	dwcoord   4,11,   3,11
 	dwcoord   4,10,   3,10
 	dwcoord   4, 9,   3, 9
@@ -1382,7 +1385,7 @@ Unknown_40a3e: ; 40a3e
 	dwcoord  14,10,  15,10
 ; 40aa6
 
-Function40aa6: ; 40aa6
+Pokedex_FillBackgroundColor2: ; 40aa6
 	hlcoord 0, 0
 	ld a, $32
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
@@ -1390,113 +1393,118 @@ Function40aa6: ; 40aa6
 	ret
 ; 40ab2
 
-Function40ab2: ; 40ab2
+Pokedex_PlaceFrontpicTopLeftCorner: ; 40ab2
 	hlcoord 1, 1
-Function40ab5: ; 40ab5
+Pokedex_PlaceFrontpicAtHL: ; 40ab5
 	xor a
 	ld b, $7
-.asm_40ab8
+.row
 	ld c, $7
 	push af
 	push hl
-.asm_40abc
+.col
 	ld [hli], a
 	add $7
 	dec c
-	jr nz, .asm_40abc
+	jr nz, .col
 	pop hl
-	ld de, $0014
+	ld de, SCREEN_WIDTH
 	add hl, de
 	pop af
 	inc a
 	dec b
-	jr nz, .asm_40ab8
+	jr nz, .row
 	ret
 ; 40acd
 
-Function40acd: ; 40acd
-.asm_40acd
+Pokedex_PlaceString: ; 40acd
+.loop
 	ld a, [de]
-	cp $ff
+	cp -1
 	ret z
 	inc de
 	ld [hli], a
-	jr .asm_40acd
+	jr .loop
 ; 40ad5
 
 
-Function40ad5: ; 40ad5
+Pokedex_PlaceBorder: ; 40ad5
 	push hl
 	ld a, $33
 	ld [hli], a
 	ld d, $34
-	call Function40b06
+	call .FillRow
 	ld a, $35
 	ld [hl], a
 	pop hl
-	ld de, $0014
+	ld de, SCREEN_WIDTH
 	add hl, de
-.asm_40ae6
+.loop
 	push hl
 	ld a, $36
 	ld [hli], a
 	ld d, $7f
-	call Function40b06
+	call .FillRow
 	ld a, $37
 	ld [hl], a
 	pop hl
-	ld de, $0014
+	ld de, SCREEN_WIDTH
 	add hl, de
 	dec b
-	jr nz, .asm_40ae6
+	jr nz, .loop
 	ld a, $38
 	ld [hli], a
 	ld d, $39
-	call Function40b06
+	call .FillRow
 	ld a, $3a
 	ld [hl], a
 	ret
 ; 40b06
 
-Function40b06: ; 40b06
+.FillRow: ; 40b06
 	ld e, c
-.asm_40b07
+.row_loop
 	ld a, e
 	and a
 	ret z
 	ld a, d
 	ld [hli], a
 	dec e
-	jr .asm_40b07
+	jr .row_loop
 ; 40b0f
 
 
 Function40b0f: ; 40b0f (10:4b0f)
-	ld a, [wc7d4]
-	cp $1
-	jr z, .asm_40b1a
-	ld c, $b
-	jr .asm_40b1c
-.asm_40b1a
-	ld c, $b
-.asm_40b1c
+; This check is completely useless.
+	ld a, [wCurrentDexMode]
+	cp DEXMODE_OLD
+	jr z, .okay
+	ld c, 11
+	jr .resume
+.okay
+	ld c, 11
+; End useless check
+.resume
+; Clear (2 * [wc7d3] + 1) by 11 box starting at 0,1
 	hlcoord 0, 1
 	ld a, [wc7d3]
 	add a
 	inc a
 	ld b, a
-	ld a, $7f
-	call Function413fe
-	ld a, [wc7d0]
+	ld a, " "
+	call Pokedex_FillBox
+
+; Load de with wPokedexDataStart + [wDexListingPage]
+	ld a, [wDexListingPage]
 	ld e, a
 	ld d, $0
-	ld hl, wc6d0
+	ld hl, wPokedexDataStart
 	add hl, de
 	ld e, l
 	ld d, h
 	hlcoord 0, 2
 	ld a, [wc7d3]
-.asm_40b3c
+.loop
 	push af
 	ld a, [de]
 	ld [wd265], a
@@ -1504,37 +1512,38 @@ Function40b0f: ; 40b0f (10:4b0f)
 	push hl
 	call Function40b55
 	pop hl
-	ld de, $28
+	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	pop de
 	inc de
 	pop af
 	dec a
-	jr nz, .asm_40b3c
+	jr nz, .loop
 	call Function4143b
 	ret
 
 Function40b55: ; 40b55 (10:4b55)
 	and a
 	ret z
-	call Function40b6a
-	call Function40b8d
+	call Pokedex_PrintNumberIfOldMode
+	call Pokedex_PlaceDefaultStringIfNotSeen
 	ret c
-	call Function40b82
+	call Pokedex_PlaceCaughtSymbolIfCaught
 	push hl
 	call GetPokemonName
 	pop hl
 	call PlaceString
 	ret
 
-Function40b6a: ; 40b6a (10:4b6a)
-	ld a, [wc7d4]
-	cp $1
-	jr z, .asm_40b72
+Pokedex_PrintNumberIfOldMode: ; 40b6a (10:4b6a)
+	ld a, [wCurrentDexMode]
+	cp DEXMODE_OLD
+	jr z, .printnum
 	ret
-.asm_40b72
+
+.printnum
 	push hl
-	ld de, -20
+	ld de, -SCREEN_WIDTH
 	add hl, de
 	ld de, wd265
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
@@ -1542,31 +1551,32 @@ Function40b6a: ; 40b6a (10:4b6a)
 	pop hl
 	ret
 
-Function40b82: ; 40b82 (10:4b82)
-	call Function40bc4
-	jr nz, .asm_40b89
+Pokedex_PlaceCaughtSymbolIfCaught: ; 40b82 (10:4b82)
+	call Pokedex_CheckCaught
+	jr nz, .place_caught_symbol
 	inc hl
 	ret
-.asm_40b89
+
+.place_caught_symbol
 	ld a, $4f
 	ld [hli], a
 	ret
 
-Function40b8d: ; 40b8d (10:4b8d)
-	call Function40bd0
+Pokedex_PlaceDefaultStringIfNotSeen: ; 40b8d (10:4b8d)
+	call Pokedex_CheckSeen
 	ret nz
 	inc hl
-	ld de, String_40b9a
+	ld de, .NameNotSeen
 	call PlaceString
 	scf
 	ret
 ; 40b9a (10:4b9a)
 
-String_40b9a: ; 40b9a
+.NameNotSeen: ; 40b9a
 	db "-----@"
 ; 40ba0
 
-Function40ba0: ; 40ba0
+Pokedex_DrawFootprint: ; 40ba0
 	hlcoord 18, 1
 	ld a, $62
 	ld [hli], a
@@ -1581,13 +1591,13 @@ Function40ba0: ; 40ba0
 ; 40bb1
 
 
-Function40bb1: ; 40bb1
-	ld a, [wc7d1]
-	ld hl, wc7d0
+Pokedex_GetMonAtCursorPosition: ; 40bb1
+	ld a, [wDexListingCursor]
+	ld hl, wDexListingPage
 	add [hl]
 	ld e, a
 	ld d, $0
-	ld hl, wc6d0
+	ld hl, wPokedexDataStart
 	add hl, de
 	ld a, [hl]
 	ld [wd265], a
@@ -1595,7 +1605,7 @@ Function40bb1: ; 40bb1
 ; 40bc4
 
 
-Function40bc4: ; 40bc4 (10:4bc4)
+Pokedex_CheckCaught: ; 40bc4 (10:4bc4)
 	push de
 	push hl
 	ld a, [wd265]
@@ -1606,7 +1616,7 @@ Function40bc4: ; 40bc4 (10:4bc4)
 	ret
 
 
-Function40bd0: ; 40bd0
+Pokedex_CheckSeen: ; 40bd0
 	push de
 	push hl
 	ld a, [wd265]
@@ -1619,100 +1629,100 @@ Function40bd0: ; 40bd0
 
 
 
-Function40bdc: ; 40bdc
-	ld hl, wc6d0
-	ld bc, $100
+Pokedex_ChangeMode: ; 40bdc
+	ld hl, wPokedexDataStart
+	ld bc, wPokedexMetadata - wPokedexDataStart
 	xor a
 	call ByteFill
-	ld a, [wc7d4]
-	ld hl, Jumptable_40bf0
-	call Function41432
+	ld a, [wCurrentDexMode]
+	ld hl, .Jumptable
+	call Pokedex_LoadPointer
 	jp [hl]
 ; 40bf0
 
 
-Jumptable_40bf0: ; 40bf0 (10:4bf0)
-	dw Function40bf6
-	dw Function40c08
-	dw Function40c30
+.Jumptable: ; 40bf0 (10:4bf0)
+	dw .NewMode
+	dw .OldMode
+	dw Pokedex_ABCMode
 
 
-Function40bf6: ; 40bf6 (10:4bf6)
+.NewMode: ; 40bf6 (10:4bf6)
 	ld de, NewPokedexOrder
-	ld hl, wc6d0
+	ld hl, wPokedexDataStart
 	ld c, NUM_POKEMON
-.asm_40bfe
+.loopnew
 	ld a, [de]
 	inc de
 	ld [hli], a
 	dec c
-	jr nz, .asm_40bfe
-	call Function40c18
+	jr nz, .loopnew
+	call .FindLastSeen
 	ret
 
-Function40c08: ; 40c08 (10:4c08)
-	ld hl, wc6d0
+.OldMode: ; 40c08 (10:4c08)
+	ld hl, wPokedexDataStart
 	ld a, $1
 	ld c, NUM_POKEMON
-.asm_40c0f
+.loopold
 	ld [hli], a
 	inc a
 	dec c
-	jr nz, .asm_40c0f
-	call Function40c18
+	jr nz, .loopold
+	call .FindLastSeen
 	ret
 
-Function40c18: ; 40c18 (10:4c18)
-	ld hl, wc7ca
+.FindLastSeen: ; 40c18 (10:4c18)
+	ld hl, wPokedexDataStart + NUM_POKEMON - 1
 	ld d, NUM_POKEMON
 	ld e, d
-.asm_40c1e
+.loopfindend
 	ld a, [hld]
 	ld [wd265], a
-	call Function40bd0
-	jr nz, .asm_40c2b
+	call Pokedex_CheckSeen
+	jr nz, .foundend
 	dec d
 	dec e
-	jr nz, .asm_40c1e
-.asm_40c2b
+	jr nz, .loopfindend
+.foundend
 	ld a, d
-	ld [wc7d2], a
+	ld [wDexListingEnd], a
 	ret
 
-Function40c30: ; 40c30
+Pokedex_ABCMode: ; 40c30
 	xor a
-	ld [wc7d2], a
-	ld hl, wc6d0
+	ld [wDexListingEnd], a
+	ld hl, wPokedexDataStart
 	ld de, AlphabeticalPokedexOrder
 	ld c, NUM_POKEMON
-.asm_40c3c
+.loop1abc
 	push bc
 	ld a, [de]
 	ld [wd265], a
-	call Function40bd0
-	jr z, .asm_40c51
+	call Pokedex_CheckSeen
+	jr z, .skipabc
 	ld a, [wd265]
 	ld [hli], a
-	ld a, [wc7d2]
+	ld a, [wDexListingEnd]
 	inc a
-	ld [wc7d2], a
+	ld [wDexListingEnd], a
 
-.asm_40c51
+.skipabc
 	inc de
 	pop bc
 	dec c
-	jr nz, .asm_40c3c
-	ld a, [wc7d2]
+	jr nz, .loop1abc
+	ld a, [wDexListingEnd]
 	ld c, 0
-.asm_40c5b
+.loop2abc
 	cp NUM_POKEMON
-	jr z, .asm_40c64
+	jr z, .doneabc
 	ld [hl], c
 	inc hl
 	inc a
-	jr .asm_40c5b
+	jr .loop2abc
 
-.asm_40c64
+.doneabc
 	ret
 ; 40c65
 
@@ -1726,11 +1736,11 @@ Function40e5b: ; 40e5b
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 12
-	ld bc, $0412
-	call Function40ad5
+	lb bc, 4, SCREEN_WIDTH - 2
+	call Pokedex_PlaceBorder
 	ld a, [wc7d8]
 	ld hl, Unknown_40e7d
-	call Function41432
+	call Pokedex_LoadPointer
 	ld e, l
 	ld d, h
 	hlcoord 1, 14
@@ -1741,28 +1751,28 @@ Function40e5b: ; 40e5b
 ; 40e7d
 
 Unknown_40e7d: ; 40e7d
-	dw String_40e85
-	dw String_40ea6
-	dw String_40ec6
-	dw String_40ee4
+	dw .NewMode
+	dw .OldMode
+	dw .ABCMode
+	dw .UnownMode
 ; 40e85
 
-String_40e85: ; 40e85
-	db   $e1, $e2, " are listed by"
+.NewMode: ; 40e85
+	db   "<PK><MN> are listed by"
 	next "evolution type.@"
 ; 40ea6
 
-String_40ea6: ; 40ea6
-	db   $e1, $e2, " are listed by"
+.OldMode: ; 40ea6
+	db   "<PK><MN> are listed by"
 	next "official type.@"
 ; 40ec6
 
-String_40ec6: ; 40ec6
-	db   $e1, $e2, " are listed"
+.ABCMode: ; 40ec6
+	db   "<PK><MN> are listed"
 	next "alphabetically.@"
 ; 40ee4
 
-String_40ee4: ; 40ee4
+.UnownMode: ; 40ee4
 	db   "UNOWN are listed"
 	next "in catching order.@"
 ; 40f08
@@ -1771,24 +1781,25 @@ Function40f08: ; 40f08 (10:4f08)
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 12
-	ld bc, $412
-	call Function40ad5
-	ld de, String_40f32
+	lb bc, 4, SCREEN_WIDTH - 2
+	call Pokedex_PlaceBorder
+	ld de, String_ChangingModesPleaseWait
 	hlcoord 1, 14
 	call PlaceString
 	ld a, $1
 	ld [hBGMapMode], a
-	ld c, $40
+	ld c, 64
 	call DelayFrames
 	ld de, SFX_CHANGE_DEX_MODE
 	call PlaySFX
-	ld c, $40
+	ld c, 64
 	call DelayFrames
 	ret
 ; 40f32 (10:4f32)
 
-String_40f32: ; 40f32
-	db "Changing modes.", $4e, "Please wait.@"
+String_ChangingModesPleaseWait: ; 40f32
+	db   "Changing modes."
+	next "Please wait.@"
 ; 40f4f
 
 Function40f4f: ; 40f4f (10:4f4f)
@@ -1861,7 +1872,7 @@ Function40fa8: ; 40fa8 (10:4fa8)
 	hlcoord 9, 3
 	ld bc, $408
 	ld a, $7f
-	call Function413fe
+	call Pokedex_FillBox
 	ld a, [wc7d5]
 	hlcoord 9, 4
 	call Function40fcd
@@ -1926,8 +1937,8 @@ Function41095: ; 41095
 	add hl, de
 	ld a, [hl]
 	ld [wc7df], a
-	ld hl, wc6d0
-	ld de, wc6d0
+	ld hl, wPokedexDataStart
+	ld de, wPokedexDataStart
 	ld c, NUM_POKEMON
 	xor a
 	ld [wc7d7], a
@@ -1938,7 +1949,7 @@ Function41095: ; 41095
 	jr z, .asm_410e0
 	ld [wd265], a
 	ld [CurSpecies], a
-	call Function40bc4
+	call Pokedex_CheckCaught
 	jr z, .asm_410e0
 	push hl
 	push de
@@ -2008,7 +2019,7 @@ Function41107: ; 41107
 	ld [hBGMapMode], a
 	hlcoord 0, 12
 	ld bc, $0412
-	call Function40ad5
+	call Pokedex_PlaceBorder
 	ld de, String_41126
 	hlcoord 1, 14
 	call PlaceString
@@ -2025,7 +2036,7 @@ String_41126: ; 41126
 ; 41148
 
 Function41148: ; 41148 (10:5148)
-	ld a, [wc7d4]
+	ld a, [wCurrentDexMode]
 	cp $1
 	jp z, Function41157
 	call Function41229
@@ -2034,7 +2045,7 @@ Function41148: ; 41148 (10:5148)
 
 Function41157: ; 41157 (10:5157)
 	ld hl, Unknown_41167
-	ld a, [wc7d1]
+	ld a, [wDexListingCursor]
 	or a
 	jr nz, .asm_41163
 	ld hl, Unknown_411c8
@@ -2133,7 +2144,7 @@ Unknown_41230: ; 41230
 ; 41281
 
 Function41281: ; 41281 (10:5281)
-	ld a, [wc7d4]
+	ld a, [wCurrentDexMode]
 	cp $1
 	jp z, Function41157
 	ld hl, Unknown_41290
@@ -2176,7 +2187,7 @@ Function412f1: ; 412f1 (10:52f1)
 	ld a, [hl]
 	cp $ff
 	ret z
-	ld a, [wc7d1]
+	ld a, [wDexListingCursor]
 	and $7
 	swap a
 	add [hl]
@@ -2196,11 +2207,11 @@ Function412f1: ; 412f1 (10:52f1)
 
 Function4130e: ; 4130e (10:530e)
 	push de
-	ld a, [wc7d2]
+	ld a, [wDexListingEnd]
 	dec a
 	ld e, a
-	ld a, [wc7d1]
-	ld hl, wc7d0
+	ld a, [wDexListingCursor]
+	ld hl, wDexListingPage
 	add [hl]
 	cp e
 	jr z, .asm_4133f
@@ -2213,7 +2224,7 @@ Function4130e: ; 4130e (10:530e)
 	ld a, d
 	or e
 	jr z, .asm_41341
-	ld a, [wc7d2]
+	ld a, [wDexListingEnd]
 	ld c, a
 .asm_41333
 	ld a, e
@@ -2247,6 +2258,7 @@ Function4134f: ; 4134f (10:534f)
 	ret
 
 Function4135a: ; 4135a (10:535a)
+; bc = [de] - 1
 	ld a, [de]
 	ld b, a
 	inc de
@@ -2254,74 +2266,79 @@ Function4135a: ; 4135a (10:535a)
 	dec a
 	ld c, a
 	inc de
-	call Function413e0
+	call Pokedex_BlinkInfoScreenCursor
+
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
 	and D_LEFT | D_UP
 	and b
-	jr nz, .asm_4138f
+	jr nz, .MoveCursorLeft
 	ld a, [hl]
 	and D_RIGHT | D_DOWN
 	and b
-	jr nz, .asm_413a0
+	jr nz, .MoveCursorRight
 	ld a, [hl]
 	and SELECT
 	and b
-	jr nz, .asm_413c1
-	call Function413f5
-	jr c, .asm_413bf
+	jr nz, .Select
+	call Pokedex_CursorFrameDelay
+	jr c, .NoAction
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_LEFT | D_UP
 	and b
-	jr nz, .asm_4138f
+	jr nz, .MoveCursorLeft
 	ld a, [hl]
 	and D_RIGHT | D_DOWN
 	and b
-	jr nz, .asm_413a0
-	jr .asm_413bf
-.asm_4138f
+	jr nz, .MoveCursorRight
+	jr .NoAction
+
+.MoveCursorLeft
 	ld a, [wc7d8]
 	and a
-	jr z, .asm_413bf
-	call Function413d4
-	ld [hl], $7f
+	jr z, .NoAction
+	call Pokedex_GetCursorPosition
+	ld [hl], " "
 	ld hl, wc7d8
 	dec [hl]
-	jr .asm_413af
-.asm_413a0
+	jr .UpdateCursorPosition
+
+.MoveCursorRight
 	ld a, [wc7d8]
 	cp c
-	jr nc, .asm_413bf
-	call Function413d4
-	ld [hl], $7f
+	jr nc, .NoAction
+	call Pokedex_GetCursorPosition
+	ld [hl], " "
 	ld hl, wc7d8
 	inc [hl]
-.asm_413af
-	call Function413d4
-	ld [hl], $ed
+.UpdateCursorPosition
+	call Pokedex_GetCursorPosition
+	ld [hl], "▶"
 	ld a, $c
 	ld [wc7d9], a
 	xor a
 	ld [wc7da], a
 	scf
 	ret
-.asm_413bf
+
+.NoAction
 	and a
 	ret
-.asm_413c1
-	call Function413d4
-	ld [hl], $7f
+
+.Select
+	call Pokedex_GetCursorPosition
+	ld [hl], " "
 	ld a, [wc7d8]
 	cp c
-	jr c, .asm_413ce
+	jr c, .Update
 	ld a, $ff
-.asm_413ce
+.Update
 	inc a
 	ld [wc7d8], a
-	jr .asm_413af
+	jr .UpdateCursorPosition
 
-Function413d4: ; 413d4 (10:53d4)
+Pokedex_GetCursorPosition: ; 413d4 (10:53d4)
 	ld a, [wc7d8]
 	add a
 	ld l, a
@@ -2332,30 +2349,32 @@ Function413d4: ; 413d4 (10:53d4)
 	ld l, a
 	ret
 
-Function413e0: ; 413e0 (10:53e0)
+Pokedex_BlinkInfoScreenCursor: ; 413e0 (10:53e0)
 	ld hl, wc7da
 	ld a, [hl]
 	inc [hl]
 	and $8
-	jr z, .asm_413ef
-	call Function413d4
-	ld [hl], $7f
-	ret
-.asm_413ef
-	call Function413d4
-	ld [hl], $ed
+	jr z, .blink_on
+	call Pokedex_GetCursorPosition
+	ld [hl], " "
 	ret
 
-Function413f5: ; 413f5 (10:53f5)
+.blink_on
+	call Pokedex_GetCursorPosition
+	ld [hl], "▶"
+	ret
+
+Pokedex_CursorFrameDelay: ; 413f5 (10:53f5)
 	ld hl, wc7d9
 	ld a, [hl]
 	and a
 	ret z
+
 	dec [hl]
 	scf
 	ret
 
-Function413fe: ; 413fe (10:53fe)
+Pokedex_FillBox: ; 413fe (10:53fe)
 	jp FillBoxWithByte
 
 Function41401: ; 41401 (10:5401)
@@ -2391,7 +2410,7 @@ Function41427: ; 41427
 ; 41432
 
 
-Function41432: ; 41432
+Pokedex_LoadPointer: ; 41432
 	ld e, a
 	ld d, 0
 rept 2
@@ -2404,10 +2423,10 @@ endr
 ; 4143b
 
 Function4143b: ; 4143b
-	call Function40bb1
-	call Function40bd0
-	jr z, .asm_4145b
-	ld a, [wdef4]
+	call Pokedex_GetMonAtCursorPosition
+	call Pokedex_CheckSeen
+	jr z, .QuestionMark
+	ld a, [wFirstUnownSeen]
 	ld [UnownLetter], a
 	ld a, [wd265]
 	ld [CurPartySpecies], a
@@ -2416,10 +2435,10 @@ Function4143b: ; 4143b
 	predef GetFrontpic
 	ret
 
-.asm_4145b
+.QuestionMark
 	ld a, BANK(sScratch)
 	call GetSRAMBank
-	callba Function1de0d7
+	callba LoadQuestionMarkPic
 	ld hl, VTiles2
 	ld de, sScratch
 	ld c, 7 * 7
@@ -2431,13 +2450,13 @@ Function4143b: ; 4143b
 ; 41478
 
 
-Function41478: ; 41478 (10:5478)
-	call Function40bb1
+Pokedex_LoadCurrentFootprint: ; 41478 (10:5478)
+	call Pokedex_GetMonAtCursorPosition
 
-Function4147b: ; 4147b
+Pokedex_LoadAnyFootprint: ; 4147b
 	ld a, [wd265]
 	dec a
-	and $f8
+	and ($ff ^ $07) ; $f8 ; $1f << 3
 	srl a
 	srl a
 	srl a
@@ -2463,7 +2482,7 @@ Function4147b: ; 4147b
 
 	; Whoever was editing footprints forgot to fix their
 	; tile editor. Now each bottom half is 8 tiles off.
-	ld de, $80
+	ld de, 8 tiles
 	add hl, de
 
 	ld e, l
@@ -2476,28 +2495,28 @@ Function4147b: ; 4147b
 ; 414b7
 
 
-Function414b7: ; 414b7
+Pokedex_LoadGFX: ; 414b7
 	call DisableLCD
 	ld hl, VTiles2
-	ld bc, $0310
+	ld bc, $31 tiles
 	xor a
 	call ByteFill
-	call Function414fb
+	call Pokedex_LoadInvertedFont
 	call LoadFontsExtra
 	ld hl, VTiles2 tile $60
-	ld bc, $0200
-	call Function41504
-	call Function41a24
-	jr nz, .asm_414e0
-	callba Function1ddf1c
-	jr .asm_414e9
+	ld bc, $20 tiles
+	call Pokedex_InvertTiles
+	call Pokedex_CheckSGB
+	jr nz, .LoadPokedexLZ
+	callba LoadSGBPokedexGFX
+	jr .LoadPokedexSlowpokeLZ
 
-.asm_414e0
+.LoadPokedexLZ
 	ld hl, PokedexLZ
 	ld de, VTiles2 tile $31
 	call Decompress
 
-.asm_414e9
+.LoadPokedexSlowpokeLZ
 	ld hl, PokedexSlowpokeLZ
 	ld de, VTiles0
 	call Decompress
@@ -2506,30 +2525,31 @@ Function414b7: ; 414b7
 	call EnableLCD
 	ret
 
-Function414fb: ; 414fb
+Pokedex_LoadInvertedFont: ; 414fb
 	call LoadStandardFont
 	ld hl, VTiles1
-	ld bc, $0800
+	ld bc, $80 tiles
 
-Function41504: ; 41504
+Pokedex_InvertTiles: ; 41504
+.loop
 	ld a, [hl]
 	xor $ff
 	ld [hli], a
 	dec bc
 	ld a, b
 	or c
-	jr nz, Function41504
+	jr nz, .loop
 	ret
 ; 4150e
 
 PokedexLZ: ; 4150e
-INCBIN "gfx/unknown/04150e.2bpp.lz"
+INCBIN "gfx/pokedex/pokedex.2bpp.lz"
 ; 416b0
 
 PokedexSlowpokeLZ: ; 416b0
 INCBIN "gfx/pokedex/slowpoke.2bpp.lz"
 
-Function41a24: ; 41a24
+Pokedex_CheckSGB: ; 41a24
 	ld a, [hCGB]
 	or a
 	ret nz
@@ -2538,20 +2558,20 @@ Function41a24: ; 41a24
 	ret
 ; 41a2c
 
-Function41a2c: ; 41a2c
+Pokedex_LoadUnownFont: ; 41a2c
 	ld a, BANK(sScratch)
 	call GetSRAMBank
 	ld hl, UnownFont
 	ld de, sScratch + $188
-	ld bc, $270
+	ld bc, 39 tiles
 	ld a, BANK(UnownFont)
 	call FarCopyBytes
 	ld hl, sScratch + $188
-	ld bc, $1b0
-	call Function41504
+	ld bc, 27 tiles
+	call Pokedex_InvertTiles
 	ld de, sScratch + $188
 	ld hl, VTiles2 tile $40
-	lb bc, BANK(Function41a2c), $1b
+	lb bc, BANK(Pokedex_LoadUnownFont), 27
 	call Request2bpp
 	call CloseSRAM
 	ret
@@ -2577,24 +2597,24 @@ Function41a58: ; 41a58 (10:5a58)
 	ret
 ; 41a7f
 
-Function41a7f: ; 41a7f
+_NewPokedexEntry: ; 41a7f
 	xor a
 	ld [hBGMapMode], a
 	callba Function1de247
-	call Function41af7
+	call Pokedex_ResetBGMapMode
 	call DisableLCD
 	call LoadStandardFont
 	call LoadFontsExtra
-	call Function414b7
-	call Function4147b
+	call Pokedex_LoadGFX
+	call Pokedex_LoadAnyFootprint
 	ld a, [wd265]
 	ld [CurPartySpecies], a
 	call Function407fd
-	call Function40ba0
+	call Pokedex_DrawFootprint
 	hlcoord 0, 17
 	ld [hl], $3b
 	inc hl
-	ld bc, $13
+	ld bc, 19
 	ld a, " "
 	call ByteFill
 	callba DisplayDexEntry
@@ -2611,31 +2631,31 @@ Function41a7f: ; 41a7f
 ; 41ad7
 
 
-Function41ad7: ; 41ad7 (10:5ad7)
+Pokedex_SetBGMapMode3: ; 41ad7 (10:5ad7)
 	ld a, $3
 	ld [hBGMapMode], a
 	ld c, 4
 	call DelayFrames
 	ret
 
-Function41ae1: ; 41ae1 (10:5ae1)
+Pokedex_SetBGMapMode4: ; 41ae1 (10:5ae1)
 	ld a, $4
 	ld [hBGMapMode], a
 	ld c, 4
 	call DelayFrames
 	ret
 
-Function41aeb: ; 41aeb (10:5aeb)
+Pokedex_SetBGMapMode_3ifDMG_4ifCGB: ; 41aeb (10:5aeb)
 	ld a, [hCGB]
 	and a
-	jr z, .asm_41af3
-	call Function41ae1
-.asm_41af3
-	call Function41ad7
+	jr z, .DMG
+	call Pokedex_SetBGMapMode4
+.DMG
+	call Pokedex_SetBGMapMode3
 	ret
 
 
-Function41af7: ; 41af7
+Pokedex_ResetBGMapMode: ; 41af7
 	xor a
 	ld [hBGMapMode], a
 	ret

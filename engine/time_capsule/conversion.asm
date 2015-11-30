@@ -355,7 +355,7 @@ NewPokedexEntry: ; fb877
 	ld [hSCX], a
 	xor a
 	ld [wPokedexStatus], a
-	callba Function41a7f
+	callba _NewPokedexEntry
 	call WaitPressAorB_BlinkCursor
 	ld a, $1
 	ld [wPokedexStatus], a
@@ -366,7 +366,7 @@ NewPokedexEntry: ; fb877
 	call MaxVolume
 	call RotateThreePalettesRight
 	ld a, [hSCX]
-	add $fb
+	add -5 ; 251 ; NUM_POKEMON
 	ld [hSCX], a
 	call Functionfb8c8
 	pop af
@@ -378,7 +378,7 @@ Functionfb8c8: ; fb8c8
 	call ClearTileMap
 	call LoadFontsExtra
 	call LoadStandardFont
-	callba Function40ab2
+	callba Pokedex_PlaceFrontpicTopLeftCorner
 	call Function3200
 	callba GetEnemyMonDVs
 	ld a, [hli]

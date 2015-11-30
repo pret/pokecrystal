@@ -5986,7 +5986,7 @@ Function11ad1b: ; 11ad1b
 	ld [wcd30], a
 	ld a, $2
 	ld [wc7d4], a
-	callba Function40bdc
+	callba Pokedex_ChangeMode
 	ret
 ; 11ad6e
 

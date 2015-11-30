@@ -1430,8 +1430,8 @@ HandleMysteryberry: ; 3c93c
 	ld a, [hBattleTurn]
 	and a
 	jr z, .wild
-	ld de, wc739
-	ld hl, wc735
+	ld de, wWildMonPP
+	ld hl, wWildMonMoves
 	ld a, [wBattleMode]
 	dec a
 	jr z, .wild
@@ -3643,13 +3643,13 @@ LoadEnemyPkmnToSwitchTo: ; 3d6ca
 	ld a, [CurPartySpecies]
 	cp UNOWN
 	jr nz, .skip_unown
-	ld a, [wdef4]
+	ld a, [wFirstUnownSeen]
 	and a
 	jr nz, .skip_unown
 	ld hl, EnemyMonDVs
 	predef GetUnownLetter
 	ld a, [UnownLetter]
-	ld [wdef4], a
+	ld [wFirstUnownSeen], a
 .skip_unown
 
 	ld hl, EnemyMonHP
@@ -6711,7 +6711,7 @@ endr
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
-; Caught this mon
+; Saw this mon
 	ld a, [TempEnemyMonSpecies]
 	dec a
 	ld c, a
@@ -8531,7 +8531,7 @@ BattleIntro: ; 3f4dd
 	call ClearBox
 	call ClearSprites
 	ld a, [wBattleMode]
-	cp $1
+	cp WILD_BATTLE
 	call z, UpdateEnemyHUD
 	ld a, $1
 	ld [hBGMapMode], a
@@ -8560,9 +8560,9 @@ InitEnemy: ; 3f55e
 BackUpVBGMap2: ; 3f568
 	ld a, [rSVBK]
 	push af
-	ld a, $6 ; BANK(w6_d000)
+	ld a, $6 ; BANK(wBackupTilemap)
 	ld [rSVBK], a
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	ld bc, $40 tiles ; VBGMap3 - VBGMap2
 	ld a, $2
 	call ByteFill
@@ -8570,7 +8570,7 @@ BackUpVBGMap2: ; 3f568
 	push af
 	ld a, $1
 	ld [rVBK], a
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	hlbgcoord 0, 0 ; VBGMap2
 	lb bc, BANK(BackUpVBGMap2), $40
 	call Request2bpp
@@ -8637,16 +8637,16 @@ InitEnemyTrainer: ; 3f594
 ; 3f607
 
 InitEnemyWildmon: ; 3f607
-	ld a, $1
+	ld a, WILD_BATTLE
 	ld [wBattleMode], a
 	callba MobileFn_10605d
 	call LoadEnemyMon
 	ld hl, EnemyMonMoves
-	ld de, wc735
+	ld de, wWildMonMoves
 	ld bc, NUM_MOVES
 	call CopyBytes
 	ld hl, EnemyMonPP
-	ld de, wc739
+	ld de, wWildMonPP
 	ld bc, NUM_MOVES
 	call CopyBytes
 	ld hl, EnemyMonDVs
@@ -8654,11 +8654,11 @@ InitEnemyWildmon: ; 3f607
 	ld a, [CurPartySpecies]
 	cp UNOWN
 	jr nz, .skip_unown
-	ld a, [wdef4]
+	ld a, [wFirstUnownSeen]
 	and a
 	jr nz, .skip_unown
 	ld a, [UnownLetter]
-	ld [wdef4], a
+	ld [wFirstUnownSeen], a
 .skip_unown
 	ld de, VTiles2
 	predef FrontpicPredef
@@ -9456,12 +9456,12 @@ InitBattleDisplay: ; 3fb6c
 	ld a, $6
 	ld [rSVBK], a
 
-	ld hl, w6_d000
-	ld bc, w6_d400 - w6_d000
+	ld hl, wBackupTilemap
+	ld bc, wBackupAttrMap - wBackupTilemap
 	ld a, " "
 	call ByteFill
 
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	hlbgcoord 0, 0
 	lb bc, BANK(.BlankBGMap), $40
 	call Request2bpp

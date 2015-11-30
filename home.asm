@@ -2192,7 +2192,7 @@ Function3f7c:: ; 3f7c
 ; 3f88
 
 Function3f88:: ; 3f88
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	ld b, $0
 .asm_3f8d
 	push bc
@@ -2213,7 +2213,7 @@ Function3f88:: ; 3f88
 ; 3f9f
 
 Function3f9f:: ; 3f9f
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 .asm_3fa2
 	push bc
 	ld c, $8

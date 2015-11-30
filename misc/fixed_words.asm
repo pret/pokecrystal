@@ -308,7 +308,7 @@ Function11c1ca: ; 11c1ca
 	callba ReloadMapPart
 	callba Function8cf53
 	callba LoadPokemonData
-	callba Function40c30
+	callba Pokedex_ABCMode
 	ld a, [rSVBK]
 	push af
 	ld a, $5

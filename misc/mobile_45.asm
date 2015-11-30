@@ -5662,7 +5662,7 @@ Function1161d5: ; 1161d5
 	ld [rSVBK], a
 
 	ld hl, Unknown_117356
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	ld bc, $0300
 	call CopyBytes
 

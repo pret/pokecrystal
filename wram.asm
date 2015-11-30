@@ -335,7 +335,7 @@ wc2cf:: ds 1
 wc2d0:: ds 4
 wc2d4:: ds 1
 wc2d5:: ds 1
-wc2d6:: ds 1
+wLastDexEntry:: ds 1
 wc2d7:: ds 1
 wPreviousLandmark:: ds 1
 wCurrentLandmark:: ds 1
@@ -762,7 +762,6 @@ wOTTrademon::     trademon wOTTrademon
 	ds wPlayerTrademon - @
 
 wc6d0::
-wPokedexDataStart::
 PlayerSDefLevel:: ; c6d0
 	ds 1
 wc6d1::
@@ -1003,10 +1002,20 @@ wc7b9:: ds 1
 wc7ba:: ds 1
 wc7bb:: ds 15
 wc7ca:: ds 6
-wc7d0:: ds 1
-wc7d1:: ds 1
-wc7d2:: ds 1
-wc7d3:: ds 1
+
+	ds -$100
+wPokedexDataStart::
+wPokedexOrder:: ds NUM_POKEMON +- 1
+wPokedexOrderEnd:: ds 6
+wPokedexMetadata::
+wDexListingPage::
+wc7d0:: ds 1 ; Dex list page
+wDexListingCursor::
+wc7d1:: ds 1 ; Dex cursor
+wDexListingEnd::
+wc7d2:: ds 1 ; Last mon to display
+wc7d3:: ds 1 ; Number of mons visible per dex list page
+wCurrentDexMode::   ; Pokedex Mode
 wc7d4:: ds 1 ; Index of the topmost visible item in a scrolling menu
 wc7d5:: ds 1 ; Which row the cursor is at in a scrolling menu (0-6)
 wc7d6:: ds 1
@@ -1015,14 +1024,17 @@ wc7d8:: ds 1
 wc7d9:: ds 1
 wc7da:: ds 1
 wDexSearchSlowpokeFrame:: ds 1
-wc7dc:: ds 1
+wUnlockedUnownMode:: ds 1
 wc7dd:: ds 1
 wc7de:: ds 1
 wc7df:: ds 1
 wc7e0:: ds 1
 wc7e1:: ds 1
+wBackupDexListingCursor::
 wc7e2:: ds 1
+wBackupDexListingPage::
 wc7e3:: ds 1
+wDexCurrentLocation::
 wc7e4:: ds 1
 IF DEF(CRYSTAL11)
 wPokedexStatus::
@@ -1836,18 +1848,14 @@ CurPartyLevel:: ; d143
 wd144:: ds 2
 
 ; used when following a map warp
-wNextWarp::
-wd146:: ds 1
-wNextMapGroup::
-wd147:: ds 1
-wNextMapNumber::
-wd148:: ds 1
-wPrevWarp::
-wd149:: ds 1
-wPrevMapGroup::
-wd14a:: ds 1
-wPrevMapNumber::
-wd14b:: ds 1
+; d146
+wNextWarp:: ds 1
+wNextMapGroup:: ds 1
+wNextMapNumber:: ds 1
+wPrevWarp:: ds 1
+wPrevMapGroup:: ds 1
+wPrevMapNumber:: ds 1
+; d14c
 
 wd14c:: ds 1 ; used in FollowNotExact
 wd14d:: ds 1 ; used in FollowNotExact
@@ -2515,7 +2523,7 @@ PCItemsEnd::
 
 wPokegearFlags:: ds 1
 wRadioTuningKnob:: ds 1
-wd959:: ds 2
+wLastDexMode:: ds 2
 WhichRegisteredItem:: ; d95b
 	ds 1
 RegisteredItem:: ; d95c
@@ -2796,11 +2804,11 @@ wPlayerDataEnd::
 wMapData::
 
 VisitedSpawns:: ; dca5
-	flag_array 27
+	flag_array NUM_SPAWNS
 
-wdca9:: ds 1
-wdcaa:: ds 1
-wdcab:: ds 1
+wDigWarp:: ds 1
+wDigMapGroup:: ds 1
+wDigMapNumber:: ds 1
 ; used on maps like second floor pokécenter, which are reused, so we know which
 ; map to return to
 BackupWarpNumber:: ; dcac
@@ -2812,10 +2820,8 @@ BackupMapNumber:: ; dcae
 
 	ds 3
 
-wLastSpawnMapGroup::
-wdcb2:: ds 1
-wLastSpawnMapNumber::
-wdcb3:: ds 1
+wLastSpawnMapGroup:: ds 1
+wLastSpawnMapNumber:: ds 1
 
 WarpNumber:: ; dcb4
 	ds 1
@@ -2876,7 +2882,7 @@ UnownDex:: ; ded9
 UnlockedUnowns:: ; def3
 	ds 1
 
-wdef4:: ds 1
+wFirstUnownSeen:: ds 1
 
 
 wDaycareMan:: ; def5
@@ -3099,8 +3105,10 @@ w5_dc3e:: ds $c
 
 SECTION "WRAM 6", WRAMX, BANK [6]
 
-w6_d000:: ds $400
-w6_d400:: ds $200
+wBackupTilemap:: ds $20 * SCREEN_HEIGHT
+	ds $1c0
+wBackupAttrMap:: ds $20 * SCREEN_HEIGHT
+	ds -$40
 w6_d600:: ds $200
 w6_d800::
 

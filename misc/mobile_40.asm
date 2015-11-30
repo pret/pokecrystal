@@ -6774,11 +6774,11 @@ Function102d48: ; 102d48
 	call AddNTimes
 	predef GetUnownLetter
 	callba UpdateUnownDex
-	ld a, [wdef4]
+	ld a, [wFirstUnownSeen]
 	and a
 	jr nz, .asm_102d98
 	ld a, [UnownLetter]
-	ld [wdef4], a
+	ld [wFirstUnownSeen], a
 
 .asm_102d98
 	and a

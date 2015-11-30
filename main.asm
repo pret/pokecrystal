@@ -45,9 +45,9 @@ LoadPushOAM:: ; 4031
 ; 403f
 
 PushOAM: ; 403f
-	ld a, Sprites >> 8
+	ld a, Sprites / $100
 	ld [rDMA], a
-	ld a, $28
+	ld a, 40
 .loop
 	dec a
 	jr nz, .loop
@@ -149,12 +149,12 @@ Function64db: ; 64db
 	ld [rSVBK], a
 
 	ld a, $60
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	lb bc, 4, 0
 	call ByteFill
-	ld a, w6_d000 / $100
+	ld a, wBackupTilemap / $100
 	ld [rHDMA1], a
-	ld a, w6_d000 % $100
+	ld a, wBackupTilemap % $100
 	ld [rHDMA2], a
 	ld a, (VBGMap0 % $8000) / $100
 	ld [rHDMA3], a
@@ -3616,16 +3616,16 @@ dig_incave
 
 .CheckCanDig: ; cbb8
 	call GetMapPermission
-	cp $4
+	cp CAVE
 	jr z, .incave
-	cp $7
+	cp DUNGEON
 	jr z, .incave
 .fail
 	ld a, $2
 	ret
 
 .incave
-	ld hl, wdca9
+	ld hl, wDigWarp
 	ld a, [hli]
 	and a
 	jr z, .fail
@@ -3640,8 +3640,8 @@ dig_incave
 ; cbd8
 
 .DoDig: ; cbd8
-	ld hl, wdca9
-	ld de, wd146
+	ld hl, wDigWarp
+	ld de, wNextWarp
 	ld bc, 3
 	call CopyBytes
 	call GetPartyNick
@@ -3755,9 +3755,9 @@ TeleportFunction: ; cc61
 	jr .nope
 
 .CheckIfSpawnPoint
-	ld a, [wdcb2]
+	ld a, [wLastSpawnMapGroup]
 	ld d, a
-	ld a, [wdcb3]
+	ld a, [wLastSpawnMapNumber]
 	ld e, a
 	callba IsSpawnPoint
 	jr nc, .nope
@@ -6559,11 +6559,11 @@ AddTempmonToParty: ; da96
 	call AddNTimes
 	predef GetUnownLetter
 	callab UpdateUnownDex
-	ld a, [wdef4]
+	ld a, [wFirstUnownSeen]
 	and a
 	jr nz, .done
 	ld a, [UnownLetter]
-	ld [wdef4], a
+	ld [wFirstUnownSeen], a
 .done
 
 	and a
@@ -18176,12 +18176,12 @@ Function4e906: ; 4e906
 	push af
 	ld a, $6
 	ld [rSVBK], a
-	ld hl, w6_d000
-	ld bc, w6_d400 - w6_d000
+	ld hl, wBackupTilemap
+	ld bc, wBackupAttrMap - wBackupTilemap
 	ld a, " "
 	call ByteFill
 	hlbgcoord 0, 0
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	ld b, $0
 	ld c, $40
 	call Request2bpp
@@ -19615,15 +19615,15 @@ _GetFrontpic: ; 510a5
 	ld a, $6
 	ld [rSVBK], a
 	ld a, b
-	ld de, w6_d000 + $800
+	ld de, wBackupTilemap + $800
 	call FarDecompress
 	pop bc
-	ld hl, w6_d000
-	ld de, w6_d000 + $800
+	ld hl, wBackupTilemap
+	ld de, wBackupTilemap + $800
 	call Function512ab
 	pop hl
 	push hl
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	ld c, 7 * 7
 	ld a, [hROMBank]
 	ld b, a
@@ -19666,7 +19666,7 @@ Function51103: ; 51103
 	ld a, $1
 	ld [rVBK], a
 	push hl
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	ld c, 7 * 7
 	ld a, [hROMBank]
 	ld b, a
@@ -19697,7 +19697,7 @@ Function51103: ; 51103
 	call Function5114f
 	pop bc
 	pop hl
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	ld a, [hROMBank]
 	ld b, a
 	call Get2bpp
@@ -19707,7 +19707,7 @@ Function51103: ; 51103
 ; 5114f
 
 Function5114f: ; 5114f
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	swap c
 	ld a, c
 	and $f
@@ -19766,14 +19766,14 @@ GetBackpic: ; 5116c
 	inc hl
 	ld a, d
 	call GetFarHalfword
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	pop af
 	call FarDecompress
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	ld c, 6 * 6
 	call Function5127c
 	pop hl
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	ld a, [hROMBank]
 	ld b, a
 	call Get2bpp
@@ -19872,10 +19872,10 @@ GetTrainerPic: ; 5120d
 	ld a, BANK(TrainerPicPointers)
 	call GetFarHalfword
 	pop af
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	call FarDecompress
 	pop hl
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	ld c, 7 * 7
 	ld a, [hROMBank]
 	ld b, a
@@ -19901,10 +19901,10 @@ DecompressPredef: ; 5125d
 	push de
 	push bc
 	ld a, b
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	call FarDecompress
 	pop bc
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	pop hl
 	ld a, [hROMBank]
 	ld b, a
@@ -22096,7 +22096,7 @@ UpdateUnownDex: ; fba18
 ; fba2e
 
 
-Functionfba2e: ; fba2e (3e:7a2e)
+PrintUnownWord: ; fba2e (3e:7a2e)
 	hlcoord 4, 15
 	ld bc, 12
 	ld a, " "
@@ -22117,13 +22117,13 @@ endr
 	ld e, a
 	ld d, [hl]
 	hlcoord 4, 15
-.asm_fba52
+.loop
 	ld a, [de]
-	cp $ff
+	cp -1
 	ret z
 	inc de
 	ld [hli], a
-	jr .asm_fba52
+	jr .loop
 ; fba5a (3e:7a5a)
 
 UnownWords: ; fba5a
@@ -22220,18 +22220,18 @@ Function104000:: ; 104000
 
 Function104006: ; 104006
 	decoord 0, 0, AttrMap
-	ld hl, w6_d400
+	ld hl, wBackupAttrMap
 	call Function104263
 	decoord 0, 0
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	call Function10425f
 	ld a, $0
 	ld [rVBK], a
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	call Function10419d
 	ld a, $1
 	ld [rVBK], a
-	ld hl, w6_d400
+	ld hl, wBackupAttrMap
 	call Function10419d
 	ret
 ; 10402d
@@ -22243,11 +22243,11 @@ Function10402d:: ; 10402d
 
 Function104033: ; 104033
 	decoord 0, 0
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	call Function10425f
 	ld a, $0
 	ld [rVBK], a
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	call Function10419d
 	ret
 ; 104047
@@ -22259,11 +22259,11 @@ Function104047: ; 104047
 
 Function10404d: ; 10404d
 	decoord 0, 0, AttrMap
-	ld hl, w6_d400
+	ld hl, wBackupAttrMap
 	call Function104263
 	ld a, $1
 	ld [rVBK], a
-	ld hl, w6_d400
+	ld hl, wBackupAttrMap
 	call Function10419d
 	ret
 ; 104061
@@ -22275,10 +22275,10 @@ ReloadMapPart:: ; 104061
 
 Function104067: ; 104067
 	decoord 0, 0, AttrMap
-	ld hl, w6_d400
+	ld hl, wBackupAttrMap
 	call Function104263
 	decoord 0, 0
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	call Function10425f
 	call DelayFrame
 	di
@@ -22286,11 +22286,11 @@ Function104067: ; 104067
 	push af
 	ld a, $1
 	ld [rVBK], a
-	ld hl, w6_d400
+	ld hl, wBackupAttrMap
 	call Function1041ad
 	ld a, $0
 	ld [rVBK], a
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	call Function1041ad
 	pop af
 	ld [rVBK], a
@@ -22305,10 +22305,10 @@ Function104099: ; 104099
 
 Function1040a2: ; 1040a2
 	decoord 0, 0, AttrMap
-	ld hl, w6_d400
+	ld hl, wBackupAttrMap
 	call Function104263
 	decoord 0, 0
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	call Function10425f
 	call DelayFrame
 	di
@@ -22316,11 +22316,11 @@ Function1040a2: ; 1040a2
 	push af
 	ld a, $1
 	ld [rVBK], a
-	ld hl, w6_d400
+	ld hl, wBackupAttrMap
 	call Function1041c1
 	ld a, $0
 	ld [rVBK], a
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	call Function1041c1
 	pop af
 	ld [rVBK], a
@@ -22375,10 +22375,10 @@ Function104110:: ; 104110
 
 Function104116: ; 104116
 	decoord 0, 0, AttrMap
-	ld hl, w6_d400
+	ld hl, wBackupAttrMap
 	call Function104263
 	decoord 0, 0
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	call Function10425f
 	call DelayFrame
 	di
@@ -22386,11 +22386,11 @@ Function104116: ; 104116
 	push af
 	ld a, $1
 	ld [rVBK], a
-	ld hl, w6_d400
+	ld hl, wBackupAttrMap
 	call Function1041b7
 	ld a, $0
 	ld [rVBK], a
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	call Function1041b7
 	pop af
 	ld [rVBK], a
@@ -22405,19 +22405,19 @@ Function104148: ; 104148 (41:4148)
 
 Function10414e: ; 10414e
 	decoord 0, 0, AttrMap
-	ld hl, w6_d400
+	ld hl, wBackupAttrMap
 	call Function104263
 	ld c, $ff
 	decoord 0, 0
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	call Function104265
 	ld a, $1
 	ld [rVBK], a
-	ld hl, w6_d400
+	ld hl, wBackupAttrMap
 	call Function1041ad
 	ld a, $0
 	ld [rVBK], a
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	call Function1041ad
 	ret
 ; 104177
@@ -22436,7 +22436,7 @@ Function104177: ; 104177
 	ld [rSVBK], a
 	ld a, [rVBK]
 	push af
-	call Function10419c
+	call ._hl_
 	pop af
 	ld [rVBK], a
 	pop af
@@ -22448,7 +22448,7 @@ Function104177: ; 104177
 	ret
 ; 10419c
 
-Function10419c: ; 10419c
+._hl_: ; 10419c
 	jp [hl]
 ; 10419d
 
@@ -22658,7 +22658,7 @@ _Get2bpp:: ; 104284
 	push bc
 	push hl
 
-	; Copy c tiles of the 2bpp from b:de to w6_d000
+	; Copy c tiles of the 2bpp from b:de to wBackupTilemap
 	ld a, b ; bank
 	ld l, c ; number of tiles
 	ld h, $0
@@ -22669,7 +22669,7 @@ endr
 	ld c, l
 	ld h, d ; address
 	ld l, e
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	call FarCopyBytes
 	
 	pop hl
@@ -22681,7 +22681,7 @@ endr
 
 	ld d, h
 	ld e, l
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	call Function104209
 
 	; restore the previous bank
@@ -22736,7 +22736,7 @@ endr
 	ld b, h
 	ld h, d
 	ld l, e
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	call FarCopyBytesDouble_DoubleBankSwitch
 
 	pop hl
@@ -22748,7 +22748,7 @@ endr
 
 	ld d, h
 	ld e, l
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	call Function104209
 
 	pop af
@@ -22762,22 +22762,22 @@ Function104303: ; 104303
 ; 104309
 
 Function104309:
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	decoord 0, 0
 	call Function10433a
-	ld hl, w6_d000 + $80
+	ld hl, wBackupTilemap + $80
 	decoord 0, 0, AttrMap
 	call Function10433a
 	ld a, $1
 	ld [rVBK], a
 	ld c, $8
-	ld hl, w6_d000 + $80
+	ld hl, wBackupTilemap + $80
 	debgcoord 0, 0, VBGMap1
 	call Function104209
 	ld a, $0
 	ld [rVBK], a
 	ld c, $8
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	debgcoord 0, 0, VBGMap1
 	call Function104209
 	ret
@@ -22785,7 +22785,7 @@ Function104309:
 Function10433a: ; 10433a (41:433a)
 	ld b, 4
 .outer_loop
-	ld c, 20
+	ld c, SCREEN_WIDTH
 .inner_loop
 	ld a, [de]
 	ld [hli], a
@@ -22793,7 +22793,7 @@ Function10433a: ; 10433a (41:433a)
 	dec c
 	jr nz, .inner_loop
 	ld a, l
-	add $20 - 20
+	add $20 - SCREEN_WIDTH
 	ld l, a
 	ld a, h
 	adc $0
@@ -22816,446 +22816,7 @@ FishingRodGFX2: INCBIN "gfx/misc/fishing2.2bpp"
 BoulderDustGFX: INCBIN "gfx/misc/boulderdust.2bpp"
 FishingRodGFX4: INCBIN "gfx/misc/fishing4.2bpp"
 
-
-RunCallback_05_03: ; 1045b0
-	call Clearwc7e8
-	call ResetMapBufferEventFlags
-	call ResetFlashIfOutOfCave
-	call GetCurrentMapTrigger
-	call ResetBikeFlags
-	ld a, $5
-	call RunMapCallback
-
-RunCallback_03: ; 1045c4
-	callba ClearCmdQueue
-	ld a, $3
-	call RunMapCallback
-	call GetMapHeaderTimeOfDayNybble
-	ld [wc2d0], a
-	ret
-
-
-EnterMapConnection: ; 1045d6
-; Return carry if a connection has been entered.
-	ld a, [wPlayerStepDirection]
-	and a
-	jp z, EnterSouthConnection
-	cp 1
-	jp z, EnterNorthConnection
-	cp 2
-	jp z, EnterWestConnection
-	cp 3
-	jp z, EnterEastConnection
-	ret
-; 1045ed
-
-
-EnterWestConnection: ; 1045ed
-	ld a, [WestConnectedMapGroup]
-	ld [MapGroup], a
-	ld a, [WestConnectedMapNumber]
-	ld [MapNumber], a
-	ld a, [WestConnectionStripXOffset]
-	ld [XCoord], a
-	ld a, [WestConnectionStripYOffset]
-	ld hl, YCoord
-	add [hl]
-	ld [hl], a
-	ld c, a
-	ld hl, WestConnectionWindow
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	srl c
-	jr z, .skip_to_load
-	ld a, [WestConnectedMapWidth]
-	add 6
-	ld e, a
-	ld d, 0
-
-.loop
-	add hl, de
-	dec c
-	jr nz, .loop
-
-.skip_to_load
-	ld a, l
-	ld [wd194], a
-	ld a, h
-	ld [wd194 + 1], a
-	jp EnteredConnection
-; 104629
-
-
-EnterEastConnection: ; 104629
-	ld a, [EastConnectedMapGroup]
-	ld [MapGroup], a
-	ld a, [EastConnectedMapNumber]
-	ld [MapNumber], a
-	ld a, [EastConnectionStripXOffset]
-	ld [XCoord], a
-	ld a, [EastConnectionStripYOffset]
-	ld hl, YCoord
-	add [hl]
-	ld [hl], a
-	ld c, a
-	ld hl, EastConnectionWindow
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	srl c
-	jr z, .skip_to_load
-	ld a, [EastConnectedMapWidth]
-	add 6
-	ld e, a
-	ld d, 0
-
-.loop
-	add hl, de
-	dec c
-	jr nz, .loop
-
-.skip_to_load
-	ld a, l
-	ld [wd194], a
-	ld a, h
-	ld [wd194 + 1], a
-	jp EnteredConnection
-; 104665
-
-
-EnterNorthConnection: ; 104665
-	ld a, [NorthConnectedMapGroup]
-	ld [MapGroup], a
-	ld a, [NorthConnectedMapNumber]
-	ld [MapNumber], a
-	ld a, [NorthConnectionStripYOffset]
-	ld [YCoord], a
-	ld a, [NorthConnectionStripXOffset]
-	ld hl, XCoord
-	add [hl]
-	ld [hl], a
-	ld c, a
-	ld hl, NorthConnectionWindow
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld b, 0
-	srl c
-	add hl, bc
-	ld a, l
-	ld [wd194], a
-	ld a, h
-	ld [wd194 + 1], a
-	jp EnteredConnection
-; 104696
-
-
-EnterSouthConnection: ; 104696
-	ld a, [SouthConnectedMapGroup]
-	ld [MapGroup], a
-	ld a, [SouthConnectedMapNumber]
-	ld [MapNumber], a
-	ld a, [SouthConnectionStripYOffset]
-	ld [YCoord], a
-	ld a, [SouthConnectionStripXOffset]
-	ld hl, XCoord
-	add [hl]
-	ld [hl], a
-	ld c, a
-	ld hl, SouthConnectionWindow
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld b, 0
-	srl c
-	add hl, bc
-	ld a, l
-	ld [wd194], a
-	ld a, h
-	ld [wd194 + 1], a
-	; fallthrough
-; 1046c4
-
-EnteredConnection: ; 1046c4
-	scf
-	ret
-; 1046c6
-
-LoadWarpData: ; 1046c6
-	call Function1046df
-	call Function104718
-	ld a, [wd146]
-	ld [WarpNumber], a
-	ld a, [wd147]
-	ld [MapGroup], a
-	ld a, [wd148]
-	ld [MapNumber], a
-	ret
-
-Function1046df: ; 1046df (41:46df)
-	call GetMapPermission
-	call CheckOutdoorMap
-	ret nz
-	ld a, [wd147]
-	ld b, a
-	ld a, [wd148]
-	ld c, a
-	call GetAnyMapPermission
-	call CheckIndoorMap
-	ret nz
-	ld a, [wd14a]
-	cp $f
-	jr nz, .asm_104705
-	ld a, [wd14b]
-	cp $a
-	ret z
-	cp $c
-	ret z
-.asm_104705
-	ld a, [wd149]
-	ld [wdca9], a
-	ld a, [wd14a]
-	ld [wdcaa], a
-	ld a, [wd14b]
-	ld [wdcab], a
-	ret
-
-Function104718: ; 104718 (41:4718)
-	call GetMapPermission
-	call CheckOutdoorMap
-	ret nz
-	ld a, [wd147]
-	ld b, a
-	ld a, [wd148]
-	ld c, a
-	call GetAnyMapPermission
-	call CheckIndoorMap
-	ret nz
-	ld a, [wd147]
-	ld b, a
-	ld a, [wd148]
-	ld c, a
-	call GetAnyMapTileset
-	ld a, c
-	cp $7
-	jr z, .asm_104743
-	cp $15
-	jr z, .asm_104743
-	ret
-.asm_104743
-	ld a, [wd14a]
-	ld [wdcb2], a
-	ld a, [wd14b]
-	ld [wdcb3], a
-	ret
-
-LoadMapTimeOfDay: ; 104750
-	ld hl, VramState
-	res 6, [hl]
-	ld a, $1
-	ld [wSpriteUpdatesEnabled], a
-	callba Function8c0e5
-	callba Function8c001
-	call OverworldTextModeSwitch
-	call Function104770
-	call Function1047a3
-	ret
-
-Function104770: ; 104770 (41:4770)
-	ld a, VBGMap0 / $100
-	ld [wBGMapAnchor + 1], a
-	xor a
-	ld [wBGMapAnchor], a
-	ld [hSCY], a
-	ld [hSCX], a
-	callba Function5958
-	ld a, [rVBK]
-	push af
-	ld a, $1
-	ld [rVBK], a
-	xor a
-	lb bc, 4, 0
-	hlbgcoord 0, 0
-	call ByteFill
-	pop af
-	ld [rVBK], a
-	ld a, $60
-	lb bc, 4, 0
-	hlbgcoord 0, 0
-	call ByteFill
-	ret
-
-Function1047a3: ; 1047a3 (41:47a3)
-	decoord 0, 0
-	call .copy
-	ld a, [hCGB]
-	and a
-	ret z
-
-	decoord 0, 0, AttrMap
-	ld a, $1
-	ld [rVBK], a
-.copy:
-	hlbgcoord 0, 0
-	ld c, SCREEN_WIDTH
-	ld b, SCREEN_HEIGHT
-.row
-	push bc
-.column
-	ld a, [de]
-	inc de
-	ld [hli], a
-	dec c
-	jr nz, .column
-	ld bc, $20 - SCREEN_WIDTH
-	add hl, bc
-	pop bc
-	dec b
-	jr nz, .row
-	ld a, $0
-	ld [rVBK], a
-	ret
-
-LoadGraphics: ; 1047cf
-	call LoadTilesetHeader
-	call LoadTileset
-	xor a
-	ld [hMapAnims], a
-	xor a
-	ld [hTileAnimFrame], a
-	callba RefreshSprites
-	call LoadFontsExtra
-	callba Function106594
-	ret
-
-LoadMapPalettes: ; 1047eb
-	ld b, SCGB_09
-	jp GetSGBLayout
-; 1047f0
-
-RefreshMapSprites: ; 1047f0
-	call ClearSprites
-	callba ReturnFromMapSetupScript
-	call GetMovementPermissions
-	callba Function579d
-	callba CheckReplaceKrisSprite
-	ld hl, wPlayerSpriteSetupFlags
-	bit 6, [hl]
-	jr nz, .skip
-	ld hl, VramState
-	set 0, [hl]
-	call Function2e31
-.skip
-	ld a, [wPlayerSpriteSetupFlags]
-	and $1c
-	ld [wPlayerSpriteSetupFlags], a
-	ret
-
-CheckMovingOffEdgeOfMap:: ; 104820 (41:4820)
-	ld a, [wPlayerStepDirection]
-	cp STANDING
-	ret z
-	and a ; DOWN
-	jr z, .down
-	cp UP
-	jr z, .up
-	cp LEFT
-	jr z, .left
-	cp RIGHT
-	jr z, .right
-	and a
-	ret
-
-.down
-	ld a, [PlayerNextMapY]
-	sub 4
-	ld b, a
-	ld a, [MapHeight]
-	add a
-	cp b
-	jr z, .ok
-	and a
-	ret
-
-.up
-	ld a, [PlayerNextMapY]
-	sub 4
-	cp -1
-	jr z, .ok
-	and a
-	ret
-
-.left
-	ld a, [PlayerNextMapX]
-	sub $4
-	cp -1
-	jr z, .ok
-	and a
-	ret
-
-.right
-	ld a, [PlayerNextMapX]
-	sub 4
-	ld b, a
-	ld a, [MapWidth]
-	add a
-	cp b
-	jr z, .ok
-	and a
-	ret
-
-.ok
-	scf
-	ret
-
-
-GetCoordOfUpperLeftCorner:: ; 10486d
-	ld hl, OverworldMap
-	ld a, [XCoord]
-	bit 0, a
-	jr nz, .increment_then_halve1
-	srl a
-	add $1
-	jr .resume
-
-.increment_then_halve1
-	add $1
-	srl a
-
-.resume
-	ld c, a
-	ld b, $0
-	add hl, bc
-	ld a, [MapWidth]
-	add $6
-	ld c, a
-	ld b, $0
-	ld a, [YCoord]
-	bit 0, a
-	jr nz, .increment_then_halve2
-	srl a
-	add $1
-	jr .resume2
-
-.increment_then_halve2
-	add $1
-	srl a
-
-.resume2
-	call AddNTimes
-	ld a, l
-	ld [wd194], a
-	ld a, h
-	ld [wd194 + 1], a
-	ld a, [YCoord]
-	and $1
-	ld [wd196], a
-	ld a, [XCoord]
-	and $1
-	ld [wd197], a
-	ret
-; 1048ba
+INCLUDE "engine/warp_connection.asm"
 
 INCLUDE "engine/mysterygift.asm"
 
@@ -23824,7 +23385,7 @@ String_PM: db "PM@" ; 1dd6ff
 INCLUDE "engine/diploma.asm"
 
 
-Function1ddf1c: ; 1ddf1c
+LoadSGBPokedexGFX: ; 1ddf1c
 	ld hl, LZ_1ddf33
 	ld de, VTiles2 tile $31
 	call Decompress
@@ -23840,21 +23401,21 @@ Function1ddf26: ; 1ddf26 (77:5f26)
 ; 1ddf33 (77:5f33)
 
 LZ_1ddf33: ; 1ddf33
-INCBIN "gfx/unknown/1ddf33.2bpp.lz"
+INCBIN "gfx/pokedex/sgb.2bpp.lz"
 ; 1de0d7
 
-Function1de0d7: ; 1de0d7
-	ld hl, LZ_1de0e1
+LoadQuestionMarkPic: ; 1de0d7
+	ld hl, .QuestionMarkLZ
 	ld de, sScratch
 	call Decompress
 	ret
 ; 1de0e1
 
-LZ_1de0e1: ; 1de0e1
-INCBIN "gfx/unknown/1de0e1.2bpp.lz"
+.QuestionMarkLZ: ; 1de0e1
+INCBIN "gfx/pics/questionmark/front.2bpp.lz"
 ; 1de171
 
-Function1de171: ; 1de171 (77:6171)
+DrawPokedexListWindow: ; 1de171 (77:6171)
 	ld a, $32
 	hlcoord 0, 17
 	ld bc, 12
@@ -23864,46 +23425,49 @@ Function1de171: ; 1de171 (77:6171)
 	call ClearBox
 	ld a, $34
 	hlcoord 0, 0
-	ld bc, $b
+	ld bc, 11
 	call ByteFill
 	ld a, $39
 	hlcoord 0, 16
-	ld bc, $b
+	ld bc, 11
 	call ByteFill
 	hlcoord 5, 0
 	ld [hl], $3f
 	hlcoord 5, 16
 	ld [hl], $40
-	ld a, [wc7d4]
-	cp $1
-	jr z, .asm_1de1bf
+	ld a, [wCurrentDexMode]
+	cp DEXMODE_OLD
+	jr z, .OldMode
+; scroll bar
 	hlcoord 11, 0
 	ld [hl], $50
 	ld a, $51
 	hlcoord 11, 1
 	ld b, SCREEN_HEIGHT - 3
-	call Function1de27f
+	call Bank77_FillColumn
 	ld [hl], $52
-	jr .asm_1de1d0
-.asm_1de1bf
+	jr .Done
+
+.OldMode
+; no scroll bar
 	hlcoord 11, 0
 	ld [hl], $66
 	ld a, $67
 	hlcoord 11, 1
 	ld b, SCREEN_HEIGHT - 3
-	call Function1de27f
+	call Bank77_FillColumn
 	ld [hl], $68
-.asm_1de1d0
+.Done
 	ret
 
-Function1de1d1: ; 1de1d1 (77:61d1)
+DrawPokedexSearchResultsWindow: ; 1de1d1 (77:61d1)
 	ld a, $34
 	hlcoord 0, 0
-	ld bc, $b
+	ld bc, 11
 	call ByteFill
 	ld a, $39
 	hlcoord 0, 10
-	ld bc, $b
+	ld bc, 11
 	call ByteFill
 	hlcoord 5, 0
 	ld [hl], $3f
@@ -23914,35 +23478,36 @@ Function1de1d1: ; 1de1d1 (77:61d1)
 	ld a, $67
 	hlcoord 11, 1
 	ld b, SCREEN_HEIGHT / 2
-	call Function1de27f
+	call Bank77_FillColumn
 	ld [hl], $68
 	ld a, $34
 	hlcoord 0, 11
-	ld bc, $b
+	ld bc, 11
 	call ByteFill
 	ld a, $39
 	hlcoord 0, 17
-	ld bc, $b
+	ld bc, 11
 	call ByteFill
 	hlcoord 11, 11
 	ld [hl], $66
 	ld a, $67
 	hlcoord 11, 12
 	ld b, 5
-	call Function1de27f
+	call Bank77_FillColumn
 	ld [hl], $68
 	hlcoord 0, 12
 	lb bc, 5, 11
 	call ClearBox
-	ld de, String_1de23c
+	ld de, .esults_D
 	hlcoord 0, 12
 	call PlaceString
 	ret
 ; 1de23c (77:623c)
 
-String_1de23c: ; 1de23c
-; At a glance, this is less coherent in the Japanese charset.
+.esults_D: ; 1de23c
+; (SEARCH R)
 	db   "ESULTS<NEXT>"
+; (### FOUN)
 	next "D!@"
 ; 1de247
 
@@ -23961,15 +23526,15 @@ Function1de247: ; 1de247
 	ld [hl], $66
 	hlcoord 19, 1
 	ld a, $67
-	ld b, SCREEN_HEIGHT - 3
-	call Function1de27f
+	ld b, 15
+	call Bank77_FillColumn
 	ld [hl], $68
 	hlcoord 19, 17
 	ld [hl], $3c
 	xor a
 	ld b, SCREEN_HEIGHT
 	hlcoord 19, 0, AttrMap
-	call Function1de27f
+	call Bank77_FillColumn
 	call Function3200
 	pop hl
 	ld a, l
@@ -23979,7 +23544,7 @@ Function1de247: ; 1de247
 	ret
 ; 1de27f
 
-Function1de27f: ; 1de27f
+Bank77_FillColumn: ; 1de27f
 	push de
 	ld de, SCREEN_WIDTH
 .loop

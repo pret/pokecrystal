@@ -1425,10 +1425,10 @@ LoadTileset:: ; 2821
 	ld [rSVBK], a
 
 	ld a, e
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	call FarDecompress
 
-	ld hl, w6_d000
+	ld hl, wBackupTilemap
 	ld de, VTiles2
 	ld bc, $60 tiles
 	call CopyBytes

@@ -162,7 +162,7 @@ Function16cff: ; 16cff
 
 	ld a, BANK(sScratch)
 	call GetSRAMBank
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	ld hl, sScratch
 	ld a, [hROMBank]
 	ld b, a

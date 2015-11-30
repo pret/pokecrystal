@@ -1058,7 +1058,7 @@ Function1064d8: ; 1064d8
 	jr asm_1064ed
 
 asm_1064ed
-	ld de, w6_d000
+	ld de, wBackupTilemap
 	ld b, $0
 	ld a, [rSVBK]
 	push af

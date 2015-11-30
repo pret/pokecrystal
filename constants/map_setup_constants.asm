@@ -15,50 +15,50 @@ const_value SET $f1
 ; Command descriptions from Condensation water's scripting compendium.	const_def
 	const_def
 
-	const map_lcd_on
-	const map_lcd_off
-	const map_sound_off
-	const map_music
-	const map_start_music
-	const map_fade_music
-	const map_fade
-	const map_bike_music
-	const map_music_force
-	const map_max_volume
-	const map_load_blocks
-	const map_connection_blocks
-	const map_save_screen
-	const map_buffer_screen
-	const map_load_graphics
-	const map_load_tileset_header
-	const map_time_of_day
-	const map_palettes
-	const map_wildmons
-	const map_sprites
-	const map_change_callback
-	const map_start_callback
-	const map_load_objects
-	const map_load_spawn
-	const map_load_connection
-	const map_load_warp
-	const map_attributes
-	const map_attributes_2
-	const map_clear_bg_palettes
-	const map_fade_out_palettes
-	const map_fade_in_palettes
-	const map_anchor_screen
-	const map_warp_face
-	const map_face_down
-	const map_spawn_coord
-	const map_player_coord
-	const map_prolong_sprites
-	const map_delay_sprites
-	const map_update_roam
-	const map_keep_roam
-	const map_fade_out_music
-	const map_animations_on
-	const map_animations_off
-	const map_keep_palettes
-	const map_text_scroll_off
-	const map_stop_script
+	const map_lcd_on              ; 00
+	const map_lcd_off             ; 01
+	const map_sound_off           ; 02
+	const map_music               ; 03
+	const map_start_music         ; 04
+	const map_fade_music          ; 05
+	const map_fade                ; 06
+	const map_bike_music          ; 07
+	const map_music_force         ; 08
+	const map_max_volume          ; 09
+	const map_load_blocks         ; 0a
+	const map_connection_blocks   ; 0b
+	const map_save_screen         ; 0c
+	const map_buffer_screen       ; 0d
+	const map_load_graphics       ; 0e
+	const map_load_tileset_header ; 0f
+	const map_time_of_day         ; 10
+	const map_palettes            ; 11
+	const map_wildmons            ; 12
+	const map_sprites             ; 13
+	const map_change_callback     ; 14
+	const map_start_callback      ; 15
+	const map_load_objects        ; 16
+	const map_load_spawn          ; 17
+	const map_load_connection     ; 18
+	const map_load_warp           ; 19
+	const map_attributes          ; 1a
+	const map_attributes_2        ; 1b
+	const map_clear_bg_palettes   ; 1c
+	const map_fade_out_palettes   ; 1d
+	const map_fade_in_palettes    ; 1e
+	const map_anchor_screen       ; 1f
+	const map_warp_face           ; 20
+	const map_face_down           ; 21
+	const map_spawn_coord         ; 22
+	const map_player_coord        ; 23
+	const map_prolong_sprites     ; 24
+	const map_delay_sprites       ; 25
+	const map_update_roam         ; 26
+	const map_keep_roam           ; 27
+	const map_fade_out_music      ; 28
+	const map_animations_on       ; 29
+	const map_animations_off      ; 2a
+	const map_keep_palettes       ; 2b
+	const map_text_scroll_off     ; 2c
+	const map_stop_script         ; 2d
 map_end_setup_script EQU -1
