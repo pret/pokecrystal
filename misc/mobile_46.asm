@@ -5886,7 +5886,7 @@ Function11ac51: ; 11ac51
 	call Function11ad6e
 	ld a, $78
 	ld [wc3b5], a
-	callba Function8cf7a
+	callba DoNextFrameForAllSprites
 	callba ReloadMapPart
 	jr .asm_11ac82
 

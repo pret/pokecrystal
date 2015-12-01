@@ -104,7 +104,7 @@ DoPoisonStep:: ; 505da
 	ld de, SFX_POISON
 	call PlaySFX
 	ld b, $2
-	predef Functioncbcdd
+	predef LoadPoisonBGPals
 	call DelayFrame
 	ret
 ; 50669

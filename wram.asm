@@ -1885,7 +1885,9 @@ wd191:: ds 1
 wd192:: ds 1
 wd193:: ds 1
 wd194:: dw
+wMetatileStandingY::
 wd196:: ds 1
+wMetatileStandingX::
 wd197:: ds 1
 wSecondMapHeaderBank:: ds 1
 wTileset:: ds 1
@@ -2772,7 +2774,7 @@ wBlueCardBalance:: ds 1
 wDailyRematchFlags:: ds 4
 wDailyPhoneItemFlags:: ds 4
 wDailyPhoneTimeOfDayFlags:: ds 4
-wdc58:: ds 2
+wKenjiBreakTimer:: ds 2 ; Kenji
 wdc5a:: ds 1
 wdc5b:: ds 1
 wdc5c:: ds 3

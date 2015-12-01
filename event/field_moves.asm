@@ -29,7 +29,7 @@ ShakeHeadbuttTree: ; 8c80a
 	ld hl, VTiles1 tile $04
 	lb bc, BANK(HeadbuttTreeGFX), 8
 	call Request2bpp
-	call Function8cad3
+	call Cut_Headbutt_GetPixelFacing
 	ld a, SPRITE_ANIM_INDEX_1B
 	call _InitSpriteAnimStruct
 	ld hl, $3
@@ -37,7 +37,7 @@ ShakeHeadbuttTree: ; 8c80a
 	ld [hl], $84
 	ld a, $90
 	ld [wc3b5], a
-	callba Function8cf7a
+	callba DoNextFrameForAllSprites
 	call GetHeadbuttTreeRelativeLocation
 	ld a, $20
 	ld [wcf64], a
@@ -52,7 +52,7 @@ ShakeHeadbuttTree: ; 8c80a
 	dec [hl]
 	ld a, $90
 	ld [wc3b5], a
-	callba Function8cf7a
+	callba DoNextFrameForAllSprites
 	call DelayFrame
 	jr .loop
 
@@ -62,8 +62,8 @@ ShakeHeadbuttTree: ; 8c80a
 	xor a
 	ld [hBGMapMode], a
 	callba Function8cf53
-	ld hl, Sprites + $90
-	ld bc, $10
+	ld hl, Sprites + 36 * 4
+	ld bc, SpritesEnd - (Sprites + 36 * 4)
 	xor a
 	call ByteFill
 	ld de, Font
@@ -126,7 +126,7 @@ OWCutAnimation: ; 8c940
 	jr nz, .finish
 	ld a, $90
 	ld [wc3b5], a
-	callab Function8cf7a
+	callab DoNextFrameForAllSprites
 	call OWCutJumptable
 	call DelayFrame
 	jr .loop
@@ -172,96 +172,100 @@ endr
 
 
 .jumptable: ; 8ca1b (23:4a1b)
-	dw Function8ca23
-	dw Function8ca3c
-	dw Function8ca5c
-	dw Function8ca64
+	dw Cut_SpawnAnimateTree
+	dw Cut_SpawnAnimateLeaves
+	dw Cut_StartWaiting
+	dw Cut_WaitAnimSFX
 
 
-Function8ca23: ; 8ca23 (23:4a23)
-	call Function8cad3
-	ld a, SPRITE_ANIM_INDEX_17 ; leaf
+Cut_SpawnAnimateTree: ; 8ca23 (23:4a23)
+	call Cut_Headbutt_GetPixelFacing
+	ld a, SPRITE_ANIM_INDEX_CUT_TREE ; cut tree
 	call _InitSpriteAnimStruct
-	ld hl, $3
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $84
-	ld a, $20
+	ld a, 32
 	ld [wcf64], a
+; Cut_StartWaiting
 	ld hl, wJumptableIndex
 rept 2
 	inc [hl]
 endr
 	ret
 
-Function8ca3c: ; 8ca3c (23:4a3c)
-	call Function8ca8e
+Cut_SpawnAnimateLeaves: ; 8ca3c (23:4a3c)
+	call Cut_GetLeafSpawnCoords
 	xor a
-	call Function8ca73
+	call Cut_SpawnLeaf
 	ld a, $10
-	call Function8ca73
+	call Cut_SpawnLeaf
 	ld a, $20
-	call Function8ca73
+	call Cut_SpawnLeaf
 	ld a, $30
-	call Function8ca73
-	ld a, $20
+	call Cut_SpawnLeaf
+	ld a, 32 ; frames
 	ld [wcf64], a
+; Cut_StartWaiting
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
-Function8ca5c: ; 8ca5c (23:4a5c)
+Cut_StartWaiting: ; 8ca5c (23:4a5c)
 	ld a, $1
 	ld [hBGMapMode], a
+; Cut_WaitAnimSFX
 	ld hl, wJumptableIndex
 	inc [hl]
 
-Function8ca64: ; 8ca64 (23:4a64)
+Cut_WaitAnimSFX: ; 8ca64 (23:4a64)
 	ld hl, wcf64
 	ld a, [hl]
 	and a
-	jr z, .asm_8ca6d
+	jr z, .finished
 	dec [hl]
 	ret
-.asm_8ca6d
+
+.finished
 	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
 
-Function8ca73: ; 8ca73 (23:4a73)
+Cut_SpawnLeaf: ; 8ca73 (23:4a73)
 	push de
 	push af
-	ld a, SPRITE_ANIM_INDEX_16 ; fly takeoff
+	ld a, SPRITE_ANIM_INDEX_LEAF ; leaf
 	call _InitSpriteAnimStruct
-	ld hl, $3
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $80
-	ld hl, $e
+	ld hl, SPRITEANIMSTRUCT_0E
 	add hl, bc
 	ld [hl], $4
 	pop af
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], a
 	pop de
 	ret
 
-Function8ca8e: ; 8ca8e (23:4a8e)
+Cut_GetLeafSpawnCoords: ; 8ca8e (23:4a8e)
 	ld de, 0
-	ld a, [wd197]
+	ld a, [wMetatileStandingX]
 	bit 0, a
-	jr z, .asm_8ca9a
+	jr z, .left_side
 	set 0, e
-.asm_8ca9a
-	ld a, [wd196]
+.left_side
+	ld a, [wMetatileStandingY]
 	bit 0, a
-	jr z, .asm_8caa3
+	jr z, .top_side
 	set 1, e
-.asm_8caa3
+.top_side
 	ld a, [PlayerDirection]
-	and $c
+	and %00001100
 	add e
 	ld e, a
-	ld hl, Unknown_8cab3
+	ld hl, .Coords
 rept 2
 	add hl, de
 endr
@@ -271,32 +275,35 @@ endr
 	ret
 ; 8cab3 (23:4ab3)
 
-Unknown_8cab3: ; 8cab3
-	db $58, $60
-	db $48, $60
-	db $58, $70
-	db $48, $70
-	db $58, $40
-	db $48, $40
-	db $58, $50
-	db $48, $50
-	db $38, $60
-	db $48, $60
-	db $38, $50
-	db $48, $50
-	db $58, $60
-	db $68, $60
-	db $58, $50
-	db $68, $50
+.Coords: ; 8cab3
+	dbpixel 11, 12 ; facing down,  top left
+	dbpixel  9, 12 ; facing down,  top right
+	dbpixel 11, 14 ; facing down,  bottom left
+	dbpixel  9, 14 ; facing down,  bottom right
+
+	dbpixel 11,  8 ; facing up,    top left
+	dbpixel  9,  8 ; facing up,    top right
+	dbpixel 11, 10 ; facing up,    bottom left
+	dbpixel  9, 10 ; facing up,    bottom right
+
+	dbpixel  7, 12 ; facing left,  top left
+	dbpixel  9, 12 ; facing left,  top right
+	dbpixel  7, 10 ; facing left,  bottom left
+	dbpixel  9, 10 ; facing left,  bottom right
+
+	dbpixel 11, 12 ; facing right, top left
+	dbpixel 13, 12 ; facing right, top right
+	dbpixel 11, 10 ; facing right, bottom left
+	dbpixel 13, 10 ; facing right, bottom right
 ; 8cad3
 
-Function8cad3: ; 8cad3 (23:4ad3)
+Cut_Headbutt_GetPixelFacing: ; 8cad3 (23:4ad3)
 	ld a, [PlayerDirection]
-	and $c
+	and %00001100
 	srl a
 	ld e, a
 	ld d, 0
-	ld hl, Unknown_8cae5
+	ld hl, .Coords
 	add hl, de
 	ld e, [hl]
 	inc hl
@@ -304,9 +311,159 @@ Function8cad3: ; 8cad3 (23:4ad3)
 	ret
 ; 8cae5 (23:4ae5)
 
-Unknown_8cae5: ; 8cae5
-	db $50, $68
-	db $50, $48
-	db $40, $58
-	db $60, $58
+.Coords: ; 8cae5
+	dbpixel 10, 13
+	dbpixel 10,  9
+	dbpixel  8, 11
+	dbpixel 12, 11
 ; 8caed
+
+
+FlyFromAnim: ; 8caed
+	call DelayFrame
+	ld a, [VramState]
+	push af
+	xor a
+	ld [VramState], a
+	call Function8cb9b
+	depixel 10, 10, 4, 0
+	ld a, SPRITE_ANIM_INDEX_0A
+	call _InitSpriteAnimStruct
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
+	add hl, bc
+	ld [hl], $84
+	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
+	add hl, bc
+	ld [hl], $16
+	ld a, $80
+	ld [wcf64], a
+.loop
+	ld a, [wJumptableIndex]
+	bit 7, a
+	jr nz, .exit
+	ld a, $0
+	ld [wc3b5], a
+	callab DoNextFrameForAllSprites
+	call Function8cbc8
+	call DelayFrame
+	jr .loop
+
+.exit
+	pop af
+	ld [VramState], a
+	ret
+; 8cb33
+
+FlyToAnim: ; 8cb33
+	call DelayFrame
+	ld a, [VramState]
+	push af
+	xor a
+	ld [VramState], a
+	call Function8cb9b
+	depixel 31, 10, 4, 0
+	ld a, SPRITE_ANIM_INDEX_0A
+	call _InitSpriteAnimStruct
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
+	add hl, bc
+	ld [hl], $84
+	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
+	add hl, bc
+	ld [hl], $18
+	ld hl, SPRITEANIMSTRUCT_0F
+	add hl, bc
+	ld [hl], $58
+	ld a, $40
+	ld [wcf64], a
+.loop
+	ld a, [wJumptableIndex]
+	bit 7, a
+	jr nz, .exit
+	ld a, $0
+	ld [wc3b5], a
+	callab DoNextFrameForAllSprites
+	call Function8cbc8
+	call DelayFrame
+	jr .loop
+
+.exit
+	pop af
+	ld [VramState], a
+	call Function8cb82
+	ret
+
+Function8cb82: ; 8cb82 (23:4b82)
+	ld hl, Sprites + 2 ; Tile ID
+	xor a
+	ld c, $4
+.loop
+	ld [hli], a
+rept 3
+	inc hl
+endr
+	inc a
+	dec c
+	jr nz, .loop
+	ld hl, Sprites + 4 * 4
+	ld bc, SpritesEnd - (Sprites + 4 * 4)
+	xor a
+	call ByteFill
+	ret
+
+Function8cb9b: ; 8cb9b (23:4b9b)
+	callab Function8cf53
+	ld de, CutGrassGFX
+	ld hl, VTiles1 tile $00
+	lb bc, BANK(CutGrassGFX), 4
+	call Request2bpp
+	ld a, [CurPartyMon]
+	ld hl, PartySpecies
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [hl]
+	ld [wd265], a
+	ld e, $84
+	callba Function8e9bc
+	xor a
+	ld [wJumptableIndex], a
+	ret
+
+Function8cbc8: ; 8cbc8 (23:4bc8)
+	call Function8cbe6
+	ld hl, wcf64
+	ld a, [hl]
+	and a
+	jr z, .exit
+	dec [hl]
+	cp $40
+	ret c
+	and $7
+	ret nz
+	ld de, SFX_FLY
+	call PlaySFX
+	ret
+
+.exit
+	ld hl, wJumptableIndex
+	set 7, [hl]
+	ret
+
+Function8cbe6: ; 8cbe6 (23:4be6)
+	ld hl, wcf65
+	ld a, [hl]
+	inc [hl]
+	and $7
+	ret nz
+	ld a, [hl]
+	and $18
+	sla a
+	add $40
+	ld d, a
+	ld e, $0
+	ld a, SPRITE_ANIM_INDEX_18 ; fly land
+	call _InitSpriteAnimStruct
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
+	add hl, bc
+	ld [hl], $80
+	ret

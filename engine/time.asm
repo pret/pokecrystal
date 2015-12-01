@@ -118,7 +118,7 @@ endr
 rept 4
 	ld [hli], a
 endr
-	ld hl, wdc58
+	ld hl, wKenjiBreakTimer
 	ld a, [hl]
 	and a
 	jr z, .RestartKenjiBreakCountdown
@@ -137,7 +137,7 @@ Special_SampleKenjiBreakCountdown: ; 11485
 	call Random
 	and 3
 	add 3
-	ld [wdc58], a
+	ld [wKenjiBreakTimer], a
 	ret
 ; 11490
 

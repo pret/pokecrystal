@@ -3440,13 +3440,13 @@ FlyFunction: ; ca3b
 	reloadmappart
 	callasm HideSprites
 	special UpdateTimePals
-	callasm Function8caed
+	callasm FlyFromAnim
 	farscall Script_AbortBugContest
 	special WarpToSpawnPoint
 	callasm DelayLoadingNewSprites
 	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	newloadmap MAPSETUP_FLY
-	callasm Function8cb33
+	callasm FlyToAnim
 	special WaitSFX
 	callasm .ReturnFromFly
 	end
@@ -21429,153 +21429,6 @@ Function8c7c9: ; unreferenced
 ; 8c7d4
 
 INCLUDE "event/field_moves.asm"
-
-Function8caed: ; 8caed
-	call DelayFrame
-	ld a, [VramState]
-	push af
-	xor a
-	ld [VramState], a
-	call Function8cb9b
-	depixel 10, 10, 4, 0
-	ld a, SPRITE_ANIM_INDEX_0A
-	call _InitSpriteAnimStruct
-	ld hl, $3
-	add hl, bc
-	ld [hl], $84
-	ld hl, $2
-	add hl, bc
-	ld [hl], $16
-	ld a, $80
-	ld [wcf64], a
-.asm_8cb14
-	ld a, [wJumptableIndex]
-	bit 7, a
-	jr nz, .asm_8cb2e
-	ld a, $0
-	ld [wc3b5], a
-	callab Function8cf7a
-	call Function8cbc8
-	call DelayFrame
-	jr .asm_8cb14
-.asm_8cb2e
-	pop af
-	ld [VramState], a
-	ret
-; 8cb33
-
-Function8cb33: ; 8cb33
-	call DelayFrame
-	ld a, [VramState]
-	push af
-	xor a
-	ld [VramState], a
-	call Function8cb9b
-	depixel 31, 10, 4, 0
-	ld a, SPRITE_ANIM_INDEX_0A
-	call _InitSpriteAnimStruct
-	ld hl, $3
-	add hl, bc
-	ld [hl], $84
-	ld hl, $2
-	add hl, bc
-	ld [hl], $18
-	ld hl, $f
-	add hl, bc
-	ld [hl], $58
-	ld a, $40
-	ld [wcf64], a
-.asm_8cb60
-	ld a, [wJumptableIndex]
-	bit 7, a
-	jr nz, .asm_8cb7a
-	ld a, $0
-	ld [wc3b5], a
-	callab Function8cf7a
-	call Function8cbc8
-	call DelayFrame
-	jr .asm_8cb60
-.asm_8cb7a
-	pop af
-	ld [VramState], a
-	call Function8cb82
-	ret
-
-Function8cb82: ; 8cb82 (23:4b82)
-	ld hl, Sprites + 2
-	xor a
-	ld c, $4
-.asm_8cb88
-	ld [hli], a
-rept 3
-	inc hl
-endr
-	inc a
-	dec c
-	jr nz, .asm_8cb88
-	ld hl, Sprites + $10
-	ld bc, $90
-	xor a
-	call ByteFill
-	ret
-
-Function8cb9b: ; 8cb9b (23:4b9b)
-	callab Function8cf53
-	ld de, CutGrassGFX
-	ld hl, VTiles1 tile $00
-	lb bc, BANK(CutGrassGFX), 4
-	call Request2bpp
-	ld a, [CurPartyMon]
-	ld hl, PartySpecies
-	ld e, a
-	ld d, 0
-	add hl, de
-	ld a, [hl]
-	ld [wd265], a
-	ld e, $84
-	callba Function8e9bc
-	xor a
-	ld [wJumptableIndex], a
-	ret
-
-Function8cbc8: ; 8cbc8 (23:4bc8)
-	call Function8cbe6
-	ld hl, wcf64
-	ld a, [hl]
-	and a
-	jr z, .asm_8cbe0
-	dec [hl]
-	cp $40
-	ret c
-	and $7
-	ret nz
-	ld de, SFX_FLY
-	call PlaySFX
-	ret
-.asm_8cbe0
-	ld hl, wJumptableIndex
-	set 7, [hl]
-	ret
-
-Function8cbe6: ; 8cbe6 (23:4be6)
-	ld hl, wcf65
-	ld a, [hl]
-	inc [hl]
-	and $7
-	ret nz
-	ld a, [hl]
-	and $18
-	sla a
-	add $40
-	ld d, a
-	ld e, $0
-	ld a, SPRITE_ANIM_INDEX_18 ; fly land
-	call _InitSpriteAnimStruct
-	ld hl, $3
-	add hl, bc
-	ld [hl], $80
-	ret
-
 INCLUDE "event/magnet_train.asm"
 
 Function8cf4f: ; 8cf4f
@@ -21694,47 +21547,47 @@ INCLUDE "battle/bg_effects.asm"
 
 INCLUDE "battle/anims.asm"
 
-Functioncbcdd: ; cbcdd
-	call Functioncbce5
+LoadPoisonBGPals: ; cbcdd
+	call .LoadPals
 	ld a, [hCGB]
 	and a
 	ret nz
 	ret
 ; cbce5
 
-Functioncbce5: ; cbce5
+.LoadPals: ; cbce5
 	ld a, [hCGB]
 	and a
-	jr nz, .asm_cbd06
+	jr nz, .cgb
 	ld a, [TimeOfDayPal]
 	and $3
 	cp $3
 	ld a, $0
-	jr z, .asm_cbcf7
+	jr z, .convert_pals
 	ld a, $aa
 
-.asm_cbcf7
+.convert_pals
 	call DmgToCgbBGPals
 	ld c, 4
 	call DelayFrames
 	callba _UpdateTimePals
 	ret
 
-.asm_cbd06
+.cgb
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, BGPals
 	ld c, $20
-.asm_cbd12
+.loop
 ; RGB 31, 21, 28
-	ld a, $bc
+	ld a, (palred 31 + palgreen 21 + palblue 28) % $100
 	ld [hli], a
-	ld a, $7e
+	ld a, (palred 31 + palgreen 21 + palblue 28) / $100
 	ld [hli], a
 	dec c
-	jr nz, .asm_cbd12
+	jr nz, .loop
 	pop af
 	ld [rSVBK], a
 	ld a, $1
@@ -21939,6 +21792,7 @@ INCLUDE "tilesets/data_6.asm"
 SECTION "bank38", ROMX, BANK[$38]
 
 Functione0000: ; e0000
+; something to do with Unown printer
 	push de
 	xor a
 	call GetSRAMBank

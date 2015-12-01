@@ -25,7 +25,7 @@ PlaySpriteAnimations: ; 8cf69
 
 	ld a, $0
 	ld [wc3b5], a
-	call Function8cf7a
+	call DoNextFrameForAllSprites
 
 	pop af
 	pop bc
@@ -34,7 +34,7 @@ PlaySpriteAnimations: ; 8cf69
 	ret
 ; 8cf7a
 
-Function8cf7a: ; 8cf7a
+DoNextFrameForAllSprites: ; 8cf7a
 	ld hl, wSpriteAnimationStructs
 	ld e, 10 ; There are 10 structs here.
 
@@ -241,7 +241,7 @@ Function8d04c: ; 8d04c
 	jr z, .done
 	cp -4
 	jr z, .almost
-	call Function8d1a2 ; read from a pointer table
+	call Function8d1a2 ; OAM?
 	ld a, [wc3ba]
 	add [hl]
 	ld [wc3ba], a
@@ -416,40 +416,40 @@ Function8d120:: ; 8d120
 
 Function8d132: ; 8d132
 .loop
-	ld hl, $8
+	ld hl, SPRITEANIMSTRUCT_DURATION
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .ok
+	jr z, .done ; finished the current sequence
 	dec [hl]
-	call Function8d189
+	call Function8d189 ; load pointer from Unknown_8d6e6
 	ld a, [hli]
 	push af
-	jr .skip
+	jr .okay
 
-.ok
-	ld hl, $a
+.done
+	ld hl, SPRITEANIMSTRUCT_FRAME
 	add hl, bc
 	inc [hl]
-	call Function8d189
+	call Function8d189 ; load pointer from Unknown_8d6e6
 	ld a, [hli]
 	cp $fe
 	jr z, .minus_2
 	cp $ff
 	jr z, .minus_1
+
 	push af
 	ld a, [hl]
 	push hl
 	and $3f
-	ld hl, $9
+	ld hl, SPRITEANIMSTRUCT_09
 	add hl, bc
 	add [hl]
-	ld hl, $8
+	ld hl, SPRITEANIMSTRUCT_DURATION
 	add hl, bc
 	ld [hl], a
 	pop hl
-
-.skip
+.okay
 	ld a, [hl]
 	and $c0
 	srl a
@@ -459,10 +459,11 @@ Function8d132: ; 8d132
 
 .minus_1
 	xor a
-	ld hl, $8
+	ld hl, SPRITEANIMSTRUCT_DURATION
 	add hl, bc
 	ld [hl], a
-	ld hl, $a
+
+	ld hl, SPRITEANIMSTRUCT_FRAME
 	add hl, bc
 rept 2
 	dec [hl]
@@ -471,20 +472,22 @@ endr
 
 .minus_2
 	xor a
-	ld hl, $8
+	ld hl, SPRITEANIMSTRUCT_DURATION
 	add hl, bc
 	ld [hl], a
+
 	dec a
-	ld hl, $a
+	ld hl, SPRITEANIMSTRUCT_FRAME
 	add hl, bc
 	ld [hl], a
 	jr .loop
 ; 8d189
 
 Function8d189: ; 8d189
-	; Get the [bc+10]th entry in the data table
-	; indexed at [bc+1] in Unknown_8d6e6
-	ld hl, $1
+	; Get the data for the current frame for the current animation sequence
+
+	; Unknown_8d6e6 + 2 * SpriteAnim[SPRITEANIMSTRUCT_01] + 3 * SpriteAnim[SPRITEANIMSTRUCT_FRAME]
+	ld hl, SPRITEANIMSTRUCT_01
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
@@ -495,7 +498,7 @@ endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $a
+	ld hl, SPRITEANIMSTRUCT_FRAME
 	add hl, bc
 	ld l, [hl]
 	ld h, 0
@@ -1406,72 +1409,72 @@ endr
 ; 8d6e6 (23:56e6)
 
 Unknown_8d6e6: ; 8d6e6
-	dw Unknown_8d76a
-	dw Unknown_8d76d
-	dw Unknown_8d772
-	dw Unknown_8d777
-	dw Unknown_8d77c
-	dw Unknown_8d781
-	dw Unknown_8d786
-	dw Unknown_8d7a6
-	dw Unknown_8d7ab
-	dw Unknown_8d7b0
-	dw Unknown_8d7b5
-	dw Unknown_8d7d4
-	dw Unknown_8d7d9
-	dw Unknown_8d7e2
-	dw Unknown_8d7eb
-	dw Unknown_8d7f4
-	dw Unknown_8d7ff
-	dw Unknown_8d78b
-	dw Unknown_8d802
-	dw Unknown_8d805
-	dw Unknown_8d808
-	dw Unknown_8d811
-	dw Unknown_8d818
-	dw Unknown_8d81d
-	dw Unknown_8d822
-	dw Unknown_8d825
-	dw Unknown_8d82c
-	dw Unknown_8d82f
-	dw Unknown_8d861
-	dw Unknown_8d864
-	dw Unknown_8d867
-	dw Unknown_8d874
-	dw Unknown_8d877
-	dw Unknown_8d87a
-	dw Unknown_8d87d
-	dw Unknown_8d880
-	dw Unknown_8d883
-	dw Unknown_8d890
-	dw Unknown_8d899
-	dw Unknown_8d89c
-	dw Unknown_8d89f
-	dw Unknown_8d8a2
-	dw Unknown_8d8a5
-	dw Unknown_8d8a8
-	dw Unknown_8d8ab
-	dw Unknown_8d794
-	dw Unknown_8d79d
-	dw Unknown_8d8ae
-	dw Unknown_8d8cd
-	dw Unknown_8d8ec
-	dw Unknown_8d8f1
-	dw Unknown_8d8f4
-	dw Unknown_8d8f7
-	dw Unknown_8d8fe
-	dw Unknown_8d907
-	dw Unknown_8d90c
-	dw Unknown_8d913
-	dw Unknown_8d916
-	dw Unknown_8d91d
-	dw Unknown_8d924
-	dw Unknown_8d92b
-	dw Unknown_8d932
-	dw Unknown_8d93d
-	dw Unknown_8d940
-	dw Unknown_8d943
-	dw Unknown_8d948
+	dw Unknown_8d76a ; 00
+	dw Unknown_8d76d ; 01
+	dw Unknown_8d772 ; 02
+	dw Unknown_8d777 ; 03
+	dw Unknown_8d77c ; 04
+	dw Unknown_8d781 ; 05
+	dw Unknown_8d786 ; 06
+	dw Unknown_8d7a6 ; 07
+	dw Unknown_8d7ab ; 08
+	dw Unknown_8d7b0 ; 09
+	dw Unknown_8d7b5 ; 0a
+	dw Unknown_8d7d4 ; 0b
+	dw Unknown_8d7d9 ; 0c
+	dw Unknown_8d7e2 ; 0d
+	dw Unknown_8d7eb ; 0e
+	dw Unknown_8d7f4 ; 0f
+	dw Unknown_8d7ff ; 10
+	dw Unknown_8d78b ; 11
+	dw Unknown_8d802 ; 12
+	dw Unknown_8d805 ; 13
+	dw Unknown_8d808 ; 14
+	dw Unknown_8d811 ; 15
+	dw Unknown_8d818 ; 16
+	dw Unknown_8d81d ; 17
+	dw Unknown_8d822 ; 18
+	dw Unknown_8d825 ; 19
+	dw Unknown_8d82c ; 1a
+	dw Unknown_8d82f ; 1b
+	dw Unknown_8d861 ; 1c
+	dw Unknown_8d864 ; 1d
+	dw Unknown_8d867 ; 1e
+	dw Unknown_8d874 ; 1f
+	dw Unknown_8d877 ; 20
+	dw Unknown_8d87a ; 21
+	dw Unknown_8d87d ; 22
+	dw Unknown_8d880 ; 23
+	dw Unknown_8d883 ; 24
+	dw Unknown_8d890 ; 25
+	dw Unknown_8d899 ; 26
+	dw Unknown_8d89c ; 27
+	dw Unknown_8d89f ; 28
+	dw Unknown_8d8a2 ; 29
+	dw Unknown_8d8a5 ; 2a
+	dw Unknown_8d8a8 ; 2b
+	dw Unknown_8d8ab ; 2c
+	dw Unknown_8d794 ; 2d
+	dw Unknown_8d79d ; 2e
+	dw Unknown_8d8ae ; 2f
+	dw Unknown_8d8cd ; 30
+	dw Unknown_8d8ec ; 31
+	dw Unknown_8d8f1 ; 32
+	dw Unknown_8d8f4 ; 33
+	dw Unknown_8d8f7 ; 34
+	dw Unknown_8d8fe ; 35
+	dw Unknown_8d907 ; 36
+	dw Unknown_8d90c ; 37
+	dw Unknown_8d913 ; 38
+	dw Unknown_8d916 ; 39
+	dw Unknown_8d91d ; 3a
+	dw Unknown_8d924 ; 3b
+	dw Unknown_8d92b ; 3c
+	dw Unknown_8d932 ; 3d
+	dw Unknown_8d93d ; 3e
+	dw Unknown_8d940 ; 3f
+	dw Unknown_8d943 ; 40
+	dw Unknown_8d948 ; 41
 ; 8d76a
 
 Unknown_8d76a: 	dw $2000

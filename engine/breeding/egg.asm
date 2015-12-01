@@ -823,16 +823,16 @@ Function173b3: ; 173b3 (5:73b3)
 	push bc
 	ld a, SPRITE_ANIM_INDEX_1C
 	call _InitSpriteAnimStruct
-	ld hl, SpriteAnim1TileID - SpriteAnim1
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $0
 	pop de
 	ld a, e
-	ld hl, SpriteAnim1Sprite01 - SpriteAnim1
+	ld hl, SPRITEANIMSTRUCT_01
 	add hl, bc
 	add [hl]
 	ld [hl], a
-	ld hl, SpriteAnim1Sprite0b - SpriteAnim1
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	ld [hl], d
 	pop hl

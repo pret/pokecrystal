@@ -38,34 +38,34 @@ endr
 ; $00: copy [de] to StringBuffer2
 ; $40: return address in de
 ; $80: call function
-	dwb StringBuffer2,         RETVAR_STRBUF2
-	dwb PartyCount,            RETVAR_STRBUF2
-	dwb .BattleResult,         RETVAR_EXECUTE
-	dwb BattleType,            RETVAR_ADDR_DE
-	dwb TimeOfDay,             RETVAR_STRBUF2
-	dwb .CountCaughtMons,      RETVAR_EXECUTE
-	dwb .CountSeenMons,        RETVAR_EXECUTE
-	dwb .CountBadges,          RETVAR_EXECUTE
-	dwb PlayerState,           RETVAR_ADDR_DE
-	dwb .PlayerFacing,         RETVAR_EXECUTE
-	dwb hHours,                RETVAR_STRBUF2
-	dwb .DayOfWeek,            RETVAR_EXECUTE
-	dwb MapGroup,              RETVAR_STRBUF2
-	dwb MapNumber,             RETVAR_STRBUF2
-	dwb .UnownCaught,          RETVAR_EXECUTE
-	dwb wPermission,           RETVAR_STRBUF2
-	dwb .BoxFreeSpace,         RETVAR_EXECUTE
-	dwb wBugContestMinsRemaining,                 RETVAR_STRBUF2
-	dwb XCoord,                RETVAR_STRBUF2
-	dwb YCoord,                RETVAR_STRBUF2
-	dwb wSpecialPhoneCallID,   RETVAR_STRBUF2
-	dwb wcf64,                 RETVAR_STRBUF2
-	dwb wKurtApricornQuantity, RETVAR_STRBUF2
-	dwb wCurrentCaller,        RETVAR_ADDR_DE
-	dwb wBlueCardBalance,      RETVAR_ADDR_DE
-	dwb wBuenasPassword,       RETVAR_ADDR_DE
-	dwb wdc58,                 RETVAR_STRBUF2
-	dwb NULL,                  RETVAR_STRBUF2
+	dwb StringBuffer2,                  RETVAR_STRBUF2
+	dwb PartyCount,                     RETVAR_STRBUF2
+	dwb .BattleResult,                  RETVAR_EXECUTE
+	dwb BattleType,                     RETVAR_ADDR_DE
+	dwb TimeOfDay,                      RETVAR_STRBUF2
+	dwb .CountCaughtMons,               RETVAR_EXECUTE
+	dwb .CountSeenMons,                 RETVAR_EXECUTE
+	dwb .CountBadges,                   RETVAR_EXECUTE
+	dwb PlayerState,                    RETVAR_ADDR_DE
+	dwb .PlayerFacing,                  RETVAR_EXECUTE
+	dwb hHours,                         RETVAR_STRBUF2
+	dwb .DayOfWeek,                     RETVAR_EXECUTE
+	dwb MapGroup,                       RETVAR_STRBUF2
+	dwb MapNumber,                      RETVAR_STRBUF2
+	dwb .UnownCaught,                   RETVAR_EXECUTE
+	dwb wPermission,                    RETVAR_STRBUF2
+	dwb .BoxFreeSpace,                  RETVAR_EXECUTE
+	dwb wBugContestMinsRemaining,       RETVAR_STRBUF2
+	dwb XCoord,                         RETVAR_STRBUF2
+	dwb YCoord,                         RETVAR_STRBUF2
+	dwb wSpecialPhoneCallID,            RETVAR_STRBUF2
+	dwb wNrOfBeatenBattleTowerTrainers, RETVAR_STRBUF2
+	dwb wKurtApricornQuantity,          RETVAR_STRBUF2
+	dwb wCurrentCaller,                 RETVAR_ADDR_DE
+	dwb wBlueCardBalance,               RETVAR_ADDR_DE
+	dwb wBuenasPassword,                RETVAR_ADDR_DE
+	dwb wKenjiBreakTimer,               RETVAR_STRBUF2
+	dwb NULL,                           RETVAR_STRBUF2
 ; 806c5
 
 .CountCaughtMons: ; 806c5

@@ -31,7 +31,7 @@ Special_CelebiShrineEvent: ; 4989a
 	push de
 	ld a, $90
 	ld [wc3b5], a
-	callba Function8cf7a
+	callba DoNextFrameForAllSprites
 	call Function49935
 	ld c, 2
 	call DelayFrames

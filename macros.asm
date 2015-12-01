@@ -218,9 +218,17 @@ if _NARG == 5
 else
 	lb \1, \2 * 8, \3 * 8
 endc
-	endm
+endm
 
 depixel EQUS "ldpixel de,"
+
+dbpixel: MACRO
+if _NARG == 4
+	db \1 * 8 + \3, \2 * 8 + \4
+else
+	db \1 * 8, \2 * 8
+endc
+endm
 
 bgcoord: MACRO
 IF _NARG == 4

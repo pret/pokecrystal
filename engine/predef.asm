@@ -76,7 +76,7 @@ PredefPointers:: ; 856b
 	add_predef PrintType
 	add_predef PrintMonTypes
 	add_predef GetUnownLetter
-	add_predef Functioncbcdd
+	add_predef LoadPoisonBGPals
 	add_predef Predef2F
 	add_predef Function9853 ; $30
 	add_predef Predef_LoadSGBLayout
