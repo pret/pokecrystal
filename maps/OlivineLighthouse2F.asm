@@ -65,7 +65,7 @@ UnknownScript_0x5afc7:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata SAILOR, HUEY1
+	loadtrainer SAILOR, HUEY1
 	startbattle
 	returnafterbattle
 	loadvar wHueyFightCount, 1
@@ -73,7 +73,7 @@ UnknownScript_0x5afc7:
 	end
 
 .LoadFight1
-	scriptedtrainerdata SAILOR, HUEY2
+	loadtrainer SAILOR, HUEY2
 	startbattle
 	returnafterbattle
 	loadvar wHueyFightCount, 2
@@ -81,7 +81,7 @@ UnknownScript_0x5afc7:
 	end
 
 .LoadFight2
-	scriptedtrainerdata SAILOR, HUEY3
+	loadtrainer SAILOR, HUEY3
 	startbattle
 	returnafterbattle
 	loadvar wHueyFightCount, 3
@@ -89,7 +89,7 @@ UnknownScript_0x5afc7:
 	end
 
 .LoadFight3
-	scriptedtrainerdata SAILOR, HUEY4
+	loadtrainer SAILOR, HUEY4
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_HUEY

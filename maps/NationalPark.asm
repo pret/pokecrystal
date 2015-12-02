@@ -122,7 +122,7 @@ UnknownScript_0x5c088:
 	checkflag ENGINE_FLYPOINT_OLIVINE
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata SCHOOLBOY, JACK1
+	loadtrainer SCHOOLBOY, JACK1
 	startbattle
 	returnafterbattle
 	loadvar wJackFightCount, 1
@@ -130,7 +130,7 @@ UnknownScript_0x5c088:
 	end
 
 .LoadFight1
-	scriptedtrainerdata SCHOOLBOY, JACK2
+	loadtrainer SCHOOLBOY, JACK2
 	startbattle
 	returnafterbattle
 	loadvar wJackFightCount, 2
@@ -138,7 +138,7 @@ UnknownScript_0x5c088:
 	end
 
 .LoadFight2
-	scriptedtrainerdata SCHOOLBOY, JACK3
+	loadtrainer SCHOOLBOY, JACK3
 	startbattle
 	returnafterbattle
 	loadvar wJackFightCount, 3
@@ -146,7 +146,7 @@ UnknownScript_0x5c088:
 	end
 
 .LoadFight3
-	scriptedtrainerdata SCHOOLBOY, JACK4
+	loadtrainer SCHOOLBOY, JACK4
 	startbattle
 	returnafterbattle
 	loadvar wJackFightCount, 4
@@ -154,7 +154,7 @@ UnknownScript_0x5c088:
 	end
 
 .LoadFight4
-	scriptedtrainerdata SCHOOLBOY, JACK5
+	loadtrainer SCHOOLBOY, JACK5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_JACK

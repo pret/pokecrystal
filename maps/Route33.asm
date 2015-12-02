@@ -66,7 +66,7 @@ UnknownScript_0x1ac051:
 	checkflag ENGINE_FLYPOINT_OLIVINE
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata HIKER, ANTHONY2
+	loadtrainer HIKER, ANTHONY2
 	startbattle
 	returnafterbattle
 	loadvar wAnthonyFightCount, 1
@@ -74,7 +74,7 @@ UnknownScript_0x1ac051:
 	end
 
 .LoadFight1
-	scriptedtrainerdata HIKER, ANTHONY1
+	loadtrainer HIKER, ANTHONY1
 	startbattle
 	returnafterbattle
 	loadvar wAnthonyFightCount, 2
@@ -82,7 +82,7 @@ UnknownScript_0x1ac051:
 	end
 
 .LoadFight2
-	scriptedtrainerdata HIKER, ANTHONY3
+	loadtrainer HIKER, ANTHONY3
 	startbattle
 	returnafterbattle
 	loadvar wAnthonyFightCount, 3
@@ -90,7 +90,7 @@ UnknownScript_0x1ac051:
 	end
 
 .LoadFight3
-	scriptedtrainerdata HIKER, ANTHONY4
+	loadtrainer HIKER, ANTHONY4
 	startbattle
 	returnafterbattle
 	loadvar wAnthonyFightCount, 4
@@ -98,7 +98,7 @@ UnknownScript_0x1ac051:
 	end
 
 .LoadFight4
-	scriptedtrainerdata HIKER, ANTHONY5
+	loadtrainer HIKER, ANTHONY5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_ANTHONY

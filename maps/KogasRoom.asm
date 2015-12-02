@@ -56,7 +56,7 @@ KogaScript_0x18075a:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x1808a9, 0
-	scriptedtrainerdata KOGA, 1
+	loadtrainer KOGA, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_ELITE_4_KOGA

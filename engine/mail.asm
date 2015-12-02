@@ -443,7 +443,7 @@ Function4484a: ; 0x4484a
 	dec a
 	ld b, a
 	call ReadMailMessage
-	jp ReturnToCallingMenu
+	jp CloseSubmenu
 ; 0x44877
 
 .PutInPack ; 0x44877
@@ -539,7 +539,7 @@ Function4484a: ; 0x4484a
 	call PrintText
 
 .exit2
-	jp ReturnToCallingMenu
+	jp CloseSubmenu
 ; 0x4493c
 
 .HoldingMailText ; 0x4493c

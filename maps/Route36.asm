@@ -82,7 +82,7 @@ WateredWeirdTreeScript::
 	writetext UnknownText_0x1942aa
 	waitbutton
 	closetext
-	scriptedpokedata SUDOWOODO, 20
+	loadwildmon SUDOWOODO, 20
 	startbattle
 	setevent EVENT_FOUGHT_SUDOWOODO
 	if_equal $2, UnknownScript_0x19407b
@@ -225,7 +225,7 @@ UnknownScript_0x194140:
 	checkflag ENGINE_FLYPOINT_OLIVINE
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata SCHOOLBOY, ALAN1
+	loadtrainer SCHOOLBOY, ALAN1
 	startbattle
 	returnafterbattle
 	loadvar wAlanFightCount, 1
@@ -233,7 +233,7 @@ UnknownScript_0x194140:
 	end
 
 .LoadFight1
-	scriptedtrainerdata SCHOOLBOY, ALAN2
+	loadtrainer SCHOOLBOY, ALAN2
 	startbattle
 	returnafterbattle
 	loadvar wAlanFightCount, 2
@@ -241,7 +241,7 @@ UnknownScript_0x194140:
 	end
 
 .LoadFight2
-	scriptedtrainerdata SCHOOLBOY, ALAN3
+	loadtrainer SCHOOLBOY, ALAN3
 	startbattle
 	returnafterbattle
 	loadvar wAlanFightCount, 3
@@ -249,7 +249,7 @@ UnknownScript_0x194140:
 	end
 
 .LoadFight3
-	scriptedtrainerdata SCHOOLBOY, ALAN4
+	loadtrainer SCHOOLBOY, ALAN4
 	startbattle
 	returnafterbattle
 	loadvar wAlanFightCount, 4
@@ -257,7 +257,7 @@ UnknownScript_0x194140:
 	end
 
 .LoadFight4
-	scriptedtrainerdata SCHOOLBOY, ALAN5
+	loadtrainer SCHOOLBOY, ALAN5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_ALAN

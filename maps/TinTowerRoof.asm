@@ -36,7 +36,7 @@ HoOhScript_0x77244:
 	closetext
 	setevent EVENT_FOUGHT_HO_OH
 	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
-	scriptedpokedata HO_OH, 60
+	loadwildmon HO_OH, 60
 	startbattle
 	disappear TINTOWERROOF_HO_OH
 	returnafterbattle

@@ -44,7 +44,7 @@ UnknownScript_0x198018:
 	moveperson AZALEATOWN_AZALEA_ROCKET2, $b, $b
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 15
 	appear AZALEATOWN_AZALEA_ROCKET2
 	applymovement AZALEATOWN_AZALEA_ROCKET2, MovementData_0x198134
@@ -54,7 +54,7 @@ UnknownScript_0x198018:
 UnknownScript_0x198034:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 15
 	appear AZALEATOWN_AZALEA_ROCKET2
 	applymovement AZALEATOWN_AZALEA_ROCKET2, MovementData_0x19813c
@@ -72,7 +72,7 @@ UnknownScript_0x198049:
 	iftrue UnknownScript_0x198081
 	winlosstext UnknownText_0x1981e6, UnknownText_0x19835b
 	setlasttalked $b
-	scriptedtrainerdata RIVAL1, RIVAL1_6
+	loadtrainer RIVAL1, RIVAL1_6
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -81,7 +81,7 @@ UnknownScript_0x198049:
 UnknownScript_0x198071:
 	winlosstext UnknownText_0x1981e6, UnknownText_0x19835b
 	setlasttalked $b
-	scriptedtrainerdata RIVAL1, RIVAL1_4
+	loadtrainer RIVAL1, RIVAL1_4
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -90,7 +90,7 @@ UnknownScript_0x198071:
 UnknownScript_0x198081:
 	winlosstext UnknownText_0x1981e6, UnknownText_0x19835b
 	setlasttalked $b
-	scriptedtrainerdata RIVAL1, RIVAL1_5
+	loadtrainer RIVAL1, RIVAL1_5
 	startbattle
 	reloadmapmusic
 	returnafterbattle

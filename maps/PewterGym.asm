@@ -19,7 +19,7 @@ BrockScript_0x1a2864:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x1a29bb, 0
-	scriptedtrainerdata BROCK, 1
+	loadtrainer BROCK, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_BROCK

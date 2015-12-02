@@ -413,7 +413,7 @@ Function1719ed: ; 1719ed (5c:59ed)
 	call ClearSprites
 	callba Function171d2b
 	callba ReloadMapPart
-	callba Function8cf53
+	callba ClearSpriteAnims
 	ret
 
 Function171a11: ; 171a11 (5c:5a11)
@@ -426,7 +426,7 @@ Function171a11: ; 171a11 (5c:5a11)
 	callba ReloadMapPart
 	jr Function171a11
 .asm_171a2c
-	callba Function8cf53
+	callba ClearSpriteAnims
 	call ClearSprites
 	ret
 

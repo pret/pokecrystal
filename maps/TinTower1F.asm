@@ -124,7 +124,7 @@ UnknownScript_0x1850d7:
 	applymovement TINTOWER1F_SUICUNE, MovementData_0x1851e4
 	cry SUICUNE
 	pause 20
-	scriptedpokedata SUICUNE, 40
+	loadwildmon SUICUNE, 40
 	writecode VAR_BATTLETYPE, BATTLETYPE_SUICUNE
 	startbattle
 	reloadmapmusic
@@ -170,7 +170,7 @@ UnknownScript_0x1850d7:
 	playsound SFX_EXIT_BUILDING
 	disappear TINTOWER1F_SUPER_NERD
 	waitsfx
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 20
 	playmapmusic
 	end

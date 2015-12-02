@@ -27,7 +27,7 @@ UnknownScript_0x184946:
 UnknownScript_0x184947:
 	spriteface PLAYER, UP
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	playsound SFX_TACKLE
 	playsound SFX_ELEVATOR
 	earthquake 79
@@ -74,7 +74,7 @@ SageLiScript:
 	waitbutton
 	closetext
 	winlosstext SageLiBeatenText, 0
-	scriptedtrainerdata SAGE, LI
+	loadtrainer SAGE, LI
 	startbattle
 	returnafterbattle
 	loadfont

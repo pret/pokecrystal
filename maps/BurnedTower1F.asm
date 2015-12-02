@@ -56,7 +56,7 @@ UnknownScript_0x185c0d:
 
 UnknownScript_0x185c25:
 	showemote EMOTE_SHOCK, BURNEDTOWER1F_SILVER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 15
 	spriteface BURNEDTOWER1F_SILVER, RIGHT
 	pause 15
@@ -73,7 +73,7 @@ UnknownScript_0x185c25:
 	iftrue UnknownScript_0x185c70
 	winlosstext UnknownText_0x185d9b, UnknownText_0x185e2c
 	setlasttalked $4
-	scriptedtrainerdata RIVAL1, RIVAL1_9
+	loadtrainer RIVAL1, RIVAL1_9
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -82,7 +82,7 @@ UnknownScript_0x185c25:
 UnknownScript_0x185c60:
 	winlosstext UnknownText_0x185d9b, UnknownText_0x185e2c
 	setlasttalked $4
-	scriptedtrainerdata RIVAL1, RIVAL1_7
+	loadtrainer RIVAL1, RIVAL1_7
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -91,7 +91,7 @@ UnknownScript_0x185c60:
 UnknownScript_0x185c70:
 	winlosstext UnknownText_0x185d9b, UnknownText_0x185e2c
 	setlasttalked $4
-	scriptedtrainerdata RIVAL1, RIVAL1_8
+	loadtrainer RIVAL1, RIVAL1_8
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -105,7 +105,7 @@ UnknownScript_0x185c80:
 	closetext
 	dotrigger $2
 	setevent EVENT_RIVAL_BURNED_TOWER
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 15
 	earthquake 50
 	showemote EMOTE_SHOCK, PLAYER, 15

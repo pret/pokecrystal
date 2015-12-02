@@ -69,7 +69,7 @@ MistyScript_0x188432:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x18870c, 0
-	scriptedtrainerdata MISTY, 1
+	loadtrainer MISTY, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_MISTY

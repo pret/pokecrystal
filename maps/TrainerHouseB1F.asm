@@ -48,14 +48,14 @@ UnknownScript_0x9b3aa:
 	iffalse UnknownScript_0x9b3dc
 	winlosstext UnknownText_0x9b578, 0
 	setlasttalked $3
-	scriptedtrainerdata CAL, CAL2
+	loadtrainer CAL, CAL2
 	startbattle
 	returnafterbattle
 	iffalse UnknownScript_0x9b3e8
 UnknownScript_0x9b3dc:
 	winlosstext UnknownText_0x9b578, 0
 	setlasttalked $3
-	scriptedtrainerdata CAL, CAL3
+	loadtrainer CAL, CAL3
 	startbattle
 	returnafterbattle
 UnknownScript_0x9b3e8:

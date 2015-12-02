@@ -67,7 +67,7 @@ endr
 ; 49912
 
 LoadCelebiGFX: ; 49912
-	callba Function8cf53
+	callba ClearSpriteAnims
 	ld de, SpecialCelebiLeafGFX
 	ld hl, VTiles1
 	lb bc, BANK(SpecialCelebiLeafGFX), 4

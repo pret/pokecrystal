@@ -69,7 +69,7 @@ UnknownScript_0x1a4d79:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata COOLTRAINERM, GAVEN3
+	loadtrainer COOLTRAINERM, GAVEN3
 	startbattle
 	returnafterbattle
 	loadvar wGavenFightCount, 1
@@ -77,7 +77,7 @@ UnknownScript_0x1a4d79:
 	end
 
 .LoadFight1
-	scriptedtrainerdata COOLTRAINERM, GAVEN1
+	loadtrainer COOLTRAINERM, GAVEN1
 	startbattle
 	returnafterbattle
 	loadvar wGavenFightCount, 2
@@ -85,7 +85,7 @@ UnknownScript_0x1a4d79:
 	end
 
 .LoadFight2
-	scriptedtrainerdata COOLTRAINERM, GAVEN2
+	loadtrainer COOLTRAINERM, GAVEN2
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_GAVEN
@@ -173,7 +173,7 @@ UnknownScript_0x1a4e35:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata COOLTRAINERF, BETH1
+	loadtrainer COOLTRAINERF, BETH1
 	startbattle
 	returnafterbattle
 	loadvar wBethFightCount, 1
@@ -181,7 +181,7 @@ UnknownScript_0x1a4e35:
 	end
 
 .LoadFight1
-	scriptedtrainerdata COOLTRAINERF, BETH2
+	loadtrainer COOLTRAINERF, BETH2
 	startbattle
 	returnafterbattle
 	loadvar wBethFightCount, 2
@@ -189,7 +189,7 @@ UnknownScript_0x1a4e35:
 	end
 
 .LoadFight2
-	scriptedtrainerdata COOLTRAINERF, BETH3
+	loadtrainer COOLTRAINERF, BETH3
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_BETH

@@ -16,7 +16,7 @@ UnknownScript_0x506c8: ; 0x506c8
 	iffalse UnknownScript_0x506e9
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue UnknownScript_0x506e5
-	setup_random_encounter
+	randomwildmon
 	startbattle
 	returnafterbattle
 	end

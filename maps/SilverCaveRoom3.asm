@@ -9,18 +9,18 @@ SilverCaveRoom3_MapScriptHeader:
 	db 0
 
 RedScript_0x18c603:
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	faceplayer
 	loadfont
 	writetext UnknownText_0x18c637
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x18c63c, UnknownText_0x18c63c
-	scriptedtrainerdata RED, 1
+	loadtrainer RED, 1
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	loadfont
 	writetext UnknownText_0x18c63f
 	waitbutton

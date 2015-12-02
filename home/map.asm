@@ -2014,7 +2014,7 @@ FadeToMenu:: ; 2b29
 ; 2b3c
 
 
-ReturnToCallingMenu:: ; 2b3c
+CloseSubmenu:: ; 2b3c
 	call ClearBGPalettes
 	call Function2bae
 	call UpdateSprites

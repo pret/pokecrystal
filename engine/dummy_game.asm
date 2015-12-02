@@ -10,7 +10,7 @@ Functione1e67: ; e1e67 (38:5e67)
 	call DisableLCD
 	ld b, SCGB_08
 	call GetSGBLayout
-	callab Function8cf53
+	callab ClearSpriteAnims
 	ld hl, LZ_e2221
 	ld de, VTiles2 tile $00
 	call Decompress

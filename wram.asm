@@ -2237,11 +2237,7 @@ ScriptPos:: ; d43a
 	ds 2
 
 wScriptStackSize:: ds 1
-wScriptStackBA1:: ds 3
-wScriptStackBA2:: ds 3
-wScriptStackBA3:: ds 3
-wScriptStackBA4:: ds 3
-wScriptStackBA5:: ds 3
+wScriptStack:: ds 3 * 5
 	ds 1
 ScriptDelay:: ; d44d
 	ds 1

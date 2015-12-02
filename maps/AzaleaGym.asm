@@ -23,7 +23,7 @@ BugsyScript:
 	waitbutton
 	closetext
 	winlosstext BugsyText_ResearchIncomplete, 0
-	scriptedtrainerdata BUGSY, 1
+	loadtrainer BUGSY, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_BUGSY

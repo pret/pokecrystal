@@ -22,7 +22,7 @@ ErikaScript_0x72a6a:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x72c3e, 0
-	scriptedtrainerdata ERIKA, 1
+	loadtrainer ERIKA, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_ERIKA

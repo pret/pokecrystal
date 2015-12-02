@@ -292,7 +292,7 @@ Function87d:: ; 87d
 	ld a, $ff
 	ld [wOtherPlayerLinkAction], a
 .loop
-	call LinkCommunicationsSendReceive
+	call LinkTransfer
 	call DelayFrame
 	call Function82b
 	jr z, .check
@@ -318,14 +318,14 @@ Function87d:: ; 87d
 	ld b, 10
 .receive
 	call DelayFrame
-	call LinkCommunicationsSendReceive
+	call LinkTransfer
 	dec b
 	jr nz, .receive
 
 	ld b, 10
 .acknowledge
 	call DelayFrame
-	call LinkCommunicationsSignalDataReceived
+	call LinkDataReceived
 	dec b
 	jr nz, .acknowledge
 
@@ -334,7 +334,7 @@ Function87d:: ; 87d
 	ret
 ; 8c1
 
-LinkCommunicationsSendReceive:: ; 8c1
+LinkTransfer:: ; 8c1
 	push bc
 	ld b, SERIAL_TIMECAPSULE
 	ld a, [wLinkMode]
@@ -380,7 +380,7 @@ LinkCommunicationsSendReceive:: ; 8c1
 	ret
 ; 908
 
-LinkCommunicationsSignalDataReceived:: ; 908
+LinkDataReceived:: ; 908
 ; Let the other system know that the data has been received.
 	xor a
 	ld [hSerialSend], a

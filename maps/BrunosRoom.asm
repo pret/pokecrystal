@@ -56,7 +56,7 @@ BrunoScript_0x1809c5:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x180b23, 0
-	scriptedtrainerdata BRUNO, 1
+	loadtrainer BRUNO, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_ELITE_4_BRUNO

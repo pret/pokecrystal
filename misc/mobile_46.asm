@@ -5846,9 +5846,9 @@ UnknownText_0x11ac1f: ; 0x11ac1f
 Function11ac3e: ; 11ac3e
 	call SpeechTextBox
 	call FadeToMenu
-	callab ClearSpriteAnims
+	callab ClearSpriteAnims2
 	call Function11ac51
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	ret
 ; 11ac51
 
@@ -7703,7 +7703,7 @@ Function11b7e5: ; 11b7e5
 	ld [de], a
 
 .asm_11b872
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	call RestartMapMusic
 	ret
 ; 11b879

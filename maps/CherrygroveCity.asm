@@ -110,7 +110,7 @@ UnknownScript_0x19c0aa:
 UnknownScript_0x19c0ae:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 15
 	appear CHERRYGROVECITY_SILVER
 	applymovement CHERRYGROVECITY_SILVER, MovementData_0x19c1ce
@@ -126,7 +126,7 @@ UnknownScript_0x19c0ae:
 	iftrue UnknownScript_0x19c104
 	winlosstext UnknownText_0x19c57f, UnknownText_0x19c5e6
 	setlasttalked $3
-	scriptedtrainerdata RIVAL1, RIVAL1_3
+	loadtrainer RIVAL1, RIVAL1_3
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	reloadmapmusic
@@ -137,7 +137,7 @@ UnknownScript_0x19c0ae:
 UnknownScript_0x19c0ee:
 	winlosstext UnknownText_0x19c57f, UnknownText_0x19c5e6
 	setlasttalked $3
-	scriptedtrainerdata RIVAL1, RIVAL1_1
+	loadtrainer RIVAL1, RIVAL1_1
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	reloadmapmusic
@@ -148,7 +148,7 @@ UnknownScript_0x19c0ee:
 UnknownScript_0x19c104:
 	winlosstext UnknownText_0x19c57f, UnknownText_0x19c5e6
 	setlasttalked $3
-	scriptedtrainerdata RIVAL1, RIVAL1_2
+	loadtrainer RIVAL1, RIVAL1_2
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	reloadmapmusic

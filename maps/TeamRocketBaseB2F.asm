@@ -102,7 +102,7 @@ UnknownScript_0x6cfac:
 	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, MovementData_0x6d248
 	winlosstext UnknownText_0x6d45c, 0
 	setlasttalked $3
-	scriptedtrainerdata EXECUTIVEF, 2
+	loadtrainer EXECUTIVEF, 2
 	startbattle
 	disappear TEAMROCKETBASEB2F_DRAGON
 	setevent EVENT_TEAM_ROCKET_BASE_B2F_EXECUTIVE
@@ -228,7 +228,7 @@ GruntM19Script:
 
 VoltorbScript_0x6d101:
 	cry ELECTRODE
-	scriptedpokedata ELECTRODE, 23
+	loadwildmon ELECTRODE, 23
 	startbattle
 	iftrue UnknownScript_0x6d182
 	disappear TEAMROCKETBASEB2F_VOLTORB1
@@ -246,7 +246,7 @@ VoltorbScript_0x6d101:
 
 VoltorbScript_0x6d12c:
 	cry ELECTRODE
-	scriptedpokedata ELECTRODE, 23
+	loadwildmon ELECTRODE, 23
 	startbattle
 	iftrue UnknownScript_0x6d182
 	disappear TEAMROCKETBASEB2F_VOLTORB2
@@ -264,7 +264,7 @@ VoltorbScript_0x6d12c:
 
 VoltorbScript_0x6d157:
 	cry ELECTRODE
-	scriptedpokedata ELECTRODE, 23
+	loadwildmon ELECTRODE, 23
 	startbattle
 	iftrue UnknownScript_0x6d182
 	disappear TEAMROCKETBASEB2F_VOLTORB3

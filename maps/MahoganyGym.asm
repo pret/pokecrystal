@@ -23,7 +23,7 @@ PryceScript_0x199a9e:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x199cb3, 0
-	scriptedtrainerdata PRYCE, 1
+	loadtrainer PRYCE, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_PRYCE

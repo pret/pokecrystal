@@ -32,7 +32,7 @@ WhitneyScript_0x5400c:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x541a5, 0
-	scriptedtrainerdata WHITNEY, 1
+	loadtrainer WHITNEY, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_WHITNEY

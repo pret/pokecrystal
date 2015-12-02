@@ -41,7 +41,7 @@ Function5003f: ; 5003f
 LoadPartyMenuGFX: ; 5004f
 	call LoadFontsBattleExtra
 	callab Function8ad1 ; engine/color.asm
-	callab ClearSpriteAnims
+	callab ClearSpriteAnims2
 	ret
 ; 5005f
 

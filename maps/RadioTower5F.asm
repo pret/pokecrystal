@@ -41,7 +41,7 @@ UnknownScript_0x60011:
 	closetext
 	winlosstext UnknownText_0x60223, 0
 	setlasttalked $2
-	scriptedtrainerdata EXECUTIVEM, 3
+	loadtrainer EXECUTIVEM, 3
 	startbattle
 	returnafterbattle
 	loadfont
@@ -90,7 +90,7 @@ UnknownScript_0x6006e:
 	closetext
 	winlosstext UnknownText_0x604f3, 0
 	setlasttalked $3
-	scriptedtrainerdata EXECUTIVEM, 1
+	loadtrainer EXECUTIVEM, 1
 	startbattle
 	returnafterbattle
 	loadfont

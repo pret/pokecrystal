@@ -80,7 +80,7 @@ Bug_catcherWade1Script:
 	checkflag ENGINE_FLYPOINT_GOLDENROD
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata BUG_CATCHER, WADE1
+	loadtrainer BUG_CATCHER, WADE1
 	startbattle
 	returnafterbattle
 	loadvar wWadeFightCount, 1
@@ -88,7 +88,7 @@ Bug_catcherWade1Script:
 	end
 
 .LoadFight1
-	scriptedtrainerdata BUG_CATCHER, WADE2
+	loadtrainer BUG_CATCHER, WADE2
 	startbattle
 	returnafterbattle
 	loadvar wWadeFightCount, 2
@@ -96,7 +96,7 @@ Bug_catcherWade1Script:
 	end
 
 .LoadFight2
-	scriptedtrainerdata BUG_CATCHER, WADE3
+	loadtrainer BUG_CATCHER, WADE3
 	startbattle
 	returnafterbattle
 	loadvar wWadeFightCount, 3
@@ -104,7 +104,7 @@ Bug_catcherWade1Script:
 	end
 
 .LoadFight3
-	scriptedtrainerdata BUG_CATCHER, WADE4
+	loadtrainer BUG_CATCHER, WADE4
 	startbattle
 	returnafterbattle
 	loadvar wWadeFightCount, 4
@@ -112,7 +112,7 @@ Bug_catcherWade1Script:
 	end
 
 .LoadFight4
-	scriptedtrainerdata BUG_CATCHER, WADE5
+	loadtrainer BUG_CATCHER, WADE5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_WADE

@@ -469,7 +469,7 @@ StartMenu_Status: ; 12928
 
 	call FadeToMenu
 	callba TrainerCard
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	ld a, 0
 	ret
 ; 12937
@@ -483,7 +483,7 @@ StartMenu_Pokedex: ; 12937
 
 	call FadeToMenu
 	callba Pokedex
-	call ReturnToCallingMenu
+	call CloseSubmenu
 
 .asm_12949
 	ld a, 0
@@ -495,7 +495,7 @@ StartMenu_Pokegear: ; 1294c
 
 	call FadeToMenu
 	callba PokeGear
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	ld a, 0
 	ret
 ; 1295b
@@ -508,7 +508,7 @@ StartMenu_Pack: ; 1295b
 	ld a, [wcf66]
 	and a
 	jr nz, .used_item
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	ld a, 0
 	ret
 
@@ -557,7 +557,7 @@ StartMenu_Pokemon: ; 12976
 	jr z, .quit
 
 .return
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	ld a, 0
 	ret
 
@@ -1761,7 +1761,7 @@ SetUpMoveScreenBG: ; 13172
 	xor a
 	ld [hBGMapMode], a
 	callba Functionfb571
-	callba ClearSpriteAnims
+	callba ClearSpriteAnims2
 	ld a, [CurPartyMon]
 	ld e, a
 	ld d, $0

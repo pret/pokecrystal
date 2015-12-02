@@ -243,7 +243,7 @@ TrainerCameraGrunt1:
 	closetext
 	winlosstext CameraGrunt1BeatenText, 0
 	setlasttalked $2
-	scriptedtrainerdata GRUNTM, 20
+	loadtrainer GRUNTM, 20
 	startbattle
 	disappear TEAMROCKETBASEB1F_ROCKET1
 	returnafterbattle
@@ -256,7 +256,7 @@ TrainerCameraGrunt2:
 	closetext
 	winlosstext CameraGrunt2BeatenText, 0
 	setlasttalked $2
-	scriptedtrainerdata GRUNTM, 21
+	loadtrainer GRUNTM, 21
 	startbattle
 	disappear TEAMROCKETBASEB1F_ROCKET1
 	returnafterbattle
@@ -458,7 +458,7 @@ VoltorbExplodingTrap:
 	special FadeInPalettes
 	setlasttalked $ff
 	writecode VAR_BATTLETYPE, BATTLETYPE_TRAP
-	scriptedpokedata VOLTORB, 23
+	loadwildmon VOLTORB, 23
 	startbattle
 	end
 
@@ -468,7 +468,7 @@ GeodudeExplodingTrap:
 	special FadeInPalettes
 	setlasttalked $ff
 	writecode VAR_BATTLETYPE, BATTLETYPE_TRAP
-	scriptedpokedata GEODUDE, 21
+	loadwildmon GEODUDE, 21
 	startbattle
 	end
 
@@ -478,7 +478,7 @@ KoffingExplodingTrap:
 	special FadeInPalettes
 	setlasttalked $ff
 	writecode VAR_BATTLETYPE, BATTLETYPE_TRAP
-	scriptedpokedata KOFFING, 21
+	loadwildmon KOFFING, 21
 	startbattle
 	end
 

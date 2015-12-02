@@ -34,7 +34,7 @@ MortyScript_0x99d58:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x9a00a, 0
-	scriptedtrainerdata MORTY, 1
+	loadtrainer MORTY, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_MORTY

@@ -71,7 +71,7 @@ LanceScript_0x6dffc:
 UnknownScript_0x6e019:
 	spriteface PLAYER, LEFT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	appear TEAMROCKETBASEB3F_SILVER
 	applymovement TEAMROCKETBASEB3F_SILVER, MovementData_0x6e164
 	spriteface PLAYER, LEFT
@@ -109,7 +109,7 @@ UnknownScript_0x6e056:
 	applymovement TEAMROCKETBASEB3F_ROCKET1, MovementData_0x6e142
 	winlosstext UnknownText_0x6e511, 0
 	setlasttalked $3
-	scriptedtrainerdata EXECUTIVEM, 4
+	loadtrainer EXECUTIVEM, 4
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_4

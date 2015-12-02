@@ -7712,7 +7712,7 @@ Function117699: ; 117699 (45:7699)
 	call ClearSprites
 	callba Function171c87
 	callba ReloadMapPart
-	callba Function8cf53
+	callba ClearSpriteAnims
 	ret
 
 Function1176ee: ; 1176ee (45:76ee)
@@ -7725,7 +7725,7 @@ Function1176ee: ; 1176ee (45:76ee)
 	callba ReloadMapPart
 	jr Function1176ee
 .asm_117709
-	callba Function8cf53
+	callba ClearSpriteAnims
 	call ClearBGPalettes
 	call ClearScreen
 	call ClearSprites

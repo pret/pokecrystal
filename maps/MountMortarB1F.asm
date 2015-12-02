@@ -25,7 +25,7 @@ BlackBeltScript_0x7e1f6:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x7e2a9, 0
-	scriptedtrainerdata BLACKBELT_T, KIYO
+	loadtrainer BLACKBELT_T, KIYO
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_BLACKBELT_KIYO

@@ -56,7 +56,7 @@ KarenScript_0x180bee:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x180cf8, 0
-	scriptedtrainerdata KAREN, 1
+	loadtrainer KAREN, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_ELITE_4_KAREN

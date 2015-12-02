@@ -22,7 +22,7 @@ UnknownScript_0x7408d:
 UnknownScript_0x7408e:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 15
 	applymovement MOUNTMOON_SILVER, MovementData_0x740f9
 	playmusic MUSIC_RIVAL_ENCOUNTER
@@ -36,7 +36,7 @@ UnknownScript_0x7408e:
 	iftrue UnknownScript_0x740d3
 	winlosstext UnknownText_0x7419d, UnknownText_0x742e0
 	setlasttalked $2
-	scriptedtrainerdata RIVAL2, 3
+	loadtrainer RIVAL2, 3
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -45,7 +45,7 @@ UnknownScript_0x7408e:
 UnknownScript_0x740c3:
 	winlosstext UnknownText_0x7419d, UnknownText_0x742e0
 	setlasttalked $2
-	scriptedtrainerdata RIVAL2, 1
+	loadtrainer RIVAL2, 1
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -54,7 +54,7 @@ UnknownScript_0x740c3:
 UnknownScript_0x740d3:
 	winlosstext UnknownText_0x7419d, UnknownText_0x742e0
 	setlasttalked $2
-	scriptedtrainerdata RIVAL2, 2
+	loadtrainer RIVAL2, 2
 	startbattle
 	reloadmapmusic
 	returnafterbattle

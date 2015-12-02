@@ -24,7 +24,7 @@ BlaineScript_0x1ab4fb:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x1ab646, 0
-	scriptedtrainerdata BLAINE, 1
+	loadtrainer BLAINE, 1
 	startbattle
 	iftrue .ReturnAfterBattle
 	appear SEAFOAMGYM_GYM_GUY

@@ -23,7 +23,7 @@ JanineScript_0x195db9:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x195fa1, 0
-	scriptedtrainerdata JANINE, 1
+	loadtrainer JANINE, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_JANINE
@@ -75,7 +75,7 @@ UnknownScript_0x195e2c:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x196126, 0
-	scriptedtrainerdata LASS, ALICE
+	loadtrainer LASS, ALICE
 	startbattle
 	iftrue UnknownScript_0x195e4a
 	returnafterbattle
@@ -109,7 +109,7 @@ UnknownScript_0x195e66:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x19617b, 0
-	scriptedtrainerdata LASS, LINDA
+	loadtrainer LASS, LINDA
 	startbattle
 	iftrue UnknownScript_0x195e84
 	returnafterbattle
@@ -143,7 +143,7 @@ UnknownScript_0x195ea0:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x1961f1, 0
-	scriptedtrainerdata PICNICKER, CINDY
+	loadtrainer PICNICKER, CINDY
 	startbattle
 	iftrue UnknownScript_0x195ebe
 	returnafterbattle
@@ -177,7 +177,7 @@ UnknownScript_0x195eda:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x19624a, 0
-	scriptedtrainerdata CAMPER, BARRY
+	loadtrainer CAMPER, BARRY
 	startbattle
 	iftrue UnknownScript_0x195ef8
 	returnafterbattle

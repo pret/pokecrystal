@@ -142,7 +142,7 @@ Function28fdb: ; 28fdb
 	call ClearTileMap
 	call DisableLCD
 	call LoadFontsBattleExtra
-	callab Function8cf53
+	callab ClearSpriteAnims
 	ld a, [hCGB]
 	and a
 	jr z, .asm_2900b
@@ -336,7 +336,7 @@ Function2914e: ; 2914e
 	push de
 	push af
 	call DisableLCD
-	callab Function8cf53
+	callab ClearSpriteAnims
 	hlbgcoord 20, 3
 	ld bc, $c
 	ld a, $60
@@ -466,7 +466,7 @@ TradeAnim_TubeToPlayer8: ; 29229
 	call ClearTileMap
 	call ClearSprites
 	call DisableLCD
-	callab Function8cf53
+	callab ClearSpriteAnims
 	hlbgcoord 0, 0
 	ld bc, sScratch - VBGMap0
 	ld a, " "

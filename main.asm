@@ -4190,7 +4190,7 @@ HeadbuttScript: ; 0xceab
 	callasm TreeMonEncounter
 	iffalse .no_battle
 	closetext
-	setup_random_encounter
+	randomwildmon
 	startbattle
 	returnafterbattle
 	end
@@ -4299,7 +4299,7 @@ RockSmashScript: ; cf32
 	callasm RockMonEncounter
 	copybytetovar TempWildMonSpecies
 	iffalse .done
-	setup_random_encounter
+	randomwildmon
 	startbattle
 	returnafterbattle
 .done
@@ -4488,7 +4488,7 @@ Script_GotABite: ; 0xd035
 	writetext UnknownText_0xd0a4
 	callasm PutTheRodAway
 	closetext
-	setup_random_encounter
+	randomwildmon
 	startbattle
 	returnafterbattle
 	end
@@ -7991,7 +7991,7 @@ _BillsPC: ; e3fd
 ; 0xe43f
 
 .LogOut: ; e43f (3:643f)
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	ret
 
 .UseBillsPC: ; e443 (3:6443)
@@ -8591,7 +8591,7 @@ Special_GiveParkBalls: ; 135db
 
 BugCatchingContestBattleScript:: ; 0x135eb
 	writecode VAR_BATTLETYPE, BATTLETYPE_CONTEST
-	setup_random_encounter
+	randomwildmon
 	startbattle
 	returnafterbattle
 	copybytetovar wParkBallsRemaining
@@ -14433,7 +14433,7 @@ Special_MoveTutor: ; 4925b
 	ld [ScriptVar], a
 
 .asm_492a1
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	ret
 ; 492a5
 
@@ -15637,7 +15637,7 @@ Function4a94e: ; 4a94e
 	jr c, .asm_4a974
 
 .asm_4a990
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	ld hl, wd002
 	ld a, -1
 	ld bc, 3
@@ -15650,7 +15650,7 @@ Function4a94e: ; 4a94e
 	jr c, .asm_4a9b0
 	call Function4a9d7
 	jr c, .asm_4a974
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	and a
 
 .asm_4a9af
@@ -21499,13 +21499,13 @@ TalkToTrainerScript:: ; 0xbe66a
 	faceplayer
 	trainerflagaction CHECK_FLAG
 	iftrue AlreadyBeatenTrainerScript
-	memtrainerdata
+	loadmemtrainer
 	encountermusic
 	jump StartBattleWithMapTrainerScript
 ; 0xbe675
 
 SeenByTrainerScript:: ; 0xbe675
-	memtrainerdata
+	loadmemtrainer
 	encountermusic
 	showemote EMOTE_SHOCK, LAST_TALKED, 30
 	callasm TrainerWalkToPlayer
@@ -21520,7 +21520,7 @@ StartBattleWithMapTrainerScript: ; 0xbe68a
 	trainertext $0
 	waitbutton
 	closetext
-	memtrainerdata
+	loadmemtrainer
 	startbattle
 	returnafterbattle
 	trainerflagaction SET_FLAG

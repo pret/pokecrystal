@@ -68,7 +68,7 @@ UnknownScript_0x1a001e:
 	closetext
 	winlosstext UnknownText_0x1a05a1, 0
 	setlasttalked $c
-	scriptedtrainerdata MYSTICALMAN, EUSINE
+	loadtrainer MYSTICALMAN, EUSINE
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -80,7 +80,7 @@ UnknownScript_0x1a001e:
 	applymovement CIANWOODCITY_SUPER_NERD, MovementData_0x1a00ec
 	disappear CIANWOODCITY_SUPER_NERD
 	pause 20
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	playmapmusic
 	pause 10
 .Done

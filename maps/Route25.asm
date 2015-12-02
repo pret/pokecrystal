@@ -174,7 +174,7 @@ UnknownScript_0x19efc7:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x19f4fd, 0
-	scriptedtrainerdata COOLTRAINERM, KEVIN
+	loadtrainer COOLTRAINERM, KEVIN
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_COOLTRAINERM_KEVIN

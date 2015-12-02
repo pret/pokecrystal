@@ -136,7 +136,7 @@ DragonShrineTestScript:
 	writetext UnknownText_0x18d916
 	waitbutton
 	closetext
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	applymovement DRAGONSHRINE_CLAIR, MovementData_0x18d2da
 	loadfont
 	writetext UnknownText_0x18d974

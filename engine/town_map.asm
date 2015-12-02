@@ -20,7 +20,7 @@ _TownMap: ; 9191c
 	call ClearSprites
 	call DisableLCD
 	call Function90c4e
-	callba Function8cf53
+	callba ClearSpriteAnims
 	ld a, 8
 	call SkipMusic
 	ld a, $e3

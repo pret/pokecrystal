@@ -89,7 +89,7 @@ UnknownScript_0x1a16e0:
 	checkflag ENGINE_FLYPOINT_GOLDENROD
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata YOUNGSTER, JOEY1
+	loadtrainer YOUNGSTER, JOEY1
 	startbattle
 	returnafterbattle
 	loadvar wJoeyFightCount, 1
@@ -97,7 +97,7 @@ UnknownScript_0x1a16e0:
 	end
 
 .LoadFight1
-	scriptedtrainerdata YOUNGSTER, JOEY2
+	loadtrainer YOUNGSTER, JOEY2
 	startbattle
 	returnafterbattle
 	loadvar wJoeyFightCount, 2
@@ -105,7 +105,7 @@ UnknownScript_0x1a16e0:
 	end
 
 .LoadFight2
-	scriptedtrainerdata YOUNGSTER, JOEY3
+	loadtrainer YOUNGSTER, JOEY3
 	startbattle
 	returnafterbattle
 	loadvar wJoeyFightCount, 3
@@ -113,7 +113,7 @@ UnknownScript_0x1a16e0:
 	end
 
 .LoadFight3
-	scriptedtrainerdata YOUNGSTER, JOEY4
+	loadtrainer YOUNGSTER, JOEY4
 	startbattle
 	returnafterbattle
 	loadvar wJoeyFightCount, 4
@@ -121,7 +121,7 @@ UnknownScript_0x1a16e0:
 	end
 
 .LoadFight4
-	scriptedtrainerdata YOUNGSTER, JOEY5
+	loadtrainer YOUNGSTER, JOEY5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_JOEY

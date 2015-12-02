@@ -140,7 +140,7 @@ HallOfFamePC: ; 1569a
 	call PC_PlayChoosePCSound
 	call FadeToMenu
 	callba _HallOfFamePC
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	and a
 	ret
 ; 156ab
@@ -323,7 +323,7 @@ KrisWithdrawItemMenu: ; 0x157d1
 	jr .asm_157da
 
 .asm_157e4
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	xor a
 	ret
 ; 0x157e9
@@ -403,7 +403,7 @@ KrisTossItemMenu: ; 0x1585f
 	jr .asm_15868
 
 .asm_15878
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	xor a
 	ret
 ; 0x1587d
@@ -442,7 +442,7 @@ KrisDepositItemMenu: ; 0x1588b
 	jr .asm_1589c
 
 .asm_158b3
-	call ReturnToCallingMenu
+	call CloseSubmenu
 
 .asm_158b6
 	xor a

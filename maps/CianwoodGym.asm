@@ -40,7 +40,7 @@ ChuckScript_0x9d60f:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x9d7f6, 0
-	scriptedtrainerdata CHUCK, 1
+	loadtrainer CHUCK, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_CHUCK

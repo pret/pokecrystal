@@ -59,7 +59,7 @@ Function90bea: ; 90bea (24:4bea)
 	ld a, $7
 	ld [hWX], a
 	call Function90c4e
-	callba Function8cf53
+	callba ClearSpriteAnims
 	call Function90d32
 	ld a, 8
 	call SkipMusic
@@ -1944,7 +1944,7 @@ _FlyMap: ; 91af3
 	ld [hl], $1
 	xor a
 	ld [hBGMapMode], a
-	callba Function8cf53
+	callba ClearSpriteAnims
 	call Function91ff2
 	ld de, GFX_922e1
 	ld hl, VTiles2 tile $30
@@ -2866,7 +2866,7 @@ Function92311: ; unreferenced
 	ld [hl], $1
 	xor a
 	ld [hBGMapMode], a
-	callba Function8cf53
+	callba ClearSpriteAnims
 	call Function91ff2
 	ld de, GFX_922e1
 	ld hl, VTiles2 tile $30

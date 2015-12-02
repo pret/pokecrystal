@@ -151,7 +151,7 @@ Function1080b7: ; 1080b7
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	callba Function8cf53
+	callba ClearSpriteAnims
 	call DelayFrame
 	ld de, TradeBallGFX
 	ld hl, VTiles0
@@ -204,7 +204,7 @@ Function108157: ; 108157
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	callba Function8cf53
+	callba ClearSpriteAnims
 	xor a
 	ld hl, wc300
 	ld [hli], a

@@ -18,7 +18,7 @@ BlueScript_0x9aa26:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x9abae, 0
-	scriptedtrainerdata BLUE, 1
+	loadtrainer BLUE, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_BLUE

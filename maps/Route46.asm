@@ -67,7 +67,7 @@ UnknownScript_0x1a96da:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata PICNICKER, ERIN1
+	loadtrainer PICNICKER, ERIN1
 	startbattle
 	returnafterbattle
 	loadvar wErinFightCount, 1
@@ -75,7 +75,7 @@ UnknownScript_0x1a96da:
 	end
 
 .LoadFight1
-	scriptedtrainerdata PICNICKER, ERIN2
+	loadtrainer PICNICKER, ERIN2
 	startbattle
 	returnafterbattle
 	loadvar wErinFightCount, 2
@@ -83,7 +83,7 @@ UnknownScript_0x1a96da:
 	end
 
 .LoadFight2
-	scriptedtrainerdata PICNICKER, ERIN3
+	loadtrainer PICNICKER, ERIN3
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_ERIN

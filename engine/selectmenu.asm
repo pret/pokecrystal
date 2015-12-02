@@ -158,7 +158,7 @@ UseRegisteredItem: ; 133c3
 	call ResetWindow
 	call FadeToMenu
 	call DoItemEffect
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	call CloseText
 	and a
 	ret

@@ -189,7 +189,7 @@ UnknownScript_0x19e1b8:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata HIKER, PARRY3
+	loadtrainer HIKER, PARRY3
 	startbattle
 	returnafterbattle
 	loadvar wParryFightCount, 1
@@ -197,7 +197,7 @@ UnknownScript_0x19e1b8:
 	end
 
 .LoadFight1
-	scriptedtrainerdata HIKER, PARRY1
+	loadtrainer HIKER, PARRY1
 	startbattle
 	returnafterbattle
 	loadvar wParryFightCount, 2
@@ -205,7 +205,7 @@ UnknownScript_0x19e1b8:
 	end
 
 .LoadFight2
-	scriptedtrainerdata HIKER, PARRY2
+	loadtrainer HIKER, PARRY2
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_PARRY
@@ -274,7 +274,7 @@ YoungsterScript_0x19e269:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x19e899, 0
-	scriptedtrainerdata CAMPER, QUENTIN
+	loadtrainer CAMPER, QUENTIN
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_CAMPER_QUENTIN

@@ -36,7 +36,7 @@ _EvolutionAnimation: ; 4e607
 	ld de, MUSIC_NONE
 	call PlayMusic
 
-	callba Function8cf53
+	callba ClearSpriteAnims
 
 	ld de, EvolutionGFX
 	ld hl, VTiles0
@@ -107,7 +107,7 @@ _EvolutionAnimation: ; 4e607
 	ld c, $0
 	call .GetSGBLayout
 	call Function4e7a6
-	callba Function8cf53
+	callba ClearSpriteAnims
 	call Function4e794
 	jr c, .asm_4e6de
 
@@ -144,7 +144,7 @@ _EvolutionAnimation: ; 4e607
 	ld c, $0
 	call .GetSGBLayout
 	call Function4e7a6
-	callba Function8cf53
+	callba ClearSpriteAnims
 	call Function4e794
 	ret c
 

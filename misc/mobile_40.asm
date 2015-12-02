@@ -1674,7 +1674,7 @@ Function100a53: ; 100a53
 	ld a, $ff
 	ld [wOtherPlayerLinkAction], a
 .waiting
-	call LinkCommunicationsSendReceive
+	call LinkTransfer
 	call DelayFrame
 	ld a, [wOtherPlayerLinkAction]
 	inc a
@@ -1683,14 +1683,14 @@ Function100a53: ; 100a53
 	ld b, 10
 .receive
 	call DelayFrame
-	call LinkCommunicationsSendReceive
+	call LinkTransfer
 	dec b
 	jr nz, .receive
 
 	ld b, 10
 .acknowledge
 	call DelayFrame
-	call LinkCommunicationsSignalDataReceived
+	call LinkDataReceived
 	dec b
 	jr nz, .acknowledge
 

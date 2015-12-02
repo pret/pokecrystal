@@ -148,7 +148,7 @@ PokefanFScript_0x1a5bbe:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x1a5f17, 0
-	scriptedtrainerdata POKEFANF, JAIME
+	loadtrainer POKEFANF, JAIME
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_POKEFANF_JAIME

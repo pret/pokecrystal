@@ -474,7 +474,7 @@ Function283b2: ; 283b2
 	ld b, $a
 .asm_283b7
 	call DelayFrame
-	call LinkCommunicationsSignalDataReceived
+	call LinkDataReceived
 	dec b
 	jr nz, .asm_283b7
 	xor a
@@ -2295,9 +2295,9 @@ Special_WaitForLinkedFriend: ; 29d11
 	jr .asm_29d39
 
 .asm_29d79
-	call LinkCommunicationsSignalDataReceived
+	call LinkDataReceived
 	call DelayFrame
-	call LinkCommunicationsSignalDataReceived
+	call LinkDataReceived
 	ld c, $32
 	call DelayFrames
 	ld a, $1
@@ -2426,7 +2426,7 @@ Function29e47: ; 29e47
 	ld b, $a
 .asm_29e49
 	call DelayFrame
-	call LinkCommunicationsSignalDataReceived
+	call LinkDataReceived
 	dec b
 	jr nz, .asm_29e49
 	ret
@@ -2467,9 +2467,9 @@ Special_CheckBothSelectedSameRoom: ; 29e82
 	ld a, [wd265]
 	call Function29f17
 	push af
-	call LinkCommunicationsSignalDataReceived
+	call LinkDataReceived
 	call DelayFrame
-	call LinkCommunicationsSignalDataReceived
+	call LinkDataReceived
 	pop af
 	ld b, a
 	ld a, [wd265]

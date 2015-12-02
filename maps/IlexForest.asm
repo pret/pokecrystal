@@ -464,14 +464,14 @@ MapIlexForestSignpost4Script:
 	closetext
 	pause 20
 	showemote EMOTE_SHOCK, PLAYER, 20
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	applymovement PLAYER, MovementData_0x6ef58
 	pause 30
 	spriteface PLAYER, DOWN
 	pause 20
 	clearflag ENGINE_HAVE_EXAMINED_GS_BALL
 	special Special_CelebiShrineEvent
-	scriptedpokedata CELEBI, 30
+	loadwildmon CELEBI, 30
 	startbattle
 	returnafterbattle
 	pause 20

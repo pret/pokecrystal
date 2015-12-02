@@ -88,7 +88,7 @@ SailorScript_0x755f1:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x75897, 0
-	scriptedtrainerdata SAILOR, STANLY
+	loadtrainer SAILOR, STANLY
 	startbattle
 	reloadmap
 	special HealParty

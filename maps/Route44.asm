@@ -61,7 +61,7 @@ UnknownScript_0x19d86a:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata BIRD_KEEPER, VANCE1
+	loadtrainer BIRD_KEEPER, VANCE1
 	startbattle
 	returnafterbattle
 	loadvar wVanceFightCount, 1
@@ -69,7 +69,7 @@ UnknownScript_0x19d86a:
 	end
 
 .LoadFight1
-	scriptedtrainerdata BIRD_KEEPER, VANCE2
+	loadtrainer BIRD_KEEPER, VANCE2
 	startbattle
 	returnafterbattle
 	loadvar wVanceFightCount, 2
@@ -77,7 +77,7 @@ UnknownScript_0x19d86a:
 	end
 
 .LoadFight2
-	scriptedtrainerdata BIRD_KEEPER, VANCE3
+	loadtrainer BIRD_KEEPER, VANCE3
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_VANCE
@@ -205,7 +205,7 @@ UnknownScript_0x19d96e:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata FISHER, WILTON1
+	loadtrainer FISHER, WILTON1
 	startbattle
 	returnafterbattle
 	loadvar wWiltonFightCount, 1
@@ -213,7 +213,7 @@ UnknownScript_0x19d96e:
 	end
 
 .LoadFight1
-	scriptedtrainerdata FISHER, WILTON2
+	loadtrainer FISHER, WILTON2
 	startbattle
 	returnafterbattle
 	loadvar wWiltonFightCount, 2
@@ -221,7 +221,7 @@ UnknownScript_0x19d96e:
 	end
 
 .LoadFight2
-	scriptedtrainerdata FISHER, WILTON3
+	loadtrainer FISHER, WILTON3
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_WILTON

@@ -117,7 +117,7 @@ Function8ccc9: ; 8ccc9
 	call ClearBGPalettes
 	call ClearSprites
 	call DisableLCD
-	callab Function8cf53
+	callab ClearSpriteAnims
 	call SetMagnetTrainPals
 	call DrawMagnetTrain
 	ld a, $90

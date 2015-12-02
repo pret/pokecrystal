@@ -32,7 +32,7 @@ Function926f7: ; 926f7 (24:66f7)
 	call ByteFill
 	ld b, SCGB_05
 	call GetSGBLayout
-	callab Function8cf53
+	callab ClearSpriteAnims
 	ld hl, wc6d0
 	ld bc, $48
 	xor a
@@ -101,7 +101,7 @@ Function927af: ; 927af (24:67af)
 	call Function92b0f
 	xor a
 	ld [wc3b5], a
-	callab Function8cfa8
+	callab DoNextFrameForFirst16Sprites
 	call Function927f8
 	call Function927d3
 	call DelayFrame

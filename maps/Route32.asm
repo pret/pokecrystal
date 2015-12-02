@@ -223,7 +223,7 @@ UnknownScript_0x19057d:
 	checkflag ENGINE_FLYPOINT_ECRUTEAK
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata FISHER, RALPH1
+	loadtrainer FISHER, RALPH1
 	startbattle
 	returnafterbattle
 	loadvar wRalphFightCount, 1
@@ -231,7 +231,7 @@ UnknownScript_0x19057d:
 	end
 
 .LoadFight1
-	scriptedtrainerdata FISHER, RALPH2
+	loadtrainer FISHER, RALPH2
 	startbattle
 	returnafterbattle
 	loadvar wRalphFightCount, 2
@@ -239,7 +239,7 @@ UnknownScript_0x19057d:
 	end
 
 .LoadFight2
-	scriptedtrainerdata FISHER, RALPH3
+	loadtrainer FISHER, RALPH3
 	startbattle
 	returnafterbattle
 	loadvar wRalphFightCount, 3
@@ -247,7 +247,7 @@ UnknownScript_0x19057d:
 	end
 
 .LoadFight3
-	scriptedtrainerdata FISHER, RALPH4
+	loadtrainer FISHER, RALPH4
 	startbattle
 	returnafterbattle
 	loadvar wRalphFightCount, 4
@@ -255,7 +255,7 @@ UnknownScript_0x19057d:
 	end
 
 .LoadFight4
-	scriptedtrainerdata FISHER, RALPH5
+	loadtrainer FISHER, RALPH5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_RALPH
@@ -357,7 +357,7 @@ UnknownScript_0x19066d:
 	checkflag ENGINE_FLYPOINT_ECRUTEAK
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata PICNICKER, LIZ1
+	loadtrainer PICNICKER, LIZ1
 	startbattle
 	returnafterbattle
 	loadvar wLizFightCount, 1
@@ -365,7 +365,7 @@ UnknownScript_0x19066d:
 	end
 
 .LoadFight1
-	scriptedtrainerdata PICNICKER, LIZ2
+	loadtrainer PICNICKER, LIZ2
 	startbattle
 	returnafterbattle
 	loadvar wLizFightCount, 2
@@ -373,7 +373,7 @@ UnknownScript_0x19066d:
 	end
 
 .LoadFight2
-	scriptedtrainerdata PICNICKER, LIZ3
+	loadtrainer PICNICKER, LIZ3
 	startbattle
 	returnafterbattle
 	loadvar wLizFightCount, 3
@@ -381,7 +381,7 @@ UnknownScript_0x19066d:
 	end
 
 .LoadFight3
-	scriptedtrainerdata PICNICKER, LIZ4
+	loadtrainer PICNICKER, LIZ4
 	startbattle
 	returnafterbattle
 	loadvar wLizFightCount, 4
@@ -389,7 +389,7 @@ UnknownScript_0x19066d:
 	end
 
 .LoadFight4
-	scriptedtrainerdata PICNICKER, LIZ5
+	loadtrainer PICNICKER, LIZ5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_LIZ

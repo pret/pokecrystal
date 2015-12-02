@@ -163,10 +163,10 @@ ENDC
 	dw Script_interpretmenu
 	dw Script_interpretmenu2
 	dw Script_loadpikachudata
-	dw Script_setup_random_encounter
-	dw Script_memtrainerdata
-	dw Script_scriptedpokedata
-	dw Script_scriptedtrainerdata
+	dw Script_randomwildmon
+	dw Script_loadmemtrainer
+	dw Script_loadwildmon
+	dw Script_loadtrainer
 	dw Script_startbattle
 	dw Script_returnafterbattle
 	dw Script_catchtutorial
@@ -1482,7 +1482,7 @@ Script_loadpikachudata: ; 973f0
 	ret
 ; 973fb
 
-Script_setup_random_encounter: ; 973fb
+Script_randomwildmon: ; 973fb
 ; script command 0x5b
 
 	xor a
@@ -1490,19 +1490,19 @@ Script_setup_random_encounter: ; 973fb
 	ret
 ; 97400
 
-Script_memtrainerdata: ; 97400
+Script_loadmemtrainer: ; 97400
 ; script command 0x5c
 
 	ld a, (1 << 7) | 1
 	ld [wBattleScriptFlags], a
-	ld a, [WalkingDirection]
+	ld a, [wTempTrainerClass]
 	ld [OtherTrainerClass], a
-	ld a, [FacingDirection]
+	ld a, [wTempTrainerID]
 	ld [OtherTrainerID], a
 	ret
 ; 97412
 
-Script_scriptedpokedata: ; 97412
+Script_loadwildmon: ; 97412
 ; script command 0x5d
 ; parameters:
 ;     pokemon (PokemonParam)
@@ -1517,7 +1517,7 @@ Script_scriptedpokedata: ; 97412
 	ret
 ; 97424
 
-Script_scriptedtrainerdata: ; 97424
+Script_loadtrainer: ; 97424
 ; script command 0x5e
 ; parameters:
 ;     trainer_group (TrainerGroupParam)
@@ -1655,7 +1655,7 @@ ScriptCall: ; 974cb
 	ld e, [hl]
 	inc [hl]
 	ld d, $0
-	ld hl, wScriptStackBA1
+	ld hl, wScriptStack
 rept 3
 	add hl, de
 endr
@@ -3166,7 +3166,7 @@ ExitScriptSubroutine: ; 97b9a
 	dec [hl]
 	ld e, [hl]
 	ld d, $0
-	ld hl, wScriptStackBA1
+	ld hl, wScriptStack
 rept 3
 	add hl,de
 endr

@@ -36,7 +36,7 @@ LugiaScript_0x18c518:
 	closetext
 	setevent EVENT_FOUGHT_LUGIA
 	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
-	scriptedpokedata LUGIA, 60
+	loadwildmon LUGIA, 60
 	startbattle
 	disappear WHIRLISLANDLUGIACHAMBER_LUGIA
 	returnafterbattle

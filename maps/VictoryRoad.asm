@@ -27,7 +27,7 @@ UnknownScript_0x74492:
 	moveperson VICTORYROAD_SILVER, $12, $b
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 15
 	appear VICTORYROAD_SILVER
 	applymovement VICTORYROAD_SILVER, MovementData_0x74539
@@ -41,7 +41,7 @@ UnknownScript_0x74492:
 UnknownScript_0x744b5:
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 15
 	appear VICTORYROAD_SILVER
 	applymovement VICTORYROAD_SILVER, MovementData_0x74542
@@ -66,7 +66,7 @@ UnknownScript_0x744d4:
 	iftrue UnknownScript_0x7450f
 	winlosstext UnknownText_0x7463d, UnknownText_0x747aa
 	setlasttalked $2
-	scriptedtrainerdata RIVAL1, RIVAL1_15
+	loadtrainer RIVAL1, RIVAL1_15
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -75,7 +75,7 @@ UnknownScript_0x744d4:
 UnknownScript_0x744ff:
 	winlosstext UnknownText_0x7463d, UnknownText_0x747aa
 	setlasttalked $2
-	scriptedtrainerdata RIVAL1, RIVAL1_13
+	loadtrainer RIVAL1, RIVAL1_13
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -84,7 +84,7 @@ UnknownScript_0x744ff:
 UnknownScript_0x7450f:
 	winlosstext UnknownText_0x7463d, UnknownText_0x747aa
 	setlasttalked $2
-	scriptedtrainerdata RIVAL1, RIVAL1_14
+	loadtrainer RIVAL1, RIVAL1_14
 	startbattle
 	reloadmapmusic
 	returnafterbattle

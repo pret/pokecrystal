@@ -57,7 +57,7 @@ UnknownScript_0x1aa9ab:
 	cry SNORLAX
 	closetext
 	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
-	scriptedpokedata SNORLAX, 50
+	loadwildmon SNORLAX, 50
 	startbattle
 	disappear VERMILIONCITY_BIG_SNORLAX
 	setevent EVENT_FOUGHT_SNORLAX

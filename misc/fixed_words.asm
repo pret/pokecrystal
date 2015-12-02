@@ -306,7 +306,7 @@ Function11c1ca: ; 11c1ca
 	call Decompress
 	call EnableLCD
 	callba ReloadMapPart
-	callba Function8cf53
+	callba ClearSpriteAnims
 	callba LoadPokemonData
 	callba Pokedex_ABCMode
 	ld a, [rSVBK]
@@ -367,7 +367,7 @@ Function11c283: ; 11c283
 	jr .loop
 
 .exit
-	callba Function8cf53
+	callba ClearSpriteAnims
 	call ClearSprites
 	ret
 ; 11c2ac

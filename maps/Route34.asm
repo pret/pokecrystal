@@ -143,7 +143,7 @@ UnknownScript_0x780bd:
 	checkflag ENGINE_FLYPOINT_CIANWOOD
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata CAMPER, TODD1
+	loadtrainer CAMPER, TODD1
 	startbattle
 	returnafterbattle
 	loadvar wToddFightCount, 1
@@ -151,7 +151,7 @@ UnknownScript_0x780bd:
 	end
 
 .LoadFight1
-	scriptedtrainerdata CAMPER, TODD2
+	loadtrainer CAMPER, TODD2
 	startbattle
 	returnafterbattle
 	loadvar wToddFightCount, 2
@@ -159,7 +159,7 @@ UnknownScript_0x780bd:
 	end
 
 .LoadFight2
-	scriptedtrainerdata CAMPER, TODD3
+	loadtrainer CAMPER, TODD3
 	startbattle
 	returnafterbattle
 	loadvar wToddFightCount, 3
@@ -167,7 +167,7 @@ UnknownScript_0x780bd:
 	end
 
 .LoadFight3
-	scriptedtrainerdata CAMPER, TODD4
+	loadtrainer CAMPER, TODD4
 	startbattle
 	returnafterbattle
 	loadvar wToddFightCount, 4
@@ -175,7 +175,7 @@ UnknownScript_0x780bd:
 	end
 
 .LoadFight4
-	scriptedtrainerdata CAMPER, TODD5
+	loadtrainer CAMPER, TODD5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_TODD
@@ -268,7 +268,7 @@ UnknownScript_0x7819f:
 	checkflag ENGINE_FLYPOINT_MAHOGANY
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata PICNICKER, GINA1
+	loadtrainer PICNICKER, GINA1
 	startbattle
 	returnafterbattle
 	loadvar wGinaFightCount, 1
@@ -276,7 +276,7 @@ UnknownScript_0x7819f:
 	end
 
 .LoadFight1
-	scriptedtrainerdata PICNICKER, GINA2
+	loadtrainer PICNICKER, GINA2
 	startbattle
 	returnafterbattle
 	loadvar wGinaFightCount, 2
@@ -284,7 +284,7 @@ UnknownScript_0x7819f:
 	end
 
 .LoadFight2
-	scriptedtrainerdata PICNICKER, GINA3
+	loadtrainer PICNICKER, GINA3
 	startbattle
 	returnafterbattle
 	loadvar wGinaFightCount, 3
@@ -292,7 +292,7 @@ UnknownScript_0x7819f:
 	end
 
 .LoadFight3
-	scriptedtrainerdata PICNICKER, GINA4
+	loadtrainer PICNICKER, GINA4
 	startbattle
 	returnafterbattle
 	loadvar wGinaFightCount, 4
@@ -300,7 +300,7 @@ UnknownScript_0x7819f:
 	end
 
 .LoadFight4
-	scriptedtrainerdata PICNICKER, GINA5
+	loadtrainer PICNICKER, GINA5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_GINA
@@ -365,7 +365,7 @@ OfficerScript_0x7824c:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x78609, 0
-	scriptedtrainerdata OFFICER, KEITH
+	loadtrainer OFFICER, KEITH
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_OFFICER_KEITH

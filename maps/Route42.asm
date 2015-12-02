@@ -87,7 +87,7 @@ UnknownScript_0x1a927f:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata FISHER, TULLY1
+	loadtrainer FISHER, TULLY1
 	startbattle
 	returnafterbattle
 	loadvar wTullyFightCount, 1
@@ -95,7 +95,7 @@ UnknownScript_0x1a927f:
 	end
 
 .LoadFight1
-	scriptedtrainerdata FISHER, TULLY2
+	loadtrainer FISHER, TULLY2
 	startbattle
 	returnafterbattle
 	loadvar wTullyFightCount, 2
@@ -103,7 +103,7 @@ UnknownScript_0x1a927f:
 	end
 
 .LoadFight2
-	scriptedtrainerdata FISHER, TULLY3
+	loadtrainer FISHER, TULLY3
 	startbattle
 	returnafterbattle
 	loadvar wTullyFightCount, 3
@@ -111,7 +111,7 @@ UnknownScript_0x1a927f:
 	end
 
 .LoadFight3
-	scriptedtrainerdata FISHER, TULLY4
+	loadtrainer FISHER, TULLY4
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_TULLY

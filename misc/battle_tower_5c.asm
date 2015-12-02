@@ -663,7 +663,7 @@ Function1704e1: ; 1704e1
 	call FadeToMenu
 	call Bank5c_ClearJumptableRAM
 	call .JumptableLoop
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	ret
 ; 1704f1
 

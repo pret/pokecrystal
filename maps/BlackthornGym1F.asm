@@ -41,7 +41,7 @@ ClairScript_0x194e24:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x194fd6, 0
-	scriptedtrainerdata CLAIR, 1
+	loadtrainer CLAIR, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_CLAIR

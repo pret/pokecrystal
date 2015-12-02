@@ -21,7 +21,7 @@ SurgeScript_0x1920a5:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x192238, 0
-	scriptedtrainerdata LT_SURGE, 1
+	loadtrainer LT_SURGE, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_LTSURGE

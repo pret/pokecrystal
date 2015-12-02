@@ -252,7 +252,7 @@ MapSetupCommands: ; 15440
 	dba RotatePalettesRightMapAndMusic ; 06
 	dba EnterMapMusic ; 07
 	dba ForceMapMusic ; 08
-	dba RotatePalettesLeftMusic ; 09
+	dba FadeInMusic ; 09
 	dba LoadBlockData ; 0a
 	dba LoadNeighboringBlockData ; 0b
 	dba SaveScreen ; 0c

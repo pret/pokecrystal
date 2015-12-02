@@ -142,7 +142,7 @@ RandomEncounter:: ; 97cc0
 ; 97cf9
 
 WildBattleScript: ; 97cf9
-	setup_random_encounter
+	randomwildmon
 	startbattle
 	returnafterbattle
 	end

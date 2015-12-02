@@ -56,7 +56,7 @@ WillScript_0x1804f8:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x18062c, 0
-	scriptedtrainerdata WILL, 1
+	loadtrainer WILL, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_ELITE_4_WILL

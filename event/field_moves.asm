@@ -20,7 +20,7 @@ BlindingFlash: ; 8c7e1
 ; 8c80a
 
 ShakeHeadbuttTree: ; 8c80a
-	callba Function8cf53
+	callba ClearSpriteAnims
 	ld de, CutGrassGFX
 	ld hl, VTiles1
 	lb bc, BANK(CutGrassGFX), 4
@@ -35,7 +35,7 @@ ShakeHeadbuttTree: ; 8c80a
 	ld hl, $3
 	add hl, bc
 	ld [hl], $84
-	ld a, $90
+	ld a, 36 * 4
 	ld [wc3b5], a
 	callba DoNextFrameForAllSprites
 	call GetHeadbuttTreeRelativeLocation
@@ -50,7 +50,7 @@ ShakeHeadbuttTree: ; 8c80a
 	and a
 	jr z, .done
 	dec [hl]
-	ld a, $90
+	ld a, 36 * 4
 	ld [wc3b5], a
 	callba DoNextFrameForAllSprites
 	call DelayFrame
@@ -61,7 +61,7 @@ ShakeHeadbuttTree: ; 8c80a
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
-	callba Function8cf53
+	callba ClearSpriteAnims
 	ld hl, Sprites + 36 * 4
 	ld bc, SpritesEnd - (Sprites + 36 * 4)
 	xor a
@@ -136,7 +136,7 @@ OWCutAnimation: ; 8c940
 ; 8c96d
 
 .LoadCutGFX: ; 8c96d
-	callab Function8cf53 ; pointless to farcall
+	callab ClearSpriteAnims ; pointless to farcall
 	ld de, CutGrassGFX
 	ld hl, VTiles1
 	lb bc, BANK(CutGrassGFX), 4
@@ -411,7 +411,7 @@ endr
 	ret
 
 Function8cb9b: ; 8cb9b (23:4b9b)
-	callab Function8cf53
+	callab ClearSpriteAnims
 	ld de, CutGrassGFX
 	ld hl, VTiles1 tile $00
 	lb bc, BANK(CutGrassGFX), 4

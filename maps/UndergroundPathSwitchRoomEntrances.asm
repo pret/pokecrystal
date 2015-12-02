@@ -93,7 +93,7 @@ TeacherScript_0x7ca7d:
 UnknownScript_0x7ca80:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 15
 	playsound SFX_EXIT_BUILDING
 	appear UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
@@ -112,7 +112,7 @@ UnknownScript_0x7ca80:
 UnknownScript_0x7caaa:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 15
 	playsound SFX_EXIT_BUILDING
 	appear UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
@@ -146,7 +146,7 @@ UnknownScript_0x7cae1:
 	iftrue UnknownScript_0x7cb19
 	winlosstext UnknownText_0x7cf5d, UnknownText_0x7d102
 	setlasttalked $c
-	scriptedtrainerdata RIVAL1, RIVAL1_12
+	loadtrainer RIVAL1, RIVAL1_12
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -155,7 +155,7 @@ UnknownScript_0x7cae1:
 UnknownScript_0x7cb09:
 	winlosstext UnknownText_0x7cf5d, UnknownText_0x7d102
 	setlasttalked $c
-	scriptedtrainerdata RIVAL1, RIVAL1_10
+	loadtrainer RIVAL1, RIVAL1_10
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -164,7 +164,7 @@ UnknownScript_0x7cb09:
 UnknownScript_0x7cb19:
 	winlosstext UnknownText_0x7cf5d, UnknownText_0x7d102
 	setlasttalked $c
-	scriptedtrainerdata RIVAL1, RIVAL1_11
+	loadtrainer RIVAL1, RIVAL1_11
 	startbattle
 	reloadmapmusic
 	returnafterbattle

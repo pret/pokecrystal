@@ -129,7 +129,7 @@ INCBIN "gfx/icon/mail2.2bpp"
 	and a
 	ret
 .exit_mail
-	callab Function8cf53
+	callab ClearSpriteAnims
 	call ClearSprites
 	xor a
 	ld [hSCX], a

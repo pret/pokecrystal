@@ -20,7 +20,7 @@ FalknerScript_0x683c2:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x6854a, 0
-	scriptedtrainerdata FALKNER, 1
+	loadtrainer FALKNER, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_FALKNER

@@ -699,7 +699,7 @@ Function1728f: ; 1728f (5:728f)
 	ld bc, $20
 	ld a, BANK(EggHatchGFX)
 	call FarCopyBytes
-	callba Function8cf53
+	callba ClearSpriteAnims
 	ld de, VTiles2 tile $00
 	ld a, [wJumptableIndex]
 	call Function1723c
@@ -806,7 +806,7 @@ INCBIN "gfx/unknown/017393.2bpp"
 ; 173b3
 
 Function173b3: ; 173b3 (5:73b3)
-	callba Function8cf53
+	callba ClearSpriteAnims
 	ld hl, .SpriteData
 .loop
 	ld a, [hli]

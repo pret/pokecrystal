@@ -96,7 +96,7 @@ Functione45e8: ; e45e8
 	pop af
 	ld [rSVBK], a
 
-	callba Function8cf53
+	callba ClearSpriteAnims
 	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_03
 	call _InitSpriteAnimStruct
@@ -125,7 +125,7 @@ Functione45e8: ; e45e8
 ; e465e
 
 Functione465e: ; e465e
-	callba Function8cf53
+	callba ClearSpriteAnims
 	call ClearTileMap
 	call ClearSprites
 	ld c, 16
@@ -540,7 +540,7 @@ IntroScene1: ; e495b (39:495b)
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	callba Function8cf53
+	callba ClearSpriteAnims
 	call Functione549e
 	xor a
 	ld [wIntroSceneFrameCounter], a
@@ -678,7 +678,7 @@ IntroScene5: ; e4a7a (39:4a7a)
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	callba Function8cf53
+	callba ClearSpriteAnims
 	call Functione549e
 	xor a
 	ld [wcf64], a
@@ -776,7 +776,7 @@ IntroScene7: ; e4b3f (39:4b3f)
 	ld a, $90
 	ld [hWY], a
 	call Functione5516
-	callba Function8cf53
+	callba ClearSpriteAnims
 	depixel 13, 27, 4, 0
 	ld a, SPRITE_ANIM_INDEX_26
 	call _InitSpriteAnimStruct
@@ -925,7 +925,7 @@ IntroScene11: ; e4c86 (39:4c86)
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	callba Function8cf53
+	callba ClearSpriteAnims
 	call Functione549e
 	xor a
 	ld [wIntroSceneFrameCounter], a
@@ -1050,7 +1050,7 @@ IntroScene13: ; e4d6d (39:4d6d)
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	callba Function8cf53
+	callba ClearSpriteAnims
 	depixel 13, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_26
 	call _InitSpriteAnimStruct
@@ -1160,7 +1160,7 @@ IntroScene15: ; e4e40 (39:4e40)
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	callba Function8cf53
+	callba ClearSpriteAnims
 	call Functione549e
 	depixel 8, 5
 	ld a, SPRITE_ANIM_INDEX_2A
@@ -1233,7 +1233,7 @@ IntroScene17: ; e4ef5 (39:4ef5)
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	callba Function8cf53
+	callba ClearSpriteAnims
 	call Functione549e
 	xor a
 	ld [wcf64], a
@@ -1308,7 +1308,7 @@ IntroScene19: ; e4f7e (39:4f7e)
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	callba Function8cf53
+	callba ClearSpriteAnims
 	ld hl, wc300
 	xor a
 	ld [hli], a
@@ -1475,7 +1475,7 @@ IntroScene26: ; e50bb (39:50bb)
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	callba Function8cf53
+	callba ClearSpriteAnims
 	call Functione549e
 	xor a
 	ld [wcf64], a

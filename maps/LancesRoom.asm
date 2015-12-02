@@ -49,12 +49,12 @@ UnknownScript_0x180e53:
 	end
 
 UnknownScript_0x180e6a:
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	applymovement PLAYER, MovementData_0x180f38
 	jump LanceScript_0x180e7b
 
 UnknownScript_0x180e74:
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	applymovement PLAYER, MovementData_0x180f3c
 LanceScript_0x180e7b:
 	spriteface LANCESROOM_LANCE, LEFT
@@ -64,7 +64,7 @@ LanceScript_0x180e7b:
 	closetext
 	winlosstext UnknownText_0x1810a4, 0
 	setlasttalked $2
-	scriptedtrainerdata CHAMPION, LANCE
+	loadtrainer CHAMPION, LANCE
 	startbattle
 	reloadmapmusic
 	returnafterbattle

@@ -81,7 +81,7 @@ UnknownScript_0x18c8f4:
 	closetext
 UnknownScript_0x18c8f9:
 	applymovement DRAGONSDENB1F_CLAIR, MovementData_0x18c9b3
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 30
 	special RestartMapMusic
 	disappear DRAGONSDENB1F_CLAIR

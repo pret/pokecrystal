@@ -345,7 +345,7 @@ Function11915: ; 11915
 	ret
 
 .asm_11930
-	callab Function8cf53
+	callab ClearSpriteAnims
 	call ClearSprites
 	xor a
 	ld [hSCX], a
@@ -866,7 +866,7 @@ Function11c11: ; 11c11 (4:5c11)
 
 Function11c51: ; 11c51
 	call ClearSprites
-	callab Function8cf53
+	callab ClearSpriteAnims
 	call LoadStandardFont
 	call LoadFontsExtra
 

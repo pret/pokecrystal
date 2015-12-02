@@ -18,7 +18,7 @@ JasmineScript_0x9c12f:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x9c2bb, 0
-	scriptedtrainerdata JASMINE, 1
+	loadtrainer JASMINE, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_JASMINE

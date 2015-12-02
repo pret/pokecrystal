@@ -126,7 +126,7 @@ SpecialsPointers:: ; c029
 	add_special SpecialTrainerHouse
 	add_special PhotoStudio
 	add_special InitRoamMons
-	add_special Special_RotatePalettesRightMusic
+	add_special Special_FadeOutMusic
 	add_special Diploma
 	add_special PrintDiploma
 
@@ -616,7 +616,7 @@ SpecialGameboyCheck: ; c478
 	ret
 
 
-Special_RotatePalettesRightMusic: ; c48f
+Special_FadeOutMusic: ; c48f
 	ld a, MUSIC_NONE % $100
 	ld [MusicFadeIDLo], a
 	ld a, MUSIC_NONE / $100

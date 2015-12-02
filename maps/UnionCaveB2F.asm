@@ -33,7 +33,7 @@ UnknownScript_0x5a31c:
 SurfScript_0x5a31f:
 	faceplayer
 	cry LAPRAS
-	scriptedpokedata LAPRAS, 20
+	loadwildmon LAPRAS, 20
 	startbattle
 	disappear UNIONCAVEB2F_SURF
 	setflag ENGINE_UNION_CAVE_LAPRAS

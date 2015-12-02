@@ -63,7 +63,7 @@ UnknownScript_0x180053:
 	appear INDIGOPLATEAUPOKECENTER1F_SILVER
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 15
 	applymovement INDIGOPLATEAUPOKECENTER1F_SILVER, MovementData_0x180164
 	playmusic MUSIC_RIVAL_ENCOUNTER
@@ -84,7 +84,7 @@ UnknownScript_0x180094:
 	appear INDIGOPLATEAUPOKECENTER1F_SILVER
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 15
 	applymovement INDIGOPLATEAUPOKECENTER1F_SILVER, MovementData_0x18016b
 	playmusic MUSIC_RIVAL_ENCOUNTER
@@ -101,7 +101,7 @@ UnknownScript_0x1800ce:
 	iftrue UnknownScript_0x180103
 	winlosstext UnknownText_0x180295, UnknownText_0x1802fd
 	setlasttalked $5
-	scriptedtrainerdata RIVAL2, 6
+	loadtrainer RIVAL2, 6
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -110,7 +110,7 @@ UnknownScript_0x1800ce:
 UnknownScript_0x1800f3:
 	winlosstext UnknownText_0x180295, UnknownText_0x1802fd
 	setlasttalked $5
-	scriptedtrainerdata RIVAL2, 4
+	loadtrainer RIVAL2, 4
 	startbattle
 	reloadmapmusic
 	returnafterbattle
@@ -119,7 +119,7 @@ UnknownScript_0x1800f3:
 UnknownScript_0x180103:
 	winlosstext UnknownText_0x180295, UnknownText_0x1802fd
 	setlasttalked $5
-	scriptedtrainerdata RIVAL2, 5
+	loadtrainer RIVAL2, 5
 	startbattle
 	reloadmapmusic
 	returnafterbattle

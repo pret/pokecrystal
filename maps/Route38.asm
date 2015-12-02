@@ -89,7 +89,7 @@ TrainerLassDana1:
 	checkflag ENGINE_FLYPOINT_CIANWOOD
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata LASS, DANA1
+	loadtrainer LASS, DANA1
 	startbattle
 	returnafterbattle
 	loadvar wDanaFightCount, 1
@@ -97,7 +97,7 @@ TrainerLassDana1:
 	end
 
 .LoadFight1
-	scriptedtrainerdata LASS, DANA2
+	loadtrainer LASS, DANA2
 	startbattle
 	returnafterbattle
 	loadvar wDanaFightCount, 2
@@ -105,7 +105,7 @@ TrainerLassDana1:
 	end
 
 .LoadFight2
-	scriptedtrainerdata LASS, DANA3
+	loadtrainer LASS, DANA3
 	startbattle
 	returnafterbattle
 	loadvar wDanaFightCount, 3
@@ -113,7 +113,7 @@ TrainerLassDana1:
 	end
 
 .LoadFight3
-	scriptedtrainerdata LASS, DANA4
+	loadtrainer LASS, DANA4
 	startbattle
 	returnafterbattle
 	loadvar wDanaFightCount, 4
@@ -121,7 +121,7 @@ TrainerLassDana1:
 	end
 
 .LoadFight4
-	scriptedtrainerdata LASS, DANA5
+	loadtrainer LASS, DANA5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_DANA
@@ -225,7 +225,7 @@ TrainerSchoolboyChad1:
 	checkflag ENGINE_FLYPOINT_MAHOGANY
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata SCHOOLBOY, CHAD1
+	loadtrainer SCHOOLBOY, CHAD1
 	startbattle
 	returnafterbattle
 	loadvar wChadFightCount, 1
@@ -233,7 +233,7 @@ TrainerSchoolboyChad1:
 	end
 
 .LoadFight1
-	scriptedtrainerdata SCHOOLBOY, CHAD2
+	loadtrainer SCHOOLBOY, CHAD2
 	startbattle
 	returnafterbattle
 	loadvar wChadFightCount, 2
@@ -241,7 +241,7 @@ TrainerSchoolboyChad1:
 	end
 
 .LoadFight2
-	scriptedtrainerdata SCHOOLBOY, CHAD3
+	loadtrainer SCHOOLBOY, CHAD3
 	startbattle
 	returnafterbattle
 	loadvar wChadFightCount, 3
@@ -249,7 +249,7 @@ TrainerSchoolboyChad1:
 	end
 
 .LoadFight3
-	scriptedtrainerdata SCHOOLBOY, CHAD4
+	loadtrainer SCHOOLBOY, CHAD4
 	startbattle
 	returnafterbattle
 	loadvar wChadFightCount, 4
@@ -257,7 +257,7 @@ TrainerSchoolboyChad1:
 	end
 
 .LoadFight4
-	scriptedtrainerdata SCHOOLBOY, CHAD5
+	loadtrainer SCHOOLBOY, CHAD5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_CHAD

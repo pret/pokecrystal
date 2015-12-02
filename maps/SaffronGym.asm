@@ -22,7 +22,7 @@ SabrinaScript_0x189c2e:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x189df4, 0
-	scriptedtrainerdata SABRINA, 1
+	loadtrainer SABRINA, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_SABRINA

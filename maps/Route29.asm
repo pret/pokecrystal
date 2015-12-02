@@ -57,7 +57,7 @@ UnknownScript_0x1a0f6d:
 	follow ROUTE29_COOLTRAINER_M1, PLAYER
 	applymovement ROUTE29_COOLTRAINER_M1, MovementData_0x1a109a
 	stopfollow
-	scriptedpokedata RATTATA, 5
+	loadwildmon RATTATA, 5
 	catchtutorial BATTLETYPE_TUTORIAL
 	spriteface ROUTE29_COOLTRAINER_M1, UP
 	loadfont
@@ -82,7 +82,7 @@ UnknownScript_0x1a0fa3:
 	follow ROUTE29_COOLTRAINER_M1, PLAYER
 	applymovement ROUTE29_COOLTRAINER_M1, MovementData_0x1a10a1
 	stopfollow
-	scriptedpokedata RATTATA, 5
+	loadwildmon RATTATA, 5
 	catchtutorial BATTLETYPE_TUTORIAL
 	spriteface ROUTE29_COOLTRAINER_M1, UP
 	loadfont
@@ -122,7 +122,7 @@ CooltrainerMScript_0x1a0ff1:
 	yesorno
 	iffalse UnknownScript_0x1a1022
 	closetext
-	scriptedpokedata RATTATA, 5
+	loadwildmon RATTATA, 5
 	catchtutorial BATTLETYPE_TUTORIAL
 	loadfont
 	writetext UnknownText_0x1a114d

@@ -31,7 +31,7 @@ OlivineCity_MapScriptHeader:
 UnknownScript_0x1a8833:
 	spriteface PLAYER, LEFT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 15
 	playsound SFX_ENTER_DOOR
 	appear OLIVINECITY_OLIVINE_RIVAL
@@ -55,7 +55,7 @@ UnknownScript_0x1a8833:
 UnknownScript_0x1a886b:
 	spriteface PLAYER, LEFT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 15
 	playsound SFX_ENTER_DOOR
 	appear OLIVINECITY_OLIVINE_RIVAL

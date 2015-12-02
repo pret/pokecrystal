@@ -181,7 +181,7 @@ UnknownScript_0x19c9bb:
 	checkflag ENGINE_FLYPOINT_LAKE_OF_RAGE
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata BUG_CATCHER, ARNIE1
+	loadtrainer BUG_CATCHER, ARNIE1
 	startbattle
 	returnafterbattle
 	loadvar wArnieFightCount, 1
@@ -189,7 +189,7 @@ UnknownScript_0x19c9bb:
 	end
 
 .LoadFight1
-	scriptedtrainerdata BUG_CATCHER, ARNIE2
+	loadtrainer BUG_CATCHER, ARNIE2
 	startbattle
 	returnafterbattle
 	loadvar wArnieFightCount, 2
@@ -197,7 +197,7 @@ UnknownScript_0x19c9bb:
 	end
 
 .LoadFight2
-	scriptedtrainerdata BUG_CATCHER, ARNIE3
+	loadtrainer BUG_CATCHER, ARNIE3
 	startbattle
 	returnafterbattle
 	loadvar wArnieFightCount, 3
@@ -205,7 +205,7 @@ UnknownScript_0x19c9bb:
 	end
 
 .LoadFight3
-	scriptedtrainerdata BUG_CATCHER, ARNIE4
+	loadtrainer BUG_CATCHER, ARNIE4
 	startbattle
 	returnafterbattle
 	loadvar wArnieFightCount, 4
@@ -213,7 +213,7 @@ UnknownScript_0x19c9bb:
 	end
 
 .LoadFight4
-	scriptedtrainerdata BUG_CATCHER, ARNIE5
+	loadtrainer BUG_CATCHER, ARNIE5
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_ARNIE
@@ -248,7 +248,7 @@ OfficerScript_0x19ca49:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x19cf06, 0
-	scriptedtrainerdata OFFICER, DIRK
+	loadtrainer OFFICER, DIRK
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_OFFICER_DIRK

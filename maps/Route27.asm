@@ -106,7 +106,7 @@ UnknownScript_0x1a08ff:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata BIRD_KEEPER, JOSE2
+	loadtrainer BIRD_KEEPER, JOSE2
 	startbattle
 	returnafterbattle
 	loadvar wJoseFightCount, 1
@@ -114,7 +114,7 @@ UnknownScript_0x1a08ff:
 	end
 
 .LoadFight1
-	scriptedtrainerdata BIRD_KEEPER, JOSE1
+	loadtrainer BIRD_KEEPER, JOSE1
 	startbattle
 	returnafterbattle
 	loadvar wJoseFightCount, 2
@@ -122,7 +122,7 @@ UnknownScript_0x1a08ff:
 	end
 
 .LoadFight2
-	scriptedtrainerdata BIRD_KEEPER, JOSE3
+	loadtrainer BIRD_KEEPER, JOSE3
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_JOSE
@@ -239,7 +239,7 @@ UnknownScript_0x1a09e9:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
 .LoadFight0
-	scriptedtrainerdata COOLTRAINERF, REENA1
+	loadtrainer COOLTRAINERF, REENA1
 	startbattle
 	returnafterbattle
 	loadvar wReenaFightCount, 1
@@ -247,7 +247,7 @@ UnknownScript_0x1a09e9:
 	end
 
 .LoadFight1
-	scriptedtrainerdata COOLTRAINERF, REENA2
+	loadtrainer COOLTRAINERF, REENA2
 	startbattle
 	returnafterbattle
 	loadvar wReenaFightCount, 2
@@ -255,7 +255,7 @@ UnknownScript_0x1a09e9:
 	end
 
 .LoadFight2
-	scriptedtrainerdata COOLTRAINERF, REENA3
+	loadtrainer COOLTRAINERF, REENA3
 	startbattle
 	returnafterbattle
 	clearflag ENGINE_REENA

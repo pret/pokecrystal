@@ -595,26 +595,26 @@ loadpikachudata: macro
 	db loadpikachudata_command
 	endm
 
-	enum setup_random_encounter_command
-setup_random_encounter: macro
-	db setup_random_encounter_command
+	enum randomwildmon_command
+randomwildmon: macro
+	db randomwildmon_command
 	endm
 
-	enum memtrainerdata_command
-memtrainerdata: macro
-	db memtrainerdata_command
+	enum loadmemtrainer_command
+loadmemtrainer: macro
+	db loadmemtrainer_command
 	endm
 
-	enum scriptedpokedata_command
-scriptedpokedata: macro
-	db scriptedpokedata_command
+	enum loadwildmon_command
+loadwildmon: macro
+	db loadwildmon_command
 	db \1 ; pokemon
 	db \2 ; level
 	endm
 
-	enum scriptedtrainerdata_command
-scriptedtrainerdata: macro
-	db scriptedtrainerdata_command
+	enum loadtrainer_command
+loadtrainer: macro
+	db loadtrainer_command
 	db \1 ; trainer_group
 	db \2 ; trainer_id
 	endm

@@ -153,7 +153,7 @@ UnknownScript_0x5d7be:
 	writetext UnknownText_0x5e054
 	waitbutton
 	closetext
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 20
 	special RestartMapMusic
 	checkcode VAR_BLUECARDBALANCE
@@ -182,7 +182,7 @@ UnknownScript_0x5d81e:
 	waitbutton
 	closetext
 	spriteface RADIOTOWER2F_BUENA, RIGHT
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 20
 	special RestartMapMusic
 	end
@@ -213,7 +213,7 @@ UnknownScript_0x5d845:
 	waitbutton
 	closetext
 	spriteface RADIOTOWER2F_BUENA, RIGHT
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 20
 	special RestartMapMusic
 	end
