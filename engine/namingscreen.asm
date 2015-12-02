@@ -898,9 +898,9 @@ Function11c51: ; 11c51
 	ld [hl], $7e
 	xor a
 	ld [hSCY], a
-	ld [wc3bf], a
+	ld [wGlobalAnimYOffset], a
 	ld [hSCX], a
-	ld [wc3c0], a
+	ld [wGlobalAnimXOffset], a
 	ld [wJumptableIndex], a
 	ld [wcf64], a
 	ld [hBGMapMode], a

@@ -359,7 +359,7 @@ Function8ce47: ; 8ce47
 	inc a
 	add e
 	ld [wcf65], a
-	ld hl, wc3c0
+	ld hl, wGlobalAnimXOffset
 	ld a, [wd191]
 	add [hl]
 	ld [hl], a
@@ -400,7 +400,7 @@ rept 2
 	add d
 endr
 	ld [wcf65], a
-	ld hl, wc3c0
+	ld hl, wGlobalAnimXOffset
 	ld a, [wd191]
 	ld d, a
 	ld a, [hl]

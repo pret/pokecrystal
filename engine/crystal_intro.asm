@@ -1,21 +1,3 @@
-Functione455c: ; e455c
-	hlcoord 1, 1
-	ld de, SCREEN_WIDTH
-	ld c, $10
-.asm_e4564
-	ld [hl], $7f
-	add hl, de
-	dec c
-	jr nz, .asm_e4564
-	hlcoord 1, 2
-	ld bc, $28
-	ld a, [wJumptableIndex]
-	call AddNTimes
-	ld [hl], $ed
-	ret
-; e4579
-
-
 Functione4579: ; e4579
 	ld de, MUSIC_NONE
 	call PlayMusic
@@ -111,7 +93,7 @@ Functione45e8: ; e45e8
 	ld [hl], $30
 	xor a
 	ld [wJumptableIndex], a
-	ld [wcf64], a
+	ld [wIntroSceneFrameCounter], a
 	ld [wcf65], a
 	ld [hSCX], a
 	ld [hSCY], a
@@ -230,7 +212,6 @@ PlaceGameFreakPresents_3: ; e46dd
 ; e46ed
 
 
-
 GameFreakLogoJumper: ; e46ed (39:46ed)
 	ld hl, $b
 	add hl, bc
@@ -251,7 +232,6 @@ GameFreakLogoScenes: ; e46fd (39:46fd)
 	dw GameFreakLogoScene3
 	dw GameFreakLogoScene4
 	dw GameFreakLogoScene5
-
 
 GameFreakLogoScene1: ; e4707 (39:4707)
 	ld hl, $b
@@ -369,19 +349,23 @@ GameFreakLogoPalettes: ; e47ac
 	RGB 23, 12, 27
 	RGB 23, 13, 26
 	RGB 23, 13, 24
+
 	RGB 24, 14, 22
 	RGB 24, 14, 20
 	RGB 24, 15, 18
 	RGB 24, 15, 16
+
 	RGB 25, 16, 14
 	RGB 25, 16, 12
 	RGB 25, 17, 10
 	RGB 25, 17, 08
+
 	RGB 26, 18, 06
 	RGB 26, 18, 04
 	RGB 26, 19, 02
 	RGB 26, 19, 00
-;' e47cc
+
+; e47cc
 
 GameFreakLogo: ; e47cc
 INCBIN "gfx/splash/logo.1bpp"
@@ -459,7 +443,6 @@ endr
 	jp [hl]
 ; e491e
 
-
 IntroScenes: ; e491e (39:491e)
 	dw IntroScene1
 	dw IntroScene2
@@ -490,7 +473,6 @@ IntroScenes: ; e491e (39:491e)
 	dw IntroScene27
 	dw IntroScene28
 
-
 NextIntroScene: ; e4956 (39:4956)
 	ld hl, wJumptableIndex
 	inc [hl]
@@ -498,7 +480,7 @@ NextIntroScene: ; e4956 (39:4956)
 
 IntroScene1: ; e495b (39:495b)
 ; Setup the next scene.
-	call Functione54a3
+	call Intro_ClearBGPals
 	call ClearSprites
 	call ClearTileMap
 	xor a
@@ -507,18 +489,18 @@ IntroScene1: ; e495b (39:495b)
 	ld [rVBK], a
 	ld hl, IntroTilemap001
 	debgcoord 0, 0
-	call Functione54fa
+	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ld [rVBK], a
 	ld hl, IntroUnownsGFX
 	ld de, VTiles2 tile $00
-	call Functione54c2
+	call Intro_DecompressRequest2bpp_128Tiles
 	ld hl, IntroPulseGFX
 	ld de, VTiles0 tile $00
-	call Functione54c2
+	call Intro_DecompressRequest2bpp_128Tiles
 	ld hl, IntroTilemap002
 	debgcoord 0, 0
-	call Functione54fa
+	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -541,7 +523,7 @@ IntroScene1: ; e495b (39:495b)
 	ld a, $90
 	ld [hWY], a
 	callba ClearSpriteAnims
-	call Functione549e
+	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
 	ld [wcf65], a
@@ -558,15 +540,15 @@ IntroScene2: ; e49d6 (39:49d6)
 	cp $60
 	jr nz, .DontPlaySound
 	push af
-	ld de, $5858
-	call Functione51dc
+	depixel 11, 11
+	call CrystalIntro_InitUnownAnim
 	ld de, SFX_INTRO_UNOWN_1
 	call PlaySFX
 	pop af
 .DontPlaySound
 	ld [wcf65], a
 	xor a
-	call Functione5223
+	call CrystalIntro_UnownFade
 	ret
 .endscene
 	call NextIntroScene
@@ -574,7 +556,7 @@ IntroScene2: ; e49d6 (39:49d6)
 
 IntroScene3: ; e49fd (39:49fd)
 ; More setup. Transition to the outdoor scene.
-	call Functione54a3
+	call Intro_ClearBGPals
 	call ClearSprites
 	call ClearTileMap
 	xor a
@@ -583,15 +565,15 @@ IntroScene3: ; e49fd (39:49fd)
 	ld [rVBK], a
 	ld hl, IntroTilemap003
 	debgcoord 0, 0
-	call Functione54fa
+	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ld [rVBK], a
 	ld hl, IntroBackgroundGFX
 	ld de, VTiles2 tile $00
-	call Functione54c2
+	call Intro_DecompressRequest2bpp_128Tiles
 	ld hl, IntroTilemap004
 	debgcoord 0, 0
-	call Functione54fa
+	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -613,8 +595,8 @@ IntroScene3: ; e49fd (39:49fd)
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	call Functione5516
-	call Functione549e
+	call Intro_ResetLYOverrides
+	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
 	call NextIntroScene
@@ -622,20 +604,21 @@ IntroScene3: ; e49fd (39:49fd)
 
 IntroScene4: ; e4a69 (39:4a69)
 ; Scroll the outdoor panorama for a bit.
-	call Functione552f
+	call Intro_PerspectiveScrollBG
 	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
 	cp $80
 	jr z, .endscene
 	inc [hl]
 	ret
+
 .endscene
 	call NextIntroScene
 	ret
 
 IntroScene5: ; e4a7a (39:4a7a)
 ; Go back to the Unown.
-	call Functione54a3
+	call Intro_ClearBGPals
 	call ClearSprites
 	call ClearTileMap
 	xor a
@@ -645,18 +628,18 @@ IntroScene5: ; e4a7a (39:4a7a)
 	ld [rVBK], a
 	ld hl, IntroTilemap005
 	debgcoord 0, 0
-	call Functione54fa
+	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ld [rVBK], a
 	ld hl, IntroUnownsGFX
 	ld de, VTiles2 tile $00
-	call Functione54c2
+	call Intro_DecompressRequest2bpp_128Tiles
 	ld hl, IntroPulseGFX
 	ld de, VTiles0 tile $00
-	call Functione54c2
+	call Intro_DecompressRequest2bpp_128Tiles
 	ld hl, IntroTilemap006
 	debgcoord 0, 0
-	call Functione54fa
+	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -679,16 +662,16 @@ IntroScene5: ; e4a7a (39:4a7a)
 	ld a, $90
 	ld [hWY], a
 	callba ClearSpriteAnims
-	call Functione549e
+	call Intro_SetCGBPalUpdate
 	xor a
-	ld [wcf64], a
+	ld [wIntroSceneFrameCounter], a
 	ld [wcf65], a
 	call NextIntroScene
 	ret
 
 IntroScene6: ; e4af7 (39:4af7)
 ; Two more Unown (I, H) fade in.
-	ld hl, wcf64
+	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
 	inc [hl]
 	cp $80
@@ -700,74 +683,87 @@ IntroScene6: ; e4af7 (39:4af7)
 	cp $20
 	jr z, .FirstUnown
 	jr .NoUnown
+
 .FirstUnown
 	push af
-	ld de, $3878
-	call Functione51dc
+	depixel 7, 15
+	call CrystalIntro_InitUnownAnim
 	ld de, SFX_INTRO_UNOWN_2
 	call PlaySFX
 	pop af
 .NoUnown
 	ld [wcf65], a
 	xor a
-	call Functione5223
+	call CrystalIntro_UnownFade
 	ret
+
 .SecondUnown
 	push af
-	ld de, $7030
-	call Functione51dc
+	depixel 14, 6
+	call CrystalIntro_InitUnownAnim
 	ld de, SFX_INTRO_UNOWN_1
 	call PlaySFX
 	pop af
 .StopUnown
 	ld [wcf65], a
 	ld a, $1
-	call Functione5223
+	call CrystalIntro_UnownFade
 	ret
+
 .endscene
 	call NextIntroScene
 	ret
 
 IntroScene7: ; e4b3f (39:4b3f)
 ; Back to the outdoor scene.
-	call Functione54a3
+	call Intro_ClearBGPals
 	call ClearSprites
 	call ClearTileMap
 	xor a
 	ld [hBGMapMode], a
+
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap003
 	debgcoord 0, 0
-	call Functione54fa
+	call Intro_DecompressRequest2bpp_64Tiles
+
 	ld hl, IntroPichuWooperGFX
 	ld de, VTiles0 tile $00
-	call Functione54c2
+	call Intro_DecompressRequest2bpp_128Tiles
+
 	ld a, $0
 	ld [rVBK], a
 	ld hl, IntroSuicuneRunGFX
 	ld de, VTiles0 tile $00
-	call Functione54de
+	call Intro_DecompressRequest2bpp_255Tiles
+
 	ld hl, IntroBackgroundGFX
 	ld de, VTiles2 tile $00
-	call Functione54c2
+	call Intro_DecompressRequest2bpp_128Tiles
+
 	ld hl, IntroTilemap004
 	debgcoord 0, 0
-	call Functione54fa
+	call Intro_DecompressRequest2bpp_64Tiles
+
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
+
 	ld hl, Palette_e5edd
 	ld de, UnknBGPals
 	ld bc, $80
 	call CopyBytes
+
 	ld hl, Palette_e5edd
 	ld de, BGPals
 	ld bc, $80
 	call CopyBytes
+
 	pop af
 	ld [rSVBK], a
+
 	xor a
 	ld [hSCX], a
 	ld [hSCY], a
@@ -775,14 +771,14 @@ IntroScene7: ; e4b3f (39:4b3f)
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	call Functione5516
+	call Intro_ResetLYOverrides
 	callba ClearSpriteAnims
 	depixel 13, 27, 4, 0
 	ld a, SPRITE_ANIM_INDEX_26
 	call _InitSpriteAnimStruct
 	ld a, $f0
-	ld [wc3c0], a
-	call Functione549e
+	ld [wGlobalAnimXOffset], a
+	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
 	ld [wcf65], a
@@ -795,21 +791,23 @@ IntroScene8: ; e4bd3 (39:4bd3)
 	ld a, [hl]
 	inc [hl]
 	cp $40
-	jr z, .asm_e4be2
-	jr nc, .asm_e4be8
-	call Functione552f
+	jr z, .suicune_sound
+	jr nc, .animate_suicune
+	call Intro_PerspectiveScrollBG
 	ret
-.asm_e4be2
+
+.suicune_sound
 	ld de, SFX_INTRO_SUICUNE_3
 	call PlaySFX
-.asm_e4be8
-	ld a, [wc3c0]
+.animate_suicune
+	ld a, [wGlobalAnimXOffset]
 	and a
-	jr z, .asm_e4bf4
+	jr z, .finish
 	sub $8
-	ld [wc3c0], a
+	ld [wGlobalAnimXOffset], a
 	ret
-.asm_e4bf4
+
+.finish
 	ld de, SFX_INTRO_SUICUNE_2
 	call PlaySFX
 	callba Function8d03d
@@ -822,13 +820,16 @@ IntroScene9: ; e4c04 (39:4c04)
 	ld [hLCDStatCustom], a
 	call ClearSprites
 	hlcoord 0, 0, AttrMap
-	ld bc, $f0
+	; first 12 rows have palette 1
+	ld bc, 12 * SCREEN_WIDTH
 	ld a, $1
 	call ByteFill
-	ld bc, $3c
+	; middle 3 rows have palette 2
+	ld bc, 3 * SCREEN_WIDTH
 	ld a, $2
 	call ByteFill
-	ld bc, $3c
+	; last three rows have palette 3
+	ld bc, 3 * SCREEN_WIDTH
 	ld a, $3
 	call ByteFill
 	ld a, $2
@@ -836,7 +837,7 @@ IntroScene9: ; e4c04 (39:4c04)
 	call DelayFrame
 	call DelayFrame
 	call DelayFrame
-	ld a, $c
+	ld a, $c ; $980c
 	ld [hBGMapAddress], a
 	call DelayFrame
 	call DelayFrame
@@ -844,16 +845,16 @@ IntroScene9: ; e4c04 (39:4c04)
 	xor a
 	ld [hBGMapMode], a
 	ld [hBGMapAddress], a
-	ld [wc3c0], a
+	ld [wGlobalAnimXOffset], a
 	xor a
-	ld [wcf64], a
+	ld [wIntroSceneFrameCounter], a
 	call NextIntroScene
 	ret
 
 IntroScene10: ; e4c4f (39:4c4f)
 ; Wooper and Pichu enter.
-	call Functione546d
-	ld hl, wcf64
+	call Intro_RustleGrass
+	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
 	inc [hl]
 	cp $c0
@@ -885,7 +886,7 @@ IntroScene10: ; e4c4f (39:4c4f)
 
 IntroScene11: ; e4c86 (39:4c86)
 ; Back to Unown again.
-	call Functione54a3
+	call Intro_ClearBGPals
 	call ClearSprites
 	call ClearTileMap
 	xor a
@@ -895,15 +896,15 @@ IntroScene11: ; e4c86 (39:4c86)
 	ld [rVBK], a
 	ld hl, IntroTilemap007
 	debgcoord 0, 0
-	call Functione54fa
+	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ld [rVBK], a
 	ld hl, IntroUnownsGFX
 	ld de, VTiles2 tile $00
-	call Functione54c2
+	call Intro_DecompressRequest2bpp_128Tiles
 	ld hl, IntroTilemap008
 	debgcoord 0, 0
-	call Functione54fa
+	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -926,7 +927,7 @@ IntroScene11: ; e4c86 (39:4c86)
 	ld a, $90
 	ld [hWY], a
 	callba ClearSpriteAnims
-	call Functione549e
+	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
 	ld [wcf65], a
@@ -935,14 +936,15 @@ IntroScene11: ; e4c86 (39:4c86)
 
 IntroScene12: ; e4cfa (39:4cfa)
 ; Even more Unown.
-	call Functione4d36
+	call .PlayUnownSound
 	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
 	inc [hl]
 	cp $c0
-	jr nc, .asm_e4d32
+	jr nc, .done
 	cp $80
-	jr nc, .asm_e4d1d
+	jr nc, .second_half
+; first half
 	ld c, a
 	and $1f
 	sla a
@@ -951,9 +953,11 @@ IntroScene12: ; e4cfa (39:4cfa)
 	and $e0
 	srl a
 	swap a
-	call Functione5223
+	call CrystalIntro_UnownFade
 	ret
-.asm_e4d1d
+
+.second_half
+; double speed
 	ld c, a
 	and $f
 	sla a
@@ -963,13 +967,14 @@ IntroScene12: ; e4cfa (39:4cfa)
 	and $70
 	or $40
 	swap a
-	call Functione5223
+	call CrystalIntro_UnownFade
 	ret
-.asm_e4d32
+
+.done
 	call NextIntroScene
 	ret
 
-Functione4d36: ; e4d36 (39:4d36)
+.PlayUnownSound: ; e4d36 (39:4d36)
 	ld a, [wIntroSceneFrameCounter]
 	ld c, a
 	ld hl, .UnownSounds
@@ -1003,12 +1008,11 @@ endr
 	dbw $90, SFX_INTRO_UNOWN_2
 	dbw $a0, SFX_INTRO_UNOWN_1
 	dbw $b0, SFX_INTRO_UNOWN_2
-	db $ff
-; e4d6d
+	db -1 ; e4d6d
 
 IntroScene13: ; e4d6d (39:4d6d)
 ; Switch scenes again.
-	call Functione54a3
+	call Intro_ClearBGPals
 	call ClearSprites
 	call ClearTileMap
 	xor a
@@ -1017,18 +1021,18 @@ IntroScene13: ; e4d6d (39:4d6d)
 	ld [rVBK], a
 	ld hl, IntroTilemap003
 	debgcoord 0, 0
-	call Functione54fa
+	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ld [rVBK], a
 	ld hl, IntroSuicuneRunGFX
 	ld de, VTiles0 tile $00
-	call Functione54de
+	call Intro_DecompressRequest2bpp_255Tiles
 	ld hl, IntroBackgroundGFX
 	ld de, VTiles2 tile $00
-	call Functione54c2
+	call Intro_DecompressRequest2bpp_128Tiles
 	ld hl, IntroTilemap004
 	debgcoord 0, 0
-	call Functione54fa
+	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -1057,10 +1061,10 @@ IntroScene13: ; e4d6d (39:4d6d)
 	ld de, MUSIC_CRYSTAL_OPENING
 	call PlayMusic
 	xor a
-	ld [wc3c0], a
-	call Functione549e
+	ld [wGlobalAnimXOffset], a
+	call Intro_SetCGBPalUpdate
 	xor a
-	ld [wcf64], a
+	ld [wIntroSceneFrameCounter], a
 	ld [wcf65], a
 	call NextIntroScene
 	ret
@@ -1070,7 +1074,7 @@ IntroScene14: ; e4dfa (39:4dfa)
 	ld a, [hSCX]
 	sub 10
 	ld [hSCX], a
-	ld hl, wcf64
+	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
 	inc [hl]
 	cp $80
@@ -1089,11 +1093,11 @@ IntroScene14: ; e4dfa (39:4dfa)
 .asm_e4e1a
 	ld a, $1
 	ld [wcf65], a
-	ld a, [wc3c0]
+	ld a, [wGlobalAnimXOffset]
 	cp $88
 	jr c, .asm_e4e2c
 	sub $8
-	ld [wc3c0], a
+	ld [wGlobalAnimXOffset], a
 	ret
 
 .asm_e4e2c
@@ -1101,9 +1105,9 @@ IntroScene14: ; e4dfa (39:4dfa)
 	ret
 
 .asm_e4e33
-	ld a, [wc3c0]
+	ld a, [wGlobalAnimXOffset]
 	sub $2
-	ld [wc3c0], a
+	ld [wGlobalAnimXOffset], a
 	ret
 
 .done
@@ -1112,7 +1116,7 @@ IntroScene14: ; e4dfa (39:4dfa)
 
 IntroScene15: ; e4e40 (39:4e40)
 ; Transition to a new scene.
-	call Functione54a3
+	call Intro_ClearBGPals
 	call ClearSprites
 	call ClearTileMap
 	xor a
@@ -1121,23 +1125,23 @@ IntroScene15: ; e4e40 (39:4e40)
 	ld [rVBK], a
 	ld hl, IntroTilemap009
 	debgcoord 0, 0
-	call Functione54fa
+	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ld [rVBK], a
 	ld hl, IntroSuicuneJumpGFX
 	ld de, VTiles2 tile $00
-	call Functione54c2
+	call Intro_DecompressRequest2bpp_128Tiles
 	ld hl, IntroUnownBackGFX
 	ld de, VTiles0 tile $00
-	call Functione54c2
-	ld de, GFX_e7a5d
+	call Intro_DecompressRequest2bpp_128Tiles
+	ld de, IntroGrass4GFX
 	ld hl, VTiles1 tile $00
-	lb bc, BANK(GFX_e7a5d), 1
+	lb bc, BANK(IntroGrass4GFX), 1
 	call Request2bpp
 	ld hl, IntroTilemap010
 	debgcoord 0, 0
-	call Functione54fa
-	call Functione541b
+	call Intro_DecompressRequest2bpp_64Tiles
+	call Intro_LoadTilemap
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -1161,7 +1165,7 @@ IntroScene15: ; e4e40 (39:4e40)
 	ld a, $90
 	ld [hWY], a
 	callba ClearSpriteAnims
-	call Functione549e
+	call Intro_SetCGBPalUpdate
 	depixel 8, 5
 	ld a, SPRITE_ANIM_INDEX_2A
 	call _InitSpriteAnimStruct
@@ -1169,19 +1173,19 @@ IntroScene15: ; e4e40 (39:4e40)
 	ld a, SPRITE_ANIM_INDEX_2B
 	call _InitSpriteAnimStruct
 	xor a
-	ld [wcf64], a
+	ld [wIntroSceneFrameCounter], a
 	ld [wcf65], a
 	call NextIntroScene
 	ret
 
 IntroScene16: ; e4edc (39:4edc)
 ; Suicune shows its face. An Unown appears in front.
-	ld hl, wcf64
+	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
 	inc [hl]
 	cp $80
 	jr nc, .done
-	call Functione5441
+	call Intro_Scene16_AnimateSuicune
 	ld a, [hSCY]
 	and a
 	ret z
@@ -1194,7 +1198,7 @@ IntroScene16: ; e4edc (39:4edc)
 
 IntroScene17: ; e4ef5 (39:4ef5)
 ; ...
-	call Functione54a3
+	call Intro_ClearBGPals
 	call ClearSprites
 	call ClearTileMap
 	xor a
@@ -1203,15 +1207,15 @@ IntroScene17: ; e4ef5 (39:4ef5)
 	ld [rVBK], a
 	ld hl, IntroTilemap011
 	debgcoord 0, 0
-	call Functione54fa
+	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ld [rVBK], a
 	ld hl, IntroSuicuneCloseGFX
 	ld de, VTiles1 tile $00
-	call Functione54de
+	call Intro_DecompressRequest2bpp_255Tiles
 	ld hl, IntroTilemap012
 	debgcoord 0, 0
-	call Functione54fa
+	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -1234,16 +1238,16 @@ IntroScene17: ; e4ef5 (39:4ef5)
 	ld a, $90
 	ld [hWY], a
 	callba ClearSpriteAnims
-	call Functione549e
+	call Intro_SetCGBPalUpdate
 	xor a
-	ld [wcf64], a
+	ld [wIntroSceneFrameCounter], a
 	ld [wcf65], a
 	call NextIntroScene
 	ret
 
 IntroScene18: ; e4f67 (39:4f67)
 ; Suicune close up.
-	ld hl, wcf64
+	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
 	inc [hl]
 	cp $60
@@ -1260,7 +1264,7 @@ IntroScene18: ; e4f67 (39:4f67)
 
 IntroScene19: ; e4f7e (39:4f7e)
 ; More setup.
-	call Functione54a3
+	call Intro_ClearBGPals
 	call ClearSprites
 	call ClearTileMap
 	xor a
@@ -1269,23 +1273,23 @@ IntroScene19: ; e4f7e (39:4f7e)
 	ld [rVBK], a
 	ld hl, IntroTilemap013
 	debgcoord 0, 0
-	call Functione54fa
+	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ld [rVBK], a
 	ld hl, IntroSuicuneBackGFX
 	ld de, VTiles2 tile $00
-	call Functione54c2
+	call Intro_DecompressRequest2bpp_128Tiles
 	ld hl, IntroUnownsGFX
 	ld de, VTiles1 tile $00
-	call Functione54c2
-	ld de, GFX_e7a5d
+	call Intro_DecompressRequest2bpp_128Tiles
+	ld de, IntroGrass4GFX
 	ld hl, VTiles1 tile $7f
-	lb bc, BANK(GFX_e7a5d), 1
+	lb bc, BANK(IntroGrass4GFX), 1
 	call Request2bpp
 	ld hl, IntroTilemap014
 	debgcoord 0, 0
-	call Functione54fa
-	call Functione541b
+	call Intro_DecompressRequest2bpp_64Tiles
+	call Intro_LoadTilemap
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -1313,27 +1317,27 @@ IntroScene19: ; e4f7e (39:4f7e)
 	xor a
 	ld [hli], a
 	ld [hl], $7f
-	call Functione549e
+	call Intro_SetCGBPalUpdate
 	depixel 12, 0
 	ld a, SPRITE_ANIM_INDEX_2B
 	call _InitSpriteAnimStruct
 	xor a
-	ld [wcf64], a
+	ld [wIntroSceneFrameCounter], a
 	ld [wcf65], a
 	call NextIntroScene
 	ret
 
 IntroScene20: ; e5019 (39:5019)
 ; Suicune running away. A bunch of Unown appear.
-	ld hl, wcf64
+	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
 	inc [hl]
 	cp $98
-	jr nc, .asm_e5059
+	jr nc, .finished
 	cp $58
 	ret nc
 	cp $40
-	jr nc, .asm_e5032
+	jr nc, .AppearUnown
 	cp $28
 	ret nc
 	ld a, [hSCY]
@@ -1341,7 +1345,7 @@ IntroScene20: ; e5019 (39:5019)
 	ld [hSCY], a
 	ret
 
-.asm_e5032
+.AppearUnown
 	sub $18
 	ld c, a
 	and $3
@@ -1353,37 +1357,37 @@ IntroScene20: ; e5019 (39:5019)
 	srl a
 	ld [wcf65], a
 	xor a
-	call Functione5348
+	call Intro_Scene20_AppearUnown
 	ret
 ; e5049 (39:5049)
-
+; unused
 	ld a, c
 	and $1c
 	srl a
 	srl a
 	ld [wcf65], a
 	ld a, 1
-	call Functione5348
+	call Intro_Scene20_AppearUnown
 	ret
 
-.asm_e5059
+.finished
 	call NextIntroScene
 	ret
 
 IntroScene21: ; e505d (39:505d)
 ; Suicune gets more distant and turns black.
-	call Functione5451
+	call Intro_ColoredSuicuneFrameSwap
 	ld c, 3
 	call DelayFrames
 	xor a
 	ld [hBGMapMode], a
-	ld [wcf64], a
+	ld [wIntroSceneFrameCounter], a
 	ld [wcf65], a
 	call NextIntroScene
 	ret
 
 IntroScene22: ; e5072 (39:5072)
-	ld hl, wcf64
+	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
 	inc [hl]
 	cp $8
@@ -1396,13 +1400,13 @@ IntroScene22: ; e5072 (39:5072)
 
 IntroScene23: ; e5086 (39:5086)
 	xor a
-	ld [wcf64], a
+	ld [wIntroSceneFrameCounter], a
 	call NextIntroScene
 	ret
 
 IntroScene24: ; e508e (39:508e)
 ; Fade to white.
-	ld hl, wcf64
+	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
 	inc [hl]
 	cp $20
@@ -1411,25 +1415,27 @@ IntroScene24: ; e508e (39:508e)
 	ld c, a
 	and $3
 	ret nz
+
 	ld a, c
 	and $1c
 	sla a
-	call Functione5172
+	call Intro_Scene24_ApplyPaletteFade
 	ret
 
 .done
 	ld a, $40
-	ld [wcf64], a
+	ld [wIntroSceneFrameCounter], a
 	call NextIntroScene
 	ret
 
 IntroScene25: ; e50ad (39:50ad)
 ; Wait around a bit.
-	ld a, [wcf64]
+	ld a, [wIntroSceneFrameCounter]
 	dec a
 	jr z, .done
-	ld [wcf64], a
+	ld [wIntroSceneFrameCounter], a
 	ret
+
 .done
 	call NextIntroScene
 	ret
@@ -1445,15 +1451,15 @@ IntroScene26: ; e50bb (39:50bb)
 	ld [rVBK], a
 	ld hl, IntroTilemap015
 	debgcoord 0, 0
-	call Functione54fa
+	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ld [rVBK], a
 	ld hl, IntroCrystalUnownsGFX
 	ld de, VTiles2 tile $00
-	call Functione54c2
+	call Intro_DecompressRequest2bpp_128Tiles
 	ld hl, IntroTilemap017
 	debgcoord 0, 0
-	call Functione54fa
+	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -1476,9 +1482,9 @@ IntroScene26: ; e50bb (39:50bb)
 	ld a, $90
 	ld [hWY], a
 	callba ClearSpriteAnims
-	call Functione549e
+	call Intro_SetCGBPalUpdate
 	xor a
-	ld [wcf64], a
+	ld [wIntroSceneFrameCounter], a
 	ld [wcf65], a
 	call NextIntroScene
 	ret
@@ -1487,7 +1493,7 @@ IntroScene27: ; e512d (39:512d)
 ; Spell out C R Y S T A L with Unown.
 	ld hl, wcf65
 	inc [hl]
-	ld hl, wcf64
+	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
 	inc [hl]
 	cp $80
@@ -1499,18 +1505,18 @@ IntroScene27: ; e512d (39:512d)
 	ld a, c
 	and $70
 	swap a
-	call Functione539d
+	call Intro_FadeUnownWordPals
 	ret
 
 .done
 	call NextIntroScene
 	ld a, $80
-	ld [wcf64], a
+	ld [wIntroSceneFrameCounter], a
 	ret
 
 IntroScene28: ; e5152 (39:5152)
 ; Cut out when the music ends, and lead into the title screen.
-	ld hl, wcf64
+	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
 	and a
 	jr z, .done
@@ -1533,32 +1539,33 @@ IntroScene28: ; e5152 (39:5152)
 	set 7, [hl]
 	ret
 
-
-Functione5172: ; e5172 (39:5172)
-	ld hl, Unknown_e519c
+Intro_Scene24_ApplyPaletteFade: ; e5172 (39:5172)
+; load the (a)th palette from .FadePals to all BGPals
+	ld hl, .FadePals
 	add l
 	ld l, a
 	ld a, $0
 	adc h
 	ld h, a
+
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
 	ld de, BGPals
-	ld b, $8
-.asm_e5187
+	ld b, 8 ; number of BG pals
+.loop1
 	push hl
-	ld c, $8
-.asm_e518a
+	ld c, 8 ; number of bytes per pal
+.loop2
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_e518a
+	jr nz, .loop2
 	pop hl
 	dec b
-	jr nz, .asm_e5187
+	jr nz, .loop1
 	pop af
 	ld [rSVBK], a
 	ld a, $1
@@ -1566,7 +1573,7 @@ Functione5172: ; e5172 (39:5172)
 	ret
 ; e519c (39:519c)
 
-Unknown_e519c: ; e519c
+.FadePals: ; e519c
 ; Fade to white.
 	RGB 24, 12, 09
 	RGB 31, 31, 31
@@ -1607,13 +1614,14 @@ Unknown_e519c: ; e519c
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 31, 31
+
 ; e51dc
 
-Functione51dc: ; e51dc (39:51dc)
+CrystalIntro_InitUnownAnim: ; e51dc (39:51dc)
 	push de
 	ld a, SPRITE_ANIM_INDEX_29
 	call _InitSpriteAnimStruct
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $8
 	ld a, $3c
@@ -1623,7 +1631,7 @@ Functione51dc: ; e51dc (39:51dc)
 	push de
 	ld a, SPRITE_ANIM_INDEX_29
 	call _InitSpriteAnimStruct
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $18
 	ld a, $3b
@@ -1633,7 +1641,7 @@ Functione51dc: ; e51dc (39:51dc)
 	push de
 	ld a, SPRITE_ANIM_INDEX_29
 	call _InitSpriteAnimStruct
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $28
 	ld a, $39
@@ -1642,14 +1650,14 @@ Functione51dc: ; e51dc (39:51dc)
 
 	ld a, SPRITE_ANIM_INDEX_29
 	call _InitSpriteAnimStruct
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $38
 	ld a, $3a
 	call Function3b3c
 	ret
 
-Functione5223: ; e5223 (39:5223)
+CrystalIntro_UnownFade: ; e5223 (39:5223)
 rept 3
 	add a
 endr
@@ -1663,28 +1671,31 @@ endr
 	ld a, [wcf65]
 	and $3f
 	cp $1f
-	jr z, .asm_e523e
-	jr c, .asm_e523e
+	jr z, .okay
+	jr c, .okay
 	ld c, a
 	ld a, $3f
 	sub c
-.asm_e523e
+.okay
+
 	ld c, a
 	ld b, $0
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
+
 	push hl
 	push bc
 	ld hl, BGPals
-	ld bc, $40
+	ld bc, 4 * 16
 	xor a
 	call ByteFill
 	pop bc
 	pop hl
+
 	push hl
-	ld hl, Unknown_e5288
+	ld hl, .BWFade
 rept 2
 	add hl, bc
 endr
@@ -1696,8 +1707,9 @@ endr
 	ld [hli], a
 	ld a, d
 	ld [hli], a
+
 	push hl
-	ld hl, Unknown_e52c8
+	ld hl, .BlackLBlueFade
 rept 2
 	add hl, bc
 endr
@@ -1709,8 +1721,9 @@ endr
 	ld [hli], a
 	ld a, d
 	ld [hli], a
+
 	push hl
-	ld hl, Unknown_e5308
+	ld hl, .BlackBlueFade
 rept 2
 	add hl, bc
 endr
@@ -1722,6 +1735,7 @@ endr
 	ld [hli], a
 	ld a, d
 	ld [hli], a
+
 	pop af
 	ld [rSVBK], a
 	ld a, $1
@@ -1729,7 +1743,7 @@ endr
 	ret
 ; e5288 (39:5288)
 
-Unknown_e5288: ; e5288
+.BWFade: ; e5288
 ; Fade between black and white.
 hue = 0
 rept 32
@@ -1738,7 +1752,7 @@ hue = hue + 1
 endr
 ; e52c8
 
-Unknown_e52c8: ; e52c8
+.BlackLBlueFade: ; e52c8
 ; Fade between black and light blue.
 hue = 0
 rept 32
@@ -1747,7 +1761,7 @@ hue = hue + 1
 endr
 ; e5308
 
-Unknown_e5308: ; e5308
+.BlackBlueFade: ; e5308
 ; Fade between black and blue.
 hue = 0
 rept 32
@@ -1756,14 +1770,18 @@ hue = hue + 1
 endr
 ; e5348
 
-Functione5348: ; e5348 (39:5348)
+Intro_Scene20_AppearUnown: ; e5348 (39:5348)
+; Spawn the palette for the nth Unown
 	and a
-	jr nz, .asm_e5350
-	ld hl, Palette_e538d
-	jr .asm_e5353
-.asm_e5350
-	ld hl, Palette_e5395
-.asm_e5353
+	jr nz, .load_pal_2
+
+	ld hl, .pal1
+	jr .got_pointer
+
+.load_pal_2
+	ld hl, .pal2
+
+.got_pointer
 	ld a, [wcf65]
 	and $7
 rept 3
@@ -1774,17 +1792,21 @@ endr
 	push af
 	ld a, $5
 	ld [rSVBK], a
+
 	push bc
 	ld de, BGPals
+
 	ld a, c
 	add e
 	ld e, a
 	ld a, $0
 	adc d
 	ld d, a
-	ld bc, $8
+
+	ld bc, 8
 	call CopyBytes
 	pop bc
+
 	ld de, UnknBGPals
 	ld a, c
 	add e
@@ -1792,8 +1814,10 @@ endr
 	ld a, $0
 	adc d
 	ld d, a
-	ld bc, $8
+
+	ld bc, 8
 	call CopyBytes
+
 	pop af
 	ld [rSVBK], a
 	ld a, $1
@@ -1801,21 +1825,23 @@ endr
 	ret
 ; e538d (39:538d)
 
-Palette_e538d: ; e538d
+.pal1: ; e538d
 	RGB 24, 12, 09
 	RGB 31, 31, 31
 	RGB 12, 00, 31
 	RGB 00, 00, 00
+
 ; e5395
 
-Palette_e5395: ; e5395
+.pal2: ; e5395
 	RGB 24, 12, 09
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 31, 31
+
 ; e539d
 
-Functione539d: ; e539d (39:539d)
+Intro_FadeUnownWordPals: ; e539d (39:539d)
 rept 3
 	add a
 endr
@@ -1830,12 +1856,14 @@ endr
 	add a
 	ld c, a
 	ld b, $0
+
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
+
 	push hl
-	ld hl, Palette_e53db
+	ld hl, .FastFadePalettes
 	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
@@ -1845,8 +1873,9 @@ endr
 	ld [hli], a
 	ld a, d
 	ld [hli], a
+
 	push hl
-	ld hl, Palette_e53fb
+	ld hl, .SlowFadePalettes
 	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
@@ -1856,6 +1885,7 @@ endr
 	ld [hli], a
 	ld a, d
 	ld [hli], a
+
 	pop af
 	ld [rSVBK], a
 	ld a, $1
@@ -1863,7 +1893,7 @@ endr
 	ret
 ; e53db (39:53db)
 
-Palette_e53db: ; e53db
+.FastFadePalettes: ; e53db
 hue = 31
 rept 8
 	RGB hue, hue, hue
@@ -1873,7 +1903,7 @@ hue = hue + -2
 endr
 ; e53fb
 
-Palette_e53fb: ; e53fb
+.SlowFadePalettes: ; e53fb
 hue = 31
 rept 16
 	RGB hue, hue, hue
@@ -1881,76 +1911,80 @@ hue = hue + -1
 endr
 ; e541b
 
-Functione541b: ; e541b (39:541b)
+Intro_LoadTilemap: ; e541b (39:541b)
 	ld a, [rSVBK]
 	push af
 	ld a, $6
 	ld [rSVBK], a
+
 	ld hl, wBackupTilemap
 	decoord 0, 0
 	ld b, SCREEN_HEIGHT
-.asm_e542a
+.row
 	ld c, SCREEN_WIDTH
-.asm_e542c
+.col
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_e542c
-	ld a, $c
+	jr nz, .col
+	; add hl, $20 - SCREEN_WIDTH
+	ld a, $20 - SCREEN_WIDTH
 	add l
 	ld l, a
 	ld a, $0
 	adc h
 	ld h, a
 	dec b
-	jr nz, .asm_e542a
+	jr nz, .row
+
 	pop af
 	ld [rSVBK], a
 	ret
 
-Functione5441: ; e5441 (39:5441)
-	ld a, [wcf64]
+Intro_Scene16_AnimateSuicune: ; e5441 (39:5441)
+	ld a, [wIntroSceneFrameCounter]
 	and $3
-	jr z, Functione5451
+	jr z, Intro_ColoredSuicuneFrameSwap
 	cp $3
-	jr z, .asm_e544d
+	jr z, .PrepareForSuicuneSwap
 	ret
-.asm_e544d
+
+.PrepareForSuicuneSwap
 	xor a
 	ld [hBGMapMode], a
 	ret
 
-Functione5451: ; e5451 (39:5451)
+Intro_ColoredSuicuneFrameSwap: ; e5451 (39:5451)
 	hlcoord 0, 0
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
-.asm_e5457
+.loop
 	ld a, [hl]
 	and a
-	jr z, .asm_e5462
+	jr z, .skip
 	cp $80
-	jr nc, .asm_e5462
+	jr nc, .skip
 	xor $8
 	ld [hl], a
-.asm_e5462
+.skip
 	inc hl
 	dec bc
 	ld a, c
 	or b
-	jr nz, .asm_e5457
+	jr nz, .loop
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
 
-Functione546d: ; e546d (39:546d)
-	ld a, [wcf64]
-	cp $24
+Intro_RustleGrass: ; e546d (39:546d)
+	ld a, [wIntroSceneFrameCounter]
+	cp 36
 	ret nc
 	and $c
 	srl a
 	ld e, a
 	ld d, $0
-	ld hl, Unknown_e5496
+	ld hl, .RustlingGrassPointers
 	add hl, de
 	ld a, [hli]
 	ld [Requested2bppSource], a
@@ -1960,32 +1994,34 @@ Functione546d: ; e546d (39:546d)
 	ld [Requested2bppDest], a
 	ld a, (VTiles2 tile $09) / $100
 	ld [Requested2bppDest + 1], a
-	ld a, $4
-	ld [Requested2bpp], a
+	ld a, 4
+	ld [Requested2bppSize], a
 	ret
 ; e5496 (39:5496)
 
-Unknown_e5496: ; e5496
-	dw GFX_e799d
-	dw GFX_e79dd
-	dw GFX_e7a1d
-	dw GFX_e79dd
+.RustlingGrassPointers: ; e5496
+	dw IntroGrass1GFX
+	dw IntroGrass2GFX
+	dw IntroGrass3GFX
+	dw IntroGrass2GFX
 ; e549e
 
-Functione549e: ; e549e (39:549e)
+Intro_SetCGBPalUpdate: ; e549e (39:549e)
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
 
-Functione54a3: ; e54a3 (39:54a3)
+Intro_ClearBGPals: ; e54a3 (39:54a3)
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
+
 	ld hl, BGPals
-	ld bc, $80
+	ld bc, 16 * 8
 	xor a
 	call ByteFill
+
 	pop af
 	ld [rSVBK], a
 	ld a, $1
@@ -1994,83 +2030,99 @@ Functione54a3: ; e54a3 (39:54a3)
 	call DelayFrame
 	ret
 
-Functione54c2: ; e54c2 (39:54c2)
+Intro_DecompressRequest2bpp_128Tiles: ; e54c2 (39:54c2)
 	ld a, [rSVBK]
 	push af
 	ld a, $6
 	ld [rSVBK], a
+
 	push de
 	ld de, wBackupTilemap
 	call Decompress
 	pop hl
+
 	ld de, wBackupTilemap
-	ld bc, $180
+	lb bc, $01, $80
 	call Request2bpp
+
 	pop af
 	ld [rSVBK], a
 	ret
 
-Functione54de: ; e54de (39:54de)
+Intro_DecompressRequest2bpp_255Tiles: ; e54de (39:54de)
 	ld a, [rSVBK]
 	push af
 	ld a, $6
 	ld [rSVBK], a
+
 	push de
 	ld de, wBackupTilemap
 	call Decompress
 	pop hl
+
 	ld de, wBackupTilemap
-	ld bc, $1ff
+	lb bc, $01, $ff
 	call Request2bpp
+
 	pop af
 	ld [rSVBK], a
 	ret
 
-Functione54fa: ; e54fa (39:54fa)
+Intro_DecompressRequest2bpp_64Tiles: ; e54fa (39:54fa)
 	ld a, [rSVBK]
 	push af
 	ld a, $6
 	ld [rSVBK], a
+
 	push de
 	ld de, wBackupTilemap
 	call Decompress
 	pop hl
+
 	ld de, wBackupTilemap
-	ld bc, $140
+	lb bc, $01, $40
 	call Request2bpp
+
 	pop af
 	ld [rSVBK], a
 	ret
 
-Functione5516: ; e5516 (39:5516)
+Intro_ResetLYOverrides: ; e5516 (39:5516)
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
+
 	ld hl, LYOverrides
-	ld bc, $90
+	ld bc, LYOverridesEnd - LYOverrides
 	xor a
 	call ByteFill
+
 	pop af
 	ld [rSVBK], a
 	ld a, $43
 	ld [hLCDStatCustom], a
 	ret
 
-Functione552f: ; e552f (39:552f)
+Intro_PerspectiveScrollBG: ; e552f (39:552f)
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld a, [wcf64]
+	; Scroll the grass every frame.
+	; Scroll the trees every other frame and at half speed.
+	; This creates an illusion of perspective.
+	ld a, [wIntroSceneFrameCounter]
 	and $1
-	jr z, .asm_e5548
+	jr z, .skip
+	; trees in the back
 	ld hl, LYOverrides
 	ld a, [hl]
 	inc a
 	ld bc, $5f
 	call ByteFill
-.asm_e5548
+.skip
+	; grass in the front
 	ld hl, LYOverrides + $5f
 	ld a, [hl]
 rept 2
@@ -2109,62 +2161,77 @@ Palette_e5edd: ; e5edd
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB  0,  4,  5
 	RGB  1,  8,  5
 	RGB  4, 12,  9
 	RGB 24, 12,  9
+
 	RGB  0,  4,  5
 	RGB  9,  6,  8
 	RGB  8, 16,  5
 	RGB  5, 10,  4
+
 	RGB 31, 31, 31
 	RGB  9,  6,  8
 	RGB 18,  9,  9
 	RGB 13,  8,  9
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB  2,  5, 22
 	RGB  1,  5, 12
+
 	RGB 31, 31, 31
 	RGB 31, 10, 25
 	RGB 31, 21,  0
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 21, 31
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
@@ -2207,62 +2274,77 @@ Palette_365ad: ; e65ad
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 	RGB  0,  0,  0
+
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 	RGB  0,  0,  0
+
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 	RGB  0,  0,  0
+
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 	RGB  0,  0,  0
+
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 	RGB  0,  0,  0
+
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 	RGB  0,  0,  0
+
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 	RGB  0,  0,  0
+
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 10,  0, 10
 	RGB 19,  0, 19
 	RGB 31,  0, 31
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
@@ -2285,62 +2367,77 @@ Palette_e679d: ; e679d
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 31, 31
+
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 31, 31
+
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 31, 31
+
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 31, 31
+
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 31, 31
+
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 31, 31
+
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 31, 31
+
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 11, 11, 11
+	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
@@ -2363,62 +2460,77 @@ Palette_e6d6d: ; e6d6d
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 24, 12,  9
 	RGB 31, 31, 31
 	RGB  8,  9, 31
 	RGB  0,  0,  0
+
 	RGB 24, 12,  9
 	RGB 12, 20, 31
 	RGB 19,  8, 31
 	RGB  0,  0,  0
+
 	RGB 12, 20, 31
 	RGB  8,  9, 31
 	RGB 19,  8, 31
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 12, 20, 31
 	RGB  8,  9, 31
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
@@ -2453,62 +2565,77 @@ Palette_e77dd: ; e77dd
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 24, 12,  9
 	RGB 31, 31, 31
 	RGB  8,  9, 31
 	RGB  0,  0,  0
+
 	RGB 24, 12,  9
 	RGB 24, 12,  9
 	RGB 24, 12,  9
 	RGB 24, 12,  9
+
 	RGB 24, 12,  9
 	RGB 24, 12,  9
 	RGB 24, 12,  9
 	RGB 24, 12,  9
+
 	RGB 24, 12,  9
 	RGB 24, 12,  9
 	RGB 24, 12,  9
 	RGB 24, 12,  9
+
 	RGB 24, 12,  9
 	RGB 24, 12,  9
 	RGB 24, 12,  9
 	RGB 24, 12,  9
+
 	RGB 24, 12,  9
 	RGB 24, 12,  9
 	RGB 24, 12,  9
 	RGB 24, 12,  9
+
 	RGB 24, 12,  9
 	RGB 24, 12,  9
 	RGB 24, 12,  9
 	RGB 24, 12,  9
+
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 12,  0, 31
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 21,  9,  0
 	RGB 21,  9,  0
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
 	RGB  0,  0,  0
+
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
@@ -2518,14 +2645,12 @@ IntroUnownBackGFX: ; e785d
 INCBIN "gfx/intro/unown_back.2bpp.lz"
 ; e799d
 
-GFX_e799d: ; e799d
-INCBIN "gfx/unknown/0e799d.2bpp"
-GFX_e79dd: ; e79dd
-INCBIN "gfx/unknown/0e79dd.2bpp"
-GFX_e7a1d: ; e7a1d
-INCBIN "gfx/unknown/0e7a1d.2bpp"
-
-GFX_e7a5d: ; e7a5d
-INCBIN "gfx/unknown/0e7a5d.2bpp"
-
+IntroGrass1GFX: ; e799d
+INCBIN "gfx/intro/grass1.2bpp"
+IntroGrass2GFX: ; e79dd
+INCBIN "gfx/intro/grass2.2bpp"
+IntroGrass3GFX: ; e7a1d
+INCBIN "gfx/intro/grass3.2bpp"
+IntroGrass4GFX: ; e7a5d
+INCBIN "gfx/intro/grass4.2bpp"
 

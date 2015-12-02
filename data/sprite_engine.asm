@@ -56,10 +56,10 @@ Unknown_8d6e6: ; 8d6e6
 	dw Unknown_8d907 ; 36
 	dw Unknown_8d90c ; 37
 	dw Unknown_8d913 ; 38
-	dw Unknown_8d916 ; 39
-	dw Unknown_8d91d ; 3a
-	dw Unknown_8d924 ; 3b
-	dw Unknown_8d92b ; 3c
+	dw Unknown_8d916 ; 39 unown in intro
+	dw Unknown_8d91d ; 3a unown in intro
+	dw Unknown_8d924 ; 3b unown in intro
+	dw Unknown_8d92b ; 3c unown in intro
 	dw Unknown_8d932 ; 3d
 	dw Unknown_8d93d ; 3e
 	dw Unknown_8d940 ; 3f

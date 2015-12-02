@@ -259,13 +259,13 @@ Function8d04c: ; 8d04c
 	ld c, a ; number of objects
 .loop
 	; first byte: y (px)
-	; [de] = [wCurrAnimYCoord] + [wCurrAnimYOffset] + [wc3bf] + Function8d0be([hl])
+	; [de] = [wCurrAnimYCoord] + [wCurrAnimYOffset] + [wGlobalAnimYOffset] + Function8d0be([hl])
 	ld a, [wCurrAnimYCoord]
 	ld b, a
 	ld a, [wCurrAnimYOffset]
 	add b
 	ld b, a
-	ld a, [wc3bf]
+	ld a, [wGlobalAnimYOffset]
 	add b
 	ld b, a
 	call Function8d0be
@@ -274,13 +274,13 @@ Function8d04c: ; 8d04c
 	inc hl
 	inc de
 	; second byte: x (px)
-	; [de] = [wCurrAnimXCoord] + [wCurrAnimXOffset] + [wc3c0] + Function8d0ce([hl])
+	; [de] = [wCurrAnimXCoord] + [wCurrAnimXOffset] + [wGlobalAnimXOffset] + Function8d0ce([hl])
 	ld a, [wCurrAnimXCoord]
 	ld b, a
 	ld a, [wCurrAnimXOffset]
 	add b
 	ld b, a
-	ld a, [wc3c0]
+	ld a, [wGlobalAnimXOffset]
 	add b
 	ld b, a
 	call Function8d0ce
@@ -411,15 +411,15 @@ LookUpInwSpriteAnimDict: ; 8d109
 ; 8d120
 
 Function8d120:: ; 8d120
-	ld hl, $1
+	ld hl, SPRITEANIMSTRUCT_01
 	add hl, bc
 	ld [hl], a
-	ld hl, $8
+	ld hl, SPRITEANIMSTRUCT_DURATION
 	add hl, bc
-	ld [hl], $0
-	ld hl, $a
+	ld [hl], 0
+	ld hl, SPRITEANIMSTRUCT_FRAME
 	add hl, bc
-	ld [hl], $ff
+	ld [hl], -1
 	ret
 ; 8d132
 
@@ -593,7 +593,7 @@ Unknown_8d1c4: ; 8d1c4
 	db $35, SPRITE_ANIM_SEQ_1D, $00 ; 26
 	db $37, SPRITE_ANIM_SEQ_1E, $00 ; 27
 	db $38, SPRITE_ANIM_SEQ_1E, $00 ; 28
-	db $39, SPRITE_ANIM_SEQ_20, $00 ; 29
+	db $39, SPRITE_ANIM_SEQ_20, $00 ; 29 intro unown
 	db $3f, SPRITE_ANIM_SEQ_21, $00 ; 2a
 	db $3e, SPRITE_ANIM_SEQ_22, $00 ; 2b
 	db $40, SPRITE_ANIM_SEQ_00, $00 ; 2c

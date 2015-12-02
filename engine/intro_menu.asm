@@ -7,7 +7,7 @@ _MainMenu: ; 5ae8
 	ld [wMapMusic], a
 	call PlayMusic
 	callba MainMenu
-	jp Function6219
+	jp StartTitleScreen
 ; 5b04
 
 ; unreferenced
@@ -1003,19 +1003,19 @@ Intro_PlacePlayerSprite: ; 61cd
 
 .sprites ; 61fe
 	db 4
-	db $4c, $48, 0
-	db $4c, $50, 1
-	db $54, $48, 2
-	db $54, $50, 3
+	db  9 * 8 + 4,  9 * 8, 0
+	db  9 * 8 + 4, 10 * 8, 1
+	db 10 * 8 + 4,  9 * 8, 2
+	db 10 * 8 + 4, 10 * 8, 3
 ; 620b
 
 
 Function620b: ; 620b
 	callab Functione4579
-	jr c, Function6219
+	jr c, StartTitleScreen
 	callba CrystalIntro
 
-Function6219: ; 6219
+StartTitleScreen: ; 6219
 	ld a, [rSVBK]
 	push af
 	ld a, $5

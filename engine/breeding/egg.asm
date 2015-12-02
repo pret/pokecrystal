@@ -731,14 +731,14 @@ EggHatch_AnimationSequence: ; 1728f (5:728f)
 	ld a, 2
 	ld [hSCX], a
 	ld a, -2
-	ld [wc3c0], a
+	ld [wGlobalAnimXOffset], a
 	call EggHatch_DoAnimFrame
 	ld c, 2
 	call DelayFrames
 	ld a, -2
 	ld [hSCX], a
 	ld a, 2
-	ld [wc3c0], a
+	ld [wGlobalAnimXOffset], a
 	call EggHatch_DoAnimFrame
 	ld c, 2
 	call DelayFrames
@@ -754,7 +754,7 @@ EggHatch_AnimationSequence: ; 1728f (5:728f)
 	call PlaySFX
 	xor a
 	ld [hSCX], a
-	ld [wc3c0], a
+	ld [wGlobalAnimXOffset], a
 	call ClearSprites
 	call Function173b3
 	hlcoord 6, 3

@@ -476,8 +476,8 @@ wCurrAnimXCoord:: ds 1
 wCurrAnimYCoord:: ds 1
 wCurrAnimXOffset:: ds 1
 wCurrAnimYOffset:: ds 1
-wc3bf:: ds 1
-wc3c0:: ds 1
+wGlobalAnimYOffset:: ds 1
+wGlobalAnimXOffset:: ds 1
 wSpriteAnimsEnd::
 
 wc3c1:: ds 11
@@ -1365,6 +1365,7 @@ wTitleScreenTimerHi::
 wcf66:: ds 1
 
 Requested2bpp:: ; cf67
+Requested2bppSize::
 	ds 1
 Requested2bppSource:: ; cf68
 	ds 2
@@ -1372,6 +1373,7 @@ Requested2bppDest:: ; cf6a
 	ds 2
 
 Requested1bpp:: ; cf6c
+Requested1bppSize::
 	ds 1
 Requested1bppSource:: ; cf6d
 	ds 2
@@ -2170,6 +2172,8 @@ TimeOfDay:: ; d269
 	ds 1
 
 	ds 1
+
+SECTION "Enemy Party", WRAMX, BANK [1]
 wPokedexShowPointerAddr::
 wd26b:: ds 1
 wd26c:: ds 1
@@ -2180,7 +2184,8 @@ wd271:: ds 5
 wd276:: ds 10
 	ds wd26b - @
 
-SECTION "Enemy Party", WRAMX, BANK [1]
+
+; SECTION "Enemy Party", WRAMX, BANK [1]
 OTPlayerName:: ds NAME_LENGTH
 OTPlayerID:: ds 2
 	ds 8
