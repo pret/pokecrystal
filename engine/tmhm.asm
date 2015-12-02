@@ -5,7 +5,7 @@ CanLearnTMHMMove: ; 11639
 	ld hl, BaseTMHM
 	push hl
 
-	ld a, [wd262]
+	ld a, [wPutativeTMHMMove]
 	ld b, a
 	ld c, 0
 	ld hl, TMHMMoves

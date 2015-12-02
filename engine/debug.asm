@@ -828,7 +828,7 @@ Function81df4: ; 81df4
 	ld [wd265], a
 	predef GetTMHMMove
 	ld a, [wd265]
-	ld [wd262], a
+	ld [wPutativeTMHMMove], a
 	call GetMoveName
 	hlcoord 10, 12
 	call PlaceString

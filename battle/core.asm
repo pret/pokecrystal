@@ -5225,11 +5225,11 @@ LoadBattleMenu2: ; 3e19b
 BattleMenu_Pack: ; 3e1c7
 	ld a, [wLinkMode]
 	and a
-	jp nz, ItemsCantBeUsed
+	jp nz, .ItemsCantBeUsed
 
 	ld a, [InBattleTowerBattle]
 	and a
-	jp nz, ItemsCantBeUsed
+	jp nz, .ItemsCantBeUsed
 
 	call LoadStandardMenuDataHeader
 
@@ -5258,7 +5258,7 @@ BattleMenu_Pack: ; 3e1c7
 	call DoItemEffect
 
 .got_item
-	call Function3e234
+	call .UseItem
 	ret
 
 .didnt_use_item
@@ -5274,33 +5274,33 @@ BattleMenu_Pack: ; 3e1c7
 	jp BattleMenu
 ; 3e22b
 
-ItemsCantBeUsed: ; 3e22b
+.ItemsCantBeUsed: ; 3e22b
 	ld hl, BattleText_ItemsCantBeUsedHere
 	call StdBattleTextBox
 	jp BattleMenu
 ; 3e234
 
-Function3e234: ; 3e234
+.UseItem: ; 3e234
 	ld a, [wc64e]
 	and a
-	jr nz, .asm_3e279
+	jr nz, .run
 	callab CheckItemPocket
 	ld a, [wItemAttributeParamBuffer]
-	cp $3
-	jr z, .asm_3e24a
+	cp BALL
+	jr z, .ball
 	call ClearBGPalettes
 
-.asm_3e24a
+.ball
 	xor a
 	ld [hBGMapMode], a
 	call _LoadBattleFontsHPBar
 	call ClearSprites
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
-	jr z, .asm_3e25d
+	jr z, .tutorial2
 	call GetMonBackpic
 
-.asm_3e25d
+.tutorial2
 	call GetMonFrontpic
 	ld a, $1
 	ld [MenuSelection2], a
@@ -5313,7 +5313,7 @@ Function3e234: ; 3e234
 	and a
 	ret
 
-.asm_3e279
+.run
 	xor a
 	ld [wc64e], a
 	ld a, [wBattleResult]
@@ -5331,39 +5331,39 @@ Function3e290:
 	call ExitMenu
 	call LoadStandardMenuDataHeader
 	call ClearBGPalettes
-Function3e299:
+BattleMenuPKMN_Loop:
 	call Function3d2fa
 	xor a
 	ld [PartyMenuActionText], a
 	call Function3d313
 	call Function3d329
-	jr c, .asm_3e2da
-.asm_3e2a8
+	jr c, .Cancel
+.loop
 	callba Function8ea4a
-	call Function3e2f5
-	jr c, .asm_3e2c8
+	call .GetMenu
+	jr c, .PressedB
 	call Function1bee
 	ld a, [MenuSelection2]
-	cp $1
-	jp z, Function3e358
-	cp $2
-	jr z, .asm_3e2cf
-	cp $3
-	jr z, .asm_3e2da
-	jr .asm_3e2a8
+	cp $1 ; SWITCH
+	jp z, TryPlayerSwitch
+	cp $2 ; STATS
+	jr z, .Stats
+	cp $3 ; CANCEL
+	jr z, .Cancel
+	jr .loop
 
-.asm_3e2c8
+.PressedB
 	call CheckMobileBattleError
-	jr c, .asm_3e2da
-	jr Function3e299
+	jr c, .Cancel
+	jr BattleMenuPKMN_Loop
 
-.asm_3e2cf
+.Stats
 	call Function3e308
 	call CheckMobileBattleError
-	jr c, .asm_3e2da
+	jr c, .Cancel
 	jp Function3e290
 
-.asm_3e2da
+.Cancel
 	call ClearSprites
 	call ClearPalettes
 	call DelayFrame
@@ -5375,14 +5375,14 @@ Function3e299:
 	jp BattleMenu
 ; 3e2f5
 
-Function3e2f5: ; 3e2f5
+.GetMenu: ; 3e2f5
 	call IsMobileBattle
-	jr z, .asm_3e301
-	callba Function24e99
+	jr z, .mobile
+	callba BattleMonMenu
 	ret
 
-.asm_3e301
-	callba Function100d22
+.mobile
+	callba MobileBattleMonMenu
 	ret
 ; 3e308
 
@@ -5394,7 +5394,7 @@ Function3e308: ; 3e308
 	call CopyBytes
 	ld hl, VTiles2
 	ld de, VTiles0 tile $11
-	ld bc, $0310
+	ld bc, $31 tiles
 	call CopyBytes
 	call EnableLCD
 	call ClearSprites
@@ -5406,43 +5406,43 @@ Function3e308: ; 3e308
 	call DisableLCD
 	ld hl, VTiles0
 	ld de, VTiles2 tile $31
-	ld bc, $0110
+	ld bc, $11 tiles
 	call CopyBytes
 	ld hl, VTiles0 tile $11
 	ld de, VTiles2
-	ld bc, $0310
+	ld bc, $31 tiles
 	call CopyBytes
 	call EnableLCD
 	ret
 ; 3e358
 
 
-Function3e358: ; 3e358
+TryPlayerSwitch: ; 3e358
 	ld a, [CurBattleMon]
 	ld d, a
 	ld a, [CurPartyMon]
 	cp d
-	jr nz, .asm_3e36b
+	jr nz, .check_trapped
 	ld hl, BattleText_PkmnIsAlreadyOut
 	call StdBattleTextBox
-	jp Function3e299
+	jp BattleMenuPKMN_Loop
 
-.asm_3e36b
+.check_trapped
 	ld a, [wPlayerWrapCount]
 	and a
-	jr nz, .asm_3e378
+	jr nz, .trapped
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
-	jr z, .asm_3e381
+	jr z, .try_switch
 
-.asm_3e378
+.trapped
 	ld hl, BattleText_PkmnCantBeRecalled
 	call StdBattleTextBox
-	jp Function3e299
+	jp BattleMenuPKMN_Loop
 
-.asm_3e381
+.try_switch
 	call CheckIfPartyHasPkmnToBattleWith
-	jp z, Function3e299
+	jp z, BattleMenuPKMN_Loop
 	ld a, [CurBattleMon]
 	ld [LastPlayerMon], a
 	ld a, $2
@@ -5456,9 +5456,6 @@ Function3e358: ; 3e358
 	call SetPalettes
 	ld a, [CurPartyMon]
 	ld [CurBattleMon], a
-	; fallthrough
-; 3e3ad
-
 PlayerSwitch: ; 3e3ad
 	ld a, 1
 	ld [wPlayerIsSwitching], a
@@ -9479,7 +9476,7 @@ InitBattleDisplay: ; 3fb6c
 
 
 GetTrainerBackpic: ; 3fbff
-; Load the player character's backpic (6x6) into VRAM starting from $9310.
+; Load the player character's backpic (6x6) into VRAM starting from VTiles2 tile $31.
 
 ; Special exception for Dude.
 	ld b, BANK(DudeBackpic)

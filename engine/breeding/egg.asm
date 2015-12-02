@@ -191,30 +191,30 @@ DoEggStep:: ; 16f3e
 OverworldHatchEgg:: ; 16f5e
 	call ResetWindow
 	call LoadStandardMenuDataHeader
-	call Function16f70
+	call HatchEggs
 	call ExitAllMenus
 	call RestartMapMusic
 	jp CloseText
 ; 16f70
 
-Function16f70: ; 16f70 (5:6f70)
+HatchEggs: ; 16f70 (5:6f70)
 	ld de, PartySpecies
 	ld hl, PartyMon1Happiness
 	xor a
 	ld [CurPartyMon], a
 
-Function16f7a: ; 16f7a (5:6f7a)
+.loop: ; 16f7a (5:6f7a)
 	ld a, [de]
 	inc de
 	cp -1
-	jp z, Function1708a
+	jp z, .done
 	push de
 	push hl
 	cp EGG
-	jp nz, Function1707d
+	jp nz, .next
 	ld a, [hl]
 	and a
-	jp nz, Function1707d
+	jp nz, .next
 	ld [hl], $78
 
 	push de
@@ -304,7 +304,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	ld e, l
 	ld hl, PlayerName
 	call CopyBytes
-	ld hl, UnknownText_0x1708b
+	ld hl, .Text_HatchEgg
 	call PrintText
 	ld a, [CurPartyMon]
 	ld hl, PartyMonNicknames
@@ -313,11 +313,12 @@ Function16f7a: ; 16f7a (5:6f7a)
 	ld d, h
 	ld e, l
 	push de
-	ld hl, UnknownText_0x170ba
+	ld hl, .Text_NicknameHatchling
 	call PrintText
 	call YesNoBox
 	pop de
 	jr c, .nonickname
+
 	ld a, $1
 	ld [wd26b], a
 	xor a
@@ -328,32 +329,30 @@ Function16f7a: ; 16f7a (5:6f7a)
 	pop hl
 	ld de, StringBuffer1
 	call InitName
-	jr Function1707d
+	jr .next
+
 .nonickname
 	ld hl, StringBuffer1
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
-Function1707d: ; 1707d (5:707d)
+.next: ; 1707d (5:707d)
 	ld hl, CurPartyMon
 	inc [hl]
 	pop hl
 	ld de, PARTYMON_STRUCT_LENGTH
 	add hl, de
 	pop de
-	jp Function16f7a
+	jp .loop
 
-Function1708a: ; 1708a (5:708a)
+.done: ; 1708a (5:708a)
 	ret
 ; 1708b (5:708b)
 
-UnknownText_0x1708b: ; 0x1708b
+.Text_HatchEgg: ; 0x1708b
 	; Huh? @ @
 	text_jump UnknownText_0x1c0db0
 	start_asm
-; 0x17090
-
-Function17090: ; 17090
 	ld hl, VramState
 	res 0, [hl]
 	push hl
@@ -361,38 +360,38 @@ Function17090: ; 17090
 	push bc
 	ld a, [CurPartySpecies]
 	push af
-	call Function1728f
-	ld hl, UnknownText_0x170b0
+	call EggHatch_AnimationSequence
+	ld hl, .ClearTextbox
 	call PrintText
 	pop af
 	ld [CurPartySpecies], a
 	pop bc
 	pop de
 	pop hl
-	ld hl, UnknownText_0x170b5
+	ld hl, .CameOutOfItsEgg
 	ret
 ; 170b0 (5:70b0)
 
-UnknownText_0x170b0: ; 0x170b0
+.ClearTextbox: ; 0x170b0
 	;
 	text_jump UnknownText_0x1c0db8
 	db "@"
 ; 0x170b5
 
-UnknownText_0x170b5: ; 0x170b5
+.CameOutOfItsEgg: ; 0x170b5
 	; came out of its EGG!@ @
 	text_jump UnknownText_0x1c0dba
 	db "@"
 ; 0x170ba
 
-UnknownText_0x170ba: ; 0x170ba
+.Text_NicknameHatchling: ; 0x170ba
 	; Give a nickname to @ ?
 	text_jump UnknownText_0x1c0dd8
 	db "@"
 ; 0x170bf
 
-Function170bf: ; 170bf
-	call Function17197
+InitEggMoves: ; 170bf
+	call GetHeritableMoves
 	ld d, h
 	ld e, l
 	ld b, NUM_MOVES
@@ -409,9 +408,9 @@ Function170bf: ; 170bf
 	inc hl
 	dec c
 	jr nz, .next
-	call Function170e4
+	call GetEggMove
 	jr nc, .skip
-	call Function17169
+	call LoadEggMove
 
 .skip
 	inc de
@@ -422,7 +421,7 @@ Function170bf: ; 170bf
 	ret
 ; 170e4
 
-Function170e4: ; 170e4
+GetEggMove: ; 170e4
 GLOBAL EggMoves
 
 	push bc
@@ -440,7 +439,7 @@ endr
 	ld a, BANK(EggMoves)
 	call GetFarByte
 	cp -1
-	jr z, .found_mon
+	jr z, .reached_end
 	ld b, a
 	ld a, [de]
 	cp b
@@ -448,7 +447,7 @@ endr
 	inc hl
 	jr .loop
 
-.found_mon
+.reached_end
 	call Function1720b
 	ld b, NUM_MOVES
 .loop2
@@ -504,7 +503,7 @@ endr
 	ld a, [de]
 	cp b
 	jr nz, .loop5
-	ld [wd262], a
+	ld [wPutativeTMHMMove], a
 	predef CanLearnTMHMMove
 	ld a, c
 	and a
@@ -521,7 +520,7 @@ endr
 	ret
 ; 17169
 
-Function17169: ; 17169
+LoadEggMove: ; 17169
 	push de
 	push bc
 	ld a, [de]
@@ -556,7 +555,7 @@ Function17169: ; 17169
 	ret
 ; 17197
 
-Function17197: ; 17197
+GetHeritableMoves: ; 17197
 	ld hl, wBreedMon2Moves
 	ld a, [wBreedMon1Species]
 	cp DITTO
@@ -579,7 +578,7 @@ Function17197: ; 17197
 	ld [TempMonDVs], a
 	ld a, [wBreedMon2DVs + 1]
 	ld [TempMonDVs + 1], a
-	ld a, $3
+	ld a, BREEDMON
 	ld [MonType], a
 	predef GetGender
 	jr c, .inherit_mon2_moves
@@ -595,7 +594,7 @@ Function17197: ; 17197
 	ld [TempMonDVs], a
 	ld a, [wBreedMon1DVs + 1]
 	ld [TempMonDVs + 1], a
-	ld a, $3
+	ld a, BREEDMON
 	ld [MonType], a
 	predef GetGender
 	jr c, .inherit_mon1_moves
@@ -674,7 +673,7 @@ Function17254: ; 17254 (5:7254)
 	call SetPalettes
 	jp WaitBGMap
 
-Function1727f: ; 1727f (5:727f)
+EggHatch_DoAnimFrame: ; 1727f (5:727f)
 	push hl
 	push de
 	push bc
@@ -685,7 +684,7 @@ Function1727f: ; 1727f (5:727f)
 	pop hl
 	ret
 
-Function1728f: ; 1728f (5:728f)
+EggHatch_AnimationSequence: ; 1728f (5:728f)
 	ld a, [wd265]
 	ld [wJumptableIndex], a
 	ld a, [CurSpecies]
@@ -710,45 +709,47 @@ Function1728f: ; 1728f (5:728f)
 	call PlayMusic
 	call EnableLCD
 	hlcoord 7, 4
-	ld b, $98
-	ld c, $31
+	ld b, (VBGMap0 + 1 * $20 + 17) / $100
+	ld c, (VBGMap0 + 1 * $20 + 17) % $100
 	ld a, EGG
 	call Function17254
-	ld c, $50
+	ld c, 80
 	call DelayFrames
 	xor a
 	ld [wcf64], a
 	ld a, [hSCX]
 	ld b, a
-.asm_172ee
+.outerloop
 	ld hl, wcf64
 	ld a, [hl]
 	inc [hl]
-	cp $8
-	jr nc, .asm_17327
+	cp 8
+	jr nc, .done
 	ld e, [hl]
-.asm_172f8
-	ld a, $2
+.loop
+; wobble e times
+	ld a, 2
 	ld [hSCX], a
-	ld a, $fe
+	ld a, -2
 	ld [wc3c0], a
-	call Function1727f
-	ld c, $2
+	call EggHatch_DoAnimFrame
+	ld c, 2
 	call DelayFrames
-	ld a, $fe
+	ld a, -2
 	ld [hSCX], a
-	ld a, $2
+	ld a, 2
 	ld [wc3c0], a
-	call Function1727f
-	ld c, $2
+	call EggHatch_DoAnimFrame
+	ld c, 2
 	call DelayFrames
 	dec e
-	jr nz, .asm_172f8
-	ld c, $10
+	jr nz, .loop
+	ld c, 16
 	call DelayFrames
-	call Function1736d
-	jr .asm_172ee
-.asm_17327
+	call EggHatch_CrackShell
+	jr .outerloop
+
+.done
 	ld de, SFX_EGG_HATCH
 	call PlaySFX
 	xor a
@@ -757,8 +758,8 @@ Function1728f: ; 1728f (5:728f)
 	call ClearSprites
 	call Function173b3
 	hlcoord 6, 3
-	ld b, $98
-	ld c, $0
+	ld b, VBGMap0 / $100
+	ld c, VBGMap0 % $100
 	ld a, [wJumptableIndex]
 	call Function17254
 	call Function17418
@@ -779,7 +780,7 @@ Function17363: ; 17363 (5:7363)
 	ld c, $0
 	jp GetSGBLayout
 
-Function1736d: ; 1736d (5:736d)
+EggHatch_CrackShell: ; 1736d (5:736d)
 	ld a, [wcf64]
 	dec a
 	and $7
@@ -794,7 +795,7 @@ Function1736d: ; 1736d (5:736d)
 	ld e, 11 * 8
 	ld a, SPRITE_ANIM_INDEX_19
 	call _InitSpriteAnimStruct
-	ld hl, $3
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $0
 	ld de, SFX_EGG_CRACK
@@ -840,7 +841,7 @@ Function173b3: ; 173b3 (5:73b3)
 .done
 	ld de, SFX_EGG_HATCH
 	call PlaySFX
-	call Function1727f
+	call EggHatch_DoAnimFrame
 	ret
 ; 173ef (5:73ef)
 
@@ -862,7 +863,7 @@ Function173b3: ; 173b3 (5:73b3)
 Function17418: ; 17418 (5:7418)
 	ld c, $81
 .asm_1741a
-	call Function1727f
+	call EggHatch_DoAnimFrame
 	dec c
 	jr nz, .asm_1741a
 	ret

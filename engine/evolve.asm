@@ -485,7 +485,7 @@ endr
 
 .learn
 	ld a, d
-	ld [wd262], a
+	ld [wPutativeTMHMMove], a
 	ld [wd265], a
 	call GetMoveName
 	call CopyName1

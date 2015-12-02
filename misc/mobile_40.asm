@@ -2054,7 +2054,7 @@ Function100cb5: ; 100cb5
 	ret
 ; 100d22
 
-Function100d22: ; 100d22
+MobileBattleMonMenu: ; 100d22
 	call Function100dd8
 	ret c
 	call Function100d67

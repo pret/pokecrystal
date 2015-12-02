@@ -23,8 +23,8 @@ PlaySpriteAnimations: ; 8cf69
 	push bc
 	push af
 
-	ld a, $0
-	ld [wc3b5], a
+	ld a, 0 * 4
+	ld [wOAMRetentionSize], a
 	call DoNextFrameForAllSprites
 
 	pop af
@@ -58,11 +58,11 @@ DoNextFrameForAllSprites: ; 8cf7a
 	dec e
 	jr nz, .loop
 
-	ld a, [wc3b5]
+	ld a, [wOAMRetentionSize]
 	ld l, a
 	ld h, Sprites / $0100
 
-.loop2 ; Clear (Sprites + [wc3b5] --> SpritesEnd)
+.loop2 ; Clear (Sprites + [wOAMRetentionSize] --> SpritesEnd)
 	ld a, l
 	cp SpritesEnd % $100
 	jr nc, .done
@@ -98,11 +98,11 @@ DoNextFrameForFirst16Sprites: ; 8cfa8 (23:4fa8)
 	dec e
 	jr nz, .loop
 
-	ld a, [wc3b5]
+	ld a, [wOAMRetentionSize]
 	ld l, a
 	ld h, (Sprites + $40) / $100
 
-.loop2 ; Clear (Sprites + [wc3b5] --> Sprites + $40)
+.loop2 ; Clear (Sprites + [wOAMRetentionSize] --> Sprites + $40)
 	ld a, l
 	cp (Sprites + 16 * 4) % $100
 	jr nc, .done
@@ -213,7 +213,7 @@ endr
 
 Function8d036: ; 8d036
 ; Clear the index field of the struct in bc.
-	ld hl, 0
+	ld hl, SPRITEANIMSTRUCT_INDEX
 	add hl, bc
 	ld [hl], $0
 	ret
@@ -240,25 +240,29 @@ Function8d04c: ; 8d04c
 	cp -3
 	jr z, .done
 	cp -4
-	jr z, .almost
+	jr z, .delete
 	call Function8d1a2 ; OAM?
-	ld a, [wc3ba]
+	; add byte to [wCurrAnimVTile]
+	ld a, [wCurrAnimVTile]
 	add [hl]
-	ld [wc3ba], a
+	ld [wCurrAnimVTile], a
 	inc hl
+	; load pointer into hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	push bc
-	ld a, [wc3b5]
+	ld a, [wOAMRetentionSize]
 	ld e, a
 	ld d, Sprites / $100
 	ld a, [hli]
-	ld c, a
+	ld c, a ; number of objects
 .loop
-	ld a, [wc3bc]
+	; first byte: y (px)
+	; [de] = [wCurrAnimYCoord] + [wCurrAnimYOffset] + [wc3bf] + Function8d0be([hl])
+	ld a, [wCurrAnimYCoord]
 	ld b, a
-	ld a, [wc3be]
+	ld a, [wCurrAnimYOffset]
 	add b
 	ld b, a
 	ld a, [wc3bf]
@@ -269,9 +273,11 @@ Function8d04c: ; 8d04c
 	ld [de], a
 	inc hl
 	inc de
-	ld a, [wc3bb]
+	; second byte: x (px)
+	; [de] = [wCurrAnimXCoord] + [wCurrAnimXOffset] + [wc3c0] + Function8d0ce([hl])
+	ld a, [wCurrAnimXCoord]
 	ld b, a
-	ld a, [wc3bd]
+	ld a, [wCurrAnimXOffset]
 	add b
 	ld b, a
 	ld a, [wc3c0]
@@ -282,32 +288,36 @@ Function8d04c: ; 8d04c
 	ld [de], a
 	inc hl
 	inc de
-	ld a, [wc3ba]
+	; third byte: vtile
+	; [de] = [wCurrAnimVTile] + [hl]
+	ld a, [wCurrAnimVTile]
 	add [hl]
 	ld [de], a
 	inc hl
 	inc de
+	; fourth byte: attributes
+	; [de] = Function8d0de([hl])
 	call Function8d0de
 	ld [de], a
 	inc hl
 	inc de
 	ld a, e
-	ld [wc3b5], a
+	ld [wOAMRetentionSize], a
 	cp SpritesEnd % $100
-	jr nc, .outofroom
+	jr nc, .reached_the_end
 	dec c
 	jr nz, .loop
 	pop bc
 	jr .done
 
-.almost
+.delete
 	call Function8d036
 
 .done
 	and a
 	ret
 
-.outofroom
+.reached_the_end
 	pop bc
 	scf
 	ret
@@ -359,18 +369,18 @@ Function8d0de: ; 8d0de
 Function8d0ec: ; 8d0ec
 	xor a
 	ld [wc3b8], a
-	ld hl, $3
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld a, [hli]
-	ld [wc3ba], a
+	ld [wCurrAnimVTile], a
 	ld a, [hli]
-	ld [wc3bb], a
+	ld [wCurrAnimXCoord], a
 	ld a, [hli]
-	ld [wc3bc], a
+	ld [wCurrAnimYCoord], a
 	ld a, [hli]
-	ld [wc3bd], a
+	ld [wCurrAnimXOffset], a
 	ld a, [hli]
-	ld [wc3be], a
+	ld [wCurrAnimYOffset], a
 	ret
 ; 8d109
 
@@ -420,22 +430,22 @@ Function8d132: ; 8d132
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .done ; finished the current sequence
+	jr z, .next_frame ; finished the current sequence
 	dec [hl]
 	call Function8d189 ; load pointer from Unknown_8d6e6
 	ld a, [hli]
 	push af
 	jr .okay
 
-.done
+.next_frame
 	ld hl, SPRITEANIMSTRUCT_FRAME
 	add hl, bc
 	inc [hl]
 	call Function8d189 ; load pointer from Unknown_8d6e6
 	ld a, [hli]
-	cp $fe
+	cp -2
 	jr z, .minus_2
-	cp $ff
+	cp -1
 	jr z, .minus_1
 
 	push af
@@ -486,7 +496,7 @@ endr
 Function8d189: ; 8d189
 	; Get the data for the current frame for the current animation sequence
 
-	; Unknown_8d6e6 + 2 * SpriteAnim[SPRITEANIMSTRUCT_01] + 3 * SpriteAnim[SPRITEANIMSTRUCT_FRAME]
+	; Unknown_8d6e6[SpriteAnim[SPRITEANIMSTRUCT_01]][SpriteAnim[SPRITEANIMSTRUCT_FRAME]]
 	ld hl, SPRITEANIMSTRUCT_01
 	add hl, bc
 	ld e, [hl]
@@ -508,6 +518,7 @@ endr
 ; 8d1a2
 
 Function8d1a2: ; 8d1a2
+; Load OAM data pointer
 	ld e, a
 	ld d, 0
 	ld hl, Unknown_8d94d

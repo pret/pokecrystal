@@ -36,7 +36,7 @@ ShakeHeadbuttTree: ; 8c80a
 	add hl, bc
 	ld [hl], $84
 	ld a, 36 * 4
-	ld [wc3b5], a
+	ld [wOAMRetentionSize], a
 	callba DoNextFrameForAllSprites
 	call GetHeadbuttTreeRelativeLocation
 	ld a, $20
@@ -51,7 +51,7 @@ ShakeHeadbuttTree: ; 8c80a
 	jr z, .done
 	dec [hl]
 	ld a, 36 * 4
-	ld [wc3b5], a
+	ld [wOAMRetentionSize], a
 	callba DoNextFrameForAllSprites
 	call DelayFrame
 	jr .loop
@@ -68,7 +68,7 @@ ShakeHeadbuttTree: ; 8c80a
 	call ByteFill
 	ld de, Font
 	ld hl, VTiles1
-	lb bc, BANK(Font), $c
+	lb bc, BANK(Font), 12
 	call Get1bpp
 	call ReplaceKrisSprite
 	ret
@@ -124,8 +124,8 @@ OWCutAnimation: ; 8c940
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .finish
-	ld a, $90
-	ld [wc3b5], a
+	ld a, 36 * 4
+	ld [wOAMRetentionSize], a
 	callab DoNextFrameForAllSprites
 	call OWCutJumptable
 	call DelayFrame
@@ -341,8 +341,8 @@ FlyFromAnim: ; 8caed
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .exit
-	ld a, $0
-	ld [wc3b5], a
+	ld a, 0 * 4
+	ld [wOAMRetentionSize], a
 	callab DoNextFrameForAllSprites
 	call Function8cbc8
 	call DelayFrame
@@ -379,8 +379,8 @@ FlyToAnim: ; 8cb33
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .exit
-	ld a, $0
-	ld [wc3b5], a
+	ld a, 0 * 4
+	ld [wOAMRetentionSize], a
 	callab DoNextFrameForAllSprites
 	call Function8cbc8
 	call DelayFrame

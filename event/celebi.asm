@@ -30,7 +30,7 @@ Special_CelebiShrineEvent: ; 4989a
 	inc d
 	push de
 	ld a, $90
-	ld [wc3b5], a
+	ld [wOAMRetentionSize], a
 	callba DoNextFrameForAllSprites
 	call Function49935
 	ld c, 2

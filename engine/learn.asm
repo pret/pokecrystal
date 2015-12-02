@@ -57,7 +57,7 @@ LearnMove: ; 6508
 	pop hl
 
 .learn
-	ld a, [wd262]
+	ld a, [wPutativeTMHMMove]
 	ld [hl], a
 	ld bc, MON_PP - MON_MOVES
 	add hl, bc

@@ -8528,26 +8528,26 @@ WobbleChances: ; f9ba
 KnowsMove: ; f9ea
 	ld a, MON_MOVES
 	call GetPartyParamLocation
-	ld a, [wd262]
+	ld a, [wPutativeTMHMMove]
 	ld b, a
 	ld c, NUM_MOVES
-.asm_f9f5
+.loop
 	ld a, [hli]
 	cp b
-	jr z, .asm_f9fe
+	jr z, .knows_move
 	dec c
-	jr nz, .asm_f9f5
+	jr nz, .loop
 	and a
 	ret
 
-.asm_f9fe
-	ld hl, UnknownText_0xfa06
+.knows_move
+	ld hl, .Text_knows
 	call PrintText
 	scf
 	ret
 ; fa06
 
-UnknownText_0xfa06: ; 0xfa06
+.Text_knows: ; 0xfa06
 	; knows @ .
 	text_jump UnknownText_0x1c5ea8
 	db "@"
@@ -10983,8 +10983,7 @@ AddMonMenuItem: ; 24e83
 	ret
 ; 24e99
 
-Function24e99: ; 24e99
-; BattleMonMenu
+BattleMonMenu: ; 24e99
 	ld hl, MenuDataHeader_0x24ed4
 	call CopyMenuDataHeader
 	xor a
@@ -10996,7 +10995,7 @@ Function24e99: ; 24e99
 	call CopyMenuData2
 	ld a, [wMenuData2Flags]
 	bit 7, a
-	jr z, .asm_24ed0
+	jr z, .set_carry
 	call Function1c10
 	ld hl, wcfa5
 	set 6, [hl]
@@ -11004,15 +11003,15 @@ Function24e99: ; 24e99
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	ld a, [hJoyPressed]
-	bit 1, a
-	jr z, .asm_24ed2
+	bit B_BUTTON_F, a
+	jr z, .clear_carry
 	ret z
 
-.asm_24ed0
+.set_carry
 	scf
 	ret
 
-.asm_24ed2
+.clear_carry
 	and a
 	ret
 ; 24ed4
@@ -12863,7 +12862,7 @@ Function2c7bf: ; 2c7bf (b:47bf)
 	jr c, .NotTMHM
 	call GetTMHMItemMove
 	ld a, [wCurTMHM]
-	ld [wd262], a
+	ld [wPutativeTMHMMove], a
 	call GetMoveName
 	call CopyName1
 	ld hl, UnknownText_0x2c8bf ; Booted up a TM
@@ -13206,7 +13205,7 @@ Function2c9e2: ; 2c9e2 (b:49e2)
 .okay
 	predef GetTMHMMove
 	ld a, [wd265]
-	ld [wd262], a
+	ld [wPutativeTMHMMove], a
 	call GetMoveName
 	pop hl
 	ld bc, $3
@@ -13270,7 +13269,7 @@ Function2ca95: ; 2ca95
 	add hl, bc
 	predef GetTMHMMove
 	ld a, [wd265]
-	ld [wd262], a
+	ld [wPutativeTMHMMove], a
 	call GetMoveName
 	push hl
 	call PlaceString
@@ -14410,7 +14409,7 @@ Special_MoveTutor: ; 4925b
 	ld [wItemAttributeParamBuffer], a
 	call Function492a5
 	ld [wd265], a
-	ld [wd262], a
+	ld [wPutativeTMHMMove], a
 	call GetMoveName
 	call CopyName1
 	callba Function2c7fb

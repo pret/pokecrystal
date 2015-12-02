@@ -463,19 +463,19 @@ wSpriteAnimationStructsEnd::
 wc3ac:: ds 8 ; c3ac
 wSpriteAnimCount::
 wc3b4:: ds 1
-wc3b5:: ds 1
+wOAMRetentionSize:: ds 1
 
 CurIcon:: ; c3b6
 	ds 1
 
 
 wc3b7:: ds 1
-wc3b8:: dw
-wc3ba:: ds 1
-wc3bb:: ds 1
-wc3bc:: ds 1
-wc3bd:: ds 1
-wc3be:: ds 1
+wc3b8:: ds 2
+wCurrAnimVTile:: ds 1
+wCurrAnimXCoord:: ds 1
+wCurrAnimYCoord:: ds 1
+wCurrAnimXOffset:: ds 1
+wCurrAnimYOffset:: ds 1
 wc3bf:: ds 1
 wc3c0:: ds 1
 wSpriteAnimsEnd::
@@ -1838,8 +1838,7 @@ wd13f:: ds 2
 PartyMenuActionText:: ; d141
 	ds 1
 
-wItemAttributeParamBuffer::
-wd142::
+wItemAttributeParamBuffer:: ; d142
 	ds 1
 
 CurPartyLevel:: ; d143
@@ -2155,7 +2154,7 @@ CurDamage:: ; d256
 wd25a:: ds 3
 wd25d:: ds 1
 wListMoves_MoveIndicesBuffer:: ds 4
-wd262:: ds 1
+wPutativeTMHMMove:: ds 1
 wd263:: ds 1
 wd264:: ds 1
 wFoundMatchingIDInParty::

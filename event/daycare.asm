@@ -660,7 +660,7 @@ Function16a66: ; 16a66
 	xor a
 	ld [Buffer1], a
 	predef FillMoves
-	callba Function170bf
+	callba InitEggMoves
 	ld hl, wEggMonID
 	ld a, [PlayerID]
 	ld [hli], a
