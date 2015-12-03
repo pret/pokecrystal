@@ -1,4 +1,4 @@
-Functione4579: ; e4579
+Copyright_GFPresents: ; e4579
 	ld de, MUSIC_NONE
 	call PlayMusic
 	call ClearBGPalettes
@@ -24,7 +24,7 @@ Functione4579: ; e4579
 	call DelayFrames
 	call ClearTileMap
 	callba GBCOnlyScreen
-	call Functione45e8
+	call .GetGFLogoGFX
 .joy_loop
 	call JoyTextDelay
 	ld a, [hJoyLast]
@@ -39,17 +39,17 @@ Functione4579: ; e4579
 	jr .joy_loop
 
 .pressed_button
-	call Functione465e
+	call .StopGamefreakAnim
 	scf
 	ret
 
 .finish
-	call Functione465e
+	call .StopGamefreakAnim
 	and a
 	ret
 ; e45e8
 
-Functione45e8: ; e45e8
+.GetGFLogoGFX: ; e45e8
 	ld de, GameFreakLogo
 	ld hl, VTiles2
 	lb bc, BANK(GameFreakLogo), $1c
@@ -106,7 +106,7 @@ Functione45e8: ; e45e8
 	ret
 ; e465e
 
-Functione465e: ; e465e
+.StopGamefreakAnim: ; e465e
 	callba ClearSpriteAnims
 	call ClearTileMap
 	call ClearSprites
@@ -380,7 +380,7 @@ CrystalIntro: ; e48ac
 	push af
 	ld a, [hVBlank]
 	push af
-	call Functione4901
+	call .InitRAMAddrs
 .loop: ; e48bc
 	call JoyTextDelay
 	ld a, [hJoyLast]
@@ -418,7 +418,7 @@ CrystalIntro: ; e48ac
 	ret
 ; e4901
 
-Functione4901: ; e4901
+.InitRAMAddrs: ; e4901
 	xor a
 	ld [hVBlank], a
 	ld a, $1

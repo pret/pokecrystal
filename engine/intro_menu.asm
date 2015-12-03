@@ -1010,8 +1010,8 @@ Intro_PlacePlayerSprite: ; 61cd
 ; 620b
 
 
-Function620b: ; 620b
-	callab Functione4579
+CrystalIntroSequence: ; 620b
+	callab Copyright_GFPresents
 	jr c, StartTitleScreen
 	callba CrystalIntro
 
@@ -1068,8 +1068,8 @@ endr
 .jumptable
 	dw _MainMenu
 	dw Function6389
-	dw Function620b
-	dw Function620b
+	dw CrystalIntroSequence
+	dw CrystalIntroSequence
 	dw ResetClock
 ; 6274
 
@@ -1423,5 +1423,5 @@ GameInit:: ; 642e
 	ld a, $90
 	ld [hWY], a
 	call WaitBGMap
-	jp Function620b
+	jp CrystalIntroSequence
 ; 6454
