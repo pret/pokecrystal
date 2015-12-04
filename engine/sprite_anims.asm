@@ -192,7 +192,7 @@ endr
 	ld a, [hl]
 	add $3
 	ld [hl], a
-	call .ApplySineWaveY
+	call .Sprites_Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -211,7 +211,7 @@ endr
 	inc a
 	ld [hl], a
 	ld d, $2
-	call .ApplySineWaveY
+	call .Sprites_Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -252,14 +252,14 @@ endr
 	ld a, [hl]
 	push af
 	push de
-	call .ApplySineWaveY
+	call .Sprites_Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call .ApplySineWaveX
+	call .Sprites_Cosine
 
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
@@ -297,14 +297,14 @@ endr
 	ld a, [hl]
 	push af
 	push de
-	call .ApplySineWaveY
+	call .Sprites_Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call .ApplySineWaveX
+	call .Sprites_Cosine
 
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
@@ -399,7 +399,7 @@ endr
 .asm_8d462
 	ld a, e
 	ld d, $20
-	call .ApplySineWaveY
+	call .Sprites_Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -470,7 +470,7 @@ endr
 	jr c, .asm_8d4cd
 	dec [hl]
 	ld d, $28
-	call .ApplySineWaveY
+	call .Sprites_Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -509,7 +509,7 @@ endr
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
-	call ApplySineWaveY
+	call Sprites_Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -590,7 +590,7 @@ endr
 
 	push af
 	push de
-	call .ApplySineWaveY
+	call .Sprites_Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -598,7 +598,7 @@ endr
 
 	pop de
 	pop af
-	call .ApplySineWaveX
+	call .Sprites_Cosine
 
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
@@ -638,14 +638,14 @@ rept 3
 endr
 	push af
 	push de
-	call .ApplySineWaveY
+	call .Sprites_Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call .ApplySineWaveX
+	call .Sprites_Cosine
 
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
@@ -685,7 +685,7 @@ endr
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	call .ApplySineWaveX
+	call .Sprites_Cosine
 
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
@@ -711,7 +711,7 @@ endr
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	call .ApplySineWaveX
+	call .Sprites_Cosine
 
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
@@ -747,7 +747,7 @@ endr
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	call .ApplySineWaveX
+	call .Sprites_Cosine
 
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
@@ -780,7 +780,7 @@ endr
 	xor $ff
 	inc a
 	ld d, $20
-	call .ApplySineWaveY
+	call .Sprites_Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -800,7 +800,7 @@ endr
 	xor $ff
 	inc a
 	ld d, $20
-	call .ApplySineWaveY
+	call .Sprites_Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -821,14 +821,14 @@ endr
 	ld a, [hl]
 	push af
 	push de
-	call .ApplySineWaveY
+	call .Sprites_Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call .ApplySineWaveX
+	call .Sprites_Cosine
 
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
@@ -885,11 +885,11 @@ endr
 	ret
 ; 8d6de
 
-.ApplySineWaveY: ; 8d6de (23:56de)
-	call ApplySineWaveY
+.Sprites_Sine: ; 8d6de (23:56de)
+	call Sprites_Sine
 	ret
 
-.ApplySineWaveX: ; 8d6e2 (23:56e2)
-	call ApplySineWaveX
+.Sprites_Cosine: ; 8d6e2 (23:56e2)
+	call Sprites_Cosine
 	ret
 ; 8d6e6 (23:56e6)

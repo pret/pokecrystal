@@ -1,12 +1,12 @@
 ; BG effects for use in battle animations.
 
-Functionc8000: ; c8000 (32:4000)
+ExecuteBGEffects: ; c8000 (32:4000)
 	ld hl, ActiveBGEffects
 	ld e, $5
-.asm_c8005
+.loop
 	ld a, [hl]
 	and a
-	jr z, .asm_c8012
+	jr z, .next
 	ld c, l
 	ld b, h
 	push hl
@@ -14,27 +14,28 @@ Functionc8000: ; c8000 (32:4000)
 	call Functionc804a
 	pop de
 	pop hl
-.asm_c8012
+.next
 	ld bc, $4
 	add hl, bc
 	dec e
-	jr nz, .asm_c8005
+	jr nz, .loop
 	ret
 
-Functionc801a: ; c801a (32:401a)
+QueueBGEffect: ; c801a (32:401a)
 	ld hl, ActiveBGEffects
 	ld e, $5
-.asm_c801f
+.loop
 	ld a, [hl]
 	and a
-	jr z, .asm_c802c
+	jr z, .load
 	ld bc, $4
 	add hl, bc
 	dec e
-	jr nz, .asm_c801f
+	jr nz, .loop
 	scf
 	ret
-.asm_c802c
+
+.load
 	ld c, l
 	ld b, h
 	ld hl, $0
@@ -70,63 +71,63 @@ endr
 	jp [hl]
 
 BattleBGEffects: ; c805a (32:405a)
-	dw BattleBGEffect_0
-	dw Functionc80eb
-	dw Functionc80f3
-	dw Functionc812d
-	dw Functionc8141
-	dw Functionc8155
-	dw Functionc8171
-	dw Functionc818b
-	dw Functionc81a5
-	dw Functionc81b3
-	dw Functionc81ea
-	dw Functionc837b
-	dw Functionc83a8
-	dw Functionc8545
-	dw Functionc8599
-	dw Functionc863f
-	dw Functionc8662
-	dw Functionc8214
-	dw Functionc8281
-	dw Functionc8689
-	dw Functionc8709
-	dw Functionc8be8
-	dw Functionc8bf2
-	dw Functionc8bfd
-	dw Functionc8c08
-	dw Functionc8c14
-	dw Functionc8c20
-	dw Functionc8c30
-	dw Functionc8b00
-	dw Functionc8c3c
-	dw Functionc8c55
-	dw Functionc8cf9
-	dw Functionc8d02
-	dw Functionc8761
-	dw Functionc89ee
-	dw Functionc87a7
-	dw Functionc8805
-	dw Functionc8837
-	dw Functionc892a
-	dw Functionc82f5
-	dw Functionc89b5
-	dw Functionc8607
-	dw Functionc8a3a
-	dw Functionc8acc
-	dw Functionc8964
-	dw Functionc88e7
-	dw Functionc8ce1
-	dw Functionc8919
-	dw Functionc85c2
-	dw Functionc85ce
-	dw Functionc8603
-	dw Functionc8c61
-	dw Functionc8ca2
-	dw Functionc8d3a
+	dw BattleBGEffect_End
+	dw BattleBGEffect_FlashInverted
+	dw BattleBGEffect_FlashWhite
+	dw BattleBGEffect_WhiteHues
+	dw BattleBGEffect_BlackHues
+	dw BattleBGEffect_AlternateHues
+	dw BattleBGEffect_06
+	dw BattleBGEffect_07
+	dw BattleBGEffect_08
+	dw BattleBGEffect_HideMon
+	dw BattleBGEffect_ShowMon
+	dw BattleBGEffect_EnterMon
+	dw BattleBGEffect_ReturnMon
+	dw BattleBGEffect_Surf
+	dw BattleBGEffect_Whirlpool
+	dw BattleBGEffect_Teleport
+	dw BattleBGEffect_NightShade
+	dw BattleBGEffect_FeetFollow
+	dw BattleBGEffect_HeadFollow
+	dw BattleBGEffect_DoubleTeam
+	dw BattleBGEffect_AcidArmor
+	dw BattleBGEffect_RapidFlash
+	dw BattleBGEffect_16
+	dw BattleBGEffect_17
+	dw BattleBGEffect_18
+	dw BattleBGEffect_19
+	dw BattleBGEffect_1a
+	dw BattleBGEffect_1b
+	dw BattleBGEffect_1c
+	dw BattleBGEffect_1d
+	dw BattleBGEffect_1e
+	dw BattleBGEffect_1f
+	dw BattleBGEffect_20
+	dw BattleBGEffect_21
+	dw BattleBGEffect_22
+	dw BattleBGEffect_23
+	dw BattleBGEffect_Tackle
+	dw BattleBGEffect_25
+	dw BattleBGEffect_26
+	dw BattleBGEffect_27
+	dw BattleBGEffect_28
+	dw BattleBGEffect_Psychic
+	dw BattleBGEffect_2a
+	dw BattleBGEffect_2b
+	dw BattleBGEffect_2c
+	dw BattleBGEffect_2d
+	dw BattleBGEffect_2e
+	dw BattleBGEffect_2f
+	dw BattleBGEffect_30
+	dw BattleBGEffect_31
+	dw BattleBGEffect_32
+	dw BattleBGEffect_VibrateMon
+	dw BattleBGEffect_WobbleMon
+	dw BattleBGEffect_35
 
 
-BattleBGEffect_0: ; c80c6 (32:40c6)
+BattleBGEffect_End: ; c80c6 (32:40c6)
 	call EndBattleBGEffect
 	ret
 
@@ -142,7 +143,7 @@ Functionc80ca: ; c80ca (32:40ca)
 	ld l, a
 	ret
 
-Functionc80d7: ; c80d7 (32:40d7)
+BattleBGEffects_AnonJumptable: ; c80d7 (32:40d7)
 	pop de
 	ld hl, $1
 	add hl, bc
@@ -161,9 +162,10 @@ Functionc80e5: ; c80e5 (32:40e5)
 	inc [hl]
 	ret
 
-Functionc80eb: ; c80eb (32:40eb)
+BattleBGEffect_FlashInverted: ; c80eb (32:40eb)
 	ld de, .inverted
 	jp Functionc80fb
+
 ; c80f1 (32:40f1)
 
 .inverted
@@ -171,9 +173,10 @@ Functionc80eb: ; c80eb (32:40eb)
 	db %00011011 ; 0123
 ; c80f3
 
-Functionc80f3: ; c80f3 (32:40f3)
+BattleBGEffect_FlashWhite: ; c80f3 (32:40f3)
 	ld de, .white
 	jp Functionc80fb
+
 ; c80f9 (32:40f9)
 
 .white
@@ -218,53 +221,59 @@ Functionc80fb: ; c80fb (32:40fb)
 	ld [wcfc7], a
 	ret
 
-Functionc812d: ; c812d (32:412d)
+BattleBGEffect_WhiteHues: ; c812d (32:412d)
 	ld de, Unknown_c813d
 	call Functionc8d57
 	jr c, .asm_c8139
 	ld [wcfc7], a
 	ret
+
 .asm_c8139
 	call EndBattleBGEffect
 	ret
+
 ; c813d (32:413d)
 
 Unknown_c813d:
 	db $e4, $e0, $d0, $ff
 ; c8141
 
-Functionc8141: ; c8141 (32:4141)
+BattleBGEffect_BlackHues: ; c8141 (32:4141)
 	ld de, Unknown_c8151
 	call Functionc8d57
 	jr c, .asm_c814d
 	ld [wcfc7], a
 	ret
+
 .asm_c814d
 	call EndBattleBGEffect
 	ret
+
 ; c8151 (32:4151)
 
 Unknown_c8151:
 	db $e4, $f4, $f8, $ff
 ; c8155
 
-Functionc8155: ; c8155 (32:4155)
+BattleBGEffect_AlternateHues: ; c8155 (32:4155)
 	ld de, Unknown_c8168
 	call Functionc8d57
 	jr c, .asm_c8164
 	ld [wcfc7], a
 	ld [wcfc9], a
 	ret
+
 .asm_c8164
 	call EndBattleBGEffect
 	ret
+
 ; c8168 (32:4168)
 
 Unknown_c8168:
 	db $e4, $f8, $fc, $f8, $e4, $90, $40, $90, $fe
 ; c8171
 
-Functionc8171: ; c8171 (32:4171)
+BattleBGEffect_06: ; c8171 (32:4171)
 	call Functionc9059
 	jr nz, .asm_c817b
 	ld de, Unknown_c8185
@@ -275,6 +284,7 @@ Functionc8171: ; c8171 (32:4171)
 	call Functionc8d57
 	ld [wcfc8], a
 	ret
+
 ; c8185 (32:4185)
 
 Unknown_c8185:
@@ -285,7 +295,7 @@ Unknown_c8188:
 	db $f0, $c0, $fe
 ; c818b
 
-Functionc818b: ; c818b (32:418b)
+BattleBGEffect_07: ; c818b (32:418b)
 	call Functionc9059
 	jr nz, .asm_c8195
 	ld de, Unknown_c819f
@@ -296,6 +306,7 @@ Functionc818b: ; c818b (32:418b)
 	call Functionc8d57
 	ld [wcfc8], a
 	ret
+
 ; c819f (32:419f)
 
 Unknown_c819f:
@@ -306,21 +317,21 @@ Unknown_c81a2:
 	db $f0, $cc, $fe
 ; c81a5
 
-Functionc81a5: ; c81a5 (32:41a5)
+BattleBGEffect_08: ; c81a5 (32:41a5)
 	ld de, Unknown_c81af
 	call Functionc8d57
 	ld [wcfc7], a
 	ret
+
 ; c81af (32:41af)
 
 Unknown_c81af:
 	db $1b, $63, $87, $fe
 ; c81b3
 
-Functionc81b3: ; c81b3 (32:41b3)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c81b6: ; c81b6 (32:41b6)
+BattleBGEffect_HideMon: ; c81b3 (32:41b3)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc81c0
 	dw Functionc80e5
 	dw Functionc80e5
@@ -332,14 +343,14 @@ Functionc81c0: ; c81c0 (32:41c0)
 	call Functionc80e5
 	push bc
 	call Functionc9038
-	jr nz, .asm_c81d1
+	jr nz, .six_by_six
 	hlcoord 12, 0
-	ld bc, $707
-	jr .asm_c81d7
-.asm_c81d1
+	lb bc, 7, 7
+	jr .got_dims
+.six_by_six
 	hlcoord 2, 6
 	lb bc, 6, 6
-.asm_c81d7
+.got_dims
 	call ClearBox
 	pop bc
 	xor a
@@ -354,25 +365,27 @@ Functionc81e3: ; c81e3 (32:41e3)
 	call EndBattleBGEffect
 	ret
 
-Functionc81ea: ; c81ea (32:41ea)
+BattleBGEffect_ShowMon: ; c81ea (32:41ea)
 	call Functionc9042
 	jr z, .asm_c81f3
 	call EndBattleBGEffect
 	ret
+
 .asm_c81f3
 	call Functionc9038
-	jr nz, .asm_c81fd
+	jr nz, .six_by_six
 	ld de, Unknown_c8210
-	jr .asm_c8200
-.asm_c81fd
+	jr .got_dims
+.six_by_six
 	ld de, Unknown_c820c
-.asm_c8200
+.got_dims
 	ld a, e
 	ld [BattleAnimTemps + 1], a
 	ld a, d
 	ld [BattleAnimTemps + 2], a
 	call Functionc83ed
 	ret
+
 ; c820c (32:420c)
 
 Unknown_c820c:
@@ -385,10 +398,9 @@ Unknown_c8210:
 	db $ff
 ; c8214
 
-Functionc8214: ; c8214 (32:4214)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c8217: ; c8217 (32:4217)
+BattleBGEffect_FeetFollow: ; c8214 (32:4214)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc8223
 	dw Functionc825a
 	dw Functionc80e5
@@ -404,6 +416,7 @@ Functionc8223: ; c8223 (32:4223)
 	inc [hl]
 	call EndBattleBGEffect
 	ret
+
 .asm_c8230
 	call Functionc80e5
 	push bc
@@ -423,7 +436,7 @@ Functionc8223: ; c8223 (32:4223)
 	ld [BattleAnimTemps + 2], a
 	xor a
 	ld [BattleAnimTemps + 3], a
-	call Functionc82ee
+	call _QueueBattleAnimation
 	pop bc
 	ret
 
@@ -451,10 +464,9 @@ Functionc827a: ; c827a (32:427a)
 	call EndBattleBGEffect
 	ret
 
-Functionc8281: ; c8281 (32:4281)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c8284: ; c8284 (32:4284)
+BattleBGEffect_HeadFollow: ; c8281 (32:4281)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc8290
 	dw Functionc82c7
 	dw Functionc80e5
@@ -470,6 +482,7 @@ Functionc8290: ; c8290 (32:4290)
 	inc [hl]
 	call EndBattleBGEffect
 	ret
+
 .asm_c829d
 	call Functionc80e5
 	push bc
@@ -489,7 +502,7 @@ Functionc8290: ; c8290 (32:4290)
 	ld [BattleAnimTemps + 2], a
 	xor a
 	ld [BattleAnimTemps + 3], a
-	call Functionc82ee
+	call _QueueBattleAnimation
 	pop bc
 	ret
 
@@ -517,14 +530,13 @@ Functionc82e7: ; c82e7 (32:42e7)
 	call EndBattleBGEffect
 	ret
 
-Functionc82ee: ; c82ee (32:42ee)
-	callab Functioncc9a1
+_QueueBattleAnimation: ; c82ee (32:42ee)
+	callab QueueBattleAnimation
 	ret
 
-Functionc82f5: ; c82f5 (32:42f5)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c82f8: ; c82f8 (32:42f8)
+BattleBGEffect_27: ; c82f5 (32:42f5)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc8302
 	dw Functionc831d
 	dw Functionc80e5
@@ -616,11 +628,12 @@ Functionc8365: ; c8365 (32:4365)
 	add hl, bc
 	ld [hl], $1
 	ret
+
 .asm_c8377
 	call EndBattleBGEffect
 	ret
 
-Functionc837b: ; c837b (32:437b)
+BattleBGEffect_EnterMon: ; c837b (32:437b)
 	call Functionc9038
 	jr nz, .asm_c8385
 	ld de, Unknown_c839e
@@ -634,6 +647,7 @@ Functionc837b: ; c837b (32:437b)
 	ld [BattleAnimTemps + 2], a
 	call Functionc83ed
 	ret
+
 ; c8394 (32:4394)
 
 Unknown_c8394:
@@ -650,7 +664,7 @@ Unknown_c839e:
 	db $ff
 ; c83a8
 
-Functionc83a8: ; c83a8 (32:43a8)
+BattleBGEffect_ReturnMon: ; c83a8 (32:43a8)
 	call Functionc9038
 	jr nz, .asm_c83b2
 	ld de, Unknown_c83d7
@@ -664,6 +678,7 @@ Functionc83a8: ; c83a8 (32:43a8)
 	ld [BattleAnimTemps + 2], a
 	call Functionc83ed
 	ret
+
 ; c83c1 (32:43c1)
 
 Unknown_c83c1:
@@ -689,9 +704,8 @@ Unknown_c83d7:
 ; c83ed
 
 Functionc83ed: ; c83ed (32:43ed)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c83f0: ; c83f0 (32:43f0)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc83fa
 	dw Functionc80e5
 	dw Functionc80e5
@@ -725,6 +739,7 @@ endr
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
+
 .asm_c8425
 	call Functionc843b
 	jr Functionc83fa
@@ -822,6 +837,7 @@ endr
 	jr nz, .asm_c8484
 	pop bc
 	ret
+
 ; c849c (32:449c)
 
 Unknown_c849c: ; c849c
@@ -887,10 +903,9 @@ Unknown_c853c: ; c853c
 	db $06, $1b, $30
 ; c8545
 
-Functionc8545: ; c8545 (32:4545)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c8548: ; c8548 (32:4548)
+BattleBGEffect_Surf: ; c8545 (32:4545)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc854e
 	dw Functionc8557
 	dw Functionc8561
@@ -954,10 +969,9 @@ Functionc8565: ; c8565 (32:4565)
 	jr c, .asm_c8580
 	ret
 
-Functionc8599: ; c8599 (32:4599)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c859c: ; c859c (32:459c)
+BattleBGEffect_Whirlpool: ; c8599 (32:4599)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc85a2
 	dw Functionc85ba
 	dw Functionc85be
@@ -984,14 +998,14 @@ Functionc85be: ; c85be (32:45be)
 	call Functionc8f0a
 	ret
 
-Functionc85c2: ; c85c2 (32:45c2)
+BattleBGEffect_30: ; c85c2 (32:45c2)
 	call Functionc8eca
 	ld a, $42
 	call Functionc8ede
 	call EndBattleBGEffect
 	ret
 
-Functionc85ce: ; c85ce (32:45ce)
+BattleBGEffect_31: ; c85ce (32:45ce)
 	ld hl, $3
 	add hl, bc
 	ld a, [hl]
@@ -1020,19 +1034,19 @@ rept 2
 endr
 	call Functionc8f9a
 	ret
+
 .asm_c85fc
 	call Functionc8eca
 	call EndBattleBGEffect
 	ret
 
-Functionc8603: ; c8603 (32:4603)
+BattleBGEffect_32: ; c8603 (32:4603)
 	call Functionc8f0a
 	ret
 
-Functionc8607: ; c8607 (32:4607)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c860a: ; c860a (32:460a)
+BattleBGEffect_Psychic: ; c8607 (32:4607)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc8610
 	dw Functionc862e
 	dw Functionc863b
@@ -1068,10 +1082,9 @@ Functionc863b: ; c863b (32:463b)
 	call Functionc8f0a
 	ret
 
-Functionc863f: ; c863f (32:463f)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c8642: ; c8642 (32:4642)
+BattleBGEffect_Teleport: ; c863f (32:463f)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc8648
 	dw Functionc865a
 	dw Functionc865e
@@ -1094,10 +1107,9 @@ Functionc865e: ; c865e (32:465e)
 	call Functionc8f0a
 	ret
 
-Functionc8662: ; c8662 (32:4662)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c8665: ; c8665 (32:4665)
+BattleBGEffect_NightShade: ; c8662 (32:4662)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc866b
 	dw Functionc8681
 	dw Functionc8685
@@ -1123,10 +1135,9 @@ Functionc8685: ; c8685 (32:4685)
 	call Functionc8f0a
 	ret
 
-Functionc8689: ; c8689 (32:4689)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c868c: ; c868c (32:468c)
+BattleBGEffect_DoubleTeam: ; c8689 (32:4689)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc8698
 	dw Functionc86af
 	dw Functionc86cf
@@ -1167,6 +1178,7 @@ Functionc86bd: ; c86bd (32:46bd)
 	dec [hl]
 	call Functionc86ea
 	ret
+
 asm_c86cb: ; c86cb (32:46cb)
 	call Functionc80e5
 	ret
@@ -1218,10 +1230,9 @@ Functionc8705: ; c8705 (32:4705)
 	call Functionc8f0a
 	ret
 
-Functionc8709: ; c8709 (32:4709)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c870c: ; c870c (32:470c)
+BattleBGEffect_AcidArmor: ; c8709 (32:4709)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc8712
 	dw Functionc8732
 	dw Functionc875d
@@ -1282,10 +1293,9 @@ Functionc875d: ; c875d (32:475d)
 	call Functionc8f0a
 	ret
 
-Functionc8761: ; c8761 (32:4761)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c8764: ; c8764 (32:4764)
+BattleBGEffect_21: ; c8761 (32:4761)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc876a
 	dw Functionc8781
 	dw Functionc87a3
@@ -1332,10 +1342,9 @@ Functionc87a3: ; c87a3 (32:47a3)
 	call Functionc8f0a
 	ret
 
-Functionc87a7: ; c87a7 (32:47a7)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c87aa: ; c87aa (32:47aa)
+BattleBGEffect_23: ; c87a7 (32:47a7)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc87b2
 	dw Functionc87cf
 	dw Functionc87de
@@ -1366,6 +1375,7 @@ Functionc87cf: ; c87cf (32:47cf)
 	jr z, .asm_c87d9
 	dec [hl]
 	ret
+
 .asm_c87d9
 	ld [hl], $10
 	call Functionc80e5
@@ -1401,10 +1411,9 @@ Functionc8801: ; c8801 (32:4801)
 	call Functionc8f0a
 	ret
 
-Functionc8805: ; c8805 (32:4805)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c8808: ; c8808 (32:4808)
+BattleBGEffect_Tackle: ; c8805 (32:4805)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc8810
 	dw Functionc8869
 	dw Functionc8888
@@ -1436,10 +1445,9 @@ Functionc8833: ; c8833 (32:4833)
 	call Functionc8f0a
 	ret
 
-Functionc8837: ; c8837 (32:4837)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c883a: ; c883a (32:483a)
+BattleBGEffect_25: ; c8837 (32:4837)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc8842
 	dw Functionc8869
 	dw Functionc8888
@@ -1523,6 +1531,7 @@ Functionc88a5: ; c88a5 (32:48a5)
 .asm_c88b3
 	pop af
 	jp Functionc900b
+
 .asm_c88b7
 	ld a, [hLCDStatCustom + 1]
 	ld d, a
@@ -1562,10 +1571,9 @@ Functionc88a5: ; c88a5 (32:48a5)
 	jr nz, .asm_c88e2
 	ret
 
-Functionc88e7: ; c88e7 (32:48e7)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c88ea: ; c88ea (32:48ea)
+BattleBGEffect_2d: ; c88e7 (32:48e7)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc88f6
 	dw Functionc8869
 	dw Functionc8888
@@ -1597,10 +1605,9 @@ Functionc88f6: ; c88f6 (32:48f6)
 	ld [hl], a
 	ret
 
-Functionc8919: ; c8919 (32:4919)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c891c: ; c891c (32:491c)
+BattleBGEffect_2f: ; c8919 (32:4919)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc88f6
 	dw Functionc8869
 	dw Functionc8929
@@ -1614,10 +1621,9 @@ Functionc8926: ; c8926 (32:4926)
 Functionc8929: ; c8929 (32:4929)
 	ret
 
-Functionc892a: ; c892a (32:492a)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c892d: ; c892d (32:492d)
+BattleBGEffect_26: ; c892a (32:492a)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc8933
 	dw Functionc894a
 	dw Functionc8960
@@ -1654,10 +1660,9 @@ Functionc8960: ; c8960 (32:4960)
 	call Functionc8f0a
 	ret
 
-Functionc8964: ; c8964 (32:4964)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c8967: ; c8967 (32:4967)
+BattleBGEffect_2c: ; c8964 (32:4964)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc896d
 	dw Functionc8985
 	dw Functionc89b1
@@ -1710,10 +1715,9 @@ Functionc89b1: ; c89b1 (32:49b1)
 	call Functionc8f0a
 	ret
 
-Functionc89b5: ; c89b5 (32:49b5)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c89b8: ; c89b8 (32:49b8)
+BattleBGEffect_28: ; c89b5 (32:49b5)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc89be
 	dw Functionc89ca
 	dw Functionc89da
@@ -1749,14 +1753,14 @@ Functionc89da: ; c89da (32:49da)
 	ld e, $4
 	call Functionc8f2e
 	ret
+
 .asm_c89ea
 	call Functionc8f0a
 	ret
 
-Functionc89ee: ; c89ee (32:49ee)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c89f1: ; c89f1 (32:49f1)
+BattleBGEffect_22: ; c89ee (32:49ee)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc89f7
 	dw Functionc8a14
 	dw Functionc8a36
@@ -1806,10 +1810,9 @@ Functionc8a36: ; c8a36 (32:4a36)
 	call Functionc8f0a
 	ret
 
-Functionc8a3a: ; c8a3a (32:4a3a)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c8a3d: ; c8a3d (32:4a3d)
+BattleBGEffect_2a: ; c8a3a (32:4a3a)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc8a49
 	dw Functionc8a6f
 	dw Functionc8a70
@@ -1850,6 +1853,7 @@ Functionc8a70: ; c8a70 (32:4a70)
 	jr nc, .asm_c8a79
 	call Functionc8a9a
 	ret
+
 .asm_c8a79
 	ld hl, $3
 	add hl, bc
@@ -1869,6 +1873,7 @@ Functionc8a88: ; c8a88 (32:4a88)
 	ld l, a
 	ld [hl], e
 	ret
+
 .asm_c8a96
 	call Functionc80e5
 	ret
@@ -1909,16 +1914,16 @@ Functionc8ab0: ; c8ab0 (32:4ab0)
 	ld a, [hl]
 	cp $ff
 	ret
+
 ; c8ac7 (32:4ac7)
 
 Unknown_c8ac7:
 	db $00, $40, $90, $e4, $ff
 ; c8acc
 
-Functionc8acc: ; c8acc (32:4acc)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c8acf: ; c8acf (32:4acf)
+BattleBGEffect_2b: ; c8acc (32:4acc)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc8ad3
 	dw Functionc8ae5
 
@@ -1948,17 +1953,17 @@ Functionc8ae5: ; c8ae5 (32:4ae5)
 	ld e, a
 	call Functionc8f2e
 	ret
+
 .asm_c8afc
 	call Functionc8f0a
 	ret
 
-Functionc8b00: ; c8b00 (32:4b00)
+BattleBGEffect_1c: ; c8b00 (32:4b00)
 	ld a, [hCGB]
 	and a
 	jr nz, asm_c8b7a
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c8b08: ; c8b08 (32:4b08)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc8b0e
 	dw Functionc8b22
 	dw Functionc8b60
@@ -2036,10 +2041,12 @@ Functionc8b6c: ; c8b6c (32:4b6c)
 	dec c
 	jr nz, .asm_c8b74
 	ret
+
 asm_c8b7a: ; c8b7a (32:4b7a)
 	ld de, Jumptable_c8b81
 	call Functionc80ca
 	jp [hl]
+
 ; c8b81 (32:4b81)
 
 Jumptable_c8b81: ; c8b81
@@ -2050,14 +2057,15 @@ Jumptable_c8b81: ; c8b81
 
 Functionc8b87: ; c8b87
 	call Functionc80e5
-	ld hl, $0003
+	ld hl, $3
 	add hl, bc
 	ld [hl], $0
 	ret
+
 ; c8b91
 
 Functionc8b91: ; c8b91
-	ld hl, $0003
+	ld hl, $3
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
@@ -2093,6 +2101,7 @@ Functionc8b91: ; c8b91
 	ld a, [hl]
 	call Functionc8e7f
 	ret
+
 ; c8bca
 
 Functionc8bca: ; c8bca
@@ -2102,6 +2111,7 @@ Functionc8bca: ; c8bca
 	call Functionc8e7f
 	call EndBattleBGEffect
 	ret
+
 ; c8bd8
 
 Unknown_c8bd8: ; c8bd8
@@ -2118,100 +2128,108 @@ Unknown_c8be0: ; c8be0
 	db $90, $f8
 ; c8be8
 
-Functionc8be8: ; c8be8 (32:4be8)
+BattleBGEffect_RapidFlash: ; c8be8 (32:4be8)
 	ld de, Unknown_c8bef
 	call Functionc8d77
 	ret
+
 ; c8bef (32:4bef)
 
 Unknown_c8bef: ; c8bef
 	db $e4, $6c, $fe
 ; c8bf2
 
-Functionc8bf2: ; c8bf2 (32:4bf2)
+BattleBGEffect_16: ; c8bf2 (32:4bf2)
 	ld de, Unknown_c8bf9
 	call Functionc8d77
 	ret
+
 ; c8bf9 (32:4bf9)
 
 Unknown_c8bf9: ; c8bf9
 	db $e4, $90, $40, $ff
 ; c8bfd
 
-Functionc8bfd: ; c8bfd (32:4bfd)
+BattleBGEffect_17: ; c8bfd (32:4bfd)
 	ld de, Unknown_c8c04
 	call Functionc8d77
 	ret
+
 ; c8c04 (32:4c04)
 
 Unknown_c8c04: ; c8c04
 	db $e4, $f8, $fc, $ff
 ; c8c08
 
-Functionc8c08: ; c8c08 (32:4c08)
+BattleBGEffect_18: ; c8c08 (32:4c08)
 	ld de, Unknown_c8c0f
 	call Functionc8d77
 	ret
+
 ; c8c0f (32:4c0f)
 
 Unknown_c8c0f: ; c8c0f
 	db $e4, $90, $40, $90, $fe
 ; c8c14
 
-Functionc8c14: ; c8c14 (32:4c14)
+BattleBGEffect_19: ; c8c14 (32:4c14)
 	ld de, Unknown_c8c1b
 	call Functionc8d77
 	ret
+
 ; c8c1b (32:4c1b)
 
 Unknown_c8c1b: ; c8c1b
 	db $e4, $f8, $fc, $f8, $fe
 ; c8c20
 
-Functionc8c20: ; c8c20 (32:4c20)
+BattleBGEffect_1a: ; c8c20 (32:4c20)
 	ld de, Unknown_c8c27
 	call Functionc8d77
 	ret
+
 ; c8c27 (32:4c27)
 
 Unknown_c8c27: ; c8c27
 	db $e4, $f8, $fc, $f8, $e4, $90, $40, $90, $fe
 ; c8c30
 
-Functionc8c30: ; c8c30 (32:4c30)
+BattleBGEffect_1b: ; c8c30 (32:4c30)
 	ld de, Unknown_c8c37
 	call Functionc8d77
 	ret
+
 ; c8c37 (32:4c37)
 
 Unknown_c8c37:
 	db $e4, $fc, $e4, $00, $fe
 ; c8c3c
 
-Functionc8c3c: ; c8c3c (32:4c3c)
+BattleBGEffect_1d: ; c8c3c (32:4c3c)
 	ld de, Unknown_c8c43
 	call Functionc8d77
 	ret
+
 ; c8c43 (32:4c43)
 
 Unknown_c8c43:
 	db $e4, $90, $40, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $40, $90, $e4, $ff
 ; c8c55
 
-Functionc8c55: ; c8c55 (32:4c55)
+BattleBGEffect_1e: ; c8c55 (32:4c55)
 	ld de, Unknown_c8c5c
 	call Functionc8d77
 	ret
+
 ; c8c5c (32:4c5c)
 
 Unknown_c8c5c:
 	db $00, $40, $90, $e4, $ff
 ; c8c61
 
-Functionc8c61: ; c8c61 (32:4c61)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c8c64: ; c8c64 (32:4c64)
+BattleBGEffect_VibrateMon: ; c8c61 (32:4c61)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc8c68
 	dw Functionc8c85
 
@@ -2249,14 +2267,14 @@ Functionc8c85: ; c8c85 (32:4c85)
 	ld [hl], a
 	call Functionc900b
 	ret
+
 .asm_c8c9e
 	call Functionc8f0a
 	ret
 
-Functionc8ca2: ; c8ca2 (32:4ca2)
-	call Functionc80d7 ;  ;  ; call does not return
-
-Jumptable_c8ca5: ; c8ca5 (32:4ca5)
+BattleBGEffect_WobbleMon: ; c8ca2 (32:4ca2)
+	call BattleBGEffects_AnonJumptable
+.anon_jumptable
 	dw Functionc8cab
 	dw Functionc8cc3
 	dw Functionc8cdd
@@ -2296,7 +2314,7 @@ Functionc8cdd: ; c8cdd (32:4cdd)
 	call Functionc8f0a
 	ret
 
-Functionc8ce1: ; c8ce1 (32:4ce1)
+BattleBGEffect_2e: ; c8ce1 (32:4ce1)
 	call Functionc8d0b
 	jr c, .asm_c8cea
 	bit 7, a
@@ -2313,7 +2331,7 @@ Functionc8ce1: ; c8ce1 (32:4ce1)
 	ld [OTPartyMon3SpclAtk], a
 	ret
 
-Functionc8cf9: ; c8cf9 (32:4cf9)
+BattleBGEffect_1f: ; c8cf9 (32:4cf9)
 	call Functionc8d0b
 	jr nc, .asm_c8cff
 	xor a
@@ -2321,7 +2339,7 @@ Functionc8cf9: ; c8cf9 (32:4cf9)
 	ld [hSCX], a
 	ret
 
-Functionc8d02: ; c8d02 (32:4d02)
+BattleBGEffect_20: ; c8d02 (32:4d02)
 	call Functionc8d0b
 	jr nc, .asm_c8d08
 	xor a
@@ -2338,6 +2356,7 @@ Functionc8d0b: ; c8d0b (32:4d0b)
 	call EndBattleBGEffect
 	scf
 	ret
+
 .asm_c8d18
 	dec [hl]
 	ld hl, $3
@@ -2351,6 +2370,7 @@ Functionc8d0b: ; c8d0b (32:4d0b)
 	ld a, [hl]
 	and a
 	ret
+
 .asm_c8d2a
 	ld a, [hl]
 	swap a
@@ -2365,7 +2385,7 @@ Functionc8d0b: ; c8d0b (32:4d0b)
 	and a
 	ret
 
-Functionc8d3a: ; c8d3a (32:4d3a)
+BattleBGEffect_35: ; c8d3a (32:4d3a)
 	ld hl, $3
 	add hl, bc
 	ld a, [hl]
@@ -2380,6 +2400,7 @@ Functionc8d3a: ; c8d3a (32:4d3a)
 	add $2
 	ld [hl], a
 	ret
+
 .asm_c8d53
 	xor a
 	ld [hSCX], a
@@ -2451,6 +2472,7 @@ Functionc8daa: ; c8daa (32:4daa)
 	jr z, .asm_c8db5
 	dec [hl]
 	ret
+
 .asm_c8db5
 	ld a, [hl]
 	swap a
@@ -2460,6 +2482,7 @@ Functionc8daa: ; c8daa (32:4daa)
 	jr c, .asm_c8dc3
 	call Functionc900b
 	ret
+
 .asm_c8dc3
 	ld hl, $3
 	add hl, bc
@@ -2472,6 +2495,7 @@ Functionc8dc9: ; c8dc9 (32:4dc9)
 	ld [rBGP], a
 	call EndBattleBGEffect
 	ret
+
 asm_c8dd4: ; c8dd4 (32:4dd4)
 	push de
 	ld de, Jumptable_c8ddd
@@ -2511,6 +2535,7 @@ Functionc8e02: ; c8e02 (32:4e02)
 	jr z, .asm_c8e0d
 	dec [hl]
 	ret
+
 .asm_c8e0d
 	ld a, [hl]
 	swap a
@@ -2520,6 +2545,7 @@ Functionc8e02: ; c8e02 (32:4e02)
 	jr c, .asm_c8e1b
 	call Functionc8e52
 	ret
+
 .asm_c8e1b
 	ld hl, $3
 	add hl, bc
@@ -2540,6 +2566,7 @@ Functionc8e2a: ; c8e2a (32:4e2a)
 	jr z, .asm_c8e35
 	dec [hl]
 	ret
+
 .asm_c8e35
 	ld a, [hl]
 	swap a
@@ -2549,6 +2576,7 @@ Functionc8e2a: ; c8e2a (32:4e2a)
 	jr c, .asm_c8e43
 	call Functionc8e7f
 	ret
+
 .asm_c8e43
 	ld hl, $3
 	add hl, bc
@@ -2637,6 +2665,7 @@ Functionc8eb2: ; c8eb2 (32:4eb2)
 .asm_c8ec6
 	and a
 	ret
+
 .asm_c8ec8
 	scf
 	ret
@@ -2917,6 +2946,7 @@ Functionc9042: ; c9042 (32:5042)
 	ld a, [EnemySubStatus3] ; EnemySubStatus3
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret
+
 .asm_c9053
 	ld a, [PlayerSubStatus3] ; PlayerSubStatus3
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
@@ -2938,4 +2968,5 @@ Functionc9066: ; c9066 (32:5066)
 	callab Functionce76b
 	ld a, e
 	ret
+
 ; c906f (32:506f)

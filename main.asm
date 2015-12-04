@@ -2230,24 +2230,24 @@ _Sine:: ; 84d9
 	cp  %100000
 	jr nc, .negative
 
-	call Function84ef
+	call .ApplySineWave
 	ld a, h
 	ret
 
 .negative
 	and %011111
-	call Function84ef
+	call .ApplySineWave
 	ld a, h
 	xor -1
 	inc a
 	ret
 ; 84ef
 
-Function84ef: ; 84ef
+.ApplySineWave: ; 84ef
 	ld e, a
 	ld a, d
 	ld d, 0
-	ld hl, SineWave
+	ld hl, .sinewave
 rept 2
 	add hl, de
 endr
@@ -2269,7 +2269,7 @@ endr
 	ret
 ; 850b
 
-SineWave: ; 850b
+.sinewave: ; 850b
 ; A $20-word table representing a sine wave.
 ; 90 degrees is index $10 at a base amplitude of $100.
 	sine_wave $100

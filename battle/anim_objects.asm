@@ -1,20 +1,20 @@
 ; Objects used in battle animations.
 
-
-Functioncc9a1: ; cc9a1 (33:49a1)
-	ld hl, OTPartyMon3HP
-	ld e, $a
-.asm_cc9a6
+QueueBattleAnimation: ; cc9a1 (33:49a1)
+	ld hl, ActiveAnimObjects
+	ld e, 10
+.loop
 	ld a, [hl]
 	and a
-	jr z, .asm_cc9b3
+	jr z, .done
 	ld bc, $18
 	add hl, bc
 	dec e
-	jr nz, .asm_cc9a6
+	jr nz, .loop
 	scf
 	ret
-.asm_cc9b3
+
+.done
 	ld c, l
 	ld b, h
 	ld hl, w5_d40e
@@ -22,14 +22,13 @@ Functioncc9a1: ; cc9a1 (33:49a1)
 	call Functioncc9c4
 	ret
 
-
 Functioncc9bd: ; cc9bd
-	ld hl, 0
+	ld hl, $0
 	add hl, bc
 	ld [hl], $0
 	ret
-; cc9c4
 
+; cc9c4
 
 Functioncc9c4: ; cc9c4 (33:49c4)
 	ld a, [BattleAnimTemps]
@@ -84,13 +83,12 @@ endr
 	ld [hl], a
 	ret
 
-
 Functioncca09: ; cca09
 	call Functionccaaa
 	call Functionce7d1
-	cp $fd
+	cp -3
 	jp z, .asm_ccaa5
-	cp $fc
+	cp -4
 	jp z, .asm_ccaa2
 	push af
 	ld hl, BattleAnimTemps
@@ -196,25 +194,26 @@ Functioncca09: ; cca09
 	pop bc
 	scf
 	ret
+
 ; ccaaa
 
 Functionccaaa: ; ccaaa
-	ld hl, $0001
+	ld hl, $1
 	add hl, bc
 	ld a, [hl]
 	and $80
 	ld [BattleAnimTemps], a
 	xor a
 	ld [BattleAnimTemps + 7], a
-	ld hl, $0005
+	ld hl, $5
 	add hl, bc
 	ld a, [hl]
 	ld [BattleAnimTemps + 8], a
-	ld hl, $0002
+	ld hl, $2
 	add hl, bc
 	ld a, [hl]
 	ld [BattleAnimTemps + 1], a
-	ld hl, $0006
+	ld hl, $6
 	add hl, bc
 	ld a, [hli]
 	ld [BattleAnimTemps + 2], a
@@ -229,13 +228,13 @@ Functionccaaa: ; ccaaa
 	ld a, [hBattleTurn]
 	and a
 	ret z
-	ld hl, $0001
+	ld hl, $1
 	add hl, bc
 	ld a, [hl]
 	ld [BattleAnimTemps], a
 	bit 0, [hl]
 	ret z
-	ld hl, $0007
+	ld hl, $7
 	add hl, bc
 	ld a, [hli]
 	ld d, a
@@ -280,8 +279,8 @@ Functionccaaa: ; ccaaa
 	inc a
 	ld [BattleAnimTemps + 5], a
 	ret
-; ccb31
 
+; ccb31
 
 Functionccb31: ; ccb31 (33:4b31)
 	push hl
@@ -298,6 +297,7 @@ Functionccb31: ; ccb31 (33:4b31)
 	jr nz, .asm_ccb39
 	xor a
 	jr .asm_ccb45
+
 .asm_ccb44
 	ld a, [hl]
 .asm_ccb45
@@ -305,16 +305,16 @@ Functionccb31: ; ccb31 (33:4b31)
 	pop hl
 	ret
 
-
-Functionccb48: ; ccb48
-	callab Functionc8000
+_ExecuteBGEffects: ; ccb48
+	callab ExecuteBGEffects
 	ret
+
 ; ccb4f
 
-
-Functionccb4f: ; ccb4f (33:4b4f)
-	callab Functionc801a
+_QueueBGEffect: ; ccb4f (33:4b4f)
+	callab QueueBGEffect
 	ret
+
 ; ccb56 (33:4b56)
 
 BattleAnimObjects: ; ccb56
@@ -508,13 +508,12 @@ BattleAnimObjects: ; ccb56
 	db $00, $00, $b8, $00, $01, $29
 ; ccfbe
 
-
 Functionccfbe: ; ccfbe
-	ld hl, $0004
+	ld hl, $4
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
-	ld hl, Jumptable_ccfce
+	ld hl, .Jumptable
 rept 2
 	add hl, de
 endr
@@ -522,10 +521,10 @@ endr
 	ld h, [hl]
 	ld l, a
 	jp [hl]
+
 ; ccfce
 
-
-Jumptable_ccfce: ; ccfce (33:4fce)
+.Jumptable: ; ccfce (33:4fce)
 	dw Functioncd06e
 	dw Functioncd12a
 	dw Functioncd146
@@ -607,14 +606,11 @@ Jumptable_ccfce: ; ccfce (33:4fce)
 	dw Functioncd58a
 	dw Functionce6bf
 
-
 Functioncd06e: ; cd06e (33:506e)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd071: ; cd071 (33:5071)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd078
 	dw Functioncd075
-
 
 Functioncd075: ; cd075 (33:5075)
 	call Functioncc9bd
@@ -646,7 +642,7 @@ Functioncd081: ; cd081 (33:5081)
 	ld hl, $b
 	add hl, bc
 	ld d, [hl]
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
@@ -661,6 +657,7 @@ Functioncd0a6: ; cd0a6 (33:50a6)
 	jr c, .asm_cd0b3
 	call Functioncc9bd
 	ret
+
 .asm_cd0b3
 	add $2
 	ld [hl], a
@@ -676,13 +673,13 @@ endr
 	ld d, $10
 	push af
 	push de
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	sra a
@@ -693,12 +690,10 @@ endr
 	ret
 
 Functioncd0e3: ; cd0e3 (33:50e3)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd0e6: ; cd0e6 (33:50e6)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd0ea
 	dw Functioncd106
-
 
 Functioncd0ea: ; cd0ea (33:50ea)
 	call Functionce72c
@@ -727,13 +722,13 @@ Functioncd106: ; cd106 (33:5106)
 	ld d, [hl]
 	push af
 	push de
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -743,12 +738,10 @@ Functioncd106: ; cd106 (33:5106)
 	ret
 
 Functioncd12a: ; cd12a (33:512a)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd12d: ; cd12d (33:512d)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd135
 	dw Functioncd131
-
 
 Functioncd131: ; cd131 (33:5131)
 	call Functioncc9bd
@@ -777,14 +770,14 @@ Functioncd146: ; cd146 (33:5146)
 	ld a, [hl]
 	call Functionce70a
 	ret
+
 .asm_cd158
 	call Functioncc9bd
 	ret
 
 Functioncd15c: ; cd15c (33:515c)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd15f: ; cd15f (33:515f)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd177
 	dw Functioncd17e
 	dw Functioncd1dc
@@ -797,7 +790,6 @@ Jumptable_cd15f: ; cd15f (33:515f)
 	dw Functioncd1dc
 	dw Functioncd1ee
 	dw Functioncd20e
-
 
 Functioncd177: ; cd177 (33:5177)
 	call Functioncd249
@@ -834,7 +826,7 @@ Functioncd1a7: ; cd1a7 (33:51a7)
 	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
@@ -881,7 +873,7 @@ Functioncd1ee: ; cd1ee (33:51ee)
 	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
@@ -902,13 +894,11 @@ Functioncd20e: ; cd20e (33:520e)
 	ret
 
 Functioncd212: ; cd212 (33:5212)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd215: ; cd215 (33:5215)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd21b
 	dw Functioncd222
 	dw Functioncd232
-
 
 Functioncd21b: ; cd21b (33:521b)
 	call Functioncd249
@@ -923,6 +913,7 @@ Functioncd222: ; cd222 (33:5222)
 	jr nc, .asm_cd22f
 	call Functioncd081
 	ret
+
 .asm_cd22f
 	call Functionce72c
 
@@ -940,6 +931,7 @@ rept 2
 	dec [hl]
 endr
 	ret
+
 .asm_cd245
 	call Functioncc9bd
 	ret
@@ -962,12 +954,14 @@ Functioncd249: ; cd249 (33:5249)
 	jr z, .asm_cd265
 	inc hl
 	jr .asm_cd25a
+
 .asm_cd265
 	ld a, [hl]
-	ld hl, $5
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld [hl], a
 	ret
+
 ; cd26c (33:526c)
 
 Unknown_cd26c: ; cd26c
@@ -986,15 +980,13 @@ Unknown_cd26c: ; cd26c
 ; cd284
 
 Functioncd284: ; cd284 (33:5284)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd287: ; cd287 (33:5287)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd291
 	dw Functioncd2a0
 	dw Functioncd2b1
 	dw Functioncd2b5
 	dw Functioncd2bd
-
 
 Functioncd291: ; cd291 (33:5291)
 	ld hl, $b
@@ -1032,12 +1024,10 @@ Functioncd2bd: ; cd2bd (33:52bd)
 	ret
 
 Functioncd2be: ; cd2be (33:52be)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd2c1: ; cd2c1 (33:52c1)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd2c5
 	dw Functioncd2d1
-
 
 Functioncd2c5: ; cd2c5 (33:52c5)
 	call Functionce72c
@@ -1052,7 +1042,7 @@ Functioncd2d1: ; cd2d1 (33:52d1)
 	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
@@ -1077,19 +1067,18 @@ Functioncd2d1: ; cd2d1 (33:52d1)
 	add hl, bc
 	ld [hl], a
 	ret
+
 .asm_cd302
 	call Functioncc9bd
 	ret
 
 Functioncd306: ; cd306 (33:5306)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd309: ; cd309 (33:5309)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd311
 	dw Functioncd321
 	dw Functioncd32a
 	dw Functioncd37d
-
 
 Functioncd311: ; cd311 (33:5311)
 	ld hl, $7
@@ -1099,6 +1088,7 @@ Functioncd311: ; cd311 (33:5311)
 	jr nc, .asm_cd31e
 	call Functioncd38e
 	ret
+
 .asm_cd31e
 	call Functionce72c
 
@@ -1118,7 +1108,7 @@ Functioncd32a: ; cd32a (33:532a)
 	add hl, bc
 	ld a, [hl]
 	ld d, $18
-	call Functionce732
+	call BattleAnim_Cosine
 	sub $18
 	sra a
 	ld hl, $a
@@ -1128,7 +1118,7 @@ Functioncd32a: ; cd32a (33:532a)
 	add hl, bc
 	ld a, [hl]
 	ld d, $18
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -1141,6 +1131,7 @@ Functioncd32a: ; cd32a (33:532a)
 	add [hl]
 	ld [hl], a
 	ret
+
 .asm_cd363
 	ld hl, $b
 	add hl, bc
@@ -1157,6 +1148,7 @@ Functioncd32a: ; cd32a (33:532a)
 	add hl, bc
 	dec [hl]
 	ret
+
 .asm_cd37a
 	call Functionce72c
 
@@ -1168,6 +1160,7 @@ Functioncd37d: ; cd37d (33:537d)
 	jr c, .asm_cd38a
 	call Functioncc9bd
 	ret
+
 .asm_cd38a
 	call Functioncd38e
 	ret
@@ -1196,13 +1189,11 @@ Functioncd38e: ; cd38e (33:538e)
 	ret
 
 Functioncd3ae: ; cd3ae (33:53ae)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd3b1: ; cd3b1 (33:53b1)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd3b7
 	dw Functioncd3cc
 	dw Functioncd3ee
-
 
 Functioncd3b7: ; cd3b7 (33:53b7)
 	call Functionce72c
@@ -1225,6 +1216,7 @@ Functioncd3cc: ; cd3cc (33:53cc)
 	jr z, .asm_cd3d6
 	dec [hl]
 	ret
+
 .asm_cd3d6
 	ld hl, $b
 	add hl, bc
@@ -1247,9 +1239,8 @@ Functioncd3ee: ; cd3ee (33:53ee)
 	ret
 
 Functioncd3f2: ; cd3f2 (33:53f2)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd3f5: ; cd3f5 (33:53f5)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd409
 	dw Functioncd45c
 	dw Functioncd467
@@ -1260,7 +1251,6 @@ Jumptable_cd3f5: ; cd3f5 (33:53f5)
 	dw Functioncd41d
 	dw Functioncd437
 	dw Functioncd458
-
 
 Functioncd409: ; cd409 (33:5409)
 	ld hl, $b
@@ -1287,6 +1277,7 @@ Functioncd41d: ; cd41d (33:541d)
 	add hl, bc
 	dec [hl]
 	ret
+
 .asm_cd42f
 	call Functionce72c
 	ld a, $10
@@ -1299,13 +1290,13 @@ Functioncd437: ; cd437 (33:5437)
 	ld d, $10
 	push af
 	push de
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -1349,9 +1340,8 @@ Functioncd477: ; cd477 (33:5477)
 	ret
 
 Functioncd478: ; cd478 (33:5478)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd47b: ; cd47b (33:547b)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd48d
 	dw Functioncd496
 	dw Functioncd4ee
@@ -1361,7 +1351,6 @@ Jumptable_cd47b: ; cd47b (33:547b)
 	dw Functioncd545
 	dw Functioncd545
 	dw Functioncd549
-
 
 Functioncd48d: ; cd48d (33:548d)
 	call Functionce72c
@@ -1391,6 +1380,7 @@ Functioncd496: ; cd496 (33:5496)
 	add hl, bc
 	ld [hl], $5
 	ret
+
 .asm_cd4bc
 	ld hl, $b
 	add hl, bc
@@ -1401,7 +1391,7 @@ Functioncd496: ; cd496 (33:5496)
 	add hl, bc
 	ld a, [hl]
 	dec [hl]
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
@@ -1432,12 +1422,13 @@ Functioncd4ee: ; cd4ee (33:54ee)
 	jr nz, .asm_cd4fb
 	call Functioncc9bd
 	ret
+
 .asm_cd4fb
 	ld hl, $f
 	add hl, bc
 	ld a, [hl]
 	ld d, $10
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -1449,6 +1440,7 @@ Functioncd4ee: ; cd4ee (33:54ee)
 	add hl, bc
 	inc [hl]
 	jr .asm_cd51e
+
 .asm_cd519
 	ld hl, $f
 	add hl, bc
@@ -1499,41 +1491,44 @@ Functioncd557: ; cd557 (33:5557)
 	add hl, bc
 	ld a, [hl]
 	bit 7, a
-	jr nz, .asm_cd574
+	jr nz, .negative
 	cp $20
-	jr nc, .asm_cd570
+	jr nc, .plus_256
 	cp $18
-	jr nc, .asm_cd56c
+	jr nc, .plus_384
 	ld de, $200
 	ret
-.asm_cd56c
+
+.plus_384
 	ld de, $180
 	ret
-.asm_cd570
+
+.plus_256
 	ld de, $100
 	ret
-.asm_cd574
+
+.negative
 	and $3f
 	cp $20
-	jr nc, .asm_cd586
+	jr nc, .minus_256
 	cp $18
-	jr nc, .asm_cd582
-	ld de, $fe00
+	jr nc, .minus_384
+	ld de, -$200
 	ret
-.asm_cd582
-	ld de, $fe80
+
+.minus_384
+	ld de, -$180
 	ret
-.asm_cd586
-	ld de, rJOYP ; $ff00
+
+.minus_256
+	ld de, -$100
 	ret
 
 Functioncd58a: ; cd58a (33:558a)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd58d: ; cd58d (33:558d)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd591
 	dw Functioncd5aa
-
 
 Functioncd591: ; cd591 (33:5591)
 	ld hl, $b
@@ -1550,7 +1545,6 @@ Functioncd591: ; cd591 (33:5591)
 	ld hl, $f
 	add hl, bc
 	ld [hl], $40
-
 Functioncd5aa: ; cd5aa (33:55aa)
 	ld hl, $f
 	add hl, bc
@@ -1559,6 +1553,7 @@ Functioncd5aa: ; cd5aa (33:55aa)
 	jr nc, .asm_cd5b7
 	call Functioncc9bd
 	ret
+
 .asm_cd5b7
 	ld hl, $b
 	add hl, bc
@@ -1569,7 +1564,7 @@ Functioncd5aa: ; cd5aa (33:55aa)
 	add hl, bc
 	ld a, [hl]
 	dec [hl]
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
@@ -1593,13 +1588,11 @@ Functioncd5aa: ; cd5aa (33:55aa)
 	ret
 
 Functioncd5e9: ; cd5e9 (33:55e9)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd5ec: ; cd5ec (33:55ec)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd5f2
 	dw Functioncd5fb
 	dw Functioncd61b
-
 
 Functioncd5f2: ; cd5f2 (33:55f2)
 	call Functionce72c
@@ -1619,6 +1612,7 @@ Functioncd5fb: ; cd5fb (33:55fb)
 	ld a, [hl]
 	call Functionce70a
 	ret
+
 .asm_cd60d
 	call Functionce72c
 	ld hl, $f
@@ -1681,15 +1675,13 @@ Functioncd61b: ; cd61b (33:561b)
 	ret
 
 Functioncd66a: ; cd66a (33:566a)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd66d: ; cd66d (33:566d)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd677
 	dw Functioncd687
 	dw Functioncd6c5
 	dw Functioncd6c6
 	dw Functioncd6d6
-
 
 Functioncd677: ; cd677 (33:5677)
 	call Functionce72c
@@ -1714,6 +1706,7 @@ Functioncd687: ; cd687 (33:5687)
 	xor a
 	ld [hLCDStatCustom + 1], a
 	ret
+
 .asm_cd69b
 	dec a
 	ld [hl], a
@@ -1721,7 +1714,7 @@ Functioncd687: ; cd687 (33:5687)
 	add hl, bc
 	ld a, [hl]
 	ld d, $10
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
@@ -1760,6 +1753,7 @@ Functioncd6c6: ; cd6c6 (33:56c6)
 Functioncd6d6: ; cd6d6 (33:56d6)
 	call Functioncc9bd
 	ret
+
 asm_cd6da: ; cd6da (33:56da)
 rept 2
 	inc a
@@ -1771,12 +1765,10 @@ endr
 	ret
 
 Functioncd6e3: ; cd6e3 (33:56e3)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd6e6: ; cd6e6 (33:56e6)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd6ea
 	dw Functioncd6f7
-
 
 Functioncd6ea: ; cd6ea (33:56ea)
 	call Functionce72c
@@ -1794,6 +1786,7 @@ Functioncd6f7: ; cd6f7 (33:56f7)
 	jr c, .asm_cd704
 	call Functioncc9bd
 	ret
+
 .asm_cd704
 	ld a, $2
 	call Functionce70a
@@ -1802,21 +1795,19 @@ Functioncd6f7: ; cd6f7 (33:56f7)
 	ld a, [hl]
 	dec [hl]
 	ld d, $8
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
 	ret
 
 Functioncd71a: ; cd71a (33:571a)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd71d: ; cd71d (33:571d)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd725
 	dw Functioncd728
 	dw Functioncd763
 	dw Functioncd776
-
 
 Functioncd725: ; cd725 (33:5725)
 	call Functionce72c
@@ -1834,11 +1825,12 @@ Functioncd728: ; cd728 (33:5728)
 	ld a, [hl]
 	dec [hl]
 	ld d, $8
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
 	ret
+
 .asm_cd747
 	call Functionce72c
 	ld a, $28
@@ -1863,6 +1855,7 @@ Functioncd763: ; cd763 (33:5763)
 	jr nc, .asm_cd76e
 	inc [hl]
 	ret
+
 .asm_cd76e
 	call Functionce72c
 	ld a, $29
@@ -1879,6 +1872,7 @@ Functioncd777: ; cd777 (33:5777)
 	jr c, .asm_cd784
 	call Functioncc9bd
 	ret
+
 .asm_cd784
 	ld a, [hl]
 	ld hl, $f
@@ -1903,12 +1897,10 @@ Functioncd777: ; cd777 (33:5777)
 	ret
 
 Functioncd7a4: ; cd7a4 (33:57a4)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd7a7: ; cd7a7 (33:57a7)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd7ab
 	dw Functioncd7d2
-
 
 Functioncd7ab: ; cd7ab (33:57ab)
 	call Functionce72c
@@ -1941,6 +1933,7 @@ Functioncd7d2: ; cd7d2 (33:57d2)
 	jr nz, .asm_cd7de
 	call Functioncc9bd
 	ret
+
 .asm_cd7de
 	ld hl, $f
 	add hl, bc
@@ -1951,13 +1944,13 @@ Functioncd7d2: ; cd7d2 (33:57d2)
 	ld d, [hl]
 	push af
 	push de
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -1973,14 +1966,12 @@ Functioncd7d2: ; cd7d2 (33:57d2)
 	ret
 
 Functioncd80c: ; cd80c (33:580c)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd80f: ; cd80f (33:580f)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd81f
 	dw Functioncd817
 	dw Functioncd81f
 	dw Functioncd820
-
 
 Functioncd817: ; cd817 (33:5817)
 	call Functionce72c
@@ -1995,9 +1986,8 @@ Functioncd820: ; cd820 (33:5820)
 	ret
 
 Functioncd824: ; cd824 (33:5824)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd827: ; cd827 (33:5827)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd835
 	dw Functioncd860
 	dw Functioncd88f
@@ -2005,7 +1995,6 @@ Jumptable_cd827: ; cd827 (33:5827)
 	dw Functioncd88f
 	dw Functioncd88f
 	dw Functioncd893
-
 
 Functioncd835: ; cd835 (33:5835)
 	call Functionce72c
@@ -2023,6 +2012,7 @@ Functioncd835: ; cd835 (33:5835)
 	add hl, bc
 	ld [hl], $10
 	jr .asm_cd858
+
 .asm_cd852
 	ld hl, $f
 	add hl, bc
@@ -2041,7 +2031,7 @@ Functioncd860: ; cd860 (33:5860)
 	ld hl, $b
 	add hl, bc
 	ld d, [hl]
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -2052,6 +2042,7 @@ Functioncd860: ; cd860 (33:5860)
 	ld a, [hl]
 	inc a
 	jr .asm_cd883
+
 .asm_cd87e
 	ld hl, $10
 	add hl, bc
@@ -2076,9 +2067,8 @@ Functioncd893: ; cd893 (33:5893)
 	ret
 
 Functioncd89a: ; cd89a (33:589a)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd89d: ; cd89d (33:589d)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd8ab
 	dw Functioncd8cc
 	dw Functioncd8f5
@@ -2086,7 +2076,6 @@ Jumptable_cd89d: ; cd89d (33:589d)
 	dw Functioncd8f5
 	dw Functioncd8f5
 	dw Functioncd8f9
-
 
 Functioncd8ab: ; cd8ab (33:58ab)
 	call Functionce72c
@@ -2098,6 +2087,7 @@ Functioncd8ab: ; cd8ab (33:58ab)
 	add hl, bc
 	ld [hl], $10
 	jr .asm_cd8c4
+
 .asm_cd8be
 	ld hl, $f
 	add hl, bc
@@ -2116,7 +2106,7 @@ Functioncd8cc: ; cd8cc (33:58cc)
 	ld hl, $b
 	add hl, bc
 	ld d, [hl]
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
@@ -2124,6 +2114,7 @@ Functioncd8cc: ; cd8cc (33:58cc)
 	jr nz, .asm_cd8e6
 	ld a, $3d
 	jr .asm_cd8e8
+
 .asm_cd8e6
 	ld a, $3c
 .asm_cd8e8
@@ -2148,12 +2139,10 @@ Functioncd8f9: ; cd8f9 (33:58f9)
 	ret
 
 Functioncd900: ; cd900 (33:5900)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd903: ; cd903 (33:5903)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd907
 	dw Functioncd913
-
 
 Functioncd907: ; cd907 (33:5907)
 	call Functionce72c
@@ -2172,13 +2161,13 @@ Functioncd913: ; cd913 (33:5913)
 	ld d, [hl]
 	push af
 	push de
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -2202,20 +2191,19 @@ Functioncd913: ; cd913 (33:5913)
 	add hl, bc
 	ld [hl], d
 	ret
+
 .asm_cd950
 	call Functioncc9bd
 	ret
 
 Functioncd954: ; cd954 (33:5954)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cd957: ; cd957 (33:5957)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncd961
 	dw Functioncd96a
 	dw Functioncd96e
 	dw Functioncd96a
 	dw Functioncd97b
-
 
 Functioncd961: ; cd961 (33:5961)
 	call Functionce72c
@@ -2265,7 +2253,7 @@ Functioncd99a: ; cd99a (33:599a)
 	ld a, [hl]
 	push af
 	push de
-	call Functionce734
+	call BattleAnim_Sine
 	sra a
 	sra a
 	sra a
@@ -2278,7 +2266,7 @@ Functioncd99a: ; cd99a (33:599a)
 	ld [hl], a
 	pop de
 	pop af
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -2303,6 +2291,7 @@ Functioncd99a: ; cd99a (33:599a)
 	add hl, bc
 	inc [hl]
 	ret
+
 .asm_cd9e2
 	xor a
 	ld hl, $10
@@ -2326,6 +2315,7 @@ Functioncd9f4: ; cd9f4 (33:59f4)
 	add hl, de
 	ld d, [hl]
 	ret
+
 ; cda01 (33:5a01)
 
 Unknown_cda01: ; cda01
@@ -2340,6 +2330,7 @@ Functioncda0a: ; cda0a (33:5a0a)
 	jr nc, .asm_cda17
 	call Functioncc9bd
 	ret
+
 .asm_cda17
 	ld hl, $b
 	add hl, bc
@@ -2361,13 +2352,11 @@ Functioncda0a: ; cda0a (33:5a0a)
 	ret
 
 Functioncda31: ; cda31 (33:5a31)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cda34: ; cda34 (33:5a34)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncda4c
 	dw Functioncda3a
 	dw Functioncda4c
-
 
 Functioncda3a: ; cda3a (33:5a3a)
 	ld hl, $3
@@ -2384,14 +2373,12 @@ Functioncda4c: ; cda4c (33:5a4c)
 	ret
 
 Functioncda4d: ; cda4d (33:5a4d)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cda50: ; cda50 (33:5a50)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncda58
 	dw Functioncda62
 	dw Functioncda7a
 	dw Functioncda8c
-
 
 Functioncda58: ; cda58 (33:5a58)
 	call Functionce72c
@@ -2408,6 +2395,7 @@ Functioncda62: ; cda62 (33:5a62)
 	jr c, .asm_cda6f
 	call Functioncda8d
 	ret
+
 .asm_cda6f
 	ld [hl], $40
 	ld a, $57
@@ -2423,6 +2411,7 @@ Functioncda7a: ; cda7a (33:5a7a)
 	jr z, .asm_cda84
 	dec [hl]
 	ret
+
 .asm_cda84
 	call Functionce72c
 	ld a, $58
@@ -2434,11 +2423,11 @@ Functioncda8c: ; cda8c (33:5a8c)
 Functioncda8d: ; cda8d (33:5a8d)
 	dec [hl]
 	ld d, $20
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
-	ld hl, $2
+	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
 	ld a, [hl]
 	add $2
@@ -2480,13 +2469,11 @@ Functioncda8d: ; cda8d (33:5a8d)
 	ret
 
 Functioncdad6: ; cdad6 (33:5ad6)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cdad9: ; cdad9 (33:5ad9)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncdadf
 	dw Functioncdae9
 	dw Functioncdaf9
-
 
 Functioncdadf: ; cdadf (33:5adf)
 	call Functionce72c
@@ -2503,6 +2490,7 @@ Functioncdae9: ; cdae9 (33:5ae9)
 	jr c, .asm_cdaf6
 	call Functioncda8d
 	ret
+
 .asm_cdaf6
 	call Functionce72c
 
@@ -2519,15 +2507,13 @@ Functioncdafa: ; cdafa (33:5afa)
 	ret
 
 Functioncdb06: ; cdb06 (33:5b06)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cdb09: ; cdb09 (33:5b09)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncdb13
 	dw Functioncdb14
 	dw Functioncdb28
 	dw Functioncdb50
 	dw Functioncdb65
-
 
 Functioncdb13: ; cdb13 (33:5b13)
 	ret
@@ -2542,6 +2528,7 @@ Functioncdb14: ; cdb14 (33:5b14)
 	add hl, bc
 	ld [hl], $0
 	ret
+
 .asm_cdb24
 	add $4
 	ld [hl], a
@@ -2559,7 +2546,7 @@ endr
 	ld hl, $1
 	add hl, bc
 	set 0, [hl]
-	ld hl, $2
+	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
 	ld [hl], $90
 	ld hl, $d
@@ -2599,16 +2586,15 @@ endr
 	ld a, [hl]
 	inc [hl]
 	ld d, $8
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
 	ret
 
 Functioncdb80: ; cdb80 (33:5b80)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cdb83: ; cdb83 (33:5b83)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncdb9f
 	dw Functioncdbb3
 	dw Functioncdbcf
@@ -2623,7 +2609,6 @@ Jumptable_cdb83: ; cdb83 (33:5b83)
 	dw Functioncdc48
 	dw Functioncdc57
 	dw Functioncdc74
-
 
 Functioncdb9f: ; cdb9f (33:5b9f)
 	ld hl, $f
@@ -2674,6 +2659,7 @@ Functioncdbcf: ; cdbcf (33:5bcf)
 	ld [hl], $10
 	call Functionce72c
 	ret
+
 .asm_cdbe6
 	call Functionce72c
 	inc [hl]
@@ -2687,6 +2673,7 @@ Functioncdbeb: ; cdbeb (33:5beb)
 	jr z, .asm_cdbf5
 	dec [hl]
 	ret
+
 .asm_cdbf5
 	ld hl, $e
 	add hl, bc
@@ -2731,7 +2718,7 @@ rept 2
 	inc [hl]
 endr
 	ld d, $2
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -2760,7 +2747,7 @@ Functioncdc57: ; cdc57 (33:5c57)
 	add hl, bc
 	ld a, [hl]
 	ld d, $20
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
@@ -2771,6 +2758,7 @@ Functioncdc57: ; cdc57 (33:5c57)
 	jr c, .asm_cdc71
 	dec [hl]
 	ret
+
 .asm_cdc71
 	call Functionce72c
 
@@ -2782,7 +2770,7 @@ Functioncdc75: ; cdc75 (33:5c75)
 	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
@@ -2819,6 +2807,7 @@ Functioncdca6: ; cdca6 (33:5ca6)
 	jr nc, .asm_cdcb6
 	call Functioncc9bd
 	ret
+
 .asm_cdcb6
 	ld hl, $b
 	add hl, bc
@@ -2831,12 +2820,10 @@ Functioncdca6: ; cdca6 (33:5ca6)
 	ret
 
 Functioncdcc3: ; cdcc3 (33:5cc3)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cdcc6: ; cdcc6 (33:5cc6)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncdcca
 	dw Functioncdced
-
 
 Functioncdcca: ; cdcca (33:5cca)
 	ld a, [hBattleTurn]
@@ -2869,6 +2856,7 @@ Functioncdced: ; cdced (33:5ced)
 	dec [hl]
 	call Functioncdcfe
 	ret
+
 .asm_cdcfa
 	call Functioncc9bd
 	ret
@@ -2881,7 +2869,7 @@ rept 2
 	inc [hl]
 endr
 	ld d, $10
-	call Functionce734
+	call BattleAnim_Sine
 	ld d, a
 	ld hl, $9
 	add hl, bc
@@ -2897,6 +2885,7 @@ endr
 	add hl, bc
 	ld [hl], d
 	ret
+
 .asm_cdd20
 	ld hl, $a
 	add hl, bc
@@ -2907,12 +2896,10 @@ endr
 	ret
 
 Functioncdd2a: ; cdd2a (33:5d2a)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cdd2d: ; cdd2d (33:5d2d)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncdd31
 	dw Functioncdd4f
-
 
 Functioncdd31: ; cdd31 (33:5d31)
 	call Functionce72c
@@ -2945,13 +2932,13 @@ Functioncdd4f: ; cdd4f (33:5d4f)
 	inc [hl]
 	push af
 	push de
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -2977,12 +2964,10 @@ Functioncdd4f: ; cdd4f (33:5d4f)
 	ret
 
 Functioncdd90: ; cdd90 (33:5d90)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cdd93: ; cdd93 (33:5d93)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncdd97
 	dw Functioncddbc
-
 
 Functioncdd97: ; cdd97 (33:5d97)
 	call Functionce72c
@@ -3014,7 +2999,7 @@ Functioncddbc: ; cddbc (33:5dbc)
 	ld d, $10
 	push af
 	push de
-	call Functionce734
+	call BattleAnim_Sine
 	sra a
 	sra a
 	ld hl, $a
@@ -3022,7 +3007,7 @@ Functioncddbc: ; cddbc (33:5dbc)
 	ld [hl], a
 	pop de
 	pop af
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -3039,6 +3024,7 @@ Functioncddbc: ; cddbc (33:5dbc)
 	ld a, [hl]
 	inc a
 	jr .asm_cddf5
+
 .asm_cddf0
 	ld hl, $f
 	add hl, bc
@@ -3048,13 +3034,11 @@ Functioncddbc: ; cddbc (33:5dbc)
 	ret
 
 Functioncddf9: ; cddf9 (33:5df9)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cddfc: ; cddfc (33:5dfc)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncde02
 	dw Functioncde20
 	dw Functioncde21
-
 
 Functioncde02: ; cde02 (33:5e02)
 	call Functionce72c
@@ -3080,6 +3064,7 @@ Functioncde20: ; cde20 (33:5e20)
 Functioncde21: ; cde21 (33:5e21)
 	call Functioncc9bd
 	ret
+
 ; cde25 (33:5e25)
 
 Unknown_cde25: ; cde25
@@ -3094,7 +3079,7 @@ rept 2
 	inc [hl]
 endr
 	ld d, $4
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -3124,7 +3109,7 @@ rept 2
 	dec [hl]
 endr
 	ld d, $10
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
@@ -3134,12 +3119,10 @@ endr
 	ret
 
 Functioncde6b: ; cde6b (33:5e6b)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cde6e: ; cde6e (33:5e6e)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncde72
 	dw Functioncde88
-
 
 Functioncde72: ; cde72 (33:5e72)
 	call Functionce72c
@@ -3159,12 +3142,10 @@ Functioncde88: ; cde88 (33:5e88)
 	ret
 
 Functioncde89: ; cde89 (33:5e89)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cde8c: ; cde8c (33:5e8c)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncde90
 	dw Functioncdebf
-
 
 Functioncde90: ; cde90 (33:5e90)
 	call Functionce72c
@@ -3187,6 +3168,7 @@ Functioncde90: ; cde90 (33:5e90)
 	and $f
 	ld [hl], a
 	ret
+
 .asm_cdeb2
 	ld a, e
 	and $f
@@ -3205,6 +3187,7 @@ Functioncdebf: ; cdebf (33:5ebf)
 	jr z, .asm_cdec9
 	dec [hl]
 	ret
+
 .asm_cdec9
 	ld hl, $b
 	add hl, bc
@@ -3227,7 +3210,7 @@ Functioncdedd: ; cdedd (33:5edd)
 	ld d, $18
 	push af
 	push de
-	call Functionce734
+	call BattleAnim_Sine
 	sra a
 	sra a
 	sra a
@@ -3239,7 +3222,7 @@ Functioncdedd: ; cdedd (33:5edd)
 	ld [hl], a
 	pop de
 	pop af
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -3256,6 +3239,7 @@ Functioncdedd: ; cdedd (33:5edd)
 	jr nc, .asm_cdf17
 	inc [hl]
 	ret
+
 .asm_cdf17
 	call Functioncc9bd
 	ret
@@ -3267,7 +3251,7 @@ Functioncdf1b: ; cdf1b (33:5f1b)
 	ld d, $18
 	push af
 	push de
-	call Functionce734
+	call BattleAnim_Sine
 	sra a
 	sra a
 	sra a
@@ -3279,7 +3263,7 @@ Functioncdf1b: ; cdf1b (33:5f1b)
 	ld [hl], a
 	pop de
 	pop af
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -3296,17 +3280,16 @@ Functioncdf1b: ; cdf1b (33:5f1b)
 	jr nc, .asm_cdf55
 	inc [hl]
 	ret
+
 .asm_cdf55
 	call Functioncc9bd
 	ret
 
 Functioncdf59: ; cdf59 (33:5f59)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_cdf5c: ; cdf5c (33:5f5c)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functioncdf60
 	dw Functioncdedd
-
 
 Functioncdf60: ; cdf60 (33:5f60)
 	ld hl, $7
@@ -3320,7 +3303,7 @@ Functioncdf60: ; cdf60 (33:5f60)
 	ld a, [hl]
 	inc [hl]
 	ld d, $18
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -3333,6 +3316,7 @@ Functioncdf60: ; cdf60 (33:5f60)
 	add hl, bc
 	dec [hl]
 	ret
+
 .asm_cdf88
 	call Functionce72c
 	ret
@@ -3344,7 +3328,7 @@ Functioncdf8c: ; cdf8c (33:5f8c)
 	ld d, $18
 	push af
 	push de
-	call Functionce734
+	call BattleAnim_Sine
 	sra a
 	sra a
 	sra a
@@ -3356,7 +3340,7 @@ Functioncdf8c: ; cdf8c (33:5f8c)
 	ld [hl], a
 	pop de
 	pop af
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -3375,6 +3359,7 @@ endr
 	jr z, .asm_cdfc7
 	dec [hl]
 	ret
+
 .asm_cdfc7
 	call Functioncc9bd
 	ret
@@ -3386,7 +3371,7 @@ Functioncdfcb: ; cdfcb (33:5fcb)
 	ld d, $18
 	push af
 	push de
-	call Functionce734
+	call BattleAnim_Sine
 	sra a
 	sra a
 	sra a
@@ -3398,7 +3383,7 @@ Functioncdfcb: ; cdfcb (33:5fcb)
 	ld [hl], a
 	pop de
 	pop af
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -3419,18 +3404,17 @@ rept 2
 	dec [hl]
 endr
 	ret
+
 .asm_ce007
 	call Functioncc9bd
 	ret
 
 Functionce00b: ; ce00b (33:600b)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_ce00e: ; ce00e (33:600e)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functionce014
 	dw Functionce023
 	dw Functionce05f
-
 
 Functionce014: ; ce014 (33:6014)
 	call Functionce72c
@@ -3448,6 +3432,7 @@ Functionce023: ; ce023 (33:6023)
 	cp $6c
 	jr c, .asm_ce02d
 	ret
+
 .asm_ce02d
 	ld a, $2
 	call Functionce70a
@@ -3457,7 +3442,7 @@ Functionce023: ; ce023 (33:6023)
 	ld hl, $10
 	add hl, bc
 	ld d, [hl]
-	call Functionce734
+	call BattleAnim_Sine
 	bit 7, a
 	jr nz, .asm_ce046
 	xor $ff
@@ -3484,14 +3469,12 @@ Functionce05f: ; ce05f (33:605f)
 	ret
 
 Functionce063: ; ce063 (33:6063)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_ce066: ; ce066 (33:6066)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functionce06e
 	dw Functionce083
 	dw Functionce091
 	dw Functionce09e
-
 
 Functionce06e: ; ce06e (33:606e)
 	ld hl, $b
@@ -3532,7 +3515,7 @@ Functionce09e: ; ce09e (33:609e)
 	add hl, bc
 	ld a, [hl]
 	ld d, $8
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -3553,13 +3536,11 @@ Functionce09e: ; ce09e (33:609e)
 	ret
 
 Functionce0c5: ; ce0c5 (33:60c5)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_ce0c8: ; ce0c8 (33:60c8)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functionce0ce
 	dw Functionce0f8
 	dw Functionce0dd
-
 
 Functionce0ce: ; ce0ce (33:60ce)
 	ld hl, $b
@@ -3577,7 +3558,7 @@ Functionce0dd: ; ce0dd (33:60dd)
 	add hl, bc
 	ld a, [hl]
 	ld d, $10
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	bit 7, a
@@ -3598,6 +3579,7 @@ Functionce0f8: ; ce0f8 (33:60f8)
 	jr c, .asm_ce105
 	call Functioncc9bd
 	ret
+
 .asm_ce105
 	ld hl, $b
 	add hl, bc
@@ -3606,12 +3588,10 @@ Functionce0f8: ; ce0f8 (33:60f8)
 	ret
 
 Functionce10e: ; ce10e (33:610e)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_ce111: ; ce111 (33:6111)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functionce115
 	dw Functionce12a
-
 
 Functionce115: ; ce115 (33:6115)
 	call Functionce72c
@@ -3631,7 +3611,7 @@ Functionce12a: ; ce12a (33:612a)
 	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
@@ -3668,13 +3648,13 @@ Functionce15c: ; ce15c (33:615c)
 	ld d, [hl]
 	push af
 	push de
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -3709,9 +3689,11 @@ Functionce15c: ; ce15c (33:615c)
 	jr z, .asm_ce1ac
 	dec [hl]
 	ret
+
 .asm_ce1aa
 	inc [hl]
 	ret
+
 .asm_ce1ac
 	call Functioncc9bd
 	ret
@@ -3726,13 +3708,13 @@ Functionce1b0: ; ce1b0 (33:61b0)
 	ld d, [hl]
 	push af
 	push de
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -3746,6 +3728,7 @@ Functionce1b0: ; ce1b0 (33:61b0)
 	jr nc, .asm_ce1df
 	inc [hl]
 	ret
+
 .asm_ce1df
 	ld a, [hl]
 	dec [hl]
@@ -3755,12 +3738,10 @@ Functionce1b0: ; ce1b0 (33:61b0)
 	ret
 
 Functionce1e7: ; ce1e7 (33:61e7)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_ce1ea: ; ce1ea (33:61ea)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functionce1ee
 	dw Functionce1fb
-
 
 Functionce1ee: ; ce1ee (33:61ee)
 	call Functionce72c
@@ -3776,7 +3757,7 @@ Functionce1fb: ; ce1fb (33:61fb)
 	add hl, bc
 	ld a, [hl]
 	ld d, $30
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $10
 	add hl, bc
 	add [hl]
@@ -3788,7 +3769,7 @@ Functionce1fb: ; ce1fb (33:61fb)
 	ld a, [hl]
 	add $8
 	ld d, $30
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -3798,12 +3779,10 @@ Functionce1fb: ; ce1fb (33:61fb)
 	ret
 
 Functionce226: ; ce226 (33:6226)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_ce229: ; ce229 (33:6229)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functionce22d
 	dw Functionce254
-
 
 Functionce22d: ; ce22d (33:622d)
 	call Functionce72c
@@ -3811,7 +3790,7 @@ Functionce22d: ; ce22d (33:622d)
 	add hl, bc
 	ld a, [hl]
 	ld d, $10
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
@@ -3819,7 +3798,7 @@ Functionce22d: ; ce22d (33:622d)
 	add hl, bc
 	ld a, [hl]
 	ld d, $10
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -3831,14 +3810,12 @@ Functionce254: ; ce254 (33:6254)
 	ret
 
 Functionce255: ; ce255 (33:6255)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_ce258: ; ce258 (33:6258)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functionce260
 	dw Functionce274
 	dw Functionce278
 	dw Functionce289
-
 
 Functionce260: ; ce260 (33:6260)
 	call Functionce72c
@@ -3847,6 +3824,7 @@ Functionce260: ; ce260 (33:6260)
 	jr nz, .asm_ce26c
 	ld a, $f0
 	jr .asm_ce26e
+
 .asm_ce26c
 	ld a, $cc
 .asm_ce26e
@@ -3880,6 +3858,7 @@ Functionce289: ; ce289 (33:6289)
 	ld a, $4
 	call Functionce70a
 	ret
+
 .asm_ce29b
 	call Functioncc9bd
 	ret
@@ -3898,6 +3877,7 @@ Functionce29f: ; ce29f (33:629f)
 	jr nz, .asm_ce2b6
 	ld hl, Unknown_ce2c4
 	jr .asm_ce2b9
+
 .asm_ce2b6
 	ld hl, Unknown_ce2c8
 .asm_ce2b9
@@ -3908,6 +3888,7 @@ Functionce29f: ; ce29f (33:629f)
 	and [hl]
 	ld [wcfc8], a
 	ret
+
 ; ce2c4 (33:62c4)
 
 Unknown_ce2c4: ; ce2c4
@@ -3921,7 +3902,7 @@ Functionce2cc: ; ce2cc (33:62cc)
 	add hl, bc
 	ld a, [hl]
 	ld d, $18
-	call Functionce734
+	call BattleAnim_Sine
 	sra a
 	sra a
 	sra a
@@ -3936,7 +3917,7 @@ Functionce2cc: ; ce2cc (33:62cc)
 	ld a, [hl]
 	inc [hl]
 	ld d, $18
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -3948,13 +3929,11 @@ endr
 	ret
 
 Functionce2fd: ; ce2fd (33:62fd)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_ce300: ; ce300 (33:6300)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functionce306
 	dw Functionce330
 	dw Functionce34c
-
 
 Functionce306: ; ce306 (33:6306)
 	ld hl, $a
@@ -3967,6 +3946,7 @@ Functionce306: ; ce306 (33:6306)
 	add hl, bc
 	ld [hl], $2
 	ret
+
 .asm_ce319
 	ld d, a
 	ld hl, $f
@@ -3992,6 +3972,7 @@ Functionce330: ; ce330 (33:6330)
 	jr z, .asm_ce33a
 	dec [hl]
 	ret
+
 .asm_ce33a
 	ld [hl], $4
 	ld hl, $f
@@ -4015,17 +3996,16 @@ Functionce34c: ; ce34c (33:634c)
 	ld a, $4
 	call Functionce70a
 	ret
+
 .asm_ce35b
 	call Functioncc9bd
 	ret
 
 Functionce35f: ; ce35f (33:635f)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_ce362: ; ce362 (33:6362)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functionce366
 	dw Functionce375
-
 
 Functionce366: ; ce366 (33:6366)
 	call Functionce72c
@@ -4045,6 +4025,7 @@ Functionce375: ; ce375 (33:6375)
 	add hl, bc
 	inc [hl]
 	ret
+
 .asm_ce383
 	ld hl, $9
 	add hl, bc
@@ -4052,13 +4033,11 @@ Functionce375: ; ce375 (33:6375)
 	ret
 
 Functionce389: ; ce389 (33:6389)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_ce38c: ; ce38c (33:638c)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functionce392
 	dw Functionce39c
 	dw Functionce3ae
-
 
 Functionce392: ; ce392 (33:6392)
 	call Functionce72c
@@ -4075,6 +4054,7 @@ Functionce39c: ; ce39c (33:639c)
 	jr z, .asm_ce3a6
 	dec [hl]
 	ret
+
 .asm_ce3a6
 	call Functionce72c
 	ld a, $20
@@ -4095,13 +4075,13 @@ rept 2
 endr
 	push af
 	ld d, $2
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
 	pop af
 	ld d, $8
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -4115,12 +4095,13 @@ Functionce3d2: ; ce3d2 (33:63d2)
 	jr c, .asm_ce3df
 	call Functioncc9bd
 	ret
+
 .asm_ce3df
 	ld hl, $b
 	add hl, bc
 	ld a, [hl]
 	ld d, $8
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -4137,12 +4118,10 @@ Functionce3d2: ; ce3d2 (33:63d2)
 	ret
 
 Functionce3ff: ; ce3ff (33:63ff)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_ce402: ; ce402 (33:6402)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functionce406
 	dw Functionce412
-
 
 Functionce406: ; ce406 (33:6406)
 	ld hl, $b
@@ -4165,13 +4144,13 @@ Functionce416: ; ce416 (33:6416)
 	ld d, $18
 	push af
 	push de
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	sra a
@@ -4183,13 +4162,11 @@ Functionce416: ; ce416 (33:6416)
 	ret
 
 Functionce43a: ; ce43a (33:643a)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_ce43d: ; ce43d (33:643d)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functionce443
 	dw Functionce465
 	dw Functionce490
-
 
 Functionce443: ; ce443 (33:6443)
 	call Functionce72c
@@ -4225,17 +4202,18 @@ Functionce465: ; ce465 (33:6465)
 	ld a, [hl]
 	push af
 	push de
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
 	ret
+
 .asm_ce48b
 	ld [hl], $10
 	call Functionce72c
@@ -4251,12 +4229,10 @@ Functionce490: ; ce490 (33:6490)
 	ret
 
 Functionce49c: ; ce49c (33:649c)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_ce49f: ; ce49f (33:649f)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functionce4a3
 	dw Functionce4b0
-
 
 Functionce4a3: ; ce4a3 (33:64a3)
 	call Functionce72c
@@ -4278,7 +4254,7 @@ Functionce4b0: ; ce4b0 (33:64b0)
 	ld a, [hl]
 	inc [hl]
 	ld d, $18
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -4291,6 +4267,7 @@ Functionce4b0: ; ce4b0 (33:64b0)
 	add hl, bc
 	dec [hl]
 	ret
+
 .asm_ce4d8
 	call Functioncc9bd
 	ret
@@ -4306,7 +4283,7 @@ Functionce4dc: ; ce4dc (33:64dc)
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	call Functionce734
+	call BattleAnim_Sine
 	bit 7, a
 	jr nz, .asm_ce4f4
 	xor $ff
@@ -4340,17 +4317,18 @@ endr
 	ld a, [hl]
 	push af
 	push de
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
 	ret
+
 .asm_ce52e
 	call Functioncc9bd
 	ret
@@ -4372,26 +4350,24 @@ Functionce532: ; ce532 (33:6532)
 	and $3f
 	push af
 	push de
-	call Functionce734
+	call BattleAnim_Sine
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
 	ret
 
 Functionce55b: ; ce55b (33:655b)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_ce55e: ; ce55e (33:655e)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functionce564
 	dw Functionce56e
 	dw Functionce577
-
 
 Functionce564: ; ce564 (33:6564)
 	ld d, $18
@@ -4420,20 +4396,20 @@ Functionce577: ; ce577 (33:6577)
 	add hl, bc
 	ld a, [hl]
 	jr asm_ce58f
+
 .asm_ce58b
 	call Functioncc9bd
 	ret
+
 asm_ce58f: ; ce58f (33:658f)
 	call Functionce6f1
 	ret
 
 Functionce593: ; ce593 (33:6593)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_ce596: ; ce596 (33:6596)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functionce5b3
 	dw Functionce59a
-
 
 Functionce59a: ; ce59a (33:659a)
 	ld hl, $7
@@ -4452,6 +4428,7 @@ rept 2
 	inc [hl]
 endr
 	ret
+
 .asm_ce5b0
 	call Functioncc9bd
 
@@ -4468,7 +4445,7 @@ rept 2
 endr
 	push af
 	push de
-	call Functionce734
+	call BattleAnim_Sine
 	sra a
 	sra a
 	ld hl, $f
@@ -4480,7 +4457,7 @@ endr
 	ld [hl], a
 	pop de
 	pop af
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -4496,19 +4473,18 @@ rept 4
 	dec [hl]
 endr
 	ret
+
 .asm_ce5ea
 	call Functioncc9bd
 	ret
 
 Functionce5ee: ; ce5ee (33:65ee)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_ce5f1: ; ce5f1 (33:65f1)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functionce5f9
 	dw Functionce60a
 	dw Functionce622
 	dw Functionce618
-
 
 Functionce5f9: ; ce5f9 (33:65f9)
 	ld hl, $b
@@ -4535,6 +4511,7 @@ endr
 Functionce618: ; ce618 (33:6618)
 	call Functioncc9bd
 	ret
+
 asm_ce61c: ; ce61c (33:661c)
 	call Functionce72c
 	call Functionce72c
@@ -4551,14 +4528,12 @@ endr
 	ret
 
 Functionce62f: ; ce62f (33:662f)
-	call Functionce71e ;  ;  ; call does not return
-
-Jumptable_ce632: ; ce632 (33:6632)
+	call BattleAnim_AnonJumptable
+.anon_jumptable
 	dw Functionce63a
 	dw Functionce648
 	dw Functionce65c
 	dw Functionce672
-
 
 Functionce63a: ; ce63a (33:663a)
 	ld hl, $b
@@ -4684,13 +4659,14 @@ Functionce6d2: ; ce6d2 (33:66d2)
 	ld hl, $b
 	add hl, bc
 	ld d, [hl]
-	call Functionce734
+	call BattleAnim_Sine
 	xor $ff
 	inc a
 	ld hl, $a
 	add hl, bc
 	ld [hl], a
 	ret
+
 .asm_ce6ed
 	call Functioncc9bd
 	ret
@@ -4698,7 +4674,7 @@ Functionce6d2: ; ce6d2 (33:66d2)
 Functionce6f1: ; ce6f1 (33:66f1)
 	push af
 	push de
-	call Functionce734
+	call BattleAnim_Sine
 	sra a
 	sra a
 	ld hl, $a
@@ -4706,7 +4682,7 @@ Functionce6f1: ; ce6f1 (33:66f1)
 	ld [hl], a
 	pop de
 	pop af
-	call Functionce732
+	call BattleAnim_Cosine
 	ld hl, $9
 	add hl, bc
 	ld [hl], a
@@ -4728,7 +4704,7 @@ Functionce70a: ; ce70a (33:670a)
 	jr nz, .asm_ce719
 	ret
 
-Functionce71e: ; ce71e (33:671e)
+BattleAnim_AnonJumptable: ; ce71e (33:671e)
 	pop de
 	ld hl, $e
 	add hl, bc
@@ -4747,29 +4723,29 @@ Functionce72c: ; ce72c (33:672c)
 	inc [hl]
 	ret
 
-Functionce732: ; ce732 (33:6732)
+BattleAnim_Cosine: ; ce732 (33:6732)
 	add $10
-
-Functionce734: ; ce734 (33:6734)
+BattleAnim_Sine: ; ce734 (33:6734)
 	and $3f
 	cp $20
-	jr nc, .asm_ce73f
-	call Functionce749
+	jr nc, .negative
+	call .ApplySineWave
 	ld a, h
 	ret
-.asm_ce73f
+
+.negative
 	and $1f
-	call Functionce749
+	call .ApplySineWave
 	ld a, h
 	xor $ff
 	inc a
 	ret
 
-Functionce749: ; ce749 (33:6749)
+.ApplySineWave: ; ce749 (33:6749)
 	ld e, a
 	ld a, d
 	ld d, 0
-	ld hl, Unknown_ce77f
+	ld hl, BattleAnimSineWave
 rept 2
 	add hl, de
 endr
@@ -4777,47 +4753,50 @@ endr
 	inc hl
 	ld d, [hl]
 	ld hl, $0
-.asm_ce758
+.multiply
 	srl a
-	jr nc, .asm_ce75d
+	jr nc, .even
 	add hl, de
-.asm_ce75d
+.even
 	sla e
 	rl d
 	and a
-	jr nz, .asm_ce758
+	jr nz, .multiply
 	ret
 
 Functionce765: ; ce765 (33:6765)
 	ld a, e
-	call Functionce734
+	call BattleAnim_Sine
 	ld e, a
 	ret
 
 Functionce76b: ; ce76b (33:676b)
 	ld a, e
-	call Functionce732
+	call BattleAnim_Cosine
 	ld e, a
 	ret
+
 ; ce771 (33:6771)
 
 Functionce771: ; ce771
 	ld a, e
-	call Functionce734
+	call BattleAnim_Sine
 	ld e, l
 	ld d, h
 	ret
+
 ; ce778
 
 Functionce778: ; ce778
 	ld a, e
-	call Functionce732
+	call BattleAnim_Cosine
 	ld e, l
 	ld d, h
 	ret
+
 ; ce77f
 
-Unknown_ce77f: ; ce77f
+BattleAnimSineWave: ; ce77f
 	sine_wave $100
 ; ce7bf
 
@@ -4833,10 +4812,9 @@ Functionce7bf: ; ce7bf (33:67bf)
 	ld [hl], $ff
 	ret
 
-
 Functionce7d1: ; ce7d1
 .asm_ce7d1
-	ld hl, $000c
+	ld hl, $c
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -4848,7 +4826,7 @@ Functionce7d1: ; ce7d1
 	jr .asm_ce7fd
 
 .asm_ce7e1
-	ld hl, $000d
+	ld hl, $d
 	add hl, bc
 	inc [hl]
 	call Functionce823
@@ -4861,7 +4839,7 @@ Functionce7d1: ; ce7d1
 	ld a, [hl]
 	push hl
 	and $3f
-	ld hl, $000c
+	ld hl, $c
 	add hl, bc
 	ld [hl], a
 	pop hl
@@ -4876,10 +4854,10 @@ Functionce7d1: ; ce7d1
 
 .asm_ce807
 	xor a
-	ld hl, $000c
+	ld hl, $c
 	add hl, bc
 	ld [hl], a
-	ld hl, $000d
+	ld hl, $d
 	add hl, bc
 rept 2
 	dec [hl]
@@ -4888,18 +4866,19 @@ endr
 
 .asm_ce815
 	xor a
-	ld hl, $000c
+	ld hl, $c
 	add hl, bc
 	ld [hl], a
 	dec a
-	ld hl, $000d
+	ld hl, $d
 	add hl, bc
 	ld [hl], a
 	jr .asm_ce7d1
+
 ; ce823
 
 Functionce823: ; ce823
-	ld hl, $0003
+	ld hl, $3
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
@@ -4910,13 +4889,14 @@ endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $000d
+	ld hl, $d
 	add hl, bc
 	ld l, [hl]
 	ld h, $0
 	add hl, hl
 	add hl, de
 	ret
+
 ; ce83c
 
 Functionce83c: ; ce83c
@@ -4928,8 +4908,8 @@ rept 2
 endr
 	add hl, de
 	ret
-; ce846
 
+; ce846
 
 Functionce846: ; ce846 (33:6846)
 	push hl
@@ -4952,10 +4932,11 @@ endr
 	call DecompressRequest2bpp
 	pop bc
 	ret
+
 ; ce85e (33:685e)
 
-
 Unknown_ce85e: ; ce85e
+; ANIM_OBJ constants
 	dw Unknown_ce9d0
 	dw Unknown_ce9d3
 	dw Unknown_ce9d6
@@ -5143,193 +5124,374 @@ Unknown_ce85e: ; ce85e
 	dw Unknown_ceeab
 ; ce9d0
 
-Unknown_ce9d0:	db $00,$06, $fc
-Unknown_ce9d3:	db $01,$06, $fc
-Unknown_ce9d6:	db $02,$06, $fc
-Unknown_ce9d9:	db $03,$06, $fc
-Unknown_ce9dc:	db $04,$06, $fc
-Unknown_ce9df:	db $05,$06, $fc
-Unknown_ce9e2:	db $06,$06, $fc
-Unknown_ce9e5:	db $03,$04, $01,$01, $03,$04, $01,$01, $03,$04, $01,$01, $03,$04, $01,$01, $fc
-Unknown_ce9f6:	db $4b,$02, $4c,$02, $4d,$04, $4e,$02, $fd,$02, $4e,$02, $fd,$02, $4e,$02, $fd,$02, $4e,$02, $fc
-Unknown_cea0b:	db $4b,$42, $4c,$42, $4d,$44, $4e,$42, $fd,$02, $4e,$42, $fd,$02, $4e,$42, $fd,$02, $4e,$42, $fc
-Unknown_cea20:	db $4b,$c2, $4c,$c2, $4d,$c4, $4e,$c2, $fd,$02, $4e,$c2, $fd,$02, $4e,$c2, $fd,$02, $4e,$c2, $fc
-Unknown_cea35:	db $4b,$01, $4c,$01, $4d,$01, $4f,$01, $50,$01, $51,$01, $52,$02, $fd,$02, $52,$02, $fd,$02, $52,$02, $fd,$02, $52,$02, $fc
-Unknown_cea50:	db $4b,$41, $4c,$41, $4d,$41, $4f,$41, $50,$41, $51,$41, $52,$42, $fd,$02, $52,$42, $fd,$02, $52,$42, $fd,$02, $52,$42, $fc
-Unknown_cea6b:	db $00,$03, $07,$03, $08,$03, $09,$03, $fc
-Unknown_cea74:	db $0a,$07, $0b,$07, $0a,$07, $0b,$47, $fe
-Unknown_cea7d:	db $0c,$08, $ff
-Unknown_cea80:	db $0d,$08, $ff
-Unknown_cea83:	db $0a,$08, $ff
-Unknown_cea86:	db $0a,$07, $0b,$07, $0a,$07, $0b,$47, $0a,$07, $ff
-Unknown_cea91:	db $0a,$08, $ff
-Unknown_cea94:	db $0a,$04, $0e,$04, $fe
-Unknown_cea99:	db $0f,$04, $10,$04, $fe
-Unknown_cea9e:	db $10,$04, $0f,$04, $0e,$04, $0a,$04, $0e,$04, $0a,$04, $0e,$04, $0a,$04, $fc
-Unknown_ceaaf:	db $10,$01, $0f,$01, $12,$01, $11,$01, $12,$01, $0f,$01, $fe
-Unknown_ceabc:	db $10,$03, $0f,$03, $12,$01, $fd,$01, $12,$01, $fd,$01, $12,$01, $fd,$01, $12,$01, $fd,$01, $12,$03, $fc
-Unknown_cead3:	db $13,$14, $fc
-Unknown_cead6:	db $10,$01, $0f,$01, $fe
-Unknown_ceadb:	db $14,$08, $ff
-Unknown_ceade:	db $17,$04, $16,$08, $15,$08, $16,$08, $17,$04, $17,$04, $16,$48, $15,$48, $16,$48, $17,$04, $fe
-Unknown_ceaf3:	db $69,$08, $ff
-Unknown_ceaf6:	db $69,$20, $6a,$04, $6b,$04, $6d,$04, $6c,$04, $ff
-Unknown_ceb01:	db $6c,$08, $6d,$08, $fe
-Unknown_ceb06:	db $18,$04, $19,$04, $1a,$04, $fc
-Unknown_ceb0d:	db $1b,$08, $ff
-Unknown_ceb10:	db $0f,$08, $ff
-Unknown_ceb13:	db $1c,$08, $ff
-Unknown_ceb16:	db $0a,$08, $fc
-Unknown_ceb19:	db $1d,$08, $ff
-Unknown_ceb1c:	db $17,$08, $ff
-Unknown_ceb1f:	db $0f,$03, $10,$03, $1e,$03, $ff
-Unknown_ceb26:	db $1f,$10, $20,$03, $fc
-Unknown_ceb2b:	db $20,$08, $ff
-Unknown_ceb2e:	db $20,$08, $21,$08, $1b,$08, $21,$08, $fe
-Unknown_ceb37:	db $22,$08, $ff
-Unknown_ceb3a:	db $1b,$08, $ff
-Unknown_ceb3d:	db $23,$08, $ff
-Unknown_ceb40:	db $24,$08, $ff
-Unknown_ceb43:	db $25,$08, $ff
-Unknown_ceb46:	db $26,$08, $27,$08, $ff
-Unknown_ceb4b:	db $28,$08, $29,$08, $fc
-Unknown_ceb50:	db $2a,$01, $2b,$01, $2c,$01, $2d,$01, $2e,$01, $2d,$01, $2c,$01, $2b,$01, $2a,$01, $fc
-Unknown_ceb63:	db $14,$01, $15,$01, $fe
-Unknown_ceb68:	db $2f,$04, $30,$28, $fc
-Unknown_ceb6d:	db $31,$08, $ff
+Unknown_ce9d0:	db $00,$06
+				db -4
+Unknown_ce9d3:	db $01,$06
+				db -4
+Unknown_ce9d6:	db $02,$06
+				db -4
+Unknown_ce9d9:	db $03,$06
+				db -4
+Unknown_ce9dc:	db $04,$06
+				db -4
+Unknown_ce9df:	db $05,$06
+				db -4
+Unknown_ce9e2:	db $06,$06
+				db -4
+Unknown_ce9e5:	db $03,$04, $01,$01, $03,$04, $01,$01, $03,$04, $01,$01, $03,$04, $01,$01
+				db -4
+Unknown_ce9f6:	db $4b,$02, $4c,$02, $4d,$04, $4e,$02, $fd,$02, $4e,$02, $fd,$02, $4e,$02, $fd,$02, $4e,$02
+				db -4
+Unknown_cea0b:	db $4b,$42, $4c,$42, $4d,$44, $4e,$42, $fd,$02, $4e,$42, $fd,$02, $4e,$42, $fd,$02, $4e,$42
+				db -4
+Unknown_cea20:	db $4b,$c2, $4c,$c2, $4d,$c4, $4e,$c2, $fd,$02, $4e,$c2, $fd,$02, $4e,$c2, $fd,$02, $4e,$c2
+				db -4
+Unknown_cea35:	db $4b,$01, $4c,$01, $4d,$01, $4f,$01, $50,$01, $51,$01, $52,$02, $fd,$02, $52,$02, $fd,$02, $52,$02, $fd,$02, $52,$02
+				db -4
+Unknown_cea50:	db $4b,$41, $4c,$41, $4d,$41, $4f,$41, $50,$41, $51,$41, $52,$42, $fd,$02, $52,$42, $fd,$02, $52,$42, $fd,$02, $52,$42
+				db -4
+Unknown_cea6b:	db $00,$03, $07,$03, $08,$03, $09,$03
+				db -4
+Unknown_cea74:	db $0a,$07, $0b,$07, $0a,$07, $0b,$47
+				db -2
+Unknown_cea7d:	db $0c,$08
+				db -1
+Unknown_cea80:	db $0d,$08
+				db -1
+Unknown_cea83:	db $0a,$08
+				db -1
+Unknown_cea86:	db $0a,$07, $0b,$07, $0a,$07, $0b,$47, $0a,$07
+				db -1
+Unknown_cea91:	db $0a,$08
+				db -1
+Unknown_cea94:	db $0a,$04, $0e,$04
+				db -2
+Unknown_cea99:	db $0f,$04, $10,$04
+				db -2
+Unknown_cea9e:	db $10,$04, $0f,$04, $0e,$04, $0a,$04, $0e,$04, $0a,$04, $0e,$04, $0a,$04
+				db -4
+Unknown_ceaaf:	db $10,$01, $0f,$01, $12,$01, $11,$01, $12,$01, $0f,$01
+				db -2
+Unknown_ceabc:	db $10,$03, $0f,$03, $12,$01, $fd,$01, $12,$01, $fd,$01, $12,$01, $fd,$01, $12,$01, $fd,$01, $12,$03
+				db -4
+Unknown_cead3:	db $13,$14
+				db -4
+Unknown_cead6:	db $10,$01, $0f,$01
+				db -2
+Unknown_ceadb:	db $14,$08
+				db -1
+Unknown_ceade:	db $17,$04, $16,$08, $15,$08, $16,$08, $17,$04, $17,$04, $16,$48, $15,$48, $16,$48, $17,$04
+				db -2
+Unknown_ceaf3:	db $69,$08
+				db -1
+Unknown_ceaf6:	db $69,$20, $6a,$04, $6b,$04, $6d,$04, $6c,$04
+				db -1
+Unknown_ceb01:	db $6c,$08, $6d,$08
+				db -2
+Unknown_ceb06:	db $18,$04, $19,$04, $1a,$04
+				db -4
+Unknown_ceb0d:	db $1b,$08
+				db -1
+Unknown_ceb10:	db $0f,$08
+				db -1
+Unknown_ceb13:	db $1c,$08
+				db -1
+Unknown_ceb16:	db $0a,$08
+				db -4
+Unknown_ceb19:	db $1d,$08
+				db -1
+Unknown_ceb1c:	db $17,$08
+				db -1
+Unknown_ceb1f:	db $0f,$03, $10,$03, $1e,$03
+				db -1
+Unknown_ceb26:	db $1f,$10, $20,$03
+				db -4
+Unknown_ceb2b:	db $20,$08
+				db -1
+Unknown_ceb2e:	db $20,$08, $21,$08, $1b,$08, $21,$08
+				db -2
+Unknown_ceb37:	db $22,$08
+				db -1
+Unknown_ceb3a:	db $1b,$08
+				db -1
+Unknown_ceb3d:	db $23,$08
+				db -1
+Unknown_ceb40:	db $24,$08
+				db -1
+Unknown_ceb43:	db $25,$08
+				db -1
+Unknown_ceb46:	db $26,$08, $27,$08
+				db -1
+Unknown_ceb4b:	db $28,$08, $29,$08
+				db -4
+Unknown_ceb50:	db $2a,$01, $2b,$01, $2c,$01, $2d,$01, $2e,$01, $2d,$01, $2c,$01, $2b,$01, $2a,$01
+				db -4
+Unknown_ceb63:	db $14,$01, $15,$01
+				db -2
+Unknown_ceb68:	db $2f,$04, $30,$28
+				db -4
+Unknown_ceb6d:	db $31,$08
+				db -1
 Unknown_ceb70:	db $32,$20, $33,$20, $34,$20, $35,$20 ; fallthrough
-Unknown_ceb78:	db $fd,$02, $35,$04, $fd,$02, $35,$04, $fd,$02, $35,$04, $fd,$02, $35,$04, $fc
-Unknown_ceb89:	db $14,$04, $15,$04, $fe
-Unknown_ceb8e:	db $36,$02, $37,$02, $38,$02, $39,$20, $fc
-Unknown_ceb97:	db $3a,$02, $3b,$02, $3c,$02, $3d,$20, $fc
-Unknown_ceba0:	db $3a,$42, $3b,$42, $3c,$42, $3d,$60, $fc
-Unknown_ceba9:	db $3e,$08, $3f,$08, $40,$08, $ff
-Unknown_cebb0:	db $40,$02, $fd,$02, $40,$02, $fd,$02, $41,$02, $fd,$02, $41,$02, $fd,$02, $fe
-Unknown_cebc1:	db $42,$02, $43,$02, $44,$02, $45,$02, $fe
-Unknown_cebca:	db $19,$02, $fd,$02, $fe
-Unknown_cebcf:	db $46,$04, $47,$04, $fe
-Unknown_cebd4:	db $18,$02, $fd,$02, $fe
-Unknown_cebd9:	db $48,$08, $ff
-Unknown_cebdc:	db $48,$48, $ff
-Unknown_cebdf:	db $49,$08, $ff
-Unknown_cebe2:	db $4a,$08, $ff
-Unknown_cebe5:	db $20,$10, $1f,$10, $1e,$10, $ff
-Unknown_cebec:	db $20,$08, $1f,$08, $1e,$08, $ff
-Unknown_cebf3:	db $fd,$14, $55,$28, $54,$28, $53,$14, $fd,$04, $53,$04, $fd,$04, $53,$04, $fd,$04, $53,$04, $fc
-Unknown_cec08:	db $1e,$08, $1f,$08, $20,$08, $fc
-Unknown_cec0f:	db $fd,$00, $14,$00, $15,$00, $14,$40, $fd,$00, $16,$40, $15,$00, $16,$00, $fe
-Unknown_cec20:	db $56,$02, $57,$04, $fc
-Unknown_cec25:	db $56,$c2, $57,$c4, $fc
-Unknown_cec2a:	db $56,$01, $57,$01, $58,$01, $57,$c1, $58,$c1, $57,$02, $fc
-Unknown_cec37:	db $56,$c1, $57,$c1, $58,$c1, $57,$01, $58,$01, $57,$c2, $fc
-Unknown_cec44:	db $57,$c1, $58,$c1, $57,$01, $58,$01, $fe
-Unknown_cec4d:	db $59,$01, $5a,$01, $5b,$01, $5c,$02, $fc
-Unknown_cec56:	db $0a,$0a, $0b,$43, $5d,$43, $0b,$c3, $0a,$82, $0b,$81, $5d,$01, $0b,$01, $fe
-Unknown_cec67:	db $0a,$03, $0b,$47, $0a,$07, $0b,$07, $0a,$03, $fe
-Unknown_cec72:	db $5e,$20, $5e,$20, $fc
-Unknown_cec77:	db $5f,$20, $5f,$20, $fc
-Unknown_cec7c:	db $60,$08, $ff
-Unknown_cec7f:	db $61,$01, $62,$01, $63,$01, $ff
-Unknown_cec86:	db $63,$07, $64,$07, $fe
-Unknown_cec8b:	db $65,$01, $66,$01, $67,$01, $ff
-Unknown_cec92:	db $67,$07, $68,$07, $fe
-Unknown_cec97:	db $6e,$08, $ff
-Unknown_cec9a:	db $6f,$08, $ff
-Unknown_cec9d:	db $6e,$88, $ff
-Unknown_ceca0:	db $18,$04, $70,$04, $71,$04, $72,$04, $73,$04, $fc
-Unknown_cecab:	db $74,$04, $75,$04, $fe
-Unknown_cecb0:	db $14,$08, $ff
-Unknown_cecb3:	db $74,$03, $14,$03, $15,$03, $14,$03, $15,$03, $fc
-Unknown_cecbe:	db $14,$00, $15,$00, $14,$00, $15,$00, $74,$0c, $fc
-Unknown_cecc9:	db $76,$08, $ff
-Unknown_ceccc:	db $77,$01, $78,$01, $79,$01, $7a,$01, $7b,$01, $7c,$01, $7d,$01, $7c,$c1, $7b,$c1, $7a,$c1, $79,$c1, $78,$c1, $77,$c1, $fc
-Unknown_cece7:	db $1b,$04, $7e,$04, $fe
-Unknown_cecec:	db $1b,$44, $7e,$44, $fe
-Unknown_cecf1:	db $7f,$08, $ff
-Unknown_cecf4:	db $25,$08, $ff
-Unknown_cecf7:	db $80,$08, $ff
-Unknown_cecfa:	db $83,$07, $82,$07, $81,$07, $82,$07, $83,$07, $82,$07, $81,$07, $fc
-Unknown_ced09:	db $1b,$10, $fc
-Unknown_ced0c:	db $fd,$0f, $84,$0f, $85,$0f, $29,$0f, $28,$0f, $86,$20, $fc
-Unknown_ced19:	db $1b,$03, $87,$03, $88,$03, $89,$03, $fc
-Unknown_ced22:	db $8a,$02, $8b,$02, $8c,$02, $8d,$02, $fc
-Unknown_ced2b:	db $61,$02, $62,$02, $63,$02, $ff
-Unknown_ced32:	db $65,$02, $66,$02, $67,$02, $ff
-Unknown_ced39:	db $8e,$08, $ff
-Unknown_ced3c:	db $8e,$48, $ff
-Unknown_ced3f:	db $8f,$10, $90,$10, $fe
-Unknown_ced44:	db $91,$10, $92,$10, $fe
-Unknown_ced49:	db $93,$08, $ff
-Unknown_ced4c:	db $1e,$08, $ff
-Unknown_ced4f:	db $1b,$07, $94,$07, $fe
-Unknown_ced54:	db $95,$08, $ff
-Unknown_ced57:	db $96,$08, $ff
-Unknown_ced5a:	db $95,$08, $ff
-Unknown_ced5d:	db $97,$01, $97,$41, $fe
-Unknown_ced62:	db $98,$08, $ff
-Unknown_ced65:	db $99,$20, $99,$20, $99,$20, $99,$20, $99,$20, $9a,$08, $ff
-Unknown_ced72:	db $9b,$08, $ff
-Unknown_ced75:	db $9c,$02, $9d,$02, $9e,$08, $fd,$02, $9e,$02, $fd,$02, $9e,$02, $fd,$02, $9e,$02, $fc
-Unknown_ced88:	db $9f,$08, $ff
-Unknown_ced8b:	db $0f,$08, $ff
-Unknown_ced8e:	db $6b,$18, $fc
+Unknown_ceb78:	db $fd,$02, $35,$04, $fd,$02, $35,$04, $fd,$02, $35,$04, $fd,$02, $35,$04
+				db -4
+Unknown_ceb89:	db $14,$04, $15,$04
+				db -2
+Unknown_ceb8e:	db $36,$02, $37,$02, $38,$02, $39,$20
+				db -4
+Unknown_ceb97:	db $3a,$02, $3b,$02, $3c,$02, $3d,$20
+				db -4
+Unknown_ceba0:	db $3a,$42, $3b,$42, $3c,$42, $3d,$60
+				db -4
+Unknown_ceba9:	db $3e,$08, $3f,$08, $40,$08
+				db -1
+Unknown_cebb0:	db $40,$02, $fd,$02, $40,$02, $fd,$02, $41,$02, $fd,$02, $41,$02, $fd,$02
+				db -2
+Unknown_cebc1:	db $42,$02, $43,$02, $44,$02, $45,$02
+				db -2
+Unknown_cebca:	db $19,$02, $fd,$02
+				db -2
+Unknown_cebcf:	db $46,$04, $47,$04
+				db -2
+Unknown_cebd4:	db $18,$02, $fd,$02
+				db -2
+Unknown_cebd9:	db $48,$08
+				db -1
+Unknown_cebdc:	db $48,$48
+				db -1
+Unknown_cebdf:	db $49,$08
+				db -1
+Unknown_cebe2:	db $4a,$08
+				db -1
+Unknown_cebe5:	db $20,$10, $1f,$10, $1e,$10
+				db -1
+Unknown_cebec:	db $20,$08, $1f,$08, $1e,$08
+				db -1
+Unknown_cebf3:	db $fd,$14, $55,$28, $54,$28, $53,$14, $fd,$04, $53,$04, $fd,$04, $53,$04, $fd,$04, $53,$04
+				db -4
+Unknown_cec08:	db $1e,$08, $1f,$08, $20,$08
+				db -4
+Unknown_cec0f:	db $fd,$00, $14,$00, $15,$00, $14,$40, $fd,$00, $16,$40, $15,$00, $16,$00
+				db -2
+Unknown_cec20:	db $56,$02, $57,$04
+				db -4
+Unknown_cec25:	db $56,$c2, $57,$c4
+				db -4
+Unknown_cec2a:	db $56,$01, $57,$01, $58,$01, $57,$c1, $58,$c1, $57,$02
+				db -4
+Unknown_cec37:	db $56,$c1, $57,$c1, $58,$c1, $57,$01, $58,$01, $57,$c2
+				db -4
+Unknown_cec44:	db $57,$c1, $58,$c1, $57,$01, $58,$01
+				db -2
+Unknown_cec4d:	db $59,$01, $5a,$01, $5b,$01, $5c,$02
+				db -4
+Unknown_cec56:	db $0a,$0a, $0b,$43, $5d,$43, $0b,$c3, $0a,$82, $0b,$81, $5d,$01, $0b,$01
+				db -2
+Unknown_cec67:	db $0a,$03, $0b,$47, $0a,$07, $0b,$07, $0a,$03
+				db -2
+Unknown_cec72:	db $5e,$20, $5e,$20
+				db -4
+Unknown_cec77:	db $5f,$20, $5f,$20
+				db -4
+Unknown_cec7c:	db $60,$08
+				db -1
+Unknown_cec7f:	db $61,$01, $62,$01, $63,$01
+				db -1
+Unknown_cec86:	db $63,$07, $64,$07
+				db -2
+Unknown_cec8b:	db $65,$01, $66,$01, $67,$01
+				db -1
+Unknown_cec92:	db $67,$07, $68,$07
+				db -2
+Unknown_cec97:	db $6e,$08
+				db -1
+Unknown_cec9a:	db $6f,$08
+				db -1
+Unknown_cec9d:	db $6e,$88
+				db -1
+Unknown_ceca0:	db $18,$04, $70,$04, $71,$04, $72,$04, $73,$04
+				db -4
+Unknown_cecab:	db $74,$04, $75,$04
+				db -2
+Unknown_cecb0:	db $14,$08
+				db -1
+Unknown_cecb3:	db $74,$03, $14,$03, $15,$03, $14,$03, $15,$03
+				db -4
+Unknown_cecbe:	db $14,$00, $15,$00, $14,$00, $15,$00, $74,$0c
+				db -4
+Unknown_cecc9:	db $76,$08
+				db -1
+Unknown_ceccc:	db $77,$01, $78,$01, $79,$01, $7a,$01, $7b,$01, $7c,$01, $7d,$01, $7c,$c1, $7b,$c1, $7a,$c1, $79,$c1, $78,$c1, $77,$c1
+				db -4
+Unknown_cece7:	db $1b,$04, $7e,$04
+				db -2
+Unknown_cecec:	db $1b,$44, $7e,$44
+				db -2
+Unknown_cecf1:	db $7f,$08
+				db -1
+Unknown_cecf4:	db $25,$08
+				db -1
+Unknown_cecf7:	db $80,$08
+				db -1
+Unknown_cecfa:	db $83,$07, $82,$07, $81,$07, $82,$07, $83,$07, $82,$07, $81,$07
+				db -4
+Unknown_ced09:	db $1b,$10
+				db -4
+Unknown_ced0c:	db $fd,$0f, $84,$0f, $85,$0f, $29,$0f, $28,$0f, $86,$20
+				db -4
+Unknown_ced19:	db $1b,$03, $87,$03, $88,$03, $89,$03
+				db -4
+Unknown_ced22:	db $8a,$02, $8b,$02, $8c,$02, $8d,$02
+				db -4
+Unknown_ced2b:	db $61,$02, $62,$02, $63,$02
+				db -1
+Unknown_ced32:	db $65,$02, $66,$02, $67,$02
+				db -1
+Unknown_ced39:	db $8e,$08
+				db -1
+Unknown_ced3c:	db $8e,$48
+				db -1
+Unknown_ced3f:	db $8f,$10, $90,$10
+				db -2
+Unknown_ced44:	db $91,$10, $92,$10
+				db -2
+Unknown_ced49:	db $93,$08
+				db -1
+Unknown_ced4c:	db $1e,$08
+				db -1
+Unknown_ced4f:	db $1b,$07, $94,$07
+				db -2
+Unknown_ced54:	db $95,$08
+				db -1
+Unknown_ced57:	db $96,$08
+				db -1
+Unknown_ced5a:	db $95,$08
+				db -1
+Unknown_ced5d:	db $97,$01, $97,$41
+				db -2
+Unknown_ced62:	db $98,$08
+				db -1
+Unknown_ced65:	db $99,$20, $99,$20, $99,$20, $99,$20, $99,$20, $9a,$08
+				db -1
+Unknown_ced72:	db $9b,$08
+				db -1
+Unknown_ced75:	db $9c,$02, $9d,$02, $9e,$08, $fd,$02, $9e,$02, $fd,$02, $9e,$02, $fd,$02, $9e,$02
+				db -4
+Unknown_ced88:	db $9f,$08
+				db -1
+Unknown_ced8b:	db $0f,$08
+				db -1
+Unknown_ced8e:	db $6b,$18
+				db -4
 Unknown_ced91:	db $a0,$01 ; fallthrough
 Unknown_ced93:	db $a1,$01 ; fallthrough
-Unknown_ced95:	db $a2,$01, $fc
-Unknown_ced98:	db $a3,$08, $ff
-Unknown_ced9b:	db $a4,$04, $a5,$04, $a6,$04, $a7,$04, $a6,$44, $a5,$44, $fe
-Unknown_ceda8:	db $a8,$04, $a9,$04, $aa,$04, $ab,$04, $aa,$44, $a9,$44, $fe
-Unknown_cedb5:	db $1b,$08, $ff
-Unknown_cedb8:	db $ac,$08, $ff
-Unknown_cedbb:	db $ad,$08, $ff
-Unknown_cedbe:	db $ae,$08, $ff
-Unknown_cedc1:	db $af,$08, $ff
-Unknown_cedc4:	db $b0,$20, $fc
-Unknown_cedc7:	db $b1,$07, $b1,$47, $fe
-Unknown_cedcc:	db $b2,$08, $ff
-Unknown_cedcf:	db $b3,$08, $ff
-Unknown_cedd2:	db $b3,$48, $ff
-Unknown_cedd5:	db $b3,$88, $ff
-Unknown_cedd8:	db $b3,$c8, $ff
-Unknown_ceddb:	db $b5,$08, $ff
-Unknown_cedde:	db $b5,$48, $ff
-Unknown_cede1:	db $b5,$88, $ff
-Unknown_cede4:	db $b5,$c8, $ff
-Unknown_cede7:	db $b4,$08, $ff
-Unknown_cedea:	db $6b,$08, $ff
-Unknown_ceded:	db $b6,$08, $ff
-Unknown_cedf0:	db $b7,$20, $ff
-Unknown_cedf3:	db $1b,$20, $ff
-Unknown_cedf6:	db $b8,$20, $ff
-Unknown_cedf9:	db $b8,$60, $ff
-Unknown_cedfc:	db $b9,$20, $ff
-Unknown_cedff:	db $ba,$20, $ff
-Unknown_cee02:	db $bb,$60, $ff
-Unknown_cee05:	db $bb,$20, $ff
-Unknown_cee08:	db $bc,$20, $ff
-Unknown_cee0b:	db $bd,$0b, $be,$0b, $1b,$0b, $fc
-Unknown_cee12:	db $bf,$04, $c0,$04, $c1,$04, $fc
-Unknown_cee19:	db $c2,$20, $c2,$20, $fc
-Unknown_cee1e:	db $4b,$02, $4c,$02, $4d,$20, $4d,$20, $4d,$20, $4f,$01, $50,$01, $51,$01, $52,$02, $fd,$02, $52,$02, $fd,$02, $52,$02, $fd,$02, $52,$02, $fc
-Unknown_cee3d:	db $4b,$c2, $4c,$c2, $4d,$e0, $4d,$e0, $4d,$e0, $4f,$c1, $50,$c1, $51,$c1, $52,$c2, $fd,$02, $52,$c2, $fd,$02, $52,$c2, $fd,$02, $52,$c2, $fc
-Unknown_cee5c:	db $c3,$01, $c3,$c1, $fe
-Unknown_cee61:	db $c4,$20, $ff
-Unknown_cee64:	db $c5,$04, $c6,$04, $c7,$04, $fc
-Unknown_cee6b:	db $c8,$01, $c8,$41, $fe
-Unknown_cee70:	db $c9,$03, $05,$03, $fc
-Unknown_cee75:	db $ca,$20, $cb,$03, $ca,$03, $cb,$03, $fe
-Unknown_cee7e:	db $03,$a0, $ff
-Unknown_cee81:	db $cc,$20, $ff
-Unknown_cee84:	db $7f,$02, $25,$02, $80,$02, $25,$02, $fe
-Unknown_cee8d:	db $cd,$04, $ce,$04, $cd,$c4, $ce,$c4, $fe
-Unknown_cee96:	db $cf,$04, $d0,$04, $d1,$04, $d2,$04, $fc
-Unknown_cee9f:	db $d3,$20, $ff
-Unknown_ceea2:	db $d4,$08, $ff
-Unknown_ceea5:	db $d5,$08, $ff
-Unknown_ceea8:	db $d6,$08, $ff
-Unknown_ceeab:	db $d7,$08, $ff
+Unknown_ced95:	db $a2,$01
+				db -4
+Unknown_ced98:	db $a3,$08
+				db -1
+Unknown_ced9b:	db $a4,$04, $a5,$04, $a6,$04, $a7,$04, $a6,$44, $a5,$44
+				db -2
+Unknown_ceda8:	db $a8,$04, $a9,$04, $aa,$04, $ab,$04, $aa,$44, $a9,$44
+				db -2
+Unknown_cedb5:	db $1b,$08
+				db -1
+Unknown_cedb8:	db $ac,$08
+				db -1
+Unknown_cedbb:	db $ad,$08
+				db -1
+Unknown_cedbe:	db $ae,$08
+				db -1
+Unknown_cedc1:	db $af,$08
+				db -1
+Unknown_cedc4:	db $b0,$20
+				db -4
+Unknown_cedc7:	db $b1,$07, $b1,$47
+				db -2
+Unknown_cedcc:	db $b2,$08
+				db -1
+Unknown_cedcf:	db $b3,$08
+				db -1
+Unknown_cedd2:	db $b3,$48
+				db -1
+Unknown_cedd5:	db $b3,$88
+				db -1
+Unknown_cedd8:	db $b3,$c8
+				db -1
+Unknown_ceddb:	db $b5,$08
+				db -1
+Unknown_cedde:	db $b5,$48
+				db -1
+Unknown_cede1:	db $b5,$88
+				db -1
+Unknown_cede4:	db $b5,$c8
+				db -1
+Unknown_cede7:	db $b4,$08
+				db -1
+Unknown_cedea:	db $6b,$08
+				db -1
+Unknown_ceded:	db $b6,$08
+				db -1
+Unknown_cedf0:	db $b7,$20
+				db -1
+Unknown_cedf3:	db $1b,$20
+				db -1
+Unknown_cedf6:	db $b8,$20
+				db -1
+Unknown_cedf9:	db $b8,$60
+				db -1
+Unknown_cedfc:	db $b9,$20
+				db -1
+Unknown_cedff:	db $ba,$20
+				db -1
+Unknown_cee02:	db $bb,$60
+				db -1
+Unknown_cee05:	db $bb,$20
+				db -1
+Unknown_cee08:	db $bc,$20
+				db -1
+Unknown_cee0b:	db $bd,$0b, $be,$0b, $1b,$0b
+				db -4
+Unknown_cee12:	db $bf,$04, $c0,$04, $c1,$04
+				db -4
+Unknown_cee19:	db $c2,$20, $c2,$20
+				db -4
+Unknown_cee1e:	db $4b,$02, $4c,$02, $4d,$20, $4d,$20, $4d,$20, $4f,$01, $50,$01, $51,$01, $52,$02, $fd,$02, $52,$02, $fd,$02, $52,$02, $fd,$02, $52,$02
+				db -4
+Unknown_cee3d:	db $4b,$c2, $4c,$c2, $4d,$e0, $4d,$e0, $4d,$e0, $4f,$c1, $50,$c1, $51,$c1, $52,$c2, $fd,$02, $52,$c2, $fd,$02, $52,$c2, $fd,$02, $52,$c2
+				db -4
+Unknown_cee5c:	db $c3,$01, $c3,$c1
+				db -2
+Unknown_cee61:	db $c4,$20
+				db -1
+Unknown_cee64:	db $c5,$04, $c6,$04, $c7,$04
+				db -4
+Unknown_cee6b:	db $c8,$01, $c8,$41
+				db -2
+Unknown_cee70:	db $c9,$03, $05,$03
+				db -4
+Unknown_cee75:	db $ca,$20, $cb,$03, $ca,$03, $cb,$03
+				db -2
+Unknown_cee7e:	db $03,$a0
+				db -1
+Unknown_cee81:	db $cc,$20
+				db -1
+Unknown_cee84:	db $7f,$02, $25,$02, $80,$02, $25,$02
+				db -2
+Unknown_cee8d:	db $cd,$04, $ce,$04, $cd,$c4, $ce,$c4
+				db -2
+Unknown_cee96:	db $cf,$04, $d0,$04, $d1,$04, $d2,$04
+				db -4
+Unknown_cee9f:	db $d3,$20
+				db -1
+Unknown_ceea2:	db $d4,$08
+				db -1
+Unknown_ceea5:	db $d5,$08
+				db -1
+Unknown_ceea8:	db $d6,$08
+				db -1
+Unknown_ceeab:	db $d7,$08
+				db -1
 ; ceeae
-
 
 Unknown_ceeae: ; ceeae
 ; ?, length, address
@@ -5550,7 +5712,6 @@ Unknown_ceeae: ; ceeae
 	dbbw $00, $0e, Unknown_cf876
 	dbbw $00, $0c, Unknown_cf8c6
 ; cf20e
-
 
 Unknown_cf20e:
 	db $f8, $fc, $00, $00
@@ -6418,7 +6579,6 @@ Unknown_cfcc2:
 	db $e0, $44, $00, $00
 	db $f0, $54, $00, $00
 ; cfcf6
-
 
 AnimObjGFX: ; cfcf6
 

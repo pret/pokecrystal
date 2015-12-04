@@ -151,7 +151,7 @@ Function49aa2: ; 49aa2 (12:5aa2)
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	call Function49b3b
+	call CelebiEvent_Cosine
 	ld hl, $6
 	add hl, bc
 	ld [hl], a
@@ -223,27 +223,27 @@ Function49b30: ; 49b30 (12:5b30)
 	call Function3b3c
 	ret
 
-Function49b3b: ; 49b3b (12:5b3b)
+CelebiEvent_Cosine: ; 49b3b (12:5b3b)
 	add $10
 	and $3f
 	cp $20
 	jr nc, .asm_49b48
-	call Function49b52
+	call .SineFunction
 	ld a, h
 	ret
 .asm_49b48
 	and $1f
-	call Function49b52
+	call .SineFunction
 	ld a, h
 	xor $ff
 	inc a
 	ret
 
-Function49b52: ; 49b52 (12:5b52)
+.SineFunction: ; 49b52 (12:5b52)
 	ld e, a
 	ld a, d
 	ld d, $0
-	ld hl, Unknown_49b6e
+	ld hl, .sinewave
 rept 2
 	add hl, de
 endr
@@ -251,19 +251,19 @@ endr
 	inc hl
 	ld d, [hl]
 	ld hl, 0
-.asm_49b61
+.multiply
 	srl a
-	jr nc, .asm_49b66
+	jr nc, .even
 	add hl, de
-.asm_49b66
+.even
 	sla e
 	rl d
 	and a
-	jr nz, .asm_49b61
+	jr nz, .multiply
 	ret
 ; 49b6e (12:5b6e)
 
-Unknown_49b6e: ; 49b6e
+.sinewave: ; 49b6e
 	sine_wave $100
 ; 49bae
 

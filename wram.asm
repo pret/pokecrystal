@@ -3053,24 +3053,34 @@ w5_d192:: ds 1
 w5_d193:: ds 1
 w5_d194:: ds 1
 w5_d195:: ds 1
-
 ds 106
 
 LYOverridesBackup:: ; d200
 	ds SCREEN_HEIGHT_PX
 LYOverridesBackupEnd::
 
-	ds $100 - SCREEN_HEIGHT_PX
 
-
-SECTION "Battle Animations", WRAMX, BANK [5]
+SECTION "Battle Animations", WRAMX [$d300], BANK [5]
 
 w5_d300:: ds 10
 
-ActiveAnimObjects:: ; d30a
-	ds 4 * 40
+battle_anim_struct: MACRO
+; Placeholder until we can figure out what it all means
+	ds $18
+endm
 
-	ds 80
+ActiveAnimObjects:: ; d30a
+AnimObject01:: battle_anim_struct AnimObject01
+AnimObject02:: battle_anim_struct AnimObject02
+AnimObject03:: battle_anim_struct AnimObject03
+AnimObject04:: battle_anim_struct AnimObject04
+AnimObject05:: battle_anim_struct AnimObject05
+AnimObject06:: battle_anim_struct AnimObject06
+AnimObject07:: battle_anim_struct AnimObject07
+AnimObject08:: battle_anim_struct AnimObject08
+AnimObject09:: battle_anim_struct AnimObject09
+AnimObject10:: battle_anim_struct AnimObject10
+ActiveAnimObjectsEnd:: ; d3aa
 
 ActiveBGEffects:: ; d3fa
 	ds 4 * 5

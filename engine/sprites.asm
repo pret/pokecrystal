@@ -610,26 +610,26 @@ INCLUDE "data/sprite_engine.asm"
 ; Unknown_8d6e6
 ; Unknown_8d94d
 
-ApplySineWaveX: ; 8e72a
+Sprites_Cosine: ; 8e72a
 	add $10
-ApplySineWaveY: ; 8e72c
+Sprites_Sine: ; 8e72c
 	and $3f
 	cp $20
-	jr nc, .flip
-	call .ApplyOffset
+	jr nc, .negative
+	call .ApplySineWave
 	ld a, h
 	ret
 
-.flip
+.negative
 	and $1f
-	call .ApplyOffset
+	call .ApplySineWave
 	ld a, h
 	xor $ff ; cpl
 	inc a
 	ret
 ; 8e741
 
-.ApplyOffset: ; 8e741
+.ApplySineWave: ; 8e741
 	ld e, a
 	ld a, d
 	ld d, 0
@@ -641,16 +641,16 @@ endr
 	inc hl
 	ld d, [hl]
 	ld hl, 0
-.loop
+.multiply
 	srl a
-	jr nc, .skip_add
+	jr nc, .even
 	add hl, de
 
-.skip_add
+.even
 	sla e
 	rl d
 	and a
-	jr nz, .loop
+	jr nz, .multiply
 	ret
 ; 8e75d
 
@@ -701,7 +701,7 @@ endr
 
 	push de
 	push hl
-	call ApplySineWaveY
+	call Sprites_Sine
 	pop hl
 	pop de
 	add 13 * 8
@@ -710,7 +710,7 @@ endr
 	pop af
 	push de
 	push hl
-	call ApplySineWaveX
+	call Sprites_Cosine
 	pop hl
 	pop de
 	add 10 * 8 + 4

@@ -106,7 +106,7 @@ RunBattleAnimScript: ; cc163
 
 .playframe
 	call Functioncc25f
-	call Functionccb48
+	call _ExecuteBGEffects
 	call Functioncc96e
 	call Function3b0c
 	call BattleAnimRequestPals
@@ -633,7 +633,7 @@ BattleAnimCmd_Obj: ; cc41f (33:441f)
 	ld [BattleAnimTemps + 2], a
 	call GetBattleAnimByte
 	ld [BattleAnimTemps + 3], a
-	call Functioncc9a1
+	call QueueBattleAnimation
 	ret
 
 BattleAnimCmd_BGEffect: ; cc43b (33:443b)
@@ -645,7 +645,7 @@ BattleAnimCmd_BGEffect: ; cc43b (33:443b)
 	ld [BattleAnimTemps + 2], a
 	call GetBattleAnimByte
 	ld [BattleAnimTemps + 3], a
-	call Functionccb4f
+	call _QueueBGEffect
 	ret
 
 BattleAnimCmd_BGP: ; cc457 (33:4457)
@@ -667,20 +667,20 @@ BattleAnimCmd_ResetObp0: ; cc46c (33:446c)
 	ld a, [hSGB]
 	and a
 	ld a, $e0
-	jr z, .asm_cc475
+	jr z, .not_sgb
 	ld a, $f0
-.asm_cc475
+.not_sgb
 	ld [wcfc8], a
 	ret
 
 BattleAnimCmd_ClearObjs: ; cc479 (33:4479)
-	ld hl, OTPartyMon3HP
+	ld hl, ActiveAnimObjects
 	ld a, $a0
-.asm_cc47e
+.loop
 	ld [hl], $0
 	inc hl
 	dec a
-	jr nz, .asm_cc47e
+	jr nz, .loop
 	ret
 
 BattleAnimCmd_1GFX:
@@ -725,7 +725,7 @@ endr
 BattleAnimCmd_IncObj: ; cc4c0 (33:44c0)
 	call GetBattleAnimByte
 	ld e, $a
-	ld bc, OTPartyMon3HP
+	ld bc, ActiveAnimObjects
 .asm_cc4c8
 	ld hl, $0
 	add hl, bc
@@ -773,7 +773,7 @@ BattleAnimCmd_IncBGEffect: ; cc4e3 (33:44e3)
 BattleAnimCmd_SetObj: ; cc506 (33:4506)
 	call GetBattleAnimByte
 	ld e, $a
-	ld bc, OTPartyMon3HP
+	ld bc, ActiveAnimObjects
 .asm_cc50e
 	ld hl, $0
 	add hl, bc
@@ -1480,12 +1480,12 @@ Functioncc94b: ; cc94b
 Functioncc96e: ; cc96e
 	ld a, $0
 	ld [w5_d418], a
-	ld hl, OTPartyMon3HP
-	ld e, $a
-.asm_cc978
+	ld hl, ActiveAnimObjects
+	ld e, 10
+.loop
 	ld a, [hl]
 	and a
-	jr z, .asm_cc98a
+	jr z, .next
 	ld c, l
 	ld b, h
 	push hl
@@ -1494,24 +1494,24 @@ Functioncc96e: ; cc96e
 	call Functioncca09
 	pop de
 	pop hl
-	jr c, .asm_cc9a0
+	jr c, .done
 
-.asm_cc98a
+.next
 	ld bc, $0018
 	add hl, bc
 	dec e
-	jr nz, .asm_cc978
+	jr nz, .loop
 	ld a, [w5_d418]
 	ld l, a
-	ld h, $c4
-.asm_cc997
+	ld h, Sprites / $100
+.loop2
 	ld a, l
-	cp $a0
-	jr nc, .asm_cc9a0
+	cp SpritesEnd % $100
+	jr nc, .done
 	xor a
 	ld [hli], a
-	jr .asm_cc997
+	jr .loop2
 
-.asm_cc9a0
+.done
 	ret
 ; cc9a1
