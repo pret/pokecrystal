@@ -5339,7 +5339,7 @@ BattleMenuPKMN_Loop:
 	call Function3d329
 	jr c, .Cancel
 .loop
-	callba Function8ea4a
+	callba FreezeMonIcons
 	call .GetMenu
 	jr c, .PressedB
 	call Function1bee
@@ -5674,7 +5674,7 @@ MoveSelectionScreen: ; 3e4bc
 	ld [MenuSelection2], a
 	ld a, $1
 	ld [wcfaa], a
-	ld a, [wd0eb]
+	ld a, [wNumMoves]
 	inc a
 	ld [wcfa3], a
 	ld a, $1
@@ -5812,7 +5812,7 @@ MoveSelectionScreen: ; 3e4bc
 	ld a, [MenuSelection2]
 	and a
 	jp nz, .menu_loop
-	ld a, [wd0eb]
+	ld a, [wNumMoves]
 	inc a
 	ld [MenuSelection2], a
 	jp .menu_loop
@@ -5821,7 +5821,7 @@ MoveSelectionScreen: ; 3e4bc
 .pressed_down ; 3e62e
 	ld a, [MenuSelection2]
 	ld b, a
-	ld a, [wd0eb]
+	ld a, [wNumMoves]
 rept 2
 	inc a
 endr

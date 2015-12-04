@@ -1901,7 +1901,7 @@ Function100bc2: ; 100bc2
 	ld a, [MenuSelection2]
 	and a
 	jp nz, .asm_100bcb
-	ld a, [wd0eb]
+	ld a, [wNumMoves]
 	inc a
 	ld [MenuSelection2], a
 	jp .asm_100bcb
@@ -1909,7 +1909,7 @@ Function100bc2: ; 100bc2
 .asm_100c10
 	ld a, [MenuSelection2]
 	ld b, a
-	ld a, [wd0eb]
+	ld a, [wNumMoves]
 rept 2
 	inc a
 endr
@@ -1989,7 +1989,7 @@ Function100c74: ; 100c74
 Function100c98: ; 100c98
 	ld de, Unknown_100cad
 	call InitMenu3
-	ld a, [wd0eb]
+	ld a, [wNumMoves]
 	inc a
 	ld [wcfa3], a
 	ld a, [CurMoveNum]
@@ -2553,10 +2553,10 @@ Unknown_10102c: ; 10102c
 Function101050: ; 101050
 	call Function10107d
 	ld a, [OTPartyCount]
-rept 2
+rept 2 ; ???
 	ld hl, wc608
 endr
-	ld bc, $01b3
+	ld bc, wc7bb - wc608
 	call Function1010de
 	ld hl, wc7bb
 	ld [hl], e
@@ -2566,7 +2566,7 @@ endr
 	call GetSRAMBank
 	ld hl, wc608
 	ld de, $a001
-	ld bc, $01b5
+	ld bc, wc7bd - wc608
 	call CopyBytes
 	call CloseSRAM
 	ret
@@ -2575,11 +2575,11 @@ endr
 Function10107d: ; 10107d
 	xor a
 	ld hl, wc608
-	ld bc, $01b5
+	ld bc, wc7bd - wc608
 	call ByteFill
 	ld hl, wd26b
 	ld de, wc608
-	ld bc, $000b
+	ld bc, NAME_LENGTH
 	call CopyBytes
 	ld hl, wd271
 	ld a, [hli]
@@ -2588,16 +2588,16 @@ Function10107d: ; 10107d
 	ld [wc608 + 12], a
 	ld hl, OTPartyMonNicknames
 	ld de, wc608 + 13
-	ld bc, $000b
-	call Function1010cd
+	ld bc, NAME_LENGTH
+	call .CopyAllFromOT
 	ld hl, OTPartyMonOT
 	ld de, wc656 + 1
-	ld bc, $000b
-	call Function1010cd
+	ld bc, NAME_LENGTH
+	call .CopyAllFromOT
 	ld hl, OTPartyMon1Species
 	ld de, wc68a + 15
-	ld bc, $0030
-	call Function1010cd
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call .CopyAllFromOT
 	ld a, $50
 	ld [wc7b9], a
 	ld a, $33
@@ -2605,7 +2605,7 @@ Function10107d: ; 10107d
 	ret
 ; 1010cd
 
-Function1010cd: ; 1010cd
+.CopyAllFromOT: ; 1010cd
 	push hl
 	ld hl, 0
 	ld a, [OTPartyCount]
@@ -2621,7 +2621,7 @@ Function1010de: ; 1010de
 	push hl
 	push bc
 	ld de, 0
-.asm_1010e3
+.loop
 	ld a, [hli]
 	add e
 	ld e, a
@@ -2631,7 +2631,7 @@ Function1010de: ; 1010de
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_1010e3
+	jr nz, .loop
 	pop bc
 	pop hl
 	ret

@@ -35,7 +35,7 @@ endr
 	dw .seventeen
 	dw .eighteen
 	dw .nineteen    ; finish egg hatching animation
-	dw .twenty
+	dw .twenty      ; radio tuning knob
 	dw .twentyone
 	dw .twentytwo   ; flying sprite
 	dw .twentythree ; flying leaves
@@ -57,33 +57,39 @@ endr
 
 .one: ; 8d2a2 (23:52a2)
 	ld a, [MenuSelection2]
-	ld hl, 0
+
+	ld hl, SPRITEANIMSTRUCT_INDEX
 	add hl, bc
 	cp [hl]
 	jr z, .two
-	ld hl, $4
+
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld [hl], $10
-	ld hl, $7
+
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], $0
 	ret
 
 .two: ; 8d2b9 (23:52b9)
-	ld hl, $4
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld [hl], $18
-	ld hl, $c
+
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	ld d, a
 	inc [hl]
 	and $f
 	ret nz
-	ld hl, $d
+
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld e, [hl]
-	ld hl, $7
+
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld a, d
 	and $10 ; bit 4
@@ -97,10 +103,12 @@ endr
 	xor a
 	ld [hl], a
 	ret
+
 .asm_8d2e2
 	ld a, $ff
 	ld [hl], a
 	ret
+
 .asm_8d2e6
 	ld a, $fe
 	ld [hl], a
@@ -108,16 +116,19 @@ endr
 
 .three: ; 8d2ea (23:52ea)
 	ld a, [MenuSelection2]
-	ld hl, 0
+
+	ld hl, SPRITEANIMSTRUCT_INDEX
 	add hl, bc
 	cp [hl]
 	jr z, .asm_8d2fb
-	ld hl, $4
+
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld [hl], $10
 	ret
+
 .asm_8d2fb
-	ld hl, $4
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld [hl], $18
 	ret
@@ -133,66 +144,76 @@ endr
 ; 8d30a
 
 .four_zero: ; 8d30a
-	call .asm_8d6d8
-	ld hl, 0
+	call .IncrementSpriteAnimStruct0B
+
+	ld hl, SPRITEANIMSTRUCT_INDEX
 	add hl, bc
 	ld a, [hl]
-	ld hl, $d
+
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	and $3
 	ld [hl], a
 	inc [hl]
 	swap a
-	ld hl, $c
+
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], a
 
 .four_one: ; 8d321
-	ld hl, $4
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hl]
 	cp $a4
 	jr nc, .asm_8d356
-	ld hl, $d
+
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	add $4
-	ld hl, $4
+
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld [hl], a
-	ld hl, $5
+
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	inc [hl]
-	ld hl, $d
+
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
 	sla a
 	sla a
 	ld d, $2
-	ld hl, $c
+
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	add $3
 	ld [hl], a
-	call .ApplyYOffset
-	ld hl, $7
+	call .ApplySineWaveY
+
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	ret
 
 .asm_8d356
-	call Function8d036
+	call DeinitializeSprite
 	ret
 ; 8d35a
 
 .twentyfive: ; 8d35a (23:535a)
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	inc a
 	ld [hl], a
 	ld d, $2
-	call .ApplyYOffset
-	ld hl, $7
+	call .ApplySineWaveY
+
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	ret
@@ -210,7 +231,7 @@ endr
 	ret
 
 .seven: ; 8d381 (23:5381)
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -221,69 +242,81 @@ endr
 	ld d, a
 	and $1f
 	jr nz, .asm_8d395
-	ld hl, $d
+
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	dec [hl]
 .asm_8d395
-	ld hl, $b
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	push af
 	push de
-	call .ApplyYOffset
-	ld hl, $7
+	call .ApplySineWaveY
+
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call .ApplyXOffset
-	ld hl, $6
+	call .ApplySineWaveX
+
+	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld [hl], a
-	ld hl, $d
+
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
-	ld hl, $b
+
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	add [hl]
 	ld [hl], a
 	ret
+
 .asm_8d3ba
 	ld a, $1
 	ld [wcf64], a
-	call Function8d036
+	call DeinitializeSprite
 	ret
 
 .eight: ; 8d3c3 (23:53c3)
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hli]
 	or [hl]
 	jr z, .asm_8d41e
-	ld hl, $f
+
+	ld hl, SPRITEANIMSTRUCT_0F
 	add hl, bc
 	ld d, [hl]
-	ld hl, $b
+
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	push af
 	push de
-	call .ApplyYOffset
-	ld hl, $7
+	call .ApplySineWaveY
+
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call .ApplyXOffset
-	ld hl, $6
+	call .ApplySineWaveX
+
+	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld [hl], a
-	ld hl, $c
+
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $e
+
+	ld hl, SPRITEANIMSTRUCT_0E
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -291,12 +324,14 @@ endr
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, $e
+
+	ld hl, SPRITEANIMSTRUCT_0E
 	add hl, bc
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, $c
+
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -305,19 +340,22 @@ endr
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, $c
+
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, $b
+
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	xor $20
 	ld [hl], a
 	ret
+
 .asm_8d41e
-	call Function8d036
+	call DeinitializeSprite
 	ret
 
 .nine: ; 8d422 (23:5422)
@@ -336,31 +374,34 @@ endr
 	ret
 
 .eleven: ; 8d43e (23:543e)
-	ld hl, $b
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	dec [hl]
 	ld e, a
 	and $1
 	jr z, .asm_8d462
-	ld hl, $4
+
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hl]
 	cp $78
 	jr c, .asm_8d461
-	call Function8d036
+	call DeinitializeSprite
 	ld a, $4
 	ld [wcf64], a
 	ld de, SFX_PLACE_PUZZLE_PIECE_DOWN
 	call PlaySFX
 	ret
+
 .asm_8d461
 	inc [hl]
 .asm_8d462
 	ld a, e
 	ld d, $20
-	call .ApplyYOffset
-	ld hl, $7
+	call .ApplySineWaveY
+
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	ret
@@ -394,17 +435,19 @@ endr
 .sixteen_zero: ; 8d493
 	ld a, $14
 	call Function8d120
-	ld hl, $b
+
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	ld [hl], $2
-	ld hl, $c
+
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $20
 	ret
 ; 8d4a5
 
 .sixteen_two: ; 8d4a5
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -413,21 +456,23 @@ endr
 	ret
 
 .asm_8d4af
-	call .asm_8d6d8
-	ld hl, $c
+	call .IncrementSpriteAnimStruct0B
+
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $40
 
 .sixteen_three: ; 8d4b8
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	cp $30
 	jr c, .asm_8d4cd
 	dec [hl]
 	ld d, $28
-	call .ApplyYOffset
-	ld hl, $7
+	call .ApplySineWaveY
+
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	ret
@@ -439,42 +484,49 @@ endr
 ; 8d4d5
 
 .sixteen_one: ; 8d4d5
-	ld hl, $b
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	ld [hl], $4
-	ld hl, $c
+
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $30
-	ld hl, $d
+
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld [hl], $24
 	ret
 ; 8d4e8
 
 .sixteen_four: ; 8d4e8
-	ld hl, $d
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
 	and a
 	jr z, .asm_8d51c
 	ld d, a
-	ld hl, $c
+
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
-	call ApplyYOffset
-	ld hl, $7
+	call ApplySineWaveY
+
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
-	ld hl, $c
+
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	inc [hl]
 	ld a, [hl]
 	and $3f
 	ret nz
-	ld hl, $c
+
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $20
-	ld hl, $d
+
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
 	sub $c
@@ -485,19 +537,20 @@ endr
 
 .asm_8d51c
 	xor a
-	ld hl, $7
+
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
-	call .asm_8d6d8
+	call .IncrementSpriteAnimStruct0B
 	ret
 
 .sixteen_five: ; 8d526
-	call Function8d036
+	call DeinitializeSprite
 	ret
 ; 8d52a
 
 .seventeen: ; 8d52a (23:552a)
-	ld hl, $4
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hl]
 rept 2
@@ -512,7 +565,7 @@ endr
 	ret
 
 .asm_8d53f
-	call Function8d036
+	call DeinitializeSprite
 	ret
 
 .eighteen: ; 8d543 (23:5543)
@@ -520,7 +573,7 @@ endr
 	ret
 
 .nineteen: ; 8d54a (23:554a)
-	ld hl, SpriteAnim1Sprite0c - SpriteAnim1
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	cp $80
@@ -528,7 +581,8 @@ endr
 	ld d, a
 	add $8
 	ld [hl], a
-	ld hl, SpriteAnim1Sprite0b - SpriteAnim1
+
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	xor $20
@@ -536,29 +590,31 @@ endr
 
 	push af
 	push de
-	call .ApplyYOffset
-	ld hl, SpriteAnim1YOffset - SpriteAnim1
+	call .ApplySineWaveY
+
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 
 	pop de
 	pop af
-	call .ApplyXOffset
-	ld hl, SpriteAnim1XOffset - SpriteAnim1
+	call .ApplySineWaveX
+
+	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld [hl], a
 	ret
 
 .finish_nineteen
-	call Function8d036
+	call DeinitializeSprite
 	ret
 
 .twenty: ; 8d578 (23:5578)
-	callab Function91640
+	callab AnimateTuningKnob
 	ret
 
 .twentyone: ; 8d57f (23:557f)
-	ld hl, $d
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld e, [hl]
 	inc hl
@@ -567,12 +623,14 @@ endr
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, $d
+
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, $c
+
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 rept 3
@@ -580,36 +638,41 @@ rept 3
 endr
 	push af
 	push de
-	call .ApplyYOffset
-	ld hl, $7
+	call .ApplySineWaveY
+
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call .ApplyXOffset
-	ld hl, $6
+	call .ApplySineWaveX
+
+	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld [hl], a
 	ret
 
 .twentytwo: ; 8d5b0 (23:55b0)
-	ld hl, $5
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, [hl]
 	and a
 	ret z
-	ld hl, $d
+
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
 	cp $40
 	ret c
-	ld hl, $5
+
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 rept 2
 	dec [hl]
 endr
-	ld hl, $f
+
+	ld hl, SPRITEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	ld d, a
@@ -618,18 +681,19 @@ endr
 	add $8
 	ld [hl], a
 .asm_8d5d3
-	ld hl, $e
+	ld hl, SPRITEANIMSTRUCT_0E
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	call .ApplyXOffset
-	ld hl, $6
+	call .ApplySineWaveX
+
+	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld [hl], a
 	ret
 
 .twentythree: ; 8d5e2 (23:55e2)
-	ld hl, $4
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hl]
 	cp $b8
@@ -637,35 +701,40 @@ endr
 rept 2
 	inc [hl]
 endr
-	ld hl, $5
+
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	dec [hl]
 	ld d, $40
-	ld hl, $c
+
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	call .ApplyXOffset
-	ld hl, $6
+	call .ApplySineWaveX
+
+	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld [hl], a
 	ret
 .asm_8d603
-	call Function8d036
+	call DeinitializeSprite
 	ret
 
 .twentyfour: ; 8d607 (23:5607)
-	ld hl, $5
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, [hl]
 	cp $54
 	ret z
-	ld hl, $5
+
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 rept 2
 	inc [hl]
 endr
-	ld hl, $f
+
+	ld hl, SPRITEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	ld d, a
@@ -674,12 +743,13 @@ endr
 	sub $2
 	ld [hl], a
 .asm_8d621
-	ld hl, $e
+	ld hl, SPRITEANIMSTRUCT_0E
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	call .ApplyXOffset
-	ld hl, $6
+	call .ApplySineWaveX
+
+	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld [hl], a
 	ret
@@ -698,10 +768,11 @@ endr
 	jr nz, .asm_8d645
 	ret
 .asm_8d645
-	ld hl, $7
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], $0
-	ld hl, $d
+
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
 	add $2
@@ -709,8 +780,9 @@ endr
 	xor $ff
 	inc a
 	ld d, $20
-	call .ApplyYOffset
-	ld hl, $7
+	call .ApplySineWaveY
+
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	ld a, $36
@@ -718,7 +790,7 @@ endr
 	ret
 
 .thirty: ; 8d666 (23:5666)
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	cp $14
@@ -728,33 +800,37 @@ endr
 	xor $ff
 	inc a
 	ld d, $20
-	call .ApplyYOffset
-	ld hl, $7
+	call .ApplySineWaveY
+
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 .asm_8d67f
 	ret
 
 .thirtytwo: ; 8d680 (23:5680)
-	ld hl, $b
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	ld d, [hl]
 rept 3
 	inc [hl]
 endr
-	ld hl, $c
+
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	push af
 	push de
-	call .ApplyYOffset
-	ld hl, $7
+	call .ApplySineWaveY
+
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call .ApplyXOffset
-	ld hl, $6
+	call .ApplySineWaveX
+
+	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld [hl], a
 	ret
@@ -768,7 +844,7 @@ endr
 	ret
 
 .thirtyfour: ; 8d6ae (23:56ae)
-	ld hl, $5
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, [hl]
 	add $10
@@ -789,7 +865,8 @@ endr
 	inc hl
 	ld d, [hl]
 	inc de
-	ld hl, $b
+
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	ld l, [hl]
 	ld h, $0
@@ -801,18 +878,18 @@ endr
 	ret
 ; 8d6d8 (23:56d8)
 
-.asm_8d6d8: ; 8d6d8
-	ld hl, $b
+.IncrementSpriteAnimStruct0B: ; 8d6d8
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	inc [hl]
 	ret
 ; 8d6de
 
-.ApplyYOffset: ; 8d6de (23:56de)
-	call ApplyYOffset
+.ApplySineWaveY: ; 8d6de (23:56de)
+	call ApplySineWaveY
 	ret
 
-.ApplyXOffset: ; 8d6e2 (23:56e2)
-	call ApplyXOffset
+.ApplySineWaveX: ; 8d6e2 (23:56e2)
+	call ApplySineWaveX
 	ret
 ; 8d6e6 (23:56e6)

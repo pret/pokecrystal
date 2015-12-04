@@ -20,7 +20,7 @@ MoveDeletion:
 	ld hl, UnknownText_0x2c5ea
 	call PrintText
 	call LoadStandardMenuDataHeader
-	callba Function12f5b
+	callba ChooseMoveToDelete
 	push af
 	call Function2b74
 	pop af

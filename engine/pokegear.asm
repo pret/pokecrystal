@@ -1425,12 +1425,13 @@ INCBIN "gfx/unknown/0915db.tilemap.rle"
 _UpdateRadioStation: ; 9163e (24:563e)
 	jr UpdateRadioStation
 
-Function91640: ; 91640 (24:5640)
+; called from engine/sprite_anims.asm
+AnimateTuningKnob: ; 91640 (24:5640)
 	push bc
 	call .TuningKnob
 	pop bc
 	ld a, [wRadioTuningKnob]
-	ld hl, $6
+	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld [hl], a
 	ret

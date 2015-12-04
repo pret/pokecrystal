@@ -213,7 +213,7 @@ PlaceGameFreakPresents_3: ; e46dd
 
 
 GameFreakLogoJumper: ; e46ed (39:46ed)
-	ld hl, $b
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
@@ -234,19 +234,19 @@ GameFreakLogoScenes: ; e46fd (39:46fd)
 	dw GameFreakLogoScene5
 
 GameFreakLogoScene1: ; e4707 (39:4707)
-	ld hl, $b
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	inc [hl]
 	ret
 
 GameFreakLogoScene2: ; e470d (39:470d)
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	and a
 	jr z, .asm_e4747
 	ld d, a
-	ld hl, $d
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
 	and $3f
@@ -256,16 +256,16 @@ GameFreakLogoScene2: ; e470d (39:470d)
 .asm_e4723
 	ld e, a
 	callba Functionce765
-	ld hl, $7
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], e
-	ld hl, $d
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
 	dec [hl]
 	and $1f
 	ret nz
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	sub $30
@@ -273,11 +273,12 @@ GameFreakLogoScene2: ; e470d (39:470d)
 	ld de, SFX_DITTO_BOUNCE
 	call PlaySFX
 	ret
+
 .asm_e4747
-	ld hl, $b
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	inc [hl]
-	ld hl, $d
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld [hl], $0
 	ld de, SFX_DITTO_POP_UP
@@ -285,18 +286,19 @@ GameFreakLogoScene2: ; e470d (39:470d)
 	ret
 
 GameFreakLogoScene3: ; e4759 (39:4759)
-	ld hl, $d
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
 	cp $20
 	jr nc, .asm_e4764
 	inc [hl]
 	ret
+
 .asm_e4764
-	ld hl, $b
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	inc [hl]
-	ld hl, $d
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld [hl], $0
 	ld de, SFX_DITTO_TRANSFORM
@@ -304,7 +306,7 @@ GameFreakLogoScene3: ; e4759 (39:4759)
 	ret
 
 GameFreakLogoScene4: ; e4776 (39:4776)
-	ld hl, $d
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
 	cp $40
@@ -331,12 +333,12 @@ endr
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
+
 .asm_e47a3
-	ld hl, $b
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	inc [hl]
 	call PlaceGameFreakPresents_AdvanceIndex
-
 GameFreakLogoScene5: ; e47ab (39:47ab)
 	ret
 ; e47ac (39:47ac)
@@ -810,7 +812,7 @@ IntroScene8: ; e4bd3 (39:4bd3)
 .finish
 	ld de, SFX_INTRO_SUICUNE_2
 	call PlaySFX
-	callba Function8d03d
+	callba DeinitializeAllSprites
 	call NextIntroScene
 	ret
 
@@ -1101,7 +1103,7 @@ IntroScene14: ; e4dfa (39:4dfa)
 	ret
 
 .asm_e4e2c
-	callba Function8d03d
+	callba DeinitializeAllSprites
 	ret
 
 .asm_e4e33
@@ -1313,7 +1315,7 @@ IntroScene19: ; e4f7e (39:4f7e)
 	ld a, $90
 	ld [hWY], a
 	callba ClearSpriteAnims
-	ld hl, wc300
+	ld hl, wSpriteAnimDict
 	xor a
 	ld [hli], a
 	ld [hl], $7f
@@ -1394,7 +1396,7 @@ IntroScene22: ; e5072 (39:5072)
 	jr nc, .done
 	ret
 .done
-	callba Function8d03d
+	callba DeinitializeAllSprites
 	call NextIntroScene
 	ret
 

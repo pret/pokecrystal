@@ -519,7 +519,7 @@ Function10839b: ; 10839b
 	ld de, VTiles2
 	call Function108201
 	call EnableLCD
-	callba Function8d03d
+	callba DeinitializeAllSprites
 	xor a
 	ld [hSCX], a
 	ld [hSCY], a
@@ -654,7 +654,7 @@ Function1084d7: ; 1084d7
 	ld de, VTiles2
 	call Function108201
 	call EnableLCD
-	callba Function8d03d
+	callba DeinitializeAllSprites
 	call DelayFrame
 	ld de, TradeBallGFX
 	ld hl, VTiles0
@@ -723,7 +723,7 @@ Function108589: ; 108589
 	ld de, VTiles2
 	call Function108201
 	call EnableLCD
-	callba Function8d03d
+	callba DeinitializeAllSprites
 	call DelayFrame
 	ld de, TradeBallGFX
 	ld hl, VTiles0
@@ -780,7 +780,7 @@ Function108589: ; 108589
 ; 108638
 
 Function108638: ; 108638
-	callba Function8d03d
+	callba DeinitializeAllSprites
 	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
@@ -816,7 +816,7 @@ Function108638: ; 108638
 ; 108689
 
 Function108689: ; 108689
-	callba Function8d03d
+	callba DeinitializeAllSprites
 	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
@@ -1067,7 +1067,7 @@ Function108863: ; 108863
 	jr .asm_108868
 
 .asm_108879
-	callba Function8d03d
+	callba DeinitializeAllSprites
 	depixel 9, 10, 2, 0
 	ld a, SPRITE_ANIM_INDEX_25
 	call _InitSpriteAnimStruct
@@ -1161,7 +1161,7 @@ Function10890a: ; 10890a
 Function108919: ; 108919
 	ld c, $28
 	call Function1082cc
-	callba Function8d03d
+	callba DeinitializeAllSprites
 	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
@@ -1546,7 +1546,7 @@ Function108b98: ; 108b98
 ; 108bbd
 
 Function108bbd: ; 108bbd
-	callba Function8d03d
+	callba DeinitializeAllSprites
 	call ClearSprites
 	ret
 ; 108bc7
@@ -1564,7 +1564,7 @@ Function108bc7: ; 108bc7 (42:4bc7)
 	ld [hl], a
 	ret
 .asm_108bd9
-	callba Function8d036
+	callba DeinitializeSprite
 	ret
 
 Function108be0: ; 108be0 (42:4be0)

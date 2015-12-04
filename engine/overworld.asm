@@ -266,7 +266,7 @@ GetMonSprite: ; 14259
 	and a
 	jr z, .NoBreedmon
 
-	callba Function8e82b
+	callba LoadOverworldMonIcon
 
 	ld l, 1
 	ld h, 0

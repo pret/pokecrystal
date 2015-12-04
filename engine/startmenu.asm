@@ -685,7 +685,7 @@ PartyMonItemName: ; 12a6c
 
 CancelPokemonAction: ; 12a79
 	callba InitPartyMenuWithCancel
-	callba Function8ea71
+	callba UnfreezeMonIcons
 	ld a, 1
 	ret
 ; 12a88
@@ -748,7 +748,7 @@ SwitchPartyMons: ; 12aec
 	inc a
 	ld [wSwitchMon], a
 
-	callba Function8ea8c
+	callba HoldSwitchmonIcon
 	callba InitPartyMenuNoCancel
 
 	ld a, 4
@@ -1457,13 +1457,13 @@ MonMenu_SweetScent: ; 12f50
 	ret
 ; 12f5b
 
-Function12f5b: ; 12f5b
+ChooseMoveToDelete: ; 12f5b
 	ld hl, Options
 	ld a, [hl]
 	push af
 	set NO_TEXT_SCROLL, [hl]
 	call LoadFontsBattleExtra
-	call Function12f73
+	call .asm_12f73
 	pop bc
 	ld a, b
 	ld [Options], a
@@ -1473,36 +1473,36 @@ Function12f5b: ; 12f5b
 	ret
 ; 12f73
 
-Function12f73: ; 12f73
+.asm_12f73: ; 12f73
 	call SetUpMoveScreenBG
 	ld de, Unknown_12fb2
 	call InitMenu3
-	call Function131ef
+	call SetUpMoveList
 	ld hl, wcfa5
 	set 6, [hl]
-	jr Function12f93
+	jr .asm_12f93
 
-Function12f86: ; 12f86
+.asm_12f86: ; 12f86
 	call Function1bd3
 	bit 1, a
-	jp nz, Function12f9f
+	jp nz, .asm_12f9f
 	bit 0, a
-	jp nz, Function12f9c
+	jp nz, .asm_12f9c
 
-Function12f93: ; 12f93
+.asm_12f93: ; 12f93
 	call PrepareToPlaceMoveData
 	call PlaceMoveData
-	jp Function12f86
+	jp .asm_12f86
 ; 12f9c
 
-Function12f9c: ; 12f9c
+.asm_12f9c: ; 12f9c
 	and a
-	jr Function12fa0
+	jr .asm_12fa0
 
-Function12f9f: ; 12f9f
+.asm_12f9f: ; 12f9f
 	scf
 
-Function12fa0: ; 12fa0
+.asm_12fa0: ; 12fa0
 	push af
 	xor a
 	ld [wSwitchMon], a
@@ -1545,7 +1545,7 @@ MoveScreenLoop: ; 12fd5
 	ld de, Unknown_13163
 	call InitMenu3
 .loop
-	call Function131ef
+	call SetUpMoveList
 	ld hl, wcfa5
 	set 6, [hl]
 	jr .skip_joy
@@ -1802,7 +1802,7 @@ SetUpMoveScreenBG: ; 13172
 	jp ClearBox
 ; 131ef
 
-Function131ef: ; 131ef
+SetUpMoveList: ; 131ef
 	xor a
 	ld [hBGMapMode], a
 	ld [wMoveSwapBuffer], a
@@ -1817,10 +1817,10 @@ Function131ef: ; 131ef
 	hlcoord 2, 3
 	predef ListMoves
 	hlcoord 10, 4
-	predef Function50c50
+	predef ListMovePP
 	call WaitBGMap
 	call SetPalettes
-	ld a, [wd0eb]
+	ld a, [wNumMoves]
 	inc a
 	ld [wcfa3], a
 	hlcoord 0, 11

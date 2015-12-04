@@ -5965,7 +5965,7 @@ Function11ad1b: ; 11ad1b
 	dec a
 	ld [hObjectStructIndexBuffer], a
 	ld a, $10
-	ld [wc3b7], a
+	ld [wCurIconTile], a
 	ld hl, Function8e83f
 	ld a, BANK(Function8e83f)
 	ld e, $4
@@ -6884,7 +6884,7 @@ Function11b295: ; 11b295
 	ld hl, $0003
 	add hl, bc
 	ld e, [hl]
-	callba Function8e9bc
+	callba FlyFunction_GetMonIcon
 	hlcoord 4, 14
 	push hl
 	call GetPokemonName

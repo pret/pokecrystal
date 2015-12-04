@@ -65,7 +65,7 @@ PredefPointers:: ; 856b
 	add_predef ListMoves ; $20
 	add_predef PlaceNonFaintStatus
 	add_predef Function50cdb
-	add_predef Function50c50
+	add_predef ListMovePP
 	add_predef GetGender
 	add_predef StatsScreenInit
 	add_predef DrawPlayerHP

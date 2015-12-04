@@ -450,9 +450,9 @@ ConfirmContinue: ; 5e34
 	call DelayFrame
 	call GetJoypad
 	ld hl, hJoyPressed
-	bit 0, [hl]
+	bit A_BUTTON_F, [hl]
 	jr nz, .PressA
-	bit 1, [hl]
+	bit B_BUTTON_F, [hl]
 	jr z, .loop
 	scf
 	ret
@@ -1336,7 +1336,7 @@ Function639b: ; unreferenced
 	and $3
 	ret nz
 	ld bc, SpriteAnim10
-	ld hl, SpriteAnim10FrameIndex - SpriteAnim10
+	ld hl, SPRITEANIMSTRUCT_FRAME
 	add hl, bc ; over-the-top compicated way to load wc3ae into hl
 	ld l, [hl]
 	ld h, 0

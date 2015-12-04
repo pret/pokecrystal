@@ -176,7 +176,7 @@ Function117f5: ; 117f5 (4:57f5)
 	depixel 4, 4, 4, 0
 	ld a, SPRITE_ANIM_INDEX_0A
 	call _InitSpriteAnimStruct
-	ld hl, $1
+	ld hl, SPRITEANIMSTRUCT_01
 	add hl, bc
 	ld [hl], $0
 	hlcoord 5, 2
@@ -411,10 +411,10 @@ Function1197b: ; 1197b (4:597b)
 	ld [wc6d5], a
 	ld a, b
 	ld [wc6d6], a
-	ld hl, $1
+	ld hl, SPRITEANIMSTRUCT_01
 	add hl, bc
 	ld a, [hl]
-	ld hl, $e
+	ld hl, SPRITEANIMSTRUCT_0E
 	add hl, bc
 	ld [hl], a
 	ld hl, wJumptableIndex
@@ -454,10 +454,10 @@ Function119a1: ; 119a1 (4:59a1)
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $8
-	ld hl, $d
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld [hl], $4
 	call Function1189c
@@ -497,7 +497,7 @@ Function11a0b: ; 11a0b (4:5a0b)
 	ld b, [hl]
 
 Function11a11: ; 11a11 (4:5a11)
-	ld hl, $d
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
 	push bc
@@ -509,7 +509,7 @@ Function11a11: ; 11a11 (4:5a11)
 	cp b
 	pop bc
 	jr nz, .asm_11a39
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	cp $3
@@ -530,12 +530,12 @@ Function11a11: ; 11a11 (4:5a11)
 
 Function11a3b: ; 11a3b (4:5a3b)
 	call Function11a8b
-	ld hl, $d
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
 	ld e, a
 	swap e
-	ld hl, $7
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], e
 	ld d, $4
@@ -550,19 +550,19 @@ Function11a3b: ; 11a3b (4:5a3b)
 	ld de, Unknown_11a82
 	ld a, $1
 .asm_11a60
-	ld hl, $e
+	ld hl, SPRITEANIMSTRUCT_0E
 	add hl, bc
 	add [hl]
-	ld hl, $1
+	ld hl, SPRITEANIMSTRUCT_01
 	add hl, bc
 	ld [hl], a
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld l, [hl]
 	ld h, $0
 	add hl, de
 	ld a, [hl]
-	ld hl, $6
+	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld [hl], a
 	ret
@@ -593,7 +593,7 @@ Function11a8b: ; 11a8b (4:5a8b)
 	call Function11a11
 	and a
 	jr nz, .asm_11ab7
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	cp $8
@@ -611,7 +611,7 @@ Function11a8b: ; 11a8b (4:5a8b)
 	ld e, a
 	add a
 	add e
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], a
 	ret
@@ -619,7 +619,7 @@ Function11a8b: ; 11a8b (4:5a8b)
 	call Function11a11
 	and a
 	jr nz, .asm_11ad8
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -640,12 +640,12 @@ endr
 	ld e, a
 	add a
 	add e
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], a
 	ret
 .down
-	ld hl, $d
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
 	call Function1189c
@@ -663,7 +663,7 @@ endr
 	ld [hl], $0
 	ret
 .up
-	ld hl, $d
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -826,10 +826,10 @@ Function11c11: ; 11c11 (4:5c11)
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-	ld hl, $6
+	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld a, [hl]
-	ld hl, $4
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	add [hl]
 	sub $8
@@ -837,10 +837,10 @@ Function11c11: ; 11c11 (4:5c11)
 	srl a
 	srl a
 	ld e, a
-	ld hl, $7
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld a, [hl]
-	ld hl, $5
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	add [hl]
 	sub $10

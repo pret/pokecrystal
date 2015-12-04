@@ -150,7 +150,7 @@ ForgetMove: ; 65d3
 	ld [wcfa1], a
 	ld a, $6
 	ld [wcfa2], a
-	ld a, [wd0eb]
+	ld a, [wNumMoves]
 	inc a
 	ld [wcfa3], a
 	ld a, $1

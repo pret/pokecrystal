@@ -697,7 +697,7 @@ Function4e147: ; 4e147 (13:6147)
 	hlcoord 12, 11
 	ld a, $28
 	ld [Buffer1], a
-	predef Function50c50
+	predef ListMovePP
 	ret
 
 Function4e189: ; 4e189 (13:6189)

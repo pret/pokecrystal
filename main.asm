@@ -10731,7 +10731,7 @@ MonSubmenu: ; 24d19
 	xor a
 	ld [hBGMapMode], a
 	call GetMonSubmenuItems
-	callba Function8ea4a
+	callba FreezeMonIcons
 	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
 	call .GetTopCoord
@@ -15428,13 +15428,13 @@ MobileCheckOwnMonAnywhere: ; 4a843
 	ld hl, PartyMon1Species
 	ld bc, PartyMonOT
 .asm_4a851
-	call Function4a8dc
+	call .CheckMatch
 	ret c
 	push bc
 	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
-	call Function4a91e
+	call .CopyName
 	dec d
 	jr nz, .asm_4a851
 	ld a, BANK(sBoxCount)
@@ -15446,7 +15446,7 @@ MobileCheckOwnMonAnywhere: ; 4a843
 	ld hl, sBoxMon1Species
 	ld bc, sBoxMonOT
 .asm_4a873
-	call Function4a8dc
+	call .CheckMatch
 	jr nc, .asm_4a87c
 	call CloseSRAM
 	ret
@@ -15456,7 +15456,7 @@ MobileCheckOwnMonAnywhere: ; 4a843
 	ld bc, BOXMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
-	call Function4a91e
+	call .CopyName
 	dec d
 	jr nz, .asm_4a873
 
@@ -15468,7 +15468,7 @@ MobileCheckOwnMonAnywhere: ; 4a843
 	and $f
 	cp c
 	jr z, .asm_4a8d1
-	ld hl, BoxAddressTable2
+	ld hl, .BoxAddrs
 	ld b, 0
 rept 3
 	add hl, bc
@@ -15496,7 +15496,7 @@ endr
 	pop hl
 	ld d, a
 .asm_4a8ba
-	call Function4a8dc
+	call .CheckMatch
 	jr nc, .asm_4a8c4
 	pop bc
 	call CloseSRAM
@@ -15507,7 +15507,7 @@ endr
 	ld bc, BOXMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
-	call Function4a91e
+	call .CopyName
 	dec d
 	jr nz, .asm_4a8ba
 	pop bc
@@ -15522,7 +15522,7 @@ endr
 	ret
 ; 4a8dc
 
-Function4a8dc: ; 4a8dc
+.CheckMatch: ; 4a8dc
 	push bc
 	push hl
 	push de
@@ -15549,7 +15549,7 @@ Function4a8dc: ; 4a8dc
 	ret
 ; 4a8f4
 
-BoxAddressTable2: ; 4a8f4
+.BoxAddrs: ; 4a8f4
 	dba sBox1
 	dba sBox2
 	dba sBox3
@@ -15566,7 +15566,7 @@ BoxAddressTable2: ; 4a8f4
 	dba sBox14
 ; 4a91e
 
-Function4a91e: ; 4a91e
+.CopyName: ; 4a91e
 	push hl
 	ld hl, NAME_LENGTH
 	add hl, bc
@@ -15600,6 +15600,7 @@ FindItemInPCOrBag: ; 4a927
 	ret
 ; 4a94e
 
+; mobile battle selection
 Function4a94e: ; 4a94e
 	call FadeToMenu
 	ld a, -1
@@ -16102,7 +16103,7 @@ Function4ac58: ; 4ac58
 	lb bc, 2, 18
 	hlcoord 1, 15
 	call ClearBox
-	callba Function8ea4a
+	callba FreezeMonIcons
 	ld hl, MenuDataHeader_0x4aca2
 	call LoadMenuDataHeader
 	ld hl, wd019
@@ -16422,7 +16423,7 @@ SECTION "bank13", ROMX, BANK[$13]
 SwapTextboxPalettes:: ; 4c000
 	hlcoord 0, 0
 	decoord 0, 0, AttrMap
-	ld b, $12
+	ld b, SCREEN_HEIGHT
 .loop
 	push bc
 	ld c, SCREEN_WIDTH
@@ -18868,27 +18869,27 @@ GetGender: ; 50bdd
 	ret
 ; 50c50
 
-Function50c50: ; 50c50
-	ld a, [wd0eb]
+ListMovePP: ; 50c50
+	ld a, [wNumMoves]
 	inc a
 	ld c, a
-	ld a, $4
+	ld a, NUM_MOVES
 	sub c
 	ld b, a
 	push hl
 	ld a, [Buffer1]
 	ld e, a
 	ld d, $0
-	ld a, $3e
-	call Function50cc9
+	ld a, $3e ; P
+	call .load_loop
 	ld a, b
 	and a
-	jr z, .asm_50c6f
+	jr z, .skip
 	ld c, a
-	ld a, $e3
-	call Function50cc9
+	ld a, "-"
+	call .load_loop
 
-.asm_50c6f
+.skip
 	pop hl
 rept 3
 	inc hl
@@ -18897,10 +18898,10 @@ endr
 	ld e, l
 	ld hl, TempMonMoves
 	ld b, 0
-.asm_50c7a
+.loop
 	ld a, [hli]
 	and a
-	jr z, .asm_50cc8
+	jr z, .done
 	push bc
 	push hl
 	push de
@@ -18927,7 +18928,7 @@ endr
 	ld de, StringBuffer1 + 4
 	lb bc, 1, 2
 	call PrintNum
-	ld a, $f3
+	ld a, "/"
 	ld [hli], a
 	ld de, wd265
 	lb bc, 1, 2
@@ -18944,19 +18945,18 @@ endr
 	inc b
 	ld a, b
 	cp NUM_MOVES
-	jr nz, .asm_50c7a
+	jr nz, .loop
 
-.asm_50cc8
+.done
 	ret
 ; 50cc9
 
-Function50cc9: ; 50cc9
-.asm_50cc9
+.load_loop: ; 50cc9
 	ld [hli], a
 	ld [hld], a
 	add hl, de
 	dec c
-	jr nz, .asm_50cc9
+	jr nz, .load_loop
 	ret
 ; 50cd0
 
@@ -19097,7 +19097,7 @@ ListMoves: ; 50d6f
 	call PlaceString
 	pop bc
 	ld a, b
-	ld [wd0eb], a
+	ld [wNumMoves], a
 	inc b
 	pop hl
 	push bc
@@ -21435,9 +21435,9 @@ Function8cf4f: ; 8cf4f
 	ret
 ; 8cf53
 
-
 INCLUDE "engine/sprites.asm"
 
+INCLUDE "engine/mon_icons.asm"
 
 SECTION "bank24", ROMX, BANK[$24]
 

@@ -325,7 +325,7 @@ FlyFromAnim: ; 8caed
 	push af
 	xor a
 	ld [VramState], a
-	call Function8cb9b
+	call FlyFunction_InitGFX
 	depixel 10, 10, 4, 0
 	ld a, SPRITE_ANIM_INDEX_0A
 	call _InitSpriteAnimStruct
@@ -334,7 +334,7 @@ FlyFromAnim: ; 8caed
 	ld [hl], $84
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld [hl], $16
+	ld [hl], SPRITE_ANIM_SEQ_16
 	ld a, $80
 	ld [wcf64], a
 .loop
@@ -360,7 +360,7 @@ FlyToAnim: ; 8cb33
 	push af
 	xor a
 	ld [VramState], a
-	call Function8cb9b
+	call FlyFunction_InitGFX
 	depixel 31, 10, 4, 0
 	ld a, SPRITE_ANIM_INDEX_0A
 	call _InitSpriteAnimStruct
@@ -410,7 +410,7 @@ endr
 	call ByteFill
 	ret
 
-Function8cb9b: ; 8cb9b (23:4b9b)
+FlyFunction_InitGFX: ; 8cb9b (23:4b9b)
 	callab ClearSpriteAnims
 	ld de, CutGrassGFX
 	ld hl, VTiles1 tile $00
@@ -424,7 +424,7 @@ Function8cb9b: ; 8cb9b (23:4b9b)
 	ld a, [hl]
 	ld [wd265], a
 	ld e, $84
-	callba Function8e9bc
+	callba FlyFunction_GetMonIcon
 	xor a
 	ld [wJumptableIndex], a
 	ret

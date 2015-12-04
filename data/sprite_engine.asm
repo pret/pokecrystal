@@ -67,7 +67,7 @@ Unknown_8d6e6: ; 8d6e6
 	dw Unknown_8d948 ; 41
 ; 8d76a
 
-Unknown_8d76a: 	db $00, $20
+Unknown_8d76a: 	db $00, $20 ; lowest 6 bits of second byte are duration, upper two bits are flags
                 db -1
 Unknown_8d76d: 	db $00, $08
                 db $01, $08
@@ -1569,3 +1569,4 @@ Unknown_8e706: ; Broken 2bpp pointers
 	dbbw $10, $39, $672a ; 16-tile 2bpp at 39:672a (empty data)
 	dbbw $10, $24, $672a ; 16-tile 2bpp at 24:672a (inside Function926f7)
 	dbbw $10, $21, $672a ; 16-tile 2bpp at 21:672a (inside Function8671c)
+; 8e72a (23:672a)

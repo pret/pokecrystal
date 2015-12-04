@@ -2019,13 +2019,13 @@ Function3b0c:: ; 3b0c
 
 _InitSpriteAnimStruct:: ; 3b2a
 
-	ld [wc3b8], a
+	ld [wSpriteAnimIDBuffer], a
 	ld a, [hROMBank]
 	push af
 
 	ld a, BANK(InitSpriteAnimStruct)
 	rst Bankswitch
-	ld a, [wc3b8]
+	ld a, [wSpriteAnimIDBuffer]
 
 	call InitSpriteAnimStruct
 
@@ -2038,13 +2038,13 @@ _InitSpriteAnimStruct:: ; 3b2a
 
 Function3b3c:: ; 3b3c
 
-	ld [wc3b8], a
+	ld [wSpriteAnimIDBuffer], a
 	ld a, [hROMBank]
 	push af
 
 	ld a, BANK(Function8d120)
 	rst Bankswitch
-	ld a, [wc3b8]
+	ld a, [wSpriteAnimIDBuffer]
 
 	call Function8d120
 

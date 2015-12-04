@@ -392,8 +392,10 @@ TilePermissions:: ; c2fe
 
 	ds 1
 
-SECTION "c300", WRAM0 [$c300]
+SECTION "wSpriteAnims", WRAM0 [$c300]
 ; wc300 - wc313 is a 10x2 dictionary.
+; keys: taken from third column of Unknown_8d1c4
+; values: VTiles
 wSpriteAnimDict:: ds 10 * 2
 	ds wSpriteAnimDict - @
 wc300:: ds 1
@@ -469,8 +471,11 @@ CurIcon:: ; c3b6
 	ds 1
 
 
-wc3b7:: ds 1
-wc3b8:: ds 2
+wCurIconTile:: ds 1
+wSpriteAnimAddrBackup::
+wSpriteAnimIDBuffer::
+wCurrSpriteAddSubFlags::
+	ds 2
 wCurrAnimVTile:: ds 1
 wCurrAnimXCoord:: ds 1
 wCurrAnimYCoord:: ds 1
@@ -1000,10 +1005,10 @@ wc74d:: ds 1
 wc74e:: ds 107
 wc7b9:: ds 1
 wc7ba:: ds 1
-wc7bb:: ds 15
-wc7ca:: ds 6
+wc7bb:: ds 2
+wc7bd::
+	ds wc6d0 - @
 
-	ds -$100
 wPokedexDataStart::
 wPokedexOrder:: ds NUM_POKEMON +- 1
 wPokedexOrderEnd:: ds 6
@@ -1767,6 +1772,7 @@ wd0e3:: ds 1
 wMenuScrollPosition:: ds 4
 wQueuedScriptBank:: ds 1
 wQueuedScriptAddr:: ds 2
+wNumMoves::
 wd0eb:: ds 1
 wFieldMoveSucceeded::
 wPlayerAction::
