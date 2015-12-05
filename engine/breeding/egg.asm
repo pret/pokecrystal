@@ -829,7 +829,7 @@ Function173b3: ; 173b3 (5:73b3)
 	ld [hl], $0
 	pop de
 	ld a, e
-	ld hl, SPRITEANIMSTRUCT_01
+	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	add [hl]
 	ld [hl], a

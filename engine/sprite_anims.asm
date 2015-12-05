@@ -36,7 +36,7 @@ endr
 	dw .eighteen
 	dw .nineteen    ; finish egg hatching animation
 	dw .twenty      ; radio tuning knob
-	dw .twentyone
+	dw .twentyone   ; cut grass leaves
 	dw .twentytwo   ; flying sprite
 	dw .twentythree ; flying leaves
 	dw .twentyfour
@@ -370,7 +370,7 @@ endr
 	ret nz
 	ld [hl], $3
 	ld a, $f
-	call Function8d120
+	call _ReinitSpriteAnimFrame
 	ret
 
 .eleven: ; 8d43e (23:543e)
@@ -434,7 +434,7 @@ endr
 
 .sixteen_zero: ; 8d493
 	ld a, $14
-	call Function8d120
+	call _ReinitSpriteAnimFrame
 
 	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
@@ -786,7 +786,7 @@ endr
 	add hl, bc
 	ld [hl], a
 	ld a, $36
-	call Function8d120
+	call _ReinitSpriteAnimFrame
 	ret
 
 .thirty: ; 8d666 (23:5666)
@@ -840,7 +840,7 @@ endr
 	cp $40
 	ret nz
 	ld a, $3d
-	call Function8d120
+	call _ReinitSpriteAnimFrame
 	ret
 
 .thirtyfour: ; 8d6ae (23:56ae)
@@ -856,7 +856,7 @@ endr
 	ret
 
 .thirtyone: ; 8d6be (23:56be)
-	callba Function49aa2
+	callba UpdateCelebiPosition
 	ret
 
 .anonymous_jumptable: ; 8d6c5 (23:56c5)

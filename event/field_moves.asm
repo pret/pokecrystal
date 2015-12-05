@@ -36,7 +36,7 @@ ShakeHeadbuttTree: ; 8c80a
 	add hl, bc
 	ld [hl], $84
 	ld a, 36 * 4
-	ld [wOAMRetentionSize], a
+	ld [wCurrSpriteOAMAddr], a
 	callba DoNextFrameForAllSprites
 	call GetHeadbuttTreeRelativeLocation
 	ld a, $20
@@ -51,7 +51,7 @@ ShakeHeadbuttTree: ; 8c80a
 	jr z, .done
 	dec [hl]
 	ld a, 36 * 4
-	ld [wOAMRetentionSize], a
+	ld [wCurrSpriteOAMAddr], a
 	callba DoNextFrameForAllSprites
 	call DelayFrame
 	jr .loop
@@ -125,7 +125,7 @@ OWCutAnimation: ; 8c940
 	bit 7, a
 	jr nz, .finish
 	ld a, 36 * 4
-	ld [wOAMRetentionSize], a
+	ld [wCurrSpriteOAMAddr], a
 	callab DoNextFrameForAllSprites
 	call OWCutJumptable
 	call DelayFrame
@@ -342,7 +342,7 @@ FlyFromAnim: ; 8caed
 	bit 7, a
 	jr nz, .exit
 	ld a, 0 * 4
-	ld [wOAMRetentionSize], a
+	ld [wCurrSpriteOAMAddr], a
 	callab DoNextFrameForAllSprites
 	call Function8cbc8
 	call DelayFrame
@@ -380,7 +380,7 @@ FlyToAnim: ; 8cb33
 	bit 7, a
 	jr nz, .exit
 	ld a, 0 * 4
-	ld [wOAMRetentionSize], a
+	ld [wCurrSpriteOAMAddr], a
 	callab DoNextFrameForAllSprites
 	call Function8cbc8
 	call DelayFrame

@@ -5885,7 +5885,7 @@ Function11ac51: ; 11ac51
 	call Function11acb7
 	call Function11ad6e
 	ld a, 30 * 4
-	ld [wOAMRetentionSize], a
+	ld [wCurrSpriteOAMAddr], a
 	callba DoNextFrameForAllSprites
 	callba ReloadMapPart
 	jr .asm_11ac82

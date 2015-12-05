@@ -1,4 +1,4 @@
-Unknown_8d6e6: ; 8d6e6
+SpriteAnimFrameData: ; 8d6e6
 	dw Unknown_8d76a ; 00
 	dw Unknown_8d76d ; 01
 	dw Unknown_8d772 ; 02
@@ -63,54 +63,54 @@ Unknown_8d6e6: ; 8d6e6
 	dw Unknown_8d932 ; 3d
 	dw Unknown_8d93d ; 3e
 	dw Unknown_8d940 ; 3f
-	dw Unknown_8d943 ; 40
-	dw Unknown_8d948 ; 41
+	dw Unknown_8d943 ; 40 celebi on the left
+	dw Unknown_8d948 ; 41 celebi on the right
 ; 8d76a
-
-Unknown_8d76a: 	db $00, $20 ; lowest 6 bits of second byte are duration, upper two bits are flags
-                db -1
+				; OAM idx (see SpriteAnimOAMData), flip flags/duration
+Unknown_8d76a: 	db $00, $20
+                db  -1
 Unknown_8d76d: 	db $00, $08
                 db $01, $08
-                db -2
+                db  -2
 Unknown_8d772: 	db $3d, $08
                 db $3e, $08
-                db -2
+                db  -2
 Unknown_8d777: 	db $3f, $08
                 db $40, $08
-                db -2
+                db  -2
 Unknown_8d77c: 	db $00, $04
                 db $01, $04
-                db -2
+                db  -2
 Unknown_8d781: 	db $3d, $04
                 db $3e, $04
-                db -2
+                db  -2
 Unknown_8d786: 	db $3f, $04
                 db $40, $04
-                db -2
+                db  -2
 Unknown_8d78b: 	db $00, $08
                 db $01, $08
                 db $00, $08
                 db $01, $48
-                db -2
+                db  -2
 Unknown_8d794: 	db $63, $08
                 db $64, $08
                 db $63, $08
                 db $64, $48
-                db -2
+                db  -2
 Unknown_8d79d: 	db $65, $08
                 db $66, $08
                 db $65, $08
                 db $66, $48
-                db -2
+                db  -2
 Unknown_8d7a6: 	db $1e, $01
                 db $1f, $01
-                db -2
+                db  -2
 Unknown_8d7ab: 	db $20, $01
-                db $fd, $01
-                db -2
+                db  -3, $01
+                db  -2
 Unknown_8d7b0: 	db $21, $01
-                db $fd, $01
-                db -2
+                db  -3, $01
+                db  -2
 Unknown_8d7b5: 	db $81, $0c
                 db $82, $01
                 db $83, $01
@@ -126,137 +126,137 @@ Unknown_8d7b5: 	db $81, $0c
                 db $89, $04
                 db $8a, $0a
                 db $8b, $07
-                db -1
+                db  -1
 Unknown_8d7d4: 	db $23, $03
                 db $23, $83
-                db -2
+                db  -2
 Unknown_8d7d9: 	db $24, $02
                 db $25, $02
                 db $26, $02
                 db $25, $02
-                db -2
+                db  -2
 Unknown_8d7e2: 	db $27, $07
                 db $28, $07
                 db $27, $87
                 db $28, $47
-                db -2
+                db  -2
 Unknown_8d7eb: 	db $29, $07
                 db $2a, $07
                 db $29, $07
                 db $2b, $07
-                db -2
+                db  -2
 Unknown_8d7f4: 	db $29, $07
                 db $2c, $07
                 db $2d, $07
                 db $2c, $07
                 db $29, $07
-                db -1
+                db  -1
 Unknown_8d7ff: 	db $2e, $14
-                db -1
+                db  -1
 Unknown_8d802: 	db $2f, $20
-                db -1
+                db  -1
 Unknown_8d805: 	db $30, $20
-                db -1
+                db  -1
 Unknown_8d808: 	db $30, $03
                 db $31, $03
                 db $30, $03
                 db $31, $43
-                db -2
+                db  -2
 Unknown_8d811: 	db $32, $04
                 db $33, $04
                 db $34, $04
-                db -4
+                db  -4
 Unknown_8d818: 	db $35, $03
                 db $36, $03
-                db -2
+                db  -2
 Unknown_8d81d: 	db $37, $07
                 db $38, $07
-                db -2
+                db  -2
 Unknown_8d822: 	db $39, $20
-                db -1
+                db  -1
 Unknown_8d825: 	db $3b, $02
                 db $3a, $02
                 db $3b, $02
-                db -1
+                db  -1
 Unknown_8d82c: 	db $3c, $20
-                db -1
+                db  -1
 Unknown_8d82f: 	db $41, $08
                 db $42, $08
                 db $41, $08
                 db $42, $48
-                db -2
+                db  -2
                 db $43, $08
                 db $44, $08
-                db -2
+                db  -2
                 db $45, $08
                 db $46, $08
-                db -2
+                db  -2
                 db $47, $08
                 db $48, $08
-                db -2
+                db  -2
                 db $49, $01
                 db $49, $41
                 db $49, $c1
                 db $49, $81
-                db -2
+                db  -2
                 db $4a, $20
-                db -1
+                db  -1
                 db $4b, $20
-                db -1
+                db  -1
                 db $4c, $20
-                db -1
+                db  -1
                 db $4d, $20
-                db -1
+                db  -1
                 db $4e, $03
-                db $fd, $03
-                db -2
-Unknown_8d861: 	db $fd, $20
-                db -1
+                db  -3, $03
+                db  -2
+Unknown_8d861: 	db  -3, $20
+                db  -1
 Unknown_8d864: 	db $4f, $20
-                db -1
+                db  -1
 Unknown_8d867: 	db $50, $02
                 db $51, $10
-                db $fd, $01
+                db  -3, $01
                 db $52, $01
-                db $fd, $01
+                db  -3, $01
                 db $53, $01
-                db -4
+                db  -4
 Unknown_8d874: 	db $54, $20
-                db -1
+                db  -1
 Unknown_8d877: 	db $55, $20
-                db -1
+                db  -1
 Unknown_8d87a: 	db $55, $60
-                db -1
+                db  -1
 Unknown_8d87d: 	db $55, $a0
-                db -1
+                db  -1
 Unknown_8d880: 	db $55, $e0
-                db -1
+                db  -1
 Unknown_8d883: 	db $56, $0a
                 db $57, $09
                 db $58, $0a
                 db $59, $0a
                 db $58, $09
                 db $5a, $0a
-                db -2
+                db  -2
 Unknown_8d890: 	db $50, $02
                 db $5b, $02
                 db $50, $02
                 db $5b, $42
-                db -2
+                db  -2
 Unknown_8d899: 	db $5c, $02
-                db -1
+                db  -1
 Unknown_8d89c: 	db $5d, $02
-                db -1
+                db  -1
 Unknown_8d89f: 	db $5e, $02
-                db -1
+                db  -1
 Unknown_8d8a2: 	db $5f, $02
-                db -1
+                db  -1
 Unknown_8d8a5: 	db $60, $02
-                db -1
+                db  -1
 Unknown_8d8a8: 	db $61, $02
-                db -1
+                db  -1
 Unknown_8d8ab: 	db $62, $02
-                db -1
+                db  -1
 Unknown_8d8ae: 	db $32, $03
                 db $33, $03
                 db $34, $03
@@ -272,7 +272,7 @@ Unknown_8d8ae: 	db $32, $03
                 db $31, $03
                 db $30, $03
                 db $31, $43
-                db -1
+                db  -1
 Unknown_8d8cd: 	db $30, $03
                 db $31, $03
                 db $30, $03
@@ -288,67 +288,67 @@ Unknown_8d8cd: 	db $30, $03
                 db $32, $03
                 db $33, $03
                 db $34, $03
-                db -4
+                db  -4
 Unknown_8d8ec: 	db $67, $03
                 db $68, $03
-                db -2
+                db  -2
 Unknown_8d8f1: 	db $6c, $03
-                db -1
+                db  -1
 Unknown_8d8f4: 	db $6d, $03
-                db -1
+                db  -1
 Unknown_8d8f7: 	db $69, $02
                 db $6a, $02
                 db $6b, $02
-                db -4
+                db  -4
 Unknown_8d8fe: 	db $6e, $03
                 db $6f, $03
                 db $70, $03
                 db $71, $03
-                db -2
+                db  -2
 Unknown_8d907: 	db $71, $03
                 db $6e, $07
-                db -1
+                db  -1
 Unknown_8d90c: 	db $72, $20
                 db $73, $07
                 db $74, $07
-                db -1
+                db  -1
 Unknown_8d913: 	db $75, $03
-                db -1
+                db  -1
 Unknown_8d916: 	db $76, $03
                 db $77, $03
                 db $78, $07
-                db -4
+                db  -4
 Unknown_8d91d: 	db $76, $43
                 db $77, $43
                 db $78, $47
-                db -4
+                db  -4
 Unknown_8d924: 	db $76, $83
                 db $77, $83
                 db $78, $87
-                db -4
+                db  -4
 Unknown_8d92b: 	db $76, $c3
                 db $77, $c3
                 db $78, $c7
-                db -4
+                db  -4
 Unknown_8d932: 	db $79, $03
                 db $7a, $03
                 db $7b, $03
                 db $7c, $07
                 db $7d, $07
-                db -1
+                db  -1
 Unknown_8d93d: 	db $7e, $03
-                db -1
-Unknown_8d940: 	db $fd, $00
-                db -1
+                db  -1
+Unknown_8d940: 	db  -3, $00
+                db  -1
 Unknown_8d943: 	db $7f, $08
                 db $80, $08
-                db -1
+                db  -1
 Unknown_8d948: 	db $7f, $48
                 db $80, $48
-                db -1
+                db  -1
 ; 8d94d
 
-Unknown_8d94d: ; 8d94d
+SpriteAnimOAMData: ; 8d94d
 	; vtile offset, pointer
 	dbw $00, Unknown_8dd8a ; 00
 	dbw $04, Unknown_8dd8a ; 01

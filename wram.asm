@@ -395,7 +395,7 @@ TilePermissions:: ; c2fe
 
 SECTION "wSpriteAnims", WRAM0 [$c300]
 ; wc300 - wc313 is a 10x2 dictionary.
-; keys: taken from third column of Unknown_8d1c4
+; keys: taken from third column of SpriteAnimSeqData
 ; values: VTiles
 wSpriteAnimDict:: ds 10 * 2
 	ds wSpriteAnimDict - @
@@ -429,8 +429,8 @@ sprite_anim_struct: MACRO
 \1YCoord:: ds 1     ; 5
 \1XOffset:: ds 1    ; 6
 \1YOffset:: ds 1    ; 7
-\1FrameTimer:: ds 1 ; 8 
-\1Sprite09:: ds 1   ; 9
+\1Duration:: ds 1 ; 8 
+\1DurationOffset:: ds 1   ; 9
 \1FrameIndex:: ds 1 ; a
 \1Sprite0b:: ds 1
 \1Sprite0c:: ds 1
@@ -440,7 +440,7 @@ sprite_anim_struct: MACRO
 ENDM
 
 ; Field  0: Index
-; Fields 1-3: Loaded from Unknown_8d1c4
+; Fields 1-3: Loaded from SpriteAnimSeqData
 wc314::
 SpriteAnim1:: sprite_anim_struct SpriteAnim1
 wc324::
@@ -466,7 +466,7 @@ wSpriteAnimationStructsEnd::
 wc3ac:: ds 8 ; c3ac
 wSpriteAnimCount::
 wc3b4:: ds 1
-wOAMRetentionSize:: ds 1
+wCurrSpriteOAMAddr:: ds 1
 
 CurIcon:: ; c3b6
 	ds 1

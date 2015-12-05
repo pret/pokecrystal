@@ -100,7 +100,7 @@ Function927af: ; 927af (24:67af)
 	call Function92844
 	call Function92b0f
 	xor a
-	ld [wOAMRetentionSize], a
+	ld [wCurrSpriteOAMAddr], a
 	callab DoNextFrameForFirst16Sprites
 	call Function927f8
 	call Function927d3

@@ -182,7 +182,7 @@ endr
 	ld [wc6d5], a
 	ld a, b
 	ld [wc6d6], a
-	ld hl, SPRITEANIMSTRUCT_01
+	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld a, [hl]
 	ld hl, SPRITEANIMSTRUCT_0E
@@ -298,7 +298,7 @@ Function120c1: ; 120c1 (4:60c1)
 	ld hl, SPRITEANIMSTRUCT_0E
 	add hl, bc
 	add [hl]
-	ld hl, SPRITEANIMSTRUCT_01
+	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_0C

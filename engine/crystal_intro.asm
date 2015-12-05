@@ -1627,7 +1627,7 @@ CrystalIntro_InitUnownAnim: ; e51dc (39:51dc)
 	add hl, bc
 	ld [hl], $8
 	ld a, $3c
-	call Function3b3c
+	call ReinitSpriteAnimFrame
 	pop de
 
 	push de
@@ -1637,7 +1637,7 @@ CrystalIntro_InitUnownAnim: ; e51dc (39:51dc)
 	add hl, bc
 	ld [hl], $18
 	ld a, $3b
-	call Function3b3c
+	call ReinitSpriteAnimFrame
 	pop de
 
 	push de
@@ -1647,7 +1647,7 @@ CrystalIntro_InitUnownAnim: ; e51dc (39:51dc)
 	add hl, bc
 	ld [hl], $28
 	ld a, $39
-	call Function3b3c
+	call ReinitSpriteAnimFrame
 	pop de
 
 	ld a, SPRITE_ANIM_INDEX_29
@@ -1656,7 +1656,7 @@ CrystalIntro_InitUnownAnim: ; e51dc (39:51dc)
 	add hl, bc
 	ld [hl], $38
 	ld a, $3a
-	call Function3b3c
+	call ReinitSpriteAnimFrame
 	ret
 
 CrystalIntro_UnownFade: ; e5223 (39:5223)

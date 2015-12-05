@@ -79,7 +79,7 @@ Function8e86c: ; 8e86c (23:686c)
 .asm_8e890
 	ld a, $4
 .asm_8e892
-	ld hl, SPRITEANIMSTRUCT_01
+	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld [hl], a
 	ret
@@ -150,7 +150,7 @@ Function8e8d5: ; 8e8d5 (23:68d5)
 .mail
 	ld a, $2
 .okay
-	ld hl, SPRITEANIMSTRUCT_01
+	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld [hl], a
 	ret

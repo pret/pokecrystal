@@ -2478,7 +2478,7 @@ Function11d0f5: ; 11d0f5 (47:50f5)
 	ld d, $0
 	add hl, de
 	ld a, [hl]
-	call Function3b3c
+	call ReinitSpriteAnimFrame
 	ld a, [CreditsTimer]
 	sla a
 	ld hl, Unknown_11d23e
@@ -2487,7 +2487,7 @@ Function11d0f5: ; 11d0f5 (47:50f5)
 
 Function11d10f: ; 11d10f (47:510f)
 	ld a, $27
-	call Function3b3c
+	call ReinitSpriteAnimFrame
 	ld a, [wcd25]
 	sla a
 	ld hl, Unknown_11d29e
@@ -2514,7 +2514,7 @@ asm_11d11e: ; 11d11e (47:511e)
 
 Function11d134: ; 11d134 (47:5134)
 	ld a, $27
-	call Function3b3c
+	call ReinitSpriteAnimFrame
 	ld a, [wcd2a]
 	sla a
 	ld hl, Unknown_11d2b6
@@ -2523,7 +2523,7 @@ Function11d134: ; 11d134 (47:5134)
 
 Function11d145: ; 11d145 (47:5145)
 	ld a, $27
-	call Function3b3c
+	call ReinitSpriteAnimFrame
 	ld a, [wcd2c]
 	sla a
 	ld hl, Unknown_11d2ba
@@ -2532,7 +2532,7 @@ Function11d145: ; 11d145 (47:5145)
 
 Function11d156: ; 11d156 (47:5156)
 	ld a, $2a
-	call Function3b3c
+	call ReinitSpriteAnimFrame
 	ld a, [wcd4a]
 	sla a
 	sla a
@@ -2557,7 +2557,7 @@ Function11d175: ; 11d175 (47:5175)
 .asm_11d180
 	ld a, $26
 .asm_11d182
-	call Function3b3c
+	call ReinitSpriteAnimFrame
 	ld a, [wcd4d]
 	cp $4
 	jr z, .asm_11d1b1
@@ -2611,7 +2611,7 @@ Function11d1d7: ; 11d1d7 (47:51d7)
 
 asm_11d1db: ; 11d1db (47:51db)
 	push de
-	call Function3b3c
+	call ReinitSpriteAnimFrame
 	ld a, [wcd4a]
 	sla a
 	sla a
@@ -2632,7 +2632,7 @@ asm_11d1db: ; 11d1db (47:51db)
 
 Function11d1fc: ; 11d1fc (47:51fc)
 	ld a, $26
-	call Function3b3c
+	call ReinitSpriteAnimFrame
 	ld a, $8
 	ld e, a
 	call Function11d2ee

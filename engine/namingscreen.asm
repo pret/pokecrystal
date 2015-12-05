@@ -176,7 +176,7 @@ Function117f5: ; 117f5 (4:57f5)
 	depixel 4, 4, 4, 0
 	ld a, SPRITE_ANIM_INDEX_0A
 	call _InitSpriteAnimStruct
-	ld hl, SPRITEANIMSTRUCT_01
+	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld [hl], $0
 	hlcoord 5, 2
@@ -411,7 +411,7 @@ Function1197b: ; 1197b (4:597b)
 	ld [wc6d5], a
 	ld a, b
 	ld [wc6d6], a
-	ld hl, SPRITEANIMSTRUCT_01
+	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld a, [hl]
 	ld hl, SPRITEANIMSTRUCT_0E
@@ -553,7 +553,7 @@ Function11a3b: ; 11a3b (4:5a3b)
 	ld hl, SPRITEANIMSTRUCT_0E
 	add hl, bc
 	add [hl]
-	ld hl, SPRITEANIMSTRUCT_01
+	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_0C

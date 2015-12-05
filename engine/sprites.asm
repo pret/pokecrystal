@@ -24,7 +24,7 @@ PlaySpriteAnimations: ; 8cf69
 	push af
 
 	ld a, 0 * 4
-	ld [wOAMRetentionSize], a
+	ld [wCurrSpriteOAMAddr], a
 	call DoNextFrameForAllSprites
 
 	pop af
@@ -47,7 +47,7 @@ DoNextFrameForAllSprites: ; 8cf7a
 	push hl
 	push de
 	call DoAnimFrame ; Uses a massive jumptable
-	call Function8d04c
+	call UpdateAnimFrame
 	pop de
 	pop hl
 	jr c, .done
@@ -58,11 +58,11 @@ DoNextFrameForAllSprites: ; 8cf7a
 	dec e
 	jr nz, .loop
 
-	ld a, [wOAMRetentionSize]
+	ld a, [wCurrSpriteOAMAddr]
 	ld l, a
 	ld h, Sprites / $0100
 
-.loop2 ; Clear (Sprites + [wOAMRetentionSize] --> SpritesEnd)
+.loop2 ; Clear (Sprites + [wCurrSpriteOAMAddr] --> SpritesEnd)
 	ld a, l
 	cp SpritesEnd % $100
 	jr nc, .done
@@ -87,7 +87,7 @@ DoNextFrameForFirst16Sprites: ; 8cfa8 (23:4fa8)
 	push hl
 	push de
 	call DoAnimFrame ; Uses a massive jumptable
-	call Function8d04c
+	call UpdateAnimFrame
 	pop de
 	pop hl
 	jr c, .done
@@ -98,11 +98,11 @@ DoNextFrameForFirst16Sprites: ; 8cfa8 (23:4fa8)
 	dec e
 	jr nz, .loop
 
-	ld a, [wOAMRetentionSize]
+	ld a, [wCurrSpriteOAMAddr]
 	ld l, a
 	ld h, (Sprites + $40) / $100
 
-.loop2 ; Clear (Sprites + [wOAMRetentionSize] --> Sprites + $40)
+.loop2 ; Clear (Sprites + [wCurrSpriteOAMAddr] --> Sprites + $40)
 	ld a, l
 	cp (Sprites + 16 * 4) % $100
 	jr nc, .done
@@ -149,11 +149,11 @@ InitSpriteAnimStruct:: ; 8cfd6
 	inc [hl]
 
 .initialized
-; Get row a of Unknown_8d1c4, copy the pointer into de
+; Get row a of SpriteAnimSeqData, copy the pointer into de
 	pop af
 	ld e, a
 	ld d, 0
-	ld hl, Unknown_8d1c4
+	ld hl, SpriteAnimSeqData
 rept 3
 	add hl, de
 endr
@@ -235,14 +235,14 @@ DeinitializeAllSprites: ; 8d03d (23:503d)
 	ret
 
 
-Function8d04c: ; 8d04c
+UpdateAnimFrame: ; 8d04c
 	call InitSpriteAnimBuffer ; init WRAM
-	call Function8d132 ; read from a memory array
+	call GetSpriteAnimFrame ; read from a memory array
 	cp -3
 	jr z, .done
 	cp -4
 	jr z, .delete
-	call Function8d1a2 ; OAM?
+	call GetFrameOAMPointer
 	; add byte to [wCurrAnimVTile]
 	ld a, [wCurrAnimVTile]
 	add [hl]
@@ -253,7 +253,7 @@ Function8d04c: ; 8d04c
 	ld h, [hl]
 	ld l, a
 	push bc
-	ld a, [wOAMRetentionSize]
+	ld a, [wCurrSpriteOAMAddr]
 	ld e, a
 	ld d, Sprites / $100
 	ld a, [hli]
@@ -297,13 +297,13 @@ Function8d04c: ; 8d04c
 	inc hl
 	inc de
 	; fourth byte: attributes
-	; [de] = Function8d0de([hl])
-	call Function8d0de
+	; [de] = GetSpriteOAMAttr([hl])
+	call GetSpriteOAMAttr
 	ld [de], a
 	inc hl
 	inc de
 	ld a, e
-	ld [wOAMRetentionSize], a
+	ld [wCurrSpriteOAMAddr], a
 	cp SpritesEnd % $100
 	jr nc, .reached_the_end
 	dec c
@@ -356,7 +356,7 @@ AddOrSubtractX: ; 8d0ce
 	ret
 ; 8d0de
 
-Function8d0de: ; 8d0de
+GetSpriteOAMAttr: ; 8d0de
 	ld a, [wCurrSpriteAddSubFlags]
 	ld b, a
 	ld a, [hl]
@@ -414,8 +414,8 @@ GetSpriteAnimVTile: ; 8d109
 	ret
 ; 8d120
 
-Function8d120:: ; 8d120
-	ld hl, SPRITEANIMSTRUCT_01
+_ReinitSpriteAnimFrame:: ; 8d120
+	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_DURATION
@@ -428,7 +428,7 @@ Function8d120:: ; 8d120
 ; 8d132
 
 
-Function8d132: ; 8d132
+GetSpriteAnimFrame: ; 8d132
 .loop
 	ld hl, SPRITEANIMSTRUCT_DURATION
 	add hl, bc
@@ -436,7 +436,7 @@ Function8d132: ; 8d132
 	and a
 	jr z, .next_frame ; finished the current sequence
 	dec [hl]
-	call Function8d189 ; load pointer from Unknown_8d6e6
+	call GetSpriteFrameDataPointer ; load pointer from SpriteAnimFrameData
 	ld a, [hli]
 	push af
 	jr .okay
@@ -445,12 +445,12 @@ Function8d132: ; 8d132
 	ld hl, SPRITEANIMSTRUCT_FRAME
 	add hl, bc
 	inc [hl]
-	call Function8d189 ; load pointer from Unknown_8d6e6
+	call GetSpriteFrameDataPointer ; load pointer from SpriteAnimFrameData
 	ld a, [hli]
 	cp -2
-	jr z, .minus_2
+	jr z, .restart
 	cp -1
-	jr z, .minus_1
+	jr z, .repeat_last
 
 	push af
 	ld a, [hl]
@@ -471,7 +471,7 @@ Function8d132: ; 8d132
 	pop af
 	ret
 
-.minus_1
+.repeat_last
 	xor a
 	ld hl, SPRITEANIMSTRUCT_DURATION
 	add hl, bc
@@ -484,7 +484,7 @@ rept 2
 endr
 	jr .loop
 
-.minus_2
+.restart
 	xor a
 	ld hl, SPRITEANIMSTRUCT_DURATION
 	add hl, bc
@@ -497,15 +497,15 @@ endr
 	jr .loop
 ; 8d189
 
-Function8d189: ; 8d189
+GetSpriteFrameDataPointer: ; 8d189
 	; Get the data for the current frame for the current animation sequence
 
-	; Unknown_8d6e6[SpriteAnim[SPRITEANIMSTRUCT_01]][SpriteAnim[SPRITEANIMSTRUCT_FRAME]]
-	ld hl, SPRITEANIMSTRUCT_01
+	; SpriteAnimFrameData[SpriteAnim[SPRITEANIMSTRUCT_FRAMESET_ID]][SpriteAnim[SPRITEANIMSTRUCT_FRAME]]
+	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
-	ld hl, Unknown_8d6e6
+	ld hl, SpriteAnimFrameData
 rept 2
 	add hl, de
 endr
@@ -521,11 +521,11 @@ endr
 	ret
 ; 8d1a2
 
-Function8d1a2: ; 8d1a2
+GetFrameOAMPointer: ; 8d1a2
 ; Load OAM data pointer
 	ld e, a
 	ld d, 0
-	ld hl, Unknown_8d94d
+	ld hl, SpriteAnimOAMData
 rept 3
 	add hl, de
 endr
@@ -555,7 +555,7 @@ endr
 	ret
 ; 8d1c4
 
-Unknown_8d1c4: ; 8d1c4
+SpriteAnimSeqData: ; 8d1c4
 	; ??, sequence, tile
 	db $01, SPRITE_ANIM_SEQ_01, $00 ; 00
 	db $07, SPRITE_ANIM_SEQ_04, $00 ; 01
@@ -579,7 +579,7 @@ Unknown_8d1c4: ; 8d1c4
 	db $19, SPRITE_ANIM_SEQ_13, $00 ; 13
 	db $1a, SPRITE_ANIM_SEQ_14, $00 ; 14 radio tuning knob
 	db $1b, SPRITE_ANIM_SEQ_00, $00 ; 15
-	db $1d, SPRITE_ANIM_SEQ_15, $00 ; 16
+	db $1d, SPRITE_ANIM_SEQ_15, $00 ; 16 leaves when cutting down a tree
 	db $1e, SPRITE_ANIM_SEQ_00, $00 ; 17
 	db $1d, SPRITE_ANIM_SEQ_17, $00 ; 18 flying leaves
 	db $1f, SPRITE_ANIM_SEQ_00, $00 ; 19
@@ -607,12 +607,13 @@ Unknown_8d1c4: ; 8d1c4
 INCLUDE "engine/sprite_anims.asm" ; DoAnimFrame
 
 INCLUDE "data/sprite_engine.asm"
-; Unknown_8d6e6
-; Unknown_8d94d
+; SpriteAnimFrameData
+; SpriteAnimOAMData
 
 Sprites_Cosine: ; 8e72a
 	add $10
 Sprites_Sine: ; 8e72c
+; floor(d * sin(a * pi/32))
 	and $3f
 	cp $20
 	jr nc, .negative
@@ -669,8 +670,8 @@ AnimateEndOfExpBar: ; 8e79d
 	ld hl, VTiles0 tile $00
 	lb bc, BANK(EndOfExpBarGFX), 1
 	call Request2bpp
-	ld c, $8
-	ld d, $0
+	ld c, 8
+	ld d, 0
 .loop
 	push bc
 	call .AnimateFrame
@@ -694,6 +695,7 @@ endr
 	ret z
 	dec c
 	ld a, c
+; multiply by 8
 	sla a
 	sla a
 	sla a

@@ -2036,17 +2036,17 @@ _InitSpriteAnimStruct:: ; 3b2a
 ; 3b3c
 
 
-Function3b3c:: ; 3b3c
+ReinitSpriteAnimFrame:: ; 3b3c
 
 	ld [wSpriteAnimIDBuffer], a
 	ld a, [hROMBank]
 	push af
 
-	ld a, BANK(Function8d120)
+	ld a, BANK(_ReinitSpriteAnimFrame)
 	rst Bankswitch
 	ld a, [wSpriteAnimIDBuffer]
 
-	call Function8d120
+	call _ReinitSpriteAnimFrame
 
 	pop af
 	rst Bankswitch
