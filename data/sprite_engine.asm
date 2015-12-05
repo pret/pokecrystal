@@ -1560,13 +1560,14 @@ Unknown_8e6a5: ; 8e6a5
 	dsprite  0,  0,  1,  4, $53, $01
 ; 8e706
 Unknown_8e706: ; Broken 2bpp pointers
-	dbbw $80, $01, $672a ; 128-tile 2bpp at 1:672a (inside Multiply)
-	dbbw $80, $01, $672a
-	dbbw $80, $01, $672a
-	dbbw $80, $01, $672a
-	dbbw $10, $37, $672a ; 16-tile 2bpp at 37:672a (within Tileset11GFX)
-	dbbw $10, $11, $672a ; 16-tile 2bpp at 11:672a (empty data)
-	dbbw $10, $39, $672a ; 16-tile 2bpp at 39:672a (empty data)
-	dbbw $10, $24, $672a ; 16-tile 2bpp at 24:672a (inside Function926f7)
-	dbbw $10, $21, $672a ; 16-tile 2bpp at 21:672a (inside Function8671c)
+	dbbw $80, $01, .deleted ; 128-tile 2bpp at 1:672a (inside Multiply)
+	dbbw $80, $01, .deleted
+	dbbw $80, $01, .deleted
+	dbbw $80, $01, .deleted
+	dbbw $10, $37, .deleted ; 16-tile 2bpp at 37:672a (within Tileset11GFX)
+	dbbw $10, $11, .deleted ; 16-tile 2bpp at 11:672a (empty data)
+	dbbw $10, $39, .deleted ; 16-tile 2bpp at 39:672a (empty data)
+	dbbw $10, $24, .deleted ; 16-tile 2bpp at 24:672a (inside Function926f7)
+	dbbw $10, $21, .deleted ; 16-tile 2bpp at 21:672a (inside Function8671c)
+.deleted
 ; 8e72a (23:672a)

@@ -166,6 +166,7 @@ hof_mon: MACRO
 endm
 
 hall_of_fame: MACRO
+\1::
 \1WinCount:: ds 1
 \1Mon1:: hof_mon \1Mon1	
 \1Mon2:: hof_mon \1Mon2	
@@ -544,7 +545,7 @@ wOddEggOTName:: ds PKMN_NAME_LENGTH
 wBT_OTTemp:: battle_tower_struct wBT_OTTemp
 	ds wBT_OTTemp - @
 
-wHallOfFameTemp:: hall_of_fame wHallOfFameTemp
+	hall_of_fame wHallOfFameTemp
 	ds wHallOfFameTemp - @
 
 wMisc:: ; ds $28 * 6
