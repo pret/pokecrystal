@@ -975,11 +975,7 @@ Function106453: ; 106453
 	ret
 ; 106462
 
-Function106462: ; 106462
-	ret
-; 106463
-
-Function106463: ; 106463
+MobileFunc_106462: mobile
 	ret
 ; 106464
 

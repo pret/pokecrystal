@@ -1,8 +1,8 @@
 Music_LookBeauty: ; eee3e
-	dbw $c0, Music_LookBeauty_Ch1
-	dbw $01, Music_LookBeauty_Ch2
-	dbw $02, Music_LookBeauty_Ch3
-	dbw $03, Music_LookBeauty_Ch4
+	musicheader 4, 1, Music_LookBeauty_Ch1
+	musicheader 1, 2, Music_LookBeauty_Ch2
+	musicheader 1, 3, Music_LookBeauty_Ch3
+	musicheader 1, 4, Music_LookBeauty_Ch4
 ; eee4a
 
 Music_LookBeauty_Ch1: ; eee4a

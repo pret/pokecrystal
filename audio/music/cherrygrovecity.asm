@@ -1,8 +1,8 @@
 Music_CherrygroveCity: ; f5b03
-	dbw $c0, Music_CherrygroveCity_Ch1
-	dbw $01, Music_CherrygroveCity_Ch2
-	dbw $02, Music_CherrygroveCity_Ch3
-	dbw $03, Music_CherrygroveCity_Ch4
+	musicheader 4, 1, Music_CherrygroveCity_Ch1
+	musicheader 1, 2, Music_CherrygroveCity_Ch2
+	musicheader 1, 3, Music_CherrygroveCity_Ch3
+	musicheader 1, 4, Music_CherrygroveCity_Ch4
 ; f5b0f
 
 Music_CherrygroveCity_Ch1: ; f5b0f

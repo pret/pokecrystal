@@ -1,8 +1,8 @@
 Music_SSAqua: ; ead99
-	dbw $c0, Music_SSAqua_Ch1
-	dbw $01, Music_SSAqua_Ch2
-	dbw $02, Music_SSAqua_Ch3
-	dbw $03, Music_SSAqua_Ch4
+	musicheader 4, 1, Music_SSAqua_Ch1
+	musicheader 1, 2, Music_SSAqua_Ch2
+	musicheader 1, 3, Music_SSAqua_Ch3
+	musicheader 1, 4, Music_SSAqua_Ch4
 ; eada5
 
 Music_SSAqua_Ch1: ; eada5

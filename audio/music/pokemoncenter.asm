@@ -1,8 +1,8 @@
 Music_PokemonCenter: ; ed5c6
-	dbw $c0, Music_PokemonCenter_Ch1
-	dbw $01, Music_PokemonCenter_Ch2
-	dbw $02, Music_PokemonCenter_Ch3
-	dbw $03, Music_PokemonCenter_Ch4
+	musicheader 4, 1, Music_PokemonCenter_Ch1
+	musicheader 1, 2, Music_PokemonCenter_Ch2
+	musicheader 1, 3, Music_PokemonCenter_Ch3
+	musicheader 1, 4, Music_PokemonCenter_Ch4
 ; ed5d2
 
 Music_PokemonCenter_Ch1: ; ed5d2

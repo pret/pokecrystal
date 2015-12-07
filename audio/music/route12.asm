@@ -1,8 +1,8 @@
 Music_Route12: ; ec506
-	dbw $c0, Music_Route12_Ch1
-	dbw $01, Music_Route12_Ch2
-	dbw $02, Music_Route12_Ch3
-	dbw $03, Music_Route12_Ch4
+	musicheader 4, 1, Music_Route12_Ch1
+	musicheader 1, 2, Music_Route12_Ch2
+	musicheader 1, 3, Music_Route12_Ch3
+	musicheader 1, 4, Music_Route12_Ch4
 ; ec512
 
 Music_Route12_Ch1: ; ec512

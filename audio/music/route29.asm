@@ -1,8 +1,8 @@
 Music_Route29: ; f0386
-	dbw $c0, Music_Route29_Ch1
-	dbw $01, Music_Route29_Ch2
-	dbw $02, Music_Route29_Ch3
-	dbw $03, Music_Route29_Ch4
+	musicheader 4, 1, Music_Route29_Ch1
+	musicheader 1, 2, Music_Route29_Ch2
+	musicheader 1, 3, Music_Route29_Ch3
+	musicheader 1, 4, Music_Route29_Ch4
 ; f0392
 
 Music_Route29_Ch1: ; f0392

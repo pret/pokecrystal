@@ -715,7 +715,7 @@ Function171c41: ; 171c41 (5c:5c41)
 	dec [hl]
 	ret nz
 	call ClearBGPalettes
-	callba Function106462
+	callba MobileFunc_106462
 	callba Function106464
 	ld a, $2
 	ld [wc303], a

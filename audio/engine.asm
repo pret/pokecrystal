@@ -55,6 +55,7 @@ _MapSetup_Sound_Off:: ; e8000
 	pop de
 	pop hl
 	ret
+
 ; e803d
 
 MusicFadeRestart: ; e803d
@@ -69,18 +70,21 @@ MusicFadeRestart: ; e803d
 	pop af
 	ld [MusicFadeIDHi], a
 	ret
+
 ; e8051
 
 MusicOn: ; e8051
 	ld a, 1
 	ld [MusicPlaying], a
 	ret
+
 ; e8057
 
 MusicOff: ; e8057
 	xor a
 	ld [MusicPlaying], a
 	ret
+
 ; e805c
 
 _UpdateSound:: ; e805c
@@ -129,15 +133,15 @@ _UpdateSound:: ; e805c
 	ld hl, Channel1DutyCycle - Channel1
 	add hl, bc
 	ld a, [hli]
-	ld [wc292], a
+	ld [wCurTrackDuty], a
 	; intensity
 	ld a, [hli]
-	ld [wc293], a
+	ld [wCurTrackIntensity], a
 	; frequency
 	ld a, [hli]
-	ld [wc294], a
+	ld [wCurTrackFrequency], a
 	ld a, [hl]
-	ld [wc295], a
+	ld [wCurTrackFrequency + 1], a
 	;
 	call Functione8466 ; handle vibrato and other things
 	call HandleNoise
@@ -211,6 +215,7 @@ _UpdateSound:: ; e805c
 	ld a, [SoundOutput]
 	ld [rNR51], a
 	ret
+
 ; e8125
 
 UpdateChannels: ; e8125
@@ -261,30 +266,32 @@ UpdateChannels: ; e8125
 	jr nz, .asm_e8184
 	jr .asm_e8175
 .asm_e816b
-	ld a, [wc294]
+	ld a, [wCurTrackFrequency]
 	ld [rNR13], a
-	ld a, [wc295]
+	ld a, [wCurTrackFrequency + 1]
 	ld [rNR14], a
 .asm_e8175
 	bit 0, [hl]
 	ret z
-	ld a, [wc292]
+	ld a, [wCurTrackDuty]
 	ld d, a
 	ld a, [rNR11]
 	and $3f ; sound length
 	or d
 	ld [rNR11], a
 	ret
+
 .asm_e8184
-	ld a, [wc292]
+	ld a, [wCurTrackDuty]
 	ld d, a
 	ld a, [rNR11]
 	and $3f ; sound length
 	or d
 	ld [rNR11], a
-	ld a, [wc294]
+	ld a, [wCurTrackFrequency]
 	ld [rNR13], a
 	ret
+
 .ch1rest
 	ld a, [rNR52]
 	and %10001110 ; ch1 off
@@ -292,16 +299,17 @@ UpdateChannels: ; e8125
 	ld hl, rNR10
 	call ClearChannel
 	ret
+
 .asm_e81a2
-	ld hl, wc292
+	ld hl, wCurTrackDuty
 	ld a, $3f ; sound length
 	or [hl]
 	ld [rNR11], a
-	ld a, [wc293]
+	ld a, [wCurTrackIntensity]
 	ld [rNR12], a
-	ld a, [wc294]
+	ld a, [wCurTrackFrequency]
 	ld [rNR13], a
-	ld a, [wc295]
+	ld a, [wCurTrackFrequency + 1]
 	or $80
 	ld [rNR14], a
 	ret
@@ -318,29 +326,32 @@ UpdateChannels: ; e8125
 	jr nz, .asm_e81e6
 	bit 0, [hl]
 	ret z
-	ld a, [wc292]
+	ld a, [wCurTrackDuty]
 	ld d, a
 	ld a, [rNR21]
 	and $3f ; sound length
 	or d
 	ld [rNR21], a
 	ret
+
 .asm_e81db ; unused
-	ld a, [wc294]
+	ld a, [wCurTrackFrequency]
 	ld [rNR23], a
-	ld a, [wc295]
+	ld a, [wCurTrackFrequency + 1]
 	ld [rNR24], a
 	ret
+
 .asm_e81e6
-	ld a, [wc292]
+	ld a, [wCurTrackDuty]
 	ld d, a
 	ld a, [rNR21]
 	and $3f ; sound length
 	or d
 	ld [rNR21], a
-	ld a, [wc294]
+	ld a, [wCurTrackFrequency]
 	ld [rNR23], a
 	ret
+
 .ch2rest
 	ld a, [rNR52]
 	and %10001101 ; ch2 off
@@ -348,16 +359,17 @@ UpdateChannels: ; e8125
 	ld hl, rNR20
 	call ClearChannel
 	ret
+
 .asm_e8204
-	ld hl, wc292
+	ld hl, wCurTrackDuty
 	ld a, $3f ; sound length
 	or [hl]
 	ld [rNR21], a
-	ld a, [wc293]
+	ld a, [wCurTrackIntensity]
 	ld [rNR22], a
-	ld a, [wc294]
+	ld a, [wCurTrackFrequency]
 	ld [rNR23], a
-	ld a, [wc295]
+	ld a, [wCurTrackFrequency + 1]
 	or $80 ; initial (restart)
 	ld [rNR24], a
 	ret
@@ -373,16 +385,19 @@ UpdateChannels: ; e8125
 	bit 6, [hl]
 	jr nz, .asm_e823a
 	ret
+
 .asm_e822f ; unused
-	ld a, [wc294]
+	ld a, [wCurTrackFrequency]
 	ld [rNR33], a
-	ld a, [wc295]
+	ld a, [wCurTrackFrequency + 1]
 	ld [rNR34], a
 	ret
+
 .asm_e823a
-	ld a, [wc294]
+	ld a, [wCurTrackFrequency]
 	ld [rNR33], a
 	ret
+
 .ch3rest
 	ld a, [rNR52]
 	and %10001011 ; ch3 off
@@ -390,6 +405,7 @@ UpdateChannels: ; e8125
 	ld hl, rNR30
 	call ClearChannel
 	ret
+
 .asm_e824d
 	ld a, $3f
 	ld [rNR31], a
@@ -398,15 +414,16 @@ UpdateChannels: ; e8125
 	call .asm_e8268
 	ld a, $80
 	ld [rNR30], a
-	ld a, [wc294]
+	ld a, [wCurTrackFrequency]
 	ld [rNR33], a
-	ld a, [wc295]
+	ld a, [wCurTrackFrequency + 1]
 	or $80
 	ld [rNR34], a
 	ret
+
 .asm_e8268
 	push hl
-	ld a, [wc293]
+	ld a, [wCurTrackIntensity]
 	and $f ; only 0-9 are valid
 	ld l, a
 	ld h, 0
@@ -452,7 +469,7 @@ endr
 	ld a, [hli]
 	ld [rWave_f], a
 	pop hl
-	ld a, [wc293]
+	ld a, [wCurTrackIntensity]
 	and $f0
 	sla a
 	ld [rNR32], a
@@ -467,10 +484,12 @@ endr
 	bit 4, [hl]
 	jr nz, .asm_e82d4
 	ret
+
 .asm_e82c1 ; unused
-	ld a, [wc294]
+	ld a, [wCurTrackFrequency]
 	ld [rNR43], a
 	ret
+
 .ch4rest
 	ld a, [rNR52]
 	and %10000111 ; ch4 off
@@ -478,16 +497,18 @@ endr
 	ld hl, rNR40
 	call ClearChannel
 	ret
+
 .asm_e82d4
 	ld a, $3f ; sound length
 	ld [rNR41], a
-	ld a, [wc293]
+	ld a, [wCurTrackIntensity]
 	ld [rNR42], a
-	ld a, [wc294]
+	ld a, [wCurTrackFrequency]
 	ld [rNR43], a
 	ld a, $80
 	ld [rNR44], a
 	ret
+
 ; e82e7
 
 _CheckSFX: ; e82e7
@@ -506,9 +527,11 @@ _CheckSFX: ; e82e7
 	jr nz, .sfxon
 	and a
 	ret
+
 .sfxon
 	scf
 	ret
+
 ; e8307
 
 PlayDanger: ; e8307
@@ -558,6 +581,7 @@ PlayDanger: ; e8307
 	or $11
 	ld [SoundOutput], a
 	ret
+
 ; e8350
 
 Tablee8350: ; e8350
@@ -596,6 +620,7 @@ FadeMusic: ; e8358
 	dec a
 	ld [MusicFadeCount], a
 	ret
+
 .update
 	ld a, [MusicFade]
 	ld d, a
@@ -641,6 +666,7 @@ FadeMusic: ; e8358
 	xor a
 	ld [MusicFade], a
 	ret
+
 .bicycle
 	push bc
 	; restart sound
@@ -674,6 +700,7 @@ FadeMusic: ; e8358
 	xor a
 	ld [MusicFade], a
 	ret
+
 .updatevolume
 	; hi = lo
 	ld d, a
@@ -681,6 +708,7 @@ FadeMusic: ; e8358
 	or d
 	ld [Volume], a
 	ret
+
 ; e83d1
 
 LoadNote: ; e83d1
@@ -803,14 +831,15 @@ LoadNote: ; e83d1
 	xor a
 	ld [hl], a
 	ret
+
 ; e8466
 
 Functione8466: ; e8466
 ; handle vibrato and other things
-; unknowns: wc292, wc294
+; unknowns: wCurTrackDuty, wCurTrackFrequency
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	bit 2, [hl]
+	bit 2, [hl] ; duty
 	jr z, .next
 	ld hl, Channel1Field0x1c - Channel1
 	add hl, bc
@@ -819,7 +848,7 @@ Functione8466: ; e8466
 	rlca
 	ld [hl], a
 	and $c0
-	ld [wc292], a
+	ld [wCurTrackDuty], a
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
 	set 0, [hl]
@@ -833,14 +862,14 @@ Functione8466: ; e8466
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, wc294
+	ld hl, wCurTrackFrequency
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, wc294
+	ld hl, wCurTrackFrequency
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -881,7 +910,7 @@ Functione8466: ; e8466
 	or [hl]
 	ld [hl], a
 	; ????
-	ld a, [wc294]
+	ld a, [wCurTrackFrequency]
 	ld e, a
 	; toggle vibrato up/down
 	ld hl, Channel1Flags3 - Channel1
@@ -913,13 +942,14 @@ Functione8466: ; e8466
 	jr nc, .asm_e84ef
 	ld a, $ff
 .asm_e84ef
-	ld [wc294], a
+	ld [wCurTrackFrequency], a
 	;
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
 	set 6, [hl]
 .quit
 	ret
+
 ; e84f9
 
 Functione84f9: ; e84f9
@@ -1015,6 +1045,7 @@ Functione84f9: ; e84f9
 	add hl, bc
 	res 1, [hl]
 	ret
+
 .quit2
 	ld hl, Channel1Frequency - Channel1
 	add hl, bc
@@ -1026,6 +1057,7 @@ Functione84f9: ; e84f9
 	set 1, [hl]
 	set 0, [hl]
 	ret
+
 ; e858c
 
 HandleNoise: ; e858c
@@ -1047,12 +1079,13 @@ HandleNoise: ; e858c
 	ret nz ; quit if so
 	;
 .next
-	ld a, [wc2a2]
+	ld a, [wNoiseSampleDelay]
 	and a
 	jr z, ReadNoiseSample
 	dec a
-	ld [wc2a2], a
+	ld [wNoiseSampleDelay], a
 	ret
+
 ; e85af
 
 ReadNoiseSample: ; e85af
@@ -1082,15 +1115,15 @@ ReadNoiseSample: ; e85af
 
 	and $f
 	inc a
-	ld [wc2a2], a
+	ld [wNoiseSampleDelay], a
 	ld a, [de]
 	inc de
-	ld [wc293], a
+	ld [wCurTrackIntensity], a
 	ld a, [de]
 	inc de
-	ld [wc294], a
+	ld [wCurTrackFrequency], a
 	xor a
-	ld [wc295], a
+	ld [wCurTrackFrequency + 1], a
 
 	ld hl, NoiseSampleAddress
 	ld [hl], e
@@ -1101,8 +1134,10 @@ ReadNoiseSample: ; e85af
 	add hl, bc
 	set 4, [hl]
 	ret
+
 .quit
 	ret
+
 ; e85e1
 
 ParseMusic: ; e85e1
@@ -1124,7 +1159,7 @@ ParseMusic: ; e85e1
 	add hl, bc
 	bit 3, [hl]
 	jp nz, Functione8698
-	bit 5, [hl]
+	bit 5, [hl] ; rest
 	jp nz, Functione8698
 	bit 4, [hl] ; noise sample
 	jp nz, GetNoiseSample
@@ -1167,6 +1202,7 @@ ParseMusic: ; e85e1
 	add hl, bc
 	set 5, [hl] ; Rest
 	ret
+
 ;
 .readff
 ; $ff is reached in music data
@@ -1212,6 +1248,7 @@ ParseMusic: ; e85e1
 	ld [hli], a ; id lo
 	ld [hli], a ; bank
 	ret
+
 ; e8679
 
 RestoreVolume: ; e8679
@@ -1232,6 +1269,7 @@ RestoreVolume: ; e8679
 	ld [LastVolume], a
 	ld [SFXPriority], a
 	ret
+
 ; e8698
 
 Functione8698: ; e8698
@@ -1263,6 +1301,7 @@ Functione8698: ; e8698
 	add hl, bc
 	ld [hl], a
 	ret
+
 ; e86c5
 
 GetNoiseSample: ; e86c5
@@ -1319,8 +1358,9 @@ endr
 	ld [NoiseSampleAddressHi], a
 	; clear ????
 	xor a
-	ld [wc2a2], a
+	ld [wNoiseSampleDelay], a
 	ret
+
 ; e870f
 
 ParseMusicCommand: ; e870f
@@ -1404,6 +1444,7 @@ MusicF6: ; e8780
 MusicF7: ; e8780
 MusicF8: ; e8780
 	ret
+
 ; e8781
 
 Music_EndChannel: ; e8781
@@ -1426,6 +1467,7 @@ Music_EndChannel: ; e8781
 	inc hl
 	ld [hl], d
 	ret
+
 ; e8796
 
 Music_CallChannel: ; e8796
@@ -1460,6 +1502,7 @@ Music_CallChannel: ; e8796
 	add hl, bc
 	set 1, [hl]
 	ret
+
 ; e87bc
 
 Music_JumpChannel: ; e87bc
@@ -1476,6 +1519,7 @@ Music_JumpChannel: ; e87bc
 	inc hl
 	ld [hl], d
 	ret
+
 ; e87cc
 
 Music_LoopChannel: ; e87cc
@@ -1538,6 +1582,7 @@ Music_LoopChannel: ; e87cc
 	dec hl
 	ld [hl], e
 	ret
+
 ; e880e
 
 Music_SetCondition: ; e880e
@@ -1552,6 +1597,7 @@ Music_SetCondition: ; e880e
 	add hl, bc
 	ld [hl], a
 	ret
+
 ; e8817
 
 Music_JumpIf: ; e8817
@@ -1585,6 +1631,7 @@ endr
 	dec hl
 	ld [hl], e
 	ret
+
 .jump
 ; jump to the new address
 	; get pointer
@@ -1599,6 +1646,7 @@ endr
 	inc hl
 	ld [hl], d
 	ret
+
 ; e883e
 
 MusicEE; e883e
@@ -1637,6 +1685,7 @@ endr
 	dec hl
 	ld [hl], e
 	ret
+
 .jump
 	; reset jump flag
 	ld [hl], 0
@@ -1652,6 +1701,7 @@ endr
 	inc hl
 	ld [hl], d
 	ret
+
 ; e886d
 
 MusicF9: ; e886d
@@ -1661,6 +1711,7 @@ MusicF9: ; e886d
 	ld a, 1
 	ld [wc2b5], a
 	ret
+
 ; e8873
 
 MusicE2: ; e8873
@@ -1674,6 +1725,7 @@ MusicE2: ; e8873
 	add hl, bc
 	set 3, [hl]
 	ret
+
 ; e8882
 
 Music_Vibrato: ; e8882
@@ -1730,6 +1782,7 @@ Music_Vibrato: ; e8882
 	or d
 	ld [hl], a
 	ret
+
 ; e88bd
 
 MusicE0: ; e88bd
@@ -1758,6 +1811,7 @@ MusicE0: ; e88bd
 	add hl, bc
 	set 1, [hl]
 	ret
+
 ; e88e4
 
 Music_Tone: ; e88e4
@@ -1773,6 +1827,7 @@ Music_Tone: ; e88e4
 	call GetMusicByte
 	ld [hl], a
 	ret
+
 ; e88f7
 
 MusicE7: ; e88f7
@@ -1786,6 +1841,7 @@ MusicE7: ; e88f7
 	add hl, bc
 	ld [hl], a
 	ret
+
 ; e8906
 
 MusicDE: ; e8906
@@ -1808,6 +1864,7 @@ MusicDE: ; e8906
 	add hl, bc
 	ld [hl], a
 	ret
+
 ; e891e
 
 MusicE8: ; e891e
@@ -1821,6 +1878,7 @@ MusicE8: ; e891e
 	add hl, bc
 	ld [hl], a
 	ret
+
 ; e892d
 
 Music_ToggleSFX: ; e892d
@@ -1832,9 +1890,11 @@ Music_ToggleSFX: ; e892d
 	jr z, .on
 	res 3, [hl]
 	ret
+
 .on
 	set 3, [hl]
 	ret
+
 ; e893b
 
 Music_ToggleNoise: ; e893b
@@ -1851,12 +1911,14 @@ Music_ToggleNoise: ; e893b
 	; turn noise sampling off
 	res 4, [hl]
 	ret
+
 .on
 	; turn noise sampling on
 	set 4, [hl]
 	call GetMusicByte
 	ld [MusicNoiseSampleSet], a
 	ret
+
 ; e894f
 
 Music_SFXToggleNoise: ; e894f
@@ -1872,12 +1934,14 @@ Music_SFXToggleNoise: ; e894f
 	; turn noise sampling off
 	res 4, [hl]
 	ret
+
 .on
 	; turn noise sampling on
 	set 4, [hl]
 	call GetMusicByte
 	ld [SFXNoiseSampleSet], a
 	ret
+
 ; e8963
 
 Music_NoteType: ; e8963
@@ -1892,11 +1956,12 @@ Music_NoteType: ; e8963
 	ld [hl], a
 	ld a, [CurChannel]
 	and $3
-	cp $3
+	cp CHAN4 ; CHAN8 & $3
 	ret z
 	; intensity
 	call Music_Intensity
 	ret
+
 ; e8977
 
 Music_SoundStatus: ; e8977
@@ -1908,6 +1973,7 @@ Music_SoundStatus: ; e8977
 	add hl, bc
 	set 3, [hl]
 	ret
+
 ; e8984
 
 Music_DutyCycle: ; e8984
@@ -1921,6 +1987,7 @@ Music_DutyCycle: ; e8984
 	add hl, bc
 	ld [hl], a
 	ret
+
 ; e8991
 
 Music_Intensity: ; e8991
@@ -1933,6 +2000,7 @@ Music_Intensity: ; e8991
 	add hl, bc
 	ld [hl], a
 	ret
+
 ; e899a
 
 Music_Tempo: ; e899a
@@ -1945,6 +2013,7 @@ Music_Tempo: ; e899a
 	ld e, a
 	call SetGlobalTempo
 	ret
+
 ; e89a6
 
 Music_Octave8: ; e89a6
@@ -1962,6 +2031,7 @@ Music_Octave1: ; e89a6
 	and 7
 	ld [hl], a
 	ret
+
 ; e89b1
 
 Music_ForceOctave: ; e89b1
@@ -1973,6 +2043,7 @@ Music_ForceOctave: ; e89b1
 	add hl, bc
 	ld [hl], a
 	ret
+
 ; e89ba
 
 Music_StereoPanning: ; e89ba
@@ -1985,6 +2056,7 @@ Music_StereoPanning: ; e89ba
 	; skip param
 	call GetMusicByte
 	ret
+
 ; e89c5
 
 Music_Panning: ; e89c5
@@ -1997,6 +2069,7 @@ Music_Panning: ; e89c5
 	and [hl]
 	ld [hl], a
 	ret
+
 ; e89d2
 
 Music_Volume: ; e89d2
@@ -2014,6 +2087,7 @@ Music_Volume: ; e89d2
 	; set volume
 	ld [Volume], a
 	ret
+
 ; e89e1
 
 Music_GlobalTempo: ; e89e1
@@ -2040,6 +2114,7 @@ Music_GlobalTempo: ; e89e1
 	ld d, h
 	call SetGlobalTempo
 	ret
+
 ; e89fd
 
 Music_SFXPriorityOn: ; e89fd
@@ -2048,6 +2123,7 @@ Music_SFXPriorityOn: ; e89fd
 	ld a, 1
 	ld [SFXPriority], a
 	ret
+
 ; e8a03
 
 Music_SFXPriorityOff: ; e8a03
@@ -2056,6 +2132,7 @@ Music_SFXPriorityOff: ; e8a03
 	xor a
 	ld [SFXPriority], a
 	ret
+
 ; e8a08
 
 Music_RestartChannel: ; e8a08
@@ -2091,6 +2168,7 @@ Music_RestartChannel: ; e8a08
 	call StartChannel
 	pop bc ; restore current channel
 	ret
+
 ; e8a30
 
 Music_NewSong: ; e8a30
@@ -2105,6 +2183,7 @@ Music_NewSong: ; e8a30
 	call _PlayMusic
 	pop bc
 	ret
+
 ; e8a3e
 
 GetMusicByte: ; e8a3e
@@ -2138,6 +2217,7 @@ GetMusicByte: ; e8a3e
 	; store channeldata in a
 	ld a, [CurMusicByte]
 	ret
+
 ; e8a5d
 
 GetFrequency: ; e8a5d
@@ -2191,6 +2271,7 @@ GetFrequency: ; e8a5d
 	and $7 ; top 3 bits for frequency (11 total)
 	ld d, a
 	ret
+
 ; e8a8d
 
 SetNoteDuration: ; e8a8d
@@ -2231,6 +2312,7 @@ SetNoteDuration: ; e8a8d
 	add hl, bc
 	ld [hl], d
 	ret
+
 ; e8ab8
 
 MultiplySimple: ; e8ab8
@@ -2253,13 +2335,14 @@ MultiplySimple: ; e8ab8
 	and a
 	jr nz, .loop
 	ret
+
 ; e8ac7
 
 SetGlobalTempo: ; e8ac7
 	push bc ; save current channel
 	; are we dealing with music or sfx?
 	ld a, [CurChannel]
-	cp $4
+	cp CHAN5
 	jr nc, .sfxchannels
 	ld bc, Channel1
 	call SetTempo
@@ -2282,6 +2365,7 @@ SetGlobalTempo: ; e8ac7
 .end
 	pop bc ; restore current channel
 	ret
+
 ; e8b03
 
 SetTempo: ; e8b03
@@ -2299,6 +2383,7 @@ SetTempo: ; e8b03
 	add hl, bc
 	ld [hl], a
 	ret
+
 ; e8b11
 
 StartChannel: ; e8b11
@@ -2307,6 +2392,7 @@ StartChannel: ; e8b11
 	add hl, bc
 	set 0, [hl] ; turn channel on
 	ret
+
 ; e8b1b
 
 SetLRTracks: ; e8b1b
@@ -2328,6 +2414,7 @@ SetLRTracks: ; e8b1b
 	ld [hl], a
 	pop de
 	ret
+
 ; e8b30
 
 _PlayMusic:: ; e8b30
@@ -2367,10 +2454,11 @@ _PlayMusic:: ; e8b30
 	ld [wc2bb], a
 	ld [NoiseSampleAddressLo], a
 	ld [NoiseSampleAddressHi], a
-	ld [wc2a2], a
+	ld [wNoiseSampleDelay], a
 	ld [MusicNoiseSampleSet], a
 	call MusicOn
 	ret
+
 ; e8b79
 
 _PlayCryHeader:: ; e8b79
@@ -2484,6 +2572,7 @@ endr
 	ld [SFXPriority], a
 	call MusicOn
 	ret
+
 ; e8c04
 
 _PlaySFX:: ; e8c04
@@ -2584,6 +2673,7 @@ _PlaySFX:: ; e8c04
 	xor a
 	ld [SFXPriority], a
 	ret
+
 ; e8ca6
 
 
@@ -2687,6 +2777,7 @@ endr
 ; we're done
 	call MusicOn
 	ret
+
 ; e8d1b
 
 
@@ -2734,6 +2825,7 @@ endr
 	ld a, [MusicBank]
 	ld [hl], a
 	ret
+
 ; e8d5b
 
 ChannelInit: ; e8d5b
@@ -2765,6 +2857,7 @@ ChannelInit: ; e8d5b
 	ld [hl], a
 	pop de
 	ret
+
 ; e8d76
 
 LoadMusicByte:: ; e8d76
@@ -2776,6 +2869,7 @@ LoadMusicByte:: ; e8d76
 	call _LoadMusicByte
 	ld a, [CurMusicByte]
 	ret
+
 ; e8d80
 
 FrequencyTable: ; e8d80
@@ -2918,208 +3012,208 @@ Drumkit5: ; e8ee0
 
 Drum00: ; e8efa
 ; unused
-	noise $20, $11, $00
+	noise C#,  1, $11, $00
 	endchannel
 ; e8efe
 
 Snare1: ; e8efe
-	noise $20, $c1, $33
+	noise C#,  1, $c1, $33
 	endchannel
 ; e8f02
 
 Snare2: ; e8f02
-	noise $20, $b1, $33
+	noise C#,  1, $b1, $33
 	endchannel
 ; e8f06
 
 Snare3: ; e8f06
-	noise $20, $a1, $33
+	noise C#,  1, $a1, $33
 	endchannel
 ; e8f0a
 
 Snare4: ; e8f0a
-	noise $20, $81, $33
+	noise C#,  1, $81, $33
 	endchannel
 ; e8f0e
 
 Drum05: ; e8f0e
-	noise $27, $84, $37
-	noise $26, $84, $36
-	noise $25, $83, $35
-	noise $24, $83, $34
-	noise $23, $82, $33
-	noise $22, $81, $32
+	noise C#,  8, $84, $37
+	noise C#,  7, $84, $36
+	noise C#,  6, $83, $35
+	noise C#,  5, $83, $34
+	noise C#,  4, $82, $33
+	noise C#,  3, $81, $32
 	endchannel
 ; e8f21
 
 Triangle1: ; e8f21
-	noise $20, $51, $2a
+	noise C#,  1, $51, $2a
 	endchannel
 ; e8f25
 
 Triangle2: ; e8f25
-	noise $21, $41, $2b
-	noise $20, $61, $2a
+	noise C#,  2, $41, $2b
+	noise C#,  1, $61, $2a
 	endchannel
 ; e8f2c
 
 HiHat1: ; e8f2c
-	noise $20, $81, $10
+	noise C#,  1, $81, $10
 	endchannel
 ; e8f30
 
 Snare5: ; e8f30
-	noise $20, $82, $23
+	noise C#,  1, $82, $23
 	endchannel
 ; e8f34
 
 Snare6: ; e8f34
-	noise $20, $82, $25
+	noise C#,  1, $82, $25
 	endchannel
 ; e8f38
 
 Snare7: ; e8f38
-	noise $20, $82, $26
+	noise C#,  1, $82, $26
 	endchannel
 ; e8f3c
 
 HiHat2: ; e8f3c
-	noise $20, $a1, $10
+	noise C#,  1, $a1, $10
 	endchannel
 ; e8f40
 
 HiHat3: ; e8f40
-	noise $20, $a2, $11
+	noise C#,  1, $a2, $11
 	endchannel
 ; e8f44
 
 Snare8: ; e8f44
-	noise $20, $a2, $50
+	noise C#,  1, $a2, $50
 	endchannel
 ; e8f48
 
 Triangle3: ; e8f48
-	noise $20, $a1, $18
-	noise $20, $31, $33
+	noise C#,  1, $a1, $18
+	noise C#,  1, $31, $33
 	endchannel
 ; e8f4f
 
 Triangle4: ; e8f4f
-	noise $22, $91, $28
-	noise $20, $71, $18
+	noise C#,  3, $91, $28
+	noise C#,  1, $71, $18
 	endchannel
 ; e8f56
 
 Snare9: ; e8f56
-	noise $20, $91, $22
+	noise C#,  1, $91, $22
 	endchannel
 ; e8f5a
 
 Snare10: ; e8f5a
-	noise $20, $71, $22
+	noise C#,  1, $71, $22
 	endchannel
 ; e8f5e
 
 Snare11: ; e8f5e
-	noise $20, $61, $22
+	noise C#,  1, $61, $22
 	endchannel
 ; e8f62
 
 Drum20: ; e8f62
-	noise $20, $11, $11
+	noise C#,  1, $11, $11
 	endchannel
 ; e8f66
 
 Drum21: ; e8f66
-	db $ff
+	endchannel
 ; e8f67
 
 Snare12: ; e8f67
-	noise $20, $91, $33
+	noise C#,  1, $91, $33
 	endchannel
 ; e8f6b
 
 Snare13: ; e8f6b
-	noise $20, $51, $32
+	noise C#,  1, $51, $32
 	endchannel
 ; e8f6f
 
 Snare14: ; e8f6f
-	noise $20, $81, $31
+	noise C#,  1, $81, $31
 	endchannel
 ; e8f73
 
 Kick1: ; e8f73
-	noise $20, $88, $6b
-	noise $20, $71, $00
+	noise C#,  1, $88, $6b
+	noise C#,  1, $71, $00
 	endchannel
 ; e8f7a
 
 Triangle5: ; e8f7a
-	noise $30, $91, $18
+	noise D_,  1, $91, $18
 	endchannel
 ; e8f7e
 
 Drum27: ; e8f7e
-	noise $27, $92, $10
+	noise C#,  8, $92, $10
 	endchannel
 ; e8f82
 
 Drum28: ; e8f82
-	noise $33, $91, $00
-	noise $33, $11, $00
+	noise D_,  4, $91, $00
+	noise D_,  4, $11, $00
 	endchannel
 ; e8f89
 
 Drum29: ; e8f89
-	noise $33, $91, $11
-	noise $33, $11, $00
+	noise D_,  4, $91, $11
+	noise D_,  4, $11, $00
 	endchannel
 ; e8f90
 
 Crash1: ; e8f90
-	noise $33, $88, $15
-	noise $20, $65, $12
+	noise D_,  4, $88, $15
+	noise C#,  1, $65, $12
 	endchannel
 ; e8f97
 
 Drum31: ; e8f97
-	noise $33, $51, $21
-	noise $33, $11, $11
+	noise D_,  4, $51, $21
+	noise D_,  4, $11, $11
 	endchannel
 ; e8f9e
 
 Drum32: ; e8f9e
-	noise $33, $51, $50
-	noise $33, $11, $11
+	noise D_,  4, $51, $50
+	noise D_,  4, $11, $11
 	endchannel
 ; e8fa5
 
 Drum33: ; e8fa5
-	noise $20, $a1, $31
+	noise C#,  1, $a1, $31
 	endchannel
 ; e8fa9
 
 Crash2: ; e8fa9
-	noise $20, $84, $12
+	noise C#,  1, $84, $12
 	endchannel
 ; e8fad
 
 Drum35: ; e8fad
-	noise $33, $81, $00
-	noise $33, $11, $00
+	noise D_,  4, $81, $00
+	noise D_,  4, $11, $00
 	endchannel
 ; e8fb4
 
 Drum36: ; e8fb4
-	noise $33, $81, $21
-	noise $33, $11, $11
+	noise D_,  4, $81, $21
+	noise D_,  4, $11, $11
 	endchannel
 ; e8fbb
 
 Kick2: ; e8fbb
-	noise $20, $a8, $6b
-	noise $20, $71, $00
+	noise C#,  1, $a8, $6b
+	noise C#,  1, $71, $00
 	endchannel
 ; e8fc2
 
@@ -3132,9 +3226,11 @@ GetLRTracks: ; e8fc2
 	jr nz, .stereo
 	ld hl, MonoTracks
 	ret
+
 .stereo
 	ld hl, StereoTracks
 	ret
+
 ; e8fd1
 
 MonoTracks: ; e8fd1
@@ -3180,6 +3276,7 @@ endr
 	dec e
 	jr nz, .loop
 	ret
+
 ; e8ffe
 
 ClearChannel: ; e8ffe
@@ -3198,4 +3295,5 @@ ClearChannel: ; e8ffe
 	ld a, $80
 	ld [hli], a ; rNR14, rNR24, rNR34, rNR44 ; restart sound (freq hi = 0)
 	ret
+
 ; e900a

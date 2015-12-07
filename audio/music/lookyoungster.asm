@@ -1,7 +1,7 @@
 Music_LookYoungster: ; f66c3
-	dbw $80, Music_LookYoungster_Ch1
-	dbw $01, Music_LookYoungster_Ch2
-	dbw $02, Music_LookYoungster_Ch3
+	musicheader 3, 1, Music_LookYoungster_Ch1
+	musicheader 1, 2, Music_LookYoungster_Ch2
+	musicheader 1, 3, Music_LookYoungster_Ch3
 ; f66cc
 
 Music_LookYoungster_Ch1: ; f66cc

@@ -1,8 +1,8 @@
 Music_AzaleaTown: ; f57e8
-	dbw $c0, Music_AzaleaTown_Ch1
-	dbw $01, Music_AzaleaTown_Ch2
-	dbw $02, Music_AzaleaTown_Ch3
-	dbw $03, Music_AzaleaTown_Ch4
+	musicheader 4, 1, Music_AzaleaTown_Ch1
+	musicheader 1, 2, Music_AzaleaTown_Ch2
+	musicheader 1, 3, Music_AzaleaTown_Ch3
+	musicheader 1, 4, Music_AzaleaTown_Ch4
 ; f57f4
 
 Music_AzaleaTown_Ch1: ; f57f4

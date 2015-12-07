@@ -1,7 +1,7 @@
 Music_Mom: ; f6bf2
-	dbw $81, Music_Mom_Ch2
-	dbw $02, Music_Mom_Ch3
-	dbw $03, Music_Mom_Ch4
+	musicheader 3, 2, Music_Mom_Ch2
+	musicheader 1, 3, Music_Mom_Ch3
+	musicheader 1, 4, Music_Mom_Ch4
 ; f6bfb
 
 Music_Mom_Ch2: ; f6bfb

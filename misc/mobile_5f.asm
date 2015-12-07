@@ -802,7 +802,7 @@ Function17d48d: ; 17d48d
 	jr z, .asm_17d4e0
 	ld a, e
 	ld [wcd6c], a
-	ld [wc2c0], a
+	ld [wMapMusic], a
 	ld d, $0
 	call PlayMusic2
 

@@ -1,8 +1,8 @@
 Music_LakeOfRage: ; ee6c5
-	dbw $c0, Music_LakeOfRage_Ch1
-	dbw $01, Music_LakeOfRage_Ch2
-	dbw $02, Music_LakeOfRage_Ch3
-	dbw $03, Music_LakeOfRage_Ch4
+	musicheader 4, 1, Music_LakeOfRage_Ch1
+	musicheader 1, 2, Music_LakeOfRage_Ch2
+	musicheader 1, 3, Music_LakeOfRage_Ch3
+	musicheader 1, 4, Music_LakeOfRage_Ch4
 ; ee6d1
 
 Music_LakeOfRage_Ch1: ; ee6d1

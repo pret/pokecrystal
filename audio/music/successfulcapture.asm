@@ -1,7 +1,7 @@
 Music_SuccessfulCapture: ; f4602
-	dbw $80, Music_SuccessfulCapture_Ch1
-	dbw $01, Music_SuccessfulCapture_Ch2
-	dbw $02, Music_SuccessfulCapture_Ch3
+	musicheader 3, 1, Music_SuccessfulCapture_Ch1
+	musicheader 1, 2, Music_SuccessfulCapture_Ch2
+	musicheader 1, 3, Music_SuccessfulCapture_Ch3
 ; f460b
 
 Music_SuccessfulCapture_Ch1: ; f460b

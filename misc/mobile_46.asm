@@ -489,7 +489,7 @@ Function1183cb: ; 1183cb
 	ld [hFFC9], a
 	ld [hMobile], a
 	ei
-	callba Function106462
+	callba MobileFunc_106462
 	callba Function106464
 	callba Function115d99
 	callba Function11615a
@@ -4565,7 +4565,7 @@ Function11a00e: ; 11a00e
 	call BackUpTiles
 	callba Function11765d
 	callba Function117ab4
-	callba Function106462
+	callba MobileFunc_106462
 	callba Function106464
 	call ExitMenu
 	callba ReloadMapPart
@@ -4588,7 +4588,7 @@ Function11a0ca: ; 11a0ca
 	call BackUpTiles
 	callba Function11765d
 	callba Function17d3f6
-	callba Function106462
+	callba MobileFunc_106462
 	callba Function106464
 	call ExitMenu
 	callba ReloadMapPart
@@ -5691,7 +5691,7 @@ Function11a9ce: ; 11a9ce
 	call ClearBGPalettes
 	call Function2bae
 	call Call_ExitMenu
-	callba Function106462
+	callba MobileFunc_106462
 	callba Function106464
 	call Functiond90
 	callba Function2b5c

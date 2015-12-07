@@ -1,7 +1,7 @@
 Music_HealPokemon: ; f0697
-	dbw $80, Music_HealPokemon_Ch1
-	dbw $01, Music_HealPokemon_Ch2
-	dbw $02, Music_HealPokemon_Ch3
+	musicheader 3, 1, Music_HealPokemon_Ch1
+	musicheader 1, 2, Music_HealPokemon_Ch2
+	musicheader 1, 3, Music_HealPokemon_Ch3
 ; f06a0
 
 Music_HealPokemon_Ch1: ; f06a0

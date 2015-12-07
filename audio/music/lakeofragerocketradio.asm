@@ -1,7 +1,7 @@
 Music_LakeOfRageRocketRadio: ; ef5b1
-	dbw $80, Music_LakeOfRageRocketRadio_Ch1
-	dbw $01, Music_LakeOfRageRocketRadio_Ch2
-	dbw $02, Music_LakeOfRageRocketRadio_Ch3
+	musicheader 3, 1, Music_LakeOfRageRocketRadio_Ch1
+	musicheader 1, 2, Music_LakeOfRageRocketRadio_Ch2
+	musicheader 1, 3, Music_LakeOfRageRocketRadio_Ch3
 ; ef5ba
 
 Music_LakeOfRageRocketRadio_Ch1: ; ef5ba

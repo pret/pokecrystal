@@ -5281,7 +5281,7 @@ BattleMenu_Pack: ; 3e1c7
 ; 3e234
 
 .UseItem: ; 3e234
-	ld a, [wc64e]
+	ld a, [wWildMon]
 	and a
 	jr nz, .run
 	callab CheckItemPocket
@@ -5315,7 +5315,7 @@ BattleMenu_Pack: ; 3e1c7
 
 .run
 	xor a
-	ld [wc64e], a
+	ld [wWildMon], a
 	ld a, [wBattleResult]
 	and $c0
 	ld [wBattleResult], a

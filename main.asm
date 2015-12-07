@@ -8455,7 +8455,7 @@ GetPokeBallWobble: ; f971 (3:7971)
 	cp 3 + 1
 	jr z, .finished
 
-	ld a, [wc64e]
+	ld a, [wWildMon]
 	and a
 	ld c, 0 ; next
 	jr nz, .done
@@ -8480,7 +8480,7 @@ GetPokeBallWobble: ; f971 (3:7971)
 	jr .done
 
 .finished
-	ld a, [wc64e]
+	ld a, [wWildMon]
 	and a
 	ld c, 1 ; caught
 	jr nz, .done

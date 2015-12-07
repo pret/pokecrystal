@@ -3,15 +3,20 @@ note: MACRO
 	ENDM
 
 sound: macro
-	db \1 ; duration
-	db \2 ; intensity
-	dw \3 ; frequency
+	note \1, \2
+	db \3 ; intensity
+	dw \4 ; frequency
 	endm
 
 noise: macro
-	db \1 ; duration
-	db \2 ; intensity
-	db \3 ; frequency
+	note \1, \2 ; duration
+	db \3 ; intensity
+	db \4 ; frequency
+	endm
+
+musicheader: macro
+	; number of tracks, ??, address
+	dbw ((\1 - 1) << 6) + (\2 - 1), \3
 	endm
 
 ; pitch
@@ -28,6 +33,20 @@ G# EQU 9
 A_ EQU 10
 A# EQU 11
 B_ EQU 12
+
+; channel
+	const_def
+	const CHAN1
+	const CHAN2
+	const CHAN3
+	const CHAN4
+NUM_MUSIC_CHANS EQU const_value
+NUM_NOISE_CHANS EQU const_value
+	const CHAN5
+	const CHAN6
+	const CHAN7
+	const CHAN8
+NUM_CHANNELS EQU const_value
 
 	enum_start $d8
 	enum notetype_cmd

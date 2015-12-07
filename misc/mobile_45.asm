@@ -5755,9 +5755,9 @@ Function1161d5: ; 1161d5
 	ld [MusicFade], a
 	ld de, MUSIC_MOBILE_ADAPTER
 	ld a, e
-	ld [wc2a9], a
+	ld [MusicFadeIDLo], a
 	ld a, d
-	ld [wc2aa], a
+	ld [MusicFadeIDHi], a
 	ld a, [wc314 + 5]
 	inc a
 	ld [wc314 + 5], a
@@ -5934,10 +5934,10 @@ Function11636e: ; 11636e
 	callba ReloadMapPart
 	ld a, $8
 	ld [MusicFade], a
-	ld a, [wc2c0]
-	ld [wc2a9], a
+	ld a, [wMapMusic]
+	ld [MusicFadeIDLo], a
 	xor a
-	ld [wc2aa], a
+	ld [MusicFadeIDHi], a
 	xor a
 	ld [wc314 + 5], a
 	ld [wc30d], a
@@ -5981,19 +5981,19 @@ Function1163c0: ; 1163c0
 	jr z, .asm_11642a
 	ld a, $8
 	ld [MusicFade], a
-	ld a, [wc2c0]
-	ld [wc2a9], a
+	ld a, [wMapMusic]
+	ld [MusicFadeIDLo], a
 	xor a
-	ld [wc2aa], a
+	ld [MusicFadeIDHi], a
 	jr .asm_116439
 
 .asm_11642a
 	ld a, $8
 	ld [MusicFade], a
 	ld a, $0
-	ld [wc2a9], a
+	ld [MusicFadeIDLo], a
 	ld a, $0
-	ld [wc2aa], a
+	ld [MusicFadeIDHi], a
 
 .asm_116439
 	xor a
@@ -6009,10 +6009,10 @@ Function116441: ; 116441
 	callba ReloadMapPart
 	ld a, $8
 	ld [MusicFade], a
-	ld a, [wc2c0]
-	ld [wc2a9], a
+	ld a, [wMapMusic]
+	ld [MusicFadeIDLo], a
 	xor a
-	ld [wc2aa], a
+	ld [MusicFadeIDHi], a
 	xor a
 	ld [wc314 + 5], a
 	ld [wc30d], a

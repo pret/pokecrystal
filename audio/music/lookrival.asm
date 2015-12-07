@@ -1,8 +1,8 @@
 Music_LookRival: ; f4f79
-	dbw $c0, Music_LookRival_Ch1
-	dbw $01, Music_LookRival_Ch2
-	dbw $02, Music_LookRival_Ch3
-	dbw $03, Music_LookRival_Ch4
+	musicheader 4, 1, Music_LookRival_Ch1
+	musicheader 1, 2, Music_LookRival_Ch2
+	musicheader 1, 3, Music_LookRival_Ch3
+	musicheader 1, 4, Music_LookRival_Ch4
 ; f4f85
 
 Music_LookRival_Ch1: ; f4f85

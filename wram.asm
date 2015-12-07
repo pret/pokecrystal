@@ -87,7 +87,7 @@ channel_struct: MACRO
 ; Addreses are Channel1 (c101).
 \1MusicID::           dw
 \1MusicBank::         db
-\1Flags::             db ; 0:on/off 1:subroutine 4:noise
+\1Flags::             db ; 0:on/off 1:subroutine 3:sfx 4:noise 5:rest
 \1Flags2::            db ; 0:vibrato on/off 2:duty
 \1Flags3::            db ; 0:vibrato up/down
 \1MusicAddress::      dw
@@ -209,11 +209,10 @@ Channel7:: channel_struct Channel7 ; c22d
 Channel8:: channel_struct Channel8 ; c25f
 
 	ds 1 ; c291
-wc292:: ds 1
-wc293:: ds 1
-wc294:: ds 1
-wc295:: ds 1
-wc296:: ds 1
+wCurTrackDuty:: ds 1
+wCurTrackIntensity:: ds 1
+wCurTrackFrequency:: dw
+wc296:: ds 1 ; used only in an unused function
 wc297:: ds 1
 
 CurMusicByte:: ; c298
@@ -254,7 +253,7 @@ NoiseSampleAddressLo:: ; c2a0
 	ds 1
 NoiseSampleAddressHi:: ; c2a1
 	ds 1
-wc2a2:: ; noise delay? ; c2a2
+wNoiseSampleDelay:: ; noise delay? ; c2a2
 	ds 1
 ; c2a3
 	ds 1
@@ -565,12 +564,9 @@ BattleMonNick:: ds PKMN_NAME_LENGTH ; c621
 
 BattleMon:: battle_struct BattleMon ; c62c
 
-wc64c::
-	ds 1
+	ds 2
 
-wc64d:: ds 1
-wWildMon::
-wc64e:: ds 1
+wWildMon:: ds 1
 	ds 1
 wEnemyTrainerItem1:: ds 1
 wEnemyTrainerItem2:: ds 1
