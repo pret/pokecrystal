@@ -19,6 +19,10 @@ musicheader: macro
 	dbw ((\1 - 1) << 6) + (\2 - 1), \3
 	endm
 
+cry_header: macro
+	dw \1, \2, \3
+	endm
+
 ; pitch
 __ EQU 0
 C_ EQU 1

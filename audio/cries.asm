@@ -1,178 +1,178 @@
-Cry_26: ; f2d81
-	musicheader 3, 5, Cry_26_Ch5
-	musicheader 1, 6, Cry_26_Ch6
-	musicheader 1, 8, Cry_26_Ch8
+Cry_Marill: ; f2d81
+	musicheader 3, 5, Cry_Marill_Ch5
+	musicheader 1, 6, Cry_Marill_Ch6
+	musicheader 1, 8, Cry_Marill_Ch8
 ; f2d8a
 
-Cry_28: ; f2d8a
-	musicheader 2, 5, Cry_28_Ch5
-	musicheader 1, 6, Cry_28_Ch6
+Cry_Togepi: ; f2d8a
+	musicheader 2, 5, Cry_Togepi_Ch5
+	musicheader 1, 6, Cry_Togepi_Ch6
 ; f2d90
 
-Cry_2C: ; f2d90
-	musicheader 2, 5, Cry_2C_Ch5
-	musicheader 1, 6, Cry_2C_Ch6
+Cry_Togetic: ; f2d90
+	musicheader 2, 5, Cry_Togetic_Ch5
+	musicheader 1, 6, Cry_Togetic_Ch6
 ; f2d96
 
-Cry_27: ; f2d96
-	musicheader 3, 5, Cry_27_Ch5
-	musicheader 1, 6, Cry_27_Ch6
-	musicheader 1, 8, Cry_27_Ch8
+Cry_Spinarak: ; f2d96
+	musicheader 3, 5, Cry_Spinarak_Ch5
+	musicheader 1, 6, Cry_Spinarak_Ch6
+	musicheader 1, 8, Cry_Spinarak_Ch8
 ; f2d9f
 
-Cry_2A: ; f2d9f
-	musicheader 3, 5, Cry_2A_Ch5
-	musicheader 1, 6, Cry_2A_Ch6
-	musicheader 1, 8, Cry_2A_Ch8
+Cry_Raikou: ; f2d9f
+	musicheader 3, 5, Cry_Raikou_Ch5
+	musicheader 1, 6, Cry_Raikou_Ch6
+	musicheader 1, 8, Cry_Raikou_Ch8
 ; f2da8
 
-Cry_2D: ; f2da8
-	musicheader 3, 5, Cry_2D_Ch5
-	musicheader 1, 6, Cry_2D_Ch6
-	musicheader 1, 8, Cry_2D_Ch8
+Cry_Hoothoot: ; f2da8
+	musicheader 3, 5, Cry_Hoothoot_Ch5
+	musicheader 1, 6, Cry_Hoothoot_Ch6
+	musicheader 1, 8, Cry_Hoothoot_Ch8
 ; f2db1
 
-Cry_2E: ; f2db1
-	musicheader 2, 5, Cry_2E_Ch5
-	musicheader 1, 6, Cry_2E_Ch6
+Cry_Sentret: ; f2db1
+	musicheader 2, 5, Cry_Sentret_Ch5
+	musicheader 1, 6, Cry_Sentret_Ch6
 ; f2db7
 
-Cry_2F: ; f2db7
-	musicheader 3, 5, Cry_2F_Ch5
-	musicheader 1, 6, Cry_2F_Ch6
-	musicheader 1, 8, Cry_2F_Ch8
+Cry_Slowking: ; f2db7
+	musicheader 3, 5, Cry_Slowking_Ch5
+	musicheader 1, 6, Cry_Slowking_Ch6
+	musicheader 1, 8, Cry_Slowking_Ch8
 ; f2dc0
 
-Cry_2B: ; f2dc0
-	musicheader 2, 5, Cry_2B_Ch5
-	musicheader 1, 6, Cry_2B_Ch6
+Cry_Mareep: ; f2dc0
+	musicheader 2, 5, Cry_Mareep_Ch5
+	musicheader 1, 6, Cry_Mareep_Ch6
 ; f2dc6
 
-Cry_30: ; f2dc6
-	musicheader 3, 5, Cry_30_Ch5
-	musicheader 1, 6, Cry_30_Ch6
-	musicheader 1, 8, Cry_30_Ch8
+Cry_Cyndaquil: ; f2dc6
+	musicheader 3, 5, Cry_Cyndaquil_Ch5
+	musicheader 1, 6, Cry_Cyndaquil_Ch6
+	musicheader 1, 8, Cry_Cyndaquil_Ch8
 ; f2dcf
 
-Cry_31: ; f2dcf
-	musicheader 3, 5, Cry_31_Ch5
-	musicheader 1, 6, Cry_31_Ch6
-	musicheader 1, 8, Cry_31_Ch8
+Cry_Chikorita: ; f2dcf
+	musicheader 3, 5, Cry_Chikorita_Ch5
+	musicheader 1, 6, Cry_Chikorita_Ch6
+	musicheader 1, 8, Cry_Chikorita_Ch8
 ; f2dd8
 
-Cry_33: ; f2dd8
-	musicheader 2, 5, Cry_33_Ch5
-	musicheader 1, 8, Cry_33_Ch8
+Cry_Gligar: ; f2dd8
+	musicheader 2, 5, Cry_Gligar_Ch5
+	musicheader 1, 8, Cry_Gligar_Ch8
 ; f2dde
 
-Cry_29: ; f2dde
-	musicheader 3, 5, Cry_29_Ch5
-	musicheader 1, 6, Cry_29_Ch6
-	musicheader 1, 8, Cry_29_Ch8
+Cry_Girafarig: ; f2dde
+	musicheader 3, 5, Cry_Girafarig_Ch5
+	musicheader 1, 6, Cry_Girafarig_Ch6
+	musicheader 1, 8, Cry_Girafarig_Ch8
 ; f2de7
 
-Cry_35: ; f2de7
-	musicheader 2, 5, Cry_35_Ch5
-	musicheader 1, 8, Cry_35_Ch8
+Cry_Slugma: ; f2de7
+	musicheader 2, 5, Cry_Slugma_Ch5
+	musicheader 1, 8, Cry_Slugma_Ch8
 ; f2ded
 
-Cry_36: ; f2ded
-	musicheader 3, 5, Cry_36_Ch5
-	musicheader 1, 6, Cry_36_Ch6
-	musicheader 1, 8, Cry_36_Ch8
+Cry_Ledyba: ; f2ded
+	musicheader 3, 5, Cry_Ledyba_Ch5
+	musicheader 1, 6, Cry_Ledyba_Ch6
+	musicheader 1, 8, Cry_Ledyba_Ch8
 ; f2df6
 
-Cry_38: ; f2df6
-	musicheader 3, 5, Cry_38_Ch5
-	musicheader 1, 6, Cry_38_Ch6
-	musicheader 1, 8, Cry_38_Ch8
+Cry_Wooper: ; f2df6
+	musicheader 3, 5, Cry_Wooper_Ch5
+	musicheader 1, 6, Cry_Wooper_Ch6
+	musicheader 1, 8, Cry_Wooper_Ch8
 ; f2dff
 
-Cry_43: ; f2dff
-	musicheader 3, 5, Cry_43_Ch5
-	musicheader 1, 6, Cry_43_Ch6
-	musicheader 1, 8, Cry_43_Ch8
+Cry_Donphan: ; f2dff
+	musicheader 3, 5, Cry_Donphan_Ch5
+	musicheader 1, 6, Cry_Donphan_Ch6
+	musicheader 1, 8, Cry_Donphan_Ch8
 ; f2e08
 
-Cry_3A: ; f2e08
-	musicheader 3, 5, Cry_3A_Ch5
-	musicheader 1, 6, Cry_3A_Ch6
-	musicheader 1, 8, Cry_3A_Ch8
+Cry_Typhlosion: ; f2e08
+	musicheader 3, 5, Cry_Typhlosion_Ch5
+	musicheader 1, 6, Cry_Typhlosion_Ch6
+	musicheader 1, 8, Cry_Typhlosion_Ch8
 ; f2e11
 
-Cry_3B: ; f2e11
-	musicheader 3, 5, Cry_3B_Ch5
-	musicheader 1, 6, Cry_3B_Ch6
-	musicheader 1, 8, Cry_3B_Ch8
+Cry_Natu: ; f2e11
+	musicheader 3, 5, Cry_Natu_Ch5
+	musicheader 1, 6, Cry_Natu_Ch6
+	musicheader 1, 8, Cry_Natu_Ch8
 ; f2e1a
 
-Cry_3C: ; f2e1a
-	musicheader 3, 5, Cry_3C_Ch5
-	musicheader 1, 6, Cry_3C_Ch6
-	musicheader 1, 8, Cry_3C_Ch8
+Cry_Teddiursa: ; f2e1a
+	musicheader 3, 5, Cry_Teddiursa_Ch5
+	musicheader 1, 6, Cry_Teddiursa_Ch6
+	musicheader 1, 8, Cry_Teddiursa_Ch8
 ; f2e23
 
-Cry_3D: ; f2e23
-	musicheader 3, 5, Cry_3D_Ch5
-	musicheader 1, 6, Cry_3D_Ch6
-	musicheader 1, 8, Cry_3D_Ch8
+Cry_Sunflora: ; f2e23
+	musicheader 3, 5, Cry_Sunflora_Ch5
+	musicheader 1, 6, Cry_Sunflora_Ch6
+	musicheader 1, 8, Cry_Sunflora_Ch8
 ; f2e2c
 
-Cry_3E: ; f2e2c
-	musicheader 3, 5, Cry_3E_Ch5
-	musicheader 1, 6, Cry_3E_Ch6
-	musicheader 1, 8, Cry_3E_Ch8
+Cry_Ampharos: ; f2e2c
+	musicheader 3, 5, Cry_Ampharos_Ch5
+	musicheader 1, 6, Cry_Ampharos_Ch6
+	musicheader 1, 8, Cry_Ampharos_Ch8
 ; f2e35
 
-Cry_32: ; f2e35
-	musicheader 3, 5, Cry_32_Ch5
-	musicheader 1, 6, Cry_32_Ch6
-	musicheader 1, 8, Cry_32_Ch8
+Cry_Totodile: ; f2e35
+	musicheader 3, 5, Cry_Totodile_Ch5
+	musicheader 1, 6, Cry_Totodile_Ch6
+	musicheader 1, 8, Cry_Totodile_Ch8
 ; f2e3e
 
-Cry_34: ; f2e3e
-	musicheader 3, 5, Cry_34_Ch5
-	musicheader 1, 6, Cry_34_Ch6
-	musicheader 1, 8, Cry_34_Ch8
+Cry_Cleffa: ; f2e3e
+	musicheader 3, 5, Cry_Cleffa_Ch5
+	musicheader 1, 6, Cry_Cleffa_Ch6
+	musicheader 1, 8, Cry_Cleffa_Ch8
 ; f2e47
 
-Cry_40: ; f2e47
-	musicheader 3, 5, Cry_40_Ch5
-	musicheader 1, 6, Cry_40_Ch6
-	musicheader 1, 8, Cry_40_Ch8
+Cry_Pichu: ; f2e47
+	musicheader 3, 5, Cry_Pichu_Ch5
+	musicheader 1, 6, Cry_Pichu_Ch6
+	musicheader 1, 8, Cry_Pichu_Ch8
 ; f2e50
 
-Cry_41: ; f2e50
-	musicheader 3, 5, Cry_41_Ch5
-	musicheader 1, 6, Cry_41_Ch6
-	musicheader 1, 8, Cry_41_Ch8
+Cry_Aipom: ; f2e50
+	musicheader 3, 5, Cry_Aipom_Ch5
+	musicheader 1, 6, Cry_Aipom_Ch6
+	musicheader 1, 8, Cry_Aipom_Ch8
 ; f2e59
 
-Cry_42: ; f2e59
-	musicheader 3, 5, Cry_42_Ch5
-	musicheader 1, 6, Cry_42_Ch6
-	musicheader 1, 8, Cry_42_Ch8
+Cry_Dunsparce: ; f2e59
+	musicheader 3, 5, Cry_Dunsparce_Ch5
+	musicheader 1, 6, Cry_Dunsparce_Ch6
+	musicheader 1, 8, Cry_Dunsparce_Ch8
 ; f2e62
 
-Cry_3F: ; f2e62
-	musicheader 3, 5, Cry_3F_Ch5
-	musicheader 1, 6, Cry_3F_Ch6
-	musicheader 1, 8, Cry_3F_Ch8
+Cry_Magcargo: ; f2e62
+	musicheader 3, 5, Cry_Magcargo_Ch5
+	musicheader 1, 6, Cry_Magcargo_Ch6
+	musicheader 1, 8, Cry_Magcargo_Ch8
 ; f2e6b
 
-Cry_37: ; f2e6b
-	musicheader 3, 5, Cry_37_Ch5
-	musicheader 1, 6, Cry_37_Ch6
-	musicheader 1, 8, Cry_37_Ch8
+Cry_Entei: ; f2e6b
+	musicheader 3, 5, Cry_Entei_Ch5
+	musicheader 1, 6, Cry_Entei_Ch6
+	musicheader 1, 8, Cry_Entei_Ch8
 ; f2e74
 
-Cry_39: ; f2e74
-	musicheader 3, 5, Cry_39_Ch5
-	musicheader 1, 6, Cry_39_Ch6
-	musicheader 1, 8, Cry_39_Ch8
+Cry_Mantine: ; f2e74
+	musicheader 3, 5, Cry_Mantine_Ch5
+	musicheader 1, 6, Cry_Mantine_Ch6
+	musicheader 1, 8, Cry_Mantine_Ch8
 ; f2e7d
 
-Cry_37_Ch5: ; f2e7d
+Cry_Entei_Ch5: ; f2e7d
 	soundinput $ff
 	unknownmusic0xde $63
 	sound __,  2, $f8, $05f8
@@ -183,7 +183,7 @@ Cry_37_Ch5: ; f2e7d
 	endchannel
 ; f2e94
 
-Cry_37_Ch6: ; f2e94
+Cry_Entei_Ch6: ; f2e94
 	unknownmusic0xde $33
 	sound __,  2, $c8, $0640
 	sound __,  7, $ff, $0668
@@ -192,7 +192,7 @@ Cry_37_Ch6: ; f2e94
 	endchannel
 ; f2ea7
 
-Cry_37_Ch8: ; f2ea7
+Cry_Entei_Ch8: ; f2ea7
 	noise __, 11, $d6, $6a
 	noise __,  7, $bc, $6c
 	noise __,  7, $e2, $5c
@@ -200,7 +200,7 @@ Cry_37_Ch8: ; f2ea7
 	endchannel
 ; f2eb4
 
-Cry_3F_Ch5: ; f2eb4
+Cry_Magcargo_Ch5: ; f2eb4
 	unknownmusic0xde $c4
 	sound __,  5, $af, $0720
 	sound __,  3, $f8, $071c
@@ -212,7 +212,7 @@ Cry_3F_Ch5: ; f2eb4
 	endchannel
 ; f2ed3
 
-Cry_3F_Ch6: ; f2ed3
+Cry_Magcargo_Ch6: ; f2ed3
 	unknownmusic0xde $a
 	sound __,  2, $b8, $0710
 	sound __,  4, $d8, $072c
@@ -224,17 +224,17 @@ Cry_3F_Ch6: ; f2ed3
 	endchannel
 ; f2ef2
 
-Cry_3F_Ch8: ; f2ef2
+Cry_Magcargo_Ch8: ; f2ef2
 	noise __,  3, $e8, $3b
-Cry_3F_branch_f2ef5: ; f2ef5
+Cry_Magcargo_branch_f2ef5: ; f2ef5
 	noise __,  2, $f1, $4e
-	loopchannel 5, Cry_3F_branch_f2ef5
+	loopchannel 5, Cry_Magcargo_branch_f2ef5
 	noise __,  3, $d8, $3f
 	noise C_,  5, $c2, $5f
 	endchannel
 ; f2f03
 
-Cry_42_Ch5: ; f2f03
+Cry_Dunsparce_Ch5: ; f2f03
 	unknownmusic0xde $22
 	sound __,  2, $f8, $05b0
 	sound __,  2, $f8, $04b4
@@ -248,21 +248,21 @@ Cry_42_Ch5: ; f2f03
 	endchannel
 ; f2f26
 
-Cry_42_Ch6: ; f2f26
+Cry_Dunsparce_Ch6: ; f2f26
 	unknownmusic0xde $22
 	sound __,  9, $b8, $04c8
 	sound C#,  1, $b5, $0410
 	endchannel
 ; f2f31
 
-Cry_42_Ch8: ; f2f31
+Cry_Dunsparce_Ch8: ; f2f31
 	noise __,  4, $ff, $4b
 	noise __,  4, $ef, $4c
 	noise C#,  1, $b5, $5f
 	endchannel
 ; f2f3b
 
-Cry_2F_Ch5: ; f2f3b
+Cry_Slowking_Ch5: ; f2f3b
 	unknownmusic0xde $33
 	sound __,  3, $f1, $0550
 	sound __,  3, $f1, $0530
@@ -274,7 +274,7 @@ Cry_2F_Ch5: ; f2f3b
 	endchannel
 ; f2f5a
 
-Cry_2F_Ch6: ; f2f5a
+Cry_Slowking_Ch6: ; f2f5a
 	unknownmusic0xde $f2
 	sound __,  5, $e1, $0620
 	sound __,  6, $e2, $0500
@@ -284,7 +284,7 @@ Cry_2F_Ch6: ; f2f5a
 	endchannel
 ; f2f71
 
-Cry_2F_Ch8: ; f2f71
+Cry_Slowking_Ch8: ; f2f71
 	noise __,  3, $8a, $5d
 	noise __,  3, $9a, $4c
 	noise __,  6, $9a, $5d
@@ -296,7 +296,7 @@ Cry_2F_Ch8: ; f2f71
 	endchannel
 ; f2f8a
 
-Cry_40_Ch5: ; f2f8a
+Cry_Pichu_Ch5: ; f2f8a
 	dutycycle $0
 	soundinput $f7
 	sound __,  3, $f8, $078d
@@ -311,7 +311,7 @@ Cry_40_Ch5: ; f2f8a
 	endchannel
 ; f2fab
 
-Cry_40_Ch6: ; f2fab
+Cry_Pichu_Ch6: ; f2fab
 	unknownmusic0xde $10
 	sound __,  3, $c8, $076d
 	sound __,  3, $c8, $0771
@@ -321,7 +321,7 @@ Cry_40_Ch6: ; f2fab
 	endchannel
 ; f2fc2
 
-Cry_40_Ch8: ; f2fc2
+Cry_Pichu_Ch8: ; f2fc2
 	noise __,  3, $b8, $1
 	noise __,  3, $b8, $19
 	noise __,  3, $c8, $18
@@ -330,7 +330,7 @@ Cry_40_Ch8: ; f2fc2
 	endchannel
 ; f2fd2
 
-Cry_26_Ch5: ; f2fd2
+Cry_Marill_Ch5: ; f2fd2
 	unknownmusic0xde $22
 	sound __,  3, $88, $06d8
 	sound __,  9, $e2, $06e0
@@ -342,7 +342,7 @@ Cry_26_Ch5: ; f2fd2
 	endchannel
 ; f2ff1
 
-Cry_26_Ch6: ; f2ff1
+Cry_Marill_Ch6: ; f2ff1
 	unknownmusic0xde $63
 	sound __,  3, $68, $06b1
 	sound __,  6, $c1, $06b9
@@ -353,7 +353,7 @@ Cry_26_Ch6: ; f2ff1
 	endchannel
 ; f300c
 
-Cry_26_Ch8: ; f300c
+Cry_Marill_Ch8: ; f300c
 	noise __,  2, $99, $6c
 	noise __,  2, $92, $5c
 	noise __, 11, $62, $4c
@@ -363,10 +363,10 @@ Cry_26_Ch8: ; f300c
 	endchannel
 ; f301f
 
-Cry_28_Ch5: ; f301f
+Cry_Togepi_Ch5: ; f301f
 	tone $0002
-Cry_28_Ch6: ; f3022
-Cry_2C_branch_f3022: ; f3022
+Cry_Togepi_Ch6: ; f3022
+Cry_Togetic_branch_f3022: ; f3022
 	unknownmusic0xde $52
 	sound __,  5, $f1, $0796
 	sound __,  5, $f1, $072d
@@ -375,18 +375,18 @@ Cry_2C_branch_f3022: ; f3022
 	endchannel
 ; f3035
 
-Cry_2C_Ch5: ; f3035
+Cry_Togetic_Ch5: ; f3035
 	tone $0002
-Cry_2C_Ch6: ; f3038
-Cry_2C_branch_f3038: ; f3038
-	callchannel Cry_2C_branch_f3022
-	loopchannel 2, Cry_2C_branch_f3038
+Cry_Togetic_Ch6: ; f3038
+Cry_Togetic_branch_f3038: ; f3038
+	callchannel Cry_Togetic_branch_f3022
+	loopchannel 2, Cry_Togetic_branch_f3038
 	sound __, 15, $0, 0
 	sound __,  9, $f2, $07c2
 	endchannel
 ; f3048
 
-Cry_27_Ch5: ; f3048
+Cry_Spinarak_Ch5: ; f3048
 	dutycycle $1
 	sound __,  4, $2c, $07c4
 	sound __,  2, $0, $0001
@@ -395,7 +395,7 @@ Cry_27_Ch5: ; f3048
 	endchannel
 ; f305b
 
-Cry_27_Ch6: ; f305b
+Cry_Spinarak_Ch6: ; f305b
 	unknownmusic0xde $2a
 	sound __,  4, $2c, $07c7
 	sound __,  2, $0, 0
@@ -404,7 +404,7 @@ Cry_27_Ch6: ; f305b
 	endchannel
 ; f306e
 
-Cry_27_Ch8: ; f306e
+Cry_Spinarak_Ch8: ; f306e
 	noise __,  4, $92, $10
 	noise __,  2, $39, $0
 	noise __,  6, $69, $10
@@ -412,7 +412,7 @@ Cry_27_Ch8: ; f306e
 	endchannel
 ; f307b
 
-Cry_2A_Ch5: ; f307b
+Cry_Raikou_Ch5: ; f307b
 	unknownmusic0xde $f8
 	sound __,  3, $f1, $04b0
 	sound __,  3, $f7, $0590
@@ -424,7 +424,7 @@ Cry_2A_Ch5: ; f307b
 	endchannel
 ; f309a
 
-Cry_2A_Ch6: ; f309a
+Cry_Raikou_Ch6: ; f309a
 	unknownmusic0xde $f2
 	sound __,  3, $f1, $0720
 	sound __,  3, $e1, $0650
@@ -437,7 +437,7 @@ Cry_2A_Ch6: ; f309a
 	endchannel
 ; f30bd
 
-Cry_2A_Ch8: ; f30bd
+Cry_Raikou_Ch8: ; f30bd
 	noise __,  3, $89, $2e
 	noise __,  3, $99, $1f
 	noise __,  5, $89, $4e
@@ -449,7 +449,7 @@ Cry_2A_Ch8: ; f30bd
 	endchannel
 ; f30d6
 
-Cry_2D_Ch5: ; f30d6
+Cry_Hoothoot_Ch5: ; f30d6
 	unknownmusic0xde $66
 	sound __,  5, $78, $0650
 	sound __,  5, $f8, $0660
@@ -462,20 +462,20 @@ Cry_2D_Ch5: ; f30d6
 	endchannel
 ; f30f9
 
-Cry_2D_Ch6: ; f30f9
+Cry_Hoothoot_Ch6: ; f30f9
 	unknownmusic0xde $22
-Cry_2D_branch_f30fb: ; f30fb
+Cry_Hoothoot_branch_f30fb: ; f30fb
 	sound __,  3, $a1, $0600
-	loopchannel 3, Cry_2D_branch_f30fb
-Cry_2D_branch_f3103: ; f3103
+	loopchannel 3, Cry_Hoothoot_branch_f30fb
+Cry_Hoothoot_branch_f3103: ; f3103
 	sound __,  3, $a1, $0630
-	loopchannel 4, Cry_2D_branch_f3103
+	loopchannel 4, Cry_Hoothoot_branch_f3103
 	sound __,  5, $a2, $0634
 	sound __,  5, $91, $0638
 	endchannel
 ; f3114
 
-Cry_2D_Ch8: ; f3114
+Cry_Hoothoot_Ch8: ; f3114
 	noise __,  2, $68, $36
 	noise C_,  1, $88, $6a
 	noise __,  2, $98, $5e
@@ -483,36 +483,36 @@ Cry_2D_Ch8: ; f3114
 	endchannel
 ; f3121
 
-Cry_2E_Ch5: ; f3121
+Cry_Sentret_Ch5: ; f3121
 	tone $0020
 	dutycycle $0
-	jumpchannel Cry_2E_branch_f312b
+	jumpchannel Cry_Sentret_branch_f312b
 ; f3129
 
-Cry_2E_Ch6: ; f3129
+Cry_Sentret_Ch6: ; f3129
 	unknownmusic0xde $1b
-Cry_2E_branch_f312b: ; f312b
+Cry_Sentret_branch_f312b: ; f312b
 	sound __,  9, $39, $072d
 	sound __,  9, $f1, $0720
 	endchannel
 ; f3134
 
-Cry_2E_Ch8: ; f3134
+Cry_Sentret_Ch8: ; f3134
 	noise __,  9, $3b, $0
 	noise __,  9, $92, $0
 	endchannel
 ; f313b
 
-Cry_2B_Ch5: ; f313b
+Cry_Mareep_Ch5: ; f313b
 	tone $0020
 	dutycycle $0
-	jumpchannel Cry_2B_branch_f3145
+	jumpchannel Cry_Mareep_branch_f3145
 ; f3143
 
-Cry_2B_Ch6: ; f3143
+Cry_Mareep_Ch6: ; f3143
 	unknownmusic0xde $1
-Cry_2B_branch_f3145: ; f3145
-Cry_33_branch_f3145: ; f3145
+Cry_Mareep_branch_f3145: ; f3145
+Cry_Gligar_branch_f3145: ; f3145
 	sound __,  5, $3a, $073d
 	sound __,  7, $f8, $0762
 	sound __,  7, $f8, $0760
@@ -520,32 +520,32 @@ Cry_33_branch_f3145: ; f3145
 	endchannel
 ; f3156
 
-Cry_30_Ch5: ; f3156
+Cry_Cyndaquil_Ch5: ; f3156
 	tone $0020
-Cry_30_Ch6: ; f3159
+Cry_Cyndaquil_Ch6: ; f3159
 	dutycycle $2
 	sound __,  9, $2f, $0107
-Cry_30_branch_f315f: ; f315f
+Cry_Cyndaquil_branch_f315f: ; f315f
 	sound __,  1, $e1, $0483
 	sound __,  1, $51, $044e
-	loopchannel 4, Cry_30_branch_f315f
-Cry_30_branch_f316b: ; f316b
+	loopchannel 4, Cry_Cyndaquil_branch_f315f
+Cry_Cyndaquil_branch_f316b: ; f316b
 	sound __,  1, $e1, $03da
 	sound __,  2, $51, $0312
-	loopchannel 4, Cry_30_branch_f316b
+	loopchannel 4, Cry_Cyndaquil_branch_f316b
 	endchannel
 ; f3178
 
-Cry_30_Ch8: ; f3178
-Cry_33_Ch8: ; f3178
+Cry_Cyndaquil_Ch8: ; f3178
+Cry_Gligar_Ch8: ; f3178
 	noise __,  9, $3f, $52
 	noise C#,  1, $93, $4f
 	endchannel
 ; f317f
 
-Cry_31_Ch5: ; f317f
+Cry_Chikorita_Ch5: ; f317f
 	tone $0020
-Cry_31_Ch6: ; f3182
+Cry_Chikorita_Ch6: ; f3182
 	unknownmusic0xde $21
 	sound __,  3, $c8, $0641
 	sound __,  3, $48, $0641
@@ -555,26 +555,26 @@ Cry_31_Ch6: ; f3182
 	endchannel
 ; f3199
 
-Cry_31_Ch8: ; f3199
+Cry_Chikorita_Ch8: ; f3199
 	noise __,  5, $91, $10
 	noise __,  9, $94, $3
 	endchannel
 ; f31a0
 
-Cry_33_Ch5: ; f31a0
+Cry_Gligar_Ch5: ; f31a0
 	unknownmusic0xde $a2
-	jumpchannel Cry_33_branch_f3145
+	jumpchannel Cry_Gligar_branch_f3145
 ; f31a5
 
-Cry_29_Ch5: ; f31a5
+Cry_Girafarig_Ch5: ; f31a5
 	dutycycle $1
 	tone $0004
-	jumpchannel Cry_29_branch_f31af
+	jumpchannel Cry_Girafarig_branch_f31af
 ; f31ad
 
-Cry_29_Ch6: ; f31ad
+Cry_Girafarig_Ch6: ; f31ad
 	unknownmusic0xde $41
-Cry_29_branch_f31af: ; f31af
+Cry_Girafarig_branch_f31af: ; f31af
 	sound __,  5, $68, $0758
 	sound __,  3, $e8, $0760
 	sound __,  3, $e8, $0767
@@ -583,7 +583,7 @@ Cry_29_branch_f31af: ; f31af
 	endchannel
 ; f31c4
 
-Cry_29_Ch8: ; f31c4
+Cry_Girafarig_Ch8: ; f31c4
 	noise __,  5, $29, $0
 	noise __,  3, $39, $1
 	noise __,  3, $49, $2
@@ -592,7 +592,7 @@ Cry_29_Ch8: ; f31c4
 	endchannel
 ; f31d4
 
-Cry_35_Ch5: ; f31d4
+Cry_Slugma_Ch5: ; f31d4
 	unknownmusic0xde $91
 	sound __, 13, $f2, $07a6
 	sound __,  5, $f8, $07b0
@@ -602,7 +602,7 @@ Cry_35_Ch5: ; f31d4
 	endchannel
 ; f31eb
 
-Cry_35_Ch8: ; f31eb
+Cry_Slugma_Ch8: ; f31eb
 	noise __, 13, $b2, $50
 	noise __,  9, $a8, $60
 	noise __,  7, $a8, $5b
@@ -610,15 +610,15 @@ Cry_35_Ch8: ; f31eb
 	endchannel
 ; f31f8
 
-Cry_36_Ch5: ; f31f8
+Cry_Ledyba_Ch5: ; f31f8
 	tone $0002
 	dutycycle $2
-	jumpchannel Cry_36_branch_f3202
+	jumpchannel Cry_Ledyba_branch_f3202
 ; f3200
 
-Cry_36_Ch6: ; f3200
+Cry_Ledyba_Ch6: ; f3200
 	unknownmusic0xde $1
-Cry_36_branch_f3202: ; f3202
+Cry_Ledyba_branch_f3202: ; f3202
 	sound __,  4, $f8, $0791
 	sound __,  4, $d8, $078d
 	sound __,  3, $0, 0
@@ -628,7 +628,7 @@ Cry_36_branch_f3202: ; f3202
 	endchannel
 ; f321b
 
-Cry_36_Ch8: ; f321b
+Cry_Ledyba_Ch8: ; f321b
 	noise __,  4, $59, $21
 	noise __,  4, $81, $0
 	noise __,  3, $20, $0
@@ -638,8 +638,8 @@ Cry_36_Ch8: ; f321b
 	endchannel
 ; f322e
 
-Cry_38_Ch5: ; f322e
-Cry_43_Ch5: ; f322e
+Cry_Wooper_Ch5: ; f322e
+Cry_Donphan_Ch5: ; f322e
 	dutycycle $2
 	sound __,  3, $99, $0718
 	sound __,  5, $ab, $0722
@@ -650,8 +650,8 @@ Cry_43_Ch5: ; f322e
 	endchannel
 ; f3249
 
-Cry_38_Ch6: ; f3249
-Cry_43_Ch6: ; f3249
+Cry_Wooper_Ch6: ; f3249
+Cry_Donphan_Ch6: ; f3249
 	unknownmusic0xde $7
 	sound __,  3, $b9, $0738
 	sound __,  5, $cb, $0742
@@ -662,7 +662,7 @@ Cry_43_Ch6: ; f3249
 	endchannel
 ; f3264
 
-Cry_38_Ch8: ; f3264
+Cry_Wooper_Ch8: ; f3264
 	noise __,  3, $5b, $4
 	noise __,  5, $68, $13
 	noise __,  9, $68, $20
@@ -671,7 +671,7 @@ Cry_38_Ch8: ; f3264
 	endchannel
 ; f3274
 
-Cry_43_Ch8: ; f3274
+Cry_Donphan_Ch8: ; f3274
 	noise __,  3, $8b, $59
 	noise __,  5, $a8, $6a
 	noise __,  9, $a8, $70
@@ -680,37 +680,37 @@ Cry_43_Ch8: ; f3274
 	endchannel
 ; f3284
 
-Cry_3A_Ch5: ; f3284
-Cry_3C_Ch5: ; f3284
+Cry_Typhlosion_Ch5: ; f3284
+Cry_Teddiursa_Ch5: ; f3284
 	unknownmusic0xde $12
-Cry_3A_branch_f3286: ; f3286
-Cry_3C_branch_f3286: ; f3286
+Cry_Typhlosion_branch_f3286: ; f3286
+Cry_Teddiursa_branch_f3286: ; f3286
 	sound __,  4, $c1, $0791
-	loopchannel 3, Cry_3A_branch_f3286
-Cry_3A_branch_f328e: ; f328e
-Cry_3C_branch_f328e: ; f328e
+	loopchannel 3, Cry_Typhlosion_branch_f3286
+Cry_Typhlosion_branch_f328e: ; f328e
+Cry_Teddiursa_branch_f328e: ; f328e
 	sound __,  4, $d1, $04b1
-	loopchannel 6, Cry_3A_branch_f328e
-Cry_3A_branch_f3296: ; f3296
-Cry_3C_branch_f3296: ; f3296
+	loopchannel 6, Cry_Typhlosion_branch_f328e
+Cry_Typhlosion_branch_f3296: ; f3296
+Cry_Teddiursa_branch_f3296: ; f3296
 	sound __,  2, $d1, $0491
 	sound __,  2, $b1, $0451
-	loopchannel 6, Cry_3A_branch_f3296
-Cry_3A_branch_f32a2: ; f32a2
-Cry_3C_branch_f32a2: ; f32a2
+	loopchannel 6, Cry_Typhlosion_branch_f3296
+Cry_Typhlosion_branch_f32a2: ; f32a2
+Cry_Teddiursa_branch_f32a2: ; f32a2
 	sound __,  2, $a3, $0471
 	sound __,  2, $81, $0441
-	loopchannel 6, Cry_3A_branch_f32a2
-Cry_3A_branch_f32ae: ; f32ae
-Cry_3C_branch_f32ae: ; f32ae
+	loopchannel 6, Cry_Typhlosion_branch_f32a2
+Cry_Typhlosion_branch_f32ae: ; f32ae
+Cry_Teddiursa_branch_f32ae: ; f32ae
 	sound __,  2, $41, $0421
 	sound __,  2, $21, $0401
-	loopchannel 4, Cry_3A_branch_f32ae
+	loopchannel 4, Cry_Typhlosion_branch_f32ae
 	endchannel
 ; f32bb
 
-Cry_3A_Ch6: ; f32bb
-Cry_3C_Ch6: ; f32bb
+Cry_Typhlosion_Ch6: ; f32bb
+Cry_Teddiursa_Ch6: ; f32bb
 	unknownmusic0xde $78
 	sound __,  9, $99, $0740
 	sound __,  9, $79, $0746
@@ -722,7 +722,7 @@ Cry_3C_Ch6: ; f32bb
 	endchannel
 ; f32da
 
-Cry_3A_Ch8: ; f32da
+Cry_Typhlosion_Ch8: ; f32da
 	noise C_,  1, $a6, $16
 	noise C_,  9, $98, $3d
 	noise C#,  1, $98, $5c
@@ -730,83 +730,83 @@ Cry_3A_Ch8: ; f32da
 	endchannel
 ; f32e7
 
-Cry_3B_Ch5: ; f32e7
+Cry_Natu_Ch5: ; f32e7
 	unknownmusic0xde $de
-Cry_39_branch_f32e9: ; f32e9
-Cry_3D_branch_f32e9: ; f32e9
+Cry_Mantine_branch_f32e9: ; f32e9
+Cry_Sunflora_branch_f32e9: ; f32e9
 	sound __,  5, $f8, $07b1
 	sound __,  5, $f8, $07b0
 	sound __,  5, $48, $07af
-Cry_39_branch_f32f5: ; f32f5
+Cry_Mantine_branch_f32f5: ; f32f5
 	sound __,  5, $f8, $07b2
 	sound __,  5, $f8, $07b3
 	sound __,  5, $48, $07b4
 	endchannel
 ; f3302
 
-Cry_39_branch_f3302: ; f3302
-Cry_3B_Ch6: ; f3302
-Cry_3D_Ch6: ; f3302
+Cry_Mantine_branch_f3302: ; f3302
+Cry_Natu_Ch6: ; f3302
+Cry_Sunflora_Ch6: ; f3302
 	unknownmusic0xde $f2
 	sound __,  5, $f8, $07b2
 	sound __,  5, $f8, $07b1
 	sound __,  5, $28, $07b0
-Cry_39_branch_f3310: ; f3310
+Cry_Mantine_branch_f3310: ; f3310
 	sound __,  5, $f8, $07b4
 	sound __,  5, $f8, $07b6
 	sound __,  5, $48, $07b8
 	endchannel
 ; f331d
 
-Cry_39_branch_f331d: ; f331d
-Cry_3B_Ch8: ; f331d
-Cry_3D_Ch8: ; f331d
+Cry_Mantine_branch_f331d: ; f331d
+Cry_Natu_Ch8: ; f331d
+Cry_Sunflora_Ch8: ; f331d
 	noise __,  5, $88, $5
 	noise __,  5, $88, $4
 	noise __,  5, $38, $3
-Cry_39_branch_f3326: ; f3326
+Cry_Mantine_branch_f3326: ; f3326
 	noise __,  5, $88, $5
 	noise __,  5, $88, $4
 	noise __,  5, $87, $4
 	endchannel
 ; f3330
 
-Cry_3C_Ch8: ; f3330
+Cry_Teddiursa_Ch8: ; f3330
 	noise __,  9, $a6, $3a
 	noise __,  9, $a1, $5a
 	endchannel
 ; f3337
 
-Cry_3D_Ch5: ; f3337
+Cry_Sunflora_Ch5: ; f3337
 	dutycycle $0
-	jumpchannel Cry_3D_branch_f32e9
+	jumpchannel Cry_Sunflora_branch_f32e9
 ; f333c
 
-Cry_39_Ch5: ; f333c
+Cry_Mantine_Ch5: ; f333c
 	dutycycle $0
-	callchannel Cry_39_branch_f32e9
-	callchannel Cry_39_branch_f32f5
+	callchannel Cry_Mantine_branch_f32e9
+	callchannel Cry_Mantine_branch_f32f5
 	endchannel
 ; f3345
 
-Cry_39_Ch6: ; f3345
-	callchannel Cry_39_branch_f3302
-	callchannel Cry_39_branch_f3310
+Cry_Mantine_Ch6: ; f3345
+	callchannel Cry_Mantine_branch_f3302
+	callchannel Cry_Mantine_branch_f3310
 	endchannel
 ; f334c
 
-Cry_39_Ch8: ; f334c
-	callchannel Cry_39_branch_f331d
-	callchannel Cry_39_branch_f3326
+Cry_Mantine_Ch8: ; f334c
+	callchannel Cry_Mantine_branch_f331d
+	callchannel Cry_Mantine_branch_f3326
 	endchannel
 ; f3353
 
-Cry_3E_Ch5: ; f3353
+Cry_Ampharos_Ch5: ; f3353
 	unknownmusic0xde $de
-Cry_3E_branch_f3355: ; f3355
+Cry_Ampharos_branch_f3355: ; f3355
 	sound __,  2, $c1, $0520
 	sound __,  2, $a1, $0420
-	loopchannel 4, Cry_3E_branch_f3355
+	loopchannel 4, Cry_Ampharos_branch_f3355
 	dutycycle $0
 	sound __,  5, $78, $0760
 	sound __,  5, $78, $0730
@@ -814,7 +814,7 @@ Cry_3E_branch_f3355: ; f3355
 	endchannel
 ; f3370
 
-Cry_3E_Ch6: ; f3370
+Cry_Ampharos_Ch6: ; f3370
 	unknownmusic0xde $32
 	sound __,  9, $f8, $0700
 	sound __,  8, $f8, $0720
@@ -824,7 +824,7 @@ Cry_3E_Ch6: ; f3370
 	endchannel
 ; f3387
 
-Cry_3E_Ch8: ; f3387
+Cry_Ampharos_Ch8: ; f3387
 	noise __,  5, $88, $6d
 	noise __,  5, $d8, $68
 	noise __,  8, $c8, $69
@@ -834,7 +834,7 @@ Cry_3E_Ch8: ; f3387
 	endchannel
 ; f339a
 
-Cry_32_Ch5: ; f339a
+Cry_Totodile_Ch5: ; f339a
 	unknownmusic0xde $32
 	sound __,  9, $f8, $0330
 	sound __,  9, $f8, $0340
@@ -844,7 +844,7 @@ Cry_32_Ch5: ; f339a
 	endchannel
 ; f33b1
 
-Cry_32_Ch6: ; f33b1
+Cry_Totodile_Ch6: ; f33b1
 	unknownmusic0xde $12
 	sound __,  9, $e8, $0320
 	sound __,  9, $e8, $0328
@@ -854,7 +854,7 @@ Cry_32_Ch6: ; f33b1
 	endchannel
 ; f33c8
 
-Cry_32_Ch8: ; f33c8
+Cry_Totodile_Ch8: ; f33c8
 	noise __,  3, $be, $49
 	noise __,  6, $be, $3a
 	noise __,  3, $be, $29
@@ -862,7 +862,7 @@ Cry_32_Ch8: ; f33c8
 	endchannel
 ; f33d5
 
-Cry_34_Ch5: ; f33d5
+Cry_Cleffa_Ch5: ; f33d5
 	unknownmusic0xde $39
 	soundinput $ff
 	sound __,  3, $f8, $0720
@@ -878,7 +878,7 @@ Cry_34_Ch5: ; f33d5
 	endchannel
 ; f33fc
 
-Cry_34_Ch6: ; f33fc
+Cry_Cleffa_Ch6: ; f33fc
 	unknownmusic0xde $22
 	sound __,  7, $b2, $071e
 	sound __,  6, $92, $0779
@@ -887,7 +887,7 @@ Cry_34_Ch6: ; f33fc
 	endchannel
 ; f340f
 
-Cry_34_Ch8: ; f340f
+Cry_Cleffa_Ch8: ; f340f
 	noise __,  3, $64, $7f
 	noise __,  3, $84, $7d
 	noise __,  3, $a4, $6f
@@ -897,7 +897,7 @@ Cry_34_Ch8: ; f340f
 	endchannel
 ; f3422
 
-Cry_41_Ch5: ; f3422
+Cry_Aipom_Ch5: ; f3422
 	unknownmusic0xde $d2
 	sound __,  4, $f8, $06b0
 	sound __,  2, $f8, $06a5
@@ -909,25 +909,25 @@ Cry_41_Ch5: ; f3422
 	endchannel
 ; f3441
 
-Cry_41_Ch6: ; f3441
+Cry_Aipom_Ch6: ; f3441
 	unknownmusic0xde $27
-Cry_41_branch_f3443: ; f3443
+Cry_Aipom_branch_f3443: ; f3443
 	sound __,  2, $f1, $07b4
-	loopchannel 8, Cry_41_branch_f3443
-Cry_41_branch_f344b: ; f344b
+	loopchannel 8, Cry_Aipom_branch_f3443
+Cry_Aipom_branch_f344b: ; f344b
 	sound __,  2, $c1, $0790
-	loopchannel 3, Cry_41_branch_f344b
-Cry_41_branch_f3453: ; f3453
+	loopchannel 3, Cry_Aipom_branch_f344b
+Cry_Aipom_branch_f3453: ; f3453
 	sound __,  2, $b1, $078d
-	loopchannel 2, Cry_41_branch_f3453
+	loopchannel 2, Cry_Aipom_branch_f3453
 	sound C_,  1, $92, $0795
 	endchannel
 ; f3460
 
-Cry_41_Ch8: ; f3460
-Cry_41_branch_f3460: ; f3460
+Cry_Aipom_Ch8: ; f3460
+Cry_Aipom_branch_f3460: ; f3460
 	noise __,  1, $f1, $28
-	loopchannel 4, Cry_41_branch_f3460
+	loopchannel 4, Cry_Aipom_branch_f3460
 	noise __,  1, $91, $49
 	noise __,  2, $a8, $4a
 	noise __,  1, $e1, $4b
@@ -938,232 +938,232 @@ Cry_41_branch_f3460: ; f3460
 	endchannel
 ; f347d
 
-Cry_00: ; f347d
-	musicheader 3, 5, Cry_00_Ch5
-	musicheader 1, 6, Cry_00_Ch6
-	musicheader 1, 8, Cry_00_Ch8
+Cry_Nidoran_M: ; f347d
+	musicheader 3, 5, Cry_Nidoran_M_Ch5
+	musicheader 1, 6, Cry_Nidoran_M_Ch6
+	musicheader 1, 8, Cry_Nidoran_M_Ch8
 ; f3486
 
-Cry_01: ; f3486
-	musicheader 3, 5, Cry_01_Ch5
-	musicheader 1, 6, Cry_01_Ch6
-	musicheader 1, 8, Cry_01_Ch8
+Cry_Nidoran_F: ; f3486
+	musicheader 3, 5, Cry_Nidoran_F_Ch5
+	musicheader 1, 6, Cry_Nidoran_F_Ch6
+	musicheader 1, 8, Cry_Nidoran_F_Ch8
 ; f348f
 
-Cry_02: ; f348f
-	musicheader 3, 5, Cry_02_Ch5
-	musicheader 1, 6, Cry_02_Ch6
-	musicheader 1, 8, Cry_02_Ch8
+Cry_Slowpoke: ; f348f
+	musicheader 3, 5, Cry_Slowpoke_Ch5
+	musicheader 1, 6, Cry_Slowpoke_Ch6
+	musicheader 1, 8, Cry_Slowpoke_Ch8
 ; f3498
 
-Cry_03: ; f3498
-	musicheader 3, 5, Cry_03_Ch5
-	musicheader 1, 6, Cry_03_Ch6
-	musicheader 1, 8, Cry_03_Ch8
+Cry_Kangaskhan: ; f3498
+	musicheader 3, 5, Cry_Kangaskhan_Ch5
+	musicheader 1, 6, Cry_Kangaskhan_Ch6
+	musicheader 1, 8, Cry_Kangaskhan_Ch8
 ; f34a1
 
-Cry_04: ; f34a1
-	musicheader 3, 5, Cry_04_Ch5
-	musicheader 1, 6, Cry_04_Ch6
-	musicheader 1, 8, Cry_04_Ch8
+Cry_Charmander: ; f34a1
+	musicheader 3, 5, Cry_Charmander_Ch5
+	musicheader 1, 6, Cry_Charmander_Ch6
+	musicheader 1, 8, Cry_Charmander_Ch8
 ; f34aa
 
-Cry_05: ; f34aa
-	musicheader 3, 5, Cry_05_Ch5
-	musicheader 1, 6, Cry_05_Ch6
-	musicheader 1, 8, Cry_05_Ch8
+Cry_Grimer: ; f34aa
+	musicheader 3, 5, Cry_Grimer_Ch5
+	musicheader 1, 6, Cry_Grimer_Ch6
+	musicheader 1, 8, Cry_Grimer_Ch8
 ; f34b3
 
-Cry_06: ; f34b3
-	musicheader 3, 5, Cry_06_Ch5
-	musicheader 1, 6, Cry_06_Ch6
-	musicheader 1, 8, Cry_06_Ch8
+Cry_Voltorb: ; f34b3
+	musicheader 3, 5, Cry_Voltorb_Ch5
+	musicheader 1, 6, Cry_Voltorb_Ch6
+	musicheader 1, 8, Cry_Voltorb_Ch8
 ; f34bc
 
-Cry_07: ; f34bc
-	musicheader 3, 5, Cry_07_Ch5
-	musicheader 1, 6, Cry_07_Ch6
-	musicheader 1, 8, Cry_07_Ch8
+Cry_Muk: ; f34bc
+	musicheader 3, 5, Cry_Muk_Ch5
+	musicheader 1, 6, Cry_Muk_Ch6
+	musicheader 1, 8, Cry_Muk_Ch8
 ; f34c5
 
-Cry_08: ; f34c5
-	musicheader 3, 5, Cry_08_Ch5
-	musicheader 1, 6, Cry_08_Ch6
-	musicheader 1, 8, Cry_08_Ch8
+Cry_Oddish: ; f34c5
+	musicheader 3, 5, Cry_Oddish_Ch5
+	musicheader 1, 6, Cry_Oddish_Ch6
+	musicheader 1, 8, Cry_Oddish_Ch8
 ; f34ce
 
-Cry_09: ; f34ce
-	musicheader 3, 5, Cry_09_Ch5
-	musicheader 1, 6, Cry_09_Ch6
-	musicheader 1, 8, Cry_09_Ch8
+Cry_Raichu: ; f34ce
+	musicheader 3, 5, Cry_Raichu_Ch5
+	musicheader 1, 6, Cry_Raichu_Ch6
+	musicheader 1, 8, Cry_Raichu_Ch8
 ; f34d7
 
-Cry_0A: ; f34d7
-	musicheader 3, 5, Cry_0A_Ch5
-	musicheader 1, 6, Cry_0A_Ch6
-	musicheader 1, 8, Cry_0A_Ch8
+Cry_Nidoqueen: ; f34d7
+	musicheader 3, 5, Cry_Nidoqueen_Ch5
+	musicheader 1, 6, Cry_Nidoqueen_Ch6
+	musicheader 1, 8, Cry_Nidoqueen_Ch8
 ; f34e0
 
-Cry_0B: ; f34e0
-	musicheader 3, 5, Cry_0B_Ch5
-	musicheader 1, 6, Cry_0B_Ch6
-	musicheader 1, 8, Cry_0B_Ch8
+Cry_Diglett: ; f34e0
+	musicheader 3, 5, Cry_Diglett_Ch5
+	musicheader 1, 6, Cry_Diglett_Ch6
+	musicheader 1, 8, Cry_Diglett_Ch8
 ; f34e9
 
-Cry_0C: ; f34e9
-	musicheader 3, 5, Cry_0C_Ch5
-	musicheader 1, 6, Cry_0C_Ch6
-	musicheader 1, 8, Cry_0C_Ch8
+Cry_Seel: ; f34e9
+	musicheader 3, 5, Cry_Seel_Ch5
+	musicheader 1, 6, Cry_Seel_Ch6
+	musicheader 1, 8, Cry_Seel_Ch8
 ; f34f2
 
-Cry_0D: ; f34f2
-	musicheader 3, 5, Cry_0D_Ch5
-	musicheader 1, 6, Cry_0D_Ch6
-	musicheader 1, 8, Cry_0D_Ch8
+Cry_Drowzee: ; f34f2
+	musicheader 3, 5, Cry_Drowzee_Ch5
+	musicheader 1, 6, Cry_Drowzee_Ch6
+	musicheader 1, 8, Cry_Drowzee_Ch8
 ; f34fb
 
-Cry_0E: ; f34fb
-	musicheader 3, 5, Cry_0E_Ch5
-	musicheader 1, 6, Cry_0E_Ch6
-	musicheader 1, 8, Cry_0E_Ch8
+Cry_Pidgey: ; f34fb
+	musicheader 3, 5, Cry_Pidgey_Ch5
+	musicheader 1, 6, Cry_Pidgey_Ch6
+	musicheader 1, 8, Cry_Pidgey_Ch8
 ; f3504
 
-Cry_0F: ; f3504
-	musicheader 3, 5, Cry_0F_Ch5
-	musicheader 1, 6, Cry_0F_Ch6
-	musicheader 1, 8, Cry_0F_Ch8
+Cry_Bulbasaur: ; f3504
+	musicheader 3, 5, Cry_Bulbasaur_Ch5
+	musicheader 1, 6, Cry_Bulbasaur_Ch6
+	musicheader 1, 8, Cry_Bulbasaur_Ch8
 ; f350d
 
-Cry_10: ; f350d
-	musicheader 3, 5, Cry_10_Ch5
-	musicheader 1, 6, Cry_10_Ch6
-	musicheader 1, 8, Cry_10_Ch8
+Cry_Spearow: ; f350d
+	musicheader 3, 5, Cry_Spearow_Ch5
+	musicheader 1, 6, Cry_Spearow_Ch6
+	musicheader 1, 8, Cry_Spearow_Ch8
 ; f3516
 
-Cry_11: ; f3516
-	musicheader 3, 5, Cry_11_Ch5
-	musicheader 1, 6, Cry_11_Ch6
-	musicheader 1, 8, Cry_11_Ch8
+Cry_Rhydon: ; f3516
+	musicheader 3, 5, Cry_Rhydon_Ch5
+	musicheader 1, 6, Cry_Rhydon_Ch6
+	musicheader 1, 8, Cry_Rhydon_Ch8
 ; f351f
 
-Cry_12: ; f351f
-	musicheader 3, 5, Cry_12_Ch5
-	musicheader 1, 6, Cry_12_Ch6
-	musicheader 1, 8, Cry_12_Ch8
+Cry_Golem: ; f351f
+	musicheader 3, 5, Cry_Golem_Ch5
+	musicheader 1, 6, Cry_Golem_Ch6
+	musicheader 1, 8, Cry_Golem_Ch8
 ; f3528
 
-Cry_13: ; f3528
-	musicheader 3, 5, Cry_13_Ch5
-	musicheader 1, 6, Cry_13_Ch6
-	musicheader 1, 8, Cry_13_Ch8
+Cry_Blastoise: ; f3528
+	musicheader 3, 5, Cry_Blastoise_Ch5
+	musicheader 1, 6, Cry_Blastoise_Ch6
+	musicheader 1, 8, Cry_Blastoise_Ch8
 ; f3531
 
-Cry_14: ; f3531
-	musicheader 3, 5, Cry_14_Ch5
-	musicheader 1, 6, Cry_14_Ch6
-	musicheader 1, 8, Cry_14_Ch8
+Cry_Pidgeotto: ; f3531
+	musicheader 3, 5, Cry_Pidgeotto_Ch5
+	musicheader 1, 6, Cry_Pidgeotto_Ch6
+	musicheader 1, 8, Cry_Pidgeotto_Ch8
 ; f353a
 
-Cry_15: ; f353a
-	musicheader 3, 5, Cry_15_Ch5
-	musicheader 1, 6, Cry_15_Ch6
-	musicheader 1, 8, Cry_15_Ch8
+Cry_Weedle: ; f353a
+	musicheader 3, 5, Cry_Weedle_Ch5
+	musicheader 1, 6, Cry_Weedle_Ch6
+	musicheader 1, 8, Cry_Weedle_Ch8
 ; f3543
 
-Cry_16: ; f3543
-	musicheader 3, 5, Cry_16_Ch5
-	musicheader 1, 6, Cry_16_Ch6
-	musicheader 1, 8, Cry_16_Ch8
+Cry_Caterpie: ; f3543
+	musicheader 3, 5, Cry_Caterpie_Ch5
+	musicheader 1, 6, Cry_Caterpie_Ch6
+	musicheader 1, 8, Cry_Caterpie_Ch8
 ; f354c
 
-Cry_17: ; f354c
-	musicheader 3, 5, Cry_17_Ch5
-	musicheader 1, 6, Cry_17_Ch6
-	musicheader 1, 8, Cry_17_Ch8
+Cry_Ekans: ; f354c
+	musicheader 3, 5, Cry_Ekans_Ch5
+	musicheader 1, 6, Cry_Ekans_Ch6
+	musicheader 1, 8, Cry_Ekans_Ch8
 ; f3555
 
-Cry_18: ; f3555
-	musicheader 3, 5, Cry_18_Ch5
-	musicheader 1, 6, Cry_18_Ch6
-	musicheader 1, 8, Cry_18_Ch8
+Cry_Fearow: ; f3555
+	musicheader 3, 5, Cry_Fearow_Ch5
+	musicheader 1, 6, Cry_Fearow_Ch6
+	musicheader 1, 8, Cry_Fearow_Ch8
 ; f355e
 
-Cry_19: ; f355e
-	musicheader 3, 5, Cry_19_Ch5
-	musicheader 1, 6, Cry_19_Ch6
-	musicheader 1, 8, Cry_19_Ch8
+Cry_Clefairy: ; f355e
+	musicheader 3, 5, Cry_Clefairy_Ch5
+	musicheader 1, 6, Cry_Clefairy_Ch6
+	musicheader 1, 8, Cry_Clefairy_Ch8
 ; f3567
 
-Cry_1A: ; f3567
-	musicheader 3, 5, Cry_1A_Ch5
-	musicheader 1, 6, Cry_1A_Ch6
-	musicheader 1, 8, Cry_1A_Ch8
+Cry_Venonat: ; f3567
+	musicheader 3, 5, Cry_Venonat_Ch5
+	musicheader 1, 6, Cry_Venonat_Ch6
+	musicheader 1, 8, Cry_Venonat_Ch8
 ; f3570
 
-Cry_1B: ; f3570
-	musicheader 3, 5, Cry_1B_Ch5
-	musicheader 1, 6, Cry_1B_Ch6
-	musicheader 1, 8, Cry_1B_Ch8
+Cry_Lapras: ; f3570
+	musicheader 3, 5, Cry_Lapras_Ch5
+	musicheader 1, 6, Cry_Lapras_Ch6
+	musicheader 1, 8, Cry_Lapras_Ch8
 ; f3579
 
-Cry_1C: ; f3579
-	musicheader 3, 5, Cry_1C_Ch5
-	musicheader 1, 6, Cry_1C_Ch6
-	musicheader 1, 8, Cry_1C_Ch8
+Cry_Metapod: ; f3579
+	musicheader 3, 5, Cry_Metapod_Ch5
+	musicheader 1, 6, Cry_Metapod_Ch6
+	musicheader 1, 8, Cry_Metapod_Ch8
 ; f3582
 
-Cry_1D: ; f3582
-	musicheader 3, 5, Cry_1D_Ch5
-	musicheader 1, 6, Cry_1D_Ch6
-	musicheader 1, 8, Cry_1D_Ch8
+Cry_Squirtle: ; f3582
+	musicheader 3, 5, Cry_Squirtle_Ch5
+	musicheader 1, 6, Cry_Squirtle_Ch6
+	musicheader 1, 8, Cry_Squirtle_Ch8
 ; f358b
 
-Cry_1E: ; f358b
-	musicheader 3, 5, Cry_1E_Ch5
-	musicheader 1, 6, Cry_1E_Ch6
-	musicheader 1, 8, Cry_1E_Ch8
+Cry_Paras: ; f358b
+	musicheader 3, 5, Cry_Paras_Ch5
+	musicheader 1, 6, Cry_Paras_Ch6
+	musicheader 1, 8, Cry_Paras_Ch8
 ; f3594
 
-Cry_1F: ; f3594
-	musicheader 3, 5, Cry_1F_Ch5
-	musicheader 1, 6, Cry_1F_Ch6
-	musicheader 1, 8, Cry_1F_Ch8
+Cry_Growlithe: ; f3594
+	musicheader 3, 5, Cry_Growlithe_Ch5
+	musicheader 1, 6, Cry_Growlithe_Ch6
+	musicheader 1, 8, Cry_Growlithe_Ch8
 ; f359d
 
-Cry_20: ; f359d
-	musicheader 3, 5, Cry_20_Ch5
-	musicheader 1, 6, Cry_20_Ch6
-	musicheader 1, 8, Cry_20_Ch8
+Cry_Krabby: ; f359d
+	musicheader 3, 5, Cry_Krabby_Ch5
+	musicheader 1, 6, Cry_Krabby_Ch6
+	musicheader 1, 8, Cry_Krabby_Ch8
 ; f35a6
 
-Cry_21: ; f35a6
-	musicheader 3, 5, Cry_21_Ch5
-	musicheader 1, 6, Cry_21_Ch6
-	musicheader 1, 8, Cry_21_Ch8
+Cry_Psyduck: ; f35a6
+	musicheader 3, 5, Cry_Psyduck_Ch5
+	musicheader 1, 6, Cry_Psyduck_Ch6
+	musicheader 1, 8, Cry_Psyduck_Ch8
 ; f35af
 
-Cry_22: ; f35af
-	musicheader 3, 5, Cry_22_Ch5
-	musicheader 1, 6, Cry_22_Ch6
-	musicheader 1, 8, Cry_22_Ch8
+Cry_Rattata: ; f35af
+	musicheader 3, 5, Cry_Rattata_Ch5
+	musicheader 1, 6, Cry_Rattata_Ch6
+	musicheader 1, 8, Cry_Rattata_Ch8
 ; f35b8
 
-Cry_23: ; f35b8
-	musicheader 3, 5, Cry_23_Ch5
-	musicheader 1, 6, Cry_23_Ch6
-	musicheader 1, 8, Cry_23_Ch8
+Cry_Vileplume: ; f35b8
+	musicheader 3, 5, Cry_Vileplume_Ch5
+	musicheader 1, 6, Cry_Vileplume_Ch6
+	musicheader 1, 8, Cry_Vileplume_Ch8
 ; f35c1
 
-Cry_24: ; f35c1
-	musicheader 3, 5, Cry_24_Ch5
-	musicheader 1, 6, Cry_24_Ch6
-	musicheader 1, 8, Cry_24_Ch8
+Cry_Vulpix: ; f35c1
+	musicheader 3, 5, Cry_Vulpix_Ch5
+	musicheader 1, 6, Cry_Vulpix_Ch6
+	musicheader 1, 8, Cry_Vulpix_Ch8
 ; f35ca
 
-Cry_25: ; f35ca
-	musicheader 3, 5, Cry_25_Ch5
-	musicheader 1, 6, Cry_25_Ch6
-	musicheader 1, 8, Cry_25_Ch8
+Cry_Weepinbell: ; f35ca
+	musicheader 3, 5, Cry_Weepinbell_Ch5
+	musicheader 1, 6, Cry_Weepinbell_Ch6
+	musicheader 1, 8, Cry_Weepinbell_Ch8
 ; f35d3
 
 Unknown_Cry_Ch5: ; f35d3
@@ -1199,7 +1199,7 @@ Unknown_Cry_Ch8: ; f3609
 	endchannel
 ; f361f
 
-Cry_09_Ch5: ; f361f
+Cry_Raichu_Ch5: ; f361f
 	unknownmusic0xde $f0
 	sound __, 16, $f7, $07a0
 	sound __,  7, $e6, $07a3
@@ -1211,7 +1211,7 @@ Cry_09_Ch5: ; f361f
 	endchannel
 ; f363c
 
-Cry_09_Ch6: ; f363c
+Cry_Raichu_Ch6: ; f363c
 	unknownmusic0xde $5
 	sound __,  3, $8, 0
 	sound __, 16, $a7, $06a1
@@ -1224,7 +1224,7 @@ Cry_09_Ch6: ; f363c
 	endchannel
 ; f365d
 
-Cry_09_Ch8: ; f365d
+Cry_Raichu_Ch8: ; f365d
 	noise __,  3, $f2, $3c
 	noise __,  9, $e4, $3e
 	noise __, 16, $d7, $3c
@@ -1236,7 +1236,7 @@ Cry_09_Ch8: ; f365d
 	endchannel
 ; f3676
 
-Cry_23_Ch5: ; f3676
+Cry_Vileplume_Ch5: ; f3676
 	unknownmusic0xde $f0
 	sound __, 16, $f7, $07c0
 	sound __,  7, $e4, $07c1
@@ -1246,7 +1246,7 @@ Cry_23_Ch5: ; f3676
 	endchannel
 ; f368d
 
-Cry_23_Ch6: ; f368d
+Cry_Vileplume_Ch6: ; f368d
 	unknownmusic0xde $5f
 	sound __, 16, $97, $0781
 	sound __,  7, $84, $0780
@@ -1255,7 +1255,7 @@ Cry_23_Ch6: ; f368d
 	endchannel
 ; f36a0
 
-Cry_23_Ch8: ; f36a0
+Cry_Vileplume_Ch8: ; f36a0
 	noise __,  4, $f2, $3c
 	noise __, 14, $e6, $2c
 	noise __, 16, $d7, $3c
@@ -1263,7 +1263,7 @@ Cry_23_Ch8: ; f36a0
 	endchannel
 ; f36ad
 
-Cry_24_Ch5: ; f36ad
+Cry_Vulpix_Ch5: ; f36ad
 	unknownmusic0xde $f0
 	sound __, 16, $f7, $0680
 	sound __, 11, $e6, $0684
@@ -1276,7 +1276,7 @@ Cry_24_Ch5: ; f36ad
 	endchannel
 ; f36d0
 
-Cry_24_Ch6: ; f36d0
+Cry_Vulpix_Ch6: ; f36d0
 	unknownmusic0xde $5
 	sound __, 16, $b7, $0641
 	sound __, 11, $96, $0642
@@ -1289,7 +1289,7 @@ Cry_24_Ch6: ; f36d0
 	endchannel
 ; f36f3
 
-Cry_24_Ch8: ; f36f3
+Cry_Vulpix_Ch8: ; f36f3
 	noise __, 16, $e4, $3c
 	noise __, 11, $c7, $4c
 	noise __, 11, $c7, $3c
@@ -1298,7 +1298,7 @@ Cry_24_Ch8: ; f36f3
 	endchannel
 ; f3703
 
-Cry_11_Ch5: ; f3703
+Cry_Rhydon_Ch5: ; f3703
 	unknownmusic0xde $f0
 	sound __,  7, $f7, $07a0
 	sound __,  9, $e6, $07a4
@@ -1310,7 +1310,7 @@ Cry_11_Ch5: ; f3703
 	endchannel
 ; f3722
 
-Cry_11_Ch6: ; f3722
+Cry_Rhydon_Ch6: ; f3722
 	unknownmusic0xde $a
 	sound __,  5, $8, 0
 	sound __,  7, $a7, $0741
@@ -1323,7 +1323,7 @@ Cry_11_Ch6: ; f3722
 	endchannel
 ; f3745
 
-Cry_11_Ch8: ; f3745
+Cry_Rhydon_Ch8: ; f3745
 	noise __,  3, $f2, $4c
 	noise __,  7, $e6, $3a
 	noise __,  5, $d7, $3a
@@ -1334,7 +1334,7 @@ Cry_11_Ch8: ; f3745
 	endchannel
 ; f375b
 
-Cry_25_Ch5: ; f375b
+Cry_Weepinbell_Ch5: ; f375b
 	unknownmusic0xde $a5
 	sound __,  7, $f4, $0740
 	sound __, 16, $e3, $0730
@@ -1344,7 +1344,7 @@ Cry_25_Ch5: ; f375b
 	endchannel
 ; f3772
 
-Cry_25_Ch6: ; f3772
+Cry_Weepinbell_Ch6: ; f3772
 	unknownmusic0xde $77
 	sound __,  7, $c3, $0712
 	sound __, 16, $b3, $0704
@@ -1354,7 +1354,7 @@ Cry_25_Ch6: ; f3772
 	endchannel
 ; f3789
 
-Cry_25_Ch8: ; f3789
+Cry_Weepinbell_Ch8: ; f3789
 	noise __,  9, $d6, $2c
 	noise __, 13, $c6, $3c
 	noise __, 11, $b6, $2c
@@ -1362,7 +1362,7 @@ Cry_25_Ch8: ; f3789
 	endchannel
 ; f3796
 
-Cry_03_Ch5: ; f3796
+Cry_Kangaskhan_Ch5: ; f3796
 	unknownmusic0xde $f0
 	sound __,  5, $f7, $0608
 	sound __,  7, $e6, $0600
@@ -1374,7 +1374,7 @@ Cry_03_Ch5: ; f3796
 	endchannel
 ; f37b5
 
-Cry_03_Ch6: ; f37b5
+Cry_Kangaskhan_Ch6: ; f37b5
 	unknownmusic0xde $a
 	sound __,  5, $c7, $0504
 	sound __,  7, $a6, $0502
@@ -1386,7 +1386,7 @@ Cry_03_Ch6: ; f37b5
 	endchannel
 ; f37d4
 
-Cry_03_Ch8: ; f37d4
+Cry_Kangaskhan_Ch8: ; f37d4
 	noise __, 13, $e4, $4c
 	noise __, 11, $c7, $5c
 	noise __, 13, $b6, $4c
@@ -1394,7 +1394,7 @@ Cry_03_Ch8: ; f37d4
 	endchannel
 ; f37e1
 
-Cry_0F_Ch5: ; f37e1
+Cry_Bulbasaur_Ch5: ; f37e1
 	unknownmusic0xde $f1
 	sound __,  5, $f7, $07c0
 	sound __, 13, $e6, $07c2
@@ -1405,7 +1405,7 @@ Cry_0F_Ch5: ; f37e1
 	endchannel
 ; f37fc
 
-Cry_0F_Ch6: ; f37fc
+Cry_Bulbasaur_Ch6: ; f37fc
 	unknownmusic0xde $cc
 	sound __,  4, $c7, $0781
 	sound __, 13, $b6, $0780
@@ -1416,7 +1416,7 @@ Cry_0F_Ch6: ; f37fc
 	endchannel
 ; f3817
 
-Cry_0F_Ch8: ; f3817
+Cry_Bulbasaur_Ch8: ; f3817
 	noise __,  4, $e4, $3c
 	noise __, 13, $d6, $2c
 	noise __,  5, $e4, $3c
@@ -1425,7 +1425,7 @@ Cry_0F_Ch8: ; f3817
 	endchannel
 ; f3827
 
-Cry_10_Ch5: ; f3827
+Cry_Spearow_Ch5: ; f3827
 	unknownmusic0xde $c9
 	sound __,  9, $f7, $0680
 	sound __,  3, $f7, $0660
@@ -1438,7 +1438,7 @@ Cry_10_Ch5: ; f3827
 	endchannel
 ; f384a
 
-Cry_10_Ch6: ; f384a
+Cry_Spearow_Ch6: ; f384a
 	unknownmusic0xde $79
 	sound __, 11, $e7, $0682
 	sound __,  3, $e7, $0662
@@ -1451,14 +1451,14 @@ Cry_10_Ch6: ; f384a
 	endchannel
 ; f386d
 
-Cry_10_Ch8: ; f386d
+Cry_Spearow_Ch8: ; f386d
 	noise __,  5, $74, $21
 	noise __,  5, $74, $10
 	noise __,  5, $71, $20
 	endchannel
 ; f3877
 
-Cry_00_Ch5: ; f3877
+Cry_Nidoran_M_Ch5: ; f3877
 	unknownmusic0xde $f5
 	sound __,  5, $f3, $0718
 	sound __, 16, $e5, $0798
@@ -1466,7 +1466,7 @@ Cry_00_Ch5: ; f3877
 	endchannel
 ; f3886
 
-Cry_00_Ch6: ; f3886
+Cry_Nidoran_M_Ch6: ; f3886
 	unknownmusic0xde $a0
 	sound __,  6, $b3, $0708
 	sound __, 16, $c5, $0788
@@ -1474,14 +1474,14 @@ Cry_00_Ch6: ; f3886
 	endchannel
 ; f3895
 
-Cry_00_Ch8: ; f3895
+Cry_Nidoran_M_Ch8: ; f3895
 	noise __,  4, $a1, $1c
 	noise __, 15, $94, $2c
 	noise __,  9, $81, $1c
 	endchannel
 ; f389f
 
-Cry_0E_Ch5: ; f389f
+Cry_Pidgey_Ch5: ; f389f
 	unknownmusic0xde $a5
 	sound __,  5, $e1, $0700
 	sound __,  5, $f2, $0780
@@ -1490,7 +1490,7 @@ Cry_0E_Ch5: ; f389f
 	endchannel
 ; f38b2
 
-Cry_0E_Ch6: ; f38b2
+Cry_Pidgey_Ch6: ; f38b2
 	unknownmusic0xde $a
 	sound __,  5, $b1, $06e1
 	sound __,  4, $c2, $06e1
@@ -1499,14 +1499,14 @@ Cry_0E_Ch6: ; f38b2
 	endchannel
 ; f38c5
 
-Cry_0E_Ch8: ; f38c5
+Cry_Pidgey_Ch8: ; f38c5
 	noise __,  3, $61, $32
 	noise __,  3, $61, $21
 	noise __,  9, $61, $11
 	endchannel
 ; f38cf
 
-Cry_06_Ch5: ; f38cf
+Cry_Voltorb_Ch5: ; f38cf
 	unknownmusic0xde $fa
 	sound __,  7, $83, $0247
 	sound __, 16, $62, $0226
@@ -1514,11 +1514,11 @@ Cry_06_Ch5: ; f38cf
 	sound __, 10, $63, $0206
 	sound __, 16, $82, $0225
 	sound __, 16, $42, $0207
-Cry_06_Ch6: ; f38e9
+Cry_Voltorb_Ch6: ; f38e9
 	endchannel
 ; f38ea
 
-Cry_06_Ch8: ; f38ea
+Cry_Voltorb_Ch8: ; f38ea
 	noise __,  9, $d4, $8c
 	noise __,  5, $e2, $9c
 	noise __, 16, $c6, $8c
@@ -1528,7 +1528,7 @@ Cry_06_Ch8: ; f38ea
 	endchannel
 ; f38fd
 
-Cry_07_Ch5: ; f38fd
+Cry_Muk_Ch5: ; f38fd
 	unknownmusic0xde $f0
 	sound __,  5, $f3, $06e0
 	sound __, 16, $e4, $0640
@@ -1536,7 +1536,7 @@ Cry_07_Ch5: ; f38fd
 	endchannel
 ; f390c
 
-Cry_07_Ch6: ; f390c
+Cry_Muk_Ch6: ; f390c
 	unknownmusic0xde $a
 	sound __,  4, $c3, $0683
 	sound __, 15, $b4, $0602
@@ -1544,14 +1544,14 @@ Cry_07_Ch6: ; f390c
 	endchannel
 ; f391b
 
-Cry_07_Ch8: ; f391b
+Cry_Muk_Ch8: ; f391b
 	noise __,  5, $d3, $5c
 	noise __, 16, $e6, $4c
 	noise __,  9, $b1, $5c
 	endchannel
 ; f3925
 
-Cry_05_Ch5: ; f3925
+Cry_Grimer_Ch5: ; f3925
 	unknownmusic0xde $a
 	sound __,  7, $e2, $0500
 	sound __,  7, $e3, $0580
@@ -1560,17 +1560,17 @@ Cry_05_Ch5: ; f3925
 	endchannel
 ; f3938
 
-Cry_05_Ch6: ; f3938
+Cry_Grimer_Ch6: ; f3938
 	unknownmusic0xde $f5
 	sound __,  7, $e2, $0482
 	sound __,  7, $d3, $0501
 	sound __,  7, $b2, $04e2
 	sound __,  9, $81, $04c1
-Cry_05_Ch8: ; f394a
+Cry_Grimer_Ch8: ; f394a
 	endchannel
 ; f394b
 
-Cry_0B_Ch5: ; f394b
+Cry_Diglett_Ch5: ; f394b
 	unknownmusic0xde $cc
 	sound __,  5, $f1, $0700
 	sound __,  5, $e1, $0780
@@ -1585,7 +1585,7 @@ Cry_0B_Ch5: ; f394b
 	endchannel
 ; f3976
 
-Cry_0B_Ch6: ; f3976
+Cry_Diglett_Ch6: ; f3976
 	unknownmusic0xde $44
 	sound __, 13, $8, 0
 	sound __,  5, $f1, $0701
@@ -1597,7 +1597,7 @@ Cry_0B_Ch6: ; f3976
 	endchannel
 ; f3995
 
-Cry_0B_Ch8: ; f3995
+Cry_Diglett_Ch8: ; f3995
 	noise __, 16, $8, $0
 	noise __,  5, $8, $0
 	noise __,  5, $d1, $4c
@@ -1609,7 +1609,7 @@ Cry_0B_Ch8: ; f3995
 	endchannel
 ; f39ae
 
-Cry_0C_Ch5: ; f39ae
+Cry_Seel_Ch5: ; f39ae
 	unknownmusic0xde $cc
 	sound __,  9, $f5, $0600
 	sound __,  3, $d2, $0638
@@ -1623,7 +1623,7 @@ Cry_0C_Ch5: ; f39ae
 	endchannel
 ; f39d5
 
-Cry_0C_Ch6: ; f39d5
+Cry_Seel_Ch6: ; f39d5
 	unknownmusic0xde $44
 	sound __, 13, $c3, $05c0
 	sound __,  4, $b1, $05f9
@@ -1634,11 +1634,11 @@ Cry_0C_Ch6: ; f39d5
 	sound __,  3, $81, $05d1
 	sound __,  3, $91, $05d9
 	sound __,  9, $91, $05e1
-Cry_0C_Ch8: ; f39fb
+Cry_Seel_Ch8: ; f39fb
 	endchannel
 ; f39fc
 
-Cry_02_Ch5: ; f39fc
+Cry_Slowpoke_Ch5: ; f39fc
 	unknownmusic0xde $0
 	sound __,  9, $f5, $0480
 	sound __,  3, $e1, $05e0
@@ -1646,17 +1646,17 @@ Cry_02_Ch5: ; f39fc
 	endchannel
 ; f3a0b
 
-Cry_02_Ch6: ; f3a0b
+Cry_Slowpoke_Ch6: ; f3a0b
 	unknownmusic0xde $a5
 	sound __,  8, $95, $0441
 	sound __,  3, $81, $0521
 	sound __,  9, $61, $051a
-Cry_02_Ch8: ; f3a19
+Cry_Slowpoke_Ch8: ; f3a19
 	endchannel
 ; f3a1a
 
-Cry_0D_Ch5: ; f3a1a
-Cry_0D_branch_f3a1a: ; f3a1a
+Cry_Drowzee_Ch5: ; f3a1a
+Cry_Drowzee_branch_f3a1a: ; f3a1a
 	unknownmusic0xde $88
 	sound __,  6, $f2, $0650
 	sound __, 10, $d1, $0660
@@ -1664,11 +1664,11 @@ Cry_0D_branch_f3a1a: ; f3a1a
 	sound __, 10, $c1, $0622
 	sound __,  6, $f2, $0610
 	sound __,  7, $d1, $0620
-	loopchannel 2, Cry_0D_branch_f3a1a
+	loopchannel 2, Cry_Drowzee_branch_f3a1a
 	endchannel
 ; f3a39
 
-Cry_0D_Ch6: ; f3a39
+Cry_Drowzee_Ch6: ; f3a39
 	unknownmusic0xde $40
 	sound __,  5, $8, 0
 	sound __,  6, $f2, $0651
@@ -1684,7 +1684,7 @@ Cry_0D_Ch6: ; f3a39
 	endchannel
 ; f3a68
 
-Cry_0D_Ch8: ; f3a68
+Cry_Drowzee_Ch8: ; f3a68
 	noise __,  7, $d2, $1c
 	noise __, 10, $b1, $2c
 	noise __,  9, $c2, $2c
@@ -1698,7 +1698,7 @@ Cry_0D_Ch8: ; f3a68
 	endchannel
 ; f3a87
 
-Cry_01_Ch5: ; f3a87
+Cry_Nidoran_F_Ch5: ; f3a87
 	unknownmusic0xde $a0
 	sound __,  5, $f3, $0600
 	sound __,  9, $d5, $0760
@@ -1707,7 +1707,7 @@ Cry_01_Ch5: ; f3a87
 	endchannel
 ; f3a9a
 
-Cry_01_Ch6: ; f3a9a
+Cry_Nidoran_F_Ch6: ; f3a9a
 	unknownmusic0xde $5a
 	sound __,  6, $b3, $06f1
 	sound __,  8, $c5, $0752
@@ -1716,7 +1716,7 @@ Cry_01_Ch6: ; f3a9a
 	endchannel
 ; f3aad
 
-Cry_01_Ch8: ; f3aad
+Cry_Nidoran_F_Ch8: ; f3aad
 	noise __,  4, $a2, $3c
 	noise __, 13, $94, $2c
 	noise __,  4, $82, $1c
@@ -1724,7 +1724,7 @@ Cry_01_Ch8: ; f3aad
 	endchannel
 ; f3aba
 
-Cry_0A_Ch5: ; f3aba
+Cry_Nidoqueen_Ch5: ; f3aba
 	unknownmusic0xde $f0
 	sound __,  9, $f7, $06e0
 	sound __,  7, $e6, $06e5
@@ -1736,7 +1736,7 @@ Cry_0A_Ch5: ; f3aba
 	endchannel
 ; f3ad9
 
-Cry_0A_Ch6: ; f3ad9
+Cry_Nidoqueen_Ch6: ; f3ad9
 	unknownmusic0xde $5
 	sound __,  4, $8, 0
 	sound __,  9, $a7, $06a1
@@ -1749,7 +1749,7 @@ Cry_0A_Ch6: ; f3ad9
 	endchannel
 ; f3afc
 
-Cry_0A_Ch8: ; f3afc
+Cry_Nidoqueen_Ch8: ; f3afc
 	noise __,  3, $f2, $3c
 	noise __,  9, $e4, $3e
 	noise __,  9, $d7, $3c
@@ -1761,7 +1761,7 @@ Cry_0A_Ch8: ; f3afc
 	endchannel
 ; f3b15
 
-Cry_08_Ch5: ; f3b15
+Cry_Oddish_Ch5: ; f3b15
 	unknownmusic0xde $f0
 	sound __, 16, $f6, $0565
 	sound __, 11, $e4, $057c
@@ -1770,7 +1770,7 @@ Cry_08_Ch5: ; f3b15
 	endchannel
 ; f3b28
 
-Cry_08_Ch6: ; f3b28
+Cry_Oddish_Ch6: ; f3b28
 	unknownmusic0xde $5a
 	sound __, 15, $d6, $0503
 	sound __, 10, $b4, $051b
@@ -1779,14 +1779,14 @@ Cry_08_Ch6: ; f3b28
 	endchannel
 ; f3b3b
 
-Cry_08_Ch8: ; f3b3b
+Cry_Oddish_Ch8: ; f3b3b
 	noise __, 13, $e6, $4c
 	noise __, 12, $d7, $5c
 	noise __, 16, $c2, $4c
 	endchannel
 ; f3b45
 
-Cry_04_Ch5: ; f3b45
+Cry_Charmander_Ch5: ; f3b45
 	unknownmusic0xde $f0
 	sound __,  5, $f7, $06a0
 	sound __,  9, $e6, $06a4
@@ -1798,7 +1798,7 @@ Cry_04_Ch5: ; f3b45
 	endchannel
 ; f3b64
 
-Cry_04_Ch6: ; f3b64
+Cry_Charmander_Ch6: ; f3b64
 	unknownmusic0xde $5a
 	sound __,  5, $e7, $0601
 	sound __,  9, $d6, $0603
@@ -1810,7 +1810,7 @@ Cry_04_Ch6: ; f3b64
 	endchannel
 ; f3b83
 
-Cry_04_Ch8: ; f3b83
+Cry_Charmander_Ch8: ; f3b83
 	noise __,  8, $d6, $5c
 	noise __,  9, $e6, $4c
 	noise __,  5, $d4, $5c
@@ -1820,7 +1820,7 @@ Cry_04_Ch8: ; f3b83
 	endchannel
 ; f3b96
 
-Cry_19_Ch5: ; f3b96
+Cry_Clefairy_Ch5: ; f3b96
 	unknownmusic0xde $1b
 	sound __,  8, $d2, $0740
 	sound __, 16, $e5, $0760
@@ -1828,17 +1828,17 @@ Cry_19_Ch5: ; f3b96
 	endchannel
 ; f3ba5
 
-Cry_19_Ch6: ; f3ba5
+Cry_Clefairy_Ch6: ; f3ba5
 	unknownmusic0xde $81
 	sound __,  3, $c2, $0701
 	sound __,  5, $c2, $0708
 	sound __, 16, $d7, $0741
 	sound C_,  9, $a2, $0701
-Cry_19_Ch8: ; f3bb7
+Cry_Clefairy_Ch8: ; f3bb7
 	endchannel
 ; f3bb8
 
-Cry_16_Ch5: ; f3bb8
+Cry_Caterpie_Ch5: ; f3bb8
 	unknownmusic0xde $f0
 	sound __, 16, $d7, $0780
 	sound __,  5, $e6, $07a0
@@ -1846,7 +1846,7 @@ Cry_16_Ch5: ; f3bb8
 	endchannel
 ; f3bc7
 
-Cry_16_Ch6: ; f3bc7
+Cry_Caterpie_Ch6: ; f3bc7
 	unknownmusic0xde $5a
 	sound __, 16, $c7, $0753
 	sound __,  6, $b6, $0772
@@ -1854,14 +1854,14 @@ Cry_16_Ch6: ; f3bc7
 	endchannel
 ; f3bd6
 
-Cry_16_Ch8: ; f3bd6
+Cry_Caterpie_Ch8: ; f3bd6
 	noise __, 14, $f6, $4c
 	noise __,  5, $e6, $3c
 	noise __, 16, $f2, $4c
 	endchannel
 ; f3be0
 
-Cry_1B_Ch5: ; f3be0
+Cry_Lapras_Ch5: ; f3be0
 	unknownmusic0xde $f0
 	sound __,  7, $f7, $06c0
 	sound __, 16, $e7, $0700
@@ -1871,7 +1871,7 @@ Cry_1B_Ch5: ; f3be0
 	endchannel
 ; f3bf7
 
-Cry_1B_Ch6: ; f3bf7
+Cry_Lapras_Ch6: ; f3bf7
 	unknownmusic0xde $a
 	sound __,  8, $e6, $0681
 	sound __, 15, $d5, $06c1
@@ -1881,7 +1881,7 @@ Cry_1B_Ch6: ; f3bf7
 	endchannel
 ; f3c0e
 
-Cry_1B_Ch8: ; f3c0e
+Cry_Lapras_Ch8: ; f3c0e
 	noise __, 11, $a6, $3c
 	noise __, 15, $94, $2c
 	noise __,  6, $a3, $3c
@@ -1889,7 +1889,7 @@ Cry_1B_Ch8: ; f3c0e
 	endchannel
 ; f3c1b
 
-Cry_12_Ch5: ; f3c1b
+Cry_Golem_Ch5: ; f3c1b
 	unknownmusic0xde $a5
 	sound __, 13, $f2, $0440
 	sound __, 16, $e3, $04a0
@@ -1898,7 +1898,7 @@ Cry_12_Ch5: ; f3c1b
 	endchannel
 ; f3c2e
 
-Cry_12_Ch6: ; f3c2e
+Cry_Golem_Ch6: ; f3c2e
 	unknownmusic0xde $ee
 	sound __, 12, $d2, $0438
 	sound __, 15, $c6, $0498
@@ -1907,7 +1907,7 @@ Cry_12_Ch6: ; f3c2e
 	endchannel
 ; f3c41
 
-Cry_12_Ch8: ; f3c41
+Cry_Golem_Ch8: ; f3c41
 	noise __, 11, $e6, $6c
 	noise __, 16, $d2, $5c
 	noise __,  4, $c2, $6c
@@ -1915,7 +1915,7 @@ Cry_12_Ch8: ; f3c41
 	endchannel
 ; f3c4e
 
-Cry_13_Ch5: ; f3c4e
+Cry_Blastoise_Ch5: ; f3c4e
 	unknownmusic0xde $33
 	sound __, 16, $f6, $05c0
 	sound __,  9, $e3, $05bc
@@ -1926,7 +1926,7 @@ Cry_13_Ch5: ; f3c4e
 	endchannel
 ; f3c69
 
-Cry_13_Ch6: ; f3c69
+Cry_Blastoise_Ch6: ; f3c69
 	unknownmusic0xde $99
 	sound __, 15, $c6, $04b1
 	sound __,  8, $c3, $04ad
@@ -1937,7 +1937,7 @@ Cry_13_Ch6: ; f3c69
 	endchannel
 ; f3c84
 
-Cry_13_Ch8: ; f3c84
+Cry_Blastoise_Ch8: ; f3c84
 	noise __, 11, $e6, $5c
 	noise __, 11, $d6, $6c
 	noise __,  5, $c2, $4c
@@ -1947,7 +1947,7 @@ Cry_13_Ch8: ; f3c84
 	endchannel
 ; f3c97
 
-Cry_14_Ch5: ; f3c97
+Cry_Pidgeotto_Ch5: ; f3c97
 	unknownmusic0xde $f0
 	sound __,  9, $e4, $0790
 	sound __, 16, $f5, $07c0
@@ -1955,7 +1955,7 @@ Cry_14_Ch5: ; f3c97
 	endchannel
 ; f3ca6
 
-Cry_14_Ch6: ; f3ca6
+Cry_Pidgeotto_Ch6: ; f3ca6
 	unknownmusic0xde $a5
 	sound __, 11, $c4, $0771
 	sound __, 16, $b6, $07a2
@@ -1963,14 +1963,14 @@ Cry_14_Ch6: ; f3ca6
 	endchannel
 ; f3cb5
 
-Cry_14_Ch8: ; f3cb5
+Cry_Pidgeotto_Ch8: ; f3cb5
 	noise __,  9, $e4, $4c
 	noise __, 15, $c4, $3c
 	noise __,  9, $d1, $2c
 	endchannel
 ; f3cbf
 
-Cry_1E_Ch5: ; f3cbf
+Cry_Paras_Ch5: ; f3cbf
 	unknownmusic0xde $f0
 	sound __,  7, $f2, $0600
 	sound __,  7, $e2, $0640
@@ -1983,7 +1983,7 @@ Cry_1E_Ch5: ; f3cbf
 	endchannel
 ; f3ce2
 
-Cry_1E_Ch6: ; f3ce2
+Cry_Paras_Ch6: ; f3ce2
 	unknownmusic0xde $11
 	sound __,  4, $8, $0001
 	sound __,  7, $c2, $05c1
@@ -1997,7 +1997,7 @@ Cry_1E_Ch6: ; f3ce2
 	endchannel
 ; f3d09
 
-Cry_1E_Ch8: ; f3d09
+Cry_Paras_Ch8: ; f3d09
 	noise __,  7, $8, $1
 	noise __,  6, $e2, $5c
 	noise __,  6, $c2, $4c
@@ -2010,7 +2010,7 @@ Cry_1E_Ch8: ; f3d09
 	endchannel
 ; f3d25
 
-Cry_15_Ch5: ; f3d25
+Cry_Weedle_Ch5: ; f3d25
 	unknownmusic0xde $f0
 	sound __,  5, $f3, $0780
 	sound __, 16, $e7, $0700
@@ -2021,7 +2021,7 @@ Cry_15_Ch5: ; f3d25
 	endchannel
 ; f3d40
 
-Cry_15_Ch6: ; f3d40
+Cry_Weedle_Ch6: ; f3d40
 	unknownmusic0xde $5a
 	sound __,  7, $c3, $0701
 	sound __, 15, $b7, $0681
@@ -2032,7 +2032,7 @@ Cry_15_Ch6: ; f3d40
 	endchannel
 ; f3d5b
 
-Cry_15_Ch8: ; f3d5b
+Cry_Weedle_Ch8: ; f3d5b
 	noise __,  7, $e3, $5c
 	noise __, 15, $d6, $4c
 	noise __,  7, $c6, $3c
@@ -2042,7 +2042,7 @@ Cry_15_Ch8: ; f3d5b
 	endchannel
 ; f3d6e
 
-Cry_17_Ch5: ; f3d6e
+Cry_Ekans_Ch5: ; f3d6e
 	unknownmusic0xde $f
 	sound __, 16, $f7, $0500
 	sound __, 16, $e7, $0508
@@ -2051,7 +2051,7 @@ Cry_17_Ch5: ; f3d6e
 	endchannel
 ; f3d81
 
-Cry_17_Ch6: ; f3d81
+Cry_Ekans_Ch6: ; f3d81
 	unknownmusic0xde $44
 	sound __, 15, $d7, $0481
 	sound __, 15, $c7, $0489
@@ -2060,7 +2060,7 @@ Cry_17_Ch6: ; f3d81
 	endchannel
 ; f3d94
 
-Cry_17_Ch8: ; f3d94
+Cry_Ekans_Ch8: ; f3d94
 	noise __, 15, $f7, $7c
 	noise __, 13, $f6, $6c
 	noise __, 10, $e4, $7c
@@ -2068,7 +2068,7 @@ Cry_17_Ch8: ; f3d94
 	endchannel
 ; f3da1
 
-Cry_1C_Ch5: ; f3da1
+Cry_Metapod_Ch5: ; f3da1
 	unknownmusic0xde $f5
 	sound __,  8, $d6, $07e1
 	sound __,  7, $c6, $07e2
@@ -2081,7 +2081,7 @@ Cry_1C_Ch5: ; f3da1
 	endchannel
 ; f3dc4
 
-Cry_1C_Ch6: ; f3dc4
+Cry_Metapod_Ch6: ; f3dc4
 	unknownmusic0xde $44
 	sound __,  7, $c3, $07c9
 	sound __,  7, $b3, $07c7
@@ -2092,7 +2092,7 @@ Cry_1C_Ch6: ; f3dc4
 	endchannel
 ; f3ddf
 
-Cry_1C_Ch8: ; f3ddf
+Cry_Metapod_Ch8: ; f3ddf
 	noise __, 14, $19, $7c
 	noise __, 14, $f7, $8c
 	noise __, 13, $d6, $7c
@@ -2101,7 +2101,7 @@ Cry_1C_Ch8: ; f3ddf
 	endchannel
 ; f3def
 
-Cry_1A_Ch5: ; f3def
+Cry_Venonat_Ch5: ; f3def
 	unknownmusic0xde $f0
 	sound __,  7, $f7, $0740
 	sound __, 13, $e6, $0744
@@ -2112,7 +2112,7 @@ Cry_1A_Ch5: ; f3def
 	endchannel
 ; f3e0a
 
-Cry_1A_Ch6: ; f3e0a
+Cry_Venonat_Ch6: ; f3e0a
 	unknownmusic0xde $a
 	sound __,  7, $c7, $0701
 	sound __, 12, $b6, $0702
@@ -2123,7 +2123,7 @@ Cry_1A_Ch6: ; f3e0a
 	endchannel
 ; f3e25
 
-Cry_1A_Ch8: ; f3e25
+Cry_Venonat_Ch8: ; f3e25
 	noise __,  4, $e2, $3c
 	noise __,  9, $d6, $4c
 	noise __,  6, $d4, $3c
@@ -2133,7 +2133,7 @@ Cry_1A_Ch8: ; f3e25
 	endchannel
 ; f3e38
 
-Cry_1D_Ch5: ; f3e38
+Cry_Squirtle_Ch5: ; f3e38
 	unknownmusic0xde $f4
 	sound __, 16, $f0, $0705
 	sound __, 11, $e0, $0700
@@ -2144,7 +2144,7 @@ Cry_1D_Ch5: ; f3e38
 	endchannel
 ; f3e53
 
-Cry_1D_Ch6: ; f3e53
+Cry_Squirtle_Ch6: ; f3e53
 	unknownmusic0xde $22
 	sound __, 16, $b0, $06c3
 	sound __, 11, $a0, $06c1
@@ -2155,7 +2155,7 @@ Cry_1D_Ch6: ; f3e53
 	endchannel
 ; f3e6e
 
-Cry_1D_Ch8: ; f3e6e
+Cry_Squirtle_Ch8: ; f3e6e
 	noise __,  7, $e6, $4c
 	noise __, 16, $d6, $3c
 	noise __, 11, $c5, $4a
@@ -2164,7 +2164,7 @@ Cry_1D_Ch8: ; f3e6e
 	endchannel
 ; f3e7e
 
-Cry_18_Ch5: ; f3e7e
+Cry_Fearow_Ch5: ; f3e7e
 	unknownmusic0xde $50
 	sound __, 11, $f5, $0680
 	sound __,  4, $e2, $06a0
@@ -2177,7 +2177,7 @@ Cry_18_Ch5: ; f3e7e
 	endchannel
 ; f3ea1
 
-Cry_18_Ch6: ; f3ea1
+Cry_Fearow_Ch6: ; f3ea1
 	unknownmusic0xde $f
 	sound __, 10, $d5, $0631
 	sound __,  4, $d2, $0652
@@ -2190,7 +2190,7 @@ Cry_18_Ch6: ; f3ea1
 	endchannel
 ; f3ec4
 
-Cry_18_Ch8: ; f3ec4
+Cry_Fearow_Ch8: ; f3ec4
 	noise __,  7, $e3, $4c
 	noise __,  5, $c3, $3c
 	noise __,  6, $d4, $3c
@@ -2200,7 +2200,7 @@ Cry_18_Ch8: ; f3ec4
 	endchannel
 ; f3ed7
 
-Cry_1F_Ch5: ; f3ed7
+Cry_Growlithe_Ch5: ; f3ed7
 	unknownmusic0xde $a5
 	sound __,  4, $f4, $0641
 	sound __, 14, $d6, $0721
@@ -2209,7 +2209,7 @@ Cry_1F_Ch5: ; f3ed7
 	endchannel
 ; f3eea
 
-Cry_1F_Ch6: ; f3eea
+Cry_Growlithe_Ch6: ; f3eea
 	unknownmusic0xde $cc
 	sound __,  5, $f4, $0580
 	sound __, 15, $e6, $06e0
@@ -2218,7 +2218,7 @@ Cry_1F_Ch6: ; f3eea
 	endchannel
 ; f3efd
 
-Cry_1F_Ch8: ; f3efd
+Cry_Growlithe_Ch8: ; f3efd
 	noise __,  6, $c4, $46
 	noise __, 14, $a5, $44
 	noise __,  9, $c4, $45
@@ -2226,7 +2226,7 @@ Cry_1F_Ch8: ; f3efd
 	endchannel
 ; f3f0a
 
-Cry_20_Ch5: ; f3f0a
+Cry_Krabby_Ch5: ; f3f0a
 	unknownmusic0xde $f0
 	sound __, 14, $f1, $0511
 	sound __, 14, $e1, $0515
@@ -2235,7 +2235,7 @@ Cry_20_Ch5: ; f3f0a
 	endchannel
 ; f3f1d
 
-Cry_20_Ch6: ; f3f1d
+Cry_Krabby_Ch6: ; f3f1d
 	unknownmusic0xde $15
 	sound __, 13, $e1, $050c
 	sound __, 13, $d1, $0510
@@ -2244,7 +2244,7 @@ Cry_20_Ch6: ; f3f1d
 	endchannel
 ; f3f30
 
-Cry_20_Ch8: ; f3f30
+Cry_Krabby_Ch8: ; f3f30
 	noise __, 15, $f2, $65
 	noise __, 14, $e2, $55
 	noise __, 15, $d2, $56
@@ -2252,7 +2252,7 @@ Cry_20_Ch8: ; f3f30
 	endchannel
 ; f3f3d
 
-Cry_21_Ch5: ; f3f3d
+Cry_Psyduck_Ch5: ; f3f3d
 	unknownmusic0xde $1b
 	sound __,  4, $f3, $0564
 	sound __,  3, $e2, $0544
@@ -2265,7 +2265,7 @@ Cry_21_Ch5: ; f3f3d
 	endchannel
 ; f3f60
 
-Cry_21_Ch6: ; f3f60
+Cry_Psyduck_Ch6: ; f3f60
 	unknownmusic0xde $cc
 	sound __,  4, $d3, $0560
 	sound __,  3, $c2, $0540
@@ -2275,11 +2275,11 @@ Cry_21_Ch6: ; f3f60
 	sound __,  4, $d3, $0520
 	sound __,  4, $c4, $04e0
 	sound __,  9, $c1, $0500
-Cry_21_Ch8: ; f3f82
+Cry_Psyduck_Ch8: ; f3f82
 	endchannel
 ; f3f83
 
-Cry_22_Ch5: ; f3f83
+Cry_Rattata_Ch5: ; f3f83
 	unknownmusic0xde $11
 	sound __,  3, $3d, $0381
 	sound __,  8, $f5, $0601
@@ -2288,7 +2288,7 @@ Cry_22_Ch5: ; f3f83
 	endchannel
 ; f3f96
 
-Cry_22_Ch6: ; f3f96
+Cry_Rattata_Ch6: ; f3f96
 	unknownmusic0xde $ee
 	sound __,  3, $3e, $05b0
 	sound __,  8, $d5, $075d
@@ -2297,7 +2297,7 @@ Cry_22_Ch6: ; f3f96
 	endchannel
 ; f3fa9
 
-Cry_22_Ch8: ; f3fa9
+Cry_Rattata_Ch8: ; f3fa9
 	noise __,  3, $92, $49
 	noise __,  8, $b5, $29
 	noise __,  2, $a2, $39
