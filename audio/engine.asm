@@ -102,7 +102,7 @@ _UpdateSound:: ; e805c
 	; is the channel active?
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jp z, .nextchannel
 	; check time left in the current note
 	ld hl, Channel1NoteDuration - Channel1
@@ -112,6 +112,7 @@ _UpdateSound:: ; e805c
 	jr c, .noteover
 	dec [hl]
 	jr .asm_e8093
+
 .noteover
 	; reset vibrato delay
 	ld hl, Channel1VibratoDelay - Channel1
@@ -123,7 +124,7 @@ _UpdateSound:: ; e805c
 	; turn vibrato off for now
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	res 1, [hl]
+	res SOUND_UNKN_09, [hl]
 	; get next note
 	call ParseMusic
 .asm_e8093
@@ -156,21 +157,21 @@ _UpdateSound:: ; e805c
 	; are any sfx channels active?
 	; if so, mute
 	ld hl, Channel5Flags
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .restnote
 	ld hl, Channel6Flags
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .restnote
 	ld hl, Channel7Flags
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .restnote
 	ld hl, Channel8Flags
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr z, .next
 .restnote
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set 5, [hl] ; Rest
+	set NOTE_REST, [hl] ; Rest
 .next
 	; are we in a sfx channel right now?
 	ld a, [CurChannel]
@@ -178,7 +179,7 @@ _UpdateSound:: ; e805c
 	jr nc, .asm_e80ee
 	ld hl, Channel5Flags - Channel1
 	add hl, bc
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .asm_e80fc
 .asm_e80ee
 	call UpdateChannels
@@ -231,6 +232,7 @@ UpdateChannels: ; e8125
 	ld l, a
 	jp [hl]
 
+
 .ChannelFnPtrs
 	dw .Channel1
 	dw .Channel2
@@ -250,28 +252,29 @@ UpdateChannels: ; e8125
 .Channel5
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	bit 3, [hl]
+	bit NOTE_UNKN_3, [hl]
 	jr z, .asm_e8159
 	;
 	ld a, [SoundInput]
 	ld [rNR10], a
 .asm_e8159
-	bit 5, [hl] ; rest
+	bit NOTE_REST, [hl] ; rest
 	jr nz, .ch1rest
-	bit 4, [hl]
+	bit NOTE_UNKN_4, [hl]
 	jr nz, .asm_e81a2
-	bit 1, [hl]
+	bit NOTE_UNKN_1, [hl]
 	jr nz, .asm_e816b
-	bit 6, [hl]
+	bit NOTE_UNKN_6, [hl]
 	jr nz, .asm_e8184
 	jr .asm_e8175
+
 .asm_e816b
 	ld a, [wCurTrackFrequency]
 	ld [rNR13], a
 	ld a, [wCurTrackFrequency + 1]
 	ld [rNR14], a
 .asm_e8175
-	bit 0, [hl]
+	bit NOTE_UNKN_0, [hl]
 	ret z
 	ld a, [wCurTrackDuty]
 	ld d, a
@@ -318,13 +321,13 @@ UpdateChannels: ; e8125
 .Channel6
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	bit 5, [hl] ; rest
+	bit NOTE_REST, [hl] ; rest
 	jr nz, .ch2rest
-	bit 4, [hl]
+	bit NOTE_UNKN_4, [hl]
 	jr nz, .asm_e8204
-	bit 6, [hl]
+	bit NOTE_UNKN_6, [hl]
 	jr nz, .asm_e81e6
-	bit 0, [hl]
+	bit NOTE_UNKN_0, [hl]
 	ret z
 	ld a, [wCurTrackDuty]
 	ld d, a
@@ -378,11 +381,11 @@ UpdateChannels: ; e8125
 .Channel7
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	bit 5, [hl] ; rest
+	bit NOTE_REST, [hl] ; rest
 	jr nz, .ch3rest
-	bit 4, [hl]
+	bit NOTE_UNKN_4, [hl]
 	jr nz, .asm_e824d
-	bit 6, [hl]
+	bit NOTE_UNKN_6, [hl]
 	jr nz, .asm_e823a
 	ret
 
@@ -479,9 +482,9 @@ endr
 .Channel8
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	bit 5, [hl] ; rest
+	bit NOTE_REST, [hl] ; rest
 	jr nz, .ch4rest
-	bit 4, [hl]
+	bit NOTE_UNKN_4, [hl]
 	jr nz, .asm_e82d4
 	ret
 
@@ -514,16 +517,16 @@ endr
 _CheckSFX: ; e82e7
 ; return carry if any sfx channels are active
 	ld hl, Channel5Flags
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .sfxon
 	ld hl, Channel6Flags
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .sfxon
 	ld hl, Channel7Flags
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .sfxon
 	ld hl, Channel8Flags
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .sfxon
 	and a
 	ret
@@ -547,9 +550,11 @@ PlayDanger: ; e8307
 	cp 16 ; halfway
 	jr z, .asm_e831e
 	jr .asm_e8335
+
 .asm_e831e
 	ld hl, Tablee8354
 	jr .updatehw
+
 .asm_e8323
 	ld hl, Tablee8350
 .updatehw
@@ -639,6 +644,7 @@ FadeMusic: ; e8358
 	dec a
 	jr .updatevolume
 
+
 .novolume
 	; make sure volume is off
 	xor a
@@ -695,6 +701,7 @@ FadeMusic: ; e8358
 	; inc volume
 	inc a
 	jr .updatevolume
+
 .maxvolume
 	; we're done
 	xor a
@@ -715,7 +722,7 @@ LoadNote: ; e83d1
 	; check mute??
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	bit 1, [hl]
+	bit SOUND_UNKN_09, [hl]
 	ret z
 	; get note duration
 	ld hl, Channel1NoteDuration - Channel1
@@ -750,7 +757,7 @@ LoadNote: ; e83d1
 	; ????
 	ld hl, Channel1Flags3 - Channel1
 	add hl, bc
-	set 1, [hl]
+	set SOUND_UNKN_11, [hl]
 	; get frequency
 	ld hl, Channel1Frequency - Channel1
 	add hl, bc
@@ -773,11 +780,12 @@ LoadNote: ; e83d1
 	sub d
 	ld d, a
 	jr .asm_e843e
+
 .asm_e8420
 	; ????
 	ld hl, Channel1Flags3 - Channel1
 	add hl, bc
-	res 1, [hl]
+	res SOUND_UNKN_11, [hl]
 	; get frequency
 	ld hl, Channel1Frequency - Channel1
 	add hl, bc
@@ -813,6 +821,7 @@ LoadNote: ; e83d1
 	jr z, .quit
 	dec d
 	jr .loop
+
 .quit
 	ld a, e ; result
 	add [hl]
@@ -839,7 +848,7 @@ Functione8466: ; e8466
 ; unknowns: wCurTrackDuty, wCurTrackFrequency
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	bit 2, [hl] ; duty
+	bit SOUND_DUTY, [hl] ; duty
 	jr z, .next
 	ld hl, Channel1Field0x1c - Channel1
 	add hl, bc
@@ -851,11 +860,11 @@ Functione8466: ; e8466
 	ld [wCurTrackDuty], a
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set 0, [hl]
+	set NOTE_UNKN_0, [hl]
 .next
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	bit 4, [hl]
+	bit SOUND_CRY_PITCH, [hl]
 	jr z, .vibrato
 	ld hl, Channel1CryPitch - Channel1
 	add hl, bc
@@ -877,7 +886,7 @@ Functione8466: ; e8466
 	; is vibrato on?
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	bit 0, [hl] ; vibrato
+	bit SOUND_VIBRATO, [hl] ; vibrato
 	jr z, .quit
 	; is vibrato active for this note yet?
 	; is the delay over?
@@ -903,6 +912,7 @@ Functione8466: ; e8466
 .subexit
 	dec [hl]
 	jr .quit
+
 .toggle
 	; refresh count
 	ld a, [hl]
@@ -915,11 +925,11 @@ Functione8466: ; e8466
 	; toggle vibrato up/down
 	ld hl, Channel1Flags3 - Channel1
 	add hl, bc
-	bit 0, [hl] ; vibrato up/down
+	bit SOUND_VIBRATO_DIR, [hl] ; vibrato up/down
 	jr z, .down
 ; up
 	; vibrato down
-	res 0, [hl]
+	res SOUND_VIBRATO_DIR, [hl]
 	; get the delay
 	ld a, d
 	and $f ; lo
@@ -930,9 +940,10 @@ Functione8466: ; e8466
 	jr nc, .asm_e84ef
 	ld a, 0
 	jr .asm_e84ef
+
 .down
 	; vibrato up
-	set 0, [hl]
+	set SOUND_VIBRATO_DIR, [hl]
 	; get the delay
 	ld a, d
 	and $f0 ; hi
@@ -946,7 +957,7 @@ Functione8466: ; e8466
 	;
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set 6, [hl]
+	set NOTE_UNKN_6, [hl]
 .quit
 	ret
 
@@ -956,7 +967,7 @@ Functione84f9: ; e84f9
 	; quit if ????
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	bit 1, [hl]
+	bit SOUND_UNKN_09, [hl]
 	ret z
 	; de = Frequency
 	ld hl, Channel1Frequency - Channel1
@@ -967,7 +978,7 @@ Functione84f9: ; e84f9
 	;
 	ld hl, Channel1Flags3 - Channel1
 	add hl, bc
-	bit 1, [hl]
+	bit SOUND_UNKN_11, [hl]
 	jr z, .next
 	;
 	ld hl, Channel1Field0x23 - Channel1
@@ -1005,6 +1016,7 @@ Functione84f9: ; e84f9
 	cp e
 	jp c, .quit1
 	jr .quit2
+
 .next
 	ld a, e
 	ld hl, Channel1Field0x23 - Channel1
@@ -1040,10 +1052,10 @@ Functione84f9: ; e84f9
 .quit1
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	res 1, [hl]
+	res SOUND_UNKN_09, [hl]
 	ld hl, Channel1Flags3 - Channel1
 	add hl, bc
-	res 1, [hl]
+	res SOUND_UNKN_11, [hl]
 	ret
 
 .quit2
@@ -1054,8 +1066,8 @@ Functione84f9: ; e84f9
 	ld [hl], d
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set 1, [hl]
-	set 0, [hl]
+	set NOTE_UNKN_1, [hl]
+	set NOTE_UNKN_0, [hl]
 	ret
 
 ; e858c
@@ -1064,7 +1076,7 @@ HandleNoise: ; e858c
 	; is noise sampling on?
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
-	bit 4, [hl] ; noise sampling
+	bit SOUND_NOISE, [hl] ; noise sampling
 	ret z
 	; are we in a sfx channel?
 	ld a, [CurChannel]
@@ -1072,10 +1084,10 @@ HandleNoise: ; e858c
 	jr nz, .next
 	; is ch8 on? (noise)
 	ld hl, Channel8Flags
-	bit 0, [hl] ; on?
+	bit SOUND_CHANNEL_ON, [hl] ; on?
 	jr z, .next
 	; is ch8 playing noise?
-	bit 4, [hl]
+	bit SOUND_NOISE, [hl]
 	ret nz ; quit if so
 	;
 .next
@@ -1132,7 +1144,7 @@ ReadNoiseSample: ; e85af
 
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set 4, [hl]
+	set NOTE_UNKN_4, [hl]
 	ret
 
 .quit
@@ -1144,7 +1156,7 @@ ParseMusic: ; e85e1
 ; parses until a note is read or the song is ended
 	call GetMusicByte ; store next byte in a
 	cp $ff ; is the song over?
-	jr z, .readff
+	jr z, .endchannel
 	cp $d0 ; is it a note?
 	jr c, .readnote
 	; then it's a command
@@ -1157,11 +1169,11 @@ ParseMusic: ; e85e1
 ; special notes
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
-	bit 3, [hl]
+	bit SOUND_SFX, [hl]
 	jp nz, Functione8698
-	bit 5, [hl] ; rest
+	bit SOUND_REST, [hl] ; rest
 	jp nz, Functione8698
-	bit 4, [hl] ; noise sample
+	bit SOUND_NOISE, [hl] ; noise sample
 	jp nz, GetNoiseSample
 ; normal note
 	; set note duration (bottom nybble)
@@ -1193,22 +1205,24 @@ ParseMusic: ; e85e1
 	; ????
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set 4, [hl]
+	set NOTE_UNKN_4, [hl]
 	jp LoadNote
+
+
 
 .rest
 ; note = rest
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set 5, [hl] ; Rest
+	set NOTE_REST, [hl] ; Rest
 	ret
 
 ;
-.readff
+.endchannel
 ; $ff is reached in music data
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
-	bit 1, [hl] ; in a subroutine?
+	bit SOUND_SUBROUTINE, [hl] ; in a subroutine?
 	jr nz, .readcommand ; execute
 	ld a, [CurChannel]
 	cp $4 ; channels 0-3?
@@ -1216,12 +1230,12 @@ ParseMusic: ; e85e1
 	; ????
 	ld hl, Channel5Flags - Channel1
 	add hl, bc
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .ok
 .chan_5to8
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
-	bit 5, [hl]
+	bit SOUND_REST, [hl]
 	call nz, RestoreVolume
 	; end music
 	ld a, [CurChannel]
@@ -1235,11 +1249,11 @@ ParseMusic: ; e85e1
 	; turn channel off
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
-	res 0, [hl]
+	res SOUND_CHANNEL_ON, [hl]
 	; note = rest
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set 5, [hl]
+	set NOTE_REST, [hl]
 	; clear music id & bank
 	ld hl, Channel1MusicID - Channel1
 	add hl, bc
@@ -1276,7 +1290,7 @@ Functione8698: ; e8698
 	; turn noise sampling on
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set 4, [hl] ; noise sample
+	set NOTE_UNKN_4, [hl] ; noise sample
 	; update note duration
 	ld a, [CurMusicByte]
 	call SetNoteDuration ; top nybble doesnt matter?
@@ -1321,10 +1335,11 @@ GetNoiseSample: ; e86c5
 	bit 2, a ; are we in a sfx channel?
 	jr nz, .sfx
 	ld hl, Channel8Flags
-	bit 0, [hl] ; is ch8 on? (noise)
+	bit SOUND_CHANNEL_ON, [hl] ; is ch8 on? (noise)
 	ret nz
 	ld a, [MusicNoiseSampleSet]
 	jr .next
+
 .sfx
 	ld a, [SFXNoiseSampleSet]
 .next
@@ -1380,6 +1395,7 @@ endr
 	ld h, [hl]
 	ld l, a
 	jp [hl]
+
 ; e8720
 
 MusicCommands: ; e8720
@@ -1454,7 +1470,7 @@ Music_EndChannel: ; e8781
 	; reset subroutine flag
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
-	res 1, [hl]
+	res SOUND_SUBROUTINE, [hl]
 	; copy LastMusicAddress to MusicAddress
 	ld hl, Channel1LastMusicAddress - Channel1
 	add hl, bc
@@ -1500,7 +1516,7 @@ Music_CallChannel: ; e8796
 	; set subroutine flag
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
-	set 1, [hl]
+	set SOUND_SUBROUTINE, [hl]
 	ret
 
 ; e87bc
@@ -1534,13 +1550,13 @@ Music_LoopChannel: ; e87cc
 	call GetMusicByte
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
-	bit 2, [hl] ; has the loop been initiated?
+	bit SOUND_LOOPING, [hl] ; has the loop been initiated?
 	jr nz, .checkloop
 	and a ; loop counter 0 = infinite
 	jr z, .loop
 	; initiate loop
 	dec a
-	set 2, [hl] ; set loop flag
+	set SOUND_LOOPING, [hl] ; set loop flag
 	ld hl, Channel1LoopCount - Channel1
 	add hl, bc
 	ld [hl], a ; store loop counter
@@ -1569,7 +1585,7 @@ Music_LoopChannel: ; e87cc
 	; reset loop flag
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
-	res 2, [hl]
+	res SOUND_LOOPING, [hl]
 	; skip to next command
 	ld hl, Channel1MusicAddress - Channel1
 	add hl, bc
@@ -1662,8 +1678,8 @@ MusicEE; e883e
 	and $3 ; ch0-3
 	ld e, a
 	ld d, 0
-	; hl = wc2b8 + channel id
-	ld hl, wc2b8
+	; hl = Channel1JumpCondition + channel id
+	ld hl, Channel1JumpCondition
 	add hl, de
 	; if set, jump
 	ld a, [hl]
@@ -1723,7 +1739,7 @@ MusicE2: ; e8873
 	ld [hl], a
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	set 3, [hl]
+	set SOUND_UNKN_0B, [hl]
 	ret
 
 ; e8882
@@ -1740,11 +1756,11 @@ Music_Vibrato: ; e8882
 	; set vibrato flag?
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	set 0, [hl]
+	set SOUND_VIBRATO, [hl]
 	; start at lower frequency (extent is positive)
 	ld hl, Channel1Flags3 - Channel1
 	add hl, bc
-	res 0, [hl]
+	res SOUND_VIBRATO_DIR, [hl]
 	; get delay
 	call GetMusicByte
 ; update delay
@@ -1809,7 +1825,7 @@ MusicE0: ; e88bd
 	ld [hl], d
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	set 1, [hl]
+	set SOUND_UNKN_09, [hl]
 	ret
 
 ; e88e4
@@ -1819,7 +1835,7 @@ Music_Tone: ; e88e4
 ; params: 2
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	set 4, [hl]
+	set SOUND_CRY_PITCH, [hl]
 	ld hl, Channel1CryPitch + 1 - Channel1
 	add hl, bc
 	call GetMusicByte
@@ -1835,7 +1851,7 @@ MusicE7: ; e88f7
 ; params: 1
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	set 6, [hl]
+	set SOUND_UNKN_0E, [hl]
 	call GetMusicByte
 	ld hl, Channel1Field0x29 - Channel1
 	add hl, bc
@@ -1850,7 +1866,7 @@ MusicDE: ; e8906
 	;
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	set 2, [hl] ; duty cycle
+	set SOUND_DUTY, [hl] ; duty cycle
 	;
 	call GetMusicByte
 	rrca
@@ -1872,7 +1888,7 @@ MusicE8: ; e891e
 ; params: 1
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	set 5, [hl]
+	set SOUND_UNKN_0D, [hl]
 	call GetMusicByte
 	ld hl, Channel1Field0x2a - Channel1
 	add hl, bc
@@ -1886,13 +1902,13 @@ Music_ToggleSFX: ; e892d
 ; params: none
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
-	bit 3, [hl]
+	bit SOUND_SFX, [hl]
 	jr z, .on
-	res 3, [hl]
+	res SOUND_SFX, [hl]
 	ret
 
 .on
-	set 3, [hl]
+	set SOUND_SFX, [hl]
 	ret
 
 ; e893b
@@ -1906,15 +1922,15 @@ Music_ToggleNoise: ; e893b
 	; check if noise sampling is on
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
-	bit 4, [hl]
+	bit SOUND_NOISE, [hl]
 	jr z, .on
 	; turn noise sampling off
-	res 4, [hl]
+	res SOUND_NOISE, [hl]
 	ret
 
 .on
 	; turn noise sampling on
-	set 4, [hl]
+	set SOUND_NOISE, [hl]
 	call GetMusicByte
 	ld [MusicNoiseSampleSet], a
 	ret
@@ -1929,15 +1945,15 @@ Music_SFXToggleNoise: ; e894f
 	; check if noise sampling is on
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
-	bit 4, [hl]
+	bit SOUND_NOISE, [hl]
 	jr z, .on
 	; turn noise sampling off
-	res 4, [hl]
+	res SOUND_NOISE, [hl]
 	ret
 
 .on
 	; turn noise sampling on
-	set 4, [hl]
+	set SOUND_NOISE, [hl]
 	call GetMusicByte
 	ld [SFXNoiseSampleSet], a
 	ret
@@ -1971,7 +1987,7 @@ Music_SoundStatus: ; e8977
 	ld [SoundInput], a
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set 3, [hl]
+	set NOTE_UNKN_3, [hl]
 	ret
 
 ; e8984
@@ -2101,6 +2117,7 @@ Music_GlobalTempo: ; e89e1
 ;positive
 	ld d, 0
 	jr .ok
+
 .negative
 	ld d, -1
 .ok
@@ -2266,6 +2283,7 @@ GetFrequency: ; e8a5d
 	rr e
 	inc a
 	jr .loop
+
 .ok
 	ld a, d
 	and $7 ; top 3 bits for frequency (11 total)
@@ -2353,6 +2371,7 @@ SetGlobalTempo: ; e8ac7
 	ld bc, Channel4
 	call SetTempo
 	jr .end
+
 .sfxchannels
 	ld bc, Channel5
 	call SetTempo
@@ -2390,7 +2409,7 @@ StartChannel: ; e8b11
 	call SetLRTracks
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
-	set 0, [hl] ; turn channel on
+	set SOUND_CHANNEL_ON, [hl] ; turn channel on
 	ret
 
 ; e8b1b
@@ -2448,10 +2467,10 @@ _PlayMusic:: ; e8b30
 	jr nz, .loop
 	xor a
 	ld [wc2b5], a
-	ld [wc2b8], a
-	ld [wc2b9], a
-	ld [wc2ba], a
-	ld [wc2bb], a
+	ld [Channel1JumpCondition], a
+	ld [Channel2JumpCondition], a
+	ld [Channel3JumpCondition], a
+	ld [Channel4JumpCondition], a
 	ld [NoiseSampleAddressLo], a
 	ld [NoiseSampleAddressHi], a
 	ld [wNoiseSampleDelay], a
@@ -2502,11 +2521,11 @@ endr
 	
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
-	set 5, [hl]
+	set SOUND_REST, [hl]
 	
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	set 4, [hl]
+	set SOUND_CRY_PITCH, [hl]
 	
 	ld hl, Channel1CryPitch - Channel1
 	add hl, bc
@@ -2579,9 +2598,9 @@ _PlaySFX:: ; e8c04
 ; clear channels if they aren't already
 	call MusicOff
 	ld hl, Channel5Flags
-	bit 0, [hl] ; ch5 on?
+	bit SOUND_CHANNEL_ON, [hl] ; ch5 on?
 	jr z, .ch6
-	res 0, [hl] ; turn it off
+	res SOUND_CHANNEL_ON, [hl] ; turn it off
 	xor a
 	ld [rNR11], a ; length/wavepattern = 0
 	ld a, $8
@@ -2595,9 +2614,9 @@ _PlaySFX:: ; e8c04
 	ld [rNR10], a ; sweep = 0
 .ch6
 	ld hl, Channel6Flags
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr z, .ch7
-	res 0, [hl] ; turn it off
+	res SOUND_CHANNEL_ON, [hl] ; turn it off
 	xor a
 	ld [rNR21], a ; length/wavepattern = 0
 	ld a, $8
@@ -2608,9 +2627,9 @@ _PlaySFX:: ; e8c04
 	ld [rNR24], a ; restart sound (freq hi = 0)
 .ch7
 	ld hl, Channel7Flags
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr z, .ch8
-	res 0, [hl] ; turn it off
+	res SOUND_CHANNEL_ON, [hl] ; turn it off
 	xor a
 	ld [rNR30], a ; sound mode #3 off
 	ld [rNR31], a ; length/wavepattern = 0
@@ -2622,9 +2641,9 @@ _PlaySFX:: ; e8c04
 	ld [rNR34], a ; restart sound (freq hi = 0)
 .ch8
 	ld hl, Channel8Flags
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr z, .chscleared
-	res 0, [hl] ; turn it off
+	res SOUND_CHANNEL_ON, [hl] ; turn it off
 	xor a
 	ld [rNR41], a ; length/wavepattern = 0
 	ld a, $8
@@ -2664,7 +2683,7 @@ _PlaySFX:: ; e8c04
 	call LoadChannel ; bc = current channel
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
-	set 3, [hl]
+	set SOUND_SFX, [hl]
 	call StartChannel
 	pop af
 	dec a
@@ -2720,7 +2739,7 @@ endr
 	
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
-	set 3, [hl]
+	set SOUND_SFX, [hl]
 	
 	push de
 	; get tracks for this channel
@@ -2759,7 +2778,7 @@ endr
 	
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	set 7, [hl]
+	set SOUND_UNKN_0F, [hl]
 	
 .skip
 	pop de
@@ -2767,7 +2786,7 @@ endr
 ; turn channel on
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
-	set 0, [hl] ; on
+	set SOUND_CHANNEL_ON, [hl] ; on
 	
 ; done?
 	pop af
@@ -2801,7 +2820,7 @@ endr
 	ld b, [hl] ; bc = channel pointer
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
-	res 0, [hl] ; channel off
+	res SOUND_CHANNEL_ON, [hl] ; channel off
 	call ChannelInit
 	; load music pointer
 	ld hl, Channel1MusicAddress - Channel1

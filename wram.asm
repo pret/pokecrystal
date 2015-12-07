@@ -88,7 +88,7 @@ channel_struct: MACRO
 \1MusicID::           dw
 \1MusicBank::         db
 \1Flags::             db ; 0:on/off 1:subroutine 3:sfx 4:noise 5:rest
-\1Flags2::            db ; 0:vibrato on/off 2:duty
+\1Flags2::            db ; 0:vibrato on/off 2:duty 4:cry pitch
 \1Flags3::            db ; 0:vibrato up/down
 \1MusicAddress::      dw
 \1LastMusicAddress::  dw
@@ -293,10 +293,10 @@ SFXPriority:: ; c2b6
 ; if nonzero, turn off music when playing sfx
 	ds 1
 	ds 1
-wc2b8:: ds 1
-wc2b9:: ds 1
-wc2ba:: ds 1
-wc2bb:: ds 1
+Channel1JumpCondition:: ds 1
+Channel2JumpCondition:: ds 1
+Channel3JumpCondition:: ds 1
+Channel4JumpCondition:: ds 1
 wc2bc:: ds 1
 CryTracks:: ; c2bd
 ; plays only in left or right track depending on what side the monster is on

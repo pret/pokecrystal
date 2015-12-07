@@ -23,35 +23,6 @@ cry_header: macro
 	dw \1, \2, \3
 	endm
 
-; pitch
-__ EQU 0
-C_ EQU 1
-C# EQU 2
-D_ EQU 3
-D# EQU 4
-E_ EQU 5
-F_ EQU 6
-F# EQU 7
-G_ EQU 8
-G# EQU 9
-A_ EQU 10
-A# EQU 11
-B_ EQU 12
-
-; channel
-	const_def
-	const CHAN1
-	const CHAN2
-	const CHAN3
-	const CHAN4
-NUM_MUSIC_CHANS EQU const_value
-NUM_NOISE_CHANS EQU const_value
-	const CHAN5
-	const CHAN6
-	const CHAN7
-	const CHAN8
-NUM_CHANNELS EQU const_value
-
 	enum_start $d8
 	enum notetype_cmd
 octave: macro
