@@ -16,9 +16,9 @@ endr
 
 .Jumptable: ; 8d25b (23:525b)
 	dw .zero        ; town map
-	dw .one         ; bouncing mon icons
-	dw .two
-	dw .three
+	dw .one         ; bouncing mon icon
+	dw .two         ; bouncing mon icon, selected
+	dw .three       ; bouncing mon icon, menu open
 	dw .four
 	dw .five
 	dw .six         ; Game Freak logo
@@ -46,7 +46,7 @@ endr
 	dw .twentyeight
 	dw .twentynine  ; intro suicune
 	dw .thirty      ; intro pichu wooper
-	dw .thirtyone
+	dw .thirtyone   ; celebi
 	dw .thirtytwo   ; intro unown
 	dw .thirtythree ; intro unown F with suicune leaping up
 	dw .thirtyfour  ; intro suicune facing away from us
@@ -65,7 +65,7 @@ endr
 
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
-	ld [hl], $10
+	ld [hl], 8 * 2
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -75,7 +75,7 @@ endr
 .two: ; 8d2b9 (23:52b9)
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
-	ld [hl], $18
+	ld [hl], 8 * 3
 
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
@@ -93,24 +93,24 @@ endr
 	add hl, bc
 	ld a, d
 	and $10 ; bit 4
-	jr z, .asm_8d2df
+	jr z, .load_zero
 	ld a, e
 	and a
-	jr z, .asm_8d2e6
+	jr z, .load_minus_two
 	cp $1
-	jr z, .asm_8d2e2
-.asm_8d2df
+	jr z, .load_minus_one
+.load_zero
 	xor a
 	ld [hl], a
 	ret
 
-.asm_8d2e2
-	ld a, $ff
+.load_minus_one
+	ld a, -1
 	ld [hl], a
 	ret
 
-.asm_8d2e6
-	ld a, $fe
+.load_minus_two
+	ld a, -2
 	ld [hl], a
 	ret
 
@@ -120,17 +120,17 @@ endr
 	ld hl, SPRITEANIMSTRUCT_INDEX
 	add hl, bc
 	cp [hl]
-	jr z, .asm_8d2fb
+	jr z, .three_offset_right
 
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
-	ld [hl], $10
+	ld [hl], 8 * 2
 	ret
 
-.asm_8d2fb
+.three_offset_right
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
-	ld [hl], $18
+	ld [hl], 8 * 3
 	ret
 
 .four: ; 8d302 (23:5302)

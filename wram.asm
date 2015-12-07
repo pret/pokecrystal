@@ -104,28 +104,30 @@ channel_struct: MACRO
 \1Octave::            db ; 7-0 (0 is highest)
 \1StartingOctave::    db ; raises existing octaves (to repeat phrases)
 \1NoteDuration::      db ; frames remaining for the current note
-                      ds 1 ; c117
+\1Field0x16::         ds 1 ; c117
                       ds 1 ; c118
 \1LoopCount::         db
 \1Tempo::             dw
 \1Tracks::            db ; hi:left lo:right
-                      ds 1 ; c11d
+\1Field0x1c::         ds 1 ; c11d
 \1VibratoDelayCount:: db ; initialized by \1VibratoDelay
 \1VibratoDelay::      db ; number of frames a note plays until vibrato starts
 \1VibratoExtent::     db
 \1VibratoRate::       db ; hi:frames for each alt lo:frames to the next alt
-                      ds 1 ; c122
-                      ds 1 ; c123
-                      ds 1 ; c124
-                      ds 1 ; c125
-                      ds 1 ; c126
+\1Field0x21::         ds 1 ; c122
+\1Field0x22::         ds 1 ; c123
+\1Field0x23::         ds 1 ; c124
+\1Field0x24::         ds 1 ; c125
+\1Field0x25::         ds 1 ; c126
                       ds 1 ; c127
 \1CryPitch::          dw
-                      ds 4
+\1Field0x29::         ds 1
+\1Field0x2a::         ds 2
+\1Field0x2c::         ds 1
 \1NoteLength::        db ; frames per 16th note
-                      ds 1 ; c12f
-                      ds 1 ; c130
-                      ds 1 ; c131
+\1Field0x2e::         ds 1 ; c12f
+\1Field0x2f::         ds 1 ; c130
+\1Field0x30::         ds 1 ; c131
                       ds 1 ; c132
 ENDM
 
@@ -1065,18 +1067,27 @@ OverworldMapEnd::
 	ds OverworldMap - @
 
 wc800::	ds 1
+wMysteryGiftPlayerID::
 wc801:: ds 1
 wc802:: ds 1
+wMysteryGiftPlayerName::
 wc803:: ds 4
-wc807:: ds 9
-wc810:: ds 3
-wc813:: ds 5
+wc807:: ds 7
+wMysteryGiftPlayerDexCaught:: ds 1
+wc80f:: ds 1
+wc810:: ds 1
+wc811:: ds 1
+wMysteryGiftPlayerBackupItem::
+wc812:: ds 1
+wc813:: ds 1
+wc814:: ds 4
 wc818:: ds 8
 wc820:: ds 1
 wc821:: ds 15
 wc830:: ds 16
 wc840:: ds 16
 wMysteryGiftTrainerData:: ds (1 + 1 + NUM_MOVES) * PARTY_LENGTH + 2
+wMysteryGiftTrainerDataEnd::
 	ds wMysteryGiftTrainerData - @
 wc850:: ds 16
 wc860:: ds 16
@@ -1102,7 +1113,8 @@ wc930:: ds 16
 wc940:: ds 16
 wc950:: ds 16
 wc960:: ds 2
-wc962:: ds 14
+wc962:: ds 2
+wc964:: ds 12
 wc970:: ds 16
 wc980:: ds 16
 wc990:: ds 16

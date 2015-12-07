@@ -105,8 +105,10 @@ rOBP0       EQU $ff48 ; Object Palette 0 Data (R/W) - Non CGB Mode Only
 rOBP1       EQU $ff49 ; Object Palette 1 Data (R/W) - Non CGB Mode Only
 rWY         EQU $ff4a ; Window Y Position (R/W)
 rWX         EQU $ff4b ; Window X Position minus 7 (R/W)
+rLCDMODE    EQU $ff4c
 rKEY1       EQU $ff4d ; CGB Mode Only - Prepare Speed Switch
 rVBK        EQU $ff4f ; CGB Mode Only - VRAM Bank
+rBLCK       EQU $ff50
 rHDMA1      EQU $ff51 ; CGB Mode Only - New DMA Source, High
 rHDMA2      EQU $ff52 ; CGB Mode Only - New DMA Source, Low
 rHDMA3      EQU $ff53 ; CGB Mode Only - New DMA Destination, High

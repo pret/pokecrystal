@@ -702,22 +702,23 @@ Function104ddd: ; 104ddd (41:4ddd)
 	ld e, d
 	ld a, $1
 	ld [hPrintNum9], a
-.asm_104de4
+.loop
 	call Function105038
 	ld b, $2
 	ld c, rRP % $100
 	ld a, [hMoneyTemp + 1]
 	bit 1, a
-	jr z, .asm_104df6
+	jr z, .next
 	ld a, $10
 	ld [hPrintNum10], a
 	ret
-.asm_104df6
+
+.next
 	bit 0, a
 	jr nz, asm_104e3a
 	ld a, [$ff00+c]
 	and b
-	jr nz, .asm_104de4
+	jr nz, .loop
 
 Function104dfe: ; 104dfe (41:4dfe)
 	ld c, rRP % $100
@@ -1181,11 +1182,11 @@ RestoreMysteryGift: ; 1050ea (41:50ea)
 Function1050fb: ; 1050fb (41:50fb)
 	ld hl, wMysteryGiftTrainerData
 	xor a
-	ld b, $26
-.asm_105101
+	ld b, wMysteryGiftTrainerDataEnd - wMysteryGiftTrainerData
+.loop
 	ld [hli], a
 	dec b
-	jr nz, .asm_105101
+	jr nz, .loop
 	ret
 
 

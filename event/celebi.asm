@@ -76,7 +76,7 @@ LoadCelebiGFX: ; 49912
 	lb bc, BANK(SpecialCelebiLeafGFX), 4
 	call Request2bpp
 	ld de, SpecialCelebiGFX
-	ld hl, VTiles1 tile $04
+	ld hl, VTiles0 tile $84
 	lb bc, BANK(SpecialCelebiGFX), $10
 	call Request2bpp
 	xor a
@@ -240,12 +240,12 @@ CelebiEvent_Cosine: ; 49b3b (12:5b3b)
 	add $10
 	and $3f
 	cp $20
-	jr nc, .asm_49b48
+	jr nc, .negative
 	call .SineFunction
 	ld a, h
 	ret
 
-.asm_49b48
+.negative
 	and $1f
 	call .SineFunction
 	ld a, h

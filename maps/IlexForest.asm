@@ -89,7 +89,7 @@ IlexForest_MapScriptHeader:
 	appear ILEXFOREST_BIRD
 	return
 
-YoungsterScript_0x6eb7b:
+IlexForestCharcoalApprenticeScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_HERDED_FARFETCHD
@@ -347,16 +347,16 @@ IlexForestFarfetchdScript:
 	checkcode VAR_FACING
 	end
 
-BlackBeltScript_0x6edae:
+IlexForestCharcoalMasterScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_HM01_CUT
 	iftrue .AlreadyGotCut
-	writetext UnknownText_0x6f099
+	writetext Text_CharcoalMasterIntro
 	buttonsound
 	verbosegiveitem HM_CUT
 	setevent EVENT_GOT_HM01_CUT
-	writetext UnknownText_0x6f141
+	writetext Text_CharcoalMasterOutro
 	waitbutton
 	closetext
 	setevent EVENT_ILEX_FOREST_FARFETCHD
@@ -368,25 +368,25 @@ BlackBeltScript_0x6edae:
 	end
 
 .AlreadyGotCut:
-	writetext UnknownText_0x6f1c0
+	writetext Text_CharcoalMasterTalkAfter
 	waitbutton
 	closetext
 	end
 
-RockerScript_0x6edde:
+IlexForestHeadbuttGuyScript:
 	faceplayer
 	loadfont
 	checkevent EVENT_GOT_TM02_HEADBUTT
-	iftrue UnknownScript_0x6edf3
-	writetext UnknownText_0x6f21b
+	iftrue .AlreadyGotHeadbutt
+	writetext Text_HeadbuttIntro
 	buttonsound
 	verbosegiveitem TM_HEADBUTT
-	iffalse UnknownScript_0x6edf7
+	iffalse .BagFull
 	setevent EVENT_GOT_TM02_HEADBUTT
-UnknownScript_0x6edf3:
-	writetext UnknownText_0x6f26d
+.AlreadyGotHeadbutt:
+	writetext Text_HeadbuttOutro
 	waitbutton
-UnknownScript_0x6edf7:
+.BagFull:
 	closetext
 	end
 
@@ -396,13 +396,13 @@ TrainerBug_catcherWayne:
 Bug_catcherWayneScript:
 	end_if_just_battled
 	loadfont
-	writetext UnknownText_0x6f571
+	writetext Bug_catcherWayneAfterText
 	waitbutton
 	closetext
 	end
 
-LassScript_0x6ee0d:
-	jumptextfaceplayer UnknownText_0x6f2af
+IlexForestLassScript:
+	jumptextfaceplayer Text_IlexForestLass
 
 ItemFragment_0x6ee10:
 	db REVIVE, 1
@@ -432,7 +432,7 @@ IlexForestBoulder:
 	jumpstd strengthboulder
 
 MapIlexForestSignpost0Script:
-	jumptext UnknownText_0x6f2de
+	jumptext Text_IlexForestSignpost0
 
 MapIlexForestSignpost4Script:
 	checkevent EVENT_FOREST_IS_RESTLESS
@@ -443,11 +443,11 @@ MapIlexForestSignpost4Script:
 	checkitem GS_BALL
 	iftrue .AskCelebiEvent
 .DontDoCelebiEvent:
-	jumptext UnknownText_0x6f358
+	jumptext Text_IlexForestShrine
 
 .AskCelebiEvent:
 	loadfont
-	writetext UnknownText_0x6f394
+	writetext Text_ShrineCelebiEvent
 	yesorno
 	iftrue .CelebiEvent
 	closetext
@@ -459,7 +459,7 @@ MapIlexForestSignpost4Script:
 	setevent EVENT_AZALEA_TOWN_KURT
 	disappear ILEXFOREST_LASS
 	clearevent EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
-	writetext UnknownText_0x6f43b
+	writetext Text_InsertGSBall
 	waitbutton
 	closetext
 	pause 20
@@ -480,7 +480,7 @@ MapIlexForestSignpost4Script:
 	appear ILEXFOREST_KURT
 	applymovement ILEXFOREST_KURT, MovementData_0x6ef4e
 	loadfont
-	writetext UnknownText_0x6f452
+	writetext Text_KurtCaughtCelebi
 	waitbutton
 	closetext
 	applymovement ILEXFOREST_KURT, MovementData_0x6ef53
@@ -781,7 +781,7 @@ Text_Kwaaaa:
 	text "FARFETCH'D: Kwaa!"
 	done
 
-UnknownText_0x6f099:
+Text_CharcoalMasterIntro:
 	text "Ah! My FARFETCH'D!"
 
 	para "You found it for"
@@ -802,7 +802,7 @@ UnknownText_0x6f099:
 	line "this."
 	done
 
-UnknownText_0x6f141:
+Text_CharcoalMasterOutro:
 	text "That's the CUT HM."
 	line "Teach that to a"
 
@@ -816,7 +816,7 @@ UnknownText_0x6f141:
 	line "AZALEA to use it."
 	done
 
-UnknownText_0x6f1c0:
+Text_CharcoalMasterTalkAfter:
 	text "Do you want to"
 	line "apprentice as a"
 
@@ -827,7 +827,7 @@ UnknownText_0x6f1c0:
 	line "rate in ten years!"
 	done
 
-UnknownText_0x6f21b:
+Text_HeadbuttIntro:
 	text "What am I doing?"
 
 	para "I'm shaking trees"
@@ -837,20 +837,20 @@ UnknownText_0x6f21b:
 	line "you try it too!"
 	done
 
-UnknownText_0x6f26d:
+Text_HeadbuttOutro:
 	text "Rattle trees with"
 	line "HEADBUTT. Some-"
 	cont "times, sleeping"
 	cont "#MON fall out."
 	done
 
-UnknownText_0x6f2af:
+Text_IlexForestLass:
 	text "Did something"
 	line "happen to the"
 	cont "forest's guardian?"
 	done
 
-UnknownText_0x6f2de:
+Text_IlexForestSignpost0:
 	text "ILEX FOREST is"
 	line "so overgrown with"
 
@@ -862,7 +862,7 @@ UnknownText_0x6f2de:
 	cont "have been dropped."
 	done
 
-UnknownText_0x6f358:
+Text_IlexForestShrine:
 	text "ILEX FOREST"
 	line "SHRINE…"
 
@@ -871,7 +871,7 @@ UnknownText_0x6f358:
 	cont "protector…"
 	done
 
-UnknownText_0x6f394:
+Text_ShrineCelebiEvent:
 	text "ILEX FOREST"
 	line "SHRINE…"
 
@@ -891,12 +891,12 @@ UnknownText_0x6f394:
 	line "BALL here?"
 	done
 
-UnknownText_0x6f43b:
+Text_InsertGSBall:
 	text "<PLAYER> put in the"
 	line "GS BALL."
 	done
 
-UnknownText_0x6f452:
+Text_KurtCaughtCelebi:
 	text "Whew, wasn't that"
 	line "something!"
 
@@ -929,7 +929,7 @@ Bug_catcherWayneBeatenText:
 	line "#MON before…"
 	done
 
-UnknownText_0x6f571:
+Bug_catcherWayneAfterText:
 	text "A #MON I've"
 	line "never seen before"
 
@@ -966,12 +966,12 @@ IlexForest_MapEventHeader:
 .PersonEvents:
 	db 11
 	person_event SPRITE_BIRD, 31, 14, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, IlexForestFarfetchdScript, EVENT_ILEX_FOREST_FARFETCHD
-	person_event SPRITE_YOUNGSTER, 28, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x6eb7b, EVENT_ILEX_FOREST_APPRENTICE
-	person_event SPRITE_BLACK_BELT, 28, 5, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BlackBeltScript_0x6edae, EVENT_ILEX_FOREST_CHARCOAL_MASTER
-	person_event SPRITE_ROCKER, 14, 15, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RockerScript_0x6edde, -1
+	person_event SPRITE_YOUNGSTER, 28, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, IlexForestCharcoalApprenticeScript, EVENT_ILEX_FOREST_APPRENTICE
+	person_event SPRITE_BLACK_BELT, 28, 5, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, IlexForestCharcoalMasterScript, EVENT_ILEX_FOREST_CHARCOAL_MASTER
+	person_event SPRITE_ROCKER, 14, 15, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, IlexForestHeadbuttGuyScript, -1
 	person_event SPRITE_POKE_BALL, 32, 20, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x6ee10, EVENT_ILEX_FOREST_REVIVE
 	person_event SPRITE_KURT, 29, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_ILEX_FOREST_KURT
-	person_event SPRITE_LASS, 24, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, LassScript_0x6ee0d, EVENT_ILEX_FOREST_LASS
+	person_event SPRITE_LASS, 24, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, IlexForestLassScript, EVENT_ILEX_FOREST_LASS
 	person_event SPRITE_YOUNGSTER, 1, 12, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 0, TrainerBug_catcherWayne, -1
 	person_event SPRITE_POKE_BALL, 17, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x6ee12, EVENT_ILEX_FOREST_X_ATTACK
 	person_event SPRITE_POKE_BALL, 7, 17, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x6ee14, EVENT_ILEX_FOREST_ANTIDOTE
