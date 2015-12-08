@@ -1071,7 +1071,7 @@ Function11878d: ; 11878d (46:478d)
 	set 0, [hl]
 	ld a, $6
 	ld [rSVBK], a
-	ld de, UnknBGPals
+	ld de, w3_d000
 	ld bc, $1000
 	ld a, [hl]
 	sla a
@@ -1466,7 +1466,7 @@ Function118a65: ; 118a65
 	ld de, wcc60
 	ld bc, $80
 	call CopyBytes
-	ld de, UnknBGPals
+	ld de, w3_d000
 	ld bc, $1000
 	jp Function118b10
 ; 118a7a
@@ -1476,7 +1476,7 @@ Function118a7a: ; 118a7a
 	ld de, wcc60
 	ld bc, $80
 	call CopyBytes
-	ld de, UnknBGPals
+	ld de, w3_d000
 	ld bc, $1000
 	jp Function118b10
 ; 118a8f
@@ -1486,7 +1486,7 @@ Function118a8f: ; 118a8f
 	ld de, wcc60
 	ld bc, $80
 	call CopyBytes
-	ld de, UnknBGPals
+	ld de, w3_d000
 	ld bc, $1000
 	jp Function118b10
 ; 118aa4
@@ -1498,7 +1498,7 @@ Function118aa4: ; 118aa4
 	call CopyBytes
 	ld a, $5
 	ld [rSVBK], a
-	ld de, LYOverrides
+	ld de, w3_d100
 	ld bc, $e00
 	jr Function118b10
 ; 118abc
@@ -1508,7 +1508,7 @@ Function118abc: ; 118abc (46:4abc)
 	ld de, wcc60
 	ld bc, $80
 	call CopyBytes
-	ld de, UnknBGPals
+	ld de, w3_d000
 	ld bc, $1000
 	jr Function118b10
 ; 118ad0 (46:4ad0)
@@ -1518,7 +1518,7 @@ Function118ad0:
 	ld de, wcc60
 	ld bc, $80
 	call CopyBytes
-	ld de, UnknBGPals
+	ld de, w3_d000
 	ld bc, $1000
 	jr Function118b10
 
@@ -1663,7 +1663,8 @@ IndexDownloadURL: ; 0x118ce5
 
 
 Function118d35: ; 118d35
-	ld hl, LYOverridesBackup
+; unreferenced
+	ld hl, $d200
 	ld a, [wcd38]
 	and a
 	jr nz, .asm_118d6e
@@ -1739,7 +1740,7 @@ asm_118d9f
 	ld [wcd3b], a
 
 .asm_118db7
-	ld hl, $d800
+	ld hl, w3_d800
 	ld a, $8
 	ld [hli], a
 	ld a, $c6
@@ -1760,7 +1761,7 @@ asm_118d9f
 	call Function119ec2
 	ld a, $40
 	ld [wcd89], a
-	ld hl, $d800
+	ld hl, w3_d800
 	ld de, $de00
 	ld bc, $0200
 	ld a, $2c
@@ -1894,7 +1895,7 @@ Function118e92: ; 118e92
 	ld de, wcc60
 	call Function1191ad
 	ret c
-	ld de, $d800
+	ld de, w3_d800
 	ld bc, $0800
 	jp Function118b10
 ; 118eb0
@@ -2105,7 +2106,7 @@ Function119009:
 	ld a, $40
 	ld [wcd89], a
 	ld hl, wc314 + 48 + 2
-	ld de, UnknBGPals
+	ld de, w3_d000
 	ld bc, $1000
 	ld a, $2c
 	jp Function119e2b
@@ -2119,9 +2120,9 @@ Function119054: ; 119054
 	ld e, a
 	ld a, [wcd50]
 	ld d, a
-	ld a, [UnknBGPals]
+	ld a, [w3_d000]
 	ld c, a
-	ld a, [wd001]
+	ld a, [w3_d000 + 1]
 	ld b, a
 	call Function119192
 	ret c
@@ -2131,9 +2132,9 @@ Function119054: ; 119054
 	ld a, $6
 	ld [rSVBK], a
 	ld hl, wd002
-	ld a, [UnknBGPals]
+	ld a, [w3_d000]
 	ld c, a
-	ld a, [wd001]
+	ld a, [w3_d000 + 1]
 	ld b, a
 	call Function119192
 	ret c
@@ -2178,7 +2179,7 @@ Function1190d0: ; 1190d0
 	ld de, wcc60
 	call Function1191ad
 	ret c
-	ld de, UnknBGPals
+	ld de, w3_d000
 	ld bc, $1000
 	jp Function118b10
 ; 1190ec
@@ -2198,9 +2199,9 @@ Function1190ec: ; 1190ec
 	call CloseSRAM
 	ld a, $6
 	call GetSRAMBank
-	ld a, [UnknBGPals]
+	ld a, [w3_d000]
 	ld c, a
-	ld a, [wd001]
+	ld a, [w3_d000 + 1]
 	ld b, a
 	ld hl, wd002
 	ld de, $a000
@@ -2211,9 +2212,9 @@ Function1190ec: ; 1190ec
 	jr z, .asm_11913e
 	ld a, $6
 	ld [rSVBK], a
-	ld a, [UnknBGPals]
+	ld a, [w3_d000]
 	ld c, a
-	ld a, [wd001]
+	ld a, [w3_d000 + 1]
 	ld b, a
 	ld hl, wd002
 	call Function119192
@@ -2330,7 +2331,7 @@ Function1191ad: ; 1191ad
 ; 1191d3
 
 Function1191d3: ; 1191d3
-	ld hl, wd102
+	ld hl, w3_d100 + 2
 	ld a, l
 	ld [wcd53], a
 	ld a, h
@@ -2678,7 +2679,7 @@ Function1193fb:
 	ld a, $8
 	ld [wcd3c], a
 	call Function119ed8
-	ld de, UnknBGPals
+	ld de, w3_d000
 	ld bc, $1000
 	jp Function118b10
 ; 119413
@@ -2686,9 +2687,9 @@ Function1193fb:
 Function119413: ; 119413
 	ld a, $6
 	call GetSRAMBank
-	ld a, [UnknBGPals]
+	ld a, [w3_d000]
 	ld c, a
-	ld a, [wd001]
+	ld a, [w3_d000 + 1]
 	ld b, a
 rept 2
 	dec bc
@@ -2707,7 +2708,7 @@ endr
 	ld [rSVBK], a
 	ld a, [wd000]
 	ld c, a
-	ld a, [wd001]
+	ld a, [w3_d000 + 1]
 	ld b, a
 	ld hl, wd002
 	call Function119192
@@ -3043,7 +3044,7 @@ Function119648: ; 119648 (46:5648)
 	ld [wcd3c], a
 	call Function119ed8
 	call Function118b24
-	ld de, UnknBGPals
+	ld de, w3_d000
 	ld bc, $1000
 	ld a, $2a
 	jp Function119e2b
@@ -3338,7 +3339,7 @@ Function1197dc:
 	xor a
 	ld [de], a
 	call Function118b24
-	ld de, UnknBGPals
+	ld de, w3_d000
 	ld bc, $1000
 	ld a, $2a
 	jp Function119e2b
@@ -3459,7 +3460,7 @@ Function1198f7:
 	ret nz
 	ld hl, $c608 + 2
 	call Function119940
-	ld hl, $d800
+	ld hl, w3_d800
 	ld a, $c608 % $100
 	ld [hli], a
 	ld a, $c608 / $100
@@ -3480,7 +3481,7 @@ Function1198f7:
 	call Function119ec2
 	ld a, $40
 	ld [wcd89], a
-	ld hl, $d800
+	ld hl, w3_d800
 	ld de, $de00
 	ld bc, $0200
 	ld a, $2c
@@ -3536,15 +3537,15 @@ Function119973: ; 119973
 	ld [wcf64], a
 	xor a
 	ld [wcf65], a
-	ld [StringBuffer2 + 10], a
-	ld de, UnknBGPals
+	ld [w3_d090], a
+	ld de, w3_d000
 	ld a, $20
 	jp Function119e2b
 ; 119987
 
 Function119987: ; 119987
-	ld hl, wd001
-	ld a, [UnknBGPals]
+	ld hl, w3_d000 + 1
+	ld a, [w3_d000]
 	or [hl]
 	jr z, .asm_1199a0
 	ld a, [wcf64]
@@ -3556,7 +3557,7 @@ Function119987: ; 119987
 	jp Function119e2b
 
 .asm_1199a0
-	ld a, [StringBuffer2 + 10]
+	ld a, [w3_d090]
 	and a
 	jr z, .asm_1199ae
 	ld a, $16
@@ -3590,7 +3591,7 @@ Function1199ca: ; 1199ca
 	ld l, a
 	ld a, [wcf65]
 	ld h, a
-	ld de, LYOverrides
+	ld de, w3_d100
 	ld bc, $0700
 	ld a, $28
 	jp Function119e2b
@@ -3694,27 +3695,27 @@ Function1199e2: ; 1199e2
 	jp Function119b45
 
 .asm_119aaf
-	ld a, [StringBuffer2 + 10]
+	ld a, [w3_d090]
 	and a
 	jr nz, .asm_119aa7
-	ld a, [wd000 + $895]
+	ld a, [w3_d895]
 	sub $30
-	ld [StringBuffer2 + 10], a
+	ld [w3_d090], a
 	ld a, [wcf64]
-	ld [StringBuffer2 + 11], a
+	ld [w3_d090 + 1], a
 	ld a, [wcf65]
-	ld [StringBuffer2 + 12], a
+	ld [w3_d090 + 2], a
 
 Function119ac9:
-	ld a, [UnknBGPals]
+	ld a, [w3_d000]
 	ld l, a
-	ld a, [wd001]
+	ld a, [w3_d000 + 1]
 	ld h, a
 	dec hl
 	ld a, l
-	ld [UnknBGPals], a
+	ld [w3_d000], a
 	ld a, h
-	ld [wd001], a
+	ld [w3_d000 + 1], a
 	ld a, [wcf64]
 	ld l, a
 	ld a, [wcf65]
@@ -3738,7 +3739,7 @@ Function119b0d: ; 119b0d
 	ld a, $8
 	ld [wcd3c], a
 	call Function119ed8
-	ld a, [StringBuffer2 + 10]
+	ld a, [w3_d090]
 	cp $1
 	jr z, .asm_119b23
 	ld a, $19
@@ -3748,19 +3749,19 @@ Function119b0d: ; 119b0d
 .asm_119b23
 	ld a, $10
 	ld [wcd89], a
-	ld a, [StringBuffer2 + 11]
+	ld a, [w3_d090 + 1]
 	ld l, a
-	ld a, [StringBuffer2 + 12]
+	ld a, [w3_d090 + 2]
 	ld h, a
-	ld de, LYOverrides
+	ld de, w3_d100
 	ld bc, $0700
 	ld a, $24
 	jp Function119e2b
 
 Function119b3b:
-	ld a, [StringBuffer2 + 11]
+	ld a, [w3_d090 + 1]
 	ld l, a
-	ld a, [StringBuffer2 + 12]
+	ld a, [w3_d090 + 2]
 	ld h, a
 	jr asm_119b4d
 
@@ -3776,7 +3777,7 @@ asm_119b4d
 ; 119b52
 
 Function119b52: ; 119b52
-	ld a, [StringBuffer2 + 10]
+	ld a, [w3_d090]
 	cp $1
 	jr nz, .asm_119b66
 	ld a, $5
@@ -3791,19 +3792,19 @@ Function119b52: ; 119b52
 ; 119b6b
 
 Function119b6b: ; 119b6b
-	ld a, [StringBuffer2 + 10]
+	ld a, [w3_d090]
 	cp $1
 	jr z, .asm_119b75
 	jp Function119e2e
 
 .asm_119b75
-	ld a, [LYOverrides]
+	ld a, [w3_d100]
 	ld b, a
-	ld a, [wd101]
+	ld a, [w3_d100 + 1]
 	or b
 	jr z, .asm_119be3
-	ld hl, $d800
-	ld de, wd102
+	ld hl, w3_d800
+	ld de, w3_d100 + 2
 .asm_119b85
 	ld a, [de]
 	inc de
@@ -3887,7 +3888,7 @@ endr
 	ld [$a800], a
 	call CloseSRAM
 	xor a
-	ld [StringBuffer2 + 10], a
+	ld [w3_d090], a
 	ret
 
 .asm_119bfa
@@ -3896,10 +3897,10 @@ endr
 	cp $d
 	jr nz, .asm_119b93
 	ld a, l
-	cp (wd000 + $800 + $69) % $100
+	cp (w3_d869) % $100
 	jr nz, .asm_119be3
 	ld a, h
-	cp (wd000 + $800 + $69) / $100
+	cp (w3_d869) / $100
 	jr nz, .asm_119be3
 	ld a, $5
 	call GetSRAMBank
@@ -3907,14 +3908,14 @@ endr
 	ld [$b090], a
 	ld a, [wcf65]
 	ld [$b091], a
-	ld hl, $d800
+	ld hl, w3_d800
 	ld de, $b023
 	ld bc, $0069
 	call CopyBytes
 	ld a, $3
 	ld [$a800], a
 	call CloseSRAM
-	ld hl, $d800
+	ld hl, w3_d800
 	ld de, $c608
 	ld bc, $0069
 	call CopyBytes
@@ -3953,7 +3954,7 @@ Function119c3e: ; 119c3e
 	ld [$a800], a
 	call CloseSRAM
 	xor a
-	ld [StringBuffer2 + 10], a
+	ld [w3_d090], a
 	scf
 	ret
 
@@ -4212,7 +4213,7 @@ Unknown_119e40:
 
 Function119e4f: ; 119e4f
 	push bc
-	ld hl, LYOverrides
+	ld hl, w3_d100
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
@@ -4531,7 +4532,7 @@ Function11a00e: ; 11a00e
 	ld a, $3
 	ld [rSVBK], a
 	ld hl, $c608
-	ld de, $d800
+	ld de, w3_d800
 	ld bc, $00f6
 	call CopyBytes
 	ld a, $1
@@ -4541,7 +4542,7 @@ Function11a00e: ; 11a00e
 	call Function11a9ce
 	ld a, $3
 	ld [rSVBK], a
-	ld hl, $d800
+	ld hl, w3_d800
 	ld de, $c608
 	ld bc, $00f6
 	call CopyBytes
@@ -6978,16 +6979,69 @@ Function11b31b: ; 11b31b
 ; 11b350
 
 Unknown_11b350:
-	db $1a, $5e, $1a, $66, $1a, $6e, $1a, $76, $1a, $7e, $1a, $86, $1a, $8e
-	db $22, $5e, $22, $66, $22, $6e, $22, $76, $22, $7e, $22, $86, $22, $8e
-	db $ff
+	dbpixel 3, 11, 2, 6
+	dbpixel 3, 12, 2, 6
+	dbpixel 3, 13, 2, 6
+	dbpixel 3, 14, 2, 6
+	dbpixel 3, 15, 2, 6
+	dbpixel 3, 16, 2, 6
+	dbpixel 3, 17, 2, 6
+	dbpixel 4, 11, 2, 6
+	dbpixel 4, 12, 2, 6
+	dbpixel 4, 13, 2, 6
+	dbpixel 4, 14, 2, 6
+	dbpixel 4, 15, 2, 6
+	dbpixel 4, 16, 2, 6
+	dbpixel 4, 17, 2, 6
+	db -1
 
 Unknown_11b36d:
-	db $30, $31, $31, $31, $31, $31, $32, $40, $41, $41, $41, $41, $41, $42
+	db $30
+	db $31
+	db $31
+	db $31
+	db $31
+	db $31
+	db $32
+	db $40
+	db $41
+	db $41
+	db $41
+	db $41
+	db $41
+	db $42
+
 Unknown_11b37b:
-	db $30, $31, $31, $39, $39, $39, $39, $40, $41, $41, $39, $39, $39, $39
+	db $30
+	db $31
+	db $31
+	db $39
+	db $39
+	db $39
+	db $39
+	db $40
+	db $41
+	db $41
+	db $39
+	db $39
+	db $39
+	db $39
+
 Unknown_11b389:
-	db $39, $39, $39, $39, $39, $39, $39, $39, $39, $39, $39, $39, $39, $39
+	db $39
+	db $39
+	db $39
+	db $39
+	db $39
+	db $39
+	db $39
+	db $39
+	db $39
+	db $39
+	db $39
+	db $39
+	db $39
+	db $39
 
 Function11b397: ; 11b397
 	ld de, Sprites
@@ -6999,12 +7053,14 @@ Function11b397: ; 11b397
 	and $7
 	swap a
 	add [hl]
-	inc hl
+	inc hl ; 1
 	ld [de], a
 	inc de
-	ld a, [hli]
+
+	ld a, [hli] ; 2
 	ld [de], a
 	inc de
+
 	ld a, [bc]
 	inc bc
 	ld [de], a
@@ -7355,7 +7411,7 @@ Function11b570: ; 11b570
 Function11b585: ; 11b585
 	ld a, $3
 	ld [rSVBK], a
-	ld hl, $d800
+	ld hl, w3_d800
 	ld de, $c608
 	ld bc, $008f
 	call CopyBytes
@@ -7482,7 +7538,7 @@ Function11b66d: ; 11b66d
 	push af
 	ld a, $3
 	ld [rSVBK], a
-	ld a, [StringBuffer2 + 10]
+	ld a, [w3_d090]
 	ld b, a
 	pop af
 	ld [rSVBK], a
@@ -7506,7 +7562,7 @@ Function11b66d: ; 11b66d
 	ld a, $3
 	ld [rSVBK], a
 	ld a, $2
-	ld [StringBuffer2 + 10], a
+	ld [w3_d090], a
 	pop af
 	ld [rSVBK], a
 

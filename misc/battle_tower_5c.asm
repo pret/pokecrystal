@@ -1,11 +1,11 @@
 Function1700b0: ; 1700b0
-	call Bank5c_ClearJumptableRAM
+	call InitBattleTowerChallengeRAM
 	callba Function118121
 	ret
 ; 1700ba
 
 Function1700ba: ; 1700ba
-	call Bank5c_ClearJumptableRAM
+	call InitBattleTowerChallengeRAM
 	callba Function11811a
 	ret
 ; 1700c4
@@ -53,7 +53,7 @@ Function1700c4: ; 1700c4
 ; 170114
 
 Function170114: ; 170114
-	call Bank5c_ClearJumptableRAM
+	call InitBattleTowerChallengeRAM
 	call Function170121
 	callba Function11805f
 	ret
@@ -64,7 +64,7 @@ Function170121: ; 170121
 	call GetSRAMBank
 	ld hl, $a948
 	ld de, wMisc
-	ld bc, $00f6
+	ld bc, $00f6 ; 246
 	call CopyBytes
 	call CloseSRAM
 	call Function170c8b
@@ -183,7 +183,7 @@ Function170139: ; 170139
 
 BattleTowerBattle: ; 170215
 	xor a
-	ld [wcf63], a
+	ld [wBattleTowerBattleEnded], a
 	call _BattleTowerBattle
 	ret
 ; 17021d
@@ -192,10 +192,10 @@ EmptySpecial_17021d: ; 17021d
 	ret
 ; 17021e
 
-Bank5c_ClearJumptableRAM: ; 17021e
+InitBattleTowerChallengeRAM: ; 17021e
 	xor a
-	ld [wcf63], a
-	ld [wcf64], a
+	ld [wBattleTowerBattleEnded], a
+	ld [wNrOfBeatenBattleTowerTrainers], a
 	ld [wcf65], a
 	ld [wcf66], a
 	ret
@@ -205,14 +205,14 @@ _BattleTowerBattle: ; 17022c
 .loop
 	call .do_jumptable
 	call DelayFrame
-	ld a, [wcf63]
+	ld a, [wBattleTowerBattleEnded]
 	cp $1
 	jr nz, .loop
 	ret
 ; 17023a
 
 .do_jumptable: ; 17023a
-	ld a, [wcf63]
+	ld a, [wBattleTowerBattleEnded]
 	ld e, a
 	ld d, 0
 	ld hl, .jumptable
@@ -259,10 +259,10 @@ RunBattleTowerTrainer: ; 17024d
 	ld a, BANK(sNrOfBeatenBattleTowerTrainers)
 	call GetSRAMBank
 	ld a, [sNrOfBeatenBattleTowerTrainers]
-	ld [wNrOfBeatenBattleTowerTrainers], a ; wcf64
+	ld [wNrOfBeatenBattleTowerTrainers], a
 	call CloseSRAM
 	ld hl, StringBuffer3
-	ld a, [wNrOfBeatenBattleTowerTrainers] ; wcf64
+	ld a, [wNrOfBeatenBattleTowerTrainers]
 	add "1"
 	ld [hli], a
 	ld a, "@"
@@ -274,7 +274,7 @@ RunBattleTowerTrainer: ; 17024d
 	pop af
 	ld [Options], a
 	ld a, $1
-	ld [wcf63], a
+	ld [wBattleTowerBattleEnded], a
 	ret
 
 
@@ -661,7 +661,7 @@ Function1704e1: ; 1704e1
 ; unreferenced special
 	call SpeechTextBox
 	call FadeToMenu
-	call Bank5c_ClearJumptableRAM
+	call InitBattleTowerChallengeRAM
 	call .JumptableLoop
 	call CloseSubmenu
 	ret
@@ -758,20 +758,20 @@ endr
 	ret
 
 .pressed_up
-	ld a, [wcf64]
+	ld a, [wNrOfBeatenBattleTowerTrainers]
 	and a
 	ret z
 	sub 15
-	ld [wcf64], a
+	ld [wNrOfBeatenBattleTowerTrainers], a
 	call .PlaceTextItems
 	ret
 
 .pressed_down
-	ld a, [wcf64]
+	ld a, [wNrOfBeatenBattleTowerTrainers]
 	cp 60
 	ret z
 	add 15
-	ld [wcf64], a
+	ld [wNrOfBeatenBattleTowerTrainers], a
 	call .PlaceTextItems
 	ret
 
@@ -834,7 +834,7 @@ endr
 	ld a, $50
 	ld [wcd4e], a
 	ld hl, wMisc
-	ld a, [wcf64]
+	ld a, [wNrOfBeatenBattleTowerTrainers]
 	ld c, a
 	xor a
 	ld b, a
@@ -916,7 +916,7 @@ endr
 ; 17065d
 
 .PlaceUpDownArrows: ; 17065d
-	ld a, [wcf64]
+	ld a, [wNrOfBeatenBattleTowerTrainers]
 	and a
 	jr z, .nope
 	hlcoord 18, 5
@@ -924,7 +924,7 @@ endr
 	ld [hl], a
 
 .nope
-	ld a, [wcf64]
+	ld a, [wNrOfBeatenBattleTowerTrainers]
 	cp 60
 	ret z
 	hlcoord 18, 16
@@ -984,11 +984,11 @@ endr
 	dw Function170ae8 ; 0x18
 	dw Function170b16 ; 0x19
 	dw ResetBattleTowerTrainersSRAM ; 0x1a
-	dw Function1706ee ; 0x1b
+	dw BattleTower_GiveReward ; 0x1b
 	dw Function17071b ; 0x1c
 	dw Function170729 ; 0x1d
 	dw BattleTower_RandomlyChooseReward ; 0x1e
-	dw Function170737 ; 0x1f
+	dw BattleTower_SaveOptions ; 0x1f
 
 
 ; Reset the save memory for BattleTower-Trainers (Counter and all 7 TrainerBytes)
@@ -1008,7 +1008,7 @@ ResetBattleTowerTrainersSRAM: ; 1706d6 (5c:46d6) BattleTowerAction $1a
 
 	ret
 
-Function1706ee: ; 1706ee (5c:46ee) BattleTowerAction $1b
+BattleTower_GiveReward: ; 1706ee (5c:46ee) BattleTowerAction $1b
 	ld a, BANK(sBattleTowerReward)
 	call GetSRAMBank
 
@@ -1053,11 +1053,11 @@ Function170729: ; 170729 (5c:4729) BattleTowerAction $1d
 	call CloseSRAM
 	ret
 
-Function170737: ; 170737 (5c:4737) BattleTowerAction $1e
+BattleTower_SaveOptions: ; 170737 (5c:4737) BattleTowerAction $1f
 	callba SaveOptions
 	ret
 
-BattleTower_RandomlyChooseReward: ; 17073e (5c:473e) BattleTowerAction $1f
+BattleTower_RandomlyChooseReward: ; 17073e (5c:473e) BattleTowerAction $1e
 ; Generate a random stat boosting item.
 .loop
 	call Random
@@ -1646,3 +1646,134 @@ Function170b16: ; 170b16 (5c:4b16) BattleTowerAction $19
 	call CloseSRAM
 	ld [ScriptVar], a
 	ret
+
+Function_LoadOpponentTrainerAndPokemonsWithOTSprite: ; 0x170b44
+	callba Function_LoadOpponentTrainerAndPokemons
+	ld a, [rSVBK]
+	push af
+	ld a, $3
+	ld [rSVBK], a
+	ld hl, BT_OTTrainerClass
+	ld a, [hl]
+	dec a
+	ld c, a
+	ld b, $0
+	pop af
+	ld [rSVBK], a
+	ld hl, .Sprites
+	add hl, bc
+	ld a, [hl]
+	ld [wBTTempOTSprite], a
+
+; Load sprite of the opponent trainer
+; because s/he is chosen randomly and appears out of nowhere
+	ld a, [ScriptVar]
+	dec a
+	sla a
+	ld e, a
+	sla a
+	sla a
+	sla a
+	ld c, a
+	ld b, 0
+	ld d, 0
+	ld hl, MapObjects
+	add hl, bc
+	inc hl
+	ld a, [wBTTempOTSprite]
+	ld [hl], a
+	ld hl, UsedSprites
+	add hl, de
+	ld [hli], a
+	ld [hUsedSpriteIndex], a
+	ld a, [hl]
+	ld [hUsedSpriteTile], a
+	callba GetUsedSprite
+	ret
+; 170b90
+
+.Sprites:
+	db SPRITE_FALKNER
+	db SPRITE_WHITNEY
+	db SPRITE_BUGSY
+	db SPRITE_MORTY
+	db SPRITE_PRYCE
+	db SPRITE_JASMINE
+	db SPRITE_CHUCK
+	db SPRITE_CLAIR
+	db SPRITE_SILVER
+	db SPRITE_OAK
+	db SPRITE_WILL
+	db SPRITE_CHRIS
+	db SPRITE_BRUNO
+	db SPRITE_KAREN
+	db SPRITE_KOGA
+	db SPRITE_LANCE
+	db SPRITE_BROCK
+	db SPRITE_MISTY
+	db SPRITE_SURGE
+	db SPRITE_SCIENTIST
+	db SPRITE_ERIKA
+	db SPRITE_YOUNGSTER
+	db SPRITE_YOUNGSTER
+	db SPRITE_YOUNGSTER
+	db SPRITE_LASS
+	db SPRITE_JANINE
+	db SPRITE_COOLTRAINER_M
+	db SPRITE_COOLTRAINER_F
+	db SPRITE_BUENA
+	db SPRITE_SUPER_NERD
+	db SPRITE_ROCKET
+	db SPRITE_GENTLEMAN
+	db SPRITE_BUENA
+	db SPRITE_TEACHER
+	db SPRITE_SABRINA
+	db SPRITE_BUG_CATCHER
+	db SPRITE_FISHER
+	db SPRITE_SUPER_NERD
+	db SPRITE_COOLTRAINER_F
+	db SPRITE_SAILOR
+	db SPRITE_SUPER_NERD
+	db SPRITE_BLUE
+	db SPRITE_ROCKER
+	db SPRITE_POKEFAN_M
+	db SPRITE_BIKER
+	db SPRITE_BLAINE
+	db SPRITE_PHARMACIST
+	db SPRITE_FISHER
+	db SPRITE_SUPER_NERD
+	db SPRITE_BLACK_BELT
+	db SPRITE_ROCKET
+	db SPRITE_YOUNGSTER
+	db SPRITE_LASS
+	db SPRITE_YOUNGSTER
+	db SPRITE_ROCKET_GIRL
+	db SPRITE_SAGE
+	db SPRITE_GRANNY
+	db SPRITE_ROCKER
+	db SPRITE_POKEFAN_M
+	db SPRITE_KIMONO_GIRL
+	db SPRITE_TWIN
+	db SPRITE_POKEFAN_F
+	db SPRITE_RED
+	db SPRITE_BLUE
+	db SPRITE_OFFICER
+	db SPRITE_ROCKET_GIRL
+
+ret_170bd2: ; 170bd2
+	ret
+; 170bd3
+
+SpecialCheckForBattleTowerRules: ; 170bd3
+	callba CheckForBattleTowerRules
+	jr c, .asm_170bde
+	xor a
+	jr .asm_170be0
+
+.asm_170bde
+	ld a, $1
+
+.asm_170be0
+	ld [ScriptVar], a
+	ret
+; 170be4

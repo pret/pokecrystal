@@ -213,7 +213,7 @@ wCurTrackDuty:: ds 1
 wCurTrackIntensity:: ds 1
 wCurTrackFrequency:: dw
 wc296:: ds 1 ; used only in an unused function
-wc297:: ds 1
+wc297:: ds 1 ; used in MusicE0 and LoadNote
 
 CurMusicByte:: ; c298
 	ds 1
@@ -306,7 +306,7 @@ wc2be:: ds 1
 CurSFX:: ; c2bf
 ; id of sfx currently playing
 	ds 1
-wc2c0::
+
 wMapMusic:: ; c2c0
 	ds 1
 
@@ -1257,6 +1257,7 @@ wcd47:: ds 1
 BGMapPalBuffer:: ; cd48
 	ds 1 ; 40
 
+wBTTempOTSprite::
 wcd49:: ds 1
 wcd4a:: ds 1
 wcd4b:: ds 1
@@ -1365,6 +1366,7 @@ CurMove::
 wNamedObjectTypeBuffer:: ds 1
 	ds 1
 wJumptableIndex::
+wBattleTowerBattleEnded::
 wcf63:: ds 1
 wNrOfBeatenBattleTowerTrainers::
 wMomBankDigitCursorPosition::
@@ -3039,7 +3041,9 @@ w3_d742:: battle_tower_struct w3_d742
 	ds -$22
 
 wBTChoiceOfLvlGroup::
-w3_d800:: ds $400
+w3_d800:: ds $69
+w3_d869:: ds $2c
+w3_d895:: ds $36b
 w3_dc00:: ds $168
 w3_dd68:: ds $294
 w3_dffc:: ds 4

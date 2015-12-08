@@ -753,7 +753,7 @@ LoadNote: ; e83d1
 	ld hl, Channel1Field0x22 - Channel1
 	add hl, bc
 	sub [hl]
-	jr nc, .asm_e8420
+	jr nc, .greater_than
 	; ????
 	ld hl, Channel1Flags3 - Channel1
 	add hl, bc
@@ -779,9 +779,9 @@ LoadNote: ; e83d1
 	ld a, [hl]
 	sub d
 	ld d, a
-	jr .asm_e843e
+	jr .resume
 
-.asm_e8420
+.greater_than
 	; ????
 	ld hl, Channel1Flags3 - Channel1
 	add hl, bc
@@ -806,7 +806,7 @@ LoadNote: ; e83d1
 	add hl, bc
 	sub [hl]
 	ld d, a
-.asm_e843e
+.resume
 	push bc
 	ld hl, wc297
 	ld b, 0; loop count
@@ -1419,19 +1419,19 @@ MusicCommands: ; e8720
 	dw Music_ToggleSFX ;
 	dw MusicE0 ;
 	dw Music_Vibrato ; vibrato
-	dw MusicE2 ;
+	dw MusicE2 ; unused
 	dw Music_ToggleNoise ; music noise sampling
 	dw Music_Panning ; force panning
 	dw Music_Volume ; volume
 	dw Music_Tone ; tune
-	dw MusicE7 ;
-	dw MusicE8 ;
-	dw Music_GlobalTempo ; global tempo
+	dw MusicE7 ; unused
+	dw MusicE8 ; unused
+	dw Music_TempoRelative ; global tempo
 	dw Music_RestartChannel ; restart current channel from header
 	dw Music_NewSong ; new song
 	dw Music_SFXPriorityOn ; sfx priority on
 	dw Music_SFXPriorityOff ; sfx priority off
-	dw MusicEE ;
+	dw MusicEE ; unused
 	dw Music_StereoPanning ; stereo panning
 	dw Music_SFXToggleNoise ; sfx noise sampling
 	dw MusicF1 ; nothing
@@ -1442,7 +1442,7 @@ MusicCommands: ; e8720
 	dw MusicF6 ; nothing
 	dw MusicF7 ; nothing
 	dw MusicF8 ; nothing
-	dw MusicF9 ;
+	dw MusicF9 ; unused
 	dw Music_SetCondition ;
 	dw Music_JumpIf ;
 	dw Music_JumpChannel ; jump
@@ -1847,7 +1847,7 @@ Music_Tone: ; e88e4
 ; e88f7
 
 MusicE7: ; e88f7
-; shrug
+; unused
 ; params: 1
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
@@ -1884,7 +1884,7 @@ MusicDE: ; e8906
 ; e891e
 
 MusicE8: ; e891e
-; shrug
+; unused
 ; params: 1
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
@@ -2106,7 +2106,7 @@ Music_Volume: ; e89d2
 
 ; e89e1
 
-Music_GlobalTempo: ; e89e1
+Music_TempoRelative: ; e89e1
 ; set global tempo to current channel tempo +- param
 ; params: 1 signed
 	call GetMusicByte
@@ -2304,7 +2304,7 @@ SetNoteDuration: ; e8a8d
 	ld a, [hl]
 	; multiply NoteLength by delay units
 	ld l, 0; just multiply
-	call MultiplySimple
+	call .Multiply
 	ld a, l ; % $100
 	; store Tempo in de
 	ld hl, Channel1Tempo - Channel1
@@ -2317,7 +2317,7 @@ SetNoteDuration: ; e8a8d
 	add hl, bc
 	ld l, [hl]
 	; multiply Tempo by last result (NoteLength * delay % $100)
-	call MultiplySimple
+	call .Multiply
 	; copy result to de
 	ld e, l
 	ld d, h
@@ -2333,7 +2333,7 @@ SetNoteDuration: ; e8a8d
 
 ; e8ab8
 
-MultiplySimple: ; e8ab8
+.Multiply: ; e8ab8
 ; multiplies a and de
 ; adds the result to l
 ; stores the result in hl
@@ -2363,31 +2363,31 @@ SetGlobalTempo: ; e8ac7
 	cp CHAN5
 	jr nc, .sfxchannels
 	ld bc, Channel1
-	call SetTempo
+	call Tempo
 	ld bc, Channel2
-	call SetTempo
+	call Tempo
 	ld bc, Channel3
-	call SetTempo
+	call Tempo
 	ld bc, Channel4
-	call SetTempo
+	call Tempo
 	jr .end
 
 .sfxchannels
 	ld bc, Channel5
-	call SetTempo
+	call Tempo
 	ld bc, Channel6
-	call SetTempo
+	call Tempo
 	ld bc, Channel7
-	call SetTempo
+	call Tempo
 	ld bc, Channel8
-	call SetTempo
+	call Tempo
 .end
 	pop bc ; restore current channel
 	ret
 
 ; e8b03
 
-SetTempo: ; e8b03
+Tempo: ; e8b03
 ; input:
 ; 	de: note length
 	; update Tempo

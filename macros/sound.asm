@@ -135,9 +135,9 @@ unknownmusic0xe8: macro
 	db \1 ; unknown
 	endm
 
-	enum globaltempo_cmd
-globaltempo: macro
-	db globaltempo_cmd
+	enum tempo_relative_cmd
+tempo_relative: macro
+	db tempo_relative_cmd
 	bigdw \1 ; value
 	endm
 

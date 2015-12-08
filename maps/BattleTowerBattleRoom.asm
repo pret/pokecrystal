@@ -24,7 +24,7 @@ Script_BattleRoom: ; 0x9f421
 	applymovement PLAYER, MovementData_BattleTowerBattleRoomPlayerWalksIn
 ; beat all 7 opponents in a row
 Script_BattleRoomLoop: ; 0x9f425
-	writebyte $2
+	writebyte BATTLETOWERBATTLEROOM_YOUNGSTER
 	special Function_LoadOpponentTrainerAndPokemonsWithOTSprite
 	appear BATTLETOWERBATTLEROOM_YOUNGSTER
 	warpsound
@@ -71,9 +71,9 @@ Script_DontBattleNextOpponent: ; 0x9f483
 	iffalse Script_DontSaveAndEndTheSession
 	writebyte BATTLETOWERACTION_SAVELEVELGROUP ; save level group
 	special BattleTowerAction
-	writebyte BATTLETOWERACTION_CHOOSEREWARD ; choose reward
+	writebyte BATTLETOWERACTION_SAVEOPTIONS ; choose reward
 	special BattleTowerAction
-	writebyte BATTLETOWERACTION_03 ; quicksave
+	writebyte BATTLETOWERACTION_SAVE_AND_QUIT ; quicksave
 	special BattleTowerAction
 	playsound SFX_SAVE
 	waitsfx

@@ -97,7 +97,7 @@ Script_ChoseChallenge: ; 0x9e40f
 	writetext Text_RightThisWayToYourBattleRoom
 	waitbutton
 	closetext
-	writebyte BATTLETOWERACTION_1E
+	writebyte BATTLETOWERACTION_CHOOSEREWARD
 	special BattleTowerAction
 	jump Script_WalkToBattleTowerElevator
 
@@ -124,7 +124,7 @@ Script_WalkToBattleTowerElevator:
 Script_GivePlayerHisPrize: ; 0x9e47a
 	writebyte BATTLETOWERACTION_1C
 	special BattleTowerAction
-	writebyte BATTLETOWERACTION_1B
+	writebyte BATTLETOWERACTION_GIVEREWARD
 	special BattleTowerAction
 	if_equal POTION, Script_YourPackIsStuffedFull
 	itemtotext $0, $1

@@ -175,7 +175,7 @@ SpecialsPointers:: ; c029
 	add_special SpecialBeastsCheck
 	add_special SpecialMonCheck
 	add_special Special_SetPlayerPalette
-	add_special Function170bd2
+	add_special ret_170bd2
 	add_special Mobile_SelectThreeMons
 	add_special Function1037eb
 	add_special Function10383c
