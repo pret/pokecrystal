@@ -1,30 +1,34 @@
 LoadWildMonData: ; 29ff8
 	call _GrassWildmonLookup
 	jr c, .copy
-	ld hl, wd25a
+	ld hl, wMornEncounterRate
 	xor a
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
 	jr .done_copy
+
 .copy
 	inc hl
 	inc hl
-	ld de, wd25a
-	ld bc, $3
+	ld de, wMornEncounterRate
+	ld bc, 3
 	call CopyBytes
 .done_copy
 	call _WaterWildmonLookup
-	ld a, $0
+	ld a, 0
 	jr nc, .no_copy
 	inc hl
 	inc hl
 	ld a, [hl]
 .no_copy
-	ld [wd25d], a
+	ld [wWaterEncounterRate], a
 	ret
 
-Function2a01f: ; 2a01f
+FindNest: ; 2a01f
+; Parameters:
+; e: 0 = Johto, 1 = Kanto
+; wNamedObjectIndexBuffer: species
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	xor a
@@ -34,25 +38,24 @@ Function2a01f: ; 2a01f
 	jr nz, .kanto
 	decoord 0, 0
 	ld hl, JohtoGrassWildMons
-	call Function2a052
+	call .FindGrass
 	ld hl, JohtoWaterWildMons
-	call Function2a06e
-	call Function2a0b7
-	call Function2a0cf
+	call .FindWater
+	call .RoamMon1
+	call .RoamMon2
 	ret
 
 .kanto
 	decoord 0, 0
 	ld hl, KantoGrassWildMons
-	call Function2a052
+	call .FindGrass
 	ld hl, KantoWaterWildMons
-	jp Function2a06e
+	jp .FindWater
 ; 2a052
 
-Function2a052: ; 2a052
-.loop
+.FindGrass: ; 2a052
 	ld a, [hl]
-	cp $ff
+	cp -1
 	ret z
 	push hl
 	ld a, [hli]
@@ -62,23 +65,22 @@ Function2a052: ; 2a052
 rept 3
 	inc hl
 endr
-	ld a, $15
-	call Function2a088
-	jr nc, .next
+	ld a, NUM_WILDMONS_PER_AREA_TIME_OF_DAY * 3
+	call .SearchMapForMon
+	jr nc, .next_grass
 	ld [de], a
 	inc de
 
-.next
+.next_grass
 	pop hl
-	ld bc, $2f
+	ld bc, WILDMON_GRASS_STRUCTURE_LENGTH
 	add hl, bc
-	jr .loop
+	jr .FindGrass
 ; 2a06e
 
-Function2a06e: ; 2a06e
-.loop
+.FindWater: ; 2a06e
 	ld a, [hl]
-	cp $ff
+	cp -1
 	ret z
 	push hl
 	ld a, [hli]
@@ -86,24 +88,24 @@ Function2a06e: ; 2a06e
 	ld a, [hli]
 	ld c, a
 	inc hl
-	ld a, $3
-	call Function2a088
-	jr nc, .next
+	ld a, 3
+	call .SearchMapForMon
+	jr nc, .next_water
 	ld [de], a
 	inc de
 
-.next
+.next_water
 	pop hl
-	ld bc, 9
+	ld bc, 3 * 3
 	add hl, bc
-	jr .loop
+	jr .FindWater
 ; 2a088
 
-Function2a088: ; 2a088
+.SearchMapForMon: ; 2a088
 	inc hl
-.loop
+.ScanMapLoop
 	push af
-	ld a, [wd265]
+	ld a, [wNamedObjectIndexBuffer]
 	cp [hl]
 	jr z, .found
 rept 2
@@ -111,68 +113,68 @@ rept 2
 endr
 	pop af
 	dec a
-	jr nz, .loop
+	jr nz, .ScanMapLoop
 	and a
 	ret
 
 .found
 	pop af
-	jp Function2a09c
+	jp .AppendNest
 ; 2a09c
 
-Function2a09c: ; 2a09c
+.AppendNest: ; 2a09c
 	push de
 	call GetWorldMapLocation
 	ld c, a
 	hlcoord 0, 0
 	ld de, SCREEN_WIDTH * SCREEN_HEIGHT
-.loop
+.AppendNestLoop
 	ld a, [hli]
 	cp c
-	jr z, .found
+	jr z, .found_nest
 	dec de
 	ld a, e
 	or d
-	jr nz, .loop
+	jr nz, .AppendNestLoop
 	ld a, c
 	pop de
 	scf
 	ret
 
-.found
+.found_nest
 	pop de
 	and a
 	ret
 ; 2a0b7
 
-Function2a0b7: ; 2a0b7
+.RoamMon1: ; 2a0b7
 	ld a, [wRoamMon1Species]
 	ld b, a
-	ld a, [wd265]
+	ld a, [wNamedObjectIndexBuffer]
 	cp b
 	ret nz
 	ld a, [wRoamMon1MapGroup]
 	ld b, a
 	ld a, [wRoamMon1MapNumber]
 	ld c, a
-	call Function2a09c
+	call .AppendNest
 	ret nc
 	ld [de], a
 	inc de
 	ret
 ; 2a0cf
 
-Function2a0cf: ; 2a0cf
+.RoamMon2: ; 2a0cf
 	ld a, [wRoamMon2Species]
 	ld b, a
-	ld a, [wd265]
+	ld a, [wNamedObjectIndexBuffer]
 	cp b
 	ret nz
 	ld a, [wRoamMon2MapGroup]
 	ld b, a
 	ld a, [wRoamMon2MapNumber]
 	ld c, a
-	call Function2a09c
+	call .AppendNest
 	ret nc
 	ld [de], a
 	inc de
@@ -209,7 +211,7 @@ TryWildEncounter:: ; 2a0e7
 ; 2a111
 
 GetMapEncounterRate: ; 2a111
-	ld hl, wd25a
+	ld hl, wMornEncounterRate
 	call CheckOnWater
 	ld a, 3
 	jr z, .ok
@@ -446,10 +448,10 @@ _SwarmWildmonCheck
 	bit 2, [hl]
 	pop hl
 	jr z, .CheckYanma
-	ld a, [wdfcc]
+	ld a, [wDunsparceMapGroup]
 	cp d
 	jr nz, .CheckYanma
-	ld a, [wdfcd]
+	ld a, [wDunsparceMapNumber]
 	cp e
 	jr nz, .CheckYanma
 	call LookUpWildmonsForMapDE
@@ -463,10 +465,10 @@ _SwarmWildmonCheck
 	bit 3, [hl]
 	pop hl
 	jr z, _NoSwarmWildmon
-	ld a, [wdc5a]
+	ld a, [wYanmaMapGroup]
 	cp d
 	jr nz, _NoSwarmWildmon
-	ld a, [wdc5b]
+	ld a, [wYanmaMapNumber]
 	cp e
 	jr nz, _NoSwarmWildmon
 	call LookUpWildmonsForMapDE
@@ -702,11 +704,11 @@ UpdateRoamMons: ; 2a30d
 rept 2
 	add hl, bc
 endr
-	ld a, [wdfe7]
+	ld a, [wRoamMons_LastMapGroup]
 	cp [hl]
 	jr nz, .done
 	inc hl
-	ld a, [wdfe6]
+	ld a, [wRoamMons_LastMapNumber]
 	cp [hl]
 	jr z, .update_loop
 	dec hl
@@ -787,14 +789,14 @@ JumpRoamMon: ; 2a3cd
 ; 2a3f6
 
 _BackUpMapIndices: ; 2a3f6
-	ld a, [wdfe4]
-	ld [wdfe6], a
-	ld a, [wdfe5]
-	ld [wdfe7], a
+	ld a, [wRoamMons_CurrentMapNumber]
+	ld [wRoamMons_LastMapNumber], a
+	ld a, [wRoamMons_CurrentMapGroup]
+	ld [wRoamMons_LastMapGroup], a
 	ld a, [MapNumber]
-	ld [wdfe4], a
+	ld [wRoamMons_CurrentMapNumber], a
 	ld a, [MapGroup]
-	ld [wdfe5], a
+	ld [wRoamMons_CurrentMapGroup], a
 	ret
 ; 2a40f
 
@@ -892,7 +894,7 @@ endr
 	ld de, StringBuffer1
 	call CopyName1
 	ld a, c
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, UnknownText_0x2a51a
 	call PrintText
@@ -945,7 +947,7 @@ rept 2
 endr
 	inc hl
 	ld a, [hl]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld de, StringBuffer4
@@ -1029,7 +1031,7 @@ endr
 	inc hl ; species
 	ld a, BANK(Trainers)
 	call GetFarByte
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld de, StringBuffer4

@@ -125,7 +125,7 @@ UnknownScript_0x19c0ae:
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x19c104
 	winlosstext UnknownText_0x19c57f, UnknownText_0x19c5e6
-	setlasttalked $3
+	setlasttalked CHERRYGROVECITY_SILVER
 	loadtrainer RIVAL1, RIVAL1_3
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
@@ -136,7 +136,7 @@ UnknownScript_0x19c0ae:
 
 UnknownScript_0x19c0ee:
 	winlosstext UnknownText_0x19c57f, UnknownText_0x19c5e6
-	setlasttalked $3
+	setlasttalked CHERRYGROVECITY_SILVER
 	loadtrainer RIVAL1, RIVAL1_1
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
@@ -147,7 +147,7 @@ UnknownScript_0x19c0ee:
 
 UnknownScript_0x19c104:
 	winlosstext UnknownText_0x19c57f, UnknownText_0x19c5e6
-	setlasttalked $3
+	setlasttalked CHERRYGROVECITY_SILVER
 	loadtrainer RIVAL1, RIVAL1_2
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle

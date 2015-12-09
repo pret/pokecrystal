@@ -1756,7 +1756,7 @@ Functione1190: ; e1190
 	ld a, $e4
 	call DmgToCgbBGPals
 	ld a, $24
-	call Functioncf8
+	call DmgToCgbObjPal0
 	xor a
 	ld [wd0ec], a
 	call DelayFrame

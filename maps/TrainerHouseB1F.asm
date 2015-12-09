@@ -7,76 +7,76 @@ TrainerHouseB1F_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x9b38a, 0
+	dw Trigger0, 0
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x9b38a:
+Trigger0:
 	end
 
-UnknownScript_0x9b38b:
+TrainerHouseReceptionistScript:
 	spriteface PLAYER, UP
 	loadfont
 	checkflag ENGINE_FOUGHT_IN_TRAINER_HALL_TODAY
-	iftrue UnknownScript_0x9b3f7
-	writetext UnknownText_0x9b420
+	iftrue .FoughtTooManyTimes
+	writetext TrainerHouseB1FIntroText
 	buttonsound
 	special SpecialTrainerHouse
-	iffalse UnknownScript_0x9b3a6
+	iffalse .GetCal3Name
 	trainertotext CAL, CAL2, $0
-	jump UnknownScript_0x9b3aa
+	jump .GotName
 
-UnknownScript_0x9b3a6:
+.GetCal3Name:
 	trainertotext CAL, CAL3, $0
-UnknownScript_0x9b3aa:
-	writetext UnknownText_0x9b46a
+.GotName:
+	writetext TrainerHouseB1FYourOpponentIsText
 	buttonsound
-	writetext UnknownText_0x9b487
+	writetext TrainerHouseB1FAskWantToBattleText
 	yesorno
-	iffalse UnknownScript_0x9b3ed
+	iffalse .Declined
 	setflag ENGINE_FOUGHT_IN_TRAINER_HALL_TODAY
-	writetext UnknownText_0x9b4a2
+	writetext TrainerHouseB1FGoRightInText
 	waitbutton
 	closetext
-	applymovement PLAYER, MovementData_0x9b401
+	applymovement PLAYER, Movement_EnterTrainerHouseBattleRoom
 	loadfont
-	writetext UnknownText_0x9b587
+	writetext TrainerHouseB1FCalBeforeText
 	waitbutton
 	closetext
 	special SpecialTrainerHouse
-	iffalse UnknownScript_0x9b3dc
-	winlosstext UnknownText_0x9b578, 0
-	setlasttalked $3
+	iffalse .NoSpecialBattle
+	winlosstext TrainerHouseB1FCalBeatenText, 0
+	setlasttalked TRAINERHOUSEB1F_CHRIS
 	loadtrainer CAL, CAL2
 	startbattle
 	returnafterbattle
-	iffalse UnknownScript_0x9b3e8
-UnknownScript_0x9b3dc:
-	winlosstext UnknownText_0x9b578, 0
-	setlasttalked $3
+	iffalse .End
+.NoSpecialBattle:
+	winlosstext TrainerHouseB1FCalBeatenText, 0
+	setlasttalked TRAINERHOUSEB1F_CHRIS
 	loadtrainer CAL, CAL3
 	startbattle
 	returnafterbattle
-UnknownScript_0x9b3e8:
-	applymovement PLAYER, MovementData_0x9b40f
+.End:
+	applymovement PLAYER, Movement_ExitTrainerHouseBattleRoom
 	end
 
-UnknownScript_0x9b3ed:
-	writetext UnknownText_0x9b4d6
+.Declined:
+	writetext TrainerHouseB1FPleaseComeAgainText
 	waitbutton
 	closetext
-	applymovement PLAYER, MovementData_0x9b41d
+	applymovement PLAYER, Movement_TrainerHouseTurnBack
 	end
 
-UnknownScript_0x9b3f7:
-	writetext UnknownText_0x9b51d
+.FoughtTooManyTimes:
+	writetext TrainerHouseB1FSecondChallengeDeniedText
 	waitbutton
 	closetext
-	applymovement PLAYER, MovementData_0x9b41d
+	applymovement PLAYER, Movement_TrainerHouseTurnBack
 	end
 
-MovementData_0x9b401:
+Movement_EnterTrainerHouseBattleRoom:
 	step_left
 	step_left
 	step_left
@@ -92,7 +92,7 @@ MovementData_0x9b401:
 	turn_head_right
 	step_end
 
-MovementData_0x9b40f:
+Movement_ExitTrainerHouseBattleRoom:
 	step_up
 	step_up
 	step_up
@@ -108,12 +108,12 @@ MovementData_0x9b40f:
 	step_right
 	step_end
 
-MovementData_0x9b41d:
+Movement_TrainerHouseTurnBack:
 	step_right
 	turn_head_left
 	step_end
 
-UnknownText_0x9b420:
+TrainerHouseB1FIntroText:
 	text "Hi. Welcome to our"
 	line "TRAINING HALL."
 
@@ -122,18 +122,18 @@ UnknownText_0x9b420:
 	cont "day."
 	done
 
-UnknownText_0x9b46a:
+TrainerHouseB1FYourOpponentIsText:
 	text_from_ram StringBuffer3
 	text " is your"
 	line "opponent today."
 	done
 
-UnknownText_0x9b487:
+TrainerHouseB1FAskWantToBattleText:
 	text "Would you like to"
 	line "battle?"
 	done
 
-UnknownText_0x9b4a2:
+TrainerHouseB1FGoRightInText:
 	text "Please go right"
 	line "through."
 
@@ -141,7 +141,7 @@ UnknownText_0x9b4a2:
 	line "right away."
 	done
 
-UnknownText_0x9b4d6:
+TrainerHouseB1FPleaseComeAgainText:
 	text "Sorry. Only those"
 	line "trainers who will"
 
@@ -149,7 +149,7 @@ UnknownText_0x9b4d6:
 	line "allowed to go in."
 	done
 
-UnknownText_0x9b51d:
+TrainerHouseB1FSecondChallengeDeniedText:
 	text "I'm sorry."
 	line "This would be your"
 
@@ -160,12 +160,12 @@ UnknownText_0x9b51d:
 	line "a day."
 	done
 
-UnknownText_0x9b578:
+TrainerHouseB1FCalBeatenText:
 	text "I lost…"
 	line "Darn…"
 	done
 
-UnknownText_0x9b587:
+TrainerHouseB1FCalBeforeText:
 	text "I traveled out"
 	line "here just so I"
 	cont "could battle you."
@@ -181,7 +181,7 @@ TrainerHouseB1F_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 0, $3, $7, $0, UnknownScript_0x9b38b, $0, $0
+	xy_trigger 0, $3, $7, $0, TrainerHouseReceptionistScript, $0, $0
 
 .Signposts:
 	db 0

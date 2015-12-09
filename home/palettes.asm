@@ -35,10 +35,10 @@ ForceUpdateCGBPals:: ; c37
 	ld c, rBGPD % $100
 	ld b, 4 ; NUM_PALS / 2
 .bgp
-	rept $10
+rept 2 palettes
 	ld a, [hli]
 	ld [$ff00+c], a
-	endr
+endr
 
 	dec b
 	jr nz, .bgp
@@ -48,13 +48,13 @@ ForceUpdateCGBPals:: ; c37
 ; copy 8 pals to obpd
 	ld a, %10000000 ; auto increment, index 0
 	ld [rOBPI], a
-	ld c, rOBPD - rJOYP
+	ld c, rOBPD % $100
 	ld b, 4 ; NUM_PALS / 2
 .obp
-	rept $10
+rept 2 palettes
 	ld a, [hli]
 	ld [$ff00+c], a
-	endr
+endr
 
 	dec b
 	jr nz, .obp
@@ -163,14 +163,14 @@ DmgToCgbObjPals:: ; ccb
 ; cf8
 
 
-Functioncf8:: ; cf8
+DmgToCgbObjPal0:: ; cf8
 	ld [rOBP0], a
 	push af
 
-; Don't need to be here if CGB
+; Don't need to be here if not CGB
 	ld a, [hCGB]
 	and a
-	jr z, .done
+	jr z, .dmg
 
 	push hl
 	push de
@@ -185,9 +185,9 @@ Functioncf8:: ; cf8
 	ld de, UnknOBPals
 	ld a, [rOBP0]
 	ld b, a
-	ld c, $1
+	ld c, 1
 	call CopyPals
-	ld a, $1
+	ld a, 1
 	ld [hCGBPalUpdate], a
 
 	pop af
@@ -197,39 +197,45 @@ Functioncf8:: ; cf8
 	pop de
 	pop hl
 
-.done
+.dmg
 	pop af
 	ret
 ; d24
 
-Functiond24:: ; d24
+DmgToCgbObjPal1:: ; d24
 	ld [rOBP1], a
 	push af
+
 	ld a, [hCGB]
 	and a
-	jr z, .asm_d4e
+	jr z, .dmg
+
 	push hl
 	push de
 	push bc
+
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, 5 ; gfx
 	ld [rSVBK], a
-	ld hl, OBPals + 8
-	ld de, UnknOBPals + 8
+
+	ld hl, OBPals + 1 palettes
+	ld de, UnknOBPals + 1 palettes
 	ld a, [rOBP1]
 	ld b, a
-	ld c, $1
+	ld c, 1
 	call CopyPals
-	ld a, $1
+	ld a, 1
 	ld [hCGBPalUpdate], a
+
 	pop af
 	ld [rSVBK], a
+
 	pop bc
 	pop de
 	pop hl
 
-.asm_d4e
+.dmg
 	pop af
 	ret
 ; d50
@@ -274,7 +280,7 @@ CopyPals:: ; d50
 	jr nz, .loop
 	
 ; de += 8 (next pal)
-	ld a, 8 ; NUM_PAL_COLORS * 2 ; bytes per pal
+	ld a, 1 palettes ; NUM_PAL_COLORS * 2 ; bytes per pal
 	add e
 	jr nc, .ok
 	inc d
@@ -308,7 +314,7 @@ ClearVBank1:: ; d79
 ; d90
 
 
-Functiond90:: ; d90
+ret_d90:: ; d90
 	ret
 ; d91
 

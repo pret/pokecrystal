@@ -11,19 +11,19 @@ TeamRocketBaseB1F_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x6c65a, 0
+	dw .Trigger1, 0
 
 .MapCallbacks:
 	db 1
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x6c65b
+	dbw 2, .Callback1
 
-UnknownScript_0x6c65a:
+.Trigger1:
 	end
 
-UnknownScript_0x6c65b:
+.Callback1:
 	disappear TEAMROCKETBASEB1F_ROCKET1
 	return
 
@@ -242,7 +242,7 @@ TrainerCameraGrunt1:
 	waitbutton
 	closetext
 	winlosstext CameraGrunt1BeatenText, 0
-	setlasttalked $2
+	setlasttalked TEAMROCKETBASEB1F_ROCKET1
 	loadtrainer GRUNTM, 20
 	startbattle
 	disappear TEAMROCKETBASEB1F_ROCKET1
@@ -255,7 +255,7 @@ TrainerCameraGrunt2:
 	waitbutton
 	closetext
 	winlosstext CameraGrunt2BeatenText, 0
-	setlasttalked $2
+	setlasttalked TEAMROCKETBASEB1F_ROCKET1
 	loadtrainer GRUNTM, 21
 	startbattle
 	disappear TEAMROCKETBASEB1F_ROCKET1
@@ -456,7 +456,7 @@ VoltorbExplodingTrap:
 	special FadeOutPalettes
 	cry VOLTORB
 	special FadeInPalettes
-	setlasttalked $ff
+	setlasttalked -1
 	writecode VAR_BATTLETYPE, BATTLETYPE_TRAP
 	loadwildmon VOLTORB, 23
 	startbattle
@@ -466,7 +466,7 @@ GeodudeExplodingTrap:
 	special FadeOutPalettes
 	cry GEODUDE
 	special FadeInPalettes
-	setlasttalked $ff
+	setlasttalked -1
 	writecode VAR_BATTLETYPE, BATTLETYPE_TRAP
 	loadwildmon GEODUDE, 21
 	startbattle
@@ -476,7 +476,7 @@ KoffingExplodingTrap:
 	special FadeOutPalettes
 	cry KOFFING
 	special FadeInPalettes
-	setlasttalked $ff
+	setlasttalked -1
 	writecode VAR_BATTLETYPE, BATTLETYPE_TRAP
 	loadwildmon KOFFING, 21
 	startbattle

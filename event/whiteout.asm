@@ -20,7 +20,7 @@ Script_Whiteout: ; 0x124ce
 	farscall Script_AbortBugContest
 	special WarpToSpawnPoint
 	newloadmap MAPSETUP_WARP
-	resetfuncs
+	end_all
 
 .bug_contest
 	jumpstd bugcontestresultswarp

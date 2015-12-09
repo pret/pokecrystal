@@ -8,7 +8,7 @@ const_value set 2
 	const AZALEATOWN_SLOWPOKE3
 	const AZALEATOWN_SLOWPOKE4
 	const AZALEATOWN_FRUIT_TREE
-	const AZALEATOWN_AZALEA_ROCKET2
+	const AZALEATOWN_SILVER
 	const AZALEATOWN_AZALEA_ROCKET3
 	const AZALEATOWN_KURT_OUTSIDE
 
@@ -41,13 +41,13 @@ AzaleaTown_MapScriptHeader:
 	return
 
 UnknownScript_0x198018:
-	moveperson AZALEATOWN_AZALEA_ROCKET2, $b, $b
+	moveperson AZALEATOWN_SILVER, $b, $b
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_FadeOutMusic
 	pause 15
-	appear AZALEATOWN_AZALEA_ROCKET2
-	applymovement AZALEATOWN_AZALEA_ROCKET2, MovementData_0x198134
+	appear AZALEATOWN_SILVER
+	applymovement AZALEATOWN_SILVER, MovementData_0x198134
 	spriteface PLAYER, DOWN
 	jump UnknownScript_0x198049
 
@@ -56,8 +56,8 @@ UnknownScript_0x198034:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_FadeOutMusic
 	pause 15
-	appear AZALEATOWN_AZALEA_ROCKET2
-	applymovement AZALEATOWN_AZALEA_ROCKET2, MovementData_0x19813c
+	appear AZALEATOWN_SILVER
+	applymovement AZALEATOWN_SILVER, MovementData_0x19813c
 	spriteface PLAYER, UP
 UnknownScript_0x198049:
 	playmusic MUSIC_RIVAL_ENCOUNTER
@@ -71,7 +71,7 @@ UnknownScript_0x198049:
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x198081
 	winlosstext UnknownText_0x1981e6, UnknownText_0x19835b
-	setlasttalked $b
+	setlasttalked AZALEATOWN_SILVER
 	loadtrainer RIVAL1, RIVAL1_6
 	startbattle
 	reloadmapmusic
@@ -80,7 +80,7 @@ UnknownScript_0x198049:
 
 UnknownScript_0x198071:
 	winlosstext UnknownText_0x1981e6, UnknownText_0x19835b
-	setlasttalked $b
+	setlasttalked AZALEATOWN_SILVER
 	loadtrainer RIVAL1, RIVAL1_4
 	startbattle
 	reloadmapmusic
@@ -89,7 +89,7 @@ UnknownScript_0x198071:
 
 UnknownScript_0x198081:
 	winlosstext UnknownText_0x1981e6, UnknownText_0x19835b
-	setlasttalked $b
+	setlasttalked AZALEATOWN_SILVER
 	loadtrainer RIVAL1, RIVAL1_5
 	startbattle
 	reloadmapmusic
@@ -103,9 +103,9 @@ UnknownScript_0x198091:
 	waitbutton
 	closetext
 	spriteface PLAYER, LEFT
-	applymovement AZALEATOWN_AZALEA_ROCKET2, MovementData_0x198144
+	applymovement AZALEATOWN_SILVER, MovementData_0x198144
 	playsound SFX_EXIT_BUILDING
-	disappear AZALEATOWN_AZALEA_ROCKET2
+	disappear AZALEATOWN_SILVER
 	dotrigger $0
 	waitsfx
 	playmapmusic

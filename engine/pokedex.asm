@@ -339,7 +339,7 @@ Function40217: ; 40217 (10:4217)
 	ret
 
 Function40258: ; 40258 (10:4258)
-	ld de, Unknown_402e8
+	ld de, DexEntryPage_JoypadCoords
 	call Function4135a
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
@@ -355,7 +355,7 @@ Function40258: ; 40258 (10:4258)
 
 .a
 	ld a, [wc7d8]
-	ld hl, Jumptable_402f2
+	ld hl, DexEntryPage_Jumptable
 	call Pokedex_LoadPointer
 	jp [hl]
 
@@ -373,7 +373,7 @@ Function40258: ; 40258 (10:4258)
 	ret
 ; 40292 (10:4292)
 
-Function40292: ; 40292
+Pokedex_Page: ; 40292
 	ld a, [wPokedexStatus]
 	xor $1
 	ld [wPokedexStatus], a
@@ -410,7 +410,7 @@ Function402aa: ; 402aa (10:42aa)
 	ret
 ; 402e8 (10:42e8)
 
-Unknown_402e8: ; 402e8
+DexEntryPage_JoypadCoords: ; 402e8
 	db D_RIGHT | D_LEFT, 4
 	dwcoord 1, 17
 	dwcoord 6, 17
@@ -419,14 +419,14 @@ Unknown_402e8: ; 402e8
 
 ; 402f2
 
-Jumptable_402f2: ; 402f2
-	dw Function40292
-	dw Function402fa
-	dw Function40340
-	dw Function4034f
+DexEntryPage_Jumptable: ; 402f2
+	dw Pokedex_Page
+	dw .Area
+	dw .Cry
+	dw .Print
 ; 402fa
 
-Function402fa: ; 402fa
+.Area: ; 402fa
 	call Function41401
 	xor a
 	ld [hSCX], a
@@ -438,7 +438,7 @@ Function402fa: ; 402fa
 	call Pokedex_GetMonAtCursorPosition
 	ld a, [wDexCurrentLocation]
 	ld e, a
-	predef Function91d11
+	predef _Area
 	call Function41401
 	call DelayFrame
 	xor a
@@ -458,7 +458,7 @@ Function402fa: ; 402fa
 	ret
 ; 40340
 
-Function40340: ; 40340
+.Cry: ; 40340
 	call Pokedex_GetMonAtCursorPosition
 	ld a, [wd265]
 	call GetCryIndex
@@ -468,7 +468,7 @@ Function40340: ; 40340
 	ret
 ; 4034f
 
-Function4034f: ; 4034f
+.Print: ; 4034f
 	call Function41415
 	xor a
 	ld [hSCX], a
@@ -2393,7 +2393,7 @@ Function41415: ; 41415
 	ld a, $ff
 	call DmgToCgbBGPals
 	ld a, $ff
-	call Functioncf8
+	call DmgToCgbObjPal0
 	call DelayFrame
 	ret
 
@@ -2405,7 +2405,7 @@ Function41427: ; 41427
 	ld a, $e4
 	call DmgToCgbBGPals
 	ld a, $e0
-	call Functioncf8
+	call DmgToCgbObjPal0
 	ret
 ; 41432
 

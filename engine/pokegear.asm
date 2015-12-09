@@ -60,7 +60,7 @@ Function90bea: ; 90bea (24:4bea)
 	ld [hWX], a
 	call Function90c4e
 	callba ClearSpriteAnims
-	call Function90d32
+	call InitPokegearModeIndicatorArrow
 	ld a, 8
 	call SkipMusic
 	ld a, $e3
@@ -85,8 +85,8 @@ Function90bea: ; 90bea (24:4bea)
 	ld a, [hCGB]
 	and a
 	ret z
-	ld a, $e4
-	call Functioncf8
+	ld a, %11100100
+	call DmgToCgbObjPal0
 	ret
 
 Function90c4e: ; 90c4e
@@ -121,6 +121,7 @@ Function90c4e: ; 90c4e
 	ld l, e
 	ld a, b
 
+	; standing sprite
 	push af
 	ld de, VTiles0 tile $10
 	ld bc, 4 tiles
@@ -129,7 +130,8 @@ Function90c4e: ; 90c4e
 
 	pop hl
 
-	ld de, $c0
+	; walking sprite
+	ld de, 12 tiles
 	add hl, de
 	ld de, VTiles0 tile $14
 	ld bc, 4 tiles
@@ -148,11 +150,11 @@ FastShipGFX: ; 90cb2
 INCBIN "gfx/misc/fast_ship.2bpp"
 ; 90d32
 
-Function90d32: ; 90d32 (24:4d32)
+InitPokegearModeIndicatorArrow: ; 90d32 (24:4d32)
 	depixel 4, 2, 4, 0
 	ld a, SPRITE_ANIM_INDEX_0D
 	call _InitSpriteAnimStruct
-	ld hl, $3
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $0
 	ret
@@ -199,10 +201,10 @@ Function90d70: ; 90d70 (24:4d70)
 	call GetWorldMapLocation
 
 	cp FAST_SHIP
-	jr z, .asm_90d95
+	jr z, .FastShip
 
 	cp SPECIAL_MAP
-	jr nz, .asm_90d8e
+	jr nz, .LoadLandmark
 
 	ld a, [BackupMapGroup]
 	ld b, a
@@ -210,12 +212,12 @@ Function90d70: ; 90d70 (24:4d70)
 	ld c, a
 	call GetWorldMapLocation
 
-.asm_90d8e
+.LoadLandmark
 	ld [wc6d8], a
 	ld [wc6d7], a
 	ret
 
-.asm_90d95
+.FastShip
 	ld [wc6d8], a
 	ld a, NEW_BARK_TOWN
 	ld [wc6d7], a
@@ -670,7 +672,7 @@ Function9102f: ; 9102f (24:502f)
 
 Function9106a: ; 9106a
 	push af
-	ld de, 0
+	depixel 0, 0
 	ld b, SPRITE_ANIM_INDEX_0A
 	ld a, [PlayerGender]
 	bit 0, a
@@ -680,7 +682,7 @@ Function9106a: ; 9106a
 .asm_91079
 	ld a, b
 	call _InitSpriteAnimStruct
-	ld hl, $3
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $10
 	pop af
@@ -688,10 +690,10 @@ Function9106a: ; 9106a
 	push bc
 	callba GetLandmarkCoords
 	pop bc
-	ld hl, $4
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld [hl], e
-	ld hl, $5
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld [hl], d
 	ret
@@ -699,15 +701,15 @@ Function9106a: ; 9106a
 
 Function91098: ; 91098
 	push af
-	ld de, 0
+	depixel 0, 0
 	ld a, SPRITE_ANIM_INDEX_0D
 	call _InitSpriteAnimStruct
-	ld hl, $3
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $4
-	ld hl, $2
+	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld [hl], $0
+	ld [hl], SPRITE_ANIM_SEQ_00
 	pop af
 	push bc
 	call Function910d4
@@ -736,10 +738,10 @@ Function910d4: ; 910d4
 	ld e, a
 	callba GetLandmarkCoords
 	pop bc
-	ld hl, $4
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld [hl], e
-	ld hl, $5
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld [hl], d
 	ret
@@ -765,7 +767,7 @@ Function910f9: ; 910f9 (24:50f9)
 	depixel 4, 10, 4, 4
 	ld a, SPRITE_ANIM_INDEX_14
 	call _InitSpriteAnimStruct
-	ld hl, $3
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $8
 	call _UpdateRadioStation
@@ -1925,12 +1927,12 @@ PokegearMap: ; 91ae1
 	ld a, e
 	and a
 	jr nz, .kanto
-	call Function91ff2
+	call LoadTownMapGFX
 	call FillJohtoMap
 	ret
 
 .kanto
-	call Function91ff2
+	call LoadTownMapGFX
 	call FillKantoMap
 	ret
 ; 91af3
@@ -1946,13 +1948,13 @@ _FlyMap: ; 91af3
 	xor a
 	ld [hBGMapMode], a
 	callba ClearSpriteAnims
-	call Function91ff2
-	ld de, GFX_922e1
+	call LoadTownMapGFX
+	ld de, FlyMapLabelBorderGFX
 	ld hl, VTiles2 tile $30
-	lb bc, BANK(GFX_922e1), 6
+	lb bc, BANK(FlyMapLabelBorderGFX), 6
 	call Request1bpp
 	call FlyMap
-	call Function91c8f
+	call ret_91c8f
 	ld b, SCGB_02
 	call GetSGBLayout
 	call SetPalettes
@@ -2182,10 +2184,6 @@ Flypoints: ; 91c5e
 	const_def
 
 flypoint: MACRO
-; \1\@FLY   EQUS "FLY_\1"
-; \1\@SPAWN EQUS "SPAWN_\1"
-	; const \1\@FLY
-	; db \2, \1\@SPAWN
 	const FLY_\1
 	db \2, SPAWN_\1
 ENDM
@@ -2223,7 +2221,7 @@ KANTO_FLYPOINT EQU const_value
 	db -1
 ; 91c8f
 
-Function91c8f: ; 91c8f
+ret_91c8f: ; 91c8f
 	ret
 ; 91c90
 
@@ -2344,7 +2342,8 @@ FlyMap: ; 91c90
 	ret
 ; 91d11
 
-Function91d11: ; 91d11
+_Area: ; 91d11
+; e: Current landmark
 	ld a, [wd002]
 	push af
 	ld a, [wd003]
@@ -2357,25 +2356,24 @@ Function91d11: ; 91d11
 	ld a, $1
 	ld [hInMenu], a
 
-	ld de, GFX_922d1
+	ld de, PokedexNestIconGFX
 	ld hl, VTiles0 tile $7f
-	lb bc, BANK(GFX_922d1), 1
-	call Request2bpp ; actually 1bpp
-
-	call Function91ed0
-
-	ld hl, VTiles0 tile $78
-	ld c, $4
+	lb bc, BANK(PokedexNestIconGFX), 1
 	call Request2bpp
 
-	call Function91ff2
+	call .GetPlayerOrFastShipIcon
+	ld hl, VTiles0 tile $78
+	ld c, 4
+	call Request2bpp
+
+	call LoadTownMapGFX
 	call FillKantoMap
-	call Function91de9
+	call .PlaceString_MonsNest
 	call TownMapPals
 	hlbgcoord 0, 0, VBGMap1
 	call TownMapBGUpdate
 	call FillJohtoMap
-	call Function91de9
+	call .PlaceString_MonsNest
 	call TownMapPals
 	hlbgcoord 0, 0
 	call TownMapBGUpdate
@@ -2384,8 +2382,8 @@ Function91d11: ; 91d11
 	call SetPalettes
 	xor a
 	ld [hBGMapMode], a
-	xor a
-	call Function91e1e
+	xor a ; Johto
+	call .GetAndPlaceNest
 .loop
 	call JoyTextDelay
 	ld hl, hJoyPressed
@@ -2395,12 +2393,12 @@ Function91d11: ; 91d11
 	ld a, [hJoypadDown]
 	and SELECT
 	jr nz, .select
-	call Function91d9b
-	call Function91dcd
+	call .LeftRightInput
+	call .BlinkNestIcons
 	jr .next
 
 .select
-	call Function91e5a
+	call .HideNestsShowPlayer
 
 .next
 	call DelayFrame
@@ -2415,27 +2413,27 @@ Function91d11: ; 91d11
 	ret
 ; 91d9b
 
-Function91d9b: ; 91d9b
+.LeftRightInput: ; 91d9b
 	ld a, [hl]
-	and $20
-	jr nz, .asm_91da6
+	and D_LEFT
+	jr nz, .left
 	ld a, [hl]
-	and $10
-	jr nz, .asm_91db7
+	and D_RIGHT
+	jr nz, .right
 	ret
 
-.asm_91da6
+.left
 	ld a, [hWY]
 	cp $90
 	ret z
 	call ClearSprites
 	ld a, $90
 	ld [hWY], a
-	xor a
-	call Function91e1e
+	xor a ; Johto
+	call .GetAndPlaceNest
 	ret
 
-.asm_91db7
+.right
 	ld a, [StatusFlags]
 	bit 6, a ; hall of fame
 	ret z
@@ -2445,39 +2443,39 @@ Function91d9b: ; 91d9b
 	call ClearSprites
 	xor a
 	ld [hWY], a
-	ld a, $1
-	call Function91e1e
+	ld a, 1 ; Kanto
+	call .GetAndPlaceNest
 	ret
 ; 91dcd
 
-Function91dcd: ; 91dcd
+.BlinkNestIcons: ; 91dcd
 	ld a, [hVBlankCounter]
 	ld e, a
 	and $f
 	ret nz
 	ld a, e
 	and $10
-	jr nz, .asm_91ddc
+	jr nz, .copy_sprites
 	call ClearSprites
 	ret
 
-.asm_91ddc
+.copy_sprites
 	hlcoord 0, 0
 	ld de, Sprites
-	ld bc, $a0
+	ld bc, SpritesEnd - Sprites
 	call CopyBytes
 	ret
 ; 91de9
 
-Function91de9: ; 91de9
+.PlaceString_MonsNest: ; 91de9
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH
-	ld a, $7f
+	ld a, " "
 	call ByteFill
 	hlcoord 0, 1
 	ld a, $6
 	ld [hli], a
-	ld bc, SCREEN_HEIGHT
+	ld bc, SCREEN_WIDTH - 2
 	ld a, $7
 	call ByteFill
 	ld [hl], $17
@@ -2486,54 +2484,56 @@ Function91de9: ; 91de9
 	call PlaceString
 	ld h, b
 	ld l, c
-	ld de, String_91e16
+	ld de, .String_SNest
 	call PlaceString
 	ret
 ; 91e16
 
-String_91e16:
+.String_SNest:
 	db "'S NEST@"
 ; 91e1e
 
-Function91e1e: ; 91e1e
+.GetAndPlaceNest: ; 91e1e
 	ld [wd003], a
 	ld e, a
-	callba Function2a01f
+	callba FindNest ; load nest landmarks into TileMap[0,0]
 	decoord 0, 0
 	ld hl, Sprites
-.asm_91e2e
+.nestloop
 	ld a, [de]
 	and a
-	jr z, .asm_91e4d
+	jr z, .done_nest
 	push de
 	ld e, a
 	push hl
 	callba GetLandmarkCoords
 	pop hl
+	; load into OAM
 	ld a, d
-	sub $4
+	sub 4
 	ld [hli], a
 	ld a, e
-	sub $4
+	sub 4
 	ld [hli], a
-	ld a, $7f
+	ld a, $7f ; nest icon in this context
 	ld [hli], a
 	xor a
 	ld [hli], a
+	; next
 	pop de
 	inc de
-	jr .asm_91e2e
+	jr .nestloop
 
-.asm_91e4d
+.done_nest
 	ld hl, Sprites
 	decoord 0, 0
-	ld bc, $a0
+	ld bc, SpritesEnd - Sprites
 	call CopyBytes
 	ret
 ; 91e5a
 
-Function91e5a: ; 91e5a
-	call Function91ea9
+.HideNestsShowPlayer: ; 91e5a
+	call .CheckPlayerLocation
 	ret c
 
 	ld a, [wd002]
@@ -2541,12 +2541,12 @@ Function91e5a: ; 91e5a
 	callba GetLandmarkCoords
 	ld c, e
 	ld b, d
-	ld de, Unknown_91e9c
+	ld de, .PlayerOAM
 	ld hl, Sprites
-.asm_91e70
+.ShowPlayerLoop
 	ld a, [de]
 	cp $80
-	jr z, .asm_91e91
+	jr z, .copy
 
 	add b
 	ld [hli], a
@@ -2558,24 +2558,24 @@ Function91e5a: ; 91e5a
 	inc de
 
 	ld a, [de]
-	add $78
+	add $78 ; where the player's sprite is loaded
 	ld [hli], a
 	inc de
 
 	push bc
-	ld c, 0
+	ld c, 0 ; RED
 	ld a, [PlayerGender]
 	bit 0, a
-	jr z, .asm_91e8c
-	inc c
-.asm_91e8c
+	jr z, .got_gender
+	inc c   ; BLUE
+.got_gender
 	ld a, c
 	ld [hli], a
 	pop bc
 
-	jr .asm_91e70
+	jr .ShowPlayerLoop
 
-.asm_91e91
+.copy
 	ld hl, Sprites + $10
 	ld bc, SpritesEnd - (Sprites + $10)
 	xor a
@@ -2583,15 +2583,18 @@ Function91e5a: ; 91e5a
 	ret
 ; 91e9c
 
-Unknown_91e9c: ; 91e9c
-	db -8, -8,  0
-	db -8,  0,  1
-	db  0, -8,  2
-	db  0,  0,  3
+.PlayerOAM: ; 91e9c
+	db -1 * 8, -1 * 8,  0 ; top left
+	db -1 * 8,  0 * 8,  1 ; top right
+	db  0 * 8, -1 * 8,  2 ; bottom left
+	db  0 * 8,  0 * 8,  3 ; bottom right
 	db $80 ; terminator
 ; 91ea9
 
-Function91ea9: ; 91ea9
+.CheckPlayerLocation: ; 91ea9
+; Don't show the player's sprite if you're
+; not in the same region as what's currently
+; on the screen.
 	ld a, [wd002]
 	cp FAST_SHIP
 	jr z, .johto
@@ -2622,14 +2625,14 @@ Function91ea9: ; 91ea9
 	ret
 ; 91ed0
 
-Function91ed0: ; 91ed0
+.GetPlayerOrFastShipIcon: ; 91ed0
 	ld a, [wd002]
 	cp FAST_SHIP
-	jr z, .asm_91ede
+	jr z, .FastShip
 	callba GetPlayerIcon
 	ret
 
-.asm_91ede
+.FastShip
 	ld de, FastShipGFX
 	ld b, BANK(FastShipGFX)
 	ret
@@ -2679,7 +2682,7 @@ FillTownMap: ; 91f07
 	hlcoord 0, 0
 .loop
 	ld a, [de]
-	cp $ff
+	cp -1
 	ret z
 	ld a, [de]
 	ld [hli], a
@@ -2692,7 +2695,7 @@ TownMapPals: ; 91f13
 
 	hlcoord 0, 0
 	decoord 0, 0, AttrMap
-	ld bc, 360
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 .loop
 ; Current tile
 	ld a, [hli]
@@ -2744,10 +2747,12 @@ TownMapPals: ; 91f13
 	ret
 
 TownMapPalMap:
-	db $11, $21, $22, $00, $11, $13, $54, $54, $11, $21, $22, $00
-	db $11, $10, $01, $00, $11, $21, $22, $00, $00, $00, $00, $00
-	db $00, $00, $44, $04, $00, $00, $00, $00, $33, $33, $33, $33
-	db $33, $33, $33, $03, $33, $33, $33, $33, $00, $00, $00, $00
+	dn 1, 1, 2, 1, 2, 2, 0, 0, 1, 1, 1, 3, 5, 4, 5, 4
+	dn 1, 1, 2, 1, 2, 2, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0
+	dn 1, 1, 2, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	dn 0, 0, 0, 0, 4, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0
+	dn 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 3
+	dn 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0
 ; 91f7b
 
 TownMapMon: ; 91f7b
@@ -2767,16 +2772,16 @@ TownMapMon: ; 91f7b
 	callba GetSpeciesIcon
 
 ; Animation/palette
-	ld de, 0
-	ld a, $0
+	depixel 0, 0
+	ld a, SPRITE_ANIM_INDEX_00
 	call _InitSpriteAnimStruct
 
-	ld hl, 3
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
-	ld [hl], 8
-	ld hl, 2
+	ld [hl], $8
+	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld [hl], 0
+	ld [hl], SPRITE_ANIM_SEQ_00
 	ret
 ; 91fa6
 
@@ -2802,17 +2807,17 @@ TownMapPlayerIcon: ; 91fa6
 	call Request2bpp
 
 ; Animation/palette
-	ld de, 0
-	ld b, $0a ; Male
+	depixel 0, 0
+	ld b, SPRITE_ANIM_INDEX_0A ; Male
 	ld a, [PlayerGender]
 	bit 0, a
-	jr z, .asm_91fd3
-	ld b, $1e ; Female
-.asm_91fd3
+	jr z, .got_gender
+	ld b, SPRITE_ANIM_INDEX_1E ; Female
+.got_gender
 	ld a, b
 	call _InitSpriteAnimStruct
 
-	ld hl, $3
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $10
 
@@ -2822,16 +2827,16 @@ TownMapPlayerIcon: ; 91fa6
 	callba GetLandmarkCoords
 	pop bc
 
-	ld hl, 4
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld [hl], e
-	ld hl, 5
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld [hl], d
 	ret
 ; 0x91ff2
 
-Function91ff2: ; 91ff2
+LoadTownMapGFX: ; 91ff2
 	ld hl, TownMapGFX
 	ld de, VTiles2
 	lb bc, BANK(TownMapGFX), $30
@@ -2848,14 +2853,14 @@ KantoMap: ; 92168
 INCBIN "gfx/misc/kanto.bin"
 ; 922d1
 
+PokedexNestIconGFX: ; 922d1
+INCBIN "gfx/pokegear/dexmap_nest_icon.2bpp"
 
-GFX_922d1: ; 922d1
-INCBIN "gfx/unknown/0922d1.2bpp"
-GFX_922e1: ; 922e1
-INCBIN "gfx/unknown/0922e1.2bpp"
-GFX_92301: ; 92301
-INCBIN "gfx/unknown/092301.2bpp"
-Function92311: ; unreferenced
+FlyMapLabelBorderGFX: ; 922e1
+INCBIN "gfx/pokegear/flymap_label_border.2bpp"
+
+Function92311: ; 92311
+; unreferenced
 	xor a
 	ld [wd002], a
 	call ClearBGPalettes
@@ -2868,10 +2873,10 @@ Function92311: ; unreferenced
 	xor a
 	ld [hBGMapMode], a
 	callba ClearSpriteAnims
-	call Function91ff2
-	ld de, GFX_922e1
+	call LoadTownMapGFX
+	ld de, FlyMapLabelBorderGFX
 	ld hl, VTiles2 tile $30
-	lb bc, BANK(GFX_922e1), 6
+	lb bc, BANK(FlyMapLabelBorderGFX), 6
 	call Request1bpp
 	call FillKantoMap
 	call TownMapBubble
@@ -2900,7 +2905,7 @@ Function92311: ; unreferenced
 	ld a, [hl]
 	and A_BUTTON
 	jr nz, .pressedA
-	call Function923b8
+	call .HandleDPad
 	call GetMapCursorCoordinates
 	callba PlaySpriteAnimations
 	call DelayFrame
@@ -2935,36 +2940,36 @@ Function92311: ; unreferenced
 	ret
 ; 923b8
 
-Function923b8: ; 923b8
+.HandleDPad: ; 923b8
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_DOWN | D_RIGHT
-	jr nz, .asm_923c6
+	jr nz, .down_right
 	ld a, [hl]
 	and D_UP | D_LEFT
-	jr nz, .asm_923d3
+	jr nz, .up_left
 	ret
 
-.asm_923c6
+.down_right
 	ld hl, wd002
 	ld a, [hl]
 	cp FLY_INDIGO
-	jr c, .asm_923d0
+	jr c, .okay_dr
 	ld [hl], -1
-.asm_923d0
+.okay_dr
 	inc [hl]
-	jr .asm_923dd
+	jr .continue
 
-.asm_923d3
+.up_left
 	ld hl, wd002
 	ld a, [hl]
 	and a
-	jr nz, .asm_923dc
+	jr nz, .okay_ul
 	ld [hl], FLY_INDIGO + 1
-.asm_923dc
+.okay_ul
 	dec [hl]
 
-.asm_923dd
+.continue
 	ld a, [wd002]
 	cp KANTO_FLYPOINT
 	jr c, .johto
@@ -2972,14 +2977,14 @@ Function923b8: ; 923b8
 	call FillKantoMap
 	xor a
 	ld b, $9c
-	jr .asm_923f3
+	jr .finish
 
 .johto
 	call FillJohtoMap
 	ld a, $90
 	ld b, $98
 
-.asm_923f3
+.finish
 	ld [hWY], a
 	ld a, b
 	ld [hBGMapAddress + 1], a

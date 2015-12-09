@@ -1,6 +1,6 @@
 const_value set 2
 	const LANCESROOM_LANCE
-	const LANCESROOM_TEACHER
+	const LANCESROOM_MARY
 	const LANCESROOM_OAK
 
 LancesRoom_MapScriptHeader:
@@ -63,7 +63,7 @@ LanceScript_0x180e7b:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x1810a4, 0
-	setlasttalked $2
+	setlasttalked LANCESROOM_LANCE
 	loadtrainer CHAMPION, LANCE
 	startbattle
 	reloadmapmusic
@@ -84,16 +84,16 @@ LanceScript_0x180e7b:
 	spriteface LANCESROOM_LANCE, DOWN
 	pause 10
 	spriteface PLAYER, DOWN
-	appear LANCESROOM_TEACHER
-	applymovement LANCESROOM_TEACHER, MovementData_0x180f41
+	appear LANCESROOM_MARY
+	applymovement LANCESROOM_MARY, MovementData_0x180f41
 	loadfont
 	writetext UnknownText_0x1811dd
 	waitbutton
 	closetext
 	appear LANCESROOM_OAK
 	applymovement LANCESROOM_OAK, MovementData_0x180f46
-	follow LANCESROOM_TEACHER, LANCESROOM_OAK
-	applymovement LANCESROOM_TEACHER, MovementData_0x180f49
+	follow LANCESROOM_MARY, LANCESROOM_OAK
+	applymovement LANCESROOM_MARY, MovementData_0x180f49
 	stopfollow
 	spriteface LANCESROOM_OAK, UP
 	spriteface LANCESROOM_LANCE, LEFT
@@ -101,7 +101,7 @@ LanceScript_0x180e7b:
 	writetext UnknownText_0x18121b
 	waitbutton
 	closetext
-	applymovement LANCESROOM_TEACHER, MovementData_0x180f4c
+	applymovement LANCESROOM_MARY, MovementData_0x180f4c
 	spriteface PLAYER, LEFT
 	loadfont
 	writetext UnknownText_0x18134b
@@ -114,7 +114,7 @@ LanceScript_0x180e7b:
 	waitbutton
 	closetext
 	follow LANCESROOM_LANCE, PLAYER
-	spriteface LANCESROOM_TEACHER, UP
+	spriteface LANCESROOM_MARY, UP
 	spriteface LANCESROOM_OAK, UP
 	applymovement LANCESROOM_LANCE, MovementData_0x180f53
 	stopfollow
@@ -123,13 +123,13 @@ LanceScript_0x180e7b:
 	applymovement PLAYER, MovementData_0x180f55
 	playsound SFX_EXIT_BUILDING
 	disappear PLAYER
-	applymovement LANCESROOM_TEACHER, MovementData_0x180f57
-	showemote EMOTE_SHOCK, LANCESROOM_TEACHER, 15
+	applymovement LANCESROOM_MARY, MovementData_0x180f57
+	showemote EMOTE_SHOCK, LANCESROOM_MARY, 15
 	loadfont
 	writetext UnknownText_0x1813c5
 	pause 30
 	closetext
-	applymovement LANCESROOM_TEACHER, MovementData_0x180f5b
+	applymovement LANCESROOM_MARY, MovementData_0x180f5b
 	special FadeOutPalettes
 	pause 15
 	warpfacing UP, HALL_OF_FAME, $4, $d

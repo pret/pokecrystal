@@ -146,7 +146,7 @@ endr
 	call MenuFunc_1e7f
 	call .DrawBugContestStatus
 	call UpdateSprites
-	call Functiond90
+	call ret_d90
 	call Function2b5c
 	ret
 ; 126d3

@@ -2019,7 +2019,7 @@ CloseSubmenu:: ; 2b3c
 	call Function2bae
 	call UpdateSprites
 	call Call_ExitMenu
-	call Functiond90
+	call ret_d90
 	jr Function2b5c
 ; 2b4d
 
@@ -2028,7 +2028,7 @@ ExitAllMenus:: ; 2b4d
 	call Call_ExitMenu
 	call Function2bae
 	call UpdateSprites
-	call Functiond90
+	call ret_d90
 Function2b5c:: ; 2b5c
 	ld b, SCGB_09
 	call GetSGBLayout

@@ -80,7 +80,7 @@ PredefPointers:: ; 856b
 	add_predef Predef2F
 	add_predef Function9853 ; $30
 	add_predef Predef_LoadSGBLayout
-	add_predef Function91d11
+	add_predef _Area
 	add_predef CheckContestMon
 	add_predef Predef_StartBattle
 	add_predef Predef35

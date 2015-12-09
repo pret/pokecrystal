@@ -57,7 +57,7 @@ _ComposeMailMessage: ; 11e75 (mail?)
 	ld a, %11100100
 	call DmgToCgbBGPals
 	ld a, %11100100
-	call Functioncf8
+	call DmgToCgbObjPal0
 	call Function11be0
 	ld hl, wc6d0
 	ld e, [hl]

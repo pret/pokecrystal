@@ -65,7 +65,7 @@ UnknownScript_0x744d4:
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x7450f
 	winlosstext UnknownText_0x7463d, UnknownText_0x747aa
-	setlasttalked $2
+	setlasttalked VICTORYROAD_SILVER
 	loadtrainer RIVAL1, RIVAL1_15
 	startbattle
 	reloadmapmusic
@@ -74,7 +74,7 @@ UnknownScript_0x744d4:
 
 UnknownScript_0x744ff:
 	winlosstext UnknownText_0x7463d, UnknownText_0x747aa
-	setlasttalked $2
+	setlasttalked VICTORYROAD_SILVER
 	loadtrainer RIVAL1, RIVAL1_13
 	startbattle
 	reloadmapmusic
@@ -83,7 +83,7 @@ UnknownScript_0x744ff:
 
 UnknownScript_0x7450f:
 	winlosstext UnknownText_0x7463d, UnknownText_0x747aa
-	setlasttalked $2
+	setlasttalked VICTORYROAD_SILVER
 	loadtrainer RIVAL1, RIVAL1_14
 	startbattle
 	reloadmapmusic

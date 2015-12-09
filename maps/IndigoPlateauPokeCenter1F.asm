@@ -100,7 +100,7 @@ UnknownScript_0x1800ce:
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x180103
 	winlosstext UnknownText_0x180295, UnknownText_0x1802fd
-	setlasttalked $5
+	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
 	loadtrainer RIVAL2, 6
 	startbattle
 	reloadmapmusic
@@ -109,7 +109,7 @@ UnknownScript_0x1800ce:
 
 UnknownScript_0x1800f3:
 	winlosstext UnknownText_0x180295, UnknownText_0x1802fd
-	setlasttalked $5
+	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
 	loadtrainer RIVAL2, 4
 	startbattle
 	reloadmapmusic
@@ -118,7 +118,7 @@ UnknownScript_0x1800f3:
 
 UnknownScript_0x180103:
 	winlosstext UnknownText_0x180295, UnknownText_0x1802fd
-	setlasttalked $5
+	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
 	loadtrainer RIVAL2, 5
 	startbattle
 	reloadmapmusic

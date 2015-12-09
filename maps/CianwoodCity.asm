@@ -9,7 +9,7 @@ const_value set 2
 	const CIANWOODCITY_ROCK5
 	const CIANWOODCITY_ROCK6
 	const CIANWOODCITY_POKEFAN_F
-	const CIANWOODCITY_SUPER_NERD
+	const CIANWOODCITY_EUSINE
 	const CIANWOODCITY_SUICUNE
 
 CianwoodCity_MapScriptHeader:
@@ -37,7 +37,7 @@ CianwoodCity_MapScriptHeader:
 	setevent EVENT_EUSINE_IN_BURNED_TOWER
 	checkevent EVENT_FOUGHT_EUSINE
 	iffalse UnknownScript_0x1a001d
-	disappear CIANWOODCITY_SUPER_NERD
+	disappear CIANWOODCITY_EUSINE
 UnknownScript_0x1a001d:
 	return
 
@@ -60,14 +60,14 @@ UnknownScript_0x1a001e:
 	iftrue .Done
 	setevent EVENT_FOUGHT_EUSINE
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
-	appear CIANWOODCITY_SUPER_NERD
-	applymovement CIANWOODCITY_SUPER_NERD, MovementData_0x1a00e7
+	appear CIANWOODCITY_EUSINE
+	applymovement CIANWOODCITY_EUSINE, MovementData_0x1a00e7
 	loadfont
 	writetext UnknownText_0x1a0433
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x1a05a1, 0
-	setlasttalked $c
+	setlasttalked CIANWOODCITY_EUSINE
 	loadtrainer MYSTICALMAN, EUSINE
 	startbattle
 	reloadmapmusic
@@ -77,8 +77,8 @@ UnknownScript_0x1a001e:
 	writetext UnknownText_0x1a05c3
 	waitbutton
 	closetext
-	applymovement CIANWOODCITY_SUPER_NERD, MovementData_0x1a00ec
-	disappear CIANWOODCITY_SUPER_NERD
+	applymovement CIANWOODCITY_EUSINE, MovementData_0x1a00ec
+	disappear CIANWOODCITY_EUSINE
 	pause 20
 	special Special_FadeOutMusic
 	playmapmusic

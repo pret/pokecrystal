@@ -1,5 +1,5 @@
 const_value set 2
-	const RADIOTOWER5F_GENTLEMAN
+	const RADIOTOWER5F_DIRECTOR
 	const RADIOTOWER5F_ROCKET
 	const RADIOTOWER5F_ROCKET_GIRL
 	const RADIOTOWER5F_ROCKER
@@ -10,42 +10,42 @@ RadioTower5F_MapScriptHeader:
 	db 3
 
 	; triggers
-	dw UnknownScript_0x6000e, 0
-	dw UnknownScript_0x6000f, 0
-	dw UnknownScript_0x60010, 0
+	dw .Trigger0, 0
+	dw .Trigger1, 0
+	dw .Trigger2, 0
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x6000e:
+.Trigger0:
 	end
 
-UnknownScript_0x6000f:
+.Trigger1:
 	end
 
-UnknownScript_0x60010:
+.Trigger2:
 	end
 
-UnknownScript_0x60011:
-	spriteface RADIOTOWER5F_GENTLEMAN, UP
-	showemote EMOTE_SHOCK, RADIOTOWER5F_GENTLEMAN, 15
+FakeDirectorScript:
+	spriteface RADIOTOWER5F_DIRECTOR, UP
+	showemote EMOTE_SHOCK, RADIOTOWER5F_DIRECTOR, 15
 	loadfont
-	writetext UnknownText_0x60128
+	writetext FakeDirectorTextBefore1
 	waitbutton
 	closetext
-	applymovement RADIOTOWER5F_GENTLEMAN, MovementData_0x60109
+	applymovement RADIOTOWER5F_DIRECTOR, FakeDirectorMovement
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	loadfont
-	writetext UnknownText_0x60147
+	writetext FakeDirectorTextBefore2
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x60223, 0
-	setlasttalked $2
+	winlosstext FakeDirectorWinText, 0
+	setlasttalked RADIOTOWER5F_DIRECTOR
 	loadtrainer EXECUTIVEM, 3
 	startbattle
 	returnafterbattle
 	loadfont
-	writetext UnknownText_0x60246
+	writetext FakeDirectorTextAfter
 	buttonsound
 	verbosegiveitem BASEMENT_KEY
 	closetext
@@ -57,14 +57,14 @@ Director:
 	faceplayer
 	loadfont
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue UnknownScript_0x60054
-	writetext UnknownText_0x60246
+	iftrue .TrueDirector
+	writetext FakeDirectorTextAfter
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x60054:
-	writetext UnknownText_0x60824
+.TrueDirector:
+	writetext RadioTower5FDirectorText
 	waitbutton
 	closetext
 	end
@@ -75,26 +75,26 @@ TrainerExecutivef1:
 Executivef1Script:
 	end_if_just_battled
 	loadfont
-	writetext UnknownText_0x60358
+	writetext Executivef1AfterText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x6006e:
+RadioTower5FRocketBossTrigger:
 	applymovement PLAYER, MovementData_0x60125
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface RADIOTOWER5F_ROCKET, RIGHT
 	loadfont
-	writetext UnknownText_0x603d1
+	writetext RadioTower5FRocketBossBeforeText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x604f3, 0
-	setlasttalked $3
+	winlosstext RadioTower5FRocketBossWinText, 0
+	setlasttalked RADIOTOWER5F_ROCKET
 	loadtrainer EXECUTIVEM, 1
 	startbattle
 	returnafterbattle
 	loadfont
-	writetext UnknownText_0x6050e
+	writetext RadioTower5FRocketBossAfterText
 	waitbutton
 	closetext
 	special Special_FadeBlackQuickly
@@ -116,28 +116,28 @@ UnknownScript_0x6006e:
 	setevent EVENT_BLACKTHORN_CITY_SUPER_NERD_BLOCKS_GYM
 	clearevent EVENT_BLACKTHORN_CITY_SUPER_NERD_DOES_NOT_BLOCK_GYM
 	special PlayMapMusic
-	disappear RADIOTOWER5F_GENTLEMAN
-	moveperson RADIOTOWER5F_GENTLEMAN, $c, $0
-	appear RADIOTOWER5F_GENTLEMAN
-	applymovement RADIOTOWER5F_GENTLEMAN, MovementData_0x6010f
+	disappear RADIOTOWER5F_DIRECTOR
+	moveperson RADIOTOWER5F_DIRECTOR, $c, $0
+	appear RADIOTOWER5F_DIRECTOR
+	applymovement RADIOTOWER5F_DIRECTOR, RadioTower5FDirectorWalksIn
 	spriteface PLAYER, RIGHT
 	loadfont
-	writetext UnknownText_0x605b2
+	writetext RadioTower5FDirectorThankYouText
 	buttonsound
 	verbosegiveitem CLEAR_BELL
-	writetext UnknownText_0x6062c
+	writetext RadioTower5FDirectorDescribeClearBellText
 	waitbutton
 	closetext
 	dotrigger $2
 	domaptrigger ECRUTEAK_HOUSE, $0
 	setevent EVENT_GOT_CLEAR_BELL
 	setevent EVENT_TEAM_ROCKET_DISBANDED
-	jump UnknownScript_0x600f1
+	jump .UselessJump
 
-UnknownScript_0x600f1:
-	applymovement RADIOTOWER5F_GENTLEMAN, MovementData_0x6011a
+.UselessJump:
+	applymovement RADIOTOWER5F_DIRECTOR, RadioTower5FDirectorWalksOut
 	playsound SFX_EXIT_BUILDING
-	disappear RADIOTOWER5F_GENTLEMAN
+	disappear RADIOTOWER5F_DIRECTOR
 	end
 
 Ben:
@@ -147,15 +147,15 @@ ItemFragment_0x600fe:
 	db ULTRA_BALL, 1
 
 MapRadioTower5FSignpost0Script:
-	jumptext UnknownText_0x608e0
+	jumptext SignpostRadioTower5FOffice
 
 MapRadioTower5FSignpost2Script:
-	jumptext UnknownText_0x608f9
+	jumptext SignpostRadioTower5FStudio
 
 RadioTower5FBookshelf:
 	jumpstd magazinebookshelf
 
-MovementData_0x60109:
+FakeDirectorMovement:
 	step_left
 	step_left
 	step_left
@@ -163,7 +163,7 @@ MovementData_0x60109:
 	step_up
 	step_end
 
-MovementData_0x6010f:
+RadioTower5FDirectorWalksIn:
 	step_down
 	step_down
 	step_right
@@ -176,7 +176,7 @@ MovementData_0x6010f:
 	step_left
 	step_end
 
-MovementData_0x6011a:
+RadioTower5FDirectorWalksOut:
 	step_right
 	step_up
 	step_up
@@ -194,12 +194,12 @@ MovementData_0x60125:
 	step_left
 	step_end
 
-UnknownText_0x60128:
+FakeDirectorTextBefore1:
 	text "Y-you! You came to"
 	line "rescue me?"
 	done
 
-UnknownText_0x60147:
+FakeDirectorTextBefore2:
 	text "Is that what you"
 	line "were expecting?"
 
@@ -221,12 +221,12 @@ UnknownText_0x60147:
 	cont "you can beat me!"
 	done
 
-UnknownText_0x60223:
+FakeDirectorWinText:
 	text "OK, OK. I'll tell"
 	line "you where he is."
 	done
 
-UnknownText_0x60246:
+FakeDirectorTextAfter:
 	text "We stashed the"
 	line "real DIRECTOR in"
 
@@ -258,7 +258,7 @@ Executivef1BeatenText:
 	line "I still lost…"
 	done
 
-UnknownText_0x60358:
+Executivef1AfterText:
 	text "<PLAYER>, isn't it?"
 
 	para "A brat like you"
@@ -272,7 +272,7 @@ UnknownText_0x60358:
 	cont "your power."
 	done
 
-UnknownText_0x603d1:
+RadioTower5FRocketBossBeforeText:
 	text "Oh? You managed to"
 	line "get this far?"
 
@@ -301,12 +301,12 @@ UnknownText_0x603d1:
 	cont "our plans."
 	done
 
-UnknownText_0x604f3:
+RadioTower5FRocketBossWinText:
 	text "No! Forgive me,"
 	line "GIOVANNI!"
 	done
 
-UnknownText_0x6050e:
+RadioTower5FRocketBossAfterText:
 	text "How could this be?"
 
 	para "Our dreams have"
@@ -324,7 +324,7 @@ UnknownText_0x6050e:
 	para "Farewell."
 	done
 
-UnknownText_0x605b2:
+RadioTower5FDirectorThankYouText:
 	text "DIRECTOR: <PLAY_G>,"
 	line "thank you!"
 
@@ -339,7 +339,7 @@ UnknownText_0x605b2:
 	cont "take this."
 	done
 
-UnknownText_0x6062c:
+RadioTower5FDirectorDescribeClearBellText:
 	text "There used to be a"
 	line "tower right here"
 	cont "in GOLDENROD CITY."
@@ -390,7 +390,7 @@ UnknownText_0x6062c:
 	line "my OFFICE."
 	done
 
-UnknownText_0x60824:
+RadioTower5FDirectorText:
 	text "DIRECTOR: Hello,"
 	line "<PLAY_G>!"
 
@@ -413,12 +413,12 @@ BenText:
 	line "to our music?"
 	done
 
-UnknownText_0x608e0:
+SignpostRadioTower5FOffice:
 	text "5F DIRECTOR'S"
 	line "   OFFICE"
 	done
 
-UnknownText_0x608f9:
+SignpostRadioTower5FStudio:
 	text "5F STUDIO 1"
 	done
 
@@ -433,8 +433,8 @@ RadioTower5F_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 0, $3, $0, $0, UnknownScript_0x60011, $0, $0
-	xy_trigger 1, $5, $10, $0, UnknownScript_0x6006e, $0, $0
+	xy_trigger 0, $3, $0, $0, FakeDirectorScript, $0, $0
+	xy_trigger 1, $5, $10, $0, RadioTower5FRocketBossTrigger, $0, $0
 
 .Signposts:
 	db 5

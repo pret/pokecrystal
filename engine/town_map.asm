@@ -47,7 +47,7 @@ _TownMap: ; 9191c
 	and a
 	jr z, .sgb
 	ld a, $e4
-	call Functioncf8
+	call DmgToCgbObjPal0
 	call DelayFrame
 
 .sgb

@@ -2293,7 +2293,7 @@ Functione33d0: ; e33d0 (38:73d0)
 	ld a, $e4
 	call DmgToCgbBGPals
 	ld a, $fc
-	call Functioncf8
+	call DmgToCgbObjPal0
 	ret
 
 Functione33df: ; e33df (38:73df)

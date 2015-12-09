@@ -18,7 +18,7 @@ SaveMenu: ; 14a1a
 
 .refused
 	call ExitMenu
-	call Functiond90
+	call ret_d90
 	callba SaveMenu_LoadEDTile
 	scf
 	ret
@@ -217,7 +217,7 @@ SaveTheGame_yesorno: ; 14baf
 	dec a
 	call WriteBackup
 	push af
-	call Functiond90
+	call ret_d90
 	pop af
 	and a
 	ret

@@ -371,7 +371,7 @@ Function2914e: ; 2914e
 	ld a, $e4
 	call DmgToCgbBGPals
 	ld a, $d0
-	call Functioncf8
+	call DmgToCgbObjPal0
 	call NextTradeAnim
 	ld a, $5c
 	ld [wcf64], a
@@ -1088,7 +1088,7 @@ TradeAnim_Poof: ; 29649
 
 TradeAnim_BulgeThroughTube: ; 29660
 	ld a, $e4
-	call Functioncf8
+	call DmgToCgbObjPal0
 	depixel 5, 11
 	ld a, SPRITE_ANIM_INDEX_10
 	call _InitSpriteAnimStruct
@@ -1379,7 +1379,7 @@ Function297ed: ; 297ed
 	ld a, $f0
 
 .asm_297f6
-	call Functioncf8
+	call DmgToCgbObjPal0
 	ld a, $e4
 	call DmgToCgbBGPals
 	ret

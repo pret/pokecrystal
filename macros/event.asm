@@ -9,8 +9,7 @@ scall: macro
 	enum farscall_command
 farscall: macro
 	db farscall_command
-	db BANK(\1)
-	dw \1
+	dba \1
 	endm
 
 	enum ptcall_command
@@ -28,8 +27,7 @@ jump: macro
 	enum farjump_command
 farjump: macro
 	db farjump_command
-	db BANK(\1)
-	dw \1
+	dba \1
 	endm
 
 	enum ptjump_command
@@ -93,8 +91,7 @@ callstd: macro
 	enum callasm_command
 callasm: macro
 	db callasm_command
-	db BANK(\1)
-	dw \1
+	dba \1
 	endm
 
 
@@ -106,8 +103,7 @@ special: macro
 
 add_special: MACRO
 \1Special::
-	db BANK(\1)
-	dw \1
+	dba \1
 ENDM
 
 
@@ -505,8 +501,7 @@ loadbytec2cf: macro
 	enum farwritetext_command
 farwritetext: macro
 	db farwritetext_command
-	db BANK(\1)
-	dw \1
+	dba \1
 	endm
 
 	enum writetext_command
@@ -548,8 +543,7 @@ jumptextfaceplayer: macro
 	enum farjumptext_command
 farjumptext: macro
 	db farjumptext_command
-	db BANK(\1)
-	dw \1
+	dba \1
 	endm
 ; ENDC
 
@@ -928,9 +922,9 @@ reloadandreturn: macro
 	db \1 ; which_method
 	endm
 
-	enum resetfuncs_command
-resetfuncs: macro
-	db resetfuncs_command
+	enum end_all_command
+end_all: macro
+	db end_all_command
 	endm
 
 	enum pokemart_command
@@ -1010,9 +1004,9 @@ verbosegiveitem2: macro
 	db \2 ; var
 	endm
 
-	enum loadwilddata_command
-loadwilddata: macro
-	db loadwilddata_command
+	enum swarm_command
+swarm: macro
+	db swarm_command
 	db \1 ; flag
 	map \2 ; map
 	endm
@@ -1042,9 +1036,9 @@ battletowertext: macro
 	db \1 ; memory
 	endm
 
-	enum displaylocation_command
-displaylocation: macro
-	db displaylocation_command
+	enum landmarktotext_command
+landmarktotext: macro
+	db landmarktotext_command
 	db \1 ; id
 	db \2 ; memory
 	endm

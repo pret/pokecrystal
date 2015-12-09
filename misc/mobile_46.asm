@@ -5694,7 +5694,7 @@ Function11a9ce: ; 11a9ce
 	call Call_ExitMenu
 	callba MobileFunc_106462
 	callba Function106464
-	call Functiond90
+	call ret_d90
 	callba Function2b5c
 	call UpdateSprites
 	ret
@@ -6030,7 +6030,7 @@ Function11ad95: ; 11ad95
 	ld de, String_11ae40
 	call PlaceString
 	hlcoord 10, 10, AttrMap
-	ld bc, $0808
+	lb bc, 8, 8
 	call Function11afd6
 	callba ReloadMapPart
 	call Function11ad8a
@@ -6346,20 +6346,20 @@ Unknown_11afd2:
 ; 11afd6
 
 Function11afd6: ; 11afd6
-	ld de, $0014
+	ld de, SCREEN_WIDTH
 	ld a, $3
-.asm_11afdb
+.row
 	push bc
 	push hl
-.asm_11afdd
+.col
 	ld [hli], a
 	dec c
-	jr nz, .asm_11afdd
+	jr nz, .col
 	pop hl
 	add hl, de
 	pop bc
 	dec b
-	jr nz, .asm_11afdb
+	jr nz, .row
 	ret
 ; 11afe8
 
@@ -6416,55 +6416,55 @@ Function11b03d: ; 11b03d
 	push hl
 	push af
 	ld c, $1
-.asm_11b041
+.loop
 	ld a, [hli]
-	cp $ef
-	jr z, .asm_11b051
-	cp $f5
-	jr z, .asm_11b051
-	cp $50
-	jr z, .asm_11b055
+	cp "♂"
+	jr z, .gender
+	cp "♀"
+	jr z, .gender
+	cp "@"
+	jr z, .done
 	inc c
-	jr .asm_11b041
+	jr .loop
 
-.asm_11b051
+.gender
 	dec hl
-	ld a, $50
+	ld a, "@"
 	ld [hli], a
 
-.asm_11b055
+.done
 	dec hl
 	push hl
-	ld e, $4
-	ld d, $0
+	ld e, 4
+	ld d, 0
 	add hl, de
 	ld e, l
 	ld d, h
 	pop hl
-.asm_11b05f
+.loop2
 	ld a, [hld]
 	ld [de], a
 	dec de
 	dec c
-	jr nz, .asm_11b05f
+	jr nz, .loop2
 	pop af
 	pop de
 	cp $1
-	jr nz, .asm_11b070
-	ld hl, String_11b07a
-	jr .asm_11b073
+	jr nz, .female
+	ld hl, .MaleString
+	jr .got_string
 
-.asm_11b070
-	ld hl, String_11b07e
+.female
+	ld hl, .FemaleString
 
-.asm_11b073
-	ld bc, 4
+.got_string
+	ld bc, 4 ; string length
 	call CopyBytes
 	ret
 ; 11b07a
 
-String_11b07a: db "ォスの "
-String_11b07e: db "メスの "
+.MaleString: db "ォスの "
+.FemaleString: db "メスの "
 
 Function11b082: ; 11b082
 	call Function11b242
@@ -6488,36 +6488,38 @@ Function11b099: ; 11b099
 	ld a, [wc7d0]
 	ld e, a
 	ld d, $0
-	ld hl, $c6d0
+	ld hl, wc6d0
 	add hl, de
 	ld e, l
 	ld d, h
 	hlcoord 11, 2
 	ld a, [wc7d3]
-.asm_11b0b9
+.loop
 	push af
 	ld a, [de]
 	ld [wd265], a
 	push de
 	push hl
-	call Function11b0cf
+	call .PlaceMonNameOrPlaceholderString
 	pop hl
-	ld de, $0028
+	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	pop de
 	inc de
 	pop af
 	dec a
-	jr nz, .asm_11b0b9
+	jr nz, .loop
 	ret
 ; 11b0cf
 
-Function11b0cf: ; 11b0cf
+.PlaceMonNameOrPlaceholderString: ; 11b0cf
 	and a
 	ret z
-	call Function11b0ec
+
+	call .CheckSeenFlag
 	ret c
-	call Function11b0e1
+
+	call .SetCaughtFlag
 	push hl
 	call GetPokemonName
 	pop hl
@@ -6525,29 +6527,30 @@ Function11b0cf: ; 11b0cf
 	ret
 ; 11b0e1
 
-Function11b0e1: ; 11b0e1
-	call Function11b21e
-	jr nz, .asm_11b0e8
+.SetCaughtFlag: ; 11b0e1
+	call CheckCaughtMemMon
+	jr nz, .okay
 	inc hl
 	ret
 
-.asm_11b0e8
+.okay
 	ld a, $1
 	ld [hli], a
 	ret
 ; 11b0ec
 
-Function11b0ec: ; 11b0ec
-	call Function11b22a
+.CheckSeenFlag: ; 11b0ec
+	call CheckSeenMemMon
 	ret nz
+
 	inc hl
-	ld de, String_11b0f9
+	ld de, .EmptySlot
 	call PlaceString
 	scf
 	ret
 ; 11b0f9
 
-String_11b0f9: ; 11b0f9
+.EmptySlot: ; 11b0f9
 	db "ーーーーー@"
 ; 11b0ff
 
@@ -6583,7 +6586,7 @@ Function11b0ff: ; 11b0ff
 
 .asm_11b131
 	call Function11b20b
-	call Function11b22a
+	call CheckSeenMemMon
 	jr z, .asm_11b13d
 	ld a, $1
 	jr .asm_11b148
@@ -6767,7 +6770,7 @@ Function11b20b: ; 11b20b
 	ret
 ; 11b21e
 
-Function11b21e: ; 11b21e
+CheckCaughtMemMon: ; 11b21e
 	push de
 	push hl
 	ld a, [wd265]
@@ -6778,7 +6781,7 @@ Function11b21e: ; 11b21e
 	ret
 ; 11b22a
 
-Function11b22a: ; 11b22a
+CheckSeenMemMon: ; 11b22a
 	push de
 	push hl
 	ld a, [wd265]
@@ -6849,7 +6852,7 @@ Function11b275: ; 11b275
 Function11b279: ; 11b279
 	ld a, [wd265]
 	ld [CurSpecies], a
-	call Function11b22a
+	call CheckSeenMemMon
 	jr z, .asm_11b28f
 	call GetBaseData
 	ld a, [BaseGender]
@@ -6872,7 +6875,7 @@ Function11b295: ; 11b295
 	ld de, String_11b308
 	call PlaceString
 	call Function11b20b
-	call Function11b22a
+	call CheckSeenMemMon
 	jr z, .asm_11b2d1
 	ld a, [$c608]
 	ld c, a
@@ -6946,106 +6949,106 @@ Function11b314: ; 11b314
 ; 11b31b
 
 Function11b31b: ; 11b31b
-	ld hl, Unknown_11b350
+	ld hl, .Coords
 	ld a, [wJumptableIndex]
-	cp $2
-	jr c, .asm_11b349
+	cp 2
+	jr c, .tilemap_1
 	ld a, [wc7d1]
-	cp $4
-	jr nc, .asm_11b344
-	cp $3
-	jr c, .asm_11b349
+	cp 4
+	jr nc, .tilemap_3
+	cp 3
+	jr c, .tilemap_1
 	ld a, [wJumptableIndex]
-	cp $2
-	jr z, .asm_11b349
-	cp $3
-	jr z, .asm_11b349
-	cp $6
-	jr z, .asm_11b349
+	cp 2
+	jr z, .tilemap_1
+	cp 3
+	jr z, .tilemap_1
+	cp 6
+	jr z, .tilemap_1
 
-	ld bc, Unknown_11b37b
-	jr .asm_11b34c
+	ld bc, .Tilemap2
+	jr .load_sprites
 
-.asm_11b344
-	ld bc, Unknown_11b389
-	jr .asm_11b34c
+.tilemap_3
+	ld bc, .Tilemap3
+	jr .load_sprites
 
-.asm_11b349
-	ld bc, Unknown_11b36d
+.tilemap_1
+	ld bc, .Tilemap1
 
-.asm_11b34c
+.load_sprites
 	call Function11b397
 	ret
 ; 11b350
 
-Unknown_11b350:
-	dbpixel 3, 11, 2, 6
-	dbpixel 3, 12, 2, 6
-	dbpixel 3, 13, 2, 6
-	dbpixel 3, 14, 2, 6
-	dbpixel 3, 15, 2, 6
-	dbpixel 3, 16, 2, 6
-	dbpixel 3, 17, 2, 6
-	dbpixel 4, 11, 2, 6
-	dbpixel 4, 12, 2, 6
-	dbpixel 4, 13, 2, 6
-	dbpixel 4, 14, 2, 6
-	dbpixel 4, 15, 2, 6
-	dbpixel 4, 16, 2, 6
-	dbpixel 4, 17, 2, 6
+.Coords:
+	dbpixel 3, 11, 2, 6 ;  0
+	dbpixel 3, 12, 2, 6 ;  1
+	dbpixel 3, 13, 2, 6 ;  2
+	dbpixel 3, 14, 2, 6 ;  3
+	dbpixel 3, 15, 2, 6 ;  4
+	dbpixel 3, 16, 2, 6 ;  5
+	dbpixel 3, 17, 2, 6 ;  6
+	dbpixel 4, 11, 2, 6 ;  7
+	dbpixel 4, 12, 2, 6 ;  8
+	dbpixel 4, 13, 2, 6 ;  9
+	dbpixel 4, 14, 2, 6 ; 10
+	dbpixel 4, 15, 2, 6 ; 11
+	dbpixel 4, 16, 2, 6 ; 12
+	dbpixel 4, 17, 2, 6 ; 13
 	db -1
 
-Unknown_11b36d:
-	db $30
-	db $31
-	db $31
-	db $31
-	db $31
-	db $31
-	db $32
-	db $40
-	db $41
-	db $41
-	db $41
-	db $41
-	db $41
-	db $42
+.Tilemap1: ; vtiles
+	db $30 ;  0
+	db $31 ;  1
+	db $31 ;  2
+	db $31 ;  3
+	db $31 ;  4
+	db $31 ;  5
+	db $32 ;  6
+	db $40 ;  7
+	db $41 ;  8
+	db $41 ;  9
+	db $41 ; 10
+	db $41 ; 11
+	db $41 ; 12
+	db $42 ; 13
 
-Unknown_11b37b:
-	db $30
-	db $31
-	db $31
-	db $39
-	db $39
-	db $39
-	db $39
-	db $40
-	db $41
-	db $41
-	db $39
-	db $39
-	db $39
-	db $39
+.Tilemap2: ; vtiles
+	db $30 ;  0
+	db $31 ;  1
+	db $31 ;  2
+	db $39 ;  3
+	db $39 ;  4
+	db $39 ;  5
+	db $39 ;  6
+	db $40 ;  7
+	db $41 ;  8
+	db $41 ;  9
+	db $39 ; 10
+	db $39 ; 11
+	db $39 ; 12
+	db $39 ; 13
 
-Unknown_11b389:
-	db $39
-	db $39
-	db $39
-	db $39
-	db $39
-	db $39
-	db $39
-	db $39
-	db $39
-	db $39
-	db $39
-	db $39
-	db $39
-	db $39
+.Tilemap3: ; vtiles
+	db $39 ;  0
+	db $39 ;  1
+	db $39 ;  2
+	db $39 ;  3
+	db $39 ;  4
+	db $39 ;  5
+	db $39 ;  6
+	db $39 ;  7
+	db $39 ;  8
+	db $39 ;  9
+	db $39 ; 10
+	db $39 ; 11
+	db $39 ; 12
+	db $39 ; 13
 
 Function11b397: ; 11b397
 	ld de, Sprites
-.asm_11b39a
+.loop
 	ld a, [hl]
 	cp $ff
 	ret z
@@ -7065,16 +7068,17 @@ Function11b397: ; 11b397
 	inc bc
 	ld [de], a
 	inc de
-	ld a, $5
+	ld a, $5 ; OBPal 5
 	ld [de], a
 	inc de
-	jr .asm_11b39a
+	jr .loop
 ; 11b3b6
 
 Function11b3b6: ; 11b3b6
-.asm_11b3b6
+; unreferenced
+.loop
 	ld a, [hl]
-	cp $ff
+	cp -1
 	ret z
 	ld a, [wcd4d]
 	and $7
@@ -7098,11 +7102,11 @@ Function11b3b6: ; 11b3b6
 	ld a, $5
 	ld [de], a
 	inc de
-	jr .asm_11b3b6
+	jr .loop
 ; 11b3d9
 
 Function11b3d9: ; 11b3d9
-	ld de, Sprites + $70
+	ld de, Sprites + 28 * 4
 	push de
 	ld a, [wc7d2]
 	dec a
@@ -7111,51 +7115,51 @@ Function11b3d9: ; 11b3d9
 	ld hl, wc7d0
 	add [hl]
 	cp e
-	jr z, .asm_11b40d
+	jr z, .skip
 	ld hl, 0
-	ld bc, $0070
+	ld bc, $70
 	call AddNTimes
 	ld e, l
 	ld d, h
-	ld b, $0
+	ld b, 0
 	ld a, d
 	or e
-	jr z, .asm_11b40f
+	jr z, .load_sprites
 	ld a, [wc7d2]
 	ld c, a
-.asm_11b401
+.loop1
 	ld a, e
 	sub c
 	ld e, a
 	ld a, d
 	sbc $0
 	ld d, a
-	jr c, .asm_11b40f
+	jr c, .load_sprites
 	inc b
-	jr .asm_11b401
+	jr .loop1
 
-.asm_11b40d
-	ld b, $70
+.skip
+	ld b, 14 * 8
 
-.asm_11b40f
-	ld a, $15
+.load_sprites
+	ld a, 2 * 8 + 5
 	add b
 	pop hl
 	ld [hli], a
 	cp $41
-	jr c, .asm_11b42b
+	jr c, .version1
 	ld a, [wJumptableIndex]
-	cp $4
-	jr z, .asm_11b43b
-	cp $5
-	jr z, .asm_11b43b
-	cp $7
-	jr z, .asm_11b43b
-	cp $8
-	jr z, .asm_11b43b
+	cp 4
+	jr z, .version2
+	cp 5
+	jr z, .version2
+	cp 7
+	jr z, .version2
+	cp 8
+	jr z, .version2
 
-.asm_11b42b
-	ld a, $9b
+.version1
+	ld a, 19 * 8 + 3
 	ld [hli], a
 	ld a, [wcd4c]
 	add $3c
@@ -7165,8 +7169,8 @@ Function11b3d9: ; 11b3d9
 	ld [hl], a
 	ret
 
-.asm_11b43b
-	ld a, $9b
+.version2
+	ld a, 19 * 8 + 3
 	ld [hli], a
 	ld a, $39
 	ld [hli], a
@@ -7192,12 +7196,12 @@ Function11b44b: ; 11b44b
 ; 11b45c
 
 Function11b45c: ; 11b45c
-.asm_11b45c
+.loop
 	call Function11b46a
 	call DelayFrame
 	ld a, [wJumptableIndex]
-	cp $4
-	jr nz, .asm_11b45c
+	cp 4
+	jr nz, .loop
 	ret
 ; 11b46a
 
@@ -7220,14 +7224,14 @@ Jumptable_11b479: ; 11b479
 	dw Function11b570
 	dw Function11b5c0
 	dw Function11b5e0
-	dw Function11b5e7
+	dw Function11b5e7 ; unused
 ; 11b483
 
 Function11b483: ; 11b483
 	call Function11b538
 	ld hl, PlayerName
-	ld a, $5
-.asm_11b48b
+	ld a, $5 ; Japanese Name Length
+.loop1
 	push af
 	ld a, [hli]
 	ld [bc], a
@@ -7235,23 +7239,24 @@ Function11b483: ; 11b483
 	pop af
 	dec a
 	and a
-	jr nz, .asm_11b48b
-	ld de, $0030
+	jr nz, .loop1
+
+	ld de, PARTYMON_STRUCT_LENGTH
 	ld hl, PartyMon1Species
 	ld a, [wcd82]
 	dec a
 	push af
-.asm_11b49f
+.loop2
 	and a
-	jr z, .asm_11b4a6
+	jr z, .okay
 	add hl, de
 	dec a
-	jr .asm_11b49f
+	jr .loop2
 
-.asm_11b4a6
+.okay
 	push bc
-	ld a, $30
-.asm_11b4a9
+	ld a, PARTYMON_STRUCT_LENGTH
+.loop3
 	push af
 	ld a, [hli]
 	ld [bc], a
@@ -7259,24 +7264,25 @@ Function11b483: ; 11b483
 	pop af
 	dec a
 	and a
-	jr nz, .asm_11b4a9
+	jr nz, .loop3
+
 	pop de
 	push bc
 	ld a, [de]
 	ld [CurSpecies], a
 	call GetBaseData
-	ld hl, $001f
+	ld hl, MON_LEVEL
 	add hl, de
 	ld a, [hl]
 	ld [CurPartyLevel], a
-	ld hl, $0024
+	ld hl, MON_MAXHP
 	add hl, de
 	push hl
-	ld hl, $000a
+	ld hl, MON_EXP + 2
 	add hl, de
 	pop de
 	push de
-	ld b, $1
+	ld b, OTPARTYMON
 	predef CalcPkmnStats
 	pop de
 	ld h, d
@@ -7290,20 +7296,20 @@ endr
 	ld a, [de]
 	ld [hl], a
 	pop bc
-	ld de, $000b
+	ld de, NAME_LENGTH
 	ld hl, PartyMonOT
 	pop af
 	push af
-.asm_11b4e8
+.loop4
 	and a
-	jr z, .asm_11b4ef
+	jr z, .okay2
 	add hl, de
 	dec a
-	jr .asm_11b4e8
+	jr .loop4
 
-.asm_11b4ef
-	ld a, $a
-.asm_11b4f1
+.okay2
+	ld a, NAME_LENGTH - 1
+.loop5
 	push af
 	ld a, [hli]
 	ld [bc], a
@@ -7311,21 +7317,21 @@ endr
 	pop af
 	dec a
 	and a
-	jr nz, .asm_11b4f1
-	ld de, $000b
+	jr nz, .loop5
+	ld de, NAME_LENGTH
 	ld hl, PartyMonNicknames
 	pop af
 	push af
-.asm_11b502
+.loop6
 	and a
-	jr z, .asm_11b509
+	jr z, .okay3
 	add hl, de
 	dec a
-	jr .asm_11b502
+	jr .loop6
 
-.asm_11b509
-	ld a, $a
-.asm_11b50b
+.okay3
+	ld a, NAME_LENGTH - 1
+.loop7
 	push af
 	ld a, [hli]
 	ld [bc], a
@@ -7333,22 +7339,22 @@ endr
 	pop af
 	dec a
 	and a
-	jr nz, .asm_11b50b
-	ld de, $002f
-	ld hl, $a600
+	jr nz, .loop7
+	ld de, MAIL_STRUCT_LENGTH
+	ld hl, sPartyMail
 	pop af
-.asm_11b51b
+.loop8
 	and a
-	jr z, .asm_11b522
+	jr z, .okay4
 	add hl, de
 	dec a
-	jr .asm_11b51b
+	jr .loop8
 
-.asm_11b522
-	ld a, $0
+.okay4
+	ld a, $0 ; BANK(sPartyMail)
 	call GetSRAMBank
-	ld a, $2f
-.asm_11b529
+	ld a, MAIL_STRUCT_LENGTH
+.loop9
 	push af
 	ld a, [hli]
 	ld [bc], a
@@ -7356,38 +7362,45 @@ endr
 	pop af
 	dec a
 	and a
-	jr nz, .asm_11b529
+	jr nz, .loop9
 	call CloseSRAM
 	jp Function11ad8a
 ; 11b538
 
 Function11b538: ; 11b538
-	ld bc, BattleMonNick + 5
+	ld bc, wc626
 	ld a, [PlayerID]
 	ld [wcd2a], a
 	ld [bc], a
 	inc bc
+
 	ld a, [PlayerID + 1]
 	ld [wcd2b], a
 	ld [bc], a
 	inc bc
+
 	ld a, [wSecretID]
 	ld [wcd2c], a
 	ld [bc], a
 	inc bc
+
 	ld a, [wSecretID + 1]
 	ld [wcd2d], a
 	ld [bc], a
 	inc bc
+
 	ld a, [wcd2e]
 	ld [bc], a
 	inc bc
+
 	ld a, [wcd2f]
 	ld [bc], a
 	inc bc
+
 	ld a, [wcd30]
 	ld [bc], a
 	inc bc
+
 	ld a, [wd265]
 	ld [bc], a
 	inc bc
@@ -7398,11 +7411,11 @@ Function11b570: ; 11b570
 	call Function118007
 	ld a, [ScriptVar]
 	and a
-	jr nz, .asm_11b57f
+	jr nz, .exit
 	call Function11b585
 	jp Function11ad8a
 
-.asm_11b57f
+.exit
 	ld a, $4
 	ld [wJumptableIndex], a
 	ret
@@ -7413,7 +7426,7 @@ Function11b585: ; 11b585
 	ld [rSVBK], a
 	ld hl, w3_d800
 	ld de, $c608
-	ld bc, $008f
+	ld bc, w3_d88f - w3_d800
 	call CopyBytes
 	ld a, $1
 	ld [rSVBK], a
@@ -7424,7 +7437,7 @@ Function11b585: ; 11b585
 	ld [de], a
 	inc de
 	ld hl, $c608
-	ld bc, $008f
+	ld bc, w3_d88f - w3_d800
 	call CopyBytes
 	push de
 	pop hl
@@ -7445,7 +7458,7 @@ Function11b5c0: ; 11b5c0
 	dec a
 	ld [CurPartyMon], a
 	xor a
-	ld [wd10b], a
+	ld [wPokemonWithdrawDepositParameter], a
 	callba Functione039
 	callba Function170807
 	callba Function14a58

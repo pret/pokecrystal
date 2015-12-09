@@ -498,22 +498,22 @@ Special_ActivateFishingSwarm: ; c3fc
 ; c403
 
 
-LoadWildData:: ; c403
+StoreSwarmMapIndices:: ; c403
 	ld a, c
 	and a
-	jr nz, .swarm_route35
+	jr nz, .yanma
 ; swarm dark cave violet entrance
 	ld a, d
-	ld [wdfcc], a
+	ld [wDunsparceMapGroup], a
 	ld a, e
-	ld [wdfcd], a
+	ld [wDunsparceMapNumber], a
 	ret
 
-.swarm_route35
+.yanma
 	ld a, d
-	ld [wdc5a], a
+	ld [wYanmaMapGroup], a
 	ld a, e
-	ld [wdc5b], a
+	ld [wYanmaMapNumber], a
 	ret
 ; c419
 

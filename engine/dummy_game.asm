@@ -39,7 +39,7 @@ Functione1e67: ; e1e67 (38:5e67)
 	ld a, $e4
 	call DmgToCgbBGPals
 	ld a, $e0
-	call Functioncf8
+	call DmgToCgbObjPal0
 	ret
 
 Functione1ebb: ; e1ebb (38:5ebb)

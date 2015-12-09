@@ -72,7 +72,7 @@ UnknownScript_0x185c25:
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x185c70
 	winlosstext UnknownText_0x185d9b, UnknownText_0x185e2c
-	setlasttalked $4
+	setlasttalked BURNEDTOWER1F_SILVER
 	loadtrainer RIVAL1, RIVAL1_9
 	startbattle
 	reloadmapmusic
@@ -81,7 +81,7 @@ UnknownScript_0x185c25:
 
 UnknownScript_0x185c60:
 	winlosstext UnknownText_0x185d9b, UnknownText_0x185e2c
-	setlasttalked $4
+	setlasttalked BURNEDTOWER1F_SILVER
 	loadtrainer RIVAL1, RIVAL1_7
 	startbattle
 	reloadmapmusic
@@ -90,7 +90,7 @@ UnknownScript_0x185c60:
 
 UnknownScript_0x185c70:
 	winlosstext UnknownText_0x185d9b, UnknownText_0x185e2c
-	setlasttalked $4
+	setlasttalked BURNEDTOWER1F_SILVER
 	loadtrainer RIVAL1, RIVAL1_8
 	startbattle
 	reloadmapmusic

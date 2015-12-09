@@ -1181,7 +1181,7 @@ Function10893d: ; 10893d
 	sla a
 	sla a
 	call DmgToCgbBGPals
-	call Functioncf8
+	call DmgToCgbObjPal0
 	ld c, $4
 	call DelayFrames
 	jr .asm_10893d
@@ -1189,7 +1189,7 @@ Function10893d: ; 10893d
 .asm_108953
 	xor a
 	call DmgToCgbBGPals
-	call Functioncf8
+	call DmgToCgbObjPal0
 	call Function1082b7
 	ret
 ; 10895e
@@ -1446,7 +1446,7 @@ Function108af4: ; 108af4
 	pop af
 	ld [rSVBK], a
 	ld a, $e4
-	call Functioncf8
+	call DmgToCgbObjPal0
 	ld a, $e4
 	call DmgToCgbBGPals
 	call DelayFrame

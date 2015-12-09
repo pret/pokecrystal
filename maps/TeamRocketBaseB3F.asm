@@ -108,7 +108,7 @@ UnknownScript_0x6e056:
 	closetext
 	applymovement TEAMROCKETBASEB3F_ROCKET1, MovementData_0x6e142
 	winlosstext UnknownText_0x6e511, 0
-	setlasttalked $3
+	setlasttalked TEAMROCKETBASEB3F_ROCKET1
 	loadtrainer EXECUTIVEM, 4
 	startbattle
 	returnafterbattle

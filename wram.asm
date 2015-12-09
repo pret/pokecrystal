@@ -561,6 +561,8 @@ EnemyMonNick::  ds PKMN_NAME_LENGTH ; c616
 	ds -5
 wInitHourBuffer:: ds 5
 BattleMonNick:: ds PKMN_NAME_LENGTH ; c621
+	ds -6
+wc626:: ds 6
 
 BattleMon:: battle_struct BattleMon ; c62c
 
@@ -2170,8 +2172,10 @@ CurDamage:: ; d256
 	ds 2
 
 	ds 2
-wd25a:: ds 3
-wd25d:: ds 1
+wMornEncounterRate::  ds 1
+wDayEncounterRate::   ds 1
+wNiteEncounterRate::  ds 1
+wWaterEncounterRate:: ds 1
 wListMoves_MoveIndicesBuffer:: ds 4
 wPutativeTMHMMove:: ds 1
 wd263:: ds 1
@@ -2792,8 +2796,8 @@ wDailyRematchFlags:: ds 4
 wDailyPhoneItemFlags:: ds 4
 wDailyPhoneTimeOfDayFlags:: ds 4
 wKenjiBreakTimer:: ds 2 ; Kenji
-wdc5a:: ds 1
-wdc5b:: ds 1
+wYanmaMapGroup:: ds 1
+wYanmaMapNumber:: ds 1
 wdc5c:: ds 3
 wdc5f:: ds 1
 wdc60:: ds 19
@@ -2944,8 +2948,8 @@ wBugContestSecondPartySpecies:: ds 1
 wdf9c::
 wContestMon:: party_struct wContestMon ; df9c
 
-wdfcc:: ds 1
-wdfcd:: ds 1
+wDunsparceMapGroup:: ds 1
+wDunsparceMapNumber:: ds 1
 wFishingSwarmFlag:: ds 1
 
 roam_struct: MACRO
@@ -2961,10 +2965,10 @@ wRoamMon1:: roam_struct wRoamMon1 ; dfcf
 wRoamMon2:: roam_struct wRoamMon2 ; dfd6
 wRoamMon3:: roam_struct wRoamMon3 ; dfdd
 
-wdfe4:: ds 1
-wdfe5:: ds 1
-wdfe6:: ds 1
-wdfe7:: ds 1
+wRoamMons_CurrentMapNumber:: ds 1
+wRoamMons_CurrentMapGroup:: ds 1
+wRoamMons_LastMapNumber:: ds 1
+wRoamMons_LastMapGroup:: ds 1
 wBestMagikarpLengthFeet:: ds 1
 wBestMagikarpLengthInches:: ds 1
 wMagikarpRecordHoldersName:: ds NAME_LENGTH
@@ -3042,7 +3046,8 @@ w3_d742:: battle_tower_struct w3_d742
 
 wBTChoiceOfLvlGroup::
 w3_d800:: ds $69
-w3_d869:: ds $2c
+w3_d869:: ds $26
+w3_d88f:: ds 6
 w3_d895:: ds $36b
 w3_dc00:: ds $168
 w3_dd68:: ds $294
