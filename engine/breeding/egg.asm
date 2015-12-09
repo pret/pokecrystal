@@ -1,7 +1,7 @@
-Function16e1d: ; 16e1d
-	call Function16ed6
+CheckBreedmonCompatibility: ; 16e1d
+	call .CheckBreedingGroupCompatibility
 	ld c, $0
-	jp nc, .asm_16eb7
+	jp nc, .done
 	ld a, [wBreedMon1Species]
 	ld [CurPartySpecies], a
 	ld a, [wBreedMon1DVs]
@@ -11,12 +11,12 @@ Function16e1d: ; 16e1d
 	ld a, $3
 	ld [MonType], a
 	predef GetGender
-	jr c, .asm_16e70
+	jr c, .genderless
 	ld b, $1
-	jr nz, .asm_16e48
+	jr nz, .breedmon2
 	inc b
 
-.asm_16e48
+.breedmon2
 	push bc
 	ld a, [wBreedMon2Species]
 	ld [CurPartySpecies], a
@@ -28,96 +28,105 @@ Function16e1d: ; 16e1d
 	ld [MonType], a
 	predef GetGender
 	pop bc
-	jr c, .asm_16e70
+	jr c, .genderless
 	ld a, $1
-	jr nz, .asm_16e6d
+	jr nz, .compare_gender
 	inc a
 
-.asm_16e6d
+.compare_gender
 	cp b
-	jr nz, .asm_16e89
+	jr nz, .compute
 
-.asm_16e70
+.genderless
 	ld c, $0
 	ld a, [wBreedMon1Species]
 	cp DITTO
-	jr z, .asm_16e82
+	jr z, .ditto1
 	ld a, [wBreedMon2Species]
 	cp DITTO
-	jr nz, .asm_16eb7
-	jr .asm_16e89
+	jr nz, .done
+	jr .compute
 
-.asm_16e82
+.ditto1
 	ld a, [wBreedMon2Species]
 	cp DITTO
-	jr z, .asm_16eb7
+	jr z, .done
 
-.asm_16e89
-	call Function16ebc
-	ld c, $ff
-	jp z, .asm_16eb7
+.compute
+	call .CheckDVs
+	ld c, 255
+	jp z, .done
 	ld a, [wBreedMon2Species]
 	ld b, a
 	ld a, [wBreedMon1Species]
 	cp b
-	ld c, $fe
-	jr z, .asm_16e9f
-	ld c, $80
-.asm_16e9f
+	ld c, 254
+	jr z, .compare_ids
+	ld c, 128
+.compare_ids
+	; Speed up
 	ld a, [wBreedMon1ID]
 	ld b, a
 	ld a, [wBreedMon2ID]
 	cp b
-	jr nz, .asm_16eb7
+	jr nz, .done
 	ld a, [wBreedMon1ID + 1]
 	ld b, a
 	ld a, [wBreedMon2ID + 1]
 	cp b
-	jr nz, .asm_16eb7
+	jr nz, .done
 	ld a, c
-	sub $4d
+	sub 77
 	ld c, a
 
-.asm_16eb7
+.done
 	ld a, c
 	ld [wd265], a
 	ret
 ; 16ebc
 
 
-Function16ebc: ; 16ebc (5:6ebc)
+.CheckDVs: ; 16ebc (5:6ebc)
+; If Defense DVs match and the lower 3 bits of the Special DVs match,
+; maximize the chances of spawning an egg regardless of species.
 	ld a, [wBreedMon1DVs]
-	and $f
+	and %1111
 	ld b, a
 	ld a, [wBreedMon2DVs]
-	and $f
+	and %1111
 	cp b
 	ret nz
 	ld a, [wBreedMon1DVs + 1]
-	and $7
+	and %111
 	ld b, a
 	ld a, [wBreedMon2DVs + 1]
-	and $7
+	and %111
 	cp b
 	ret
 ; 16ed6
 
-Function16ed6: ; 16ed6
+.CheckBreedingGroupCompatibility: ; 16ed6
+; If either mon is in the No Eggs group,
+; they are not compatible.
 	ld a, [wBreedMon2Species]
 	ld [CurSpecies], a
 	call GetBaseData
 	ld a, [BaseEggGroups]
-	cp $ff
-	jr z, .asm_16f3a
+	cp NO_EGGS * $11
+	jr z, .Incompatible
+
 	ld a, [wBreedMon1Species]
 	ld [CurSpecies], a
 	call GetBaseData
 	ld a, [BaseEggGroups]
-	cp $ff
-	jr z, .asm_16f3a
+	cp NO_EGGS * $11
+	jr z, .Incompatible
+
+; Ditto is automatically compatible with everything.
+; If not Ditto, load the breeding groups into b/c and d/e.
 	ld a, [wBreedMon2Species]
 	cp DITTO
-	jr z, .asm_16f3c
+	jr z, .Compatible
 	ld [CurSpecies], a
 	call GetBaseData
 	ld a, [BaseEggGroups]
@@ -128,9 +137,10 @@ Function16ed6: ; 16ed6
 	and $f0
 	swap a
 	ld c, a
+
 	ld a, [wBreedMon1Species]
 	cp DITTO
-	jr z, .asm_16f3c
+	jr z, .Compatible
 	ld [CurSpecies], a
 	push bc
 	call GetBaseData
@@ -143,22 +153,24 @@ Function16ed6: ; 16ed6
 	and $f0
 	swap a
 	ld e, a
+
 	ld a, d
 	cp b
-	jr z, .asm_16f3c
+	jr z, .Compatible
 	cp c
-	jr z, .asm_16f3c
+	jr z, .Compatible
+
 	ld a, e
 	cp b
-	jr z, .asm_16f3c
+	jr z, .Compatible
 	cp c
-	jr z, .asm_16f3c
+	jr z, .Compatible
 
-.asm_16f3a
+.Incompatible
 	and a
 	ret
 
-.asm_16f3c
+.Compatible
 	scf
 	ret
 ; 16f3e
@@ -448,7 +460,7 @@ endr
 	jr .loop
 
 .reached_end
-	call Function1720b
+	call GetBreedmonMovePointer
 	ld b, NUM_MOVES
 .loop2
 	ld a, [de]
@@ -613,7 +625,7 @@ GetHeritableMoves: ; 17197
 	ret
 ; 1720b
 
-Function1720b: ; 1720b
+GetBreedmonMovePointer: ; 1720b
 	ld hl, wBreedMon1Moves
 	ld a, [wBreedMon1Species]
 	cp DITTO
@@ -631,7 +643,7 @@ Function1720b: ; 1720b
 ; 17224
 
 
-Function17224: ; 17224 (5:7224)
+GetEggFrontpic: ; 17224 (5:7224)
 	push de
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
@@ -641,7 +653,7 @@ Function17224: ; 17224 (5:7224)
 	pop de
 	predef_jump GetFrontpic
 
-Function1723c: ; 1723c (5:723c)
+GetHatchlingFrontpic: ; 1723c (5:723c)
 	push de
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
@@ -701,10 +713,10 @@ EggHatch_AnimationSequence: ; 1728f (5:728f)
 	callba ClearSpriteAnims
 	ld de, VTiles2 tile $00
 	ld a, [wJumptableIndex]
-	call Function1723c
+	call GetHatchlingFrontpic
 	ld de, VTiles2 tile $31
 	ld a, EGG
-	call Function17224
+	call GetEggFrontpic
 	ld de, MUSIC_EVOLUTION
 	call PlayMusic
 	call EnableLCD
@@ -915,7 +927,7 @@ Function1746c: ; 1746c
 	ld de, StringBuffer1
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	call Function16e1d
+	call CheckBreedmonCompatibility
 	pop bc
 	ld a, [wd265]
 	ld hl, UnknownText_0x1749c

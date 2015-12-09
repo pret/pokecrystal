@@ -19,7 +19,7 @@ FisherScript_0x5eb82:
 
 TeacherScript_0x5eb85:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_PINK_BOW_FROM_MARY
 	iftrue UnknownScript_0x5ebac
 	checkevent EVENT_CLEARED_RADIO_TOWER
@@ -48,7 +48,7 @@ UnknownScript_0x5ebb0:
 	end
 
 GrowlitheScript_0x5ebb2:
-	loadfont
+	opentext
 	writetext UnknownText_0x5ed66
 	cry MEOWTH
 	waitbutton
@@ -60,7 +60,7 @@ TrainerGruntM10:
 
 GruntM10Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5ede2
 	waitbutton
 	closetext
@@ -71,7 +71,7 @@ TrainerExecutivem2:
 
 Executivem2Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5ee69
 	waitbutton
 	closetext
@@ -82,7 +82,7 @@ TrainerGruntF4:
 
 GruntF4Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5ef31
 	waitbutton
 	closetext
@@ -93,7 +93,7 @@ TrainerScientistRich:
 
 ScientistRichScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5efcb
 	waitbutton
 	closetext

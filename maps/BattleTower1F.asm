@@ -26,7 +26,7 @@ BattleTower1F_MapScriptHeader:
 	if_equal $2, .priorityjump1
 	if_equal $3, .SkipEverything
 	if_equal $4, .SkipEverything
-	loadfont
+	opentext
 	writetext Text_WeveBeenWaitingForYou
 	waitbutton
 	closetext
@@ -45,7 +45,7 @@ BattleTower1F_MapScriptHeader:
 	end
 
 MapBattleTower1FSignpost0Script:
-	loadfont
+	opentext
 	writetext Text_ReadBattleTowerRules
 	yesorno
 	iffalse UnknownScript_0x9e3e0
@@ -59,7 +59,7 @@ ReceptionistScript_0x9e3e2:
 	writebyte BATTLETOWERACTION_02 ; copybytetovar sBattleTowerChallengeState
 	special BattleTowerAction
 	if_equal $3, Script_BeatenAllTrainers2 ; maps/BattleTowerBattleRoom.asm
-	loadfont
+	opentext
 	writetext Text_BattleTowerWelcomesYou
 	buttonsound
 	writebyte BATTLETOWERACTION_00 ; if new save file: bit 1, [sbe4f]
@@ -244,14 +244,14 @@ UnknownScript_0x9e550:
 	end
 
 BattleTower_LeftWithoutSaving:
-	loadfont
+	opentext
 	writetext Text_BattleTower_LeftWithoutSaving
 	waitbutton
 	jump Script_BattleTowerHopeToServeYouAgain
 
 YoungsterScript_0x9e55d:
 	faceplayer
-	loadfont
+	opentext
 	writetext Text_BattleTowerYoungster
 	waitbutton
 	closetext

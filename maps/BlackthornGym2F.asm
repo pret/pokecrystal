@@ -53,7 +53,7 @@ BlackthornGym2F_MapScriptHeader:
 .Fall
 	pause 30
 	scall .FX
-	loadfont
+	opentext
 	writetext BlackthornGym2FBoulderFellText
 	waitbutton
 	closetext
@@ -73,7 +73,7 @@ TrainerCooltrainermCody:
 
 CooltrainermCodyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1957d5
 	waitbutton
 	closetext
@@ -84,7 +84,7 @@ TrainerCooltrainerfFran:
 
 CooltrainerfFranScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x195883
 	waitbutton
 	closetext

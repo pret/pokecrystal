@@ -23,12 +23,12 @@ UnknownScript_0x196e55:
 UnknownScript_0x196e56:
 	showemote EMOTE_SHOCK, MRPOKEMONSHOUSE_GENTLEMAN, 15
 	spriteface MRPOKEMONSHOUSE_GENTLEMAN, DOWN
-	loadfont
+	opentext
 	writetext UnknownText_0x196f66
 	waitbutton
 	closetext
 	applymovement PLAYER, MovementData_0x196f5a
-	loadfont
+	opentext
 	writetext UnknownText_0x196fa8
 	buttonsound
 	waitsfx
@@ -53,7 +53,7 @@ UnknownScript_0x196e56:
 
 GentlemanScript_0x196e97:
 	faceplayer
-	loadfont
+	opentext
 	checkitem RED_SCALE
 	iftrue UnknownScript_0x196eb0
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
@@ -89,7 +89,7 @@ UnknownScript_0x196ec9:
 	playmusic MUSIC_PROF_OAK
 	applymovement MRPOKEMONSHOUSE_OAK, MovementData_0x196f5d
 	spriteface PLAYER, RIGHT
-	loadfont
+	opentext
 	writetext UnknownText_0x197185
 	buttonsound
 	waitsfx
@@ -108,7 +108,7 @@ UnknownScript_0x196ec9:
 	special RestartMapMusic
 	pause 15
 	spriteface PLAYER, UP
-	loadfont
+	opentext
 	writetext UnknownText_0x1970ed
 	waitbutton
 	closetext
@@ -120,7 +120,7 @@ UnknownScript_0x196ec9:
 	pause 60
 	special Special_FadeInQuickly
 	special RestartMapMusic
-	loadfont
+	opentext
 	writetext UnknownText_0x197134
 	waitbutton
 	closetext

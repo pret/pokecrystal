@@ -14,7 +14,7 @@ CeladonDeptStore3F_MapScriptHeader:
 
 ClerkScript_0x70d29:
 	faceplayer
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_CELADON_3F
 	closetext
 	end
@@ -24,7 +24,7 @@ YoungsterScript_0x70d31:
 
 GameboyKidScript_0x70d34:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x70d86
 	waitbutton
 	closetext
@@ -33,7 +33,7 @@ GameboyKidScript_0x70d34:
 
 GameboyKidScript_0x70d3f:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x70dc7
 	waitbutton
 	closetext

@@ -15,7 +15,7 @@ TrainerSageNico:
 
 SageNicoScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1847ff
 	waitbutton
 	closetext
@@ -26,7 +26,7 @@ TrainerSageEdmond:
 
 SageEdmondScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x18486f
 	waitbutton
 	closetext

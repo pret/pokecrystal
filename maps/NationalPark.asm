@@ -29,7 +29,7 @@ PokefanFScript_0x5c005:
 
 TeacherScript_0x5c008:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_QUICK_CLAW
 	iftrue UnknownScript_0x5c01d
 	writetext UnknownText_0x5c265
@@ -55,7 +55,7 @@ TeacherScript_0x5c029:
 
 GrowlitheScript_0x5c02c:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5c416
 	cry PERSIAN
 	waitbutton
@@ -64,7 +64,7 @@ GrowlitheScript_0x5c02c:
 
 GameboyKidScript_0x5c037:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5c42a
 	waitbutton
 	closetext
@@ -77,7 +77,7 @@ TrainerSchoolboyJack1:
 SchoolboyJack1Script:
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_JACK
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_JACK
 	iftrue UnknownScript_0x5c088
 	checkcellnum PHONE_SCHOOLBOY_JACK
@@ -193,7 +193,7 @@ TrainerPokefanmWilliam:
 
 PokefanmWilliamScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5c645
 	waitbutton
 	closetext
@@ -205,7 +205,7 @@ TrainerPokefanfBeverly1:
 PokefanfBeverly1Script:
 	writecode VAR_CALLERID, PHONE_POKEFAN_BEVERLY
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_BEVERLY_HAS_NUGGET
 	iftrue UnknownScript_0x5c177
 	checkcellnum PHONE_POKEFAN_BEVERLY
@@ -283,7 +283,7 @@ TrainerLassKrise:
 
 LassKriseScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5c71d
 	waitbutton
 	closetext

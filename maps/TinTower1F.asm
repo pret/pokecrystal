@@ -162,7 +162,7 @@ UnknownScript_0x1850d7:
 	moveperson TINTOWER1F_SAGE2, $9, $d
 	moveperson TINTOWER1F_SAGE3, $b, $d
 	spriteface PLAYER, RIGHT
-	loadfont
+	opentext
 	writetext UnknownText_0x185203
 	waitbutton
 	closetext
@@ -194,7 +194,7 @@ UnknownScript_0x185185:
 
 SageScript_0x185188:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_FOUGHT_HO_OH
 	iftrue UnknownScript_0x1851b6
 	checkevent EVENT_GOT_RAINBOW_WING
@@ -211,7 +211,7 @@ SageScript_0x185188:
 	reloadmappart
 	setevent EVENT_GOT_RAINBOW_WING
 	closetext
-	loadfont
+	opentext
 UnknownScript_0x1851b0:
 	writetext UnknownText_0x18564a
 	waitbutton

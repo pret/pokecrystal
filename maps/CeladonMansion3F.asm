@@ -13,7 +13,7 @@ CeladonMansion3F_MapScriptHeader:
 
 CooltrainerMScript_0x71670:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x716ce
 	checkcode VAR_DEXCAUGHT
 	if_greater_than 248, UnknownScript_0x7167e
@@ -37,7 +37,7 @@ UnknownScript_0x7167e:
 
 GymGuyScript_0x71696:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
 	iftrue UnknownScript_0x716a4
 	writetext UnknownText_0x717b4

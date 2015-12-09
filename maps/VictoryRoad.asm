@@ -55,7 +55,7 @@ UnknownScript_0x744b5:
 UnknownScript_0x744d4:
 	spriteface PLAYER, DOWN
 	playmusic MUSIC_RIVAL_ENCOUNTER
-	loadfont
+	opentext
 	writetext UnknownText_0x7455f
 	waitbutton
 	closetext
@@ -92,7 +92,7 @@ UnknownScript_0x7450f:
 
 UnknownScript_0x7451f:
 	playmusic MUSIC_RIVAL_AFTER
-	loadfont
+	opentext
 	writetext UnknownText_0x746ce
 	waitbutton
 	closetext

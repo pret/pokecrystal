@@ -49,7 +49,7 @@ UnknownScript_0x1a0f6d:
 	applymovement ROUTE29_COOLTRAINER_M1, MovementData_0x1a108d
 	spriteface PLAYER, LEFT
 	setevent EVENT_DUDE_TALKED_TO_YOU
-	loadfont
+	opentext
 	writetext UnknownText_0x1a10df
 	yesorno
 	iffalse UnknownScript_0x1a0fd9
@@ -60,7 +60,7 @@ UnknownScript_0x1a0f6d:
 	loadwildmon RATTATA, 5
 	catchtutorial BATTLETYPE_TUTORIAL
 	spriteface ROUTE29_COOLTRAINER_M1, UP
-	loadfont
+	opentext
 	writetext UnknownText_0x1a114d
 	waitbutton
 	closetext
@@ -74,7 +74,7 @@ UnknownScript_0x1a0fa3:
 	applymovement ROUTE29_COOLTRAINER_M1, MovementData_0x1a1094
 	spriteface PLAYER, LEFT
 	setevent EVENT_DUDE_TALKED_TO_YOU
-	loadfont
+	opentext
 	writetext UnknownText_0x1a10df
 	yesorno
 	iffalse UnknownScript_0x1a0fe5
@@ -85,7 +85,7 @@ UnknownScript_0x1a0fa3:
 	loadwildmon RATTATA, 5
 	catchtutorial BATTLETYPE_TUTORIAL
 	spriteface ROUTE29_COOLTRAINER_M1, UP
-	loadfont
+	opentext
 	writetext UnknownText_0x1a114d
 	waitbutton
 	closetext
@@ -111,7 +111,7 @@ UnknownScript_0x1a0fe5:
 
 CooltrainerMScript_0x1a0ff1:
 	faceplayer
-	loadfont
+	opentext
 	checkcode VAR_BOXSPACE
 	if_equal $0, UnknownScript_0x1a101c
 	checkevent EVENT_LEARNED_TO_CATCH_POKEMON
@@ -124,7 +124,7 @@ CooltrainerMScript_0x1a0ff1:
 	closetext
 	loadwildmon RATTATA, 5
 	catchtutorial BATTLETYPE_TUTORIAL
-	loadfont
+	opentext
 	writetext UnknownText_0x1a114d
 	waitbutton
 	closetext
@@ -154,7 +154,7 @@ FisherScript_0x1a102e:
 
 CooltrainerMScript_0x1a1031:
 	faceplayer
-	loadfont
+	opentext
 	checkday
 	iftrue UnknownScript_0x1a103d
 	checknite
@@ -173,7 +173,7 @@ UnknownScript_0x1a1043:
 
 TuscanyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_PINK_BOW_FROM_TUSCANY
 	iftrue TuscanyTuesdayScript
 	checkcode VAR_WEEKDAY

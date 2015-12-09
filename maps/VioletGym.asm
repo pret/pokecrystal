@@ -13,7 +13,7 @@ VioletGym_MapScriptHeader:
 
 FalknerScript_0x683c2:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_FALKNER
 	iftrue .FightDone
 	writetext UnknownText_0x68473
@@ -24,7 +24,7 @@ FalknerScript_0x683c2:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_FALKNER
-	loadfont
+	opentext
 	writetext UnknownText_0x685af
 	playsound SFX_GET_BADGE
 	waitsfx
@@ -71,7 +71,7 @@ TrainerBird_keeperRod:
 
 Bird_keeperRodScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x68837
 	waitbutton
 	closetext
@@ -82,7 +82,7 @@ TrainerBird_keeperAbe:
 
 Bird_keeperAbeScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x688c7
 	waitbutton
 	closetext
@@ -90,7 +90,7 @@ Bird_keeperAbeScript:
 
 VioletGymGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_FALKNER
 	iftrue .VioletGymGuyWinScript
 	writetext VioletGymGuyText

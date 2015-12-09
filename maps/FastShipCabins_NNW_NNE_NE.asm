@@ -19,7 +19,7 @@ TrainerCooltrainermSean:
 
 CooltrainermSeanScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x7567b
 	waitbutton
 	closetext
@@ -30,7 +30,7 @@ TrainerCooltrainerfCarol:
 
 CooltrainerfCarolScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x756f7
 	waitbutton
 	closetext
@@ -41,7 +41,7 @@ TrainerPokemaniacEthan:
 
 PokemaniacEthanScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x7574b
 	waitbutton
 	closetext
@@ -52,7 +52,7 @@ TrainerHikerNoland:
 
 HikerNolandScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x757d4
 	waitbutton
 	closetext
@@ -63,7 +63,7 @@ TrainerGentlemanEdward:
 
 GentlemanEdwardScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x75937
 	waitbutton
 	closetext
@@ -74,7 +74,7 @@ TrainerBurglarCorey:
 
 BurglarCoreyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x75996
 	waitbutton
 	closetext
@@ -83,7 +83,7 @@ BurglarCoreyScript:
 SailorScript_0x755f1:
 	playmusic MUSIC_HIKER_ENCOUNTER
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x75812
 	waitbutton
 	closetext
@@ -93,7 +93,7 @@ SailorScript_0x755f1:
 	reloadmap
 	special HealParty
 	setevent EVENT_BEAT_SAILOR_STANLY
-	loadfont
+	opentext
 	writetext UnknownText_0x758b1
 	waitbutton
 	closetext

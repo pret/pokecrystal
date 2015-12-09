@@ -8,7 +8,7 @@ GoldenrodDeptStoreElevator_MapScriptHeader:
 	db 0
 
 MapGoldenrodDeptStoreElevatorSignpost0Script:
-	loadfont
+	opentext
 	elevator Elevator_0x566e0
 	closetext
 	iffalse .Done

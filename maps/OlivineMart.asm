@@ -11,7 +11,7 @@ OlivineMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x9cac7:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_OLIVINE
 	closetext
 	end

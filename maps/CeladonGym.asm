@@ -15,7 +15,7 @@ CeladonGym_MapScriptHeader:
 
 ErikaScript_0x72a6a:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_RAINBOWBADGE
 	iftrue .FightDone
 	writetext UnknownText_0x72b28
@@ -30,7 +30,7 @@ ErikaScript_0x72a6a:
 	setevent EVENT_BEAT_PICNICKER_TANYA
 	setevent EVENT_BEAT_BEAUTY_JULIA
 	setevent EVENT_BEAT_TWINS_JO_AND_ZOE
-	loadfont
+	opentext
 	writetext UnknownText_0x72c96
 	playsound SFX_GET_BADGE
 	waitsfx
@@ -54,7 +54,7 @@ TrainerLassMichelle:
 
 LassMichelleScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x72e30
 	waitbutton
 	closetext
@@ -65,7 +65,7 @@ TrainerPicnickerTanya:
 
 PicnickerTanyaScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x72e8e
 	waitbutton
 	closetext
@@ -76,7 +76,7 @@ TrainerBeautyJulia:
 
 BeautyJuliaScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x72f01
 	waitbutton
 	closetext
@@ -87,7 +87,7 @@ TrainerTwinsJoandzoe1:
 
 TwinsJoandzoe1Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x72f70
 	waitbutton
 	closetext
@@ -98,7 +98,7 @@ TrainerTwinsJoandzoe2:
 
 TwinsJoandzoe2Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x72fc0
 	waitbutton
 	closetext

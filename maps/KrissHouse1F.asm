@@ -37,7 +37,7 @@ UnknownScript_0x7a4db:
 UnknownScript_0x7a4f2:
 	applymovement KRISSHOUSE1F_MOM1, MovementData_0x7a5fe
 UnknownScript_0x7a4f6:
-	loadfont
+	opentext
 	writetext UnknownText_0x7a604
 	buttonsound
 	stringtotext GearName, $1
@@ -119,7 +119,7 @@ MomScript_0x7a582:
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	checktriggers
 	iffalse UnknownScript_0x7a572
-	loadfont
+	opentext
 	checkevent EVENT_FIRST_TIME_BANKING_WITH_MOM
 	iftrue UnknownScript_0x7a5af
 	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
@@ -156,7 +156,7 @@ UnknownScript_0x7a5b8:
 
 NeighborScript:
 	faceplayer
-	loadfont
+	opentext
 	checkmorn
 	iftrue .MornScript
 	checkday

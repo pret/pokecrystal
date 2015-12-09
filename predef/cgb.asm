@@ -611,7 +611,7 @@ _CGB0b: ; 91e4
 	ld a, $1a
 	call GetAthPalletFromPalettes9df6
 	call LoadHLPaletteIntoDE
-	jr .asm_921a
+	jr .got_palette
 
 .asm_91f5
 	ld hl, PartyMon1DVs
@@ -624,12 +624,12 @@ _CGB0b: ; 91e4
 	call Function974b
 	call Function9643
 	ld hl, Palettes_979c
-	ld de, UnknOBPals + $10
-	ld bc, $0030
+	ld de, UnknOBPals + 2 palettes
+	ld bc, 6 palettes
 	ld a, $5
 	call FarCopyWRAM
 
-.asm_921a
+.got_palette
 	call Function9699
 	call Function96b3
 	call Function96a4

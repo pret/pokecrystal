@@ -61,7 +61,7 @@ UnknownScript_0x198034:
 	spriteface PLAYER, UP
 UnknownScript_0x198049:
 	playmusic MUSIC_RIVAL_ENCOUNTER
-	loadfont
+	opentext
 	writetext UnknownText_0x19814d
 	waitbutton
 	closetext
@@ -98,7 +98,7 @@ UnknownScript_0x198081:
 
 UnknownScript_0x198091:
 	playmusic MUSIC_RIVAL_AFTER
-	loadfont
+	opentext
 	writetext UnknownText_0x198233
 	waitbutton
 	closetext
@@ -119,7 +119,7 @@ AzaleaRocketScript_0x1980ae:
 
 GrampsScript_0x1980b1:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iftrue UnknownScript_0x1980bf
 	writetext UnknownText_0x19841b
@@ -140,7 +140,7 @@ YoungsterScript_0x1980c8:
 	jumptextfaceplayer UnknownText_0x19851a
 
 SlowpokeScript_0x1980cb:
-	loadfont
+	opentext
 	writetext UnknownText_0x1985b0
 	pause 60
 	writetext UnknownText_0x1985c3
@@ -152,7 +152,7 @@ SlowpokeScript_0x1980cb:
 WoosterScript:
 ; unused
 	faceplayer
-	loadfont
+	opentext
 	writetext WoosterText
 	cry QUAGSIRE
 	waitbutton
@@ -161,7 +161,7 @@ WoosterScript:
 
 UnknownScript_0x1980e5:
 	applymovement PLAYER, MovementData_0x198148
-	loadfont
+	opentext
 	writetext UnknownText_0x1985df
 	buttonsound
 	spriteface AZALEATOWN_KURT_OUTSIDE, RIGHT
@@ -180,7 +180,7 @@ UnknownScript_0x1980e5:
 
 KurtOutsideScript_0x19810c:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x198628
 	waitbutton
 	spriteface AZALEATOWN_KURT_OUTSIDE, LEFT

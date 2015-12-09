@@ -24,7 +24,7 @@ HallOfFameScript:
 	applymovement HALLOFFAME_LANCE, HallOfFame_WalkUpWithLance
 	stopfollow
 	spriteface PLAYER, RIGHT
-	loadfont
+	opentext
 	writetext HallOfFame_LanceText
 	waitbutton
 	closetext

@@ -1,15 +1,15 @@
 Function104000:: ; 104000
 	ld hl, Function104006
-	jp Function104177
+	jp CallInSafeGFXMode
 ; 104006
 
 Function104006: ; 104006
 	decoord 0, 0, AttrMap
 	ld hl, wBackupAttrMap
-	call Function104263
+	call CutAndPasteAttrMap
 	decoord 0, 0
 	ld hl, wBackupTilemap
-	call Function10425f
+	call CutAndPasteTilemap
 	ld a, $0
 	ld [rVBK], a
 	ld hl, wBackupTilemap
@@ -23,13 +23,13 @@ Function104006: ; 104006
 
 Function10402d:: ; 10402d
 	ld hl, Function104033
-	jp Function104177
+	jp CallInSafeGFXMode
 ; 104033
 
 Function104033: ; 104033
 	decoord 0, 0
 	ld hl, wBackupTilemap
-	call Function10425f
+	call CutAndPasteTilemap
 	ld a, $0
 	ld [rVBK], a
 	ld hl, wBackupTilemap
@@ -39,13 +39,13 @@ Function104033: ; 104033
 
 Function104047: ; 104047
 	ld hl, Function10404d
-	jp Function104177
+	jp CallInSafeGFXMode
 ; 10404d
 
 Function10404d: ; 10404d
 	decoord 0, 0, AttrMap
 	ld hl, wBackupAttrMap
-	call Function104263
+	call CutAndPasteAttrMap
 	ld a, $1
 	ld [rVBK], a
 	ld hl, wBackupAttrMap
@@ -55,16 +55,16 @@ Function10404d: ; 10404d
 
 ReloadMapPart:: ; 104061
 	ld hl, Function104067
-	jp Function104177
+	jp CallInSafeGFXMode
 ; 104067
 
 Function104067: ; 104067
 	decoord 0, 0, AttrMap
 	ld hl, wBackupAttrMap
-	call Function104263
+	call CutAndPasteAttrMap
 	decoord 0, 0
 	ld hl, wBackupTilemap
-	call Function10425f
+	call CutAndPasteTilemap
 	call DelayFrame
 	di
 	ld a, [rVBK]
@@ -85,16 +85,16 @@ Function104067: ; 104067
 Function104099: ; 104099
 	ld hl, ReloadMapPart ; useless
 	ld hl, Function1040a2
-	jp Function104177
+	jp CallInSafeGFXMode
 ; 1040a2
 
 Function1040a2: ; 1040a2
 	decoord 0, 0, AttrMap
 	ld hl, wBackupAttrMap
-	call Function104263
+	call CutAndPasteAttrMap
 	decoord 0, 0
 	ld hl, wBackupTilemap
-	call Function10425f
+	call CutAndPasteTilemap
 	call DelayFrame
 	di
 	ld a, [rVBK]
@@ -115,7 +115,7 @@ Function1040a2: ; 1040a2
 
 Function1040d4: ; 1040d4
 	ld hl, Function1040da
-	jp Function104177
+	jp CallInSafeGFXMode
 ; 1040da
 
 Function1040da: ; 1040da
@@ -140,7 +140,7 @@ Function1040da: ; 1040da
 
 Function1040fb: ; 1040fb
 	ld hl, Function104101
-	jp Function104177
+	jp CallInSafeGFXMode
 ; 104101
 
 Function104101: ; 104101
@@ -154,18 +154,20 @@ Function104101: ; 104101
 ; 104110
 
 Function104110:: ; 104110
+; OpenText
 	ld hl, Function104116
-	jp Function104177
+	jp CallInSafeGFXMode
 ; 104116
 
 Function104116: ; 104116
 	decoord 0, 0, AttrMap
 	ld hl, wBackupAttrMap
-	call Function104263
+	call CutAndPasteAttrMap
 	decoord 0, 0
 	ld hl, wBackupTilemap
-	call Function10425f
+	call CutAndPasteTilemap
 	call DelayFrame
+
 	di
 	ld a, [rVBK]
 	push af
@@ -185,17 +187,17 @@ Function104116: ; 104116
 
 Function104148: ; 104148 (41:4148)
 	ld hl, Function10414e
-	jp Function104177
+	jp CallInSafeGFXMode
 ; 10414e (41:414e)
 
 Function10414e: ; 10414e
 	decoord 0, 0, AttrMap
 	ld hl, wBackupAttrMap
-	call Function104263
+	call CutAndPasteAttrMap
 	ld c, $ff
 	decoord 0, 0
 	ld hl, wBackupTilemap
-	call Function104265
+	call CutAndPasteMap
 	ld a, $1
 	ld [rVBK], a
 	ld hl, wBackupAttrMap
@@ -207,7 +209,7 @@ Function10414e: ; 10414e
 	ret
 ; 104177
 
-Function104177: ; 104177
+CallInSafeGFXMode: ; 104177
 	ld a, [hBGMapMode]
 	push af
 	ld a, [hMapAnims]
@@ -221,7 +223,9 @@ Function104177: ; 104177
 	ld [rSVBK], a
 	ld a, [rVBK]
 	push af
+
 	call ._hl_
+
 	pop af
 	ld [rVBK], a
 	pop af
@@ -260,6 +264,9 @@ Function1041ad: ; 1041ad (41:41ad)
 	jr Function104209
 
 Function1041b7: ; 1041b7 (41:41b7)
+; hBGMapAddress -> de
+; $24 -> c
+; $7b --> b
 	ld a, [hBGMapAddress + 1]
 	ld d, a
 	ld a, [hBGMapAddress]
@@ -388,14 +395,14 @@ Function10424e: ; 10424e (41:424e)
 	ld [rHDMA4], a
 	ret
 
-Function10425f: ; 10425f (41:425f)
+CutAndPasteTilemap: ; 10425f (41:425f)
 	ld c, " "
-	jr Function104265
+	jr CutAndPasteMap
 
-Function104263: ; 104263 (41:4263)
+CutAndPasteAttrMap: ; 104263 (41:4263)
 	ld c, $0
 
-Function104265: ; 104265 (41:4265)
+CutAndPasteMap: ; 104265 (41:4265)
 ; back up the value of c to hMapObjectIndexBuffer
 	ld a, [hMapObjectIndexBuffer]
 	push af
@@ -543,7 +550,7 @@ endr
 
 Function104303: ; 104303
 	ld hl, Function104309
-	jp Function104177
+	jp CallInSafeGFXMode
 ; 104309
 
 Function104309:

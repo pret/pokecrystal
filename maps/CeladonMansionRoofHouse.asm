@@ -10,7 +10,7 @@ CeladonMansionRoofHouse_MapScriptHeader:
 
 PharmacistScript_0x71afd:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM03_CURSE
 	iftrue UnknownScript_0x71b21
 	writetext UnknownText_0x71b27

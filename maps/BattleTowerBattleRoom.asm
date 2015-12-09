@@ -30,7 +30,7 @@ Script_BattleRoomLoop: ; 0x9f425
 	warpsound
 	waitsfx
 	applymovement BATTLETOWERBATTLEROOM_YOUNGSTER, MovementData_BattleTowerBattleRoomOpponentWalksIn
-	loadfont
+	opentext
 	battletowertext 1
 	buttonsound
 	closetext
@@ -45,7 +45,7 @@ Script_BattleRoomLoop: ; 0x9f425
 	disappear BATTLETOWERBATTLEROOM_YOUNGSTER
 	applymovement BATTLETOWERBATTLEROOM_RECEPTIONIST, MovementData_BattleTowerBattleRoomReceptionistWalksToPlayer
 	applymovement PLAYER, MovementData_BattleTowerBattleRoomPlayerTurnsToFaceReceptionist
-	loadfont
+	opentext
 	writetext Text_YourPkmnWillBeHealedToFullHealth
 	waitbutton
 	closetext
@@ -55,7 +55,7 @@ Script_BattleRoomLoop: ; 0x9f425
 	pause 60
 	special FadeInPalettes
 	special RestartMapMusic
-	loadfont
+	opentext
 	writetext Text_NextUpOpponentNo
 	yesorno
 	iffalse Script_DontBattleNextOpponent
@@ -90,7 +90,7 @@ Script_DontSaveAndEndTheSession: ; 0x9f4a3
 	closetext
 	special FadeOutPalettes
 	warpfacing UP, BATTLE_TOWER_1F, $7, $7
-	loadfont
+	opentext
 	jump Script_BattleTowerHopeToServeYouAgain
 
 Script_FailedBattleTowerChallenge:
@@ -99,7 +99,7 @@ Script_FailedBattleTowerChallenge:
 	warpfacing UP, BATTLE_TOWER_1F, $7, $7
 	writebyte BATTLETOWERACTION_CHALLENGECANCELED
 	special BattleTowerAction
-	loadfont
+	opentext
 	writetext Text_ThanksForVisiting
 	waitbutton
 	closetext
@@ -110,14 +110,14 @@ Script_BeatenAllTrainers: ; 0x9f4d9
 	special Special_BattleTowerFade
 	warpfacing UP, BATTLE_TOWER_1F, $7, $7
 Script_BeatenAllTrainers2:
-	loadfont
+	opentext
 	writetext Text_CongratulationsYouveBeatenAllTheTrainers
 	jump Script_GivePlayerHisPrize
 
 UnreferencedScript_0x9f4eb:
 	writebyte BATTLETOWERACTION_CHALLENGECANCELED
 	special BattleTowerAction
-	loadfont
+	opentext
 	writetext Text_TooMuchTimeElapsedNoRegister
 	waitbutton
 	closetext
@@ -128,7 +128,7 @@ UnreferencedScript_0x9f4f7:
 	special BattleTowerAction
 	writebyte BATTLETOWERACTION_06
 	special BattleTowerAction
-	loadfont
+	opentext
 	writetext Text_ThanksForVisiting
 	writetext Text_WeHopeToServeYouAgain
 	waitbutton

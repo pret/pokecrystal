@@ -57,7 +57,7 @@ MapColosseumSignpost1Script:
 	end
 
 ChrisScript_0x193499:
-	loadfont
+	opentext
 	writetext .FriendReadyText
 	waitbutton
 	closetext

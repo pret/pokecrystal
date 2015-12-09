@@ -15,7 +15,7 @@ PokefanMScript_0x18ad13:
 
 PokefanFScript_0x18ad16:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x18ad24
 	writetext UnknownText_0x18ad95
@@ -30,7 +30,7 @@ UnknownScript_0x18ad24:
 	end
 
 ClefairyScript_0x18ad2a:
-	loadfont
+	opentext
 	writetext UnknownText_0x18ae4b
 	cry BLISSEY
 	waitbutton

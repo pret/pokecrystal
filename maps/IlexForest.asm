@@ -91,7 +91,7 @@ IlexForest_MapScriptHeader:
 
 IlexForestCharcoalApprenticeScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_HERDED_FARFETCHD
 	iftrue .DoneFarfetchd
 	writetext UnknownText_0x6ef5c
@@ -120,7 +120,7 @@ IlexForestFarfetchdScript:
 
 .Position1:
 	faceplayer
-	loadfont
+	opentext
 	writetext Text_ItsTheMissingPokemon
 	buttonsound
 	writetext Text_Kwaaaa
@@ -330,7 +330,7 @@ IlexForestFarfetchdScript:
 
 .Position10:
 	faceplayer
-	loadfont
+	opentext
 	writetext Text_Kwaaaa
 	cry FARFETCH_D
 	waitbutton
@@ -339,7 +339,7 @@ IlexForestFarfetchdScript:
 
 .CryAndCheckFacing:
 	faceplayer
-	loadfont
+	opentext
 	writetext Text_Kwaaaa
 	cry FARFETCH_D
 	waitbutton
@@ -349,7 +349,7 @@ IlexForestFarfetchdScript:
 
 IlexForestCharcoalMasterScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_HM01_CUT
 	iftrue .AlreadyGotCut
 	writetext Text_CharcoalMasterIntro
@@ -375,7 +375,7 @@ IlexForestCharcoalMasterScript:
 
 IlexForestHeadbuttGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM02_HEADBUTT
 	iftrue .AlreadyGotHeadbutt
 	writetext Text_HeadbuttIntro
@@ -395,7 +395,7 @@ TrainerBug_catcherWayne:
 
 Bug_catcherWayneScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext Bug_catcherWayneAfterText
 	waitbutton
 	closetext
@@ -446,7 +446,7 @@ MapIlexForestSignpost4Script:
 	jumptext Text_IlexForestShrine
 
 .AskCelebiEvent:
-	loadfont
+	opentext
 	writetext Text_ShrineCelebiEvent
 	yesorno
 	iftrue .CelebiEvent
@@ -479,7 +479,7 @@ MapIlexForestSignpost4Script:
 	iffalse .DidntCatchCelebi
 	appear ILEXFOREST_KURT
 	applymovement ILEXFOREST_KURT, MovementData_0x6ef4e
-	loadfont
+	opentext
 	writetext Text_KurtCaughtCelebi
 	waitbutton
 	closetext

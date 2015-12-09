@@ -10,7 +10,7 @@ CianwoodCityPhotoStudio_MapScriptHeader:
 
 FishingGuruScript_0x9e0e0:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x9e0f9
 	yesorno
 	iffalse UnknownScript_0x9e0f3

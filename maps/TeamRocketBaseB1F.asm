@@ -237,7 +237,7 @@ NoSecurityCamera:
 	end
 
 TrainerCameraGrunt1:
-	loadfont
+	opentext
 	writetext CameraGrunt1SeenText
 	waitbutton
 	closetext
@@ -250,7 +250,7 @@ TrainerCameraGrunt1:
 	end
 
 TrainerCameraGrunt2:
-	loadfont
+	opentext
 	writetext CameraGrunt2SeenText
 	waitbutton
 	closetext
@@ -490,7 +490,7 @@ TrainerScientistJed:
 
 ScientistJedScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x6cc16
 	waitbutton
 	closetext
@@ -501,7 +501,7 @@ TrainerGruntM16:
 
 GruntM16Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x6cd1b
 	waitbutton
 	closetext
@@ -514,7 +514,7 @@ MapTeamRocketBaseB1FSignpost7Script:
 	jumpstd teamrocketoath
 
 MapTeamRocketBaseB1FSignpost0Script:
-	loadfont
+	opentext
 	checkevent EVENT_TURNED_OFF_SECURITY_CAMERAS
 	iftrue UnknownScript_0x6cabe
 	writetext UnknownText_0x6cdad

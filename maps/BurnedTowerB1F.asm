@@ -106,7 +106,7 @@ UnknownScript_0x18616b:
 
 SuperNerdScript_0x186212:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x18626a
 	waitbutton
 	closetext

@@ -10,7 +10,7 @@ Route7SaffronGate_MapScriptHeader:
 
 OfficerScript_0x73518:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x73526
 	writetext UnknownText_0x7352c

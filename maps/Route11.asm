@@ -17,7 +17,7 @@ TrainerYoungsterOwen:
 
 YoungsterOwenScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x680b2
 	waitbutton
 	closetext
@@ -28,7 +28,7 @@ TrainerYoungsterJason:
 
 YoungsterJasonScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x6814a
 	waitbutton
 	closetext
@@ -39,7 +39,7 @@ TrainerPsychicHerman:
 
 PsychicHermanScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x6817b
 	waitbutton
 	closetext
@@ -50,7 +50,7 @@ TrainerPsychicFidel:
 
 PsychicFidelScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x681ec
 	waitbutton
 	closetext

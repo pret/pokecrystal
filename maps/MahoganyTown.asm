@@ -48,14 +48,14 @@ UnknownScript_0x19002f:
 	end
 
 UnknownScript_0x190039:
-	loadfont
+	opentext
 	writetext UnknownText_0x1901a6
 	waitbutton
 	closetext
 	end
 
 UnknownScript_0x190040:
-	loadfont
+	opentext
 	writetext UnknownText_0x1900b0
 	special PlaceMoneyTopRightOW
 	yesorno
@@ -93,7 +93,7 @@ UnknownScript_0x190078:
 
 GrampsScript_0x19007e:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19008c
 	writetext UnknownText_0x1901e5

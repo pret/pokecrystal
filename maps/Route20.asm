@@ -23,7 +23,7 @@ TrainerSwimmerfNicole:
 
 SwimmerfNicoleScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1acd93
 	waitbutton
 	closetext
@@ -34,7 +34,7 @@ TrainerSwimmerfLori:
 
 SwimmerfLoriScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ace15
 	waitbutton
 	closetext
@@ -45,7 +45,7 @@ TrainerSwimmermCameron:
 
 SwimmermCameronScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ace8b
 	waitbutton
 	closetext

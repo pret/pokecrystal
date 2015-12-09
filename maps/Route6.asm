@@ -15,7 +15,7 @@ TrainerPokefanmRex:
 
 PokefanmRexScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ad9ff
 	waitbutton
 	closetext
@@ -26,7 +26,7 @@ TrainerPokefanmAllan:
 
 PokefanmAllanScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ada88
 	waitbutton
 	closetext

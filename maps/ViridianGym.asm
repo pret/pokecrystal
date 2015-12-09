@@ -11,7 +11,7 @@ ViridianGym_MapScriptHeader:
 
 BlueScript_0x9aa26:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_EARTHBADGE
 	iftrue .FightDone
 	writetext UnknownText_0x9aa7b
@@ -22,7 +22,7 @@ BlueScript_0x9aa26:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_BLUE
-	loadfont
+	opentext
 	writetext UnknownText_0x9ac0f
 	playsound SFX_GET_BADGE
 	waitsfx
@@ -40,7 +40,7 @@ BlueScript_0x9aa26:
 
 ViridianGymGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_BLUE
 	iftrue .ViridianGymGuyWinScript
 	writetext ViridianGymGuyText

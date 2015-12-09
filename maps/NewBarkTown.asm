@@ -31,20 +31,20 @@ NewBarkTown_MapScriptHeader:
 UnknownScript_0x1a8016:
 	playmusic MUSIC_MOM
 	spriteface NEWBARKTOWN_TEACHER, LEFT
-	loadfont
+	opentext
 	writetext UnknownText_0x1a8134
 	waitbutton
 	closetext
 	spriteface PLAYER, RIGHT
 	applymovement NEWBARKTOWN_TEACHER, MovementData_0x1a80d4
-	loadfont
+	opentext
 	writetext UnknownText_0x1a813e
 	waitbutton
 	closetext
 	follow NEWBARKTOWN_TEACHER, PLAYER
 	applymovement NEWBARKTOWN_TEACHER, MovementData_0x1a80e0
 	stopfollow
-	loadfont
+	opentext
 	writetext UnknownText_0x1a815e
 	waitbutton
 	closetext
@@ -54,21 +54,21 @@ UnknownScript_0x1a8016:
 UnknownScript_0x1a8041:
 	playmusic MUSIC_MOM
 	spriteface NEWBARKTOWN_TEACHER, LEFT
-	loadfont
+	opentext
 	writetext UnknownText_0x1a8134
 	waitbutton
 	closetext
 	spriteface PLAYER, RIGHT
 	applymovement NEWBARKTOWN_TEACHER, MovementData_0x1a80d9
 	spriteface PLAYER, UP
-	loadfont
+	opentext
 	writetext UnknownText_0x1a813e
 	waitbutton
 	closetext
 	follow NEWBARKTOWN_TEACHER, PLAYER
 	applymovement NEWBARKTOWN_TEACHER, MovementData_0x1a80e6
 	stopfollow
-	loadfont
+	opentext
 	writetext UnknownText_0x1a815e
 	waitbutton
 	closetext
@@ -77,7 +77,7 @@ UnknownScript_0x1a8041:
 
 TeacherScript_0x1a806f:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	iftrue UnknownScript_0x1a8095
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
@@ -111,12 +111,12 @@ FisherScript_0x1a809b:
 	jumptextfaceplayer UnknownText_0x1a8274
 
 SilverScript_0x1a809e:
-	loadfont
+	opentext
 	writetext UnknownText_0x1a82a6
 	waitbutton
 	closetext
 	spriteface NEWBARKTOWN_SILVER, LEFT
-	loadfont
+	opentext
 	writetext UnknownText_0x1a82cd
 	waitbutton
 	closetext

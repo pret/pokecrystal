@@ -14,7 +14,7 @@ TrainerGentlemanAlfred:
 
 GentlemanAlfredScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5b13e
 	waitbutton
 	closetext
@@ -26,7 +26,7 @@ TrainerSailorHuey1:
 SailorHuey1Script:
 	writecode VAR_CALLERID, PHONE_SAILOR_HUEY
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_HUEY
 	iftrue UnknownScript_0x5afc7
 	checkcellnum PHONE_SAILOR_HUEY
@@ -107,7 +107,7 @@ UnknownScript_0x5b03e:
 	end
 
 UnknownScript_0x5b03f:
-	loadfont
+	opentext
 	writetext UnknownText_0x5b1b6
 	waitbutton
 	verbosegiveitem PROTEIN

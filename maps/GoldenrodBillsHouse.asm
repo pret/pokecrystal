@@ -12,7 +12,7 @@ GoldenrodBillsHouse_MapScriptHeader:
 
 BillsHouseBill:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_EEVEE
 	iftrue UnknownScript_0x54c1f
 	writetext UnknownText_0x54c74
@@ -53,7 +53,7 @@ UnknownScript_0x54c1f:
 
 BillsMom:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_MET_BILL
 	iffalse UnknownScript_0x54c33
 	writetext UnknownText_0x54ea8
@@ -69,7 +69,7 @@ UnknownScript_0x54c33:
 
 BillsSister:
 	faceplayer
-	loadfont
+	opentext
 	checkcellnum PHONE_BILL
 	iftrue UnknownScript_0x54c58
 	writetext UnknownText_0x54f9e

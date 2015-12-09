@@ -27,7 +27,7 @@ UnknownScript_0x9b9fd:
 OfficerScript_0x9ba03:
 	faceplayer
 UnknownScript_0x9ba04:
-	loadfont
+	opentext
 	writetext UnknownText_0x9ba29
 	buttonsound
 	checkcode VAR_BADGES

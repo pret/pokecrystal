@@ -18,7 +18,7 @@ LassScript_0x9ae3d:
 	jumptextfaceplayer UnknownText_0x9aecb
 
 MoltresScript_0x9ae40:
-	loadfont
+	opentext
 	writetext UnknownText_0x9aefe
 	cry SPEAROW
 	waitbutton
@@ -26,7 +26,7 @@ MoltresScript_0x9ae40:
 	end
 
 GrowlitheScript_0x9ae4a:
-	loadfont
+	opentext
 	writetext UnknownText_0x9af10
 	cry RATTATA
 	waitbutton

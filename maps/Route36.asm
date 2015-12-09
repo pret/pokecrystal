@@ -63,7 +63,7 @@ WeirdTreeScript_0x19403c:
 	end
 
 UnknownScript_0x19404a:
-	loadfont
+	opentext
 	writetext UnknownText_0x19426b
 	yesorno
 	iffalse UnknownScript_0x194079
@@ -71,14 +71,14 @@ UnknownScript_0x19404a:
 	; fallthrough
 
 WateredWeirdTreeScript::
-	loadfont
+	opentext
 	writetext UnknownText_0x194290
 	waitbutton
 	closetext
 	waitsfx
 	playsound SFX_SANDSTORM
 	applymovement ROUTE36_WEIRD_TREE, MovementData_0x194249
-	loadfont
+	opentext
 	writetext UnknownText_0x1942aa
 	waitbutton
 	closetext
@@ -106,7 +106,7 @@ UnknownScript_0x19407b:
 
 LassScript_0x19408c:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_TALKED_TO_FLORIA_AT_FLOWER_SHOP
 	iftrue UnknownScript_0x1940b3
 	setevent EVENT_MET_FLORIA
@@ -133,7 +133,7 @@ UnknownScript_0x1940b3:
 
 FisherScript_0x1940b9:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM08_ROCK_SMASH
 	iftrue UnknownScript_0x1940da
 	checkevent EVENT_FOUGHT_SUDOWOODO
@@ -158,7 +158,7 @@ UnknownScript_0x1940de:
 
 LassScript_0x1940e0:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_FOUGHT_SUDOWOODO
 	iftrue UnknownScript_0x1940ee
 	writetext UnknownText_0x194626
@@ -178,7 +178,7 @@ TrainerSchoolboyAlan1:
 SchoolboyAlan1Script:
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_ALAN
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_ALAN
 	iftrue UnknownScript_0x194140
 	checkflag ENGINE_ALAN_HAS_FIRE_STONE
@@ -315,7 +315,7 @@ TrainerPsychicMark:
 
 PsychicMarkScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19471e
 	waitbutton
 	closetext
@@ -323,7 +323,7 @@ PsychicMarkScript:
 
 ArthurScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_HARD_STONE_FROM_ARTHUR
 	iftrue ArthurThursdayScript
 	checkcode VAR_WEEKDAY

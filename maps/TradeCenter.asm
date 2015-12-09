@@ -47,7 +47,7 @@ MapTradeCenterSignpost1Script:
 	end
 
 ChrisScript_0x19340b:
-	loadfont
+	opentext
 	writetext .FriendReadyText
 	waitbutton
 	closetext

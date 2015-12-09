@@ -11,7 +11,7 @@ SlowpokeWellB2F_MapScriptHeader:
 
 GymGuyScript_0x5ad0b:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL
 	iftrue UnknownScript_0x5ad22
 	writetext UnknownText_0x5ad2a

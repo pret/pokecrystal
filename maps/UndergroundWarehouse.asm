@@ -43,7 +43,7 @@ TrainerGruntM24:
 
 GruntM24Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x7da48
 	waitbutton
 	closetext
@@ -54,7 +54,7 @@ TrainerGruntM14:
 
 GruntM14Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x7db01
 	waitbutton
 	closetext
@@ -65,7 +65,7 @@ TrainerGruntM15:
 
 GruntM15Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x7db8e
 	waitbutton
 	closetext
@@ -73,7 +73,7 @@ GruntM15Script:
 
 GentlemanScript_0x7d9bf:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RECEIVED_CARD_KEY
 	iftrue UnknownScript_0x7d9de
 	writetext UnknownText_0x7dbc6

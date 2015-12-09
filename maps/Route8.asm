@@ -18,7 +18,7 @@ TrainerBikerDwayne:
 
 BikerDwayneScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x6c0c8
 	waitbutton
 	closetext
@@ -29,7 +29,7 @@ TrainerBikerHarris:
 
 BikerHarrisScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x6c143
 	waitbutton
 	closetext
@@ -40,7 +40,7 @@ TrainerBikerZeke:
 
 BikerZekeScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x6c1a3
 	waitbutton
 	closetext
@@ -51,7 +51,7 @@ TrainerSupernerdSam:
 
 SupernerdSamScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x6c219
 	waitbutton
 	closetext
@@ -62,7 +62,7 @@ TrainerSupernerdTom:
 
 SupernerdTomScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x6c27e
 	waitbutton
 	closetext

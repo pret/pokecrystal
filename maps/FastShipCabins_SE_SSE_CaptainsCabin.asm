@@ -23,7 +23,7 @@ UnknownScript_0x75ea6:
 
 CaptainScript_0x75ea7:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue UnknownScript_0x75eb5
 	writetext UnknownText_0x76012
@@ -39,12 +39,12 @@ UnknownScript_0x75eb5:
 
 TwinScript_0x75ebb:
 	spriteface FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN2, RIGHT
-	loadfont
+	opentext
 	writetext UnknownText_0x761e0
 	waitbutton
 	closetext
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x7621f
 	waitbutton
 	closetext
@@ -63,21 +63,21 @@ TwinScript_0x75ebb:
 	spriteface FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN, RIGHT
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue UnknownScript_0x75f03
-	loadfont
+	opentext
 	writetext UnknownText_0x76284
 	waitbutton
 	closetext
 	jump UnknownScript_0x75f09
 
 UnknownScript_0x75f03:
-	loadfont
+	opentext
 	writetext UnknownText_0x762c6
 	waitbutton
 	closetext
 UnknownScript_0x75f09:
 	spriteface FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN2, DOWN
 	applymovement FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN, MovementData_0x76010
-	loadfont
+	opentext
 	writetext UnknownText_0x76143
 	buttonsound
 	setevent EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
@@ -86,7 +86,7 @@ UnknownScript_0x75f09:
 
 GentlemanScript_0x75f1f:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_METAL_COAT_FROM_GRANDPA_ON_SS_AQUA
 	iftrue UnknownScript_0x75f67
 	checkevent EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_2
@@ -108,7 +108,7 @@ UnknownScript_0x75f44:
 	waitsfx
 	playsound SFX_ELEVATOR_END
 	pause 30
-	loadfont
+	opentext
 	writetext UnknownText_0x76645
 	waitbutton
 	setevent EVENT_FAST_SHIP_HAS_ARRIVED
@@ -134,7 +134,7 @@ UnknownScript_0x75f67:
 
 TwinScript_0x75f6d:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x7630d
 	waitbutton
 	closetext
@@ -145,7 +145,7 @@ TrainerPokefanmColin:
 
 PokefanmColinScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x7635b
 	waitbutton
 	closetext
@@ -156,7 +156,7 @@ TrainerTwinsMegandpeg1:
 
 TwinsMegandpeg1Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x763c2
 	waitbutton
 	closetext
@@ -167,7 +167,7 @@ TrainerTwinsMegandpeg2:
 
 TwinsMegandpeg2Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x76428
 	waitbutton
 	closetext
@@ -178,7 +178,7 @@ TrainerPsychicRodney:
 
 PsychicRodneyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x76497
 	waitbutton
 	closetext
@@ -189,7 +189,7 @@ TrainerPokefanmJeremy:
 
 PokefanmJeremyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x7651c
 	waitbutton
 	closetext
@@ -200,7 +200,7 @@ TrainerPokefanfGeorgia:
 
 PokefanfGeorgiaScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x76596
 	waitbutton
 	closetext
@@ -211,7 +211,7 @@ TrainerSupernerdShawn:
 
 SupernerdShawnScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x7660f
 	waitbutton
 	closetext

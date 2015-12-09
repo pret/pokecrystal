@@ -29,13 +29,13 @@ RadioTower5F_MapScriptHeader:
 FakeDirectorScript:
 	spriteface RADIOTOWER5F_DIRECTOR, UP
 	showemote EMOTE_SHOCK, RADIOTOWER5F_DIRECTOR, 15
-	loadfont
+	opentext
 	writetext FakeDirectorTextBefore1
 	waitbutton
 	closetext
 	applymovement RADIOTOWER5F_DIRECTOR, FakeDirectorMovement
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	loadfont
+	opentext
 	writetext FakeDirectorTextBefore2
 	waitbutton
 	closetext
@@ -44,7 +44,7 @@ FakeDirectorScript:
 	loadtrainer EXECUTIVEM, 3
 	startbattle
 	returnafterbattle
-	loadfont
+	opentext
 	writetext FakeDirectorTextAfter
 	buttonsound
 	verbosegiveitem BASEMENT_KEY
@@ -55,7 +55,7 @@ FakeDirectorScript:
 
 Director:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .TrueDirector
 	writetext FakeDirectorTextAfter
@@ -74,7 +74,7 @@ TrainerExecutivef1:
 
 Executivef1Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext Executivef1AfterText
 	waitbutton
 	closetext
@@ -84,7 +84,7 @@ RadioTower5FRocketBossTrigger:
 	applymovement PLAYER, MovementData_0x60125
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface RADIOTOWER5F_ROCKET, RIGHT
-	loadfont
+	opentext
 	writetext RadioTower5FRocketBossBeforeText
 	waitbutton
 	closetext
@@ -93,7 +93,7 @@ RadioTower5FRocketBossTrigger:
 	loadtrainer EXECUTIVEM, 1
 	startbattle
 	returnafterbattle
-	loadfont
+	opentext
 	writetext RadioTower5FRocketBossAfterText
 	waitbutton
 	closetext
@@ -121,7 +121,7 @@ RadioTower5FRocketBossTrigger:
 	appear RADIOTOWER5F_DIRECTOR
 	applymovement RADIOTOWER5F_DIRECTOR, RadioTower5FDirectorWalksIn
 	spriteface PLAYER, RIGHT
-	loadfont
+	opentext
 	writetext RadioTower5FDirectorThankYouText
 	buttonsound
 	verbosegiveitem CLEAR_BELL

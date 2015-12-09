@@ -19,7 +19,7 @@ TrainerTeacherColette:
 
 TeacherColetteScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1aa60d
 	waitbutton
 	closetext
@@ -30,7 +30,7 @@ TrainerTeacherHillary:
 
 TeacherHillaryScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1aa6ca
 	waitbutton
 	closetext
@@ -41,7 +41,7 @@ TrainerSchoolboyKipp:
 
 SchoolboyKippScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1aa740
 	waitbutton
 	closetext
@@ -52,7 +52,7 @@ TrainerSchoolboyTommy:
 
 SchoolboyTommyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1aa7bc
 	waitbutton
 	closetext
@@ -63,7 +63,7 @@ TrainerSchoolboyJohnny:
 
 SchoolboyJohnnyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1aa84a
 	waitbutton
 	closetext
@@ -74,7 +74,7 @@ TrainerSchoolboyBilly:
 
 SchoolboyBillyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1aa8b0
 	waitbutton
 	closetext

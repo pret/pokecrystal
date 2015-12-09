@@ -16,7 +16,7 @@ AzaleaGym_MapScriptHeader:
 
 BugsyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_BUGSY
 	iftrue .FightDone
 	writetext BugsyText_INeverLose
@@ -27,7 +27,7 @@ BugsyScript:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_BUGSY
-	loadfont
+	opentext
 	writetext Text_ReceivedHiveBadge
 	playsound SFX_GET_BADGE
 	waitsfx
@@ -74,7 +74,7 @@ TrainerTwinsAmyandmay1:
 
 .AfterScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext TwinsAmyandmay1AfterBattleText
 	waitbutton
 	closetext
@@ -85,7 +85,7 @@ TrainerTwinsAmyandmay2:
 
 .AfterScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext TwinsAmyandmay2AfterBattleText
 	waitbutton
 	closetext
@@ -96,7 +96,7 @@ TrainerBug_catcherbenny:
 
 .AfterScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext Bug_catcherbennyAfterBattleText
 	waitbutton
 	closetext
@@ -107,7 +107,7 @@ TrainerBug_catcherAl:
 
 .AfterScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext Bug_catcherAlAfterBattleText
 	waitbutton
 	closetext
@@ -118,7 +118,7 @@ TrainerBug_catcherJosh:
 
 .AfterScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext Bug_catcherJoshAfterBattleText
 	waitbutton
 	closetext
@@ -128,14 +128,14 @@ AzaleaGymGuyScript:
 	faceplayer
 	checkevent EVENT_BEAT_BUGSY
 	iftrue .AzaleaGymGuyWinScript
-	loadfont
+	opentext
 	writetext AzaleaGymGuyText
 	waitbutton
 	closetext
 	end
 
 .AzaleaGymGuyWinScript
-	loadfont
+	opentext
 	writetext AzaleaGymGuyWinText
 	waitbutton
 	closetext

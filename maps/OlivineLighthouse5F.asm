@@ -17,7 +17,7 @@ TrainerBird_keeperDenis:
 
 Bird_keeperDenisScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x60ac3
 	waitbutton
 	closetext
@@ -28,7 +28,7 @@ TrainerSailorErnest:
 
 SailorErnestScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x60a1f
 	waitbutton
 	closetext

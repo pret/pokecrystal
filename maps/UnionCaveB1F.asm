@@ -19,7 +19,7 @@ TrainerPokemaniacAndrew:
 
 PokemaniacAndrewScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5a181
 	waitbutton
 	closetext
@@ -30,7 +30,7 @@ TrainerPokemaniacCalvin:
 
 PokemaniacCalvinScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5a230
 	waitbutton
 	closetext
@@ -41,7 +41,7 @@ TrainerHikerPhillip:
 
 HikerPhillipScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5a073
 	waitbutton
 	closetext
@@ -52,7 +52,7 @@ TrainerHikerLeonard:
 
 HikerLeonardScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5a0fb
 	waitbutton
 	closetext

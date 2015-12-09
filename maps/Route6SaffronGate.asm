@@ -16,7 +16,7 @@ UnknownScript_0x1926e9:
 
 OfficerScript_0x1926ea:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x1926f8
 	writetext UnknownText_0x1926fe

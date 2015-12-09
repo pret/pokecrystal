@@ -26,7 +26,7 @@ TrainerBlackbeltKenji:
 BlackbeltKenji3Script:
 	writecode VAR_CALLERID, PHONE_BLACKBELT_KENJI
 	end_if_just_battled
-	loadfont
+	opentext
 	checkcellnum PHONE_BLACKBELT_KENJI
 	iftrue UnknownScript_0x19e0e4
 	checkevent EVENT_KENJI_ASKED_FOR_PHONE_NUMBER
@@ -129,7 +129,7 @@ TrainerHikerErik:
 
 HikerErikScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19e301
 	waitbutton
 	closetext
@@ -140,7 +140,7 @@ TrainerHikerMichael:
 
 HikerMichaelScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19e3b1
 	waitbutton
 	closetext
@@ -152,7 +152,7 @@ TrainerHikerParry:
 HikerParry3Script:
 	writecode VAR_CALLERID, PHONE_HIKER_PARRY
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_PARRY
 	iftrue UnknownScript_0x19e1b8
 	checkcellnum PHONE_HIKER_PARRY
@@ -223,7 +223,7 @@ UnknownScript_0x19e218:
 	end
 
 UnknownScript_0x19e219:
-	loadfont
+	opentext
 	writetext UnknownText_0x19e52c
 	waitbutton
 	verbosegiveitem IRON
@@ -237,7 +237,7 @@ TrainerHikerTimothy:
 
 HikerTimothyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19e4f1
 	waitbutton
 	closetext
@@ -248,7 +248,7 @@ TrainerCooltrainermRyan:
 
 CooltrainermRyanScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19e70d
 	waitbutton
 	closetext
@@ -259,7 +259,7 @@ TrainerCooltrainerfKelly:
 
 CooltrainerfKellyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19e7d1
 	waitbutton
 	closetext
@@ -267,7 +267,7 @@ CooltrainerfKellyScript:
 
 YoungsterScript_0x19e269:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_CAMPER_QUENTIN
 	iftrue UnknownScript_0x19e285
 	writetext UnknownText_0x19e87f

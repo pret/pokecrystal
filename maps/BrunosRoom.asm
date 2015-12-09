@@ -49,7 +49,7 @@ UnknownScript_0x1809ad:
 
 BrunoScript_0x1809c5:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_ELITE_4_BRUNO
 	iftrue UnknownScript_0x1809f3
 	writetext UnknownText_0x1809fe
@@ -60,7 +60,7 @@ BrunoScript_0x1809c5:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_ELITE_4_BRUNO
-	loadfont
+	opentext
 	writetext UnknownText_0x180b3c
 	waitbutton
 	closetext

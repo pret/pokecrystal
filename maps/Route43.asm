@@ -34,7 +34,7 @@ TrainerCamperSpencer:
 
 CamperSpencerScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19d57e
 	waitbutton
 	closetext
@@ -45,7 +45,7 @@ TrainerPokemaniacBen:
 
 PokemaniacBenScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19d2d2
 	waitbutton
 	closetext
@@ -57,7 +57,7 @@ TrainerPokemaniacBrent1:
 PokemaniacBrent1Script:
 	writecode VAR_CALLERID, PHONE_POKEMANIAC_BRENT
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_BRENT
 	iftrue UnknownScript_0x19d0cf
 	checkcellnum PHONE_POKEMANIAC_BRENT
@@ -161,7 +161,7 @@ TrainerPokemaniacRon:
 
 PokemaniacRonScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19d3f8
 	waitbutton
 	closetext
@@ -172,7 +172,7 @@ TrainerFisherMarvin:
 
 FisherMarvinScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19d4d3
 	waitbutton
 	closetext
@@ -184,7 +184,7 @@ TrainerPicnickerTiffany3:
 PicnickerTiffany3Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_TIFFANY
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_TIFFANY
 	iftrue UnknownScript_0x19d1c1
 	checkflag ENGINE_TIFFANY_HAS_PINK_BOW

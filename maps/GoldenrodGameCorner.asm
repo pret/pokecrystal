@@ -44,7 +44,7 @@ UnknownScript_0x56c19: ;0x56c19
 
 PokefanMScript_0x56c1a:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5718a
 	waitbutton
 	closetext
@@ -56,7 +56,7 @@ ClerkScript_0x56c25:
 
 ReceptionistScript_0x56c28:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x56e50
 	waitbutton
 	checkitem COIN_CASE
@@ -160,7 +160,7 @@ MenuData2_0x56cd1:
 
 ReceptionistScript_0x56d01:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x56e50
 	waitbutton
 	checkitem COIN_CASE
@@ -249,7 +249,7 @@ MenuData2_0x56db8:
 
 PharmacistScript_0x56df1:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x56f55
 	waitbutton
 	closetext
@@ -258,7 +258,7 @@ PharmacistScript_0x56df1:
 
 PokefanMScript_0x56dfc:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x56f9e
 	waitbutton
 	closetext
@@ -267,7 +267,7 @@ PokefanMScript_0x56dfc:
 
 CooltrainerMScript_0x56e07:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x56ff4
 	waitbutton
 	closetext
@@ -276,7 +276,7 @@ CooltrainerMScript_0x56e07:
 
 PokefanFScript_0x56e12:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5702b
 	waitbutton
 	closetext
@@ -288,7 +288,7 @@ CooltrainerFScript_0x56e1d:
 
 GentlemanScript_0x56e20:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x570b1
 	waitbutton
 	closetext

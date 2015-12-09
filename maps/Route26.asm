@@ -20,7 +20,7 @@ TrainerCooltrainermJake:
 
 CooltrainermJakeScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a4f08
 	waitbutton
 	closetext
@@ -32,7 +32,7 @@ TrainerCooltrainermGaven3:
 CooltrainermGaven3Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERM_GAVEN
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_GAVEN
 	iftrue UnknownScript_0x1a4d79
 	checkcellnum PHONE_COOLTRAINERM_GAVEN
@@ -124,7 +124,7 @@ TrainerCooltrainerfJoyce:
 
 CooltrainerfJoyceScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a50d7
 	waitbutton
 	closetext
@@ -136,7 +136,7 @@ TrainerCooltrainerfBeth1:
 CooltrainerfBeth1Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERF_BETH
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_BETH
 	iftrue UnknownScript_0x1a4e35
 	checkcellnum PHONE_COOLTRAINERF_BETH
@@ -228,7 +228,7 @@ TrainerPsychicRichard:
 
 PsychicRichardScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a5278
 	waitbutton
 	closetext
@@ -239,7 +239,7 @@ TrainerFisherScott:
 
 FisherScottScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a5326
 	waitbutton
 	closetext

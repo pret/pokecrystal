@@ -26,7 +26,7 @@ SuperNerdScript_0x5d6fe:
 
 TeacherScript_0x5d701:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue UnknownScript_0x5d70f
 	writetext UnknownText_0x5d956
@@ -41,7 +41,7 @@ UnknownScript_0x5d70f:
 	end
 
 JigglypuffScript_0x5d715:
-	loadfont
+	opentext
 	writetext UnknownText_0x5d9b6
 	cry JIGGLYPUFF
 	waitbutton
@@ -59,7 +59,7 @@ TrainerGruntM4:
 
 GruntM4Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5db07
 	waitbutton
 	closetext
@@ -70,7 +70,7 @@ TrainerGruntM5:
 
 GruntM5Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5db99
 	waitbutton
 	closetext
@@ -81,7 +81,7 @@ TrainerGruntM6:
 
 GruntM6Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5dc00
 	waitbutton
 	closetext
@@ -92,7 +92,7 @@ TrainerGruntF2:
 
 GruntF2Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5dcd0
 	waitbutton
 	closetext
@@ -100,7 +100,7 @@ GruntF2Script:
 
 Buena:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue UnknownScript_0x5d865
 	checkevent EVENT_MET_BUENA
@@ -128,7 +128,7 @@ Buena:
 	applymovement PLAYER, MovementData_0x5d921
 UnknownScript_0x5d7be:
 	spriteface PLAYER, RIGHT
-	loadfont
+	opentext
 	writetext UnknownText_0x5dedd
 	waitbutton
 	closetext
@@ -137,7 +137,7 @@ UnknownScript_0x5d7be:
 	special SpecialBuenasPassword
 	closetext
 	iffalse UnknownScript_0x5d845
-	loadfont
+	opentext
 	writetext UnknownText_0x5dfc1
 	waitbutton
 	closetext
@@ -149,7 +149,7 @@ UnknownScript_0x5d7be:
 	setflag ENGINE_BUENAS_PASSWORD_2
 	pause 20
 	spriteface RADIOTOWER2F_BUENA, RIGHT
-	loadfont
+	opentext
 	writetext UnknownText_0x5e054
 	waitbutton
 	closetext
@@ -202,13 +202,13 @@ UnknownScript_0x5d83f:
 
 UnknownScript_0x5d845:
 	setflag ENGINE_BUENAS_PASSWORD_2
-	loadfont
+	opentext
 	writetext UnknownText_0x5e01c
 	waitbutton
 	closetext
 	spriteface RADIOTOWER2F_BUENA, RIGHT
 	pause 20
-	loadfont
+	opentext
 	writetext UnknownText_0x5e054
 	waitbutton
 	closetext
@@ -272,12 +272,12 @@ UnknownScript_0x5d8a4:
 	showemote EMOTE_SHOCK, RADIOTOWER2F_BUENA, 15
 	setevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
 	setevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
-	loadfont
+	opentext
 	writetext UnknownText_0x5e1ee
 	jump UnknownScript_0x5d8d0
 
 UnknownScript_0x5d8cc:
-	loadfont
+	opentext
 	writetext UnknownText_0x5e2bf
 UnknownScript_0x5d8d0:
 	askforphonenumber PHONE_BUENA
@@ -311,7 +311,7 @@ UnknownScript_0x5d8fe:
 
 ReceptionistScript_0x5d8ff:
 	faceplayer
-	loadfont
+	opentext
 	checkitem BLUE_CARD
 	iffalse UnknownScript_0x5d90f
 	writetext UnknownText_0x5e392

@@ -11,7 +11,7 @@ OlivineGym_MapScriptHeader:
 
 JasmineScript_0x9c12f:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_JASMINE
 	iftrue .FightDone
 	writetext UnknownText_0x9c1b9
@@ -22,7 +22,7 @@ JasmineScript_0x9c12f:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_JASMINE
-	loadfont
+	opentext
 	writetext UnknownText_0x9c33a
 	playsound SFX_GET_BADGE
 	waitsfx
@@ -66,21 +66,21 @@ OlivineGymGuyScript:
 	iftrue .OlivineGymGuyWinScript
 	checkevent EVENT_JASMINE_RETURNED_TO_GYM
 	iffalse .OlivineGymGuyPreScript
-	loadfont
+	opentext
 	writetext OlivineGymGuyText
 	waitbutton
 	closetext
 	end
 
 .OlivineGymGuyWinScript
-	loadfont
+	opentext
 	writetext OlivineGymGuyWinText
 	waitbutton
 	closetext
 	end
 
 .OlivineGymGuyPreScript
-	loadfont
+	opentext
 	writetext OlivineGymGuyPreText
 	waitbutton
 	closetext

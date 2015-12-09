@@ -12,7 +12,7 @@ CharcoalKiln_MapScriptHeader:
 
 CharcoalKilnBoss:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_HM01_CUT
 	iftrue .GotCut
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
@@ -36,7 +36,7 @@ CharcoalKilnBoss:
 
 CharcoalKilnApprentice:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_CHARCOAL_IN_CHARCOAL_KILN
 	iftrue .YoureTheCoolest
 	checkevent EVENT_GOT_HM01_CUT
@@ -64,7 +64,7 @@ CharcoalKilnApprentice:
 
 CharcoalKilnFarfetchd:
 	faceplayer
-	loadfont
+	opentext
 	writetext FarfetchdText
 	cry FARFETCH_D
 	waitbutton

@@ -40,7 +40,7 @@ UnknownScript_0x19eea0:
 	spriteface ROUTE25_MISTY, UP
 	pause 10
 	applymovement ROUTE25_MISTY, MovementData_0x19efed
-	loadfont
+	opentext
 	writetext UnknownText_0x19f006
 	waitbutton
 	closetext
@@ -66,7 +66,7 @@ UnknownScript_0x19eee0:
 	spriteface ROUTE25_MISTY, UP
 	pause 10
 	applymovement ROUTE25_MISTY, MovementData_0x19eff4
-	loadfont
+	opentext
 	writetext UnknownText_0x19f006
 	waitbutton
 	closetext
@@ -85,7 +85,7 @@ TrainerSchoolboyDudley:
 
 SchoolboyDudleyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19f1b5
 	waitbutton
 	closetext
@@ -96,7 +96,7 @@ TrainerLassEllen:
 
 LassEllenScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19f208
 	waitbutton
 	closetext
@@ -107,7 +107,7 @@ TrainerSchoolboyJoe:
 
 SchoolboyJoeScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19f25c
 	waitbutton
 	closetext
@@ -118,7 +118,7 @@ TrainerLassLaura:
 
 LassLauraScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19f2a6
 	waitbutton
 	closetext
@@ -129,7 +129,7 @@ TrainerCamperLloyd:
 
 CamperLloydScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19f2f8
 	waitbutton
 	closetext
@@ -140,7 +140,7 @@ TrainerLassShannon:
 
 LassShannonScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19f35b
 	waitbutton
 	closetext
@@ -151,7 +151,7 @@ TrainerSupernerdPat:
 
 SupernerdPatScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19f41a
 	waitbutton
 	closetext
@@ -159,7 +159,7 @@ SupernerdPatScript:
 
 CooltrainerMScript_0x19efac:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_COOLTRAINERM_KEVIN
 	iftrue UnknownScript_0x19efda
 	checkevent EVENT_CLEARED_NUGGET_BRIDGE
@@ -178,7 +178,7 @@ UnknownScript_0x19efc7:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_COOLTRAINERM_KEVIN
-	loadfont
+	opentext
 UnknownScript_0x19efda:
 	writetext UnknownText_0x19f520
 	waitbutton

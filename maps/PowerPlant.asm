@@ -32,13 +32,13 @@ UnknownScript_0x188dc5:
 	applymovement POWERPLANT_OFFICER1, MovementData_0x188ed5
 	spriteface POWERPLANT_GYM_GUY1, DOWN
 	spriteface POWERPLANT_GYM_GUY2, DOWN
-	loadfont
+	opentext
 	writetext UnknownText_0x188f22
 	waitbutton
 	closetext
 	spriteface POWERPLANT_OFFICER1, LEFT
 	spriteface PLAYER, RIGHT
-	loadfont
+	opentext
 	writetext UnknownText_0x188f7f
 	waitbutton
 	closetext
@@ -49,7 +49,7 @@ UnknownScript_0x188dc5:
 
 OfficerScript_0x188df5:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e0f
 	checkevent EVENT_MET_MANAGER_AT_POWER_PLANT
@@ -73,7 +73,7 @@ UnknownScript_0x188e0f:
 
 GymGuyScript_0x188e15:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e23
 	writetext UnknownText_0x188fcf
@@ -89,7 +89,7 @@ UnknownScript_0x188e23:
 
 GymGuyScript_0x188e29:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e37
 	writetext UnknownText_0x189079
@@ -105,7 +105,7 @@ UnknownScript_0x188e37:
 
 OfficerScript_0x188e3d:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e4b
 	writetext UnknownText_0x18910e
@@ -121,7 +121,7 @@ UnknownScript_0x188e4b:
 
 GymGuyScript_0x188e51:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e5f
 	writetext UnknownText_0x1891c2
@@ -137,7 +137,7 @@ UnknownScript_0x188e5f:
 
 PowerPlantManager:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188eac
 	checkitem MACHINE_PART
@@ -192,7 +192,7 @@ UnknownScript_0x188ec5:
 
 GymGuyScript_0x188ecb:
 	faceplayer
-	loadfont
+	opentext
 	trade $6
 	waitbutton
 	closetext

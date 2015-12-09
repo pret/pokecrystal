@@ -16,7 +16,7 @@ NurseScript_0x9b690:
 
 CooltrainerMScript_0x9b693:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BLUE_IN_CINNABAR
 	iftrue .BlueReturned
 	writetext UnknownText_0x9b6ad

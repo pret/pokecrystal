@@ -29,7 +29,7 @@ GoldenrodDeptStore5F_MapScriptHeader:
 
 ClerkScript_0x5609c:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM02_HEADBUTT
 	iftrue .headbutt
 	checkevent EVENT_GOT_TM08_ROCK_SMASH
@@ -63,7 +63,7 @@ ClerkScript_0x5609c:
 
 ReceptionistScript_0x560ce:
 	faceplayer
-	loadfont
+	opentext
 	checkcode VAR_WEEKDAY
 	if_not_equal SUNDAY, .EventIsOver
 	checkflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT
@@ -108,7 +108,7 @@ ReceptionistScript_0x560ce:
 
 TwinScript_0x56118:
 	faceplayer
-	loadfont
+	opentext
 	special SpecialGameboyCheck
 	if_not_equal $2, .NotGBC ; This is a dummy check from Gold and Silver.  In normal gameplay, this would not be checked.
 	writetext UnknownText_0x56241
@@ -128,7 +128,7 @@ LassScript_0x56130:
 
 CooltrainerMScript_0x56133:
 	faceplayer
-	loadfont
+	opentext
 	trade $0
 	waitbutton
 	closetext

@@ -16,7 +16,7 @@ TrainerFirebreatherLyle:
 
 FirebreatherLyleScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x75b52
 	waitbutton
 	closetext
@@ -27,7 +27,7 @@ TrainerBug_catcherKen:
 
 Bug_catcherKenScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x75bd5
 	waitbutton
 	closetext
@@ -38,7 +38,7 @@ TrainerBeautyCassie:
 
 BeautyCassieScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x75c43
 	waitbutton
 	closetext
@@ -51,21 +51,21 @@ GuitaristClydeScript:
 	end_if_just_battled
 	special Mobile_DummyReturnFalse
 	iftrue .mobile
-	loadfont
+	opentext
 	writetext UnknownText_0x75d65
 	waitbutton
 	closetext
 	end
 
 .mobile:
-	loadfont
+	opentext
 	writetext UnknownText_0x75cfe
 	waitbutton
 	closetext
 	end
 
 FastShipBed:
-	loadfont
+	opentext
 	writetext FastShipBedText1
 	waitbutton
 	closetext
@@ -77,7 +77,7 @@ FastShipBed:
 	pause 60
 	special RestartMapMusic
 	special Special_FadeInQuickly
-	loadfont
+	opentext
 	writetext FastShipBedText2
 	waitbutton
 	closetext
@@ -95,7 +95,7 @@ UnknownScript_0x75ae2:
 	pause 30
 	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	iftrue UnknownScript_0x75af7
-	loadfont
+	opentext
 	writetext FastShipArrivedVermilionText
 	waitbutton
 	closetext
@@ -103,7 +103,7 @@ UnknownScript_0x75ae2:
 	end
 
 UnknownScript_0x75af7:
-	loadfont
+	opentext
 	writetext FastShipArrivedOlivineText
 	waitbutton
 	closetext

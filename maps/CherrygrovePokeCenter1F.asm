@@ -22,7 +22,7 @@ GentlemanScript_0x196973:
 
 TeacherScript_0x196976:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x196984
 	writetext UnknownText_0x1969f1

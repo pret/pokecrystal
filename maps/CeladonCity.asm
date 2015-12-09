@@ -27,7 +27,7 @@ FisherScript_0x1a9f43:
 	jumptextfaceplayer UnknownText_0x1a9f7d
 
 CeladonCityPoliwrath:
-	loadfont
+	opentext
 	writetext CeladonCityPoliwrathText
 	cry POLIWRATH
 	waitbutton

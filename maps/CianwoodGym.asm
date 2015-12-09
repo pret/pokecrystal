@@ -18,14 +18,14 @@ CianwoodGym_MapScriptHeader:
 
 ChuckScript_0x9d60f:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_CHUCK
 	iftrue .FightDone
 	writetext UnknownText_0x9d6f9
 	waitbutton
 	closetext
 	spriteface CIANWOODGYM_CHUCK, RIGHT
-	loadfont
+	opentext
 	writetext UnknownText_0x9d76f
 	waitbutton
 	closetext
@@ -35,7 +35,7 @@ ChuckScript_0x9d60f:
 	disappear CIANWOODGYM_BOULDER1
 	pause 30
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x9d78a
 	waitbutton
 	closetext
@@ -44,7 +44,7 @@ ChuckScript_0x9d60f:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_CHUCK
-	loadfont
+	opentext
 	writetext UnknownText_0x9d835
 	playsound SFX_GET_BADGE
 	waitsfx
@@ -91,7 +91,7 @@ TrainerBlackbeltYoshi:
 
 BlackbeltYoshiScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x9d9fa
 	waitbutton
 	closetext
@@ -102,7 +102,7 @@ TrainerBlackbeltLao:
 
 BlackbeltLaoScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x9da61
 	waitbutton
 	closetext
@@ -113,7 +113,7 @@ TrainerBlackbeltNob:
 
 BlackbeltNobScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x9dac0
 	waitbutton
 	closetext
@@ -124,7 +124,7 @@ TrainerBlackbeltLung:
 
 BlackbeltLungScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x9db14
 	waitbutton
 	closetext

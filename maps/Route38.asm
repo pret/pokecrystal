@@ -19,7 +19,7 @@ TrainerBird_keeperToby:
 
 .script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a1f86
 	waitbutton
 	closetext
@@ -30,7 +30,7 @@ TrainerSailorHarry:
 
 .script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a220c
 	waitbutton
 	closetext
@@ -42,7 +42,7 @@ TrainerLassDana1:
 .script:
 	writecode VAR_CALLERID, PHONE_LASS_DANA
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_DANA
 	iftrue .DanaRematch
 	checkflag ENGINE_DANA_HAS_THUNDERSTONE
@@ -180,7 +180,7 @@ TrainerSchoolboyChad1:
 .script:
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_CHAD
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_CHAD
 	iftrue .ChadRematch
 	checkcellnum PHONE_SCHOOLBOY_CHAD
@@ -296,7 +296,7 @@ TrainerBeautyValerie:
 
 .script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a2185
 	waitbutton
 	closetext
@@ -307,7 +307,7 @@ TrainerBeautyOlivia:
 
 .script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a229a
 	waitbutton
 	closetext

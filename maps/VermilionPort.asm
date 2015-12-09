@@ -43,7 +43,7 @@ UnknownScript_0x74da6:
 
 SailorScript_0x74dc4:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74e1a
 	writetext UnknownText_0x74f06
@@ -89,7 +89,7 @@ UnknownScript_0x74e20:
 	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
 	iftrue UnknownScript_0x74e86
 	spriteface PLAYER, LEFT
-	loadfont
+	opentext
 	checkcode VAR_WEEKDAY
 	if_equal MONDAY, UnknownScript_0x74e72
 	if_equal TUESDAY, UnknownScript_0x74e72
@@ -149,7 +149,7 @@ UnknownScript_0x74e8d:
 
 SailorScript_0x74e97:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74e1a
 	checkcode VAR_WEEKDAY
@@ -192,7 +192,7 @@ UnknownScript_0x74ee0:
 
 SuperNerdScript_0x74ee6:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x750a6
 	waitbutton
 	closetext

@@ -14,73 +14,73 @@ DragonsDenB1F_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x18c89d, 0
-	dw UnknownScript_0x18c89e, 0
+	dw .Trigger1, 0
+	dw .Trigger2, 0
 
 .MapCallbacks:
 	db 1
 
 	; callbacks
 
-	dbw 5, UnknownScript_0x18c89f
+	dbw 5, .CheckSilver
 
-UnknownScript_0x18c89d:
+.Trigger1:
 	end
 
-UnknownScript_0x18c89e:
+.Trigger2:
 	end
 
-UnknownScript_0x18c89f:
+.CheckSilver:
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
-	iftrue UnknownScript_0x18c8a8
+	iftrue .CheckDay
 	disappear DRAGONSDENB1F_SILVER
 	return
 
-UnknownScript_0x18c8a8:
+.CheckDay:
 	checkcode VAR_WEEKDAY
-	if_equal TUESDAY, UnknownScript_0x18c8b5
-	if_equal THURSDAY, UnknownScript_0x18c8b5
+	if_equal TUESDAY, .AppearSilver
+	if_equal THURSDAY, .AppearSilver
 	disappear DRAGONSDENB1F_SILVER
 	return
 
-UnknownScript_0x18c8b5:
+.AppearSilver:
 	appear DRAGONSDENB1F_SILVER
 	return
 
-UnknownScript_0x18c8b8:
+DragonsDenB1F_ClairTrigger:
 	appear DRAGONSDENB1F_CLAIR
-	loadfont
-	writetext UnknownText_0x18c9b8
+	opentext
+	writetext ClairText_Wait
 	pause 30
 	closetext
 	showemote EMOTE_SHOCK, PLAYER, 15
 	spriteface PLAYER, LEFT
 	playmusic MUSIC_CLAIR
-	applymovement DRAGONSDENB1F_CLAIR, MovementData_0x18c9ae
-	loadfont
-	writetext UnknownText_0x18c9bf
+	applymovement DRAGONSDENB1F_CLAIR, MovementDragonsDen_ClairWalksToYou
+	opentext
+	writetext ClairText_GiveDragonbreathDragonDen
 	buttonsound
 	giveitem TM_DRAGONBREATH
-	iffalse UnknownScript_0x18c8f4
+	iffalse .BagFull
 	itemtotext TM_DRAGONBREATH, $0
-	writetext UnknownText_0x18c9fb
+	writetext NotifyReceiveDragonbreath
 	playsound SFX_ITEM
 	waitsfx
 	itemnotify
 	setevent EVENT_GOT_TM24_DRAGONBREATH
-	writetext UnknownText_0x18ca0d
+	writetext ClairText_DescribeDragonbreathDragonDen
 	buttonsound
-	writetext UnknownText_0x18caf1
+	writetext ClairText_WhatsTheMatterDragonDen
 	waitbutton
 	closetext
-	jump UnknownScript_0x18c8f9
+	jump .FinishClair
 
-UnknownScript_0x18c8f4:
-	writetext UnknownText_0x18ca8b
+.BagFull:
+	writetext ClairText_NoRoom
 	waitbutton
 	closetext
-UnknownScript_0x18c8f9:
-	applymovement DRAGONSDENB1F_CLAIR, MovementData_0x18c9b3
+.FinishClair:
+	applymovement DRAGONSDENB1F_CLAIR, MovementDragonsDen_ClairWalksAway
 	special Special_FadeOutMusic
 	pause 30
 	special RestartMapMusic
@@ -93,8 +93,8 @@ TrainerCooltrainermDarin:
 
 CooltrainermDarinScript:
 	end_if_just_battled
-	loadfont
-	writetext UnknownText_0x18cd82
+	opentext
+	writetext CooltrainermDarinAfterText
 	waitbutton
 	closetext
 	end
@@ -104,8 +104,8 @@ TrainerCooltrainerfCara:
 
 CooltrainerfCaraScript:
 	end_if_just_battled
-	loadfont
-	writetext UnknownText_0x18ce11
+	opentext
+	writetext CooltrainerfCaraAfterText
 	waitbutton
 	closetext
 	end
@@ -115,8 +115,8 @@ TrainerTwinsLeaandpia1:
 
 TwinsLeaandpia1Script:
 	end_if_just_battled
-	loadfont
-	writetext UnknownText_0x18ced3
+	opentext
+	writetext TrinsLeaandpia1AfterText
 	waitbutton
 	closetext
 	end
@@ -126,31 +126,34 @@ TrainerTwinsLeaandpia2:
 
 TwinsLeaandpia2Script:
 	end_if_just_battled
-	loadfont
-	writetext UnknownText_0x18cf0f
+	opentext
+	writetext TrinsLeaandpia2AfterText
 	waitbutton
 	closetext
 	end
 
 PokeBallScript_0x18c95a:
+; This whole script is written out rather than as an
+; item fragment because it's left over from the GS
+; event.
 	giveitem DRAGON_FANG
-	iffalse UnknownScript_0x18c970
+	iffalse .BagFull
 	disappear DRAGONSDENB1F_POKE_BALL1
-	loadfont
+	opentext
 	itemtotext DRAGON_FANG, $0
-	writetext UnknownText_0x18cf41
+	writetext Text_FoundDragonFang
 	playsound SFX_ITEM
 	waitsfx
 	itemnotify
 	closetext
 	end
 
-UnknownScript_0x18c970:
-	loadfont
+.BagFull:
+	opentext
 	itemtotext DRAGON_FANG, $0
-	writetext UnknownText_0x18cf41
+	writetext Text_FoundDragonFang
 	buttonsound
-	writetext UnknownText_0x18cf51
+	writetext Text_NoRoomForDragonFang
 	waitbutton
 	closetext
 	end
@@ -158,25 +161,25 @@ UnknownScript_0x18c970:
 SilverScript_0x18c97e:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
-	iftrue UnknownScript_0x18c995
-	writetext UnknownText_0x18cc83
+	iftrue .SilverTalkAgain
+	writetext SilverText_Training1
 	waitbutton
 	closetext
 	setevent EVENT_GAVE_KURT_APRICORNS
 	special RestartMapMusic
 	end
 
-UnknownScript_0x18c995:
-	writetext UnknownText_0x18cd2d
+.SilverTalkAgain:
+	writetext SilverText_Training2
 	waitbutton
 	closetext
 	special RestartMapMusic
 	end
 
 MapDragonsDenB1FSignpost0Script:
-	jumptext UnknownText_0x18cc2e
+	jumptext DragonShrineSignpostText
 
 ItemFragment_0x18c9a1:
 	itemfragment CALCIUM
@@ -193,25 +196,25 @@ MapDragonsDenB1FSignpostItem2:
 MapDragonsDenB1FSignpostItem3:
 	dwb EVENT_DRAGONS_DEN_B1F_HIDDEN_MAX_ELIXER, MAX_ELIXER
 
-MovementData_0x18c9ae:
+MovementDragonsDen_ClairWalksToYou:
 	slow_step_right
 	slow_step_right
 	slow_step_right
 	slow_step_right
 	step_end
 
-MovementData_0x18c9b3:
+MovementDragonsDen_ClairWalksAway:
 	slow_step_left
 	slow_step_left
 	slow_step_left
 	slow_step_left
 	step_end
 
-UnknownText_0x18c9b8:
+ClairText_Wait:
 	text "Wait!"
 	done
 
-UnknownText_0x18c9bf:
+ClairText_GiveDragonbreathDragonDen:
 	text "CLAIR: I'm sorry"
 	line "about this."
 
@@ -219,12 +222,12 @@ UnknownText_0x18c9bf:
 	line "my apology."
 	done
 
-UnknownText_0x18c9fb:
+NotifyReceiveDragonbreath:
 	text "<PLAYER> received"
 	line "TM24."
 	done
 
-UnknownText_0x18ca0d:
+ClairText_DescribeDragonbreathDragonDen:
 	text "That contains"
 	line "DRAGONBREATH."
 
@@ -237,7 +240,7 @@ UnknownText_0x18ca0d:
 	cont "to take it."
 	done
 
-UnknownText_0x18ca8b:
+ClairText_NoRoom:
 	text "Oh? You don't have"
 	line "any room for this."
 
@@ -248,7 +251,7 @@ UnknownText_0x18ca8b:
 	line "see me there."
 	done
 
-UnknownText_0x18caf1:
+ClairText_WhatsTheMatterDragonDen:
 	text "CLAIR: What's the"
 	line "matter? Aren't you"
 
@@ -281,7 +284,7 @@ UnknownText_0x18caf1:
 	line "you've got."
 	done
 
-UnknownText_0x18cc2e:
+DragonShrineSignpostText:
 	text "DRAGON SHRINE"
 
 	para "A shrine honoring"
@@ -291,7 +294,7 @@ UnknownText_0x18cc2e:
 	line "in DRAGON'S DEN."
 	done
 
-UnknownText_0x18cc83:
+SilverText_Training1:
 	text "…"
 	line "What? <PLAYER>?"
 
@@ -311,7 +314,7 @@ UnknownText_0x18cc83:
 	line "MON trainer…"
 	done
 
-UnknownText_0x18cd2d:
+SilverText_Training2:
 	text "…"
 
 	para "Whew…"
@@ -329,7 +332,7 @@ CooltrainermDarinBeatenText:
 	text "S-strong!"
 	done
 
-UnknownText_0x18cd82:
+CooltrainermDarinAfterText:
 	text "The SHRINE ahead"
 	line "is home to the"
 
@@ -349,7 +352,7 @@ CooltrainerfCaraBeatenText:
 	text "Oh yikes, I lost!"
 	done
 
-UnknownText_0x18ce11:
+CooltrainerfCaraAfterText:
 	text "Soon I'm going to"
 	line "get permission"
 
@@ -375,7 +378,7 @@ TwinsLeaandpia1BeatenText:
 	text "Ouchies."
 	done
 
-UnknownText_0x18ced3:
+TrinsLeaandpia1AfterText:
 	text "It was like having"
 	line "to battle LANCE."
 	done
@@ -388,21 +391,21 @@ TwinsLeaandpia2BeatenText:
 	text "Meanie."
 	done
 
-UnknownText_0x18cf0f:
+TrinsLeaandpia2AfterText:
 	text "We'll tell on you."
 
 	para "MASTER will be"
 	line "angry with you."
 	done
 
-UnknownText_0x18cf41:
+Text_FoundDragonFang:
 	text "<PLAYER> found"
 	line "@"
 	text_from_ram StringBuffer3
 	text "!"
 	done
 
-UnknownText_0x18cf51:
+Text_NoRoomForDragonFang:
 	text "But <PLAYER> can't"
 	line "carry any more"
 	cont "items."
@@ -419,7 +422,7 @@ DragonsDenB1F_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 1, $1e, $13, $0, UnknownScript_0x18c8b8, $0, $0
+	xy_trigger 1, $1e, $13, $0, DragonsDenB1F_ClairTrigger, $0, $0
 
 .Signposts:
 	db 4

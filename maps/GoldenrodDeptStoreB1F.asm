@@ -60,7 +60,7 @@ BlackBeltScript_0x7d7b6:
 	jumptextfaceplayer UnknownText_0x7d875
 
 MachopScript_0x7d7b9:
-	loadfont
+	opentext
 	writetext UnknownText_0x7d8bb
 	cry MACHOKE
 	waitbutton

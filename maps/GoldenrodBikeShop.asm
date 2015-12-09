@@ -13,7 +13,7 @@ UnknownScript_0x5474f:
 
 ClerkScript_0x54750:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_BICYCLE
 	iftrue UnknownScript_0x54775
 	writetext UnknownText_0x54787

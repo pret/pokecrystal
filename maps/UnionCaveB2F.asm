@@ -45,7 +45,7 @@ TrainerCooltrainermNick:
 
 CooltrainermNickScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5a3f0
 	waitbutton
 	closetext
@@ -56,7 +56,7 @@ TrainerCooltrainerfGwen:
 
 CooltrainerfGwenScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5a488
 	waitbutton
 	closetext
@@ -67,7 +67,7 @@ TrainerCooltrainerfEmma:
 
 CooltrainerfEmmaScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5a52b
 	waitbutton
 	closetext

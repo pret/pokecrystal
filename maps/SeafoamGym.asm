@@ -17,7 +17,7 @@ UnknownScript_0x1ab4fa:
 
 BlaineScript_0x1ab4fb:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_VOLCANOBADGE
 	iftrue .FightDone
 	writetext UnknownText_0x1ab548
@@ -31,7 +31,7 @@ BlaineScript_0x1ab4fb:
 .ReturnAfterBattle
 	returnafterbattle
 	setevent EVENT_BEAT_BLAINE
-	loadfont
+	opentext
 	writetext UnknownText_0x1ab683
 	playsound SFX_GET_BADGE
 	waitsfx
@@ -49,7 +49,7 @@ BlaineScript_0x1ab4fb:
 
 SeafoamGymGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_TALKED_TO_SEAFOAM_GYM_GUY_ONCE
 	iftrue .TalkedToSeafoamGymGuyScript
 	writetext SeafoamGymGuyWinText

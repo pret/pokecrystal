@@ -18,7 +18,7 @@ GrampsScript_0x188136:
 	jumptextfaceplayer UnknownText_0x18818a
 
 RhydonScript_0x188139:
-	loadfont
+	opentext
 	writetext UnknownText_0x18819c
 	cry KANGASKHAN
 	waitbutton
@@ -26,7 +26,7 @@ RhydonScript_0x188139:
 	end
 
 ZubatScript_0x188143:
-	loadfont
+	opentext
 	writetext UnknownText_0x1881b5
 	cry ZUBAT
 	waitbutton

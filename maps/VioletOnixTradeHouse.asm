@@ -14,7 +14,7 @@ PokefanMScript_0x6998d:
 
 YoungsterScript_0x69990:
 	faceplayer
-	loadfont
+	opentext
 	trade $1
 	waitbutton
 	closetext

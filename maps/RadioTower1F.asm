@@ -15,7 +15,7 @@ RadioTower1F_MapScriptHeader:
 
 ReceptionistScript_0x5cd29:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue UnknownScript_0x5cd37
 	writetext UnknownText_0x5ce77
@@ -31,7 +31,7 @@ UnknownScript_0x5cd37:
 
 GentlemanScript_0x5cd3d:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5ceba
 	buttonsound
 	special Special_CheckLuckyNumberShowFlag
@@ -45,7 +45,7 @@ GentlemanScript_0x5cd3d:
 	buttonsound
 	closetext
 	applymovement RADIOTOWER1F_GENTLEMAN, MovementData_0x5ce71
-	loadfont
+	opentext
 	writetext UnknownText_0x5cf5a
 	buttonsound
 	waitsfx
@@ -56,7 +56,7 @@ GentlemanScript_0x5cd3d:
 	special Special_CheckForLuckyNumberWinners
 	closetext
 	applymovement RADIOTOWER1F_GENTLEMAN, MovementData_0x5ce74
-	loadfont
+	opentext
 	if_equal 1, .FirstPlace
 	if_equal 2, .SecondPlace
 	if_equal 3, .ThirdPlace
@@ -115,7 +115,7 @@ GentlemanScript_0x5cd3d:
 
 CooltrainerFScript_0x5cdd5:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_RADIO_CARD
 	iftrue UnknownScript_0x5ce2d
 	writetext UnknownText_0x5d12d
@@ -190,7 +190,7 @@ TrainerGruntM3:
 
 GruntM3Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5d5a2
 	waitbutton
 	closetext

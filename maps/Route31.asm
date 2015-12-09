@@ -33,7 +33,7 @@ TrainerBug_catcherWade1:
 Bug_catcherWade1Script:
 	writecode VAR_CALLERID, PHONE_BUG_CATCHER_WADE
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_WADE
 	iftrue .WadeRematch
 	checkflag ENGINE_WADE_HAS_ITEM
@@ -187,7 +187,7 @@ Bug_catcherWade1Script:
 
 FisherScript_0x1a5570:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM50_NIGHTMARE
 	iftrue .DescribeNightmare
 	checkevent EVENT_GOT_KENYA

@@ -14,14 +14,14 @@ GoldenrodDeptStore2F_MapScriptHeader:
 
 ClerkScript_0x55b5d:
 	faceplayer
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_2F_1
 	closetext
 	end
 
 ClerkScript_0x55b65:
 	faceplayer
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_2F_2
 	closetext
 	end

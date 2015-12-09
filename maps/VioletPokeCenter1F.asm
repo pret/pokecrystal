@@ -17,7 +17,7 @@ VioletPokeCenterNurse:
 
 VioletPokeCenter1F_ElmsAideScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_REFUSED_TO_TAKE_EGG_FROM_ELMS_AIDE
 	iftrue .SecondTimeAsking
 	writetext UnknownText_0x69555

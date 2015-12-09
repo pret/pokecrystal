@@ -44,7 +44,7 @@ GoldenrodDeptStoreRoof_MapScriptHeader:
 	return
 
 ClerkScript_0x5673f:
-	loadfont
+	opentext
 	pokemart MARTTYPE_ROOFTOP, 0
 	closetext
 	end
@@ -54,7 +54,7 @@ PokefanFScript_0x56746:
 
 FisherScript_0x56749:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x567d2
 	waitbutton
 	closetext
@@ -65,12 +65,12 @@ TwinScript_0x56754:
 	jumptextfaceplayer UnknownText_0x56839
 
 SuperNerdScript_0x56757:
-	loadfont
+	opentext
 	writetext UnknownText_0x56867
 	waitbutton
 	closetext
 	spriteface GOLDENRODDEPTSTOREROOF_SUPER_NERD, UP
-	loadfont
+	opentext
 	writetext UnknownText_0x56871
 	waitbutton
 	closetext

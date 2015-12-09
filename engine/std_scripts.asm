@@ -55,7 +55,7 @@ StdScripts::
 PokeCenterNurseScript:
 ; EVENT_WELCOMED_TO_POKECOM_CENTER is never set
 
-	loadfont
+	opentext
 	checkmorn
 	iftrue .morn
 	checkday
@@ -181,7 +181,7 @@ MerchandiseShelfScript:
 	farjumptext MerchandiseShelfText
 
 TownMapScript:
-	loadfont
+	opentext
 	farwritetext TownMapText
 	waitbutton
 	special Special_TownMap
@@ -192,7 +192,7 @@ WindowScript:
 	farjumptext WindowText
 
 TVScript:
-	loadfont
+	opentext
 	farwritetext TVText
 	waitbutton
 	closetext
@@ -202,7 +202,7 @@ HomepageScript:
 	farjumptext HomepageText
 
 Radio1Script:
-	loadfont
+	opentext
 	writebyte $0
 	special MapRadio
 	closetext
@@ -210,7 +210,7 @@ Radio1Script:
 
 Radio2Script:
 ; Lucky Channel
-	loadfont
+	opentext
 	writebyte $4
 	special MapRadio
 	closetext
@@ -220,7 +220,7 @@ TrashCanScript: ; 0xbc1a5
 	farjumptext TrashCanText
 
 PCScript:
-	loadfont
+	opentext
 	special PokemonCenterPC
 	closetext
 	end
@@ -317,7 +317,7 @@ BugContestResultsScript:
 	clearevent EVENT_CONTEST_OFFICER_HAS_EVERSTONE
 	clearevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
 	clearevent EVENT_CONTEST_OFFICER_HAS_BERRY
-	loadfont
+	opentext
 	farwritetext ContestResults_ReadyToJudgeText
 	waitbutton
 	special BugContestJudging
@@ -1385,7 +1385,7 @@ PackFullMScript:
 	end
 
 RematchGiftMScript:
-	loadfont
+	opentext
 	checkcode VAR_CALLERID
 	if_equal PHONE_SAILOR_HUEY, .Huey
 	if_equal PHONE_YOUNGSTER_JOEY, .Joey
@@ -1753,14 +1753,14 @@ RematchGiftFScript:
 	if_equal PHONE_PICNICKER_ERIN, .Erin
 
 .Erin
-	loadfont
+	opentext
 	farwritetext ErinRematchGiftText
 	buttonsound
 	end
 
 GymStatue1Script:
 	mapnametotext $0
-	loadfont
+	opentext
 	farwritetext GymStatue_CityGymText
 	waitbutton
 	closetext
@@ -1768,7 +1768,7 @@ GymStatue1Script:
 
 GymStatue2Script:
 	mapnametotext $0
-	loadfont
+	opentext
 	farwritetext GymStatue_CityGymText
 	buttonsound
 	farwritetext GymStatue_WinningTrainersText
@@ -1794,7 +1794,7 @@ ReceiveTogepiEggScript: ; 0xbcdc3
 
 GameCornerCoinVendorScript: ; 0xbcdcd
 	faceplayer
-	loadfont
+	opentext
 	farwritetext CoinVendor_WelcomeText
 	buttonsound
 	checkitem COIN_CASE
@@ -1887,7 +1887,7 @@ CoinVendor_MenuData2: ; 0xbce5c
 
 HappinessCheckScript:
 	faceplayer
-	loadfont
+	opentext
 	special GetFirstPokemonHappiness
 	if_less_than 50, .Unhappy
 	if_less_than 150, .KindaHappy

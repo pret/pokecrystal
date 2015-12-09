@@ -73,7 +73,7 @@ EcruteakHouse_XYTrigger_DontMove:
 
 SageScript_0x98062:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .CheckForClearBell
 	checkflag ENGINE_FOGBADGE
@@ -125,7 +125,7 @@ SageScript_0x98062:
 
 SageScript_0x980b0:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_CLEAR_BELL
 	iftrue .GotClearBell
 	writetext UnknownText_0x9840b

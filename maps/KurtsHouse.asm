@@ -39,7 +39,7 @@ UnknownScript_0x18e177:
 
 KurtScript_0x18e178:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_KURT_GAVE_YOU_LURE_BALL
 	iftrue .GotLureBall
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
@@ -319,7 +319,7 @@ KurtScript_0x18e178:
 
 KurtScript_0x18e3bd:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_GS_BALL_TO_KURT
 	iftrue KurtScript_ImCheckingItNow
 KurtMakingBallsScript:
@@ -362,28 +362,28 @@ KurtsGranddaughter1:
 	iftrue .SlowpokeBack
 	checkevent EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
 	iftrue .Lonely
-	loadfont
+	opentext
 	writetext KurtsGranddaughterSlowpokeGoneText
 	waitbutton
 	closetext
 	end
 
 .SlowpokeBack
-	loadfont
+	opentext
 	writetext KurtsGranddaughterSlowpokeBackText
 	waitbutton
 	closetext
 	end
 
 .Lonely
-	loadfont
+	opentext
 	writetext KurtsGranddaughterLonelyText
 	waitbutton
 	closetext
 	end
 
 .Dad
-	loadfont
+	opentext
 	writetext KurtsGranddaughterDadText
 	waitbutton
 	closetext
@@ -392,7 +392,7 @@ KurtsGranddaughter1:
 KurtsGranddaughter2:
 	faceplayer
 KurtsGranddaughter2Subscript:
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_GS_BALL_TO_KURT
 	iftrue .GSBall
 	writetext KurtsGranddaughterHelpText
@@ -409,7 +409,7 @@ KurtsGranddaughter2Subscript:
 	end
 
 KurtsGranddaughterFunScript:
-	loadfont
+	opentext
 	writetext KurtsGranddaughterFunText
 	waitbutton
 	closetext
@@ -417,7 +417,7 @@ KurtsGranddaughterFunScript:
 
 KurtsHouseSlowpoke:
 	faceplayer
-	loadfont
+	opentext
 	writetext KurtsHouseSlowpokeText
 	cry SLOWPOKE
 	waitbutton

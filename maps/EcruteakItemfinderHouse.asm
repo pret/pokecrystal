@@ -11,7 +11,7 @@ EcruteakItemfinderHouse_MapScriptHeader:
 
 CooltrainerMScript_0x9a5fb:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_ITEMFINDER
 	iftrue UnknownScript_0x9a614
 	writetext UnknownText_0x9a63c
@@ -34,7 +34,7 @@ UnknownScript_0x9a61a:
 	end
 
 PokedexScript_0x9a620:
-	loadfont
+	opentext
 	writetext UnknownText_0x9a826
 	yesorno
 	iftrue UnknownScript_0x9a62a

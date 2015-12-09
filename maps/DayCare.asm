@@ -27,7 +27,7 @@ UnknownScript_0x62f88:
 
 GrampsScript_0x62f8f:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_ODD_EGG
 	iftrue UnknownScript_0x62fbd
 	writetext UnknownText_0x630ce
@@ -36,7 +36,7 @@ GrampsScript_0x62f8f:
 	checkcode VAR_PARTYCOUNT
 	if_equal $6, UnknownScript_0x62fb6
 	special Function117656
-	loadfont
+	opentext
 	writetext UnknownText_0x631ae
 	playsound SFX_KEY_ITEM
 	waitsfx
@@ -47,7 +47,7 @@ GrampsScript_0x62f8f:
 	end
 
 UnknownScript_0x62fb6:
-	loadfont
+	opentext
 	writetext UnknownText_0x63237
 	waitbutton
 	closetext
@@ -61,7 +61,7 @@ UnknownScript_0x62fbd:
 
 GrannyScript_0x62fc3:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
 	iftrue UnknownScript_0x62fd1
 	special Special_DayCareLady

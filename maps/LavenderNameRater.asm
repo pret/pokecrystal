@@ -16,7 +16,7 @@ UnknownScript_0x7eaf1:
 
 LavenderNameRater:
 	faceplayer
-	loadfont
+	opentext
 	special SpecialNameRater
 	waitbutton
 	closetext

@@ -20,7 +20,7 @@ ScientistScript_0x625d7:
 	jumptextfaceplayer UnknownText_0x62795
 
 MapGoldenrodPokeComCenter2FMobileSignpost0Script:
-	loadfont
+	opentext
 	writetext UnknownText_0x627ee
 	waitbutton
 UnknownScript_0x625df:
@@ -33,13 +33,13 @@ UnknownScript_0x625df:
 	jump UnknownScript_0x62600
 
 UnknownScript_0x625f0:
-	loadfont
+	opentext
 	writetext UnknownText_0x62828
 	waitbutton
 	jump UnknownScript_0x625df
 
 UnknownScript_0x625f8:
-	loadfont
+	opentext
 	writetext UnknownText_0x628f4
 	waitbutton
 	jump UnknownScript_0x625df
@@ -65,7 +65,7 @@ MenuData2_0x6260a:
 
 
 MapGoldenrodPokeComCenter2FMobileSignpost1Script:
-	loadfont
+	opentext
 	writetext UnknownText_0x62989
 	waitbutton
 UnknownScript_0x62629:
@@ -78,13 +78,13 @@ UnknownScript_0x62629:
 	jump UnknownScript_0x6264a
 
 UnknownScript_0x6263a:
-	loadfont
+	opentext
 	writetext UnknownText_0x629ae
 	waitbutton
 	jump UnknownScript_0x62629
 
 UnknownScript_0x62642:
-	loadfont
+	opentext
 	writetext UnknownText_0x62a5a
 	waitbutton
 	jump UnknownScript_0x62629

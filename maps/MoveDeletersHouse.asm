@@ -10,7 +10,7 @@ MoveDeletersHouse_MapScriptHeader:
 
 MoveDeleter:
 	faceplayer
-	loadfont
+	opentext
 	special MoveDeletion
 	waitbutton
 	closetext

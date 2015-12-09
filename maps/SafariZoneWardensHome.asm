@@ -10,7 +10,7 @@ SafariZoneWardensHome_MapScriptHeader:
 
 WardensGranddaughter:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_TALKED_TO_WARDENS_GRANDDAUGHTER
 	iftrue .AlreadyMet
 	writetext WardensGranddaughterText1

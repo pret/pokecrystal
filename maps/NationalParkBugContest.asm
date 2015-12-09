@@ -21,7 +21,7 @@ NationalParkBugContest_MapScriptHeader:
 
 YoungsterScript_0x5c8ec:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5c94c
 	waitbutton
 	closetext
@@ -29,7 +29,7 @@ YoungsterScript_0x5c8ec:
 
 YoungsterScript_0x5c8f4:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5c973
 	waitbutton
 	closetext
@@ -37,7 +37,7 @@ YoungsterScript_0x5c8f4:
 
 RockerScript_0x5c8fc:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5c9a3
 	waitbutton
 	closetext
@@ -45,7 +45,7 @@ RockerScript_0x5c8fc:
 
 PokefanMScript_0x5c904:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5c9cc
 	waitbutton
 	closetext
@@ -53,7 +53,7 @@ PokefanMScript_0x5c904:
 
 YoungsterScript_0x5c90c:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5ca15
 	waitbutton
 	closetext
@@ -61,7 +61,7 @@ YoungsterScript_0x5c90c:
 
 YoungsterScript_0x5c914:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5ca52
 	waitbutton
 	closetext
@@ -69,7 +69,7 @@ YoungsterScript_0x5c914:
 
 LassScript_0x5c91c:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5ca8f
 	waitbutton
 	closetext
@@ -77,7 +77,7 @@ LassScript_0x5c91c:
 
 YoungsterScript_0x5c924:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5cac8
 	waitbutton
 	closetext
@@ -85,7 +85,7 @@ YoungsterScript_0x5c924:
 
 YoungsterScript_0x5c92c:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5cb25
 	waitbutton
 	closetext
@@ -93,7 +93,7 @@ YoungsterScript_0x5c92c:
 
 YoungsterScript_0x5c934:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5cb64
 	waitbutton
 	closetext

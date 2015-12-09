@@ -19,7 +19,7 @@ TrainerSupernerdHugh:
 
 SupernerdHughScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x7e10e
 	waitbutton
 	closetext

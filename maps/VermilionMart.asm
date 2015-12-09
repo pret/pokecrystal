@@ -11,7 +11,7 @@ VermilionMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x191f7e:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_VERMILION
 	closetext
 	end

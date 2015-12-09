@@ -17,7 +17,7 @@ PokefanFScript_0x18804d:
 	jumptextfaceplayer UnknownText_0x1880c3
 
 DiglettScript_0x188050:
-	loadfont
+	opentext
 	writetext UnknownText_0x1880e7
 	cry DIGLETT
 	waitbutton

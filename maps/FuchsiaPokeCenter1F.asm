@@ -28,7 +28,7 @@ CooltrainerFScript_0x19645f:
 
 JanineImpersonatorScript_0x196462:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x19652e
 	waitbutton
 	closetext
@@ -36,7 +36,7 @@ JanineImpersonatorScript_0x196462:
 	faceplayer
 	variablesprite SPRITE_JANINE_IMPERSONATOR, SPRITE_JANINE
 	special RunCallback_04
-	loadfont
+	opentext
 	writetext UnknownText_0x19654e
 	waitbutton
 	closetext

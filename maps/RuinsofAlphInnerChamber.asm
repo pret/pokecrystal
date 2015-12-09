@@ -24,7 +24,7 @@ UnknownScript_0x58f6d:
 	end
 
 UnknownScript_0x58f6e:
-	loadfont
+	opentext
 	writetext UnknownText_0x58f89
 	waitbutton
 	closetext

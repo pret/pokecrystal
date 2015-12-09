@@ -16,7 +16,7 @@ TrainerBird_keeperHank:
 
 Bird_keeperHankScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ae258
 	waitbutton
 	closetext
@@ -27,7 +27,7 @@ TrainerPicnickerHope:
 
 PicnickerHopeScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ae320
 	waitbutton
 	closetext
@@ -38,7 +38,7 @@ TrainerPicnickerSharon:
 
 PicnickerSharonScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ae369
 	waitbutton
 	closetext

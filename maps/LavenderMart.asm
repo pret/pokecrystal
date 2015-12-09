@@ -11,7 +11,7 @@ LavenderMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x7eb1c:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_LAVENDER
 	closetext
 	end

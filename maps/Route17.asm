@@ -25,7 +25,7 @@ TrainerBikerCharles:
 
 BikerCharlesScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ad293
 	waitbutton
 	closetext
@@ -36,7 +36,7 @@ TrainerBikerRiley:
 
 BikerRileyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ad13b
 	waitbutton
 	closetext
@@ -47,7 +47,7 @@ TrainerBikerJoel:
 
 BikerJoelScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ad196
 	waitbutton
 	closetext
@@ -58,7 +58,7 @@ TrainerBikerGlenn:
 
 BikerGlennScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ad225
 	waitbutton
 	closetext

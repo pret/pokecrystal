@@ -18,7 +18,7 @@ JanineScript_0x195db9:
 	iftrue .FightDone
 	applymovement FUCHSIAGYM_JANINE, MovementData_0x195f27
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x195f35
 	waitbutton
 	closetext
@@ -36,7 +36,7 @@ JanineScript_0x195db9:
 	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_LASS
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
 	special RunCallback_04
-	loadfont
+	opentext
 	writetext UnknownText_0x195feb
 	playsound SFX_GET_BADGE
 	waitsfx
@@ -44,7 +44,7 @@ JanineScript_0x195db9:
 	jump UnknownScript_0x195e02
 .FightDone
 	faceplayer
-	loadfont
+	opentext
 UnknownScript_0x195e02:
 	checkevent EVENT_GOT_TM06_TOXIC
 	iftrue UnknownScript_0x195e15
@@ -68,7 +68,7 @@ FuschiaGym1Script_0x195e1b:
 	special RunCallback_04
 UnknownScript_0x195e2c:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_LASS_ALICE
 	iftrue UnknownScript_0x195e4f
 	writetext UnknownText_0x1960e6
@@ -102,7 +102,7 @@ FuschiaGym2Script_0x195e55:
 	special RunCallback_04
 UnknownScript_0x195e66:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_LASS_LINDA
 	iftrue UnknownScript_0x195e89
 	writetext UnknownText_0x196166
@@ -136,7 +136,7 @@ FuschiaGym3Script_0x195e8f:
 	special RunCallback_04
 UnknownScript_0x195ea0:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_PICNICKER_CINDY
 	iftrue UnknownScript_0x195ec3
 	writetext UnknownText_0x1961bb
@@ -170,7 +170,7 @@ FuschiaGym4Script_0x195ec9:
 	special RunCallback_04
 UnknownScript_0x195eda:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_CAMPER_BARRY
 	iftrue UnknownScript_0x195efd
 	writetext UnknownText_0x196228
@@ -197,7 +197,7 @@ UnknownScript_0x195efd:
 
 FuchsiaGymGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_JANINE
 	iftrue .FuchsiaGymGuyWinScript
 	writetext FuchsiaGymGuyText

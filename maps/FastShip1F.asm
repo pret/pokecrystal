@@ -46,7 +46,7 @@ FastShip1F_MapScriptHeader:
 
 SailorScript_0x75160:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_FAST_SHIP_HAS_ARRIVED
 	iftrue .Arrived
 	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
@@ -104,7 +104,7 @@ SailorScript_0x75160:
 
 SailorScript_0x751d0:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue .Vermilion
 	writetext UnknownText_0x752f9
@@ -130,7 +130,7 @@ WorriedGrandpaTriggerLeft:
 	playsound SFX_TACKLE
 	applymovement PLAYER, MovementData_0x7522e
 	applymovement FASTSHIP1F_GENTLEMAN, MovementData_0x75220
-	loadfont
+	opentext
 	writetext UnknownText_0x75412
 	waitbutton
 	closetext

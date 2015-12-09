@@ -18,7 +18,7 @@ TrainerCamperDean:
 
 CamperDeanScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1aafd9
 	waitbutton
 	closetext
@@ -29,7 +29,7 @@ TrainerPicnickerHeidi:
 
 PicnickerHeidiScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ab07c
 	waitbutton
 	closetext
@@ -40,7 +40,7 @@ TrainerCamperSid:
 
 CamperSidScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ab0f6
 	waitbutton
 	closetext
@@ -51,7 +51,7 @@ TrainerPicnickerEdna:
 
 PicnickerEdnaScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ab15f
 	waitbutton
 	closetext
@@ -62,7 +62,7 @@ TrainerHikerTim:
 
 HikerTimScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ab210
 	waitbutton
 	closetext
@@ -73,7 +73,7 @@ TrainerHikerSidney:
 
 HikerSidneyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ab278
 	waitbutton
 	closetext

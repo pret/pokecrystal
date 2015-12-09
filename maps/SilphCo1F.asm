@@ -14,7 +14,7 @@ ReceptionistScript_0x18abe5:
 
 OfficerScript_0x18abe8:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_UP_GRADE
 	iftrue UnknownScript_0x18abfd
 	writetext UnknownText_0x18ac36

@@ -33,7 +33,7 @@ TrainerTwinsAnnandanne1:
 
 TwinsAnnandanne1Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a8e62
 	waitbutton
 	closetext
@@ -44,7 +44,7 @@ TrainerTwinsAnnandanne2:
 
 TwinsAnnandanne2Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a8eec
 	waitbutton
 	closetext
@@ -55,7 +55,7 @@ TrainerPsychicGreg:
 
 PsychicGregScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a8f80
 	waitbutton
 	closetext
@@ -63,7 +63,7 @@ PsychicGregScript:
 
 SunnyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_MAGNET_FROM_SUNNY
 	iftrue SunnySundayScript
 	checkcode VAR_WEEKDAY

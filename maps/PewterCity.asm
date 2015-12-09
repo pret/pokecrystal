@@ -27,7 +27,7 @@ BugCatcherScript_0x18c00c:
 
 GrampsScript_0x18c00f:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_SILVER_WING
 	iftrue UnknownScript_0x18c023
 	writetext UnknownText_0x18c0c6

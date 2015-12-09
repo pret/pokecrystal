@@ -39,7 +39,7 @@ TrainerSwimmerfElaine:
 
 SwimmerfElaineScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a637b
 	waitbutton
 	closetext
@@ -50,7 +50,7 @@ TrainerSwimmerfPaula:
 
 SwimmerfPaulaScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a63f5
 	waitbutton
 	closetext
@@ -61,7 +61,7 @@ TrainerSwimmermSimon:
 
 SwimmermSimonScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a6282
 	waitbutton
 	closetext
@@ -72,7 +72,7 @@ TrainerSwimmermRandall:
 
 SwimmermRandallScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a62fa
 	waitbutton
 	closetext
@@ -97,7 +97,7 @@ StandingYoungsterScript_0x1a61d6:
 
 MonicaScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_SHARP_BEAK_FROM_MONICA
 	iftrue MonicaMondayScript
 	checkcode VAR_WEEKDAY

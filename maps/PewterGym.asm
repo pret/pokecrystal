@@ -12,7 +12,7 @@ PewterGym_MapScriptHeader:
 
 BrockScript_0x1a2864:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_BOULDERBADGE
 	iftrue .FightDone
 	writetext UnknownText_0x1a28d0
@@ -24,7 +24,7 @@ BrockScript_0x1a2864:
 	returnafterbattle
 	setevent EVENT_BEAT_BROCK
 	setevent EVENT_BEAT_CAMPER_JERRY
-	loadfont
+	opentext
 	writetext UnknownText_0x1a2a3d
 	playsound SFX_GET_BADGE
 	waitsfx
@@ -45,7 +45,7 @@ TrainerCamperJerry:
 
 CamperJerryScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a2c0f
 	waitbutton
 	closetext
@@ -53,7 +53,7 @@ CamperJerryScript:
 
 PewterGymGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_BROCK
 	iftrue .PewterGymGuyWinScript
 	writetext PewterGymGuyText

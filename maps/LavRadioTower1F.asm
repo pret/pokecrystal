@@ -23,7 +23,7 @@ SuperNerdScript_0x7ee69:
 
 GentlemanScript_0x7ee6c:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_EXPN_CARD
 	iftrue .UnknownScript_0x7ee8e
 	checkevent EVENT_RETURNED_MACHINE_PART
@@ -54,7 +54,7 @@ GentlemanScript_0x7ee6c:
 
 SuperNerdScript_0x7eea2:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_EXPN_CARD
 	iftrue UnknownScript_0x7eeb0
 	writetext UnknownText_0x7f193

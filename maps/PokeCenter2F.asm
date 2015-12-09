@@ -57,7 +57,7 @@ PokeCenter2F_AppearMysteryGiftDeliveryGuy:
 
 Script_TradeCenterClosed:
 	faceplayer
-	loadfont
+	opentext
 	writetext Text_TradeRoomClosed
 	waitbutton
 	closetext
@@ -65,7 +65,7 @@ Script_TradeCenterClosed:
 
 Script_BattleRoomClosed:
 	faceplayer
-	loadfont
+	opentext
 	writetext Text_BattleRoomClosed
 	waitbutton
 	closetext
@@ -74,7 +74,7 @@ Script_BattleRoomClosed:
 LinkReceptionistScript_Trade:
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iffalse Script_TradeCenterClosed
-	loadfont
+	opentext
 	writetext Text_TradeReceptionistIntro
 	yesorno
 	iffalse .Cancel
@@ -176,7 +176,7 @@ BattleTradeMobile_WalkIn:
 LinkReceptionistScript_Battle:
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iffalse Script_BattleRoomClosed
-	loadfont
+	opentext
 	writetext Text_BattleReceptionistIntro
 	yesorno
 	iffalse .Cancel
@@ -294,7 +294,7 @@ LinkReceptionistScript_Battle:
 
 Script_TimeCapsuleClosed:
 	faceplayer
-	loadfont
+	opentext
 	writetext Text_TimeCapsuleClosed
 	waitbutton
 	closetext
@@ -307,7 +307,7 @@ LinkReceptionistScript_TimeCapsule:
 	iftrue Script_TimeCapsuleClosed
 	special Special_SetBitsForTimeCapsuleRequest
 	faceplayer
-	loadfont
+	opentext
 	writetext Text_TimeCapsuleReceptionistIntro
 	yesorno
 	iffalse .Cancel
@@ -425,13 +425,13 @@ PokeCenter2F_CheckGender:
 .Female:
 	applymovement2 MovementData_0x192cd8
 	applymovement PLAYER, MovementData_0x192ce2
-	loadfont
+	opentext
 	writetext Text_OhPleaseWait
 	waitbutton
 	closetext
 	applymovement2 MovementData_0x192cdc
 	spriteface PLAYER, LEFT
-	loadfont
+	opentext
 	writetext Text_ChangeTheLook
 	waitbutton
 	closetext
@@ -442,7 +442,7 @@ PokeCenter2F_CheckGender:
 	applymovement PLAYER, MovementData_0x192d1c
 	setflag ENGINE_KRIS_IN_CABLE_CLUB
 	special ReplaceKrisSprite
-	loadfont
+	opentext
 	writetext Text_LikeTheLook
 	waitbutton
 	closetext
@@ -531,7 +531,7 @@ TimeCapsuleScript_CheckPlayerGender:
 	applymovement2 MovementData_0x192d33
 	applymovement PLAYER, MovementData_0x192d31
 .FemaleContinue:
-	loadfont
+	opentext
 	writetext Text_OhPleaseWait
 	waitbutton
 	closetext
@@ -539,7 +539,7 @@ TimeCapsuleScript_CheckPlayerGender:
 	if_not_equal UP, .FemaleChangeApperance
 	spriteface PLAYER, LEFT
 .FemaleChangeApperance:
-	loadfont
+	opentext
 	writetext Text_ChangeTheLook
 	waitbutton
 	closetext
@@ -551,7 +551,7 @@ TimeCapsuleScript_CheckPlayerGender:
 	faceperson PLAYER, POKECENTER2F_LINK_RECEPTIONIST3
 	setflag ENGINE_KRIS_IN_CABLE_CLUB
 	special ReplaceKrisSprite
-	loadfont
+	opentext
 	writetext Text_LikeTheLook
 	waitbutton
 	closetext
@@ -593,7 +593,7 @@ MapPokeCenter2FSignpost0Script:
 
 OfficerScript_0x192c9a:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_MYSTERY_GIFT_DELIVERY_GUY
 	iftrue .AlreadyGotGift
 	writetext Text_MysteryGiftDeliveryGuy_Intro

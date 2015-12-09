@@ -10,7 +10,7 @@ LakeofRageHiddenPowerHouse_MapScriptHeader:
 
 HiddenPowerGuy:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM10_HIDDEN_POWER
 	iftrue .AlreadyGotItem
 	writetext HiddenPowerGuyText1

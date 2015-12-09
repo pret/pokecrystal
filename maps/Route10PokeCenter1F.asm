@@ -19,7 +19,7 @@ GentlemanScript_0x188bd7:
 
 GymGuyScript_0x188bda:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188be8
 	writetext UnknownText_0x188c26

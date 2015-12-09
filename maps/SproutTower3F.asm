@@ -37,7 +37,7 @@ UnknownScript_0x184947:
 	earthquake 79
 	applymovement PLAYER, MovementData_0x184a1d
 	applymovement SPROUTTOWER3F_SILVER, MovementData_0x184a22
-	loadfont
+	opentext
 	writetext UnknownText_0x184a27
 	waitbutton
 	closetext
@@ -46,12 +46,12 @@ UnknownScript_0x184947:
 	pause 15
 	applymovement SPROUTTOWER3F_SILVER, MovementData_0x184a24
 	playmusic MUSIC_RIVAL_ENCOUNTER
-	loadfont
+	opentext
 	writetext UnknownText_0x184aec
 	waitbutton
 	closetext
 	spriteface SPROUTTOWER3F_SILVER, UP
-	loadfont
+	opentext
 	writetext UnknownText_0x184bc8
 	pause 15
 	closetext
@@ -67,7 +67,7 @@ UnknownScript_0x184947:
 
 SageLiScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_HM05_FLASH
 	iftrue UnknownScript_0x1849d1
 	writetext SageLiSeenText
@@ -77,7 +77,7 @@ SageLiScript:
 	loadtrainer SAGE, LI
 	startbattle
 	returnafterbattle
-	loadfont
+	opentext
 	writetext UnknownText_0x184cc2
 	buttonsound
 	verbosegiveitem HM_FLASH
@@ -99,7 +99,7 @@ TrainerSageJin:
 
 SageJinScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x184dfa
 	waitbutton
 	closetext
@@ -110,7 +110,7 @@ TrainerSageTroy:
 
 SageTroyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x184ea4
 	waitbutton
 	closetext
@@ -121,7 +121,7 @@ TrainerSageNeal:
 
 SageNealScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x184f12
 	waitbutton
 	closetext

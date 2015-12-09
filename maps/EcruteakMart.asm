@@ -11,7 +11,7 @@ EcruteakMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x99c3b:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_ECRUTEAK
 	closetext
 	end

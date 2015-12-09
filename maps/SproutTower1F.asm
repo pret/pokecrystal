@@ -30,7 +30,7 @@ TrainerSageChow:
 
 SageChowScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x184583
 	waitbutton
 	closetext

@@ -17,7 +17,7 @@ TrainerPokefanmAlex:
 
 PokefanmAlexScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a24e3
 	waitbutton
 	closetext
@@ -28,7 +28,7 @@ TrainerPokefanmJoshua:
 
 PokefanmJoshuaScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a254f
 	waitbutton
 	closetext
@@ -39,7 +39,7 @@ TrainerBird_keeperPerry:
 
 Bird_keeperPerryScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a25db
 	waitbutton
 	closetext
@@ -50,7 +50,7 @@ TrainerBird_keeperBret:
 
 Bird_keeperBretScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a2662
 	waitbutton
 	closetext
@@ -61,7 +61,7 @@ TrainerHikerKenny:
 
 HikerKennyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a26c2
 	waitbutton
 	closetext

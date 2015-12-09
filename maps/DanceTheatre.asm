@@ -21,7 +21,7 @@ TrainerKimono_girlNaoko2:
 
 Kimono_girlNaoko2Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x99579
 	waitbutton
 	closetext
@@ -32,7 +32,7 @@ TrainerKimono_girlSayo:
 
 Kimono_girlSayoScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x9960b
 	waitbutton
 	closetext
@@ -43,7 +43,7 @@ TrainerKimono_girlZuki:
 
 Kimono_girlZukiScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x99688
 	waitbutton
 	closetext
@@ -54,7 +54,7 @@ TrainerKimono_girlKuni:
 
 Kimono_girlKuniScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x99714
 	waitbutton
 	closetext
@@ -65,7 +65,7 @@ TrainerKimono_girlMiki:
 
 Kimono_girlMikiScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x997a8
 	waitbutton
 	closetext
@@ -73,7 +73,7 @@ Kimono_girlMikiScript:
 
 GentlemanScript_0x994c6:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x9980a
 	buttonsound
 	checkevent EVENT_GOT_HM03_SURF
@@ -121,7 +121,7 @@ UnknownScript_0x99515:
 	end
 
 RhydonScript_0x9951b:
-	loadfont
+	opentext
 	writetext UnknownText_0x99a0a
 	cry RHYDON
 	waitbutton

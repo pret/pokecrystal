@@ -15,7 +15,7 @@ PokemonFanClub_MapScriptHeader:
 
 GentlemanScript_0x1917e9:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT
 	iftrue UnknownScript_0x191815
 	checkevent EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT_BUT_BAG_WAS_FULL
@@ -54,7 +54,7 @@ ReceptionistScript_0x191821:
 
 FisherScript_0x191824:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_LOST_ITEM_FROM_FAN_CLUB
 	iftrue UnknownScript_0x19185f
 	checkevent EVENT_RETURNED_MACHINE_PART
@@ -107,7 +107,7 @@ FairyScript_0x19186e:
 	jumptext UnknownText_0x191db1
 
 OddishScript_0x191871:
-	loadfont
+	opentext
 	writetext UnknownText_0x191de9
 	cry BAYLEEF
 	waitbutton

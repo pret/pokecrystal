@@ -19,7 +19,7 @@ SaffronTrainStation_MapScriptHeader:
 
 OfficerScript_0x18a81e:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .MagnetTrainToGoldenrod
 	writetext UnknownText_0x18a8a9
@@ -66,7 +66,7 @@ Script_ArriveFromGoldenrod:
 	applymovement SAFFRONTRAINSTATION_OFFICER, MovementData_0x18a88f
 	applymovement PLAYER, MovementData_0x18a8a1
 	applymovement SAFFRONTRAINSTATION_OFFICER, MovementData_0x18a894
-	loadfont
+	opentext
 	writetext UnknownText_0x18a993
 	waitbutton
 	closetext
@@ -74,7 +74,7 @@ Script_ArriveFromGoldenrod:
 
 GymGuyScript_0x18a875:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x18a883
 	writetext UnknownText_0x18a9ca

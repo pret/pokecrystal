@@ -13,7 +13,7 @@ GoldenrodDeptStore4F_MapScriptHeader:
 
 ClerkScript_0x55ee9:
 	faceplayer
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_4F
 	closetext
 	end
@@ -26,7 +26,7 @@ BugCatcherScript_0x55ef4:
 
 GameboyKidScript_0x55ef7:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x55f74
 	waitbutton
 	closetext

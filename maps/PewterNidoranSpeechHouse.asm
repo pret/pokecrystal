@@ -13,7 +13,7 @@ SuperNerdScript_0x1a2807:
 	jumptextfaceplayer UnknownText_0x1a2814
 
 GrowlitheScript_0x1a280a:
-	loadfont
+	opentext
 	writetext UnknownText_0x1a2825
 	cry NIDORAN_M
 	waitbutton

@@ -571,7 +571,7 @@ Function16a3b: ; 16a3b
 	ld a, [wDaycareMan]
 	bit 0, a
 	ret z
-	callab Function16e1d
+	callab CheckBreedmonCompatibility
 	ld a, [wd265]
 	and a
 	ret z

@@ -25,7 +25,7 @@ UnknownScript_0x733ed:
 UnknownScript_0x733f3:
 	showemote EMOTE_SHOCK, ROUTE16GATE_OFFICER, 15
 	spriteface PLAYER, UP
-	loadfont
+	opentext
 	writetext UnknownText_0x73496
 	waitbutton
 	closetext

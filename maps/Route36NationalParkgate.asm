@@ -71,7 +71,7 @@ Route36NationalParkgate_MapScriptHeader:
 
 .LeftTheContestEarly:
 	spriteface PLAYER, UP
-	loadfont
+	opentext
 	checkcode VAR_CONTESTMINUTES
 	addvar $1
 	RAM2MEM $0
@@ -153,7 +153,7 @@ Route36OfficerScriptContest:
 	if_equal WEDNESDAY, _ContestNotOn
 	if_equal FRIDAY, _ContestNotOn
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue Route36Officer_ContestHasConcluded
 	scall Route36Parkgate_DayToText
@@ -299,7 +299,7 @@ _ContestNotOn:
 
 OfficerScript_0x6acf4:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue Route36Officer_ContestHasConcluded
 	writetext UnknownText_0x6b370
@@ -313,7 +313,7 @@ Route36Parkgate_DayToText:
 
 YoungsterScript_0x6ad06:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad14
 	writetext UnknownText_0x6b399
@@ -329,7 +329,7 @@ UnknownScript_0x6ad14:
 
 YoungsterScript_0x6ad1a:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad28
 	writetext UnknownText_0x6b40f
@@ -345,7 +345,7 @@ UnknownScript_0x6ad28:
 
 RockerScript_0x6ad2e:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad3c
 	writetext UnknownText_0x6b462
@@ -361,7 +361,7 @@ UnknownScript_0x6ad3c:
 
 PokefanMScript_0x6ad42:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad50
 	writetext UnknownText_0x6b4da
@@ -377,7 +377,7 @@ UnknownScript_0x6ad50:
 
 YoungsterScript_0x6ad56:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad64
 	writetext UnknownText_0x6b54e
@@ -393,7 +393,7 @@ UnknownScript_0x6ad64:
 
 YoungsterScript_0x6ad6a:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad78
 	writetext UnknownText_0x6b5b0
@@ -409,7 +409,7 @@ UnknownScript_0x6ad78:
 
 LassScript_0x6ad7e:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad8c
 	writetext UnknownText_0x6b64b
@@ -425,7 +425,7 @@ UnknownScript_0x6ad8c:
 
 YoungsterScript_0x6ad92:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ada0
 	writetext UnknownText_0x6b6b8
@@ -441,7 +441,7 @@ UnknownScript_0x6ada0:
 
 YoungsterScript_0x6ada6:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6adb4
 	writetext UnknownText_0x6b71b
@@ -457,7 +457,7 @@ UnknownScript_0x6adb4:
 
 YoungsterScript_0x6adba:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6adc8
 	writetext UnknownText_0x6b76f

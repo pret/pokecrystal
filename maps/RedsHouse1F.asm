@@ -16,7 +16,7 @@ RedsHouse1F_MapScriptHeader:
 
 RedsMom:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_MET_REDS_MOM
 	iftrue .MetAlready
 	writetext RedsMomText1

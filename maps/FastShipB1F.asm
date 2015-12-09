@@ -54,7 +54,7 @@ UnknownScript_0x76766:
 
 SailorScript_0x76767:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue UnknownScript_0x767a0
 	checkevent EVENT_FAST_SHIP_LAZY_SAILOR
@@ -100,7 +100,7 @@ TrainerSailorJeff:
 
 SailorJeffScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x76a38
 	waitbutton
 	closetext
@@ -111,7 +111,7 @@ TrainerPicnickerDebra:
 
 PicnickerDebraScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x76a99
 	waitbutton
 	closetext
@@ -122,7 +122,7 @@ TrainerJugglerFritz:
 
 JugglerFritzScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x76b02
 	waitbutton
 	closetext
@@ -133,7 +133,7 @@ TrainerSailorGarrett:
 
 SailorGarrettScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x76b7a
 	waitbutton
 	closetext
@@ -144,7 +144,7 @@ TrainerFisherJonah:
 
 FisherJonahScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x76c22
 	waitbutton
 	closetext
@@ -155,7 +155,7 @@ TrainerBlackbeltWai:
 
 BlackbeltWaiScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x76c9e
 	waitbutton
 	closetext
@@ -166,7 +166,7 @@ TrainerSailorKenneth:
 
 SailorKennethScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x76d5f
 	waitbutton
 	closetext
@@ -177,7 +177,7 @@ TrainerTeacherShirley:
 
 TeacherShirleyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x76de1
 	waitbutton
 	closetext
@@ -188,7 +188,7 @@ TrainerSchoolboyNate:
 
 SchoolboyNateScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x76e3d
 	waitbutton
 	closetext
@@ -199,7 +199,7 @@ TrainerSchoolboyRicky:
 
 SchoolboyRickyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x76eb6
 	waitbutton
 	closetext

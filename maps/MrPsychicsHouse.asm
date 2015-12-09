@@ -10,7 +10,7 @@ MrPsychicsHouse_MapScriptHeader:
 
 MrPsychic:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM29_PSYCHIC
 	iftrue .AlreadyGotItem
 	writetext MrPsychicText1

@@ -52,7 +52,7 @@ Copycat:
 	special RunCallback_04
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .Part7
-	loadfont
+	opentext
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part3
 	writetext UnknownText_0x18afda
@@ -74,14 +74,14 @@ Copycat:
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	special RunCallback_04
-	loadfont
+	opentext
 	writetext UnknownText_0x18b028
 	waitbutton
 	closetext
 	end
 
 .Part7
-	loadfont
+	opentext
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part8
 	writetext UnknownText_0x18b064
@@ -103,7 +103,7 @@ Copycat:
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	special RunCallback_04
-	loadfont
+	opentext
 	writetext UnknownText_0x18b116
 	waitbutton
 	closetext
@@ -111,7 +111,7 @@ Copycat:
 	end
 
 .Part12
-	loadfont
+	opentext
 	writetext UnknownText_0x18b17f
 	buttonsound
 	takeitem LOST_ITEM
@@ -120,7 +120,7 @@ Copycat:
 	jump .Part14
 
 .Part13
-	loadfont
+	opentext
 .Part14
 	writetext UnknownText_0x18b1e2
 	buttonsound
@@ -146,7 +146,7 @@ Copycat:
 	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
 .Part17
 	special RunCallback_04
-	loadfont
+	opentext
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part18
 	writetext UnknownText_0x18b298
@@ -168,7 +168,7 @@ Copycat:
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	special RunCallback_04
-	loadfont
+	opentext
 	writetext UnknownText_0x18b2f5
 	waitbutton
 .Part22
@@ -176,7 +176,7 @@ Copycat:
 	end
 
 CopycatsDodrio:
-	loadfont
+	opentext
 	writetext CopycatsDodrioText1
 	cry DODRIO
 	buttonsound

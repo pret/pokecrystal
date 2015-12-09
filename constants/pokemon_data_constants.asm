@@ -9,21 +9,21 @@
 
 ; egg group constants
 const_value SET 1
-	const MONSTER
-	const AMPHIBIAN
-	const INSECT
-	const AVIAN
-	const FIELD
-	const FAIRY
-	const PLANT
-	const HUMANSHAPE
-	const INVERTEBRATE
-	const INANIMATE
-	const AMORPHOUS
-	const FISH
-	const LADIES_MAN
-	const REPTILE
-	const NO_EGGS
+	const MONSTER      ; 1
+	const AMPHIBIAN    ; 2
+	const INSECT       ; 3
+	const AVIAN        ; 4
+	const FIELD        ; 5
+	const FAIRY        ; 6
+	const PLANT        ; 7
+	const HUMANSHAPE   ; 8
+	const INVERTEBRATE ; 9
+	const INANIMATE    ; a
+	const AMORPHOUS    ; b
+	const FISH         ; c
+	const LADIES_MAN   ; d
+	const REPTILE      ; e
+	const NO_EGGS      ; f
 
 
 ; menu sprites

@@ -13,7 +13,7 @@ Route14_MapScriptHeader:
 
 TeacherScript_0x1ad47f:
 	faceplayer
-	loadfont
+	opentext
 	trade $5
 	waitbutton
 	closetext
@@ -24,7 +24,7 @@ TrainerPokefanmCarter:
 
 PokefanmCarterScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ad508
 	waitbutton
 	closetext
@@ -35,7 +35,7 @@ TrainerBird_keeperRoy:
 
 Bird_keeperRoyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ad5a4
 	waitbutton
 	closetext
@@ -46,7 +46,7 @@ TrainerPokefanmTrevor:
 
 PokefanmTrevorScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ad660
 	waitbutton
 	closetext

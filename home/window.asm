@@ -22,7 +22,7 @@ CloseText:: ; 2dcf
 	ld a, $1
 	ld [hOAMUpdate], a
 
-	call Function2de2
+	call .CloseText
 
 	pop af
 	ld [hOAMUpdate], a
@@ -31,7 +31,7 @@ CloseText:: ; 2dcf
 	ret
 ; 2de2
 
-Function2de2:: ; 2de2
+.CloseText ; 2de2
 	call ResetTextRelatedRAM
 	xor a
 	ld [hBGMapMode], a
@@ -48,17 +48,17 @@ Function2de2:: ; 2de2
 	ret
 ; 2e08
 
-LoadFont:: ; 2e08
+OpenText:: ; 2e08
 	call ResetTextRelatedRAM
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(Function6454) ; and BANK(Function64bf)
 	rst Bankswitch
 
-	call Function6454
+	call Function6454 ; clear bgmap
 	call SpeechTextBox
-	call Function2e20
-	call Function64bf
+	call Function2e20 ; anchor bgmap
+	call Function64bf ; load font
 	pop af
 	rst Bankswitch
 

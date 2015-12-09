@@ -1244,7 +1244,7 @@ DecorationDesc_PosterPointers: ; 26f84
 ; 26f91
 
 DecorationDesc_TownMapPoster: ; 0x26f91
-	loadfont
+	opentext
 	writetext .TownMapText
 	waitbutton
 	special Special_TownMap

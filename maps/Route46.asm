@@ -18,7 +18,7 @@ TrainerCamperTed:
 
 CamperTedScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a9851
 	waitbutton
 	closetext
@@ -30,7 +30,7 @@ TrainerPicnickerErin1:
 PicnickerErin1Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_ERIN
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_ERIN
 	iftrue UnknownScript_0x1a96da
 	checkcellnum PHONE_PICNICKER_ERIN
@@ -101,7 +101,7 @@ UnknownScript_0x1a973a:
 	end
 
 UnknownScript_0x1a973b:
-	loadfont
+	opentext
 	writetext UnknownText_0x1a9927
 	waitbutton
 	verbosegiveitem CALCIUM
@@ -152,7 +152,7 @@ TrainerHikerBailey:
 
 HikerBaileyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a97e8
 	waitbutton
 	closetext

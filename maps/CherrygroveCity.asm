@@ -31,7 +31,7 @@ CherrygroveCity_MapScriptHeader:
 
 CherrygroveCityGuideGent:
 	faceplayer
-	loadfont
+	opentext
 	writetext GuideGentIntroText
 	yesorno
 	iffalse .No
@@ -43,25 +43,25 @@ CherrygroveCityGuideGent:
 	playmusic MUSIC_SHOW_ME_AROUND
 	follow CHERRYGROVECITY_GRAMPS, PLAYER
 	applymovement CHERRYGROVECITY_GRAMPS, MovementData_0x19c195
-	loadfont
+	opentext
 	writetext GuideGentPokeCenterText
 	waitbutton
 	closetext
 	applymovement CHERRYGROVECITY_GRAMPS, MovementData_0x19c19b
 	spriteface PLAYER, UP
-	loadfont
+	opentext
 	writetext GuideGentMartText
 	waitbutton
 	closetext
 	applymovement CHERRYGROVECITY_GRAMPS, MovementData_0x19c1a3
 	spriteface PLAYER, UP
-	loadfont
+	opentext
 	writetext GuideGentRoute30Text
 	waitbutton
 	closetext
 	applymovement CHERRYGROVECITY_GRAMPS, MovementData_0x19c1ac
 	spriteface PLAYER, LEFT
-	loadfont
+	opentext
 	writetext GuideGentSeaText
 	waitbutton
 	closetext
@@ -70,7 +70,7 @@ CherrygroveCityGuideGent:
 	pause 60
 	spriteface CHERRYGROVECITY_GRAMPS, LEFT
 	spriteface PLAYER, RIGHT
-	loadfont
+	opentext
 	writetext GuideGentGiftText
 	buttonsound
 	stringtotext .mapcardname, $1
@@ -116,7 +116,7 @@ UnknownScript_0x19c0ae:
 	applymovement CHERRYGROVECITY_SILVER, MovementData_0x19c1ce
 	spriteface PLAYER, RIGHT
 	playmusic MUSIC_RIVAL_ENCOUNTER
-	loadfont
+	opentext
 	writetext UnknownText_0x19c4e2
 	waitbutton
 	closetext
@@ -158,7 +158,7 @@ UnknownScript_0x19c104:
 
 UnknownScript_0x19c11a:
 	playmusic MUSIC_RIVAL_AFTER
-	loadfont
+	opentext
 	writetext UnknownText_0x19c608
 	waitbutton
 	closetext
@@ -166,7 +166,7 @@ UnknownScript_0x19c11a:
 
 UnknownScript_0x19c126:
 	playmusic MUSIC_RIVAL_AFTER
-	loadfont
+	opentext
 	writetext UnknownText_0x19c59e
 	waitbutton
 	closetext
@@ -183,7 +183,7 @@ UnknownScript_0x19c12f:
 
 TeacherScript_0x19c146:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_MAP_CARD
 	iftrue UnknownScript_0x19c154
 	writetext UnknownText_0x19c650
@@ -199,7 +199,7 @@ UnknownScript_0x19c154:
 
 YoungsterScript_0x19c15a:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_POKEDEX
 	iftrue UnknownScript_0x19c168
 	writetext UnknownText_0x19c6d6
@@ -215,7 +215,7 @@ UnknownScript_0x19c168:
 
 MysticWaterGuy:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE
 	iftrue UnknownScript_0x19c183
 	writetext UnknownText_0x19c766

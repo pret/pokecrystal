@@ -14,7 +14,7 @@ TrainerHikerJim:
 
 HikerJimScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ae43b
 	waitbutton
 	closetext
@@ -25,7 +25,7 @@ TrainerPokefanmRobert:
 
 PokefanmRobertScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ae4a9
 	waitbutton
 	closetext

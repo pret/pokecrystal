@@ -10,7 +10,7 @@ OlivineGoodRodHouse_MapScriptHeader:
 
 GoodRodGuru:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_GOOD_ROD
 	iftrue .AlreadyGotItem
 	writetext OfferGoodRodText

@@ -5,7 +5,7 @@ SelectMenu:: ; 13327
 	jp UseRegisteredItem
 
 .NotRegistered
-	call LoadFont
+	call OpenText
 	ld b, BANK(ItemMayBeRegisteredText)
 	ld hl, ItemMayBeRegisteredText
 	call MapTextbox
@@ -139,7 +139,7 @@ UseRegisteredItem: ; 133c3
 ; 133df
 
 .NoFunction ; 133df
-	call LoadFont
+	call OpenText
 	call CantUseItem
 	call CloseText
 	and a
@@ -147,7 +147,7 @@ UseRegisteredItem: ; 133c3
 ; 133ea
 
 .Current ; 133ea
-	call LoadFont
+	call OpenText
 	call DoItemEffect
 	call CloseText
 	and a

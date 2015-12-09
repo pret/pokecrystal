@@ -38,7 +38,7 @@ UnknownScript_0x6c362:
 
 PharmacistScript_0x6c367:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_DECIDED_TO_HELP_LANCE
 	iftrue UnknownScript_0x6c375
 	pokemart MARTTYPE_STANDARD, MART_MAHOGANY_1
@@ -53,7 +53,7 @@ UnknownScript_0x6c375:
 
 BlackBeltScript_0x6c37b:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_DECIDED_TO_HELP_LANCE
 	iftrue UnknownScript_0x6c389
 	writetext UnknownText_0x6c494
@@ -69,7 +69,7 @@ UnknownScript_0x6c389:
 
 UnknownScript_0x6c38f:
 	pause 15
-	loadfont
+	opentext
 	writetext UnknownText_0x6c52a
 	pause 15
 	closetext
@@ -80,7 +80,7 @@ UnknownScript_0x6c38f:
 	disappear MAHOGANYMART1F_DRAGON
 	pause 15
 	applymovement MAHOGANYMART1F_LANCE, MovementData_0x6c407
-	loadfont
+	opentext
 	writetext UnknownText_0x6c549
 	waitbutton
 	closetext
@@ -89,7 +89,7 @@ UnknownScript_0x6c38f:
 	applymovement MAHOGANYMART1F_PHARMACIST, MovementData_0x6c403
 	applymovement MAHOGANYMART1F_LANCE, MovementData_0x6c40e
 	stopfollow
-	loadfont
+	opentext
 	writetext UnknownText_0x6c59e
 	waitbutton
 	showemote EMOTE_SHOCK, MAHOGANYMART1F_PHARMACIST, 10
@@ -99,7 +99,7 @@ UnknownScript_0x6c38f:
 	closetext
 	setevent EVENT_UNCOVERED_STAIRCASE_IN_MAHOGANY_MART
 	spriteface MAHOGANYMART1F_LANCE, LEFT
-	loadfont
+	opentext
 	writetext UnknownText_0x6c5ba
 	waitbutton
 	closetext
@@ -112,7 +112,7 @@ UnknownScript_0x6c38f:
 
 GrannyScript_0x6c3ee:
 	faceplayer
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_MAHOGANY_2
 	closetext
 	end

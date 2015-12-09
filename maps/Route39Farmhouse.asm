@@ -11,7 +11,7 @@ Route39Farmhouse_MapScriptHeader:
 
 PokefanMScript_0x9ceb4:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_HEALED_MOOMOO
 	iftrue UnknownScript_0x9cec5
 	writetext UnknownText_0x9cf38
@@ -67,7 +67,7 @@ UnknownScript_0x9cf08:
 
 PokefanFScript_0x9cf0e:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM13_SNORE_FROM_MOOMOO_FARM
 	iftrue UnknownScript_0x9cf2f
 	checkevent EVENT_HEALED_MOOMOO

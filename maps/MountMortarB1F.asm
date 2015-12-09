@@ -16,7 +16,7 @@ MountMortarB1F_MapScriptHeader:
 
 BlackBeltScript_0x7e1f6:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TYROGUE_FROM_KIYO
 	iftrue UnknownScript_0x7e231
 	checkevent EVENT_BEAT_BLACKBELT_KIYO
@@ -29,7 +29,7 @@ BlackBeltScript_0x7e1f6:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_BLACKBELT_KIYO
-	loadfont
+	opentext
 UnknownScript_0x7e217:
 	writetext UnknownText_0x7e2c0
 	buttonsound

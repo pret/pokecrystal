@@ -14,19 +14,19 @@ CeladonCafe_MapScriptHeader:
 
 SuperNerdScript_0x73049:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x730de
 	waitbutton
 	closetext
 	end
 
 FisherScript_0x73051:
-	loadfont
+	opentext
 	writetext UnknownText_0x73129
 	waitbutton
 	closetext
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x7313a
 	waitbutton
 	closetext
@@ -34,12 +34,12 @@ FisherScript_0x73051:
 	end
 
 FisherScript_0x73062:
-	loadfont
+	opentext
 	writetext UnknownText_0x7316a
 	waitbutton
 	closetext
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x73178
 	waitbutton
 	closetext
@@ -47,12 +47,12 @@ FisherScript_0x73062:
 	end
 
 FisherScript_0x73073:
-	loadfont
+	opentext
 	writetext UnknownText_0x731ae
 	waitbutton
 	closetext
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x731bd
 	waitbutton
 	closetext
@@ -62,12 +62,12 @@ FisherScript_0x73073:
 TeacherScript_0x73084:
 	checkitem COIN_CASE
 	iftrue UnknownScript_0x7309a
-	loadfont
+	opentext
 	writetext UnknownText_0x73201
 	waitbutton
 	closetext
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x73212
 	waitbutton
 	closetext
@@ -75,12 +75,12 @@ TeacherScript_0x73084:
 	end
 
 UnknownScript_0x7309a:
-	loadfont
+	opentext
 	writetext UnknownText_0x73254
 	waitbutton
 	closetext
 	spriteface CELADONCAFE_TEACHER, RIGHT
-	loadfont
+	opentext
 	writetext UnknownText_0x73278
 	waitbutton
 	closetext
@@ -95,7 +95,7 @@ CeladonCafeTrashcan:
 	iftrue .TrashEmpty
 	giveitem LEFTOVERS
 	iffalse .PackFull
-	loadfont
+	opentext
 	itemtotext LEFTOVERS, $0
 	writetext FoundLeftoversText
 	playsound SFX_ITEM
@@ -106,7 +106,7 @@ CeladonCafeTrashcan:
 	end
 
 .PackFull
-	loadfont
+	opentext
 	itemtotext LEFTOVERS, $0
 	writetext FoundLeftoversText
 	buttonsound

@@ -18,7 +18,7 @@ TrainerFisherKyle:
 
 FisherKyleScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a7238
 	waitbutton
 	closetext
@@ -29,7 +29,7 @@ TrainerFisherMartin:
 
 FisherMartinScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a704c
 	waitbutton
 	closetext
@@ -40,7 +40,7 @@ TrainerFisherStephen:
 
 FisherStephenScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a70d4
 	waitbutton
 	closetext
@@ -51,7 +51,7 @@ TrainerFisherBarney:
 
 FisherBarneyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a716d
 	waitbutton
 	closetext

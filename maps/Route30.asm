@@ -21,13 +21,13 @@ Route30_MapScriptHeader:
 YoungsterScript_0x1a1673:
 	waitsfx
 	playmusic MUSIC_JOHTO_TRAINER_BATTLE
-	loadfont
+	opentext
 	writetext UnknownText_0x1a1806
 	pause 30
 	closetext
 	playsound SFX_TACKLE
 	applymovement ROUTE30_MONSTER2, MovementData_0x1a17fe
-	loadfont
+	opentext
 	faceplayer
 	writetext UnknownText_0x1a181c
 	waitbutton
@@ -44,7 +44,7 @@ TrainerYoungsterJoey:
 YoungsterJoey1Script:
 	writecode VAR_CALLERID, PHONE_YOUNGSTER_JOEY
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_JOEY
 	iftrue UnknownScript_0x1a16e0
 	checkcellnum PHONE_YOUNGSTER_JOEY
@@ -139,7 +139,7 @@ UnknownScript_0x1a176e:
 	end
 
 UnknownScript_0x1a176f:
-	loadfont
+	opentext
 	writetext UnknownText_0x1a1bc0
 	waitbutton
 	verbosegiveitem HP_UP
@@ -190,7 +190,7 @@ TrainerYoungsterMikey:
 
 YoungsterMikeyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a197d
 	waitbutton
 	closetext
@@ -201,7 +201,7 @@ TrainerBug_catcherDon:
 
 Bug_catcherDonScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a1a1c
 	waitbutton
 	closetext
@@ -209,7 +209,7 @@ Bug_catcherDonScript:
 
 YoungsterScript_0x1a17d2:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x1a17e0
 	writetext UnknownText_0x1a1a6a

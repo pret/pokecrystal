@@ -14,7 +14,7 @@ TrainerLassConnie:
 
 LassConnie1Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5b63c
 	waitbutton
 	closetext
@@ -25,7 +25,7 @@ TrainerSailorKent:
 
 SailorKentScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5b584
 	waitbutton
 	closetext

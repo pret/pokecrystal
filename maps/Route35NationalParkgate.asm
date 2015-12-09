@@ -62,7 +62,7 @@ Route35NationalParkgate_IsContestDay:
 Route35NationalParkGate_LeavingContestEarly:
 	applymovement PLAYER, MovementData_0x6a2e2
 	spriteface ROUTE35NATIONALPARKGATE_OFFICER1, RIGHT
-	loadfont
+	opentext
 	checkcode VAR_CONTESTMINUTES
 	addvar $1
 	RAM2MEM $0
@@ -92,7 +92,7 @@ OfficerScript_0x6a204:
 	if_equal WEDNESDAY, Route35NationalParkgate_NoContestToday
 	if_equal FRIDAY, Route35NationalParkgate_NoContestToday
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue Route35NationalParkgate_ContestIsOver
 	scall Route35NationalParkgate_GetDayOfWeek
@@ -197,7 +197,7 @@ Route35NationalParkgate_NoContestToday:
 
 OfficerScript_0x6a2ca:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue Route35NationalParkgate_ContestIsOver
 	writetext UnknownText_0x6a894

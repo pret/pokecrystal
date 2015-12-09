@@ -11,7 +11,7 @@ PewterMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x1a2dcb:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_PEWTER
 	closetext
 	end

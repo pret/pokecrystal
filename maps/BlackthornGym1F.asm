@@ -32,7 +32,7 @@ BlackthornGym1F_MapScriptHeader:
 
 ClairScript_0x194e24:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_RISINGBADGE
 	iftrue UnknownScript_0x194e69
 	checkevent EVENT_BEAT_CLAIR
@@ -45,7 +45,7 @@ ClairScript_0x194e24:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_CLAIR
-	loadfont
+	opentext
 	writetext UnknownText_0x19500e
 	waitbutton
 	closetext
@@ -98,7 +98,7 @@ TrainerCooltrainermPaul:
 
 CooltrainermPaulScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1953f1
 	waitbutton
 	closetext
@@ -109,7 +109,7 @@ TrainerCooltrainermMike:
 
 CooltrainermMikeScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x195467
 	waitbutton
 	closetext
@@ -120,7 +120,7 @@ TrainerCooltrainerfLola:
 
 CooltrainerfLolaScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x195516
 	waitbutton
 	closetext
@@ -128,7 +128,7 @@ CooltrainerfLolaScript:
 
 BlackthornGymGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_CLAIR
 	iftrue .BlackthornGymGuyWinScript
 	writetext BlackthornGymGuyText

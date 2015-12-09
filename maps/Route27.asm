@@ -38,7 +38,7 @@ UnknownScript_0x1a0881:
 	applymovement ROUTE27_FISHER, MovementData_0x1a0a69
 UnknownScript_0x1a088c:
 	spriteface PLAYER, RIGHT
-	loadfont
+	opentext
 	writetext UnknownText_0x1a0a6b
 	buttonsound
 	writetext UnknownText_0x1a0a71
@@ -55,7 +55,7 @@ TrainerPsychicGilbert:
 
 PsychicGilbertScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a0dd2
 	waitbutton
 	closetext
@@ -67,7 +67,7 @@ TrainerBird_keeperJose2:
 Bird_keeperJose2Script:
 	writecode VAR_CALLERID, PHONE_BIRDKEEPER_JOSE
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_JOSE
 	iftrue UnknownScript_0x1a08ff
 	checkflag ENGINE_JOSE_HAS_STAR_PIECE
@@ -179,7 +179,7 @@ TrainerCooltrainermBlake:
 
 CooltrainermBlakeScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a0b0b
 	waitbutton
 	closetext
@@ -190,7 +190,7 @@ TrainerCooltrainermBrian:
 
 CooltrainermBrianScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a0bac
 	waitbutton
 	closetext
@@ -202,7 +202,7 @@ TrainerCooltrainerfReena:
 CooltrainerfReena1Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERF_REENA
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_REENA
 	iftrue UnknownScript_0x1a09e9
 	checkcellnum PHONE_COOLTRAINERF_REENA
@@ -294,7 +294,7 @@ TrainerCooltrainerfMegan:
 
 CooltrainerfMeganScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a0cce
 	waitbutton
 	closetext

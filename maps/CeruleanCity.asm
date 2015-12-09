@@ -22,7 +22,7 @@ CeruleanCity_MapScriptHeader:
 
 CooltrainerMScript_0x184009:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x184017
 	writetext UnknownText_0x1840bc
@@ -40,7 +40,7 @@ SuperNerdScript_0x18401d:
 	jumptextfaceplayer UnknownText_0x1841a8
 
 CeruleanCitySlowbro:
-	loadfont
+	opentext
 	writetext CeruleanCitySlowbroText
 	cry SLOWBRO
 	waitbutton
@@ -49,21 +49,21 @@ CeruleanCitySlowbro:
 
 CooltrainerFScript_0x18402a:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x1841fa
 	waitbutton
 	closetext
 	spriteface CERULEANCITY_COOLTRAINER_F, LEFT
-	loadfont
+	opentext
 	writetext UnknownText_0x184229
 	waitbutton
 	closetext
-	loadfont
+	opentext
 	writetext CeruleanCitySlowbroText
 	cry SLOWBRO
 	waitbutton
 	closetext
-	loadfont
+	opentext
 	writetext UnknownText_0x18424b
 	waitbutton
 	closetext
@@ -71,7 +71,7 @@ CooltrainerFScript_0x18402a:
 
 FisherScript_0x18404a:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x184058
 	checkevent EVENT_MET_ROCKET_GRUNT_AT_CERULEAN_GYM
@@ -90,7 +90,7 @@ UnknownScript_0x18405e:
 
 YoungsterScript_0x184064:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x1842a9
 	waitbutton
 	closetext
@@ -118,7 +118,7 @@ UnknownScript_0x184072:
 	waitsfx
 	showemote EMOTE_SHOCK, CERULEANCITY_YOUNGSTER, 15
 	spriteface CERULEANCITY_YOUNGSTER, LEFT
-	loadfont
+	opentext
 	writetext UnknownText_0x1842ee
 	waitbutton
 	closetext

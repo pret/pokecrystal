@@ -58,7 +58,7 @@ UnknownScript_0x78039:
 
 GrampsScript_0x7803d:
 	faceplayer
-	loadfont
+	opentext
 	special Special_DayCareManOutside
 	waitbutton
 	closetext
@@ -79,13 +79,13 @@ UnknownScript_0x7805b:
 	end
 
 DaycareMon1Script_0x78065:
-	loadfont
+	opentext
 	special Special_DayCareMon1
 	closetext
 	end
 
 DaycareMon2Script_0x7806b:
-	loadfont
+	opentext
 	special Special_DayCareMon2
 	closetext
 	end
@@ -96,7 +96,7 @@ TrainerCamperTodd1:
 CamperTodd1Script:
 	writecode VAR_CALLERID, PHONE_CAMPER_TODD
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_TODD
 	iftrue UnknownScript_0x780bd
 	checkflag ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON
@@ -221,7 +221,7 @@ TrainerPicnickerGina1:
 PicnickerGina1Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_GINA
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_GINA
 	iftrue UnknownScript_0x7819f
 	checkflag ENGINE_GINA_HAS_LEAF_STONE
@@ -355,7 +355,7 @@ UnknownScript_0x78248:
 
 OfficerScript_0x7824c:
 	faceplayer
-	loadfont
+	opentext
 	checknite
 	iffalse UnknownScript_0x78276
 	checkevent EVENT_BEAT_OFFICER_KEITH
@@ -389,7 +389,7 @@ TrainerYoungsterSamuel:
 
 YoungsterSamuelScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x783d8
 	waitbutton
 	closetext
@@ -400,7 +400,7 @@ TrainerYoungsterIan:
 
 YoungsterIanScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x78469
 	waitbutton
 	closetext
@@ -411,7 +411,7 @@ TrainerPokefanmBrandon:
 
 PokefanmBrandonScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x786fc
 	waitbutton
 	closetext
@@ -422,7 +422,7 @@ TrainerCooltrainerfIrene:
 
 CooltrainerfIreneScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
 	iftrue UnknownScript_0x782d2
 	writetext UnknownText_0x7877f
@@ -441,7 +441,7 @@ TrainerCooltrainerfJenn:
 
 CooltrainerfJennScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
 	iftrue UnknownScript_0x782f2
 	writetext UnknownText_0x78836
@@ -460,7 +460,7 @@ TrainerCooltrainerfKate:
 
 CooltrainerfKateScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
 	iftrue UnknownScript_0x78319
 	writetext UnknownText_0x788e2

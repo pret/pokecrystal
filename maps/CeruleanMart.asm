@@ -11,7 +11,7 @@ CeruleanMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x188ac0:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_CERULEAN
 	closetext
 	end

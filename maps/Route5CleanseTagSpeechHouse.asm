@@ -11,7 +11,7 @@ Route5CleanseTagSpeechHouse_MapScriptHeader:
 
 GrannyScript_0x18b634:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_CLEANSE_TAG
 	iftrue UnknownScript_0x18b649
 	writetext UnknownText_0x18b655

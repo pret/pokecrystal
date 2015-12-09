@@ -11,7 +11,7 @@ SaffronMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x18a3bf:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_SAFFRON
 	closetext
 	end

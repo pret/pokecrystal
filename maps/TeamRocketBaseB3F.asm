@@ -59,7 +59,7 @@ LanceScript_0x6dffc:
 	spriteface TEAMROCKETBASEB3F_MOLTRES, RIGHT
 	pause 20
 	applymovement TEAMROCKETBASEB3F_LANCE, MovementData_0x6e12a
-	loadfont
+	opentext
 	writetext UnknownText_0x6e179
 	waitbutton
 	closetext
@@ -76,7 +76,7 @@ UnknownScript_0x6e019:
 	applymovement TEAMROCKETBASEB3F_SILVER, MovementData_0x6e164
 	spriteface PLAYER, LEFT
 	playmusic MUSIC_RIVAL_ENCOUNTER
-	loadfont
+	opentext
 	writetext UnknownText_0x6e267
 	waitbutton
 	closetext
@@ -102,7 +102,7 @@ UnknownScript_0x6e056:
 	showemote EMOTE_SHOCK, TEAMROCKETBASEB3F_ROCKET1, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface TEAMROCKETBASEB3F_ROCKET1, DOWN
-	loadfont
+	opentext
 	writetext UnknownText_0x6e400
 	waitbutton
 	closetext
@@ -113,7 +113,7 @@ UnknownScript_0x6e056:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_4
-	loadfont
+	opentext
 	writetext UnknownText_0x6e548
 	waitbutton
 	closetext
@@ -125,7 +125,7 @@ UnknownScript_0x6e056:
 	end
 
 MoltresScript_0x6e091:
-	loadfont
+	opentext
 	writetext UnknownText_0x6e585
 	waitbutton
 	closetext
@@ -137,7 +137,7 @@ TrainerGruntF5:
 
 GruntF5Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x6e611
 	waitbutton
 	closetext
@@ -149,7 +149,7 @@ TrainerGruntM28:
 
 GruntM28Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x6e737
 	waitbutton
 	closetext
@@ -161,7 +161,7 @@ TrainerScientistRoss:
 
 ScientistRossScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x6e822
 	waitbutton
 	closetext
@@ -172,7 +172,7 @@ TrainerScientistMitch:
 
 ScientistMitchScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x6e90a
 	waitbutton
 	closetext
@@ -183,7 +183,7 @@ BossDoor:
 	dw .Script
 	
 .Script
-	loadfont
+	opentext
 	checkevent EVENT_LEARNED_SLOWPOKETAIL
 	iffalse .NeedsPassword
 	checkevent EVENT_LEARNED_RATICATE_TAIL

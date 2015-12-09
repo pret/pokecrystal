@@ -162,7 +162,7 @@ UndergroundSilverBattleScript:
 	domaptrigger BURNED_TOWER_1F, 1
 .Continue:
 	playmusic MUSIC_RIVAL_ENCOUNTER
-	loadfont
+	opentext
 	writetext UndergroundSilverBeforeText
 	waitbutton
 	closetext
@@ -199,7 +199,7 @@ UndergroundSilverBattleScript:
 
 .FinishRivalBattle:
 	playmusic MUSIC_RIVAL_AFTER
-	loadfont
+	opentext
 	writetext UndergroundSilverAfterText
 	waitbutton
 	closetext
@@ -210,7 +210,7 @@ TrainerGruntM11:
 
 GruntM11Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext GruntM11AfterText
 	waitbutton
 	closetext
@@ -221,7 +221,7 @@ TrainerGruntM25:
 
 GruntM25Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext GruntM25AfterText
 	waitbutton
 	closetext
@@ -232,7 +232,7 @@ TrainerBurglarDuncan:
 
 BurglarDuncanScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext BurglarDuncanAfterText
 	waitbutton
 	closetext
@@ -243,7 +243,7 @@ TrainerBurglarEddie:
 
 BurglarEddieScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext BurglarEddieAfterText
 	waitbutton
 	closetext
@@ -254,7 +254,7 @@ TrainerGruntM13:
 
 GruntM13Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext GruntM13AfterText
 	waitbutton
 	closetext
@@ -265,14 +265,14 @@ TrainerGruntF3:
 
 GruntF3Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext GruntF3AfterText
 	waitbutton
 	closetext
 	end
 
 Switch1Script:
-	loadfont
+	opentext
 	writetext SwitchRoomText_Switch1
 	buttonsound
 	checkevent EVENT_SWITCH_1
@@ -297,7 +297,7 @@ Switch1Script:
 	jump UndergroundPathSwitchRoomEntrances_UpdateDoors
 
 Switch2Script:
-	loadfont
+	opentext
 	writetext SwitchRoomText_Switch2
 	buttonsound
 	checkevent EVENT_SWITCH_2
@@ -322,7 +322,7 @@ Switch2Script:
 	jump UndergroundPathSwitchRoomEntrances_UpdateDoors
 
 Switch3Script:
-	loadfont
+	opentext
 	writetext SwitchRoomText_Switch3
 	buttonsound
 	checkevent EVENT_SWITCH_3
@@ -347,7 +347,7 @@ Switch3Script:
 	jump UndergroundPathSwitchRoomEntrances_UpdateDoors
 
 EmergencySwitchScript:
-	loadfont
+	opentext
 	writetext SwitchRoomText_Emergency
 	buttonsound
 	checkevent EVENT_EMERGENCY_SWITCH

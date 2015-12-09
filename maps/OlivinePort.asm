@@ -35,7 +35,7 @@ UnknownScript_0x748b1:
 
 SailorScript_0x748c0:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74919
 	writetext UnknownText_0x74a55
@@ -83,7 +83,7 @@ UnknownScript_0x7491f:
 	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
 	iftrue UnknownScript_0x7498b
 	spriteface PLAYER, LEFT
-	loadfont
+	opentext
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iffalse UnknownScript_0x7494e
 	checkcode VAR_WEEKDAY
@@ -146,7 +146,7 @@ UnknownScript_0x74992:
 
 SailorScript_0x7499c:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74919
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
@@ -201,7 +201,7 @@ SailorScript_0x749fe:
 
 FishingGuruScript_0x74a01:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x74bf4
 	waitbutton
 	closetext
@@ -210,7 +210,7 @@ FishingGuruScript_0x74a01:
 
 FishingGuruScript_0x74a0c:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x74c35
 	waitbutton
 	closetext
@@ -219,7 +219,7 @@ FishingGuruScript_0x74a0c:
 
 YoungsterScript_0x74a17:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x74c76
 	waitbutton
 	closetext
@@ -228,7 +228,7 @@ YoungsterScript_0x74a17:
 
 CooltrainerFScript_0x74a22:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x74ca2
 	waitbutton
 	closetext

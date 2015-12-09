@@ -65,7 +65,7 @@ UnknownScript_0x985a3:
 	applymovement PLAYER, MovementData_0x98622
 	stopfollow
 	spriteface PLAYER, RIGHT
-	loadfont
+	opentext
 	writetext UnknownText_0x98712
 	waitbutton
 	closetext
@@ -77,7 +77,7 @@ TrainerSageGaku:
 	trainer EVENT_BEAT_SAGE_GAKU, SAGE, GAKU, SageGakuSeenText, SageGakuBeatenText, 0, SageGakuScript
 
 SageGakuScript:
-	loadfont
+	opentext
 	writetext UnknownText_0x98938
 	waitbutton
 	closetext
@@ -87,7 +87,7 @@ TrainerSageMasa:
 	trainer EVENT_BEAT_SAGE_MASA, SAGE, MASA, SageMasaSeenText, SageMasaBeatenText, 0, SageMasaScript
 
 SageMasaScript:
-	loadfont
+	opentext
 	writetext UnknownText_0x98a35
 	waitbutton
 	closetext
@@ -101,7 +101,7 @@ SageKojiScript:
 	iftrue UnknownScript_0x9861b
 	pause 10
 	showemote EMOTE_SHOCK, WISETRIOSROOM_SAGE6, 20
-	loadfont
+	opentext
 	writetext UnknownText_0x98c6c
 	buttonsound
 	writetext UnknownText_0x98cac
@@ -114,7 +114,7 @@ SageKojiScript:
 	end
 
 UnknownScript_0x9861b:
-	loadfont
+	opentext
 	writetext UnknownText_0x98db5
 	waitbutton
 	closetext

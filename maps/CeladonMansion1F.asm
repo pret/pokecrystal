@@ -15,7 +15,7 @@ CeladonMansionManager:
 	jumptextfaceplayer CeladonMansionManagerText
 
 CeladonMansion1FMeowth:
-	loadfont
+	opentext
 	writetext CeladonMansion1FMeowthText
 	cry MEOWTH
 	waitbutton
@@ -23,7 +23,7 @@ CeladonMansion1FMeowth:
 	end
 
 CeladonMansion1FClefairy:
-	loadfont
+	opentext
 	writetext CeladonMansion1FClefairyText
 	cry CLEFAIRY
 	waitbutton
@@ -31,7 +31,7 @@ CeladonMansion1FClefairy:
 	end
 
 CeladonMansion1FNidoranF:
-	loadfont
+	opentext
 	writetext CeladonMansion1FNidoranFText
 	cry NIDORAN_F
 	waitbutton

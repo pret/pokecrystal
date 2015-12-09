@@ -12,7 +12,7 @@ GoldenrodDeptStore3F_MapScriptHeader:
 
 ClerkScript_0x55db8:
 	faceplayer
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_3F
 	closetext
 	end

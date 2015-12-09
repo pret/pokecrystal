@@ -61,7 +61,7 @@ UnknownScript_0x5803a:
 ScientistScript_0x58043:
 	faceplayer
 UnknownScript_0x58044:
-	loadfont
+	opentext
 	writetext UnknownText_0x580c7
 	waitbutton
 	closetext
@@ -77,7 +77,7 @@ UnknownScript_0x58044:
 
 FisherScript_0x58061:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_TALKED_TO_RUINS_COWARD
 	iftrue .Next
 	setevent EVENT_TALKED_TO_RUINS_COWARD
@@ -91,7 +91,7 @@ FisherScript_0x58061:
 
 YoungsterScript_0x58076:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x58449
 	waitbutton
 	closetext
@@ -99,7 +99,7 @@ YoungsterScript_0x58076:
 
 YoungsterScript_0x5807e:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5848e
 	waitbutton
 	closetext
@@ -111,7 +111,7 @@ TrainerPsychicNathan:
 
 PsychicNathanScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5830e
 	waitbutton
 	closetext
@@ -123,7 +123,7 @@ TrainerSuperNerdStan:
 
 UnknownScript_0x580a9:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x58250
 	waitbutton
 	closetext

@@ -11,7 +11,7 @@ BlackthornMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x195a5d:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_BLACKTHORN
 	closetext
 	end

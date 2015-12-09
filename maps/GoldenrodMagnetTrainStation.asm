@@ -17,7 +17,7 @@ GoldenrodMagnetTrainStation_MapScriptHeader:
 
 OfficerScript_0x550ec:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .MagnetTrainToSaffron
 	writetext UnknownText_0x55160
@@ -64,7 +64,7 @@ Script_ArriveFromSaffron:
 	applymovement GOLDENRODMAGNETTRAINSTATION_OFFICER, MovementData_0x55146
 	applymovement PLAYER, MovementData_0x55158
 	applymovement GOLDENRODMAGNETTRAINSTATION_OFFICER, MovementData_0x5514b
-	loadfont
+	opentext
 	writetext UnknownText_0x5526a
 	waitbutton
 	closetext

@@ -19,7 +19,7 @@ TeacherScript_0x1a2eea:
 	jumptextfaceplayer UnknownText_0x1a2f01
 
 JigglypuffScript_0x1a2eed:
-	loadfont
+	opentext
 	writetext UnknownText_0x1a2f5d
 	cry JIGGLYPUFF
 	waitbutton
@@ -31,7 +31,7 @@ BugCatcherScript_0x1a2ef7:
 
 PokefanMScript_0x1a2efa:
 	faceplayer
-	loadfont
+	opentext
 	trade $4
 	waitbutton
 	closetext

@@ -46,12 +46,12 @@ UnknownScript_0x59192:
 	playsound SFX_TRANSACTION
 	pause 30
 	spriteface RUINSOFALPHRESEARCHCENTER_SCIENTIST3, DOWN
-	loadfont
+	opentext
 	writetext UnknownText_0x59278
 	waitbutton
 	closetext
 	applymovement RUINSOFALPHRESEARCHCENTER_SCIENTIST3, MovementData_0x59274
-	loadfont
+	opentext
 	writetext UnknownText_0x592fa
 	playsound SFX_ITEM
 	waitsfx
@@ -66,7 +66,7 @@ UnknownScript_0x59192:
 
 ScientistScript_0x591d1:
 	faceplayer
-	loadfont
+	opentext
 	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x591df
 	writetext UnknownText_0x59311
@@ -82,7 +82,7 @@ UnknownScript_0x591df:
 
 ScientistScript_0x591e5:
 	faceplayer
-	loadfont
+	opentext
 	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x5920b
 	checkflag ENGINE_UNOWN_DEX
@@ -115,7 +115,7 @@ UnknownScript_0x5920b:
 
 ScientistScript_0x59214:
 	faceplayer
-	loadfont
+	opentext
 	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x5922e
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
@@ -138,7 +138,7 @@ UnknownScript_0x5922e:
 	end
 
 MapRuinsofAlphResearchCenterSignpost1Script:
-	loadfont
+	opentext
 	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	iftrue UnknownScript_0x59241
 	checkcode VAR_UNOWNCOUNT
@@ -156,7 +156,7 @@ UnknownScript_0x59247:
 	end
 
 MapRuinsofAlphResearchCenterSignpost2Script:
-	loadfont
+	opentext
 	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	iftrue UnknownScript_0x5925a
 	checkcode VAR_UNOWNCOUNT

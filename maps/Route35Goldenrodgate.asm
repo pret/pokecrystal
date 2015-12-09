@@ -12,7 +12,7 @@ Route35Goldenrodgate_MapScriptHeader:
 
 OfficerScript_0x69d37:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_HP_UP_FROM_RANDY
 	iftrue .gothpup
 	checkevent EVENT_GAVE_KENYA
@@ -77,7 +77,7 @@ GiftSpearowOTName:
 
 PokefanFScript_0x69dc6:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_FOUGHT_SUDOWOODO
 	iftrue .aftersudowoodo
 	writetext UnknownText_0x6a00a

@@ -15,7 +15,7 @@ SaffronGym_MapScriptHeader:
 
 SabrinaScript_0x189c2e:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_MARSHBADGE
 	iftrue .FightDone
 	writetext UnknownText_0x189cdf
@@ -30,7 +30,7 @@ SabrinaScript_0x189c2e:
 	setevent EVENT_BEAT_MEDIUM_DORIS
 	setevent EVENT_BEAT_PSYCHIC_FRANKLIN
 	setevent EVENT_BEAT_PSYCHIC_JARED
-	loadfont
+	opentext
 	writetext UnknownText_0x189e95
 	playsound SFX_GET_BADGE
 	waitsfx
@@ -51,7 +51,7 @@ TrainerMediumRebecca:
 
 MediumRebeccaScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x18a034
 	waitbutton
 	closetext
@@ -62,7 +62,7 @@ TrainerPsychicFranklin:
 
 PsychicFranklinScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x18a0a6
 	waitbutton
 	closetext
@@ -73,7 +73,7 @@ TrainerMediumDoris:
 
 MediumDorisScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x18a136
 	waitbutton
 	closetext
@@ -84,7 +84,7 @@ TrainerPsychicJared:
 
 PsychicJaredScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x18a1b3
 	waitbutton
 	closetext
@@ -92,7 +92,7 @@ PsychicJaredScript:
 
 SaffronGymGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_SABRINA
 	iftrue .SaffronGymGuyWinScript
 	writetext SaffronGymGuyText

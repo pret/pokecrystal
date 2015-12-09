@@ -15,7 +15,7 @@ NurseScript_0x69b52:
 
 FishingGuruScript_0x69b55:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_OLD_ROD
 	iftrue UnknownScript_0x69b7a
 	writetext UnknownText_0x69b83

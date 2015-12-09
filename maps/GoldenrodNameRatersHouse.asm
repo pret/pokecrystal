@@ -10,7 +10,7 @@ GoldenrodNameRatersHouse_MapScriptHeader:
 
 GentlemanScript_0x5577c:
 	faceplayer
-	loadfont
+	opentext
 	special SpecialNameRater
 	waitbutton
 	closetext

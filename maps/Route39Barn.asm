@@ -12,7 +12,7 @@ Route39Barn_MapScriptHeader:
 
 TwinScript_0x9cc76:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_HEALED_MOOMOO
 	iftrue .FeedingMooMoo
 	writetext Text_MoomooIsSick
@@ -30,7 +30,7 @@ TwinScript_0x9cc76:
 
 TwinScript_0x9cc90:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_HEALED_MOOMOO
 	iftrue .FeedingMooMoo
 	writetext Text_MoomooIsSick
@@ -47,7 +47,7 @@ TwinScript_0x9cc90:
 	end
 
 TaurosScript_0x9ccaa:
-	loadfont
+	opentext
 	checkevent EVENT_HEALED_MOOMOO
 	iftrue .HappyCow
 	writetext Text_WeakMoo

@@ -2,7 +2,7 @@ FindItemInBallScript:: ; 0x122ce
 	callasm .TryReceiveItem
 	iffalse .no_room
 	disappear LAST_TALKED
-	loadfont
+	opentext
 	writetext .text_found
 	playsound SFX_ITEM
 	pause 60
@@ -12,7 +12,7 @@ FindItemInBallScript:: ; 0x122ce
 ; 0x122e3
 
 .no_room: ; 0x122e3
-	loadfont
+	opentext
 	writetext .text_found
 	waitbutton
 	writetext .text_bag_full

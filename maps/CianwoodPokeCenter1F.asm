@@ -21,14 +21,14 @@ CianwoodGymGuyScript:
 	faceplayer
 	checkevent EVENT_BEAT_CHUCK
 	iftrue .CianwoodGymGuyWinScript
-	loadfont
+	opentext
 	writetext CianwoodGymGuyText
 	waitbutton
 	closetext
 	end
 
 .CianwoodGymGuyWinScript
-	loadfont
+	opentext
 	writetext CianwoodGymGuyWinText
 	waitbutton
 	closetext

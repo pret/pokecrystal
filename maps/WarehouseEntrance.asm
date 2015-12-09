@@ -120,7 +120,7 @@ TrainerSupernerdEric:
 
 SupernerdEricScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x7c36c
 	waitbutton
 	closetext
@@ -131,7 +131,7 @@ TrainerSupernerdTeru:
 
 SupernerdTeruScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x7c410
 	waitbutton
 	closetext
@@ -142,7 +142,7 @@ TrainerPokemaniacIssac:
 
 PokemaniacIssacScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x7c498
 	waitbutton
 	closetext
@@ -153,14 +153,14 @@ TrainerPokemaniacDonald:
 
 PokemaniacDonaldScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x7c52f
 	waitbutton
 	closetext
 	end
 
 GrannyScript_0x7c132:
-	loadfont
+	opentext
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, .Open
 	if_equal SATURDAY, .Open
@@ -172,7 +172,7 @@ GrannyScript_0x7c132:
 	end
 
 GrampsScript_0x7c146:
-	loadfont
+	opentext
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_MERCHANT_CLOSED
 	iftrue WarehouseEntranceScript_ShopClosed
 	checkcode VAR_WEEKDAY
@@ -187,7 +187,7 @@ GrampsScript_0x7c146:
 	end
 
 OlderHaircutBrotherScript:
-	loadfont
+	opentext
 	checkcode VAR_WEEKDAY
 	if_equal TUESDAY, .DoHaircut
 	if_equal THURSDAY, .DoHaircut
@@ -242,7 +242,7 @@ OlderHaircutBrotherScript:
 	pause 60
 	special FadeInPalettes
 	special RestartMapMusic
-	loadfont
+	opentext
 	writetext UnknownText_0x7c6d8
 	waitbutton
 	checkevent EVENT_GAVE_KURT_APRICORNS
@@ -270,7 +270,7 @@ OlderHaircutBrotherScript:
 	end
 
 YoungerHaircutBrotherScript:
-	loadfont
+	opentext
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, .DoHaircut
 	if_equal WEDNESDAY, .DoHaircut
@@ -325,7 +325,7 @@ YoungerHaircutBrotherScript:
 	pause 60
 	special FadeInPalettes
 	special RestartMapMusic
-	loadfont
+	opentext
 	writetext UnknownText_0x7c82a
 	waitbutton
 	checkevent EVENT_GAVE_KURT_APRICORNS
@@ -374,7 +374,7 @@ UnknownScript_0x7c2cd:
 	end
 
 BasementDoorScript::
-	loadfont
+	opentext
 	checkevent EVENT_USED_BASEMENT_KEY
 	iftrue .Open
 	checkitem BASEMENT_KEY

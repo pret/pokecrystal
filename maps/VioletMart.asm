@@ -11,7 +11,7 @@ VioletMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x68295:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_VIOLET
 	closetext
 	end

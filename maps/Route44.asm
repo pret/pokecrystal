@@ -24,7 +24,7 @@ TrainerBird_keeperVance1:
 Bird_keeperVance1Script:
 	writecode VAR_CALLERID, PHONE_BIRDKEEPER_VANCE
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_VANCE
 	iftrue UnknownScript_0x19d86a
 	checkcellnum PHONE_BIRDKEEPER_VANCE
@@ -95,7 +95,7 @@ UnknownScript_0x19d8ca:
 	end
 
 UnknownScript_0x19d8cb:
-	loadfont
+	opentext
 	writetext UnknownText_0x19dc67
 	waitbutton
 	verbosegiveitem CARBOS
@@ -154,7 +154,7 @@ TrainerPsychicPhil:
 
 PsychicPhilScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19dcfc
 	waitbutton
 	closetext
@@ -166,7 +166,7 @@ TrainerFisherWilton1:
 FisherWilton1Script:
 	writecode VAR_CALLERID, PHONE_FISHER_WILTON
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_WILTON
 	iftrue UnknownScript_0x19d96e
 	checkflag ENGINE_WILTON_HAS_ITEM
@@ -260,7 +260,7 @@ TrainerFisherEdgar:
 
 FisherEdgarScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19db6f
 	waitbutton
 	closetext
@@ -271,7 +271,7 @@ TrainerCooltrainerfCybil:
 
 CooltrainerfCybilScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19df4d
 	waitbutton
 	closetext
@@ -282,7 +282,7 @@ TrainerPokemaniacZach:
 
 PokemaniacZachScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19dd7e
 	waitbutton
 	closetext
@@ -293,7 +293,7 @@ TrainerCooltrainermAllen:
 
 CooltrainermAllenScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19de66
 	waitbutton
 	closetext

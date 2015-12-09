@@ -24,7 +24,7 @@ TeacherScript_0x18a480:
 
 FisherScript_0x18a48c:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .SolvedKantoPowerCrisis
 	writetext UnknownText_0x18a5d3

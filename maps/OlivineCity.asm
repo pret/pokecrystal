@@ -38,7 +38,7 @@ UnknownScript_0x1a8833:
 	waitsfx
 	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88d2
 	playmusic MUSIC_RIVAL_ENCOUNTER
-	loadfont
+	opentext
 	writetext UnknownText_0x1a88fa
 	waitbutton
 	closetext
@@ -62,7 +62,7 @@ UnknownScript_0x1a886b:
 	waitsfx
 	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88d6
 	playmusic MUSIC_RIVAL_ENCOUNTER
-	loadfont
+	opentext
 	writetext UnknownText_0x1a88fa
 	waitbutton
 	closetext
@@ -81,7 +81,7 @@ SailorScript_0x1a88a3:
 
 StandingYoungsterScript_0x1a88a6:
 	faceplayer
-	loadfont
+	opentext
 	random $2
 	if_equal $0, UnknownScript_0x1a88b4
 	writetext UnknownText_0x1a8b04

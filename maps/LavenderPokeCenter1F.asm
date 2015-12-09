@@ -22,7 +22,7 @@ TeacherScript_0x7e6a6:
 
 YoungsterScript_0x7e6a9:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x7e6b7
 	writetext UnknownText_0x7e779

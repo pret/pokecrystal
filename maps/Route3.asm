@@ -16,7 +16,7 @@ TrainerFirebreatherOtis:
 
 FirebreatherOtisScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1adff7
 	waitbutton
 	closetext
@@ -27,7 +27,7 @@ TrainerYoungsterWarren:
 
 YoungsterWarrenScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ae051
 	waitbutton
 	closetext
@@ -38,7 +38,7 @@ TrainerYoungsterJimmy:
 
 YoungsterJimmyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ae0a9
 	waitbutton
 	closetext
@@ -49,7 +49,7 @@ TrainerFirebreatherBurt:
 
 FirebreatherBurtScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ae118
 	waitbutton
 	closetext

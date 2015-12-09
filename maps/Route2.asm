@@ -20,7 +20,7 @@ TrainerBug_catcherRob:
 
 Bug_catcherRobScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ac34d
 	waitbutton
 	closetext
@@ -31,7 +31,7 @@ TrainerBug_catcherEd:
 
 Bug_catcherEdScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ac3cf
 	waitbutton
 	closetext
@@ -42,7 +42,7 @@ TrainerBug_catcherDoug:
 
 Bug_catcherDougScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ac423
 	waitbutton
 	closetext

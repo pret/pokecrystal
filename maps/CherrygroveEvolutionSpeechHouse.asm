@@ -10,14 +10,14 @@ CherrygroveEvolutionSpeechHouse_MapScriptHeader:
 	db 0
 
 YoungsterScript_0x196cb2:
-	loadfont
+	opentext
 	writetext UnknownText_0x196cc3
 	waitbutton
 	closetext
 	end
 
 LassScript_0x196cb9:
-	loadfont
+	opentext
 	writetext UnknownText_0x196cfc
 	waitbutton
 	closetext

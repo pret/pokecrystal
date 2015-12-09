@@ -49,7 +49,7 @@ UnknownScript_0x1804e0:
 
 WillScript_0x1804f8:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_ELITE_4_WILL
 	iftrue UnknownScript_0x180526
 	writetext UnknownText_0x180531
@@ -60,7 +60,7 @@ WillScript_0x1804f8:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_ELITE_4_WILL
-	loadfont
+	opentext
 	writetext UnknownText_0x180644
 	waitbutton
 	closetext

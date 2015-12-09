@@ -26,7 +26,7 @@ PharmacistScript_0x71e2b:
 
 SuperNerdScript_0x71e2e:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x71f22
 	buttonsound
 	writebyte SUICUNE

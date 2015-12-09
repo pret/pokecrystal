@@ -35,7 +35,7 @@ LassScript_0x1a4012:
 
 LassScript_0x1a4015:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RELEASED_THE_BEASTS
 	iftrue UnknownScript_0x1a4023
 	writetext UnknownText_0x1a421a
@@ -51,7 +51,7 @@ UnknownScript_0x1a4023:
 
 FisherScript_0x1a4029:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_JASMINE_RETURNED_TO_GYM
 	iftrue UnknownScript_0x1a4037
 	writetext UnknownText_0x1a42ac

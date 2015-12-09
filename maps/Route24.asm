@@ -11,7 +11,7 @@ Route24_MapScriptHeader:
 RocketScript_0x1adbfa:
 	faceplayer
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	loadfont
+	opentext
 	writetext UnknownText_0x1adc2e
 	waitbutton
 	closetext
@@ -21,7 +21,7 @@ RocketScript_0x1adbfa:
 	reloadmapmusic
 	returnafterbattle
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	loadfont
+	opentext
 	writetext UnknownText_0x1addc0
 	buttonsound
 	special Special_FadeOutMusic

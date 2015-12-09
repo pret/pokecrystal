@@ -91,7 +91,7 @@ UnknownScript_0x58778:
 
 ScientistScript_0x587a8:
 	faceplayer
-	loadfont
+	opentext
 	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x587cf
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
@@ -126,7 +126,7 @@ MapRuinsofAlphKabutoChamberSignpost3Script:
 	jumptext UnknownText_0x58b3f
 
 MapRuinsofAlphKabutoChamberSignpost4Script:
-	loadfont
+	opentext
 	writetext UnknownText_0x58aa7
 	writebyte $0
 	special Special_DisplayUnownWords
@@ -136,7 +136,7 @@ MapRuinsofAlphKabutoChamberSignpost4Script:
 MapRuinsofAlphKabutoChamberSignpost5Script:
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	iftrue UnknownScript_0x587f7
-	loadfont
+	opentext
 	writetext UnknownText_0x58ad9
 	writebyte $0
 	special Special_DisplayUnownWords
@@ -144,7 +144,7 @@ MapRuinsofAlphKabutoChamberSignpost5Script:
 	end
 
 UnknownScript_0x587f7:
-	loadfont
+	opentext
 	writetext UnknownText_0x58afa
 	waitbutton
 	closetext

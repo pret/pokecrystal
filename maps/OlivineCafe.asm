@@ -12,7 +12,7 @@ OlivineCafe_MapScriptHeader:
 
 SailorScript_0x9c8c1:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_HM04_STRENGTH
 	iftrue UnknownScript_0x9c8d3
 	writetext UnknownText_0x9c8df

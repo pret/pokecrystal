@@ -88,7 +88,7 @@ MapRuinsofAlphAerodactylChamberSignpost3Script:
 	jumptext UnknownText_0x58ee7
 
 MapRuinsofAlphAerodactylChamberSignpost4Script:
-	loadfont
+	opentext
 	writetext UnknownText_0x58e4f
 	writebyte $1
 	special Special_DisplayUnownWords
@@ -98,7 +98,7 @@ MapRuinsofAlphAerodactylChamberSignpost4Script:
 MapRuinsofAlphAerodactylChamberSignpost5Script:
 	checkevent EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
 	iftrue UnknownScript_0x58e46
-	loadfont
+	opentext
 	writetext UnknownText_0x58e81
 	writebyte $1
 	special Special_DisplayUnownWords
@@ -106,7 +106,7 @@ MapRuinsofAlphAerodactylChamberSignpost5Script:
 	end
 
 UnknownScript_0x58e46:
-	loadfont
+	opentext
 	writetext UnknownText_0x58ea2
 	waitbutton
 	closetext

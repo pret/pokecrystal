@@ -17,7 +17,7 @@ PharmacistScript_0x726ec:
 
 MapCeladonGameCornerPrizeRoomSignpost0Script:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x7293e
 	waitbutton
 	checkitem COIN_CASE
@@ -121,7 +121,7 @@ MenuData2_0x72798:
 
 MapCeladonGameCornerPrizeRoomSignpost1Script:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x7293e
 	waitbutton
 	checkitem COIN_CASE

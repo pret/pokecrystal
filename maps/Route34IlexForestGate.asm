@@ -37,7 +37,7 @@ UnknownScript_0x62d3d:
 	applymovement PLAYER, MovementData_0x62d97
 	stopfollow
 	spriteface PLAYER, DOWN
-	loadfont
+	opentext
 	writetext UnknownText_0x62e41
 	waitbutton
 	closetext
@@ -47,7 +47,7 @@ UnknownScript_0x62d62:
 
 TeacherScript_0x62d63:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iftrue UnknownScript_0x62d84
 	checkevent EVENT_GOT_TM12_SWEET_SCENT
@@ -71,7 +71,7 @@ UnknownScript_0x62d84:
 	end
 
 ButterfreeScript_0x62d8a:
-	loadfont
+	opentext
 	writetext UnknownText_0x62e83
 	cry BUTTERFREE
 	waitbutton

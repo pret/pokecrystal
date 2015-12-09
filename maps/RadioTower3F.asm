@@ -33,7 +33,7 @@ SuperNerdScript_0x5e553:
 
 GymGuyScript_0x5e556:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x5e564
 	writetext UnknownText_0x5e682
@@ -49,7 +49,7 @@ UnknownScript_0x5e564:
 
 CooltrainerFScript_0x5e56a:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_SUNNY_DAY_FROM_RADIO_TOWER
 	iftrue UnknownScript_0x5e59d
 	checkevent EVENT_CLEARED_RADIO_TOWER
@@ -90,7 +90,7 @@ TrainerGruntM7:
 
 GruntM7Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5e8d0
 	waitbutton
 	closetext
@@ -101,7 +101,7 @@ TrainerGruntM8:
 
 GruntM8Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5e944
 	waitbutton
 	closetext
@@ -112,7 +112,7 @@ TrainerGruntM9:
 
 GruntM9Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5e9d0
 	waitbutton
 	closetext
@@ -123,14 +123,14 @@ TrainerScientistMarc:
 
 ScientistMarcScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5ea61
 	waitbutton
 	closetext
 	end
 
 MapRadioTower3FSignpost2Script::
-	loadfont
+	opentext
 	writetext UnknownText_0x5eaa4
 	waitbutton
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER

@@ -21,7 +21,7 @@ TrainerPokemaniacLarry:
 
 PokemaniacLarryScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x59d31
 	waitbutton
 	closetext
@@ -32,7 +32,7 @@ TrainerHikerRussell:
 
 HikerRussellScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x59c6c
 	waitbutton
 	closetext
@@ -43,7 +43,7 @@ TrainerHikerDaniel:
 
 HikerDanielScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x59dc9
 	waitbutton
 	closetext
@@ -54,7 +54,7 @@ TrainerFirebreatherBill:
 
 FirebreatherBillScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x59e6f
 	waitbutton
 	closetext
@@ -65,7 +65,7 @@ TrainerFirebreatherRay:
 
 FirebreatherRayScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x59efc
 	waitbutton
 	closetext

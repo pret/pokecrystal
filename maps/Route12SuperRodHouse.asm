@@ -10,7 +10,7 @@ Route12SuperRodHouse_MapScriptHeader:
 
 FishingGuruScript_0x7f484:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_SUPER_ROD
 	iftrue UnknownScript_0x7f4a0
 	writetext UnknownText_0x7f4af

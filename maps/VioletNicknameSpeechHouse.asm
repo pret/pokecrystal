@@ -18,7 +18,7 @@ LassScript_0x693ec:
 
 BirdScript_0x693ef:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x6947c
 	cry PIDGEY
 	waitbutton

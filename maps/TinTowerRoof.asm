@@ -29,7 +29,7 @@ UnknownScript_0x77241:
 
 HoOhScript_0x77244:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x77260
 	cry HO_OH
 	pause 15

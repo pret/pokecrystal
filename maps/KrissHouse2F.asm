@@ -63,7 +63,7 @@ KrissHouseRadio:
 	checkevent EVENT_LISTENED_TO_INITIAL_RADIO
 	iftrue .AbbreviatedRadio
 	playmusic MUSIC_POKEMON_TALK
-	loadfont
+	opentext
 	writetext KrisRadioText1
 	pause 45
 	writetext KrisRadioText2
@@ -81,7 +81,7 @@ KrissHouseRadio:
 	jumpstd radio1
 
 .AbbreviatedRadio
-	loadfont
+	opentext
 	writetext KrisRadioText4
 	pause 45
 	closetext
@@ -91,7 +91,7 @@ KrissHouseBookshelf:
 	jumpstd picturebookshelf
 
 KrissHousePC:
-	loadfont
+	opentext
 	special Special_KrissHousePC
 	iftrue .Warp
 	closetext

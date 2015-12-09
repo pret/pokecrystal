@@ -16,7 +16,7 @@ MahoganyGym_MapScriptHeader:
 
 PryceScript_0x199a9e:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_PRYCE
 	iftrue .FightDone
 	writetext UnknownText_0x199b8d
@@ -27,7 +27,7 @@ PryceScript_0x199a9e:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_PRYCE
-	loadfont
+	opentext
 	writetext UnknownText_0x199d3b
 	playsound SFX_GET_BADGE
 	waitsfx
@@ -75,7 +75,7 @@ TrainerSkierRoxanne:
 
 SkierRoxanneScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19a116
 	waitbutton
 	closetext
@@ -86,7 +86,7 @@ TrainerSkierClarissa:
 
 SkierClarissaScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19a18f
 	waitbutton
 	closetext
@@ -97,7 +97,7 @@ TrainerBoarderRonald:
 
 BoarderRonaldScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x199f2d
 	waitbutton
 	closetext
@@ -108,7 +108,7 @@ TrainerBoarderBrad:
 
 BoarderBradScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x199fdd
 	waitbutton
 	closetext
@@ -119,7 +119,7 @@ TrainerBoarderDouglas:
 
 BoarderDouglasScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19a047
 	waitbutton
 	closetext
@@ -127,7 +127,7 @@ BoarderDouglasScript:
 
 MahoganyGymGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_PRYCE
 	iftrue .MahoganyGymGuyWinScript
 	writetext MahoganyGymGuyText

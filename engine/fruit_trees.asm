@@ -1,6 +1,6 @@
 FruitTreeScript:: ; 44000
 	callasm GetCurTreeFruit
-	loadfont
+	opentext
 	copybytetovar CurFruit
 	itemtotext $0, $0
 	writetext FruitBearingTreeText

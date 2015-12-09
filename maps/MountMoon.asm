@@ -26,7 +26,7 @@ MountMoon_MapScriptHeader:
 	pause 15
 	applymovement MOUNTMOON_SILVER, MountMoonSilverMovementBefore
 	playmusic MUSIC_RIVAL_ENCOUNTER
-	loadfont
+	opentext
 	writetext MountMoonSilverTextBefore
 	waitbutton
 	closetext
@@ -62,7 +62,7 @@ MountMoon_MapScriptHeader:
 
 .FinishBattle:
 	playmusic MUSIC_RIVAL_AFTER
-	loadfont
+	opentext
 	writetext MountMoonSilverTextAfter
 	waitbutton
 	closetext

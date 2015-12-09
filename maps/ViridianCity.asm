@@ -20,7 +20,7 @@ ViridianCity_MapScriptHeader:
 
 GrampsScript_0x1a9a4c:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x1a9aa5
 	yesorno
 	iffalse UnknownScript_0x1a9a5b
@@ -37,7 +37,7 @@ UnknownScript_0x1a9a5b:
 
 GrampsScript_0x1a9a61:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BLUE_IN_CINNABAR
 	iftrue .BlueReturned
 	writetext UnknownText_0x1a9c11
@@ -53,7 +53,7 @@ GrampsScript_0x1a9a61:
 
 FisherScript_0x1a9a75:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM42_DREAM_EATER
 	iftrue UnknownScript_0x1a9a8a
 	writetext UnknownText_0x1a9cc4

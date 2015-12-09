@@ -24,7 +24,7 @@ TrainerGruntM29:
 
 GruntM29Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext TrainerGruntM29SlowpokeProfitText
 	waitbutton
 	closetext
@@ -34,7 +34,7 @@ TrainerGruntM1:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_1, GRUNTM, 1, GruntM1SeenText, GruntM1BeatenText, 0, GruntM1Script
 
 GruntM1Script:
-	loadfont
+	opentext
 	writetext TrainerGruntM1WhenTalkText
 	waitbutton
 	closetext
@@ -51,7 +51,7 @@ GruntM1Script:
 	appear SLOWPOKEWELLB1F_KURT
 	applymovement SLOWPOKEWELLB1F_KURT, KurtSlowpokeWellVictoryMovementData
 	spriteface PLAYER, RIGHT
-	loadfont
+	opentext
 	writetext KurtLeaveSlowpokeWellText
 	waitbutton
 	closetext
@@ -78,7 +78,7 @@ TrainerGruntM2:
 
 GruntM2Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5aaf2
 	waitbutton
 	closetext
@@ -89,7 +89,7 @@ TrainerGruntF1:
 
 GruntF1Script:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5ab8d
 	waitbutton
 	closetext
@@ -97,7 +97,7 @@ GruntF1Script:
 
 SlowpokeScript_0x5a681:
 	faceplayer
-	loadfont
+	opentext
 	cry SLOWPOKE
 	writetext UnknownText_0x5abcb
 	yesorno
@@ -113,7 +113,7 @@ UnknownScript_0x5a68f:
 
 SlowpokeScript_0x5a695:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5ac61
 	cry SLOWPOKE
 	waitbutton

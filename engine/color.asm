@@ -137,7 +137,7 @@ Function8ade: ; 8ade SGB layout $fc
 .asm_8af7
 	push de
 	ld hl, wcda9 + 10
-	ld bc, $0006
+	ld bc, $6
 	ld a, [wcda9]
 	call AddNTimes
 	pop de
@@ -150,13 +150,13 @@ Function8b07: ; 8b07
 	ret z
 	ld hl, Palette8b2f
 	ld de, UnknBGPals
-	ld bc, $0008
+	ld bc, 1 palettes
 	ld a, $5
 	call FarCopyWRAM
 
 	ld hl, Palette8b37
 	ld de, MartPointer
-	ld bc, $0008
+	ld bc, 1 palettes
 	ld a, $5
 	call FarCopyWRAM
 
@@ -171,6 +171,7 @@ Palette8b2f: ; 8b2f
 	RGB 18, 23, 31
 	RGB 15, 20, 31
 	RGB 00, 00, 00
+
 ; 8b37
 
 Palette8b37: ; 8b37
@@ -178,6 +179,7 @@ Palette8b37: ; 8b37
 	RGB 31, 31, 12
 	RGB 08, 16, 28
 	RGB 00, 00, 00
+
 ; 8b3f
 
 Function8b3f: ; 8b3f
@@ -276,7 +278,7 @@ endr
 asm_8bd7
 	push hl
 	ld hl, UnknBGPals
-	ld de, $0008
+	ld de, $8
 .asm_8bde
 	and a
 	jr z, .asm_8be5
@@ -304,7 +306,7 @@ Function8bec: ; 8bec
 	ld c, a
 	ld a, [EnemyReflectCount]
 	hlcoord 0, 0, AttrMap
-	ld de, $0014
+	ld de, $14
 .asm_8c04
 	and a
 	jr z, .asm_8c0b
@@ -357,11 +359,11 @@ Function8c43: ; 8c43
 	ret
 
 .asm_8c52
-	ld de, BGPals + $10 + 2
+	ld de, BGPals + 2 palettes + 2
 	jr .asm_8c5a
 
 .asm_8c57
-	ld de, BGPals + $18 + 2
+	ld de, BGPals + 3 palettes + 2
 
 .asm_8c5a
 	ld l, c
@@ -371,7 +373,7 @@ rept 2
 endr
 	ld bc, Palettes_a8be
 	add hl, bc
-	ld bc, $0004
+	ld bc, $4
 	ld a, $5
 	call FarCopyWRAM
 	ld a, $1
@@ -382,7 +384,7 @@ endr
 	ld e, c
 	inc e
 	hlcoord 11, 1, AttrMap
-	ld bc, $0028
+	ld bc, $28
 	ld a, [CurPartyMon]
 .asm_8c7b
 	and a
@@ -459,7 +461,7 @@ endr
 
 .asm_8cf0
 	ld de, UnknBGPals
-	ld bc, $0008
+	ld bc, 1 palettes
 	ld a, $5
 	call FarCopyWRAM
 	call Function96a4
@@ -518,6 +520,7 @@ Palettes_8d05: ; 8d05
 	RGB 31, 31, 00
 	RGB 00, 21, 00
 	RGB 00, 00, 00
+
 ; 8d55
 
 INCLUDE "predef/cgb.asm"
@@ -540,6 +543,7 @@ Palette_9608: ; 9608
 	RGB 09, 31, 31
 	RGB 10, 12, 31
 	RGB 00, 03, 19
+
 ; 9610
 
 
@@ -678,7 +682,7 @@ Function9699: ; 9699
 Function96a4: ; 96a4
 	ld hl, UnknBGPals
 	ld de, BGPals
-	ld bc, $0080
+	ld bc, 16 palettes
 	ld a, $5
 	call FarCopyWRAM
 	ret
@@ -740,7 +744,7 @@ Function96f3: ; 96f3 CGB layout $fc
 	inc a
 	ld e, a
 	hlcoord 11, 2, AttrMap
-	ld bc, $0028
+	ld bc, $28
 	ld a, [wcda9]
 .asm_970b
 	and a
@@ -760,7 +764,7 @@ Function96f3: ; 96f3 CGB layout $fc
 Function971a: ; 971a
 	ld hl, Palettes_b681
 	ld de, UnknOBPals
-	ld bc, $0010
+	ld bc, 2 palettes
 	ld a, $5
 	call FarCopyWRAM
 	ret
@@ -844,7 +848,7 @@ Function977a: ; 977a
 	jr nz, .asm_9787
 	ld hl, Palettes_979c
 	ld de, UnknOBPals + 8 * 2
-	ld bc, $0010
+	ld bc, 2 palettes
 	ld a, $5
 	call FarCopyWRAM
 	ret
@@ -855,26 +859,32 @@ Palettes_979c: ; 979c
 	RGB 25, 25, 25
 	RGB 13, 13, 13
 	RGB 00, 00, 00
+
 	RGB 31, 31, 31
 	RGB 31, 31, 07
 	RGB 31, 16, 01
 	RGB 00, 00, 00
+
 	RGB 31, 31, 31
 	RGB 31, 19, 24
 	RGB 30, 10, 06
 	RGB 00, 00, 00
+
 	RGB 31, 31, 31
 	RGB 12, 25, 01
 	RGB 05, 14, 00
 	RGB 00, 00, 00
+
 	RGB 31, 31, 31
 	RGB 08, 12, 31
 	RGB 01, 04, 31
 	RGB 00, 00, 00
+
 	RGB 31, 31, 31
 	RGB 24, 18, 07
 	RGB 20, 15, 03
 	RGB 00, 00, 00
+
 ; 97cc
 
 Function97cc: ; 97cc
@@ -1217,20 +1227,20 @@ Function99d8: ; 99d8
 	ld b, $12
 .asm_99ea
 	push bc
-	ld bc, $000c
+	ld bc, $c
 	call CopyData
-	ld bc, $0028
+	ld bc, $28
 	call ClearBytes
-	ld bc, $000c
+	ld bc, $c
 	call CopyData
 	pop bc
 	dec b
 	jr nz, .asm_99ea
-	ld bc, $0140
+	ld bc, $140
 	call CopyData
 	ld bc, Start
 	call ClearBytes
-	ld bc, $0080
+	ld bc, 16 palettes
 	call CopyData
 	call DrawDefaultTiles
 	ld a, $e3
@@ -1250,9 +1260,9 @@ Function9a24: ; 9a24
 	ld b, $80
 .asm_9a30
 	push bc
-	ld bc, $0010
+	ld bc, 2 palettes
 	call CopyData
-	ld bc, $0010
+	ld bc, 2 palettes
 	call ClearBytes
 	pop bc
 	dec b
@@ -1803,6 +1813,7 @@ Palettes_9df6: ; 9df6
 	RGB 08, 11, 11
 	RGB 21, 21, 21
 	RGB 31, 31, 31
+
 ; a06e
 
 SGBBorderMap: ; a06e
@@ -1916,6 +1927,7 @@ SGBBorderPalettes: ; a49e
 	RGB 31, 31, 25
 	RGB 31, 31, 25
 	RGB 31, 31, 25
+
 ; a51e
 
 SGBBorder: ; a51e
@@ -2085,6 +2097,7 @@ Palette_b309: ; b309
 	RGB 31, 19, 24
 	RGB 30, 10, 06
 	RGB 00, 00, 00
+
 ; b311
 
 Palette_b311: ; b311
@@ -2092,6 +2105,7 @@ Palette_b311: ; b311
 	RGB 17, 19, 31
 	RGB 14, 16, 31
 	RGB 00, 00, 00
+
 ; b319
 
 TilesetBGPalette: ; b319
@@ -2143,6 +2157,7 @@ Palettes_b641: ; b641
 	RGB 11, 11, 19
 	RGB 07, 07, 12
 	RGB 00, 00, 00
+
 ; b681
 
 Palettes_b681: ; b681
@@ -2216,6 +2231,7 @@ Palettes_b681: ; b681
 	RGB 20, 15, 03
 	RGB 07, 07, 07
 
+
 Palettes_b6f1: ; b6f1
 	RGB 31, 31, 31
 	RGB 18, 23, 31
@@ -2242,6 +2258,7 @@ Palettes_b6f1: ; b6f1
 	RGB 18, 23, 31
 	RGB 00, 00, 00
 
+
 Palettes_b719: ; b719
 	RGB 31, 31, 31
 	RGB 07, 06, 03
@@ -2252,6 +2269,7 @@ Palettes_b719: ; b719
 	RGB 31, 31, 00
 	RGB 26, 22, 00
 	RGB 00, 00, 00
+
 ; b729
 
 Palettes_b729: ; b729
@@ -2284,6 +2302,7 @@ Palettes_b729: ; b729
 	RGB 00, 31, 00
 	RGB 15, 07, 00
 	RGB 31, 00, 00
+
 ; b759
 
 Palettes_b759: ; b759
@@ -2316,6 +2335,7 @@ Palettes_b759: ; b759
 	RGB 00, 31, 00
 	RGB 15, 07, 00
 	RGB 31, 00, 00
+
 ; b789
 
 Palettes_b789: ; b789
@@ -2338,6 +2358,7 @@ Palettes_b789: ; b789
 	RGB 29, 26, 05
 	RGB 18, 18, 18
 	RGB 00, 00, 00
+
 ; b7a9
 
 Palettes_b7a9: ; b7a9
@@ -2420,4 +2441,5 @@ Palettes_b7a9: ; b7a9
 	RGB 31, 31, 31
 	RGB 00, 00, 00
 	RGB 00, 00, 00
+
 ; b829

@@ -11,7 +11,7 @@ ViridianMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x9b5e7:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_VIRIDIAN
 	closetext
 	end

@@ -10,7 +10,7 @@ OlivineVoltorbHouse_MapScriptHeader:
 
 Tim:
 	faceplayer
-	loadfont
+	opentext
 	trade $2
 	waitbutton
 	closetext

@@ -22,7 +22,7 @@ TrainerPokemaniacMiller:
 
 PokemaniacMillerScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x7debd
 	waitbutton
 	closetext
@@ -33,7 +33,7 @@ TrainerSupernerdMarkus:
 
 SupernerdMarkusScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x7df97
 	waitbutton
 	closetext

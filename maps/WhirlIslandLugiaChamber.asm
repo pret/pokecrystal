@@ -29,7 +29,7 @@ UnknownScript_0x18c515:
 
 LugiaScript_0x18c518:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x18c531
 	cry LUGIA
 	pause 15

@@ -56,7 +56,7 @@ GoldenrodCity_MapScriptHeader:
 
 MoveTutor:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x199042
 	yesorno
 	iffalse .Refused
@@ -170,7 +170,7 @@ YoungsterScript_0x1989e6:
 
 CooltrainerFScript_0x1989e9:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .ClearedRadioTower
 	writetext UnknownText_0x198ae6
@@ -186,7 +186,7 @@ CooltrainerFScript_0x1989e9:
 
 CooltrainerFScript_0x1989fd:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_RADIO_CARD
 	iftrue .GotRadioCard
 	writetext UnknownText_0x198b73
@@ -210,7 +210,7 @@ GrampsScript_0x198a17:
 	jumptextfaceplayer UnknownText_0x198ccf
 
 RocketScript_0x198a1a:
-	loadfont
+	opentext
 	writetext UnknownText_0x198d0d
 	buttonsound
 	faceplayer

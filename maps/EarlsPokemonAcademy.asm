@@ -16,7 +16,7 @@ EarlsPokemonAcademy_MapScriptHeader:
 AcademyEarl:
 	applymovement EARLSPOKEMONACADEMY_FISHER, MovementData_0x68b2d
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x68b3b
 	yesorno
 	iffalse .Part1
@@ -43,7 +43,7 @@ YoungsterScript_0x68a83:
 
 GameboyKidScript_0x68a86:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x68dda
 	waitbutton
 	closetext
@@ -52,7 +52,7 @@ GameboyKidScript_0x68a86:
 
 GameboyKidScript_0x68a91:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x68e07
 	waitbutton
 	closetext
@@ -63,7 +63,7 @@ YoungsterScript_0x68a9c:
 	jumptextfaceplayer UnknownText_0x68e39
 
 AcademyBlackboard:
-	loadfont
+	opentext
 	writetext AcademyBlackboardText
 .Loop
 	loadmenudata .MenuHeader
@@ -125,7 +125,7 @@ AcademyBlackboard:
 	db "QUIT@"
 
 AcademyNotebook:
-	loadfont
+	opentext
 	writetext AcademyNotebookText
 	yesorno
 	iffalse .Done

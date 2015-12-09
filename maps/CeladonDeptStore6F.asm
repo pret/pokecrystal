@@ -24,7 +24,7 @@ YoungsterScript_0x7117d:
 	jumptextfaceplayer UnknownText_0x71310
 
 CeladonVendingMachine:
-	loadfont
+	opentext
 	writetext CeladonVendingText
 .Start
 	special PlaceMoneyTopRightOW

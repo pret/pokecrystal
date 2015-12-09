@@ -24,7 +24,7 @@ SaffronCity_MapScriptHeader:
 
 LassScript_0x19932a:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x199338
 	writetext UnknownText_0x19938d
@@ -40,7 +40,7 @@ UnknownScript_0x199338:
 
 PokefanMScript_0x19933e:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x19934c
 	writetext UnknownText_0x199460
@@ -62,7 +62,7 @@ CooltrainerFScript_0x199355:
 
 FisherScript_0x199358:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x199366
 	writetext UnknownText_0x1995fc

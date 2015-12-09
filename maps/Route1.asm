@@ -15,7 +15,7 @@ TrainerSchoolboyDanny:
 
 SchoolboyDannyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ac5d7
 	waitbutton
 	closetext
@@ -26,7 +26,7 @@ TrainerCooltrainerfQuinn:
 
 CooltrainerfQuinnScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ac640
 	waitbutton
 	closetext

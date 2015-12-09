@@ -27,13 +27,13 @@ GrampsScript_0x1aa986:
 	jumptextfaceplayer UnknownText_0x1aaa6f
 
 VermilionMachop:
-	loadfont
+	opentext
 	writetext UnknownText_0x1aaaca
 	cry MACHOP
 	waitbutton
 	closetext
 	earthquake 30
-	loadfont
+	opentext
 	writetext UnknownText_0x1aaae2
 	waitbutton
 	closetext
@@ -43,7 +43,7 @@ SuperNerdScript_0x1aa99b:
 	jumptextfaceplayer UnknownText_0x1aab1a
 
 VermilionSnorlax:
-	loadfont
+	opentext
 	special SpecialSnorlaxAwake
 	iftrue UnknownScript_0x1aa9ab
 	writetext UnknownText_0x1aab64
@@ -66,7 +66,7 @@ UnknownScript_0x1aa9ab:
 
 VermilionGymBadgeGuy:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_HP_UP_FROM_VERMILION_GUY
 	iftrue .AlreadyGotItem
 	checkcode VAR_BADGES

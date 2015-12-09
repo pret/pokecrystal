@@ -10,7 +10,7 @@ BluesHouse_MapScriptHeader:
 
 DaisyScript_0x19b0d0:
 	faceplayer
-	loadfont
+	opentext
 	checkcode VAR_HOUR
 	if_equal $f, UnknownScript_0x19b0de
 	writetext UnknownText_0x19b130
@@ -38,7 +38,7 @@ UnknownScript_0x19b0de:
 	pause 60
 	special FadeInPalettes
 	special RestartMapMusic
-	loadfont
+	opentext
 	writetext UnknownText_0x19b296
 	special PlayCurMonCry
 	buttonsound

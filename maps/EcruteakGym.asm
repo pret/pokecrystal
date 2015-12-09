@@ -27,7 +27,7 @@ UnknownScript_0x99d57:
 
 MortyScript_0x99d58:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_MORTY
 	iftrue .FightDone
 	writetext UnknownText_0x99e65
@@ -38,7 +38,7 @@ MortyScript_0x99d58:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_MORTY
-	loadfont
+	opentext
 	writetext UnknownText_0x9a043
 	playsound SFX_GET_BADGE
 	waitsfx
@@ -86,7 +86,7 @@ EcruteakGymTriggerRockets:
 UnknownScript_0x99dc6:
 	applymovement PLAYER, MovementData_0x99e5d
 	applymovement ECRUTEAKGYM_GRAMPS, MovementData_0x99e63
-	loadfont
+	opentext
 	writetext UnknownText_0x9a49c
 	waitbutton
 	closetext
@@ -104,7 +104,7 @@ TrainerSageJeffrey:
 
 SageJeffreyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x9a263
 	waitbutton
 	closetext
@@ -115,7 +115,7 @@ TrainerSagePing:
 
 SagePingScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x9a2b7
 	waitbutton
 	closetext
@@ -126,7 +126,7 @@ TrainerMediumMartha:
 
 MediumMarthaScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x9a318
 	waitbutton
 	closetext
@@ -137,7 +137,7 @@ TrainerMediumGrace:
 
 MediumGraceScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x9a38a
 	waitbutton
 	closetext
@@ -145,7 +145,7 @@ MediumGraceScript:
 
 EcruteakGymGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_MORTY
 	iftrue .EcruteakGymGuyWinScript
 	writetext EcruteakGymGuyText

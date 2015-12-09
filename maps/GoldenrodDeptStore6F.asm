@@ -10,7 +10,7 @@ GoldenrodDeptStore6F_MapScriptHeader:
 	db 0
 
 GoldenrodVendingMachine:
-	loadfont
+	opentext
 	writetext GoldenrodVendingText
 .Start
 	special PlaceMoneyTopRightOW

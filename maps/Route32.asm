@@ -52,7 +52,7 @@ FriedaCallback:
 CooltrainerMScript_0x19046f:
 	faceplayer
 UnknownScript_0x190470:
-	loadfont
+	opentext
 	checkevent EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
 	iftrue UnknownScript_0x1904a5
 	checkflag ENGINE_ZEPHYRBADGE
@@ -94,7 +94,7 @@ UnknownScript_0x1904a9:
 UnknownScript_0x1904ab:
 	spriteface ROUTE32_COOLTRAINER_M, LEFT
 	spriteface PLAYER, RIGHT
-	loadfont
+	opentext
 	writetext UnknownText_0x190790
 	waitbutton
 	closetext
@@ -109,7 +109,7 @@ UnknownScript_0x1904ab:
 
 FisherScript_0x1904ce:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM05_ROAR
 	iftrue UnknownScript_0x1904e3
 	writetext UnknownText_0x191133
@@ -133,7 +133,7 @@ FisherScript_0x1904f2:
 	faceplayer
 UnknownScript_0x1904f3:
 	dotrigger $2
-	loadfont
+	opentext
 	writetext UnknownText_0x190a59
 	yesorno
 	iffalse UnknownScript_0x190503
@@ -153,7 +153,7 @@ TrainerCamperRoland:
 
 CamperRolandScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x190faa
 	waitbutton
 	closetext
@@ -164,7 +164,7 @@ TrainerFisherJustin:
 
 FisherJustinScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x190b4e
 	waitbutton
 	closetext
@@ -176,7 +176,7 @@ TrainerFisherRalph1:
 FisherRalph1Script:
 	writecode VAR_CALLERID, PHONE_FISHER_RALPH
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_RALPH
 	iftrue UnknownScript_0x19057d
 	checkflag ENGINE_SPECIAL_WILDDATA
@@ -300,7 +300,7 @@ TrainerFisherHenry:
 
 FisherHenryScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x190df2
 	waitbutton
 	closetext
@@ -312,7 +312,7 @@ TrainerPicnickerLiz1:
 PicnickerLiz1Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_LIZ
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_LIZ
 	iftrue UnknownScript_0x19066d
 	checkcellnum PHONE_PICNICKER_LIZ
@@ -428,7 +428,7 @@ TrainerYoungsterAlbert:
 
 YoungsterAlbertScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x190e82
 	waitbutton
 	closetext
@@ -439,7 +439,7 @@ TrainerYoungsterGordon:
 
 YoungsterGordonScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x190f49
 	waitbutton
 	closetext
@@ -450,7 +450,7 @@ TrainerBird_keeperPeter:
 
 Bird_keeperPeterScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1910d4
 	waitbutton
 	closetext
@@ -458,7 +458,7 @@ Bird_keeperPeterScript:
 
 FriedaScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_POISON_BARB_FROM_FRIEDA
 	iftrue FriedaFridayScript
 	checkcode VAR_WEEKDAY

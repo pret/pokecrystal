@@ -10,7 +10,7 @@ Route27SandstormHouse_MapScriptHeader:
 
 SandstormHouseWoman:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM37_SANDSTORM
 	iftrue .AlreadyGotItem
 	special GetFirstPokemonHappiness

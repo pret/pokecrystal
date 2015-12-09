@@ -24,7 +24,7 @@ KrissNeighborsHouseRadio:
 	checkevent EVENT_LISTENED_TO_INITIAL_RADIO
 	iftrue .AbbreviatedRadio
 	playmusic MUSIC_POKEMON_TALK
-	loadfont
+	opentext
 	writetext KrisNeighborRadioText1
 	pause 45
 	writetext KrisNeighborRadioText2
@@ -40,7 +40,7 @@ KrissNeighborsHouseRadio:
 .NormalRadio
 	jumpstd radio1
 .AbbreviatedRadio
-	loadfont
+	opentext
 	writetext KrisNeighborRadioText4
 	pause 45
 	closetext

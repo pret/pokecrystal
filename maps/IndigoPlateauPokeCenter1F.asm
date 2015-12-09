@@ -90,7 +90,7 @@ UnknownScript_0x180094:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	spriteface PLAYER, LEFT
 UnknownScript_0x1800ce:
-	loadfont
+	opentext
 	writetext UnknownText_0x1801f5
 	waitbutton
 	closetext
@@ -127,7 +127,7 @@ UnknownScript_0x180103:
 
 UnknownScript_0x180113:
 	playmusic MUSIC_RIVAL_AFTER
-	loadfont
+	opentext
 	writetext UnknownText_0x1802a4
 	waitbutton
 	closetext
@@ -144,7 +144,7 @@ NurseScript_0x18012c:
 	jumpstd pokecenternurse
 
 ClerkScript_0x18012f:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_INDIGO_PLATEAU
 	closetext
 	end
@@ -154,7 +154,7 @@ CooltrainerMScript_0x180136:
 
 TeleportGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	writetext TeleportGuyText1
 	yesorno
 	iffalse .No
@@ -174,7 +174,7 @@ TeleportGuyScript:
 	end
 
 AbraScript:
-	loadfont
+	opentext
 	writetext AbraText
 	cry ABRA
 	waitbutton

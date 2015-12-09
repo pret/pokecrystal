@@ -27,7 +27,7 @@ WhitneyScript_0x5400c:
 	faceplayer
 	checkevent EVENT_BEAT_WHITNEY
 	iftrue .FightDone
-	loadfont
+	opentext
 	writetext UnknownText_0x54122
 	waitbutton
 	closetext
@@ -43,7 +43,7 @@ WhitneyScript_0x5400c:
 	setevent EVENT_BEAT_LASS_CARRIE
 	setevent EVENT_BEAT_LASS_BRIDGET
 .FightDone
-	loadfont
+	opentext
 	checkevent EVENT_MADE_WHITNEY_CRY
 	iffalse .StoppedCrying
 	writetext UnknownText_0x541f4
@@ -99,7 +99,7 @@ TrainerLassCarrie:
 
 LassCarrieScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext LassCarrieOWText
 	waitbutton
 	closetext
@@ -109,7 +109,7 @@ WhitneyCriesScript:
 	showemote EMOTE_SHOCK, GOLDENRODGYM_LASS2, 15
 	applymovement GOLDENRODGYM_LASS2, BridgetWalksUpMovement
 	spriteface PLAYER, DOWN
-	loadfont
+	opentext
 	writetext BridgetWhitneyCriesText
 	waitbutton
 	closetext
@@ -123,7 +123,7 @@ TrainerLassBridget:
 
 LassBridgetScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext LassBridgetOWText
 	waitbutton
 	closetext
@@ -134,7 +134,7 @@ TrainerBeautyVictoria:
 
 BeautyVictoriaScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext BeautyVictoriaOWText
 	waitbutton
 	closetext
@@ -145,7 +145,7 @@ TrainerBeautySamantha:
 
 BeautySamanthaScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext BeautySamanthaOWText
 	waitbutton
 	closetext
@@ -155,14 +155,14 @@ GoldenrodGymGuyScript:
 	faceplayer
 	checkevent EVENT_BEAT_WHITNEY
 	iftrue .GoldenrodGymGuyWinScript
-	loadfont
+	opentext
 	writetext GoldenrodGymGuyText
 	waitbutton
 	closetext
 	end
 
 .GoldenrodGymGuyWinScript
-	loadfont
+	opentext
 	writetext GoldenrodGymGuyWinText
 	waitbutton
 	closetext

@@ -14,7 +14,7 @@ TrainerBird_keeperBoris:
 
 Bird_keeperBorisScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1acfa5
 	waitbutton
 	closetext
@@ -25,7 +25,7 @@ TrainerBird_keeperBob:
 
 Bird_keeperBobScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ad00d
 	waitbutton
 	closetext

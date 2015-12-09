@@ -62,7 +62,7 @@ UnknownScript_0x1a001e:
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
 	appear CIANWOODCITY_EUSINE
 	applymovement CIANWOODCITY_EUSINE, MovementData_0x1a00e7
-	loadfont
+	opentext
 	writetext UnknownText_0x1a0433
 	waitbutton
 	closetext
@@ -73,7 +73,7 @@ UnknownScript_0x1a001e:
 	reloadmapmusic
 	returnafterbattle
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
-	loadfont
+	opentext
 	writetext UnknownText_0x1a05c3
 	waitbutton
 	closetext
@@ -88,7 +88,7 @@ UnknownScript_0x1a001e:
 
 PokefanFScript_0x1a0084:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_HM02_FLY
 	iftrue UnknownScript_0x1a00ad
 	writetext UnknownText_0x1a00f1

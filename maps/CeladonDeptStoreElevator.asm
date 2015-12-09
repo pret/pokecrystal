@@ -8,7 +8,7 @@ CeladonDeptStoreElevator_MapScriptHeader:
 	db 0
 
 MapCeladonDeptStoreElevatorSignpost0Script:
-	loadfont
+	opentext
 	elevator Elevator_0x713be
 	closetext
 	iffalse UnknownScript_0x713bd

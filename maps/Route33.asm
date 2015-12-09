@@ -19,7 +19,7 @@ TrainerHikerAnthony:
 HikerAnthony2Script:
 	writecode VAR_CALLERID, PHONE_HIKER_ANTHONY
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_ANTHONY
 	iftrue UnknownScript_0x1ac051
 	checkflag ENGINE_DUNSPARCE_SWARM

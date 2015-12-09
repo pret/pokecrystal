@@ -11,7 +11,7 @@ CherrygroveMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x19680a:
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x196817
 	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE
@@ -25,7 +25,7 @@ UnknownScript_0x196817:
 
 CooltrainerMScript_0x19681d:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x19682b
 	writetext UnknownText_0x196834

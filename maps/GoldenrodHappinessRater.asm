@@ -12,7 +12,7 @@ GoldenrodHappinessRater_MapScriptHeader:
 
 TeacherScript_0x54953:
 	faceplayer
-	loadfont
+	opentext
 	special GetFirstPokemonHappiness
 	writetext UnknownText_0x549a3
 	buttonsound

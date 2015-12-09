@@ -476,9 +476,9 @@ pocketisfull: macro
 	db pocketisfull_command
 	endm
 
-	enum loadfont_command
-loadfont: macro
-	db loadfont_command
+	enum opentext_command
+opentext: macro
+	db opentext_command
 	endm
 
 	enum refreshscreen_command

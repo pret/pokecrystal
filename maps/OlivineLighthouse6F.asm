@@ -12,7 +12,7 @@ OlivineLighthouse6F_MapScriptHeader:
 
 JasmineScript_0x60b91:
 	faceplayer
-	loadfont
+	opentext
 	checkitem SECRETPOTION
 	iftrue UnknownScript_0x60bab
 	checkevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
@@ -39,7 +39,7 @@ UnknownScript_0x60bab:
 	spriteface OLIVINELIGHTHOUSE6F_JASMINE, RIGHT
 	pause 15
 	spriteface OLIVINELIGHTHOUSE6F_MONSTER, LEFT
-	loadfont
+	opentext
 	playmusic MUSIC_HEAL
 	writetext UnknownText_0x60e44
 	pause 60
@@ -50,7 +50,7 @@ UnknownScript_0x60bab:
 	special FadeOutPalettes
 	pause 10
 	special FadeInPalettes
-	loadfont
+	opentext
 	writetext UnknownText_0x60f3d
 	waitbutton
 	closetext
@@ -63,7 +63,7 @@ UnknownScript_0x60bab:
 	spriteface OLIVINELIGHTHOUSE6F_MONSTER, LEFT
 	pause 10
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x60e6c
 	waitbutton
 	closetext
@@ -93,7 +93,7 @@ UnknownScript_0x60c25:
 	spriteface OLIVINELIGHTHOUSE6F_JASMINE, RIGHT
 	pause 15
 	spriteface OLIVINELIGHTHOUSE6F_MONSTER, LEFT
-	loadfont
+	opentext
 	writetext UnknownText_0x60ef1
 	waitbutton
 	closetext
@@ -104,7 +104,7 @@ UnknownScript_0x60c39:
 
 MonsterScript_0x60c3a:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_JASMINE_RETURNED_TO_GYM
 	iftrue UnknownScript_0x60c51
 	writetext UnknownText_0x60f03

@@ -49,7 +49,7 @@ UnknownScript_0x180bd6:
 
 KarenScript_0x180bee:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_ELITE_4_KAREN
 	iftrue UnknownScript_0x180c1c
 	writetext UnknownText_0x180c27
@@ -60,7 +60,7 @@ KarenScript_0x180bee:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_ELITE_4_KAREN
-	loadfont
+	opentext
 	writetext UnknownText_0x180d29
 	waitbutton
 	closetext

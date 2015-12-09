@@ -23,7 +23,7 @@ TrainerBird_keeperBryan:
 
 Bird_keeperBryanScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19cc87
 	waitbutton
 	closetext
@@ -35,7 +35,7 @@ TrainerJugglerIrwin:
 JugglerIrwin1Script:
 	writecode VAR_CALLERID, PHONE_JUGGLER_IRWIN
 	end_if_just_battled
-	loadfont
+	opentext
 	checkcellnum PHONE_JUGGLER_IRWIN
 	iftrue UnknownScript_0x19c90f
 	checkevent EVENT_IRWIN_ASKED_FOR_PHONE_NUMBER
@@ -89,7 +89,7 @@ TrainerCamperIvan:
 
 CamperIvanScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19cac4
 	waitbutton
 	closetext
@@ -100,7 +100,7 @@ TrainerCamperElliot:
 
 CamperElliotScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19cb47
 	waitbutton
 	closetext
@@ -111,7 +111,7 @@ TrainerPicnickerBrooke:
 
 PicnickerBrookeScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19cbba
 	waitbutton
 	closetext
@@ -122,7 +122,7 @@ TrainerPicnickerKim:
 
 PicnickerKimScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19cc21
 	waitbutton
 	closetext
@@ -134,7 +134,7 @@ TrainerBug_catcherArnie1:
 Bug_catcherArnie1Script:
 	writecode VAR_CALLERID, PHONE_BUG_CATCHER_ARNIE
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_ARNIE
 	iftrue UnknownScript_0x19c9bb
 	checkflag ENGINE_YANMA_SWARM
@@ -230,7 +230,7 @@ TrainerFirebreatherWalt:
 
 FirebreatherWaltScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19cebc
 	waitbutton
 	closetext
@@ -238,7 +238,7 @@ FirebreatherWaltScript:
 
 OfficerScript_0x19ca49:
 	faceplayer
-	loadfont
+	opentext
 	checknite
 	iffalse UnknownScript_0x19ca73
 	checkevent EVENT_BEAT_OFFICER_DIRK

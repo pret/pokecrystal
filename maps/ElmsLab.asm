@@ -55,7 +55,7 @@ ElmsLab_AutowalkUpToElm:
 	applymovement PLAYER, ElmsLab_WalkUpToElmMovement
 	showemote EMOTE_SHOCK, ELMSLAB_ELM, 15
 	spriteface ELMSLAB_ELM, RIGHT
-	loadfont
+	opentext
 	writetext ElmText_Intro
 ElmsLab_RefuseLoop:
 	yesorno
@@ -73,11 +73,11 @@ ElmsLab_ElmGetsEmail:
 	pause 30
 	showemote EMOTE_SHOCK, ELMSLAB_ELM, 10
 	spriteface ELMSLAB_ELM, DOWN
-	loadfont
+	opentext
 	writetext ElmText_GotAnEmail
 	waitbutton
 	closetext
-	loadfont
+	opentext
 	spriteface ELMSLAB_ELM, RIGHT
 	writetext ElmText_MissionFromMrPokemon
 	waitbutton
@@ -86,7 +86,7 @@ ElmsLab_ElmGetsEmail:
 	spriteface PLAYER, UP
 	applymovement ELMSLAB_ELM, ElmsLab_ElmToDefaultPositionMovement2
 	spriteface PLAYER, RIGHT
-	loadfont
+	opentext
 	writetext ElmText_ChooseAPokemon
 	waitbutton
 	dotrigger $1
@@ -95,7 +95,7 @@ ElmsLab_ElmGetsEmail:
 
 ProfElmScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
 	iftrue ElmCheckMasterBall
 	checkevent EVENT_BEAT_ELITE_FOUR
@@ -155,7 +155,7 @@ ElmCheckGotEggAgain:
 
 LabTryToLeaveScript:
 	spriteface ELMSLAB_ELM, DOWN
-	loadfont
+	opentext
 	writetext LabWhereGoingText
 	waitbutton
 	closetext
@@ -171,7 +171,7 @@ CyndaquilPokeBallScript:
 	cry CYNDAQUIL
 	waitbutton
 	closepokepic
-	loadfont
+	opentext
 	writetext TakeCyndaquilText
 	yesorno
 	iffalse DidntChooseStarterScript
@@ -201,7 +201,7 @@ TotodilePokeBallScript:
 	cry TOTODILE
 	waitbutton
 	closepokepic
-	loadfont
+	opentext
 	writetext TakeTotodileText
 	yesorno
 	iffalse DidntChooseStarterScript
@@ -229,7 +229,7 @@ ChikoritaPokeBallScript:
 	cry CHIKORITA
 	waitbutton
 	closepokepic
-	loadfont
+	opentext
 	writetext TakeChikoritaText
 	yesorno
 	iffalse DidntChooseStarterScript
@@ -256,24 +256,24 @@ DidntChooseStarterScript:
 
 ElmDirectionsScript:
 	spriteface PLAYER, UP
-	loadfont
+	opentext
 	writetext ElmDirectionsText1
 	waitbutton
 	closetext
 	addcellnum PHONE_ELM
-	loadfont
+	opentext
 	writetext GotElmsNumberText
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitsfx
 	waitbutton
 	closetext
 	spriteface ELMSLAB_ELM, LEFT
-	loadfont
+	opentext
 	writetext ElmDirectionsText2
 	waitbutton
 	closetext
 	spriteface ELMSLAB_ELM, DOWN
-	loadfont
+	opentext
 	writetext ElmDirectionsText3
 	waitbutton
 	closetext
@@ -290,14 +290,14 @@ ElmDescribesMrPokemonScript:
 	end
 
 LookAtElmPokeBallScript:
-	loadfont
+	opentext
 	writetext ElmPokeBallText
 	waitbutton
 	closetext
 	end
 
 ElmsLabHealingMachine:
-	loadfont
+	opentext
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue .CanHeal
 	writetext ElmsLabHealingMachineText1
@@ -379,7 +379,7 @@ ShowElmTogepiScript:
 	closetext
 	showemote EMOTE_SHOCK, ELMSLAB_ELM, 15
 	setevent EVENT_SHOWED_TOGEPI_TO_ELM
-	loadfont
+	opentext
 	writetext ShowElmTogepiText2
 	buttonsound
 	writetext ShowElmTogepiText3
@@ -444,22 +444,22 @@ ElmJumpBackScript2:
 
 ElmJumpUpScript:
 	applymovement ELMSLAB_ELM, ElmJumpUpMovement
-	loadfont
+	opentext
 	end
 
 ElmJumpDownScript:
 	applymovement ELMSLAB_ELM, ElmJumpDownMovement
-	loadfont
+	opentext
 	end
 
 ElmJumpLeftScript:
 	applymovement ELMSLAB_ELM, ElmJumpLeftMovement
-	loadfont
+	opentext
 	end
 
 ElmJumpRightScript:
 	applymovement ELMSLAB_ELM, ElmJumpRightMovement
-	loadfont
+	opentext
 	end
 
 AideScript_WalkPotions1:
@@ -477,7 +477,7 @@ AideScript_WalkPotions2:
 	end
 
 AideScript_GivePotions:
-	loadfont
+	opentext
 	writetext AideText_GiveYouPotions
 	buttonsound
 	verbosegiveitem POTION
@@ -502,7 +502,7 @@ AideScript_WalkBalls2:
 	end
 
 AideScript_GiveYouBalls:
-	loadfont
+	opentext
 	writetext AideText_GiveYouBalls
 	buttonsound
 	itemtotext POKE_BALL, $1
@@ -521,7 +521,7 @@ AideScript_ReceiveTheBalls:
 
 ElmsAideScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	iftrue AideScript_AfterTheft
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
@@ -558,7 +558,7 @@ MeetCopScript:
 	applymovement PLAYER, MeetCopScript_WalkUp
 CopScript:
 	spriteface ELMSLAB_OFFICER, LEFT
-	loadfont
+	opentext
 	writetext ElmsLabOfficerText1
 	buttonsound
 	special SpecialNameRival
@@ -571,7 +571,7 @@ CopScript:
 	end
 
 ElmsLabWindow:
-	loadfont
+	opentext
 	checkflag ENGINE_FLYPOINT_VIOLET
 	iftrue .Normal
 	checkevent EVENT_ELM_CALLED_ABOUT_STOLEN_POKEMON

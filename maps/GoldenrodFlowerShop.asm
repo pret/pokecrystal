@@ -21,7 +21,7 @@ FlowerShopTeacherScript:
 	checkflag ENGINE_PLAINBADGE
 	iffalse .NoPlainBadge
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x554c2
 	buttonsound
 	verbosegiveitem SQUIRTBOTTLE
@@ -33,7 +33,7 @@ FlowerShopTeacherScript:
 
 .Lalala:
 	spriteface GOLDENRODFLOWERSHOP_TEACHER, LEFT
-	loadfont
+	opentext
 	writetext UnknownText_0x5552e
 	waitbutton
 	closetext
@@ -50,7 +50,7 @@ FlowerShopTeacherScript:
 
 FlowerShopFloriaScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_FOUGHT_SUDOWOODO
 	iftrue .FoughtSudowoodo
 	checkevent EVENT_GOT_SQUIRTBOTTLE

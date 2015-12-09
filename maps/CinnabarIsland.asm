@@ -17,7 +17,7 @@ CinnabarIsland_MapScriptHeader:
 
 CinnabarIslandBlue:
 	faceplayer
-	loadfont
+	opentext
 	writetext CinnabarIslandBlueText
 	waitbutton
 	closetext

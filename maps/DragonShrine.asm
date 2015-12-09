@@ -25,7 +25,7 @@ DragonShrine_MapScriptHeader:
 DragonShrineTestScript:
 	applymovement PLAYER, MovementData_0x18d2bf
 	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2c7
-	loadfont
+	opentext
 	writetext UnknownText_0x18d2ea
 	buttonsound
 .Question1:
@@ -96,17 +96,17 @@ DragonShrineTestScript:
 .WrongAnswer:
 	closetext
 	spriteface DRAGONSHRINE_ELDER1, LEFT
-	loadfont
+	opentext
 	writetext UnknownText_0x18d7f6
 	waitbutton
 	closetext
 	spriteface DRAGONSHRINE_ELDER1, DOWN
-	loadfont
+	opentext
 	writetext UnknownText_0x18d816
 	waitbutton
 	closetext
 	setevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
-	loadfont
+	opentext
 	checkevent EVENT_DRAGON_SHRINE_QUESTION_5
 	iftrue .Question5
 	checkevent EVENT_DRAGON_SHRINE_QUESTION_4
@@ -132,34 +132,34 @@ DragonShrineTestScript:
 	spriteface DRAGONSHRINE_CLAIR, RIGHT
 	spriteface PLAYER, LEFT
 	spriteface DRAGONSHRINE_ELDER1, LEFT
-	loadfont
+	opentext
 	writetext UnknownText_0x18d916
 	waitbutton
 	closetext
 	special Special_FadeOutMusic
 	applymovement DRAGONSHRINE_CLAIR, MovementData_0x18d2da
-	loadfont
+	opentext
 	writetext UnknownText_0x18d974
 	waitbutton
 	closetext
 	applymovement DRAGONSHRINE_CLAIR, MovementData_0x18d2dd
-	loadfont
+	opentext
 	writetext UnknownText_0x18d983
 	waitbutton
 	closetext
 	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2c9
 	spriteface DRAGONSHRINE_CLAIR, UP
-	loadfont
+	opentext
 	writetext UnknownText_0x18d520
 	waitbutton
 	closetext
 	showemote EMOTE_SHOCK, DRAGONSHRINE_CLAIR, 15
-	loadfont
+	opentext
 	writetext UnknownText_0x18d9ae
 	waitbutton
 	closetext
 	applymovement DRAGONSHRINE_CLAIR, MovementData_0x18d2e0
-	loadfont
+	opentext
 	writetext UnknownText_0x18d9bf
 	waitbutton
 	setflag ENGINE_RISINGBADGE
@@ -178,11 +178,11 @@ DragonShrineTestScript:
 	spriteface DRAGONSHRINE_CLAIR, UP
 	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2d1
 	spriteface PLAYER, UP
-	loadfont
+	opentext
 	writetext UnknownText_0x18d5a3
 	waitbutton
 	closetext
-	loadfont
+	opentext
 	writetext UnknownText_0x18dab4
 	waitbutton
 	closetext
@@ -195,7 +195,7 @@ DragonShrineTestScript:
 
 ElderScript_0x18d1a5:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue .DontGiveDratiniYet
 	checkevent EVENT_JUST_RECEIVED_DRATINI
@@ -253,7 +253,7 @@ ElderScript_0x18d1a5:
 
 ElderScript_0x18d205:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x18d840
 	waitbutton
 	closetext
@@ -261,7 +261,7 @@ ElderScript_0x18d205:
 
 ElderScript_0x18d20d:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x18d8b1
 	waitbutton
 	closetext

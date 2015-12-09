@@ -10,7 +10,7 @@ BlackthornDodrioTradeHouse_MapScriptHeader:
 
 Emy:
 	faceplayer
-	loadfont
+	opentext
 	trade $3
 	waitbutton
 	closetext

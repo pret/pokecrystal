@@ -22,7 +22,7 @@ TrainerSwimmerfKaylee:
 
 SwimmerfKayleeScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a6c7f
 	waitbutton
 	closetext
@@ -33,7 +33,7 @@ TrainerSwimmerfSusie:
 
 SwimmerfSusieScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a6d11
 	waitbutton
 	closetext
@@ -44,7 +44,7 @@ TrainerSwimmerfDenise:
 
 SwimmerfDeniseScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a6d79
 	waitbutton
 	closetext
@@ -55,7 +55,7 @@ TrainerSwimmerfKara:
 
 SwimmerfKaraScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a6e58
 	waitbutton
 	closetext
@@ -66,7 +66,7 @@ TrainerSwimmerfWendy:
 
 SwimmerfWendyScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a6ec2
 	waitbutton
 	closetext
@@ -77,7 +77,7 @@ TrainerSwimmermCharlie:
 
 SwimmermCharlieScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a696e
 	waitbutton
 	closetext
@@ -88,7 +88,7 @@ TrainerSwimmermGeorge:
 
 SwimmermGeorgeScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a69d4
 	waitbutton
 	closetext
@@ -99,7 +99,7 @@ TrainerSwimmermBerke:
 
 SwimmermBerkeScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a6aa4
 	waitbutton
 	closetext
@@ -110,7 +110,7 @@ TrainerSwimmermKirk:
 
 SwimmermKirkScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a6b6c
 	waitbutton
 	closetext
@@ -121,7 +121,7 @@ TrainerSwimmermMathew:
 
 SwimmermMathewScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a6bed
 	waitbutton
 	closetext

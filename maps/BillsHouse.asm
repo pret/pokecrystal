@@ -10,7 +10,7 @@ BillsHouse_MapScriptHeader:
 
 GrampsScript_0x189538:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x1896ba
 	checkevent EVENT_GOT_THUNDERSTONE_FROM_BILLS_GRANDPA

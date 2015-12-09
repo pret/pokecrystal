@@ -31,7 +31,7 @@ GoldenrodPokeCenter1F_GSBallTriggerLeft:
 	playmusic MUSIC_SHOW_ME_AROUND
 	applymovement GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, MovementData_0x6105a
 	spriteface PLAYER, UP
-	loadfont
+	opentext
 	writetext UnknownText_0x622f0
 	waitbutton
 	verbosegiveitem GS_BALL
@@ -63,7 +63,7 @@ GoldenrodPokeCenter1F_GSBallTriggerRight:
 	playmusic MUSIC_SHOW_ME_AROUND
 	applymovement GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, MovementData_0x61065
 	spriteface PLAYER, UP
-	loadfont
+	opentext
 	writetext UnknownText_0x622f0
 	waitbutton
 	verbosegiveitem GS_BALL
@@ -87,7 +87,7 @@ LassScript_0x61021:
 
 PokefanFScript_0x61024:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x623fb
 	waitbutton
 	writetext UnknownText_0x6248c

@@ -111,7 +111,7 @@ DoPoisonStep:: ; 505da
 
 .Script_MonFaintedToPoison: ; 50669
 	callasm .PlayPoisonSFX
-	loadfont
+	opentext
 	callasm .CheckWhitedOut
 	iffalse .whiteout
 	closetext

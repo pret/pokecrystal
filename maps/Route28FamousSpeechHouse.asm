@@ -17,7 +17,7 @@ Route28FamousSpeechHouse_MapScriptHeader:
 
 Celebrity:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM47_STEEL_WING
 	iftrue .AlreadyGotItem
 	writetext CelebrityText1
@@ -35,7 +35,7 @@ Celebrity:
 	end
 
 CelebritysFearow:
-	loadfont
+	opentext
 	writetext CelebritysFearowText
 	cry FEAROW
 	waitbutton

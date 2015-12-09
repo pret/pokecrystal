@@ -44,7 +44,7 @@ TrainerFisherTully1:
 FisherTully1Script:
 	writecode VAR_CALLERID, PHONE_FISHER_TULLY
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_TULLY
 	iftrue UnknownScript_0x1a927f
 	checkflag ENGINE_TULLY_HAS_WATER_STONE
@@ -169,7 +169,7 @@ TrainerPokemaniacShane:
 
 PokemaniacShaneScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a94d6
 	waitbutton
 	closetext
@@ -180,7 +180,7 @@ TrainerHikerBenjamin:
 
 HikerBenjaminScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a943f
 	waitbutton
 	closetext

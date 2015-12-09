@@ -18,7 +18,7 @@ Route39_MapScriptHeader:
 	db 0
 
 TaurosScript_0x1a5af5:
-	loadfont
+	opentext
 	writetext UnknownText_0x1a5bf9
 	cry MILTANK
 	waitbutton
@@ -31,7 +31,7 @@ TrainerPokefanmDerek1:
 PokefanmDerek1Script:
 	writecode VAR_CALLERID, PHONE_POKEFANM_DEREK
 	end_if_just_battled
-	loadfont
+	opentext
 	checkflag ENGINE_DEREK_HAS_NUGGET
 	iftrue UnknownScript_0x1a5b4a
 	checkcellnum PHONE_POKEFANM_DEREK
@@ -109,7 +109,7 @@ TrainerPokefanfRuth:
 
 PokefanfRuthScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a5db2
 	waitbutton
 	closetext
@@ -120,7 +120,7 @@ TrainerSailorEugene:
 
 SailorEugeneScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a5c4d
 	waitbutton
 	closetext
@@ -131,7 +131,7 @@ TrainerPsychicNorman:
 
 PsychicNormanScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1a5e57
 	waitbutton
 	closetext
@@ -139,7 +139,7 @@ PsychicNormanScript:
 
 PokefanFScript_0x1a5bbe:
 	faceplayer
-	loadfont
+	opentext
 	checknite
 	iffalse UnknownScript_0x1a5be5
 	checkevent EVENT_BEAT_POKEFANF_JAIME

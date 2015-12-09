@@ -51,7 +51,7 @@ LakeofRage_MapScriptHeader:
 LanceScript_0x70022:
 	checkevent EVENT_REFUSED_TO_HELP_LANCE_AT_LAKE_OF_RAGE
 	iftrue UnknownScript_0x70057
-	loadfont
+	opentext
 	writetext UnknownText_0x70157
 	buttonsound
 	faceplayer
@@ -79,14 +79,14 @@ UnknownScript_0x7004e:
 
 UnknownScript_0x70057:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x703a5
 	yesorno
 	iffalse UnknownScript_0x7004e
 	jump UnknownScript_0x70035
 
 GyaradosScript_0x70063:
-	loadfont
+	opentext
 	writetext UnknownText_0x703cb
 	pause 15
 	cry GYARADOS
@@ -98,7 +98,7 @@ GyaradosScript_0x70063:
 	disappear LAKEOFRAGE_GYARADOS
 UnknownScript_0x7007a:
 	returnafterbattle
-	loadfont
+	opentext
 	giveitem RED_SCALE
 	waitsfx
 	writetext UnknownText_0x703df
@@ -112,7 +112,7 @@ UnknownScript_0x7007a:
 
 GrampsScript_0x7008e:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x7009c
 	writetext UnknownText_0x703f8
@@ -136,7 +136,7 @@ MapLakeofRageSignpost0Script:
 	jumptext UnknownText_0x708d7
 
 MapLakeofRageSignpost1Script:
-	loadfont
+	opentext
 	writetext UnknownText_0x70903
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x700b8
@@ -155,7 +155,7 @@ TrainerFisherAndre:
 
 FisherAndreScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x7058f
 	waitbutton
 	closetext
@@ -166,7 +166,7 @@ TrainerFisherRaymond:
 
 FisherRaymondScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x70611
 	waitbutton
 	closetext
@@ -177,7 +177,7 @@ TrainerCooltrainermAaron:
 
 CooltrainermAaronScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x7069c
 	waitbutton
 	closetext
@@ -188,7 +188,7 @@ TrainerCooltrainerfLois:
 
 CooltrainerfLoisScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x70752
 	waitbutton
 	closetext
@@ -196,7 +196,7 @@ CooltrainerfLoisScript:
 
 WesleyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_BLACKBELT_FROM_WESLEY
 	iftrue WesleyWednesdayScript
 	checkcode VAR_WEEKDAY

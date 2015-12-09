@@ -13,14 +13,14 @@ CeladonDeptStore2F_MapScriptHeader:
 
 ClerkScript_0x70bad:
 	faceplayer
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_CELADON_2F_1
 	closetext
 	end
 
 ClerkScript_0x70bb5:
 	faceplayer
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_CELADON_2F_2
 	closetext
 	end

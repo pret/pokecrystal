@@ -50,7 +50,7 @@ UnknownScript_0x19abea:
 	spriteface ROUTE43GATE_ROCKET1, UP
 	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET1, 15
 	applymovement ROUTE43GATE_ROCKET1, MovementData_0x19aca4
-	loadfont
+	opentext
 	writetext UnknownText_0x19acd2
 	buttonsound
 	checkmoney $0, 999
@@ -82,7 +82,7 @@ UnknownScript_0x19ac38:
 	spriteface ROUTE43GATE_ROCKET2, DOWN
 	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET2, 15
 	applymovement ROUTE43GATE_ROCKET2, MovementData_0x19acc7
-	loadfont
+	opentext
 	writetext UnknownText_0x19acd2
 	buttonsound
 	checkmoney $0, 999
@@ -113,7 +113,7 @@ RocketScript_0x19ac82:
 
 OfficerScript_0x19ac85:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM36_SLUDGE_BOMB
 	iftrue UnknownScript_0x19ac9c
 	writetext UnknownText_0x19ad9b

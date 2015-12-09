@@ -10,7 +10,7 @@ LakeofRageMagikarpHouse_MapScriptHeader:
 
 FishingGuruScript_0x19a6ae:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_LAKE_OF_RAGE_ELIXIR_ON_STANDBY
 	iftrue UnknownScript_0x19a6fe
 	checkevent EVENT_LAKE_OF_RAGE_ASKED_FOR_MAGIKARP

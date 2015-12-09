@@ -12,7 +12,7 @@ DarkCaveBlackthornEntrance_MapScriptHeader:
 
 PharmacistScript_0x18c720:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_BLACKGLASSES_IN_DARK_CAVE
 	iftrue UnknownScript_0x18c735
 	writetext UnknownText_0x18c73f

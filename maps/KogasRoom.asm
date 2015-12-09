@@ -49,7 +49,7 @@ UnknownScript_0x180742:
 
 KogaScript_0x18075a:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_ELITE_4_KOGA
 	iftrue UnknownScript_0x180788
 	writetext UnknownText_0x180793
@@ -60,7 +60,7 @@ KogaScript_0x18075a:
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_ELITE_4_KOGA
-	loadfont
+	opentext
 	writetext UnknownText_0x1808ca
 	waitbutton
 	closetext

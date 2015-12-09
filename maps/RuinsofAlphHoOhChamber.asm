@@ -89,7 +89,7 @@ MapRuinsofAlphHoOhChamberSignpost3Script:
 	jumptext UnknownText_0x586aa
 
 MapRuinsofAlphHoOhChamberSignpost4Script:
-	loadfont
+	opentext
 	writetext UnknownText_0x58612
 	writebyte $3
 	special Special_DisplayUnownWords
@@ -99,7 +99,7 @@ MapRuinsofAlphHoOhChamberSignpost4Script:
 MapRuinsofAlphHoOhChamberSignpost5Script:
 	checkevent EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
 	iftrue UnknownScript_0x58609
-	loadfont
+	opentext
 	writetext UnknownText_0x58644
 	writebyte $3
 	special Special_DisplayUnownWords
@@ -107,7 +107,7 @@ MapRuinsofAlphHoOhChamberSignpost5Script:
 	end
 
 UnknownScript_0x58609:
-	loadfont
+	opentext
 	writetext UnknownText_0x58665
 	waitbutton
 	closetext

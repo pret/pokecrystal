@@ -46,7 +46,7 @@ UnknownScript_0x185c0d:
 	spriteface BURNEDTOWER1F_SUPER_NERD, DOWN
 	showemote EMOTE_SHOCK, BURNEDTOWER1F_SUPER_NERD, 15
 	applymovement BURNEDTOWER1F_SUPER_NERD, MovementData_0x185cd3
-	loadfont
+	opentext
 	writetext UnknownText_0x185ecc
 	waitbutton
 	closetext
@@ -63,7 +63,7 @@ UnknownScript_0x185c25:
 	applymovement PLAYER, MovementData_0x185ccd
 	applymovement BURNEDTOWER1F_SILVER, MovementData_0x185ccf
 	playmusic MUSIC_RIVAL_ENCOUNTER
-	loadfont
+	opentext
 	writetext UnknownText_0x185cd9
 	waitbutton
 	closetext
@@ -99,7 +99,7 @@ UnknownScript_0x185c70:
 
 UnknownScript_0x185c80:
 	playmusic MUSIC_RIVAL_AFTER
-	loadfont
+	opentext
 	writetext UnknownText_0x185de2
 	waitbutton
 	closetext
@@ -117,7 +117,7 @@ UnknownScript_0x185c80:
 	applymovement PLAYER, MovementData_0x185cd1
 	playsound SFX_KINESIS
 	showemote EMOTE_SHOCK, BURNEDTOWER1F_SILVER, 20
-	loadfont
+	opentext
 	writetext UnknownText_0x185e75
 	waitbutton
 	closetext

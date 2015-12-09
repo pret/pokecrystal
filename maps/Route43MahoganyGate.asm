@@ -10,7 +10,7 @@ Route43MahoganyGate_MapScriptHeader:
 
 OfficerScript_0x19ab0b:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19ab19
 	writetext UnknownText_0x19ab1f

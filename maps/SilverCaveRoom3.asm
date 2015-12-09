@@ -11,7 +11,7 @@ SilverCaveRoom3_MapScriptHeader:
 RedScript_0x18c603:
 	special Special_FadeOutMusic
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x18c637
 	waitbutton
 	closetext
@@ -21,7 +21,7 @@ RedScript_0x18c603:
 	reloadmapmusic
 	returnafterbattle
 	special Special_FadeOutMusic
-	loadfont
+	opentext
 	writetext UnknownText_0x18c63f
 	waitbutton
 	closetext

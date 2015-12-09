@@ -62,7 +62,7 @@ IcePathB1F_MapScriptHeader:
 .FinishBoulder:
 	pause 30
 	scall .BoulderFallsThrough
-	loadfont
+	opentext
 	writetext UnknownText_0x7e512
 	waitbutton
 	closetext

@@ -24,7 +24,7 @@ ReceptionistScript_0x72120:
 
 PokefanMScript_0x72123:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x72215
 	waitbutton
 	closetext
@@ -33,7 +33,7 @@ PokefanMScript_0x72123:
 
 TeacherScript_0x7212e:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x72242
 	waitbutton
 	closetext
@@ -42,7 +42,7 @@ TeacherScript_0x7212e:
 
 FishingGuruScript_0x72139:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x72295
 	waitbutton
 	closetext
@@ -51,7 +51,7 @@ FishingGuruScript_0x72139:
 
 FisherScript_0x72144:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_COINS_FROM_GAMBLER_AT_CELADON
 	iftrue .UnknownScript_0x72169
 	writetext UnknownText_0x722dc
@@ -97,7 +97,7 @@ CeladonGymGuyScript:
 
 GrampsScript_0x72190:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x724ad
 	waitbutton
 	closetext
@@ -136,7 +136,7 @@ MapCeladonGameCornerSignpost32Script:
 	jumptext UnknownText_0x7254f
 
 MapCeladonGameCornerSignpost9Script:
-	loadfont
+	opentext
 	writetext UnknownText_0x72567
 	waitbutton
 	special Special_CardFlip

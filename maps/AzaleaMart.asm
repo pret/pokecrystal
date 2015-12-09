@@ -11,7 +11,7 @@ AzaleaMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x18e040:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_AZALEA
 	closetext
 	end

@@ -16,7 +16,7 @@ UnknownScript_0x19b3c7:
 
 Oak:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_OPENED_MT_SILVER
 	iftrue .CheckPokedex
 	checkevent EVENT_TALKED_TO_OAK_IN_KANTO

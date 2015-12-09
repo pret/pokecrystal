@@ -40,7 +40,7 @@ UnknownScript_0x98e64:
 	pause 20
 	spriteface ECRUTEAKPOKECENTER1F_BILL, DOWN
 	pause 10
-	loadfont
+	opentext
 	writetext UnknownText_0x98ed8
 	buttonsound
 	jump UnknownScript_0x98e95

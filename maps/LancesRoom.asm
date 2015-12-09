@@ -58,7 +58,7 @@ UnknownScript_0x180e74:
 	applymovement PLAYER, MovementData_0x180f3c
 LanceScript_0x180e7b:
 	spriteface LANCESROOM_LANCE, LEFT
-	loadfont
+	opentext
 	writetext UnknownText_0x180f67
 	waitbutton
 	closetext
@@ -69,7 +69,7 @@ LanceScript_0x180e7b:
 	reloadmapmusic
 	returnafterbattle
 	setevent EVENT_BEAT_CHAMPION_LANCE
-	loadfont
+	opentext
 	writetext UnknownText_0x181132
 	waitbutton
 	closetext
@@ -86,7 +86,7 @@ LanceScript_0x180e7b:
 	spriteface PLAYER, DOWN
 	appear LANCESROOM_MARY
 	applymovement LANCESROOM_MARY, MovementData_0x180f41
-	loadfont
+	opentext
 	writetext UnknownText_0x1811dd
 	waitbutton
 	closetext
@@ -97,19 +97,19 @@ LanceScript_0x180e7b:
 	stopfollow
 	spriteface LANCESROOM_OAK, UP
 	spriteface LANCESROOM_LANCE, LEFT
-	loadfont
+	opentext
 	writetext UnknownText_0x18121b
 	waitbutton
 	closetext
 	applymovement LANCESROOM_MARY, MovementData_0x180f4c
 	spriteface PLAYER, LEFT
-	loadfont
+	opentext
 	writetext UnknownText_0x18134b
 	waitbutton
 	closetext
 	applymovement LANCESROOM_LANCE, MovementData_0x180f4f
 	spriteface PLAYER, UP
-	loadfont
+	opentext
 	writetext UnknownText_0x18137b
 	waitbutton
 	closetext
@@ -125,7 +125,7 @@ LanceScript_0x180e7b:
 	disappear PLAYER
 	applymovement LANCESROOM_MARY, MovementData_0x180f57
 	showemote EMOTE_SHOCK, LANCESROOM_MARY, 15
-	loadfont
+	opentext
 	writetext UnknownText_0x1813c5
 	pause 30
 	closetext

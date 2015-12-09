@@ -9,7 +9,7 @@ Route26DayofWeekSiblingsHouse_MapScriptHeader:
 	db 0
 
 PokedexScript_0x7b1e4:
-	loadfont
+	opentext
 	writetext UnknownText_0x7b1f9
 	yesorno
 	iffalse UnknownText_0x7b1f7

@@ -17,7 +17,7 @@ Trigger0:
 
 TrainerHouseReceptionistScript:
 	spriteface PLAYER, UP
-	loadfont
+	opentext
 	checkflag ENGINE_FOUGHT_IN_TRAINER_HALL_TODAY
 	iftrue .FoughtTooManyTimes
 	writetext TrainerHouseB1FIntroText
@@ -40,7 +40,7 @@ TrainerHouseReceptionistScript:
 	waitbutton
 	closetext
 	applymovement PLAYER, Movement_EnterTrainerHouseBattleRoom
-	loadfont
+	opentext
 	writetext TrainerHouseB1FCalBeforeText
 	waitbutton
 	closetext

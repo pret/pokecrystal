@@ -10,7 +10,7 @@ Route2NuggetSpeechHouse_MapScriptHeader:
 
 FisherScript_0x9b847:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_NUGGET_FROM_GUY
 	iftrue .GotItem
 	writetext UnknownText_0x9b865

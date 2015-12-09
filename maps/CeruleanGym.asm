@@ -29,18 +29,18 @@ UnknownScript_0x1883de:
 	playsound SFX_TACKLE
 	applymovement CERULEANGYM_ROCKET, MovementData_0x1884eb
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	loadfont
+	opentext
 	writetext UnknownText_0x1884fb
 	waitbutton
 	closetext
 	showemote EMOTE_SHOCK, CERULEANGYM_ROCKET, 15
 	applymovement CERULEANGYM_ROCKET, MovementData_0x1884f7
-	loadfont
+	opentext
 	writetext UnknownText_0x188574
 	waitbutton
 	closetext
 	applymovement CERULEANGYM_ROCKET, MovementData_0x1884f5
-	loadfont
+	opentext
 	writetext UnknownText_0x1885a5
 	waitbutton
 	closetext
@@ -62,7 +62,7 @@ UnknownScript_0x1883de:
 
 MistyScript_0x188432:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_CASCADEBADGE
 	iftrue .FightDone
 	writetext UnknownText_0x188674
@@ -76,7 +76,7 @@ MistyScript_0x188432:
 	setevent EVENT_BEAT_SWIMMERF_DIANA
 	setevent EVENT_BEAT_SWIMMERF_BRIANA
 	setevent EVENT_BEAT_SWIMMERM_PARKER
-	loadfont
+	opentext
 	writetext UnknownText_0x188768
 	playsound SFX_GET_BADGE
 	waitsfx
@@ -92,7 +92,7 @@ TrainerSwimmerfDiana:
 
 SwimmerfDianaScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x188856
 	waitbutton
 	closetext
@@ -103,7 +103,7 @@ TrainerSwimmerfBriana:
 
 SwimmerfBrianaScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1888c0
 	waitbutton
 	closetext
@@ -114,7 +114,7 @@ TrainerSwimmermParker:
 
 SwimmermParkerScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x188943
 	waitbutton
 	closetext
@@ -122,7 +122,7 @@ SwimmermParkerScript:
 
 CeruleanGymGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_MISTY
 	iftrue .CeruleanGymGuyWinScript
 	writetext CeruleanGymGuyText
@@ -143,7 +143,7 @@ MapCeruleanGymSignpostItem0:
 CeruleanGymStatue1:
 	checkevent EVENT_TRAINERS_IN_CERULEAN_GYM
 	iffalse CeruleanGymStatue
-	loadfont
+	opentext
 	writetext CeruleanGymNote1
 	waitbutton
 	closetext
@@ -152,7 +152,7 @@ CeruleanGymStatue1:
 CeruleanGymStatue2:
 	checkevent EVENT_TRAINERS_IN_CERULEAN_GYM
 	iffalse CeruleanGymStatue
-	loadfont
+	opentext
 	writetext CeruleanGymNote2
 	waitbutton
 	closetext

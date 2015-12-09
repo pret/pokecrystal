@@ -25,7 +25,7 @@ VioletCity_MapScriptHeader:
 FisherScript_0x1a83bb:
 	applymovement VIOLETCITY_FISHER, MovementData_0x1a8465
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x1a8473
 	yesorno
 	iffalse UnknownScript_0x1a83d1
@@ -48,7 +48,7 @@ UnknownScript_0x1a83d1:
 	applymovement VIOLETCITY_FISHER, MovementData_0x1a8465
 	stopfollow
 	special RestartMapMusic
-	loadfont
+	opentext
 	writetext UnknownText_0x1a84f9
 	waitbutton
 	closetext

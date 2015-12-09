@@ -34,7 +34,7 @@ TrainerSwimmerfDawn:
 
 SwimmerfDawnScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19ebad
 	waitbutton
 	closetext
@@ -45,7 +45,7 @@ TrainerSwimmermHarold:
 
 SwimmermHaroldScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19eab4
 	waitbutton
 	closetext
@@ -56,7 +56,7 @@ TrainerSwimmermJerome:
 
 SwimmermJeromeScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19ec7e
 	waitbutton
 	closetext
@@ -67,7 +67,7 @@ TrainerSwimmermTucker:
 
 SwimmermTuckerScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19eb3b
 	waitbutton
 	closetext
@@ -75,7 +75,7 @@ SwimmermTuckerScript:
 
 FisherScript_0x19ea4d:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_CINNABAR_ROCKS_CLEARED
 	iftrue UnknownScript_0x19ea5b
 	writetext UnknownText_0x19ecaf
@@ -91,7 +91,7 @@ UnknownScript_0x19ea5b:
 
 FisherScript_0x19ea61:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_CINNABAR_ROCKS_CLEARED
 	iftrue UnknownScript_0x19ea6f
 	writetext UnknownText_0x19ed45

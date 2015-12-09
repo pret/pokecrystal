@@ -10,7 +10,7 @@ Route26HealSpeechHouse_MapScriptHeader:
 
 TeacherScript_0x7b125:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x7b14d
 	waitbutton
 	closetext
@@ -22,7 +22,7 @@ TeacherScript_0x7b125:
 	pause 60
 	special Special_FadeInQuickly
 	special RestartMapMusic
-	loadfont
+	opentext
 	writetext UnknownText_0x7b18b
 	waitbutton
 	closetext

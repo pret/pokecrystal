@@ -89,7 +89,7 @@ MapRuinsofAlphOmanyteChamberSignpost3Script:
 	jumptext UnknownText_0x58d26
 
 MapRuinsofAlphOmanyteChamberSignpost4Script:
-	loadfont
+	opentext
 	writetext UnknownText_0x58c8e
 	writebyte $2
 	special Special_DisplayUnownWords
@@ -99,7 +99,7 @@ MapRuinsofAlphOmanyteChamberSignpost4Script:
 MapRuinsofAlphOmanyteChamberSignpost5Script:
 	checkevent EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	iftrue UnknownScript_0x58c85
-	loadfont
+	opentext
 	writetext UnknownText_0x58cc0
 	writebyte $2
 	special Special_DisplayUnownWords
@@ -107,7 +107,7 @@ MapRuinsofAlphOmanyteChamberSignpost5Script:
 	end
 
 UnknownScript_0x58c85:
-	loadfont
+	opentext
 	writetext UnknownText_0x58ce1
 	waitbutton
 	closetext

@@ -71,7 +71,7 @@ BattleTowerHallway_MapScriptHeader:
 
 .EnterBattleRoom: ; 0x9f61f
 	faceperson PLAYER, BATTLETOWERHALLWAY_RECEPTIONIST
-	loadfont
+	opentext
 	writetext Text_PleaseStepThisWay
 	waitbutton
 	closetext

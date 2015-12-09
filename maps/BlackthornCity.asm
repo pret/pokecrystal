@@ -36,7 +36,7 @@ BlackthornCity_MapScriptHeader:
 
 SuperNerdScript_0x1a46e8:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_CLAIR
 	iftrue UnknownScript_0x1a4702
 	checkevent EVENT_CLEARED_RADIO_TOWER
@@ -66,7 +66,7 @@ GrampsScript_0x1a470b:
 
 BlackBeltScript_0x1a470e:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1a471c
 	writetext UnknownText_0x1a494a
@@ -91,7 +91,7 @@ CooltrainerFScript_0x1a4728:
 
 SantosScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_SPELL_TAG_FROM_SANTOS
 	iftrue SantosSaturdayScript
 	checkcode VAR_WEEKDAY

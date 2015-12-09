@@ -11,7 +11,7 @@ FuchsiaMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x195ce8:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_FUCHSIA
 	closetext
 	end

@@ -141,7 +141,7 @@ ScriptCommandTable: ; 96cb1
 	dw Script_stringtotext               ; 44
 	dw Script_itemnotify                 ; 45
 	dw Script_pocketisfull               ; 46
-	dw Script_loadfont                   ; 47
+	dw Script_textbox                   ; 47
 	dw Script_refreshscreen              ; 48
 	dw Script_closetext                  ; 49
 	dw Script_loadbytec2cf               ; 4a
@@ -345,7 +345,7 @@ Script_jumptext: ; 96e5f
 JumpTextFacePlayerScript: ; 96e79
 	faceplayer
 JumpTextScript: ; 96e7a
-	loadfont
+	opentext
 	repeattext -1, -1
 	waitbutton
 	closetext
@@ -3026,10 +3026,10 @@ Script_reloadandreturn: ; 97b16
 	jp Script_end
 ; 97b1c
 
-Script_loadfont: ; 97b1c
+Script_textbox: ; 97b1c
 ; script command 0x47
 
-	call LoadFont
+	call OpenText
 	ret
 ; 97b20
 

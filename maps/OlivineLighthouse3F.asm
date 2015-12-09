@@ -16,7 +16,7 @@ TrainerBird_keeperTheo:
 
 Bird_keeperTheoScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5b2df
 	waitbutton
 	closetext
@@ -27,7 +27,7 @@ TrainerGentlemanPreston:
 
 GentlemanPrestonScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5b457
 	waitbutton
 	closetext
@@ -38,7 +38,7 @@ TrainerSailorTerrell:
 
 SailorTerrellScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x5b384
 	waitbutton
 	closetext

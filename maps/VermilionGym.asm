@@ -14,7 +14,7 @@ VermilionGym_MapScriptHeader:
 
 SurgeScript_0x1920a5:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_THUNDERBADGE
 	iftrue .FightDone
 	writetext UnknownText_0x192142
@@ -28,7 +28,7 @@ SurgeScript_0x1920a5:
 	setevent EVENT_BEAT_GENTLEMAN_GREGORY
 	setevent EVENT_BEAT_GUITARIST_VINCENT
 	setevent EVENT_BEAT_JUGGLER_HORTON
-	loadfont
+	opentext
 	writetext UnknownText_0x192277
 	playsound SFX_GET_BADGE
 	waitsfx
@@ -49,7 +49,7 @@ TrainerGentlemanGregory:
 
 GentlemanGregoryScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1923b0
 	waitbutton
 	closetext
@@ -60,7 +60,7 @@ TrainerGuitaristVincent:
 
 GuitaristVincentScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x19244b
 	waitbutton
 	closetext
@@ -71,7 +71,7 @@ TrainerJugglerHorton:
 
 JugglerHortonScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1924d6
 	waitbutton
 	closetext
@@ -79,7 +79,7 @@ JugglerHortonScript:
 
 VermilionGymGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_LTSURGE
 	iftrue .VermilionGymGuyWinScript
 	writetext VermilionGymGuyText

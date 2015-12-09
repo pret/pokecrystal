@@ -15,7 +15,7 @@ TrainerSwimmermSeth:
 
 SwimmermSethScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ac873
 	waitbutton
 	closetext
@@ -26,7 +26,7 @@ TrainerSwimmerfNikki:
 
 SwimmerfNikkiScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ac8f1
 	waitbutton
 	closetext
@@ -37,7 +37,7 @@ TrainerFisherArnold:
 
 FisherArnoldScript:
 	end_if_just_battled
-	loadfont
+	opentext
 	writetext UnknownText_0x1ac95c
 	waitbutton
 	closetext

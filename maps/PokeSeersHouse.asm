@@ -10,7 +10,7 @@ PokeSeersHouse_MapScriptHeader:
 
 SeerScript:
 	faceplayer
-	loadfont
+	opentext
 	special SpecialPokeSeer
 	waitbutton
 	closetext
