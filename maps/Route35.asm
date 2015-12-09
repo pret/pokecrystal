@@ -271,7 +271,7 @@ MapRoute35Signpost1Script:
 	jumptext UnknownText_0x19cf94
 
 ItemFragment_0x19ca7c:
-	db TM_ROLLOUT, 1
+	itemfragment TM_ROLLOUT
 
 FruitTreeScript_0x19ca7e:
 	fruittree FRUITTREE_ROUTE_35

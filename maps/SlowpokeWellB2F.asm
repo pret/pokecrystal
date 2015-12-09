@@ -30,7 +30,7 @@ UnknownScript_0x5ad22:
 	end
 
 ItemFragment_0x5ad28:
-	db TM_RAIN_DANCE, 1
+	itemfragment TM_RAIN_DANCE
 
 UnknownText_0x5ad2a:
 	text "I'm waiting to see"

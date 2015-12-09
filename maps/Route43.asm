@@ -325,7 +325,7 @@ FruitTreeScript_0x19d266:
 	fruittree FRUITTREE_ROUTE_43
 
 ItemFragment_0x19d268:
-	db MAX_ETHER, 1
+	itemfragment MAX_ETHER
 
 PokemaniacBenSeenText:
 	text "I love #MON!"

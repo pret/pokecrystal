@@ -304,10 +304,10 @@ MapRoute27Signpost0Script:
 	jumptext UnknownText_0x1a0e7f
 
 ItemFragment_0x1a0a62:
-	db TM_SOLARBEAM, 1
+	itemfragment TM_SOLARBEAM
 
 ItemFragment_0x1a0a64:
-	db RARE_CANDY, 1
+	itemfragment RARE_CANDY
 
 MovementData_0x1a0a66:
 	step_left

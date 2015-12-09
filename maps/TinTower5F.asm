@@ -9,7 +9,7 @@ TinTower5F_MapScriptHeader:
 	db 0
 
 ItemFragment_0x185aa9:
-	db RARE_CANDY, 1
+	itemfragment RARE_CANDY
 
 MapTinTower5FSignpostItem0:
 	dwb EVENT_TIN_TOWER_5F_HIDDEN_FULL_RESTORE, FULL_RESTORE

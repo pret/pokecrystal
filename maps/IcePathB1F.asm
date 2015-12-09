@@ -78,7 +78,7 @@ IcePathB1FBoulder:
 	jumpstd strengthboulder
 
 ItemFragment_0x7e50d:
-	db IRON, 1
+	itemfragment IRON
 
 MapIcePathB1FSignpostItem0:
 	dwb EVENT_ICE_PATH_B1F_HIDDEN_MAX_POTION, MAX_POTION

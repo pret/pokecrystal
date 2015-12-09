@@ -84,7 +84,7 @@ MapRoute15Signpost0Script:
 	jumptext UnknownText_0x1aa8e3
 
 ItemFragment_0x1aa5e4:
-	db PP_UP, 1
+	itemfragment PP_UP
 
 TeacherColetteSeenText:
 	text "Have you forgotten"

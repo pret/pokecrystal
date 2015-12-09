@@ -12,16 +12,16 @@ RuinsofAlphKabutoItemRoom_MapScriptHeader:
 	db 0
 
 ItemFragment_0x599a2:
-	db BERRY, 1
+	itemfragment BERRY
 
 ItemFragment_0x599a4:
-	db PSNCUREBERRY, 1
+	itemfragment PSNCUREBERRY
 
 ItemFragment_0x599a6:
-	db HEAL_POWDER, 1
+	itemfragment HEAL_POWDER
 
 ItemFragment_0x599a8:
-	db ENERGYPOWDER, 1
+	itemfragment ENERGYPOWDER
 
 MapRuinsofAlphKabutoItemRoomSignpost1Script:
 	jumptext UnknownText_0x599ad

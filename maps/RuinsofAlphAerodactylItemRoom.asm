@@ -12,16 +12,16 @@ RuinsofAlphAerodactylItemRoom_MapScriptHeader:
 	db 0
 
 ItemFragment_0x59ab6:
-	db GOLD_BERRY, 1
+	itemfragment GOLD_BERRY
 
 ItemFragment_0x59ab8:
-	db MOON_STONE, 1
+	itemfragment MOON_STONE
 
 ItemFragment_0x59aba:
-	db HEAL_POWDER, 1
+	itemfragment HEAL_POWDER
 
 ItemFragment_0x59abc:
-	db ENERGY_ROOT, 1
+	itemfragment ENERGY_ROOT
 
 MapRuinsofAlphAerodactylItemRoomSignpost1Script:
 	jumptext UnknownText_0x59ac1

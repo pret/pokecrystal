@@ -408,7 +408,7 @@ WarehouseEntranceScript_ShopClosed:
 	end
 
 ItemFragment_0x7c306:
-	db COIN_CASE, 1
+	itemfragment COIN_CASE
 
 MapWarehouseEntranceSignpost1Script:
 	jumptext UnknownText_0x7c91a

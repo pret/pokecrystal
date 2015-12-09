@@ -74,10 +74,10 @@ CooltrainerfEmmaScript:
 	end
 
 ItemFragment_0x5a36a:
-	db ELIXER, 1
+	itemfragment ELIXER
 
 ItemFragment_0x5a36c:
-	db HYPER_POTION, 1
+	itemfragment HYPER_POTION
 
 CooltrainermNickSeenText:
 	text "There are two"

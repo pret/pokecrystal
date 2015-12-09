@@ -17,10 +17,10 @@ BoulderScript_0x7e5a3:
 	jumptext UnknownText_0x7e5ad
 
 ItemFragment_0x7e5a6:
-	db FULL_HEAL, 1
+	itemfragment FULL_HEAL
 
 ItemFragment_0x7e5a8:
-	db MAX_POTION, 1
+	itemfragment MAX_POTION
 
 MapIcePathB2FMahoganySideSignpostItem0:
 	dwb EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_HIDDEN_CARBOS, CARBOS

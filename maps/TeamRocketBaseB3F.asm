@@ -211,19 +211,19 @@ MapTeamRocketBaseB3FSignpost9Script:
 	jumpstd teamrocketoath
 
 ItemFragment_0x6e120:
-	db PROTEIN, 1
+	itemfragment PROTEIN
 
 ItemFragment_0x6e122:
-	db X_SPECIAL, 1
+	itemfragment X_SPECIAL
 
 ItemFragment_0x6e124:
-	db FULL_HEAL, 1
+	itemfragment FULL_HEAL
 
 ItemFragment_0x6e126:
-	db ICE_HEAL, 1
+	itemfragment ICE_HEAL
 
 ItemFragment_0x6e128:
-	db ULTRA_BALL, 1
+	itemfragment ULTRA_BALL
 
 MovementData_0x6e12a:
 	step_right

@@ -10,7 +10,7 @@ IcePathB3F_MapScriptHeader:
 	db 0
 
 ItemFragment_0x7e66f:
-	db NEVERMELTICE, 1
+	itemfragment NEVERMELTICE
 
 IcePathB3FRock:
 	jumpstd smashrock

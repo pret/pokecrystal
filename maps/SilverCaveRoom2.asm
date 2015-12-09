@@ -11,13 +11,13 @@ SilverCaveRoom2_MapScriptHeader:
 	db 0
 
 ItemFragment_0x18c5b2:
-	db CALCIUM, 1
+	itemfragment CALCIUM
 
 ItemFragment_0x18c5b4:
-	db ULTRA_BALL, 1
+	itemfragment ULTRA_BALL
 
 ItemFragment_0x18c5b6:
-	db PP_UP, 1
+	itemfragment PP_UP
 
 MapSilverCaveRoom2SignpostItem0:
 	dwb EVENT_SILVER_CAVE_ROOM_2_HIDDEN_MAX_POTION, MAX_POTION

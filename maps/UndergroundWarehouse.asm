@@ -92,13 +92,13 @@ UnknownScript_0x7d9de:
 	end
 
 ItemFragment_0x7d9e4:
-	db MAX_ETHER, 1
+	itemfragment MAX_ETHER
 
 ItemFragment_0x7d9e6:
-	db TM_SLEEP_TALK, 1
+	itemfragment TM_SLEEP_TALK
 
 ItemFragment_0x7d9e8:
-	db ULTRA_BALL, 1
+	itemfragment ULTRA_BALL
 
 GruntM24SeenText:
 	text "How did you get"

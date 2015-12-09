@@ -9,7 +9,7 @@ TinTower7F_MapScriptHeader:
 	db 0
 
 ItemFragment_0x185b05:
-	db MAX_REVIVE, 1
+	itemfragment MAX_REVIVE
 
 TinTower7F_MapEventHeader:
 	; filler

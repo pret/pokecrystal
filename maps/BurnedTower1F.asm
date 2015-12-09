@@ -144,7 +144,7 @@ MapBurnedTower1FSignpostItem1:
 	
 
 ItemFragment_0x185ccb:
-	db HP_UP, 1
+	itemfragment HP_UP
 
 MovementData_0x185ccd:
 	step_left

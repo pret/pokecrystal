@@ -144,7 +144,7 @@ Ben:
 	jumptextfaceplayer BenText
 
 ItemFragment_0x600fe:
-	db ULTRA_BALL, 1
+	itemfragment ULTRA_BALL
 
 MapRadioTower5FSignpost0Script:
 	jumptext SignpostRadioTower5FOffice

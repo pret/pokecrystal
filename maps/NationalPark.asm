@@ -299,10 +299,10 @@ MapNationalParkSignpost3Script:
 	jumptext UnknownText_0x5c7c6
 
 ItemFragment_0x5c1cc:
-	db PARLYZ_HEAL, 1
+	itemfragment PARLYZ_HEAL
 
 ItemFragment_0x5c1ce:
-	db TM_DIG, 1
+	itemfragment TM_DIG
 
 MapNationalParkSignpostItem2:
 	dwb EVENT_NATIONAL_PARK_HIDDEN_FULL_HEAL, FULL_HEAL

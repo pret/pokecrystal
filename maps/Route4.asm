@@ -48,7 +48,7 @@ MapRoute4Signpost0Script:
 	jumptext UnknownText_0x1ae384
 
 ItemFragment_0x1ae20f:
-	db HP_UP, 1
+	itemfragment HP_UP
 
 MapRoute4SignpostItem1:
 	dwb EVENT_ROUTE_4_HIDDEN_ULTRA_BALL, ULTRA_BALL

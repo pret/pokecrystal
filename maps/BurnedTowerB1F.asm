@@ -124,7 +124,7 @@ UnknownScript_0x18622a:
 	end
 
 ItemFragment_0x186231:
-	db TM_ENDURE, 1
+	itemfragment TM_ENDURE
 
 BurnedTowerB1FBoulder:
 	jumpstd strengthboulder

@@ -10,10 +10,10 @@ SilverCaveItemRooms_MapScriptHeader:
 	db 0
 
 ItemFragment_0x18c65e:
-	db MAX_REVIVE, 1
+	itemfragment MAX_REVIVE
 
 ItemFragment_0x18c660:
-	db FULL_RESTORE, 1
+	itemfragment FULL_RESTORE
 
 SilverCaveItemRooms_MapEventHeader:
 	; filler

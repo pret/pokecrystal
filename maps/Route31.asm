@@ -264,10 +264,10 @@ FruitTreeScript_0x1a55f9:
 	fruittree FRUITTREE_ROUTE_31
 
 ItemFragment_0x1a55fb:
-	db POTION, 1
+	itemfragment POTION
 
 ItemFragment_0x1a55fd:
-	db POKE_BALL, 1
+	itemfragment POKE_BALL
 
 UnknownText_0x1a55ff:
 	text "DARK CAVE…"

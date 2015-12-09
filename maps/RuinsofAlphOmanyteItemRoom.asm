@@ -12,16 +12,16 @@ RuinsofAlphOmanyteItemRoom_MapScriptHeader:
 	db 0
 
 ItemFragment_0x59a2c:
-	db MYSTERYBERRY, 1
+	itemfragment MYSTERYBERRY
 
 ItemFragment_0x59a2e:
-	db MYSTIC_WATER, 1
+	itemfragment MYSTIC_WATER
 
 ItemFragment_0x59a30:
-	db STARDUST, 1
+	itemfragment STARDUST
 
 ItemFragment_0x59a32:
-	db STAR_PIECE, 1
+	itemfragment STAR_PIECE
 
 MapRuinsofAlphOmanyteItemRoomSignpost1Script:
 	jumptext UnknownText_0x59a37

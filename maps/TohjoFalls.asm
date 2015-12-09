@@ -9,7 +9,7 @@ TohjoFalls_MapScriptHeader:
 	db 0
 
 ItemFragment_0x18db02:
-	db MOON_STONE, 1
+	itemfragment MOON_STONE
 
 TohjoFalls_MapEventHeader:
 	; filler

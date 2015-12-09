@@ -12,16 +12,16 @@ SilverCaveRoom1_MapScriptHeader:
 	db 0
 
 ItemFragment_0x18c554:
-	db MAX_ELIXER, 1
+	itemfragment MAX_ELIXER
 
 ItemFragment_0x18c556:
-	db PROTEIN, 1
+	itemfragment PROTEIN
 
 ItemFragment_0x18c558:
-	db ESCAPE_ROPE, 1
+	itemfragment ESCAPE_ROPE
 
 ItemFragment_0x18c55a:
-	db ULTRA_BALL, 1
+	itemfragment ULTRA_BALL
 
 MapSilverCaveRoom1SignpostItem0:
 	dwb EVENT_SILVER_CAVE_ROOM_1_HIDDEN_DIRE_HIT, DIRE_HIT

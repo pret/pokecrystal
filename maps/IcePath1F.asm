@@ -11,13 +11,13 @@ IcePath1F_MapScriptHeader:
 	db 0
 
 ItemFragment_0x7e472:
-	db HM_WATERFALL, 1
+	itemfragment HM_WATERFALL
 
 ItemFragment_0x7e474:
-	db PP_UP, 1
+	itemfragment PP_UP
 
 ItemFragment_0x7e476:
-	db PROTEIN, 1
+	itemfragment PROTEIN
 
 IcePath1F_MapEventHeader:
 	; filler

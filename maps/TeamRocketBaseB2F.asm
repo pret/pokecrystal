@@ -360,7 +360,7 @@ UnknownScript_0x6d207:
 	end
 
 ItemFragment_0x6d20d:
-	db TM_THIEF, 1
+	itemfragment TM_THIEF
 
 MapTeamRocketBaseB2FSignpostItem22:
 	dwb EVENT_TEAM_ROCKET_BASE_B2F_HIDDEN_FULL_HEAL, FULL_HEAL

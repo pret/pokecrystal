@@ -36,7 +36,7 @@ MapSproutTower2FSignpost0Script:
 	jumptext UnknownText_0x1848c8
 
 ItemFragment_0x1847a7:
-	db X_ACCURACY, 1
+	itemfragment X_ACCURACY
 
 SageNicoSeenText:
 	text "However hard we"

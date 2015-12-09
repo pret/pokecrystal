@@ -11,13 +11,13 @@ TinTower4F_MapScriptHeader:
 	db 0
 
 ItemFragment_0x185a58:
-	db ULTRA_BALL, 1
+	itemfragment ULTRA_BALL
 
 ItemFragment_0x185a5a:
-	db PP_UP, 1
+	itemfragment PP_UP
 
 ItemFragment_0x185a5c:
-	db ESCAPE_ROPE, 1
+	itemfragment ESCAPE_ROPE
 
 MapTinTower4FSignpostItem0:
 	dwb EVENT_TIN_TOWER_4F_HIDDEN_MAX_POTION, MAX_POTION

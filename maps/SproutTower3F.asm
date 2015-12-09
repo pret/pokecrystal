@@ -134,10 +134,10 @@ MapSproutTower3FSignpost5Script:
 	jumptext UnknownText_0x184f61
 
 ItemFragment_0x184a19:
-	db POTION, 1
+	itemfragment POTION
 
 ItemFragment_0x184a1b:
-	db ESCAPE_ROPE, 1
+	itemfragment ESCAPE_ROPE
 
 MovementData_0x184a1d:
 	step_up

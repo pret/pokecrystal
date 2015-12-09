@@ -14,19 +14,19 @@ WhirlIslandB1F_MapScriptHeader:
 	db 0
 
 ItemFragment_0x18c410:
-	db FULL_RESTORE, 1
+	itemfragment FULL_RESTORE
 
 ItemFragment_0x18c412:
-	db CARBOS, 1
+	itemfragment CARBOS
 
 ItemFragment_0x18c414:
-	db CALCIUM, 1
+	itemfragment CALCIUM
 
 ItemFragment_0x18c416:
-	db NUGGET, 1
+	itemfragment NUGGET
 
 ItemFragment_0x18c418:
-	db ESCAPE_ROPE, 1
+	itemfragment ESCAPE_ROPE
 
 WhirlIslandB1FBoulder:
 	jumpstd strengthboulder

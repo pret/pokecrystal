@@ -9,7 +9,7 @@ TinTower3F_MapScriptHeader:
 	db 0
 
 ItemFragment_0x185a37:
-	db FULL_HEAL, 1
+	itemfragment FULL_HEAL
 
 TinTower3F_MapEventHeader:
 	; filler

@@ -9,7 +9,7 @@ TinTower9F_MapScriptHeader:
 	db 0
 
 ItemFragment_0x185b88:
-	db HP_UP, 1
+	itemfragment HP_UP
 
 UnknownText_0x185b8a:
 	text "HO-OH: Shaoooh!"

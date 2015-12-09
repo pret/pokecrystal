@@ -19,7 +19,7 @@ MapFightingDojoSignpost1Script:
 	jumptext UnknownText_0x189be0
 
 ItemFragment_0x189b6a:
-	db FOCUS_BAND, 1
+	itemfragment FOCUS_BAND
 
 UnknownText_0x189b6c:
 	text "Hello!"

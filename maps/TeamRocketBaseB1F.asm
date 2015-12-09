@@ -536,13 +536,13 @@ UnknownScript_0x6cabe:
 	end
 
 ItemFragment_0x6cac4:
-	db HYPER_POTION, 1
+	itemfragment HYPER_POTION
 
 ItemFragment_0x6cac6:
-	db NUGGET, 1
+	itemfragment NUGGET
 
 ItemFragment_0x6cac8:
-	db GUARD_SPEC, 1
+	itemfragment GUARD_SPEC
 
 MapTeamRocketBaseB1FSignpostItem8:
 	dwb EVENT_TEAM_ROCKET_BASE_B1F_HIDDEN_REVIVE, REVIVE

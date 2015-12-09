@@ -109,10 +109,10 @@ MapNationalParkBugContestSignpost3Script:
 	jumptext UnknownText_0x5cc1d
 
 ItemFragment_0x5c945:
-	db PARLYZ_HEAL, 1
+	itemfragment PARLYZ_HEAL
 
 ItemFragment_0x5c947:
-	db TM_DIG, 1
+	itemfragment TM_DIG
 
 MapNationalParkBugContestSignpostItem2:
 	dwb EVENT_NATIONAL_PARK_HIDDEN_FULL_HEAL, FULL_HEAL

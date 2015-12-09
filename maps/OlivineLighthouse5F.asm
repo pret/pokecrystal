@@ -35,13 +35,13 @@ SailorErnestScript:
 	end
 
 ItemFragment_0x609aa:
-	db RARE_CANDY, 1
+	itemfragment RARE_CANDY
 
 ItemFragment_0x609ac:
-	db SUPER_REPEL, 1
+	itemfragment SUPER_REPEL
 
 ItemFragment_0x609ae:
-	db TM_SWAGGER, 1
+	itemfragment TM_SWAGGER
 
 MapOlivineLighthouse5FSignpostItem0:
 	dwb EVENT_OLIVINE_LIGHTHOUSE_5F_HIDDEN_HYPER_POTION, HYPER_POTION

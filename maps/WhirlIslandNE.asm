@@ -9,7 +9,7 @@ WhirlIslandNE_MapScriptHeader:
 	db 0
 
 ItemFragment_0x18c396:
-	db ULTRA_BALL, 1
+	itemfragment ULTRA_BALL
 
 WhirlIslandNE_MapEventHeader:
 	; filler

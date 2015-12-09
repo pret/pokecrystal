@@ -9,7 +9,7 @@ IcePathB2FBlackthornSide_MapScriptHeader:
 	db 0
 
 ItemFragment_0x7e646:
-	db TM_REST, 1
+	itemfragment TM_REST
 
 MapIcePathB2FBlackthornSideSignpostItem0:
 	dwb EVENT_ICE_PATH_B2F_BLACKTHORN_SIDE_HIDDEN_ICE_HEAL, ICE_HEAL

@@ -11,13 +11,13 @@ WhirlIslandB2F_MapScriptHeader:
 	db 0
 
 ItemFragment_0x18c4b8:
-	db FULL_RESTORE, 1
+	itemfragment FULL_RESTORE
 
 ItemFragment_0x18c4ba:
-	db MAX_REVIVE, 1
+	itemfragment MAX_REVIVE
 
 ItemFragment_0x18c4bc:
-	db MAX_ELIXER, 1
+	itemfragment MAX_ELIXER
 
 WhirlIslandB2F_MapEventHeader:
 	; filler

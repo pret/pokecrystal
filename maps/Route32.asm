@@ -493,10 +493,10 @@ FriedaNotFridayScript:
 	end
 
 ItemFragment_0x190773:
-	db GREAT_BALL, 1
+	itemfragment GREAT_BALL
 
 ItemFragment_0x190775:
-	db REPEL, 1
+	itemfragment REPEL
 
 Route32Sign:
 	jumptext Route32SignText

@@ -9,7 +9,7 @@ TinTower6F_MapScriptHeader:
 	db 0
 
 ItemFragment_0x185ae4:
-	db MAX_POTION, 1
+	itemfragment MAX_POTION
 
 TinTower6F_MapEventHeader:
 	; filler

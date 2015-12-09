@@ -16,16 +16,16 @@ DarkCaveVioletEntrance_MapScriptHeader:
 	db 0
 
 ItemFragment_0x18c68e:
-	db POTION, 1
+	itemfragment POTION
 
 ItemFragment_0x18c690:
-	db FULL_HEAL, 1
+	itemfragment FULL_HEAL
 
 ItemFragment_0x18c692:
-	db HYPER_POTION, 1
+	itemfragment HYPER_POTION
 
 ItemFragment_0x18c694:
-	db DIRE_HIT, 1
+	itemfragment DIRE_HIT
 
 DarkCaveVioletEntranceRock:
 	jumpstd smashrock

@@ -124,7 +124,7 @@ SlowpokeWellB1FBoulder:
 	jumpstd strengthboulder
 
 ItemFragment_0x5a6a3:
-	db SUPER_POTION, 1
+	itemfragment SUPER_POTION
 
 KurtSlowpokeWellVictoryMovementData:
 	step_left

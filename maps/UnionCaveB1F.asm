@@ -59,10 +59,10 @@ HikerLeonardScript:
 	end
 
 ItemFragment_0x5a016:
-	db TM_SWIFT, 1
+	itemfragment TM_SWIFT
 
 ItemFragment_0x5a018:
-	db X_DEFEND, 1
+	itemfragment X_DEFEND
 
 UnionCaveB1FBoulder:
 	jumpstd strengthboulder

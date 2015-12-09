@@ -57,19 +57,19 @@ MountMortarB1FBoulder:
 	jumpstd strengthboulder
 
 ItemFragment_0x7e240:
-	db HYPER_POTION, 1
+	itemfragment HYPER_POTION
 
 ItemFragment_0x7e242:
-	db CARBOS, 1
+	itemfragment CARBOS
 
 ItemFragment_0x7e244:
-	db FULL_RESTORE, 1
+	itemfragment FULL_RESTORE
 
 ItemFragment_0x7e246:
-	db MAX_ETHER, 1
+	itemfragment MAX_ETHER
 
 ItemFragment_0x7e248:
-	db PP_UP, 1
+	itemfragment PP_UP
 
 MapMountMortarB1FSignpostItem0:
 	dwb EVENT_MOUNT_MORTAR_B1F_HIDDEN_MAX_REVIVE, MAX_REVIVE

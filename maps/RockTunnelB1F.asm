@@ -11,13 +11,13 @@ RockTunnelB1F_MapScriptHeader:
 	db 0
 
 ItemFragment_0x74409:
-	db IRON, 1
+	itemfragment IRON
 
 ItemFragment_0x7440b:
-	db PP_UP, 1
+	itemfragment PP_UP
 
 ItemFragment_0x7440d:
-	db REVIVE, 1
+	itemfragment REVIVE
 
 MapRockTunnelB1FSignpostItem0:
 	dwb EVENT_ROCK_TUNNEL_B1F_HIDDEN_MAX_POTION, MAX_POTION

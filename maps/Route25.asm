@@ -190,7 +190,7 @@ MapRoute25Signpost0Script:
 	jumptext UnknownText_0x19f567
 
 ItemFragment_0x19efe3:
-	db PROTEIN, 1
+	itemfragment PROTEIN
 
 MapRoute25SignpostItem1:
 	dwb EVENT_ROUTE_25_HIDDEN_POTION, POTION

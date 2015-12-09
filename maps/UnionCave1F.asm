@@ -72,16 +72,16 @@ FirebreatherRayScript:
 	end
 
 ItemFragment_0x59c00:
-	db GREAT_BALL, 1
+	itemfragment GREAT_BALL
 
 ItemFragment_0x59c02:
-	db X_ATTACK, 1
+	itemfragment X_ATTACK
 
 ItemFragment_0x59c04:
-	db POTION, 1
+	itemfragment POTION
 
 ItemFragment_0x59c06:
-	db AWAKENING, 1
+	itemfragment AWAKENING
 
 UnknownScript_0x59c08:
 	jumptext UnknownText_0x59f29

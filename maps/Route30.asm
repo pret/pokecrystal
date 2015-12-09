@@ -239,7 +239,7 @@ MapRoute30Signpost3Script:
 	jumptext UnknownText_0x1a1b66
 
 ItemFragment_0x1a17f5:
-	db ANTIDOTE, 1
+	itemfragment ANTIDOTE
 
 FruitTreeScript_0x1a17f7:
 	fruittree FRUITTREE_ROUTE_30_1

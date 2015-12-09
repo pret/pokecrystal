@@ -91,10 +91,10 @@ VioletCityMartSign:
 	jumpstd martsign
 
 ItemFragment_0x1a8421:
-	db PP_UP, 1
+	itemfragment PP_UP
 
 ItemFragment_0x1a8423:
-	db RARE_CANDY, 1
+	itemfragment RARE_CANDY
 
 FruitTreeScript_0x1a8425:
 	fruittree FRUITTREE_VIOLET_CITY

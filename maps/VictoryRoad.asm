@@ -99,19 +99,19 @@ UnknownScript_0x7451f:
 	end
 
 ItemFragment_0x74529:
-	db TM_EARTHQUAKE, 1
+	itemfragment TM_EARTHQUAKE
 
 ItemFragment_0x7452b:
-	db MAX_REVIVE, 1
+	itemfragment MAX_REVIVE
 
 ItemFragment_0x7452d:
-	db FULL_RESTORE, 1
+	itemfragment FULL_RESTORE
 
 ItemFragment_0x7452f:
-	db FULL_HEAL, 1
+	itemfragment FULL_HEAL
 
 ItemFragment_0x74531:
-	db HP_UP, 1
+	itemfragment HP_UP
 
 MapVictoryRoadSignpostItem0:
 	dwb EVENT_VICTORY_ROAD_HIDDEN_MAX_POTION, MAX_POTION

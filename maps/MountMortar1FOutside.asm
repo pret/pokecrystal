@@ -10,10 +10,10 @@ MountMortar1FOutside_MapScriptHeader:
 	db 0
 
 ItemFragment_0x7ddf6:
-	db ETHER, 1
+	itemfragment ETHER
 
 ItemFragment_0x7ddf8:
-	db REVIVE, 1
+	itemfragment REVIVE
 
 MapMountMortar1FOutsideSignpostItem0:
 	dwb EVENT_MOUNT_MORTAR_1F_OUTSIDE_HIDDEN_HYPER_POTION, HYPER_POTION

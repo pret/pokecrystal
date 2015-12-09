@@ -43,25 +43,25 @@ MountMortar1FBoulder:
 	jumpstd strengthboulder
 
 ItemFragment_0x7de7c:
-	db ESCAPE_ROPE, 1
+	itemfragment ESCAPE_ROPE
 
 ItemFragment_0x7de7e:
-	db MAX_REVIVE, 1
+	itemfragment MAX_REVIVE
 
 ItemFragment_0x7de80:
-	db HYPER_POTION, 1
+	itemfragment HYPER_POTION
 
 ItemFragment_0x7de82:
-	db MAX_POTION, 1
+	itemfragment MAX_POTION
 
 ItemFragment_0x7de84:
-	db NUGGET, 1
+	itemfragment NUGGET
 
 ItemFragment_0x7de86:
-	db IRON, 1
+	itemfragment IRON
 
 ItemFragment_0x7de88:
-	db ULTRA_BALL, 1
+	itemfragment ULTRA_BALL
 
 MapMountMortar1FInsideSignpostItem0:
 	dwb EVENT_MOUNT_MORTAR_1F_INSIDE_HIDDEN_MAX_REPEL, MAX_REPEL

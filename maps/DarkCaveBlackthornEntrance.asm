@@ -28,10 +28,10 @@ UnknownScript_0x18c739:
 	end
 
 ItemFragment_0x18c73b:
-	db REVIVE, 1
+	itemfragment REVIVE
 
 ItemFragment_0x18c73d:
-	db TM_SNORE, 1
+	itemfragment TM_SNORE
 
 UnknownText_0x18c73f:
 	text "Whoa! You startled"

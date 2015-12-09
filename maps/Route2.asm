@@ -55,16 +55,16 @@ MapRoute2Signpost1Script:
 	jumptext UnknownText_0x1ac49f
 
 ItemFragment_0x1ac2fe:
-	db DIRE_HIT, 1
+	itemfragment DIRE_HIT
 
 ItemFragment_0x1ac300:
-	db MAX_POTION, 1
+	itemfragment MAX_POTION
 
 ItemFragment_0x1ac302:
-	db CARBOS, 1
+	itemfragment CARBOS
 
 ItemFragment_0x1ac304:
-	db ELIXER, 1
+	itemfragment ELIXER
 
 FruitTreeScript_0x1ac306:
 	fruittree FRUITTREE_ROUTE_2

@@ -10,10 +10,10 @@ RockTunnel1F_MapScriptHeader:
 	db 0
 
 ItemFragment_0x743b5:
-	db ELIXER, 1
+	itemfragment ELIXER
 
 ItemFragment_0x743b7:
-	db TM_STEEL_WING, 1
+	itemfragment TM_STEEL_WING
 
 MapRockTunnel1FSignpostItem0:
 	dwb EVENT_ROCK_TUNNEL_1F_HIDDEN_X_ACCURACY, X_ACCURACY

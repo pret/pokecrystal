@@ -179,10 +179,10 @@ MapDragonsDenB1FSignpost0Script:
 	jumptext UnknownText_0x18cc2e
 
 ItemFragment_0x18c9a1:
-	db CALCIUM, 1
+	itemfragment CALCIUM
 
 ItemFragment_0x18c9a3:
-	db MAX_ELIXER, 1
+	itemfragment MAX_ELIXER
 
 MapDragonsDenB1FSignpostItem1:
 	dwb EVENT_DRAGONS_DEN_B1F_HIDDEN_REVIVE, REVIVE

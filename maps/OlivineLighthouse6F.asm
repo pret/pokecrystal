@@ -128,7 +128,7 @@ UnknownScript_0x60c51:
 	end
 
 ItemFragment_0x60c66:
-	db SUPER_POTION, 1
+	itemfragment SUPER_POTION
 
 MovementData_0x60c68:
 	slow_step_up

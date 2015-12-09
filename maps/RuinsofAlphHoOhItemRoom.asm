@@ -12,16 +12,16 @@ RuinsofAlphHoOhItemRoom_MapScriptHeader:
 	db 0
 
 ItemFragment_0x59918:
-	db GOLD_BERRY, 1
+	itemfragment GOLD_BERRY
 
 ItemFragment_0x5991a:
-	db MYSTERYBERRY, 1
+	itemfragment MYSTERYBERRY
 
 ItemFragment_0x5991c:
-	db REVIVAL_HERB, 1
+	itemfragment REVIVAL_HERB
 
 ItemFragment_0x5991e:
-	db CHARCOAL, 1
+	itemfragment CHARCOAL
 
 MapRuinsofAlphHoOhItemRoomSignpost1Script:
 	jumptext UnknownText_0x59923

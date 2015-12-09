@@ -252,7 +252,7 @@ FruitTreeScript_0x1a4ec2:
 	fruittree FRUITTREE_ROUTE_26
 
 ItemFragment_0x1a4ec4:
-	db MAX_ELIXER, 1
+	itemfragment MAX_ELIXER
 
 CooltrainermJakeSeenText:
 	text "I'm making my"

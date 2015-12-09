@@ -64,10 +64,10 @@ MapRoute12Signpost1Script:
 	jumptext UnknownText_0x1a72c1
 
 ItemFragment_0x1a700b:
-	db CALCIUM, 1
+	itemfragment CALCIUM
 
 ItemFragment_0x1a700d:
-	db NUGGET, 1
+	itemfragment NUGGET
 
 MapRoute12SignpostItem2:
 	dwb EVENT_ROUTE_12_HIDDEN_ELIXER, ELIXER

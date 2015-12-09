@@ -405,16 +405,16 @@ IlexForestLassScript:
 	jumptextfaceplayer Text_IlexForestLass
 
 ItemFragment_0x6ee10:
-	db REVIVE, 1
+	itemfragment REVIVE
 
 ItemFragment_0x6ee12:
-	db X_ATTACK, 1
+	itemfragment X_ATTACK
 
 ItemFragment_0x6ee14:
-	db ANTIDOTE, 1
+	itemfragment ANTIDOTE
 
 ItemFragment_0x6ee16:
-	db ETHER, 1
+	itemfragment ETHER
 
 MapIlexForestSignpostItem1:
 	dwb EVENT_ILEX_FOREST_HIDDEN_ETHER, ETHER

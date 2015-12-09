@@ -11,13 +11,13 @@ TinTower8F_MapScriptHeader:
 	db 0
 
 ItemFragment_0x185b35:
-	db NUGGET, 1
+	itemfragment NUGGET
 
 ItemFragment_0x185b37:
-	db MAX_ELIXER, 1
+	itemfragment MAX_ELIXER
 
 ItemFragment_0x185b39:
-	db FULL_RESTORE, 1
+	itemfragment FULL_RESTORE
 
 TinTower8F_MapEventHeader:
 	; filler

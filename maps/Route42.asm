@@ -199,10 +199,10 @@ MapRoute42Signpost3Script:
 	jumptext UnknownText_0x1a95a1
 
 ItemFragment_0x1a9349:
-	db ULTRA_BALL, 1
+	itemfragment ULTRA_BALL
 
 ItemFragment_0x1a934b:
-	db SUPER_POTION, 1
+	itemfragment SUPER_POTION
 
 FruitTreeScript_0x1a934d:
 	fruittree FRUITTREE_ROUTE_42_1

@@ -231,10 +231,10 @@ WesleyNotWednesdayScript:
 	end
 
 ItemFragment_0x70148:
-	db ELIXER, 1
+	itemfragment ELIXER
 
 ItemFragment_0x7014a:
-	db TM_DETECT, 1
+	itemfragment TM_DETECT
 
 MapLakeofRageSignpostItem2:
 	dwb EVENT_LAKE_OF_RAGE_HIDDEN_FULL_RESTORE, FULL_RESTORE

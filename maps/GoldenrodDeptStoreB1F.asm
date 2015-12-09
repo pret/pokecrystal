@@ -68,16 +68,16 @@ MachopScript_0x7d7b9:
 	end
 
 ItemFragment_0x7d7c3:
-	db ETHER, 1
+	itemfragment ETHER
 
 ItemFragment_0x7d7c5:
-	db AMULET_COIN, 1
+	itemfragment AMULET_COIN
 
 ItemFragment_0x7d7c7:
-	db BURN_HEAL, 1
+	itemfragment BURN_HEAL
 
 ItemFragment_0x7d7c9:
-	db ULTRA_BALL, 1
+	itemfragment ULTRA_BALL
 
 UnknownText_0x7d7cb:
 	text "Hey, kid! You're"

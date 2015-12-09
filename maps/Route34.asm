@@ -488,7 +488,7 @@ MapRoute34Signpost2Script:
 	jumptext UnknownText_0x78a52
 
 ItemFragment_0x7832b:
-	db NUGGET, 1
+	itemfragment NUGGET
 
 MapRoute34SignpostItem3:
 	dwb EVENT_ROUTE_34_HIDDEN_RARE_CANDY, RARE_CANDY

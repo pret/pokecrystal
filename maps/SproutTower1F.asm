@@ -37,7 +37,7 @@ SageChowScript:
 	end
 
 ItemFragment_0x18451e:
-	db PARLYZ_HEAL, 1
+	itemfragment PARLYZ_HEAL
 
 MapSproutTower1FSignpost1Script:
 	jumptext UnknownText_0x1846d6

@@ -26,22 +26,22 @@ SupernerdHughScript:
 	end
 
 ItemFragment_0x7e0de:
-	db MAX_POTION, 1
+	itemfragment MAX_POTION
 
 ItemFragment_0x7e0e0:
-	db RARE_CANDY, 1
+	itemfragment RARE_CANDY
 
 ItemFragment_0x7e0e2:
-	db TM_DEFENSE_CURL, 1
+	itemfragment TM_DEFENSE_CURL
 
 ItemFragment_0x7e0e4:
-	db DRAGON_SCALE, 1
+	itemfragment DRAGON_SCALE
 
 ItemFragment_0x7e0e6:
-	db ELIXER, 1
+	itemfragment ELIXER
 
 ItemFragment_0x7e0e8:
-	db ESCAPE_ROPE, 1
+	itemfragment ESCAPE_ROPE
 
 MapMountMortar2FInsideSignpostItem0:
 	dwb EVENT_MOUNT_MORTAR_2F_INSIDE_HIDDEN_FULL_RESTORE, FULL_RESTORE

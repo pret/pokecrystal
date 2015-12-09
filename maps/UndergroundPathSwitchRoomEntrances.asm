@@ -624,10 +624,10 @@ UndergroundPathSwitchRoomEntrances_UpdateDoors:
 	end
 
 ItemFragment_0x7ce7d:
-	db SMOKE_BALL, 1
+	itemfragment SMOKE_BALL
 
 ItemFragment_0x7ce7f:
-	db FULL_HEAL, 1
+	itemfragment FULL_HEAL
 
 MapUndergroundPathSwitchRoomEntrancesSignpostItem4:
 	dwb EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_HIDDEN_MAX_POTION, MAX_POTION

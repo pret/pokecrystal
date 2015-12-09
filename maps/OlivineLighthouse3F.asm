@@ -45,7 +45,7 @@ SailorTerrellScript:
 	end
 
 ItemFragment_0x5b279:
-	db ETHER, 1
+	itemfragment ETHER
 
 Bird_keeperTheoSeenText:
 	text "Why are you here?"

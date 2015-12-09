@@ -309,13 +309,13 @@ FruitTreeScript_0x19da40:
 	fruittree FRUITTREE_ROUTE_44
 
 ItemFragment_0x19da42:
-	db MAX_REVIVE, 1
+	itemfragment MAX_REVIVE
 
 ItemFragment_0x19da44:
-	db ULTRA_BALL, 1
+	itemfragment ULTRA_BALL
 
 ItemFragment_0x19da46:
-	db MAX_REPEL, 1
+	itemfragment MAX_REPEL
 
 MapRoute44SignpostItem2:
 	dwb EVENT_ROUTE_44_HIDDEN_ELIXER, ELIXER

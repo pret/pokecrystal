@@ -300,16 +300,16 @@ FruitTreeScript_0x19e294:
 	fruittree FRUITTREE_ROUTE_45
 
 ItemFragment_0x19e296:
-	db NUGGET, 1
+	itemfragment NUGGET
 
 ItemFragment_0x19e298:
-	db REVIVE, 1
+	itemfragment REVIVE
 
 ItemFragment_0x19e29a:
-	db ELIXER, 1
+	itemfragment ELIXER
 
 ItemFragment_0x19e29c:
-	db MAX_POTION, 1
+	itemfragment MAX_POTION
 
 MapRoute45SignpostItem1:
 	dwb EVENT_ROUTE_45_HIDDEN_PP_UP, PP_UP
