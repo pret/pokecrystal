@@ -19902,6 +19902,7 @@ ret_e00ed: ; e00ed (38:40ed)
 ; e00ee (38:40ee)
 
 INCLUDE "engine/card_flip.asm"
+INCLUDE "engine/unown_puzzle.asm"
 INCLUDE "engine/dummy_game.asm"
 INCLUDE "engine/billspc.asm"
 

@@ -809,12 +809,23 @@ wSlotsEnd::
 	ds wSlots - @
 
 ; Card Flip
+; c6d0
 wCardFlip::
 wDeck:: ds 24
 wDeckEnd::
+; c6e8
+wCardFlipNumCardsPlayed:: ds 1
 wCardFlipEnd::
 	ds wCardFlip - @
 
+; Unown Puzzle
+wUnownPuzzle::
+wPuzzlePieces::
+	ds 6 * 6
+wUnownPuzzleEnd::
+	ds wUnownPuzzle - @
+
+; Battle RAM
 wc6d0::
 PlayerSDefLevel:: ; c6d0
 	ds 1
@@ -1423,13 +1434,16 @@ wcf63:: ds 1
 wNrOfBeatenBattleTowerTrainers::
 wMomBankDigitCursorPosition::
 wIntroSceneFrameCounter::
+wHoldingUnownPuzzlePiece::
 wcf64:: ds 1
 IF !DEF(CRYSTAL11)
 wPokedexStatus::
 ENDC
 wTitleScreenTimerLo::
+wUnownPuzzleCursorPosition::
 wcf65:: ds 1
 wTitleScreenTimerHi::
+wUnownPuzzleHeldPiece::
 wcf66:: ds 1
 
 Requested2bpp:: ; cf67
@@ -1842,6 +1856,7 @@ wPlayerAction::
 ; 0 - use move
 ; 1 - use item
 ; 2 - switch
+wSolvedUnownPuzzle::
 wd0ec:: ds 1
 
 VramState:: ; d0ed

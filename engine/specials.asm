@@ -380,8 +380,8 @@ MapRadio: ; c355
 
 Special_UnownPuzzle: ; c360
 	call FadeToMenu
-	callba Functione1190
-	ld a, [wd0ec]
+	callba UnownPuzzle
+	ld a, [wSolvedUnownPuzzle]
 	ld [ScriptVar], a
 	call ExitAllMenus
 	ret
