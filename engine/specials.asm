@@ -256,7 +256,7 @@ Special_FindThatSpeciesYourTrainerID: ; c284
 	jr FoundOne
 
 FoundOne: ; c292
-	ld a, $1
+	ld a, TRUE
 	ld [ScriptVar], a
 	ret
 
@@ -334,11 +334,11 @@ Special_GetMysteryGiftItem: ; c309
 	call GetSRAMBank
 	ld a, [sMysteryGiftItem]
 	ld [CurItem], a
-	ld a, $1
+	ld a, 1
 	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
 	call ReceiveItem
-	jr nc, .asm_c33d
+	jr nc, .no_room
 	xor a
 	ld [sMysteryGiftItem], a
 	call CloseSRAM
@@ -347,11 +347,11 @@ Special_GetMysteryGiftItem: ; c309
 	call GetItemName
 	ld hl, .ReceiveItemText
 	call PrintText
-	ld a, $1
+	ld a, TRUE
 	ld [ScriptVar], a
 	ret
 
-.asm_c33d
+.no_room
 	call CloseSRAM
 	xor a
 	ld [ScriptVar], a
@@ -433,35 +433,35 @@ Special_CheckCoins: ; c3ae
 	ld hl, Coins
 	ld a, [hli]
 	or [hl]
-	jr z, .asm_c3c4
+	jr z, .no_coins
 	ld a, COIN_CASE
 	ld [CurItem], a
 	ld hl, NumItems
 	call CheckItem
-	jr nc, .asm_c3c9
+	jr nc, .no_coin_case
 	and a
 	ret
 
-.asm_c3c4
-	ld hl, UnknownText_0xc3d1
-	jr .asm_c3cc
+.no_coins
+	ld hl, .NoCoinsText
+	jr .print
 
-.asm_c3c9
-	ld hl, UnknownText_0xc3d6
+.no_coin_case
+	ld hl, .NoCoinCaseText
 
-.asm_c3cc
+.print
 	call PrintText
 	scf
 	ret
 ; c3d1
 
-UnknownText_0xc3d1: ; 0xc3d1
+.NoCoinsText: ; 0xc3d1
 	; You have no coins.
 	text_jump UnknownText_0x1bd3d7
 	db "@"
 ; 0xc3d6
 
-UnknownText_0xc3d6: ; 0xc3d6
+.NoCoinCaseText: ; 0xc3d6
 	; You don't have a COIN CASE.
 	text_jump UnknownText_0x1bd3eb
 	db "@"
@@ -557,7 +557,7 @@ SpecialSnorlaxAwake: ; 0xc43d
 	ld hl, .ProximityCoords
 .loop
 	ld a, [hli]
-	cp $ff
+	cp -1
 	jr z, .nope
 	cp b
 	jr nz, .nextcoord
@@ -565,7 +565,7 @@ SpecialSnorlaxAwake: ; 0xc43d
 	cp c
 	jr nz, .loop
 
-	ld a, $1
+	ld a, TRUE
 	jr .done
 
 .nextcoord
@@ -585,7 +585,7 @@ SpecialSnorlaxAwake: ; 0xc43d
 	db 35, 10 ; below
 	db 36,  8 ; right
 	db 36,  9 ; right
-	db $ff
+	db -1
 
 
 PlayCurMonCry: ; c472

@@ -755,29 +755,12 @@ ConvertLoadedPuzzlePieces: ; e1631
 ; e16b7
 
 .EnlargedTiles: ; e16b7
-doubletile: MACRO
-rept _NARG
+
 x = 0
-y = 0
-rept 4
-x = x + (3 * (1 << (2 * y))) * ((\1 >> y) & 1)
-y = y + 1
-endr
-	db x
-	shift
-endr
-endm
-
-__x__ = 0
 rept 16
-	doubletile __x__
-__x__ = __x__ + 1
+	db ((x & %1000) * %11000) + ((x & %0100) * %1100) + ((x & %0010) * %110) + ((x & %0001) * %11)
+x = x + 1
 endr
-
-	; db $00, $03, $0c, $0f
-	; db $30, $33, $3c, $3f
-	; db $c0, $c3, $cc, $cf
-	; db $f0, $f3, $fc, $ff
 ; e16c7
 
 UnownPuzzle_AddPuzzlePieceBorders: ; e16c7
@@ -838,14 +821,14 @@ endr
 ; e1703
 
 GFXHeaders: ; e1703
-	dw .TileBordersGFX + $00, VTiles0 tile $00
-	dw .TileBordersGFX + $10, VTiles0 tile $01
-	dw .TileBordersGFX + $20, VTiles0 tile $02
-	dw .TileBordersGFX + $30, VTiles0 tile $0c
-	dw .TileBordersGFX + $40, VTiles0 tile $0e
-	dw .TileBordersGFX + $50, VTiles0 tile $18
-	dw .TileBordersGFX + $60, VTiles0 tile $19
-	dw .TileBordersGFX + $70, VTiles0 tile $1a
+	dw .TileBordersGFX + 0 tiles, VTiles0 tile $00
+	dw .TileBordersGFX + 1 tiles, VTiles0 tile $01
+	dw .TileBordersGFX + 2 tiles, VTiles0 tile $02
+	dw .TileBordersGFX + 3 tiles, VTiles0 tile $0c
+	dw .TileBordersGFX + 4 tiles, VTiles0 tile $0e
+	dw .TileBordersGFX + 5 tiles, VTiles0 tile $18
+	dw .TileBordersGFX + 6 tiles, VTiles0 tile $19
+	dw .TileBordersGFX + 7 tiles, VTiles0 tile $1a
 ; e1723
 
 .TileBordersGFX: ; e1723
