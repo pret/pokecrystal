@@ -1036,7 +1036,7 @@ StartTitleScreen: ; 6219
 	ld hl, rLCDC
 	res 2, [hl]
 	call ClearScreen
-	call Function3200
+	call WaitBGMap2
 	xor a
 	ld [hLCDStatCustom], a
 	ld [hSCX], a

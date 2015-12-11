@@ -31,7 +31,7 @@ _TownMap: ; 9191c
 	xor a
 	ld [hBGMapMode], a
 	call Function91a04
-	call Function3200
+	call WaitBGMap2
 	ld a, [wd002]
 	call Function9106a
 	ld a, [wd003]

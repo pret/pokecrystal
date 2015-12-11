@@ -1038,7 +1038,7 @@ Function16d6ce: ; 16d6ce
 	call Function16d6e1
 	callba Function87d
 	call Call_ExitMenu
-	call Function3200
+	call WaitBGMap2
 	ret
 ; 16d6e1
 
@@ -1051,7 +1051,7 @@ Function16d6e1: ; 16d6e1
 	ld de, .Waiting
 	call PlaceString
 	call WaitBGMap
-	call Function3200
+	call WaitBGMap2
 	ld c, $32
 	jp DelayFrames
 ; 16d701

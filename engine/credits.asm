@@ -556,13 +556,13 @@ Function109a95: ; 109a95 (42:5a95)
 	ld bc, $14
 	ld a, $1
 	call ByteFill
-	call Function3200
+	call WaitBGMap2
 	xor a
 	ld [hBGMapMode], a
 	ld [hBGMapAddress], a
 	hlcoord 0, 0
 	call Function109aff
-	call Function3200
+	call WaitBGMap2
 	ret
 
 Function109aff: ; 109aff (42:5aff)

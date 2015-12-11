@@ -220,6 +220,7 @@ endc
 endm
 
 depixel EQUS "ldpixel de,"
+bcpixel EQUS "ldpixel bc,"
 
 dbpixel: MACRO
 if _NARG >= 4

@@ -2033,7 +2033,7 @@ Function2b5c:: ; 2b5c
 	ld b, SCGB_09
 	call GetSGBLayout
 	callba Function49409
-	call Function3200
+	call WaitBGMap2
 	callba FadeInPalettes
 	call EnableSpriteUpdates
 	ret
@@ -2053,7 +2053,7 @@ Function2b74:: ; 0x2b74
 	ld hl, VramState
 	set 0, [hl]
 	call UpdateSprites
-	call Function3200
+	call WaitBGMap2
 	ld b, SCGB_09
 	call GetSGBLayout
 	callba Function49409

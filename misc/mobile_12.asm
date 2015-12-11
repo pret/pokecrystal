@@ -112,7 +112,7 @@ InitMobileProfile: ; 4802f (12:402f)
 	ld de, String_48275
 	call PlaceString
 	call Function48187
-	call Function3200
+	call WaitBGMap2
 	call SetPalettes
 	call Function1bc9
 	ld hl, MenuSelection2

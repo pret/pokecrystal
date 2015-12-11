@@ -1149,7 +1149,7 @@ TilesetColorTest:
 	ld [hMapAnims], a
 	call ClearSprites
 	call OverworldTextModeSwitch
-	call Function3200
+	call WaitBGMap2
 	xor a
 	ld [hBGMapMode], a
 	ld de, DebugColorTestGFX + $10
@@ -1184,7 +1184,7 @@ TilesetColorTest:
 	call Function821d2
 	call Function821f4
 	call Function8220f
-	call Function3200
+	call WaitBGMap2
 	ld [wJumptableIndex], a
 	ld a, $40
 	ld [hWY], a

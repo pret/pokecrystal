@@ -15,7 +15,7 @@ LinkCommunications: ; 28000
 	call LoadStandardFont
 	call LoadFontsBattleExtra
 	callba Function16d69a
-	call Function3200
+	call WaitBGMap2
 	hlcoord 3, 8
 	ld b, $2
 	ld c, $c
@@ -26,7 +26,7 @@ LinkCommunications: ; 28000
 	ld de, String28419
 	call PlaceString
 	call Function28eff
-	call Function3200
+	call WaitBGMap2
 	ld hl, wcf5d
 	xor a
 	ld [hli], a
@@ -497,7 +497,7 @@ Function283b2: ; 283b2
 	call ClearScreen
 	ld b, SCGB_08
 	call GetSGBLayout
-	call Function3200
+	call WaitBGMap2
 	ret
 ; 283ed
 
@@ -1311,7 +1311,7 @@ Function2888b: ; 2888b
 	ld [wcfa5], a
 	xor a
 	ld [wcfa6], a
-	call Function3200
+	call WaitBGMap2
 
 Function288c5: ; 288c5
 	callba Function16d70c
@@ -1602,7 +1602,7 @@ Function28b22: ; 28b22
 	call ClearScreen
 	ld b, SCGB_08
 	call GetSGBLayout
-	call Function3200
+	call WaitBGMap2
 	xor a
 	ld [wcfbb], a
 	xor a
@@ -1721,7 +1721,7 @@ Function28b87: ; 28b87
 	call Function1bd3
 	push af
 	call Call_ExitMenu
-	call Function3200
+	call WaitBGMap2
 	pop af
 	bit 1, a
 	jr nz, .asm_28c33

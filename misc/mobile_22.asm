@@ -1308,7 +1308,7 @@ Function89844: ; 89844
 	call Function894bb
 	call Function897af
 	push bc
-	call Function3200
+	call WaitBGMap2
 	call SetPalettes
 	pop bc
 	ret

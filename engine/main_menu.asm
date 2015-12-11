@@ -388,7 +388,7 @@ Function49f16: ; 49f16
 	ld de, String_0x49fe9
 	hlcoord 1, 14
 	call PlaceString
-	call Function3200
+	call WaitBGMap2
 	call SetPalettes
 	call Function1bc9
 	ld hl, MenuSelection2
@@ -1071,7 +1071,7 @@ Function4a4c4: ; 4a4c4 (12:64c4)
 	ld e, l
 	hlcoord 1, 16
 	call PlaceString
-	call Function3200
+	call WaitBGMap2
 	call SetPalettes
 	call Function1bc9
 	ld hl, MenuSelection2

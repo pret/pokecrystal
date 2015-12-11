@@ -542,7 +542,7 @@ WaitBGMap:: ; 31f6
 	ret
 ; 3200
 
-Function3200:: ; 0x3200
+WaitBGMap2:: ; 0x3200
 	ld a, [hCGB]
 	and a
 	jr z, .bg0

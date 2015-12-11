@@ -379,7 +379,7 @@ Functionfb8c8: ; fb8c8
 	call LoadFontsExtra
 	call LoadStandardFont
 	callba Pokedex_PlaceFrontpicTopLeftCorner
-	call Function3200
+	call WaitBGMap2
 	callba GetEnemyMonDVs
 	ld a, [hli]
 	ld [TempMonDVs], a

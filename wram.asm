@@ -815,6 +815,9 @@ wDeck:: ds 24
 wDeckEnd::
 ; c6e8
 wCardFlipNumCardsPlayed:: ds 1
+wCardFlipFaceUpCard:: ds 1
+wDiscardPile:: ds 24
+wDiscardPileEnd::
 wCardFlipEnd::
 	ds wCardFlip - @
 
@@ -1435,15 +1438,18 @@ wNrOfBeatenBattleTowerTrainers::
 wMomBankDigitCursorPosition::
 wIntroSceneFrameCounter::
 wHoldingUnownPuzzlePiece::
+wCardFlipCursorY::
 wcf64:: ds 1
 IF !DEF(CRYSTAL11)
 wPokedexStatus::
 ENDC
 wTitleScreenTimerLo::
 wUnownPuzzleCursorPosition::
+wCardFlipCursorX::
 wcf65:: ds 1
 wTitleScreenTimerHi::
 wUnownPuzzleHeldPiece::
+wCardFlipWhichCard::
 wcf66:: ds 1
 
 Requested2bpp:: ; cf67

@@ -825,7 +825,7 @@ UnknownText_0x4ad51: ; 0x4ad51
 
 Function4ad56: ; 4ad56
 	callba OpenPartyStats
-	call Function3200
+	call WaitBGMap2
 	ret
 ; 4ad60
 

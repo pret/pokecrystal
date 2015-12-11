@@ -241,7 +241,7 @@ Functioncc220: ; cc220
 	ld [hBGMapAddress], a
 	ld a, (VBGMap0 tile $28) / $100
 	ld [hBGMapAddress + 1], a
-	call Function3200
+	call WaitBGMap2
 	ld a, $60
 	ld [hWY], a
 	xor a

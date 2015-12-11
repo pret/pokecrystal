@@ -8934,7 +8934,7 @@ DisplayLinkRecord: ; 3f836
 	xor a
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
-	call Function3200
+	call WaitBGMap2
 	ld b, SCGB_08
 	call GetSGBLayout
 	call SetPalettes

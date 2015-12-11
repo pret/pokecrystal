@@ -1295,7 +1295,7 @@ Function118936:
 	ld a, $40
 	or [hl]
 	ld [hl], a
-	call Function3200
+	call WaitBGMap2
 	ld a, $1
 	ld [wcd4f], a
 	ld a, $1

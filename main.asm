@@ -769,7 +769,7 @@ Function8000: ; 8000
 	ld bc, AttrMapEnd - AttrMap
 	ld a, $7
 	call ByteFill
-	call Function3200
+	call WaitBGMap2
 	call SetPalettes
 	ret
 ; 8029
@@ -7647,7 +7647,7 @@ ClearPCItemScreen: ; e58b
 	hlcoord 0,12
 	lb bc, 4, 18
 	call TextBox
-	call Function3200
+	call WaitBGMap2
 	call SetPalettes ; load regular palettes?
 	ret
 ; 0xe5bb
@@ -13483,13 +13483,13 @@ InitGender: ; 48dcb (12:4dcb)
 	call Function48e14
 	call Function48e47
 	call Function48e64
-	call Function3200
+	call WaitBGMap2
 	call SetPalettes
 	ld hl, TextJump_AreYouABoyOrAreYouAGirl
 	call PrintText
 	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
-	call Function3200
+	call WaitBGMap2
 	call InterpretMenu2
 	call WriteBackup
 	ld a, [MenuSelection2]
@@ -14814,13 +14814,13 @@ Function4d319: ; 4d319
 	callba Function4d354
 	callba Function16d673
 	callba Function28eff
-	call Function3200
+	call WaitBGMap2
 	ret
 ; 4d354
 
 Function4d354: ; 4d354
 	call WaitBGMap
-	call Function3200
+	call WaitBGMap2
 	ret
 ; 4d35b
 
@@ -16110,7 +16110,7 @@ Function4e881: ; 4e881
 	call EnableLCD
 	ld hl, .SavingRecordDontTurnOff
 	call PrintText
-	call Function3200
+	call WaitBGMap2
 	call SetPalettes
 	ret
 ; 4e8bd
@@ -16150,7 +16150,7 @@ Function4e8c2: ; 4e8c2
 	ld [hSCY], a
 	ld [hSCX], a
 	call EnableLCD
-	call Function3200
+	call WaitBGMap2
 	call SetPalettes
 	ret
 ; 4e906
@@ -20305,7 +20305,7 @@ Function1de247: ; 1de247
 	ld b, SCREEN_HEIGHT
 	hlcoord 19, 0, AttrMap
 	call Bank77_FillColumn
-	call Function3200
+	call WaitBGMap2
 	pop hl
 	ld a, l
 	ld [hBGMapAddress], a

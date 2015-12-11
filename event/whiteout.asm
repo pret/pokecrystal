@@ -35,7 +35,7 @@ Script_Whiteout: ; 0x124ce
 OverworldBGMap: ; 124fa
 	call ClearPalettes
 	call ClearScreen
-	call Function3200
+	call WaitBGMap2
 	call HideSprites
 	call RotateThreePalettesLeft
 	ret
