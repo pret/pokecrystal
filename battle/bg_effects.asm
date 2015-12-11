@@ -2959,13 +2959,13 @@ Functionc9059: ; c9059 (32:5059)
 
 Functionc905d: ; c905d (32:505d)
 	ld e, a
-	callab Functionce765
+	callab BattleAnim_Sine_e
 	ld a, e
 	ret
 
 Functionc9066: ; c9066 (32:5066)
 	ld e, a
-	callab Functionce76b
+	callab BattleAnim_Cosine_e
 	ld a, e
 	ret
 

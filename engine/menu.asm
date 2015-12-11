@@ -384,7 +384,7 @@ Function24259: ; 24259
 	ld a, [wcfa5]
 	bit 6, a
 	jr z, .asm_24266
-	callab Function8cf62
+	callab PlaySpriteAnimationsAndDelayFrame
 
 .asm_24266
 	call JoyTextDelay

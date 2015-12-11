@@ -422,17 +422,17 @@ wc313:: ds 1
 wSpriteAnimationStructs::
 
 sprite_anim_struct: MACRO
-\1Index:: ds 1      ; 0
-\1Sprite01:: ds 1   ; 1
-\1AnimSeqID:: ds 1  ; 2
-\1TileID:: ds 1     ; 3
-\1XCoord:: ds 1     ; 4
-\1YCoord:: ds 1     ; 5
-\1XOffset:: ds 1    ; 6
-\1YOffset:: ds 1    ; 7
-\1Duration:: ds 1 ; 8 
-\1DurationOffset:: ds 1   ; 9
-\1FrameIndex:: ds 1 ; a
+\1Index:: ds 1          ; 0
+\1FramesetID:: ds 1     ; 1
+\1AnimSeqID:: ds 1      ; 2
+\1TileID:: ds 1         ; 3
+\1XCoord:: ds 1         ; 4
+\1YCoord:: ds 1         ; 5
+\1XOffset:: ds 1        ; 6
+\1YOffset:: ds 1        ; 7
+\1Duration:: ds 1       ; 8 
+\1DurationOffset:: ds 1 ; 9
+\1FrameIndex:: ds 1     ; a
 \1Sprite0b:: ds 1
 \1Sprite0c:: ds 1
 \1Sprite0d:: ds 1
@@ -465,8 +465,7 @@ SpriteAnim10:: sprite_anim_struct SpriteAnim10
 wSpriteAnimationStructsEnd::
 	ds -8
 wc3ac:: ds 8 ; c3ac
-wSpriteAnimCount::
-wc3b4:: ds 1
+wSpriteAnimCount:: ds 1
 wCurrSpriteOAMAddr:: ds 1
 
 CurIcon:: ; c3b6
@@ -761,11 +760,53 @@ trademon: MACRO
 \1CaughtData:: ds 1 ; wc701 | wc733
 \1End::
 ENDM
-
+wTrademons::
 wPlayerTrademon:: trademon wPlayerTrademon
 wOTTrademon::     trademon wOTTrademon
+wTrademonsEnd::
+	ds wTrademons - @
 
-	ds wPlayerTrademon - @
+; Slot Machine
+wSlots::
+slot_reel: MACRO
+\1ReelAction::   db
+\1TilemapAddr::  dw
+\1Position::     db
+\1SpinDistance:: db
+\1SpinRate::     db
+\1OAMAddr::      dw
+\1XCoord::       db
+\1Slot09::       ds 1
+\1Slot0a::       ds 1
+\1Slot0b::       ds 1
+\1Slot0c::       ds 1
+\1Slot0d::       ds 1
+\1Slot0e::       ds 1
+\1Slot0f::       ds 1
+endm
+; c6d0
+wReel1:: slot_reel wReel1
+wReel2:: slot_reel wReel2
+wReel3:: slot_reel wReel3
+; c700
+wReel1Stopped:: ds 3
+wReel2Stopped:: ds 3
+wReel3Stopped:: ds 3
+wSlotBias:: ds 1
+wSlotBet:: ds 1
+wFirstTwoReelsMatching:: ds 1
+wFirstTwoReelsMatchingSevens:: ds 1
+wSlotMatched:: ds 1
+wCurrReelStopped:: ds 3
+wPayout:: ds 2
+wCurrReelXCoord:: ds 1
+wCurrReelYCoord:: ds 1
+	ds 2
+wSlotBuildingMatch:: ds 1
+wSlotsDataEnd::
+	ds 28
+wSlotsEnd::
+	ds wSlots - @
 
 wc6d0::
 PlayerSDefLevel:: ; c6d0
@@ -932,8 +973,9 @@ EffectFailed:: ; c70d
 wc70e::
 FailedMessage:: ; c70e
 	ds 1
-
-wEnemyGoesFirst:: ds 1
+wc70f::
+wEnemyGoesFirst::
+	ds 1
 wc710::
 wPlayerIsSwitching:: ds 1 ; c710
 wc711::
@@ -948,6 +990,7 @@ PlayerUsedMoves:: ; c712
 wc716:: ds 1
 wEnemySwitchMonParam::
 wc717:: ds 1
+wc718::
 wEnemySwitchMonIndex:: ds 1
 wc719:: ds 1
 LastPlayerMon:: ; c71a

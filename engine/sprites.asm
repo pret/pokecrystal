@@ -11,7 +11,7 @@ ClearSpriteAnims: ; 8cf53
 	ret
 ; 8cf62
 
-Function8cf62: ; 8cf62
+PlaySpriteAnimationsAndDelayFrame: ; 8cf62
 	call PlaySpriteAnimations
 	call DelayFrame
 	ret
@@ -23,7 +23,7 @@ PlaySpriteAnimations: ; 8cf69
 	push bc
 	push af
 
-	ld a, 0 * 4
+	ld a, Sprites % $100
 	ld [wCurrSpriteOAMAddr], a
 	call DoNextFrameForAllSprites
 
@@ -60,7 +60,7 @@ DoNextFrameForAllSprites: ; 8cf7a
 
 	ld a, [wCurrSpriteOAMAddr]
 	ld l, a
-	ld h, Sprites / $0100
+	ld h, Sprites / $100
 
 .loop2 ; Clear (Sprites + [wCurrSpriteOAMAddr] --> SpritesEnd)
 	ld a, l
@@ -139,9 +139,9 @@ InitSpriteAnimStruct:: ; 8cfd6
 ; Back up the structure address to bc.
 	ld c, l
 	ld b, h
-; Value [wc3b4] is initially set to -1. Set it to
+; Value [wSpriteAnimCount] is initially set to -1. Set it to
 ; the number of objects loaded into this array.
-	ld hl, wc3b4
+	ld hl, wSpriteAnimCount
 	inc [hl]
 	ld a, [hl]
 	and a
@@ -163,7 +163,7 @@ endr
 	ld hl, SPRITEANIMSTRUCT_INDEX
 	add hl, bc
 ; Load the index.
-	ld a, [wc3b4]
+	ld a, [wSpriteAnimCount]
 	ld [hli], a
 ; Copy the table entry to the next two fields.
 	ld a, [de]
@@ -172,7 +172,7 @@ endr
 	ld a, [de]
 	ld [hli], a
 	inc de
-; Look up the third field from the table in the wc300 array (10x2).
+; Look up the third field from the table in the wSpriteAnimDict array (10x2).
 ; Take the value and load it in 
 	ld a, [de]
 	call GetSpriteAnimVTile
@@ -532,14 +532,15 @@ endr
 	ret
 ; 8d1ac
 
-Function8d1ac: ; unreferenced
+BrokenGetStdGraphics: ; 8d1ac
+; dummied out
 	push hl
 	ld l, a
 	ld h, 0
 rept 2
 	add hl, hl
 endr
-	ld de, Unknown_8e706 ; broken 2bpp pointers
+	ld de, BrokenStdGFXPointers ; broken 2bpp pointers
 	add hl, de
 	ld c, [hl]
 	inc hl
@@ -556,52 +557,52 @@ endr
 ; 8d1c4
 
 SpriteAnimSeqData: ; 8d1c4
-	; ??, sequence, tile
-	db $01, SPRITE_ANIM_SEQ_01, $00 ; 00
-	db $07, SPRITE_ANIM_SEQ_04, $00 ; 01
-	db $08, SPRITE_ANIM_SEQ_05, $05 ; 02
-	db $0a, SPRITE_ANIM_SEQ_06, $00 ; 03
-	db $0b, SPRITE_ANIM_SEQ_07, $06 ; 04
-	db $0c, SPRITE_ANIM_SEQ_08, $06 ; 05
-	db $0d, SPRITE_ANIM_SEQ_09, $07 ; 06
-	db $0e, SPRITE_ANIM_SEQ_0A, $07 ; 07
-	db $10, SPRITE_ANIM_SEQ_0B, $07 ; 08
-	db $08, SPRITE_ANIM_SEQ_0C, $05 ; 09
-	db $11, SPRITE_ANIM_SEQ_00, $00 ; 0a flying sprite
-	db $12, SPRITE_ANIM_SEQ_0D, $08 ; 0b
-	db $12, SPRITE_ANIM_SEQ_0E, $08 ; 0c
-	db $12, SPRITE_ANIM_SEQ_0F, $08 ; 0d
-	db $13, SPRITE_ANIM_SEQ_10, $00 ; 0e
-	db $15, SPRITE_ANIM_SEQ_00, $00 ; 0f
-	db $16, SPRITE_ANIM_SEQ_11, $00 ; 10
-	db $17, SPRITE_ANIM_SEQ_12, $00 ; 11
-	db $18, SPRITE_ANIM_SEQ_12, $00 ; 12
-	db $19, SPRITE_ANIM_SEQ_13, $00 ; 13
-	db $1a, SPRITE_ANIM_SEQ_14, $00 ; 14 radio tuning knob
-	db $1b, SPRITE_ANIM_SEQ_00, $00 ; 15
-	db $1d, SPRITE_ANIM_SEQ_15, $00 ; 16 leaves when cutting down a tree
-	db $1e, SPRITE_ANIM_SEQ_00, $00 ; 17
-	db $1d, SPRITE_ANIM_SEQ_17, $00 ; 18 flying leaves
-	db $1f, SPRITE_ANIM_SEQ_00, $00 ; 19
-	db $24, SPRITE_ANIM_SEQ_19, $00 ; 1a
-	db $25, SPRITE_ANIM_SEQ_00, $00 ; 1b
-	db $20, SPRITE_ANIM_SEQ_13, $00 ; 1c
-	db $26, SPRITE_ANIM_SEQ_1A, $00 ; 1d
-	db $2d, SPRITE_ANIM_SEQ_00, $00 ; 1e
-	db $2e, SPRITE_ANIM_SEQ_00, $00 ; 1f
-	db $2f, SPRITE_ANIM_SEQ_00, $00 ; 20
-	db $30, SPRITE_ANIM_SEQ_00, $00 ; 21
-	db $31, SPRITE_ANIM_SEQ_00, $00 ; 22
-	db $32, SPRITE_ANIM_SEQ_1B, $00 ; 23
-	db $33, SPRITE_ANIM_SEQ_1C, $00 ; 24
-	db $34, SPRITE_ANIM_SEQ_00, $00 ; 25
-	db $35, SPRITE_ANIM_SEQ_1D, $00 ; 26
-	db $37, SPRITE_ANIM_SEQ_1E, $00 ; 27
-	db $38, SPRITE_ANIM_SEQ_1E, $00 ; 28
-	db $39, SPRITE_ANIM_SEQ_20, $00 ; 29 intro unown
-	db $3f, SPRITE_ANIM_SEQ_21, $00 ; 2a
-	db $3e, SPRITE_ANIM_SEQ_22, $00 ; 2b
-	db $40, SPRITE_ANIM_SEQ_00, $00 ; 2c
+	; frameset sequence, tile
+	db SPRITE_ANIM_FRAMESET_01, SPRITE_ANIM_SEQ_01, $00 ; 00
+	db SPRITE_ANIM_FRAMESET_07, SPRITE_ANIM_SEQ_04, $00 ; 01
+	db SPRITE_ANIM_FRAMESET_08, SPRITE_ANIM_SEQ_05, $05 ; 02
+	db SPRITE_ANIM_FRAMESET_0A, SPRITE_ANIM_SEQ_06, $00 ; 03
+	db SPRITE_ANIM_FRAMESET_0B, SPRITE_ANIM_SEQ_07, $06 ; 04
+	db SPRITE_ANIM_FRAMESET_0C, SPRITE_ANIM_SEQ_08, $06 ; 05
+	db SPRITE_ANIM_FRAMESET_SLOT_GOLEM, SPRITE_ANIM_SEQ_SLOT_GOLEM, $07 ; 06 slots golem
+	db SPRITE_ANIM_FRAMESET_SLOTS_CHANSEY, SPRITE_ANIM_SEQ_SLOTS_CHANSEY, $07 ; 07 slots chansey
+	db SPRITE_ANIM_FRAMESET_SLOTS_EGG, SPRITE_ANIM_SEQ_SLOTS_EGG, $07 ; 08 slots egg
+	db SPRITE_ANIM_FRAMESET_08, SPRITE_ANIM_SEQ_0C, $05 ; 09
+	db SPRITE_ANIM_FRAMESET_11, SPRITE_ANIM_SEQ_00, $00 ; 0a flying sprite
+	db SPRITE_ANIM_FRAMESET_12, SPRITE_ANIM_SEQ_0D, $08 ; 0b
+	db SPRITE_ANIM_FRAMESET_12, SPRITE_ANIM_SEQ_0E, $08 ; 0c
+	db SPRITE_ANIM_FRAMESET_12, SPRITE_ANIM_SEQ_0F, $08 ; 0d
+	db SPRITE_ANIM_FRAMESET_13, SPRITE_ANIM_SEQ_10, $00 ; 0e
+	db SPRITE_ANIM_FRAMESET_15, SPRITE_ANIM_SEQ_00, $00 ; 0f
+	db SPRITE_ANIM_FRAMESET_16, SPRITE_ANIM_SEQ_11, $00 ; 10
+	db SPRITE_ANIM_FRAMESET_17, SPRITE_ANIM_SEQ_12, $00 ; 11
+	db SPRITE_ANIM_FRAMESET_18, SPRITE_ANIM_SEQ_12, $00 ; 12
+	db SPRITE_ANIM_FRAMESET_19, SPRITE_ANIM_SEQ_13, $00 ; 13
+	db SPRITE_ANIM_FRAMESET_1A, SPRITE_ANIM_SEQ_14, $00 ; 14 radio tuning knob
+	db SPRITE_ANIM_FRAMESET_1B, SPRITE_ANIM_SEQ_00, $00 ; 15
+	db SPRITE_ANIM_FRAMESET_1D, SPRITE_ANIM_SEQ_15, $00 ; 16 leaves when cutting down a tree
+	db SPRITE_ANIM_FRAMESET_1E, SPRITE_ANIM_SEQ_00, $00 ; 17
+	db SPRITE_ANIM_FRAMESET_1D, SPRITE_ANIM_SEQ_17, $00 ; 18 flying leaves
+	db SPRITE_ANIM_FRAMESET_1F, SPRITE_ANIM_SEQ_00, $00 ; 19
+	db SPRITE_ANIM_FRAMESET_24, SPRITE_ANIM_SEQ_19, $00 ; 1a
+	db SPRITE_ANIM_FRAMESET_25, SPRITE_ANIM_SEQ_00, $00 ; 1b
+	db SPRITE_ANIM_FRAMESET_20, SPRITE_ANIM_SEQ_13, $00 ; 1c
+	db SPRITE_ANIM_FRAMESET_26, SPRITE_ANIM_SEQ_1A, $00 ; 1d
+	db SPRITE_ANIM_FRAMESET_2D, SPRITE_ANIM_SEQ_00, $00 ; 1e
+	db SPRITE_ANIM_FRAMESET_2E, SPRITE_ANIM_SEQ_00, $00 ; 1f
+	db SPRITE_ANIM_FRAMESET_2F, SPRITE_ANIM_SEQ_00, $00 ; 20
+	db SPRITE_ANIM_FRAMESET_30, SPRITE_ANIM_SEQ_00, $00 ; 21
+	db SPRITE_ANIM_FRAMESET_31, SPRITE_ANIM_SEQ_00, $00 ; 22
+	db SPRITE_ANIM_FRAMESET_32, SPRITE_ANIM_SEQ_1B, $00 ; 23
+	db SPRITE_ANIM_FRAMESET_33, SPRITE_ANIM_SEQ_1C, $00 ; 24
+	db SPRITE_ANIM_FRAMESET_34, SPRITE_ANIM_SEQ_00, $00 ; 25
+	db SPRITE_ANIM_FRAMESET_35, SPRITE_ANIM_SEQ_1D, $00 ; 26
+	db SPRITE_ANIM_FRAMESET_37, SPRITE_ANIM_SEQ_1E, $00 ; 27
+	db SPRITE_ANIM_FRAMESET_38, SPRITE_ANIM_SEQ_1E, $00 ; 28
+	db SPRITE_ANIM_FRAMESET_39, SPRITE_ANIM_SEQ_20, $00 ; 29 intro unown
+	db SPRITE_ANIM_FRAMESET_3F, SPRITE_ANIM_SEQ_21, $00 ; 2a
+	db SPRITE_ANIM_FRAMESET_3E, SPRITE_ANIM_SEQ_22, $00 ; 2b
+	db SPRITE_ANIM_FRAMESET_40, SPRITE_ANIM_SEQ_00, $00 ; 2c
 ; 8d24b
 
 INCLUDE "engine/sprite_anims.asm" ; DoAnimFrame

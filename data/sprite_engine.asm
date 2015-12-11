@@ -1559,7 +1559,7 @@ Unknown_8e6a5: ; 8e6a5
 	dsprite  0,  0,  0,  4, $52, $01
 	dsprite  0,  0,  1,  4, $53, $01
 ; 8e706
-Unknown_8e706: ; Broken 2bpp pointers
+BrokenStdGFXPointers: ; Broken 2bpp pointers
 	dbbw $80, $01, .deleted ; 128-tile 2bpp at 1:672a (inside Multiply)
 	dbbw $80, $01, .deleted
 	dbbw $80, $01, .deleted

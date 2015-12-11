@@ -125,7 +125,7 @@ INCBIN "gfx/icon/mail2.2bpp"
 	bit 7, a
 	jr nz, .exit_mail
 	call .DoJumptable
-	callba Function8cf62
+	callba PlaySpriteAnimationsAndDelayFrame
 	call .Update
 	call DelayFrame
 	and a

@@ -4764,13 +4764,13 @@ endr
 	jr nz, .multiply
 	ret
 
-Functionce765: ; ce765 (33:6765)
+BattleAnim_Sine_e: ; ce765 (33:6765)
 	ld a, e
 	call BattleAnim_Sine
 	ld e, a
 	ret
 
-Functionce76b: ; ce76b (33:676b)
+BattleAnim_Cosine_e: ; ce76b (33:676b)
 	ld a, e
 	call BattleAnim_Cosine
 	ld e, a
@@ -4778,7 +4778,7 @@ Functionce76b: ; ce76b (33:676b)
 
 ; ce771 (33:6771)
 
-Functionce771: ; ce771
+BattleAnim_AbsSinePrecise: ; ce771
 	ld a, e
 	call BattleAnim_Sine
 	ld e, l
@@ -4787,7 +4787,7 @@ Functionce771: ; ce771
 
 ; ce778
 
-Functionce778: ; ce778
+BattleAnim_AbsCosinePrecise: ; ce778
 	ld a, e
 	call BattleAnim_Cosine
 	ld e, l

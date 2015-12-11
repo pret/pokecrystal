@@ -4,25 +4,30 @@ UNDERGROUND_DOOR_CLOSED3 EQU $3f
 UNDERGROUND_DOOR_OPEN1   EQU $2d
 UNDERGROUND_DOOR_OPEN2   EQU $3d
 
-UGDOOR_1  EQU $1006
-UGDOOR_2  EQU $0a06
-UGDOOR_3  EQU $0206
-UGDOOR_4  EQU $020a
-UGDOOR_5  EQU $0a0a
-UGDOOR_6  EQU $100a
-UGDOOR_7  EQU $0c06
-UGDOOR_8  EQU $0c08
-UGDOOR_9  EQU $0606
-UGDOOR_10 EQU $0608
-UGDOOR_11 EQU $0c0a
-UGDOOR_12 EQU $0c0c
-UGDOOR_13 EQU $060a
-UGDOOR_14 EQU $060c
-UGDOOR_15 EQU $120a
-UGDOOR_16 EQU $120c
+ugdoor: macro
+\1_YCOORD EQU \2
+\1_XCOORD EQU \3
+endm
+
+	ugdoor UGDOOR_1,  $10, $06
+	ugdoor UGDOOR_2,  $0a, $06
+	ugdoor UGDOOR_3,  $02, $06
+	ugdoor UGDOOR_4,  $02, $0a
+	ugdoor UGDOOR_5,  $0a, $0a
+	ugdoor UGDOOR_6,  $10, $0a
+	ugdoor UGDOOR_7,  $0c, $06
+	ugdoor UGDOOR_8,  $0c, $08
+	ugdoor UGDOOR_9,  $06, $06
+	ugdoor UGDOOR_10, $06, $08
+	ugdoor UGDOOR_11, $0c, $0a
+	ugdoor UGDOOR_12, $0c, $0c
+	ugdoor UGDOOR_13, $06, $0a
+	ugdoor UGDOOR_14, $06, $0c
+	ugdoor UGDOOR_15, $12, $0a
+	ugdoor UGDOOR_16, $12, $0c
 
 doorstate: macro
-	changeblock UGDOOR_\1 / $100, UGDOOR_\1 % $100, UNDERGROUND_DOOR_\2
+	changeblock UGDOOR_\1_YCOORD, UGDOOR_\1_XCOORD, UNDERGROUND_DOOR_\2
 endm
 
 const_value set 2

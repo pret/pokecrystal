@@ -338,7 +338,7 @@ Function11915: ; 11915
 	bit 7, a
 	jr nz, .asm_11930
 	call Function11968
-	callba Function8cf62
+	callba PlaySpriteAnimationsAndDelayFrame
 	call Function11940
 	call DelayFrame
 	and a

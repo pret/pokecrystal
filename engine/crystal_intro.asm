@@ -255,7 +255,7 @@ GameFreakLogoScene2: ; e470d (39:470d)
 	add $20
 .asm_e4723
 	ld e, a
-	callba Functionce765
+	callba BattleAnim_Sine_e
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], e

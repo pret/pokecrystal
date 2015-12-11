@@ -15,41 +15,42 @@ endr
 
 
 .Jumptable: ; 8d25b (23:525b)
-	dw .zero        ; town map
-	dw .one         ; bouncing mon icon
-	dw .two         ; bouncing mon icon, selected
-	dw .three       ; bouncing mon icon, menu open
-	dw .four
-	dw .five
-	dw .six         ; Game Freak logo
-	dw .seven
-	dw .eight
-	dw .nine
-	dw .ten
-	dw .eleven
-	dw .twelve      ; blinking cursor
-	dw .thirteen
-	dw .fourteen
-	dw .fifteen
-	dw .sixteen
-	dw .seventeen
-	dw .eighteen
-	dw .nineteen    ; finish egg hatching animation
-	dw .twenty      ; radio tuning knob
-	dw .twentyone   ; cut grass leaves
-	dw .twentytwo   ; flying sprite
-	dw .twentythree ; flying leaves
-	dw .twentyfour
-	dw .twentyfive
-	dw .twentysix
-	dw .twentyseven
-	dw .twentyeight
-	dw .twentynine  ; intro suicune
-	dw .thirty      ; intro pichu wooper
-	dw .thirtyone   ; celebi
-	dw .thirtytwo   ; intro unown
-	dw .thirtythree ; intro unown F with suicune leaping up
-	dw .thirtyfour  ; intro suicune facing away from us
+	jumptable_start
+	jumptable .zero        ; town map
+	jumptable .one         ; bouncing mon icon
+	jumptable .two         ; bouncing mon icon, selected
+	jumptable .three       ; bouncing mon icon, menu open
+	jumptable .four
+	jumptable .five
+	jumptable .six         ; Game Freak logo
+	jumptable .seven
+	jumptable .eight
+	jumptable .nine        ; Something to do with slots
+	jumptable .ten         ; Something to do with slots
+	jumptable .eleven      ; Something to do with slots
+	jumptable .twelve      ; blinking cursor
+	jumptable .thirteen
+	jumptable .fourteen
+	jumptable .fifteen
+	jumptable .sixteen
+	jumptable .seventeen
+	jumptable .eighteen
+	jumptable .nineteen    ; finish egg hatching animation
+	jumptable .twenty      ; radio tuning knob
+	jumptable .twentyone   ; cut grass leaves
+	jumptable .twentytwo   ; flying sprite
+	jumptable .twentythree ; flying leaves
+	jumptable .twentyfour
+	jumptable .twentyfive
+	jumptable .twentysix
+	jumptable .twentyseven
+	jumptable .twentyeight
+	jumptable .twentynine  ; intro suicune
+	jumptable .thirty      ; intro pichu wooper
+	jumptable .thirtyone   ; celebi
+	jumptable .thirtytwo   ; intro unown
+	jumptable .thirtythree ; intro unown F with suicune leaping up
+	jumptable .thirtyfour  ; intro suicune facing away from us
 
 
 .zero: ; 8d2a1 (23:52a1)
@@ -359,11 +360,11 @@ endr
 	ret
 
 .nine: ; 8d422 (23:5422)
-	callab Function9321d
+	callab SlotMachine_AnimateGolem
 	ret
 
 .ten: ; 8d429 (23:5429)
-	callab Function932ac
+	callab Slots_AnimateChansey
 	ld hl, wcf64
 	ld a, [hl]
 	cp $2
@@ -380,13 +381,13 @@ endr
 	dec [hl]
 	ld e, a
 	and $1
-	jr z, .asm_8d462
+	jr z, .move_vertical
 
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hl]
-	cp $78
-	jr c, .asm_8d461
+	cp 15 * 8
+	jr c, .move_right
 	call DeinitializeSprite
 	ld a, $4
 	ld [wcf64], a
@@ -394,9 +395,9 @@ endr
 	call PlaySFX
 	ret
 
-.asm_8d461
+.move_right
 	inc [hl]
-.asm_8d462
+.move_vertical
 	ld a, e
 	ld d, $20
 	call .Sprites_Sine

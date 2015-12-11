@@ -1222,7 +1222,7 @@ Function16d7e7: ; 16d7e7
 	ld a, [wcfa5]
 	bit 6, a
 	jr z, .asm_16d7f4
-	callba Function8cf62
+	callba PlaySpriteAnimationsAndDelayFrame
 
 .asm_16d7f4
 	call JoyTextDelay

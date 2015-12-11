@@ -247,5 +247,37 @@ palgreen EQUS "$0020 *"
 palblue EQUS "$0001 *"
 
 dsprite: MACRO
+; conditional segment is there because not every instance of
+; this macro is directly OAM
+if _NARG == 7 ; y tile, y pxl, x tile, x pxl, vtile offset, flags, palette
+	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5, (\6 << 3) + (\7 & 7)
+else
 	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5, \6
+endc
+endm
+
+jumptable_start: MACRO
+if _NARG == 0
+__far = 0
+else
+__far = \1 ; 0: dw | 1: dba | 2: dab
+endc
+	enum_start
+endm
+
+jumptable: MACRO
+if DEF(\1JumptableIndex)
+__enum__ = __enum__ + 1
+else
+	enum \1JumptableIndex
+endc
+if __far == 0
+	dw \1
+else
+if __far == 1
+	dba \1
+else
+	dab \1
+endc
+endc
 endm

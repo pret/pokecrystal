@@ -663,7 +663,7 @@ GetHatchlingFrontpic: ; 1723c (5:723c)
 	pop de
 	predef_jump FrontpicPredef
 
-Function17254: ; 17254 (5:7254)
+Hatch_UpdateFrontpicBGMapCenter: ; 17254 (5:7254)
 	push af
 	call WaitTop
 	push hl
@@ -681,7 +681,7 @@ Function17254: ; 17254 (5:7254)
 	lb bc, 7, 7
 	predef FillBox
 	pop af
-	call Function17363
+	call Hatch_LoadFrontpicPal
 	call SetPalettes
 	jp WaitBGMap
 
@@ -721,10 +721,10 @@ EggHatch_AnimationSequence: ; 1728f (5:728f)
 	call PlayMusic
 	call EnableLCD
 	hlcoord 7, 4
-	ld b, (VBGMap0 + 1 * $20 + 17) / $100
-	ld c, (VBGMap0 + 1 * $20 + 17) % $100
+	ld b, VBGMap0 / $100
+	ld c, $31 ; Egg tiles start here
 	ld a, EGG
-	call Function17254
+	call Hatch_UpdateFrontpicBGMapCenter
 	ld c, 80
 	call DelayFrames
 	xor a
@@ -768,13 +768,13 @@ EggHatch_AnimationSequence: ; 1728f (5:728f)
 	ld [hSCX], a
 	ld [wGlobalAnimXOffset], a
 	call ClearSprites
-	call Function173b3
+	call Hatch_InitShellFragments
 	hlcoord 6, 3
 	ld b, VBGMap0 / $100
-	ld c, VBGMap0 % $100
+	ld c, $00 ; Hatchling tiles start here
 	ld a, [wJumptableIndex]
-	call Function17254
-	call Function17418
+	call Hatch_UpdateFrontpicBGMapCenter
+	call Hatch_ShellFragmentLoop
 	call WaitSFX
 	ld a, [wJumptableIndex]
 	ld [CurPartySpecies], a
@@ -786,7 +786,7 @@ EggHatch_AnimationSequence: ; 1728f (5:728f)
 	ld [CurSpecies], a
 	ret
 
-Function17363: ; 17363 (5:7363)
+Hatch_LoadFrontpicPal: ; 17363 (5:7363)
 	ld [PlayerHPPal], a
 	ld b, SCGB_0B
 	ld c, $0
@@ -818,7 +818,7 @@ EggHatchGFX: ; 17393
 INCBIN "gfx/unknown/017393.2bpp"
 ; 173b3
 
-Function173b3: ; 173b3 (5:73b3)
+Hatch_InitShellFragments: ; 173b3 (5:73b3)
 	callba ClearSpriteAnims
 	ld hl, .SpriteData
 .loop
@@ -834,20 +834,25 @@ Function173b3: ; 173b3 (5:73b3)
 	ld b, a
 	push hl
 	push bc
+
 	ld a, SPRITE_ANIM_INDEX_1C
 	call _InitSpriteAnimStruct
+
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $0
+
 	pop de
 	ld a, e
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	add [hl]
 	ld [hl], a
+
 	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	ld [hl], d
+
 	pop hl
 	jr .loop
 .done
@@ -872,57 +877,57 @@ Function173b3: ; 173b3 (5:73b3)
 	db -1
 ; 17418
 
-Function17418: ; 17418 (5:7418)
-	ld c, $81
-.asm_1741a
+Hatch_ShellFragmentLoop: ; 17418 (5:7418)
+	ld c, 129
+.loop
 	call EggHatch_DoAnimFrame
 	dec c
-	jr nz, .asm_1741a
+	jr nz, .loop
 	ret
 
 Special_DayCareMon1: ; 17421
-	ld hl, UnknownText_0x17467
+	ld hl, DayCareMon1Text
 	call PrintText
 	ld a, [wBreedMon1Species]
 	call PlayCry
 	ld a, [wDaycareLady]
 	bit 0, a
-	jr z, Function1745f
+	jr z, DayCareMonCursor
 	call ButtonSound
 	ld hl, wBreedMon2Nick
-	call Function1746c
+	call DayCareMonCompatibilityText
 	jp PrintText
 
 Special_DayCareMon2: ; 17440
-	ld hl, UnknownText_0x17462
+	ld hl, DayCareMon2Text
 	call PrintText
 	ld a, [wBreedMon2Species]
 	call PlayCry
 	ld a, [wDaycareMan]
 	bit 0, a
-	jr z, Function1745f
+	jr z, DayCareMonCursor
 	call ButtonSound
 	ld hl, wBreedMon1Nick
-	call Function1746c
+	call DayCareMonCompatibilityText
 	jp PrintText
 
-Function1745f: ; 1745f
+DayCareMonCursor: ; 1745f
 	jp WaitPressAorB_BlinkCursor
 ; 17462
 
-UnknownText_0x17462: ; 0x17462
+DayCareMon2Text: ; 0x17462
 	; It's @ that was left with the DAY-CARE LADY.
 	text_jump UnknownText_0x1c0df3
 	db "@"
 ; 0x17467
 
-UnknownText_0x17467: ; 0x17467
+DayCareMon1Text: ; 0x17467
 	; It's @ that was left with the DAY-CARE MAN.
 	text_jump UnknownText_0x1c0e24
 	db "@"
 ; 0x1746c
 
-Function1746c: ; 1746c
+DayCareMonCompatibilityText: ; 1746c
 	push bc
 	ld de, StringBuffer1
 	ld bc, NAME_LENGTH
@@ -930,60 +935,61 @@ Function1746c: ; 1746c
 	call CheckBreedmonCompatibility
 	pop bc
 	ld a, [wd265]
-	ld hl, UnknownText_0x1749c
-	cp $ff
-	jr z, .asm_1749b
-	ld hl, UnknownText_0x174a1
+	ld hl, .AllAlone
+	cp -1
+	jr z, .done
+	ld hl, .Incompatible
 	and a
-	jr z, .asm_1749b
-	ld hl, UnknownText_0x174a6
+	jr z, .done
+	ld hl, .HighCompatibility
 	cp 230
-	jr nc, .asm_1749b
+	jr nc, .done
 	cp 70
-	ld hl, UnknownText_0x174ab
-	jr nc, .asm_1749b
-	ld hl, UnknownText_0x174b0
+	ld hl, .ModerateCompatibility
+	jr nc, .done
+	ld hl, .SlightCompatibility
 
-.asm_1749b
+.done
 	ret
 ; 1749c
 
-UnknownText_0x1749c: ; 0x1749c
+.AllAlone: ; 0x1749c
 	; It's brimming with energy.
 	text_jump UnknownText_0x1c0e54
 	db "@"
 ; 0x174a1
 
-UnknownText_0x174a1: ; 0x174a1
+.Incompatible: ; 0x174a1
 	; It has no interest in @ .
 	text_jump UnknownText_0x1c0e6f
 	db "@"
 ; 0x174a6
 
-UnknownText_0x174a6: ; 0x174a6
+.HighCompatibility: ; 0x174a6
 	; It appears to care for @ .
 	text_jump UnknownText_0x1c0e8d
 	db "@"
 ; 0x174ab
 
-UnknownText_0x174ab: ; 0x174ab
+.ModerateCompatibility: ; 0x174ab
 	; It's friendly with @ .
 	text_jump UnknownText_0x1c0eac
 	db "@"
 ; 0x174b0
 
-UnknownText_0x174b0: ; 0x174b0
+.SlightCompatibility: ; 0x174b0
 	; It shows interest in @ .
 	text_jump UnknownText_0x1c0ec6
 	db "@"
 ; 0x174b5
 
-Function_174b5: ; 174b5
-	ld hl, String_174b9
+DayCareMonPrintEmptyString: ; 174b5
+; unreferenced
+	ld hl, .string
 	ret
 ; 174b9
 
-String_174b9: ; 174b9
+.string: ; 174b9
 	db "@"
 ; 174ba
 
