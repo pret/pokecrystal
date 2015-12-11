@@ -8,8 +8,8 @@ NewBarkTown_MapScriptHeader:
 	db 2
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
-	dw .Trigger2, 0
 
 .MapCallbacks:
 	db 1
@@ -17,10 +17,10 @@ NewBarkTown_MapScriptHeader:
 	; callbacks
 	dbw 5, .FlyPoint
 
-.Trigger1
+.Trigger0
 	end
 
-.Trigger2
+.Trigger1
 	end
 
 .FlyPoint

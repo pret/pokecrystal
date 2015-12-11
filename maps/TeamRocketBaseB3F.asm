@@ -19,10 +19,10 @@ TeamRocketBaseB3F_MapScriptHeader:
 	db 4
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
 	dw .Trigger2, 0
 	dw .Trigger3, 0
-	dw .Trigger4, 0
 
 .MapCallbacks:
 	db 1
@@ -31,17 +31,17 @@ TeamRocketBaseB3F_MapScriptHeader:
 
 	dbw 1, .CheckGiovanniDoor
 
-.Trigger1:
+.Trigger0:
 	priorityjump LanceScript_0x6dffc
+	end
+
+.Trigger1:
 	end
 
 .Trigger2:
 	end
 
 .Trigger3:
-	end
-
-.Trigger4:
 	end
 
 .CheckGiovanniDoor:

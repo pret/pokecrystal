@@ -11,7 +11,7 @@ TeamRocketBaseB1F_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw .Trigger1, 0
+	dw .Trigger0, 0
 
 .MapCallbacks:
 	db 1
@@ -20,7 +20,7 @@ TeamRocketBaseB1F_MapScriptHeader:
 
 	dbw 2, .Callback1
 
-.Trigger1:
+.Trigger0:
 	end
 
 .Callback1:

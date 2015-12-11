@@ -9,12 +9,12 @@ SaffronTrainStation_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw .Trigger1, 0
+	dw .Trigger0, 0
 
 .MapCallbacks:
 	db 0
 
-.Trigger1:
+.Trigger0:
 	end
 
 OfficerScript_0x18a81e:

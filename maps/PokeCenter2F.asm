@@ -9,44 +9,44 @@ PokeCenter2F_MapScriptHeader:
 	db 6
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
 	dw .Trigger2, 0
 	dw .Trigger3, 0
 	dw .Trigger4, 0
 	dw .Trigger5, 0
-	dw .Trigger6, 0
 
 .MapCallbacks:
 	db 0
 
-.Trigger1:
+.Trigger0:
 	special Special_CheckMysteryGift
-	if_equal $0, .Trigger1Done
+	if_equal $0, .Trigger0Done
 	clearevent EVENT_MYSTERY_GIFT_DELIVERY_GUY
 	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
-	iftrue .Trigger1Done
+	iftrue .Trigger0Done
 	priorityjump PokeCenter2F_AppearMysteryGiftDeliveryGuy
 
-.Trigger1Done:
+.Trigger0Done:
 	end
 
-.Trigger2:
+.Trigger1:
 	priorityjump Script_LeftCableTradeCenter
 	end
 
-.Trigger3:
+.Trigger2:
 	priorityjump Script_LeftCableColosseum
 	end
 
-.Trigger4:
+.Trigger3:
 	priorityjump Script_LeftTimeCapsule
 	end
 
-.Trigger5:
+.Trigger4:
 	priorityjump Script_LeftMobileTradeRoom
 	end
 
-.Trigger6:
+.Trigger5:
 	priorityjump Script_LeftMobileBattleRoom
 	end
 

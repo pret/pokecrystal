@@ -17,9 +17,9 @@ Route36NationalParkgate_MapScriptHeader:
 	db 3
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
 	dw .Trigger2, 0
-	dw .Trigger3, 0
 
 .MapCallbacks:
 	db 2
@@ -30,13 +30,13 @@ Route36NationalParkgate_MapScriptHeader:
 
 	dbw 2, .CheckIfContestAvailable
 
+.Trigger0:
+	end
+
 .Trigger1:
 	end
 
 .Trigger2:
-	end
-
-.Trigger3:
 	priorityjump .LeftTheContestEarly
 	end
 

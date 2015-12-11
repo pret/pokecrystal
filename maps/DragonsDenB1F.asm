@@ -14,8 +14,8 @@ DragonsDenB1F_MapScriptHeader:
 	db 2
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
-	dw .Trigger2, 0
 
 .MapCallbacks:
 	db 1
@@ -24,10 +24,10 @@ DragonsDenB1F_MapScriptHeader:
 
 	dbw 5, .CheckSilver
 
-.Trigger1:
+.Trigger0:
 	end
 
-.Trigger2:
+.Trigger1:
 	end
 
 .CheckSilver:

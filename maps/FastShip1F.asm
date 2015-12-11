@@ -9,21 +9,21 @@ FastShip1F_MapScriptHeader:
 	db 3
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
 	dw .Trigger2, 0
-	dw .Trigger3, 0
 
 .MapCallbacks:
 	db 0
 
-.Trigger1:
+.Trigger0:
 	end
 
-.Trigger2:
+.Trigger1:
 	priorityjump .PriorityJump2
 	end
 
-.Trigger3:
+.Trigger2:
 	end
 
 .PriorityJump2:

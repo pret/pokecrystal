@@ -7,8 +7,8 @@ TradeCenter_MapScriptHeader:
 	db 2
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
-	dw .Trigger2, 0
 
 .MapCallbacks:
 	db 1
@@ -17,11 +17,11 @@ TradeCenter_MapScriptHeader:
 
 	dbw 2, TradeCenter_SetWhichChris
 
-.Trigger1:
+.Trigger0:
 	priorityjump TradeCenter_Initialize
 	end
 
-.Trigger2:
+.Trigger1:
 	end
 
 TradeCenter_SetWhichChris:

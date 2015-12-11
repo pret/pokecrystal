@@ -17,9 +17,9 @@ AzaleaTown_MapScriptHeader:
 	db 3
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
 	dw .Trigger2, 0
-	dw .Trigger3, 0
 
 .MapCallbacks:
 	db 1
@@ -27,13 +27,13 @@ AzaleaTown_MapScriptHeader:
 	; callbacks
 	dbw 5, .Flypoint
 
+.Trigger0
+	end
+
 .Trigger1
 	end
 
 .Trigger2
-	end
-
-.Trigger3
 	end
 
 .Flypoint

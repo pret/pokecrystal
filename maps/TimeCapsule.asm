@@ -7,8 +7,8 @@ TimeCapsule_MapScriptHeader:
 	db 2
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
-	dw .Trigger2, 0
 
 .MapCallbacks:
 	db 1
@@ -17,11 +17,11 @@ TimeCapsule_MapScriptHeader:
 
 	dbw 2, TimeCapsule_SetWhichChris
 
-.Trigger1:
+.Trigger0:
 	priorityjump TimeCapsule_Initialize
 	end
 
-.Trigger2:
+.Trigger1:
 	end
 
 TimeCapsule_SetWhichChris:
