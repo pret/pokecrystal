@@ -212,7 +212,7 @@ ENDM
 palettes EQUS "* 8"
 
 ldpixel: MACRO
-if _NARG == 5
+if _NARG >= 5
 	lb \1, \2 * 8 + \4, \3 * 8 + \5
 else
 	lb \1, \2 * 8, \3 * 8
@@ -222,7 +222,7 @@ endm
 depixel EQUS "ldpixel de,"
 
 dbpixel: MACRO
-if _NARG == 4
+if _NARG >= 4
 	db \1 * 8 + \3, \2 * 8 + \4
 else
 	db \1 * 8, \2 * 8
@@ -230,7 +230,7 @@ endc
 endm
 
 bgcoord: MACRO
-IF _NARG == 4
+IF _NARG >= 4
 	ld \1, \3 * $20 + \2 + \4
 ELSE
 	ld \1, \3 * $20 + \2 + VBGMap0
@@ -249,7 +249,7 @@ palblue EQUS "$0001 *"
 dsprite: MACRO
 ; conditional segment is there because not every instance of
 ; this macro is directly OAM
-if _NARG == 7 ; y tile, y pxl, x tile, x pxl, vtile offset, flags, palette
+if _NARG >= 7 ; y tile, y pxl, x tile, x pxl, vtile offset, flags, palette
 	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5, (\6 << 3) + (\7 & 7)
 else
 	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5, \6
@@ -257,27 +257,24 @@ endc
 endm
 
 jumptable_start: MACRO
+; Use the declare opname you want to use,
+; either "dw", "dba", or "dab".
+if def(__far)
+	purge __far
+endc
 if _NARG == 0
-__far = 0
+__far EQUS "dw"
 else
-__far = \1 ; 0: dw | 1: dba | 2: dab
+__far EQUS "\1"
 endc
 	enum_start
 endm
 
 jumptable: MACRO
-if DEF(\1JumptableIndex)
+if DEF(\1TableIndex)
 __enum__ = __enum__ + 1
 else
-	enum \1JumptableIndex
+	enum \1TableIndex
 endc
-if __far == 0
-	dw \1
-else
-if __far == 1
-	dba \1
-else
-	dab \1
-endc
-endc
+	__far \1
 endm

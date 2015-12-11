@@ -265,7 +265,7 @@ Slots_Init: ; 9287e (24:687e)
 Slots_BetAndStart: ; 9288e (24:688e)
 	call Slots_AskBet
 	jr nc, .proceed
-	ld a, Slots_QuitJumptableIndex
+	ld a, Slots_QuitTableIndex
 	ld [wJumptableIndex], a
 	ret
 
@@ -275,7 +275,7 @@ Slots_BetAndStart: ; 9288e (24:688e)
 	call Slots_InitBias
 	ld a, 32
 	ld [wcf64], a
-	ld a, 4 ; ReelAction_NormalRateJumptableIndex
+	ld a, 4 ; ReelAction_NormalRateTableIndex
 	ld [wReel1ReelAction], a
 	ld [wReel2ReelAction], a
 	ld [wReel3ReelAction], a
@@ -455,12 +455,12 @@ Slots_RestartOrQuit: ; 929d9 (24:69d9)
 	call WaitPressAorB_BlinkCursor
 	call Slots_AskPlayAgain
 	jr c, .exit_slots
-	ld a, Slots_InitJumptableIndex
+	ld a, Slots_InitTableIndex
 	ld [wJumptableIndex], a
 	ret
 
 .exit_slots
-	ld a, Slots_QuitJumptableIndex
+	ld a, Slots_QuitTableIndex
 	ld [wJumptableIndex], a
 	ret
 

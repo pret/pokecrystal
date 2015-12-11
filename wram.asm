@@ -808,6 +808,13 @@ wSlotsDataEnd::
 wSlotsEnd::
 	ds wSlots - @
 
+; Card Flip
+wCardFlip::
+wDeck:: ds 24
+wDeckEnd::
+wCardFlipEnd::
+	ds wCardFlip - @
+
 wc6d0::
 PlayerSDefLevel:: ; c6d0
 	ds 1

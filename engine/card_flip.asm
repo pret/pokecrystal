@@ -10,24 +10,26 @@ _CardFlip: ; e00ee (38:40ee)
 	call DisableLCD
 	call LoadStandardFont
 	call LoadFontsExtra
-	ld hl, LZ_e0d16
+
+	ld hl, CardFlipLZ01
 	ld de, VTiles2 tile $00
 	call Decompress
-	ld hl, LZ_e0ea8
+	ld hl, CardFlipLZ02
 	ld de, VTiles2 tile $3e
 	call Decompress
-	ld hl, LZ_e0cdb
+	ld hl, CardFlipLZ03
 	ld de, VTiles0 tile $00
 	call Decompress
-	ld hl, GFX_e0cf6
+	ld hl, CardFlipOffButtonGFX
 	ld de, VTiles1 tile $6f
-	ld bc, $10
+	ld bc, 1 tiles
 	call CopyBytes
-	ld hl, GFX_e0d06
+	ld hl, CardFlipOnButtonGFX
 	ld de, VTiles1 tile $75
-	ld bc, $10
+	ld bc, 1 tiles
 	call CopyBytes
-	call Functione0521
+
+	call CardFlip_ShiftDigitsLeftTwoPixels
 	call Functione04c1
 	call Functione0c37
 	call EnableLCD
@@ -75,14 +77,15 @@ endr
 ; e01a0 (38:41a0)
 
 .Jumptable: ; e01a0
-	dw .AskPlayWithThree
-	dw .DeductCoins
-	dw .ChooseACard
-	dw .PlaceYourBet
-	dw .CheckTheCard
-	dw .TabulateTheResult
-	dw .PlayAgain
-	dw .Quit
+	jumptable_start
+	jumptable .AskPlayWithThree
+	jumptable .DeductCoins
+	jumptable .ChooseACard
+	jumptable .PlaceYourBet
+	jumptable .CheckTheCard
+	jumptable .TabulateTheResult
+	jumptable .PlayAgain
+	jumptable .Quit
 ; e01b0
 
 .Increment: ; e01b0
@@ -93,15 +96,15 @@ endr
 
 .AskPlayWithThree: ; e01b5
 	ld hl, .PlayWithThreeCoinsText
-	call Functione0489
+	call CardFlip_UpdateCoinBalanceDisplay
 	call YesNoBox
 	jr c, .SaidNo
-	call Functione0366
+	call CardFlip_ShuffleDeck
 	call .Increment
 	ret
 
 .SaidNo
-	ld a, $7
+	ld a, 7 ; .QuitTableIndex
 	ld [wJumptableIndex], a
 	ret
 ; e01cd
@@ -124,8 +127,8 @@ endr
 	cp 3
 	jr nc, .deduct ; You have at least 3 coins.
 	ld hl, .NotEnoughCoinsText
-	call Functione0489
-	ld a, $7
+	call CardFlip_UpdateCoinBalanceDisplay
+	ld a, 7 ; .QuitTableIndex
 	ld [wJumptableIndex], a
 	ret
 
@@ -140,7 +143,7 @@ endr
 	call PlaySFX
 	xor a
 	ld [hBGMapMode], a
-	call Functione049c
+	call CardFlip_PrintCoinBalance
 	ld a, $1
 	ld [hBGMapMode], a
 	call WaitSFX
@@ -159,7 +162,7 @@ endr
 	ld [hBGMapMode], a
 	hlcoord 0, 0
 	lb bc, 12, 9
-	call Functione04e5
+	call CardFlip_FillGreenBox
 	hlcoord 9, 0
 	ld bc, SCREEN_WIDTH
 	ld a, [wc6e8]
@@ -179,7 +182,7 @@ endr
 	call Functione03c1
 	call WaitBGMap
 	ld hl, .ChooseACardText
-	call Functione0489
+	call CardFlip_UpdateCoinBalanceDisplay
 	xor a
 	ld [wcf66], a
 .loop
@@ -220,7 +223,7 @@ endr
 	ld [hl], a
 	call Functione03ac
 	lb bc, 6, 5
-	call Functione04e5
+	call CardFlip_FillGreenBox
 	pop af
 	ld [wcf66], a
 	call .Increment
@@ -235,7 +238,7 @@ endr
 
 .PlaceYourBet: ; e02b7
 	ld hl, .PlaceYourBetText
-	call Functione0489
+	call CardFlip_UpdateCoinBalanceDisplay
 .betloop
 	call JoyTextDelay
 	ld a, [hJoyLast]
@@ -268,7 +271,7 @@ endr
 	ld a, [wc6e8]
 	ld e, a
 	ld d, 0
-	ld hl, wc6d0
+	ld hl, wDeck
 rept 2
 	add hl, de
 endr
@@ -276,13 +279,13 @@ endr
 	ld e, a
 	add hl, de
 	ld a, [hl]
-	ld [CurEnemyMoveNum], a
+	ld [wc6e9], a
 	ld e, a
 	ld hl, wc6ea
 	add hl, de
 	ld [hl], $1
 	call Functione03ac
-	call Functione03ec
+	call CardFlip_DisplayCardFaceUp
 	call Function3200
 	call .Increment
 	ret
@@ -298,7 +301,7 @@ endr
 .PlayAgain: ; e031e
 	call ClearSprites
 	ld hl, .PlayAgainText
-	call Functione0489
+	call CardFlip_UpdateCoinBalanceDisplay
 	call YesNoBox
 	jr nc, .Continue
 	call .Increment
@@ -313,7 +316,7 @@ endr
 	call Functione04c1
 	ld a, $1
 	ld [hBGMapMode], a
-	call Functione0366
+	call CardFlip_ShuffleDeck
 	ld hl, .CardsShuffledText
 	call PrintText
 	jr .LoopAround
@@ -322,7 +325,7 @@ endr
 	call Functione0534
 
 .LoopAround
-	ld a, $1
+	ld a, 1 ; .DeductCoinsTableIndex
 	ld [wJumptableIndex], a
 	ret
 ; e0356
@@ -345,27 +348,27 @@ endr
 	ret
 ; e0366
 
-Functione0366: ; e0366
-	ld hl, wc6d0
-	ld bc, $18
+CardFlip_ShuffleDeck: ; e0366
+	ld hl, wDeck
+	ld bc, wDeckEnd - wDeck
 	xor a
 	call ByteFill
-	ld de, wc6d0
-	ld c, $17
-.asm_e0375
+	ld de, wDeck
+	ld c, wDeckEnd - wDeck - 1
+.loop
 	call Random
 	and $1f
-	cp $18
-	jr nc, .asm_e0375
+	cp wDeckEnd - wDeck
+	jr nc, .loop
 	ld l, a
 	ld h, $0
 	add hl, de
 	ld a, [hl]
 	and a
-	jr nz, .asm_e0375
+	jr nz, .loop
 	ld [hl], c
 	dec c
-	jr nz, .asm_e0375
+	jr nz, .loop
 	xor a
 	ld [wc6e8], a
 	ld hl, wc6ea
@@ -420,18 +423,18 @@ Unknown_e03ce: ; e03ce
 	db $0d, $0e, $0e, $0e, $0f
 ; e03ec
 
-Functione03ec: ; e03ec
+CardFlip_DisplayCardFaceUp: ; e03ec
 	xor a
 	ld [hBGMapMode], a
 	push hl
 	push hl
-	ld de, Unknown_e043b
+	ld de, .Unknown_e043b
 	lb bc, 6, 5
 	call Functione04f7
-	ld a, [CurEnemyMoveNum]
+	ld a, [wc6e9]
 	ld e, a
 	ld d, 0
-	ld hl, Unknown_e0459
+	ld hl, .Deck
 rept 2
 	add hl, de
 endr
@@ -465,15 +468,15 @@ endr
 	ret z
 	ld de, AttrMap - TileMap
 	add hl, de
-	ld a, [CurEnemyMoveNum]
+	ld a, [wc6e9]
 	and 3
 	inc a
 	lb bc, 6, 5
-	call Functione04e7
+	call CardFlip_FillBox
 	ret
 ; e043b
 
-Unknown_e043b: ; e043b
+.Unknown_e043b: ; e043b
 	db $18, $19, $19, $19, $1a
 	db $1b, $35, $7f, $7f, $1c
 	db $0b, $28, $28, $28, $0c
@@ -482,34 +485,34 @@ Unknown_e043b: ; e043b
 	db $1d, $1e, $1e, $1e, $1f
 ; e0459
 
-Unknown_e0459: ; e0459
-	db $f7,$4e, $f7,$57, $f7,$69, $f7,$60
-	db $f8,$4e, $f8,$57, $f8,$69, $f8,$60
-	db $f9,$4e, $f9,$57, $f9,$69, $f9,$60
-	db $fa,$4e, $fa,$57, $fa,$69, $fa,$60
-	db $fb,$4e, $fb,$57, $fb,$69, $fb,$60
-	db $fc,$4e, $fc,$57, $fc,$69, $fc,$60
+.Deck: ; e0459
+	db "1",$4e, "1",$57, "1",$69, "1",$60
+	db "2",$4e, "2",$57, "2",$69, "2",$60
+	db "3",$4e, "3",$57, "3",$69, "3",$60
+	db "4",$4e, "4",$57, "4",$69, "4",$60
+	db "5",$4e, "5",$57, "5",$69, "5",$60
+	db "6",$4e, "6",$57, "6",$69, "6",$60
 ; e0489
 
-Functione0489: ; e0489
+CardFlip_UpdateCoinBalanceDisplay: ; e0489
 	push hl
 	hlcoord 0, 12
-	ld b, $4
-	ld c, $12
+	ld b, 4
+	ld c, SCREEN_WIDTH - 2
 	call TextBox
 	pop hl
 	call PrintTextBoxText
-	call Functione049c
+	call CardFlip_PrintCoinBalance
 	ret
 ; e049c
 
-Functione049c: ; e049c
+CardFlip_PrintCoinBalance: ; e049c
 	hlcoord 9, 15
-	ld b, $1
-	ld c, $9
+	ld b, 1
+	ld c, 9
 	call TextBox
 	hlcoord 10, 16
-	ld de, String_e04bc
+	ld de, .CoinStr
 	call PlaceString
 	hlcoord 15, 16
 	ld de, Coins
@@ -518,7 +521,7 @@ Functione049c: ; e049c
 	ret
 ; e04bc
 
-String_e04bc:
+.CoinStr:
 	db "COIN@"
 ; e04c1
 
@@ -539,33 +542,34 @@ Functione04c1: ; e04c1 (38:44c1)
 	ret
 ; e04e5 (38:44e5)
 
-Functione04e5: ; e04e5
+CardFlip_FillGreenBox: ; e04e5
 	ld a, $29
 
-Functione04e7: ; e04e7 (38:44e7)
+CardFlip_FillBox: ; e04e7 (38:44e7)
+.row
 	push bc
 	push hl
-.asm_e04e9
+.col
 	ld [hli], a
 	dec c
-	jr nz, .asm_e04e9
+	jr nz, .col
 	pop hl
-	ld bc, $14
+	ld bc, SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, Functione04e7
+	jr nz, .row
 	ret
 
 Functione04f7: ; e04f7 (38:44f7)
 	push bc
 	push hl
-.asm_e04f9
+.loop
 	ld a, [de]
 	inc de
 	ld [hli], a
 	dec c
-	jr nz, .asm_e04f9
+	jr nz, .loop
 	pop hl
 	ld bc, $14
 	add hl, bc
@@ -578,7 +582,7 @@ Functione04f7: ; e04f7 (38:44f7)
 Functione0509: ; e0509
 	ld de, Sprites
 	ld a, [hli]
-.asm_e050d
+.loop
 	push af
 	ld a, [hli]
 	add b
@@ -596,16 +600,16 @@ Functione0509: ; e0509
 	inc de
 	pop af
 	dec a
-	jr nz, .asm_e050d
+	jr nz, .loop
 	ret
 ; e0521
 
-Functione0521: ; e0521 (38:4521)
-	ld de, VTiles1 tile $76
-	ld hl, $8f62
-	ld bc, $9e
+CardFlip_ShiftDigitsLeftTwoPixels: ; e0521 (38:4521)
+	ld de, VTiles1 tile ("0" & $7f)
+	ld hl, VTiles1 tile ("0" & $7f) + 2
+	ld bc, 10 tiles - 2
 	call CopyBytes
-	ld hl, $8ffe
+	ld hl, VTiles1 tile $7f + 1 tiles - 2
 	xor a
 	ld [hli], a
 	ld [hl], a
@@ -615,7 +619,7 @@ Functione0521: ; e0521 (38:4521)
 Functione0534: ; e0534
 	xor a
 	ld [hBGMapMode], a
-	ld a, [CurEnemyMoveNum]
+	ld a, [wc6e9]
 	ld e, a
 	ld d, 0
 	and 3
@@ -624,10 +628,10 @@ Functione0534: ; e0534
 	ld a, e
 	and $1c
 	srl a
-	add Jumptable_e0553 % $100
+	add .Jumptable % $100
 	ld l, a
 	ld a, 0
-	adc Jumptable_e0553 / $100
+	adc .Jumptable / $100
 	ld h, a
 	ld a, [hli]
 	ld h, [hl]
@@ -635,13 +639,14 @@ Functione0534: ; e0534
 	jp [hl]
 ; e0553
 
-Jumptable_e0553: ; e0553
-	dw Functione055f
-	dw Functione0583
-	dw Functione05a7
-	dw Functione05cb
-	dw Functione05ef
-	dw Functione0613
+.Jumptable: ; e0553
+	jumptable_start
+	jumptable Functione055f
+	jumptable Functione0583
+	jumptable Functione05a7
+	jumptable Functione05cb
+	jumptable Functione05ef
+	jumptable Functione0613
 ; e055f
 
 Functione055f: ; e055f
@@ -815,7 +820,7 @@ endr
 Functione0637: ; e0637
 	call Functione0398
 	add hl, hl
-	ld de, Jumptable_e0643
+	ld de, .Jumptable
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
@@ -823,55 +828,56 @@ Functione0637: ; e0637
 	jp [hl]
 ; e0643
 
-Jumptable_e0643: ; e0643
-	dw Functione06a3
-	dw Functione06a3
-	dw Functione06a6
-	dw Functione06a6
-	dw Functione06b0
-	dw Functione06b0
-	dw Functione06a3
-	dw Functione06a3
-	dw Functione06ec
-	dw Functione06f6
-	dw Functione0702
-	dw Functione070e
-	dw Functione06c2
-	dw Functione0722
-	dw Functione0770
-	dw Functione0774
-	dw Functione0778
-	dw Functione077c
-	dw Functione06c2
-	dw Functione072c
-	dw Functione0780
-	dw Functione0784
-	dw Functione0788
-	dw Functione078c
-	dw Functione06cc
-	dw Functione0738
-	dw Functione0790
-	dw Functione0794
-	dw Functione0798
-	dw Functione079c
-	dw Functione06cc
-	dw Functione0744
-	dw Functione07a0
-	dw Functione07a4
-	dw Functione07a8
-	dw Functione07ac
-	dw Functione06d8
-	dw Functione0750
-	dw Functione07b0
-	dw Functione07b4
-	dw Functione07b8
-	dw Functione07bc
-	dw Functione06d8
-	dw Functione075c
-	dw Functione07c0
-	dw Functione07c4
-	dw Functione07c8
-	dw Functione07cc
+.Jumptable: ; e0643
+	jumptable_start
+	jumptable Functione06a3
+	jumptable Functione06a3
+	jumptable Functione06a6
+	jumptable Functione06a6
+	jumptable Functione06b0
+	jumptable Functione06b0
+	jumptable Functione06a3
+	jumptable Functione06a3
+	jumptable Functione06ec
+	jumptable Functione06f6
+	jumptable Functione0702
+	jumptable Functione070e
+	jumptable Functione06c2
+	jumptable Functione0722
+	jumptable Functione0770
+	jumptable Functione0774
+	jumptable Functione0778
+	jumptable Functione077c
+	jumptable Functione06c2
+	jumptable Functione072c
+	jumptable Functione0780
+	jumptable Functione0784
+	jumptable Functione0788
+	jumptable Functione078c
+	jumptable Functione06cc
+	jumptable Functione0738
+	jumptable Functione0790
+	jumptable Functione0794
+	jumptable Functione0798
+	jumptable Functione079c
+	jumptable Functione06cc
+	jumptable Functione0744
+	jumptable Functione07a0
+	jumptable Functione07a4
+	jumptable Functione07a8
+	jumptable Functione07ac
+	jumptable Functione06d8
+	jumptable Functione0750
+	jumptable Functione07b0
+	jumptable Functione07b4
+	jumptable Functione07b8
+	jumptable Functione07bc
+	jumptable Functione06d8
+	jumptable Functione075c
+	jumptable Functione07c0
+	jumptable Functione07c4
+	jumptable Functione07c8
+	jumptable Functione07cc
 ; e06a3
 
 Functione06a3: ; e06a3
@@ -879,13 +885,13 @@ Functione06a3: ; e06a3
 ; e06a6
 
 Functione06a6: ; e06a6
-	ld a, [CurEnemyMoveNum]
+	ld a, [wc6e9]
 	and $2
 	jp nz, Functione07db
 	jr Functione06ba
 
 Functione06b0: ; e06b0
-	ld a, [CurEnemyMoveNum]
+	ld a, [wc6e9]
 	and $2
 	jr nz, Functione06ba
 	jp Functione07db
@@ -897,20 +903,20 @@ Functione06ba: ; e06ba
 ; e06c2
 
 Functione06c2: ; e06c2
-	ld a, [CurEnemyMoveNum]
+	ld a, [wc6e9]
 	and $18
 	jr z, Functione06e4
 	jp Functione07db
 
 Functione06cc: ; e06cc
-	ld a, [CurEnemyMoveNum]
+	ld a, [wc6e9]
 	and $18
 	cp $8
 	jr z, Functione06e4
 	jp Functione07db
 
 Functione06d8: ; e06d8
-	ld a, [CurEnemyMoveNum]
+	ld a, [wc6e9]
 	and $18
 	cp $10
 	jr z, Functione06e4
@@ -923,27 +929,27 @@ Functione06e4: ; e06e4
 ; e06ec
 
 Functione06ec: ; e06ec
-	ld a, [CurEnemyMoveNum]
+	ld a, [wc6e9]
 	and $3
 	jr z, Functione071a
 	jp Functione07db
 
 Functione06f6: ; e06f6
-	ld a, [CurEnemyMoveNum]
+	ld a, [wc6e9]
 	and $3
 	cp $1
 	jr z, Functione071a
 	jp Functione07db
 
 Functione0702: ; e0702
-	ld a, [CurEnemyMoveNum]
+	ld a, [wc6e9]
 	and $3
 	cp $2
 	jr z, Functione071a
 	jp Functione07db
 
 Functione070e: ; e070e
-	ld a, [CurEnemyMoveNum]
+	ld a, [wc6e9]
 	and $3
 	cp $3
 	jr z, Functione071a
@@ -956,41 +962,41 @@ Functione071a: ; e071a
 ; e0722
 
 Functione0722: ; e0722
-	ld a, [CurEnemyMoveNum]
+	ld a, [wc6e9]
 	and $1c
 	jr z, Functione0768
 	jp Functione07db
 
 Functione072c: ; e072c
-	ld a, [CurEnemyMoveNum]
+	ld a, [wc6e9]
 	and $1c
 	cp $4
 	jr z, Functione0768
 	jp Functione07db
 
 Functione0738: ; e0738
-	ld a, [CurEnemyMoveNum]
+	ld a, [wc6e9]
 	and $1c
 	cp $8
 	jr z, Functione0768
 	jp Functione07db
 
 Functione0744: ; e0744
-	ld a, [CurEnemyMoveNum]
+	ld a, [wc6e9]
 	and $1c
 	cp $c
 	jr z, Functione0768
 	jp Functione07db
 
 Functione0750: ; e0750
-	ld a, [CurEnemyMoveNum]
+	ld a, [wc6e9]
 	and $1c
 	cp $10
 	jr z, Functione0768
 	jp Functione07db
 
 Functione075c: ; e075c
-	ld a, [CurEnemyMoveNum]
+	ld a, [wc6e9]
 	and $1c
 	cp $14
 	jr z, Functione0768
@@ -1099,7 +1105,7 @@ Functione07cc: ; e07cc
 	ld e, $17
 
 Functione07ce: ; e07ce
-	ld a, [CurEnemyMoveNum]
+	ld a, [wc6e9]
 	cp e
 	jr nz, Functione07db
 	ld c, $48
@@ -1110,7 +1116,7 @@ Functione07db: ; e07db
 	ld de, SFX_WRONG
 	call PlaySFX
 	ld hl, UnknownText_0xe0816
-	call Functione0489
+	call CardFlip_UpdateCoinBalanceDisplay
 	call WaitSFX
 	ret
 
@@ -1118,7 +1124,7 @@ Functione07eb: ; e07eb
 	push bc
 	push de
 	ld hl, UnknownText_0xe0811
-	call Functione0489
+	call CardFlip_UpdateCoinBalanceDisplay
 	pop de
 	call PlaySFX
 	call WaitSFX
@@ -1130,7 +1136,7 @@ Functione07eb: ; e07eb
 	call Functione081b
 
 .asm_e0804
-	call Functione049c
+	call CardFlip_PrintCoinBalance
 	ld c, 2
 	call DelayFrames
 	pop bc
@@ -1364,12 +1370,12 @@ Functione0960: ; e0960
 	call ClearSprites
 	ld a, [hCGB]
 	and a
-	jr nz, .asm_e096d
+	jr nz, .skip
 	ld a, [hVBlankCounter]
 	and $4
 	ret nz
 
-.asm_e096d
+.skip
 	call Functione0398
 rept 2
 	add hl, hl
@@ -1388,61 +1394,61 @@ endr
 ; e0981
 
 Unknown_e0981: ; e0981
-	dbbw $58, $10, Unknown_e0c26
-	dbbw $60, $10, Unknown_e0c26
-	dbbw $68, $10, Unknown_e0b8d
-	dbbw $68, $10, Unknown_e0b8d
-	dbbw $88, $10, Unknown_e0b8d
-	dbbw $88, $10, Unknown_e0b8d
+	dbbw 11 * 8,  2 * 8,     Unknown_e0c26
+	dbbw 12 * 8,  2 * 8,     Unknown_e0c26
+	dbbw 13 * 8,  2 * 8,     Unknown_e0b8d
+	dbbw 13 * 8,  2 * 8,     Unknown_e0b8d
+	dbbw 17 * 8,  2 * 8,     Unknown_e0b8d
+	dbbw 17 * 8,  2 * 8,     Unknown_e0b8d
 
-	dbbw $58, $18, Unknown_e0c26
-	dbbw $60, $18, Unknown_e0c26
-	dbbw $68, $18, Unknown_e0a5a
-	dbbw $78, $18, Unknown_e0a5a
-	dbbw $88, $18, Unknown_e0a5a
-	dbbw $98, $18, Unknown_e0a5a
+	dbbw 11 * 8,  3 * 8,     Unknown_e0c26
+	dbbw 12 * 8,  3 * 8,     Unknown_e0c26
+	dbbw 13 * 8,  3 * 8,     Unknown_e0a5a
+	dbbw 15 * 8,  3 * 8,     Unknown_e0a5a
+	dbbw 17 * 8,  3 * 8,     Unknown_e0a5a
+	dbbw 19 * 8,  3 * 8,     Unknown_e0a5a
 
-	dbbw $58, $28, Unknown_e0b14
-	dbbw $60, $28, Unknown_e0ac3
-	dbbw $68, $28, Unknown_e0a41
-	dbbw $78, $28, Unknown_e0a41
-	dbbw $88, $28, Unknown_e0a41
-	dbbw $98, $28, Unknown_e0a41
-	dbbw $58, $28, Unknown_e0b14
+	dbbw 11 * 8,  5 * 8,     Unknown_e0b14
+	dbbw 12 * 8,  5 * 8,     Unknown_e0ac3
+	dbbw 13 * 8,  5 * 8,     Unknown_e0a41
+	dbbw 15 * 8,  5 * 8,     Unknown_e0a41
+	dbbw 17 * 8,  5 * 8,     Unknown_e0a41
+	dbbw 19 * 8,  5 * 8,     Unknown_e0a41
 
-	dbbw $60, $34, Unknown_e0ac3
-	dbbw $68, $34, Unknown_e0a41
-	dbbw $78, $34, Unknown_e0a41
-	dbbw $88, $34, Unknown_e0a41
-	dbbw $98, $34, Unknown_e0a41
+	dbbw 11 * 8,  5 * 8,     Unknown_e0b14
+	dbbw 12 * 8,  6 * 8 + 4, Unknown_e0ac3
+	dbbw 13 * 8,  6 * 8 + 4, Unknown_e0a41
+	dbbw 15 * 8,  6 * 8 + 4, Unknown_e0a41
+	dbbw 17 * 8,  6 * 8 + 4, Unknown_e0a41
+	dbbw 19 * 8,  6 * 8 + 4, Unknown_e0a41
 
-	dbbw $58, $40, Unknown_e0b14
-	dbbw $60, $40, Unknown_e0ac3
-	dbbw $68, $40, Unknown_e0a41
-	dbbw $78, $40, Unknown_e0a41
-	dbbw $88, $40, Unknown_e0a41
-	dbbw $98, $40, Unknown_e0a41
-	dbbw $58, $40, Unknown_e0b14
+	dbbw 11 * 8,  8 * 8,     Unknown_e0b14
+	dbbw 12 * 8,  8 * 8,     Unknown_e0ac3
+	dbbw 13 * 8,  8 * 8,     Unknown_e0a41
+	dbbw 15 * 8,  8 * 8,     Unknown_e0a41
+	dbbw 17 * 8,  8 * 8,     Unknown_e0a41
+	dbbw 19 * 8,  8 * 8,     Unknown_e0a41
 
-	dbbw $60, $4c, Unknown_e0ac3
-	dbbw $68, $4c, Unknown_e0a41
-	dbbw $78, $4c, Unknown_e0a41
-	dbbw $88, $4c, Unknown_e0a41
-	dbbw $98, $4c, Unknown_e0a41
+	dbbw 11 * 8,  8 * 8,     Unknown_e0b14
+	dbbw 12 * 8,  9 * 8 + 4, Unknown_e0ac3
+	dbbw 13 * 8,  9 * 8 + 4, Unknown_e0a41
+	dbbw 15 * 8,  9 * 8 + 4, Unknown_e0a41
+	dbbw 17 * 8,  9 * 8 + 4, Unknown_e0a41
+	dbbw 19 * 8,  9 * 8 + 4, Unknown_e0a41
 
-	dbbw $58, $58, Unknown_e0b14
-	dbbw $60, $58, Unknown_e0ac3
-	dbbw $68, $58, Unknown_e0a41
-	dbbw $78, $58, Unknown_e0a41
-	dbbw $88, $58, Unknown_e0a41
-	dbbw $98, $58, Unknown_e0a41
-	dbbw $58, $58, Unknown_e0b14
+	dbbw 11 * 8, 11 * 8,     Unknown_e0b14
+	dbbw 12 * 8, 11 * 8,     Unknown_e0ac3
+	dbbw 13 * 8, 11 * 8,     Unknown_e0a41
+	dbbw 15 * 8, 11 * 8,     Unknown_e0a41
+	dbbw 17 * 8, 11 * 8,     Unknown_e0a41
+	dbbw 19 * 8, 11 * 8,     Unknown_e0a41
 
-	dbbw $60, $64, Unknown_e0ac3
-	dbbw $68, $64, Unknown_e0a41
-	dbbw $78, $64, Unknown_e0a41
-	dbbw $88, $64, Unknown_e0a41
-	dbbw $98, $64, Unknown_e0a41
+	dbbw 11 * 8, 11 * 8,     Unknown_e0b14
+	dbbw 12 * 8, 12 * 8 + 4, Unknown_e0ac3
+	dbbw 13 * 8, 12 * 8 + 4, Unknown_e0a41
+	dbbw 15 * 8, 12 * 8 + 4, Unknown_e0a41
+	dbbw 17 * 8, 12 * 8 + 4, Unknown_e0a41
+	dbbw 19 * 8, 12 * 8 + 4, Unknown_e0a41
 ; e0a41
 
 Unknown_e0a41: ; e0a41
@@ -1599,23 +1605,23 @@ Functione0c37: ; e0c37 (38:4c37)
 	hlcoord 12, 1, AttrMap
 	lb bc, 2, 2
 	ld a, $1
-	call Functione04e7
+	call CardFlip_FillBox
 	hlcoord 14, 1, AttrMap
 	lb bc, 2, 2
 	ld a, $2
-	call Functione04e7
+	call CardFlip_FillBox
 	hlcoord 16, 1, AttrMap
 	lb bc, 2, 2
 	ld a, $3
-	call Functione04e7
+	call CardFlip_FillBox
 	hlcoord 18, 1, AttrMap
 	lb bc, 2, 2
 	ld a, $4
-	call Functione04e7
+	call CardFlip_FillBox
 	hlcoord 9, 0, AttrMap
 	lb bc, 12, 1
 	ld a, $1
-	call Functione04e7
+	call CardFlip_FillBox
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -1676,19 +1682,19 @@ Palette_e0c93: ; e0c93
 	RGB 31, 00, 00
 ; e0cdb
 
-LZ_e0cdb: ; e0cdb
+CardFlipLZ03: ; e0cdb
 INCBIN "gfx/unknown/0e0cdb.2bpp.lz"
 
-GFX_e0cf6: ; e0cf6
+CardFlipOffButtonGFX: ; e0cf6
 INCBIN "gfx/unknown/0e0cf6.2bpp"
 
-GFX_e0d06: ; e0d06
+CardFlipOnButtonGFX: ; e0d06
 INCBIN "gfx/unknown/0e0d06.2bpp"
 
-LZ_e0d16: ; e0d16
+CardFlipLZ01: ; e0d16
 INCBIN "gfx/unknown/0e0d16.2bpp.lz"
 
-LZ_e0ea8: ; e0ea8
+CardFlipLZ02: ; e0ea8
 INCBIN "gfx/unknown/0e0ea8.2bpp.lz"
 
 Unknown_e110c: ; e110c
@@ -1806,7 +1812,7 @@ Functione124e: ; e124e
 	ld d, $0
 	add hl, de
 	ld e, [hl]
-	ld hl, wc6d0
+	ld hl, wDeck
 	add hl, de
 	ld a, [hl]
 	and a
@@ -2168,7 +2174,7 @@ endr
 ; e1475
 
 Functione1475: ; e1475
-	ld hl, wc6d0
+	ld hl, wDeck
 	ld a, [wcf65]
 	ld e, a
 	ld d, $0
@@ -2199,7 +2205,7 @@ Unknown_e148f: ; e148f
 
 Functione14a0: ; e14a0
 	ld hl, Unknown_e14b5
-	ld de, wc6d0
+	ld de, wDeck
 	ld c, $24
 .asm_e14a8
 	ld a, [de]
