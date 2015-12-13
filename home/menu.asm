@@ -28,7 +28,8 @@ MenuTextBox:: ; 1d4f
 	jp PrintText
 ; 1d57
 
-Function1d57:: ; 1d57
+ret_1d57:: ; 1d57
+; unreferenced
 	ret
 ; 1d58
 
@@ -423,9 +424,9 @@ Function1f2a:: ; 1f2a
 	ret
 ; 1f79
 
-Function1f79:: ; 1f79
+PlaceMenuStrings:: ; 1f79
 	push de
-	ld hl, wcf97
+	ld hl, wMenuData2PointerTableAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -441,7 +442,7 @@ Function1f79:: ; 1f79
 PlaceNthMenuStrings:: ; 1f8d
 	push de
 	ld a, [MenuSelection]
-	call Function1fb1
+	call GetMenuDataPointerTableEntry
 rept 2
 	inc hl
 endr
@@ -454,7 +455,8 @@ endr
 ; 1f9e
 
 Function1f9e:: ; 1f9e
-	call Function1fb1
+; unreferenced
+	call GetMenuDataPointerTableEntry
 rept 2
 	inc hl
 endr
@@ -466,17 +468,17 @@ endr
 
 MenuJumptable:: ; 1fa7
 	ld a, [MenuSelection]
-	call Function1fb1
+	call GetMenuDataPointerTableEntry
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
 ; 1fb1
 
-Function1fb1:: ; 1fb1
+GetMenuDataPointerTableEntry:: ; 1fb1
 	ld e, a
 	ld d, $0
-	ld hl, wcf97
+	ld hl, wMenuData2PointerTableAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

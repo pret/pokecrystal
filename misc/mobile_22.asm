@@ -1694,7 +1694,7 @@ Function89a57: ; 89a57
 
 Function89a8a: ; 89a8a
 	push af
-	ld de, SFX_UNKNOWN_62
+	ld de, SFX_SWITCH_POCKETS
 	call PlaySFX
 	pop af
 	ret

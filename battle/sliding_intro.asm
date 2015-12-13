@@ -62,7 +62,7 @@ endr
 ; 4e9d6
 
 .subfunction3: ; 4e9d6
-	ld hl, Sprites + 1
+	ld hl, Sprites + 1 ; x pixel
 	ld c, $12 ; 18
 	ld de, $4
 .loop3

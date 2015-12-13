@@ -41,7 +41,7 @@ MenuData2_0x49d1c: ; 49d1c
 	db $80 ; flags
 	db 0 ; items
 	dw MainMenuItems
-	dw Function1f79
+	dw PlaceMenuStrings
 	dw MainMenuText
 ; 49d20
 

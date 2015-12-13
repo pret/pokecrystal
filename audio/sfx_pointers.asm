@@ -97,7 +97,7 @@
 	dba Sfx_Unknown5F
 	dba Sfx_Unknown60
 	dba Sfx_Unknown61
-	dba Sfx_Unknown62
+	dba Sfx_SwitchPockets
 	dba Sfx_Unknown63
 	dba Sfx_Burn
 	dba Sfx_TitleScreenEntrance

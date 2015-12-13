@@ -809,9 +809,9 @@ UnknownText_0x15eae: ; 0x15eae
 
 SellMenu: ; 15eb3
 	call DisableSpriteUpdates
-	callba Function106a5
+	callba DepositSellInitPackBuffers
 .asm_15ebc
-	callba Function106be
+	callba DepositSellPack
 	ld a, [wcf66]
 	and a
 	jp z, Function15ece

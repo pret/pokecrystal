@@ -4,7 +4,7 @@ _DoItemEffect:: ; e722
 	call GetItemName
 	call CopyName1
 	ld a, 1
-	ld [wPlayerAction], a
+	ld [wItemEffectSucceeded], a
 	ld a, [CurItem]
 	dec a
 	ld hl, ItemEffects
@@ -1220,7 +1220,7 @@ SunStone: ; ee0f
 
 .DecidedNotToUse
 	xor a
-	ld [wPlayerAction], a
+	ld [wItemEffectSucceeded], a
 	ret
 ; ee3d
 
@@ -1293,7 +1293,7 @@ UpdateStatsAfterItem: ; ee8c
 
 RareCandy_StatBooster_ExitMenu: ; ee9f
 	xor a
-	ld [wPlayerAction], a
+	ld [wItemEffectSucceeded], a
 	jp ClearPalettes
 ; eea6
 
@@ -1930,7 +1930,7 @@ StatusHealer_NoEffect: ; f299 (3:7299)
 
 StatusHealer_ExitMenu: ; f29e (3:729e)
 	xor a
-	ld [wPlayerAction], a
+	ld [wItemEffectSucceeded], a
 StatusHealer_ClearPalettes: ; f2a2 (3:72a2)
 	call ClearPalettes
 	ret
@@ -2233,10 +2233,10 @@ Softboiled_MilkDrinkFunction: ; f3df (3:73df)
 
 EscapeRope: ; f44f
 	xor a
-	ld [wPlayerAction], a
+	ld [wItemEffectSucceeded], a
 	callba EscapeRopeFunction
 
-	ld a, [wPlayerAction]
+	ld a, [wItemEffectSucceeded]
 	cp 1
 	call z, UseDisposableItem
 	ret
@@ -2298,7 +2298,7 @@ PokeDoll: ; f48f
 
 .asm_f4a6
 	xor a
-	ld [wPlayerAction], a
+	ld [wItemEffectSucceeded], a
 	ret
 ; f4ab
 
@@ -2701,7 +2701,7 @@ PPRestoreItem_NoEffect: ; f6dd
 PPRestoreItem_Cancel: ; f6e0
 	call ClearPalettes
 	xor a
-	ld [wPlayerAction], a
+	ld [wItemEffectSucceeded], a
 	ret
 ; f6e8
 
@@ -2802,7 +2802,7 @@ BasementKey: ; f74c
 
 SacredAsh: ; f753
 	callba _SacredAsh
-	ld a, [wPlayerAction]
+	ld a, [wItemEffectSucceeded]
 	cp $1
 	ret nz
 	call UseDisposableItem
@@ -2973,7 +2973,7 @@ WontHaveAnyEffect_NotUsedMessage: ; f7ca
 
 	; Item wasn't used.
 	ld a, $2
-	ld [wPlayerAction], a
+	ld [wItemEffectSucceeded], a
 	ret
 ; f7d6
 
@@ -2988,7 +2988,7 @@ Ball_BoxIsFullMessage: ; f7dc
 
 	; Item wasn't used.
 	ld a, $2
-	ld [wPlayerAction], a
+	ld [wItemEffectSucceeded], a
 	ret
 ; f7e8
 
@@ -3018,7 +3018,7 @@ CantGetOnYourBikeMessage: ; f801
 CantUseItemMessage: ; f804
 ; Item couldn't be used.
 	xor a
-	ld [wPlayerAction], a
+	ld [wItemEffectSucceeded], a
 	jp PrintText
 ; f80b
 

@@ -2412,7 +2412,7 @@ Function3cf4a: ; 3cf4a
 	ld e, HP_BAR_LENGTH_PX
 	call UpdateHPPal
 	call WaitBGMap
-	callba Function2c012
+	callba EnemySwitch_TrainerHud
 	ld a, [wLinkMode]
 	and a
 	jr z, .not_linked
@@ -4853,7 +4853,7 @@ DrawPlayerHUD: ; 3df58
 	lb bc, 5, 11
 	call ClearBox
 
-	callba DrawPlayerExpBar
+	callba DrawPlayerHUDBorder
 
 	hlcoord 18, 9
 	ld [hl], $73 ; vertical bar
@@ -4995,7 +4995,7 @@ DrawEnemyHUD: ; 3e043
 	lb bc, 4, 11
 	call ClearBox
 
-	callba Function2c0c5
+	callba DrawEnemyHUDBorder
 
 	ld a, [TempEnemyMonSpecies]
 	ld [CurSpecies], a
@@ -9610,7 +9610,7 @@ BattleStartMessage: ; 3fc8b
 	ld d, $0
 	ld e, ANIM_MON_NORMAL
 	predef AnimateFrontpic
-	jr .skip_cry
+	jr .skip_cry ; cry is played during the animation
 
 .cry_no_anim
 	ld a, $0f
@@ -9623,7 +9623,7 @@ BattleStartMessage: ; 3fc8b
 	cp BATTLETYPE_FISH
 	jr nz, .NotFishing
 
-	callba MobileFn_106086
+	callba MobileFn_106086 ; update fishing records?
 
 	ld hl, HookedPokemonAttackedText
 	jr .PlaceBattleStartText
@@ -9639,7 +9639,7 @@ BattleStartMessage: ; 3fc8b
 
 .PlaceBattleStartText
 	push hl
-	callba Function2c000
+	callba BattleStart_TrainerHuds
 	pop hl
 	call StdBattleTextBox
 

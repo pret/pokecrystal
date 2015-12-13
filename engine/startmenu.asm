@@ -795,49 +795,49 @@ GiveTakePartyMonItem: ; 12b60
 ; Eggs can't hold items!
 	ld a, [CurPartySpecies]
 	cp EGG
-	jr z, .asm_12ba6
+	jr z, .cancel
 
 	ld hl, GiveTakeItemMenuData
 	call LoadMenuDataHeader
 	call InterpretMenu2
 	call ExitMenu
-	jr c, .asm_12ba6
+	jr c, .cancel
 
 	call GetCurNick
 	ld hl, StringBuffer1
-	ld de, wd050
-	ld bc, $b
+	ld de, wd050_MonNick
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	ld a, [MenuSelection2]
 	cp 1
-	jr nz, .asm_12ba0
+	jr nz, .take
 
 	call LoadStandardMenuDataHeader
 	call ClearPalettes
-	call Function12ba9
+	call .GiveItem
 	call ClearPalettes
 	call LoadFontsBattleExtra
 	call ExitMenu
 	ld a, 0
 	ret
 
-.asm_12ba0
+.take
 	call TakePartyItem
 	ld a, 3
 	ret
 
-.asm_12ba6
+.cancel
 	ld a, 3
 	ret
 ; 12ba9
 
 
-Function12ba9: ; 12ba9
+.GiveItem: ; 12ba9
 
-	callba Function106a5
+	callba DepositSellInitPackBuffers
 
 .loop
-	callba Function106be
+	callba DepositSellPack
 
 	ld a, [wcf66]
 	and a
@@ -852,7 +852,7 @@ Function12ba9: ; 12ba9
 	and a
 	jr nz, .next
 
-	call Function12bd9
+	call TryGiveItemToPartymon
 	jr .quit
 
 .next
@@ -865,41 +865,41 @@ Function12ba9: ; 12ba9
 ; 12bd9
 
 
-Function12bd9: ; 12bd9
+TryGiveItemToPartymon: ; 12bd9
 
 	call SpeechTextBox
 	call PartyMonItemName
 	call GetPartyItemLocation
 	ld a, [hl]
 	and a
-	jr z, .asm_12bf4
+	jr z, .give_item_to_mon
 
 	push hl
 	ld d, a
 	callba ItemIsMail
 	pop hl
-	jr c, .asm_12c01
+	jr c, .please_remove_mail
 	ld a, [hl]
-	jr .asm_12c08
+	jr .already_holding_item
 
-.asm_12bf4
+.give_item_to_mon
 	call GiveItemToPokemon
 	ld hl, MadeHoldText
 	call MenuTextBoxBackup
 	call GivePartyItem
 	ret
 
-.asm_12c01
+.please_remove_mail
 	ld hl, PleaseRemoveMailText
 	call MenuTextBoxBackup
 	ret
 
-.asm_12c08
+.already_holding_item
 	ld [wd265], a
 	call GetItemName
 	ld hl, SwitchAlreadyHoldingText
 	call StartMenuYesNo
-	jr c, .asm_12c4b
+	jr c, .abort
 
 	call GiveItemToPokemon
 	ld a, [wd265]
@@ -909,7 +909,7 @@ Function12bd9: ; 12bd9
 	pop af
 	ld [CurItem], a
 	call ReceiveItemFromPokemon
-	jr nc, .asm_12c3c
+	jr nc, .bag_full
 
 	ld hl, TookAndMadeHoldText
 	call MenuTextBoxBackup
@@ -918,14 +918,14 @@ Function12bd9: ; 12bd9
 	call GivePartyItem
 	ret
 
-.asm_12c3c
+.bag_full
 	ld a, [wd265]
 	ld [CurItem], a
 	call ReceiveItemFromPokemon
 	ld hl, ItemStorageIsFullText
 	call MenuTextBoxBackup
 
-.asm_12c4b
+.abort
 	ret
 ; 12c4c
 

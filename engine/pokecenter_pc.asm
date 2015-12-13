@@ -431,9 +431,9 @@ KrisDepositItemMenu: ; 0x1588b
 	jr c, .asm_158b6
 	call DisableSpriteUpdates
 	call LoadStandardMenuDataHeader
-	callba Function106a5
+	callba DepositSellInitPackBuffers
 .asm_1589c
-	callba Function106be
+	callba DepositSellPack
 	ld a, [wcf66]
 	and a
 	jr z, .asm_158b3
@@ -629,7 +629,7 @@ Function15985: ; 0x15985
 	call Function156c7
 
 .asm_159f2
-	callba Function2490c
+	callba SwitchItemsInBag
 
 .asm_159f8
 	jp .asm_15989

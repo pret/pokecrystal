@@ -206,8 +206,8 @@ Sfx_Unknown61: ; f0a1f
 	musicheader 1, 8, Sfx_Unknown61_Ch8
 ; f0a22
 
-Sfx_Unknown62: ; f0a22
-	musicheader 1, 8, Sfx_Unknown62_Ch8
+Sfx_SwitchPockets: ; f0a22
+	musicheader 1, 8, Sfx_SwitchPockets_Ch8
 ; f0a25
 
 Sfx_Unknown63: ; f0a25
@@ -5226,7 +5226,7 @@ Sfx_Unknown61_Ch8: ; f2588
 	endchannel
 ; f258c
 
-Sfx_Unknown62_Ch8: ; f258c
+Sfx_SwitchPockets_Ch8: ; f258c
 	noise __,  5, $c1, $42
 	endchannel
 ; f2590

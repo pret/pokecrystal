@@ -1471,12 +1471,14 @@ Requested1bppDest:: ; cf6f
 ; something to do with menu
 wcf71:: ds 1
 wcf72:: ds 1
+wMenuJoypad::
 wcf73:: ds 1
 MenuSelection:: ; cf74
 	ds 1
 
 wcf75:: ds 1
 wcf76:: ds 1
+wCurrPocketCursorPosition::
 wcf77:: ds 1
 wcf78:: ds 9
 
@@ -1506,10 +1508,15 @@ wMenuData2Flags:: ds 1 ; cf91
 ; bit 0: ????
 
 wMenuData2Items:: ds 1
+wMenuData2IndicesPointer::
 wcf93:: ds 1
 wcf94:: ds 1
+wMenuData2DisplayFunctionPointer::
+wMenuData2Bank::
 wcf95:: ds 1 ; bank
+wMenuData2Addr::
 wcf96:: ds 1 ; addr lo
+wMenuData2PointerTableAddr::
 wcf97:: ds 1 ; addr hi
 wcf98:: ds 3
 wcf9b:: ds 3
@@ -1622,7 +1629,7 @@ wMinutesSince:: ds 1
 wHoursSince:: ds 1
 wDaysSince:: ds 1
 
-	ds 40
+wRAM0End:: ; cfc0
 
 
 SECTION "WRAM 1", WRAMX, BANK [1]
@@ -1851,6 +1858,7 @@ wBallsPocketScrollPosition:: ds 1
 wTMHMPocketScrollPosition:: ds 1
 wMoveSwapBuffer::
 wSwitchMon::
+wSwitchItem::
 wd0e3:: ds 1
 wMenuScrollPosition:: ds 4
 wQueuedScriptBank:: ds 1
@@ -1858,6 +1866,7 @@ wQueuedScriptAddr:: ds 2
 wNumMoves::
 wd0eb:: ds 1
 wFieldMoveSucceeded::
+wItemEffectSucceeded::
 wPlayerAction::
 ; 0 - use move
 ; 1 - use item
@@ -2284,6 +2293,21 @@ OTPlayerID:: ds 2
 OTPartyCount::   ds 1 ; d280
 OTPartySpecies:: ds PARTY_LENGTH ; d281
 OTPartyEnd::     ds 1
+
+wDudeBag:: ; d288
+wDudeNumItems:: ds 1
+wDudeItems:: ds 2 * 4
+wDudeItemsEnd:: ds 1
+
+wDudeNumKeyItems:: ds 1 ; d292
+wDudeKeyItems:: ds 18
+wDudeKeyItemsEnd:: ds 1
+
+wDudeNumBalls:: ds 1 ; d2a6
+wDudeBalls:: ds 2 * 4
+wDudeBallsEnd:: ds 1
+wDudeBagEnd::
+	ds wDudeBag - @
 
 OTPartyMons::
 OTPartyMon1:: party_struct OTPartyMon1 ; d288
