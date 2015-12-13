@@ -546,7 +546,7 @@ StandardMartAskPurchaseQuantity:
 	ld [wItemQuantityBuffer], a
 	ld a, MARTTEXT_HOW_MANY
 	call LoadBuyMenuText
-	callba Function24fc9
+	callba SelectQuantityToBuy
 	call ExitMenu
 	ret
 ; 15d97
@@ -606,7 +606,7 @@ RooftopSaleAskPurchaseQuantity:
 	call .GetSalePrice
 	ld a, 99
 	ld [wItemQuantityBuffer], a
-	callba Function24fcf
+	callba RooftopSale_SelectQuantityToBuy
 	call ExitMenu
 	ret
 ; 15df9
@@ -876,7 +876,7 @@ Function15ee0: ; 15ee0
 	ld hl, Text_Mart_SellHowMany
 	call PrintText
 	callba PlaceMoneyTopRightMenu
-	callba Function24fe1
+	callba SelectQuantityToSell
 	call ExitMenu
 	jr c, .declined
 	hlcoord 1, 14

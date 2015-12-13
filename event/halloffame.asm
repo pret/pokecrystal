@@ -618,7 +618,7 @@ Function86810: ; 86810
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	call WaitBGMap
-	callba Function26601
+	callba ProfOaksPCRating
 	ret
 ; 868ed
 

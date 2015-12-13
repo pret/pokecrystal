@@ -343,7 +343,7 @@ Function157e9: ; 0x157e9
 .askquantity
 	ld hl, .HowManyText
 	call MenuTextBox
-	callba Function24fbf
+	callba SelectQuantityToToss
 	call ExitMenu
 	call ExitMenu
 	jr c, .done
@@ -516,7 +516,7 @@ Function1590a: ; 0x1590a
 .asm_1591d
 	ld hl, .HowManyText
 	call MenuTextBox
-	callba Function24fbf
+	callba SelectQuantityToToss
 	push af
 	call ExitMenu
 	call ExitMenu

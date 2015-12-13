@@ -514,7 +514,7 @@ UseItem: ; 10311
 TossMenu: ; 10364
 	ld hl, Text_ThrowAwayHowMany
 	call Pack_PrintTextNoScroll
-	callba Function24fbf
+	callba SelectQuantityToToss
 	push af
 	call ExitMenu
 	pop af

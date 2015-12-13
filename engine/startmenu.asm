@@ -602,7 +602,7 @@ Function129f4: ; 129f4
 	jr nz, .asm_12a3f
 	ld hl, UnknownText_0x12a45
 	call MenuTextBox
-	callba Function24fbf
+	callba SelectQuantityToToss
 	push af
 	call WriteBackup
 	call ExitMenu

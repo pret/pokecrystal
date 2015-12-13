@@ -9764,709 +9764,9 @@ endr
 	db -1
 ; 24caf
 
-MonMenuOptionStrings: ; 24caf
-	db "STATS@"
-	db "SWITCH@"
-	db "ITEM@"
-	db "CANCEL@"
-	db "MOVE@"
-	db "MAIL@"
-	db "ERROR!@"
-; 24cd9
-
-MonMenuOptions: ; 24cd9
-
-; Moves
-	db MONMENU_FIELD_MOVE, MONMENU_CUT,        CUT
-	db MONMENU_FIELD_MOVE, MONMENU_FLY,        FLY
-	db MONMENU_FIELD_MOVE, MONMENU_SURF,       SURF
-	db MONMENU_FIELD_MOVE, MONMENU_STRENGTH,   STRENGTH
-	db MONMENU_FIELD_MOVE, MONMENU_FLASH,      FLASH
-	db MONMENU_FIELD_MOVE, MONMENU_WATERFALL,  WATERFALL
-	db MONMENU_FIELD_MOVE, MONMENU_WHIRLPOOL,  WHIRLPOOL
-	db MONMENU_FIELD_MOVE, MONMENU_DIG,        DIG
-	db MONMENU_FIELD_MOVE, MONMENU_TELEPORT,   TELEPORT
-	db MONMENU_FIELD_MOVE, MONMENU_SOFTBOILED, SOFTBOILED
-	db MONMENU_FIELD_MOVE, MONMENU_HEADBUTT,   HEADBUTT
-	db MONMENU_FIELD_MOVE, MONMENU_ROCKSMASH,  ROCK_SMASH
-	db MONMENU_FIELD_MOVE, MONMENU_MILKDRINK,  MILK_DRINK
-	db MONMENU_FIELD_MOVE, MONMENU_SWEETSCENT, SWEET_SCENT
-
-; Options
-	db MONMENU_MENUOPTION, MONMENU_STATS,      1 ; STATS
-	db MONMENU_MENUOPTION, MONMENU_SWITCH,     2 ; SWITCH
-	db MONMENU_MENUOPTION, MONMENU_ITEM,       3 ; ITEM
-	db MONMENU_MENUOPTION, MONMENU_CANCEL,     4 ; CANCEL
-	db MONMENU_MENUOPTION, MONMENU_MOVE,       5 ; MOVE
-	db MONMENU_MENUOPTION, MONMENU_MAIL,       6 ; MAIL
-	db MONMENU_MENUOPTION, MONMENU_ERROR,      7 ; ERROR!
-
-	db -1
-; 24d19
-
-MonSubmenu: ; 24d19
-	xor a
-	ld [hBGMapMode], a
-	call GetMonSubmenuItems
-	callba FreezeMonIcons
-	ld hl, .MenuDataHeader
-	call LoadMenuDataHeader
-	call .GetTopCoord
-	call PopulateMonMenu
-
-	ld a, 1
-	ld [hBGMapMode], a
-	call MonMenuLoop
-	ld [MenuSelection], a
-
-	call ExitMenu
-	ret
-; 24d3f
-
-.MenuDataHeader: ; 24d3f
-	db $40 ; tile backup
-	db 00, 06 ; start coords
-	db 17, 19 ; end coords
-	dw 0
-	db 1 ; default option
-; 24d47
-
-.GetTopCoord: ; 24d47
-; TopCoord = 1 + BottomCoord - 2 * (NumSubmenuItems + 1)
-	ld a, [Buffer1]
-	inc a
-	add a
-	ld b, a
-	ld a, [wMenuBorderBottomCoord]
-	sub b
-	inc a
-	ld [wMenuBorderTopCoord], a
-	call MenuBox
-	ret
-; 24d59
-
-MonMenuLoop: ; 24d59
-.loop
-	ld a, $a0 ; flags
-	ld [wMenuData2Flags], a
-	ld a, [Buffer1] ; items
-	ld [wMenuData2Items], a
-	call Function1c10
-	ld hl, wcfa5
-	set 6, [hl]
-	call Function1bc9
-	ld de, SFX_READ_TEXT_2
-	call PlaySFX
-	ld a, [hJoyPressed]
-	bit 0, a ; A
-	jr nz, .select
-	bit 1, a ; B
-	jr nz, .cancel
-	jr .loop
-
-.cancel
-	ld a, MONMENU_CANCEL ; CANCEL
-	ret
-
-.select
-	ld a, [MenuSelection2]
-	dec a
-	ld c, a
-	ld b, 0
-	ld hl, Buffer2
-	add hl, bc
-	ld a, [hl]
-	ret
-; 24d91
-
-PopulateMonMenu: ; 24d91
-	call MenuBoxCoord2Tile
-	ld bc, $2a ; 42
-	add hl, bc
-	ld de, Buffer2
-.loop
-	ld a, [de]
-	inc de
-	cp -1
-	ret z
-	push de
-	push hl
-	call GetMonMenuString
-	pop hl
-	call PlaceString
-	ld bc, $28 ; 40
-	add hl, bc
-	pop de
-	jr .loop
-; 24db0
-
-GetMonMenuString: ; 24db0
-	ld hl, MonMenuOptions + 1
-	ld de, 3
-	call IsInArray
-	dec hl
-	ld a, [hli]
-	cp 1
-	jr z, .NotMove
-	inc hl
-	ld a, [hl]
-	ld [wd265], a
-	call GetMoveName
-	ret
-
-.NotMove
-	inc hl
-	ld a, [hl]
-	dec a
-	ld hl, MonMenuOptionStrings
-	call GetNthString
-	ld d, h
-	ld e, l
-	ret
-; 24dd4
-
-GetMonSubmenuItems: ; 24dd4
-	call ResetMonSubmenu
-	ld a, [CurPartySpecies]
-	cp EGG
-	jr z, .egg
-	ld a, [wLinkMode]
-	and a
-	jr nz, .skip_moves
-	ld a, MON_MOVES
-	call GetPartyParamLocation
-	ld d, h
-	ld e, l
-	ld c, NUM_MOVES
-.loop
-	push bc
-	push de
-	ld a, [de]
-	and a
-	jr z, .next
-	push hl
-	call IsFieldMove
-	pop hl
-	jr nc, .next
-	call AddMonMenuItem
-
-.next
-	pop de
-	inc de
-	pop bc
-	dec c
-	jr nz, .loop
-
-.skip_moves
-	ld a, MONMENU_STATS
-	call AddMonMenuItem
-	ld a, MONMENU_SWITCH
-	call AddMonMenuItem
-	ld a, MONMENU_MOVE
-	call AddMonMenuItem
-	ld a, [wLinkMode]
-	and a
-	jr nz, .skip2
-	push hl
-	ld a, MON_ITEM
-	call GetPartyParamLocation
-	ld d, [hl]
-	callba ItemIsMail
-	pop hl
-	ld a, MONMENU_MAIL
-	jr c, .ok
-	ld a, MONMENU_ITEM
-
-.ok
-	call AddMonMenuItem
-
-.skip2
-	ld a, [Buffer1]
-	cp NUM_MON_SUBMENU_ITEMS
-	jr z, .ok2
-	ld a, MONMENU_CANCEL
-	call AddMonMenuItem
-
-.ok2
-	call TerminateMonSubmenu
-	ret
-
-.egg
-	ld a, MONMENU_STATS
-	call AddMonMenuItem
-	ld a, MONMENU_SWITCH
-	call AddMonMenuItem
-	ld a, MONMENU_CANCEL
-	call AddMonMenuItem
-	call TerminateMonSubmenu
-	ret
-; 24e52
-
-IsFieldMove: ; 24e52
-	ld b, a
-	ld hl, MonMenuOptions
-.next
-	ld a, [hli]
-	cp -1
-	jr z, .nope
-	cp MONMENU_MENUOPTION
-	jr z, .nope
-	ld d, [hl]
-	inc hl
-	ld a, [hli]
-	cp b
-	jr nz, .next
-	ld a, d
-	scf
-
-.nope
-	ret
-; 24e68
-
-ResetMonSubmenu: ; 24e68
-	xor a
-	ld [Buffer1], a
-	ld hl, Buffer2
-	ld bc, NUM_MON_SUBMENU_ITEMS + 1
-	call ByteFill
-	ret
-; 24e76
-
-TerminateMonSubmenu: ; 24e76
-	ld a, [Buffer1]
-	ld e, a
-	ld d, $0
-	ld hl, Buffer2
-	add hl, de
-	ld [hl], -1
-	ret
-; 24e83
-
-AddMonMenuItem: ; 24e83
-	push hl
-	push de
-	push af
-	ld a, [Buffer1]
-	ld e, a
-	inc a
-	ld [Buffer1], a
-	ld d, $0
-	ld hl, Buffer2
-	add hl, de
-	pop af
-	ld [hl], a
-	pop de
-	pop hl
-	ret
-; 24e99
-
-BattleMonMenu: ; 24e99
-	ld hl, MenuDataHeader_0x24ed4
-	call CopyMenuDataHeader
-	xor a
-	ld [hBGMapMode], a
-	call MenuBox
-	call UpdateSprites
-	call Function1c89
-	call WaitBGMap
-	call CopyMenuData2
-	ld a, [wMenuData2Flags]
-	bit 7, a
-	jr z, .set_carry
-	call Function1c10
-	ld hl, wcfa5
-	set 6, [hl]
-	call Function1bc9
-	ld de, SFX_READ_TEXT_2
-	call PlaySFX
-	ld a, [hJoyPressed]
-	bit B_BUTTON_F, a
-	jr z, .clear_carry
-	ret z
-
-.set_carry
-	scf
-	ret
-
-.clear_carry
-	and a
-	ret
-; 24ed4
-
-MenuDataHeader_0x24ed4: ; 24ed4
-	db $00 ; flags
-	db 11, 11 ; start coords
-	db 17, 19 ; end coords
-	dw MenuData2_0x24edc
-	db 1 ; default option
-; 24edc
-
-MenuData2_0x24edc: ; 24edc
-	db $c0 ; flags
-	db 3 ; items
-	db "SWITCH@"
-	db "STATS@"
-	db "CANCEL@"
-; 24ef2
-
-LoadBattleMenu: ; 24ef2
-	ld hl, BattleMenuDataHeader
-	call LoadMenuDataHeader
-	ld a, [wd0d2]
-	ld [wMenuCursorBuffer], a
-	call Function2039
-	ld a, [wMenuCursorBuffer]
-	ld [wd0d2], a
-	call ExitMenu
-	ret
-; 24f0b
-
-SafariBattleMenu: ; 24f0b
-; untranslated
-	ld hl, MenuDataHeader_0x24f4e
-	call LoadMenuDataHeader
-	jr Function24f19
-; 24f13
-
-ContestBattleMenu: ; 24f13
-	ld hl, MenuDataHeader_0x24f89
-	call LoadMenuDataHeader
-; 24f19
-
-Function24f19: ; 24f19
-	ld a, [wd0d2]
-	ld [wMenuCursorBuffer], a
-	call InterpretMenu
-	ld a, [wMenuCursorBuffer]
-	ld [wd0d2], a
-	call ExitMenu
-	ret
-; 24f2c
-
-BattleMenuDataHeader: ; 24f2c
-	db $40 ; flags
-	db 12, 08 ; start coords
-	db 17, 19 ; end coords
-	dw MenuData_0x24f34
-	db 1 ; default option
-; 24f34
-
-MenuData_0x24f34: ; 0x24f34
-	db $81 ; flags
-	dn 2, 2 ; rows, columns
-	db 6 ; spacing
-	dba Strings24f3d
-	dbw BANK(MenuData_0x24f34), 0
-; 0x24f3d
-
-Strings24f3d: ; 0x24f3d
-	db "FIGHT@"
-	db "<PKMN>@"
-	db "PACK@"
-	db "RUN@"
-; 24f4e
-
-MenuDataHeader_0x24f4e: ; 24f4e
-	db $40 ; flags
-	db 12, 00 ; start coords
-	db 17, 19 ; end coords
-	dw MenuData_0x24f56
-	db 1 ; default option
-; 24f56
-
-MenuData_0x24f56: ; 24f56
-	db $81 ; flags
-	dn 2, 2 ; rows, columns
-	db 11 ; spacing
-	dba Strings24f5f
-	dba Function24f7c
-; 24f5f
-
-Strings24f5f: ; 24f5f
-	db "サファりボール×  @" ; "SAFARI BALL×  @"
-	db "エサをなげる@" ; "THROW BAIT"
-	db "いしをなげる@" ; "THROW ROCK"
-	db "にげる@" ; "RUN"
-; 24f7c
-
-Function24f7c: ; 24f7c
-	hlcoord 17, 13
-	ld de, wSafariBallsRemaining
-	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
-	call PrintNum
-	ret
-; 24f89
-
-MenuDataHeader_0x24f89: ; 24f89
-	db $40 ; flags
-	db 12, 02 ; start coords
-	db 17, 19 ; end coords
-	dw MenuData_0x24f91
-	db 1 ; default option
-; 24f91
-
-MenuData_0x24f91: ; 24f91
-	db $81 ; flags
-	dn 2, 2 ; rows, columns
-	db 12 ; spacing
-	dba Strings24f9a
-	dba Function24fb2
-; 24f9a
-
-Strings24f9a: ; 24f9a
-	db "FIGHT@"
-	db "<PKMN>", "@"
-	db "PARKBALL×  @"
-	db "RUN@"
-; 24fb2
-
-Function24fb2: ; 24fb2
-	hlcoord 13, 16
-	ld de, wParkBallsRemaining
-	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
-	call PrintNum
-	ret
-; 24fbf
-
-Function24fbf: ; 24fbf
-	ld hl, MenuDataHeader_0x250ed
-	call LoadMenuDataHeader
-	call Function24ff9
-	ret
-; 24fc9
-
-Function24fc9: ; 24fc9
-	callba GetItemPrice
-Function24fcf: ; 24fcf
-	ld a, d
-	ld [Buffer1], a
-	ld a, e
-	ld [Buffer2], a
-	ld hl, MenuDataHeader_0x250f5
-	call LoadMenuDataHeader
-	call Function24ff9
-	ret
-; 24fe1
-
-Function24fe1: ; 24fe1
-	callba GetItemPrice
-	ld a, d
-	ld [Buffer1], a
-	ld a, e
-	ld [Buffer2], a
-	ld hl, MenuDataHeader_0x250fd
-	call LoadMenuDataHeader
-	call Function24ff9
-	ret
-; 24ff9
-
-Function24ff9: ; 24ff9
-	ld a, $1
-	ld [wItemQuantityChangeBuffer], a
-.loop
-	call Function25072 ; update display
-	call Function2500e ; joy action
-	jr nc, .loop
-	cp -1
-	jr nz, .nope
-	scf
-	ret
-
-.nope
-	and a
-	ret
-; 2500e
-
-Function2500e: ; 2500e
-	call Function354b ; get joypad
-	bit B_BUTTON_F, c
-	jr nz, .b
-	bit A_BUTTON_F, c
-	jr nz, .a
-	bit D_DOWN_F, c
-	jr nz, .down
-	bit D_UP_F, c
-	jr nz, .up
-	bit D_LEFT_F, c
-	jr nz, .left
-	bit D_RIGHT_F, c
-	jr nz, .right
-	and a
-	ret
-
-.b
-	ld a, -1
-	scf
-	ret
-
-.a
-	ld a, 0
-	scf
-	ret
-
-.down
-	ld hl, wItemQuantityChangeBuffer
-	dec [hl]
-	jr nz, .finish_down
-	ld a, [wItemQuantityBuffer]
-	ld [hl], a
-
-.finish_down
-	and a
-	ret
-
-.up
-	ld hl, wItemQuantityChangeBuffer
-	inc [hl]
-	ld a, [wItemQuantityBuffer]
-	cp [hl]
-	jr nc, .finish_up
-	ld [hl], $1
-
-.finish_up
-	and a
-	ret
-
-.left
-	ld a, [wItemQuantityChangeBuffer]
-	sub $a
-	jr c, .load_1
-	jr z, .load_1
-	jr .finish_left
-
-.load_1
-	ld a, $1
-
-.finish_left
-	ld [wItemQuantityChangeBuffer], a
-	and a
-	ret
-
-.right
-	ld a, [wItemQuantityChangeBuffer]
-	add $a
-	ld b, a
-	ld a, [wItemQuantityBuffer]
-	cp b
-	jr nc, .finish_right
-	ld b, a
-
-.finish_right
-	ld a, b
-	ld [wItemQuantityChangeBuffer], a
-	and a
-	ret
-; 25072
-
-Function25072: ; 25072
-	call MenuBox
-	call MenuBoxCoord2Tile
-	ld de, $15
-	add hl, de
-	ld [hl], $f1
-	inc hl
-	ld de, wItemQuantityChangeBuffer
-	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
-	call PrintNum
-	ld a, [wMenuData2Pointer]
-	ld e, a
-	ld a, [wMenuData2Pointer + 1]
-	ld d, a
-	ld a, [wMenuDataBank]
-	call FarCall_de
-	ret
-; 25097
-
-Function25097: ; 25097
-	ret
-; 25098
-
-Function25098: ; 25098
-	call Function250a9
-	call Function250d1
-	ret
-; 2509f
-
-Function2509f: ; 2509f
-	call Function250a9
-	call Function250c1
-	call Function250d1
-	ret
-; 250a9
-
-Function250a9: ; 250a9
-	xor a
-	ld [hMultiplicand + 0], a
-	ld a, [Buffer1]
-	ld [hMultiplicand + 1], a
-	ld a, [Buffer2]
-	ld [hMultiplicand + 2], a
-	ld a, [wItemQuantityChangeBuffer]
-	ld [hMultiplier], a
-	push hl
-	call Multiply
-	pop hl
-	ret
-; 250c1
-
-Function250c1: ; 250c1
-	push hl
-	ld hl, hMultiplicand
-	ld a, [hl]
-	srl a
-	ld [hli], a
-	ld a, [hl]
-	rra
-	ld [hli], a
-	ld a, [hl]
-	rra
-	ld [hl], a
-	pop hl
-	ret
-; 250d1
-
-Function250d1: ; 250d1
-	push hl
-	ld hl, hMoneyTemp
-	ld a, [hMultiplicand]
-	ld [hli], a
-	ld a, [$ffb5]
-	ld [hli], a
-	ld a, [$ffb6]
-	ld [hl], a
-	pop hl
-	inc hl
-	ld de, hMoneyTemp
-	lb bc, PRINTNUM_MONEY | 3, 6
-	call PrintNum
-	call WaitBGMap
-	ret
-; 250ed
-
-MenuDataHeader_0x250ed: ; 0x250ed
-	db $40 ; flags
-	db 09, 15 ; start coords
-	db 11, 19 ; end coords
-	dw Function25097
-	db 0 ; default option
-; 0x250f5
-
-MenuDataHeader_0x250f5: ; 0x250f5
-	db $40 ; flags
-	db 15, 07 ; start coords
-	db 17, 19 ; end coords
-	dw Function25098
-	db -1 ; default option
-; 0x250fd
-
-MenuDataHeader_0x250fd: ; 0x250fd
-	db $40 ; flags
-	db 15, 07 ; start coords
-	db 17, 19 ; end coords
-	dw Function2509f
-	db 0 ; default option
-; 0x25105
-
+INCLUDE "engine/mon_menu.asm"
+INCLUDE "battle/menu.asm"
+INCLUDE "engine/buy_sell_toss.asm"
 INCLUDE "engine/trainer_card.asm"
 
 ProfOaksPC: ; 0x265d3
@@ -10493,7 +9793,7 @@ ProfOaksPCBoot ; 0x265ee
 	ret
 ; 0x26601
 
-Function26601: ; 0x26601
+ProfOaksPCRating: ; 0x26601
 	call Rate
 	push de
 	ld de, MUSIC_NONE
@@ -10517,7 +9817,7 @@ Rate: ; 0x26616
 	ld [wd003], a
 
 ; print appropriate rating
-	call ClearOakRatingBuffers
+	call .UpdateRatingBuffers
 	ld hl, OakPCText3
 	call PrintText
 	call JoyWaitAorB
@@ -10530,17 +9830,17 @@ Rate: ; 0x26616
 	ret
 ; 0x26647
 
-ClearOakRatingBuffers: ; 0x26647
+.UpdateRatingBuffers: ; 0x26647
 	ld hl, StringBuffer3
 	ld de, wd002
-	call ClearOakRatingBuffer
+	call .UpdateRatingBuffer
 	ld hl, StringBuffer4
 	ld de, wd003
-	call ClearOakRatingBuffer
+	call .UpdateRatingBuffer
 	ret
 ; 0x2665a
 
-ClearOakRatingBuffer: ; 0x2665a
+.UpdateRatingBuffer: ; 0x2665a
 	push hl
 	ld a, "@"
 	ld bc, ITEM_NAME_LENGTH
@@ -10577,85 +9877,31 @@ endr
 ; 0x2667f
 
 OakRatings: ; 0x2667f
-; db count (if number caught ≤ this number, then this entry is used)
-; dw sound effect
-; dw text pointer
+oakrating: MACRO
+	db \1
+	dw \2, \3
+endm
 
-	db 9
-	dw SFX_DEX_FANFARE_LESS_THAN_20
-	dw OakRating01
-
-	db 19
-	dw SFX_DEX_FANFARE_LESS_THAN_20
-	dw OakRating02
-
-	db 34
-	dw SFX_DEX_FANFARE_20_49
-	dw OakRating03
-
-	db 49
-	dw SFX_DEX_FANFARE_20_49
-	dw OakRating04
-
-	db 64
-	dw SFX_DEX_FANFARE_50_79
-	dw OakRating05
-
-	db 79
-	dw SFX_DEX_FANFARE_50_79
-	dw OakRating06
-
-	db 94
-	dw SFX_DEX_FANFARE_80_109
-	dw OakRating07
-
-	db 109
-	dw SFX_DEX_FANFARE_80_109
-	dw OakRating08
-
-	db 124
-	dw SFX_CAUGHT_MON
-	dw OakRating09
-
-	db 139
-	dw SFX_CAUGHT_MON
-	dw OakRating10
-
-	db 154
-	dw SFX_DEX_FANFARE_140_169
-	dw OakRating11
-
-	db 169
-	dw SFX_DEX_FANFARE_140_169
-	dw OakRating12
-
-	db 184
-	dw SFX_DEX_FANFARE_170_199
-	dw OakRating13
-
-	db 199
-	dw SFX_DEX_FANFARE_170_199
-	dw OakRating14
-
-	db 214
-	dw SFX_DEX_FANFARE_200_229
-	dw OakRating15
-
-	db 229
-	dw SFX_DEX_FANFARE_200_229
-	dw OakRating16
-
-	db 239
-	dw SFX_DEX_FANFARE_230_PLUS
-	dw OakRating17
-
-	db 248
-	dw SFX_DEX_FANFARE_230_PLUS
-	dw OakRating18
-
-	db 255
-	dw SFX_DEX_FANFARE_230_PLUS
-	dw OakRating19
+; if you caught at most this many, play this sound, load this text
+	oakrating   9, SFX_DEX_FANFARE_LESS_THAN_20, OakRating01
+	oakrating  19, SFX_DEX_FANFARE_LESS_THAN_20, OakRating02
+	oakrating  34, SFX_DEX_FANFARE_20_49,        OakRating03
+	oakrating  49, SFX_DEX_FANFARE_20_49,        OakRating04
+	oakrating  64, SFX_DEX_FANFARE_50_79,        OakRating05
+	oakrating  79, SFX_DEX_FANFARE_50_79,        OakRating06
+	oakrating  94, SFX_DEX_FANFARE_80_109,       OakRating07
+	oakrating 109, SFX_DEX_FANFARE_80_109,       OakRating08
+	oakrating 124, SFX_CAUGHT_MON,               OakRating09
+	oakrating 139, SFX_CAUGHT_MON,               OakRating10
+	oakrating 154, SFX_DEX_FANFARE_140_169,      OakRating11
+	oakrating 169, SFX_DEX_FANFARE_140_169,      OakRating12
+	oakrating 184, SFX_DEX_FANFARE_170_199,      OakRating13
+	oakrating 199, SFX_DEX_FANFARE_170_199,      OakRating14
+	oakrating 214, SFX_DEX_FANFARE_200_229,      OakRating15
+	oakrating 229, SFX_DEX_FANFARE_200_229,      OakRating16
+	oakrating 239, SFX_DEX_FANFARE_230_PLUS,     OakRating17
+	oakrating 248, SFX_DEX_FANFARE_230_PLUS,     OakRating18
+	oakrating 255, SFX_DEX_FANFARE_230_PLUS,     OakRating19
 
 OakPCText1: ; 0x266de
 	text_jump _OakPCText1
@@ -10797,7 +10043,6 @@ _ReturnToBattle_UseBall: ; 2715c
 
 .gettutorialbackpic
 	callba GetTrainerBackpic
-
 .continue
 	callba GetMonFrontpic
 	callba _LoadBattleFontsHPBar
@@ -10898,7 +10143,7 @@ MoveEffects: ; 2732e
 INCLUDE "battle/moves/move_effects.asm"
 
 Function27a28: ; 27a28
-	call Function2500e
+	call BuySellToss_InterpretJoypad
 	ld b, a
 	ret
 ; 27a2d
