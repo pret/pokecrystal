@@ -114,9 +114,9 @@ LoadMapPart:: ; 217a
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 
-	ld a, BANK(Function4d15b)
+	ld a, BANK(_LoadMapPart)
 	rst Bankswitch
-	call Function4d15b
+	call _LoadMapPart
 
 	pop af
 	rst Bankswitch
@@ -124,38 +124,40 @@ LoadMapPart:: ; 217a
 ; 2198
 
 LoadMetatiles:: ; 2198
-; de <- wOverworldMapAnchor
+	; de <- wOverworldMapAnchor
 	ld a, [wOverworldMapAnchor]
 	ld e, a
 	ld a, [wOverworldMapAnchor + 1]
 	ld d, a
 	ld hl, wMisc
-	ld b, 5 ; SCREEN_WIDTH / 4
+	ld b, WMISC_HEIGHT / 4 ; 5
 
-.loop
+.row
 	push de
 	push hl
-	ld c, 6 ; SCREEN_HEIGHT / 3
+	ld c, WMISC_WIDTH / 4 ; 6
 
-.loop2
+.col
 	push de
 	push hl
+	; Load the current map block.
+	; If the current map block is a border block, load the border block.
 	ld a, [de]
 	and a
 	jr nz, .ok
 	ld a, [MapBorderBlock]
 
 .ok
+	; Load the current wMisc address into de.
 	ld e, l
 	ld d, h
-; double a, load hl <- a, multiply hl by 8
+	; Set hl to the address of the current metatile data ([TilesetBlocksAddress] + (a) tiles).
 	add a
 	ld l, a
 	ld h, 0
 rept 3
-	add hl,hl
+	add hl, hl
 endr
-; hl <- hl + [TilesetBlocksAddress]
 	ld a, [TilesetBlocksAddress]
 	add l
 	ld l, a
@@ -163,37 +165,36 @@ endr
 	adc h
 	ld h, a
 
+	; copy the 4x4 metatile
 rept 3
-; copy 4 bytes from hl to de
 rept 4
 	ld a, [hli]
 	ld [de], a
 	inc de
 endr
-; next row
 	ld a, e
-	add SCREEN_WIDTH
+	add WMISC_WIDTH - 4
 	ld e, a
 	jr nc, .next\@
 	inc d
 .next\@
 endr
-; copy 4 more bytes from hl to de
 rept 4
 	ld a, [hli]
 	ld [de], a
 	inc de
 endr
-
+	; Next metatile
 	pop hl
 	ld de, 4
 	add hl, de
 	pop de
 	inc de
 	dec c
-	jp nz, .loop2
+	jp nz, .col
+	; Next metarow
 	pop hl
-	ld de, $60
+	ld de, WMISC_WIDTH * 4
 	add hl, de
 	pop de
 	ld a, [MapWidth]
@@ -202,10 +203,9 @@ endr
 	ld e, a
 	jr nc, .ok2
 	inc d
-
 .ok2
 	dec b
-	jp nz, .loop
+	jp nz, .row
 	ret
 ; 222a
 
@@ -223,7 +223,7 @@ CheckWarpTile:: ; 2238
 	ret nc
 
 	push bc
-	callba Function149af
+	callba CheckDirectionalWarp
 	pop bc
 	ret nc
 
@@ -231,8 +231,6 @@ CheckWarpTile:: ; 2238
 	scf
 	ret
 ; 224a
-
-
 
 WarpCheck:: ; 224a
 	call GetDestinationWarpNumber
@@ -242,7 +240,7 @@ WarpCheck:: ; 224a
 ; 2252
 
 GetDestinationWarpNumber:: ; 2252
-	callba Function1499a
+	callba CheckWarpCollision
 	ret nc
 
 	ld a, [hROMBank]
@@ -366,8 +364,6 @@ CopyWarpData:: ; 22a7
 	ret
 ; 22ee
 
-
-
 CheckOutdoorMap:: ; 22ee
 	cp ROUTE
 	ret z
@@ -394,7 +390,6 @@ Function2300:: ; unreferenced
 	cp PERM_5
 	ret
 ; 2309
-
 
 LoadMapAttributes:: ; 2309
 	call CopyMapHeaders
@@ -503,7 +498,6 @@ GetMapConnections:: ; 2368
 	ret
 ; 23a3
 
-
 GetMapConnection:: ; 23a3
 ; Load map connection struct at hl into de.
 	ld c, SouthMapConnection - NorthMapConnection
@@ -515,7 +509,6 @@ GetMapConnection:: ; 23a3
 	jr nz, .loop
 	ret
 ; 23ac
-
 
 ReadMapTriggers:: ; 23ac
 	ld a, [hli] ; trigger count
@@ -749,8 +742,6 @@ LoadBlockData:: ; 24cd
 	ret
 ; 24e4
 
-
-
 ChangeMap:: ; 24e4
 	ld a, [hROMBank]
 	push af
@@ -800,8 +791,6 @@ endr
 	rst Bankswitch
 	ret
 ; 2524
-
-
 
 FillMapConnections:: ; 2524
 
@@ -901,7 +890,6 @@ FillMapConnections:: ; 2524
 	ret
 ; 25d3
 
-
 FillNorthConnectionStrip::
 FillSouthConnectionStrip:: ; 25d3
 
@@ -937,7 +925,6 @@ FillSouthConnectionStrip:: ; 25d3
 	jr nz, .y
 	ret
 ; 25f6
-
 
 FillWestConnectionStrip::
 FillEastConnectionStrip:: ; 25f6
@@ -982,7 +969,6 @@ LoadMapStatus:: ; 261b
 	ld [MapStatus], a
 	ret
 ; 261f
-
 
 CallScript:: ; 261f
 ; Call a script at a:hl.
@@ -1138,7 +1124,6 @@ GetMovementData:: ; 26c7
 	ret
 ; 26d4
 
-
 GetScriptByte:: ; 0x26d4
 ; Return byte at ScriptBank:ScriptPos in a.
 
@@ -1170,7 +1155,6 @@ GetScriptByte:: ; 0x26d4
 	ret
 ; 0x26ef
 
-
 ObjectEvent:: ; 0x26ef
 	jumptextfaceplayer ObjectEventText
 ; 0x26f2
@@ -1179,7 +1163,6 @@ ObjectEventText::
 	text_jump _ObjectEventText
 	db "@"
 ; 0x26f7
-
 
 BGEvent:: ; 26f7
 	jumptext BGEventText
@@ -1190,7 +1173,6 @@ BGEventText:: ; 26fa
 	db "@"
 ; 26ff
 
-
 CoordinatesEvent:: ; 26ff
 	jumptext CoordinatesEventText
 ; 2702
@@ -1199,7 +1181,6 @@ CoordinatesEventText:: ; 2702
 	text_jump UnknownText_0x1c4706
 	db "@"
 ; 2707
-
 
 CheckObjectMask:: ; 2707
 	ld a, [hMapObjectIndexBuffer]
@@ -1230,7 +1211,6 @@ UnmaskObject:: ; 271e
 	ld [hl], 0 ; unmasked
 	ret
 ; 272a
-
 
 ScrollMapDown:: ; 272a
 	hlcoord 0, 0
@@ -1472,7 +1452,7 @@ BufferScreen:: ; 2879
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, XCoord + 1
+	ld de, wScreenSave
 	ld c, $5
 	ld b, $6
 .asm_2886
@@ -1501,9 +1481,9 @@ SaveScreen:: ; 289d
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, XCoord + 1
+	ld de, wScreenSave
 	ld a, [MapWidth]
-	add $6
+	add 6
 	ld [hMapObjectIndexBuffer], a
 	ld a, [wPlayerStepDirection]
 	and a
@@ -1517,7 +1497,7 @@ SaveScreen:: ; 289d
 	ret
 
 .up
-	ld de, wdcbf
+	ld de, wScreenSave + 6
 	ld a, [hMapObjectIndexBuffer]
 	ld c, a
 	ld b, $0
@@ -1525,26 +1505,23 @@ SaveScreen:: ; 289d
 	jr .vertical
 
 .down
-	ld de, XCoord + 1
-
+	ld de, wScreenSave
 .vertical
-	ld b, $6
-	ld c, $4
-	jr Function28f7
+	ld b, 6
+	ld c, 4
+	jr SaveScreen_LoadNeighbor
 
 .left
-	ld de, XCoord + 2
+	ld de, wScreenSave + 1
 	inc hl
 	jr .horizontal
 
 .right
-	ld de, XCoord + 1
-
+	ld de, wScreenSave
 .horizontal
-	ld b, $5
-	ld c, $5
-	jr Function28f7
-
+	ld b, 5
+	ld c, 5
+	jr SaveScreen_LoadNeighbor
 
 LoadNeighboringBlockData:: ; 28e3
 	ld hl, wOverworldMapAnchor
@@ -1552,26 +1529,26 @@ LoadNeighboringBlockData:: ; 28e3
 	ld h, [hl]
 	ld l, a
 	ld a, [MapWidth]
-	add $6
+	add 6
 	ld [hConnectionStripLength], a
-	ld de, XCoord + 1
-	ld b, $6
-	ld c, $5
+	ld de, wScreenSave
+	ld b, 6
+	ld c, 5
 
-Function28f7:: ; 28f7
-.loop1
+SaveScreen_LoadNeighbor:: ; 28f7
+.row
 	push bc
 	push hl
 	push de
-.loop2
+.col
 	ld a, [de]
 	inc de
 	ld [hli], a
 	dec b
-	jr nz, .loop2
+	jr nz, .col
 	pop de
 	ld a, e
-	add $6
+	add 6
 	ld e, a
 	jr nc, .okay
 	inc d
@@ -1580,11 +1557,11 @@ Function28f7:: ; 28f7
 	pop hl
 	ld a, [hConnectionStripLength]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	pop bc
 	dec c
-	jr nz, .loop1
+	jr nz, .row
 	ret
 ; 2914
 
@@ -1746,7 +1723,6 @@ Function29ff:: ; 29ff
 	ret
 ; 2a07
 
-
 GetFacingTileCoord:: ; 2a07
 ; Return map coordinates in (d, e) and tile id in a
 ; of the tile the player is facing.
@@ -1792,7 +1768,6 @@ endr
 	db  1,  0
 	dw TileRight
 ; 2a3c
-
 
 GetCoordTile:: ; 2a3c
 ; Get the collision byte for tile d, e
@@ -1860,7 +1835,6 @@ GetBlockLocation:: ; 2a66
 	add hl, bc
 	ret
 ; 2a8b
-
 
 CheckFacingSign:: ; 2a8b
 	call GetFacingTileCoord
@@ -2002,7 +1976,6 @@ CheckStandingOnXYTrigger:: ; 2ae7
 	ret
 ; 2b29
 
-
 FadeToMenu:: ; 2b29
 	xor a
 	ld [hBGMapMode], a
@@ -2012,7 +1985,6 @@ FadeToMenu:: ; 2b29
 	call DisableSpriteUpdates
 	ret
 ; 2b3c
-
 
 CloseSubmenu:: ; 2b3c
 	call ClearBGPalettes
@@ -2032,13 +2004,12 @@ ExitAllMenus:: ; 2b4d
 Function2b5c:: ; 2b5c
 	ld b, SCGB_09
 	call GetSGBLayout
-	callba Function49409
+	callba LoadOW_BGPal7
 	call WaitBGMap2
 	callba FadeInPalettes
 	call EnableSpriteUpdates
 	ret
 ; 2b74
-
 
 Function2b74:: ; 0x2b74
 	push af
@@ -2056,7 +2027,7 @@ Function2b74:: ; 0x2b74
 	call WaitBGMap2
 	ld b, SCGB_09
 	call GetSGBLayout
-	callba Function49409
+	callba LoadOW_BGPal7
 	call UpdateTimePals
 	call DelayFrame
 	ld a, $1
@@ -2078,7 +2049,7 @@ Function2bae:: ; 2bae
 	ld a, [MapNumber]
 	ld c, a
 	call SwitchToAnyMapBank
-	callba Function8c001
+	callba UpdateTimeOfDayPal
 	call OverworldTextModeSwitch
 	call LoadTileset
 	ld a, 9
@@ -2089,7 +2060,6 @@ Function2bae:: ; 2bae
 	call EnableLCD
 	ret
 ; 2be5
-
 
 GetMapHeaderPointer:: ; 2be5
 	ld a, [MapGroup]
@@ -2167,7 +2137,6 @@ GetAnyMapHeaderMember:: ; 0x2c0c
 	ret
 ; 0x2c1c
 
-
 SwitchToMapBank:: ; 2c1c
 	ld a, [MapGroup]
 	ld b, a
@@ -2180,7 +2149,6 @@ SwitchToAnyMapBank:: ; 2c24
 	rst Bankswitch
 	ret
 ; 2c29
-
 
 GetMapBank:: ; 2c29
 	ld a, [MapGroup]
@@ -2223,7 +2191,6 @@ SwitchToMapScriptHeaderBank:: ; 2c52
 	rst Bankswitch
 	ret
 ; 2c57
-
 
 GetMapScriptHeaderBank:: ; 2c57
 	ld a, [MapScriptHeaderBank]

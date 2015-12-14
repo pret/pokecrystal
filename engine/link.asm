@@ -2349,7 +2349,7 @@ Function29dba: ; 29dba
 	ld a, [ScriptVar]
 	and a
 	jr z, .asm_29e08
-	ld bc, rIE
+	ld bc, -1
 .asm_29de0
 	dec bc
 	ld a, b

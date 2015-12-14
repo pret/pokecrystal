@@ -1280,7 +1280,7 @@ MonMenu_Fly: ; 12e30
 ; 12e55
 
 MonMenu_Flash: ; 12e55
-	callba Functionc8ac
+	callba OWFlash
 	ld a, [wFieldMoveSucceeded]
 	cp $1
 	jr nz, .Fail

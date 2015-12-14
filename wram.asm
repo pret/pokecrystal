@@ -548,7 +548,7 @@ wBT_OTTemp:: battle_tower_struct wBT_OTTemp
 	hall_of_fame wHallOfFameTemp
 	ds wHallOfFameTemp - @
 
-wMisc:: ; ds $28 * 6
+wMisc:: ; ds (SCREEN_WIDTH + 4) * (SCREEN_HEIGHT + 2)
 wBattle::
 wc608::
 
@@ -2560,8 +2560,8 @@ TimeOfDayPal:: ; d841
 	ds 1
 	ds 4
 ; d846
-wd846:: ds 1
-wd847:: ds 1
+wTimeOfDayPalFlags:: ds 1
+wTimeOfDayPalset:: ds 1
 CurTimeOfDay:: ; d848
 	ds 1
 
@@ -2949,10 +2949,7 @@ YCoord:: ; dcb7
 	ds 1 ; current y coordinate relative to top-left corner of current map
 XCoord:: ; dcb8
 	ds 1 ; current x coordinate relative to top-left corner of current map
-
-	ds 6
-wdcbf:: ds 1
-	ds 23
+wScreenSave:: ds 6 * 5
 
 wMapDataEnd::
 

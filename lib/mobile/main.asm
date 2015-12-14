@@ -2697,7 +2697,7 @@ Function1111d7: ; 1111d7
 	dec hl
 
 .asm_1111ee
-	ld bc, rIE
+	ld bc, -1
 .asm_1111f1
 	ld a, [hli]
 	inc bc

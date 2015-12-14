@@ -33,11 +33,9 @@ MapSetupScripts: ; 15377
 
 MapSetupScript_Teleport: ; 1538f
 	db map_prolong_sprites
-
 MapSetupScript_Fly: ; 15390
 	db map_fade_out_palettes
 	db map_keep_roam
-
 MapSetupScript_Warp: ; 15392
 	db map_lcd_off
 	db map_sound_off
@@ -61,7 +59,7 @@ MapSetupScript_Warp: ; 15392
 	db map_fade_in_palettes
 	db map_animations_on
 	db map_wildmons
-	db map_end_setup_script
+	db map_end
 
 MapSetupScript_BadWarp: ; 153a9
 	db map_load_spawn
@@ -85,7 +83,7 @@ MapSetupScript_BadWarp: ; 153a9
 	db map_fade_in_palettes
 	db map_animations_on
 	db map_wildmons
-	db map_end_setup_script
+	db map_end
 
 MapSetupScript_Connection: ; 153bf
 	db map_animations_off
@@ -104,14 +102,12 @@ MapSetupScript_Connection: ; 153bf
 	db map_wildmons
 	db map_update_roam
 	db map_animations_on
-	db map_end_setup_script
+	db map_end
 
 MapSetupScript_Fall: ; 153d0
 	db map_prolong_sprites
-
 MapSetupScript_Door: ; 153d1
 	db map_fade_out_palettes
-
 MapSetupScript_Train: ; 153d2
 	db map_load_warp
 	db map_attributes
@@ -133,7 +129,7 @@ MapSetupScript_Train: ; 153d2
 	db map_animations_on
 	db map_wildmons
 	db map_update_roam
-	db map_end_setup_script
+	db map_end
 
 MapSetupScript_ReloadMap: ; 153e7
 	db map_fade
@@ -151,7 +147,7 @@ MapSetupScript_ReloadMap: ; 153e7
 	db map_fade_in_palettes
 	db map_animations_on
 	db map_wildmons
-	db map_end_setup_script
+	db map_end
 
 MapSetupScript_LinkReturn: ; 153f7
 	db map_fade
@@ -170,7 +166,7 @@ MapSetupScript_LinkReturn: ; 153f7
 	db map_animations_on
 	db map_wildmons
 	db map_text_scroll_off
-	db map_end_setup_script
+	db map_end
 
 MapSetupScript_Continue: ; 15408
 	db map_lcd_off
@@ -190,12 +186,12 @@ MapSetupScript_Continue: ; 15408
 	db map_fade_in_palettes
 	db map_animations_on
 	db map_wildmons
-	db map_end_setup_script
+	db map_end
 
 MapSetupScript_Submenu: ; 1541a
 	db map_load_blocks
 	db map_connection_blocks
-	db map_end_setup_script
+	db map_end
 
 
 ReadMapSetupScript: ; 1541d

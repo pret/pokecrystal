@@ -49,7 +49,7 @@ Function17a6a8: ; 17a6a8 (5e:66a8)
 	call Function17ac0c
 	callba Function104000
 	call Function17abcf
-	callba Function49409
+	callba LoadOW_BGPal7
 	callba Function49420
 	call SetPalettes
 	call DelayFrame

@@ -9,12 +9,12 @@ PlayWhirlpoolSound: ; 8c7d4
 BlindingFlash: ; 8c7e1
 	callba FadeOutPalettes
 	ld hl, StatusFlags
-	set 2, [hl]
-	callba Function8c0e5
-	callba Function8c001
+	set 2, [hl] ; Flash
+	callba ReplaceTimeOfDayPals
+	callba UpdateTimeOfDayPal
 	ld b, SCGB_09
 	call GetSGBLayout
-	callba Function49409
+	callba LoadOW_BGPal7
 	callba FadeInPalettes
 	ret
 ; 8c80a
@@ -32,13 +32,13 @@ ShakeHeadbuttTree: ; 8c80a
 	call Cut_Headbutt_GetPixelFacing
 	ld a, SPRITE_ANIM_INDEX_1B
 	call _InitSpriteAnimStruct
-	ld hl, $3
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $84
 	ld a, 36 * 4
 	ld [wCurrSpriteOAMAddr], a
 	callba DoNextFrameForAllSprites
-	call GetHeadbuttTreeRelativeLocation
+	call HideHeadbuttTree
 	ld a, $20
 	ld [wcf64], a
 	call WaitSFX
@@ -78,7 +78,7 @@ HeadbuttTreeGFX: ; 8c893
 INCBIN "gfx/unknown/08c893.2bpp"
 ; 8c913
 
-GetHeadbuttTreeRelativeLocation: ; 8c913
+HideHeadbuttTree: ; 8c913
 	xor a
 	ld [hBGMapMode], a
 	ld a, [PlayerDirection]
@@ -113,6 +113,9 @@ TreeRelativeLocationTable: ; 8c938
 ; 8c940
 
 OWCutAnimation: ; 8c940
+	; Animation index in e
+	; 0: Split tree in half
+	; 1: Mow the lawn
 	ld a, e
 	and $1
 	ld [wJumptableIndex], a

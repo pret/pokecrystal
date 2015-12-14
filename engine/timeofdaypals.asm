@@ -1,4 +1,4 @@
-Function8c001:: ; 8c001
+UpdateTimeOfDayPal:: ; 8c001
 	call UpdateTime
 	ld a, [TimeOfDay]
 	ld [CurTimeOfDay], a
@@ -12,7 +12,7 @@ _TimeOfDayPals:: ; 8c011
 ; return carry if pals are changed
 
 ; forced pals?
-	ld hl, wd846
+	ld hl, wTimeOfDayPalFlags
 	bit 7, [hl]
 	jr nz, .dontchange
 
@@ -198,7 +198,7 @@ brightlevel: MACRO
 	db (\1 << 6) | (\2 << 4) | (\3 << 2) | \4
 ENDM
 
-Function8c0e5: ; 8c0e5
+ReplaceTimeOfDayPals: ; 8c0e5
 	ld hl, .BrightnessLevels
 	ld a, [wc2d0]
 	cp $4 ; Dark cave, needs Flash
@@ -210,18 +210,20 @@ Function8c0e5: ; 8c0e5
 	adc h
 	ld h, a
 	ld a, [hl]
-	ld [wd847], a
+	ld [wTimeOfDayPalset], a
 	ret
+
 .DarkCave
 	ld a, [StatusFlags]
-	bit 2, a
+	bit 2, a ; Flash
 	jr nz, .UsedFlash
-	ld a, $ff ; 3, 3, 3, 3
-	ld [wd847], a
+	ld a, %11111111 ; 3, 3, 3, 3
+	ld [wTimeOfDayPalset], a
 	ret
+
 .UsedFlash
-	ld a, $aa ; 2, 2, 2, 2
-	ld [wd847], a
+	ld a, %10101010 ; 2, 2, 2, 2
+	ld [wTimeOfDayPalset], a
 	ret
 ; 8c10f (23:410f)
 
@@ -257,25 +259,25 @@ endr
 	dw .DarknessPalette
 
 .MorningPalette
-	ld a, [wd847]
+	ld a, [wTimeOfDayPalset]
 	and %00000011 ; 0
 	ret
 
 .DayPalette
-	ld a, [wd847]
+	ld a, [wTimeOfDayPalset]
 	and %00001100 ; 1
 	srl a
 	srl a
 	ret
 
 .NitePalette
-	ld a, [wd847]
+	ld a, [wTimeOfDayPalset]
 	and %00110000 ; 2
 	swap a
 	ret
 
 .DarknessPalette
-	ld a, [wd847]
+	ld a, [wTimeOfDayPalset]
 	and %11000000 ; 3
 	rlca
 	rlca

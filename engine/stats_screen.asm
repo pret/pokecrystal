@@ -407,7 +407,7 @@ Function4df45: ; 4df45 (13:5f45)
 	ld a, [hli]
 	ld d, a
 	ld e, [hl]
-	callba DrawPartyMenuHPBar
+	callba ComputeHPBarPixels
 	ld hl, wcda1
 	call SetHPPal
 	ld b, SCGB_03

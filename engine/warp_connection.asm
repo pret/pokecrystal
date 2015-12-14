@@ -237,8 +237,8 @@ LoadMapTimeOfDay: ; 104750
 	res 6, [hl]
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
-	callba Function8c0e5
-	callba Function8c001
+	callba ReplaceTimeOfDayPals
+	callba UpdateTimeOfDayPal
 	call OverworldTextModeSwitch
 	call Function104770
 	call Function1047a3

@@ -190,7 +190,7 @@ PlacePartymonHPBar: ; 50117
 	ld d, a
 	ld a, [hli]
 	ld e, a
-	predef DrawPartyMenuHPBar
+	predef ComputeHPBarPixels
 	ret
 ; 50138
 

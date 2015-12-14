@@ -264,8 +264,8 @@ StartTrainerBattle_Flash: ; 8c3ab (23:43ab)
 	ret
 
 .DoFlashAnimation: ; 8c3b3 (23:43b3)
-	ld a, [wd847]
-	cp -1
+	ld a, [wTimeOfDayPalset]
+	cp %11111111 ; dark cave
 	jr z, .done
 	ld hl, wcf64
 	ld a, [hl]

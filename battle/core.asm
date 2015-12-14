@@ -1889,26 +1889,26 @@ SubtractHP: ; 3cc45
 .ok
 	inc hl
 	ld a, [hl]
-	ld [wd1ec], a
+	ld [Buffer3], a
 	sub c
 	ld [hld], a
-	ld [wd1ee], a
+	ld [Buffer5], a
 	ld a, [hl]
-	ld [wd1ed], a
+	ld [Buffer4], a
 	sbc b
 	ld [hl], a
-	ld [wd1ef], a
+	ld [Buffer6], a
 	ret nc
 
-	ld a, [wd1ec]
+	ld a, [Buffer3]
 	ld c, a
-	ld a, [wd1ed]
+	ld a, [Buffer4]
 	ld b, a
 	xor a
 	ld [hli], a
 	ld [hl], a
-	ld [wd1ee], a
-	ld [wd1ef], a
+	ld [Buffer5], a
+	ld [Buffer6], a
 	ret
 ; 3cc76
 
@@ -4508,13 +4508,13 @@ HandleHPHealingItem: ; 3dd2f
 .go
 	push bc
 	ld a, [de]
-	ld [wd1ec], a
+	ld [Buffer3], a
 	add a
 	ld c, a
 	dec de
 	ld a, [de]
 	inc de
-	ld [wd1ed], a
+	ld [Buffer4], a
 	adc a
 	ld b, a
 	ld a, b
@@ -4539,12 +4539,12 @@ HandleHPHealingItem: ; 3dd2f
 	ld [Buffer1], a
 	ld a, [de]
 	add c
-	ld [wd1ee], a
+	ld [Buffer5], a
 	ld c, a
 	dec de
 	ld a, [de]
 	adc $0
-	ld [wd1ef], a
+	ld [Buffer6], a
 	ld b, a
 	ld a, [hld]
 	cp c
@@ -4552,15 +4552,15 @@ HandleHPHealingItem: ; 3dd2f
 	sbc b
 	jr nc, .okay
 	ld a, [hli]
-	ld [wd1ef], a
+	ld [Buffer6], a
 	ld a, [hl]
-	ld [wd1ee], a
+	ld [Buffer5], a
 
 .okay
-	ld a, [wd1ef]
+	ld a, [Buffer6]
 	ld [de], a
 	inc de
-	ld a, [wd1ee]
+	ld a, [Buffer5]
 	ld [de], a
 	ld a, [hBattleTurn]
 	ld [wd10a], a

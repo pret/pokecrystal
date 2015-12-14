@@ -16,7 +16,7 @@ endr
 
 .Jumptable: ; 8d25b (23:525b)
 	jumptable_start
-	jumptable .zero        ; town map
+	jumptable .zero        ; null
 	jumptable .one         ; bouncing mon icon
 	jumptable .two         ; bouncing mon icon, selected
 	jumptable .three       ; bouncing mon icon, menu open

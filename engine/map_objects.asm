@@ -3040,7 +3040,7 @@ Function579d: ; 579d
 	ld [wd04e], a
 	ld [PlayerObjectStepFrame], a
 	call Function57bc
-	callba CheckWarpCollision
+	callba CheckWarpFacingDown
 	call c, SpawnInFacingDown
 	call SpawnInCustomFacing
 	ret

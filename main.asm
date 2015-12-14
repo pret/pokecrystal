@@ -89,7 +89,7 @@ Function6473: ; 6473
 	ld a, VBGMap1 / $100
 	call Function64b9
 	call Function2e20
-	callba Function49409
+	callba LoadOW_BGPal7
 	callba Function96a4
 	ld a, $1
 	ld [hCGBPalUpdate], a
@@ -2078,7 +2078,8 @@ endr
 	ret
 ; c699
 
-DrawPartyMenuHPBar: ; c699
+ComputeHPBarPixels: ; c699
+; bc * (6 * 8) / de
 	ld a, b
 	or c
 	jr z, .zero
@@ -2089,12 +2090,14 @@ DrawPartyMenuHPBar: ; c699
 	ld [hMultiplicand + 1], a
 	ld a, c
 	ld [hMultiplicand + 2], a
-	ld a, $30
+	ld a, 6 * 8
 	ld [hMultiplier], a
 	call Multiply
+	; We need de to be under 256 because hDivisor is only 1 byte.
 	ld a, d
 	and a
 	jr z, .divide
+	; divide de and hProduct by 4
 	srl d
 	rr e
 	srl d
@@ -2109,22 +2112,21 @@ DrawPartyMenuHPBar: ; c699
 	ld [hDividend + 3], a
 	ld a, b
 	ld [hDividend + 2], a
-
 .divide
 	ld a, e
 	ld [hDivisor], a
-	ld b, $4
+	ld b, 4
 	call Divide
 	ld a, [hQuotient + 2]
 	ld e, a
 	pop hl
 	and a
 	ret nz
-	ld e, $1
+	ld e, 1
 	ret
 
 .zero
-	ld e, $0
+	ld e, 0
 	ret
 ; c6e0
 
@@ -2193,13 +2195,13 @@ CheckBadge: ; c731
 ; Display "Badge required" text and return carry if the badge is not owned
 	call CheckEngineFlag
 	ret nc
-	ld hl, BadgeRequiredText
+	ld hl, .BadgeRequiredText
 	call MenuTextBoxBackup ; push text to queue
 	scf
 	ret
 ; c73d
 
-BadgeRequiredText: ; c73d
+.BadgeRequiredText: ; c73d
 	; Sorry! A new BADGE
 	; is required.
 	text_jump _BadgeRequiredText
@@ -2252,12 +2254,13 @@ CheckPartyMove: ; c742
 ; c779
 
 FieldMoveFailed: ; c779
-	ld hl, UnknownText_0xc780
+	ld hl, .CantUseHere
 	call MenuTextBoxBackup
 	ret
 ; c780
 
-UnknownText_0xc780: ; 0xc780
+.CantUseHere: ; 0xc780
+	; Can't use that here.
 	text_jump UnknownText_0x1c05c8
 	db "@"
 ; 0xc785
@@ -2274,9 +2277,10 @@ CutFunction: ; c785
 ; c796
 
 .Jumptable: ; c796 (3:4796)
-	dw .CheckAble
-	dw .DoCut
-	dw .FailCut
+	jumptable_start
+	jumptable .CheckAble
+	jumptable .DoCut
+	jumptable .FailCut
 
 .CheckAble: ; c79c (3:479c)
 	ld de, ENGINE_HIVEBADGE
@@ -2286,9 +2290,11 @@ CutFunction: ; c785
 	jr c, .nothingtocut
 	ld a, $1
 	ret
+
 .nohivebadge
 	ld a, $80
 	ret
+
 .nothingtocut
 	ld a, $2
 	ret
@@ -2300,45 +2306,51 @@ CutFunction: ; c785
 	ret
 
 .FailCut: ; c7bb (3:47bb)
-	ld hl, UnknownText_0xc7c9
+	ld hl, Text_NothingToCut
 	call MenuTextBoxBackup
 	ld a, $80
 	ret
 
-UnknownText_0xc7c4: ; 0xc7c4
+Text_UsedCut: ; 0xc7c4
 	; used CUT!
 	text_jump UnknownText_0x1c05dd
 	db "@"
 ; 0xc7c9
 
-UnknownText_0xc7c9: ; 0xc7c9
+Text_NothingToCut: ; 0xc7c9
 	; There's nothing to CUT here.
 	text_jump UnknownText_0x1c05ec
 	db "@"
 ; 0xc7ce
 
 CheckMapForSomethingToCut: ; c7ce
+	; Does the collision data of the facing tile permit cutting?
 	call GetFacingTileCoord
 	ld c, a
 	push de
 	callba CheckCutCollision
 	pop de
 	jr nc, .fail
+	; Get the location of the current block in OverworldMap.
 	call GetBlockLocation
 	ld c, [hl]
+	; See if that block contains something that can be cut.
 	push hl
 	ld hl, CutTreeBlockPointers
 	call CheckOverworldTileArrays
 	pop hl
 	jr nc, .fail
+	; Back up the OverworldMap address to Buffer3
 	ld a, l
-	ld [wd1ec], a
+	ld [Buffer3], a
 	ld a, h
-	ld [wd1ed], a
+	ld [Buffer4], a
+	; Back up the replacement tile to Buffer5
 	ld a, b
-	ld [wd1ee], a
+	ld [Buffer5], a
+	; Back up the animation index to Buffer6
 	ld a, c
-	ld [wd1ef], a
+	ld [Buffer6], a
 	xor a
 	ret
 
@@ -2353,7 +2365,7 @@ Script_CutFromMenu: ; c7fe
 
 Script_Cut: ; 0xc802
 	callasm GetPartyNick
-	writetext UnknownText_0xc7c4
+	writetext Text_UsedCut
 	reloadmappart
 	callasm CutDownTreeOrGrass
 	closetext
@@ -2361,18 +2373,18 @@ Script_Cut: ; 0xc802
 ; 0xc810
 
 CutDownTreeOrGrass: ; c810
-	ld hl, wd1ec
+	ld hl, Buffer3 ; OverworldMapTile
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wd1ee]
+	ld a, [Buffer5] ; ReplacementTile
 	ld [hl], a
 	xor a
 	ld [hBGMapMode], a
 	call OverworldTextModeSwitch
 	call UpdateSprites
 	call DelayFrame
-	ld a, [wd1ef]
+	ld a, [Buffer6] ; Animation type
 	ld e, a
 	callba OWCutAnimation
 	call BufferScreen
@@ -2384,22 +2396,32 @@ CutDownTreeOrGrass: ; c810
 ; c840
 
 CheckOverworldTileArrays: ; c840
+	; Input: c contains the tile you're facing
+	; Output: Replacement tile in b and effect on wild encounters in c, plus carry set.
+	;         Carry is not set if the facing tile cannot be replaced, or if the tileset
+	;         does not contain a tile you can replace.
+
+	; Dictionary lookup for pointer to tile replacement table
 	push bc
 	ld a, [wTileset]
 	ld de, 3
 	call IsInArray
 	pop bc
 	jr nc, .nope
+	; Load the pointer
 	inc hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+	; Look up the tile you're facing
 	ld de, 3
 	ld a, c
 	call IsInArray
 	jr nc, .nope
+	; Load the replacement to b
 	inc hl
 	ld b, [hl]
+	; Load the animation type parameter to c
 	inc hl
 	ld c, [hl]
 	scf
@@ -2412,16 +2434,16 @@ CheckOverworldTileArrays: ; c840
 
 CutTreeBlockPointers: ; c862
 ; Which tileset are we in?
-	dbw TILESET_JOHTO_1, .one
-	dbw TILESET_JOHTO_2, .two
-	dbw TILESET_KANTO, .three
-	dbw TILESET_PARK, .twentyfive
-	dbw TILESET_ILEX_FOREST, .thirtyone
+	dbw TILESET_JOHTO_1, .johto1
+	dbw TILESET_JOHTO_2, .johto2
+	dbw TILESET_KANTO, .kanto
+	dbw TILESET_PARK, .park
+	dbw TILESET_ILEX_FOREST, .ilex
 	db -1
 ; c872
 
-.one: ; Johto OW
-; Which meta tile are we facing, which should we replace it with, and does it affect encounters?
+.johto1: ; Johto OW
+; Which meta tile are we facing, which should we replace it with, and which animation?
 	db $03, $02, $01 ; grass
 	db $5b, $3c, $00 ; tree
 	db $5f, $3d, $00 ; tree
@@ -2430,12 +2452,12 @@ CutTreeBlockPointers: ; c862
 	db -1
 ; c882
 
-.two: ; Goldenrod area
+.johto2: ; Goldenrod area
 	db $03, $02, $01 ; grass
 	db -1
 ; c886
 
-.three: ; Kanto OW
+.kanto: ; Kanto OW
 	db $0b, $0a, $01 ; grass
 	db $32, $6d, $00 ; tree
 	db $33, $6c, $00 ; tree
@@ -2445,35 +2467,35 @@ CutTreeBlockPointers: ; c862
 	db -1
 ; c899
 
-.twentyfive: ; National Park
+.park: ; National Park
 	db $13, $03, $01 ; grass
 	db $03, $04, $01 ; grass
 	db -1
 ; c8a0
 
-.thirtyone: ; Ilex Forest
+.ilex: ; Ilex Forest
 	db $0f, $17, $00
 	db -1
 ; c8a4
 
 WhirlpoolBlockPointers: ; c8a4
-	dbw TILESET_JOHTO_1, .one
+	dbw TILESET_JOHTO_1, .johto
 	db -1
 ; c8a8
 
-.one: ; c8a8
+.johto: ; c8a8
 	db $07, $36, $00
 	db -1
 ; c8ac
 
-Functionc8ac: ; c8ac
-	call Functionc8b5
+OWFlash: ; c8ac
+	call .CheckUseFlash
 	and $7f
 	ld [wd0ec], a
 	ret
 ; c8b5
 
-Functionc8b5: ; c8b5
+.CheckUseFlash: ; c8b5
 ; Flash
 	ld de, ENGINE_ZEPHYRBADGE
 	callba CheckBadge
@@ -2482,10 +2504,9 @@ Functionc8b5: ; c8b5
 	callba SpecialAerodactylChamber
 	pop hl
 	jr c, .useflash
-	ld a, [wd847]
-	cp -1
+	ld a, [wTimeOfDayPalset]
+	cp %11111111 ; 3, 3, 3, 3
 	jr nz, .notadarkcave
-
 .useflash
 	call UseFlash
 	ld a, $81
@@ -2522,11 +2543,11 @@ UnknownText_0xc8f3: ; 0xc8f3
 	ld de, SFX_FLASH
 	call PlaySFX
 	call WaitSFX
-	ld hl, UnknownText_0xc908
+	ld hl, .BlankText
 	ret
 ; c908
 
-UnknownText_0xc908: ; 0xc908
+.BlankText: ; 0xc908
 	db "@"
 ; 0xc909
 
@@ -3268,7 +3289,7 @@ Functioncd1d: ; cd1d
 	ld hl, PartySpecies
 	add hl, de
 	ld a, [hl]
-	ld [wd1ef], a
+	ld [Buffer6], a
 	call GetPartyNick
 	ret
 ; cd29
@@ -3280,7 +3301,7 @@ Script_StrengthFromMenu: ; 0xcd29
 Script_UsedStrength: ; 0xcd2d
 	callasm Functioncd12
 	writetext UnknownText_0xcd41
-	copybytetovar wd1ef
+	copybytetovar Buffer6
 	cry 0
 	pause 3
 	writetext UnknownText_0xcd46
@@ -3438,13 +3459,13 @@ TryWhirlpoolMenu: ; cdde
 	pop hl
 	jr nc, .failed
 	ld a, l
-	ld [wd1ec], a
+	ld [Buffer3], a
 	ld a, h
-	ld [wd1ed], a
+	ld [Buffer4], a
 	ld a, b
-	ld [wd1ee], a
+	ld [Buffer5], a
 	ld a, c
-	ld [wd1ef], a
+	ld [Buffer6], a
 	xor a
 	ret
 
@@ -3467,16 +3488,16 @@ Script_UsedWhirlpool: ; 0xce0f
 ; 0xce1d
 
 DisappearWhirlpool: ; ce1d
-	ld hl, wd1ec
+	ld hl, Buffer3
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wd1ee]
+	ld a, [Buffer5]
 	ld [hl], a
 	xor a
 	ld [hBGMapMode], a
 	call OverworldTextModeSwitch
-	ld a, [wd1ef]
+	ld a, [Buffer6]
 	ld e, a
 	callba PlayWhirlpoolSound
 	call BufferScreen
@@ -3816,7 +3837,7 @@ FishFunction: ; cf8e
 
 .FishGotSomething: ; cff4
 	ld a, $1
-	ld [wd1ef], a
+	ld [Buffer6], a
 	ld hl, Script_GotABite
 	call QueueScript
 	ld a, $81
@@ -3825,7 +3846,7 @@ FishFunction: ; cf8e
 
 .FishNoBite: ; d002
 	ld a, $2
-	ld [wd1ef], a
+	ld [Buffer6], a
 	ld hl, Script_NotEvenANibble
 	call QueueScript
 	ld a, $81
@@ -3834,7 +3855,7 @@ FishFunction: ; cf8e
 
 .FailFish: ; d010
 	ld a, $0
-	ld [wd1ef], a
+	ld [Buffer6], a
 	ld hl, Script_NotEvenANibble2
 	call QueueScript
 	ld a, $81
@@ -4160,7 +4181,7 @@ AskCutScript: ; 0xd1a9
 	ld [ScriptVar], a
 	call CheckMapForSomethingToCut
 	ret c
-	ld a, 1
+	ld a, TRUE
 	ld [ScriptVar], a
 	ret
 ; d1c8
@@ -5077,439 +5098,7 @@ UpdateOverworldMap: ; d536 (3:5536)
 	inc [hl]
 	ret
 
-_AnimateHPBar: ; d627
-	call Functiond65f
-	jr c, .do_player
-	call Functiond670
-.enemy_loop
-	push bc
-	push hl
-	call Functiond6e2
-	pop hl
-	pop bc
-	push af
-	push bc
-	push hl
-	call Functiond730
-	call Functiond7c9
-	pop hl
-	pop bc
-	pop af
-	jr nc, .enemy_loop
-	ret
-
-.do_player
-	call Functiond670
-.player_loop
-	push bc
-	push hl
-	call Functiond6f5
-	pop hl
-	pop bc
-	ret c
-	push af
-	push bc
-	push hl
-	call Functiond749
-	call Functiond7c9
-	pop hl
-	pop bc
-	pop af
-	jr nc, .player_loop
-	ret
-; d65f
-
-Functiond65f: ; d65f
-	ld a, [Buffer2]
-	and a
-	jr nz, .player
-	ld a, [Buffer1]
-	cp $30
-	jr nc, .player
-	and a
-	ret
-
-.player
-	scf
-	ret
-; d670
-
-Functiond670: ; d670
-	push hl
-	ld hl, Buffer1
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld a, [hli]
-	ld c, a
-	ld a, [hli]
-	ld b, a
-	pop hl
-	call DrawPartyMenuHPBar
-	ld a, e
-	ld [wd1f1], a
-	ld a, [wd1ee]
-	ld c, a
-	ld a, [wd1ef]
-	ld b, a
-	ld a, [Buffer1]
-	ld e, a
-	ld a, [Buffer2]
-	ld d, a
-	call DrawPartyMenuHPBar
-	ld a, e
-	ld [wd1f2], a
-	push hl
-	ld hl, wd1ec
-	ld a, [hli]
-	ld c, a
-	ld a, [hli]
-	ld b, a
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	pop hl
-	ld a, e
-	sub c
-	ld e, a
-	ld a, d
-	sbc b
-	ld d, a
-	jr c, .asm_d6c1
-	ld a, [wd1ec]
-	ld [wd1f5], a
-	ld a, [wd1ee]
-	ld [wd1f6], a
-	ld bc, 1
-	jr .asm_d6d9
-
-.asm_d6c1
-	ld a, [wd1ec]
-	ld [wd1f6], a
-	ld a, [wd1ee]
-	ld [wd1f5], a
-	ld a, e
-	xor $ff
-	inc a
-	ld e, a
-	ld a, d
-	xor $ff
-	ld d, a
-	ld bc, rIE
-
-.asm_d6d9
-	ld a, d
-	ld [wd1f3], a
-	ld a, e
-	ld [wd1f4], a
-	ret
-; d6e2
-
-Functiond6e2: ; d6e2
-	ld hl, wd1f1
-	ld a, [wd1f2]
-	cp [hl]
-	jr nz, .asm_d6ed
-	scf
-	ret
-
-.asm_d6ed
-	ld a, c
-	add [hl]
-	ld [hl], a
-	call Functiond839
-	and a
-	ret
-; d6f5
-
-Functiond6f5: ; d6f5
-.asm_d6f5
-	ld hl, wd1ec
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld a, e
-	cp [hl]
-	jr nz, .asm_d707
-	inc hl
-	ld a, d
-	cp [hl]
-	jr nz, .asm_d707
-	scf
-	ret
-
-.asm_d707
-	ld l, e
-	ld h, d
-	add hl, bc
-	ld a, l
-	ld [wd1ec], a
-	ld a, h
-	ld [wd1ed], a
-	push hl
-	push de
-	push bc
-	ld hl, Buffer1
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld a, [hli]
-	ld c, a
-	ld a, [hli]
-	ld b, a
-	call DrawPartyMenuHPBar
-	pop bc
-	pop de
-	pop hl
-	ld a, e
-	ld hl, wd1f1
-	cp [hl]
-	jr z, .asm_d6f5
-	ld [hl], a
-	and a
-	ret
-; d730
-
-Functiond730: ; d730
-	call Functiond784
-	ld d, $6
-	ld a, [wd10a]
-	and $1
-	ld b, a
-	ld a, [wd1f1]
-	ld e, a
-	ld c, a
-	push de
-	call Functiond771
-	pop de
-	call Functiond7b4
-	ret
-; d749
-
-Functiond749: ; d749
-	call Functiond784
-	ld a, [wd1ec]
-	ld c, a
-	ld a, [wd1ed]
-	ld b, a
-	ld a, [Buffer1]
-	ld e, a
-	ld a, [Buffer2]
-	ld d, a
-	call DrawPartyMenuHPBar
-	ld c, e
-	ld d, $6
-	ld a, [wd10a]
-	and $1
-	ld b, a
-	push de
-	call Functiond771
-	pop de
-	call Functiond7b4
-	ret
-; d771
-
-Functiond771: ; d771
-	ld a, [wd10a]
-	cp $2
-	jr nz, .asm_d780
-	ld a, $28
-	add l
-	ld l, a
-	ld a, $0
-	adc h
-	ld h, a
-
-.asm_d780
-	call DrawBattleHPBar
-	ret
-; d784
-
-Functiond784: ; d784
-	ld a, [wd10a]
-	and a
-	ret z
-	cp $1
-	jr z, .load_15
-	ld de, $16
-	jr .loaded_de
-
-.load_15
-	ld de, $15
-
-.loaded_de
-	push hl
-	add hl, de
-	ld a, " "
-rept 2
-	ld [hli], a
-endr
-	ld [hld], a
-	dec hl
-	ld a, [wd1ec]
-	ld [StringBuffer2 + 1], a
-	ld a, [wd1ed]
-	ld [StringBuffer2], a
-	ld de, StringBuffer2
-	lb bc, 2, 3
-	call PrintNum
-	pop hl
-	ret
-; d7b4
-
-Functiond7b4: ; d7b4
-	ld a, [hCGB]
-	and a
-	ret z
-	ld hl, wd1f0
-	call SetHPPal
-	ld a, [wd1f0]
-	ld c, a
-	callba Function8c43
-	ret
-; d7c9
-
-Functiond7c9: ; d7c9
-	ld a, [hCGB]
-	and a
-	jr nz, .cgb
-	call DelayFrame
-	call DelayFrame
-	ret
-
-.cgb
-	ld a, [wd10a]
-	and a
-	jr z, .load_0
-	cp $1
-	jr z, .load_1
-	ld a, [CurPartyMon]
-	cp $3
-	jr nc, .c_is_1
-	ld c, $0
-	jr .c_is_0
-
-.c_is_1
-	ld c, $1
-
-.c_is_0
-	push af
-	cp $2
-	jr z, .skip_delay
-	cp $5
-	jr z, .skip_delay
-	ld a, $2
-	ld [hBGMapMode], a
-	ld a, c
-	ld [hBGMapThird], a
-	call DelayFrame
-
-.skip_delay
-	ld a, $1
-	ld [hBGMapMode], a
-	ld a, c
-	ld [hBGMapThird], a
-	call DelayFrame
-	pop af
-	cp $2
-	jr z, .two_frames
-	cp $5
-	jr z, .two_frames
-	ret
-
-.two_frames
-	inc c
-	ld a, $2
-	ld [hBGMapMode], a
-	ld a, c
-	ld [hBGMapThird], a
-	call DelayFrame
-	ld a, $1
-	ld [hBGMapMode], a
-	ld a, c
-	ld [hBGMapThird], a
-	call DelayFrame
-	ret
-
-.load_0
-	ld c, $0
-	jr .finish
-
-.load_1
-	ld c, $1
-
-.finish
-	call DelayFrame
-	ld a, c
-	ld [hBGMapThird], a
-	call DelayFrame
-	ret
-; d839
-
-Functiond839: ; d839
-	ld a, [Buffer1]
-	ld c, a
-	ld b, $0
-	ld hl, 0
-	ld a, [wd1f1]
-	cp $30
-	jr nc, .coppy_buffer
-	and a
-	jr z, .return_zero
-	call AddNTimes
-	ld b, $0
-.loop
-	ld a, l
-	sub $30
-	ld l, a
-	ld a, h
-	sbc $0
-	ld h, a
-	jr c, .done
-	inc b
-	jr .loop
-
-.done
-	push bc
-	ld bc, $80
-	add hl, bc
-	pop bc
-	ld a, l
-	sub $30
-	ld l, a
-	ld a, h
-	sbc $0
-	ld h, a
-	jr c, .no_carry
-	inc b
-
-.no_carry
-	ld a, [wd1f5]
-	cp b
-	jr nc, .finish
-	ld a, [wd1f6]
-	cp b
-	jr c, .finish
-	ld a, b
-
-.finish
-	ld [wd1ec], a
-	ret
-
-.return_zero
-	xor a
-	ld [wd1ec], a
-	ret
-
-.coppy_buffer
-	ld a, [Buffer1]
-	ld [wd1ec], a
-	ret
-; d88c
+INCLUDE "engine/anim_hp_bar.asm"
 
 TryAddMonToParty: ; d88c
 ; Check if to copy wild Pkmn or generate new Pkmn
@@ -8380,7 +7969,8 @@ Function140ed:: ; 140ed
 
 INCLUDE "engine/overworld.asm"
 
-Function1499a:: ; 1499a
+CheckWarpCollision:: ; 1499a
+; Is this tile a warp?
 	ld a, [PlayerNextTile]
 	cp $60
 	jr z, .warp
@@ -8397,15 +7987,17 @@ Function1499a:: ; 1499a
 	ret
 ; 149af
 
-Function149af:: ; 149af
+CheckDirectionalWarp:: ; 149af
+; If this is a directional warp, clear carry (press the designated button to warp).
+; Else, set carry (immediate warp).
 	ld a, [PlayerNextTile]
-	cp $70
+	cp $70 ; Warp on down
 	jr z, .not_warp
-	cp $76
+	cp $76 ; Warp on left
 	jr z, .not_warp
-	cp $78
+	cp $78 ; Warp on up
 	jr z, .not_warp
-	cp $7e
+	cp $7e ; Warp on right
 	jr z, .not_warp
 	scf
 	ret
@@ -8415,7 +8007,7 @@ Function149af:: ; 149af
 	ret
 ; 149c6
 
-CheckWarpCollision: ; 149c6
+CheckWarpFacingDown: ; 149c6
 	ld de, 1
 	ld hl, .blocks
 	ld a, [PlayerNextTile]
@@ -11508,7 +11100,7 @@ Function49351: ; 49351 (12:5351)
 	ld a, $5 ; BANK(UnknBGPals)
 	call FarCopyWRAM
 	ld de, UnknBGPals + $38
-	ld hl, Palette_49418
+	ld hl, Palette_TextBG7
 	ld bc, $8
 	ld a, $5 ; BANK(UnknBGPals)
 	call FarCopyWRAM
@@ -11587,8 +11179,8 @@ Palette_493e1: ; 493e1
 	RGB 00, 00, 00
 ; 49409
 
-Function49409:: ; 49409
-	ld hl, Palette_49418
+LoadOW_BGPal7:: ; 49409
+	ld hl, Palette_TextBG7
 	ld de, UnknBGPals + 8 * 7
 	ld bc, 8
 	ld a, $5
@@ -11596,7 +11188,7 @@ Function49409:: ; 49409
 	ret
 ; 49418
 
-Palette_49418: ; 49418
+Palette_TextBG7: ; 49418
 	RGB 31, 31, 31
 	RGB 08, 19, 28
 	RGB 05, 05, 16
@@ -12400,23 +11992,23 @@ CheckSave:: ; 4cffe
 
 INCLUDE "engine/map_triggers.asm"
 
-Function4d15b:: ; 4d15b
-	ld hl, wc608
+_LoadMapPart:: ; 4d15b
+	ld hl, wMisc
 	ld a, [wMetatileStandingY]
 	and a
-	jr z, .skip
-	ld bc, $30
+	jr z, .top_row
+	ld bc, WMISC_WIDTH * 2
 	add hl, bc
 
-.skip
+.top_row
 	ld a, [wMetatileStandingX]
 	and a
-	jr z, .next_dw
+	jr z, .left_column
 rept 2
 	inc hl
 endr
 
-.next_dw
+.left_column
 	decoord 0, 0
 	ld b, SCREEN_HEIGHT
 .loop
@@ -14362,7 +13954,7 @@ DrawHP: ; 50b10
 	ld c, e
 
 .asm_50b41
-	predef DrawPartyMenuHPBar
+	predef ComputeHPBarPixels
 	ld a, 6
 	ld d, a
 	ld c, a
@@ -15065,7 +14657,7 @@ ENDM
 _SwitchPartyMons:
 	ld a, [wd0e3]
 	dec a
-	ld [wd1ec], a
+	ld [Buffer3], a
 	ld b, a
 	ld a, [MenuSelection2]
 	dec a
@@ -15073,7 +14665,7 @@ _SwitchPartyMons:
 	cp b
 	jr z, .skip
 	call .SwapMonAndMail
-	ld a, [wd1ec]
+	ld a, [Buffer3]
 	call .ClearSprite
 	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
 	call .ClearSprite

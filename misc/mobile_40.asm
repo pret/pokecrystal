@@ -428,7 +428,7 @@ Function1002dc: ; 1002dc
 ; 1002ed
 
 Function1002ed: ; 1002ed
-	callba Function49409
+	callba LoadOW_BGPal7
 	callba Function96a4
 	ld a, $1
 	ld [hCGBPalUpdate], a

@@ -997,7 +997,7 @@ FlickeringCaveEntrancePalette: ; fc71e
 	cp %11100100
 	ret nz
 ; We only want to be here if we're in a dark cave.
-	ld a, [wd847]
+	ld a, [wTimeOfDayPalset]
 	cp $ff ; 3,3,3,3
 	ret nz
 

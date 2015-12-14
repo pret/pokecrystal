@@ -36,7 +36,7 @@ SpriteAnimFrameData: ; 8d6e6
 	dw Unknown_8d87d ; 22
 	dw Unknown_8d880 ; 23
 	dw Unknown_8d883 ; 24
-	dw Unknown_8d890 ; 25
+	dw Unknown_8d890 ; 25 headbutt
 	dw Unknown_8d899 ; 26
 	dw Unknown_8d89c ; 27
 	dw Unknown_8d89f ; 28
@@ -238,7 +238,7 @@ Unknown_8d883: 	db $56, $0a
                 db $58, $09
                 db $5a, $0a
                 db  -2
-Unknown_8d890: 	db $50, $02
+Unknown_8d890: 	db $50, $02 ; center
                 db $5b, $02
                 db $50, $02
                 db $5b, $42

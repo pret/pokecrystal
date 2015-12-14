@@ -61,4 +61,4 @@ const_value SET $f1
 	const map_keep_palettes       ; 2b
 	const map_text_scroll_off     ; 2c
 	const map_stop_script         ; 2d
-map_end_setup_script EQU -1
+map_end EQU -1

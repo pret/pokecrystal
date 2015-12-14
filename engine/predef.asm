@@ -34,7 +34,7 @@ PredefPointers:: ; 856b
 	add_predef Predef1
 	add_predef HealParty
 	add_predef FlagPredef
-	add_predef DrawPartyMenuHPBar
+	add_predef ComputeHPBarPixels
 	add_predef FillPP
 	add_predef TryAddMonToParty
 	add_predef AddTempmonToParty
