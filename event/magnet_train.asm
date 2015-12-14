@@ -322,7 +322,7 @@ Function8ce14: ; 8ce14
 
 Function8ce19: ; 8ce19
 	ld d, $55
-	ld a, [wd194 + 1]
+	ld a, [wOverworldMapAnchor + 1]
 	ld e, a
 	ld b, SPRITE_ANIM_INDEX_15
 	ld a, [rSVBK]
@@ -386,7 +386,7 @@ Function8ce6d: ; 8ce6d
 ; 8ce7a
 
 Function8ce7a: ; 8ce7a
-	ld hl, wd194
+	ld hl, wOverworldMapAnchor
 	ld a, [wcf65]
 	cp [hl]
 	jr z, .asm_8ce9e

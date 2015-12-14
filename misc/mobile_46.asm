@@ -7459,7 +7459,7 @@ Function11b5c0: ; 11b5c0
 	ld [CurPartyMon], a
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
-	callba Functione039
+	callba RemoveMonFromPartyOrBox
 	callba Function170807
 	callba Function14a58
 	jp Function11ad8a

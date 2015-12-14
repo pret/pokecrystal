@@ -1886,7 +1886,7 @@ Function28b87: ; 28b87
 	ld [wd002], a
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
-	callab Functione039
+	callab RemoveMonFromPartyOrBox
 	ld a, [PartyCount]
 	dec a
 	ld [CurPartyMon], a

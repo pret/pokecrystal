@@ -13,7 +13,7 @@ SelectMonFromParty: ; 50000
 ; 5001d
 
 
-Function5001d: ; 5001d
+SelectTradeOrDaycareMon: ; 5001d
 	ld a, b
 	ld [PartyMenuActionText], a
 	call DisableSpriteUpdates

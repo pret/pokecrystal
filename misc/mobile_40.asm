@@ -5406,7 +5406,7 @@ Function1023c6: ; 1023c6
 	ld [CurPartyMon], a
 	xor a
 	ld [wd10b], a
-	callba Functione039
+	callba RemoveMonFromPartyOrBox
 	ld hl, PartyCount
 	inc [hl]
 	ld a, [hli]

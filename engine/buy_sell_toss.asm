@@ -114,7 +114,7 @@ BuySellToss_InterpretJoypad: ; 2500e
 
 .right
 	ld a, [wItemQuantityChangeBuffer]
-	add $a
+	add 10
 	ld b, a
 	ld a, [wItemQuantityBuffer]
 	cp b

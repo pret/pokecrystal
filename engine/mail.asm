@@ -177,7 +177,7 @@ CheckPokeItem:: ; 44654
 	jr c, .close_sram_return
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
-	callba Functione039
+	callba RemoveMonFromPartyOrBox
 	ld a, $1
 
 .close_sram_return

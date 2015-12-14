@@ -435,9 +435,9 @@ DaycareStep:: ; 7282
 	dec hl
 	inc [hl]
 	ld a, [hl]
-	cp $50
+	cp 5242880 / $10000
 	jr c, .daycare_lady
-	ld a, $50
+	ld a, 5242880 / $10000
 	ld [hl], a
 
 .daycare_lady
@@ -620,9 +620,8 @@ SpecialReturnShuckle: ; 737e
 	jr nc, .HappyToStayWithYou
 	xor a ; take from pc
 	ld [wPokemonWithdrawDepositParameter], a
-	callab Functione039
+	callab RemoveMonFromPartyOrBox
 	ld a, $2
-
 .HappyToStayWithYou
 	ld [ScriptVar], a
 	ret
@@ -4812,21 +4811,24 @@ Functiond497:: ; d497 (3:5497)
 	and a
 	ret z
 	bit 7, a
-	jr nz, .asm_d4a9
+	jr nz, .update_overworld_map
 	bit 6, a
-	jr nz, .asm_d4b3
+	jr nz, .update_player_coords
 	bit 5, a
-	jr nz, .asm_d4b8
+	jr nz, .finish
 	ret
-.asm_d4a9
+
+.update_overworld_map
 	ld a, $4
 	ld [wd13f], a
-	call Functiond536
-	jr .asm_d4b8
-.asm_d4b3
-	call Functiond511
-	jr .asm_d4b8
-.asm_d4b8
+	call UpdateOverworldMap
+	jr .finish
+
+.update_player_coords
+	call UpdatePlayerCoords
+	jr .finish
+
+.finish
 	call Functiond4e5
 	ld a, [wPlayerStepVectorX]
 	ld d, a
@@ -4860,22 +4862,23 @@ Functiond4e5: ; d4e5 (3:54e5)
 	ret z
 	dec [hl]
 	ld a, [hl]
-	ld hl, Jumptable_d4f2
+	ld hl, .Jumptable
 	rst JumpTable
 	ret
 
-Jumptable_d4f2: ; d4f2 (3:54f2)
-	dw GetMovementPermissions
-	dw BufferScreen
-	dw .mobile
-	dw .fail2
-	dw .fail1
-	dw .fail1
-	dw .fail1
-	dw .fail1
-	dw .fail1
-	dw .fail1
-	dw .fail1
+.Jumptable: ; d4f2 (3:54f2)
+	jumptable_start
+	jumptable GetMovementPermissions
+	jumptable BufferScreen
+	jumptable .mobile
+	jumptable .fail2
+	jumptable .fail1
+	jumptable .fail1
+	jumptable .fail1
+	jumptable .fail1
+	jumptable .fail1
+	jumptable .fail1
+	jumptable .fail1
 
 .fail1: ; d508 (3:5508)
 	ret
@@ -4887,71 +4890,74 @@ Jumptable_d4f2: ; d4f2 (3:54f2)
 .fail2: ; d510 (3:5510)
 	ret
 
-Functiond511: ; d511 (3:5511)
+UpdatePlayerCoords: ; d511 (3:5511)
 	ld a, [wPlayerStepDirection]
 	and a
-	jr nz, .asm_d51c
+	jr nz, .check_step_down
 	ld hl, YCoord
 	inc [hl]
 	ret
-.asm_d51c
-	cp $1
-	jr nz, .asm_d525
+
+.check_step_down
+	cp UP
+	jr nz, .check_step_left
 	ld hl, YCoord
 	dec [hl]
 	ret
-.asm_d525
-	cp $2
-	jr nz, .asm_d52e
+
+.check_step_left
+	cp LEFT
+	jr nz, .check_step_right
 	ld hl, XCoord
 	dec [hl]
 	ret
-.asm_d52e
-	cp $3
+
+.check_step_right
+	cp RIGHT
 	ret nz
 	ld hl, XCoord
 	inc [hl]
 	ret
 
-Functiond536: ; d536 (3:5536)
+UpdateOverworldMap: ; d536 (3:5536)
 	ld a, [wPlayerStepDirection]
 	and a
-	jr z, .asm_d549
-	cp $1
-	jr z, .asm_d553
-	cp $2
-	jr z, .asm_d55d
-	cp $3
-	jr z, .asm_d567
+	jr z, .step_down
+	cp UP
+	jr z, .step_up
+	cp LEFT
+	jr z, .step_left
+	cp RIGHT
+	jr z, .step_right
 	ret
 
-.asm_d549
-	call Functiond571
+.step_down
+	call .ScrollOverworldMapDown
 	call LoadMapPart
 	call ScrollMapUp
 	ret
 
-.asm_d553
-	call Functiond5a2
+.step_up
+	call .ScrollOverworldMapUp
 	call LoadMapPart
 	call ScrollMapDown
 	ret
 
-.asm_d55d
-	call Functiond5d5
-	call LoadMapPart
-	call ScrollMapLeft
-	ret
-
-.asm_d567
-	call Functiond5fe
+.step_left
+	call .ScrollOverworldMapLeft
 	call LoadMapPart
 	call ScrollMapRight
 	ret
 
-Functiond571: ; d571 (3:5571)
+.step_right
+	call .ScrollOverworldMapRight
+	call LoadMapPart
+	call ScrollMapLeft
+	ret
+
+.ScrollOverworldMapDown: ; d571 (3:5571)
 	ld a, [wBGMapAnchor]
-	add $40
+	add 2 * BG_MAP_WIDTH
 	ld [wBGMapAnchor], a
 	jr nc, .not_overflowed
 	ld a, [wBGMapAnchor + 1]
@@ -4960,29 +4966,29 @@ Functiond571: ; d571 (3:5571)
 	or VBGMap0 / $100
 	ld [wBGMapAnchor + 1], a
 .not_overflowed
-	ld hl, wd196
+	ld hl, wMetatileStandingY
 	inc [hl]
 	ld a, [hl]
-	cp $2 ; was 1
-	jr nz, .skip
-	ld [hl], $0
-	call Functiond595
-.skip
+	cp 2 ; was 1
+	jr nz, .done_down
+	ld [hl], 0
+	call .Add6ToOverworldMapAnchor
+.done_down
 	ret
 
-Functiond595: ; d595 (3:5595)
-	ld hl, wd194
+.Add6ToOverworldMapAnchor: ; d595 (3:5595)
+	ld hl, wOverworldMapAnchor
 	ld a, [MapWidth]
-	add $6
+	add 6
 	add [hl]
 	ld [hli], a
 	ret nc
 	inc [hl]
 	ret
 
-Functiond5a2: ; d5a2 (3:55a2)
+.ScrollOverworldMapUp: ; d5a2 (3:55a2)
 	ld a, [wBGMapAnchor]
-	sub $40
+	sub 2 * BG_MAP_WIDTH
 	ld [wBGMapAnchor], a
 	jr nc, .not_underflowed
 	ld a, [wBGMapAnchor + 1]
@@ -4991,20 +4997,20 @@ Functiond5a2: ; d5a2 (3:55a2)
 	or VBGMap0 / $100
 	ld [wBGMapAnchor + 1], a
 .not_underflowed
-	ld hl, wd196
+	ld hl, wMetatileStandingY
 	dec [hl]
 	ld a, [hl]
-	cp $ff ; was 0
-	jr nz, .skip
+	cp -1 ; was 0
+	jr nz, .done_up
 	ld [hl], $1
-	call Functiond5c6
-.skip
+	call .Sub6FromOverworldMapAnchor
+.done_up
 	ret
 
-Functiond5c6: ; d5c6 (3:55c6)
-	ld hl, wd194
+.Sub6FromOverworldMapAnchor: ; d5c6 (3:55c6)
+	ld hl, wOverworldMapAnchor
 	ld a, [MapWidth]
-	add $6
+	add 6
 	ld b, a
 	ld a, [hl]
 	sub b
@@ -5013,7 +5019,7 @@ Functiond5c6: ; d5c6 (3:55c6)
 	dec [hl]
 	ret
 
-Functiond5d5: ; d5d5 (3:55d5)
+.ScrollOverworldMapLeft: ; d5d5 (3:55d5)
 	ld a, [wBGMapAnchor]
 	ld e, a
 	and $e0
@@ -5023,26 +5029,26 @@ Functiond5d5: ; d5d5 (3:55d5)
 	and $1f
 	or d
 	ld [wBGMapAnchor], a
-	ld hl, wd197
+	ld hl, wMetatileStandingX
 	dec [hl]
 	ld a, [hl]
-	cp $ff
-	jr nz, .asm_d5f3
-	ld [hl], $1
-	call Functiond5f4
-.asm_d5f3
+	cp -1
+	jr nz, .done_left
+	ld [hl], 1
+	call .DecrementwOverworldMapAnchor
+.done_left
 	ret
 
-Functiond5f4: ; d5f4 (3:55f4)
-	ld hl, wd194
+.DecrementwOverworldMapAnchor: ; d5f4 (3:55f4)
+	ld hl, wOverworldMapAnchor
 	ld a, [hl]
-	sub $1
+	sub 1
 	ld [hli], a
 	ret nc
 	dec [hl]
 	ret
 
-Functiond5fe: ; d5fe (3:55fe)
+.ScrollOverworldMapRight: ; d5fe (3:55fe)
 	ld a, [wBGMapAnchor]
 	ld e, a
 	and $e0
@@ -5052,20 +5058,20 @@ Functiond5fe: ; d5fe (3:55fe)
 	and $1f
 	or d
 	ld [wBGMapAnchor], a
-	ld hl, wd197
+	ld hl, wMetatileStandingX
 	inc [hl]
 	ld a, [hl]
-	cp $2
-	jr nz, .asm_d61c
-	ld [hl], $0
-	call .Incrementwd194
-.asm_d61c
+	cp 2
+	jr nz, .done_right
+	ld [hl], 0
+	call .IncrementwOverworldMapAnchor
+.done_right
 	ret
 
-.Incrementwd194: ; d61d (3:561d)
-	ld hl, wd194
+.IncrementwOverworldMapAnchor: ; d61d (3:561d)
+	ld hl, wOverworldMapAnchor
 	ld a, [hl]
-	add $1
+	add 1
 	ld [hli], a
 	ret nc
 	inc [hl]
@@ -5645,13 +5651,13 @@ endr
 	ld d, a
 	callab CalcExpAtLevel
 	pop de
-	ld a, [hMultiplicand]
+	ld a, [hProduct + 1]
 	ld [de], a
 	inc de
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	ld [de], a
 	inc de
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	ld [de], a
 	inc de
 	xor a
@@ -5733,10 +5739,10 @@ endr
 	ld c, a
 	ld b, $0
 	call CalcPkmnStatC
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	ld [de], a
 	inc de
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	ld [de], a
 	inc de
 	jr .next2
@@ -6165,7 +6171,6 @@ endr
 	dec a
 	ld b, a
 	call Functiondcb6
-
 .CloseSRAM_And_ClearCarryFlag
 	call CloseSRAM
 	and a
@@ -6211,7 +6216,7 @@ Functiondcb6: ; dcb6
 	ld a, [hli]
 	and a
 	jr z, .asm_dd18
-	ld [TempMonMoves+0], a
+	ld [TempMonMoves], a
 	ld a, BOXMON
 	ld [MonType], a
 	ld a, b
@@ -6388,7 +6393,7 @@ Functionde2a: ; de2a
 	call Functionde44
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
-	jp Functione039
+	jp RemoveMonFromPartyOrBox
 ; de37
 
 Functionde37: ; de37
@@ -6396,7 +6401,7 @@ Functionde37: ; de37
 	call Functionde44
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
-	jp Functione039
+	jp RemoveMonFromPartyOrBox
 ; de44
 
 Functionde44: ; de44
@@ -6423,14 +6428,14 @@ SentPkmnIntoBox: ; de6e
 	ld de, sBoxCount
 	ld a, [de]
 	cp MONS_PER_BOX
-	jp nc, Functiondf42
+	jp nc, .full
 	inc a
 	ld [de], a
 
 	ld a, [CurPartySpecies]
 	ld [CurSpecies], a
 	ld c, a
-.asm_de85
+.loop
 	inc de
 	ld a, [de]
 	ld b, a
@@ -6438,7 +6443,7 @@ SentPkmnIntoBox: ; de6e
 	ld c, b
 	ld [de], a
 	inc a
-	jr nz, .asm_de85
+	jr nz, .loop
 
 	call GetBaseData
 	call ShiftBoxMon
@@ -6474,33 +6479,33 @@ SentPkmnIntoBox: ; de6e
 	ld d, a
 	callab CalcExpAtLevel
 	pop de
-	ld a, [hMultiplicand]
+	ld a, [hProduct + 1]
 	ld [de], a
 	inc de
-	ld a, [$ffb5]
+	ld a, [hProduct + 2]
 	ld [de], a
 	inc de
-	ld a, [$ffb6]
+	ld a, [hProduct + 3]
 	ld [de], a
 	inc de
 
     ; Set all 5 Experience Values to 0
 	xor a
-	ld b, 2*5
-.asm_dee5
+	ld b, 2 * 5
+.loop2
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_dee5
+	jr nz, .loop2
 
 	ld hl, EnemyMonDVs
 	ld b, 2 + NUM_MOVES ; DVs and PP ; EnemyMonHappiness - EnemyMonDVs
-.asm_deef
+.loop3
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_deef
+	jr nz, .loop3
 
 	ld a, BASE_HAPPINESS
 	ld [de], a
@@ -6519,12 +6524,12 @@ SentPkmnIntoBox: ; de6e
 	call SetSeenAndCaughtMon
 	ld a, [CurPartySpecies]
 	cp UNOWN
-	jr nz, .asm_df20
+	jr nz, .not_unown
 	ld hl, sBoxMon1DVs
 	predef GetUnownLetter
 	callab UpdateUnownDex
 
-.asm_df20
+.not_unown
 	ld hl, sBoxMon1Moves
 	ld de, TempMonMoves
 	ld bc, NUM_MOVES
@@ -6543,7 +6548,7 @@ SentPkmnIntoBox: ; de6e
 	ret
 ; df42
 
-Functiondf42: ; df42
+.full: ; df42
 	call CloseSRAM
 	and a
 	ret
@@ -6552,16 +6557,16 @@ Functiondf42: ; df42
 ShiftBoxMon: ; df47
 	ld hl, sBoxMonOT
 	ld bc, NAME_LENGTH
-	call .asm_df5f
+	call .shift
 
 	ld hl, sBoxMonNicknames
 	ld bc, PKMN_NAME_LENGTH
-	call .asm_df5f
+	call .shift
 
 	ld hl, sBoxMons
 	ld bc, BOXMON_STRUCT_LENGTH
 
-.asm_df5f
+.shift
 	ld a, [sBoxCount]
 	cp 2
 	ret c
@@ -6678,11 +6683,11 @@ GiveEgg:: ; df8c
 	call AddNTimes
 	ld a, [wc2cc]
 	bit 1, a
-	ld a, $1
-	jr nz, .asm_e022
+	ld a, 1
+	jr nz, .got_init_happiness
 	ld a, [BaseEggSteps]
 
-.asm_e022
+.got_init_happiness
 	ld [hl], a
 	ld a, [PartyCount]
 	dec a
@@ -6700,7 +6705,7 @@ String_Egg: ; e035
 	db "EGG@"
 ; e039
 
-Functione039: ; e039
+RemoveMonFromPartyOrBox: ; e039
 	ld hl, PartyCount
 
 	ld a, [wPokemonWithdrawDepositParameter]
@@ -6722,30 +6727,33 @@ Functione039: ; e039
 	ld e, l
 	ld d, h
 	inc de
-.asm_e057
+.loop
 	ld a, [de]
 	inc de
 	ld [hli], a
 	inc a
-	jr nz, .asm_e057
+	jr nz, .loop
 	ld hl, PartyMonOT
 	ld d, PARTY_LENGTH - 1
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr z, .asm_e06d
+	jr z, .party
 	ld hl, sBoxMonOT
 	ld d, MONS_PER_BOX - 1
 
-.asm_e06d
+.party
+	; If this is the last mon in our party (box),
+	; shift all the other mons up to close the gap.
 	ld a, [CurPartyMon]
 	call SkipNames
 	ld a, [CurPartyMon]
 	cp d
-	jr nz, .asm_e07e
-	ld [hl], $ff
-	jp .asm_60f0
+	jr nz, .delete_inside
+	ld [hl], -1
+	jp .finish
 
-.asm_e07e
+.delete_inside
+	; Shift the OT names
 	ld d, h
 	ld e, l
 	ld bc, PKMN_NAME_LENGTH
@@ -6753,46 +6761,44 @@ Functione039: ; e039
 	ld bc, PartyMonNicknames
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr z, .asm_e090
+	jr z, .party2
 	ld bc, sBoxMonNicknames
-.asm_e090
+.party2
 	call CopyDataUntil
-
+	; Shift the struct
 	ld hl, PartyMons
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr z, .asm_e0a5
+	jr z, .party4
 	ld hl, sBoxMons
 	ld bc, BOXMON_STRUCT_LENGTH
-
-.asm_e0a5
+.party4
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr z, .asm_e0bc
+	jr z, .party5
 	ld bc, BOXMON_STRUCT_LENGTH
 	add hl, bc
 	ld bc, sBoxMonOT
-	jr .asm_e0c3
+	jr .copy
 
-.asm_e0bc
+.party5
 	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	ld bc, PartyMonOT
-
-.asm_e0c3
+.copy
 	call CopyDataUntil
+	; Shift the nicknames
 	ld hl, PartyMonNicknames
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr z, .asm_e0d2
+	jr z, .party6
 	ld hl, sBoxMonNicknames
-
-.asm_e0d2
+.party6
 	ld bc, PKMN_NAME_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
@@ -6803,25 +6809,27 @@ Functione039: ; e039
 	ld bc, PartyMonNicknamesEnd
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr z, .asm_e0ed
+	jr z, .party7
 	ld bc, sBoxMonNicknamesEnd
-
-.asm_e0ed
+.party7
 	call CopyDataUntil
-
-.asm_60f0
+	; Mail time!
+.finish
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jp nz, CloseSRAM
 	ld a, [wLinkMode]
 	and a
 	ret nz
+	; Shift mail
 	ld a, BANK(sPartyMail)
 	call GetSRAMBank
+	; If this is the last mon in our party, no need to shift mail.
 	ld hl, PartyCount
 	ld a, [CurPartyMon]
 	cp [hl]
-	jr z, .asm_e131
+	jr z, .close_sram
+	; Shift our mail messages up.
 	ld hl, sPartyMail
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
@@ -6830,7 +6838,7 @@ Functione039: ; e039
 	pop de
 	ld a, [CurPartyMon]
 	ld b, a
-.asm_e11a
+.loop2
 	push bc
 	push hl
 	ld bc, MAIL_STRUCT_LENGTH
@@ -6844,13 +6852,12 @@ Functione039: ; e039
 	inc b
 	ld a, [PartyCount]
 	cp b
-	jr nz, .asm_e11a
-
-.asm_e131
+	jr nz, .loop2
+.close_sram
 	jp CloseSRAM
 ; e134
 
-Functione134: ; e134
+ComputeNPCTrademonStats: ; e134
 	ld a, MON_LEVEL
 	call GetPartyParamLocation
 	ld a, [hl]
@@ -7116,7 +7123,7 @@ GivePoke:: ; e277
 	ld e, l
 	pop bc
 	ld a, b
-	ld b, $0
+	ld b, 0
 	push bc
 	push de
 	push af
@@ -7136,15 +7143,15 @@ GivePoke:: ; e277
 	ld [TempEnemyMonSpecies], a
 	callab LoadEnemyMon
 	call SentPkmnIntoBox
-	jp nc, Functione3d4
-	ld a, $2
+	jp nc, .FailedToGiveMon
+	ld a, BOXMON
 	ld [MonType], a
 	xor a
 	ld [CurPartyMon], a
-	ld de, wd050
+	ld de, wd050_MonNick
 	pop bc
 	ld a, b
-	ld b, $1
+	ld b, 1
 	push bc
 	push de
 	push af
@@ -7160,12 +7167,12 @@ GivePoke:: ; e277
 	ld [TempEnemyMonSpecies], a
 	call GetPokemonName
 	ld hl, StringBuffer1
-	ld de, wd050
+	ld de, wd050_MonNick
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	pop af
 	and a
-	jp z, .asm_e390
+	jp z, .wildmon
 	pop de
 	pop bc
 	pop hl
@@ -7187,7 +7194,7 @@ endr
 	and a
 	push de
 	push bc
-	jr nz, .asm_e35e
+	jr nz, .send_to_box
 
 	push hl
 	ld a, [CurPartyMon]
@@ -7219,7 +7226,7 @@ endr
 	callba SetGiftPartyMonCaughtData
 	jr .skip_nickname
 
-.asm_e35e
+.send_to_box
 	ld a, BANK(sBoxMonOT)
 	call GetSRAMBank
 	ld de, sBoxMonOT
@@ -7243,21 +7250,20 @@ endr
 	callba SetGiftBoxMonCaughtData
 	jr .skip_nickname
 
-.asm_e390
+.wildmon
 	pop de
 	pop bc
 	push bc
 	push de
 	ld a, b
 	and a
-	jr z, .asm_e3a0
+	jr z, .party
 	callba SetBoxMonCaughtData
-	jr .asm_e3a6
+	jr .set_caught_data
 
-.asm_e3a0
+.party
 	callba SetCaughtData
-
-.asm_e3a6
+.set_caught_data
 	callba GiveANickname_YesNo
 	pop de
 	jr c, .skip_nickname
@@ -7282,7 +7288,7 @@ endr
 	ret
 ; e3d4
 
-Functione3d4: ; e3d4
+.FailedToGiveMon: ; e3d4
 	pop bc
 	pop de
 	ld b, $2
@@ -12396,14 +12402,14 @@ INCLUDE "engine/map_triggers.asm"
 
 Function4d15b:: ; 4d15b
 	ld hl, wc608
-	ld a, [wd196]
+	ld a, [wMetatileStandingY]
 	and a
 	jr z, .skip
 	ld bc, $30
 	add hl, bc
 
 .skip
-	ld a, [wd197]
+	ld a, [wMetatileStandingX]
 	and a
 	jr z, .next_dw
 rept 2

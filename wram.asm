@@ -1984,11 +1984,9 @@ wd182:: ds 1
 wd191:: ds 1
 wd192:: ds 1
 wd193:: ds 1
-wd194:: dw
-wMetatileStandingY::
-wd196:: ds 1
-wMetatileStandingX::
-wd197:: ds 1
+wOverworldMapAnchor:: dw
+wMetatileStandingY:: ds 1
+wMetatileStandingX:: ds 1
 wSecondMapHeaderBank:: ds 1
 wTileset:: ds 1
 wPermission:: ds 1

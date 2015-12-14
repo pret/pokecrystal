@@ -62,9 +62,9 @@ EnterWestConnection: ; 1045ed
 
 .skip_to_load
 	ld a, l
-	ld [wd194], a
+	ld [wOverworldMapAnchor], a
 	ld a, h
-	ld [wd194 + 1], a
+	ld [wOverworldMapAnchor + 1], a
 	jp EnteredConnection
 ; 104629
 
@@ -99,9 +99,9 @@ EnterEastConnection: ; 104629
 
 .skip_to_load
 	ld a, l
-	ld [wd194], a
+	ld [wOverworldMapAnchor], a
 	ld a, h
-	ld [wd194 + 1], a
+	ld [wOverworldMapAnchor + 1], a
 	jp EnteredConnection
 ; 104665
 
@@ -126,9 +126,9 @@ EnterNorthConnection: ; 104665
 	srl c
 	add hl, bc
 	ld a, l
-	ld [wd194], a
+	ld [wOverworldMapAnchor], a
 	ld a, h
-	ld [wd194 + 1], a
+	ld [wOverworldMapAnchor + 1], a
 	jp EnteredConnection
 ; 104696
 
@@ -153,9 +153,9 @@ EnterSouthConnection: ; 104696
 	srl c
 	add hl, bc
 	ld a, l
-	ld [wd194], a
+	ld [wOverworldMapAnchor], a
 	ld a, h
-	ld [wd194 + 1], a
+	ld [wOverworldMapAnchor + 1], a
 	; fallthrough
 ; 1046c4
 
@@ -427,14 +427,14 @@ GetCoordOfUpperLeftCorner:: ; 10486d
 .resume2
 	call AddNTimes
 	ld a, l
-	ld [wd194], a
+	ld [wOverworldMapAnchor], a
 	ld a, h
-	ld [wd194 + 1], a
+	ld [wOverworldMapAnchor + 1], a
 	ld a, [YCoord]
 	and $1
-	ld [wd196], a
+	ld [wMetatileStandingY], a
 	ld a, [XCoord]
 	and $1
-	ld [wd197], a
+	ld [wMetatileStandingX], a
 	ret
 ; 1048ba

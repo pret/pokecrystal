@@ -205,7 +205,7 @@ BillsPCDepositFuncRelease: ; e24e0 (38:64e0)
 	ld [CurPartyMon], a
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
-	callba Functione039
+	callba RemoveMonFromPartyOrBox
 	call Functione3180
 	ld a, $0
 	ld [wJumptableIndex], a
@@ -468,7 +468,7 @@ endr
 	ld [CurPartyMon], a
 	ld a, PC_DEPOSIT
 	ld [wPokemonWithdrawDepositParameter], a
-	callba Functione039
+	callba RemoveMonFromPartyOrBox
 	call Functione3180
 	ld a, $0
 	ld [wJumptableIndex], a
@@ -1880,7 +1880,7 @@ Functione307c: ; e307c (38:707c)
 	jr c, .asm_boxisfull
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
-	callba Functione039
+	callba RemoveMonFromPartyOrBox
 	ld a, [CurPartySpecies]
 	call PlayCry
 	hlcoord 0, 0
@@ -1935,7 +1935,7 @@ TryWithdrawPokemon: ; e30fa (38:70fa)
 	jr c, .PartyFull
 	ld a, PC_DEPOSIT
 	ld [wPokemonWithdrawDepositParameter], a
-	callba Functione039
+	callba RemoveMonFromPartyOrBox
 	ld a, [CurPartySpecies]
 	call PlayCry
 	hlcoord 0, 0
@@ -2173,7 +2173,7 @@ Functione32b0: ; e32b0
 	callba Function5088b
 	ld a, PC_DEPOSIT
 	ld [wPokemonWithdrawDepositParameter], a
-	callba Functione039
+	callba RemoveMonFromPartyOrBox
 	ret
 ; e32fa
 
@@ -2206,7 +2206,7 @@ Functione3316: ; e3316
 	call CopyMonToTemp
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
-	callba Functione039
+	callba RemoveMonFromPartyOrBox
 	ret
 ; e3346
 

@@ -40,7 +40,7 @@ NPCTrade:: ; fcba8
 
 ; Select givemon from party
 	ld b, 6
-	callba Function5001d
+	callba SelectTradeOrDaycareMon
 	ld a, TRADE_CANCEL
 	jr c, .done
 
@@ -100,23 +100,23 @@ CheckTradeGender: ; fcc23
 	call GetTradeAttribute
 	ld a, [hl]
 	and a
-	jr z, .asm_fcc46
+	jr z, .matching
 	cp 1
-	jr z, .asm_fcc3e
+	jr z, .check_male
 
 	callba GetGender
-	jr nz, .asm_fcc48
-	jr .asm_fcc46
+	jr nz, .not_matching
+	jr .matching
 
-.asm_fcc3e
+.check_male
 	callba GetGender
-	jr z, .asm_fcc48
+	jr z, .not_matching
 
-.asm_fcc46
+.matching
 	and a
 	ret
 
-.asm_fcc48
+.not_matching
 	scf
 	ret
 ; fcc4a
@@ -211,7 +211,7 @@ DoNPCTrade: ; fcc63
 	xor a
 	ld [MonType], a
 	ld [wPokemonWithdrawDepositParameter], a
-	callab Functione039
+	callab RemoveMonFromPartyOrBox
 	predef TryAddMonToParty
 
 	ld e, TRADE_DIALOG
@@ -219,9 +219,9 @@ DoNPCTrade: ; fcc63
 	ld a, [hl]
 	cp TRADE_COMPLETE
 	ld b, RESET_FLAG
-	jr c, .asm_fcd1c
+	jr c, .incomplete
 	ld b, SET_FLAG
-.asm_fcd1c
+.incomplete
 	callba SetGiftPartyMonCaughtData
 
 	ld e, TRADE_NICK
@@ -291,7 +291,7 @@ DoNPCTrade: ; fcc63
 	ld a, [PartyCount]
 	dec a
 	ld [CurPartyMon], a
-	callba Functione134
+	callba ComputeNPCTrademonStats
 	pop af
 	ld [CurPartyMon], a
 	pop hl

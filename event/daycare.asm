@@ -103,7 +103,7 @@ Function16798: ; 16798
 	ld a, 4
 	call Function1689b
 	ld b, 6
-	callba Function5001d
+	callba SelectTradeOrDaycareMon
 	jr c, .asm_167dd
 	ld a, [CurPartySpecies]
 	cp EGG

@@ -124,10 +124,10 @@ LoadMapPart:: ; 217a
 ; 2198
 
 LoadMetatiles:: ; 2198
-; de <- wd194
-	ld a, [wd194]
+; de <- wOverworldMapAnchor
+	ld a, [wOverworldMapAnchor]
 	ld e, a
-	ld a, [wd194 + 1]
+	ld a, [wOverworldMapAnchor + 1]
 	ld d, a
 	ld hl, wMisc
 	ld b, 5 ; SCREEN_WIDTH / 4
@@ -1272,7 +1272,7 @@ ScrollMapUp:: ; 2748
 	ret
 ; 2771
 
-ScrollMapLeft:: ; 2771
+ScrollMapRight:: ; 2771
 	hlcoord 0, 0
 	ld de, BGMapBuffer
 	call BackupBGMapColumn
@@ -1288,7 +1288,7 @@ ScrollMapLeft:: ; 2771
 	ret
 ; 278f
 
-ScrollMapRight:: ; 278f
+ScrollMapLeft:: ; 278f
 	hlcoord SCREEN_WIDTH - 2, 0
 	ld de, BGMapBuffer
 	call BackupBGMapColumn
@@ -1468,7 +1468,7 @@ LoadTileset:: ; 2821
 ; 2879
 
 BufferScreen:: ; 2879
-	ld hl, wd194
+	ld hl, wOverworldMapAnchor
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1497,7 +1497,7 @@ BufferScreen:: ; 2879
 ; 289d
 
 SaveScreen:: ; 289d
-	ld hl, wd194
+	ld hl, wOverworldMapAnchor
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1547,7 +1547,7 @@ SaveScreen:: ; 289d
 
 
 LoadNeighboringBlockData:: ; 28e3
-	ld hl, wd194
+	ld hl, wOverworldMapAnchor
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
