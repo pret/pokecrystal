@@ -198,7 +198,7 @@ SuperNerdScript_0x74ee6:
 	closetext
 	end
 
-MapVermilionPortSignpostItem0:
+VermilionPortHiddenIron:
 	dwb EVENT_VERMILION_PORT_HIDDEN_IRON, IRON
 	
 
@@ -318,7 +318,7 @@ VermilionPort_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 13, 16, SIGNPOST_ITEM, MapVermilionPortSignpostItem0
+	signpost 13, 16, SIGNPOST_ITEM, VermilionPortHiddenIron
 
 .PersonEvents:
 	db 3

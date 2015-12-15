@@ -69,16 +69,16 @@ Route2Elixer:
 FruitTreeScript_0x1ac306:
 	fruittree FRUITTREE_ROUTE_2
 
-MapRoute2SignpostItem2:
+Route2HiddenMaxEther:
 	dwb EVENT_ROUTE_2_HIDDEN_MAX_ETHER, MAX_ETHER
 
-MapRoute2SignpostItem3:
+Route2HiddenFullHeal:
 	dwb EVENT_ROUTE_2_HIDDEN_FULL_HEAL, FULL_HEAL
 
-MapRoute2SignpostItem4:
+Route2HiddenFullRestore:
 	dwb EVENT_ROUTE_2_HIDDEN_FULL_RESTORE, FULL_RESTORE
 
-MapRoute2SignpostItem5:
+Route2HiddenRevive:
 	dwb EVENT_ROUTE_2_HIDDEN_REVIVE, REVIVE
 
 Bug_catcherRobSeenText:
@@ -165,10 +165,10 @@ Route2_MapEventHeader:
 	db 6
 	signpost 51, 7, SIGNPOST_READ, MapRoute2Signpost0Script
 	signpost 9, 11, SIGNPOST_READ, MapRoute2Signpost1Script
-	signpost 23, 7, SIGNPOST_ITEM, MapRoute2SignpostItem2
-	signpost 14, 4, SIGNPOST_ITEM, MapRoute2SignpostItem3
-	signpost 27, 4, SIGNPOST_ITEM, MapRoute2SignpostItem4
-	signpost 30, 11, SIGNPOST_ITEM, MapRoute2SignpostItem5
+	signpost 23, 7, SIGNPOST_ITEM, Route2HiddenMaxEther
+	signpost 14, 4, SIGNPOST_ITEM, Route2HiddenFullHeal
+	signpost 27, 4, SIGNPOST_ITEM, Route2HiddenFullRestore
+	signpost 30, 11, SIGNPOST_ITEM, Route2HiddenRevive
 
 .PersonEvents:
 	db 8

@@ -80,7 +80,7 @@ UnknownScript_0x7709a:
 .NoDancing:
 	end
 
-MapMountMoonSquareSignpostItem0:
+MountMoonSquareHiddenMoonStone:
 	dwb EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE, MOON_STONE
 	
 
@@ -155,7 +155,7 @@ MountMoonSquare_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 7, 7, SIGNPOST_ITEM, MapMountMoonSquareSignpostItem0
+	signpost 7, 7, SIGNPOST_ITEM, MountMoonSquareHiddenMoonStone
 	signpost 7, 17, SIGNPOST_READ, MapMountMoonSquareSignpost1Script
 
 .PersonEvents:

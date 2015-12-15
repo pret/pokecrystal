@@ -99,7 +99,7 @@ VioletCityRareCandy:
 FruitTreeScript_0x1a8425:
 	fruittree FRUITTREE_VIOLET_CITY
 
-MapVioletCitySignpostItem6:
+VioletCityHiddenHyperPotion:
 	dwb EVENT_VIOLET_CITY_HIDDEN_HYPER_POTION, HYPER_POTION
 
 MovementData_0x1a842a:
@@ -307,7 +307,7 @@ VioletCity_MapEventHeader:
 	signpost 17, 27, SIGNPOST_READ, EarlsPokemonAcademySign
 	signpost 25, 32, SIGNPOST_READ, VioletCityPokeCenterSign
 	signpost 17, 10, SIGNPOST_READ, VioletCityMartSign
-	signpost 14, 37, SIGNPOST_ITEM, MapVioletCitySignpostItem6
+	signpost 14, 37, SIGNPOST_ITEM, VioletCityHiddenHyperPotion
 
 .PersonEvents:
 	db 8

@@ -64,11 +64,11 @@ BikerGlennScript:
 	closetext
 	end
 
-MapRoute17SignpostItem0:
+Route17HiddenMaxEther:
 	dwb EVENT_ROUTE_17_HIDDEN_MAX_ETHER, MAX_ETHER
 	
 
-MapRoute17SignpostItem1:
+Route17HiddenMaxElixer:
 	dwb EVENT_ROUTE_17_HIDDEN_MAX_ELIXER, MAX_ELIXER
 	
 
@@ -151,8 +151,8 @@ Route17_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 54, 9, SIGNPOST_ITEM, MapRoute17SignpostItem0
-	signpost 77, 8, SIGNPOST_ITEM, MapRoute17SignpostItem1
+	signpost 54, 9, SIGNPOST_ITEM, Route17HiddenMaxEther
+	signpost 77, 8, SIGNPOST_ITEM, Route17HiddenMaxElixer
 
 .PersonEvents:
 	db 4

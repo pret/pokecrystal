@@ -19,7 +19,7 @@ TinTower4FPPUp:
 TinTower4FEscapeRope:
 	itemball ESCAPE_ROPE
 
-MapTinTower4FSignpostItem0:
+TinTower4FHiddenMaxPotion:
 	dwb EVENT_TIN_TOWER_4F_HIDDEN_MAX_POTION, MAX_POTION
 	
 
@@ -39,7 +39,7 @@ TinTower4F_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 6, 11, SIGNPOST_ITEM, MapTinTower4FSignpostItem0
+	signpost 6, 11, SIGNPOST_ITEM, TinTower4FHiddenMaxPotion
 
 .PersonEvents:
 	db 3

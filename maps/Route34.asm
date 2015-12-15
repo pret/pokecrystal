@@ -490,11 +490,11 @@ MapRoute34Signpost2Script:
 Route34Nugget:
 	itemball NUGGET
 
-MapRoute34SignpostItem3:
+Route34HiddenRareCandy:
 	dwb EVENT_ROUTE_34_HIDDEN_RARE_CANDY, RARE_CANDY
 	
 
-MapRoute34SignpostItem4:
+Route34HiddenSuperPotion:
 	dwb EVENT_ROUTE_34_HIDDEN_SUPER_POTION, SUPER_POTION
 	
 
@@ -785,8 +785,8 @@ Route34_MapEventHeader:
 	signpost 6, 12, SIGNPOST_READ, MapRoute34Signpost0Script
 	signpost 33, 13, SIGNPOST_READ, MapRoute34Signpost1Script
 	signpost 13, 10, SIGNPOST_READ, MapRoute34Signpost2Script
-	signpost 32, 8, SIGNPOST_ITEM, MapRoute34SignpostItem3
-	signpost 19, 17, SIGNPOST_ITEM, MapRoute34SignpostItem4
+	signpost 32, 8, SIGNPOST_ITEM, Route34HiddenRareCandy
+	signpost 19, 17, SIGNPOST_ITEM, Route34HiddenSuperPotion
 
 .PersonEvents:
 	db 13

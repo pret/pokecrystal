@@ -10,7 +10,7 @@ Route28_MapScriptHeader:
 MapRoute28Signpost0Script:
 	jumptext UnknownText_0x1a5413
 
-MapRoute28SignpostItem1:
+Route28HiddenRareCandy:
 	dwb EVENT_ROUTE_28_HIDDEN_RARE_CANDY, RARE_CANDY
 	
 
@@ -33,7 +33,7 @@ Route28_MapEventHeader:
 .Signposts:
 	db 2
 	signpost 5, 31, SIGNPOST_READ, MapRoute28Signpost0Script
-	signpost 2, 25, SIGNPOST_ITEM, MapRoute28SignpostItem1
+	signpost 2, 25, SIGNPOST_ITEM, Route28HiddenRareCandy
 
 .PersonEvents:
 	db 0

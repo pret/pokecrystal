@@ -72,7 +72,7 @@ IcePathB1FBoulder:
 IcePathB1FIron:
 	itemball IRON
 
-MapIcePathB1FSignpostItem0:
+IcePathB1FHiddenMaxPotion:
 	dwb EVENT_ICE_PATH_B1F_HIDDEN_MAX_POTION, MAX_POTION
 
 
@@ -102,7 +102,7 @@ IcePathB1F_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 30, 17, SIGNPOST_ITEM, MapIcePathB1FSignpostItem0
+	signpost 30, 17, SIGNPOST_ITEM, IcePathB1FHiddenMaxPotion
 
 .PersonEvents:
 	db 5

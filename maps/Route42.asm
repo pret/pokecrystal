@@ -213,7 +213,7 @@ FruitTreeScript_0x1a934f:
 FruitTreeScript_0x1a9351:
 	fruittree FRUITTREE_ROUTE_42_3
 
-MapRoute42SignpostItem4:
+Route42HiddenMaxPotion:
 	dwb EVENT_ROUTE_42_HIDDEN_MAX_POTION, MAX_POTION
 	
 
@@ -343,7 +343,7 @@ Route42_MapEventHeader:
 	signpost 5, 7, SIGNPOST_READ, MapRoute42Signpost1Script
 	signpost 9, 45, SIGNPOST_READ, MapRoute42Signpost2Script
 	signpost 8, 54, SIGNPOST_READ, MapRoute42Signpost3Script
-	signpost 11, 16, SIGNPOST_ITEM, MapRoute42SignpostItem4
+	signpost 11, 16, SIGNPOST_ITEM, Route42HiddenMaxPotion
 
 .PersonEvents:
 	db 9

@@ -15,11 +15,11 @@ RockTunnel1FElixer:
 RockTunnel1FTMSteelWing:
 	itemball TM_STEEL_WING
 
-MapRockTunnel1FSignpostItem0:
+RockTunnel1FHiddenXAccuracy:
 	dwb EVENT_ROCK_TUNNEL_1F_HIDDEN_X_ACCURACY, X_ACCURACY
 	
 
-MapRockTunnel1FSignpostItem1:
+RockTunnel1FHiddenXDefend:
 	dwb EVENT_ROCK_TUNNEL_1F_HIDDEN_X_DEFEND, X_DEFEND
 	
 
@@ -41,8 +41,8 @@ RockTunnel1F_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 4, 24, SIGNPOST_ITEM, MapRockTunnel1FSignpostItem0
-	signpost 15, 21, SIGNPOST_ITEM, MapRockTunnel1FSignpostItem1
+	signpost 4, 24, SIGNPOST_ITEM, RockTunnel1FHiddenXAccuracy
+	signpost 15, 21, SIGNPOST_ITEM, RockTunnel1FHiddenXDefend
 
 .PersonEvents:
 	db 2

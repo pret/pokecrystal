@@ -43,7 +43,7 @@ MountMortar2FInsideElixer:
 MountMortar2FInsideEscapeRope:
 	itemball ESCAPE_ROPE
 
-MapMountMortar2FInsideSignpostItem0:
+MountMortar2FInsideHiddenFullRestore:
 	dwb EVENT_MOUNT_MORTAR_2F_INSIDE_HIDDEN_FULL_RESTORE, FULL_RESTORE
 	
 
@@ -81,7 +81,7 @@ MountMortar2FInside_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 8, 24, SIGNPOST_ITEM, MapMountMortar2FInsideSignpostItem0
+	signpost 8, 24, SIGNPOST_ITEM, MountMortar2FInsideHiddenFullRestore
 
 .PersonEvents:
 	db 7

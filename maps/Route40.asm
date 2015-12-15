@@ -137,7 +137,7 @@ MapRoute40Signpost0Script:
 Route40Rock:
 	jumpstd smashrock
 
-MapRoute40SignpostItem1:
+Route40HiddenHyperPotion:
 	dwb EVENT_ROUTE_40_HIDDEN_HYPER_POTION, HYPER_POTION
 
 MovementData_0x1a621c:
@@ -354,7 +354,7 @@ Route40_MapEventHeader:
 .Signposts:
 	db 2
 	signpost 10, 14, SIGNPOST_READ, MapRoute40Signpost0Script
-	signpost 8, 7, SIGNPOST_ITEM, MapRoute40SignpostItem1
+	signpost 8, 7, SIGNPOST_ITEM, Route40HiddenHyperPotion
 
 .PersonEvents:
 	db 12

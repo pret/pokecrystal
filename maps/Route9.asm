@@ -82,7 +82,7 @@ HikerSidneyScript:
 MapRoute9Signpost0Script:
 	jumptext UnknownText_0x1ab2a2
 
-MapRoute9SignpostItem1:
+Route9HiddenEther:
 	dwb EVENT_ROUTE_9_HIDDEN_ETHER, ETHER
 	
 
@@ -220,7 +220,7 @@ Route9_MapEventHeader:
 .Signposts:
 	db 2
 	signpost 7, 15, SIGNPOST_READ, MapRoute9Signpost0Script
-	signpost 15, 41, SIGNPOST_ITEM, MapRoute9SignpostItem1
+	signpost 15, 41, SIGNPOST_ITEM, Route9HiddenEther
 
 .PersonEvents:
 	db 6

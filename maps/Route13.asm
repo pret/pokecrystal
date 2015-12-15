@@ -76,7 +76,7 @@ MapRoute13Signpost1Script:
 MapRoute13Signpost2Script:
 	jumptext UnknownText_0x1a277d
 
-MapRoute13SignpostItem3:
+Route13HiddenCalcium:
 	dwb EVENT_ROUTE_13_HIDDEN_CALCIUM, CALCIUM
 	
 
@@ -207,7 +207,7 @@ Route13_MapEventHeader:
 	signpost 13, 29, SIGNPOST_READ, MapRoute13Signpost0Script
 	signpost 11, 41, SIGNPOST_READ, MapRoute13Signpost1Script
 	signpost 13, 17, SIGNPOST_READ, MapRoute13Signpost2Script
-	signpost 13, 30, SIGNPOST_ITEM, MapRoute13SignpostItem3
+	signpost 13, 30, SIGNPOST_ITEM, Route13HiddenCalcium
 
 .PersonEvents:
 	db 5

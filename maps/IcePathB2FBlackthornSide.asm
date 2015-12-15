@@ -11,7 +11,7 @@ IcePathB2FBlackthornSide_MapScriptHeader:
 IcePathB2FBlackthornSideTMRest:
 	itemball TM_REST
 
-MapIcePathB2FBlackthornSideSignpostItem0:
+IcePathB2FBlackthornSideHiddenIceHeal:
 	dwb EVENT_ICE_PATH_B2F_BLACKTHORN_SIDE_HIDDEN_ICE_HEAL, ICE_HEAL
 	
 
@@ -29,7 +29,7 @@ IcePathB2FBlackthornSide_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 10, 2, SIGNPOST_ITEM, MapIcePathB2FBlackthornSideSignpostItem0
+	signpost 10, 2, SIGNPOST_ITEM, IcePathB2FBlackthornSideHiddenIceHeal
 
 .PersonEvents:
 	db 1

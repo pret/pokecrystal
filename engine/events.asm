@@ -767,8 +767,8 @@ TryReadSign: ; 96a38
 	ld de, EngineBuffer1
 	ld bc, 3
 	call FarCopyBytes
-	ld a, BANK(SignpostItemScript)
-	ld hl, SignpostItemScript
+	ld a, BANK(HiddenItemScript)
+	ld hl, HiddenItemScript
 	call CallScript
 	scf
 	ret

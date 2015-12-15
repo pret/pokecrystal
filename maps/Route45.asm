@@ -311,7 +311,7 @@ Route45Elixer:
 Route45MaxPotion:
 	itemball MAX_POTION
 
-MapRoute45SignpostItem1:
+Route45HiddenPpUp:
 	dwb EVENT_ROUTE_45_HIDDEN_PP_UP, PP_UP
 	
 
@@ -546,7 +546,7 @@ Route45_MapEventHeader:
 .Signposts:
 	db 2
 	signpost 4, 10, SIGNPOST_READ, MapRoute45Signpost0Script
-	signpost 80, 13, SIGNPOST_ITEM, MapRoute45SignpostItem1
+	signpost 80, 13, SIGNPOST_ITEM, Route45HiddenPpUp
 
 .PersonEvents:
 	db 13

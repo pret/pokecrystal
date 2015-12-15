@@ -69,7 +69,7 @@ Route12Calcium:
 Route12Nugget:
 	itemball NUGGET
 
-MapRoute12SignpostItem2:
+Route12HiddenElixer:
 	dwb EVENT_ROUTE_12_HIDDEN_ELIXER, ELIXER
 	
 
@@ -182,7 +182,7 @@ Route12_MapEventHeader:
 	db 3
 	signpost 27, 11, SIGNPOST_READ, MapRoute12Signpost0Script
 	signpost 9, 13, SIGNPOST_READ, MapRoute12Signpost1Script
-	signpost 13, 14, SIGNPOST_ITEM, MapRoute12SignpostItem2
+	signpost 13, 14, SIGNPOST_ITEM, Route12HiddenElixer
 
 .PersonEvents:
 	db 6

@@ -36,7 +36,7 @@ CinnabarIslandSign:
 CinnabarIslandPokeCenterSign:
 	jumpstd pokecentersign
 
-MapCinnabarIslandSignpostItem3:
+CinnabarIslandHiddenRareCandy:
 	dwb EVENT_CINNABAR_ISLAND_HIDDEN_RARE_CANDY, RARE_CANDY
 
 CinnabarIslandBlueTeleport:
@@ -145,7 +145,7 @@ CinnabarIsland_MapEventHeader:
 	signpost 11, 12, SIGNPOST_READ, CinnabarIslandPokeCenterSign
 	signpost 11, 9, SIGNPOST_READ, CinnabarIslandGymSign
 	signpost 7, 7, SIGNPOST_READ, CinnabarIslandSign
-	signpost 1, 9, SIGNPOST_ITEM, MapCinnabarIslandSignpostItem3
+	signpost 1, 9, SIGNPOST_ITEM, CinnabarIslandHiddenRareCandy
 
 .PersonEvents:
 	db 1

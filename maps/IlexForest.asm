@@ -416,15 +416,15 @@ IlexForestAntidote:
 IlexForestEther:
 	itemball ETHER
 
-MapIlexForestSignpostItem1:
+IlexForestHiddenEther:
 	dwb EVENT_ILEX_FOREST_HIDDEN_ETHER, ETHER
 	
 
-MapIlexForestSignpostItem2:
+IlexForestHiddenSuperPotion:
 	dwb EVENT_ILEX_FOREST_HIDDEN_SUPER_POTION, SUPER_POTION
 	
 
-MapIlexForestSignpostItem3:
+IlexForestHiddenFullHeal:
 	dwb EVENT_ILEX_FOREST_HIDDEN_FULL_HEAL, FULL_HEAL
 
 IlexForestBoulder:
@@ -958,9 +958,9 @@ IlexForest_MapEventHeader:
 .Signposts:
 	db 5
 	signpost 17, 3, SIGNPOST_READ, MapIlexForestSignpost0Script
-	signpost 7, 11, SIGNPOST_ITEM, MapIlexForestSignpostItem1
-	signpost 14, 22, SIGNPOST_ITEM, MapIlexForestSignpostItem2
-	signpost 17, 1, SIGNPOST_ITEM, MapIlexForestSignpostItem3
+	signpost 7, 11, SIGNPOST_ITEM, IlexForestHiddenEther
+	signpost 14, 22, SIGNPOST_ITEM, IlexForestHiddenSuperPotion
+	signpost 17, 1, SIGNPOST_ITEM, IlexForestHiddenFullHeal
 	signpost 22, 8, SIGNPOST_UP, MapIlexForestSignpost4Script
 
 .PersonEvents:

@@ -187,13 +187,13 @@ DragonsDenB1FCalcium:
 DragonsDenB1FMaxElixer:
 	itemball MAX_ELIXER
 
-MapDragonsDenB1FSignpostItem1:
+DragonsDenB1FHiddenRevive:
 	dwb EVENT_DRAGONS_DEN_B1F_HIDDEN_REVIVE, REVIVE
 
-MapDragonsDenB1FSignpostItem2:
+DragonsDenB1FHiddenMaxPotion:
 	dwb EVENT_DRAGONS_DEN_B1F_HIDDEN_MAX_POTION, MAX_POTION
 
-MapDragonsDenB1FSignpostItem3:
+DragonsDenB1FHiddenMaxElixer:
 	dwb EVENT_DRAGONS_DEN_B1F_HIDDEN_MAX_ELIXER, MAX_ELIXER
 
 MovementDragonsDen_ClairWalksToYou:
@@ -427,9 +427,9 @@ DragonsDenB1F_MapEventHeader:
 .Signposts:
 	db 4
 	signpost 24, 18, SIGNPOST_READ, MapDragonsDenB1FSignpost0Script
-	signpost 29, 33, SIGNPOST_ITEM, MapDragonsDenB1FSignpostItem1
-	signpost 17, 21, SIGNPOST_ITEM, MapDragonsDenB1FSignpostItem2
-	signpost 15, 31, SIGNPOST_ITEM, MapDragonsDenB1FSignpostItem3
+	signpost 29, 33, SIGNPOST_ITEM, DragonsDenB1FHiddenRevive
+	signpost 17, 21, SIGNPOST_ITEM, DragonsDenB1FHiddenMaxPotion
+	signpost 15, 31, SIGNPOST_ITEM, DragonsDenB1FHiddenMaxElixer
 
 .PersonEvents:
 	db 9

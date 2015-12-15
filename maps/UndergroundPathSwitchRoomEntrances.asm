@@ -634,11 +634,11 @@ UndergroundPathSwitchRoomEntrancesSmokeBall:
 UndergroundPathSwitchRoomEntrancesFullHeal:
 	itemball FULL_HEAL
 
-MapUndergroundPathSwitchRoomEntrancesSignpostItem4:
+UndergroundPathSwitchRoomEntrancesHiddenMaxPotion:
 	dwb EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_HIDDEN_MAX_POTION, MAX_POTION
 	
 
-MapUndergroundPathSwitchRoomEntrancesSignpostItem5:
+UndergroundPathSwitchRoomEntrancesHiddenRevive:
 	dwb EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_HIDDEN_REVIVE, REVIVE
 	
 
@@ -963,8 +963,8 @@ UndergroundPathSwitchRoomEntrances_MapEventHeader:
 	signpost 1, 10, SIGNPOST_READ, Switch2Script
 	signpost 1, 2, SIGNPOST_READ, Switch3Script
 	signpost 11, 20, SIGNPOST_READ, EmergencySwitchScript
-	signpost 9, 8, SIGNPOST_ITEM, MapUndergroundPathSwitchRoomEntrancesSignpostItem4
-	signpost 8, 1, SIGNPOST_ITEM, MapUndergroundPathSwitchRoomEntrancesSignpostItem5
+	signpost 9, 8, SIGNPOST_ITEM, UndergroundPathSwitchRoomEntrancesHiddenMaxPotion
+	signpost 8, 1, SIGNPOST_ITEM, UndergroundPathSwitchRoomEntrancesHiddenRevive
 
 .PersonEvents:
 	db 11

@@ -19,7 +19,7 @@ SilverCaveRoom2UltraBall:
 SilverCaveRoom2PPUp:
 	itemball PP_UP
 
-MapSilverCaveRoom2SignpostItem0:
+SilverCaveRoom2HiddenMaxPotion:
 	dwb EVENT_SILVER_CAVE_ROOM_2_HIDDEN_MAX_POTION, MAX_POTION
 	
 
@@ -39,7 +39,7 @@ SilverCaveRoom2_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 31, 14, SIGNPOST_ITEM, MapSilverCaveRoom2SignpostItem0
+	signpost 31, 14, SIGNPOST_ITEM, SilverCaveRoom2HiddenMaxPotion
 
 .PersonEvents:
 	db 3

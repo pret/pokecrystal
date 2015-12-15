@@ -434,7 +434,7 @@ return_dig: macro
 	db \1
 	endm
 
-	enum movement_run_before_fall
-run_before_fall: macro
-	db movement_run_before_fall ; $59
+	enum movement_skyfall_top
+skyfall_top: macro
+	db movement_skyfall_top ; $59
 	endm

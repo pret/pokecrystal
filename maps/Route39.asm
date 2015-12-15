@@ -179,7 +179,7 @@ MapRoute39Signpost0Script:
 FruitTreeScript_0x1a5bf4:
 	fruittree FRUITTREE_ROUTE_39
 
-MapRoute39SignpostItem3:
+Route39HiddenNugget:
 	dwb EVENT_ROUTE_39_HIDDEN_NUGGET, NUGGET
 	
 
@@ -361,7 +361,7 @@ Route39_MapEventHeader:
 	signpost 31, 5, SIGNPOST_READ, MapRoute39Signpost0Script
 	signpost 5, 9, SIGNPOST_READ, MapRoute39Signpost1Script
 	signpost 7, 15, SIGNPOST_READ, MapRoute39Signpost2Script
-	signpost 13, 5, SIGNPOST_ITEM, MapRoute39SignpostItem3
+	signpost 13, 5, SIGNPOST_ITEM, Route39HiddenNugget
 
 .PersonEvents:
 	db 10

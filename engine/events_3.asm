@@ -276,7 +276,7 @@ endr
 	ret
 ; b8172
 
-CheckForSignpostItems: ; b8172
+CheckForHiddenItems: ; b8172
 ; Checks to see if there are hidden items on the screen that have not yet been found.  If it finds one, returns carry.
 	call GetMapScriptHeaderBank
 	ld [Buffer1], a

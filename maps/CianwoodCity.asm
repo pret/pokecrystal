@@ -148,10 +148,10 @@ CianwoodPokeCenterSign:
 CianwoodCityRock:
 	jumpstd smashrock
 
-MapCianwoodCitySignpostItem6:
+CianwoodCityHiddenRevive:
 	dwb EVENT_CIANWOOD_CITY_HIDDEN_REVIVE, REVIVE
 
-MapCianwoodCitySignpostItem7:
+CianwoodCityHiddenMaxEther:
 	dwb EVENT_CIANWOOD_CITY_HIDDEN_MAX_ETHER, MAX_ETHER
 
 MovementData_0x1a00da:
@@ -410,8 +410,8 @@ CianwoodCity_MapEventHeader:
 	signpost 47, 19, SIGNPOST_READ, CianwoodPharmacySign
 	signpost 32, 8, SIGNPOST_READ, CianwoodPhotoStudioSign
 	signpost 24, 8, SIGNPOST_READ, CianwoodPokeSeerSign
-	signpost 19, 4, SIGNPOST_ITEM, MapCianwoodCitySignpostItem6
-	signpost 29, 5, SIGNPOST_ITEM, MapCianwoodCitySignpostItem7
+	signpost 19, 4, SIGNPOST_ITEM, CianwoodCityHiddenRevive
+	signpost 29, 5, SIGNPOST_ITEM, CianwoodCityHiddenMaxEther
 
 .PersonEvents:
 	db 12

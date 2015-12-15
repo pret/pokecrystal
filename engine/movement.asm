@@ -88,7 +88,7 @@ MovementPointers: ; 5075
 	dw Movement_56                    ; 56
 	dw Movement_rock_smash            ; 57
 	dw Movement_return_dig            ; 58
-	dw Movement_run_before_fall       ; 59
+	dw Movement_skyfall_top       ; 59
 ; 5129
 
 
@@ -113,10 +113,10 @@ Movement_skyfall: ; 5137
 	ret
 ; 513e
 
-Movement_run_before_fall: ; 513e
+Movement_skyfall_top: ; 513e
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_19
+	ld [hl], STEP_TYPE_SKYFALL_TOP
 	ret
 ; 5145
 

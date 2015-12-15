@@ -89,7 +89,7 @@ EcruteakCityPokeCenterSign:
 EcruteakCityMartSign:
 	jumpstd martsign
 
-MapEcruteakCitySignpostItem7:
+EcruteakCityHiddenHyperPotion:
 	dwb EVENT_ECRUTEAK_CITY_HIDDEN_HYPER_POTION, HYPER_POTION
 
 UnusedMissingDaughterText:
@@ -295,7 +295,7 @@ EcruteakCity_MapEventHeader:
 	signpost 10, 2, SIGNPOST_READ, BurnedTowerSign
 	signpost 27, 24, SIGNPOST_READ, EcruteakCityPokeCenterSign
 	signpost 21, 30, SIGNPOST_READ, EcruteakCityMartSign
-	signpost 14, 23, SIGNPOST_ITEM, MapEcruteakCitySignpostItem7
+	signpost 14, 23, SIGNPOST_ITEM, EcruteakCityHiddenHyperPotion
 
 .PersonEvents:
 	db 7

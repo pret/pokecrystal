@@ -544,7 +544,7 @@ TeamRocketBaseB1FNugget:
 TeamRocketBaseB1FGuardSpec:
 	itemball GUARD_SPEC
 
-MapTeamRocketBaseB1FSignpostItem8:
+TeamRocketBaseB1FHiddenRevive:
 	dwb EVENT_TEAM_ROCKET_BASE_B1F_HIDDEN_REVIVE, REVIVE
 	
 
@@ -790,7 +790,7 @@ TeamRocketBaseB1F_MapEventHeader:
 	signpost 5, 24, SIGNPOST_UP, MapTeamRocketBaseB1FSignpost5Script
 	signpost 11, 20, SIGNPOST_READ, MapTeamRocketBaseB1FSignpost7Script
 	signpost 11, 21, SIGNPOST_READ, MapTeamRocketBaseB1FSignpost7Script
-	signpost 11, 3, SIGNPOST_ITEM, MapTeamRocketBaseB1FSignpostItem8
+	signpost 11, 3, SIGNPOST_ITEM, TeamRocketBaseB1FHiddenRevive
 
 .PersonEvents:
 	db 6

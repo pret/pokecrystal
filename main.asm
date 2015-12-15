@@ -7600,7 +7600,7 @@ RepelWoreOffScript:: ; 0x13619
 	db "@"
 ; 0x13625
 
-SignpostItemScript:: ; 0x13625
+HiddenItemScript:: ; 0x13625
 	opentext
 	copybytetovar EngineBuffer3
 	itemtotext 0, 0

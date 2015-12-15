@@ -136,7 +136,7 @@ CeruleanGymGuyScript:
 	closetext
 	end
 
-MapCeruleanGymSignpostItem0:
+CeruleanGymHiddenMachinePart:
 	dwb EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM, MACHINE_PART
 	
 
@@ -379,7 +379,7 @@ CeruleanGym_MapEventHeader:
 
 .Signposts:
 	db 3
-	signpost 8, 3, SIGNPOST_ITEM, MapCeruleanGymSignpostItem0
+	signpost 8, 3, SIGNPOST_ITEM, CeruleanGymHiddenMachinePart
 	signpost 13, 2, SIGNPOST_READ, CeruleanGymStatue1
 	signpost 13, 6, SIGNPOST_READ, CeruleanGymStatue2
 

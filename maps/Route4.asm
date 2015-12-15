@@ -50,7 +50,7 @@ MapRoute4Signpost0Script:
 Route4HPUp:
 	itemball HP_UP
 
-MapRoute4SignpostItem1:
+Route4HiddenUltraBall:
 	dwb EVENT_ROUTE_4_HIDDEN_ULTRA_BALL, ULTRA_BALL
 	
 
@@ -135,7 +135,7 @@ Route4_MapEventHeader:
 .Signposts:
 	db 2
 	signpost 7, 3, SIGNPOST_READ, MapRoute4Signpost0Script
-	signpost 3, 10, SIGNPOST_ITEM, MapRoute4SignpostItem1
+	signpost 3, 10, SIGNPOST_ITEM, Route4HiddenUltraBall
 
 .PersonEvents:
 	db 4

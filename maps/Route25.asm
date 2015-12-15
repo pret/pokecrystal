@@ -192,7 +192,7 @@ MapRoute25Signpost0Script:
 Route25Protein:
 	itemball PROTEIN
 
-MapRoute25SignpostItem1:
+Route25HiddenPotion:
 	dwb EVENT_ROUTE_25_HIDDEN_POTION, POTION
 	
 
@@ -448,7 +448,7 @@ Route25_MapEventHeader:
 .Signposts:
 	db 2
 	signpost 5, 45, SIGNPOST_READ, MapRoute25Signpost0Script
-	signpost 5, 4, SIGNPOST_ITEM, MapRoute25SignpostItem1
+	signpost 5, 4, SIGNPOST_ITEM, Route25HiddenPotion
 
 .PersonEvents:
 	db 11

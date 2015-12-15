@@ -304,7 +304,7 @@ NationalParkParlyzHeal:
 NationalParkTMDig:
 	itemball TM_DIG
 
-MapNationalParkSignpostItem2:
+NationalParkHiddenFullHeal:
 	dwb EVENT_NATIONAL_PARK_HIDDEN_FULL_HEAL, FULL_HEAL
 	
 
@@ -532,7 +532,7 @@ NationalPark_MapEventHeader:
 	db 4
 	signpost 44, 14, SIGNPOST_READ, MapNationalParkSignpost0Script
 	signpost 31, 27, SIGNPOST_READ, MapNationalParkSignpost1Script
-	signpost 47, 6, SIGNPOST_ITEM, MapNationalParkSignpostItem2
+	signpost 47, 6, SIGNPOST_ITEM, NationalParkHiddenFullHeal
 	signpost 4, 12, SIGNPOST_READ, MapNationalParkSignpost3Script
 
 .PersonEvents:

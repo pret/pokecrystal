@@ -19,7 +19,7 @@ RockTunnelB1FPPUp:
 RockTunnelB1FRevive:
 	itemball REVIVE
 
-MapRockTunnelB1FSignpostItem0:
+RockTunnelB1FHiddenMaxPotion:
 	dwb EVENT_ROCK_TUNNEL_B1F_HIDDEN_MAX_POTION, MAX_POTION
 	
 
@@ -39,7 +39,7 @@ RockTunnelB1F_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 14, 4, SIGNPOST_ITEM, MapRockTunnelB1FSignpostItem0
+	signpost 14, 4, SIGNPOST_ITEM, RockTunnelB1FHiddenMaxPotion
 
 .PersonEvents:
 	db 3

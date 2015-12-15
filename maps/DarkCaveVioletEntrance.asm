@@ -30,7 +30,7 @@ DarkCaveVioletEntranceDireHit:
 DarkCaveVioletEntranceRock:
 	jumpstd smashrock
 
-MapDarkCaveVioletEntranceSignpostItem0:
+DarkCaveVioletEntranceHiddenElixer:
 	dwb EVENT_DARK_CAVE_VIOLET_ENTRANCE_HIDDEN_ELIXER, ELIXER
 	
 
@@ -49,7 +49,7 @@ DarkCaveVioletEntrance_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 3, 26, SIGNPOST_ITEM, MapDarkCaveVioletEntranceSignpostItem0
+	signpost 3, 26, SIGNPOST_ITEM, DarkCaveVioletEntranceHiddenElixer
 
 .PersonEvents:
 	db 8

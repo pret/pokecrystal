@@ -62,7 +62,7 @@ MapRoute11Signpost0Script:
 FruitTreeScript_0x68055:
 	fruittree FRUITTREE_ROUTE_11
 
-MapRoute11SignpostItem1:
+Route11HiddenRevive:
 	dwb EVENT_ROUTE_11_HIDDEN_REVIVE, REVIVE
 	
 
@@ -159,7 +159,7 @@ Route11_MapEventHeader:
 .Signposts:
 	db 2
 	signpost 7, 3, SIGNPOST_READ, MapRoute11Signpost0Script
-	signpost 5, 32, SIGNPOST_ITEM, MapRoute11SignpostItem1
+	signpost 5, 32, SIGNPOST_ITEM, Route11HiddenRevive
 
 .PersonEvents:
 	db 5

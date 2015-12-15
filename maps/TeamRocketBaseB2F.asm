@@ -362,7 +362,7 @@ UnknownScript_0x6d207:
 TeamRocketBaseB2FTMThief:
 	itemball TM_THIEF
 
-MapTeamRocketBaseB2FSignpostItem22:
+TeamRocketBaseB2FHiddenFullHeal:
 	dwb EVENT_TEAM_ROCKET_BASE_B2F_HIDDEN_FULL_HEAL, FULL_HEAL
 	
 
@@ -964,7 +964,7 @@ TeamRocketBaseB2F_MapEventHeader:
 	signpost 6, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
 	signpost 7, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
 	signpost 8, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 7, 26, SIGNPOST_ITEM, MapTeamRocketBaseB2FSignpostItem22
+	signpost 7, 26, SIGNPOST_ITEM, TeamRocketBaseB2FHiddenFullHeal
 
 .PersonEvents:
 	db 14

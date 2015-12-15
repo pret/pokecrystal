@@ -63,7 +63,7 @@ MountMortar1FInsideIron:
 MountMortar1FInsideUltraBall:
 	itemball ULTRA_BALL
 
-MapMountMortar1FInsideSignpostItem0:
+MountMortar1FInsideHiddenMaxRepel:
 	dwb EVENT_MOUNT_MORTAR_1F_INSIDE_HIDDEN_MAX_REPEL, MAX_REPEL
 	
 
@@ -135,7 +135,7 @@ MountMortar1FInside_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 11, 30, SIGNPOST_ITEM, MapMountMortar1FInsideSignpostItem0
+	signpost 11, 30, SIGNPOST_ITEM, MountMortar1FInsideHiddenMaxRepel
 
 .PersonEvents:
 	db 10
