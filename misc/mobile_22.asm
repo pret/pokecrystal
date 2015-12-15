@@ -251,7 +251,7 @@ Function89261: ; 89261
 	call BackUpTiles
 	call Function8923c
 	call Function89209
-	call InterpretMenu2
+	call VerticalMenu
 	push af
 	ld c, $a
 	call DelayFrames
@@ -259,7 +259,7 @@ Function89261: ; 89261
 	call Function8920f
 	pop af
 	jr c, .done
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $2
 	jr z, .done
 	and a
@@ -2198,8 +2198,8 @@ Function89d5e: ; 89d5e (22:5d5e)
 	pop af
 	ld [wMenuCursorBuffer], a
 	call Function8923c
-	call Function1c89
-	call Function1c10
+	call PlaceVerticalMenuItems
+	call InitVerticalMenuCursor
 	ld hl, wcfa5
 	set 7, [hl]
 	ret
@@ -2224,7 +2224,7 @@ asm_89d90: ; 89d90 (22:5d90)
 	push hl
 	call _hl_
 	call Function89dab
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	push af
 	call Function891ab
 	pop af
@@ -2239,7 +2239,7 @@ asm_89d90: ; 89d90 (22:5d90)
 
 Function89dab: ; 89dab (22:5dab)
 	call Function8923c
-	callba Function241ba
+	callba MobileMenuJoypad
 	call Function8923c
 	ld a, c
 	ld hl, wcfa8
@@ -2255,7 +2255,7 @@ Function89dab: ; 89dab (22:5dab)
 	call PlayClickSFX
 	ld a, [wcfa3]
 	ld c, a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp c
 	jr z, .asm_89dd9
 	call Function1bee
@@ -2275,7 +2275,7 @@ Function89de0: ; 89de0 (22:5de0)
 .asm_89dea
 	call Function8a31c
 	jr z, .asm_89dfd
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld c, a
 	push bc
 	ld hl, Jumptable_89e04
@@ -2784,7 +2784,7 @@ Function8a116: ; 8a116 (22:6116)
 	call Function8923c
 	call Function8a17b
 	jr c, .asm_8a16b
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wd030], a
 	dec d
 	jr z, .asm_8a140
@@ -2867,7 +2867,7 @@ Function8a1b0: ; 8a1b0
 	ld c, $12
 	call TextBox
 	hlcoord 1, 14
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld de, Strings_8a1cc
 	dec a
 	ld c, a
@@ -3054,8 +3054,8 @@ Function8a31c: ; 8a31c (22:631c)
 	ld a, c
 	ld [wMenuCursorBuffer], a
 	ld [MenuSelection], a
-	call Function1c89
-	call Function1c10
+	call PlaceVerticalMenuItems
+	call InitVerticalMenuCursor
 	ld hl, wcfa5
 	set 7, [hl]
 .asm_8a34e
@@ -3086,7 +3086,7 @@ Function8a31c: ; 8a31c (22:631c)
 	ret
 
 Function8a383: ; 8a383 (22:6383)
-	callba Function241ba
+	callba MobileMenuJoypad
 	ld a, c
 	ld hl, wcfa8
 	and [hl]
@@ -3106,7 +3106,7 @@ Function8a383: ; 8a383 (22:6383)
 	ret
 
 Function8a3a2: ; 8a3a2 (22:63a2)
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ld hl, wd002
 	ld e, a
@@ -3834,7 +3834,7 @@ Function8a930: ; 8a930 (22:6930)
 	ld [wd0e3], a
 .asm_8a943
 	call Function8b7bd
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	and $1
 	jr nz, .asm_8a953
 	ld a, c

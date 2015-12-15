@@ -26,7 +26,7 @@ MapGoldenrodPokeComCenter2FMobileSignpost0Script:
 UnknownScript_0x625df:
 	reloadmappart
 	loadmenudata MenuDataHeader_0x62602
-	interpretmenu2
+	verticalmenu
 	writebackup
 	if_equal $1, UnknownScript_0x625f0
 	if_equal $2, UnknownScript_0x625f8
@@ -71,7 +71,7 @@ MapGoldenrodPokeComCenter2FMobileSignpost1Script:
 UnknownScript_0x62629:
 	reloadmappart
 	loadmenudata MenuDataHeader_0x6264c
-	interpretmenu2
+	verticalmenu
 	writebackup
 	if_equal $1, UnknownScript_0x6263a
 	if_equal $2, UnknownScript_0x62642

@@ -133,7 +133,7 @@ Function134dd: ; 134dd
 	ld [wMenuScrollPosition], a
 	call HandleScrollingMenu
 	call WriteBackup
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	cp $2
 	jr z, .asm_1350b
 	xor a

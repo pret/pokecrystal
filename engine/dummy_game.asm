@@ -416,7 +416,7 @@ Functione20e5: ; e20e5
 ; e2101
 
 Functione2101: ; e2101
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ld l, a
 	ld h, 0

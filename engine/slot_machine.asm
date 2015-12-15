@@ -1714,10 +1714,10 @@ Slots_AskBet: ; 9307c (24:707c)
 	call PrintText
 	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
-	call InterpretMenu2
+	call VerticalMenu
 	call WriteBackup
 	ret c
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld b, a
 	ld a, 4
 	sub b
@@ -1803,7 +1803,7 @@ Slots_AskPlayAgain: ; 930e9 (24:70e9)
 	call LoadMenuTextBox
 	lb bc, 14, 12
 	call PlaceYesNoBox
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	call WriteBackup
 	and a

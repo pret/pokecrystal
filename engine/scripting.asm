@@ -160,8 +160,8 @@ ENDC
 	dw Script_buttonsound                ; 55
 	dw Script_pokepic                    ; 56
 	dw Script_closepokepic               ; 57
-	dw Script_interpretmenu              ; 58
-	dw Script_interpretmenu2             ; 59
+	dw Script__2dmenu              ; 58
+	dw Script_verticalmenu             ; 59
 	dw Script_loadpikachudata            ; 5a
 	dw Script_randomwildmon              ; 5b
 	dw Script_loadmemtrainer             ; 5c
@@ -510,13 +510,13 @@ Script_closepokepic: ; 96f29
 	ret
 ; 96f30
 
-Script_interpretmenu2: ; 96f30
+Script_verticalmenu: ; 96f30
 ; script command 0x59
 
 	ld a, [ScriptBank]
-	ld hl, InterpretMenu2
+	ld hl, VerticalMenu
 	rst FarCall
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	jr nc, .ok
 	xor a
 .ok
@@ -524,11 +524,11 @@ Script_interpretmenu2: ; 96f30
 	ret
 ; 96f41
 
-Script_interpretmenu: ; 96f41
+Script__2dmenu: ; 96f41
 ; script command 0x58
 
 	ld a, [ScriptBank]
-	ld hl, InterpretMenu
+	ld hl, _2DMenu
 	rst FarCall
 	ld a, [wMenuCursorBuffer]
 	jr nc, .ok

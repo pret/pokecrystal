@@ -1,54 +1,57 @@
-Function2400e:: ; 2400e
+_2DMenu_:: ; 2400e
 	ld hl, CopyMenuData2
-	ld a, [wcf94]
+	ld a, [wMenuData2_2DMenuItemStringsBank]
 	rst FarCall
-	call Function24085
+
+	call Draw2DMenu
 	call UpdateSprites
 	call ApplyTilemap
-	call Function2408f
+	call Get2DMenuSelection
 	ret
 ; 24022
 
-Function24022:: ; 24022
+_InterpretBattleMenu:: ; 24022
 	ld hl, CopyMenuData2
-	ld a, [wcf94]
+	ld a, [wMenuData2_2DMenuItemStringsBank]
 	rst FarCall
-	call Function24085
+
+	call Draw2DMenu
 	callba MobileTextBorder
 	call UpdateSprites
 	call ApplyTilemap
-	call Function2408f
+	call Get2DMenuSelection
 	ret
 ; 2403c
 
-Function2403c:: ; 2403c
+_InterpretMobileMenu:: ; 2403c
 	ld hl, CopyMenuData2
-	ld a, [wcf94]
+	ld a, [wMenuData2_2DMenuItemStringsBank]
 	rst FarCall
-	call Function24085
+
+	call Draw2DMenu
 	callba MobileTextBorder
 	call UpdateSprites
 	call ApplyTilemap
-	call Function2411a
-	ld hl, wcfa5
+	call Init2DMenuCursorPosition
+	ld hl, w2DMenuFlags1
 	set 7, [hl]
-.asm_2405a
+.loop
 	call DelayFrame
 	callba Function10032e
 	ld a, [wcd2b]
 	and a
-	jr nz, .asm_24076
-	call Function241ba
-	ld a, [wcfa8]
+	jr nz, .quit
+	call MobileMenuJoypad
+	ld a, [w2DMenuFlags4]
 	and c
-	jr z, .asm_2405a
-	call Function24098
+	jr z, .loop
+	call Mobile_GetMenuSelection
 	ret
 
-.asm_24076
-	ld a, [wcfa4]
+.quit
+	ld a, [w2DMenuNumCols]
 	ld c, a
-	ld a, [wcfa3]
+	ld a, [w2DMenuNumRows]
 	call SimpleMultiply
 	ld [wMenuCursorBuffer], a
 	and a
@@ -57,174 +60,173 @@ Function2403c:: ; 2403c
 
 
 
-Function24085: ; 24085
+Draw2DMenu: ; 24085
 	xor a
 	ld [hBGMapMode], a
 	call MenuBox
-	call Function240db
+	call Place2DMenuItemStrings
 	ret
 ; 2408f
 
-Function2408f: ; 2408f
-	call Function2411a
-	call Function1bc9
-	call Function1ff8
-
-Function24098: ; 24098
+Get2DMenuSelection: ; 2408f
+	call Init2DMenuCursorPosition
+	call StaticMenuJoypad
+	call MenuClickSound
+Mobile_GetMenuSelection: ; 24098
 	ld a, [wMenuData2Flags]
 	bit 1, a
-	jr z, .asm_240a6
-	call Function1bdd
-	bit 2, a
-	jr nz, .asm_240c9
+	jr z, .skip
+	call GetMenuJoypad
+	bit SELECT_F, a
+	jr nz, .quit1
 
-.asm_240a6
+.skip
 	ld a, [wMenuData2Flags]
 	bit 0, a
-	jr nz, .asm_240b4
-	call Function1bdd
-	bit 1, a
-	jr nz, .asm_240cb
+	jr nz, .skip2
+	call GetMenuJoypad
+	bit B_BUTTON_F, a
+	jr nz, .quit2
 
-.asm_240b4
-	ld a, [wcfa4]
+.skip2
+	ld a, [w2DMenuNumCols]
 	ld c, a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	call SimpleMultiply
 	ld c, a
-	ld a, [wcfaa]
+	ld a, [wMenuCursorX]
 	add c
 	ld [wMenuCursorBuffer], a
 	and a
 	ret
 
-.asm_240c9
+.quit1
 	scf
 	ret
 
-.asm_240cb
+.quit2
 	scf
 	ret
 ; 240cd
 
-Function240cd: ; 240cd
+GetMenuNumberOfColumns: ; 240cd
 	ld a, [wMenuData2Items]
 	and $f
 	ret
 ; 240d3
 
-Function240d3: ; 240d3
+GetMenuNumberOfRows: ; 240d3
 	ld a, [wMenuData2Items]
 	swap a
 	and $f
 	ret
 ; 240db
 
-Function240db: ; 240db
-	ld hl, wcf95
+Place2DMenuItemStrings: ; 240db
+	ld hl, wMenuData2_2DMenuItemStringsAddr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	call GetMenuTextStartCoord
 	call Coord2Tile
-	call Function240d3
+	call GetMenuNumberOfRows
 	ld b, a
-.asm_240eb
+.row
 	push bc
 	push hl
-	call Function240cd
+	call GetMenuNumberOfColumns
 	ld c, a
-.asm_240f1
+.col
 	push bc
-	ld a, [wcf94]
-	call Function201c
+	ld a, [wMenuData2_2DMenuItemStringsBank]
+	call Place2DMenuItemName
 	inc de
-	ld a, [wcf93]
+	ld a, [wMenuData2Spacing]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	pop bc
 	dec c
-	jr nz, .asm_240f1
+	jr nz, .col
 	pop hl
-	ld bc, $28
+	ld bc, 2 * SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .asm_240eb
-	ld hl, wcf98
+	jr nz, .row
+	ld hl, wMenuData2_2DMenuFunctionAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	or h
 	ret z
-	ld a, [wcf97]
+	ld a, [wMenuData2_2DMenuFunctionBank]
 	rst FarCall
 	ret
 ; 2411a
 
 
-Function2411a: ; 2411a (9:411a)
+Init2DMenuCursorPosition: ; 2411a (9:411a)
 	call GetMenuTextStartCoord
 	ld a, b
-	ld [wcfa1], a
+	ld [w2DMenuCursorInitY], a
 	dec c
 	ld a, c
-	ld [wcfa2], a
-	call Function240d3
-	ld [wcfa3], a
-	call Function240cd
-	ld [wcfa4], a
-	call Function24179
-	call Function2418a
-	call Function24193
-	ld a, [wcfa4]
+	ld [w2DMenuCursorInitX], a
+	call GetMenuNumberOfRows
+	ld [w2DMenuNumRows], a
+	call GetMenuNumberOfColumns
+	ld [w2DMenuNumCols], a
+	call .InitFlags_a
+	call .InitFlags_b
+	call .InitFlags_c
+	ld a, [w2DMenuNumCols]
 	ld e, a
 	ld a, [wMenuCursorBuffer]
 	ld b, a
 	xor a
-	ld d, $0
-.asm_24146
+	ld d, 0
+.loop
 	inc d
 	add e
 	cp b
-	jr c, .asm_24146
+	jr c, .loop
 	sub e
 	ld c, a
 	ld a, b
 	sub c
 	and a
-	jr z, .asm_24157
+	jr z, .reset1
 	cp e
-	jr z, .asm_24159
-	jr c, .asm_24159
-.asm_24157
-	ld a, $1
-.asm_24159
-	ld [wcfaa], a
-	ld a, [wcfa3]
+	jr z, .okay1
+	jr c, .okay1
+.reset1
+	ld a, 1
+.okay1
+	ld [wMenuCursorX], a
+	ld a, [w2DMenuNumRows]
 	ld e, a
 	ld a, d
 	and a
-	jr z, .asm_24169
+	jr z, .reset2
 	cp e
-	jr z, .asm_2416b
-	jr c, .asm_2416b
-.asm_24169
-	ld a, $1
-.asm_2416b
-	ld [MenuSelection2], a
+	jr z, .okay2
+	jr c, .okay2
+.reset2
+	ld a, 1
+.okay2
+	ld [wMenuCursorY], a
 	xor a
-	ld [wcfab], a
-	ld [wcfac], a
-	ld [wcfad], a
+	ld [wCursorOffCharacter], a
+	ld [wCursorCurrentTile], a
+	ld [wCursorCurrentTile + 1], a
 	ret
 ; 24179
 
-Function24179: ; 24179
+.InitFlags_a: ; 24179
 	xor a
-	ld hl, wcfa5
+	ld hl, w2DMenuFlags1
 	ld [hli], a
 	ld [hld], a
 	ld a, [wMenuData2Flags]
@@ -235,89 +237,85 @@ Function24179: ; 24179
 	ret
 ; 2418a
 
-Function2418a: ; 2418a
-	ld a, [wcf93]
-	or $20
-	ld [wcfa7], a
+.InitFlags_b: ; 2418a
+	ld a, [wMenuData2Spacing]
+	or %00100000
+	ld [w2DMenuFlags3], a
 	ret
 ; 24193
 
-Function24193: ; 24193
+.InitFlags_c: ; 24193
 	ld hl, wMenuData2Flags
-	ld a, $1
+	ld a, %001
 	bit 0, [hl]
-	jr nz, .asm_2419e
-	or $2
-
-.asm_2419e
+	jr nz, .skip
+	or %010
+.skip
 	bit 1, [hl]
-	jr z, .asm_241a4
-	or $4
-
-.asm_241a4
-	ld [wcfa8], a
+	jr z, .skip2
+	or %100
+.skip2
+	ld [w2DMenuFlags4], a
 	ret
 ; 241a8
 
 
-Function241a8:: ; 241a8
-	call Function24329
-Function241ab:: ; 241ab
-	ld hl, wcfa6
+_StaticMenuJoypad:: ; 241a8
+	call Place2DMenuCursor
+_ScrollingMenuJoypad:: ; 241ab
+	ld hl, w2DMenuFlags2
 	res 7, [hl]
 	ld a, [hBGMapMode]
 	push af
-	call Function24216
+	call MenuJoypadLoop
 	pop af
 	ld [hBGMapMode], a
 	ret
 ; 241ba
 
-Function241ba: ; 241ba
-	ld hl, wcfa6
+MobileMenuJoypad: ; 241ba
+	ld hl, w2DMenuFlags2
 	res 7, [hl]
 	ld a, [hBGMapMode]
 	push af
-	call Function2431a
-	call Function24249
-	jr nc, .asm_241cd
-	call Function24270
-
-.asm_241cd
+	call Move2DMenuCursor
+	call Do2DMenuRTCJoypad
+	jr nc, .skip_joypad
+	call _2DMenuInterpretJoypad
+.skip_joypad
 	pop af
 	ld [hBGMapMode], a
-	call Function1bdd
+	call GetMenuJoypad
 	ld c, a
 	ret
 ; 241d5
 
 
 Function241d5: ; 241d5
-	call Function24329
+; Unreferenced
+	call Place2DMenuCursor
 .loop
-	call Function2431a
+	call Move2DMenuCursor
 	call Function10402d ; BUG: This function is in another bank.
 	                    ; Pointer in current bank (9) is bogus.
-	call Function241fa
+	call .loop2
 	jr nc, .done
-	call Function24270
+	call _2DMenuInterpretJoypad
 	jr c, .done
-	ld a, [wcfa5]
+	ld a, [w2DMenuFlags1]
 	bit 7, a
 	jr nz, .done
-	call Function1bdd
+	call GetMenuJoypad
 	ld c, a
-	ld a, [wcfa8]
+	ld a, [w2DMenuFlags4]
 	and c
 	jr z, .loop
 
 .done
 	ret
-; 241fa
 
-Function241fa: ; 241fa
-.loop
-	call Function24259
+.loop2
+	call Menu_WasButtonPressed
 	ret c
 	ld c, 1
 	ld b, 3
@@ -326,36 +324,36 @@ Function241fa: ; 241fa
 	ret c
 	callba Function100337
 	ret c
-	ld a, [wcfa5]
+	ld a, [w2DMenuFlags1]
 	bit 7, a
-	jr z, .loop
+	jr z, .loop2
 	and a
 	ret
 ; 24216
 
 
-Function24216: ; 24216
-.asm_24216
-	call Function2431a
-	call Function24238
-	call Function24249
-	jr nc, .asm_24237
-	call Function24270
-	jr c, .asm_24237
-	ld a, [wcfa5]
+MenuJoypadLoop: ; 24216
+.loop
+	call Move2DMenuCursor
+	call .BGMap_OAM
+	call Do2DMenuRTCJoypad
+	jr nc, .done
+	call _2DMenuInterpretJoypad
+	jr c, .done
+	ld a, [w2DMenuFlags1]
 	bit 7, a
-	jr nz, .asm_24237
-	call Function1bdd
+	jr nz, .done
+	call GetMenuJoypad
 	ld b, a
-	ld a, [wcfa8]
+	ld a, [w2DMenuFlags4]
 	and b
-	jr z, .asm_24216
+	jr z, .loop
 
-.asm_24237
+.done
 	ret
 ; 24238
 
-Function24238: ; 24238
+.BGMap_OAM: ; 24238
 	ld a, [hOAMUpdate]
 	push af
 	ld a, $1
@@ -368,220 +366,479 @@ Function24238: ; 24238
 	ret
 ; 24249
 
-Function24249: ; 24249
-.asm_24249
+Do2DMenuRTCJoypad: ; 24249
+.loopRTC
 	call RTC
-	call Function24259
+	call Menu_WasButtonPressed
 	ret c
-	ld a, [wcfa5]
+	ld a, [w2DMenuFlags1]
 	bit 7, a
-	jr z, .asm_24249
+	jr z, .loopRTC
 	and a
 	ret
 ; 24259
 
-Function24259: ; 24259
-	ld a, [wcfa5]
+Menu_WasButtonPressed: ; 24259
+	ld a, [w2DMenuFlags1]
 	bit 6, a
-	jr z, .asm_24266
+	jr z, .skip_to_joypad
 	callab PlaySpriteAnimationsAndDelayFrame
 
-.asm_24266
+.skip_to_joypad
 	call JoyTextDelay
-	call Function1bdd
+	call GetMenuJoypad
 	and a
 	ret z
 	scf
 	ret
 ; 24270
 
-Function24270: ; 24270
-	call Function1bdd
-	bit 0, a
-	jp nz, Function24318
-	bit 1, a
-	jp nz, Function24318
-	bit 2, a
-	jp nz, Function24318
-	bit 3, a
-	jp nz, Function24318
-	bit 4, a
-	jr nz, .asm_242fa
-	bit 5, a
-	jr nz, .asm_242dc
-	bit 6, a
-	jr nz, .asm_242be
-	bit 7, a
-	jr nz, .asm_242a0
+_2DMenuInterpretJoypad: ; 24270
+	call GetMenuJoypad
+	bit A_BUTTON_F, a
+	jp nz, .a_b_start_select
+	bit B_BUTTON_F, a
+	jp nz, .a_b_start_select
+	bit SELECT_F, a
+	jp nz, .a_b_start_select
+	bit START_F, a
+	jp nz, .a_b_start_select
+	bit D_RIGHT_F, a
+	jr nz, .d_right
+	bit D_LEFT_F, a
+	jr nz, .d_left
+	bit D_UP_F, a
+	jr nz, .d_up
+	bit D_DOWN_F, a
+	jr nz, .d_down
 	and a
 	ret
 
-.asm_24299: ; 24299
-	ld hl, wcfa6
+.set_bit_7: ; 24299
+	ld hl, w2DMenuFlags2
 	set 7, [hl]
 	scf
 	ret
 
-.asm_242a0
-	ld hl, MenuSelection2
-	ld a, [wcfa3]
+.d_down
+	ld hl, wMenuCursorY
+	ld a, [w2DMenuNumRows]
 	cp [hl]
-	jr z, .asm_242ac
+	jr z, .check_wrap_around_down
 	inc [hl]
 	xor a
 	ret
 
-.asm_242ac
-	ld a, [wcfa5]
+.check_wrap_around_down
+	ld a, [w2DMenuFlags1]
 	bit 5, a
-	jr nz, .asm_242ba
+	jr nz, .wrap_around_down
 	bit 3, a
-	jp nz, .asm_24299
+	jp nz, .set_bit_7
 	xor a
 	ret
 
-.asm_242ba
+.wrap_around_down
 	ld [hl], $1
 	xor a
 	ret
 
-.asm_242be
-	ld hl, MenuSelection2
+.d_up
+	ld hl, wMenuCursorY
 	ld a, [hl]
 	dec a
-	jr z, .asm_242c8
+	jr z, .check_wrap_around_up
 	ld [hl], a
 	xor a
 	ret
 
-.asm_242c8
-	ld a, [wcfa5]
+.check_wrap_around_up
+	ld a, [w2DMenuFlags1]
 	bit 5, a
-	jr nz, .asm_242d6
+	jr nz, .wrap_around_up
 	bit 2, a
-	jp nz, .asm_24299
+	jp nz, .set_bit_7
 	xor a
 	ret
 
-.asm_242d6
-	ld a, [wcfa3]
+.wrap_around_up
+	ld a, [w2DMenuNumRows]
 	ld [hl], a
 	xor a
 	ret
 
-.asm_242dc
-	ld hl, wcfaa
+.d_left
+	ld hl, wMenuCursorX
 	ld a, [hl]
 	dec a
-	jr z, .asm_242e6
+	jr z, .check_wrap_around_left
 	ld [hl], a
 	xor a
 	ret
 
-.asm_242e6
-	ld a, [wcfa5]
+.check_wrap_around_left
+	ld a, [w2DMenuFlags1]
 	bit 4, a
-	jr nz, .asm_242f4
+	jr nz, .wrap_around_left
 	bit 1, a
-	jp nz, .asm_24299
+	jp nz, .set_bit_7
 	xor a
 	ret
 
-.asm_242f4
-	ld a, [wcfa4]
+.wrap_around_left
+	ld a, [w2DMenuNumCols]
 	ld [hl], a
 	xor a
 	ret
 
-.asm_242fa
-	ld hl, wcfaa
-	ld a, [wcfa4]
+.d_right
+	ld hl, wMenuCursorX
+	ld a, [w2DMenuNumCols]
 	cp [hl]
-	jr z, .asm_24306
+	jr z, .check_wrap_around_right
 	inc [hl]
 	xor a
 	ret
 
-.asm_24306
-	ld a, [wcfa5]
+.check_wrap_around_right
+	ld a, [w2DMenuFlags1]
 	bit 4, a
-	jr nz, .asm_24314
+	jr nz, .wrap_around_right
 	bit 0, a
-	jp nz, .asm_24299
+	jp nz, .set_bit_7
 	xor a
 	ret
 
-.asm_24314
+.wrap_around_right
 	ld [hl], $1
 	xor a
 	ret
 ; 24318
 
-Function24318: ; 24318
+.a_b_start_select: ; 24318
 	xor a
 	ret
 ; 2431a
 
-Function2431a: ; 2431a
-	ld hl, wcfac
+Move2DMenuCursor: ; 2431a
+	ld hl, wCursorCurrentTile
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld a, [hl]
-	cp $ed
-	jr nz, Function24329
-	ld a, [wcfab]
+	cp "▶"
+	jr nz, Place2DMenuCursor
+	ld a, [wCursorOffCharacter]
 	ld [hl], a
-
-Function24329: ; 24329
-	ld a, [wcfa1]
+Place2DMenuCursor: ; 24329
+	ld a, [w2DMenuCursorInitY]
 	ld b, a
-	ld a, [wcfa2]
+	ld a, [w2DMenuCursorInitX]
 	ld c, a
 	call Coord2Tile
-	ld a, [wcfa7]
+	ld a, [w2DMenuFlags3]
 	swap a
 	and $f
 	ld c, a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld b, a
 	xor a
 	dec b
-	jr z, .asm_24348
-.asm_24344
+	jr z, .got_row
+.row_loop
 	add c
 	dec b
-	jr nz, .asm_24344
+	jr nz, .row_loop
 
-.asm_24348
-	ld c, $14
+.got_row
+	ld c, SCREEN_WIDTH
 	call AddNTimes
-	ld a, [wcfa7]
+	ld a, [w2DMenuFlags3]
 	and $f
 	ld c, a
-	ld a, [wcfaa]
+	ld a, [wMenuCursorX]
 	ld b, a
 	xor a
 	dec b
-	jr z, .asm_2435f
-.asm_2435b
+	jr z, .got_col
+.col_loop
 	add c
 	dec b
-	jr nz, .asm_2435b
+	jr nz, .col_loop
 
-.asm_2435f
+.got_col
 	ld c, a
 	add hl, bc
 	ld a, [hl]
-	cp $ed
-	jr z, .asm_2436b
-	ld [wcfab], a
-	ld [hl], $ed
+	cp "▶"
+	jr z, .cursor_on
+	ld [wCursorOffCharacter], a
+	ld [hl], "▶"
 
-.asm_2436b
+.cursor_on
 	ld a, l
-	ld [wcfac], a
+	ld [wCursorCurrentTile], a
 	ld a, h
-	ld [wcfad], a
+	ld [wCursorCurrentTile + 1], a
 	ret
 ; 24374
+
+_BackUpTiles:: ; 24374
+; Push the window
+	ld a, [rSVBK]
+	push af
+	ld a, $7
+	ld [rSVBK], a
+
+	ld hl, wWindowStackPointer
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	push de
+
+	ld b, $10
+	ld hl, wMenuFlags
+.loop
+	ld a, [hli]
+	ld [de], a
+	dec de
+	dec b
+	jr nz, .loop
+
+; If bit 6 or 7 of the menu flags is set, set bit 0 of the address
+; at 7:[wWindowStackPointer], and draw the menu using the coordinates from the header.
+; Otherwise, reset bit 0 of 7:[wWindowStackPointer].
+	ld a, [wMenuFlags]
+	bit 6, a
+	jr nz, .bit_6
+	bit 7, a
+	jr z, .not_bit_7
+
+.bit_6
+	ld hl, wWindowStackPointer
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	set 0, [hl]
+	call MenuBoxCoord2Tile
+	call .copy
+	call MenuBoxCoord2Attr
+	call .copy
+	jr .done
+
+.not_bit_7
+	pop hl ; last-pushed register was de
+	push hl
+	ld a, [hld]
+	ld l, [hl]
+	ld h, a
+	res 0, [hl]
+
+.done
+	pop hl
+	call .ret ; empty function
+	ld a, h
+	ld [de], a
+	dec de
+	ld a, l
+	ld [de], a
+	dec de
+	ld hl, wWindowStackPointer
+	ld [hl], e
+	inc hl
+	ld [hl], d
+
+	pop af
+	ld [rSVBK], a
+	ld hl, wWindowStackSize
+	inc [hl]
+	ret
+; 243cd
+
+.copy: ; 243cd
+	call GetMenuBoxDims
+	inc b
+	inc c
+	call .ret ; empty function
+
+.row
+	push bc
+	push hl
+
+.col
+	ld a, [hli]
+	ld [de], a
+	dec de
+	dec c
+	jr nz, .col
+
+	pop hl
+	ld bc, SCREEN_WIDTH
+	add hl, bc
+	pop bc
+	dec b
+	jr nz, .row
+
+	ret
+; 243e7
+
+.ret: ; 243e7
+	ret
+; 243e8
+
+_ExitMenu:: ; 243e8
+	xor a
+	ld [hBGMapMode], a
+
+	ld a, [rSVBK]
+	push af
+	ld a, $7
+	ld [rSVBK], a
+
+	call GetWindowStackTop
+	ld a, l
+	or h
+	jp z, Error_Cant_ExitMenu
+	ld a, l
+	ld [wWindowStackPointer], a
+	ld a, h
+	ld [wWindowStackPointer + 1], a
+	call PopWindow
+	ld a, [wMenuFlags]
+	bit 0, a
+	jr z, .next
+	ld d, h
+	ld e, l
+	call RestoreTileBackup
+
+.next
+	call GetWindowStackTop
+	ld a, h
+	or l
+	jr z, .done
+	call PopWindow
+
+.done
+	pop af
+	ld [rSVBK], a
+	ld hl, wWindowStackSize
+	dec [hl]
+	ret
+; 24423
+
+Function24423: ; 24423
+	ld a, [VramState]
+	bit 0, a
+	ret z
+	xor a
+	call GetSRAMBank
+	hlcoord 0, 0
+	ld de, sScratch
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	call CopyBytes
+	call CloseSRAM
+	call OverworldTextModeSwitch
+	xor a
+	call GetSRAMBank
+	ld hl, sScratch
+	decoord 0, 0
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+.asm_2444c
+	ld a, [hl]
+	cp $61
+	jr c, .asm_24452
+	ld [de], a
+
+.asm_24452
+	inc hl
+	inc de
+	dec bc
+	ld a, c
+	or b
+	jr nz, .asm_2444c
+	call CloseSRAM
+	ret
+; 2445d
+
+Error_Cant_ExitMenu: ; 2445d
+	ld hl, .Text_NoWindowsAvailableForPopping
+	call PrintText
+	call WaitBGMap
+.InfiniteLoop
+	jr .InfiniteLoop
+; 24468
+
+.Text_NoWindowsAvailableForPopping: ; 24468
+	text_jump UnknownText_0x1c46b7
+	db "@"
+; 2446d
+
+_InitVerticalMenuCursor:: ; 2446d
+	ld a, [wMenuData2Flags]
+	ld b, a
+	ld hl, w2DMenuCursorInitY
+	ld a, [wMenuBorderTopCoord]
+	inc a
+	bit 6, b
+	jr nz, .skip_offset
+	inc a
+.skip_offset
+	ld [hli], a
+; w2DMenuCursorInitX
+	ld a, [wMenuBorderLeftCoord]
+	inc a
+	ld [hli], a
+; w2DMenuNumRows
+	ld a, [wMenuData2Items]
+	ld [hli], a
+; w2DMenuNumCols
+	ld a, 1
+	ld [hli], a
+; w2DMenuFlags1
+	ld [hl], $0
+	bit 5, b
+	jr z, .skip_bit_5
+	set 5, [hl]
+.skip_bit_5
+	ld a, [wMenuFlags]
+	bit 4, a
+	jr z, .skip_bit_6
+	set 6, [hl]
+.skip_bit_6
+	inc hl
+; w2DMenuFlags2
+	xor a
+	ld [hli], a
+; w2DMenuFlags3
+	ld a, %00100000
+	ld [hli], a
+; w2DMenuFlags4
+	ld a, %001
+	bit 0, b
+	jr nz, .skip_bit_1
+	add %010
+.skip_bit_1
+	ld [hli], a
+; wMenuCursorY
+	ld a, [wMenuCursorBuffer]
+	and a
+	jr z, .load_at_the_top
+	ld c, a
+	ld a, [wMenuData2Items]
+	cp c
+	jr nc, .load_position
+.load_at_the_top
+	ld c, 1
+.load_position
+	ld [hl], c
+	inc hl
+; wMenuCursorX
+	ld a, 1
+	ld [hli], a
+; wCursorOffCharacter, wCursorCurrentTile
+	xor a
+rept 3
+	ld [hli], a
+endr
+	ret
+; 244c3

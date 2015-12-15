@@ -253,10 +253,10 @@ Function4de2c: ; 4de2c (13:5e2c)
 	pop bc
 	pop de
 	pop hl
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	and $c0
 	jr nz, .set_carry
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	jr .clear_flags
 
 .notbreedmon

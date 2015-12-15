@@ -33,9 +33,9 @@ InitGender: ; 48dcb (12:4dcb)
 	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
 	call WaitBGMap2
-	call InterpretMenu2
+	call VerticalMenu
 	call WriteBackup
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ld [PlayerGender], a
 	ld c, 10

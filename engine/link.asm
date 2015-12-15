@@ -1219,7 +1219,7 @@ rept 3
 endr
 	ld [hl], a
 	ld a, $1
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	inc a
 	ld [wPlayerLinkAction], a
 	jp Function2888b
@@ -1239,7 +1239,7 @@ Function28803: ; 28803
 	ld a, $6
 	ld [wcfa2], a
 	ld a, $1
-	ld [wcfaa], a
+	ld [wMenuCursorX], a
 	ld a, $10
 	ld [wcfa7], a
 	ld a, $20
@@ -1264,7 +1264,7 @@ Function28835: ; 28835
 .asm_2885b
 	bit 6, a
 	jr z, .asm_28883
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld b, a
 	ld a, [OTPartyCount]
 	cp b
@@ -1280,7 +1280,7 @@ Function28835: ; 28835
 	pop bc
 	pop hl
 	ld a, [PartyCount]
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	jr Function2888b
 
 .asm_28883
@@ -1304,7 +1304,7 @@ Function2888b: ; 2888b
 	ld a, $6
 	ld [wcfa2], a
 	ld a, $1
-	ld [wcfaa], a
+	ld [wMenuCursorX], a
 	ld a, $10
 	ld [wcfa7], a
 	ld a, $20
@@ -1328,7 +1328,7 @@ Function288c5: ; 288c5
 .asm_288d9
 	bit 7, a
 	jr z, .asm_288fe
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	jp nz, Function2891c
 	ld a, $1
@@ -1342,13 +1342,13 @@ Function288c5: ; 288c5
 	pop bc
 	pop hl
 	ld a, $1
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	jp Function28803
 
 .asm_288fe
 	bit 6, a
 	jr z, Function2891c
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld b, a
 	ld a, [PartyCount]
 	cp b
@@ -1373,7 +1373,7 @@ Function2891c: ; 2891c
 
 Function28926: ; 28926
 	call LoadTileMapToTempTileMap
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	push af
 	hlcoord 0, 15
 	ld b, $1
@@ -1398,21 +1398,21 @@ Function28926: ; 28926
 	ld a, $1
 	ld [wcfa2], a
 	ld a, $1
-	ld [MenuSelection2], a
-	ld [wcfaa], a
+	ld [wMenuCursorY], a
+	ld [wMenuCursorX], a
 	ld a, $20
 	ld [wcfa7], a
 	xor a
 	ld [wcfa5], a
 	ld [wcfa6], a
-	call Function1bd3
+	call ScrollingMenuJoypad
 	bit 4, a
 	jr nz, .asm_2898d
 	bit 1, a
 	jr z, .asm_289cd
 .asm_28983
 	pop af
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	call Call_LoadTempTileMapToTileMap
 	jp Function2888b
 
@@ -1430,14 +1430,14 @@ Function28926: ; 28926
 	ld a, $b
 	ld [wcfa2], a
 	ld a, $1
-	ld [MenuSelection2], a
-	ld [wcfaa], a
+	ld [wMenuCursorY], a
+	ld [wMenuCursorX], a
 	ld a, $20
 	ld [wcfa7], a
 	xor a
 	ld [wcfa5], a
 	ld [wcfa6], a
-	call Function1bd3
+	call ScrollingMenuJoypad
 	bit 5, a
 	jp nz, .asm_28946
 	bit 1, a
@@ -1446,7 +1446,7 @@ Function28926: ; 28926
 
 .asm_289cd
 	pop af
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	ld a, $4
 	ld [wd263], a
 	callab Function50db9
@@ -1465,7 +1465,7 @@ Function28926: ; 28926
 .asm_289fe
 	call Function1bee
 	pop af
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	dec a
 	ld [wd002], a
 	ld [wPlayerLinkAction], a
@@ -1549,7 +1549,7 @@ UnknownText_0x28ac4: ; 0x28ac4
 
 
 Function28ac9: ; 28ac9
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $1
 	jp nz, Function2891c
 	call Function1bf7
@@ -1579,12 +1579,12 @@ Function28ade: ; 28ade
 	bit 6, a
 	jr z, .asm_28b03
 	ld a, [OTPartyCount]
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	jp Function28803
 
 .asm_28b03
 	ld a, $1
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	jp Function2888b
 
 .asm_28b0b
@@ -1715,17 +1715,17 @@ Function28b87: ; 28b87
 	ld a, $3
 	ld [wcfa8], a
 	ld a, $1
-	ld [MenuSelection2], a
-	ld [wcfaa], a
+	ld [wMenuCursorY], a
+	ld [wMenuCursorX], a
 	callba Function4d354
-	call Function1bd3
+	call ScrollingMenuJoypad
 	push af
 	call Call_ExitMenu
 	call WaitBGMap2
 	pop af
 	bit 1, a
 	jr nz, .asm_28c33
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	jr z, .asm_28c54
 

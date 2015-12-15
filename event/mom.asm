@@ -106,10 +106,10 @@ endr
 	call LoadStandardMenuDataHeader
 	ld hl, MenuDataHeader_0x166b5
 	call CopyMenuDataHeader
-	call InterpretMenu2
+	call VerticalMenu
 	call WriteBackup
 	jr c, .cancel
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $1
 	jr z, .withdraw
 	cp $2

@@ -363,7 +363,7 @@ GetGFXUnlessMobile: ; 8ea3f
 FreezeMonIcons: ; 8ea4a
 	ld hl, wSpriteAnimationStructs
 	ld e, PARTY_LENGTH
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld d, a
 .loop
 	ld a, [hl]

@@ -547,7 +547,7 @@ Continue_LoadMenuHeader: ; 5ebf
 .pokedex_header
 	call Function1e35
 	call MenuBox
-	call Function1c89
+	call PlaceVerticalMenuItems
 	ret
 ; 5ed9
 
@@ -783,7 +783,7 @@ OakText7: ; 0x606f
 NamePlayer: ; 0x6074
 	callba MovePlayerPicRight
 	callba ShowPlayerNamingChoices
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	jr z, .NewName
 	call StorePlayerName
@@ -828,8 +828,8 @@ NamePlayer: ; 0x6074
 
 Function60e9: ; Unreferenced
 	call LoadMenuDataHeader
-	call InterpretMenu2
-	ld a, [MenuSelection2]
+	call VerticalMenu
+	ld a, [wMenuCursorY]
 	dec a
 	call CopyNameFromMenu
 	call WriteBackup

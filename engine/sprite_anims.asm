@@ -57,7 +57,7 @@ endr
 	ret
 
 .one: ; 8d2a2 (23:52a2)
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 
 	ld hl, SPRITEANIMSTRUCT_INDEX
 	add hl, bc
@@ -116,7 +116,7 @@ endr
 	ret
 
 .three: ; 8d2ea (23:52ea)
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 
 	ld hl, SPRITEANIMSTRUCT_INDEX
 	add hl, bc

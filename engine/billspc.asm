@@ -123,18 +123,18 @@ Functione245d: ; e245d (38:645d)
 	ld de, PCString_WhatsUp
 	call Functione2a6e
 	ld a, $1
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	call Functione298d
 	ret
 
 Functione247d: ; e247d (38:647d)
 	ld hl, BillsPCDepositMenuDataHeader
 	call CopyMenuDataHeader
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	call Function1d4b
-	call InterpretMenu2
+	call VerticalMenu
 	jp c, BillsPCDepositFuncCancel
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	and $3
 	ld e, a
@@ -187,14 +187,14 @@ BillsPCDepositFuncRelease: ; e24e0 (38:64e0)
 	jr c, BillsPCDepositFuncCancel
 	call Functione2f5f
 	jr c, BillsPCDepositFuncCancel
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	push af
 	ld de, PCString_ReleasePKMN
 	call Functione2a6e
 	call LoadStandardMenuDataHeader
 	lb bc, 14, 11
 	call PlaceYesNoBox
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	call ExitMenu
 	and a
@@ -218,7 +218,7 @@ BillsPCDepositFuncRelease: ; e24e0 (38:64e0)
 	ld de, PCString_WhatsUp
 	call Functione2a6e
 	pop af
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	ret
 
 BillsPCDepositFuncCancel: ; e2537 (38:6537)
@@ -388,18 +388,18 @@ Functione2655: ; e2655 (38:6655)
 	ld de, PCString_WhatsUp
 	call Functione2a6e
 	ld a, $1
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	call Functione298d
 	ret
 
 BillsPC_Withdraw: ; e2675 (38:6675)
 	ld hl, .MenuDataHeader
 	call CopyMenuDataHeader
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	call Function1d4b
-	call InterpretMenu2
+	call VerticalMenu
 	jp c, .cancel
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	and 3
 	ld e, a
@@ -448,7 +448,7 @@ endr
 	ret
 
 .release: ; e26d8 (38:66d8)
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	push af
 	call Functione2f5f
 	jr c, .FailedRelease
@@ -457,7 +457,7 @@ endr
 	call LoadStandardMenuDataHeader
 	lb bc, 14, 11
 	call PlaceYesNoBox
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	call ExitMenu
 	and a
@@ -481,7 +481,7 @@ endr
 	ld de, PCString_WhatsUp
 	call Functione2a6e
 	pop af
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	ret
 
 .cancel: ; e272b (38:672b)
@@ -649,7 +649,7 @@ Functione283d: ; e283d
 	ld de, PCString_WhatsUp
 	call Functione2a6e
 	ld a, $1
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	call Functione298d
 	ret
 ; e285d
@@ -657,11 +657,11 @@ Functione283d: ; e283d
 Functione285d: ; e285d
 	ld hl, MenuDataHeader_0xe28c3
 	call CopyMenuDataHeader
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	call Function1d4b
-	call InterpretMenu2
+	call VerticalMenu
 	jp c, Functione28bd
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	and 3
 	ld e, a
@@ -1764,11 +1764,11 @@ Functione2f95: ; e2f95 (38:6f95)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
 	and A_BUTTON | B_BUTTON | D_RIGHT | D_LEFT
-	ld [wcf73], a
+	ld [wMenuJoypad], a
 	jr nz, .pressed_a_b_right_left
 	ld a, [hl]
 	and D_DOWN | D_UP
-	ld [wcf73], a
+	ld [wMenuJoypad], a
 	jr nz, .pressed_down_up
 	jr .pressed_a_b_right_left
 
@@ -1791,7 +1791,7 @@ Functione2f95: ; e2f95 (38:6f95)
 
 .asm_e2fd1
 	xor a
-	ld [wcf73], a
+	ld [wMenuJoypad], a
 	ret
 
 Functione2fd6: ; e2fd6 (38:6fd6)
@@ -2367,7 +2367,7 @@ _ChangeBox: ; e35aa (38:75aa)
 	lb bc, 8, 9
 	call TextBox
 	call HandleScrollingMenu
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	cp $2
 	jr z, .done
 	call Functione37af
@@ -2549,10 +2549,10 @@ String_e36f1: ; e36f1
 Functione36f9: ; e36f9 (38:76f9)
 	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
-	call InterpretMenu2
+	call VerticalMenu
 	call ExitMenu
 	ret c
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $1
 	jr z, .Switch
 	cp $2

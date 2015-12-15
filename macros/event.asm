@@ -574,14 +574,14 @@ closepokepic: macro
 	db closepokepic_command
 	endm
 
-	enum interpretmenu_command
-interpretmenu: macro
-	db interpretmenu_command
+	enum _2dmenu_command
+_2dmenu: macro
+	db _2dmenu_command
 	endm
 
-	enum interpretmenu2_command
-interpretmenu2: macro
-	db interpretmenu2_command
+	enum verticalmenu_command
+verticalmenu: macro
+	db verticalmenu_command
 	endm
 
 	enum loadpikachudata_command

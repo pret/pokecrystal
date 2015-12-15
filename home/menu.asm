@@ -72,25 +72,26 @@ Call_ExitMenu:: ; 1d7d
 	ret
 ; 1d81
 
-InterpretMenu2::
+VerticalMenu::
 	xor a
 	ld [hBGMapMode], a
 	call MenuBox
 	call UpdateSprites
-	call Function1c89
+	call PlaceVerticalMenuItems
 	call ApplyTilemap
 	call CopyMenuData2
 	ld a, [wMenuData2Flags]
 	bit 7, a
 	jr z, .cancel
-	call Function1c10
-	call Function1bc9
-	call Function1ff8
+	call InitVerticalMenuCursor
+	call StaticMenuJoypad
+	call MenuClickSound
 	bit 1, a
 	jr z, .okay
 .cancel
 	scf
 	ret
+
 .okay
 	and a
 	ret
@@ -98,9 +99,9 @@ InterpretMenu2::
 
 GetMenu2:: ; 1dab
 	call LoadMenuDataHeader
-	call InterpretMenu2
+	call VerticalMenu
 	call WriteBackup
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ret
 ; 1db8
 
@@ -162,14 +163,14 @@ _YesNoBox:: ; 1dd9
 	call BackUpTiles
 
 InterpretTwoOptionMenu:: ; 1dfe
-	call InterpretMenu2
+	call VerticalMenu
 	push af
 	ld c, $f
 	call DelayFrames
 	call WriteBackup
 	pop af
 	jr c, .no
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp 2 ; no
 	jr z, .no
 	and a
@@ -177,7 +178,7 @@ InterpretTwoOptionMenu:: ; 1dfe
 
 .no
 	ld a, 2
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	scf
 	ret
 ; 1e1d
@@ -233,8 +234,8 @@ DoNthMenu:: ; 1e5d
 	call MenuWriteText
 	call Function1eff
 	call Function1f23
-	call Function1bdd
-	call Function1ff8
+	call GetMenuJoypad
+	call MenuClickSound
 	ret
 ; 1e70
 
@@ -341,7 +342,7 @@ Function1efb:: ; 1efb
 ; 1eff
 
 Function1eff:: ; 1eff
-	call Function1c10
+	call InitVerticalMenuCursor
 	ld hl, wcfa8
 	ld a, [wMenuData2Flags]
 	bit 3, a
@@ -361,7 +362,7 @@ Function1eff:: ; 1eff
 
 
 Function1f1a:: ; 1f1a
-	call Function1bd3
+	call ScrollingMenuJoypad
 	ld hl, wcfa8
 	and [hl]
 	jr Function1f2a
@@ -369,8 +370,8 @@ Function1f1a:: ; 1f1a
 
 Function1f23:: ; 1f23
 	xor a
-	ld [wcf73], a
-	call Function1bc9
+	ld [wMenuJoypad], a
+	call StaticMenuJoypad
 ; 1f2a
 
 Function1f2a:: ; 1f2a
@@ -385,39 +386,39 @@ Function1f2a:: ; 1f2a
 	bit 5, a
 	jr nz, .asm_1f4b
 	xor a
-	ld [wcf73], a
+	ld [wMenuJoypad], a
 	jr .asm_1f57
 
 .asm_1f44
 	ld a, $10
-	ld [wcf73], a
+	ld [wMenuJoypad], a
 	jr .asm_1f57
 
 .asm_1f4b
 	ld a, $20
-	ld [wcf73], a
+	ld [wMenuJoypad], a
 	jr .asm_1f57
 
 .asm_1f52
 	ld a, $1
-	ld [wcf73], a
+	ld [wMenuJoypad], a
 
 .asm_1f57
 	call Function1ebd
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld l, a
 	ld h, $0
 	add hl, de
 	ld a, [hl]
 	ld [MenuSelection], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wMenuCursorBuffer], a
 	and a
 	ret
 
 .asm_1f6d
 	ld a, $2
-	ld [wcf73], a
+	ld [wMenuJoypad], a
 	ld a, $ff
 	ld [MenuSelection], a
 	scf
@@ -489,7 +490,7 @@ endr
 ; 1fbf
 
 ResetTextRelatedRAM:: ; 1fbf
-	ld hl, wcf71
+	ld hl, wWindowStackPointer
 	call .bytefill
 	ld hl, wMenuDataHeader
 	call .bytefill
@@ -504,14 +505,14 @@ ResetTextRelatedRAM:: ; 1fbf
 	ld [rSVBK], a
 
 	xor a
-	ld hl, w7_dfff
+	ld hl, wWindowStackBottom
 rept 2
 	ld [hld], a
 endr
 	ld a, l
-	ld [wcf71], a
+	ld [wWindowStackPointer], a
 	ld a, h
-	ld [wcf72], a
+	ld [wWindowStackPointer + 1], a
 
 	pop af
 	ld [rSVBK], a
@@ -525,15 +526,14 @@ endr
 	ret
 ; 1ff8
 
-Function1ff8:: ; 1ff8
+MenuClickSound:: ; 1ff8
 	push af
-	and $3
+	and A_BUTTON | B_BUTTON
 	jr z, .nosound
 	ld hl, wMenuFlags
 	bit 3, [hl]
 	jr nz, .nosound
 	call PlayClickSFX
-
 .nosound
 	pop af
 	ret
@@ -555,7 +555,7 @@ MenuTextBoxWaitButton:: ; 2012
 	ret
 ; 201c
 
-Function201c:: ; 201c
+Place2DMenuItemName:: ; 201c
 	ld [hBuffer], a
 	ld a, [hROMBank]
 	push af
@@ -569,39 +569,26 @@ Function201c:: ; 201c
 	ret
 ; 202a
 
-InterpretMenu:: ; 202a
+_2DMenu:: ; 202a
 	ld a, [hROMBank]
-	ld [wcf94], a
-	callba Function2400e
+	ld [wMenuData2_2DMenuItemStringsBank], a
+	callba _2DMenu_
 	ld a, [wMenuCursorBuffer]
 	ret
 ; 2039
 
-Function2039:: ; 2039
+InterpretBattleMenu:: ; 2039
 	ld a, [hROMBank]
-	ld [wcf94], a
-	callba Function24022
+	ld [wMenuData2_2DMenuItemStringsBank], a
+	callba _InterpretBattleMenu
 	ld a, [wMenuCursorBuffer]
 	ret
 ; 2048
 
-Function2048:: ; 2048
+InterpretMobileMenu:: ; 2048
 	ld a, [hROMBank]
-	ld [wcf94], a
-	callba Function2403c
+	ld [wMenuData2_2DMenuItemStringsBank], a
+	callba _InterpretMobileMenu
 	ld a, [wMenuCursorBuffer]
 	ret
 ; 2057
-
-Function2057:: ; 2057
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(Function842db)
-	rst Bankswitch
-
-	call Function842db
-	pop af
-	rst Bankswitch
-
-	ret
-; 2063

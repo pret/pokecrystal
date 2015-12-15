@@ -202,7 +202,7 @@ Function49de4: ; 49de4
 	set 5, a
 	ld [wcfa5], a
 	call Function1f1a
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	cp $2
 	jr z, .asm_49e07
 	cp $1
@@ -390,15 +390,15 @@ Function49f16: ; 49f16
 	call PlaceString
 	call WaitBGMap2
 	call SetPalettes
-	call Function1bc9
-	ld hl, MenuSelection2
+	call StaticMenuJoypad
+	ld hl, wMenuCursorY
 	ld b, [hl]
 	push bc
 	jr .asm_49f5d
 
 .asm_49f55
-	call Function1bd3
-	ld hl, MenuSelection2
+	call ScrollingMenuJoypad
+	ld hl, wMenuCursorY
 	ld b, [hl]
 	push bc
 
@@ -410,7 +410,7 @@ Function49f16: ; 49f16
 	jr .asm_49f97
 
 .asm_49f67
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	ld a, [hl]
 	cp $1
 	jp z, Function4a098
@@ -421,7 +421,7 @@ Function49f16: ; 49f16
 	cp $4
 	jp z, Function4a100
 	ld a, $1
-	call Function1ff8
+	call MenuClickSound
 
 .asm_49f84
 	pop bc
@@ -434,7 +434,7 @@ Function49f16: ; 49f16
 	ret
 
 .asm_49f97
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	ld a, [hl]
 	dec a
 	ld hl, MobileStrings2
@@ -452,7 +452,7 @@ Function49f16: ; 49f16
 .asm_49fb7
 	call Function4a071
 	pop bc
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	ld [hl], b
 	ld b, $a
 	ld c, $1
@@ -529,7 +529,7 @@ endr
 
 Function4a098: ; 4a098 (12:6098)
 	ld a, $2
-	call Function1ff8
+	call MenuClickSound
 	call Function1bee
 	call WaitBGMap
 	call LoadStandardMenuDataHeader
@@ -542,13 +542,13 @@ Function4a098: ; 4a098 (12:6098)
 
 Function4a0b9: ; 4a0b9 (12:60b9)
 	ld a, $2
-	call Function1ff8
+	call MenuClickSound
 	pop bc
 	jp Function4a4c4
 
 Function4a0c2: ; 4a0c2 (12:60c2)
 	ld a, $2
-	call Function1ff8
+	call MenuClickSound
 	ld a, BANK(sPlayerData)
 	call GetSRAMBank
 	ld hl, sPlayerData + PlayerName - wPlayerData
@@ -574,7 +574,7 @@ Function4a0c2: ; 4a0c2 (12:60c2)
 
 Function4a100: ; 4a100 (12:6100)
 	ld a, $2
-	call Function1ff8
+	call MenuClickSound
 	call ClearBGPalettes
 	call Function4a13b
 	call ClearBGPalettes
@@ -630,7 +630,7 @@ Function4a149: ; 4a149 (12:6149)
 	ld b, $4
 	ld c, $12
 	call TextBox
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ld hl, Strings_4a23d
 	call GetNthString
@@ -644,15 +644,15 @@ Function4a149: ; 4a149 (12:6149)
 	call PlaceString
 	callba Function104148
 	call SetPalettes
-	call Function1bc9
-	ld hl, MenuSelection2
+	call StaticMenuJoypad
+	ld hl, wMenuCursorY
 	ld b, [hl]
 	push bc
 	jr asm_4a19d
 
 Function4a195: ; 4a195 (12:6195)
-	call Function1bd3
-	ld hl, MenuSelection2
+	call ScrollingMenuJoypad
+	ld hl, wMenuCursorY
 	ld b, [hl]
 	push bc
 
@@ -663,19 +663,19 @@ asm_4a19d: ; 4a19d (12:619d)
 	jr nz, .asm_4a1ba
 	jr .asm_4a1bc
 .asm_4a1a7
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	ld a, [hl]
 	cp $1
 	jp z, Function4a20e
 	cp $2
 	jp z, Function4a221
 	ld a, $1
-	call Function1ff8
+	call MenuClickSound
 .asm_4a1ba
 	pop bc
 	ret
 .asm_4a1bc
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	ld a, [hl]
 	dec a
 	ld hl, Strings_4a23d
@@ -692,7 +692,7 @@ asm_4a19d: ; 4a19d (12:619d)
 .asm_4a1db
 	call Function4a373
 	pop bc
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	ld [hl], b
 	lb bc, 6, 1
 	hlcoord 2, 3
@@ -708,7 +708,7 @@ String_4a1ef: ; 4a1ef
 
 Function4a20e: ; 4a20e (12:620e)
 	ld a, $1
-	call Function1ff8
+	call MenuClickSound
 	callba Function1719c8
 	call ClearBGPalettes
 	call DelayFrame
@@ -716,12 +716,12 @@ Function4a20e: ; 4a20e (12:620e)
 
 Function4a221: ; 4a221 (12:6221)
 	ld a, $1
-	call Function1ff8
+	call MenuClickSound
 	call Function4a28a
 	jr c, Function4a239
 	call Function4a373
 	ld a, $2
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	jr .asm_4a235
 .asm_4a235
 	pop bc
@@ -767,13 +767,13 @@ Function4a28a: ; 4a28a (12:628a)
 	call PlaceString
 	callba Function104148
 	call Function4a118
-	call Function1bd3
+	call ScrollingMenuJoypad
 	push af
 	call PlayClickSFX
 	pop af
 	bit 1, a
 	jr nz, .asm_4a33b
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $2
 	jr z, .asm_4a2f0
 	cp $3
@@ -796,10 +796,10 @@ Function4a28a: ; 4a28a (12:628a)
 	callba Function104148
 	ld hl, MenuDataHeader_0x4a362
 	call LoadMenuDataHeader
-	call InterpretMenu2
+	call VerticalMenu
 	bit 1, a
 	jr nz, .asm_4a338
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $2
 	jr z, .asm_4a338
 	ld a, $5
@@ -1073,15 +1073,15 @@ Function4a4c4: ; 4a4c4 (12:64c4)
 	call PlaceString
 	call WaitBGMap2
 	call SetPalettes
-	call Function1bc9
-	ld hl, MenuSelection2
+	call StaticMenuJoypad
+	ld hl, wMenuCursorY
 	ld b, [hl]
 	push bc
 	jr asm_4a54d
 
 Function4a545: ; 4a545 (12:6545)
-	call Function1bd3
-	ld hl, MenuSelection2
+	call ScrollingMenuJoypad
+	ld hl, wMenuCursorY
 	ld b, [hl]
 	push bc
 
@@ -1092,7 +1092,7 @@ asm_4a54d: ; 4a54d (12:654d)
 	jr nz, .asm_4a574
 	jr .asm_4a57e
 .asm_4a557
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	ld a, [hl]
 	cp $1
 	jp z, Function4a6ab
@@ -1103,14 +1103,14 @@ asm_4a54d: ; 4a54d (12:654d)
 	cp $4
 	jp z, Function4a6ab
 	ld a, $1
-	call Function1ff8
+	call MenuClickSound
 .asm_4a574
 	pop bc
 	call ClearBGPalettes
 	call ClearTileMap
 	jp Function49f0a
 .asm_4a57e
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	ld a, [hl]
 	dec a
 	add a
@@ -1138,7 +1138,7 @@ asm_4a54d: ; 4a54d (12:654d)
 Function4a5b0: ; 4a5b0 (12:65b0)
 	call Function4a680
 	pop bc
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	ld [hl], b
 	ld b, $a
 	ld c, $1
@@ -1206,7 +1206,7 @@ endr
 
 Function4a6ab: ; 4a6ab (12:66ab)
 	ld a, $2
-	call Function1ff8
+	call MenuClickSound
 	call ClearBGPalettes
 	ld b, SCGB_08
 	call GetSGBLayout

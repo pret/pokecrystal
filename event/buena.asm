@@ -255,9 +255,9 @@ Function8b0e2: ; 8b0e2
 	call HandleScrollingMenu
 	ld a, [MenuSelection]
 	ld c, a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [MenuSelection], a
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	cp $2
 	jr z, .asm_8b111
 	ld a, c

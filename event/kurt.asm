@@ -40,7 +40,7 @@ Special_SelectApricornForKurt: ; 88018
 	and a
 	jr z, .done
 	ld [CurItem], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld c, a
 	push bc
 	call Kurt_PrintTextHowMany
@@ -68,7 +68,7 @@ Kurt_SelectApricorn: ; 88055
 	call InitScrollingMenu
 	call UpdateSprites
 	call HandleScrollingMenu
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	cp $2
 	jr z, .nope
 	ld a, [MenuSelection]

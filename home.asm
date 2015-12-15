@@ -1161,7 +1161,7 @@ HandleScrollingMenu:: ; 350c
 	pop af
 	rst Bankswitch
 
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	ret
 ; 3524
 

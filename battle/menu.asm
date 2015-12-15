@@ -3,7 +3,7 @@ LoadBattleMenu: ; 24ef2
 	call LoadMenuDataHeader
 	ld a, [wd0d2]
 	ld [wMenuCursorBuffer], a
-	call Function2039
+	call InterpretBattleMenu
 	ld a, [wMenuCursorBuffer]
 	ld [wd0d2], a
 	call ExitMenu
@@ -25,7 +25,7 @@ ContestBattleMenu: ; 24f13
 Function24f19: ; 24f19
 	ld a, [wd0d2]
 	ld [wMenuCursorBuffer], a
-	call InterpretMenu
+	call _2DMenu
 	ld a, [wMenuCursorBuffer]
 	ld [wd0d2], a
 	call ExitMenu

@@ -1100,7 +1100,7 @@ Function16d734: ; 16d734
 	call Function16d759
 	call Function16d76a
 	jr nc, .asm_16d758
-	callba Function24270
+	callba _2DMenuInterpretJoypad
 	jr c, .asm_16d758
 	ld a, [wcfa5]
 	bit 7, a
@@ -1141,14 +1141,14 @@ Function16d76a: ; 16d76a
 ; 16d77a
 
 Function16d77a: ; 16d77a
-	ld hl, wcfac
+	ld hl, wCursorCurrentTile
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld a, [hl]
 	cp $1f
 	jr nz, .asm_16d792
-	ld a, [wcfab]
+	ld a, [wCursorOffCharacter]
 	ld [hl], a
 	push hl
 	push bc
@@ -1168,7 +1168,7 @@ Function16d77a: ; 16d77a
 	swap a
 	and $f
 	ld c, a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld b, a
 	xor a
 	dec b
@@ -1184,7 +1184,7 @@ Function16d77a: ; 16d77a
 	ld a, [wcfa7]
 	and $f
 	ld c, a
-	ld a, [wcfaa]
+	ld a, [wMenuCursorX]
 	ld b, a
 	xor a
 	dec b
@@ -1200,7 +1200,7 @@ Function16d77a: ; 16d77a
 	ld a, [hl]
 	cp $1f
 	jr z, .asm_16d7de
-	ld [wcfab], a
+	ld [wCursorOffCharacter], a
 	ld [hl], $1f
 	push hl
 	push bc
@@ -1212,9 +1212,9 @@ Function16d77a: ; 16d77a
 
 .asm_16d7de
 	ld a, l
-	ld [wcfac], a
+	ld [wCursorCurrentTile], a
 	ld a, h
-	ld [wcfad], a
+	ld [wCursorCurrentTile + 1], a
 	ret
 ; 16d7e7
 

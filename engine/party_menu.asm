@@ -696,7 +696,7 @@ InitPartyMenuWithCancel: ; 50405
 	ld a, $1
 
 .done
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	ld a, A_BUTTON | B_BUTTON
 	ld [wcfa8], a
 	ret
@@ -718,7 +718,7 @@ InitPartyMenuNoCancel: ; 0x5042d
 .skip
 	ld a, $1
 .done
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	ld a, A_BUTTON | B_BUTTON
 	ld [wcfa8], a
 	ret
@@ -738,12 +738,12 @@ PartyMenuAttributes: ; 5044f
 
 PartyMenuSelect: ; 0x50457
 ; sets carry if exitted menu.
-	call Function1bc9
+	call StaticMenuJoypad
 	call Function1bee
 	ld a, [PartyCount]
 	inc a
 	ld b, a
-	ld a, [MenuSelection2] ; menu selection?
+	ld a, [wMenuCursorY] ; menu selection?
 	cp b
 	jr z, .exitmenu ; CANCEL
 	ld [wPartyMenuCursor], a
@@ -751,7 +751,7 @@ PartyMenuSelect: ; 0x50457
 	ld b, a
 	bit 1, b
 	jr nz, .exitmenu ; B button?
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ld [CurPartyMon], a
 	ld c, a

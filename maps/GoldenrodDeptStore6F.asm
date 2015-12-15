@@ -15,7 +15,7 @@ GoldenrodVendingMachine:
 .Start
 	special PlaceMoneyTopRightOW
 	loadmenudata .MenuData
-	interpretmenu2
+	verticalmenu
 	writebackup
 	if_equal $1, .FreshWater
 	if_equal $2, .SodaPop

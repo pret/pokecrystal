@@ -77,7 +77,7 @@ hMoneyTemp         EQU $ffc3
 
 hLCDStatCustom     EQU $ffc6
 
-hFFC9              EQU $ffc9
+hMobileReceive     EQU $ffc9
 hFFCA              EQU $ffca
 hLinkPlayerNumber  EQU $ffcb
 hFFCC              EQU $ffcc

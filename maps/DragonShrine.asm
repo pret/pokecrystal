@@ -33,7 +33,7 @@ DragonShrineTestScript:
 	writetext UnknownText_0x18d3bc
 	buttonsound
 	loadmenudata MenuDataHeader_0x18d215
-	interpretmenu2
+	verticalmenu
 	writebackup
 	if_equal $1, .RightAnswer
 	if_equal $2, .WrongAnswer
@@ -45,7 +45,7 @@ DragonShrineTestScript:
 	writetext UnknownText_0x18d3d3
 	buttonsound
 	loadmenudata MenuDataHeader_0x18d234
-	interpretmenu2
+	verticalmenu
 	writebackup
 	if_equal $1, .RightAnswer
 	if_equal $2, .RightAnswer
@@ -55,7 +55,7 @@ DragonShrineTestScript:
 	writetext UnknownText_0x18d3f3
 	buttonsound
 	loadmenudata MenuDataHeader_0x18d258
-	interpretmenu2
+	verticalmenu
 	writebackup
 	if_equal $1, .WrongAnswer
 	if_equal $2, .RightAnswer
@@ -65,7 +65,7 @@ DragonShrineTestScript:
 	writetext UnknownText_0x18d420
 	buttonsound
 	loadmenudata MenuDataHeader_0x18d283
-	interpretmenu2
+	verticalmenu
 	writebackup
 	if_equal $1, .RightAnswer
 	if_equal $2, .WrongAnswer
@@ -75,7 +75,7 @@ DragonShrineTestScript:
 	writetext UnknownText_0x18d44a
 	buttonsound
 	loadmenudata MenuDataHeader_0x18d2a5
-	interpretmenu2
+	verticalmenu
 	writebackup
 	if_equal $1, .WrongAnswer
 	if_equal $2, .RightAnswer

@@ -220,16 +220,16 @@ TMHM_PocketLoop: ; 2c8d3 (b:48d3)
 	ld [wcfa8], a
 	ld a, [wTMHMPocketCursor]
 	inc a
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	ld a, $1
-	ld [wcfaa], a
+	ld [wMenuCursorX], a
 	jr TMHM_ShowTMMoveDescription
 
 TMHM_JoypadLoop: ; 2c915 (b:4915)
 	call TMHM_DisplayPocketItems
-	call Function1bc9
+	call StaticMenuJoypad
 	ld b, a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ld [wTMHMPocketCursor], a
 	xor a
@@ -268,7 +268,7 @@ TMHM_ShowTMMoveDescription: ; 2c946 (b:4946)
 TMHM_ChooseTMorHM: ; 2c974 (b:4974)
 	call TMHM_PlaySFX_ReadText2
 	call CountTMsHMs ; This stores the count to wd265.
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ld b, a
 	ld a, [wTMHMPocketScrollPosition]
@@ -279,7 +279,7 @@ TMHM_ChooseTMorHM: ; 2c974 (b:4974)
 	jr z, _TMHM_ExitPack ; our cursor was hovering over CANCEL
 TMHM_CheckHoveringOverCancel: ; 2c98a (b:498a)
 	call TMHM_GetCurrentPocketPosition
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld b, a
 .loop
 	inc c

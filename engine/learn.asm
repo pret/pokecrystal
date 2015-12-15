@@ -155,8 +155,8 @@ ForgetMove: ; 65d3
 	ld [wcfa3], a
 	ld a, $1
 	ld [wcfa4], a
-	ld [MenuSelection2], a
-	ld [wcfaa], a
+	ld [wMenuCursorY], a
+	ld [wMenuCursorX], a
 	ld a, $3
 	ld [wcfa8], a
 	ld a, $20
@@ -165,7 +165,7 @@ ForgetMove: ; 65d3
 	ld [wcfa6], a
 	ld a, $20
 	ld [wcfa7], a
-	call Function1bc9
+	call StaticMenuJoypad
 	push af
 	call Call_LoadTempTileMapToTileMap
 	pop af
@@ -173,7 +173,7 @@ ForgetMove: ; 65d3
 	bit 1, a
 	jr nz, .cancel
 	push hl
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ld c, a
 	ld b, 0

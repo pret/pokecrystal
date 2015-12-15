@@ -288,7 +288,7 @@ Function11c1ca: ; 11c1ca
 	ld [wcd2b], a
 	ld a, $ff
 	ld [wcd24], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	call Function11c254
 	call ClearBGPalettes
@@ -1733,7 +1733,7 @@ String_11cb31: ; 11cb31
 
 Function11cb52: ; 11cb52 (47:4b52)
 	ld hl, Unknown_11cc01
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 .asm_11cb58
 	dec a
 	jr z, .asm_11cb5f
@@ -1771,7 +1771,7 @@ Function11cb66: ; 11cb66 (47:4b66)
 	ld a, $4
 	call GetSRAMBank
 	ld hl, $a007
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	sla a
 	sla a
@@ -1794,7 +1794,7 @@ Function11cb66: ; 11cb66 (47:4b66)
 	ld de, Unknown_11cfc6
 	call Function11cfce
 	ld hl, Unknown_11cc7e
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 .asm_11cbba
 	dec a
 	jr z, .asm_11cbc1

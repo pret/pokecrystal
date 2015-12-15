@@ -1484,19 +1484,15 @@ Requested1bppSource:: ; cf6d
 Requested1bppDest:: ; cf6f
 	ds 2
 
-; something to do with menu
-wcf71:: ds 1
-wcf72:: ds 1
-wMenuJoypad::
-wcf73:: ds 1
-MenuSelection:: ; cf74
-	ds 1
+wWindowStackPointer:: dw ; cf71
+wMenuJoypad:: ds 1   ; cf73
+MenuSelection:: ds 1 ; cf74
 
 wcf75:: ds 1
 wcf76:: ds 1
 wCurrPocketCursorPosition::
 wcf77:: ds 1
-wcf78:: ds 9
+wWindowStackSize:: ds 9
 
 ; menu data header
 wMenuDataHeader:: ; cf81
@@ -1520,39 +1516,52 @@ wMenuData2Flags:: ds 1 ; cf91
 ; bit 4: ????
 ; bit 3: ????
 ; bit 2: ????
-; bit 1: ????
-; bit 0: ????
+; bit 1: Enable Select button
+; bit 0: Disable B button
 
 wMenuData2Items:: ds 1
 wMenuData2IndicesPointer::
+wMenuData2Spacing::
 wcf93:: ds 1
+wMenuData2_2DMenuItemStringsBank::
 wcf94:: ds 1
+wMenuData2_2DMenuItemStringsAddr::
 wMenuData2DisplayFunctionPointer::
 wMenuData2Bank::
 wcf95:: ds 1 ; bank
 wMenuData2Addr::
 wcf96:: ds 1 ; addr lo
 wMenuData2PointerTableAddr::
+wMenuData2_2DMenuFunctionBank::
 wcf97:: ds 1 ; addr hi
+wMenuData2_2DMenuFunctionAddr::
 wcf98:: ds 3
 wcf9b:: ds 3
 wcf9e:: ds 3
 wMenuData2End::
 wMenuData3::
+w2DMenuCursorInitY::
 wcfa1:: ds 1
+w2DMenuCursorInitX::
 wcfa2:: ds 1
+w2DMenuNumRows::
 wcfa3:: ds 1
+w2DMenuNumCols::
 wcfa4:: ds 1
-wcfa5:: ds 1 ; dynamic menu flags?
-wcfa6:: ds 1 ; dynamic menu flags?
+w2DMenuFlags1::
+wcfa5:: ds 1
+w2DMenuFlags2::
+wcfa6:: ds 1
+w2DMenuFlags3::
 wcfa7:: ds 1
+w2DMenuFlags4::
 wcfa8:: ds 1
 wMenuData3End::
-MenuSelection2:: ds 1
-wcfaa:: ds 1
-wcfab:: ds 1
-wcfac:: ds 1
-wcfad:: ds 4
+wMenuCursorY:: ds 1
+wMenuCursorX:: ds 1
+wCursorOffCharacter:: ds 1
+wCursorCurrentTile:: ds 2
+	ds 3
 
 OverworldDelay:: ; cfb1
 	ds 1
@@ -3257,5 +3266,5 @@ w6_d800::
 INCLUDE "sram.asm"
 
 SECTION "WRAM 7", WRAMX, BANK [7]
-w7_d000:: ds $1000 - 1
-w7_dfff:: ds 1
+wWindowStack:: ds $1000 - 1
+wWindowStackBottom:: ds 1

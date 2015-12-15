@@ -594,14 +594,14 @@ Function15985: ; 0x15985
 	call HandleScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wd0dd], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wd0d7], a
 	pop af
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wd0e3]
 	and a
 	jr nz, .asm_159d8
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	cp $2
 	jr z, .asm_15a06
 	cp $1
@@ -611,7 +611,7 @@ Function15985: ; 0x15985
 	jr .asm_159f8
 
 .asm_159d8
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	cp $2
 	jr z, .asm_159e9
 	cp $1

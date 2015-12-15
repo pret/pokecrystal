@@ -19,7 +19,7 @@ _KrisDecorationMenu: ; 0x2675c
 	ld [wMenuCursorBuffer], a
 	call .FindCategoriesWithOwnedDecos
 	call DoNthMenu
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wd1ef], a
 	jr c, .exit_menu
 	ld a, [MenuSelection]
@@ -401,7 +401,7 @@ PopulateDecoCategoryMenu: ; 2695b
 	xor a
 	ld [wMenuScrollPosition], a
 	call HandleScrollingMenu
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	cp 2
 	jr z, .no_action_2
 	call DoDecorationAction2
@@ -1009,7 +1009,7 @@ DecoAction_AskWhichSide: ; 26e70
 	call ExitMenu
 	call CopyMenuData2
 	jr c, .nope
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp 3
 	jr z, .nope
 	ld [Buffer2], a

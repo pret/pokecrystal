@@ -486,7 +486,7 @@ Function1183cb: ; 1183cb
 	ld a, $f
 	ld [rIE], a
 	ld a, $1
-	ld [hFFC9], a
+	ld [hMobileReceive], a
 	ld [hMobile], a
 	ei
 	callba MobileFunc_106462
@@ -516,7 +516,7 @@ Function118440: ; 118440
 Function118452: ; 118452
 	di
 	xor a
-	ld [hFFC9], a
+	ld [hMobileReceive], a
 	ld [hMobile], a
 	ld [hVBlank], a
 	call NormalSpeed
@@ -5961,7 +5961,7 @@ Function11ad1b: ; 11ad1b
 	call ClearSprites
 	call ClearTileMap
 	callba Function17c000
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wcd82], a
 	dec a
 	ld [hObjectStructIndexBuffer], a
@@ -6035,7 +6035,7 @@ Function11ad95: ; 11ad95
 	callba ReloadMapPart
 	call Function11ad8a
 	ld a, $1
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	ld hl, Unknown_11afcc
 	call Function11afb7
 
@@ -6062,13 +6062,13 @@ Function11adc4:
 	jr .asm_11ae2e
 
 .asm_11ade6
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ret z
 	jr .asm_11adf4
 
 .asm_11aded
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	inc a
 	cp $4
 	ret z
@@ -6078,21 +6078,21 @@ Function11adc4:
 	ld hl, Unknown_11afcc
 	call Function11afbb
 	pop af
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	ld hl, Unknown_11afcc
 	call Function11afb7
 	ret
 
 .asm_11ae06
 	call PlayClickSFX
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ld hl, wcd30
 	ld [hl], a
 	and a
 	jr z, .asm_11ae28
 	hlcoord 2, 14
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $2
 	jr z, .asm_11ae23
 	call Function11b272
@@ -6152,7 +6152,7 @@ Function11ae4e: ; 11ae4e
 	callba ReloadMapPart
 	call Function11ad8a
 	ld a, $1
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	ld hl, Unknown_11afd2
 	call Function11afb7
 
@@ -6183,13 +6183,13 @@ Function11ae98:
 	jr .asm_11aef7
 
 .asm_11aec1
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ret z
 	jr .asm_11aecf
 
 .asm_11aec8
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	inc a
 	cp $3
 	ret z
@@ -6199,14 +6199,14 @@ Function11ae98:
 	ld hl, Unknown_11afd2
 	call Function11afbb
 	pop af
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	ld hl, Unknown_11afd2
 	call Function11afb7
 	ret
 
 .asm_11aee1
 	call PlayClickSFX
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $2
 	jr z, .asm_11aeb4
 	ld a, [wcd4b]
@@ -6243,7 +6243,7 @@ Function11af04: ; 11af04
 	callba ReloadMapPart
 	call Function11ad8a
 	ld a, $2
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	ld hl, Unknown_11afd2
 	call Function11afb7
 
@@ -6274,13 +6274,13 @@ Function11af4e:
 	jr .asm_11afaa
 
 .asm_11af77
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ret z
 	jr .asm_11af85
 
 .asm_11af7e
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	inc a
 	cp $3
 	ret z
@@ -6290,14 +6290,14 @@ Function11af4e:
 	ld hl, Unknown_11afd2
 	call Function11afbb
 	pop af
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	ld hl, Unknown_11afd2
 	call Function11afb7
 	ret
 
 .asm_11af97
 	call PlayClickSFX
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $2
 	jr z, .asm_11af6a
 	ld a, $6
@@ -6320,7 +6320,7 @@ Function11afbb:
 	ld e, $7f
 
 asm_11afbd:
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ld c, a
 	ld b, 0

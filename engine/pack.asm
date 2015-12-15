@@ -72,7 +72,7 @@ Pack: ; 10000
 	call HandleScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wItemsPocketScrollPosition], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wItemsPocketCursor], a
 	ld b, $7
 	ld c, $3
@@ -100,7 +100,7 @@ Pack: ; 10000
 	call HandleScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wKeyItemsPocketScrollPosition], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wKeyItemsPocketCursor], a
 	ld b, $3
 	ld c, $7
@@ -140,11 +140,11 @@ Pack: ; 10000
 .load_jump
 	push de
 	call LoadMenuDataHeader
-	call InterpretMenu2
+	call VerticalMenu
 	call ExitMenu
 	pop hl
 	ret c
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	call Pack_GetJumptablePointer
 	jp [hl]
@@ -233,7 +233,7 @@ Pack: ; 10000
 	call HandleScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wBallsPocketScrollPosition], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wBallsPocketCursor], a
 	ld b, $1
 	ld c, $5
@@ -302,11 +302,11 @@ Pack: ; 10000
 .build_menu
 	push de
 	call LoadMenuDataHeader
-	call InterpretMenu2
+	call VerticalMenu
 	call ExitMenu
 	pop hl
 	ret c
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	call Pack_GetJumptablePointer
 	jp [hl]
@@ -737,7 +737,7 @@ BattlePack: ; 10493
 	call HandleScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wItemsPocketScrollPosition], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wItemsPocketCursor], a
 	ld b, $7
 	ld c, $3
@@ -765,7 +765,7 @@ BattlePack: ; 10493
 	call HandleScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wKeyItemsPocketScrollPosition], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wKeyItemsPocketCursor], a
 	ld b, $3
 	ld c, $7
@@ -816,7 +816,7 @@ BattlePack: ; 10493
 	call HandleScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wBallsPocketScrollPosition], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wBallsPocketCursor], a
 	ld b, $1
 	ld c, $5
@@ -841,11 +841,11 @@ TMHMSubmenu: ; 105dc (4:45dc)
 .proceed
 	push de
 	call LoadMenuDataHeader
-	call InterpretMenu2
+	call VerticalMenu
 	call ExitMenu
 	pop hl
 	ret c
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	call Pack_GetJumptablePointer
 	jp [hl]
@@ -1021,7 +1021,7 @@ DepositSellPack: ; 106be
 	call HandleScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wItemsPocketScrollPosition], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wItemsPocketCursor], a
 	ret
 
@@ -1037,7 +1037,7 @@ DepositSellPack: ; 106be
 	call HandleScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wKeyItemsPocketScrollPosition], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wKeyItemsPocketCursor], a
 	ret
 
@@ -1062,7 +1062,7 @@ DepositSellPack: ; 106be
 	call HandleScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wBallsPocketScrollPosition], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wBallsPocketCursor], a
 	ret
 

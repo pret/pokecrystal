@@ -114,15 +114,15 @@ InitMobileProfile: ; 4802f (12:402f)
 	call Function48187
 	call WaitBGMap2
 	call SetPalettes
-	call Function1bc9
-	ld hl, MenuSelection2
+	call StaticMenuJoypad
+	ld hl, wMenuCursorY
 	ld b, [hl]
 	push bc
 	jr asm_4815f
 
 Function48157: ; 48157 (12:4157)
-	call Function1bd3
-	ld hl, MenuSelection2
+	call ScrollingMenuJoypad
+	ld hl, wMenuCursorY
 	ld b, [hl]
 	push bc
 
@@ -215,7 +215,7 @@ String_48202: ; 48202
 
 Function4820d: ; 4820d (12:420d)
 	call Function1bee
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	ld a, [hl]
 	push af
 	ld a, [wd002]
@@ -235,7 +235,7 @@ Function4820d: ; 4820d (12:420d)
 	cp $4
 	jp z, Function488d3
 	ld a, $2
-	call Function1ff8
+	call MenuClickSound
 	ld a, [wd002]
 	bit 6, a
 	jr z, .asm_4825c
@@ -301,12 +301,12 @@ asm_4828d: ; 4828d (12:428d)
 	ld a, [PlayerGender]
 	inc a
 	ld [wMenuCursorBuffer], a
-	call Function1bc9
+	call StaticMenuJoypad
 	call PlayClickSFX
 	call ExitMenu
 	bit 0, a
 	jp z, Function4840c
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	ld a, [hl]
 	ld hl, Strings_484fb
 	cp $1
@@ -415,7 +415,7 @@ Function48383: ; 48383 (12:4383)
 	ld [wMenuScrollPosition], a
 	jr .asm_483af
 .asm_483af
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	ld a, [hl]
 	ld [wMenuCursorBuffer], a
 	scf
@@ -493,7 +493,7 @@ Function4840c: ; 4840c (12:440c)
 	call PlaceString
 	call Function486bf
 	pop bc
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	ld [hl], b
 	ld a, [wd002]
 	bit 6, a
@@ -853,7 +853,7 @@ Function4876f: ; 4876f (12:476f)
 	call Function4880e
 	jr nc, .asm_487c6
 	ld a, $1
-	call Function1ff8
+	call MenuClickSound
 	pop bc
 	jr nz, .asm_487da
 	ld a, b
@@ -1154,7 +1154,7 @@ asm_48972: ; 48972 (12:4972)
 	push de
 	push hl
 	ld a, $1
-	call Function1ff8
+	call MenuClickSound
 	pop hl
 	pop de
 	pop bc
@@ -1221,7 +1221,7 @@ Function48a3a: ; 48a3a (12:4a3a)
 	ld a, $b
 	ld [wcfa2], a
 	ld a, $1
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	hlcoord 10, 8
 	ld b, $4
 	ld c, $8
@@ -1229,14 +1229,14 @@ Function48a3a: ; 48a3a (12:4a3a)
 	hlcoord 12, 10
 	ld de, String_48aa1
 	call PlaceString
-	call Function1bc9
+	call StaticMenuJoypad
 	push af
 	call PlayClickSFX
 	call ExitMenu
 	pop af
 	bit 1, a
 	jp nz, Function48a9a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $1
 	jr z, .asm_48a98
 	ld a, [wd003]

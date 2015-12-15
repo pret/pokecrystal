@@ -20,7 +20,7 @@ Function84022: ; 84022
 	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
-	ld hl, Jumptable_84031
+	ld hl, .Jumptable
 rept 2
 	add hl, de
 endr
@@ -31,27 +31,28 @@ endr
 ; 84031
 
 
-Jumptable_84031: ; 84031 (21:4031)
-	dw Function84077
-	dw Function84143
-	dw Function84120
-	dw Function84099
-	dw Function84180
-	dw Function8412e
-	dw Function840c5
-	dw Function84180
-	dw Function84120
-	dw Function840de
-	dw Function84180
-	dw Function84120
-	dw Function841a1
-	dw Function84063
-	dw Function8406d
-	dw Function84120
-	dw Function84103
-	dw Function84071
-	dw Function841b0
-	dw Function841b3
+.Jumptable: ; 84031 (21:4031)
+	jumptable_start
+	jumptable Function84077
+	jumptable Function84143
+	jumptable Function84120
+	jumptable Function84099
+	jumptable Function84180
+	jumptable Function8412e
+	jumptable Function840c5
+	jumptable Function84180
+	jumptable Function84120
+	jumptable Function840de
+	jumptable Function84180
+	jumptable Function84120
+	jumptable Function841a1
+	jumptable Function84063
+	jumptable Function8406d
+	jumptable Function84120
+	jumptable Function84103
+	jumptable Function84071
+	jumptable Function841b0
+	jumptable Function841b3
 
 
 Function84059: ; 84059 (21:4059)
@@ -427,12 +428,12 @@ Unknown_842d5: db 15, 0, $00, 0, 15, 0 ; unused
 ; 842db
 
 
-Function842db:: ; 842db
+_PrinterReceive:: ; 842db
 	ld a, [wc2d5]
 	add a
 	ld e, a
 	ld d, 0
-	ld hl, Jumptable_842ea
+	ld hl, .Jumptable
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
@@ -441,39 +442,40 @@ Function842db:: ; 842db
 ; 842ea
 
 
-Jumptable_842ea: ; 842ea (21:42ea)
-	dw Function8432f
-	dw Function84330
-	dw Function84339
-	dw Function84343
-	dw Function8434d
-	dw Function84357
-	dw Function84361
-	dw Function8438b
-	dw Function84395
-	dw Function8439f
-	dw Function843a8
-	dw Function843b6
-	dw Function84330
-	dw Function843c0
-	dw Function843c9
-	dw Function843c9
-	dw Function843c9
-	dw Function843c0
-	dw Function843c9
-	dw Function8439f
-	dw Function843a8
-	dw Function843e6
-	dw Function84330
-	dw Function843d2
-	dw Function843c9
-	dw Function843c9
-	dw Function843c9
-	dw Function843d2
-	dw Function843c9
-	dw Function8439f
-	dw Function843a8
-	dw Function843b6
+.Jumptable: ; 842ea (21:42ea)
+	jumptable_start
+	jumptable Function8432f
+	jumptable Function84330
+	jumptable Function84339
+	jumptable Function84343
+	jumptable Function8434d
+	jumptable Function84357
+	jumptable Function84361
+	jumptable Function8438b
+	jumptable Function84395
+	jumptable Function8439f
+	jumptable Function843a8
+	jumptable Function843b6
+	jumptable Function84330
+	jumptable Function843c0
+	jumptable Function843c9
+	jumptable Function843c9
+	jumptable Function843c9
+	jumptable Function843c0
+	jumptable Function843c9
+	jumptable Function8439f
+	jumptable Function843a8
+	jumptable Function843e6
+	jumptable Function84330
+	jumptable Function843d2
+	jumptable Function843c9
+	jumptable Function843c9
+	jumptable Function843c9
+	jumptable Function843d2
+	jumptable Function843c9
+	jumptable Function8439f
+	jumptable Function843a8
+	jumptable Function843b6
 
 
 Function8432a: ; 8432a (21:432a)

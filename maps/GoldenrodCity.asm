@@ -68,7 +68,7 @@ MoveTutor:
 	if_equal $2, .NotEnoughMoney
 	writetext UnknownText_0x1990ce
 	loadmenudata .MoveMenuDataHeader
-	interpretmenu2
+	verticalmenu
 	writebackup
 	if_equal $1, .Flamethrower
 	if_equal $2, .Thunderbolt

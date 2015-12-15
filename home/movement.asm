@@ -160,19 +160,19 @@ endr
 	ret
 ; 1bc9
 
-Function1bc9:: ; 1bc9
-	callab Function241a8
-	call Function1bdd
+StaticMenuJoypad:: ; 1bc9
+	callab _StaticMenuJoypad
+	call GetMenuJoypad
 	ret
 ; 1bd3
 
-Function1bd3:: ; 1bd3
-	callab Function241ab
-	call Function1bdd
+ScrollingMenuJoypad:: ; 1bd3
+	callab _ScrollingMenuJoypad
+	call GetMenuJoypad
 	ret
 ; 1bdd
 
-Function1bdd:: ; 1bdd
+GetMenuJoypad:: ; 1bdd
 	push bc
 	push af
 	ld a, [hJoyLast]
@@ -189,20 +189,20 @@ Function1bdd:: ; 1bdd
 ; 1bee
 
 Function1bee:: ; 1bee
-	ld hl, wcfac
+	ld hl, wCursorCurrentTile
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld [hl], $ec
+	ld [hl], "▷"
 	ret
 ; 1bf7
 
 Function1bf7:: ; 1bf7
-	ld hl, wcfac
+	ld hl, wCursorCurrentTile
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld [hl], $7f
+	ld [hl], " "
 	ret
 ; 1c00
 

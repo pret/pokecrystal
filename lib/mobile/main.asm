@@ -1,5 +1,7 @@
 ; A library included as part of the Mobile Adapter GB SDK.
 
+charmap "<CR>", $d
+
 INCLUDE "gbhw.asm"
 
 SECTION "Main", ROMX
@@ -608,7 +610,7 @@ Function11032c: ; 11032c
 ; 110393
 
 Function110393: ; 110393
-	ld c, $ff
+	ld c, rIE % $100
 	ld a, [$ff00+c]
 	or $c
 	ld [$ff00+c], a
@@ -1971,87 +1973,87 @@ endr
 Function110d37: ; 110d37
 	push bc
 	push de
-	ld b, $0
-.asm_110d3b
-	ld a, $27
+	ld b, 0
+.check_under_10k
+	ld a, 10000 / $100
 	cp h
-	jr c, .asm_110d49
-	jr nz, .asm_110d52
-	ld a, $10
+	jr c, .subtract_10k
+	jr nz, .done_10k
+	ld a, 10000 % $100
 	cp l
-	jr z, .asm_110d49
-	jr nc, .asm_110d52
+	jr z, .subtract_10k
+	jr nc, .done_10k
 
-.asm_110d49
+.subtract_10k
 	inc b
 	ld a, b
-	ld bc, $d8f0
+	ld bc, -10000
 	add hl, bc
 	ld b, a
-	jr .asm_110d3b
+	jr .check_under_10k
 
-.asm_110d52
+.done_10k
 	ld a, $30
 	or b
 	ld [de], a
 	inc de
-	ld b, $0
-.asm_110d59
-	ld a, $3
+	ld b, 0
+.check_under_1k
+	ld a, 1000 / $100
 	cp h
-	jr c, .asm_110d67
-	jr nz, .asm_110d70
-	ld a, $e8
+	jr c, .subtract_1k
+	jr nz, .done_1k
+	ld a, 1000 % $100
 	cp l
-	jr z, .asm_110d67
-	jr nc, .asm_110d70
+	jr z, .subtract_1k
+	jr nc, .done_1k
 
-.asm_110d67
+.subtract_1k
 	inc b
 	ld a, b
-	ld bc, $fc18
+	ld bc, -1000
 	add hl, bc
 	ld b, a
-	jr .asm_110d59
+	jr .check_under_1k
 
-.asm_110d70
+.done_1k
 	ld a, $30
 	or b
 	ld [de], a
 	inc de
-	ld b, $0
-.asm_110d77
-	ld a, $0
+	ld b, 0
+.check_under_100
+	ld a, 100 / $100
 	cp h
-	jr nz, .asm_110d83
-	ld a, $64
+	jr nz, .subtract_100
+	ld a, 100 % $100
 	cp l
-	jr z, .asm_110d83
-	jr nc, .asm_110d8c
+	jr z, .subtract_100
+	jr nc, .check_under_10
 
-.asm_110d83
+.subtract_100
 	inc b
 	ld a, b
-	ld bc, $ff9c
+	ld bc, -100
 	add hl, bc
 	ld b, a
-	jr .asm_110d77
+	jr .check_under_100
 
-.asm_110d8c
+.check_under_10
 	ld a, $30
 	or b
 	ld [de], a
 	inc de
 	ld b, $0
 	ld a, l
-.asm_110d94
-	cp $a
-	jr c, .asm_110d9d
-	sub $a
+.subtract_10
+	cp 10
+	jr c, .done_10
+	sub 10
 	inc b
-	jr .asm_110d94
+	jr .subtract_10
 
-.asm_110d9d
+.done_10
 	ld l, a
 	ld a, $30
 	or b
@@ -2064,19 +2066,19 @@ Function110d37: ; 110d37
 	ld l, e
 	ld h, d
 	ld b, $5
-.asm_110dac
+.find_first_digit
 	ld a, [hl]
 	cp $30
-	jr nz, .asm_110db7
+	jr nz, .found_first_digit
 	inc hl
 	dec b
-	jr nz, .asm_110dac
-	jr .asm_110dd5
+	jr nz, .find_first_digit
+	jr .done
 
-.asm_110db7
+.found_first_digit
 	ld a, $5
 	cp b
-	jr z, .asm_110dd5
+	jr z, .done
 	sub b
 	ld c, a
 	ld a, [$cb4c]
@@ -2085,23 +2087,23 @@ Function110d37: ; 110d37
 	ld [$cb4c], a
 	push hl
 	ld b, $1
-.asm_110dc9
+.penultimate_loop
 	inc b
 	ld a, [hli]
 	cp $d
-	jr nz, .asm_110dc9
+	jr nz, .penultimate_loop
 	pop hl
 	call Function110000
 	pop hl
 	ret
 
-.asm_110dd5
+.done
 	pop bc
-.asm_110dd6
+.last_loop
 	ld a, [de]
 	inc de
 	cp $a
-	jr nz, .asm_110dd6
+	jr nz, .last_loop
 	ret
 ; 110ddd
 
@@ -3530,7 +3532,7 @@ Function1116a9: ; 1116a9
 	ret
 ; 1116c5
 
-Function1116c5:: ; 1116c5 (44:56c5)
+_MobileReceive:: ; 1116c5 (44:56c5)
 	ld a, [$c800]
 	rrca
 	jp nc, Function1118bc
@@ -3636,7 +3638,6 @@ endr
 .asm_111778
 	xor a
 	ld [$c800], a
-
 Function11177c: ; 11177c (44:577c)
 	ld hl, $c820
 	ld a, [hld]
@@ -3835,7 +3836,6 @@ Function111892: ; 111892 (44:5892)
 	xor a
 	ld [hli], a
 	inc [hl]
-
 Function1118bc: ; 1118bc (44:58bc)
 	ld hl, $c822
 	res 1, [hl]
@@ -4974,31 +4974,31 @@ Unknown_1120a4:
 Unknown_1120b0:
 	db "RCPT TO:<", 0
 Unknown_1120ba:
-	db "DATA", $d, "\n", 0
+	db "DATA<CR>\n", 0
 Unknown_1120c1:
-	db "QUIT", $d, "\n", 0
+	db "QUIT<CR>\n", 0
 Unknown_1120c8:
 	db "USER ", 0
 Unknown_1120ce:
 	db "PASS ", 0
 Unknown_1120d4:
-	db "STAT", $d, "\n", 0
+	db "STAT<CR>\n", 0
 Unknown_1120db:
-	db "LIST 00000", $d, "\n", 0
+	db "LIST 00000<CR>\n", 0
 Unknown_1120e8:
-	db "RETR 00000", $d, "\n", 0
+	db "RETR 00000<CR>\n", 0
 Unknown_1120f5:
-	db "DELE 00000", $d, "\n", 0
+	db "DELE 00000<CR>\n", 0
 Unknown_112102:
-	db "TOP 00000 0", $d, "\n", 0
+	db "TOP 00000 0<CR>\n", 0
 Unknown_112110:
 	db "GET ", 0
 Unknown_112115:
-	db " HTTP/1.0", $d, "\n", 0
+	db " HTTP/1.0<CR>\n", 0
 Unknown_112121:
 	db "User-Agent: CGB-", 0
 Unknown_112132:
-	db $d, "\n", $d, "\n", 0
+	db "<CR>\n<CR>\n", 0
 Unknown_112137:
 	db "POST ", 0
 Unknown_11213d:

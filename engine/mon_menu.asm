@@ -85,10 +85,10 @@ MonMenuLoop: ; 24d59
 	ld [wMenuData2Flags], a
 	ld a, [Buffer1] ; items
 	ld [wMenuData2Items], a
-	call Function1c10
+	call InitVerticalMenuCursor
 	ld hl, wcfa5
 	set 6, [hl]
-	call Function1bc9
+	call StaticMenuJoypad
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	ld a, [hJoyPressed]
@@ -103,7 +103,7 @@ MonMenuLoop: ; 24d59
 	ret
 
 .select
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ld c, a
 	ld b, 0
@@ -301,16 +301,16 @@ BattleMonMenu: ; 24e99
 	ld [hBGMapMode], a
 	call MenuBox
 	call UpdateSprites
-	call Function1c89
+	call PlaceVerticalMenuItems
 	call WaitBGMap
 	call CopyMenuData2
 	ld a, [wMenuData2Flags]
 	bit 7, a
 	jr z, .set_carry
-	call Function1c10
+	call InitVerticalMenuCursor
 	ld hl, wcfa5
 	set 6, [hl]
-	call Function1bc9
+	call StaticMenuJoypad
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	ld a, [hJoyPressed]

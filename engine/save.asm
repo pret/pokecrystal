@@ -213,7 +213,7 @@ SaveTheGame_yesorno: ; 14baf
 	call LoadMenuTextBox
 	lb bc, 0, 7
 	call PlaceYesNoBox
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	call WriteBackup
 	push af

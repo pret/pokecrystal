@@ -67,7 +67,7 @@ AcademyBlackboard:
 	writetext AcademyBlackboardText
 .Loop
 	loadmenudata .MenuHeader
-	interpretmenu
+	_2dmenu
 	writebackup
 	if_equal $1, .Poison
 	if_equal $2, .Paralysis
@@ -114,7 +114,7 @@ AcademyBlackboard:
 	dn 3, 2 ; rows, columns
 	db 5 ; spacing
 	dba .Text
-	dbw $1a, 0
+	dbw BANK(AcademyBlackboard), 0
 
 .Text
 	db "PSN@"

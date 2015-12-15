@@ -402,10 +402,10 @@ MailboxPC: ; 0x44806
 	call HandleScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [OBPals + 8 * 6], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wCurMessageIndex], a
 
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	cp $2
 	jr z, .exit
 	call Function4484a
@@ -419,10 +419,10 @@ MailboxPC: ; 0x44806
 Function4484a: ; 0x4484a
 	ld hl, MenuData44964
 	call LoadMenuDataHeader
-	call InterpretMenu2
+	call VerticalMenu
 	call ExitMenu
 	jr c, .exit
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ld hl, .JumpTable
 	rst JumpTable

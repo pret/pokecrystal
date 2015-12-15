@@ -26,7 +26,7 @@ MapCeladonGameCornerPrizeRoomSignpost0Script:
 CeladonPrizeRoom_tmcounterloop:
 	special Special_DisplayCoinCaseBalance
 	loadmenudata MenuDataHeader_0x72790
-	interpretmenu2
+	verticalmenu
 	writebackup
 	if_equal $1, .doubleteam
 	if_equal $2, .psychic
@@ -130,7 +130,7 @@ MapCeladonGameCornerPrizeRoomSignpost1Script:
 	writetext UnknownText_0x72974
 	special Special_DisplayCoinCaseBalance
 	loadmenudata MenuDataHeader_0x72877
-	interpretmenu2
+	verticalmenu
 	writebackup
 	if_equal $1, .pikachu
 	if_equal $2, .porygon

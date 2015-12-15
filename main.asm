@@ -5796,7 +5796,7 @@ Functiondcb6: ; dcb6
 	pop hl
 	pop de
 
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	push af
 	ld a, [MonType]
 	push af
@@ -5809,7 +5809,7 @@ Functiondcb6: ; dcb6
 	ld a, BOXMON
 	ld [MonType], a
 	ld a, b
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	push bc
 	push hl
 	push de
@@ -5833,7 +5833,7 @@ Functiondcb6: ; dcb6
 	pop af
 	ld [MonType], a
 	pop af
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	ret
 ; dd21
 
@@ -7558,7 +7558,7 @@ BugCatchingContestBattleScript:: ; 0x135eb
 BugCatchingContestOverScript:: ; 0x135f8
 	playsound SFX_ELEVATOR_END
 	opentext
-	writetext UnknownText_0x1360f
+	writetext BugCatchingContestText_BeeepTimesUp
 	waitbutton
 	jump BugCatchingContestReturnToGateScript
 ; 0x13603
@@ -7566,7 +7566,7 @@ BugCatchingContestOverScript:: ; 0x135f8
 BugCatchingContestOutOfBallsScript: ; 0x13603
 	playsound SFX_ELEVATOR_END
 	opentext
-	writetext UnknownText_0x13614
+	writetext BugCatchingContestText_ContestIsOver
 	waitbutton
 
 BugCatchingContestReturnToGateScript: ; 0x1360b
@@ -7574,13 +7574,13 @@ BugCatchingContestReturnToGateScript: ; 0x1360b
 	jumpstd bugcontestresultswarp
 ; 0x1360f
 
-UnknownText_0x1360f: ; 0x1360f
+BugCatchingContestText_BeeepTimesUp: ; 0x1360f
 	; ANNOUNCER: BEEEP! Time's up!
 	text_jump UnknownText_0x1bd2ca
 	db "@"
 ; 0x13614
 
-UnknownText_0x13614: ; 0x13614
+BugCatchingContestText_ContestIsOver: ; 0x13614
 	; ANNOUNCER: The Contest is over!
 	text_jump UnknownText_0x1bd2e7
 	db "@"
@@ -7679,7 +7679,7 @@ CheckFacingTileForStd:: ; 1365b
 	dbw $97, tv
 	dbw $9d, window
 	dbw $9f, incenseburner
-	db $ff ; end
+	db   -1 ; end
 ; 1369a
 
 Script_JumpStdFromRAM: ; 0x1369a
@@ -7756,350 +7756,19 @@ root	set root+1
 
 SECTION "bank5", ROMX, BANK[$5]
 
-StopRTC: ; Unreferenced???
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
-	call LatchClock
-	ld a, RTC_DH
-	ld [MBC3SRamBank], a
-	ld a, [MBC3RTC]
-	set 6, a ; halt
-	ld [MBC3RTC], a
-	call CloseSRAM
-	ret
-; 14019
-
-StartRTC: ; 14019
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
-	call LatchClock
-	ld a, RTC_DH
-	ld [MBC3SRamBank], a
-	ld a, [MBC3RTC]
-	res 6, a ; halt
-	ld [MBC3RTC], a
-	call CloseSRAM
-	ret
-; 14032
-
-GetTimeOfDay:: ; 14032
-; get time of day based on the current hour
-	ld a, [hHours] ; hour
-	ld hl, TimesOfDay
-
-.check
-; if we're within the given time period,
-; get the corresponding time of day
-	cp [hl]
-	jr c, .match
-; else, get the next entry
-rept 2
-	inc hl
-endr
-; try again
-	jr .check
-
-.match
-; get time of day
-	inc hl
-	ld a, [hl]
-	ld [TimeOfDay], a
-	ret
-; 14044
-
-TimesOfDay: ; 14044
-; hours for the time of day
-; 04-09 morn | 10-17 day | 18-03 nite
-	db 04, NITE
-	db 10, MORN
-	db 18, DAY
-	db 24, NITE
-	db -1, MORN
-; 1404e
-
-Unknown_1404e: ; Unreferenced
-	db 20, 2
-	db 40, 0
-	db 60, 1
-	db -1, 0
-; 14056
-
-StageRTCTimeForSave: ; 14056
-	call UpdateTime
-	ld hl, wRTC
-	ld a, [CurDay]
-	ld [hli], a
-	ld a, [hHours]
-	ld [hli], a
-	ld a, [hMinutes]
-	ld [hli], a
-	ld a, [hSeconds]
-	ld [hli], a
-	ret
-; 1406a
-
-SaveRTC: ; 1406a
-	ld a, $a
-	ld [MBC3SRamEnable], a
-	call LatchClock
-	ld hl, MBC3RTC
-	ld a, $c
-	ld [MBC3SRamBank], a
-	res 7, [hl]
-	ld a, BANK(sRTCStatusFlags)
-	ld [MBC3SRamBank], a
-	xor a
-	ld [sRTCStatusFlags], a
-	call CloseSRAM
-	ret
-; 14089
-
-StartClock:: ; 14089
-	call GetClock
-	call Function1409b
-	call FixDays
-	jr nc, .skip_set
-	; bit 5: Day count exceeds 139
-	; bit 6: Day count exceeds 255
-	call RecordRTCStatus ; set flag on sRTCStatusFlags
-
-.skip_set
-	call StartRTC
-	ret
-; 1409b
-
-Function1409b: ; 1409b
-	ld hl, hRTCDayHi
-	bit 7, [hl]
-	jr nz, .set_bit_7
-	bit 6, [hl]
-	jr nz, .set_bit_7
-	xor a
-	ret
-
-.set_bit_7
-	; Day count exceeds 16383
-	ld a, %10000000
-	call RecordRTCStatus ; set bit 7 on sRTCStatusFlags
-	ret
-; 140ae
-
-Function140ae: ; 140ae
-	call CheckRTCStatus
-	ld c, a
-	and %11000000 ; Day count exceeded 255 or 16383
-	jr nz, .time_overflow
-
-	ld a, c
-	and %00100000 ; Day count exceeded 139
-	jr z, .dont_update
-
-	call UpdateTime
-	ld a, [wRTC + 0]
-	ld b, a
-	ld a, [CurDay]
-	cp b
-	jr c, .dont_update
-
-.time_overflow
-	callba ClearDailyTimers
-	callba Function170923
-; mobile
-	ld a, $5
-	call GetSRAMBank
-	ld a, [$aa8c]
-	inc a
-	ld [$aa8c], a
-	ld a, [$b2fa]
-	inc a
-	ld [$b2fa], a
-	call CloseSRAM
-	ret
-
-.dont_update
-	xor a
-	ret
-; 140ed
-
-Function140ed:: ; 140ed
-	call GetClock
-	call FixDays
-	ld hl, hRTCSeconds
-	ld de, StartSecond
-
-	ld a, [StringBuffer2 + 3]
-	sub [hl]
-	dec hl
-	jr nc, .okay_secs
-	add 60
-.okay_secs
-	ld [de], a
-	dec de
-
-	ld a, [StringBuffer2 + 2]
-	sbc [hl]
-	dec hl
-	jr nc, .okay_mins
-	add 60
-.okay_mins
-	ld [de], a
-	dec de
-
-	ld a, [StringBuffer2 + 1]
-	sbc [hl]
-	dec hl
-	jr nc, .okay_hrs
-	add 24
-.okay_hrs
-	ld [de], a
-	dec de
-
-	ld a, [StringBuffer2]
-	sbc [hl]
-	dec hl
-	jr nc, .okay_days
-	add 140
-	ld c, 7
-	call SimpleDivide
-
-.okay_days
-	ld [de], a
-	ret
-; 1412a
-
+INCLUDE "engine/rtc.asm"
 INCLUDE "engine/overworld.asm"
-
-CheckWarpCollision:: ; 1499a
-; Is this tile a warp?
-	ld a, [PlayerNextTile]
-	cp $60
-	jr z, .warp
-	cp $68
-	jr z, .warp
-	and $f0
-	cp $70
-	jr z, .warp
-	and a
-	ret
-
-.warp
-	scf
-	ret
-; 149af
-
-CheckDirectionalWarp:: ; 149af
-; If this is a directional warp, clear carry (press the designated button to warp).
-; Else, set carry (immediate warp).
-	ld a, [PlayerNextTile]
-	cp $70 ; Warp on down
-	jr z, .not_warp
-	cp $76 ; Warp on left
-	jr z, .not_warp
-	cp $78 ; Warp on up
-	jr z, .not_warp
-	cp $7e ; Warp on right
-	jr z, .not_warp
-	scf
-	ret
-
-.not_warp
-	xor a
-	ret
-; 149c6
-
-CheckWarpFacingDown: ; 149c6
-	ld de, 1
-	ld hl, .blocks
-	ld a, [PlayerNextTile]
-	call IsInArray
-	ret
-; 149d3
-
-.blocks: ; 149d3
-	db $71 ; door
-	db $79
-	db $7a ; stairs
-	db $73
-	db $7b ; cave entrance
-	db $74
-	db $7c ; warp pad
-	db $75
-	db $7d
-	db -1
-; 149dd
-
-CheckGrassCollision:: ; 149dd
-	ld a, [PlayerNextTile]
-	ld hl, .blocks
-	ld de, 1
-	call IsInArray
-	ret
-; 149ea
-
-.blocks: ; 149ea
-	db $08
-	db $18 ; tall grass
-	db $14 ; tall grass
-	db $28
-	db $29
-	db $48
-	db $49
-	db $4a
-	db $4b
-	db $4c
-	db -1
-; 149f5
-
-CheckCutCollision: ; 149f5
-	ld a, c
-	ld hl, .blocks
-	ld de, 1
-	call IsInArray
-	ret
-; 14a00
-
-.blocks: ; 14a00
-	db $12 ; cut tree
-	db $1a ; cut tree
-	db $10 ; tall grass
-	db $18 ; tall grass
-	db $14 ; tall grass
-	db $1c ; tall grass
-	db -1
-; 14a07
-
-Function14a07:: ; 14a07
-	ld a, [PlayerNextTile]
-	ld de, $1f
-	cp $71 ; door
-	ret z
-	ld de, $13
-	cp $7c ; warp pad
-	ret z
-	ld de, $23
-	ret
-; 14a1a
-
+INCLUDE "engine/tile_events.asm"
 INCLUDE "engine/save.asm"
-
 INCLUDE "engine/spawn_points.asm"
-
 INCLUDE "engine/map_setup.asm"
-
 INCLUDE "engine/pokecenter_pc.asm"
-
 INCLUDE "engine/mart.asm"
-
 INCLUDE "engine/money.asm"
-
 INCLUDE "items/marts.asm"
-
 INCLUDE "event/mom.asm"
-
 INCLUDE "event/daycare.asm"
-
 INCLUDE "event/photo.asm"
-
 INCLUDE "engine/breeding/egg.asm"
 
 SECTION "Tileset Data 1", ROMX, BANK[TILESETS_1]
@@ -8135,261 +7804,6 @@ StringBufferPointers:: ; 24000
 ; 2400e
 
 INCLUDE "engine/menu.asm"
-
-_BackUpTiles:: ; 24374
-	ld a, [rSVBK]
-	push af
-	ld a, $7
-	ld [rSVBK], a
-
-	ld hl, wcf71
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	push de
-
-	ld b, $10
-	ld hl, wMenuFlags
-.loop
-	ld a, [hli]
-	ld [de], a
-	dec de
-	dec b
-	jr nz, .loop
-
-; If bit 6 or 7 of the menu flags is set, set bit 0 of the address
-; at 7:[wcf71], and draw the menu using the coordinates from the header.
-; Otherwise, reset bit 0 of 7:[wcf71].
-	ld a, [wMenuFlags]
-	bit 6, a
-	jr nz, .bit_6
-	bit 7, a
-	jr z, .not_bit_7
-
-.bit_6
-	ld hl, wcf71
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	set 0, [hl]
-	call MenuBoxCoord2Tile
-	call .copy
-	call MenuBoxCoord2Attr
-	call .copy
-	jr .done
-
-.not_bit_7
-	pop hl ; last-pushed register was de
-	push hl
-	ld a, [hld]
-	ld l, [hl]
-	ld h, a
-	res 0, [hl]
-
-.done
-	pop hl
-	call .ret ; empty function
-	ld a, h
-	ld [de], a
-	dec de
-	ld a, l
-	ld [de], a
-	dec de
-	ld hl, wcf71
-	ld [hl], e
-	inc hl
-	ld [hl], d
-
-	pop af
-	ld [rSVBK], a
-	ld hl, wcf78
-	inc [hl]
-	ret
-; 243cd
-
-.copy: ; 243cd
-	call GetMenuBoxDims
-	inc b
-	inc c
-	call .ret ; empty function
-
-.row
-	push bc
-	push hl
-
-.col
-	ld a, [hli]
-	ld [de], a
-	dec de
-	dec c
-	jr nz, .col
-
-	pop hl
-	ld bc, SCREEN_WIDTH
-	add hl, bc
-	pop bc
-	dec b
-	jr nz, .row
-
-	ret
-; 243e7
-
-.ret: ; 243e7
-	ret
-; 243e8
-
-Function243e8:: ; 243e8
-	xor a
-	ld [hBGMapMode], a
-
-	ld a, [rSVBK]
-	push af
-	ld a, $7
-	ld [rSVBK], a
-
-	call Function1c7e
-	ld a, l
-	or h
-	jp z, Function2445d
-	ld a, l
-	ld [wcf71], a
-	ld a, h
-	ld [wcf72], a
-	call Function1c47
-	ld a, [wMenuFlags]
-	bit 0, a
-	jr z, .next
-	ld d, h
-	ld e, l
-	call RestoreTileBackup
-
-.next
-	call Function1c7e
-	ld a, h
-	or l
-	jr z, .done
-	call Function1c47
-
-.done
-	pop af
-	ld [rSVBK], a
-	ld hl, wcf78
-	dec [hl]
-	ret
-; 24423
-
-Function24423: ; 24423
-	ld a, [VramState]
-	bit 0, a
-	ret z
-	xor a
-	call GetSRAMBank
-	hlcoord 0, 0
-	ld de, sScratch
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	call CopyBytes
-	call CloseSRAM
-	call OverworldTextModeSwitch
-	xor a
-	call GetSRAMBank
-	ld hl, sScratch
-	decoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-.asm_2444c
-	ld a, [hl]
-	cp $61
-	jr c, .asm_24452
-	ld [de], a
-
-.asm_24452
-	inc hl
-	inc de
-	dec bc
-	ld a, c
-	or b
-	jr nz, .asm_2444c
-	call CloseSRAM
-	ret
-; 2445d
-
-Function2445d: ; 2445d
-	ld hl, UnknownText_0x24468
-	call PrintText
-	call WaitBGMap
-.asm_24466
-	jr .asm_24466
-; 24468
-
-UnknownText_0x24468: ; 24468
-	text_jump UnknownText_0x1c46b7
-	db "@"
-; 2446d
-
-Function2446d:: ; 2446d
-	ld a, [wMenuData2Flags]
-	ld b, a
-	ld hl, wcfa1
-	ld a, [wMenuBorderTopCoord]
-	inc a
-	bit 6, b
-	jr nz, .asm_2447d
-	inc a
-
-.asm_2447d
-	ld [hli], a
-	ld a, [wMenuBorderLeftCoord]
-	inc a
-	ld [hli], a
-	ld a, [wMenuData2Items]
-	ld [hli], a
-	ld a, $1
-	ld [hli], a
-	ld [hl], $0
-	bit 5, b
-	jr z, .asm_24492
-	set 5, [hl]
-
-.asm_24492
-	ld a, [wMenuFlags]
-	bit 4, a
-	jr z, .asm_2449b
-	set 6, [hl]
-
-.asm_2449b
-	inc hl
-	xor a
-	ld [hli], a
-	ld a, $20
-	ld [hli], a
-	ld a, $1
-	bit 0, b
-	jr nz, .asm_244a9
-	add $2
-
-.asm_244a9
-	ld [hli], a
-	ld a, [wMenuCursorBuffer]
-	and a
-	jr z, .asm_244b7
-	ld c, a
-	ld a, [wMenuData2Items]
-	cp c
-	jr nc, .asm_244b9
-
-.asm_244b7
-	ld c, $1
-
-.asm_244b9
-	ld [hl], c
-	inc hl
-	ld a, $1
-	ld [hli], a
-	xor a
-rept 3
-	ld [hli], a
-endr
-	ret
-; 244c3
 
 UpdateItemDescription: ; 0x244c3
 	ld a, [MenuSelection]
@@ -8532,7 +7946,7 @@ GetObjectTimeMask: ; 245a7 (9:45a7)
 
 Function245af:: ; 245af
 	xor a
-	ld [wcf73], a
+	ld [wMenuJoypad], a
 	ld [hBGMapMode], a
 	inc a
 	ld [hInMenu], a
@@ -8555,8 +7969,8 @@ Function245cb:: ; 245cb
 ; 245d6
 
 .exit: ; 245d6
-	call Function1ff8
-	ld [wcf73], a
+	call MenuClickSound
+	ld [wMenuJoypad], a
 	ld a, 0
 	ld [hInMenu], a
 	ret
@@ -8590,7 +8004,7 @@ Function245f1: ; 245f1
 
 MenuJoyAction: ; 24609
 .loop
-	call Function1bd3
+	call ScrollingMenuJoypad
 	ld a, [hJoyLast]
 	and D_PAD
 	ld b, a
@@ -8624,7 +8038,7 @@ MenuJoyAction: ; 24609
 
 .a_button: ; 24644
 	call Function1bee
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	call Function248d5
 	ld a, [MenuSelection]
@@ -8653,7 +8067,7 @@ MenuJoyAction: ; 24609
 	ld a, [wMenuData2Flags]
 	bit 7, a
 	jp z, xor_a_dec_a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	call Function248d5
 	ld a, [MenuSelection]
@@ -8736,7 +8150,7 @@ MenuJoyAction: ; 24609
 Function246fc: ; 246fc
 	ld a, [wMenuScrollPosition]
 	ld c, a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	add c
 	ld c, a
 	ret
@@ -8870,13 +8284,13 @@ Function24764: ; 24764
 	ld a, $1
 
 .asm_247ca
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	ld a, $1
-	ld [wcfaa], a
+	ld [wMenuCursorX], a
 	xor a
-	ld [wcfac], a
-	ld [wcfad], a
-	ld [wcfab], a
+	ld [wCursorCurrentTile], a
+	ld [wCursorCurrentTile + 1], a
+	ld [wCursorOffCharacter], a
 	ret
 ; 247dd
 
@@ -9034,7 +8448,7 @@ Function248b8: ; 248b8
 	ret nz
 
 .asm_248c7
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	call Function248d5
 	ld hl, wcf9e
@@ -11582,14 +10996,14 @@ AskRememberPassword: ; 4ae12
 	add $4
 	ld [wMenuBorderBottomCoord], a
 	call BackUpTiles
-	call InterpretMenu2
+	call VerticalMenu
 	push af
 	ld c, 15
 	call DelayFrames
 	call Buena_ExitMenu
 	pop af
 	jr c, .refused
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $2
 	jr z, .refused
 	and a
@@ -11597,7 +11011,7 @@ AskRememberPassword: ; 4ae12
 
 .refused
 	ld a, $2
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	scf
 	ret
 ; 4ae5e
@@ -12009,14 +11423,14 @@ INCBIN "gfx/shrink2.2bpp.lz"
 ; 4d319
 
 Function4d319: ; 4d319
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ld [CurPartyMon], a
 	call LowVolume
 	predef StatsScreenInit
 	ld a, [CurPartyMon]
 	inc a
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	call ClearScreen
 	call ClearBGPalettes
 	call MaxVolume
@@ -12119,9 +11533,9 @@ _ResetClock: ; 4d3b1
 	call PrintText
 	ld hl, .NoYes_MenuDataHeader
 	call CopyMenuDataHeader
-	call InterpretMenu2
+	call VerticalMenu
 	ret c
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $1
 	ret z
 	call ClockResetPassword
@@ -12395,9 +11809,9 @@ Function4d54c: ; 4d54c
 	call PrintText
 	ld hl, MenuDataHeader_0x4d585
 	call CopyMenuDataHeader
-	call InterpretMenu2
+	call VerticalMenu
 	ret c
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $1
 	ret z
 	callba EmptyAllSRAMBanks
@@ -14074,7 +13488,7 @@ endr
 	push bc
 	push hl
 	push de
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	ld a, [hl]
 	push af
 	ld [hl], b
@@ -14546,7 +13960,7 @@ _SwitchPartyMons:
 	dec a
 	ld [Buffer3], a
 	ld b, a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ld [Buffer2], a ; wd1eb (aliases: MovementType)
 	cp b
@@ -16303,8 +15717,8 @@ ShowPlayerNamingChoices: ; 88297
 	ld hl, KrisNameMenuHeader
 .GotGender
 	call LoadMenuDataHeader
-	call InterpretMenu2
-	ld a, [MenuSelection2]
+	call VerticalMenu
+	ld a, [wMenuCursorY]
 	dec a
 	call CopyNameFromMenu
 	call WriteBackup

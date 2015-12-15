@@ -5,12 +5,12 @@ BackUpTiles:: ; 1c00
 
 ExitMenu:: ; 0x1c07
 	push af
-	callab Function243e8
+	callab _ExitMenu
 	pop af
 	ret
 
-Function1c10:: ; 0x1c10
-	callab Function2446d
+InitVerticalMenuCursor:: ; 0x1c10
+	callab _InitVerticalMenuCursor
 	ret
 
 WriteBackup:: ; 0x1c17
@@ -54,7 +54,7 @@ RestoreTileBackup:: ; 0x1c23
 
 	ret
 
-Function1c47:: ; 0x1c47
+PopWindow:: ; 0x1c47
 	ld b, $10
 	ld de, wMenuFlags
 .loop
@@ -98,8 +98,8 @@ CopyMenuData2:: ; 1c66
 	ret
 ; 1c7e
 
-Function1c7e:: ; 1c7e
-	ld hl, wcf71
+GetWindowStackTop:: ; 1c7e
+	ld hl, wWindowStackPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -110,7 +110,7 @@ Function1c7e:: ; 1c7e
 	ret
 ; 1c89
 
-Function1c89:: ; 1c89
+PlaceVerticalMenuItems:: ; 1c89
 	call CopyMenuData2
 	ld hl, wMenuData2Pointer
 	ld e, [hl]
@@ -131,6 +131,7 @@ Function1c89:: ; 1c89
 	pop bc
 	dec b
 	jr nz, .loop
+
 	ld a, [wMenuData2Flags]
 	bit 4, a
 	ret z

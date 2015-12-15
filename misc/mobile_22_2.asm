@@ -830,7 +830,7 @@ Function8b7bd: ; 8b7bd
 	call Function89209
 	call HandleScrollingMenu
 	call Function8920f
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	cp $2
 	jr z, .asm_8b823
 	cp $20
@@ -854,7 +854,7 @@ Function8b7bd: ; 8b7bd
 
 .asm_8b824
 	ld c, a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wd030], a
 	ld a, [wMenuScrollPosition]
 	ld [wd031], a
@@ -880,7 +880,7 @@ Function8b83e: ; 8b83e
 
 Function8b84b: ; 8b84b
 	ld [wMenuScrollPosition], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wMenuCursorBuffer], a
 	ret
 ; 8b855

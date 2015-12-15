@@ -185,9 +185,9 @@ StandardMart: ; 15b47
 .TopMenu: ; 15b6e
 	ld hl, MenuDataHeader_BuySell
 	call CopyMenuDataHeader
-	call InterpretMenu2
+	call VerticalMenu
 	jr c, .quit
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $1
 	jr z, .buy
 	cp $2
@@ -481,10 +481,10 @@ BuyMenuLoop: ; 15cef
 	call HandleScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wd045 + 1], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wd045], a
 	call SpeechTextBox
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	cp B_BUTTON
 	jr z, .set_carry
 	cp A_BUTTON

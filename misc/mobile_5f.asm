@@ -461,20 +461,20 @@ Special_Menu_ChallengeExplanationCancel: ; 17d224
 ; 17d246
 
 Function17d246: ; 17d246
-	call InterpretMenu2
+	call VerticalMenu
 	jr c, .Exit
 	ld a, [ScriptVar]
 	cp $5
-	jr nz, .UseMenuSelection2
-	ld a, [MenuSelection2]
+	jr nz, .UsewMenuCursorY
+	ld a, [wMenuCursorY]
 	cp $3
 	ret z
-	jr c, .UseMenuSelection2
+	jr c, .UsewMenuCursorY
 	dec a
 	jr .LoadToScriptVar
 
-.UseMenuSelection2
-	ld a, [MenuSelection2]
+.UsewMenuCursorY
+	ld a, [wMenuCursorY]
 
 .LoadToScriptVar
 	ld [ScriptVar], a
@@ -1933,16 +1933,16 @@ Function17dc1f: ; 17dc1f
 	ld [wEnemyGoesFirst], a
 	ld hl, wc708
 	call LoadMenuDataHeader
-	call InterpretMenu2
+	call VerticalMenu
 	jr nc, .asm_17dc6e
 	ld a, $2
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 
 .asm_17dc6e
 	call WriteBackup
 	pop af
 	ld [rSVBK], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $1
 	jr nz, .asm_17dc85
 	ld a, [$c68a]

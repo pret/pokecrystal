@@ -25,7 +25,7 @@ MoveDeletion:
 	call Function2b74
 	pop af
 	jr c, .asm_2c5c3
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	push af
 	ld a, [CurSpecies]
 	ld [wd265], a

@@ -51,14 +51,14 @@ Function3e60:: ; 3e60
 	ret
 ; 3e80
 
-Function3e80:: ; 3e80
+MobileReceive:: ; 3e80
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(Function1116c5)
+	ld a, BANK(_MobileReceive)
 	ld [$c981], a
 	rst Bankswitch
 
-	call Function1116c5
+	call _MobileReceive
 	pop bc
 	ld a, b
 	ld [$c981], a

@@ -93,7 +93,7 @@ endr
 .loop
 	call .PrintMenuAccount
 	call Function1f1a
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	cp B_BUTTON
 	jr z, .b
 	cp A_BUTTON
@@ -799,7 +799,7 @@ GiveTakePartyMonItem: ; 12b60
 
 	ld hl, GiveTakeItemMenuData
 	call LoadMenuDataHeader
-	call InterpretMenu2
+	call VerticalMenu
 	call ExitMenu
 	jr c, .cancel
 
@@ -808,7 +808,7 @@ GiveTakePartyMonItem: ; 12b60
 	ld de, wd050_MonNick
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp 1
 	jr nz, .take
 
@@ -1109,12 +1109,12 @@ MonMailAction: ; 12d45
 ; Show the READ/TAKE/QUIT menu.
 	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
-	call InterpretMenu2
+	call VerticalMenu
 	call ExitMenu
 
 ; Interpret the menu.
 	jp c, .done
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $1
 	jr z, .read
 	cp $2
@@ -1483,7 +1483,7 @@ ChooseMoveToDelete: ; 12f5b
 	jr .asm_12f93
 
 .asm_12f86: ; 12f86
-	call Function1bd3
+	call ScrollingMenuJoypad
 	bit 1, a
 	jp nz, .asm_12f9f
 	bit 0, a
@@ -1551,7 +1551,7 @@ MoveScreenLoop: ; 12fd5
 	jr .skip_joy
 
 .joy_loop
-	call Function1bd3
+	call ScrollingMenuJoypad
 	bit 1, a
 	jp nz, .b_button
 	bit 0, a
@@ -1589,7 +1589,7 @@ MoveScreenLoop: ; 12fd5
 	jp z, .exit
 
 	ld a, [wMoveSwapBuffer]
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	xor a
 	ld [wMoveSwapBuffer], a
 	hlcoord 1, 2
@@ -1669,7 +1669,7 @@ MoveScreenLoop: ; 12fd5
 	ld a, [wMoveSwapBuffer]
 	and a
 	jr nz, .place_move
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wMoveSwapBuffer], a
 	call Function1bee
 	jp .moving_move
@@ -1716,7 +1716,7 @@ MoveScreenLoop: ; 12fd5
 
 .copy_move: ; 1313a
 	push hl
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ld c, a
 	ld b, $0
@@ -1834,7 +1834,7 @@ PrepareToPlaceMoveData: ; 13235
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ld c, a
 	ld b, $0

@@ -2667,7 +2667,7 @@ Not_PP_Up: ; f6a7
 
 Elixer_RestorePPofAllMoves: ; f6af
 	xor a
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	ld [hli], a
 	ld [hl], a
 	ld b, NUM_MOVES
@@ -2682,16 +2682,16 @@ Elixer_RestorePPofAllMoves: ; f6af
 
 	call RestorePP
 	jr z, .next
-	ld hl, wcfaa
+	ld hl, wMenuCursorX
 	inc [hl]
 
 .next
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	inc [hl]
 	pop bc
 	dec b
 	jr nz, .moveLoop
-	ld a, [wcfaa]
+	ld a, [wMenuCursorX]
 	and a
 	jp nz, BattleRestorePP
 
@@ -3120,7 +3120,7 @@ ApplyPPUp: ; f84c
 	ld a, [wd265]
 	dec a
 	jr nz, .use
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	inc a
 	cp b
 	jr nz, .skip
@@ -3197,7 +3197,7 @@ RestoreAllPP: ; f8b9
 	call GetPartyParamLocation
 	pop de
 	xor a ; PARTYMON
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	ld [MonType], a
 	ld c, NUM_MOVES
 .loop
@@ -3217,7 +3217,7 @@ RestoreAllPP: ; f8b9
 	add b
 	ld [de], a
 	inc de
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	inc [hl]
 	pop hl
 	dec c
@@ -3310,7 +3310,7 @@ GetMthMoveOfNthPartymon: ; f963
 	call AddNTimes
 
 GetMthMoveOfCurrentMon: ; f969
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld c, a
 	ld b, 0
 	add hl, bc

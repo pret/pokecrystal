@@ -494,7 +494,7 @@ Function4ab1a: ; 4ab1a
 	ld a, $2
 	ld [wcfa4], a
 	call Function4adf7
-	call Function1bc9
+	call StaticMenuJoypad
 	call Function4abc3
 	jr c, .asm_4ab1a
 	push af
@@ -506,11 +506,11 @@ Function4ab1a: ; 4ab1a
 	ld a, [PartyCount]
 	inc a
 	ld b, a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wd0d8], a
 	cp b
 	jr z, .asm_4ab7e
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ld [CurPartyMon], a
 	ld c, a
@@ -527,7 +527,7 @@ Function4ab1a: ; 4ab1a
 	ret
 
 .asm_4ab6d
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wd0d8], a
 .asm_4ab73
 	ld de, SFX_READ_TEXT_2
@@ -539,7 +539,7 @@ Function4ab1a: ; 4ab1a
 .asm_4ab7e
 	ld a, $1
 	ld [wd018], a
-	ld a, [wcfaa]
+	ld a, [wMenuCursorX]
 	cp $2
 	jr z, .asm_4ab73
 	ld de, SFX_READ_TEXT_2
@@ -593,38 +593,38 @@ Function4abc3: ; 4abc3
 	jr z, .asm_4abd5
 	ld a, [PartyCount]
 	inc a
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	ld a, $1
-	ld [wcfaa], a
+	ld [wMenuCursorX], a
 	jr .asm_4ac29
 
 .asm_4abd5
 	bit 6, a
 	jr z, .asm_4abeb
-	ld a, [MenuSelection2]
-	ld [MenuSelection2], a
+	ld a, [wMenuCursorY]
+	ld [wMenuCursorY], a
 	and a
 	jr nz, .asm_4ac29
 	ld a, [PartyCount]
 	inc a
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	jr .asm_4ac29
 
 .asm_4abeb
 	bit 7, a
 	jr z, .asm_4ac08
-	ld a, [MenuSelection2]
-	ld [MenuSelection2], a
+	ld a, [wMenuCursorY]
+	ld [wMenuCursorY], a
 	ld a, [PartyCount]
 rept 2
 	inc a
 endr
 	ld b, a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp b
 	jr nz, .asm_4ac29
 	ld a, $1
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	jr .asm_4ac29
 
 .asm_4ac08
@@ -634,20 +634,20 @@ endr
 	jr z, .asm_4ac56
 
 .asm_4ac10
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld b, a
 	ld a, [PartyCount]
 	inc a
 	cp b
 	jr nz, .asm_4ac29
-	ld a, [wcfaa]
+	ld a, [wMenuCursorX]
 	cp $1
 	jr z, .asm_4ac26
 	ld a, $1
 	jr .asm_4ac29
 
 .asm_4ac26
-	ld [wcfaa], a
+	ld [wMenuCursorX], a
 
 .asm_4ac29
 	hlcoord 0, 1
@@ -662,14 +662,14 @@ endr
 	dec a
 	jr nz, .asm_4ac3b
 	ld [hl], $7f
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld b, a
 	ld a, [PartyCount]
 	inc a
 	cp b
 	jr z, .asm_4ac54
 	ld a, $1
-	ld [wcfaa], a
+	ld [wMenuCursorX], a
 
 .asm_4ac54
 	scf
@@ -747,10 +747,10 @@ Function4acaa: ; 4acaa
 	ld [wMenuBorderLeftCoord], a
 	ld a, $1
 	ld [wMenuCursorBuffer], a
-	call Function1c10
+	call InitVerticalMenuCursor
 	ld hl, wcfa5
 	set 6, [hl]
-	call Function1bc9
+	call StaticMenuJoypad
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	ld a, [hJoyPressed]
@@ -767,7 +767,7 @@ Function4acaa: ; 4acaa
 	ld a, [wd019]
 	bit 1, a
 	jr nz, .asm_4ad0e
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $1
 	jr z, Function4ad17
 	cp $2
@@ -777,7 +777,7 @@ Function4acaa: ; 4acaa
 	jr .asm_4acf3
 
 .asm_4ad0e
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $1
 	jr z, Function4ad56
 	jr .asm_4acf3
@@ -927,9 +927,9 @@ Function4adf7: ; 4adf7
 	ret z
 	ld a, [PartyCount]
 	inc a
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	ld a, $1
-	ld [wcfaa], a
+	ld [wMenuCursorX], a
 	ld a, [wd019]
 	res 0, a
 	ld [wd019], a

@@ -65,7 +65,7 @@ ReceptionistScript_0x56c28:
 UnknownScript_0x56c36: ; 056c36
 	special Special_DisplayCoinCaseBalance
 	loadmenudata MenuDataHeader_0x56cc9
-	interpretmenu2
+	verticalmenu
 	writebackup
 	if_equal $1, UnknownScript_0x56c4d
 	if_equal $2, UnknownScript_0x56c69
@@ -169,7 +169,7 @@ UnknownScript_0x56d0c:
 	writetext UnknownText_0x56e8b
 	special Special_DisplayCoinCaseBalance
 	loadmenudata MenuDataHeader_0x56db0
-	interpretmenu2
+	verticalmenu
 	writebackup
 	if_equal $1, UnknownScript_0x56d26
 	if_equal $2, UnknownScript_0x56d54
