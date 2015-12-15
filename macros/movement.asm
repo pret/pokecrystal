@@ -433,3 +433,8 @@ return_dig: macro
 	db movement_return_dig ; $58
 	db \1
 	endm
+
+	enum movement_run_before_fall
+run_before_fall: macro
+	db movement_run_before_fall ; $59
+	endm

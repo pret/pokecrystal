@@ -270,8 +270,8 @@ UnknownScript_0x19ca73:
 MapRoute35Signpost1Script:
 	jumptext UnknownText_0x19cf94
 
-ItemFragment_0x19ca7c:
-	itemfragment TM_ROLLOUT
+Route35TMRollout:
+	itemball TM_ROLLOUT
 
 FruitTreeScript_0x19ca7e:
 	fruittree FRUITTREE_ROUTE_35
@@ -492,4 +492,4 @@ Route35_MapEventHeader:
 	person_event SPRITE_SUPER_NERD, 10, 5, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 2, TrainerJugglerIrwin, -1
 	person_event SPRITE_OFFICER, 6, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, OfficerScript_0x19ca49, -1
 	person_event SPRITE_FRUIT_TREE, 25, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x19ca7e, -1
-	person_event SPRITE_POKE_BALL, 16, 13, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x19ca7c, EVENT_ROUTE_35_TM_ROLLOUT
+	person_event SPRITE_POKE_BALL, 16, 13, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route35TMRollout, EVENT_ROUTE_35_TM_ROLLOUT

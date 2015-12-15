@@ -8,8 +8,8 @@ TinTower6F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ItemFragment_0x185ae4:
-	itemfragment MAX_POTION
+TinTower6FMaxPotion:
+	itemball MAX_POTION
 
 TinTower6F_MapEventHeader:
 	; filler
@@ -28,4 +28,4 @@ TinTower6F_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKE_BALL, 8, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x185ae4, EVENT_TIN_TOWER_6F_MAX_POTION
+	person_event SPRITE_POKE_BALL, 8, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TinTower6FMaxPotion, EVENT_TIN_TOWER_6F_MAX_POTION

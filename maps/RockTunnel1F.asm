@@ -9,11 +9,11 @@ RockTunnel1F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ItemFragment_0x743b5:
-	itemfragment ELIXER
+RockTunnel1FElixer:
+	itemball ELIXER
 
-ItemFragment_0x743b7:
-	itemfragment TM_STEEL_WING
+RockTunnel1FTMSteelWing:
+	itemball TM_STEEL_WING
 
 MapRockTunnel1FSignpostItem0:
 	dwb EVENT_ROCK_TUNNEL_1F_HIDDEN_X_ACCURACY, X_ACCURACY
@@ -46,5 +46,5 @@ RockTunnel1F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKE_BALL, 18, 4, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x743b5, EVENT_ROCK_TUNNEL_1F_ELIXER
-	person_event SPRITE_POKE_BALL, 15, 10, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x743b7, EVENT_ROCK_TUNNEL_1F_TM_STEEL_WING
+	person_event SPRITE_POKE_BALL, 18, 4, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, RockTunnel1FElixer, EVENT_ROCK_TUNNEL_1F_ELIXER
+	person_event SPRITE_POKE_BALL, 15, 10, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, RockTunnel1FTMSteelWing, EVENT_ROCK_TUNNEL_1F_TM_STEEL_WING

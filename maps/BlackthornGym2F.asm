@@ -27,16 +27,10 @@ BlackthornGym2F_MapScriptHeader:
 	db 0, 0 ; filler
 
 .BoulderTable
-	db 5, 4 ; warp, person
-	dw .Disappear4
-
-	db 3, 5 ; warp, person
-	dw .Disappear5
-
-	db 4, 6 ; warp, person
-	dw .Disappear6
-
-	db $ff ; end
+	stonetable 5, BLACKTHORNGYM2F_BOULDER1, .Disappear4
+	stonetable 3, BLACKTHORNGYM2F_BOULDER2, .Disappear5
+	stonetable 4, BLACKTHORNGYM2F_BOULDER3, .Disappear6
+	db -1 ; end
 
 .Disappear4
 	disappear BLACKTHORNGYM2F_BOULDER1
@@ -74,7 +68,7 @@ TrainerCooltrainermCody:
 CooltrainermCodyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1957d5
+	writetext CooltrainermCodyAfterText
 	waitbutton
 	closetext
 	end
@@ -85,7 +79,7 @@ TrainerCooltrainerfFran:
 CooltrainerfFranScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x195883
+	writetext CooltrainerfFranAfterText
 	waitbutton
 	closetext
 	end
@@ -101,7 +95,7 @@ CooltrainermCodyBeatenText:
 	line "had a dragon!"
 	done
 
-UnknownText_0x1957d5:
+CooltrainermCodyAfterText:
 	text "Members of our"
 	line "dragon-user clan"
 
@@ -125,7 +119,7 @@ CooltrainerfFranBeatenText:
 	text "Awww… I lost…"
 	done
 
-UnknownText_0x195883:
+CooltrainerfFranAfterText:
 	text "Uh-oh… CLAIR is"
 	line "going to be mad…"
 	done

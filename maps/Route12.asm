@@ -63,11 +63,11 @@ MapRoute12Signpost0Script:
 MapRoute12Signpost1Script:
 	jumptext UnknownText_0x1a72c1
 
-ItemFragment_0x1a700b:
-	itemfragment CALCIUM
+Route12Calcium:
+	itemball CALCIUM
 
-ItemFragment_0x1a700d:
-	itemfragment NUGGET
+Route12Nugget:
+	itemball NUGGET
 
 MapRoute12SignpostItem2:
 	dwb EVENT_ROUTE_12_HIDDEN_ELIXER, ELIXER
@@ -190,5 +190,5 @@ Route12_MapEventHeader:
 	person_event SPRITE_FISHER, 23, 14, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 1, TrainerFisherStephen, -1
 	person_event SPRITE_FISHER, 38, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 5, TrainerFisherBarney, -1
 	person_event SPRITE_FISHER, 7, 6, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 3, TrainerFisherKyle, -1
-	person_event SPRITE_POKE_BALL, 43, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x1a700b, EVENT_ROUTE_12_CALCIUM
-	person_event SPRITE_POKE_BALL, 51, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x1a700d, EVENT_ROUTE_12_NUGGET
+	person_event SPRITE_POKE_BALL, 43, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route12Calcium, EVENT_ROUTE_12_CALCIUM
+	person_event SPRITE_POKE_BALL, 51, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route12Nugget, EVENT_ROUTE_12_NUGGET

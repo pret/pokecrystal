@@ -39,7 +39,7 @@ ItemEffects: ; e73c
 	dw Thunderstone
 	dw WaterStone
 	dw Item19
-	dw HpUp
+	dw HPUp
 	dw Protein
 	dw Iron
 	dw Carbos
@@ -75,7 +75,7 @@ ItemEffects: ; e73c
 	dw GoodRod
 	dw SilverLeaf
 	dw SuperRod
-	dw PpUp
+	dw PPUp
 	dw Ether
 	dw MaxEther
 	dw Elixer
@@ -1225,7 +1225,7 @@ SunStone: ; ee0f
 ; ee3d
 
 
-HpUp:
+HPUp:
 Protein:
 Iron:
 Carbos:
@@ -2512,7 +2512,7 @@ Itemfinder: ; f5b8
 
 
 MaxElixer:
-PpUp:
+PPUp:
 Ether:
 MaxEther:
 Elixer:

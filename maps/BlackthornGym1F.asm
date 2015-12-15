@@ -30,23 +30,23 @@ BlackthornGym1F_MapScriptHeader:
 .skip3
 	return
 
-ClairScript_0x194e24:
+BlackthornGymClairScript:
 	faceplayer
 	opentext
 	checkflag ENGINE_RISINGBADGE
-	iftrue UnknownScript_0x194e69
+	iftrue .AlreadyGotBadge
 	checkevent EVENT_BEAT_CLAIR
 	iftrue .FightDone
-	writetext UnknownText_0x194efa
+	writetext ClairIntroText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x194fd6, 0
+	winlosstext ClairWinText, 0
 	loadtrainer CLAIR, 1
 	startbattle
 	returnafterbattle
 	setevent EVENT_BEAT_CLAIR
 	opentext
-	writetext UnknownText_0x19500e
+	writetext ClairText_GoToDragonsDen
 	waitbutton
 	closetext
 	setevent EVENT_BEAT_COOLTRAINERM_PAUL
@@ -58,37 +58,38 @@ ClairScript_0x194e24:
 	setevent EVENT_BLACKTHORN_CITY_GRAMPS_BLOCKS_DRAGONS_DEN
 	clearevent EVENT_BLACKTHORN_CITY_GRAMPS_NOT_BLOCKING_DRAGONS_DEN
 	end
+
 .FightDone
-	writetext UnknownText_0x195162
+	writetext ClairText_TooMuchToExpect
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x194e69:
+.AlreadyGotBadge
 	checkevent EVENT_GOT_TM24_DRAGONBREATH
-	iftrue UnknownScript_0x194e94
-	writetext UnknownText_0x195196
+	iftrue .GotTM24
+	writetext BlackthornGymClairText_YouKeptMeWaiting
 	buttonsound
 	giveitem TM_DRAGONBREATH
-	iffalse UnknownScript_0x194e8e
+	iffalse .BagFull
 	itemtotext TM_DRAGONBREATH, $0
-	writetext UnknownText_0x1951bf
+	writetext BlackthornGymText_ReceivedTM24
 	playsound SFX_ITEM
 	waitsfx
 	itemnotify
 	setevent EVENT_GOT_TM24_DRAGONBREATH
-	writetext UnknownText_0x1951d1
+	writetext BlackthornGymClairText_DescribeTM24
 	buttonsound
-	jump UnknownScript_0x194e94
+	jump .GotTM24
 
-UnknownScript_0x194e8e:
-	writetext UnknownText_0x19524f
+.BagFull:
+	writetext BlackthornGymClairText_BagFull
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x194e94:
-	writetext UnknownText_0x195272
+.GotTM24:
+	writetext BlackthornGymClairText_League
 	waitbutton
 	closetext
 	end
@@ -99,7 +100,7 @@ TrainerCooltrainermPaul:
 CooltrainermPaulScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1953f1
+	writetext CooltrainermPaulAfterText
 	waitbutton
 	closetext
 	end
@@ -110,7 +111,7 @@ TrainerCooltrainermMike:
 CooltrainermMikeScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x195467
+	writetext CooltrainermMikeAfterText
 	waitbutton
 	closetext
 	end
@@ -121,7 +122,7 @@ TrainerCooltrainerfLola:
 CooltrainerfLolaScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x195516
+	writetext CooltrainerfLolaAfterText
 	waitbutton
 	closetext
 	end
@@ -150,7 +151,7 @@ BlackthornGymStatue:
 	trainertotext CLAIR, 1, $1
 	jumpstd gymstatue2
 
-UnknownText_0x194efa:
+ClairIntroText:
 	text "I am CLAIR."
 
 	para "The world's best"
@@ -175,7 +176,7 @@ UnknownText_0x194efa:
 	line "opponent!"
 	done
 
-UnknownText_0x194fd6:
+ClairWinText:
 	text "I lost?"
 
 	para "I don't believe"
@@ -183,7 +184,7 @@ UnknownText_0x194fd6:
 	cont "some mistake…"
 	done
 
-UnknownText_0x19500e:
+ClairText_GoToDragonsDen:
 	text "I won't admit"
 	line "this."
 
@@ -218,26 +219,26 @@ UnknownText_0x19500e:
 	cont "BADGE!"
 	done
 
-UnknownText_0x195162:
+ClairText_TooMuchToExpect:
 	text "What's the matter?"
 
 	para "Is it too much to"
 	line "expect of you?"
 	done
 
-UnknownText_0x195196:
+BlackthornGymClairText_YouKeptMeWaiting:
 	text "You've kept me"
 	line "waiting!"
 
 	para "Here! Take this!"
 	done
 
-UnknownText_0x1951bf:
+BlackthornGymText_ReceivedTM24:
 	text "<PLAYER> received"
 	line "TM24."
 	done
 
-UnknownText_0x1951d1:
+BlackthornGymClairText_DescribeTM24:
 	text "That contains"
 	line "DRAGONBREATH."
 
@@ -250,12 +251,12 @@ UnknownText_0x1951d1:
 	cont "to take it."
 	done
 
-UnknownText_0x19524f:
+BlackthornGymClairText_BagFull:
 	text "What is this? You"
 	line "don't have room?"
 	done
 
-UnknownText_0x195272:
+BlackthornGymClairText_League:
 	text "What's the matter?"
 
 	para "Aren't you headed"
@@ -299,7 +300,7 @@ CooltrainermPaulBeatenText:
 	line "lost?"
 	done
 
-UnknownText_0x1953f1:
+CooltrainermPaulAfterText:
 	text "LANCE told you"
 	line "that he'd like to"
 
@@ -317,7 +318,7 @@ CooltrainermMikeBeatenText:
 	text "That's odd."
 	done
 
-UnknownText_0x195467:
+CooltrainermMikeAfterText:
 	text "I know my short-"
 	line "comings now."
 
@@ -343,7 +344,7 @@ CooltrainerfLolaBeatenText:
 	text "Way to go!"
 	done
 
-UnknownText_0x195516:
+CooltrainerfLolaAfterText:
 	text "Dragons are weak"
 	line "against dragon-"
 	cont "type moves."
@@ -411,7 +412,7 @@ BlackthornGym1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_CLAIR, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, ClairScript_0x194e24, -1
+	person_event SPRITE_CLAIR, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, BlackthornGymClairScript, -1
 	person_event SPRITE_COOLTRAINER_M, 6, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerCooltrainermMike, -1
 	person_event SPRITE_COOLTRAINER_M, 14, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerCooltrainermPaul, -1
 	person_event SPRITE_COOLTRAINER_F, 2, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 1, TrainerCooltrainerfLola, -1

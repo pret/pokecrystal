@@ -143,8 +143,8 @@ MapBurnedTower1FSignpostItem1:
 	dwb EVENT_BURNED_TOWER_1F_HIDDEN_ULTRA_BALL, ULTRA_BALL
 	
 
-ItemFragment_0x185ccb:
-	itemfragment HP_UP
+BurnedTower1FHPUp:
+	itemball HP_UP
 
 MovementData_0x185ccd:
 	step_left
@@ -155,7 +155,7 @@ MovementData_0x185ccf:
 	step_end
 
 MovementData_0x185cd1:
-	db $59 ; movement
+	run_before_fall
 	step_end
 
 MovementData_0x185cd3:
@@ -292,18 +292,18 @@ BurnedTower1F_MapEventHeader:
 	db 14
 	warp_def $f, $9, 13, ECRUTEAK_CITY
 	warp_def $f, $a, 13, ECRUTEAK_CITY
-	warp_def $9, $a, 1, BURNED_TOWER_B1F
-	warp_def $5, $5, 1, BURNED_TOWER_B1F
-	warp_def $6, $5, 1, BURNED_TOWER_B1F
-	warp_def $6, $4, 1, BURNED_TOWER_B1F
-	warp_def $4, $f, 2, BURNED_TOWER_B1F
-	warp_def $5, $f, 2, BURNED_TOWER_B1F
-	warp_def $7, $a, 3, BURNED_TOWER_B1F
-	warp_def $e, $5, 4, BURNED_TOWER_B1F
-	warp_def $e, $4, 4, BURNED_TOWER_B1F
-	warp_def $e, $e, 5, BURNED_TOWER_B1F
-	warp_def $e, $f, 5, BURNED_TOWER_B1F
-	warp_def $f, $7, 6, BURNED_TOWER_B1F
+	warp_def $9, $a,  1, BURNED_TOWER_B1F
+	warp_def $5, $5,  1, BURNED_TOWER_B1F
+	warp_def $6, $5,  1, BURNED_TOWER_B1F
+	warp_def $6, $4,  1, BURNED_TOWER_B1F
+	warp_def $4, $f,  2, BURNED_TOWER_B1F
+	warp_def $5, $f,  2, BURNED_TOWER_B1F
+	warp_def $7, $a,  3, BURNED_TOWER_B1F
+	warp_def $e, $5,  4, BURNED_TOWER_B1F
+	warp_def $e, $4,  4, BURNED_TOWER_B1F
+	warp_def $e, $e,  5, BURNED_TOWER_B1F
+	warp_def $e, $f,  5, BURNED_TOWER_B1F
+	warp_def $f, $7,  6, BURNED_TOWER_B1F
 
 .XYTriggers:
 	db 1
@@ -320,4 +320,4 @@ BurnedTower1F_MapEventHeader:
 	person_event SPRITE_SUPER_NERD, 12, 12, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x185cbc, EVENT_BURNED_TOWER_1F_EUSINE
 	person_event SPRITE_SILVER, 9, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 3, ObjectEvent, EVENT_RIVAL_BURNED_TOWER
 	person_event SPRITE_MORTY, 14, 14, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, MortyScript_0x185cbf, EVENT_BURNED_TOWER_MORTY
-	person_event SPRITE_POKE_BALL, 2, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x185ccb, EVENT_BURNED_TOWER_1F_HP_UP
+	person_event SPRITE_POKE_BALL, 2, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, BurnedTower1FHPUp, EVENT_BURNED_TOWER_1F_HP_UP

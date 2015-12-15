@@ -12,206 +12,206 @@ GrampsScript_0x189538:
 	faceplayer
 	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
-	iftrue UnknownScript_0x1896ba
+	iftrue .JustShowedSomething
 	checkevent EVENT_GOT_THUNDERSTONE_FROM_BILLS_GRANDPA
-	iftrue UnknownScript_0x1896c0
+	iftrue .GotThunderstone
 	checkevent EVENT_MET_BILLS_GRANDPA
-	iftrue UnknownScript_0x189553
-	writetext UnknownText_0x1896ce
+	iftrue .MetGrandpa
+	writetext BillsGrandpaIntroText
 	buttonsound
 	setevent EVENT_MET_BILLS_GRANDPA
-UnknownScript_0x189553:
+.MetGrandpa:
 	checkevent EVENT_SHOWED_PICHU_TO_BILLS_GRANDPA
-	iftrue UnknownScript_0x189697
+	iftrue .ShowedPichu
 	checkevent EVENT_SHOWED_GROWLITHE_VULPIX_TO_BILLS_GRANDPA
-	iftrue UnknownScript_0x189680
+	iftrue .ShowedGrowlitheVulpix
 	checkevent EVENT_SHOWED_STARYU_TO_BILLS_GRANDPA
-	iftrue UnknownScript_0x189669
+	iftrue .ShowedStaryu
 	checkevent EVENT_SHOWED_ODDISH_TO_BILLS_GRANDPA
-	iftrue UnknownScript_0x189652
+	iftrue .ShowedOddish
 	checkevent EVENT_SHOWED_LICKITUNG_TO_BILLS_GRANDPA
-	iftrue UnknownScript_0x18963b
-	writetext UnknownText_0x1898c0
+	iftrue .ShowedLickitung
+	writetext BillsGrandpaLickitungText
 	buttonsound
-	writetext UnknownText_0x189732
+	writetext BillsGrandpaAskToSeeMonText
 	yesorno
-	iffalse UnknownScript_0x1896aa
-	scall UnknownScript_0x1896a5
+	iffalse .SaidNo
+	scall .ExcitedToSee
 	special Special_BillsGrandfather
-	iffalse UnknownScript_0x1896aa
-	if_not_equal LICKITUNG, UnknownScript_0x1896c6
-	scall UnknownScript_0x1896b0
+	iffalse .SaidNo
+	if_not_equal LICKITUNG, .WrongPokemon
+	scall .CorrectPokemon
 	setevent EVENT_SHOWED_LICKITUNG_TO_BILLS_GRANDPA
-	jump UnknownScript_0x18963b
+	jump .ShowedLickitung
 
-UnknownScript_0x189592:
-	writetext UnknownText_0x1898ff
+.GotEverstone:
+	writetext BillsGrandpaOddishText
 	buttonsound
-	writetext UnknownText_0x189732
+	writetext BillsGrandpaAskToSeeMonText
 	yesorno
-	iffalse UnknownScript_0x1896aa
-	scall UnknownScript_0x1896a5
+	iffalse .SaidNo
+	scall .ExcitedToSee
 	special Special_BillsGrandfather
-	iffalse UnknownScript_0x1896aa
-	if_not_equal ODDISH, UnknownScript_0x1896c6
-	scall UnknownScript_0x1896b0
+	iffalse .SaidNo
+	if_not_equal ODDISH, .WrongPokemon
+	scall .CorrectPokemon
 	setevent EVENT_SHOWED_ODDISH_TO_BILLS_GRANDPA
-	jump UnknownScript_0x189652
+	jump .ShowedOddish
 
-UnknownScript_0x1895b3:
-	writetext UnknownText_0x189953
+.GotLeafStone:
+	writetext BillsGrandpaStaryuText
 	buttonsound
-	writetext UnknownText_0x189732
+	writetext BillsGrandpaAskToSeeMonText
 	yesorno
-	iffalse UnknownScript_0x1896aa
-	scall UnknownScript_0x1896a5
+	iffalse .SaidNo
+	scall .ExcitedToSee
 	special Special_BillsGrandfather
-	iffalse UnknownScript_0x1896aa
-	if_not_equal STARYU, UnknownScript_0x1896c6
-	scall UnknownScript_0x1896b0
+	iffalse .SaidNo
+	if_not_equal STARYU, .WrongPokemon
+	scall .CorrectPokemon
 	setevent EVENT_SHOWED_STARYU_TO_BILLS_GRANDPA
-	jump UnknownScript_0x189669
+	jump .ShowedStaryu
 
-UnknownScript_0x1895d4:
+.GotWaterStone:
 	checkver
-	iftrue UnknownScript_0x1895f9
-	writetext UnknownText_0x1899fe
+	iftrue .Crystal11
+	writetext BillsGrandpaGrowlitheText
 	buttonsound
-	writetext UnknownText_0x189732
+	writetext BillsGrandpaAskToSeeMonText
 	yesorno
-	iffalse UnknownScript_0x1896aa
-	scall UnknownScript_0x1896a5
+	iffalse .SaidNo
+	scall .ExcitedToSee
 	special Special_BillsGrandfather
-	iffalse UnknownScript_0x1896aa
-	if_not_equal GROWLITHE, UnknownScript_0x1896c6
-	scall UnknownScript_0x1896b0
+	iffalse .SaidNo
+	if_not_equal GROWLITHE, .WrongPokemon
+	scall .CorrectPokemon
 	setevent EVENT_SHOWED_GROWLITHE_VULPIX_TO_BILLS_GRANDPA
-	jump UnknownScript_0x189680
+	jump .ShowedGrowlitheVulpix
 
-UnknownScript_0x1895f9:
-	writetext UnknownText_0x189a57
+.Crystal11:
+	writetext BillsGrandpaVulpixText
 	buttonsound
-	writetext UnknownText_0x189732
+	writetext BillsGrandpaAskToSeeMonText
 	yesorno
-	iffalse UnknownScript_0x1896aa
-	scall UnknownScript_0x1896a5
+	iffalse .SaidNo
+	scall .ExcitedToSee
 	special Special_BillsGrandfather
-	iffalse UnknownScript_0x1896aa
-	if_not_equal VULPIX, UnknownScript_0x1896c6
-	scall UnknownScript_0x1896b0
+	iffalse .SaidNo
+	if_not_equal VULPIX, .WrongPokemon
+	scall .CorrectPokemon
 	setevent EVENT_SHOWED_GROWLITHE_VULPIX_TO_BILLS_GRANDPA
-	jump UnknownScript_0x189680
+	jump .ShowedGrowlitheVulpix
 
-UnknownScript_0x18961a:
-	writetext UnknownText_0x189ab1
+.GotFireStone:
+	writetext BillsGrandpaPichuText
 	buttonsound
-	writetext UnknownText_0x189732
+	writetext BillsGrandpaAskToSeeMonText
 	yesorno
-	iffalse UnknownScript_0x1896aa
-	scall UnknownScript_0x1896a5
+	iffalse .SaidNo
+	scall .ExcitedToSee
 	special Special_BillsGrandfather
-	iffalse UnknownScript_0x1896aa
-	if_not_equal PICHU, UnknownScript_0x1896c6
-	scall UnknownScript_0x1896b0
+	iffalse .SaidNo
+	if_not_equal PICHU, .WrongPokemon
+	scall .CorrectPokemon
 	setevent EVENT_SHOWED_PICHU_TO_BILLS_GRANDPA
-	jump UnknownScript_0x189697
+	jump .ShowedPichu
 
-UnknownScript_0x18963b:
+.ShowedLickitung:
 	checkevent EVENT_GOT_EVERSTONE_FROM_BILLS_GRANDPA
-	iftrue UnknownScript_0x189592
-	scall UnknownScript_0x1896b5
+	iftrue .GotEverstone
+	scall .ReceiveItem
 	verbosegiveitem EVERSTONE
-	iffalse UnknownScript_0x1896cc
+	iffalse .BagFull
 	setevent EVENT_GOT_EVERSTONE_FROM_BILLS_GRANDPA
 	setevent EVENT_GAVE_KURT_APRICORNS
 	closetext
 	end
 
-UnknownScript_0x189652:
+.ShowedOddish:
 	checkevent EVENT_GOT_LEAF_STONE_FROM_BILLS_GRANDPA
-	iftrue UnknownScript_0x1895b3
-	scall UnknownScript_0x1896b5
+	iftrue .GotLeafStone
+	scall .ReceiveItem
 	verbosegiveitem LEAF_STONE
-	iffalse UnknownScript_0x1896cc
+	iffalse .BagFull
 	setevent EVENT_GOT_LEAF_STONE_FROM_BILLS_GRANDPA
 	setevent EVENT_GAVE_KURT_APRICORNS
 	closetext
 	end
 
-UnknownScript_0x189669:
+.ShowedStaryu:
 	checkevent EVENT_GOT_WATER_STONE_FROM_BILLS_GRANDPA
-	iftrue UnknownScript_0x1895d4
-	scall UnknownScript_0x1896b5
+	iftrue .GotWaterStone
+	scall .ReceiveItem
 	verbosegiveitem WATER_STONE
-	iffalse UnknownScript_0x1896cc
+	iffalse .BagFull
 	setevent EVENT_GOT_WATER_STONE_FROM_BILLS_GRANDPA
 	setevent EVENT_GAVE_KURT_APRICORNS
 	closetext
 	end
 
-UnknownScript_0x189680:
+.ShowedGrowlitheVulpix:
 	checkevent EVENT_GOT_FIRE_STONE_FROM_BILLS_GRANDPA
-	iftrue UnknownScript_0x18961a
-	scall UnknownScript_0x1896b5
+	iftrue .GotFireStone
+	scall .ReceiveItem
 	verbosegiveitem FIRE_STONE
-	iffalse UnknownScript_0x1896cc
+	iffalse .BagFull
 	setevent EVENT_GOT_FIRE_STONE_FROM_BILLS_GRANDPA
 	setevent EVENT_GAVE_KURT_APRICORNS
 	closetext
 	end
 
-UnknownScript_0x189697:
-	scall UnknownScript_0x1896b5
+.ShowedPichu:
+	scall .ReceiveItem
 	verbosegiveitem THUNDERSTONE
-	iffalse UnknownScript_0x1896cc
+	iffalse .BagFull
 	setevent EVENT_GOT_THUNDERSTONE_FROM_BILLS_GRANDPA
 	closetext
 	end
 
-UnknownScript_0x1896a5:
-	writetext UnknownText_0x189760
+.ExcitedToSee:
+	writetext BillsGrandpaExcitedToSeeText
 	buttonsound
 	end
 
-UnknownScript_0x1896aa:
-	writetext UnknownText_0x189784
+.SaidNo:
+	writetext BillsGrandpaYouDontHaveItTextText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x1896b0:
-	writetext UnknownText_0x1897a6
+.CorrectPokemon:
+	writetext BillsGrandpaShownPokemonText
 	buttonsound
 	end
 
-UnknownScript_0x1896b5:
-	writetext UnknownText_0x1897e1
+.ReceiveItem:
+	writetext BillsGrandpaTokenOfAppreciationText
 	buttonsound
 	end
 
-UnknownScript_0x1896ba:
-	writetext UnknownText_0x18980e
+.JustShowedSomething:
+	writetext BillsGrandpaComeAgainText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x1896c0:
-	writetext UnknownText_0x18982a
+.GotThunderstone:
+	writetext BillsGrandpaShownAllThePokemonText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x1896c6:
-	writetext UnknownText_0x189891
+.WrongPokemon:
+	writetext BillsGrandpaWrongPokemonText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x1896cc:
+.BagFull:
 	closetext
 	end
 
-UnknownText_0x1896ce:
+BillsGrandpaIntroText:
 	text "Hm? You know BILL?"
 	line "He's my grandson."
 
@@ -222,23 +222,23 @@ UnknownText_0x1896ce:
 	line "house-sitting."
 	done
 
-UnknownText_0x189732:
+BillsGrandpaAskToSeeMonText:
 	text "If you have that"
 	line "#MON, may I see"
 	cont "it, please?"
 	done
 
-UnknownText_0x189760:
+BillsGrandpaExcitedToSeeText:
 	text "You will show me?"
 	line "How good of you!"
 	done
 
-UnknownText_0x189784:
+BillsGrandpaYouDontHaveItTextText:
 	text "You don't have it?"
 	line "That's too bad…"
 	done
 
-UnknownText_0x1897a6:
+BillsGrandpaShownPokemonText:
 	text "Ah, so that is"
 	line "@"
 	text_from_ram StringBuffer3
@@ -249,19 +249,19 @@ UnknownText_0x1897a6:
 	cont "you."
 	done
 
-UnknownText_0x1897e1:
+BillsGrandpaTokenOfAppreciationText:
 	text "Thanks!"
 
 	para "This is a token of"
 	line "my appreciation."
 	done
 
-UnknownText_0x18980e:
+BillsGrandpaComeAgainText:
 	text "Come visit again"
 	line "sometime."
 	done
 
-UnknownText_0x18982a:
+BillsGrandpaShownAllThePokemonText:
 	text "Thanks for showing"
 	line "me so many cute"
 	cont "#MON."
@@ -273,7 +273,7 @@ UnknownText_0x18982a:
 	line "long life."
 	done
 
-UnknownText_0x189891:
+BillsGrandpaWrongPokemonText:
 	text "Hm?"
 
 	para "That's not the"
@@ -281,7 +281,7 @@ UnknownText_0x189891:
 	cont "told about."
 	done
 
-UnknownText_0x1898c0:
+BillsGrandpaLickitungText:
 	text "My grandson BILL"
 	line "told me about a"
 
@@ -289,7 +289,7 @@ UnknownText_0x1898c0:
 	line "long tongue."
 	done
 
-UnknownText_0x1898ff:
+BillsGrandpaOddishText:
 	text "Ah, my grandson"
 	line "mentioned a round,"
 
@@ -298,7 +298,7 @@ UnknownText_0x1898ff:
 	cont "on its head."
 	done
 
-UnknownText_0x189953:
+BillsGrandpaStaryuText:
 	text "Do you know of a"
 	line "sea #MON that"
 
@@ -316,7 +316,7 @@ UnknownText_0x189953:
 	line "like to see it."
 	done
 
-UnknownText_0x1899fe:
+BillsGrandpaGrowlitheText:
 	text "BILL told me about"
 	line "a #MON that is"
 
@@ -327,7 +327,7 @@ UnknownText_0x1899fe:
 	line "ROAR well."
 	done
 
-UnknownText_0x189a57:
+BillsGrandpaVulpixText:
 	text "I heard about a"
 	line "cute #MON that"
 	cont "has six tails."
@@ -337,7 +337,7 @@ UnknownText_0x189a57:
 	cont "like that."
 	done
 
-UnknownText_0x189ab1:
+BillsGrandpaPichuText:
 	text "Do you know that"
 	line "hugely popular"
 	cont "#MON?"

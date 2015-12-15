@@ -90,11 +90,11 @@ VioletCityPokeCenterSign:
 VioletCityMartSign:
 	jumpstd martsign
 
-ItemFragment_0x1a8421:
-	itemfragment PP_UP
+VioletCityPPUp:
+	itemball PP_UP
 
-ItemFragment_0x1a8423:
-	itemfragment RARE_CANDY
+VioletCityRareCandy:
+	itemball RARE_CANDY
 
 FruitTreeScript_0x1a8425:
 	fruittree FRUITTREE_VIOLET_CITY
@@ -317,5 +317,5 @@ VioletCity_MapEventHeader:
 	person_event SPRITE_GRAMPS, 20, 17, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrampsScript_0x1a8409, -1
 	person_event SPRITE_YOUNGSTER, 18, 5, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x1a840c, -1
 	person_event SPRITE_FRUIT_TREE, 29, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a8425, -1
-	person_event SPRITE_POKE_BALL, 1, 4, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x1a8421, EVENT_VIOLET_CITY_PP_UP
-	person_event SPRITE_POKE_BALL, 5, 35, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x1a8423, EVENT_VIOLET_CITY_RARE_CANDY
+	person_event SPRITE_POKE_BALL, 1, 4, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, VioletCityPPUp, EVENT_VIOLET_CITY_PP_UP
+	person_event SPRITE_POKE_BALL, 5, 35, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, VioletCityRareCandy, EVENT_VIOLET_CITY_RARE_CANDY

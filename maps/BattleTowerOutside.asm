@@ -22,19 +22,19 @@ BattleTowerOutside_MapScriptHeader:
 	clearevent EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
 	return
 
-StandingYoungsterScript_0x9f85f:
-	jumptextfaceplayer UnknownText_0x9f930
+BattleTowerOutsideYoungsterScript:
+	jumptextfaceplayer BattleTowerOutsideYoungsterText
 
-BuenaScript_0x9f862:
-	jumptextfaceplayer UnknownText_0x9f9db
+BattleTowerOutsideBuenaScript:
+	jumptextfaceplayer BattleTowerOutsideBuenaText
 
-SailorScript_0x9f865:
-	jumptextfaceplayer UnknownText_0x9fa8c
+BattleTowerOutsideSailorScript:
+	jumptextfaceplayer BattleTowerOutsideSailorText
 
 MapBattleTowerOutsideSignpost0Script:
-	jumptext UnknownText_0x9fafc
+	jumptext BattleTowerOutsideText_UltimateChallenge
 
-UnknownText_0x9f86b:
+BattleTowerOutsideUnusedText1:
 	text "Wow, the BATTLE"
 	line "TOWER is huge! My"
 
@@ -42,7 +42,7 @@ UnknownText_0x9f86b:
 	line "looking up at it."
 	done
 
-UnknownText_0x9f8b3:
+BattleTowerOutsideUnusedText2:
 	text "Wow, the BATTLE"
 	line "TOWER is huge!"
 
@@ -56,7 +56,7 @@ UnknownText_0x9f8b3:
 	line "#MON."
 	done
 
-UnknownText_0x9f930:
+BattleTowerOutsideYoungsterText:
 	text "Wow, the BATTLE"
 	line "TOWER is huge!"
 
@@ -65,7 +65,7 @@ UnknownText_0x9f930:
 	cont "in there!"
 	done
 
-UnknownText_0x9f97b:
+BattleTowerOutsideUnusedText3:
 	text "What on earth do"
 	line "they do here?"
 
@@ -76,7 +76,7 @@ UnknownText_0x9f97b:
 	line "#MON battles."
 	done
 
-UnknownText_0x9f9db:
+BattleTowerOutsideBuenaText:
 	text "You can use only"
 	line "three #MON."
 
@@ -87,7 +87,7 @@ UnknownText_0x9f9db:
 	line "battle…"
 	done
 
-UnknownText_0x9fa32:
+BattleTowerOutsideUnusedText4:
 	text "Ehehehe…"
 	line "I sneaked out of"
 	cont "work to come here."
@@ -97,7 +97,7 @@ UnknownText_0x9fa32:
 	cont "a LEADER!"
 	done
 
-UnknownText_0x9fa8c:
+BattleTowerOutsideSailorText:
 	text "Hehehe, I snuck"
 	line "out from work."
 
@@ -108,23 +108,23 @@ UnknownText_0x9fa8c:
 	line "all. That I must!"
 	done
 
-UnknownText_0x9faee:
+BattleTowerOutsideText_BattleTower:
 	text "BATTLE TOWER"
 	done
 
-UnknownText_0x9fafc:
+BattleTowerOutsideText_UltimateChallenge:
 	text "BATTLE TOWER"
 
 	para "Take the Ultimate"
 	line "Trainer Challenge!"
 	done
 
-UnknownText_0x9fb2f:
+BattleTowerOutsideText_DoorsClosed:
 	text "The BATTLE TOWER's"
 	line "doors are closed…"
 	done
 
-UnknownText_0x9fb54:
+BattleTowerOutsideText_DoorsOpen:
 	text "It's open!"
 	done
 
@@ -148,7 +148,7 @@ BattleTowerOutside_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_STANDING_YOUNGSTER, 12, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, StandingYoungsterScript_0x9f85f, -1
-	person_event SPRITE_BUENA, 11, 13, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, BuenaScript_0x9f862, -1
-	person_event SPRITE_SAILOR, 18, 12, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SailorScript_0x9f865, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
+	person_event SPRITE_STANDING_YOUNGSTER, 12, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, BattleTowerOutsideYoungsterScript, -1
+	person_event SPRITE_BUENA, 11, 13, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, BattleTowerOutsideBuenaScript, -1
+	person_event SPRITE_SAILOR, 18, 12, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BattleTowerOutsideSailorScript, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
 	person_event SPRITE_LASS, 24, 12, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, ObjectEvent, -1

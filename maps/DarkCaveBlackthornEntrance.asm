@@ -27,11 +27,11 @@ UnknownScript_0x18c739:
 	closetext
 	end
 
-ItemFragment_0x18c73b:
-	itemfragment REVIVE
+DarkCaveBlackthornEntranceRevive:
+	itemball REVIVE
 
-ItemFragment_0x18c73d:
-	itemfragment TM_SNORE
+DarkCaveBlackthornEntranceTMSnore:
+	itemball TM_SNORE
 
 UnknownText_0x18c73f:
 	text "Whoa! You startled"
@@ -79,5 +79,5 @@ DarkCaveBlackthornEntrance_MapEventHeader:
 .PersonEvents:
 	db 3
 	person_event SPRITE_PHARMACIST, 3, 7, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PharmacistScript_0x18c720, -1
-	person_event SPRITE_POKE_BALL, 24, 21, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x18c73b, EVENT_DARK_CAVE_BLACKTHORN_ENTRANCE_REVIVE
-	person_event SPRITE_POKE_BALL, 22, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x18c73d, EVENT_DARK_CAVE_BLACKTHORN_ENTRANCE_TM_SNORE
+	person_event SPRITE_POKE_BALL, 24, 21, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, DarkCaveBlackthornEntranceRevive, EVENT_DARK_CAVE_BLACKTHORN_ENTRANCE_REVIVE
+	person_event SPRITE_POKE_BALL, 22, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, DarkCaveBlackthornEntranceTMSnore, EVENT_DARK_CAVE_BLACKTHORN_ENTRANCE_TM_SNORE

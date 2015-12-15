@@ -641,7 +641,7 @@ TryObjectEvent: ; 969b5
 
 .pointers
 	dbw PERSONTYPE_SCRIPT, .script
-	dbw PERSONTYPE_ITEMFRAGMENT, .itemfragment
+	dbw PERSONTYPE_ITEMBALL, .itemball
 	dbw PERSONTYPE_TRAINER, .trainer
 	; the remaining four are dummy events
 	dbw PERSONTYPE_3, .three
@@ -662,7 +662,7 @@ TryObjectEvent: ; 969b5
 	ret
 ; 96a12
 
-.itemfragment ; 96a12
+.itemball ; 96a12
 	ld hl, MAPOBJECT_SCRIPT_POINTER
 	add hl, bc
 	ld a, [hli]

@@ -9,11 +9,11 @@ SilverCaveItemRooms_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ItemFragment_0x18c65e:
-	itemfragment MAX_REVIVE
+SilverCaveItemRoomsMaxRevive:
+	itemball MAX_REVIVE
 
-ItemFragment_0x18c660:
-	itemfragment FULL_RESTORE
+SilverCaveItemRoomsFullRestore:
+	itemball FULL_RESTORE
 
 SilverCaveItemRooms_MapEventHeader:
 	; filler
@@ -32,5 +32,5 @@ SilverCaveItemRooms_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKE_BALL, 3, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x18c65e, EVENT_SILVER_CAVE_ITEM_ROOMS_MAX_REVIVE
-	person_event SPRITE_POKE_BALL, 11, 15, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x18c660, EVENT_SILVER_CAVE_ITEM_ROOMS_FULL_RESTORE
+	person_event SPRITE_POKE_BALL, 3, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, SilverCaveItemRoomsMaxRevive, EVENT_SILVER_CAVE_ITEM_ROOMS_MAX_REVIVE
+	person_event SPRITE_POKE_BALL, 11, 15, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, SilverCaveItemRoomsFullRestore, EVENT_SILVER_CAVE_ITEM_ROOMS_FULL_RESTORE

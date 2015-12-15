@@ -517,7 +517,7 @@ ReadMapTriggers:: ; 23ac
 	ld a, l
 	ld [wCurrMapTriggerHeaderPointer], a ; map trigger pointer
 	ld a, h
-	ld [wdc09], a
+	ld [wCurrMapTriggerHeaderPointer + 1], a
 	ld a, c
 	and a
 	ret z

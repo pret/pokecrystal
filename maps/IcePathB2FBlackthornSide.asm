@@ -8,8 +8,8 @@ IcePathB2FBlackthornSide_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ItemFragment_0x7e646:
-	itemfragment TM_REST
+IcePathB2FBlackthornSideTMRest:
+	itemball TM_REST
 
 MapIcePathB2FBlackthornSideSignpostItem0:
 	dwb EVENT_ICE_PATH_B2F_BLACKTHORN_SIDE_HIDDEN_ICE_HEAL, ICE_HEAL
@@ -33,4 +33,4 @@ IcePathB2FBlackthornSide_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKE_BALL, 16, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x7e646, EVENT_ICE_PATH_B2F_BLACKTHORN_SIDE_TM_REST
+	person_event SPRITE_POKE_BALL, 16, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, IcePathB2FBlackthornSideTMRest, EVENT_ICE_PATH_B2F_BLACKTHORN_SIDE_TM_REST

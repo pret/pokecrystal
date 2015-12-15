@@ -8,8 +8,8 @@ TinTower9F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ItemFragment_0x185b88:
-	itemfragment HP_UP
+TinTower9FHPUp:
+	itemball HP_UP
 
 UnknownText_0x185b8a:
 	text "HO-OH: Shaoooh!"
@@ -41,4 +41,4 @@ TinTower9F_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKE_BALL, 1, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x185b88, EVENT_TIN_TOWER_9F_HP_UP
+	person_event SPRITE_POKE_BALL, 1, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TinTower9FHPUp, EVENT_TIN_TOWER_9F_HP_UP

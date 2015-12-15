@@ -25,19 +25,11 @@ IcePathB1F_MapScriptHeader:
 	db 0, 0 ; filler
 
 .StoneTable:
-	db 3, 2 ; warp, person
-	dw .Boulder1
-
-	db 4, 3 ; warp, person
-	dw .Boulder2
-
-	db 5, 4 ; warp, person
-	dw .Boulder3
-
-	db 6, 5 ; warp, person
-	dw .Boulder4
-
-	db -1 ; end
+	stonetable 3, ICEPATHB1F_BOULDER1, .Boulder1
+	stonetable 4, ICEPATHB1F_BOULDER2, .Boulder2
+	stonetable 5, ICEPATHB1F_BOULDER3, .Boulder3
+	stonetable 6, ICEPATHB1F_BOULDER4, .Boulder4
+	db -1
 
 .Boulder1:
 	disappear ICEPATHB1F_BOULDER1
@@ -63,7 +55,7 @@ IcePathB1F_MapScriptHeader:
 	pause 30
 	scall .BoulderFallsThrough
 	opentext
-	writetext UnknownText_0x7e512
+	writetext IcePathBoulderFellThroughText
 	waitbutton
 	closetext
 	end
@@ -77,14 +69,14 @@ IcePathB1F_MapScriptHeader:
 IcePathB1FBoulder:
 	jumpstd strengthboulder
 
-ItemFragment_0x7e50d:
-	itemfragment IRON
+IcePathB1FIron:
+	itemball IRON
 
 MapIcePathB1FSignpostItem0:
 	dwb EVENT_ICE_PATH_B1F_HIDDEN_MAX_POTION, MAX_POTION
 
 
-UnknownText_0x7e512:
+IcePathBoulderFellThroughText:
 	text "The boulder fell"
 	line "through."
 	done
@@ -118,4 +110,4 @@ IcePathB1F_MapEventHeader:
 	person_event SPRITE_BOULDER, 8, 7, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_2
 	person_event SPRITE_BOULDER, 9, 8, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_3
 	person_event SPRITE_BOULDER, 7, 17, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_4
-	person_event SPRITE_POKE_BALL, 35, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x7e50d, EVENT_ICE_PATH_B1F_IRON
+	person_event SPRITE_POKE_BALL, 35, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, IcePathB1FIron, EVENT_ICE_PATH_B1F_IRON

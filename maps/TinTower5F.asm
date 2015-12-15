@@ -8,8 +8,8 @@ TinTower5F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ItemFragment_0x185aa9:
-	itemfragment RARE_CANDY
+TinTower5FRareCandy:
+	itemball RARE_CANDY
 
 MapTinTower5FSignpostItem0:
 	dwb EVENT_TIN_TOWER_5F_HIDDEN_FULL_RESTORE, FULL_RESTORE
@@ -40,4 +40,4 @@ TinTower5F_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKE_BALL, 9, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x185aa9, EVENT_TIN_TOWER_5F_RARE_CANDY
+	person_event SPRITE_POKE_BALL, 9, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TinTower5FRareCandy, EVENT_TIN_TOWER_5F_RARE_CANDY

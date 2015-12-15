@@ -540,7 +540,7 @@ DisplayHOFMon: ; 86748
 Function86810: ; 86810
 	call ClearBGPalettes
 	ld hl, VTiles2 tile $63
-	ld de, FontExtra + $d0
+	ld de, FontExtra + 13 tiles
 	lb bc, BANK(FontExtra), 1
 	call Request2bpp
 	hlcoord 0, 0

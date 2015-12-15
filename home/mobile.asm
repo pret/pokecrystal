@@ -127,7 +127,8 @@ Timer:: ; 3e93
 ; 3ed7
 
 Function3ed7:: ; 3ed7
-	ld [$dc02], a
+; unreferenced
+	ld [wdc02], a
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(Function114243)
@@ -138,6 +139,6 @@ Function3ed7:: ; 3ed7
 	ld a, b
 	rst Bankswitch
 
-	ld a, [$dc02]
+	ld a, [wdc02]
 	ret
 ; 3eea
