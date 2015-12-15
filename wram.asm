@@ -334,7 +334,8 @@ wc2cc:: ds 1
 wc2cd:: ds 1
 wSpriteUpdatesEnabled:: ds 1
 wc2cf:: ds 1
-wc2d0:: ds 4
+wMapTimeOfDay:: ds 1
+	ds 3
 wc2d4:: ds 1
 wc2d5:: ds 1
 wLastDexEntry:: ds 1
@@ -1128,18 +1129,18 @@ OverworldMap:: ; c800
 OverworldMapEnd::
 	ds OverworldMap - @
 
+wMysteryGiftPartyTemp:: ; ds PARTY_LENGTH * (1 + 1 + NUM_MOVES)
+wMysteryGiftStaging::
+
 wc800::	ds 1
-wMysteryGiftPlayerID::
 wc801:: ds 1
 wc802:: ds 1
-wMysteryGiftPlayerName::
 wc803:: ds 4
 wc807:: ds 7
-wMysteryGiftPlayerDexCaught:: ds 1
+wc80e:: ds 1
 wc80f:: ds 1
 wc810:: ds 1
 wc811:: ds 1
-wMysteryGiftPlayerBackupItem::
 wc812:: ds 1
 wc813:: ds 1
 wc814:: ds 4
@@ -1162,20 +1163,33 @@ wc8c0:: ds 16
 wc8d0:: ds 16
 wc8e0:: ds 16
 wc8f0:: ds 16
+
+wMysteryGiftPartnerData::
 wc900:: ds 1
 wMysteryGiftPartnerID:: ds 2
 wMysteryGiftPartnerName:: ds NAME_LENGTH
-wc90e:: ds 1
-wc90f:: ds 1
-wc910:: ds 1
-wc911:: ds 1
-wc912:: ds 14
+wMysteryGiftPartnerDexCaught:: ds 1
+wc90f::
+wMysteryGiftPartnerSentDeco:: ds 1
+wMysteryGiftPartnerWhichItem:: ds 1
+wMysteryGiftPartnerWhichDeco:: ds 1
+wc912:: ds 2
+wMysteryGiftPartnerDataEnd::
+	ds 12
 wc920:: ds 16
 wc930:: ds 16
 wc940:: ds 16
-wc950:: ds 16
-wc960:: ds 2
-wc962:: ds 2
+wMysteryGiftPlayerData::
+wc950:: ds 1
+wMysteryGiftPlayerID:: ds 2
+wMysteryGiftPlayerName:: ds NAME_LENGTH
+wMysteryGiftPlayerDexCaught:: ds 1
+wMysteryGiftPlayerSentDeco:: ds 1
+wMysteryGiftPlayerWhichItem:: ds 1
+wMysteryGiftPlayerWhichDeco:: ds 1
+wMysteryGiftPlayerBackupItem:: ds 2
+wMysteryGiftPlayerDataEnd::
+
 wc964:: ds 12
 wc970:: ds 16
 wc980:: ds 16
@@ -1188,6 +1202,8 @@ wc9e0:: ds 16
 wc9f0:: ds 4
 wc9f4:: ds 5
 wc9f9:: ds 7
+
+wCreditsFaux2bpp::
 wca00:: ds 1
 wca01:: ds 1
 wca02:: ds 14

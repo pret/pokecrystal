@@ -9,7 +9,7 @@ EvolutionAnimation: ; 4e5e1
 	ld a, [BaseDexNo]
 	push af
 
-	call _EvolutionAnimation
+	call .EvolutionAnimation
 
 	pop af
 	ld [BaseDexNo], a
@@ -29,7 +29,7 @@ EvolutionAnimation: ; 4e5e1
 	ret
 ; 4e607
 
-_EvolutionAnimation: ; 4e607
+.EvolutionAnimation: ; 4e607
 	ld a, $e4
 	ld [rOBP0], a
 
@@ -38,9 +38,9 @@ _EvolutionAnimation: ; 4e607
 
 	callba ClearSpriteAnims
 
-	ld de, EvolutionGFX
+	ld de, .GFX
 	ld hl, VTiles0
-	lb bc, BANK(EvolutionGFX), 8
+	lb bc, BANK(.GFX), 8
 	call Request2bpp
 
 	xor a
@@ -76,7 +76,7 @@ _EvolutionAnimation: ; 4e607
 
 	ld a, $1
 	ld [hBGMapMode], a
-	call Function4e794
+	call .check_statused
 	jr c, .skip_cry
 
 	ld a, [Buffer1]
@@ -106,10 +106,10 @@ _EvolutionAnimation: ; 4e607
 
 	ld c, $0
 	call .GetSGBLayout
-	call Function4e7a6
+	call .PlayEvolvedSFX
 	callba ClearSpriteAnims
-	call Function4e794
-	jr c, .asm_4e6de
+	call .check_statused
+	jr c, .no_anim
 
 	ld a, [wc2c6]
 	push af
@@ -131,7 +131,7 @@ _EvolutionAnimation: ; 4e607
 	ld [wc2c6], a
 	ret
 
-.asm_4e6de
+.no_anim
 	ret
 
 .cancel_evo
@@ -143,9 +143,9 @@ _EvolutionAnimation: ; 4e607
 
 	ld c, $0
 	call .GetSGBLayout
-	call Function4e7a6
+	call .PlayEvolvedSFX
 	callba ClearSpriteAnims
-	call Function4e794
+	call .check_statused
 	ret c
 
 	ld a, [PlayerHPPal]
@@ -259,7 +259,7 @@ endr
 	ret
 ; 4e794
 
-Function4e794: ; 4e794
+.check_statused: ; 4e794
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Species
 	call GetPartyLocation
@@ -269,7 +269,7 @@ Function4e794: ; 4e794
 	ret
 ; 4e7a6
 
-Function4e7a6: ; 4e7a6
+.PlayEvolvedSFX: ; 4e7a6
 	ld a, [Buffer4]
 	and a
 	ret nz
@@ -279,24 +279,24 @@ Function4e7a6: ; 4e7a6
 	ld a, [hl]
 	push af
 	ld [hl], $0
-.loop
-	call Function4e7cf
+.loop4
+	call .balls_of_light
 	jr nc, .done
-	call Function4e80c
-	jr .loop
+	call .AnimateBallsOfLight
+	jr .loop4
 
 .done
 	ld c, 32
-.loop2
-	call Function4e80c
+.loop5
+	call .AnimateBallsOfLight
 	dec c
-	jr nz, .loop2
+	jr nz, .loop5
 	pop af
 	ld [wJumptableIndex], a
 	ret
 ; 4e7cf
 
-Function4e7cf: ; 4e7cf
+.balls_of_light: ; 4e7cf
 	ld hl, wJumptableIndex
 	ld a, [hl]
 	cp 32
@@ -304,45 +304,45 @@ Function4e7cf: ; 4e7cf
 	ld d, a
 	inc [hl]
 	and $1
-	jr nz, .asm_4e7e6
+	jr nz, .done_balls
 	ld e, $0
-	call Function4e7e8
+	call .GenerateBallOfLight
 	ld e, $10
-	call Function4e7e8
+	call .GenerateBallOfLight
 
-.asm_4e7e6
+.done_balls
 	scf
 	ret
 ; 4e7e8
 
-Function4e7e8: ; 4e7e8
+.GenerateBallOfLight: ; 4e7e8
 	push de
 	depixel 9, 11
 	ld a, SPRITE_ANIM_INDEX_13
 	call _InitSpriteAnimStruct
-	ld hl, $b
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [wJumptableIndex]
-	and $e
+	and %1110
 	sla a
 	pop de
 	add e
 	ld [hl], a
-	ld hl, $3
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $0
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $10
 	ret
 ; 4e80c
 
-Function4e80c: ; 4e80c
+.AnimateBallsOfLight: ; 4e80c
 	push bc
 	callab PlaySpriteAnimations
 	; a = (([hVBlankCounter] + 4) / 2) % NUM_PALETTES
 	ld a, [hVBlankCounter]
-	and $e
+	and %1110
 	srl a
 rept 2
 	inc a
@@ -351,7 +351,7 @@ endr
 	ld b, a
 	ld hl, Sprites + 3 ; attributes
 	ld c, 40
-.loop
+.loop6
 	ld a, [hl]
 	or b
 	ld [hli], a
@@ -359,13 +359,13 @@ rept 3
 	inc hl
 endr
 	dec c
-	jr nz, .loop
+	jr nz, .loop6
 	pop bc
 	call DelayFrame
 	ret
 ; 4e831
 
 
-EvolutionGFX:
+.GFX:
 INCBIN "gfx/evo/bubble_large.2bpp"
 INCBIN "gfx/evo/bubble.2bpp"

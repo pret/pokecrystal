@@ -1,8 +1,8 @@
 Function2c642: ; 2c642 (b:4642)
-	ld de, wc800
+	ld de, wMysteryGiftStaging
 	ld a, $1
 	ld [de], a
-	inc de
+	inc de ; wc801
 	ld a, BANK(sGameData)
 	call GetSRAMBank
 	ld hl, sPlayerData + PlayerID - wPlayerData
@@ -13,34 +13,34 @@ Function2c642: ; 2c642 (b:4642)
 	ld a, [hl]
 	ld [de], a
 	ld c, a
-	inc de
+	inc de ; wc803
 	push bc
 	ld hl, sPlayerData + PlayerName - wPlayerData
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	push de
+	push de ; wc80e
 	ld hl, sPokemonData + PokedexCaught - wPokemonData
-	ld b, (NUM_POKEMON + 7) / 8
+	ld b, EndPokedexCaught - PokedexCaught
 	call CountSetBits
 	pop de
 	pop bc
 	ld a, [wd265]
 	ld [de], a
-	inc de
+	inc de ; wc80f
 	call CloseSRAM
 	call Random
 	and $1
 	ld [de], a
-	inc de
-	call Function2c6ac
+	inc de ; wc810
+	call .RandomSample
 	ld [de], a
-	inc de
+	inc de ; wc811
 	ld a, c
 	ld c, b
 	ld b, a
-	call Function2c6ac
+	call .RandomSample
 	ld [de], a
-	inc de
+	inc de ; wc812
 	ld a, BANK(sBackupMysteryGiftItem)
 	call GetSRAMBank
 	ld a, [sBackupMysteryGiftItem]
@@ -51,12 +51,12 @@ Function2c642: ; 2c642 (b:4642)
 	ld a, $14
 	ld [wca00], a
 	call CloseSRAM
-	ld hl, wc800
-	ld de, wc950
-	ld bc, $14
+	ld hl, wMysteryGiftStaging
+	ld de, wMysteryGiftPlayerData
+	ld bc, wMysteryGiftPlayerDataEnd - wMysteryGiftPlayerData
 	jp CopyBytes
 
-Function2c6ac: ; 2c6ac (b:46ac)
+.RandomSample: ; 2c6ac (b:46ac)
 	push de
 	call Random
 	cp $19 ; 10 percent
@@ -124,8 +124,8 @@ Function2c6ac: ; 2c6ac (b:46ac)
 MysteryGiftGetItemHeldEffect: ; 2c708 (b:4708)
 	ld a, c
 	cp $25 ; 37
-	jr nc, Function2c722
-	ld hl, Unknown_2c725
+	jr nc, MysteryGiftFallbackItem
+	ld hl, MysteryGiftItems
 	ld b, 0
 	add hl, bc
 	ld c, [hl]
@@ -134,20 +134,19 @@ MysteryGiftGetItemHeldEffect: ; 2c708 (b:4708)
 MysteryGiftGetDecoration: ; 2c715 (b:4715)
 	ld a, c
 	cp $25 ; 37
-	jr nc, Function2c722
-	ld hl, Unknown_2c74a
+	jr nc, MysteryGiftFallbackItem
+	ld hl, MysteryGiftDecos
 	ld b, 0
 	add hl, bc
 	ld c, [hl]
 	ret
 
-Function2c722: ; 2c722 (b:4722)
+MysteryGiftFallbackItem: ; 2c722 (b:4722)
 	ld c, DECO_POLKADOT_BED ; GREAT_BALL
 	ret
 ; 2c725 (b:4725)
 
-Unknown_2c725: ; 2c725
-; May or may not be items.
+MysteryGiftItems: ; 2c725
 	db BERRY
 	db PRZCUREBERRY
 	db MINT_BERRY
@@ -187,8 +186,7 @@ Unknown_2c725: ; 2c725
 	db MIRAGE_MAIL
 ; 2c74a
 
-Unknown_2c74a: ; 2c74a
-; May or may not be items.
+MysteryGiftDecos: ; 2c74a
 	db DECO_SNES
 	db DECO_BIG_SNORLAX_DOLL
 	db DECO_BIG_ONIX_DOLL

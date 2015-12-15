@@ -3211,14 +3211,14 @@ Script_halloffame: ; 97bd5
 	callba HallOfFame
 	ld hl, GameTimerPause
 	set 0, [hl]
-	jr DisplayCredits
+	jr ReturnFromCredits
 ; 97bf3
 
 Script_credits: ; 97bf3
 ; script command 0xa2
 
 	callba RedCredits
-DisplayCredits:
+ReturnFromCredits:
 	call Script_end_all
 	ld a, $3
 	call LoadMapStatus

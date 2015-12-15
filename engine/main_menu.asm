@@ -556,7 +556,7 @@ Function4a0c2: ; 4a0c2 (12:60c2)
 	ld bc, $6
 	call CopyBytes
 	call CloseSRAM
-	callba Function150b9
+	callba _LoadData
 	ld c, 2
 	call DelayFrames
 	ld c, $1

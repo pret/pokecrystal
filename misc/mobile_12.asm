@@ -6,7 +6,7 @@ InitMobileProfile: ; 4802f (12:402f)
 	set 0, [hl]
 	ld a, c
 	and a
-	call z, Function48000
+	call z, InitCrystalData
 	call ClearBGPalettes
 	call Function48d3d
 	ld a, [wd479]

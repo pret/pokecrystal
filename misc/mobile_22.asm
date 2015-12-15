@@ -214,7 +214,7 @@ Function89240: ; 89240
 Function89245: ; 89245 (22:5245)
 	callba TryLoadSaveFile
 	ret c
-	callba Function150b9
+	callba _LoadData
 	and a
 	ret
 

@@ -125,7 +125,7 @@ FadeInPalettes:: ; 8c079
 ; 8c084
 
 FadeOutPalettes:: ; 8c084
-	call Function8c0c1
+	call FillWhiteBGColor
 	ld c, $9
 	call GetTimePalFade
 	ld b, $4
@@ -134,7 +134,7 @@ FadeOutPalettes:: ; 8c084
 ; 8c092
 
 Special_BattleTowerFade: ; 8c092
-	call Function8c0c1
+	call FillWhiteBGColor
 	ld c, $9
 	call GetTimePalFade
 	ld b, $4
@@ -167,19 +167,20 @@ Special_FadeBlackQuickly: ; 8c0b6
 ; 8c0c1
 
 
-Function8c0c1: ; 8c0c1
+FillWhiteBGColor: ; 8c0c1
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
+
 	ld hl, UnknBGPals
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	ld hl, UnknBGPals + 8
-	ld c, $6
-.asm_8c0d4
+	ld hl, UnknBGPals + 1 palettes
+	ld c, 6
+.loop
 	ld a, e
 	ld [hli], a
 	ld a, d
@@ -188,7 +189,8 @@ rept 6
 	inc hl
 endr
 	dec c
-	jr nz, .asm_8c0d4
+	jr nz, .loop
+
 	pop af
 	ld [rSVBK], a
 	ret
@@ -200,7 +202,7 @@ ENDM
 
 ReplaceTimeOfDayPals: ; 8c0e5
 	ld hl, .BrightnessLevels
-	ld a, [wc2d0]
+	ld a, [wMapTimeOfDay]
 	cp $4 ; Dark cave, needs Flash
 	jr z, .DarkCave
 	and $7
@@ -306,7 +308,7 @@ ConvertTimePalsIncHL: ; 8c15e
 rept 3
 	inc hl
 endr
-	ld c, $2
+	ld c, 2
 	call DelayFrames
 	dec b
 	jr nz, .loop
@@ -319,7 +321,7 @@ ConvertTimePalsDecHL: ; 8c16d
 rept 3
 	dec hl
 endr
-	ld c, $2
+	ld c, 2
 	call DelayFrames
 	dec b
 	jr nz, .loop

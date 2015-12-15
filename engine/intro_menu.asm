@@ -353,7 +353,7 @@ LoadOrRegenerateLuckyIDNumber: ; 5d33
 Continue: ; 5d65
 	callba TryLoadSaveFile
 	jr c, .FailToLoad
-	callba Function150b9
+	callba _LoadData
 	call LoadStandardMenuDataHeader
 	call DisplaySaveInfoOnContinue
 	ld a, $1

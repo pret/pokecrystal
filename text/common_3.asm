@@ -294,7 +294,7 @@ UnknownText_0x1c04fa: ; 1c04fa
 	text_from_ram StringBuffer1
 	text ""
 	cont "to @"
-	text_from_ram wc950 + 3
+	text_from_ram wMysteryGiftPlayerName
 	text "'s home."
 	prompt
 ; 1c051a

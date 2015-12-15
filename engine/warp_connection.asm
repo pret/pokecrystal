@@ -7,13 +7,12 @@ RunCallback_05_03: ; 1045b0
 	call ResetBikeFlags
 	ld a, $5
 	call RunMapCallback
-
 RunCallback_03: ; 1045c4
 	callba ClearCmdQueue
 	ld a, $3
 	call RunMapCallback
 	call GetMapHeaderTimeOfDayNybble
-	ld [wc2d0], a
+	ld [wMapTimeOfDay], a
 	ret
 
 

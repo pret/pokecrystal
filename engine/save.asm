@@ -892,7 +892,7 @@ _SaveData: ; 1509a
 	jp CloseSRAM
 
 
-Function150b9: ; 150b9
+_LoadData: ; 150b9
 	ld a, BANK(sCrystalData)
 	call GetSRAMBank
 	ld hl, sCrystalData
@@ -938,8 +938,11 @@ endr
 ; 150f9
 
 SaveBoxAddress: ; 150f9
+; Save box via wMisc.
+; We do this in three steps because the size of wMisc is less than
+; the size of sBox.
 	push hl
-
+; Load the first part of the active box.
 	push af
 	push de
 	ld a, BANK(sBox)
@@ -951,7 +954,7 @@ SaveBoxAddress: ; 150f9
 	call CloseSRAM
 	pop de
 	pop af
-
+; Save it to the target box.
 	push af
 	push de
 	call GetSRAMBank
@@ -959,6 +962,8 @@ SaveBoxAddress: ; 150f9
 	ld bc, (wMiscEnd - wMisc)
 	call CopyBytes
 	call CloseSRAM
+
+; Load the second part of the active box.
 	ld a, BANK(sBox)
 	call GetSRAMBank
 	ld hl, sBox + (wMiscEnd - wMisc)
@@ -973,7 +978,7 @@ SaveBoxAddress: ; 150f9
 	add hl, de
 	ld e, l
 	ld d, h
-
+; Save it to the next part of the target box.
 	push af
 	push de
 	call GetSRAMBank
@@ -981,6 +986,8 @@ SaveBoxAddress: ; 150f9
 	ld bc, (wMiscEnd - wMisc)
 	call CopyBytes
 	call CloseSRAM
+
+; Load the third and final part of the active box.
 	ld a, BANK(sBox)
 	call GetSRAMBank
 	ld hl, sBox + (wMiscEnd - wMisc) * 2
@@ -995,7 +1002,7 @@ SaveBoxAddress: ; 150f9
 	add hl, de
 	ld e, l
 	ld d, h
-
+; Save it to the final part of the target box.
 	call GetSRAMBank
 	ld hl, wMisc
 	ld bc, sBoxEnd - (sBox + (wMiscEnd - wMisc) * 2) ; $8e
@@ -1008,10 +1015,13 @@ SaveBoxAddress: ; 150f9
 
 
 LoadBoxAddress: ; 1517d (5:517d)
+; Load box via wMisc.
+; We do this in three steps because the size of wMisc is less than
+; the size of sBox.
 	push hl
 	ld l, e
 	ld h, d
-
+; Load part 1
 	push af
 	push hl
 	call GetSRAMBank
@@ -1031,7 +1041,7 @@ LoadBoxAddress: ; 1517d (5:517d)
 
 	ld de, (wMiscEnd - wMisc)
 	add hl, de
-
+; Load part 2
 	push af
 	push hl
 	call GetSRAMBank
@@ -1048,7 +1058,7 @@ LoadBoxAddress: ; 1517d (5:517d)
 	call CloseSRAM
 	pop hl
 	pop af
-
+; Load part 3
 	ld de, (wMiscEnd - wMisc)
 	add hl, de
 	call GetSRAMBank
