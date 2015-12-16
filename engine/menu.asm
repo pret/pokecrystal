@@ -706,12 +706,12 @@ _ExitMenu:: ; 243e8
 	call PopWindow
 	ld a, [wMenuFlags]
 	bit 0, a
-	jr z, .next
+	jr z, .loop
 	ld d, h
 	ld e, l
 	call RestoreTileBackup
 
-.next
+.loop
 	call GetWindowStackTop
 	ld a, h
 	or l
@@ -727,6 +727,7 @@ _ExitMenu:: ; 243e8
 ; 24423
 
 Function24423: ; 24423
+; Unreferenced
 	ld a, [VramState]
 	bit 0, a
 	ret z
@@ -743,19 +744,18 @@ Function24423: ; 24423
 	ld hl, sScratch
 	decoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-.asm_2444c
+.loop
 	ld a, [hl]
 	cp $61
-	jr c, .asm_24452
+	jr c, .next
 	ld [de], a
-
-.asm_24452
+.next
 	inc hl
 	inc de
 	dec bc
 	ld a, c
 	or b
-	jr nz, .asm_2444c
+	jr nz, .loop
 	call CloseSRAM
 	ret
 ; 2445d

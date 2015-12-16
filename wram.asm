@@ -1129,6 +1129,9 @@ OverworldMap:: ; c800
 OverworldMapEnd::
 	ds OverworldMap - @
 
+wBillsPCPokemonList::
+; Pokemon, box number, list index
+
 wMysteryGiftPartyTemp:: ; ds PARTY_LENGTH * (1 + 1 + NUM_MOVES)
 wMysteryGiftStaging::
 
@@ -1256,15 +1259,16 @@ wcb08:: ds 6
 wcb0e:: ds 5
 wcb13:: ds 9
 wcb1c:: ds 14
-wcb2a:: ds 1
-wcb2b:: ds 1
-wcb2c:: ds 1
-wcb2d:: ds 1
-wcb2e:: ds 1
-wcb2f:: ds 1
-wcb30:: ds 1
-wcb31:: ds 1
-wcb32:: ds 19
+wBillsPC_ScrollPosition:: ds 1
+wBillsPC_CursorPosition:: ds 1
+wBillsPC_NumMonsInBox:: ds 1
+wBillsPC_NumMonsOnScreen:: ds 1
+wBillsPC_LoadedBox:: ds 1 ; 0 if party, 1 - 14 if box, 15 if active box
+wBillsPC_BackupScrollPosition:: ds 1
+wBillsPC_BackupCursorPosition:: ds 1
+wBillsPC_BackupLoadedBox:: ds 1
+wBillsPC_MonHasMail:: ds 1
+	ds 18
 wcb45:: ds 20
 wcb59:: ds 20
 wcb6d:: ds 1
@@ -1663,6 +1667,7 @@ wd000:: ds 1
 DefaultSpawnpoint::
 wd001:: ds 1
 
+; d002
 wTempMail:: mailmsg wTempMail
 	ds wTempMail - @
 
@@ -1678,7 +1683,13 @@ wSeerCaughtData:: ds 1
 wSeerCaughtGender:: ds 1
 	ds wSeerAction - @
 
+wBufferMonNick:: ds PKMN_NAME_LENGTH
+wBufferMonOT:: ds NAME_LENGTH
+wBufferMon:: party_struct wBufferMon
+	ds wBufferMonNick - @
+
 wd002::
+
 PhoneScriptBank::
 LuckyNumberDigit1Buffer::
 wCurrentRadioLine::
@@ -1753,11 +1764,6 @@ wBugContestWinnerName::
 wd016:: ds 1
 wMartItem8BCD::
 wd017:: ds 1
-
-	ds wd00d - @
-wd00d_MonOT:: ds NAME_LENGTH
-wd018_Mon:: party_struct wd018_Mon
-	ds wd018_Mon - @
 
 wd018:: ds 1
 wd019:: ds 1

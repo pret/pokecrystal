@@ -15,7 +15,7 @@ CopyMenuDataHeader::
 	ret
 ; 0x1d4b
 
-Function1d4b:: ; 1d4b
+StoreTo_wMenuCursorBuffer:: ; 1d4b
 	ld [wMenuCursorBuffer], a
 	ret
 ; 1d4f

@@ -12314,11 +12314,11 @@ CheckPartyFullAfterContest: ; 4d9e5
 	xor a
 	ld [CurPartyMon], a
 	ld hl, wContestMon
-	ld de, wd018_Mon
+	ld de, wBufferMon
 	ld bc, BOXMON_STRUCT_LENGTH
 	call CopyBytes
 	ld hl, PlayerName
-	ld de, wd00d_MonOT
+	ld de, wBufferMonOT
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	callab Function51322
@@ -13013,17 +13013,14 @@ CopyPkmnToTempMon: ; 5084a
 	ret
 ; 5088b
 
-Function5088b: ; 5088b
-	ld bc, wd018_Mon
-	jr Function50893
+CalcwBufferMonStats: ; 5088b
+	ld bc, wBufferMon
+	jr _TempMonStatsCalculation
 ; 50890
 
-Function50890: ; 50890
+CalcTempmonStats: ; 50890
 	ld bc, TempMon
-	; fallthrough
-; 50893
-
-Function50893: ; 50893
+_TempMonStatsCalculation: ; 50893
 	ld hl, MON_LEVEL
 	add hl, bc
 	ld a, [hl]
@@ -13044,14 +13041,14 @@ Function50893: ; 50893
 	ld e, l
 	ld a, [CurPartySpecies]
 	cp EGG
-	jr nz, .asm_508c1
+	jr nz, .not_egg
 	xor a
 	ld [de], a
 	inc de
 	ld [de], a
-	jr .asm_508cd
+	jr .zero_status
 
-.asm_508c1
+.not_egg
 	push bc
 	ld hl, MON_MAXHP
 	add hl, bc
@@ -13059,7 +13056,7 @@ Function50893: ; 50893
 	call CopyBytes
 	pop bc
 
-.asm_508cd
+.zero_status
 	ld hl, MON_STATUS
 	add hl, bc
 	xor a
@@ -14631,13 +14628,13 @@ Function51322: ; 51322
 	ld [wd265], a
 	ld hl, sBoxMons
 	ld bc, BOXMON_STRUCT_LENGTH
-	ld de, wd018_Mon
+	ld de, wBufferMon
 	call Function513e0
-	ld hl, wd018_MonMoves
+	ld hl, wBufferMonMoves
 	ld de, TempMonMoves
 	ld bc, NUM_MOVES
 	call CopyBytes
-	ld hl, wd018_MonPP
+	ld hl, wBufferMonPP
 	ld de, TempMonPP
 	ld bc, NUM_MOVES
 	call CopyBytes
@@ -14669,7 +14666,7 @@ Function5138b: ; 5138b
 	ld [wd265], a
 	ld hl, PartyMons
 	ld bc, PARTYMON_STRUCT_LENGTH
-	ld de, wd018_Mon
+	ld de, wBufferMon
 	call Function513e0
 	ret
 ; 513cb

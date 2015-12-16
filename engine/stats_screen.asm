@@ -220,10 +220,10 @@ Function4ddf2: ; 4ddf2 (13:5df2)
 	ld a, [MonType]
 	cp BREEDMON
 	jr nz, .asm_4de10
-	ld a, [wd018_Mon]
+	ld a, [wBufferMon]
 	ld [CurSpecies], a
 	call GetBaseData
-	ld hl, wd018_Mon
+	ld hl, wBufferMon
 	ld de, TempMon
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
@@ -236,7 +236,7 @@ Function4ddf2: ; 4ddf2 (13:5df2)
 	ld a, [MonType]
 	cp BOXMON
 	jr c, .asm_4de2a
-	callba Function50890
+	callba CalcTempmonStats
 .asm_4de2a
 	and a
 	ret
@@ -249,7 +249,7 @@ Function4de2c: ; 4de2c (13:5e2c)
 	push hl
 	push de
 	push bc
-	callba Functione2f95
+	callba StatsScreenDPad
 	pop bc
 	pop de
 	pop hl
