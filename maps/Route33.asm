@@ -10,42 +10,42 @@ Route33_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-LassScript_0x1ac002:
-	jumptextfaceplayer UnknownText_0x1ac1e7
+Route33LassScript:
+	jumptextfaceplayer Route33LassText
 
 TrainerHikerAnthony:
-	trainer EVENT_BEAT_HIKER_ANTHONY, HIKER, ANTHONY2, HikerAnthony2SeenText, HikerAnthony2BeatenText, 0, HikerAnthony2Script
+	trainer EVENT_BEAT_HIKER_ANTHONY, HIKER, ANTHONY2, HikerAnthony2SeenText, HikerAnthony2BeatenText, 0, .Script
 
-HikerAnthony2Script:
+.Script:
 	writecode VAR_CALLERID, PHONE_HIKER_ANTHONY
 	end_if_just_battled
 	opentext
 	checkflag ENGINE_ANTHONY
-	iftrue UnknownScript_0x1ac051
+	iftrue .Rematch
 	checkflag ENGINE_DUNSPARCE_SWARM
-	iftrue UnknownScript_0x1ac0c5
+	iftrue .Swarm
 	checkcellnum PHONE_HIKER_ANTHONY
-	iftrue UnknownScript_0x1ac0d7
+	iftrue .NumberAccepted
 	checkevent EVENT_ANTHONY_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x1ac03a
-	writetext UnknownText_0x1ac153
+	iftrue .AskAgain
+	writetext HikerAnthony2AfterText
 	buttonsound
 	setevent EVENT_ANTHONY_ASKED_FOR_PHONE_NUMBER
-	scall UnknownScript_0x1ac0cb
-	jump UnknownScript_0x1ac03d
+	scall .AskNumber1
+	jump .AskForPhoneNumber
 
-UnknownScript_0x1ac03a:
-	scall UnknownScript_0x1ac0cf
-UnknownScript_0x1ac03d:
+.AskAgain:
+	scall .AskNumber2
+.AskForPhoneNumber:
 	askforphonenumber PHONE_HIKER_ANTHONY
-	if_equal $1, UnknownScript_0x1ac0df
-	if_equal $2, UnknownScript_0x1ac0db
+	if_equal $1, .PhoneFull
+	if_equal $2, .NumberDeclined
 	trainertotext HIKER, ANTHONY2, $0
-	scall UnknownScript_0x1ac0d3
-	jump UnknownScript_0x1ac0d7
+	scall .RegisteredNumber
+	jump .NumberAccepted
 
-UnknownScript_0x1ac051:
-	scall UnknownScript_0x1ac0e3
+.Rematch:
+	scall .RematchStd
 	winlosstext HikerAnthony2BeatenText, 0
 	copybytetovar wAnthonyFightCount
 	if_equal 4, .Fight4
@@ -104,44 +104,44 @@ UnknownScript_0x1ac051:
 	clearflag ENGINE_ANTHONY
 	end
 
-UnknownScript_0x1ac0c5:
-	writetext UnknownText_0x1ac180
+.Swarm:
+	writetext HikerAnthonyDunsparceText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x1ac0cb:
+.AskNumber1:
 	jumpstd asknumber1m
 	end
 
-UnknownScript_0x1ac0cf:
+.AskNumber2:
 	jumpstd asknumber2m
 	end
 
-UnknownScript_0x1ac0d3:
+.RegisteredNumber:
 	jumpstd registerednumberm
 	end
 
-UnknownScript_0x1ac0d7:
+.NumberAccepted:
 	jumpstd numberacceptedm
 	end
 
-UnknownScript_0x1ac0db:
+.NumberDeclined:
 	jumpstd numberdeclinedm
 	end
 
-UnknownScript_0x1ac0df:
+.PhoneFull:
 	jumpstd phonefullm
 	end
 
-UnknownScript_0x1ac0e3:
+.RematchStd:
 	jumpstd rematchm
 	end
 
 MapRoute33Signpost0Script:
-	jumptext UnknownText_0x1ac279
+	jumptext Route33RouteSignText
 
-FruitTreeScript_0x1ac0ea:
+Route33FruitTreeScript:
 	fruittree FRUITTREE_ROUTE_33
 
 HikerAnthony2SeenText:
@@ -157,13 +157,13 @@ HikerAnthony2BeatenText:
 	line "more zip than me!"
 	done
 
-UnknownText_0x1ac153:
+HikerAnthony2AfterText:
 	text "We HIKERS are at"
 	line "our best in the"
 	cont "mountains."
 	done
 
-UnknownText_0x1ac180:
+HikerAnthonyDunsparceText:
 	text "Hey, did you get a"
 	line "DUNSPARCE?"
 
@@ -174,7 +174,7 @@ UnknownText_0x1ac180:
 	cont "got a funny face!"
 	done
 
-UnknownText_0x1ac1e7:
+Route33LassText:
 	text "Pant, pant…"
 
 	para "I finally got"
@@ -190,7 +190,7 @@ UnknownText_0x1ac1e7:
 	line "outside."
 	done
 
-UnknownText_0x1ac279:
+Route33RouteSignText:
 	text "ROUTE 33"
 	done
 
@@ -212,5 +212,5 @@ Route33_MapEventHeader:
 .PersonEvents:
 	db 3
 	person_event SPRITE_POKEFAN_M, 13, 6, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 2, TrainerHikerAnthony, -1
-	person_event SPRITE_LASS, 16, 13, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, LassScript_0x1ac002, -1
-	person_event SPRITE_FRUIT_TREE, 16, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1ac0ea, -1
+	person_event SPRITE_LASS, 16, 13, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, Route33LassScript, -1
+	person_event SPRITE_FRUIT_TREE, 16, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route33FruitTreeScript, -1

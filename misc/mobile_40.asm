@@ -429,7 +429,7 @@ Function1002dc: ; 1002dc
 
 Function1002ed: ; 1002ed
 	callba LoadOW_BGPal7
-	callba Function96a4
+	callba ApplyPals
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	call DelayFrame
@@ -2344,7 +2344,7 @@ Function100eca: ; 100eca
 ; 100ed4
 
 Function100ed4: ; 100ed4
-	callba Function96a4
+	callba ApplyPals
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret

@@ -1791,7 +1791,7 @@ Function89ae6: ; 89ae6
 
 
 Function89b00: ; 89b00 (22:5b00)
-	callba Function49351
+	callba MG_Mobile_Layout_LoadPals
 	ret
 ; 89b07 (22:5b07)
 
@@ -2420,7 +2420,7 @@ Function89ee1: ; 89ee1 (22:5ee1)
 	call Function893e2
 	call Function8923c
 	callba Function4a3a7
-	callba Function49384
+	callba MG_Mobile_Layout_CreatePalBoxes
 	hlcoord 1, 0
 	call Function8a53d
 	ret
@@ -2950,7 +2950,7 @@ Function8a262: ; 8a262 (22:6262)
 	call Function893e2
 	call Function8923c
 	callba Function4a3a7
-	callba Function49384
+	callba MG_Mobile_Layout_CreatePalBoxes
 	hlcoord 1, 0
 	call Function8a53d
 	hlcoord 12, 4
@@ -3044,7 +3044,7 @@ Function8a31c: ; 8a31c (22:631c)
 	push bc
 	call Function8923c
 	callba Function4a3a7
-	callba Function49384
+	callba MG_Mobile_Layout_CreatePalBoxes
 	hlcoord 1, 0
 	call Function8a53d
 	hlcoord 12, 4

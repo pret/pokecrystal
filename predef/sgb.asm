@@ -114,7 +114,7 @@ endr
 	ld bc, $0010
 	call CopyBytes
 
-	call Function9729
+	call GetBattlemonBackpicPalettePointer
 
 	ld a, [hli]
 	ld [wcda9 + $13], a
@@ -124,7 +124,7 @@ endr
 	ld [wcda9 + $15], a
 	ld a, [hl]
 	ld [wcda9 + $16], a
-	call Function973a
+	call GetEnemyFrontpicPalettePointer
 	ld a, [hli]
 	ld [wcda9 + $19], a
 	ld a, [hli]
@@ -190,7 +190,7 @@ endr
 	ld [wcda9 + 6], a
 	ld a, [CurPartySpecies]
 	ld bc, wd10e + 21
-	call Function974b
+	call GetPlayerOrMonPalettePointer
 	ld a, [hli]
 	ld [wcda9 + 9], a
 	ld a, [hli]
@@ -224,7 +224,7 @@ endr
 	inc hl
 	ld [hl], $19
 	ld a, [CurPartySpecies]
-	call Function9775
+	call GetMonPalettePointer_
 	ld a, [hli]
 	ld [wcda9 + 9], a
 	ld a, [hli]
@@ -253,7 +253,7 @@ endr
 	ld [hl], $19
 	ld a, [CurPartySpecies]
 	ld bc, wd10e + 21
-	call Function974b
+	call GetPlayerOrMonPalettePointer
 	ld a, [hli]
 	ld [wcda9 + 9], a
 	ld a, [hli]
@@ -410,7 +410,7 @@ endr
 	ld c, l
 	ld b, h
 	ld a, [PlayerHPPal]
-	call Function974b
+	call GetPlayerOrMonPalettePointer
 	ld a, [hli]
 	ld [wcda9 + 3], a
 	ld a, [hli]
@@ -515,7 +515,7 @@ endr
 	call CopyBytes
 	ld a, [CurPartySpecies]
 	ld bc, wd10e + 21
-	call Function974b
+	call GetPlayerOrMonPalettePointer
 	ld a, [hli]
 	ld [wcda9 + 3], a
 	ld a, [hli]
@@ -542,7 +542,7 @@ endr
 	call CopyBytes
 	ld a, [CurPartySpecies]
 	ld bc, wd10e + 21
-	call Function9764
+	call GetFrontpicPalettePointer
 	ld a, [hli]
 	ld [wcda9 + 3], a
 	ld a, [hli]

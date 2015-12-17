@@ -64,7 +64,7 @@ _DepositPKMN: ; e2391 (38:6391)
 	call PCMonInfo
 	ld a, $ff
 	ld [CurPartySpecies], a
-	ld a, $17
+	ld a, SCGB_17
 	call BillsPC_ApplyPalettes
 	call WaitBGMap
 	call BillsPC_UpdateSelectionCursor
@@ -120,7 +120,7 @@ _DepositPKMN: ; e2391 (38:6391)
 	call ClearSprites
 	call BillsPC_GetSelectedPokemonSpecies
 	ld [CurPartySpecies], a
-	ld a, $17
+	ld a, SCGB_17
 	call BillsPC_ApplyPalettes
 	ld de, PCString_WhatsUp
 	call BillsPC_PlaceString
@@ -182,7 +182,7 @@ BillsPCDepositFuncStats: ; e24c8 (38:64c8)
 	call PCMonInfo
 	call BillsPC_GetSelectedPokemonSpecies
 	ld [CurPartySpecies], a
-	ld a, $17
+	ld a, SCGB_17
 	call BillsPC_ApplyPalettes
 	ret
 
@@ -334,7 +334,7 @@ _WithdrawPKMN: ; e2583 (38:6583)
 	call PCMonInfo
 	ld a, $ff
 	ld [CurPartySpecies], a
-	ld a, %00010111
+	ld a, SCGB_17
 	call BillsPC_ApplyPalettes
 	call WaitBGMap
 	call BillsPC_UpdateSelectionCursor
@@ -389,7 +389,7 @@ _WithdrawPKMN: ; e2583 (38:6583)
 	call ClearSprites
 	call BillsPC_GetSelectedPokemonSpecies
 	ld [CurPartySpecies], a
-	ld a, %00010111 ; 0,1,2,3
+	ld a, SCGB_17
 	call BillsPC_ApplyPalettes
 	ld de, PCString_WhatsUp
 	call BillsPC_PlaceString
@@ -449,7 +449,7 @@ endr
 	call PCMonInfo
 	call BillsPC_GetSelectedPokemonSpecies
 	ld [CurPartySpecies], a
-	ld a, $17
+	ld a, SCGB_17
 	call BillsPC_ApplyPalettes
 	ret
 
@@ -586,7 +586,7 @@ _MovePKMNWithoutMail: ; e2759
 	call PCMonInfo
 	ld a, $ff
 	ld [CurPartySpecies], a
-	ld a, %00010111 ; 0,1,2,3
+	ld a, SCGB_17
 	call BillsPC_ApplyPalettes
 	call WaitBGMap
 	call BillsPC_UpdateSelectionCursor
@@ -652,7 +652,7 @@ _MovePKMNWithoutMail: ; e2759
 	call ClearSprites
 	call BillsPC_GetSelectedPokemonSpecies
 	ld [CurPartySpecies], a
-	ld a, %00010111 ; 0,1,2,3
+	ld a, SCGB_17
 	call BillsPC_ApplyPalettes
 	ld de, PCString_WhatsUp
 	call BillsPC_PlaceString
@@ -711,7 +711,7 @@ endr
 	call PCMonInfo
 	call BillsPC_GetSelectedPokemonSpecies
 	ld [CurPartySpecies], a
-	ld a, %00010111
+	ld a, SCGB_17
 	call BillsPC_ApplyPalettes
 	ret
 ; e28bd

@@ -46,7 +46,7 @@ InitMobileProfile: ; 4802f (12:402f)
 	ld c, 20
 	call DelayFrames
 	ld b, $1
-	call Function4930f
+	call GetMysteryGift_MobileAdapterLayout
 	call ClearBGPalettes
 	hlcoord 0, 0
 	ld b, $2
@@ -665,7 +665,7 @@ Function48689: ; 48689 (12:4689)
 	ld c, 7
 	call DelayFrames
 	ld b, $1
-	call Function4930f
+	call GetMysteryGift_MobileAdapterLayout
 	call ClearBGPalettes
 	hlcoord 0, 0
 	ld b, $4

@@ -535,7 +535,7 @@ Function4a098: ; 4a098 (12:6098)
 	call LoadStandardMenuDataHeader
 	callba Function89de0
 	call Call_ExitMenu
-	call Function49351
+	call MG_Mobile_Layout_LoadPals
 	call Function4a485
 	pop bc
 	jp Function49f16
@@ -996,7 +996,7 @@ Function4a485: ; 4a485 (12:6485)
 	ret
 
 Function4a492: ; 4a492 (12:6492)
-	call Function4936e
+	call MG_Mobile_Layout00
 	ret
 
 

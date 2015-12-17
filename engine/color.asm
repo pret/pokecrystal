@@ -113,7 +113,7 @@ Function8ad1: ; 8ad1
 	ld hl, PalPacket_9c56 + 1
 	call CopyFourPalettes
 	call Function971a
-	call Function9699
+	call WipeAttrMap
 	ret
 ; 8ade
 
@@ -160,7 +160,7 @@ Function8b07: ; 8b07
 	ld a, $5
 	call FarCopyWRAM
 
-	call Function96a4
+	call ApplyPals
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
@@ -237,7 +237,7 @@ Function8b81: ; 8b81
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	pop af
-	call Function9775
+	call GetMonPalettePointer_
 	ld a, [hli]
 	ld [wcda9 + 3], a
 	ld a, [hli]
@@ -252,20 +252,20 @@ Function8b81: ; 8b81
 .asm_8bb2
 	ld de, UnknOBPals
 	ld a, c
-	call Function9775
-	call Function9643
+	call GetMonPalettePointer_
+	call LoadPalette_White_Col1_Col2_Black
 	ret
 ; 8bbd
 
 Function8bbd: ; 8bbd
 	ld a, [TrainerClass]
-	call Function976b
+	call GetTrainerPalettePointer
 	ld a, e
 	jr asm_8bd7
 
 Function8bc6:
 	ld a, [CurPartySpecies]
-	call Function97ee
+	call GetMonPalettePointer
 	ld a, e
 	bit 7, a
 	jr z, .asm_8bd7
@@ -290,7 +290,7 @@ asm_8bd7
 	ld e, l
 	ld d, h
 	pop hl
-	call Function9643
+	call LoadPalette_White_Col1_Col2_Black
 	ret
 ; 8bec
 
@@ -332,19 +332,19 @@ Function8c1d: ; 8c1d
 	and a
 	jr z, .asm_8c2d
 	ld a, [CurPartySpecies]
-	call Function9775
+	call GetMonPalettePointer_
 	jr .asm_8c33
 
 .asm_8c2d
 	ld a, [TrainerClass]
-	call Function976b
+	call GetTrainerPalettePointer
 
 .asm_8c33
 	ld de, UnknBGPals
-	call Function9643
-	call Function9699
-	call Function96b3
-	call Function96a4
+	call LoadPalette_White_Col1_Col2_Black
+	call WipeAttrMap
+	call ApplyAttrMap
+	call ApplyPals
 	ret
 ; 8c43
 
@@ -421,7 +421,7 @@ endr
 	ld [UnknBGPals + 8 * 2 + 1], a
 	pop af
 	ld [rSVBK], a
-	call Function96a4
+	call ApplyPals
 	ld a, $1
 	ret
 ; 8cb4
@@ -464,9 +464,9 @@ endr
 	ld bc, 1 palettes
 	ld a, $5
 	call FarCopyWRAM
-	call Function96a4
-	call Function9699
-	call Function96b3
+	call ApplyPals
+	call WipeAttrMap
+	call ApplyAttrMap
 	ret
 ; 8d05
 
@@ -532,9 +532,9 @@ Function95f0: ; 95f0
 	ld bc, 8
 	ld a, $5
 	call FarCopyWRAM
-	call Function96a4
-	call Function9699
-	call Function96b3
+	call ApplyPals
+	call WipeAttrMap
+	call ApplyAttrMap
 	ret
 ; 9608
 
@@ -594,29 +594,33 @@ LoadHLPaletteIntoDE: ; 9630
 	ret
 ; 9643
 
-Function9643: ; 9643
+LoadPalette_White_Col1_Col2_Black: ; 9643
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld a, $ff
+
+	ld a, $7fff % $100
 	ld [de], a
 	inc de
-	ld a, $7f
+	ld a, $7fff / $100
 	ld [de], a
 	inc de
-	ld c, $4
+
+	ld c, 2 * 2
 .loop
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
 	jr nz, .loop
+
 	xor a
 	ld [de], a
 	inc de
 	ld [de], a
 	inc de
+
 	pop af
 	ld [rSVBK], a
 	ret
@@ -671,7 +675,7 @@ endr
 ; 9699
 
 
-Function9699: ; 9699
+WipeAttrMap: ; 9699
 	hlcoord 0, 0, AttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	xor a
@@ -679,7 +683,7 @@ Function9699: ; 9699
 	ret
 ; 96a4
 
-Function96a4: ; 96a4
+ApplyPals: ; 96a4
 	ld hl, UnknBGPals
 	ld de, BGPals
 	ld bc, 16 palettes
@@ -688,10 +692,10 @@ Function96a4: ; 96a4
 	ret
 ; 96b3
 
-Function96b3: ; 96b3
+ApplyAttrMap: ; 96b3
 	ld a, [rLCDC]
 	bit 7, a
-	jr z, .asm_96d0
+	jr z, .UpdateVBank1
 	ld a, [hBGMapMode]
 	push af
 	ld a, $2
@@ -704,29 +708,28 @@ Function96b3: ; 96b3
 	ld [hBGMapMode], a
 	ret
 
-.asm_96d0
+.UpdateVBank1
 	hlcoord 0, 0, AttrMap
 	debgcoord 0, 0
-	ld b, $12
+	ld b, SCREEN_HEIGHT
 	ld a, $1
 	ld [rVBK], a
-.asm_96dc
-	ld c, $14
-.asm_96de
+.row
+	ld c, SCREEN_WIDTH
+.col
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_96de
-	ld a, $c
+	jr nz, .col
+	ld a, BG_MAP_WIDTH - SCREEN_WIDTH
 	add e
-	jr nc, .asm_96ea
+	jr nc, .okay
 	inc d
-
-.asm_96ea
+.okay
 	ld e, a
 	dec b
-	jr nz, .asm_96dc
+	jr nz, .row
 	ld a, $0
 	ld [rVBK], a
 	ret
@@ -770,31 +773,31 @@ Function971a: ; 971a
 	ret
 ; 9729
 
-Function9729: ; 9729
+GetBattlemonBackpicPalettePointer: ; 9729
 	push de
 	callba GetPartyMonDVs
 	ld c, l
 	ld b, h
 	ld a, [TempBattleMonSpecies]
-	call Function974b
+	call GetPlayerOrMonPalettePointer
 	pop de
 	ret
 ; 973a
 
-Function973a: ; 973a
+GetEnemyFrontpicPalettePointer: ; 973a
 	push de
 	callba GetEnemyMonDVs
 	ld c, l
 	ld b, h
 	ld a, [TempEnemyMonSpecies]
-	call Function9764
+	call GetFrontpicPalettePointer
 	pop de
 	ret
 ; 974b
 
-Function974b: ; 974b
+GetPlayerOrMonPalettePointer: ; 974b
 	and a
-	jp nz, Function97f9
+	jp nz, GetMonNormalOrShinyPalettePointer
 	ld a, [wPlayerSpriteSetupFlags]
 	bit 2, a ; transformed to male
 	jr nz, .male
@@ -809,12 +812,12 @@ Function974b: ; 974b
 	ret
 ; 9764
 
-Function9764: ; 9764
+GetFrontpicPalettePointer: ; 9764
 	and a
-	jp nz, Function97f9
+	jp nz, GetMonNormalOrShinyPalettePointer
 	ld a, [TrainerClass]
 
-Function976b: ; 976b
+GetTrainerPalettePointer: ; 976b
 	ld l, a
 	ld h, 0
 rept 2
@@ -825,27 +828,23 @@ endr
 	ret
 ; 9775
 
-Function9775: ; 9775
-	call Function97ee
+GetMonPalettePointer_: ; 9775
+	call GetMonPalettePointer
 	ret
 ; 9779
 
-Function9779: ; 9779
-	ret
-; 977a
-
-Function977a: ; 977a
+Function9779: mobile ; 9779
 	call CheckCGB
 	ret z
 	ld hl, Palettes_979c
 	ld a, $90
 	ld [rOBPI], a
-	ld c, $30
-.asm_9787
+	ld c, 6 palettes
+.loop
 	ld a, [hli]
 	ld [rOBPD], a
 	dec c
-	jr nz, .asm_9787
+	jr nz, .loop
 	ld hl, Palettes_979c
 	ld de, UnknOBPals + 8 * 2
 	ld bc, 2 palettes
@@ -902,7 +901,7 @@ Function97cc: ; 97cc
 ; 97e5
 
 Function97e5: ; 97e5
-	ld c, $8
+	ld c, 1 palettes
 .loop
 	ld a, [hli]
 	ld [rOBPD], a
@@ -911,7 +910,7 @@ Function97e5: ; 97e5
 	ret
 ; 97ee
 
-Function97ee: ; 97ee
+GetMonPalettePointer: ; 97ee
 	ld l, a
 	ld h, $0
 rept 3
@@ -922,9 +921,9 @@ endr
 	ret
 ; 97f9
 
-Function97f9: ; 97f9
+GetMonNormalOrShinyPalettePointer: ; 97f9
 	push bc
-	call Function97ee
+	call GetMonPalettePointer
 	pop bc
 	push hl
 	call CheckShininess

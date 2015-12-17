@@ -1639,7 +1639,7 @@ Function1057d7: ; 1057d7 (41:57d7)
 	call EnableLCD
 	call WaitBGMap
 	ld b, $2
-	callba Function4930f
+	callba GetMysteryGift_MobileAdapterLayout
 	jp SetPalettes
 
 .Load6Row: ; 1058c6 (41:58c6)

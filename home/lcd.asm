@@ -2,6 +2,7 @@
 
 
 Function547:: ; 547
+; Unreferenced
 	ld a, [hLCDStatCustom]
 	cp rSCX - $ff00
 	ret nz

@@ -22,55 +22,55 @@ VioletCity_MapScriptHeader:
 	setflag ENGINE_FLYPOINT_VIOLET
 	return
 
-FisherScript_0x1a83bb:
-	applymovement VIOLETCITY_FISHER, MovementData_0x1a8465
+VioletCityEarlScript:
+	applymovement VIOLETCITY_FISHER, VioletCitySpinningEarl_MovementData
 	faceplayer
 	opentext
-	writetext UnknownText_0x1a8473
+	writetext Text_EarlAsksIfYouBeatFalkner
 	yesorno
-	iffalse UnknownScript_0x1a83d1
-	jump UnknownScript_0x1a83cb
+	iffalse .FollowEarl
+	jump .PointlessJump
 
-UnknownScript_0x1a83cb:
-	writetext UnknownText_0x1a84ac
+.PointlessJump:
+	writetext Text_VeryNiceIndeed
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x1a83d1:
-	writetext UnknownText_0x1a84cb
+.FollowEarl:
+	writetext Text_FollowEarl
 	waitbutton
 	closetext
 	playmusic MUSIC_SHOW_ME_AROUND
 	follow VIOLETCITY_FISHER, PLAYER
-	applymovement VIOLETCITY_FISHER, MovementData_0x1a842a
+	applymovement VIOLETCITY_FISHER, VioletCityFollowEarl_MovementData
 	spriteface PLAYER, UP
-	applymovement VIOLETCITY_FISHER, MovementData_0x1a8465
+	applymovement VIOLETCITY_FISHER, VioletCitySpinningEarl_MovementData
 	stopfollow
 	special RestartMapMusic
 	opentext
-	writetext UnknownText_0x1a84f9
+	writetext Text_HereTeacherIAm
 	waitbutton
 	closetext
-	applymovement VIOLETCITY_FISHER, MovementData_0x1a8465
-	applymovement VIOLETCITY_FISHER, MovementData_0x1a8463
+	applymovement VIOLETCITY_FISHER, VioletCitySpinningEarl_MovementData
+	applymovement VIOLETCITY_FISHER, VioletCityFinishFollowEarl_MovementData
 	playsound SFX_ENTER_DOOR
 	disappear VIOLETCITY_FISHER
 	clearevent EVENT_EARLS_ACADEMY_EARL
 	waitsfx
 	end
 
-LassScript_0x1a8403:
-	jumptextfaceplayer UnknownText_0x1a8529
+VioletCityLassScript:
+	jumptextfaceplayer VioletCityLassText
 
-SuperNerdScript_0x1a8406:
-	jumptextfaceplayer UnknownText_0x1a8593
+VioletCitySuperNerdScript:
+	jumptextfaceplayer VioletCitySuperNerdText
 
-GrampsScript_0x1a8409:
-	jumptextfaceplayer UnknownText_0x1a85ef
+VioletCityGrampsScript:
+	jumptextfaceplayer VioletCityGrampsText
 
-YoungsterScript_0x1a840c:
-	jumptextfaceplayer UnknownText_0x1a8665
+VioletCityYoungsterScript:
+	jumptextfaceplayer VioletCityYoungsterText
 
 VioletCitySign:
 	jumptext VioletCitySignText
@@ -96,13 +96,13 @@ VioletCityPPUp:
 VioletCityRareCandy:
 	itemball RARE_CANDY
 
-FruitTreeScript_0x1a8425:
+VioletCityFruitTreeScript:
 	fruittree FRUITTREE_VIOLET_CITY
 
 VioletCityHiddenHyperPotion:
 	dwb EVENT_VIOLET_CITY_HIDDEN_HYPER_POTION, HYPER_POTION
 
-MovementData_0x1a842a:
+VioletCityFollowEarl_MovementData:
 	big_step_down
 	big_step_down
 	turn_head_down
@@ -161,11 +161,11 @@ MovementData_0x1a842a:
 	turn_head_down
 	step_end
 
-MovementData_0x1a8463:
+VioletCityFinishFollowEarl_MovementData:
 	step_up
 	step_end
 
-MovementData_0x1a8465:
+VioletCitySpinningEarl_MovementData:
 	turn_head_down
 	turn_head_left
 	turn_head_up
@@ -181,7 +181,7 @@ MovementData_0x1a8465:
 	turn_head_down
 	step_end
 
-UnknownText_0x1a8473:
+Text_EarlAsksIfYouBeatFalkner:
 	text "Hello!"
 	line "You are trainer?"
 
@@ -189,24 +189,24 @@ UnknownText_0x1a8473:
 	line "win you did?"
 	done
 
-UnknownText_0x1a84ac:
+Text_VeryNiceIndeed:
 	text "Ooh, la la!"
 	line "Very indeed nice!"
 	done
 
-UnknownText_0x1a84cb:
+Text_FollowEarl:
 	text "Is that so? Then"
 	line "study shall you!"
 	cont "Follow me!"
 	done
 
-UnknownText_0x1a84f9:
+Text_HereTeacherIAm:
 	text "Here, teacher I"
 	line "am. Good it is"
 	cont "you study here!"
 	done
 
-UnknownText_0x1a8529:
+VioletCityLassText:
 	text "Ghosts are rumored"
 	line "to appear in"
 	cont "SPROUT TOWER."
@@ -218,7 +218,7 @@ UnknownText_0x1a8529:
 	line "ghosts."
 	done
 
-UnknownText_0x1a8593:
+VioletCitySuperNerdText:
 	text "Hey, you're a"
 	line "#MON trainer?"
 
@@ -229,7 +229,7 @@ UnknownText_0x1a8593:
 	line "for prime time!"
 	done
 
-UnknownText_0x1a85ef:
+VioletCityGrampsText:
 	text "FALKNER, from the"
 	line "VIOLET #MON"
 
@@ -243,7 +243,7 @@ UnknownText_0x1a85ef:
 	line "job with it."
 	done
 
-UnknownText_0x1a8665:
+VioletCityYoungsterText:
 	text "I saw a wiggly"
 	line "tree up ahead!"
 
@@ -303,7 +303,7 @@ VioletCity_MapEventHeader:
 	db 7
 	signpost 20, 24, SIGNPOST_READ, VioletCitySign
 	signpost 17, 15, SIGNPOST_READ, VioletGymSign
-	signpost 8, 24, SIGNPOST_READ, SproutTowerSign
+	signpost  8, 24, SIGNPOST_READ, SproutTowerSign
 	signpost 17, 27, SIGNPOST_READ, EarlsPokemonAcademySign
 	signpost 25, 32, SIGNPOST_READ, VioletCityPokeCenterSign
 	signpost 17, 10, SIGNPOST_READ, VioletCityMartSign
@@ -311,11 +311,11 @@ VioletCity_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_FISHER, 16, 13, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, FisherScript_0x1a83bb, EVENT_VIOLET_CITY_EARL
-	person_event SPRITE_LASS, 28, 28, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, LassScript_0x1a8403, -1
-	person_event SPRITE_SUPER_NERD, 14, 24, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x1a8406, -1
-	person_event SPRITE_GRAMPS, 20, 17, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrampsScript_0x1a8409, -1
-	person_event SPRITE_YOUNGSTER, 18, 5, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x1a840c, -1
-	person_event SPRITE_FRUIT_TREE, 29, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a8425, -1
+	person_event SPRITE_FISHER, 16, 13, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, VioletCityEarlScript, EVENT_VIOLET_CITY_EARL
+	person_event SPRITE_LASS, 28, 28, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, VioletCityLassScript, -1
+	person_event SPRITE_SUPER_NERD, 14, 24, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, VioletCitySuperNerdScript, -1
+	person_event SPRITE_GRAMPS, 20, 17, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, VioletCityGrampsScript, -1
+	person_event SPRITE_YOUNGSTER, 18, 5, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, VioletCityYoungsterScript, -1
+	person_event SPRITE_FRUIT_TREE, 29, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, VioletCityFruitTreeScript, -1
 	person_event SPRITE_POKE_BALL, 1, 4, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, VioletCityPPUp, EVENT_VIOLET_CITY_PP_UP
 	person_event SPRITE_POKE_BALL, 5, 35, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, VioletCityRareCandy, EVENT_VIOLET_CITY_RARE_CANDY

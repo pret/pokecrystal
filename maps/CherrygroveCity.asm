@@ -112,7 +112,7 @@ CherrygroveSilverTriggerNorth:
 	special Special_FadeOutMusic
 	pause 15
 	appear CHERRYGROVECITY_SILVER
-	applymovement CHERRYGROVECITY_SILVER, MovementData_0x19c1ce
+	applymovement CHERRYGROVECITY_SILVER, CherrygroveCity_RivalWalksToYou
 	spriteface PLAYER, RIGHT
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
@@ -171,9 +171,9 @@ CherrygroveSilverTriggerNorth:
 	closetext
 .FinishRival:
 	playsound SFX_TACKLE
-	applymovement PLAYER, MovementData_0x19c1d4
+	applymovement PLAYER, CherrygroveCity_RivalPushesYouOutOfTheWay
 	spriteface PLAYER, LEFT
-	applymovement CHERRYGROVECITY_SILVER, MovementData_0x19c1da
+	applymovement CHERRYGROVECITY_SILVER, CherrygroveCity_RivalExitsStageLeft
 	disappear CHERRYGROVECITY_SILVER
 	dotrigger $0
 	special HealParty
@@ -310,7 +310,7 @@ GuideGentMovement6:
 	step_up
 	step_end
 
-MovementData_0x19c1ce:
+CherrygroveCity_RivalWalksToYou:
 	step_left
 	step_left
 	step_left
@@ -318,17 +318,17 @@ MovementData_0x19c1ce:
 	step_left
 	step_end
 
-MovementData_0x19c1d4:
+CherrygroveCity_RivalPushesYouOutOfTheWay:
 	big_step_down
 	turn_head_up
 	step_end
 
-MovementData_0x19c1d7:
+CherrygroveCity_UnusedMovementData:
 	step_left
 	turn_head_down
 	step_end
 
-MovementData_0x19c1da:
+CherrygroveCity_RivalExitsStageLeft:
 	big_step_left
 	big_step_left
 	big_step_left

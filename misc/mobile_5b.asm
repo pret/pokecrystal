@@ -184,7 +184,7 @@ Function16c130: ; 16c130
 	ld bc, 8
 	ld a, $5
 	call FarCopyWRAM
-	callba Function96a4
+	callba ApplyPals
 	ret
 ; 16c145
 
@@ -362,7 +362,7 @@ endr
 	ld a, e
 	cp $8
 	jr nz, .asm_16c969
-	callba Function96a4
+	callba ApplyPals
 	call SetPalettes
 	ld a, [rSVBK]
 	push af
@@ -392,7 +392,7 @@ Function16ca11: ; 16ca11
 	ld a, [wd003]
 	and a
 	jr nz, .asm_16ca1d
-	callba Function96a4
+	callba ApplyPals
 
 .asm_16ca1d
 	ld a, [rSVBK]
@@ -465,7 +465,7 @@ endr
 	ld a, e
 	cp $8
 	jr nz, .asm_16ca28
-	callba Function96a4
+	callba ApplyPals
 	call SetPalettes
 	ld a, [rSVBK]
 	push af
@@ -718,7 +718,7 @@ Function16cbd1: ; 16cbd1
 	ld bc, $0002
 	ld a, $5
 	call FarCopyWRAM
-	callba Function96a4
+	callba ApplyPals
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret

@@ -2920,7 +2920,7 @@ wDailyRematchFlags:: ds 4
 wDailyPhoneItemFlags:: ds 4
 wDailyPhoneTimeOfDayFlags:: ds 4
 wKenjiBreakTimer:: ds 2 ; Kenji
-wYanmaMapGroup:: ds 1
+wYanmaMapGroup:: ds 1 ; dc5a
 wYanmaMapNumber:: ds 1
 wdc5c:: ds 3
 wdc5f:: ds 1
