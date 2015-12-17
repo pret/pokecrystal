@@ -369,7 +369,7 @@ BargainShopData: ; 15c51
 
 BuyMenu: ; 15c62
 	call FadeToMenu
-	callba Function8000
+	callba BlankScreen
 	xor a
 	ld [wd045 + 1], a
 	ld a, 1

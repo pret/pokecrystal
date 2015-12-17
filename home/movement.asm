@@ -139,7 +139,7 @@ endr
 InitMenu3:: ; 1bb1
 	push hl
 	push bc
-	ld hl, wcfa1
+	ld hl, w2DMenuCursorInitY
 	ld b, $8
 .loop
 	ld a, [de]

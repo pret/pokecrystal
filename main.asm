@@ -743,7 +743,7 @@ Predef1: ; 747a
 
 SECTION "bank2", ROMX, BANK[$2]
 
-Function8000: ; 8000
+BlankScreen: ; 8000
 	call DisableSpriteUpdates
 	xor a
 	ld [hBGMapMode], a
@@ -10286,7 +10286,7 @@ Special_MoveTutor: ; 4925b
 ; 492b9
 
 CheckCanLearnMoveTutorMove: ; 492b9
-	ld hl, MenuDataHeader_0x4930a
+	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
 
 	predef CanLearnTMHMMove
@@ -10333,7 +10333,7 @@ CheckCanLearnMoveTutorMove: ; 492b9
 	ret
 ; 4930a
 
-MenuDataHeader_0x4930a: ; 0x4930a
+.MenuDataHeader: ; 0x4930a
 	db $40 ; flags
 	db 12, 00 ; start coords
 	db 17, 19 ; end coords
@@ -10601,11 +10601,11 @@ SaveMenu_LoadEDTile: ; 4cf45 (13:4f45)
 	ld a, 1 ; BANK(VBGMap2)
 	ld [rVBK], a
 	hlcoord 0, 0, AttrMap
-	call Function4cf80
+	call .LoadEDTile
 	ld a, 0 ; BANK(VBGMap0)
 	ld [rVBK], a
 	hlcoord 0, 0
-	call Function4cf80
+	call .LoadEDTile
 .WaitLY2
 	ld a, [rLY]
 	cp $60
@@ -10618,7 +10618,7 @@ SaveMenu_LoadEDTile: ; 4cf45 (13:4f45)
 	ld [hBGMapMode], a
 	ret
 
-Function4cf80: ; 4cf80 (13:4f80)
+.LoadEDTile: ; 4cf80 (13:4f80)
 	ld [hSPBuffer], sp ; $ffd9
 	ld sp, hl
 	ld a, [hBGMapAddress + 1]
@@ -10809,7 +10809,7 @@ Shrink2Pic: ; 4d2d9
 INCBIN "gfx/shrink2.2bpp.lz"
 ; 4d319
 
-Function4d319: ; 4d319
+LinkMonStatsScreen: ; 4d319
 	ld a, [wMenuCursorY]
 	dec a
 	ld [CurPartyMon], a
@@ -10909,7 +10909,7 @@ Function4d3ab: ; 4d3ab
 ; 4d3b1
 
 _ResetClock: ; 4d3b1
-	callba Function8000
+	callba BlankScreen
 	ld b, SCGB_08
 	call GetSGBLayout
 	call LoadStandardFont
@@ -11184,17 +11184,17 @@ ClockResetPassword: ; 4d41e
 	ret
 ; 4d54c
 
-Function4d54c: ; 4d54c
-	callba Function8000
+_DeleteSaveData: ; 4d54c
+	callba BlankScreen
 	ld b, SCGB_08
 	call GetSGBLayout
 	call LoadStandardFont
 	call LoadFontsExtra
 	ld de, MUSIC_MAIN_MENU
 	call PlayMusic
-	ld hl, UnknownText_0x4d580
+	ld hl, .Text_ClearAllSaveData
 	call PrintText
-	ld hl, MenuDataHeader_0x4d585
+	ld hl, .NoYesMenuDataHeader
 	call CopyMenuDataHeader
 	call VerticalMenu
 	ret c
@@ -11205,21 +11205,21 @@ Function4d54c: ; 4d54c
 	ret
 ; 4d580
 
-UnknownText_0x4d580: ; 0x4d580
+.Text_ClearAllSaveData: ; 0x4d580
 	; Clear all save data?
 	text_jump UnknownText_0x1c564a
 	db "@"
 ; 0x4d585
 
-MenuDataHeader_0x4d585: ; 0x4d585
+.NoYesMenuDataHeader: ; 0x4d585
 	db $00 ; flags
 	db 07, 14 ; start coords
 	db 11, 19 ; end coords
-	dw MenuData2_0x4d58d
+	dw .MenuData2
 	db 1 ; default option
 ; 0x4d58d
 
-MenuData2_0x4d58d: ; 0x4d58d
+.MenuData2: ; 0x4d58d
 	db $c0 ; flags
 	db 2 ; items
 	db "NO@"
@@ -11301,9 +11301,9 @@ FlagPredef: ; 4d7c1
 	ret
 ; 4d7fd
 
-Function4d7fd: ; 4d7fd
-	ld a, [wc702]
-	ld hl, wEnemyTrappingMove
+GetTrademonFrontpic: ; 4d7fd
+	ld a, [wOTTrademonSpecies]
+	ld hl, wOTTrademonDVs
 	ld de, VTiles2
 	push de
 	push af
@@ -11317,23 +11317,23 @@ Function4d7fd: ; 4d7fd
 	ret
 ; 4d81e
 
-Function4d81e: ; 4d81e
-	ld a, [wc702]
+AnimateTrademonFrontpic: ; 4d81e
+	ld a, [wOTTrademonSpecies]
 	call IsAPokemon
 	ret c
 	callba Function29549
-	ld a, [wc702]
+	ld a, [wOTTrademonSpecies]
 	ld [CurPartySpecies], a
-	ld a, [wEnemyTrappingMove]
+	ld a, [wOTTrademonDVs]
 	ld [TempMonDVs], a
-	ld a, [wPlayerWrapCount]
+	ld a, [wOTTrademonDVs + 1]
 	ld [TempMonDVs + 1], a
 	ld b, SCGB_1A
 	call GetSGBLayout
-	ld a, $e4
+	ld a, %11100100 ; 3,2,1,0
 	call DmgToCgbBGPals
-	callba Function294c0
-	ld a, [wc702]
+	callba TradeAnim_ShowGetmonFrontpic
+	ld a, [wOTTrademonSpecies]
 	ld [CurPartySpecies], a
 	hlcoord 7, 2
 	ld d, $0

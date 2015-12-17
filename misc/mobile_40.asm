@@ -2582,7 +2582,7 @@ Function10107d: ; 10107d
 	ld hl, wc608
 	ld bc, wc7bd - wc608
 	call ByteFill
-	ld hl, wd26b
+	ld hl, OTPlayerName
 	ld de, wc608
 	ld bc, NAME_LENGTH
 	call CopyBytes
@@ -3067,7 +3067,7 @@ Function1013aa: ; 1013aa
 ; 1013c0
 
 Function1013c0: ; 1013c0
-	callba Function8000
+	callba BlankScreen
 	callba MobileFunc_106462
 	callba Function106464
 	call Function2b5c
@@ -3972,7 +3972,7 @@ Function10194b: ; 10194b
 ; 10196d
 
 Function10196d: ; 10196d
-	callba Function8000
+	callba BlankScreen
 	callba Function10060d
 	ld hl, wcd29
 	set 5, [hl]
@@ -4003,7 +4003,7 @@ Function1019ab: ; 1019ab
 	xor a
 	ld [wdc5f], a
 	ld [wdc60], a
-	callba Function8000
+	callba BlankScreen
 	call SpeechTextBox
 	callba Function100846
 	ld c, $78
@@ -6303,8 +6303,8 @@ Jumptable_1029cb: ; 1029cb
 Function1029cf: ; 1029cf
 	call LoadStandardMenuDataHeader
 	hlcoord 10, 7
-	ld b, $3
-	ld c, $8
+	ld b, 3
+	ld c, 8
 	ld d, h
 	ld e, l
 	callba _LinkTextbox
@@ -6313,7 +6313,7 @@ Function1029cf: ; 1029cf
 	call PlaceString
 	ld hl, wcd4b
 	set 1, [hl]
-	ld de, Unknown_102a33
+	ld de, MenuData3_102a33
 	call InitMenu3
 	ld a, [wcd4a]
 	inc a
@@ -6327,7 +6327,7 @@ Function1029fe: ; 1029fe
 	ret c
 	callba MobileMenuJoypad
 	ld a, c
-	ld hl, wcfa8
+	ld hl, w2DMenuFlags4
 	and [hl]
 	ret z
 	push af
@@ -6353,15 +6353,17 @@ String_102a26: ; 102a26
 	db   "@"
 ; 102a33
 
-Unknown_102a33:
-	db $8, $b, $2, $1, $80, $, $20, $1
+MenuData3_102a33:
+	db 8, 11
+	db 2,  1
+	db $80, $00, $20, $01
 
 Function102a3b: ; 102a3b
 	ld a, [wcd30]
 	ld [wc74e], a
 	ld hl, PlayerName
 	ld de, wc6e7
-	ld bc, 11
+	ld bc, NAME_LENGTH
 	call CopyBytes
 	ld a, [wcd4c]
 	dec a
@@ -6370,30 +6372,30 @@ Function102a3b: ; 102a3b
 	ld hl, PartySpecies
 	add hl, bc
 	ld a, [hl]
-	ld [wc6d0], a
+	ld [wPlayerTrademonSpecies], a
 	ld a, [wcd4c]
 	dec a
 	ld hl, PartyMonOT
 	call SkipNames
-	ld de, wc6f2
-	ld bc, 11
+	ld de, wPlayerTrademonOTName
+	ld bc, NAME_LENGTH
 	call CopyBytes
 	ld a, [wcd4c]
 	dec a
 	ld hl, PartyMon1ID
 	call GetPartyLocation
 	ld a, [hli]
-	ld [wc6ff], a
+	ld [wPlayerTrademonID], a
 	ld a, [hl]
-	ld [wc700], a
+	ld [wPlayerTrademonID + 1], a
 	ld a, [wcd4c]
 	dec a
 	ld hl, PartyMon1DVs
 	call GetPartyLocation
 	ld a, [hli]
-	ld [wc6fd], a
+	ld [wPlayerTrademonDVs], a
 	ld a, [hl]
-	ld [wc6fe], a
+	ld [wPlayerTrademonDVs + 1], a
 	ld a, [wcd4c]
 	dec a
 	ld hl, PartyMon1Species
@@ -6402,11 +6404,12 @@ Function102a3b: ; 102a3b
 	ld c, l
 	callba GetCaughtGender
 	ld a, c
-	ld [wc701], a
-	ld hl, wd26b
-	ld de, wc719
-	ld bc, 11
+	ld [wPlayerTrademonCaughtData], a
+	ld hl, OTPlayerName
+	ld de, wOTTrademonSenderName
+	ld bc, NAME_LENGTH
 	call CopyBytes
+
 	ld a, [wcd4d]
 	dec a
 	ld c, a
@@ -6414,30 +6417,30 @@ Function102a3b: ; 102a3b
 	ld hl, OTPartySpecies
 	add hl, bc
 	ld a, [hl]
-	ld [wc702], a
+	ld [wOTTrademonSpecies], a
 	ld a, [wcd4d]
 	dec a
 	ld hl, OTPartyMonOT
 	call SkipNames
-	ld de, wc724
-	ld bc, 11
+	ld de, wOTTrademonOTName
+	ld bc, NAME_LENGTH
 	call CopyBytes
 	ld a, [wcd4d]
 	dec a
 	ld hl, OTPartyMon1ID
 	call GetPartyLocation
 	ld a, [hli]
-	ld [wEnemyWrapCount], a
+	ld [wOTTrademonID], a
 	ld a, [hl]
-	ld [wPlayerCharging], a
+	ld [wOTTrademonID + 1], a
 	ld a, [wcd4d]
 	dec a
 	ld hl, OTPartyMon1DVs
 	call GetPartyLocation
 	ld a, [hli]
-	ld [wEnemyTrappingMove], a
+	ld [wOTTrademonDVs], a
 	ld a, [hl]
-	ld [wPlayerWrapCount], a
+	ld [wOTTrademonDVs + 1], a
 	ld a, [wcd4d]
 	dec a
 	ld hl, OTPartyMon1Species
@@ -6446,12 +6449,12 @@ Function102a3b: ; 102a3b
 	ld c, l
 	callba GetCaughtGender
 	ld a, c
-	ld [wEnemyCharging], a
+	ld [wOTTrademonCaughtData], a
 	ret
 ; 102b12
 
 Function102b12: ; 102b12
-	ld c, $64
+	ld c, 100
 	call DelayFrames
 	call Function102d9a
 	call LoadFontsBattleExtra
@@ -6892,7 +6895,7 @@ Function102e4f: ; 102e4f
 	call PlaceString
 	ld a, $14
 	ld [bc], a
-	ld de, wd26b
+	ld de, OTPlayerName
 	hlcoord 4, 8
 	call PlaceString
 	ld a, $14

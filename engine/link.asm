@@ -1258,7 +1258,7 @@ Function28835: ; 28835
 	ld [wd263], a
 	callab Function50db9
 	ld hl, OTPartyMon1Species
-	callba Function4d319
+	callba LinkMonStatsScreen
 	jp Function2891c
 
 .asm_2885b
@@ -1276,7 +1276,7 @@ Function28835: ; 28835
 	push bc
 	ld bc, NAME_LENGTH
 	add hl, bc
-	ld [hl], $7f
+	ld [hl], " "
 	pop bc
 	pop hl
 	ld a, [PartyCount]
@@ -1450,7 +1450,7 @@ Function28926: ; 28926
 	ld a, $4
 	ld [wd263], a
 	callab Function50db9
-	callba Function4d319
+	callba LinkMonStatsScreen
 	call Call_LoadTempTileMapToTileMap
 	hlcoord 6, 1
 	lb bc, 6, 1

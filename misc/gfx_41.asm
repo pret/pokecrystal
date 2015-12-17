@@ -219,7 +219,7 @@ CallInSafeGFXMode: ; 104177
 	ld [hMapAnims], a
 	ld a, [rSVBK]
 	push af
-	ld a, 6
+	ld a, $6
 	ld [rSVBK], a
 	ld a, [rVBK]
 	push af

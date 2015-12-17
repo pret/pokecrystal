@@ -703,7 +703,7 @@ EggHatch_AnimationSequence: ; 1728f (5:728f)
 	push af
 	ld de, MUSIC_NONE
 	call PlayMusic
-	callba Function8000
+	callba BlankScreen
 	call DisableLCD
 	ld hl, EggHatchGFX
 	ld de, VTiles0 tile $00

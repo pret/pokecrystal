@@ -120,7 +120,7 @@ Function4dd3a: ; 4dd3a (13:5d3a)
 	call DelayFrame
 	ret
 .asm_4dd49
-	callba Functiond00b4
+	callba SetUpPokeAnim
 	jr nc, .asm_4dd56
 	ld hl, wcf64
 	res 6, [hl]

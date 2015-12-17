@@ -1067,7 +1067,7 @@ endr
 
 .jumptable
 	dw _MainMenu
-	dw Function6389
+	dw DeleteSaveData
 	dw CrystalIntroSequence
 	dw CrystalIntroSequence
 	dw ResetClock
@@ -1320,8 +1320,8 @@ TitleScreenEnd: ; 6375
 	ret
 ; 6389
 
-Function6389: ; 6389
-	callba Function4d54c
+DeleteSaveData: ; 6389
+	callba _DeleteSaveData
 	jp Init
 ; 6392
 

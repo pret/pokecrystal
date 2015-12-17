@@ -1014,6 +1014,7 @@ wEnemySwitchMonParam::
 wc717:: ds 1
 wc718::
 wEnemySwitchMonIndex:: ds 1
+wTempLevel::
 wc719:: ds 1
 LastPlayerMon:: ; c71a
 wc71a:: ds 1
@@ -3113,20 +3114,17 @@ w2_d16e:: ds 1
 wPokeAnimCoord:: ds 2
 wPokeAnimFrontpicHeight:: ds 1
 ; PokeAnim Data
-w2_d172:: ds 1
+wPokeAnimExtraFlag:: ds 1
 w2_d173:: ds 1
-w2_d174:: ds 1
-w2_d175:: ds 1
-w2_d176:: ds 1
-w2_d177:: ds 1
-w2_d178:: ds 1
-w2_d179:: ds 1
-w2_d17a:: ds 1
-w2_d17b:: ds 1
-w2_d17c:: ds 1
+wPokeAnimPointerBank:: ds 1
+wPokeAnimPointerAddr:: ds 2
+wPokeAnimFramesBank:: ds 1
+wPokeAnimFramesAddr:: ds 2
+wPokeAnimBitmaskBank:: ds 1
+wPokeAnimBitmaskAddr:: ds 2
 w2_d17d:: ds 1
 w2_d17e:: ds 1
-w2_d17f:: ds 1
+wPokeAnimRepeatTimer:: ds 1
 w2_d180:: ds 1
 wPokeAnimWaitCounter:: ds 1
 w2_d182:: ds 1

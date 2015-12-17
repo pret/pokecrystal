@@ -7577,7 +7577,7 @@ endr
 	sbc c
 	ld a, [hl]
 	sbc b
-	jr c, .max_exp
+	jr c, .not_max_exp
 	ld a, b
 	ld [hli], a
 	ld a, c
@@ -7585,7 +7585,7 @@ endr
 	ld a, d
 	ld [hld], a
 
-.max_exp
+.not_max_exp
 	xor a ; PARTYMON
 	ld [MonType], a
 	predef CopyPkmnToTempMon
@@ -7599,7 +7599,7 @@ endr
 	cp d
 	jp z, .skip_stats
 ; <NICKNAME> grew to level ##!
-	ld [wc719], a
+	ld [wTempLevel], a
 	ld a, [CurPartyLevel]
 	push af
 	ld a, d
@@ -7707,7 +7707,7 @@ endr
 	ld c, $9
 	call TextBox
 	hlcoord 11, 1
-	ld bc, $0004
+	ld bc, 4
 	predef PrintTempMonStats
 	ld c, $1e
 	call DelayFrames
@@ -7720,7 +7720,7 @@ endr
 	ld a, [CurPartyLevel]
 	push af
 	ld c, a
-	ld a, [wc719]
+	ld a, [wTempLevel]
 	ld b, a
 
 .level_loop
