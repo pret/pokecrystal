@@ -67,33 +67,33 @@ PokeCenterNurseScript:
 .morn
 	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
 	iftrue .morn_comcenter
-	farwritetext UnknownText_0x1b0000
+	farwritetext NurseMornText
 	buttonsound
 	jump .ok
 .morn_comcenter
-	farwritetext UnknownText_0x1b008a
+	farwritetext PokeComNurseMornText
 	buttonsound
 	jump .ok
 
 .day
 	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
 	iftrue .day_comcenter
-	farwritetext UnknownText_0x1b002b
+	farwritetext NurseDayText
 	buttonsound
 	jump .ok
 .day_comcenter
-	farwritetext UnknownText_0x1b00d6
+	farwritetext PokeComNurseDayText
 	buttonsound
 	jump .ok
 
 .nite
 	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
 	iftrue .nite_comcenter
-	farwritetext UnknownText_0x1b004f
+	farwritetext NurseNiteText
 	buttonsound
 	jump .ok
 .nite_comcenter
-	farwritetext UnknownText_0x1b011b
+	farwritetext PokeComNurseNiteText
 	buttonsound
 	jump .ok
 
@@ -101,11 +101,11 @@ PokeCenterNurseScript:
 	; only do this once
 	clearevent EVENT_WELCOMED_TO_POKECOM_CENTER
 
-	farwritetext UnknownText_0x1b017a
+	farwritetext NurseAskHealText
 	yesorno
 	iffalse .done
 
-	farwritetext UnknownText_0x1b01bd
+	farwritetext NurseTakePokemonText
 	pause 20
 	special Mobile_HealParty
 	spriteface LAST_TALKED, LEFT
@@ -127,11 +127,11 @@ PokeCenterNurseScript:
 	iftrue .pokerus
 .no
 
-	farwritetext UnknownText_0x1b01d7
+	farwritetext NurseReturnPokemonText
 	pause 20
 
 .done
-	farwritetext UnknownText_0x1b020b
+	farwritetext NurseGoodbyeText
 
 	spriteface LAST_TALKED, UP
 	pause 10
@@ -146,14 +146,13 @@ PokeCenterNurseScript:
 	; already cleared earlier in the script
 	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
 	iftrue .pokerus_comcenter
-
-	farwritetext UnknownText_0x1b0241
+	farwritetext NursePokerusText
 	waitbutton
 	closetext
 	jump .pokerus_done
 
 .pokerus_comcenter
-	farwritetext UnknownText_0x1b02d6
+	farwritetext PokeComNursePokerusText
 	waitbutton
 	closetext
 
@@ -411,28 +410,28 @@ BugContestResults_ThirdPlace ; 0xbc343
 ; 0xbc354
 
 BugContestResults_NoRoomForSunStone ; 0xbc354
-	farwritetext UnknownText_0x1b08cc
+	farwritetext BugContestPrizeNoRoomText
 	buttonsound
 	setevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
 	jump BugContestResults_ReturnAfterWinnersPrize
 ; 0xbc35f
 
 BugContestResults_NoRoomForEverstone ; 0xbc35f
-	farwritetext UnknownText_0x1b08cc
+	farwritetext BugContestPrizeNoRoomText
 	buttonsound
 	setevent EVENT_CONTEST_OFFICER_HAS_EVERSTONE
 	jump BugContestResults_ReturnAfterWinnersPrize
 ; 0xbc36a
 
 BugContestResults_NoRoomForGoldBerry ; 0xbc36a
-	farwritetext UnknownText_0x1b08cc
+	farwritetext BugContestPrizeNoRoomText
 	buttonsound
 	setevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
 	jump BugContestResults_ReturnAfterWinnersPrize
 ; 0xbc375
 
 BugContestResults_NoRoomForBerry ; 0xbc375
-	farwritetext UnknownText_0x1b08cc
+	farwritetext BugContestPrizeNoRoomText
 	buttonsound
 	setevent EVENT_CONTEST_OFFICER_HAS_BERRY
 	jump BugContestResults_DidNotWin

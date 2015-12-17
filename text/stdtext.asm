@@ -1,27 +1,24 @@
-UnknownText_0x1b0000: ; 0x1b0000
+NurseMornText:
 	text "Good morning!"
 	line "Welcome to our"
 	cont "#MON CENTER."
 	done
-; 0x1b002b
 
-UnknownText_0x1b002b: ; 0x1b002b
+NurseDayText:
 	text "Hello!"
 	line "Welcome to our"
 	cont "#MON CENTER."
 	done
-; 0x1b004f
 
-UnknownText_0x1b004f: ; 0x1b004f
+NurseNiteText:
 	text "Good evening!"
 	line "You're out late."
 
 	para "Welcome to our"
 	line "#MON CENTER."
 	done
-; 0x1b008a
 
-UnknownText_0x1b008a: ; 0x1b008a
+PokeComNurseMornText:
 	text "Good morning!"
 
 	para "This is the #-"
@@ -30,9 +27,8 @@ UnknownText_0x1b008a: ; 0x1b008a
 	para "CENTER--or the"
 	line "#COM CENTER."
 	done
-; 0x1b00d6
 
-UnknownText_0x1b00d6: ; 0x1b00d6
+PokeComNurseDayText:
 	text "Hello!"
 
 	para "This is the #-"
@@ -41,9 +37,8 @@ UnknownText_0x1b00d6: ; 0x1b00d6
 	para "CENTER--or the"
 	line "#COM CENTER."
 	done
-; 0x1b011b
 
-UnknownText_0x1b011b: ; 0x1b011b
+PokeComNurseNiteText:
 	text "Good to see you"
 	line "working so late."
 
@@ -53,9 +48,8 @@ UnknownText_0x1b011b: ; 0x1b011b
 	para "CENTER--or the"
 	line "#COM CENTER."
 	done
-; 0x1b017a
 
-UnknownText_0x1b017a: ; 0x1b017a
+NurseAskHealText:
 	text "We can heal your"
 	line "#MON to perfect"
 	cont "health."
@@ -63,36 +57,31 @@ UnknownText_0x1b017a: ; 0x1b017a
 	para "Shall we heal your"
 	line "#MON?"
 	done
-; 0x1b01bd
 
-UnknownText_0x1b01bd: ; 0x1b01bd
+NurseTakePokemonText:
 	text "OK, may I see your"
 	line "#MON?"
 	done
-; 0x1b01d7
 
-UnknownText_0x1b01d7: ; 0x1b01d7
+NurseReturnPokemonText:
 	text "Thank you for"
 	line "waiting."
 
 	para "Your #MON are"
 	line "fully healed."
 	done
-; 0x1b020b
 
-UnknownText_0x1b020b: ; 0x1b020b
+NurseGoodbyeText:
 	text "We hope to see you"
 	line "again."
 	done
-; 0x1b0226
 
-UnknownText_0x1b0226: ; 0x1b0226
+; not used
 	text "We hope to see you"
 	line "again."
 	done
-; 0x1b0241
 
-UnknownText_0x1b0241: ; 0x1b0241
+NursePokerusText:
 	text "Your #MON"
 	line "appear to be"
 
@@ -109,9 +98,8 @@ UnknownText_0x1b0241: ; 0x1b0241
 	para "at a #MON"
 	line "CENTER."
 	done
-; 0x1b02d6
 
-UnknownText_0x1b02d6: ; 0x1b02d6
+PokeComNursePokerusText:
 	text "Your #MON"
 	line "appear to be"
 
@@ -125,7 +113,6 @@ UnknownText_0x1b02d6: ; 0x1b02d6
 	para "But we can't tell"
 	line "you anything more."
 	done
-; 0x1b035a
 
 DifficultBookshelfText:
 	text "It's full of"
@@ -193,30 +180,27 @@ HomepageText:
 	line "updated…"
 	done
 
-UnknownText_0x1b04f9: ; 0x1b04f9
+; not used
 	text "#MON RADIO!"
 
 	para "Call in with your"
 	line "requests now!"
 	done
-; 0x1b0526
 
 TrashCanText:
 	text "There's nothing in"
 	line "here…"
 	done
 
-UnknownText_0x1b053f: ; 0x1b053f
+; not used
 	text "A #MON may be"
 	line "able to move this."
 	done
-; 0x1b0561
 
-UnknownText_0x1b0561: ; 0x1b0561
+; not used
 	text "Maybe a #MON"
 	line "can break this."
 	done
-; 0x1b057f
 
 PokeCenterSignText:
 	text "Heal Your #MON!"
@@ -230,7 +214,7 @@ MartSignText:
 	para "#MON MART"
 	done
 
-ContestResults_ReadyToJudgeText: ; 0x1b05bf
+ContestResults_ReadyToJudgeText:
 	text "We will now judge"
 	line "the #MON you've"
 	cont "caught."
@@ -244,9 +228,8 @@ ContestResults_ReadyToJudgeText: ; 0x1b05bf
 	para "Are you ready for"
 	line "this?"
 	done
-; 0x1b0621
 
-ContestResults_PlayerWonAPrizeText: ; 0x1b0621
+ContestResults_PlayerWonAPrizeText:
 	text "<PLAYER>, the No.@"
 	text_from_ram StringBuffer3
 	text ""
@@ -255,76 +238,66 @@ ContestResults_PlayerWonAPrizeText: ; 0x1b0621
 	text_from_ram StringBuffer4
 	text "!"
 	done
-; 0x1b0648
 
-ReceivedItemText: ; 0x1b0648
+ReceivedItemText:
 	text "<PLAYER> received"
 	line "@"
 	text_from_ram StringBuffer4
 	text "."
 	done
-; 0x1b065b
 
-ContestResults_JoinUsNextTimeText: ; 0x1b065b
+ContestResults_JoinUsNextTimeText:
 	text "Please join us for"
 	line "the next Contest!"
 	done
-; 0x1b0681
 
-ContestResults_ConsolationPrizeText: ; 0x1b0681
+ContestResults_ConsolationPrizeText:
 	text "Everyone else gets"
 	line "a BERRY as a con-"
 	cont "solation prize!"
 	done
-; 0x1b06b7
 
-ContestResults_DidNotWinText: ; 0x1b06b7
+ContestResults_DidNotWinText:
 	text "We hope you do"
 	line "better next time."
 	done
-; 0x1b06d9
 
-ContestResults_ReturnPartyText: ; 0x1b06d9
+ContestResults_ReturnPartyText:
 	text "We'll return the"
 	line "#MON we kept"
 
 	para "for you."
 	line "Here you go!"
 	done
-; 0x1b070d
 
-ContestResults_PartyFullText: ; 0x1b070d
+ContestResults_PartyFullText:
 	text "Your party's full,"
 	line "so the #MON was"
 
 	para "sent to your BOX"
 	line "in BILL's PC."
 	done
-; 0x1b074e
 
-GymStatue_CityGymText: ; 0x1b074e
+GymStatue_CityGymText:
 	text_from_ram StringBuffer3
 	text ""
 	line "#MON GYM"
 	done
-; 0x1b075c
 
-GymStatue_WinningTrainersText: ; 0x1b075c
+GymStatue_WinningTrainersText:
 	text "LEADER: @"
 	text_from_ram StringBuffer4
 	text ""
 	para "WINNING TRAINERS:"
 	line "<PLAYER>"
 	done
-; 0x1b077f
 
-CoinVendor_WelcomeText: ; 0x1b077f
+CoinVendor_WelcomeText:
 	text "Welcome to the"
 	line "GAME CORNER."
 	done
-; 0x1b079c
 
-CoinVendor_NoCoinCaseText: ; 0x1b079c
+CoinVendor_NoCoinCaseText:
 	text "Do you need game"
 	line "coins?"
 
@@ -332,9 +305,8 @@ CoinVendor_NoCoinCaseText: ; 0x1b079c
 	line "a COIN CASE for"
 	cont "your coins."
 	done
-; 0x1b07e3
 
-CoinVendor_IntroText: ; 0x1b07e3
+CoinVendor_IntroText:
 	text "Do you need some"
 	line "game coins?"
 
@@ -342,39 +314,33 @@ CoinVendor_IntroText: ; 0x1b07e3
 	line "50 coins. Do you"
 	cont "want some?"
 	done
-; 0x1b0830
 
-CoinVendor_Buy50CoinsText: ; 0x1b0830
+CoinVendor_Buy50CoinsText:
 	text "Thank you!"
 	line "Here are 50 coins."
 	done
-; 0x1b084f
 
-CoinVendor_Buy500CoinsText: ; 0x1b084f
+CoinVendor_Buy500CoinsText:
 	text "Thank you! Here"
 	line "are 500 coins."
 	done
-; 0x1b086f
 
-CoinVendor_NotEnoughMoneyText: ; 0x1b086f
+CoinVendor_NotEnoughMoneyText:
 	text "You don't have"
 	line "enough money."
 	done
-; 0x1b088c
 
-CoinVendor_CoinCaseFullText: ; 0x1b088c
+CoinVendor_CoinCaseFullText:
 	text "Whoops! Your COIN"
 	line "CASE is full."
 	done
-; 0x1b08ad
 
-CoinVendor_CancelText: ; 0x1b08ad
+CoinVendor_CancelText:
 	text "No coins for you?"
 	line "Come again!"
 	done
-; 0x1b08cc
 
-UnknownText_0x1b08cc: ; 0x1b08cc
+BugContestPrizeNoRoomText:
 	text "Oh? Your PACK is"
 	line "full."
 
@@ -384,7 +350,6 @@ UnknownText_0x1b08cc: ; 0x1b08cc
 	para "come back when you"
 	line "make room for it."
 	done
-; 0x1b092a
 
 HappinessText3:
 	text "Wow! You and your"
