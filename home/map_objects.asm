@@ -369,7 +369,7 @@ Function1967:: ; 1967
 	call Function1985
 	pop af
 	call GetObjectStruct
-	callba Function4357
+	callba DeleteMapObject
 	ret
 ; 1985
 
@@ -435,7 +435,7 @@ Function19b8:: ; 19b8
 .ok
 	ld a, b
 	call GetObjectStruct
-	callba Function4357
+	callba DeleteMapObject
 	ret
 ; 19e9
 

@@ -193,7 +193,7 @@ Movement_fish_cast_rod: ; 51ab
 	ld [hl], PERSON_ACTION_FISHING
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_STANDING
+	ld [hl], STEP_TYPE_SLEEP
 	ret
 ; 51b8
 
@@ -219,7 +219,7 @@ Movement_step_end: ; 51c1
 
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], STEP_TYPE_STANDING
+	ld [hl], STEP_TYPE_SLEEP
 	ret
 ; 51db
 
@@ -248,7 +248,7 @@ Movement_48: ; 51db
 ; 51fd
 
 Movement_remove_person: ; 51fd
-	call Function4357
+	call DeleteMapObject
 	ld hl, wObjectFollow_Leader
 	ld a, [hMapObjectIndexBuffer]
 	cp [hl]
@@ -726,7 +726,7 @@ Movement_half_step_right: ; 53fc
 	jr HalfStep
 
 HalfStep: ; 5400
-	ld hl, OBJECT_29
+	ld hl, OBJECT_29 ; new facing
 	add hl, bc
 	ld [hl], a
 
@@ -741,8 +741,8 @@ HalfStep: ; 5400
 ; 5412
 
 NormalStep: ; 5412
-	call Function4690
-	call Function463f
+	call InitStep
+	call UpdateTallGrassFlags
 	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], PERSON_ACTION_STEP
@@ -778,8 +778,8 @@ NormalStep: ; 5412
 ; 5446
 
 TurningStep: ; 5446
-	call Function4690
-	call Function463f
+	call InitStep
+	call UpdateTallGrassFlags
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
@@ -804,8 +804,8 @@ TurningStep: ; 5446
 
 
 SlideStep: ; 5468
-	call Function4690
-	call Function463f
+	call InitStep
+	call UpdateTallGrassFlags
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
@@ -830,7 +830,7 @@ SlideStep: ; 5468
 
 
 JumpStep: ; 548a
-	call Function4690
+	call InitStep
 	ld hl, OBJECT_31
 	add hl, bc
 	ld [hl], $0

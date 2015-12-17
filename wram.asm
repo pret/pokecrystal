@@ -2417,7 +2417,8 @@ wReceiveCallDelay_StartTime:: ds 3
 	ds 3
 wBugContestMinsRemaining:: ds 1
 wBugContestSecsRemaining:: ds 1
-	ds 4
+	ds 2
+wMapStatusEnd:: ds 2 ; d470
 
 wCrystalData::
 PlayerGender:: ; d472
