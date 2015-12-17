@@ -24360,7 +24360,7 @@ INCLUDE "misc/mobile_5f.asm"
 
 SECTION "Common Text 1", ROMX, BANK[$6C]
 
-INCLUDE "text/common.asm"
+INCLUDE "text/stdtext.asm"
 INCLUDE "text/phone/jack_overworld.asm"
 INCLUDE "text/phone/beverly_overworld.asm"
 INCLUDE "text/phone/huey_overworld.asm"
