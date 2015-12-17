@@ -662,7 +662,7 @@ MenuDataHeader_Buy: ; 0x15e18
 ; 15e30
 
 .PrintBCDPrices: ; 15e30
-	ld a, [wcf77]
+	ld a, [wScrollingMenuCursorPosition]
 	ld c, a
 	ld b, 0
 	ld hl, wMartItem1BCD

@@ -1,7 +1,7 @@
 DoPlayerTurn: ; 34000
 	call SetPlayerTurn
 
-	ld a, [wd0ec]
+	ld a, [wPlayerAction]
 	and a
 	ret nz
 
@@ -9025,7 +9025,7 @@ BatonPass_LinkPlayerSwitch: ; 37a67
 	ret z
 
 	ld a, 1
-	ld [wd0ec], a
+	ld [wPlayerAction], a
 
 	call LoadStandardMenuDataHeader
 	ld hl, LinkBattleSendReceiveAction
@@ -9033,7 +9033,7 @@ BatonPass_LinkPlayerSwitch: ; 37a67
 	call WriteBackup
 
 	xor a
-	ld [wd0ec], a
+	ld [wPlayerAction], a
 	ret
 ; 37a82
 

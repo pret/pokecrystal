@@ -426,7 +426,7 @@ Function48383: ; 48383 (12:4383)
 	ret
 
 Function483bb: ; 483bb (12:43bb)
-	ld hl, wcf77
+	ld hl, wScrollingMenuCursorPosition
 	ld a, [hl]
 	inc a
 	ld [wd474], a

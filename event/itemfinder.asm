@@ -10,7 +10,7 @@ ItemFinder: ; 12580
 .resume
 	call QueueScript
 	ld a, $1
-	ld [wd0ec], a
+	ld [wItemEffectSucceeded], a
 	ret
 ; 12599
 

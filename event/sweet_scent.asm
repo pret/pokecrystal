@@ -2,7 +2,7 @@ SweetScentFromMenu: ; 506bc
 	ld hl, UnknownScript_0x506c8
 	call QueueScript
 	ld a, $1
-	ld [wd0ec], a
+	ld [wFieldMoveSucceeded], a
 	ret
 ; 506c8
 

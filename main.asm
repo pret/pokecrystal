@@ -351,7 +351,7 @@ endr
 	ret z
 	ld a, [CurPartyMon]
 	ld b, a
-	ld a, [wd0d8]
+	ld a, [wPartyMenuCursor]
 	cp b
 	ret nz
 	ld a, [de]
@@ -2272,7 +2272,7 @@ CutFunction: ; c785
 	call FieldMoveJumptable
 	jr nc, .loop
 	and $7f
-	ld [wd0ec], a
+	ld [wFieldMoveSucceeded], a
 	ret
 ; c796
 
@@ -2491,7 +2491,7 @@ WhirlpoolBlockPointers: ; c8a4
 OWFlash: ; c8ac
 	call .CheckUseFlash
 	and $7f
-	ld [wd0ec], a
+	ld [wFieldMoveSucceeded], a
 	ret
 ; c8b5
 
@@ -2558,7 +2558,7 @@ SurfFunction: ; c909
 	call FieldMoveJumptable
 	jr nc, .loop
 	and $7f
-	ld [wd0ec], a
+	ld [wFieldMoveSucceeded], a
 	ret
 ; c91a
 
@@ -2778,16 +2778,16 @@ AskSurfText: ; ca36
 
 FlyFunction: ; ca3b
 	call ClearBuffer1
-.asm_ca3e
-	ld hl, .data_ca4c
+.loop
+	ld hl, .Jumptable
 	call FieldMoveJumptable
-	jr nc, .asm_ca3e
+	jr nc, .loop
 	and $7f
-	ld [wd0ec], a
+	ld [wFieldMoveSucceeded], a
 	ret
 ; ca4c
 
-.data_ca4c
+.Jumptable
  	dw .TryFly
  	dw .DoFly
  	dw .FailFly
@@ -2875,7 +2875,7 @@ FlyFunction: ; ca3b
 Functioncade: ; cade
 	call AttemptToWaterfall
 	and $7f
-	ld [wd0ec], a
+	ld [wFieldMoveSucceeded], a
 	ret
 ; cae7
 
@@ -3015,7 +3015,7 @@ dig_incave
 	call FieldMoveJumptable
 	jr nc, .loop
 	and $7f
-	ld [wd0ec], a
+	ld [wFieldMoveSucceeded], a
 	ret
 ; cbb2
 
@@ -3149,7 +3149,7 @@ TeleportFunction: ; cc61
 	call FieldMoveJumptable
 	jr nc, .loop
 	and $7f
-	ld [wd0ec], a
+	ld [wFieldMoveSucceeded], a
 	ret
 ; cc72
 
@@ -3240,7 +3240,7 @@ Script_UsedTeleport: ; 0xccbb
 StrengthFunction: ; cce5
 	call .TryStrength
 	and $7f
-	ld [wd0ec], a
+	ld [wFieldMoveSucceeded], a
 	ret
 ; ccee
 
@@ -3397,7 +3397,7 @@ WhirlpoolFunction: ; cd9d
 	call FieldMoveJumptable
 	jr nc, .loop
 	and $7f
-	ld [wd0ec], a
+	ld [wFieldMoveSucceeded], a
 	ret
 ; cdae
 
@@ -3554,7 +3554,7 @@ UnknownText_0xce78: ; 0xce78
 HeadbuttFunction: ; ce7d
 	call TryHeadbuttFromMenu
 	and $7f
-	ld [wd0ec], a
+	ld [wFieldMoveSucceeded], a
 	ret
 ; ce86
 
@@ -3646,7 +3646,7 @@ UnknownText_0xcee6: ; 0xcee6
 RockSmashFunction: ; ceeb
 	call TryRockSmashFromMenu
 	and $7f
-	ld [wd0ec], a
+	ld [wFieldMoveSucceeded], a
 	ret
 ; cef4
 
@@ -3775,7 +3775,7 @@ FishFunction: ; cf8e
 	call FieldMoveJumptable
 	jr nc, .loop
 	and $7f
-	ld [wd0ec], a
+	ld [wFieldMoveSucceeded], a
 	ret
 ; cfa5
 
@@ -3988,7 +3988,7 @@ UnknownText_0xd0ae: ; unused
 BikeFunction: ; d0b3
 	call .TryBike
 	and $7f
-	ld [wd0ec], a
+	ld [wFieldMoveSucceeded], a
 	ret
 ; d0bc
 
@@ -4045,7 +4045,7 @@ BikeFunction: ; d0b3
 ; d119
 
 .CheckIfRegistered: ; d119
-	ld a, [wd0ef]
+	ld a, [wUsingItemWithSelect]
 	and a
 	ret z
 	ld h, d
@@ -8047,7 +8047,7 @@ MenuJoyAction: ; 24609
 	ld [wItemQuantityBuffer], a
 	call Function246fc
 	dec a
-	ld [wcf77], a
+	ld [wScrollingMenuCursorPosition], a
 	ld [wd107], a
 	ld a, [MenuSelection]
 	cp -1
@@ -8075,7 +8075,7 @@ MenuJoyAction: ; 24609
 	jp z, xor_a_dec_a
 	call Function246fc
 	dec a
-	ld [wcf77], a
+	ld [wScrollingMenuCursorPosition], a
 	ld a, SELECT
 	scf
 	ret
@@ -8335,7 +8335,7 @@ Function247f0: ; 247f0
 .asm_2481a
 	ld a, [wMenuScrollPosition]
 	add c
-	ld [wcf77], a
+	ld [wScrollingMenuCursorPosition], a
 	ld a, c
 	call Function248d5
 	ld a, [MenuSelection]
@@ -9681,10 +9681,10 @@ PlayBattleMusic: ; 2ee6c
 
 ClearBattleRAM: ; 2ef18
 	xor a
-	ld [wd0ec], a
+	ld [wPlayerAction], a
 	ld [wBattleResult], a
 
-	ld hl, wd0d8
+	ld hl, wPartyMenuCursor
 rept 3
 	ld [hli], a
 endr
@@ -9726,7 +9726,7 @@ endr
 	ld hl, hBGMapAddress
 	xor a
 	ld [hli], a
-	ld [hl], $98
+	ld [hl], VBGMap0 / $100
 	ret
 ; 2ef6e
 
@@ -9735,11 +9735,11 @@ FillBox: ; 2ef6e
 ; with iterating tile starting from hFillBox at hl.
 ; Predef $13
 
-	ld de, 20
+	ld de, SCREEN_WIDTH
 
 	ld a, [wc2c6]
 	and a
-	jr nz, .left
+	jr nz, .right
 
 	ld a, [hFillBox]
 .x1
@@ -9760,7 +9760,7 @@ FillBox: ; 2ef6e
 	jr nz, .x1
 	ret
 
-.left
+.right
 ; Right-aligned.
 	push bc
 	ld b, 0

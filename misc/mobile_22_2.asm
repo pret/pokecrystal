@@ -818,7 +818,7 @@ Function8b7bd: ; 8b7bd
 	and a
 	jr z, .asm_8b7ea
 	dec a
-	ld [wcf77], a
+	ld [wScrollingMenuCursorPosition], a
 
 .asm_8b7ea
 	hlcoord 0, 2

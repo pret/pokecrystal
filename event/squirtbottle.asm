@@ -2,7 +2,7 @@ _Squirtbottle: ; 50730
 	ld hl, UnknownScript_0x5073c
 	call QueueScript
 	ld a, $1
-	ld [wd0ec], a
+	ld [wItemEffectSucceeded], a
 	ret
 ; 5073c
 

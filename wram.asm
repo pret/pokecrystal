@@ -1495,8 +1495,7 @@ MenuSelection:: ds 1 ; cf74
 
 wcf75:: ds 1
 wcf76:: ds 1
-wCurrPocketCursorPosition::
-wcf77:: ds 1
+wScrollingMenuCursorPosition:: ds 1
 wWindowStackSize:: ds 9
 
 ; menu data header
@@ -1792,6 +1791,7 @@ wd03b:: ds 3
 MenuItemsList::
 CurFruitTree::
 CurInput::
+wElevatorPointerBank::
 EngineBuffer1:: ; d03e
 	ds 1
 
@@ -1799,15 +1799,18 @@ wd03f::
 wJumpStdScriptBuffer::
 CurFruit:: ; d03f
 MartPointerBank::
+wElevatorPointerLo::
 EngineBuffer2::
 	ds 1
 
 wd040::
+wElevatorPointerHi::
 MartPointer:: ; d040
 EngineBuffer3::
 	ds 1
 
 wd041::
+wElevatorOriginFloor::
 EngineBuffer4::
 wTempTrainerHeader::
 wTempTrainerEventFlagLo::
@@ -1877,8 +1880,8 @@ CurMoveNum:: ; d0d5
 
 wLastPocket:: ds 1
 wd0d7:: ds 1
-wPartyMenuCursor::
-wd0d8:: ds 1
+wd0d8::
+wPartyMenuCursor:: ds 1
 wItemsPocketCursor:: ds 1
 wKeyItemsPocketCursor:: ds 1
 wBallsPocketCursor:: ds 1
@@ -1904,7 +1907,7 @@ wPlayerAction::
 ; 1 - use item
 ; 2 - switch
 wSolvedUnownPuzzle::
-wd0ec:: ds 1
+	ds 1 ; d0ec
 
 VramState:: ; d0ed
 ; bit 0: overworld sprite updating on/off
@@ -1914,18 +1917,19 @@ VramState:: ; d0ed
 	ds 1
 
 wBattleResult:: ds 1
-wd0ef:: ds 1
+wUsingItemWithSelect:: ds 1
 CurMart:: ds 16
+CurMartEnd::
 	ds CurMart - @
-wd0f0:: ds 1
+CurElevator:: ds 1
 wd0f1::
+CurElevatorFloors::
 wCurMessageIndex:: ds 1
 wd0f2::
 wMailboxCount:: ds 1
 wMailboxItems:: ds MAILBOX_CAPACITY
 wMailboxEnd:: ds 1 ; d1fe
 	ds 2
-CurMartEnd::
 
 wd100:: ds 1
 wd101:: ds 1

@@ -24,12 +24,12 @@ _CardKey: ; 50779
 	ld hl, .CardKeyScript
 	call QueueScript
 	ld a, $1
-	ld [wd0ec], a
+	ld [wItemEffectSucceeded], a
 	ret
 
 .nope
 	ld a, $0
-	ld [wd0ec], a
+	ld [wItemEffectSucceeded], a
 	ret
 ; 507af
 

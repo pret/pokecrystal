@@ -55,7 +55,7 @@ Elevator_0x566e0:
 	elevfloor _4F,  3, GOLDENROD_DEPT_STORE_4F
 	elevfloor _5F,  3, GOLDENROD_DEPT_STORE_5F
 	elevfloor _6F,  2, GOLDENROD_DEPT_STORE_6F
-	db $ff ; end
+	db -1 ; end
 
 
 GoldenrodDeptStoreElevator_MapEventHeader:

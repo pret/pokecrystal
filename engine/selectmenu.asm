@@ -167,11 +167,11 @@ UseRegisteredItem: ; 133c3
 .Overworld ; 13406
 	call ResetWindow
 	ld a, 1
-	ld [wd0ef], a
+	ld [wUsingItemWithSelect], a
 	call DoItemEffect
 	xor a
-	ld [wd0ef], a
-	ld a, [wd0ec]
+	ld [wUsingItemWithSelect], a
+	ld a, [wItemEffectSucceeded]
 	cp 1
 	jr nz, ._cantuse
 	scf

@@ -3473,7 +3473,7 @@ Function8a62c: ; 8a62c (22:662c)
 	jr z, .asm_8a66a
 	ld [MenuSelection], a
 	ld b, a
-	ld a, [wcf77]
+	ld a, [wScrollingMenuCursorPosition]
 	inc a
 	ld [wd034], a
 	push bc

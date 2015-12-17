@@ -19,12 +19,12 @@ _BasementKey: ; 507b4
 	ld hl, .BasementKeyScript
 	call QueueScript
 	ld a, 1
-	ld [wd0ec], a
+	ld [wItemEffectSucceeded], a
 	ret
 
 .nope
 	ld a, $0
-	ld [wd0ec], a
+	ld [wItemEffectSucceeded], a
 	ret
 ; 507e1
 

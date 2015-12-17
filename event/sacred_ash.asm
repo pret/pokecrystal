@@ -1,14 +1,14 @@
 
 _SacredAsh: ; 507e6
 	ld a, $0
-	ld [wd0ec], a
+	ld [wItemEffectSucceeded], a
 	call CheckAnyFaintedMon
 	ret nc
 
 	ld hl, SacredAshScript
 	call QueueScript
 	ld a, $1
-	ld [wd0ec], a
+	ld [wItemEffectSucceeded], a
 	ret
 ; 507fb
 

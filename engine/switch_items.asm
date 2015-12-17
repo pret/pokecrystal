@@ -3,11 +3,11 @@ SwitchItemsInBag: ; 2490c (9:490c)
 	and a
 	jr z, .init
 	ld b, a
-	ld a, [wCurrPocketCursorPosition]
+	ld a, [wScrollingMenuCursorPosition]
 	inc a
 	cp b
 	jr z, .trivial
-	ld a, [wCurrPocketCursorPosition]
+	ld a, [wScrollingMenuCursorPosition]
 	call Function24a5c
 	ld a, [hl]
 	cp $ff
@@ -17,7 +17,7 @@ SwitchItemsInBag: ; 2490c (9:490c)
 	ld [wSwitchItem], a
 	call Function249a7
 	jp c, Function249d1
-	ld a, [wCurrPocketCursorPosition]
+	ld a, [wScrollingMenuCursorPosition]
 	ld c, a
 	ld a, [wSwitchItem]
 	cp c
@@ -25,7 +25,7 @@ SwitchItemsInBag: ; 2490c (9:490c)
 	jr .asm_2494a
 
 .init
-	ld a, [wCurrPocketCursorPosition]
+	ld a, [wScrollingMenuCursorPosition]
 	inc a
 	ld [wSwitchItem], a
 	ret
@@ -38,7 +38,7 @@ SwitchItemsInBag: ; 2490c (9:490c)
 .asm_2494a
 	ld a, [wSwitchItem]
 	call Function24a40
-	ld a, [wCurrPocketCursorPosition]
+	ld a, [wScrollingMenuCursorPosition]
 	ld d, a
 	ld a, [wSwitchItem]
 	ld e, a
@@ -55,7 +55,7 @@ SwitchItemsInBag: ; 2490c (9:490c)
 	pop hl
 	pop bc
 	call Function24aab
-	ld a, [wCurrPocketCursorPosition]
+	ld a, [wScrollingMenuCursorPosition]
 	call Function24a4d
 	xor a
 	ld [wSwitchItem], a
@@ -64,7 +64,7 @@ SwitchItemsInBag: ; 2490c (9:490c)
 .asm_2497a
 	ld a, [wSwitchItem]
 	call Function24a40
-	ld a, [wCurrPocketCursorPosition]
+	ld a, [wScrollingMenuCursorPosition]
 	ld d, a
 	ld a, [wSwitchItem]
 	ld e, a
@@ -78,7 +78,7 @@ SwitchItemsInBag: ; 2490c (9:490c)
 	add hl, bc
 	pop bc
 	call CopyBytes
-	ld a, [wCurrPocketCursorPosition]
+	ld a, [wScrollingMenuCursorPosition]
 	call Function24a4d
 	xor a
 	ld [wSwitchItem], a
@@ -89,12 +89,12 @@ Function249a7: ; 249a7 (9:49a7)
 	call Function24a5c
 	ld d, h
 	ld e, l
-	ld a, [wCurrPocketCursorPosition]
+	ld a, [wScrollingMenuCursorPosition]
 	call Function24a5c
 	ld a, [de]
 	cp [hl]
 	jr nz, .asm_249cd
-	ld a, [wCurrPocketCursorPosition]
+	ld a, [wScrollingMenuCursorPosition]
 	call Function24a97
 	cp 99
 	jr z, .asm_249cd
@@ -115,7 +115,7 @@ Function249d1: ; 249d1 (9:49d1)
 	call Function24a5c
 	inc hl
 	push hl
-	ld a, [wCurrPocketCursorPosition]
+	ld a, [wScrollingMenuCursorPosition]
 	call Function24a5c
 	inc hl
 	ld a, [hl]
@@ -125,7 +125,7 @@ Function249d1: ; 249d1 (9:49d1)
 	jr c, .asm_24a01
 	sub 99
 	push af
-	ld a, [wCurrPocketCursorPosition]
+	ld a, [wScrollingMenuCursorPosition]
 	call Function24a5c
 	inc hl
 	ld [hl], 99
@@ -140,7 +140,7 @@ Function249d1: ; 249d1 (9:49d1)
 
 .asm_24a01
 	push af
-	ld a, [wCurrPocketCursorPosition]
+	ld a, [wScrollingMenuCursorPosition]
 	call Function24a5c
 	inc hl
 	pop af
