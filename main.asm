@@ -24381,22 +24381,6 @@ INCLUDE "text/phone/elm.asm"
 INCLUDE "text/phone/trainers1.asm"
 
 
-
-SECTION "Common Text 2", ROMX, BANK[$6F]
-
-INCLUDE "text/common_2.asm"
-
-
-SECTION "Common Text 3", ROMX, BANK[$70]
-
-INCLUDE "text/common_3.asm"
-
-
-SECTION "Common Text 4", ROMX, BANK[$71]
-
-INCLUDE "text/common_4.asm"
-
-
 SECTION "bank72", ROMX, BANK[$72]
 
 ItemNames::
