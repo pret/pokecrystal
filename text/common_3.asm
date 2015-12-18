@@ -53,6 +53,7 @@ UnknownText_0x1c071a::
 UnknownText_0x1c073b::
 	text "Can't use that"
 	line "here."
+
 	para ""
 	done
 
@@ -341,10 +342,7 @@ UnknownText_0x1c0cc6::
 	text "<USER>'s"
 	line "@"
 	text_from_ram StringBuffer2
-	db "@"
-
-UnknownText_0x1c0ccf::
-	db "@"
+	db "@@"
 
 UnknownText_0x1c0cd0::
 	interpret_data
@@ -359,10 +357,7 @@ UnknownText_0x1c0ceb::
 	text "<TARGET>'s"
 	line "@"
 	text_from_ram StringBuffer2
-	db "@"
-
-UnknownText_0x1c0cf4::
-	db "@"
+	db "@@"
 
 UnknownText_0x1c0cf5::
 	interpret_data
@@ -374,8 +369,7 @@ UnknownText_0x1c0d06::
 	prompt
 
 UnknownText_0x1c0d0e::
-	text "<USER>@"
-	db "@"
+	text "<USER>@@"
 
 UnknownText_0x1c0d12::
 	text ""
@@ -408,30 +402,23 @@ UnknownText_0x1c0d6c::
 	prompt
 
 _ActorNameText::
-	text "<USER>@"
-	db "@"
+	text "<USER>@@"
 
 _UsedMove1Text::
 	text ""
-	line "used @"
-	db "@"
+	line "used @@"
 
 _UsedMove2Text::
 	text ""
-	line "used @"
-	db "@"
+	line "used @@"
 
 _UsedInsteadText::
 	text "instead,"
-	cont "@"
-	db "@"
+	cont "@@"
 
 _MoveNameText::
 	text_from_ram StringBuffer2
-	db "@"
-
-UnknownText_0x1c0da0::
-	db "@"
+	db "@@"
 
 _EndUsedMove1Text::
 	text "!"
@@ -455,8 +442,7 @@ _EndUsedMove5Text::
 
 UnknownText_0x1c0db0::
 	text "Huh?"
-	para "@"
-	db "@"
+	para "@@"
 
 UnknownText_0x1c0db8::
 	text ""
@@ -468,10 +454,7 @@ UnknownText_0x1c0dba::
 	line "out of its EGG!@"
 	sound_caught_mon
 	text_waitbutton
-	db "@"
-
-UnknownText_0x1c0dd7::
-	db "@"
+	db "@@"
 
 UnknownText_0x1c0dd8::
 	text "Give a nickname to"
@@ -578,10 +561,7 @@ UnknownText_0x1c0fbc::
 	text ""
 	line "Animation type @"
 	text_from_ram StringBuffer2
-	db "@"
-
-UnknownText_0x1c0fdc::
-	db "@"
+	db "@@"
 
 UnknownText_0x1c0fdd::
 	text "#MON number?"
@@ -647,17 +627,18 @@ ContestJudging_FirstPlaceText::
 	line "Contest winner is@"
 	interpret_data
 	text "…"
+
 	para "@"
 	text_from_ram wBugContestWinnerName
 	text ","
 	line "who caught a"
 	cont "@"
 	text_from_ram StringBuffer1
-	text "!@"
-	db "@"
+	text "!@@"
 
 ContestJudging_FirstPlaceScoreText::
 	text ""
+
 	para "The winning score"
 	line "was @"
 	deciram wBugContestFirstPlaceScore, 2, 3
@@ -672,8 +653,7 @@ ContestJudging_SecondPlaceText::
 	para "who caught a"
 	line "@"
 	text_from_ram StringBuffer1
-	text "!@"
-	db "@"
+	text "!@@"
 
 ContestJudging_SecondPlaceScoreText::
 	text ""
@@ -691,8 +671,7 @@ ContestJudging_ThirdPlaceText::
 	para "who caught a"
 	line "@"
 	text_from_ram StringBuffer1
-	text "!@"
-	db "@"
+	text "!@@"
 
 ContestJudging_ThirdPlaceScoreText::
 	text ""
@@ -720,10 +699,7 @@ UnknownText_0x1c123a::
 	line "@"
 	text_from_ram wMagikarpRecordHoldersName
 	text_waitbutton
-	db "@"
-
-UnknownText_0x1c1260::
-	db "@"
+	db "@@"
 
 UnknownText_0x1c1261::
 	text "Congratulations!"
@@ -1206,15 +1182,11 @@ _OakText2::
 	text "This world is in-"
 	line "habited by crea-"
 	cont "tures that we call"
-	cont "#MON.@"
-	db "@"
+	cont "#MON.@@"
 
 _OakText3::
 	text_waitbutton
-	db "@"
-
-UnknownText_0x1c1de4::
-	db "@"
+	db "@@"
 
 _OakText4::
 	text "People and #MON"

@@ -95,10 +95,7 @@ UnknownText_0x1bc14f::
 	text "!@"
 	sound_dex_fanfare_50_79
 	text_waitbutton
-	db "@"
-
-UnknownText_0x1bc16d::
-	db "@"
+	db "@@"
 
 UnknownText_0x1bc16e::
 	text_from_ram StringBuffer1
@@ -147,12 +144,11 @@ UnknownText_0x1bc272::
 	done
 
 UnknownText_0x1bc288::
-	text "CARD FOLDER open.@"
-	db "@"
+	text "CARD FOLDER open.@@"
 
 UnknownText_0x1bc29c::
-	text $56, $56, $56, $56, $56, $56
-	line $56, $56, $56, $56, $56, $56
+	text "<......><......><......><......><......><......>"
+	line "<......><......><......><......><......><......>"
 
 	para "Zzz… Hm? Wha…?"
 	line "You woke me up!"
@@ -166,8 +162,7 @@ UnknownText_0x1bc2eb::
 	done
 
 UnknownText_0x1bc2fd::
-	text "What?@"
-	db "@"
+	text "What?@@"
 
 UnknownText_0x1bc305::
 	text "?"
@@ -178,8 +173,7 @@ UnknownText_0x1bc308::
 	done
 
 UnknownText_0x1bc31b::
-	text "Whoa!@"
-	db "@"
+	text "Whoa!@@"
 
 UnknownText_0x1bc323::
 	text "?"
@@ -299,6 +293,7 @@ UnknownText_0x1bc51c::
 	line "@"
 	text_from_ram StringBuffer3
 	text ""
+
 	para "and set up the"
 	line "@"
 	text_from_ram StringBuffer4
@@ -424,10 +419,7 @@ UnknownText_0x1bc75e::
 	text " will"
 	line "trade @"
 	text_from_ram wc703
-	db "@"
-
-UnknownText_0x1bc773::
-	db "@"
+	db "@@"
 
 UnknownText_0x1bc774::
 	text "for @"
@@ -443,10 +435,7 @@ UnknownText_0x1bc787::
 	text " will"
 	line "trade @"
 	text_from_ram wc6d1
-	db "@"
-
-UnknownText_0x1bc79c::
-	db "@"
+	db "@@"
 
 UnknownText_0x1bc79d::
 	text "for @"
@@ -512,10 +501,7 @@ UnknownText_0x1bc84b::
 	text ""
 	line "OAK: @"
 	text_from_ram wd050
-	db "@"
-
-UnknownText_0x1bc857::
-	db "@"
+	db "@@"
 
 UnknownText_0x1bc858::
 	text ""
@@ -704,10 +690,7 @@ UnknownText_0x1bca91::
 	text ""
 	line "@"
 	text_from_ram StringBuffer1
-	db "@"
-
-UnknownText_0x1bca98::
-	db "@"
+	db "@@"
 
 UnknownText_0x1bca99::
 	text ""
@@ -850,10 +833,7 @@ UnknownText_0x1bcc72::
 	text_from_ram StringBuffer2
 	text " @"
 	text_from_ram StringBuffer1
-	db "@"
-
-UnknownText_0x1bcc7f::
-	db "@"
+	db "@@"
 
 UnknownText_0x1bcc80::
 	text ""
@@ -939,10 +919,7 @@ UnknownText_0x1bcda0::
 	text ""
 	line "@"
 	text_from_ram StringBuffer1
-	db "@"
-
-UnknownText_0x1bcda7::
-	db "@"
+	db "@@"
 
 UnknownText_0x1bcda8::
 	text ""
@@ -1333,10 +1310,7 @@ UnknownText_0x1bd3be::
 	text "!@"
 	sound_item
 	text_waitbutton
-	db "@"
-
-UnknownText_0x1bd3d6::
-	db "@"
+	db "@@"
 
 UnknownText_0x1bd3d7::
 	text "You have no coins."
@@ -1359,16 +1333,12 @@ UnknownText_0x1bd429::
 	text " for"
 	cont "@"
 	text_from_ram StringBuffer2
-	text ".@"
-	db "@"
+	text ".@@"
 
 UnknownText_0x1bd445::
 	sound_dex_fanfare_80_109
 	interpret_data
-	db "@"
-
-UnknownText_0x1bd448::
-	db "@"
+	db "@@"
 
 UnknownText_0x1bd449::
 	text "I collect #MON."
@@ -1553,7 +1523,8 @@ UnknownText_0x1bd77f::
 UnknownText_0x1bd868::
 	text "OK, I'll take care"
 	line "of your money."
-	para $56, $56, $56
+
+	para "<......><......><......>"
 	prompt
 
 UnknownText_0x1bd88e::

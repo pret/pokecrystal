@@ -237,10 +237,7 @@ UnknownText_0x1c5660::
 	text "!@"
 	sound_dex_fanfare_50_79
 	text_waitbutton
-	db "@"
-
-UnknownText_0x1c5677::
-	db "@"
+	db "@@"
 
 UnknownText_0x1c5678::
 	text "Which move should"
@@ -287,10 +284,7 @@ UnknownText_0x1c56c9::
 UnknownText_0x1c5740::
 	text "1, 2 and…@"
 	interpret_data
-	db "@"
-
-UnknownText_0x1c574d::
-	db "@"
+	db "@@"
 
 UnknownText_0x1c574e::
 	text " Poof!@"
@@ -348,10 +342,7 @@ UnknownText_0x1c581a::
 
 UnknownText_0x1c5821::
 	current_day
-	db "@"
-
-UnknownText_0x1c5823::
-	db "@"
+	db "@@"
 
 UnknownText_0x1c5824::
 	text "<......>"
@@ -507,17 +498,11 @@ UnknownText_0x1c5b17::
 	text ""
 	line "was caught!@"
 	sound_caught_mon
-	db "@"
-
-UnknownText_0x1c5b34::
-	db "@"
+	db "@@"
 
 Text_Waitbutton_2::
 	text_waitbutton
-	db "@"
-
-UnknownText_0x1c5b37::
-	db "@"
+	db "@@"
 
 UnknownText_0x1c5b38::
 	text_from_ram wd050
@@ -532,10 +517,7 @@ UnknownText_0x1c5b53::
 	cont "the #DEX.@"
 	sound_slot_machine_start
 	text_waitbutton
-	db "@"
-
-UnknownText_0x1c5b7e::
-	db "@"
+	db "@@"
 
 UnknownText_0x1c5b7f::
 	text "Give a nickname to"
@@ -580,10 +562,7 @@ UnknownText_0x1c5c44::
 	text "<PLAYER> played the"
 	line "# FLUTE.@"
 	text_waitbutton
-	db "@"
-
-UnknownText_0x1c5c5d::
-	db "@"
+	db "@@"
 
 UnknownText_0x1c5c5e::
 	text "You now have"
@@ -596,10 +575,7 @@ UnknownText_0x1c5c7b::
 	text "Coins:"
 	line "@"
 	deciram Coins, 2, 4
-	db "@"
-
-UnknownText_0x1c5c89::
-	db "@"
+	db "@@"
 
 Text_RaiseThePPOfWhichMove::
 	text "Raise the PP of"

@@ -447,10 +447,7 @@ UnknownText_0x1c4b92::
 	text "Congratulations!"
 	line "Your @"
 	text_from_ram StringBuffer2
-	db "@"
-
-UnknownText_0x1c4bae::
-	db "@"
+	db "@@"
 
 UnknownText_0x1c4baf::
 	text ""

@@ -96,8 +96,7 @@ UnknownText_0x1c0272::
 
 Text_Gained::
 	text_from_ram StringBuffer1
-	text " gained@"
-	db "@"
+	text " gained@@"
 
 Text_ABoostedStringBuffer2ExpPoints::
 	text ""
@@ -115,22 +114,18 @@ Text_StringBuffer2ExpPoints::
 	prompt
 
 Text_GoPkmn::
-	text "Go! @"
-	db "@"
+	text "Go! @@"
 
 Text_DoItPkmn::
-	text "Do it! @"
-	db "@"
+	text "Do it! @@"
 
 Text_GoForItPkmn::
 	text "Go for it,"
-	line "@"
-	db "@"
+	line "@@"
 
 Text_YourFoesWeakGetmPkmn::
 	text "Your foe's weak!"
-	line "Get'm, @"
-	db "@"
+	line "Get'm, @@"
 
 Text_BattleMonNick01::
 	text_from_ram BattleMonNick
@@ -139,23 +134,19 @@ Text_BattleMonNick01::
 
 Text_BattleMonNickComma::
 	text_from_ram BattleMonNick
-	text ",@"
-	db "@"
+	text ",@@"
 
 Text_ThatsEnoughComeBack::
 	text " that's"
-	line "enough! Come back!@"
-	db "@"
+	line "enough! Come back!@@"
 
 Text_OKComeBack::
 	text " OK!"
-	line "Come back!@"
-	db "@"
+	line "Come back!@@"
 
 Text_GoodComeBack::
 	text " good!"
-	line "Come back!@"
-	db "@"
+	line "Come back!@@"
 
 Text_ComeBack::
 	text " come"
@@ -315,10 +306,7 @@ UnknownText_0x1c0609::
 	text "A blinding FLASH"
 	line "lights the area!@"
 	text_waitbutton
-	db "@"
-
-UnknownText_0x1c062e::
-	db "@"
+	db "@@"
 
 _UsedSurfText::
 	text_from_ram StringBuffer2
