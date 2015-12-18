@@ -1,29 +1,29 @@
-Function8b1e1: ; 8b1e1
-	ld de, Unknown_8b1ed
-	call Function8b25b
+CheckForMobileBattleRules: ; 8b1e1
+	ld de, .PointerTables
+	call BattleTower_ExecuteJumptable
 	ret z
-	call Function8b231
+	call BattleTower_PleaseReturnWhenReady
 	scf
 	ret
 ; 8b1ed
 
-Unknown_8b1ed: ; 8b1ed
+.PointerTables: ; 8b1ed
 	db 2
-	dw Unknown_8b1f2
-	dw Unknown_8b1f6
+	dw .Functions
+	dw .TextPointers
 
-Unknown_8b1f2: ; 8b1f2
-	dw Function8b2bb
-	dw Function8b2c1
+.Functions: ; 8b1f2
+	dw BattleTower_CheckPartyLengthIs3
+	dw BattleTower_CheckPartyHasThreeMonsThatAreNotEggs
 ; 8b1f6
 
-Unknown_8b1f6: ; 8b1f6
-	dw UnknownText_0x8b1fc
-	dw UnknownText_0x8b23d
-	dw UnknownText_0x8b242
+.TextPointers: ; 8b1f6
+	dw .ExcuseMeText
+	dw JumpText_NeedAtLeastThreeMon
+	dw JumpText_EggDoesNotQualify
 ; 8b1fc
 
-UnknownText_0x8b1fc: ; 0x8b1fc
+.ExcuseMeText: ; 0x8b1fc
 	; Excuse me!
 	text_jump UnknownText_0x1c5937
 	db "@"
@@ -34,27 +34,27 @@ CheckForBattleTowerRules: ; 8b201
 	ld [hl], "3"
 	inc hl
 	ld [hl], "@"
-	ld de, CheckForBattleTowerRules_FunctionsText
-	call Function8b25b
+	ld de, .PointerTables
+	call BattleTower_ExecuteJumptable
 	ret z
-	call Function8b231
+	call BattleTower_PleaseReturnWhenReady
 	scf
 	ret
 ; 8b215
 
-CheckForBattleTowerRules_FunctionsText: ; 8b215
+.PointerTables: ; 8b215
 	db 4
-	dw CheckForBattleTowerRules_Functions
-	dw CheckForBattleTowerRules_Text
+	dw .Functions
+	dw .TextPointers
 
-CheckForBattleTowerRules_Functions: ; 8b21a
+.Functions: ; 8b21a
 	dw Function_PartyCountEq3
 	dw Function_PartySpeciesAreUnique
 	dw Function_PartyItemsAreUnique
 	dw Function_HasPartyAnEgg
 ; 8b222
 
-CheckForBattleTowerRules_Text: ; 8b222
+.TextPointers: ; 8b222
 	dw JumpText_ExcuseMeYoureNotReady
 	dw JumpText_OnlyThreePkmnMayBeEntered
 	dw JumpText_ThePkmnMustAllBeDifferentKinds
@@ -68,25 +68,25 @@ JumpText_ExcuseMeYoureNotReady: ; 0x8b22c
 	db "@"
 ; 0x8b231
 
-Function8b231: ; 8b231
-	ld hl, UnknownText_0x8b238
+BattleTower_PleaseReturnWhenReady: ; 8b231
+	ld hl, .PleaseReturnWhenReady
 	call PrintText
 	ret
 ; 8b238
 
-UnknownText_0x8b238: ; 0x8b238
+.PleaseReturnWhenReady: ; 0x8b238
 	; Please return when you're ready.
 	text_jump UnknownText_0x1c5962
 	db "@"
 ; 0x8b23d
 
-UnknownText_0x8b23d: ; 0x8b23d
+JumpText_NeedAtLeastThreeMon: ; 0x8b23d
 	; You need at least three #MON.
 	text_jump UnknownText_0x1c5983
 	db "@"
 ; 0x8b242
 
-UnknownText_0x8b242: ; 0x8b242
+JumpText_EggDoesNotQualify: ; 0x8b242
 	; Sorry, an EGG doesn't qualify.
 	text_jump UnknownText_0x1c59a3
 	db "@"
@@ -116,22 +116,22 @@ JumpText_YouCantTakeAnEgg: ; 0x8b256
 	db "@"
 ; 0x8b25b
 
-Function8b25b: ; 8b25b
+BattleTower_ExecuteJumptable: ; 8b25b
 	ld bc, 0
-.asm_8b25e
-	call Function8b26c
-	call c, Function8b28e
-	call Function8b276
-	jr nz, .asm_8b25e
+.loop
+	call .DoJumptableFunction
+	call c, .PrintFailureText
+	call .Next_CheckReachedEnd
+	jr nz, .loop
 	ld a, b
 	and a
 	ret
 ; 8b26c
 
-Function8b26c: ; 8b26c
+.DoJumptableFunction: ; 8b26c
 	push de
 	push bc
-	call Function8b27a
+	call .GetFunctionPointer
 	ld a, c
 	rst JumpTable
 	pop bc
@@ -139,14 +139,14 @@ Function8b26c: ; 8b26c
 	ret
 ; 8b276
 
-Function8b276: ; 8b276
+.Next_CheckReachedEnd: ; 8b276
 	inc c
 	ld a, [de]
 	cp c
 	ret
 ; 8b27a
 
-Function8b27a: ; 8b27a
+.GetFunctionPointer: ; 8b27a
 	inc de
 	ld a, [de]
 	ld l, a
@@ -156,7 +156,7 @@ Function8b27a: ; 8b27a
 	ret
 ; 8b281
 
-Function8b281: ; 8b281
+.GetTextPointers: ; 8b281
 rept 3
 	inc de
 endr
@@ -168,38 +168,38 @@ endr
 	ret
 ; 8b28a
 
-Function8b28a: ; 8b28a
+.LoadTextPointer: ; 8b28a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ret
 ; 8b28e
 
-Function8b28e: ; 8b28e
+.PrintFailureText: ; 8b28e
 	push de
 	push bc
 	ld a, b
 	and a
-	call z, Function8b29d
+	call z, .PrintFirstText
 	pop bc
-	call Function8b2a9
+	call .PrintNthText
 	ld b, $1
 	pop de
 	ret
 ; 8b29d
 
-Function8b29d: ; 8b29d
+.PrintFirstText: ; 8b29d
 	push de
-	call Function8b281
-	call Function8b28a
+	call .GetTextPointers
+	call .LoadTextPointer
 	call PrintText
 	pop de
 	ret
 ; 8b2a9
 
-Function8b2a9: ; 8b2a9
+.PrintNthText: ; 8b2a9
 	push bc
-	call Function8b281
+	call .GetTextPointers
 rept 2
 	inc hl
 endr
@@ -207,32 +207,32 @@ endr
 rept 2
 	add hl, bc
 endr
-	call Function8b28a
+	call .LoadTextPointer
 	call PrintText
 	pop bc
 	ret
 ; 8b2bb
 
-Function8b2bb: ; 8b2bb
+BattleTower_CheckPartyLengthIs3: ; 8b2bb
 	ld a, [PartyCount]
 	cp 3
 	ret
 ; 8b2c1
 
-Function8b2c1: ; 8b2c1
+BattleTower_CheckPartyHasThreeMonsThatAreNotEggs: ; 8b2c1
 	ld hl, PartyCount
 	ld a, [hli]
 	ld b, $0
 	ld c, a
-.asm_8b2c8
+.loop
 	ld a, [hli]
 	cp EGG
-	jr z, .asm_8b2ce
+	jr z, .egg
 	inc b
 
-.asm_8b2ce
+.egg
 	dec c
-	jr nz, .asm_8b2c8
+	jr nz, .loop
 	ld a, [PartyCount]
 	cp b
 	ret z

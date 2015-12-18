@@ -545,7 +545,7 @@ Continue_LoadMenuHeader: ; 5ebf
 	ld hl, .MenuDataHeader_NoDex
 
 .pokedex_header
-	call Function1e35
+	call _OffsetMenuDataHeader
 	call MenuBox
 	call PlaceVerticalMenuItems
 	ret

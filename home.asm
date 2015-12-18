@@ -1146,17 +1146,17 @@ GetMoveName:: ; 34f8
 ; 350c
 
 
-HandleScrollingMenu:: ; 350c
+ScrollingMenu:: ; 350c
 	call CopyMenuData2
 	ld a, [hROMBank]
 	push af
 
-	ld a, BANK(Function245af)
+	ld a, BANK(_ScrollingMenu)
 	rst Bankswitch
 
-	call Function245af
-	call Function3524
-	call Function245cb
+	call _InitScrollingMenu
+	call .UpdatePalettes
+	call _ScrollingMenu
 
 	pop af
 	rst Bankswitch
@@ -1165,7 +1165,7 @@ HandleScrollingMenu:: ; 350c
 	ret
 ; 3524
 
-Function3524:: ; 3524
+.UpdatePalettes ; 3524
 	ld hl, VramState
 	bit 0, [hl]
 	jp nz, UpdateTimePals

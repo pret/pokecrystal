@@ -5,11 +5,11 @@ TMHMPocket: ; 2c76f (b:476f)
 	ld a, $0
 	ld [hInMenu], a
 	ret nc
-	call Function1bee
+	call PlaceHollowCursor
 	call WaitBGMap
 	ld a, [CurItem]
 	dec a
-	ld [ItemCountBuffer], a
+	ld [CurItemQuantity], a
 	ld hl, TMsHMs
 	ld c, a
 	ld b, 0

@@ -2024,7 +2024,7 @@ Function100cb5: ; 100cb5
 	ld a, [wcfa8]
 	and c
 	jr z, .asm_100cc0
-	call Function1bee
+	call PlaceHollowCursor
 	ld a, [PartyCount]
 	inc a
 	ld b, a
@@ -5569,7 +5569,7 @@ Function1024de: ; 1024de
 ; 1024f6
 
 Function1024f6: ; 1024f6
-	call Function1bee
+	call PlaceHollowCursor
 	ld hl, wcd4b
 	set 1, [hl]
 	ld a, [wcd4c]
@@ -5746,7 +5746,7 @@ Function1025ff: ; 1025ff
 	ld a, [OTPartyCount]
 	cp b
 	ret nz
-	call Function1bf7
+	call HideCursor
 	ld a, [PartyCount]
 	ld [wMenuCursorY], a
 	ld a, $1d
@@ -5806,7 +5806,7 @@ Function10266b: ; 10266b
 	ld a, [wMenuCursorY]
 	dec a
 	ret nz
-	call Function1bf7
+	call HideCursor
 	ld a, $1f
 	ld [wcd49], a
 	ret
@@ -5847,7 +5847,7 @@ Jumptable_1026da: ; 1026da
 ; 1026de
 
 Function1026de: ; 1026de
-	call Function1bf7
+	call HideCursor
 	hlcoord 9, 17
 	ld [hl], $ed
 	ld a, [wcd4a]
@@ -5901,7 +5901,7 @@ Function1026f3: ; 1026f3
 Function102738: ; 102738
 	ld hl, wcd4b
 	set 6, [hl]
-	call Function1bee
+	call PlaceHollowCursor
 	call Function1027eb
 	ld hl, wcd4b
 	set 1, [hl]
@@ -7796,7 +7796,7 @@ Mobile_SelectThreeMons: ; 10366e
 	call PrintText
 	call YesNoBox
 	jr c, .asm_103696
-	callba Function8b1e1
+	callba CheckForMobileBattleRules
 	jr nc, .asm_103690
 	call JoyWaitAorB
 	jr .asm_103696
@@ -7841,7 +7841,7 @@ Mobile_SelectThreeMons: ; 10366e
 	jr .asm_1036b5
 
 .asm_1036d9
-	callba Function8b1e1
+	callba CheckForMobileBattleRules
 	jr nc, .asm_1036e6
 	call JoyWaitAorB
 	jr .asm_1036f4

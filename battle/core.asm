@@ -5342,7 +5342,7 @@ BattleMenuPKMN_Loop:
 	callba FreezeMonIcons
 	call .GetMenu
 	jr c, .PressedB
-	call Function1bee
+	call PlaceHollowCursor
 	ld a, [wMenuCursorY]
 	cp $1 ; SWITCH
 	jp z, TryPlayerSwitch

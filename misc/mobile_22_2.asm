@@ -828,7 +828,7 @@ Function8b7bd: ; 8b7bd
 	call Function8b75d
 	call UpdateSprites
 	call Function89209
-	call HandleScrollingMenu
+	call ScrollingMenu
 	call Function8920f
 	ld a, [wMenuJoypad]
 	cp $2

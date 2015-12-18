@@ -42,7 +42,7 @@ StartMenu:: ; 125cd
 	ld a, [wMenuCursorBuffer]
 	ld [wd0d2], a
 	call PlayClickSFX
-	call Function1bee
+	call PlaceHollowCursor
 	call .OpenMenu
 
 ; Menu items have different return functions.
@@ -1671,7 +1671,7 @@ MoveScreenLoop: ; 12fd5
 	jr nz, .place_move
 	ld a, [wMenuCursorY]
 	ld [wMoveSwapBuffer], a
-	call Function1bee
+	call PlaceHollowCursor
 	jp .moving_move
 
 .place_move

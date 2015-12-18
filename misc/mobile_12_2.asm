@@ -499,7 +499,7 @@ Function4ab1a: ; 4ab1a
 	jr c, .asm_4ab1a
 	push af
 	call Function4ab99
-	call nc, Function1bee
+	call nc, PlaceHollowCursor
 	pop af
 	bit 1, a
 	jr nz, .asm_4ab6d

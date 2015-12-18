@@ -101,7 +101,7 @@ SpecialsPointers:: ; c029
 	add_special SpecialCheckPokerus
 	add_special Special_DisplayCoinCaseBalance
 	add_special Special_DisplayMoneyAndCoinBalance
-	add_special PlaceMoneyTopRightOW
+	add_special PlaceMoneyTopRight
 	add_special Special_CheckForLuckyNumberWinners
 	add_special Special_CheckLuckyNumberShowFlag
 	add_special Special_ResetLuckyNumberShowFlag

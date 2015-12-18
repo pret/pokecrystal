@@ -591,7 +591,7 @@ Function15985: ; 0x15985
 	ld [wMenuCursorBuffer], a
 	ld a, [wd0dd]
 	ld [wMenuScrollPosition], a
-	call HandleScrollingMenu
+	call ScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wd0dd], a
 	ld a, [wMenuCursorY]
@@ -636,7 +636,7 @@ Function15985: ; 0x15985
 
 .asm_159fb
 	callba Function24706
-	call Function1bee
+	call PlaceHollowCursor
 	and a
 	ret
 

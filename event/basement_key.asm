@@ -18,12 +18,12 @@ _BasementKey: ; 507b4
 ; Let's use the Basement Key
 	ld hl, .BasementKeyScript
 	call QueueScript
-	ld a, 1
+	ld a, TRUE
 	ld [wItemEffectSucceeded], a
 	ret
 
 .nope
-	ld a, $0
+	ld a, FALSE
 	ld [wItemEffectSucceeded], a
 	ret
 ; 507e1

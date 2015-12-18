@@ -188,7 +188,7 @@ GetMenuJoypad:: ; 1bdd
 	ret
 ; 1bee
 
-Function1bee:: ; 1bee
+PlaceHollowCursor:: ; 1bee
 	ld hl, wCursorCurrentTile
 	ld a, [hli]
 	ld h, [hl]
@@ -197,7 +197,7 @@ Function1bee:: ; 1bee
 	ret
 ; 1bf7
 
-Function1bf7:: ; 1bf7
+HideCursor:: ; 1bf7
 	ld hl, wCursorCurrentTile
 	ld a, [hli]
 	ld h, [hl]

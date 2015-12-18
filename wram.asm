@@ -1492,8 +1492,7 @@ Requested1bppDest:: ; cf6f
 wWindowStackPointer:: dw ; cf71
 wMenuJoypad:: ds 1   ; cf73
 MenuSelection:: ds 1 ; cf74
-
-wcf75:: ds 1
+MenuSelectionQuantity:: ds 1 ; cf75
 wcf76:: ds 1
 wScrollingMenuCursorPosition:: ds 1
 wWindowStackSize:: ds 9
@@ -1523,24 +1522,30 @@ wMenuData2Flags:: ds 1 ; cf91
 ; bit 1: Enable Select button
 ; bit 0: Disable B button
 
+wMenuData2_ScrollingMenuHeight::
 wMenuData2Items:: ds 1
 wMenuData2IndicesPointer::
 wMenuData2Spacing::
+wMenuData2_ScrollingMenuWidth::
 wcf93:: ds 1
 wMenuData2_2DMenuItemStringsBank::
+wMenuData2_ScrollingMenuSpacing::
 wcf94:: ds 1
 wMenuData2_2DMenuItemStringsAddr::
 wMenuData2DisplayFunctionPointer::
-wMenuData2Bank::
+wMenuData2_ItemsPointerBank::
 wcf95:: ds 1 ; bank
-wMenuData2Addr::
+wMenuData2_ItemsPointerAddr::
 wcf96:: ds 1 ; addr lo
 wMenuData2PointerTableAddr::
 wMenuData2_2DMenuFunctionBank::
 wcf97:: ds 1 ; addr hi
 wMenuData2_2DMenuFunctionAddr::
+wMenuData2_ScrollingMenuFunction1::
 wcf98:: ds 3
+wMenuData2_ScrollingMenuFunction2::
 wcf9b:: ds 3
+wMenuData2_ScrollingMenuFunction3::
 wcf9e:: ds 3
 wMenuData2End::
 wMenuData3::
@@ -1941,7 +1946,7 @@ wd105:: ds 1
 CurItem:: ; d106
 	ds 1
 
-ItemCountBuffer:: ; d107
+CurItemQuantity:: ; d107
 wMartItemID::
 wd107:: ds 1
 
@@ -1981,7 +1986,7 @@ wItemAttributeParamBuffer:: ; d142
 CurPartyLevel:: ; d143
 	ds 1
 
-wd144:: ds 2
+wScrollingMenuListSize:: ds 2
 
 ; used when following a map warp
 ; d146

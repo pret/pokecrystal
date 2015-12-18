@@ -530,7 +530,7 @@ endr
 Function4a098: ; 4a098 (12:6098)
 	ld a, $2
 	call MenuClickSound
-	call Function1bee
+	call PlaceHollowCursor
 	call WaitBGMap
 	call LoadStandardMenuDataHeader
 	callba Function89de0
@@ -749,7 +749,7 @@ Function4a28a: ; 4a28a (12:628a)
 	lb bc, 6, 1
 	ld a, " "
 	call Function4a6d8
-	call Function1bee
+	call PlaceHollowCursor
 	call WaitBGMap
 	call LoadStandardMenuDataHeader
 	ld a, $5
@@ -786,7 +786,7 @@ Function4a28a: ; 4a28a (12:628a)
 	scf
 	ret
 .asm_4a2f0
-	call Function1bee
+	call PlaceHollowCursor
 	ld hl, UnknownText_0x4a358
 	call PrintText
 	hlcoord 14, 7

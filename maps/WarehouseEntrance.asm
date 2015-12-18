@@ -197,7 +197,7 @@ OlderHaircutBrotherScript:
 .DoHaircut:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	iftrue .AlreadyGotHaircut
-	special PlaceMoneyTopRightOW
+	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c5f9
 	yesorno
 	iffalse .Refused
@@ -233,7 +233,7 @@ OlderHaircutBrotherScript:
 
 .then:
 	takemoney $0, 500
-	special PlaceMoneyTopRightOW
+	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c6b8
 	waitbutton
 	closetext
@@ -280,7 +280,7 @@ YoungerHaircutBrotherScript:
 .DoHaircut:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	iftrue .AlreadyGotHaircut
-	special PlaceMoneyTopRightOW
+	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c75c
 	yesorno
 	iffalse .Refused
@@ -316,7 +316,7 @@ YoungerHaircutBrotherScript:
 
 .then:
 	takemoney $0, 300
-	special PlaceMoneyTopRightOW
+	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c80e
 	waitbutton
 	closetext

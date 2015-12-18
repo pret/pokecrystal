@@ -2258,7 +2258,7 @@ Function89dab: ; 89dab (22:5dab)
 	ld a, [wMenuCursorY]
 	cp c
 	jr z, .asm_89dd9
-	call Function1bee
+	call PlaceHollowCursor
 	scf
 	ret
 .asm_89dd9
@@ -3076,7 +3076,7 @@ Function8a31c: ; 8a31c (22:631c)
 	ret
 .asm_8a370
 	call Function89448
-	call Function1bee
+	call PlaceHollowCursor
 	call Function8a3a2
 	ld a, [MenuSelection]
 	cp $ff

@@ -52,7 +52,7 @@ GiveOddEgg: ; 1fb4b6
 	ld a, 1
 	ld [wItemQuantityChangeBuffer], a
 	ld a, -1
-	ld [ItemCountBuffer], a
+	ld [CurItemQuantity], a
 	ld hl, NumItems
 	call TossItem
 

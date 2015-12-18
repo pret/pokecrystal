@@ -27,7 +27,7 @@ CeladonVendingMachine:
 	opentext
 	writetext CeladonVendingText
 .Start
-	special PlaceMoneyTopRightOW
+	special PlaceMoneyTopRight
 	loadmenudata .MenuData
 	verticalmenu
 	writebackup

@@ -11,16 +11,16 @@ _KrisDecorationMenu: ; 0x2675c
 	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
 	xor a
-	ld [wd1ee], a
+	ld [Buffer5], a
 	ld a, $1
-	ld [wd1ef], a
+	ld [Buffer6], a
 .top_loop
-	ld a, [wd1ef]
+	ld a, [Buffer6]
 	ld [wMenuCursorBuffer], a
 	call .FindCategoriesWithOwnedDecos
 	call DoNthMenu
 	ld a, [wMenuCursorY]
-	ld [wd1ef], a
+	ld [Buffer6], a
 	jr c, .exit_menu
 	ld a, [MenuSelection]
 	ld hl, .pointers
@@ -31,7 +31,7 @@ _KrisDecorationMenu: ; 0x2675c
 	call ExitMenu
 	pop af
 	ld [wcf76], a
-	ld a, [wd1ee]
+	ld a, [Buffer5]
 	ld c, a
 	ret
 ; 0x2679a
@@ -400,7 +400,7 @@ PopulateDecoCategoryMenu: ; 2695b
 	call InitScrollingMenu
 	xor a
 	ld [wMenuScrollPosition], a
-	call HandleScrollingMenu
+	call ScrollingMenu
 	ld a, [wMenuJoypad]
 	cp 2
 	jr z, .no_action_2
@@ -803,7 +803,7 @@ DecoAction_TrySetItUp: ; 26d2d
 	call DecoAction_SetItUp
 	jr c, .failed
 	ld a, 1
-	ld [wd1ee], a
+	ld [Buffer5], a
 	pop hl
 	ld a, [MenuSelection]
 	ld [hl], a
@@ -865,7 +865,7 @@ DecoAction_TryPutItAway: ; 26d86
 	jr z, .nothingthere
 ; Put it away.
 	ld a, $1
-	ld [wd1ee], a
+	ld [Buffer5], a
 	ld a, [Buffer1]
 	ld [MenuSelection], a
 	ld hl, StringBuffer3
@@ -889,7 +889,7 @@ DecoAction_setupornament: ; 26db3
 	call DecoAction_SetItUp_Ornament
 	jr c, .cancel
 	ld a, $1
-	ld [wd1ee], a
+	ld [Buffer5], a
 	jr DecoAction_FinishUp_Ornament
 
 .cancel
@@ -981,7 +981,7 @@ DecoAction_PutItAway_Ornament: ; 26e46
 	ld hl, StringBuffer3
 	call GetDecorationName
 	ld a, $1
-	ld [wd1ee], a
+	ld [Buffer5], a
 	xor a
 	ld [wd1ec], a
 	ld hl, DecoText_PutAwayTheDeco

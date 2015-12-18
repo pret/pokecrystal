@@ -2323,7 +2323,7 @@ _ChangeBox: ; e35aa (38:75aa)
 	hlcoord 0, 4
 	lb bc, 8, 9
 	call TextBox
-	call HandleScrollingMenu
+	call ScrollingMenu
 	ld a, [wMenuJoypad]
 	cp B_BUTTON
 	jr z, .done

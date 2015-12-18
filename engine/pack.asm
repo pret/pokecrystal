@@ -69,7 +69,7 @@ Pack: ; 10000
 	ld [wMenuCursorBuffer], a
 	ld a, [wItemsPocketScrollPosition]
 	ld [wMenuScrollPosition], a
-	call HandleScrollingMenu
+	call ScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wItemsPocketScrollPosition], a
 	ld a, [wMenuCursorY]
@@ -97,7 +97,7 @@ Pack: ; 10000
 	ld [wMenuCursorBuffer], a
 	ld a, [wKeyItemsPocketScrollPosition]
 	ld [wMenuScrollPosition], a
-	call HandleScrollingMenu
+	call ScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wKeyItemsPocketScrollPosition], a
 	ld a, [wMenuCursorY]
@@ -230,7 +230,7 @@ Pack: ; 10000
 	ld [wMenuCursorBuffer], a
 	ld a, [wBallsPocketScrollPosition]
 	ld [wMenuScrollPosition], a
-	call HandleScrollingMenu
+	call ScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wBallsPocketScrollPosition], a
 	ld a, [wMenuCursorY]
@@ -528,7 +528,7 @@ TossMenu: ; 10364
 	pop af
 	jr c, .finish
 	ld hl, NumItems
-	ld a, [ItemCountBuffer]
+	ld a, [CurItemQuantity]
 	call TossItem
 	call Pack_GetItemName
 	ld hl, Text_ThrewAway
@@ -577,7 +577,7 @@ RegisterItem: ; 103c2
 	rrca
 	and $c0
 	ld b, a
-	ld a, [ItemCountBuffer]
+	ld a, [CurItemQuantity]
 	inc a
 	and $3f
 	or b
@@ -734,7 +734,7 @@ BattlePack: ; 10493
 	ld [wMenuCursorBuffer], a
 	ld a, [wItemsPocketScrollPosition]
 	ld [wMenuScrollPosition], a
-	call HandleScrollingMenu
+	call ScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wItemsPocketScrollPosition], a
 	ld a, [wMenuCursorY]
@@ -762,7 +762,7 @@ BattlePack: ; 10493
 	ld [wMenuCursorBuffer], a
 	ld a, [wKeyItemsPocketScrollPosition]
 	ld [wMenuScrollPosition], a
-	call HandleScrollingMenu
+	call ScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wKeyItemsPocketScrollPosition], a
 	ld a, [wMenuCursorY]
@@ -813,7 +813,7 @@ BattlePack: ; 10493
 	ld [wMenuCursorBuffer], a
 	ld a, [wBallsPocketScrollPosition]
 	ld [wMenuScrollPosition], a
-	call HandleScrollingMenu
+	call ScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wBallsPocketScrollPosition], a
 	ld a, [wMenuCursorY]
@@ -1018,7 +1018,7 @@ DepositSellPack: ; 106be
 	ld [wMenuCursorBuffer], a
 	ld a, [wItemsPocketScrollPosition]
 	ld [wMenuScrollPosition], a
-	call HandleScrollingMenu
+	call ScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wItemsPocketScrollPosition], a
 	ld a, [wMenuCursorY]
@@ -1034,7 +1034,7 @@ DepositSellPack: ; 106be
 	ld [wMenuCursorBuffer], a
 	ld a, [wKeyItemsPocketScrollPosition]
 	ld [wMenuScrollPosition], a
-	call HandleScrollingMenu
+	call ScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wKeyItemsPocketScrollPosition], a
 	ld a, [wMenuCursorY]
@@ -1059,7 +1059,7 @@ DepositSellPack: ; 106be
 	ld [wMenuCursorBuffer], a
 	ld a, [wBallsPocketScrollPosition]
 	ld [wMenuScrollPosition], a
-	call HandleScrollingMenu
+	call ScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wBallsPocketScrollPosition], a
 	ld a, [wMenuCursorY]
@@ -1243,7 +1243,7 @@ TutorialPack: ; 107bb
 	call InitPocket
 	pop hl
 	call CopyMenuDataHeader
-	call HandleScrollingMenu
+	call ScrollingMenu
 	ret
 
 Pack_JumptableNext: ; 10866 (4:4866)

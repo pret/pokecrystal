@@ -399,7 +399,7 @@ MailboxPC: ; 0x44806
 	ld [wMenuCursorBuffer], a
 	ld a, [OBPals + 8 * 6]
 	ld [wMenuScrollPosition], a
-	call HandleScrollingMenu
+	call ScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [OBPals + 8 * 6], a
 	ld a, [wMenuCursorY]

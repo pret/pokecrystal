@@ -130,7 +130,7 @@ Elevator_AskWhichFloor: ; 134dd
 	call UpdateSprites
 	xor a
 	ld [wMenuScrollPosition], a
-	call HandleScrollingMenu
+	call ScrollingMenu
 	call WriteBackup
 	ld a, [wMenuJoypad]
 	cp B_BUTTON

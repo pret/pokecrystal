@@ -34,12 +34,12 @@ ret_1d57:: ; 1d57
 ; 1d58
 
 LoadMenuTextBox:: ; 1d58
-	ld hl, MenuDataHeader_0x1d5f
+	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
 	ret
 ; 1d5f
 
-MenuDataHeader_0x1d5f:: ; 1d5f
+.MenuDataHeader ; 1d5f
 	db $40 ; tile backup
 	db 12, 0 ; start coords
 	db 17, 19 ; end coords
@@ -54,12 +54,12 @@ MenuTextBoxBackup:: ; 1d67
 ; 1d6e
 
 LoadStandardMenuDataHeader:: ; 1d6e
-	ld hl, MenuDataHeader_0x1d75
+	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
 	ret
 ; 1d75
 
-MenuDataHeader_0x1d75:: ; 1d75
+.MenuDataHeader ; 1d75
 	db $40 ; tile backup
 	db 0, 0 ; start coords
 	db 17, 19 ; end coords
@@ -187,24 +187,24 @@ YesNoMenuDataHeader:: ; 1e1d
 	db $40 ; tile backup
 	db 5, 10 ; start coords
 	db 9, 15 ; end coords
-	dw YesNoMenuData2
+	dw .MenuData2
 	db 1 ; default option
 ; 1e25
 
-YesNoMenuData2:: ; 1e25
+.MenuData2 ; 1e25
 	db $c0 ; flags
 	db 2
 	db "YES@"
 	db "NO@"
 ; 1e2e
 
-Function1e2e:: ; 1e2e
-	call Function1e35
+OffsetMenuDataHeader:: ; 1e2e
+	call _OffsetMenuDataHeader
 	call BackUpTiles
 	ret
 ; 1e35
 
-Function1e35:: ; 1e35
+_OffsetMenuDataHeader:: ; 1e35
 	push de
 	call CopyMenuDataHeader
 	pop de
@@ -243,7 +243,7 @@ SetUpMenu:: ; 1e70
 	call MenuFunc_1e7f ; ???
 	call MenuWriteText
 	call Function1eff ; set up selection pointer
-	ld hl, wcfa5
+	ld hl, w2DMenuFlags1
 	set 7, [hl]
 	ret
 
@@ -287,23 +287,23 @@ Function1ea6:: ; 1ea6
 ; 1ebd
 
 Function1ebd:: ; 1ebd
-	ld hl, wcf93
+	ld hl, wMenuData2IndicesPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld a, [wcf76]
 	and a
-	jr z, .asm_1ed3
+	jr z, .skip
 	ld b, a
-	ld c, $ff
-.asm_1ecc
+	ld c, -1
+.loop
 	ld a, [hli]
 	cp c
-	jr nz, .asm_1ecc
+	jr nz, .loop
 	dec b
-	jr nz, .asm_1ecc
+	jr nz, .loop
 
-.asm_1ed3
+.skip
 	ld d, h
 	ld e, l
 	ld a, [hl]
@@ -313,28 +313,28 @@ Function1ebd:: ; 1ebd
 
 Function1eda:: ; 1eda
 	call MenuBoxCoord2Tile
-	ld bc, $002a
+	ld bc, 2 * SCREEN_WIDTH + 2
 	add hl, bc
-.asm_1ee1
+.loop
 	inc de
 	ld a, [de]
-	cp $ff
+	cp -1
 	ret z
 	ld [MenuSelection], a
 	push de
 	push hl
 	ld d, h
 	ld e, l
-	ld hl, wcf95
-	call Function1efb
+	ld hl, wMenuData2DisplayFunctionPointer
+	call .__wMenuData2DisplayFunction__
 	pop hl
-	ld de, $0028
+	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	pop de
-	jr .asm_1ee1
+	jr .loop
 ; 1efb
 
-Function1efb:: ; 1efb
+.__wMenuData2DisplayFunction__ ; 1efb
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -343,27 +343,27 @@ Function1efb:: ; 1efb
 
 Function1eff:: ; 1eff
 	call InitVerticalMenuCursor
-	ld hl, wcfa8
+	ld hl, w2DMenuFlags4
 	ld a, [wMenuData2Flags]
 	bit 3, a
-	jr z, .asm_1f0e
+	jr z, .skip3
 	set 3, [hl]
 
-.asm_1f0e
+.skip3
 	ld a, [wMenuData2Flags]
 	bit 2, a
-	jr z, .asm_1f19
+	jr z, .skip4_5
 	set 5, [hl]
 	set 4, [hl]
 
-.asm_1f19
+.skip4_5
 	ret
 ; 1f1a
 
 
 Function1f1a:: ; 1f1a
 	call ScrollingMenuJoypad
-	ld hl, wcfa8
+	ld hl, w2DMenuFlags4
 	and [hl]
 	jr Function1f2a
 ; 1f23

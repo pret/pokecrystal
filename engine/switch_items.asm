@@ -145,7 +145,7 @@ Function249d1: ; 249d1 (9:49d1)
 	inc hl
 	pop af
 	ld [hl], a
-	ld hl, wMenuData2Addr
+	ld hl, wMenuData2_ItemsPointerAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -199,7 +199,7 @@ Function24a4d: ; 24a4d (9:4a4d)
 Function24a5c: ; 24a5c (9:4a5c)
 	push af
 	call Function24a80
-	ld hl, wMenuData2Addr
+	ld hl, wMenuData2_ItemsPointerAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

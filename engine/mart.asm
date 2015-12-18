@@ -470,7 +470,7 @@ endr
 
 
 BuyMenuLoop: ; 15cef
-	callba PlaceMoneyTopRightOW
+	callba PlaceMoneyTopRight
 	call UpdateSprites
 	ld hl, MenuDataHeader_Buy
 	call CopyMenuDataHeader
@@ -478,7 +478,7 @@ BuyMenuLoop: ; 15cef
 	ld [wMenuCursorBuffer], a
 	ld a, [wd045 + 1]
 	ld [wMenuScrollPosition], a
-	call HandleScrollingMenu
+	call ScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wd045 + 1], a
 	ld a, [wMenuCursorY]
@@ -875,7 +875,7 @@ Function15ee0: ; 15ee0
 .okay_to_sell
 	ld hl, Text_Mart_SellHowMany
 	call PrintText
-	callba PlaceMoneyTopRightMenu
+	callba PlaceMoneyAtTopLeftOfTextbox
 	callba SelectQuantityToSell
 	call ExitMenu
 	jr c, .declined
@@ -899,7 +899,7 @@ Function15ee0: ; 15ee0
 	ld hl, Text_Mart_SoldForAmount
 	call PrintTextBoxText
 	call PlayTransactionSound
-	callba PlaceMoneyBottomLeftOW
+	callba PlaceMoneyBottomLeft
 	call JoyWaitAorB
 
 .declined

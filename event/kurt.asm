@@ -67,7 +67,7 @@ Kurt_SelectApricorn: ; 88055
 	ld [hBGMapMode], a
 	call InitScrollingMenu
 	call UpdateSprites
-	call HandleScrollingMenu
+	call ScrollingMenu
 	ld a, [wMenuJoypad]
 	cp $2
 	jr z, .nope
@@ -116,7 +116,7 @@ Kurt_SelectApricorn: ; 88055
 	call Kurt_GetQuantityOfApricorn
 	ret z
 	ld a, [wItemQuantityChangeBuffer]
-	ld [wcf75], a
+	ld [MenuSelectionQuantity], a
 	callba PlaceMenuItemQuantity
 	ret
 ; 880c2
@@ -231,16 +231,16 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 	ld c, a
 	ld e, $0
 	xor a
-	ld [ItemCountBuffer], a
+	ld [CurItemQuantity], a
 	ld a, -1
 	ld [wd002], a
 
 ; Search for [CurItem] in the bag.
 .loop1
 ; Increase the total count.
-	ld a, [ItemCountBuffer]
+	ld a, [CurItemQuantity]
 	inc a
-	ld [ItemCountBuffer], a
+	ld [CurItemQuantity], a
 ; Get the index of the next item.
 	inc hl
 	ld a, [hli]
@@ -256,7 +256,7 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 	ld hl, wd002
 	add hl, de
 	inc e
-	ld a, [ItemCountBuffer]
+	ld a, [CurItemQuantity]
 	dec a
 	ld [hli], a
 	ld a, -1
@@ -322,7 +322,7 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 	cp -1
 	jr z, .done
 	push hl
-	ld [ItemCountBuffer], a
+	ld [CurItemQuantity], a
 	call Kurt_GetRidOfItem
 	pop hl
 	ld a, [wItemQuantityChangeBuffer]
@@ -375,7 +375,7 @@ endr
 Kurt_GetRidOfItem: ; 88211
 	push bc
 	ld hl, NumItems
-	ld a, [ItemCountBuffer]
+	ld a, [CurItemQuantity]
 	ld c, a
 	ld b, $0
 	inc hl

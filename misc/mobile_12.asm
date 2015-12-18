@@ -214,7 +214,7 @@ String_48202: ; 48202
 ; 4820d
 
 Function4820d: ; 4820d (12:420d)
-	call Function1bee
+	call PlaceHollowCursor
 	ld hl, wMenuCursorY
 	ld a, [hl]
 	push af
@@ -361,7 +361,7 @@ Function48304: ; 48304 (12:4304)
 	ld [wMenuScrollPosition], a
 	callba Function104148
 .asm_48348
-	call HandleScrollingMenu
+	call ScrollingMenu
 	ld de, $629
 	call Function48383
 	jr c, .asm_48348

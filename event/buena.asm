@@ -82,10 +82,10 @@ SpecialBuenaPrize: ; 8afd4
 .okay
 	call DelayFrame
 	call UpdateSprites
-	call Function8b097
+	call PrintBlueCardBalance
 	call Function8b0e2
 	jr z, .done
-	ld [wcf75], a
+	ld [MenuSelectionQuantity], a
 	call Buena_getprize
 	ld a, [hl]
 	ld [wd265], a
@@ -95,7 +95,7 @@ SpecialBuenaPrize: ; 8afd4
 	call YesNoBox
 	jr c, .loop
 
-	ld a, [wcf75]
+	ld a, [MenuSelectionQuantity]
 	call Buena_getprize
 	inc hl
 	ld a, [hld]
@@ -118,7 +118,7 @@ SpecialBuenaPrize: ; 8afd4
 	ld a, [wBlueCardBalance]
 	sub c
 	ld [wBlueCardBalance], a
-	call Function8b097
+	call PrintBlueCardBalance
 	jr .Purchase
 
 .InsufficientBalance
@@ -184,34 +184,34 @@ SpecialBuenaPrize: ; 8afd4
 ; 0x8b090
 
 Function8b090: ; 8b090
-	ld hl, MenuDataHeader_0x8b0d1
+	ld hl, BlueCardBalanceMenuDataHeader
 	call LoadMenuDataHeader
 	ret
 ; 8b097
 
-Function8b097: ; 8b097
+PrintBlueCardBalance: ; 8b097
 	ld de, wBlueCardBalance
-	call Function8b09e
+	call .DrawBox
 	ret
 ; 8b09e
 
-Function8b09e: ; 8b09e
+.DrawBox: ; 8b09e
 	push de
 	xor a
 	ld [hBGMapMode], a
-	ld hl, MenuDataHeader_0x8b0d1
+	ld hl, BlueCardBalanceMenuDataHeader
 	call CopyMenuDataHeader
 	call MenuBox
 	call UpdateSprites
 	call MenuBoxCoord2Tile
-	ld bc, $0015
+	ld bc, SCREEN_WIDTH + 1
 	add hl, bc
 	ld de, .Points_string
 	call PlaceString
 	ld h, b
 	ld l, c
 	inc hl
-	ld a, $7f
+	ld a, " "
 	ld [hli], a
 	ld [hld], a
 	pop de
@@ -224,7 +224,7 @@ Function8b09e: ; 8b09e
 	db "Points@"
 ; 8b0d1
 
-MenuDataHeader_0x8b0d1: ; 0x8b0d1
+BlueCardBalanceMenuDataHeader: ; 0x8b0d1
 	db $40 ; flags
 	db 11, 00 ; start coords
 	db 13, 11 ; end coords
@@ -252,19 +252,19 @@ Function8b0e2: ; 8b0e2
 	ld [hBGMapMode], a
 	call InitScrollingMenu
 	call UpdateSprites
-	call HandleScrollingMenu
+	call ScrollingMenu
 	ld a, [MenuSelection]
 	ld c, a
 	ld a, [wMenuCursorY]
 	ld [MenuSelection], a
 	ld a, [wMenuJoypad]
 	cp $2
-	jr z, .asm_8b111
+	jr z, .cancel
 	ld a, c
 	and a
 	ret nz
 
-.asm_8b111
+.cancel
 	xor a
 	ret
 ; 8b113
@@ -281,8 +281,8 @@ Function8b0e2: ; 8b0e2
 
 .MenuData2: ; 0x8b11c
 	db $10 ; flags
-	db 4 ; items
-	db $d, $1
+	db 4, 13 ; rows, columns
+	db 1 ; spacing
 	dba .indices
 	dba .prizeitem
 	dba .prizepoints

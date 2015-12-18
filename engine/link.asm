@@ -1271,7 +1271,7 @@ Function28835: ; 28835
 	jp nz, Function2891c
 	xor a
 	ld [MonType], a
-	call Function1bf7
+	call HideCursor
 	push hl
 	push bc
 	ld bc, NAME_LENGTH
@@ -1333,7 +1333,7 @@ Function288c5: ; 288c5
 	jp nz, Function2891c
 	ld a, $1
 	ld [MonType], a
-	call Function1bf7
+	call HideCursor
 	push hl
 	push bc
 	ld bc, NAME_LENGTH
@@ -1353,7 +1353,7 @@ Function288c5: ; 288c5
 	ld a, [PartyCount]
 	cp b
 	jr nz, Function2891c
-	call Function1bf7
+	call HideCursor
 	push hl
 	push bc
 	ld bc, NAME_LENGTH
@@ -1463,7 +1463,7 @@ Function28926: ; 28926
 	jp Function2888b
 
 .asm_289fe
-	call Function1bee
+	call PlaceHollowCursor
 	pop af
 	ld [wMenuCursorY], a
 	dec a
@@ -1552,7 +1552,7 @@ Function28ac9: ; 28ac9
 	ld a, [wMenuCursorY]
 	cp $1
 	jp nz, Function2891c
-	call Function1bf7
+	call HideCursor
 	push hl
 	push bc
 	ld bc, NAME_LENGTH
