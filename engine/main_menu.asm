@@ -75,14 +75,14 @@ NewGameMenu: ; 0x49d6c
 	db 2
 	db NEW_GAME
 	db OPTION
-	db $ff
+	db -1
 
 ContinueMenu: ; 0x49d70
 	db 3
 	db CONTINUE
 	db NEW_GAME
 	db OPTION
-	db $ff
+	db -1
 
 MobileMysteryMenu: ; 0x49d75
 	db 5
@@ -91,7 +91,7 @@ MobileMysteryMenu: ; 0x49d75
 	db OPTION
 	db MYSTERY_GIFT
 	db MOBILE
-	db $ff
+	db -1
 
 MobileMenu: ; 0x49d7c
 	db 4
@@ -99,7 +99,7 @@ MobileMenu: ; 0x49d7c
 	db NEW_GAME
 	db OPTION
 	db MOBILE
-	db $ff
+	db -1
 
 MobileStudiumMenu: ; 0x49d82
 	db 5
@@ -108,7 +108,7 @@ MobileStudiumMenu: ; 0x49d82
 	db OPTION
 	db MOBILE
 	db MOBILE_STUDIUM
-	db $ff
+	db -1
 
 MysteryMobileStudiumMenu: ; 0x49d89
 	db 6
@@ -118,7 +118,7 @@ MysteryMobileStudiumMenu: ; 0x49d89
 	db MYSTERY_GIFT
 	db MOBILE
 	db MOBILE_STUDIUM
-	db $ff
+	db -1
 
 MysteryMenu: ; 0x49d91
 	db 4
@@ -126,7 +126,7 @@ MysteryMenu: ; 0x49d91
 	db NEW_GAME
 	db OPTION
 	db MYSTERY_GIFT
-	db $ff
+	db -1
 
 MysteryStudiumMenu: ; 0x49d97
 	db 5
@@ -135,7 +135,7 @@ MysteryStudiumMenu: ; 0x49d97
 	db OPTION
 	db MYSTERY_GIFT
 	db MOBILE_STUDIUM
-	db $ff
+	db -1
 
 StudiumMenu: ; 0x49d9e
 	db 4
@@ -143,7 +143,7 @@ StudiumMenu: ; 0x49d9e
 	db NEW_GAME
 	db OPTION
 	db MOBILE_STUDIUM
-	db $ff
+	db -1
 
 
 Function49da4: ; 49da4
@@ -198,9 +198,9 @@ Function49de4: ; 49de4
 	call SetUpMenu
 .asm_49de7
 	call Function49e09
-	ld a, [wcfa5]
+	ld a, [w2DMenuFlags1]
 	set 5, a
-	ld [wcfa5], a
+	ld [w2DMenuFlags1], a
 	call Function1f1a
 	ld a, [wMenuJoypad]
 	cp $2
@@ -333,7 +333,7 @@ Function49ed0: ; 49ed0
 	call ClearTileMap
 	call LoadFontsExtra
 	call LoadStandardFont
-	call ResetTextRelatedRAM
+	call ClearWindowData
 	ret
 ; 49ee0
 
@@ -370,19 +370,19 @@ Function49f0a: ; 49f0a
 	call Function4a492
 	call ClearBGPalettes
 Function49f16: ; 49f16
-	call Function4a071
+	call MobileMenu_InitMenuBuffers
 	ld c, 12
 	call DelayFrames
 	hlcoord 4, 0
-	ld b, $a
-	ld c, $a
+	ld b, 10
+	ld c, 10
 	call Function48cdc
 	hlcoord 6, 2
 	ld de, MobileString1
 	call PlaceString
 	hlcoord 0, 12
-	ld b, $4
-	ld c, $12
+	ld b, 4
+	ld c, SCREEN_HEIGHT
 	call TextBox
 	xor a
 	ld de, String_0x49fe9
@@ -394,36 +394,35 @@ Function49f16: ; 49f16
 	ld hl, wMenuCursorY
 	ld b, [hl]
 	push bc
-	jr .asm_49f5d
+	jr .check_buttons
 
-.asm_49f55
+.joy_loop
 	call ScrollingMenuJoypad
 	ld hl, wMenuCursorY
 	ld b, [hl]
 	push bc
 
-.asm_49f5d
-	bit 0, a
-	jr nz, .asm_49f67
-	bit 1, a
-	jr nz, .asm_49f84
-	jr .asm_49f97
+.check_buttons
+	bit A_BUTTON_F, a
+	jr nz, .a_button
+	bit B_BUTTON_F, a
+	jr nz, .b_button
+	jr .next
 
-.asm_49f67
+.a_button
 	ld hl, wMenuCursorY
 	ld a, [hl]
-	cp $1
+	cp 1
 	jp z, Function4a098
-	cp $2
+	cp 2
 	jp z, Function4a0b9
-	cp $3
+	cp 3
 	jp z, Function4a0c2
-	cp $4
+	cp 4
 	jp z, Function4a100
-	ld a, $1
+	ld a, 1
 	call MenuClickSound
-
-.asm_49f84
+.b_button
 	pop bc
 	call ClearBGPalettes
 	call ClearTileMap
@@ -433,7 +432,7 @@ Function49f16: ; 49f16
 	call Function4a6c5
 	ret
 
-.asm_49f97
+.next
 	ld hl, wMenuCursorY
 	ld a, [hl]
 	dec a
@@ -442,15 +441,15 @@ Function49f16: ; 49f16
 	ld d, h
 	ld e, l
 	hlcoord 1, 13
-	ld b, $4
-	ld c, $12
+	ld b, 4
+	ld c, SCREEN_HEIGHT
 	call ClearBox
 	hlcoord 1, 14
 	call PlaceString
-	jp .asm_49fb7
+	jp .useless_jump
 
-.asm_49fb7
-	call Function4a071
+.useless_jump
+	call MobileMenu_InitMenuBuffers
 	pop bc
 	ld hl, wMenuCursorY
 	ld [hl], b
@@ -458,7 +457,7 @@ Function49f16: ; 49f16
 	ld c, $1
 	hlcoord 5, 1
 	call ClearBox
-	jp .asm_49f55
+	jp .joy_loop
 ; 49fcc
 
 
@@ -499,36 +498,37 @@ String_0x4a062: ; 4a062
 	next "@"
 ; 4a071
 
-Function4a071: ; 4a071 (12:6071)
-	ld hl, wcfa1
-	ld a, $2
+MobileMenu_InitMenuBuffers: ; 4a071 (12:6071)
+	ld hl, w2DMenuCursorInitY
+	ld a, 2
 	ld [hli], a
-	ld a, $5
+	ld a, 5 ; w2DMenuCursorInitX
 	ld [hli], a
-	ld a, $5
+	ld a, 5 ; w2DMenuNumRows
 	ld [hli], a
-	ld a, $1
+	ld a, 1 ; w2DMenuNumCols
 	ld [hli], a
-	ld [hl], $0
+	ld [hl], $0 ; w2DMenuFlags1
 	set 5, [hl]
 	inc hl
-	xor a
+	xor a ; w2DMenuFlags2
 	ld [hli], a
-	ld a, $20
+	ld a, $20 ; w2DMenuFlags3
 	ld [hli], a
+	; this is a stupid way to load $c3
 	ld a, $1
 	add $40
 	add $80
 	add $2
-	ld [hli], a
-	ld a, $1
+	ld [hli], a ; w2DMenuFlags4
+	ld a, 1
 rept 2
-	ld [hli], a
+	ld [hli], a ; wMenuCursorY, wMenuCursorX
 endr
 	ret
 
 Function4a098: ; 4a098 (12:6098)
-	ld a, $2
+	ld a, 2
 	call MenuClickSound
 	call PlaceHollowCursor
 	call WaitBGMap
@@ -541,19 +541,19 @@ Function4a098: ; 4a098 (12:6098)
 	jp Function49f16
 
 Function4a0b9: ; 4a0b9 (12:60b9)
-	ld a, $2
+	ld a, 2
 	call MenuClickSound
 	pop bc
 	jp Function4a4c4
 
 Function4a0c2: ; 4a0c2 (12:60c2)
-	ld a, $2
+	ld a, 2
 	call MenuClickSound
 	ld a, BANK(sPlayerData)
 	call GetSRAMBank
 	ld hl, sPlayerData + PlayerName - wPlayerData
 	ld de, PlayerName
-	ld bc, $6
+	ld bc, 6 ; japanese name length
 	call CopyBytes
 	call CloseSRAM
 	callba _LoadData
@@ -565,15 +565,15 @@ Function4a0c2: ; 4a0c2 (12:60c2)
 	call ClearBGPalettes
 	pop af
 	and a
-	jr nz, .asm_4a0f9
+	jr nz, .skip_save
 	callba _SaveData
-.asm_4a0f9
+.skip_save
 	ld c, 5
 	call DelayFrames
 	jr asm_4a111
 
 Function4a100: ; 4a100 (12:6100)
-	ld a, $2
+	ld a, 2
 	call MenuClickSound
 	call ClearBGPalettes
 	call Function4a13b
@@ -586,7 +586,7 @@ asm_4a111: ; 4a111 (12:6111)
 	jp Function49f0a
 
 Function4a118: ; 4a118 (12:6118)
-	ld hl, wcfa1
+	ld hl, w2DMenuCursorInitY
 	ld a, $1
 	ld [hli], a
 	ld a, $d
@@ -860,7 +860,7 @@ MenuData2_0x4a36a: ; 0x4a36a
 ; 0x4a373
 
 Function4a373: ; 4a373 (12:6373)
-	ld hl, wcfa1
+	ld hl, w2DMenuCursorInitY
 	ld a, $4
 	ld [hli], a
 	ld a, $2
@@ -991,7 +991,7 @@ Function4a449: ; 4a449
 Function4a485: ; 4a485 (12:6485)
 	ld de, GFX_49c0c
 	ld hl, VTiles2 tile $00
-	lb bc, BANK(GFX_49c0c), $d
+	lb bc, BANK(GFX_49c0c), 13
 	call Get2bpp
 	ret
 
@@ -1173,7 +1173,7 @@ Strings_4a5f6: ; 4a5f6
 ; 4a680
 
 Function4a680: ; 4a680 (12:6680)
-	ld hl, wcfa1
+	ld hl, w2DMenuCursorInitY
 	ld a, $2
 	ld [hli], a
 	ld a, $3

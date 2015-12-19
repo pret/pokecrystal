@@ -912,7 +912,7 @@ BattleCommand_CheckObedience: ; 343db
 	ld a, 1
 	ld [AlreadyDisobeyed], a
 
-	ld a, [wcfa3]
+	ld a, [w2DMenuNumRows]
 	ld b, a
 
 ; Save the move we originally picked for afterward.

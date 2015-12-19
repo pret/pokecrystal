@@ -320,7 +320,7 @@ wLZBank::    db ; c2c4
 
 	ds 1
 
-wc2c6:: ds 1
+wBoxAlignment:: ds 1
 InputType:: ; c2c7
 	ds 1
 AutoInputAddress:: ; c2c8
@@ -1548,24 +1548,18 @@ wcf9b:: ds 3
 wMenuData2_ScrollingMenuFunction3::
 wcf9e:: ds 3
 wMenuData2End::
+
 wMenuData3::
-w2DMenuCursorInitY::
-wcfa1:: ds 1
-w2DMenuCursorInitX::
-wcfa2:: ds 1
-w2DMenuNumRows::
-wcfa3:: ds 1
-w2DMenuNumCols::
-wcfa4:: ds 1
-w2DMenuFlags1::
-wcfa5:: ds 1
-w2DMenuFlags2::
-wcfa6:: ds 1
-w2DMenuFlags3::
-wcfa7:: ds 1
-w2DMenuFlags4::
-wcfa8:: ds 1
+w2DMenuCursorInitY:: ds 1
+w2DMenuCursorInitX:: ds 1
+w2DMenuNumRows:: ds 1
+w2DMenuNumCols:: ds 1
+w2DMenuFlags1:: ds 1
+w2DMenuFlags2:: ds 1
+w2DMenuFlags3:: ds 1
+w2DMenuFlags4:: ds 1
 wMenuData3End::
+
 wMenuCursorY:: ds 1
 wMenuCursorX:: ds 1
 wCursorOffCharacter:: ds 1
@@ -1783,10 +1777,7 @@ wd01a:: ds 3
 wMartItem10BCD:: ds 2
 wd01f:: ds 1
 wMartItemBCDEnd::
-wd020:: ds 3
-wd023:: ds 5
-wd028:: ds 2
-wd02a:: ds 3
+	ds 13
 wd02d:: ds 1
 wd02e:: ds 1
 wd02f:: ds 1
@@ -3270,10 +3261,8 @@ w5_dc3e:: ds $c
 
 SECTION "WRAM 6", WRAMX, BANK [6]
 
-wBackupTilemap:: ds $20 * SCREEN_HEIGHT
-	ds $1c0
-wBackupAttrMap:: ds $20 * SCREEN_HEIGHT
-	ds -$40
+wDecompressScratch:: ds $400
+wBackupAttrMap:: ds $200
 w6_d600:: ds $200
 w6_d800::
 

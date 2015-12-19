@@ -687,7 +687,7 @@ Function48689: ; 48689 (12:4689)
 	ret
 
 Function486bf: ; 486bf (12:46bf)
-	ld hl, wcfa1
+	ld hl, w2DMenuCursorInitY
 	ld a, [wd002]
 	bit 6, a
 	jr nz, .asm_486ce
@@ -772,7 +772,7 @@ Function48725: ; 48725 (12:4725)
 	ret
 
 Function4873c: ; 4873c (12:473c)
-	ld hl, wcfa1
+	ld hl, w2DMenuCursorInitY
 	ld a, $4
 	ld [hli], a
 	ld a, $c
@@ -1217,9 +1217,9 @@ Function48a3a: ; 48a3a (12:4a3a)
 	call LoadMenuDataHeader
 	call Function4873c
 	ld a, $a
-	ld [wcfa1], a
+	ld [w2DMenuCursorInitY], a
 	ld a, $b
-	ld [wcfa2], a
+	ld [w2DMenuCursorInitX], a
 	ld a, $1
 	ld [wMenuCursorY], a
 	hlcoord 10, 8
@@ -1605,7 +1605,8 @@ Function48c63: ; 48c63
 ; 48c8e
 
 Function48c8e: ; 48c8e
-	ld hl, wd02a
+; unreferenced
+	ld hl, $d02a
 	ld d, h
 	ld e, l
 	callba Function48c63

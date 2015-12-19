@@ -86,7 +86,7 @@ MonMenuLoop: ; 24d59
 	ld a, [Buffer1] ; items
 	ld [wMenuData2Items], a
 	call InitVerticalMenuCursor
-	ld hl, wcfa5
+	ld hl, w2DMenuFlags1
 	set 6, [hl]
 	call StaticMenuJoypad
 	ld de, SFX_READ_TEXT_2
@@ -308,7 +308,7 @@ BattleMonMenu: ; 24e99
 	bit 7, a
 	jr z, .set_carry
 	call InitVerticalMenuCursor
-	ld hl, wcfa5
+	ld hl, w2DMenuFlags1
 	set 6, [hl]
 	call StaticMenuJoypad
 	ld de, SFX_READ_TEXT_2

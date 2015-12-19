@@ -8,11 +8,11 @@ Function104006: ; 104006
 	ld hl, wBackupAttrMap
 	call CutAndPasteAttrMap
 	decoord 0, 0
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	call CutAndPasteTilemap
 	ld a, $0
 	ld [rVBK], a
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	call Function10419d
 	ld a, $1
 	ld [rVBK], a
@@ -28,11 +28,11 @@ Function10402d:: ; 10402d
 
 Function104033: ; 104033
 	decoord 0, 0
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	call CutAndPasteTilemap
 	ld a, $0
 	ld [rVBK], a
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	call Function10419d
 	ret
 ; 104047
@@ -63,7 +63,7 @@ Function104067: ; 104067
 	ld hl, wBackupAttrMap
 	call CutAndPasteAttrMap
 	decoord 0, 0
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	call CutAndPasteTilemap
 	call DelayFrame
 	di
@@ -75,7 +75,7 @@ Function104067: ; 104067
 	call Function1041ad
 	ld a, $0
 	ld [rVBK], a
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	call Function1041ad
 	pop af
 	ld [rVBK], a
@@ -93,7 +93,7 @@ Function1040a2: ; 1040a2
 	ld hl, wBackupAttrMap
 	call CutAndPasteAttrMap
 	decoord 0, 0
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	call CutAndPasteTilemap
 	call DelayFrame
 	di
@@ -105,7 +105,7 @@ Function1040a2: ; 1040a2
 	call Function1041c1
 	ld a, $0
 	ld [rVBK], a
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	call Function1041c1
 	pop af
 	ld [rVBK], a
@@ -164,7 +164,7 @@ Function104116: ; 104116
 	ld hl, wBackupAttrMap
 	call CutAndPasteAttrMap
 	decoord 0, 0
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	call CutAndPasteTilemap
 	call DelayFrame
 
@@ -177,7 +177,7 @@ Function104116: ; 104116
 	call Function1041b7
 	ld a, $0
 	ld [rVBK], a
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	call Function1041b7
 	pop af
 	ld [rVBK], a
@@ -196,7 +196,7 @@ Function10414e: ; 10414e
 	call CutAndPasteAttrMap
 	ld c, $ff
 	decoord 0, 0
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	call CutAndPasteMap
 	ld a, $1
 	ld [rVBK], a
@@ -204,7 +204,7 @@ Function10414e: ; 10414e
 	call Function1041ad
 	ld a, $0
 	ld [rVBK], a
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	call Function1041ad
 	ret
 ; 104177
@@ -450,7 +450,7 @@ _Get2bpp:: ; 104284
 	push bc
 	push hl
 
-	; Copy c tiles of the 2bpp from b:de to wBackupTilemap
+	; Copy c tiles of the 2bpp from b:de to wDecompressScratch
 	ld a, b ; bank
 	ld l, c ; number of tiles
 	ld h, $0
@@ -461,7 +461,7 @@ endr
 	ld c, l
 	ld h, d ; address
 	ld l, e
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	call FarCopyBytes
 	
 	pop hl
@@ -473,7 +473,7 @@ endr
 
 	ld d, h
 	ld e, l
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	call Function104209
 
 	; restore the previous bank
@@ -528,7 +528,7 @@ endr
 	ld b, h
 	ld h, d
 	ld l, e
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	call FarCopyBytesDouble_DoubleBankSwitch
 
 	pop hl
@@ -540,7 +540,7 @@ endr
 
 	ld d, h
 	ld e, l
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	call Function104209
 
 	pop af
@@ -554,22 +554,22 @@ Function104303: ; 104303
 ; 104309
 
 Function104309:
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	decoord 0, 0
 	call Function10433a
-	ld hl, wBackupTilemap + $80
+	ld hl, wDecompressScratch + $80
 	decoord 0, 0, AttrMap
 	call Function10433a
 	ld a, $1
 	ld [rVBK], a
 	ld c, $8
-	ld hl, wBackupTilemap + $80
+	ld hl, wDecompressScratch + $80
 	debgcoord 0, 0, VBGMap1
 	call Function104209
 	ld a, $0
 	ld [rVBK], a
 	ld c, $8
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	debgcoord 0, 0, VBGMap1
 	call Function104209
 	ret

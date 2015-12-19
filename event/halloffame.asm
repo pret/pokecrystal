@@ -267,7 +267,7 @@ endr
 	call SetPalettes
 	call HOF_SlideBackpic
 	xor a
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "
@@ -486,7 +486,7 @@ DisplayHOFMon: ; 86748
 	ld hl, TempMonDVs
 	predef GetUnownLetter
 	xor a
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	hlcoord 6, 5
 	call _PrepMonFrontpic
 	ld a, [CurPartySpecies]
@@ -566,7 +566,7 @@ Function86810: ; 86810
 	call SetPalettes
 	call HOF_SlideBackpic
 	xor a
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "

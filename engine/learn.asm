@@ -147,24 +147,24 @@ ForgetMove: ; 65d3
 	predef ListMoves
 	; wMenuData3
 	ld a, $4
-	ld [wcfa1], a
+	ld [w2DMenuCursorInitY], a
 	ld a, $6
-	ld [wcfa2], a
+	ld [w2DMenuCursorInitX], a
 	ld a, [wNumMoves]
 	inc a
-	ld [wcfa3], a
+	ld [w2DMenuNumRows], a
 	ld a, $1
-	ld [wcfa4], a
+	ld [w2DMenuNumCols], a
 	ld [wMenuCursorY], a
 	ld [wMenuCursorX], a
 	ld a, $3
-	ld [wcfa8], a
+	ld [w2DMenuFlags4], a
 	ld a, $20
-	ld [wcfa5], a
+	ld [w2DMenuFlags1], a
 	xor a
-	ld [wcfa6], a
+	ld [w2DMenuFlags2], a
 	ld a, $20
-	ld [wcfa7], a
+	ld [w2DMenuFlags3], a
 	call StaticMenuJoypad
 	push af
 	call Call_LoadTempTileMapToTileMap

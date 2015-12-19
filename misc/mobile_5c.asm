@@ -270,7 +270,7 @@ Function170cc6: ; 170cc6
 	ld a, $6
 	ld [rSVBK], a
 	ld hl, LZ_170d16
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	call Decompress
 	ld a, $1
 	ld [rVBK], a

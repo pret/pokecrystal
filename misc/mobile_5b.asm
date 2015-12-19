@@ -1084,7 +1084,7 @@ Function16d713: ; 16d713
 ; 16d725
 
 Function16d725: ; 16d725
-	ld hl, wcfa6
+	ld hl, w2DMenuFlags2
 	res 7, [hl]
 	ld a, [hBGMapMode]
 	push af
@@ -1102,12 +1102,12 @@ Function16d734: ; 16d734
 	jr nc, .asm_16d758
 	callba _2DMenuInterpretJoypad
 	jr c, .asm_16d758
-	ld a, [wcfa5]
+	ld a, [w2DMenuFlags1]
 	bit 7, a
 	jr nz, .asm_16d758
 	call Function16d713
 	ld b, a
-	ld a, [wcfa8]
+	ld a, [w2DMenuFlags4]
 	and b
 	jr z, .asm_16d734
 
@@ -1133,7 +1133,7 @@ Function16d76a: ; 16d76a
 	call RTC
 	call Function16d7e7
 	ret c
-	ld a, [wcfa5]
+	ld a, [w2DMenuFlags1]
 	bit 7, a
 	jr z, .asm_16d76a
 	and a
@@ -1159,12 +1159,12 @@ Function16d77a: ; 16d77a
 	pop hl
 
 .asm_16d792
-	ld a, [wcfa1]
+	ld a, [w2DMenuCursorInitY]
 	ld b, a
-	ld a, [wcfa2]
+	ld a, [w2DMenuCursorInitX]
 	ld c, a
 	call Coord2Tile
-	ld a, [wcfa7]
+	ld a, [w2DMenuFlags3]
 	swap a
 	and $f
 	ld c, a
@@ -1181,7 +1181,7 @@ Function16d77a: ; 16d77a
 .asm_16d7b1
 	ld c, $14
 	call AddNTimes
-	ld a, [wcfa7]
+	ld a, [w2DMenuFlags3]
 	and $f
 	ld c, a
 	ld a, [wMenuCursorX]
@@ -1219,7 +1219,7 @@ Function16d77a: ; 16d77a
 ; 16d7e7
 
 Function16d7e7: ; 16d7e7
-	ld a, [wcfa5]
+	ld a, [w2DMenuFlags1]
 	bit 6, a
 	jr z, .asm_16d7f4
 	callba PlaySpriteAnimationsAndDelayFrame

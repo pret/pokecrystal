@@ -80,7 +80,7 @@ ChooseMonToLearnTMHM_NoRefresh: ; 2c80a
 	callba LoadPartyMenuGFX
 	callba InitPartyMenuWithCancel
 	callba InitPartyMenuGFX
-	ld a, $3
+	ld a, $3 ; TeachWhichPKMNString
 	ld [PartyMenuActionText], a
 .loopback
 	callba WritePartyMenuTilemap
@@ -197,11 +197,11 @@ TMHM_PocketLoop: ; 2c8d3 (b:48d3)
 	ld [hBGMapMode], a
 	call TMHM_DisplayPocketItems
 	ld a, $2
-	ld [wcfa1], a
+	ld [w2DMenuCursorInitY], a
 	ld a, $7
-	ld [wcfa2], a
+	ld [w2DMenuCursorInitX], a
 	ld a, $1
-	ld [wcfa4], a
+	ld [w2DMenuNumCols], a
 	ld a, $5
 	sub d
 	inc a
@@ -209,15 +209,15 @@ TMHM_PocketLoop: ; 2c8d3 (b:48d3)
 	jr nz, .okay
 	dec a
 .okay
-	ld [wcfa3], a
+	ld [w2DMenuNumRows], a
 	ld a, $c
-	ld [wcfa5], a
+	ld [w2DMenuFlags1], a
 	xor a
-	ld [wcfa6], a
+	ld [w2DMenuFlags2], a
 	ld a, $20
-	ld [wcfa7], a
+	ld [w2DMenuFlags3], a
 	ld a, $f3
-	ld [wcfa8], a
+	ld [w2DMenuFlags4], a
 	ld a, [wTMHMPocketCursor]
 	inc a
 	ld [wMenuCursorY], a
@@ -234,7 +234,7 @@ TMHM_JoypadLoop: ; 2c915 (b:4915)
 	ld [wTMHMPocketCursor], a
 	xor a
 	ld [hBGMapMode], a
-	ld a, [wcfa6]
+	ld a, [w2DMenuFlags2]
 	bit 7, a
 	jp nz, TMHM_ScrollPocket
 	ld a, b

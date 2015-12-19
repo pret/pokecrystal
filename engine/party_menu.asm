@@ -682,7 +682,7 @@ InitPartyMenuWithCancel: ; 50405
 	call InitMenu3
 	ld a, [PartyCount]
 	inc a
-	ld [wcfa3], a ; list length
+	ld [w2DMenuNumRows], a ; list length
 	dec a
 	ld b, a
 	ld a, [wPartyMenuCursor]
@@ -698,7 +698,7 @@ InitPartyMenuWithCancel: ; 50405
 .done
 	ld [wMenuCursorY], a
 	ld a, A_BUTTON | B_BUTTON
-	ld [wcfa8], a
+	ld [w2DMenuFlags4], a
 	ret
 ; 5042d
 
@@ -707,7 +707,7 @@ InitPartyMenuNoCancel: ; 0x5042d
 	ld de, PartyMenuAttributes
 	call InitMenu3
 	ld a, [PartyCount]
-	ld [wcfa3], a ; list length
+	ld [w2DMenuNumRows], a ; list length
 	ld b, a
 	ld a, [wPartyMenuCursor]
 	and a
@@ -720,7 +720,7 @@ InitPartyMenuNoCancel: ; 0x5042d
 .done
 	ld [wMenuCursorY], a
 	ld a, A_BUTTON | B_BUTTON
-	ld [wcfa8], a
+	ld [w2DMenuFlags4], a
 	ret
 ; 5044f (14:444f)
 

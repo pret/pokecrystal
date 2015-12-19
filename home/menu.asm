@@ -489,14 +489,14 @@ endr
 	ret
 ; 1fbf
 
-ResetTextRelatedRAM:: ; 1fbf
+ClearWindowData:: ; 1fbf
 	ld hl, wWindowStackPointer
 	call .bytefill
 	ld hl, wMenuDataHeader
 	call .bytefill
 	ld hl, wMenuData2Flags
 	call .bytefill
-	ld hl, wcfa1
+	ld hl, w2DMenuCursorInitY
 	call .bytefill
 
 	ld a, [rSVBK]

@@ -1714,7 +1714,7 @@ DrawBattleHPBar:: ; 3750
 
 PrepMonFrontpic:: ; 3786
 	ld a, $1
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 
 _PrepMonFrontpic:: ; 378b
 	ld a, [CurPartySpecies]
@@ -1730,12 +1730,12 @@ _PrepMonFrontpic:: ; 378b
 	lb bc, 7, 7
 	predef FillBox
 	xor a
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	ret
 
 .not_pokemon
 	xor a
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	inc a
 	ld [CurPartySpecies], a
 	ret
@@ -2192,7 +2192,7 @@ Function3f7c:: ; 3f7c
 ; 3f88
 
 Function3f88:: ; 3f88
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	ld b, $0
 .asm_3f8d
 	push bc
@@ -2213,7 +2213,7 @@ Function3f88:: ; 3f88
 ; 3f9f
 
 Function3f9f:: ; 3f9f
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 .asm_3fa2
 	push bc
 	ld c, $8

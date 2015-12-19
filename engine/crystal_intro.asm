@@ -61,17 +61,17 @@ Copyright_GFPresents: ; e4579
 	ld [rSVBK], a
 
 	ld hl, IntroLogoGFX
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	ld a, BANK(IntroLogoGFX)
 	call FarDecompress
 
 	ld hl, VTiles0
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	lb bc, 1, 8 tiles
 	call Request2bpp
 
 	ld hl, VTiles1
-	ld de, wBackupTilemap + $80 tiles
+	ld de, wDecompressScratch + $80 tiles
 	lb bc, 1, 8 tiles
 	call Request2bpp
 
@@ -1919,7 +1919,7 @@ Intro_LoadTilemap: ; e541b (39:541b)
 	ld a, $6
 	ld [rSVBK], a
 
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	decoord 0, 0
 	ld b, SCREEN_HEIGHT
 .row
@@ -2039,11 +2039,11 @@ Intro_DecompressRequest2bpp_128Tiles: ; e54c2 (39:54c2)
 	ld [rSVBK], a
 
 	push de
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	call Decompress
 	pop hl
 
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	lb bc, $01, $80
 	call Request2bpp
 
@@ -2058,11 +2058,11 @@ Intro_DecompressRequest2bpp_255Tiles: ; e54de (39:54de)
 	ld [rSVBK], a
 
 	push de
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	call Decompress
 	pop hl
 
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	lb bc, $01, $ff
 	call Request2bpp
 
@@ -2077,11 +2077,11 @@ Intro_DecompressRequest2bpp_64Tiles: ; e54fa (39:54fa)
 	ld [rSVBK], a
 
 	push de
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	call Decompress
 	pop hl
 
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	lb bc, $01, $40
 	call Request2bpp
 

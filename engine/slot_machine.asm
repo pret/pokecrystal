@@ -36,7 +36,7 @@ _SlotMachine:
 	call DelayFrame
 	call DisableLCD
 	hlbgcoord 0, 0
-	lb bc, 4, 0
+	ld bc, VBGMap1 - VBGMap0
 	ld a, " "
 	call ByteFill
 	ld b, SCGB_05
@@ -97,13 +97,13 @@ _SlotMachine:
 	ret
 
 Slots_GetPals: ; 9279b (24:679b)
-	ld a, $e4
+	ld a, %11100100
 	call DmgToCgbBGPals
-	lb de, $e4, $e4
+	lb de, %11100100, %11100100
 	ld a, [hCGB]
 	and a
 	jr nz, .cgb
-	lb de, $c0, $e4
+	lb de, %11000000, %11100100
 .cgb
 	call DmgToCgbObjPals
 	ret
@@ -139,7 +139,7 @@ SlotsLoop: ; 927af (24:67af)
 	ld a, [wFirstTwoReelsMatchingSevens]
 	and a
 	jr nz, .matching_sevens
-	ld a, $e4
+	ld a, %11100100
 	call DmgToCgbBGPals
 	ret
 
@@ -148,7 +148,7 @@ SlotsLoop: ; 927af (24:67af)
 	and $7
 	ret nz
 	ld a, [rBGP]
-	xor %1100
+	xor %00001100
 	call DmgToCgbBGPals
 	ret
 
@@ -280,9 +280,9 @@ Slots_BetAndStart: ; 9288e (24:688e)
 	ld [wReel2ReelAction], a
 	ld [wReel3ReelAction], a
 	ld a, $4
-	ld [wReel1 + 9], a
-	ld [wReel2 + 9], a
-	ld [wReel3 + 9], a
+	ld [wReel1Slot09], a
+	ld [wReel2Slot09], a
+	ld [wReel3Slot09], a
 	call WaitSFX
 	ld a, SFX_SLOT_MACHINE_START
 	call Slots_PlaySFX
@@ -401,7 +401,7 @@ Slots_GiveEarnedCoins: ; 92987 (24:6987)
 	xor a
 	ld [wFirstTwoReelsMatching], a
 	ld [wFirstTwoReelsMatchingSevens], a
-	ld a, $e4
+	ld a, %11100100
 	call DmgToCgbBGPals
 	call SlotGetPayout
 	xor a
@@ -524,22 +524,22 @@ Slots_StopReel1: ; 92a2b (24:6a2b)
 Slots_StopReel2: ; 92a2e (24:6a2e)
 	ld a, [wSlotBet]
 	cp $2
-	jr c, .eight
+	jr c, .dont_jump
 	ld a, [wSlotBias]
 	and a
 	jr z, .skip
 	cp SLOTS_NOMATCH
-	jr nz, .eight
+	jr nz, .dont_jump
 .skip
 	call .CheckReel1ForASeven
-	jr nz, .eight
+	jr nz, .dont_jump
 	call Random
 	cp $50 ; 32%
-	jr nc, .eight
+	jr nc, .dont_jump
 	ld a, $a
 	ret
 
-.eight
+.dont_jump
 	ld a, $8
 	ret
 
@@ -557,38 +557,38 @@ Slots_StopReel2: ; 92a2e (24:6a2e)
 Slots_StopReel3: ; 92a60 (24:6a60)
 	ld a, [wFirstTwoReelsMatching]
 	and a
-	jr z, .not_matching_sevens
+	jr z, .stop
 	ld a, [wFirstTwoReelsMatchingSevens]
 	and a
-	jr z, .not_matching_sevens
+	jr z, .stop
 	ld a, [wSlotBias]
 	and a
 	jr nz, .biased
 	call Random
 	cp 180
-	jr nc, .not_matching_sevens
+	jr nc, .stop
 	cp 120
-	jr nc, .sixteen
+	jr nc, .slow_advance
 	cp 60
-	jr nc, .eighteen
+	jr nc, .golem
 	ld a, $15
 	ret
 
 .biased
 	call Random
 	cp 160
-	jr nc, .not_matching_sevens
+	jr nc, .stop
 	cp 80
-	jr nc, .sixteen
-.eighteen
+	jr nc, .slow_advance
+.golem
 	ld a, $12
 	ret
 
-.sixteen
+.slow_advance
 	ld a, $10
 	ret
 
-.not_matching_sevens
+.stop
 	ld a, $9
 	ret
 
@@ -817,37 +817,38 @@ endr
 
 .jumptable: ; 92be4
 	jumptable_start
-	jumptable ReelAction_DoNothing          ; 00
-	jumptable Slots_StopReelIgnoreJoypad    ; 01
+	jumptable ReelAction_DoNothing                   ; 00
+	jumptable Slots_StopReelIgnoreJoypad             ; 01
 
-	jumptable ReelAction_QuadrupleRate      ; 02
-	jumptable ReelAction_DoubleRate         ; 03
-	jumptable ReelAction_NormalRate         ; 04
-	jumptable ReelAction_HalfRate           ; 05
-	jumptable ReelAction_QuarterRate        ; 06
+	jumptable ReelAction_QuadrupleRate               ; 02
+	jumptable ReelAction_DoubleRate                  ; 03
+	jumptable ReelAction_NormalRate                  ; 04
+	jumptable ReelAction_HalfRate                    ; 05
+	jumptable ReelAction_QuarterRate                 ; 06
 
-	jumptable ReelAction_StopReel1          ; 07
-	jumptable ReelAction_StopReel2          ; 08
-	jumptable ReelAction_StopReel3          ; 09
+	jumptable ReelAction_StopReel1                   ; 07
+	jumptable ReelAction_StopReel2                   ; 08
+	jumptable ReelAction_StopReel3                   ; 09
 
-	jumptable Function92cd2                 ; 0a
-	jumptable Function92cf8                 ; 0b
-	jumptable Function92d13                 ; 0c
-	jumptable Function92df7                 ; 0d
-	jumptable Function92e10                 ; 0e
-	jumptable Function92e31                 ; 0f
+	jumptable ReelAction_SetUpReel2SkipTo7           ; 0a
+	jumptable ReelAction_WaitReel2SkipTo7            ; 0b
+	jumptable ReelAction_FastSpinReel2UntilLinedUp7s ; 0c
 
-	jumptable Function92e47                 ; 10
-	jumptable Function92e64                 ; 11
+	jumptable ReelAction_BoringReelDrops             ; 0d
+	jumptable ReelAction_CheckDropReel               ; 0e
+	jumptable ReelAction_WaitDropReel                ; 0f
 
-	jumptable Function92d20                 ; 12
-	jumptable Function92d4f                 ; 13
-	jumptable Function92d6e                 ; 14
+	jumptable ReelAction_StartSlowAdvanceReel3       ; 10
+	jumptable ReelAction_WaitSlowAdvanceReel3        ; 11
 
-	jumptable Slots_InitChansey                 ; 15
-	jumptable Function92da4                 ; 16
-	jumptable Function92db3                 ; 17
-	jumptable Function92dca                 ; 18
+	jumptable ReelAction_InitGolem                   ; 12
+	jumptable ReelAction_WaitGolem                   ; 13
+	jumptable ReelAction_EndGolem                    ; 14
+
+	jumptable Slots_InitChansey                      ; 15
+	jumptable ReelAction_WaitChansey                 ; 16
+	jumptable ReelAction_WaitEgg                     ; 17
+	jumptable ReelAction_DropReel                    ; 18
 ; 92c16
 
 ReelAction_DoNothing: ; 92c16
@@ -963,20 +964,20 @@ ReelAction_StopReel2: ; 92c86
 	ld a, [wSlotBuildingMatch]
 	ld hl, wSlotBias
 	cp [hl]
-	jr z, .biased_match
+	jr z, .NoBias
 .nope
 	ld a, [wSlotBias]
-	cp $ff
-	jr z, .biased_match
+	cp SLOTS_NOMATCH
+	jr z, .NoBias
 	ld hl, wReel1Slot09 - wReel1
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .biased_match
+	jr z, .NoBias
 	dec [hl]
 	ret
 
-.biased_match
+.NoBias
 	call Slots_StopReel
 	ret
 
@@ -987,7 +988,7 @@ ReelAction_StopReel3: ; 92ca9
 	jr nc, .NoMatch
 	ld hl, wSlotBias
 	cp [hl]
-	jr z, .bias
+	jr z, .NoBias
 	ld hl, wReel1Slot09 - wReel1
 	add hl, bc
 	ld a, [hl]
@@ -999,22 +1000,22 @@ ReelAction_StopReel3: ; 92ca9
 .NoMatch
 	ld a, [wSlotBias]
 	cp SLOTS_NOMATCH
-	jr z, .bias
+	jr z, .NoBias
 	ld hl, wReel1Slot09 - wReel1
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .bias
+	jr z, .NoBias
 	dec [hl]
 	ret
 
-.bias
+.NoBias
 	call Slots_StopReel
 	ret
 
 ; 92cd2
 
-Function92cd2: ; 92cd2
+ReelAction_SetUpReel2SkipTo7: ; 92cd2
 	call Slots_CheckMatchedFirstTwoReels
 	jr nc, .no_match
 	ld a, [wFirstTwoReelsMatchingSevens]
@@ -1039,7 +1040,7 @@ Function92cd2: ; 92cd2
 
 ; 92cf8
 
-Function92cf8: ; 92cf8
+ReelAction_WaitReel2SkipTo7: ; 92cf8
 	ld hl, wReel1Slot0a - wReel1
 	add hl, bc
 	ld a, [hl]
@@ -1061,7 +1062,7 @@ Function92cf8: ; 92cf8
 
 ; 92d13
 
-Function92d13: ; 92d13
+ReelAction_FastSpinReel2UntilLinedUp7s: ; 92d13
 	call Slots_CheckMatchedFirstTwoReels
 	ret nc
 	ld a, [wFirstTwoReelsMatchingSevens]
@@ -1072,7 +1073,7 @@ Function92d13: ; 92d13
 
 ; 92d20
 
-Function92d20: ; 92d20
+ReelAction_InitGolem: ; 92d20
 	call Slots_CheckMatchedAllThreeReels
 	ret c
 	ld a, SFX_STOP_SLOT
@@ -1097,21 +1098,20 @@ Function92d20: ; 92d20
 	pop bc
 	xor a
 	ld [wcf64], a
-
-Function92d4f: ; 92d4f
+ReelAction_WaitGolem: ; 92d4f
 	ld a, [wcf64]
-	cp $2
-	jr z, .asm_92d5b
-	cp $1
-	jr z, .asm_92d62
+	cp 2
+	jr z, .two
+	cp 1
+	jr z, .one
 	ret
 
-.asm_92d5b
+.two
 	call Slots_CheckMatchedAllThreeReels
 	call Slots_StopReel
 	ret
 
-.asm_92d62
+.one
 	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	inc [hl]
@@ -1122,7 +1122,7 @@ Function92d4f: ; 92d4f
 
 ; 92d6e
 
-Function92d6e: ; 92d6e
+ReelAction_EndGolem: ; 92d6e
 	xor a
 	ld [wcf64], a
 	ld hl, wReel1ReelAction - wReel1
@@ -1158,7 +1158,7 @@ Slots_InitChansey: ; 92d7e
 
 ; 92da4
 
-Function92da4: ; 92da4
+ReelAction_WaitChansey: ; 92da4
 	ld a, [wcf64]
 	and a
 	ret z
@@ -1167,8 +1167,7 @@ Function92da4: ; 92da4
 	inc [hl]
 	ld a, $2
 	ld [wcf64], a
-
-Function92db3: ; 92db3
+ReelAction_WaitEgg: ; 92db3
 	ld a, [wcf64]
 	cp $4
 	ret c
@@ -1181,27 +1180,26 @@ Function92db3: ; 92db3
 	ld hl, wReel1Slot0a - wReel1
 	add hl, bc
 	ld [hl], $11
-
-Function92dca: ; 92dca
+ReelAction_DropReel: ; 92dca
 	ld hl, wReel1Slot0a - wReel1
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_92dd4
+	jr z, .check_match
 	dec [hl]
 	ret
 
-.asm_92dd4
+.check_match
 	call Slots_CheckMatchedAllThreeReels
-	jr nc, .asm_92de5
+	jr nc, .EggAgain
 	and a
-	jr nz, .asm_92de5
+	jr nz, .EggAgain
 	ld a, $5
 	ld [wcf64], a
 	call Slots_StopReel
 	ret
 
-.asm_92de5
+.EggAgain
 	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld [hl], $0
@@ -1216,7 +1214,7 @@ endr
 
 ; 92df7
 
-Function92df7: ; 92df7
+ReelAction_BoringReelDrops: ; 92df7
 	call Slots_CheckMatchedAllThreeReels
 	ret c
 	ld a, SFX_STOP_SLOT
@@ -1229,7 +1227,7 @@ Function92df7: ; 92df7
 	ld hl, wReel1Slot0a - wReel1
 	add hl, bc
 	ld [hl], a
-Function92e10: ; 92e10
+ReelAction_CheckDropReel: ; 92e10
 	ld hl, wReel1Slot0a - wReel1
 	add hl, bc
 	ld a, [hl]
@@ -1250,16 +1248,16 @@ Function92e10: ; 92e10
 	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld [hl], $0
-Function92e31: ; 92e31
+ReelAction_WaitDropReel: ; 92e31
 	ld hl, wReel1Slot0b - wReel1
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_92e3b
+	jr z, .DropReel
 	dec [hl]
 	ret
 
-.asm_92e3b
+.DropReel
 	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	dec [hl]
@@ -1270,7 +1268,7 @@ Function92e31: ; 92e31
 
 ; 92e47
 
-Function92e47: ; 92e47
+ReelAction_StartSlowAdvanceReel3: ; 92e47
 	call Slots_CheckMatchedAllThreeReels
 	ret c
 	ld a, SFX_STOP_SLOT
@@ -1285,34 +1283,33 @@ Function92e47: ; 92e47
 	ld hl, wReel1Slot0a - wReel1
 	add hl, bc
 	ld [hl], $10
-
-Function92e64: ; 92e64
+ReelAction_WaitSlowAdvanceReel3: ; 92e64
 	ld hl, wReel1Slot0a - wReel1
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_92e73
+	jr z, .check1
 	dec [hl]
-.asm_92e6d
+.play_sfx
 	ld a, SFX_GOT_SAFARI_BALLS
 	call Slots_PlaySFX
 	ret
 
-.asm_92e73
+.check1
 	ld a, [wSlotBias]
 	and a
-	jr nz, .asm_92e88
+	jr nz, .check2
 	call Slots_CheckMatchedAllThreeReels
-	jr nc, .asm_92e6d
+	jr nc, .play_sfx
 	and a
-	jr nz, .asm_92e6d
+	jr nz, .play_sfx
 	call Slots_StopReel
 	call WaitSFX
 	ret
 
-.asm_92e88
+.check2
 	call Slots_CheckMatchedAllThreeReels
-	jr c, .asm_92e6d
+	jr c, .play_sfx
 	call Slots_StopReel
 	call WaitSFX
 	ret
@@ -1575,7 +1572,7 @@ Function92fc0: ; 92fc0
 	ld a, [hl]
 	push af
 	push hl
-	call Function92fcf
+	call .Check7Bias
 	pop hl
 	pop af
 	ld [hl], a
@@ -1584,7 +1581,7 @@ Function92fc0: ; 92fc0
 
 ; 92fcf
 
-Function92fcf: ; 92fcf
+.Check7Bias: ; 92fcf
 	ld a, [wSlotBias]
 	and a
 	jr nz, .not_biased_to_seven
@@ -1605,7 +1602,7 @@ Function92fcf: ; 92fcf
 .not_biased_to_seven
 	call Random
 	and $7
-	cp $4
+	cp $4 ; ((50 percent) & 7) + 1
 	jr c, .not_biased_to_seven
 	ld e, a
 .loop2

@@ -488,11 +488,11 @@ Function4ab06: ; 4ab06
 Function4ab1a: ; 4ab1a
 .asm_4ab1a
 	ld a, $fb
-	ld [wcfa8], a
+	ld [w2DMenuFlags4], a
 	ld a, $26
-	ld [wcfa7], a
+	ld [w2DMenuFlags3], a
 	ld a, $2
-	ld [wcfa4], a
+	ld [w2DMenuNumCols], a
 	call Function4adf7
 	call StaticMenuJoypad
 	call Function4abc3
@@ -748,7 +748,7 @@ Function4acaa: ; 4acaa
 	ld a, $1
 	ld [wMenuCursorBuffer], a
 	call InitVerticalMenuCursor
-	ld hl, wcfa5
+	ld hl, w2DMenuFlags1
 	set 6, [hl]
 	call StaticMenuJoypad
 	ld de, SFX_READ_TEXT_2

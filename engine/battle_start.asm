@@ -120,7 +120,7 @@ Function8c2cf: ; 8c2cf
 	ld a, $6
 	ld [rSVBK], a
 	push hl
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	ld bc, $28 * $10
 
 .loop
@@ -132,7 +132,7 @@ Function8c2cf: ; 8c2cf
 	jr nz, .loop
 
 	pop hl
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	ld b, BANK(Function8c2cf) ; BANK(@)
 	ld c, $28
 	call Request2bpp

@@ -1,6 +1,6 @@
 StartMenu:: ; 125cd
 
-	call ResetTextRelatedRAM
+	call ClearWindowData
 
 	ld de, SFX_MENU
 	call PlaySFX
@@ -1478,7 +1478,7 @@ ChooseMoveToDelete: ; 12f5b
 	ld de, Unknown_12fb2
 	call InitMenu3
 	call SetUpMoveList
-	ld hl, wcfa5
+	ld hl, w2DMenuFlags1
 	set 6, [hl]
 	jr .asm_12f93
 
@@ -1506,7 +1506,7 @@ ChooseMoveToDelete: ; 12f5b
 	push af
 	xor a
 	ld [wSwitchMon], a
-	ld hl, wcfa5
+	ld hl, w2DMenuFlags1
 	res 6, [hl]
 	call ClearSprites
 	call ClearTileMap
@@ -1546,7 +1546,7 @@ MoveScreenLoop: ; 12fd5
 	call InitMenu3
 .loop
 	call SetUpMoveList
-	ld hl, wcfa5
+	ld hl, w2DMenuFlags1
 	set 6, [hl]
 	jr .skip_joy
 
@@ -1740,7 +1740,7 @@ MoveScreenLoop: ; 12fd5
 .exit: ; 13154
 	xor a
 	ld [wMoveSwapBuffer], a
-	ld hl, wcfa5
+	ld hl, w2DMenuFlags1
 	res 6, [hl]
 	call ClearSprites
 	jp ClearTileMap
@@ -1822,7 +1822,7 @@ SetUpMoveList: ; 131ef
 	call SetPalettes
 	ld a, [wNumMoves]
 	inc a
-	ld [wcfa3], a
+	ld [w2DMenuNumRows], a
 	hlcoord 0, 11
 	ld b, 5
 	ld c, 18

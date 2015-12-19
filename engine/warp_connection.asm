@@ -256,13 +256,13 @@ Function104770: ; 104770 (41:4770)
 	ld a, $1
 	ld [rVBK], a
 	xor a
-	lb bc, 4, 0
+	ld bc, VBGMap1 - VBGMap0
 	hlbgcoord 0, 0
 	call ByteFill
 	pop af
 	ld [rVBK], a
 	ld a, $60
-	lb bc, 4, 0
+	ld bc, VBGMap1 - VBGMap0
 	hlbgcoord 0, 0
 	call ByteFill
 	ret

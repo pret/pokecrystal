@@ -1,6 +1,6 @@
 ResetWindow:: ; 2dba
 
-	call ResetTextRelatedRAM
+	call ClearWindowData
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(Function6454) ; and BANK(Function64bf)
@@ -32,7 +32,7 @@ CloseText:: ; 2dcf
 ; 2de2
 
 .CloseText ; 2de2
-	call ResetTextRelatedRAM
+	call ClearWindowData
 	xor a
 	ld [hBGMapMode], a
 	call OverworldTextModeSwitch
@@ -49,7 +49,7 @@ CloseText:: ; 2dcf
 ; 2e08
 
 OpenText:: ; 2e08
-	call ResetTextRelatedRAM
+	call ClearWindowData
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(Function6454) ; and BANK(Function64bf)

@@ -21,7 +21,7 @@ StatsScreenInit_gotaddress: ; 4dc94
 	push af
 	xor a
 	ld [hMapAnims], a ; disable overworld tile animations
-	ld a, [wc2c6] ; whether sprite is to be mirrorred
+	ld a, [wBoxAlignment] ; whether sprite is to be mirrorred
 	push af
 	ld a, [wJumptableIndex]
 	ld b, a
@@ -46,7 +46,7 @@ StatsScreenInit_gotaddress: ; 4dc94
 	ld a, c
 	ld [wcf64], a
 	pop af
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	pop af
 	ld [hMapAnims], a
 	ret
@@ -823,7 +823,7 @@ Function4e253: ; 4e253 (13:6253)
 	ret
 .asm_4e266
 	xor a
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	hlcoord 0, 0
 	call _PrepMonFrontpic
 	ret
@@ -833,12 +833,12 @@ Function4e271: ; 4e271 (13:6271)
 	cp UNOWN
 	jr z, .asm_4e281
 	ld a, $1
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	call Function4e289
 	ret
 .asm_4e281
 	xor a
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	call Function4e289
 	ret
 
@@ -1048,7 +1048,7 @@ Function4e497: ; 4e497 (13:6497)
 .asm_4e4ab
 	push de
 	ld a, $1
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	call Function4e307
 	ld de, VTiles2 tile $00
 	predef FrontpicPredef

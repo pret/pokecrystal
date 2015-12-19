@@ -395,7 +395,7 @@ Function81adb: ; 81adb
 	hlcoord 4, 1
 	call PlaceString
 	xor a
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	hlcoord 12, 3
 	call _PrepMonFrontpic
 	ld de, VTiles2 tile $31

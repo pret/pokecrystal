@@ -214,7 +214,7 @@ Function1dc381: ; 1dc381
 	call Function1dc52c
 	ld hl, TempMonDVs
 	predef GetUnownLetter
-	ld hl, wc2c6
+	ld hl, wBoxAlignment
 	xor a
 	ld [hl], a
 	ld a, [CurPartySpecies]

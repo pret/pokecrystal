@@ -111,10 +111,10 @@ EvolutionAnimation: ; 4e5e1
 	call .check_statused
 	jr c, .no_anim
 
-	ld a, [wc2c6]
+	ld a, [wBoxAlignment]
 	push af
 	ld a, $1
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	ld a, [CurPartySpecies]
 	push af
 
@@ -128,7 +128,7 @@ EvolutionAnimation: ; 4e5e1
 	pop af
 	ld [CurPartySpecies], a
 	pop af
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	ret
 
 .no_anim
@@ -167,11 +167,11 @@ EvolutionAnimation: ; 4e5e1
 .LoadFrontpic: ; 4e711
 	call GetBaseData
 	ld a, $1
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	ld de, VTiles2
 	predef FrontpicPredef
 	xor a
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	ret
 ; 4e726
 

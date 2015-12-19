@@ -820,7 +820,7 @@ Function100513: ; 100513
 	call Function3f7c
 	call PlaceVerticalMenuItems
 	call InitVerticalMenuCursor
-	ld hl, wcfa5
+	ld hl, w2DMenuFlags1
 	set 7, [hl]
 	ret
 ; 100522
@@ -860,7 +860,7 @@ Function100545: ; 100545
 Function10054d: ; 10054d
 	callba MobileMenuJoypad
 	ld a, c
-	ld hl, wcfa8
+	ld hl, w2DMenuFlags4
 	and [hl]
 	ret z
 	call MenuClickSound
@@ -1829,16 +1829,16 @@ Function100b45: ; 100b45
 	call Function100e2d
 	pop bc
 	jr c, .asm_100b6b
-	ld a, [wcfa8]
+	ld a, [w2DMenuFlags4]
 	and c
 	jr z, .asm_100b48
 	callba Mobile_GetMenuSelection
 	ret
 
 .asm_100b6b
-	ld a, [wcfa4]
+	ld a, [w2DMenuNumCols]
 	ld c, a
-	ld a, [wcfa3]
+	ld a, [w2DMenuNumRows]
 	call SimpleMultiply
 	ld [wMenuCursorBuffer], a
 	and a
@@ -1854,7 +1854,7 @@ Function100b7a: ; 100b7a
 	call UpdateSprites
 	call ApplyTilemap
 	callba Init2DMenuCursorPosition
-	ld hl, wcfa5
+	ld hl, w2DMenuFlags1
 	set 7, [hl]
 	ret
 ; 100b9f
@@ -1890,7 +1890,7 @@ Function100bc2: ; 100bc2
 	call Function100e2d
 	pop bc
 	jr c, .asm_100c25
-	ld a, [wcfa8]
+	ld a, [w2DMenuFlags4]
 	and c
 	bit 6, a
 	jp nz, .asm_100bff
@@ -1996,7 +1996,7 @@ Function100c98: ; 100c98
 	call InitMenu3
 	ld a, [wNumMoves]
 	inc a
-	ld [wcfa3], a
+	ld [w2DMenuNumRows], a
 	ld a, [CurMoveNum]
 	inc a
 	ld [wMenuCursorY], a
@@ -2009,7 +2009,7 @@ Unknown_100cad: ; 100cad
 Function100cb5: ; 100cb5
 	call Function100dd8
 	ret c
-	ld hl, wcfa5
+	ld hl, w2DMenuFlags1
 	set 7, [hl]
 	res 6, [hl]
 .asm_100cc0
@@ -2021,7 +2021,7 @@ Function100cb5: ; 100cb5
 	call Function100dfd
 	pop bc
 	jr c, .asm_100d17
-	ld a, [wcfa8]
+	ld a, [w2DMenuFlags4]
 	and c
 	jr z, .asm_100cc0
 	call PlaceHollowCursor
@@ -2063,7 +2063,7 @@ MobileBattleMonMenu: ; 100d22
 	call Function100dd8
 	ret c
 	call Function100d67
-	ld hl, wcfa5
+	ld hl, w2DMenuFlags1
 	set 7, [hl]
 	res 6, [hl]
 .asm_100d30
@@ -2075,7 +2075,7 @@ MobileBattleMonMenu: ; 100d22
 	call Function100dfd
 	pop bc
 	jr c, .asm_100d54
-	ld a, [wcfa8]
+	ld a, [w2DMenuFlags4]
 	and c
 	jr nz, .asm_100d56
 	jr .asm_100d30
@@ -2111,7 +2111,7 @@ Function100d67: ; 100d67
 	call WaitBGMap
 	call CopyMenuData2
 	call InitVerticalMenuCursor
-	ld hl, wcfa5
+	ld hl, w2DMenuFlags1
 	set 6, [hl]
 	ret
 ; 100d88
@@ -5722,7 +5722,7 @@ Function1025ff: ; 1025ff
 	callba Function1009f3
 	ret c
 	callba MobileMenuJoypad
-	ld a, [wcfa8]
+	ld a, [w2DMenuFlags4]
 	and c
 	ret z
 	bit 0, c
@@ -5784,7 +5784,7 @@ Function10266b: ; 10266b
 	callba Function1009f3
 	ret c
 	callba MobileMenuJoypad
-	ld a, [wcfa8]
+	ld a, [w2DMenuFlags4]
 	and c
 	ret z
 	bit 0, c
@@ -6494,7 +6494,7 @@ Function102b4e: ; 102b4e
 	pop af
 	ld [wMenuCursorY], a
 	ld a, [OTPartyCount]
-	ld [wcfa3], a
+	ld [w2DMenuNumRows], a
 	ret
 ; 102b68
 
@@ -6519,7 +6519,7 @@ Function102b7b: ; 102b7b
 	pop af
 	ld [wMenuCursorY], a
 	ld a, [PartyCount]
-	ld [wcfa3], a
+	ld [w2DMenuNumRows], a
 	ret
 ; 102b94
 

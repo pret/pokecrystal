@@ -50,7 +50,7 @@ NewGame_ClearTileMapEtc: ; 5b44
 	call ClearTileMap
 	call LoadFontsExtra
 	call LoadStandardFont
-	call ResetTextRelatedRAM
+	call ClearWindowData
 	ret
 ; 5b54
 
@@ -1410,7 +1410,7 @@ CopyrightString: ; 63fd
 
 GameInit:: ; 642e
 	callba TryLoadSaveData
-	call ResetTextRelatedRAM
+	call ClearWindowData
 	call ClearBGPalettes
 	call ClearTileMap
 	ld a, VBGMap0 / $100

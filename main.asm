@@ -146,12 +146,12 @@ Function64db: ; 64db
 	ld [rSVBK], a
 
 	ld a, $60
-	ld hl, wBackupTilemap
-	lb bc, 4, 0
+	ld hl, wDecompressScratch
+	ld bc, wBackupAttrMap - wDecompressScratch
 	call ByteFill
-	ld a, wBackupTilemap / $100
+	ld a, wDecompressScratch / $100
 	ld [rHDMA1], a
-	ld a, wBackupTilemap % $100
+	ld a, wDecompressScratch % $100
 	ld [rHDMA2], a
 	ld a, (VBGMap0 % $8000) / $100
 	ld [rHDMA3], a
@@ -9173,7 +9173,7 @@ endr
 
 	callab ResetEnemyStatLevels
 
-	call ResetTextRelatedRAM
+	call ClearWindowData
 
 	ld hl, hBGMapAddress
 	xor a
@@ -9183,13 +9183,13 @@ endr
 ; 2ef6e
 
 FillBox: ; 2ef6e
-; Fill wc2c6-aligned box width b height c
+; Fill wBoxAlignment-aligned box width b height c
 ; with iterating tile starting from hFillBox at hl.
 ; Predef $13
 
 	ld de, SCREEN_WIDTH
 
-	ld a, [wc2c6]
+	ld a, [wBoxAlignment]
 	and a
 	jr nz, .right
 
@@ -11616,12 +11616,12 @@ Function4e906: ; 4e906
 	push af
 	ld a, $6
 	ld [rSVBK], a
-	ld hl, wBackupTilemap
-	ld bc, wBackupAttrMap - wBackupTilemap
+	ld hl, wDecompressScratch
+	ld bc, wBackupAttrMap - wDecompressScratch
 	ld a, " "
 	call ByteFill
 	hlbgcoord 0, 0
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	ld b, $0
 	ld c, $40
 	call Request2bpp
@@ -13028,15 +13028,15 @@ _GetFrontpic: ; 510a5
 	ld a, $6
 	ld [rSVBK], a
 	ld a, b
-	ld de, wBackupTilemap + $800
+	ld de, wDecompressScratch + $800
 	call FarDecompress
 	pop bc
-	ld hl, wBackupTilemap
-	ld de, wBackupTilemap + $800
+	ld hl, wDecompressScratch
+	ld de, wDecompressScratch + $800
 	call Function512ab
 	pop hl
 	push hl
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	ld c, 7 * 7
 	ld a, [hROMBank]
 	ld b, a
@@ -13079,7 +13079,7 @@ Function51103: ; 51103
 	ld a, $1
 	ld [rVBK], a
 	push hl
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	ld c, 7 * 7
 	ld a, [hROMBank]
 	ld b, a
@@ -13110,7 +13110,7 @@ Function51103: ; 51103
 	call Function5114f
 	pop bc
 	pop hl
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	ld a, [hROMBank]
 	ld b, a
 	call Get2bpp
@@ -13120,7 +13120,7 @@ Function51103: ; 51103
 ; 5114f
 
 Function5114f: ; 5114f
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	swap c
 	ld a, c
 	and $f
@@ -13129,12 +13129,12 @@ Function5114f: ; 5114f
 	and $f0
 	ld c, a
 	push bc
-	call Function512f2
+	call LoadFrontpic
 	pop bc
 .asm_51161
 	push bc
 	ld c, $0
-	call Function512f2
+	call LoadFrontpic
 	pop bc
 	dec b
 	jr nz, .asm_51161
@@ -13179,14 +13179,14 @@ GetBackpic: ; 5116c
 	inc hl
 	ld a, d
 	call GetFarHalfword
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	pop af
 	call FarDecompress
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	ld c, 6 * 6
-	call Function5127c
+	call FixBackpicAlignment
 	pop hl
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	ld a, [hROMBank]
 	ld b, a
 	call Get2bpp
@@ -13283,10 +13283,10 @@ GetTrainerPic: ; 5120d
 	ld a, BANK(TrainerPicPointers)
 	call GetFarHalfword
 	pop af
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	call FarDecompress
 	pop hl
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	ld c, 7 * 7
 	ld a, [hROMBank]
 	ld b, a
@@ -13310,10 +13310,10 @@ DecompressPredef: ; 5125d
 	push de
 	push bc
 	ld a, b
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	call FarDecompress
 	pop bc
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	pop hl
 	ld a, [hROMBank]
 	ld b, a
@@ -13324,12 +13324,12 @@ DecompressPredef: ; 5125d
 	ret
 ; 5127c
 
-Function5127c: ; 5127c
+FixBackpicAlignment: ; 5127c
 	push de
 	push bc
-	ld a, [wc2c6]
+	ld a, [wBoxAlignment]
 	and a
-	jr z, .asm_512a8
+	jr z, .keep_dims
 	ld a, c
 	cp 7 * 7
 	ld de, 7 * 7 tiles
@@ -13355,7 +13355,7 @@ Function5127c: ; 5127c
 	or d
 	jr nz, .got_dims
 
-.asm_512a8
+.keep_dims
 	pop bc
 	pop de
 	ret
@@ -13368,39 +13368,39 @@ Function512ab: ; 512ab
 	cp 5
 	jr z, .five
 
-.seven
+.seven_loop
 	ld c, $70
-	call Function512f2
+	call LoadFrontpic
 	dec b
-	jr nz, .seven
+	jr nz, .seven_loop
 	ret
 
 .six
 	ld c, $70
 	xor a
 	call .Fill
-.asm_512c3
+.six_loop
 	ld c, $10
 	xor a
 	call .Fill
 	ld c, $60
-	call Function512f2
+	call LoadFrontpic
 	dec b
-	jr nz, .asm_512c3
+	jr nz, .six_loop
 	ret
 
 .five
 	ld c, $70
 	xor a
 	call .Fill
-.asm_512d8
+.five_loop
 	ld c, $20
 	xor a
 	call .Fill
 	ld c, $50
-	call Function512f2
+	call LoadFrontpic
 	dec b
-	jr nz, .asm_512d8
+	jr nz, .five_loop
 	ld c, $70
 	xor a
 	call .Fill
@@ -13413,21 +13413,21 @@ Function512ab: ; 512ab
 	ret
 ; 512f2
 
-Function512f2: ; 512f2
-	ld a, [wc2c6]
+LoadFrontpic: ; 512f2
+	ld a, [wBoxAlignment]
 	and a
-	jr nz, .asm_512ff
-.asm_512f8
+	jr nz, .x_flip
+.left_loop
 	ld a, [de]
 	inc de
 	ld [hli], a
 	dec c
-	jr nz, .asm_512f8
+	jr nz, .left_loop
 	ret
 
-.asm_512ff
+.x_flip
 	push bc
-.asm_51300
+.right_loop
 	ld a, [de]
 	inc de
 	ld b, a
@@ -13438,7 +13438,7 @@ Function512f2: ; 512f2
 	endr
 	ld [hli], a
 	dec c
-	jr nz, .asm_51300
+	jr nz, .right_loop
 	pop bc
 	ret
 ; 51322
@@ -13453,14 +13453,14 @@ Function51322: ; 51322
 	ld [wd265], a
 	ld hl, sBoxMonNicknames
 	ld bc, PKMN_NAME_LENGTH
-	ld de, wd002
+	ld de, wBufferMonNick
 	call Function513e0
 	ld a, [sBoxCount]
 	dec a
 	ld [wd265], a
 	ld hl, sBoxMonOT
 	ld bc, NAME_LENGTH
-	ld de, wd00d
+	ld de, wBufferMonOT
 	call Function513e0
 	ld a, [sBoxCount]
 	dec a
@@ -13491,14 +13491,14 @@ Function5138b: ; 5138b
 	ld [wd265], a
 	ld hl, PartyMonNicknames
 	ld bc, PKMN_NAME_LENGTH
-	ld de, wd002
+	ld de, wBufferMonNick
 	call Function513e0
 	ld a, [PartyCount]
 	dec a
 	ld [wd265], a
 	ld hl, PartyMonOT
 	ld bc, NAME_LENGTH
-	ld de, wd00d
+	ld de, wBufferMonOT
 	call Function513e0
 	ld a, [PartyCount]
 	dec a
@@ -15208,7 +15208,7 @@ endr
 
 .Decompress: ; e0057
 	ld hl, wd012
-	ld e, $80
+	ld e, %10000000
 	ld d, 8
 .loop_decompress
 	push hl

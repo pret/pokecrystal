@@ -50,7 +50,7 @@ UnownPrinter: ; 16be4
 
 	xor a
 	ld [wJumptableIndex], a
-	call Function16cc8
+	call .UpdateUnownFrontpic
 	call WaitBGMap
 
 	ld a, UNOWN
@@ -74,7 +74,7 @@ UnownPrinter: ; 16be4
 	and A_BUTTON
 	jr nz, .pressed_a
 
-	call Function16ca0
+	call .LeftRight
 	call DelayFrame
 	jr .joy_loop
 
@@ -96,7 +96,7 @@ UnownPrinter: ; 16be4
 	ret
 ; 16ca0
 
-Function16ca0: ; 16ca0
+.LeftRight: ; 16ca0
 	ld a, [hJoyLast]
 	and D_RIGHT
 	jr nz, .press_right
@@ -110,8 +110,7 @@ Function16ca0: ; 16ca0
 	ld a, [hl]
 	and a
 	jr nz, .wrap_around_left
-	ld [hl], $1b
-
+	ld [hl], 26 + 1
 .wrap_around_left
 	dec [hl]
 	jr .return
@@ -119,19 +118,18 @@ Function16ca0: ; 16ca0
 .press_right
 	ld hl, wJumptableIndex
 	ld a, [hl]
-	cp $1a
+	cp 26
 	jr c, .wrap_around_right
-	ld [hl], $ff
-
+	ld [hl], -1
 .wrap_around_right
 	inc [hl]
 
 .return
-	call Function16cc8
+	call .UpdateUnownFrontpic
 	ret
 ; 16cc8
 
-Function16cc8: ; 16cc8
+.UpdateUnownFrontpic: ; 16cc8
 	ld a, [wJumptableIndex]
 	cp 26
 	jr z, Function16d20
@@ -140,7 +138,7 @@ Function16cc8: ; 16cc8
 	ld a, UNOWN
 	ld [CurPartySpecies], a
 	xor a
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	ld de, VTiles2
 	predef GetFrontpic
 	call Function16cff
@@ -162,7 +160,7 @@ Function16cff: ; 16cff
 
 	ld a, BANK(sScratch)
 	call GetSRAMBank
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	ld hl, sScratch
 	ld a, [hROMBank]
 	ld b, a

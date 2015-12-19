@@ -5308,7 +5308,7 @@ BattleMenu_Pack: ; 3e1c7
 	call UpdateBattleHUDs
 	call WaitBGMap
 	call LoadTileMapToTempTileMap
-	call ResetTextRelatedRAM
+	call ClearWindowData
 	call FinishBattleAnim
 	and a
 	ret
@@ -5319,7 +5319,7 @@ BattleMenu_Pack: ; 3e1c7
 	ld a, [wBattleResult]
 	and $c0
 	ld [wBattleResult], a
-	call ResetTextRelatedRAM
+	call ClearWindowData
 	call SetPalettes
 	scf
 	ret
@@ -5661,9 +5661,9 @@ MoveSelectionScreen: ; 3e4bc
 	ld a, 17 - NUM_MOVES - 4
 
 .got_default_coord
-	ld [wcfa1], a
+	ld [w2DMenuCursorInitY], a
 	ld a, b
-	ld [wcfa2], a
+	ld [w2DMenuCursorInitX], a
 	ld a, [wMoveSelectionMenuType]
 	cp $1
 	jr z, .skip_inc
@@ -5676,9 +5676,9 @@ MoveSelectionScreen: ; 3e4bc
 	ld [wMenuCursorX], a
 	ld a, [wNumMoves]
 	inc a
-	ld [wcfa3], a
+	ld [w2DMenuNumRows], a
 	ld a, $1
-	ld [wcfa4], a
+	ld [w2DMenuNumCols], a
 	ld c, $2c
 	ld a, [wMoveSelectionMenuType]
 	dec a
@@ -5694,13 +5694,13 @@ MoveSelectionScreen: ; 3e4bc
 
 .okay
 	ld a, b
-	ld [wcfa8], a
+	ld [w2DMenuFlags4], a
 	ld a, c
-	ld [wcfa5], a
+	ld [w2DMenuFlags1], a
 	xor a
-	ld [wcfa6], a
+	ld [w2DMenuFlags2], a
 	ld a, $10
-	ld [wcfa7], a
+	ld [w2DMenuFlags3], a
 .menu_loop
 	ld a, [wMoveSelectionMenuType]
 	and a
@@ -8557,9 +8557,9 @@ InitEnemy: ; 3f55e
 BackUpVBGMap2: ; 3f568
 	ld a, [rSVBK]
 	push af
-	ld a, $6 ; BANK(wBackupTilemap)
+	ld a, $6 ; BANK(wDecompressScratch)
 	ld [rSVBK], a
-	ld hl, wBackupTilemap
+	ld hl, wDecompressScratch
 	ld bc, $40 tiles ; VBGMap3 - VBGMap2
 	ld a, $2
 	call ByteFill
@@ -8567,7 +8567,7 @@ BackUpVBGMap2: ; 3f568
 	push af
 	ld a, $1
 	ld [rVBK], a
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	hlbgcoord 0, 0 ; VBGMap2
 	lb bc, BANK(BackUpVBGMap2), $40
 	call Request2bpp
@@ -9453,12 +9453,12 @@ InitBattleDisplay: ; 3fb6c
 	ld a, $6
 	ld [rSVBK], a
 
-	ld hl, wBackupTilemap
-	ld bc, wBackupAttrMap - wBackupTilemap
+	ld hl, wDecompressScratch
+	ld bc, wBackupAttrMap - wDecompressScratch
 	ld a, " "
 	call ByteFill
 
-	ld de, wBackupTilemap
+	ld de, wDecompressScratch
 	hlbgcoord 0, 0
 	lb bc, BANK(.BlankBGMap), $40
 	call Request2bpp

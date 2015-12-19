@@ -663,7 +663,7 @@ Functiond03cd: ; d03cd
 	ld a, [w2_d186]
 	ld bc, SCREEN_WIDTH
 	call AddNTimes
-	ld a, [wc2c6]
+	ld a, [wBoxAlignment]
 	and a
 	jr nz, .go
 	ld a, [w2_d185]
@@ -786,7 +786,7 @@ Functiond046c: ; d046c
 	ld bc, 45
 .okay
 
-	ld a, [wc2c6]
+	ld a, [wBoxAlignment]
 	and a
 	jr nz, .add_bc
 	add hl, de
@@ -824,7 +824,7 @@ Functiond0499: ; d0499
 
 Functiond04bd: ; d04bd
 	call Functiond04f6
-	ld a, [wc2c6]
+	ld a, [wBoxAlignment]
 	and a
 	jr nz, .minus_one_and_six
 	ld de, 1
@@ -1117,7 +1117,7 @@ PokeAnim_GetSpeciesOrUnown: ; d065c
 
 Functiond0669: ; d0669
 	ld a, $1
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 
 Functiond066e: ; d066e
 	call AnimateMon_CheckIfPokemon
@@ -1134,12 +1134,12 @@ Functiond066e: ; d066e
 	ld e, c
 	call AnimateFrontpic
 	xor a
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	ret
 
 .asm_d068c
 	xor a
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	inc a
 	ld [CurPartySpecies], a
 	ret

@@ -1229,23 +1229,23 @@ Function28803: ; 28803
 	ld a, $1
 	ld [MonType], a
 	ld a, $c1
-	ld [wcfa8], a
+	ld [w2DMenuFlags4], a
 	ld a, [OTPartyCount]
-	ld [wcfa3], a
+	ld [w2DMenuNumRows], a
 	ld a, $1
-	ld [wcfa4], a
+	ld [w2DMenuNumCols], a
 	ld a, $9
-	ld [wcfa1], a
+	ld [w2DMenuCursorInitY], a
 	ld a, $6
-	ld [wcfa2], a
+	ld [w2DMenuCursorInitX], a
 	ld a, $1
 	ld [wMenuCursorX], a
 	ld a, $10
-	ld [wcfa7], a
+	ld [w2DMenuFlags3], a
 	ld a, $20
-	ld [wcfa5], a
+	ld [w2DMenuFlags1], a
 	xor a
-	ld [wcfa6], a
+	ld [w2DMenuFlags2], a
 
 Function28835: ; 28835
 	callba Function16d70c
@@ -1294,23 +1294,23 @@ Function2888b: ; 2888b
 	xor a
 	ld [MonType], a
 	ld a, $c1
-	ld [wcfa8], a
+	ld [w2DMenuFlags4], a
 	ld a, [PartyCount]
-	ld [wcfa3], a
+	ld [w2DMenuNumRows], a
 	ld a, $1
-	ld [wcfa4], a
+	ld [w2DMenuNumCols], a
 	ld a, $1
-	ld [wcfa1], a
+	ld [w2DMenuCursorInitY], a
 	ld a, $6
-	ld [wcfa2], a
+	ld [w2DMenuCursorInitX], a
 	ld a, $1
 	ld [wMenuCursorX], a
 	ld a, $10
-	ld [wcfa7], a
+	ld [w2DMenuFlags3], a
 	ld a, $20
-	ld [wcfa5], a
+	ld [w2DMenuFlags1], a
 	xor a
-	ld [wcfa6], a
+	ld [w2DMenuFlags2], a
 	call WaitBGMap2
 
 Function288c5: ; 288c5
@@ -1388,23 +1388,23 @@ Function28926: ; 28926
 	ld a, $7f
 	ldcoord_a 11, 16
 	ld a, $13
-	ld [wcfa8], a
+	ld [w2DMenuFlags4], a
 	ld a, $1
-	ld [wcfa3], a
+	ld [w2DMenuNumRows], a
 	ld a, $1
-	ld [wcfa4], a
+	ld [w2DMenuNumCols], a
 	ld a, $10
-	ld [wcfa1], a
+	ld [w2DMenuCursorInitY], a
 	ld a, $1
-	ld [wcfa2], a
+	ld [w2DMenuCursorInitX], a
 	ld a, $1
 	ld [wMenuCursorY], a
 	ld [wMenuCursorX], a
 	ld a, $20
-	ld [wcfa7], a
+	ld [w2DMenuFlags3], a
 	xor a
-	ld [wcfa5], a
-	ld [wcfa6], a
+	ld [w2DMenuFlags1], a
+	ld [w2DMenuFlags2], a
 	call ScrollingMenuJoypad
 	bit 4, a
 	jr nz, .asm_2898d
@@ -1420,23 +1420,23 @@ Function28926: ; 28926
 	ld a, $7f
 	ldcoord_a 1, 16
 	ld a, $23
-	ld [wcfa8], a
+	ld [w2DMenuFlags4], a
 	ld a, $1
-	ld [wcfa3], a
+	ld [w2DMenuNumRows], a
 	ld a, $1
-	ld [wcfa4], a
+	ld [w2DMenuNumCols], a
 	ld a, $10
-	ld [wcfa1], a
+	ld [w2DMenuCursorInitY], a
 	ld a, $b
-	ld [wcfa2], a
+	ld [w2DMenuCursorInitX], a
 	ld a, $1
 	ld [wMenuCursorY], a
 	ld [wMenuCursorX], a
 	ld a, $20
-	ld [wcfa7], a
+	ld [w2DMenuFlags3], a
 	xor a
-	ld [wcfa5], a
-	ld [wcfa6], a
+	ld [w2DMenuFlags1], a
+	ld [w2DMenuFlags2], a
 	call ScrollingMenuJoypad
 	bit 5, a
 	jp nz, .asm_28946
@@ -1700,20 +1700,20 @@ Function28b87: ; 28b87
 	hlcoord 12, 8
 	call PlaceString
 	ld a, $8
-	ld [wcfa1], a
+	ld [w2DMenuCursorInitY], a
 	ld a, $b
-	ld [wcfa2], a
+	ld [w2DMenuCursorInitX], a
 	ld a, $1
-	ld [wcfa4], a
+	ld [w2DMenuNumCols], a
 	ld a, $2
-	ld [wcfa3], a
+	ld [w2DMenuNumRows], a
 	xor a
-	ld [wcfa5], a
-	ld [wcfa6], a
+	ld [w2DMenuFlags1], a
+	ld [w2DMenuFlags2], a
 	ld a, $20
-	ld [wcfa7], a
+	ld [w2DMenuFlags3], a
 	ld a, $3
-	ld [wcfa8], a
+	ld [w2DMenuFlags4], a
 	ld a, $1
 	ld [wMenuCursorY], a
 	ld [wMenuCursorX], a

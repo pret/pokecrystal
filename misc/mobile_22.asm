@@ -2200,7 +2200,7 @@ Function89d5e: ; 89d5e (22:5d5e)
 	call Function8923c
 	call PlaceVerticalMenuItems
 	call InitVerticalMenuCursor
-	ld hl, wcfa5
+	ld hl, w2DMenuFlags1
 	set 7, [hl]
 	ret
 
@@ -2242,7 +2242,7 @@ Function89dab: ; 89dab (22:5dab)
 	callba MobileMenuJoypad
 	call Function8923c
 	ld a, c
-	ld hl, wcfa8
+	ld hl, w2DMenuFlags4
 	and [hl]
 	ret z
 	bit 0, a
@@ -2253,7 +2253,7 @@ Function89dab: ; 89dab (22:5dab)
 	ret
 .asm_89dc7
 	call PlayClickSFX
-	ld a, [wcfa3]
+	ld a, [w2DMenuNumRows]
 	ld c, a
 	ld a, [wMenuCursorY]
 	cp c
@@ -2384,8 +2384,8 @@ Function89e9a: ; 89e9a (22:5e9a)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_89eb1
-	ld de, wd028
-	ld bc, $8
+	ld de, UnknBGPals + 5 palettes
+	ld bc, 1 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -3056,7 +3056,7 @@ Function8a31c: ; 8a31c (22:631c)
 	ld [MenuSelection], a
 	call PlaceVerticalMenuItems
 	call InitVerticalMenuCursor
-	ld hl, wcfa5
+	ld hl, w2DMenuFlags1
 	set 7, [hl]
 .asm_8a34e
 	call Function8a3a2
@@ -3088,7 +3088,7 @@ Function8a31c: ; 8a31c (22:631c)
 Function8a383: ; 8a383 (22:6383)
 	callba MobileMenuJoypad
 	ld a, c
-	ld hl, wcfa8
+	ld hl, w2DMenuFlags4
 	and [hl]
 	ret z
 	bit 0, a
