@@ -330,15 +330,15 @@ FlyFromAnim: ; 8caed
 	ld [VramState], a
 	call FlyFunction_InitGFX
 	depixel 10, 10, 4, 0
-	ld a, SPRITE_ANIM_INDEX_0A
+	ld a, SPRITE_ANIM_INDEX_WALK_CYCLE
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $84
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld [hl], SPRITE_ANIM_SEQ_16
-	ld a, $80
+	ld [hl], SPRITE_ANIM_SEQ_FLY_FROM
+	ld a, 128
 	ld [wcf64], a
 .loop
 	ld a, [wJumptableIndex]
@@ -347,7 +347,7 @@ FlyFromAnim: ; 8caed
 	ld a, 0 * 4
 	ld [wCurrSpriteOAMAddr], a
 	callab DoNextFrameForAllSprites
-	call Function8cbc8
+	call FlyFunction_FrameTimer
 	call DelayFrame
 	jr .loop
 
@@ -365,18 +365,18 @@ FlyToAnim: ; 8cb33
 	ld [VramState], a
 	call FlyFunction_InitGFX
 	depixel 31, 10, 4, 0
-	ld a, SPRITE_ANIM_INDEX_0A
+	ld a, SPRITE_ANIM_INDEX_WALK_CYCLE
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $84
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld [hl], $18
+	ld [hl], SPRITE_ANIM_SEQ_FLY_TO
 	ld hl, SPRITEANIMSTRUCT_0F
 	add hl, bc
-	ld [hl], $58
-	ld a, $40
+	ld [hl], 11 * 8
+	ld a, 64
 	ld [wcf64], a
 .loop
 	ld a, [wJumptableIndex]
@@ -385,28 +385,28 @@ FlyToAnim: ; 8cb33
 	ld a, 0 * 4
 	ld [wCurrSpriteOAMAddr], a
 	callab DoNextFrameForAllSprites
-	call Function8cbc8
+	call FlyFunction_FrameTimer
 	call DelayFrame
 	jr .loop
 
 .exit
 	pop af
 	ld [VramState], a
-	call Function8cb82
+	call .RestorePlayerSprite_DespawnLeaves
 	ret
 
-Function8cb82: ; 8cb82 (23:4b82)
+.RestorePlayerSprite_DespawnLeaves: ; 8cb82 (23:4b82)
 	ld hl, Sprites + 2 ; Tile ID
 	xor a
 	ld c, $4
-.loop
+.loop2
 	ld [hli], a
 rept 3
 	inc hl
 endr
 	inc a
 	dec c
-	jr nz, .loop
+	jr nz, .loop2
 	ld hl, Sprites + 4 * 4
 	ld bc, SpritesEnd - (Sprites + 4 * 4)
 	xor a
@@ -432,8 +432,8 @@ FlyFunction_InitGFX: ; 8cb9b (23:4b9b)
 	ld [wJumptableIndex], a
 	ret
 
-Function8cbc8: ; 8cbc8 (23:4bc8)
-	call Function8cbe6
+FlyFunction_FrameTimer: ; 8cbc8 (23:4bc8)
+	call .SpawnLeaf
 	ld hl, wcf64
 	ld a, [hl]
 	and a
@@ -452,19 +452,19 @@ Function8cbc8: ; 8cbc8 (23:4bc8)
 	set 7, [hl]
 	ret
 
-Function8cbe6: ; 8cbe6 (23:4be6)
+.SpawnLeaf: ; 8cbe6 (23:4be6)
 	ld hl, wcf65
 	ld a, [hl]
 	inc [hl]
 	and $7
 	ret nz
 	ld a, [hl]
-	and $18
+	and (6 * 8) >> 1
 	sla a
-	add $40
+	add 8 * 8 ; gives a number in [$40, $50, $60, $70]
 	ld d, a
 	ld e, $0
-	ld a, SPRITE_ANIM_INDEX_18 ; fly land
+	ld a, SPRITE_ANIM_INDEX_FLY_LEAF ; fly land
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc

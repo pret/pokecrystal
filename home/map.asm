@@ -1988,7 +1988,7 @@ FadeToMenu:: ; 2b29
 
 CloseSubmenu:: ; 2b3c
 	call ClearBGPalettes
-	call Function2bae
+	call ReloadTilesetAndPalettes
 	call UpdateSprites
 	call Call_ExitMenu
 	call ret_d90
@@ -1998,7 +1998,7 @@ CloseSubmenu:: ; 2b3c
 ExitAllMenus:: ; 2b4d
 	call ClearBGPalettes
 	call Call_ExitMenu
-	call Function2bae
+	call ReloadTilesetAndPalettes
 	call UpdateSprites
 	call ret_d90
 Function2b5c:: ; 2b5c
@@ -2011,13 +2011,13 @@ Function2b5c:: ; 2b5c
 	ret
 ; 2b74
 
-Function2b74:: ; 0x2b74
+ReturnToMapWithSpeechTextbox:: ; 0x2b74
 	push af
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
 	call ClearBGPalettes
 	call ClearSprites
-	call Function2bae
+	call ReloadTilesetAndPalettes
 	hlcoord 0, 12
 	lb bc, 4, 18
 	call TextBox
@@ -2036,7 +2036,7 @@ Function2b74:: ; 0x2b74
 	ret
 ; 0x2bae
 
-Function2bae:: ; 2bae
+ReloadTilesetAndPalettes:: ; 2bae
 	call DisableLCD
 	call ClearSprites
 	callba RefreshSprites

@@ -12,7 +12,7 @@ MainMenu: ; 49cdc
 	ld hl, GameTimerPause
 	res 0, [hl]
 	call Function49da4
-	ld [wcf76], a
+	ld [wWhichIndexSet], a
 	call Function49e09
 	ld hl, MenuDataHeader_0x49d14
 	call LoadMenuDataHeader

@@ -6,7 +6,7 @@ InitDecorations: ; 26751 (9:6751)
 	ret
 
 _KrisDecorationMenu: ; 0x2675c
-	ld a, [wcf76]
+	ld a, [wWhichIndexSet]
 	push af
 	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
@@ -30,7 +30,7 @@ _KrisDecorationMenu: ; 0x2675c
 .exit_menu
 	call ExitMenu
 	pop af
-	ld [wcf76], a
+	ld [wWhichIndexSet], a
 	ld a, [Buffer5]
 	ld c, a
 	ret
@@ -74,7 +74,7 @@ _KrisDecorationMenu: ; 0x2675c
 
 .FindCategoriesWithOwnedDecos: ; 26806
 	xor a
-	ld [wcf76], a
+	ld [wWhichIndexSet], a
 	call .ClearStringBuffer2
 	call .FindOwndDecos
 	ld a, 7
@@ -374,7 +374,7 @@ PopulateDecoCategoryMenu: ; 2695b
 	cp 8
 	jr nc, .beyond_eight
 	xor a
-	ld [wcf76], a
+	ld [wWhichIndexSet], a
 	ld hl, .NonscrollingMenuDataHeader
 	call LoadMenuDataHeader
 	call DoNthMenu

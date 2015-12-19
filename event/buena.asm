@@ -1,6 +1,6 @@
 SpecialBuenasPassword: ; 8af6b
 	xor a
-	ld [wcf76], a
+	ld [wWhichIndexSet], a
 	ld hl, .MenuDataHeader
 	call CopyMenuDataHeader
 	ld a, [wBuenasPassword]
@@ -69,8 +69,8 @@ SpecialBuenaPrize: ; 8afd4
 	ld [wMenuScrollPosition], a
 	ld a, $1
 	ld [MenuSelection], a
-	call Function8b0d6
-	call Function8b090
+	call Buena_PlacePrizeMenuBox
+	call Buena_DisplayBlueCardBalance
 	ld hl, .Text_AskWhichPrize
 	call PrintText
 	jr .okay
@@ -83,12 +83,12 @@ SpecialBuenaPrize: ; 8afd4
 	call DelayFrame
 	call UpdateSprites
 	call PrintBlueCardBalance
-	call Function8b0e2
+	call Buena_PrizeMenu
 	jr z, .done
 	ld [MenuSelectionQuantity], a
 	call Buena_getprize
 	ld a, [hl]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	ld hl, .Text_IsThatRight
 	call BuenaPrintText
@@ -183,7 +183,7 @@ SpecialBuenaPrize: ; 8afd4
 	db "@"
 ; 0x8b090
 
-Function8b090: ; 8b090
+Buena_DisplayBlueCardBalance: ; 8b090
 	ld hl, BlueCardBalanceMenuDataHeader
 	call LoadMenuDataHeader
 	ret
@@ -230,7 +230,7 @@ BlueCardBalanceMenuDataHeader: ; 0x8b0d1
 	db 13, 11 ; end coords
 ; 8b0d6
 
-Function8b0d6: ; 8b0d6
+Buena_PlacePrizeMenuBox: ; 8b0d6
 	ld hl, .menudataheader
 	call LoadMenuDataHeader
 	ret
@@ -242,13 +242,13 @@ Function8b0d6: ; 8b0d6
 	db 11, 17 ; end coords
 ; 8b0e2
 
-Function8b0e2: ; 8b0e2
+Buena_PrizeMenu: ; 8b0e2
 	ld hl, .MenuDataHeader
 	call CopyMenuDataHeader
 	ld a, [MenuSelection]
 	ld [wMenuCursorBuffer], a
 	xor a
-	ld [wcf76], a
+	ld [wWhichIndexSet], a
 	ld [hBGMapMode], a
 	call InitScrollingMenu
 	call UpdateSprites

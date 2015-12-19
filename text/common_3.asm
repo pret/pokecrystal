@@ -1641,7 +1641,7 @@ UnknownText_0x1c1b03: ; 1c1b03
 
 UnknownText_0x1c1b2c: ; 1c1b2c
 	text "Took @"
-	text_from_ram wd050_MonNick
+	text_from_ram wMonOrItemNameBuffer
 	text "'s"
 	line "@"
 	text_from_ram StringBuffer1
@@ -1656,7 +1656,7 @@ UnknownText_0x1c1b2c: ; 1c1b2c
 
 UnknownText_0x1c1b57: ; 1c1b57
 	text "Made @"
-	text_from_ram wd050_MonNick
+	text_from_ram wMonOrItemNameBuffer
 	text ""
 	line "hold @"
 	text_from_ram StringBuffer2
@@ -1671,7 +1671,7 @@ UnknownText_0x1c1b6f: ; 1c1b6f
 ; 1c1b8e
 
 UnknownText_0x1c1b8e: ; 1c1b8e
-	text_from_ram wd050_MonNick
+	text_from_ram wMonOrItemNameBuffer
 	text " isn't"
 	line "holding anything."
 	prompt
@@ -1688,13 +1688,13 @@ UnknownText_0x1c1bc4: ; 1c1bc4
 	text_from_ram StringBuffer1
 	text ""
 	line "from @"
-	text_from_ram wd050_MonNick
+	text_from_ram wMonOrItemNameBuffer
 	text "."
 	prompt
 ; 1c1bdc
 
 UnknownText_0x1c1bdc: ; 1c1bdc
-	text_from_ram wd050_MonNick
+	text_from_ram wMonOrItemNameBuffer
 	text " is"
 	line "already holding"
 

@@ -6737,7 +6737,7 @@ GivePoke:: ; e277
 	ld [MonType], a
 	xor a
 	ld [CurPartyMon], a
-	ld de, wd050_MonNick
+	ld de, wMonOrItemNameBuffer
 	pop bc
 	ld a, b
 	ld b, 1
@@ -6756,7 +6756,7 @@ GivePoke:: ; e277
 	ld [TempEnemyMonSpecies], a
 	call GetPokemonName
 	ld hl, StringBuffer1
-	ld de, wd050_MonNick
+	ld de, wMonOrItemNameBuffer
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	pop af
@@ -6868,7 +6868,7 @@ endr
 	call PrintText
 	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
-	ld hl, wd050
+	ld hl, wMonOrItemNameBuffer
 	ld de, sBoxMonNicknames
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
@@ -6965,7 +6965,7 @@ _BillsPC: ; e3fd
 	ld [wMenuCursorBuffer], a
 	call SetPalettes
 	xor a
-	ld [wcf76], a
+	ld [wWhichIndexSet], a
 	ld [hBGMapMode], a
 	call DoNthMenu
 	jr c, .cancel
@@ -11097,7 +11097,7 @@ CheckPartyFullAfterContest: ; 4d9e5
 	ld [wd265], a
 	call GetPokemonName
 	ld hl, StringBuffer1
-	ld de, wd050
+	ld de, wMonOrItemNameBuffer
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	call GiveANickname_YesNo
@@ -11107,7 +11107,7 @@ CheckPartyFullAfterContest: ; 4d9e5
 	ld [CurPartyMon], a
 	xor a
 	ld [MonType], a
-	ld de, wd050
+	ld de, wMonOrItemNameBuffer
 	callab InitNickname
 
 .Party_SkipNickname
@@ -11117,7 +11117,7 @@ CheckPartyFullAfterContest: ; 4d9e5
 	call SkipNames
 	ld d, h
 	ld e, l
-	ld hl, wd050
+	ld hl, wMonOrItemNameBuffer
 	call CopyBytes
 	ld a, [PartyCount]
 	dec a
@@ -11169,9 +11169,9 @@ CheckPartyFullAfterContest: ; 4d9e5
 	jr c, .Box_SkipNickname
 	ld a, BOXMON
 	ld [MonType], a
-	ld de, wd050_MonNick
+	ld de, wMonOrItemNameBuffer
 	callab InitNickname
-	ld hl, wd050_MonNick
+	ld hl, wMonOrItemNameBuffer
 
 .Box_SkipNickname
 	ld a, BANK(sBoxMonNicknames)

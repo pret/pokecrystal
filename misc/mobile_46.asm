@@ -5690,7 +5690,7 @@ Function11a9c0: ; 11a9c0
 
 Function11a9ce: ; 11a9ce
 	call ClearBGPalettes
-	call Function2bae
+	call ReloadTilesetAndPalettes
 	call Call_ExitMenu
 	callba MobileFunc_106462
 	callba Function106464

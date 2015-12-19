@@ -16,18 +16,18 @@ endr
 
 .Jumptable: ; 8d25b (23:525b)
 	jumptable_start
-	jumptable .zero        ; null
+	jumptable .Null        ; null
 	jumptable .one         ; bouncing mon icon
 	jumptable .two         ; bouncing mon icon, selected
 	jumptable .three       ; bouncing mon icon, menu open
 	jumptable .four
 	jumptable .five
-	jumptable .six         ; Game Freak logo
+	jumptable .GameFreakLogo         ; Game Freak logo
 	jumptable .seven
 	jumptable .eight
-	jumptable .nine        ; Something to do with slots
-	jumptable .ten         ; Something to do with slots
-	jumptable .eleven      ; Something to do with slots
+	jumptable .SlotsGolem        ; Something to do with slots
+	jumptable .SlotsChansey         ; Something to do with slots
+	jumptable .SlotsChanseyEgg      ; Something to do with slots
 	jumptable .twelve      ; blinking cursor
 	jumptable .thirteen
 	jumptable .fourteen
@@ -35,12 +35,12 @@ endr
 	jumptable .sixteen
 	jumptable .seventeen
 	jumptable .eighteen
-	jumptable .nineteen    ; finish egg hatching animation
-	jumptable .twenty      ; radio tuning knob
+	jumptable .EggShell    ; finish egg hatching animation
+	jumptable .RadioTuningKnob      ; radio tuning knob
 	jumptable .twentyone   ; cut grass leaves
-	jumptable .twentytwo   ; flying sprite
-	jumptable .twentythree ; flying leaves
-	jumptable .twentyfour
+	jumptable .FlyFrom   ; flying sprite
+	jumptable .FlyLeaf ; flying leaves
+	jumptable .FlyTo  ; fly to
 	jumptable .twentyfive
 	jumptable .twentysix
 	jumptable .twentyseven
@@ -53,7 +53,7 @@ endr
 	jumptable .thirtyfour  ; intro suicune facing away from us
 
 
-.zero: ; 8d2a1 (23:52a1)
+.Null: ; 8d2a1 (23:52a1)
 	ret
 
 .one: ; 8d2a2 (23:52a2)
@@ -94,13 +94,13 @@ endr
 	add hl, bc
 	ld a, d
 	and $10 ; bit 4
-	jr z, .load_zero
+	jr z, .load_Null
 	ld a, e
 	and a
 	jr z, .load_minus_two
 	cp $1
 	jr z, .load_minus_one
-.load_zero
+.load_Null
 	xor a
 	ld [hl], a
 	ret
@@ -140,11 +140,11 @@ endr
 ; 8d306 (23:5306)
 
 ; Anonymous jumptable (see .anonymous_jumptable)
-	dw .four_zero
+	dw .four_Null
 	dw .four_one
 ; 8d30a
 
-.four_zero: ; 8d30a
+.four_Null: ; 8d30a
 	call .IncrementSpriteAnimStruct0B
 
 	ld hl, SPRITEANIMSTRUCT_INDEX
@@ -227,7 +227,7 @@ endr
 	callab Function120c1
 	ret
 
-.six: ; 8d37a (23:537a)
+.GameFreakLogo: ; 8d37a (23:537a)
 	callab GameFreakLogoJumper
 	ret
 
@@ -359,11 +359,11 @@ endr
 	call DeinitializeSprite
 	ret
 
-.nine: ; 8d422 (23:5422)
+.SlotsGolem: ; 8d422 (23:5422)
 	callab SlotMachine_AnimateGolem
 	ret
 
-.ten: ; 8d429 (23:5429)
+.SlotsChansey: ; 8d429 (23:5429)
 	callab Slots_AnimateChansey
 	ld hl, wcf64
 	ld a, [hl]
@@ -374,7 +374,7 @@ endr
 	call _ReinitSpriteAnimFrame
 	ret
 
-.eleven: ; 8d43e (23:543e)
+.SlotsChanseyEgg: ; 8d43e (23:543e)
 	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
@@ -425,7 +425,7 @@ endr
 ; 8d487 (23:5487)
 
 ; Anonymous jumptable (see .anonymous_jumptable)
-	dw .sixteen_zero
+	dw .sixteen_Null
 	dw .sixteen_one
 	dw .sixteen_two
 	dw .sixteen_three
@@ -433,7 +433,7 @@ endr
 	dw .sixteen_five
 ; 8d493
 
-.sixteen_zero: ; 8d493
+.sixteen_Null: ; 8d493
 	ld a, $14
 	call _ReinitSpriteAnimFrame
 
@@ -573,12 +573,12 @@ endr
 	callab Function29676
 	ret
 
-.nineteen: ; 8d54a (23:554a)
+.EggShell: ; 8d54a (23:554a)
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	cp $80
-	jr nc, .finish_nineteen
+	jr nc, .finish_EggShell
 	ld d, a
 	add $8
 	ld [hl], a
@@ -606,11 +606,11 @@ endr
 	ld [hl], a
 	ret
 
-.finish_nineteen
+.finish_EggShell
 	call DeinitializeSprite
 	ret
 
-.twenty: ; 8d578 (23:5578)
+.RadioTuningKnob: ; 8d578 (23:5578)
 	callab AnimateTuningKnob
 	ret
 
@@ -653,7 +653,7 @@ endr
 	ld [hl], a
 	ret
 
-.twentytwo: ; 8d5b0 (23:55b0)
+.FlyFrom: ; 8d5b0 (23:55b0)
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, [hl]
@@ -678,10 +678,10 @@ endr
 	ld a, [hl]
 	ld d, a
 	cp $40
-	jr nc, .asm_8d5d3
+	jr nc, .skip
 	add $8
 	ld [hl], a
-.asm_8d5d3
+.skip
 	ld hl, SPRITEANIMSTRUCT_0E
 	add hl, bc
 	ld a, [hl]
@@ -693,12 +693,12 @@ endr
 	ld [hl], a
 	ret
 
-.twentythree: ; 8d5e2 (23:55e2)
+.FlyLeaf: ; 8d5e2 (23:55e2)
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hl]
-	cp $b8
-	jr nc, .asm_8d603
+	cp -9 * 8
+	jr nc, .delete_leaf
 rept 2
 	inc [hl]
 endr
@@ -706,8 +706,8 @@ endr
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	dec [hl]
-	ld d, $40
 
+	ld d, $40
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
@@ -718,15 +718,16 @@ endr
 	add hl, bc
 	ld [hl], a
 	ret
-.asm_8d603
+
+.delete_leaf
 	call DeinitializeSprite
 	ret
 
-.twentyfour: ; 8d607 (23:5607)
+.FlyTo: ; 8d607 (23:5607)
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, [hl]
-	cp $54
+	cp 10 * 8 + 4
 	ret z
 
 	ld hl, SPRITEANIMSTRUCT_YCOORD

@@ -27,9 +27,9 @@ endr
 .next
 ; Choose a flag at uniform random to be set.
 	call Random
-	cp $fa ; 250
+	cp 250
 	jr nc, .next
-	ld c, $19 ; 25
+	ld c, 25
 	call SimpleDivide
 	ld e, b
 	ld d, 0
@@ -124,7 +124,7 @@ ContestReturnMons: ; 13a31
 	ld b, $1
 .loop
 	ld a, [hli]
-	cp $ff
+	cp -1
 	jr z, .done
 	inc b
 	jr .loop

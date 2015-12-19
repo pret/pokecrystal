@@ -22,7 +22,7 @@ MoveDeletion:
 	call LoadStandardMenuDataHeader
 	callba ChooseMoveToDelete
 	push af
-	call Function2b74
+	call ReturnToMapWithSpeechTextbox
 	pop af
 	jr c, .asm_2c5c3
 	ld a, [wMenuCursorY]

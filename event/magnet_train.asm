@@ -3,14 +3,14 @@ Special_MagnetTrain: ; 8cc04
 	and a
 	jr nz, .ToGoldenrod
 	ld a, 1 ; forwards
-	lb bc, $40, $60
-	ld de, $fca0
+	lb bc,  $40,  $60
+	lb de, (11 * 8) - (11 * 8 + 4), -$60
 	jr .continue
 
 .ToGoldenrod
 	ld a, -1 ; backwards
-	lb bc, $c0, $a0
-	ld de, $b460
+	lb bc, -$40, -$60
+	lb de, (11 * 8) + (11 * 8 + 4), $60
 
 .continue
 	ld h, a
@@ -18,21 +18,23 @@ Special_MagnetTrain: ; 8cc04
 	push af
 	ld a, $5
 	ld [rSVBK], a
+
 	ld a, h
-	ld [w5_d191], a
+	ld [wMagnetTrainDirection], a
 	ld a, c
-	ld [w5_d192], a
+	ld [wMagnetTrainInitPosition], a
 	ld a, b
-	ld [w5_d193], a
+	ld [wMagnetTrainHoldPosition], a
 	ld a, e
-	ld [w5_d194], a
+	ld [wMagnetTrainFinalPosition], a
 	ld a, d
-	ld [w5_d195], a
+	ld [wMagnetTrainPlayerSpriteInitX], a
+
 	ld a, [hSCX]
 	push af
 	ld a, [hSCY]
 	push af
-	call Function8ccc9
+	call MagntTrain_LoadGFX_PlayMusic
 	ld hl, hVBlank
 	ld a, [hl]
 	push af
@@ -44,14 +46,14 @@ Special_MagnetTrain: ; 8cc04
 	bit 7, a
 	jr nz, .done
 	callab PlaySpriteAnimations
-	call Function8cdf7
-	call Function8cc99
+	call MagnetTrain_Jumptable
+	call MagnetTrain_UpdateLYOverrides
 	call Function3b0c
 	call DelayFrame
 	jr .loop
 
 .initialize
-	call Function8ceae
+	call MagnetTrain_Jumptable_FirstRunThrough
 	jr .loop
 
 .done
@@ -69,6 +71,7 @@ Special_MagnetTrain: ; 8cc04
 	ld [Requested2bppDest + 1], a
 	ld [Requested2bpp], a
 	call ClearTileMap
+
 	pop af
 	ld [hSCY], a
 	pop af
@@ -80,21 +83,21 @@ Special_MagnetTrain: ; 8cc04
 	ret
 ; 8cc99
 
-Function8cc99: ; 8cc99
+MagnetTrain_UpdateLYOverrides: ; 8cc99
 	ld hl, LYOverridesBackup
 	ld c, $2f
 	ld a, [wcf64]
 	add a
 	ld [hSCX], a
-	call Function8ccc4
+	call .loadloop
 	ld c, $30
 	ld a, [wcf65]
-	call Function8ccc4
+	call .loadloop
 	ld c, $31
 	ld a, [wcf64]
 	add a
-	call Function8ccc4
-	ld a, [wd191]
+	call .loadloop
+	ld a, [wMagnetTrainDirection]
 	ld d, a
 	ld hl, wcf64
 	ld a, [hl]
@@ -103,17 +106,15 @@ rept 2
 endr
 	ld [hl], a
 	ret
-; 8ccc4
 
-Function8ccc4: ; 8ccc4
-.asm_8ccc4
+.loadloop
 	ld [hli], a
 	dec c
-	jr nz, .asm_8ccc4
+	jr nz, .loadloop
 	ret
 ; 8ccc9
 
-Function8ccc9: ; 8ccc9
+MagntTrain_LoadGFX_PlayMusic: ; 8ccc9
 	call ClearBGPalettes
 	call ClearSprites
 	call DisableLCD
@@ -135,20 +136,20 @@ Function8ccc9: ; 8ccc9
 	pop af
 	ld [rSVBK], a
 	ld hl, VTiles0
-	ld c, $4
+	ld c, 4
 	call Request2bpp
-	ld hl, $c0
+	ld hl, 12 tiles
 	add hl, de
 	ld d, h
 	ld e, l
 	ld hl, VTiles0 tile $04
-	ld c, $4
+	ld c, 4
 	call Request2bpp
-	call Function8cda6
+	call MagnetTrain_InitLYOverrides
 	ld hl, wJumptableIndex
 	xor a
 	ld [hli], a
-	ld a, [wd192]
+	ld a, [wMagnetTrainInitPosition]
 rept 3
 	ld [hli], a
 endr
@@ -160,13 +161,13 @@ endr
 DrawMagnetTrain: ; 8cd27
 	hlbgcoord 0, 0
 	xor a
-.asm_8cd2b
+.loop
 	call GetMagnetTrainBGTiles
 	ld b, 32 / 2
 	call .FillAlt
 	inc a
 	cp $12
-	jr c, .asm_8cd2b
+	jr c, .loop
 	hlbgcoord 0, 6
 	ld de, MagnetTrainTilemap1
 	ld c, 20
@@ -243,14 +244,14 @@ MagnetTrainBGTiles: ; 8cd82
 	db $5c, $5d ; bush
 ; 8cda6
 
-Function8cda6: ; 8cda6
+MagnetTrain_InitLYOverrides: ; 8cda6
 	ld hl, LYOverrides
-	ld bc, $90
-	ld a, [wd192]
+	ld bc, LYOverridesEnd - LYOverrides
+	ld a, [wMagnetTrainInitPosition]
 	call ByteFill
 	ld hl, LYOverridesBackup
-	ld bc, $90
-	ld a, [wd192]
+	ld bc, LYOverridesBackupEnd - LYOverridesBackup
+	ld a, [wMagnetTrainInitPosition]
 	call ByteFill
 	ld a, $43
 	ld [hLCDStatCustom], a
@@ -290,11 +291,11 @@ SetMagnetTrainPals: ; 8cdc3
 	ret
 ; 8cdf7
 
-Function8cdf7: ; 8cdf7
+MagnetTrain_Jumptable: ; 8cdf7
 	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
-	ld hl, Jumptable_8ce06
+	ld hl, .Jumptable
 rept 2
 	add hl, de
 endr
@@ -304,25 +305,26 @@ endr
 	jp [hl]
 ; 8ce06
 
-Jumptable_8ce06: ; 8ce06
-	dw Function8ce19
-	dw Function8ce6d
-	dw Function8ce47
-	dw Function8ce6d
-	dw Function8ce7a
-	dw Function8ce6d
-	dw Function8cea2
+.Jumptable: ; 8ce06
+	jumptable_start
+	jumptable .InitPlayerSpriteAnim
+	jumptable .WaitScene
+	jumptable .MoveTrain1
+	jumptable .WaitScene
+	jumptable .MoveTrain2
+	jumptable .WaitScene
+	jumptable .TrainArrived
 ; 8ce14
 
-Function8ce14: ; 8ce14
+.Next: ; 8ce14
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 ; 8ce19
 
-Function8ce19: ; 8ce19
-	ld d, $55
-	ld a, [wOverworldMapAnchor + 1]
+.InitPlayerSpriteAnim: ; 8ce19
+	ld d, 10 * 8 + 5
+	ld a, [wMagnetTrainPlayerSpriteInitX]
 	ld e, a
 	ld b, SPRITE_ANIM_INDEX_15
 	ld a, [rSVBK]
@@ -331,67 +333,67 @@ Function8ce19: ; 8ce19
 	ld [rSVBK], a
 	ld a, [PlayerGender]
 	bit 0, a
-	jr z, .asm_8ce31
+	jr z, .got_gender
 	ld b, SPRITE_ANIM_INDEX_1F
 
-.asm_8ce31
+.got_gender
 	pop af
 	ld [rSVBK], a
 	ld a, b
 	call _InitSpriteAnimStruct
-	ld hl, $3
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $0
-	call Function8ce14
+	call .Next
 	ld a, $80
 	ld [wcf66], a
 	ret
 ; 8ce47
 
-Function8ce47: ; 8ce47
-	ld hl, wd193
+.MoveTrain1: ; 8ce47
+	ld hl, wMagnetTrainHoldPosition
 	ld a, [wcf65]
 	cp [hl]
-	jr z, .asm_8ce64
+	jr z, .PrepareToHoldTrain
 	ld e, a
-	ld a, [wd191]
+	ld a, [wMagnetTrainDirection]
 	xor $ff
 	inc a
 	add e
 	ld [wcf65], a
 	ld hl, wGlobalAnimXOffset
-	ld a, [wd191]
+	ld a, [wMagnetTrainDirection]
 	add [hl]
 	ld [hl], a
 	ret
 
-.asm_8ce64
-	call Function8ce14
+.PrepareToHoldTrain
+	call .Next
 	ld a, $80
 	ld [wcf66], a
 	ret
 ; 8ce6d
 
-Function8ce6d: ; 8ce6d
+.WaitScene: ; 8ce6d
 	ld hl, wcf66
 	ld a, [hl]
 	and a
-	jr z, .asm_8ce76
+	jr z, .DoneWaiting
 	dec [hl]
 	ret
 
-.asm_8ce76
-	call Function8ce14
+.DoneWaiting
+	call .Next
 	ret
 ; 8ce7a
 
-Function8ce7a: ; 8ce7a
-	ld hl, wOverworldMapAnchor
+.MoveTrain2: ; 8ce7a
+	ld hl, wMagnetTrainFinalPosition
 	ld a, [wcf65]
 	cp [hl]
-	jr z, .asm_8ce9e
+	jr z, .PrepareToFinishAnim
 	ld e, a
-	ld a, [wd191]
+	ld a, [wMagnetTrainDirection]
 	xor $ff
 	inc a
 	ld d, a
@@ -401,7 +403,7 @@ rept 2
 endr
 	ld [wcf65], a
 	ld hl, wGlobalAnimXOffset
-	ld a, [wd191]
+	ld a, [wMagnetTrainDirection]
 	ld d, a
 	ld a, [hl]
 rept 2
@@ -412,12 +414,12 @@ endr
 
 	ret
 
-.asm_8ce9e
-	call Function8ce14
+.PrepareToFinishAnim
+	call .Next
 	ret
 ; 8cea2
 
-Function8cea2: ; 8cea2
+.TrainArrived: ; 8cea2
 	ld a, $80
 	ld [wJumptableIndex], a
 	ld de, SFX_TRAIN_ARRIVED
@@ -425,10 +427,10 @@ Function8cea2: ; 8cea2
 	ret
 ; 8ceae
 
-Function8ceae: ; 8ceae
+MagnetTrain_Jumptable_FirstRunThrough: ; 8ceae
 	callba PlaySpriteAnimations
-	call Function8cdf7
-	call Function8cc99
+	call MagnetTrain_Jumptable
+	call MagnetTrain_UpdateLYOverrides
 	call Function3b0c
 	call DelayFrame
 	ld a, [rSVBK]

@@ -8809,7 +8809,7 @@ endr
 	ld hl, wPayDayMoney + 2
 	ld de, Money + 2
 	call AddBattleMoneyToAccount
-	ld hl, BattleText_PlayerPickuedUpPayDayMoney
+	ld hl, BattleText_PlayerPickedUpPayDayMoney
 	call StdBattleTextBox
 	ld a, [InBattleTowerBattle]
 	bit 0, a

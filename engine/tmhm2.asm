@@ -72,7 +72,7 @@ AskTeachTMHM: ; 2c7bf (b:47bf)
 
 ChooseMonToLearnTMHM: ; 2c7fb
 	ld hl, StringBuffer2
-	ld de, wd066
+	ld de, wTMHMMoveNameBackup
 	ld bc, 12
 	call CopyBytes
 	call ClearBGPalettes
@@ -95,7 +95,7 @@ ChooseMonToLearnTMHM_NoRefresh: ; 2c80a
 	pop bc ; now contains the former contents of af
 	jr z, .egg
 	push bc
-	ld hl, wd066
+	ld hl, wTMHMMoveNameBackup
 	ld de, StringBuffer2
 	ld bc, 12
 	call CopyBytes

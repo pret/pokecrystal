@@ -877,7 +877,7 @@ endr
 Script_scripttalkafter: ; 97125
 ; script command 0x65
 
-	ld hl, wd04b
+	ld hl, wScriptAfterPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

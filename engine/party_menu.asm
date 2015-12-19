@@ -8,7 +8,7 @@ SelectMonFromParty: ; 50000
 	call SetPalettes
 	call DelayFrame
 	call PartyMenuSelect
-	call Function2b74
+	call ReturnToMapWithSpeechTextbox
 	ret
 ; 5001d
 
@@ -25,7 +25,7 @@ SelectTradeOrDaycareMon: ; 5001d
 	call SetPalettes
 	call DelayFrame
 	call PartyMenuSelect
-	call Function2b74
+	call ReturnToMapWithSpeechTextbox
 	ret
 ; 5003f
 

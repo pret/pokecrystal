@@ -92,11 +92,11 @@ dab: MACRO ; dwb address, bank
 	ENDM
 
 lb: MACRO ; r, hi, lo
-	ld \1, (\2) << 8 + (\3)
+	ld \1, (\2 & $ff) << 8 + (\3 & $ff)
 	ENDM
 
 ln: MACRO ; r, hi, lo
-	ld \1, (\2) << 4 + (\3)
+	ld \1, (\2 & $f) << 4 + (\3 & $f)
 	ENDM
 
 bccoord equs "coord bc,"

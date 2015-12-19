@@ -187,14 +187,14 @@ FixTime:: ; 61d
 	ret
 ; 658
 
-Function658:: ; 658
+SetTimeOfDay:: ; 658
 	xor a
 	ld [StringBuffer2], a
 	ld a, $0 ; useless
 	ld [StringBuffer2 + 3], a
-	jr Function677
+	jr InitTime
 
-Function663:: ; 663
+SetDayOfWeek:: ; 663
 	call UpdateTime
 	ld a, [hHours]
 	ld [StringBuffer2 + 1], a
@@ -202,10 +202,10 @@ Function663:: ; 663
 	ld [StringBuffer2 + 2], a
 	ld a, [hSeconds]
 	ld [StringBuffer2 + 3], a
-	jr Function677 ; useless
+	jr InitTime ; useless
 
-Function677:: ; 677
-	callba Function140ed
+InitTime:: ; 677
+	callba _InitTime
 	ret
 ; 67e
 

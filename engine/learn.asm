@@ -4,7 +4,7 @@ LearnMove: ; 6508
 	ld hl, PartyMonNicknames
 	call GetNick
 	ld hl, StringBuffer1
-	ld de, wd050_MonNick
+	ld de, wMonOrItemNameBuffer
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 

@@ -12,7 +12,7 @@ PokemonCenterPC: ; 1559a
 	xor a
 	ld [hBGMapMode], a
 	call .ChooseWhichPCListToUse
-	ld [wcf76], a
+	ld [wWhichIndexSet], a
 	call DoNthMenu
 	jr c, .shutdown
 	ld a, [MenuSelection]
@@ -208,7 +208,7 @@ UnknownText_0x156ff: ; 0x156ff
 
 _PlayersPC: ; 15704
 	ld a, b
-	ld [wcf76], a
+	ld [wWhichIndexSet], a
 	ld hl, UnknownText_0x157cc
 	call PC_DisplayTextWaitMenu
 	call Function15715

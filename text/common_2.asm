@@ -600,7 +600,7 @@ UnknownText_0x1bc83a: ; 0x1bc83a
 UnknownText_0x1bc84b: ; 0x1bc84b
 	text ""
 	line "OAK: @"
-	text_from_ram wd050
+	text_from_ram wMonOrItemNameBuffer
 	db "@"
 ; 0x1bc857
 
@@ -1307,7 +1307,7 @@ Text_EnemyWithdrew: ; 0x1bcf9c
 Text_EnemyUsedOn: ; 0x1bcfaf
 	text "<ENEMY>"
 	line "used @"
-	text_from_ram wd050
+	text_from_ram wMonOrItemNameBuffer
 	text ""
 	cont "on @"
 	text_from_ram EnemyMonNick
@@ -1604,7 +1604,7 @@ UnknownText_0x1bd407: ; 0x1bd407
 UnknownText_0x1bd429: ; 0x1bd429
 	text "<PLAYER> traded"
 	line "@"
-	text_from_ram wd050
+	text_from_ram wMonOrItemNameBuffer
 	text " for"
 	cont "@"
 	text_from_ram StringBuffer2
@@ -1714,7 +1714,7 @@ UnknownText_0x1bd5cc: ; 0x1bd5cc
 
 UnknownText_0x1bd5f4: ; 0x1bd5f4
 	text "Hi! The @"
-	text_from_ram wd050
+	text_from_ram wMonOrItemNameBuffer
 	text ""
 	line "you traded me is"
 	cont "doing great!"
@@ -1722,7 +1722,7 @@ UnknownText_0x1bd5f4: ; 0x1bd5f4
 ; 0x1bd621
 
 UnknownText_0x1bd621: ; 0x1bd621
-	text_from_ram wd050
+	text_from_ram wMonOrItemNameBuffer
 	text "'s cute,"
 	line "but I don't have"
 
@@ -1759,7 +1759,7 @@ UnknownText_0x1bd6cd: ; 0x1bd6cd
 	text "Wow! Thank you!"
 	line "I always wanted"
 	cont "@"
-	text_from_ram wd050
+	text_from_ram wMonOrItemNameBuffer
 	text "!"
 	done
 ; 0x1bd6f5
@@ -1772,7 +1772,7 @@ UnknownText_0x1bd6f5: ; 0x1bd6f5
 	cont "traded you doing?"
 
 	para "Your @"
-	text_from_ram wd050
+	text_from_ram wMonOrItemNameBuffer
 	text "'s"
 	line "so cute!"
 	done

@@ -249,7 +249,7 @@ PhotoStudio: ; 16dc7
 	call PrintText
 	call DisableSpriteUpdates
 	callba PrintPartymon
-	call Function2b74
+	call ReturnToMapWithSpeechTextbox
 	ld a, [hPrinter]
 	and a
 	jr nz, .cancel

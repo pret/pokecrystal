@@ -1045,7 +1045,7 @@ UnknownText_0x1c564a: ; 0x1c564a
 ; 0x1c5660
 
 UnknownText_0x1c5660: ; 0x1c5660
-	text_from_ram wd050_MonNick
+	text_from_ram wMonOrItemNameBuffer
 	text " learned"
 	line "@"
 	text_from_ram StringBuffer2
@@ -1074,7 +1074,7 @@ UnknownText_0x1c5699: ; 0x1c5699
 ; 0x1c56af
 
 UnknownText_0x1c56af: ; 0x1c56af
-	text_from_ram wd050_MonNick
+	text_from_ram wMonOrItemNameBuffer
 	text ""
 	line "did not learn"
 	cont "@"
@@ -1084,7 +1084,7 @@ UnknownText_0x1c56af: ; 0x1c56af
 ; 0x1c56c9
 
 UnknownText_0x1c56c9: ; 0x1c56c9
-	text_from_ram wd050_MonNick
+	text_from_ram wMonOrItemNameBuffer
 	text " is"
 	line "trying to learn"
 	cont "@"
@@ -1092,7 +1092,7 @@ UnknownText_0x1c56c9: ; 0x1c56c9
 	text "."
 
 	para "But @"
-	text_from_ram wd050_MonNick
+	text_from_ram wMonOrItemNameBuffer
 	text ""
 	line "can't learn more"
 	cont "than four moves."
@@ -1120,7 +1120,7 @@ UnknownText_0x1c574e: ; 0x1c574e
 	interpret_data
 	text ""
 	para "@"
-	text_from_ram wd050_MonNick
+	text_from_ram wMonOrItemNameBuffer
 	text " forgot"
 	line "@"
 	text_from_ram StringBuffer1
@@ -1385,7 +1385,7 @@ UnknownText_0x1c5b37: ; 0x1c5b37
 ; 0x1c5b38
 
 UnknownText_0x1c5b38: ; 0x1c5b38
-	text_from_ram wd050
+	text_from_ram wMonOrItemNameBuffer
 	text " was"
 	line "sent to BILL's PC."
 	prompt

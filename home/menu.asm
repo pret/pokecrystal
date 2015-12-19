@@ -249,7 +249,7 @@ SetUpMenu:: ; 1e70
 
 MenuFunc_1e7f::
 	call CopyMenuData2
-	call Function1ebd
+	call GetMenuIndexSet
 	call Function1ea6
 	call MenuBox
 	ret
@@ -257,7 +257,7 @@ MenuFunc_1e7f::
 MenuWriteText::
 	xor a
 	ld [hBGMapMode], a
-	call Function1ebd ; sort out the text
+	call GetMenuIndexSet ; sort out the text
 	call Function1eda ; actually write it
 	call Function2e31
 	ld a, [hOAMUpdate]
@@ -286,12 +286,12 @@ Function1ea6:: ; 1ea6
 	ret
 ; 1ebd
 
-Function1ebd:: ; 1ebd
+GetMenuIndexSet:: ; 1ebd
 	ld hl, wMenuData2IndicesPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wcf76]
+	ld a, [wWhichIndexSet]
 	and a
 	jr z, .skip
 	ld b, a
@@ -404,7 +404,7 @@ Function1f2a:: ; 1f2a
 	ld [wMenuJoypad], a
 
 .asm_1f57
-	call Function1ebd
+	call GetMenuIndexSet
 	ld a, [wMenuCursorY]
 	ld l, a
 	ld h, $0

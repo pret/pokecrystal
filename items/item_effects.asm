@@ -654,14 +654,14 @@ endr
 	ld [CurPartyMon], a
 	ld a, BOXMON
 	ld [MonType], a
-	ld de, wd050
+	ld de, wMonOrItemNameBuffer
 	ld b, $0
 	callba NamingScreen
 
 	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
 
-	ld hl, wd050
+	ld hl, wMonOrItemNameBuffer
 	ld de, sBoxMonNicknames
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
@@ -677,7 +677,7 @@ endr
 	call GetSRAMBank
 
 	ld hl, sBoxMonNicknames
-	ld de, wd050
+	ld de, wMonOrItemNameBuffer
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 

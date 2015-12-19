@@ -243,7 +243,7 @@ Function8e97d: ; 8e97d (23:697d)
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld [hl], SPRITE_ANIM_SEQ_00
+	ld [hl], SPRITE_ANIM_SEQ_NULL
 	ret
 
 Function8e99a: ; 8e99a (23:699a)
@@ -371,7 +371,7 @@ FreezeMonIcons: ; 8ea4a
 	jr z, .next
 	cp d
 	jr z, .loadwithtwo
-	ld a, SPRITE_ANIM_SEQ_00
+	ld a, SPRITE_ANIM_SEQ_NULL
 	jr .ok
 
 .loadwithtwo

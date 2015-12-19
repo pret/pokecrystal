@@ -163,7 +163,7 @@ Function140ae: ; 140ae
 	ret
 ; 140ed
 
-Function140ed:: ; 140ed
+_InitTime:: ; 140ed
 	call GetClock
 	call FixDays
 	ld hl, hRTCSeconds

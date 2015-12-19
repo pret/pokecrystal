@@ -70,10 +70,10 @@ BargainShop: ; 15a84
 Pharmacist: ; 15aae
 	call FarReadMart
 	call LoadStandardMenuDataHeader
-	ld hl, UnknownText_0x15e90
+	ld hl, Text_Pharmacist_Intro
 	call MartTextBox
 	call BuyMenu
-	ld hl, UnknownText_0x15eae
+	ld hl, Text_Pharmacist_ComeAgain
 	call MartTextBox
 	ret
 ; 15ac4
@@ -493,7 +493,7 @@ BuyMenuLoop: ; 15cef
 .useless_pointer
 	call MartAskPurchaseQuantity
 	jr c, .cancel
-	call Function15d97
+	call MartConfirmPurchase
 	jr c, .cancel
 	ld de, Money
 	ld bc, hMoneyTemp
@@ -551,7 +551,7 @@ StandardMartAskPurchaseQuantity:
 	ret
 ; 15d97
 
-Function15d97: ; 15d97
+MartConfirmPurchase: ; 15d97
 	predef PartyMonItemName
 	ld a, MARTTEXT_COSTS_THIS_MUCH
 	call LoadBuyMenuText
@@ -764,7 +764,7 @@ Text_BargainShop_ComeAgain: ; 0x15e8b
 	db "@"
 ; 0x15e90
 
-UnknownText_0x15e90: ; 0x15e90
+Text_Pharmacist_Intro: ; 0x15e90
 	; What's up? Need some medicine?
 	text_jump UnknownText_0x1c4e5f
 	db "@"
@@ -800,7 +800,7 @@ Text_Pharmacy_InsufficientFunds: ; 0x15ea9
 	db "@"
 ; 0x15eae
 
-UnknownText_0x15eae: ; 0x15eae
+Text_Pharmacist_ComeAgain: ; 0x15eae
 	; All right. See you around.
 	text_jump UnknownText_0x1c4ef6
 	db "@"
@@ -810,36 +810,35 @@ UnknownText_0x15eae: ; 0x15eae
 SellMenu: ; 15eb3
 	call DisableSpriteUpdates
 	callba DepositSellInitPackBuffers
-.asm_15ebc
+.loop
 	callba DepositSellPack
 	ld a, [wcf66]
 	and a
-	jp z, Function15ece
-	call Function15ee0
-	jr .asm_15ebc
-; 15ece
+	jp z, .quit
+	call .TryToSellItem
+	jr .loop
 
-Function15ece: ; 15ece
-	call Function2b74
+.quit
+	call ReturnToMapWithSpeechTextbox
 	and a
 	ret
 ; 15ed3
 
-Function15ed3: ; unreferenced
-	ld hl, UnknownText_0x15edb
+.NothingToSell: ; unreferenced
+	ld hl, .NothingToSellText
 	call MenuTextBoxBackup
 	and a
 	ret
 ; 15edb
 
-UnknownText_0x15edb: ; 0x15edb
+.NothingToSellText: ; 0x15edb
 	; You don't have anything to sell.
 	text_jump UnknownText_0x1c4f12
 	db "@"
 ; 0x15ee0
 
 
-Function15ee0: ; 15ee0
+.TryToSellItem: ; 15ee0
 	callba CheckItemMenu
 	ld a, [wItemAttributeParamBuffer]
 	ld hl, .jumptable

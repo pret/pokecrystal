@@ -866,7 +866,7 @@ PrintText_UsedItemOn: ; 38571
 	ld [wd265], a
 	call GetItemName
 	ld hl, StringBuffer1
-	ld de, wd050
+	ld de, wMonOrItemNameBuffer
 	ld bc, ITEM_NAME_LENGTH
 	call CopyBytes
 	ld hl, TextJump_EnemyUsedOn

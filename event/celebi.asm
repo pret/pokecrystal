@@ -114,7 +114,7 @@ CelebiEvent_SpawnLeaf: ; 49944
 	add $40
 	ld d, a
 	ld e, $0
-	ld a, SPRITE_ANIM_INDEX_18 ; fly land
+	ld a, SPRITE_ANIM_INDEX_FLY_LEAF ; fly land
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc

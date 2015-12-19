@@ -141,7 +141,7 @@ endr
 .Clear ; 126b7
 	call ClearBGPalettes
 	call Call_ExitMenu
-	call Function2bae
+	call ReloadTilesetAndPalettes
 	call .DrawMenuAccount_
 	call MenuFunc_1e7f
 	call .DrawBugContestStatus
@@ -283,7 +283,7 @@ endr
 
 .SetUpMenuItems ; 12829
 	xor a
-	ld [wcf76], a
+	ld [wWhichIndexSet], a
 	call .FillMenuList
 
 	ld hl, StatusFlags
@@ -805,7 +805,7 @@ GiveTakePartyMonItem: ; 12b60
 
 	call GetCurNick
 	ld hl, StringBuffer1
-	ld de, wd050_MonNick
+	ld de, wMonOrItemNameBuffer
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	ld a, [wMenuCursorY]

@@ -575,7 +575,7 @@ GetHeritableMoves: ; 17197
 	ld a, [wBreedMon2Species]
 	cp DITTO
 	jr z, .ditto2
-	ld a, [wDittoInDaycare]
+	ld a, [wBreedMotherOrNonDitto]
 	and a
 	ret z
 	ld hl, wBreedMon1Moves
@@ -633,7 +633,7 @@ GetBreedmonMovePointer: ; 1720b
 	ld a, [wBreedMon2Species]
 	cp DITTO
 	jr z, .ditto
-	ld a, [wDittoInDaycare]
+	ld a, [wBreedMotherOrNonDitto]
 	and a
 	ret z
 

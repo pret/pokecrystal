@@ -5781,13 +5781,13 @@ Function116294: ; 116294
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, wd030
+	ld hl, UnknBGPals + 8 * 6
 	ld de, wc314 + 12
-	ld bc, $0010
+	ld bc, 2 palettes
 	call CopyBytes
 	ld hl, Palette_11734e
 	ld de, UnknBGPals + 8 * 7
-	ld bc, $0008
+	ld bc, 1 palettes
 	call CopyBytes
 	call SetPalettes
 	pop af
@@ -5807,8 +5807,8 @@ Function1162cb: ; 1162cb
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_11730e
-	ld de, wd050
-	ld bc, $0030
+	ld de, UnknOBPals + 2 palettes
+	ld bc, 6 palettes
 	call CopyBytes
 	call SetPalettes
 	pop af
@@ -5821,7 +5821,7 @@ Function1162f2: ; 1162f2
 	call Function116758
 	call Function1167a6
 	ld a, [wc310]
-	cp $fd
+	cp EGG
 	ret z
 	sla a
 	ld c, a

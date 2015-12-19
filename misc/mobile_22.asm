@@ -3390,16 +3390,16 @@ Function8a5b6: ; 8a5b6 (22:65b6)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_8a5e5
-	ld de, wd020
-	ld bc, $18
+	ld de, UnknBGPals + 4 palettes
+	ld bc, 3 palettes
 	call CopyBytes
 	ld hl, Palette_8a5fd
 	ld de, UnknOBPals
-	ld bc, $8
+	ld bc, 1 palettes
 	call CopyBytes
 	ld hl, Palette_8a605
-	ld de, wd048
-	ld bc, $8
+	ld de, UnknOBPals + 1 palettes
+	ld bc, 1 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -3411,10 +3411,12 @@ Palette_8a5e5: ; 8a5e5
 	RGB 27, 19, 00
 	RGB 07, 11, 22
 	RGB 00, 00, 00
+
 	RGB 31, 31, 31
 	RGB 16, 16, 31
 	RGB 27, 19, 00
 	RGB 00, 00, 00
+
 	RGB 31, 31, 31
 	RGB 31, 00, 00
 	RGB 27, 19, 00
@@ -3442,7 +3444,7 @@ Function8a60d: ; 8a60d
 	ld [rSVBK], a
 	ld hl, Palette_8a624
 	ld de, UnknOBPals
-	ld bc, $0008
+	ld bc, 1 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a

@@ -3059,7 +3059,7 @@ Function10138b: ; 10138b
 Function1013aa: ; 1013aa
 	call ClearBGPalettes
 	call Call_ExitMenu
-	call Function2bae
+	call ReloadTilesetAndPalettes
 	callba Function106464
 	call UpdateSprites
 	call Function2b5c

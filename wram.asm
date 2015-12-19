@@ -1493,7 +1493,7 @@ wWindowStackPointer:: dw ; cf71
 wMenuJoypad:: ds 1   ; cf73
 MenuSelection:: ds 1 ; cf74
 MenuSelectionQuantity:: ds 1 ; cf75
-wcf76:: ds 1
+wWhichIndexSet:: ds 1
 wScrollingMenuCursorPosition:: ds 1
 wWindowStackSize:: ds 9
 
@@ -1691,29 +1691,45 @@ wSeerCaughtGender:: ds 1
 wBufferMonNick:: ds PKMN_NAME_LENGTH
 wBufferMonOT:: ds NAME_LENGTH
 wBufferMon:: party_struct wBufferMon
+	ds 8
+wMonOrItemNameBuffer::
 	ds wBufferMonNick - @
 
-wd002::
+bugcontestwinner: macro
+\1PersonID:: ds 1
+\1Mon:: ds 1
+\1Score:: ds 2
+endm
+wBugContestResults::
+	bugcontestwinner wBugContestFirstPlace
+	bugcontestwinner wBugContestSecondPlace
+	bugcontestwinner wBugContestThirdPlace
+wBugContestWinnersEnd::
+	bugcontestwinner wBugContestTemp
+	ds 4
+wBugContestWinnerName:: ds NAME_LENGTH
 
+	ds wBugContestResults - @
+
+wd002::
+wTempDayOfWeek::
+wApricorns::
 PhoneScriptBank::
 LuckyNumberDigit1Buffer::
 wCurrentRadioLine::
 wMovementBufferCount::
 wMartItem1BCD::
-wBugContestFirstPlacePersonID::
 	ds 1
 wd003::
 LuckyNumberDigit2Buffer::
 PhoneCallerLo::
 wNextRadioLine::
 wMovementBufferPerson::
-wBugContestFirstPlaceMon::
 	ds 1
 wd004::
 LuckyNumberDigit3Buffer::
 PhoneCallerHi::
 wRadioTextDelay::
-wBugContestFirstPlaceScore::
 	ds 1
 wd005::
 LuckyNumberDigit4Buffer::
@@ -1726,20 +1742,15 @@ wMobileParticipant1Nickname::
 LuckyNumberDigit5Buffer::
 EndFlypoint:: ; d006
 wOaksPkmnTalkSegmentCounter::
-wBugContestSecondPlacePersonID::
 	ds 1
 
 wd007::
 MovementBuffer:: ; d007
-wBugContestSecondPlaceMon::
 	ds 1
 
 wMartItem3BCD::
-wBugContestSecondPlaceScore::
 wd008:: ds 2
-wBugContestThirdPlacePersonID::
 wd00a:: ds 1
-wBugContestThirdPlaceMon::
 wMartItem4BCD::
 wd00b:: ds 1
 
@@ -1748,15 +1759,11 @@ wRadioTextEnd::
 	ds wRadioText - @
 
 wMobileParticipant2Nickname::
-wBugContestThirdPlaceScore::
 wd00c:: ds 1
 wd00d:: ds 1
 wMartItem5BCD::
-wBugContestTempPersonID::
 wd00e:: ds 1
-wBugContestTempMon::
 wd00f:: ds 1
-wBugContestTempScore::
 wd010:: ds 1
 wMartItem6BCD::
 wd011:: ds 1
@@ -1765,7 +1772,6 @@ wd012:: ds 1
 wd013:: ds 1
 wMartItem7BCD::
 wd014:: ds 2
-wBugContestWinnerName::
 wd016:: ds 1
 wMartItem8BCD::
 wd017:: ds 1
@@ -1846,20 +1852,14 @@ WalkingTile:: ; d047
 wWinTextPointer::
 	ds 1
 
-wd048:: ds 1
+wPhoneScriptPointer:: ds 1
 wLossTextPointer:: ds 2
-wScriptAfterPointer::
-wd04b:: ds 2
+wScriptAfterPointer:: ds 2
 wRunningTrainerBattleScript:: ds 1
 MenuItemsListEnd::
 wTempTrainerHeaderEnd::
-wd04e:: ds 2
-wOaksPkmnTalkPkmnNameBuffer::
-wd050_MonNick::
-wd050:: ds PKMN_NAME_LENGTH +- 1
-wd05a:: ds 12
-wd066:: ds 10
-wd070:: ds 3
+wd04e:: ds 24
+wTMHMMoveNameBackup:: ds MOVE_NAME_LENGTH
 
 StringBuffer1:: ; d073
 	ds 19
@@ -3059,7 +3059,7 @@ wDaycareLady:: ; df2c
 
 wStepsToEgg:: ; df2d
 	ds 1
-wDittoInDaycare:: ; df2e
+wBreedMotherOrNonDitto:: ; df2e
 ;  z: yes
 ; nz: no
 	ds 1
@@ -3195,11 +3195,11 @@ LYOverrides:: ; d100
 LYOverridesEnd:: ; d190
 
 	ds 1
-w5_d191:: ds 1
-w5_d192:: ds 1
-w5_d193:: ds 1
-w5_d194:: ds 1
-w5_d195:: ds 1
+wMagnetTrainDirection:: ds 1
+wMagnetTrainInitPosition:: ds 1
+wMagnetTrainHoldPosition:: ds 1
+wMagnetTrainFinalPosition:: ds 1
+wMagnetTrainPlayerSpriteInitX:: ds 1
 ds 106
 
 LYOverridesBackup:: ; d200

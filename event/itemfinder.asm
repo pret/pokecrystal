@@ -15,7 +15,7 @@ ItemFinder: ; 12580
 ; 12599
 
 .ItemfinderSound: ; 12599
-	ld c, $4
+	ld c, 4
 .sfx_loop
 	push bc
 	ld de, SFX_SECOND_PART_OF_ITEMFINDER

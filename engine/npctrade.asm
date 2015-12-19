@@ -88,7 +88,7 @@ NPCTrade:: ; fcba8
 	ld [wcf64], a
 	pop af
 	ld [wJumptableIndex], a
-	call Function2b74
+	call ReturnToMapWithSpeechTextbox
 	ret
 ; fcc23
 
@@ -399,7 +399,7 @@ GetTradeMonNames: ; fce1b
 	ld a, [hl]
 	call GetTradeMonName
 
-	ld de, wd050
+	ld de, wMonOrItemNameBuffer
 	call CopyTradeName
 
 	ld hl, StringBuffer1

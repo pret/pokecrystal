@@ -711,11 +711,11 @@ Function16cbd1: ; 16cbd1
 	ld hl, Unknown_16cbfb
 	add hl, bc
 	ld a, [hl]
-	ld bc, $0002
+	ld bc, 2
 	ld hl, Unknown_16cfa3
 	call AddNTimes
-	ld de, wd00c
-	ld bc, $0002
+	ld de, UnknBGPals + 1 palettes + 4
+	ld bc, 2
 	ld a, $5
 	call FarCopyWRAM
 	callba ApplyPals
@@ -749,19 +749,19 @@ Function16cc18: ; 16cc18
 
 Function16cc25: ; 16cc25
 	ld hl, Unknown_16cfa9
-	ld de, wd008
-	call Function16cc41
+	ld de, UnknBGPals + 1 palettes
+	call .CopyPal
 	ld hl, Unknown_16cfb1
 	ld de, UnknOBPals
-	call Function16cc41
+	call .CopyPal
 	ld hl, Unknown_16cfb9
-	ld de, wd048
-	call Function16cc41
+	ld de, UnknOBPals + 1 palettes
+	call .CopyPal
 	ret
 ; 16cc41
 
-Function16cc41: ; 16cc41
-	ld bc, $0008
+.CopyPal: ; 16cc41
+	ld bc, 1 palettes
 	ld a, $5
 	jp FarCopyWRAM
 ; 16cc49

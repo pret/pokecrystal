@@ -673,7 +673,7 @@ Function9102f: ; 9102f (24:502f)
 Function9106a: ; 9106a
 	push af
 	depixel 0, 0
-	ld b, SPRITE_ANIM_INDEX_0A
+	ld b, SPRITE_ANIM_INDEX_WALK_CYCLE
 	ld a, [PlayerGender]
 	bit 0, a
 	jr z, .asm_91079
@@ -709,7 +709,7 @@ Function91098: ; 91098
 	ld [hl], $4
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld [hl], SPRITE_ANIM_SEQ_00
+	ld [hl], SPRITE_ANIM_SEQ_NULL
 	pop af
 	push bc
 	call Function910d4
@@ -2781,7 +2781,7 @@ TownMapMon: ; 91f7b
 	ld [hl], $8
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld [hl], SPRITE_ANIM_SEQ_00
+	ld [hl], SPRITE_ANIM_SEQ_NULL
 	ret
 ; 91fa6
 
@@ -2808,7 +2808,7 @@ TownMapPlayerIcon: ; 91fa6
 
 ; Animation/palette
 	depixel 0, 0
-	ld b, SPRITE_ANIM_INDEX_0A ; Male
+	ld b, SPRITE_ANIM_INDEX_WALK_CYCLE ; Male
 	ld a, [PlayerGender]
 	bit 0, a
 	jr z, .got_gender

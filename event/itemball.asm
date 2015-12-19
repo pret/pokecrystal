@@ -37,7 +37,7 @@ FindItemInBallScript:: ; 0x122ce
 	xor a
 	ld [ScriptVar], a
 	ld a, [EngineBuffer1]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	ld hl, StringBuffer3
 	call CopyName2

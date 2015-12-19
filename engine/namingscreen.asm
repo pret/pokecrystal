@@ -1,7 +1,7 @@
 _NamingScreen: ; 0x116b7
 	call DisableSpriteUpdates
 	call NamingScreen
-	call Function2b74
+	call ReturnToMapWithSpeechTextbox
 	ret
 ; 0x116c1
 
@@ -174,7 +174,7 @@ Function117f5: ; 117f5 (4:57f5)
 	ld [hli], a
 	ld [hl], a
 	depixel 4, 4, 4, 0
-	ld a, SPRITE_ANIM_INDEX_0A
+	ld a, SPRITE_ANIM_INDEX_WALK_CYCLE
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
@@ -220,7 +220,7 @@ Function11847: ; 11847 (4:5847)
 	ld [hli], a
 	ld [hl], a
 	pop de
-	ld b, SPRITE_ANIM_INDEX_0A
+	ld b, SPRITE_ANIM_INDEX_WALK_CYCLE
 	ld a, d
 	cp $7a
 	jr nz, .asm_11873

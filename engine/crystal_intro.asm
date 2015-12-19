@@ -80,7 +80,7 @@ Copyright_GFPresents: ; e4579
 
 	callba ClearSpriteAnims
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_03
+	ld a, SPRITE_ANIM_INDEX_GAMEFREAK_LOGO
 	call _InitSpriteAnimStruct
 	ld hl, $7
 	add hl, bc

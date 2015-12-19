@@ -5,20 +5,20 @@ Special_BankOfMom: ; 16218
 	ld [hInMenu], a
 	xor a
 	ld [wJumptableIndex], a
-.asm_16223
+.loop
 	ld a, [wJumptableIndex]
 	bit 7, a
-	jr nz, .asm_1622f
-	call Function16233
-	jr .asm_16223
+	jr nz, .done
+	call .RunJumptable
+	jr .loop
 
-.asm_1622f
+.done
 	pop af
 	ld [hInMenu], a
 	ret
 ; 16233
 
-Function16233: ; 16233
+.RunJumptable: ; 16233
 	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
@@ -33,15 +33,16 @@ endr
 ; 16242
 
 .jumptable: ; 16242
-	dw .CheckIfBankInitialized
-	dw .InitializeBank
-	dw .IsThisAboutYourMoney
-	dw .AccessBankOfMom
-	dw .StoreMoney
-	dw .TakeMoney
-	dw .StopOrStartSavingMoney
-	dw .AskDST
-	dw .JustDoWhatYouCan
+	jumptable_start
+	jumptable .CheckIfBankInitialized
+	jumptable .InitializeBank
+	jumptable .IsThisAboutYourMoney
+	jumptable .AccessBankOfMom
+	jumptable .StoreMoney
+	jumptable .TakeMoney
+	jumptable .StopOrStartSavingMoney
+	jumptable .AskDST
+	jumptable .JustDoWhatYouCan
 ; 16254
 
 .CheckIfBankInitialized: ; 16254
@@ -309,72 +310,72 @@ DSTChecks: ; 16439
 	ld a, [wDST]
 	bit 7, a
 	ld a, [hHours]
-	jr z, .asm_16447
+	jr z, .NotDST
 	and a ; within one hour of 00:00?
 	jr z, .LostBooklet
 	jr .loop
 
-.asm_16447
+.NotDST
 	cp 23 ; within one hour of 23:00?
 	jr nz, .loop
 	; fallthrough
 
 .LostBooklet
-	call Function164ea
+	call .ClearBox
 	bccoord 1, 14
-	ld hl, UnknownText_0x164f4
+	ld hl, .Text_AdjustClock
 	call PlaceWholeStringInBoxAtOnce
 	call YesNoBox
 	ret c
-	call Function164ea
+	call .ClearBox
 	bccoord 1, 14
-	ld hl, LostInstructionBookletText
+	ld hl, .Text_LostInstructionBooklet
 	call PlaceWholeStringInBoxAtOnce
 	ret
 
 .loop
-	call Function164ea
+	call .ClearBox
 	bccoord 1, 14
 	ld a, [wDST]
 	bit 7, a
-	jr z, .asm_16497
-	ld hl, UnknownText_0x16508
+	jr z, .SetDST
+	ld hl, .Text_IsDSTOver
 	call PlaceWholeStringInBoxAtOnce
 	call YesNoBox
 	ret c
 	ld a, [wDST]
 	res 7, a
 	ld [wDST], a
-	call Function164d1
-	call Function164ea
+	call .SetClockBack
+	call .ClearBox
 	bccoord 1, 14
-	ld hl, UnknownText_0x1650d
+	ld hl, .Text_SetClockBack
 	call PlaceWholeStringInBoxAtOnce
 	ret
 
-.asm_16497
-	ld hl, UnknownText_0x164fe
+.SetDST
+	ld hl, .Text_SwitchToDST
 	call PlaceWholeStringInBoxAtOnce
 	call YesNoBox
 	ret c
 	ld a, [wDST]
 	set 7, a
 	ld [wDST], a
-	call Function164b9
-	call Function164ea
+	call .SetClockForward
+	call .ClearBox
 	bccoord 1, 14
-	ld hl, UnknownText_0x16503
+	ld hl, .Text_SetClockForward
 	call PlaceWholeStringInBoxAtOnce
 	ret
 ; 164b9
 
-Function164b9: ; 164b9
+.SetClockForward: ; 164b9
 	ld a, [StartHour]
 	add 1
 	sub 24
-	jr nc, .asm_164c4
+	jr nc, .DontLoopHourForward
 	add 24
-.asm_164c4
+.DontLoopHourForward
 	ld [StartHour], a
 	ccf
 	ld a, [StartDay]
@@ -383,61 +384,61 @@ Function164b9: ; 164b9
 	ret
 ; 164d1
 
-Function164d1: ; 164d1
+.SetClockBack: ; 164d1
 	ld a, [StartHour]
 	sub 1
-	jr nc, .asm_164da
+	jr nc, .DontLoopHourBack
 	add 24
-.asm_164da
+.DontLoopHourBack
 	ld [StartHour], a
 	ld a, [StartDay]
 	sbc 0
-	jr nc, .asm_164e6
+	jr nc, .DontLoopDayBack
 	add 7
-.asm_164e6
+.DontLoopDayBack
 	ld [StartDay], a
 	ret
 ; 164ea
 
-Function164ea: ; 164ea
+.ClearBox: ; 164ea
 	hlcoord 1, 14
 	lb bc, 3, 18
 	call ClearBox
 	ret
 ; 164f4
 
-UnknownText_0x164f4: ; 0x164f4
+.Text_AdjustClock: ; 0x164f4
 	; Do you want to adjust your clock for Daylight Saving Time?
 	text_jump UnknownText_0x1c6095
 	db "@"
 ; 0x164f9
 
-LostInstructionBookletText: ; 0x164f9
+.Text_LostInstructionBooklet: ; 0x164f9
 	; I lost the instruction booklet for the POKéGEAR.
 	; Come back again in a while.
 	text_jump UnknownText_0x1c60d1
 	db "@"
 ; 0x164fe
 
-UnknownText_0x164fe: ; 0x164fe
+.Text_SwitchToDST: ; 0x164fe
 	; Do you want to switch to Daylight Saving Time?
 	text_jump UnknownText_0x1c6000
 	db "@"
 ; 0x16503
 
-UnknownText_0x16503: ; 0x16503
+.Text_SetClockForward: ; 0x16503
 	; I set the clock forward by one hour.
 	text_jump UnknownText_0x1c6030
 	db "@"
 ; 0x16508
 
-UnknownText_0x16508: ; 0x16508
+.Text_IsDSTOver: ; 0x16508
 	; Is Daylight Saving Time over?
 	text_jump UnknownText_0x1c6056
 	db "@"
 ; 0x1650d
 
-UnknownText_0x1650d: ; 0x1650d
+.Text_SetClockBack: ; 0x1650d
 	; I put the clock back one hour.
 	text_jump UnknownText_0x1c6075
 	db "@"

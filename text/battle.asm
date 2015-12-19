@@ -1,4 +1,4 @@
-BattleText_PlayerPickuedUpPayDayMoney: ; 0x80730
+BattleText_PlayerPickedUpPayDayMoney: ; 0x80730
 	text "<PLAYER> picked up"
 	line "¥@"
 	deciram wPayDayMoney, 3, 6

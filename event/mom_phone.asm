@@ -9,40 +9,40 @@ MomTriesToBuySomething:: ; fcfec
 	ld [wdc18], a
 	call CheckBalance_MomItem2
 	ret nc
-	call Functionfd0c3
+	call Mom_GiveItemOrDoll
 	ret nc
-	ld b, BANK(UnknownScript_0xfd00f)
-	ld de, UnknownScript_0xfd00f
+	ld b, BANK(.Script)
+	ld de, .Script
 	callba LoadScriptBDE
 	scf
 	ret
 ; fd00f
 
-UnknownScript_0xfd00f: ; 0xfd00f
-	callasm Functionfd017
+.Script: ; 0xfd00f
+	callasm .ASMFunction
 	farjump Script_ReceivePhoneCall
 ; 0xfd017
 
-Functionfd017: ; fd017
+.ASMFunction: ; fd017
 	call MomBuysItem_DeductFunds
-	call Functionfd0eb
+	call Mom_GetScriptPointer
 	ld a, [wdc18]
 	and a
 	jr nz, .ok
 	ld hl, wdc17
 	inc [hl]
 .ok
-	ld a, 1
+	ld a, PHONE_MOM
 	ld [wCurrentCaller], a
-	ld bc, wd03f
+	ld bc, EngineBuffer2
 	ld hl, 0
 	add hl, bc
 	ld [hl], 0
 	inc hl
 	ld [hl], 1
-	ld hl, 9
+	ld hl, wPhoneScriptPointer - EngineBuffer2
 	add hl, bc
-	ld a, $3f
+	ld a, BANK(Mom_GetScriptPointer)
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -114,7 +114,7 @@ Functionfd099: ; fd099
 
 MomBuysItem_DeductFunds: ; fd0a6 (3f:50a6)
 	call GetItemFromMom
-	ld de, 3
+	ld de, 3 ; cost
 	add hl, de
 	ld a, [hli]
 	ld [hMoneyTemp], a
@@ -128,12 +128,12 @@ MomBuysItem_DeductFunds: ; fd0a6 (3f:50a6)
 	ret
 
 
-Functionfd0c3: ; fd0c3
+Mom_GiveItemOrDoll: ; fd0c3
 	call GetItemFromMom
-	ld de, 6
+	ld de, 6 ; item type
 	add hl, de
 	ld a, [hli]
-	cp 1
+	cp MOM_ITEM
 	jr z, .not_doll
 	ld a, [hl]
 	ld c, a
@@ -145,7 +145,7 @@ Functionfd0c3: ; fd0c3
 .not_doll
 	ld a, [hl]
 	ld [CurItem], a
-	ld a, $1
+	ld a, 1
 	ld [wItemQuantityChangeBuffer], a
 	ld hl, PCItems
 	call ReceiveItem
@@ -153,19 +153,19 @@ Functionfd0c3: ; fd0c3
 ; fd0eb
 
 
-Functionfd0eb: ; fd0eb (3f:50eb)
+Mom_GetScriptPointer: ; fd0eb (3f:50eb)
 	call GetItemFromMom
-	ld de, 6 ; field
+	ld de, 6 ; item type
 	add hl, de
 	ld a, [hli]
-	ld de, Script_MomBoughtItem
-	cp 1
+	ld de, .ItemScript
+	cp MOM_ITEM
 	ret z
-	ld de, Script_MomBoughtDoll
+	ld de, .DollScript
 	ret
 ; fd0fd (3f:50fd)
 
-Script_MomBoughtItem: ; 0xfd0fd
+.ItemScript: ; 0xfd0fd
 	writetext _MomText_HiHowAreYou
 	writetext _MomText_FoundAnItem
 	writetext _MomText_BoughtWithYourMoney
@@ -173,7 +173,7 @@ Script_MomBoughtItem: ; 0xfd0fd
 	end
 ; 0xfd10a
 
-Script_MomBoughtDoll: ; 0xfd10a
+.DollScript: ; 0xfd10a
 	writetext _MomText_HiHowAreYou
 	writetext _MomText_FoundADoll
 	writetext _MomText_BoughtWithYourMoney
@@ -188,7 +188,7 @@ GetItemFromMom: ; fd117
 	jr z, .zero
 	dec a
 	ld de, MomItems_1
-	jr .incave
+	jr .GetFromList1
 
 .zero
 	ld a, [wdc17]
@@ -199,7 +199,7 @@ GetItemFromMom: ; fd117
 .ok
 	ld de, MomItems_2
 
-.incave
+.GetFromList1
 	ld l, a
 	ld h, 0
 rept 3 ; multiply hl by 8
@@ -223,8 +223,6 @@ MomItems_1: ; fd136
 	momitem      0,   180, MOM_ITEM, POKE_BALL
 	momitem      0,   450, MOM_ITEM, ESCAPE_ROPE
 	momitem      0,   500, MOM_ITEM, GREAT_BALL
-; fd15e
-
 MomItems_2: ; fd15e
 	momitem    900,   600, MOM_ITEM, SUPER_POTION
 	momitem   4000,   270, MOM_ITEM, REPEL

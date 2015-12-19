@@ -1,22 +1,22 @@
 Kurt_PrintTextWhichApricorn: ; 88000
-	ld hl, UnknownText_0x88007
+	ld hl, .Text
 	call PrintText
 	ret
 ; 88007
 
-UnknownText_0x88007: ; 0x88007
+.Text: ; 0x88007
 	; Which APRICORN should I use?
 	text_jump UnknownText_0x1bc06b
 	db "@"
 ; 0x8800c
 
 Kurt_PrintTextHowMany: ; 8800c
-	ld hl, UnknownText_0x88013
+	ld hl, .Text
 	call PrintText
 	ret
 ; 88013
 
-UnknownText_0x88013: ; 0x88013
+.Text: ; 0x88013
 	; How many should I make?
 	text_jump UnknownText_0x1bc089
 	db "@"
@@ -69,7 +69,7 @@ Kurt_SelectApricorn: ; 88055
 	call UpdateSprites
 	call ScrollingMenu
 	ld a, [wMenuJoypad]
-	cp $2
+	cp B_BUTTON
 	jr z, .nope
 	ld a, [MenuSelection]
 	cp -1
@@ -167,7 +167,7 @@ Kurt_SelectQuantity: ; 880c2
 
 .PlaceApricornName: ; 88116
 	call MenuBoxCoord2Tile
-	ld de, $0015
+	ld de, SCREEN_WIDTH + 1
 	add hl, de
 	ld d, h
 	ld e, l
@@ -177,7 +177,7 @@ Kurt_SelectQuantity: ; 880c2
 
 PlaceApricornQuantity: ; 88126
 	call MenuBoxCoord2Tile
-	ld de, $0032
+	ld de, 2 * SCREEN_WIDTH + 10
 	add hl, de
 	ld [hl], "×"
 	inc hl
@@ -233,7 +233,7 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 	xor a
 	ld [CurItemQuantity], a
 	ld a, -1
-	ld [wd002], a
+	ld [wApricorns], a
 
 ; Search for [CurItem] in the bag.
 .loop1
@@ -253,7 +253,7 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 ; Increment the result counter and store the bag index of the match.
 	ld d, $0
 	push hl
-	ld hl, wd002
+	ld hl, wApricorns
 	add hl, de
 	inc e
 	ld a, [CurItemQuantity]
@@ -271,7 +271,7 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 	jr z, .done
 	dec a
 	jr z, .OnlyOne
-	ld hl, wd002
+	ld hl, wApricorns
 
 .loop2
 	ld a, [hl]
@@ -316,7 +316,7 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 	jr nz, .loop2
 
 .OnlyOne
-	ld hl, wd002
+	ld hl, wApricorns
 .loop4
 	ld a, [hl]
 	cp -1
