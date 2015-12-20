@@ -44,6 +44,39 @@ party_struct: MACRO
 \1StatsEnd::
 ENDM
 
+red_box_struct: MACRO
+\1Species::    db
+\1HP::         dw
+\1BoxLevel::   db
+\1Status::     db
+\1Type::
+\1Type1::      db
+\1Type2::      db
+\1CatchRate::  db
+\1Moves::      ds NUM_MOVES
+\1OTID::       dw
+\1Exp::        ds 3
+\1HPExp::      dw
+\1AttackExp::  dw
+\1DefenseExp:: dw
+\1SpeedExp::   dw
+\1SpecialExp:: dw
+\1DVs::        ds 2
+\1PP::         ds NUM_MOVES
+ENDM
+
+red_party_struct: MACRO
+	red_box_struct \1
+\1Level::      db
+\1Stats::
+\1MaxHP::      dw
+\1Attack::     dw
+\1Defense::    dw
+\1Speed::      dw
+\1Special::    dw
+ENDM
+
+
 battle_struct: MACRO
 \1Species::   db
 \1Item::      db
@@ -1136,6 +1169,40 @@ wBillsPCPokemonList::
 wMysteryGiftPartyTemp:: ; ds PARTY_LENGTH * (1 + 1 + NUM_MOVES)
 wMysteryGiftStaging::
 
+wLinkData:: ; ds $514
+	ds 6
+wLinkPlayerName:: ds NAME_LENGTH
+wLinkPartyCount:: ds 1
+wLinkPartySpecies:: ds PARTY_LENGTH
+wLinkPartySpeciesEnd:: ds 1
+
+wTimeCapsulePlayerData::
+wTimeCapsulePartyMon1:: red_party_struct wTimeCapsulePartyMon1
+wTimeCapsulePartyMon2:: red_party_struct wTimeCapsulePartyMon2
+wTimeCapsulePartyMon3:: red_party_struct wTimeCapsulePartyMon3
+wTimeCapsulePartyMon4:: red_party_struct wTimeCapsulePartyMon4
+wTimeCapsulePartyMon5:: red_party_struct wTimeCapsulePartyMon5
+wTimeCapsulePartyMon6:: red_party_struct wTimeCapsulePartyMon6
+wTimeCapsulePartyMonOTNames:: ds PARTY_LENGTH * NAME_LENGTH
+wTimeCapsulePartyMonNicks:: ds PARTY_LENGTH * PKMN_NAME_LENGTH
+wTimeCapsulePlayerDataEnd::
+	ds wTimeCapsulePlayerData - @
+
+wLinkPlayerData::
+wLinkPlayerPartyMon1:: party_struct wLinkPlayerPartyMon1
+wLinkPlayerPartyMon2:: party_struct wLinkPlayerPartyMon2
+wLinkPlayerPartyMon3:: party_struct wLinkPlayerPartyMon3
+wLinkPlayerPartyMon4:: party_struct wLinkPlayerPartyMon4
+wLinkPlayerPartyMon5:: party_struct wLinkPlayerPartyMon5
+wLinkPlayerPartyMon6:: party_struct wLinkPlayerPartyMon6
+wLinkPlayerPartyMonOTNames:: ds PARTY_LENGTH * NAME_LENGTH
+wLinkPlayerPartyMonNicks:: ds PARTY_LENGTH * PKMN_NAME_LENGTH
+
+	ds $357
+
+wLinkDataEnd::
+	ds wLinkData - @
+
 wc800::	ds 1
 wc801:: ds 1
 wc802:: ds 1
@@ -1514,7 +1581,9 @@ wMenuDataHeaderEnd::
 wMenuData2::
 wMenuData2Flags:: ds 1 ; cf91
 ; bit 7: When set, start printing text one tile to the right of the border
+;        In scrolling menus, SELECT is functional
 ; bit 6: When set, start printing text one tile below the border
+;        In scrolling menus, START is functional
 ; bit 5: ????
 ; bit 4: ????
 ; bit 3: ????
@@ -1557,7 +1626,7 @@ w2DMenuNumCols:: ds 1
 w2DMenuFlags1:: ds 1
 w2DMenuFlags2:: ds 1
 w2DMenuFlags3:: ds 1
-w2DMenuFlags4:: ds 1
+wMenuJoypadFilter:: ds 1
 wMenuData3End::
 
 wMenuCursorY:: ds 1

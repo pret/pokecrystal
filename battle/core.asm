@@ -5694,7 +5694,7 @@ MoveSelectionScreen: ; 3e4bc
 
 .okay
 	ld a, b
-	ld [w2DMenuFlags4], a
+	ld [wMenuJoypadFilter], a
 	ld a, c
 	ld [w2DMenuFlags1], a
 	xor a

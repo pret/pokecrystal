@@ -216,8 +216,8 @@ TMHM_PocketLoop: ; 2c8d3 (b:48d3)
 	ld [w2DMenuFlags2], a
 	ld a, $20
 	ld [w2DMenuFlags3], a
-	ld a, $f3
-	ld [w2DMenuFlags4], a
+	ld a, A_BUTTON | B_BUTTON | D_UP | D_DOWN | D_LEFT | D_RIGHT
+	ld [wMenuJoypadFilter], a
 	ld a, [wTMHMPocketCursor]
 	inc a
 	ld [wMenuCursorY], a

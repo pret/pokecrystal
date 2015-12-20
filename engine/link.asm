@@ -17,13 +17,13 @@ LinkCommunications: ; 28000
 	callba Function16d69a
 	call WaitBGMap2
 	hlcoord 3, 8
-	ld b, $2
-	ld c, $c
+	ld b, 2
+	ld c, 12
 	ld d, h
 	ld e, l
 	callba Function4d35b
 	hlcoord 4, 10
-	ld de, String28419
+	ld de, String_PleaseWait
 	call PlaceString
 	call Function28eff
 	call WaitBGMap2
@@ -33,11 +33,11 @@ LinkCommunications: ; 28000
 	ld [hl], $50
 	ld a, [wLinkMode]
 	cp LINK_TIMECAPSULE
-	jp nz, Function28177
+	jp nz, Gen2ToGen2LinkComms
 
-Function2805d: ; 2805d
-	call Function28426
-	call Function28499
+TimeCapsule: ; 2805d
+	call ClearLinkData
+	call Link_PrepPartyData_Gen1
 	call Function28434
 	xor a
 	ld [wPlayerLinkAction], a
@@ -76,9 +76,9 @@ Function2805d: ; 2805d
 	call Function75f
 	ld a, $fe
 	ld [de], a
-	ld hl, OverworldMap
-	ld de, wd26b
-	ld bc, $1a8
+	ld hl, wLinkData
+	ld de, OTPlayerName
+	ld bc, 9 + NAME_LENGTH + 1 + PARTY_LENGTH + 1 + PARTY_LENGTH * REDMON_STRUCT_LENGTH + 2 * (PARTY_LENGTH * NAME_LENGTH) ; $1a8
 	call Function75f
 	ld a, $fe
 	ld [de], a
@@ -102,7 +102,7 @@ Function2805d: ; 2805d
 	jp z, Function28b22
 	cp $7
 	jp nc, Function28b22
-	ld de, OverworldMap
+	ld de, wLinkData
 	ld bc, $1a2
 	call Function2879e
 	ld de, wPlayerTrademonSpecies
@@ -135,7 +135,7 @@ Function2805d: ; 2805d
 	ld hl, wc90f
 	dec c
 	jr nz, .asm_280fe
-	ld hl, OverworldMap
+	ld hl, wLinkData
 	ld de, wd26b
 	ld bc, NAME_LENGTH
 	call CopyBytes
@@ -177,9 +177,9 @@ Function2805d: ; 2805d
 	jp Function287e3
 ; 28177
 
-Function28177: ; 28177
-	call Function28426
-	call Function28595
+Gen2ToGen2LinkComms: ; 28177
+	call ClearLinkData
+	call Link_PrepPartyData_Gen2
 	call Function28434
 	call Function29dba
 	ld a, [ScriptVar]
@@ -187,8 +187,8 @@ Function28177: ; 28177
 	jp z, Function283b2
 	ld a, [hLinkPlayerNumber]
 	cp $2
-	jr nz, .asm_281ae
-	ld c, $3
+	jr nz, .Player2
+	ld c, 3
 	call DelayFrames
 	xor a
 	ld [hSerialSend], a
@@ -204,10 +204,10 @@ Function28177: ; 28177
 	ld a, $81
 	ld [rSC], a
 
-.asm_281ae
+.Player2
 	ld de, MUSIC_NONE
 	call PlayMusic
-	ld c, $3
+	ld c, 3
 	call DelayFrames
 	xor a
 	ld [rIF], a
@@ -219,7 +219,7 @@ Function28177: ; 28177
 	call Function75f
 	ld a, $fe
 	ld [de], a
-	ld hl, OverworldMap
+	ld hl, wLinkData
 	ld de, wd26b
 	ld bc, $1c2
 	call Function75f
@@ -247,7 +247,7 @@ Function28177: ; 28177
 	call Function287ab
 	ld hl, wd26b
 	call Function287ca
-	ld de, OverworldMap
+	ld de, wLinkData
 	ld bc, $1b9
 	call Function2879e
 	ld de, wPlayerTrademonSpecies
@@ -391,7 +391,7 @@ Function28177: ; 28177
 	ld [de], a
 
 .asm_282fe
-	ld hl, OverworldMap
+	ld hl, wLinkData
 	ld de, wd26b
 	ld bc, NAME_LENGTH
 	call CopyBytes
@@ -470,21 +470,21 @@ Function28177: ; 28177
 ; 283b2
 
 Function283b2: ; 283b2
-	ld de, UnknownText_0x283ed
+	ld de, .TooMuchTimeHasElapsed
 	ld b, $a
-.asm_283b7
+.loop
 	call DelayFrame
 	call LinkDataReceived
 	dec b
-	jr nz, .asm_283b7
+	jr nz, .loop
 	xor a
 	ld [hld], a
 	ld [hl], a
 	ld [hVBlank], a
 	push de
 	hlcoord 0, 12
-	ld b, $4
-	ld c, $12
+	ld b, 4
+	ld c, 18
 	push de
 	ld d, h
 	ld e, l
@@ -501,7 +501,7 @@ Function283b2: ; 283b2
 	ret
 ; 283ed
 
-UnknownText_0x283ed: ; 0x283ed
+.TooMuchTimeHasElapsed: ; 0x283ed
 	; Too much time has elapsed. Please try again.
 	text_jump UnknownText_0x1c4183
 	db "@"
@@ -541,20 +541,20 @@ Function283f2: ; 283f2
 	ret
 ; 28419
 
-String28419: ; 28419
+String_PleaseWait: ; 28419
 	db "PLEASE WAIT!@"
 ; 28426
 
-Function28426: ; 28426
-	ld hl, OverworldMap
-	lb bc, 5, SCREEN_WIDTH
-.asm_2842c
+ClearLinkData: ; 28426
+	ld hl, wLinkData
+	ld bc, wLinkDataEnd - wLinkData
+.loop
 	xor a
 	ld [hli], a
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_2842c
+	jr nz, .loop
 	ret
 ; 28434
 
@@ -633,15 +633,15 @@ endr
 	ret
 ; 28499
 
-Function28499: ; 28499
-	ld de, OverworldMap
+Link_PrepPartyData_Gen1: ; 28499
+	ld de, wLinkData
 	ld a, $fd
 	ld b, $6
-.asm_284a0
+.loop1
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_284a0
+	jr nz, .loop1
 	ld hl, PlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
@@ -650,10 +650,10 @@ Function28499: ; 28499
 	ld a, [hli]
 	ld [de], a
 	inc de
-.asm_284b5
+.loop2
 	ld a, [hli]
-	cp $ff
-	jr z, .asm_284ce
+	cp -1
+	jr z, .done_party
 	ld [wd265], a
 	push hl
 	push de
@@ -663,34 +663,34 @@ Function28499: ; 28499
 	ld a, [wd265]
 	ld [de], a
 	inc de
-	jr .asm_284b5
+	jr .loop2
 
-.asm_284ce
+.done_party
 	ld [de], a
 	pop de
-	ld hl, $8
+	ld hl, 1 + PARTY_LENGTH + 1
 	add hl, de
 	ld d, h
 	ld e, l
 	ld hl, PartyMon1Species
-	ld c, $6
-.asm_284db
+	ld c, PARTY_LENGTH
+.mon_loop
 	push bc
-	call Function284f6
+	call .ConvertPartyStruct2to1
 	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	dec c
-	jr nz, .asm_284db
+	jr nz, .mon_loop
 	ld hl, PartyMonOT
-	call .asm_284f0
+	call .copy_ot_nicks
 	ld hl, PartyMonNicknames
-.asm_284f0
-	ld bc, $42
+.copy_ot_nicks
+	ld bc, PARTY_LENGTH * NAME_LENGTH
 	jp CopyBytes
 ; 284f6
 
-Function284f6: ; 284f6
+.ConvertPartyStruct2to1: ; 284f6
 	ld b, h
 	ld c, l
 	push de
@@ -703,7 +703,7 @@ Function284f6: ; 284f6
 	ld a, [wd265]
 	ld [de], a
 	inc de
-	ld hl, $22
+	ld hl, MON_HP
 	add hl, bc
 	ld a, [hli]
 	ld [de], a
@@ -714,26 +714,26 @@ Function284f6: ; 284f6
 	xor a
 	ld [de], a
 	inc de
-	ld hl, $20
+	ld hl, MON_STATUS
 	add hl, bc
 	ld a, [hl]
 	ld [de], a
 	inc de
 	ld a, [bc]
-	cp $51
-	jr z, .asm_28528
-	cp $52
-	jr nz, .asm_28530
+	cp MAGNEMITE
+	jr z, .steel_type
+	cp MAGNETON
+	jr nz, .skip_steel
 
-.asm_28528
-	ld a, $17
+.steel_type
+	ld a, ELECTRIC
 	ld [de], a
 	inc de
 	ld [de], a
 	inc de
-	jr .asm_28544
+	jr .done_steel
 
-.asm_28530
+.skip_steel
 	push bc
 	dec a
 	ld hl, BaseData + 7 ; type
@@ -744,15 +744,15 @@ Function284f6: ; 284f6
 	call FarCopyBytes
 	pop bc
 
-.asm_28544
+.done_steel
 	push bc
-	ld hl, $1
+	ld hl, MON_ITEM
 	add hl, bc
-	ld bc, $1a
+	ld bc, MON_HAPPINESS - MON_ITEM
 	call CopyBytes
 	pop bc
 
-	ld hl, $1f
+	ld hl, MON_LEVEL
 	add hl, bc
 	ld a, [hl]
 	ld [de], a
@@ -760,9 +760,9 @@ Function284f6: ; 284f6
 	inc de
 
 	push bc
-	ld hl, $24
+	ld hl, MON_MAXHP
 	add hl, bc
-	ld bc, 8
+	ld bc, MON_SAT - MON_MAXHP
 	call CopyBytes
 	pop bc
 
@@ -781,19 +781,19 @@ Function284f6: ; 284f6
 	ld [BaseSpecialAttack], a
 	pop bc
 
-	ld hl, $a
+	ld hl, MON_EXP + 2
 	add hl, bc
-	ld c, $5
-	ld b, $1
+	ld c, STAT_SATK
+	ld b, TRUE
 	predef CalcPkmnStatC
 
 	pop bc
 	pop de
 
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	ld [de], a
 	inc de
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld [de], a
 	inc de
 	ld h, b
@@ -801,10 +801,10 @@ Function284f6: ; 284f6
 	ret
 ; 28595
 
-Function28595: ; 28595
-	ld de, wc800
-	ld a, EGG
-	ld b, PARTY_LENGTH
+Link_PrepPartyData_Gen2: ; 28595
+	ld de, wLinkData
+	ld a, $fd
+	ld b, 6
 .loop1
 	ld [de], a
 	inc de
@@ -966,7 +966,7 @@ Function2868a: ; 2868a
 	ld [hli], a
 	ld [hl], b
 	ld hl, OTPartyMon1Species
-	ld c, $6
+	ld c, PARTY_LENGTH
 .loop
 	push bc
 	call Function286ba
@@ -977,10 +977,10 @@ Function2868a: ; 2868a
 	lb bc, 1, 8
 	add hl, bc
 	ld de, OTPartyMonOT
-	ld bc, $42
+	ld bc, PARTY_LENGTH * NAME_LENGTH
 	call CopyBytes
 	ld de, OTPartyMonNicknames
-	ld bc, $42
+	ld bc, PARTY_LENGTH * PKMN_NAME_LENGTH
 	jp CopyBytes
 ; 286ba
 
@@ -998,7 +998,7 @@ Function286ba: ; 286ba
 	ld a, [wd265]
 	ld [bc], a
 	ld [CurSpecies], a
-	ld hl, $22
+	ld hl, MON_HP
 	add hl, bc
 	ld a, [de]
 	inc de
@@ -1069,27 +1069,27 @@ Function286ba: ; 286ba
 	ld e, l
 	ld hl, $a
 	add hl, bc
-	ld c, $5
-	ld b, $1
+	ld c, STAT_SATK
+	ld b, TRUE
 	predef CalcPkmnStatC
 	pop bc
 	pop hl
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	ld [hli], a
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld [hli], a
 	push hl
 	push bc
 	ld hl, $a
 	add hl, bc
-	ld c, $6
-	ld b, $1
+	ld c, STAT_SDEF
+	ld b, TRUE
 	predef CalcPkmnStatC
 	pop bc
 	pop hl
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	ld [hli], a
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	ld [hli], a
 	push hl
 	ld hl, $1b
@@ -1150,16 +1150,16 @@ Function28771: ; 28771
 ; 2879e
 
 Function2879e: ; 2879e
-.asm_2879e
+.loop
 	ld a, [hli]
 	cp $fe
-	jr z, .asm_2879e
+	jr z, .loop
 	ld [de], a
 	inc de
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_2879e
+	jr nz, .loop
 	ret
 ; 287ab
 
@@ -1171,39 +1171,39 @@ Function287ab: ; 287ab
 	call Function287d8
 	ld de, LinkBattleRNs
 	ld c, $a
-.asm_287bb
+.loop
 	ld a, [hli]
 	cp $fe
-	jr z, .asm_287bb
+	jr z, .loop
 	cp $fd
-	jr z, .asm_287bb
+	jr z, .loop
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_287bb
+	jr nz, .loop
 	ret
 ; 287ca
 
 Function287ca: ; 287ca
-.asm_287ca
+.loop
 	ld a, [hli]
 	and a
-	jr z, .asm_287ca
+	jr z, .loop
 	cp $fd
-	jr z, .asm_287ca
+	jr z, .loop
 	cp $fe
-	jr z, .asm_287ca
+	jr z, .loop
 	dec hl
 	ret
 ; 287d8
 
 Function287d8: ; 287d8
-.asm_287d8
+.loop
 	ld a, [hli]
 	cp $fd
-	jr z, .asm_287d8
+	jr z, .loop
 	cp $fe
-	jr z, .asm_287d8
+	jr z, .loop
 	dec hl
 	ret
 ; 287e3
@@ -1226,19 +1226,19 @@ endr
 ; 28803
 
 Function28803: ; 28803
-	ld a, $1
+	ld a, OTPARTYMON
 	ld [MonType], a
-	ld a, $c1
-	ld [w2DMenuFlags4], a
+	ld a, A_BUTTON | D_UP | D_DOWN
+	ld [wMenuJoypadFilter], a
 	ld a, [OTPartyCount]
 	ld [w2DMenuNumRows], a
-	ld a, $1
+	ld a, 1
 	ld [w2DMenuNumCols], a
-	ld a, $9
+	ld a, 9
 	ld [w2DMenuCursorInitY], a
-	ld a, $6
+	ld a, 6
 	ld [w2DMenuCursorInitX], a
-	ld a, $1
+	ld a, 1
 	ld [wMenuCursorX], a
 	ld a, $10
 	ld [w2DMenuFlags3], a
@@ -1293,17 +1293,17 @@ Function2888b: ; 2888b
 	callba Function49856
 	xor a
 	ld [MonType], a
-	ld a, $c1
-	ld [w2DMenuFlags4], a
+	ld a, A_BUTTON | D_UP | D_DOWN
+	ld [wMenuJoypadFilter], a
 	ld a, [PartyCount]
 	ld [w2DMenuNumRows], a
-	ld a, $1
+	ld a, 1
 	ld [w2DMenuNumCols], a
-	ld a, $1
+	ld a, 1
 	ld [w2DMenuCursorInitY], a
-	ld a, $6
+	ld a, 6
 	ld [w2DMenuCursorInitX], a
-	ld a, $1
+	ld a, 1
 	ld [wMenuCursorX], a
 	ld a, $10
 	ld [w2DMenuFlags3], a
@@ -1376,8 +1376,8 @@ Function28926: ; 28926
 	ld a, [wMenuCursorY]
 	push af
 	hlcoord 0, 15
-	ld b, $1
-	ld c, $12
+	ld b, 1
+	ld c, 18
 	call Predef_LinkTextbox
 	hlcoord 2, 16
 	ld de, String28ab4
@@ -1385,19 +1385,19 @@ Function28926: ; 28926
 	callba Function4d354
 
 .asm_28946
-	ld a, $7f
+	ld a, " "
 	ldcoord_a 11, 16
-	ld a, $13
-	ld [w2DMenuFlags4], a
-	ld a, $1
+	ld a, A_BUTTON | B_BUTTON | D_RIGHT
+	ld [wMenuJoypadFilter], a
+	ld a, 1
 	ld [w2DMenuNumRows], a
-	ld a, $1
+	ld a, 1
 	ld [w2DMenuNumCols], a
-	ld a, $10
+	ld a, 16
 	ld [w2DMenuCursorInitY], a
-	ld a, $1
+	ld a, 1
 	ld [w2DMenuCursorInitX], a
-	ld a, $1
+	ld a, 1
 	ld [wMenuCursorY], a
 	ld [wMenuCursorX], a
 	ld a, $20
@@ -1406,9 +1406,9 @@ Function28926: ; 28926
 	ld [w2DMenuFlags1], a
 	ld [w2DMenuFlags2], a
 	call ScrollingMenuJoypad
-	bit 4, a
+	bit D_RIGHT_F, a
 	jr nz, .asm_2898d
-	bit 1, a
+	bit B_BUTTON_F, a
 	jr z, .asm_289cd
 .asm_28983
 	pop af
@@ -1417,19 +1417,19 @@ Function28926: ; 28926
 	jp Function2888b
 
 .asm_2898d
-	ld a, $7f
+	ld a, " "
 	ldcoord_a 1, 16
-	ld a, $23
-	ld [w2DMenuFlags4], a
-	ld a, $1
+	ld a, A_BUTTON | B_BUTTON | D_LEFT
+	ld [wMenuJoypadFilter], a
+	ld a, 1
 	ld [w2DMenuNumRows], a
-	ld a, $1
+	ld a, 1
 	ld [w2DMenuNumCols], a
-	ld a, $10
+	ld a, 16
 	ld [w2DMenuCursorInitY], a
-	ld a, $b
+	ld a, 11
 	ld [w2DMenuCursorInitX], a
-	ld a, $1
+	ld a, 1
 	ld [wMenuCursorY], a
 	ld [wMenuCursorX], a
 	ld a, $20
@@ -1438,9 +1438,9 @@ Function28926: ; 28926
 	ld [w2DMenuFlags1], a
 	ld [w2DMenuFlags2], a
 	call ScrollingMenuJoypad
-	bit 5, a
+	bit D_LEFT_F, a
 	jp nz, .asm_28946
-	bit 1, a
+	bit B_BUTTON_F, a
 	jr nz, .asm_28983
 	jr .asm_289fe
 
@@ -1485,8 +1485,8 @@ Function28926: ; 28926
 	ld [wcf57], a
 	ld [wOtherPlayerLinkAction], a
 	hlcoord 0, 12
-	ld b, $4
-	ld c, $12
+	ld b, 4
+	ld c, 18
 	call Predef_LinkTextbox
 	callba Function4d354
 	ld hl, UnknownText_0x28aaf
@@ -1517,8 +1517,8 @@ Function28926: ; 28926
 
 .asm_28a89
 	hlcoord 0, 12
-	ld b, $4
-	ld c, $12
+	ld b, 4
+	ld c, 18
 	call Predef_LinkTextbox
 	hlcoord 1, 14
 	ld de, String28ece
@@ -1526,7 +1526,7 @@ Function28926: ; 28926
 	ld a, $1
 	ld [wPlayerLinkAction], a
 	callba Function16d6ce
-	ld c, $64
+	ld c, 100
 	call DelayFrames
 	jp Function287e3
 ; 28aaf
@@ -1557,45 +1557,45 @@ Function28ac9: ; 28ac9
 	push bc
 	ld bc, NAME_LENGTH
 	add hl, bc
-	ld [hl], $7f
+	ld [hl], " "
 	pop bc
 	pop hl
 
 Function28ade: ; 28ade
-.asm_28ade
-	ld a, $ed
+.loop1
+	ld a, "▶"
 	ldcoord_a 9, 17
-.asm_28ae3
+.loop2
 	call JoyTextDelay
 	ld a, [hJoyLast]
 	and a
-	jr z, .asm_28ae3
-	bit 0, a
-	jr nz, .asm_28b0b
+	jr z, .loop2
+	bit A_BUTTON_F, a
+	jr nz, .a_button
 	push af
 	ld a, " "
 	ldcoord_a 9, 17
 	pop af
-	bit 6, a
-	jr z, .asm_28b03
+	bit D_UP_F, a
+	jr z, .d_up
 	ld a, [OTPartyCount]
 	ld [wMenuCursorY], a
 	jp Function28803
 
-.asm_28b03
+.d_up
 	ld a, $1
 	ld [wMenuCursorY], a
 	jp Function2888b
 
-.asm_28b0b
-	ld a, $ec
+.a_button
+	ld a, "▷"
 	ldcoord_a 9, 17
 	ld a, $f
 	ld [wPlayerLinkAction], a
 	callba Function16d6ce
 	ld a, [wOtherPlayerLinkMode]
 	cp $f
-	jr nz, .asm_28ade
+	jr nz, .loop1
 
 Function28b22: ; 28b22
 	call RotateThreePalettesRight
@@ -1693,28 +1693,28 @@ Function28b87: ; 28b87
 	call PlaceWholeStringInBoxAtOnce
 	call LoadStandardMenuDataHeader
 	hlcoord 10, 7
-	ld b, $3
-	ld c, $7
+	ld b, 3
+	ld c, 7
 	call Predef_LinkTextbox
 	ld de, String28eab
 	hlcoord 12, 8
 	call PlaceString
-	ld a, $8
+	ld a, 8
 	ld [w2DMenuCursorInitY], a
-	ld a, $b
+	ld a, 11
 	ld [w2DMenuCursorInitX], a
-	ld a, $1
+	ld a, 1
 	ld [w2DMenuNumCols], a
-	ld a, $2
+	ld a, 2
 	ld [w2DMenuNumRows], a
 	xor a
 	ld [w2DMenuFlags1], a
 	ld [w2DMenuFlags2], a
 	ld a, $20
 	ld [w2DMenuFlags3], a
-	ld a, $3
-	ld [w2DMenuFlags4], a
-	ld a, $1
+	ld a, A_BUTTON | B_BUTTON
+	ld [wMenuJoypadFilter], a
+	ld a, 1
 	ld [wMenuCursorY], a
 	ld [wMenuCursorX], a
 	callba Function4d354
@@ -1991,8 +1991,8 @@ Function28b87: ; 28b87
 	call DelayFrames
 	ld a, [wLinkMode]
 	cp LINK_TIMECAPSULE
-	jp z, Function2805d
-	jp Function28177
+	jp z, TimeCapsule
+	jp Gen2ToGen2LinkComms
 ; 28ea3
 
 Function28ea3: ; 28ea3
@@ -2593,5 +2593,6 @@ Special_CableClubCheckWhichChris: ; 29f47
 ; 29f54
 
 GFX_29f54: ; 29f54
+; unreferenced
 INCBIN "gfx/unknown/029f54.2bpp"
 ; 29fe4

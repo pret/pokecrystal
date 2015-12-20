@@ -693,12 +693,12 @@ InitPartyMenuWithCancel: ; 50405
 	jr c, .done
 
 .skip
-	ld a, $1
+	ld a, 1
 
 .done
 	ld [wMenuCursorY], a
 	ld a, A_BUTTON | B_BUTTON
-	ld [w2DMenuFlags4], a
+	ld [wMenuJoypadFilter], a
 	ret
 ; 5042d
 
@@ -716,11 +716,11 @@ InitPartyMenuNoCancel: ; 0x5042d
 	cp b
 	jr c, .done
 .skip
-	ld a, $1
+	ld a, 1
 .done
 	ld [wMenuCursorY], a
 	ld a, A_BUTTON | B_BUTTON
-	ld [w2DMenuFlags4], a
+	ld [wMenuJoypadFilter], a
 	ret
 ; 5044f (14:444f)
 

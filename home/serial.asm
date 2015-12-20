@@ -92,7 +92,7 @@ Serial:: ; 6ef
 Function75f:: ; 75f
 	ld a, $1
 	ld [hFFCC], a
-.asm_763
+.loop
 	ld a, [hl]
 	ld [hSerialSend], a
 	call Function78a
@@ -100,28 +100,28 @@ Function75f:: ; 75f
 	ld b, a
 	inc hl
 	ld a, $30
-.asm_76e
+.wait
 	dec a
-	jr nz, .asm_76e
+	jr nz, .wait
 	ld a, [hFFCC]
 	and a
 	ld a, b
 	pop bc
-	jr z, .asm_782
+	jr z, .load
 	dec hl
 	cp $fd
-	jr nz, .asm_763
+	jr nz, .loop
 	xor a
 	ld [hFFCC], a
-	jr .asm_763
+	jr .loop
 
-.asm_782
+.load
 	ld [de], a
 	inc de
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_763
+	jr nz, .loop
 	ret
 ; 78a
 

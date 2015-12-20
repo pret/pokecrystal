@@ -9805,6 +9805,7 @@ Unknown_4985a: ; unreferenced
 
 INCLUDE "event/celebi.asm"
 INCLUDE "engine/main_menu.asm"
+INCLUDE "misc/mobile_menu.asm"
 INCLUDE "engine/search.asm"
 INCLUDE "misc/mobile_12_2.asm"
 ; mobile battle selection
@@ -10292,7 +10293,7 @@ Function4d35b: ; 4d35b
 	ld l, e
 	push bc
 	push hl
-	call Function4d37e
+	call .PlaceBorder
 	pop hl
 	pop bc
 	ld de, AttrMap - TileMap
@@ -10320,12 +10321,12 @@ endr
 	ret
 ; 4d37e
 
-Function4d37e: ; 4d37e
+.PlaceBorder: ; 4d37e
 	push hl
 	ld a, $76
 	ld [hli], a
 	inc a
-	call Function4d3ab
+	call .PlaceRow
 	inc a
 	ld [hl], a
 	pop hl
@@ -10336,7 +10337,7 @@ Function4d37e: ; 4d37e
 	ld a, "┌"
 	ld [hli], a
 	ld a, " "
-	call Function4d3ab
+	call .PlaceRow
 	ld [hl], "─"
 	pop hl
 	ld de, SCREEN_WIDTH
@@ -10346,17 +10347,17 @@ Function4d37e: ; 4d37e
 	ld a, "┐"
 	ld [hli], a
 	ld a, "│"
-	call Function4d3ab
+	call .PlaceRow
 	ld [hl], "└"
 	ret
 ; 4d3ab
 
-Function4d3ab: ; 4d3ab
+.PlaceRow: ; 4d3ab
 	ld d, c
-.loop
+.row_loop
 	ld [hli], a
 	dec d
-	jr nz, .loop
+	jr nz, .row_loop
 	ret
 ; 4d3b1
 

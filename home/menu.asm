@@ -343,27 +343,27 @@ Function1eda:: ; 1eda
 
 Function1eff:: ; 1eff
 	call InitVerticalMenuCursor
-	ld hl, w2DMenuFlags4
+	ld hl, wMenuJoypadFilter
 	ld a, [wMenuData2Flags]
 	bit 3, a
-	jr z, .skip3
-	set 3, [hl]
+	jr z, .disallow_select
+	set START_F, [hl]
 
-.skip3
+.disallow_select
 	ld a, [wMenuData2Flags]
 	bit 2, a
-	jr z, .skip4_5
-	set 5, [hl]
-	set 4, [hl]
+	jr z, .disallow_left_right
+	set D_LEFT_F, [hl]
+	set D_RIGHT_F, [hl]
 
-.skip4_5
+.disallow_left_right
 	ret
 ; 1f1a
 
 
 Function1f1a:: ; 1f1a
 	call ScrollingMenuJoypad
-	ld hl, w2DMenuFlags4
+	ld hl, wMenuJoypadFilter
 	and [hl]
 	jr Function1f2a
 ; 1f23
@@ -375,35 +375,35 @@ Function1f23:: ; 1f23
 ; 1f2a
 
 Function1f2a:: ; 1f2a
-	bit 0, a
-	jr nz, .asm_1f52
-	bit 1, a
-	jr nz, .asm_1f6d
-	bit 3, a
-	jr nz, .asm_1f6d
-	bit 4, a
-	jr nz, .asm_1f44
-	bit 5, a
-	jr nz, .asm_1f4b
+	bit A_BUTTON_F, a
+	jr nz, .a_button
+	bit B_BUTTON_F, a
+	jr nz, .b_start
+	bit START_F, a
+	jr nz, .b_start
+	bit D_RIGHT_F, a
+	jr nz, .d_right
+	bit D_LEFT_F, a
+	jr nz, .d_left
 	xor a
 	ld [wMenuJoypad], a
-	jr .asm_1f57
+	jr .done
 
-.asm_1f44
-	ld a, $10
+.d_right
+	ld a, D_RIGHT
 	ld [wMenuJoypad], a
-	jr .asm_1f57
+	jr .done
 
-.asm_1f4b
-	ld a, $20
+.d_left
+	ld a, D_LEFT
 	ld [wMenuJoypad], a
-	jr .asm_1f57
+	jr .done
 
-.asm_1f52
-	ld a, $1
+.a_button
+	ld a, A_BUTTON
 	ld [wMenuJoypad], a
 
-.asm_1f57
+.done
 	call GetMenuIndexSet
 	ld a, [wMenuCursorY]
 	ld l, a
@@ -416,10 +416,10 @@ Function1f2a:: ; 1f2a
 	and a
 	ret
 
-.asm_1f6d
-	ld a, $2
+.b_start
+	ld a, B_BUTTON
 	ld [wMenuJoypad], a
-	ld a, $ff
+	ld a, -1
 	ld [MenuSelection], a
 	scf
 	ret

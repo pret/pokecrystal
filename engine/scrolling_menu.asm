@@ -279,65 +279,64 @@ ScrollingMenu_InitFlags: ; 24764
 	ld a, [wScrollingMenuListSize]
 	ld b, a
 	ld a, [wMenuBorderTopCoord]
-	add $1
+	add 1
 	ld [w2DMenuCursorInitY], a
 	ld a, [wMenuBorderLeftCoord]
-	add $0
+	add 0
 	ld [w2DMenuCursorInitX], a
 	ld a, [wMenuData2_ScrollingMenuHeight]
 	cp b
-	jr c, .asm_24786
-	jr z, .asm_24786
+	jr c, .no_extra_row
+	jr z, .no_extra_row
 	ld a, b
 	inc a
-
-.asm_24786
+.no_extra_row
 	ld [w2DMenuNumRows], a
-	ld a, $1
+	ld a, 1
 	ld [w2DMenuNumCols], a
 	ld a, $8c
 	bit 2, c
-	jr z, .asm_24796
+	jr z, .skip_set_0
 	set 0, a
 
-.asm_24796
+.skip_set_0
 	bit 3, c
-	jr z, .asm_2479c
+	jr z, .skip_set_1
 	set 1, a
 
-.asm_2479c
+.skip_set_1
 	ld [w2DMenuFlags1], a
 	xor a
 	ld [w2DMenuFlags2], a
 	ld a, $20
 	ld [w2DMenuFlags3], a
-	ld a, $c3
+	ld a, A_BUTTON | B_BUTTON | D_UP | D_DOWN
 	bit 7, c
-	jr z, .asm_247b0
-	add $4
+	jr z, .disallow_select
+	add SELECT
 
-.asm_247b0
+.disallow_select
 	bit 6, c
-	jr z, .asm_247b6
-	add $8
+	jr z, .disallow_start
+	add START
 
-.asm_247b6
-	ld [w2DMenuFlags4], a
+.disallow_start
+	ld [wMenuJoypadFilter], a
 	ld a, [w2DMenuNumRows]
 	ld b, a
 	ld a, [wMenuCursorBuffer]
 	and a
-	jr z, .asm_247c8
+	jr z, .reset_cursor
 	cp b
-	jr z, .asm_247ca
-	jr c, .asm_247ca
+	jr z, .cursor_okay
+	jr c, .cursor_okay
 
-.asm_247c8
-	ld a, $1
+.reset_cursor
+	ld a, 1
 
-.asm_247ca
+.cursor_okay
 	ld [wMenuCursorY], a
-	ld a, $1
+	ld a, 1
 	ld [wMenuCursorX], a
 	xor a
 	ld [wCursorCurrentTile], a

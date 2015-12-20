@@ -2242,7 +2242,7 @@ Function89dab: ; 89dab (22:5dab)
 	callba MobileMenuJoypad
 	call Function8923c
 	ld a, c
-	ld hl, w2DMenuFlags4
+	ld hl, wMenuJoypadFilter
 	and [hl]
 	ret z
 	bit 0, a
@@ -3088,7 +3088,7 @@ Function8a31c: ; 8a31c (22:631c)
 Function8a383: ; 8a383 (22:6383)
 	callba MobileMenuJoypad
 	ld a, c
-	ld hl, w2DMenuFlags4
+	ld hl, wMenuJoypadFilter
 	and [hl]
 	ret z
 	bit 0, a

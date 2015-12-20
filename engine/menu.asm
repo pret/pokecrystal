@@ -42,7 +42,7 @@ _InterpretMobileMenu:: ; 2403c
 	and a
 	jr nz, .quit
 	call MobileMenuJoypad
-	ld a, [w2DMenuFlags4]
+	ld a, [wMenuJoypadFilter]
 	and c
 	jr z, .loop
 	call Mobile_GetMenuSelection
@@ -246,16 +246,16 @@ Init2DMenuCursorPosition: ; 2411a (9:411a)
 
 .InitFlags_c: ; 24193
 	ld hl, wMenuData2Flags
-	ld a, %001
+	ld a, A_BUTTON
 	bit 0, [hl]
 	jr nz, .skip
-	or %010
+	or B_BUTTON
 .skip
 	bit 1, [hl]
 	jr z, .skip2
-	or %100
+	or SELECT
 .skip2
-	ld [w2DMenuFlags4], a
+	ld [wMenuJoypadFilter], a
 	ret
 ; 241a8
 
@@ -307,7 +307,7 @@ Function241d5: ; 241d5
 	jr nz, .done
 	call GetMenuJoypad
 	ld c, a
-	ld a, [w2DMenuFlags4]
+	ld a, [wMenuJoypadFilter]
 	and c
 	jr z, .loop
 
@@ -345,7 +345,7 @@ MenuJoypadLoop: ; 24216
 	jr nz, .done
 	call GetMenuJoypad
 	ld b, a
-	ld a, [w2DMenuFlags4]
+	ld a, [wMenuJoypadFilter]
 	and b
 	jr z, .loop
 
@@ -812,11 +812,11 @@ _InitVerticalMenuCursor:: ; 2446d
 ; w2DMenuFlags3
 	ld a, %00100000
 	ld [hli], a
-; w2DMenuFlags4
-	ld a, %001
+; wMenuJoypadFilter
+	ld a, A_BUTTON
 	bit 0, b
 	jr nz, .skip_bit_1
-	add %010
+	add B_BUTTON
 .skip_bit_1
 	ld [hli], a
 ; wMenuCursorY

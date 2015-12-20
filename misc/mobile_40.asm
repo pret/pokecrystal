@@ -860,7 +860,7 @@ Function100545: ; 100545
 Function10054d: ; 10054d
 	callba MobileMenuJoypad
 	ld a, c
-	ld hl, w2DMenuFlags4
+	ld hl, wMenuJoypadFilter
 	and [hl]
 	ret z
 	call MenuClickSound
@@ -1829,7 +1829,7 @@ Function100b45: ; 100b45
 	call Function100e2d
 	pop bc
 	jr c, .asm_100b6b
-	ld a, [w2DMenuFlags4]
+	ld a, [wMenuJoypadFilter]
 	and c
 	jr z, .asm_100b48
 	callba Mobile_GetMenuSelection
@@ -1890,7 +1890,7 @@ Function100bc2: ; 100bc2
 	call Function100e2d
 	pop bc
 	jr c, .asm_100c25
-	ld a, [w2DMenuFlags4]
+	ld a, [wMenuJoypadFilter]
 	and c
 	bit 6, a
 	jp nz, .asm_100bff
@@ -2021,7 +2021,7 @@ Function100cb5: ; 100cb5
 	call Function100dfd
 	pop bc
 	jr c, .asm_100d17
-	ld a, [w2DMenuFlags4]
+	ld a, [wMenuJoypadFilter]
 	and c
 	jr z, .asm_100cc0
 	call PlaceHollowCursor
@@ -2075,7 +2075,7 @@ MobileBattleMonMenu: ; 100d22
 	call Function100dfd
 	pop bc
 	jr c, .asm_100d54
-	ld a, [w2DMenuFlags4]
+	ld a, [wMenuJoypadFilter]
 	and c
 	jr nz, .asm_100d56
 	jr .asm_100d30
@@ -5722,7 +5722,7 @@ Function1025ff: ; 1025ff
 	callba Function1009f3
 	ret c
 	callba MobileMenuJoypad
-	ld a, [w2DMenuFlags4]
+	ld a, [wMenuJoypadFilter]
 	and c
 	ret z
 	bit 0, c
@@ -5784,7 +5784,7 @@ Function10266b: ; 10266b
 	callba Function1009f3
 	ret c
 	callba MobileMenuJoypad
-	ld a, [w2DMenuFlags4]
+	ld a, [wMenuJoypadFilter]
 	and c
 	ret z
 	bit 0, c
@@ -6327,7 +6327,7 @@ Function1029fe: ; 1029fe
 	ret c
 	callba MobileMenuJoypad
 	ld a, c
-	ld hl, w2DMenuFlags4
+	ld hl, wMenuJoypadFilter
 	and [hl]
 	ret z
 	push af

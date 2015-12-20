@@ -1107,7 +1107,7 @@ Function16d734: ; 16d734
 	jr nz, .asm_16d758
 	call Function16d713
 	ld b, a
-	ld a, [w2DMenuFlags4]
+	ld a, [wMenuJoypadFilter]
 	and b
 	jr z, .asm_16d734
 

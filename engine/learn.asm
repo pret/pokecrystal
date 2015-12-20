@@ -158,7 +158,7 @@ ForgetMove: ; 65d3
 	ld [wMenuCursorY], a
 	ld [wMenuCursorX], a
 	ld a, $3
-	ld [w2DMenuFlags4], a
+	ld [wMenuJoypadFilter], a
 	ld a, $20
 	ld [w2DMenuFlags1], a
 	xor a

@@ -488,7 +488,7 @@ Function4ab06: ; 4ab06
 Function4ab1a: ; 4ab1a
 .asm_4ab1a
 	ld a, $fb
-	ld [w2DMenuFlags4], a
+	ld [wMenuJoypadFilter], a
 	ld a, $26
 	ld [w2DMenuFlags3], a
 	ld a, $2
