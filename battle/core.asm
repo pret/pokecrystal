@@ -5700,7 +5700,7 @@ MoveSelectionScreen: ; 3e4bc
 	xor a
 	ld [w2DMenuFlags2], a
 	ld a, $10
-	ld [w2DMenuFlags3], a
+	ld [w2DMenuCursorOffsets], a
 .menu_loop
 	ld a, [wMoveSelectionMenuType]
 	and a
@@ -6531,7 +6531,7 @@ LoadEnemyMon: ; 3e8eb
 	ld [EnemyMonLevel], a
 ; Fill stats
 	ld de, EnemyMonMaxHP
-	ld b, $00
+	ld b, FALSE
 	ld hl, LinkBattleRNs + 7 ; ?
 	predef CalcPkmnStats
 
@@ -7529,7 +7529,7 @@ endr
 	push bc
 	call LoadTileMapToTempTileMap
 	pop bc
-	ld hl, MON_EXP + 2
+	ld hl, MON_STAT_EXP - 1
 	add hl, bc
 	ld d, [hl]
 	ld a, [hQuotient + 2]
@@ -7562,7 +7562,7 @@ endr
 	ld d, MAX_LEVEL
 	callab CalcExpAtLevel
 	pop bc
-	ld hl, MON_EXP + 2
+	ld hl, MON_STAT_EXP - 1
 	add hl, bc
 	push bc
 	ld a, [hQuotient]
@@ -7621,10 +7621,10 @@ endr
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, MON_EXP + 2
+	ld hl, MON_STAT_EXP - 1
 	add hl, bc
 	push bc
-	ld b, $1
+	ld b, TRUE
 	predef CalcPkmnStats
 	pop bc
 	pop de

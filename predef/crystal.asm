@@ -514,7 +514,7 @@ Palette_49757: ; 49757
 	RGB 31, 31, 31
 ; 49797
 
-Function49797: ; 49797
+_InitMG_Mobile_LinkTradePalMap: ; 49797
 	hlcoord 0, 0, AttrMap
 	lb bc, 16, 2
 	ld a, $4
@@ -608,7 +608,7 @@ Palette_49826: ; 49826
 	RGB 31, 31, 31
 ; 49856
 
-Function49856: ; 49856
-	call Function49797
+InitMG_Mobile_LinkTradePalMap: ; 49856
+	call _InitMG_Mobile_LinkTradePalMap
 	ret
 ; 4985a

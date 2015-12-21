@@ -309,7 +309,7 @@ ScrollingMenu_InitFlags: ; 24764
 	xor a
 	ld [w2DMenuFlags2], a
 	ld a, $20
-	ld [w2DMenuFlags3], a
+	ld [w2DMenuCursorOffsets], a
 	ld a, A_BUTTON | B_BUTTON | D_UP | D_DOWN
 	bit 7, c
 	jr z, .disallow_select

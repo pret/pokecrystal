@@ -490,7 +490,7 @@ Function4ab1a: ; 4ab1a
 	ld a, $fb
 	ld [wMenuJoypadFilter], a
 	ld a, $26
-	ld [w2DMenuFlags3], a
+	ld [w2DMenuCursorOffsets], a
 	ld a, $2
 	ld [w2DMenuNumCols], a
 	call Function4adf7

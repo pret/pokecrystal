@@ -474,22 +474,22 @@ Function4dfa6: ; 4dfa6 (13:5fa6)
 	ret
 
 Function4dfb6: ; 4dfb6 (13:5fb6)
-	ld a, [CurBaseData] ; wd236 (aliases: BaseDexNo)
+	ld a, [BaseDexNo] ; wd236 (aliases: BaseDexNo)
 	ld [wd265], a
 	ld [CurSpecies], a
 	xor a
 	ld [hBGMapMode], a
 	call Function4dfda
-	call Function4e002
+	call DrawStatsScreenPage
 	call Function4dfed
 	ld hl, wcf64
 	bit 4, [hl]
-	jr nz, .asm_4dfd6
+	jr nz, .place_frontpic
 	call SetPalettes
 	ret
 
-.asm_4dfd6
-	call Function4e226
+.place_frontpic
+	call StatsScreen_PlaceFrontpic
 	ret
 
 Function4dfda: ; 4dfda (13:5fda)
@@ -512,87 +512,88 @@ Function4dfed: ; 4dfed (13:5fed)
 	set 5, [hl]
 	ret
 
-Function4e002: ; 4e002 (13:6002)
+DrawStatsScreenPage: ; 4e002 (13:6002)
 	ld a, [wcf64]
 	and $3
 	dec a
-	ld hl, Jumptable_4e00d
+	ld hl, .Jumptable
 	rst JumpTable
 	ret
 
-Jumptable_4e00d: ; 4e00d (13:600d)
-	dw Function4e013
-	dw Function4e147
-	dw Function4e1ae
+.Jumptable: ; 4e00d (13:600d)
+	jumptable_start
+	jumptable .PinkPage
+	jumptable .GreenPage
+	jumptable .BluePage
 
 
-Function4e013: ; 4e013 (13:6013)
+.PinkPage: ; 4e013 (13:6013)
 	hlcoord 0, 9
 	ld b, $0
 	predef DrawPlayerHP
 	hlcoord 8, 9
 	ld [hl], $41
-	ld de, String_4e119
+	ld de, .Status_Type
 	hlcoord 0, 12
 	call PlaceString
 	ld a, [TempMonPokerusStatus]
 	ld b, a
 	and $f
-	jr nz, .asm_4e055
+	jr nz, .HasPokerus
 	ld a, b
 	and $f0
-	jr z, .asm_4e03d
+	jr z, .NotImmuneToPkrs
 	hlcoord 8, 8
-	ld [hl], $e8
-.asm_4e03d
+	ld [hl], "."
+.NotImmuneToPkrs
 	ld a, [MonType]
-	cp $2
-	jr z, .asm_4e060
+	cp BOXMON
+	jr z, .StatusOK
 	hlcoord 6, 13
 	push hl
 	ld de, TempMonStatus
 	predef PlaceStatusString
 	pop hl
-	jr nz, .asm_4e066
-	jr .asm_4e060
-.asm_4e055
-	ld de, String_4e142
+	jr nz, .done_status
+	jr .StatusOK
+.HasPokerus
+	ld de, .PkrsStr
 	hlcoord 1, 13
 	call PlaceString
-	jr .asm_4e066
-.asm_4e060
-	ld de, String_4e127
+	jr .done_status
+.StatusOK
+	ld de, .OK_str
 	call PlaceString
-.asm_4e066
+.done_status
 	hlcoord 1, 15
 	predef PrintMonTypes
 	hlcoord 9, 8
-	ld de, $14
-	ld b, $a
+	ld de, SCREEN_WIDTH
+	ld b, 10
 	ld a, $31
-.asm_4e078
+.vertical_divider
 	ld [hl], a
 	add hl, de
 	dec b
-	jr nz, .asm_4e078
-	ld de, String_4e12b
+	jr nz, .vertical_divider
+	ld de, .ExpPointStr
 	hlcoord 10, 9
 	call PlaceString
 	hlcoord 17, 14
-	call Function4e0d3
+	call .PrintNextLevel
 	hlcoord 13, 10
 	lb bc, 3, 7
 	ld de, TempMonExp
 	call PrintNum
-	call Function4e0e7
+	call .CalcExpToNextLevel
 	hlcoord 13, 13
 	lb bc, 3, 7
 	ld de, Buffer1 ; wd1ea (aliases: MagikarpLength)
 	call PrintNum
-	ld de, String_4e136
+	ld de, .LevelUpStr
 	hlcoord 10, 12
 	call PlaceString
-	ld de, String_4e13f
+	ld de, .ToStr
 	hlcoord 14, 14
 	call PlaceString
 	hlcoord 11, 16
@@ -606,34 +607,34 @@ Function4e013: ; 4e013 (13:6013)
 	ld [hl], $41
 	ret
 
-Function4e0d3: ; 4e0d3 (13:60d3)
+.PrintNextLevel: ; 4e0d3 (13:60d3)
 	ld a, [TempMonLevel]
 	push af
 	cp MAX_LEVEL
-	jr z, .asm_4e0df
+	jr z, .AtMaxLevel
 	inc a
 	ld [TempMonLevel], a
-.asm_4e0df
+.AtMaxLevel
 	call PrintLevel
 	pop af
 	ld [TempMonLevel], a
 	ret
 
-Function4e0e7: ; 4e0e7 (13:60e7)
+.CalcExpToNextLevel: ; 4e0e7 (13:60e7)
 	ld a, [TempMonLevel]
 	cp MAX_LEVEL
-	jr z, .asm_4e111
+	jr z, .AlreadyAtMaxLevel
 	inc a
 	ld d, a
 	callba CalcExpAtLevel
 rept 2
 	ld hl, TempMonExp + 2
 endr
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	sub [hl]
 	dec hl
-	ld [wd1ec], a
-	ld a, [$ffb5]
+	ld [Buffer3], a
+	ld a, [hQuotient + 1]
 	sbc [hl]
 	dec hl
 	ld [Buffer2], a ; wd1eb (aliases: MovementType)
@@ -641,7 +642,8 @@ endr
 	sbc [hl]
 	ld [Buffer1], a ; wd1ea (aliases: MagikarpLength)
 	ret
-.asm_4e111
+
+.AlreadyAtMaxLevel
 	ld hl, Buffer1 ; wd1ea (aliases: MagikarpLength)
 	xor a
 rept 2
@@ -651,39 +653,39 @@ endr
 	ret
 ; 4e119 (13:6119)
 
-String_4e119: ; 4e119
+.Status_Type: ; 4e119
 	db   "STATUS/"
 	next "TYPE/@"
 ; 4e127
 
-String_4e127: ; 4e127
+.OK_str: ; 4e127
 	db "OK @"
 ; 4e12b
 
-String_4e12b: ; 4e12b
+.ExpPointStr: ; 4e12b
 	db "EXP POINTS@"
 ; 4e136
 
-String_4e136: ; 4e136
+.LevelUpStr: ; 4e136
 	db "LEVEL UP@"
 ; 4e13f
 
-String_4e13f: ; 4e13f
+.ToStr: ; 4e13f
 	db "TO@"
 ; 4e142
 
-String_4e142: ; 4e142
+.PkrsStr: ; 4e142
 	db "#RUS@"
 ; 4e147
 
-Function4e147: ; 4e147 (13:6147)
-	ld de, String_4e1a0
+.GreenPage: ; 4e147 (13:6147)
+	ld de, .Item
 	hlcoord 0, 8
 	call PlaceString
-	call Function4e189
+	call .GetItemName
 	hlcoord 8, 8
 	call PlaceString
-	ld de, String_4e1a9
+	ld de, .Move
 	hlcoord 0, 10
 	call PlaceString
 	ld hl, TempMonMoves
@@ -695,53 +697,53 @@ Function4e147: ; 4e147 (13:6147)
 	ld [Buffer1], a
 	predef ListMoves
 	hlcoord 12, 11
-	ld a, $28
+	ld a, SCREEN_WIDTH * 2
 	ld [Buffer1], a
 	predef ListMovePP
 	ret
 
-Function4e189: ; 4e189 (13:6189)
-	ld de, String_4e1a5
+.GetItemName: ; 4e189 (13:6189)
+	ld de, .ThreeDashes
 	ld a, [TempMonItem]
 	and a
 	ret z
 	ld b, a
-	callba Function28771
+	callba TimeCapsule_ReplaceTeruSama
 	ld a, b
 	ld [wd265], a
 	call GetItemName
 	ret
 ; 4e1a0 (13:61a0)
 
-String_4e1a0: ; 4e1a0
+.Item: ; 4e1a0
 	db "ITEM@"
 ; 4e1a5
 
-String_4e1a5: ; 4e1a5
+.ThreeDashes: ; 4e1a5
 	db "---@"
 ; 4e1a9
 
-String_4e1a9: ; 4e1a9
+.Move: ; 4e1a9
 	db "MOVE@"
 ; 4e1ae
 
-Function4e1ae: ; 4e1ae (13:61ae)
-	call Function4e1cc
+.BluePage: ; 4e1ae (13:61ae)
+	call .PlaceOTInfo
 	hlcoord 10, 8
-	ld de, $14
-	ld b, $a
+	ld de, SCREEN_WIDTH
+	ld b, 10
 	ld a, $31
-.asm_4e1bb
+.BluePageVerticalDivider
 	ld [hl], a
 	add hl, de
 	dec b
-	jr nz, .asm_4e1bb
+	jr nz, .BluePageVerticalDivider
 	hlcoord 11, 8
-	ld bc, $6
+	ld bc, 6
 	predef PrintTempMonStats
 	ret
 
-Function4e1cc: ; 4e1cc (13:61cc)
+.PlaceOTInfo: ; 4e1cc (13:61cc)
 	ld de, IDNoString
 	hlcoord 0, 9
 	call PlaceString
@@ -752,7 +754,7 @@ Function4e1cc: ; 4e1cc (13:61cc)
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	ld de, TempMonID
 	call PrintNum
-	ld hl, Unknown_4e216
+	ld hl, .OTNamePointers
 	call Function4e528
 	call Function4e505
 	callba CheckNickErrors
@@ -760,52 +762,55 @@ Function4e1cc: ; 4e1cc (13:61cc)
 	call PlaceString
 	ld a, [TempMonCaughtGender]
 	and a
-	jr z, .asm_4e215
+	jr z, .done
 	cp $7f
-	jr z, .asm_4e215
+	jr z, .done
 	and $80
 	ld a, "♂"
-	jr z, .asm_4e211
+	jr z, .got_gender
 	ld a, "♀"
-.asm_4e211
+.got_gender
 	hlcoord 9, 13
 	ld [hl], a
-.asm_4e215
+.done
 	ret
 ; 4e216 (13:6216)
 
-Unknown_4e216: ; 4e216
+.OTNamePointers: ; 4e216
 	dw PartyMonOT
 	dw OTPartyMonOT
 	dw sBoxMonOT
-	dw wd00d
+	dw wBufferMonOT
 ; 4e21e
 
 IDNoString: ; 4e21e
-	db $73, "№.@"
+	db "<ID>№.@"
 
 OTString: ; 4e222
 	db "OT/@"
 ; 4e226
 
 
-Function4e226: ; 4e226 (13:6226)
+StatsScreen_PlaceFrontpic: ; 4e226 (13:6226)
 	ld hl, TempMonDVs
 	predef GetUnownLetter
-	call Function4e2ad
-	jr c, .asm_4e238
+	call StatsScreen_GetAnimationParam
+	jr c, .egg
 	and a
-	jr z, .asm_4e23f
-	jr .asm_4e246
-.asm_4e238
+	jr z, .no_cry
+	jr .cry
+
+.egg
 	call Function4e271
 	call SetPalettes
 	ret
-.asm_4e23f
+
+.no_cry
 	call Function4e253
 	call SetPalettes
 	ret
-.asm_4e246
+
+.cry
 	call SetPalettes
 	call Function4e253
 	ld a, [CurPartySpecies]
@@ -817,11 +822,12 @@ Function4e253: ; 4e253 (13:6253)
 	set 5, [hl]
 	ld a, [CurPartySpecies]
 	cp UNOWN
-	jr z, .asm_4e266
+	jr z, .unown
 	hlcoord 0, 0
 	call PrepMonFrontpic
 	ret
-.asm_4e266
+
+.unown
 	xor a
 	ld [wBoxAlignment], a
 	hlcoord 0, 0
@@ -831,12 +837,13 @@ Function4e253: ; 4e253 (13:6253)
 Function4e271: ; 4e271 (13:6271)
 	ld a, [CurPartySpecies]
 	cp UNOWN
-	jr z, .asm_4e281
+	jr z, .unown
 	ld a, $1
 	ld [wBoxAlignment], a
 	call Function4e289
 	ret
-.asm_4e281
+
+.unown
 	xor a
 	ld [wBoxAlignment], a
 	call Function4e289
@@ -857,34 +864,34 @@ Function4e289: ; 4e289 (13:6289)
 	set 6, [hl]
 	ret
 
-Function4e2ad: ; 4e2ad (13:62ad)
+StatsScreen_GetAnimationParam: ; 4e2ad (13:62ad)
 	ld a, [MonType]
 	ld hl, .Jumptable
 	rst JumpTable
 	ret
 
 .Jumptable: ; 4e2b5 (13:62b5)
-	dw Function4e2bf
-	dw Function4e2cf
-	dw Function4e2d1
-	dw Function4e2ed
-	dw Function4e301
+	dw .PartyMon
+	dw .OTPartyMon
+	dw .BoxMon
+	dw .Tempmon
+	dw .Wildmon
 
 
-Function4e2bf: ; 4e2bf (13:62bf)
+.PartyMon: ; 4e2bf (13:62bf)
 	ld a, [CurPartyMon]
 	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld b, h
 	ld c, l
-	jr Function4e2f2
+	jr .CheckEggFaintedFrzSlp
 
-Function4e2cf: ; 4e2cf (13:62cf)
+.OTPartyMon: ; 4e2cf (13:62cf)
 	xor a
 	ret
 
-Function4e2d1: ; 4e2d1 (13:62d1)
+.BoxMon: ; 4e2d1 (13:62d1)
 	ld hl, sBoxMons
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [CurPartyMon]
@@ -893,32 +900,33 @@ Function4e2d1: ; 4e2d1 (13:62d1)
 	ld c, l
 	ld a, BANK(sBoxMons)
 	call GetSRAMBank
-	call Function4e2f2
+	call .CheckEggFaintedFrzSlp
 	push af
 	call CloseSRAM
 	pop af
 	ret
 
-Function4e2ed: ; 4e2ed (13:62ed)
+.Tempmon: ; 4e2ed (13:62ed)
 	ld bc, TempMonSpecies ; wd10e (aliases: TempMon)
-	jr Function4e2f2 ; utterly pointless
+	jr .CheckEggFaintedFrzSlp ; utterly pointless
 
-Function4e2f2: ; 4e2f2 (13:62f2)
+.CheckEggFaintedFrzSlp: ; 4e2f2 (13:62f2)
 	ld a, [CurPartySpecies]
 	cp EGG
 	jr z, .egg
 	call CheckFaintedFrzSlp
-	jr c, Function4e305
+	jr c, .FaintedFrzSlp
 .egg
 	xor a
 	scf
 	ret
 
-Function4e301: ; 4e301 (13:6301)
+.Wildmon: ; 4e301 (13:6301)
 	ld a, $1
 	and a
 	ret
-Function4e305: ; 4e305 (13:6305)
+
+.FaintedFrzSlp: ; 4e305 (13:6305)
 	xor a
 	ret
 
@@ -995,7 +1003,7 @@ EggStatsScreen: ; 4e33a
 	hlcoord 0, 0
 	call PrepMonFrontpic
 	callba Function10402d
-	call Function4e497
+	call StatsScreen_AnimateEgg
 
 	ld a, [TempMonHappiness]
 	cp 6
@@ -1034,18 +1042,19 @@ EggALotMoreTimeString: ; 0x4e46e
 ; 0x4e497
 
 
-Function4e497: ; 4e497 (13:6497)
-	call Function4e2ad
+StatsScreen_AnimateEgg: ; 4e497 (13:6497)
+	call StatsScreen_GetAnimationParam
 	ret nc
 	ld a, [TempMonHappiness]
 	ld e, $7
-	cp $6
-	jr c, .asm_4e4ab
+	cp 6
+	jr c, .animate
 	ld e, $8
-	cp $b
-	jr c, .asm_4e4ab
+	cp 11
+	jr c, .animate
 	ret
-.asm_4e4ab
+
+.animate
 	push de
 	ld a, $1
 	ld [wBoxAlignment], a

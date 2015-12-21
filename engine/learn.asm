@@ -164,7 +164,7 @@ ForgetMove: ; 65d3
 	xor a
 	ld [w2DMenuFlags2], a
 	ld a, $20
-	ld [w2DMenuFlags3], a
+	ld [w2DMenuCursorOffsets], a
 	call StaticMenuJoypad
 	push af
 	call Call_LoadTempTileMapToTileMap

@@ -6830,7 +6830,7 @@ Function102dd3: ; 102dd3
 	ld hl, VTiles0
 	lb bc, BANK(GFX_1032a2), 4
 	call Get2bpp
-	callba Function16d421
+	callba __LoadTradeScreenBorder
 	call EnableLCD
 	ret
 ; 102dec
@@ -6889,7 +6889,7 @@ String_102e48: ; 102e48
 
 Function102e4f: ; 102e4f
 	callba Function16d42e
-	callba Function49797
+	callba _InitMG_Mobile_LinkTradePalMap
 	ld de, PlayerName
 	hlcoord 4, 0
 	call PlaceString

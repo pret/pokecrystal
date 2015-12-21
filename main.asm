@@ -5326,7 +5326,7 @@ endr
 	add hl, bc
 	ld a, $1
 	ld c, a
-	ld b, $0
+	ld b, FALSE
 	call CalcPkmnStatC
 	ld a, [hProduct + 2]
 	ld [de], a
@@ -5716,7 +5716,7 @@ SentGetPkmnIntoFromBox: ; db3f
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, MON_EXP + 2
+	ld hl, MON_STAT_EXP - 1
 	add hl, bc
 
 	push bc
@@ -6461,7 +6461,7 @@ ComputeNPCTrademonStats: ; e134
 	ld d, h
 	ld e, l
 	push de
-	ld a, MON_EXP + 2
+	ld a, MON_STAT_EXP - 1
 	call GetPartyParamLocation
 	ld b, $1
 	call CalcPkmnStats
@@ -6478,8 +6478,9 @@ ComputeNPCTrademonStats: ; e134
 
 CalcPkmnStats: ; e167
 ; Calculates all 6 Stats of a Pkmn
-; b = 0 or 1
+; b: Take into account stat EXP if TRUE
 ; 'c' counts from 1-6 and points with 'BaseStats' to the base value
+; hl is the path to the Stat EXP
 ; results in $ffb5 and $ffb6 are saved in [de]
 
 	ld c, $0
@@ -10274,9 +10275,9 @@ LinkMonStatsScreen: ; 4d319
 	call ClearScreen
 	call ClearBGPalettes
 	call MaxVolume
-	callba Function28ef8
+	callba LoadTradeScreenBorder
 	callba Function4d354
-	callba Function16d673
+	callba InitTradeSpeciesList
 	callba Function28eff
 	call WaitBGMap2
 	ret
@@ -11869,7 +11870,7 @@ _TempMonStatsCalculation: ; 50893
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, MON_EXP + 2
+	ld hl, MON_STAT_EXP - 1
 	add hl, bc
 	push bc
 	ld b, $1
@@ -15345,6 +15346,7 @@ INCLUDE "misc/battle_tower_47.asm"
 SECTION "bank5B", ROMX, BANK[$5B]
 
 INCLUDE "misc/mobile_5b.asm"
+INCLUDE "engine/link_trade.asm"
 
 SECTION "bank5C", ROMX, BANK[$5C]
 

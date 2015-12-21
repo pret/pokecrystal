@@ -239,8 +239,8 @@ Init2DMenuCursorPosition: ; 2411a (9:411a)
 
 .InitFlags_b: ; 2418a
 	ld a, [wMenuData2Spacing]
-	or %00100000
-	ld [w2DMenuFlags3], a
+	or $20
+	ld [w2DMenuCursorOffsets], a
 	ret
 ; 24193
 
@@ -536,7 +536,7 @@ Place2DMenuCursor: ; 24329
 	ld a, [w2DMenuCursorInitX]
 	ld c, a
 	call Coord2Tile
-	ld a, [w2DMenuFlags3]
+	ld a, [w2DMenuCursorOffsets]
 	swap a
 	and $f
 	ld c, a
@@ -553,7 +553,7 @@ Place2DMenuCursor: ; 24329
 .got_row
 	ld c, SCREEN_WIDTH
 	call AddNTimes
-	ld a, [w2DMenuFlags3]
+	ld a, [w2DMenuCursorOffsets]
 	and $f
 	ld c, a
 	ld a, [wMenuCursorX]
@@ -809,8 +809,8 @@ _InitVerticalMenuCursor:: ; 2446d
 ; w2DMenuFlags2
 	xor a
 	ld [hli], a
-; w2DMenuFlags3
-	ld a, %00100000
+; w2DMenuCursorOffsets
+	ln a, 2, 0
 	ld [hli], a
 ; wMenuJoypadFilter
 	ld a, A_BUTTON

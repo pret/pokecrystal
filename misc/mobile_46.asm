@@ -7278,7 +7278,7 @@ Function11b483: ; 11b483
 	ld hl, MON_MAXHP
 	add hl, de
 	push hl
-	ld hl, MON_EXP + 2
+	ld hl, MON_STAT_EXP - 1
 	add hl, de
 	pop de
 	push de

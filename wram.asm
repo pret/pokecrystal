@@ -1170,7 +1170,6 @@ wMysteryGiftPartyTemp:: ; ds PARTY_LENGTH * (1 + 1 + NUM_MOVES)
 wMysteryGiftStaging::
 
 wLinkData:: ; ds $514
-	ds 6
 wLinkPlayerName:: ds NAME_LENGTH
 wLinkPartyCount:: ds 1
 wLinkPartySpecies:: ds PARTY_LENGTH
@@ -1197,8 +1196,8 @@ wLinkPlayerPartyMon5:: party_struct wLinkPlayerPartyMon5
 wLinkPlayerPartyMon6:: party_struct wLinkPlayerPartyMon6
 wLinkPlayerPartyMonOTNames:: ds PARTY_LENGTH * NAME_LENGTH
 wLinkPlayerPartyMonNicks:: ds PARTY_LENGTH * PKMN_NAME_LENGTH
-
-	ds $357
+wLinkPlayerDataEnd::
+	ds $35d
 
 wLinkDataEnd::
 	ds wLinkData - @
@@ -1342,9 +1341,10 @@ wcb59:: ds 20
 wcb6d:: ds 1
 wcb6e:: ds 22
 wcb84:: ds 100
-wcbe8:: ds 1
-wcbe9:: ds 1
-wcbea:: ds 14
+wcbe8:: dw
+wLinkOTPartyMonTypes::
+	ds 2 * PARTY_LENGTH
+	ds 2
 
 wcbf8:: ds 2
 wcbfa:: ds 1
@@ -1625,14 +1625,14 @@ w2DMenuNumRows:: ds 1
 w2DMenuNumCols:: ds 1
 w2DMenuFlags1:: ds 1
 w2DMenuFlags2:: ds 1
-w2DMenuFlags3:: ds 1
+w2DMenuCursorOffsets:: ds 1
 wMenuJoypadFilter:: ds 1
 wMenuData3End::
 
 wMenuCursorY:: ds 1
 wMenuCursorX:: ds 1
 wCursorOffCharacter:: ds 1
-wCursorCurrentTile:: ds 2
+wCursorCurrentTile:: ds 2 ; cfac
 	ds 3
 
 OverworldDelay:: ; cfb1

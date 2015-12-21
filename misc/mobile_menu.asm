@@ -153,7 +153,7 @@ MobileMenu_InitMenuBuffers: ; 4a071 (12:6071)
 	inc hl
 	xor a ; w2DMenuFlags2
 	ld [hli], a
-	ld a, $20 ; w2DMenuFlags3
+	ld a, $20 ; w2DMenuCursorOffsets
 	ld [hli], a
 	; this is a stupid way to load $c3
 	ld a, A_BUTTON
