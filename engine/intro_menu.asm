@@ -685,7 +685,7 @@ OakSpeech: ; 0x5f99
 	ld [TrainerClass], a
 	call Intro_PrepTrainerPic
 
-	ld b, SCGB_1C
+	ld b, SCGB_FRONTPICPALS
 	call GetSGBLayout
 	call Intro_RotatePalettesLeftFrontpic
 
@@ -706,7 +706,7 @@ OakSpeech: ; 0x5f99
 	ld [TempMonDVs], a
 	ld [TempMonDVs + 1], a
 
-	ld b, SCGB_1C
+	ld b, SCGB_FRONTPICPALS
 	call GetSGBLayout
 	call Intro_WipeInFrontpic
 
@@ -723,7 +723,7 @@ OakSpeech: ; 0x5f99
 	ld [TrainerClass], a
 	call Intro_PrepTrainerPic
 
-	ld b, SCGB_1C
+	ld b, SCGB_FRONTPICPALS
 	call GetSGBLayout
 	call Intro_RotatePalettesLeftFrontpic
 
@@ -736,7 +736,7 @@ OakSpeech: ; 0x5f99
 	ld [CurPartySpecies], a
 	callba DrawIntroPlayerPic
 
-	ld b, SCGB_1C
+	ld b, SCGB_FRONTPICPALS
 	call GetSGBLayout
 	call Intro_RotatePalettesLeftFrontpic
 
@@ -806,7 +806,7 @@ NamePlayer: ; 0x6074
 	ld [CurPartySpecies], a
 	callba DrawIntroPlayerPic
 
-	ld b, SCGB_1C
+	ld b, SCGB_FRONTPICPALS
 	call GetSGBLayout
 	call RotateThreePalettesLeft
 

@@ -26,7 +26,7 @@ SpecialsPointers:: ; c029
 	add_special Special_CheckBothSelectedSameRoom
 	add_special Special_FailedLinkToPast
 	add_special Special_CloseLink
-	add_special Special_AbortLink
+	add_special WaitForOtherPlayerToExit
 	add_special Special_SetBitsForBattleRequest
 	add_special Special_SetBitsForTimeCapsuleRequest
 	add_special Special_CheckTimeCapsuleCompatibility

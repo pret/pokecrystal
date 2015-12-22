@@ -1083,17 +1083,17 @@ GFX_106514:
 INCBIN "gfx/unknown/106514.2bpp"
 
 
-Function106594:: ; 106594
-	ld de, GFX_1065ad
+LoadOverworldFont:: ; 106594
+	ld de, .bgfont
 	ld hl, VTiles1
-	lb bc, BANK(GFX_1065ad), $80
+	lb bc, BANK(.bgfont), $80
 	call Get2bpp
-	ld de, GFX_1065ad + $800
+	ld de, .bgfont + $80 tiles
 	ld hl, VTiles2 tile $7f
-	lb bc, BANK(GFX_1065ad), 1
+	lb bc, BANK(.bgfont), 1
 	call Get2bpp
 	ret
 ; 1065ad
 
-GFX_1065ad:
+.bgfont:
 INCBIN "gfx/unknown/1065ad.2bpp"

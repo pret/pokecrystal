@@ -1,7 +1,11 @@
+LinkCommsBorderGFX:
+INCBIN "gfx/unknown/16cfc1.2bpp"
+; 16d421
+
 __LoadTradeScreenBorder: ; 16d421
-	ld de, GFX_16cfc1
+	ld de, LinkCommsBorderGFX
 	ld hl, VTiles2
-	lb bc, BANK(GFX_16cfc1), 70
+	lb bc, BANK(LinkCommsBorderGFX), 70
 	call Get2bpp
 	ret
 ; 16d42e
@@ -55,19 +59,19 @@ _LinkTextbox: ; 16d61d
 	inc c
 	inc c
 	ld a, $7
-.loop
+.row
 	push bc
 	push hl
-.loop2
+.col
 	ld [hli], a
 	dec c
-	jr nz, .loop2
+	jr nz, .col
 	pop hl
 	ld de, SCREEN_WIDTH
 	add hl, de
 	pop bc
 	dec b
-	jr nz, .loop
+	jr nz, .row
 	ret
 ; 16d640
 
@@ -82,7 +86,7 @@ _LinkTextbox: ; 16d61d
 	pop hl
 	ld de, SCREEN_WIDTH
 	add hl, de
-.loop3
+.loop
 	push hl
 	ld a, $33
 	ld [hli], a
@@ -93,7 +97,7 @@ _LinkTextbox: ; 16d61d
 	ld de, SCREEN_WIDTH
 	add hl, de
 	dec b
-	jr nz, .loop3
+	jr nz, .loop
 
 	ld a, $35
 	ld [hli], a
@@ -133,10 +137,10 @@ _LoadTradeScreenBorder: ; 16d696
 ; 16d69a
 
 
-Function16d69a: ; 16d69a
-	ld de, GFX_16cfc1 + $300
+LinkComms_LoadPleaseWaitTextboxBorderGFX: ; 16d69a
+	ld de, LinkCommsBorderGFX + $30 tiles
 	ld hl, VTiles2 tile $76
-	lb bc, BANK(GFX_16cfc1), 8
+	lb bc, BANK(LinkCommsBorderGFX), 8
 	call Get2bpp
 	ret
 ; 16d6a7

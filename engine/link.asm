@@ -14,14 +14,14 @@ LinkCommunications: ; 28000
 	call UpdateSprites
 	call LoadStandardFont
 	call LoadFontsBattleExtra
-	callba Function16d69a
+	callba LinkComms_LoadPleaseWaitTextboxBorderGFX
 	call WaitBGMap2
 	hlcoord 3, 8
 	ld b, 2
 	ld c, 12
 	ld d, h
 	ld e, l
-	callba Function4d35b
+	callba LinkTextbox2
 	hlcoord 4, 10
 	ld de, String_PleaseWait
 	call PlaceString
@@ -38,14 +38,14 @@ LinkCommunications: ; 28000
 TimeCapsule: ; 2805d
 	call ClearLinkData
 	call Link_PrepPartyData_Gen1
-	call Function28434
+	call FixDataForLinkTransfer
 	xor a
 	ld [wPlayerLinkAction], a
 	call Function87d
 	ld a, [hLinkPlayerNumber]
 	cp $2
 	jr nz, .player_1
-	ld c, $3
+	ld c, 3
 	call DelayFrames
 	xor a
 	ld [hSerialSend], a
@@ -90,7 +90,7 @@ TimeCapsule: ; 2805d
 	ld [rIF], a
 	ld a, $1d
 	ld [rIE], a
-	call Function287ab
+	call Link_CopyRandomNumbers
 	ld hl, OTPlayerName
 	call Link_FindFirstNonControlCharacter_SkipZero
 	push hl
@@ -180,14 +180,14 @@ TimeCapsule: ; 2805d
 Gen2ToGen2LinkComms: ; 28177
 	call ClearLinkData
 	call Link_PrepPartyData_Gen2
-	call Function28434
+	call FixDataForLinkTransfer
 	call Function29dba
 	ld a, [ScriptVar]
 	and a
 	jp z, Function283b2
 	ld a, [hLinkPlayerNumber]
 	cp $2
-	jr nz, .Player2
+	jr nz, .Player1
 	ld c, 3
 	call DelayFrames
 	xor a
@@ -204,7 +204,7 @@ Gen2ToGen2LinkComms: ; 28177
 	ld a, $81
 	ld [rSC], a
 
-.Player2
+.Player1
 	ld de, MUSIC_NONE
 	call PlayMusic
 	ld c, 3
@@ -231,20 +231,20 @@ Gen2ToGen2LinkComms: ; 28177
 	call Function75f
 	ld a, [wLinkMode]
 	cp LINK_TRADECENTER
-	jr nz, .asm_281fd
+	jr nz, .not_trading
 	ld hl, wc9f4
 	ld de, wcb84
 	ld bc, $186
 	call Function283f2
 
-.asm_281fd
+.not_trading
 	xor a
 	ld [rIF], a
 	ld a, $1d
 	ld [rIE], a
 	ld de, MUSIC_NONE
 	call PlayMusic
-	call Function287ab
+	call Link_CopyRandomNumbers
 	ld hl, OTPlayerName
 	call Link_FindFirstNonControlCharacter_SkipZero
 	ld de, wLinkData
@@ -253,17 +253,17 @@ Gen2ToGen2LinkComms: ; 28177
 	ld de, wPlayerTrademonSpecies
 	ld hl, wLinkPlayerPartyMon1Species
 	ld c, $2
-.asm_28224
+.loop1
 	ld a, [de]
 	inc de
 	and a
-	jr z, .asm_28224
+	jr z, .loop1
 	cp $fd
-	jr z, .asm_28224
+	jr z, .loop1
 	cp $fe
-	jr z, .asm_28224
+	jr z, .loop1
 	cp $ff
-	jr z, .asm_28243
+	jr z, .next1
 	push hl
 	push bc
 	ld b, $0
@@ -274,93 +274,92 @@ Gen2ToGen2LinkComms: ; 28177
 	ld [hl], a
 	pop bc
 	pop hl
-	jr .asm_28224
+	jr .loop1
 
-.asm_28243
+.next1
 	ld hl, wc90f
 	dec c
-	jr nz, .asm_28224
+	jr nz, .loop1
 	ld a, [wLinkMode]
 	cp LINK_TRADECENTER
-	jp nz, .asm_282fe
+	jp nz, .skip_mail
 	ld hl, wcb84
-.asm_28254
+.loop2
 	ld a, [hli]
 	cp $20
-	jr nz, .asm_28254
-.asm_28259
+	jr nz, .loop2
+.loop3
 	ld a, [hli]
 	cp $fe
-	jr z, .asm_28259
+	jr z, .loop3
 	cp $20
-	jr z, .asm_28259
+	jr z, .loop3
 	dec hl
 	ld de, wcb84
-	ld bc, $190
+	ld bc, $190 ; 400
 	call CopyBytes
 	ld hl, wcb84
-	ld bc, $c6
-.asm_28272
+	ld bc, $c6 ; 198
+.loop4
 	ld a, [hl]
 	cp $21
-	jr nz, .asm_28279
+	jr nz, .okay1
 	ld [hl], $fe
-
-.asm_28279
+.okay1
 	inc hl
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_28272
+	jr nz, .loop4
 	ld de, wcc9e
-.asm_28282
+.loop5
 	ld a, [de]
 	inc de
 	cp $ff
-	jr z, .asm_28294
+	jr z, .start_copying_mail
 	ld hl, wcc4a
 	dec a
 	ld b, $0
 	ld c, a
 	add hl, bc
 	ld [hl], $fe
-	jr .asm_28282
+	jr .loop5
 
-.asm_28294
+.start_copying_mail
 	ld hl, wcb84
 	ld de, wc9f4
-	ld b, $6
-.asm_2829c
+	ld b, PARTY_LENGTH
+.copy_mail_loop
 	push bc
-	ld bc, $21
+	ld bc, MAIL_MSG_LENGTH + 1
 	call CopyBytes
-	ld a, $e
+	ld a, (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 1)) % $100
 	add e
 	ld e, a
-	ld a, $0
+	ld a, (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 1)) / $100
 	adc d
 	ld d, a
 	pop bc
 	dec b
-	jr nz, .asm_2829c
+	jr nz, .copy_mail_loop
 	ld de, wc9f4
-	ld b, $6
-.asm_282b4
+	ld b, PARTY_LENGTH
+.copy_author_loop
 	push bc
-	ld a, $21
+	ld a, (MAIL_MSG_LENGTH + 1) % $100
 	add e
 	ld e, a
-	ld a, $0
+	ld a, (MAIL_MSG_LENGTH + 1) / $100
 	adc d
 	ld d, a
-	ld bc, $e
+	ld bc, MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 1)
 	call CopyBytes
 	pop bc
 	dec b
-	jr nz, .asm_282b4
-	ld b, $6
+	jr nz, .copy_author_loop
+	ld b, PARTY_LENGTH
 	ld de, wc9f4
-.asm_282cc
+.fix_mail_loop
 	push bc
 	push de
 	callba IsMailEuropean
@@ -385,12 +384,12 @@ Gen2ToGen2LinkComms: ; 28177
 	ld e, l
 	pop bc
 	dec b
-	jr nz, .asm_282cc
+	jr nz, .fix_mail_loop
 	ld de, wcb0e
 	xor a
 	ld [de], a
 
-.asm_282fe
+.skip_mail
 	ld hl, wLinkData
 	ld de, OTPlayerName
 	ld bc, NAME_LENGTH
@@ -416,7 +415,7 @@ Gen2ToGen2LinkComms: ; 28177
 	call z, DelayFrames
 	ld a, [wLinkMode]
 	cp LINK_COLOSSEUM
-	jr nz, .asm_283a9
+	jr nz, .ready_to_trade
 	ld a, CAL
 	ld [OtherTrainerClass], a
 	call ClearScreen
@@ -463,7 +462,7 @@ Gen2ToGen2LinkComms: ; 28177
 	callba LoadPokemonData
 	jp Function28b22
 
-.asm_283a9
+.ready_to_trade
 	ld de, MUSIC_ROUTE_30
 	call PlayMusic
 	jp InitTradeMenuDisplay
@@ -488,7 +487,7 @@ Function283b2: ; 283b2
 	push de
 	ld d, h
 	ld e, l
-	callba Function4d35b
+	callba LinkTextbox2
 	pop de
 	pop hl
 	bccoord 1, 14
@@ -510,7 +509,7 @@ Function283b2: ; 283b2
 Function283f2: ; 283f2
 	ld a, $1
 	ld [hFFCC], a
-.asm_283f6
+.loop
 	ld a, [hl]
 	ld [hSerialSend], a
 	call Function78a
@@ -518,26 +517,26 @@ Function283f2: ; 283f2
 	ld b, a
 	inc hl
 	ld a, $30
-.asm_28401
+.delay_cycles
 	dec a
-	jr nz, .asm_28401
+	jr nz, .delay_cycles
 	ld a, [hFFCC]
 	and a
 	ld a, b
 	pop bc
-	jr z, .asm_28411
+	jr z, .load
 	dec hl
 	xor a
 	ld [hFFCC], a
-	jr .asm_283f6
+	jr .loop
 
-.asm_28411
+.load
 	ld [de], a
 	inc de
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_283f6
+	jr nz, .loop
 	ret
 ; 28419
 
@@ -558,15 +557,15 @@ ClearLinkData: ; 28426
 	ret
 ; 28434
 
-Function28434: ; 28434
+FixDataForLinkTransfer: ; 28434
 	ld hl, wd1f3
 	ld a, $fd
-	ld b,  7
+	ld b, LinkBattleRNs - wd1f3
 .loop1
 	ld [hli], a
 	dec b
 	jr nz, .loop1
-	ld b, 10
+	ld b, TempEnemyMonSpecies - LinkBattleRNs
 .loop2
 	call Random
 	cp $fd
@@ -579,14 +578,14 @@ Function28434: ; 28434
 rept 3
 	ld [hli], a
 endr
-	ld b, $c8
+	ld b, wc6d3 - (wMisc + 3)
 	xor a
 .loop3
 	ld [hli], a
 	dec b
 	jr nz, .loop3
-	ld hl, wc818
-	ld de, wMisc + 10
+	ld hl, wTimeCapsulePartyMon1 - 1 + 6
+	ld de, wc612
 	lb bc, 0, 0
 .loop4
 	inc c
@@ -602,13 +601,11 @@ endr
 	ld b, $d
 	jr z, .got_value
 	ld b, $27
-
 .got_value
 	ld a, c
 	cp b
 	pop bc
 	jr z, .done
-
 .next2
 	inc hl
 	ld a, [hl]
@@ -1163,7 +1160,7 @@ Link_CopyOTData: ; 2879e
 	ret
 ; 287ab
 
-Function287ab: ; 287ab
+Link_CopyRandomNumbers: ; 287ab
 	ld a, [hLinkPlayerNumber]
 	cp $2
 	ret z
@@ -2161,8 +2158,8 @@ Special_EnterTimeCapsule: ; 29c7b
 	ret
 ; 29c92
 
-Special_AbortLink: ; 29c92
-	ld c, $3
+WaitForOtherPlayerToExit: ; 29c92
+	ld c, 3
 	call DelayFrames
 	ld a, -1
 	ld [hLinkPlayerNumber], a
@@ -2173,7 +2170,7 @@ Special_AbortLink: ; 29c92
 	ld [rSC], a
 	ld a, $81
 	ld [rSC], a
-	ld c, $3
+	ld c, 3
 	call DelayFrames
 	xor a
 	ld [rSB], a
@@ -2188,7 +2185,7 @@ Special_AbortLink: ; 29c92
 	ld [rSB], a
 	ld [hSerialReceive], a
 	ld [rSC], a
-	ld c, $3
+	ld c, 3
 	call DelayFrames
 	ld a, -1
 	ld [hLinkPlayerNumber], a
@@ -2348,16 +2345,16 @@ Function29dba: ; 29dba
 	call Function29e0c
 	ld a, [ScriptVar]
 	and a
-	jr z, .asm_29e08
+	jr z, .vblank
 	ld bc, -1
-.asm_29de0
+.wait
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_29de0
+	jr nz, .wait
 	ld a, [wOtherPlayerLinkMode]
 	cp $5
-	jr nz, .asm_29e03
+	jr nz, .script_var
 	ld a, $6
 	ld [wPlayerLinkAction], a
 	ld hl, wcf5b
@@ -2367,14 +2364,14 @@ Function29dba: ; 29dba
 	call Function29e0c
 	ld a, [wOtherPlayerLinkMode]
 	cp $6
-	jr z, .asm_29e08
+	jr z, .vblank
 
-.asm_29e03
+.script_var
 	xor a
 	ld [ScriptVar], a
 	ret
 
-.asm_29e08
+.vblank
 	xor a
 	ld [hVBlank], a
 	ret

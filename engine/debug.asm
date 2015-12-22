@@ -542,7 +542,7 @@ Function81c33: ; 81c33
 	ret
 
 .asm_81c69
-	ld hl, wcda9
+	ld hl, wSGBPals
 	ld a, $1
 	ld [hli], a
 	ld a, $ff
@@ -562,7 +562,7 @@ rept 2
 	ld [hli], a
 endr
 	ld [hl], a
-	ld hl, wcda9
+	ld hl, wSGBPals
 	call Function81f0c
 	hlcoord 10, 2
 	ld de, wc608

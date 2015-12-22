@@ -7,7 +7,6 @@ Predef_LoadSGBLayout: ; 864c
 	cp SCGB_RAM
 	jr nz, .not_ram
 	ld a, [SGBPredef]
-
 .not_ram
 	cp SCGB_FC
 	jp z, Function8ade
@@ -53,7 +52,7 @@ Predef_LoadSGBLayout: ; 864c
 	dw .SGB19
 	dw .SGB1a
 	dw .SGB1b
-	dw .SGB1c
+	dw .SGB_FrontpicPals
 	dw .SGB1d
 	dw .SGB1e
 ; 86ad
@@ -69,8 +68,8 @@ Predef_LoadSGBLayout: ; 864c
 	call Function9809
 
 	ld hl, PalPacket_9ce6
-	ld de, wcda9
-	ld bc, $0010
+	ld de, wSGBPals
+	ld bc, $10
 	call CopyBytes
 
 	ld a, [PlayerHPPal]
@@ -83,17 +82,17 @@ endr
 	add hl, de
 
 	ld a, [hli]
-	ld [wcda9 + 3], a
+	ld [wSGBPals + 3], a
 	ld a, [hli]
-	ld [wcda9 + 4], a
+	ld [wSGBPals + 4], a
 	ld a, [hli]
-	ld [wcda9 + 5], a
+	ld [wSGBPals + 5], a
 	ld a, [hl]
-	ld [wcda9 + 6], a
+	ld [wSGBPals + 6], a
 
 	ld a, [EnemyHPPal]
 	ld l, a
-	ld h, $0
+	ld h, 0
 rept 2
 	add hl, hl
 endr
@@ -101,41 +100,41 @@ endr
 	ld de, Palettes_a8be
 	add hl, de
 	ld a, [hli]
-	ld [wcda9 + 9], a
+	ld [wSGBPals + 9], a
 	ld a, [hli]
-	ld [wcda9 + 10], a
+	ld [wSGBPals + 10], a
 	ld a, [hli]
-	ld [wcda9 + 11], a
+	ld [wSGBPals + 11], a
 	ld a, [hl]
-	ld [wcda9 + 12], a
+	ld [wSGBPals + 12], a
 
 	ld hl, PalPacket_9cf6
-	ld de, wcda9 + $10
-	ld bc, $0010
+	ld de, wSGBPals + $10
+	ld bc, $10
 	call CopyBytes
 
 	call GetBattlemonBackpicPalettePointer
 
 	ld a, [hli]
-	ld [wcda9 + $13], a
+	ld [wSGBPals + $13], a
 	ld a, [hli]
-	ld [wcda9 + $14], a
+	ld [wSGBPals + $14], a
 	ld a, [hli]
-	ld [wcda9 + $15], a
+	ld [wSGBPals + $15], a
 	ld a, [hl]
-	ld [wcda9 + $16], a
+	ld [wSGBPals + $16], a
 	call GetEnemyFrontpicPalettePointer
 	ld a, [hli]
-	ld [wcda9 + $19], a
+	ld [wSGBPals + $19], a
 	ld a, [hli]
-	ld [wcda9 + $1a], a
+	ld [wSGBPals + $1a], a
 	ld a, [hli]
-	ld [wcda9 + $1b], a
+	ld [wSGBPals + $1b], a
 	ld a, [hl]
-	ld [wcda9 + $1c], a
+	ld [wSGBPals + $1c], a
 
-	ld hl, wcda9
-	ld de, wcda9 + $10
+	ld hl, wSGBPals
+	ld de, wSGBPals + $10
 	ld a, SCGB_01
 	ld [SGBPredef], a
 	ret
@@ -143,11 +142,11 @@ endr
 
 .SGB0e: ; 873c
 	ld hl, PalPacket_9bd6
-	ld de, wcda9
-	ld bc, $0010
+	ld de, wSGBPals
+	ld bc, $10
 	call CopyBytes
 
-	ld hl, wcda9 + 1
+	ld hl, wSGBPals + 1
 	ld [hl], $10
 rept 2
 	inc hl
@@ -156,7 +155,7 @@ endr
 	ld a, [PlayerHPPal]
 	add $2f
 	ld [hl], a
-	ld hl, wcda9
+	ld hl, wSGBPals
 	ld de, BlkPacket_9ad6
 	ret
 ; 875c
@@ -169,53 +168,53 @@ endr
 
 .SGB03: ; 8763
 	ld hl, PalPacket_9ce6
-	ld de, wcda9
-	ld bc, $0010
+	ld de, wSGBPals
+	ld bc, $10
 	call CopyBytes
 	ld a, [wcda1]
 	ld l, a
-	ld h, $0
+	ld h, 0
 rept 2
 	add hl, hl
 endr
 	ld de, Palettes_a8be
 	add hl, de
 	ld a, [hli]
-	ld [wcda9 + 3], a
+	ld [wSGBPals + 3], a
 	ld a, [hli]
-	ld [wcda9 + 4], a
+	ld [wSGBPals + 4], a
 	ld a, [hli]
-	ld [wcda9 + 5], a
+	ld [wSGBPals + 5], a
 	ld a, [hl]
-	ld [wcda9 + 6], a
+	ld [wSGBPals + 6], a
 	ld a, [CurPartySpecies]
-	ld bc, wd10e + 21
+	ld bc, TempMonDVs
 	call GetPlayerOrMonPalettePointer
 	ld a, [hli]
-	ld [wcda9 + 9], a
+	ld [wSGBPals + 9], a
 	ld a, [hli]
-	ld [wcda9 + 10], a
+	ld [wSGBPals + 10], a
 	ld a, [hli]
-	ld [wcda9 + 11], a
+	ld [wSGBPals + 11], a
 	ld a, [hl]
-	ld [wcda9 + 12], a
-	ld hl, wcda9
+	ld [wSGBPals + 12], a
+	ld hl, wSGBPals
 	ld de, BlkPacket_9ac6
 	ret
 ; 87ab
 
 .SGB0a: ; 87ab
 	ld hl, PalPacket_9c56
-	ld de, wcda9 + 1
+	ld de, wSGBPals + 1
 	ret
 ; 87b2
 
 .SGB04: ; 87b2
 	ld hl, PalPacket_9ce6
-	ld de, wcda9
-	ld bc, $0010
+	ld de, wSGBPals
+	ld bc, $10
 	call CopyBytes
-	ld hl, wcda9 + 3
+	ld hl, wSGBPals + 3
 	ld [hl], $9f
 	inc hl
 	ld [hl], $2a
@@ -226,24 +225,24 @@ endr
 	ld a, [CurPartySpecies]
 	call GetMonPalettePointer_
 	ld a, [hli]
-	ld [wcda9 + 9], a
+	ld [wSGBPals + 9], a
 	ld a, [hli]
-	ld [wcda9 + 10], a
+	ld [wSGBPals + 10], a
 	ld a, [hli]
-	ld [wcda9 + 11], a
+	ld [wSGBPals + 11], a
 	ld a, [hl]
-	ld [wcda9 + 12], a
-	ld hl, wcda9
+	ld [wSGBPals + 12], a
+	ld hl, wSGBPals
 	ld de, BlkPacket_9ae6
 	ret
 ; 87e9
 
 .SGB17: ; 87e9
 	ld hl, PalPacket_9ce6
-	ld de, wcda9
-	ld bc, $0010
+	ld de, wSGBPals
+	ld bc, $10
 	call CopyBytes
-	ld hl, wcda9 + 3
+	ld hl, wSGBPals + 3
 	ld [hl], $9f
 	inc hl
 	ld [hl], $2a
@@ -252,17 +251,17 @@ endr
 	inc hl
 	ld [hl], $19
 	ld a, [CurPartySpecies]
-	ld bc, wd10e + 21
+	ld bc, TempMonDVs
 	call GetPlayerOrMonPalettePointer
 	ld a, [hli]
-	ld [wcda9 + 9], a
+	ld [wSGBPals + 9], a
 	ld a, [hli]
-	ld [wcda9 + 10], a
+	ld [wSGBPals + 10], a
 	ld a, [hli]
-	ld [wcda9 + 11], a
+	ld [wSGBPals + 11], a
 	ld a, [hl]
-	ld [wcda9 + 12], a
-	ld hl, wcda9
+	ld [wSGBPals + 12], a
+	ld hl, wSGBPals
 	ld de, BlkPacket_9ae6
 	ret
 ; 8823
@@ -275,10 +274,10 @@ endr
 
 .SGB10: ; 882a
 	ld hl, PalPacket_9ce6
-	ld de, wcda9
-	ld bc, $0010
+	ld de, wSGBPals
+	ld bc, $10
 	call CopyBytes
-	ld hl, wcda9 + 3
+	ld hl, wSGBPals + 3
 	ld [hl], $9f
 	inc hl
 	ld [hl], $2a
@@ -286,7 +285,7 @@ endr
 	ld [hl], $5a
 	inc hl
 	ld [hl], $19
-	ld hl, wcda9
+	ld hl, wSGBPals
 	ld de, BlkPacket_9a86
 	ret
 ; 884b
@@ -361,7 +360,7 @@ endr
 .SGB11: ; 889e
 	ld hl, BlkPacket_9a86
 	ld de, PlayerLightScreenCount
-	ld bc, $0010
+	ld bc, $10
 	call CopyBytes
 	ld hl, PalPacket_9bb6
 	ld de, BlkPacket_9a86
@@ -370,14 +369,14 @@ endr
 
 .SGB09: ; 88b1
 	ld hl, PalPacket_9bd6
-	ld de, wcda9
-	ld bc, $0010
+	ld de, wSGBPals
+	ld bc, $10
 	call CopyBytes
-	call .GetPermission
-	ld hl, wcda9 + 1
+	call .GetMapPalsIndex
+	ld hl, wSGBPals + 1
 	ld [hld], a
 	ld de, BlkPacket_9a86
-	ld a, SCGB_09
+	ld a, SCGB_MAPPALS
 	ld [SGBPredef], a
 	ret
 ; 88cd
@@ -385,14 +384,14 @@ endr
 .SGB0b: ; 88cd
 	push bc
 	ld hl, PalPacket_9ce6
-	ld de, wcda9
-	ld bc, $0010
+	ld de, wSGBPals
+	ld bc, $10
 	call CopyBytes
 	pop bc
 	ld a, c
 	and a
 	jr z, .asm_88ef
-	ld hl, wcda9 + 3
+	ld hl, wSGBPals + 3
 	ld [hl], $e7
 	inc hl
 	ld [hl], $1c
@@ -404,7 +403,7 @@ endr
 
 .asm_88ef
 	ld hl, PartyMon1DVs
-	ld bc, $0030
+	ld bc, $30
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld c, l
@@ -412,16 +411,16 @@ endr
 	ld a, [PlayerHPPal]
 	call GetPlayerOrMonPalettePointer
 	ld a, [hli]
-	ld [wcda9 + 3], a
+	ld [wSGBPals + 3], a
 	ld a, [hli]
-	ld [wcda9 + 4], a
+	ld [wSGBPals + 4], a
 	ld a, [hli]
-	ld [wcda9 + 5], a
+	ld [wSGBPals + 5], a
 	ld a, [hl]
-	ld [wcda9 + 6], a
+	ld [wSGBPals + 6], a
 
 .asm_8913
-	ld hl, wcda9
+	ld hl, wSGBPals
 	ld de, BlkPacket_9a86
 	ret
 ; 891a
@@ -441,20 +440,20 @@ endr
 
 .SGB12: ; 8928
 	ld hl, PalPacket_9bd6
-	ld de, wcda9
-	ld bc, $0010
+	ld de, wSGBPals
+	ld bc, $10
 	call CopyBytes
 	ld hl, BlkPacket_9a86
-	ld de, wcda9 + $10
-	ld bc, $0010
+	ld de, wSGBPals + $10
+	ld bc, $10
 	call CopyBytes
-	call .GetPermission
-	ld hl, wcda9 + 1
+	call .GetMapPalsIndex
+	ld hl, wSGBPals + 1
 	ld [hl], a
-	ld hl, wcda9 + 3
+	ld hl, wSGBPals + 3
 	ld [hl], $2e
-	ld hl, wcda9 + $13
-	ld a, $5
+	ld hl, wSGBPals + $13
+	ld a, 5
 	ld [hli], a
 	ld a, [wMenuBorderLeftCoord]
 	ld [hli], a
@@ -464,15 +463,15 @@ endr
 	ld [hli], a
 	ld a, [wMenuBorderBottomCoord]
 	ld [hl], a
-	ld hl, wcda9
-	ld de, wcda9 + $10
+	ld hl, wSGBPals
+	ld de, wSGBPals + $10
 	ret
 ; 8969
 
 .SGB1e: ; 8969
 	ld hl, PalPacket_9ce6
-	ld de, wcda9
-	ld bc, $0010
+	ld de, wSGBPals
+	ld bc, $10
 	call CopyBytes
 	ld a, [CurPartySpecies]
 	ld l, a
@@ -490,14 +489,14 @@ endr
 	ld b, 0
 	add hl, bc
 	ld a, [hli]
-	ld [wcda9 + 3], a
+	ld [wSGBPals + 3], a
 	ld a, [hli]
-	ld [wcda9 + 4], a
+	ld [wSGBPals + 4], a
 	ld a, [hli]
-	ld [wcda9 + 5], a
+	ld [wSGBPals + 5], a
 	ld a, [hl]
-	ld [wcda9 + 6], a
-	ld hl, wcda9
+	ld [wSGBPals + 6], a
+	ld hl, wSGBPals
 	ld de, BlkPacket_9a86
 	ret
 ; 89a6
@@ -510,21 +509,21 @@ endr
 
 .SGB1a: ; 89ad
 	ld hl, PalPacket_9ce6
-	ld de, wcda9
-	ld bc, $0010
+	ld de, wSGBPals
+	ld bc, $10
 	call CopyBytes
 	ld a, [CurPartySpecies]
-	ld bc, wd10e + 21
+	ld bc, TempMonDVs
 	call GetPlayerOrMonPalettePointer
 	ld a, [hli]
-	ld [wcda9 + 3], a
+	ld [wSGBPals + 3], a
 	ld a, [hli]
-	ld [wcda9 + 4], a
+	ld [wSGBPals + 4], a
 	ld a, [hli]
-	ld [wcda9 + 5], a
+	ld [wSGBPals + 5], a
 	ld a, [hl]
-	ld [wcda9 + 6], a
-	ld hl, wcda9
+	ld [wSGBPals + 6], a
+	ld hl, wSGBPals
 	ld de, BlkPacket_9a86
 	ret
 ; 89d9
@@ -535,99 +534,99 @@ endr
 	ret
 ; 89e0
 
-.SGB1c: ; 89e0
+.SGB_FrontpicPals: ; 89e0
 	ld hl, PalPacket_9ce6
-	ld de, wcda9
-	ld bc, $0010
+	ld de, wSGBPals
+	ld bc, $10
 	call CopyBytes
 	ld a, [CurPartySpecies]
-	ld bc, wd10e + 21
+	ld bc, TempMonDVs
 	call GetFrontpicPalettePointer
 	ld a, [hli]
-	ld [wcda9 + 3], a
+	ld [wSGBPals + 3], a
 	ld a, [hli]
-	ld [wcda9 + 4], a
+	ld [wSGBPals + 4], a
 	ld a, [hli]
-	ld [wcda9 + 5], a
+	ld [wSGBPals + 5], a
 	ld a, [hl]
-	ld [wcda9 + 6], a
-	ld hl, wcda9
+	ld [wSGBPals + 6], a
+	ld hl, wSGBPals
 	ld de, BlkPacket_9a86
 	ret
 ; 8a0c
 
-.GetPermission: ; 8a0c
+.GetMapPalsIndex: ; 8a0c
 	ld a, [TimeOfDayPal]
-	cp $2
-	jr c, .asm_8a16
+	cp NITE
+	jr c, .morn_day
 	ld a, $19
 	ret
 
-.asm_8a16
+.morn_day
 	ld a, [wPermission]
-	cp $2
-	jr z, .asm_8a39
-	cp $4
-	jr z, .asm_8a3c
-	cp $7
-	jr z, .asm_8a3c
-	cp $5
-	jr z, .asm_8a3f
-	cp $6
-	jr z, .asm_8a42
+	cp ROUTE
+	jr z, .route
+	cp CAVE
+	jr z, .cave
+	cp DUNGEON
+	jr z, .cave
+	cp PERM_5
+	jr z, .perm5
+	cp GATE
+	jr z, .gate
 	ld a, [MapGroup]
 	ld e, a
 	ld d, 0
-	ld hl, .Unknown_8a45
+	ld hl, .SGBRoofPalInds
 	add hl, de
 	ld a, [hl]
 	ret
 
-.asm_8a39
-	ld a, $0
+.route
+	ld a, $00
 	ret
 
-.asm_8a3c
+.cave
 	ld a, $18
 	ret
 
-.asm_8a3f
-	ld a, $6
+.perm5
+	ld a, $06
 	ret
 
-.asm_8a42
-	ld a, $3
+.gate
+	ld a, $03
 	ret
 ; 8a45
 
-.Unknown_8a45: ; 8a45
-	db $00
-	db $12
-	db $14
-	db $18
-	db $11
-	db $15
-	db $09
-	db $04
-	db $0f
-	db $16
-	db $0e
-	db $10
-	db $06
-	db $01
-	db $03
-	db $06
-	db $0b
-	db $08
-	db $05
-	db $17
-	db $08
-	db $07
-	db $13
-	db $02
-	db $0c
-	db $0a
-	db $0d
+.SGBRoofPalInds: ; 8a45
+	db $00 ; Unused
+	db $12 ; Olivine
+	db $14 ; Mahogany
+	db $18 ; Various Dungeons
+	db $11 ; Ecruteak
+	db $15 ; Blackthorn
+	db $09 ; Cinnabar
+	db $04 ; Cerulean
+	db $0f ; Azalea
+	db $16 ; Lake Of Rage
+	db $0e ; Violet
+	db $10 ; Goldenrod
+	db $06 ; Vermilion
+	db $01 ; Palette
+	db $03 ; Pewter
+	db $06 ; Fast Ship
+	db $0b ; Indigo Plateau
+	db $08 ; Fuchsia
+	db $05 ; Lavender
+	db $17 ; Silver Cave Outside
+	db $08 ; Pokemon Center 2F
+	db $07 ; Celadon
+	db $13 ; Cianwood
+	db $02 ; Viridian
+	db $0c ; New Bark
+	db $0a ; Saffron
+	db $0d ; Cherrygrove
 ; 8a60
 
 .Finish: ; 8a60

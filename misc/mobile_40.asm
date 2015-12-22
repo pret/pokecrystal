@@ -1,6 +1,3 @@
-
-SECTION "bank40", ROMX, BANK[$40]
-
 Function100000: ; 100000
 ; d: 1 or 2
 ; e: bank

@@ -8,7 +8,7 @@
 	const SCGB_06
 	const SCGB_07
 	const SCGB_08
-	const SCGB_09
+	const SCGB_MAPPALS
 	const SCGB_0A
 	const SCGB_0B
 	const SCGB_0C
@@ -19,7 +19,7 @@
 	const SCGB_11
 	const SCGB_12
 	const SCGB_13
-	const SCGB_14
+	const SCGB_PACKPALS
 	const SCGB_15
 	const SCGB_16
 	const SCGB_17
@@ -27,7 +27,7 @@
 	const SCGB_19
 	const SCGB_1A
 	const SCGB_1B
-	const SCGB_1C
+	const SCGB_FRONTPICPALS
 	const SCGB_1D
 	const SCGB_1E
 

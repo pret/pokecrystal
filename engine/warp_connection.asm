@@ -289,7 +289,7 @@ Function1047a3: ; 1047a3 (41:47a3)
 	ld [hli], a
 	dec c
 	jr nz, .column
-	ld bc, $20 - SCREEN_WIDTH
+	ld bc, BG_MAP_WIDTH - SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	dec b
@@ -307,11 +307,11 @@ LoadGraphics: ; 1047cf
 	ld [hTileAnimFrame], a
 	callba RefreshSprites
 	call LoadFontsExtra
-	callba Function106594
+	callba LoadOverworldFont
 	ret
 
 LoadMapPalettes: ; 1047eb
-	ld b, SCGB_09
+	ld b, SCGB_MAPPALS
 	jp GetSGBLayout
 ; 1047f0
 
@@ -329,7 +329,7 @@ RefreshMapSprites: ; 1047f0
 	call Function2e31
 .skip
 	ld a, [wPlayerSpriteSetupFlags]
-	and $1c
+	and %00011100
 	ld [wPlayerSpriteSetupFlags], a
 	ret
 

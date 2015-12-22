@@ -191,7 +191,7 @@ Function4a94e: ; 4a94e
 	xor a
 	ld [wd018], a
 	ld [wd019], a
-	ld b, SCGB_14
+	ld b, SCGB_PACKPALS
 	call GetSGBLayout
 	call SetPalettes
 	call Function4aa22

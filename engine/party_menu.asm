@@ -125,7 +125,7 @@ endr
 
 PlacePartyHPBar: ; 500cf
 	xor a
-	ld [wcda9], a
+	ld [wSGBPals], a
 	ld a, [PartyCount]
 	and a
 	ret z
@@ -144,7 +144,7 @@ PlacePartyHPBar: ; 500cf
 	ld b, $0
 	call DrawBattleHPBar
 	ld hl, wcd9b
-	ld a, [wcda9]
+	ld a, [wSGBPals]
 	ld c, a
 	ld b, $0
 	add hl, bc
@@ -153,7 +153,7 @@ PlacePartyHPBar: ; 500cf
 	call GetSGBLayout
 
 .skip
-	ld hl, wcda9
+	ld hl, wSGBPals
 	inc [hl]
 	pop hl
 	ld de, 2 * SCREEN_WIDTH

@@ -11,7 +11,6 @@ Predef_LoadSGBLayoutCGB: ; 8d59
 	cp SCGB_RAM
 	jr nz, .not_ram
 	ld a, [SGBPredef]
-
 .not_ram
 	cp SCGB_FC
 	jp z, Function96f3
@@ -62,7 +61,7 @@ Predef_LoadSGBLayoutCGB: ; 8d59
 	dw _CGB19
 	dw _CGB1a
 	dw _CGB1b
-	dw _CGB1c
+	dw _CGB_FrontpicPals
 	dw _CGB1d
 	dw _CGB1e
 ; 8db8
@@ -289,7 +288,7 @@ Unknown_8f6a: ; 8f6a
 _CGB04: ; 8f70
 	ld de, UnknBGPals
 	ld a, $1d
-	call GetAthPalletFromPalettes9df6
+	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	ld a, [CurPartySpecies]
 	cp $ff
@@ -336,7 +335,7 @@ Palette8fc2: ; 8fc2
 _CGB17: ; 8fca
 	ld de, UnknBGPals
 	ld a, $1d
-	call GetAthPalletFromPalettes9df6
+	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	ld a, [CurPartySpecies]
 	cp $ff
@@ -396,7 +395,7 @@ Palette9036: ; 9036
 _CGB16: ; 903e
 	ld de, UnknBGPals
 	ld a, $1d
-	call GetAthPalletFromPalettes9df6
+	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	ld a, [CurPartySpecies]
 	call GetMonPalettePointer_
@@ -474,7 +473,7 @@ _CGB06: ; 90f8
 	call WipeAttrMap
 	ld de, UnknOBPals
 	ld a, $3c
-	call GetAthPalletFromPalettes9df6
+	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	hlcoord 0, 6, AttrMap
 	lb bc, 12, SCREEN_WIDTH
@@ -539,12 +538,12 @@ Palette_9156: ; 9156
 Function9166: ; 9166
 	ld de, UnknBGPals
 	ld a, $38
-	call GetAthPalletFromPalettes9df6
+	call GetPredefPal
 	call LoadHLPaletteIntoDE
 
 	ld de, UnknOBPals
 	ld a, $39
-	call GetAthPalletFromPalettes9df6
+	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	call WipeAttrMap
 	ret
@@ -555,7 +554,7 @@ Function9180: ; 9180
 	call CopyFourPalettes
 	ld de, UnknOBPals
 	ld a, $3a
-	call GetAthPalletFromPalettes9df6
+	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	call WipeAttrMap
 	ret
@@ -587,8 +586,8 @@ _CGB08: ; 91ad
 ; 91c8
 
 _CGB09: ; 91c8
-	call Functionb1de
-	ld a, SCGB_09
+	call LoadMapPals
+	ld a, SCGB_MAPPALS
 	ld [SGBPredef], a
 	ret
 ; 91d1
@@ -609,7 +608,7 @@ _CGB0b: ; 91e4
 	and a
 	jr z, .pokemon
 	ld a, $1a
-	call GetAthPalletFromPalettes9df6
+	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	jr .got_palette
 
@@ -670,7 +669,7 @@ _CGB18: ; 925e
 	call CopyFourPalettes
 	ld de, UnknOBPals
 	ld a, $4c
-	call GetAthPalletFromPalettes9df6
+	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	ld a, [rSVBK]
 	push af
@@ -715,7 +714,7 @@ _CGB15: ; 9289
 	call GetTrainerPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
 	ld a, $24
-	call GetAthPalletFromPalettes9df6
+	call GetPredefPal
 	call LoadHLPaletteIntoDE
 
 	hlcoord 0, 0, AttrMap
@@ -793,7 +792,7 @@ _CGB15: ; 9289
 _CGB0e: ; 9373
 	ld de, UnknBGPals
 	ld a, $10
-	call GetAthPalletFromPalettes9df6
+	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	ld a, [PlayerHPPal]
 	ld l, a
@@ -830,7 +829,7 @@ _CGB0f: ; 93a6
 _CGB10: ; 93ba
 	ld de, UnknBGPals
 	ld a, $1d
-	call GetAthPalletFromPalettes9df6
+	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	call WipeAttrMap
 	call ApplyAttrMap
@@ -850,11 +849,11 @@ _CGB14: ; 93d3
 	bit 0, a
 	jr z, .tutorial_male
 
-	ld hl, Palettes_9469
+	ld hl, .KrisPackPals
 	jr .got_gender
 
 .tutorial_male
-	ld hl, Palettes_9439
+	ld hl, .ChrisPackPals
 
 .got_gender
 	ld de, UnknBGPals
@@ -889,7 +888,7 @@ _CGB14: ; 93d3
 	ret
 ; 9439
 
-Palettes_9439: ; 9439
+.ChrisPackPals: ; 9439
 	RGB 31, 31, 31
 	RGB 15, 15, 31
 	RGB 00, 00, 31
@@ -921,7 +920,7 @@ Palettes_9439: ; 9439
 	RGB 00, 00, 00
 ; 9469
 
-Palettes_9469: ; 9469
+.KrisPackPals: ; 9469
 	RGB 31, 31, 31
 	RGB 31, 14, 31
 	RGB 31, 07, 31
@@ -1010,13 +1009,13 @@ _CGB13: ; 94d0
 _CGB19: ; 94fa
 	ld de, UnknBGPals
 	ld a, $4e
-	call GetAthPalletFromPalettes9df6
+	call GetPredefPal
 	call LoadHLPaletteIntoDE
-	ld hl, Palette_9521
+	ld hl, .Palette
 	ld de, UnknOBPals
 	call LoadHLPaletteIntoDE
-	ld hl, Palette_9521
-	ld de, UnknOBPals + 8
+	ld hl, .Palette
+	ld de, UnknOBPals + 1 palettes
 	call LoadHLPaletteIntoDE
 	call WipeAttrMap
 	call ApplyAttrMap
@@ -1024,7 +1023,7 @@ _CGB19: ; 94fa
 	ret
 ; 9521
 
-Palette_9521: ; 9521
+.Palette: ; 9521
 	RGB 31, 31, 31
 	RGB 13, 11, 00
 	RGB 23, 12, 28
@@ -1058,18 +1057,18 @@ _CGB1b: ; 9555
 	call CopyFourPalettes
 	ld hl, Palettes_b681
 	ld de, UnknOBPals
-	ld bc, $8
+	ld bc, 1 palettes
 	ld a, $5
 	call FarCopyWRAM
-	ld de, UnknOBPals + $38
+	ld de, UnknOBPals + 7 palettes
 	ld a, $1c
-	call GetAthPalletFromPalettes9df6
+	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	call WipeAttrMap
 	ret
 ; 9578
 
-_CGB1c: ; 9578
+_CGB_FrontpicPals: ; 9578
 	ld de, UnknBGPals
 	ld a, [CurPartySpecies]
 	ld bc, TempMonDVs
@@ -1082,9 +1081,9 @@ _CGB1c: ; 9578
 ; 9591
 
 _CGB1d: ; 9591
-	ld hl, Palette95e0
+	ld hl, .Palettes
 	ld de, UnknBGPals
-	ld bc, $10
+	ld bc, 2 palettes
 	ld a, $5
 	call FarCopyWRAM
 	call ApplyPals
@@ -1113,7 +1112,7 @@ _CGB1d: ; 9591
 	ret
 ; 95e0
 
-Palette95e0: ; 95e0
+.Palettes: ; 95e0
 	RGB 31, 31, 31
 	RGB 16, 31, 14
 	RGB 05, 14, 21

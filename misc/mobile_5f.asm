@@ -274,29 +274,29 @@ CheckStringForErrors_IgnoreTerminator: ; 17d0b3
 
 Function17d0f3: ; 17d0f3
 	ld a, [$c608 + 5]
-	ld [wc702], a
+	ld [wOTTrademonSpecies], a
 	ld [CurPartySpecies], a
 	ld a, [wcd81]
 	ld [wc74e], a
 	ld hl, $c63d
-	ld de, wc724
-	ld bc, $0005
+	ld de, wOTTrademonOTName
+	ld bc, 5
 	call CopyBytes
-	ld a, $50
+	ld a, "@"
 	ld [de], a
 	ld a, [$c608 + 11]
-	ld [wEnemyWrapCount], a
+	ld [wOTTrademonID], a
 	ld a, [$c608 + 12]
-	ld [wPlayerCharging], a
+	ld [wOTTrademonID + 1], a
 	ld hl, $c608 + 26
 	ld a, [hli]
-	ld [wEnemyTrappingMove], a
+	ld [wOTTrademonDVs], a
 	ld a, [hl]
-	ld [wPlayerWrapCount], a
+	ld [wOTTrademonDVs + 1], a
 	ld bc, $c608 + 5
 	callba GetCaughtGender
 	ld a, c
-	ld [wEnemyCharging], a
+	ld [wOTTrademonCaughtData], a
 	call SpeechTextBox
 	call FadeToMenu
 	callba Function10804d

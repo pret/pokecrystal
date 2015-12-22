@@ -590,6 +590,8 @@ wEnemyMoveStruct::  ds MOVE_LENGTH ; c608
 wc60f::
 wPlayerMoveStruct:: ds MOVE_LENGTH ; c60f
 wc616::
+	ds -4
+wc612:: ds 4
 EnemyMonNick::  ds PKMN_NAME_LENGTH ; c616
 	ds -5
 wInitHourBuffer:: ds 5
@@ -1487,7 +1489,7 @@ EnemyHPPal:: ; cd9a
 
 wcd9b:: ds 6
 wcda1:: ds 8
-wcda9:: ds 48
+wSGBPals:: ds 48 ; cda9
 
 AttrMap:: ; cdd9
 ; 20x18 grid of palettes for 8x8 tiles
@@ -2029,7 +2031,6 @@ wd10b:: ds 1
 wItemQuantityChangeBuffer:: ds 1
 wItemQuantityBuffer:: ds 1
 
-wd10e::
 TempMon::
 	party_struct TempMon
 
@@ -2090,8 +2091,8 @@ wMetatileStandingY:: ds 1
 wMetatileStandingX:: ds 1
 wSecondMapHeaderBank:: ds 1
 wTileset:: ds 1
-wPermission:: ds 1
-wSecondMapHeaderAddr:: dw
+wPermission:: ds 1 ; d19a
+wSecondMapHeaderAddr:: dw ; d19b
 
 ; width/height are in blocks (2x2 walkable tiles, 4x4 graphics tiles)
 MapHeader:: ; d19d

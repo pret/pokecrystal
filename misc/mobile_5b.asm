@@ -863,6 +863,3 @@ Unknown_16cfb9:
 	RGB 07, 07, 07
 
 ; 16cfc1
-
-GFX_16cfc1:
-INCBIN "gfx/unknown/16cfc1.2bpp"

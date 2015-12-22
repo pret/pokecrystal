@@ -59,7 +59,7 @@ UnownPrinter: ; 16be4
 	ld [TempMonDVs], a
 	ld [TempMonDVs + 1], a
 
-	ld b, SCGB_1C
+	ld b, SCGB_FRONTPICPALS
 	call GetSGBLayout
 	call SetPalettes
 

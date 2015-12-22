@@ -5955,7 +5955,7 @@ Function1163c0: ; 1163c0
 	call ByteFill
 	call DelayFrame
 	callba Function14146
-	ld b, SCGB_09
+	ld b, SCGB_MAPPALS
 	call GetSGBLayout
 	ld a, [rSVBK]
 	push af

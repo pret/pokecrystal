@@ -44,7 +44,7 @@ CloseText:: ; 2dcf
 	ld [hWY], a
 	call ReplaceKrisSprite
 	callba ReturnFromMapSetupScript
-	callba Function106594
+	callba LoadOverworldFont
 	ret
 ; 2e08
 

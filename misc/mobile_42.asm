@@ -1,6 +1,3 @@
-
-SECTION "bank42", ROMX, BANK[$42]
-
 Function108000: ; 108000
 	ld a, $80
 	ld [wcf65], a

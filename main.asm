@@ -2868,7 +2868,7 @@ FlyFunction: ; ca3b
 	callba Function561d
 	call DelayFrame
 	call ReplaceKrisSprite
-	callba Function106594
+	callba LoadOverworldFont
 	ret
 ; cade
 
@@ -9674,10 +9674,10 @@ endr
 ; 48e93
 
 PackFGFXPointers: ; 48e93
-	dw PackFGFX + $f0 * 1
-	dw PackFGFX + $f0 * 3
-	dw PackFGFX + $f0 * 0
-	dw PackFGFX + $f0 * 2
+	dw PackFGFX + (15 tiles) * 1
+	dw PackFGFX + (15 tiles) * 3
+	dw PackFGFX + (15 tiles) * 0
+	dw PackFGFX + (15 tiles) * 2
 ; 48e9b
 
 PackFGFX: ; 48e9b
@@ -9689,7 +9689,7 @@ Special_MoveTutor: ; 4925b
 	call ClearBGPalettes
 	call ClearScreen
 	call DelayFrame
-	ld b, SCGB_14
+	ld b, SCGB_PACKPALS
 	call GetSGBLayout
 	xor a
 	ld [wItemAttributeParamBuffer], a
@@ -10289,7 +10289,7 @@ Function4d354: ; 4d354
 	ret
 ; 4d35b
 
-Function4d35b: ; 4d35b
+LinkTextbox2: ; 4d35b
 	ld h, d
 	ld l, e
 	push bc
@@ -14720,11 +14720,11 @@ DrawIntroPlayerPic: ; 88874
 ; Draw the player pic at (6,4).
 
 ; Get class
-	ld e, 0
+	ld e, CHRIS
 	ld a, [PlayerGender]
 	bit 0, a
 	jr z, .GotClass
-	ld e, 1
+	ld e, KRIS
 .GotClass
 	ld a, e
 	ld [TrainerClass], a
@@ -15310,6 +15310,8 @@ INCLUDE "engine/npctrade.asm"
 
 INCLUDE "event/mom_phone.asm"
 
+SECTION "bank40", ROMX, BANK[$40]
+
 INCLUDE "misc/mobile_40.asm"
 
 SECTION "bank41", ROMX, BANK[$41]
@@ -15323,6 +15325,8 @@ INCLUDE "engine/mysterygift.asm"
 INCLUDE "battle/used_move_text.asm"
 
 INCLUDE "misc/mobile_41.asm"
+
+SECTION "bank42", ROMX, BANK[$42]
 
 INCLUDE "misc/mobile_42.asm"
 

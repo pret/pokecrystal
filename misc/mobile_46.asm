@@ -3348,7 +3348,7 @@ Function1197dc:
 Function119800: ; 119800
 	ld a, $fd
 	ld [$c6d0], a
-	ld [wc702], a
+	ld [wOTTrademonSpecies], a
 	ld a, [wcd81]
 	ld [wc74e], a
 	ld a, [wJumptableIndex]
@@ -7594,26 +7594,32 @@ Function11b6b4: ; 11b6b4
 	ld [wc708], a
 	ld a, [wcd31]
 	ld [wc709], a
-	ld a, $8
-	ld [BGMapBuffer], a
-	ld a, $c7
+
+	ld a, $c708 % $100
+	ld [wcd20], a
+	ld a, $c708 / $100
 	ld [wcd21], a
-	ld a, $d
-	ld [CreditsTimer], a
-	ld a, $c6
+
+	ld a, $c60d % $100 ; Partymon Struct
+	ld [wcd22], a
+	ld a, $c60d / $100
 	ld [wcd23], a
-	ld a, $3d
+
+	ld a, $c63d % $100 ; OT
 	ld [wcd24], a
-	ld a, $c6
+	ld a, $c63d / $100
 	ld [wcd25], a
-	ld a, $42
+
+	ld a, $c642 % $100 ; Nickname
 	ld [wcd26], a
-	ld a, $c6
+	ld a, $c642 / $100
 	ld [wcd27], a
-	ld a, $47
+
+	ld a, $c647 % $100 ; ???
 	ld [wcd28], a
-	ld a, $c6
+	ld a, $c647 / $100
 	ld [wcd29], a
+
 	ld a, $46
 	ld [$c628], a
 	ld de, $c63d
@@ -7693,22 +7699,22 @@ Function11b6b4: ; 11b6b4
 	ld a, [hl]
 	cp MIN_LEVEL
 	ld a, MIN_LEVEL
-	jr c, .asm_11b7c5
+	jr c, .replace_level
 	ld a, [hl]
 	cp MAX_LEVEL
-	jr c, .asm_11b7c6
+	jr c, .done_level
 	ld a, MAX_LEVEL
-.asm_11b7c5
+.replace_level
 	ld [hl], a
-.asm_11b7c6
+.done_level
 	ld [CurPartyLevel], a
 
-	ld hl, $c616 + 1
-	ld de, $c62c + 5
+	ld hl, $c617
+	ld de, $c631
 	ld b, $1
 	predef CalcPkmnStats
-	ld de, $c62c + 5
-	ld hl, $c62c + 3
+	ld de, $c631
+	ld hl, $c62f
 	ld a, [de]
 	ld [hli], a
 	inc de
@@ -7719,30 +7725,30 @@ Function11b6b4: ; 11b6b4
 ; 11b7e5
 
 Function11b7e5: ; 11b7e5
-	ld a, [$c608 + 5]
-	ld [wc702], a
+	ld a, [$c60d] ; species
+	ld [wOTTrademonSpecies], a
 	ld [CurPartySpecies], a
 	ld a, [wcd81]
 	ld [wc74e], a
-	ld hl, $c63d
-	ld de, wc724
-	ld bc, $0005
+	ld hl, $c63d ; OT
+	ld de, wOTTrademonOTName
+	ld bc, $5
 	call CopyBytes
-	ld a, $50
+	ld a, "@"
 	ld [de], a
-	ld a, [$c608 + 11]
-	ld [wEnemyWrapCount], a
-	ld a, [$c608 + 12]
-	ld [wPlayerCharging], a
-	ld hl, $c608 + 26
+	ld a, [$c613] ; id
+	ld [wOTTrademonID], a
+	ld a, [$c613 + 1]
+	ld [wOTTrademonID + 1], a
+	ld hl, $c622 ; dvs
 	ld a, [hli]
-	ld [wEnemyTrappingMove], a
+	ld [wOTTrademonDVs], a
 	ld a, [hl]
-	ld [wPlayerWrapCount], a
-	ld bc, $c608 + 5
+	ld [wOTTrademonDVs + 1], a
+	ld bc, $c60d ; pokemon_data_start
 	callba GetCaughtGender
 	ld a, c
-	ld [wEnemyCharging], a
+	ld [wOTTrademonCaughtData], a
 	call SpeechTextBox
 	call FadeToMenu
 	callba Function108016

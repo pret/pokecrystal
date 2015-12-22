@@ -384,7 +384,7 @@ Functionfb8c8: ; fb8c8
 	ld [TempMonDVs], a
 	ld a, [hl]
 	ld [TempMonDVs + 1], a
-	ld b, SCGB_1C
+	ld b, SCGB_FRONTPICPALS
 	call GetSGBLayout
 	call SetPalettes
 	ret
