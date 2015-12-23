@@ -1,9 +1,8 @@
 Function104000:: ; 104000
-	ld hl, Function104006
+	ld hl, .Function
 	jp CallInSafeGFXMode
-; 104006
 
-Function104006: ; 104006
+.Function
 	decoord 0, 0, AttrMap
 	ld hl, wBackupAttrMap
 	call CutAndPasteAttrMap
@@ -22,11 +21,10 @@ Function104006: ; 104006
 ; 10402d
 
 Function10402d:: ; 10402d
-	ld hl, Function104033
+	ld hl, .Function
 	jp CallInSafeGFXMode
-; 104033
 
-Function104033: ; 104033
+.Function
 	decoord 0, 0
 	ld hl, wDecompressScratch
 	call CutAndPasteTilemap
@@ -38,11 +36,10 @@ Function104033: ; 104033
 ; 104047
 
 Function104047: ; 104047
-	ld hl, Function10404d
+	ld hl, .Function
 	jp CallInSafeGFXMode
-; 10404d
 
-Function10404d: ; 10404d
+.Function
 	decoord 0, 0, AttrMap
 	ld hl, wBackupAttrMap
 	call CutAndPasteAttrMap
@@ -54,11 +51,10 @@ Function10404d: ; 10404d
 ; 104061
 
 ReloadMapPart:: ; 104061
-	ld hl, Function104067
+	ld hl, .Function
 	jp CallInSafeGFXMode
-; 104067
 
-Function104067: ; 104067
+.Function
 	decoord 0, 0, AttrMap
 	ld hl, wBackupAttrMap
 	call CutAndPasteAttrMap
@@ -84,11 +80,10 @@ Function104067: ; 104067
 
 Function104099: ; 104099
 	ld hl, ReloadMapPart ; useless
-	ld hl, Function1040a2
+	ld hl, .Function
 	jp CallInSafeGFXMode
-; 1040a2
 
-Function1040a2: ; 1040a2
+.Function
 	decoord 0, 0, AttrMap
 	ld hl, wBackupAttrMap
 	call CutAndPasteAttrMap
@@ -114,11 +109,10 @@ Function1040a2: ; 1040a2
 ; 1040d4
 
 Function1040d4: ; 1040d4
-	ld hl, Function1040da
+	ld hl, .Function
 	jp CallInSafeGFXMode
-; 1040da
 
-Function1040da: ; 1040da
+.Function
 	ld a, $1
 	ld [rVBK], a
 	ld a, $3
@@ -134,16 +128,15 @@ Function1040da: ; 1040da
 	ld [rHDMA4], a
 	ld a, $23
 	ld [hDMATransfer], a
-	call Function1041a4
+	call WaitDMATransfer
 	ret
 ; 1040fb
 
 Function1040fb: ; 1040fb
-	ld hl, Function104101
+	ld hl, .Function
 	jp CallInSafeGFXMode
-; 104101
 
-Function104101: ; 104101
+.Function
 	ld a, $1
 	ld [rVBK], a
 	ld a, $3
@@ -155,11 +148,10 @@ Function104101: ; 104101
 
 Function104110:: ; 104110
 ; OpenText
-	ld hl, Function104116
+	ld hl, .Function
 	jp CallInSafeGFXMode
-; 104116
 
-Function104116: ; 104116
+.Function
 	decoord 0, 0, AttrMap
 	ld hl, wBackupAttrMap
 	call CutAndPasteAttrMap
@@ -186,11 +178,10 @@ Function104116: ; 104116
 ; 104148
 
 Function104148: ; 104148 (41:4148)
-	ld hl, Function10414e
+	ld hl, .Function
 	jp CallInSafeGFXMode
-; 10414e (41:414e)
 
-Function10414e: ; 10414e
+.Function
 	decoord 0, 0, AttrMap
 	ld hl, wBackupAttrMap
 	call CutAndPasteAttrMap
@@ -247,12 +238,12 @@ Function10419d: ; 10419d (41:419d)
 	ld a, $23
 	ld [hDMATransfer], a
 
-Function1041a4: ; 104a14
-.asm_1041a4
+WaitDMATransfer: ; 104a14
+.loop
 	call DelayFrame
 	ld a, [hDMATransfer]
 	and a
-	jr nz, .asm_1041a4
+	jr nz, .loop
 	ret
 
 Function1041ad: ; 1041ad (41:41ad)

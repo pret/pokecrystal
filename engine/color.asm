@@ -117,8 +117,8 @@ Function8ad1: ; 8ad1
 	ret
 ; 8ade
 
-Function8ade: ; 8ade SGB layout $fc
-	ld hl, wcd9b
+SGB_ApplyPartyMenuHPPals: ; 8ade SGB layout $fc
+	ld hl, wHPPals
 	ld a, [wSGBPals]
 	ld e, a
 	ld d, $0
@@ -399,10 +399,10 @@ endr
 	ret
 ; 8c8a
 
-Function8c8a: ; 8c8a
+LoadStatsScreenPals: ; 8c8a
 	call CheckCGB
 	ret z
-	ld hl, Unknown_8f6a
+	ld hl, StatsScreenPals
 	ld b, 0
 	dec c
 rept 2
@@ -734,8 +734,8 @@ ApplyAttrMap: ; 96b3
 	ret
 ; 96f3
 
-Function96f3: ; 96f3 CGB layout $fc
-	ld hl, wcd9b
+CGB_ApplyPartyMenuHPPals: ; 96f3 CGB layout $fc
+	ld hl, wHPPals
 	ld a, [wSGBPals]
 	ld e, a
 	ld d, $0
@@ -746,16 +746,15 @@ Function96f3: ; 96f3 CGB layout $fc
 	inc a
 	ld e, a
 	hlcoord 11, 2, AttrMap
-	ld bc, $28
+	ld bc, 2 * SCREEN_WIDTH
 	ld a, [wSGBPals]
-.asm_970b
+.loop
 	and a
-	jr z, .asm_9712
+	jr z, .done
 	add hl, bc
 	dec a
-	jr .asm_970b
-
-.asm_9712
+	jr .loop
+.done
 	lb bc, 2, 8
 	ld a, e
 	call FillBoxCGB
@@ -966,7 +965,6 @@ Function981a: ; 981a
 	ld a, $10
 	jr nz, .okay
 	ld a, $20
-
 .okay
 	ld [rJOYP], a
 	ld a, $30
@@ -980,7 +978,7 @@ Function981a: ; 981a
 	ld [rJOYP], a
 	ld a, $30
 	ld [rJOYP], a
-	call Function9a7a
+	call SGBDelayCycles
 	pop bc
 	dec b
 	jr nz, .loop
@@ -1004,10 +1002,10 @@ Function9853: ; 9853
 	ld [hSGB], a
 	call Function98eb
 	call Function99b4
-	call Function9a7a
+	call SGBDelayCycles
 	call Function993f
 	call Function992c
-	call Function9a7a
+	call SGBDelayCycles
 	call Function993f
 	ld hl, PalPacket_9d66
 	call Function981a
@@ -1113,7 +1111,7 @@ Function9911: ; 9911
 	ld hl, PalPacket_9d56
 	call Function981a
 	call Function992c
-	call Function9a7a
+	call SGBDelayCycles
 	call Function993f
 	ld hl, PalPacket_9d66
 	call Function981a
@@ -1147,7 +1145,7 @@ Function993f: ; 993f
 Function994a: ; 994a
 	ld hl, PalPacket_9d26
 	call Function981a
-	call Function9a7a
+	call SGBDelayCycles
 	ld a, [rJOYP]
 	and $3
 	cp $3
@@ -1157,26 +1155,26 @@ Function994a: ; 994a
 rept 2
 	ld a, [rJOYP]
 endr
-	call Function9a7a
-	call Function9a7a
+	call SGBDelayCycles
+	call SGBDelayCycles
 	ld a, $30
 	ld [rJOYP], a
-	call Function9a7a
-	call Function9a7a
+	call SGBDelayCycles
+	call SGBDelayCycles
 	ld a, $10
 	ld [rJOYP], a
 rept 6
 	ld a, [rJOYP]
 endr
-	call Function9a7a
-	call Function9a7a
+	call SGBDelayCycles
+	call SGBDelayCycles
 	ld a, $30
 	ld [rJOYP], a
 rept 3
 	ld a, [rJOYP]
 endr
-	call Function9a7a
-	call Function9a7a
+	call SGBDelayCycles
+	call SGBDelayCycles
 	ld a, [rJOYP]
 	and $3
 	cp $3
@@ -1194,7 +1192,7 @@ endr
 Function99ab: ; 99ab
 	ld hl, PalPacket_9d16
 	call Function981a
-	jp Function9a7a
+	jp SGBDelayCycles
 ; 99b4
 
 Function99b4: ; 99b4
@@ -1319,16 +1317,16 @@ DrawDefaultTiles: ; 0x9a64
 	ret
 ; 0x9a7a
 
-Function9a7a: ; 9a7a
-	ld de, $1b58
-.asm_9a7d
+SGBDelayCycles: ; 9a7a
+	ld de, 7000
+.wait
 	nop
 	nop
 	nop
 	dec de
 	ld a, d
 	or e
-	jr nz, .asm_9a7d
+	jr nz, .wait
 	ret
 ; 9a86
 

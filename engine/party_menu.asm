@@ -143,15 +143,14 @@ PlacePartyHPBar: ; 500cf
 	ld d, $6
 	ld b, $0
 	call DrawBattleHPBar
-	ld hl, wcd9b
+	ld hl, wHPPals
 	ld a, [wSGBPals]
 	ld c, a
 	ld b, $0
 	add hl, bc
 	call SetHPPal
-	ld b, SCGB_FC
+	ld b, SCGB_PARTY_MENU_HP_PALS
 	call GetSGBLayout
-
 .skip
 	ld hl, wSGBPals
 	inc [hl]

@@ -10,7 +10,7 @@ SpecialBuenasPassword: ; 8af6b
 	add c
 	add $2
 	ld [wMenuBorderRightCoord], a
-	call BackUpTiles
+	call PushWindow
 	call DoNthMenu ; menu
 	callba Buena_ExitMenu
 	ld b, $0

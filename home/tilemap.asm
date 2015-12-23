@@ -1,5 +1,5 @@
-BackUpTiles:: ; 1c00
-	callab _BackUpTiles
+PushWindow:: ; 1c00
+	callab _PushWindow
 	ret
 ; 1c07
 

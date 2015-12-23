@@ -2,7 +2,7 @@
 	const SCGB_00
 	const SCGB_01
 	const SCGB_02
-	const SCGB_03
+	const SCGB_STATS_SCREEN_HP_PALS
 	const SCGB_04
 	const SCGB_05
 	const SCGB_06
@@ -31,5 +31,5 @@
 	const SCGB_1D
 	const SCGB_1E
 
-SCGB_FC  EQU -4
+SCGB_PARTY_MENU_HP_PALS  EQU -4
 SCGB_RAM EQU -1

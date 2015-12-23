@@ -1487,7 +1487,7 @@ PlayerHPPal:: ; cd99
 EnemyHPPal:: ; cd9a
 	ds 1
 
-wcd9b:: ds 6
+wHPPals:: ds PARTY_LENGTH
 wcda1:: ds 8
 wSGBPals:: ds 48 ; cda9
 
@@ -1660,7 +1660,9 @@ GameTimerPause:: ; cfbc
 
 	ds 1
 
-wcfbe:: ds 2
+wcfbe::
+; SGB flags?
+	ds 2
 
 InBattleTowerBattle:: ; cfc0
 ; 0 not in BattleTower-Battle

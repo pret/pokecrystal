@@ -226,7 +226,7 @@ Function1dc381: ; 1dc381
 	hlcoord 0, 0
 	call _PrepMonFrontpic
 	call WaitBGMap
-	ld b, SCGB_03
+	ld b, SCGB_STATS_SCREEN_HP_PALS
 	call GetSGBLayout
 	call SetPalettes
 	ret
@@ -278,7 +278,7 @@ Function1dc47b: ; 1dc47b
 	ld de, TempMonSpeed
 	call .PrintTempMonStats
 	call WaitBGMap
-	ld b, SCGB_03
+	ld b, SCGB_STATS_SCREEN_HP_PALS
 	call GetSGBLayout
 	call SetPalettes
 	ret

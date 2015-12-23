@@ -583,8 +583,7 @@ Place2DMenuCursor: ; 24329
 	ret
 ; 24374
 
-_BackUpTiles:: ; 24374
-; Push the window
+_PushWindow:: ; 24374
 	ld a, [rSVBK]
 	push af
 	ld a, $7

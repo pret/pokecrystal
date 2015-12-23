@@ -12,8 +12,8 @@ Predef_LoadSGBLayoutCGB: ; 8d59
 	jr nz, .not_ram
 	ld a, [SGBPredef]
 .not_ram
-	cp SCGB_FC
-	jp z, Function96f3
+	cp SCGB_PARTY_MENU_HP_PALS
+	jp z, CGB_ApplyPartyMenuHPPals
 	call Function9673
 	ld l, a
 	ld h, 0
@@ -277,7 +277,7 @@ Palette8f52: ; 8f52
 	RGB 00, 00, 00
 ; 8f6a
 
-Unknown_8f6a: ; 8f6a
+StatsScreenPals: ; 8f6a
 	RGB 31, 19, 31
 
 	RGB 21, 31, 14

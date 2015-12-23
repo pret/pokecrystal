@@ -9836,7 +9836,7 @@ AskRememberPassword: ; 4ae12
 	ld [wMenuBorderTopCoord], a
 	add $4
 	ld [wMenuBorderBottomCoord], a
-	call BackUpTiles
+	call PushWindow
 	call VerticalMenu
 	push af
 	ld c, 15

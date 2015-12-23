@@ -248,7 +248,7 @@ Function89261: ; 89261
 	ld [hl], a
 	pop af
 	ld [wMenuCursorBuffer], a
-	call BackUpTiles
+	call PushWindow
 	call Function8923c
 	call Function89209
 	call VerticalMenu

@@ -4563,7 +4563,7 @@ Function11a00e: ; 11a00e
 	ld [wMenuBorderRightCoord], a
 	ld a, $5
 	ld [wMenuBorderBottomCoord], a
-	call BackUpTiles
+	call PushWindow
 	callba Function11765d
 	callba Function117ab4
 	callba MobileFunc_106462
@@ -4586,7 +4586,7 @@ Function11a0ca: ; 11a0ca
 	ld [wMenuBorderRightCoord], a
 	ld a, $11
 	ld [wMenuBorderBottomCoord], a
-	call BackUpTiles
+	call PushWindow
 	callba Function11765d
 	callba Function17d3f6
 	callba MobileFunc_106462
@@ -5270,7 +5270,7 @@ Function11a5b9: ; 11a5b9
 	ld [wMenuBorderRightCoord], a
 	ld a, $5
 	ld [wMenuBorderBottomCoord], a
-	call BackUpTiles
+	call PushWindow
 	hlcoord 0, 0, AttrMap
 	ld b, $6
 	ld c, $14
@@ -5296,7 +5296,7 @@ Function11a5f5: ; 11a5f5
 	ld [wMenuBorderTopCoord], a
 	ld a, $a
 	ld [wMenuBorderBottomCoord], a
-	call BackUpTiles
+	call PushWindow
 	hlcoord 14, 6, AttrMap
 	ld b, $5
 	ld c, $6

@@ -3,7 +3,7 @@
 
 LoadMenuDataHeader::
 	call CopyMenuDataHeader
-	call BackUpTiles
+	call PushWindow
 	ret
 
 CopyMenuDataHeader::
@@ -160,7 +160,7 @@ _YesNoBox:: ; 1dd9
 	ld [wMenuBorderTopCoord], a
 	add 4
 	ld [wMenuBorderBottomCoord], a
-	call BackUpTiles
+	call PushWindow
 
 InterpretTwoOptionMenu:: ; 1dfe
 	call VerticalMenu
@@ -200,7 +200,7 @@ YesNoMenuDataHeader:: ; 1e1d
 
 OffsetMenuDataHeader:: ; 1e2e
 	call _OffsetMenuDataHeader
-	call BackUpTiles
+	call PushWindow
 	ret
 ; 1e35
 

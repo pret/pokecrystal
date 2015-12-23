@@ -8,8 +8,8 @@ Predef_LoadSGBLayout: ; 864c
 	jr nz, .not_ram
 	ld a, [SGBPredef]
 .not_ram
-	cp SCGB_FC
-	jp z, Function8ade
+	cp SCGB_PARTY_MENU_HP_PALS
+	jp z, SGB_ApplyPartyMenuHPPals
 	ld l, a
 	ld h, 0
 	add hl, hl
@@ -390,7 +390,7 @@ endr
 	pop bc
 	ld a, c
 	and a
-	jr z, .asm_88ef
+	jr z, .partymon
 	ld hl, wSGBPals + 3
 	ld [hl], $e7
 	inc hl
@@ -399,11 +399,11 @@ endr
 	ld [hl], $62
 	inc hl
 	ld [hl], $c
-	jr .asm_8913
+	jr .done
 
-.asm_88ef
+.partymon
 	ld hl, PartyMon1DVs
-	ld bc, $30
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld c, l
@@ -419,7 +419,7 @@ endr
 	ld a, [hl]
 	ld [wSGBPals + 6], a
 
-.asm_8913
+.done
 	ld hl, wSGBPals
 	ld de, BlkPacket_9a86
 	ret
