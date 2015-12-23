@@ -450,11 +450,11 @@ MagnetTrain_Jumptable_FirstRunThrough: ; 8ceae
 	call GetSGBLayout
 	call UpdateTimePals
 	ld a, [rBGP]
-	ld [wcfc7], a
+	ld [wBGP], a
 	ld a, [rOBP0]
-	ld [wcfc8], a
+	ld [wOBP0], a
 	ld a, [rOBP1]
-	ld [wcfc9], a
+	ld [wOBP1], a
 	pop af
 	ld [wPermission], a
 	pop af

@@ -413,7 +413,7 @@ endr
 	xor a
 	ld [hBattleTurn], a
 	ld [Buffer2], a
-	ld [wcfca], a
+	ld [wNumHits], a
 	predef PlayBattleAnim
 
 	ld a, [wWildMon]
@@ -2161,7 +2161,7 @@ endr
 
 Softboiled_MilkDrinkFunction: ; f3df (3:73df)
 ; Softboiled/Milk Drink in the field
-	ld a, [wd0d8]
+	ld a, [wPartyMenuCursor]
 	dec a
 	ld b, a
 	call .SelectMilkDrinkRecipient ; select pokemon
@@ -2186,7 +2186,7 @@ Softboiled_MilkDrinkFunction: ; f3df (3:73df)
 .skip
 	ld a, b
 	inc a
-	ld [wd0d8], a
+	ld [wPartyMenuCursor], a
 	ret
 
 .SelectMilkDrinkRecipient: ; f419 (3:7419)
@@ -2197,7 +2197,7 @@ Softboiled_MilkDrinkFunction: ; f3df (3:73df)
 	call ChoosePkmnToUseItemOn
 	pop bc
 	jr c, .set_carry
-	ld a, [wd0d8]
+	ld a, [wPartyMenuCursor]
 	dec a
 	ld c, a
 	ld a, b
@@ -2958,7 +2958,7 @@ UseBallInTrainerBattle: ; f7a0
 	xor a
 	ld [wKickCounter], a
 	ld [hBattleTurn], a
-	ld [wcfca], a
+	ld [wNumHits], a
 	predef PlayBattleAnim
 	ld hl, BlockedTheBallText
 	call PrintText

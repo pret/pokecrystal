@@ -1,11 +1,11 @@
 Predef_StartBattle: ; 8c20f
 	call Function8c26d
 	ld a, [rBGP]
-	ld [wcfc7], a
+	ld [wBGP], a
 	ld a, [rOBP0]
-	ld [wcfc8], a
+	ld [wOBP0], a
 	ld a, [rOBP1]
-	ld [wcfc9], a
+	ld [wOBP1], a
 	call DelayFrame
 	ld hl, hVBlank
 	ld a, [hl]
@@ -35,7 +35,7 @@ Predef_StartBattle: ; 8c20f
 	ld [rSVBK], a
 
 	ld a, %11111111
-	ld [wcfc7], a
+	ld [wBGP], a
 	call DmgToCgbBGPals
 	call DelayFrame
 	xor a
@@ -278,7 +278,7 @@ StartTrainerBattle_Flash: ; 8c3ab (23:43ab)
 	ld a, [hl]
 	cp %00000001
 	jr z, .done
-	ld [wcfc7], a
+	ld [wBGP], a
 	call DmgToCgbBGPals
 	and a
 	ret

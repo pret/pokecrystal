@@ -1803,7 +1803,7 @@ Function100b12: ; 100b12
 	ld de, LoadMenuDataHeader
 	call FarCall_de
 	ld a, BANK(BattleMenuDataHeader)
-	ld [wcf94], a
+	ld [wMenuData2_2DMenuItemStringsBank], a
 	ld a, [wd0d2]
 	ld [wMenuCursorBuffer], a
 	call Function100e72
@@ -1844,7 +1844,7 @@ Function100b45: ; 100b45
 
 Function100b7a: ; 100b7a
 	ld hl, CopyMenuData2
-	ld a, [wcf94]
+	ld a, [wMenuData2_2DMenuItemStringsBank]
 	rst FarCall
 	callba Draw2DMenu
 	callba MobileTextBorder
@@ -1858,7 +1858,7 @@ Function100b7a: ; 100b7a
 
 MobileMoveSelectionScreen: ; 100b9f
 	xor a
-	ld [wd0e3], a
+	ld [wMoveSwapBuffer], a
 	callba CheckPlayerHasUsableMoves
 	ret z
 	call Function100dd8
@@ -1989,8 +1989,8 @@ Function100c74: ; 100c74
 ; 100c98
 
 Function100c98: ; 100c98
-	ld de, Unknown_100cad
-	call InitMenu3
+	ld de, .attrs
+	call SetMenuAttributes
 	ld a, [wNumMoves]
 	inc a
 	ld [w2DMenuNumRows], a
@@ -2000,8 +2000,12 @@ Function100c98: ; 100c98
 	ret
 ; 100cad
 
-Unknown_100cad: ; 100cad
-	db $a, $1, $ff, $1, $a0, $, $20, $c3
+.attrs: ; 100cad
+	db 10, 1
+	db 255, 1
+	db $a0, $00
+	dn 2, 0
+	db D_UP | D_DOWN | A_BUTTON | B_BUTTON
 
 Function100cb5: ; 100cb5
 	call Function100dd8
@@ -2009,7 +2013,7 @@ Function100cb5: ; 100cb5
 	ld hl, w2DMenuFlags1
 	set 7, [hl]
 	res 6, [hl]
-.asm_100cc0
+.loop
 	call Function100dd2
 	callba MobileMenuJoypad
 	push bc
@@ -2017,22 +2021,22 @@ Function100cb5: ; 100cb5
 	callba Function10402d
 	call Function100dfd
 	pop bc
-	jr c, .asm_100d17
+	jr c, .done
 	ld a, [wMenuJoypadFilter]
 	and c
-	jr z, .asm_100cc0
+	jr z, .loop
 	call PlaceHollowCursor
 	ld a, [PartyCount]
 	inc a
 	ld b, a
 	ld a, [wMenuCursorY]
 	cp b
-	jr z, .asm_100d17
-	ld [wd0d8], a
+	jr z, .done
+	ld [wPartyMenuCursor], a
 	ld a, [hJoyLast]
 	ld b, a
 	bit 1, b
-	jr nz, .asm_100d17
+	jr nz, .done
 	ld a, [wMenuCursorY]
 	dec a
 	ld [CurPartyMon], a
@@ -2048,7 +2052,7 @@ Function100cb5: ; 100cb5
 	and a
 	ret
 
-.asm_100d17
+.done
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	call WaitSFX
@@ -2529,7 +2533,7 @@ Unknown_100fc0: ; 100fc0
 	db -1
 
 Unknown_100feb: ; 100feb
-	dbwww $, sPartyMail, MAIL_STRUCT_LENGTH * PARTY_LENGTH, NULL
+	dbwww $0, sPartyMail, MAIL_STRUCT_LENGTH * PARTY_LENGTH, NULL
 	db -1
 
 Unknown_100ff3: ; 100ff3
@@ -6311,7 +6315,7 @@ Function1029cf: ; 1029cf
 	ld hl, wcd4b
 	set 1, [hl]
 	ld de, MenuData3_102a33
-	call InitMenu3
+	call SetMenuAttributes
 	ld a, [wcd4a]
 	inc a
 	ld [wcd4a], a
@@ -6353,7 +6357,9 @@ String_102a26: ; 102a26
 MenuData3_102a33:
 	db 8, 11
 	db 2,  1
-	db $80, $00, $20, $01
+	db $80, $00
+	dn 2, 0
+	db A_BUTTON
 
 Function102a3b: ; 102a3b
 	ld a, [wcd30]
@@ -6487,7 +6493,7 @@ Function102b4e: ; 102b4e
 	ld a, [wMenuCursorY]
 	push af
 	ld de, Unknown_102b73
-	call InitMenu3
+	call SetMenuAttributes
 	pop af
 	ld [wMenuCursorY], a
 	ld a, [OTPartyCount]
@@ -6504,7 +6510,11 @@ Function102b68: ; 102b68 ; unreferenced
 ; 102b73
 
 Unknown_102b73:
-	db $9, $6, $ff, $1, $a0, $, $10, $c1
+	db 9, 6
+	db 255, 1
+	db $a0, $00
+	dn 1, 0
+	db D_UP | D_DOWN | A_BUTTON
 
 Function102b7b: ; 102b7b
 	xor a
@@ -6512,7 +6522,7 @@ Function102b7b: ; 102b7b
 	ld a, [wMenuCursorY]
 	push af
 	ld de, Unknown_102b94
-	call InitMenu3
+	call SetMenuAttributes
 	pop af
 	ld [wMenuCursorY], a
 	ld a, [PartyCount]
@@ -6521,7 +6531,11 @@ Function102b7b: ; 102b7b
 ; 102b94
 
 Unknown_102b94:
-	db $1, $6, $ff, $1, $a0, $, $10, $c1
+	db 1, 6
+	db 255, 1
+	db $a0, $00
+	dn 1, 0
+	db D_UP | D_DOWN | A_BUTTON
 
 Function102b9c: ; 102b9c
 	ld a, [wcd4d]
@@ -7250,20 +7264,20 @@ endr
 ; 103112
 
 Unknown_103112: ; 103112
-	db $, $, $, $, $, $, $, $
-	db $, $, $, $, $, $, $, $
-	db $, $, $, $, $, $, $, $
-	db $, $, $, $, $, $, $, $
-	db $, $, $, $, $, $, $, $
-	db $, $, $, $, $, $, $, $
-	db $, $, $, $, $, $, $, $
-	db $, $, $, $, $, $, $, $
-	db $1, $, $, $, $, $, $, $
-	db $2, $1, $, $, $, $, $, $
-	db $3, $2, $1, $, $, $, $, $
-	db $4, $3, $2, $1, $, $, $, $
-	db $4, $4, $3, $2, $1, $, $, $
-	db $4, $4, $4, $3, $2, $1, $, $
+	db $0, $0, $0, $0, $0, $0, $0, $
+	db $0, $0, $0, $0, $0, $0, $0, $
+	db $0, $0, $0, $0, $0, $0, $0, $
+	db $0, $0, $0, $0, $0, $0, $0, $
+	db $0, $0, $0, $0, $0, $0, $0, $
+	db $0, $0, $0, $0, $0, $0, $0, $
+	db $0, $0, $0, $0, $0, $0, $0, $
+	db $0, $0, $0, $0, $0, $0, $0, $
+	db $1, $0, $0, $0, $0, $0, $0, $
+	db $2, $1, $0, $0, $0, $0, $0, $
+	db $3, $2, $1, $0, $0, $0, $0, $
+	db $4, $3, $2, $1, $0, $0, $0, $
+	db $4, $4, $3, $2, $1, $0, $0, $
+	db $4, $4, $4, $3, $2, $1, $0, $
 	db $4, $4, $4, $4, $3, $2, $1, $
 	db $4, $4, $4, $4, $4, $3, $2, $1
 	db $4, $4, $4, $4, $4, $4, $3, $2
@@ -7279,48 +7293,48 @@ Unknown_103112: ; 103112
 	db $3, $4, $4, $4, $4, $4, $4, $4
 	db $2, $3, $4, $4, $4, $4, $4, $4
 	db $1, $2, $3, $4, $4, $4, $4, $4
-	db $, $1, $2, $3, $4, $4, $4, $4
-	db $, $, $1, $2, $3, $4, $4, $4
-	db $, $, $, $1, $2, $3, $4, $4
-	db $, $, $, $, $1, $2, $3, $4
-	db $, $, $, $, $, $1, $2, $3
-	db $, $, $, $, $, $, $1, $2
-	db $, $, $, $, $, $, $, $1
-	db $, $, $, $, $, $, $, $
-	db $, $, $, $, $, $, $, $
-	db $, $, $, $, $, $, $, $
-	db $, $, $, $, $, $, $, $
-	db $, $, $, $, $, $, $, $
-	db $, $, $, $, $, $, $, $
-	db $, $, $, $, $, $, $, $
-	db $, $, $, $, $, $, $, $
-	db $, $, $, $, $, $, $, $
+	db $0, $1, $2, $3, $4, $4, $4, $4
+	db $0, $0, $1, $2, $3, $4, $4, $4
+	db $0, $0, $0, $1, $2, $3, $4, $4
+	db $0, $0, $0, $0, $1, $2, $3, $4
+	db $0, $0, $0, $0, $0, $1, $2, $3
+	db $0, $0, $0, $0, $0, $0, $1, $2
+	db $0, $0, $0, $0, $0, $0, $0, $1
+	db $0, $0, $0, $0, $0, $0, $0, $
+	db $0, $0, $0, $0, $0, $0, $0, $
+	db $0, $0, $0, $0, $0, $0, $0, $
+	db $0, $0, $0, $0, $0, $0, $0, $
+	db $0, $0, $0, $0, $0, $0, $0, $
+	db $0, $0, $0, $0, $0, $0, $0, $
+	db $0, $0, $0, $0, $0, $0, $0, $
+	db $0, $0, $0, $0, $0, $0, $0, $
+	db $0, $0, $0, $0, $0, $0, $0, $
 ; 10327a
 
 Unknown_10327a: ; 10327a
-	db $, $, $, $
-	db $, $, $1, $
-	db $, $, $2, $
-	db $, $, $3, $
-	db $, $, $1, $1
-	db $, $, $, $
-	db $, $, $1, $2
-	db $, $, $2, $2
-	db $, $, $3, $2
-	db $, $, $1, $3
+	db $0, $0, $0, $
+	db $0, $0, $1, $
+	db $0, $0, $2, $
+	db $0, $0, $3, $
+	db $0, $0, $1, $1
+	db $0, $0, $0, $
+	db $0, $0, $1, $2
+	db $0, $0, $2, $2
+	db $0, $0, $3, $2
+	db $0, $0, $1, $3
 
 GFX_1032a2:
 INCBIN "gfx/unknown/1032a2.2bpp"
 
 Unknown_1032e2:
-	db $, $, $ff, $1f
+	db $0, $0, $ff, $1f
 	db $f4, $1b, $8d, $42
-	db $, $, $67, $45
-	db $, $, $, $
-	db $, $, $1f, $13
+	db $0, $0, $67, $45
+	db $0, $0, $0, $
+	db $0, $0, $1f, $13
 	db $99, $1, $ff, $10
-	db $, $, $19, $
-	db $, $, $, $
+	db $0, $0, $19, $
+	db $0, $0, $0, $
 ; 103302
 
 Function103302: ; 103302

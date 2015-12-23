@@ -7,7 +7,7 @@ QueueBattleAnimation: ; cc9a1 (33:49a1)
 	ld a, [hl]
 	and a
 	jr z, .done
-	ld bc, $18
+	ld bc, BATTLEANIMSTRUCT_LENGTH
 	add hl, bc
 	dec e
 	jr nz, .loop
@@ -17,20 +17,20 @@ QueueBattleAnimation: ; cc9a1 (33:49a1)
 .done
 	ld c, l
 	ld b, h
-	ld hl, w5_d40e
+	ld hl, wNumActiveBattleAnims
 	inc [hl]
-	call Functioncc9c4
+	call InitBattleAnimation
 	ret
 
-Functioncc9bd: ; cc9bd
-	ld hl, $0
+DeinitBattleAnimation: ; cc9bd
+	ld hl, BATTLEANIMSTRUCT_INDEX
 	add hl, bc
 	ld [hl], $0
 	ret
 
 ; cc9c4
 
-Functioncc9c4: ; cc9c4 (33:49c4)
+InitBattleAnimation: ; cc9c4 (33:49c4)
 	ld a, [BattleAnimTemps]
 	ld e, a
 	ld d, 0
@@ -40,25 +40,15 @@ rept 6
 endr
 	ld e, l
 	ld d, h
-	ld hl, $0
+	ld hl, BATTLEANIMSTRUCT_INDEX
 	add hl, bc
-	ld a, [w5_d40e]
+	ld a, [wNumActiveBattleAnims]
 	ld [hli], a
+rept 5
 	ld a, [de]
 	inc de
 	ld [hli], a
-	ld a, [de]
-	inc de
-	ld [hli], a
-	ld a, [de]
-	inc de
-	ld [hli], a
-	ld a, [de]
-	inc de
-	ld [hli], a
-	ld a, [de]
-	inc de
-	ld [hli], a
+endr
 	ld a, [de]
 	call Functionccb31
 	ld [hli], a
@@ -184,7 +174,7 @@ Functioncca09: ; cca09
 	jr .asm_ccaa5
 
 .asm_ccaa2
-	call Functioncc9bd
+	call DeinitBattleAnimation
 
 .asm_ccaa5
 	and a
@@ -198,22 +188,22 @@ Functioncca09: ; cca09
 ; ccaaa
 
 Functionccaaa: ; ccaaa
-	ld hl, $1
+	ld hl, BATTLEANIMSTRUCT_01
 	add hl, bc
 	ld a, [hl]
 	and $80
 	ld [BattleAnimTemps], a
 	xor a
 	ld [BattleAnimTemps + 7], a
-	ld hl, $5
+	ld hl, BATTLEANIMSTRUCT_05
 	add hl, bc
 	ld a, [hl]
 	ld [BattleAnimTemps + 8], a
-	ld hl, $2
+	ld hl, BATTLEANIMSTRUCT_02
 	add hl, bc
 	ld a, [hl]
 	ld [BattleAnimTemps + 1], a
-	ld hl, $6
+	ld hl, BATTLEANIMSTRUCT_06
 	add hl, bc
 	ld a, [hli]
 	ld [BattleAnimTemps + 2], a
@@ -228,13 +218,13 @@ Functionccaaa: ; ccaaa
 	ld a, [hBattleTurn]
 	and a
 	ret z
-	ld hl, $1
+	ld hl, BATTLEANIMSTRUCT_01
 	add hl, bc
 	ld a, [hl]
 	ld [BattleAnimTemps], a
 	bit 0, [hl]
 	ret z
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hli]
 	ld d, a
@@ -285,22 +275,22 @@ Functionccaaa: ; ccaaa
 Functionccb31: ; ccb31 (33:4b31)
 	push hl
 	push bc
-	ld hl, w5_d300
+	ld hl, wBattleAnimTileDict
 	ld b, a
-	ld c, $5
-.asm_ccb39
+	ld c, 10 / 2
+.loop
 	ld a, [hli]
 	cp b
-	jr z, .asm_ccb44
+	jr z, .load
 	inc hl
 	dec c
-	jr nz, .asm_ccb39
+	jr nz, .loop
 	xor a
-	jr .asm_ccb45
+	jr .done
 
-.asm_ccb44
+.load
 	ld a, [hl]
-.asm_ccb45
+.done
 	pop bc
 	pop hl
 	ret
@@ -318,198 +308,198 @@ _QueueBGEffect: ; ccb4f (33:4b4f)
 ; ccb56 (33:4b56)
 
 BattleAnimObjects: ; ccb56
-	db $01, $ff, $00, $00, $02, $01
-	db $01, $ff, $01, $00, $02, $01
-	db $01, $ff, $02, $00, $02, $01
-	db $01, $90, $00, $00, $02, $01
-	db $01, $90, $01, $00, $02, $01
-	db $01, $90, $02, $00, $02, $01
-	db $01, $ff, $03, $00, $02, $01
-	db $01, $ff, $04, $1b, $02, $01
-	db $01, $ff, $05, $00, $02, $01
-	db $01, $ff, $06, $00, $02, $01
-	db $01, $90, $07, $09, $02, $01
-	db $01, $aa, $10, $10, $04, $03
-	db $01, $90, $0e, $04, $04, $03
-	db $01, $90, $0f, $03, $04, $03
-	db $01, $90, $10, $08, $04, $03
-	db $01, $90, $0f, $0a, $04, $03
-	db $01, $90, $11, $03, $04, $03
-	db $01, $90, $12, $08, $06, $0a
-	db $01, $90, $13, $00, $06, $0a
-	db $01, $90, $14, $01, $06, $0a
-	db $21, $78, $16, $0b, $05, $06
-	db $00, $00, $09, $12, $04, $0b
-	db $00, $00, $09, $13, $04, $0b
-	db $01, $90, $18, $00, $04, $08
-	db $01, $ff, $18, $00, $04, $08
-	db $01, $90, $1d, $06, $02, $0c
-	db $01, $b4, $1f, $38, $02, $0c
-	db $01, $90, $08, $00, $02, $07
-	db $01, $a0, $08, $00, $02, $07
-	db $01, $ff, $19, $07, $07, $09
-	db $01, $ff, $1a, $07, $07, $09
-	db $01, $b0, $1b, $36, $07, $09
-	db $01, $b0, $84, $36, $06, $21
-	db $01, $90, $21, $0c, $06, $0d
-	db $00, $00, $23, $0d, $06, $0d
-	db $01, $90, $24, $0e, $02, $0e
-	db $61, $80, $27, $0f, $06, $04
-	db $01, $b4, $2a, $00, $06, $04
-	db $01, $40, $2b, $11, $05, $0f
-	db $61, $98, $2c, $00, $03, $10
-	db $61, $98, $2d, $09, $03, $10
-	db $01, $b8, $2e, $00, $06, $0a
-	db $01, $b8, $2f, $00, $06, $0a
-	db $01, $b8, $30, $14, $07, $11
-	db $01, $90, $21, $14, $03, $0d
-	db $21, $b0, $31, $00, $03, $05
-	db $21, $b0, $32, $00, $03, $05
-	db $21, $b0, $33, $00, $03, $05
-	db $21, $90, $34, $15, $03, $05
-	db $21, $90, $36, $00, $03, $05
-	db $21, $90, $37, $03, $02, $08
-	db $21, $90, $38, $00, $03, $05
-	db $21, $90, $39, $03, $02, $08
-	db $21, $90, $3a, $16, $02, $02
-	db $01, $90, $3c, $17, $02, $02
-	db $21, $ff, $3e, $00, $02, $02
-	db $21, $ff, $3f, $00, $02, $02
-	db $21, $ff, $40, $00, $02, $02
-	db $21, $ff, $41, $00, $02, $02
-	db $21, $ff, $42, $00, $02, $02
-	db $01, $88, $43, $18, $05, $12
-	db $01, $88, $44, $00, $05, $12
-	db $21, $b8, $45, $19, $02, $13
-	db $21, $ff, $46, $00, $02, $14
-	db $21, $ff, $47, $00, $02, $14
-	db $21, $ff, $48, $1a, $02, $14
-	db $21, $ff, $49, $1a, $02, $14
-	db $21, $98, $4a, $01, $02, $14
-	db $21, $80, $4b, $00, $03, $11
-	db $01, $88, $4c, $1c, $05, $12
-	db $21, $b0, $4d, $1d, $02, $15
-	db $01, $b0, $51, $1e, $03, $11
-	db $21, $ff, $52, $1f, $05, $16
-	db $21, $ff, $54, $1f, $05, $16
-	db $21, $68, $56, $20, $05, $06
-	db $21, $90, $59, $21, $02, $0e
-	db $21, $90, $5c, $02, $02, $17
-	db $01, $90, $5d, $22, $03, $11
-	db $61, $88, $5f, $00, $03, $10
-	db $61, $88, $2d, $09, $03, $10
-	db $21, $88, $60, $00, $03, $18
-	db $21, $80, $60, $00, $02, $18
-	db $21, $50, $61, $23, $03, $19
-	db $01, $80, $63, $24, $02, $19
-	db $01, $80, $66, $25, $02, $19
-	db $01, $50, $1c, $00, $02, $0c
-	db $21, $a8, $67, $26, $07, $1a
-	db $21, $a8, $68, $00, $07, $1a
-	db $21, $90, $69, $01, $02, $1a
-	db $21, $90, $6d, $28, $03, $19
-	db $21, $90, $6a, $27, $02, $1b
-	db $00, $00, $6f, $29, $02, $1c
-	db $21, $48, $70, $29, $02, $1c
-	db $21, $48, $6f, $29, $02, $1c
-	db $21, $78, $6f, $2a, $02, $1c
-	db $61, $90, $71, $2b, $02, $1d
-	db $61, $90, $72, $2c, $02, $1d
-	db $01, $48, $73, $2d, $04, $1e
-	db $01, $90, $74, $06, $02, $15
-	db $01, $ff, $75, $2e, $07, $19
-	db $21, $90, $4a, $02, $02, $14
-	db $01, $80, $30, $2f, $02, $11
-	db $01, $78, $76, $2a, $04, $23
-	db $01, $80, $77, $30, $02, $1f
-	db $01, $90, $77, $02, $02, $1f
-	db $01, $ff, $77, $00, $02, $1f
-	db $01, $80, $78, $08, $03, $23
-	db $21, $90, $79, $00, $02, $1f
-	db $01, $ff, $7a, $31, $03, $11
-	db $01, $88, $7a, $31, $03, $11
-	db $21, $88, $7b, $32, $02, $20
-	db $21, $98, $7c, $00, $02, $04
-	db $21, $80, $7d, $00, $02, $18
-	db $01, $80, $21, $2f, $06, $0d
-	db $01, $b0, $7e, $33, $03, $12
-	db $01, $80, $7f, $2f, $02, $08
-	db $21, $a0, $6f, $34, $02, $1c
-	db $21, $a0, $74, $35, $02, $15
-	db $21, $b0, $80, $33, $02, $14
-	db $01, $88, $81, $37, $02, $11
-	db $01, $88, $85, $00, $02, $22
-	db $01, $88, $86, $00, $02, $22
-	db $01, $90, $87, $39, $02, $1f
-	db $01, $80, $30, $3a, $03, $11
-	db $21, $90, $34, $00, $03, $05
-	db $a1, $88, $88, $3b, $06, $13
-	db $01, $80, $76, $25, $04, $23
-	db $01, $98, $10, $34, $04, $03
-	db $01, $a8, $0f, $3c, $04, $03
-	db $21, $68, $89, $29, $02, $1f
-	db $21, $b0, $8a, $00, $02, $1f
-	db $21, $80, $8c, $00, $02, $1f
-	db $21, $50, $8d, $00, $03, $1f
-	db $01, $40, $24, $40, $02, $0e
-	db $21, $a8, $8e, $41, $04, $1f
-	db $21, $88, $8f, $3e, $02, $1f
-	db $21, $88, $93, $3e, $02, $1f
-	db $21, $90, $97, $3d, $02, $1f
-	db $21, $90, $78, $3d, $03, $23
-	db $01, $ff, $99, $2e, $02, $19
-	db $21, $a0, $74, $02, $02, $15
-	db $21, $a0, $99, $35, $04, $19
-	db $21, $70, $8b, $3f, $02, $1f
-	db $01, $90, $15, $08, $02, $0a
-	db $01, $90, $11, $02, $04, $03
-	db $01, $80, $7f, $42, $02, $08
-	db $01, $90, $9a, $00, $02, $1b
-	db $21, $a0, $9b, $35, $04, $23
-	db $21, $80, $9c, $23, $02, $25
-	db $21, $80, $9d, $25, $02, $25
-	db $21, $80, $9c, $00, $02, $25
-	db $21, $80, $9e, $00, $06, $25
-	db $61, $80, $9f, $3a, $05, $23
-	db $21, $80, $a0, $16, $02, $23
-	db $21, $70, $78, $43, $03, $23
-	db $21, $c0, $a2, $01, $02, $25
-	db $21, $40, $a3, $44, $03, $24
-	db $01, $80, $a4, $00, $02, $24
-	db $01, $80, $a5, $00, $03, $24
-	db $01, $88, $43, $45, $04, $12
-	db $21, $ff, $a6, $00, $02, $02
-	db $21, $ff, $a7, $00, $02, $02
-	db $21, $00, $b4, $4a, $07, $0f
-	db $21, $90, $a8, $02, $03, $05
-	db $21, $40, $9c, $11, $02, $25
-	db $61, $90, $a9, $46, $02, $23
-	db $00, $00, $24, $47, $02, $0e
-	db $01, $80, $aa, $00, $02, $24
-	db $21, $b8, $ab, $48, $02, $13
-	db $21, $90, $ac, $44, $02, $13
-	db $01, $a8, $05, $00, $02, $01
-	db $01, $90, $24, $43, $02, $0e
-	db $01, $88, $ad, $00, $06, $17
-	db $01, $a8, $ae, $49, $02, $01
-	db $21, $90, $af, $01, $03, $11
-	db $21, $00, $b0, $4a, $02, $04
-	db $00, $00, $70, $4b, $04, $1c
-	db $01, $88, $b1, $4c, $02, $19
-	db $01, $b8, $19, $4d, $07, $09
-	db $61, $98, $b3, $00, $03, $27
-	db $61, $98, $74, $04, $06, $15
-	db $21, $ff, $19, $4e, $07, $09
-	db $01, $90, $73, $08, $04, $1e
-	db $01, $ff, $89, $4f, $04, $1f
-	db $00, $00, $b5, $00, $00, $28
-	db $00, $00, $b6, $00, $01, $29
-	db $00, $00, $b7, $00, $00, $28
-	db $00, $00, $b8, $00, $01, $29
+	db $01, $ff, $00, $00, $02, $01 ; 00
+	db $01, $ff, $01, $00, $02, $01 ; 01
+	db $01, $ff, $02, $00, $02, $01 ; 02
+	db $01, $90, $00, $00, $02, $01 ; 03
+	db $01, $90, $01, $00, $02, $01 ; 04
+	db $01, $90, $02, $00, $02, $01 ; 05
+	db $01, $ff, $03, $00, $02, $01 ; 06
+	db $01, $ff, $04, $1b, $02, $01 ; 07
+	db $01, $ff, $05, $00, $02, $01 ; 08
+	db $01, $ff, $06, $00, $02, $01 ; 09
+	db $01, $90, $07, $09, $02, $01 ; 0a
+	db $01, $aa, $10, $10, $04, $03 ; 0b
+	db $01, $90, $0e, $04, $04, $03 ; 0c
+	db $01, $90, $0f, $03, $04, $03 ; 0d
+	db $01, $90, $10, $08, $04, $03 ; 0e
+	db $01, $90, $0f, $0a, $04, $03 ; 0f
+	db $01, $90, $11, $03, $04, $03 ; 10
+	db $01, $90, $12, $08, $06, $0a ; 11
+	db $01, $90, $13, $00, $06, $0a ; 12
+	db $01, $90, $14, $01, $06, $0a ; 13
+	db $21, $78, $16, $0b, $05, $06 ; 14
+	db $00, $00, $09, $12, $04, $0b ; 15
+	db $00, $00, $09, $13, $04, $0b ; 16
+	db $01, $90, $18, $00, $04, $08 ; 17
+	db $01, $ff, $18, $00, $04, $08 ; 18
+	db $01, $90, $1d, $06, $02, $0c ; 19
+	db $01, $b4, $1f, $38, $02, $0c ; 1a
+	db $01, $90, $08, $00, $02, $07 ; 1b
+	db $01, $a0, $08, $00, $02, $07 ; 1c
+	db $01, $ff, $19, $07, $07, $09 ; 1d
+	db $01, $ff, $1a, $07, $07, $09 ; 1e
+	db $01, $b0, $1b, $36, $07, $09 ; 1f
+	db $01, $b0, $84, $36, $06, $21 ; 20
+	db $01, $90, $21, $0c, $06, $0d ; 21
+	db $00, $00, $23, $0d, $06, $0d ; 22
+	db $01, $90, $24, $0e, $02, $0e ; 23
+	db $61, $80, $27, $0f, $06, $04 ; 24
+	db $01, $b4, $2a, $00, $06, $04 ; 25
+	db $01, $40, $2b, $11, $05, $0f ; 26
+	db $61, $98, $2c, $00, $03, $10 ; 27
+	db $61, $98, $2d, $09, $03, $10 ; 28
+	db $01, $b8, $2e, $00, $06, $0a ; 29
+	db $01, $b8, $2f, $00, $06, $0a ; 2a
+	db $01, $b8, $30, $14, $07, $11 ; 2b
+	db $01, $90, $21, $14, $03, $0d ; 2c
+	db $21, $b0, $31, $00, $03, $05 ; 2d
+	db $21, $b0, $32, $00, $03, $05 ; 2e
+	db $21, $b0, $33, $00, $03, $05 ; 2f
+	db $21, $90, $34, $15, $03, $05 ; 30
+	db $21, $90, $36, $00, $03, $05 ; 31
+	db $21, $90, $37, $03, $02, $08 ; 32
+	db $21, $90, $38, $00, $03, $05 ; 33
+	db $21, $90, $39, $03, $02, $08 ; 34
+	db $21, $90, $3a, $16, $02, $02 ; 35
+	db $01, $90, $3c, $17, $02, $02 ; 36
+	db $21, $ff, $3e, $00, $02, $02 ; 37
+	db $21, $ff, $3f, $00, $02, $02 ; 38
+	db $21, $ff, $40, $00, $02, $02 ; 39
+	db $21, $ff, $41, $00, $02, $02 ; 3a
+	db $21, $ff, $42, $00, $02, $02 ; 3b
+	db $01, $88, $43, $18, $05, $12 ; 3c
+	db $01, $88, $44, $00, $05, $12 ; 3d
+	db $21, $b8, $45, $19, $02, $13 ; 3e
+	db $21, $ff, $46, $00, $02, $14 ; 3f
+	db $21, $ff, $47, $00, $02, $14 ; 40
+	db $21, $ff, $48, $1a, $02, $14 ; 41
+	db $21, $ff, $49, $1a, $02, $14 ; 42
+	db $21, $98, $4a, $01, $02, $14 ; 43
+	db $21, $80, $4b, $00, $03, $11 ; 44
+	db $01, $88, $4c, $1c, $05, $12 ; 45
+	db $21, $b0, $4d, $1d, $02, $15 ; 46
+	db $01, $b0, $51, $1e, $03, $11 ; 47
+	db $21, $ff, $52, $1f, $05, $16 ; 48
+	db $21, $ff, $54, $1f, $05, $16 ; 49
+	db $21, $68, $56, $20, $05, $06 ; 4a
+	db $21, $90, $59, $21, $02, $0e ; 4b
+	db $21, $90, $5c, $02, $02, $17 ; 4c
+	db $01, $90, $5d, $22, $03, $11 ; 4d
+	db $61, $88, $5f, $00, $03, $10 ; 4e
+	db $61, $88, $2d, $09, $03, $10 ; 4f
+	db $21, $88, $60, $00, $03, $18 ; 50
+	db $21, $80, $60, $00, $02, $18 ; 51
+	db $21, $50, $61, $23, $03, $19 ; 52
+	db $01, $80, $63, $24, $02, $19 ; 53
+	db $01, $80, $66, $25, $02, $19 ; 54
+	db $01, $50, $1c, $00, $02, $0c ; 55
+	db $21, $a8, $67, $26, $07, $1a ; 56
+	db $21, $a8, $68, $00, $07, $1a ; 57
+	db $21, $90, $69, $01, $02, $1a ; 58
+	db $21, $90, $6d, $28, $03, $19 ; 59
+	db $21, $90, $6a, $27, $02, $1b ; 5a
+	db $00, $00, $6f, $29, $02, $1c ; 5b
+	db $21, $48, $70, $29, $02, $1c ; 5c
+	db $21, $48, $6f, $29, $02, $1c ; 5d
+	db $21, $78, $6f, $2a, $02, $1c ; 5e
+	db $61, $90, $71, $2b, $02, $1d ; 5f
+	db $61, $90, $72, $2c, $02, $1d ; 60
+	db $01, $48, $73, $2d, $04, $1e ; 61
+	db $01, $90, $74, $06, $02, $15 ; 62
+	db $01, $ff, $75, $2e, $07, $19 ; 63
+	db $21, $90, $4a, $02, $02, $14 ; 64
+	db $01, $80, $30, $2f, $02, $11 ; 65
+	db $01, $78, $76, $2a, $04, $23 ; 66
+	db $01, $80, $77, $30, $02, $1f ; 67
+	db $01, $90, $77, $02, $02, $1f ; 68
+	db $01, $ff, $77, $00, $02, $1f ; 69
+	db $01, $80, $78, $08, $03, $23 ; 6a
+	db $21, $90, $79, $00, $02, $1f ; 6b
+	db $01, $ff, $7a, $31, $03, $11 ; 6c
+	db $01, $88, $7a, $31, $03, $11 ; 6d
+	db $21, $88, $7b, $32, $02, $20 ; 6e
+	db $21, $98, $7c, $00, $02, $04 ; 6f
+	db $21, $80, $7d, $00, $02, $18 ; 70
+	db $01, $80, $21, $2f, $06, $0d ; 71
+	db $01, $b0, $7e, $33, $03, $12 ; 72
+	db $01, $80, $7f, $2f, $02, $08 ; 73
+	db $21, $a0, $6f, $34, $02, $1c ; 74
+	db $21, $a0, $74, $35, $02, $15 ; 75
+	db $21, $b0, $80, $33, $02, $14 ; 76
+	db $01, $88, $81, $37, $02, $11 ; 77
+	db $01, $88, $85, $00, $02, $22 ; 78
+	db $01, $88, $86, $00, $02, $22 ; 79
+	db $01, $90, $87, $39, $02, $1f ; 7a
+	db $01, $80, $30, $3a, $03, $11 ; 7b
+	db $21, $90, $34, $00, $03, $05 ; 7c
+	db $a1, $88, $88, $3b, $06, $13 ; 7d
+	db $01, $80, $76, $25, $04, $23 ; 7e
+	db $01, $98, $10, $34, $04, $03 ; 7f
+	db $01, $a8, $0f, $3c, $04, $03 ; 80
+	db $21, $68, $89, $29, $02, $1f ; 81
+	db $21, $b0, $8a, $00, $02, $1f ; 82
+	db $21, $80, $8c, $00, $02, $1f ; 83
+	db $21, $50, $8d, $00, $03, $1f ; 84
+	db $01, $40, $24, $40, $02, $0e ; 85
+	db $21, $a8, $8e, $41, $04, $1f ; 86
+	db $21, $88, $8f, $3e, $02, $1f ; 87
+	db $21, $88, $93, $3e, $02, $1f ; 88
+	db $21, $90, $97, $3d, $02, $1f ; 89
+	db $21, $90, $78, $3d, $03, $23 ; 8a
+	db $01, $ff, $99, $2e, $02, $19 ; 8b
+	db $21, $a0, $74, $02, $02, $15 ; 8c
+	db $21, $a0, $99, $35, $04, $19 ; 8d
+	db $21, $70, $8b, $3f, $02, $1f ; 8e
+	db $01, $90, $15, $08, $02, $0a ; 8f
+	db $01, $90, $11, $02, $04, $03 ; 90
+	db $01, $80, $7f, $42, $02, $08 ; 91
+	db $01, $90, $9a, $00, $02, $1b ; 92
+	db $21, $a0, $9b, $35, $04, $23 ; 93
+	db $21, $80, $9c, $23, $02, $25 ; 94
+	db $21, $80, $9d, $25, $02, $25 ; 95
+	db $21, $80, $9c, $00, $02, $25 ; 96
+	db $21, $80, $9e, $00, $06, $25 ; 97
+	db $61, $80, $9f, $3a, $05, $23 ; 98
+	db $21, $80, $a0, $16, $02, $23 ; 99
+	db $21, $70, $78, $43, $03, $23 ; 9a
+	db $21, $c0, $a2, $01, $02, $25 ; 9b
+	db $21, $40, $a3, $44, $03, $24 ; 9c
+	db $01, $80, $a4, $00, $02, $24 ; 9d
+	db $01, $80, $a5, $00, $03, $24 ; 9e
+	db $01, $88, $43, $45, $04, $12 ; 9f
+	db $21, $ff, $a6, $00, $02, $02 ; a0
+	db $21, $ff, $a7, $00, $02, $02 ; a1
+	db $21, $00, $b4, $4a, $07, $0f ; a2
+	db $21, $90, $a8, $02, $03, $05 ; a3
+	db $21, $40, $9c, $11, $02, $25 ; a4
+	db $61, $90, $a9, $46, $02, $23 ; a5
+	db $00, $00, $24, $47, $02, $0e ; a6
+	db $01, $80, $aa, $00, $02, $24 ; a7
+	db $21, $b8, $ab, $48, $02, $13 ; a8
+	db $21, $90, $ac, $44, $02, $13 ; a9
+	db $01, $a8, $05, $00, $02, $01 ; aa
+	db $01, $90, $24, $43, $02, $0e ; ab
+	db $01, $88, $ad, $00, $06, $17 ; ac
+	db $01, $a8, $ae, $49, $02, $01 ; ad
+	db $21, $90, $af, $01, $03, $11 ; ae
+	db $21, $00, $b0, $4a, $02, $04 ; af
+	db $00, $00, $70, $4b, $04, $1c ; b0
+	db $01, $88, $b1, $4c, $02, $19 ; b1
+	db $01, $b8, $19, $4d, $07, $09 ; b2
+	db $61, $98, $b3, $00, $03, $27 ; b3
+	db $61, $98, $74, $04, $06, $15 ; b4
+	db $21, $ff, $19, $4e, $07, $09 ; b5
+	db $01, $90, $73, $08, $04, $1e ; b6
+	db $01, $ff, $89, $4f, $04, $1f ; b7
+	db $00, $00, $b5, $00, $00, $28 ; b8
+	db $00, $00, $b6, $00, $01, $29 ; b9
+	db $00, $00, $b7, $00, $00, $28 ; ba
+	db $00, $00, $b8, $00, $01, $29 ; bb
 ; ccfbe
 
 Functionccfbe: ; ccfbe
-	ld hl, $4
+	ld hl, BATTLEANIMSTRUCT_04
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
@@ -525,86 +515,86 @@ endr
 ; ccfce
 
 .Jumptable: ; ccfce (33:4fce)
-	dw Functioncd06e
-	dw Functioncd12a
-	dw Functioncd146
-	dw Functioncd0e3
-	dw Functioncd0a6
-	dw Functioncd081
-	dw Functioncd079
-	dw Functioncd2be
-	dw Functioncd306
-	dw Functioncd3ae
-	dw Functioncd3f2
-	dw Functioncd478
-	dw Functioncd5e9
-	dw Functioncd66a
-	dw Functioncd6e3
-	dw Functioncd71a
-	dw Functioncd284
-	dw Functioncd777
-	dw Functioncd15c
-	dw Functioncd212
-	dw Functioncd7a4
-	dw Functioncd80c
-	dw Functioncd824
-	dw Functioncd89a
-	dw Functioncd900
-	dw Functioncd954
-	dw Functioncdafa
-	dw Functioncdb06
-	dw Functioncda0a
-	dw Functioncdb80
-	dw Functioncdca6
-	dw Functioncda31
-	dw Functioncda4d
-	dw Functioncdcc3
-	dw Functioncdd2a
-	dw Functioncdd90
-	dw Functioncddf9
-	dw Functioncde28
-	dw Functioncde54
-	dw Functioncde6b
-	dw Functioncde89
-	dw Functioncdedd
-	dw Functioncdf59
-	dw Functionce063
-	dw Functionce0c5
-	dw Functioncdf1b
-	dw Functionce10e
-	dw Functionce15c
-	dw Functionce1e7
-	dw Functionce226
-	dw Functionce255
-	dw Functionce2cc
-	dw Functioncdf8c
-	dw Functionce00b
-	dw Functionce2fd
-	dw Functionce35f
-	dw Functionce389
-	dw Functionce3b4
-	dw Functionce3d2
-	dw Functionce3ff
-	dw Functioncdfcb
-	dw Functionce416
-	dw Functionce43a
-	dw Functioncdad6
-	dw Functionce49c
-	dw Functionce4dc
-	dw Functionce1b0
-	dw Functionce508
-	dw Functionce532
-	dw Functionce55b
-	dw Functionce593
-	dw Functionce5b4
-	dw Functionce5dc
-	dw Functionce5ee
-	dw Functionce62f
-	dw Functionce688
-	dw Functionce6b3
-	dw Functionce6d2
-	dw Functioncd58a
-	dw Functionce6bf
+	dw Functioncd06e ; 00
+	dw Functioncd12a ; 01
+	dw Functioncd146 ; 02
+	dw Functioncd0e3 ; 03
+	dw Functioncd0a6 ; 04
+	dw Functioncd081 ; 05
+	dw Functioncd079 ; 06
+	dw Functioncd2be ; 07
+	dw Functioncd306 ; 08
+	dw Functioncd3ae ; 09
+	dw Functioncd3f2 ; 0a
+	dw Functioncd478 ; 0b
+	dw Functioncd5e9 ; 0c
+	dw Functioncd66a ; 0d
+	dw Functioncd6e3 ; 0e
+	dw Functioncd71a ; 0f
+	dw Functioncd284 ; 10
+	dw Functioncd777 ; 11
+	dw Functioncd15c ; 12
+	dw Functioncd212 ; 13
+	dw Functioncd7a4 ; 14
+	dw Functioncd80c ; 15
+	dw Functioncd824 ; 16
+	dw Functioncd89a ; 17
+	dw Functioncd900 ; 18
+	dw Functioncd954 ; 19
+	dw Functioncdafa ; 1a
+	dw Functioncdb06 ; 1b
+	dw Functioncda0a ; 1c
+	dw Functioncdb80 ; 1d
+	dw Functioncdca6 ; 1e
+	dw Functioncda31 ; 1f
+	dw Functioncda4d ; 20
+	dw Functioncdcc3 ; 21
+	dw Functioncdd2a ; 22
+	dw Functioncdd90 ; 23
+	dw Functioncddf9 ; 24
+	dw Functioncde28 ; 25
+	dw Functioncde54 ; 26
+	dw Functioncde6b ; 27
+	dw Functioncde89 ; 28
+	dw Functioncdedd ; 29
+	dw Functioncdf59 ; 2a
+	dw Functionce063 ; 2b
+	dw Functionce0c5 ; 2c
+	dw Functioncdf1b ; 2d
+	dw Functionce10e ; 2e
+	dw Functionce15c ; 2f
+	dw Functionce1e7 ; 30
+	dw Functionce226 ; 31
+	dw Functionce255 ; 32
+	dw Functionce2cc ; 33
+	dw Functioncdf8c ; 34
+	dw Functionce00b ; 35
+	dw Functionce2fd ; 36
+	dw Functionce35f ; 37
+	dw Functionce389 ; 38
+	dw Functionce3b4 ; 39
+	dw Functionce3d2 ; 3a
+	dw Functionce3ff ; 3b
+	dw Functioncdfcb ; 3c
+	dw Functionce416 ; 3d
+	dw Functionce43a ; 3e
+	dw Functioncdad6 ; 3f
+	dw Functionce49c ; 40
+	dw Functionce4dc ; 41
+	dw Functionce1b0 ; 42
+	dw Functionce508 ; 43
+	dw Functionce532 ; 44
+	dw Functionce55b ; 45
+	dw Functionce593 ; 46
+	dw Functionce5b4 ; 47
+	dw Functionce5dc ; 48
+	dw Functionce5ee ; 49
+	dw Functionce62f ; 4a
+	dw Functionce688 ; 4b
+	dw Functionce6b3 ; 4c
+	dw Functionce6d2 ; 4d
+	dw Functioncd58a ; 4e
+	dw Functionce6bf ; 4f
 
 Functioncd06e: ; cd06e (33:506e)
 	call BattleAnim_AnonJumptable
@@ -613,7 +603,7 @@ Functioncd06e: ; cd06e (33:506e)
 	dw Functioncd075
 
 Functioncd075: ; cd075 (33:5075)
-	call Functioncc9bd
+	call DeinitBattleAnimation
 
 Functioncd078: ; cd078 (33:5078)
 	ret
@@ -621,50 +611,50 @@ Functioncd078: ; cd078 (33:5078)
 Functioncd079: ; cd079 (33:5079)
 	call Functioncd081
 	ret c
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functioncd081: ; cd081 (33:5081)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $88
 	ret nc
 	add $2
 	ld [hl], a
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	dec [hl]
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	dec [hl]
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld d, [hl]
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	scf
 	ret
 
 Functioncd0a6: ; cd0a6 (33:50a6)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $88
 	jr c, .asm_cd0b3
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 .asm_cd0b3
 	add $2
 	ld [hl], a
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	dec [hl]
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 rept 4
@@ -674,13 +664,13 @@ endr
 	push af
 	push de
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	sra a
 	sra a
@@ -697,42 +687,42 @@ Functioncd0e3: ; cd0e3 (33:50e3)
 
 Functioncd0ea: ; cd0ea (33:50ea)
 	call Functionce72c
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	bit 7, [hl]
 	ld a, $0
 	jr z, .asm_cd0f9
 	ld a, $20
 .asm_cd0f9
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $7f
 	ld [hl], a
 
 Functioncd106: ; cd106 (33:5106)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld d, [hl]
 	push af
 	push de
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	inc [hl]
 	ret
@@ -744,35 +734,35 @@ Functioncd12a: ; cd12a (33:512a)
 	dw Functioncd131
 
 Functioncd131: ; cd131 (33:5131)
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functioncd135: ; cd135 (33:5135)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $84
 	ret nc
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	call Functionce70a
 	ret
 
 Functioncd146: ; cd146 (33:5146)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $84
 	jr nc, .asm_cd158
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	call Functionce70a
 	ret
 
 .asm_cd158
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functioncd15c: ; cd15c (33:515c)
@@ -799,10 +789,10 @@ Functioncd177: ; cd177 (33:5177)
 Functioncd17e: ; cd17e (33:517e)
 	call Functioncd081
 	ret c
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld a, [hl]
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	add [hl]
 	ld [hl], a
@@ -815,22 +805,22 @@ Functioncd196: ; cd196 (33:5196)
 	call Functionce72c
 	ld a, $9
 	call Functionce7bf
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $0
 	inc hl
 	ld [hl], $10
 
 Functioncd1a7: ; cd1a7 (33:51a7)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	dec a
@@ -838,8 +828,8 @@ Functioncd1a7: ; cd1a7 (33:51a7)
 	and $1f
 	ret nz
 	ld [hl], a
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	sub $4
 	ld [hl], a
@@ -852,7 +842,7 @@ Functioncd1a7: ; cd1a7 (33:51a7)
 Functioncd1d2: ; cd1d2 (33:51d2)
 	ld a, $d
 	call Functionce7bf
-	ld hl, $e
+	ld hl, BATTLEANIMSTRUCT_0E
 	add hl, bc
 	dec [hl]
 
@@ -864,20 +854,20 @@ Functioncd1dd: ; cd1dd (33:51dd)
 	ld a, $a
 	call Functionce7bf
 	call Functionce72c
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld [hl], $20
 
 Functioncd1ee: ; cd1ee (33:51ee)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	dec a
@@ -890,7 +880,7 @@ Functioncd1ee: ; cd1ee (33:51ee)
 	ret
 
 Functioncd20e: ; cd20e (33:520e)
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functioncd212: ; cd212 (33:5212)
@@ -906,7 +896,7 @@ Functioncd21b: ; cd21b (33:521b)
 	ret
 
 Functioncd222: ; cd222 (33:5222)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $70
@@ -918,14 +908,14 @@ Functioncd222: ; cd222 (33:5222)
 	call Functionce72c
 
 Functioncd232: ; cd232 (33:5232)
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	ld a, [hl]
 	cp $80
 	jr nc, .asm_cd245
 	add $4
 	ld [hl], a
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 rept 2
 	dec [hl]
@@ -933,7 +923,7 @@ endr
 	ret
 
 .asm_cd245
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functioncd249: ; cd249 (33:5249)
@@ -989,30 +979,30 @@ Functioncd284: ; cd284 (33:5284)
 	dw Functioncd2bd
 
 Functioncd291: ; cd291 (33:5291)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	swap a
 	and $f
-	ld hl, $e
+	ld hl, BATTLEANIMSTRUCT_0E
 	add hl, bc
 	ld [hl], a
 	ret
 
 Functioncd2a0: ; cd2a0 (33:52a0)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $88
 	ret nc
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	call Functionce70a
 	ret
 
 Functioncd2b1: ; cd2b1 (33:52b1)
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functioncd2b5: ; cd2b5 (33:52b5)
@@ -1031,45 +1021,45 @@ Functioncd2be: ; cd2be (33:52be)
 
 Functioncd2c5: ; cd2c5 (33:52c5)
 	call Functionce72c
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $30
 	inc hl
 	ld [hl], $48
 
 Functioncd2d1: ; cd2d1 (33:52d1)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	inc [hl]
 	ld a, [hl]
 	and $3f
 	ret nz
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $20
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	sub [hl]
 	jr z, .asm_cd302
 	jr c, .asm_cd302
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld [hl], a
 	ret
 
 .asm_cd302
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functioncd306: ; cd306 (33:5306)
@@ -1081,7 +1071,7 @@ Functioncd306: ; cd306 (33:5306)
 	dw Functioncd37d
 
 Functioncd311: ; cd311 (33:5311)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $80
@@ -1094,46 +1084,46 @@ Functioncd311: ; cd311 (33:5311)
 
 Functioncd321: ; cd321 (33:5321)
 	call Functionce72c
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $0
 
 Functioncd32a: ; cd32a (33:532a)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	cp $40
 	jr nc, .asm_cd363
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	ld d, $18
 	call BattleAnim_Cosine
 	sub $18
 	sra a
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	ld d, $18
 	call BattleAnim_Sine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $f
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	add [hl]
 	ld [hl], a
 	ret
 
 .asm_cd363
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $f0
@@ -1144,7 +1134,7 @@ Functioncd32a: ; cd32a (33:532a)
 	and $f
 	or d
 	ld [hl], a
-	ld hl, $e
+	ld hl, BATTLEANIMSTRUCT_0E
 	add hl, bc
 	dec [hl]
 	ret
@@ -1153,12 +1143,12 @@ Functioncd32a: ; cd32a (33:532a)
 	call Functionce72c
 
 Functioncd37d: ; cd37d (33:537d)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $b0
 	jr c, .asm_cd38a
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 .asm_cd38a
@@ -1166,21 +1156,21 @@ Functioncd37d: ; cd37d (33:537d)
 	ret
 
 Functioncd38e: ; cd38e (33:538e)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $f
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	add [hl]
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $f
 	ld e, a
 	srl e
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 .asm_cd3a9
 	dec [hl]
@@ -1197,19 +1187,19 @@ Functioncd3ae: ; cd3ae (33:53ae)
 
 Functioncd3b7: ; cd3b7 (33:53b7)
 	call Functionce72c
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $0
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $f
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
 
 Functioncd3cc: ; cd3cc (33:53cc)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -1218,15 +1208,15 @@ Functioncd3cc: ; cd3cc (33:53cc)
 	ret
 
 .asm_cd3d6
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	swap a
 	and $f
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], a
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld a, [hl]
 	xor $ff
@@ -1235,7 +1225,7 @@ Functioncd3cc: ; cd3cc (33:53cc)
 	ret
 
 Functioncd3ee: ; cd3ee (33:53ee)
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functioncd3f2: ; cd3f2 (33:53f2)
@@ -1253,10 +1243,10 @@ Functioncd3f2: ; cd3f2 (33:53f2)
 	dw Functioncd458
 
 Functioncd409: ; cd409 (33:5409)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
-	ld hl, $e
+	ld hl, BATTLEANIMSTRUCT_0E
 	add hl, bc
 	ld [hl], a
 	cp $7
@@ -1266,14 +1256,14 @@ Functioncd409: ; cd409 (33:5409)
 	ret
 
 Functioncd41d: ; cd41d (33:541d)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $88
 	jr nc, .asm_cd42f
 	add $2
 	ld [hl], a
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	dec [hl]
 	ret
@@ -1284,55 +1274,55 @@ Functioncd41d: ; cd41d (33:541d)
 	call Functionce7bf
 
 Functioncd437: ; cd437 (33:5437)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	ld d, $10
 	push af
 	push de
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	inc [hl]
 	ret
 
 Functioncd458: ; cd458 (33:5458)
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functioncd45c: ; cd45c (33:545c)
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	dec [hl]
 	ret
 
 Functioncd462: ; cd462 (33:5462)
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	inc [hl]
 
 Functioncd467: ; cd467 (33:5467)
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	dec [hl]
 	ret
 
 Functioncd46d: ; cd46d (33:546d)
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	inc [hl]
 
 Functioncd472: ; cd472 (33:5472)
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	inc [hl]
 
@@ -1354,121 +1344,121 @@ Functioncd478: ; cd478 (33:5478)
 
 Functioncd48d: ; cd48d (33:548d)
 	call Functionce72c
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $40
 
 Functioncd496: ; cd496 (33:5496)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	cp $30
 	jr nc, .asm_cd4bc
 	call Functionce72c
 	xor a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hli], a
 	ld [hl], a
 	ld a, $17
 	call Functionce7bf
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	bit 6, [hl]
 	ret z
-	ld hl, $d
+	ld hl, BATTLEANIMSTRUCT_0D
 	add hl, bc
 	ld [hl], $5
 	ret
 
 .asm_cd4bc
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $3f
 	ld d, a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	dec [hl]
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	call Functioncd557
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld h, [hl]
 	ld l, a
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld [hl], d
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld [hl], e
 	ret
 
 Functioncd4ee: ; cd4ee (33:54ee)
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld a, [hl]
 	cp $20
 	jr nz, .asm_cd4fb
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 .asm_cd4fb
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	ld d, $10
 	call BattleAnim_Sine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	bit 6, [hl]
 	jr nz, .asm_cd519
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	inc [hl]
 	jr .asm_cd51e
 
 .asm_cd519
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	dec [hl]
 .asm_cd51e
 	ld de, $80
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld h, [hl]
 	ld l, a
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], d
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld [hl], e
 	ret
 
 Functioncd53a: ; cd53a (33:553a)
 	ld a, $16
 	call Functionce7bf
-	ld hl, $1
+	ld hl, BATTLEANIMSTRUCT_01
 	add hl, bc
 	res 5, [hl]
 
@@ -1477,7 +1467,7 @@ Functioncd545: ; cd545 (33:5545)
 	ret
 
 Functioncd549: ; cd549 (33:5549)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $c0
@@ -1487,7 +1477,7 @@ Functioncd549: ; cd549 (33:5549)
 	ret
 
 Functioncd557: ; cd557 (33:5557)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	bit 7, a
@@ -1531,59 +1521,59 @@ Functioncd58a: ; cd58a (33:558a)
 	dw Functioncd5aa
 
 Functioncd591: ; cd591 (33:5591)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $40
 	rlca
 	rlca
 	add $19
-	ld hl, $3
+	ld hl, BATTLEANIMSTRUCT_03
 	add hl, bc
 	ld [hl], a
 	call Functionce72c
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $40
 Functioncd5aa: ; cd5aa (33:55aa)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	cp $30
 	jr nc, .asm_cd5b7
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 .asm_cd5b7
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $3f
 	ld d, a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	dec [hl]
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	call Functioncd557
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld h, [hl]
 	ld l, a
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld [hl], d
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld [hl], e
 	ret
 
@@ -1596,18 +1586,18 @@ Functioncd5e9: ; cd5e9 (33:55e9)
 
 Functioncd5f2: ; cd5f2 (33:55f2)
 	call Functionce72c
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $c
 
 Functioncd5fb: ; cd5fb (33:55fb)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	and a
 	jr z, .asm_cd60d
 	dec [hl]
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	call Functionce70a
@@ -1615,22 +1605,22 @@ Functioncd5fb: ; cd5fb (33:55fb)
 
 .asm_cd60d
 	call Functionce72c
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $0
 	ld a, $22
 	call Functionce7bf
 
 Functioncd61b: ; cd61b (33:561b)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $98
 	jr nc, .asm_cd63f
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld h, [hl]
 	ld l, a
@@ -1638,38 +1628,38 @@ Functioncd61b: ; cd61b (33:561b)
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], e
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld [hl], d
 .asm_cd63f
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	ld a, [hl]
 	cp $20
 	ret c
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $f0
 	ld e, a
 	ld d, $ff
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	ld h, [hl]
 	ld l, a
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld [hl], e
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	ld [hl], d
 	ret
@@ -1694,10 +1684,10 @@ Functioncd677: ; cd677 (33:5677)
 	ret
 
 Functioncd687: ; cd687 (33:5687)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld e, [hl]
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	ld a, [hl]
 	cp e
@@ -1710,27 +1700,27 @@ Functioncd687: ; cd687 (33:5687)
 .asm_cd69b
 	dec a
 	ld [hl], a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	ld d, $10
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	add [hl]
 	sub $10
 	ret c
 	ld [hLCDStatCustom + 1], a
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld a, [hl]
 	inc a
 	and $7
 	ld [hl], a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 rept 2
 	inc [hl]
@@ -1740,7 +1730,7 @@ Functioncd6c5: ; cd6c5 (33:56c5)
 	ret
 
 Functioncd6c6: ; cd6c6 (33:56c6)
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	ld a, [hl]
 	cp $70
@@ -1751,7 +1741,7 @@ Functioncd6c6: ; cd6c6 (33:56c6)
 	ld [hLCDStatCustom + 2], a
 
 Functioncd6d6: ; cd6d6 (33:56d6)
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 asm_cd6da: ; cd6da (33:56da)
@@ -1772,31 +1762,31 @@ Functioncd6e3: ; cd6e3 (33:56e3)
 
 Functioncd6ea: ; cd6ea (33:56ea)
 	call Functionce72c
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, $24
 	add [hl]
 	call Functionce7bf
 
 Functioncd6f7: ; cd6f7 (33:56f7)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $b8
 	jr c, .asm_cd704
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 .asm_cd704
 	ld a, $2
 	call Functionce70a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	dec [hl]
 	ld d, $8
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	ret
@@ -1813,20 +1803,20 @@ Functioncd725: ; cd725 (33:5725)
 	call Functionce72c
 
 Functioncd728: ; cd728 (33:5728)
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	ld a, [hl]
 	cp $30
 	jr c, .asm_cd747
 	ld a, $2
 	call Functionce70a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	dec [hl]
 	ld d, $8
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	ret
@@ -1835,20 +1825,20 @@ Functioncd728: ; cd728 (33:5728)
 	call Functionce72c
 	ld a, $28
 	call Functionce7bf
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], $0
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	ld [hl], $30
-	ld hl, $1
+	ld hl, BATTLEANIMSTRUCT_01
 	add hl, bc
 	ld a, [hl]
 	and $1
 	ld [hl], a
 
 Functioncd763: ; cd763 (33:5763)
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld a, [hl]
 	cp $18
@@ -1865,17 +1855,17 @@ Functioncd776: ; cd776 (33:5776)
 	ret
 
 Functioncd777: ; cd777 (33:5777)
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld a, [hl]
 	cp $38
 	jr c, .asm_cd784
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 .asm_cd784
 	ld a, [hl]
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld l, [hl]
 	ld h, a
@@ -1883,13 +1873,13 @@ Functioncd777: ; cd777 (33:5777)
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], e
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], d
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld a, [hl]
 	xor $10
@@ -1904,64 +1894,64 @@ Functioncd7a4: ; cd7a4 (33:57a4)
 
 Functioncd7ab: ; cd7ab (33:57ab)
 	call Functionce72c
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $f0
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $f
 	sla a
 	sla a
 	sla a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld [hl], $1
 
 Functioncd7d2: ; cd7d2 (33:57d2)
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	and a
 	jr nz, .asm_cd7de
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 .asm_cd7de
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld d, [hl]
 	push af
 	push de
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	xor $1
 	ld [hl], a
 	ret z
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	dec [hl]
 	ret
 
@@ -1982,7 +1972,7 @@ Functioncd81f: ; cd81f (33:581f)
 	ret
 
 Functioncd820: ; cd820 (33:5820)
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functioncd824: ; cd824 (33:5824)
@@ -1998,58 +1988,58 @@ Functioncd824: ; cd824 (33:5824)
 
 Functioncd835: ; cd835 (33:5835)
 	call Functionce72c
-	ld hl, $3
+	ld hl, BATTLEANIMSTRUCT_03
 	add hl, bc
 	ld a, [hl]
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	bit 7, [hl]
 	jr nz, .asm_cd852
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $10
 	jr .asm_cd858
 
 .asm_cd852
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $30
 .asm_cd858
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $7f
 	ld [hl], a
 
 Functioncd860: ; cd860 (33:5860)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld d, [hl]
 	call BattleAnim_Sine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
 	bit 7, a
 	jr nz, .asm_cd87e
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	inc a
 	jr .asm_cd883
 
 .asm_cd87e
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 .asm_cd883
 	call Functionce7bf
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	inc [hl]
 	ld a, [hl]
@@ -2061,7 +2051,7 @@ Functioncd88f: ; cd88f (33:588f)
 	ret
 
 Functioncd893: ; cd893 (33:5893)
-	ld hl, $e
+	ld hl, BATTLEANIMSTRUCT_0E
 	add hl, bc
 	ld [hl], $1
 	ret
@@ -2079,35 +2069,35 @@ Functioncd89a: ; cd89a (33:589a)
 
 Functioncd8ab: ; cd8ab (33:58ab)
 	call Functionce72c
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	bit 7, [hl]
 	jr nz, .asm_cd8be
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $10
 	jr .asm_cd8c4
 
 .asm_cd8be
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $30
 .asm_cd8c4
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $7f
 	ld [hl], a
 
 Functioncd8cc: ; cd8cc (33:58cc)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld d, [hl]
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	bit 7, a
@@ -2119,7 +2109,7 @@ Functioncd8cc: ; cd8cc (33:58cc)
 	ld a, $3c
 .asm_cd8e8
 	call Functionce7bf
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 rept 2
 	inc [hl]
@@ -2133,7 +2123,7 @@ Functioncd8f5: ; cd8f5 (33:58f5)
 	ret
 
 Functioncd8f9: ; cd8f9 (33:58f9)
-	ld hl, $e
+	ld hl, BATTLEANIMSTRUCT_0E
 	add hl, bc
 	ld [hl], $1
 	ret
@@ -2146,54 +2136,54 @@ Functioncd900: ; cd900 (33:5900)
 
 Functioncd907: ; cd907 (33:5907)
 	call Functionce72c
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $28
 	inc hl
 	ld [hl], $0
 
 Functioncd913: ; cd913 (33:5913)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld d, [hl]
 	push af
 	push de
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	and a
 	jr z, .asm_cd950
 	ld d, a
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld e, [hl]
 	ld hl, hPushOAM ; $ff80
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld [hl], e
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], d
 	ret
 
 .asm_cd950
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functioncd954: ; cd954 (33:5954)
@@ -2207,7 +2197,7 @@ Functioncd954: ; cd954 (33:5954)
 
 Functioncd961: ; cd961 (33:5961)
 	call Functionce72c
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld [hl], $0
 
@@ -2216,7 +2206,7 @@ Functioncd96a: ; cd96a (33:596a)
 	ret
 
 Functioncd96e: ; cd96e (33:596e)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $88
@@ -2225,30 +2215,30 @@ Functioncd96e: ; cd96e (33:596e)
 	ret
 
 Functioncd97b: ; cd97b (33:597b)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $b8
 	jr c, asm_cd988
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 asm_cd988: ; cd988 (33:5988)
 	call Functioncd99a
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	inc [hl]
 	ld a, [hl]
 	and $1
 	ret nz
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	dec [hl]
 	ret
 
 Functioncd99a: ; cd99a (33:599a)
 	call Functioncd9f4
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	push af
@@ -2258,24 +2248,24 @@ Functioncd99a: ; cd99a (33:599a)
 	sra a
 	sra a
 	sra a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	add [hl]
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	sub $8
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -2287,28 +2277,28 @@ Functioncd99a: ; cd99a (33:599a)
 	ld [hl], a
 	and $7
 	ret nz
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	inc [hl]
 	ret
 
 .asm_cd9e2
 	xor a
-	ld hl, $10
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
+	ld [hl], a
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	ld [hl], a
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hli], a
 	ld [hl], a
 	ret
 
 Functioncd9f4: ; cd9f4 (33:59f4)
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld e, [hl]
 	ld d, 0
 	ld hl, Unknown_cda01
@@ -2323,27 +2313,27 @@ Unknown_cda01: ; cda01
 ; cda0a
 
 Functioncda0a: ; cda0a (33:5a0a)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $30
 	jr nc, .asm_cda17
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 .asm_cda17
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $f
 	ld e, a
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	sub e
 	ld [hl], a
 	srl e
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 .asm_cda2c
 	inc [hl]
@@ -2359,13 +2349,13 @@ Functioncda31: ; cda31 (33:5a31)
 	dw Functioncda4c
 
 Functioncda3a: ; cda3a (33:5a3a)
-	ld hl, $3
+	ld hl, BATTLEANIMSTRUCT_03
 	add hl, bc
 	ld a, [hl]
 	inc a
 	call Functionce7bf
 	call Functionce72c
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $8
 
@@ -2382,14 +2372,14 @@ Functioncda4d: ; cda4d (33:5a4d)
 
 Functioncda58: ; cda58 (33:5a58)
 	call Functionce72c
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld [hl], $40
 	ret
 
 Functioncda62: ; cda62 (33:5a62)
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	cp $20
 	jr c, .asm_cda6f
@@ -2404,8 +2394,8 @@ Functioncda62: ; cda62 (33:5a62)
 	ret
 
 Functioncda7a: ; cda7a (33:5a7a)
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	and a
 	jr z, .asm_cda84
@@ -2424,7 +2414,7 @@ Functioncda8d: ; cda8d (33:5a8d)
 	dec [hl]
 	ld d, $20
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
@@ -2432,13 +2422,13 @@ Functioncda8d: ; cda8d (33:5a8d)
 	ld a, [hl]
 	add $2
 	ld [hl], a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld e, [hl]
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld d, [hl]
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld h, [hl]
 	ld a, h
@@ -2452,18 +2442,18 @@ Functioncda8d: ; cda8d (33:5a8d)
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], e
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld [hl], d
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	and $1
 	ret nz
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	dec [hl]
 	ret
@@ -2477,14 +2467,14 @@ Functioncdad6: ; cdad6 (33:5ad6)
 
 Functioncdadf: ; cdadf (33:5adf)
 	call Functionce72c
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld [hl], $40
 	ret
 
 Functioncdae9: ; cdae9 (33:5ae9)
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	cp $20
 	jr c, .asm_cdaf6
@@ -2499,7 +2489,7 @@ Functioncdaf9: ; cdaf9 (33:5af9)
 
 Functioncdafa: ; cdafa (33:5afa)
 	call Functioncd0e3
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	add $f
@@ -2519,12 +2509,12 @@ Functioncdb13: ; cdb13 (33:5b13)
 	ret
 
 Functioncdb14: ; cdb14 (33:5b14)
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	ld a, [hl]
 	cp $30
 	jr c, .asm_cdb24
-	ld hl, $e
+	ld hl, BATTLEANIMSTRUCT_0E
 	add hl, bc
 	ld [hl], $0
 	ret
@@ -2535,7 +2525,7 @@ Functioncdb14: ; cdb14 (33:5b14)
 	ret
 
 Functioncdb28: ; cdb28 (33:5b28)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $98
@@ -2543,37 +2533,37 @@ Functioncdb28: ; cdb28 (33:5b28)
 rept 2
 	inc [hl]
 endr
-	ld hl, $1
+	ld hl, BATTLEANIMSTRUCT_01
 	add hl, bc
 	set 0, [hl]
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
 	ld [hl], $90
-	ld hl, $d
+	ld hl, BATTLEANIMSTRUCT_0D
 	add hl, bc
 	ld [hl], $0
-	ld hl, $c
+	ld hl, BATTLEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $2
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	dec [hl]
 	ret
 
 Functioncdb50: ; cdb50 (33:5b50)
 	call Functionce72c
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $2c
-	ld hl, $d
+	ld hl, BATTLEANIMSTRUCT_0D
 	add hl, bc
 	ld [hl], $0
-	ld hl, $c
+	ld hl, BATTLEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $80
 
 Functioncdb65: ; cdb65 (33:5b65)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $98
@@ -2581,13 +2571,13 @@ Functioncdb65: ; cdb65 (33:5b65)
 rept 2
 	inc [hl]
 endr
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
 	ld d, $8
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	ret
@@ -2611,21 +2601,21 @@ Functioncdb80: ; cdb80 (33:5b80)
 	dw Functioncdc74
 
 Functioncdb9f: ; cdb9f (33:5b9f)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $28
 	inc hl
 	ld [hl], $10
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
-	ld hl, $e
+	ld hl, BATTLEANIMSTRUCT_0E
 	add hl, bc
 	ld [hl], a
 	ret
 
 Functioncdbb3: ; cdbb3 (33:5bb3)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $40
@@ -2636,7 +2626,7 @@ Functioncdbb3: ; cdbb3 (33:5bb3)
 	ret
 
 Functioncdbc1: ; cdbc1 (33:5bc1)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $4b
@@ -2647,15 +2637,15 @@ Functioncdbc1: ; cdbc1 (33:5bc1)
 	ret
 
 Functioncdbcf: ; cdbcf (33:5bcf)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $88
 	jr nc, .asm_cdbe6
 	and $f
 	jr nz, asm_cdbfa
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld [hl], $10
 	call Functionce72c
 	ret
@@ -2666,8 +2656,8 @@ Functioncdbcf: ; cdbcf (33:5bcf)
 	ret
 
 Functioncdbeb: ; cdbeb (33:5beb)
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	and a
 	jr z, .asm_cdbf5
@@ -2675,33 +2665,33 @@ Functioncdbeb: ; cdbeb (33:5beb)
 	ret
 
 .asm_cdbf5
-	ld hl, $e
+	ld hl, BATTLEANIMSTRUCT_0E
 	add hl, bc
 	dec [hl]
 asm_cdbfa: ; cdbfa (33:5bfa)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	inc [hl]
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	ld d, [hl]
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld e, [hl]
 	ld hl, hPushOAM ; $ff80
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	ld [hl], d
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], e
 	ret
 
 Functioncdc1a: ; cdc1a (33:5c1a)
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functioncdc1e: ; cdc1e (33:5c1e)
@@ -2711,7 +2701,7 @@ Functioncdc1e: ; cdc1e (33:5c1e)
 	ret
 
 Functioncdc27: ; cdc27 (33:5c27)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 rept 2
@@ -2719,7 +2709,7 @@ rept 2
 endr
 	ld d, $2
 	call BattleAnim_Sine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
 	ret
@@ -2727,7 +2717,7 @@ endr
 Functioncdc39: ; cdc39 (33:5c39)
 	ld a, $50
 	call Functionce7bf
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], $4
 	call Functionce72c
@@ -2737,21 +2727,21 @@ Functioncdc48: ; cdc48 (33:5c48)
 	ld a, $4f
 	call Functionce7bf
 	call Functionce72c
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $40
 	ret
 
 Functioncdc57: ; cdc57 (33:5c57)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	ld d, $20
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	cp $30
@@ -2766,31 +2756,31 @@ Functioncdc74: ; cdc74 (33:5c74)
 	ret
 
 Functioncdc75: ; cdc75 (33:5c75)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	inc [hl]
 	ld a, [hl]
 	and $3f
 	ret nz
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $20
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	sub $8
 	ld [hl], a
 	ret nz
 	xor a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hli], a
 	ld [hl], a
@@ -2798,21 +2788,21 @@ Functioncdc75: ; cdc75 (33:5c75)
 	ret
 
 Functioncdca6: ; cdca6 (33:5ca6)
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld a, [hl]
 	and a
 	jr z, .asm_cdcb6
 	cp $d8
 	jr nc, .asm_cdcb6
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 .asm_cdcb6
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld d, [hl]
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld a, [hl]
 	sub d
@@ -2829,7 +2819,7 @@ Functioncdcca: ; cdcca (33:5cca)
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_cdcd9
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	xor $ff
@@ -2837,10 +2827,10 @@ Functioncdcca: ; cdcca (33:5cca)
 	ld [hl], a
 .asm_cdcd9
 	call Functionce72c
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $8
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, $59
 	add [hl]
@@ -2848,7 +2838,7 @@ Functioncdcca: ; cdcca (33:5cca)
 	ret
 
 Functioncdced: ; cdced (33:5ced)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -2858,12 +2848,12 @@ Functioncdced: ; cdced (33:5ced)
 	ret
 
 .asm_cdcfa
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functioncdcfe: ; cdcfe (33:5cfe)
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 rept 2
 	inc [hl]
@@ -2871,23 +2861,23 @@ endr
 	ld d, $10
 	call BattleAnim_Sine
 	ld d, a
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and a
 	jr z, .asm_cdd20
 	dec a
 	ret z
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], d
 	ret
 
 .asm_cdd20
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld a, d
 	xor $ff
@@ -2903,14 +2893,14 @@ Functioncdd2a: ; cdd2a (33:5d2a)
 
 Functioncdd31: ; cdd31 (33:5d31)
 	call Functionce72c
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $3f
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $80
@@ -2921,44 +2911,44 @@ Functioncdd31: ; cdd31 (33:5d31)
 	ret
 
 Functioncdd4f: ; cdd4f (33:5d4f)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	swap a
 	ld d, a
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	inc [hl]
 	push af
 	push de
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $80
 	ret nc
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	and $3
 	jr nz, .asm_cdd87
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	dec [hl]
 .asm_cdd87
 	and $1
 	ret nz
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	inc [hl]
 	ret
@@ -2971,29 +2961,29 @@ Functioncdd90: ; cdd90 (33:5d90)
 
 Functioncdd97: ; cdd97 (33:5d97)
 	call Functionce72c
-	ld hl, $3
+	ld hl, BATTLEANIMSTRUCT_03
 	add hl, bc
 	ld a, [hl]
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $80
 	rlca
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	add [hl]
 	call Functionce7bf
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $7f
 	ld [hl], a
 
 Functioncddbc: ; cddbc (33:5dbc)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	ld d, $10
@@ -3002,16 +2992,16 @@ Functioncddbc: ; cddbc (33:5dbc)
 	call BattleAnim_Sine
 	sra a
 	sra a
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
@@ -3019,14 +3009,14 @@ Functioncddbc: ; cddbc (33:5dbc)
 	jr z, .asm_cddf0
 	and $1f
 	ret nz
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	inc a
 	jr .asm_cddf5
 
 .asm_cddf0
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 .asm_cddf5
@@ -3042,19 +3032,19 @@ Functioncddf9: ; cddf9 (33:5df9)
 
 Functioncde02: ; cde02 (33:5e02)
 	call Functionce72c
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	add $63
 	call Functionce7bf
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
 	ld hl, Unknown_cde25
 	add hl, de
 	ld a, [hl]
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 
@@ -3062,7 +3052,7 @@ Functioncde20: ; cde20 (33:5e20)
 	ret
 
 Functioncde21: ; cde21 (33:5e21)
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 ; cde25 (33:5e25)
@@ -3072,7 +3062,7 @@ Unknown_cde25: ; cde25
 ; cde28
 
 Functioncde28: ; cde28 (33:5e28)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 rept 2
@@ -3080,29 +3070,29 @@ rept 2
 endr
 	ld d, $4
 	call BattleAnim_Sine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld d, [hl]
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld e, [hl]
 	ld hl, $ffa0
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], d
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld [hl], e
 	ret
 
 Functioncde54: ; cde54 (33:5e54)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 rept 2
@@ -3110,10 +3100,10 @@ rept 2
 endr
 	ld d, $10
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	inc [hl]
 	ret
@@ -3126,12 +3116,12 @@ Functioncde6b: ; cde6b (33:5e6b)
 
 Functioncde72: ; cde72 (33:5e72)
 	call Functionce72c
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and a
 	jr nz, .asm_cde83
-	ld hl, $1
+	ld hl, BATTLEANIMSTRUCT_01
 	add hl, bc
 	set 6, [hl]
 .asm_cde83
@@ -3149,17 +3139,17 @@ Functioncde89: ; cde89 (33:5e89)
 
 Functioncde90: ; cde90 (33:5e90)
 	call Functionce72c
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $0
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld e, [hl]
 	ld a, e
 	and $70
 	swap a
 	ld [hl], a
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld a, e
 	and $80
@@ -3180,7 +3170,7 @@ Functioncde90: ; cde90 (33:5e90)
 	ret
 
 Functioncdebf: ; cdebf (33:5ebf)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -3189,13 +3179,13 @@ Functioncdebf: ; cdebf (33:5ebf)
 	ret
 
 .asm_cdec9
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], a
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld a, [hl]
 	xor $ff
@@ -3204,7 +3194,7 @@ Functioncdebf: ; cdebf (33:5ebf)
 	ret
 
 Functioncdedd: ; cdedd (33:5edd)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	ld d, $18
@@ -3214,26 +3204,26 @@ Functioncdedd: ; cdedd (33:5edd)
 	sra a
 	sra a
 	sra a
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	add [hl]
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	inc [hl]
 	ld a, [hl]
 	and $7
 	ret nz
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	cp $28
 	jr nc, .asm_cdf17
@@ -3241,11 +3231,11 @@ Functioncdedd: ; cdedd (33:5edd)
 	ret
 
 .asm_cdf17
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functioncdf1b: ; cdf1b (33:5f1b)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	ld d, $18
@@ -3255,26 +3245,26 @@ Functioncdf1b: ; cdf1b (33:5f1b)
 	sra a
 	sra a
 	sra a
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	add [hl]
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	inc [hl]
 	ld a, [hl]
 	and $3
 	ret nz
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	cp $28
 	jr nc, .asm_cdf55
@@ -3282,7 +3272,7 @@ Functioncdf1b: ; cdf1b (33:5f1b)
 	ret
 
 .asm_cdf55
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functioncdf59: ; cdf59 (33:5f59)
@@ -3292,27 +3282,27 @@ Functioncdf59: ; cdf59 (33:5f59)
 	dw Functioncdedd
 
 Functioncdf60: ; cdf60 (33:5f60)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $84
 	jr nc, .asm_cdf88
 	inc [hl]
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
 	ld d, $18
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	and $1
 	ret nz
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	dec [hl]
 	ret
@@ -3322,7 +3312,7 @@ Functioncdf60: ; cdf60 (33:5f60)
 	ret
 
 Functioncdf8c: ; cdf8c (33:5f8c)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	ld d, $18
@@ -3332,19 +3322,19 @@ Functioncdf8c: ; cdf8c (33:5f8c)
 	sra a
 	sra a
 	sra a
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	add [hl]
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 rept 2
 	inc [hl]
@@ -3352,8 +3342,8 @@ endr
 	ld a, [hl]
 	and $7
 	ret nz
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	cp $e8
 	jr z, .asm_cdfc7
@@ -3361,11 +3351,11 @@ endr
 	ret
 
 .asm_cdfc7
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functioncdfcb: ; cdfcb (33:5fcb)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	ld d, $18
@@ -3375,19 +3365,19 @@ Functioncdfcb: ; cdfcb (33:5fcb)
 	sra a
 	sra a
 	sra a
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	add [hl]
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 rept 2
 	inc [hl]
@@ -3395,8 +3385,8 @@ endr
 	ld a, [hl]
 	and $3
 	ret nz
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	cp $d0
 	jr z, .asm_ce007
@@ -3406,7 +3396,7 @@ endr
 	ret
 
 .asm_ce007
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functionce00b: ; ce00b (33:600b)
@@ -3418,15 +3408,15 @@ Functionce00b: ; ce00b (33:600b)
 
 Functionce014: ; ce014 (33:6014)
 	call Functionce72c
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $34
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld [hl], $10
 
 Functionce023: ; ce023 (33:6023)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $6c
@@ -3436,11 +3426,11 @@ Functionce023: ; ce023 (33:6023)
 .asm_ce02d
 	ld a, $2
 	call Functionce70a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld d, [hl]
 	call BattleAnim_Sine
 	bit 7, a
@@ -3448,10 +3438,10 @@ Functionce023: ; ce023 (33:6023)
 	xor $ff
 	inc a
 .asm_ce046
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	sub $4
@@ -3459,13 +3449,13 @@ Functionce023: ; ce023 (33:6023)
 	and $1f
 	cp $20
 	ret nz
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	srl [hl]
 	ret
 
 Functionce05f: ; ce05f (33:605f)
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functionce063: ; ce063 (33:6063)
@@ -3477,22 +3467,22 @@ Functionce063: ; ce063 (33:6063)
 	dw Functionce09e
 
 Functionce06e: ; ce06e (33:606e)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
-	ld hl, $e
+	ld hl, BATTLEANIMSTRUCT_0E
 	add hl, bc
 	ld [hl], a
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	ld a, [hl]
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], a
 	ret
 
 Functionce083: ; ce083 (33:6083)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $58
@@ -3502,34 +3492,34 @@ Functionce083: ; ce083 (33:6083)
 	ret
 
 Functionce091: ; ce091 (33:6091)
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	cp $20
 	jr c, Functionce09e
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functionce09e: ; ce09e (33:609e)
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	ld d, $8
 	call BattleAnim_Sine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
 	sra a
 	xor $ff
 	inc a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	add [hl]
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	ld [hl], a
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	add $8
 	ld [hl], a
@@ -3543,45 +3533,45 @@ Functionce0c5: ; ce0c5 (33:60c5)
 	dw Functionce0dd
 
 Functionce0ce: ; ce0ce (33:60ce)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $f0
 	swap a
-	ld hl, $e
+	ld hl, BATTLEANIMSTRUCT_0E
 	add hl, bc
 	ld [hl], a
 	ret
 
 Functionce0dd: ; ce0dd (33:60dd)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	ld d, $10
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	bit 7, a
 	jr z, .asm_ce0f0
 	ld [hl], a
 .asm_ce0f0
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	sub $4
 	ld [hl], a
 
 Functionce0f8: ; ce0f8 (33:60f8)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $84
 	jr c, .asm_ce105
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 .asm_ce105
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	call Functionce70a
@@ -3595,44 +3585,44 @@ Functionce10e: ; ce10e (33:610e)
 
 Functionce115: ; ce115 (33:6115)
 	call Functionce72c
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $28
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	ld a, [hl]
 	sub $28
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld [hl], a
 
 Functionce12a: ; ce12a (33:612a)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	and [hl]
 	jr nz, .asm_ce149
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	dec [hl]
 .asm_ce149
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	inc [hl]
 	ld a, [hl]
 	and $3f
 	ret nz
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $20
 	inc hl
@@ -3640,47 +3630,47 @@ Functionce12a: ; ce12a (33:612a)
 	ret
 
 Functionce15c: ; ce15c (33:615c)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld d, [hl]
 	push af
 	push de
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	inc [hl]
 	ld a, [hl]
 	and $1
 	jr nz, .asm_ce189
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	dec [hl]
 .asm_ce189
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $3
 	jr nz, .asm_ce197
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	inc [hl]
 .asm_ce197
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	cp $5a
 	jr nc, .asm_ce1aa
@@ -3695,34 +3685,34 @@ Functionce15c: ; ce15c (33:615c)
 	ret
 
 .asm_ce1ac
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functionce1b0: ; ce1b0 (33:61b0)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld d, [hl]
 	push af
 	push de
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	inc [hl]
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	cp $40
 	jr nc, .asm_ce1df
@@ -3734,7 +3724,7 @@ Functionce1b0: ; ce1b0 (33:61b0)
 	dec [hl]
 	and a
 	ret nz
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functionce1e7: ; ce1e7 (33:61e7)
@@ -3745,35 +3735,35 @@ Functionce1e7: ; ce1e7 (33:61e7)
 
 Functionce1ee: ; ce1ee (33:61ee)
 	call Functionce72c
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	ld a, [hl]
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld [hl], a
 
 Functionce1fb: ; ce1fb (33:61fb)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	ld d, $30
 	call BattleAnim_Sine
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	add [hl]
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	add $8
 	ld d, $30
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	inc [hl]
 	ret
@@ -3786,24 +3776,24 @@ Functionce226: ; ce226 (33:6226)
 
 Functionce22d: ; ce22d (33:622d)
 	call Functionce72c
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	ld d, $10
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	ld d, $10
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld [hl], $f
 
 Functionce254: ; ce254 (33:6254)
@@ -3828,7 +3818,7 @@ Functionce260: ; ce260 (33:6260)
 .asm_ce26c
 	ld a, $cc
 .asm_ce26e
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], a
 	ret
@@ -3839,7 +3829,7 @@ Functionce274: ; ce274 (33:6274)
 
 Functionce278: ; ce278 (33:6278)
 	call Functionce29f
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $84
@@ -3850,7 +3840,7 @@ Functionce278: ; ce278 (33:6278)
 
 Functionce289: ; ce289 (33:6289)
 	call Functionce29f
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $d0
@@ -3860,12 +3850,12 @@ Functionce289: ; ce289 (33:6289)
 	ret
 
 .asm_ce29b
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functionce29f: ; ce29f (33:629f)
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	and $7
 	inc [hl]
@@ -3883,10 +3873,10 @@ Functionce29f: ; ce29f (33:629f)
 .asm_ce2b9
 	add hl, de
 	ld a, [hl]
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	and [hl]
-	ld [wcfc8], a
+	ld [wOBP0], a
 	ret
 
 ; ce2c4 (33:62c4)
@@ -3898,7 +3888,7 @@ Unknown_ce2c8: ; ce2c8
 ; ce2cc
 
 Functionce2cc: ; ce2cc (33:62cc)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	ld d, $18
@@ -3906,23 +3896,23 @@ Functionce2cc: ; ce2cc (33:62cc)
 	sra a
 	sra a
 	sra a
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	add [hl]
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
 	ld d, $18
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 rept 2
 	dec [hl]
 endr
@@ -3936,37 +3926,37 @@ Functionce2fd: ; ce2fd (33:62fd)
 	dw Functionce34c
 
 Functionce306: ; ce306 (33:6306)
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld a, [hl]
 	cp $e0
 	jr nz, .asm_ce319
 	call Functionce72c
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $2
 	ret
 
 .asm_ce319
 	ld d, a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld e, [hl]
 	ld hl, hPushOAM ; $ff80
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], d
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], e
 	ret
 
 Functionce330: ; ce330 (33:6330)
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	and a
 	jr z, .asm_ce33a
@@ -3975,20 +3965,20 @@ Functionce330: ; ce330 (33:6330)
 
 .asm_ce33a
 	ld [hl], $4
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	xor $ff
 	inc a
 	ld [hl], a
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	add [hl]
 	ld [hl], a
 	ret
 
 Functionce34c: ; ce34c (33:634c)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $84
@@ -3998,7 +3988,7 @@ Functionce34c: ; ce34c (33:634c)
 	ret
 
 .asm_ce35b
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functionce35f: ; ce35f (33:635f)
@@ -4009,7 +3999,7 @@ Functionce35f: ; ce35f (33:635f)
 
 Functionce366: ; ce366 (33:6366)
 	call Functionce72c
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $7f
@@ -4017,17 +4007,17 @@ Functionce366: ; ce366 (33:6366)
 	call Functionce7bf
 
 Functionce375: ; ce375 (33:6375)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	bit 7, [hl]
 	jr nz, .asm_ce383
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	inc [hl]
 	ret
 
 .asm_ce383
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	dec [hl]
 	ret
@@ -4041,13 +4031,13 @@ Functionce389: ; ce389 (33:6389)
 
 Functionce392: ; ce392 (33:6392)
 	call Functionce72c
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $c
 	ret
 
 Functionce39c: ; ce39c (33:639c)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -4061,13 +4051,13 @@ Functionce39c: ; ce39c (33:639c)
 	call Functionce7bf
 
 Functionce3ae: ; ce3ae (33:63ae)
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	dec [hl]
 	ret
 
 Functionce3b4: ; ce3b4 (33:63b4)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 rept 2
@@ -4076,43 +4066,43 @@ endr
 	push af
 	ld d, $2
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	pop af
 	ld d, $8
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
 	ret
 
 Functionce3d2: ; ce3d2 (33:63d2)
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld a, [hl]
 	cp $20
 	jr c, .asm_ce3df
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 .asm_ce3df
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	ld d, $8
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	add $2
 	ld [hl], a
 	and $7
 	ret nz
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	inc [hl]
 	ret
@@ -4124,38 +4114,38 @@ Functionce3ff: ; ce3ff (33:63ff)
 	dw Functionce412
 
 Functionce406: ; ce406 (33:6406)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	add [hl]
 	ld [hl], a
 	ret
 
 Functionce412: ; ce412 (33:6412)
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functionce416: ; ce416 (33:6416)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	ld d, $18
 	push af
 	push de
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	sra a
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
@@ -4170,18 +4160,18 @@ Functionce43a: ; ce43a (33:643a)
 
 Functionce443: ; ce443 (33:6443)
 	call Functionce72c
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $28
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $f
-	ld hl, $3
+	ld hl, BATTLEANIMSTRUCT_03
 	add hl, bc
 	add [hl]
 	call Functionce7bf
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and $f0
@@ -4189,7 +4179,7 @@ Functionce443: ; ce443 (33:6443)
 	ld [hl], a
 
 Functionce465: ; ce465 (33:6465)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -4197,19 +4187,19 @@ Functionce465: ; ce465 (33:6465)
 	dec [hl]
 	add $8
 	ld d, a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	push af
 	push de
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
 	ret
@@ -4219,13 +4209,13 @@ Functionce465: ; ce465 (33:6465)
 	call Functionce72c
 
 Functionce490: ; ce490 (33:6490)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	dec [hl]
 	and a
 	ret nz
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functionce49c: ; ce49c (33:649c)
@@ -4236,50 +4226,50 @@ Functionce49c: ; ce49c (33:649c)
 
 Functionce4a3: ; ce4a3 (33:64a3)
 	call Functionce72c
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, $24
 	add [hl]
 	call Functionce7bf
 
 Functionce4b0: ; ce4b0 (33:64b0)
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld a, [hl]
 	cp $38
 	jr nc, .asm_ce4d8
 	inc [hl]
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
 	ld d, $18
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 	ld a, [hl]
 	and $1
 	ret nz
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	dec [hl]
 	ret
 
 .asm_ce4d8
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functionce4dc: ; ce4dc (33:64dc)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and a
 	ret z
 	ld d, a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
@@ -4289,21 +4279,21 @@ Functionce4dc: ; ce4dc (33:64dc)
 	xor $ff
 	inc a
 .asm_ce4f4
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	and $1f
 	ret nz
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	srl [hl]
 	ret
 
 Functionce508: ; ce508 (33:6508)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	cp $10
@@ -4312,32 +4302,32 @@ rept 2
 	inc [hl]
 endr
 	ld d, a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	push af
 	push de
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
 	ret
 
 .asm_ce52e
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functionce532: ; ce532 (33:6532)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld e, [hl]
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld d, [hl]
 	ld a, e
@@ -4351,13 +4341,13 @@ Functionce532: ; ce532 (33:6532)
 	push af
 	push de
 	call BattleAnim_Sine
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
 	ret
@@ -4371,7 +4361,7 @@ Functionce55b: ; ce55b (33:655b)
 
 Functionce564: ; ce564 (33:6564)
 	ld d, $18
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
@@ -4379,12 +4369,12 @@ Functionce564: ; ce564 (33:6564)
 
 Functionce56e: ; ce56e (33:656e)
 	call Functionce72c
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], $18
 
 Functionce577: ; ce577 (33:6577)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	cp $80
@@ -4392,13 +4382,13 @@ Functionce577: ; ce577 (33:6577)
 	ld d, a
 	add $8
 	ld [hl], a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	jr asm_ce58f
 
 .asm_ce58b
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 asm_ce58f: ; ce58f (33:658f)
@@ -4412,17 +4402,17 @@ Functionce593: ; ce593 (33:6593)
 	dw Functionce59a
 
 Functionce59a: ; ce59a (33:659a)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld a, [hl]
 	cp $30
 	jr c, .asm_ce5b0
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 rept 2
 	dec [hl]
 endr
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 rept 2
 	inc [hl]
@@ -4430,14 +4420,14 @@ endr
 	ret
 
 .asm_ce5b0
-	call Functioncc9bd
+	call DeinitBattleAnimation
 
 Functionce5b3: ; ce5b3 (33:65b3)
 	ret
 
 Functionce5b4: ; ce5b4 (33:65b4)
 	ld d, $50
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 rept 2
@@ -4448,23 +4438,23 @@ endr
 	call BattleAnim_Sine
 	sra a
 	sra a
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	add [hl]
 	inc [hl]
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
 	ret
 
 Functionce5dc: ; ce5dc (33:65dc)
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld a, [hl]
 	cp $d0
@@ -4475,7 +4465,7 @@ endr
 	ret
 
 .asm_ce5ea
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functionce5ee: ; ce5ee (33:65ee)
@@ -4487,18 +4477,18 @@ Functionce5ee: ; ce5ee (33:65ee)
 	dw Functionce618
 
 Functionce5f9: ; ce5f9 (33:65f9)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	and a
 	jr nz, asm_ce61c
 	call Functionce72c
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], $ec
 
 Functionce60a: ; ce60a (33:660a)
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld a, [hl]
 	cp $4
@@ -4509,7 +4499,7 @@ endr
 	ret
 
 Functionce618: ; ce618 (33:6618)
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 asm_ce61c: ; ce61c (33:661c)
@@ -4517,7 +4507,7 @@ asm_ce61c: ; ce61c (33:661c)
 	call Functionce72c
 
 Functionce622: ; ce622 (33:6622)
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld a, [hl]
 	cp $d8
@@ -4536,17 +4526,17 @@ Functionce62f: ; ce62f (33:662f)
 	dw Functionce672
 
 Functionce63a: ; ce63a (33:663a)
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
-	ld hl, $e
+	ld hl, BATTLEANIMSTRUCT_0E
 	add hl, bc
 	ld [hl], a
 	call Functionce72c
 	ret
 
 Functionce648: ; ce648 (33:6648)
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld a, [hl]
 	add $4
@@ -4555,7 +4545,7 @@ Functionce648: ; ce648 (33:6648)
 	xor a
 .asm_ce654
 	ld [hl], a
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 rept 2
 	inc [hl]
@@ -4563,7 +4553,7 @@ endr
 	ret
 
 Functionce65c: ; ce65c (33:665c)
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld a, [hl]
 	add $4
@@ -4572,7 +4562,7 @@ Functionce65c: ; ce65c (33:665c)
 	xor a
 .asm_ce668
 	ld [hl], a
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld a, [hl]
 	add $8
@@ -4580,7 +4570,7 @@ Functionce65c: ; ce65c (33:665c)
 	ret
 
 Functionce672: ; ce672 (33:6672)
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld a, [hl]
 	add $4
@@ -4589,7 +4579,7 @@ Functionce672: ; ce672 (33:6672)
 	xor a
 .asm_ce67e
 	ld [hl], a
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld a, [hl]
 	add $4
@@ -4597,13 +4587,13 @@ Functionce672: ; ce672 (33:6672)
 	ret
 
 Functionce688: ; ce688 (33:6688)
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld d, [hl]
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld e, [hl]
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	ld l, a
@@ -4619,17 +4609,17 @@ Functionce688: ; ce688 (33:6688)
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	ld [hl], d
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld [hl], e
 	ret
 
 Functionce6b3: ; ce6b3 (33:66b3)
 	ld d, $18
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
@@ -4638,37 +4628,37 @@ Functionce6b3: ; ce6b3 (33:66b3)
 
 Functionce6bf: ; ce6bf (33:66bf)
 	ld d, $18
-	ld hl, $10
-	add hl, bc
+	ld hl, BATTLEANIMSTRUCT_10
+	ADD HL, BC
 	ld a, [hl]
 	inc [hl]
 	srl a
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	add [hl]
 	call Functionce6f1
 	ret
 
 Functionce6d2: ; ce6d2 (33:66d2)
-	ld hl, $f
+	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld a, [hl]
 	cp $20
 	jr nc, .asm_ce6ed
 	inc [hl]
-	ld hl, $b
+	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld d, [hl]
 	call BattleAnim_Sine
 	xor $ff
 	inc a
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	ret
 
 .asm_ce6ed
-	call Functioncc9bd
+	call DeinitBattleAnimation
 	ret
 
 Functionce6f1: ; ce6f1 (33:66f1)
@@ -4677,13 +4667,13 @@ Functionce6f1: ; ce6f1 (33:66f1)
 	call BattleAnim_Sine
 	sra a
 	sra a
-	ld hl, $a
+	ld hl, BATTLEANIMSTRUCT_0A
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
 	call BattleAnim_Cosine
-	ld hl, $9
+	ld hl, BATTLEANIMSTRUCT_09
 	add hl, bc
 	ld [hl], a
 	ret
@@ -4691,12 +4681,12 @@ Functionce6f1: ; ce6f1 (33:66f1)
 Functionce70a: ; ce70a (33:670a)
 	and $f
 	ld e, a
-	ld hl, $7
+	ld hl, BATTLEANIMSTRUCT_07
 	add hl, bc
 	add [hl]
 	ld [hl], a
 	srl e
-	ld hl, $8
+	ld hl, BATTLEANIMSTRUCT_08
 	add hl, bc
 .asm_ce719
 	dec [hl]
@@ -4706,7 +4696,7 @@ Functionce70a: ; ce70a (33:670a)
 
 BattleAnim_AnonJumptable: ; ce71e (33:671e)
 	pop de
-	ld hl, $e
+	ld hl, BATTLEANIMSTRUCT_0E
 	add hl, bc
 	ld l, [hl]
 	ld h, $0
@@ -4718,7 +4708,7 @@ BattleAnim_AnonJumptable: ; ce71e (33:671e)
 	jp [hl]
 
 Functionce72c: ; ce72c (33:672c)
-	ld hl, $e
+	ld hl, BATTLEANIMSTRUCT_0E
 	add hl, bc
 	inc [hl]
 	ret
@@ -4801,20 +4791,20 @@ BattleAnimSineWave: ; ce77f
 ; ce7bf
 
 Functionce7bf: ; ce7bf (33:67bf)
-	ld hl, $3
+	ld hl, BATTLEANIMSTRUCT_03
 	add hl, bc
 	ld [hl], a
-	ld hl, $c
+	ld hl, BATTLEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $0
-	ld hl, $d
+	ld hl, BATTLEANIMSTRUCT_0D
 	add hl, bc
 	ld [hl], $ff
 	ret
 
 Functionce7d1: ; ce7d1
 .asm_ce7d1
-	ld hl, $c
+	ld hl, BATTLEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -4826,7 +4816,7 @@ Functionce7d1: ; ce7d1
 	jr .asm_ce7fd
 
 .asm_ce7e1
-	ld hl, $d
+	ld hl, BATTLEANIMSTRUCT_0D
 	add hl, bc
 	inc [hl]
 	call Functionce823
@@ -4839,7 +4829,7 @@ Functionce7d1: ; ce7d1
 	ld a, [hl]
 	push hl
 	and $3f
-	ld hl, $c
+	ld hl, BATTLEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], a
 	pop hl
@@ -4854,10 +4844,10 @@ Functionce7d1: ; ce7d1
 
 .asm_ce807
 	xor a
-	ld hl, $c
+	ld hl, BATTLEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], a
-	ld hl, $d
+	ld hl, BATTLEANIMSTRUCT_0D
 	add hl, bc
 rept 2
 	dec [hl]
@@ -4866,11 +4856,11 @@ endr
 
 .asm_ce815
 	xor a
-	ld hl, $c
+	ld hl, BATTLEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], a
 	dec a
-	ld hl, $d
+	ld hl, BATTLEANIMSTRUCT_0D
 	add hl, bc
 	ld [hl], a
 	jr .asm_ce7d1
@@ -4878,7 +4868,7 @@ endr
 ; ce823
 
 Functionce823: ; ce823
-	ld hl, $3
+	ld hl, BATTLEANIMSTRUCT_03
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
@@ -4889,7 +4879,7 @@ endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $d
+	ld hl, BATTLEANIMSTRUCT_0D
 	add hl, bc
 	ld l, [hl]
 	ld h, $0

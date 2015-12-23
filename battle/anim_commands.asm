@@ -77,7 +77,7 @@ BattleAnimRunScript: ; cc11c
 	call BattleAnimRestoreHuds
 
 .disabled
-	ld a, [wcfca]
+	ld a, [wNumHits]
 	and a
 	jr z, .done
 
@@ -92,7 +92,7 @@ BattleAnimRunScript: ; cc11c
 
 .hi_byte
 	call WaitSFX
-	call Functioncc881
+	call PlayHitSound
 	call RunBattleAnimScript
 
 .done
@@ -191,13 +191,13 @@ BattleAnimRequestPals: ; cc1e2
 
 	ld a, [rBGP]
 	ld b, a
-	ld a, [wcfc7]
+	ld a, [wBGP]
 	cp b
 	call nz, Functioncc91a
 
 	ld a, [rOBP0]
 	ld b, a
-	ld a, [wcfc8]
+	ld a, [wOBP0]
 	cp b
 	call nz, Functioncc94b
 	ret
@@ -625,6 +625,7 @@ endr
 	ret
 
 BattleAnimCmd_Obj: ; cc41f (33:441f)
+; index, ???, ???, ???
 	call GetBattleAnimByte
 	ld [BattleAnimTemps], a
 	call GetBattleAnimByte
@@ -650,17 +651,17 @@ BattleAnimCmd_BGEffect: ; cc43b (33:443b)
 
 BattleAnimCmd_BGP: ; cc457 (33:4457)
 	call GetBattleAnimByte
-	ld [wcfc7], a
+	ld [wBGP], a
 	ret
 
 BattleAnimCmd_OBP0: ; cc45e (33:445e)
 	call GetBattleAnimByte
-	ld [wcfc8], a
+	ld [wOBP0], a
 	ret
 
 BattleAnimCmd_OBP1: ; cc465 (33:4465)
 	call GetBattleAnimByte
-	ld [wcfc9], a
+	ld [wOBP1], a
 	ret
 
 BattleAnimCmd_ResetObp0: ; cc46c (33:446c)
@@ -670,7 +671,7 @@ BattleAnimCmd_ResetObp0: ; cc46c (33:446c)
 	jr z, .not_sgb
 	ld a, $f0
 .not_sgb
-	ld [wcfc8], a
+	ld [wOBP0], a
 	ret
 
 BattleAnimCmd_ClearObjs: ; cc479 (33:4479)
@@ -691,10 +692,10 @@ BattleAnimCmd_5GFX: ; cc485 (33:4485)
 	ld a, [BattleAnimByte]
 	and $f
 	ld c, a
-	ld hl, w5_d300
+	ld hl, wBattleAnimTileDict
 	xor a
 	ld [BattleAnimTemps], a
-.asm_cc492
+.loop
 	ld a, [BattleAnimTemps]
 	cp $4f
 	ret nc
@@ -719,7 +720,7 @@ endr
 	pop hl
 	pop bc
 	dec c
-	jr nz, .asm_cc492
+	jr nz, .loop
 	ret
 
 BattleAnimCmd_IncObj: ; cc4c0 (33:44c0)
@@ -797,7 +798,7 @@ BattleAnimCmd_SetObj: ; cc506 (33:4506)
 
 BattleAnimCmd_EnemyFeetObj: ; cc52c (33:452c)
 
-	ld hl, w5_d300
+	ld hl, wBattleAnimTileDict
 .asm_cc52f
 	ld a, [hl]
 	and a
@@ -853,7 +854,7 @@ Functioncc561: ; cc561 (33:4561)
 
 BattleAnimCmd_PlayerHeadObj: ; cc57e (33:457e)
 
-	ld hl, w5_d300
+	ld hl, wBattleAnimTileDict
 .asm_cc581
 	ld a, [hl]
 	and a
@@ -1249,7 +1250,7 @@ BattleAnimCmd_Cry: ; cc807 (33:4807)
 	and 3
 	ld e, a
 	ld d, 0
-	ld hl, Datacc871
+	ld hl, .CryData
 rept 4
 	add hl, de
 endr
@@ -1266,14 +1267,14 @@ endr
 	ld a, $f0
 	ld [CryTracks], a ; CryTracks
 	ld a, [BattleMonSpecies] ; BattleMonSpecies
-	jr .asm_cc834
+	jr .done_cry_tracks
 
 .enemy
 	ld a, $0f
 	ld [CryTracks], a ; CryTracks
 	ld a, [EnemyMonSpecies] ; EnemyMon
 
-.asm_cc834
+.done_cry_tracks
 	push hl
 	call LoadCryHeader
 	pop hl
@@ -1320,17 +1321,17 @@ endr
 	ret
 ; cc871 (33:4871)
 
-Datacc871: ; cc871
+.CryData: ; cc871
 ; +pitch, +length
-	dw 0, $c0
-	dw 0, $40
-	dw 0, $00
-	dw 0, $00
+	dw $0000, $00c0
+	dw $0000, $0040
+	dw $0000, $0000
+	dw $0000, $0000
 ; cc881
 
 
-Functioncc881: ; cc881
-	ld a, [wcfca]
+PlayHitSound: ; cc881
+	ld a, [wNumHits]
 	cp $1
 	jr z, .okay
 	cp $4
@@ -1366,17 +1367,17 @@ BattleAnimAssignPals: ; cc8a4
 	ld a, %11110000
 
 .sgb
-	ld [wcfc8], a
+	ld [wOBP0], a
 	ld a, %11100100
-	ld [wcfc7], a
-	ld [wcfc9], a
+	ld [wBGP], a
+	ld [wOBP1], a
 	ret
 
 .cgb
 	ld a, %11100100
-	ld [wcfc7], a
-	ld [wcfc8], a
-	ld [wcfc9], a
+	ld [wBGP], a
+	ld [wOBP0], a
+	ld [wOBP1], a
 	call DmgToCgbBGPals
 	lb de, %11100100, %11100100
 	call DmgToCgbObjPals
@@ -1412,9 +1413,9 @@ endr
 Functioncc8f6: ; cc8f6
 	call WaitTop
 	ld a, %11100100
-	ld [wcfc7], a
-	ld [wcfc8], a
-	ld [wcfc9], a
+	ld [wBGP], a
+	ld [wOBP0], a
+	ld [wOBP1], a
 	call DmgToCgbBGPals
 	lb de, %11100100, %11100100
 	call DmgToCgbObjPals

@@ -507,7 +507,7 @@ Function4ab1a: ; 4ab1a
 	inc a
 	ld b, a
 	ld a, [wMenuCursorY]
-	ld [wd0d8], a
+	ld [wPartyMenuCursor], a
 	cp b
 	jr z, .asm_4ab7e
 	ld a, [wMenuCursorY]
@@ -528,7 +528,7 @@ Function4ab1a: ; 4ab1a
 
 .asm_4ab6d
 	ld a, [wMenuCursorY]
-	ld [wd0d8], a
+	ld [wPartyMenuCursor], a
 .asm_4ab73
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX

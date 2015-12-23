@@ -421,7 +421,7 @@ HandleBerserkGene: ; 3c27c
 	bit SUBSTATUS_CONFUSED, a
 	ret nz
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld de, ANIM_CONFUSED
 	call Call_PlayBattleAnim_OnlyIfVisible
 	call SwitchTurnCore
@@ -1098,7 +1098,7 @@ ResidualDamage: ; 3c716
 	pop de
 
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	call Call_PlayBattleAnim_OnlyIfVisible
 	call GetEighthMaxHP
 	ld de, PlayerToxicCount
@@ -1138,7 +1138,7 @@ ResidualDamage: ; 3c716
 
 	call SwitchTurnCore
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld de, ANIM_SAP
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVar
@@ -1163,7 +1163,7 @@ ResidualDamage: ; 3c716
 	bit SUBSTATUS_NIGHTMARE, [hl]
 	jr z, .not_nightmare
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld de, ANIM_IN_NIGHTMARE
 	call Call_PlayBattleAnim_OnlyIfVisible
 	call GetQuarterMaxHP
@@ -1181,7 +1181,7 @@ ResidualDamage: ; 3c716
 	jr z, .not_cursed
 
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld de, ANIM_IN_NIGHTMARE
 	call Call_PlayBattleAnim_OnlyIfVisible
 	call GetQuarterMaxHP
@@ -1325,7 +1325,7 @@ HandleWrap: ; 3c874
 
 	call SwitchTurnCore
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld [FXAnimIDHi], a
 	predef PlayBattleAnim
 	call SwitchTurnCore
@@ -1827,7 +1827,7 @@ HandleWeather: ; 3cb9e
 
 	call SwitchTurnCore
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld de, ANIM_IN_SANDSTORM
 	call Call_PlayBattleAnim
 	call SwitchTurnCore
@@ -3761,7 +3761,7 @@ Function_SetEnemyPkmnAndSendOutAnimation: ; 3d7c7
 	call GetMonFrontpic
 
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld [wKickCounter], a
 	call SetEnemyTurn
 	ld de, ANIM_SEND_OUT_MON
@@ -4267,7 +4267,7 @@ SendOutPlayerMon: ; 3db5f
 	ld [wEnemyWrapCount], a
 	call SetPlayerTurn
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld [wKickCounter], a
 	ld de, ANIM_SEND_OUT_MON
 	call Call_PlayBattleAnim
@@ -4460,7 +4460,7 @@ Function3dce6: ; 3dce6
 	push af
 	xor a
 	ld [hBattleTurn], a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld de, ANIM_RETURN_MON
 	call Call_PlayBattleAnim
 	pop af
@@ -4593,7 +4593,7 @@ ItemRecoveryAnim: ; 3ddc8
 	ld [FXAnimIDLo], a
 	call SwitchTurnCore
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld [FXAnimIDHi], a
 	predef PlayBattleAnim
 	call SwitchTurnCore
@@ -8761,7 +8761,7 @@ CleanUpBattleRAM: ; 3f6d0
 	ld [wFailedToFlee], a
 	ld [wNumFleeAttempts], a
 	ld [wForcedSwitch], a
-	ld [wd0d8], a
+	ld [wPartyMenuCursor], a
 	ld [wKeyItemsPocketCursor], a
 	ld [wItemsPocketCursor], a
 	ld [wd0d2], a
@@ -9591,7 +9591,7 @@ BattleStartMessage: ; 3fc8b
 	jr nc, .not_shiny
 
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld a, 1
 	ld [hBattleTurn], a
 	ld a, 1

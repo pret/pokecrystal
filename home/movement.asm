@@ -136,7 +136,7 @@ endr
 	big_step_right
 ; 1bb1
 
-InitMenu3:: ; 1bb1
+SetMenuAttributes:: ; 1bb1
 	push hl
 	push bc
 	ld hl, w2DMenuCursorInitY

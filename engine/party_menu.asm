@@ -678,7 +678,7 @@ InitPartyMenuWithCancel: ; 50405
 	xor a
 	ld [wSwitchMon], a
 	ld de, PartyMenuAttributes
-	call InitMenu3
+	call SetMenuAttributes
 	ld a, [PartyCount]
 	inc a
 	ld [w2DMenuNumRows], a ; list length
@@ -704,7 +704,7 @@ InitPartyMenuWithCancel: ; 50405
 InitPartyMenuNoCancel: ; 0x5042d
 ; no cancel
 	ld de, PartyMenuAttributes
-	call InitMenu3
+	call SetMenuAttributes
 	ld a, [PartyCount]
 	ld [w2DMenuNumRows], a ; list length
 	ld b, a
@@ -726,13 +726,17 @@ InitPartyMenuNoCancel: ; 0x5042d
 PartyMenuAttributes: ; 5044f
 ; cursor y
 ; cursor x
-; list length
-; ?
+; num rows
+; num cols
 ; bit 6: animate sprites  bit 5: wrap around
 ; ?
 ; distance between items (hi: y, lo: x)
 ; allowed buttons (mask)
-	db $01, $00, $00, $01, $60, $00, $20, $00
+	db 1, 0
+	db 0, 1
+	db $60, $00
+	dn 2, 0
+	db 0
 ; 50457
 
 PartyMenuSelect: ; 0x50457

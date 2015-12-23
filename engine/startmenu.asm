@@ -270,7 +270,7 @@ endr
 .GetMenuAccountTextPointer ; 12819
 	ld e, a
 	ld d, 0
-	ld hl, wcf97
+	ld hl, wMenuData2PointerTableAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1475,8 +1475,8 @@ ChooseMoveToDelete: ; 12f5b
 
 .asm_12f73: ; 12f73
 	call SetUpMoveScreenBG
-	ld de, Unknown_12fb2
-	call InitMenu3
+	ld de, DeleteMoveScreenAttrs
+	call SetMenuAttributes
 	call SetUpMoveList
 	ld hl, w2DMenuFlags1
 	set 6, [hl]
@@ -1514,8 +1514,12 @@ ChooseMoveToDelete: ; 12f5b
 	ret
 ; 12fb2
 
-Unknown_12fb2: ; 12fb2
-	db $03, $01, $03, $01, $40, $00, $20, $c3
+DeleteMoveScreenAttrs: ; 12fb2
+	db 3, 1
+	db 3, 1
+	db $40, $00
+	dn 2, 0
+	db D_UP | D_DOWN | A_BUTTON | B_BUTTON
 ; 12fba
 
 ManagePokemonMoves: ; 12fba
@@ -1539,11 +1543,11 @@ ManagePokemonMoves: ; 12fba
 MoveScreenLoop: ; 12fd5
 	ld a, [CurPartyMon]
 	inc a
-	ld [wd0d8], a
+	ld [wPartyMenuCursor], a
 	call SetUpMoveScreenBG
 	call Function132d3
-	ld de, Unknown_13163
-	call InitMenu3
+	ld de, MoveScreenAttributes
+	call SetMenuAttributes
 .loop
 	call SetUpMoveList
 	ld hl, w2DMenuFlags1
@@ -1746,8 +1750,12 @@ MoveScreenLoop: ; 12fd5
 	jp ClearTileMap
 ; 13163
 
-Unknown_13163: ; 13163
-	db $03, $01, $03, $01, $40, $00, $20, $f3
+MoveScreenAttributes: ; 13163
+	db 3, 1
+	db 3, 1
+	db $40, $00
+	dn 2, 0
+	db D_UP | D_DOWN | D_LEFT | D_RIGHT | A_BUTTON | B_BUTTON
 ; 1316b
 
 String_1316b: ; 1316b

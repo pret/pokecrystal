@@ -218,14 +218,14 @@ Functionc80fb: ; c80fb (32:40fb)
 	ld h, 0
 	add hl, de
 	ld a, [hl]
-	ld [wcfc7], a
+	ld [wBGP], a
 	ret
 
 BattleBGEffect_WhiteHues: ; c812d (32:412d)
 	ld de, Unknown_c813d
 	call Functionc8d57
 	jr c, .asm_c8139
-	ld [wcfc7], a
+	ld [wBGP], a
 	ret
 
 .asm_c8139
@@ -242,7 +242,7 @@ BattleBGEffect_BlackHues: ; c8141 (32:4141)
 	ld de, Unknown_c8151
 	call Functionc8d57
 	jr c, .asm_c814d
-	ld [wcfc7], a
+	ld [wBGP], a
 	ret
 
 .asm_c814d
@@ -259,8 +259,8 @@ BattleBGEffect_AlternateHues: ; c8155 (32:4155)
 	ld de, Unknown_c8168
 	call Functionc8d57
 	jr c, .asm_c8164
-	ld [wcfc7], a
-	ld [wcfc9], a
+	ld [wBGP], a
+	ld [wOBP1], a
 	ret
 
 .asm_c8164
@@ -282,7 +282,7 @@ BattleBGEffect_06: ; c8171 (32:4171)
 	ld de, Unknown_c8188
 .asm_c817e
 	call Functionc8d57
-	ld [wcfc8], a
+	ld [wOBP0], a
 	ret
 
 ; c8185 (32:4185)
@@ -304,7 +304,7 @@ BattleBGEffect_07: ; c818b (32:418b)
 	ld de, Unknown_c81a2
 .asm_c8198
 	call Functionc8d57
-	ld [wcfc8], a
+	ld [wOBP0], a
 	ret
 
 ; c819f (32:419f)
@@ -320,7 +320,7 @@ Unknown_c81a2:
 BattleBGEffect_08: ; c81a5 (32:41a5)
 	ld de, Unknown_c81af
 	call Functionc8d57
-	ld [wcfc7], a
+	ld [wBGP], a
 	ret
 
 ; c81af (32:41af)
@@ -412,7 +412,7 @@ BattleBGEffect_FeetFollow: ; c8214 (32:4214)
 Functionc8223: ; c8223 (32:4223)
 	call Functionc9042
 	jr z, .asm_c8230
-	ld hl, w5_d40e
+	ld hl, wNumActiveBattleAnims
 	inc [hl]
 	call EndBattleBGEffect
 	ret
@@ -478,7 +478,7 @@ BattleBGEffect_HeadFollow: ; c8281 (32:4281)
 Functionc8290: ; c8290 (32:4290)
 	call Functionc9042
 	jr z, .asm_c829d
-	ld hl, w5_d40e
+	ld hl, wNumActiveBattleAnims
 	inc [hl]
 	call EndBattleBGEffect
 	ret
@@ -2002,7 +2002,7 @@ Functionc8b22: ; c8b22 (32:4b22)
 	ld hl, Unknown_c8bd8
 	add hl, de
 	ld a, [hli]
-	ld [wcfc9], a
+	ld [wOBP1], a
 	ld d, a
 	ld e, [hl]
 	ld bc, $2f30
@@ -2013,7 +2013,7 @@ Functionc8b22: ; c8b22 (32:4b22)
 	ld d, [hl]
 	inc hl
 	ld a, [hl]
-	ld [wcfc9], a
+	ld [wOBP1], a
 	ld e, a
 	ld bc, $3728
 .asm_c8b5b
@@ -2024,8 +2024,8 @@ Functionc8b22: ; c8b22 (32:4b22)
 Functionc8b60: ; c8b60 (32:4b60)
 	call Functionc8f19
 	ld a, $e4
-	ld [wcfc7], a
-	ld [wcfc9], a
+	ld [wBGP], a
+	ld [wOBP1], a
 	ret
 
 Functionc8b6c: ; c8b6c (32:4b6c)
@@ -2733,8 +2733,8 @@ Functionc8f19: ; c8f19 (32:4f19)
 	ld [hLCDStatCustom], a
 	ld a, $e4
 	ld [rBGP], a
-	ld [wcfc7], a
-	ld [wcfc9], a
+	ld [wBGP], a
+	ld [wOBP1], a
 	ld [hLCDStatCustom + 1], a
 	ld [hLCDStatCustom + 2], a
 	call Functionc8eca

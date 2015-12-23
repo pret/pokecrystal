@@ -1498,11 +1498,13 @@ AttrMap:: ; cdd9
 ; bit 0-2: palette id
 	ds SCREEN_WIDTH * SCREEN_HEIGHT
 AttrMapEnd::
-
-wcf41:: ds 1
+	ds 1
 wcf42:: ds 2
 wcf44:: ds 1
-wcf45:: ds 12
+wcf45::
+	ds AttrMapEnd - @
+wTileAnimBuffer::
+	ds $10
 ; addresses dealing with serial comms
 wOtherPlayerLinkMode:: ds 1
 wOtherPlayerLinkAction:: ds 4
@@ -1594,46 +1596,47 @@ wMenuData2Flags:: ds 1 ; cf91
 ; bit 0: Disable B button
 
 wMenuData2_ScrollingMenuHeight::
-wMenuData2Items:: ds 1
+wMenuData2Items::
+	ds 1 ; cf92
 wMenuData2IndicesPointer::
 wMenuData2Spacing::
 wMenuData2_ScrollingMenuWidth::
-wcf93:: ds 1
+	ds 1 ; cf93
 wMenuData2_2DMenuItemStringsBank::
 wMenuData2_ScrollingMenuSpacing::
-wcf94:: ds 1
+	ds 1 ; cf94
 wMenuData2_2DMenuItemStringsAddr::
 wMenuData2DisplayFunctionPointer::
 wMenuData2_ItemsPointerBank::
-wcf95:: ds 1 ; bank
+	ds 1 ; cf95
 wMenuData2_ItemsPointerAddr::
-wcf96:: ds 1 ; addr lo
+	ds 1 ; cf96
 wMenuData2PointerTableAddr::
 wMenuData2_2DMenuFunctionBank::
-wcf97:: ds 1 ; addr hi
+	ds 1 ; cf97
 wMenuData2_2DMenuFunctionAddr::
 wMenuData2_ScrollingMenuFunction1::
-wcf98:: ds 3
+	ds 3 ; cf98
 wMenuData2_ScrollingMenuFunction2::
-wcf9b:: ds 3
+	ds 3 ; cf9b
 wMenuData2_ScrollingMenuFunction3::
-wcf9e:: ds 3
+	ds 3 ; cf9e
 wMenuData2End::
 
 wMenuData3::
-w2DMenuCursorInitY:: ds 1
-w2DMenuCursorInitX:: ds 1
-w2DMenuNumRows:: ds 1
-w2DMenuNumCols:: ds 1
-w2DMenuFlags1:: ds 1
-w2DMenuFlags2:: ds 1
-w2DMenuCursorOffsets:: ds 1
-wMenuJoypadFilter:: ds 1
+w2DMenuCursorInitY:: ds 1 ; cfa1
+w2DMenuCursorInitX:: ds 1 ; cfa2
+w2DMenuNumRows:: ds 1 ; cfa3
+w2DMenuNumCols:: ds 1 ; cfa4
+w2DMenuFlags1:: ds 1 ; cfa5
+w2DMenuFlags2:: ds 1 ; cfa6
+w2DMenuCursorOffsets:: ds 1 ; cfa7
+wMenuJoypadFilter:: ds 1 ; cfa8
 wMenuData3End::
 
-wMenuCursorY:: ds 1
-wMenuCursorX:: ds 1
-wCursorOffCharacter:: ds 1
+wMenuCursorY:: ds 1 ; cfa9
+wMenuCursorX:: ds 1 ; cfaa
+wCursorOffCharacter:: ds 1 ; cfab
 wCursorCurrentTile:: ds 2 ; cfac
 	ds 3
 
@@ -1675,18 +1678,17 @@ FXAnimID::
 FXAnimIDLo:: ; cfc2
 	ds 1
 FXAnimIDHi:: ; cfc3
-	ds 1
-
-wcfc4:: ds 1
-wcfc5:: ds 1
+	ds 3
 
 TileAnimationTimer:: ; cfc6
 	ds 1
 
-wcfc7:: ds 1
-wcfc8:: ds 1
-wcfc9:: ds 1
-wcfca:: ds 2
+; palette backups?
+wBGP:: ds 1
+wOBP0:: ds 1
+wOBP1:: ds 1
+
+wNumHits:: ds 2
 
 Options:: ; cfcc
 ; bit 0-2: number of frames to delay when printing text
@@ -3272,11 +3274,34 @@ LYOverridesBackupEnd::
 
 SECTION "Battle Animations", WRAMX [$d300], BANK [5]
 
-w5_d300:: ds 10
+wBattleAnimTileDict:: ds 10
 
 battle_anim_struct: MACRO
 ; Placeholder until we can figure out what it all means
-	ds $18
+\1Index::  ds 1
+\1Anim01:: ds 1
+\1Anim02:: ds 1
+\1Anim03:: ds 1
+\1Anim04:: ds 1
+\1Anim05:: ds 1
+\1Anim06:: ds 1
+\1Anim07:: ds 1
+\1Anim08:: ds 1
+\1Anim09:: ds 1
+\1Anim0a:: ds 1
+\1Anim0b:: ds 1
+\1Anim0c:: ds 1
+\1Anim0d:: ds 1
+\1Anim0e:: ds 1
+\1Anim0f:: ds 1
+\1Anim10:: ds 1
+\1Anim11:: ds 1
+\1Anim12:: ds 1
+\1Anim13:: ds 1
+\1Anim14:: ds 1
+\1Anim15:: ds 1
+\1Anim16:: ds 1
+\1Anim17:: ds 1
 endm
 
 ActiveAnimObjects:: ; d30a
@@ -3295,7 +3320,7 @@ ActiveAnimObjectsEnd:: ; d3aa
 ActiveBGEffects:: ; d3fa
 	ds 4 * 5
 
-w5_d40e:: ds 1
+wNumActiveBattleAnims:: ds 1
 
 BattleAnimFlags:: ; d40f
 	ds 1

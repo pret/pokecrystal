@@ -172,7 +172,7 @@ CheckPlayerTurn:
 	jr z, .woke_up
 
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld de, ANIM_SLP
 	call FarPlayBattleAnimation
 	jr .fast_asleep
@@ -276,7 +276,7 @@ CheckPlayerTurn:
 	ld hl, IsConfusedText
 	call StdBattleTextBox
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld de, ANIM_CONFUSED
 	call FarPlayBattleAnimation
 
@@ -305,7 +305,7 @@ CheckPlayerTurn:
 	ld hl, InLoveWithText
 	call StdBattleTextBox
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld de, ANIM_IN_LOVE
 	call FarPlayBattleAnimation
 
@@ -420,7 +420,7 @@ CheckEnemyTurn: ; 3421f
 	ld hl, FastAsleepText
 	call StdBattleTextBox
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld de, ANIM_SLP
 	call FarPlayBattleAnimation
 	jr .fast_asleep
@@ -521,7 +521,7 @@ CheckEnemyTurn: ; 3421f
 	call StdBattleTextBox
 
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld de, ANIM_CONFUSED
 	call FarPlayBattleAnimation
 
@@ -542,7 +542,7 @@ CheckEnemyTurn: ; 3421f
 	call BattleCommand_DamageCalc
 	call BattleCommand_LowerSub
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 
 	; Flicker the monster pic unless flying or underground.
 	ld de, ANIM_HIT_CONFUSION
@@ -567,7 +567,7 @@ CheckEnemyTurn: ; 3421f
 	ld hl, InLoveWithText
 	call StdBattleTextBox
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld de, ANIM_IN_LOVE
 	call FarPlayBattleAnimation
 
@@ -656,7 +656,7 @@ HitConfusion: ; 343a5
 	call BattleCommand_LowerSub
 
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 
 	; Flicker the monster pic unless flying or underground.
 	ld de, ANIM_HIT_CONFUSION
@@ -2071,7 +2071,7 @@ BattleCommand_LowerSub: ; 34eee
 	jr c, .mimic_anims
 
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld [FXAnimIDHi], a
 	inc a
 	ld [wKickCounter], a
@@ -2125,7 +2125,7 @@ BattleCommand_HitTargetNoSub: ; 34f60
 	ld a, BATTLEANIM_PLAYER_DAMAGE
 
 .got_rollout_count
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_MULTI_HIT
@@ -2177,7 +2177,7 @@ BattleCommand_HitTargetNoSub: ; 34f60
 	pop af
 	jp z, PlayFXAnimID
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	jp PlayFXAnimID
 ; 34fd1
 
@@ -2208,7 +2208,7 @@ BattleCommand_StatDownAnim: ; 34fdb
 
 
 BattleCommand_StatUpDownAnim: ; 34feb
-	ld [wcfca], a
+	ld [wNumHits], a
 	xor a
 	ld [wKickCounter], a
 	ld a, BATTLE_VARS_MOVE_ANIM
@@ -2241,7 +2241,7 @@ BattleCommand_RaiseSub: ; 35004
 	jp c, BattleCommand_RaiseSubNoAnim
 
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld [FXAnimIDHi], a
 	ld a, $2
 	ld [wKickCounter], a
@@ -2599,7 +2599,7 @@ BattleCommand_CheckDestinyBond: ; 351c0
 
 	call BattleCommand_SwitchTurn
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld [FXAnimIDHi], a
 	inc a
 	ld [wKickCounter], a
@@ -5254,7 +5254,7 @@ BattleCommand_BurnTarget: ; 3608c
 ; burntarget
 
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	call CheckSubstituteOpp
 	ret nz
 	ld a, BATTLE_VARS_STATUS_OPP
@@ -5324,7 +5324,7 @@ BattleCommand_FreezeTarget: ; 36102
 ; freezetarget
 
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	call CheckSubstituteOpp
 	ret nz
 	ld a, BATTLE_VARS_STATUS_OPP
@@ -5379,7 +5379,7 @@ BattleCommand_ParalyzeTarget: ; 36165
 ; paralyzetarget
 
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	call CheckSubstituteOpp
 	ret nz
 	ld a, BATTLE_VARS_STATUS_OPP
@@ -6549,7 +6549,7 @@ BattleCommand_Teleport: ; 36778
 .run_away
 	call UpdateBattleMonInParty
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	inc a
 	ld [wForcedSwitch], a
 	ld [wKickCounter], a
@@ -6617,7 +6617,7 @@ BattleCommand_ForceSwitch: ; 3680f
 .wild_force_flee
 	call UpdateBattleMonInParty
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	inc a
 	ld [wForcedSwitch], a
 	call SetBattleDraw
@@ -6710,7 +6710,7 @@ BattleCommand_ForceSwitch: ; 3680f
 .wild_succeed_playeristarget
 	call UpdateBattleMonInParty
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	inc a
 	ld [wForcedSwitch], a
 	call SetBattleDraw
@@ -7141,7 +7141,7 @@ BattleCommand_Charge: ; 36b4d
 
 	call BattleCommand_LowerSub
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	inc a
 	ld [wKickCounter], a
 	call LoadMoveAnim
@@ -7713,7 +7713,7 @@ endr
 	jr c, .mobile
 
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld [FXAnimIDHi], a
 	ld [wKickCounter], a
 	ld a, SUBSTITUTE
@@ -8234,7 +8234,7 @@ BattleCommand_Transform: ; 371cd
 	call CheckHiddenOpponent
 	jp nz, Function372d2
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld [FXAnimIDHi], a
 	ld a, $1
 	ld [wKickCounter], a
@@ -8352,7 +8352,7 @@ endr
 	call BattleCommand_RaiseSubNoAnim
 .after_anim
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld [FXAnimIDHi], a
 	ld a, $2
 	ld [wKickCounter], a
@@ -8546,7 +8546,7 @@ CheckSubstituteOpp: ; 37378
 BattleCommand_SelfDestruct: ; 37380
 	callba MobileFn_10610d
 	ld a, BATTLEANIM_PLAYER_DAMAGE
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld c, 3
 	call DelayFrames
 	ld a, BATTLE_VARS_STATUS
@@ -9773,7 +9773,7 @@ PlayDamageAnim: ; 37e19
 	ld a, BATTLEANIM_PLAYER_DAMAGE
 
 .player
-	ld [wcfca], a
+	ld [wNumHits], a
 
 	jp PlayUserBattleAnim
 ; 37e36
@@ -9781,7 +9781,7 @@ PlayDamageAnim: ; 37e19
 
 LoadMoveAnim: ; 37e36
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 	ld [FXAnimIDHi], a
 
 	ld a, BATTLE_VARS_MOVE_ANIM
@@ -9819,7 +9819,7 @@ PlayOpponentBattleAnim: ; 37e54
 	ld a, d
 	ld [FXAnimIDHi], a
 	xor a
-	ld [wcfca], a
+	ld [wNumHits], a
 
 	push hl
 	push de
