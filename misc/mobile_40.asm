@@ -6539,7 +6539,7 @@ Function102bac: ; 102bac
 	ld [CurPartyMon], a
 	call LowVolume
 	call ClearSprites
-	callba Function4dc8f
+	callba _BattleStatsScreenInit
 	ld a, [CurPartyMon]
 	inc a
 	ld [wMenuCursorY], a

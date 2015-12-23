@@ -5358,7 +5358,7 @@ BattleMenuPKMN_Loop:
 	jr BattleMenuPKMN_Loop
 
 .Stats
-	call Function3e308
+	call Battle_StatsScreen
 	call CheckMobileBattleError
 	jr c, .Cancel
 	jp Function3e290
@@ -5386,7 +5386,7 @@ BattleMenuPKMN_Loop:
 	ret
 ; 3e308
 
-Function3e308: ; 3e308
+Battle_StatsScreen: ; 3e308
 	call DisableLCD
 	ld hl, VTiles2 tile $31
 	ld de, VTiles0
@@ -5401,7 +5401,7 @@ Function3e308: ; 3e308
 	call LowVolume
 	xor a ; PARTYMON
 	ld [MonType], a
-	callba Function4dc7b
+	callba BattleStatsScreenInit
 	call MaxVolume
 	call DisableLCD
 	ld hl, VTiles0

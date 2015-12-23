@@ -1,4 +1,4 @@
-Function4dc7b: ; 4dc7b (13:5c7b)
+BattleStatsScreenInit: ; 4dc7b (13:5c7b)
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	jr nz, StatsScreenInit
@@ -6,13 +6,13 @@ Function4dc7b: ; 4dc7b (13:5c7b)
 	ld a, [wBattleMode] ; wd22d (aliases: EnemyMonEnd)
 	and a
 	jr z, StatsScreenInit
-	jr Function4dc8f
+	jr _BattleStatsScreenInit
 
 StatsScreenInit: ; 4dc8a
 	ld hl, StatsScreenMain
 	jr StatsScreenInit_gotaddress
 
-Function4dc8f: ; 4dc8f
+_BattleStatsScreenInit: ; 4dc8f
 	ld hl, StatsScreenBattle
 	jr StatsScreenInit_gotaddress
 
@@ -150,7 +150,7 @@ MonStatsInit: ; 4dd72 (13:5d72)
 	call ClearBGPalettes
 	call ClearTileMap
 	callba Function10402d
-	call Function4ddf2
+	call StatsScreen_CopyToTempMon
 	ld a, [CurPartySpecies]
 	cp EGG
 	jr z, .egg
@@ -221,10 +221,10 @@ StatsScreenWaitCry: ; 4dde6 (13:5de6)
 	ld [wJumptableIndex], a
 	ret
 
-Function4ddf2: ; 4ddf2 (13:5df2)
+StatsScreen_CopyToTempMon: ; 4ddf2 (13:5df2)
 	ld a, [MonType]
 	cp BREEDMON
-	jr nz, .asm_4de10
+	jr nz, .breedmon
 	ld a, [wBufferMon]
 	ld [CurSpecies], a
 	call GetBaseData
@@ -232,17 +232,18 @@ Function4ddf2: ; 4ddf2 (13:5df2)
 	ld de, TempMon
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	jr .asm_4de2a
-.asm_4de10
+	jr .done
+
+.breedmon
 	callba CopyPkmnToTempMon
 	ld a, [CurPartySpecies]
 	cp EGG
-	jr z, .asm_4de2a
+	jr z, .done
 	ld a, [MonType]
 	cp BOXMON
-	jr c, .asm_4de2a
+	jr c, .done
 	callba CalcTempmonStats
-.asm_4de2a
+.done
 	and a
 	ret
 
@@ -293,6 +294,7 @@ StatsScreen_JoypadAction: ; 4de54 (13:5e54)
 	bit D_DOWN_F, a
 	jr nz, .d_down
 	jr .done
+
 .d_down
 	ld a, [MonType]
 	cp BOXMON
@@ -314,8 +316,9 @@ StatsScreen_JoypadAction: ; 4de54 (13:5e54)
 	jr nz, .load_mon
 	ld a, b
 	inc a
-	ld [wd0d8], a
+	ld [wPartyMenuCursor], a
 	jr .load_mon
+
 .d_up
 	ld a, [CurPartyMon]
 	and a
@@ -328,8 +331,9 @@ StatsScreen_JoypadAction: ; 4de54 (13:5e54)
 	jr nz, .load_mon
 	ld a, b
 	inc a
-	ld [wd0d8], a
+	ld [wPartyMenuCursor], a
 	jr .load_mon
+
 .a_button
 	ld a, c
 	cp $3
@@ -341,11 +345,13 @@ StatsScreen_JoypadAction: ; 4de54 (13:5e54)
 	jr nc, .set_page
 	ld c, $1
 	jr .set_page
+
 .d_left
 	dec c
 	jr nz, .set_page
 	ld c, $3
 	jr .set_page
+
 .done
 	ret
 
@@ -443,6 +449,7 @@ StatsScreen_InitUpperHalf: ; 4deea (13:5eea)
 ; 4df7f
 
 Function4df7f: ; 4df7f
+; unreferenced
 	hlcoord 7, 0
 	ld bc, SCREEN_WIDTH
 	ld d, SCREEN_HEIGHT
@@ -503,7 +510,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	ld a, [wcf64]
 	and $3
 	ld c, a
-	call Function4e4cd
+	call StatsScreen_LoadPageIndicators
 	hlcoord 0, 8
 	lb bc, 10, 20
 	call ClearBox
@@ -808,23 +815,23 @@ StatsScreen_PlaceFrontpic: ; 4e226 (13:6226)
 	jr .cry
 
 .egg
-	call Function4e271
+	call .AnimateEgg
 	call SetPalettes
 	ret
 
 .no_cry
-	call Function4e253
+	call .AnimateMon
 	call SetPalettes
 	ret
 
 .cry
 	call SetPalettes
-	call Function4e253
+	call .AnimateMon
 	ld a, [CurPartySpecies]
 	call PlayCry2
 	ret
 
-Function4e253: ; 4e253 (13:6253)
+.AnimateMon: ; 4e253 (13:6253)
 	ld hl, wcf64
 	set 5, [hl]
 	ld a, [CurPartySpecies]
@@ -841,26 +848,26 @@ Function4e253: ; 4e253 (13:6253)
 	call _PrepMonFrontpic
 	ret
 
-Function4e271: ; 4e271 (13:6271)
+.AnimateEgg: ; 4e271 (13:6271)
 	ld a, [CurPartySpecies]
 	cp UNOWN
-	jr z, .unown
-	ld a, $1
+	jr z, .unownegg
+	ld a, TRUE
 	ld [wBoxAlignment], a
-	call Function4e289
+	call .get_animation
 	ret
 
-.unown
+.unownegg
 	xor a
 	ld [wBoxAlignment], a
-	call Function4e289
+	call .get_animation
 	ret
 
-Function4e289: ; 4e289 (13:6289)
+.get_animation: ; 4e289 (13:6289)
 	ld a, [CurPartySpecies]
 	call IsAPokemon
 	ret c
-	call Function4e307
+	call StatsScreen_LoadTextBoxSpaceGFX
 	ld de, VTiles2 tile $00
 	predef FrontpicPredef
 	hlcoord 0, 0
@@ -937,7 +944,7 @@ StatsScreen_GetAnimationParam: ; 4e2ad (13:62ad)
 	xor a
 	ret
 
-Function4e307: ; 4e307 (13:6307)
+StatsScreen_LoadTextBoxSpaceGFX: ; 4e307 (13:6307)
 	nop
 	push hl
 	push de
@@ -1065,7 +1072,7 @@ StatsScreen_AnimateEgg: ; 4e497 (13:6497)
 	push de
 	ld a, $1
 	ld [wBoxAlignment], a
-	call Function4e307
+	call StatsScreen_LoadTextBoxSpaceGFX
 	ld de, VTiles2 tile $00
 	predef FrontpicPredef
 	pop de
@@ -1076,7 +1083,7 @@ StatsScreen_AnimateEgg: ; 4e497 (13:6497)
 	set 6, [hl]
 	ret
 
-Function4e4cd: ; 4e4cd (13:64cd)
+StatsScreen_LoadPageIndicators: ; 4e4cd (13:64cd)
 	hlcoord 13, 5
 	ld a, $36
 	call .load_square
