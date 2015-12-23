@@ -238,7 +238,7 @@ Unknown_8d883: 	db $56, $0a
                 db $58, $09
                 db $5a, $0a
                 db  -2
-Unknown_8d890: 	db $50, $02 ; center
+Unknown_8d890: 	db $50, $02
                 db $5b, $02
                 db $50, $02
                 db $5b, $42

@@ -105,9 +105,9 @@ RunBattleAnimScript: ; cc163
 	call Functioncc8d3
 
 .playframe
-	call Functioncc25f
+	call RunBattleAnimCommand
 	call _ExecuteBGEffects
-	call Functioncc96e
+	call BattleAnim_UpdateOAM_All
 	call Function3b0c
 	call BattleAnimRequestPals
 
@@ -283,7 +283,7 @@ endr
 	ret
 ; cc25f
 
-Functioncc25f: ; cc25f
+RunBattleAnimCommand: ; cc25f
 	call .CheckTimer
 	ret nc
 	call .RunScript
@@ -725,24 +725,25 @@ endr
 
 BattleAnimCmd_IncObj: ; cc4c0 (33:44c0)
 	call GetBattleAnimByte
-	ld e, $a
+	ld e, 10
 	ld bc, ActiveAnimObjects
-.asm_cc4c8
-	ld hl, $0
+.loop
+	ld hl, BATTLEANIMSTRUCT_INDEX
 	add hl, bc
 	ld d, [hl]
 	ld a, [BattleAnimByte]
 	cp d
-	jr z, .asm_cc4dd
-	ld hl, $18
+	jr z, .increment
+	ld hl, BATTLEANIMSTRUCT_LENGTH
 	add hl, bc
 	ld c, l
 	ld b, h
 	dec e
-	jr nz, .asm_cc4c8
+	jr nz, .loop
 	ret
-.asm_cc4dd
-	ld hl, $e
+
+.increment
+	ld hl, BATTLEANIMSTRUCT_ANON_JT_INDEX
 	add hl, bc
 	inc [hl]
 	ret
@@ -1208,17 +1209,17 @@ BattleAnimCmd_Sound: ; cc7cd (33:47cd)
 	ld e, a
 	srl a
 	srl a
-	ld [wc2be], a
-	call Functioncc7fc
+	ld [wSFXDuration], a
+	call .GetCryTrack
 	and 3
 	ld [CryTracks], a ; CryTracks
 
 	ld e, a
 	ld d, 0
-	ld hl, Datacc7f8
+	ld hl, .GetPanning
 	add hl, de
 	ld a, [hl]
-	ld [wc2bc], a
+	ld [wStereoPanningMask], a
 
 	call GetBattleAnimByte
 	ld e, a
@@ -1228,11 +1229,11 @@ BattleAnimCmd_Sound: ; cc7cd (33:47cd)
 	ret
 ; cc7f8 (33:47f8)
 
-Datacc7f8: ; cc7f8
+.GetPanning: ; cc7f8
 	db $f0, $0f, $f0, $0f
 ; cc7fc
 
-Functioncc7fc: ; cc7fc (33:47fc)
+.GetCryTrack: ; cc7fc (33:47fc)
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .enemy
@@ -1311,7 +1312,7 @@ endr
 	ld a, h
 	ld [CryLength + 1], a
 	ld a, 1
-	ld [wc2bc], a
+	ld [wStereoPanningMask], a
 
 	callab _PlayCryHeader
 
@@ -1478,7 +1479,7 @@ Functioncc94b: ; cc94b
 	ret
 ; cc96e
 
-Functioncc96e: ; cc96e
+BattleAnim_UpdateOAM_All: ; cc96e
 	ld a, $0
 	ld [w5_d418], a
 	ld hl, ActiveAnimObjects
@@ -1491,14 +1492,14 @@ Functioncc96e: ; cc96e
 	ld b, h
 	push hl
 	push de
-	call Functionccfbe
-	call Functioncca09
+	call DoBattleAnimFrame
+	call BattleAnimOAMUpdate
 	pop de
 	pop hl
 	jr c, .done
 
 .next
-	ld bc, $0018
+	ld bc, BATTLEANIMSTRUCT_LENGTH
 	add hl, bc
 	dec e
 	jr nz, .loop

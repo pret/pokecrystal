@@ -1,7 +1,7 @@
 PlayStereoCry:: ; 37b6
 	push af
 	ld a, 1
-	ld [wc2bc], a
+	ld [wStereoPanningMask], a
 	pop af
 	call _PlayCry
 	call WaitSFX
@@ -13,7 +13,7 @@ PlayStereoCry2:: ; 37c4
 ; Used during pic animations.
 	push af
 	ld a, 1
-	ld [wc2bc], a
+	ld [wStereoPanningMask], a
 	pop af
 	jp _PlayCry
 ; 37ce
@@ -28,7 +28,7 @@ PlayCry2:: ; 37d5
 ; Don't wait for the cry to end.
 	push af
 	xor a
-	ld [wc2bc], a
+	ld [wStereoPanningMask], a
 	ld [CryTracks], a
 	pop af
 	call _PlayCry

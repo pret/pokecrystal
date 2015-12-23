@@ -2549,7 +2549,7 @@ endr
 	ld [hl], a
 .start
 	call StartChannel
-	ld a, [wc2bc]
+	ld a, [wStereoPanningMask]
 	and a
 	jr z, .next
 	
@@ -2750,7 +2750,7 @@ endr
 	call GetLRTracks
 	add hl, de
 	ld a, [hl]
-	ld hl, wc2bc
+	ld hl, wStereoPanningMask
 	and [hl]
 	
 	ld hl, Channel1Tracks - Channel1
@@ -2766,7 +2766,7 @@ endr
 	jr c, .skip
 	
 ; ch3-4
-	ld a, [wc2be]
+	ld a, [wSFXDuration]
 	
 	ld hl, Channel1Field0x2e - Channel1 ; $c12f - Channel1
 	add hl, bc

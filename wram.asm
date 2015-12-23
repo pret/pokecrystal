@@ -330,12 +330,12 @@ Channel1JumpCondition:: ds 1
 Channel2JumpCondition:: ds 1
 Channel3JumpCondition:: ds 1
 Channel4JumpCondition:: ds 1
-wc2bc:: ds 1
+wStereoPanningMask:: ds 1
 CryTracks:: ; c2bd
 ; plays only in left or right track depending on what side the monster is on
 ; both tracks active outside of battle
 	ds 1
-wc2be:: ds 1
+wSFXDuration:: ds 1
 CurSFX:: ; c2bf
 ; id of sfx currently playing
 	ds 1
@@ -3282,9 +3282,9 @@ battle_anim_struct: MACRO
 \1Anim01:: ds 1
 \1Anim02:: ds 1
 \1Anim03:: ds 1
-\1Anim04:: ds 1
+\1AnimFunctionIndex:: ds 1
 \1Anim05:: ds 1
-\1Anim06:: ds 1
+\1AnimTileID:: ds 1
 \1Anim07:: ds 1
 \1Anim08:: ds 1
 \1Anim09:: ds 1
@@ -3292,7 +3292,7 @@ battle_anim_struct: MACRO
 \1Anim0b:: ds 1
 \1Anim0c:: ds 1
 \1Anim0d:: ds 1
-\1Anim0e:: ds 1
+\1AnimAnonJumptableIndex:: ds 1
 \1Anim0f:: ds 1
 \1Anim10:: ds 1
 \1Anim11:: ds 1

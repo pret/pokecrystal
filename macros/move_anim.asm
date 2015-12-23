@@ -113,8 +113,8 @@ anim_resetobp0: macro
 	enum anim_sound_command ; e0
 anim_sound: macro
 	db anim_sound_command
-	db \1 ; tracks
-	db \2 ; id
+	db (\1 << 2) | \2 ; duration, tracks
+	db \3 ; id
 	endm
 
 	enum anim_cry_command ; e1
