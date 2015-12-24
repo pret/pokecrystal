@@ -533,7 +533,7 @@ Text_PlayerGotFive: ; 0x9eb7e
 	text_from_ram StringBuffer4
 	text "!@"
 	sound_item
-	text_waitsfx
+	text_waitbutton
 	db "@"
 
 Text_YourPackIsStuffedFull: ; 0x9eb94

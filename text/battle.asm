@@ -397,12 +397,8 @@ BattleText_StringBuffer1GrewToLevel: ; 0x80c9c
 	deciram CurPartyLevel, 1, 3
 	text "!@"
 	sound_dex_fanfare_50_79
-	db "@"
+	db "@@"
 ; 0x80cb9
-
-BattleText_0x80cb9: ; 0x80cb9
-	db "@"
-; 0x80cba
 
 BattleText_WildPkmnIsEating: ; 0x80cba
 	text "Wild @"

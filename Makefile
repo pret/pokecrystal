@@ -23,6 +23,7 @@ data/egg_moves_crystal.o \
 data/evos_attacks_crystal.o \
 data/pokedex/entries_crystal.o \
 misc/crystal_misc.o \
+text/common_text.o \
 gfx/pics.o
 
 crystal_obj := \
@@ -38,6 +39,7 @@ data/egg_moves_crystal.o \
 data/evos_attacks_crystal.o \
 data/pokedex/entries_crystal.o \
 misc/crystal_misc.o \
+text/common_text.o \
 gfx/pics.o
 
 all_obj := $(crystal_obj) crystal11.o wram11.o
