@@ -40,13 +40,13 @@ QueueBGEffect: ; c801a (32:401a)
 	ld b, h
 	ld hl, BG_EFFECT_STRUCT_FUNCTION
 	add hl, bc
-	ld a, [BattleAnimTemps]
+	ld a, [wBattleAnimTemp0]
 	ld [hli], a
-	ld a, [BattleAnimTemps + 1]
+	ld a, [wBattleAnimTemp1]
 	ld [hli], a
-	ld a, [BattleAnimTemps + 2]
+	ld a, [wBattleAnimTemp2]
 	ld [hli], a
-	ld a, [BattleAnimTemps + 3]
+	ld a, [wBattleAnimTemp3]
 	ld [hl], a
 	ret
 
@@ -187,7 +187,7 @@ BattleBGEffect_FlashWhite: ; c80f3 (32:40f3)
 BattleBGEffect_FlashContinue: ; c80fb (32:40fb)
 ; current timer, flash duration, number of flashes
 	ld a, $1
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	ld hl, BG_EFFECT_STRUCT_JT_INDEX
 	add hl, bc
 	ld a, [hl]
@@ -385,9 +385,9 @@ BattleBGEffect_ShowMon: ; c81ea (32:41ea)
 	ld de, Unknown_c820c
 .got_dims
 	ld a, e
-	ld [BattleAnimTemps + 1], a
+	ld [wBattleAnimTemp1], a
 	ld a, d
-	ld [BattleAnimTemps + 2], a
+	ld [wBattleAnimTemp2], a
 	call Functionc83ed
 	ret
 
@@ -428,20 +428,20 @@ Functionc8223: ; c8223 (32:4223)
 	call Functionc9038
 	jr nz, .asm_c8242
 	ld a, $b8
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	ld a, $84
 	jr .asm_c8249
 
 .asm_c8242
 	ld a, $b9
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	ld a, $30
 .asm_c8249
-	ld [BattleAnimTemps + 1], a
+	ld [wBattleAnimTemp1], a
 	ld a, $40
-	ld [BattleAnimTemps + 2], a
+	ld [wBattleAnimTemp2], a
 	xor a
-	ld [BattleAnimTemps + 3], a
+	ld [wBattleAnimTemp3], a
 	call _QueueBattleAnimation
 	pop bc
 	ret
@@ -496,20 +496,20 @@ Functionc8290: ; c8290 (32:4290)
 	call Functionc9038
 	jr nz, .asm_c82af
 	ld a, $ba
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	ld a, $84
 	jr .asm_c82b6
 
 .asm_c82af
 	ld a, $bb
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	ld a, $30
 .asm_c82b6
-	ld [BattleAnimTemps + 1], a
+	ld [wBattleAnimTemp1], a
 	ld a, $40
-	ld [BattleAnimTemps + 2], a
+	ld [wBattleAnimTemp2], a
 	xor a
-	ld [BattleAnimTemps + 3], a
+	ld [wBattleAnimTemp3], a
 	call _QueueBattleAnimation
 	pop bc
 	ret
@@ -654,9 +654,9 @@ BattleBGEffect_EnterMon: ; c837b (32:437b)
 	ld de, Unknown_c8394
 .asm_c8388
 	ld a, e
-	ld [BattleAnimTemps + 1], a
+	ld [wBattleAnimTemp1], a
 	ld a, d
-	ld [BattleAnimTemps + 2], a
+	ld [wBattleAnimTemp2], a
 	call Functionc83ed
 	ret
 
@@ -686,9 +686,9 @@ BattleBGEffect_ReturnMon: ; c83a8 (32:43a8)
 	ld de, Unknown_c83c1
 .asm_c83b5
 	ld a, e
-	ld [BattleAnimTemps + 1], a
+	ld [wBattleAnimTemp1], a
 	ld a, d
-	ld [BattleAnimTemps + 2], a
+	ld [wBattleAnimTemp2], a
 	call Functionc83ed
 	ret
 
@@ -732,9 +732,9 @@ Functionc83fa: ; c83fa (32:43fa)
 	ld e, [hl]
 	ld d, $0
 	inc [hl]
-	ld a, [BattleAnimTemps + 1]
+	ld a, [wBattleAnimTemp1]
 	ld l, a
-	ld a, [BattleAnimTemps + 2]
+	ld a, [wBattleAnimTemp2]
 	ld h, a
 rept 3
 	add hl, de
@@ -818,7 +818,7 @@ endr
 	pop hl
 	inc hl
 	ld a, [hli]
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	push de
 	ld e, [hl]
 	ld d, 0
@@ -833,7 +833,7 @@ endr
 .asm_c8484
 	push bc
 	push hl
-	ld a, [BattleAnimTemps]
+	ld a, [wBattleAnimTemp0]
 	ld b, a
 .asm_c848a
 	ld a, [de]
@@ -919,59 +919,59 @@ Unknown_c853c: ; c853c
 BattleBGEffect_Surf: ; c8545 (32:4545)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc854e
-	dw Functionc8557
-	dw Functionc8561
+	dw .zero
+	dw .one
+	dw .two
 
 
-Functionc854e: ; c854e (32:454e)
+.zero: ; c854e (32:454e)
 	call BattleBGEffects_IncrementJumptable
-	ld de, $202
-	call Functionc8f69
+	lb de, 2, 2
+	call InitSurfWaves
 
-Functionc8557: ; c8557 (32:4557)
+.one: ; c8557 (32:4557)
 	ld a, [hLCDStatCustom]
 	and a
 	ret z
 	push bc
-	call Functionc8565
+	call .RotatewSurfWaveBGEffect
 	pop bc
 	ret
 
-Functionc8561: ; c8561 (32:4561)
-	call Functionc8f0a
+.two: ; c8561 (32:4561)
+	call BattleAnim_ResetLCDStatCustom
 	ret
 
-Functionc8565: ; c8565 (32:4565)
-	ld hl, w5_d422
-	ld de, w5_d422 + 1
-	ld c, $3f
+.RotatewSurfWaveBGEffect: ; c8565 (32:4565)
+	ld hl, wSurfWaveBGEffect
+	ld de, wSurfWaveBGEffect + 1
+	ld c, wSurfWaveBGEffectEnd - wSurfWaveBGEffect - 1
 	ld a, [hl]
 	push af
-.asm_c856f
+.loop
 	ld a, [de]
 	inc de
 	ld [hli], a
 	dec c
-	jr nz, .asm_c856f
+	jr nz, .loop
 	pop af
 	ld [hl], a
 	ld de, LYOverridesBackup
-	ld hl, w5_d422
+	ld hl, wSurfWaveBGEffect
 	ld bc, $0
-.asm_c8580
+.loop2
 	ld a, [hLCDStatCustom + 1]
 	cp e
-	jr nc, .asm_c858b
+	jr nc, .load_zero
 	push hl
 	add hl, bc
 	ld a, [hl]
 	pop hl
-	jr .asm_c858c
+	jr .okay
 
-.asm_c858b
+.load_zero
 	xor a
-.asm_c858c
+.okay
 	ld [de], a
 	ld a, c
 	inc a
@@ -980,7 +980,7 @@ Functionc8565: ; c8565 (32:4565)
 	inc de
 	ld a, e
 	cp $5f
-	jr c, .asm_c8580
+	jr c, .loop2
 	ret
 
 BattleBGEffect_Whirlpool: ; c8599 (32:4599)
@@ -1009,7 +1009,7 @@ Functionc85ba: ; c85ba (32:45ba)
 	ret
 
 Functionc85be: ; c85be (32:45be)
-	call Functionc8f0a
+	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_30: ; c85c2 (32:45c2)
@@ -1037,7 +1037,7 @@ BattleBGEffect_31: ; c85ce (32:45ce)
 	ld hl, BG_EFFECT_STRUCT_JT_INDEX
 	add hl, bc
 	ld a, [hl]
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	ld hl, BG_EFFECT_STRUCT_02
 	add hl, bc
 	ld a, [hl]
@@ -1055,7 +1055,7 @@ endr
 	ret
 
 BattleBGEffect_32: ; c8603 (32:4603)
-	call Functionc8f0a
+	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_Psychic: ; c8607 (32:4607)
@@ -1093,7 +1093,7 @@ Functionc862e: ; c862e (32:462e)
 	ret
 
 Functionc863b: ; c863b (32:463b)
-	call Functionc8f0a
+	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_Teleport: ; c863f (32:463f)
@@ -1118,7 +1118,7 @@ Functionc865a: ; c865a (32:465a)
 	ret
 
 Functionc865e: ; c865e (32:465e)
-	call Functionc8f0a
+	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_NightShade: ; c8662 (32:4662)
@@ -1146,7 +1146,7 @@ Functionc8681: ; c8681 (32:4681)
 	ret
 
 Functionc8685: ; c8685 (32:4685)
-	call Functionc8f0a
+	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_DoubleTeam: ; c8689 (32:4689)
@@ -1202,7 +1202,7 @@ Functionc86cf: ; c86cf (32:46cf)
 	add hl, bc
 	ld a, [hl]
 	ld d, $2
-	call Functionc905d
+	call BattleBGEffects_Sine
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	add [hl]
@@ -1241,7 +1241,7 @@ Functionc86ea: ; c86ea (32:46ea)
 	ret
 
 Functionc8705: ; c8705 (32:4705)
-	call Functionc8f0a
+	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_AcidArmor: ; c8709 (32:4709)
@@ -1304,7 +1304,7 @@ Functionc8732: ; c8732 (32:4732)
 	ret
 
 Functionc875d: ; c875d (32:475d)
-	call Functionc8f0a
+	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_21: ; c8761 (32:4761)
@@ -1353,7 +1353,7 @@ Functionc8781: ; c8781 (32:4781)
 	ret
 
 Functionc87a3: ; c87a3 (32:47a3)
-	call Functionc8f0a
+	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_23: ; c87a7 (32:47a7)
@@ -1422,7 +1422,7 @@ endr
 	ret
 
 Functionc8801: ; c8801 (32:4801)
-	call Functionc8f0a
+	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_Tackle: ; c8805 (32:4805)
@@ -1457,7 +1457,7 @@ Functionc8810: ; c8810 (32:4810)
 	ret
 
 Functionc8833: ; c8833 (32:4833)
-	call Functionc8f0a
+	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_25: ; c8837 (32:4837)
@@ -1492,7 +1492,7 @@ Functionc8842: ; c8842 (32:4842)
 	ret
 
 Functionc8865: ; c8865 (32:4865)
-	call Functionc8f0a
+	call BattleAnim_ResetLCDStatCustom
 	ret
 
 Functionc8869: ; c8869 (32:4869)
@@ -1598,7 +1598,7 @@ BattleBGEffect_2d: ; c88e7 (32:48e7)
 
 
 Functionc88f2: ; c88f2 (32:48f2)
-	call Functionc8f0a
+	call BattleAnim_ResetLCDStatCustom
 	ret
 
 Functionc88f6: ; c88f6 (32:48f6)
@@ -1634,7 +1634,7 @@ BattleBGEffect_2f: ; c8919 (32:4919)
 
 
 Functionc8926: ; c8926 (32:4926)
-	call Functionc8f0a
+	call BattleAnim_ResetLCDStatCustom
 
 Functionc8929: ; c8929 (32:4929)
 	ret
@@ -1665,7 +1665,7 @@ Functionc894a: ; c894a (32:494a)
 	add hl, bc
 	ld a, [hl]
 	ld d, $8
-	call Functionc905d
+	call BattleBGEffects_Sine
 	call Functionc900b
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
@@ -1675,7 +1675,7 @@ Functionc894a: ; c894a (32:494a)
 	ret
 
 Functionc8960: ; c8960 (32:4960)
-	call Functionc8f0a
+	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_2c: ; c8964 (32:4964)
@@ -1706,13 +1706,13 @@ Functionc8985: ; c8985 (32:4985)
 	add hl, bc
 	ld a, [hl]
 	ld d, $6
-	call Functionc905d
+	call BattleBGEffects_Sine
 	push af
 	ld hl, BG_EFFECT_STRUCT_02
 	add hl, bc
 	ld a, [hl]
 	ld d, $2
-	call Functionc905d
+	call BattleBGEffects_Sine
 	ld e, a
 	pop af
 	add e
@@ -1730,7 +1730,7 @@ Functionc8985: ; c8985 (32:4985)
 	ret
 
 Functionc89b1: ; c89b1 (32:49b1)
-	call Functionc8f0a
+	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_28: ; c89b5 (32:49b5)
@@ -1773,7 +1773,7 @@ Functionc89da: ; c89da (32:49da)
 	ret
 
 .asm_c89ea
-	call Functionc8f0a
+	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_22: ; c89ee (32:49ee)
@@ -1811,7 +1811,7 @@ Functionc8a14: ; c8a14 (32:4a14)
 	add hl, bc
 	ld a, [hl]
 	ld d, $10
-	call Functionc9066
+	call BattleBGEffects_Cosine
 	add $10
 	ld d, a
 	pop af
@@ -1825,7 +1825,7 @@ endr
 	ret
 
 Functionc8a36: ; c8a36 (32:4a36)
-	call Functionc8f0a
+	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_2a: ; c8a3a (32:4a3a)
@@ -1974,7 +1974,7 @@ Functionc8ae5: ; c8ae5 (32:4ae5)
 	ret
 
 .asm_c8afc
-	call Functionc8f0a
+	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_1c: ; c8b00 (32:4b00)
@@ -2289,7 +2289,7 @@ Functionc8c85: ; c8c85 (32:4c85)
 	ret
 
 .asm_c8c9e
-	call Functionc8f0a
+	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_WobbleMon: ; c8ca2 (32:4ca2)
@@ -2321,7 +2321,7 @@ Functionc8cc3: ; c8cc3 (32:4cc3)
 	cp $40
 	jr nc, Functionc8cdd
 	ld d, $6
-	call Functionc905d
+	call BattleBGEffects_Sine
 	call Functionc900b
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
@@ -2331,7 +2331,7 @@ Functionc8cc3: ; c8cc3 (32:4cc3)
 	ret
 
 Functionc8cdd: ; c8cdd (32:4cdd)
-	call Functionc8f0a
+	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_2e: ; c8ce1 (32:4ce1)
@@ -2412,7 +2412,7 @@ BattleBGEffect_35: ; c8d3a (32:4d3a)
 	cp $40
 	jr nc, .asm_c8d53
 	ld d, $6
-	call Functionc905d
+	call BattleBGEffects_Sine
 	ld [hSCX], a
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
@@ -2740,7 +2740,7 @@ Functionc8ef4: ; c8ef4 (32:4ef4)
 	ld [hLCDStatCustom + 2], a
 	ret
 
-Functionc8f0a: ; c8f0a (32:4f0a)
+BattleAnim_ResetLCDStatCustom: ; c8f0a (32:4f0a)
 	xor a
 	ld [hLCDStatCustom + 1], a
 	ld [hLCDStatCustom + 2], a
@@ -2765,13 +2765,13 @@ Functionc8f19: ; c8f19 (32:4f19)
 Functionc8f2e: ; c8f2e (32:4f2e)
 	push bc
 	xor a
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	ld a, e
-	ld [BattleAnimTemps + 1], a
+	ld [wBattleAnimTemp1], a
 	ld a, d
-	ld [BattleAnimTemps + 2], a
+	ld [wBattleAnimTemp2], a
 	ld a, $80
-	ld [BattleAnimTemps + 3], a
+	ld [wBattleAnimTemp3], a
 	ld bc, LYOverridesBackup
 .asm_c8f43
 	ld a, [hLCDStatCustom + 1]
@@ -2780,75 +2780,75 @@ Functionc8f2e: ; c8f2e (32:4f2e)
 	ld a, [hLCDStatCustom + 2]
 	cp c
 	jr c, .asm_c8f58
-	ld a, [BattleAnimTemps + 2]
+	ld a, [wBattleAnimTemp2]
 	ld d, a
-	ld a, [BattleAnimTemps]
-	call Functionc905d
+	ld a, [wBattleAnimTemp0]
+	call BattleBGEffects_Sine
 	ld [bc], a
 .asm_c8f58
 	inc bc
-	ld a, [BattleAnimTemps + 1]
-	ld hl, BattleAnimTemps
+	ld a, [wBattleAnimTemp1]
+	ld hl, wBattleAnimTemp0
 	add [hl]
 	ld [hl], a
-	ld hl, BattleAnimTemps + 3
+	ld hl, wBattleAnimTemp3
 	dec [hl]
 	jr nz, .asm_c8f43
 	pop bc
 	ret
 
-Functionc8f69: ; c8f69 (32:4f69)
+InitSurfWaves: ; c8f69 (32:4f69)
 	push bc
 	xor a
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	ld a, e
-	ld [BattleAnimTemps + 1], a
+	ld [wBattleAnimTemp1], a
 	ld a, d
-	ld [BattleAnimTemps + 2], a
+	ld [wBattleAnimTemp2], a
 	ld a, $40
-	ld [BattleAnimTemps + 3], a
-	ld bc, w5_d422
-.asm_c8f7e
-	ld a, [BattleAnimTemps + 2]
+	ld [wBattleAnimTemp3], a
+	ld bc, wSurfWaveBGEffect
+.loop
+	ld a, [wBattleAnimTemp2]
 	ld d, a
-	ld a, [BattleAnimTemps]
-	call Functionc905d
+	ld a, [wBattleAnimTemp0]
+	call BattleBGEffects_Sine
 	ld [bc], a
 	inc bc
-	ld a, [BattleAnimTemps + 1]
-	ld hl, BattleAnimTemps
+	ld a, [wBattleAnimTemp1]
+	ld hl, wBattleAnimTemp0
 	add [hl]
 	ld [hl], a
-	ld hl, BattleAnimTemps + 3
+	ld hl, wBattleAnimTemp3
 	dec [hl]
-	jr nz, .asm_c8f7e
+	jr nz, .loop
 	pop bc
 	ret
 
 Functionc8f9a: ; c8f9a (32:4f9a)
 	push bc
-	ld [BattleAnimTemps + 3], a
+	ld [wBattleAnimTemp3], a
 	ld a, e
-	ld [BattleAnimTemps + 1], a
+	ld [wBattleAnimTemp1], a
 	ld a, d
-	ld [BattleAnimTemps + 2], a
+	ld [wBattleAnimTemp2], a
 	call Functionc8fe4
 	ld hl, LYOverridesBackup
 	add hl, de
 	ld c, l
 	ld b, h
 .asm_c8faf
-	ld a, [BattleAnimTemps + 3]
+	ld a, [wBattleAnimTemp3]
 	and a
 	jr z, .asm_c8fe1
 	dec a
-	ld [BattleAnimTemps + 3], a
+	ld [wBattleAnimTemp3], a
 	push af
-	ld a, [BattleAnimTemps + 2]
+	ld a, [wBattleAnimTemp2]
 	ld d, a
-	ld a, [BattleAnimTemps + 1]
+	ld a, [wBattleAnimTemp1]
 	push hl
-	call Functionc905d
+	call BattleBGEffects_Sine
 	ld e, a
 	pop hl
 	ld a, [hLCDStatCustom + 2]
@@ -2864,9 +2864,9 @@ Functionc8f9a: ; c8f9a (32:4f9a)
 	ld [hl], e
 	dec hl
 .asm_c8fd6
-	ld a, [BattleAnimTemps + 1]
+	ld a, [wBattleAnimTemp1]
 	add $4
-	ld [BattleAnimTemps + 1], a
+	ld [wBattleAnimTemp1], a
 	pop af
 	jr .asm_c8faf
 
@@ -2878,7 +2878,7 @@ Functionc8f9a: ; c8f9a (32:4f9a)
 Functionc8fe4: ; c8fe4 (32:4fe4)
 	ld a, [hLCDStatCustom + 1]
 	ld e, a
-	ld a, [BattleAnimTemps]
+	ld a, [wBattleAnimTemp0]
 	add e
 	ld e, a
 	ld d, $0
@@ -2980,13 +2980,13 @@ BattleBGEffects_CheckSGB: ; c9059 (32:5059)
 	and a
 	ret
 
-Functionc905d: ; c905d (32:505d)
+BattleBGEffects_Sine: ; c905d (32:505d)
 	ld e, a
 	callab BattleAnim_Sine_e
 	ld a, e
 	ret
 
-Functionc9066: ; c9066 (32:5066)
+BattleBGEffects_Cosine: ; c9066 (32:5066)
 	ld e, a
 	callab BattleAnim_Cosine_e
 	ld a, e

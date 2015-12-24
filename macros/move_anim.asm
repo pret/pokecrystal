@@ -11,9 +11,9 @@ endc
 anim_obj: macro
 	db anim_obj_command
 	db \1 ; obj
-	db \2 ; x
-	db \3 ; y
-	db \4 ; param
+	db (\2 << 3) + \3 ; x
+	db (\4 << 3) + \5 ; y
+	db \6 ; param
 	endm
 
 	enum anim_1gfx_command ; d1

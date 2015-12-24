@@ -3279,30 +3279,30 @@ wBattleAnimTileDict:: ds 10
 
 battle_anim_struct: MACRO
 ; Placeholder until we can figure out what it all means
-\1Index::  ds 1
-\1Anim01:: ds 1
-\1Anim02:: ds 1
-\1Anim03:: ds 1
-\1AnimFunctionIndex:: ds 1
-\1Anim05:: ds 1
-\1AnimTileID:: ds 1
-\1Anim07:: ds 1
-\1Anim08:: ds 1
-\1Anim09:: ds 1
-\1Anim0a:: ds 1
-\1Anim0b:: ds 1
-\1Anim0c:: ds 1
-\1Anim0d:: ds 1
-\1AnimAnonJumptableIndex:: ds 1
-\1Anim0f:: ds 1
-\1Anim10:: ds 1
-\1Anim11:: ds 1
-\1Anim12:: ds 1
-\1Anim13:: ds 1
-\1Anim14:: ds 1
-\1Anim15:: ds 1
-\1Anim16:: ds 1
-\1Anim17:: ds 1
+\1_Index::  ds 1
+\1_Anim01:: ds 1
+\1_Anim02:: ds 1
+\1_FramesetIndex:: ds 1
+\1_FunctionIndex:: ds 1
+\1_Anim05:: ds 1
+\1_TileID:: ds 1
+\1_XCoord:: ds 1
+\1_YCoord:: ds 1
+\1_XOffset:: ds 1
+\1_YOffset:: ds 1
+\1_Anim0b:: ds 1
+\1_Anim0c:: ds 1
+\1_Anim0d:: ds 1
+\1_AnonJumptableIndex:: ds 1
+\1_Anim0f:: ds 1
+\1_Anim10:: ds 1
+\1_Anim11:: ds 1
+\1_Anim12:: ds 1
+\1_Anim13:: ds 1
+\1_Anim14:: ds 1
+\1_Anim15:: ds 1
+\1_Anim16:: ds 1
+\1_Anim17:: ds 1
 endm
 
 ActiveAnimObjects:: ; d30a
@@ -3351,9 +3351,26 @@ BattleAnimByte:: ; d417
 	ds 1
 wBattleAnimOAMPointerLo:: ds 1 ; d418
 BattleAnimTemps:: ; d419
-	ds 8
-	ds 1
-w5_d422:: ds $32
+wBattleAnimTempOAMFlags::
+wBattleAnimTemp0:: ds 1
+wBattleAnimTemp1:: ds 1
+wBattleAnimTempTileID::
+wBattleAnimTemp2:: ds 1
+wBattleAnimTempXCoord::
+wBattleAnimTemp3:: ds 1
+wBattleAnimTempYCoord::
+wBattleAnimTemp4:: ds 1
+wBattleAnimTempXOffset::
+wBattleAnimTemp5:: ds 1
+wBattleAnimTempYOffset::
+wBattleAnimTemp6:: ds 1
+wBattleAnimTemp7:: ds 1
+wBattleAnimTempPalette::
+wBattleAnimTemp8:: ds 1
+
+wSurfWaveBGEffect:: ds $40
+wSurfWaveBGEffectEnd::
+	ds -$e
 wBattleAnimEnd::
 
 SECTION "WRAM 5 MOBILE", WRAMX [$d800], BANK [5]

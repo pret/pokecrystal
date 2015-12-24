@@ -620,27 +620,27 @@ BattleAnimCmd_JumpAnd: ; cc3fa (33:43fa)
 	ret
 
 BattleAnimCmd_Obj: ; cc41f (33:441f)
-; index, ???, ???, ???
+; index, x, y, param
 	call GetBattleAnimByte
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	call GetBattleAnimByte
-	ld [BattleAnimTemps + 1], a
+	ld [wBattleAnimTemp1], a
 	call GetBattleAnimByte
-	ld [BattleAnimTemps + 2], a
+	ld [wBattleAnimTemp2], a
 	call GetBattleAnimByte
-	ld [BattleAnimTemps + 3], a
+	ld [wBattleAnimTemp3], a
 	call QueueBattleAnimation
 	ret
 
 BattleAnimCmd_BGEffect: ; cc43b (33:443b)
 	call GetBattleAnimByte
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	call GetBattleAnimByte
-	ld [BattleAnimTemps + 1], a
+	ld [wBattleAnimTemp1], a
 	call GetBattleAnimByte
-	ld [BattleAnimTemps + 2], a
+	ld [wBattleAnimTemp2], a
 	call GetBattleAnimByte
-	ld [BattleAnimTemps + 3], a
+	ld [wBattleAnimTemp3], a
 	call _QueueBGEffect
 	ret
 
@@ -689,14 +689,14 @@ BattleAnimCmd_5GFX: ; cc485 (33:4485)
 	ld c, a
 	ld hl, wBattleAnimTileDict
 	xor a
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 .loop
-	ld a, [BattleAnimTemps]
+	ld a, [wBattleAnimTemp0]
 	cp (VTiles1 - VTiles0) / $10 - $31
 	ret nc
 	call GetBattleAnimByte
 	ld [hli], a
-	ld a, [BattleAnimTemps]
+	ld a, [wBattleAnimTemp0]
 	ld [hli], a
 	push bc
 	push hl
@@ -709,9 +709,9 @@ endr
 	add hl, de
 	ld a, [BattleAnimByte]
 	call LoadBattleAnimObj
-	ld a, [BattleAnimTemps]
+	ld a, [wBattleAnimTemp0]
 	add c
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	pop hl
 	pop bc
 	dec c
@@ -818,12 +818,12 @@ BattleAnimCmd_EnemyFeetObj: ; cc52c (33:452c)
 	ld hl, VTiles0 tile $73
 	ld de, VTiles2 tile $06
 	ld a, $70
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	ld a, $7
 	call .LoadFootprint
 	ld de, VTiles2 tile $31
 	ld a, $60
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	ld a, $6
 	call .LoadFootprint
 	ret
@@ -835,7 +835,7 @@ BattleAnimCmd_EnemyFeetObj: ; cc52c (33:452c)
 	lb bc, BANK(BattleAnimCmd_EnemyFeetObj), 1
 	call Request2bpp
 	pop de
-	ld a, [BattleAnimTemps]
+	ld a, [wBattleAnimTemp0]
 	ld l, a
 	ld h, 0
 	add hl, de
@@ -873,12 +873,12 @@ BattleAnimCmd_PlayerHeadObj: ; cc57e (33:457e)
 	ld hl, VTiles0 tile $66
 	ld de, VTiles2 tile $05
 	ld a, $70
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	ld a, $7
 	call .LoadHead
 	ld de, VTiles2 tile $31
 	ld a, $60
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	ld a, $6
 	call .LoadHead
 	ret
@@ -890,7 +890,7 @@ BattleAnimCmd_PlayerHeadObj: ; cc57e (33:457e)
 	lb bc, BANK(BattleAnimCmd_EnemyFeetObj), 2
 	call Request2bpp
 	pop de
-	ld a, [BattleAnimTemps]
+	ld a, [wBattleAnimTemp0]
 	ld l, a
 	ld h, 0
 	add hl, de

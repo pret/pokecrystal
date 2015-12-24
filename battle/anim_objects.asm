@@ -31,7 +31,7 @@ DeinitBattleAnimation: ; cc9bd
 ; cc9c4
 
 InitBattleAnimation: ; cc9c4 (33:49c4)
-	ld a, [BattleAnimTemps]
+	ld a, [wBattleAnimTemp0]
 	ld e, a
 	ld d, 0
 	ld hl, BattleAnimObjects
@@ -43,7 +43,7 @@ endr
 	ld hl, BATTLEANIMSTRUCT_INDEX
 	add hl, bc
 	ld a, [wNumActiveBattleAnims]
-	ld [hli], a ; 00
+	ld [hli], a ; Index
 	ld a, [de]
 	inc de
 	ld [hli], a ; 01
@@ -52,24 +52,24 @@ endr
 	ld [hli], a ; 02
 	ld a, [de]
 	inc de
-	ld [hli], a ; 03
+	ld [hli], a ; Frameset ID
 	ld a, [de]
 	inc de
-	ld [hli], a ; 04
+	ld [hli], a ; Function
 	ld a, [de]
 	inc de
 	ld [hli], a ; 05
 	ld a, [de]
 	call GetBattleAnimTileOffset
-	ld [hli], a ; 06
-	ld a, [BattleAnimTemps + 1]
-	ld [hli], a ; 07
-	ld a, [BattleAnimTemps + 2]
-	ld [hli], a ; 08
+	ld [hli], a ; Tile ID
+	ld a, [wBattleAnimTemp1]
+	ld [hli], a ; X Coord
+	ld a, [wBattleAnimTemp2]
+	ld [hli], a ; Y Coord
 	xor a
-	ld [hli], a ; 09
-	ld [hli], a ; 0a
-	ld a, [BattleAnimTemps + 3]
+	ld [hli], a ; X Offset
+	ld [hli], a ; Y Offset
+	ld a, [wBattleAnimTemp3]
 	ld [hli], a ; 0b
 	xor a
 	ld [hli], a ; 0c
@@ -82,24 +82,24 @@ endr
 	ret
 
 BattleAnimOAMUpdate: ; cca09
-	call Functionccaaa
+	call InitBattleAnimBuffer
 	call GetBattleAnimFrame
 	cp -3
 	jp z, .exit_no_carry
 	cp -4
 	jp z, .delete_exit
 	push af
-	ld hl, BattleAnimTemps
-	ld a, [BattleAnimTemps + 7]
+	ld hl, wBattleAnimTempOAMFlags
+	ld a, [wBattleAnimTemp7]
 	xor [hl]
 	and $e0
 	ld [hl], a
 	pop af
 	push bc
 	call GetBattleAnimOAMPointer
-	ld a, [BattleAnimTemps + 2]
+	ld a, [wBattleAnimTempTileID]
 	add [hl]
-	ld [BattleAnimTemps + 2], a
+	ld [wBattleAnimTempTileID], a
 	inc hl
 	ld a, [hli]
 	ld c, a
@@ -110,14 +110,14 @@ BattleAnimOAMUpdate: ; cca09
 	ld e, a
 	ld d, Sprites / $100
 .loop
-	ld a, [BattleAnimTemps + 4]
+	ld a, [wBattleAnimTempYCoord]
 	ld b, a
-	ld a, [BattleAnimTemps + 6]
+	ld a, [wBattleAnimTempYOffset]
 	add b
 	ld b, a
 	push hl
 	ld a, [hl]
-	ld hl, BattleAnimTemps
+	ld hl, wBattleAnimTempOAMFlags
 	bit 6, [hl]
 	jr z, .no_yflip
 	add $8
@@ -130,14 +130,14 @@ BattleAnimOAMUpdate: ; cca09
 	ld [de], a
 	inc hl
 	inc de
-	ld a, [BattleAnimTemps + 3]
+	ld a, [wBattleAnimTempXCoord]
 	ld b, a
-	ld a, [BattleAnimTemps + 5]
+	ld a, [wBattleAnimTempXOffset]
 	add b
 	ld b, a
 	push hl
 	ld a, [hl]
-	ld hl, BattleAnimTemps
+	ld hl, wBattleAnimTempOAMFlags
 	bit 5, [hl]
 	jr z, .no_xflip
 	add $8
@@ -150,13 +150,13 @@ BattleAnimOAMUpdate: ; cca09
 	ld [de], a
 	inc hl
 	inc de
-	ld a, [BattleAnimTemps + 2]
+	ld a, [wBattleAnimTempTileID]
 	add $31
 	add [hl]
 	ld [de], a
 	inc hl
 	inc de
-	ld a, [BattleAnimTemps]
+	ld a, [wBattleAnimTempOAMFlags]
 	ld b, a
 	ld a, [hl]
 	xor b
@@ -166,7 +166,7 @@ BattleAnimOAMUpdate: ; cca09
 	and $10
 	or b
 	ld b, a
-	ld a, [BattleAnimTemps + 8]
+	ld a, [wBattleAnimTempPalette]
 	and $f
 	or b
 	ld [de], a
@@ -195,56 +195,56 @@ BattleAnimOAMUpdate: ; cca09
 
 ; ccaaa
 
-Functionccaaa: ; ccaaa
+InitBattleAnimBuffer: ; ccaaa
 	ld hl, BATTLEANIMSTRUCT_01
 	add hl, bc
 	ld a, [hl]
-	and $80
-	ld [BattleAnimTemps], a
+	and %10000000
+	ld [wBattleAnimTempOAMFlags], a
 	xor a
-	ld [BattleAnimTemps + 7], a
-	ld hl, BATTLEANIMSTRUCT_05
+	ld [wBattleAnimTemp7], a
+	ld hl, BATTLEANIMSTRUCT_PALETTE
 	add hl, bc
 	ld a, [hl]
-	ld [BattleAnimTemps + 8], a
+	ld [wBattleAnimTempPalette], a
 	ld hl, BATTLEANIMSTRUCT_02
 	add hl, bc
 	ld a, [hl]
-	ld [BattleAnimTemps + 1], a
+	ld [wBattleAnimTemp1], a
 	ld hl, BATTLEANIMSTRUCT_TILEID
 	add hl, bc
 	ld a, [hli]
-	ld [BattleAnimTemps + 2], a
+	ld [wBattleAnimTempTileID], a
 	ld a, [hli]
-	ld [BattleAnimTemps + 3], a
+	ld [wBattleAnimTempXCoord], a
 	ld a, [hli]
-	ld [BattleAnimTemps + 4], a
+	ld [wBattleAnimTempYCoord], a
 	ld a, [hli]
-	ld [BattleAnimTemps + 5], a
+	ld [wBattleAnimTempXOffset], a
 	ld a, [hli]
-	ld [BattleAnimTemps + 6], a
+	ld [wBattleAnimTempYOffset], a
 	ld a, [hBattleTurn]
 	and a
 	ret z
 	ld hl, BATTLEANIMSTRUCT_01
 	add hl, bc
 	ld a, [hl]
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTempOAMFlags], a
 	bit 0, [hl]
 	ret z
-	ld hl, BATTLEANIMSTRUCT_07
+	ld hl, BATTLEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hli]
 	ld d, a
-	ld a, $b4
+	ld a, (-10 * 8) + 4
 	sub d
-	ld [BattleAnimTemps + 3], a
+	ld [wBattleAnimTempXCoord], a
 	ld a, [hli]
 	ld d, a
-	ld a, [BattleAnimTemps + 1]
+	ld a, [wBattleAnimTemp1]
 	cp $ff
 	jr nz, .check_kinesis_softboiled_milkdrink
-	ld a, $28
+	ld a, 5 * 8
 	add d
 	jr .done
 
@@ -265,17 +265,17 @@ Functionccaaa: ; ccaaa
 .softboiled
 .milk_drink
 	pop af
-	sub $8
+	sub 1 * 8
 	jr .done
 
 .no_sub
 	pop af
 .done
-	ld [BattleAnimTemps + 4], a
+	ld [wBattleAnimTempYCoord], a
 	ld a, [hli]
 	xor $ff
 	inc a
-	ld [BattleAnimTemps + 5], a
+	ld [wBattleAnimTempXOffset], a
 	ret
 
 ; ccb31
@@ -317,197 +317,198 @@ _QueueBGEffect: ; ccb4f (33:4b4f)
 
 BattleAnimObjects: ; ccb56
 battleanimobj: MACRO
+; ??, ??, frameset, function, ??, tile offset
 	db \1, \2, \3, \4, \5, \6
 endm
 
-	battleanimobj $01, $ff, $00, $00, $02, $01 ; 00
-	battleanimobj $01, $ff, $01, $00, $02, $01 ; 01
-	battleanimobj $01, $ff, $02, $00, $02, $01 ; 02
-	battleanimobj $01, $90, $00, $00, $02, $01 ; 03
-	battleanimobj $01, $90, $01, $00, $02, $01 ; 04
-	battleanimobj $01, $90, $02, $00, $02, $01 ; 05
-	battleanimobj $01, $ff, $03, $00, $02, $01 ; 06
-	battleanimobj $01, $ff, $04, $1b, $02, $01 ; 07
-	battleanimobj $01, $ff, $05, $00, $02, $01 ; 08
-	battleanimobj $01, $ff, $06, $00, $02, $01 ; 09
-	battleanimobj $01, $90, $07, $09, $02, $01 ; 0a
-	battleanimobj $01, $aa, $10, $10, $04, $03 ; 0b
-	battleanimobj $01, $90, $0e, $04, $04, $03 ; 0c
-	battleanimobj $01, $90, $0f, $03, $04, $03 ; 0d
-	battleanimobj $01, $90, $10, $08, $04, $03 ; 0e
-	battleanimobj $01, $90, $0f, $0a, $04, $03 ; 0f
-	battleanimobj $01, $90, $11, $03, $04, $03 ; 10
-	battleanimobj $01, $90, $12, $08, $06, $0a ; 11
-	battleanimobj $01, $90, $13, $00, $06, $0a ; 12
-	battleanimobj $01, $90, $14, $01, $06, $0a ; 13
-	battleanimobj $21, $78, $16, $0b, $05, $06 ; 14
-	battleanimobj $00, $00, $09, $12, $04, $0b ; 15
-	battleanimobj $00, $00, $09, $13, $04, $0b ; 16
-	battleanimobj $01, $90, $18, $00, $04, $08 ; 17
-	battleanimobj $01, $ff, $18, $00, $04, $08 ; 18
-	battleanimobj $01, $90, $1d, $06, $02, $0c ; 19
-	battleanimobj $01, $b4, $1f, $38, $02, $0c ; 1a
-	battleanimobj $01, $90, $08, $00, $02, $07 ; 1b
-	battleanimobj $01, $a0, $08, $00, $02, $07 ; 1c
-	battleanimobj $01, $ff, $19, $07, $07, $09 ; 1d
-	battleanimobj $01, $ff, $1a, $07, $07, $09 ; 1e
-	battleanimobj $01, $b0, $1b, $36, $07, $09 ; 1f
-	battleanimobj $01, $b0, $84, $36, $06, $21 ; 20
-	battleanimobj $01, $90, $21, $0c, $06, $0d ; 21
-	battleanimobj $00, $00, $23, $0d, $06, $0d ; 22
-	battleanimobj $01, $90, $24, $0e, $02, $0e ; 23
-	battleanimobj $61, $80, $27, $0f, $06, $04 ; 24
-	battleanimobj $01, $b4, $2a, $00, $06, $04 ; 25
-	battleanimobj $01, $40, $2b, $11, $05, $0f ; 26
-	battleanimobj $61, $98, $2c, $00, $03, $10 ; 27
-	battleanimobj $61, $98, $2d, $09, $03, $10 ; 28
-	battleanimobj $01, $b8, $2e, $00, $06, $0a ; 29
-	battleanimobj $01, $b8, $2f, $00, $06, $0a ; 2a
-	battleanimobj $01, $b8, $30, $14, $07, $11 ; 2b
-	battleanimobj $01, $90, $21, $14, $03, $0d ; 2c
-	battleanimobj $21, $b0, $31, $00, $03, $05 ; 2d
-	battleanimobj $21, $b0, $32, $00, $03, $05 ; 2e
-	battleanimobj $21, $b0, $33, $00, $03, $05 ; 2f
-	battleanimobj $21, $90, $34, $15, $03, $05 ; 30
-	battleanimobj $21, $90, $36, $00, $03, $05 ; 31
-	battleanimobj $21, $90, $37, $03, $02, $08 ; 32
-	battleanimobj $21, $90, $38, $00, $03, $05 ; 33
-	battleanimobj $21, $90, $39, $03, $02, $08 ; 34
-	battleanimobj $21, $90, $3a, $16, $02, $02 ; 35
-	battleanimobj $01, $90, $3c, $17, $02, $02 ; 36
-	battleanimobj $21, $ff, $3e, $00, $02, $02 ; 37
-	battleanimobj $21, $ff, $3f, $00, $02, $02 ; 38
-	battleanimobj $21, $ff, $40, $00, $02, $02 ; 39
-	battleanimobj $21, $ff, $41, $00, $02, $02 ; 3a
-	battleanimobj $21, $ff, $42, $00, $02, $02 ; 3b
-	battleanimobj $01, $88, $43, $18, $05, $12 ; 3c
-	battleanimobj $01, $88, $44, $00, $05, $12 ; 3d
-	battleanimobj $21, $b8, $45, $19, $02, $13 ; 3e
-	battleanimobj $21, $ff, $46, $00, $02, $14 ; 3f
-	battleanimobj $21, $ff, $47, $00, $02, $14 ; 40
-	battleanimobj $21, $ff, $48, $1a, $02, $14 ; 41
-	battleanimobj $21, $ff, $49, $1a, $02, $14 ; 42
-	battleanimobj $21, $98, $4a, $01, $02, $14 ; 43
-	battleanimobj $21, $80, $4b, $00, $03, $11 ; 44
-	battleanimobj $01, $88, $4c, $1c, $05, $12 ; 45
-	battleanimobj $21, $b0, $4d, $1d, $02, $15 ; 46
-	battleanimobj $01, $b0, $51, $1e, $03, $11 ; 47
-	battleanimobj $21, $ff, $52, $1f, $05, $16 ; 48
-	battleanimobj $21, $ff, $54, $1f, $05, $16 ; 49
-	battleanimobj $21, $68, $56, $20, $05, $06 ; 4a
-	battleanimobj $21, $90, $59, $21, $02, $0e ; 4b
-	battleanimobj $21, $90, $5c, $02, $02, $17 ; 4c
-	battleanimobj $01, $90, $5d, $22, $03, $11 ; 4d
-	battleanimobj $61, $88, $5f, $00, $03, $10 ; 4e
-	battleanimobj $61, $88, $2d, $09, $03, $10 ; 4f
-	battleanimobj $21, $88, $60, $00, $03, $18 ; 50
-	battleanimobj $21, $80, $60, $00, $02, $18 ; 51
-	battleanimobj $21, $50, $61, $23, $03, $19 ; 52
-	battleanimobj $01, $80, $63, $24, $02, $19 ; 53
-	battleanimobj $01, $80, $66, $25, $02, $19 ; 54
-	battleanimobj $01, $50, $1c, $00, $02, $0c ; 55
-	battleanimobj $21, $a8, $67, $26, $07, $1a ; 56
-	battleanimobj $21, $a8, $68, $00, $07, $1a ; 57
-	battleanimobj $21, $90, $69, $01, $02, $1a ; 58
-	battleanimobj $21, $90, $6d, $28, $03, $19 ; 59
-	battleanimobj $21, $90, $6a, $27, $02, $1b ; 5a
-	battleanimobj $00, $00, $6f, $29, $02, $1c ; 5b
-	battleanimobj $21, $48, $70, $29, $02, $1c ; 5c
-	battleanimobj $21, $48, $6f, $29, $02, $1c ; 5d
-	battleanimobj $21, $78, $6f, $2a, $02, $1c ; 5e
-	battleanimobj $61, $90, $71, $2b, $02, $1d ; 5f
-	battleanimobj $61, $90, $72, $2c, $02, $1d ; 60
-	battleanimobj $01, $48, $73, $2d, $04, $1e ; 61
-	battleanimobj $01, $90, $74, $06, $02, $15 ; 62
-	battleanimobj $01, $ff, $75, $2e, $07, $19 ; 63
-	battleanimobj $21, $90, $4a, $02, $02, $14 ; 64
-	battleanimobj $01, $80, $30, $2f, $02, $11 ; 65
-	battleanimobj $01, $78, $76, $2a, $04, $23 ; 66
-	battleanimobj $01, $80, $77, $30, $02, $1f ; 67
-	battleanimobj $01, $90, $77, $02, $02, $1f ; 68
-	battleanimobj $01, $ff, $77, $00, $02, $1f ; 69
-	battleanimobj $01, $80, $78, $08, $03, $23 ; 6a
-	battleanimobj $21, $90, $79, $00, $02, $1f ; 6b
-	battleanimobj $01, $ff, $7a, $31, $03, $11 ; 6c
-	battleanimobj $01, $88, $7a, $31, $03, $11 ; 6d
-	battleanimobj $21, $88, $7b, $32, $02, $20 ; 6e
-	battleanimobj $21, $98, $7c, $00, $02, $04 ; 6f
-	battleanimobj $21, $80, $7d, $00, $02, $18 ; 70
-	battleanimobj $01, $80, $21, $2f, $06, $0d ; 71
-	battleanimobj $01, $b0, $7e, $33, $03, $12 ; 72
-	battleanimobj $01, $80, $7f, $2f, $02, $08 ; 73
-	battleanimobj $21, $a0, $6f, $34, $02, $1c ; 74
-	battleanimobj $21, $a0, $74, $35, $02, $15 ; 75
-	battleanimobj $21, $b0, $80, $33, $02, $14 ; 76
-	battleanimobj $01, $88, $81, $37, $02, $11 ; 77
-	battleanimobj $01, $88, $85, $00, $02, $22 ; 78
-	battleanimobj $01, $88, $86, $00, $02, $22 ; 79
-	battleanimobj $01, $90, $87, $39, $02, $1f ; 7a
-	battleanimobj $01, $80, $30, $3a, $03, $11 ; 7b
-	battleanimobj $21, $90, $34, $00, $03, $05 ; 7c
-	battleanimobj $a1, $88, $88, $3b, $06, $13 ; 7d
-	battleanimobj $01, $80, $76, $25, $04, $23 ; 7e
-	battleanimobj $01, $98, $10, $34, $04, $03 ; 7f
-	battleanimobj $01, $a8, $0f, $3c, $04, $03 ; 80
-	battleanimobj $21, $68, $89, $29, $02, $1f ; 81
-	battleanimobj $21, $b0, $8a, $00, $02, $1f ; 82
-	battleanimobj $21, $80, $8c, $00, $02, $1f ; 83
-	battleanimobj $21, $50, $8d, $00, $03, $1f ; 84
-	battleanimobj $01, $40, $24, $40, $02, $0e ; 85
-	battleanimobj $21, $a8, $8e, $41, $04, $1f ; 86
-	battleanimobj $21, $88, $8f, $3e, $02, $1f ; 87
-	battleanimobj $21, $88, $93, $3e, $02, $1f ; 88
-	battleanimobj $21, $90, $97, $3d, $02, $1f ; 89
-	battleanimobj $21, $90, $78, $3d, $03, $23 ; 8a
-	battleanimobj $01, $ff, $99, $2e, $02, $19 ; 8b
-	battleanimobj $21, $a0, $74, $02, $02, $15 ; 8c
-	battleanimobj $21, $a0, $99, $35, $04, $19 ; 8d
-	battleanimobj $21, $70, $8b, $3f, $02, $1f ; 8e
-	battleanimobj $01, $90, $15, $08, $02, $0a ; 8f
-	battleanimobj $01, $90, $11, $02, $04, $03 ; 90
-	battleanimobj $01, $80, $7f, $42, $02, $08 ; 91
-	battleanimobj $01, $90, $9a, $00, $02, $1b ; 92
-	battleanimobj $21, $a0, $9b, $35, $04, $23 ; 93
-	battleanimobj $21, $80, $9c, $23, $02, $25 ; 94
-	battleanimobj $21, $80, $9d, $25, $02, $25 ; 95
-	battleanimobj $21, $80, $9c, $00, $02, $25 ; 96
-	battleanimobj $21, $80, $9e, $00, $06, $25 ; 97
-	battleanimobj $61, $80, $9f, $3a, $05, $23 ; 98
-	battleanimobj $21, $80, $a0, $16, $02, $23 ; 99
-	battleanimobj $21, $70, $78, $43, $03, $23 ; 9a
-	battleanimobj $21, $c0, $a2, $01, $02, $25 ; 9b
-	battleanimobj $21, $40, $a3, $44, $03, $24 ; 9c
-	battleanimobj $01, $80, $a4, $00, $02, $24 ; 9d
-	battleanimobj $01, $80, $a5, $00, $03, $24 ; 9e
-	battleanimobj $01, $88, $43, $45, $04, $12 ; 9f
-	battleanimobj $21, $ff, $a6, $00, $02, $02 ; a0
-	battleanimobj $21, $ff, $a7, $00, $02, $02 ; a1
-	battleanimobj $21, $00, $b4, $4a, $07, $0f ; a2
-	battleanimobj $21, $90, $a8, $02, $03, $05 ; a3
-	battleanimobj $21, $40, $9c, $11, $02, $25 ; a4
-	battleanimobj $61, $90, $a9, $46, $02, $23 ; a5
-	battleanimobj $00, $00, $24, $47, $02, $0e ; a6
-	battleanimobj $01, $80, $aa, $00, $02, $24 ; a7
-	battleanimobj $21, $b8, $ab, $48, $02, $13 ; a8
-	battleanimobj $21, $90, $ac, $44, $02, $13 ; a9
-	battleanimobj $01, $a8, $05, $00, $02, $01 ; aa
-	battleanimobj $01, $90, $24, $43, $02, $0e ; ab
-	battleanimobj $01, $88, $ad, $00, $06, $17 ; ac
-	battleanimobj $01, $a8, $ae, $49, $02, $01 ; ad
-	battleanimobj $21, $90, $af, $01, $03, $11 ; ae
-	battleanimobj $21, $00, $b0, $4a, $02, $04 ; af
-	battleanimobj $00, $00, $70, $4b, $04, $1c ; b0
-	battleanimobj $01, $88, $b1, $4c, $02, $19 ; b1
-	battleanimobj $01, $b8, $19, $4d, $07, $09 ; b2
-	battleanimobj $61, $98, $b3, $00, $03, $27 ; b3
-	battleanimobj $61, $98, $74, $04, $06, $15 ; b4
-	battleanimobj $21, $ff, $19, $4e, $07, $09 ; b5
-	battleanimobj $01, $90, $73, $08, $04, $1e ; b6
-	battleanimobj $01, $ff, $89, $4f, $04, $1f ; b7
-	battleanimobj $00, $00, $b5, $00, $00, $28 ; b8
-	battleanimobj $00, $00, $b6, $00, $01, $29 ; b9
-	battleanimobj $00, $00, $b7, $00, $00, $28 ; ba
-	battleanimobj $00, $00, $b8, $00, $01, $29 ; bb
+	battleanimobj $01, $ff, $00, BATTLEANIMFUNC_00, $02, $01 ; ANIM_OBJ_00
+	battleanimobj $01, $ff, $01, BATTLEANIMFUNC_00, $02, $01 ; ANIM_OBJ_01
+	battleanimobj $01, $ff, $02, BATTLEANIMFUNC_00, $02, $01 ; ANIM_OBJ_02
+	battleanimobj $01, $90, $00, BATTLEANIMFUNC_00, $02, $01 ; ANIM_OBJ_03
+	battleanimobj $01, $90, $01, BATTLEANIMFUNC_00, $02, $01 ; ANIM_OBJ_04
+	battleanimobj $01, $90, $02, BATTLEANIMFUNC_00, $02, $01 ; ANIM_OBJ_05
+	battleanimobj $01, $ff, $03, BATTLEANIMFUNC_00, $02, $01 ; ANIM_OBJ_06
+	battleanimobj $01, $ff, $04, BATTLEANIMFUNC_1B, $02, $01 ; ANIM_OBJ_07
+	battleanimobj $01, $ff, $05, BATTLEANIMFUNC_00, $02, $01 ; ANIM_OBJ_08
+	battleanimobj $01, $ff, $06, BATTLEANIMFUNC_00, $02, $01 ; ANIM_OBJ_09
+	battleanimobj $01, $90, $07, BATTLEANIMFUNC_09, $02, $01 ; ANIM_OBJ_0A
+	battleanimobj $01, $aa, $10, BATTLEANIMFUNC_10, $04, $03 ; ANIM_OBJ_0B
+	battleanimobj $01, $90, $0e, BATTLEANIMFUNC_04, $04, $03 ; ANIM_OBJ_0C
+	battleanimobj $01, $90, $0f, BATTLEANIMFUNC_03, $04, $03 ; ANIM_OBJ_0D
+	battleanimobj $01, $90, $10, BATTLEANIMFUNC_08, $04, $03 ; ANIM_OBJ_0E
+	battleanimobj $01, $90, $0f, BATTLEANIMFUNC_0A, $04, $03 ; ANIM_OBJ_0F
+	battleanimobj $01, $90, $11, BATTLEANIMFUNC_03, $04, $03 ; ANIM_OBJ_BURNED
+	battleanimobj $01, $90, $12, BATTLEANIMFUNC_08, $06, $0a ; ANIM_OBJ_11
+	battleanimobj $01, $90, $13, BATTLEANIMFUNC_00, $06, $0a ; ANIM_OBJ_12
+	battleanimobj $01, $90, $14, BATTLEANIMFUNC_01, $06, $0a ; ANIM_OBJ_13
+	battleanimobj $21, $78, $16, BATTLEANIMFUNC_0B, $05, $06 ; ANIM_OBJ_14
+	battleanimobj $00, $00, $09, BATTLEANIMFUNC_12, $04, $0b ; ANIM_OBJ_POKE_BALL
+	battleanimobj $00, $00, $09, BATTLEANIMFUNC_13, $04, $0b ; ANIM_OBJ_16
+	battleanimobj $01, $90, $18, BATTLEANIMFUNC_00, $04, $08 ; ANIM_OBJ_17
+	battleanimobj $01, $ff, $18, BATTLEANIMFUNC_00, $04, $08 ; ANIM_OBJ_18
+	battleanimobj $01, $90, $1d, BATTLEANIMFUNC_06, $02, $0c ; ANIM_OBJ_19
+	battleanimobj $01, $b4, $1f, BATTLEANIMFUNC_38, $02, $0c ; ANIM_OBJ_1A
+	battleanimobj $01, $90, $08, BATTLEANIMFUNC_00, $02, $07 ; ANIM_OBJ_1B
+	battleanimobj $01, $a0, $08, BATTLEANIMFUNC_00, $02, $07 ; ANIM_OBJ_1C
+	battleanimobj $01, $ff, $19, BATTLEANIMFUNC_07, $07, $09 ; ANIM_OBJ_1D
+	battleanimobj $01, $ff, $1a, BATTLEANIMFUNC_07, $07, $09 ; ANIM_OBJ_1E
+	battleanimobj $01, $b0, $1b, BATTLEANIMFUNC_36, $07, $09 ; ANIM_OBJ_1F
+	battleanimobj $01, $b0, $84, BATTLEANIMFUNC_36, $06, $21 ; ANIM_OBJ_20
+	battleanimobj $01, $90, $21, BATTLEANIMFUNC_0C, $06, $0d ; ANIM_OBJ_21
+	battleanimobj $00, $00, $23, BATTLEANIMFUNC_0D, $06, $0d ; ANIM_OBJ_22
+	battleanimobj $01, $90, $24, BATTLEANIMFUNC_0E, $02, $0e ; ANIM_OBJ_23
+	battleanimobj $61, $80, $27, BATTLEANIMFUNC_0F, $06, $04 ; ANIM_OBJ_24
+	battleanimobj $01, $b4, $2a, BATTLEANIMFUNC_00, $06, $04 ; ANIM_OBJ_25
+	battleanimobj $01, $40, $2b, BATTLEANIMFUNC_11, $05, $0f ; ANIM_OBJ_26
+	battleanimobj $61, $98, $2c, BATTLEANIMFUNC_00, $03, $10 ; ANIM_OBJ_27
+	battleanimobj $61, $98, $2d, BATTLEANIMFUNC_09, $03, $10 ; ANIM_OBJ_28
+	battleanimobj $01, $b8, $2e, BATTLEANIMFUNC_00, $06, $0a ; ANIM_OBJ_29
+	battleanimobj $01, $b8, $2f, BATTLEANIMFUNC_00, $06, $0a ; ANIM_OBJ_FROZEN
+	battleanimobj $01, $b8, $30, BATTLEANIMFUNC_14, $07, $11 ; ANIM_OBJ_2B
+	battleanimobj $01, $90, $21, BATTLEANIMFUNC_14, $03, $0d ; ANIM_OBJ_2C
+	battleanimobj $21, $b0, $31, BATTLEANIMFUNC_00, $03, $05 ; ANIM_OBJ_2D
+	battleanimobj $21, $b0, $32, BATTLEANIMFUNC_00, $03, $05 ; ANIM_OBJ_2E
+	battleanimobj $21, $b0, $33, BATTLEANIMFUNC_00, $03, $05 ; ANIM_OBJ_2F
+	battleanimobj $21, $90, $34, BATTLEANIMFUNC_15, $03, $05 ; ANIM_OBJ_30
+	battleanimobj $21, $90, $36, BATTLEANIMFUNC_00, $03, $05 ; ANIM_OBJ_31
+	battleanimobj $21, $90, $37, BATTLEANIMFUNC_03, $02, $08 ; ANIM_OBJ_32
+	battleanimobj $21, $90, $38, BATTLEANIMFUNC_00, $03, $05 ; ANIM_OBJ_33
+	battleanimobj $21, $90, $39, BATTLEANIMFUNC_03, $02, $08 ; ANIM_OBJ_34
+	battleanimobj $21, $90, $3a, BATTLEANIMFUNC_16, $02, $02 ; ANIM_OBJ_35
+	battleanimobj $01, $90, $3c, BATTLEANIMFUNC_17, $02, $02 ; ANIM_OBJ_36
+	battleanimobj $21, $ff, $3e, BATTLEANIMFUNC_00, $02, $02 ; ANIM_OBJ_37
+	battleanimobj $21, $ff, $3f, BATTLEANIMFUNC_00, $02, $02 ; ANIM_OBJ_38
+	battleanimobj $21, $ff, $40, BATTLEANIMFUNC_00, $02, $02 ; ANIM_OBJ_39
+	battleanimobj $21, $ff, $41, BATTLEANIMFUNC_00, $02, $02 ; ANIM_OBJ_3A
+	battleanimobj $21, $ff, $42, BATTLEANIMFUNC_00, $02, $02 ; ANIM_OBJ_3B
+	battleanimobj $01, $88, $43, BATTLEANIMFUNC_18, $05, $12 ; ANIM_OBJ_3C
+	battleanimobj $01, $88, $44, BATTLEANIMFUNC_00, $05, $12 ; ANIM_OBJ_3D
+	battleanimobj $21, $b8, $45, BATTLEANIMFUNC_19, $02, $13 ; ANIM_OBJ_GUST
+	battleanimobj $21, $ff, $46, BATTLEANIMFUNC_00, $02, $14 ; ANIM_OBJ_3F
+	battleanimobj $21, $ff, $47, BATTLEANIMFUNC_00, $02, $14 ; ANIM_OBJ_40
+	battleanimobj $21, $ff, $48, BATTLEANIMFUNC_1A, $02, $14 ; ANIM_OBJ_41
+	battleanimobj $21, $ff, $49, BATTLEANIMFUNC_1A, $02, $14 ; ANIM_OBJ_42
+	battleanimobj $21, $98, $4a, BATTLEANIMFUNC_01, $02, $14 ; ANIM_OBJ_43
+	battleanimobj $21, $80, $4b, BATTLEANIMFUNC_00, $03, $11 ; ANIM_OBJ_44
+	battleanimobj $01, $88, $4c, BATTLEANIMFUNC_1C, $05, $12 ; ANIM_OBJ_45
+	battleanimobj $21, $b0, $4d, BATTLEANIMFUNC_1D, $02, $15 ; ANIM_OBJ_46
+	battleanimobj $01, $b0, $51, BATTLEANIMFUNC_1E, $03, $11 ; ANIM_OBJ_47
+	battleanimobj $21, $ff, $52, BATTLEANIMFUNC_1F, $05, $16 ; ANIM_OBJ_48
+	battleanimobj $21, $ff, $54, BATTLEANIMFUNC_1F, $05, $16 ; ANIM_OBJ_49
+	battleanimobj $21, $68, $56, BATTLEANIMFUNC_20, $05, $06 ; ANIM_OBJ_4A
+	battleanimobj $21, $90, $59, BATTLEANIMFUNC_21, $02, $0e ; ANIM_OBJ_4B
+	battleanimobj $21, $90, $5c, BATTLEANIMFUNC_02, $02, $17 ; ANIM_OBJ_4C
+	battleanimobj $01, $90, $5d, BATTLEANIMFUNC_22, $03, $11 ; ANIM_OBJ_4D
+	battleanimobj $61, $88, $5f, BATTLEANIMFUNC_00, $03, $10 ; ANIM_OBJ_4E
+	battleanimobj $61, $88, $2d, BATTLEANIMFUNC_09, $03, $10 ; ANIM_OBJ_4F
+	battleanimobj $21, $88, $60, BATTLEANIMFUNC_00, $03, $18 ; ANIM_OBJ_50
+	battleanimobj $21, $80, $60, BATTLEANIMFUNC_00, $02, $18 ; ANIM_OBJ_51
+	battleanimobj $21, $50, $61, BATTLEANIMFUNC_23, $03, $19 ; ANIM_OBJ_CHICK
+	battleanimobj $01, $80, $63, BATTLEANIMFUNC_24, $02, $19 ; ANIM_OBJ_53
+	battleanimobj $01, $80, $66, BATTLEANIMFUNC_25, $02, $19 ; ANIM_OBJ_54
+	battleanimobj $01, $50, $1c, BATTLEANIMFUNC_00, $02, $0c ; ANIM_OBJ_SKULL
+	battleanimobj $21, $a8, $67, BATTLEANIMFUNC_26, $07, $1a ; ANIM_OBJ_56
+	battleanimobj $21, $a8, $68, BATTLEANIMFUNC_00, $07, $1a ; ANIM_OBJ_57
+	battleanimobj $21, $90, $69, BATTLEANIMFUNC_01, $02, $1a ; ANIM_OBJ_58
+	battleanimobj $21, $90, $6d, BATTLEANIMFUNC_28, $03, $19 ; ANIM_OBJ_PARALYZED
+	battleanimobj $21, $90, $6a, BATTLEANIMFUNC_27, $02, $1b ; ANIM_OBJ_5A
+	battleanimobj $00, $00, $6f, BATTLEANIMFUNC_29, $02, $1c ; ANIM_OBJ_5B
+	battleanimobj $21, $48, $70, BATTLEANIMFUNC_29, $02, $1c ; ANIM_OBJ_5C
+	battleanimobj $21, $48, $6f, BATTLEANIMFUNC_29, $02, $1c ; ANIM_OBJ_5D
+	battleanimobj $21, $78, $6f, BATTLEANIMFUNC_2A, $02, $1c ; ANIM_OBJ_5E
+	battleanimobj $61, $90, $71, BATTLEANIMFUNC_2B, $02, $1d ; ANIM_OBJ_5F
+	battleanimobj $61, $90, $72, BATTLEANIMFUNC_2C, $02, $1d ; ANIM_OBJ_60
+	battleanimobj $01, $48, $73, BATTLEANIMFUNC_2D, $04, $1e ; ANIM_OBJ_61
+	battleanimobj $01, $90, $74, BATTLEANIMFUNC_06, $02, $15 ; ANIM_OBJ_62
+	battleanimobj $01, $ff, $75, BATTLEANIMFUNC_2E, $07, $19 ; ANIM_OBJ_63
+	battleanimobj $21, $90, $4a, BATTLEANIMFUNC_02, $02, $14 ; ANIM_OBJ_64
+	battleanimobj $01, $80, $30, BATTLEANIMFUNC_2F, $02, $11 ; ANIM_OBJ_65
+	battleanimobj $01, $78, $76, BATTLEANIMFUNC_2A, $04, $23 ; ANIM_OBJ_66
+	battleanimobj $01, $80, $77, BATTLEANIMFUNC_30, $02, $1f ; ANIM_OBJ_67
+	battleanimobj $01, $90, $77, BATTLEANIMFUNC_02, $02, $1f ; ANIM_OBJ_68
+	battleanimobj $01, $ff, $77, BATTLEANIMFUNC_00, $02, $1f ; ANIM_OBJ_69
+	battleanimobj $01, $80, $78, BATTLEANIMFUNC_08, $03, $23 ; ANIM_OBJ_6A
+	battleanimobj $21, $90, $79, BATTLEANIMFUNC_00, $02, $1f ; ANIM_OBJ_6B
+	battleanimobj $01, $ff, $7a, BATTLEANIMFUNC_31, $03, $11 ; ANIM_OBJ_6C
+	battleanimobj $01, $88, $7a, BATTLEANIMFUNC_31, $03, $11 ; ANIM_OBJ_6D
+	battleanimobj $21, $88, $7b, BATTLEANIMFUNC_32, $02, $20 ; ANIM_OBJ_6E
+	battleanimobj $21, $98, $7c, BATTLEANIMFUNC_00, $02, $04 ; ANIM_OBJ_6F
+	battleanimobj $21, $80, $7d, BATTLEANIMFUNC_00, $02, $18 ; ANIM_OBJ_70
+	battleanimobj $01, $80, $21, BATTLEANIMFUNC_2F, $06, $0d ; ANIM_OBJ_71
+	battleanimobj $01, $b0, $7e, BATTLEANIMFUNC_33, $03, $12 ; ANIM_OBJ_72
+	battleanimobj $01, $80, $7f, BATTLEANIMFUNC_2F, $02, $08 ; ANIM_OBJ_73
+	battleanimobj $21, $a0, $6f, BATTLEANIMFUNC_34, $02, $1c ; ANIM_OBJ_74
+	battleanimobj $21, $a0, $74, BATTLEANIMFUNC_35, $02, $15 ; ANIM_OBJ_75
+	battleanimobj $21, $b0, $80, BATTLEANIMFUNC_33, $02, $14 ; ANIM_OBJ_76
+	battleanimobj $01, $88, $81, BATTLEANIMFUNC_37, $02, $11 ; ANIM_OBJ_77
+	battleanimobj $01, $88, $85, BATTLEANIMFUNC_00, $02, $22 ; ANIM_OBJ_78
+	battleanimobj $01, $88, $86, BATTLEANIMFUNC_00, $02, $22 ; ANIM_OBJ_79
+	battleanimobj $01, $90, $87, BATTLEANIMFUNC_39, $02, $1f ; ANIM_OBJ_7A
+	battleanimobj $01, $80, $30, BATTLEANIMFUNC_3A, $03, $11 ; ANIM_OBJ_7B
+	battleanimobj $21, $90, $34, BATTLEANIMFUNC_00, $03, $05 ; ANIM_OBJ_7C
+	battleanimobj $a1, $88, $88, BATTLEANIMFUNC_3B, $06, $13 ; ANIM_OBJ_7D
+	battleanimobj $01, $80, $76, BATTLEANIMFUNC_25, $04, $23 ; ANIM_OBJ_HEART
+	battleanimobj $01, $98, $10, BATTLEANIMFUNC_34, $04, $03 ; ANIM_OBJ_7F
+	battleanimobj $01, $a8, $0f, BATTLEANIMFUNC_3C, $04, $03 ; ANIM_OBJ_80
+	battleanimobj $21, $68, $89, BATTLEANIMFUNC_29, $02, $1f ; ANIM_OBJ_81
+	battleanimobj $21, $b0, $8a, BATTLEANIMFUNC_00, $02, $1f ; ANIM_OBJ_82
+	battleanimobj $21, $80, $8c, BATTLEANIMFUNC_00, $02, $1f ; ANIM_OBJ_83
+	battleanimobj $21, $50, $8d, BATTLEANIMFUNC_00, $03, $1f ; ANIM_OBJ_84
+	battleanimobj $01, $40, $24, BATTLEANIMFUNC_40, $02, $0e ; ANIM_OBJ_85
+	battleanimobj $21, $a8, $8e, BATTLEANIMFUNC_41, $04, $1f ; ANIM_OBJ_86
+	battleanimobj $21, $88, $8f, BATTLEANIMFUNC_3E, $02, $1f ; ANIM_OBJ_87
+	battleanimobj $21, $88, $93, BATTLEANIMFUNC_3E, $02, $1f ; ANIM_OBJ_88
+	battleanimobj $21, $90, $97, BATTLEANIMFUNC_3D, $02, $1f ; ANIM_OBJ_89
+	battleanimobj $21, $90, $78, BATTLEANIMFUNC_3D, $03, $23 ; ANIM_OBJ_8A
+	battleanimobj $01, $ff, $99, BATTLEANIMFUNC_2E, $02, $19 ; ANIM_OBJ_8B
+	battleanimobj $21, $a0, $74, BATTLEANIMFUNC_02, $02, $15 ; ANIM_OBJ_8C
+	battleanimobj $21, $a0, $99, BATTLEANIMFUNC_35, $04, $19 ; ANIM_OBJ_8D
+	battleanimobj $21, $70, $8b, BATTLEANIMFUNC_3F, $02, $1f ; ANIM_OBJ_8E
+	battleanimobj $01, $90, $15, BATTLEANIMFUNC_08, $02, $0a ; ANIM_OBJ_8F
+	battleanimobj $01, $90, $11, BATTLEANIMFUNC_02, $04, $03 ; ANIM_OBJ_90
+	battleanimobj $01, $80, $7f, BATTLEANIMFUNC_42, $02, $08 ; ANIM_OBJ_91
+	battleanimobj $01, $90, $9a, BATTLEANIMFUNC_00, $02, $1b ; ANIM_OBJ_92
+	battleanimobj $21, $a0, $9b, BATTLEANIMFUNC_35, $04, $23 ; ANIM_OBJ_93
+	battleanimobj $21, $80, $9c, BATTLEANIMFUNC_23, $02, $25 ; ANIM_OBJ_94
+	battleanimobj $21, $80, $9d, BATTLEANIMFUNC_25, $02, $25 ; ANIM_OBJ_95
+	battleanimobj $21, $80, $9c, BATTLEANIMFUNC_00, $02, $25 ; ANIM_OBJ_96
+	battleanimobj $21, $80, $9e, BATTLEANIMFUNC_00, $06, $25 ; ANIM_OBJ_97
+	battleanimobj $61, $80, $9f, BATTLEANIMFUNC_3A, $05, $23 ; ANIM_OBJ_98
+	battleanimobj $21, $80, $a0, BATTLEANIMFUNC_16, $02, $23 ; ANIM_OBJ_99
+	battleanimobj $21, $70, $78, BATTLEANIMFUNC_43, $03, $23 ; ANIM_OBJ_9A
+	battleanimobj $21, $c0, $a2, BATTLEANIMFUNC_01, $02, $25 ; ANIM_OBJ_9B
+	battleanimobj $21, $40, $a3, BATTLEANIMFUNC_44, $03, $24 ; ANIM_OBJ_9C
+	battleanimobj $01, $80, $a4, BATTLEANIMFUNC_00, $02, $24 ; ANIM_OBJ_9D
+	battleanimobj $01, $80, $a5, BATTLEANIMFUNC_00, $03, $24 ; ANIM_OBJ_9E
+	battleanimobj $01, $88, $43, BATTLEANIMFUNC_45, $04, $12 ; ANIM_OBJ_9F
+	battleanimobj $21, $ff, $a6, BATTLEANIMFUNC_00, $02, $02 ; ANIM_OBJ_A0
+	battleanimobj $21, $ff, $a7, BATTLEANIMFUNC_00, $02, $02 ; ANIM_OBJ_A1
+	battleanimobj $21, $00, $b4, BATTLEANIMFUNC_4A, $07, $0f ; ANIM_OBJ_A2
+	battleanimobj $21, $90, $a8, BATTLEANIMFUNC_02, $03, $05 ; ANIM_OBJ_A3
+	battleanimobj $21, $40, $9c, BATTLEANIMFUNC_11, $02, $25 ; ANIM_OBJ_A4
+	battleanimobj $61, $90, $a9, BATTLEANIMFUNC_46, $02, $23 ; ANIM_OBJ_A5
+	battleanimobj $00, $00, $24, BATTLEANIMFUNC_47, $02, $0e ; ANIM_OBJ_A6
+	battleanimobj $01, $80, $aa, BATTLEANIMFUNC_00, $02, $24 ; ANIM_OBJ_A7
+	battleanimobj $21, $b8, $ab, BATTLEANIMFUNC_48, $02, $13 ; ANIM_OBJ_A8
+	battleanimobj $21, $90, $ac, BATTLEANIMFUNC_44, $02, $13 ; ANIM_OBJ_A9
+	battleanimobj $01, $a8, $05, BATTLEANIMFUNC_00, $02, $01 ; ANIM_OBJ_AA
+	battleanimobj $01, $90, $24, BATTLEANIMFUNC_43, $02, $0e ; ANIM_OBJ_AB
+	battleanimobj $01, $88, $ad, BATTLEANIMFUNC_00, $06, $17 ; ANIM_OBJ_AC
+	battleanimobj $01, $a8, $ae, BATTLEANIMFUNC_49, $02, $01 ; ANIM_OBJ_AD
+	battleanimobj $21, $90, $af, BATTLEANIMFUNC_01, $03, $11 ; ANIM_OBJ_AE
+	battleanimobj $21, $00, $b0, BATTLEANIMFUNC_4A, $02, $04 ; ANIM_OBJ_AF
+	battleanimobj $00, $00, $70, BATTLEANIMFUNC_4B, $04, $1c ; ANIM_OBJ_B0
+	battleanimobj $01, $88, $b1, BATTLEANIMFUNC_4C, $02, $19 ; ANIM_OBJ_B1
+	battleanimobj $01, $b8, $19, BATTLEANIMFUNC_4D, $07, $09 ; ANIM_OBJ_B2
+	battleanimobj $61, $98, $b3, BATTLEANIMFUNC_00, $03, $27 ; ANIM_OBJ_B3
+	battleanimobj $61, $98, $74, BATTLEANIMFUNC_04, $06, $15 ; ANIM_OBJ_B4
+	battleanimobj $21, $ff, $19, BATTLEANIMFUNC_4E, $07, $09 ; ANIM_OBJ_B5
+	battleanimobj $01, $90, $73, BATTLEANIMFUNC_08, $04, $1e ; ANIM_OBJ_FLOWER
+	battleanimobj $01, $ff, $89, BATTLEANIMFUNC_4F, $04, $1f ; ANIM_OBJ_COTTON
+	battleanimobj $00, $00, $b5, BATTLEANIMFUNC_00, $00, $28 ; ANIM_OBJ_B8
+	battleanimobj $00, $00, $b6, BATTLEANIMFUNC_00, $01, $29 ; ANIM_OBJ_B9
+	battleanimobj $00, $00, $b7, BATTLEANIMFUNC_00, $00, $28 ; ANIM_OBJ_BA
+	battleanimobj $00, $00, $b8, BATTLEANIMFUNC_00, $01, $29 ; ANIM_OBJ_BB
 ; ccfbe
 
 INCLUDE "battle/objects/functions.asm"
@@ -560,7 +561,7 @@ GetBattleAnimFrame: ; ce7d1
 	ld a, [hl]
 	and $c0
 	srl a
-	ld [BattleAnimTemps + 7], a
+	ld [wBattleAnimTemp7], a
 	pop af
 	ret
 
