@@ -755,6 +755,7 @@ EnemyDamageTaken:: ; c684
 	ds 2
 
 wBattleReward:: ds 3
+wBattleAnimParam::
 wKickCounter::
 wPresentPower:: ds 1
 wc68a::
@@ -3317,10 +3318,22 @@ AnimObject09:: battle_anim_struct AnimObject09
 AnimObject10:: battle_anim_struct AnimObject10
 ActiveAnimObjectsEnd:: ; d3aa
 
-ActiveBGEffects:: ; d3fa
-	ds 4 * 5
+battle_bg_effect: MACRO
+\1_Function:: ds 1
+\1_01:: ds 1
+\1_02:: ds 1
+\1_03:: ds 1
+endm
 
-wNumActiveBattleAnims:: ds 1
+ActiveBGEffects:: ; d3fa
+BGEffect1:: battle_bg_effect BGEffect1
+BGEffect2:: battle_bg_effect BGEffect2
+BGEffect3:: battle_bg_effect BGEffect3
+BGEffect4:: battle_bg_effect BGEffect4
+BGEffect5:: battle_bg_effect BGEffect5
+ActiveBGEffectsEnd::
+
+wNumActiveBattleAnims:: ds 1 ; d40e
 
 BattleAnimFlags:: ; d40f
 	ds 1
@@ -3336,14 +3349,12 @@ BattleAnimVar:: ; d416
 	ds 1
 BattleAnimByte:: ; d417
 	ds 1
-w5_d418:: ds 1
+wBattleAnimOAMPointerLo:: ds 1 ; d418
 BattleAnimTemps:: ; d419
 	ds 8
 	ds 1
 w5_d422:: ds $32
 wBattleAnimEnd::
-	ds $e
-; d462
 
 SECTION "WRAM 5 MOBILE", WRAMX [$d800], BANK [5]
 w5_d800:: ds $200

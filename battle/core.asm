@@ -3762,7 +3762,7 @@ Function_SetEnemyPkmnAndSendOutAnimation: ; 3d7c7
 
 	xor a
 	ld [wNumHits], a
-	ld [wKickCounter], a
+	ld [wBattleAnimParam], a
 	call SetEnemyTurn
 	ld de, ANIM_SEND_OUT_MON
 	call Call_PlayBattleAnim
@@ -3770,7 +3770,7 @@ Function_SetEnemyPkmnAndSendOutAnimation: ; 3d7c7
 	call BattleCheckEnemyShininess
 	jr nc, .not_shiny
 	ld a, 1 ; shiny anim
-	ld [wKickCounter], a
+	ld [wBattleAnimParam], a
 	ld de, ANIM_SEND_OUT_MON
 	call Call_PlayBattleAnim
 .not_shiny
@@ -4268,13 +4268,13 @@ SendOutPlayerMon: ; 3db5f
 	call SetPlayerTurn
 	xor a
 	ld [wNumHits], a
-	ld [wKickCounter], a
+	ld [wBattleAnimParam], a
 	ld de, ANIM_SEND_OUT_MON
 	call Call_PlayBattleAnim
 	call BattleCheckPlayerShininess
 	jr nc, .not_shiny
-	ld a, $1
-	ld [wKickCounter], a
+	ld a, 1
+	ld [wBattleAnimParam], a
 	ld de, ANIM_SEND_OUT_MON
 	call Call_PlayBattleAnim
 
@@ -8398,7 +8398,7 @@ GetMonBackpic: ; 3f43d
 	ld hl, BattleAnimCmd_RaiseSub
 	jr nz, GetBackpic_DoAnim ; substitute
 
-Function3f447: ; 3f447
+DropPlayerSub: ; 3f447
 	ld a, [wPlayerMinimized]
 	and a
 	ld hl, BattleAnimCmd_MinimizeOpp
@@ -8434,7 +8434,7 @@ GetMonFrontpic: ; 3f47c
 	ld hl, BattleAnimCmd_RaiseSub
 	jr nz, GetFrontpic_DoAnim
 
-Function3f486: ; 3f486
+DropEnemySub: ; 3f486
 	ld a, [wEnemyMinimized]
 	and a
 	ld hl, BattleAnimCmd_MinimizeOpp
@@ -9595,7 +9595,7 @@ BattleStartMessage: ; 3fc8b
 	ld a, 1
 	ld [hBattleTurn], a
 	ld a, 1
-	ld [wKickCounter], a
+	ld [wBattleAnimParam], a
 	ld de, ANIM_SEND_OUT_MON
 	call Call_PlayBattleAnim
 

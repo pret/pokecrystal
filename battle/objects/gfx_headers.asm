@@ -3,51 +3,50 @@ AnimObjGFX: ; cfcf6
 
 object_gfx: MACRO
 ; label, # tiles
-	db \2
-	db BANK(\1)
-	dw \1
+	db  \1
+	dba \2
 ENDM
 
-	object_gfx AnimObj00GFX, 0
-	object_gfx AnimObj01GFX, 21
-	object_gfx AnimObj02GFX, 6
-	object_gfx AnimObj03GFX, 6
-	object_gfx AnimObj04GFX, 20
-	object_gfx AnimObj05GFX, 26
-	object_gfx AnimObj06GFX, 18
-	object_gfx AnimObj07GFX, 12
-	object_gfx AnimObj08GFX, 9
-	object_gfx AnimObj09GFX, 17
-	object_gfx AnimObj10GFX, 6
-	object_gfx AnimObj11GFX, 10
-	object_gfx AnimObj12GFX, 9
-	object_gfx AnimObj13GFX, 13
-	object_gfx AnimObj14GFX, 16
-	object_gfx AnimObj15GFX, 2
-	object_gfx AnimObj16GFX, 11
-	object_gfx AnimObj17GFX, 9
-	object_gfx AnimObj18GFX, 9
-	object_gfx AnimObj19GFX, 19
-	object_gfx AnimObj20GFX, 10
-	object_gfx AnimObj21GFX, 12
-	object_gfx AnimObj22GFX, 18
-	object_gfx AnimObj23GFX, 13
-	object_gfx AnimObj24GFX, 10
-	object_gfx AnimObj25GFX, 27
-	object_gfx AnimObj26GFX, 12
-	object_gfx AnimObj27GFX, 14
-	object_gfx AnimObj28GFX, 16
-	object_gfx AnimObj29GFX, 7
-	object_gfx AnimObj30GFX, 8
-	object_gfx AnimObj31GFX, 40
-	object_gfx AnimObj32GFX, 36
-	object_gfx AnimObj33GFX, 16
-	object_gfx AnimObj34GFX, 48
-	object_gfx AnimObj35GFX, 18
-	object_gfx AnimObj36GFX, 38
-	object_gfx AnimObj37GFX, 35
-	object_gfx AnimObj38GFX, 18
-	object_gfx AnimObj39GFX, 24
-	object_gfx NULL, 1
-	object_gfx NULL, 1
+	object_gfx  0, AnimObj00GFX
+	object_gfx 21, AnimObj01GFX
+	object_gfx  6, AnimObj02GFX
+	object_gfx  6, AnimObj03GFX
+	object_gfx 20, AnimObj04GFX
+	object_gfx 26, AnimObj05GFX
+	object_gfx 18, AnimObj06GFX
+	object_gfx 12, AnimObj07GFX
+	object_gfx  9, AnimObj08GFX
+	object_gfx 17, AnimObj09GFX
+	object_gfx  6, AnimObj10GFX
+	object_gfx 10, AnimObj11GFX
+	object_gfx  9, AnimObj12GFX
+	object_gfx 13, AnimObj13GFX
+	object_gfx 16, AnimObj14GFX
+	object_gfx  2, AnimObj15GFX
+	object_gfx 11, AnimObj16GFX
+	object_gfx  9, AnimObj17GFX
+	object_gfx  9, AnimObj18GFX
+	object_gfx 19, AnimObj19GFX
+	object_gfx 10, AnimObj20GFX
+	object_gfx 12, AnimObj21GFX
+	object_gfx 18, AnimObj22GFX
+	object_gfx 13, AnimObj23GFX
+	object_gfx 10, AnimObj24GFX
+	object_gfx 27, AnimObj25GFX
+	object_gfx 12, AnimObj26GFX
+	object_gfx 14, AnimObj27GFX
+	object_gfx 16, AnimObj28GFX
+	object_gfx  7, AnimObj29GFX
+	object_gfx  8, AnimObj30GFX
+	object_gfx 40, AnimObj31GFX
+	object_gfx 36, AnimObj32GFX
+	object_gfx 16, AnimObj33GFX
+	object_gfx 48, AnimObj34GFX
+	object_gfx 18, AnimObj35GFX
+	object_gfx 38, AnimObj36GFX
+	object_gfx 35, AnimObj37GFX
+	object_gfx 18, AnimObj38GFX
+	object_gfx 24, AnimObj39GFX
+	object_gfx  1, NULL
+	object_gfx  1, NULL
 ; cfd9e

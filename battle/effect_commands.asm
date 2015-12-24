@@ -5584,12 +5584,12 @@ CheckIfStatCanBeRaised: ; 361ef
 
 StatUpAnimation: ; 36281
 	ld bc, wPlayerMinimized
-	ld hl, Function3f447
+	ld hl, DropPlayerSub
 	ld a, [hBattleTurn]
 	and a
 	jr z, .do_player ; 0x3628a $6
 	ld bc, wEnemyMinimized
-	ld hl, Function3f486
+	ld hl, DropEnemySub
 .do_player
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
@@ -6174,11 +6174,11 @@ BattleCommand_RaiseSubNoAnim: ; 365af
 
 
 BattleCommand_LowerSubNoAnim: ; 365c3
-	ld hl, Function3f447
+	ld hl, DropPlayerSub
 	ld a, [hBattleTurn]
 	and a
 	jr z, .PlayerTurn ; 365c9 $3
-	ld hl, Function3f486
+	ld hl, DropEnemySub
 .PlayerTurn
 	xor a
 	ld [hBGMapMode], a
@@ -9239,13 +9239,13 @@ BattleCommand_ClearHazards: ; 37b39
 BattleCommand_HealMorn: ; 37b74
 ; healmorn
 	ld b, MORN
-	jr BattleCommand_HealMorn6c
+	jr BattleCommand_TimeBasedHealContinue
 ; 37b78
 
 BattleCommand_HealDay: ; 37b78
 ; healday
 	ld b, DAY
-	jr BattleCommand_HealMorn6c
+	jr BattleCommand_TimeBasedHealContinue
 ; 37b7c
 
 BattleCommand_HealNite: ; 37b7c
@@ -9254,7 +9254,7 @@ BattleCommand_HealNite: ; 37b7c
 	; fallthrough
 ; 37b7e
 
-BattleCommand_HealMorn6c: ; 37b7e
+BattleCommand_TimeBasedHealContinue: ; 37b7e
 ; Time- and weather-sensitive heal.
 
 	ld hl, BattleMonMaxHP
@@ -9284,7 +9284,7 @@ BattleCommand_HealMorn6c: ; 37b7e
 	ld a, [TimeOfDay]
 	cp b
 	jr z, .Weather
-	dec c
+	dec c ; double
 
 .Weather
 	ld a, [Weather]

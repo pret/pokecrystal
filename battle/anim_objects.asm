@@ -106,7 +106,7 @@ BattleAnimOAMUpdate: ; cca09
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [w5_d418]
+	ld a, [wBattleAnimOAMPointerLo]
 	ld e, a
 	ld d, Sprites / $100
 .loop
@@ -173,7 +173,7 @@ BattleAnimOAMUpdate: ; cca09
 	inc hl
 	inc de
 	ld a, e
-	ld [w5_d418], a
+	ld [wBattleAnimOAMPointerLo], a
 	cp $a0
 	jr nc, .exit_set_carry
 	dec c
@@ -620,7 +620,7 @@ GetBattleAnimOAMPointer: ; ce83c
 
 ; ce846
 
-Functionce846: ; ce846 (33:6846)
+LoadBattleAnimObj: ; ce846 (33:6846)
 	push hl
 	ld l, a
 	ld h, 0
