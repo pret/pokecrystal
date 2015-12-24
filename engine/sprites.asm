@@ -313,7 +313,6 @@ UpdateAnimFrame: ; 8d04c
 
 .delete
 	call DeinitializeSprite
-
 .done
 	and a
 	ret

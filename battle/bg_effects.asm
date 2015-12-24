@@ -1,3 +1,11 @@
+	const_def
+	const BGSQUARE_SIX
+	const BGSQUARE_FOUR
+	const BGSQUARE_TWO
+	const BGSQUARE_SEVEN
+	const BGSQUARE_FIVE
+	const BGSQUARE_THREE
+
 ; BG effects for use in battle animations.
 
 ExecuteBGEffects: ; c8000 (32:4000)
@@ -105,8 +113,8 @@ BattleBGEffects: ; c805a (32:405a)
 	dw BattleBGEffect_1f
 	dw BattleBGEffect_20
 	dw BattleBGEffect_21
-	dw BattleBGEffect_22
-	dw BattleBGEffect_23
+	dw BattleBGEffect_BounceDown
+	dw BattleBGEffect_Dig
 	dw BattleBGEffect_Tackle
 	dw BattleBGEffect_25
 	dw BattleBGEffect_26
@@ -197,7 +205,7 @@ BattleBGEffect_FlashContinue: ; c80fb (32:40fb)
 	ret
 
 .init
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	ld hl, BG_EFFECT_STRUCT_JT_INDEX
@@ -289,11 +297,11 @@ BattleBGEffect_06: ; c8171 (32:4171)
 
 ; c8185 (32:4185)
 
-.PalsCGB:
+.PalsCGB
 	db $e4, $90, $fe
 ; c8188
 
-.PalsSGB:
+.PalsSGB
 	db $f0, $c0, $fe
 ; c818b
 
@@ -312,11 +320,11 @@ BattleBGEffect_07: ; c818b (32:418b)
 
 ; c819f (32:419f)
 
-.PalsCGB:
+.PalsCGB
 	db $e4, $d8, $fe
 ; c81a2
 
-.PalsSGB:
+.PalsSGB
 	db $f0, $cc, $fe
 ; c81a5
 
@@ -328,33 +336,33 @@ BattleBGEffect_08: ; c81a5 (32:41a5)
 
 ; c81af (32:41af)
 
-.Pals:
+.Pals
 	db $1b, $63, $87, $fe
 ; c81b3
 
 BattleBGEffect_HideMon: ; c81b3 (32:41b3)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc81c0
+	dw .zero
 	dw BattleBGEffects_IncrementJumptable
 	dw BattleBGEffects_IncrementJumptable
 	dw BattleBGEffects_IncrementJumptable
-	dw Functionc81e3
+	dw .four
 
 
-Functionc81c0: ; c81c0 (32:41c0)
+.zero
 	call BattleBGEffects_IncrementJumptable
 	push bc
-	call Functionc9038
-	jr nz, .six_by_six
+	call BGEffect_CheckBattleTurn
+	jr nz, .player_side
 	hlcoord 12, 0
 	lb bc, 7, 7
-	jr .got_dims
+	jr .got_pointer
 
-.six_by_six
+.player_side
 	hlcoord 2, 6
 	lb bc, 6, 6
-.got_dims
+.got_pointer
 	call ClearBox
 	pop bc
 	xor a
@@ -363,82 +371,82 @@ Functionc81c0: ; c81c0 (32:41c0)
 	ld [hBGMapMode], a
 	ret
 
-Functionc81e3: ; c81e3 (32:41e3)
+.four
 	xor a
 	ld [hBGMapMode], a
 	call EndBattleBGEffect
 	ret
 
 BattleBGEffect_ShowMon: ; c81ea (32:41ea)
-	call Functionc9042
-	jr z, .asm_c81f3
+	call BGEffect_CheckFlyDigStatus
+	jr z, .not_flying
 	call EndBattleBGEffect
 	ret
 
-.asm_c81f3
-	call Functionc9038
-	jr nz, .six_by_six
-	ld de, Unknown_c8210
-	jr .got_dims
+.not_flying
+	call BGEffect_CheckBattleTurn
+	jr nz, .player_side
+	ld de, .EnemyData
+	jr .got_pointer
 
-.six_by_six
-	ld de, Unknown_c820c
-.got_dims
+.player_side
+	ld de, .PlayerData
+.got_pointer
 	ld a, e
 	ld [wBattleAnimTemp1], a
 	ld a, d
 	ld [wBattleAnimTemp2], a
-	call Functionc83ed
+	call BattleBGEffect_RunPicResizeScript
 	ret
 
 ; c820c (32:420c)
 
-Unknown_c820c:
-	db $00, $31, $00
-	db $ff
+.PlayerData
+	db  0, $31, 0
+	db -1
 ; c8210
 
-Unknown_c8210:
-	db $03, $00, $03
-	db $ff
+.EnemyData
+	db  3, $00, 3
+	db -1
 ; c8214
 
 BattleBGEffect_FeetFollow: ; c8214 (32:4214)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc8223
-	dw Functionc825a
+	dw .zero
+	dw .one
 	dw BattleBGEffects_IncrementJumptable
 	dw BattleBGEffects_IncrementJumptable
 	dw BattleBGEffects_IncrementJumptable
-	dw Functionc827a
+	dw .five
 
 
-Functionc8223: ; c8223 (32:4223)
-	call Functionc9042
-	jr z, .asm_c8230
+.zero
+	call BGEffect_CheckFlyDigStatus
+	jr z, .not_flying_digging
 	ld hl, wNumActiveBattleAnims
 	inc [hl]
 	call EndBattleBGEffect
 	ret
 
-.asm_c8230
+.not_flying_digging
 	call BattleBGEffects_IncrementJumptable
 	push bc
-	call Functionc9038
-	jr nz, .asm_c8242
-	ld a, $b8
+	call BGEffect_CheckBattleTurn
+	jr nz, .player_turn
+	ld a, ANIM_OBJ_B8
 	ld [wBattleAnimTemp0], a
-	ld a, $84
-	jr .asm_c8249
+	ld a, 16 * 8 + 4
+	jr .okay
 
-.asm_c8242
-	ld a, $b9
+.player_turn
+	ld a, ANIM_OBJ_B9
 	ld [wBattleAnimTemp0], a
-	ld a, $30
-.asm_c8249
+	ld a, 6 * 8
+.okay
 	ld [wBattleAnimTemp1], a
-	ld a, $40
+	ld a, 8 * 8
 	ld [wBattleAnimTemp2], a
 	xor a
 	ld [wBattleAnimTemp3], a
@@ -446,26 +454,26 @@ Functionc8223: ; c8223 (32:4223)
 	pop bc
 	ret
 
-Functionc825a: ; c825a (32:425a)
+.one
 	call BattleBGEffects_IncrementJumptable
 	push bc
-	call Functionc9038
-	jr nz, .asm_c826b
+	call BGEffect_CheckBattleTurn
+	jr nz, .player_turn_2
 	hlcoord 12, 6
-	ld bc, $107
-	jr .asm_c8271
+	lb bc, 1, 7
+	jr .okay2
 
-.asm_c826b
+.player_turn_2
 	hlcoord 2, 6
 	lb bc, 1, 6
-.asm_c8271
+.okay2
 	call ClearBox
 	ld a, $1
 	ld [hBGMapMode], a
 	pop bc
 	ret
 
-Functionc827a: ; c827a (32:427a)
+.five
 	xor a
 	ld [hBGMapMode], a
 	call EndBattleBGEffect
@@ -474,39 +482,39 @@ Functionc827a: ; c827a (32:427a)
 BattleBGEffect_HeadFollow: ; c8281 (32:4281)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc8290
-	dw Functionc82c7
+	dw .zero
+	dw .one
 	dw BattleBGEffects_IncrementJumptable
 	dw BattleBGEffects_IncrementJumptable
 	dw BattleBGEffects_IncrementJumptable
-	dw Functionc82e7
+	dw .five
 
 
-Functionc8290: ; c8290 (32:4290)
-	call Functionc9042
-	jr z, .asm_c829d
+.zero
+	call BGEffect_CheckFlyDigStatus
+	jr z, .not_flying_digging
 	ld hl, wNumActiveBattleAnims
 	inc [hl]
 	call EndBattleBGEffect
 	ret
 
-.asm_c829d
+.not_flying_digging
 	call BattleBGEffects_IncrementJumptable
 	push bc
-	call Functionc9038
-	jr nz, .asm_c82af
-	ld a, $ba
+	call BGEffect_CheckBattleTurn
+	jr nz, .player_turn
+	ld a, ANIM_OBJ_BA
 	ld [wBattleAnimTemp0], a
-	ld a, $84
-	jr .asm_c82b6
+	ld a, 16 * 8 + 4
+	jr .okay
 
-.asm_c82af
-	ld a, $bb
+.player_turn
+	ld a, ANIM_OBJ_BB
 	ld [wBattleAnimTemp0], a
-	ld a, $30
-.asm_c82b6
+	ld a, 6 * 8
+.okay
 	ld [wBattleAnimTemp1], a
-	ld a, $40
+	ld a, 8 * 8
 	ld [wBattleAnimTemp2], a
 	xor a
 	ld [wBattleAnimTemp3], a
@@ -514,26 +522,26 @@ Functionc8290: ; c8290 (32:4290)
 	pop bc
 	ret
 
-Functionc82c7: ; c82c7 (32:42c7)
+.one
 	call BattleBGEffects_IncrementJumptable
 	push bc
-	call Functionc9038
-	jr nz, .asm_c82d8
+	call BGEffect_CheckBattleTurn
+	jr nz, .player_turn_2
 	hlcoord 12, 5
-	ld bc, $207
-	jr .asm_c82de
+	lb bc, 2, 7
+	jr .okay2
 
-.asm_c82d8
+.player_turn_2
 	hlcoord 2, 6
 	lb bc, 2, 6
-.asm_c82de
+.okay2
 	call ClearBox
 	ld a, $1
 	ld [hBGMapMode], a
 	pop bc
 	ret
 
-Functionc82e7: ; c82e7 (32:42e7)
+.five
 	xor a
 	ld [hBGMapMode], a
 	call EndBattleBGEffect
@@ -546,77 +554,77 @@ _QueueBattleAnimation: ; c82ee (32:42ee)
 BattleBGEffect_27: ; c82f5 (32:42f5)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc8302
-	dw Functionc831d
+	dw .zero
+	dw .one
 	dw BattleBGEffects_IncrementJumptable
 	dw BattleBGEffects_IncrementJumptable
-	dw Functionc8365
+	dw .four
 
 
-Functionc8302: ; c8302 (32:4302)
+.zero
 	call BattleBGEffects_IncrementJumptable
-	call Functionc9038
+	call BGEffect_CheckBattleTurn
 	ld [hl], a
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_c8315
+	jr z, .user
 	ld a, $9
-	jr .asm_c8317
+	jr .okay
 
-.asm_c8315
+.user
 	ld a, $8
-.asm_c8317
+.okay
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld [hl], a
 	ret
 
-Functionc831d: ; c831d (32:431d)
-	ld hl, BG_EFFECT_STRUCT_02
+.one
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_c833e
+	jr z, .user_2
 	hlcoord 0, 6
-	ld de, $806
-.asm_c832b
+	lb de, 8, 6
+.row1
 	push de
 	push hl
-.asm_c832d
+.col1
 	inc hl
 	ld a, [hld]
 	ld [hli], a
 	dec d
-	jr nz, .asm_c832d
+	jr nz, .col1
 	pop hl
-	ld de, $14
+	ld de, SCREEN_WIDTH
 	add hl, de
 	pop de
 	dec e
-	jr nz, .asm_c832b
-	jr .asm_c8355
+	jr nz, .row1
+	jr .okay2
 
-.asm_c833e
+.user_2
 	hlcoord 19, 0
-	ld de, $807
-.asm_c8344
+	lb de, 8, 7
+.row2
 	push de
 	push hl
-.asm_c8346
+.col2
 	dec hl
 	ld a, [hli]
 	ld [hld], a
 	dec d
-	jr nz, .asm_c8346
+	jr nz, .col2
 	pop hl
-	ld de, $14
+	ld de, SCREEN_WIDTH
 	add hl, de
 	pop de
 	dec e
-	jr nz, .asm_c8344
-.asm_c8355
+	jr nz, .row2
+.okay2
 	xor a
 	ld [hBGMapThird], a
 	ld a, $1
@@ -627,106 +635,106 @@ Functionc831d: ; c831d (32:431d)
 	dec [hl]
 	ret
 
-Functionc8365: ; c8365 (32:4365)
+.four
 	xor a
 	ld [hBGMapMode], a
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_c8377
+	jr z, .done
 	ld hl, BG_EFFECT_STRUCT_JT_INDEX
 	add hl, bc
 	ld [hl], $1
 	ret
 
-.asm_c8377
+.done
 	call EndBattleBGEffect
 	ret
 
 BattleBGEffect_EnterMon: ; c837b (32:437b)
-	call Functionc9038
-	jr nz, .asm_c8385
-	ld de, Unknown_c839e
-	jr .asm_c8388
+	call BGEffect_CheckBattleTurn
+	jr nz, .player_turn
+	ld de, .EnemyData
+	jr .okay
 
-.asm_c8385
-	ld de, Unknown_c8394
-.asm_c8388
+.player_turn
+	ld de, .PlayerData
+.okay
 	ld a, e
 	ld [wBattleAnimTemp1], a
 	ld a, d
 	ld [wBattleAnimTemp2], a
-	call Functionc83ed
+	call BattleBGEffect_RunPicResizeScript
 	ret
 
 ; c8394 (32:4394)
 
-Unknown_c8394:
-	db $02, $31, $02
-	db $01, $31, $01
-	db $00, $31, $00
-	db $ff
+.PlayerData
+	db  2, $31, 2
+	db  1, $31, 1
+	db  0, $31, 0
+	db -1
 ; c839e
 
-Unknown_c839e:
-	db $05, $00, $05
-	db $04, $00, $04
-	db $03, $00, $03
-	db $ff
+.EnemyData
+	db  5, $00, 5
+	db  4, $00, 4
+	db  3, $00, 3
+	db -1
 ; c83a8
 
 BattleBGEffect_ReturnMon: ; c83a8 (32:43a8)
-	call Functionc9038
-	jr nz, .asm_c83b2
-	ld de, Unknown_c83d7
-	jr .asm_c83b5
+	call BGEffect_CheckBattleTurn
+	jr nz, .player_turn
+	ld de, .EnemyData
+	jr .okay
 
-.asm_c83b2
-	ld de, Unknown_c83c1
-.asm_c83b5
+.player_turn
+	ld de, .PlayerData
+.okay
 	ld a, e
 	ld [wBattleAnimTemp1], a
 	ld a, d
 	ld [wBattleAnimTemp2], a
-	call Functionc83ed
+	call BattleBGEffect_RunPicResizeScript
 	ret
 
 ; c83c1 (32:43c1)
 
-Unknown_c83c1:
-	db $00, $31, $00
-	db $fe, $66, $00
-	db $01, $31, $01
-	db $fe, $44, $01
-	db $02, $31, $02
-	db $fe, $22, $02
-	db $fd, $00, $00
-	db $ff
+.PlayerData
+	db  0, $31, 0
+	db -2, $66, 0
+	db  1, $31, 1
+	db -2, $44, 1
+	db  2, $31, 2
+	db -2, $22, 2
+	db -3, $00, 0
+	db -1
 ; c83d7
 
-Unknown_c83d7:
-	db $03, $00, $03
-	db $fe, $77, $03
-	db $04, $00, $04
-	db $fe, $55, $04
-	db $05, $00, $05
-	db $fe, $33, $05
-	db $fd, $00, $00
-	db $ff
+.EnemyData
+	db  3, $00, 3
+	db -2, $77, 3
+	db  4, $00, 4
+	db -2, $55, 4
+	db  5, $00, 5
+	db -2, $33, 5
+	db -3, $00, 0
+	db -1
 ; c83ed
 
-Functionc83ed: ; c83ed (32:43ed)
+BattleBGEffect_RunPicResizeScript: ; c83ed (32:43ed)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc83fa
+	dw .zero
 	dw BattleBGEffects_IncrementJumptable
 	dw BattleBGEffects_IncrementJumptable
-	dw Functionc842a
-	dw Functionc8434
+	dw .restart
+	dw .end
 
 
-Functionc83fa: ; c83fa (32:43fa)
+.zero
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld e, [hl]
@@ -740,24 +748,24 @@ rept 3
 	add hl, de
 endr
 	ld a, [hl]
-	cp $ff
-	jr z, Functionc8434
-	cp $fe
-	jr z, .asm_c8425
-	cp $fd
-	jr z, .asm_c841d
-	call Functionc8458
-.asm_c841d
+	cp -1
+	jr z, .end
+	cp -2
+	jr z, .clear
+	cp -3
+	jr z, .skip
+	call .FillBox
+.skip
 	call BattleBGEffects_IncrementJumptable
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
 
-.asm_c8425
-	call Functionc843b
-	jr Functionc83fa
+.clear
+	call .ClearBox
+	jr .zero
 
-Functionc842a: ; c842a (32:442a)
+.restart
 	xor a
 	ld [hBGMapMode], a
 	ld hl, BG_EFFECT_STRUCT_JT_INDEX
@@ -765,13 +773,14 @@ Functionc842a: ; c842a (32:442a)
 	ld [hl], $0
 	ret
 
-Functionc8434: ; c8434 (32:4434)
+.end
 	xor a
 	ld [hBGMapMode], a
 	call EndBattleBGEffect
 	ret
 
-Functionc843b: ; c843b (32:443b)
+.ClearBox
+; get dims
 	push bc
 	inc hl
 	ld a, [hli]
@@ -782,9 +791,10 @@ Functionc843b: ; c843b (32:443b)
 	swap a
 	and $f
 	ld b, a
+; get coords
 	ld e, [hl]
 	ld d, 0
-	ld hl, Unknown_c849c
+	ld hl, .Coords
 rept 2
 	add hl, de
 endr
@@ -795,12 +805,13 @@ endr
 	pop bc
 	ret
 
-Functionc8458: ; c8458 (32:4458)
+.FillBox
+; get dims
 	push bc
 	push hl
 	ld e, [hl]
 	ld d, 0
-	ld hl, Unknown_c84a8
+	ld hl, .BGSquares
 rept 3
 	add hl, de
 endr
@@ -812,17 +823,20 @@ endr
 	swap a
 	and $f
 	ld b, a
+; store pointer
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
+; get byte
 	pop hl
 	inc hl
 	ld a, [hli]
 	ld [wBattleAnimTemp0], a
+; get coord
 	push de
 	ld e, [hl]
 	ld d, 0
-	ld hl, Unknown_c849c
+	ld hl, .Coords
 rept 2
 	add hl, de
 endr
@@ -830,69 +844,68 @@ endr
 	ld h, [hl]
 	ld l, a
 	pop de
-.asm_c8484
+; fill box
+.row
 	push bc
 	push hl
 	ld a, [wBattleAnimTemp0]
 	ld b, a
-.asm_c848a
+.col
 	ld a, [de]
 	add b
 	ld [hli], a
 	inc de
 	dec c
-	jr nz, .asm_c848a
+	jr nz, .col
 	pop hl
-	ld bc, $14
+	ld bc, SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .asm_c8484
+	jr nz, .row
 	pop bc
 	ret
 
-; c849c (32:449c)
-
-Unknown_c849c: ; c849c
+.Coords
 	dwcoord  2,  6
 	dwcoord  3,  8
 	dwcoord  4, 10
 	dwcoord 12,  0
 	dwcoord 13,  2
 	dwcoord 14,  4
-; c84a8
 
-Unknown_c84a8: ; c84a8
-	dbw $66, Unknown_c84ba
-	dbw $44, Unknown_c84de
-	dbw $22, Unknown_c84ee
-	dbw $77, Unknown_c84f2
-	dbw $55, Unknown_c8523
-	dbw $33, Unknown_c853c
-; c84ba
+.BGSquares
+bgsquare: MACRO
+	dn \1,\2
+	dw \3
+endm
 
-Unknown_c84ba: ; c84ba
+	bgsquare 6, 6, .SixBySix
+	bgsquare 4, 4, .FourByFour
+	bgsquare 2, 2, .TwoByTwo
+	bgsquare 7, 7, .SevenBySeven
+	bgsquare 5, 5, .FiveByFive
+	bgsquare 3, 3, .ThreeByThree
+
+.SixBySix
 	db $00, $06, $0c, $12, $18, $1e
 	db $01, $07, $0d, $13, $19, $1f
 	db $02, $08, $0e, $14, $1a, $20
 	db $03, $09, $0f, $15, $1b, $21
 	db $04, $0a, $10, $16, $1c, $22
 	db $05, $0b, $11, $17, $1d, $23
-; c84de
 
-Unknown_c84de: ; c84de
+.FourByFour
 	db $00, $0c, $12, $1e
 	db $02, $0e, $14, $20
 	db $03, $0f, $15, $21
 	db $05, $11, $17, $23
-; c84ee
 
-Unknown_c84ee: ; c84ee
+.TwoByTwo
 	db $00, $1e
 	db $05, $23
-; c84f2
 
-Unknown_c84f2: ; c84f2
+.SevenBySeven
 	db $00, $07, $0e, $15, $1c, $23, $2a
 	db $01, $08, $0f, $16, $1d, $24, $2b
 	db $02, $09, $10, $17, $1e, $25, $2c
@@ -900,17 +913,15 @@ Unknown_c84f2: ; c84f2
 	db $04, $0b, $12, $19, $20, $27, $2e
 	db $05, $0c, $13, $1a, $21, $28, $2f
 	db $06, $0d, $14, $1b, $22, $29, $30
-; c8523
 
-Unknown_c8523: ; c8523
+.FiveByFive
 	db $00, $07, $15, $23, $2a
 	db $01, $08, $16, $24, $2b
 	db $03, $0a, $18, $26, $2d
 	db $05, $0c, $1a, $28, $2f
 	db $06, $0d, $1b, $29, $30
-; c853c
 
-Unknown_c853c: ; c853c
+.ThreeByThree
 	db $00, $15, $2a
 	db $03, $18, $2d
 	db $06, $1b, $30
@@ -924,12 +935,12 @@ BattleBGEffect_Surf: ; c8545 (32:4545)
 	dw .two
 
 
-.zero: ; c854e (32:454e)
+.zero
 	call BattleBGEffects_IncrementJumptable
 	lb de, 2, 2
 	call InitSurfWaves
 
-.one: ; c8557 (32:4557)
+.one
 	ld a, [hLCDStatCustom]
 	and a
 	ret z
@@ -938,11 +949,11 @@ BattleBGEffect_Surf: ; c8545 (32:4545)
 	pop bc
 	ret
 
-.two: ; c8561 (32:4561)
+.two
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
-.RotatewSurfWaveBGEffect: ; c8565 (32:4565)
+.RotatewSurfWaveBGEffect
 	ld hl, wSurfWaveBGEffect
 	ld de, wSurfWaveBGEffect + 1
 	ld c, wSurfWaveBGEffectEnd - wSurfWaveBGEffect - 1
@@ -986,34 +997,34 @@ BattleBGEffect_Surf: ; c8545 (32:4545)
 BattleBGEffect_Whirlpool: ; c8599 (32:4599)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc85a2
-	dw Functionc85ba
-	dw Functionc85be
+	dw .zero
+	dw .one
+	dw .two
 
 
-Functionc85a2: ; c85a2 (32:45a2)
+.zero
 	call BattleBGEffects_IncrementJumptable
-	call Functionc8eca
+	call BattleBGEffects_ClearLYOverrides
 	ld a, $42
 	ld [hLCDStatCustom], a
 	xor a
 	ld [hLCDStatCustom + 1], a
 	ld a, $5e
 	ld [hLCDStatCustom + 2], a
-	ld de, $202
+	lb de, 2, 2
 	call Functionc8f2e
 	ret
 
-Functionc85ba: ; c85ba (32:45ba)
-	call Functionc8fef
+.one
+	call BattleBGEffect_WavyScreenFX
 	ret
 
-Functionc85be: ; c85be (32:45be)
+.two
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_30: ; c85c2 (32:45c2)
-	call Functionc8eca
+	call BattleBGEffects_ClearLYOverrides
 	ld a, $42
 	call Functionc8ede
 	call EndBattleBGEffect
@@ -1026,7 +1037,7 @@ BattleBGEffect_31: ; c85ce (32:45ce)
 	ld e, a
 	add $4
 	ld [hl], a
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	and $f0
@@ -1038,19 +1049,19 @@ BattleBGEffect_31: ; c85ce (32:45ce)
 	add hl, bc
 	ld a, [hl]
 	ld [wBattleAnimTemp0], a
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	cp $20
-	jr nc, .asm_c85fc
+	jr nc, .done
 rept 2
 	inc [hl]
 endr
 	call Functionc8f9a
 	ret
 
-.asm_c85fc
-	call Functionc8eca
+.done
+	call BattleBGEffects_ClearLYOverrides
 	call EndBattleBGEffect
 	ret
 
@@ -1061,144 +1072,144 @@ BattleBGEffect_32: ; c8603 (32:4603)
 BattleBGEffect_Psychic: ; c8607 (32:4607)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc8610
-	dw Functionc862e
-	dw Functionc863b
+	dw .zero
+	dw .one
+	dw .two
 
 
-Functionc8610: ; c8610 (32:4610)
+.zero
 	call BattleBGEffects_IncrementJumptable
-	call Functionc8eca
+	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
 	ld [hLCDStatCustom], a
 	xor a
 	ld [hLCDStatCustom + 1], a
 	ld a, $5f
 	ld [hLCDStatCustom + 2], a
-	ld de, $605
+	lb de, 6, 5
 	call Functionc8f2e
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld [hl], $0
 	ret
 
-Functionc862e: ; c862e (32:462e)
+.one
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
 	and $3
 	ret nz
-	call Functionc8fef
+	call BattleBGEffect_WavyScreenFX
 	ret
 
-Functionc863b: ; c863b (32:463b)
+.two
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_Teleport: ; c863f (32:463f)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc8648
-	dw Functionc865a
-	dw Functionc865e
+	dw .zero
+	dw .one
+	dw .two
 
 
-Functionc8648: ; c8648 (32:4648)
+.zero
 	call BattleBGEffects_IncrementJumptable
-	call Functionc8eca
+	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
 	call Functionc8ede
-	ld de, $605
+	lb de, 6, 5
 	call Functionc8f2e
 	ret
 
-Functionc865a: ; c865a (32:465a)
-	call Functionc8fef
+.one
+	call BattleBGEffect_WavyScreenFX
 	ret
 
-Functionc865e: ; c865e (32:465e)
+.two
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_NightShade: ; c8662 (32:4662)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc866b
-	dw Functionc8681
-	dw Functionc8685
+	dw .zero
+	dw .one
+	dw .two
 
 
-Functionc866b: ; c866b (32:466b)
+.zero
 	call BattleBGEffects_IncrementJumptable
-	call Functionc8eca
+	call BattleBGEffects_ClearLYOverrides
 	ld a, $42
 	call Functionc8ede
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld e, [hl]
-	ld d, $2
+	ld d, 2
 	call Functionc8f2e
 	ret
 
-Functionc8681: ; c8681 (32:4681)
-	call Functionc8fef
+.one
+	call BattleBGEffect_WavyScreenFX
 	ret
 
-Functionc8685: ; c8685 (32:4685)
+.two
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_DoubleTeam: ; c8689 (32:4689)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc8698
-	dw Functionc86af
-	dw Functionc86cf
-	dw Functionc86bd
-	dw Functionc86e9
-	dw Functionc8705
+	dw .zero
+	dw .one
+	dw .two
+	dw .three
+	dw .four
+	dw .five
 
 
-Functionc8698: ; c8698 (32:4698)
+.zero
 	call BattleBGEffects_IncrementJumptable
-	call Functionc8eca
+	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
 	call Functionc8ede
 	ld a, [hLCDStatCustom + 2]
 	inc a
 	ld [hLCDStatCustom + 2], a
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld [hl], $0
 	ret
 
-Functionc86af: ; c86af (32:46af)
+.one
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
 	cp $10
-	jr nc, asm_c86cb
+	jr nc, .next
 	inc [hl]
-	call Functionc86ea
+	call .UpdateLYOverrides
 	ret
 
-Functionc86bd: ; c86bd (32:46bd)
+.three
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
 	cp $ff
-	jr z, asm_c86cb
+	jr z, .next
 	dec [hl]
-	call Functionc86ea
+	call .UpdateLYOverrides
 	ret
 
-asm_c86cb: ; c86cb (32:46cb)
+.next
 	call BattleBGEffects_IncrementJumptable
 	ret
 
-Functionc86cf: ; c86cf (32:46cf)
-	ld hl, BG_EFFECT_STRUCT_02
+.two
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	ld d, $2
@@ -1206,61 +1217,61 @@ Functionc86cf: ; c86cf (32:46cf)
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	add [hl]
-	call Functionc86ea
-	ld hl, BG_EFFECT_STRUCT_02
+	call .UpdateLYOverrides
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	add $4
 	ld [hl], a
 
-Functionc86e9: ; c86e9 (32:46e9)
+.four
 	ret
 
-Functionc86ea: ; c86ea (32:46ea)
+.UpdateLYOverrides
 	ld e, a
 	xor $ff
 	inc a
 	ld d, a
-	ld h, $d2
+	ld h, LYOverridesBackup / $100
 	ld a, [hLCDStatCustom + 1]
 	ld l, a
 	ld a, [hLCDStatCustom + 2]
 	sub l
 	srl a
 	push af
-.asm_c86fa
+.loop
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	inc hl
 	dec a
-	jr nz, .asm_c86fa
+	jr nz, .loop
 	pop af
 	ret nc
 	ld [hl], e
 	ret
 
-Functionc8705: ; c8705 (32:4705)
+.five
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_AcidArmor: ; c8709 (32:4709)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc8712
-	dw Functionc8732
-	dw Functionc875d
+	dw .zero
+	dw .one
+	dw .two
 
 
-Functionc8712: ; c8712 (32:4712)
+.zero
 	call BattleBGEffects_IncrementJumptable
-	call Functionc8eca
+	call BattleBGEffects_ClearLYOverrides
 	ld a, $42
 	call Functionc8ede
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld e, [hl]
-	ld d, $2
+	ld d, 2
 	call Functionc8f2e
 	ld h, $d2
 	ld a, [hLCDStatCustom + 2]
@@ -1270,30 +1281,30 @@ Functionc8712: ; c8712 (32:4712)
 	ld [hl], $0
 	ret
 
-Functionc8732: ; c8732 (32:4732)
+.one
 	ld a, [hLCDStatCustom + 2]
 	ld l, a
 	ld h, $d2
 	ld e, l
 	ld d, h
 	dec de
-.asm_c873a
+.loop
 	ld a, [de]
 	dec de
 	ld [hld], a
 	ld a, [hLCDStatCustom + 1]
 	cp l
-	jr nz, .asm_c873a
+	jr nz, .loop
 	ld [hl], $90
 	ld a, [hLCDStatCustom + 2]
 	ld l, a
 	ld a, [hl]
 	cp $1
-	jr c, .asm_c8752
+	jr c, .okay
 	cp $90
-	jr z, .asm_c8752
+	jr z, .okay
 	ld [hl], $0
-.asm_c8752
+.okay
 	dec l
 	ld a, [hl]
 	cp $2
@@ -1303,38 +1314,38 @@ Functionc8732: ; c8732 (32:4732)
 	ld [hl], $0
 	ret
 
-Functionc875d: ; c875d (32:475d)
+.two
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_21: ; c8761 (32:4761)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc876a
-	dw Functionc8781
-	dw Functionc87a3
+	dw .zero
+	dw .one
+	dw .two
 
 
-Functionc876a: ; c876a (32:476a)
+.zero
 	call BattleBGEffects_IncrementJumptable
-	call Functionc8eca
+	call BattleBGEffects_ClearLYOverrides
 	ld a, $42
 	call Functionc8ede
 	ld a, [hLCDStatCustom + 2]
 	inc a
 	ld [hLCDStatCustom + 2], a
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld [hl], $1
 	ret
 
-Functionc8781: ; c8781 (32:4781)
+.one
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
 	and $3f
 	ld d, a
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	cp d
@@ -1346,34 +1357,34 @@ Functionc8781: ; c8781 (32:4781)
 	rlca
 	rlca
 	and $3
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	add [hl]
 	ld [hl], a
 	ret
 
-Functionc87a3: ; c87a3 (32:47a3)
+.two
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
-BattleBGEffect_23: ; c87a7 (32:47a7)
+BattleBGEffect_Dig: ; c87a7 (32:47a7)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc87b2
-	dw Functionc87cf
-	dw Functionc87de
-	dw Functionc8801
+	dw .zero
+	dw .one
+	dw .two
+	dw .three
 
 
-Functionc87b2: ; c87b2 (32:47b2)
+.zero
 	call BattleBGEffects_IncrementJumptable
-	call Functionc8eca
+	call BattleBGEffects_ClearLYOverrides
 	ld a, $42
 	call Functionc8ede
 	ld a, [hLCDStatCustom + 2]
 	inc a
 	ld [hLCDStatCustom + 2], a
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld [hl], $2
 	ld hl, BG_EFFECT_STRUCT_03
@@ -1381,62 +1392,61 @@ Functionc87b2: ; c87b2 (32:47b2)
 	ld [hl], $0
 	ret
 
-Functionc87cf: ; c87cf (32:47cf)
+.one
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_c87d9
+	jr z, .next
 	dec [hl]
 	ret
 
-.asm_c87d9
+.next
 	ld [hl], $10
 	call BattleBGEffects_IncrementJumptable
-
-Functionc87de: ; c87de (32:47de)
+.two
 	ld a, [hLCDStatCustom + 1]
 	ld l, a
 	ld a, [hLCDStatCustom + 2]
 	sub l
 	dec a
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	cp [hl]
 	ret c
 	ld a, [hl]
 	push af
 	and $7
-	jr nz, .asm_c87f6
+	jr nz, .skip
 	ld hl, BG_EFFECT_STRUCT_JT_INDEX
 	add hl, bc
 	dec [hl]
-.asm_c87f6
+.skip
 	pop af
 	call Functionc901b
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 rept 2
 	inc [hl]
 endr
 	ret
 
-Functionc8801: ; c8801 (32:4801)
+.three
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_Tackle: ; c8805 (32:4805)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc8810
-	dw Functionc8869
-	dw Functionc8888
-	dw Functionc8833
+	dw .zero
+	dw Tackle_BGEffect25_2d_one
+	dw Tackle_BGEffect25_2d_two
+	dw .three
 
 
-Functionc8810: ; c8810 (32:4810)
+.zero
 	call BattleBGEffects_IncrementJumptable
-	call Functionc8eca
+	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
 	call Functionc8ede
 	ld a, [hLCDStatCustom + 2]
@@ -1445,33 +1455,33 @@ Functionc8810: ; c8810 (32:4810)
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld [hl], $0
-	call Functionc9038
-	jr nz, .asm_c882f
-	ld a, $2
-	jr .asm_c8831
+	call BGEffect_CheckBattleTurn
+	jr nz, .player_side
+	ld a, 2
+	jr .okay
 
-.asm_c882f
-	ld a, $fe
-.asm_c8831
+.player_side
+	ld a, -2
+.okay
 	ld [hl], a
 	ret
 
-Functionc8833: ; c8833 (32:4833)
+.three
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_25: ; c8837 (32:4837)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc8842
-	dw Functionc8869
-	dw Functionc8888
-	dw Functionc8865
+	dw .zero
+	dw Tackle_BGEffect25_2d_one
+	dw Tackle_BGEffect25_2d_two
+	dw .three
 
 
-Functionc8842: ; c8842 (32:4842)
+.zero
 	call BattleBGEffects_IncrementJumptable
-	call Functionc8eca
+	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
 	call Functionc8ef4
 	ld a, [hLCDStatCustom + 2]
@@ -1480,34 +1490,34 @@ Functionc8842: ; c8842 (32:4842)
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld [hl], $0
-	call Functionc9038
-	jr nz, .asm_c8861
-	ld a, $2
-	jr .asm_c8863
+	call BGEffect_CheckBattleTurn
+	jr nz, .player_side
+	ld a,  2
+	jr .okay
 
-.asm_c8861
-	ld a, $fe
-.asm_c8863
+.player_side
+	ld a, -2
+.okay
 	ld [hl], a
 	ret
 
-Functionc8865: ; c8865 (32:4865)
+.three
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
-Functionc8869: ; c8869 (32:4869)
+Tackle_BGEffect25_2d_one:
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
-	cp $f8
-	jr z, .asm_c8876
-	cp $8
-	jr nz, .asm_c8879
-.asm_c8876
+	cp -8
+	jr z, .reached_limit
+	cp  8
+	jr nz, .finish
+.reached_limit
 	call BattleBGEffects_IncrementJumptable
-.asm_c8879
+.finish
 	call Functionc88a5
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	ld hl, BG_EFFECT_STRUCT_03
@@ -1516,7 +1526,7 @@ Functionc8869: ; c8869 (32:4869)
 	ld [hl], a
 	ret
 
-Functionc8888: ; c8888 (32:4888)
+Tackle_BGEffect25_2d_two:
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
@@ -1525,7 +1535,7 @@ Functionc8888: ; c8888 (32:4888)
 	call BattleBGEffects_IncrementJumptable
 .asm_c8893
 	call Functionc88a5
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	xor $ff
@@ -1540,15 +1550,15 @@ Functionc88a5: ; c88a5 (32:48a5)
 	push af
 	ld a, [FXAnimIDHi] ; FXAnimIDHi
 	or a
-	jr nz, .asm_c88b3
+	jr nz, .not_rollout
 	ld a, [FXAnimIDLo] ; FXAnimID
 	cp ROLLOUT
-	jr z, .asm_c88b7
-.asm_c88b3
+	jr z, .rollout
+.not_rollout
 	pop af
 	jp Functionc900b
 
-.asm_c88b7
+.rollout
 	ld a, [hLCDStatCustom + 1]
 	ld d, a
 	ld a, [hLCDStatCustom + 2]
@@ -1557,53 +1567,53 @@ Functionc88a5: ; c88a5 (32:48a5)
 	ld h, LYOverridesBackup / $100
 	ld a, [hSCY]
 	or a
-	jr nz, .asm_c88d0
+	jr nz, .skip1
 	ld a, [hLCDStatCustom + 1]
 	or a
-	jr z, .asm_c88d6
+	jr z, .skip2
 	dec a
 	ld l, a
 	ld [hl], $0
-	jr .asm_c88d6
+	jr .skip2
 
-.asm_c88d0
+.skip1
 	ld a, [hLCDStatCustom + 2]
 	dec a
 	ld l, a
 	ld [hl], $0
-.asm_c88d6
+.skip2
 	ld a, [hSCY]
 	ld l, a
 	ld a, [hLCDStatCustom + 1]
 	sub l
-	jr nc, .asm_c88e0
+	jr nc, .skip3
 	xor a
 	dec d
-.asm_c88e0
+.skip3
 	ld l, a
 	pop af
-.asm_c88e2
+.loop
 	ld [hli], a
 	dec d
-	jr nz, .asm_c88e2
+	jr nz, .loop
 	ret
 
 BattleBGEffect_2d: ; c88e7 (32:48e7)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc88f6
-	dw Functionc8869
-	dw Functionc8888
-	dw Functionc88f2
+	dw BGEffect2d_2f_zero
+	dw Tackle_BGEffect25_2d_one
+	dw Tackle_BGEffect25_2d_two
+	dw .three
 
 
-Functionc88f2: ; c88f2 (32:48f2)
+.three
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
-Functionc88f6: ; c88f6 (32:48f6)
+BGEffect2d_2f_zero:
 	call BattleBGEffects_IncrementJumptable
-	call Functionc8eca
+	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
 	call Functionc8ede
 	ld a, [hLCDStatCustom + 2]
@@ -1612,31 +1622,29 @@ Functionc88f6: ; c88f6 (32:48f6)
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld [hl], $0
-	call Functionc9038
-	jr nz, .asm_c8915
-	ld a, $fe
-	jr .asm_c8917
+	call BGEffect_CheckBattleTurn
+	jr nz, .player_turn
+	ld a, -2
+	jr .okay
 
-.asm_c8915
-	ld a, $2
-.asm_c8917
+.player_turn
+	ld a, 2
+.okay
 	ld [hl], a
 	ret
 
 BattleBGEffect_2f: ; c8919 (32:4919)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc88f6
-	dw Functionc8869
-	dw Functionc8929
-	dw Functionc8888
-	dw Functionc8926
+	dw BGEffect2d_2f_zero
+	dw Tackle_BGEffect25_2d_one
+	dw .two
+	dw Tackle_BGEffect25_2d_two
+	dw .four
 
-
-Functionc8926: ; c8926 (32:4926)
+.four
 	call BattleAnim_ResetLCDStatCustom
-
-Functionc8929: ; c8929 (32:4929)
+.two
 	ret
 
 BattleBGEffect_26: ; c892a (32:492a)
@@ -1649,7 +1657,7 @@ BattleBGEffect_26: ; c892a (32:492a)
 
 Functionc8933: ; c8933 (32:4933)
 	call BattleBGEffects_IncrementJumptable
-	call Functionc8eca
+	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
 	call Functionc8ede
 	ld a, [hLCDStatCustom + 2]
@@ -1688,14 +1696,14 @@ BattleBGEffect_2c: ; c8964 (32:4964)
 
 Functionc896d: ; c896d (32:496d)
 	call BattleBGEffects_IncrementJumptable
-	call Functionc8eca
+	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
 	call Functionc8ede
 	ld a, [hLCDStatCustom + 2]
 	inc a
 	ld [hLCDStatCustom + 2], a
 	xor a
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld [hli], a
 	ld [hl], a
@@ -1708,7 +1716,7 @@ Functionc8985: ; c8985 (32:4985)
 	ld d, $6
 	call BattleBGEffects_Sine
 	push af
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	ld d, $2
@@ -1717,7 +1725,7 @@ Functionc8985: ; c8985 (32:4985)
 	pop af
 	add e
 	call Functionc900b
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	add $8
@@ -1743,7 +1751,7 @@ BattleBGEffect_28: ; c89b5 (32:49b5)
 
 Functionc89be: ; c89be (32:49be)
 	call BattleBGEffects_IncrementJumptable
-	call Functionc8eca
+	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
 	call Functionc8ede
 	ret
@@ -1756,7 +1764,7 @@ Functionc89ca: ; c89ca (32:49ca)
 	ret nc
 	inc [hl]
 	ld d, a
-	ld e, $4
+	ld e, 4
 	call Functionc8f2e
 	ret
 
@@ -1768,7 +1776,7 @@ Functionc89da: ; c89da (32:49da)
 	jr z, .asm_c89ea
 	dec [hl]
 	ld d, a
-	ld e, $4
+	ld e, 4
 	call Functionc8f2e
 	ret
 
@@ -1776,23 +1784,23 @@ Functionc89da: ; c89da (32:49da)
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
-BattleBGEffect_22: ; c89ee (32:49ee)
+BattleBGEffect_BounceDown: ; c89ee (32:49ee)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc89f7
-	dw Functionc8a14
-	dw Functionc8a36
+	dw .zero
+	dw .one
+	dw .two
 
 
-Functionc89f7: ; c89f7 (32:49f7)
+.zero
 	call BattleBGEffects_IncrementJumptable
-	call Functionc8eca
+	call BattleBGEffects_ClearLYOverrides
 	ld a, $42
 	call Functionc8ef4
 	ld a, [hLCDStatCustom + 2]
 	inc a
 	ld [hLCDStatCustom + 2], a
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld [hl], $1
 	ld hl, BG_EFFECT_STRUCT_03
@@ -1800,8 +1808,8 @@ Functionc89f7: ; c89f7 (32:49f7)
 	ld [hl], $20
 	ret
 
-Functionc8a14: ; c8a14 (32:4a14)
-	ld hl, BG_EFFECT_STRUCT_02
+.one
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	cp $38
@@ -1824,25 +1832,24 @@ rept 2
 endr
 	ret
 
-Functionc8a36: ; c8a36 (32:4a36)
+.two
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_2a: ; c8a3a (32:4a3a)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc8a49
-	dw Functionc8a6f
-	dw Functionc8a70
-	dw Functionc8a88
-	dw Functionc8a6f
-	dw Functionc8aac
+	dw .zero
+	dw .one
+	dw .two
+	dw .three
+	dw .four
+	dw .five
 
-
-Functionc8a49: ; c8a49 (32:4a49)
+.zero
 	call BattleBGEffects_IncrementJumptable
 	ld a, $e4
-	call Functionc8ecb
+	call BattleBGEffects_SetLYOverrides
 	ld a, $47
 	call Functionc8ede
 	ld a, [hLCDStatCustom + 2]
@@ -1851,29 +1858,29 @@ Functionc8a49: ; c8a49 (32:4a49)
 	ld a, [hLCDStatCustom + 1]
 	ld l, a
 	ld h, $d2
-.asm_c8a60
+.loop
 	ld a, [hLCDStatCustom + 2]
 	cp l
-	jr z, .asm_c8a69
+	jr z, .done
 	xor a
 	ld [hli], a
-	jr .asm_c8a60
+	jr .loop
 
-.asm_c8a69
+.done
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld [hl], $0
-
-Functionc8a6f: ; c8a6f (32:4a6f)
+.one
+.four
 	ret
 
-Functionc8a70: ; c8a70 (32:4a70)
-	call Functionc8ab0
-	jr nc, .asm_c8a79
-	call Functionc8a9a
+.two
+	call .GetLYOverride
+	jr nc, .next
+	call .SetLYOverridesBackup
 	ret
 
-.asm_c8a79
+.next
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld [hl], $0
@@ -1883,42 +1890,42 @@ Functionc8a70: ; c8a70 (32:4a70)
 	call BattleBGEffects_IncrementJumptable
 	ret
 
-Functionc8a88: ; c8a88 (32:4a88)
-	call Functionc8ab0
-	jr nc, .asm_c8a96
-	call Functionc8a9a
+.three
+	call .GetLYOverride
+	jr nc, .finish
+	call .SetLYOverridesBackup
 	ld a, [hLCDStatCustom + 2]
 	dec a
 	ld l, a
 	ld [hl], e
 	ret
 
-.asm_c8a96
+.finish
 	call BattleBGEffects_IncrementJumptable
 	ret
 
-Functionc8a9a: ; c8a9a (32:4a9a)
+.SetLYOverridesBackup
 	ld e, a
 	ld a, [hLCDStatCustom + 1]
 	ld l, a
 	ld a, [hLCDStatCustom + 2]
 	sub l
 	srl a
-	ld h, $d2
-.asm_c8aa5
+	ld h, LYOverridesBackup / $100
+.loop2
 	ld [hl], e
 rept 2
 	inc hl
 endr
 	dec a
-	jr nz, .asm_c8aa5
+	jr nz, .loop2
 	ret
 
-Functionc8aac: ; c8aac (32:4aac)
+.five
 	call Functionc8f19
 	ret
 
-Functionc8ab0: ; c8ab0 (32:4ab0)
+.GetLYOverride
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
@@ -1928,16 +1935,15 @@ Functionc8ab0: ; c8ab0 (32:4ab0)
 	srl a
 	ld e, a
 	ld d, 0
-	ld hl, Unknown_c8ac7
+	ld hl, .data
 	add hl, de
 	ld a, [hl]
 	cp $ff
 	ret
 
-; c8ac7 (32:4ac7)
-
-Unknown_c8ac7:
-	db $00, $40, $90, $e4, $ff
+.data
+	db $00, $40, $90, $e4
+	db -1
 ; c8acc
 
 BattleBGEffect_2b: ; c8acc (32:4acc)
@@ -1949,16 +1955,16 @@ BattleBGEffect_2b: ; c8acc (32:4acc)
 
 Functionc8ad3: ; c8ad3 (32:4ad3)
 	call BattleBGEffects_IncrementJumptable
-	call Functionc8eca
+	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
 	call Functionc8ede
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld [hl], $40
 	ret
 
 Functionc8ae5: ; c8ae5 (32:4ae5)
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -1991,7 +1997,7 @@ BattleBGEffect_1c: ; c8b00 (32:4b00)
 Functionc8b0e: ; c8b0e (32:4b0e)
 	call BattleBGEffects_IncrementJumptable
 	ld a, $e4
-	call Functionc8ecb
+	call BattleBGEffects_SetLYOverrides
 	ld a, $47
 	ld [hLCDStatCustom], a
 	xor a
@@ -2016,7 +2022,7 @@ Functionc8b22: ; c8b22 (32:4b22)
 	ld e, a
 	ld d, $0
 	push bc
-	call Functionc9038
+	call BGEffect_CheckBattleTurn
 	jr nz, .asm_c8b4d
 	ld hl, Unknown_c8bd8
 	add hl, de
@@ -2099,7 +2105,7 @@ Functionc8b91: ; c8b91
 	sla a
 	ld e, a
 	ld d, 0
-	call Functionc9038
+	call BGEffect_CheckBattleTurn
 	jr nz, .asm_c8bbb
 	ld hl, Unknown_c8bd8
 	add hl, de
@@ -2256,13 +2262,13 @@ BattleBGEffect_VibrateMon: ; c8c61 (32:4c61)
 
 Functionc8c68: ; c8c68 (32:4c68)
 	call BattleBGEffects_IncrementJumptable
-	call Functionc8eca
+	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
 	call Functionc8ede
 	ld a, [hLCDStatCustom + 2]
 	inc a
 	ld [hLCDStatCustom + 2], a
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld [hl], $1
 	ld hl, BG_EFFECT_STRUCT_03
@@ -2279,7 +2285,7 @@ Functionc8c85: ; c8c85 (32:4c85)
 	dec [hl]
 	and $1
 	ret nz
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	xor $ff
@@ -2302,7 +2308,7 @@ BattleBGEffect_WobbleMon: ; c8ca2 (32:4ca2)
 
 Functionc8cab: ; c8cab (32:4cab)
 	call BattleBGEffects_IncrementJumptable
-	call Functionc8eca
+	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
 	ld [hLCDStatCustom], a
 	xor a
@@ -2385,7 +2391,7 @@ Functionc8d0b: ; c8d0b (32:4d0b)
 	and $f
 	jr z, .asm_c8d2a
 	dec [hl]
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -2396,7 +2402,7 @@ Functionc8d0b: ; c8d0b (32:4d0b)
 	swap a
 	or [hl]
 	ld [hl], a
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	xor $ff
@@ -2441,7 +2447,7 @@ Functionc8d57: ; c8d57 (32:4d57)
 	ret
 
 .asm_c8d69
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	ld hl, BG_EFFECT_STRUCT_JT_INDEX
@@ -2469,7 +2475,7 @@ Jumptable_c8d85: ; c8d85 (32:4d85)
 Functionc8d8b: ; c8d8b (32:4d8b)
 	call BattleBGEffects_IncrementJumptable
 	ld a, $e4
-	call Functionc8ecb
+	call BattleBGEffects_SetLYOverrides
 	ld a, $47
 	call Functionc8ede
 	ld a, [hLCDStatCustom + 2]
@@ -2479,13 +2485,13 @@ Functionc8d8b: ; c8d8b (32:4d8b)
 	add hl, bc
 	ld a, [hl]
 	ld [hl], $0
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld [hl], a
 	ret
 
 Functionc8daa: ; c8daa (32:4daa)
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	and $f
@@ -2532,7 +2538,7 @@ Jumptable_c8ddd: ; c8ddd (32:4ddd)
 
 
 Functionc8de7: ; c8de7 (32:4de7)
-	call Functionc9038
+	call BGEffect_CheckBattleTurn
 	jr nz, .asm_c8df2
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_IncrementJumptable
@@ -2542,13 +2548,13 @@ Functionc8de7: ; c8de7 (32:4de7)
 	add hl, bc
 	ld a, [hl]
 	ld [hl], $0
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld [hl], a
 	ret
 
 Functionc8e02: ; c8e02 (32:4e02)
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	and $f
@@ -2579,7 +2585,7 @@ Functionc8e21: ; c8e21 (32:4e21)
 	ret
 
 Functionc8e2a: ; c8e2a (32:4e2a)
-	ld hl, BG_EFFECT_STRUCT_02
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	and $f
@@ -2690,34 +2696,33 @@ Functionc8eb2: ; c8eb2 (32:4eb2)
 	scf
 	ret
 
-Functionc8eca: ; c8eca (32:4eca)
+BattleBGEffects_ClearLYOverrides: ; c8eca (32:4eca)
 	xor a
-
-Functionc8ecb: ; c8ecb (32:4ecb)
+BattleBGEffects_SetLYOverrides: ; c8ecb (32:4ecb)
 	ld hl, LYOverrides ; wd100
 	ld e, $99
-.asm_c8ed0
+.loop1
 	ld [hli], a
 	dec e
-	jr nz, .asm_c8ed0
+	jr nz, .loop1
 	ld hl, LYOverridesBackup
 	ld e, $91
-.asm_c8ed9
+.loop2
 	ld [hli], a
 	dec e
-	jr nz, .asm_c8ed9
+	jr nz, .loop2
 	ret
 
 Functionc8ede: ; c8ede (32:4ede)
 	ld [hLCDStatCustom], a
-	call Functionc9038
+	call BGEffect_CheckBattleTurn
 	jr nz, .asm_c8eea
 	ld de, $36
-	jr .asm_c8eed
+	jr .okay
 
 .asm_c8eea
 	ld de, $2f5e
-.asm_c8eed
+.okay
 	ld a, d
 	ld [hLCDStatCustom + 1], a
 	ld a, e
@@ -2726,7 +2731,7 @@ Functionc8ede: ; c8ede (32:4ede)
 
 Functionc8ef4: ; c8ef4 (32:4ef4)
 	ld [hLCDStatCustom], a
-	call Functionc9038
+	call BGEffect_CheckBattleTurn
 	jr nz, .asm_c8f00
 	ld de, $36
 	jr .asm_c8f03
@@ -2744,7 +2749,7 @@ BattleAnim_ResetLCDStatCustom: ; c8f0a (32:4f0a)
 	xor a
 	ld [hLCDStatCustom + 1], a
 	ld [hLCDStatCustom + 2], a
-	call Functionc8eca
+	call BattleBGEffects_ClearLYOverrides
 	xor a
 	ld [hLCDStatCustom], a
 	call EndBattleBGEffect
@@ -2759,7 +2764,7 @@ Functionc8f19: ; c8f19 (32:4f19)
 	ld [wOBP1], a
 	ld [hLCDStatCustom + 1], a
 	ld [hLCDStatCustom + 2], a
-	call Functionc8eca
+	call BattleBGEffects_ClearLYOverrides
 	ret
 
 Functionc8f2e: ; c8f2e (32:4f2e)
@@ -2773,19 +2778,19 @@ Functionc8f2e: ; c8f2e (32:4f2e)
 	ld a, $80
 	ld [wBattleAnimTemp3], a
 	ld bc, LYOverridesBackup
-.asm_c8f43
+.loop
 	ld a, [hLCDStatCustom + 1]
 	cp c
-	jr nc, .asm_c8f58
+	jr nc, .next
 	ld a, [hLCDStatCustom + 2]
 	cp c
-	jr c, .asm_c8f58
+	jr c, .next
 	ld a, [wBattleAnimTemp2]
 	ld d, a
 	ld a, [wBattleAnimTemp0]
 	call BattleBGEffects_Sine
 	ld [bc], a
-.asm_c8f58
+.next
 	inc bc
 	ld a, [wBattleAnimTemp1]
 	ld hl, wBattleAnimTemp0
@@ -2793,7 +2798,7 @@ Functionc8f2e: ; c8f2e (32:4f2e)
 	ld [hl], a
 	ld hl, wBattleAnimTemp3
 	dec [hl]
-	jr nz, .asm_c8f43
+	jr nz, .loop
 	pop bc
 	ret
 
@@ -2832,15 +2837,15 @@ Functionc8f9a: ; c8f9a (32:4f9a)
 	ld [wBattleAnimTemp1], a
 	ld a, d
 	ld [wBattleAnimTemp2], a
-	call Functionc8fe4
+	call .GetLYOverrideBackupAddrOffset
 	ld hl, LYOverridesBackup
 	add hl, de
 	ld c, l
 	ld b, h
-.asm_c8faf
+.loop
 	ld a, [wBattleAnimTemp3]
 	and a
-	jr z, .asm_c8fe1
+	jr z, .done
 	dec a
 	ld [wBattleAnimTemp3], a
 	push af
@@ -2853,29 +2858,29 @@ Functionc8f9a: ; c8f9a (32:4f9a)
 	pop hl
 	ld a, [hLCDStatCustom + 2]
 	cp c
-	jr c, .asm_c8fcf
+	jr c, .skip1
 	ld a, e
 	ld [bc], a
 	inc bc
-.asm_c8fcf
+.skip1
 	ld a, [hLCDStatCustom + 1]
 	cp l
-	jr nc, .asm_c8fd6
+	jr nc, .skip2
 	ld [hl], e
 	dec hl
-.asm_c8fd6
+.skip2
 	ld a, [wBattleAnimTemp1]
 	add $4
 	ld [wBattleAnimTemp1], a
 	pop af
-	jr .asm_c8faf
+	jr .loop
 
-.asm_c8fe1
+.done
 	pop bc
 	and a
 	ret
 
-Functionc8fe4: ; c8fe4 (32:4fe4)
+.GetLYOverrideBackupAddrOffset
 	ld a, [hLCDStatCustom + 1]
 	ld e, a
 	ld a, [wBattleAnimTemp0]
@@ -2884,7 +2889,7 @@ Functionc8fe4: ; c8fe4 (32:4fe4)
 	ld d, $0
 	ret
 
-Functionc8fef: ; c8fef (32:4fef)
+BattleBGEffect_WavyScreenFX: ; c8fef (32:4fef)
 	push bc
 	ld a, [hLCDStatCustom + 1]
 	ld l, a
@@ -2895,19 +2900,19 @@ Functionc8fef: ; c8fef (32:4fef)
 	ld a, [hLCDStatCustom + 2]
 	sub l
 	and a
-	jr z, .asm_c9009
+	jr z, .done
 	ld c, a
 	ld a, [hl]
 	push af
-.asm_c9001
+.loop
 	ld a, [de]
 	inc de
 	ld [hli], a
 	dec c
-	jr nz, .asm_c9001
+	jr nz, .loop
 	pop af
 	ld [hl], a
-.asm_c9009
+.done
 	pop bc
 	ret
 
@@ -2951,26 +2956,26 @@ Functionc901b: ; c901b (32:501b)
 	jr nz, .asm_c9033
 	ret
 
-Functionc9038: ; c9038 (32:5038)
-	ld hl, BG_EFFECT_STRUCT_02
+BGEffect_CheckBattleTurn: ; c9038 (32:5038)
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hBattleTurn]
 	and $1
 	xor [hl]
 	ret
 
-Functionc9042: ; c9042 (32:5042)
-	ld hl, BG_EFFECT_STRUCT_02
+BGEffect_CheckFlyDigStatus: ; c9042 (32:5042)
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hBattleTurn]
 	and $1
 	xor [hl]
-	jr nz, .asm_c9053
+	jr nz, .player
 	ld a, [EnemySubStatus3] ; EnemySubStatus3
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret
 
-.asm_c9053
+.player
 	ld a, [PlayerSubStatus3] ; PlayerSubStatus3
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret

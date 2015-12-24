@@ -510,21 +510,21 @@ BattleAnim_Confused: ; c948d
 BattleAnim_Slp: ; c94a3
 	anim_1gfx ANIM_GFX_STATUS
 	anim_sound 0, 0, SFX_TAIL_WHIP
-BattleAnim_Slp_branch_c94a8: ; c94a8
+.loop
 	anim_obj ANIM_OBJ_54,   8, 0,  10, 0, $0
 	anim_wait 40
-	anim_loop 3, BattleAnim_Slp_branch_c94a8
+	anim_loop 3, .loop
 	anim_wait 32
 	anim_ret
 ; c94b4
 
 BattleAnim_Brn: ; c94b4
 	anim_1gfx ANIM_GFX_FIRE
-BattleAnim_Brn_branch_c94b6: ; c94b6
+.loop
 	anim_sound 0, 0, SFX_BURN
 	anim_obj ANIM_OBJ_BURNED,   7, 0,  11, 0, $10
 	anim_wait 4
-	anim_loop 3, BattleAnim_Brn_branch_c94b6
+	anim_loop 3, .loop
 	anim_wait 6
 	anim_ret
 ; c94c5
@@ -592,10 +592,10 @@ BattleAnim_InSandstorm: ; c9533
 	anim_obj ANIM_OBJ_A2,   9, 0,   0, 0, $1
 	anim_wait 8
 	anim_obj ANIM_OBJ_A2,   7, 0,   0, 0, $2
-BattleAnim_InSandstorm_branch_c9546: ; c9546
+.loop
 	anim_sound 0, 1, SFX_MENU
 	anim_wait 8
-	anim_loop 6, BattleAnim_InSandstorm_branch_c9546
+	anim_loop 6, .loop
 	anim_wait 8
 	anim_ret
 ; c9550
@@ -612,10 +612,10 @@ BattleAnim_InWhirlpool: ; c955c
 	anim_1gfx ANIM_GFX_WIND
 	anim_bgeffect ANIM_BG_WHIRLPOOL, $0, $0, $0
 	anim_sound 0, 1, SFX_SURF
-BattleAnim_InWhirlpool_branch_c9566: ; c9566
+.loop
 	anim_obj ANIM_OBJ_GUST, -16, 4,   9, 0, $0
 	anim_wait 6
-	anim_loop 6, BattleAnim_InWhirlpool_branch_c9566
+	anim_loop 6, .loop
 	anim_incbgeffect ANIM_BG_WHIRLPOOL
 	anim_wait 1
 	anim_ret
@@ -634,12 +634,12 @@ BattleAnim_Miss: ; c9580
 ; c9581
 
 BattleAnim_EnemyDamage: ; c9581
-BattleAnim_EnemyDamage_branch_c9581: ; c9581
+.loop
 	anim_bgeffect ANIM_BG_HIDE_MON, $0, $0, $0
 	anim_wait 5
 	anim_bgeffect ANIM_BG_SHOW_MON, $0, $0, $0
 	anim_wait 5
-	anim_loop 3, BattleAnim_EnemyDamage_branch_c9581
+	anim_loop 3, .loop
 	anim_ret
 ; c9592
 
@@ -755,15 +755,14 @@ BattleAnim_MegaPunch: ; c9651
 	anim_bgeffect ANIM_BG_1F, $40, $2, $0
 	anim_wait 48
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
-BattleAnim_Bide_branch_c965e: ; c965e
-BattleAnim_MegaPunch_branch_c965e: ; c965e
+.loop
 	anim_sound 0, 1, SFX_MEGA_PUNCH
 	anim_obj ANIM_OBJ_06, -15, 0,   7, 0, $0
 	anim_obj ANIM_OBJ_00, -15, 0,   7, 0, $0
 	anim_wait 6
 	anim_obj ANIM_OBJ_06, -15, 0,   7, 0, $0
 	anim_wait 6
-	anim_loop 3, BattleAnim_Bide_branch_c965e
+	anim_loop 3, .loop
 	anim_ret
 ; c9677
 
@@ -869,14 +868,14 @@ BattleAnim_MegaKick: ; c973e
 	anim_bgeffect ANIM_BG_1F, $40, $2, $0
 	anim_wait 67
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
-BattleAnim_MegaKick_branch_c974b: ; c974b
+.loop
 	anim_sound 0, 1, SFX_MEGA_KICK
 	anim_obj ANIM_OBJ_07, -15, 0,   7, 0, $0
 	anim_obj ANIM_OBJ_00, -15, 0,   7, 0, $0
 	anim_wait 6
 	anim_obj ANIM_OBJ_07, -15, 0,   7, 0, $0
 	anim_wait 6
-	anim_loop 3, BattleAnim_MegaKick_branch_c974b
+	anim_loop 3, .loop
 	anim_ret
 ; c9764
 
@@ -896,14 +895,14 @@ BattleAnim_SuperFang: ; c977b
 	anim_bgeffect ANIM_BG_1F, $40, $2, $0
 	anim_wait 48
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
-BattleAnim_SuperFang_branch_c9788: ; c9788
+.loop
 	anim_sound 0, 1, SFX_BITE
 	anim_obj ANIM_OBJ_09, -15, 0,   7, 0, $0
 	anim_obj ANIM_OBJ_00, -15, 0,   7, 0, $0
 	anim_wait 6
 	anim_obj ANIM_OBJ_09, -15, 0,   7, 0, $0
 	anim_wait 6
-	anim_loop 3, BattleAnim_SuperFang_branch_c9788
+	anim_loop 3, .loop
 	anim_ret
 ; c97a1
 
@@ -939,7 +938,7 @@ BattleAnim_FirePunch: ; c97d8
 
 BattleAnim_FireSpin: ; c97e5
 	anim_1gfx ANIM_GFX_FIRE
-BattleAnim_FireSpin_branch_c97e7: ; c97e7
+.loop
 	anim_sound 6, 2, SFX_EMBER
 	anim_obj ANIM_OBJ_0E,   8, 0,  11, 0, $4
 	anim_wait 2
@@ -952,18 +951,18 @@ BattleAnim_FireSpin_branch_c97e7: ; c97e7
 	anim_sound 6, 2, SFX_EMBER
 	anim_obj ANIM_OBJ_0E,   8, 0,  12, 0, $4
 	anim_wait 2
-	anim_loop 2, BattleAnim_FireSpin_branch_c97e7
+	anim_loop 2, .loop
 	anim_wait 96
 	anim_ret
 ; c9811
 
 BattleAnim_DragonRage: ; c9811
 	anim_1gfx ANIM_GFX_FIRE
-BattleAnim_DragonRage_branch_c9813: ; c9813
+.loop
 	anim_sound 6, 2, SFX_EMBER
 	anim_obj ANIM_OBJ_0C,   8, 0,  11, 4, $0
 	anim_wait 3
-	anim_loop 16, BattleAnim_DragonRage_branch_c9813
+	anim_loop 16, .loop
 	anim_wait 64
 	anim_ret
 ; c9822
@@ -987,25 +986,25 @@ BattleAnim_Flamethrower: ; c9822
 	anim_wait 2
 	anim_obj ANIM_OBJ_0D, -15, 0,   7, 0, $8
 	anim_wait 16
-BattleAnim_Flamethrower_branch_c9857: ; c9857
+.loop
 	anim_sound 0, 1, SFX_EMBER
 	anim_wait 16
-	anim_loop 6, BattleAnim_Flamethrower_branch_c9857
+	anim_loop 6, .loop
 	anim_wait 16
 	anim_ret
 ; c9861
 
 BattleAnim_FireBlast: ; c9861
 	anim_1gfx ANIM_GFX_FIRE
-BattleAnim_FireBlast_branch_c9863: ; c9863
+.loop1
 	anim_sound 6, 2, SFX_EMBER
 	anim_obj ANIM_OBJ_0F,   8, 0,  11, 4, $7
 	anim_wait 6
-	anim_loop 10, BattleAnim_FireBlast_branch_c9863
-BattleAnim_FireBlast_branch_c9870: ; c9870
+	anim_loop 10, .loop1
+.loop2
 	anim_sound 0, 1, SFX_EMBER
 	anim_wait 8
-	anim_loop 10, BattleAnim_FireBlast_branch_c9870
+	anim_loop 10, .loop2
 	anim_incobj  1
 	anim_incobj  2
 	anim_incobj  3
@@ -1017,7 +1016,7 @@ BattleAnim_FireBlast_branch_c9870: ; c9870
 	anim_incobj  9
 	anim_incobj 10
 	anim_wait 2
-BattleAnim_FireBlast_branch_c988d: ; c988d
+.loop3
 	anim_sound 0, 1, SFX_EMBER
 	anim_obj ANIM_OBJ_0F, -15, 0,   7, 0, $1
 	anim_obj ANIM_OBJ_0F, -15, 0,   7, 0, $2
@@ -1025,7 +1024,7 @@ BattleAnim_FireBlast_branch_c988d: ; c988d
 	anim_obj ANIM_OBJ_0F, -15, 0,   7, 0, $4
 	anim_obj ANIM_OBJ_0F, -15, 0,   7, 0, $5
 	anim_wait 16
-	anim_loop 2, BattleAnim_FireBlast_branch_c988d
+	anim_loop 2, .loop3
 	anim_wait 32
 	anim_ret
 ; c98b0
@@ -1040,17 +1039,17 @@ BattleAnim_IcePunch: ; c98b0
 
 BattleAnim_IceBeam: ; c98bd
 	anim_1gfx ANIM_GFX_ICE
-BattleAnim_IceBeam_branch_c98bf: ; c98bf
+.loop
 	anim_sound 6, 2, SFX_SHINE
 	anim_obj ANIM_OBJ_13,   8, 0,  11, 4, $4
 	anim_wait 4
-	anim_loop 5, BattleAnim_IceBeam_branch_c98bf
+	anim_loop 5, .loop
 	anim_obj ANIM_OBJ_29, -15, 0,   9, 2, $10
-BattleAnim_IceBeam_branch_c98d1: ; c98d1
+.loop2
 	anim_sound 6, 2, SFX_SHINE
 	anim_obj ANIM_OBJ_13,   8, 0,  11, 4, $4
 	anim_wait 4
-	anim_loop 15, BattleAnim_IceBeam_branch_c98d1
+	anim_loop 15, .loop2
 	anim_wait 48
 	anim_sound 0, 1, SFX_SHINE
 	anim_wait 8
@@ -1061,7 +1060,7 @@ BattleAnim_IceBeam_branch_c98d1: ; c98d1
 
 BattleAnim_Blizzard: ; c98e8
 	anim_1gfx ANIM_GFX_ICE
-BattleAnim_Blizzard_branch_c98ea: ; c98ea
+.loop
 	anim_sound 6, 2, SFX_SHINE
 	anim_obj ANIM_OBJ_11,   8, 0,  11, 0, $63
 	anim_wait 2
@@ -1071,7 +1070,7 @@ BattleAnim_Blizzard_branch_c98ea: ; c98ea
 	anim_sound 6, 2, SFX_SHINE
 	anim_obj ANIM_OBJ_11,   8, 0,  12, 0, $63
 	anim_wait 2
-	anim_loop 3, BattleAnim_Blizzard_branch_c98ea
+	anim_loop 3, .loop
 	anim_bgeffect ANIM_BG_WHITE_HUES, $0, $8, $0
 	anim_wait 32
 	anim_obj ANIM_OBJ_29, -15, 0,   9, 2, $10
@@ -1100,7 +1099,7 @@ BattleAnim_Bubble: ; c991e
 
 BattleAnim_Bubblebeam: ; c993d
 	anim_1gfx ANIM_GFX_BUBBLE
-BattleAnim_Bubblebeam_branch_c993f: ; c993f
+.loop
 	anim_sound 16, 2, SFX_BUBBLEBEAM
 	anim_obj ANIM_OBJ_21,   8, 0,  11, 4, $92
 	anim_wait 6
@@ -1110,7 +1109,7 @@ BattleAnim_Bubblebeam_branch_c993f: ; c993f
 	anim_sound 16, 2, SFX_BUBBLEBEAM
 	anim_obj ANIM_OBJ_21,   8, 0,  11, 4, $f4
 	anim_wait 8
-	anim_loop 3, BattleAnim_Bubblebeam_branch_c993f
+	anim_loop 3, .loop
 	anim_wait 64
 	anim_clearobjs
 	anim_bgeffect ANIM_BG_30, $0, $0, $0
@@ -1189,10 +1188,10 @@ BattleAnim_Surf: ; c9a2a
 	anim_1gfx ANIM_GFX_BUBBLE
 	anim_bgeffect ANIM_BG_SURF, $0, $0, $0
 	anim_obj ANIM_OBJ_22,  11, 0,  13, 0, $8
-BattleAnim_Surf_branch_c9a36: ; c9a36
+.loop
 	anim_sound 0, 1, SFX_SURF
 	anim_wait 32
-	anim_loop 4, BattleAnim_Surf_branch_c9a36
+	anim_loop 4, .loop
 	anim_incobj  1
 	anim_wait 56
 	anim_ret
@@ -2134,9 +2133,9 @@ BattleAnim_Splash: ; ca237
 	anim_1gfx ANIM_GFX_HIT
 	anim_sound 0, 0, SFX_VICEGRIP
 	anim_call BattleAnim_FollowPlayerHead_0
-	anim_bgeffect ANIM_BG_22, $0, $1, $0
+	anim_bgeffect ANIM_BG_BOUNCE_DOWN, $0, $1, $0
 	anim_wait 96
-	anim_incbgeffect ANIM_BG_22
+	anim_incbgeffect ANIM_BG_BOUNCE_DOWN
 	anim_call BattleAnim_ShowMon_0
 	anim_ret
 ; ca24b
@@ -2146,7 +2145,7 @@ BattleAnim_Dig: ; ca24b
 	anim_jumpif $0, .hit
 	anim_jumpif $2, .fail
 	anim_call BattleAnim_FollowPlayerHead_0
-	anim_bgeffect ANIM_BG_23, $0, $1, $1
+	anim_bgeffect ANIM_BG_DIG, $0, $1, $1
 	anim_obj ANIM_OBJ_57,   9, 0,  13, 0, $0
 .loop
 	anim_sound 0, 0, SFX_RAZOR_WIND
@@ -2156,7 +2155,7 @@ BattleAnim_Dig: ; ca24b
 	anim_wait 32
 	anim_bgeffect ANIM_BG_HIDE_MON, $0, $1, $0
 	anim_wait 8
-	anim_incbgeffect ANIM_BG_23
+	anim_incbgeffect ANIM_BG_DIG
 	anim_call BattleAnim_ShowMon_0
 	anim_ret
 
@@ -2229,9 +2228,9 @@ BattleAnim_Tackle: ; ca2ef
 BattleAnim_BodySlam: ; ca307
 	anim_1gfx ANIM_GFX_HIT
 	anim_call BattleAnim_FollowPlayerHead_0
-	anim_bgeffect ANIM_BG_22, $0, $1, $0
+	anim_bgeffect ANIM_BG_BOUNCE_DOWN, $0, $1, $0
 	anim_wait 32
-	anim_incbgeffect ANIM_BG_22
+	anim_incbgeffect ANIM_BG_BOUNCE_DOWN
 	anim_wait 4
 	anim_bgeffect ANIM_BG_25, $0, $1, $0
 	anim_wait 3
@@ -4202,10 +4201,10 @@ BattleAnim_HealBell: ; cb428
 BattleAnim_Return: ; cb464
 	anim_1gfx ANIM_GFX_HIT
 	anim_call BattleAnim_FollowPlayerHead_0
-	anim_bgeffect ANIM_BG_22, $0, $1, $0
+	anim_bgeffect ANIM_BG_BOUNCE_DOWN, $0, $1, $0
 	anim_sound 0, 0, SFX_RETURN
 	anim_wait 64
-	anim_incbgeffect ANIM_BG_22
+	anim_incbgeffect ANIM_BG_BOUNCE_DOWN
 	anim_wait 32
 	anim_bgeffect ANIM_BG_25, $0, $1, $0
 	anim_wait 4
