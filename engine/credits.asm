@@ -1,9 +1,5 @@
 INCLUDE "includes.asm"
 
-wCreditsBorderFrame EQU $cf64
-wCreditsBorderMon   EQU $cf65
-wCreditsLYOverride  EQU $cf66
-
 SECTION "Credits", ROMX, BANK[CREDITS]
 
 	const_def

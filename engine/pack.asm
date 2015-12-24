@@ -1,6 +1,3 @@
-wCurrPocket EQU $cf65
-
-
 Pack: ; 10000
 	ld hl, Options
 	set NO_TEXT_SCROLL, [hl]

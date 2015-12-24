@@ -1532,14 +1532,18 @@ wMomBankDigitCursorPosition::
 wIntroSceneFrameCounter::
 wHoldingUnownPuzzlePiece::
 wCardFlipCursorY::
+wCreditsBorderFrame::
 wcf64:: ds 1
 IF !DEF(CRYSTAL11)
 wPokedexStatus::
 ENDC
+wCreditsBorderMon::
 wTitleScreenTimerLo::
 wUnownPuzzleCursorPosition::
 wCardFlipCursorX::
+wCurrPocket::
 wcf65:: ds 1
+wCreditsLYOverride::
 wTitleScreenTimerHi::
 wUnownPuzzleHeldPiece::
 wCardFlipWhichCard::
@@ -1679,8 +1683,11 @@ FXAnimID::
 FXAnimIDLo:: ; cfc2
 	ds 1
 FXAnimIDHi:: ; cfc3
-	ds 3
-
+	ds 1
+wPlaceBallsX:: ; cfc4
+	ds 1
+wPlaceBallsY:: ; cfc5
+	ds 1
 TileAnimationTimer:: ; cfc6
 	ds 1
 
@@ -1795,11 +1802,13 @@ LuckyNumberDigit2Buffer::
 PhoneCallerLo::
 wNextRadioLine::
 wMovementBufferPerson::
+wPlaceBallsDirection::
 	ds 1
 wd004::
 LuckyNumberDigit3Buffer::
 PhoneCallerHi::
 wRadioTextDelay::
+wTrainerHUDTiles::
 	ds 1
 wd005::
 LuckyNumberDigit4Buffer::

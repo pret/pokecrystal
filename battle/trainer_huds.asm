@@ -1,9 +1,3 @@
-wPlaceBallsDirection EQU $d003
-wTrainerHUDTiles     EQU $d004
-wPlaceBallsX         EQU $cfc4
-wPlaceBallsY         EQU $cfc5
-GLOBAL wPlaceBallsDirection, wTrainerHUDTiles, wPlaceBallsX, wPlaceBallsY
-
 BattleStart_TrainerHuds: ; 2c000
 	ld a, $e4
 	ld [rOBP0], a

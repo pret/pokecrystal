@@ -174,8 +174,6 @@ BattleBGEffect_FlashInverted: ; c80eb (32:40eb)
 	ld de, .inverted
 	jp BattleBGEffect_FlashContinue
 
-; c80f1 (32:40f1)
-
 .inverted
 	db %11100100 ; 3210
 	db %00011011 ; 0123
@@ -184,8 +182,6 @@ BattleBGEffect_FlashInverted: ; c80eb (32:40eb)
 BattleBGEffect_FlashWhite: ; c80f3 (32:40f3)
 	ld de, .white
 	jp BattleBGEffect_FlashContinue
-
-; c80f9 (32:40f9)
 
 .white
 	db %11100100 ; 3210
@@ -295,12 +291,8 @@ BattleBGEffect_06: ; c8171 (32:4171)
 	ld [wOBP0], a
 	ret
 
-; c8185 (32:4185)
-
 .PalsCGB
 	db $e4, $90, $fe
-; c8188
-
 .PalsSGB
 	db $f0, $c0, $fe
 ; c818b
@@ -318,12 +310,8 @@ BattleBGEffect_07: ; c818b (32:418b)
 	ld [wOBP0], a
 	ret
 
-; c819f (32:419f)
-
 .PalsCGB
 	db $e4, $d8, $fe
-; c81a2
-
 .PalsSGB
 	db $f0, $cc, $fe
 ; c81a5
@@ -333,8 +321,6 @@ BattleBGEffect_08: ; c81a5 (32:41a5)
 	call Functionc8d57
 	ld [wBGP], a
 	ret
-
-; c81af (32:41af)
 
 .Pals
 	db $1b, $63, $87, $fe
@@ -399,13 +385,9 @@ BattleBGEffect_ShowMon: ; c81ea (32:41ea)
 	call BattleBGEffect_RunPicResizeScript
 	ret
 
-; c820c (32:420c)
-
 .PlayerData
 	db  0, $31, 0
 	db -1
-; c8210
-
 .EnemyData
 	db  3, $00, 3
 	db -1
@@ -668,15 +650,11 @@ BattleBGEffect_EnterMon: ; c837b (32:437b)
 	call BattleBGEffect_RunPicResizeScript
 	ret
 
-; c8394 (32:4394)
-
 .PlayerData
 	db  2, $31, 2
 	db  1, $31, 1
 	db  0, $31, 0
 	db -1
-; c839e
-
 .EnemyData
 	db  5, $00, 5
 	db  4, $00, 4
@@ -700,8 +678,6 @@ BattleBGEffect_ReturnMon: ; c83a8 (32:43a8)
 	call BattleBGEffect_RunPicResizeScript
 	ret
 
-; c83c1 (32:43c1)
-
 .PlayerData
 	db  0, $31, 0
 	db -2, $66, 0
@@ -711,8 +687,6 @@ BattleBGEffect_ReturnMon: ; c83a8 (32:43a8)
 	db -2, $22, 2
 	db -3, $00, 0
 	db -1
-; c83d7
-
 .EnemyData
 	db  3, $00, 3
 	db -2, $77, 3
@@ -1650,12 +1624,12 @@ BattleBGEffect_2f: ; c8919 (32:4919)
 BattleBGEffect_26: ; c892a (32:492a)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc8933
-	dw Functionc894a
-	dw Functionc8960
+	dw .zero
+	dw .one
+	dw .two
 
 
-Functionc8933: ; c8933 (32:4933)
+.zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
@@ -1668,7 +1642,7 @@ Functionc8933: ; c8933 (32:4933)
 	ld [hl], $0
 	ret
 
-Functionc894a: ; c894a (32:494a)
+.one
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
@@ -1682,19 +1656,19 @@ Functionc894a: ; c894a (32:494a)
 	ld [hl], a
 	ret
 
-Functionc8960: ; c8960 (32:4960)
+.two
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_2c: ; c8964 (32:4964)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc896d
-	dw Functionc8985
-	dw Functionc89b1
+	dw .zero
+	dw .one
+	dw .two
 
 
-Functionc896d: ; c896d (32:496d)
+.zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
@@ -1709,7 +1683,7 @@ Functionc896d: ; c896d (32:496d)
 	ld [hl], a
 	ret
 
-Functionc8985: ; c8985 (32:4985)
+.one
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
@@ -1737,26 +1711,26 @@ Functionc8985: ; c8985 (32:4985)
 	ld [hl], a
 	ret
 
-Functionc89b1: ; c89b1 (32:49b1)
+.two
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_28: ; c89b5 (32:49b5)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc89be
-	dw Functionc89ca
-	dw Functionc89da
+	dw .zero
+	dw .one
+	dw .two
 
 
-Functionc89be: ; c89be (32:49be)
+.zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
 	call Functionc8ede
 	ret
 
-Functionc89ca: ; c89ca (32:49ca)
+.one
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
@@ -1768,19 +1742,19 @@ Functionc89ca: ; c89ca (32:49ca)
 	call Functionc8f2e
 	ret
 
-Functionc89da: ; c89da (32:49da)
+.two
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_c89ea
+	jr z, .reset
 	dec [hl]
 	ld d, a
 	ld e, 4
 	call Functionc8f2e
 	ret
 
-.asm_c89ea
+.reset
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
@@ -1949,11 +1923,11 @@ endr
 BattleBGEffect_2b: ; c8acc (32:4acc)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc8ad3
-	dw Functionc8ae5
+	dw .zero
+	dw .one
 
 
-Functionc8ad3: ; c8ad3 (32:4ad3)
+.zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
@@ -1963,7 +1937,7 @@ Functionc8ad3: ; c8ad3 (32:4ad3)
 	ld [hl], $40
 	ret
 
-Functionc8ae5: ; c8ae5 (32:4ae5)
+.one
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
@@ -1986,15 +1960,15 @@ Functionc8ae5: ; c8ae5 (32:4ae5)
 BattleBGEffect_1c: ; c8b00 (32:4b00)
 	ld a, [hCGB]
 	and a
-	jr nz, asm_c8b7a
+	jr nz, .cgb
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc8b0e
-	dw Functionc8b22
-	dw Functionc8b60
+	dw .zero
+	dw .one
+	dw .two
 
 
-Functionc8b0e: ; c8b0e (32:4b0e)
+.zero
 	call BattleBGEffects_IncrementJumptable
 	ld a, $e4
 	call BattleBGEffects_SetLYOverrides
@@ -2006,7 +1980,7 @@ Functionc8b0e: ; c8b0e (32:4b0e)
 	ld [hLCDStatCustom + 2], a
 	ret
 
-Functionc8b22: ; c8b22 (32:4b22)
+.one
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
@@ -2023,74 +1997,68 @@ Functionc8b22: ; c8b22 (32:4b22)
 	ld d, $0
 	push bc
 	call BGEffect_CheckBattleTurn
-	jr nz, .asm_c8b4d
-	ld hl, Unknown_c8bd8
+	jr nz, .player
+	ld hl, .CGB_DMGEnemyData
 	add hl, de
 	ld a, [hli]
 	ld [wOBP1], a
 	ld d, a
 	ld e, [hl]
-	ld bc, $2f30
-	jr .asm_c8b5b
+	lb bc, $2f, $30
+	jr .okay
 
-.asm_c8b4d
-	ld hl, Unknown_c8be0
+.player
+	ld hl, .DMG_PlayerData
 	add hl, de
 	ld d, [hl]
 	inc hl
 	ld a, [hl]
 	ld [wOBP1], a
 	ld e, a
-	ld bc, $3728
-.asm_c8b5b
-	call Functionc8b6c
+	lb bc, $37, $28
+.okay
+	call .DMG_LYOverrideLoads
 	pop bc
 	ret
 
-Functionc8b60: ; c8b60 (32:4b60)
+.two
 	call Functionc8f19
 	ld a, $e4
 	ld [wBGP], a
 	ld [wOBP1], a
 	ret
 
-Functionc8b6c: ; c8b6c (32:4b6c)
+.DMG_LYOverrideLoads
 	ld hl, LYOverridesBackup
-.asm_c8b6f
+.loop1
 	ld [hl], d
 	inc hl
 	dec b
-	jr nz, .asm_c8b6f
-.asm_c8b74
+	jr nz, .loop1
+.loop2
 	ld [hl], e
 	inc hl
 	dec c
-	jr nz, .asm_c8b74
+	jr nz, .loop2
 	ret
 
-asm_c8b7a: ; c8b7a (32:4b7a)
-	ld de, Jumptable_c8b81
+.cgb
+	ld de, .Jumptable
 	call BatttleBGEffects_GetNamedJumptablePointer
 	jp [hl]
 
-; c8b81 (32:4b81)
-
-Jumptable_c8b81: ; c8b81
-	dw Functionc8b87
-	dw Functionc8b91
-	dw Functionc8bca
-; c8b87
-
-Functionc8b87: ; c8b87
+.Jumptable
+	dw .cgb_zero
+	dw .cgb_one
+	dw .cgb_two
+.cgb_zero
 	call BattleBGEffects_IncrementJumptable
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld [hl], $0
 	ret
 
-; c8b91
-
-Functionc8b91: ; c8b91
+.cgb_one
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
@@ -2106,48 +2074,42 @@ Functionc8b91: ; c8b91
 	ld e, a
 	ld d, 0
 	call BGEffect_CheckBattleTurn
-	jr nz, .asm_c8bbb
-	ld hl, Unknown_c8bd8
+	jr nz, .player_2
+	ld hl, .CGB_DMGEnemyData
 	add hl, de
 	ld a, [hli]
 	push hl
-	call Functionc8e7f
+	call BGEffects_LoadBGPal1_OBPal0
 	pop hl
 	ld a, [hl]
-	call Functionc8e52
+	call BGEffects_LoadBGPal0_OBPal1
 	ret
 
-.asm_c8bbb
-	ld hl, Unknown_c8bd8
+.player_2
+	ld hl, .CGB_DMGEnemyData
 	add hl, de
 	ld a, [hli]
 	push hl
-	call Functionc8e52
+	call BGEffects_LoadBGPal0_OBPal1
 	pop hl
 	ld a, [hl]
-	call Functionc8e7f
+	call BGEffects_LoadBGPal1_OBPal0
 	ret
 
-; c8bca
-
-Functionc8bca: ; c8bca
+.cgb_two
 	ld a, $e4
-	call Functionc8e52
+	call BGEffects_LoadBGPal0_OBPal1
 	ld a, $e4
-	call Functionc8e7f
+	call BGEffects_LoadBGPal1_OBPal0
 	call EndBattleBGEffect
 	ret
 
-; c8bd8
-
-Unknown_c8bd8: ; c8bd8
+.CGB_DMGEnemyData
 	db $e4, $e4
 	db $f8, $90
 	db $fc, $40
 	db $f8, $90
-; c8be0
-
-Unknown_c8be0: ; c8be0
+.DMG_PlayerData
 	db $e4, $e4
 	db $90, $f8
 	db $40, $fc
@@ -2155,112 +2117,94 @@ Unknown_c8be0: ; c8be0
 ; c8be8
 
 BattleBGEffect_RapidFlash: ; c8be8 (32:4be8)
-	ld de, Unknown_c8bef
-	call Functionc8d77
+	ld de, .FlashPals
+	call BGEffect_RapidCyclePals
 	ret
 
-; c8bef (32:4bef)
-
-Unknown_c8bef: ; c8bef
+.FlashPals
 	db $e4, $6c, $fe
 ; c8bf2
 
 BattleBGEffect_16: ; c8bf2 (32:4bf2)
-	ld de, Unknown_c8bf9
-	call Functionc8d77
+	ld de, .Pals
+	call BGEffect_RapidCyclePals
 	ret
 
-; c8bf9 (32:4bf9)
-
-Unknown_c8bf9: ; c8bf9
+.Pals
 	db $e4, $90, $40, $ff
 ; c8bfd
 
 BattleBGEffect_17: ; c8bfd (32:4bfd)
-	ld de, Unknown_c8c04
-	call Functionc8d77
+	ld de, .Pals
+	call BGEffect_RapidCyclePals
 	ret
 
-; c8c04 (32:4c04)
-
-Unknown_c8c04: ; c8c04
+.Pals
 	db $e4, $f8, $fc, $ff
 ; c8c08
 
 BattleBGEffect_18: ; c8c08 (32:4c08)
-	ld de, Unknown_c8c0f
-	call Functionc8d77
+	ld de, .Pals
+	call BGEffect_RapidCyclePals
 	ret
 
-; c8c0f (32:4c0f)
-
-Unknown_c8c0f: ; c8c0f
+.Pals
 	db $e4, $90, $40, $90, $fe
 ; c8c14
 
 BattleBGEffect_19: ; c8c14 (32:4c14)
-	ld de, Unknown_c8c1b
-	call Functionc8d77
+	ld de, .Pals
+	call BGEffect_RapidCyclePals
 	ret
 
-; c8c1b (32:4c1b)
-
-Unknown_c8c1b: ; c8c1b
+.Pals
 	db $e4, $f8, $fc, $f8, $fe
 ; c8c20
 
 BattleBGEffect_1a: ; c8c20 (32:4c20)
-	ld de, Unknown_c8c27
-	call Functionc8d77
+	ld de, .Pals
+	call BGEffect_RapidCyclePals
 	ret
 
-; c8c27 (32:4c27)
-
-Unknown_c8c27: ; c8c27
+.Pals
 	db $e4, $f8, $fc, $f8, $e4, $90, $40, $90, $fe
 ; c8c30
 
 BattleBGEffect_1b: ; c8c30 (32:4c30)
-	ld de, Unknown_c8c37
-	call Functionc8d77
+	ld de, .Pals
+	call BGEffect_RapidCyclePals
 	ret
 
-; c8c37 (32:4c37)
-
-Unknown_c8c37:
+.Pals
 	db $e4, $fc, $e4, $00, $fe
 ; c8c3c
 
 BattleBGEffect_1d: ; c8c3c (32:4c3c)
-	ld de, Unknown_c8c43
-	call Functionc8d77
+	ld de, .Pals
+	call BGEffect_RapidCyclePals
 	ret
 
-; c8c43 (32:4c43)
-
-Unknown_c8c43:
+.Pals
 	db $e4, $90, $40, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $40, $90, $e4, $ff
 ; c8c55
 
 BattleBGEffect_1e: ; c8c55 (32:4c55)
-	ld de, Unknown_c8c5c
-	call Functionc8d77
+	ld de, .Pals
+	call BGEffect_RapidCyclePals
 	ret
 
-; c8c5c (32:4c5c)
-
-Unknown_c8c5c:
+.Pals
 	db $00, $40, $90, $e4, $ff
 ; c8c61
 
 BattleBGEffect_VibrateMon: ; c8c61 (32:4c61)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc8c68
-	dw Functionc8c85
+	dw .zero
+	dw .one
 
 
-Functionc8c68: ; c8c68 (32:4c68)
+.zero: ; c8c68 (32:4c68)
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
@@ -2276,12 +2220,12 @@ Functionc8c68: ; c8c68 (32:4c68)
 	ld [hl], $20
 	ret
 
-Functionc8c85: ; c8c85 (32:4c85)
+.one: ; c8c85 (32:4c85)
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_c8c9e
+	jr z, .finish
 	dec [hl]
 	and $1
 	ret nz
@@ -2294,19 +2238,19 @@ Functionc8c85: ; c8c85 (32:4c85)
 	call Functionc900b
 	ret
 
-.asm_c8c9e
+.finish
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_WobbleMon: ; c8ca2 (32:4ca2)
 	call BattleBGEffects_AnonJumptable
 .anon_jumptable
-	dw Functionc8cab
-	dw Functionc8cc3
-	dw Functionc8cdd
+	dw .zero
+	dw .one
+	dw .two
 
 
-Functionc8cab: ; c8cab (32:4cab)
+.zero: ; c8cab (32:4cab)
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
@@ -2320,12 +2264,12 @@ Functionc8cab: ; c8cab (32:4cab)
 	ld [hl], $0
 	ret
 
-Functionc8cc3: ; c8cc3 (32:4cc3)
+.one: ; c8cc3 (32:4cc3)
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
 	cp $40
-	jr nc, Functionc8cdd
+	jr nc, .two
 	ld d, $6
 	call BattleBGEffects_Sine
 	call Functionc900b
@@ -2336,40 +2280,40 @@ Functionc8cc3: ; c8cc3 (32:4cc3)
 	ld [hl], a
 	ret
 
-Functionc8cdd: ; c8cdd (32:4cdd)
+.two: ; c8cdd (32:4cdd)
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
 BattleBGEffect_2e: ; c8ce1 (32:4ce1)
 	call Functionc8d0b
-	jr c, .asm_c8cea
+	jr c, .xor_a
 	bit 7, a
-	jr z, .asm_c8ceb
-.asm_c8cea
+	jr z, .okay
+.xor_a
 	xor a
-.asm_c8ceb
+.okay
 	push af
 	call DelayFrame
 	pop af
 	ld [hSCY], a
 	xor $ff
 	inc a
-	ld [OTPartyMon3SpclAtk], a
+	ld [AnimObject01_YOffset], a
 	ret
 
 BattleBGEffect_1f: ; c8cf9 (32:4cf9)
 	call Functionc8d0b
-	jr nc, .asm_c8cff
+	jr nc, .skip
 	xor a
-.asm_c8cff
+.skip
 	ld [hSCX], a
 	ret
 
 BattleBGEffect_20: ; c8d02 (32:4d02)
 	call Functionc8d0b
-	jr nc, .asm_c8d08
+	jr nc, .skip
 	xor a
-.asm_c8d08
+.skip
 	ld [hSCY], a
 	ret
 
@@ -2378,18 +2322,18 @@ Functionc8d0b: ; c8d0b (32:4d0b)
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr nz, .asm_c8d18
+	jr nz, .okay
 	call EndBattleBGEffect
 	scf
 	ret
 
-.asm_c8d18
+.okay
 	dec [hl]
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
 	and $f
-	jr z, .asm_c8d2a
+	jr z, .every_16_frames
 	dec [hl]
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
@@ -2397,7 +2341,7 @@ Functionc8d0b: ; c8d0b (32:4d0b)
 	and a
 	ret
 
-.asm_c8d2a
+.every_16_frames
 	ld a, [hl]
 	swap a
 	or [hl]
@@ -2416,7 +2360,7 @@ BattleBGEffect_35: ; c8d3a (32:4d3a)
 	add hl, bc
 	ld a, [hl]
 	cp $40
-	jr nc, .asm_c8d53
+	jr nc, .finish
 	ld d, $6
 	call BattleBGEffects_Sine
 	ld [hSCX], a
@@ -2427,7 +2371,7 @@ BattleBGEffect_35: ; c8d3a (32:4d3a)
 	ld [hl], a
 	ret
 
-.asm_c8d53
+.finish
 	xor a
 	ld [hSCX], a
 	ret
@@ -2437,7 +2381,7 @@ Functionc8d57: ; c8d57 (32:4d57)
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_c8d69
+	jr z, .zero
 
 	dec [hl]
 	ld hl, BG_EFFECT_STRUCT_03
@@ -2446,7 +2390,7 @@ Functionc8d57: ; c8d57 (32:4d57)
 	call Functionc8eb2
 	ret
 
-.asm_c8d69
+.zero
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
@@ -2456,23 +2400,23 @@ Functionc8d57: ; c8d57 (32:4d57)
 	call Functionc8eac
 	ret
 
-Functionc8d77: ; c8d77 (32:4d77)
+BGEffect_RapidCyclePals: ; c8d77 (32:4d77)
 	ld a, [hCGB]
 	and a
-	jr nz, asm_c8dd4
+	jr nz, .cgb
 	push de
-	ld de, Jumptable_c8d85
+	ld de, .Jumptable_DMG
 	call BatttleBGEffects_GetNamedJumptablePointer
 	pop de
 	jp [hl]
 
-Jumptable_c8d85: ; c8d85 (32:4d85)
-	dw Functionc8d8b
-	dw Functionc8daa
-	dw Functionc8dc9
+.Jumptable_DMG
+	dw .zero_dmg
+	dw .one_dmg
+	dw .two_dmg
 
 
-Functionc8d8b: ; c8d8b (32:4d8b)
+.zero_dmg: ; c8d8b (32:4d8b)
 	call BattleBGEffects_IncrementJumptable
 	ld a, $e4
 	call BattleBGEffects_SetLYOverrides
@@ -2490,59 +2434,59 @@ Functionc8d8b: ; c8d8b (32:4d8b)
 	ld [hl], a
 	ret
 
-Functionc8daa: ; c8daa (32:4daa)
+.one_dmg: ; c8daa (32:4daa)
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	and $f
-	jr z, .asm_c8db5
+	jr z, .okay_1_dmg
 	dec [hl]
 	ret
 
-.asm_c8db5
+.okay_1_dmg
 	ld a, [hl]
 	swap a
 	or [hl]
 	ld [hl], a
 	call Functionc8eac
-	jr c, .asm_c8dc3
+	jr c, .okay_2_dmg
 	call Functionc900b
 	ret
 
-.asm_c8dc3
+.okay_2_dmg
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	dec [hl]
 	ret
 
-Functionc8dc9: ; c8dc9 (32:4dc9)
+.two_dmg: ; c8dc9 (32:4dc9)
 	call Functionc8f19
 	ld a, $e4
 	ld [rBGP], a
 	call EndBattleBGEffect
 	ret
 
-asm_c8dd4: ; c8dd4 (32:4dd4)
+.cgb
 	push de
-	ld de, Jumptable_c8ddd
+	ld de, .Jumptable_CGB
 	call BatttleBGEffects_GetNamedJumptablePointer
 	pop de
 	jp [hl]
 
-Jumptable_c8ddd: ; c8ddd (32:4ddd)
-	dw Functionc8de7
-	dw Functionc8e02
-	dw Functionc8e21
-	dw Functionc8e2a
-	dw Functionc8e49
+.Jumptable_CGB: ; c8ddd (32:4ddd)
+	dw .zero_cgb
+	dw .one_cgb
+	dw .two_cgb
+	dw .three_cgb
+	dw .four_cgb
 
 
-Functionc8de7: ; c8de7 (32:4de7)
+.zero_cgb: ; c8de7 (32:4de7)
 	call BGEffect_CheckBattleTurn
-	jr nz, .asm_c8df2
+	jr nz, .player_turn_cgb
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_IncrementJumptable
-.asm_c8df2
+.player_turn_cgb
 	call BattleBGEffects_IncrementJumptable
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
@@ -2553,69 +2497,69 @@ Functionc8de7: ; c8de7 (32:4de7)
 	ld [hl], a
 	ret
 
-Functionc8e02: ; c8e02 (32:4e02)
+.one_cgb: ; c8e02 (32:4e02)
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	and $f
-	jr z, .asm_c8e0d
+	jr z, .okay_1_cgb
 	dec [hl]
 	ret
 
-.asm_c8e0d
+.okay_1_cgb
 	ld a, [hl]
 	swap a
 	or [hl]
 	ld [hl], a
 	call Functionc8eac
-	jr c, .asm_c8e1b
-	call Functionc8e52
+	jr c, .okay_2_cgb
+	call BGEffects_LoadBGPal0_OBPal1
 	ret
 
-.asm_c8e1b
+.okay_2_cgb
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	dec [hl]
 	ret
 
-Functionc8e21: ; c8e21 (32:4e21)
+.two_cgb: ; c8e21 (32:4e21)
 	ld a, $e4
-	call Functionc8e52
+	call BGEffects_LoadBGPal0_OBPal1
 	call EndBattleBGEffect
 	ret
 
-Functionc8e2a: ; c8e2a (32:4e2a)
+.three_cgb: ; c8e2a (32:4e2a)
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	and $f
-	jr z, .asm_c8e35
+	jr z, .okay_3_cgb
 	dec [hl]
 	ret
 
-.asm_c8e35
+.okay_3_cgb
 	ld a, [hl]
 	swap a
 	or [hl]
 	ld [hl], a
 	call Functionc8eac
-	jr c, .asm_c8e43
-	call Functionc8e7f
+	jr c, .okay_4_cgb
+	call BGEffects_LoadBGPal1_OBPal0
 	ret
 
-.asm_c8e43
+.okay_4_cgb
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	dec [hl]
 	ret
 
-Functionc8e49: ; c8e49 (32:4e49)
+.four_cgb: ; c8e49 (32:4e49)
 	ld a, $e4
-	call Functionc8e7f
+	call BGEffects_LoadBGPal1_OBPal0
 	call EndBattleBGEffect
 	ret
 
-Functionc8e52: ; c8e52 (32:4e52)
+BGEffects_LoadBGPal0_OBPal1: ; c8e52 (32:4e52)
 	ld h, a
 	ld a, [rSVBK]
 	push af
@@ -2642,7 +2586,7 @@ Functionc8e52: ; c8e52 (32:4e52)
 	ld [hCGBPalUpdate], a
 	ret
 
-Functionc8e7f: ; c8e7f (32:4e7f)
+BGEffects_LoadBGPal1_OBPal0: ; c8e7f (32:4e7f)
 	ld h, a
 	ld a, [rSVBK]
 	push af
