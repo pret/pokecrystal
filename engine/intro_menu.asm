@@ -362,13 +362,13 @@ Continue: ; 5d65
 	call DelayFrames
 	call ConfirmContinue
 	jr nc, .Check1Pass
-	call WriteBackup
+	call CloseWindow
 	jr .FailToLoad
 
 .Check1Pass
 	call Continue_CheckRTC_RestartClock
 	jr nc, .Check2Pass
-	call WriteBackup
+	call CloseWindow
 	jr .FailToLoad
 
 .Check2Pass
@@ -380,7 +380,7 @@ Continue: ; 5d65
 	ld [MusicFadeIDHi], a
 	call ClearBGPalettes
 	call Continue_MobileAdapterMenu
-	call WriteBackup
+	call CloseWindow
 	call ClearTileMap
 	ld c, 20
 	call DelayFrames
@@ -832,7 +832,7 @@ Function60e9: ; Unreferenced
 	ld a, [wMenuCursorY]
 	dec a
 	call CopyNameFromMenu
-	call WriteBackup
+	call CloseWindow
 	ret
 ; 60fa
 

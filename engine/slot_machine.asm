@@ -1712,7 +1712,7 @@ Slots_AskBet: ; 9307c (24:707c)
 	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
 	call VerticalMenu
-	call WriteBackup
+	call CloseWindow
 	ret c
 	ld a, [wMenuCursorY]
 	ld b, a
@@ -1802,7 +1802,7 @@ Slots_AskPlayAgain: ; 930e9 (24:70e9)
 	call PlaceYesNoBox
 	ld a, [wMenuCursorY]
 	dec a
-	call WriteBackup
+	call CloseWindow
 	and a
 	jr nz, .exit_slots
 	and a

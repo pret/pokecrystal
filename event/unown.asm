@@ -153,7 +153,7 @@ endr
 	call WaitBGMap2
 	call JoyWaitAorB
 	call PlayClickSFX
-	call WriteBackup
+	call CloseWindow
 	ret
 ; 8aebc
 

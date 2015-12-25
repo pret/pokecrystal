@@ -23,7 +23,7 @@ PokemonCenterPC: ; 1559a
 .shutdown
 	call PC_PlayShutdownSound
 	call ExitMenu
-	call WriteBackup
+	call CloseWindow
 	ret
 ; 155d6
 

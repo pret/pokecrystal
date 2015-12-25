@@ -131,7 +131,7 @@ Elevator_AskWhichFloor: ; 134dd
 	xor a
 	ld [wMenuScrollPosition], a
 	call ScrollingMenu
-	call WriteBackup
+	call CloseWindow
 	ld a, [wMenuJoypad]
 	cp B_BUTTON
 	jr z, .cancel

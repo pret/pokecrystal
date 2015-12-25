@@ -456,7 +456,7 @@ Special_Menu_ChallengeExplanationCancel: ; 17d224
 .Load_Interpret
 	call LoadMenuDataHeader
 	call Function17d246
-	call WriteBackup
+	call CloseWindow
 	ret
 ; 17d246
 
@@ -1939,7 +1939,7 @@ Function17dc1f: ; 17dc1f
 	ld [wMenuCursorY], a
 
 .asm_17dc6e
-	call WriteBackup
+	call CloseWindow
 	pop af
 	ld [rSVBK], a
 	ld a, [wMenuCursorY]

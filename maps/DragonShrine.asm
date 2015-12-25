@@ -34,7 +34,7 @@ DragonShrineTestScript:
 	buttonsound
 	loadmenudata MenuDataHeader_0x18d215
 	verticalmenu
-	writebackup
+	closewindow
 	if_equal $1, .RightAnswer
 	if_equal $2, .WrongAnswer
 	if_equal $3, .RightAnswer
@@ -46,7 +46,7 @@ DragonShrineTestScript:
 	buttonsound
 	loadmenudata MenuDataHeader_0x18d234
 	verticalmenu
-	writebackup
+	closewindow
 	if_equal $1, .RightAnswer
 	if_equal $2, .RightAnswer
 	if_equal $3, .WrongAnswer
@@ -56,7 +56,7 @@ DragonShrineTestScript:
 	buttonsound
 	loadmenudata MenuDataHeader_0x18d258
 	verticalmenu
-	writebackup
+	closewindow
 	if_equal $1, .WrongAnswer
 	if_equal $2, .RightAnswer
 	if_equal $3, .RightAnswer
@@ -66,7 +66,7 @@ DragonShrineTestScript:
 	buttonsound
 	loadmenudata MenuDataHeader_0x18d283
 	verticalmenu
-	writebackup
+	closewindow
 	if_equal $1, .RightAnswer
 	if_equal $2, .WrongAnswer
 	if_equal $3, .RightAnswer
@@ -76,7 +76,7 @@ DragonShrineTestScript:
 	buttonsound
 	loadmenudata MenuDataHeader_0x18d2a5
 	verticalmenu
-	writebackup
+	closewindow
 	if_equal $1, .WrongAnswer
 	if_equal $2, .RightAnswer
 	if_equal $3, .WrongAnswer

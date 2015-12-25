@@ -1,23 +1,23 @@
 	const_def
-	const DAYCARETEXT_00
-	const DAYCARETEXT_01
-	const DAYCARETEXT_02
-	const DAYCARETEXT_03
-	const DAYCARETEXT_04
-	const DAYCARETEXT_05
-	const DAYCARETEXT_06
-	const DAYCARETEXT_07
-	const DAYCARETEXT_08
-	const DAYCARETEXT_09
-	const DAYCARETEXT_0A
-	const DAYCARETEXT_0B
-	const DAYCARETEXT_0C
-	const DAYCARETEXT_0D
-	const DAYCARETEXT_0E
-	const DAYCARETEXT_0F
-	const DAYCARETEXT_10
-	const DAYCARETEXT_11
-	const DAYCARETEXT_12
+	const DAYCARETEXT_MAN_INTRO
+	const DAYCARETEXT_MAN_EGG
+	const DAYCARETEXT_LADY_INTRO
+	const DAYCARETEXT_LADY_EGG
+	const DAYCARETEXT_WHICH_ONE
+	const DAYCARETEXT_DEPOSIT
+	const DAYCARETEXT_CANT_BREED_EGG
+	const DAYCARETEXT_LAST_MON
+	const DAYCARETEXT_LAST_ALIVE_MON
+	const DAYCARETEXT_COME_BACK_LATER
+	const DAYCARETEXT_REMOVE_MAIL
+	const DAYCARETEXT_GENIUSES
+	const DAYCARETEXT_ASK_WITHDRAW
+	const DAYCARETEXT_WITHDRAW
+	const DAYCARETEXT_TOO_SOON
+	const DAYCARETEXT_PARTY_FULL
+	const DAYCARETEXT_NOT_ENOUGH_MONEY
+	const DAYCARETEXT_OH_FINE
+	const DAYCARETEXT_COME_AGAIN
 	const DAYCARETEXT_13
 
 Special_DayCareMan: ; 166d6
@@ -25,12 +25,12 @@ Special_DayCareMan: ; 166d6
 	bit 0, [hl]
 	jr nz, .AskWithdrawMon
 	ld hl, wDaycareMan
-	ld a, DAYCARETEXT_00
+	ld a, DAYCARETEXT_MAN_INTRO
 	call DayCareManIntroText
 	jr c, .cancel
 	call DayCareAskDepositPokemon
 	jr c, .print_text
-	callba Functionde2a
+	callba DepositMonWithDaycareMan
 	ld hl, wDaycareMan
 	set 0, [hl]
 	call DayCare_DepositPokemonText
@@ -38,13 +38,13 @@ Special_DayCareMan: ; 166d6
 	ret
 
 .AskWithdrawMon
-	callba Functione698
+	callba GetBreedMon1LevelGrowth
 	ld hl, wBreedMon1Nick
-	call Function1686d
-	call Function16807
+	call GetPriceToRetrieveBreedmon
+	call DayCare_AskWithdrawBreedMon
 	jr c, .print_text
-	callba Functiondd21
-	call Function16850
+	callba RetrievePokemonFromDaycareMan
+	call DayCare_TakeMoney_PlayCry
 	ld hl, wDaycareMan
 	res 0, [hl]
 	res 5, [hl]
@@ -64,12 +64,12 @@ Special_DayCareLady: ; 1672a
 	bit 0, [hl]
 	jr nz, .AskWithdrawMon
 	ld hl, wDaycareLady
-	ld a, DAYCARETEXT_02
+	ld a, DAYCARETEXT_LADY_INTRO
 	call DayCareLadyIntroText
 	jr c, .cancel
 	call DayCareAskDepositPokemon
 	jr c, .print_text
-	callba Functionde37
+	callba DepositMonWithDaycareLady
 	ld hl, wDaycareLady
 	set 0, [hl]
 	call DayCare_DepositPokemonText
@@ -77,13 +77,13 @@ Special_DayCareLady: ; 1672a
 	ret
 
 .AskWithdrawMon
-	callba Functione6b3
+	callba GetBreedMon2LevelGrowth
 	ld hl, wBreedMon2Nick
-	call Function1686d
-	call Function16807
+	call GetPriceToRetrieveBreedmon
+	call DayCare_AskWithdrawBreedMon
 	jr c, .print_text
-	callba Functiondd42
-	call Function16850
+	callba RetrievePokemonFromDaycareLady
+	call DayCare_TakeMoney_PlayCry
 	ld hl, wDaycareLady
 	res 0, [hl]
 	ld hl, wDaycareMan
@@ -121,7 +121,7 @@ DayCareAskDepositPokemon: ; 16798
 	ld a, [PartyCount]
 	cp 2
 	jr c, .OnlyOneMon
-	ld a, DAYCARETEXT_04
+	ld a, DAYCARETEXT_WHICH_ONE
 	call PrintDayCareText
 	ld b, 6
 	callba SelectTradeOrDaycareMon
@@ -145,27 +145,27 @@ DayCareAskDepositPokemon: ; 16798
 	ret
 
 .Declined
-	ld a, DAYCARETEXT_12
+	ld a, DAYCARETEXT_COME_AGAIN
 	scf
 	ret
 
 .Egg
-	ld a, DAYCARETEXT_06
+	ld a, DAYCARETEXT_CANT_BREED_EGG
 	scf
 	ret
 
 .OnlyOneMon
-	ld a, DAYCARETEXT_07
+	ld a, DAYCARETEXT_LAST_MON
 	scf
 	ret
 
 .OutOfUsableMons
-	ld a, DAYCARETEXT_08
+	ld a, DAYCARETEXT_LAST_ALIVE_MON
 	scf
 	ret
 
 .HoldingMail
-	ld a, DAYCARETEXT_0A
+	ld a, DAYCARETEXT_REMOVE_MAIL
 	scf
 	ret
 ; 167f1
@@ -177,76 +177,76 @@ DayCareAskDepositPokemon: ; 16798
 ; 0x167f6
 
 DayCare_DepositPokemonText: ; 167f6
-	ld a, DAYCARETEXT_05
+	ld a, DAYCARETEXT_DEPOSIT
 	call PrintDayCareText
 	ld a, [CurPartySpecies]
 	call PlayCry
-	ld a, DAYCARETEXT_09
+	ld a, DAYCARETEXT_COME_BACK_LATER
 	call PrintDayCareText
 	ret
 ; 16807
 
-Function16807: ; 16807
+DayCare_AskWithdrawBreedMon: ; 16807
 	ld a, [StringBuffer2 + 1]
 	and a
-	jr nz, .asm_16819
-	ld a, $f
+	jr nz, .grew_at_least_one_level
+	ld a, DAYCARETEXT_PARTY_FULL
 	call PrintDayCareText
 	call YesNoBox
-	jr c, .asm_16844
-	jr .asm_1682d
+	jr c, .refused
+	jr .check_money
 
-.asm_16819
-	ld a, $b
+.grew_at_least_one_level
+	ld a, DAYCARETEXT_GENIUSES
 	call PrintDayCareText
 	call YesNoBox
-	jr c, .asm_16844
-	ld a, $c
+	jr c, .refused
+	ld a, DAYCARETEXT_ASK_WITHDRAW
 	call PrintDayCareText
 	call YesNoBox
-	jr c, .asm_16844
+	jr c, .refused
 
-.asm_1682d
+.check_money
 	ld de, Money
 	ld bc, StringBuffer2 + 2
 	callba CompareMoney
-	jr c, .asm_16848
+	jr c, .not_enough_money
 	ld a, [PartyCount]
-	cp $6
-	jr nc, .asm_1684c
+	cp PARTY_LENGTH
+	jr nc, .PartyFull
 	and a
 	ret
 
-.asm_16844
-	ld a, $12
+.refused
+	ld a, DAYCARETEXT_COME_AGAIN
 	scf
 	ret
 
-.asm_16848
-	ld a, $11
+.not_enough_money
+	ld a, DAYCARETEXT_OH_FINE
 	scf
 	ret
 
-.asm_1684c
-	ld a, $10
+.PartyFull
+	ld a, DAYCARETEXT_NOT_ENOUGH_MONEY
 	scf
 	ret
 ; 16850
 
-Function16850: ; 16850
+DayCare_TakeMoney_PlayCry: ; 16850
 	ld bc, StringBuffer2 + 2
 	ld de, Money
 	callba TakeMoney
-	ld a, $d
+	ld a, DAYCARETEXT_WITHDRAW
 	call PrintDayCareText
 	ld a, [CurPartySpecies]
 	call PlayCry
-	ld a, $e
+	ld a, DAYCARETEXT_TOO_SOON
 	call PrintDayCareText
 	ret
 ; 1686d
 
-Function1686d: ; 1686d
+GetPriceToRetrieveBreedmon: ; 1686d
 	ld a, b
 	ld [StringBuffer2], a
 	ld a, d
@@ -255,10 +255,10 @@ Function1686d: ; 1686d
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	ld hl, 0
-	ld bc, $64
+	ld bc, 100
 	ld a, [StringBuffer2 + 1]
 	call AddNTimes
-	ld de, $64
+	ld de, 100
 	add hl, de
 	xor a
 	ld [StringBuffer2 + 2], a
@@ -272,7 +272,7 @@ Function1686d: ; 1686d
 PrintDayCareText: ; 1689b
 	ld e, a
 	ld d, 0
-	ld hl, TextTable_168aa
+	ld hl, .TextTable
 rept 2
 	add hl, de
 endr
@@ -283,7 +283,7 @@ endr
 	ret
 ; 168aa
 
-TextTable_168aa: ; 168aa
+.TextTable: ; 168aa
 	dw .DayCareManIntro ; 00
 	dw .DayCareManOddEgg ; 01
 	dw .DayCareLadyIntro ; 02

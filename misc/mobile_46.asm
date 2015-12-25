@@ -1416,7 +1416,7 @@ Function118982:
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	call WriteBackup
+	call CloseWindow
 	pop af
 	ld [rSVBK], a
 	ld a, [wcd38]
@@ -1440,7 +1440,7 @@ Function118982:
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	call WriteBackup
+	call CloseWindow
 	pop af
 	ld [rSVBK], a
 	ld a, $7

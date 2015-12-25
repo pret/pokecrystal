@@ -17,7 +17,7 @@ MainMenu: ; 49cdc
 	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
 	call MainMenuJoypadLoop
-	call WriteBackup
+	call CloseWindow
 	jr c, .quit
 	call ClearTileMap
 	ld a, [MenuSelection]

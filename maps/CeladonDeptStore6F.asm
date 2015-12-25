@@ -30,7 +30,7 @@ CeladonVendingMachine:
 	special PlaceMoneyTopRight
 	loadmenudata .MenuData
 	verticalmenu
-	writebackup
+	closewindow
 	if_equal $1, .FreshWater
 	if_equal $2, .SodaPop
 	if_equal $3, .Lemonade

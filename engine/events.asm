@@ -228,28 +228,27 @@ HandleMapTimeAndJoypad: ; 967c1
 
 Function967d1: ; 967d1
 	callba Function576a ; engine/map_objects.asm
-	callba Functiond497
-	call Function96812
+	callba _HandlePlayerStep
+	call _CheckObjectEnteringVisibleRange
 	ret
 ; 967e1
 
 Function967e1: ; 967e1
 	callba _UpdateSprites
-	callba Functiond4d2
+	callba ScrollScreen
 	callba PlaceMapNameSign
 	ret
 ; 967f4
 
 Function967f4: ; 967f4
 	ld a, [wPlayerStepFlags]
-	bit 5, a
+	bit 5, a ; in the middle of step
 	jr z, .events
-	bit 6, a
+	bit 6, a ; stopping step
 	jr z, .noevents
-	bit 4, a
+	bit 4, a ; in midair
 	jr nz, .noevents
 	call EnableEvents
-
 .events
 	ld a, 0 ; events
 	ld [MapEventStatus], a
@@ -261,17 +260,15 @@ Function967f4: ; 967f4
 	ret
 ; 96812
 
-Function96812: ; 96812
+_CheckObjectEnteringVisibleRange: ; 96812
 	ld hl, wPlayerStepFlags
 	bit 6, [hl]
 	ret z
-
-	callba Function81ca
+	callba CheckObjectEnteringVisibleRange
 	ret
 ; 9681f
 
 PlayerEvents: ; 9681f
-
 	xor a
 ; If there's already a player event, don't interrupt it.
 	ld a, [ScriptRunning]

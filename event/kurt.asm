@@ -154,7 +154,7 @@ Kurt_SelectQuantity: ; 880c2
 	scf
 
 .done
-	call WriteBackup
+	call CloseWindow
 	ret
 ; 8810d
 

@@ -2331,7 +2331,7 @@ _ChangeBox: ; e35aa (38:75aa)
 	call BillsPC_ChangeBoxSubmenu
 	jr .loop
 .done
-	call WriteBackup
+	call CloseWindow
 	ret
 
 BillsPC_ClearTilemap: ; e35e2 (38:75e2)

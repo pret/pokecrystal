@@ -69,7 +69,7 @@ MoveTutor:
 	writetext UnknownText_0x1990ce
 	loadmenudata .MoveMenuDataHeader
 	verticalmenu
-	writebackup
+	closewindow
 	if_equal $1, .Flamethrower
 	if_equal $2, .Thunderbolt
 	if_equal $3, .IceBeam

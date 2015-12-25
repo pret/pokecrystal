@@ -49,7 +49,7 @@ LoadMenuTextBox:: ; 1d58
 
 MenuTextBoxBackup:: ; 1d67
 	call MenuTextBox
-	call WriteBackup
+	call CloseWindow
 	ret
 ; 1d6e
 
@@ -100,7 +100,7 @@ VerticalMenu::
 GetMenu2:: ; 1dab
 	call LoadMenuDataHeader
 	call VerticalMenu
-	call WriteBackup
+	call CloseWindow
 	ld a, [wMenuCursorY]
 	ret
 ; 1db8
@@ -167,7 +167,7 @@ InterpretTwoOptionMenu:: ; 1dfe
 	push af
 	ld c, $f
 	call DelayFrames
-	call WriteBackup
+	call CloseWindow
 	pop af
 	jr c, .no
 	ld a, [wMenuCursorY]

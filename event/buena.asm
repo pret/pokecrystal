@@ -139,8 +139,8 @@ SpecialBuenaPrize: ; 8afd4
 	jr .loop
 
 .done
-	call WriteBackup
-	call WriteBackup
+	call CloseWindow
+	call CloseWindow
 	ld hl, .Text_PleaseComeBackAgain
 	call PrintText
 	call JoyWaitAorB

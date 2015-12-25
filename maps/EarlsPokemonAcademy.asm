@@ -68,7 +68,7 @@ AcademyBlackboard:
 .Loop
 	loadmenudata .MenuHeader
 	_2dmenu
-	writebackup
+	closewindow
 	if_equal $1, .Poison
 	if_equal $2, .Paralysis
 	if_equal $3, .Sleep

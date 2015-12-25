@@ -201,7 +201,7 @@ DoEggStep:: ; 16f3e
 ; 16f5e
 
 OverworldHatchEgg:: ; 16f5e
-	call ResetWindow
+	call RefreshScreen
 	call LoadStandardMenuDataHeader
 	call HatchEggs
 	call ExitAllMenus

@@ -108,7 +108,7 @@ endr
 	ld hl, MenuDataHeader_0x166b5
 	call CopyMenuDataHeader
 	call VerticalMenu
-	call WriteBackup
+	call CloseWindow
 	jr c, .cancel
 	ld a, [wMenuCursorY]
 	cp $1
@@ -153,7 +153,7 @@ endr
 	call Function16517
 	call Function1656b
 	call Function16571
-	call WriteBackup
+	call CloseWindow
 	jr c, .CancelDeposit
 	ld hl, StringBuffer2
 	ld a, [hli]
@@ -221,7 +221,7 @@ endr
 	call Function16512
 	call Function1656b
 	call Function16571
-	call WriteBackup
+	call CloseWindow
 	jr c, .CancelWithdraw
 	ld hl, StringBuffer2
 	ld a, [hli]

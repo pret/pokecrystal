@@ -1811,7 +1811,7 @@ CoinVendor_SellCoinsMenuScript: ; 0xbcde4
 	special Special_DisplayMoneyAndCoinBalance
 	loadmenudata CoinVendor_MenuDataHeader
 	verticalmenu
-	writebackup
+	closewindow
 	if_equal $1, CoinVendor_Buy50CoinsScript
 	if_equal $2, CoinVendor_Buy500CoinsScript
 	jump CoinVendor_CancelScript

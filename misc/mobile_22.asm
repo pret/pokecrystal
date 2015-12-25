@@ -255,7 +255,7 @@ Function89261: ; 89261
 	push af
 	ld c, $a
 	call DelayFrames
-	call WriteBackup
+	call CloseWindow
 	call Function8920f
 	pop af
 	jr c, .done
@@ -2816,7 +2816,7 @@ Function8a116: ; 8a116 (22:6116)
 	ret
 .asm_8a16b
 	call Function89209
-	call WriteBackup
+	call CloseWindow
 	call Function8920f
 	scf
 	ret
@@ -2999,7 +2999,7 @@ Function8a2aa: ; 8a2aa (22:62aa)
 	and a
 	ret
 .asm_8a2ea
-	call WriteBackup
+	call CloseWindow
 .asm_8a2ed
 	scf
 	ret
@@ -3901,7 +3901,7 @@ Function8a999: ; 8a999 (22:6999)
 	jr .asm_8a9a1
 .asm_8a9bb
 	call Function89209
-	call WriteBackup
+	call CloseWindow
 	call Function8920f
 	ret
 

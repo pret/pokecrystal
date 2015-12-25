@@ -13,7 +13,7 @@ InitVerticalMenuCursor:: ; 0x1c10
 	callab _InitVerticalMenuCursor
 	ret
 
-WriteBackup:: ; 0x1c17
+CloseWindow:: ; 0x1c17
 	push af
 	call ExitMenu
 	call ApplyTilemap

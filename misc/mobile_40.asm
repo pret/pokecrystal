@@ -2857,7 +2857,7 @@ Jumptable_101247: ; 101247
 
 Function101251: ; 101251
 	call UpdateSprites
-	call ResetWindow
+	call RefreshScreen
 	ld hl, UnknownText_0x1021f4
 	call Function1021e0
 	call Function1020ea
@@ -7752,7 +7752,7 @@ AskMobileOrCable: ; 103612
 
 .skip_load
 	call VerticalMenu
-	call WriteBackup
+	call CloseWindow
 	jr c, .pressed_b
 	ld a, [wMenuCursorY]
 	ld [ScriptVar], a

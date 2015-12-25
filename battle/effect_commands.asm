@@ -8961,7 +8961,7 @@ BattleCommand_BatonPass: ; 379c9
 ; Return to battle scene
 	call ClearPalettes
 	callba _LoadBattleFontsHPBar
-	call WriteBackup
+	call CloseWindow
 	call ClearSprites
 	hlcoord 1, 0
 	lb bc, 4, 10
@@ -9030,7 +9030,7 @@ BatonPass_LinkPlayerSwitch: ; 37a67
 	call LoadStandardMenuDataHeader
 	ld hl, LinkBattleSendReceiveAction
 	call CallBattleCore
-	call WriteBackup
+	call CloseWindow
 
 	xor a
 	ld [wPlayerAction], a
@@ -9061,7 +9061,7 @@ BatonPass_LinkEnemySwitch: ; 37a82
 	add BATTLEACTION_SWITCH1
 	ld [wBattleAction], a
 .switch
-	jp WriteBackup
+	jp CloseWindow
 ; 37aab
 
 

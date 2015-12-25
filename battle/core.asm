@@ -2932,7 +2932,7 @@ ForcePlayerMonChoice: ; 3d227
 	call ClearPalettes
 	call DelayFrame
 	call _LoadHPBar
-	call WriteBackup
+	call CloseWindow
 	call GetMemSGBLayout
 	call SetPalettes
 	call SendOutPkmnText
@@ -5368,7 +5368,7 @@ BattleMenuPKMN_Loop:
 	call ClearPalettes
 	call DelayFrame
 	call _LoadHPBar
-	call WriteBackup
+	call CloseWindow
 	call LoadTileMapToTempTileMap
 	call GetMemSGBLayout
 	call SetPalettes
@@ -5451,7 +5451,7 @@ TryPlayerSwitch: ; 3e358
 	call DelayFrame
 	call ClearSprites
 	call _LoadHPBar
-	call WriteBackup
+	call CloseWindow
 	call GetMemSGBLayout
 	call SetPalettes
 	ld a, [CurPartyMon]
@@ -5464,7 +5464,7 @@ PlayerSwitch: ; 3e3ad
 	jr z, .not_linked
 	call LoadStandardMenuDataHeader
 	call LinkBattleSendReceiveAction
-	call WriteBackup
+	call CloseWindow
 
 .not_linked
 	call ParseEnemyAction

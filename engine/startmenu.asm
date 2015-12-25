@@ -604,7 +604,7 @@ Function129f4: ; 129f4
 	call MenuTextBox
 	callba SelectQuantityToToss
 	push af
-	call WriteBackup
+	call CloseWindow
 	call ExitMenu
 	pop af
 	jr c, .asm_12a42
@@ -1322,7 +1322,7 @@ MonMenu_Whirlpool: ; 12e7f
 ; 12e94
 
 MonMenu_Waterfall: ; 12e94
-	callba Functioncade
+	callba WaterfallFunction
 	ld a, [wFieldMoveSucceeded]
 	cp $1
 	jr nz, .Fail

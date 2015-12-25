@@ -2050,7 +2050,7 @@ TempMon::
 
 wSpriteFlags:: ds 1
 
-wd13f:: ds 2
+wHandlePlayerStep:: ds 2
 
 PartyMenuActionText:: ; d141
 	ds 1
@@ -2073,16 +2073,21 @@ wPrevMapGroup:: ds 1
 wPrevMapNumber:: ds 1
 ; d14c
 
-wd14c:: ds 1 ; used in FollowNotExact
-wd14d:: ds 1 ; used in FollowNotExact
+wFollowNotExactPersonX:: ds 1 ; used in FollowNotExact
+wFollowNotExactPersonY:: ds 1 ; used in FollowNotExact
 
 ; Player movement
-wPlayerStepVectorX:: ds 1
-wPlayerStepVectorY:: ds 1
-wPlayerStepFlags:: ds 1
-wPlayerStepDirection:: ds 1
+wPlayerStepVectorX:: ds 1   ; d14e
+wPlayerStepVectorY:: ds 1   ; d14f
+wPlayerStepFlags:: ds 1     ; d150
+; bit 7: Start step
+; bit 6: Stop step
+; bit 5: Doing step
+; bit 4: In midair
+; bits 0-3: unused
+wPlayerStepDirection:: ds 1 ; d151
 
-wBGMapAnchor:: ds 2
+wBGMapAnchor:: ds 2 ; d152
 
 UsedSprites:: ds 64 ; d154
 UsedSpritesEnd::

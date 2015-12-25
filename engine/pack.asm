@@ -508,6 +508,7 @@ UseItem: ; 10311
 	ld [wJumptableIndex], a
 	ret
 ; 10364 (4:4364)
+
 TossMenu: ; 10364
 	ld hl, Text_ThrowAwayHowMany
 	call Pack_PrintTextNoScroll
@@ -534,7 +535,7 @@ TossMenu: ; 10364
 	ret
 ; 1039d
 
-Function1039d: ; 1039d
+ResetPocketCursorPositions: ; 1039d
 ; unreferenced
 	ld a, [wCurrPocket]
 	and a

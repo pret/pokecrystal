@@ -155,7 +155,7 @@ UseRegisteredItem: ; 133c3
 ; 133f5
 
 .Party ; 133f5
-	call ResetWindow
+	call RefreshScreen
 	call FadeToMenu
 	call DoItemEffect
 	call CloseSubmenu
@@ -165,7 +165,7 @@ UseRegisteredItem: ; 133c3
 ; 13406
 
 .Overworld ; 13406
-	call ResetWindow
+	call RefreshScreen
 	ld a, 1
 	ld [wUsingItemWithSelect], a
 	call DoItemEffect
@@ -181,7 +181,7 @@ UseRegisteredItem: ; 133c3
 ; 13422
 
 .CantUse ; 13422
-	call ResetWindow
+	call RefreshScreen
 
 ._cantuse
 	call CantUseItem

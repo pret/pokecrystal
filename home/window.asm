@@ -1,4 +1,4 @@
-ResetWindow:: ; 2dba
+RefreshScreen:: ; 2dba
 
 	call ClearWindowData
 	ld a, [hROMBank]

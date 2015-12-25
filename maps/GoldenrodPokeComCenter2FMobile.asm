@@ -27,7 +27,7 @@ UnknownScript_0x625df:
 	reloadmappart
 	loadmenudata MenuDataHeader_0x62602
 	verticalmenu
-	writebackup
+	closewindow
 	if_equal $1, UnknownScript_0x625f0
 	if_equal $2, UnknownScript_0x625f8
 	jump UnknownScript_0x62600
@@ -72,7 +72,7 @@ UnknownScript_0x62629:
 	reloadmappart
 	loadmenudata MenuDataHeader_0x6264c
 	verticalmenu
-	writebackup
+	closewindow
 	if_equal $1, UnknownScript_0x6263a
 	if_equal $2, UnknownScript_0x62642
 	jump UnknownScript_0x6264a

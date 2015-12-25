@@ -528,9 +528,9 @@ loadmenudata: macro
 	dw \1 ; data
 	endm
 
-	enum writebackup_command
-writebackup: macro
-	db writebackup_command
+	enum closewindow_command
+closewindow: macro
+	db closewindow_command
 	endm
 
 	enum jumptextfaceplayer_command

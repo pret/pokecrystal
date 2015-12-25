@@ -150,7 +150,7 @@ ScriptCommandTable: ; 96cb1
 	dw Script_repeattext                 ; 4d
 	dw Script_yesorno                    ; 4e
 	dw Script_loadmenudata               ; 4f
-	dw Script_writebackup                ; 50
+	dw Script_closewindow                ; 50
 	dw Script_jumptextfaceplayer         ; 51
 IF _CRYSTAL
 	dw Script_farjumptext                ; 52
@@ -480,10 +480,10 @@ Script_loadmenudata: ; 96efa
 	ret
 ; 96f0f
 
-Script_writebackup: ; 96f0f
+Script_closewindow: ; 96f0f
 ; script command 0x50
 
-	call WriteBackup
+	call CloseWindow
 	call UpdateSprites
 	ret
 ; 96f16
@@ -3038,7 +3038,7 @@ Script_refreshscreen: ; 97b20
 ; parameters:
 ;     dummy (SingleByteParam)
 
-	call ResetWindow
+	call RefreshScreen
 	call GetScriptByte
 	ret
 ; 97b27

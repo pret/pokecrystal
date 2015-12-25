@@ -215,7 +215,7 @@ SaveTheGame_yesorno: ; 14baf
 	call PlaceYesNoBox
 	ld a, [wMenuCursorY]
 	dec a
-	call WriteBackup
+	call CloseWindow
 	push af
 	call ret_d90
 	pop af

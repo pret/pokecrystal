@@ -315,7 +315,7 @@ _KrisMailBoxMenu: ; 0x447a0
 	jr z, .nomail
 	call LoadStandardMenuDataHeader
 	call MailboxPC
-	jp WriteBackup
+	jp CloseWindow
 
 .nomail
 	ld hl, .EmptyMailboxText

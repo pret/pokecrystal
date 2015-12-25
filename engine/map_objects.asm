@@ -2875,7 +2875,7 @@ Function56a3: ; 56a3
 ; 56cd
 
 Function56cd: ; 56cd
-	ld a, [wd14c]
+	ld a, [wFollowNotExactPersonX]
 	ld d, a
 	ld hl, OBJECT_SPRITE_X_OFFSET
 	add hl, bc
@@ -2907,7 +2907,7 @@ Function56cd: ; 56cd
 
 .ok3
 	ld [hUsedSpriteIndex], a
-	ld a, [wd14d]
+	ld a, [wFollowNotExactPersonY]
 	ld e, a
 	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
@@ -3357,9 +3357,9 @@ Function5958: ; 5958
 	push hl
 	push de
 	push bc
-	ld a, [wd14c]
+	ld a, [wFollowNotExactPersonX]
 	ld d, a
-	ld a, [wd14d]
+	ld a, [wFollowNotExactPersonY]
 	ld e, a
 	ld bc, ObjectStructs
 	ld a, NUM_OBJECT_STRUCTS
@@ -3391,8 +3391,8 @@ Function5958: ; 5958
 	jr nz, .loop
 
 	xor a
-	ld [wd14c], a
-	ld [wd14d], a
+	ld [wFollowNotExactPersonX], a
+	ld [wFollowNotExactPersonY], a
 	pop bc
 	pop de
 	pop hl
@@ -3544,7 +3544,7 @@ PRIORITY_HIGH EQU $30
 	add 8
 
 	ld e, a
-	ld a, [wd14c]
+	ld a, [wFollowNotExactPersonX]
 	add e
 	ld [hFFBF], a
 
@@ -3559,7 +3559,7 @@ PRIORITY_HIGH EQU $30
 	add 12
 
 	ld e, a
-	ld a, [wd14d]
+	ld a, [wFollowNotExactPersonY]
 	add e
 	ld [hFFC0], a
 
