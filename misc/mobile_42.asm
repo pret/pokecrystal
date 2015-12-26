@@ -1,12 +1,12 @@
-Function108000: ; 108000
+MobileTradeAnimation_SendGivemonToGTS: ; 108000
 	ld a, $80
 	ld [wcf65], a
-	ld de, Unknown_10800b
+	ld de, .TradeAnimScript
 	jp RunMobileTradeAnim_NoFrontpics
 ; 10800b
 
-Unknown_10800b:
-	mobiletradeanim_showwondertradegivemon
+.TradeAnimScript:
+	mobiletradeanim_showgtsgivemon
 	mobiletradeanim_12
 	mobiletradeanim_10
 	mobiletradeanim_sendmon 
@@ -14,23 +14,23 @@ Unknown_10800b:
 	mobiletradeanim_0f
 	mobiletradeanim_end
 
-Function108012:
+MobileTradeAnimation_RetrieveGivemonFromGTS:
 	ld a, $80
 	jr asm_108018
 
-Function108016: ; 108016
+MobileTradeAnimation_ReceiveGetmonFromGTS: ; 108016
 	ld a, $0
 asm_108018:
 	ld [wcf65], a
-	ld de, Unknown_108021
+	ld de, .TradeAnimScript
 	jp RunMobileTradeAnim_NoFrontpics
 ; 108021
 
-Unknown_108021:
+.TradeAnimScript:
 	mobiletradeanim_11
 	mobiletradeanim_07
 	mobiletradeanim_receivemon 
-	mobiletradeanim_showwondertradegetmon
+	mobiletradeanim_showgtsgetmon
 	mobiletradeanim_end
 
 Function108026: ; 108026
@@ -42,11 +42,11 @@ Function10802a: ; 10802a
 
 asm_10802c:
 	ld [wcf65], a
-	ld de, Unknown_108035
+	ld de, .TradeAnimScript
 	jp RunMobileTradeAnim_Frontpics
 ; 108035
 
-Unknown_108035: ; trade
+.TradeAnimScript: ; trade
 	mobiletradeanim_showgivemon
 	mobiletradeanim_12
 	mobiletradeanim_02
@@ -59,11 +59,11 @@ Unknown_108035: ; trade
 Function10803d: ; 10803d
 	ld a, $0
 	ld [wcf65], a
-	ld de, Unknown_108048
+	ld de, .TradeAnimScript
 	jp RunMobileTradeAnim_NoFrontpics
 ; 108048
 
-Unknown_108048:
+.TradeAnimScript:
 	mobiletradeanim_11
 	mobiletradeanim_07
 	mobiletradeanim_receivemon 
@@ -73,13 +73,13 @@ Unknown_108048:
 Function10804d: ; 10804d
 	ld a, $0
 	ld [wcf65], a
-	ld de, Unknown_108058
+	ld de, .TradeAnimScript
 	jp RunMobileTradeAnim_NoFrontpics
 ; 108058
 
-Unknown_108058:
+.TradeAnimScript:
 	mobiletradeanim_11
-	mobiletradeanim_showwondertradegetmon
+	mobiletradeanim_showgtsgetmon
 	mobiletradeanim_end
 
 RunMobileTradeAnim_Frontpics: ; 10805b
@@ -396,8 +396,8 @@ endr
 	jumptable MobileTradeAnim_GetTrademon3 ; 0a
 	jumptable MobileTradeAnim_ShowOTMonFromTrade ; 0b
 	jumptable EndMobileTradeAnim ; 0c
-	jumptable MobileTradeAnim_ShowPlayerMonForWonderTrade ; 0d
-	jumptable MobileTradeAnim_ShowOTMonFromWonderTrade ; 0e
+	jumptable MobileTradeAnim_ShowPlayerMonForGTS ; 0d
+	jumptable MobileTradeAnim_ShowOTMonFromGTS ; 0e
 	jumptable MobileTradeAnim_0f ; 0f
 	jumptable MobileTradeAnim_10 ; 10
 	jumptable MobileTradeAnim_11 ; 11
@@ -599,7 +599,7 @@ MobileTradeAnim_ShowOTMonFromTrade: ; 10839b
 	ret
 ; 10842c
 
-MobileTradeAnim_ShowPlayerMonForWonderTrade: ; 10842c
+MobileTradeAnim_ShowPlayerMonForGTS: ; 10842c
 	ld de, MUSIC_EVOLUTION
 	call PlayMusic2
 	ld a, $80
@@ -676,7 +676,7 @@ MobileTradeAnim_ShowPlayerMonForWonderTrade: ; 10842c
 	ret
 ; 1084d7
 
-MobileTradeAnim_ShowOTMonFromWonderTrade: ; 1084d7
+MobileTradeAnim_ShowOTMonFromGTS: ; 1084d7
 	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
@@ -1672,15 +1672,15 @@ Function108c40: ; 108c40
 	ld a, $90
 	ld [hWY], a
 	ld a, [wcf65]
-	and $80
-	jr z, .asm_108c57
+	and %10000000
+	jr z, .Getmon
 	ld hl, .CameBack
 	call PrintText
 	ld c, 80
 	call DelayFrames
 	ret
 
-.asm_108c57
+.Getmon
 	ld hl, .TakeGoodCareOf
 	call PrintText
 	ld c, 80

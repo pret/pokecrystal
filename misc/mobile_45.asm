@@ -7650,7 +7650,7 @@ Unknown_117356:
 
 SECTION "Mobile Stadium", ROMX, BANK[$45]
 
-Function117656: ; 117656
+Special_GiveOddEgg: ; 117656
 	callba GiveOddEgg
 	ret
 ; 11765d

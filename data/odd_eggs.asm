@@ -58,36 +58,36 @@ GiveOddEgg: ; 1fb4b6
 
 	; load species in wcd2a
 	ld a, EGG
-	ld [wcd2a], a
+	ld [wMobileMonSpeciesBuffer], a
 
-	; load pointer to wcd29 in wcd20
-	ld a, wcd29 % $100
-	ld [wcd20], a
-	ld a, wcd29 / $100
-	ld [wcd21], a
-	; load pointer to OddEggSpecies in wcd22
+	; load pointer to (wMobileMonSpeciesBuffer - 1) in wMobileMonSpeciesPointerBuffer
+	ld a, (wMobileMonSpeciesBuffer - 1) % $100
+	ld [wMobileMonSpeciesPointerBuffer], a
+	ld a, (wMobileMonSpeciesBuffer - 1) / $100
+	ld [wMobileMonSpeciesPointerBuffer + 1], a
+	; load pointer to OddEggSpecies in wMobileMonStructurePointerBuffer
 	ld a, OddEggSpecies % $100
-	ld [wcd22], a
+	ld [wMobileMonStructurePointerBuffer], a
 	ld a, OddEggSpecies / $100
-	ld [wcd23], a
+	ld [wMobileMonStructurePointerBuffer + 1], a
 
-	; load Odd Egg Name in wcd2b
+	; load Odd Egg Name in wTempOddEggNickname
 	ld hl, .Odd
-	ld de, wcd2b
+	ld de, wTempOddEggNickname
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
-	; load pointer to wcd2b in wcd24
-	ld a, wcd2b % $100
-	ld [wcd24], a
-	ld a, wcd2b / $100
-	ld [wcd25], a
-	; load pointer to wOddEggName in wcd26
+	; load pointer to wTempOddEggNickname in wMobileMonOTNamePointerBuffer
+	ld a, wTempOddEggNickname % $100
+	ld [wMobileMonOTNamePointerBuffer], a
+	ld a, wTempOddEggNickname / $100
+	ld [wMobileMonOTNamePointerBuffer + 1], a
+	; load pointer to wOddEggName in wMobileMonNicknamePointerBuffer
 	ld a, wOddEggName % $100
-	ld [wcd26], a
+	ld [wMobileMonNicknamePointerBuffer], a
 	ld a, wOddEggName / $100
-	ld [wcd27], a
-	callba Function11b98f
+	ld [wMobileMonNicknamePointerBuffer + 1], a
+	callba AddMobileMonToParty
 	ret
 ; 1fb546
 
@@ -102,19 +102,25 @@ prob_total = prob_total + (\1)
 ENDM
 
 prob_total = 0
-
+; Pichu
 	prob 8
 	prob 1
+; Cleffa
 	prob 16
 	prob 3
+; Igglybuff
 	prob 16
 	prob 3
+; Smoochum
 	prob 14
 	prob 2
+; Magby
 	prob 10
 	prob 2
+; Elekid
 	prob 12
 	prob 2
+; Tyrogue
 	prob 10
 	prob 1
 ; 1fb56e

@@ -26,9 +26,9 @@ Function1700c4: ; 1700c4
 	ld [$be46], a
 	ld hl, w3_dffc
 	ld de, $aa41
-	ld bc, $0004
+	ld bc, 4
 	call CopyBytes
-	ld hl, w3_d202
+	ld hl, w3_d202Name
 	ld de, $aa8e
 	ld bc, 7 * $cc ; length of battle tower struct from japanese games?
 	call CopyBytes
@@ -44,7 +44,7 @@ Function1700c4: ; 1700c4
 	ld e, l
 	ld d, h
 	ld hl, w3_dffc
-	ld bc, $0004
+	ld bc, 4
 	call CopyBytes
 	call CloseSRAM
 	pop af
@@ -54,17 +54,17 @@ Function1700c4: ; 1700c4
 
 Function170114: ; 170114
 	call InitBattleTowerChallengeRAM
-	call Function170121
+	call .Function170121
 	callba Function11805f
 	ret
 ; 170121
 
-Function170121: ; 170121
+.Function170121: ; 170121
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $a948
 	ld de, wMisc
-	ld bc, $00f6 ; 246
+	ld bc, $f6 ; 246
 	call CopyBytes
 	call CloseSRAM
 	call Function170c8b
@@ -106,7 +106,7 @@ Function170139: ; 170139
 	ld e, l
 	ld d, h
 	ld hl, PlayerName
-	ld bc, $0005 ; Japanese name length
+	ld bc, 5 ; Japanese name length
 	call CopyBytes
 	ld bc, PlayerID
 	ld de, PlayerGender
@@ -152,17 +152,17 @@ Function170139: ; 170139
 	ld a, $4
 	call GetSRAMBank
 	ld hl, $a013
-	ld bc, $0024
+	ld bc, $24
 	call CopyBytes
 	call CloseSRAM
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $a894
-	ld bc, $0006
+	ld bc, 6
 	call CopyBytes
 	ld hl, wMisc
 	ld de, $a948
-	ld bc, $00f6
+	ld bc, $f6
 	call CopyBytes
 	call CloseSRAM
 	ret
@@ -710,7 +710,7 @@ endr
 
 	ld hl, $a89c
 	ld de, StringBuffer3
-	ld bc, $0016
+	ld bc, $16
 	call CopyBytes
 
 	ld hl, $a8b2

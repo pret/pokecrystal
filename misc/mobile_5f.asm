@@ -331,53 +331,53 @@ Function17d0f3: ; 17d0f3
 	ret
 ; 17d187
 
-Function17d187: ; 17d187
-	ld hl, Unknown_17d194
+Mobile_CopyDefaultOTName: ; 17d187
+	ld hl, Mobile5F_KrissName
 	ld de, $c63d
-	ld bc, $0005
+	ld bc, 5
 	call CopyBytes
 	ret
 ; 17d194
 
-Unknown_17d194:
+Mobile5F_KrissName:
 	db "クりス@@"
 ; 17d198
 
-Function17d199: ; 17d199
-	ld hl, Unknown_17d1a6
+Mobile_CopyDefaultNickname: ; 17d199
+	ld hl, .DefaultNickname
 	ld de, $c642
-	ld bc, $0005
+	ld bc, 5
 	call CopyBytes
 	ret
 ; 17d1a6
 
-Unknown_17d1a6:
+.DefaultNickname:
 	db "?????"
 
-Function17d1ab: ; 17d1ab
-	ld a, $50
+Mobile_CopyDefaultMail: ; 17d1ab
+	ld a, "@"
 	ld hl, $c647
-	ld bc, $0021
+	ld bc, MAIL_MSG_LENGTH + 1
 	call ByteFill
-	ld hl, Unknown_17d1c3
+	ld hl, .DefaultMessage
 	ld de, $c647
-	ld bc, $0006
+	ld bc, 6
 	call CopyBytes
 	ret
 ; 17d1c3
 
-Unknown_17d1c3:
+.DefaultMessage:
 	db "こんにちは@"
 ; 17d1c9
 
-Function17d1c9: ; 17d1c9
-	ld a, $50
+Mobile_CopyDefaultMailAuthor: ; 17d1c9
+	ld a, "@"
 	ld de, $c668
-	ld bc, $0005
+	ld bc, 5
 	call ByteFill
-	ld hl, Unknown_17d194
+	ld hl, Mobile5F_KrissName
 	ld de, $c668
-	ld bc, $0005
+	ld bc, 5
 	call CopyBytes
 	ret
 ; 17d1e1

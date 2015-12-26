@@ -11,66 +11,66 @@ DayCare_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x62f7b
+	dbw 2, .EggCheckCallback
 
-UnknownScript_0x62f7b:
-	checkflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
-	iftrue UnknownScript_0x62f88
+.EggCheckCallback:
+	checkflag ENGINE_DAYCARE_MAN_HAS_EGG
+	iftrue .PutDaycareManOutside
 	clearevent EVENT_DAYCARE_MAN_IN_DAYCARE
 	setevent EVENT_DAYCARE_MAN_ON_ROUTE_34
 	return
 
-UnknownScript_0x62f88:
+.PutDaycareManOutside:
 	setevent EVENT_DAYCARE_MAN_IN_DAYCARE
 	clearevent EVENT_DAYCARE_MAN_ON_ROUTE_34
 	return
 
-GrampsScript_0x62f8f:
+DayCareManScript_Inside:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_ODD_EGG
-	iftrue UnknownScript_0x62fbd
-	writetext UnknownText_0x630ce
+	iftrue .AlreadyHaveOddEgg
+	writetext DayCareManText_GiveOddEgg
 	buttonsound
 	closetext
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, UnknownScript_0x62fb6
-	special Function117656
+	if_equal PARTY_LENGTH, .PartyFull
+	special Special_GiveOddEgg
 	opentext
-	writetext UnknownText_0x631ae
+	writetext DayCareText_GotOddEgg
 	playsound SFX_KEY_ITEM
 	waitsfx
-	writetext UnknownText_0x631c3
+	writetext DayCareText_DescribeOddEgg
 	waitbutton
 	closetext
 	setevent EVENT_GOT_ODD_EGG
 	end
 
-UnknownScript_0x62fb6:
+.PartyFull:
 	opentext
-	writetext UnknownText_0x63237
+	writetext DayCareText_PartyFull
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x62fbd:
+.AlreadyHaveOddEgg:
 	special Special_DayCareMan
 	waitbutton
 	closetext
 	end
 
-GrannyScript_0x62fc3:
+DayCareLadyScript:
 	faceplayer
 	opentext
-	checkflag ENGINE_DAYCARE_MONS_ARE_COMPATIBLE
-	iftrue UnknownScript_0x62fd1
+	checkflag ENGINE_DAYCARE_MAN_HAS_EGG
+	iftrue .HusbandWasLookingForYou
 	special Special_DayCareLady
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x62fd1:
-	writetext UnknownText_0x62fda
+.HusbandWasLookingForYou:
+	writetext Text_GrampsLookingForYou
 	waitbutton
 	closetext
 	end
@@ -78,12 +78,12 @@ UnknownScript_0x62fd1:
 DayCareBookshelf:
 	jumpstd difficultbookshelf
 
-UnknownText_0x62fda:
+Text_GrampsLookingForYou:
 	text "Gramps was looking"
 	line "for you."
 	done
 
-UnknownText_0x62ff7:
+Text_DayCareManTalksAboutEggTicket:
 	text "I'm the DAY-CARE"
 	line "MAN."
 
@@ -106,7 +106,7 @@ UnknownText_0x62ff7:
 	line "as well have it."
 	done
 
-UnknownText_0x630ce:
+DayCareManText_GiveOddEgg:
 	text "I'm the DAY-CARE"
 	line "MAN."
 
@@ -130,16 +130,16 @@ UnknownText_0x630ce:
 	line "yours to keep!"
 	done
 
-UnknownText_0x631a1:
+DayCareText_ComeAgain:
 	text "Come again."
 	done
 
-UnknownText_0x631ae:
+DayCareText_GotOddEgg:
 	text "<PLAYER> received"
 	line "ODD EGG!"
 	done
 
-UnknownText_0x631c3:
+DayCareText_DescribeOddEgg:
 	text "I found that when"
 	line "I was caring for"
 
@@ -153,7 +153,7 @@ UnknownText_0x631c3:
 	line "it around."
 	done
 
-UnknownText_0x63237:
+DayCareText_PartyFull:
 	text "You've no room for"
 	line "this."
 	done
@@ -179,5 +179,5 @@ DayCare_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_GRAMPS, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrampsScript_0x62f8f, EVENT_DAYCARE_MAN_IN_DAYCARE
-	person_event SPRITE_GRANNY, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, GrannyScript_0x62fc3, -1
+	person_event SPRITE_GRAMPS, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, DayCareManScript_Inside, EVENT_DAYCARE_MAN_IN_DAYCARE
+	person_event SPRITE_GRANNY, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, DayCareLadyScript, -1

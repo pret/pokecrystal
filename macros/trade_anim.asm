@@ -217,14 +217,14 @@ mobiletradeanim_end: macro
 	db mobiletradeanim_end_command ; 0c
 endm
 
-	enum mobiletradeanim_showwondertradegivemon_command
-mobiletradeanim_showwondertradegivemon: macro
-	db mobiletradeanim_showwondertradegivemon_command ; 0d
+	enum mobiletradeanim_showgtsgivemon_command
+mobiletradeanim_showgtsgivemon: macro
+	db mobiletradeanim_showgtsgivemon_command ; 0d
 endm
 
-	enum mobiletradeanim_showwondertradegetmon_command
-mobiletradeanim_showwondertradegetmon: macro
-	db mobiletradeanim_showwondertradegetmon_command ; 0e
+	enum mobiletradeanim_showgtsgetmon_command
+mobiletradeanim_showgtsgetmon: macro
+	db mobiletradeanim_showgtsgetmon_command ; 0e
 endm
 
 	enum mobiletradeanim_0f_command

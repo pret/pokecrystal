@@ -1367,8 +1367,15 @@ wccba:: ds 102
 
 SECTION "Video", WRAM0
 CreditsPos::
-BGMapBuffer:: ; cd20
-wcd20:: ds 1
+BGMapBuffer::
+wMobileMonSpeciesPointerBuffer:: dw
+wMobileMonStructurePointerBuffer:: dw
+wMobileMonOTNamePointerBuffer:: dw
+wMobileMonNicknamePointerBuffer:: dw
+wMobileMonMailPointerBuffer:: dw
+	ds CreditsPos - @
+
+wcd20:: ds 1 ; cd20
 wcd21:: ds 1
 wcd22::
 CreditsTimer:: ; cd22
@@ -1381,7 +1388,9 @@ wcd26:: ds 1
 wcd27:: ds 1
 wcd28:: ds 1
 wcd29:: ds 1
+wMobileMonSpeciesBuffer::
 wcd2a:: ds 1
+wTempOddEggNickname::
 wcd2b:: ds 1
 wcd2c:: ds 1
 wcd2d:: ds 1

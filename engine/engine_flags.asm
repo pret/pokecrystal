@@ -99,8 +99,8 @@ ENDM
 	engine_flag wPokegearFlags, 7 ; on/off
 
 	;   wDaycareMan, 7 ; daycare 1 on
-	engine_flag wDaycareMan, 6 ; monster 1 and 2 are compatible
-	;   wDaycareMan, 5 ; egg is ready
+	engine_flag wDaycareMan, 6 ; egg is ready
+	;   wDaycareMan, 5 ; monster 1 and 2 are compatible
 	engine_flag wDaycareMan, 0 ; monster 1 in daycare
 
 	;   wDaycareLady, 7 = daycare 2 on

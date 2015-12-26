@@ -183,4 +183,3 @@ stonetable: MACRO
 	db \1, \2
 	dw \3
 endm
-
