@@ -183,7 +183,7 @@ UnknownScript_0x19c9bb:
 .LoadFight0
 	loadtrainer BUG_CATCHER, ARNIE1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wArnieFightCount, 1
 	clearflag ENGINE_ARNIE
 	end
@@ -191,7 +191,7 @@ UnknownScript_0x19c9bb:
 .LoadFight1
 	loadtrainer BUG_CATCHER, ARNIE2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wArnieFightCount, 2
 	clearflag ENGINE_ARNIE
 	end
@@ -199,7 +199,7 @@ UnknownScript_0x19c9bb:
 .LoadFight2
 	loadtrainer BUG_CATCHER, ARNIE3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wArnieFightCount, 3
 	clearflag ENGINE_ARNIE
 	end
@@ -207,7 +207,7 @@ UnknownScript_0x19c9bb:
 .LoadFight3
 	loadtrainer BUG_CATCHER, ARNIE4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wArnieFightCount, 4
 	clearflag ENGINE_ARNIE
 	end
@@ -215,7 +215,7 @@ UnknownScript_0x19c9bb:
 .LoadFight4
 	loadtrainer BUG_CATCHER, ARNIE5
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_ARNIE
 	end
 
@@ -250,7 +250,7 @@ OfficerScript_0x19ca49:
 	winlosstext UnknownText_0x19cf06, 0
 	loadtrainer OFFICER, DIRK
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_OFFICER_DIRK
 	closetext
 	end

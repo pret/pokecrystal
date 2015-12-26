@@ -68,7 +68,7 @@ OptionsMenu: ; 5b64
 
 NewGame: ; 5b6b
 	xor a
-	ld [wc2cc], a
+	ld [wMonStatusFlags], a
 	call ResetWRAM
 	call NewGame_ClearTileMapEtc
 	call AreYouABoyOrAreYouAGirl
@@ -86,7 +86,7 @@ NewGame: ; 5b6b
 ; 5b8f
 
 AreYouABoyOrAreYouAGirl: ; 5b8f
-	callba Function10632f ; some mobile stuff
+	callba Mobile_AlwaysReturnNotCarry ; some mobile stuff
 	jr c, .ok
 	callba InitGender
 	ret
@@ -211,9 +211,9 @@ ENDC
 	ld [Money + 2], a
 
 	xor a
-	ld [wdc17], a
+	ld [wWhichMomItem], a
 
-	ld hl, wdc19
+	ld hl, MomItemTriggerBalance
 	ld [hl], 2300 / $10000
 	inc hl
 	ld [hl], 2300 / $100 % $100
@@ -385,7 +385,7 @@ Continue: ; 5d65
 	ld c, 20
 	call DelayFrames
 	callba JumpRoamMons
-	callba Function105091 ; Mystery Gift
+	callba MysteryGift_CopyReceivedDecosToPC ; Mystery Gift
 	callba Function140ae ; time-related
 	ld a, [wSpawnAfterChampion]
 	cp SPAWN_LANCE
@@ -399,14 +399,14 @@ Continue: ; 5d65
 
 .SpawnAfterE4
 	ld a, SPAWN_NEW_BARK
-	ld [wd001], a
+	ld [DefaultSpawnpoint], a
 	call PostCreditsSpawn
 	jp FinishContinueFunction
 ; 5de2
 
 SpawnAfterRed: ; 5de2
 	ld a, SPAWN_MT_SILVER
-	ld [wd001], a
+	ld [DefaultSpawnpoint], a
 ; 5de7
 
 PostCreditsSpawn: ; 5de7
@@ -418,8 +418,11 @@ PostCreditsSpawn: ; 5de7
 ; 5df0
 
 Continue_MobileAdapterMenu: ; 5df0
-	callba Function10632f ; mobile check
+	callba Mobile_AlwaysReturnNotCarry ; mobile check
 	ret nc
+
+; the rest of this stuff is never reached because
+; the previous function returns with carry not set
 	ld hl, wd479
 	bit 1, [hl]
 	ret nz
@@ -480,7 +483,7 @@ Continue_CheckRTC_RestartClock: ; 5e48
 FinishContinueFunction: ; 5e5d
 .loop
 	xor a
-	ld [wc2c1], a
+	ld [wDontPlayMapMusicOnReload], a
 	ld [wLinkMode], a
 	ld hl, GameTimerPause
 	set 0, [hl]
@@ -641,7 +644,7 @@ Continue_DisplayBadgeCount: ; 5f58
 
 Continue_DisplayPokedexNumCaught: ; 5f6b
 	ld a, [StatusFlags]
-	bit 0, a
+	bit 0, a ; Pokedex
 	ret z
 	push hl
 	ld hl, PokedexCaught
@@ -787,7 +790,7 @@ NamePlayer: ; 0x6074
 	dec a
 	jr z, .NewName
 	call StorePlayerName
-	callba Function8c1d
+	callba ApplyMonOrTrainerPals
 	callba MovePlayerPicLeft
 	ret
 
@@ -1024,7 +1027,7 @@ StartTitleScreen: ; 6219
 	call .TitleScreen
 	call DelayFrame
 .loop
-	call Function627b
+	call RunTitleScreen
 	jr nc, .loop
 
 	call ClearSprites
@@ -1079,7 +1082,7 @@ endr
 	ret
 ; 627b
 
-Function627b: ; 627b
+RunTitleScreen: ; 627b
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .done_title
@@ -1126,7 +1129,7 @@ endr
 	dw TitleScreenEnd
 ; 62b7
 
-Function62b7: ; Unreferenced
+.NextScene ; Unreferenced
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
@@ -1152,7 +1155,7 @@ TitleScreenEntrance: ; 62bc
 ; Reversed signage for every other line's position.
 ; This is responsible for the interlaced effect.
 	ld a, e
-	xor -1
+	xor $ff
 	inc a
 
 	ld b, 8 * 10 / 2 ; logo height / 2
@@ -1191,7 +1194,7 @@ TitleScreenTimer: ; 62f6
 
 ; Start a timer
 	ld hl, wcf65
-	ld de, $1140 ; 73.6 seconds
+	ld de, 73 * 60 + 36
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -1225,7 +1228,7 @@ TitleScreenMain: ; 6304
 ; To bring up the clock reset dialog:
 
 ; Hold Down + B + Select to initiate the sequence.
-	ld a, [$ffeb]
+	ld a, [hClockResetTrigger]
 	cp $34
 	jr z, .check_clock_reset
 
@@ -1235,17 +1238,17 @@ TitleScreenMain: ; 6304
 	jr nz, .check_start
 
 	ld a, $34
-	ld [$ffeb], a
+	ld [hClockResetTrigger], a
 	jr .check_start
 
 ; Keep Select pressed, and hold Left + Up.
 ; Then let go of Select.
 .check_clock_reset
-	bit 2, [hl] ; SELECT
+	bit SELECT_F, [hl]
 	jr nz, .check_start
 
 	xor a
-	ld [$ffeb], a
+	ld [hClockResetTrigger], a
 
 	ld a, [hl]
 	and D_LEFT + D_UP
@@ -1368,12 +1371,12 @@ endr
 
 Data63ca: ; 63ca
 ; frame 0 y, x; frame 1 y, x
-	db $5c, $50, $00, $00
-	db $5c, $68, $5c, $58
-	db $5c, $68, $5c, $78
-	db $5c, $88, $5c, $78
-	db $00, $00, $5c, $78
-	db $00, $00, $5c, $58
+	db 11 * 8 + 4, 10 * 8,  0 * 8,      0 * 8
+	db 11 * 8 + 4, 13 * 8, 11 * 8 + 4, 11 * 8
+	db 11 * 8 + 4, 13 * 8, 11 * 8 + 4, 15 * 8
+	db 11 * 8 + 4, 17 * 8, 11 * 8 + 4, 15 * 8
+	db  0 * 8,      0 * 8, 11 * 8 + 4, 15 * 8
+	db  0 * 8,      0 * 8, 11 * 8 + 4, 11 * 8
 ; 63e2
 
 Copyright: ; 63e2
@@ -1390,20 +1393,16 @@ Copyright: ; 63e2
 
 CopyrightString: ; 63fd
 	; ©1995-2001 Nintendo
-	db $60, $61, $62, $63, $64, $65, $66
-	db $67, $68, $69, $6a, $6b, $6c
-
-	db $4e
+	db   $60, $61, $62, $63, $64, $65, $66
+	db   $67, $68, $69, $6a, $6b, $6c
 
 	; ©1995-2001 Creatures inc.
-	db $60, $61, $62, $63, $64, $65, $66, $6d
-	db $6e, $6f, $70, $71, $72, $7a, $7b, $7c
-
-	db $4e
+	next $60, $61, $62, $63, $64, $65, $66
+	db   $6d, $6e, $6f, $70, $71, $72, $7a, $7b, $7c
 
 	; ©1995-2001 GAME FREAK inc.
-	db $60, $61, $62, $63, $64, $65, $66, $73, $74
-	db $75, $76, $77, $78, $79, $7a, $7b, $7c
+	next $60, $61, $62, $63, $64, $65, $66
+	db   $73, $74, $75, $76, $77, $78, $79, $7a, $7b, $7c
 
 	db "@"
 ; 642e

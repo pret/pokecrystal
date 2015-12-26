@@ -58,7 +58,7 @@ BrunoScript_0x1809c5:
 	winlosstext UnknownText_0x180b23, 0
 	loadtrainer BRUNO, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_ELITE_4_BRUNO
 	opentext
 	writetext UnknownText_0x180b3c

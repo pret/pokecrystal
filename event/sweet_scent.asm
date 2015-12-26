@@ -18,7 +18,7 @@ UnknownScript_0x506c8: ; 0x506c8
 	iftrue UnknownScript_0x506e5
 	randomwildmon
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	end
 ; 0x506e5
 

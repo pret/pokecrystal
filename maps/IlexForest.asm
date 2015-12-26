@@ -473,7 +473,7 @@ MapIlexForestSignpost4Script:
 	special Special_CelebiShrineEvent
 	loadwildmon CELEBI, 30
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	pause 20
 	special CheckCaughtCelebi
 	iffalse .DidntCatchCelebi

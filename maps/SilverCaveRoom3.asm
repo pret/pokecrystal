@@ -18,8 +18,8 @@ RedScript_0x18c603:
 	winlosstext UnknownText_0x18c63c, UnknownText_0x18c63c
 	loadtrainer RED, 1
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	special Special_FadeOutMusic
 	opentext
 	writetext UnknownText_0x18c63f

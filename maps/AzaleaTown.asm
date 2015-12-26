@@ -74,8 +74,8 @@ AzaleaTownRivalBattleScript:
 	setlasttalked AZALEATOWN_SILVER
 	loadtrainer RIVAL1, RIVAL1_6
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	jump .AfterBattle
 
 .Totodile:
@@ -83,8 +83,8 @@ AzaleaTownRivalBattleScript:
 	setlasttalked AZALEATOWN_SILVER
 	loadtrainer RIVAL1, RIVAL1_4
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	jump .AfterBattle
 
 .Chikorita:
@@ -92,8 +92,8 @@ AzaleaTownRivalBattleScript:
 	setlasttalked AZALEATOWN_SILVER
 	loadtrainer RIVAL1, RIVAL1_5
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	jump .AfterBattle
 
 .AfterBattle:

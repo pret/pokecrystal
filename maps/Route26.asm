@@ -71,7 +71,7 @@ UnknownScript_0x1a4d79:
 .LoadFight0
 	loadtrainer COOLTRAINERM, GAVEN3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wGavenFightCount, 1
 	clearflag ENGINE_GAVEN
 	end
@@ -79,7 +79,7 @@ UnknownScript_0x1a4d79:
 .LoadFight1
 	loadtrainer COOLTRAINERM, GAVEN1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wGavenFightCount, 2
 	clearflag ENGINE_GAVEN
 	end
@@ -87,7 +87,7 @@ UnknownScript_0x1a4d79:
 .LoadFight2
 	loadtrainer COOLTRAINERM, GAVEN2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_GAVEN
 	end
 
@@ -175,7 +175,7 @@ UnknownScript_0x1a4e35:
 .LoadFight0
 	loadtrainer COOLTRAINERF, BETH1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wBethFightCount, 1
 	clearflag ENGINE_BETH
 	end
@@ -183,7 +183,7 @@ UnknownScript_0x1a4e35:
 .LoadFight1
 	loadtrainer COOLTRAINERF, BETH2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wBethFightCount, 2
 	clearflag ENGINE_BETH
 	end
@@ -191,7 +191,7 @@ UnknownScript_0x1a4e35:
 .LoadFight2
 	loadtrainer COOLTRAINERF, BETH3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_BETH
 	end
 

@@ -1842,7 +1842,7 @@ HealHP_SFX_GFX: ; f1db (3:71db)
 	ld bc, SCREEN_WIDTH * 2
 	call AddNTimes
 	ld a, $2
-	ld [wd10a], a
+	ld [wWhichHPBar], a
 	predef_jump AnimateHPBar
 
 UseItem_SelectMon: ; f1f9 (3:71f9)

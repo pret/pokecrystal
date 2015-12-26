@@ -61,7 +61,7 @@ UnknownScript_0x1aa9ab:
 	startbattle
 	disappear VERMILIONCITY_BIG_SNORLAX
 	setevent EVENT_FOUGHT_SNORLAX
-	returnafterbattle
+	reloadmapafterbattle
 	end
 
 VermilionGymBadgeGuy:

@@ -144,7 +144,7 @@ RandomEncounter:: ; 97cc0
 WildBattleScript: ; 97cf9
 	randomwildmon
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	end
 ; 97cfd
 

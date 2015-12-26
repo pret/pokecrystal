@@ -225,7 +225,7 @@ TrainerFisherRalph1:
 .LoadFight0
 	loadtrainer FISHER, RALPH1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wRalphFightCount, 1
 	clearflag ENGINE_RALPH
 	end
@@ -233,7 +233,7 @@ TrainerFisherRalph1:
 .LoadFight1
 	loadtrainer FISHER, RALPH2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wRalphFightCount, 2
 	clearflag ENGINE_RALPH
 	end
@@ -241,7 +241,7 @@ TrainerFisherRalph1:
 .LoadFight2
 	loadtrainer FISHER, RALPH3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wRalphFightCount, 3
 	clearflag ENGINE_RALPH
 	end
@@ -249,7 +249,7 @@ TrainerFisherRalph1:
 .LoadFight3
 	loadtrainer FISHER, RALPH4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wRalphFightCount, 4
 	clearflag ENGINE_RALPH
 	end
@@ -257,7 +257,7 @@ TrainerFisherRalph1:
 .LoadFight4
 	loadtrainer FISHER, RALPH5
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_RALPH
 	end
 
@@ -359,7 +359,7 @@ TrainerPicnickerLiz1:
 .LoadFight0
 	loadtrainer PICNICKER, LIZ1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wLizFightCount, 1
 	clearflag ENGINE_LIZ
 	end
@@ -367,7 +367,7 @@ TrainerPicnickerLiz1:
 .LoadFight1
 	loadtrainer PICNICKER, LIZ2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wLizFightCount, 2
 	clearflag ENGINE_LIZ
 	end
@@ -375,7 +375,7 @@ TrainerPicnickerLiz1:
 .LoadFight2
 	loadtrainer PICNICKER, LIZ3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wLizFightCount, 3
 	clearflag ENGINE_LIZ
 	end
@@ -383,7 +383,7 @@ TrainerPicnickerLiz1:
 .LoadFight3
 	loadtrainer PICNICKER, LIZ4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wLizFightCount, 4
 	clearflag ENGINE_LIZ
 	end
@@ -391,7 +391,7 @@ TrainerPicnickerLiz1:
 .LoadFight4
 	loadtrainer PICNICKER, LIZ5
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_LIZ
 	end
 

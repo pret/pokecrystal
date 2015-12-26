@@ -150,7 +150,7 @@ PokefanFScript_0x1a5bbe:
 	winlosstext UnknownText_0x1a5f17, 0
 	loadtrainer POKEFANF, JAIME
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_POKEFANF_JAIME
 	closetext
 	end

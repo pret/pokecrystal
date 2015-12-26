@@ -1808,7 +1808,7 @@ Function100b12: ; 100b12
 	ld [wMenuCursorBuffer], a
 	call Function100e72
 	call Function100b45
-	callba Function8e85
+	callba InitBattlePartyMenuPals
 	call Function100ed4
 	ld a, [wMenuCursorBuffer]
 	ld [wd0d2], a
@@ -1866,7 +1866,7 @@ MobileMoveSelectionScreen: ; 100b9f
 	call Function100e72
 	call Function100bc2
 	push af
-	callba Function8e85
+	callba InitBattlePartyMenuPals
 	call Function100ed4
 	pop af
 	ret
@@ -2159,14 +2159,14 @@ Function100db0: ; 100db0
 Function100dc0: ; 100dc0
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
-	jr nz, .asm_100dd0
+	jr nz, .mobile
 	ld hl, wcd2a
 	bit 3, [hl]
-	jr z, .asm_100dd0
+	jr z, .mobile
 	scf
 	ret
 
-.asm_100dd0
+.mobile
 	xor a
 	ret
 ; 100dd2
@@ -2597,7 +2597,7 @@ Function10107d: ; 10107d
 	ld bc, NAME_LENGTH
 	call .CopyAllFromOT
 	ld hl, OTPartyMonOT
-	ld de, wc656 + 1
+	ld de, OTName + 1
 	ld bc, NAME_LENGTH
 	call .CopyAllFromOT
 	ld hl, OTPartyMon1Species
@@ -7784,7 +7784,7 @@ MenuData2_103648: ; 103648
 ; 103654
 
 Function103654: ; 103654
-	callba Function10632f
+	callba Mobile_AlwaysReturnNotCarry
 	bit 7, c
 	jr nz, .asm_103666
 	ld hl, wcd2a
@@ -7800,7 +7800,7 @@ Function103654: ; 103654
 ; 10366e
 
 Mobile_SelectThreeMons: ; 10366e
-	callba Function10632f
+	callba Mobile_AlwaysReturnNotCarry
 	bit 7, c
 	jr z, .asm_10369b
 	ld hl, UnknownText_0x10375d
@@ -8074,7 +8074,7 @@ UnknownText_0x10381e: ; 0x10381e
 ; 0x103823
 
 Function103823: ; 103823
-	callba Function10632f
+	callba Mobile_AlwaysReturnNotCarry
 	bit 7, c
 	jr nz, .asm_103838
 	callba Function1008a6
@@ -8126,7 +8126,7 @@ UnknownText_0x103876: ; 0x103876
 ; 0x10387b
 
 Function10387b: ; 10387b
-	callba Function10632f
+	callba Mobile_AlwaysReturnNotCarry
 	bit 7, c
 	ret nz
 	callba Function1008a6

@@ -67,7 +67,7 @@ UnknownScript_0x5afc7:
 .LoadFight0
 	loadtrainer SAILOR, HUEY1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wHueyFightCount, 1
 	clearflag ENGINE_HUEY
 	end
@@ -75,7 +75,7 @@ UnknownScript_0x5afc7:
 .LoadFight1
 	loadtrainer SAILOR, HUEY2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wHueyFightCount, 2
 	clearflag ENGINE_HUEY
 	end
@@ -83,7 +83,7 @@ UnknownScript_0x5afc7:
 .LoadFight2
 	loadtrainer SAILOR, HUEY3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wHueyFightCount, 3
 	clearflag ENGINE_HUEY
 	end
@@ -91,7 +91,7 @@ UnknownScript_0x5afc7:
 .LoadFight3
 	loadtrainer SAILOR, HUEY4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_HUEY
 	checkevent EVENT_HUEY_PROTEIN
 	iftrue UnknownScript_0x5b03f

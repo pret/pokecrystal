@@ -78,45 +78,45 @@ Jumptable_114165: ; 114165
 ; 11417f
 
 Unknown_11417f: ; 11417f
-	dw String_114199
-	dw String_11419f
-	dw String_1141a7
-	dw String_1141b1
-	dw String_1141b5
-	dw String_1141b9
-	dw String_1141c2
-	dw String_1141c8
-	dw String_1141d6
-	dw String_1141e4
-	dw String_1141ee
-	dw String_1141fc
-	dw String_114209
+	dw .From
+	dw .Sender
+	dw .ReplyTo
+	dw .To
+	dw .CC
+	dw .Subject
+	dw .Date
+	dw .ContentType
+	dw .MimeVersion
+	dw .XMailer
+	dw .XGameTitle
+	dw .XGameCode
+	dw .XGBMailType
 
-String_114199: ; 114199
+.From: ; 114199
 	db "FROM:", 0
-String_11419f: ; 11419f
+.Sender: ; 11419f
 	db "SENDER:", 0
-String_1141a7: ; 1141a7
+.ReplyTo: ; 1141a7
 	db "REPLY-TO:", 0
-String_1141b1: ; 1141b1
+.To: ; 1141b1
 	db "TO:", 0
-String_1141b5: ; 1141b5
+.CC: ; 1141b5
 	db "CC:", 0
-String_1141b9: ; 1141b9
+.Subject: ; 1141b9
 	db "SUBJECT:", 0
-String_1141c2: ; 1141c2
+.Date: ; 1141c2
 	db "DATE:", 0
-String_1141c8: ; 1141c8
+.ContentType: ; 1141c8
 	db "CONTENT-TYPE:", 0
-String_1141d6: ; 1141d6
+.MimeVersion: ; 1141d6
 	db "MIME-VERSION:", 0
-String_1141e4: ; 1141e4
+.XMailer: ; 1141e4
 	db "X-MAILER:", 0
-String_1141ee: ; 1141ee
+.XGameTitle: ; 1141ee
 	db "X-GAME-TITLE:", 0
-String_1141fc: ; 1141fc
+.XGameCode: ; 1141fc
 	db "X-GAME-CODE:", 0
-String_114209: ; 114209
+.XGBMailType: ; 114209
 	db "X-GBMAIL-TYPE:", 0
 ; 114218
 
@@ -131,10 +131,10 @@ String_114232: ; 114232
 ; 114243
 
 Function114243:: ; 114243
-	ld a, $a
+	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
-	ld a, [$ff8c]
-	push af
+	ld a, [hFF8C]
+	push af ; if [wdc02] == 0, this is popped to pc.
 	push de
 	ld a, [wdc02]
 	add a
@@ -153,9 +153,9 @@ Function11425c: ; 11425c
 	ld [wdc02], a
 	pop af
 rept 2
-	ld [$ff8c], a
+	ld [hFF8C], a
 endr
-	ld [$4000], a
+	ld [MBC3SRamBank], a
 	ret
 ; 114268
 
@@ -171,8 +171,8 @@ Function114269: ; 114269
 	ld [wdc03], a
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -370,8 +370,8 @@ Function11433c: ; 11433c
 	pop bc
 	ld a, [wdc03]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	call Function114c0b
 	ld hl, String_114004
 .asm_114394
@@ -429,8 +429,8 @@ Function1143b7: ; 1143b7
 	push af
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -473,7 +473,7 @@ Function1143f3: ; 1143f3
 	jr nc, .asm_114400
 
 .asm_114407
-	ld bc, VBlank5
+	lb bc, $4, $0
 	ld a, $2
 	ret
 
@@ -486,8 +486,8 @@ Function1143f3: ; 1143f3
 Function114412: ; 114412
 	ld a, c
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld hl, Unknown_11417f
 	ld a, b
 	add a
@@ -506,17 +506,17 @@ Function114412: ; 114412
 	jp z, .asm_1144c2
 	inc e
 	call z, Function1144c8
-	cp $d
+	cp $d ; CR
 	jr nz, .asm_11442b
 	ld a, [de]
 	inc e
 	call z, Function1144c8
-	cp $a
+	cp $a ; NL
 	jr nz, .asm_11442b
 	ld a, [de]
-	cp $2e
+	cp $2e ; .
 	jr z, .asm_1144ae
-	cp $d
+	cp $d  ; CR
 	jr z, .asm_1144b8
 
 .asm_11444a
@@ -527,9 +527,9 @@ Function114412: ; 114412
 	jr z, .asm_1144c2
 	inc e
 	call z, Function1144c8
-	cp $61
+	cp $61 ; "a"
 	jr c, .asm_114462
-	cp $7b
+	cp $7b ; "z" + 1
 	jr nc, .asm_114462
 	sub $20
 
@@ -553,10 +553,10 @@ Function114412: ; 114412
 	jr .asm_11446e
 
 .asm_114476
-	ld a, $20
+	ld a, $20 ; " "
 	cp b
 	jr z, .asm_114481
-	ld a, $a
+	ld a, $a ; NL
 	cp b
 	jr z, .asm_114481
 	dec de
@@ -572,18 +572,18 @@ Function114412: ; 114412
 	inc bc
 	inc e
 	call z, Function1144c8
-	cp $d
+	cp $d ; CR
 	jr nz, .asm_114486
 	ld a, [de]
 	inc bc
 	inc e
 	call z, Function1144c8
-	cp $a
+	cp $a ; NL
 	jr nz, .asm_114486
 	ld a, [de]
-	cp $20
+	cp $20 ; " "
 	jr z, .asm_114486
-	cp $9
+	cp $9 ; TAB
 	jr z, .asm_114486
 	ld d, h
 	ld e, l
@@ -596,14 +596,14 @@ Function114412: ; 114412
 	inc e
 	call z, Function1144c8
 	ld a, [de]
-	cp $d
+	cp $d ; CR
 	jp nz, .asm_11442b
 
 .asm_1144b8
 	inc e
 	call z, Function1144c8
 	ld a, [de]
-	cp $a
+	cp $a ; NL
 	jp nz, .asm_11442b
 
 .asm_1144c2
@@ -676,8 +676,8 @@ endr
 	pop hl
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -693,8 +693,8 @@ endr
 	ld hl, wdc06
 	ld a, [hl]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld hl, wdc09
 	ld e, [hl]
 	inc hl
@@ -753,8 +753,8 @@ Function114576: ; 114576
 	jr nz, .asm_1145b4
 	ld a, h
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	push hl
 	push de
 	push bc
@@ -771,8 +771,8 @@ Function114576: ; 114576
 	jr nz, .asm_1145ba
 	ld a, h
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld hl, String_114218
 	call Function114acf
 
@@ -945,8 +945,8 @@ Function11463c: ; 11463c
 	pop de
 	pop af
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	xor a
 	ld [Carpet], a
 	ld a, $1
@@ -968,8 +968,8 @@ Function1146a4: ; 1146a4
 	ld hl, wdc03
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -982,8 +982,8 @@ Function1146a4: ; 1146a4
 	ld hl, wdc03
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1027,8 +1027,8 @@ Function1146fa: ; 1146fa
 	ld hl, wdc03
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1041,8 +1041,8 @@ Function1146fa: ; 1146fa
 	ld a, $1
 	ld [wdc0e], a
 	ld a, [wdc00]
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, $1
 	ld [RightOrnament], a
 	call Function1147cd
@@ -1068,8 +1068,8 @@ Function1146fa: ; 1146fa
 	ld hl, wdc03
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1123,8 +1123,8 @@ endr
 	ld hl, wdc03
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	call Function114a7a
 	and a
 	jr z, .asm_1147cb
@@ -1236,8 +1236,8 @@ Function114843: ; 114843
 	ld a, [wdc00]
 	push af
 	push de
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	call Function114a18
 	and a
 	jr nz, .asm_11485f
@@ -1260,8 +1260,8 @@ Function114867: ; 114867
 	ld hl, wdc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1327,8 +1327,8 @@ Function1148c2: ; 1148c2
 	ld hl, wdc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1427,8 +1427,8 @@ Function11494d: ; 11494d
 	ld hl, wdc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1519,8 +1519,8 @@ Function1149cc: ; 1149cc
 	ld hl, wdc06
 	ld a, [hl]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	push de
 	ld hl, wdc09
 	ld e, [hl]
@@ -1874,8 +1874,8 @@ endr
 	ld hl, wdc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1913,8 +1913,8 @@ Function114bbc: ; 114bbc
 	jr nz, .asm_114bff
 	ld a, h
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	call Function114c0b
 	ld hl, wdc24
 	call Function114c5e
@@ -1924,8 +1924,8 @@ Function114bbc: ; 114bbc
 	pop hl
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -2136,8 +2136,8 @@ Function114cd9: ; 114cd9
 	ld [wdc04], a
 	ld a, h
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld hl, wdc24
 	call Function114d39
 	ld hl, wdc24
@@ -2155,8 +2155,8 @@ endr
 	pop hl
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -2460,8 +2460,8 @@ Function114ea0: ; 114ea0
 	ld hl, wdc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -2666,8 +2666,8 @@ Function114f59: ; 114f59
 	inc hl
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -2745,8 +2745,8 @@ Function115020: ; 115020
 	ld hl, wdc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -2804,8 +2804,8 @@ Function115062: ; 115062
 	ld c, a
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -2958,8 +2958,8 @@ Function115136: ; 115136
 	ld hl, wdc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -3013,8 +3013,8 @@ Function115179: ; 115179
 	ld hl, wdc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -3133,8 +3133,8 @@ Function115217: ; 115217
 	ld hl, wdc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -3228,8 +3228,8 @@ Function11528f: ; 11528f
 	inc hl
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -3483,8 +3483,8 @@ Function1153d2: ; 1153d2
 .asm_1153f5
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -3617,8 +3617,8 @@ Function1153d2: ; 1153d2
 	ld hl, RightOrnament
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -3854,8 +3854,8 @@ Function11560a: ; 11560a
 	ld [wCurrentMapSignpostCount], a
 	ld a, [wdc17]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld hl, wdc1a
 	ld c, [hl]
 	inc hl
@@ -3927,8 +3927,8 @@ Function11560a: ; 11560a
 	ld [hl], d
 	pop bc
 	ld a, [wCurrentMapSignpostCount]
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld hl, wCurrMapTriggerCount
 	ld e, [hl]
 	inc hl
@@ -4238,8 +4238,8 @@ Function11581e: ; 11581e
 	ld hl, wdc02
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -4292,8 +4292,8 @@ Function11581e: ; 11581e
 	ld hl, wCurrMapTriggerCount
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -4767,8 +4767,8 @@ Function115b00: ; 115b00
 	ld hl, wdc02
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -4856,8 +4856,8 @@ endr
 	ld hl, wCurrMapTriggerCount
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -5258,8 +5258,8 @@ Function115d80: ; 115d80
 	ld a, [bc]
 	inc a
 	ld [bc], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, e
 	ld d, $a0
 	ld e, $0

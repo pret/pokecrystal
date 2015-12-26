@@ -29,7 +29,7 @@ BlaineScript_0x1ab4fb:
 	iftrue .ReturnAfterBattle
 	appear SEAFOAMGYM_GYM_GUY
 .ReturnAfterBattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_BLAINE
 	opentext
 	writetext UnknownText_0x1ab683

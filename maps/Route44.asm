@@ -63,7 +63,7 @@ UnknownScript_0x19d86a:
 .LoadFight0
 	loadtrainer BIRD_KEEPER, VANCE1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wVanceFightCount, 1
 	clearflag ENGINE_VANCE
 	end
@@ -71,7 +71,7 @@ UnknownScript_0x19d86a:
 .LoadFight1
 	loadtrainer BIRD_KEEPER, VANCE2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wVanceFightCount, 2
 	clearflag ENGINE_VANCE
 	end
@@ -79,7 +79,7 @@ UnknownScript_0x19d86a:
 .LoadFight2
 	loadtrainer BIRD_KEEPER, VANCE3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_VANCE
 	checkevent EVENT_VANCE_CARBOS
 	iftrue UnknownScript_0x19d8cb
@@ -207,7 +207,7 @@ UnknownScript_0x19d96e:
 .LoadFight0
 	loadtrainer FISHER, WILTON1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wWiltonFightCount, 1
 	clearflag ENGINE_WILTON
 	end
@@ -215,7 +215,7 @@ UnknownScript_0x19d96e:
 .LoadFight1
 	loadtrainer FISHER, WILTON2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wWiltonFightCount, 2
 	clearflag ENGINE_WILTON
 	end
@@ -223,7 +223,7 @@ UnknownScript_0x19d96e:
 .LoadFight2
 	loadtrainer FISHER, WILTON3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_WILTON
 	end
 

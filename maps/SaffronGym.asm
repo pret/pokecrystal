@@ -24,7 +24,7 @@ SabrinaScript_0x189c2e:
 	winlosstext UnknownText_0x189df4, 0
 	loadtrainer SABRINA, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_SABRINA
 	setevent EVENT_BEAT_MEDIUM_REBECCA
 	setevent EVENT_BEAT_MEDIUM_DORIS

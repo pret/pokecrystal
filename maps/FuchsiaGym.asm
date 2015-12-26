@@ -25,7 +25,7 @@ JanineScript_0x195db9:
 	winlosstext UnknownText_0x195fa1, 0
 	loadtrainer JANINE, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_JANINE
 	setevent EVENT_BEAT_LASS_ALICE
 	setevent EVENT_BEAT_LASS_LINDA
@@ -78,13 +78,13 @@ UnknownScript_0x195e2c:
 	loadtrainer LASS, ALICE
 	startbattle
 	iftrue UnknownScript_0x195e4a
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_LASS_ALICE
 	end
 
 UnknownScript_0x195e4a:
 	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_JANINE
-	returnafterbattle
+	reloadmapafterbattle
 	end
 
 UnknownScript_0x195e4f:
@@ -112,13 +112,13 @@ UnknownScript_0x195e66:
 	loadtrainer LASS, LINDA
 	startbattle
 	iftrue UnknownScript_0x195e84
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_LASS_LINDA
 	end
 
 UnknownScript_0x195e84:
 	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_JANINE
-	returnafterbattle
+	reloadmapafterbattle
 	end
 
 UnknownScript_0x195e89:
@@ -146,13 +146,13 @@ UnknownScript_0x195ea0:
 	loadtrainer PICNICKER, CINDY
 	startbattle
 	iftrue UnknownScript_0x195ebe
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_PICNICKER_CINDY
 	end
 
 UnknownScript_0x195ebe:
 	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_JANINE
-	returnafterbattle
+	reloadmapafterbattle
 	end
 
 UnknownScript_0x195ec3:
@@ -180,13 +180,13 @@ UnknownScript_0x195eda:
 	loadtrainer CAMPER, BARRY
 	startbattle
 	iftrue UnknownScript_0x195ef8
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_CAMPER_BARRY
 	end
 
 UnknownScript_0x195ef8:
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_JANINE
-	returnafterbattle
+	reloadmapafterbattle
 	end
 
 UnknownScript_0x195efd:

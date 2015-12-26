@@ -191,7 +191,7 @@ UnknownScript_0x19e1b8:
 .LoadFight0
 	loadtrainer HIKER, PARRY3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wParryFightCount, 1
 	clearflag ENGINE_PARRY
 	end
@@ -199,7 +199,7 @@ UnknownScript_0x19e1b8:
 .LoadFight1
 	loadtrainer HIKER, PARRY1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wParryFightCount, 2
 	clearflag ENGINE_PARRY
 	end
@@ -207,7 +207,7 @@ UnknownScript_0x19e1b8:
 .LoadFight2
 	loadtrainer HIKER, PARRY2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_PARRY
 	checkevent EVENT_PARRY_IRON
 	iftrue UnknownScript_0x19e219
@@ -276,7 +276,7 @@ YoungsterScript_0x19e269:
 	winlosstext UnknownText_0x19e899, 0
 	loadtrainer CAMPER, QUENTIN
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_CAMPER_QUENTIN
 	closetext
 	end

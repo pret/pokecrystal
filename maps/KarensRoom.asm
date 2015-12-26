@@ -58,7 +58,7 @@ KarenScript_0x180bee:
 	winlosstext UnknownText_0x180cf8, 0
 	loadtrainer KAREN, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_ELITE_4_KAREN
 	opentext
 	writetext UnknownText_0x180d29

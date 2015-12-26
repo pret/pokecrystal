@@ -20,7 +20,7 @@ BlueScript_0x9aa26:
 	winlosstext UnknownText_0x9abae, 0
 	loadtrainer BLUE, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_BLUE
 	opentext
 	writetext UnknownText_0x9ac0f

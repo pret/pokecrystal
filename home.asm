@@ -3,17 +3,14 @@ INCLUDE "includes.asm"
 SECTION "NULL", ROM0[0]
 NULL::
 
-
 INCLUDE "rst.asm"
 INCLUDE "interrupts.asm"
-
 
 SECTION "Header", ROM0[$100]
 
 Start::
 	nop
 	jp _Start
-
 
 SECTION "Home", ROM0[$150]
 
@@ -40,7 +37,6 @@ INCLUDE "home/handshake.asm"
 INCLUDE "home/game_time.asm"
 INCLUDE "home/map.asm"
 
-
 Function2d43:: ; 2d43
 ; Inexplicably empty.
 ; Seen in PredefPointers.
@@ -50,11 +46,9 @@ Function2d43:: ; 2d43
 	ret
 ; 2d54
 
-
 INCLUDE "home/farcall.asm"
 INCLUDE "home/predef.asm"
 INCLUDE "home/window.asm"
-
 
 Function2e4e:: ; 2e4e
 ; Unreferenced.
@@ -62,17 +56,16 @@ Function2e4e:: ; 2e4e
 	ret
 ; 2e50
 
-
 INCLUDE "home/flag.asm"
 
-
 Function2ebb:: ; 2ebb
-	ld a, [wc2cc]
+; unreferenced
+	ld a, [wMonStatusFlags]
 	bit 1, a
 	ret z
 
 	ld a, [hJoyDown]
-	bit 1, a ; B_BUTTON
+	bit B_BUTTON_F, a
 	ret
 ; 2ec6
 
@@ -88,13 +81,13 @@ xor_a_dec_a:: ; 2ec8
 ; 2ecb
 
 Function2ecb:: ; 2ecb
+; unreferenced
 	push hl
-	ld hl, wc2cc
+	ld hl, wMonStatusFlags
 	bit 1, [hl]
 	pop hl
 	ret
 ; 2ed3
-
 
 DisableSpriteUpdates:: ; 0x2ed3
 ; disables overworld sprite updating?
@@ -119,9 +112,7 @@ EnableSpriteUpdates:: ; 2ee4
 	ret
 ; 2ef6
 
-
 INCLUDE "home/string.asm"
-
 
 IsInJohto:: ; 2f17
 ; Return 0 if the player is in Johto, and 1 in Kanto.
@@ -157,16 +148,13 @@ IsInJohto:: ; 2f17
 	ret
 ; 2f3e
 
-
 ret_2f3e:: ; 2f3e
 	ret
 ; 2f3f
 
-
 INCLUDE "home/item.asm"
 INCLUDE "home/random.asm"
 INCLUDE "home/sram.asm"
-
 
 ; Register aliases
 
@@ -179,9 +167,7 @@ _de_:: ; 2fed
 	ret
 ; 2fef
 
-
 INCLUDE "home/double_speed.asm"
-
 
 ClearSprites:: ; 300b
 ; Erase OAM data
@@ -209,9 +195,7 @@ HideSprites:: ; 3016
 	ret
 ; 3026
 
-
 INCLUDE "home/copy2.asm"
-
 
 LoadTileMapToTempTileMap:: ; 309d
 ; Load TileMap into TempTileMap
@@ -251,7 +235,6 @@ LoadTempTileMapToTileMap:: ; 30bf
 	ld [rSVBK], a
 	ret
 ; 30d6
-
 
 CopyName1:: ; 30d6
 ; Copies the name from de to StringBuffer2
@@ -305,9 +288,7 @@ SkipNames:: ; 0x30f4
 	ret
 ; 0x30fe
 
-
 INCLUDE "home/math.asm"
-
 
 PrintLetterDelay:: ; 313d
 ; Wait before printing the next letter.
@@ -392,7 +373,6 @@ PrintLetterDelay:: ; 313d
 	ret
 ; 318c
 
-
 CopyDataUntil:: ; 318c
 ; Copy [hl .. bc) to de.
 
@@ -412,7 +392,6 @@ CopyDataUntil:: ; 318c
 	ret
 ; 0x3198
 
-
 PrintNum:: ; 3198
 	ld a, [hROMBank]
 	push af
@@ -425,7 +404,6 @@ PrintNum:: ; 3198
 	rst Bankswitch
 	ret
 ; 31a4
-
 
 MobilePrintNum:: ; 31a4
 	ld a, [hROMBank]
@@ -440,7 +418,6 @@ MobilePrintNum:: ; 31a4
 	ret
 ; 31b0
 
-
 FarPrintText:: ; 31b0
 	ld [hBuffer], a
 	ld a, [hROMBank]
@@ -454,7 +431,6 @@ FarPrintText:: ; 31b0
 	rst Bankswitch
 	ret
 ; 31be
-
 
 CallPointerAt:: ; 31be
 	ld a, [hROMBank]
@@ -474,7 +450,6 @@ CallPointerAt:: ; 31be
 	ret
 ; 31cd
 
-
 QueueScript:: ; 31cd
 ; Push pointer hl in the current bank to wQueuedScriptBank.
 	ld a, [hROMBank]
@@ -489,7 +464,6 @@ FarQueueScript:: ; 31cf
 	ret
 ; 31db
 
-
 StringCmp:: ; 31db
 ; Compare c bytes at de and hl.
 ; Return z if they all match.
@@ -503,7 +477,6 @@ StringCmp:: ; 31db
 	jr nz, .loop
 	ret
 ; 0x31e4
-
 
 CompareLong:: ; 31e4
 ; Compare bc bytes at de and hl.
@@ -528,7 +501,6 @@ CompareLong:: ; 31e4
 	and a
 	ret
 ; 31f3
-
 
 ClearBGPalettes:: ; 31f3
 	call ClearPalettes
@@ -560,13 +532,11 @@ WaitBGMap2:: ; 0x3200
 	ret
 ; 0x3218
 
-
 IsCGB:: ; 3218
 	ld a, [hCGB]
 	and a
 	ret
 ; 321c
-
 
 ApplyTilemap:: ; 321c
 	ld a, [hCGB]
@@ -685,7 +655,6 @@ endr
 	ret
 ; 32f9
 
-
 SetPalettes:: ; 32f9
 ; Inits the Palettes
 ; depending on the system the monochromes palettes or color palettes
@@ -708,7 +677,6 @@ SetPalettes:: ; 32f9
 	pop de
 	ret
 ; 3317
-
 
 ClearPalettes:: ; 3317
 ; Make all palettes white
@@ -747,7 +715,6 @@ ClearPalettes:: ; 3317
 	ret
 ; 333e
 
-
 GetMemSGBLayout:: ; 333e
 	ld b, SCGB_RAM
 GetSGBLayout:: ; 3340
@@ -765,14 +732,12 @@ GetSGBLayout:: ; 3340
 	predef_jump Predef_LoadSGBLayout ; LoadSGBLayout
 ; 334e
 
-
 SetHPPal:: ; 334e
 ; Set palette for hp bar pixel length e at hl.
 	call GetHPPal
 	ld [hl], d
 	ret
 ; 3353
-
 
 GetHPPal:: ; 3353
 ; Get palette for hp bar pixel length e in d.
@@ -787,7 +752,6 @@ GetHPPal:: ; 3353
 	inc d ; red
 	ret
 ; 335f
-
 
 CountSetBits:: ; 0x335f
 ; Count the number of set bits in b bytes starting from hl.
@@ -815,7 +779,6 @@ CountSetBits:: ; 0x335f
 	ret
 ; 0x3376
 
-
 GetWeekday:: ; 3376
 	ld a, [CurDay]
 .mod
@@ -825,9 +788,7 @@ GetWeekday:: ; 3376
 	ret
 ; 3380
 
-
 INCLUDE "home/pokedex_flags.asm"
-
 
 NamesPointers:: ; 33ab
 	dba PokemonNames
@@ -904,7 +865,6 @@ endr
 	ret
 ; 3411
 
-
 GetNthString:: ; 3411
 ; Return the address of the
 ; ath string starting from hl.
@@ -924,7 +884,6 @@ GetNthString:: ; 3411
 	pop bc
 	ret
 ; 3420
-
 
 GetBasePokemonName:: ; 3420
 ; Discards gender (Nidoran).
@@ -950,7 +909,6 @@ GetBasePokemonName:: ; 3420
 	ret
 
 ; 343b
-
 
 GetPokemonName:: ; 343b
 ; Get Pokemon name wd265.
@@ -991,7 +949,6 @@ endr
 	ret
 ; 3468
 
-
 GetItemName:: ; 3468
 ; Get item name wd265.
 
@@ -1015,7 +972,6 @@ GetItemName:: ; 3468
 	pop hl
 	ret
 ; 3487
-
 
 GetTMHMName:: ; 3487
 ; Get TM/HM name by item id wd265.
@@ -1100,7 +1056,6 @@ GetTMHMName:: ; 3487
 	db "@"
 ; 34df
 
-
 IsHM:: ; 34df
 	cp HM01
 	jr c, .NotHM
@@ -1110,7 +1065,6 @@ IsHM:: ; 34df
 	and a
 	ret
 ; 34e7
-
 
 IsHMMove:: ; 34e7
 	ld hl, .HMMoves
@@ -1128,7 +1082,6 @@ IsHMMove:: ; 34e7
 	db -1
 ; 34f8
 
-
 GetMoveName:: ; 34f8
 	push hl
 
@@ -1144,7 +1097,6 @@ GetMoveName:: ; 34f8
 	pop hl
 	ret
 ; 350c
-
 
 ScrollingMenu:: ; 350c
 	call CopyMenuData2
@@ -1211,7 +1163,6 @@ Function354b:: ; 354b joypad
 	ld c, a
 	ret
 ; 3567
-
 
 HandleStoneQueue:: ; 3567
 	ld a, [hROMBank]
@@ -1358,7 +1309,6 @@ endr
 	ret
 ; 3600
 
-
 CheckTrainerBattle2:: ; 3600
 
 	ld a, [hROMBank]
@@ -1372,7 +1322,6 @@ CheckTrainerBattle2:: ; 3600
 	rst Bankswitch
 	ret
 ; 360d
-
 
 CheckTrainerBattle:: ; 360d
 ; Check if any trainer on the map sees the player and wants to battle.
@@ -1493,7 +1442,6 @@ LoadTrainer_continue:: ; 367e
 	ret
 ; 36a5
 
-
 FacingPlayerDistance_bc:: ; 36a5
 
 	push de
@@ -1503,7 +1451,6 @@ FacingPlayerDistance_bc:: ; 36a5
 	pop de
 	ret
 ; 36ad
-
 
 FacingPlayerDistance:: ; 36ad
 ; Return carry if the sprite at bc is facing the player,
@@ -1575,7 +1522,6 @@ FacingPlayerDistance:: ; 36ad
 	ret
 ; 36f5
 
-
 CheckTrainerFlag:: ; 36f5
 	push bc
 	ld hl, OBJECT_MAP_OBJECT_INDEX
@@ -1600,7 +1546,6 @@ CheckTrainerFlag:: ; 36f5
 	pop bc
 	ret
 ; 3718
-
 
 PrintWinLossText:: ; 3718
 	ld a, [BattleType]
@@ -1629,8 +1574,6 @@ PrintWinLossText:: ; 3718
 	ret
 ; 3741
 
-
-
 IsAPokemon:: ; 3741
 ; Return carry if species a is not a Pokemon.
 	and a
@@ -1648,7 +1591,6 @@ IsAPokemon:: ; 3741
 	and a
 	ret
 ; 3750
-
 
 DrawBattleHPBar:: ; 3750
 ; Draw an HP bar d tiles long at hl
@@ -1711,7 +1653,6 @@ DrawBattleHPBar:: ; 3750
 	ret
 ; 3786
 
-
 PrepMonFrontpic:: ; 3786
 	ld a, $1
 	ld [wBoxAlignment], a
@@ -1741,9 +1682,7 @@ _PrepMonFrontpic:: ; 378b
 	ret
 ; 37b6
 
-
 INCLUDE "home/cry.asm"
-
 
 PrintLevel:: ; 382d
 ; Print TempMonLevel at hl
@@ -1777,7 +1716,6 @@ Function3842:: ; 3842
 	jp PrintNum
 ; 384d
 
-
 Function384d:: ; 384d
 	ld hl, wListMoves_MoveIndicesBuffer
 	ld c, a
@@ -1786,7 +1724,6 @@ Function384d:: ; 384d
 	ld a, [hl]
 	ret
 ; 3856
-
 
 GetBaseData:: ; 3856
 	push bc
@@ -1845,7 +1782,6 @@ GetBaseData:: ; 3856
 	ret
 ; 389c
 
-
 GetCurNick:: ; 389c
 	ld a, [CurPartyMon]
 	ld hl, PartyMonNicknames
@@ -1870,7 +1806,6 @@ GetNick:: ; 38a2
 	pop hl
 	ret
 ; 38bb
-
 
 PrintBCDNumber:: ; 38bb
 ; function to print a BCD (Binary-coded decimal) number
@@ -1973,7 +1908,6 @@ GetPartyLocation:: ; 3927
 	jp AddNTimes
 ; 392d
 
-
 Function392d:: ; 392d
 	push hl
 	ld a, b
@@ -1990,7 +1924,6 @@ Function392d:: ; 392d
 	pop hl
 	ret
 ; 3945
-
 
 INCLUDE "home/battle.asm"
 
@@ -2015,8 +1948,6 @@ Function3b0c:: ; 3b0c
 	ret
 ; 3b2a
 
-
-
 _InitSpriteAnimStruct:: ; 3b2a
 
 	ld [wSpriteAnimIDBuffer], a
@@ -2034,7 +1965,6 @@ _InitSpriteAnimStruct:: ; 3b2a
 
 	ret
 ; 3b3c
-
 
 ReinitSpriteAnimFrame:: ; 3b3c
 
@@ -2054,10 +1984,8 @@ ReinitSpriteAnimFrame:: ; 3b3c
 	ret
 ; 3b4e
 
-
 INCLUDE "home/audio.asm"
 INCLUDE "home/mobile.asm"
-
 
 Function3eea:: ; 3eea
 	push hl

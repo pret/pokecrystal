@@ -69,7 +69,7 @@ UnknownScript_0x1a96da:
 .LoadFight0
 	loadtrainer PICNICKER, ERIN1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wErinFightCount, 1
 	clearflag ENGINE_ERIN
 	end
@@ -77,7 +77,7 @@ UnknownScript_0x1a96da:
 .LoadFight1
 	loadtrainer PICNICKER, ERIN2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wErinFightCount, 2
 	clearflag ENGINE_ERIN
 	end
@@ -85,7 +85,7 @@ UnknownScript_0x1a96da:
 .LoadFight2
 	loadtrainer PICNICKER, ERIN3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_ERIN
 	checkevent EVENT_ERIN_CALCIUM
 	iftrue UnknownScript_0x1a973b

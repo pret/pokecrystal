@@ -128,7 +128,7 @@ CherrygroveSilverTriggerNorth:
 	loadtrainer RIVAL1, RIVAL1_3
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
-	reloadmapmusic
+	dontrestartmapmusic
 	reloadmap
 	iftrue .AfterVictorious
 	jump .AfterYourDefeat
@@ -139,7 +139,7 @@ CherrygroveSilverTriggerNorth:
 	loadtrainer RIVAL1, RIVAL1_1
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
-	reloadmapmusic
+	dontrestartmapmusic
 	reloadmap
 	iftrue .AfterVictorious
 	jump .AfterYourDefeat
@@ -150,7 +150,7 @@ CherrygroveSilverTriggerNorth:
 	loadtrainer RIVAL1, RIVAL1_2
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
-	reloadmapmusic
+	dontrestartmapmusic
 	reloadmap
 	iftrue .AfterVictorious
 	jump .AfterYourDefeat

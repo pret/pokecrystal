@@ -38,8 +38,8 @@ MountMoon_MapScriptHeader:
 	setlasttalked MOUNTMOON_SILVER
 	loadtrainer RIVAL2, 3
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	jump .FinishBattle
 
 .Totodile:
@@ -47,8 +47,8 @@ MountMoon_MapScriptHeader:
 	setlasttalked MOUNTMOON_SILVER
 	loadtrainer RIVAL2, 1
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	jump .FinishBattle
 
 .Chikorita:
@@ -56,8 +56,8 @@ MountMoon_MapScriptHeader:
 	setlasttalked MOUNTMOON_SILVER
 	loadtrainer RIVAL2, 2
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	jump .FinishBattle
 
 .FinishBattle:

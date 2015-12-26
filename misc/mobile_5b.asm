@@ -2,7 +2,7 @@ Function16c000: ; 16c000
 	ld a, [hCGB]
 	and a
 	ret z
-	ld a, [$ffea]
+	ld a, [hFFEA]
 	and a
 	ret z
 	ld a, [wcfbe]
@@ -15,7 +15,7 @@ Function16c000: ; 16c000
 	call Function16c031
 	callba Function1000a4
 	xor a
-	ld [$ffea], a
+	ld [hFFEA], a
 	pop af
 	ld [wcfbe], a
 	ret

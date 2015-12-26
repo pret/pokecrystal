@@ -88,7 +88,7 @@ WateredWeirdTreeScript::
 	if_equal $2, UnknownScript_0x19407b
 	disappear ROUTE36_WEIRD_TREE
 	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
-	returnafterbattle
+	reloadmapafterbattle
 	end
 
 UnknownScript_0x194079:
@@ -96,7 +96,7 @@ UnknownScript_0x194079:
 	end
 
 UnknownScript_0x19407b:
-	returnafterbattle
+	reloadmapafterbattle
 	applymovement ROUTE36_WEIRD_TREE, MovementData_0x19424b
 	disappear ROUTE36_WEIRD_TREE
 	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
@@ -227,7 +227,7 @@ UnknownScript_0x194140:
 .LoadFight0
 	loadtrainer SCHOOLBOY, ALAN1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wAlanFightCount, 1
 	clearflag ENGINE_ALAN
 	end
@@ -235,7 +235,7 @@ UnknownScript_0x194140:
 .LoadFight1
 	loadtrainer SCHOOLBOY, ALAN2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wAlanFightCount, 2
 	clearflag ENGINE_ALAN
 	end
@@ -243,7 +243,7 @@ UnknownScript_0x194140:
 .LoadFight2
 	loadtrainer SCHOOLBOY, ALAN3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wAlanFightCount, 3
 	clearflag ENGINE_ALAN
 	end
@@ -251,7 +251,7 @@ UnknownScript_0x194140:
 .LoadFight3
 	loadtrainer SCHOOLBOY, ALAN4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wAlanFightCount, 4
 	clearflag ENGINE_ALAN
 	end
@@ -259,7 +259,7 @@ UnknownScript_0x194140:
 .LoadFight4
 	loadtrainer SCHOOLBOY, ALAN5
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_ALAN
 	end
 

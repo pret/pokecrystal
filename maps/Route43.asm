@@ -100,7 +100,7 @@ UnknownScript_0x19d0cf:
 .LoadFight0
 	loadtrainer POKEMANIAC, BRENT1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wBrentFightCount, 1
 	clearflag ENGINE_BRENT
 	end
@@ -108,7 +108,7 @@ UnknownScript_0x19d0cf:
 .LoadFight1
 	loadtrainer POKEMANIAC, BRENT2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wBrentFightCount, 2
 	clearflag ENGINE_BRENT
 	end
@@ -116,7 +116,7 @@ UnknownScript_0x19d0cf:
 .LoadFight2
 	loadtrainer POKEMANIAC, BRENT3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wBrentFightCount, 3
 	clearflag ENGINE_BRENT
 	end
@@ -124,7 +124,7 @@ UnknownScript_0x19d0cf:
 .LoadFight3
 	loadtrainer POKEMANIAC, BRENT4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_BRENT
 	end
 
@@ -231,7 +231,7 @@ UnknownScript_0x19d1c1:
 .LoadFight0
 	loadtrainer PICNICKER, TIFFANY3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wTiffanyFightCount, 1
 	clearflag ENGINE_TIFFANY
 	end
@@ -239,7 +239,7 @@ UnknownScript_0x19d1c1:
 .LoadFight1
 	loadtrainer PICNICKER, TIFFANY1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wTiffanyFightCount, 2
 	clearflag ENGINE_TIFFANY
 	end
@@ -247,7 +247,7 @@ UnknownScript_0x19d1c1:
 .LoadFight2
 	loadtrainer PICNICKER, TIFFANY2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wTiffanyFightCount, 3
 	clearflag ENGINE_TIFFANY
 	end
@@ -255,7 +255,7 @@ UnknownScript_0x19d1c1:
 .LoadFight3
 	loadtrainer PICNICKER, TIFFANY4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_TIFFANY
 	end
 

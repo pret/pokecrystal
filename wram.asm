@@ -343,7 +343,7 @@ CurSFX:: ; c2bf
 wMapMusic:: ; c2c0
 	ds 1
 
-wc2c1:: ds 1
+wDontPlayMapMusicOnReload:: ds 1
 
 
 SECTION "WRAM", WRAM0
@@ -363,7 +363,7 @@ AutoInputBank:: ; c2ca
 AutoInputLength:: ; c2cb
 	ds 1
 
-wc2cc:: ds 1
+wMonStatusFlags:: ds 1
 wc2cd:: ds 1
 wSpriteUpdatesEnabled:: ds 1
 wc2cf:: ds 1
@@ -609,12 +609,10 @@ wEnemyTrainerItem1:: ds 1
 wEnemyTrainerItem2:: ds 1
 wEnemyTrainerBaseReward:: ds 1
 wEnemyTrainerAIFlags:: ds 3
-wc656::
 OTName:: ds NAME_LENGTH ; c656
 
 	ds 2
 
-wc663::
 CurOTMon:: ; c663
 	ds 1
 
@@ -634,7 +632,9 @@ TypeModifier:: ; c665
 	ds 1
 
 CriticalHit:: ; c666
-; nonzero for a critical hit
+; 0 if not critical
+; 1 for a critical hit
+; 2 for a OHKO
 	ds 1
 
 AttackMissed:: ; c667
@@ -1064,8 +1064,8 @@ wEnemyFutureSightCount:: ds 1
 wc71f:: ds 1
 wc720:: ds 4 ; copy from/to EnemyMonBaseStats, length=7
 wc724:: ds 3
-wc727:: ds 2
-wc729:: ds 2
+wPlayerFutureSightDamage:: ds 2
+wEnemyFutureSightDamage:: ds 2
 wPlayerRageCounter:: ds 1
 wEnemyRageCounter:: ds 1
 wc72d:: ds 1 ; if 0 then PrintButItFailed
@@ -1092,8 +1092,7 @@ wLinkPlayer1Name:: ds NAME_LENGTH
 wLinkPlayer2Name:: ds NAME_LENGTH
 	ds wLinkPlayer1Name - @
 wc736:: ds 3
-wWildMonPP::
-wc739:: ds 4
+wWildMonPP:: ds NUM_MOVES
 wAmuletCoin:: ds 1
 wc73e:: ds 1
 wPlayerJustGotFrozen:: ds 1
@@ -1246,7 +1245,7 @@ wc90f::
 wMysteryGiftPartnerSentDeco:: ds 1
 wMysteryGiftPartnerWhichItem:: ds 1
 wMysteryGiftPartnerWhichDeco:: ds 1
-wc912:: ds 2
+wMysteryGiftPartnerBackupItem:: ds 2
 wMysteryGiftPartnerDataEnd::
 	ds 12
 wc920:: ds 16
@@ -2044,7 +2043,10 @@ CurPartyMon:: ; d109
 ; 0-5
 	ds 1
 
-wd10a:: ds 1
+wWhichHPBar::
+; 0: Enemy
+; 1: Player
+	ds 1
 wPokemonWithdrawDepositParameter::
 ; 0: Take from PC
 ; 1: Put into PC
@@ -2982,11 +2984,16 @@ RightOrnament:: ; dc15
 BigDoll:: ; dc16
 	ds 1
 
+; Items bought from Mom
+wWhichMomItem::
 wdc17:: ds 1
-wdc18:: ds 1
+wWhichMomItemSet::
+	ds 1
+MomItemTriggerBalance::
 wdc19:: ds 1
 wdc1a:: ds 1
 wdc1b:: ds 1
+
 wDailyResetTimer:: ds 2
 DailyFlags:: ds 1
 WeeklyFlags:: ds 1

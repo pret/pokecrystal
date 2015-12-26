@@ -76,7 +76,7 @@ SageLiScript:
 	winlosstext SageLiBeatenText, 0
 	loadtrainer SAGE, LI
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	opentext
 	writetext UnknownText_0x184cc2
 	buttonsound

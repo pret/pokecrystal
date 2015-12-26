@@ -51,7 +51,7 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	ld a, [wMysteryGiftPlayerBackupItem]
 	and a
 	jp nz, .GiftWaiting
-	ld a, [wc912]
+	ld a, [wMysteryGiftPartnerBackupItem]
 	and a
 	jp nz, .FriendNotReady
 	ld a, [wc900]
@@ -73,7 +73,7 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	ld c, a
 	callba MysteryGiftGetDecoration
 	push bc
-	call Function105069
+	call MysteryGift_CheckAndSetDecorationAlreadyReceived
 	pop bc
 	jr nz, .item
 	callab GetDecorationName_c
@@ -680,24 +680,24 @@ Function104db7: ; 104db7 (41:4db7)
 Function104dc5: ; 104dc5 (41:4dc5)
 	ld a, $c1
 	ld [$ff00+c], a
-.asm_104dc8
+.wait
 	dec d
 	ret z
 	xor a
 	ld [rIF], a
 	halt
-	jr .asm_104dc8
+	jr .wait
 
 Function104dd1: ; 104dd1 (41:4dd1)
 	ld a, $c0
 	ld [$ff00+c], a
-.asm_104dd4
+.wait
 	dec d
 	ret z
 	xor a
 	ld [rIF], a
 	halt
-	jr .asm_104dd4
+	jr .wait
 
 Function104ddd: ; 104ddd (41:4ddd)
 	ld d, $0
@@ -763,7 +763,7 @@ asm_104e3a: ; 104e3a (41:4e3a)
 Function104e46: ; 104e46 (41:4e46)
 	ld a, $2
 	ld [hPrintNum9], a
-	ld c, $56
+	ld c, rRP % $100
 	ld d, $0
 	ld e, d
 	ld d, $3d
@@ -800,14 +800,14 @@ Function104e8c: ; 104e8c (41:4e8c)
 
 Function104e93: ; 104e93 (41:4e93)
 	xor a
-	ld [hDivisor], a
-	ld [hMathBuffer], a
+	ld [hPrintNum5], a
+	ld [hPrintNum6], a
 	push hl
 	push bc
-	ld c, $56
+	ld c, rRP % $100
 	ld d, $3d
 	call Function104dd1
-	ld hl, hQuotient ; $ffb4 (aliases: hMultiplicand)
+	ld hl, hPrintNum2 ; $ffb4 (aliases: hMultiplicand)
 	ld a, $5a
 	ld [hli], a
 	ld [hl], b
@@ -817,26 +817,26 @@ Function104e93: ; 104e93 (41:4e93)
 	pop bc
 	pop hl
 	call Function104ed6
-	ld a, [hDivisor]
-	ld [hQuotient], a
-	ld a, [hMathBuffer]
-	ld [$ffb5], a
+	ld a, [hPrintNum5]
+	ld [hPrintNum2], a
+	ld a, [hPrintNum6]
+	ld [hPrintNum3], a
 	push hl
-	ld hl, hQuotient ; $ffb4 (aliases: hMultiplicand)
+	ld hl, hPrintNum2 ; $ffb4 (aliases: hMultiplicand)
 	ld b, $2
 	call Function104ed6
 	ld hl, hPrintNum10
 	ld b, $1
 	call Function104faf
-	ld a, [hQuotient]
-	ld [hDivisor], a
-	ld a, [$ffb5]
-	ld [hMathBuffer], a
+	ld a, [hPrintNum2]
+	ld [hPrintNum5], a
+	ld a, [hPrintNum3]
+	ld [hPrintNum6], a
 	pop hl
 	ret
 
 Function104ed6: ; 104ed6 (41:4ed6)
-	ld c, $56
+	ld c, rRP % $100
 	ld d, $5
 	call Function104dd1
 	ld d, $5
@@ -852,15 +852,15 @@ Function104ed6: ; 104ed6 (41:4ed6)
 	inc b
 	jr z, .asm_104f2e
 	ld a, $8
-	ld [$ffb6], a
+	ld [hPrintNum4], a
 	ld a, [hli]
 	ld e, a
-	ld a, [hDivisor]
+	ld a, [hPrintNum5]
 	add e
-	ld [hDivisor], a
-	ld a, [hMathBuffer]
+	ld [hPrintNum5], a
+	ld a, [hPrintNum6]
 	adc $0
-	ld [hMathBuffer], a
+	ld [hPrintNum6], a
 .asm_104f02
 	xor a
 	ld [rIF], a
@@ -885,10 +885,10 @@ Function104ed6: ; 104ed6 (41:4ed6)
 	ld [rIF], a
 	halt
 .asm_104f25
-	ld a, [$ffb6]
+	ld a, [hPrintNum4]
 	dec a
 	jr z, .asm_104eee
-	ld [$ffb6], a
+	ld [hPrintNum4], a
 	jr .asm_104f02
 .asm_104f2e
 	ld a, $fe
@@ -922,35 +922,35 @@ Function104f50: ; 104f50 (41:4f50)
 
 Function104f57: ; 104f57 (41:4f57)
 	xor a
-	ld [hDivisor], a
-	ld [hMathBuffer], a
+	ld [hPrintNum5], a
+	ld [hPrintNum6], a
 	push bc
 	push hl
-	ld hl, hQuotient ; $ffb4 (aliases: hMultiplicand)
+	ld hl, hPrintNum2 ; $ffb4 (aliases: hMultiplicand)
 	ld b, $2
 	call Function104faf
-	ld a, [$ffb5]
-	ld [$ffba], a
+	ld a, [hPrintNum3]
+	ld [hPrintNum8], a
 	ld b, a
 	pop hl
 	pop af
 	cp b
 	jp c, Function104f50
-	ld a, [hQuotient]
+	ld a, [hPrintNum2]
 	cp $5a
 	jp nz, Function104f50
 	call Function104faf
-	ld a, [hDivisor]
+	ld a, [hPrintNum5]
 	ld d, a
-	ld a, [hMathBuffer]
+	ld a, [hPrintNum6]
 	ld e, a
 	push hl
 	push de
-	ld hl, hQuotient ; $ffb4 (aliases: hMultiplicand)
+	ld hl, hPrintNum2 ; $ffb4 (aliases: hMultiplicand)
 	ld b, $2
 	call Function104faf
 	pop de
-	ld hl, hQuotient ; $ffb4 (aliases: hMultiplicand)
+	ld hl, hPrintNum2 ; $ffb4 (aliases: hMultiplicand)
 	ld a, [hli]
 	xor d
 	ld b, a
@@ -967,9 +967,9 @@ Function104f57: ; 104f57 (41:4f57)
 	pop de
 	pop hl
 	ld a, d
-	ld [hDivisor], a
+	ld [hPrintNum5], a
 	ld a, e
-	ld [hMathBuffer], a
+	ld [hPrintNum6], a
 	ret
 
 Function104faf: ; 104faf (41:4faf)
@@ -993,7 +993,7 @@ Function104faf: ; 104faf (41:4faf)
 	inc b
 	jr z, .asm_10501a
 	ld a, $8
-	ld [$ffb6], a
+	ld [hPrintNum4], a
 .asm_104fd9
 	ld d, $0
 .asm_104fdb
@@ -1022,9 +1022,9 @@ Function104faf: ; 104faf (41:4faf)
 .asm_104ffd
 	res 0, e
 .asm_104fff
-	ld a, [$ffb6]
+	ld a, [hPrintNum4]
 	dec a
-	ld [$ffb6], a
+	ld [hPrintNum4], a
 	jr z, .asm_10500b
 	ld a, e
 	rlca
@@ -1033,12 +1033,12 @@ Function104faf: ; 104faf (41:4faf)
 .asm_10500b
 	ld a, e
 	ld [hli], a
-	ld a, [hDivisor]
+	ld a, [hPrintNum5]
 	add e
-	ld [hDivisor], a
-	ld a, [hMathBuffer]
+	ld [hPrintNum5], a
+	ld a, [hPrintNum6]
 	adc $0
-	ld [hMathBuffer], a
+	ld [hPrintNum6], a
 	jr .asm_104fd2
 .asm_10501a
 	call Function104d74
@@ -1088,7 +1088,7 @@ endr
 	ld [rJOYP], a
 	ret
 
-Function105069: ; 105069 (41:5069)
+MysteryGift_CheckAndSetDecorationAlreadyReceived: ; 105069 (41:5069)
 	call GetMysteryGiftBank
 	ld d, $0
 	ld b, CHECK_FLAG
@@ -1110,7 +1110,7 @@ Function105069: ; 105069 (41:5069)
 	xor a
 	ret
 
-Function105091: ; 105091 (41:5091)
+MysteryGift_CopyReceivedDecosToPC: ; 105091 (41:5091)
 	call GetMysteryGiftBank
 	ld c, $0
 .loop

@@ -1281,7 +1281,7 @@ Function11c86e: ; 11c86e (47:486e)
 	and a
 	jr z, .asm_11c88a
 	hlcoord 2, 17
-	ld de, String_11c8f0
+	ld de, MobileString_Prev
 	call PlaceString
 	hlcoord 6, 17
 	ld c, $3
@@ -1308,7 +1308,7 @@ Function11c86e: ; 11c86e (47:486e)
 	cp [hl]
 	jr nc, .asm_11c8b7
 	hlcoord 16, 17
-	ld de, String_11c8f3
+	ld de, MobileString_Next
 	call PlaceString
 	hlcoord 11, 17
 	ld a, $3
@@ -1332,7 +1332,7 @@ Function11c86e: ; 11c86e (47:486e)
 	ret
 ; 11c8c7 (47:48c7)
 
-Function11c8c7: ; 11c8c7
+BCD2String: ; 11c8c7
 	inc a
 	push af
 	and $f
@@ -1340,30 +1340,30 @@ Function11c8c7: ; 11c8c7
 	pop af
 	and $f0
 	swap a
-	ld [hQuotient], a
+	ld [hDividend + 1], a
 	xor a
-	ld [$ffb5], a
+	ld [hDividend + 2], a
 	push hl
 	callba Function11a80c
 	pop hl
 	ld a, [wcd63]
-	add $f6
+	add "0"
 	ld [hli], a
 	ld a, [wcd62]
-	add $f6
+	add "0"
 	ld [hli], a
 	ret
 ; 11c8ec
 
-String_11c8ec: ; 11c8ec
+MobileString_Page: ; 11c8ec
 	db "ぺージ@"
 ; 11c8f0
 
-String_11c8f0: ; 11c8f0
+MobileString_Prev: ; 11c8f0
 	db "まえ@"
 ; 11c8f3
 
-String_11c8f3: ; 11c8f3
+MobileString_Next: ; 11c8f3
 	db "つぎ@"
 ; 11c8f6
 

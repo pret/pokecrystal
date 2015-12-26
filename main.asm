@@ -1922,7 +1922,7 @@ _PrintNum:: ; c4c7
 	ld a, [hPrintNum5]
 	ld b, a
 	ld a, [hPrintNum2]
-	ld [$ffba], a
+	ld [hPrintNum8], a
 	cp b
 	jr c, .skip1
 	sub b
@@ -1970,7 +1970,7 @@ _PrintNum:: ; c4c7
 	ld a, [hPrintNum9]
 	ld [hPrintNum3], a
 .skip3
-	ld a, [$ffba]
+	ld a, [hPrintNum8]
 	ld [hPrintNum2], a
 .skip1
 	ld a, [hPrintNum1]
@@ -1981,7 +1981,7 @@ _PrintNum:: ; c4c7
 	jr nz, .done
 	bit 5, d
 	jr z, .done
-	ld a, $f0
+	ld a, "¥"
 	ld [hli], a
 	res 5, d
 .done
@@ -1993,7 +1993,7 @@ _PrintNum:: ; c4c7
 	dec e
 	ret nz
 	inc hl
-	ld [hl], $f2
+	ld [hl], "·"
 	ret
 
 .PrintLeadingZero: ; c644
@@ -3598,7 +3598,7 @@ HeadbuttScript: ; 0xceab
 	closetext
 	randomwildmon
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	end
 
 .no_battle
@@ -3706,7 +3706,7 @@ RockSmashScript: ; cf32
 	iffalse .done
 	randomwildmon
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 .done
 	end
 ; 0xcf55
@@ -3894,7 +3894,7 @@ Script_GotABite: ; 0xd035
 	closetext
 	randomwildmon
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	end
 ; 0xd05c
 
@@ -5472,7 +5472,7 @@ BugCatchingContestBattleScript:: ; 0x135eb
 	writecode VAR_BATTLETYPE, BATTLETYPE_CONTEST
 	randomwildmon
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	copybytetovar wParkBallsRemaining
 	iffalse BugCatchingContestOutOfBallsScript
 	end
@@ -9979,7 +9979,7 @@ DrawEnemyHP: ; 50b0e
 	ld a, $2
 
 DrawHP: ; 50b10
-	ld [wd10a], a
+	ld [wWhichHPBar], a
 	push hl
 	push bc
 	ld a, [MonType]
@@ -12814,7 +12814,7 @@ StartBattleWithMapTrainerScript: ; 0xbe68a
 	closetext
 	loadmemtrainer
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	trainerflagaction SET_FLAG
 	loadvar wRunningTrainerBattleScript, -1
 

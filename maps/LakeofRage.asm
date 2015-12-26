@@ -97,7 +97,7 @@ GyaradosScript_0x70063:
 	if_equal $1, UnknownScript_0x7007a
 	disappear LAKEOFRAGE_GYARADOS
 UnknownScript_0x7007a:
-	returnafterbattle
+	reloadmapafterbattle
 	opentext
 	giveitem RED_SCALE
 	waitsfx

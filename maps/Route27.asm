@@ -108,7 +108,7 @@ UnknownScript_0x1a08ff:
 .LoadFight0
 	loadtrainer BIRD_KEEPER, JOSE2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wJoseFightCount, 1
 	clearflag ENGINE_JOSE
 	end
@@ -116,7 +116,7 @@ UnknownScript_0x1a08ff:
 .LoadFight1
 	loadtrainer BIRD_KEEPER, JOSE1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wJoseFightCount, 2
 	clearflag ENGINE_JOSE
 	end
@@ -124,7 +124,7 @@ UnknownScript_0x1a08ff:
 .LoadFight2
 	loadtrainer BIRD_KEEPER, JOSE3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_JOSE
 	end
 
@@ -241,7 +241,7 @@ UnknownScript_0x1a09e9:
 .LoadFight0
 	loadtrainer COOLTRAINERF, REENA1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wReenaFightCount, 1
 	clearflag ENGINE_REENA
 	end
@@ -249,7 +249,7 @@ UnknownScript_0x1a09e9:
 .LoadFight1
 	loadtrainer COOLTRAINERF, REENA2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wReenaFightCount, 2
 	clearflag ENGINE_REENA
 	end
@@ -257,7 +257,7 @@ UnknownScript_0x1a09e9:
 .LoadFight2
 	loadtrainer COOLTRAINERF, REENA3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_REENA
 	end
 

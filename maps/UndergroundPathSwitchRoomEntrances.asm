@@ -180,8 +180,8 @@ UndergroundSilverBattleScript:
 	setlasttalked UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
 	loadtrainer RIVAL1, RIVAL1_12
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	jump .FinishRivalBattle
 
 .Totodile:
@@ -189,8 +189,8 @@ UndergroundSilverBattleScript:
 	setlasttalked UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
 	loadtrainer RIVAL1, RIVAL1_10
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	jump .FinishRivalBattle
 
 .Chikorita:
@@ -198,8 +198,8 @@ UndergroundSilverBattleScript:
 	setlasttalked UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
 	loadtrainer RIVAL1, RIVAL1_11
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	jump .FinishRivalBattle
 
 .FinishRivalBattle:

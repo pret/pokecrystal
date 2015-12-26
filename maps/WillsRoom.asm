@@ -58,7 +58,7 @@ WillScript_0x1804f8:
 	winlosstext UnknownText_0x18062c, 0
 	loadtrainer WILL, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_ELITE_4_WILL
 	opentext
 	writetext UnknownText_0x180644

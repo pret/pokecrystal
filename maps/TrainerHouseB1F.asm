@@ -50,14 +50,14 @@ TrainerHouseReceptionistScript:
 	setlasttalked TRAINERHOUSEB1F_CHRIS
 	loadtrainer CAL, CAL2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	iffalse .End
 .NoSpecialBattle:
 	winlosstext TrainerHouseB1FCalBeatenText, 0
 	setlasttalked TRAINERHOUSEB1F_CHRIS
 	loadtrainer CAL, CAL3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 .End:
 	applymovement PLAYER, Movement_ExitTrainerHouseBattleRoom
 	end

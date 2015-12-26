@@ -246,7 +246,7 @@ TrainerCameraGrunt1:
 	loadtrainer GRUNTM, 20
 	startbattle
 	disappear TEAMROCKETBASEB1F_ROCKET1
-	returnafterbattle
+	reloadmapafterbattle
 	end
 
 TrainerCameraGrunt2:
@@ -259,7 +259,7 @@ TrainerCameraGrunt2:
 	loadtrainer GRUNTM, 21
 	startbattle
 	disappear TEAMROCKETBASEB1F_ROCKET1
-	returnafterbattle
+	reloadmapafterbattle
 	end
 
 PlaySecurityCameraSounds:
@@ -280,7 +280,7 @@ ExplodingTrap1:
 	checkevent EVENT_EXPLODING_TRAP_1
 	iftrue NoExplodingTrap
 	scall KoffingExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_1
 	end
 
@@ -288,7 +288,7 @@ ExplodingTrap2:
 	checkevent EVENT_EXPLODING_TRAP_2
 	iftrue NoExplodingTrap
 	scall VoltorbExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_2
 	end
 
@@ -296,7 +296,7 @@ ExplodingTrap3:
 	checkevent EVENT_EXPLODING_TRAP_3
 	iftrue NoExplodingTrap
 	scall GeodudeExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_3
 	end
 
@@ -304,7 +304,7 @@ ExplodingTrap4:
 	checkevent EVENT_EXPLODING_TRAP_4
 	iftrue NoExplodingTrap
 	scall VoltorbExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_4
 	end
 
@@ -312,7 +312,7 @@ ExplodingTrap5:
 	checkevent EVENT_EXPLODING_TRAP_5
 	iftrue NoExplodingTrap
 	scall GeodudeExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_5
 	end
 
@@ -320,7 +320,7 @@ ExplodingTrap6:
 	checkevent EVENT_EXPLODING_TRAP_6
 	iftrue NoExplodingTrap
 	scall KoffingExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_6
 	end
 
@@ -328,7 +328,7 @@ ExplodingTrap7:
 	checkevent EVENT_EXPLODING_TRAP_7
 	iftrue NoExplodingTrap
 	scall VoltorbExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_7
 	end
 
@@ -336,7 +336,7 @@ ExplodingTrap8:
 	checkevent EVENT_EXPLODING_TRAP_8
 	iftrue NoExplodingTrap
 	scall KoffingExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_8
 	end
 
@@ -344,7 +344,7 @@ ExplodingTrap9:
 	checkevent EVENT_EXPLODING_TRAP_9
 	iftrue NoExplodingTrap
 	scall KoffingExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_9
 	end
 
@@ -352,7 +352,7 @@ ExplodingTrap10:
 	checkevent EVENT_EXPLODING_TRAP_10
 	iftrue NoExplodingTrap
 	scall VoltorbExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_10
 	end
 
@@ -360,7 +360,7 @@ ExplodingTrap11:
 	checkevent EVENT_EXPLODING_TRAP_11
 	iftrue NoExplodingTrap
 	scall GeodudeExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_11
 	end
 
@@ -368,7 +368,7 @@ ExplodingTrap12:
 	checkevent EVENT_EXPLODING_TRAP_12
 	iftrue NoExplodingTrap
 	scall GeodudeExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_12
 	end
 
@@ -376,7 +376,7 @@ ExplodingTrap13:
 	checkevent EVENT_EXPLODING_TRAP_13
 	iftrue NoExplodingTrap
 	scall GeodudeExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_13
 	end
 
@@ -384,7 +384,7 @@ ExplodingTrap14:
 	checkevent EVENT_EXPLODING_TRAP_14
 	iftrue NoExplodingTrap
 	scall KoffingExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_14
 	end
 
@@ -392,7 +392,7 @@ ExplodingTrap15:
 	checkevent EVENT_EXPLODING_TRAP_15
 	iftrue NoExplodingTrap
 	scall VoltorbExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_15
 	end
 
@@ -400,7 +400,7 @@ ExplodingTrap16:
 	checkevent EVENT_EXPLODING_TRAP_16
 	iftrue NoExplodingTrap
 	scall KoffingExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_16
 	end
 
@@ -408,7 +408,7 @@ ExplodingTrap17:
 	checkevent EVENT_EXPLODING_TRAP_17
 	iftrue NoExplodingTrap
 	scall VoltorbExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_17
 	end
 
@@ -416,7 +416,7 @@ ExplodingTrap18:
 	checkevent EVENT_EXPLODING_TRAP_18
 	iftrue NoExplodingTrap
 	scall GeodudeExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_18
 	end
 
@@ -424,7 +424,7 @@ ExplodingTrap19:
 	checkevent EVENT_EXPLODING_TRAP_19
 	iftrue NoExplodingTrap
 	scall GeodudeExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_19
 	end
 
@@ -432,7 +432,7 @@ ExplodingTrap20:
 	checkevent EVENT_EXPLODING_TRAP_20
 	iftrue NoExplodingTrap
 	scall VoltorbExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_20
 	end
 
@@ -440,7 +440,7 @@ ExplodingTrap21:
 	checkevent EVENT_EXPLODING_TRAP_21
 	iftrue NoExplodingTrap
 	scall KoffingExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_21
 	end
 
@@ -448,7 +448,7 @@ ExplodingTrap22:
 	checkevent EVENT_EXPLODING_TRAP_22
 	iftrue NoExplodingTrap
 	scall VoltorbExplodingTrap
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_EXPLODING_TRAP_22
 	end
 

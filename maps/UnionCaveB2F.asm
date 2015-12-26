@@ -37,7 +37,7 @@ SurfScript_0x5a31f:
 	startbattle
 	disappear UNIONCAVEB2F_SURF
 	setflag ENGINE_UNION_CAVE_LAPRAS
-	returnafterbattle
+	reloadmapafterbattle
 	end
 
 TrainerCooltrainermNick:

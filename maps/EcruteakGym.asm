@@ -36,7 +36,7 @@ MortyScript_0x99d58:
 	winlosstext UnknownText_0x9a00a, 0
 	loadtrainer MORTY, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_MORTY
 	opentext
 	writetext UnknownText_0x9a043

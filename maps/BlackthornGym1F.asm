@@ -43,7 +43,7 @@ BlackthornGymClairScript:
 	winlosstext ClairWinText, 0
 	loadtrainer CLAIR, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_CLAIR
 	opentext
 	writetext ClairText_GoToDragonsDen

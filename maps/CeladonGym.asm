@@ -24,7 +24,7 @@ ErikaScript_0x72a6a:
 	winlosstext UnknownText_0x72c3e, 0
 	loadtrainer ERIKA, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_ERIKA
 	setevent EVENT_BEAT_LASS_MICHELLE
 	setevent EVENT_BEAT_PICNICKER_TANYA

@@ -34,7 +34,7 @@ WhitneyScript_0x5400c:
 	winlosstext UnknownText_0x541a5, 0
 	loadtrainer WHITNEY, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_WHITNEY
 	setevent EVENT_MADE_WHITNEY_CRY
 	dotrigger $1

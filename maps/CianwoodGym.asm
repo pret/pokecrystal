@@ -42,7 +42,7 @@ ChuckScript_0x9d60f:
 	winlosstext UnknownText_0x9d7f6, 0
 	loadtrainer CHUCK, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_CHUCK
 	opentext
 	writetext UnknownText_0x9d835

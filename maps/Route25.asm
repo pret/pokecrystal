@@ -176,7 +176,7 @@ UnknownScript_0x19efc7:
 	winlosstext UnknownText_0x19f4fd, 0
 	loadtrainer COOLTRAINERM, KEVIN
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_COOLTRAINERM_KEVIN
 	opentext
 UnknownScript_0x19efda:

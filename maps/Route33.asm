@@ -68,7 +68,7 @@ TrainerHikerAnthony:
 .LoadFight0
 	loadtrainer HIKER, ANTHONY2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wAnthonyFightCount, 1
 	clearflag ENGINE_ANTHONY
 	end
@@ -76,7 +76,7 @@ TrainerHikerAnthony:
 .LoadFight1
 	loadtrainer HIKER, ANTHONY1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wAnthonyFightCount, 2
 	clearflag ENGINE_ANTHONY
 	end
@@ -84,7 +84,7 @@ TrainerHikerAnthony:
 .LoadFight2
 	loadtrainer HIKER, ANTHONY3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wAnthonyFightCount, 3
 	clearflag ENGINE_ANTHONY
 	end
@@ -92,7 +92,7 @@ TrainerHikerAnthony:
 .LoadFight3
 	loadtrainer HIKER, ANTHONY4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wAnthonyFightCount, 4
 	clearflag ENGINE_ANTHONY
 	end
@@ -100,7 +100,7 @@ TrainerHikerAnthony:
 .LoadFight4
 	loadtrainer HIKER, ANTHONY5
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_ANTHONY
 	end
 

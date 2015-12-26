@@ -91,7 +91,7 @@ TrainerYoungsterJoey:
 .LoadFight0
 	loadtrainer YOUNGSTER, JOEY1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wJoeyFightCount, 1
 	clearflag ENGINE_JOEY
 	end
@@ -99,7 +99,7 @@ TrainerYoungsterJoey:
 .LoadFight1
 	loadtrainer YOUNGSTER, JOEY2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wJoeyFightCount, 2
 	clearflag ENGINE_JOEY
 	end
@@ -107,7 +107,7 @@ TrainerYoungsterJoey:
 .LoadFight2
 	loadtrainer YOUNGSTER, JOEY3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wJoeyFightCount, 3
 	clearflag ENGINE_JOEY
 	end
@@ -115,7 +115,7 @@ TrainerYoungsterJoey:
 .LoadFight3
 	loadtrainer YOUNGSTER, JOEY4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wJoeyFightCount, 4
 	clearflag ENGINE_JOEY
 	end
@@ -123,7 +123,7 @@ TrainerYoungsterJoey:
 .LoadFight4
 	loadtrainer YOUNGSTER, JOEY5
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_JOEY
 	checkevent EVENT_JOEY_HP_UP
 	iftrue .GiveHPUp

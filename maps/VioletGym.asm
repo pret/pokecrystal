@@ -22,7 +22,7 @@ FalknerScript_0x683c2:
 	winlosstext UnknownText_0x6854a, 0
 	loadtrainer FALKNER, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_FALKNER
 	opentext
 	writetext UnknownText_0x685af

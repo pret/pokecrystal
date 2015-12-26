@@ -71,7 +71,7 @@ MistyScript_0x188432:
 	winlosstext UnknownText_0x18870c, 0
 	loadtrainer MISTY, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_MISTY
 	setevent EVENT_BEAT_SWIMMERF_DIANA
 	setevent EVENT_BEAT_SWIMMERF_BRIANA

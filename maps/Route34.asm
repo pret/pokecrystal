@@ -145,7 +145,7 @@ TrainerCamperTodd1:
 .LoadFight0
 	loadtrainer CAMPER, TODD1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wToddFightCount, 1
 	clearflag ENGINE_TODD
 	end
@@ -153,7 +153,7 @@ TrainerCamperTodd1:
 .LoadFight1
 	loadtrainer CAMPER, TODD2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wToddFightCount, 2
 	clearflag ENGINE_TODD
 	end
@@ -161,7 +161,7 @@ TrainerCamperTodd1:
 .LoadFight2
 	loadtrainer CAMPER, TODD3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wToddFightCount, 3
 	clearflag ENGINE_TODD
 	end
@@ -169,7 +169,7 @@ TrainerCamperTodd1:
 .LoadFight3
 	loadtrainer CAMPER, TODD4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wToddFightCount, 4
 	clearflag ENGINE_TODD
 	end
@@ -177,7 +177,7 @@ TrainerCamperTodd1:
 .LoadFight4
 	loadtrainer CAMPER, TODD5
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_TODD
 	end
 
@@ -270,7 +270,7 @@ TrainerPicnickerGina1:
 .LoadFight0
 	loadtrainer PICNICKER, GINA1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wGinaFightCount, 1
 	clearflag ENGINE_GINA
 	end
@@ -278,7 +278,7 @@ TrainerPicnickerGina1:
 .LoadFight1
 	loadtrainer PICNICKER, GINA2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wGinaFightCount, 2
 	clearflag ENGINE_GINA
 	end
@@ -286,7 +286,7 @@ TrainerPicnickerGina1:
 .LoadFight2
 	loadtrainer PICNICKER, GINA3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wGinaFightCount, 3
 	clearflag ENGINE_GINA
 	end
@@ -294,7 +294,7 @@ TrainerPicnickerGina1:
 .LoadFight3
 	loadtrainer PICNICKER, GINA4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wGinaFightCount, 4
 	clearflag ENGINE_GINA
 	end
@@ -302,7 +302,7 @@ TrainerPicnickerGina1:
 .LoadFight4
 	loadtrainer PICNICKER, GINA5
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_GINA
 	end
 
@@ -367,7 +367,7 @@ OfficerKeithScript:
 	winlosstext OfficerKeithWinText, 0
 	loadtrainer OFFICER, KEITH
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_OFFICER_KEITH
 	closetext
 	end

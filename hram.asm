@@ -1,8 +1,9 @@
+HRAM_START         EQU $ff80
 hPushOAM           EQU $ff80
 
 hROMBankBackup     EQU $ff8a
 hBuffer            EQU $ff8b
-
+hFF8C              EQU $ff8c
 hRTCDayHi          EQU $ff8d
 hRTCDayLo          EQU $ff8e
 hRTCHours          EQU $ff8f
@@ -34,7 +35,7 @@ hInMenu            EQU $ffaa
 
 hPrinter           EQU $ffac
 hFillBox           EQU $ffad
-
+hMoveMon           EQU $ffae
 hMapObjectIndexBuffer EQU $ffaf
 hObjectStructIndexBuffer EQU $ffb0
 
@@ -114,3 +115,7 @@ hCGB               EQU $ffe6
 hSGB               EQU $ffe7
 hDMATransfer       EQU $ffe8
 hMobile            EQU $ffe9
+hFFEA              EQU $ffea
+hClockResetTrigger EQU $ffeb
+
+HRAM_END EQU $ffff

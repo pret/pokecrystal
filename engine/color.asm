@@ -324,21 +324,21 @@ Function8bec: ; 8bec
 	ret
 ; 8c1d
 
-Function8c1d: ; 8c1d
+ApplyMonOrTrainerPals: ; 8c1d
 	call CheckCGB
 	ret z
 	ld a, e
 	and a
-	jr z, .asm_8c2d
+	jr z, .get_trainer
 	ld a, [CurPartySpecies]
 	call GetMonPalettePointer_
-	jr .asm_8c33
+	jr .load_palettes
 
-.asm_8c2d
+.get_trainer
 	ld a, [TrainerClass]
 	call GetTrainerPalettePointer
 
-.asm_8c33
+.load_palettes
 	ld de, UnknBGPals
 	call LoadPalette_White_Col1_Col2_Black
 	call WipeAttrMap
@@ -347,24 +347,24 @@ Function8c1d: ; 8c1d
 	ret
 ; 8c43
 
-Function8c43: ; 8c43
-	ld a, [wd10a]
+ApplyHPBarPals: ; 8c43
+	ld a, [wWhichHPBar]
 	and a
-	jr z, .asm_8c52
+	jr z, .Enemy
 	cp $1
-	jr z, .asm_8c57
+	jr z, .Player
 	cp $2
-	jr z, .asm_8c70
+	jr z, .PartyMenu
 	ret
 
-.asm_8c52
+.Enemy
 	ld de, BGPals + 2 palettes + 2
-	jr .asm_8c5a
+	jr .okay
 
-.asm_8c57
+.Player
 	ld de, BGPals + 3 palettes + 2
 
-.asm_8c5a
+.okay
 	ld l, c
 	ld h, $0
 rept 2
@@ -372,27 +372,27 @@ rept 2
 endr
 	ld bc, Palettes_a8be
 	add hl, bc
-	ld bc, $4
+	ld bc, 4
 	ld a, $5
 	call FarCopyWRAM
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
 
-.asm_8c70
+.PartyMenu
 	ld e, c
 	inc e
 	hlcoord 11, 1, AttrMap
-	ld bc, $28
+	ld bc, 2 * SCREEN_WIDTH
 	ld a, [CurPartyMon]
-.asm_8c7b
+.loop
 	and a
-	jr z, .asm_8c82
+	jr z, .done
 	add hl, bc
 	dec a
-	jr .asm_8c7b
+	jr .loop
 
-.asm_8c82
+.done
 	lb bc, 2, 8
 	ld a, e
 	call FillBoxCGB
@@ -2088,7 +2088,7 @@ TilesetColors4: ; b289
 	db $18, $19, $1a, $1b, $1c, $1d, $1e, $1f
 ; b309
 
-Palette_b309: ; b309
+Palette_b309: ; b309 mobile
 	RGB 31, 31, 31
 	RGB 31, 19, 24
 	RGB 30, 10, 06
@@ -2096,7 +2096,7 @@ Palette_b309: ; b309
 
 ; b311
 
-Palette_b311: ; b311
+Palette_b311: ; b311 not mobile
 	RGB 31, 31, 31
 	RGB 17, 19, 31
 	RGB 14, 16, 31

@@ -27,7 +27,7 @@ BlackBeltScript_0x7e1f6:
 	winlosstext UnknownText_0x7e2a9, 0
 	loadtrainer BLACKBELT_T, KIYO
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_BLACKBELT_KIYO
 	opentext
 UnknownScript_0x7e217:

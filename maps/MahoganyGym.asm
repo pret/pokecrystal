@@ -25,7 +25,7 @@ PryceScript_0x199a9e:
 	winlosstext UnknownText_0x199cb3, 0
 	loadtrainer PRYCE, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_PRYCE
 	opentext
 	writetext UnknownText_0x199d3b

@@ -82,7 +82,7 @@ TrainerBug_catcherWade1:
 .LoadFight0
 	loadtrainer BUG_CATCHER, WADE1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wWadeFightCount, 1
 	clearflag ENGINE_WADE
 	end
@@ -90,7 +90,7 @@ TrainerBug_catcherWade1:
 .LoadFight1
 	loadtrainer BUG_CATCHER, WADE2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wWadeFightCount, 2
 	clearflag ENGINE_WADE
 	end
@@ -98,7 +98,7 @@ TrainerBug_catcherWade1:
 .LoadFight2
 	loadtrainer BUG_CATCHER, WADE3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wWadeFightCount, 3
 	clearflag ENGINE_WADE
 	end
@@ -106,7 +106,7 @@ TrainerBug_catcherWade1:
 .LoadFight3
 	loadtrainer BUG_CATCHER, WADE4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wWadeFightCount, 4
 	clearflag ENGINE_WADE
 	end
@@ -114,7 +114,7 @@ TrainerBug_catcherWade1:
 .LoadFight4
 	loadtrainer BUG_CATCHER, WADE5
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_WADE
 	end
 

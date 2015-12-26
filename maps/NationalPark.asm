@@ -124,7 +124,7 @@ UnknownScript_0x5c088:
 .LoadFight0
 	loadtrainer SCHOOLBOY, JACK1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wJackFightCount, 1
 	clearflag ENGINE_JACK
 	end
@@ -132,7 +132,7 @@ UnknownScript_0x5c088:
 .LoadFight1
 	loadtrainer SCHOOLBOY, JACK2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wJackFightCount, 2
 	clearflag ENGINE_JACK
 	end
@@ -140,7 +140,7 @@ UnknownScript_0x5c088:
 .LoadFight2
 	loadtrainer SCHOOLBOY, JACK3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wJackFightCount, 3
 	clearflag ENGINE_JACK
 	end
@@ -148,7 +148,7 @@ UnknownScript_0x5c088:
 .LoadFight3
 	loadtrainer SCHOOLBOY, JACK4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wJackFightCount, 4
 	clearflag ENGINE_JACK
 	end
@@ -156,7 +156,7 @@ UnknownScript_0x5c088:
 .LoadFight4
 	loadtrainer SCHOOLBOY, JACK5
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_JACK
 	end
 

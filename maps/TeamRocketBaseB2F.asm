@@ -108,7 +108,7 @@ UnknownScript_0x6cfac:
 	setevent EVENT_TEAM_ROCKET_BASE_B2F_EXECUTIVE
 	setevent EVENT_TEAM_ROCKET_BASE_B2F_GRUNT_WITH_EXECUTIVE
 	setevent EVENT_TEAM_ROCKET_BASE_B2F_LANCE
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEF_2
 	opentext
 	writetext UnknownText_0x6d4c6
@@ -239,7 +239,7 @@ VoltorbScript_0x6d101:
 	iffalse UnknownScript_0x6d182
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
 	iffalse UnknownScript_0x6d182
-	returnafterbattle
+	reloadmapafterbattle
 	special PlayMapMusic
 	applymovement PLAYER, MovementData_0x6d28c
 	jump UnknownScript_0x6d184
@@ -257,7 +257,7 @@ VoltorbScript_0x6d12c:
 	iffalse UnknownScript_0x6d182
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
 	iffalse UnknownScript_0x6d182
-	returnafterbattle
+	reloadmapafterbattle
 	special PlayMapMusic
 	applymovement PLAYER, MovementData_0x6d299
 	jump UnknownScript_0x6d184
@@ -275,13 +275,13 @@ VoltorbScript_0x6d157:
 	iffalse UnknownScript_0x6d182
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
 	iffalse UnknownScript_0x6d182
-	returnafterbattle
+	reloadmapafterbattle
 	special PlayMapMusic
 	applymovement PLAYER, MovementData_0x6d2a4
 	jump UnknownScript_0x6d184
 
 UnknownScript_0x6d182:
-	returnafterbattle
+	reloadmapafterbattle
 	end
 
 UnknownScript_0x6d184:

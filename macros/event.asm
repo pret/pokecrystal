@@ -618,9 +618,9 @@ startbattle: macro
 	db startbattle_command
 	endm
 
-	enum returnafterbattle_command
-returnafterbattle: macro
-	db returnafterbattle_command
+	enum reloadmapafterbattle_command
+reloadmapafterbattle: macro
+	db reloadmapafterbattle_command
 	endm
 
 	enum catchtutorial_command
@@ -833,9 +833,9 @@ playmapmusic: macro
 	db playmapmusic_command
 	endm
 
-	enum reloadmapmusic_command
-reloadmapmusic: macro
-	db reloadmapmusic_command
+	enum dontrestartmapmusic_command
+dontrestartmapmusic: macro
+	db dontrestartmapmusic_command
 	endm
 
 	enum cry_command

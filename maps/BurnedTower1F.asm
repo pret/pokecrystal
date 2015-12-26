@@ -75,8 +75,8 @@ BurnedTowerRivalBattleScript:
 	setlasttalked BURNEDTOWER1F_SILVER
 	loadtrainer RIVAL1, RIVAL1_9
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	jump .returnfrombattle
 
 .totodile:
@@ -84,8 +84,8 @@ BurnedTowerRivalBattleScript:
 	setlasttalked BURNEDTOWER1F_SILVER
 	loadtrainer RIVAL1, RIVAL1_7
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	jump .returnfrombattle
 
 .chikorita:
@@ -93,8 +93,8 @@ BurnedTowerRivalBattleScript:
 	setlasttalked BURNEDTOWER1F_SILVER
 	loadtrainer RIVAL1, RIVAL1_8
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	jump .returnfrombattle
 
 .returnfrombattle:

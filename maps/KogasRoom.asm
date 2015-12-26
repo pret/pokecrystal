@@ -58,7 +58,7 @@ KogaScript_0x18075a:
 	winlosstext UnknownText_0x1808a9, 0
 	loadtrainer KOGA, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_ELITE_4_KOGA
 	opentext
 	writetext UnknownText_0x1808ca

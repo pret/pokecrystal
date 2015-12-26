@@ -202,7 +202,7 @@ Functiond6f5: ; d6f5
 Functiond730: ; d730
 	call Functiond784
 	ld d, $6
-	ld a, [wd10a]
+	ld a, [wWhichHPBar]
 	and $1
 	ld b, a
 	ld a, [wd1f1]
@@ -228,7 +228,7 @@ Functiond749: ; d749
 	call ComputeHPBarPixels
 	ld c, e
 	ld d, $6
-	ld a, [wd10a]
+	ld a, [wWhichHPBar]
 	and $1
 	ld b, a
 	push de
@@ -239,7 +239,7 @@ Functiond749: ; d749
 ; d771
 
 Functiond771: ; d771
-	ld a, [wd10a]
+	ld a, [wWhichHPBar]
 	cp $2
 	jr nz, .skip
 	ld a, $28
@@ -254,7 +254,7 @@ Functiond771: ; d771
 ; d784
 
 Functiond784: ; d784
-	ld a, [wd10a]
+	ld a, [wWhichHPBar]
 	and a
 	ret z
 	cp $1
@@ -292,7 +292,7 @@ Functiond7b4: ; d7b4
 	call SetHPPal
 	ld a, [wd1f0]
 	ld c, a
-	callba Function8c43
+	callba ApplyHPBarPals
 	ret
 ; d7c9
 
@@ -305,7 +305,7 @@ Functiond7c9: ; d7c9
 	ret
 
 .cgb
-	ld a, [wd10a]
+	ld a, [wWhichHPBar]
 	and a
 	jr z, .load_0
 	cp $1

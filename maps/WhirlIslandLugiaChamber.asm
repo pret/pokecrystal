@@ -39,7 +39,7 @@ LugiaScript_0x18c518:
 	loadwildmon LUGIA, 60
 	startbattle
 	disappear WHIRLISLANDLUGIACHAMBER_LUGIA
-	returnafterbattle
+	reloadmapafterbattle
 	end
 
 UnknownText_0x18c531:

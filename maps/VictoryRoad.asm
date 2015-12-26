@@ -68,8 +68,8 @@ UnknownScript_0x744d4:
 	setlasttalked VICTORYROAD_SILVER
 	loadtrainer RIVAL1, RIVAL1_15
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	jump UnknownScript_0x7451f
 
 UnknownScript_0x744ff:
@@ -77,8 +77,8 @@ UnknownScript_0x744ff:
 	setlasttalked VICTORYROAD_SILVER
 	loadtrainer RIVAL1, RIVAL1_13
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	jump UnknownScript_0x7451f
 
 UnknownScript_0x7450f:
@@ -86,8 +86,8 @@ UnknownScript_0x7450f:
 	setlasttalked VICTORYROAD_SILVER
 	loadtrainer RIVAL1, RIVAL1_14
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	jump UnknownScript_0x7451f
 
 UnknownScript_0x7451f:

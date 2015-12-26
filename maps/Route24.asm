@@ -18,8 +18,8 @@ RocketScript_0x1adbfa:
 	winlosstext UnknownText_0x1add67, -1
 	loadtrainer GRUNTM, 31
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	opentext
 	writetext UnknownText_0x1addc0

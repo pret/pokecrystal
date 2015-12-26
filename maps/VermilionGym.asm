@@ -23,7 +23,7 @@ SurgeScript_0x1920a5:
 	winlosstext UnknownText_0x192238, 0
 	loadtrainer LT_SURGE, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_LTSURGE
 	setevent EVENT_BEAT_GENTLEMAN_GREGORY
 	setevent EVENT_BEAT_GUITARIST_VINCENT

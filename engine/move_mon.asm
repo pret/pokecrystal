@@ -16,7 +16,7 @@ TryAddMonToParty: ; d88c
 	; Increase the party count
 	ld [de], a
 	ld a, [de] ; Why are we doing this?
-	ld [$ffae], a ; HRAM backup
+	ld [hMoveMon], a ; HRAM backup
 	add e
 	ld e, a
 	jr nc, .loadspecies
@@ -39,7 +39,7 @@ TryAddMonToParty: ; d88c
 	ld hl, OTPartyMonOT
 
 .loadOTname
-	ld a, [$ffae] ; Restore index from backup
+	ld a, [hMoveMon] ; Restore index from backup
 	dec a
 	call SkipNames
 	ld d, h
@@ -54,7 +54,7 @@ TryAddMonToParty: ; d88c
 	ld [wd265], a
 	call GetPokemonName
 	ld hl, PartyMonNicknames
-	ld a, [$ffae]
+	ld a, [hMoveMon]
 	dec a
 	call SkipNames
 	ld d, h
@@ -71,7 +71,7 @@ TryAddMonToParty: ; d88c
 	ld hl, OTPartyMon1Species
 
 .initializeStats
-	ld a, [$ffae]
+	ld a, [hMoveMon]
 	dec a
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
@@ -1168,7 +1168,7 @@ GiveEgg:: ; df8c
 	ld hl, PartyMon1Happiness
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
-	ld a, [wc2cc]
+	ld a, [wMonStatusFlags]
 	bit 1, a
 	ld a, 1
 	jr nz, .got_init_happiness

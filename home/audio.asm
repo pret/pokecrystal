@@ -397,7 +397,7 @@ EnterMapMusic:: ; 3d03
 	push af
 
 	xor a
-	ld [wc2c1], a
+	ld [wDontPlayMapMusicOnReload], a
 	ld de, MUSIC_BICYCLE
 	ld a, [PlayerState]
 	cp PLAYER_BIKE
@@ -422,7 +422,7 @@ EnterMapMusic:: ; 3d03
 ; 3d2f
 
 TryRestartMapMusic:: ; 3d2f
-	ld a, [wc2c1]
+	ld a, [wDontPlayMapMusicOnReload]
 	and a
 	jr z, RestartMapMusic
 	xor a
@@ -431,7 +431,7 @@ TryRestartMapMusic:: ; 3d2f
 	call PlayMusic
 	call DelayFrame
 	xor a
-	ld [wc2c1], a
+	ld [wDontPlayMapMusicOnReload], a
 	ret
 ; 3d47
 

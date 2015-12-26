@@ -89,7 +89,7 @@ UnknownScript_0x1a927f:
 .LoadFight0
 	loadtrainer FISHER, TULLY1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wTullyFightCount, 1
 	clearflag ENGINE_TULLY
 	end
@@ -97,7 +97,7 @@ UnknownScript_0x1a927f:
 .LoadFight1
 	loadtrainer FISHER, TULLY2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wTullyFightCount, 2
 	clearflag ENGINE_TULLY
 	end
@@ -105,7 +105,7 @@ UnknownScript_0x1a927f:
 .LoadFight2
 	loadtrainer FISHER, TULLY3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wTullyFightCount, 3
 	clearflag ENGINE_TULLY
 	end
@@ -113,7 +113,7 @@ UnknownScript_0x1a927f:
 .LoadFight3
 	loadtrainer FISHER, TULLY4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_TULLY
 	end
 

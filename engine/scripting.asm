@@ -168,7 +168,7 @@ ENDC
 	dw Script_loadwildmon                ; 5d
 	dw Script_loadtrainer                ; 5e
 	dw Script_startbattle                ; 5f
-	dw Script_returnafterbattle          ; 60
+	dw Script_reloadmapafterbattle          ; 60
 	dw Script_catchtutorial              ; 61
 	dw Script_trainertext                ; 62
 	dw Script_trainerflagaction          ; 63
@@ -203,7 +203,7 @@ ENDC
 	dw Script_encountermusic             ; 80
 	dw Script_musicfadeout               ; 81
 	dw Script_playmapmusic               ; 82
-	dw Script_reloadmapmusic             ; 83
+	dw Script_dontrestartmapmusic             ; 83
 	dw Script_cry                        ; 84
 	dw Script_playsound                  ; 85
 	dw Script_waitsfx                    ; 86
@@ -1555,7 +1555,7 @@ Script_catchtutorial: ; 97447
 	jp Script_reloadmap
 ; 97459
 
-Script_returnafterbattle: ; 97459
+Script_reloadmapafterbattle: ; 97459
 ; script command 0x60
 
 	ld hl, wBattleScriptFlags
@@ -2905,11 +2905,11 @@ Script_blackoutmod: ; 97a78
 	ret
 ; 97a85
 
-Script_reloadmapmusic: ; 97a85
+Script_dontrestartmapmusic: ; 97a85
 ; script command 0x83
 
 	ld a, 1
-	ld [wc2c1], a
+	ld [wDontPlayMapMusicOnReload], a
 	ret
 ; 97a8b
 

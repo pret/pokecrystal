@@ -20,7 +20,7 @@ JasmineScript_0x9c12f:
 	winlosstext UnknownText_0x9c2bb, 0
 	loadtrainer JASMINE, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_JASMINE
 	opentext
 	writetext UnknownText_0x9c33a

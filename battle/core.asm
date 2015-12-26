@@ -2098,7 +2098,7 @@ UpdateHPBar: ; 3cd3c
 	xor a
 .ok
 	push bc
-	ld [wd10a], a
+	ld [wWhichHPBar], a
 	predef AnimateHPBar
 	pop bc
 	ret
@@ -2494,7 +2494,7 @@ WinTrainerBattle: ; 3cfa4
 	jr nz, .skip_heal
 	predef HealParty
 .skip_heal
-	ld a, [wc2cc]
+	ld a, [wMonStatusFlags]
 	bit 0, a
 	jr nz, .skip_win_loss_text
 	call PrintWinLossText
@@ -2888,7 +2888,7 @@ AskUseNextPokemon: ; 3d1f8
 ForcePlayerMonChoice: ; 3d227
 	call EmptyBattleTextBox
 	call LoadStandardMenuDataHeader
-	call Function3d2f7
+	call SetUpBattlePartyMenu_NoLoop
 	call ForcePickPartyMonInBattle
 	ld a, [wLinkMode]
 	and a
@@ -2992,12 +2992,12 @@ IsMobileBattle: ; 3d2f1
 	ret
 ; 3d2f7
 
-Function3d2f7: ; 3d2f7
+SetUpBattlePartyMenu_NoLoop: ; 3d2f7
 	call ClearBGPalettes
-Function3d2fa: ; switch to fullscreen menu?
+SetUpBattlePartyMenu: ; switch to fullscreen menu?
 	callba LoadPartyMenuGFX
 	callba InitPartyMenuWithCancel
-	callba Function8e85
+	callba InitBattlePartyMenuPals
 	callba InitPartyMenuGFX
 	ret
 ; 3d313
@@ -3113,7 +3113,7 @@ LostBattle: ; 3d38e
 	ld c, 40
 	call DelayFrames
 
-	ld a, [wc2cc]
+	ld a, [wMonStatusFlags]
 	bit 0, a
 	jr nz, .skip_win_loss_text
 	call PrintWinLossText
@@ -3701,7 +3701,7 @@ OfferSwitch: ; 3d74b
 	ld a, [wMenuCursorY]
 	dec a
 	jr nz, .said_no
-	call Function3d2f7
+	call SetUpBattlePartyMenu_NoLoop
 	call PickSwitchMonInBattle
 	jr c, .canceled_switch
 	ld a, [CurBattleMon]
@@ -4563,14 +4563,14 @@ HandleHPHealingItem: ; 3dd2f
 	ld a, [Buffer5]
 	ld [de], a
 	ld a, [hBattleTurn]
-	ld [wd10a], a
+	ld [wWhichHPBar], a
 	and a
 	hlcoord 2, 2
 	jr z, .got_hp_bar_coords
 	hlcoord 10, 9
 
 .got_hp_bar_coords
-	ld [wd10a], a
+	ld [wWhichHPBar], a
 	predef AnimateHPBar
 UseOpponentItem:
 	call RefreshBattleHuds
@@ -5113,7 +5113,7 @@ DrawEnemyHUD: ; 3e043
 
 .draw_bar
 	xor a
-	ld [wd10a], a
+	ld [wWhichHPBar], a
 	hlcoord 2, 2
 	ld b, 0
 	call DrawBattleHPBar
@@ -5332,7 +5332,7 @@ Function3e290:
 	call LoadStandardMenuDataHeader
 	call ClearBGPalettes
 BattleMenuPKMN_Loop:
-	call Function3d2fa
+	call SetUpBattlePartyMenu
 	xor a
 	ld [PartyMenuActionText], a
 	call Function3d313

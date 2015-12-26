@@ -127,7 +127,7 @@ UnknownScript_0x1850d7:
 	loadwildmon SUICUNE, 40
 	writecode VAR_BATTLETYPE, BATTLETYPE_SUICUNE
 	startbattle
-	reloadmapmusic
+	dontrestartmapmusic
 	disappear TINTOWER1F_SUICUNE
 	setevent EVENT_FOUGHT_SUICUNE
 	setevent EVENT_SAW_SUICUNE_ON_ROUTE_42
@@ -138,7 +138,7 @@ UnknownScript_0x1850d7:
 	domaptrigger CIANWOOD_CITY, $0
 	dotrigger $1
 	clearevent EVENT_SET_WHEN_FOUGHT_HO_OH
-	returnafterbattle
+	reloadmapafterbattle
 	pause 20
 	spriteface PLAYER, DOWN
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER

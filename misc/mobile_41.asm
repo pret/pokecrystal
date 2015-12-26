@@ -766,7 +766,7 @@ MobileFn_106314: mobile ; 106314
 	ret
 ; 10632f
 
-Function10632f: ; 10632f
+Mobile_AlwaysReturnNotCarry: ; 10632f
 	or a
 	ret
 
@@ -851,7 +851,7 @@ Function106392: ; 106392
 	ret
 
 .asm_1063a2
-	call Function10632f
+	call Mobile_AlwaysReturnNotCarry
 	ld a, c
 	and a
 	jr nz, .asm_1063b4
@@ -937,7 +937,7 @@ Function106403: ; 106403
 	ret
 
 .asm_106426
-	call Function10632f
+	call Mobile_AlwaysReturnNotCarry
 	ld a, c
 	and a
 	jr z, .asm_106435

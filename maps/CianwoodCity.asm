@@ -70,8 +70,8 @@ UnknownScript_0x1a001e:
 	setlasttalked CIANWOODCITY_EUSINE
 	loadtrainer MYSTICALMAN, EUSINE
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
 	opentext
 	writetext UnknownText_0x1a05c3

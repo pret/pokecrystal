@@ -39,7 +39,7 @@ HoOhScript_0x77244:
 	loadwildmon HO_OH, 60
 	startbattle
 	disappear TINTOWERROOF_HO_OH
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_SET_WHEN_FOUGHT_HO_OH
 	end
 

@@ -49,8 +49,8 @@ InitMobileProfile: ; 4802f (12:402f)
 	call GetMysteryGift_MobileAdapterLayout
 	call ClearBGPalettes
 	hlcoord 0, 0
-	ld b, $2
-	ld c, $14
+	ld b,  2
+	ld c, 20
 	call ClearBox
 	hlcoord 0, 1
 	ld a, $c

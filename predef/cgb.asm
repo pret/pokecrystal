@@ -118,7 +118,7 @@ endr
 	ld [SGBPredef], a
 	call ApplyPals
 Function8e23: ; 8e23
-	call Function8e85
+	call InitBattlePartyMenuPals
 	hlcoord 0, 0, AttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, $2
@@ -157,15 +157,15 @@ Function8e23: ; 8e23
 ; 8e85
 
 
-Function8e85: ; 8e85
+InitBattlePartyMenuPals: ; 8e85
 	callba Function100dc0
 Function8e8b: ; 8e8b
 	ld hl, Palette_b311
-	jr nc, .asm_8e93
+	jr nc, .not_mobile
 	ld hl, Palette_b309
-.asm_8e93
+.not_mobile
 	ld de, UnknBGPals + 8 * 7
-	ld bc, $8
+	ld bc, 1 palettes
 	ld a, $5
 	call FarCopyWRAM
 	ret
@@ -174,11 +174,11 @@ Function8e8b: ; 8e8b
 Function8e9f: ; 8e9f
 	callba Function100dc0
 	ld hl, Palette_b311
-	jr nc, .asm_8ead
+	jr nc, .not_mobile
 	ld hl, Palette_b309
-.asm_8ead
+.not_mobile
 	ld de, UnknBGPals
-	ld bc, $8
+	ld bc, 1 palettes
 	ld a, $5
 	call FarCopyWRAM
 	ret
@@ -596,7 +596,7 @@ _CGB0a: ; 91d1
 	ld hl, PalPacket_9c56 + 1
 	call CopyFourPalettes
 	call Function8e9f
-	call Function8e85
+	call InitBattlePartyMenuPals
 	call Function971a
 	call ApplyAttrMap
 	ret

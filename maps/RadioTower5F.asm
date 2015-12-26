@@ -43,7 +43,7 @@ FakeDirectorScript:
 	setlasttalked RADIOTOWER5F_DIRECTOR
 	loadtrainer EXECUTIVEM, 3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	opentext
 	writetext FakeDirectorTextAfter
 	buttonsound
@@ -92,7 +92,7 @@ RadioTower5FRocketBossTrigger:
 	setlasttalked RADIOTOWER5F_ROCKET
 	loadtrainer EXECUTIVEM, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	opentext
 	writetext RadioTower5FRocketBossAfterText
 	waitbutton

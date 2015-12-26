@@ -663,7 +663,7 @@ EnemyPotionFinish: ; 38436
 	call PrintText_UsedItemOn
 	hlcoord 2, 2
 	xor a
-	ld [wd10a], a
+	ld [wWhichHPBar], a
 	call AIUsedItemSound
 	predef AnimateHPBar
 	jp AIUpdateHUD

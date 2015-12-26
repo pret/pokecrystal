@@ -6,7 +6,7 @@ MomTriesToBuySomething:: ; fcfec
 	and a
 	ret nz
 	xor a
-	ld [wdc18], a
+	ld [wWhichMomItemSet], a
 	call CheckBalance_MomItem2
 	ret nc
 	call Mom_GiveItemOrDoll
@@ -26,10 +26,10 @@ MomTriesToBuySomething:: ; fcfec
 .ASMFunction: ; fd017
 	call MomBuysItem_DeductFunds
 	call Mom_GetScriptPointer
-	ld a, [wdc18]
+	ld a, [wWhichMomItemSet]
 	and a
 	jr nz, .ok
-	ld hl, wdc17
+	ld hl, wWhichMomItem
 	inc [hl]
 .ok
 	ld a, PHONE_MOM
@@ -52,7 +52,7 @@ MomTriesToBuySomething:: ; fcfec
 ; fd044
 
 CheckBalance_MomItem2: ; fd044
-	ld a, [wdc17]
+	ld a, [wWhichMomItem]
 	cp 10
 	jr nc, .nope
 	call GetItemFromMom
@@ -82,12 +82,12 @@ CheckBalance_MomItem2: ; fd044
 	inc hl
 	ld [hl], (2300 % $100) ; $fc
 .loop
-	ld de, wdc19
+	ld de, MomItemTriggerBalance
 	ld bc, wMomsMoney
 	callba CompareMoney
 	jr z, .exact
 	jr nc, .less_than
-	call Functionfd099
+	call .AddMoney
 	jr .loop
 
 .less_than
@@ -95,17 +95,16 @@ CheckBalance_MomItem2: ; fd044
 	ret
 
 .exact
-	call Functionfd099
+	call .AddMoney
 	ld a, 5
 	call RandomRange
 	inc a
-	ld [wdc18], a
+	ld [wWhichMomItemSet], a
 	scf
 	ret
-; fd099
 
-Functionfd099: ; fd099
-	ld de, wdc19
+.AddMoney
+	ld de, MomItemTriggerBalance
 	ld bc, hMoneyTemp
 	callba AddMoney
 	ret
@@ -183,7 +182,7 @@ Mom_GetScriptPointer: ; fd0eb (3f:50eb)
 
 
 GetItemFromMom: ; fd117
-	ld a, [wdc18]
+	ld a, [wWhichMomItemSet]
 	and a
 	jr z, .zero
 	dec a
@@ -191,7 +190,7 @@ GetItemFromMom: ; fd117
 	jr .GetFromList1
 
 .zero
-	ld a, [wdc17]
+	ld a, [wWhichMomItem]
 	cp 10 ; length of MomItems_2
 	jr c, .ok
 	xor a

@@ -94,13 +94,13 @@ endr
 	add hl, bc
 	ld a, d
 	and $10 ; bit 4
-	jr z, .load_Null
+	jr z, .load_zero
 	ld a, e
 	and a
 	jr z, .load_minus_two
 	cp $1
 	jr z, .load_minus_one
-.load_Null
+.load_zero
 	xor a
 	ld [hl], a
 	ret
@@ -140,11 +140,11 @@ endr
 ; 8d306 (23:5306)
 
 ; Anonymous jumptable (see .anonymous_jumptable)
-	dw .four_Null
+	dw .four_zero
 	dw .four_one
 ; 8d30a
 
-.four_Null: ; 8d30a
+.four_zero: ; 8d30a
 	call .IncrementSpriteAnimStruct0B
 
 	ld hl, SPRITEANIMSTRUCT_INDEX
@@ -425,7 +425,7 @@ endr
 ; 8d487 (23:5487)
 
 ; Anonymous jumptable (see .anonymous_jumptable)
-	dw .sixteen_Null
+	dw .sixteen_zero
 	dw .sixteen_one
 	dw .sixteen_two
 	dw .sixteen_three
@@ -433,7 +433,7 @@ endr
 	dw .sixteen_five
 ; 8d493
 
-.sixteen_Null: ; 8d493
+.sixteen_zero: ; 8d493
 	ld a, $14
 	call _ReinitSpriteAnimFrame
 

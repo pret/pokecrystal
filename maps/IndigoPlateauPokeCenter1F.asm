@@ -103,8 +103,8 @@ UnknownScript_0x1800ce:
 	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
 	loadtrainer RIVAL2, 6
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	jump UnknownScript_0x180113
 
 UnknownScript_0x1800f3:
@@ -112,8 +112,8 @@ UnknownScript_0x1800f3:
 	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
 	loadtrainer RIVAL2, 4
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	jump UnknownScript_0x180113
 
 UnknownScript_0x180103:
@@ -121,8 +121,8 @@ UnknownScript_0x180103:
 	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
 	loadtrainer RIVAL2, 5
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	jump UnknownScript_0x180113
 
 UnknownScript_0x180113:

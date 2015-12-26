@@ -21,7 +21,7 @@ BrockScript_0x1a2864:
 	winlosstext UnknownText_0x1a29bb, 0
 	loadtrainer BROCK, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_BROCK
 	setevent EVENT_BEAT_CAMPER_JERRY
 	opentext

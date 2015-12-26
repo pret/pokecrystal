@@ -111,7 +111,7 @@ UnknownScript_0x6e056:
 	setlasttalked TEAMROCKETBASEB3F_ROCKET1
 	loadtrainer EXECUTIVEM, 4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_4
 	opentext
 	writetext UnknownText_0x6e548

@@ -40,22 +40,21 @@ KrissHouse2F_MapScriptHeader:
 
 
 Doll1:
-	describedecoration $1
+	describedecoration 1
 
 Doll2:
-	describedecoration $2
+	describedecoration 2
 
 BigDoll:
-	describedecoration $3
+	describedecoration 3
 
 GameConsole:
-	describedecoration $4
+	describedecoration 4
 
 KrissHousePoster:
-	dw EVENT_KRISS_ROOM_POSTER ; event
-	dw .Script
+	dw EVENT_KRISS_ROOM_POSTER, .Script
 .Script
-	describedecoration $0
+	describedecoration 0
 
 KrissHouseRadio:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
@@ -70,7 +69,7 @@ KrissHouseRadio:
 	pause 45
 	writetext KrisRadioText3
 	pause 45
-	musicfadeout MUSIC_NEW_BARK_TOWN, $10
+	musicfadeout MUSIC_NEW_BARK_TOWN, 16
 	writetext KrisRadioText4
 	pause 45
 	closetext
