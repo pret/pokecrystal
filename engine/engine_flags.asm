@@ -118,7 +118,7 @@ ENDM
 	engine_flag StatusFlags, 6 ; credits skip
 	engine_flag StatusFlags, 7 ; bug contest on   ; $10
 	engine_flag StatusFlags2, 2 ; bug contest timer
-	engine_flag StatusFlags2, 1 ; ???
+	engine_flag StatusFlags2, 1 ; safari zone?
 	engine_flag StatusFlags2, 0 ; rockets in radio tower
 	engine_flag StatusFlags2, 4 ; bike shop call enabled (1024 bike steps reqd)
 	engine_flag StatusFlags2, 5 ; give pokerus

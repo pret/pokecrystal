@@ -1,4 +1,3 @@
-const_value set 2
 
 Route22_MapScriptHeader:
 .MapTriggers:

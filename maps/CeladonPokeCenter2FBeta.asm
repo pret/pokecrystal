@@ -1,4 +1,3 @@
-const_value set 2
 
 CeladonPokeCenter2FBeta_MapScriptHeader:
 .MapTriggers:

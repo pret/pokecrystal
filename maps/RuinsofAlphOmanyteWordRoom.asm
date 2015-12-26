@@ -1,4 +1,3 @@
-const_value set 2
 
 RuinsofAlphOmanyteWordRoom_MapScriptHeader:
 .MapTriggers:

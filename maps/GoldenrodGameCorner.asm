@@ -146,10 +146,10 @@ GoldenrodGameCornerTMVendorMenuData:
 	db $40 ; flags
 	db 02, 00 ; start coords
 	db 11, 15 ; end coords
-	dw MenuData2_0x56cd1
+	dw .MenuData2
 	db 1 ; default option
 
-MenuData2_0x56cd1:
+.MenuData2
 	db $80 ; flags
 	db 4 ; items
 	db "TM25    5500@"

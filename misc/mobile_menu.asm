@@ -411,13 +411,13 @@ Function4a28a: ; 4a28a (12:628a)
 	push af
 	call PlayClickSFX
 	pop af
-	bit 1, a
-	jr nz, .asm_4a33b
+	bit B_BUTTON_F, a
+	jr nz, .quit
 	ld a, [wMenuCursorY]
 	cp $2
-	jr z, .asm_4a2f0
+	jr z, .DeleteLoginPassword
 	cp $3
-	jr z, .asm_4a33b
+	jr z, .quit
 .asm_4a2df
 	callba Function11765d
 	call ClearBGPalettes
@@ -425,36 +425,37 @@ Function4a28a: ; 4a28a (12:628a)
 	call LoadFontsExtra
 	scf
 	ret
-.asm_4a2f0
+
+.DeleteLoginPassword
 	call PlaceHollowCursor
 	ld hl, UnknownText_0x4a358
 	call PrintText
 	hlcoord 14, 7
-	ld b, $3
-	ld c, $4
+	ld b, 3
+	ld c, 4
 	call TextBox
 	callba Function104148
-	ld hl, MenuDataHeader_0x4a362
+	ld hl, DeletePassword_YesNo_MenuDataHeader
 	call LoadMenuDataHeader
 	call VerticalMenu
-	bit 1, a
-	jr nz, .asm_4a338
+	bit B_BUTTON_F, a
+	jr nz, .dont_delete_password
 	ld a, [wMenuCursorY]
 	cp $2
-	jr z, .asm_4a338
+	jr z, .dont_delete_password
 	ld a, $5
 	call GetSRAMBank
-	ld hl, $aa4b
+	ld hl, sMobileLoginPassword
 	xor a
-	ld bc, $11
+	ld bc, LOGIN_PASSWORD_LENGTH
 	call ByteFill
 	call CloseSRAM
 	ld hl, UnknownText_0x4a35d
 	call PrintText
 	call JoyWaitAorB
-.asm_4a338
+.dont_delete_password
 	call ExitMenu
-.asm_4a33b
+.quit
 	call Call_ExitMenu
 	callba Function104148
 	xor a
@@ -484,7 +485,7 @@ UnknownText_0x4a35d: ; 0x4a35d
 	db "@"
 ; 0x4a362
 
-MenuDataHeader_0x4a362: ; 0x4a362
+DeletePassword_YesNo_MenuDataHeader: ; 0x4a362
 	db $40 ; flags
 	db 07, 14 ; start coords
 	db 11, 19 ; end coords

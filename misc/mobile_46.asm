@@ -1301,7 +1301,7 @@ Function118936:
 	ld a, $1
 	ld [rSVBK], a
 	ld a, [StatusFlags]
-	bit 6, a
+	bit 6, a ; Hall Of Fame
 	jr nz, .asm_11896b
 	ld hl, Strings_Ll0ToL40		; Address to list of strings with the choosable levels
 	ld a, 5						; 4 levels to choose from, including 'Cancel'-option
@@ -1429,7 +1429,7 @@ Function118982:
 
 .asm_118a30
 	ld a, [wcd4f]
-	ld [wd000 + $800], a
+	ld [w3_d800], a
 	jp Function119e2e
 
 .asm_118a39
@@ -1958,11 +1958,11 @@ Function118f14:
 	ret c
 	ld a, [wcc60]
 	and a
-	jr z, .asm_118f32
-	ld hl, UnknownText_0x11aa13
+	jr z, .DontSendSaveFile
+	ld hl, Text_SaveFileWillBeSent
 	call Function11a9c0
 
-.asm_118f32
+.DontSendSaveFile
 	ld a, [wcd57]
 	ld l, a
 	ld a, [wcd58]
@@ -2057,18 +2057,18 @@ Function118fc0: ; 118fc0
 	ld a, [wcc60]
 	and a
 	jr z, .asm_118ff2
-	ld hl, UnknownText_0x11aa2c
+	ld hl, Text_SentSaveFileReadingNews
 	jr .asm_118ff5
 
 .asm_118ff2
-	ld hl, UnknownText_0x11aa4b
+	ld hl, Text_ReadingNews
 
 .asm_118ff5
 	call Function11a9c0
 	jr Function119009
 
 .asm_118ffa
-	ld hl, UnknownText_0x11aa4b
+	ld hl, Text_ReadingNews
 	call Function11a9c0
 	call Function119e2e
 	call Function119e2e
@@ -2224,7 +2224,7 @@ Function1190ec: ; 1190ec
 	ld a, $3
 	ld [rSVBK], a
 	call CloseSRAM
-	ld hl, UnknownText_0x11aa5a
+	ld hl, Text_ReceivedNews
 	call Function11a9c0
 	jp Function119e2e
 ; 11914e
@@ -3450,7 +3450,7 @@ Function11984e: ; 11984e
 ; 1198ee
 
 Function1198ee: ; 1198ee
-	ld hl, UnknownText_0x11aab2
+	ld hl, Text_RegisteringRecord
 	call Function11a9c0
 	call Function119e2e
 
@@ -3599,49 +3599,49 @@ Function1199ca: ; 1199ca
 
 Function1199e2: ; 1199e2
 	ld c, $c
-	ld de, Unknown_119e33
+	ld de, XGameCodePrefix
 	call Function119e4f
 	jp c, Function119ac9
 	ld a, c
 	cp $1
 	jp nz, Function119ac9
-	ld hl, $d880
-	ld bc, Unknown_119af1
-.asm_1199f9
+	ld hl, w3_d880
+	ld bc, XGameCode
+.loop
 	ld a, [bc]
 	and a
-	jr z, .asm_119a05
+	jr z, .game_result_prefix
 	cp [hl]
 	jp nz, Function119ac9
 	inc bc
 	inc hl
-	jr .asm_1199f9
+	jr .loop
 
-.asm_119a05
+.game_result_prefix
 	ld c, $17
-	ld de, Unknown_119e40
+	ld de, XGameResultPrefix
 	call Function119e4f
 	jp c, .asm_119aa7
 	ld a, c
 	cp $1
 	jp nz, .asm_119aa7
-	ld a, [wd000 + $880]
+	ld a, [w3_d880]
 	cp $31
 	jp nz, .asm_119aa7
-	ld a, [wd000 + $881]
+	ld a, [w3_d881]
 	cp $20
 	jp nz, .asm_119aa7
-	ld a, [wd000 + $88a]
+	ld a, [w3_d88a]
 	cp $20
 	jp nz, .asm_119aa7
-	ld a, [wd000 + $894]
+	ld a, [w3_d894]
 	cp $20
 	jp nz, .asm_119aa7
 	xor a
-	ld [wd000 + $8a0], a
-	ld [wd000 + $8a1], a
-	ld [wd000 + $8a2], a
-	ld [wd000 + $8a3], a
+	ld [w3_d8a0], a
+	ld [w3_d8a1], a
+	ld [w3_d8a2], a
+	ld [w3_d8a3], a
 	ld hl, $d8a0
 	ld bc, $d889
 	call Function119e98
@@ -3663,10 +3663,10 @@ Function1199e2: ; 1199e2
 	cp [hl]
 	jr nz, Function119ac9
 	xor a
-	ld [wd000 + $8a0], a
-	ld [wd000 + $8a1], a
-	ld [wd000 + $8a2], a
-	ld [wd000 + $8a3], a
+	ld [w3_d8a0], a
+	ld [w3_d8a1], a
+	ld [w3_d8a2], a
+	ld [w3_d8a3], a
 	ld hl, $d8a0
 	ld bc, $d88e
 	call Function119e98
@@ -3730,9 +3730,10 @@ Function119ac9:
 	ret
 ; 119af1
 
-Unknown_119af1:
-	INCBIN "data/mobile/x-game-code.txt"
-	INCBIN "data/mobile/x-game-result.txt"
+XGameCode:
+INCBIN "data/mobile/x-game-code.txt"
+XGameResult:
+INCBIN "data/mobile/x-game-result.txt"
 ; 119b0d
 
 Function119b0d: ; 119b0d
@@ -3990,13 +3991,13 @@ Function119c3e: ; 119c3e
 ; 119c97
 
 Function119c97: ; 119c97
-	ld hl, UnknownText_0x11ab0f
+	ld hl, Text_UberRestriction
 	call Function11a9c0
 	call Function119e2e
 	jr Function119cab
 
 Function119ca2:
-	ld hl, UnknownText_0x11aaf0
+	ld hl, Text_PartyMonTopsThisLevel
 	call Function11a9c0
 	call Function119e2e
 
@@ -4023,15 +4024,15 @@ Function119cc3: ; 119cc3
 	jr z, .asm_119cd1
 	dec a
 	jr z, .asm_119cd6
-	ld hl, UnknownText_0x11aa6a
+	ld hl, Text_QuitReadingNews
 	jr .asm_119cd9
 
 .asm_119cd1
-	ld hl, UnknownText_0x11ab4a
+	ld hl, Text_CancelBattleRoomChallenge
 	jr .asm_119cd9
 
 .asm_119cd6
-	ld hl, UnknownText_0x11ab6e
+	ld hl, Text_ExitGymLeaderHonorRoll
 
 .asm_119cd9
 	call Function11a9c0
@@ -4205,10 +4206,14 @@ Function119e2e: ; 119e2e (46:5e2e)
 	ret
 ; 119e33 (46:5e33)
 
-Unknown_119e33: ; 119e33
-	INCBIN "data/mobile/x-game-code-prefix.txt"
-Unknown_119e40:
-	INCBIN "data/mobile/x-game-result-prefix.txt"
+XGameCodePrefix: ; 119e33
+INCBIN "data/mobile/x-game-code-prefix.txt"
+XGameCodePrefixEnd:
+;119e40
+
+XGameResultPrefix: ; 119e40
+INCBIN "data/mobile/x-game-result-prefix.txt"
+XGameResultPrefixEnd:
 ; 119e4f
 
 Function119e4f: ; 119e4f
@@ -4218,77 +4223,77 @@ Function119e4f: ; 119e4f
 	ld c, a
 	ld a, [hli]
 	ld b, a
-.asm_119e57
+.loop
 	ld a, [de]
 	cp [hl]
-	jr z, .asm_119e64
-.asm_119e5b
+	jr z, .found_equality
+.next
 	inc hl
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_119e57
-.asm_119e61
+	jr nz, .loop
+.return_carry
 	pop bc
 	scf
 	ret
 
-.asm_119e64
+.found_equality
 	push de
-.asm_119e65
+.loop2
 	ld a, [de]
 	inc de
 	cp "\n"
-	jr z, .asm_119e7a
+	jr z, .newline
 	cp [hl]
-	jr nz, .asm_119e77
+	jr nz, .unequal
 	inc hl
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_119e65
+	jr nz, .loop2
 	pop de
-	jr .asm_119e61
+	jr .return_carry
 
-.asm_119e77
+.unequal
 	pop de
-	jr .asm_119e5b
+	jr .next
 
-.asm_119e7a
+.newline
 	pop de
 	pop bc
 	inc hl
-	ld de, $d880
-.asm_119e80
+	ld de, w3_d880
+.loop3
 	ld a, [hli]
 	ld [de], a
 	inc de
 	cp $d
-	jr z, .asm_119e8c
+	jr z, .finish
 	dec c
-	jr nz, .asm_119e80
+	jr nz, .loop3
 	scf
 	ret
 
-.asm_119e8c
+.finish
 	and a
 	ret
 ; 119e8e
 
 Function119e8e: ; 119e8e
 	cp $60
-	jr c, .asm_119e95
+	jr c, .less_than_0x60
 	sub $57
 	ret
 
-.asm_119e95
+.less_than_0x60
 	sub $30
 	ret
 ; 119e98
 
 Function119e98: ; 119e98
 	ld a, $2
-.asm_119e9a
+.loop
 	push af
 	ld a, [bc]
 	dec bc
@@ -4308,7 +4313,7 @@ Function119e98: ; 119e98
 	pop af
 	dec a
 	and a
-	jr nz, .asm_119e9a
+	jr nz, .loop
 	ret
 ; 119eb4
 
@@ -4316,26 +4321,26 @@ Function119eb4: ; 119eb4 (46:5eb4)
 	xor a
 	ld [wc3cc], a
 	ld de, wc3ac
-.asm_119ebb
+.loop
 	ld a, [de]
 	inc de
 	ld [hli], a
 	and a
-	jr nz, .asm_119ebb
+	jr nz, .loop
 	ret
 
 Function119ec2: ; 119ec2 (46:5ec2)
 	ld a, $5
 	call GetSRAMBank
 	xor a
-	ld [$aa5c], a
-	ld de, $aa4c
-.asm_119ece
+	ld [sMobileLoginPassword + LOGIN_PASSWORD_LENGTH], a
+	ld de, sMobileLoginPassword + 1
+.loop
 	ld a, [de]
 	inc de
 	ld [hli], a
 	and a
-	jr nz, .asm_119ece
+	jr nz, .loop
 	call CloseSRAM
 	ret
 
@@ -4507,17 +4512,17 @@ Function119f98: ; 119f98
 Function11a00e: ; 11a00e
 	ld a, $5
 	call GetSRAMBank
-	ld a, [$aa4b]
+	ld a, [sMobileLoginPassword]
 	and a
 	jr z, .asm_11a02a
-	ld a, [$aa4c]
+	ld a, [sMobileLoginPassword + 1]
 	call CloseSRAM
 	and a
 	ret nz
 	ld a, $5
 	call GetSRAMBank
 	xor a
-	ld [$aa4b], a
+	ld [sMobileLoginPassword], a
 
 .asm_11a02a
 	call CloseSRAM
@@ -5726,64 +5731,64 @@ Function11a9f4: ; 11a9f4
 	ret
 ; 11aa13
 
-UnknownText_0x11aa13: ; 0x11aa13
+Text_SaveFileWillBeSent: ; 0x11aa13
 	text "SAVE FILE will be"
 	line "sent."
 	done
 ; 0x11aa2c
 
-UnknownText_0x11aa2c: ; 0x11aa2c
+Text_SentSaveFileReadingNews: ; 0x11aa2c
 	text "Sent SAVE FILE."
 	line "Reading NEWS…"
 	done
 ; 0x11aa4b
 
-UnknownText_0x11aa4b: ; 0x11aa4b
+Text_ReadingNews: ; 0x11aa4b
 	text "Reading NEWS…"
 	done
 ; 0x11aa5a
 
-UnknownText_0x11aa5a: ; 0x11aa5a
+Text_ReceivedNews: ; 0x11aa5a
 	text "Received NEWS!"
 	done
 ; 0x11aa6a
 
-UnknownText_0x11aa6a: ; 0x11aa6a
+Text_QuitReadingNews: ; 0x11aa6a
 	text "Quit reading NEWS?"
 	done
 ; 0x11aa7e
 
-UnknownText_0x11aa7e: ; 0x11aa7e
+Text_CanceledSendingSaveFile: ; 0x11aa7e
 	text "Canceled sending"
 	line "SAVE FILE."
 	done
 ; 0x11aa9b
 
-UnknownText_0x11aa9b: ; 0x11aa9b
+Text_ReceivedOddEgg: ; 0x11aa9b
 	text "ODD EGG"
 	line "was received!"
 	done
 ; 0x11aab2
 
-UnknownText_0x11aab2: ; 0x11aab2
+Text_RegisteringRecord: ; 0x11aab2
 	text "Registering your"
 	line "record…"
 	done
 ; 0x11aacc
 
-UnknownText_0x11aacc: ; 0x11aacc
+Text_BattleRoomVisitLimit: ; 0x11aacc
 	text "One visit per day"
 	line "per BATTLE ROOM!"
 	done
 ; 0x11aaf0
 
-UnknownText_0x11aaf0: ; 0x11aaf0
+Text_PartyMonTopsThisLevel: ; 0x11aaf0
 	text "A party #MON"
 	line "tops this level."
 	done
 ; 0x11ab0f
 
-UnknownText_0x11ab0f: ; 0x11ab0f
+Text_UberRestriction: ; 0x11ab0f
 	text_from_ram wcd49
 	text " may go"
 	line "only to BATTLE"
@@ -5793,19 +5798,19 @@ UnknownText_0x11ab0f: ; 0x11ab0f
 	done
 ; 0x11ab4a
 
-UnknownText_0x11ab4a: ; 0x11ab4a
+Text_CancelBattleRoomChallenge: ; 0x11ab4a
 	text "Cancel your BATTLE"
 	line "ROOM challenge?"
 	done
 ; 0x11ab6e
 
-UnknownText_0x11ab6e: ; 0x11ab6e
+Text_ExitGymLeaderHonorRoll: ; 0x11ab6e
 	text "Exit GYM LEADER"
 	line "HONOR ROLL?"
 	done
 ; 0x11ab8b
 
-UnknownText_0x11ab8b: ; 0x11ab8b
+Text_LinkingWithCenter: ; 0x11ab8b
 	text "Linking with the"
 	line "CENTER…"
 	done
@@ -5823,18 +5828,18 @@ Text_CheckBattleRoomListByMaxLevel: ; 0x11abcb
 	done
 ; 0x11abf1
 
-UnknownText_0x11abf1: ; 0x11abf1
+Text_EnterWhichBattleRoom: ; 0x11abf1
 	text "Enter which"
 	line "BATTLE ROOM?"
 	done
 ; 0x11ac0b
 
-UnknownText_0x11ac0b: ; 0x11ac0b
+Text_WhichBattleRoom: ; 0x11ac0b
 	text "Which BATTLE ROOM?"
 	done
 ; 0x11ac1f
 
-UnknownText_0x11ac1f: ; 0x11ac1f
+Text_ThisBattleRoomPleaseWait: ; 0x11ac1f
 	text_from_ram StringBuffer3
 	text "'s ROOM"
 	line "@"

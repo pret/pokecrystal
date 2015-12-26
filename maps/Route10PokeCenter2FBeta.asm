@@ -1,4 +1,3 @@
-const_value set 2
 
 Route10PokeCenter2FBeta_MapScriptHeader:
 .MapTriggers:

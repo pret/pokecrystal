@@ -4,6 +4,7 @@ INCLUDE "gbhw.asm"
 INCLUDE "hram.asm"
 
 INCLUDE "constants/wram_constants.asm"
+INCLUDE "constants/sram_constants.asm"
 INCLUDE "constants/pokemon_constants.asm"
 INCLUDE "constants/type_constants.asm"
 INCLUDE "constants/move_constants.asm"

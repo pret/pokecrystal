@@ -66,20 +66,20 @@ InitMobileProfile: ; 4802f (12:402f)
 	ld c, $12
 	call Function48cdc
 	hlcoord 2, 4
-	ld de, String_48482
+	ld de, MobileString_Gender
 	call PlaceString
 .asm_480d7
 	hlcoord 2, 6
-	ld de, String_48489
+	ld de, MobileString_Age
 	call PlaceString
 	hlcoord 2, 8
-	ld de, String_4848d
+	ld de, MobileString_Address
 	call PlaceString
 	hlcoord 2, 10
-	ld de, String_48495
+	ld de, MobileString_ZipCode
 	call PlaceString
 	hlcoord 2, 12
-	ld de, String_4849e
+	ld de, MobileString_OK
 	call PlaceString
 	ld a, [wd002]
 	bit 6, a
@@ -109,7 +109,7 @@ InitMobileProfile: ; 4802f (12:402f)
 	ld c, $12
 	call TextBox
 	hlcoord 1, 16
-	ld de, String_48275
+	ld de, MobileString_PersonalInfo
 	call PlaceString
 	call Function48187
 	call WaitBGMap2
@@ -163,7 +163,7 @@ Function48187: ; 48187 (12:4187)
 .asm_481a2
 	push de
 	hlcoord 2, 12
-	ld de, String_4849e
+	ld de, MobileString_OK
 	call PlaceString
 	pop de
 .asm_481ad
@@ -203,13 +203,13 @@ Function48187: ; 48187 (12:4187)
 	jr nz, .asm_48201
 .asm_481f8
 	hlcoord 11, 10
-	ld de, String_48202
+	ld de, .String_TellLater
 	call PlaceString
 .asm_48201
 	ret
 ; 48202 (12:4202)
 
-String_48202: ; 48202
+.String_TellLater: ; 48202
 	db "Tell Later@"
 ; 4820d
 
@@ -246,7 +246,7 @@ Function4820d: ; 4820d (12:420d)
 	ld b, $2
 	ld c, $12
 	call ClearBox
-	ld de, String_484a1
+	ld de, MobileString_ProfileChanged
 	hlcoord 1, 16
 	call PlaceString
 	call WaitBGMap
@@ -269,7 +269,7 @@ Function48272: ; 48272 (12:4272)
 	jp Function4840c
 ; 48275 (12:4275)
 
-String_48275: ; 48275
+MobileString_PersonalInfo: ; 48275
 	db "Personal Info@"
 ; 48283
 
@@ -282,7 +282,7 @@ Function48283: ; 48283 (12:4283)
 asm_4828d: ; 4828d (12:428d)
 	call Function48283
 	hlcoord 1, 16
-	ld de, String_484b1
+	ld de, MobileDesc_Gender
 	call PlaceString
 	ld hl, MenuDataHeader_0x484f1
 	call LoadMenuDataHeader
@@ -334,7 +334,7 @@ asm_4828d: ; 4828d (12:428d)
 Function48304: ; 48304 (12:4304)
 	call Function48283
 	hlcoord 1, 16
-	ld de, String_484cf
+	ld de, MobileDesc_Address
 	call PlaceString
 	ld hl, MenuDataHeader_0x48504
 	call LoadMenuDataHeader
@@ -489,7 +489,7 @@ Function4840c: ; 4840c (12:440c)
 	call Function48187
 	call Function48283
 	hlcoord 1, 16
-	ld de, String_48275
+	ld de, MobileString_PersonalInfo
 	call PlaceString
 	call Function486bf
 	pop bc
@@ -498,33 +498,33 @@ Function4840c: ; 4840c (12:440c)
 	ld a, [wd002]
 	bit 6, a
 	jr nz, .asm_48437
-	ld b, $9
-	ld c, $1
+	ld b, 9
+	ld c, 1
 	hlcoord 1, 4
 	call ClearBox
 	jp Function48157
 .asm_48437
-	ld b, $7
-	ld c, $1
+	ld b, 7
+	ld c, 1
 	hlcoord 1, 6
 	call ClearBox
 	jp Function48157
 
-Function48444: ; 48444 (12:4444)
+Mobile12_Bin2Dec: ; 48444 (12:4444)
 	push bc
 	push af
 	push de
 	push hl
-	ld hl, Unknown_4845d
-.asm_4844b
+	ld hl, .DigitStrings
+.loop
 	and a
-	jr z, .asm_48453
+	jr z, .got_string
 rept 2
 	inc hl
 endr
 	dec a
-	jr .asm_4844b
-.asm_48453
+	jr .loop
+.got_string
 	ld d, h
 	ld e, l
 	pop hl
@@ -535,7 +535,7 @@ endr
 	ret
 ; 4845d (12:445d)
 
-Unknown_4845d: ; 4845d
+.DigitStrings: ; 4845d
 ; 4845d
 	db "0@"
 	db "1@"
@@ -549,17 +549,17 @@ Unknown_4845d: ; 4845d
 	db "9@"
 ; 48471
 
-MobileProfileString: db "  Mobile Profile@"
-String_48482: db "Gender@"
-String_48489: db "Age@"
-String_4848d: db "Address@"
-String_48495: db "Zip Code@"
-String_4849e: db "OK@"
-String_484a1: db "Profile Changed@"
-String_484b1: db "Boy or girl?@"
-String_484be: db "How old are you?@"
-String_484cf: db "Where do you live?@"
-String_484e2: db "Your zip code?@"
+MobileProfileString:         db "  Mobile Profile@"
+MobileString_Gender:         db "Gender@"
+MobileString_Age:            db "Age@"
+MobileString_Address:        db "Address@"
+MobileString_ZipCode:        db "Zip Code@"
+MobileString_OK:             db "OK@"
+MobileString_ProfileChanged: db "Profile Changed@"
+MobileDesc_Gender:           db "Boy or girl?@"
+MobileDesc_Age:              db "How old are you?@"
+MobileDesc_Address:          db "Where do you live?@"
+MobileDesc_ZipCode:          db "Your zip code?@"
 ; 484f1
 
 MenuDataHeader_0x484f1: ; 0x484f1
@@ -811,7 +811,7 @@ endr
 Function4876f: ; 4876f (12:476f)
 	call Function48283
 	hlcoord 1, 16
-	ld de, String_484be
+	ld de, MobileDesc_Age
 	call PlaceString
 	ld hl, MenuDataHeader_0x48509
 	call LoadMenuDataHeader
@@ -1012,7 +1012,7 @@ INCBIN "gfx/unknown/0488cb.2bpp"
 Function488d3: ; 488d3 (12:48d3)
 	call Function48283
 	hlcoord 1, 16
-	ld de, String_484e2
+	ld de, MobileDesc_ZipCode
 	call PlaceString
 	call Function48a3a
 	jp c, Function4840c
@@ -1173,16 +1173,16 @@ Function489ea: ; 489ea (12:49ea)
 	push de
 	ld a, [wd475]
 	and $f
-	call Function48444
+	call Mobile12_Bin2Dec
 	ld a, [wd476]
 	and $f0
 	swap a
 	inc hl
-	call Function48444
+	call Mobile12_Bin2Dec
 	ld a, [wd476]
 	and $f
 	inc hl
-	call Function48444
+	call Mobile12_Bin2Dec
 	inc hl
 	ld de, String_48a38
 	call PlaceString
@@ -1190,20 +1190,20 @@ Function489ea: ; 489ea (12:49ea)
 	and $f0
 	swap a
 	inc hl
-	call Function48444
+	call Mobile12_Bin2Dec
 	ld a, [wd477]
 	and $f
 	inc hl
-	call Function48444
+	call Mobile12_Bin2Dec
 	ld a, [wd478]
 	and $f0
 	swap a
 	inc hl
-	call Function48444
+	call Mobile12_Bin2Dec
 	ld a, [wd478]
 	and $f
 	inc hl
-	call Function48444
+	call Mobile12_Bin2Dec
 	pop de
 	ret
 ; 48a38 (12:4a38)
@@ -1647,13 +1647,13 @@ Function48ca3: ; 48ca3
 
 .asm_48cc7
 	ld a, b
-	call Function48444
+	call Mobile12_Bin2Dec
 	inc hl
 	ld a, c
-	call Function48444
+	call Mobile12_Bin2Dec
 	inc hl
 	ld a, d
-	call Function48444
+	call Mobile12_Bin2Dec
 	pop hl
 	pop de
 	pop bc

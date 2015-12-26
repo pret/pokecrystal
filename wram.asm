@@ -245,7 +245,7 @@ Channel8:: channel_struct Channel8 ; c25f
 wCurTrackDuty:: ds 1
 wCurTrackIntensity:: ds 1
 wCurTrackFrequency:: dw
-wc296:: ds 1 ; used only in an unused function
+wc296:: ds 1 ; used only in an unused script
 wc297:: ds 1 ; used in MusicE0 and LoadNote
 
 CurMusicByte:: ; c298
@@ -1375,7 +1375,7 @@ wMobileMonNicknamePointerBuffer:: dw
 wMobileMonMailPointerBuffer:: dw
 	ds CreditsPos - @
 
-wcd20:: ds 1 ; cd20
+wcd20:: ds 1
 wcd21:: ds 1
 wcd22::
 CreditsTimer:: ; cd22
@@ -3094,7 +3094,7 @@ PartyCount:: ; dcd7
 PartySpecies:: ; dcd8
 	ds PARTY_LENGTH ; species of each Pokémon in party
 PartyEnd:: ; dcde
-	ds 1 ; legacy functions don't check PartyCount
+	ds 1 ; legacy scripts don't check PartyCount
 		
 PartyMons::
 PartyMon1:: party_struct PartyMon1 ; dcdf
@@ -3239,8 +3239,10 @@ wPokeAnimStructEnd::
 
 SECTION "Battle Tower", WRAMX, BANK [3]
 
-w3_d000:: ; d000
-	ds $80
+w3_d000:: ds 1 ; d000
+w3_d001:: ds 1
+w3_d002::
+	ds $7e
 w3_d080::
 	ds $10
 w3_d090::
@@ -3264,11 +3266,23 @@ w3_d742:: battle_tower_struct w3_d742
 
 wBTChoiceOfLvlGroup::
 w3_d800:: ds $69
-w3_d869:: ds $26
-w3_d88f:: ds 6
-w3_d895:: ds $36b
+w3_d869:: ds $17
+w3_d880:: ds 1
+w3_d881:: ds 1
+w3_d882:: ds 1
+w3_d883:: ds 7
+w3_d88a:: ds 5
+w3_d88f:: ds 5
+w3_d894:: ds 1
+w3_d895:: ds 11
+w3_d8a0:: ds 1
+w3_d8a1:: ds 1
+w3_d8a2:: ds 1
+w3_d8a3:: ds 1
+	ds $35c
 w3_dc00:: ds $168
-w3_dd68:: ds $294
+w3_dd68:: ds $284
+w3_dfec:: ds $10
 w3_dffc:: ds 4
 
 SECTION "GBC Video", WRAMX, BANK [5]

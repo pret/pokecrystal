@@ -708,7 +708,7 @@ Function17d405:
 	ld [rSVBK], a
 	ld hl, Palette_17eff6
 	ld de, UnknBGPals
-	ld bc, $0040
+	ld bc, 8 palettes
 	call CopyBytes
 	call SetPalettes
 	pop af
@@ -949,18 +949,18 @@ Function17d5c4:
 	ld a, [hJoyPressed]
 	and a
 	ret z
-	ld c, $0
+	ld c, 0
 	ld b, c
 	ld hl, wcd32
-.asm_17d5ce
+.loop
 	srl a
-	jr c, .asm_17d5d6
+	jr c, .got_button
 rept 2
 	inc c
 endr
-	jr .asm_17d5ce
+	jr .loop
 
-.asm_17d5d6
+.got_button
 	add hl, bc
 	ld a, [hli]
 	ld c, a
@@ -969,7 +969,7 @@ endr
 	and c
 	cp $ff
 	ret z
-	ld a, [BGMapBuffer]
+	ld a, [wcd20]
 	ld l, a
 	ld a, [wcd21]
 	ld h, a
@@ -988,7 +988,7 @@ Function17d5f6: ; 17d5f6
 	ld [rSVBK], a
 	ld hl, $c608
 	ld de, UnknBGPals
-	ld bc, $0040
+	ld bc, 8 palettes
 	call CopyBytes
 	ld a, $4
 	ld [rSVBK], a
@@ -1153,12 +1153,12 @@ Function17d6fd: ; 17d6fd
 	jr z, asm_17d721
 
 Function17d711:
-.asm_17d711
+.crash_loop
 	cp $31
-	jr nc, .asm_17d711
+	jr nc, .crash_loop
 	ld e, a
 	ld d, 0
-	ld hl, Jumptable_17d72a
+	ld hl, Jumptable17d72a
 rept 2
 	add hl, de
 endr
@@ -1174,7 +1174,7 @@ asm_17d721
 	ret
 ; 17d72a
 
-Jumptable_17d72a: ; 17d72a
+Jumptable17d72a: ; 17d72a
 	dw Function17d78c
 	dw Function17d78d
 	dw Function17d7b4
@@ -2032,9 +2032,9 @@ endr
 	ld a, [hl]
 	cp $ff
 	jr z, .asm_17dd0d
-.asm_17dcfa
+.crash_loop
 	cp $31
-	jr nc, .asm_17dcfa
+	jr nc, .crash_loop
 	call Function17d711
 	ld a, [wcd77]
 	bit 7, a
@@ -4732,7 +4732,7 @@ Function17f56e: ; 17f56e
 	ld a, $5
 	call GetSRAMBank
 	xor a
-	ld [$aa4b], a
+	ld [sMobileLoginPassword], a
 	call CloseSRAM
 	ret
 ; 17f5ae

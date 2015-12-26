@@ -1,4 +1,3 @@
-const_value set 2
 
 Route6UndergroundEntrance_MapScriptHeader:
 .MapTriggers:

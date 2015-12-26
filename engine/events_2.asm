@@ -3,7 +3,7 @@
 
 WarpToSpawnPoint:: ; 97c28
 	ld hl, StatusFlags2
-	res 1, [hl] ; ??
+	res 1, [hl] ; safari zone?
 	res 2, [hl] ; bug contest
 	ret
 ; 97c30
