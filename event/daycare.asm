@@ -273,9 +273,8 @@ PrintDayCareText: ; 1689b
 	ld e, a
 	ld d, 0
 	ld hl, .TextTable
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -780,9 +779,8 @@ DayCare_InitBreeding: ; 16a3b
 	ld hl, wEggMonHappiness
 	ld [hli], a
 	xor a
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld [hl], a
 	ld a, [CurPartyLevel]
 	ld [wEggMonLevel], a

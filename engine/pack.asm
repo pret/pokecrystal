@@ -28,18 +28,18 @@ Pack: ; 10000
 ; 10030
 
 .Jumptable: ; 10030 (4:4030)
-	jumptable_start
-	jumptable .InitGFX            ;  0
-	jumptable .InitItemsPocket    ;  1
-	jumptable .ItemsPocketMenu    ;  2
-	jumptable .InitBallsPocket    ;  3
-	jumptable .BallsPocketMenu    ;  4
-	jumptable .InitKeyItemsPocket ;  5
-	jumptable .KeyItemsPocketMenu ;  6
-	jumptable .InitTMHMPocket     ;  7
-	jumptable .TMHMPocketMenu     ;  8
-	jumptable Pack_QuitNoScript   ;  9
-	jumptable Pack_QuitRunScript  ; 10
+	
+	dw .InitGFX            ;  0
+	dw .InitItemsPocket    ;  1
+	dw .ItemsPocketMenu    ;  2
+	dw .InitBallsPocket    ;  3
+	dw .BallsPocketMenu    ;  4
+	dw .InitKeyItemsPocket ;  5
+	dw .KeyItemsPocketMenu ;  6
+	dw .InitTMHMPocket     ;  7
+	dw .TMHMPocketMenu     ;  8
+	dw Pack_QuitNoScript   ;  9
+	dw Pack_QuitRunScript  ; 10
 
 .InitGFX: ; 10046 (4:4046)
 	xor a
@@ -163,9 +163,9 @@ Pack: ; 10000
 ; 0x10137
 
 .Jumptable1: ; 10137
-	jumptable_start
-	jumptable .UseItem
-	jumptable QuitItemSubmenu
+	
+	dw .UseItem
+	dw QuitItemSubmenu
 
 ; 1013b
 
@@ -328,12 +328,12 @@ MenuDataHeader_UsableKeyItem: ; 0x10249
 ; 0x1026a
 
 Jumptable_UseGiveTossRegisterQuit: ; 1026a
-	jumptable_start
-	jumptable UseItem
-	jumptable GiveItem
-	jumptable TossMenu
-	jumptable RegisterItem
-	jumptable QuitItemSubmenu
+	
+	dw UseItem
+	dw GiveItem
+	dw TossMenu
+	dw RegisterItem
+	dw QuitItemSubmenu
 ; 10274
 
 MenuDataHeader_UsableItem: ; 0x10274
@@ -354,11 +354,11 @@ MenuDataHeader_UsableItem: ; 0x10274
 ; 0x10291
 
 Jumptable_UseGiveTossQuit: ; 10291
-	jumptable_start
-	jumptable UseItem
-	jumptable GiveItem
-	jumptable TossMenu
-	jumptable QuitItemSubmenu
+	
+	dw UseItem
+	dw GiveItem
+	dw TossMenu
+	dw QuitItemSubmenu
 ; 10299
 
 MenuDataHeader_UnusableItem: ; 0x10299
@@ -377,9 +377,9 @@ MenuDataHeader_UnusableItem: ; 0x10299
 ; 0x102ac
 
 Jumptable_UseQuit: ; 102ac
-	jumptable_start
-	jumptable UseItem
-	jumptable QuitItemSubmenu
+	
+	dw UseItem
+	dw QuitItemSubmenu
 ; 102b0
 
 MenuDataHeader_UnusableKeyItem: ; 0x102b0
@@ -399,10 +399,10 @@ MenuDataHeader_UnusableKeyItem: ; 0x102b0
 ; 0x102c7
 
 Jumptable_UseRegisterQuit: ; 102c7
-	jumptable_start
-	jumptable UseItem
-	jumptable RegisterItem
-	jumptable QuitItemSubmenu
+	
+	dw UseItem
+	dw RegisterItem
+	dw QuitItemSubmenu
 ; 102cd
 
 MenuDataHeader_HoldableKeyItem: ; 0x102cd
@@ -423,11 +423,11 @@ MenuDataHeader_HoldableKeyItem: ; 0x102cd
 ; 0x102ea
 
 Jumptable_GiveTossRegisterQuit: ; 102ea
-	jumptable_start
-	jumptable GiveItem
-	jumptable TossMenu
-	jumptable RegisterItem
-	jumptable QuitItemSubmenu
+	
+	dw GiveItem
+	dw TossMenu
+	dw RegisterItem
+	dw QuitItemSubmenu
 ; 102f2
 
 MenuDataHeader_HoldableItem: ; 0x102f2
@@ -447,30 +447,30 @@ MenuDataHeader_HoldableItem: ; 0x102f2
 ; 0x1030b
 
 Jumptable_GiveTossQuit: ; 1030b
-	jumptable_start
-	jumptable GiveItem
-	jumptable TossMenu
-	jumptable QuitItemSubmenu
+	
+	dw GiveItem
+	dw TossMenu
+	dw QuitItemSubmenu
 
 ; 10311
 
 UseItem: ; 10311
 	callba CheckItemMenu
 	ld a, [wItemAttributeParamBuffer]
-	ld hl, .jumptable
+	ld hl, .dw
 	rst JumpTable
 	ret
 ; 1031f
 
-.jumptable: ; 1031f (4:431f)
-	jumptable_start
-	jumptable .Oak
-	jumptable .Oak
-	jumptable .Oak
-	jumptable .Oak
-	jumptable .Current
-	jumptable .Party
-	jumptable .Field
+.dw: ; 1031f (4:431f)
+	
+	dw .Oak
+	dw .Oak
+	dw .Oak
+	dw .Oak
+	dw .Current
+	dw .Party
+	dw .Field
 ; 1035c
 
 .Oak: ; 1032d (4:432d)
@@ -694,18 +694,18 @@ BattlePack: ; 10493
 ; 104c3
 
 .Jumptable: ; 104c3 (4:44c3)
-	jumptable_start
-	jumptable .InitGFX            ;  0
-	jumptable .InitItemsPocket    ;  1
-	jumptable .ItemsPocketMenu    ;  2
-	jumptable .InitBallsPocket    ;  3
-	jumptable .BallsPocketMenu    ;  4
-	jumptable .InitKeyItemsPocket ;  5
-	jumptable .KeyItemsPocketMenu ;  6
-	jumptable .InitTMHMPocket     ;  7
-	jumptable .TMHMPocketMenu     ;  8
-	jumptable Pack_QuitNoScript   ;  9
-	jumptable Pack_QuitRunScript  ; 10
+	
+	dw .InitGFX            ;  0
+	dw .InitItemsPocket    ;  1
+	dw .ItemsPocketMenu    ;  2
+	dw .InitBallsPocket    ;  3
+	dw .BallsPocketMenu    ;  4
+	dw .InitKeyItemsPocket ;  5
+	dw .KeyItemsPocketMenu ;  6
+	dw .InitTMHMPocket     ;  7
+	dw .TMHMPocketMenu     ;  8
+	dw Pack_QuitNoScript   ;  9
+	dw Pack_QuitRunScript  ; 10
 
 .InitGFX: ; 104d9 (4:44d9)
 	xor a
@@ -865,9 +865,9 @@ TMHMSubmenu: ; 105dc (4:45dc)
 ; 0x10614
 
 .UsableJumptable: ; 10614
-	jumptable_start
-	jumptable .Use
-	jumptable .Quit
+	
+	dw .Use
+	dw .Quit
 ; 10618
 
 .UnusableMenuDataHeader: ; 0x10618
@@ -885,8 +885,8 @@ TMHMSubmenu: ; 105dc (4:45dc)
 ; 0x10627
 
 .UnusableJumptable: ; 10627
-	jumptable_start
-	jumptable .Quit
+	
+	dw .Quit
 ; 10629
 
 .Use: ; 10629
@@ -897,14 +897,14 @@ TMHMSubmenu: ; 105dc (4:45dc)
 	ret
 
 .ItemFunctionJumptable: ; 10637 (4:4637)
-	jumptable_start
-	jumptable .Oak
-	jumptable .Oak
-	jumptable .Oak
-	jumptable .Oak
-	jumptable .Unused
-	jumptable .BattleField
-	jumptable .BattleOnly
+	
+	dw .Oak
+	dw .Oak
+	dw .Oak
+	dw .Oak
+	dw .Unused
+	dw .BattleField
+	dw .BattleOnly
 
 .Oak: ; 10645 (4:4645)
 	ld hl, Text_ThisIsntTheTime
@@ -942,7 +942,7 @@ TMHMSubmenu: ; 105dc (4:45dc)
 	cp $2
 	jr z, .didnt_use_item
 .quit_run_script: ; 1067e (4:467e)
-	ld a, Pack_QuitRunScriptTableIndex
+	ld a, 10
 	ld [wJumptableIndex], a
 	ret
 
@@ -1002,11 +1002,11 @@ DepositSellPack: ; 106be
 ; 106d1
 
 .Jumptable: ; 106d1 (4:46d1)
-	jumptable_start
-	jumptable .ItemsPocket
-	jumptable .BallsPocket
-	jumptable .KeyItemsPocket
-	jumptable .TMHMPocket
+	
+	dw .ItemsPocket
+	dw .BallsPocket
+	dw .KeyItemsPocket
+	dw .TMHMPocket
 .ItemsPocket: ; 106d9 (4:46d9)
 	xor a
 	call InitPocket
@@ -1142,18 +1142,18 @@ TutorialPack: ; 107bb
 
 .RunJumptable: ; 107d7
 	ld a, [wJumptableIndex]
-	ld hl, .jumptable
+	ld hl, .dw
 	call Pack_GetJumptablePointer
 	jp [hl]
 
 ; 107e1
 
-.jumptable: ; 107e1 (4:47e1)
-	jumptable_start
-	jumptable .Items
-	jumptable .Balls
-	jumptable .KeyItems
-	jumptable .TMHM
+.dw: ; 107e1 (4:47e1)
+	
+	dw .Items
+	dw .Balls
+	dw .KeyItems
+	dw .TMHM
 
 .Items: ; 107e9 (4:47e9)
 	xor a
@@ -1351,7 +1351,7 @@ Pack_InterpretJoypad: ; 108d4 (4:48d4)
 	ret
 
 .b_button
-	ld a, Pack_QuitNoScriptTableIndex
+	ld a, 9
 	ld [wJumptableIndex], a
 	scf
 	ret

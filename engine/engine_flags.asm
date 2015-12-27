@@ -37,9 +37,8 @@ EngineFlagAction:: ; 80430
 .read
 	ld hl, EngineFlags
 ; location
-rept 2
 	add hl, de
-endr
+	add hl, de
 ; bit
 	add hl, de
 

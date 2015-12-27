@@ -1355,7 +1355,7 @@ Function822f0: ; 822f0
 	and 3
 	ld e, a
 	ld d, 0
-	ld hl, .jumptable
+	ld hl, .dw
 rept 2
 	add hl, de
 endr
@@ -1365,7 +1365,7 @@ endr
 	jp [hl]
 ; 82301
 
-.jumptable: ; 82301
+.dw: ; 82301
 	dw Function82309
 	dw Function82339
 	dw Function8234b

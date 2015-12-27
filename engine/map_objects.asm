@@ -233,9 +233,8 @@ Function444d: ; 444d
 	ld a, [hl]
 	ld l, a
 	ld h, 0
-rept 2
 	add hl,hl
-endr
+	add hl,hl
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
@@ -676,9 +675,8 @@ InitStep: ; 4690
 	add hl, bc
 	bit FIXED_FACING, [hl]
 	jr nz, GetNextTile
-rept 2
 	add a
-endr
+	add a
 	and %00001100
 	ld hl, OBJECT_FACING
 	add hl, bc
@@ -746,9 +744,8 @@ GetStepVector: ; 46e9
 	add hl, bc
 	ld a, [hl]
 	and %00001111
-rept 2
 	add a
-endr
+	add a
 	ld l, a
 	ld h, 0
 	ld de, StepVectors
@@ -888,7 +885,7 @@ IncrementObjectStructField28: ; 47a2
 ; 47a8
 
 Object28AnonymousJumptable: ; 47a8
-; anonymous jumptable
+; anonymous dw
 	ld hl, OBJECT_28
 	add hl, bc
 	ld a, [hl]
@@ -942,35 +939,35 @@ MapObjectMovementPattern: ; 47dd
 ; 47e9
 
 .Pointers ; 47e9
-	jumptable_start
-	jumptable .Null_00 ; 00
-	jumptable .RandomWalkY ; 01
-	jumptable .RandomWalkX ; 02
-	jumptable .RandomWalkXY ; 03
-	jumptable .RandomSpin1 ; 04
-	jumptable .RandomSpin2 ; 05
-	jumptable .Standing ; 06
-	jumptable .ObeyDPad ; 07
-	jumptable .Movement08 ; 08
-	jumptable .Movement09 ; 09
-	jumptable .Movement0a ; 0a
-	jumptable .Movement0b ; 0b
-	jumptable .Movement0c ; 0c
-	jumptable .Movement0d ; 0d
-	jumptable .Movement0e ; 0e
-	jumptable .Follow ; 0f
-	jumptable .Script ; 10
-	jumptable .Strength ; 11
-	jumptable .FollowNotExact ; 12
-	jumptable .MovementShadow ; 13
-	jumptable .MovementEmote ; 14
-	jumptable .MovementBigStanding ; 15
-	jumptable .MovementBouncing ; 16
-	jumptable .MovementScreenShake ; 17
-	jumptable .MovementSpinClockwise ; 18
-	jumptable .MovementSpinCounterclockwise ; 19
-	jumptable .MovementBoulderDust ; 1a
-	jumptable .MovementShakingGrass ; 1b
+	
+	dw .Null_00 ; 00
+	dw .RandomWalkY ; 01
+	dw .RandomWalkX ; 02
+	dw .RandomWalkXY ; 03
+	dw .RandomSpin1 ; 04
+	dw .RandomSpin2 ; 05
+	dw .Standing ; 06
+	dw .ObeyDPad ; 07
+	dw .Movement08 ; 08
+	dw .Movement09 ; 09
+	dw .Movement0a ; 0a
+	dw .Movement0b ; 0b
+	dw .Movement0c ; 0c
+	dw .Movement0d ; 0d
+	dw .Movement0e ; 0e
+	dw .Follow ; 0f
+	dw .Script ; 10
+	dw .Strength ; 11
+	dw .FollowNotExact ; 12
+	dw .MovementShadow ; 13
+	dw .MovementEmote ; 14
+	dw .MovementBigStanding ; 15
+	dw .MovementBouncing ; 16
+	dw .MovementScreenShake ; 17
+	dw .MovementSpinClockwise ; 18
+	dw .MovementSpinCounterclockwise ; 19
+	dw .MovementBoulderDust ; 1a
+	dw .MovementShakingGrass ; 1b
 ; 4821
 
 .Null_00: ; 4821
@@ -1390,9 +1387,8 @@ MapObjectMovementPattern: ; 47dd
 	ld e, a
 	ld d, 0
 	ld hl, .data_4a81
-rept 2
 	add hl,de
-endr
+	add hl,de
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
@@ -1549,33 +1545,33 @@ SetRandomStepDuration: ; 4b2d
 
 Pointers4b45: ; 4b45
 ; These pointers use OBJECT_STEP_TYPE.  See constants/sprite_constants.asm
-	jumptable_start
-	jumptable ObjectMovementReset ; 00
-	jumptable MapObjectMovementPattern ; 01
-	jumptable NPCStep ; 02 npc walk
-	jumptable Function4ddd ; 03
-	jumptable Function4e21 ; 04
-	jumptable Function4e0c ; 05
-	jumptable PlayerStep ; 06 player walk
-	jumptable Function4e47 ; 07
-	jumptable NPCJump ; 08 npc jump step
-	jumptable PlayerJump ; 09 player jump step
-	jumptable PlayerOrNPCHalfStep ; 0a half step
-	jumptable Function4dff ; 0b
-	jumptable TeleportFrom ; 0c teleport from
-	jumptable TeleportTo ; 0d teleport to
-	jumptable Skyfall ; 0e skyfall
-	jumptable Function4ecd ; 0f
-	jumptable GotBiteStep ; 10
-	jumptable RockSmashStep ; 11
-	jumptable ReturnDigStep ; 12
-	jumptable Function4f04 ; 13
-	jumptable Function4f33 ; 14
-	jumptable Function4f33 ; 15
-	jumptable Function4f77 ; 16
-	jumptable Function4f7a ; 17
-	jumptable Function4df0 ; 18
-	jumptable SkyfallTop ; 19
+	
+	dw ObjectMovementReset ; 00
+	dw MapObjectMovementPattern ; 01
+	dw NPCStep ; 02 npc walk
+	dw Function4ddd ; 03
+	dw Function4e21 ; 04
+	dw Function4e0c ; 05
+	dw PlayerStep ; 06 player walk
+	dw Function4e47 ; 07
+	dw NPCJump ; 08 npc jump step
+	dw PlayerJump ; 09 player jump step
+	dw PlayerOrNPCHalfStep ; 0a half step
+	dw Function4dff ; 0b
+	dw TeleportFrom ; 0c teleport from
+	dw TeleportTo ; 0d teleport to
+	dw Skyfall ; 0e skyfall
+	dw Function4ecd ; 0f
+	dw GotBiteStep ; 10
+	dw RockSmashStep ; 11
+	dw ReturnDigStep ; 12
+	dw Function4f04 ; 13
+	dw Function4f33 ; 14
+	dw Function4f33 ; 15
+	dw Function4f77 ; 16
+	dw Function4f7a ; 17
+	dw Function4df0 ; 18
+	dw SkyfallTop ; 19
 ; 4b79
 
 Function4b79: ; 4b79
@@ -1591,7 +1587,7 @@ Function4b79: ; 4b79
 
 NPCJump: ; 4b86
 	call Object28AnonymousJumptable
-; anonymous jumptable
+; anonymous dw
 	dw Function4b8d
 	dw Function4ba9
 ; 4b8d
@@ -1628,7 +1624,7 @@ Function4ba9: ; 4ba9
 
 PlayerJump: ; 4bbf
 	call Object28AnonymousJumptable
-; anonymous jumptable
+; anonymous dw
 	dw .initjump
 	dw .stepjump
 	dw .initland
@@ -1680,7 +1676,7 @@ PlayerJump: ; 4bbf
 
 TeleportFrom: ; 4c18
 	call Object28AnonymousJumptable
-; anonymous jumptable
+; anonymous dw
 	dw Function4c23
 	dw Function4c32
 	dw Function4c42
@@ -1751,7 +1747,7 @@ Function4c5d: ; 4c5d
 
 TeleportTo: ; 4c89
 	call Object28AnonymousJumptable
-; anonymous jumptable
+; anonymous dw
 	dw Function4c9a
 	dw Function4caa
 	dw Function4cb3
@@ -1843,7 +1839,7 @@ Function4d01: ; 4d01
 
 Skyfall: ; 4d14
 	call Object28AnonymousJumptable
-; anonymous jumptable
+; anonymous dw
 	dw Function4d1f
 	dw Function4d2e
 	dw Function4d4f
@@ -1908,7 +1904,7 @@ Function4d6b: ; 4d6b
 
 GotBiteStep: ; 4d7e
 	call Object28AnonymousJumptable
-; anonymous jumptable
+; anonymous dw
 	dw Function4d85
 	dw Function4d94
 ; 4d85
@@ -2015,7 +2011,7 @@ Function4dff: ; 4dff
 
 Function4e0c: ; 4e0c
 	call Object28AnonymousJumptable
-; anonymous jumptable
+; anonymous dw
 	dw Function4e13
 	dw Function4e21
 ; 4e13
@@ -2065,7 +2061,7 @@ Function4e47: ; 4e47
 PlayerStep: ; 4e56
 ; AnimateStep?
 	call Object28AnonymousJumptable
-; anonymous jumptable
+; anonymous dw
 	dw .init
 	dw .step
 ; 4e5d
@@ -2095,7 +2091,7 @@ PlayerStep: ; 4e56
 
 PlayerOrNPCHalfStep: ; 4e83
 	call Object28AnonymousJumptable
-; anonymous jumptable
+; anonymous dw
 	dw .init1
 	dw .step1
 	dw .init2
@@ -2211,7 +2207,7 @@ Function4f04: ; 4f04
 
 Function4f33: ; 4f33
 	call Object28AnonymousJumptable
-; anonymous jumptable
+; anonymous dw
 	dw Function4f3a
 	dw Function4f43
 ; 4f3a
@@ -2266,7 +2262,7 @@ Function4f77: ; 4f77
 
 Function4f7a: ; 4f7a
 	call Object28AnonymousJumptable
-; anonymous jumptable
+; anonymous dw
 	dw SkyfallTop
 	dw SkyfallTop
 	dw SkyfallTop
@@ -2274,7 +2270,7 @@ Function4f7a: ; 4f7a
 
 SkyfallTop: ; 4f83
 	call Object28AnonymousJumptable
-; anonymous jumptable
+; anonymous dw
 	dw Function4f8a
 	dw Function4f99
 ; 4f8a
@@ -3060,9 +3056,8 @@ SpawnInCustomFacing: ; 57ca
 	ret z
 	ld a, [wPlayerSpriteSetupFlags]
 	and 3
-rept 2
 	add a
-endr
+	add a
 	jr ContinueSpawnFacing
 ; 57d9
 
@@ -3650,9 +3645,8 @@ PRIORITY_HIGH EQU $30
 	ld c, a
 	ld b, 0
 	ld hl, .Addresses
-rept 2
 	add hl,bc
-endr
+	add hl,bc
 	ld c, [hl]
 	inc hl
 	ld b, [hl]

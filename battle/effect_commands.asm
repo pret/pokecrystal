@@ -51,9 +51,8 @@ DoMove: ; 3402c
 	ld c, a
 	ld b, 0
 	ld hl, MoveEffectsPointers
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, BANK(MoveEffectsPointers)
 	call GetFarHalfword
 
@@ -102,9 +101,8 @@ endr
 	ld c, a
 	ld b, 0
 	ld hl, BattleCommandPointers
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	pop bc
 
 	ld a, BANK(BattleCommandPointers)
@@ -1076,9 +1074,8 @@ BattleCommand_DoTurn: ; 34555
 	jp nz, EndMoveEffect
 
 	; SubStatus5
-rept 2
 	inc de
-endr
+	inc de
 
 	ld a, [de]
 	bit SUBSTATUS_TRANSFORMED, a
@@ -1276,9 +1273,8 @@ BattleCommand_Critical: ; 34631
 	jr nc, .ScopeLens
 
 ; +2 critical level
-rept 2
 	inc c
-endr
+	inc c
 
 .ScopeLens
 	push bc
@@ -1522,9 +1518,8 @@ BattleCommand_Stab: ; 346d2
 	pop hl
 
 .SkipType
-rept 2
 	inc hl
-endr
+	inc hl
 	jr .TypesLoop
 
 .end
@@ -2741,9 +2736,8 @@ EndMoveEffect: ; 352a3
 	ld a, [BattleScriptBufferLoc + 1]
 	ld h, a
 	ld a, $ff
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld [hl], a
 	ret
 
@@ -3457,9 +3451,8 @@ BattleCommand_DamageCalc: ; 35612
 
 	xor a
 	ld hl, hDividend
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld [hl], a
 
 ; Level * 2
@@ -3480,9 +3473,8 @@ endr
 	pop bc
 
 ; + 2
-rept 2
 	inc [hl]
-endr
+	inc [hl]
 
 ; * bp
 	inc hl
@@ -4075,9 +4067,8 @@ BattleCommand_PainSplit: ; 35926
 	ld [Buffer3], a
 	ld a, [hl]
 	ld [Buffer4], a
-rept 2
 	dec de
-endr
+	dec de
 	ld a, [de]
 	dec de
 	add b
@@ -4587,9 +4578,8 @@ BattleCommand_Spite: ; 35c0f
 	call GetMoveName
 	call BattleRandom
 	and 3
-rept 2
 	inc a
-endr
+	inc a
 	ld b, a
 	ld a, [hl]
 	and $3f
@@ -6380,9 +6370,8 @@ CalcStats: ; 3661d
 	dec c
 	ld b, 0
 	ld hl, StatLevelMultipliers
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 
 	xor a
 	ld [hMultiplicand + 0], a
@@ -6538,9 +6527,8 @@ BattleCommand_UnleashEnergy: ; 366e5
 	ld [wEnemyMoveStruct + MOVE_EFFECT], a
 	call BattleRandom
 	and 1
-rept 2
 	inc a
-endr
+	inc a
 	ld [bc], a
 	ld a, 1
 	ld [wKickCounter], a
@@ -6579,9 +6567,8 @@ BattleCommand_CheckRampage: ; 3671a
 	set SUBSTATUS_CONFUSED, [hl]
 	call BattleRandom
 	and %00000001
-rept 2
 	inc a
-endr
+	inc a
 	inc de ; ConfuseCount
 	ld [de], a
 .continue_rampage
@@ -7464,9 +7451,8 @@ endr
 	ld a, [hli]
 	cp b
 	jr z, .found_trap_text
-rept 2
 	inc hl
-endr
+	inc hl
 	jr .find_trap_text
 
 .found_trap_text
@@ -7552,9 +7538,8 @@ BattleCommand_Recoil: ; 36cb2
 	ld [Buffer2], a
 	ld a, [hl]
 	ld [Buffer1], a
-rept 2
 	dec hl
-endr
+	dec hl
 	ld a, [hl]
 	ld [Buffer3], a
 	sub c
@@ -7651,9 +7636,8 @@ BattleCommand_FinishConfusingTarget: ; 36d70
 	set SUBSTATUS_CONFUSED, [hl]
 	call BattleRandom
 	and 3
-rept 2
 	inc a
-endr
+	inc a
 	ld [bc], a
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
@@ -7844,9 +7828,8 @@ BattleCommand_Substitute: ; 36e7c
 	rr b
 	srl a
 	rr b
-rept 2
 	dec hl
-endr
+	dec hl
 	ld a, b
 	ld [de], a
 	ld a, [hld]
@@ -8457,9 +8440,8 @@ BattleCommand_Transform: ; 371cd
 	ld a, [hli]
 	ld [de], a
 	inc hl
-rept 2
 	inc de
-endr
+	inc de
 	ld bc, NUM_MOVES
 	call CopyBytes
 	ld a, [hBattleTurn]
@@ -9125,9 +9107,8 @@ BattleCommand_GetMagnitude: ; 37991
 	ld a, [hli]
 	cp b
 	jr nc, .ok
-rept 2
 	inc hl
-endr
+	inc hl
 	jr .loop
 
 .ok
@@ -9528,16 +9509,14 @@ BattleCommand_TimeBasedHealContinue: ; 37b7e
 	inc c
 	cp WEATHER_SUN
 	jr z, .Heal
-rept 2
 	dec c
-endr
+	dec c
 
 .Heal
 	ld b, 0
 	ld hl, .Multipliers
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 
 	ld a, [hli]
 	ld h, [hl]

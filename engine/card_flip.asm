@@ -81,15 +81,15 @@ endr
 ; e01a0 (38:41a0)
 
 .Jumptable: ; e01a0
-	jumptable_start
-	jumptable .AskPlayWithThree
-	jumptable .DeductCoins
-	jumptable .ChooseACard
-	jumptable .PlaceYourBet
-	jumptable .CheckTheCard
-	jumptable .TabulateTheResult
-	jumptable .PlayAgain
-	jumptable .Quit
+	
+	dw .AskPlayWithThree
+	dw .DeductCoins
+	dw .ChooseACard
+	dw .PlaceYourBet
+	dw .CheckTheCard
+	dw .TabulateTheResult
+	dw .PlayAgain
+	dw .Quit
 ; e01b0
 
 .Increment: ; e01b0
@@ -108,7 +108,7 @@ endr
 	ret
 
 .SaidNo
-	ld a, 7 ; .QuitTableIndex
+	ld a, 7
 	ld [wJumptableIndex], a
 	ret
 ; e01cd
@@ -132,7 +132,7 @@ endr
 	jr nc, .deduct ; You have at least 3 coins.
 	ld hl, .NotEnoughCoinsText
 	call CardFlip_UpdateCoinBalanceDisplay
-	ld a, 7 ; .QuitTableIndex
+	ld a, 7
 	ld [wJumptableIndex], a
 	ret
 
@@ -329,7 +329,7 @@ endr
 	call CardFlip_BlankDiscardedCardSlot
 
 .LoopAround
-	ld a, 1 ; .DeductCoinsTableIndex
+	ld a, 1
 	ld [wJumptableIndex], a
 	ret
 ; e0356
@@ -659,13 +659,13 @@ CardFlip_BlankDiscardedCardSlot: ; e0534
 ; e0553
 
 .Jumptable: ; e0553
-	jumptable_start
-	jumptable .Level1
-	jumptable .Level2
-	jumptable .Level3
-	jumptable .Level4
-	jumptable .Level5
-	jumptable .Level6
+	
+	dw .Level1
+	dw .Level2
+	dw .Level3
+	dw .Level4
+	dw .Level5
+	dw .Level6
 ; e055f
 
 .Level1: ; e055f
@@ -848,62 +848,62 @@ CardFlip_CheckWinCondition: ; e0637
 ; e0643
 
 .Jumptable: ; e0643
-	jumptable_start
-	jumptable .Impossible
-	jumptable .Impossible
-	jumptable .PikaJiggly
-	jumptable .PikaJiggly
-	jumptable .PoliOddish
-	jumptable .PoliOddish
+	
+	dw .Impossible
+	dw .Impossible
+	dw .PikaJiggly
+	dw .PikaJiggly
+	dw .PoliOddish
+	dw .PoliOddish
 
-	jumptable .Impossible
-	jumptable .Impossible
-	jumptable .Pikachu
-	jumptable .Jigglypuff
-	jumptable .Poliwag
-	jumptable .Oddish
+	dw .Impossible
+	dw .Impossible
+	dw .Pikachu
+	dw .Jigglypuff
+	dw .Poliwag
+	dw .Oddish
 
-	jumptable .OneTwo
-	jumptable .One
-	jumptable .PikaOne
-	jumptable .JigglyOne
-	jumptable .PoliOne
-	jumptable .OddOne
+	dw .OneTwo
+	dw .One
+	dw .PikaOne
+	dw .JigglyOne
+	dw .PoliOne
+	dw .OddOne
 
-	jumptable .OneTwo
-	jumptable .Two
-	jumptable .PikaTwo
-	jumptable .JigglyTwo
-	jumptable .PoliTwo
-	jumptable .OddTwo
+	dw .OneTwo
+	dw .Two
+	dw .PikaTwo
+	dw .JigglyTwo
+	dw .PoliTwo
+	dw .OddTwo
 
-	jumptable .ThreeFour
-	jumptable .Three
-	jumptable .PikaThree
-	jumptable .JigglyThree
-	jumptable .PoliThree
-	jumptable .OddThree
+	dw .ThreeFour
+	dw .Three
+	dw .PikaThree
+	dw .JigglyThree
+	dw .PoliThree
+	dw .OddThree
 
-	jumptable .ThreeFour
-	jumptable .Four
-	jumptable .PikaFour
-	jumptable .JigglyFour
-	jumptable .PoliFour
-	jumptable .OddFour
+	dw .ThreeFour
+	dw .Four
+	dw .PikaFour
+	dw .JigglyFour
+	dw .PoliFour
+	dw .OddFour
 
-	jumptable .FiveSix
-	jumptable .Five
-	jumptable .PikaFive
-	jumptable .JigglyFive
-	jumptable .PoliFive
-	jumptable .OddFive
+	dw .FiveSix
+	dw .Five
+	dw .PikaFive
+	dw .JigglyFive
+	dw .PoliFive
+	dw .OddFive
 
-	jumptable .FiveSix
-	jumptable .Six
-	jumptable .PikaSix
-	jumptable .JigglySix
-	jumptable .PoliSix
-	jumptable .OddSix
+	dw .FiveSix
+	dw .Six
+	dw .PikaSix
+	dw .JigglySix
+	dw .PoliSix
+	dw .OddSix
 ; e06a3
 
 .Impossible: ; e06a3

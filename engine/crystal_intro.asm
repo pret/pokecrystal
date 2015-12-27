@@ -119,7 +119,7 @@ PlaceGameFreakPresents: ; e4670
 	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
-	ld hl, .jumptable
+	ld hl, .dw
 rept 2
 	add hl, de
 endr
@@ -129,7 +129,7 @@ endr
 	jp [hl]
 ; e467f
 
-.jumptable: ; e467f
+.dw: ; e467f
 	dw PlaceGameFreakPresents_0
 	dw PlaceGameFreakPresents_1
 	dw PlaceGameFreakPresents_2
@@ -625,7 +625,7 @@ IntroScene5: ; e4a7a (39:4a7a)
 	call ClearTileMap
 	xor a
 	ld [hBGMapMode], a
-	ld [hLCDStatCustom], a
+	ld [hFFC6], a
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap005
@@ -819,7 +819,7 @@ IntroScene8: ; e4bd3 (39:4bd3)
 IntroScene9: ; e4c04 (39:4c04)
 ; Set up the next scene (same bg).
 	xor a
-	ld [hLCDStatCustom], a
+	ld [hFFC6], a
 	call ClearSprites
 	hlcoord 0, 0, AttrMap
 	; first 12 rows have palette 1
@@ -893,7 +893,7 @@ IntroScene11: ; e4c86 (39:4c86)
 	call ClearTileMap
 	xor a
 	ld [hBGMapMode], a
-	ld [hLCDStatCustom], a
+	ld [hFFC6], a
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap007
@@ -2103,7 +2103,7 @@ Intro_ResetLYOverrides: ; e5516 (39:5516)
 	pop af
 	ld [rSVBK], a
 	ld a, $43
-	ld [hLCDStatCustom], a
+	ld [hFFC6], a
 	ret
 
 Intro_PerspectiveScrollBG: ; e552f (39:552f)

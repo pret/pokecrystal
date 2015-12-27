@@ -1849,9 +1849,8 @@ HandleWeather: ; 3cb9e
 	dec a
 	ld c, a
 	ld b, 0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2575,9 +2574,8 @@ Function3d02b: ; 3d02b
 	dec a
 	ld c, a
 	ld b, 0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2615,9 +2613,8 @@ endr
 	rl [hl]
 	ret nc
 	ld a, $ff
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld [hl], a
 	ret
 ; 3d0ab
@@ -4747,18 +4744,16 @@ HandleStatBoostingHeldItems: ; 3de97
 	ld a, [hli]
 	cp $ff
 	jr z, .finish
-rept 2
 	inc hl
-endr
+	inc hl
 	cp b
 	jr nz, .loop
 	pop bc
 	ld a, [bc]
 	ld [wd265], a
 	push bc
-rept 2
 	dec hl
-endr
+	dec hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -5822,9 +5817,8 @@ MoveSelectionScreen: ; 3e4bc
 	ld a, [wMenuCursorY]
 	ld b, a
 	ld a, [wNumMoves]
-rept 2
 	inc a
-endr
+	inc a
 	cp b
 	jp nz, .menu_loop
 	ld a, $1
@@ -6008,9 +6002,8 @@ MoveInfoBox: ; 3e6c8
 	lb bc, 1, 2
 	call PrintNum
 	pop hl
-rept 2
 	inc hl
-endr
+	inc hl
 	ld [hl], "/"
 	inc hl
 	ld de, wNamedObjectIndexBuffer
@@ -6818,9 +6811,8 @@ CheckUnownLetter: ; 3eb75
 
 .next
 ; Make sure we haven't gone past the end of the table
-rept 2
 	inc e
-endr
+	inc e
 	ld a, e
 	cp a, .Set1 - .LetterSets
 	jr c, .loop
@@ -7176,9 +7168,8 @@ BadgeStatBoosts: ; 3ed45
 ; Swap badges 3 (PlainBadge) and 5 (MineralBadge).
 	ld d, a
 	and (1 << PLAINBADGE)
-rept 2
 	add a
-endr
+	add a
 	ld b, a
 	ld a, d
 	and (1 << MINERALBADGE)
@@ -7197,9 +7188,8 @@ endr
 	ld a, b
 	srl b
 	call c, BoostStat
-rept 2
 	inc hl
-endr
+	inc hl
 ; Check every other badge.
 	srl b
 	dec c
@@ -7328,9 +7318,8 @@ _BattleRandom:: ; 3edd8
 
 	; a * 5 + 1
 	ld c, a
-rept 2
 	add a
-endr
+	add a
 	add c
 	inc a
 
@@ -7467,9 +7456,8 @@ GiveExperiencePoints: ; 3ee3b
 	ld [de], a
 
 .skip
-rept 2
 	inc de
-endr
+	inc de
 	dec c
 	jr nz, .loop1
 	xor a
@@ -7544,9 +7532,8 @@ endr
 	inc [hl]
 	jr nz, .skip2
 	ld a, $ff
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld [hl], a
 
 .skip2
@@ -7881,9 +7868,8 @@ Function3f136: ; 3f136
 	inc [hl]
 	jr nz, .asm_3f186
 	ld a, $ff
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld [hl], a
 
 .asm_3f186
@@ -8800,9 +8786,8 @@ CheckPayDay: ; 3f71d
 	rl [hl]
 	jr nc, .okay
 	ld a, $ff
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld [hl], a
 
 .okay
@@ -9202,13 +9187,11 @@ Function3fa42: ; 3fa42
 	ld d, 5
 .loop
 	push hl
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hl]
-rept 2
 	dec hl
-endr
+	dec hl
 	and a
 	jr z, .copy
 	push de
@@ -9308,18 +9291,16 @@ Function3fac8: ; 3fac8
 	ld c, $1
 .loop2
 	ld a, b
-rept 2
 	add b
-endr
+	add b
 	ld e, a
 	ld d, $0
 	ld hl, wd002
 	add hl, de
 	push hl
 	ld a, c
-rept 2
 	add c
-endr
+	add c
 	ld e, a
 	ld d, $0
 	ld hl, wd002

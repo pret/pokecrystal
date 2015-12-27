@@ -367,9 +367,8 @@ ApplyHPBarPals: ; 8c43
 .okay
 	ld l, c
 	ld h, $0
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld bc, Palettes_a8be
 	add hl, bc
 	ld bc, 4
@@ -405,9 +404,8 @@ LoadStatsScreenPals: ; 8c8a
 	ld hl, StatsScreenPals
 	ld b, 0
 	dec c
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -441,9 +439,8 @@ endr
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	pop hl
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hli]
 	ld [wSGBPals + 3], a
 	ld a, [hli]
@@ -818,9 +815,8 @@ GetFrontpicPalettePointer: ; 9764
 GetTrainerPalettePointer: ; 976b
 	ld l, a
 	ld h, 0
-rept 2
 	add hl,hl
-endr
+	add hl,hl
 	ld bc, TrainerPalettes
 	add hl, bc
 	ret
@@ -1152,9 +1148,8 @@ Function994a: ; 994a
 	jr nz, .asm_99a6
 	ld a, $20
 	ld [rJOYP], a
-rept 2
 	ld a, [rJOYP]
-endr
+	ld a, [rJOYP]
 	call SGBDelayCycles
 	call SGBDelayCycles
 	ld a, $30
@@ -1962,9 +1957,8 @@ LoadMapPals: ; b1de
 	ld e, a
 	ld d, 0
 	ld hl, .TilesetColorsPointers
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

@@ -74,7 +74,7 @@ Function110029: ; 110029 (44:4029)
 
 Function110030:: ; 110030 (44:4030)
 ; Use the byte at $c988 as a parameter
-; for a jumptable.
+; for a dw.
 ; If [$c988] in {12, 14, 16},
 ; clear [$c835].
 	push de
@@ -91,7 +91,7 @@ Function110030:: ; 110030 (44:4030)
 .noreset
 	ld d, $0
 	ld e, a
-	ld hl, .jumptable
+	ld hl, .dw
 	add hl, de
 	ld a, [hli]
 	ld [$c988], a
@@ -114,10 +114,10 @@ Function110030:: ; 110030 (44:4030)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ret ; indirectly jump to the function loaded from the jumptable, which returns to Function3e60.
+	ret ; indirectly jump to the function loaded from the dw, which returns to Function3e60.
 ; 110070 (44:4070)
 
-.jumptable: ; 110070
+.dw: ; 110070
 	dw Function110115
 	dw Function110236
 	dw Function110291

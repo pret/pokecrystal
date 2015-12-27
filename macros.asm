@@ -257,25 +257,15 @@ else
 endc
 endm
 
-jumptable_start: MACRO
-; Use the declare opname you want to use,
-; either "dw", "dba", or "dab".
-if def(__far)
-	purge __far
-endc
-if _NARG == 0
-__far EQUS "dw"
-else
-__far EQUS "\1"
-endc
-	enum_start
-endm
-
 jumptable: MACRO
-if DEF(\1TableIndex)
-__enum__ = __enum__ + 1
-else
-	enum \1TableIndex
-endc
-	__far \1
+	ld a, [\2]
+	ld e, a
+	ld d, 0
+	ld hl, \1
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
 endm

@@ -281,9 +281,9 @@ Function11c1ca: ; 11c1ca
 	ld [wcf65], a
 	ld [wcf66], a
 	ld [wcd23], a
-	ld [BGMapBuffer], a
+	ld [wcd20], a
 	ld [wcd21], a
-	ld [CreditsTimer], a
+	ld [wcd22], a
 	ld [wcd35], a
 	ld [wcd2b], a
 	ld a, $ff
@@ -373,17 +373,7 @@ Function11c283: ; 11c283
 ; 11c2ac
 
 .DoJumptableFunction: ; 11c2ac
-	ld a, [wJumptableIndex]
-	ld e, a
-	ld d, 0
-	ld hl, .Jumptable
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
+	jumptable .Jumptable, wJumptableIndex
 ; 11c2bb
 
 
@@ -470,12 +460,10 @@ Function11c346: ; 11c346 (47:4346)
 
 Function11c35f: ; 11c35f (47:435f)
 	ld hl, wcd2f
-rept 2
 	inc [hl]
-endr
-rept 2
+	inc [hl]
 	dec hl
-endr
+	dec hl
 	dec [hl]
 	push af
 	ld de, wcd2d
@@ -486,12 +474,10 @@ endr
 
 Function11c373: ; 11c373 (47:4373)
 	ld hl, wcd30
-rept 2
 	inc [hl]
-endr
-rept 2
+	inc [hl]
 	dec hl
-endr
+	dec hl
 	dec [hl]
 	push af
 	ld de, wcd2d
@@ -563,7 +549,7 @@ Function11c3c2: ; 11c3c2 (47:43c2)
 	call Function11cfb5
 
 Function11c3ed: ; 11c3ed (47:43ed)
-	ld hl, BGMapBuffer ; wcd20 (aliases: CreditsPos)
+	ld hl, wcd20 ; wcd20 (aliases: CreditsPos)
 	ld de, hJoypadPressed ; $ffa3
 	ld a, [de]
 	and $8
@@ -597,10 +583,10 @@ Function11c3ed: ; 11c3ed (47:43ed)
 	jr .asm_11c475
 .asm_11c426
 	ld a, $8
-	ld [BGMapBuffer], a ; wcd20 (aliases: CreditsPos)
+	ld [wcd20], a ; wcd20 (aliases: CreditsPos)
 	ret
 .asm_11c42c
-	ld a, [BGMapBuffer] ; wcd20 (aliases: CreditsPos)
+	ld a, [wcd20] ; wcd20 (aliases: CreditsPos)
 	cp $6
 	jr c, .asm_11c472
 	sub $6
@@ -689,7 +675,7 @@ Function11c4a5: ; 11c4a5 (47:44a5)
 	ret
 .asm_11c4b7
 	xor a
-	ld [CreditsTimer], a
+	ld [wcd22], a
 	ld a, $15
 	ret
 
@@ -780,7 +766,7 @@ Function11c53d: ; 11c53d (47:453d)
 	ld hl, wcd24
 	set 0, [hl]
 	ld a, $8
-	ld [BGMapBuffer], a ; wcd20 (aliases: CreditsPos)
+	ld [wcd20], a ; wcd20 (aliases: CreditsPos)
 
 .b
 	ld a, $4
@@ -808,7 +794,7 @@ Function11c53d: ; 11c53d (47:453d)
 	ret
 
 .asm_11c5ab
-	ld a, [BGMapBuffer] ; wcd20 (aliases: CreditsPos)
+	ld a, [wcd20] ; wcd20 (aliases: CreditsPos)
 	call Function11ca6a
 	call PlayClickSFX
 	ret
@@ -1131,12 +1117,11 @@ Function11c770: ; 11c770 (47:4770)
 	jr .asm_11c795
 .asm_11c7ab
 	ld hl, $c68a + 30
-	ld a, [CreditsTimer]
+	ld a, [wcd22]
 	ld c, a
 	ld b, 0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hl]
 	ld [wcd28], a
 	jr .asm_11c79f
@@ -1211,9 +1196,8 @@ Function11c7bc: ; 11c7bc (47:47bc)
 	ld a, [wcd22]
 	ld e, a
 	ld d, $0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
@@ -1223,9 +1207,8 @@ endr
 	ld a, [wcd26]
 	ld e, a
 	ld d, $0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [wcd26]
 	ld e, a
 .asm_11c831
@@ -1368,7 +1351,7 @@ MobileString_Next: ; 11c8f3
 ; 11c8f6
 
 Function11c8f6: ; 11c8f6 (47:48f6)
-	ld a, [BGMapBuffer] ; wcd20 (aliases: CreditsPos)
+	ld a, [wcd20] ; wcd20 (aliases: CreditsPos)
 	call Function11c95d
 	push hl
 	ld a, [wcd2b]
@@ -1388,13 +1371,12 @@ Function11c8f6: ; 11c8f6 (47:48f6)
 	push de
 	call Function11c05d
 	pop de
-	ld a, [BGMapBuffer] ; wcd20 (aliases: CreditsPos)
+	ld a, [wcd20] ; wcd20 (aliases: CreditsPos)
 	ld c, a
 	ld b, $0
 	ld hl, wcd36
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -1414,9 +1396,8 @@ endr
 	ld a, [wcd22]
 	ld e, a
 	ld d, $0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
@@ -1426,14 +1407,12 @@ endr
 	ld a, [wcd26]
 	ld e, a
 	ld d, $0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [wcd25]
 	ld e, a
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
@@ -1534,7 +1513,7 @@ Function11c9c3: ; 11c9c3 (47:49c3)
 	jr nz, .asm_11c9e9
 	call Function11ca5e
 	xor a
-	ld [BGMapBuffer], a ; wcd20 (aliases: CreditsPos)
+	ld [wcd20], a ; wcd20 (aliases: CreditsPos)
 .asm_11c9e9
 	ld hl, wcd24
 	set 4, [hl]
@@ -1621,9 +1600,8 @@ Function11ca6a: ; 11ca6a (47:4a6a)
 	ld hl, wcd36
 	ld c, a
 	ld b, $0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld [hl], b
 	inc hl
 	ld [hl], b
@@ -1737,9 +1715,8 @@ Function11cb52: ; 11cb52 (47:4b52)
 .asm_11cb58
 	dec a
 	jr z, .asm_11cb5f
-rept 2
 	inc hl
-endr
+	inc hl
 	jr .asm_11cb58
 .asm_11cb5f
 	ld a, [hli]
@@ -1798,9 +1775,8 @@ Function11cb66: ; 11cb66 (47:4b66)
 .asm_11cbba
 	dec a
 	jr z, .asm_11cbc1
-rept 2
 	inc hl
-endr
+	inc hl
 	jr .asm_11cbba
 .asm_11cbc1
 	ld a, [hli]
@@ -2044,7 +2020,7 @@ Function11ce0b: ; 11ce0b (47:4e0b)
 	call Function11cfb5
 
 Function11ce2b: ; 11ce2b (47:4e2b)
-	ld a, [CreditsTimer]
+	ld a, [wcd22]
 	sla a
 	sla a
 	ld c, a
@@ -2083,7 +2059,7 @@ Function11ce2b: ; 11ce2b (47:4e2b)
 	ret
 
 .a
-	ld a, [CreditsTimer]
+	ld a, [wcd22]
 	cp NUM_KANA
 	jr c, .place
 	sub NUM_KANA
@@ -2096,7 +2072,7 @@ Function11ce2b: ; 11ce2b (47:4e2b)
 	ld hl, wcd24
 	set 0, [hl]
 	ld a, $8
-	ld [BGMapBuffer], a ; wcd20 (aliases: CreditsPos)
+	ld [wcd20], a ; wcd20 (aliases: CreditsPos)
 .b
 	ld a, $4
 	jr .load
@@ -2122,7 +2098,7 @@ Function11ce2b: ; 11ce2b (47:4e2b)
 	ret
 
 .asm_11cea4
-	ld a, [BGMapBuffer] ; wcd20 (aliases: CreditsPos)
+	ld a, [wcd20] ; wcd20 (aliases: CreditsPos)
 	call Function11ca6a
 	call PlayClickSFX
 	ret
@@ -2137,7 +2113,7 @@ Function11ce2b: ; 11ce2b (47:4e2b)
 	ld a, [hl]
 	cp $ff
 	ret z
-	ld [CreditsTimer], a
+	ld [wcd22], a
 	ret
 ; 11ceb9 (47:4eb9)
 
@@ -2253,9 +2229,8 @@ Function11cfce: ; 11cfce (47:4fce)
 	ld [hli], a
 	ld a, [de]
 	inc de
-rept 2
 	dec a
-endr
+	dec a
 	jr z, .asm_11cff6
 	ld c, a
 	ld a, $7a
@@ -2271,9 +2246,8 @@ endr
 	add hl, bc
 	ld a, [de]
 	dec de
-rept 2
 	dec a
-endr
+	dec a
 	jr z, .asm_11d022
 	ld b, a
 .asm_11d005
@@ -2281,9 +2255,8 @@ endr
 	ld a, $7c
 	ld [hli], a
 	ld a, [de]
-rept 2
 	dec a
-endr
+	dec a
 	jr z, .asm_11d015
 	ld c, a
 	ld a, $7f
@@ -2305,9 +2278,8 @@ endr
 	ld a, $7d
 	ld [hli], a
 	ld a, [de]
-rept 2
 	dec a
-endr
+	dec a
 	jr z, .asm_11d031
 	ld c, a
 	ld a, $7a
@@ -2369,9 +2341,8 @@ Function11d035: ; 11d035 (47:5035)
 	ld a, [de]
 	cp $2
 	jr z, .asm_11d082
-rept 2
 	dec a
-endr
+	dec a
 .asm_11d078
 	push af
 	ld a, $7a
@@ -2397,9 +2368,8 @@ endr
 	cp $2
 	ret z
 	push bc
-rept 2
 	dec a
-endr
+	dec a
 	ld c, a
 	ld b, a
 	ld de, $14
@@ -2429,78 +2399,76 @@ Function11d0ac: ; 11d0ac (47:50ac)
 	ret
 
 Function11d0b6: ; 11d0b6 (47:50b6)
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	ld e, a
 	ld d, 0
-	ld hl, Jumptable_11d0c7
-rept 2
+	ld hl, .Jumptable
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
 
-Jumptable_11d0c7: ; 11d0c7 (47:50c7)
-	dw Function11d0dd
-	dw Function11d0e9
-	dw Function11d0f5
-	dw Function11d10f
-	dw Function11d134
-	dw Function11d145
-	dw Function11d156
-	dw Function11d175
-	dw Function11d1d7
-	dw Function11d1d1
-	dw Function11d1fc
+.Jumptable
+	dw .zero
+	dw .one
+	dw .two
+	dw .three
+	dw .four
+	dw .five
+	dw .six
+	dw .seven
+	dw .eight
+	dw .nine
+	dw .ten
 
 
-Function11d0dd: ; 11d0dd (47:50dd)
-	ld a, [BGMapBuffer] ; wcd20 (aliases: CreditsPos)
+.zero: ; 11d0dd (47:50dd)
+	ld a, [wcd20] ; wcd20 (aliases: CreditsPos)
 	sla a
 	ld hl, Unknown_11d208
 	ld e, $1
-	jr asm_11d11e
+	jr .load
 
-Function11d0e9: ; 11d0e9 (47:50e9)
+.one: ; 11d0e9 (47:50e9)
 	ld a, [wcd21]
 	sla a
 	ld hl, Unknown_11d21a
 	ld e, $2
-	jr asm_11d11e
+	jr .load
 
-Function11d0f5: ; 11d0f5 (47:50f5)
+.two: ; 11d0f5 (47:50f5)
 	ld hl, Unknown_11d2be
-	ld a, [CreditsTimer]
+	ld a, [wcd22]
 	ld e, a
 	ld d, $0
 	add hl, de
 	ld a, [hl]
 	call ReinitSpriteAnimFrame
-	ld a, [CreditsTimer]
+	ld a, [wcd22]
 	sla a
 	ld hl, Unknown_11d23e
 	ld e, $4
-	jr asm_11d11e
+	jr .load
 
-Function11d10f: ; 11d10f (47:510f)
-	ld a, $27
+.three: ; 11d10f (47:510f)
+	ld a, SPRITE_ANIM_FRAMESET_27
 	call ReinitSpriteAnimFrame
 	ld a, [wcd25]
 	sla a
 	ld hl, Unknown_11d29e
 	ld e, $8
-
-asm_11d11e: ; 11d11e (47:511e)
+.load: ; 11d11e (47:511e)
 	push de
 	ld e, a
 	ld d, $0
 	add hl, de
 	push hl
 	pop de
-	ld hl, $4
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [de]
 	inc de
@@ -2512,26 +2480,26 @@ asm_11d11e: ; 11d11e (47:511e)
 	call Function11d2ee
 	ret
 
-Function11d134: ; 11d134 (47:5134)
-	ld a, $27
+.four: ; 11d134 (47:5134)
+	ld a, SPRITE_ANIM_FRAMESET_27
 	call ReinitSpriteAnimFrame
 	ld a, [wcd2a]
 	sla a
 	ld hl, Unknown_11d2b6
 	ld e, $10
-	jr asm_11d11e
+	jr .load
 
-Function11d145: ; 11d145 (47:5145)
-	ld a, $27
+.five: ; 11d145 (47:5145)
+	ld a, SPRITE_ANIM_FRAMESET_27
 	call ReinitSpriteAnimFrame
 	ld a, [wcd2c]
 	sla a
 	ld hl, Unknown_11d2ba
 	ld e, $20
-	jr asm_11d11e
+	jr .load
 
-Function11d156: ; 11d156 (47:5156)
-	ld a, $2a
+.six: ; 11d156 (47:5156)
+	ld a, SPRITE_ANIM_FRAMESET_2A
 	call ReinitSpriteAnimFrame
 	ld a, [wcd4a]
 	sla a
@@ -2548,14 +2516,14 @@ Function11d156: ; 11d156 (47:5156)
 	call Function11d2ee
 	ret
 
-Function11d175: ; 11d175 (47:5175)
+.seven: ; 11d175 (47:5175)
 	ld a, [wcd4d]
 	cp $4
 	jr z, .asm_11d180
-	ld a, $28
+	ld a, SPRITE_ANIM_FRAMESET_28
 	jr .asm_11d182
 .asm_11d180
-	ld a, $26
+	ld a, SPRITE_ANIM_FRAMESET_26
 .asm_11d182
 	call ReinitSpriteAnimFrame
 	ld a, [wcd4d]
@@ -2566,7 +2534,7 @@ Function11d175: ; 11d175 (47:5175)
 	sla a
 	sla a
 	add $20
-	ld hl, $4
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld [hli], a
 	ld a, [wcd4d]
@@ -2590,7 +2558,7 @@ Function11d175: ; 11d175 (47:5175)
 	sla a
 	add e
 	add $18
-	ld hl, $4
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld [hli], a
 	ld a, $8a
@@ -2600,16 +2568,15 @@ Function11d175: ; 11d175 (47:5175)
 	call Function11d2ee
 	ret
 
-Function11d1d1: ; 11d1d1 (47:51d1)
-	ld d, $98
-	ld a, $2c
-	jr asm_11d1db
+.nine: ; 11d1d1 (47:51d1)
+	ld d, -13 * 8
+	ld a, SPRITE_ANIM_FRAMESET_2C
+	jr .eight_nine_load
 
-Function11d1d7: ; 11d1d7 (47:51d7)
-	ld d, $10
-	ld a, $2b
-
-asm_11d1db: ; 11d1db (47:51db)
+.eight: ; 11d1d7 (47:51d7)
+	ld d, 2 * 8
+	ld a, SPRITE_ANIM_FRAMESET_2B
+.eight_nine_load: ; 11d1db (47:51db)
 	push de
 	call ReinitSpriteAnimFrame
 	ld a, [wcd4a]
@@ -2619,8 +2586,8 @@ asm_11d1db: ; 11d1db (47:51db)
 	ld e, a
 	sla a
 	add e
-	add $40
-	ld hl, $5
+	add 8 * 8
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld [hld], a
 	pop af
@@ -2630,8 +2597,8 @@ asm_11d1db: ; 11d1db (47:51db)
 	call Function11d2ee
 	ret
 
-Function11d1fc: ; 11d1fc (47:51fc)
-	ld a, $26
+.ten: ; 11d1fc (47:51fc)
+	ld a, SPRITE_ANIM_FRAMESET_26
 	call ReinitSpriteAnimFrame
 	ld a, $8
 	ld e, a
@@ -3119,9 +3086,8 @@ Function11d4aa: ; 11d4aa
 	ld hl, $0005
 	add hl, de
 	ld a, [bc]
-rept 2
 	inc bc
-endr
+	inc bc
 	push bc
 .asm_11d4cf
 	push af
@@ -3162,7 +3128,6 @@ endr
 SortedPokemon:
 ; Pokemon sorted by kana.
 ; Notably, Rhydon is missing.
-
 	dw .a
 	dw .i
 	dw .u

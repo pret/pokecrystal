@@ -211,42 +211,28 @@ endr
 ; 92844
 
 SlotsJumptable: ; 92844 (24:6844)
-	ld a, [wJumptableIndex]
-	ld e, a
-	ld d, 0
-	ld hl, .Jumptable
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
+	jumptable .Jumptable, wJumptableIndex
 
-; 92853 (24:6853)
-
-
-.Jumptable: ; 92853 (24:6853)
-	jumptable_start
-	jumptable Slots_Init        ; 00
-	jumptable Slots_BetAndStart ; 01
-	jumptable Slots_WaitStart     ; 02
-	jumptable Slots_WaitReel1   ; 03
-	jumptable Slots_WaitStopReel1     ; 04
-	jumptable Slots_WaitReel2   ; 05
-	jumptable Slots_WaitStopReel2     ; 06
-	jumptable Slots_WaitReel3   ; 07
-	jumptable Slots_WaitStopReel3     ; 08
-	jumptable Slots_Next          ; 09
-	jumptable Slots_Next          ; 0a
-	jumptable Slots_Next          ; 0b
-	jumptable Slots_FlashIfWin     ; 0c
-	jumptable Slots_FlashScreen     ; 0d
-	jumptable Slots_GiveEarnedCoins     ; 0e
-	jumptable Slots_PayoutTextAndAnim     ; 0f
-	jumptable Slots_PayoutAnim     ; 10
-	jumptable Slots_RestartOrQuit     ; 11
-	jumptable Slots_Quit        ; 12
+.Jumptable
+	dw Slots_Init        ; 00
+	dw Slots_BetAndStart ; 01
+	dw Slots_WaitStart     ; 02
+	dw Slots_WaitReel1   ; 03
+	dw Slots_WaitStopReel1     ; 04
+	dw Slots_WaitReel2   ; 05
+	dw Slots_WaitStopReel2     ; 06
+	dw Slots_WaitReel3   ; 07
+	dw Slots_WaitStopReel3     ; 08
+	dw Slots_Next          ; 09
+	dw Slots_Next          ; 0a
+	dw Slots_Next          ; 0b
+	dw Slots_FlashIfWin     ; 0c
+	dw Slots_FlashScreen     ; 0d
+	dw Slots_GiveEarnedCoins     ; 0e
+	dw Slots_PayoutTextAndAnim     ; 0f
+	dw Slots_PayoutAnim     ; 10
+	dw Slots_RestartOrQuit     ; 11
+	dw Slots_Quit        ; 12
 
 Slots_Next: ; 92879 (24:6879)
 	ld hl, wJumptableIndex
@@ -265,7 +251,7 @@ Slots_Init: ; 9287e (24:687e)
 Slots_BetAndStart: ; 9288e (24:688e)
 	call Slots_AskBet
 	jr nc, .proceed
-	ld a, Slots_QuitTableIndex
+	ld a, 18
 	ld [wJumptableIndex], a
 	ret
 
@@ -275,7 +261,7 @@ Slots_BetAndStart: ; 9288e (24:688e)
 	call Slots_InitBias
 	ld a, 32
 	ld [wcf64], a
-	ld a, 4 ; ReelAction_NormalRateTableIndex
+	ld a, 4
 	ld [wReel1ReelAction], a
 	ld [wReel2ReelAction], a
 	ld [wReel3ReelAction], a
@@ -455,12 +441,12 @@ Slots_RestartOrQuit: ; 929d9 (24:69d9)
 	call WaitPressAorB_BlinkCursor
 	call Slots_AskPlayAgain
 	jr c, .exit_slots
-	ld a, Slots_InitTableIndex
+	ld a, 0
 	ld [wJumptableIndex], a
 	ret
 
 .exit_slots
-	ld a, Slots_QuitTableIndex
+	ld a, 18
 	ld [wJumptableIndex], a
 	ret
 
@@ -804,10 +790,9 @@ Function92bd4: ; 92bd4 (24:6bd4)
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
-	ld hl, .jumptable
-rept 2
+	ld hl, .dw
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -815,40 +800,33 @@ endr
 
 ; 92be4 (24:6be4)
 
-.jumptable: ; 92be4
-	jumptable_start
-	jumptable ReelAction_DoNothing                   ; 00
-	jumptable Slots_StopReelIgnoreJoypad             ; 01
-
-	jumptable ReelAction_QuadrupleRate               ; 02
-	jumptable ReelAction_DoubleRate                  ; 03
-	jumptable ReelAction_NormalRate                  ; 04
-	jumptable ReelAction_HalfRate                    ; 05
-	jumptable ReelAction_QuarterRate                 ; 06
-
-	jumptable ReelAction_StopReel1                   ; 07
-	jumptable ReelAction_StopReel2                   ; 08
-	jumptable ReelAction_StopReel3                   ; 09
-
-	jumptable ReelAction_SetUpReel2SkipTo7           ; 0a
-	jumptable ReelAction_WaitReel2SkipTo7            ; 0b
-	jumptable ReelAction_FastSpinReel2UntilLinedUp7s ; 0c
-
-	jumptable ReelAction_BoringReelDrops             ; 0d
-	jumptable ReelAction_CheckDropReel               ; 0e
-	jumptable ReelAction_WaitDropReel                ; 0f
-
-	jumptable ReelAction_StartSlowAdvanceReel3       ; 10
-	jumptable ReelAction_WaitSlowAdvanceReel3        ; 11
-
-	jumptable ReelAction_InitGolem                   ; 12
-	jumptable ReelAction_WaitGolem                   ; 13
-	jumptable ReelAction_EndGolem                    ; 14
-
-	jumptable Slots_InitChansey                      ; 15
-	jumptable ReelAction_WaitChansey                 ; 16
-	jumptable ReelAction_WaitEgg                     ; 17
-	jumptable ReelAction_DropReel                    ; 18
+.dw: ; 92be4
+	
+	dw ReelAction_DoNothing                   ; 00
+	dw Slots_StopReelIgnoreJoypad             ; 01
+	dw ReelAction_QuadrupleRate               ; 02
+	dw ReelAction_DoubleRate                  ; 03
+	dw ReelAction_NormalRate                  ; 04
+	dw ReelAction_HalfRate                    ; 05
+	dw ReelAction_QuarterRate                 ; 06
+	dw ReelAction_StopReel1                   ; 07
+	dw ReelAction_StopReel2                   ; 08
+	dw ReelAction_StopReel3                   ; 09
+	dw ReelAction_SetUpReel2SkipTo7           ; 0a
+	dw ReelAction_WaitReel2SkipTo7            ; 0b
+	dw ReelAction_FastSpinReel2UntilLinedUp7s ; 0c
+	dw ReelAction_BoringReelDrops             ; 0d
+	dw ReelAction_CheckDropReel               ; 0e
+	dw ReelAction_WaitDropReel                ; 0f
+	dw ReelAction_StartSlowAdvanceReel3       ; 10
+	dw ReelAction_WaitSlowAdvanceReel3        ; 11
+	dw ReelAction_InitGolem                   ; 12
+	dw ReelAction_WaitGolem                   ; 13
+	dw ReelAction_EndGolem                    ; 14
+	dw Slots_InitChansey                      ; 15
+	dw ReelAction_WaitChansey                 ; 16
+	dw ReelAction_WaitEgg                     ; 17
+	dw ReelAction_DropReel                    ; 18
 ; 92c16
 
 ReelAction_DoNothing: ; 92c16
@@ -1205,9 +1183,8 @@ ReelAction_DropReel: ; 92dca
 	ld [hl], $0
 	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
-rept 2
 	dec [hl]
-endr
+	dec [hl]
 	ld a, $1
 	ld [wcf64], a
 	ret
@@ -1327,9 +1304,8 @@ Slots_CheckMatchedFirstTwoReels: ; 92e94
 	ld e, a
 	ld d, 0
 	ld hl, .Jumptable
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1347,11 +1323,11 @@ endr
 ; 92ebd
 
 .Jumptable: ; 92ebd
-	jumptable_start
-	jumptable .zero
-	jumptable .one
-	jumptable .two
-	jumptable .three
+	
+	dw .zero
+	dw .one
+	dw .two
+	dw .three
 ; 92ec5
 
 .three: ; 92ec5
@@ -1439,9 +1415,8 @@ Slots_CheckMatchedAllThreeReels: ; 92f1d
 	ld e, a
 	ld d, 0
 	ld hl, .Jumptable
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1463,11 +1438,11 @@ endr
 ; 92f48
 
 .Jumptable: ; 92f48
-	jumptable_start
-	jumptable .zero
-	jumptable .one
-	jumptable .two
-	jumptable .three
+	
+	dw .zero
+	dw .one
+	dw .two
+	dw .three
 ; 92f50
 
 .three: ; 92f50
@@ -1978,19 +1953,18 @@ SlotMachine_AnimateGolem: ; 9321d (24:721d)
 	ld e, [hl]
 	ld d, 0
 	ld hl, .Jumptable
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
 
 .Jumptable: ; 9322d (24:722d)
-	jumptable_start
-	jumptable .init
-	jumptable .fall
-	jumptable .roll
+	
+	dw .init
+	dw .fall
+	dw .roll
 
 
 .init: ; 93233 (24:7233)
@@ -2051,9 +2025,8 @@ endr
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld a, [hl]
-rept 2
 	inc [hl]
-endr
+	inc [hl]
 	cp 9 * 8
 	jr nc, .restart
 	and $3
@@ -2081,19 +2054,18 @@ Slots_AnimateChansey: ; 932ac (24:72ac)
 	ld e, [hl]
 	ld d, 0
 	ld hl, .Jumptable
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
 
 .Jumptable: ; 932bc (24:72bc)
-	jumptable_start
-	jumptable .walk
-	jumptable .one
-	jumptable .two
+	
+	dw .walk
+	dw .one
+	dw .two
 
 
 .walk: ; 932c2 (24:72c2)

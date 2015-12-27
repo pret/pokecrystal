@@ -42,12 +42,12 @@ _DepositPKMN: ; e2391 (38:6391)
 	jp [hl]
 
 .Jumptable: ; e23df (38:63df)
-	jumptable_start
-	jumptable .Init
-	jumptable .HandleJoypad
-	jumptable .WhatsUp
-	jumptable .Submenu
-	jumptable BillsPC_EndJumptableLoop
+	
+	dw .Init
+	dw .HandleJoypad
+	dw .WhatsUp
+	dw .Submenu
+	dw BillsPC_EndJumptableLoop
 
 
 .Init: ; e23e9 (38:63e9)
@@ -151,11 +151,11 @@ endr
 	jp [hl]
 
 BillsPCDepositJumptable: ; e24a1 (38:64a1)
-	jumptable_start
-	jumptable BillsPCDepositFuncDeposit ; Deposit Pokemon
-	jumptable BillsPCDepositFuncStats ; Pokemon Stats
-	jumptable BillsPCDepositFuncRelease ; Release Pokemon
-	jumptable BillsPCDepositFuncCancel ; Cancel
+	
+	dw BillsPCDepositFuncDeposit ; Deposit Pokemon
+	dw BillsPCDepositFuncStats ; Pokemon Stats
+	dw BillsPCDepositFuncRelease ; Release Pokemon
+	dw BillsPCDepositFuncCancel ; Cancel
 
 
 BillsPCDepositFuncDeposit: ; e24a9 (38:64a9)
@@ -310,12 +310,12 @@ _WithdrawPKMN: ; e2583 (38:6583)
 	jp [hl]
 
 .Jumptable: ; e25d2 (38:65d2)
-	jumptable_start
-	jumptable .Init
-	jumptable .Joypad
-	jumptable .PrepSubmenu
-	jumptable BillsPC_Withdraw
-	jumptable BillsPC_EndJumptableLoop
+	
+	dw .Init
+	dw .Joypad
+	dw .PrepSubmenu
+	dw BillsPC_Withdraw
+	dw BillsPC_EndJumptableLoop
 
 
 .Init: ; e25dc (38:65dc)
@@ -410,7 +410,7 @@ BillsPC_Withdraw: ; e2675 (38:6675)
 	and 3
 	ld e, a
 	ld d, 0
-	ld hl, .jumptable
+	ld hl, .dw
 rept 2
 	add hl, de
 endr
@@ -419,7 +419,7 @@ endr
 	ld l, a
 	jp [hl]
 
-.jumptable: ; e2699 (38:6699) #mark
+.dw: ; e2699 (38:6699) #mark
 	dw .withdraw ; Withdraw
 	dw .stats ; Stats
 	dw .release ; Release
@@ -562,14 +562,14 @@ _MovePKMNWithoutMail: ; e2759
 ; e27ac
 
 .Jumptable: ; e27ac
-	jumptable_start
-	jumptable .Init
-	jumptable .Joypad
-	jumptable .PrepSubmenu
-	jumptable .MoveMonWOMailSubmenu
-	jumptable .PrepInsertCursor
-	jumptable .Joypad2
-	jumptable BillsPC_EndJumptableLoop
+	
+	dw .Init
+	dw .Joypad
+	dw .PrepSubmenu
+	dw .MoveMonWOMailSubmenu
+	dw .PrepInsertCursor
+	dw .Joypad2
+	dw BillsPC_EndJumptableLoop
 ; e27ba
 
 .Init: ; e27ba
@@ -2016,12 +2016,12 @@ endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, .jumptable_return
+	ld de, .dw_return
 	push de
 	jp [hl]
 ; e322a
 
-.jumptable_return: ; e322a
+.dw_return: ; e322a
 	pop af
 	ld e, a
 	callba Function14ad5
@@ -2033,11 +2033,11 @@ endr
 ; e3245
 
 .Jumptable: ; e3245
-	jumptable_start
-	jumptable .BoxToBox
-	jumptable .PartyToBox
-	jumptable .BoxToParty
-	jumptable .PartyToParty
+	
+	dw .BoxToBox
+	dw .PartyToBox
+	dw .BoxToParty
+	dw .PartyToParty
 ; e324d
 
 .BoxToBox: ; e324d

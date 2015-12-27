@@ -382,27 +382,27 @@ endr
 ; 10828a
 
 .Jumptable: ; 10828a
-	jumptable_start
-	jumptable GetMobileTradeAnimByte ; 00
-	jumptable MobileTradeAnim_ShowPlayerMonToBeSent ; 01
-	jumptable MobileTradeAnim_02 ; 02
-	jumptable MobileTradeAnim_GiveTrademon1 ; 03
-	jumptable MobileTradeAnim_GiveTrademon2 ; 04
-	jumptable MobileTradeAnim_05 ; 05
-	jumptable MobileTradeAnim_06 ; 06
-	jumptable MobileTradeAnim_07 ; 07
-	jumptable MobileTradeAnim_GetTrademon1 ; 08
-	jumptable MobileTradeAnim_GetTrademon2 ; 09
-	jumptable MobileTradeAnim_GetTrademon3 ; 0a
-	jumptable MobileTradeAnim_ShowOTMonFromTrade ; 0b
-	jumptable EndMobileTradeAnim ; 0c
-	jumptable MobileTradeAnim_ShowPlayerMonForGTS ; 0d
-	jumptable MobileTradeAnim_ShowOTMonFromGTS ; 0e
-	jumptable MobileTradeAnim_0f ; 0f
-	jumptable MobileTradeAnim_10 ; 10
-	jumptable MobileTradeAnim_11 ; 11
-	jumptable MobileTradeAnim_FadeToBlack ; 12
-	jumptable MobileTradeAnim_GetOddEgg ; 13 get odd egg
+	
+	dw GetMobileTradeAnimByte ; 00
+	dw MobileTradeAnim_ShowPlayerMonToBeSent ; 01
+	dw MobileTradeAnim_02 ; 02
+	dw MobileTradeAnim_GiveTrademon1 ; 03
+	dw MobileTradeAnim_GiveTrademon2 ; 04
+	dw MobileTradeAnim_05 ; 05
+	dw MobileTradeAnim_06 ; 06
+	dw MobileTradeAnim_07 ; 07
+	dw MobileTradeAnim_GetTrademon1 ; 08
+	dw MobileTradeAnim_GetTrademon2 ; 09
+	dw MobileTradeAnim_GetTrademon3 ; 0a
+	dw MobileTradeAnim_ShowOTMonFromTrade ; 0b
+	dw EndMobileTradeAnim ; 0c
+	dw MobileTradeAnim_ShowPlayerMonForGTS ; 0d
+	dw MobileTradeAnim_ShowOTMonFromGTS ; 0e
+	dw MobileTradeAnim_0f ; 0f
+	dw MobileTradeAnim_10 ; 10
+	dw MobileTradeAnim_11 ; 11
+	dw MobileTradeAnim_FadeToBlack ; 12
+	dw MobileTradeAnim_GetOddEgg ; 13 get odd egg
 ; 1082b2
 
 MobileTradeAnim_Next: ; 1082b2

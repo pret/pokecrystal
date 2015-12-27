@@ -564,17 +564,7 @@ Function118473: ; 118473
 ; 1184a5
 
 Function1184a5: ; 1184a5
-	ld a, [wcf66]
-	ld e, a
-	ld d, 0
-	ld hl, .Jumptable
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
+	jumptable .Jumptable, wcf66
 ; 1184b4
 
 .Jumptable: ; 1184b4
@@ -609,17 +599,7 @@ endr
 ; 1184ec
 
 Function1184ec: ; 1184ec
-	ld a, [wcf66]
-	ld e, a
-	ld d, 0
-	ld hl, .Jumptable
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
+	jumptable .Jumptable, wcf66
 ; 1184fb
 
 .Jumptable: ; 1184fb
@@ -667,17 +647,7 @@ endr
 ; 11854d
 
 Function11854d: ; 11854d
-	ld a, [wcf66]
-	ld e, a
-	ld d, 0
-	ld hl, .Jumptable
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
+	jumptable .Jumptable, wcf66
 ; 11855c
 
 .Jumptable: ; 11855c
@@ -700,17 +670,7 @@ endr
 ; 11857c
 
 Function11857c: ; 11857c
-	ld a, [wcf66]
-	ld e, a
-	ld d, 0
-	ld hl, .Jumptable
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
+	jumptable .Jumptable, wcf66
 ; 11858b
 
 .Jumptable: ; 11858b
@@ -745,17 +705,7 @@ endr
 ; 1185c3
 
 Function1185c3: ; 1185c3
-	ld a, [wcf66]
-	ld e, a
-	ld d, 0
-	ld hl, .Jumptable
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
+	jumptable .Jumptable, wcf66
 ; 1185d2
 
 .Jumptable: ; 1185d2
@@ -803,17 +753,7 @@ endr
 ; 118624
 
 Function118624: ; 118624
-	ld a, [wcf66]
-	ld e, a
-	ld d, 0
-	ld hl, .Jumptable
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
+	jumptable .Jumptable, wcf66
 ; 118633
 
 .Jumptable: ; 118633
@@ -851,17 +791,7 @@ endr
 ; 118671
 
 Function118671: ; 118671
-	ld a, [wcf66]
-	ld e, a
-	ld d, 0
-	ld hl, .Jumptable
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
+	jumptable .Jumptable, wcf66
 ; 118680
 
 .Jumptable: ; 118680
@@ -893,17 +823,7 @@ endr
 ; 1186b2
 
 Function1186b2: ; 1186b2
-	ld a, [wcf66]
-	ld e, a
-	ld d, 0
-	ld hl, .Jumptable
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
+	jumptable .Jumptable, wcf66
 ; 1186c1
 
 .Jumptable: ; 1186c1
@@ -936,17 +856,7 @@ endr
 ; 1186f5
 
 Function1186f5: ; 1186f5 (46:46f5)
-	ld a, [wcf66]
-	ld e, a
-	ld d, 0
-	ld hl, .Jumptable
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
+	jumptable .Jumptable, wcf66
 ; 118704 (46:4704)
 
 .Jumptable: ; 118704 (46:4704)
@@ -986,17 +896,7 @@ endr
 ; 118746 (46:4746)
 
 Function118746: ; 118746
-	ld a, [wcf66]
-	ld e, a
-	ld d, 0
-	ld hl, .Jumptable
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
+	jumptable .Jumptable, wcf66
 ; 118755
 
 .Jumptable: ; 118755
@@ -1627,9 +1527,8 @@ Function118b8c: ; 118b8c
 	jr nz, .asm_118b8c
 	dec hl
 	xor a
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ret
 ; 118b9a
 
@@ -1830,9 +1729,8 @@ asm_118e3e
 	ld a, [hld]
 	cp $2f
 	jr nz, .asm_118e3e
-rept 2
 	inc hl
-endr
+	inc hl
 	ld de, wcd85
 	ld c, $4
 .asm_118e4a
@@ -2691,9 +2589,8 @@ Function119413: ; 119413
 	ld c, a
 	ld a, [w3_d000 + 1]
 	ld b, a
-rept 2
 	dec bc
-endr
+	dec bc
 	ld hl, wd002
 	ld a, [hli]
 	ld e, a
@@ -2883,9 +2780,8 @@ endr
 .asm_119552
 	inc hl
 .asm_119553
-rept 2
 	inc hl
-endr
+	inc hl
 	jr .asm_11955b
 .asm_119557
 	ld de, $14
@@ -3230,9 +3126,8 @@ Function1196f2: ; 1196f2
 	ld a, [hld]
 	cp $58
 	jr z, .asm_11975b
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, d
 	dec a
 	jr z, .asm_11978e
@@ -3815,9 +3710,8 @@ Function119b6b: ; 119b6b
 	ld a, [de]
 	cp $d
 	jr nz, .asm_119b85
-rept 2
 	inc de
-endr
+	inc de
 .asm_119b93
 	ld a, [de]
 	inc de
@@ -4349,28 +4243,19 @@ Function119ed8: ; 119ed8 (46:5ed8)
 	ld [wcd8c], a
 	ld a, $1
 	ld [rSVBK], a
-	call Function119eee
+
+	call .RunJumptable
+
 	ld a, [wcd8c]
 	ld [rSVBK], a
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
 
-Function119eee: ; 119eee (46:5eee)
-	ld a, [wcd3c]
-	ld e, a
-	ld d, 0
-	ld hl, Jumptable_119efd
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
-; 119efd (46:5efd)
+.RunJumptable
+	jumptable .Jumptable, wcd3c
 
-Jumptable_119efd: ; 119efd
+.Jumptable
 	dw Function119f3f
 	dw Function119f45
 	dw Function119f56
@@ -5553,17 +5438,7 @@ endr
 ; 11a8fa
 
 Function11a8fa: ; 11a8fa
-	ld a, [$c31a]
-	ld e, a
-	ld d, 0
-	ld hl, .Jumptable
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
+	jumptable .Jumptable, $c31a
 ; 11a909
 
 .Jumptable: ; 11a909
@@ -6328,9 +6203,8 @@ asm_11afbd:
 	dec a
 	ld c, a
 	ld b, 0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, e
 	ld e, [hl]
 	inc hl
@@ -6803,9 +6677,8 @@ Function11b236: ; 11b236
 Function11b239: ; 11b239
 	ld e, a
 	ld d, 0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -7210,20 +7083,9 @@ Function11b45c: ; 11b45c
 ; 11b46a
 
 Function11b46a: ; 11b46a
-	ld a, [wJumptableIndex]
-	ld e, a
-	ld d, 0
-	ld hl, Jumptable_11b479
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
-; 11b479
+	jumptable .Jumptable, wJumptableIndex
 
-Jumptable_11b479: ; 11b479
+.Jumptable
 	dw Function11b483
 	dw Function11b570
 	dw Function11b5c0
@@ -7232,7 +7094,7 @@ Jumptable_11b479: ; 11b479
 ; 11b483
 
 Function11b483: ; 11b483
-	call Function11b538
+	call .InitRAM
 	ld hl, PlayerName
 	ld a, $5 ; Japanese Name Length
 .loop1
@@ -7291,9 +7153,8 @@ Function11b483: ; 11b483
 	pop de
 	ld h, d
 	ld l, e
-rept 2
 	dec hl
-endr
+	dec hl
 	ld a, [de]
 	ld [hli], a
 	inc de
@@ -7369,9 +7230,8 @@ endr
 	jr nz, .loop9
 	call CloseSRAM
 	jp Function11ad8a
-; 11b538
 
-Function11b538: ; 11b538
+.InitRAM
 	ld bc, wc626
 	ld a, [PlayerID]
 	ld [wcd2a], a
@@ -7416,26 +7276,28 @@ Function11b570: ; 11b570
 	ld a, [ScriptVar]
 	and a
 	jr nz, .exit
-	call Function11b585
+	call .SaveData
 	jp Function11ad8a
 
 .exit
 	ld a, $4
 	ld [wJumptableIndex], a
 	ret
-; 11b585
 
-Function11b585: ; 11b585
+.SaveData
 	ld a, $3
 	ld [rSVBK], a
+
 	ld hl, w3_d800
 	ld de, $c608
 	ld bc, w3_d88f - w3_d800
 	call CopyBytes
+
 	ld a, $1
 	ld [rSVBK], a
 	ld a, $5
 	call GetSRAMBank
+
 	ld de, $a800
 	ld a, $1
 	ld [de], a
@@ -7443,8 +7305,10 @@ Function11b585: ; 11b585
 	ld hl, $c608
 	ld bc, w3_d88f - w3_d800
 	call CopyBytes
+
 	push de
 	pop hl
+
 	ld a, [hRTCMinutes]
 	ld [hli], a
 	ld a, [hRTCHours]
@@ -7453,6 +7317,7 @@ Function11b585: ; 11b585
 	ld [hli], a
 	ld a, [hRTCDayHi]
 	ld [hl], a
+
 	call CloseSRAM
 	ret
 ; 11b5c0
@@ -7484,14 +7349,14 @@ Function11b5e8: ; 11b5e8
 	call GetSRAMBank
 	ld hl, wRTC
 	ld de, $c608
-	ld bc, $0004
+	ld bc, 4
 	call CopyBytes
 	call CloseSRAM
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $c608
 	ld de, $b08c
-	ld bc, $0004
+	ld bc, 4
 	call CopyBytes
 	ld a, $2
 	ld [$a800], a
@@ -7513,35 +7378,20 @@ Function11b5e8: ; 11b5e8
 	ld [wcd31], a
 	call CloseSRAM
 	call Function11b44b
-	call Function11b64c
+	call .loop
 	ret
-; 11b64c
 
-Function11b64c: ; 11b64c
-.asm_11b64c
-	call Function11b65a
+.loop
+	call .RunJumptable
 	call DelayFrame
 	ld a, [wJumptableIndex]
 	cp $1
-	jr nz, .asm_11b64c
+	jr nz, .loop
 	ret
-; 11b65a
 
-Function11b65a: ; 11b65a
-	ld a, [wJumptableIndex]
-	ld e, a
-	ld d, 0
-	ld hl, Jumptable_11b669
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
-; 11b669
-
-Jumptable_11b669: ; 11b669
+.RunJumptable
+	jumptable .Jumptable, wJumptableIndex
+.Jumptable
 	dw Function11b66d
 	dw Function11b6b3
 ; 11b66d

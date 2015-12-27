@@ -81,7 +81,7 @@ Function6454:: ; 6454
 
 .Function6473
 	xor a
-	ld [hLCDStatCustom], a
+	ld [hFFC6], a
 	ld [hBGMapMode], a
 	ld a, $90
 	ld [hWY], a
@@ -1045,12 +1045,12 @@ CheckObjectEnteringVisibleRange:: ; 81ca
 	ld a, [wPlayerStepDirection]
 	cp STANDING
 	ret z
-	ld hl, .jumptable
+	ld hl, .dw
 	rst JumpTable
 	ret
 ; 81d6
 
-.jumptable: ; 81d6
+.dw: ; 81d6
 	dw .Down
 	dw .Up
 	dw .Left
@@ -1657,9 +1657,8 @@ _Sine:: ; 84d9
 	ld a, d
 	ld d, 0
 	ld hl, .sinewave
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -2061,9 +2060,8 @@ HealPartyMon: ; c677
 	; bc = MON_HP
 	ld b, h
 	ld c, l
-rept 2
 	dec bc
-endr
+	dec bc
 
 	ld a, [hli]
 	ld [bc], a
@@ -2274,10 +2272,10 @@ CutFunction: ; c785
 ; c796
 
 .Jumptable: ; c796 (3:4796)
-	jumptable_start
-	jumptable .CheckAble
-	jumptable .DoCut
-	jumptable .FailCut
+	
+	dw .CheckAble
+	dw .DoCut
+	dw .FailCut
 
 .CheckAble: ; c79c (3:479c)
 	ld de, ENGINE_HIVEBADGE
@@ -4457,9 +4455,8 @@ RemoveItemFromPocket: ; d2ff
 	jr nc, .ok ; memory
 	ld c, a
 	ld b, $0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [CurItem]
 	cp [hl]
 	inc hl
@@ -4493,9 +4490,8 @@ endr
 	dec hl
 	ld b, h
 	ld c, l
-rept 2
 	inc hl
-endr
+	inc hl
 .loop2
 	ld a, [hli]
 	ld [bc], a
@@ -6115,9 +6111,8 @@ FindApricornsInBag: ; 24c64
 	ld a, [hl]
 	call .addtobuffer
 .nope
-rept 2
 	inc hl
-endr
+	inc hl
 	jr .loop
 
 .done
@@ -7397,9 +7392,8 @@ DisplayDexEntry: ; 4424d
 	ld d, l
 	ld e, h
 	pop hl
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, d
 	or e
 	jr z, .skip_height
@@ -7505,9 +7499,8 @@ GetDexEntryPointer: ; 44333
 	dec a
 	ld d, 0
 	ld e, a
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -7583,9 +7576,8 @@ INCLUDE "engine/init_gender.asm"
 
 DrawKrisPackGFX: ; 48e81
 	ld hl, PackFGFXPointers
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -8068,9 +8060,8 @@ _LoadMapPart:: ; 4d15b
 	ld a, [wMetatileStandingX]
 	and a
 	jr z, .left_column
-rept 2
 	inc hl
-endr
+	inc hl
 
 .left_column
 	decoord 0, 0
@@ -8221,12 +8212,10 @@ LinkTextbox2: ; 4d35b
 	pop bc
 	ld de, AttrMap - TileMap
 	add hl, de
-rept 2
 	inc b
-endr
-rept 2
+	inc b
 	inc c
-endr
+	inc c
 	ld a, $7
 .row
 	push bc
@@ -9384,18 +9373,17 @@ CatchTutorial:: ; 4e554
 	ld a, [BattleType]
 	dec a
 	ld c, a
-	ld hl, .jumptable
+	ld hl, .dw
 	ld b, 0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
 ; 4e564
 
-.jumptable: ; 4e564 (13:6564)
+.dw: ; 4e564 (13:6564)
 	dw .DudeTutorial
 	dw .DudeTutorial
 	dw .DudeTutorial
@@ -9453,9 +9441,8 @@ endr
 	ld a, 1
 	ld [hli], a
 	ld a, POKE_BALL ; 5
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld [hl], -1
 	ret
 ; 4e5da (13:65da)
@@ -9881,9 +9868,8 @@ Function50a28: ; 50a28
 	dec a
 	ld c, a
 	ld b, 0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -9899,7 +9885,6 @@ endr
 
 Strings50a42: ; 50a42
 ; Untranslated trainer class names from Red.
-
 	dw .Youngster
 	dw .BugCatcher
 	dw .Lass
@@ -10346,9 +10331,8 @@ Function50cdb: ; unreferenced predef
 
 PlaceStatusString: ; 50d0a
 	push de
-rept 2
 	inc de
-endr
+	inc de
 	ld a, [de]
 	ld b, a
 	inc de
@@ -10565,9 +10549,8 @@ CalcLevel: ; 50e1b
 CalcExpAtLevel: ; 50e47
 ; (a/b)*n**3 + c*n**2 + d*n - e
 	ld a, [BaseGrowthRate]
-rept 2
 	add a
-endr
+	add a
 	ld c, a
 	ld b, 0
 	ld hl, GrowthRates
@@ -11991,9 +11974,8 @@ DoStep: ; 8025f
 	ld e, a
 	ld d, 0
 	ld hl, .Steps
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -13088,9 +13070,8 @@ Functione0000: ; e0000
 	call .Decompress
 	ld hl, Unknown_e008b
 	pop bc
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]

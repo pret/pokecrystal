@@ -15,7 +15,7 @@
 	const BATTLETOWERACTION_0D ; more time stuff in SRAM bank 5
 	const BATTLETOWERACTION_EGGTICKET ; egg ticket
 	const BATTLETOWERACTION_0F ; check w3_d090
-	const BATTLETOWERACTION_10 ; jumptable based on 5:a800
+	const BATTLETOWERACTION_10 ; dw based on 5:a800
 	const BATTLETOWERACTION_11 ; store 0 in 5:aa8d
 	const BATTLETOWERACTION_12 ; store 1 in 5:aa8d
 	const BATTLETOWERACTION_13 ; check 5:aa8d

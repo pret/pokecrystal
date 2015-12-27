@@ -10,7 +10,7 @@ GetMysteryGift_MobileAdapterLayout: ; 4930f (mobile)
 	ld l, a
 	ld h, 0
 	add hl, hl
-	ld de, .jumptable
+	ld de, .dw
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
@@ -22,11 +22,11 @@ GetMysteryGift_MobileAdapterLayout: ; 4930f (mobile)
 	ret
 ; 49330 (12:5330)
 
-.jumptable: ; 49330
-	jumptable_start
-	jumptable MG_Mobile_Layout00
-	jumptable MG_Mobile_Layout01
-	jumptable MG_Mobile_Layout02
+.dw: ; 49330
+	
+	dw MG_Mobile_Layout00
+	dw MG_Mobile_Layout01
+	dw MG_Mobile_Layout02
 ; 49336
 
 MG_Mobile_Layout_FillBox: ; 49336

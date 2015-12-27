@@ -4,53 +4,51 @@ DoAnimFrame: ; 8d24b
 	ld e, [hl]
 	ld d, 0
 	ld hl, .Jumptable
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
 ; 8d25b
 
-
 .Jumptable: ; 8d25b (23:525b)
-	jumptable_start
-	jumptable .Null        ; null
-	jumptable .one         ; bouncing mon icon
-	jumptable .two         ; bouncing mon icon, selected
-	jumptable .three       ; bouncing mon icon, menu open
-	jumptable .four
-	jumptable .five
-	jumptable .GameFreakLogo         ; Game Freak logo
-	jumptable .seven
-	jumptable .eight
-	jumptable .SlotsGolem        ; Something to do with slots
-	jumptable .SlotsChansey         ; Something to do with slots
-	jumptable .SlotsChanseyEgg      ; Something to do with slots
-	jumptable .twelve      ; blinking cursor
-	jumptable .thirteen
-	jumptable .fourteen
-	jumptable .fifteen
-	jumptable .sixteen
-	jumptable .seventeen
-	jumptable .eighteen
-	jumptable .EggShell    ; finish egg hatching animation
-	jumptable .RadioTuningKnob      ; radio tuning knob
-	jumptable .twentyone   ; cut grass leaves
-	jumptable .FlyFrom   ; flying sprite
-	jumptable .FlyLeaf ; flying leaves
-	jumptable .FlyTo  ; fly to
-	jumptable .twentyfive
-	jumptable .twentysix
-	jumptable .twentyseven
-	jumptable .twentyeight
-	jumptable .twentynine  ; intro suicune
-	jumptable .thirty      ; intro pichu wooper
-	jumptable .thirtyone   ; celebi
-	jumptable .thirtytwo   ; intro unown
-	jumptable .thirtythree ; intro unown F with suicune leaping up
-	jumptable .thirtyfour  ; intro suicune facing away from us
+	
+	dw .Null        ; null
+	dw .one         ; bouncing mon icon
+	dw .two         ; bouncing mon icon, selected
+	dw .three       ; bouncing mon icon, menu open
+	dw .four
+	dw .five
+	dw .GameFreakLogo         ; Game Freak logo
+	dw .seven
+	dw .eight
+	dw .SlotsGolem        ; Something to do with slots
+	dw .SlotsChansey         ; Something to do with slots
+	dw .SlotsChanseyEgg      ; Something to do with slots
+	dw .twelve      ; blinking cursor
+	dw .thirteen
+	dw .fourteen
+	dw .fifteen
+	dw .sixteen
+	dw .seventeen
+	dw .eighteen
+	dw .EggShell    ; finish egg hatching animation
+	dw .RadioTuningKnob      ; radio tuning knob
+	dw .twentyone   ; cut grass leaves
+	dw .FlyFrom   ; flying sprite
+	dw .FlyLeaf ; flying leaves
+	dw .FlyTo  ; fly to
+	dw .twentyfive
+	dw .twentysix
+	dw .twentyseven
+	dw .twentyeight
+	dw .twentynine  ; intro suicune
+	dw .thirty      ; intro pichu wooper
+	dw .thirtyone   ; celebi
+	dw .thirtytwo   ; intro unown
+	dw .thirtythree ; intro unown F with suicune leaping up
+	dw .thirtyfour  ; intro suicune facing away from us
 
 
 .Null: ; 8d2a1 (23:52a1)
@@ -135,11 +133,11 @@ endr
 	ret
 
 .four: ; 8d302 (23:5302)
-	call .anonymous_jumptable
+	call .anonymous_dw
 	jp [hl]
 ; 8d306 (23:5306)
 
-; Anonymous jumptable (see .anonymous_jumptable)
+; Anonymous dw (see .anonymous_dw)
 	dw .four_zero
 	dw .four_one
 ; 8d30a
@@ -237,9 +235,8 @@ endr
 	ld a, [hl]
 	and a
 	jr z, .asm_8d3ba
-rept 2
 	dec [hl]
-endr
+	dec [hl]
 	ld d, a
 	and $1f
 	jr nz, .asm_8d395
@@ -420,11 +417,11 @@ endr
 	ret
 
 .sixteen: ; 8d483 (23:5483)
-	call .anonymous_jumptable
+	call .anonymous_dw
 	jp [hl]
 ; 8d487 (23:5487)
 
-; Anonymous jumptable (see .anonymous_jumptable)
+; Anonymous dw (see .anonymous_dw)
 	dw .sixteen_zero
 	dw .sixteen_one
 	dw .sixteen_two
@@ -554,9 +551,8 @@ endr
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hl]
-rept 2
 	inc [hl]
-endr
+	inc [hl]
 	cp $b0
 	jr nc, .asm_8d53f
 	and $3
@@ -669,9 +665,8 @@ endr
 
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
-rept 2
 	dec [hl]
-endr
+	dec [hl]
 
 	ld hl, SPRITEANIMSTRUCT_0F
 	add hl, bc
@@ -699,9 +694,8 @@ endr
 	ld a, [hl]
 	cp -9 * 8
 	jr nc, .delete_leaf
-rept 2
 	inc [hl]
-endr
+	inc [hl]
 
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
@@ -732,9 +726,8 @@ endr
 
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
-rept 2
 	inc [hl]
-endr
+	inc [hl]
 
 	ld hl, SPRITEANIMSTRUCT_0F
 	add hl, bc
@@ -861,7 +854,7 @@ endr
 	callba UpdateCelebiPosition
 	ret
 
-.anonymous_jumptable: ; 8d6c5 (23:56c5)
+.anonymous_dw: ; 8d6c5 (23:56c5)
 	ld hl, [sp+$0]
 	ld e, [hl]
 	inc hl

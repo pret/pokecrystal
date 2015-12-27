@@ -77,9 +77,8 @@ endr
 
 ; We've done 2 16x8 blocks
 	ld a, [hFFDC]
-rept 2
 	dec a
-endr
+	dec a
 	ld [hFFDC], a
 
 	jr nz, .next

@@ -214,13 +214,11 @@ Coord2Tile:: ; 1d05
 	ld a, c
 	ld b, h
 	ld c, l
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	add hl, bc
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld c, a
 	xor a
 	ld b, a
@@ -244,13 +242,11 @@ Coord2Attr:: ; 1d21
 	ld a, c
 	ld b, h
 	ld c, l
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	add hl, bc
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld c, a
 	xor a
 	ld b, a

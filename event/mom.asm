@@ -22,7 +22,7 @@ Special_BankOfMom: ; 16218
 	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
-	ld hl, .jumptable
+	ld hl, .dw
 rept 2
 	add hl, de
 endr
@@ -32,17 +32,17 @@ endr
 	jp [hl]
 ; 16242
 
-.jumptable: ; 16242
-	jumptable_start
-	jumptable .CheckIfBankInitialized
-	jumptable .InitializeBank
-	jumptable .IsThisAboutYourMoney
-	jumptable .AccessBankOfMom
-	jumptable .StoreMoney
-	jumptable .TakeMoney
-	jumptable .StopOrStartSavingMoney
-	jumptable .AskDST
-	jumptable .JustDoWhatYouCan
+.dw: ; 16242
+	
+	dw .CheckIfBankInitialized
+	dw .InitializeBank
+	dw .IsThisAboutYourMoney
+	dw .AccessBankOfMom
+	dw .StoreMoney
+	dw .TakeMoney
+	dw .StopOrStartSavingMoney
+	dw .AskDST
+	dw .JustDoWhatYouCan
 ; 16254
 
 .CheckIfBankInitialized: ; 16254

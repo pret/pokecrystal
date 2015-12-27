@@ -100,15 +100,15 @@ StatsScreenBattle: ; 4dcf7
 ; 4dd2a
 
 StatsScreenPointerTable: ; 4dd2a
-	jumptable_start
-	jumptable MonStatsInit       ; regular pokémon
-	jumptable EggStatsInit       ; egg
-	jumptable StatsScreenWaitCry
-	jumptable EggStatsJoypad
-	jumptable StatsScreen_LoadPage
-	jumptable StatsScreenWaitCry
-	jumptable MonStatsJoypad
-	jumptable StatsScreen_Exit
+	
+	dw MonStatsInit       ; regular pokémon
+	dw EggStatsInit       ; egg
+	dw StatsScreenWaitCry
+	dw EggStatsJoypad
+	dw StatsScreen_LoadPage
+	dw StatsScreenWaitCry
+	dw MonStatsJoypad
+	dw StatsScreen_Exit
 ; 4dd3a
 
 
@@ -157,12 +157,12 @@ MonStatsInit: ; 4dd72 (13:5d72)
 	call StatsScreen_InitUpperHalf
 	ld hl, wcf64
 	set 4, [hl]
-	ld h, StatsScreen_LoadPageTableIndex
+	ld h, 4
 	call StatsScreen_SetJumptableIndex
 	ret
 
 .egg
-	ld h, EggStatsInitTableIndex
+	ld h, 1
 	call StatsScreen_SetJumptableIndex
 	ret
 
@@ -178,7 +178,7 @@ EggStatsInit: ; 4dda1
 EggStatsJoypad: ; 4ddac (13:5dac)
 	call StatsScreen_GetJoypad
 	jr nc, .check
-	ld h, MonStatsInitTableIndex
+	ld h, 0
 	call StatsScreen_SetJumptableIndex
 	ret
 
@@ -189,7 +189,7 @@ EggStatsJoypad: ; 4ddac (13:5dac)
 	jp StatsScreen_JoypadAction
 
 .quit
-	ld h, StatsScreen_ExitTableIndex
+	ld h, 7
 	call StatsScreen_SetJumptableIndex
 	ret
 
@@ -205,7 +205,7 @@ StatsScreen_LoadPage: ; 4ddc6 (13:5dc6)
 MonStatsJoypad: ; 4ddd6 (13:5dd6)
 	call StatsScreen_GetJoypad
 	jr nc, .next
-	ld h, MonStatsInitTableIndex
+	ld h, 0
 	call StatsScreen_SetJumptableIndex
 	ret
 
@@ -360,17 +360,17 @@ StatsScreen_JoypadAction: ; 4de54 (13:5e54)
 	and %11111100
 	or c
 	ld [wcf64], a
-	ld h, StatsScreen_LoadPageTableIndex
+	ld h, 4
 	call StatsScreen_SetJumptableIndex
 	ret
 
 .load_mon
-	ld h, MonStatsInitTableIndex
+	ld h, 0
 	call StatsScreen_SetJumptableIndex
 	ret
 
 .b_button: ; 4dee4 (13:5ee4)
-	ld h, StatsScreen_ExitTableIndex
+	ld h, 7
 	call StatsScreen_SetJumptableIndex
 	ret
 
@@ -535,10 +535,10 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	ret
 
 .Jumptable: ; 4e00d (13:600d)
-	jumptable_start
-	jumptable .PinkPage
-	jumptable .GreenPage
-	jumptable .BluePage
+	
+	dw .PinkPage
+	dw .GreenPage
+	dw .BluePage
 
 
 .PinkPage: ; 4e013 (13:6013)

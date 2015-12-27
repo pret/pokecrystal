@@ -926,9 +926,8 @@ GetPokemonName:: ; 343b
 	ld e, a
 	ld h, 0
 	ld l, a
-rept 2
 	add hl, hl ; hl = hl * 4
-endr
+	add hl, hl ; hl = hl * 4
 	add hl, de ; hl = (hl*4) + de
 	add hl, hl ; hl = (5*hl) + (5*hl)
 	ld de, PokemonNames
@@ -1295,9 +1294,8 @@ HandleStoneQueue:: ; 3567
 	inc hl
 
 .next_inc2
-rept 2
 	inc hl
-endr
+	inc hl
 	jr .loop2
 
 .nope3
@@ -1929,7 +1927,7 @@ INCLUDE "home/battle.asm"
 
 Function3b0c:: ; 3b0c
 
-	ld a, [hLCDStatCustom]
+	ld a, [hFFC6]
 	and a
 	ret z
 
@@ -1992,12 +1990,10 @@ Function3eea:: ; 3eea
 	push bc
 	ld de, AttrMap - TileMap
 	add hl, de
-rept 2
 	inc b
-endr
-rept 2
+	inc b
 	inc c
-endr
+	inc c
 	call Function3f35
 	pop bc
 	pop hl
@@ -2021,12 +2017,10 @@ Function3f0d:: ; 3f0d
 	push bc
 	ld de, AttrMap - TileMap
 	add hl, de
-rept 2
 	inc b
-endr
-rept 2
+	inc b
 	inc c
-endr
+	inc c
 	call Function3f35
 	pop bc
 	pop hl
@@ -2147,9 +2141,8 @@ Function3f9f:: ; 3f9f
 	ld c, $8
 .asm_3fa5
 	ld a, [de]
-rept 2
 	inc de
-endr
+	inc de
 	cpl
 	ld [hl], $0
 	inc hl

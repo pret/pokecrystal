@@ -210,8 +210,8 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
     const ANIM_OBJ_B5
     const ANIM_OBJ_FLOWER
     const ANIM_OBJ_COTTON
-    const ANIM_OBJ_B8
-    const ANIM_OBJ_B9
+    const ANIM_OBJ_PLAYERFEETFOLLOW
+    const ANIM_OBJ_ENEMYFEETFOLLOW
     const ANIM_OBJ_BA
     const ANIM_OBJ_BB
 

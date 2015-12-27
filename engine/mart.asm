@@ -841,12 +841,12 @@ SellMenu: ; 15eb3
 .TryToSellItem: ; 15ee0
 	callba CheckItemMenu
 	ld a, [wItemAttributeParamBuffer]
-	ld hl, .jumptable
+	ld hl, .dw
 	rst JumpTable
 	ret
 ; 15eee
 
-.jumptable: ; 15eee
+.dw: ; 15eee
 	dw .try_sell
 	dw .cant_buy
 	dw .cant_buy

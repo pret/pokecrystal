@@ -54,13 +54,13 @@ MainMenu: ; 49cdc
 	db "MOBILE STUDIUM@"
 
 .Jumptable: ; 0x49d60
-	jumptable_start
-	jumptable MainMenu_Continue
-	jumptable MainMenu_NewGame
-	jumptable MainMenu_Options
-	jumptable MainMenu_MysteryGift
-	jumptable MainMenu_Mobile
-	jumptable MainMenu_MobileStudium
+	
+	dw MainMenu_Continue
+	dw MainMenu_NewGame
+	dw MainMenu_Options
+	dw MainMenu_MysteryGift
+	dw MainMenu_Mobile
+	dw MainMenu_MobileStudium
 ; 0x49d6c
 
 CONTINUE       EQU 0

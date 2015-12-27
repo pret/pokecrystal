@@ -771,9 +771,8 @@ TryReadSign: ; 96a38
 	push hl
 	call PlayTalkObject
 	pop hl
-rept 2
 	inc hl
-endr
+	inc hl
 	call GetMapScriptHeaderBank
 	call GetFarHalfword
 	call GetMapScriptHeaderBank

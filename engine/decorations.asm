@@ -104,7 +104,7 @@ _KrisDecorationMenu: ; 0x2675c
 	ret
 
 .FindOwndDecos: ; 2683a (9:683a)
-	ld hl, .jumptable
+	ld hl, .dw
 .loop
 	ld a, [hli]
 	ld e, a
@@ -127,7 +127,7 @@ _KrisDecorationMenu: ; 0x2675c
 	ret
 ; 26855 (9:6855)
 
-.jumptable: ; 26855
+.dw: ; 26855
 	dwb FindOwnedBeds, 0 ; bed
 	dwb FindOwnedCarpets, 1 ; carpet
 	dwb FindOwnedPlants, 2 ; plant

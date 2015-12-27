@@ -67,7 +67,7 @@ Function100063: ; 100063
 	ld [BGMapBuffer], a
 	xor a
 	ld [hMapAnims], a
-	ld [hLCDStatCustom], a
+	ld [hFFC6], a
 	ret
 ; 100082
 
@@ -84,7 +84,7 @@ Function100082: ; 100082
 	ld [rIE], a
 	xor a
 	ld [hMapAnims], a
-	ld [hLCDStatCustom], a
+	ld [hFFC6], a
 	ld a, $1
 	ld [hMobileReceive], a
 	ld [hMobile], a
@@ -118,9 +118,8 @@ Function1000ba: ; 1000ba
 	ld a, [wcd25]
 	ld e, a
 	ld d, 0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [wcd22]
 	call GetFarHalfword
 	ld a, [wcd22]
@@ -1912,9 +1911,8 @@ Function100bc2: ; 100bc2
 	ld a, [wMenuCursorY]
 	ld b, a
 	ld a, [wNumMoves]
-rept 2
 	inc a
-endr
+	inc a
 	cp b
 	jp nz, .asm_100bcb
 	ld a, $1
@@ -4746,9 +4744,8 @@ Function101ee2: ; 101ee2
 Function101ee4: ; 101ee4
 	ld d, 0
 	ld hl, Unknown_101ef5
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -7228,9 +7225,8 @@ endr
 	inc hl
 	push hl
 
-rept 2
 	add a
-endr
+	add a
 
 	add Unknown_10327a % $100
 	ld l, a
@@ -7693,9 +7689,8 @@ Function1035c6: ; 1035c6
 	callba Function10138b
 	ld b, 0
 	ld hl, Unknown_1035d7
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -7708,7 +7703,6 @@ Unknown_1035d7: ; 1035d7
 	dw Unknown_103608
 	dw Unknown_103608
 	dw Unknown_1035fe
-
 	dw AskMobileOrCable
 	dw AskMobileOrCable
 	dw AskMobileOrCable
@@ -8096,9 +8090,8 @@ Function10383c: ; 10383c
 	ld [wdc60], a
 	xor a
 	ld hl, wdc5c
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld [hl], a
 	ld hl, UnknownText_0x103876
 	call PrintText

@@ -59,19 +59,19 @@ HandlePlayerStep: ; d4e5 (3:54e5)
 	ret
 
 .Jumptable: ; d4f2 (3:54f2)
-	jumptable_start
-	jumptable GetMovementPermissions
-	jumptable BufferScreen
-	jumptable .mobile
-	jumptable .fail2
+	
+	dw GetMovementPermissions
+	dw BufferScreen
+	dw .mobile
+	dw .fail2
 ; The rest are never used.  Ever.
-	jumptable .fail1
-	jumptable .fail1
-	jumptable .fail1
-	jumptable .fail1
-	jumptable .fail1
-	jumptable .fail1
-	jumptable .fail1
+	dw .fail1
+	dw .fail1
+	dw .fail1
+	dw .fail1
+	dw .fail1
+	dw .fail1
+	dw .fail1
 
 .fail1: ; d508 (3:5508)
 	ret

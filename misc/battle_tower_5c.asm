@@ -203,7 +203,7 @@ InitBattleTowerChallengeRAM: ; 17021e
 
 _BattleTowerBattle: ; 17022c
 .loop
-	call .do_jumptable
+	call .do_dw
 	call DelayFrame
 	ld a, [wBattleTowerBattleEnded]
 	cp $1
@@ -211,11 +211,11 @@ _BattleTowerBattle: ; 17022c
 	ret
 ; 17023a
 
-.do_jumptable: ; 17023a
+.do_dw: ; 17023a
 	ld a, [wBattleTowerBattleEnded]
 	ld e, a
 	ld d, 0
-	ld hl, .jumptable
+	ld hl, .dw
 rept 2
 	add hl, de
 endr
@@ -225,7 +225,7 @@ endr
 	jp [hl]
 ; 170249
 
-.jumptable: ; 170249
+.dw: ; 170249
 	dw RunBattleTowerTrainer
 	dw SkipBattleTowerTrainer
 ; 17024d
@@ -688,7 +688,7 @@ Function1704e1: ; 1704e1
 	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
-	ld hl, .jumptable
+	ld hl, .dw
 rept 2
 	add hl, de
 endr
@@ -698,7 +698,7 @@ endr
 	jp [hl]
 ; 17051f
 
-.jumptable: ; 17051f
+.dw: ; 17051f
 	dw .Jumptable_0
 	dw .Jumptable_1
 	dw .Jumptable_2
@@ -945,7 +945,7 @@ BattleTowerAction: ; 170687
 	ld a, [ScriptVar]
 	ld e, a
 	ld d, 0
-	ld hl, .jumptable
+	ld hl, .dw
 rept 2
 	add hl, de
 endr
@@ -956,7 +956,7 @@ endr
 ; 170696
 
 
-.jumptable: ; 170696 (5c:4696)
+.dw: ; 170696 (5c:4696)
 	dw Function17075f ; 0x00
 	dw Function170788 ; 0x01
 	dw Function170778 ; 0x02

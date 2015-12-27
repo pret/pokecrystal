@@ -27,7 +27,7 @@ Function8e83f: ; 8e83f
 
 Function8e849: ; 8e849
 	ld d, 0
-	ld hl, .jumptable
+	ld hl, .dw
 rept 2
 	add hl, de
 endr
@@ -38,7 +38,7 @@ endr
 ; 8e854
 
 
-.jumptable: ; 8e854 (23:6854)
+.dw: ; 8e854 (23:6854)
 	dw Function8e8d5 ; init
 	dw Function8e961
 	dw Function8e97d

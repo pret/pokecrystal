@@ -1,6 +1,6 @@
 Function8b342:: ; 8b342
 ; Loads the secondary map header pointer, then runs through a
-; jumptable with three dummy functions.  Spends a lot of energy
+; dw with three dummy functions.  Spends a lot of energy
 ; doing pretty much nothing.
 	call GetSecondaryMapHeaderPointer
 	ld d, h
@@ -10,7 +10,7 @@ Function8b342:: ; 8b342
 	xor a
 .loop
 	push af
-	ld hl, .jumptable
+	ld hl, .dw
 	rst JumpTable
 	pop af
 	inc a
@@ -19,7 +19,7 @@ Function8b342:: ; 8b342
 	ret
 ; 8b354
 
-.jumptable: ; 8b354
+.dw: ; 8b354
 	dw .zero
 	dw .one
 	dw .two

@@ -183,7 +183,7 @@ Credits:: ; 109847
 	call ByteFill
 
 	ld a, rSCX - $ff00
-	ld [hLCDStatCustom], a
+	ld [hFFC6], a
 
 	call GetCreditsPalette
 	call SetPalettes
@@ -211,7 +211,7 @@ Credits:: ; 109847
 .exit_credits
 	call ClearBGPalettes
 	xor a
-	ld [hLCDStatCustom], a
+	ld [hFFC6], a
 	ld [hBGMapAddress], a
 	pop af
 	ld [hVBlank], a
@@ -269,20 +269,20 @@ endr
 
 
 .Jumptable: ; 109937 (42:5937)
-	jumptable_start
-	jumptable ParseCredits
-	jumptable Credits_Next
-	jumptable Credits_Next
-	jumptable Credits_PrepBGMapUpdate
-	jumptable Credits_UpdateGFXRequestPath
-	jumptable Credits_RequestGFX
-	jumptable Credits_LYOverride
-	jumptable Credits_Next
-	jumptable Credits_Next
-	jumptable Credits_Next
-	jumptable Credits_UpdateGFXRequestPath
-	jumptable Credits_RequestGFX
-	jumptable Credits_LoopBack
+	
+	dw ParseCredits
+	dw Credits_Next
+	dw Credits_Next
+	dw Credits_PrepBGMapUpdate
+	dw Credits_UpdateGFXRequestPath
+	dw Credits_RequestGFX
+	dw Credits_LYOverride
+	dw Credits_Next
+	dw Credits_Next
+	dw Credits_Next
+	dw Credits_UpdateGFXRequestPath
+	dw Credits_RequestGFX
+	dw Credits_LoopBack
 
 
 Credits_Next: ; 109951 (42:5951)

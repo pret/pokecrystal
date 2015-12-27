@@ -188,8 +188,8 @@ endr
 ; e12d9
 
 .Jumptable: ; e12d9
-	jumptable_start
-	jumptable .Function
+	
+	dw .Function
 ; e12db
 
 .Function: ; e12db

@@ -1041,7 +1041,7 @@ StartTitleScreen: ; 6219
 	call ClearScreen
 	call WaitBGMap2
 	xor a
-	ld [hLCDStatCustom], a
+	ld [hFFC6], a
 	ld [hSCX], a
 	ld [hSCY], a
 	ld a, $7
@@ -1058,17 +1058,16 @@ StartTitleScreen: ; 6219
 .ok
 	ld e, a
 	ld d, 0
-	ld hl, .jumptable
-rept 2
+	ld hl, .dw
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
 ; 626a
 
-.jumptable
+.dw
 	dw _MainMenu
 	dw DeleteSaveData
 	dw CrystalIntroSequence
@@ -1113,9 +1112,8 @@ TitleScreenScene: ; 62a3
 	ld e, a
 	ld d, 0
 	ld hl, .scenes
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1174,7 +1172,7 @@ TitleScreenEntrance: ; 62bc
 	ld hl, wJumptableIndex
 	inc [hl]
 	xor a
-	ld [hLCDStatCustom], a
+	ld [hFFC6], a
 
 ; Play the title screen music.
 	ld de, MUSIC_TITLE
@@ -1343,22 +1341,19 @@ Function639b: ; unreferenced
 	add hl, bc ; over-the-top compicated way to load wc3ae into hl
 	ld l, [hl]
 	ld h, 0
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld de, Data63ca
 	add hl, de
 	; If bit 2 of [wcf65] is set, get the second dw; else, get the first dw
 	ld a, [wcf65]
 	and %00000100
-rept 2
 	srl a
-endr
+	srl a
 	ld e, a
 	ld d, 0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	and a
 	ret z

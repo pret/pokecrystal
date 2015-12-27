@@ -472,14 +472,14 @@ Function158cc: ; 0x158cc
 	ld [wSpriteUpdatesEnabled], a
 	callba CheckItemMenu
 	ld a, [wItemAttributeParamBuffer]
-	ld hl, .jumptable
+	ld hl, .dw
 	rst JumpTable
 	pop af
 	ld [wSpriteUpdatesEnabled], a
 	ret
 ; 0x158e7
 
-.jumptable: ; 0x158e7
+.dw: ; 0x158e7
 	dw .tossable
 	dw .no_toss
 	dw .no_toss

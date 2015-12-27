@@ -163,7 +163,7 @@ OWCutJumptable: ; 8ca0c
 	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
-	ld hl, .jumptable
+	ld hl, .dw
 rept 2
 	add hl, de
 endr
@@ -174,7 +174,7 @@ endr
 ; 8ca1b
 
 
-.jumptable: ; 8ca1b (23:4a1b)
+.dw: ; 8ca1b (23:4a1b)
 	dw Cut_SpawnAnimateTree
 	dw Cut_SpawnAnimateLeaves
 	dw Cut_StartWaiting

@@ -6,9 +6,8 @@ RunMapSetupScript:: ; 15363
 	ld c, a
 	ld b, 0
 	ld hl, MapSetupScripts
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

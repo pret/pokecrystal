@@ -193,9 +193,8 @@ endr
 	inc de
 	push hl
 	push de
-rept 2
 	inc hl
-endr
+	inc hl
 	call FillPP
 	pop de
 	pop hl
@@ -636,9 +635,8 @@ SentGetPkmnIntoFromBox: ; db3f
 	ld a, [CurPartySpecies]
 	cp EGG
 	jr z, .egg
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hli]
 	ld [de], a
 	ld a, [hl]
@@ -1423,9 +1421,8 @@ CalcPkmnStatC: ; e17b
 	ld a, c
 	cp STAT_SDEF
 	jr nz, .not_spdef
-rept 2
 	dec hl
-endr
+	dec hl
 
 .not_spdef
 	sla c
@@ -1469,9 +1466,8 @@ endr
 	ld b, a
 	ld a, [hli]
 	and $1
-rept 2
 	add a
-endr
+	add a
 	add b
 	ld b, a
 	ld a, [hl]
@@ -1673,9 +1669,8 @@ GivePoke:: ; e277
 	ld a, [ScriptBank]
 	call FarCopyBytes
 	pop hl
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [ScriptBank]
 	call GetFarHalfword
 	pop bc

@@ -46,7 +46,7 @@ DoNextFrameForAllSprites: ; 8cf7a
 	ld b, h
 	push hl
 	push de
-	call DoAnimFrame ; Uses a massive jumptable
+	call DoAnimFrame ; Uses a massive dw
 	call UpdateAnimFrame
 	pop de
 	pop hl
@@ -86,7 +86,7 @@ DoNextFrameForFirst16Sprites: ; 8cfa8 (23:4fa8)
 	ld b, h
 	push hl
 	push de
-	call DoAnimFrame ; Uses a massive jumptable
+	call DoAnimFrame ; Uses a massive dw
 	call UpdateAnimFrame
 	pop de
 	pop hl
@@ -188,13 +188,11 @@ endr
 	ld [hli], a
 ; load 0 into the next four fields
 	xor a
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	xor a
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 ; load -1 into the next field
 	dec a
 	ld [hli], a
@@ -478,9 +476,8 @@ GetSpriteAnimFrame: ; 8d132
 
 	ld hl, SPRITEANIMSTRUCT_FRAME
 	add hl, bc
-rept 2
 	dec [hl]
-endr
+	dec [hl]
 	jr .loop
 
 .restart
@@ -505,9 +502,8 @@ endr
 	ld e, [hl]
 	ld d, 0
 	ld hl, SpriteAnimFrameData
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -536,9 +532,8 @@ BrokenGetStdGraphics: ; 8d1ac
 	push hl
 	ld l, a
 	ld h, 0
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld de, BrokenStdGFXPointers ; broken 2bpp pointers
 	add hl, de
 	ld c, [hl]
@@ -635,9 +630,8 @@ Sprites_Sine: ; 8e72c
 	ld a, d
 	ld d, 0
 	ld hl, .sinewave
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -677,9 +671,8 @@ AnimateEndOfExpBar: ; 8e79d
 	call .AnimateFrame
 	call DelayFrame
 	pop bc
-rept 2
 	inc d
-endr
+	inc d
 	dec c
 	jr nz, .loop
 	call ClearSprites

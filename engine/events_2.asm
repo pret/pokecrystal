@@ -514,7 +514,7 @@ CmdQueue_Null2: ; 97eb8
 
 CmdQueue_Type4: ; 97ebc
 	call CmdQueueAnonymousJumptable
-	; anonymous jumptable
+	; anonymous dw
 	dw .zero
 	dw .one
 ; 97ec3
@@ -560,7 +560,7 @@ CmdQueue_Type4: ; 97ebc
 
 CmdQueue_Type3: ; 97ef9
 	call CmdQueueAnonymousJumptable
-	; anonymous jumptable
+	; anonymous dw
 	dw .zero
 	dw .one
 	dw .two

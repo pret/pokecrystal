@@ -18,7 +18,7 @@ Predef_LoadSGBLayoutCGB: ; 8d59
 	ld l, a
 	ld h, 0
 	add hl, hl
-	ld de, .jumptable
+	ld de, .dw
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
@@ -32,7 +32,7 @@ Predef_LoadSGBLayoutCGB: ; 8d59
 	ret
 ; 8d7a
 
-.jumptable: ; 8d7a
+.dw: ; 8d7a
 	dw _CGB00
 	dw _CGB01
 	dw _CGB02
@@ -92,18 +92,16 @@ _CGB01: ; 8ddb
 	ld a, [EnemyHPPal]
 	ld l, a
 	ld h, $0
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld bc, Palettes_a8be
 	add hl, bc
 	call LoadPalette_White_Col1_Col2_Black
 	ld a, [PlayerHPPal]
 	ld l, a
 	ld h, $0
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld bc, Palettes_a8be
 	add hl, bc
 	call LoadPalette_White_Col1_Col2_Black
@@ -209,9 +207,8 @@ _CGB03: ; 8edb
 	ld a, [wcda1]
 	ld l, a
 	ld h, $0
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld bc, Palettes_a8be
 	add hl, bc
 	call LoadPalette_White_Col1_Col2_Black
@@ -489,9 +486,8 @@ _CGB06: ; 90f8
 _CGB07: ; 9122
 	ld b, 0
 	ld hl, Jumptable_912d
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -797,9 +793,8 @@ _CGB0e: ; 9373
 	ld a, [PlayerHPPal]
 	ld l, a
 	ld h, 0
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld bc, Palettes_a8be
 	add hl, bc
 	call LoadPalette_White_Col1_Col2_Black

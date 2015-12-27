@@ -50,9 +50,8 @@ StartMenu:: ; 125cd
 	ld hl, .MenuReturns
 	ld e, a
 	ld d, 0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -235,9 +234,8 @@ endr
 	push de
 	ld a, [MenuSelection]
 	call .GetMenuAccountTextPointer
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a

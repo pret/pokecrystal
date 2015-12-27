@@ -162,9 +162,8 @@ MobileMenu_InitMenuBuffers: ; 4a071 (12:6071)
 	add B_BUTTON
 	ld [hli], a ; wMenuJoypadFilter
 	ld a, 1
-rept 2
 	ld [hli], a ; wMenuCursorY, wMenuCursorX
-endr
+	ld [hli], a ; wMenuCursorY, wMenuCursorX
 	ret
 
 Function4a098: ; 4a098 (12:6098)
@@ -246,9 +245,8 @@ Function4a118: ; 4a118 (12:6118)
 	add $2
 	ld [hli], a
 	ld a, $1
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ret
 
 Function4a13b: ; 4a13b (12:613b)
@@ -523,9 +521,8 @@ Function4a373: ; 4a373 (12:6373)
 	add $2
 	ld [hli], a
 	ld a, $1
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ret
 ; 4a39a (12:639a)
 
@@ -836,9 +833,8 @@ Function4a680: ; 4a680 (12:6680)
 	add $2
 	ld [hli], a
 	ld a, $1
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	xor a
 rept 3
 	ld [hli], a

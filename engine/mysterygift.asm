@@ -211,9 +211,8 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	ld hl, sDailyMysteryGiftPartnerIDs ; inc hl
 	ld e, a
 	ld d, $0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [wMysteryGiftPartnerID]
 	ld [hli], a
 	ld a, [wMysteryGiftPartnerID + 1]
@@ -1062,9 +1061,8 @@ Function105033: ; 105033 (41:5033)
 Function105038: ; 105038 (41:5038)
 	ld a, $20
 	ld [rJOYP], a
-rept 2
 	ld a, [rJOYP]
-endr
+	ld a, [rJOYP]
 	cpl
 	and $f
 	swap a

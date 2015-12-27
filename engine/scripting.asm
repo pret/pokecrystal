@@ -862,9 +862,8 @@ Script_trainertext: ; 9710f
 	ld c, a
 	ld b, 0
 	ld hl, WalkingX
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1127,9 +1126,8 @@ Script_faceplayer: ; 9722e
 	ld e, a
 	callba GetRelativeFacing
 	ld a, d
-rept 2
 	add a
-endr
+	add a
 	ld e, a
 	ld a, [hLastTalked]
 	ld d, a
@@ -1162,9 +1160,8 @@ Script_faceperson: ; 97248
 	pop bc
 	ret c
 	ld a, d
-rept 2
 	add a
-endr
+	add a
 	ld e, a
 	ld d, c
 	call ApplyPersonFacing
@@ -1185,9 +1182,8 @@ Script_spriteface: ; 97274
 .ok
 	ld d, a
 	call GetScriptByte
-rept 2
 	add a
-endr
+	add a
 	ld e, a
 	call ApplyPersonFacing
 	ret

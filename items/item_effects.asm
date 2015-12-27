@@ -1614,11 +1614,11 @@ GetItemHealingAction: ; f058 (3:7058)
 ; f09e
 
 StatusHealer_Jumptable: ; f09e (3:709e)
-	ld hl, .jumptable
+	ld hl, .dw
 	rst JumpTable
 	ret
 
-.jumptable: ; f0a3 (3:70a3)
+.dw: ; f0a3 (3:70a3)
 	dw StatusHealer_ClearPalettes
 	dw StatusHealer_NoEffect
 	dw StatusHealer_ExitMenu

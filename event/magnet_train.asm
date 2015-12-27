@@ -61,9 +61,9 @@ Special_MagnetTrain: ; 8cc04
 	ld [hVBlank], a
 	call ClearBGPalettes
 	xor a
-	ld [hLCDStatCustom], a
-	ld [hLCDStatCustom + 1], a
-	ld [hLCDStatCustom + 2], a
+	ld [hFFC6], a
+	ld [hFFC7], a
+	ld [hFFC8], a
 	ld [hSCX], a
 	ld [Requested2bppSource], a
 	ld [Requested2bppSource + 1], a
@@ -254,7 +254,7 @@ MagnetTrain_InitLYOverrides: ; 8cda6
 	ld a, [wMagnetTrainInitPosition]
 	call ByteFill
 	ld a, $43
-	ld [hLCDStatCustom], a
+	ld [hFFC6], a
 	ret
 ; 8cdc3
 
@@ -306,14 +306,14 @@ endr
 ; 8ce06
 
 .Jumptable: ; 8ce06
-	jumptable_start
-	jumptable .InitPlayerSpriteAnim
-	jumptable .WaitScene
-	jumptable .MoveTrain1
-	jumptable .WaitScene
-	jumptable .MoveTrain2
-	jumptable .WaitScene
-	jumptable .TrainArrived
+	
+	dw .InitPlayerSpriteAnim
+	dw .WaitScene
+	dw .MoveTrain1
+	dw .WaitScene
+	dw .MoveTrain2
+	dw .WaitScene
+	dw .TrainArrived
 ; 8ce14
 
 .Next: ; 8ce14

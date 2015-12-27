@@ -189,7 +189,7 @@ _TitleScreen: ; 10ed67
 	
 ; Let LCD Stat know we're messing around with SCX
 	ld a, rSCX - rJOYP
-	ld [hLCDStatCustom], a
+	ld [hFFC6], a
 	
 	pop af
 	ld [rSVBK], a
