@@ -33,16 +33,16 @@ Predef_LoadSGBLayoutCGB: ; 8d59
 ; 8d7a
 
 .dw: ; 8d7a
-	dw _CGB00
-	dw _CGB01
-	dw _CGB02
-	dw _CGB03
+	dw _CGB_BattleGrayscale
+	dw _CGB_BattleColors
+	dw _CGB_PokegearPals
+	dw _CGB_StatsScreenHPPals
 	dw _CGB04
-	dw _CGB05
+	dw _CGB_SlotMachine
 	dw _CGB06
 	dw _CGB07
 	dw _CGB08
-	dw _CGB09
+	dw _CGB_MapPals
 	dw _CGB0a
 	dw _CGB0b
 	dw _CGB0c
@@ -53,8 +53,8 @@ Predef_LoadSGBLayoutCGB: ; 8d59
 	dw _CGB11
 	dw _CGB12
 	dw _CGB13
-	dw _CGB14
-	dw _CGB15
+	dw _CGB_PackPals
+	dw _CGB_TrainerCard
 	dw _CGB16
 	dw _CGB17
 	dw _CGB18
@@ -66,22 +66,22 @@ Predef_LoadSGBLayoutCGB: ; 8d59
 	dw _CGB1e
 ; 8db8
 
-_CGB00: ; 8db8
+_CGB_BattleGrayscale: ; 8db8
 	ld hl, PalPacket_9c66 + 1
 	ld de, UnknBGPals
 	ld c, $4
 	call CopyPalettes
 	ld hl, PalPacket_9c66 + 1
-	ld de, UnknBGPals + $20
+	ld de, UnknBGPals + 4 palettes
 	ld c, $4
 	call CopyPalettes
 	ld hl, PalPacket_9c66 + 1
 	ld de, UnknOBPals
 	ld c, $2
 	call CopyPalettes
-	jr Function8e23
+	jr _CGB_FinishBattleScreenLayout
 
-_CGB01: ; 8ddb
+_CGB_BattleColors: ; 8ddb
 	ld de, UnknBGPals
 	call GetBattlemonBackpicPalettePointer
 	push hl
@@ -112,11 +112,11 @@ _CGB01: ; 8ddb
 	call LoadPalette_White_Col1_Col2_Black
 	pop hl
 	call LoadPalette_White_Col1_Col2_Black
-	ld a, SCGB_01
+	ld a, SCGB_BATTLE_COLORS
 	ld [SGBPredef], a
 	call ApplyPals
-Function8e23: ; 8e23
-	call InitBattlePartyMenuPals
+_CGB_FinishBattleScreenLayout: ; 8e23
+	call InitPartyMenuBGPal7
 	hlcoord 0, 0, AttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, $2
@@ -146,8 +146,8 @@ Function8e23: ; 8e23
 	ld a, $7
 	call ByteFill
 	ld hl, Palettes_979c
-	ld de, UnknOBPals + $10
-	ld bc, $30
+	ld de, UnknOBPals + 2 palettes
+	ld bc, 6 palettes
 	ld a, $5
 	call FarCopyWRAM
 	call ApplyAttrMap
@@ -155,9 +155,9 @@ Function8e23: ; 8e23
 ; 8e85
 
 
-InitBattlePartyMenuPals: ; 8e85
+InitPartyMenuBGPal7: ; 8e85
 	callba Function100dc0
-Function8e8b: ; 8e8b
+Mobile_InitPartyMenuBGPal7: ; 8e8b
 	ld hl, Palette_b311
 	jr nc, .not_mobile
 	ld hl, Palette_b309
@@ -169,7 +169,7 @@ Function8e8b: ; 8e8b
 	ret
 ; 8e9f
 
-Function8e9f: ; 8e9f
+InitPartyMenuBGPal0: ; 8e9f
 	callba Function100dc0
 	ld hl, Palette_b311
 	jr nc, .not_mobile
@@ -182,16 +182,16 @@ Function8e9f: ; 8e9f
 	ret
 ; 8eb9
 
-_CGB02: ; 8eb9
+_CGB_PokegearPals: ; 8eb9
 	ld a, [PlayerGender]
 	bit 0, a
-	jr z, .asm_8ec5
-	ld hl, Palettes_b759
-	jr .asm_8ec8
+	jr z, .male
+	ld hl, FemalePokegearPals
+	jr .got_pals
 
-.asm_8ec5
-	ld hl, Palettes_b729
-.asm_8ec8
+.male
+	ld hl, MalePokegearPals
+.got_pals
 	ld de, UnknBGPals
 	ld bc, 6 palettes
 	ld a, $5
@@ -202,7 +202,7 @@ _CGB02: ; 8eb9
 	ret
 ; 8edb
 
-_CGB03: ; 8edb
+_CGB_StatsScreenHPPals: ; 8edb
 	ld de, UnknBGPals
 	ld a, [wcda1]
 	ld l, a
@@ -289,23 +289,23 @@ _CGB04: ; 8f70
 	call LoadHLPaletteIntoDE
 	ld a, [CurPartySpecies]
 	cp $ff
-	jr nz, .asm_8f8a
+	jr nz, .is_pokemon
 	ld hl, Palette8fba
 	call LoadHLPaletteIntoDE
-	jr .asm_8f90
+	jr .got_palette
 
-.asm_8f8a
+.is_pokemon
 	call GetMonPalettePointer_
 	call LoadPalette_White_Col1_Col2_Black
-.asm_8f90
+.got_palette
 	call WipeAttrMap
 	hlcoord 1, 1, AttrMap
 	lb bc, 7, 7
 	ld a, $1
 	call FillBoxCGB
-	call Function971a
+	call InitPartyMenuOBPals
 	ld hl, Palette8fc2
-	ld de, UnknOBPals + $38
+	ld de, UnknOBPals + 7 palettes
 	ld bc, 1 palettes
 	ld a, $5
 	call FarCopyWRAM
@@ -351,7 +351,7 @@ _CGB17: ; 8fca
 	lb bc, 7, 7
 	ld a, $1
 	call FillBoxCGB
-	call Function971a
+	call InitPartyMenuOBPals
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
@@ -374,7 +374,7 @@ Function9009: ; 9009
 	lb bc, 7, 7
 	ld a, $1
 	call FillBoxCGB
-	call Function971a
+	call InitPartyMenuOBPals
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
@@ -402,7 +402,7 @@ _CGB16: ; 903e
 	lb bc, 7, 7
 	ld a, $1
 	call FillBoxCGB
-	call Function971a
+	call InitPartyMenuOBPals
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
@@ -410,7 +410,7 @@ _CGB16: ; 903e
 	ret
 ; 906e
 
-_CGB05: ; 906e
+_CGB_SlotMachine: ; 906e
 	ld hl, Palettes_b7a9
 	ld de, UnknBGPals
 	ld bc, $80
@@ -574,6 +574,7 @@ _CGB08: ; 91ad
 	ld bc, 16 palettes
 	ld a, $5
 	call FarCopyWRAM
+
 	ld hl, PalPacket_9cb6 + 1
 	call CopyFourPalettes
 	call WipeAttrMap
@@ -581,7 +582,7 @@ _CGB08: ; 91ad
 	ret
 ; 91c8
 
-_CGB09: ; 91c8
+_CGB_MapPals: ; 91c8
 	call LoadMapPals
 	ld a, SCGB_MAPPALS
 	ld [SGBPredef], a
@@ -591,9 +592,9 @@ _CGB09: ; 91c8
 _CGB0a: ; 91d1
 	ld hl, PalPacket_9c56 + 1
 	call CopyFourPalettes
-	call Function8e9f
-	call InitBattlePartyMenuPals
-	call Function971a
+	call InitPartyMenuBGPal0
+	call InitPartyMenuBGPal7
+	call InitPartyMenuOBPals
 	call ApplyAttrMap
 	ret
 ; 91e4
@@ -683,7 +684,7 @@ _CGB18: ; 925e
 	ret
 ; 9289
 
-_CGB15: ; 9289
+_CGB_TrainerCard: ; 9289
 	ld de, UnknBGPals
 	xor a
 	call GetTrainerPalettePointer
@@ -834,7 +835,7 @@ _CGB10: ; 93ba
 	ret
 ; 93d3
 
-_CGB14: ; 93d3
+_CGB_PackPals: ; 93d3
 ; pack pals
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
@@ -948,7 +949,7 @@ _CGB14: ; 93d3
 ; 9499
 
 _CGB12: ; 9499
-	call _CGB09
+	call _CGB_MapPals
 	ld de, SCREEN_WIDTH
 	hlcoord 0, 0, AttrMap
 	ld a, [wMenuBorderTopCoord]

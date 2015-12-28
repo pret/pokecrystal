@@ -21,6 +21,7 @@ Function11c05d: ; 11c05d
 	ld b, h
 	scf
 	ret
+
 ; 11c075
 
 Function11c075: ; 11c075
@@ -31,6 +32,7 @@ Function11c075: ; 11c075
 	ld bc, wcd36
 	call Function11c08f
 	ret
+
 ; 11c082
 
 Function11c082: ; 11c082
@@ -41,6 +43,7 @@ Function11c082: ; 11c082
 	ld bc, wcd36
 	call Function11c0c6
 	ret
+
 ; 11c08f
 
 Function11c08f: ; 11c08f
@@ -93,6 +96,7 @@ Function11c08f: ; 11c08f
 	dec a
 	jr nz, .asm_11c0b0
 	ret
+
 ; 11c0c6
 
 
@@ -187,6 +191,7 @@ Function11c0c6: ; 11c0c6
 	ld a, h
 	ld [wcf64], a
 	ret
+
 ; 11c14a
 
 Function11c14a: ; 11c14a
@@ -211,8 +216,8 @@ Function11c156: ; 11c156
 	call ByteFill
 	ld a, d
 	and a
-	jr z, .asm_11c19c
-	ld hl, Unknown_11daac
+	jr z, .get_name
+	ld hl, MobileFixedWordCategoryPointers
 	dec d
 	sla d
 	ld c, d
@@ -233,8 +238,8 @@ Function11c156: ; 11c156
 	sla c
 	rl b
 	add hl, bc
-	ld bc, $0005
-.asm_11c18f
+	ld bc, 5 ; length of a string
+.loop
 	ld de, $c608
 	call CopyBytes
 	ld de, $c608
@@ -242,13 +247,13 @@ Function11c156: ; 11c156
 	ld [rSVBK], a
 	ret
 
-.asm_11c19c
+.get_name
 	ld a, e
 	ld [wd265], a
 	call GetPokemonName
 	ld hl, StringBuffer1
-	ld bc, $000a
-	jr .asm_11c18f
+	ld bc, PKMN_NAME_LENGTH - 1
+	jr .loop
 ; 11c1ab
 
 Function11c1ab: ; 11c1ab
@@ -260,6 +265,7 @@ Function11c1ab: ; 11c1ab
 	pop af
 	ld [hInMenu], a
 	ret
+
 ; 11c1b9
 
 Function11c1b9: ; 11c1b9
@@ -272,6 +278,7 @@ Function11c1b9: ; 11c1b9
 	pop af
 	ld [rSVBK], a
 	ret
+
 ; 11c1ca
 
 Function11c1ca: ; 11c1ca
@@ -322,6 +329,7 @@ Function11c1ca: ; 11c1ca
 	call Function11d4aa
 	call Function11d3ba
 	ret
+
 ; 11c254
 
 Function11c254: ; 11c254
@@ -343,6 +351,7 @@ Function11c254: ; 11c254
 	call CopyBytes
 	call CloseSRAM
 	ret
+
 ; 11c277
 
 
@@ -370,6 +379,7 @@ Function11c283: ; 11c283
 	callba ClearSpriteAnims
 	call ClearSprites
 	ret
+
 ; 11c2ac
 
 .DoJumptableFunction: ; 11c2ac
@@ -525,6 +535,7 @@ Function11c38a: ; 11c38a (47:438a)
 	dec a
 	jr nz, .asm_11c392
 	ret
+
 ; 11c3bc (47:43bc)
 
 String_11c3bc: ; 11c3bc
@@ -574,6 +585,7 @@ Function11c3ed: ; 11c3ed (47:43ed)
 	and $10
 	jr nz, .asm_11c498
 	ret
+
 .asm_11c41a
 	call PlayClickSFX
 .asm_11c41d
@@ -585,6 +597,7 @@ Function11c3ed: ; 11c3ed (47:43ed)
 	ld a, $8
 	ld [wcd20], a ; wcd20 (aliases: CreditsPos)
 	ret
+
 .asm_11c42c
 	ld a, [wcd20] ; wcd20 (aliases: CreditsPos)
 	cp $6
@@ -628,6 +641,7 @@ Function11c3ed: ; 11c3ed (47:43ed)
 	ld [wJumptableIndex], a
 	call PlayClickSFX
 	ret
+
 .asm_11c47c
 	ld a, [hl]
 	cp $3
@@ -673,6 +687,7 @@ Function11c4a5: ; 11c4a5 (47:44a5)
 	ld [wcd21], a
 	ld a, $6
 	ret
+
 .asm_11c4b7
 	xor a
 	ld [wcd22], a
@@ -690,6 +705,7 @@ Function11c4be: ; 11c4be (47:44be)
 	call ByteFill
 	callba ReloadMapPart
 	ret
+
 ; 11c4db (47:44db)
 
 String_11c4db: ; 11c4db
@@ -849,10 +865,11 @@ Function11c53d: ; 11c53d (47:453d)
 .asm_11c5ee
 	ld [hl], a
 	ret
+
 ; 11c5f0
 
 Function11c5f0: ; 11c5f0 (47:45f0)
-	ld de, Strings_11da52
+	ld de, MobileFixedWordCategoryNames
 	ld bc, Unknown_11c63a
 	ld a, $f
 .asm_11c5f8
@@ -886,6 +903,7 @@ Function11c618: ; 11c618 (47:4618)
 	call ByteFill
 	callba ReloadMapPart
 	ret
+
 ; 11c62a (47:462a)
 
 String_11c62a: ; 11c62a
@@ -1010,6 +1028,7 @@ Function11c675: ; 11c675 (47:4675)
 	set 3, [hl]
 	call PlayClickSFX
 	ret
+
 .asm_11c708
 	ld a, [hl]
 	cp $3
@@ -1103,6 +1122,7 @@ Function11c770: ; 11c770 (47:4770)
 .asm_11c795
 	ld [wcd29], a
 	ret
+
 .asm_11c799
 	ld a, [wc7d2]
 	ld [wcd28], a
@@ -1157,6 +1177,7 @@ Function11c7bc: ; 11c7bc (47:47bc)
 	cp e
 	jr nz, .asm_11c7d0
 	ret
+
 .asm_11c7e9
 	ld hl, wd100
 	ld a, [wcd26]
@@ -1187,10 +1208,12 @@ Function11c7bc: ; 11c7bc (47:47bc)
 	cp e
 	jr nz, .asm_11c7f1
 	ret
+
 .asm_11c811
 	pop hl
 	pop de
 	ret
+
 .asm_11c814
 	ld hl, $c648
 	ld a, [wcd22]
@@ -1237,10 +1260,12 @@ Function11c7bc: ; 11c7bc (47:47bc)
 	cp e
 	jr nz, .asm_11c831
 	ret
+
 .asm_11c851
 	pop hl
 	pop de
 	ret
+
 ; 11c854 (47:4854)
 
 Unknown_11c854: ; 11c854
@@ -1302,6 +1327,7 @@ Function11c86e: ; 11c86e (47:486e)
 	dec c
 	jr nz, .asm_11c8b1
 	ret
+
 .asm_11c8b7
 	hlcoord 17, 16
 	ld a, $7f
@@ -1313,6 +1339,7 @@ Function11c86e: ; 11c86e (47:486e)
 	dec c
 	jr nz, .asm_11c8c2
 	ret
+
 ; 11c8c7 (47:48c7)
 
 BCD2String: ; 11c8c7
@@ -1336,6 +1363,7 @@ BCD2String: ; 11c8c7
 	add "0"
 	ld [hli], a
 	ret
+
 ; 11c8ec
 
 MobileString_Page: ; 11c8ec
@@ -1381,6 +1409,7 @@ Function11c8f6: ; 11c8f6 (47:48f6)
 	inc hl
 	ld [hl], d
 	ret
+
 .asm_11c927
 	ld hl, wcd26
 	ld a, [wcd25]
@@ -1451,6 +1480,7 @@ Function11c95d: ; 11c95d (47:495d)
 	jr nz, .asm_11c980
 	pop hl
 	ret
+
 ; 11c986 (47:4986)
 
 Unknown_11c986:
@@ -1507,6 +1537,7 @@ Function11c9c3: ; 11c9c3 (47:49c3)
 	and $80
 	jr nz, .asm_11c9fc
 	ret
+
 .asm_11c9de
 	ld a, [hl]
 	and a
@@ -1521,12 +1552,14 @@ Function11c9c3: ; 11c9c3 (47:49c3)
 	ld [wJumptableIndex], a
 	call PlayClickSFX
 	ret
+
 .asm_11c9f7
 	ld a, [hl]
 	and a
 	ret z
 	dec [hl]
 	ret
+
 .asm_11c9fc
 	ld a, [hl]
 	and a
@@ -1573,6 +1606,7 @@ Function11ca19: ; 11ca19 (47:4a19)
 	jr nz, .asm_11ca22
 	callba ReloadMapPart
 	ret
+
 ; 11ca38 (47:4a38)
 
 String_11ca38: ; 11ca38
@@ -1650,6 +1684,7 @@ Function11cab3: ; 11cab3 (47:4ab3)
 	and $80
 	jr nz, .asm_11cb17
 	ret
+
 .asm_11cace
 	call PlayClickSFX
 	ld a, [hl]
@@ -1668,10 +1703,12 @@ Function11cab3: ; 11cab3 (47:4ab3)
 	ld a, $1
 	ld [wcd2a], a
 	ret
+
 .asm_11caf3
 	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
+
 .asm_11caf9
 	call PlayClickSFX
 .asm_11cafc
@@ -1685,18 +1722,21 @@ Function11cab3: ; 11cab3 (47:4ab3)
 	ld a, $1
 	ld [wcd35], a
 	ret
+
 .asm_11cb12
 	ld a, [hl]
 	and a
 	ret z
 	dec [hl]
 	ret
+
 .asm_11cb17
 	ld a, [hl]
 	and a
 	ret nz
 	inc [hl]
 	ret
+
 ; 11cb1c (47:4b1c)
 
 String_11cb1c: ; 11cb1c
@@ -1741,6 +1781,7 @@ Function11cb66: ; 11cb66 (47:4b66)
 	and $80
 	jr nz, .asm_11cbf0
 	ret
+
 .asm_11cb81
 	ld a, [hl]
 	and a
@@ -1791,6 +1832,7 @@ Function11cb66: ; 11cb66 (47:4b66)
 	ld a, $10
 	ld [hl], a
 	ret
+
 .asm_11cbd4
 	call PlayClickSFX
 .asm_11cbd7
@@ -1802,12 +1844,14 @@ Function11cb66: ; 11cb66 (47:4b66)
 	ld a, $4
 	ld [wJumptableIndex], a
 	ret
+
 .asm_11cbeb
 	ld a, [hl]
 	and a
 	ret z
 	dec [hl]
 	ret
+
 .asm_11cbf0
 	ld a, [hl]
 	and a
@@ -1823,6 +1867,7 @@ Function11cbf5: ; 11cbf5 (47:4bf5)
 	dec hl
 	set 7, [hl]
 	ret
+
 ; 11cc01 (47:4c01)
 
 Unknown_11cc01: ; 11cc01
@@ -1888,6 +1933,7 @@ Function11cd04: ; 11cd04 (47:4d04)
 	ld a, $4
 	ld [wJumptableIndex], a
 	ret
+
 ; 11cd10 (47:4d10)
 
 String_11cd10: ; 11cd10
@@ -1987,6 +2033,7 @@ Function11cdaa: ; 11cdaa (47:4daa)
 	call ByteFill
 	callba ReloadMapPart
 	ret
+
 ; 11cdc7 (47:4dc7)
 
 String_11cdc7: ; 11cdc7
@@ -2115,58 +2162,107 @@ Function11ce2b: ; 11ce2b (47:4e2b)
 	ret z
 	ld [wcd22], a
 	ret
+
 ; 11ceb9 (47:4eb9)
 
 Unknown_11ceb9: ; 11ceb9
 	; up left down right
-	db $ff, $01, $05, $ff
-	db $ff, $02, $06, $00
-	db $ff, $03, $07, $01
-	db $ff, $04, $08, $02
-	db $ff, $14, $09, $03
-	db $00, $06, $0a, $ff
-	db $01, $07, $0b, $05
-	db $02, $08, $0c, $06
-	db $03, $09, $0d, $07
-	db $04, $19, $0e, $08
-	db $05, $0b, $0f, $ff
-	db $06, $0c, $10, $0a
-	db $07, $0d, $11, $0b
-	db $08, $0e, $12, $0c
-	db $09, $1e, $13, $0d
-	db $0a, $10, $2d, $ff
-	db $0b, $11, $2d, $0f
-	db $0c, $12, $2d, $10
-	db $0d, $13, $2d, $11
-	db $0e, $26, $2d, $12
-	db $ff, $15, $19, $04
-	db $ff, $16, $1a, $14
-	db $ff, $17, $1b, $15
-	db $ff, $18, $1c, $16
-	db $ff, $23, $1d, $17
-	db $14, $1a, $1e, $09
-	db $15, $1b, $1f, $19
-	db $16, $1c, $20, $1a
-	db $17, $1d, $21, $1b
-	db $18, $2b, $22, $1c
-	db $19, $1f, $26, $0e
-	db $1a, $20, $27, $1e
-	db $1b, $21, $28, $1f
-	db $1c, $22, $29, $20
-	db $1d, $2c, $2a, $21
-	db $ff, $24, $2b, $18
-	db $ff, $25, $2b, $23
-	db $ff, $ff, $2b, $24
-	db $1e, $27, $2e, $13
-	db $1f, $28, $2e, $26
-	db $20, $29, $2e, $27
-	db $21, $2a, $2e, $28
-	db $22, $ff, $2e, $29
-	db $23, $ff, $2c, $1d
-	db $2b, $ff, $2f, $22
-	db $0f, $2e, $ff, $ff
-	db $26, $2f, $ff, $2d
-	db $2c, $ff, $ff, $2e
+	db $ff, $01
+	db $05, $ff
+	db $ff, $02
+	db $06, $00
+	db $ff, $03
+	db $07, $01
+	db $ff, $04
+	db $08, $02
+	db $ff, $14
+	db $09, $03
+	db $00, $06
+	db $0a, $ff
+	db $01, $07
+	db $0b, $05
+	db $02, $08
+	db $0c, $06
+	db $03, $09
+	db $0d, $07
+	db $04, $19
+	db $0e, $08
+	db $05, $0b
+	db $0f, $ff
+	db $06, $0c
+	db $10, $0a
+	db $07, $0d
+	db $11, $0b
+	db $08, $0e
+	db $12, $0c
+	db $09, $1e
+	db $13, $0d
+	db $0a, $10
+	db $2d, $ff
+	db $0b, $11
+	db $2d, $0f
+	db $0c, $12
+	db $2d, $10
+	db $0d, $13
+	db $2d, $11
+	db $0e, $26
+	db $2d, $12
+	db $ff, $15
+	db $19, $04
+	db $ff, $16
+	db $1a, $14
+	db $ff, $17
+	db $1b, $15
+	db $ff, $18
+	db $1c, $16
+	db $ff, $23
+	db $1d, $17
+	db $14, $1a
+	db $1e, $09
+	db $15, $1b
+	db $1f, $19
+	db $16, $1c
+	db $20, $1a
+	db $17, $1d
+	db $21, $1b
+	db $18, $2b
+	db $22, $1c
+	db $19, $1f
+	db $26, $0e
+	db $1a, $20
+	db $27, $1e
+	db $1b, $21
+	db $28, $1f
+	db $1c, $22
+	db $29, $20
+	db $1d, $2c
+	db $2a, $21
+	db $ff, $24
+	db $2b, $18
+	db $ff, $25
+	db $2b, $23
+	db $ff, $ff
+	db $2b, $24
+	db $1e, $27
+	db $2e, $13
+	db $1f, $28
+	db $2e, $26
+	db $20, $29
+	db $2e, $27
+	db $21, $2a
+	db $2e, $28
+	db $22, $ff
+	db $2e, $29
+	db $23, $ff
+	db $2c, $1d
+	db $2b, $ff
+	db $2f, $22
+	db $0f, $2e
+	db $ff, $ff
+	db $26, $2f
+	db $ff, $2d
+	db $2c, $ff
+	db $ff, $2e
 ; 11cf79
 
 String_11cf79: ; 11cf79
@@ -2182,6 +2278,7 @@ Function11cfb5: ; 11cfb5 (47:4fb5)
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
+
 ; 11cfba (47:4fba)
 
 Unknown_11cfba:
@@ -2548,6 +2645,7 @@ Function11d0b6: ; 11d0b6 (47:50b6)
 	ld e, a
 	call Function11d2ee
 	ret
+
 .asm_11d1b1
 	ld a, [wcd4c]
 	sla a
@@ -2604,6 +2702,7 @@ Function11d0b6: ; 11d0b6 (47:50b6)
 	ld e, a
 	call Function11d2ee
 	ret
+
 ; 11d208 (47:5208)
 
 Unknown_11d208: ; 11d208
@@ -2738,38 +2837,40 @@ Unknown_11d2be: ; 11d2be
 Function11d2ee: ; 11d2ee (47:52ee)
 	ld hl, wcd24
 	and [hl]
-	jr nz, .asm_11d316
+	jr nz, .update_y_offset
 	ld a, e
 	ld hl, wcd23
 	and [hl]
-	jr z, .asm_11d30f
-	ld hl, $e
+	jr z, .reset_y_offset
+	ld hl, SPRITEANIMSTRUCT_0E
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_11d305
+	jr z, .flip_bit_0
 	dec [hl]
 	ret
-.asm_11d305
+
+.flip_bit_0
 	ld a, $0
 	ld [hld], a
 	ld a, $1
 	xor [hl]
 	ld [hl], a
 	and a
-	jr nz, .asm_11d316
-.asm_11d30f
-	ld hl, $7
+	jr nz, .update_y_offset
+.reset_y_offset
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	xor a
 	ld [hl], a
 	ret
-.asm_11d316
-	ld hl, $5
+
+.update_y_offset
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, $b0
 	sub [hl]
-	ld hl, $7
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	ret
@@ -2781,11 +2882,12 @@ Function11d323: ; 11d323
 	ld [rSVBK], a
 	ld hl, Palette_11d33a
 	ld de, UnknBGPals
-	ld bc, 16 * 8
+	ld bc, 16 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
 	ret
+
 ; 11d33a
 
 Palette_11d33a:
@@ -3044,6 +3146,7 @@ Function11d3ba: ; 11d3ba
 	pop af
 	ld [rSVBK], a
 	ret
+
 ; 11d493
 
 .CheckSeenMon: ; 11d493
@@ -3062,6 +3165,7 @@ Function11d3ba: ; 11d3ba
 	pop bc
 	pop hl
 	ret
+
 ; 11d4aa
 
 Function11d4aa: ; 11d4aa
@@ -3069,34 +3173,34 @@ Function11d4aa: ; 11d4aa
 	push af
 	ld a, $3
 	ld [rSVBK], a
-	ld hl, Unknown_11daac
+	ld hl, MobileFixedWordCategoryPointers
 	ld bc, Unknown_11f220
 	xor a
 	ld [wcd2d], a
 	inc a
 	ld [wcd2e], a
 	ld a, $e
-.asm_11d4c1
+.loop1
 	push af
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	push hl
-	ld hl, $0005
+	ld hl, 5 ; length of a string
 	add hl, de
 	ld a, [bc]
 	inc bc
 	inc bc
 	push bc
-.asm_11d4cf
+.loop2
 	push af
 	push hl
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
 	ld d, a
-	ld hl, wd000
+	ld hl, w3_d000
 	add hl, de
 	ld a, [wcd2d]
 	ld [hli], a
@@ -3105,11 +3209,11 @@ Function11d4aa: ; 11d4aa
 	ld a, [wcd2e]
 	ld [hl], a
 	pop hl
-	ld de, $0008
+	ld de, 8
 	add hl, de
 	pop af
 	dec a
-	jr nz, .asm_11d4cf
+	jr nz, .loop2
 	ld hl, wcd2d
 	xor a
 	ld [hli], a
@@ -3118,10 +3222,11 @@ Function11d4aa: ; 11d4aa
 	pop hl
 	pop af
 	dec a
-	jr nz, .asm_11d4c1
+	jr nz, .loop1
 	pop af
 	ld [rSVBK], a
 	ret
+
 ; 11d4fe
 
 
@@ -3272,40 +3377,40 @@ LZ_11d6de:
 INCBIN "gfx/pokedex/slowpoke.2bpp.lz"
 ; 11da52
 
-Strings_11da52: ; 11da52
+MobileFixedWordCategoryNames: ; 11da52
 ; Fixed message categories
-	db "ポケモン@@"
-	db "タイプ@@@"
-	db "あいさつ@@"
-	db "ひと@@@@"
-	db "バトル@@@"
-	db "こえ@@@@"
-	db "かいわ@@@"
-	db "きもち@@@"
-	db "じょうたい@"
-	db "せいかつ@@"
-	db "しゅみ@@@"
-	db "こうどう@@"
-	db "じかん@@@"
-	db "むすび@@@"
-	db "あれこれ@@"
+	db "ポケモン@@" ; 00
+	db "タイプ@@@" ; 01
+	db "あいさつ@@" ; 02
+	db "ひと@@@@" ; 03
+	db "バトル@@@" ; 04
+	db "こえ@@@@" ; 05
+	db "かいわ@@@" ; 06
+	db "きもち@@@" ; 07
+	db "じょうたい@" ; 08
+	db "せいかつ@@" ; 09
+	db "しゅみ@@@" ; 0a
+	db "こうどう@@" ; 0b
+	db "じかん@@@" ; 0c
+	db "むすび@@@" ; 0d
+	db "あれこれ@@" ; 0e
 ; 11daac
 
-Unknown_11daac: ; 11daac
-	dw .Types
-	dw .Greetings
-	dw .People
-	dw .Battle
-	dw .Exclamations
-	dw .Conversation
-	dw .Feelings
-	dw .Conditions
-	dw .Life
-	dw .Hobbies
-	dw .Actions
-	dw .Time
-	dw .Farewells
-	dw .ThisAndThat
+MobileFixedWordCategoryPointers: ; 11daac
+	dw .Types          ; 01
+	dw .Greetings      ; 02
+	dw .People         ; 03
+	dw .Battle         ; 04
+	dw .Exclamations   ; 05
+	dw .Conversation   ; 06
+	dw .Feelings       ; 07
+	dw .Conditions     ; 08
+	dw .Life           ; 09
+	dw .Hobbies        ; 0a
+	dw .Actions        ; 0b
+	dw .Time           ; 0c
+	dw .Farewells      ; 0d
+	dw .ThisAndThat    ; 0e
 
 .Types: ; 11dac8
 	db "あく@@@", $26, $0, $0
@@ -4084,13 +4189,20 @@ Unknown_11daac: ; 11daac
 ; 11f220
 
 Unknown_11f220:
-	db $12, $01, $24, $02
-	db $45, $05, $45, $05
-	db $42, $05, $42, $05
-	db $45, $05, $42, $05
-	db $27, $03, $27, $03
-	db $45, $05, $27, $03
-	db $42, $05, $24, $02
+	db $12, $01 ; 01
+	db $24, $02 ; 02
+	db $45, $05 ; 03
+	db $45, $05 ; 04
+	db $42, $05 ; 05
+	db $42, $05 ; 06
+	db $45, $05 ; 07
+	db $42, $05 ; 08
+	db $27, $03 ; 09
+	db $27, $03 ; 0a
+	db $45, $05 ; 0b
+	db $27, $03 ; 0c
+	db $42, $05 ; 0d
+	db $24, $02 ; 0e
 
 Unknown_11f23c:
 macro_11f23c: macro

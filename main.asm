@@ -12543,7 +12543,7 @@ GetPlayerIcon: ; 8832c
 	ret
 ; 8833e
 
-Function8833e: ; 8833e
+GetCardPic: ; 8833e
 	ld hl, ChrisCardPic
 	ld a, [PlayerGender]
 	bit 0, a

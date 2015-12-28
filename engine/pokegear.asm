@@ -79,7 +79,7 @@ Function90bea: ; 90bea (24:4bea)
 	ld [wc6db], a
 	call Function90d9e
 	call Function90da8
-	ld b, SCGB_02
+	ld b, SCGB_POKEGEAR_PALS
 	call GetSGBLayout
 	call SetPalettes
 	ld a, [hCGB]
@@ -1955,7 +1955,7 @@ _FlyMap: ; 91af3
 	call Request1bpp
 	call FlyMap
 	call ret_91c8f
-	ld b, SCGB_02
+	ld b, SCGB_POKEGEAR_PALS
 	call GetSGBLayout
 	call SetPalettes
 .loop
@@ -2377,7 +2377,7 @@ _Area: ; 91d11
 	call TownMapPals
 	hlbgcoord 0, 0
 	call TownMapBGUpdate
-	ld b, SCGB_02
+	ld b, SCGB_POKEGEAR_PALS
 	call GetSGBLayout
 	call SetPalettes
 	xor a
@@ -2893,7 +2893,7 @@ Function92311: ; 92311
 	ld [wd003], a
 	ld a, b
 	ld [wd004], a
-	ld b, SCGB_02
+	ld b, SCGB_POKEGEAR_PALS
 	call GetSGBLayout
 	call SetPalettes
 .loop

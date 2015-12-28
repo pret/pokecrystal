@@ -9168,7 +9168,7 @@ BattleCommand_BatonPass: ; 379c9
 	hlcoord 1, 0
 	lb bc, 4, 10
 	call ClearBox
-	ld b, SCGB_01
+	ld b, SCGB_BATTLE_COLORS
 	call GetSGBLayout
 	call SetPalettes
 	call BatonPass_LinkPlayerSwitch

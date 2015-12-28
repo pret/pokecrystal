@@ -44,7 +44,7 @@ endr
 	dw Function8e97d
 	dw Function8e99a
 	dw Function8e898
-	dw Function8e8b1
+	dw Mobile_InitPartyMenuBGPal71
 	dw Function8e862
 
 
@@ -100,7 +100,7 @@ Function8e898: ; 8e898 (23:6898)
 	ld [hl], a
 	ret
 
-Function8e8b1: ; 8e8b1 (23:68b1)
+Mobile_InitPartyMenuBGPal71: ; 8e8b1 (23:68b1)
 	call InitPartyMenuIcon
 	call SetPartyMonIconAnimSpeed
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID

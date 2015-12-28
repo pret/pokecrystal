@@ -2994,7 +2994,7 @@ SetUpBattlePartyMenu_NoLoop: ; 3d2f7
 SetUpBattlePartyMenu: ; switch to fullscreen menu?
 	callba LoadPartyMenuGFX
 	callba InitPartyMenuWithCancel
-	callba InitBattlePartyMenuPals
+	callba InitPartyMenuBGPal7
 	callba InitPartyMenuGFX
 	ret
 ; 3d313
@@ -3141,7 +3141,7 @@ LostBattle: ; 3d38e
 	jr nz, .LostLinkBattle
 
 ; Greyscale
-	ld b, SCGB_00
+	ld b, SCGB_BATTLE_GRAYSCALE
 	call GetSGBLayout
 	call SetPalettes
 	jr .end
@@ -7360,7 +7360,7 @@ FinishBattleAnim: ; 3ee27
 	push bc
 	push de
 	push hl
-	ld b, SCGB_01
+	ld b, SCGB_BATTLE_COLORS
 	call GetSGBLayout
 	call SetPalettes
 	call DelayFrame
@@ -8495,7 +8495,7 @@ BattleIntro: ; 3f4dd
 	callba ClearBattleRAM
 	call InitEnemy
 	call BackUpVBGMap2
-	ld b, SCGB_00
+	ld b, SCGB_BATTLE_GRAYSCALE
 	call GetSGBLayout
 	ld hl, rLCDC
 	res 6, [hl]
@@ -9418,7 +9418,7 @@ InitBattleDisplay: ; 3fb6c
 	ld [rWY], a
 	call WaitBGMap
 	call HideSprites
-	ld b, SCGB_01
+	ld b, SCGB_BATTLE_COLORS
 	call GetSGBLayout
 	call SetPalettes
 	ld a, $90

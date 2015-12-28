@@ -112,7 +112,7 @@ Function8aa4: ; 8aa4
 Function8ad1: ; 8ad1
 	ld hl, PalPacket_9c56 + 1
 	call CopyFourPalettes
-	call Function971a
+	call InitPartyMenuOBPals
 	call WipeAttrMap
 	ret
 ; 8ade
@@ -759,7 +759,7 @@ CGB_ApplyPartyMenuHPPals: ; 96f3 CGB layout $fc
 ; 971a
 
 
-Function971a: ; 971a
+InitPartyMenuOBPals: ; 971a
 	ld hl, Palettes_b681
 	ld de, UnknOBPals
 	ld bc, 2 palettes
@@ -2262,7 +2262,7 @@ Palettes_b719: ; b719
 
 ; b729
 
-Palettes_b729: ; b729
+MalePokegearPals: ; b729
 	RGB 28, 31, 20
 	RGB 21, 21, 21
 	RGB 13, 13, 13
@@ -2295,7 +2295,7 @@ Palettes_b729: ; b729
 
 ; b759
 
-Palettes_b759: ; b759
+FemalePokegearPals: ; b759
 	RGB 28, 31, 20
 	RGB 21, 21, 21
 	RGB 13, 13, 13

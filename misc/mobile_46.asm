@@ -5491,9 +5491,9 @@ Function11a90f: ; 11a90f
 .asm_11a94f
 	xor a
 	ld [$c31f], a
-	ld a, $20
+	ld a, $c320 % $100
 	ld [$c31b], a
-	ld a, $c3
+	ld a, $c320 / $100
 	ld [$c31c], a
 	hlcoord 1, 14
 	ld a, l
@@ -7057,12 +7057,13 @@ Function11b3d9: ; 11b3d9
 ; 11b444
 
 Function11b444: ; 11b444
-	call Function11b44b
-	call Function11b45c
+; special
+	call Mobile46_InitJumptable
+	call Mobile46_RunJumptable
 	ret
 ; 11b44b
 
-Function11b44b: ; 11b44b
+Mobile46_InitJumptable: ; 11b44b
 	xor a
 	ld [wJumptableIndex], a
 	ld [wcf64], a
@@ -7072,9 +7073,9 @@ Function11b44b: ; 11b44b
 	ret
 ; 11b45c
 
-Function11b45c: ; 11b45c
+Mobile46_RunJumptable: ; 11b45c
 .loop
-	call Function11b46a
+	call .IterateJumptable
 	call DelayFrame
 	ld a, [wJumptableIndex]
 	cp 4
@@ -7082,7 +7083,7 @@ Function11b45c: ; 11b45c
 	ret
 ; 11b46a
 
-Function11b46a: ; 11b46a
+.IterateJumptable: ; 11b46a
 	jumptable .Jumptable, wJumptableIndex
 
 .Jumptable
@@ -7377,7 +7378,7 @@ Function11b5e8: ; 11b5e8
 	ld a, [$a826]
 	ld [wcd31], a
 	call CloseSRAM
-	call Function11b44b
+	call Mobile46_InitJumptable
 	call .loop
 	ret
 
@@ -7732,11 +7733,11 @@ Function11b879: ; 11b879
 ; 11b920
 
 Function11b920: ; 11b920
-	call Function11b44b
+	call Mobile46_InitJumptable
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $a81f
-	ld de, BattleMonNick + 5
+	ld de, wc626
 	ld bc, $0008
 	call CopyBytes
 	call CloseSRAM

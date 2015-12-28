@@ -40,7 +40,7 @@ _TownMap: ; 9191c
 	ld [wd004], a
 	ld a, b
 	ld [wd005], a
-	ld b, SCGB_02
+	ld b, SCGB_POKEGEAR_PALS
 	call GetSGBLayout
 	call SetPalettes
 	ld a, [hCGB]

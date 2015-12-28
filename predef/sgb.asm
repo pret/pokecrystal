@@ -24,16 +24,16 @@ Predef_LoadSGBLayout: ; 864c
 ; 866f
 
 .Jumptable: ; 866f
-	dw .SGB00
-	dw .SGB01
-	dw .SGB02
-	dw .SGB03
+	dw .SGB_BattleGrayscale
+	dw .SGB_BattleColors
+	dw .SGB_PokegearPals
+	dw .SGB_StatsScreenHPPals
 	dw .SGB04
-	dw .SGB05
+	dw .SGB_SlotMachine
 	dw .SGB06
 	dw .SGB07
 	dw .SGB08
-	dw .SGB09
+	dw .SGB_MapPals
 	dw .SGB0a
 	dw .SGB0b
 	dw .SGB0c
@@ -44,8 +44,8 @@ Predef_LoadSGBLayout: ; 864c
 	dw .SGB11
 	dw .SGB12
 	dw .SGB13
-	dw .SGB14
-	dw .SGB15
+	dw .SGB_PackPals
+	dw .SGB_TrainerCard
 	dw .SGB16
 	dw .SGB17
 	dw .SGB18
@@ -57,13 +57,13 @@ Predef_LoadSGBLayout: ; 864c
 	dw .SGB1e
 ; 86ad
 
-.SGB00: ; 86ad
+.SGB_BattleGrayscale: ; 86ad
 	ld hl, PalPacket_9c66
 	ld de, BlkPacket_9aa6
 	ret
 ; 86b4
 
-.SGB01: ; 86b4
+.SGB_BattleColors: ; 86b4
 	ld hl, BlkPacket_9aa6
 	call Function9809
 
@@ -135,7 +135,7 @@ endr
 
 	ld hl, wSGBPals
 	ld de, wSGBPals + $10
-	ld a, SCGB_01
+	ld a, SCGB_BATTLE_COLORS
 	ld [SGBPredef], a
 	ret
 ; 873c
@@ -160,13 +160,13 @@ endr
 	ret
 ; 875c
 
-.SGB02: ; 875c
+.SGB_PokegearPals: ; 875c
 	ld hl, PalPacket_9c76
 	ld de, BlkPacket_9a86
 	ret
 ; 8763
 
-.SGB03: ; 8763
+.SGB_StatsScreenHPPals: ; 8763
 	ld hl, PalPacket_9ce6
 	ld de, wSGBPals
 	ld bc, $10
@@ -290,13 +290,13 @@ endr
 	ret
 ; 884b
 
-.SGB14: ; 884b
+.SGB_PackPals: ; 884b
 	ld hl, PalPacket_9c36
 	ld de, BlkPacket_9a86
 	ret
 ; 8852
 
-.SGB05: ; 8852
+.SGB_SlotMachine: ; 8852
 	ld hl, PalPacket_9c96
 	ld de, BlkPacket_9b06
 	ret
@@ -367,7 +367,7 @@ endr
 	ret
 ; 88b1
 
-.SGB09: ; 88b1
+.SGB_MapPals: ; 88b1
 	ld hl, PalPacket_9bd6
 	ld de, wSGBPals
 	ld bc, $10
@@ -426,7 +426,7 @@ endr
 ; 891a
 
 .SGB0d:
-.SGB15: ; 891a
+.SGB_TrainerCard: ; 891a
 	ld hl, PalPacket_9cb6
 	ld de, BlkPacket_9a86
 	ret

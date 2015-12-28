@@ -1807,7 +1807,7 @@ Function100b12: ; 100b12
 	ld [wMenuCursorBuffer], a
 	call Function100e72
 	call Function100b45
-	callba InitBattlePartyMenuPals
+	callba InitPartyMenuBGPal7
 	call Function100ed4
 	ld a, [wMenuCursorBuffer]
 	ld [wd0d2], a
@@ -1817,8 +1817,8 @@ Function100b12: ; 100b12
 
 Function100b45: ; 100b45
 	call Function100b7a
-.asm_100b48
-	call Function100dd2
+.loop
+	call Mobile_SetOverworldDelay
 	callba MobileMenuJoypad
 	push bc
 	callba Function10402d
@@ -1827,7 +1827,7 @@ Function100b45: ; 100b45
 	jr c, .asm_100b6b
 	ld a, [wMenuJoypadFilter]
 	and c
-	jr z, .asm_100b48
+	jr z, .loop
 	callba Mobile_GetMenuSelection
 	ret
 
@@ -1863,63 +1863,63 @@ MobileMoveSelectionScreen: ; 100b9f
 	call Function100dd8
 	jp c, xor_a_dec_a
 	call Function100e72
-	call Function100bc2
+	call .GetMoveSelection
 	push af
-	callba InitBattlePartyMenuPals
+	callba InitPartyMenuBGPal7
 	call Function100ed4
 	pop af
 	ret
 ; 100bc2
 
-Function100bc2: ; 100bc2
+.GetMoveSelection: ; 100bc2
 	xor a
 	ld [hBGMapMode], a
 	call Function100c74
 	call Function100c98
-.asm_100bcb
+.master_loop
 	callba MoveInfoBox
-.asm_100bd1
-	call Function100dd2
+.loop
+	call Mobile_SetOverworldDelay
 	callba MobileMenuJoypad
 	push bc
 	callba Function10402d
 	call Function100e2d
 	pop bc
-	jr c, .asm_100c25
+	jr c, .b_button
 	ld a, [wMenuJoypadFilter]
 	and c
-	bit 6, a
-	jp nz, .asm_100bff
-	bit 7, a
-	jp nz, .asm_100c10
-	bit 0, a
-	jr nz, .asm_100c30
-	bit 1, a
-	jr nz, .asm_100c25
-	jr .asm_100bd1
+	bit D_UP_F, a
+	jp nz, .d_up
+	bit D_DOWN_F, a
+	jp nz, .d_down
+	bit A_BUTTON_F, a
+	jr nz, .a_button
+	bit B_BUTTON_F, a
+	jr nz, .b_button
+	jr .loop
 
-.asm_100bff
+.d_up
 	ld a, [wMenuCursorY]
 	and a
-	jp nz, .asm_100bcb
+	jp nz, .master_loop
 	ld a, [wNumMoves]
 	inc a
 	ld [wMenuCursorY], a
-	jp .asm_100bcb
+	jp .master_loop
 
-.asm_100c10
+.d_down
 	ld a, [wMenuCursorY]
 	ld b, a
 	ld a, [wNumMoves]
 	inc a
 	inc a
 	cp b
-	jp nz, .asm_100bcb
+	jp nz, .master_loop
 	ld a, $1
 	ld [wMenuCursorY], a
-	jp .asm_100bcb
+	jp .master_loop
 
-.asm_100c25
+.b_button
 	ld a, [wMenuCursorY]
 	dec a
 	ld [CurMoveNum], a
@@ -1927,7 +1927,7 @@ Function100bc2: ; 100bc2
 	and a
 	ret
 
-.asm_100c30
+.a_button
 	ld a, [wMenuCursorY]
 	dec a
 	ld [CurMoveNum], a
@@ -1939,13 +1939,13 @@ Function100bc2: ; 100bc2
 	add hl, bc
 	ld a, [hl]
 	and $3f
-	jr z, .asm_100c68
+	jr z, .no_pp_left
 	ld a, [PlayerDisableCount]
 	swap a
 	and $f
 	dec a
 	cp c
-	jr z, .asm_100c63
+	jr z, .move_disabled
 	ld a, [wMenuCursorY]
 	dec a
 	ld c, a
@@ -1957,17 +1957,17 @@ Function100bc2: ; 100bc2
 	xor a
 	ret
 
-.asm_100c63
+.move_disabled
 	ld hl, BattleText_TheMoveIsDisabled
-	jr .asm_100c6b
+	jr .print_text
 
-.asm_100c68
+.no_pp_left
 	ld hl, BattleText_TheresNoPPLeftForThisMove
 
-.asm_100c6b
+.print_text
 	call StdBattleTextBox
 	call Call_LoadTempTileMapToTileMap
-	jp Function100bc2
+	jp .GetMoveSelection
 ; 100c74
 
 Function100c74: ; 100c74
@@ -2012,7 +2012,7 @@ Function100cb5: ; 100cb5
 	set 7, [hl]
 	res 6, [hl]
 .loop
-	call Function100dd2
+	call Mobile_SetOverworldDelay
 	callba MobileMenuJoypad
 	push bc
 	callba PlaySpriteAnimations
@@ -2066,7 +2066,7 @@ MobileBattleMonMenu: ; 100d22
 	set 7, [hl]
 	res 6, [hl]
 .asm_100d30
-	call Function100dd2
+	call Mobile_SetOverworldDelay
 	callba MobileMenuJoypad
 	push bc
 	callba PlaySpriteAnimations
@@ -2169,7 +2169,7 @@ Function100dc0: ; 100dc0
 	ret
 ; 100dd2
 
-Function100dd2: ; 100dd2
+Mobile_SetOverworldDelay: ; 100dd2
 	ld a, 30
 	ld [OverworldDelay], a
 	ret
@@ -2337,7 +2337,7 @@ Function100ec5
 ; 100eca
 
 Function100eca: ; 100eca
-	callba Function8e8b
+	callba Mobile_InitPartyMenuBGPal7
 	call Function100ed4
 	ret
 ; 100ed4
@@ -5120,13 +5120,13 @@ UnknownText_0x1021f4:
 
 Function1021f9: ; 1021f9
 	call Function102233
-	ld a, 0
+	ld a, $0 ; Function10234b
 	ld [wcd49], a
 	ld hl, wcd29
 	bit 3, [hl]
 	res 3, [hl]
 	jr z, .asm_10220f
-	ld a, $1
+	ld a, $1 ; Function102361
 	ld [wcd49], a
 
 .asm_10220f
@@ -5280,49 +5280,49 @@ Function1022d0: ; 1022d0
 ; 1022f5
 
 Jumptable_1022f5: ; 1022f5
-	dw Function10234b
-	dw Function102361
-	dw Function10236e
-	dw Function102387
-	dw Function1023a1
-	dw Function1025c7
-	dw Function1025dc
-	dw Function1024f6
-	dw Function10250c
-	dw Function1024a8
-	dw Function102591
-	dw Function1024a8
-	dw Function1025b0
-	dw Function1025bd
-	dw Function102814
-	dw Function10283c
-	dw Function102862
-	dw Function10286f
-	dw Function1024a8
-	dw Function1028a5
-	dw Function1028ab
-	dw Function1023b5
-	dw Function1023c6
-	dw Function1024af
-	dw Function102416
-	dw Function102423
-	dw Function10244b
-	dw Function1024af
-	dw Function10246a
-	dw Function102652
-	dw Function10266b
-	dw Function1025e9
-	dw Function1025ff
-	dw Function102738
-	dw Function102754
-	dw Function1026b7
-	dw Function1026c8
-	dw Function1028bf
-	dw Function1028c6
-	dw Function1028d3
-	dw Function1028da
-	dw Function1024a8
-	dw Function10248d
+	dw Function10234b ; 00
+	dw Function102361 ; 01
+	dw Function10236e ; 02
+	dw Function102387 ; 03
+	dw Function1023a1 ; 04
+	dw Function1025c7 ; 05
+	dw Function1025dc ; 06
+	dw Function1024f6 ; 07
+	dw Function10250c ; 08
+	dw Function1024a8 ; 09
+	dw Function102591 ; 0a
+	dw Function1024a8 ; 0b
+	dw Function1025b0 ; 0c
+	dw Function1025bd ; 0d
+	dw Function102814 ; 0e
+	dw Function10283c ; 0f
+	dw Function102862 ; 10
+	dw Function10286f ; 11
+	dw Function1024a8 ; 12
+	dw Function1028a5 ; 13
+	dw Function1028ab ; 14
+	dw Function1023b5 ; 15
+	dw Function1023c6 ; 16
+	dw Function1024af ; 17
+	dw Function102416 ; 18
+	dw Function102423 ; 19
+	dw Function10244b ; 1a
+	dw Function1024af ; 1b
+	dw Function10246a ; 1c
+	dw Function102652 ; 1d
+	dw Function10266b ; 1e
+	dw Function1025e9 ; 1f
+	dw Function1025ff ; 20
+	dw Function102738 ; 21
+	dw Function102754 ; 22
+	dw Function1026b7 ; 23
+	dw Function1026c8 ; 24
+	dw Function1028bf ; 25
+	dw Function1028c6 ; 26
+	dw Function1028d3 ; 27
+	dw Function1028da ; 28
+	dw Function1024a8 ; 29
+	dw Function10248d ; 2a
 ; 10234b
 
 Function10234b: ; 10234b
@@ -5723,22 +5723,22 @@ Function1025ff: ; 1025ff
 	ld a, [wMenuJoypadFilter]
 	and c
 	ret z
-	bit 0, c
-	jr nz, .asm_102623
-	bit 6, c
-	jr nz, .asm_10262e
-	bit 7, c
-	jr nz, .asm_102646
+	bit A_BUTTON_F, c
+	jr nz, .a_button
+	bit D_UP_F, c
+	jr nz, .d_up
+	bit D_DOWN_F, c
+	jr nz, .d_down
 	ret
 
-.asm_102623
+.a_button
 	ld hl, wcd4b
 	set 3, [hl]
-	ld a, $27
+	ld a, $27 ; Function1028d3
 	ld [wcd49], a
 	ret
 
-.asm_10262e
+.d_up
 	ld a, [wMenuCursorY]
 	ld b, a
 	ld a, [OTPartyCount]
@@ -5747,15 +5747,15 @@ Function1025ff: ; 1025ff
 	call HideCursor
 	ld a, [PartyCount]
 	ld [wMenuCursorY], a
-	ld a, $1d
+	ld a, $1d ; Function102652
 	ld [wcd49], a
 	ret
 
-.asm_102646
+.d_down
 	ld a, [wMenuCursorY]
 	cp $1
 	ret nz
-	ld a, $23
+	ld a, $23 ; Function1026b7
 	ld [wcd49], a
 	ret
 ; 102652
@@ -5785,37 +5785,37 @@ Function10266b: ; 10266b
 	ld a, [wMenuJoypadFilter]
 	and c
 	ret z
-	bit 0, c
-	jr nz, .asm_10268f
-	bit 7, c
-	jr nz, .asm_10269a
-	bit 6, c
-	jr nz, .asm_1026a8
+	bit A_BUTTON_F, c
+	jr nz, .a_button
+	bit D_DOWN_F, c
+	jr nz, .d_down
+	bit D_UP_F, c
+	jr nz, .d_up
 	ret
 
-.asm_10268f
+.a_button
 	ld hl, wcd4b
 	set 3, [hl]
-	ld a, $21
+	ld a, $21 ; Function102738
 	ld [wcd49], a
 	ret
 
-.asm_10269a
+.d_down
 	ld a, [wMenuCursorY]
 	dec a
 	ret nz
 	call HideCursor
-	ld a, $1f
+	ld a, $1f ; Function1025e9
 	ld [wcd49], a
 	ret
 
-.asm_1026a8
+.d_up
 	ld a, [wMenuCursorY]
 	ld b, a
 	ld a, [PartyCount]
 	cp b
 	ret nz
-	ld a, $23
+	ld a, $23 ; Function1026b7
 	ld [wcd49], a
 	ret
 ; 1026b7
@@ -5858,40 +5858,40 @@ Function1026de: ; 1026de
 
 Function1026f3: ; 1026f3
 	ld a, [hJoyPressed]
-	bit 0, a
+	bit A_BUTTON_F, a
 	jr nz, .asm_102723
-	bit 6, a
+	bit D_UP_F, a
 	jr nz, .asm_102712
-	bit 7, a
+	bit D_DOWN_F, a
 	jr nz, .asm_102702
 	ret
 
 .asm_102702
 	hlcoord 9, 17
-	ld [hl], $7f
+	ld [hl], " "
 	ld a, $1
 	ld [wMenuCursorY], a
-	ld a, $1d
+	ld a, $1d ; Function102652
 	ld [wcd49], a
 	ret
 
 .asm_102712
 	hlcoord 9, 17
-	ld [hl], $7f
+	ld [hl], " "
 	ld a, [OTPartyCount]
 	ld [wMenuCursorY], a
-	ld a, $1f
+	ld a, $1f ; Function1025e9
 	ld [wcd49], a
 	ret
 
 .asm_102723
 	hlcoord 9, 17
-	ld [hl], $ec
+	ld [hl], "▷"
 	ld hl, wcd4b
 	set 3, [hl]
 	ld hl, wcd4b
 	set 2, [hl]
-	ld a, $5
+	ld a, $5 ; Function1025c7
 	ld [wcd49], a
 	ret
 ; 102738
@@ -5933,9 +5933,9 @@ Function102770: ; 102770
 
 Function102775: ; 102775
 	hlcoord 1, 16
-	ld [hl], $ed
+	ld [hl], "▶"
 	hlcoord 11, 16
-	ld [hl], $7f
+	ld [hl], " "
 	ld hl, wcd4b
 	set 2, [hl]
 	ld a, [wcd4a]
@@ -5946,23 +5946,22 @@ Function102775: ; 102775
 
 Function10278c: ; 10278c
 	ld a, [hJoyPressed]
-	bit 0, a
+	bit A_BUTTON_F, a
 	jr nz, asm_1027c6
-	bit 1, a
+	bit B_BUTTON_F, a
 	jr nz, asm_1027e2
-	bit 4, a
+	bit D_RIGHT_F, a
 	jr nz, .asm_10279b
 	ret
 
 .asm_10279b
 	ld a, $3
 	ld [wcd4a], a
-
 Function1027a0: ; 1027a0
 	hlcoord 1, 16
-	ld [hl], $7f
+	ld [hl], " "
 	hlcoord 11, 16
-	ld [hl], $ed
+	ld [hl], "▶"
 	ld hl, wcd4b
 	set 2, [hl]
 	ld a, [wcd4a]
@@ -5972,18 +5971,18 @@ Function1027a0: ; 1027a0
 
 Function1027b7: ; 1027b7
 	ld a, [hJoyPressed]
-	bit 0, a
+	bit A_BUTTON_F, a
 	jr nz, asm_1027d1
-	bit 1, a
+	bit B_BUTTON_F, a
 	jr nz, asm_1027e2
-	bit 5, a
+	bit D_LEFT_F, a
 	jr nz, Function102770
 	ret
 
 asm_1027c6:
 	ld hl, wcd4b
 	set 3, [hl]
-	ld a, $25
+	ld a, $25 ; Function1028bf
 	ld [wcd49], a
 	ret
 
@@ -5992,31 +5991,31 @@ asm_1027d1:
 	set 3, [hl]
 	ld a, [wMenuCursorY]
 	ld [wcd4c], a
-	ld a, $7
+	ld a, $7 ; Function1024f6
 	ld [wcd49], a
 	ret
 
 asm_1027e2:
 	call Function102db7
-	ld a, $1d
+	ld a, $1d ; Function102652
 	ld [wcd49], a
 	ret
 ; 1027eb
 
 Function1027eb: ; 1027eb
 	hlcoord 0, 14
-	ld b, $2
-	ld c, $12
+	ld b, 2
+	ld c, 18
 	ld d, h
 	ld e, l
 	callba _LinkTextbox
-	ld de, String_102804
+	ld de, .Stats_Trade
 	hlcoord 2, 16
 	call PlaceString
 	ret
 ; 102804
 
-String_102804: ; 102804
+.Stats_Trade: ; 102804
 	db "STATS     TRADE@"
 ; 102814
 
@@ -6044,14 +6043,14 @@ Function10283c: ; 10283c
 	call Function1029c3
 	ret z
 	jr c, .asm_102852
-	ld a, $10
+	ld a, $10 ; Function102862
 	ld [wcd49], a
 	ld hl, wcd4b
 	set 1, [hl]
 	ret
 
 .asm_102852
-	ld a, $14
+	ld a, $14 ; Function1028ab
 	ld [wcd49], a
 	ld hl, wcd4b
 	set 3, [hl]
@@ -6077,7 +6076,7 @@ Function10286f: ; 10286f
 	ld a, [wcd51]
 	cp $8
 	jr nz, .asm_102886
-	ld a, $15
+	ld a, $15 ; Function1023b5
 	ld [wcd49], a
 	ret
 
@@ -6098,7 +6097,7 @@ Function10286f: ; 10286f
 ; 1028a5
 
 Function1028a5: ; 1028a5
-	ld a, $4
+	ld a, $4 ; Function1023a1
 	ld [wcd49], a
 	ret
 ; 1028ab
@@ -6109,7 +6108,7 @@ Function1028ab: ; 1028ab
 	call Function102f15
 	ld hl, wcd4b
 	set 1, [hl]
-	ld a, $c
+	ld a, $c ; Function1025b0
 	ld [wcd49], a
 	ret
 ; 1028bf
@@ -6123,7 +6122,7 @@ Function1028c6: ; 1028c6
 	xor a
 	ld [MonType], a
 	call Function102bac
-	ld a, $1d
+	ld a, $1d ; Function102652
 	ld [wcd49], a
 	ret
 ; 1028d3
@@ -6134,10 +6133,10 @@ Function1028d3: ; 1028d3
 	ld [wcd49], a
 
 Function1028da: ; 1028da
-	ld a, $1
+	ld a, OTPARTYMON
 	ld [MonType], a
 	call Function102bac
-	ld a, $1f
+	ld a, $1f ; Function1025e9
 	ld [wcd49], a
 	ret
 ; 1028e8
@@ -6485,7 +6484,7 @@ Function102b32: ; 102b32
 ; 102b4e
 
 Function102b4e: ; 102b4e
-	ld a, $1
+	ld a, OTPARTYMON
 	ld [MonType], a
 	ld a, [wMenuCursorY]
 	push af

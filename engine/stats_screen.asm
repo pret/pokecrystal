@@ -83,7 +83,7 @@ StatsScreenBattle: ; 4dcf7
 	or $1
 	ld [wcf64], a
 .loop
-	callba Function100dd2
+	callba Mobile_SetOverworldDelay
 	ld a, [wJumptableIndex]
 	and $7f
 	ld hl, StatsScreenPointerTable
