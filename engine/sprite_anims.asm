@@ -413,7 +413,7 @@ DoAnimFrame: ; 8d24b
 	ret
 
 .fourteen: ; 8d47c (23:547c)
-	callab Functione21a1
+	callab DummyGame_InterpretJoypad_AnimateCursor
 	ret
 
 .sixteen: ; 8d483 (23:5483)

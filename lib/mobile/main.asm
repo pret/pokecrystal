@@ -3859,7 +3859,7 @@ Function1118c2: ; 1118c2 (44:58c2)
 	inc [hl]
 	ret
 
-Function1118de:: ; 1118de (44:58de)
+_Timer:: ; 1118de (44:58de)
 	ld a, [$c80b]
 	cp $4
 	call z, Function111b3c

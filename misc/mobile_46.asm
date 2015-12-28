@@ -142,7 +142,6 @@ Function11811a: ; 11811a
 Function118121: ; 118121
 	xor a
 	ld [wcd38], a
-
 Function118125: ; 118125
 	call Function1183cb
 	ld a, $3
@@ -155,16 +154,15 @@ Function118125: ; 118125
 	push af
 	ld a, $3
 	ld [rSVBK], a
-.asm_11813e
+.loop
 	call JoyTextDelay
 	call Function118473
 	ld a, [wcf66]
 	cp $f
-	jr c, .asm_118151
+	jr c, .skip
 	ld a, [wcd34]
 	ld [wcf66], a
-
-.asm_118151
+.skip
 	call Function11854d
 	call Function11a8fa
 	callba Function115dd3
@@ -173,7 +171,7 @@ Function118125: ; 118125
 	ld a, [wcf66]
 	ld hl, wcd33
 	cp [hl]
-	jr nz, .asm_11813e
+	jr nz, .loop
 	xor a
 	ld [w3_d000], a
 	pop af
@@ -552,12 +550,12 @@ Function118473: ; 118473
 	inc a
 	ld [wcd68], a
 	cp 99
-	jr z, .asm_1184a0
+	jr z, .ninety_nine
 	xor a
 	ld [wcd67], a
 	ret
 
-.asm_1184a0
+.ninety_nine
 	xor a
 	ld [wcd65], a
 	ret

@@ -27,7 +27,7 @@ SendMailToPC: ; 4456e
 	call ByteFill
 	ld a, MON_ITEM
 	call GetPartyParamLocation
-	ld [hl], $0
+	ld [hl], 0
 	ld hl, sMailboxCount
 	inc [hl]
 	call CloseSRAM
@@ -355,7 +355,7 @@ InitMail: ; 0x447b9
 	ret
 ; 0x447da
 
-Function447da: ; 0x447da
+MailboxPC_GetMailAuthor: ; 0x447da
 	dec a
 	ld hl, sMailbox1Author
 	ld bc, MAIL_STRUCT_LENGTH
@@ -373,10 +373,10 @@ Function447da: ; 0x447da
 	ret
 ; 0x447fb
 
-Function447fb: ; 0x447fb
+MailboxPC_PrintMailAuthor: ; 0x447fb
 	push de
 	ld a, [MenuSelection]
-	call Function447da
+	call MailboxPC_GetMailAuthor
 	pop hl
 	jp PlaceString
 ; 0x44806
@@ -384,11 +384,11 @@ Function447fb: ; 0x447fb
 MailboxPC: ; 0x44806
 	xor a
 	ld [OBPals + 8 * 6], a
-	ld a, $1
+	ld a, 1
 	ld [wCurMessageIndex], a
 .loop
 	call InitMail
-	ld hl, MenuData4494c
+	ld hl, .TopMenuDataHeader
 	call CopyMenuDataHeader
 	xor a
 	ld [hBGMapMode], a
@@ -406,9 +406,9 @@ MailboxPC: ; 0x44806
 	ld [wCurMessageIndex], a
 
 	ld a, [wMenuJoypad]
-	cp $2
+	cp B_BUTTON
 	jr z, .exit
-	call Function4484a
+	call .Submenu
 	jr .loop
 
 .exit
@@ -416,18 +416,18 @@ MailboxPC: ; 0x44806
 	ret
 ; 0x4484a
 
-Function4484a: ; 0x4484a
-	ld hl, MenuData44964
+.Submenu: ; 0x4484a
+	ld hl, .SubMenuDataHeader
 	call LoadMenuDataHeader
 	call VerticalMenu
 	call ExitMenu
-	jr c, .exit
+	jr c, .subexit
 	ld a, [wMenuCursorY]
 	dec a
 	ld hl, .JumpTable
 	rst JumpTable
 
-.exit
+.subexit
 	ret
 ; 0x44861
 
@@ -455,7 +455,7 @@ Function4484a: ; 0x4484a
 	ld a, [MenuSelection]
 	dec a
 	call .GetMailType
-	ld a, $1
+	ld a, 1
 	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
 	call ReceiveItem
@@ -557,30 +557,30 @@ Function4484a: ; 0x4484a
 .Cancel
 	ret
 
-MenuData4494c: ; 0x4494c
+.TopMenuDataHeader: ; 0x4494c
 	db %01000000 ; flags
 	db 1, 8 ; start coords
 	db 10, 18 ; end coords
-	dw .MenuData2
+	dw .TopMenuData2
 	db 1 ; default option
 
-.MenuData2
+.TopMenuData2
 	db %00010000 ; flags
 	db 4, 0 ; rows/columns?
 	db 1 ; horizontal spacing?
 	dbw 0, wMailboxCount ; text pointer
-	dba Function447fb
-	dbw 0,0
-	dbw 0,0
+	dba MailboxPC_PrintMailAuthor
+	dba NULL
+	dba NULL
 
-MenuData44964: ; 0x44964
+.SubMenuDataHeader: ; 0x44964
 	db %01000000 ; flags
-	db 0, 0 ; start coords
-	db 9, $d ; end coords
-	dw .MenuData2
+	db 0,  0 ; start coords
+	db 9, 13 ; end coords
+	dw .SubMenuData2
 	db 1 ; default option
 
-.MenuData2
+.SubMenuData2
 	db %10000000 ; flags
 	db 4 ; items
 	db "READ MAIL@"

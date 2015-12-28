@@ -1004,7 +1004,7 @@ Function106464:: ; 106464
 Function10649b: ; 10649b
 	ld a, [TextBoxFrame]
 	and $7
-	ld bc, $30
+	ld bc, 3 tiles
 	ld hl, Frames
 	call AddNTimes
 	ld d, h

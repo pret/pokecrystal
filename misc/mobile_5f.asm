@@ -4631,7 +4631,9 @@ Function17f53d: ; 17f53d
 	push af
 	ld a, $1
 	ld [rSVBK], a
+
 	call Function17f555
+
 	pop af
 	ld [rSVBK], a
 	call ExitAllMenus
@@ -4639,21 +4641,20 @@ Function17f53d: ; 17f53d
 ; 17f555
 
 Function17f555: ; 17f555
-.asm_17f555
+.loop
 	call JoyTextDelay
-	call Function17f5ae
+	call .RunJumptable
 	ld a, [wc303]
 	bit 7, a
-	jr nz, .asm_17f56a
+	jr nz, .quit
 	callba Function104000
-	jr .asm_17f555
+	jr .loop
 
-.asm_17f56a
-	call Function17f56e
+.quit
+	call .deinit
 	ret
-; 17f56e
 
-Function17f56e: ; 17f56e
+.deinit
 	ld a, [wc300]
 	cp $22
 	jr z, .asm_17f597
@@ -4695,11 +4696,11 @@ Function17f56e: ; 17f56e
 	ret
 ; 17f5ae
 
-Function17f5ae: ; 17f5ae
-	jumptable Table17f5bd, wc303
+.RunJumptable: ; 17f5ae
+	jumptable .Jumptable, wc303
 ; 17f5bd
 
-Table17f5bd: ; 17f5bd
+.Jumptable: ; 17f5bd
 	dw Function17f5c3
 	dw Function17ff23
 	dw Function17f5d2
@@ -4858,26 +4859,26 @@ Palette_17f6af: ; 17f6af
 
 Function17f6b7: ; 17f6b7
 	ld a, [wc300]
-	call Function17f6cd
+	call .bcd_two_digits
 	inc hl
 	ld a, [wc302]
 	and $f
-	call Function17f6d8
+	call .bcd_digit
 	ld a, [wc301]
-	call Function17f6cd
+	call .bcd_two_digits
 	ret
 ; 17f6cd
 
-Function17f6cd: ; 17f6cd
+.bcd_two_digits: ; 17f6cd
 	ld c, a
 	and $f0
 	swap a
-	call Function17f6d8
+	call .bcd_digit
 	ld a, c
 	and $f
 
-Function17f6d8: ; 17f6d8
-	add $f6
+.bcd_digit: ; 17f6d8
+	add "0"
 	ld [hli], a
 	ret
 ; 17f6dc

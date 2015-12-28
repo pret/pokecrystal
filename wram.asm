@@ -787,8 +787,8 @@ PlayerSAtkLevel:: ; c6cf
 	ds 1
 
 trademon: MACRO
-\1Species:: ds 1 ; wc6d0 | wc702
-\1SpeciesName:: ds PKMN_NAME_LENGTH ; wc6d1 | wc703
+\1Species:: ds 1 ; wc6d0 | wDummyGameNumberTriesRemaining
+\1SpeciesName:: ds PKMN_NAME_LENGTH ; wc6d1 | wDummyGameLastMatches
 \1Nickname:: ds PKMN_NAME_LENGTH ; wc6dc | wc70e
 \1SenderName:: ds NAME_LENGTH ; wc6e7 | wc719
 \1OTName:: ds NAME_LENGTH ; wc6f2 | wc724
@@ -858,6 +858,22 @@ wDiscardPileEnd::
 wCardFlipEnd::
 	ds wCardFlip - @
 
+; Dummy Game
+; c6d0
+wDummyGame::
+wDummyGameCards:: ds 9 * 5
+wDummyGameCardsEnd::
+wDummyGameLastCardPicked:: ds 1 ; c6fd
+wDummyGameCard1:: ds 1 ; c6fe
+wDummyGameCard2:: ds 1 ; c6ff
+wDummyGameCard1Location:: ds 1 ; c700
+wDummyGameCard2Location:: ds 1 ; c701
+wDummyGameNumberTriesRemaining:: ds 1 ; c702
+wDummyGameLastMatches:: ds 5 ; c703
+wDummyGameCounter:: ds 1 ; c708
+wDummyGameNumCardsMatched:: ds 1 ; c709
+wDummyGameEnd::
+	ds wDummyGame - @
 ; Unown Puzzle
 wUnownPuzzle::
 wPuzzlePieces::

@@ -13177,6 +13177,7 @@ Unknown_e00ed:
 ; game were meant to be here.
 
 ret_e00ed: ; e00ed (38:40ed)
+; How many coins?
 	ret
 ; e00ee (38:40ee)
 

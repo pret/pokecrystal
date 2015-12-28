@@ -202,7 +202,7 @@ HomepageScript:
 
 Radio1Script:
 	opentext
-	writebyte $0
+	writebyte MAPRADIO_POKEMON_CHANNEL
 	special MapRadio
 	closetext
 	end
@@ -210,7 +210,7 @@ Radio1Script:
 Radio2Script:
 ; Lucky Channel
 	opentext
-	writebyte $4
+	writebyte MAPRADIO_LUCKY_CHANNEL
 	special MapRadio
 	closetext
 	end
@@ -1807,59 +1807,59 @@ GameCornerCoinVendorScript: ; 0xbcdcd
 CoinVendor_IntroScript: ; 0xbcde0
 	farwritetext CoinVendor_IntroText
 
-CoinVendor_SellCoinsMenuScript: ; 0xbcde4
+.loop: ; 0xbcde4
 	special Special_DisplayMoneyAndCoinBalance
-	loadmenudata CoinVendor_MenuDataHeader
+	loadmenudata .MenuDataHeader
 	verticalmenu
 	closewindow
-	if_equal $1, CoinVendor_Buy50CoinsScript
-	if_equal $2, CoinVendor_Buy500CoinsScript
-	jump CoinVendor_CancelScript
+	if_equal $1, .Buy50
+	if_equal $2, .Buy500
+	jump .Cancel
 ; 0xbcdf7
 
-CoinVendor_Buy50CoinsScript: ; 0xbcdf7
+.Buy50: ; 0xbcdf7
 	checkcoins 9949
-	if_equal $0, CoinVendor_CoinCaseFullScript
+	if_equal $0, .CoinCaseFull
 	checkmoney $0, 1000
-	if_equal $2, CoinVendor_NotEnoughMoneyScript
+	if_equal $2, .NotEnoughMoney
 	givecoins 50
 	takemoney $0, 1000
 	waitsfx
 	playsound SFX_TRANSACTION
 	farwritetext CoinVendor_Buy50CoinsText
 	waitbutton
-	jump CoinVendor_SellCoinsMenuScript
+	jump .loop
 ; 0xbce1b
 
-CoinVendor_Buy500CoinsScript: ; 0xbce1b
+.Buy500: ; 0xbce1b
 	checkcoins 9499
-	if_equal $0, CoinVendor_CoinCaseFullScript
+	if_equal $0, .CoinCaseFull
 	checkmoney $0, 10000
-	if_equal $2, CoinVendor_NotEnoughMoneyScript
+	if_equal $2, .NotEnoughMoney
 	givecoins 500
 	takemoney $0, 10000
 	waitsfx
 	playsound SFX_TRANSACTION
 	farwritetext CoinVendor_Buy500CoinsText
 	waitbutton
-	jump CoinVendor_SellCoinsMenuScript
+	jump .loop
 ; 0xbce3f
 
-CoinVendor_NotEnoughMoneyScript: ; 0xbce3f
+.NotEnoughMoney: ; 0xbce3f
 	farwritetext CoinVendor_NotEnoughMoneyText
 	waitbutton
 	closetext
 	end
 ; 0xbce46
 
-CoinVendor_CoinCaseFullScript: ; 0xbce46
+.CoinCaseFull: ; 0xbce46
 	farwritetext CoinVendor_CoinCaseFullText
 	waitbutton
 	closetext
 	end
 ; 0xbce4d
 
-CoinVendor_CancelScript: ; 0xbce4d
+.Cancel: ; 0xbce4d
 	farwritetext CoinVendor_CancelText
 	waitbutton
 	closetext
@@ -1867,15 +1867,14 @@ CoinVendor_CancelScript: ; 0xbce4d
 ; 0xbce54
 
 
-CoinVendor_MenuDataHeader: ; 0xbce54
+.MenuDataHeader
 	db $40 ; flags
 	db 04, 00 ; start coords
 	db 11, 15 ; end coords
-	dw CoinVendor_MenuData2
+	dw .MenuData2
 	db 1 ; default option
-; 0xbce5c
 
-CoinVendor_MenuData2: ; 0xbce5c
+.MenuData2
 	db $80 ; flags
 	db 3 ; items
 	db " 50 :  ¥1000@"
