@@ -6743,7 +6743,7 @@ MoveDescriptions:: ; 2cb52
 INCLUDE "battle/moves/move_descriptions.asm"
 ; 2ed44
 
-Function2ed44: ; 2ed44
+GivePokerusAndConvertBerries: ; 2ed44
 	call ConvertBerriesToBerryJuice
 	ld hl, PartyMon1PokerusStatus
 	ld a, [PartyCount]
@@ -6784,12 +6784,11 @@ Function2ed44: ; 2ed44
 	jr z, .randomPokerusLoop
 	ld b, a
 	and $f0
-	jr z, .asm_2ed91
+	jr z, .load_pkrs
 	ld a, b
 	and $7
 	inc a
-
-.asm_2ed91
+.load_pkrs
 	ld b, a
 	swap b
 	and $3
@@ -6800,10 +6799,10 @@ Function2ed44: ; 2ed44
 
 .monHasActivePokerus
 	call Random
-	cp $55
+	cp 1 + 33 percent
 	ret nc              ; 1/3 chance
 	ld a, [PartyCount]
-	cp $1
+	cp 1
 	ret z               ; only one mon, nothing to do
 	ld c, [hl]
 	ld a, b

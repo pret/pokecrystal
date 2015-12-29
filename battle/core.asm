@@ -8701,19 +8701,19 @@ Function3f662: ; 3f662
 
 
 ExitBattle: ; 3f69e
-	call Function3f6a5
+	call .HandleEndOfBattle
 	call CleanUpBattleRAM
 	ret
 ; 3f6a5
 
-Function3f6a5: ; 3f6a5
+.HandleEndOfBattle: ; 3f6a5
 	ld a, [wLinkMode]
 	and a
 	jr z, .not_linked
 	call ShowLinkBattleParticipantsAfterEnd
 	ld c, 150
 	call DelayFrames
-	call Function3f77c
+	call DetermineMobileBattleResult
 	ret
 
 .not_linked
@@ -8724,12 +8724,12 @@ Function3f6a5: ; 3f6a5
 	xor a
 	ld [wForceEvolution], a
 	predef EvolveAfterBattle
-	callba Function2ed44
+	callba GivePokerusAndConvertBerries
 	ret
 ; 3f6d0
 
 CleanUpBattleRAM: ; 3f6d0
-	call Function3f998
+	call BattleEnd_HandleRoamMons
 	xor a
 	ld [Danger], a
 	ld [wBattleMode], a
@@ -8810,7 +8810,7 @@ ShowLinkBattleParticipantsAfterEnd: ; 3f759
 	ret
 ; 3f77c
 
-Function3f77c: ; 3f77c
+DetermineMobileBattleResult: ; 3f77c
 	callba CheckMobileBattleError
 	jp c, .Mobile_InvalidBattle
 	call IsMobileBattle2
@@ -9058,19 +9058,19 @@ Function3f85f: ; 3f85f
 ; 3f998
 
 
-Function3f998: ; 3f998
+BattleEnd_HandleRoamMons: ; 3f998
 	ld a, [BattleType]
 	cp BATTLETYPE_ROAMING
-	jr nz, .asm_3f9c4
+	jr nz, .not_roaming
 	ld a, [wBattleResult]
 	and $f
-	jr z, .asm_3f9af
+	jr z, .caught_or_defeated_roam_mon
 	call GetRoamMonHP
 	ld a, [EnemyMonHP + 1]
 	ld [hl], a
-	jr .asm_3f9ca
+	jr .update_roam_mons
 
-.asm_3f9af
+.caught_or_defeated_roam_mon
 	call GetRoamMonHP
 	ld [hl], $0
 	call GetRoamMonMapGroup
@@ -9081,12 +9081,12 @@ Function3f998: ; 3f998
 	ld [hl], $0
 	ret
 
-.asm_3f9c4
+.not_roaming
 	call BattleRandom
 	and $f
 	ret nz
 
-.asm_3f9ca
+.update_roam_mons
 	callab UpdateRoamMons
 	ret
 ; 3f9d1

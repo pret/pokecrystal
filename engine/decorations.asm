@@ -207,7 +207,7 @@ DecoBedMenu: ; 268b5
 
 FindOwnedBeds: ; 268bd
 	ld hl, .beds
-	ld c, DECO_BEDS
+	ld c, BEDS
 	jp FindOwnedDecosInCategory
 ; 268c5
 
@@ -228,7 +228,7 @@ DecoCarpetMenu: ; 268ca
 
 FindOwnedCarpets: ; 268d2
 	ld hl, .carpets
-	ld c, DECO_CARPETS
+	ld c, CARPETS
 	jp FindOwnedDecosInCategory
 ; 268da
 
@@ -249,7 +249,7 @@ DecoPlantMenu: ; 268df
 
 FindOwnedPlants: ; 268e7
 	ld hl, .plants
-	ld c, DECO_0B
+	ld c, PLANTS
 	jp FindOwnedDecosInCategory
 ; 268ef
 
@@ -269,7 +269,7 @@ DecoPosterMenu: ; 268f3
 
 FindOwnedPosters: ; 268fb
 	ld hl, .posters
-	ld c, DECO_POSTERS
+	ld c, POSTERS
 	jp FindOwnedDecosInCategory
 ; 26903
 
@@ -290,7 +290,7 @@ DecoConsoleMenu: ; 26908
 
 FindOwnedConsoles: ; 26910
 	ld hl, .consoles
-	ld c, DECO_CONSOLES
+	ld c, CONSOLES
 	jp FindOwnedDecosInCategory
 ; 26918
 
@@ -311,7 +311,7 @@ DecoOrnamentMenu: ; 2691d
 
 FindOwnedOrnaments: ; 26925
 	ld hl, .ornaments
-	ld c, DECO_DOLLS
+	ld c, DOLLS
 	jp FindOwnedDecosInCategory
 ; 2692d
 
@@ -351,7 +351,7 @@ DecoBigDollMenu: ; 26945
 
 FindOwnedBigDolls: ; 2694d
 	ld hl, .big_dolls
-	ld c, DECO_BIG_DOLLS
+	ld c, BIG_DOLLS
 	jp FindOwnedDecosInCategory
 ; 26955
 

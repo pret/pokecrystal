@@ -4077,7 +4077,7 @@ Function101a21: ; 101a21
 Function101a4f: ; 101a4f
 	ld a, $1
 	ld [wc2d7], a
-	callba Function3f77c
+	callba DetermineMobileBattleResult
 	xor a
 	ld [wc2d7], a
 	callba CleanUpBattleRAM

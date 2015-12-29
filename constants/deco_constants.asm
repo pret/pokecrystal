@@ -51,59 +51,71 @@ const_value = 1
 	const SET_UP_ORNAMENT
 	const PUT_AWAY_ORNAMENT
 
+deco: MACRO
+	const DECO_\1
+	enum DECOFLAG_\1
+endm
+
 const_value = 1
-	const DECO_BEDS
-	const DECO_FEATHERY_BED ; 2
-	const DECO_PINK_BED ; 3
-	const DECO_POLKADOT_BED ; 4
-	const DECO_PIKACHU_BED ; 5
-	const DECO_CARPETS
-	const DECO_RED_CARPET ; 7
-	const DECO_BLUE_CARPET ; 8
-	const DECO_YELLOW_CARPET ; 9
-	const DECO_GREEN_CARPET ; a
-	const DECO_0B
-	const DECO_MAGNAPLANT ; c
-	const DECO_TROPICPLANT ; d
-	const DECO_JUMBOPLANT ; e
-	const DECO_POSTERS
-	const DECO_TOWN_MAP ; 10
-	const DECO_PIKACHU_POSTER ; 11
-	const DECO_CLEFAIRY_POSTER ; 12
-	const DECO_JIGGLYPUFF_POSTER ; 13
-	const DECO_CONSOLES
-	const DECO_FAMICOM ; 15
-	const DECO_SNES ; 16
-	const DECO_N64 ; 17
-	const DECO_VIRTUAL_BOY ; 18
-	const DECO_BIG_DOLLS
-	const DECO_BIG_SNORLAX_DOLL ; 1a
-	const DECO_BIG_ONIX_DOLL ; 1b
-	const DECO_BIG_LAPRAS_DOLL ; 1c
-	const DECO_DOLLS
-	const DECO_PIKACHU_DOLL ; 1e
-	const DECO_SURF_PIKACHU_DOLL ; 1f
-	const DECO_CLEFAIRY_DOLL ; 20
-	const DECO_JIGGLYPUFF_DOLL ; 21
-	const DECO_BULBASAUR_DOLL ; 22
-	const DECO_CHARMANDER_DOLL ; 23
-	const DECO_SQUIRTLE_DOLL ; 24
-	const DECO_POLIWAG_DOLL ; 25
-	const DECO_DIGLETT_DOLL ; 26
-	const DECO_STARMIE_DOLL ; 27
-	const DECO_MAGIKARP_DOLL ; 28
-	const DECO_ODDISH_DOLL ; 29
-	const DECO_GENGAR_DOLL ; 2a
-	const DECO_SHELLDER_DOLL ; 2b
-	const DECO_GRIMER_DOLL ; 2c
-	const DECO_VOLTORB_DOLL ; 2d
-	const DECO_WEEDLE_DOLL ; 2e
-	const DECO_UNOWN_DOLL ; 2f
-	const DECO_GEODUDE_DOLL ; 30
-	const DECO_MACHOP_DOLL ; 31
-	const DECO_TENTACOOL_DOLL ; 32
-	const DECO_GOLD_TROPHY_DOLL ; 33
-	const DECO_SILVER_TROPHY_DOLL ; 34
+__enum__ = 0
+	const BEDS
+	deco  FEATHERY_BED ; 2 (0)
+	deco  PINK_BED ; 3 (1)
+	deco  POLKADOT_BED ; 4 (2)
+	deco  PIKACHU_BED ; 5 (3)
+
+	const CARPETS
+	deco  RED_CARPET ; 7 (4)
+	deco  BLUE_CARPET ; 8 (5)
+	deco  YELLOW_CARPET ; 9 (6)
+	deco  GREEN_CARPET ; a (7)
+
+	const PLANTS
+	deco  MAGNAPLANT ; c (8)
+	deco  TROPICPLANT ; d (9)
+	deco  JUMBOPLANT ; e (a)
+
+	const POSTERS
+	deco  TOWN_MAP ; 10 (b)
+	deco  PIKACHU_POSTER ; 11 (c)
+	deco  CLEFAIRY_POSTER ; 12 (d)
+	deco  JIGGLYPUFF_POSTER ; 13(e)
+
+	const CONSOLES
+	deco  FAMICOM ; 15 (f)
+	deco  SNES ; 16 (10)
+	deco  N64 ; 17 (11)
+	deco  VIRTUAL_BOY ; 18 (12)
+
+	const BIG_DOLLS
+	deco  BIG_SNORLAX_DOLL ; 1a (13)
+	deco  BIG_ONIX_DOLL ; 1b (14)
+	deco  BIG_LAPRAS_DOLL ; 1c (15)
+
+	const DOLLS
+	deco  PIKACHU_DOLL ; 1e (16)
+	deco  SURF_PIKACHU_DOLL ; 1f (17)
+	deco  CLEFAIRY_DOLL ; 20 (18)
+	deco  JIGGLYPUFF_DOLL ; 21 (19)
+	deco  BULBASAUR_DOLL ; 22 (1a)
+	deco  CHARMANDER_DOLL ; 23 (1b)
+	deco  SQUIRTLE_DOLL ; 24 (1c)
+	deco  POLIWAG_DOLL ; 25 (1d)
+	deco  DIGLETT_DOLL ; 26 (1e)
+	deco  STARMIE_DOLL ; 27 (1f)
+	deco  MAGIKARP_DOLL ; 28 (20)
+	deco  ODDISH_DOLL ; 29 (21)
+	deco  GENGAR_DOLL ; 2a (22)
+	deco  SHELLDER_DOLL ; 2b (23)
+	deco  GRIMER_DOLL ; 2c (24)
+	deco  VOLTORB_DOLL ; 2d (25)
+	deco  WEEDLE_DOLL ; 2e (26)
+	deco  UNOWN_DOLL ; 2f (27)
+	deco  GEODUDE_DOLL ; 30 (28)
+	deco  MACHOP_DOLL ; 31 (29)
+	deco  TENTACOOL_DOLL ; 32 (2a)
+	deco  GOLD_TROPHY_DOLL ; 33 (2b)
+	deco  SILVER_TROPHY_DOLL ; 34 (2c)
 
 NUM_NON_TROPHY_DECOS EQU $2b
 NUM_DECOS EQU $2d
