@@ -511,7 +511,6 @@ TradedForText: ; 0xfcf80
 	; traded givemon for getmon
 	text_jump UnknownText_0x1bd429
 	start_asm
-
 	ld de, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame

@@ -5949,7 +5949,6 @@ BattleCommand_StatUpMessage: ; 363b8
 .stat
 	text_jump UnknownText_0x1c0cc6
 	start_asm
-
 	ld hl, .up
 	ld a, [LoweredStat]
 	and $f0
@@ -5983,7 +5982,6 @@ BattleCommand_StatDownMessage: ; 363e9
 .stat
 	text_jump UnknownText_0x1c0ceb
 	start_asm
-
 	ld hl, .fell
 	ld a, [LoweredStat]
 	and $f0
@@ -7345,7 +7343,6 @@ BattleCommand_Charge: ; 36b4d
 .UsedText
 	text_jump UnknownText_0x1c0d0e ; "[USER]"
 	start_asm
-
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	cp RAZOR_WIND

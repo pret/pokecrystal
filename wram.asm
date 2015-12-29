@@ -385,14 +385,14 @@ wLinkMode:: ; c2dc
 ScriptVar:: ; c2dd
 	ds 1
 
-wc2de:: ds 1
-wc2df:: ds 1
+wPlayerNextMovement:: ds 1
+wPlayerMovement:: ds 1
 	ds 2
+wc2e2::
 wMovementPerson:: ds 1
 wMovementDataPointer:: ds 3 ; dba
 wc2e6:: ds 4
-wc2ea:: ds 1
-wc2eb::
+wMovementByteWasControlSwitch:: ds 1
 wMovementPointer:: ds 2 ; c2eb
 	ds 3
 
@@ -2601,9 +2601,8 @@ CurDay:: ; d4cb
 wObjectFollow_Leader:: ds 1
 wObjectFollow_Follower:: ds 1
 wCenteredObject:: ds 1
-wd4d0:: ds 1
-wd4d1:: ds 1
-	ds 4
+wFollowerMovementQueueLength:: ds 1
+wFollowMovementQueue:: ds 5
 
 ObjectStructs:: ; d4d6
 object_struct: MACRO

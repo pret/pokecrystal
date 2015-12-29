@@ -8,7 +8,7 @@ CheckBreedmonCompatibility: ; 16e1d
 	ld [TempMonDVs], a
 	ld a, [wBreedMon1DVs + 1]
 	ld [TempMonDVs + 1], a
-	ld a, $3
+	ld a, BREEDMON
 	ld [MonType], a
 	predef GetGender
 	jr c, .genderless

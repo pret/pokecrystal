@@ -5508,7 +5508,7 @@ EnemyMonEntrance: ; 3e3ff
 ; 3e40b
 
 BattleMonEntrance: ; 3e40b
-	call BattleMonNickComma_TextBox
+	call WithdrawPkmnText
 
 	ld c, 50
 	call DelayFrames
@@ -8103,8 +8103,6 @@ JumpText_GoForItPkmn: ; 3f2df
 JumpText_YourFoesWeakGetmPkmn: ; 3f2e6
 	text_jump Text_YourFoesWeakGetmPkmn
 	start_asm
-; 3f2eb
-
 Function_TextJump_BattleMonNick01: ; 3f2eb
 	ld hl, TextJump_BattleMonNick01
 	ret
@@ -8115,18 +8113,13 @@ TextJump_BattleMonNick01: ; 3f2ef
 	db "@"
 ; 3f2f4
 
-
-BattleMonNickComma_TextBox: ; 3f2f4
-	ld hl, TextJump_BattleMonNickComma
+WithdrawPkmnText: ; 3f2f4
+	ld hl, .WithdrawPkmnText
 	jp BattleTextBox
-; 3f2fa
 
-TextJump_BattleMonNickComma: ; 3f2fa
+.WithdrawPkmnText
 	text_jump Text_BattleMonNickComma
 	start_asm
-; 3f2ff
-
-WithdrawPkmnText: ; 3f2ff
 ; Print text to withdraw Pkmn
 ; depending on HP the message is different
 	push de

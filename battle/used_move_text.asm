@@ -11,7 +11,6 @@ UsedMoveText: ; 105db9
 
 	text_jump _ActorNameText
 	start_asm
-
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .start
@@ -67,30 +66,26 @@ UsedMoveText: ; 105db9
 UsedMove1Text: ; 105e04
 	text_jump _UsedMove1Text
 	start_asm
-	jr Function105e10
+	jr UsedMoveText_CheckObedience
 ; 105e0b
 
 UsedMove2Text: ; 105e0b
 	text_jump _UsedMove2Text
 	start_asm
-; 105e10
-
-Function105e10: ; 105e10
+UsedMoveText_CheckObedience: ; 105e10
 ; check obedience
 	ld a, [AlreadyDisobeyed]
 	and a
-	jr z, GetMoveNameText
+	jr z, .GetMoveNameText
 ; print "instead,"
-	ld hl, UsedInsteadText
+	ld hl, .UsedInsteadText
 	ret
 ; 105e1a
 
-UsedInsteadText: ; 105e1a
+.UsedInsteadText
 	text_jump _UsedInsteadText
 	start_asm
-; 105e1f
-
-GetMoveNameText: ; 105e1f
+.GetMoveNameText
 	ld hl, MoveNameText
 	ret
 ; 105e23
@@ -98,9 +93,6 @@ GetMoveNameText: ; 105e1f
 MoveNameText: ; 105e23
 	text_jump _MoveNameText
 	start_asm
-; 105e28
-
-GetUsedMoveTextEnder: ; 105e28
 ; get start address
 	ld hl, .endusedmovetexts
 

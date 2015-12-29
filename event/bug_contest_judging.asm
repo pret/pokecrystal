@@ -63,9 +63,6 @@ BugContest_ThirdPlaceText: ; 0x13719
 	; Placing third was @ , who caught a @ !@ @
 	text_jump ContestJudging_ThirdPlaceText
 	start_asm
-; 0x1371e
-
-BugContest_ThirdPlace: ; 1371e
 	ld de, SFX_3RD_PLACE
 	call PlaySFX
 	call WaitSFX

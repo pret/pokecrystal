@@ -336,7 +336,6 @@ Text_WhoaMins: ; 0x908a4
 	; Whoa!@ @
 	text_jump UnknownText_0x1bc31b
 	start_asm
-; 0x908a9
 	hlcoord 7, 14
 	call DisplayMinutesWithMinString
 	ld hl, .QuestionMark
@@ -645,7 +644,6 @@ DebugDisplayTime: ; 90abc
 
 .Text: ; 0x90acc
 	start_asm
-
 	call UpdateTime
 
 	hlcoord 1, 14

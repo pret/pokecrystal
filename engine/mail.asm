@@ -208,12 +208,12 @@ GivePokeItem:: ; 446cc
 	push bc
 	push af
 	ld hl, sPartyMail
-	ld bc, $2f
+	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld hl, wd002
-	ld bc, $21
+	ld bc, MAIL_MSG_LENGTH + 1
 	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	call CopyBytes
@@ -222,7 +222,7 @@ GivePokeItem:: ; 446cc
 	ld hl, PartyMonOT
 	ld bc, NAME_LENGTH
 	call AddNTimes
-	ld bc, $a
+	ld bc, NAME_LENGTH - 1
 	call CopyBytes
 	pop af
 	ld hl, PartyMon1ID

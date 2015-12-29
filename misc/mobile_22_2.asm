@@ -542,9 +542,6 @@ UnknownText_0x8b64c: ; 0x8b64c
 	; CARD FOLDER open.@ @
 	text_jump UnknownText_0x1bc288
 	start_asm
-; 0x8b651
-
-Function8b651: ; 8b651
 	ld de, SFX_TWINKLE
 	call PlaySFX
 	call WaitSFX

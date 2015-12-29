@@ -3,10 +3,10 @@ MovementPointers: ; 5075
 	dw Movement_turn_head_up          ; 01
 	dw Movement_turn_head_left        ; 02
 	dw Movement_turn_head_right       ; 03
-	dw Movement_half_step_down        ; 04
-	dw Movement_half_step_up          ; 05
-	dw Movement_half_step_left        ; 06
-	dw Movement_half_step_right       ; 07
+	dw Movement_turn_step_down        ; 04
+	dw Movement_turn_step_up          ; 05
+	dw Movement_turn_step_left        ; 06
+	dw Movement_turn_step_right       ; 07
 	dw Movement_slow_step_down        ; 08
 	dw Movement_slow_step_up          ; 09
 	dw Movement_slow_step_left        ; 0a
@@ -130,7 +130,7 @@ Movement_step_dig: ; 5145
 	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], PERSON_ACTION_SPIN
-	call GetMovementByte
+	call JumpMovementPointer
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
@@ -150,7 +150,7 @@ Movement_return_dig: ; 516a
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
 	ld [hl], a
-	call GetMovementByte
+	call JumpMovementPointer
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
@@ -174,7 +174,7 @@ Movement_fish_got_bite: ; 5189
 ; 5196
 
 Movement_rock_smash: ; 5196
-	call GetMovementByte
+	call JumpMovementPointer
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
@@ -233,7 +233,7 @@ Movement_48: ; 51db
 	add hl, bc
 	ld [hl], $0
 
-	call GetMovementByte
+	call JumpMovementPointer
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
@@ -311,7 +311,7 @@ Movement_step_sleep: ; 5242
 ; parameters:
 ;	duration (DecimalParam)
 
-	call GetMovementByte
+	call JumpMovementPointer
 	jr Movement_step_sleep_common
 
 Movement_step_sleep_common: ; 5247
@@ -429,7 +429,7 @@ Movement_step_shake: ; 52d5
 ; parameters:
 ;	displacement (DecimalParam)
 
-	call GetMovementByte
+	call JumpMovementPointer
 	call ShakeScreen
 	jp ContinueReadingMovement
 ; 52de
@@ -709,23 +709,23 @@ Movement_fast_jump_step_right: ; 53eb
 ; 53f0
 
 
-Movement_half_step_down: ; 53f0
+Movement_turn_step_down: ; 53f0
 	ld a, OW_DOWN
-	jr HalfStep
+	jr TurnStep
 
-Movement_half_step_up: ; 53f4
+Movement_turn_step_up: ; 53f4
 	ld a, OW_UP
-	jr HalfStep
+	jr TurnStep
 
-Movement_half_step_left: ; 53f8
+Movement_turn_step_left: ; 53f8
 	ld a, OW_LEFT
-	jr HalfStep
+	jr TurnStep
 
-Movement_half_step_right: ; 53fc
+Movement_turn_step_right: ; 53fc
 	ld a, OW_RIGHT
-	jr HalfStep
+	jr TurnStep
 
-HalfStep: ; 5400
+TurnStep: ; 5400
 	ld hl, OBJECT_29 ; new facing
 	add hl, bc
 	ld [hl], a

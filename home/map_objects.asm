@@ -460,7 +460,7 @@ LoadMovementDataPointer:: ; 19e9
 
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], 0
+	ld [hl], STEP_TYPE_00
 
 	ld hl, VramState
 	set 7, [hl]
@@ -611,7 +611,7 @@ endr
 	ret
 ; 1aae
 
-Function1aae:: ; 1aae
+_GetMovementByte:: ; 1aae
 ; Switch to the movement data bank
 	ld a, [hROMBank]
 	push af
