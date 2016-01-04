@@ -3,7 +3,7 @@ SelectMonFromParty: ; 50000
 	xor a
 	ld [PartyMenuActionText], a
 	call ClearBGPalettes
-	call Function5003f
+	call InitPartyMenuLayout
 	call WaitBGMap
 	call SetPalettes
 	call DelayFrame
@@ -18,7 +18,7 @@ SelectTradeOrDaycareMon: ; 5001d
 	ld [PartyMenuActionText], a
 	call DisableSpriteUpdates
 	call ClearBGPalettes
-	call Function5003f
+	call InitPartyMenuLayout
 	call WaitBGMap
 	ld b, SCGB_0A
 	call GetSGBLayout
@@ -29,7 +29,7 @@ SelectTradeOrDaycareMon: ; 5001d
 	ret
 ; 5003f
 
-Function5003f: ; 5003f
+InitPartyMenuLayout: ; 5003f
 	call LoadPartyMenuGFX
 	call InitPartyMenuWithCancel
 	call InitPartyMenuGFX
@@ -40,7 +40,7 @@ Function5003f: ; 5003f
 
 LoadPartyMenuGFX: ; 5004f
 	call LoadFontsBattleExtra
-	callab Function8ad1 ; engine/color.asm
+	callab InitPartyMenuPalettes ; engine/color.asm
 	callab ClearSpriteAnims2
 	ret
 ; 5005f

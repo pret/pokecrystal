@@ -1,8 +1,6 @@
 
 SpawnPoints: ; 0x152ab
 
-	const_def
-
 spawn: MACRO
 ; map, y, x
 	map \1

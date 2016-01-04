@@ -6749,13 +6749,20 @@ GivePokerusAndConvertBerries: ; 2ed44
 	ld a, [PartyCount]
 	ld b, a
 	ld de, PARTYMON_STRUCT_LENGTH
+; Check to see if any of your Pokemon already has Pokerus.
+; If so, sample its spread through your party.
+; This means that you cannot get Pokerus de novo while
+; a party member has an active infection.
 .loopMons
 	ld a, [hl]
 	and $f
-	jr nz, .monHasActivePokerus
+	jr nz, .TrySpreadPokerus
 	add hl, de
 	dec b
 	jr nz, .loopMons
+
+; If we haven't been to Goldenrod City at least once,
+; prevent the contraction of Pokerus.
 	ld hl, StatusFlags2
 	bit 6, [hl]
 	ret z
@@ -6778,7 +6785,7 @@ GivePokerusAndConvertBerries: ; 2ed44
 	ld a, [hl]
 	and $f0
 	ret nz                 ; if it already has pokerus, do nothing
-.randomPokerusLoop
+.randomPokerusLoop         ; Simultaneously sample the strain and duration
 	call Random
 	and a
 	jr z, .randomPokerusLoop
@@ -6789,7 +6796,7 @@ GivePokerusAndConvertBerries: ; 2ed44
 	and $7
 	inc a
 .load_pkrs
-	ld b, a
+	ld b, a ; this should come before the label
 	swap b
 	and $3
 	inc a
@@ -6797,19 +6804,22 @@ GivePokerusAndConvertBerries: ; 2ed44
 	ld [hl], a
 	ret
 
-.monHasActivePokerus
+.TrySpreadPokerus
 	call Random
 	cp 1 + 33 percent
 	ret nc              ; 1/3 chance
+
 	ld a, [PartyCount]
 	cp 1
 	ret z               ; only one mon, nothing to do
+
 	ld c, [hl]
 	ld a, b
-	cp $2
+	cp 2
 	jr c, .checkPreviousMonsLoop    ; no more mons after this one, go backwards
+
 	call Random
-	cp $80
+	cp 1 + 50 percent
 	jr c, .checkPreviousMonsLoop    ; 1/2 chance, go backwards
 .checkFollowingMonsLoop
 	add hl, de
@@ -6821,7 +6831,7 @@ GivePokerusAndConvertBerries: ; 2ed44
 	ret z               ; if mon has cured pokerus, stop searching
 	dec b               ; go on to next mon
 	ld a, b
-	cp $1
+	cp 1
 	jr nz, .checkFollowingMonsLoop ; no more mons left
 	ret
 
@@ -8188,14 +8198,14 @@ LinkMonStatsScreen: ; 4d319
 	call ClearBGPalettes
 	call MaxVolume
 	callba LoadTradeScreenBorder
-	callba Function4d354
+	callba Link_WaitBGMap
 	callba InitTradeSpeciesList
 	callba Function28eff
 	call WaitBGMap2
 	ret
 ; 4d354
 
-Function4d354: ; 4d354
+Link_WaitBGMap: ; 4d354
 	call WaitBGMap
 	call WaitBGMap2
 	ret

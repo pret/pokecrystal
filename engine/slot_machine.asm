@@ -9,7 +9,7 @@ REEL_SIZE EQU 15
 
 _SlotMachine:
 	ld hl, Options
-	set 4, [hl]
+	set NO_TEXT_SCROLL, [hl]
 	call .InitGFX
 	call DelayFrame
 .loop
@@ -22,7 +22,7 @@ _SlotMachine:
 	call ClearBGPalettes
 	callba MobileFn_105fd0
 	ld hl, Options
-	res 4, [hl]
+	res NO_TEXT_SCROLL, [hl]
 	ld hl, rLCDC ; $ff40
 	res 2, [hl]
 	ret

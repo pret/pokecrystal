@@ -494,6 +494,7 @@ CopyCurrMapDE: ; 2a27f
 ; 2a288
 
 LookUpWildmonsForMapDE: ; 2a288
+.loop
 	push hl
 	ld a, [hl]
 	inc a
@@ -509,7 +510,7 @@ LookUpWildmonsForMapDE: ; 2a288
 .next
 	pop hl
 	add hl, bc
-	jr LookUpWildmonsForMapDE
+	jr .loop
 
 .nope
 	pop hl
@@ -896,7 +897,7 @@ endr
 	ld a, c
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
-	ld hl, UnknownText_0x2a51a
+	ld hl, .SawRareMonText
 	call PrintText
 	xor a
 	ld [ScriptVar], a
@@ -906,9 +907,8 @@ endr
 	ld a, $1
 	ld [ScriptVar], a
 	ret
-; 2a51a
 
-UnknownText_0x2a51a: ; 0x2a51a
+.SawRareMonText
 	; I just saw some rare @  in @ . I'll call you if I see another rare #MON, OK?
 	text_jump UnknownText_0x1bd34b
 	db "@"

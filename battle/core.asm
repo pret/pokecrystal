@@ -9167,11 +9167,11 @@ GetRoamMonSpecies: ; 3fa31
 
 
 Function3fa42: ; 3fa42
-	ld hl, wd276
+	ld hl, OTPlayerID
 	ld de, StringBuffer1
 	ld bc, 2
 	call CopyBytes
-	ld hl, wd26b
+	ld hl, OTPlayerName
 	ld bc, 10
 	call CopyBytes
 	ld hl, s1_b254

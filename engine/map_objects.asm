@@ -2470,9 +2470,9 @@ Function56cd: ; 56cd
 	ret
 ; 576a
 
-Function576a:: ; 576a
+HandleNPCStep:: ; 576a
 	call .ResetStepVector
-	call Function5781
+	call .DoStepsForAllObjects
 	ret
 
 .ResetStepVector
@@ -2483,9 +2483,8 @@ Function576a:: ; 576a
 	ld a, -1
 	ld [wPlayerStepDirection], a
 	ret
-; 5781
 
-Function5781: ; 5781
+.DoStepsForAllObjects
 	ld bc, ObjectStructs
 	xor a
 .loop
@@ -2505,21 +2504,21 @@ Function5781: ; 5781
 	ret
 ; 579d
 
-Function579d: ; 579d
-	ld a, $3e
+RefreshPlayerSprite: ; 579d
+	ld a, movement_step_sleep_1
 	ld [wPlayerNextMovement], a
 	ld [wPlayerMovement], a
 	xor a
 	ld [wd04e], a
 	ld [PlayerObjectStepFrame], a
-	call Function57bc
+	call .TryResetPlayerAction
 	callba CheckWarpFacingDown
 	call c, SpawnInFacingDown
-	call SpawnInCustomFacing
+	call .SpawnInCustomFacing
 	ret
 ; 57bc
 
-Function57bc: ; 57bc
+.TryResetPlayerAction: ; 57bc
 	ld hl, wPlayerSpriteSetupFlags
 	bit 7, [hl]
 	jr nz, .ok
@@ -2531,7 +2530,7 @@ Function57bc: ; 57bc
 	ret
 ; 57ca
 
-SpawnInCustomFacing: ; 57ca
+.SpawnInCustomFacing: ; 57ca
 	ld hl, wPlayerSpriteSetupFlags
 	bit 5, [hl]
 	ret z

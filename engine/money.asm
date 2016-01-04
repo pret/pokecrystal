@@ -1,11 +1,11 @@
 GiveMoney:: ; 15fd7
-	ld a, $3
+	ld a, 3
 	call AddMoney
 	ld bc, MaxMoney
-	ld a, $3
+	ld a, 3
 	call CompareMoney
-	jr z, .asm_15ff5
-	jr c, .asm_15ff5
+	jr z, .not_maxed_out
+	jr c, .not_maxed_out
 	ld hl, MaxMoney
 	ld a, [hli]
 	ld [de], a
@@ -18,7 +18,7 @@ GiveMoney:: ; 15fd7
 	scf
 	ret
 
-.asm_15ff5
+.not_maxed_out
 	and a
 	ret
 ; 15ff7
@@ -31,7 +31,8 @@ MaxMoney: ; 15ff7
 TakeMoney:: ; 15ffa
 	ld a, 3
 	call SubtractMoney
-	jr nc, .asm_16009
+	jr nc, .okay
+	; leave with 0 money
 	xor a
 	ld [de], a
 	inc de
@@ -41,20 +42,23 @@ TakeMoney:: ; 15ffa
 	scf
 	ret
 
-.asm_16009
+.okay
 	and a
 	ret
 ; 1600b
 
 CompareMoney:: ; 1600b
-	ld a, $3
+	ld a, 3
 CompareFunds: ; 1600d
+; a: number of bytes
+; bc: start addr of amount (big-endian)
+; de: start addr of account (big-endian)
 	push hl
 	push de
 	push bc
 	ld h, b
 	ld l, c
-	ld c, $0
+	ld c, 0
 	ld b, a
 .loop1
 	dec a
@@ -82,10 +86,9 @@ CompareFunds: ; 1600d
 	jr .skip_carry
 
 .set_carry
-	ld a, $1
+	ld a, TRUE
 	and a
 	scf
-
 .skip_carry
 	pop bc
 	pop de
@@ -96,6 +99,9 @@ CompareFunds: ; 1600d
 SubtractMoney: ; 16035
 	ld a, 3
 SubtractFunds: ; 16037
+; a: number of bytes
+; bc: start addr of amount (big-endian)
+; de: start addr of account (big-endian)
 	push hl
 	push de
 	push bc
@@ -127,11 +133,15 @@ SubtractFunds: ; 16037
 ; 16053
 
 AddMoney: ; 16053
-	ld a, $3
+	ld a, 3
 AddFunds: ; 16055
+; a: number of bytes
+; bc: start addr of amount (big-endian)
+; de: start addr of account (big-endian)
 	push hl
 	push de
 	push bc
+
 	ld h, b
 	ld l, c
 	ld b, a
@@ -152,6 +162,7 @@ AddFunds: ; 16055
 	dec hl
 	dec b
 	jr nz, .loop2
+
 	pop bc
 	pop de
 	pop hl
@@ -189,7 +200,8 @@ TakeCoins:: ; 1608f
 	ld a, 2
 	ld de, Coins
 	call SubtractFunds
-	jr nc, .asm_1609f
+	jr nc, .okay
+	; leave with 0 coins
 	xor a
 	ld [de], a
 	inc de
@@ -197,13 +209,13 @@ TakeCoins:: ; 1608f
 	scf
 	ret
 
-.asm_1609f
+.okay
 	and a
 	ret
 ; 160a1
 
 CheckCoins:: ; 160a1
-	ld a, $2
+	ld a, 2
 	ld de, Coins
 	jp CompareFunds
 ; 160a9
