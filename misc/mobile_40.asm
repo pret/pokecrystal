@@ -1570,7 +1570,7 @@ Function1009ae: ; 1009ae
 	inc de
 	dec c
 	jr nz, .loop_col
-	ld bc, 12
+	ld bc, BG_MAP_WIDTH - SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	dec b
@@ -1609,7 +1609,7 @@ Function1009f3: ; 1009f3
 	ld a, [hJoyDown]
 	and SELECT + A_BUTTON
 	cp SELECT + A_BUTTON
-	jr nz, .asm_100a07
+	jr nz, .select_a
 	ld hl, wcd2a
 	set 4, [hl]
 	ld a, $f8
@@ -1617,7 +1617,7 @@ Function1009f3: ; 1009f3
 	scf
 	ret
 
-.asm_100a07
+.select_a
 	xor a
 	ret
 ; 100a09
@@ -1630,13 +1630,13 @@ _LinkBattleSendReceiveAction: ; 100a09
 	cp LINK_MOBILE
 	jr nz, .not_mobile
 
-	call Function100a87
+	call .MobileBattle_SendReceiveAction
 	call Function100da5
 	callba FinishBattleAnim
 	jr .done
 
 .not_mobile
-	call Function100a53
+	call .LinkBattle_SendReceiveAction
 
 .done
 	ret
@@ -1669,7 +1669,7 @@ _LinkBattleSendReceiveAction: ; 100a09
 	ret
 ; 100a53
 
-Function100a53: ; 100a53
+.LinkBattle_SendReceiveAction: ; 100a53
 	ld a, [wd431]
 	ld [wPlayerLinkAction], a
 	ld a, $ff
@@ -1700,7 +1700,7 @@ Function100a53: ; 100a53
 	ret
 ; 100a87
 
-Function100a87: ; 100a87
+.MobileBattle_SendReceiveAction: ; 100a87
 	call Function100acf
 	call Function100641
 	ld a, 0
@@ -2100,7 +2100,7 @@ MobileBattleMonMenu: ; 100d22
 ; 100d67
 
 Function100d67: ; 100d67
-	ld hl, MenuDataHeader_100d88
+	ld hl, .MenuDataHeader
 	call CopyMenuDataHeader
 	xor a
 	ld [hBGMapMode], a
@@ -2115,19 +2115,19 @@ Function100d67: ; 100d67
 	ret
 ; 100d88
 
-MenuDataHeader_100d88: ; 100d88
+.MenuDataHeader: ; 100d88
 	db 0 ; flags
 	db 11, 11 ; start coords
 	db 17, 19 ; end coords
-	dw MenuData2_100d90
+	dw .MenuData2
 	db 1 ; default option
 
-MenuData2_100d90: ; 100d90
+.MenuData2: ; 100d90
 	db $c0 ; flags
 	db 3
-	db "いれかえる@"
-	db "つよさをみる@"
-	db "キャンセル@"
+	db "いれかえる@"  ; TRADE
+	db "つよさをみる@" ; STATS
+	db "キャンセル@"  ; CANCEL
 ; 100da5
 
 Function100da5: ; 100da5

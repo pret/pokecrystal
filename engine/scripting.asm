@@ -3049,10 +3049,7 @@ Script_loadbytec2cf: ; 97b27
 	ret
 ; 97b2e
 
-
-CloseTextScript: ; 97b2e
-	closetext
-; 97b2f
+	ld c, c ; XXX
 
 Script_closetext: ; 97b2f
 ; script command 0x49

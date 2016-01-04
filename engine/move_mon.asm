@@ -1428,7 +1428,7 @@ CalcPkmnStatC: ; e17b
 	sla c
 	ld a, d
 	and a
-	jr z, .SkipSqrt
+	jr z, .no_stat_exp
 	add hl, bc
 	push de
 	ld a, [hld]
@@ -1437,7 +1437,7 @@ CalcPkmnStatC: ; e17b
 	callba GetSquareRoot
 	pop de
 
-.SkipSqrt
+.no_stat_exp
 	srl c
 	pop hl
 	push bc

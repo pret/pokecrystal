@@ -109,7 +109,7 @@ Function8aa4: ; 8aa4
 ; 8ad1
 
 
-Function8ad1: ; 8ad1
+InitPartyMenuPalettes: ; 8ad1
 	ld hl, PalPacket_9c56 + 1
 	call CopyFourPalettes
 	call InitPartyMenuOBPals
@@ -145,16 +145,17 @@ SGB_ApplyPartyMenuHPPals: ; 8ade SGB layout $fc
 ; 8b07
 
 Function8b07: ; 8b07
+; Unreferenced
 	call CheckCGB
 	ret z
-	ld hl, Palette8b2f
+	ld hl, .BGPal
 	ld de, UnknBGPals
 	ld bc, 1 palettes
 	ld a, $5
 	call FarCopyWRAM
 
-	ld hl, Palette8b37
-	ld de, MartPointer
+	ld hl, .OBPal
+	ld de, UnknOBPals
 	ld bc, 1 palettes
 	ld a, $5
 	call FarCopyWRAM
@@ -163,17 +164,14 @@ Function8b07: ; 8b07
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; 8b2f
 
-Palette8b2f: ; 8b2f
+.BGPal
 	RGB 31, 31, 31
 	RGB 18, 23, 31
 	RGB 15, 20, 31
 	RGB 00, 00, 00
 
-; 8b37
-
-Palette8b37: ; 8b37
+.OBPal
 	RGB 31, 31, 31
 	RGB 31, 31, 12
 	RGB 08, 16, 28
@@ -182,6 +180,7 @@ Palette8b37: ; 8b37
 ; 8b3f
 
 Function8b3f: ; 8b3f
+; Unreferenced
 	call CheckCGB
 	ret nz
 	ld a, [hSGB]
@@ -193,14 +192,14 @@ Function8b3f: ; 8b3f
 
 Function8b4d: ; 8b4d
 	call CheckCGB
-	jr nz, .asm_8b5c
+	jr nz, .cgb
 	ld a, [hSGB]
 	and a
 	ret z
 	ld hl, PalPacket_9c26
 	jp Function9809
 
-.asm_8b5c
+.cgb
 	ld de, UnknOBPals
 	ld a, $3b
 	call GetPredefPal
@@ -209,14 +208,14 @@ Function8b4d: ; 8b4d
 
 Function8b67: ; 8b67
 	call CheckCGB
-	jr nz, .asm_8b76
+	jr nz, .cgb
 	ld a, [hSGB]
 	and a
 	ret z
 	ld hl, PalPacket_9c36
 	jp Function9809
 
-.asm_8b76
+.cgb
 	ld de, UnknOBPals
 	ld a, $3c
 	call GetPredefPal
@@ -934,13 +933,13 @@ Function9809: ; 9809
 	push af
 	set 7, a
 	ld [wcfbe], a
-	call Function981a
+	call PushSGBPals
 	pop af
 	ld [wcfbe], a
 	ret
 ; 981a
 
-Function981a: ; 981a
+PushSGBPals: ; 981a
 	ld a, [hl]
 	and $7
 	ret z
@@ -1004,7 +1003,7 @@ Function9853: ; 9853
 	call SGBDelayCycles
 	call Function993f
 	ld hl, PalPacket_9d66
-	call Function981a
+	call PushSGBPals
 
 .asm_988a
 	pop af
@@ -1020,50 +1019,49 @@ Function9890:: ; 9890
 	ld a, $1
 	ld [rVBK], a
 	ld hl, VTiles0
-	ld bc, $2000
+	ld bc, $200 tiles
 	xor a
 	call ByteFill
 	ld a, $0
 	ld [rVBK], a
 	ld a, $80
 	ld [rBGPI], a
-	ld c, $20
-.asm_98ac
-	ld a, $ff
+	ld c, 4 * 8
+.bgpals_loop
+	ld a, $7fff % $100
 	ld [rBGPD], a
-	ld a, $7f
+	ld a, $7fff / $100
 	ld [rBGPD], a
 	dec c
-	jr nz, .asm_98ac
+	jr nz, .bgpals_loop
 	ld a, $80
 	ld [rOBPI], a
-	ld c, $20
-.asm_98bd
-	ld a, $ff
+	ld c, 4 * 8
+.obpals_loop
+	ld a, $7fff % $100
 	ld [rOBPD], a
-	ld a, $7f
+	ld a, $7fff / $100
 	ld [rOBPD], a
 	dec c
-	jr nz, .asm_98bd
+	jr nz, .obpals_loop
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, UnknBGPals
-	call Function98df
+	call .LoadWhitePals
 	ld hl, BGPals
-	call Function98df
+	call .LoadWhitePals
 	pop af
 	ld [rSVBK], a
 	ret
-; 98df
 
-Function98df: ; 98df
-	ld c, $40
+.LoadWhitePals
+	ld c, 4 * 16
 .loop
-	ld a, $ff
+	ld a, $7fff % $100
 	ld [hli], a
-	ld a, $7f
+	ld a, $7fff / $100
 	ld [hli], a
 	dec c
 	jr nz, .loop
@@ -1071,24 +1069,24 @@ Function98df: ; 98df
 ; 98eb
 
 Function98eb: ; 98eb
-	ld hl, Unknown_98ff
-	ld c, $9
-.asm_98f0
+	ld hl, .PalPacketPointerTable
+	ld c, 9
+.loop
 	push bc
 	ld a, [hli]
 	push hl
 	ld h, [hl]
 	ld l, a
-	call Function981a
+	call PushSGBPals
 	pop hl
 	inc hl
 	pop bc
 	dec c
-	jr nz, .asm_98f0
+	jr nz, .loop
 	ret
 ; 98ff
 
-Unknown_98ff: ; 98ff
+.PalPacketPointerTable: ; 98ff
 	dw PalPacket_9d56
 	dw PalPacket_9d76
 	dw PalPacket_9d86
@@ -1105,18 +1103,18 @@ Function9911: ; 9911
 	xor a
 	ld [rJOYP], a
 	ld hl, PalPacket_9d56
-	call Function981a
+	call PushSGBPals
 	call Function992c
 	call SGBDelayCycles
 	call Function993f
 	ld hl, PalPacket_9d66
-	call Function981a
+	call PushSGBPals
 	ei
 	ret
 ; 992c
 
 Function992c: ; 992c
-	call Function9938
+	call .LoadSGBBorderPointers
 	push de
 	call Function9a24
 	pop hl
@@ -1124,7 +1122,7 @@ Function992c: ; 992c
 	ret
 ; 9938
 
-Function9938: ; 9938
+.LoadSGBBorderPointers: ; 9938
 	ld hl, SGBBorder
 	ld de, SGBBorderMap
 	ret
@@ -1140,7 +1138,7 @@ Function993f: ; 993f
 
 Function994a: ; 994a
 	ld hl, PalPacket_9d26
-	call Function981a
+	call PushSGBPals
 	call SGBDelayCycles
 	ld a, [rJOYP]
 	and $3
@@ -1186,7 +1184,7 @@ endr
 
 Function99ab: ; 99ab
 	ld hl, PalPacket_9d16
-	call Function981a
+	call PushSGBPals
 	jp SGBDelayCycles
 ; 99b4
 
@@ -1202,7 +1200,7 @@ Function99b4: ; 99b4
 	ld a, $e3
 	ld [rLCDC], a
 	ld hl, PalPacket_9d06
-	call Function981a
+	call PushSGBPals
 	xor a
 	ld [rBGP], a
 	ret
@@ -1215,7 +1213,7 @@ Function99d8: ; 99d8
 	ld de, VTiles1
 	ld bc, 20 tiles
 	call CopyData
-	ld b, $12
+	ld b, 18
 .asm_99ea
 	push bc
 	ld bc, $c
@@ -1237,7 +1235,7 @@ Function99d8: ; 99d8
 	ld a, $e3
 	ld [rLCDC], a
 	ld hl, PalPacket_9d46
-	call Function981a
+	call PushSGBPals
 	xor a
 	ld [rBGP], a
 	ret
@@ -1245,15 +1243,15 @@ Function99d8: ; 99d8
 
 Function9a24: ; 9a24
 	call DisableLCD
-	ld a, $e4
+	ld a, %11100100
 	ld [rBGP], a
 	ld de, VTiles1
 	ld b, $80
 .asm_9a30
 	push bc
-	ld bc, 2 palettes
+	ld bc, 1 tiles
 	call CopyData
-	ld bc, 2 palettes
+	ld bc, 1 tiles
 	call ClearBytes
 	pop bc
 	dec b
@@ -1262,7 +1260,7 @@ Function9a24: ; 9a24
 	ld a, $e3
 	ld [rLCDC], a
 	ld hl, PalPacket_9d36
-	call Function981a
+	call PushSGBPals
 	xor a
 	ld [rBGP], a
 	ret
@@ -1295,7 +1293,7 @@ ClearBytes: ; 0x9a5b
 DrawDefaultTiles: ; 0x9a64
 ; Draw 240 tiles (2/3 of the screen) from tiles in VRAM
 	hlbgcoord 0, 0 ; BG Map 0
-	ld de, 32 - 20
+	ld de, BG_MAP_WIDTH - SCREEN_WIDTH
 	ld a, $80 ; starting tile
 	ld c, 12 + 1
 .line

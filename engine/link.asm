@@ -184,7 +184,7 @@ Gen2ToGen2LinkComms: ; 28177
 	call Function29dba
 	ld a, [ScriptVar]
 	and a
-	jp z, Function283b2
+	jp z, LinkTimeout
 	ld a, [hLinkPlayerNumber]
 	cp $2
 	jr nz, .Player1
@@ -397,11 +397,11 @@ Gen2ToGen2LinkComms: ; 28177
 	ld de, OTPartyCount
 	ld bc, 8
 	call CopyBytes
-	ld de, wd276
+	ld de, OTPlayerID
 	ld bc, 2
 	call CopyBytes
-	ld de, OTPartyMon1Species
-	ld bc, $1a4
+	ld de, OTPartyMons
+	ld bc, OTPartyDataEnd - OTPartyMons
 	call CopyBytes
 	ld a, OTPartyMonOT % $100
 	ld [wd102], a
@@ -419,7 +419,7 @@ Gen2ToGen2LinkComms: ; 28177
 	ld a, CAL
 	ld [OtherTrainerClass], a
 	call ClearScreen
-	callba Function4d354
+	callba Link_WaitBGMap
 	ld hl, Options
 	ld a, [hl]
 	push af
@@ -468,9 +468,9 @@ Gen2ToGen2LinkComms: ; 28177
 	jp InitTradeMenuDisplay
 ; 283b2
 
-Function283b2: ; 283b2
+LinkTimeout: ; 283b2
 	ld de, .TooMuchTimeHasElapsed
-	ld b, $a
+	ld b, 10
 .loop
 	call DelayFrame
 	call LinkDataReceived
@@ -1379,7 +1379,7 @@ Function28926: ; 28926
 	hlcoord 2, 16
 	ld de, .String_Stats_Trade
 	call PlaceString
-	callba Function4d354
+	callba Link_WaitBGMap
 
 .joy_loop
 	ld a, " "
@@ -1485,7 +1485,7 @@ Function28926: ; 28926
 	ld b, 4
 	ld c, 18
 	call Predef_LinkTextbox
-	callba Function4d354
+	callba Link_WaitBGMap
 	ld hl, .Text_CantTradeLastMon
 	bccoord 1, 14
 	call PlaceWholeStringInBoxAtOnce
@@ -1507,7 +1507,7 @@ Function28926: ; 28926
 	ld b, 4
 	ld c, 18
 	call Predef_LinkTextbox
-	callba Function4d354
+	callba Link_WaitBGMap
 	ld hl, .Text_Abnormal
 	bccoord 1, 14
 	call PlaceWholeStringInBoxAtOnce
@@ -1663,7 +1663,7 @@ LinkTrade: ; 28b87
 	ld b, $4
 	ld c, $12
 	call Predef_LinkTextbox
-	callba Function4d354
+	callba Link_WaitBGMap
 	ld a, [wd002]
 	ld hl, PartySpecies
 	ld c, a
@@ -1713,7 +1713,7 @@ LinkTrade: ; 28b87
 	ld a, 1
 	ld [wMenuCursorY], a
 	ld [wMenuCursorX], a
-	callba Function4d354
+	callba Link_WaitBGMap
 	call ScrollingMenuJoypad
 	push af
 	call Call_ExitMenu
@@ -1935,7 +1935,7 @@ LinkTrade: ; 28b87
 	call ClearScreen
 	call LoadTradeScreenBorder
 	call Function28eff
-	callba Function4d354
+	callba Link_WaitBGMap
 	ld b, $1
 	pop af
 	ld c, a
@@ -1982,7 +1982,7 @@ LinkTrade: ; 28b87
 	hlcoord 1, 14
 	ld de, String28ebd
 	call PlaceString
-	callba Function4d354
+	callba Link_WaitBGMap
 	ld c, 50
 	call DelayFrames
 	ld a, [wLinkMode]

@@ -319,7 +319,7 @@ RefreshMapSprites: ; 1047f0
 	call ClearSprites
 	callba ReturnFromMapSetupScript
 	call GetMovementPermissions
-	callba Function579d
+	callba RefreshPlayerSprite
 	callba CheckReplaceKrisSprite
 	ld hl, wPlayerSpriteSetupFlags
 	bit 6, [hl]

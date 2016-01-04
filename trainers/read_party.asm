@@ -333,7 +333,7 @@ endr
 Battle_GetTrainerName:: ; 39939
 	ld a, [InBattleTowerBattle]
 	bit 0, a
-	ld hl, wd26b
+	ld hl, OTPlayerName
 	jp nz, CopyTrainerName
 
 	ld a, [OtherTrainerID]

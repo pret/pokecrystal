@@ -94,7 +94,6 @@ callasm: macro
 	dba \1
 	endm
 
-
 	enum special_command
 special: macro
 	db special_command
@@ -105,7 +104,6 @@ add_special: MACRO
 \1Special::
 	dba \1
 ENDM
-
 
 	enum ptcallasm_command
 ptcallasm: macro

@@ -2072,7 +2072,7 @@ wd10b:: ds 1
 wItemQuantityChangeBuffer:: ds 1
 wItemQuantityBuffer:: ds 1
 
-TempMon::
+TempMon:: ; d10e
 	party_struct TempMon
 
 wSpriteFlags:: ds 1
@@ -2398,11 +2398,11 @@ CurDamage:: ; d256
 	ds 2
 
 	ds 2
-wMornEncounterRate::  ds 1
-wDayEncounterRate::   ds 1
-wNiteEncounterRate::  ds 1
-wWaterEncounterRate:: ds 1
-wListMoves_MoveIndicesBuffer:: ds 4
+wMornEncounterRate::  ds 1 ; d25a
+wDayEncounterRate::   ds 1 ; d25b
+wNiteEncounterRate::  ds 1 ; d25c
+wWaterEncounterRate:: ds 1 ; d25d
+wListMoves_MoveIndicesBuffer:: ds NUM_MOVES
 wPutativeTMHMMove:: ds 1
 wd263:: ds 1
 wd264:: ds 1
@@ -2428,7 +2428,6 @@ wPokedexShowPointerBank::
 wd26d:: ds 1
 	ds 3
 wd271:: ds 5
-wd276:: ds 10
 	ds wd26b - @
 
 
@@ -2466,7 +2465,7 @@ OTPartyMonsEnd::
 
 OTPartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH ; d3a8
 OTPartyMonNicknames:: ds PKMN_NAME_LENGTH * PARTY_LENGTH ; d3ea
-
+OTPartyDataEnd::
 	ds 4
 
 wd430::
@@ -2523,6 +2522,9 @@ wd454:: ds 1
 
 wBattleScriptFlags:: ds 2
 wPlayerSpriteSetupFlags:: ds 1
+; bit 7: if set, cancel PlayerAction
+; bit 5: if set, set facing according to bits 0-1
+; bits 0-1: direction facing
 wMapReentryScriptQueueFlag:: ds 1 ; MemScriptFlag
 wMapReentryScriptBank:: ds 1 ; MemScriptBank
 wMapReentryScriptAddress:: ds 2 ; MemScriptAddr
@@ -2946,6 +2948,7 @@ wCelebiEvent:: ds 1
 	ds 1
 
 BikeFlags:: ; dbf5
+; bit 0: using strength
 ; bit 1: always on bike
 ; bit 2: downhill
 	ds 1
@@ -3287,7 +3290,8 @@ w3_d742:: battle_tower_struct w3_d742
 	ds -$22
 
 wBTChoiceOfLvlGroup::
-w3_d800:: ds $69
+w3_d800:: ; ds BG_MAP_WIDTH * SCREEN_HEIGHT ($240)
+	ds $69
 w3_d869:: ds $17
 w3_d880:: ds 1
 w3_d881:: ds 1
@@ -3300,10 +3304,12 @@ w3_d895:: ds 11
 w3_d8a0:: ds 1
 w3_d8a1:: ds 1
 w3_d8a2:: ds 1
-w3_d8a3:: ds 1
-	ds $35c
-w3_dc00:: ds $168
-w3_dd68:: ds $284
+w3_d8a3:: ds $19d
+w3_da40:: ds $1c0
+
+w3_dc00:: ds SCREEN_WIDTH * SCREEN_HEIGHT
+w3_dd68:: ds SCREEN_WIDTH * SCREEN_HEIGHT
+	ds $11c
 w3_dfec:: ds $10
 w3_dffc:: ds 4
 

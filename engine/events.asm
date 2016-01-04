@@ -227,7 +227,7 @@ HandleMapTimeAndJoypad: ; 967c1
 ; 967d1
 
 Function967d1: ; 967d1
-	callba Function576a ; engine/map_objects.asm
+	callba HandleNPCStep ; engine/map_objects.asm
 	callba _HandlePlayerStep
 	call _CheckObjectEnteringVisibleRange
 	ret
