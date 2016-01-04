@@ -1,3 +1,15 @@
+const_value set 2
+	const ROUTE41_OLIVINE_RIVAL1
+	const ROUTE41_OLIVINE_RIVAL2
+	const ROUTE41_OLIVINE_RIVAL3
+	const ROUTE41_OLIVINE_RIVAL4
+	const ROUTE41_OLIVINE_RIVAL5
+	const ROUTE41_SWIMMER_GIRL1
+	const ROUTE41_SWIMMER_GIRL2
+	const ROUTE41_SWIMMER_GIRL3
+	const ROUTE41_SWIMMER_GIRL4
+	const ROUTE41_SWIMMER_GIRL5
+
 Route41_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,117 +21,117 @@ TrainerSwimmerfKaylee:
 	trainer EVENT_BEAT_SWIMMERF_KAYLEE, SWIMMERF, KAYLEE, SwimmerfKayleeSeenText, SwimmerfKayleeBeatenText, 0, SwimmerfKayleeScript
 
 SwimmerfKayleeScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a6c7f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmerfSusie:
 	trainer EVENT_BEAT_SWIMMERF_SUSIE, SWIMMERF, SUSIE, SwimmerfSusieSeenText, SwimmerfSusieBeatenText, 0, SwimmerfSusieScript
 
 SwimmerfSusieScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a6d11
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmerfDenise:
 	trainer EVENT_BEAT_SWIMMERF_DENISE, SWIMMERF, DENISE, SwimmerfDeniseSeenText, SwimmerfDeniseBeatenText, 0, SwimmerfDeniseScript
 
 SwimmerfDeniseScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a6d79
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmerfKara:
 	trainer EVENT_BEAT_SWIMMERF_KARA, SWIMMERF, KARA, SwimmerfKaraSeenText, SwimmerfKaraBeatenText, 0, SwimmerfKaraScript
 
 SwimmerfKaraScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a6e58
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmerfWendy:
 	trainer EVENT_BEAT_SWIMMERF_WENDY, SWIMMERF, WENDY, SwimmerfWendySeenText, SwimmerfWendyBeatenText, 0, SwimmerfWendyScript
 
 SwimmerfWendyScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a6ec2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmermCharlie:
 	trainer EVENT_BEAT_SWIMMERM_CHARLIE, SWIMMERM, CHARLIE, SwimmermCharlieSeenText, SwimmermCharlieBeatenText, 0, SwimmermCharlieScript
 
 SwimmermCharlieScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a696e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmermGeorge:
 	trainer EVENT_BEAT_SWIMMERM_GEORGE, SWIMMERM, GEORGE, SwimmermGeorgeSeenText, SwimmermGeorgeBeatenText, 0, SwimmermGeorgeScript
 
 SwimmermGeorgeScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a69d4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmermBerke:
 	trainer EVENT_BEAT_SWIMMERM_BERKE, SWIMMERM, BERKE, SwimmermBerkeSeenText, SwimmermBerkeBeatenText, 0, SwimmermBerkeScript
 
 SwimmermBerkeScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a6aa4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmermKirk:
 	trainer EVENT_BEAT_SWIMMERM_KIRK, SWIMMERM, KIRK, SwimmermKirkSeenText, SwimmermKirkBeatenText, 0, SwimmermKirkScript
 
 SwimmermKirkScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a6b6c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmermMathew:
 	trainer EVENT_BEAT_SWIMMERM_MATHEW, SWIMMERM, MATHEW, SwimmermMathewSeenText, SwimmermMathewBeatenText, 0, SwimmermMathewScript
 
 SwimmermMathewScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a6bed
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route41Rock:
 ; unused
 	jumpstd smashrock
 
-MapRoute41SignpostItem0:
+Route41HiddenMaxEther:
 	dwb EVENT_ROUTE_41_HIDDEN_MAX_ETHER, MAX_ETHER
 
 SwimmermCharlieSeenText:
@@ -345,7 +357,7 @@ Route41_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 35, 9, SIGNPOST_ITEM, MapRoute41SignpostItem0
+	signpost 35, 9, SIGNPOST_ITEM, Route41HiddenMaxEther
 
 .PersonEvents:
 	db 10

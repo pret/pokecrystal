@@ -1,3 +1,8 @@
+const_value set 2
+	const VIRIDIANMART_CLERK
+	const VIRIDIANMART_LASS
+	const VIRIDIANMART_COOLTRAINER_M
+
 ViridianMart_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,9 +11,9 @@ ViridianMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x9b5e7:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_VIRIDIAN
-	loadmovesprites
+	closetext
 	end
 
 LassScript_0x9b5ee:

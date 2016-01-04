@@ -7,33 +7,34 @@ TrainerCard: ; 25105
 	ld a, [hl]
 	push af
 	set 4, [hl]
-	call Function2513b
-.asm_25117
+	call .InitRAM
+.loop
 	call UpdateTime
 	call JoyTextDelay
 	ld a, [wJumptableIndex]
 	bit 7, a
-	jr nz, .asm_25132
+	jr nz, .quit
 	ld a, [hJoyLast]
 	and B_BUTTON
-	jr nz, .asm_25132
-	call Function2518e
+	jr nz, .quit
+	call .RunJumptable
 	call DelayFrame
-	jr .asm_25117
-.asm_25132
+	jr .loop
+
+.quit
 	pop af
 	ld [Options], a
 	pop af
 	ld [VramState], a
 	ret
 
-Function2513b: ; 2513b (9:513b)
+.InitRAM: ; 2513b (9:513b)
 	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
 	call DisableLCD
 
-	callba Function8833e
+	callba GetCardPic
 
 	ld hl, CardRightCornerGFX
 	ld de, VTiles2 tile $1c
@@ -43,19 +44,19 @@ Function2513b: ; 2513b (9:513b)
 
 	ld hl, CardStatusGFX
 	ld de, VTiles2 tile $29
-	ld bc, $56 tiles
+	ld bc, 86 tiles
 	ld a, BANK(CardStatusGFX)
 	call FarCopyBytes
 
-	call Function25299
+	call TrainerCard_PrintTopHalfOfCard
 
 	hlcoord 0, 8
-	ld d, $6
-	call Function253b0
+	ld d, 6
+	call TrainerCard_InitBorder
 
 	call EnableLCD
 	call WaitBGMap
-	ld b, SCGB_15
+	ld b, SCGB_TRAINER_CARD
 	call GetSGBLayout
 	call SetPalettes
 	call WaitBGMap
@@ -67,55 +68,45 @@ endr
 	ld [hl], a
 	ret
 
-Function2518e: ; 2518e (9:518e)
-	ld a, [wJumptableIndex]
-	ld e, a
-	ld d, $0
-	ld hl, Jumptable_2519d
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
+.RunJumptable: ; 2518e (9:518e)
+	jumptable .Jumptable, wJumptableIndex
 
-Jumptable_2519d: ; 2519d (9:519d)
-	dw Function251b6
-	dw Function251d7
-	dw Function251f4
-	dw Function25221
-	dw Function2524c
-	dw Function25279
-	dw Function251b0
+.Jumptable: ; 2519d (9:519d)
+	dw TrainerCard_Page1_LoadGFX
+	dw TrainerCard_Page1_Joypad
+	dw TrainerCard_Page2_LoadGFX
+	dw TrainerCard_Page2_Joypad
+	dw TrainerCard_Page3_LoadGFX
+	dw TrainerCard_Page3_Joypad
+	dw TrainerCard_Quit
 
 
-Function251ab: ; 251ab (9:51ab)
+TrainerCard_IncrementJumptable: ; 251ab (9:51ab)
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
-Function251b0: ; 251b0 (9:51b0)
+TrainerCard_Quit: ; 251b0 (9:51b0)
 	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
 
-Function251b6: ; 251b6 (9:51b6)
+TrainerCard_Page1_LoadGFX: ; 251b6 (9:51b6)
 	call ClearSprites
 	hlcoord 0, 8
-	ld d, $6
-	call Function253b0
+	ld d, 6
+	call TrainerCard_InitBorder
 	call WaitBGMap
 	ld de, CardStatusGFX
 	ld hl, VTiles2 tile $29
-	lb bc, BANK(CardStatusGFX), $56
+	lb bc, BANK(CardStatusGFX), 86
 	call Request2bpp
-	call Function2530a
-	call Function251ab
+	call TrainerCard_Page1_PrintDexCaught_GameTime
+	call TrainerCard_IncrementJumptable
 	ret
 
-Function251d7: ; 251d7 (9:51d7)
-	call Function25415
+TrainerCard_Page1_Joypad: ; 251d7 (9:51d7)
+	call TrainerCard_Page1_PrintGameTime
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_RIGHT | A_BUTTON
@@ -126,23 +117,23 @@ Function251d7: ; 251d7 (9:51d7)
 	ld a, $2
 	ld [wJumptableIndex], a
 	ret
-; 251e9 (9:51e9)
 
-Function251e9: ; 251e9
+.KantoCheck
+; unreferenced
 	ld a, [KantoBadges]
 	and a
 	ret z
-
 	ld a, $4
 	ld [wJumptableIndex], a
 	ret
+
 ; 251f4
 
-Function251f4: ; 251f4 (9:51f4)
+TrainerCard_Page2_LoadGFX: ; 251f4 (9:51f4)
 	call ClearSprites
 	hlcoord 0, 8
-	ld d, $6
-	call Function253b0
+	ld d, 6
+	call TrainerCard_InitBorder
 	call WaitBGMap
 	ld de, LeaderGFX
 	ld hl, VTiles2 tile $29
@@ -152,46 +143,46 @@ Function251f4: ; 251f4 (9:51f4)
 	ld hl, VTiles0 tile $00
 	lb bc, BANK(BadgeGFX), $2c
 	call Request2bpp
-	call Function2536c
-	call Function251ab
+	call TrainerCard_Page2_3_InitObjectsAndStrings
+	call TrainerCard_IncrementJumptable
 	ret
 
-Function25221: ; 25221 (9:5221)
-	ld hl, Unknown_254c9
-	call Function25438
+TrainerCard_Page2_Joypad: ; 25221 (9:5221)
+	ld hl, TrainerCard_JohtoBadgesOAM
+	call TrainerCard_Page2_3_AnimateBadges
 	ld hl, hJoyLast
 	ld a, [hl]
 	and A_BUTTON
-	jr nz, Function25246
+	jr nz, .Quit
 	ld a, [hl]
 	and D_LEFT
-	jr nz, .asm_25235
+	jr nz, .d_left
 	ret
-.asm_25235
+
+.d_left
 	ld a, $0
 	ld [wJumptableIndex], a
 	ret
-; 2523b (9:523b)
 
-Function2523b: ; 2523b
+.KantoCheck
+; unreferenced
 	ld a, [KantoBadges]
 	and a
 	ret z
 	ld a, $4
 	ld [wJumptableIndex], a
 	ret
-; 25246
 
-Function25246: ; 25246
+.Quit
 	ld a, $6
 	ld [wJumptableIndex], a
 	ret
 
-Function2524c: ; 2524c (9:524c)
+TrainerCard_Page3_LoadGFX: ; 2524c (9:524c)
 	call ClearSprites
 	hlcoord 0, 8
-	ld d, $6
-	call Function253b0
+	ld d, 6
+	call TrainerCard_InitBorder
 	call WaitBGMap
 	ld de, LeaderGFX2
 	ld hl, VTiles2 tile $29
@@ -201,13 +192,13 @@ Function2524c: ; 2524c (9:524c)
 	ld hl, VTiles0 tile $00
 	lb bc, BANK(BadgeGFX2), $2c
 	call Request2bpp
-	call Function2536c
-	call Function251ab
+	call TrainerCard_Page2_3_InitObjectsAndStrings
+	call TrainerCard_IncrementJumptable
 	ret
 
-Function25279: ; 25279 (9:5279)
-	ld hl, Unknown_254c9
-	call Function25438
+TrainerCard_Page3_Joypad: ; 25279 (9:5279)
+	ld hl, TrainerCard_JohtoBadgesOAM
+	call TrainerCard_Page2_3_AnimateBadges
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_LEFT
@@ -227,16 +218,16 @@ Function25279: ; 25279 (9:5279)
 	ld [wJumptableIndex], a
 	ret
 
-Function25299: ; 25299 (9:5299)
+TrainerCard_PrintTopHalfOfCard: ; 25299 (9:5299)
 	hlcoord 0, 0
-	ld d, $5
-	call Function253b0
+	ld d, 5
+	call TrainerCard_InitBorder
 	hlcoord 2, 2
-	ld de, String_252ec
+	ld de, .Name_Money
 	call PlaceString
 	hlcoord 2, 4
-	ld de, Tilemap_252f9
-	call Function253a8
+	ld de, .ID_No
+	call TrainerCardSetup_PlaceTilemapString
 	hlcoord 7, 2
 	ld de, PlayerName
 	call PlaceString
@@ -249,46 +240,47 @@ Function25299: ; 25299 (9:5299)
 	lb bc, PRINTNUM_MONEY | 3, 6
 	call PrintNum
 	hlcoord 1, 3
-	ld de, Tilemap_252fc
-	call Function253a8
+	ld de, .HorizontalDivider
+	call TrainerCardSetup_PlaceTilemapString
 	hlcoord 14, 1
 	lb bc, 5, 7
 	xor a
 	ld [hFillBox], a
 	predef FillBox
 	ret
+
 ; 252ec (9:52ec)
 
-String_252ec: ; 252ec
+.Name_Money: ; 252ec
 	db   "NAME/"
 	next ""
 	next "MONEY@"
 
-Tilemap_252f9: ; 252f9
+.ID_No: ; 252f9
 	db $27, $28, $ff ; ID NO
 
-Tilemap_252fc: ; 252fc
+.HorizontalDivider: ; 252fc
 	db $25, $25, $25, $25, $25, $25, $25, $25, $25, $25, $25, $25, $26, $ff ; ____________>
 ; 2530a
 
-Function2530a: ; 2530a (9:530a)
+TrainerCard_Page1_PrintDexCaught_GameTime: ; 2530a (9:530a)
 	hlcoord 2, 10
-	ld de, String_2534c
+	ld de, .Dex_PlayTime
 	call PlaceString
 	hlcoord 10, 15
-	ld de, String_2535c
+	ld de, .Badges
 	call PlaceString
 	ld hl, PokedexCaught
-	ld b, $20
+	ld b, EndPokedexCaught - PokedexCaught
 	call CountSetBits
 	ld de, wd265
 	hlcoord 15, 10
 	lb bc, 1, 3
 	call PrintNum
-	call Function25415
+	call TrainerCard_Page1_PrintGameTime
 	hlcoord 2, 8
-	ld de, Tilemap_25366
-	call Function253a8
+	ld de, .StatusTilemap
+	call TrainerCardSetup_PlaceTilemapString
 	ld a, [StatusFlags] ; pokedex
 	bit 0, a
 	ret nz
@@ -296,119 +288,122 @@ Function2530a: ; 2530a (9:530a)
 	lb bc, 2, 17
 	call ClearBox
 	ret
-; 2534c (9:534c)
 
-String_2534c: ; 2534c
+.Dex_PlayTime
 	db   "#DEX"
-	next "PLAY TIME"
-	db   "@"
+	next "PLAY TIME@@"
 
-String_2535b: ; 2535b
-	db "@"
-
-String_2535c: ; 2535c
+.Badges
 	db "  BADGES▶@"
 
-Tilemap_25366: ; 25366
+.StatusTilemap: ; 25366
 	db $29, $2a, $2b, $2c, $2d, $ff
 ; 2536c
 
-Function2536c: ; 2536c (9:536c)
+TrainerCard_Page2_3_InitObjectsAndStrings: ; 2536c (9:536c)
 	hlcoord 2, 8
-	ld de, Tilemap_253a2
-	call Function253a8
+	ld de, .BadgesTilemap
+	call TrainerCardSetup_PlaceTilemapString
 	hlcoord 2, 10
 	ld a, $29
-	ld c, $4
-.asm_2537c
-	call Function253f4
+	ld c, 4
+.loop
+	call TrainerCard_Page2_3_PlaceLeadersFaces
 rept 4
 	inc hl
 endr
 	dec c
-	jr nz, .asm_2537c
+	jr nz, .loop
 	hlcoord 2, 13
 	ld a, $51
-	ld c, $4
-.asm_2538d
-	call Function253f4
+	ld c, 4
+.loop2
+	call TrainerCard_Page2_3_PlaceLeadersFaces
 rept 4
 	inc hl
 endr
 	dec c
-	jr nz, .asm_2538d
+	jr nz, .loop2
 	xor a
 	ld [wcf64], a
-	ld hl, Unknown_254c9
-	call Function25448
+	ld hl, TrainerCard_JohtoBadgesOAM
+	call TrainerCard_Page2_3_OAMUpdate
 	ret
+
 ; 253a2 (9:53a2)
 
-Tilemap_253a2: ; 253a2
+.BadgesTilemap: ; 253a2
 	db $79, $7a, $7b, $7c, $7d, $ff ; "BADGES"
 ; 253a8
 
-Function253a8: ; 253a8 (9:53a8)
+TrainerCardSetup_PlaceTilemapString: ; 253a8 (9:53a8)
+.loop
 	ld a, [de]
 	cp $ff
 	ret z
 	ld [hli], a
 	inc de
-	jr Function253a8
+	jr .loop
 
-Function253b0: ; 253b0 (9:53b0)
-	ld e, $14
-.asm_253b2
+TrainerCard_InitBorder: ; 253b0 (9:53b0)
+	ld e, 20
+.loop1
 	ld a, $23
 	ld [hli], a
 	dec e
-	jr nz, .asm_253b2
+	jr nz, .loop1
+
 	ld a, $23
 	ld [hli], a
-	ld e, $11
-	ld a, $7f
-.asm_253bf
+	ld e, 17
+	ld a, " "
+.loop2
 	ld [hli], a
 	dec e
-	jr nz, .asm_253bf
+	jr nz, .loop2
+
 	ld a, $1c
 	ld [hli], a
 	ld a, $23
 	ld [hli], a
-.asm_253c9
+.loop3
 	ld a, $23
 	ld [hli], a
-	ld e, $12
-	ld a, $7f
-.asm_253d0
+
+	ld e, 18
+	ld a, " "
+.loop4
 	ld [hli], a
 	dec e
-	jr nz, .asm_253d0
+	jr nz, .loop4
+
 	ld a, $23
 	ld [hli], a
 	dec d
-	jr nz, .asm_253c9
+	jr nz, .loop3
+
 	ld a, $23
 	ld [hli], a
 	ld a, $24
 	ld [hli], a
-	ld e, $11
-	ld a, $7f
-.asm_253e4
+
+	ld e, 17
+	ld a, " "
+.loop5
 	ld [hli], a
 	dec e
-	jr nz, .asm_253e4
+	jr nz, .loop5
 	ld a, $23
 	ld [hli], a
-	ld e, $14
-.asm_253ed
+	ld e, 20
+.loop6
 	ld a, $23
 	ld [hli], a
 	dec e
-	jr nz, .asm_253ed
+	jr nz, .loop6
 	ret
 
-Function253f4: ; 253f4 (9:53f4)
+TrainerCard_Page2_3_PlaceLeadersFaces: ; 253f4 (9:53f4)
 	push de
 	push hl
 	ld [hli], a
@@ -419,7 +414,7 @@ Function253f4: ; 253f4 (9:53f4)
 	inc a
 	ld [hli], a
 	inc a
-	ld de, $11
+	ld de, SCREEN_WIDTH - 3
 	add hl, de
 	ld [hli], a
 	inc a
@@ -427,7 +422,7 @@ Function253f4: ; 253f4 (9:53f4)
 	inc a
 	ld [hli], a
 	inc a
-	ld de, $11
+	ld de, SCREEN_WIDTH - 3
 	add hl, de
 	ld [hli], a
 	inc a
@@ -439,7 +434,7 @@ Function253f4: ; 253f4 (9:53f4)
 	pop de
 	ret
 
-Function25415: ; 25415 (9:5415)
+TrainerCard_Page1_PrintGameTime: ; 25415 (9:5415)
 	hlcoord 11, 12
 	ld de, GameTimeHours
 	lb bc, 2, 4
@@ -453,11 +448,11 @@ Function25415: ; 25415 (9:5415)
 	ret nz
 	hlcoord 15, 12
 	ld a, [hl]
-	xor $51
+	xor %01010001 ; $7F <--> $2E
 	ld [hl], a
 	ret
 
-Function25438: ; 25438 (9:5438)
+TrainerCard_Page2_3_AnimateBadges: ; 25438 (9:5438)
 	ld a, [hVBlankCounter]
 	and $7
 	ret nz
@@ -465,9 +460,9 @@ Function25438: ; 25438 (9:5438)
 	inc a
 	and $7
 	ld [wcf64], a
-	jr Function25448
+	jr TrainerCard_Page2_3_OAMUpdate
 
-Function25448: ; 25448 (9:5448)
+TrainerCard_Page2_3_OAMUpdate: ; 25448 (9:5448)
 ; copy flag array pointer
 	ld a, [hli]
 	ld e, a
@@ -497,7 +492,7 @@ Function25448: ; 25448 (9:5448)
 	ld h, a
 	ld a, [hl]
 	ld [wcf65], a
-	call Function2547b
+	call .PrepOAM
 	pop hl
 .skip_badge
 	ld bc, $b ; 3 + 2 * 4
@@ -507,15 +502,16 @@ Function25448: ; 25448 (9:5448)
 	jr nz, .loop
 	ret
 
-Function2547b: ; 2547b (9:547b)
+.PrepOAM: ; 2547b (9:547b)
 	ld a, [wcf65]
 	and $80
 	jr nz, .xflip
 	ld hl, .facing1
-	jr .loop
+	jr .loop2
+
 .xflip
 	ld hl, .facing2
-.loop
+.loop2
 	ld a, [hli]
 	cp $ff
 	ret z
@@ -540,7 +536,8 @@ Function2547b: ; 2547b (9:547b)
 	ld [de], a
 	inc hl
 	inc de
-	jr .loop
+	jr .loop2
+
 ; 254a7 (9:54a7)
 
 .facing1: ; 254a7
@@ -558,7 +555,7 @@ Function2547b: ; 2547b (9:547b)
 	db 8, 8, 2, X_FLIP
 	db -1
 
-Unknown_254c9: ; 254c9
+TrainerCard_JohtoBadgesOAM: ; 254c9
 ; Template OAM data for each badge on the trainer card.
 ; Format:
 	; y, x, palette

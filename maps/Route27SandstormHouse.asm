@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE27SANDSTORMHOUSE_GRANNY
+
 Route27SandstormHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,32 +10,32 @@ Route27SandstormHouse_MapScriptHeader:
 
 SandstormHouseWoman:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM37_SANDSTORM
 	iftrue .AlreadyGotItem
 	special GetFirstPokemonHappiness
 	writetext SandstormHouseWomanText1
-	keeptextopen
+	buttonsound
 	if_greater_than $95, .Loyal
 	jump .Disloyal
 
 .Loyal
 	writetext SandstormHouseWomanLoyalText
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_SANDSTORM
 	iffalse .Done
 	setevent EVENT_GOT_TM37_SANDSTORM
 .AlreadyGotItem
 	writetext SandstormHouseSandstormDescription
-	closetext
+	waitbutton
 .Done
-	loadmovesprites
+	closetext
 	end
 
 .Disloyal
 	writetext SandstormHouseWomanDisloyalText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SandstormHouseBookshelf:

@@ -1,8 +1,8 @@
 Music_LookLass: ; ed79b
-	dbw $c0, Music_LookLass_Ch1
-	dbw $01, Music_LookLass_Ch2
-	dbw $02, Music_LookLass_Ch3
-	dbw $03, Music_LookLass_Ch4
+	musicheader 4, 1, Music_LookLass_Ch1
+	musicheader 1, 2, Music_LookLass_Ch2
+	musicheader 1, 3, Music_LookLass_Ch3
+	musicheader 1, 4, Music_LookLass_Ch4
 ; ed7a7
 
 Music_LookLass_Ch1: ; ed7a7

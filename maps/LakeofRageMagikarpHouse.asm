@@ -1,3 +1,6 @@
+const_value set 2
+	const LAKEOFRAGEMAGIKARPHOUSE_FISHING_GURU
+
 LakeofRageMagikarpHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,7 +10,7 @@ LakeofRageMagikarpHouse_MapScriptHeader:
 
 FishingGuruScript_0x19a6ae:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_LAKE_OF_RAGE_ELIXIR_ON_STANDBY
 	iftrue UnknownScript_0x19a6fe
 	checkevent EVENT_LAKE_OF_RAGE_ASKED_FOR_MAGIKARP
@@ -17,21 +20,21 @@ FishingGuruScript_0x19a6ae:
 	checkevent EVENT_LAKE_OF_RAGE_EXPLAINED_WEIRD_MAGIKARP
 	iftrue UnknownScript_0x19a6d1
 	writetext UnknownText_0x19a72e
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_LAKE_OF_RAGE_EXPLAINED_WEIRD_MAGIKARP
 	end
 
 UnknownScript_0x19a6d1:
 	writetext UnknownText_0x19a84d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19a6d7:
 	writetext UnknownText_0x19a890
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_LAKE_OF_RAGE_ASKED_FOR_MAGIKARP
 	end
 
@@ -40,7 +43,7 @@ UnknownScript_0x19a6e0:
 	special Special_FindThatSpecies
 	iffalse UnknownScript_0x19a6d7
 	writetext UnknownText_0x19a93e
-	closetext
+	waitbutton
 	special Special_CheckMagikarpLength
 	if_equal $0, UnknownScript_0x19a71c
 	if_equal $1, UnknownScript_0x19a722
@@ -49,36 +52,36 @@ UnknownScript_0x19a6e0:
 
 UnknownScript_0x19a6fe:
 	writetext UnknownText_0x19a977
-	keeptextopen
+	buttonsound
 	verbosegiveitem ELIXER
 	iffalse UnknownScript_0x19a711
 	writetext UnknownText_0x19a9c3
+	waitbutton
 	closetext
-	loadmovesprites
 	clearevent EVENT_LAKE_OF_RAGE_ELIXIR_ON_STANDBY
 	end
 
 UnknownScript_0x19a711:
-	loadmovesprites
+	closetext
 	setevent EVENT_LAKE_OF_RAGE_ELIXIR_ON_STANDBY
 	end
 
 UnknownScript_0x19a716:
 	writetext UnknownText_0x19aa01
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19a71c:
 	writetext UnknownText_0x19aa5c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19a722:
 	writetext UnknownText_0x19aa79
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19a728:

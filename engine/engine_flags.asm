@@ -37,9 +37,8 @@ EngineFlagAction:: ; 80430
 .read
 	ld hl, EngineFlags
 ; location
-rept 2
 	add hl, de
-endr
+	add hl, de
 ; bit
 	add hl, de
 
@@ -99,8 +98,8 @@ ENDM
 	engine_flag wPokegearFlags, 7 ; on/off
 
 	;   wDaycareMan, 7 ; daycare 1 on
-	engine_flag wDaycareMan, 6 ; monster 1 and 2 are compatible
-	;   wDaycareMan, 5 ; egg is ready
+	engine_flag wDaycareMan, 6 ; egg is ready
+	;   wDaycareMan, 5 ; monster 1 and 2 are compatible
 	engine_flag wDaycareMan, 0 ; monster 1 in daycare
 
 	;   wDaycareLady, 7 = daycare 2 on
@@ -118,7 +117,7 @@ ENDM
 	engine_flag StatusFlags, 6 ; credits skip
 	engine_flag StatusFlags, 7 ; bug contest on   ; $10
 	engine_flag StatusFlags2, 2 ; bug contest timer
-	engine_flag StatusFlags2, 1 ; ???
+	engine_flag StatusFlags2, 1 ; safari zone?
 	engine_flag StatusFlags2, 0 ; rockets in radio tower
 	engine_flag StatusFlags2, 4 ; bike shop call enabled (1024 bike steps reqd)
 	engine_flag StatusFlags2, 5 ; give pokerus

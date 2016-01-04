@@ -1,3 +1,7 @@
+const_value set 2
+	const SILVERCAVEPOKECENTER1F_NURSE
+	const SILVERCAVEPOKECENTER1F_GRANNY
+
 SilverCavePokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 0

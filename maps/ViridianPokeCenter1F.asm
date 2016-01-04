@@ -1,3 +1,9 @@
+const_value set 2
+	const VIRIDIANPOKECENTER1F_NURSE
+	const VIRIDIANPOKECENTER1F_COOLTRAINER_M
+	const VIRIDIANPOKECENTER1F_COOLTRAINER_F
+	const VIRIDIANPOKECENTER1F_BUG_CATCHER
+
 ViridianPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -10,18 +16,18 @@ NurseScript_0x9b690:
 
 CooltrainerMScript_0x9b693:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BLUE_IN_CINNABAR
 	iftrue .BlueReturned
 	writetext UnknownText_0x9b6ad
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .BlueReturned
 	writetext UnknownText_0x9b6f5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CooltrainerFScript_0x9b6a7:

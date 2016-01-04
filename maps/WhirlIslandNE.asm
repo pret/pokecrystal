@@ -1,3 +1,6 @@
+const_value set 2
+	const WHIRLISLANDNE_POKE_BALL
+
 WhirlIslandNE_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -5,8 +8,8 @@ WhirlIslandNE_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ItemFragment_0x18c396:
-	db ULTRA_BALL, 1
+WhirlIslandNEUltraBall:
+	itemball ULTRA_BALL
 
 WhirlIslandNE_MapEventHeader:
 	; filler
@@ -26,4 +29,4 @@ WhirlIslandNE_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKE_BALL, 11, 11, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x18c396, EVENT_WHIRL_ISLAND_NE_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 11, 11, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, WhirlIslandNEUltraBall, EVENT_WHIRL_ISLAND_NE_ULTRA_BALL

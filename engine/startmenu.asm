@@ -1,6 +1,6 @@
 StartMenu:: ; 125cd
 
-	call ResetTextRelatedRAM
+	call ClearWindowData
 
 	ld de, SFX_MENU
 	call PlaySFX
@@ -42,7 +42,7 @@ StartMenu:: ; 125cd
 	ld a, [wMenuCursorBuffer]
 	ld [wd0d2], a
 	call PlayClickSFX
-	call Function1bee
+	call PlaceHollowCursor
 	call .OpenMenu
 
 ; Menu items have different return functions.
@@ -50,9 +50,8 @@ StartMenu:: ; 125cd
 	ld hl, .MenuReturns
 	ld e, a
 	ld d, 0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -61,8 +60,8 @@ endr
 .MenuReturns
 	dw .Reopen
 	dw .Exit
-	dw .ExitMenuCallFuncLoadMoveSprites
-	dw .ExitMenuRunScriptLoadMoveSprites
+	dw .ExitMenuCallFuncCloseText
+	dw .ExitMenuRunScriptCloseText
 	dw .ExitMenuRunScript
 	dw .ReturnEnd
 	dw .ReturnRedraw
@@ -78,7 +77,7 @@ endr
 .ReturnEnd
 	call ExitMenu
 .ReturnEnd2
-	call LoadMoveSprites
+	call CloseText
 	call UpdateTimePals
 	ret
 
@@ -93,7 +92,7 @@ endr
 .loop
 	call .PrintMenuAccount
 	call Function1f1a
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	cp B_BUTTON
 	jr z, .b
 	cp A_BUTTON
@@ -115,14 +114,14 @@ endr
 	ret
 ; 12699
 
-.ExitMenuRunScriptLoadMoveSprites ; 12699
+.ExitMenuRunScriptCloseText ; 12699
 	call ExitMenu
 	ld a, HMENURETURN_SCRIPT
 	ld [hMenuReturn], a
 	jr .ReturnEnd2
 ; 126a2
 
-.ExitMenuCallFuncLoadMoveSprites ; 126a2
+.ExitMenuCallFuncCloseText ; 126a2
 	call ExitMenu
 	ld hl, wQueuedScriptAddr
 	ld a, [hli]
@@ -141,12 +140,12 @@ endr
 .Clear ; 126b7
 	call ClearBGPalettes
 	call Call_ExitMenu
-	call Function2bae
+	call ReloadTilesetAndPalettes
 	call .DrawMenuAccount_
 	call MenuFunc_1e7f
 	call .DrawBugContestStatus
 	call UpdateSprites
-	call Functiond90
+	call ret_d90
 	call Function2b5c
 	ret
 ; 126d3
@@ -235,9 +234,8 @@ endr
 	push de
 	ld a, [MenuSelection]
 	call .GetMenuAccountTextPointer
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -270,7 +268,7 @@ endr
 .GetMenuAccountTextPointer ; 12819
 	ld e, a
 	ld d, 0
-	ld hl, wcf97
+	ld hl, wMenuData2PointerTableAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -283,7 +281,7 @@ endr
 
 .SetUpMenuItems ; 12829
 	xor a
-	ld [wcf76], a
+	ld [wWhichIndexSet], a
 	call .FillMenuList
 
 	ld hl, StatusFlags
@@ -469,7 +467,7 @@ StartMenu_Status: ; 12928
 
 	call FadeToMenu
 	callba TrainerCard
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	ld a, 0
 	ret
 ; 12937
@@ -483,7 +481,7 @@ StartMenu_Pokedex: ; 12937
 
 	call FadeToMenu
 	callba Pokedex
-	call ReturnToCallingMenu
+	call CloseSubmenu
 
 .asm_12949
 	ld a, 0
@@ -495,7 +493,7 @@ StartMenu_Pokegear: ; 1294c
 
 	call FadeToMenu
 	callba PokeGear
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	ld a, 0
 	ret
 ; 1295b
@@ -508,7 +506,7 @@ StartMenu_Pack: ; 1295b
 	ld a, [wcf66]
 	and a
 	jr nz, .used_item
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	ld a, 0
 	ret
 
@@ -557,7 +555,7 @@ StartMenu_Pokemon: ; 12976
 	jr z, .quit
 
 .return
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	ld a, 0
 	ret
 
@@ -602,9 +600,9 @@ Function129f4: ; 129f4
 	jr nz, .asm_12a3f
 	ld hl, UnknownText_0x12a45
 	call MenuTextBox
-	callba Function24fbf
+	callba SelectQuantityToToss
 	push af
-	call WriteBackup
+	call CloseWindow
 	call ExitMenu
 	pop af
 	jr c, .asm_12a42
@@ -685,7 +683,7 @@ PartyMonItemName: ; 12a6c
 
 CancelPokemonAction: ; 12a79
 	callba InitPartyMenuWithCancel
-	callba Function8ea71
+	callba UnfreezeMonIcons
 	ld a, 1
 	ret
 ; 12a88
@@ -748,7 +746,7 @@ SwitchPartyMons: ; 12aec
 	inc a
 	ld [wSwitchMon], a
 
-	callba Function8ea8c
+	callba HoldSwitchmonIcon
 	callba InitPartyMenuNoCancel
 
 	ld a, 4
@@ -795,49 +793,49 @@ GiveTakePartyMonItem: ; 12b60
 ; Eggs can't hold items!
 	ld a, [CurPartySpecies]
 	cp EGG
-	jr z, .asm_12ba6
+	jr z, .cancel
 
 	ld hl, GiveTakeItemMenuData
 	call LoadMenuDataHeader
-	call InterpretMenu2
+	call VerticalMenu
 	call ExitMenu
-	jr c, .asm_12ba6
+	jr c, .cancel
 
 	call GetCurNick
 	ld hl, StringBuffer1
-	ld de, wd050
-	ld bc, $b
+	ld de, wMonOrItemNameBuffer
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp 1
-	jr nz, .asm_12ba0
+	jr nz, .take
 
 	call LoadStandardMenuDataHeader
 	call ClearPalettes
-	call Function12ba9
+	call .GiveItem
 	call ClearPalettes
 	call LoadFontsBattleExtra
 	call ExitMenu
 	ld a, 0
 	ret
 
-.asm_12ba0
+.take
 	call TakePartyItem
 	ld a, 3
 	ret
 
-.asm_12ba6
+.cancel
 	ld a, 3
 	ret
 ; 12ba9
 
 
-Function12ba9: ; 12ba9
+.GiveItem: ; 12ba9
 
-	callba Function106a5
+	callba DepositSellInitPackBuffers
 
 .loop
-	callba Function106be
+	callba DepositSellPack
 
 	ld a, [wcf66]
 	and a
@@ -852,7 +850,7 @@ Function12ba9: ; 12ba9
 	and a
 	jr nz, .next
 
-	call Function12bd9
+	call TryGiveItemToPartymon
 	jr .quit
 
 .next
@@ -865,41 +863,41 @@ Function12ba9: ; 12ba9
 ; 12bd9
 
 
-Function12bd9: ; 12bd9
+TryGiveItemToPartymon: ; 12bd9
 
 	call SpeechTextBox
 	call PartyMonItemName
 	call GetPartyItemLocation
 	ld a, [hl]
 	and a
-	jr z, .asm_12bf4
+	jr z, .give_item_to_mon
 
 	push hl
 	ld d, a
 	callba ItemIsMail
 	pop hl
-	jr c, .asm_12c01
+	jr c, .please_remove_mail
 	ld a, [hl]
-	jr .asm_12c08
+	jr .already_holding_item
 
-.asm_12bf4
+.give_item_to_mon
 	call GiveItemToPokemon
 	ld hl, MadeHoldText
 	call MenuTextBoxBackup
 	call GivePartyItem
 	ret
 
-.asm_12c01
+.please_remove_mail
 	ld hl, PleaseRemoveMailText
 	call MenuTextBoxBackup
 	ret
 
-.asm_12c08
+.already_holding_item
 	ld [wd265], a
 	call GetItemName
 	ld hl, SwitchAlreadyHoldingText
 	call StartMenuYesNo
-	jr c, .asm_12c4b
+	jr c, .abort
 
 	call GiveItemToPokemon
 	ld a, [wd265]
@@ -909,7 +907,7 @@ Function12bd9: ; 12bd9
 	pop af
 	ld [CurItem], a
 	call ReceiveItemFromPokemon
-	jr nc, .asm_12c3c
+	jr nc, .bag_full
 
 	ld hl, TookAndMadeHoldText
 	call MenuTextBoxBackup
@@ -918,14 +916,14 @@ Function12bd9: ; 12bd9
 	call GivePartyItem
 	ret
 
-.asm_12c3c
+.bag_full
 	ld a, [wd265]
 	ld [CurItem], a
 	call ReceiveItemFromPokemon
 	ld hl, ItemStorageIsFullText
 	call MenuTextBoxBackup
 
-.asm_12c4b
+.abort
 	ret
 ; 12c4c
 
@@ -1109,12 +1107,12 @@ MonMailAction: ; 12d45
 ; Show the READ/TAKE/QUIT menu.
 	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
-	call InterpretMenu2
+	call VerticalMenu
 	call ExitMenu
 
 ; Interpret the menu.
 	jp c, .done
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $1
 	jr z, .read
 	cp $2
@@ -1280,7 +1278,7 @@ MonMenu_Fly: ; 12e30
 ; 12e55
 
 MonMenu_Flash: ; 12e55
-	callba Functionc8ac
+	callba OWFlash
 	ld a, [wFieldMoveSucceeded]
 	cp $1
 	jr nz, .Fail
@@ -1322,7 +1320,7 @@ MonMenu_Whirlpool: ; 12e7f
 ; 12e94
 
 MonMenu_Waterfall: ; 12e94
-	callba Functioncade
+	callba WaterfallFunction
 	ld a, [wFieldMoveSucceeded]
 	cp $1
 	jr nz, .Fail
@@ -1457,13 +1455,13 @@ MonMenu_SweetScent: ; 12f50
 	ret
 ; 12f5b
 
-Function12f5b: ; 12f5b
+ChooseMoveToDelete: ; 12f5b
 	ld hl, Options
 	ld a, [hl]
 	push af
 	set NO_TEXT_SCROLL, [hl]
 	call LoadFontsBattleExtra
-	call Function12f73
+	call .asm_12f73
 	pop bc
 	ld a, b
 	ld [Options], a
@@ -1473,40 +1471,40 @@ Function12f5b: ; 12f5b
 	ret
 ; 12f73
 
-Function12f73: ; 12f73
+.asm_12f73: ; 12f73
 	call SetUpMoveScreenBG
-	ld de, Unknown_12fb2
-	call InitMenu3
-	call Function131ef
-	ld hl, wcfa5
+	ld de, DeleteMoveScreenAttrs
+	call SetMenuAttributes
+	call SetUpMoveList
+	ld hl, w2DMenuFlags1
 	set 6, [hl]
-	jr Function12f93
+	jr .asm_12f93
 
-Function12f86: ; 12f86
-	call Function1bd3
+.asm_12f86: ; 12f86
+	call ScrollingMenuJoypad
 	bit 1, a
-	jp nz, Function12f9f
+	jp nz, .asm_12f9f
 	bit 0, a
-	jp nz, Function12f9c
+	jp nz, .asm_12f9c
 
-Function12f93: ; 12f93
+.asm_12f93: ; 12f93
 	call PrepareToPlaceMoveData
 	call PlaceMoveData
-	jp Function12f86
+	jp .asm_12f86
 ; 12f9c
 
-Function12f9c: ; 12f9c
+.asm_12f9c: ; 12f9c
 	and a
-	jr Function12fa0
+	jr .asm_12fa0
 
-Function12f9f: ; 12f9f
+.asm_12f9f: ; 12f9f
 	scf
 
-Function12fa0: ; 12fa0
+.asm_12fa0: ; 12fa0
 	push af
 	xor a
 	ld [wSwitchMon], a
-	ld hl, wcfa5
+	ld hl, w2DMenuFlags1
 	res 6, [hl]
 	call ClearSprites
 	call ClearTileMap
@@ -1514,8 +1512,12 @@ Function12fa0: ; 12fa0
 	ret
 ; 12fb2
 
-Unknown_12fb2: ; 12fb2
-	db $03, $01, $03, $01, $40, $00, $20, $c3
+DeleteMoveScreenAttrs: ; 12fb2
+	db 3, 1
+	db 3, 1
+	db $40, $00
+	dn 2, 0
+	db D_UP | D_DOWN | A_BUTTON | B_BUTTON
 ; 12fba
 
 ManagePokemonMoves: ; 12fba
@@ -1539,19 +1541,19 @@ ManagePokemonMoves: ; 12fba
 MoveScreenLoop: ; 12fd5
 	ld a, [CurPartyMon]
 	inc a
-	ld [wd0d8], a
+	ld [wPartyMenuCursor], a
 	call SetUpMoveScreenBG
 	call Function132d3
-	ld de, Unknown_13163
-	call InitMenu3
+	ld de, MoveScreenAttributes
+	call SetMenuAttributes
 .loop
-	call Function131ef
-	ld hl, wcfa5
+	call SetUpMoveList
+	ld hl, w2DMenuFlags1
 	set 6, [hl]
 	jr .skip_joy
 
 .joy_loop
-	call Function1bd3
+	call ScrollingMenuJoypad
 	bit 1, a
 	jp nz, .b_button
 	bit 0, a
@@ -1589,7 +1591,7 @@ MoveScreenLoop: ; 12fd5
 	jp z, .exit
 
 	ld a, [wMoveSwapBuffer]
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	xor a
 	ld [wMoveSwapBuffer], a
 	hlcoord 1, 2
@@ -1669,9 +1671,9 @@ MoveScreenLoop: ; 12fd5
 	ld a, [wMoveSwapBuffer]
 	and a
 	jr nz, .place_move
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wMoveSwapBuffer], a
-	call Function1bee
+	call PlaceHollowCursor
 	jp .moving_move
 
 .place_move
@@ -1716,7 +1718,7 @@ MoveScreenLoop: ; 12fd5
 
 .copy_move: ; 1313a
 	push hl
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ld c, a
 	ld b, $0
@@ -1740,14 +1742,18 @@ MoveScreenLoop: ; 12fd5
 .exit: ; 13154
 	xor a
 	ld [wMoveSwapBuffer], a
-	ld hl, wcfa5
+	ld hl, w2DMenuFlags1
 	res 6, [hl]
 	call ClearSprites
 	jp ClearTileMap
 ; 13163
 
-Unknown_13163: ; 13163
-	db $03, $01, $03, $01, $40, $00, $20, $f3
+MoveScreenAttributes: ; 13163
+	db 3, 1
+	db 3, 1
+	db $40, $00
+	dn 2, 0
+	db D_UP | D_DOWN | D_LEFT | D_RIGHT | A_BUTTON | B_BUTTON
 ; 1316b
 
 String_1316b: ; 1316b
@@ -1761,7 +1767,7 @@ SetUpMoveScreenBG: ; 13172
 	xor a
 	ld [hBGMapMode], a
 	callba Functionfb571
-	callba ClearSpriteAnims
+	callba ClearSpriteAnims2
 	ld a, [CurPartyMon]
 	ld e, a
 	ld d, $0
@@ -1802,7 +1808,7 @@ SetUpMoveScreenBG: ; 13172
 	jp ClearBox
 ; 131ef
 
-Function131ef: ; 131ef
+SetUpMoveList: ; 131ef
 	xor a
 	ld [hBGMapMode], a
 	ld [wMoveSwapBuffer], a
@@ -1817,12 +1823,12 @@ Function131ef: ; 131ef
 	hlcoord 2, 3
 	predef ListMoves
 	hlcoord 10, 4
-	predef Function50c50
+	predef ListMovePP
 	call WaitBGMap
 	call SetPalettes
-	ld a, [wd0eb]
+	ld a, [wNumMoves]
 	inc a
-	ld [wcfa3], a
+	ld [w2DMenuNumRows], a
 	hlcoord 0, 11
 	ld b, 5
 	ld c, 18
@@ -1834,7 +1840,7 @@ PrepareToPlaceMoveData: ; 13235
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ld c, a
 	ld b, $0

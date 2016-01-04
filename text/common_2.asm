@@ -247,7 +247,7 @@ UnknownText_0x1c04fa::
 	text_from_ram StringBuffer1
 	text ""
 	cont "to @"
-	text_from_ram wc950 + 3
+	text_from_ram wMysteryGiftPlayerName
 	text "'s home."
 	prompt
 
@@ -307,9 +307,3 @@ UnknownText_0x1c0609::
 	line "lights the area!@"
 	text_waitbutton
 	db "@@"
-
-_UsedSurfText::
-	text_from_ram StringBuffer2
-	text " used"
-	line "SURF!"
-	done

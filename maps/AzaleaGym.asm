@@ -1,3 +1,12 @@
+const_value set 2
+	const AZALEAGYM_BUGSY
+	const AZALEAGYM_BUG_CATCHER1
+	const AZALEAGYM_BUG_CATCHER2
+	const AZALEAGYM_BUG_CATCHER3
+	const AZALEAGYM_TWIN1
+	const AZALEAGYM_TWIN2
+	const AZALEAGYM_GYM_GUY
+
 AzaleaGym_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,21 +16,21 @@ AzaleaGym_MapScriptHeader:
 
 BugsyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_BUGSY
 	iftrue .FightDone
 	writetext BugsyText_INeverLose
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext BugsyText_ResearchIncomplete, 0
 	loadtrainer BUGSY, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_BUGSY
-	loadfont
+	opentext
 	writetext Text_ReceivedHiveBadge
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_HIVEBADGE
 	checkcode VAR_BADGES
 	scall AzaleaGymTriggerRockets
@@ -33,20 +42,20 @@ BugsyScript:
 	setevent EVENT_BEAT_BUG_CATCHER_AL
 	setevent EVENT_BEAT_BUG_CATCHER_JOSH
 	writetext BugsyText_HiveBadgeSpeech
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_FURY_CUTTER
 	iffalse .NoRoomForFuryCutter
 	setevent EVENT_GOT_TM49_FURY_CUTTER
 	writetext BugsyText_FuryCutterSpeech
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .GotFuryCutter:
 	writetext BugsyText_BugMonsAreDeep
-	closetext
+	waitbutton
 .NoRoomForFuryCutter:
-	loadmovesprites
+	closetext
 	end
 
 AzaleaGymTriggerRockets:
@@ -64,72 +73,72 @@ TrainerTwinsAmyandmay1:
 	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY1, TwinsAmyandmay1SeenText, TwinsAmyandmay1BeatenText, 0, .AfterScript
 
 .AfterScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext TwinsAmyandmay1AfterBattleText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerTwinsAmyandmay2:
 	trainer EVENT_BEAT_TWINS_AMY_AND_MAY, TWINS, AMYANDMAY2, TwinsAmyandmay2SeenText, TwinsAmyandmay2BeatenText, 0, .AfterScript
 
 .AfterScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext TwinsAmyandmay2AfterBattleText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBug_catcherbenny:
 	trainer EVENT_BEAT_BUG_CATCHER_BENNY, BUG_CATCHER, BUG_CATCHER_BENNY, Bug_catcherbennySeenText, Bug_catcherbennyBeatenText, 0, .AfterScript
 
 .AfterScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext Bug_catcherbennyAfterBattleText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBug_catcherAl:
 	trainer EVENT_BEAT_BUG_CATCHER_AL, BUG_CATCHER, AL, Bug_catcherAlSeenText, Bug_catcherAlBeatenText, 0, .AfterScript
 
 .AfterScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext Bug_catcherAlAfterBattleText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBug_catcherJosh:
 	trainer EVENT_BEAT_BUG_CATCHER_JOSH, BUG_CATCHER, JOSH, Bug_catcherJoshSeenText, Bug_catcherJoshBeatenText, 0, .AfterScript
 
 .AfterScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext Bug_catcherJoshAfterBattleText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 AzaleaGymGuyScript:
 	faceplayer
 	checkevent EVENT_BEAT_BUGSY
 	iftrue .AzaleaGymGuyWinScript
-	loadfont
+	opentext
 	writetext AzaleaGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .AzaleaGymGuyWinScript
-	loadfont
+	opentext
 	writetext AzaleaGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 AzaleaGymStatue:

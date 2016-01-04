@@ -1,5 +1,3 @@
-
-
 Special_CheckMagikarpLength: ; fbb32
 	; Returns 3 if you select a Magikarp that beats the previous record.
 	; Returns 2 if you select a Magikarp, but the current record is longer.
@@ -81,7 +79,7 @@ Special_CheckMagikarpLength: ; fbb32
 ; 0xfbbae
 
 Magikarp_LoadFeetInchesChars: ; fbbae
-	ld hl, VTiles2 + "′" * $10
+	ld hl, VTiles2 tile "′"
 	ld de, .feetinchchars
 	lb bc, BANK(.feetinchchars), 2
 	call Request2bpp

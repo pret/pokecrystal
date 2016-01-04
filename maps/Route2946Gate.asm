@@ -1,3 +1,7 @@
+const_value set 2
+	const ROUTE2946GATE_OFFICER
+	const ROUTE2946GATE_YOUNGSTER
+
 Route2946Gate_MapScriptHeader:
 .MapTriggers:
 	db 0

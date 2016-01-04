@@ -1,3 +1,7 @@
+const_value set 2
+	const RUINSOFALPHKABUTOCHAMBER_RECEPTIONIST
+	const RUINSOFALPHKABUTOCHAMBER_SCIENTIST
+
 RuinsofAlphKabutoChamber_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -51,7 +55,7 @@ UnknownScript_0x58751:
 	reloadmappart
 	earthquake 50
 	dotrigger $1
-	loadmovesprites
+	closetext
 	end
 
 ReceptionistScript_0x58769:
@@ -61,7 +65,7 @@ MapRuinsofAlphKabutoChamberSignpost2Script:
 	refreshscreen $0
 	writebyte $0
 	special Special_UnownPuzzle
-	loadmovesprites
+	closetext
 	iftrue UnknownScript_0x58778
 	end
 
@@ -80,14 +84,14 @@ UnknownScript_0x58778:
 	earthquake 80
 	applymovement PLAYER, MovementData_0x587fe
 	playsound SFX_KINESIS
-	waitbutton
+	waitsfx
 	pause 20
 	warpcheck
 	end
 
 ScientistScript_0x587a8:
 	faceplayer
-	loadfont
+	opentext
 	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x587cf
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
@@ -95,24 +99,24 @@ ScientistScript_0x587a8:
 	checkevent EVENT_SOLVED_KABUTO_PUZZLE
 	iffalse UnknownScript_0x587c0
 	writetext UnknownText_0x589b8
-	keeptextopen
+	buttonsound
 UnknownScript_0x587c0:
 	writetext UnknownText_0x588f5
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $3, UP
+	spriteface RUINSOFALPHKABUTOCHAMBER_SCIENTIST, UP
 	end
 
 UnknownScript_0x587c9:
 	writetext UnknownText_0x5897c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x587cf:
 	writetext UnknownText_0x594cb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRuinsofAlphKabutoChamberSignpost1Script:
@@ -122,28 +126,28 @@ MapRuinsofAlphKabutoChamberSignpost3Script:
 	jumptext UnknownText_0x58b3f
 
 MapRuinsofAlphKabutoChamberSignpost4Script:
-	loadfont
+	opentext
 	writetext UnknownText_0x58aa7
 	writebyte $0
 	special Special_DisplayUnownWords
-	loadmovesprites
+	closetext
 	end
 
 MapRuinsofAlphKabutoChamberSignpost5Script:
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	iftrue UnknownScript_0x587f7
-	loadfont
+	opentext
 	writetext UnknownText_0x58ad9
 	writebyte $0
 	special Special_DisplayUnownWords
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x587f7:
-	loadfont
+	opentext
 	writetext UnknownText_0x58afa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MovementData_0x587fe:

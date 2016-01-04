@@ -1,3 +1,12 @@
+const_value set 2
+	const ROUTE31_FISHER
+	const ROUTE31_YOUNGSTER
+	const ROUTE31_BUG_CATCHER
+	const ROUTE31_COOLTRAINER_M
+	const ROUTE31_FRUIT_TREE
+	const ROUTE31_POKE_BALL1
+	const ROUTE31_POKE_BALL2
+
 Route31_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -19,12 +28,12 @@ Route31_MapScriptHeader:
 	return
 
 TrainerBug_catcherWade1:
-	trainer EVENT_BEAT_BUG_CATCHER_WADE, BUG_CATCHER, WADE1, Bug_catcherWade1SeenText, Bug_catcherWade1BeatenText, 0, Bug_catcherWade1Script
+	trainer EVENT_BEAT_BUG_CATCHER_WADE, BUG_CATCHER, WADE1, Bug_catcherWade1SeenText, Bug_catcherWade1BeatenText, 0, .Script
 
-Bug_catcherWade1Script:
+.Script:
 	writecode VAR_CALLERID, PHONE_BUG_CATCHER_WADE
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	checkflag ENGINE_WADE
 	iftrue .WadeRematch
 	checkflag ENGINE_WADE_HAS_ITEM
@@ -33,8 +42,8 @@ Bug_catcherWade1Script:
 	iftrue .AcceptedNumberSTD
 	checkevent EVENT_WADE_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskAgain
-	writetext UnknownText_0x1a5671
-	closetext
+	writetext Bug_catcherWade1AfterText
+	waitbutton
 	setevent EVENT_WADE_ASKED_FOR_PHONE_NUMBER
 	scall .AskPhoneNumberSTD
 	jump .Continue
@@ -73,7 +82,7 @@ Bug_catcherWade1Script:
 .LoadFight0
 	loadtrainer BUG_CATCHER, WADE1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wWadeFightCount, 1
 	clearflag ENGINE_WADE
 	end
@@ -81,7 +90,7 @@ Bug_catcherWade1Script:
 .LoadFight1
 	loadtrainer BUG_CATCHER, WADE2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wWadeFightCount, 2
 	clearflag ENGINE_WADE
 	end
@@ -89,7 +98,7 @@ Bug_catcherWade1Script:
 .LoadFight2
 	loadtrainer BUG_CATCHER, WADE3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wWadeFightCount, 3
 	clearflag ENGINE_WADE
 	end
@@ -97,7 +106,7 @@ Bug_catcherWade1Script:
 .LoadFight3
 	loadtrainer BUG_CATCHER, WADE4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wWadeFightCount, 4
 	clearflag ENGINE_WADE
 	end
@@ -105,7 +114,7 @@ Bug_catcherWade1Script:
 .LoadFight4
 	loadtrainer BUG_CATCHER, WADE5
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_WADE
 	end
 
@@ -176,91 +185,91 @@ Bug_catcherWade1Script:
 	jumpstd packfullm
 	end
 
-FisherScript_0x1a5570:
+Route31MailRecipientScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM50_NIGHTMARE
 	iftrue .DescribeNightmare
 	checkevent EVENT_GOT_KENYA
 	iftrue .TryGiveKenya
-	writetext UnknownText_0x1a56d9
+	writetext Text_Route31SleepyMan
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .TryGiveKenya:
-	writetext UnknownText_0x1a5761
-	keeptextopen
+	writetext Text_Route31SleepyManGotMail
+	buttonsound
 	checkpokeitem ReceivedSpearowMailText
 	if_equal $0, .WrongMail
 	if_equal $2, .Refused
 	if_equal $3, .NoMail
 	if_equal $4, .LastMon
-	writetext UnknownText_0x1a5790
-	keeptextopen
-	writetext UnknownText_0x1a57ba
-	keeptextopen
+	writetext Text_Route31HandOverMailMon
+	buttonsound
+	writetext Text_Route31ReadingMail
+	buttonsound
 	setevent EVENT_GAVE_KENYA
 	verbosegiveitem TM_NIGHTMARE
 	iffalse .NoRoomForItems
 	setevent EVENT_GOT_TM50_NIGHTMARE
 .DescribeNightmare:
-	writetext UnknownText_0x1a5896
-	closetext
+	writetext Text_Route31DescribeNightmare
+	waitbutton
 .NoRoomForItems:
-	loadmovesprites
+	closetext
 	end
 
 .WrongMail:
-	writetext UnknownText_0x1a5921
+	writetext Text_Route31WrongMail
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .NoMail:
-	writetext UnknownText_0x1a5939
+	writetext Text_Route31MissingMail
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Refused:
-	writetext UnknownText_0x1a5972
+	writetext Text_Route31DeclinedToHandOverMail
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .LastMon:
-	writetext UnknownText_0x1a5991
+	writetext Text_Route31CantTakeLastMon
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ReceivedSpearowMailText:
 	db   "DARK CAVE leads"
 	next "to another road@"
 
-YoungsterScript_0x1a55ed:
-	jumptextfaceplayer UnknownText_0x1a59d5
+Route31YoungsterScript:
+	jumptextfaceplayer Route31YoungsterText
 
 MapRoute31Signpost0Script:
-	jumptext UnknownText_0x1a5a45
+	jumptext Route31Signpost0Text
 
 MapRoute31Signpost1Script:
-	jumptext UnknownText_0x1a5a6e
+	jumptext Route31Signpost1Text
 
-CooltrainerMScript_0x1a55f6:
-	jumptextfaceplayer UnknownText_0x1a55ff
+Route31CooltrainerMScript:
+	jumptextfaceplayer Route31CooltrainerMText
 
-FruitTreeScript_0x1a55f9:
+Route31FruitTree:
 	fruittree FRUITTREE_ROUTE_31
 
-ItemFragment_0x1a55fb:
-	db POTION, 1
+Route31Potion:
+	itemball POTION
 
-ItemFragment_0x1a55fd:
-	db POKE_BALL, 1
+Route31PokeBall:
+	itemball POKE_BALL
 
-UnknownText_0x1a55ff:
+Route31CooltrainerMText:
 	text "DARK CAVE…"
 
 	para "If #MON could"
@@ -278,7 +287,7 @@ Bug_catcherWade1BeatenText:
 	text "Awwwww…"
 	done
 
-UnknownText_0x1a5671:
+Bug_catcherWade1AfterText:
 	text "You can catch"
 	line "#MON even if"
 
@@ -290,7 +299,7 @@ UnknownText_0x1a5671:
 	cont "BOX automatically."
 	done
 
-UnknownText_0x1a56d9:
+Text_Route31SleepyMan:
 	text "… Hnuurg… Huh?"
 
 	para "I walked too far"
@@ -307,20 +316,20 @@ UnknownText_0x1a56d9:
 	para "…Zzzz…"
 	done
 
-UnknownText_0x1a5761:
+Text_Route31SleepyManGotMail:
 	text "…Zzzz… Huh?"
 
 	para "What's that? You"
 	line "have MAIL for me?"
 	done
 
-UnknownText_0x1a5790:
+Text_Route31HandOverMailMon:
 	text "<PLAYER> handed"
 	line "over the #MON"
 	cont "holding the MAIL."
 	done
 
-UnknownText_0x1a57ba:
+Text_Route31ReadingMail:
 	text "Let's see…"
 
 	para "…DARK CAVE leads"
@@ -344,7 +353,7 @@ UnknownText_0x1a57ba:
 	line "to have this!"
 	done
 
-UnknownText_0x1a5896:
+Text_Route31DescribeNightmare:
 	text "TM50 is NIGHTMARE."
 
 	para "It's a wicked move"
@@ -360,12 +369,12 @@ UnknownText_0x1a5896:
 	line "have bad dreams."
 	done
 
-UnknownText_0x1a5921:
+Text_Route31WrongMail:
 	text "This MAIL isn't"
 	line "for me."
 	done
 
-UnknownText_0x1a5939:
+Text_Route31MissingMail:
 	text "Why is this #-"
 	line "MON so special?"
 
@@ -373,12 +382,12 @@ UnknownText_0x1a5939:
 	line "any MAIL."
 	done
 
-UnknownText_0x1a5972:
+Text_Route31DeclinedToHandOverMail:
 	text "What? You don't"
 	line "want anything?"
 	done
 
-UnknownText_0x1a5991:
+Text_Route31CantTakeLastMon:
 	text "If I take that"
 	line "#MON from you,"
 
@@ -386,7 +395,7 @@ UnknownText_0x1a5991:
 	line "to use in battle?"
 	done
 
-UnknownText_0x1a59d5:
+Route31YoungsterText:
 	text "I found a good"
 	line "#MON in DARK"
 	cont "CAVE."
@@ -399,14 +408,14 @@ UnknownText_0x1a59d5:
 	line "VIOLET CITY's GYM."
 	done
 
-UnknownText_0x1a5a45:
+Route31Signpost0Text:
 	text "ROUTE 31"
 
 	para "VIOLET CITY -"
 	line "CHERRYGROVE CITY"
 	done
 
-UnknownText_0x1a5a6e:
+Route31Signpost1Text:
 	text "DARK CAVE"
 	done
 
@@ -430,10 +439,10 @@ Route31_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_FISHER, 7, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FisherScript_0x1a5570, -1
-	person_event SPRITE_YOUNGSTER, 5, 9, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x1a55ed, -1
+	person_event SPRITE_FISHER, 7, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route31MailRecipientScript, -1
+	person_event SPRITE_YOUNGSTER, 5, 9, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route31YoungsterScript, -1
 	person_event SPRITE_BUG_CATCHER, 13, 21, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 5, TrainerBug_catcherWade1, -1
-	person_event SPRITE_COOLTRAINER_M, 8, 33, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x1a55f6, -1
-	person_event SPRITE_FRUIT_TREE, 7, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a55f9, -1
-	person_event SPRITE_POKE_BALL, 5, 29, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x1a55fb, EVENT_ROUTE_31_POTION
-	person_event SPRITE_POKE_BALL, 15, 19, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x1a55fd, EVENT_ROUTE_31_POKE_BALL
+	person_event SPRITE_COOLTRAINER_M, 8, 33, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route31CooltrainerMScript, -1
+	person_event SPRITE_FRUIT_TREE, 7, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route31FruitTree, -1
+	person_event SPRITE_POKE_BALL, 5, 29, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route31Potion, EVENT_ROUTE_31_POTION
+	person_event SPRITE_POKE_BALL, 15, 19, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route31PokeBall, EVENT_ROUTE_31_POKE_BALL

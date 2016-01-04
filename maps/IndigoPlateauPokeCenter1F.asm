@@ -1,3 +1,11 @@
+const_value set 2
+	const INDIGOPLATEAUPOKECENTER1F_NURSE
+	const INDIGOPLATEAUPOKECENTER1F_CLERK
+	const INDIGOPLATEAUPOKECENTER1F_COOLTRAINER_M
+	const INDIGOPLATEAUPOKECENTER1F_SILVER
+	const INDIGOPLATEAUPOKECENTER1F_GRAMPS
+	const INDIGOPLATEAUPOKECENTER1F_JYNX
+
 IndigoPlateauPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 1
@@ -51,13 +59,13 @@ UnknownScript_0x180053:
 	if_equal THURSDAY, UnknownScript_0x18012b
 	if_equal FRIDAY, UnknownScript_0x18012b
 	if_equal SATURDAY, UnknownScript_0x18012b
-	moveperson $5, $11, $9
-	appear $5
+	moveperson INDIGOPLATEAUPOKECENTER1F_SILVER, $11, $9
+	appear INDIGOPLATEAUPOKECENTER1F_SILVER
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 15
-	applymovement $5, MovementData_0x180164
+	applymovement INDIGOPLATEAUPOKECENTER1F_SILVER, MovementData_0x180164
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	spriteface PLAYER, RIGHT
 	jump UnknownScript_0x1800ce
@@ -73,59 +81,59 @@ UnknownScript_0x180094:
 	if_equal THURSDAY, UnknownScript_0x18012b
 	if_equal FRIDAY, UnknownScript_0x18012b
 	if_equal SATURDAY, UnknownScript_0x18012b
-	appear $5
+	appear INDIGOPLATEAUPOKECENTER1F_SILVER
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 15
-	applymovement $5, MovementData_0x18016b
+	applymovement INDIGOPLATEAUPOKECENTER1F_SILVER, MovementData_0x18016b
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	spriteface PLAYER, LEFT
 UnknownScript_0x1800ce:
-	loadfont
+	opentext
 	writetext UnknownText_0x1801f5
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x1800f3
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x180103
 	winlosstext UnknownText_0x180295, UnknownText_0x1802fd
-	setlasttalked $5
+	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
 	loadtrainer RIVAL2, 6
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	jump UnknownScript_0x180113
 
 UnknownScript_0x1800f3:
 	winlosstext UnknownText_0x180295, UnknownText_0x1802fd
-	setlasttalked $5
+	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
 	loadtrainer RIVAL2, 4
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	jump UnknownScript_0x180113
 
 UnknownScript_0x180103:
 	winlosstext UnknownText_0x180295, UnknownText_0x1802fd
-	setlasttalked $5
+	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
 	loadtrainer RIVAL2, 5
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	jump UnknownScript_0x180113
 
 UnknownScript_0x180113:
 	playmusic MUSIC_RIVAL_AFTER
-	loadfont
+	opentext
 	writetext UnknownText_0x1802a4
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, DOWN
-	applymovement $5, MovementData_0x180172
-	disappear $5
+	applymovement INDIGOPLATEAUPOKECENTER1F_SILVER, MovementData_0x180172
+	disappear INDIGOPLATEAUPOKECENTER1F_SILVER
 	dotrigger $0
 	playmapmusic
 	setflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
@@ -136,9 +144,9 @@ NurseScript_0x18012c:
 	jumpstd pokecenternurse
 
 ClerkScript_0x18012f:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_INDIGO_PLATEAU
-	loadmovesprites
+	closetext
 	end
 
 CooltrainerMScript_0x180136:
@@ -146,31 +154,31 @@ CooltrainerMScript_0x180136:
 
 TeleportGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	writetext TeleportGuyText1
 	yesorno
 	iffalse .No
 	writetext TeleportGuyYesText
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_WARP_TO
 	special FadeOutPalettes
-	waitbutton
+	waitsfx
 	warp NEW_BARK_TOWN, $d, $6
 	end
 
 .No
 	writetext TeleportGuyNoText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 AbraScript:
-	loadfont
+	opentext
 	writetext AbraText
 	cry ABRA
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MovementData_0x180164:

@@ -1,10 +1,16 @@
+const_value set 2
+	const OLIVINECITY_SAILOR1
+	const OLIVINECITY_STANDING_YOUNGSTER
+	const OLIVINECITY_SAILOR2
+	const OLIVINECITY_OLIVINE_RIVAL
+
 OlivineCity_MapScriptHeader:
 .MapTriggers:
 	db 2
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
-	dw .Trigger2, 0
 
 .MapCallbacks:
 	db 1
@@ -12,10 +18,10 @@ OlivineCity_MapScriptHeader:
 	; callbacks
 	dbw 5, .FlyPoint
 
-.Trigger1
+.Trigger0
 	end
 
-.Trigger2
+.Trigger1
 	end
 
 .FlyPoint
@@ -25,22 +31,22 @@ OlivineCity_MapScriptHeader:
 UnknownScript_0x1a8833:
 	spriteface PLAYER, LEFT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 15
 	playsound SFX_ENTER_DOOR
-	appear $5
-	waitbutton
-	applymovement $5, MovementData_0x1a88d2
+	appear OLIVINECITY_OLIVINE_RIVAL
+	waitsfx
+	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88d2
 	playmusic MUSIC_RIVAL_ENCOUNTER
-	loadfont
+	opentext
 	writetext UnknownText_0x1a88fa
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x1a88f4
 	spriteface PLAYER, RIGHT
-	applymovement $5, MovementData_0x1a88db
+	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88db
 	dotrigger $1
-	disappear $5
+	disappear OLIVINECITY_OLIVINE_RIVAL
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
 	special RunCallback_04
@@ -49,21 +55,21 @@ UnknownScript_0x1a8833:
 UnknownScript_0x1a886b:
 	spriteface PLAYER, LEFT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 15
 	playsound SFX_ENTER_DOOR
-	appear $5
-	waitbutton
-	applymovement $5, MovementData_0x1a88d6
+	appear OLIVINECITY_OLIVINE_RIVAL
+	waitsfx
+	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88d6
 	playmusic MUSIC_RIVAL_ENCOUNTER
-	loadfont
+	opentext
 	writetext UnknownText_0x1a88fa
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x1a88f7
 	spriteface PLAYER, RIGHT
-	applymovement $5, MovementData_0x1a88e8
-	disappear $5
+	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88e8
+	disappear OLIVINECITY_OLIVINE_RIVAL
 	dotrigger $1
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
@@ -75,18 +81,18 @@ SailorScript_0x1a88a3:
 
 StandingYoungsterScript_0x1a88a6:
 	faceplayer
-	loadfont
+	opentext
 	random $2
 	if_equal $0, UnknownScript_0x1a88b4
 	writetext UnknownText_0x1a8b04
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1a88b4:
 	writetext UnknownText_0x1a8b41
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SailorScript_0x1a88ba:

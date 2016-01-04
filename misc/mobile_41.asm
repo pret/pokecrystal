@@ -766,7 +766,7 @@ MobileFn_106314: mobile ; 106314
 	ret
 ; 10632f
 
-Function10632f: ; 10632f
+Mobile_AlwaysReturnNotCarry: ; 10632f
 	or a
 	ret
 
@@ -851,7 +851,7 @@ Function106392: ; 106392
 	ret
 
 .asm_1063a2
-	call Function10632f
+	call Mobile_AlwaysReturnNotCarry
 	ld a, c
 	and a
 	jr nz, .asm_1063b4
@@ -937,7 +937,7 @@ Function106403: ; 106403
 	ret
 
 .asm_106426
-	call Function10632f
+	call Mobile_AlwaysReturnNotCarry
 	ld a, c
 	and a
 	jr z, .asm_106435
@@ -960,7 +960,7 @@ Function106442: ; 106442
 	call Function3e32
 	xor a
 	ld [hMobile], a
-	ld [hFFC9], a
+	ld [hMobileReceive], a
 	ld a, [wcd25]
 	inc a
 	ld [wcd25], a
@@ -975,11 +975,7 @@ Function106453: ; 106453
 	ret
 ; 106462
 
-Function106462: ; 106462
-	ret
-; 106463
-
-Function106463: ; 106463
+MobileFunc_106462: mobile
 	ret
 ; 106464
 
@@ -1008,7 +1004,7 @@ Function106464:: ; 106464
 Function10649b: ; 10649b
 	ld a, [TextBoxFrame]
 	and $7
-	ld bc, $30
+	ld bc, 3 tiles
 	ld hl, Frames
 	call AddNTimes
 	ld d, h
@@ -1058,7 +1054,7 @@ Function1064d8: ; 1064d8
 	jr asm_1064ed
 
 asm_1064ed
-	ld de, w6_d000
+	ld de, wDecompressScratch
 	ld b, $0
 	ld a, [rSVBK]
 	push af
@@ -1087,17 +1083,17 @@ GFX_106514:
 INCBIN "gfx/unknown/106514.2bpp"
 
 
-Function106594:: ; 106594
-	ld de, GFX_1065ad
+LoadOverworldFont:: ; 106594
+	ld de, .bgfont
 	ld hl, VTiles1
-	lb bc, BANK(GFX_1065ad), $80
+	lb bc, BANK(.bgfont), $80
 	call Get2bpp
-	ld de, GFX_1065ad + $800
+	ld de, .bgfont + $80 tiles
 	ld hl, VTiles2 tile $7f
-	lb bc, BANK(GFX_1065ad), 1
+	lb bc, BANK(.bgfont), 1
 	call Get2bpp
 	ret
 ; 1065ad
 
-GFX_1065ad:
+.bgfont:
 INCBIN "gfx/unknown/1065ad.2bpp"

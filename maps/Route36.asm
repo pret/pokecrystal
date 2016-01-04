@@ -1,3 +1,14 @@
+const_value set 2
+	const ROUTE36_YOUNGSTER1
+	const ROUTE36_YOUNGSTER2
+	const ROUTE36_WEIRD_TREE
+	const ROUTE36_LASS1
+	const ROUTE36_FISHER
+	const ROUTE36_FRUIT_TREE
+	const ROUTE36_YOUNGSTER3
+	const ROUTE36_LASS2
+	const ROUTE36_SUICUNE
+
 Route36_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -22,11 +33,11 @@ UnknownScript_0x19400e:
 ArthurCallback:
 	checkcode VAR_WEEKDAY
 	if_equal THURSDAY, .ArthurAppears
-	disappear $8
+	disappear ROUTE36_YOUNGSTER3
 	return
 
 .ArthurAppears
-	appear $8
+	appear ROUTE36_YOUNGSTER3
 	return
 
 UnknownScript_0x19401b:
@@ -34,8 +45,8 @@ UnknownScript_0x19401b:
 	pause 15
 	playsound SFX_WARP_FROM
 	spriteface PLAYER, UP
-	applymovement $a, MovementData_0x194262
-	disappear $a
+	applymovement ROUTE36_SUICUNE, MovementData_0x194262
+	disappear ROUTE36_SUICUNE
 	spriteface PLAYER, DOWN
 	pause 10
 	dotrigger $0
@@ -46,48 +57,48 @@ UnknownScript_0x19401b:
 WeirdTreeScript_0x19403c:
 	checkitem SQUIRTBOTTLE
 	iftrue UnknownScript_0x19404a
-	waitbutton
+	waitsfx
 	playsound SFX_SANDSTORM
-	applymovement $4, MovementData_0x194249
+	applymovement ROUTE36_WEIRD_TREE, MovementData_0x194249
 	end
 
 UnknownScript_0x19404a:
-	loadfont
+	opentext
 	writetext UnknownText_0x19426b
 	yesorno
 	iffalse UnknownScript_0x194079
-	loadmovesprites
+	closetext
 	; fallthrough
 
 WateredWeirdTreeScript::
-	loadfont
+	opentext
 	writetext UnknownText_0x194290
-	closetext
-	loadmovesprites
 	waitbutton
-	playsound SFX_SANDSTORM
-	applymovement $4, MovementData_0x194249
-	loadfont
-	writetext UnknownText_0x1942aa
 	closetext
-	loadmovesprites
-	loadpokedata SUDOWOODO, 20
+	waitsfx
+	playsound SFX_SANDSTORM
+	applymovement ROUTE36_WEIRD_TREE, MovementData_0x194249
+	opentext
+	writetext UnknownText_0x1942aa
+	waitbutton
+	closetext
+	loadwildmon SUDOWOODO, 20
 	startbattle
 	setevent EVENT_FOUGHT_SUDOWOODO
 	if_equal $2, UnknownScript_0x19407b
-	disappear $4
+	disappear ROUTE36_WEIRD_TREE
 	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
-	returnafterbattle
+	reloadmapafterbattle
 	end
 
 UnknownScript_0x194079:
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x19407b:
-	returnafterbattle
-	applymovement $4, MovementData_0x19424b
-	disappear $4
+	reloadmapafterbattle
+	applymovement ROUTE36_WEIRD_TREE, MovementData_0x19424b
+	disappear ROUTE36_WEIRD_TREE
 	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
 	special RunCallback_04
 	special RefreshSprites
@@ -95,70 +106,70 @@ UnknownScript_0x19407b:
 
 LassScript_0x19408c:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_TALKED_TO_FLORIA_AT_FLOWER_SHOP
 	iftrue UnknownScript_0x1940b3
 	setevent EVENT_MET_FLORIA
 	writetext UnknownText_0x1942f1
+	waitbutton
 	closetext
-	loadmovesprites
 	clearevent EVENT_FLORIA_AT_FLOWER_SHOP
 	checkcode VAR_FACING
-	if_equal $1, UnknownScript_0x1940ac
-	applymovement $9, MovementData_0x19424e
-	disappear $9
+	if_equal UP, UnknownScript_0x1940ac
+	applymovement ROUTE36_LASS2, MovementData_0x19424e
+	disappear ROUTE36_LASS2
 	end
 
 UnknownScript_0x1940ac:
-	applymovement $9, MovementData_0x194258
-	disappear $9
+	applymovement ROUTE36_LASS2, MovementData_0x194258
+	disappear ROUTE36_LASS2
 	end
 
 UnknownScript_0x1940b3:
 	writetext UnknownText_0x1943ed
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FisherScript_0x1940b9:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM08_ROCK_SMASH
 	iftrue UnknownScript_0x1940da
 	checkevent EVENT_FOUGHT_SUDOWOODO
 	iftrue UnknownScript_0x1940cd
 	writetext UnknownText_0x19446f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1940cd:
 	writetext UnknownText_0x1944d0
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_ROCK_SMASH
 	iffalse UnknownScript_0x1940de
 	setevent EVENT_GOT_TM08_ROCK_SMASH
 UnknownScript_0x1940da:
 	writetext UnknownText_0x19452c
-	closetext
+	waitbutton
 UnknownScript_0x1940de:
-	loadmovesprites
+	closetext
 	end
 
 LassScript_0x1940e0:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_FOUGHT_SUDOWOODO
 	iftrue UnknownScript_0x1940ee
 	writetext UnknownText_0x194626
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1940ee:
 	writetext UnknownText_0x19469e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSchoolboyAlan1:
@@ -166,8 +177,8 @@ TrainerSchoolboyAlan1:
 
 SchoolboyAlan1Script:
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_ALAN
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	checkflag ENGINE_ALAN
 	iftrue UnknownScript_0x194140
 	checkflag ENGINE_ALAN_HAS_FIRE_STONE
@@ -177,7 +188,7 @@ SchoolboyAlan1Script:
 	checkevent EVENT_ALAN_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x194129
 	writetext UnknownText_0x1947aa
-	keeptextopen
+	buttonsound
 	setevent EVENT_ALAN_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1941c9
 	jump UnknownScript_0x19412c
@@ -216,7 +227,7 @@ UnknownScript_0x194140:
 .LoadFight0
 	loadtrainer SCHOOLBOY, ALAN1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wAlanFightCount, 1
 	clearflag ENGINE_ALAN
 	end
@@ -224,7 +235,7 @@ UnknownScript_0x194140:
 .LoadFight1
 	loadtrainer SCHOOLBOY, ALAN2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wAlanFightCount, 2
 	clearflag ENGINE_ALAN
 	end
@@ -232,7 +243,7 @@ UnknownScript_0x194140:
 .LoadFight2
 	loadtrainer SCHOOLBOY, ALAN3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wAlanFightCount, 3
 	clearflag ENGINE_ALAN
 	end
@@ -240,7 +251,7 @@ UnknownScript_0x194140:
 .LoadFight3
 	loadtrainer SCHOOLBOY, ALAN4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wAlanFightCount, 4
 	clearflag ENGINE_ALAN
 	end
@@ -248,7 +259,7 @@ UnknownScript_0x194140:
 .LoadFight4
 	loadtrainer SCHOOLBOY, ALAN5
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_ALAN
 	end
 
@@ -303,16 +314,16 @@ TrainerPsychicMark:
 	trainer EVENT_BEAT_PSYCHIC_MARK, PSYCHIC_T, MARK, PsychicMarkSeenText, PsychicMarkBeatenText, 0, PsychicMarkScript
 
 PsychicMarkScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19471e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ArthurScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_HARD_STONE_FROM_ARTHUR
 	iftrue ArthurThursdayScript
 	checkcode VAR_WEEKDAY
@@ -320,30 +331,30 @@ ArthurScript:
 	checkevent EVENT_MET_ARTHUR_OF_THURSDAY
 	iftrue .MetArthur
 	writetext MeetArthurText
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_ARTHUR_OF_THURSDAY
 .MetArthur
 	writetext ArthurGivesGiftText
-	keeptextopen
+	buttonsound
 	verbosegiveitem HARD_STONE
 	iffalse ArthurDoneScript
 	setevent EVENT_GOT_HARD_STONE_FROM_ARTHUR
 	writetext ArthurGaveGiftText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ArthurThursdayScript:
 	writetext ArthurThursdayText
-	closetext
+	waitbutton
 ArthurDoneScript:
-	loadmovesprites
+	closetext
 	end
 
 ArthurNotThursdayScript:
 	writetext ArthurNotThursdayText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute36Signpost2Script:

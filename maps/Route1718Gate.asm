@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE1718GATE_OFFICER
+
 Route1718Gate_MapScriptHeader:
 .MapTriggers:
 	db 1
@@ -20,12 +23,12 @@ UnknownScript_0x73611:
 	end
 
 UnknownScript_0x73617:
-	showemote EMOTE_SHOCK, $2, 15
+	showemote EMOTE_SHOCK, ROUTE1718GATE_OFFICER, 15
 	spriteface PLAYER, UP
-	loadfont
+	opentext
 	writetext UnknownText_0x7364d
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x73629
 	end
 

@@ -1,3 +1,7 @@
+const_value set 2
+	const SILPHCO1F_RECEPTIONIST
+	const SILPHCO1F_OFFICER
+
 SilphCo1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -10,19 +14,19 @@ ReceptionistScript_0x18abe5:
 
 OfficerScript_0x18abe8:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_UP_GRADE
 	iftrue UnknownScript_0x18abfd
 	writetext UnknownText_0x18ac36
-	keeptextopen
+	buttonsound
 	verbosegiveitem UP_GRADE
 	iffalse UnknownScript_0x18ac01
 	setevent EVENT_GOT_UP_GRADE
 UnknownScript_0x18abfd:
 	writetext UnknownText_0x18aca8
-	closetext
+	waitbutton
 UnknownScript_0x18ac01:
-	loadmovesprites
+	closetext
 	end
 
 UnknownText_0x18ac03:

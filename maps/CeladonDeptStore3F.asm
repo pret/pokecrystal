@@ -1,3 +1,10 @@
+const_value set 2
+	const CELADONDEPTSTORE3F_CLERK
+	const CELADONDEPTSTORE3F_YOUNGSTER
+	const CELADONDEPTSTORE3F_GAMEBOY_KID1
+	const CELADONDEPTSTORE3F_GAMEBOY_KID2
+	const CELADONDEPTSTORE3F_SUPER_NERD
+
 CeladonDeptStore3F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,9 +14,9 @@ CeladonDeptStore3F_MapScriptHeader:
 
 ClerkScript_0x70d29:
 	faceplayer
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_CELADON_3F
-	loadmovesprites
+	closetext
 	end
 
 YoungsterScript_0x70d31:
@@ -17,20 +24,20 @@ YoungsterScript_0x70d31:
 
 GameboyKidScript_0x70d34:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x70d86
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $4, DOWN
+	spriteface CELADONDEPTSTORE3F_GAMEBOY_KID1, DOWN
 	end
 
 GameboyKidScript_0x70d3f:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x70dc7
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $5, DOWN
+	spriteface CELADONDEPTSTORE3F_GAMEBOY_KID2, DOWN
 	end
 
 SuperNerdScript_0x70d4a:

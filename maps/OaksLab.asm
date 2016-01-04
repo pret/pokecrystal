@@ -1,3 +1,9 @@
+const_value set 2
+	const OAKSLAB_OAK
+	const OAKSLAB_SCIENTIST1
+	const OAKSLAB_SCIENTIST2
+	const OAKSLAB_SCIENTIST3
+
 OaksLab_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -5,58 +11,58 @@ OaksLab_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x19b3c7:
+.DummyTrigger:
 	end
 
 Oak:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_OPENED_MT_SILVER
 	iftrue .CheckPokedex
 	checkevent EVENT_TALKED_TO_OAK_IN_KANTO
 	iftrue .CheckBadges
 	writetext OakWelcomeKantoText
-	keeptextopen
+	buttonsound
 	setevent EVENT_TALKED_TO_OAK_IN_KANTO
 .CheckBadges
 	checkcode VAR_BADGES
 	if_equal 16, .OpenMtSilver
-	if_equal 8, .Complain
+	if_equal  8, .Complain
 	jump .AhGood
 
 .CheckPokedex
 	writetext OakLabDexCheckText
-	closetext
+	waitbutton
 	special ProfOaksPCBoot
 	writetext OakLabGoodbyeText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .OpenMtSilver
 	writetext OakOpenMtSilverText
-	keeptextopen
+	buttonsound
 	setevent EVENT_OPENED_MT_SILVER
 	jump .CheckPokedex
 
 .Complain
 	writetext OakNoKantoBadgesText
-	keeptextopen
+	buttonsound
 	jump .CheckPokedex
 
 .AhGood
 	writetext OakYesKantoBadgesText
-	keeptextopen
+	buttonsound
 	jump .CheckPokedex
 
-ScientistScript_0x19b40f:
-	jumptextfaceplayer UnknownText_0x19b7fb
+OaksAssistant1Script:
+	jumptextfaceplayer OaksAssistant1Text
 
-ScientistScript_0x19b412:
-	jumptextfaceplayer UnknownText_0x19b859
+OaksAssistant2Script:
+	jumptextfaceplayer OaksAssistant2Text
 
-ScientistScript_0x19b415:
-	jumptextfaceplayer UnknownText_0x19b8a7
+OaksAssistant3Script:
+	jumptextfaceplayer OaksAssistant3Text
 
 OaksLabBookshelf:
 	jumpstd difficultbookshelf
@@ -178,7 +184,7 @@ OakYesKantoBadgesText:
 	line "<PLAY_G>!"
 	done
 
-UnknownText_0x19b7fb:
+OaksAssistant1Text:
 	text "The PROF's #MON"
 	line "TALK radio program"
 
@@ -189,7 +195,7 @@ UnknownText_0x19b7fb:
 	line "like to hear it."
 	done
 
-UnknownText_0x19b859:
+OaksAssistant2Text:
 	text "Thanks to your"
 	line "work on the #-"
 	cont "DEX, the PROF's"
@@ -198,7 +204,7 @@ UnknownText_0x19b859:
 	line "along great."
 	done
 
-UnknownText_0x19b8a7:
+OaksAssistant3Text:
 	text "Don't tell anyone,"
 	line "but PROF.OAK'S"
 
@@ -284,6 +290,6 @@ OaksLab_MapEventHeader:
 .PersonEvents:
 	db 4
 	person_event SPRITE_OAK, 2, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Oak, -1
-	person_event SPRITE_SCIENTIST, 8, 1, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, ScientistScript_0x19b40f, -1
-	person_event SPRITE_SCIENTIST, 9, 8, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, ScientistScript_0x19b412, -1
-	person_event SPRITE_SCIENTIST, 4, 1, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, ScientistScript_0x19b415, -1
+	person_event SPRITE_SCIENTIST, 8, 1, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, OaksAssistant1Script, -1
+	person_event SPRITE_SCIENTIST, 9, 8, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, OaksAssistant2Script, -1
+	person_event SPRITE_SCIENTIST, 4, 1, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, OaksAssistant3Script, -1

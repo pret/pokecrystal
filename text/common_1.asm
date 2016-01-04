@@ -500,7 +500,7 @@ UnknownText_0x1bc83a::
 UnknownText_0x1bc84b::
 	text ""
 	line "OAK: @"
-	text_from_ram wd050
+	text_from_ram wMonOrItemNameBuffer
 	db "@@"
 
 UnknownText_0x1bc858::
@@ -1080,7 +1080,7 @@ Text_EnemyWithdrew::
 Text_EnemyUsedOn::
 	text "<ENEMY>"
 	line "used @"
-	text_from_ram wd050
+	text_from_ram wMonOrItemNameBuffer
 	text ""
 	cont "on @"
 	text_from_ram EnemyMonNick
@@ -1329,7 +1329,7 @@ UnknownText_0x1bd407::
 UnknownText_0x1bd429::
 	text "<PLAYER> traded"
 	line "@"
-	text_from_ram wd050
+	text_from_ram wMonOrItemNameBuffer
 	text " for"
 	cont "@"
 	text_from_ram StringBuffer2
@@ -1423,14 +1423,14 @@ UnknownText_0x1bd5cc::
 
 UnknownText_0x1bd5f4::
 	text "Hi! The @"
-	text_from_ram wd050
+	text_from_ram wMonOrItemNameBuffer
 	text ""
 	line "you traded me is"
 	cont "doing great!"
 	done
 
 UnknownText_0x1bd621::
-	text_from_ram wd050
+	text_from_ram wMonOrItemNameBuffer
 	text "'s cute,"
 	line "but I don't have"
 
@@ -1464,7 +1464,7 @@ UnknownText_0x1bd6cd::
 	text "Wow! Thank you!"
 	line "I always wanted"
 	cont "@"
-	text_from_ram wd050
+	text_from_ram wMonOrItemNameBuffer
 	text "!"
 	done
 
@@ -1476,7 +1476,7 @@ UnknownText_0x1bd6f5::
 	cont "traded you doing?"
 
 	para "Your @"
-	text_from_ram wd050
+	text_from_ram wMonOrItemNameBuffer
 	text "'s"
 	line "so cute!"
 	done

@@ -1,3 +1,9 @@
+const_value set 2
+	const GOLDENRODDEPTSTORE4F_CLERK
+	const GOLDENRODDEPTSTORE4F_COOLTRAINER_M
+	const GOLDENRODDEPTSTORE4F_BUG_CATCHER
+	const GOLDENRODDEPTSTORE4F_GAMEBOY_KID
+
 GoldenrodDeptStore4F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,9 +13,9 @@ GoldenrodDeptStore4F_MapScriptHeader:
 
 ClerkScript_0x55ee9:
 	faceplayer
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_4F
-	loadmovesprites
+	closetext
 	end
 
 CooltrainerMScript_0x55ef1:
@@ -20,11 +26,11 @@ BugCatcherScript_0x55ef4:
 
 GameboyKidScript_0x55ef7:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x55f74
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $5, DOWN
+	spriteface GOLDENRODDEPTSTORE4F_GAMEBOY_KID, DOWN
 	end
 
 GoldenrodDeptStore4FDirectory:

@@ -1,22 +1,22 @@
-Function16e1d: ; 16e1d
-	call Function16ed6
+CheckBreedmonCompatibility: ; 16e1d
+	call .CheckBreedingGroupCompatibility
 	ld c, $0
-	jp nc, .asm_16eb7
+	jp nc, .done
 	ld a, [wBreedMon1Species]
 	ld [CurPartySpecies], a
 	ld a, [wBreedMon1DVs]
 	ld [TempMonDVs], a
 	ld a, [wBreedMon1DVs + 1]
 	ld [TempMonDVs + 1], a
-	ld a, $3
+	ld a, BREEDMON
 	ld [MonType], a
 	predef GetGender
-	jr c, .asm_16e70
+	jr c, .genderless
 	ld b, $1
-	jr nz, .asm_16e48
+	jr nz, .breedmon2
 	inc b
 
-.asm_16e48
+.breedmon2
 	push bc
 	ld a, [wBreedMon2Species]
 	ld [CurPartySpecies], a
@@ -28,96 +28,105 @@ Function16e1d: ; 16e1d
 	ld [MonType], a
 	predef GetGender
 	pop bc
-	jr c, .asm_16e70
+	jr c, .genderless
 	ld a, $1
-	jr nz, .asm_16e6d
+	jr nz, .compare_gender
 	inc a
 
-.asm_16e6d
+.compare_gender
 	cp b
-	jr nz, .asm_16e89
+	jr nz, .compute
 
-.asm_16e70
+.genderless
 	ld c, $0
 	ld a, [wBreedMon1Species]
 	cp DITTO
-	jr z, .asm_16e82
+	jr z, .ditto1
 	ld a, [wBreedMon2Species]
 	cp DITTO
-	jr nz, .asm_16eb7
-	jr .asm_16e89
+	jr nz, .done
+	jr .compute
 
-.asm_16e82
+.ditto1
 	ld a, [wBreedMon2Species]
 	cp DITTO
-	jr z, .asm_16eb7
+	jr z, .done
 
-.asm_16e89
-	call Function16ebc
-	ld c, $ff
-	jp z, .asm_16eb7
+.compute
+	call .CheckDVs
+	ld c, 255
+	jp z, .done
 	ld a, [wBreedMon2Species]
 	ld b, a
 	ld a, [wBreedMon1Species]
 	cp b
-	ld c, $fe
-	jr z, .asm_16e9f
-	ld c, $80
-.asm_16e9f
+	ld c, 254
+	jr z, .compare_ids
+	ld c, 128
+.compare_ids
+	; Speed up
 	ld a, [wBreedMon1ID]
 	ld b, a
 	ld a, [wBreedMon2ID]
 	cp b
-	jr nz, .asm_16eb7
+	jr nz, .done
 	ld a, [wBreedMon1ID + 1]
 	ld b, a
 	ld a, [wBreedMon2ID + 1]
 	cp b
-	jr nz, .asm_16eb7
+	jr nz, .done
 	ld a, c
-	sub $4d
+	sub 77
 	ld c, a
 
-.asm_16eb7
+.done
 	ld a, c
 	ld [wd265], a
 	ret
 ; 16ebc
 
 
-Function16ebc: ; 16ebc (5:6ebc)
+.CheckDVs: ; 16ebc (5:6ebc)
+; If Defense DVs match and the lower 3 bits of the Special DVs match,
+; maximize the chances of spawning an egg regardless of species.
 	ld a, [wBreedMon1DVs]
-	and $f
+	and %1111
 	ld b, a
 	ld a, [wBreedMon2DVs]
-	and $f
+	and %1111
 	cp b
 	ret nz
 	ld a, [wBreedMon1DVs + 1]
-	and $7
+	and %111
 	ld b, a
 	ld a, [wBreedMon2DVs + 1]
-	and $7
+	and %111
 	cp b
 	ret
 ; 16ed6
 
-Function16ed6: ; 16ed6
+.CheckBreedingGroupCompatibility: ; 16ed6
+; If either mon is in the No Eggs group,
+; they are not compatible.
 	ld a, [wBreedMon2Species]
 	ld [CurSpecies], a
 	call GetBaseData
 	ld a, [BaseEggGroups]
-	cp $ff
-	jr z, .asm_16f3a
+	cp NO_EGGS * $11
+	jr z, .Incompatible
+
 	ld a, [wBreedMon1Species]
 	ld [CurSpecies], a
 	call GetBaseData
 	ld a, [BaseEggGroups]
-	cp $ff
-	jr z, .asm_16f3a
+	cp NO_EGGS * $11
+	jr z, .Incompatible
+
+; Ditto is automatically compatible with everything.
+; If not Ditto, load the breeding groups into b/c and d/e.
 	ld a, [wBreedMon2Species]
 	cp DITTO
-	jr z, .asm_16f3c
+	jr z, .Compatible
 	ld [CurSpecies], a
 	call GetBaseData
 	ld a, [BaseEggGroups]
@@ -128,9 +137,10 @@ Function16ed6: ; 16ed6
 	and $f0
 	swap a
 	ld c, a
+
 	ld a, [wBreedMon1Species]
 	cp DITTO
-	jr z, .asm_16f3c
+	jr z, .Compatible
 	ld [CurSpecies], a
 	push bc
 	call GetBaseData
@@ -143,22 +153,24 @@ Function16ed6: ; 16ed6
 	and $f0
 	swap a
 	ld e, a
+
 	ld a, d
 	cp b
-	jr z, .asm_16f3c
+	jr z, .Compatible
 	cp c
-	jr z, .asm_16f3c
+	jr z, .Compatible
+
 	ld a, e
 	cp b
-	jr z, .asm_16f3c
+	jr z, .Compatible
 	cp c
-	jr z, .asm_16f3c
+	jr z, .Compatible
 
-.asm_16f3a
+.Incompatible
 	and a
 	ret
 
-.asm_16f3c
+.Compatible
 	scf
 	ret
 ; 16f3e
@@ -189,32 +201,32 @@ DoEggStep:: ; 16f3e
 ; 16f5e
 
 OverworldHatchEgg:: ; 16f5e
-	call ResetWindow
+	call RefreshScreen
 	call LoadStandardMenuDataHeader
-	call Function16f70
+	call HatchEggs
 	call ExitAllMenus
 	call RestartMapMusic
-	jp LoadMoveSprites
+	jp CloseText
 ; 16f70
 
-Function16f70: ; 16f70 (5:6f70)
+HatchEggs: ; 16f70 (5:6f70)
 	ld de, PartySpecies
 	ld hl, PartyMon1Happiness
 	xor a
 	ld [CurPartyMon], a
 
-Function16f7a: ; 16f7a (5:6f7a)
+.loop: ; 16f7a (5:6f7a)
 	ld a, [de]
 	inc de
 	cp -1
-	jp z, Function1708a
+	jp z, .done
 	push de
 	push hl
 	cp EGG
-	jp nz, Function1707d
+	jp nz, .next
 	ld a, [hl]
 	and a
-	jp nz, Function1707d
+	jp nz, .next
 	ld [hl], $78
 
 	push de
@@ -274,7 +286,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	ld [hl], a
 	pop hl
 	push hl
-	ld bc, MON_EXP + 2
+	ld bc, MON_STAT_EXP - 1
 	add hl, bc
 	ld b, $0
 	predef CalcPkmnStats
@@ -304,7 +316,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	ld e, l
 	ld hl, PlayerName
 	call CopyBytes
-	ld hl, UnknownText_0x1708b
+	ld hl, .Text_HatchEgg
 	call PrintText
 	ld a, [CurPartyMon]
 	ld hl, PartyMonNicknames
@@ -313,11 +325,12 @@ Function16f7a: ; 16f7a (5:6f7a)
 	ld d, h
 	ld e, l
 	push de
-	ld hl, UnknownText_0x170ba
+	ld hl, .Text_NicknameHatchling
 	call PrintText
 	call YesNoBox
 	pop de
 	jr c, .nonickname
+
 	ld a, $1
 	ld [wd26b], a
 	xor a
@@ -328,32 +341,30 @@ Function16f7a: ; 16f7a (5:6f7a)
 	pop hl
 	ld de, StringBuffer1
 	call InitName
-	jr Function1707d
+	jr .next
+
 .nonickname
 	ld hl, StringBuffer1
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
-Function1707d: ; 1707d (5:707d)
+.next: ; 1707d (5:707d)
 	ld hl, CurPartyMon
 	inc [hl]
 	pop hl
 	ld de, PARTYMON_STRUCT_LENGTH
 	add hl, de
 	pop de
-	jp Function16f7a
+	jp .loop
 
-Function1708a: ; 1708a (5:708a)
+.done: ; 1708a (5:708a)
 	ret
 ; 1708b (5:708b)
 
-UnknownText_0x1708b: ; 0x1708b
+.Text_HatchEgg: ; 0x1708b
 	; Huh? @ @
 	text_jump UnknownText_0x1c0db0
 	start_asm
-; 0x17090
-
-Function17090: ; 17090
 	ld hl, VramState
 	res 0, [hl]
 	push hl
@@ -361,38 +372,38 @@ Function17090: ; 17090
 	push bc
 	ld a, [CurPartySpecies]
 	push af
-	call Function1728f
-	ld hl, UnknownText_0x170b0
+	call EggHatch_AnimationSequence
+	ld hl, .ClearTextbox
 	call PrintText
 	pop af
 	ld [CurPartySpecies], a
 	pop bc
 	pop de
 	pop hl
-	ld hl, UnknownText_0x170b5
+	ld hl, .CameOutOfItsEgg
 	ret
 ; 170b0 (5:70b0)
 
-UnknownText_0x170b0: ; 0x170b0
+.ClearTextbox: ; 0x170b0
 	;
 	text_jump UnknownText_0x1c0db8
 	db "@"
 ; 0x170b5
 
-UnknownText_0x170b5: ; 0x170b5
+.CameOutOfItsEgg: ; 0x170b5
 	; came out of its EGG!@ @
 	text_jump UnknownText_0x1c0dba
 	db "@"
 ; 0x170ba
 
-UnknownText_0x170ba: ; 0x170ba
+.Text_NicknameHatchling: ; 0x170ba
 	; Give a nickname to @ ?
 	text_jump UnknownText_0x1c0dd8
 	db "@"
 ; 0x170bf
 
-Function170bf: ; 170bf
-	call Function17197
+InitEggMoves: ; 170bf
+	call GetHeritableMoves
 	ld d, h
 	ld e, l
 	ld b, NUM_MOVES
@@ -409,9 +420,9 @@ Function170bf: ; 170bf
 	inc hl
 	dec c
 	jr nz, .next
-	call Function170e4
+	call GetEggMove
 	jr nc, .skip
-	call Function17169
+	call LoadEggMove
 
 .skip
 	inc de
@@ -422,7 +433,7 @@ Function170bf: ; 170bf
 	ret
 ; 170e4
 
-Function170e4: ; 170e4
+GetEggMove: ; 170e4
 GLOBAL EggMoves
 
 	push bc
@@ -440,7 +451,7 @@ endr
 	ld a, BANK(EggMoves)
 	call GetFarByte
 	cp -1
-	jr z, .found_mon
+	jr z, .reached_end
 	ld b, a
 	ld a, [de]
 	cp b
@@ -448,8 +459,8 @@ endr
 	inc hl
 	jr .loop
 
-.found_mon
-	call Function1720b
+.reached_end
+	call GetBreedmonMovePointer
 	ld b, NUM_MOVES
 .loop2
 	ld a, [de]
@@ -504,7 +515,7 @@ endr
 	ld a, [de]
 	cp b
 	jr nz, .loop5
-	ld [wd262], a
+	ld [wPutativeTMHMMove], a
 	predef CanLearnTMHMMove
 	ld a, c
 	and a
@@ -521,7 +532,7 @@ endr
 	ret
 ; 17169
 
-Function17169: ; 17169
+LoadEggMove: ; 17169
 	push de
 	push bc
 	ld a, [de]
@@ -556,7 +567,7 @@ Function17169: ; 17169
 	ret
 ; 17197
 
-Function17197: ; 17197
+GetHeritableMoves: ; 17197
 	ld hl, wBreedMon2Moves
 	ld a, [wBreedMon1Species]
 	cp DITTO
@@ -564,7 +575,7 @@ Function17197: ; 17197
 	ld a, [wBreedMon2Species]
 	cp DITTO
 	jr z, .ditto2
-	ld a, [wDittoInDaycare]
+	ld a, [wBreedMotherOrNonDitto]
 	and a
 	ret z
 	ld hl, wBreedMon1Moves
@@ -579,7 +590,7 @@ Function17197: ; 17197
 	ld [TempMonDVs], a
 	ld a, [wBreedMon2DVs + 1]
 	ld [TempMonDVs + 1], a
-	ld a, $3
+	ld a, BREEDMON
 	ld [MonType], a
 	predef GetGender
 	jr c, .inherit_mon2_moves
@@ -595,7 +606,7 @@ Function17197: ; 17197
 	ld [TempMonDVs], a
 	ld a, [wBreedMon1DVs + 1]
 	ld [TempMonDVs + 1], a
-	ld a, $3
+	ld a, BREEDMON
 	ld [MonType], a
 	predef GetGender
 	jr c, .inherit_mon1_moves
@@ -614,7 +625,7 @@ Function17197: ; 17197
 	ret
 ; 1720b
 
-Function1720b: ; 1720b
+GetBreedmonMovePointer: ; 1720b
 	ld hl, wBreedMon1Moves
 	ld a, [wBreedMon1Species]
 	cp DITTO
@@ -622,7 +633,7 @@ Function1720b: ; 1720b
 	ld a, [wBreedMon2Species]
 	cp DITTO
 	jr z, .ditto
-	ld a, [wDittoInDaycare]
+	ld a, [wBreedMotherOrNonDitto]
 	and a
 	ret z
 
@@ -632,7 +643,7 @@ Function1720b: ; 1720b
 ; 17224
 
 
-Function17224: ; 17224 (5:7224)
+GetEggFrontpic: ; 17224 (5:7224)
 	push de
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
@@ -642,7 +653,7 @@ Function17224: ; 17224 (5:7224)
 	pop de
 	predef_jump GetFrontpic
 
-Function1723c: ; 1723c (5:723c)
+GetHatchlingFrontpic: ; 1723c (5:723c)
 	push de
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
@@ -652,7 +663,7 @@ Function1723c: ; 1723c (5:723c)
 	pop de
 	predef_jump FrontpicPredef
 
-Function17254: ; 17254 (5:7254)
+Hatch_UpdateFrontpicBGMapCenter: ; 17254 (5:7254)
 	push af
 	call WaitTop
 	push hl
@@ -670,98 +681,100 @@ Function17254: ; 17254 (5:7254)
 	lb bc, 7, 7
 	predef FillBox
 	pop af
-	call Function17363
+	call Hatch_LoadFrontpicPal
 	call SetPalettes
 	jp WaitBGMap
 
-Function1727f: ; 1727f (5:727f)
+EggHatch_DoAnimFrame: ; 1727f (5:727f)
 	push hl
 	push de
 	push bc
-	callab Function8cf69
+	callab PlaySpriteAnimations
 	call DelayFrame
 	pop bc
 	pop de
 	pop hl
 	ret
 
-Function1728f: ; 1728f (5:728f)
+EggHatch_AnimationSequence: ; 1728f (5:728f)
 	ld a, [wd265]
 	ld [wJumptableIndex], a
 	ld a, [CurSpecies]
 	push af
 	ld de, MUSIC_NONE
 	call PlayMusic
-	callba Function8000
+	callba BlankScreen
 	call DisableLCD
 	ld hl, EggHatchGFX
 	ld de, VTiles0 tile $00
 	ld bc, $20
 	ld a, BANK(EggHatchGFX)
 	call FarCopyBytes
-	callba Function8cf53
+	callba ClearSpriteAnims
 	ld de, VTiles2 tile $00
 	ld a, [wJumptableIndex]
-	call Function1723c
+	call GetHatchlingFrontpic
 	ld de, VTiles2 tile $31
 	ld a, EGG
-	call Function17224
+	call GetEggFrontpic
 	ld de, MUSIC_EVOLUTION
 	call PlayMusic
 	call EnableLCD
 	hlcoord 7, 4
-	ld b, $98
-	ld c, $31
+	ld b, VBGMap0 / $100
+	ld c, $31 ; Egg tiles start here
 	ld a, EGG
-	call Function17254
-	ld c, $50
+	call Hatch_UpdateFrontpicBGMapCenter
+	ld c, 80
 	call DelayFrames
 	xor a
 	ld [wcf64], a
 	ld a, [hSCX]
 	ld b, a
-.asm_172ee
+.outerloop
 	ld hl, wcf64
 	ld a, [hl]
 	inc [hl]
-	cp $8
-	jr nc, .asm_17327
+	cp 8
+	jr nc, .done
 	ld e, [hl]
-.asm_172f8
-	ld a, $2
+.loop
+; wobble e times
+	ld a, 2
 	ld [hSCX], a
-	ld a, $fe
-	ld [wc3c0], a
-	call Function1727f
-	ld c, $2
+	ld a, -2
+	ld [wGlobalAnimXOffset], a
+	call EggHatch_DoAnimFrame
+	ld c, 2
 	call DelayFrames
-	ld a, $fe
+	ld a, -2
 	ld [hSCX], a
-	ld a, $2
-	ld [wc3c0], a
-	call Function1727f
-	ld c, $2
+	ld a, 2
+	ld [wGlobalAnimXOffset], a
+	call EggHatch_DoAnimFrame
+	ld c, 2
 	call DelayFrames
 	dec e
-	jr nz, .asm_172f8
-	ld c, $10
+	jr nz, .loop
+	ld c, 16
 	call DelayFrames
-	call Function1736d
-	jr .asm_172ee
-.asm_17327
+	call EggHatch_CrackShell
+	jr .outerloop
+
+.done
 	ld de, SFX_EGG_HATCH
 	call PlaySFX
 	xor a
 	ld [hSCX], a
-	ld [wc3c0], a
+	ld [wGlobalAnimXOffset], a
 	call ClearSprites
-	call Function173b3
+	call Hatch_InitShellFragments
 	hlcoord 6, 3
-	ld b, $98
-	ld c, $0
+	ld b, VBGMap0 / $100
+	ld c, $00 ; Hatchling tiles start here
 	ld a, [wJumptableIndex]
-	call Function17254
-	call Function17418
+	call Hatch_UpdateFrontpicBGMapCenter
+	call Hatch_ShellFragmentLoop
 	call WaitSFX
 	ld a, [wJumptableIndex]
 	ld [CurPartySpecies], a
@@ -773,13 +786,13 @@ Function1728f: ; 1728f (5:728f)
 	ld [CurSpecies], a
 	ret
 
-Function17363: ; 17363 (5:7363)
+Hatch_LoadFrontpicPal: ; 17363 (5:7363)
 	ld [PlayerHPPal], a
 	ld b, SCGB_0B
 	ld c, $0
 	jp GetSGBLayout
 
-Function1736d: ; 1736d (5:736d)
+EggHatch_CrackShell: ; 1736d (5:736d)
 	ld a, [wcf64]
 	dec a
 	and $7
@@ -789,12 +802,12 @@ Function1736d: ; 1736d (5:736d)
 	ret nc
 	swap a
 	srl a
-	add $4c
+	add 9 * 8 + 4
 	ld d, a
-	ld e, $58
+	ld e, 11 * 8
 	ld a, SPRITE_ANIM_INDEX_19
 	call _InitSpriteAnimStruct
-	ld hl, $3
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $0
 	ld de, SFX_EGG_CRACK
@@ -805,12 +818,12 @@ EggHatchGFX: ; 17393
 INCBIN "gfx/unknown/017393.2bpp"
 ; 173b3
 
-Function173b3: ; 173b3 (5:73b3)
-	callba Function8cf53
-	ld hl, Unknown_173ef
+Hatch_InitShellFragments: ; 173b3 (5:73b3)
+	callba ClearSpriteAnims
+	ld hl, .SpriteData
 .loop
 	ld a, [hli]
-	cp $ff
+	cp -1
 	jr z, .done
 	ld e, a
 	ld a, [hli]
@@ -821,156 +834,162 @@ Function173b3: ; 173b3 (5:73b3)
 	ld b, a
 	push hl
 	push bc
+
 	ld a, SPRITE_ANIM_INDEX_1C
 	call _InitSpriteAnimStruct
-	ld hl, $3
+
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $0
+
 	pop de
 	ld a, e
-	ld hl, $1
+	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	add [hl]
 	ld [hl], a
-	ld hl, $b
+
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	ld [hl], d
+
 	pop hl
 	jr .loop
 .done
 	ld de, SFX_EGG_HATCH
 	call PlaySFX
-	call Function1727f
+	call EggHatch_DoAnimFrame
 	ret
 ; 173ef (5:73ef)
 
-Unknown_173ef: ; 173ef
+.SpriteData: ; 173ef
 ; Probably OAM.
-	db $54, $48, $00, $3c
-	db $5c, $48, $01, $04
-	db $54, $50, $00, $30
-	db $5c, $50, $01, $10
-	db $54, $58, $02, $24
-	db $5c, $58, $03, $1c
-	db $50, $4c, $00, $36
-	db $60, $4c, $01, $0a
-	db $50, $54, $02, $2a
-	db $60, $54, $03, $16
-	db $ff
+	dsprite 10, 4,  9, 0, $00, $3c
+	dsprite 11, 4,  9, 0, $01, $04
+	dsprite 10, 4, 10, 0, $00, $30
+	dsprite 11, 4, 10, 0, $01, $10
+	dsprite 10, 4, 11, 0, $02, $24
+	dsprite 11, 4, 11, 0, $03, $1c
+	dsprite 10, 0,  9, 4, $00, $36
+	dsprite 12, 0,  9, 4, $01, $0a
+	dsprite 10, 0, 10, 4, $02, $2a
+	dsprite 12, 0, 10, 4, $03, $16
+	db -1
 ; 17418
 
-Function17418: ; 17418 (5:7418)
-	ld c, $81
-.asm_1741a
-	call Function1727f
+Hatch_ShellFragmentLoop: ; 17418 (5:7418)
+	ld c, 129
+.loop
+	call EggHatch_DoAnimFrame
 	dec c
-	jr nz, .asm_1741a
+	jr nz, .loop
 	ret
 
 Special_DayCareMon1: ; 17421
-	ld hl, UnknownText_0x17467
+	ld hl, DayCareMon1Text
 	call PrintText
 	ld a, [wBreedMon1Species]
 	call PlayCry
 	ld a, [wDaycareLady]
 	bit 0, a
-	jr z, Function1745f
-	call KeepTextOpen
+	jr z, DayCareMonCursor
+	call ButtonSound
 	ld hl, wBreedMon2Nick
-	call Function1746c
+	call DayCareMonCompatibilityText
 	jp PrintText
 
 Special_DayCareMon2: ; 17440
-	ld hl, UnknownText_0x17462
+	ld hl, DayCareMon2Text
 	call PrintText
 	ld a, [wBreedMon2Species]
 	call PlayCry
 	ld a, [wDaycareMan]
 	bit 0, a
-	jr z, Function1745f
-	call KeepTextOpen
+	jr z, DayCareMonCursor
+	call ButtonSound
 	ld hl, wBreedMon1Nick
-	call Function1746c
+	call DayCareMonCompatibilityText
 	jp PrintText
 
-Function1745f: ; 1745f
+DayCareMonCursor: ; 1745f
 	jp WaitPressAorB_BlinkCursor
 ; 17462
 
-UnknownText_0x17462: ; 0x17462
+DayCareMon2Text: ; 0x17462
 	; It's @ that was left with the DAY-CARE LADY.
 	text_jump UnknownText_0x1c0df3
 	db "@"
 ; 0x17467
 
-UnknownText_0x17467: ; 0x17467
+DayCareMon1Text: ; 0x17467
 	; It's @ that was left with the DAY-CARE MAN.
 	text_jump UnknownText_0x1c0e24
 	db "@"
 ; 0x1746c
 
-Function1746c: ; 1746c
+DayCareMonCompatibilityText: ; 1746c
 	push bc
 	ld de, StringBuffer1
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	call Function16e1d
+	call CheckBreedmonCompatibility
 	pop bc
 	ld a, [wd265]
-	ld hl, UnknownText_0x1749c
-	cp $ff
-	jr z, .asm_1749b
-	ld hl, UnknownText_0x174a1
+	ld hl, .AllAlone
+	cp -1
+	jr z, .done
+	ld hl, .Incompatible
 	and a
-	jr z, .asm_1749b
-	ld hl, UnknownText_0x174a6
+	jr z, .done
+	ld hl, .HighCompatibility
 	cp 230
-	jr nc, .asm_1749b
+	jr nc, .done
 	cp 70
-	ld hl, UnknownText_0x174ab
-	jr nc, .asm_1749b
-	ld hl, UnknownText_0x174b0
+	ld hl, .ModerateCompatibility
+	jr nc, .done
+	ld hl, .SlightCompatibility
 
-.asm_1749b
+.done
 	ret
 ; 1749c
 
-UnknownText_0x1749c: ; 0x1749c
+.AllAlone: ; 0x1749c
 	; It's brimming with energy.
 	text_jump UnknownText_0x1c0e54
 	db "@"
 ; 0x174a1
 
-UnknownText_0x174a1: ; 0x174a1
+.Incompatible: ; 0x174a1
 	; It has no interest in @ .
 	text_jump UnknownText_0x1c0e6f
 	db "@"
 ; 0x174a6
 
-UnknownText_0x174a6: ; 0x174a6
+.HighCompatibility: ; 0x174a6
 	; It appears to care for @ .
 	text_jump UnknownText_0x1c0e8d
 	db "@"
 ; 0x174ab
 
-UnknownText_0x174ab: ; 0x174ab
+.ModerateCompatibility: ; 0x174ab
 	; It's friendly with @ .
 	text_jump UnknownText_0x1c0eac
 	db "@"
 ; 0x174b0
 
-UnknownText_0x174b0: ; 0x174b0
+.SlightCompatibility: ; 0x174b0
 	; It shows interest in @ .
 	text_jump UnknownText_0x1c0ec6
 	db "@"
 ; 0x174b5
 
-Function_174b5: ; 174b5
-	ld hl, String_174b9
+DayCareMonPrintEmptyString: ; 174b5
+; unreferenced
+	ld hl, .string
 	ret
 ; 174b9
 
-String_174b9: ; 174b9
+.string: ; 174b9
 	db "@"
 ; 174ba
 

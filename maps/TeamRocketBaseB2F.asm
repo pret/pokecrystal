@@ -1,3 +1,19 @@
+const_value set 2
+	const TEAMROCKETBASEB2F_ROCKET1
+	const TEAMROCKETBASEB2F_ROCKET_GIRL
+	const TEAMROCKETBASEB2F_LANCE
+	const TEAMROCKETBASEB2F_DRAGON
+	const TEAMROCKETBASEB2F_VOLTORB1
+	const TEAMROCKETBASEB2F_VOLTORB2
+	const TEAMROCKETBASEB2F_VOLTORB3
+	const TEAMROCKETBASEB2F_VOLTORB4
+	const TEAMROCKETBASEB2F_VOLTORB5
+	const TEAMROCKETBASEB2F_VOLTORB6
+	const TEAMROCKETBASEB2F_ROCKET2
+	const TEAMROCKETBASEB2F_ROCKET3
+	const TEAMROCKETBASEB2F_ROCKET4
+	const TEAMROCKETBASEB2F_POKE_BALL
+
 TeamRocketBaseB2F_MapScriptHeader:
 .MapTriggers:
 	db 4
@@ -37,109 +53,109 @@ UnknownScript_0x6cf90:
 	return
 
 UnknownScript_0x6cf95:
-	moveperson $4, $9, $d
+	moveperson TEAMROCKETBASEB2F_LANCE, $9, $d
 	jump UnknownScript_0x6cfac
 
 UnknownScript_0x6cf9c:
-	moveperson $3, $15, $10
-	moveperson $2, $15, $10
-	moveperson $5, $a, $d
-	moveperson $4, $a, $d
+	moveperson TEAMROCKETBASEB2F_ROCKET_GIRL, $15, $10
+	moveperson TEAMROCKETBASEB2F_ROCKET1, $15, $10
+	moveperson TEAMROCKETBASEB2F_DRAGON, $a, $d
+	moveperson TEAMROCKETBASEB2F_LANCE, $a, $d
 UnknownScript_0x6cfac:
-	appear $3
-	appear $2
-	loadfont
+	appear TEAMROCKETBASEB2F_ROCKET_GIRL
+	appear TEAMROCKETBASEB2F_ROCKET1
+	opentext
 	writetext UnknownText_0x6d2ad
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
 	applymovement PLAYER, MovementData_0x6d21f
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	applymovement $3, MovementData_0x6d224
+	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, MovementData_0x6d224
 	spriteface PLAYER, UP
-	applymovement $2, MovementData_0x6d22f
-	loadfont
+	applymovement TEAMROCKETBASEB2F_ROCKET1, MovementData_0x6d22f
+	opentext
 	writetext UnknownText_0x6d2c3
+	waitbutton
 	closetext
-	loadmovesprites
 	cry DRAGONITE
-	spriteface $3, LEFT
+	spriteface TEAMROCKETBASEB2F_ROCKET_GIRL, LEFT
 	spriteface PLAYER, LEFT
-	appear $5
-	applymovement $5, MovementData_0x6d236
-	applymovement $3, MovementData_0x6d23b
-	applymovement $2, MovementData_0x6d24c
-	appear $4
-	applymovement $4, MovementData_0x6d244
-	loadfont
+	appear TEAMROCKETBASEB2F_DRAGON
+	applymovement TEAMROCKETBASEB2F_DRAGON, MovementData_0x6d236
+	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, MovementData_0x6d23b
+	applymovement TEAMROCKETBASEB2F_ROCKET1, MovementData_0x6d24c
+	appear TEAMROCKETBASEB2F_LANCE
+	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d244
+	opentext
 	writetext UnknownText_0x6d38c
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, RIGHT
-	applymovement $3, MovementData_0x6d241
-	loadfont
+	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, MovementData_0x6d241
+	opentext
 	writetext UnknownText_0x6d3bd
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement $2, MovementData_0x6d24a
-	applymovement $3, MovementData_0x6d248
+	applymovement TEAMROCKETBASEB2F_ROCKET1, MovementData_0x6d24a
+	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, MovementData_0x6d248
 	winlosstext UnknownText_0x6d45c, 0
-	setlasttalked $3
+	setlasttalked TEAMROCKETBASEB2F_ROCKET_GIRL
 	loadtrainer EXECUTIVEF, 2
 	startbattle
-	disappear $5
+	disappear TEAMROCKETBASEB2F_DRAGON
 	setevent EVENT_TEAM_ROCKET_BASE_B2F_EXECUTIVE
 	setevent EVENT_TEAM_ROCKET_BASE_B2F_GRUNT_WITH_EXECUTIVE
 	setevent EVENT_TEAM_ROCKET_BASE_B2F_LANCE
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEF_2
-	loadfont
+	opentext
 	writetext UnknownText_0x6d4c6
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
-	disappear $2
-	disappear $3
-	disappear $c
-	disappear $d
-	disappear $e
+	disappear TEAMROCKETBASEB2F_ROCKET1
+	disappear TEAMROCKETBASEB2F_ROCKET_GIRL
+	disappear TEAMROCKETBASEB2F_ROCKET2
+	disappear TEAMROCKETBASEB2F_ROCKET3
+	disappear TEAMROCKETBASEB2F_ROCKET4
 	pause 15
 	special Special_FadeInQuickly
 	dotrigger $2
 	clearevent EVENT_TEAM_ROCKET_BASE_B2F_LANCE
-	spriteface $4, DOWN
-	loadfont
+	spriteface TEAMROCKETBASEB2F_LANCE, DOWN
+	opentext
 	writetext UnknownText_0x6d5d8
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement $4, MovementData_0x6d250
+	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d250
 	spriteface PLAYER, UP
-	loadfont
+	opentext
 	writetext UnknownText_0x6d64e
+	waitbutton
 	closetext
-	loadmovesprites
-	follow $4, PLAYER
-	applymovement $4, MovementData_0x6d254
+	follow TEAMROCKETBASEB2F_LANCE, PLAYER
+	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d254
 	stopfollow
-	applymovement $4, MovementData_0x6d258
-	loadfont
+	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d258
+	opentext
 	writetext UnknownText_0x6d6cf
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement $4, MovementData_0x6d267
-	disappear $4
+	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d267
+	disappear TEAMROCKETBASEB2F_LANCE
 
 UnknownScript_0x6d075:
 	applymovement PLAYER, MovementData_0x6d271
 	end
 
 UnknownScript_0x6d07a:
-	loadfont
+	opentext
 	writetext UnknownText_0x6d7ea
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x6d278
 	end
 
@@ -149,146 +165,146 @@ UnknownScript_0x6d085:
 
 UnknownScript_0x6d08b:
 	spriteface PLAYER, RIGHT
-	spriteface $4, LEFT
+	spriteface TEAMROCKETBASEB2F_LANCE, LEFT
 UnknownScript_0x6d091:
-	loadfont
+	opentext
 	writetext UnknownText_0x6da97
+	waitbutton
 	closetext
-	loadmovesprites
 	special FadeOutPalettes
 	special Mobile_HealParty
 	playsound SFX_FULL_HEAL
 	special HealParty
 	special FadeInPalettes
-	loadfont
+	opentext
 	writetext UnknownText_0x6daf7
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $1
 	setevent EVENT_LANCE_HEALED_YOU_IN_TEAM_ROCKET_BASE
 	checkcode VAR_FACING
 	if_equal RIGHT, UnknownScript_0x6d0be
-	applymovement $4, MovementData_0x6d212
-	disappear $4
+	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d212
+	disappear TEAMROCKETBASEB2F_LANCE
 	end
 
 UnknownScript_0x6d0be:
-	applymovement $4, MovementData_0x6d219
-	disappear $4
+	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d219
+	disappear TEAMROCKETBASEB2F_LANCE
 	end
 
 TrainerGruntM17:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_17, GRUNTM, 17, GruntM17SeenText, GruntM17BeatenText, 0, GruntM17Script
 
 GruntM17Script:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x6db88
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGruntM18:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_18, GRUNTM, 18, GruntM18SeenText, GruntM18BeatenText, 0, GruntM18Script
 
 GruntM18Script:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x6dc1a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGruntM19:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_19, GRUNTM, 19, GruntM19SeenText, GruntM19BeatenText, 0, GruntM19Script
 
 GruntM19Script:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x6dcd1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 VoltorbScript_0x6d101:
 	cry ELECTRODE
-	loadpokedata ELECTRODE, 23
+	loadwildmon ELECTRODE, 23
 	startbattle
 	iftrue UnknownScript_0x6d182
-	disappear $6
-	disappear $9
+	disappear TEAMROCKETBASEB2F_VOLTORB1
+	disappear TEAMROCKETBASEB2F_VOLTORB4
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
 	iffalse UnknownScript_0x6d182
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
 	iffalse UnknownScript_0x6d182
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
 	iffalse UnknownScript_0x6d182
-	returnafterbattle
+	reloadmapafterbattle
 	special PlayMapMusic
 	applymovement PLAYER, MovementData_0x6d28c
 	jump UnknownScript_0x6d184
 
 VoltorbScript_0x6d12c:
 	cry ELECTRODE
-	loadpokedata ELECTRODE, 23
+	loadwildmon ELECTRODE, 23
 	startbattle
 	iftrue UnknownScript_0x6d182
-	disappear $7
-	disappear $a
+	disappear TEAMROCKETBASEB2F_VOLTORB2
+	disappear TEAMROCKETBASEB2F_VOLTORB5
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
 	iffalse UnknownScript_0x6d182
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
 	iffalse UnknownScript_0x6d182
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
 	iffalse UnknownScript_0x6d182
-	returnafterbattle
+	reloadmapafterbattle
 	special PlayMapMusic
 	applymovement PLAYER, MovementData_0x6d299
 	jump UnknownScript_0x6d184
 
 VoltorbScript_0x6d157:
 	cry ELECTRODE
-	loadpokedata ELECTRODE, 23
+	loadwildmon ELECTRODE, 23
 	startbattle
 	iftrue UnknownScript_0x6d182
-	disappear $8
-	disappear $b
+	disappear TEAMROCKETBASEB2F_VOLTORB3
+	disappear TEAMROCKETBASEB2F_VOLTORB6
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
 	iffalse UnknownScript_0x6d182
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
 	iffalse UnknownScript_0x6d182
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
 	iffalse UnknownScript_0x6d182
-	returnafterbattle
+	reloadmapafterbattle
 	special PlayMapMusic
 	applymovement PLAYER, MovementData_0x6d2a4
 	jump UnknownScript_0x6d184
 
 UnknownScript_0x6d182:
-	returnafterbattle
+	reloadmapafterbattle
 	end
 
 UnknownScript_0x6d184:
-	moveperson $4, $12, $6
-	appear $4
-	applymovement $4, MovementData_0x6d27a
+	moveperson TEAMROCKETBASEB2F_LANCE, $12, $6
+	appear TEAMROCKETBASEB2F_LANCE
+	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d27a
 	spriteface PLAYER, RIGHT
-	loadfont
+	opentext
 	writetext UnknownText_0x6d809
-	keeptextopen
+	buttonsound
 	verbosegiveitem HM_WHIRLPOOL
 	setevent EVENT_GOT_HM06_WHIRLPOOL
 	writetext UnknownText_0x6d8f8
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $4, DOWN
-	loadfont
+	spriteface TEAMROCKETBASEB2F_LANCE, DOWN
+	opentext
 	writetext UnknownText_0x6d994
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, DOWN
-	applymovement $4, MovementData_0x6d283
-	disappear $4
+	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d283
+	disappear TEAMROCKETBASEB2F_LANCE
 	setevent EVENT_CLEARED_ROCKET_HIDEOUT
 	clearflag ENGINE_ROCKET_SIGNAL_ON_CH20
 	setevent EVENT_ROUTE_43_GATE_ROCKETS
@@ -309,44 +325,44 @@ MapTeamRocketBaseB2FSignpostPtr1:
 	
 
 MapTeamRocketBaseB2FSignpost1Script:
-	loadfont
+	opentext
 	checkevent EVENT_LEARNED_HAIL_GIOVANNI
 	iftrue UnknownScript_0x6d1e8
 	writetext UnknownText_0x6dd39
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6d1e8:
 	writetext UnknownText_0x6dd6b
-	closetext
+	waitbutton
 	playsound SFX_ENTER_DOOR
 	changeblock $e, $c, $7
 	reloadmappart
-	loadmovesprites
+	closetext
 	setevent EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER
-	waitbutton
+	waitsfx
 	end
 
 MapTeamRocketBaseB2FSignpost21Script:
-	loadfont
+	opentext
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x6d207
 	writetext UnknownText_0x6dda7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6d207:
 	writetext UnknownText_0x6de03
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-ItemFragment_0x6d20d:
-	db TM_THIEF, 1
+TeamRocketBaseB2FTMThief:
+	itemball TM_THIEF
 
-MapTeamRocketBaseB2FSignpostItem22:
+TeamRocketBaseB2FHiddenFullHeal:
 	dwb EVENT_TEAM_ROCKET_BASE_B2F_HIDDEN_FULL_HEAL, FULL_HEAL
 	
 
@@ -948,7 +964,7 @@ TeamRocketBaseB2F_MapEventHeader:
 	signpost 6, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
 	signpost 7, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
 	signpost 8, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 7, 26, SIGNPOST_ITEM, MapTeamRocketBaseB2FSignpostItem22
+	signpost 7, 26, SIGNPOST_ITEM, TeamRocketBaseB2FHiddenFullHeal
 
 .PersonEvents:
 	db 14
@@ -965,4 +981,4 @@ TeamRocketBaseB2F_MapEventHeader:
 	person_event SPRITE_ROCKET, 13, 25, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 3, TrainerGruntM17, EVENT_TEAM_ROCKET_BASE_POPULATION
 	person_event SPRITE_ROCKET, 1, 4, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 1, TrainerGruntM18, EVENT_TEAM_ROCKET_BASE_POPULATION
 	person_event SPRITE_ROCKET, 14, 21, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 4, TrainerGruntM19, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_POKE_BALL, 10, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x6d20d, EVENT_TEAM_ROCKET_BASE_B2F_TM_THIEF
+	person_event SPRITE_POKE_BALL, 10, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TeamRocketBaseB2FTMThief, EVENT_TEAM_ROCKET_BASE_B2F_TM_THIEF

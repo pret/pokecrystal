@@ -1,6 +1,6 @@
 Music_MtMoonSquare: ; f4815
-	dbw $40, Music_MtMoonSquare_Ch1
-	dbw $01, Music_MtMoonSquare_Ch2
+	musicheader 2, 1, Music_MtMoonSquare_Ch1
+	musicheader 1, 2, Music_MtMoonSquare_Ch2
 ; f481b
 
 Music_MtMoonSquare_Ch1: ; f481b

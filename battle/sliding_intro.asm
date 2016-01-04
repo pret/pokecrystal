@@ -1,14 +1,14 @@
-SlideBattlePics: ; 4e980
+BattleIntroSlidingPics: ; 4e980
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
 	call .subfunction1
 	ld a, rSCX - $ff00
-	ld [hLCDStatCustom], a
+	ld [hFFC6], a
 	call .subfunction2
 	xor a
-	ld [hLCDStatCustom], a
+	ld [hFFC6], a
 	pop af
 	ld [rSVBK], a
 	ret
@@ -62,7 +62,7 @@ endr
 ; 4e9d6
 
 .subfunction3: ; 4e9d6
-	ld hl, Sprites + 1
+	ld hl, Sprites + 1 ; x pixel
 	ld c, $12 ; 18
 	ld de, $4
 .loop3

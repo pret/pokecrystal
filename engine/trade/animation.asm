@@ -142,7 +142,7 @@ Function28fdb: ; 28fdb
 	call ClearTileMap
 	call DisableLCD
 	call LoadFontsBattleExtra
-	callab Function8cf53
+	callab ClearSpriteAnims
 	ld a, [hCGB]
 	and a
 	jr z, .asm_2900b
@@ -180,23 +180,23 @@ Function28fdb: ; 28fdb
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	callba Function4d7fd
+	callba GetTrademonFrontpic
 	call EnableLCD
 	call Function2982b
 	ld a, [wPlayerTrademonSpecies]
 	ld hl, wPlayerTrademonDVs
 	ld de, VTiles0
-	call Function29491
+	call TradeAnim_GetFrontpic
 	ld a, [wOTTrademonSpecies]
 	ld hl, wOTTrademonDVs
 	ld de, VTiles0 tile $31
-	call Function29491
+	call TradeAnim_GetFrontpic
 	ld a, [wPlayerTrademonSpecies]
 	ld de, wPlayerTrademonSpeciesName
-	call Function294a9
+	call TradeAnim_GetNickname
 	ld a, [wOTTrademonSpecies]
 	ld de, wOTTrademonSpeciesName
-	call Function294a9
+	call TradeAnim_GetNickname
 	call Function297ed
 	ret
 ; 29082
@@ -206,7 +206,7 @@ DoTradeAnimation: ; 29082
 	bit 7, a
 	jr nz, .finished
 	call .DoTradeAnimCommand
-	callab Function8cf69
+	callab PlaySpriteAnimations
 	ld hl, wcf65
 	inc [hl]
 	call DelayFrame
@@ -336,7 +336,7 @@ Function2914e: ; 2914e
 	push de
 	push af
 	call DisableLCD
-	callab Function8cf53
+	callab ClearSpriteAnims
 	hlbgcoord 20, 3
 	ld bc, $c
 	ld a, $60
@@ -368,10 +368,10 @@ Function2914e: ; 2914e
 	call WaitBGMap
 	ld b, SCGB_1B
 	call GetSGBLayout
-	ld a, $e4
+	ld a, %11100100 ; 3,2,1,0
 	call DmgToCgbBGPals
 	ld a, $d0
-	call Functioncf8
+	call DmgToCgbObjPal0
 	call NextTradeAnim
 	ld a, $5c
 	ld [wcf64], a
@@ -466,7 +466,7 @@ TradeAnim_TubeToPlayer8: ; 29229
 	call ClearTileMap
 	call ClearSprites
 	call DisableLCD
-	callab Function8cf53
+	callab ClearSpriteAnims
 	hlbgcoord 0, 0
 	ld bc, sScratch - VBGMap0
 	ld a, " "
@@ -566,6 +566,7 @@ Function292be: ; 292be
 	hlcoord 17, 3
 	ld a, $5d
 	ld [hl], a
+
 	ld a, $61
 	ld de, SCREEN_WIDTH
 	ld c, $3
@@ -574,6 +575,7 @@ Function292be: ; 292be
 	ld [hl], a
 	dec c
 	jr nz, .loop
+
 	add hl, de
 	ld a, $5f
 	ld [hld], a
@@ -644,9 +646,9 @@ TradeAnim_EnterLinkTube: ; 29348
 	call WaitBGMap
 	ld b, SCGB_1B
 	call GetSGBLayout
-	ld a, $e4
+	ld a, %11100100 ; 3,2,1,0
 	call DmgToCgbBGPals
-	ld de, $e4e4
+	lb de, %11100100, %11100100 ; 3,2,1,0, 3,2,1,0
 	call DmgToCgbObjPals
 	ld de, SFX_POTION
 	call PlaySFX
@@ -784,9 +786,9 @@ TradeAnim_ShowGivemonData: ; 2942e
 	ld [TempMonDVs + 1], a
 	ld b, SCGB_1A
 	call GetSGBLayout
-	ld a, $e4
+	ld a, %11100100 ; 3,2,1,0
 	call DmgToCgbBGPals
-	call Function294bb
+	call TradeAnim_ShowGivemonFrontpic
 
 	ld a, [wPlayerTrademonSpecies]
 	call GetCryIndex
@@ -810,20 +812,20 @@ TradeAnim_ShowGetmonData: ; 29461
 	ld [TempMonDVs + 1], a
 	ld b, SCGB_1A
 	call GetSGBLayout
-	ld a, $e4
+	ld a, %11100100 ; 3,2,1,0
 	call DmgToCgbBGPals
-	call Function294c0
+	call TradeAnim_ShowGetmonFrontpic
 	call TradeAnim_Next
 	ret
 ; 29487
 
 TradeAnim_AnimateFrontpic: ; 29487
-	callba Function4d81e
+	callba AnimateTrademonFrontpic
 	call TradeAnim_Next
 	ret
 ; 29491
 
-Function29491: ; 29491
+TradeAnim_GetFrontpic: ; 29491
 	push de
 	push af
 	predef GetUnownLetter
@@ -836,7 +838,7 @@ Function29491: ; 29491
 	ret
 ; 294a9
 
-Function294a9: ; 294a9
+TradeAnim_GetNickname: ; 294a9
 	push de
 	ld [wd265], a
 	call GetPokemonName
@@ -847,14 +849,13 @@ Function294a9: ; 294a9
 	ret
 ; 294bb
 
-Function294bb: ; 294bb
+TradeAnim_ShowGivemonFrontpic: ; 294bb
 	ld de, VTiles0
-	jr Function294c3
+	jr TradeAnim_ShowFrontpic
 
-Function294c0: ; 294c0
+TradeAnim_ShowGetmonFrontpic: ; 294c0
 	ld de, VTiles0 tile $31
-
-Function294c3: ; 294c3
+TradeAnim_ShowFrontpic: ; 294c3
 	call DelayFrame
 	ld hl, VTiles2
 	lb bc, 10, $31
@@ -1087,8 +1088,8 @@ TradeAnim_Poof: ; 29649
 ; 29660
 
 TradeAnim_BulgeThroughTube: ; 29660
-	ld a, $e4
-	call Functioncf8
+	ld a, %11100100 ; 3,2,1,0
+	call DmgToCgbObjPal0
 	depixel 5, 11
 	ld a, SPRITE_ANIM_INDEX_10
 	call _InitSpriteAnimStruct
@@ -1374,13 +1375,13 @@ Function297db: ; 297db
 Function297ed: ; 297ed
 	ld a, [hSGB]
 	and a
-	ld a, $e4
+	ld a, %11100100 ; 3,2,1,0
 	jr z, .asm_297f6
 	ld a, $f0
 
 .asm_297f6
-	call Functioncf8
-	ld a, $e4
+	call DmgToCgbObjPal0
+	ld a, %11100100 ; 3,2,1,0
 	call DmgToCgbBGPals
 	ret
 ; 297ff

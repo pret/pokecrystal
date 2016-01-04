@@ -15,7 +15,9 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	ld [wca02], a
 	ld a, [rIE]
 	push af
+
 	call Function104a95
+
 	ld d, a
 	xor a
 	ld [rIF], a
@@ -37,7 +39,7 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	cp $6c
 	jp nz, .CommunicationError
 	ld a, [wc900]
-	cp $3
+	cp 3
 	jr z, .skip_checks
 	call .CheckAlreadyGotFiveGiftsToday
 	ld hl, .Text_MaxFiveGifts ; Only 5 gifts a day
@@ -46,32 +48,32 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	ld hl, .Text_MaxOneGiftPerPerson ; Only one gift a day per person
 	jp c, .PrintTextAndExit
 .skip_checks
-	ld a, [wc962]
+	ld a, [wMysteryGiftPlayerBackupItem]
 	and a
 	jp nz, .GiftWaiting
-	ld a, [wc912]
+	ld a, [wMysteryGiftPartnerBackupItem]
 	and a
 	jp nz, .FriendNotReady
 	ld a, [wc900]
-	cp $3
+	cp 3
 	jr z, .skip_append_save
 	call .AddMysteryGiftPartnerID
 	ld a, [wc900]
-	cp $4
+	cp 4
 	jr z, .skip_append_save
 	call .SaveMysteryGiftTrainerName
 	callba RestoreMobileEventIndex
 	callba MobileFn_1060a9
 	callba BackupMobileEventIndex
 .skip_append_save
-	ld a, [wc90f]
+	ld a, [wMysteryGiftPartnerSentDeco]
 	and a
 	jr z, .item
-	ld a, [wc911]
+	ld a, [wMysteryGiftPartnerWhichDeco]
 	ld c, a
 	callba MysteryGiftGetDecoration
 	push bc
-	call Function105069
+	call MysteryGift_CheckAndSetDecorationAlreadyReceived
 	pop bc
 	jr nz, .item
 	callab GetDecorationName_c
@@ -85,7 +87,7 @@ DoMysteryGift: ; 1048ba (41:48ba)
 
 .item
 	call GetMysteryGiftBank
-	ld a, [wc910]
+	ld a, [wMysteryGiftPartnerWhichItem]
 	ld c, a
 	callba MysteryGiftGetItemHeldEffect
 	ld a, c
@@ -209,9 +211,8 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	ld hl, sDailyMysteryGiftPartnerIDs ; inc hl
 	ld e, a
 	ld d, $0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [wMysteryGiftPartnerID]
 	ld [hli], a
 	ld a, [wMysteryGiftPartnerID + 1]
@@ -249,7 +250,7 @@ Function104a95: ; 104a95 (41:4a95)
 	ld a, [hPrintNum9]
 	cp $2
 	jr z, Function104b22
-	ld hl, $ffb3
+	ld hl, hPrintNum1
 	ld b, $1
 	call Function104d56
 	jr nz, .ly_loop
@@ -323,7 +324,7 @@ Function104b22: ; 104b22 (41:4b22)
 	jp Function104bd0
 
 Function104b40: ; 104b40 (41:4b40)
-	ld hl, $ffb3
+	ld hl, hPrintNum1
 	ld b, $1
 	call Function104d56
 	ret nz
@@ -333,14 +334,14 @@ Function104b49: ; 104b49 (41:4b49)
 	ld a, [hPrintNum10]
 	cp $6c
 	ret nz
-	ld a, [$ffb3]
+	ld a, [hPrintNum1]
 	cp $96
 	jp nz, Function104d32
 	ld a, $90
-	ld [$ffb3], a
+	ld [hPrintNum1], a
 	call Function104d38
 	ret nz
-	ld hl, $ffb3
+	ld hl, hPrintNum1
 	ld b, $1
 	call Function104d4e
 	ret nz
@@ -362,8 +363,8 @@ Function104b49: ; 104b49 (41:4b49)
 
 Function104b88: ; 104b88 (41:4b88)
 	ld a, $96
-	ld [$ffb3], a
-	ld hl, $ffb3
+	ld [hPrintNum1], a
+	ld hl, hPrintNum1
 	ld b, $1
 	call Function104d4e
 	ret nz
@@ -373,7 +374,7 @@ Function104b88: ; 104b88 (41:4b88)
 	ret nz
 	call Function104d43
 	ret nz
-	ld hl, $ffb3
+	ld hl, hPrintNum1
 	ld b, $1
 	call Function104d56
 	ret nz
@@ -381,7 +382,7 @@ Function104b88: ; 104b88 (41:4b88)
 	ld a, [hPrintNum10]
 	cp $6c
 	ret nz
-	ld a, [$ffb3]
+	ld a, [hPrintNum1]
 	cp $90
 	jp nz, Function104d32
 	call Function104d38
@@ -407,13 +408,13 @@ Function104bd0: ; 104bd0 (41:4bd0)
 	dec [hl]
 	jr z, .asm_104c18
 	ld hl, wMysteryGiftTrainerData
-	ld de, wc900
-	ld bc, $14
+	ld de, wMysteryGiftPartnerData
+	ld bc, wMysteryGiftPartnerDataEnd - wMysteryGiftPartnerData
 	call CopyBytes
 	ld a, [wMysteryGiftTrainerData]
 	cp $3
 	jr nc, .asm_104c18
-	callba Function10510b
+	callba StagePartyDataForMysteryGift
 	call Function1050fb
 	ld a, $26
 	ld [wca02], a
@@ -479,7 +480,7 @@ Function104c2d: ; 104c2d (41:4c2d)
 	jp Function104d1c
 
 Function104c8a: ; 104c8a (41:4c8a)
-	ld hl, $ffb3
+	ld hl, hPrintNum1
 	ld b, $1
 	call Function104d56
 	ret nz
@@ -487,14 +488,14 @@ Function104c8a: ; 104c8a (41:4c8a)
 	ld a, [hPrintNum10]
 	cp $6c
 	ret nz
-	ld a, [$ffb3]
+	ld a, [hPrintNum1]
 	cp $3c
 	jp nz, Function104d32
 	swap a
-	ld [$ffb3], a
+	ld [hPrintNum1], a
 	call Function104d38
 	ret nz
-	ld hl, $ffb3
+	ld hl, hPrintNum1
 	ld b, $1
 	call Function104d4e
 	ret nz
@@ -516,8 +517,8 @@ Function104c8a: ; 104c8a (41:4c8a)
 
 Function104cd2: ; 104cd2 (41:4cd2)
 	ld a, $3c
-	ld [$ffb3], a
-	ld hl, $ffb3
+	ld [hPrintNum1], a
+	ld hl, hPrintNum1
 	ld b, $1
 	call Function104d4e
 	ret nz
@@ -527,7 +528,7 @@ Function104cd2: ; 104cd2 (41:4cd2)
 	ret nz
 	call Function104d43
 	ret nz
-	ld hl, $ffb3
+	ld hl, hPrintNum1
 	ld b, $1
 	call Function104d56
 	ret nz
@@ -535,7 +536,7 @@ Function104cd2: ; 104cd2 (41:4cd2)
 	ld a, [hPrintNum10]
 	cp $6c
 	ret nz
-	ld a, [$ffb3]
+	ld a, [hPrintNum1]
 	swap a
 	cp $3c
 	jp nz, Function104d32
@@ -678,46 +679,47 @@ Function104db7: ; 104db7 (41:4db7)
 Function104dc5: ; 104dc5 (41:4dc5)
 	ld a, $c1
 	ld [$ff00+c], a
-.asm_104dc8
+.wait
 	dec d
 	ret z
 	xor a
 	ld [rIF], a
 	halt
-	jr .asm_104dc8
+	jr .wait
 
 Function104dd1: ; 104dd1 (41:4dd1)
 	ld a, $c0
 	ld [$ff00+c], a
-.asm_104dd4
+.wait
 	dec d
 	ret z
 	xor a
 	ld [rIF], a
 	halt
-	jr .asm_104dd4
+	jr .wait
 
 Function104ddd: ; 104ddd (41:4ddd)
 	ld d, $0
 	ld e, d
 	ld a, $1
 	ld [hPrintNum9], a
-.asm_104de4
+.loop
 	call Function105038
 	ld b, $2
 	ld c, rRP % $100
 	ld a, [hMoneyTemp + 1]
 	bit 1, a
-	jr z, .asm_104df6
+	jr z, .next
 	ld a, $10
 	ld [hPrintNum10], a
 	ret
-.asm_104df6
+
+.next
 	bit 0, a
 	jr nz, asm_104e3a
 	ld a, [$ff00+c]
 	and b
-	jr nz, .asm_104de4
+	jr nz, .loop
 
 Function104dfe: ; 104dfe (41:4dfe)
 	ld c, rRP % $100
@@ -760,7 +762,7 @@ asm_104e3a: ; 104e3a (41:4e3a)
 Function104e46: ; 104e46 (41:4e46)
 	ld a, $2
 	ld [hPrintNum9], a
-	ld c, $56
+	ld c, rRP % $100
 	ld d, $0
 	ld e, d
 	ld d, $3d
@@ -797,14 +799,14 @@ Function104e8c: ; 104e8c (41:4e8c)
 
 Function104e93: ; 104e93 (41:4e93)
 	xor a
-	ld [hDivisor], a
-	ld [hMathBuffer], a
+	ld [hPrintNum5], a
+	ld [hPrintNum6], a
 	push hl
 	push bc
-	ld c, $56
+	ld c, rRP % $100
 	ld d, $3d
 	call Function104dd1
-	ld hl, hQuotient ; $ffb4 (aliases: hMultiplicand)
+	ld hl, hPrintNum2 ; $ffb4 (aliases: hMultiplicand)
 	ld a, $5a
 	ld [hli], a
 	ld [hl], b
@@ -814,26 +816,26 @@ Function104e93: ; 104e93 (41:4e93)
 	pop bc
 	pop hl
 	call Function104ed6
-	ld a, [hDivisor]
-	ld [hQuotient], a
-	ld a, [hMathBuffer]
-	ld [$ffb5], a
+	ld a, [hPrintNum5]
+	ld [hPrintNum2], a
+	ld a, [hPrintNum6]
+	ld [hPrintNum3], a
 	push hl
-	ld hl, hQuotient ; $ffb4 (aliases: hMultiplicand)
+	ld hl, hPrintNum2 ; $ffb4 (aliases: hMultiplicand)
 	ld b, $2
 	call Function104ed6
 	ld hl, hPrintNum10
 	ld b, $1
 	call Function104faf
-	ld a, [hQuotient]
-	ld [hDivisor], a
-	ld a, [$ffb5]
-	ld [hMathBuffer], a
+	ld a, [hPrintNum2]
+	ld [hPrintNum5], a
+	ld a, [hPrintNum3]
+	ld [hPrintNum6], a
 	pop hl
 	ret
 
 Function104ed6: ; 104ed6 (41:4ed6)
-	ld c, $56
+	ld c, rRP % $100
 	ld d, $5
 	call Function104dd1
 	ld d, $5
@@ -849,15 +851,15 @@ Function104ed6: ; 104ed6 (41:4ed6)
 	inc b
 	jr z, .asm_104f2e
 	ld a, $8
-	ld [$ffb6], a
+	ld [hPrintNum4], a
 	ld a, [hli]
 	ld e, a
-	ld a, [hDivisor]
+	ld a, [hPrintNum5]
 	add e
-	ld [hDivisor], a
-	ld a, [hMathBuffer]
+	ld [hPrintNum5], a
+	ld a, [hPrintNum6]
 	adc $0
-	ld [hMathBuffer], a
+	ld [hPrintNum6], a
 .asm_104f02
 	xor a
 	ld [rIF], a
@@ -882,10 +884,10 @@ Function104ed6: ; 104ed6 (41:4ed6)
 	ld [rIF], a
 	halt
 .asm_104f25
-	ld a, [$ffb6]
+	ld a, [hPrintNum4]
 	dec a
 	jr z, .asm_104eee
-	ld [$ffb6], a
+	ld [hPrintNum4], a
 	jr .asm_104f02
 .asm_104f2e
 	ld a, $fe
@@ -919,35 +921,35 @@ Function104f50: ; 104f50 (41:4f50)
 
 Function104f57: ; 104f57 (41:4f57)
 	xor a
-	ld [hDivisor], a
-	ld [hMathBuffer], a
+	ld [hPrintNum5], a
+	ld [hPrintNum6], a
 	push bc
 	push hl
-	ld hl, hQuotient ; $ffb4 (aliases: hMultiplicand)
+	ld hl, hPrintNum2 ; $ffb4 (aliases: hMultiplicand)
 	ld b, $2
 	call Function104faf
-	ld a, [$ffb5]
-	ld [$ffba], a
+	ld a, [hPrintNum3]
+	ld [hPrintNum8], a
 	ld b, a
 	pop hl
 	pop af
 	cp b
 	jp c, Function104f50
-	ld a, [hQuotient]
+	ld a, [hPrintNum2]
 	cp $5a
 	jp nz, Function104f50
 	call Function104faf
-	ld a, [hDivisor]
+	ld a, [hPrintNum5]
 	ld d, a
-	ld a, [hMathBuffer]
+	ld a, [hPrintNum6]
 	ld e, a
 	push hl
 	push de
-	ld hl, hQuotient ; $ffb4 (aliases: hMultiplicand)
+	ld hl, hPrintNum2 ; $ffb4 (aliases: hMultiplicand)
 	ld b, $2
 	call Function104faf
 	pop de
-	ld hl, hQuotient ; $ffb4 (aliases: hMultiplicand)
+	ld hl, hPrintNum2 ; $ffb4 (aliases: hMultiplicand)
 	ld a, [hli]
 	xor d
 	ld b, a
@@ -964,9 +966,9 @@ Function104f57: ; 104f57 (41:4f57)
 	pop de
 	pop hl
 	ld a, d
-	ld [hDivisor], a
+	ld [hPrintNum5], a
 	ld a, e
-	ld [hMathBuffer], a
+	ld [hPrintNum6], a
 	ret
 
 Function104faf: ; 104faf (41:4faf)
@@ -990,7 +992,7 @@ Function104faf: ; 104faf (41:4faf)
 	inc b
 	jr z, .asm_10501a
 	ld a, $8
-	ld [$ffb6], a
+	ld [hPrintNum4], a
 .asm_104fd9
 	ld d, $0
 .asm_104fdb
@@ -1019,9 +1021,9 @@ Function104faf: ; 104faf (41:4faf)
 .asm_104ffd
 	res 0, e
 .asm_104fff
-	ld a, [$ffb6]
+	ld a, [hPrintNum4]
 	dec a
-	ld [$ffb6], a
+	ld [hPrintNum4], a
 	jr z, .asm_10500b
 	ld a, e
 	rlca
@@ -1030,12 +1032,12 @@ Function104faf: ; 104faf (41:4faf)
 .asm_10500b
 	ld a, e
 	ld [hli], a
-	ld a, [hDivisor]
+	ld a, [hPrintNum5]
 	add e
-	ld [hDivisor], a
-	ld a, [hMathBuffer]
+	ld [hPrintNum5], a
+	ld a, [hPrintNum6]
 	adc $0
-	ld [hMathBuffer], a
+	ld [hPrintNum6], a
 	jr .asm_104fd2
 .asm_10501a
 	call Function104d74
@@ -1059,9 +1061,8 @@ Function105033: ; 105033 (41:5033)
 Function105038: ; 105038 (41:5038)
 	ld a, $20
 	ld [rJOYP], a
-rept 2
 	ld a, [rJOYP]
-endr
+	ld a, [rJOYP]
 	cpl
 	and $f
 	swap a
@@ -1085,7 +1086,7 @@ endr
 	ld [rJOYP], a
 	ret
 
-Function105069: ; 105069 (41:5069)
+MysteryGift_CheckAndSetDecorationAlreadyReceived: ; 105069 (41:5069)
 	call GetMysteryGiftBank
 	ld d, $0
 	ld b, CHECK_FLAG
@@ -1107,7 +1108,7 @@ Function105069: ; 105069 (41:5069)
 	xor a
 	ret
 
-Function105091: ; 105091 (41:5091)
+MysteryGift_CopyReceivedDecosToPC: ; 105091 (41:5091)
 	call GetMysteryGiftBank
 	ld c, $0
 .loop
@@ -1181,11 +1182,11 @@ RestoreMysteryGift: ; 1050ea (41:50ea)
 Function1050fb: ; 1050fb (41:50fb)
 	ld hl, wMysteryGiftTrainerData
 	xor a
-	ld b, $26
-.asm_105101
+	ld b, wMysteryGiftTrainerDataEnd - wMysteryGiftTrainerData
+.loop
 	ld [hli], a
 	dec b
-	jr nz, .asm_105101
+	jr nz, .loop
 	ret
 
 
@@ -1195,29 +1196,35 @@ GetMysteryGiftBank: ; 105106
 ; 10510b
 
 
-Function10510b: ; 10510b (41:510b)
+StagePartyDataForMysteryGift: ; 10510b (41:510b)
+; You will be sending this data to your mystery gift partner.
+; Structure is the same as a trainer with species and moves
+; defined.
 	ld a, BANK(sPokemonData)
 	call GetSRAMBank
-	ld de, OverworldMap
+	ld de, wMysteryGiftStaging
 	ld bc, sPokemonData + PartyMons - wPokemonData
 	ld hl, sPokemonData + PartySpecies - wPokemonData
-.asm_105119
+.loop
 	ld a, [hli]
-	cp $ff
-	jr z, .asm_105148
+	cp -1
+	jr z, .party_end
 	cp EGG
-	jr z, .asm_10513e
+	jr z, .next
 	push hl
+	; copy level
 	ld hl, MON_LEVEL
 	add hl, bc
 	ld a, [hl]
 	ld [de], a
 	inc de
+	; copy species
 	ld hl, MON_SPECIES
 	add hl, bc
 	ld a, [hl]
 	ld [de], a
 	inc de
+	; copy moves
 	ld hl, MON_MOVES
 	add hl, bc
 	push bc
@@ -1225,16 +1232,16 @@ Function10510b: ; 10510b (41:510b)
 	call CopyBytes
 	pop bc
 	pop hl
-.asm_10513e
+.next
 	push hl
 	ld hl, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
 	pop hl
-	jr .asm_105119
-.asm_105148
-	ld a, $ff
+	jr .loop
+.party_end
+	ld a, -1
 	ld [de], a
 	ld a, $26
 	ld [wca00], a
@@ -1246,7 +1253,7 @@ Function105153: ; 105153 (41:5153)
 	ld hl, MysteryGiftGFX
 	ld de, VTiles2 tile $00
 	ld a, BANK(MysteryGiftGFX)
-	ld bc, Function105688 - MysteryGiftGFX
+	ld bc, MysteryGiftGFXEnd - MysteryGiftGFX
 	call FarCopyBytes
 	hlcoord 0, 0
 	ld a, $42
@@ -1267,13 +1274,13 @@ Function105153: ; 105153 (41:5153)
 	ld [hl], a
 	hlcoord 7, 1
 	ld a, $12
-	call Function10522e
+	call .Load5GFX
 	hlcoord 2, 2
 	ld a, $17
-	call Function105236
+	call .Load16GFX
 	hlcoord 2, 3
 	ld a, $27
-	call Function105236
+	call .Load16GFX
 	hlcoord 9, 4
 	ld a, $37
 	ld [hli], a
@@ -1283,19 +1290,19 @@ Function105153: ; 105153 (41:5153)
 	ld [hl], $4
 	hlcoord 1, 3
 	ld a, $5
-	call Function105246
+	call .Load14Column
 	ld a, $9
 	hlcoord 18, 5
-	call Function105242
+	call .Load11Column
 	hlcoord 2, 5
 	ld a, $b
-	call Function105251
+	call .Load16Row
 	hlcoord 2, 16
 	ld a, $7
-	call Function105251
+	call .Load16Row
 	hlcoord 2, 5
 	ld a, $d
-	call Function10522e
+	call .Load5GFX
 	hlcoord 7, 5
 	ld [hl], $c
 	hlcoord 18, 5
@@ -1306,16 +1313,16 @@ Function105153: ; 105153 (41:5153)
 	ld [hl], $6
 	hlcoord 2, 6
 	ld a, $3a
-	call Function105251
+	call .Load16Row
 	hlcoord 2, 15
 	ld a, $40
-	call Function105251
+	call .Load16Row
 	hlcoord 2, 6
 	ld a, $3c
-	call Function10523e
+	call .Load9Column
 	hlcoord 17, 6
 	ld a, $3e
-	call Function10523e
+	call .Load9Column
 	hlcoord 2, 6
 	ld [hl], $39
 	hlcoord 17, 6
@@ -1331,55 +1338,55 @@ Function105153: ; 105153 (41:5153)
 	call SetPalettes
 	ret
 
-Function10522e: ; 10522e (41:522e)
-	ld b, $5
-	jr asm_105238
+.Load5GFX: ; 10522e (41:522e)
+	ld b,  5
+	jr .gfx_loop
 ; 105232 (41:5232)
 
-Function105232: ; unreferenced
-	ld b, 6
-	jr asm_105238
+.Load6GFX: ; unreferenced
+	ld b,  6
+	jr .gfx_loop
 
-Function105236: ; 105236 (41:5236)
-	ld b, $10
+.Load16GFX: ; 105236 (41:5236)
+	ld b, 16
 
-asm_105238: ; 105238 (41:5238)
+.gfx_loop: ; 105238 (41:5238)
 	ld [hli], a
 	inc a
 	dec b
-	jr nz, asm_105238
+	jr nz, .gfx_loop
 	ret
 
-Function10523e: ; 10523e (41:523e)
-	ld b, $9
-	jr asm_105248
+.Load9Column: ; 10523e (41:523e)
+	ld b,  9
+	jr .col_loop
 
-Function105242: ; 105242 (41:5242)
-	ld b, $b
-	jr asm_105248
+.Load11Column: ; 105242 (41:5242)
+	ld b, 11
+	jr .col_loop
 
-Function105246: ; 105246 (41:5246)
-	ld b, $e
+.Load14Column: ; 105246 (41:5246)
+	ld b, 14
 
-asm_105248: ; 105248 (41:5248)
+.col_loop: ; 105248 (41:5248)
 	ld [hl], a
-	ld de, $14
+	ld de, SCREEN_WIDTH
 	add hl, de
 	dec b
-	jr nz, asm_105248
+	jr nz, .col_loop
 	ret
 
-Function105251: ; 105251 (41:5251)
-	ld b, $10
-.asm_105253
+.Load16Row: ; 105251 (41:5251)
+	ld b, 16
+.row_loop
 	ld [hli], a
 	dec b
-	jr nz, .asm_105253
+	jr nz, .row_loop
 	ret
 
 MysteryGiftGFX: ; 105258
 INCBIN "gfx/misc/mystery_gift.2bpp"
-
+MysteryGiftGFXEnd:
 
 Function105688: ; 105688 (41:5688)
 	call ClearTileMap
@@ -1411,15 +1418,15 @@ Function105688: ; 105688 (41:5688)
 	ld c, 60
 	call DelayFrames
 	call Function105777
-	ld hl, Text_10575e
+	ld hl, Text_ReceivedCard
 	call PrintText
 	ld de, wMysteryGiftTrainerData
 	callba Function8ac70
 	ld a, c
 	ld [wd265], a
-	ld hl, Text_105768
+	ld hl, Text_CardNotRegistered
 	jr c, asm_105726
-	ld hl, Text_105763
+	ld hl, Text_ListedCardAsNumber
 	jr asm_105726
 
 Function1056eb: ; 1056eb (41:56eb)
@@ -1453,12 +1460,12 @@ endr
 
 Function105712: ; 105712 (41:5712)
 	call Function105777
-	ld hl, Text_10576d
+	ld hl, Text_MGLinkCanceled
 	jr asm_105726
 
 Function10571a: ; 10571a (41:571a)
 	call Function105777
-	ld hl, Text_105772
+	ld hl, Text_MGCommError
 	call PrintText
 	jp Function105688
 
@@ -1471,30 +1478,30 @@ asm_105726: ; 105726 (41:5726)
 
 String_10572e: ; 10572e
 	db   "エーボタン¯おすと"
-	next "つうしん",   $4a, "おこなわれるよ!"
+	next "つうしん<PKMN>おこなわれるよ!"
 	next "ビーボタン¯おすと"
 	next "つうしん¯ちゅうし します"
 	db   "@"
 
 ; 10575e
 
-Text_10575e: ; 10575e
+Text_ReceivedCard: ; 10575e
 	text_jump UnknownText_0x1c051a
 	db "@"
 
-Text_105763: ; 105763
+Text_ListedCardAsNumber: ; 105763
 	text_jump UnknownText_0x1c0531
 	db "@"
 
-Text_105768: ; 105768
+Text_CardNotRegistered: ; 105768
 	text_jump UnknownText_0x1c0555
 	db "@"
 
-Text_10576d: ; 10576d
+Text_MGLinkCanceled: ; 10576d
 	text_jump UnknownText_0x1c0573
 	db "@"
 
-Text_105772: ; 105772
+Text_MGCommError: ; 105772
 	text_jump UnknownText_0x1c0591
 	db "@"
 ; 105777
@@ -1571,30 +1578,30 @@ Function1057d7: ; 1057d7 (41:57d7)
 	ld [hl], a
 	hlcoord 4, 2
 	ld a, $13
-	call Function1058ca
+	call .Load11Row
 	hlcoord 4, 3
 	ld a, $1e
-	call Function1058ce
+	call .Load12Row
 	hlcoord 4, 4
 	ld a, $2a
-	call Function1058ce
+	call .Load12Row
 	hlcoord 1, 2
 	ld [hl], $4
 	hlcoord 1, 3
 	ld a, $5
-	call Function1058de
+	call .Load14Column
 	ld a, $9
 	hlcoord 18, 5
-	call Function1058da
+	call .Load11Column
 	hlcoord 2, 5
 	ld a, $b
-	call Function1058e9
+	call .Load16Row
 	hlcoord 2, 16
 	ld a, $7
-	call Function1058e9
+	call .Load16Row
 	hlcoord 2, 5
 	ld a, $d
-	call Function1058c6
+	call .Load6Row
 	hlcoord 8, 5
 	ld [hl], $c
 	hlcoord 18, 5
@@ -1605,16 +1612,16 @@ Function1057d7: ; 1057d7 (41:57d7)
 	ld [hl], $6
 	hlcoord 2, 6
 	ld a, $37
-	call Function1058e9
+	call .Load16Row
 	hlcoord 2, 15
 	ld a, $3d
-	call Function1058e9
+	call .Load16Row
 	hlcoord 2, 6
 	ld a, $39
-	call Function1058d6
+	call .Load9Column
 	hlcoord 17, 6
 	ld a, $3b
-	call Function1058d6
+	call .Load9Column
 	hlcoord 2, 6
 	ld [hl], $36
 	hlcoord 17, 6
@@ -1624,78 +1631,78 @@ Function1057d7: ; 1057d7 (41:57d7)
 	hlcoord 17, 15
 	ld [hl], $3e
 	ld de, Sprites
-	ld hl, OAM_1058f0
+	ld hl, .OAM_data
 	ld bc, $40
 	call CopyBytes
 	call EnableLCD
 	call WaitBGMap
 	ld b, $2
-	callba Function4930f
+	callba GetMysteryGift_MobileAdapterLayout
 	jp SetPalettes
 
-Function1058c6: ; 1058c6 (41:58c6)
-	ld b, $6
-	jr asm_1058d0
+.Load6Row: ; 1058c6 (41:58c6)
+	ld b,  6
+	jr .row_loop
 
-Function1058ca: ; 1058ca (41:58ca)
-	ld b, $b
-	jr asm_1058d0
+.Load11Row: ; 1058ca (41:58ca)
+	ld b, 11
+	jr .row_loop
 
-Function1058ce: ; 1058ce (41:58ce)
-	ld b, $c
+.Load12Row: ; 1058ce (41:58ce)
+	ld b, 12
 
-asm_1058d0: ; 1058d0 (41:58d0)
+.row_loop: ; 1058d0 (41:58d0)
 	ld [hli], a
 	inc a
 	dec b
-	jr nz, asm_1058d0
+	jr nz, .row_loop
 	ret
 
-Function1058d6: ; 1058d6 (41:58d6)
-	ld b, $9
-	jr asm_1058e0
+.Load9Column: ; 1058d6 (41:58d6)
+	ld b,  9
+	jr .column_loop
 
-Function1058da: ; 1058da (41:58da)
-	ld b, $b
-	jr asm_1058e0
+.Load11Column: ; 1058da (41:58da)
+	ld b, 11
+	jr .column_loop
 
-Function1058de: ; 1058de (41:58de)
-	ld b, $e
+.Load14Column: ; 1058de (41:58de)
+	ld b, 14
 
-asm_1058e0: ; 1058e0 (41:58e0)
+.column_loop: ; 1058e0 (41:58e0)
 	ld [hl], a
 	ld de, SCREEN_WIDTH
 	add hl, de
 	dec b
-	jr nz, asm_1058e0
+	jr nz, .column_loop
 	ret
 
-Function1058e9: ; 1058e9 (41:58e9)
-	ld b, $10
-.asm_1058eb
+.Load16Row: ; 1058e9 (41:58e9)
+	ld b, 16
+.row_loop_no_inc
 	ld [hli], a
 	dec b
-	jr nz, .asm_1058eb
+	jr nz, .row_loop_no_inc
 	ret
 ; 1058f0 (41:58f0)
 
-OAM_1058f0: ; 1058f0
-	db $11, $34, $00, $00
-	db $11, $3c, $01, $00
-	db $11, $44, $02, $00
-	db $11, $4c, $03, $00
-	db $19, $34, $04, $00
-	db $19, $3c, $05, $00
-	db $19, $44, $06, $00
-	db $19, $4c, $07, $00
-	db $01, $5c, $00, $00
-	db $01, $64, $01, $00
-	db $01, $6c, $02, $00
-	db $01, $74, $03, $00
-	db $09, $5c, $04, $00
-	db $09, $64, $05, $00
-	db $09, $6c, $06, $00
-	db $09, $74, $07, $00
+.OAM_data: ; 1058f0
+	dsprite  2, 1,  6, 4, $00, $00
+	dsprite  2, 1,  7, 4, $01, $00
+	dsprite  2, 1,  8, 4, $02, $00
+	dsprite  2, 1,  9, 4, $03, $00
+	dsprite  3, 1,  6, 4, $04, $00
+	dsprite  3, 1,  7, 4, $05, $00
+	dsprite  3, 1,  8, 4, $06, $00
+	dsprite  3, 1,  9, 4, $07, $00
+	dsprite  0, 1, 11, 4, $00, $00
+	dsprite  0, 1, 12, 4, $01, $00
+	dsprite  0, 1, 13, 4, $02, $00
+	dsprite  0, 1, 14, 4, $03, $00
+	dsprite  1, 1, 11, 4, $04, $00
+	dsprite  1, 1, 12, 4, $05, $00
+	dsprite  1, 1, 13, 4, $06, $00
+	dsprite  1, 1, 14, 4, $07, $00
 
 ; japanese mystery gift gfx
 MysteryGiftJP_GFX: ; 105930

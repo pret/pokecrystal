@@ -1,3 +1,12 @@
+const_value set 2
+	const OLIVINEPORT_SAILOR1
+	const OLIVINEPORT_SAILOR2
+	const OLIVINEPORT_SAILOR3
+	const OLIVINEPORT_FISHING_GURU1
+	const OLIVINEPORT_FISHING_GURU2
+	const OLIVINEPORT_YOUNGSTER
+	const OLIVINEPORT_COOLTRAINER_F
+
 OlivinePort_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -18,7 +27,7 @@ UnknownScript_0x748ad:
 
 UnknownScript_0x748b1:
 	applymovement PLAYER, MovementData_0x74a32
-	appear $2
+	appear OLIVINEPORT_SAILOR1
 	dotrigger $0
 	setevent EVENT_GAVE_KURT_APRICORNS
 	blackoutmod OLIVINE_CITY
@@ -26,21 +35,21 @@ UnknownScript_0x748b1:
 
 SailorScript_0x748c0:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74919
 	writetext UnknownText_0x74a55
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $2, DOWN
+	spriteface OLIVINEPORT_SAILOR1, DOWN
 	pause 10
 	playsound SFX_EXIT_BUILDING
-	disappear $2
-	waitbutton
+	disappear OLIVINEPORT_SAILOR1
+	waitsfx
 	applymovement PLAYER, MovementData_0x74a30
 	playsound SFX_EXIT_BUILDING
 	special FadeOutPalettes
-	waitbutton
+	waitsfx
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iffalse UnknownScript_0x7490a
 	clearevent EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
@@ -56,25 +65,25 @@ SailorScript_0x748c0:
 	clearevent EVENT_BEAT_BLACKBELT_WAI
 UnknownScript_0x7490a:
 	clearevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
-	appear $2
+	appear OLIVINEPORT_SAILOR1
 	domaptrigger FAST_SHIP_1F, $1
 	warp FAST_SHIP_1F, $19, $1
 	end
 
 UnknownScript_0x74919:
 	writetext UnknownText_0x74a80
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7491f:
-	spriteface $4, RIGHT
+	spriteface OLIVINEPORT_SAILOR3, RIGHT
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x7498b
 	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
 	iftrue UnknownScript_0x7498b
 	spriteface PLAYER, LEFT
-	loadfont
+	opentext
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iffalse UnknownScript_0x7494e
 	checkcode VAR_WEEKDAY
@@ -88,34 +97,34 @@ UnknownScript_0x7494e:
 	yesorno
 	iffalse UnknownScript_0x74992
 	writetext UnknownText_0x74ada
-	keeptextopen
+	buttonsound
 	checkitem S_S_TICKET
 	iffalse UnknownScript_0x7496d
 	writetext UnknownText_0x74b11
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	applymovement PLAYER, MovementData_0x74a37
 	jump SailorScript_0x748c0
 
 UnknownScript_0x7496d:
 	writetext UnknownText_0x74b41
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x74a34
 	end
 
 UnknownScript_0x74977:
 	writetext UnknownText_0x74ba8
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x74a34
 	end
 
 UnknownScript_0x74981:
 	writetext UnknownText_0x74bce
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x74a34
 	end
 
@@ -124,20 +133,20 @@ UnknownScript_0x7498b:
 
 UnknownScript_0x7498c:
 	writetext UnknownText_0x74af6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x74992:
 	writetext UnknownText_0x74af6
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x74a34
 	end
 
 SailorScript_0x7499c:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74919
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
@@ -153,15 +162,15 @@ UnknownScript_0x749c0:
 	yesorno
 	iffalse UnknownScript_0x7498c
 	writetext UnknownText_0x74ada
-	keeptextopen
+	buttonsound
 	checkitem S_S_TICKET
 	iffalse UnknownScript_0x749ec
 	writetext UnknownText_0x74b11
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	checkcode VAR_FACING
-	if_equal $3, UnknownScript_0x749e5
+	if_equal RIGHT, UnknownScript_0x749e5
 	applymovement PLAYER, MovementData_0x74a3f
 	jump SailorScript_0x748c0
 
@@ -171,20 +180,20 @@ UnknownScript_0x749e5:
 
 UnknownScript_0x749ec:
 	writetext UnknownText_0x74b41
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x749f2:
 	writetext UnknownText_0x74ba8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x749f8:
 	writetext UnknownText_0x74bce
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SailorScript_0x749fe:
@@ -192,41 +201,41 @@ SailorScript_0x749fe:
 
 FishingGuruScript_0x74a01:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x74bf4
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $5, UP
+	spriteface OLIVINEPORT_FISHING_GURU1, UP
 	end
 
 FishingGuruScript_0x74a0c:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x74c35
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $6, UP
+	spriteface OLIVINEPORT_FISHING_GURU2, UP
 	end
 
 YoungsterScript_0x74a17:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x74c76
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $7, DOWN
+	spriteface OLIVINEPORT_YOUNGSTER, DOWN
 	end
 
 CooltrainerFScript_0x74a22:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x74ca2
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $8, DOWN
+	spriteface OLIVINEPORT_COOLTRAINER_F, DOWN
 	end
 
-MapOlivinePortSignpostItem0:
+OlivinePortHiddenProtein:
 	dwb EVENT_OLIVINE_PORT_HIDDEN_PROTEIN, PROTEIN
 	
 
@@ -393,7 +402,7 @@ OlivinePort_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 22, 1, SIGNPOST_ITEM, MapOlivinePortSignpostItem0
+	signpost 22, 1, SIGNPOST_ITEM, OlivinePortHiddenProtein
 
 .PersonEvents:
 	db 7

@@ -1,3 +1,7 @@
+const_value set 2
+	const OLIVINELIGHTHOUSE1F_SAILOR
+	const OLIVINELIGHTHOUSE1F_POKEFAN_F
+
 OlivineLighthouse1F_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,6 @@
+const_value set 2
+	const GOLDENRODBIKESHOP_CLERK
+
 GoldenrodBikeShop_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -10,32 +13,32 @@ UnknownScript_0x5474f:
 
 ClerkScript_0x54750:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_BICYCLE
 	iftrue UnknownScript_0x54775
 	writetext UnknownText_0x54787
 	yesorno
 	iffalse UnknownScript_0x5477b
 	writetext UnknownText_0x547f8
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	giveitem BICYCLE
 	writetext UnknownText_0x54848
 	playsound SFX_KEY_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
 	setflag ENGINE_BIKE_SHOP_CALL_ENABLED
 	setevent EVENT_GOT_BICYCLE
 UnknownScript_0x54775:
 	writetext UnknownText_0x5485f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x5477b:
 	writetext UnknownText_0x54898
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ; possibly unused

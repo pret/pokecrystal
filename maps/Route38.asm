@@ -1,3 +1,12 @@
+const_value set 2
+	const ROUTE38_STANDING_YOUNGSTER1
+	const ROUTE38_LASS
+	const ROUTE38_STANDING_YOUNGSTER2
+	const ROUTE38_BUENA1
+	const ROUTE38_SAILOR
+	const ROUTE38_FRUIT_TREE
+	const ROUTE38_BUENA2
+
 Route38_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,22 +18,22 @@ TrainerBird_keeperToby:
 	trainer EVENT_BEAT_BIRD_KEEPER_TOBY, BIRD_KEEPER, TOBY, Bird_keeperTobySeenText, Bird_keeperTobyBeatenText, 0, .script
 
 .script:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a1f86
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSailorHarry:
 	trainer EVENT_BEAT_SAILOR_HARRY, SAILOR, HARRY, SailorHarrySeenText, SailorHarryBeatenText, 0, .script
 
 .script:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a220c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerLassDana1:
@@ -32,8 +41,8 @@ TrainerLassDana1:
 
 .script:
 	writecode VAR_CALLERID, PHONE_LASS_DANA
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	checkflag ENGINE_DANA
 	iftrue .DanaRematch
 	checkflag ENGINE_DANA_HAS_THUNDERSTONE
@@ -43,7 +52,7 @@ TrainerLassDana1:
 	checkevent EVENT_DANA_ASKED_FOR_PHONE_NUMBER
 	iftrue .SecondTimeAsking
 	writetext UnknownText_0x1a20ec
-	keeptextopen
+	buttonsound
 	setevent EVENT_DANA_ASKED_FOR_PHONE_NUMBER
 	scall .AskNumber1F
 	jump .AskForPhoneNumber
@@ -82,7 +91,7 @@ TrainerLassDana1:
 .LoadFight0
 	loadtrainer LASS, DANA1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wDanaFightCount, 1
 	clearflag ENGINE_DANA
 	end
@@ -90,7 +99,7 @@ TrainerLassDana1:
 .LoadFight1
 	loadtrainer LASS, DANA2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wDanaFightCount, 2
 	clearflag ENGINE_DANA
 	end
@@ -98,7 +107,7 @@ TrainerLassDana1:
 .LoadFight2
 	loadtrainer LASS, DANA3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wDanaFightCount, 3
 	clearflag ENGINE_DANA
 	end
@@ -106,7 +115,7 @@ TrainerLassDana1:
 .LoadFight3
 	loadtrainer LASS, DANA4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wDanaFightCount, 4
 	clearflag ENGINE_DANA
 	end
@@ -114,7 +123,7 @@ TrainerLassDana1:
 .LoadFight4
 	loadtrainer LASS, DANA5
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_DANA
 	end
 
@@ -170,8 +179,8 @@ TrainerSchoolboyChad1:
 
 .script:
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_CHAD
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	checkflag ENGINE_CHAD
 	iftrue .ChadRematch
 	checkcellnum PHONE_SCHOOLBOY_CHAD
@@ -179,7 +188,7 @@ TrainerSchoolboyChad1:
 	checkevent EVENT_CHAD_ASKED_FOR_PHONE_NUMBER
 	iftrue .SecondTimeAsking
 	writetext UnknownText_0x1a200e
-	keeptextopen
+	buttonsound
 	setevent EVENT_CHAD_ASKED_FOR_PHONE_NUMBER
 	scall .AskPhoneNumber1
 	jump .AskToRegisterNumber
@@ -218,7 +227,7 @@ TrainerSchoolboyChad1:
 .LoadFight0
 	loadtrainer SCHOOLBOY, CHAD1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wChadFightCount, 1
 	clearflag ENGINE_CHAD
 	end
@@ -226,7 +235,7 @@ TrainerSchoolboyChad1:
 .LoadFight1
 	loadtrainer SCHOOLBOY, CHAD2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wChadFightCount, 2
 	clearflag ENGINE_CHAD
 	end
@@ -234,7 +243,7 @@ TrainerSchoolboyChad1:
 .LoadFight2
 	loadtrainer SCHOOLBOY, CHAD3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wChadFightCount, 3
 	clearflag ENGINE_CHAD
 	end
@@ -242,7 +251,7 @@ TrainerSchoolboyChad1:
 .LoadFight3
 	loadtrainer SCHOOLBOY, CHAD4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wChadFightCount, 4
 	clearflag ENGINE_CHAD
 	end
@@ -250,7 +259,7 @@ TrainerSchoolboyChad1:
 .LoadFight4
 	loadtrainer SCHOOLBOY, CHAD5
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_CHAD
 	end
 
@@ -286,22 +295,22 @@ TrainerBeautyValerie:
 	trainer EVENT_BEAT_BEAUTY_VALERIE, BEAUTY, VALERIE, BeautyValerieSeenText, BeautyValerieBeatenText, 0, .script
 
 .script:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a2185
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBeautyOlivia:
 	trainer EVENT_BEAT_BEAUTY_OLIVIA, BEAUTY, OLIVIA, BeautyOliviaSeenText, BeautyOliviaBeatenText, 0, .script
 
 .script:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a229a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute38Signpost0Script:

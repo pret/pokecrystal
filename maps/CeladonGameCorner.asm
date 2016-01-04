@@ -1,3 +1,14 @@
+const_value set 2
+	const CELADONGAMECORNER_CLERK
+	const CELADONGAMECORNER_RECEPTIONIST
+	const CELADONGAMECORNER_POKEFAN_M
+	const CELADONGAMECORNER_TEACHER
+	const CELADONGAMECORNER_FISHING_GURU
+	const CELADONGAMECORNER_FISHER1
+	const CELADONGAMECORNER_FISHER2
+	const CELADONGAMECORNER_GYM_GUY
+	const CELADONGAMECORNER_GRAMPS
+
 CeladonGameCorner_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -13,38 +24,38 @@ ReceptionistScript_0x72120:
 
 PokefanMScript_0x72123:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x72215
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $4, LEFT
+	spriteface CELADONGAMECORNER_POKEFAN_M, LEFT
 	end
 
 TeacherScript_0x7212e:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x72242
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $5, RIGHT
+	spriteface CELADONGAMECORNER_TEACHER, RIGHT
 	end
 
 FishingGuruScript_0x72139:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x72295
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $6, RIGHT
+	spriteface CELADONGAMECORNER_FISHING_GURU, RIGHT
 	end
 
 FisherScript_0x72144:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_COINS_FROM_GAMBLER_AT_CELADON
 	iftrue .UnknownScript_0x72169
 	writetext UnknownText_0x722dc
-	keeptextopen
+	buttonsound
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x7217b
 	checkcoins 9998
@@ -55,8 +66,8 @@ FisherScript_0x72144:
 	setevent EVENT_GOT_COINS_FROM_GAMBLER_AT_CELADON
 .UnknownScript_0x72169
 	writetext UnknownText_0x72345
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface LAST_TALKED, LEFT
 	end
 
@@ -69,15 +80,15 @@ FisherScript_0x72144:
 
 UnknownScript_0x7217b:
 	writetext UnknownText_0x7238a
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface LAST_TALKED, LEFT
 	end
 
 UnknownScript_0x72184:
 	writetext UnknownText_0x723d9
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface LAST_TALKED, LEFT
 	end
 
@@ -86,11 +97,11 @@ CeladonGymGuyScript:
 
 GrampsScript_0x72190:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x724ad
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $a, LEFT
+	spriteface CELADONGAMECORNER_GRAMPS, LEFT
 	end
 
 MapCeladonGameCornerSignpost36Script:
@@ -105,31 +116,31 @@ MapCeladonGameCornerSignpost35Script:
 	refreshscreen $0
 	writebyte $0
 	special Special_SlotMachine
-	loadmovesprites
+	closetext
 	end
 
 MapCeladonGameCornerSignpost16Script:
 	refreshscreen $0
 	writebyte $1
 	special Special_SlotMachine
-	loadmovesprites
+	closetext
 	end
 
 MapCeladonGameCornerSignpost11Script:
 	refreshscreen $0
 	special Special_CardFlip
-	loadmovesprites
+	closetext
 	end
 
 MapCeladonGameCornerSignpost32Script:
 	jumptext UnknownText_0x7254f
 
 MapCeladonGameCornerSignpost9Script:
-	loadfont
+	opentext
 	writetext UnknownText_0x72567
-	closetext
+	waitbutton
 	special Special_CardFlip
-	loadmovesprites
+	closetext
 	end
 
 MovementData_0x721cd:

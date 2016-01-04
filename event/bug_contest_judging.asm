@@ -1,7 +1,7 @@
 _BugContestJudging: ; 1369d
 	call ContestScore
 	callba MobileFn_105f79
-	call Function13819
+	call BugContest_JudgeContestants
 	ld a, [wBugContestThirdPlacePersonID]
 	call LoadContestantName
 	ld a, [wBugContestThirdPlaceMon]
@@ -23,13 +23,12 @@ _BugContestJudging: ; 1369d
 	call GetPokemonName
 	ld hl, BugContest_FirstPlaceText
 	call PrintText
-	jp Function13807
+	jp BugContest_GetPlayersResult
 ; 136eb
 
 BugContest_FirstPlaceText: ; 0x136eb
 	text_jump ContestJudging_FirstPlaceText
 	start_asm
-BugContest_FirstPlace: ; 136f0
 	ld de, SFX_1ST_PLACE
 	call PlaySFX
 	call WaitSFX
@@ -47,7 +46,6 @@ BugContest_SecondPlaceText: ; 0x13702
 	; Placing second was @ , who caught a @ !@ @
 	text_jump ContestJudging_SecondPlaceText
 	start_asm
-BugContest_SecondPlace: ; 13707
 	ld de, SFX_2ND_PLACE
 	call PlaySFX
 	call WaitSFX
@@ -65,9 +63,6 @@ BugContest_ThirdPlaceText: ; 0x13719
 	; Placing third was @ , who caught a @ !@ @
 	text_jump ContestJudging_ThirdPlaceText
 	start_asm
-; 0x1371e
-
-BugContest_ThirdPlace: ; 1371e
 	ld de, SFX_3RD_PLACE
 	call PlaySFX
 	call WaitSFX
@@ -215,13 +210,13 @@ BugContestant_SchoolboyKipp:
 	dbw KAKUNA,     259
 ; 13807
 
-Function13807: ; 13807
+BugContest_GetPlayersResult: ; 13807
 	ld hl, wBugContestThirdPlacePersonID
 	ld de, -4
 	ld b, 3
 .loop
 	ld a, [hl]
-	cp 1
+	cp 1 ; Player
 	jr z, .done
 	add hl, de
 	dec b
@@ -231,25 +226,25 @@ Function13807: ; 13807
 	ret
 ; 13819
 
-Function13819: ; 13819
+BugContest_JudgeContestants: ; 13819
 	call ClearContestResults
 	call ComputeAIContestantScores
 	ld hl, wBugContestTempPersonID
-	ld a, 1
+	ld a, 1 ; Player
 	ld [hli], a
 	ld a, [wContestMon]
 	ld [hli], a
 	ld a, [hProduct]
 	ld [hli], a
-	ld a, [hMultiplicand]
+	ld a, [hProduct + 1]
 	ld [hl], a
 	call DetermineContestWinners
 	ret
 ; 13833
 
 ClearContestResults: ; 13833
-	ld hl, wBugContestFirstPlacePersonID
-	ld b, 12
+	ld hl, wBugContestResults
+	ld b, wBugContestWinnersEnd - wBugContestResults
 	xor a
 .loop
 	ld [hli], a

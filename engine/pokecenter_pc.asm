@@ -12,7 +12,7 @@ PokemonCenterPC: ; 1559a
 	xor a
 	ld [hBGMapMode], a
 	call .ChooseWhichPCListToUse
-	ld [wcf76], a
+	ld [wWhichIndexSet], a
 	call DoNthMenu
 	jr c, .shutdown
 	ld a, [MenuSelection]
@@ -23,7 +23,7 @@ PokemonCenterPC: ; 1559a
 .shutdown
 	call PC_PlayShutdownSound
 	call ExitMenu
-	call WriteBackup
+	call CloseWindow
 	ret
 ; 155d6
 
@@ -140,7 +140,7 @@ HallOfFamePC: ; 1569a
 	call PC_PlayChoosePCSound
 	call FadeToMenu
 	callba _HallOfFamePC
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	and a
 	ret
 ; 156ab
@@ -208,7 +208,7 @@ UnknownText_0x156ff: ; 0x156ff
 
 _PlayersPC: ; 15704
 	ld a, b
-	ld [wcf76], a
+	ld [wWhichIndexSet], a
 	ld hl, UnknownText_0x157cc
 	call PC_DisplayTextWaitMenu
 	call Function15715
@@ -323,7 +323,7 @@ KrisWithdrawItemMenu: ; 0x157d1
 	jr .asm_157da
 
 .asm_157e4
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	xor a
 	ret
 ; 0x157e9
@@ -343,7 +343,7 @@ Function157e9: ; 0x157e9
 .askquantity
 	ld hl, .HowManyText
 	call MenuTextBox
-	callba Function24fbf
+	callba SelectQuantityToToss
 	call ExitMenu
 	call ExitMenu
 	jr c, .done
@@ -403,7 +403,7 @@ KrisTossItemMenu: ; 0x1585f
 	jr .asm_15868
 
 .asm_15878
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	xor a
 	ret
 ; 0x1587d
@@ -431,9 +431,9 @@ KrisDepositItemMenu: ; 0x1588b
 	jr c, .asm_158b6
 	call DisableSpriteUpdates
 	call LoadStandardMenuDataHeader
-	callba Function106a5
+	callba DepositSellInitPackBuffers
 .asm_1589c
-	callba Function106be
+	callba DepositSellPack
 	ld a, [wcf66]
 	and a
 	jr z, .asm_158b3
@@ -442,7 +442,7 @@ KrisDepositItemMenu: ; 0x1588b
 	jr .asm_1589c
 
 .asm_158b3
-	call ReturnToCallingMenu
+	call CloseSubmenu
 
 .asm_158b6
 	xor a
@@ -472,14 +472,14 @@ Function158cc: ; 0x158cc
 	ld [wSpriteUpdatesEnabled], a
 	callba CheckItemMenu
 	ld a, [wItemAttributeParamBuffer]
-	ld hl, .jumptable
+	ld hl, .dw
 	rst JumpTable
 	pop af
 	ld [wSpriteUpdatesEnabled], a
 	ret
 ; 0x158e7
 
-.jumptable: ; 0x158e7
+.dw: ; 0x158e7
 	dw .tossable
 	dw .no_toss
 	dw .no_toss
@@ -516,7 +516,7 @@ Function1590a: ; 0x1590a
 .asm_1591d
 	ld hl, .HowManyText
 	call MenuTextBox
-	callba Function24fbf
+	callba SelectQuantityToToss
 	push af
 	call ExitMenu
 	call ExitMenu
@@ -591,17 +591,17 @@ Function15985: ; 0x15985
 	ld [wMenuCursorBuffer], a
 	ld a, [wd0dd]
 	ld [wMenuScrollPosition], a
-	call HandleScrollingMenu
+	call ScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wd0dd], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wd0d7], a
 	pop af
 	ld [wSpriteUpdatesEnabled], a
 	ld a, [wd0e3]
 	and a
 	jr nz, .asm_159d8
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	cp $2
 	jr z, .asm_15a06
 	cp $1
@@ -611,7 +611,7 @@ Function15985: ; 0x15985
 	jr .asm_159f8
 
 .asm_159d8
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	cp $2
 	jr z, .asm_159e9
 	cp $1
@@ -629,14 +629,14 @@ Function15985: ; 0x15985
 	call Function156c7
 
 .asm_159f2
-	callba Function2490c
+	callba SwitchItemsInBag
 
 .asm_159f8
 	jp .asm_15989
 
 .asm_159fb
 	callba Function24706
-	call Function1bee
+	call PlaceHollowCursor
 	and a
 	ret
 

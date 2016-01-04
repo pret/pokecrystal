@@ -1,3 +1,4 @@
+
 GoldenrodDeptStoreElevator_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,14 +7,14 @@ GoldenrodDeptStoreElevator_MapScriptHeader:
 	db 0
 
 MapGoldenrodDeptStoreElevatorSignpost0Script:
-	loadfont
+	opentext
 	elevator Elevator_0x566e0
-	loadmovesprites
+	closetext
 	iffalse .Done
 	pause 5
 	playsound SFX_ELEVATOR
 	earthquake 60
-	waitbutton
+	waitsfx
 	checkevent EVENT_WAREHOUSE_BLOCKED_OFF
 	iftrue .Done
 	checkevent EVENT_WAREHOUSE_LAYOUT_1
@@ -53,7 +54,7 @@ Elevator_0x566e0:
 	elevfloor _4F,  3, GOLDENROD_DEPT_STORE_4F
 	elevfloor _5F,  3, GOLDENROD_DEPT_STORE_5F
 	elevfloor _6F,  2, GOLDENROD_DEPT_STORE_6F
-	db $ff ; end
+	db -1 ; end
 
 
 GoldenrodDeptStoreElevator_MapEventHeader:

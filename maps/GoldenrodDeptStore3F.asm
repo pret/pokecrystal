@@ -1,3 +1,8 @@
+const_value set 2
+	const GOLDENRODDEPTSTORE3F_CLERK
+	const GOLDENRODDEPTSTORE3F_SUPER_NERD
+	const GOLDENRODDEPTSTORE3F_ROCKER
+
 GoldenrodDeptStore3F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,9 +12,9 @@ GoldenrodDeptStore3F_MapScriptHeader:
 
 ClerkScript_0x55db8:
 	faceplayer
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_3F
-	loadmovesprites
+	closetext
 	end
 
 SuperNerdScript_0x55dc0:

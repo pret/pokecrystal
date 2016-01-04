@@ -1,3 +1,9 @@
+const_value set 2
+	const LAVENDERPOKECENTER1F_NURSE
+	const LAVENDERPOKECENTER1F_GENTLEMAN
+	const LAVENDERPOKECENTER1F_TEACHER
+	const LAVENDERPOKECENTER1F_YOUNGSTER
+
 LavenderPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -16,18 +22,18 @@ TeacherScript_0x7e6a6:
 
 YoungsterScript_0x7e6a9:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x7e6b7
 	writetext UnknownText_0x7e779
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7e6b7:
 	writetext UnknownText_0x7e7ed
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x7e6bd:

@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE19FUCHSIAGATE_OFFICER
+
 Route19FuchsiaGate_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,18 +10,18 @@ Route19FuchsiaGate_MapScriptHeader:
 
 OfficerScript_0x1ab3f6:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_CINNABAR_ROCKS_CLEARED
 	iftrue .RocksCleared
 	writetext UnknownText_0x1ab40a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .RocksCleared
 	writetext UnknownText_0x1ab48a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x1ab40a:

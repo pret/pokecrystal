@@ -1,3 +1,7 @@
+const_value set 2
+	const BLACKTHORNDRAGONSPEECHHOUSE_GRANNY
+	const BLACKTHORNDRAGONSPEECHHOUSE_EKANS
+
 BlackthornDragonSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,11 +13,11 @@ GrannyScript_0x195949:
 	jumptextfaceplayer UnknownText_0x19595c
 
 EkansScript_0x19594c:
-	loadfont
+	opentext
 	writetext UnknownText_0x1959ee
 	cry DRATINI
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x195956:

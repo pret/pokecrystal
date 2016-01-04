@@ -214,7 +214,7 @@ Function89240: ; 89240
 Function89245: ; 89245 (22:5245)
 	callba TryLoadSaveFile
 	ret c
-	callba Function150b9
+	callba _LoadData
 	and a
 	ret
 
@@ -248,18 +248,18 @@ Function89261: ; 89261
 	ld [hl], a
 	pop af
 	ld [wMenuCursorBuffer], a
-	call BackUpTiles
+	call PushWindow
 	call Function8923c
 	call Function89209
-	call InterpretMenu2
+	call VerticalMenu
 	push af
 	ld c, $a
 	call DelayFrames
-	call WriteBackup
+	call CloseWindow
 	call Function8920f
 	pop af
 	jr c, .done
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $2
 	jr z, .done
 	and a
@@ -1308,7 +1308,7 @@ Function89844: ; 89844
 	call Function894bb
 	call Function897af
 	push bc
-	call Function3200
+	call WaitBGMap2
 	call SetPalettes
 	pop bc
 	ret
@@ -1694,7 +1694,7 @@ Function89a57: ; 89a57
 
 Function89a8a: ; 89a8a
 	push af
-	ld de, SFX_UNKNOWN_62
+	ld de, SFX_SWITCH_POCKETS
 	call PlaySFX
 	pop af
 	ret
@@ -1791,7 +1791,7 @@ Function89ae6: ; 89ae6
 
 
 Function89b00: ; 89b00 (22:5b00)
-	callba Function49351
+	callba MG_Mobile_Layout_LoadPals
 	ret
 ; 89b07 (22:5b07)
 
@@ -2198,9 +2198,9 @@ Function89d5e: ; 89d5e (22:5d5e)
 	pop af
 	ld [wMenuCursorBuffer], a
 	call Function8923c
-	call Function1c89
-	call Function1c10
-	ld hl, wcfa5
+	call PlaceVerticalMenuItems
+	call InitVerticalMenuCursor
+	ld hl, w2DMenuFlags1
 	set 7, [hl]
 	ret
 
@@ -2224,7 +2224,7 @@ asm_89d90: ; 89d90 (22:5d90)
 	push hl
 	call _hl_
 	call Function89dab
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	push af
 	call Function891ab
 	pop af
@@ -2239,10 +2239,10 @@ asm_89d90: ; 89d90 (22:5d90)
 
 Function89dab: ; 89dab (22:5dab)
 	call Function8923c
-	callba Function241ba
+	callba MobileMenuJoypad
 	call Function8923c
 	ld a, c
-	ld hl, wcfa8
+	ld hl, wMenuJoypadFilter
 	and [hl]
 	ret z
 	bit 0, a
@@ -2253,12 +2253,12 @@ Function89dab: ; 89dab (22:5dab)
 	ret
 .asm_89dc7
 	call PlayClickSFX
-	ld a, [wcfa3]
+	ld a, [w2DMenuNumRows]
 	ld c, a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp c
 	jr z, .asm_89dd9
-	call Function1bee
+	call PlaceHollowCursor
 	scf
 	ret
 .asm_89dd9
@@ -2275,7 +2275,7 @@ Function89de0: ; 89de0 (22:5de0)
 .asm_89dea
 	call Function8a31c
 	jr z, .asm_89dfd
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld c, a
 	push bc
 	ld hl, Jumptable_89e04
@@ -2384,8 +2384,8 @@ Function89e9a: ; 89e9a (22:5e9a)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_89eb1
-	ld de, wd028
-	ld bc, $8
+	ld de, UnknBGPals + 5 palettes
+	ld bc, 1 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -2420,7 +2420,7 @@ Function89ee1: ; 89ee1 (22:5ee1)
 	call Function893e2
 	call Function8923c
 	callba Function4a3a7
-	callba Function49384
+	callba MG_Mobile_Layout_CreatePalBoxes
 	hlcoord 1, 0
 	call Function8a53d
 	ret
@@ -2784,7 +2784,7 @@ Function8a116: ; 8a116 (22:6116)
 	call Function8923c
 	call Function8a17b
 	jr c, .asm_8a16b
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wd030], a
 	dec d
 	jr z, .asm_8a140
@@ -2816,7 +2816,7 @@ Function8a116: ; 8a116 (22:6116)
 	ret
 .asm_8a16b
 	call Function89209
-	call WriteBackup
+	call CloseWindow
 	call Function8920f
 	scf
 	ret
@@ -2867,7 +2867,7 @@ Function8a1b0: ; 8a1b0
 	ld c, $12
 	call TextBox
 	hlcoord 1, 14
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld de, Strings_8a1cc
 	dec a
 	ld c, a
@@ -2950,7 +2950,7 @@ Function8a262: ; 8a262 (22:6262)
 	call Function893e2
 	call Function8923c
 	callba Function4a3a7
-	callba Function49384
+	callba MG_Mobile_Layout_CreatePalBoxes
 	hlcoord 1, 0
 	call Function8a53d
 	hlcoord 12, 4
@@ -2999,7 +2999,7 @@ Function8a2aa: ; 8a2aa (22:62aa)
 	and a
 	ret
 .asm_8a2ea
-	call WriteBackup
+	call CloseWindow
 .asm_8a2ed
 	scf
 	ret
@@ -3044,7 +3044,7 @@ Function8a31c: ; 8a31c (22:631c)
 	push bc
 	call Function8923c
 	callba Function4a3a7
-	callba Function49384
+	callba MG_Mobile_Layout_CreatePalBoxes
 	hlcoord 1, 0
 	call Function8a53d
 	hlcoord 12, 4
@@ -3054,9 +3054,9 @@ Function8a31c: ; 8a31c (22:631c)
 	ld a, c
 	ld [wMenuCursorBuffer], a
 	ld [MenuSelection], a
-	call Function1c89
-	call Function1c10
-	ld hl, wcfa5
+	call PlaceVerticalMenuItems
+	call InitVerticalMenuCursor
+	ld hl, w2DMenuFlags1
 	set 7, [hl]
 .asm_8a34e
 	call Function8a3a2
@@ -3076,7 +3076,7 @@ Function8a31c: ; 8a31c (22:631c)
 	ret
 .asm_8a370
 	call Function89448
-	call Function1bee
+	call PlaceHollowCursor
 	call Function8a3a2
 	ld a, [MenuSelection]
 	cp $ff
@@ -3086,9 +3086,9 @@ Function8a31c: ; 8a31c (22:631c)
 	ret
 
 Function8a383: ; 8a383 (22:6383)
-	callba Function241ba
+	callba MobileMenuJoypad
 	ld a, c
-	ld hl, wcfa8
+	ld hl, wMenuJoypadFilter
 	and [hl]
 	ret z
 	bit 0, a
@@ -3106,7 +3106,7 @@ Function8a383: ; 8a383 (22:6383)
 	ret
 
 Function8a3a2: ; 8a3a2 (22:63a2)
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ld hl, wd002
 	ld e, a
@@ -3390,16 +3390,16 @@ Function8a5b6: ; 8a5b6 (22:65b6)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_8a5e5
-	ld de, wd020
-	ld bc, $18
+	ld de, UnknBGPals + 4 palettes
+	ld bc, 3 palettes
 	call CopyBytes
 	ld hl, Palette_8a5fd
 	ld de, UnknOBPals
-	ld bc, $8
+	ld bc, 1 palettes
 	call CopyBytes
 	ld hl, Palette_8a605
-	ld de, wd048
-	ld bc, $8
+	ld de, UnknOBPals + 1 palettes
+	ld bc, 1 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -3411,10 +3411,12 @@ Palette_8a5e5: ; 8a5e5
 	RGB 27, 19, 00
 	RGB 07, 11, 22
 	RGB 00, 00, 00
+
 	RGB 31, 31, 31
 	RGB 16, 16, 31
 	RGB 27, 19, 00
 	RGB 00, 00, 00
+
 	RGB 31, 31, 31
 	RGB 31, 00, 00
 	RGB 27, 19, 00
@@ -3442,7 +3444,7 @@ Function8a60d: ; 8a60d
 	ld [rSVBK], a
 	ld hl, Palette_8a624
 	ld de, UnknOBPals
-	ld bc, $0008
+	ld bc, 1 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -3473,7 +3475,7 @@ Function8a62c: ; 8a62c (22:662c)
 	jr z, .asm_8a66a
 	ld [MenuSelection], a
 	ld b, a
-	ld a, [wcf77]
+	ld a, [wScrollingMenuCursorPosition]
 	inc a
 	ld [wd034], a
 	push bc
@@ -3834,7 +3836,7 @@ Function8a930: ; 8a930 (22:6930)
 	ld [wd0e3], a
 .asm_8a943
 	call Function8b7bd
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	and $1
 	jr nz, .asm_8a953
 	ld a, c
@@ -3899,7 +3901,7 @@ Function8a999: ; 8a999 (22:6999)
 	jr .asm_8a9a1
 .asm_8a9bb
 	call Function89209
-	call WriteBackup
+	call CloseWindow
 	call Function8920f
 	ret
 

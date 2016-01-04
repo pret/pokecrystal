@@ -1,3 +1,6 @@
+const_value set 2
+	const WHIRLISLANDLUGIACHAMBER_LUGIA
+
 WhirlIslandLugiaChamber_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -17,26 +20,26 @@ UnknownScript_0x18c504:
 	jump UnknownScript_0x18c515
 
 UnknownScript_0x18c512:
-	appear $2
+	appear WHIRLISLANDLUGIACHAMBER_LUGIA
 	return
 
 UnknownScript_0x18c515:
-	disappear $2
+	disappear WHIRLISLANDLUGIACHAMBER_LUGIA
 	return
 
 LugiaScript_0x18c518:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x18c531
 	cry LUGIA
 	pause 15
-	loadmovesprites
+	closetext
 	setevent EVENT_FOUGHT_LUGIA
 	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
-	loadpokedata LUGIA, 60
+	loadwildmon LUGIA, 60
 	startbattle
-	disappear $2
-	returnafterbattle
+	disappear WHIRLISLANDLUGIACHAMBER_LUGIA
+	reloadmapafterbattle
 	end
 
 UnknownText_0x18c531:

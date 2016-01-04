@@ -1,31 +1,34 @@
+const_value set 2
+	const HALLOFFAME_LANCE
+
 HallOfFame_MapScriptHeader:
 .MapTriggers:
 	db 2
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
-	dw .Trigger2, 0
 
 .MapCallbacks:
 	db 0
 
-.Trigger1:
+.Trigger0:
 	priorityjump HallOfFameScript
 	end
 
-.Trigger2:
+.Trigger1:
 	end
 
 HallOfFameScript:
-	follow $2, PLAYER
-	applymovement $2, HallOfFame_WalkUpWithLance
+	follow HALLOFFAME_LANCE, PLAYER
+	applymovement HALLOFFAME_LANCE, HallOfFame_WalkUpWithLance
 	stopfollow
 	spriteface PLAYER, RIGHT
-	loadfont
+	opentext
 	writetext HallOfFame_LanceText
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $2, UP
+	spriteface HALLOFFAME_LANCE, UP
 	applymovement PLAYER, HallOfFame_SlowlyApproachMachine
 	dotrigger $1
 	pause 15

@@ -2,7 +2,7 @@ Function16c000: ; 16c000
 	ld a, [hCGB]
 	and a
 	ret z
-	ld a, [$ffea]
+	ld a, [hFFEA]
 	and a
 	ret z
 	ld a, [wcfbe]
@@ -15,7 +15,7 @@ Function16c000: ; 16c000
 	call Function16c031
 	callba Function1000a4
 	xor a
-	ld [$ffea], a
+	ld [hFFEA], a
 	pop af
 	ld [wcfbe], a
 	ret
@@ -184,7 +184,7 @@ Function16c130: ; 16c130
 	ld bc, 8
 	ld a, $5
 	call FarCopyWRAM
-	callba Function96a4
+	callba ApplyPals
 	ret
 ; 16c145
 
@@ -362,7 +362,7 @@ endr
 	ld a, e
 	cp $8
 	jr nz, .asm_16c969
-	callba Function96a4
+	callba ApplyPals
 	call SetPalettes
 	ld a, [rSVBK]
 	push af
@@ -392,7 +392,7 @@ Function16ca11: ; 16ca11
 	ld a, [wd003]
 	and a
 	jr nz, .asm_16ca1d
-	callba Function96a4
+	callba ApplyPals
 
 .asm_16ca1d
 	ld a, [rSVBK]
@@ -465,7 +465,7 @@ endr
 	ld a, e
 	cp $8
 	jr nz, .asm_16ca28
-	callba Function96a4
+	callba ApplyPals
 	call SetPalettes
 	ld a, [rSVBK]
 	push af
@@ -711,14 +711,14 @@ Function16cbd1: ; 16cbd1
 	ld hl, Unknown_16cbfb
 	add hl, bc
 	ld a, [hl]
-	ld bc, $0002
+	ld bc, 2
 	ld hl, Unknown_16cfa3
 	call AddNTimes
-	ld de, wd00c
-	ld bc, $0002
+	ld de, UnknBGPals + 1 palettes + 4
+	ld bc, 2
 	ld a, $5
 	call FarCopyWRAM
-	callba Function96a4
+	callba ApplyPals
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
@@ -749,19 +749,19 @@ Function16cc18: ; 16cc18
 
 Function16cc25: ; 16cc25
 	ld hl, Unknown_16cfa9
-	ld de, wd008
-	call Function16cc41
+	ld de, UnknBGPals + 1 palettes
+	call .CopyPal
 	ld hl, Unknown_16cfb1
 	ld de, UnknOBPals
-	call Function16cc41
+	call .CopyPal
 	ld hl, Unknown_16cfb9
-	ld de, wd048
-	call Function16cc41
+	ld de, UnknOBPals + 1 palettes
+	call .CopyPal
 	ret
 ; 16cc41
 
-Function16cc41: ; 16cc41
-	ld bc, $0008
+.CopyPal: ; 16cc41
+	ld bc, 1 palettes
 	ld a, $5
 	jp FarCopyWRAM
 ; 16cc49
@@ -863,374 +863,3 @@ Unknown_16cfb9:
 	RGB 07, 07, 07
 
 ; 16cfc1
-
-GFX_16cfc1:
-INCBIN "gfx/unknown/16cfc1.2bpp"
-
-Function16d421: ; 16d421
-	ld de, GFX_16cfc1
-	ld hl, VTiles2
-	lb bc, BANK(GFX_16cfc1), $46
-	call Get2bpp
-	ret
-; 16d42e
-
-Function16d42e: ; 16d42e
-	ld hl, Tilemap_16d465
-	decoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	call CopyBytes
-	ret
-; 16d43b
-
-Function16d43b: ; 16d43b
-	call LoadStandardMenuDataHeader
-	call ClearBGPalettes
-	call ClearTileMap
-	call ClearSprites
-	callba Function16d421
-	callba Function16d42e
-	ld b, SCGB_08
-	call GetSGBLayout
-	call SetPalettes
-	call WaitBGMap
-	call JoyWaitAorB
-	call Call_ExitMenu
-	ret
-; 16d465
-
-Tilemap_16d465:
-INCBIN "gfx/unknown/16d465.tilemap"
-
-Tilemap_16d5cd:
-INCBIN "gfx/unknown/16d5cd.tilemap"
-
-Tilemap_16d5f5:
-INCBIN "gfx/unknown/16d5f5.tilemap"
-
-Function16d61d: ; 16d61d
-	ld h, d
-	ld l, e
-	push bc
-	push hl
-	call Function16d640
-	pop hl
-	pop bc
-	ld de, AttrMap - TileMap
-	add hl, de
-rept 2
-	inc b
-endr
-rept 2
-	inc c
-endr
-	ld a, $7
-.loop
-	push bc
-	push hl
-.loop2
-	ld [hli], a
-	dec c
-	jr nz, .loop2
-	pop hl
-	ld de, SCREEN_WIDTH
-	add hl, de
-	pop bc
-	dec b
-	jr nz, .loop
-	ret
-; 16d640
-
-Function16d640: ; 16d640
-	push hl
-	ld a, $30
-	ld [hli], a
-	inc a
-	call Function16d66d
-	inc a
-	ld [hl], a
-	pop hl
-	ld de, SCREEN_WIDTH
-	add hl, de
-.loop
-	push hl
-	ld a, $33
-	ld [hli], a
-	ld a, " "
-	call Function16d66d
-	ld [hl], $34
-	pop hl
-	ld de, SCREEN_WIDTH
-	add hl, de
-	dec b
-	jr nz, .loop
-	ld a, $35
-	ld [hli], a
-	ld a, $36
-	call Function16d66d
-	ld [hl], $37
-	ret
-; 16d66d
-
-Function16d66d: ; 16d66d
-	ld d, c
-.loop
-	ld [hli], a
-	dec d
-	jr nz, .loop
-	ret
-; 16d673
-
-Function16d673: ; 16d673
-	call Function16d696
-	call Function16d6ae
-	callba Function49856
-	callba Functionfb60d
-	hlcoord 10, 17
-	ld de, String_16d68f
-	call PlaceString
-	ret
-; 16d68f
-
-String_16d68f: ; 16d68f
-	db "CANCEL@"
-; 16d696
-
-Function16d696: ; 16d696
-	call Function16d421
-	ret
-; 16d69a
-
-
-Function16d69a: ; 16d69a
-	ld de, GFX_16cfc1 + $300
-	ld hl, VTiles2 tile $76
-	lb bc, BANK(GFX_16cfc1), 8
-	call Get2bpp
-	ret
-; 16d6a7
-
-Function16d6a7: ; 16d6a7
-	callba Function49811
-	ret
-; 16d6ae
-
-Function16d6ae: ; 16d6ae
-	call Function16d42e
-	ld hl, Tilemap_16d5cd
-	decoord 0, 0
-	ld bc, $0028
-	call CopyBytes
-	ld hl, Tilemap_16d5f5
-	decoord 0, 16
-	ld bc, $0028
-	call CopyBytes
-	ret
-; 16d6ca
-
-LinkTextbox: ; 16d6ca
-	call Function16d61d
-	ret
-; 16d6ce
-
-Function16d6ce: ; 16d6ce
-	call LoadStandardMenuDataHeader
-	call Function16d6e1
-	callba Function87d
-	call Call_ExitMenu
-	call Function3200
-	ret
-; 16d6e1
-
-Function16d6e1: ; 16d6e1
-	hlcoord 4, 10
-	ld b, 1
-	ld c, 10
-	predef Predef_LinkTextbox
-	hlcoord 5, 11
-	ld de, .Waiting
-	call PlaceString
-	call WaitBGMap
-	call Function3200
-	ld c, $32
-	jp DelayFrames
-; 16d701
-
-.Waiting: ; 16d701
-	db "WAITING..!@"
-; 16d70c
-
-Function16d70c: ; 16d70c
-	call Function16d725
-	call Function16d713
-	ret
-; 16d713
-
-Function16d713: ; 16d713
-	push bc
-	push af
-	ld a, [hJoyLast]
-	and $f0
-	ld b, a
-	ld a, [hJoyPressed]
-	and $f
-	or b
-	ld b, a
-	pop af
-	ld a, b
-	pop bc
-	ld d, a
-	ret
-; 16d725
-
-Function16d725: ; 16d725
-	ld hl, wcfa6
-	res 7, [hl]
-	ld a, [hBGMapMode]
-	push af
-	call Function16d734
-	pop af
-	ld [hBGMapMode], a
-	ret
-; 16d734
-
-Function16d734: ; 16d734
-.asm_16d734
-	call Function16d77a
-	call Function16d759
-	call Function16d76a
-	jr nc, .asm_16d758
-	callba Function24270
-	jr c, .asm_16d758
-	ld a, [wcfa5]
-	bit 7, a
-	jr nz, .asm_16d758
-	call Function16d713
-	ld b, a
-	ld a, [wcfa8]
-	and b
-	jr z, .asm_16d734
-
-.asm_16d758
-	ret
-; 16d759
-
-Function16d759: ; 16d759
-	ld a, [hOAMUpdate]
-	push af
-	ld a, $1
-	ld [hOAMUpdate], a
-	call WaitBGMap
-	pop af
-	ld [hOAMUpdate], a
-	xor a
-	ld [hBGMapMode], a
-	ret
-; 16d76a
-
-Function16d76a: ; 16d76a
-.asm_16d76a
-	call RTC
-	call Function16d7e7
-	ret c
-	ld a, [wcfa5]
-	bit 7, a
-	jr z, .asm_16d76a
-	and a
-	ret
-; 16d77a
-
-Function16d77a: ; 16d77a
-	ld hl, wcfac
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, [hl]
-	cp $1f
-	jr nz, .asm_16d792
-	ld a, [wcfab]
-	ld [hl], a
-	push hl
-	push bc
-	ld bc, $000b
-	add hl, bc
-	ld [hl], a
-	pop bc
-	pop hl
-
-.asm_16d792
-	ld a, [wcfa1]
-	ld b, a
-	ld a, [wcfa2]
-	ld c, a
-	call Coord2Tile
-	ld a, [wcfa7]
-	swap a
-	and $f
-	ld c, a
-	ld a, [MenuSelection2]
-	ld b, a
-	xor a
-	dec b
-	jr z, .asm_16d7b1
-.asm_16d7ad
-	add c
-	dec b
-	jr nz, .asm_16d7ad
-
-.asm_16d7b1
-	ld c, $14
-	call AddNTimes
-	ld a, [wcfa7]
-	and $f
-	ld c, a
-	ld a, [wcfaa]
-	ld b, a
-	xor a
-	dec b
-	jr z, .asm_16d7c8
-.asm_16d7c4
-	add c
-	dec b
-	jr nz, .asm_16d7c4
-
-.asm_16d7c8
-	ld c, a
-	add hl, bc
-	ld a, [hl]
-	cp $1f
-	jr z, .asm_16d7de
-	ld [wcfab], a
-	ld [hl], $1f
-	push hl
-	push bc
-	ld bc, $000b
-	add hl, bc
-	ld [hl], $1f
-	pop bc
-	pop hl
-
-.asm_16d7de
-	ld a, l
-	ld [wcfac], a
-	ld a, h
-	ld [wcfad], a
-	ret
-; 16d7e7
-
-Function16d7e7: ; 16d7e7
-	ld a, [wcfa5]
-	bit 6, a
-	jr z, .asm_16d7f4
-	callba Function8cf62
-
-.asm_16d7f4
-	call JoyTextDelay
-	call Function16d713
-	and a
-	ret z
-	scf
-	ret
-; 16d7fe
-
-

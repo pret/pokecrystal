@@ -1,3 +1,8 @@
+const_value set 2
+	const ROUTE35NATIONALPARKGATE_OFFICER1
+	const ROUTE35NATIONALPARKGATE_YOUNGSTER
+	const ROUTE35NATIONALPARKGATE_OFFICER2
+
 Route35NationalParkgate_MapScriptHeader:
 .MapTriggers:
 	db 3
@@ -43,21 +48,21 @@ Route35NationalParkgate_CheckIfContestDay:
 	if_equal SATURDAY, Route35NationalParkgate_IsContestDay
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue Route35NationalParkgate_Yes
-	disappear $2
-	appear $3
-	appear $4
+	disappear ROUTE35NATIONALPARKGATE_OFFICER1
+	appear ROUTE35NATIONALPARKGATE_YOUNGSTER
+	appear ROUTE35NATIONALPARKGATE_OFFICER2
 	return
 
 Route35NationalParkgate_IsContestDay:
-	appear $2
-	disappear $3
-	disappear $4
+	appear ROUTE35NATIONALPARKGATE_OFFICER1
+	disappear ROUTE35NATIONALPARKGATE_YOUNGSTER
+	disappear ROUTE35NATIONALPARKGATE_OFFICER2
 	return
 
 Route35NationalParkGate_LeavingContestEarly:
 	applymovement PLAYER, MovementData_0x6a2e2
-	spriteface $2, RIGHT
-	loadfont
+	spriteface ROUTE35NATIONALPARKGATE_OFFICER1, RIGHT
+	opentext
 	checkcode VAR_CONTESTMINUTES
 	addvar $1
 	RAM2MEM $0
@@ -65,18 +70,18 @@ Route35NationalParkGate_LeavingContestEarly:
 	yesorno
 	iffalse Route35NationalParkgate_GoBackIn
 	writetext UnknownText_0x6a7db
+	waitbutton
 	closetext
-	loadmovesprites
 	jumpstd bugcontestresultswarp
 
 Route35NationalParkgate_GoBackIn:
 	writetext UnknownText_0x6a823
+	waitbutton
 	closetext
-	loadmovesprites
 	scall Route35NationalParkgate_EnterContest
 	playsound SFX_ENTER_DOOR
 	special FadeOutPalettes
-	waitbutton
+	waitsfx
 	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, $a, $2f
 	end
 
@@ -87,7 +92,7 @@ OfficerScript_0x6a204:
 	if_equal WEDNESDAY, Route35NationalParkgate_NoContestToday
 	if_equal FRIDAY, Route35NationalParkgate_NoContestToday
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue Route35NationalParkgate_ContestIsOver
 	scall Route35NationalParkgate_GetDayOfWeek
@@ -102,18 +107,18 @@ Route35NationalParkgate_OkayToProceed:
 	setflag ENGINE_BUG_CONTEST_TIMER
 	special PlayMapMusic
 	writetext UnknownText_0x6a39d
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x6a3c7
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x6a3e2
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_GiveParkBalls
 	scall Route35NationalParkgate_EnterContest
 	playsound SFX_ENTER_DOOR
 	special FadeOutPalettes
-	waitbutton
+	waitsfx
 	special Special_SelectRandomBugContestContestants
 	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, $a, $2f
 	end
@@ -144,47 +149,47 @@ Route35NationalParkgate_LessThanFullParty: ; 6a27d
 	iftrue Route35NationalParkgate_FirstMonIsFainted
 	setevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 	writetext UnknownText_0x6a537
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x6a56b
 	playsound SFX_GOT_SAFARI_BALLS
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 	jump Route35NationalParkgate_OkayToProceed
 
 Route35NationalParkgate_DeclinedToParticipate:
 	writetext UnknownText_0x6a5dc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route35NationalParkgate_DeclinedToLeaveMonsBehind:
 	writetext UnknownText_0x6a597
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route35NationalParkgate_FirstMonIsFainted:
 	writetext UnknownText_0x6a608
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route35NationalParkgate_NoRoomInBox:
 	writetext UnknownText_0x6a67c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route35NationalParkgate_FirstMonIsEgg:
 	writetext UnknownText_0x6a71f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route35NationalParkgate_ContestIsOver:
 	writetext UnknownText_0x6a84f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route35NationalParkgate_NoContestToday:
@@ -192,12 +197,12 @@ Route35NationalParkgate_NoContestToday:
 
 OfficerScript_0x6a2ca:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue Route35NationalParkgate_ContestIsOver
 	writetext UnknownText_0x6a894
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x6a2d8:

@@ -104,17 +104,17 @@ DoPoisonStep:: ; 505da
 	ld de, SFX_POISON
 	call PlaySFX
 	ld b, $2
-	predef Functioncbcdd
+	predef LoadPoisonBGPals
 	call DelayFrame
 	ret
 ; 50669
 
 .Script_MonFaintedToPoison: ; 50669
 	callasm .PlayPoisonSFX
-	loadfont
+	opentext
 	callasm .CheckWhitedOut
 	iffalse .whiteout
-	loadmovesprites
+	closetext
 	end
 ; 50677
 

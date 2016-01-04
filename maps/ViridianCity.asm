@@ -1,3 +1,9 @@
+const_value set 2
+	const VIRIDIANCITY_GRAMPS1
+	const VIRIDIANCITY_GRAMPS2
+	const VIRIDIANCITY_FISHER
+	const VIRIDIANCITY_YOUNGSTER
+
 ViridianCity_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -14,52 +20,52 @@ ViridianCity_MapScriptHeader:
 
 GrampsScript_0x1a9a4c:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x1a9aa5
 	yesorno
 	iffalse UnknownScript_0x1a9a5b
 	writetext UnknownText_0x1a9b6f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1a9a5b:
 	writetext UnknownText_0x1a9bb7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GrampsScript_0x1a9a61:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BLUE_IN_CINNABAR
 	iftrue .BlueReturned
 	writetext UnknownText_0x1a9c11
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .BlueReturned
 	writetext UnknownText_0x1a9c7e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FisherScript_0x1a9a75:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM42_DREAM_EATER
 	iftrue UnknownScript_0x1a9a8a
 	writetext UnknownText_0x1a9cc4
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_DREAM_EATER
 	iffalse UnknownScript_0x1a9a8e
 	setevent EVENT_GOT_TM42_DREAM_EATER
 UnknownScript_0x1a9a8a:
 	writetext UnknownText_0x1a9d86
-	closetext
+	waitbutton
 UnknownScript_0x1a9a8e:
-	loadmovesprites
+	closetext
 	end
 
 YoungsterScript_0x1a9a90:

@@ -1,3 +1,9 @@
+const_value set 2
+	const RUINSOFALPHAERODACTYLITEMROOM_POKE_BALL1
+	const RUINSOFALPHAERODACTYLITEMROOM_POKE_BALL2
+	const RUINSOFALPHAERODACTYLITEMROOM_POKE_BALL3
+	const RUINSOFALPHAERODACTYLITEMROOM_POKE_BALL4
+
 RuinsofAlphAerodactylItemRoom_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -5,17 +11,17 @@ RuinsofAlphAerodactylItemRoom_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ItemFragment_0x59ab6:
-	db GOLD_BERRY, 1
+RuinsofAlphAerodactylItemRoomGoldBerry:
+	itemball GOLD_BERRY
 
-ItemFragment_0x59ab8:
-	db MOON_STONE, 1
+RuinsofAlphAerodactylItemRoomMoonStone:
+	itemball MOON_STONE
 
-ItemFragment_0x59aba:
-	db HEAL_POWDER, 1
+RuinsofAlphAerodactylItemRoomHealPowder:
+	itemball HEAL_POWDER
 
-ItemFragment_0x59abc:
-	db ENERGY_ROOT, 1
+RuinsofAlphAerodactylItemRoomEnergyRoot:
+	itemball ENERGY_ROOT
 
 MapRuinsofAlphAerodactylItemRoomSignpost1Script:
 	jumptext UnknownText_0x59ac1
@@ -47,7 +53,7 @@ RuinsofAlphAerodactylItemRoom_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_POKE_BALL, 6, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x59ab6, EVENT_PICKED_UP_GOLD_BERRY_FROM_AERODACTYL_ITEM_ROOM
-	person_event SPRITE_POKE_BALL, 6, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x59ab8, EVENT_PICKED_UP_MOON_STONE_FROM_AERODACTYL_ITEM_ROOM
-	person_event SPRITE_POKE_BALL, 4, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x59aba, EVENT_PICKED_UP_HEAL_POWDER_FROM_AERODACTYL_ITEM_ROOM
-	person_event SPRITE_POKE_BALL, 4, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x59abc, EVENT_PICKED_UP_ENERGY_ROOT_FROM_AERODACTYL_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 6, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, RuinsofAlphAerodactylItemRoomGoldBerry, EVENT_PICKED_UP_GOLD_BERRY_FROM_AERODACTYL_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 6, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, RuinsofAlphAerodactylItemRoomMoonStone, EVENT_PICKED_UP_MOON_STONE_FROM_AERODACTYL_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 4, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, RuinsofAlphAerodactylItemRoomHealPowder, EVENT_PICKED_UP_HEAL_POWDER_FROM_AERODACTYL_ITEM_ROOM
+	person_event SPRITE_POKE_BALL, 4, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, RuinsofAlphAerodactylItemRoomEnergyRoot, EVENT_PICKED_UP_ENERGY_ROOT_FROM_AERODACTYL_ITEM_ROOM

@@ -1,3 +1,11 @@
+const_value set 2
+	const GOLDENRODGYM_WHITNEY
+	const GOLDENRODGYM_LASS1
+	const GOLDENRODGYM_LASS2
+	const GOLDENRODGYM_BUENA1
+	const GOLDENRODGYM_BUENA2
+	const GOLDENRODGYM_GYM_GUY
+
 GoldenrodGym_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -19,14 +27,14 @@ WhitneyScript_0x5400c:
 	faceplayer
 	checkevent EVENT_BEAT_WHITNEY
 	iftrue .FightDone
-	loadfont
+	opentext
 	writetext UnknownText_0x54122
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x541a5, 0
 	loadtrainer WHITNEY, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_WHITNEY
 	setevent EVENT_MADE_WHITNEY_CRY
 	dotrigger $1
@@ -35,12 +43,12 @@ WhitneyScript_0x5400c:
 	setevent EVENT_BEAT_LASS_CARRIE
 	setevent EVENT_BEAT_LASS_BRIDGET
 .FightDone
-	loadfont
+	opentext
 	checkevent EVENT_MADE_WHITNEY_CRY
 	iffalse .StoppedCrying
 	writetext UnknownText_0x541f4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .StoppedCrying
@@ -49,30 +57,30 @@ WhitneyScript_0x5400c:
 	checkflag ENGINE_PLAINBADGE
 	iftrue UnknownScript_0x54064
 	writetext UnknownText_0x54222
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	writetext UnknownText_0x54273
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_PLAINBADGE
 	checkcode VAR_BADGES
 	scall GoldenrodGymTriggerRockets
 UnknownScript_0x54064:
 	writetext UnknownText_0x5428b
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_ATTRACT
 	iffalse UnknownScript_0x5407b
 	setevent EVENT_GOT_TM45_ATTRACT
 	writetext UnknownText_0x54302
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x54077:
 	writetext UnknownText_0x54360
-	closetext
+	waitbutton
 UnknownScript_0x5407b:
-	loadmovesprites
+	closetext
 	end
 
 GoldenrodGymTriggerRockets:
@@ -90,22 +98,22 @@ TrainerLassCarrie:
 	trainer EVENT_BEAT_LASS_CARRIE, LASS, CARRIE, LassCarrieSeenText, LassCarrieBeatenText, 0, LassCarrieScript
 
 LassCarrieScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext LassCarrieOWText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 WhitneyCriesScript:
-	showemote EMOTE_SHOCK, $4, 15
-	applymovement $4, BridgetWalksUpMovement
+	showemote EMOTE_SHOCK, GOLDENRODGYM_LASS2, 15
+	applymovement GOLDENRODGYM_LASS2, BridgetWalksUpMovement
 	spriteface PLAYER, DOWN
-	loadfont
+	opentext
 	writetext BridgetWhitneyCriesText
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement $4, BridgetWalksAwayMovement
+	applymovement GOLDENRODGYM_LASS2, BridgetWalksAwayMovement
 	dotrigger $0
 	clearevent EVENT_MADE_WHITNEY_CRY
 	end
@@ -114,50 +122,50 @@ TrainerLassBridget:
 	trainer EVENT_BEAT_LASS_BRIDGET, LASS, BRIDGET, LassBridgetSeenText, LassBridgetBeatenText, 0, LassBridgetScript
 
 LassBridgetScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext LassBridgetOWText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBeautyVictoria:
 	trainer EVENT_BEAT_BEAUTY_VICTORIA, BEAUTY, VICTORIA, BeautyVictoriaSeenText, BeautyVictoriaBeatenText, 0, BeautyVictoriaScript
 
 BeautyVictoriaScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext BeautyVictoriaOWText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBeautySamantha:
 	trainer EVENT_BEAT_BEAUTY_SAMANTHA, BEAUTY, SAMANTHA, BeautySamanthaSeenText, BeautySamanthaBeatenText, 0, BeautySamanthaScript
 
 BeautySamanthaScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext BeautySamanthaOWText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GoldenrodGymGuyScript:
 	faceplayer
 	checkevent EVENT_BEAT_WHITNEY
 	iftrue .GoldenrodGymGuyWinScript
-	loadfont
+	opentext
 	writetext GoldenrodGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .GoldenrodGymGuyWinScript
-	loadfont
+	opentext
 	writetext GoldenrodGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GoldenrodGymStatue:

@@ -1,3 +1,10 @@
+const_value set 2
+	const ROUTE13_YOUNGSTER1
+	const ROUTE13_YOUNGSTER2
+	const ROUTE13_POKEFAN_M1
+	const ROUTE13_POKEFAN_M2
+	const ROUTE13_POKEFAN_M3
+
 Route13_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,55 +16,55 @@ TrainerPokefanmAlex:
 	trainer EVENT_BEAT_POKEFANM_ALEX, POKEFANM, ALEX, PokefanmAlexSeenText, PokefanmAlexBeatenText, 0, PokefanmAlexScript
 
 PokefanmAlexScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a24e3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokefanmJoshua:
 	trainer EVENT_BEAT_POKEFANM_JOSHUA, POKEFANM, JOSHUA, PokefanmJoshuaSeenText, PokefanmJoshuaBeatenText, 0, PokefanmJoshuaScript
 
 PokefanmJoshuaScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a254f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBird_keeperPerry:
 	trainer EVENT_BEAT_BIRD_KEEPER_PERRY, BIRD_KEEPER, PERRY, Bird_keeperPerrySeenText, Bird_keeperPerryBeatenText, 0, Bird_keeperPerryScript
 
 Bird_keeperPerryScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a25db
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBird_keeperBret:
 	trainer EVENT_BEAT_BIRD_KEEPER_BRET, BIRD_KEEPER, BRET, Bird_keeperBretSeenText, Bird_keeperBretBeatenText, 0, Bird_keeperBretScript
 
 Bird_keeperBretScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a2662
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerHikerKenny:
 	trainer EVENT_BEAT_HIKER_KENNY, HIKER, KENNY, HikerKennySeenText, HikerKennyBeatenText, 0, HikerKennyScript
 
 HikerKennyScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a26c2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute13Signpost0Script:
@@ -69,7 +76,7 @@ MapRoute13Signpost1Script:
 MapRoute13Signpost2Script:
 	jumptext UnknownText_0x1a277d
 
-MapRoute13SignpostItem3:
+Route13HiddenCalcium:
 	dwb EVENT_ROUTE_13_HIDDEN_CALCIUM, CALCIUM
 	
 
@@ -200,7 +207,7 @@ Route13_MapEventHeader:
 	signpost 13, 29, SIGNPOST_READ, MapRoute13Signpost0Script
 	signpost 11, 41, SIGNPOST_READ, MapRoute13Signpost1Script
 	signpost 13, 17, SIGNPOST_READ, MapRoute13Signpost2Script
-	signpost 13, 30, SIGNPOST_ITEM, MapRoute13SignpostItem3
+	signpost 13, 30, SIGNPOST_ITEM, Route13HiddenCalcium
 
 .PersonEvents:
 	db 5

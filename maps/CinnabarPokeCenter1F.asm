@@ -1,3 +1,8 @@
+const_value set 2
+	const CINNABARPOKECENTER1F_NURSE
+	const CINNABARPOKECENTER1F_COOLTRAINER_F
+	const CINNABARPOKECENTER1F_FISHER
+
 CinnabarPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 0

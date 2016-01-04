@@ -1,3 +1,13 @@
+const_value set 2
+	const ROUTE2_BUG_CATCHER1
+	const ROUTE2_BUG_CATCHER2
+	const ROUTE2_BUG_CATCHER3
+	const ROUTE2_POKE_BALL1
+	const ROUTE2_POKE_BALL2
+	const ROUTE2_POKE_BALL3
+	const ROUTE2_POKE_BALL4
+	const ROUTE2_FRUIT_TREE
+
 Route2_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,33 +19,33 @@ TrainerBug_catcherRob:
 	trainer EVENT_BEAT_BUG_CATCHER_ROB, BUG_CATCHER, ROB, Bug_catcherRobSeenText, Bug_catcherRobBeatenText, 0, Bug_catcherRobScript
 
 Bug_catcherRobScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ac34d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBug_catcherEd:
 	trainer EVENT_BEAT_BUG_CATCHER_ED, BUG_CATCHER, ED, Bug_catcherEdSeenText, Bug_catcherEdBeatenText, 0, Bug_catcherEdScript
 
 Bug_catcherEdScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ac3cf
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBug_catcherDoug:
 	trainer EVENT_BEAT_BUG_CATCHER_DOUG, BUG_CATCHER, DOUG, Bug_catcherDougSeenText, Bug_catcherDougBeatenText, 0, Bug_catcherDougScript
 
 Bug_catcherDougScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ac423
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute2Signpost0Script:
@@ -44,31 +54,31 @@ MapRoute2Signpost0Script:
 MapRoute2Signpost1Script:
 	jumptext UnknownText_0x1ac49f
 
-ItemFragment_0x1ac2fe:
-	db DIRE_HIT, 1
+Route2DireHit:
+	itemball DIRE_HIT
 
-ItemFragment_0x1ac300:
-	db MAX_POTION, 1
+Route2MaxPotion:
+	itemball MAX_POTION
 
-ItemFragment_0x1ac302:
-	db CARBOS, 1
+Route2Carbos:
+	itemball CARBOS
 
-ItemFragment_0x1ac304:
-	db ELIXER, 1
+Route2Elixer:
+	itemball ELIXER
 
 FruitTreeScript_0x1ac306:
 	fruittree FRUITTREE_ROUTE_2
 
-MapRoute2SignpostItem2:
+Route2HiddenMaxEther:
 	dwb EVENT_ROUTE_2_HIDDEN_MAX_ETHER, MAX_ETHER
 
-MapRoute2SignpostItem3:
+Route2HiddenFullHeal:
 	dwb EVENT_ROUTE_2_HIDDEN_FULL_HEAL, FULL_HEAL
 
-MapRoute2SignpostItem4:
+Route2HiddenFullRestore:
 	dwb EVENT_ROUTE_2_HIDDEN_FULL_RESTORE, FULL_RESTORE
 
-MapRoute2SignpostItem5:
+Route2HiddenRevive:
 	dwb EVENT_ROUTE_2_HIDDEN_REVIVE, REVIVE
 
 Bug_catcherRobSeenText:
@@ -155,18 +165,18 @@ Route2_MapEventHeader:
 	db 6
 	signpost 51, 7, SIGNPOST_READ, MapRoute2Signpost0Script
 	signpost 9, 11, SIGNPOST_READ, MapRoute2Signpost1Script
-	signpost 23, 7, SIGNPOST_ITEM, MapRoute2SignpostItem2
-	signpost 14, 4, SIGNPOST_ITEM, MapRoute2SignpostItem3
-	signpost 27, 4, SIGNPOST_ITEM, MapRoute2SignpostItem4
-	signpost 30, 11, SIGNPOST_ITEM, MapRoute2SignpostItem5
+	signpost 23, 7, SIGNPOST_ITEM, Route2HiddenMaxEther
+	signpost 14, 4, SIGNPOST_ITEM, Route2HiddenFullHeal
+	signpost 27, 4, SIGNPOST_ITEM, Route2HiddenFullRestore
+	signpost 30, 11, SIGNPOST_ITEM, Route2HiddenRevive
 
 .PersonEvents:
 	db 8
 	person_event SPRITE_BUG_CATCHER, 45, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 5, TrainerBug_catcherRob, -1
 	person_event SPRITE_BUG_CATCHER, 4, 6, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 3, TrainerBug_catcherEd, -1
 	person_event SPRITE_BUG_CATCHER, 40, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 3, TrainerBug_catcherDoug, -1
-	person_event SPRITE_POKE_BALL, 29, 0, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x1ac2fe, EVENT_ROUTE_2_DIRE_HIT
-	person_event SPRITE_POKE_BALL, 23, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x1ac300, EVENT_ROUTE_2_MAX_POTION
-	person_event SPRITE_POKE_BALL, 2, 19, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x1ac302, EVENT_ROUTE_2_CARBOS
-	person_event SPRITE_POKE_BALL, 50, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x1ac304, EVENT_ROUTE_2_ELIXER
+	person_event SPRITE_POKE_BALL, 29, 0, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route2DireHit, EVENT_ROUTE_2_DIRE_HIT
+	person_event SPRITE_POKE_BALL, 23, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route2MaxPotion, EVENT_ROUTE_2_MAX_POTION
+	person_event SPRITE_POKE_BALL, 2, 19, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route2Carbos, EVENT_ROUTE_2_CARBOS
+	person_event SPRITE_POKE_BALL, 50, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route2Elixer, EVENT_ROUTE_2_ELIXER
 	person_event SPRITE_FRUIT_TREE, 14, 10, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1ac306, -1

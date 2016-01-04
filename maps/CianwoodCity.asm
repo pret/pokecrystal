@@ -1,10 +1,24 @@
+const_value set 2
+	const CIANWOODCITY_STANDING_YOUNGSTER
+	const CIANWOODCITY_POKEFAN_M
+	const CIANWOODCITY_LASS
+	const CIANWOODCITY_ROCK1
+	const CIANWOODCITY_ROCK2
+	const CIANWOODCITY_ROCK3
+	const CIANWOODCITY_ROCK4
+	const CIANWOODCITY_ROCK5
+	const CIANWOODCITY_ROCK6
+	const CIANWOODCITY_POKEFAN_F
+	const CIANWOODCITY_EUSINE
+	const CIANWOODCITY_SUICUNE
+
 CianwoodCity_MapScriptHeader:
 .MapTriggers:
 	db 2
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
-	dw .Trigger2, 0
 
 .MapCallbacks:
 	db 1
@@ -12,10 +26,10 @@ CianwoodCity_MapScriptHeader:
 	; callbacks
 	dbw 5, .FlyPointAndSuicune
 
-.Trigger1
+.Trigger0
 	end
 
-.Trigger2
+.Trigger1
 	end
 
 .FlyPointAndSuicune
@@ -23,7 +37,7 @@ CianwoodCity_MapScriptHeader:
 	setevent EVENT_EUSINE_IN_BURNED_TOWER
 	checkevent EVENT_FOUGHT_EUSINE
 	iffalse UnknownScript_0x1a001d
-	disappear $c
+	disappear CIANWOODCITY_EUSINE
 UnknownScript_0x1a001d:
 	return
 
@@ -32,12 +46,12 @@ UnknownScript_0x1a001e:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	pause 15
 	playsound SFX_WARP_FROM
-	applymovement $d, MovementData_0x1a00da
+	applymovement CIANWOODCITY_SUICUNE, MovementData_0x1a00da
 	spriteface PLAYER, DOWN
 	pause 15
 	playsound SFX_WARP_FROM
-	applymovement $d, MovementData_0x1a00e0
-	disappear $d
+	applymovement CIANWOODCITY_SUICUNE, MovementData_0x1a00e0
+	disappear CIANWOODCITY_SUICUNE
 	pause 10
 	dotrigger $0
 	clearevent EVENT_SAW_SUICUNE_ON_ROUTE_42
@@ -46,27 +60,27 @@ UnknownScript_0x1a001e:
 	iftrue .Done
 	setevent EVENT_FOUGHT_EUSINE
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
-	appear $c
-	applymovement $c, MovementData_0x1a00e7
-	loadfont
+	appear CIANWOODCITY_EUSINE
+	applymovement CIANWOODCITY_EUSINE, MovementData_0x1a00e7
+	opentext
 	writetext UnknownText_0x1a0433
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x1a05a1, 0
-	setlasttalked $c
+	setlasttalked CIANWOODCITY_EUSINE
 	loadtrainer MYSTICALMAN, EUSINE
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
-	loadfont
+	opentext
 	writetext UnknownText_0x1a05c3
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement $c, MovementData_0x1a00ec
-	disappear $c
+	applymovement CIANWOODCITY_EUSINE, MovementData_0x1a00ec
+	disappear CIANWOODCITY_EUSINE
 	pause 20
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	playmapmusic
 	pause 10
 .Done
@@ -74,31 +88,31 @@ UnknownScript_0x1a001e:
 
 PokefanFScript_0x1a0084:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_HM02_FLY
 	iftrue UnknownScript_0x1a00ad
 	writetext UnknownText_0x1a00f1
-	keeptextopen
+	buttonsound
 	checkevent EVENT_BEAT_CHUCK
 	iftrue UnknownScript_0x1a009c
 	writetext UnknownText_0x1a0163
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1a009c:
 	writetext UnknownText_0x1a01e3
-	keeptextopen
+	buttonsound
 	verbosegiveitem HM_FLY
 	iffalse UnknownScript_0x1a00b1
 	setevent EVENT_GOT_HM02_FLY
 	writetext UnknownText_0x1a021d
-	keeptextopen
+	buttonsound
 UnknownScript_0x1a00ad:
 	writetext UnknownText_0x1a0277
-	closetext
+	waitbutton
 UnknownScript_0x1a00b1:
-	loadmovesprites
+	closetext
 	end
 
 StandingYoungsterScript_0x1a00b3:
@@ -134,10 +148,10 @@ CianwoodPokeCenterSign:
 CianwoodCityRock:
 	jumpstd smashrock
 
-MapCianwoodCitySignpostItem6:
+CianwoodCityHiddenRevive:
 	dwb EVENT_CIANWOOD_CITY_HIDDEN_REVIVE, REVIVE
 
-MapCianwoodCitySignpostItem7:
+CianwoodCityHiddenMaxEther:
 	dwb EVENT_CIANWOOD_CITY_HIDDEN_MAX_ETHER, MAX_ETHER
 
 MovementData_0x1a00da:
@@ -396,8 +410,8 @@ CianwoodCity_MapEventHeader:
 	signpost 47, 19, SIGNPOST_READ, CianwoodPharmacySign
 	signpost 32, 8, SIGNPOST_READ, CianwoodPhotoStudioSign
 	signpost 24, 8, SIGNPOST_READ, CianwoodPokeSeerSign
-	signpost 19, 4, SIGNPOST_ITEM, MapCianwoodCitySignpostItem6
-	signpost 29, 5, SIGNPOST_ITEM, MapCianwoodCitySignpostItem7
+	signpost 19, 4, SIGNPOST_ITEM, CianwoodCityHiddenRevive
+	signpost 29, 5, SIGNPOST_ITEM, CianwoodCityHiddenMaxEther
 
 .PersonEvents:
 	db 12

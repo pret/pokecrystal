@@ -1,3 +1,11 @@
+const_value set 2
+	const FUCHSIAGYM_JANINE
+	const FUCHSIAGYM_FUCHSIA_GYM_1
+	const FUCHSIAGYM_FUCHSIA_GYM_2
+	const FUCHSIAGYM_FUCHSIA_GYM_3
+	const FUCHSIAGYM_FUCHSIA_GYM_4
+	const FUCHSIAGYM_GYM_GUY
+
 FuchsiaGym_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -8,16 +16,16 @@ FuchsiaGym_MapScriptHeader:
 JanineScript_0x195db9:
 	checkflag ENGINE_SOULBADGE
 	iftrue .FightDone
-	applymovement $2, MovementData_0x195f27
+	applymovement FUCHSIAGYM_JANINE, MovementData_0x195f27
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x195f35
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x195fa1, 0
 	loadtrainer JANINE, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_JANINE
 	setevent EVENT_BEAT_LASS_ALICE
 	setevent EVENT_BEAT_LASS_LINDA
@@ -28,179 +36,179 @@ JanineScript_0x195db9:
 	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_LASS
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
 	special RunCallback_04
-	loadfont
+	opentext
 	writetext UnknownText_0x195feb
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_SOULBADGE
 	jump UnknownScript_0x195e02
 .FightDone
 	faceplayer
-	loadfont
+	opentext
 UnknownScript_0x195e02:
 	checkevent EVENT_GOT_TM06_TOXIC
 	iftrue UnknownScript_0x195e15
 	writetext UnknownText_0x196002
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_TOXIC
 	iffalse UnknownScript_0x195e15
 	setevent EVENT_GOT_TM06_TOXIC
 UnknownScript_0x195e15:
 	writetext UnknownText_0x196074
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FuschiaGym1Script_0x195e1b:
 	checkevent EVENT_BEAT_LASS_ALICE
 	iftrue UnknownScript_0x195e2c
-	applymovement $3, MovementData_0x195f27
+	applymovement FUCHSIAGYM_FUCHSIA_GYM_1, MovementData_0x195f27
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_LASS
 	special RunCallback_04
 UnknownScript_0x195e2c:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_LASS_ALICE
 	iftrue UnknownScript_0x195e4f
 	writetext UnknownText_0x1960e6
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x196126, 0
 	loadtrainer LASS, ALICE
 	startbattle
 	iftrue UnknownScript_0x195e4a
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_LASS_ALICE
 	end
 
 UnknownScript_0x195e4a:
 	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_JANINE
-	returnafterbattle
+	reloadmapafterbattle
 	end
 
 UnknownScript_0x195e4f:
 	writetext UnknownText_0x196139
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FuschiaGym2Script_0x195e55:
 	checkevent EVENT_BEAT_LASS_LINDA
 	iftrue UnknownScript_0x195e66
-	applymovement $4, MovementData_0x195f27
+	applymovement FUCHSIAGYM_FUCHSIA_GYM_2, MovementData_0x195f27
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_LASS
 	special RunCallback_04
 UnknownScript_0x195e66:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_LASS_LINDA
 	iftrue UnknownScript_0x195e89
 	writetext UnknownText_0x196166
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x19617b, 0
 	loadtrainer LASS, LINDA
 	startbattle
 	iftrue UnknownScript_0x195e84
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_LASS_LINDA
 	end
 
 UnknownScript_0x195e84:
 	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_JANINE
-	returnafterbattle
+	reloadmapafterbattle
 	end
 
 UnknownScript_0x195e89:
 	writetext UnknownText_0x196199
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FuschiaGym3Script_0x195e8f:
 	checkevent EVENT_BEAT_PICNICKER_CINDY
 	iftrue UnknownScript_0x195ea0
-	applymovement $5, MovementData_0x195f27
+	applymovement FUCHSIAGYM_FUCHSIA_GYM_3, MovementData_0x195f27
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_LASS
 	special RunCallback_04
 UnknownScript_0x195ea0:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_PICNICKER_CINDY
 	iftrue UnknownScript_0x195ec3
 	writetext UnknownText_0x1961bb
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x1961f1, 0
 	loadtrainer PICNICKER, CINDY
 	startbattle
 	iftrue UnknownScript_0x195ebe
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_PICNICKER_CINDY
 	end
 
 UnknownScript_0x195ebe:
 	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_JANINE
-	returnafterbattle
+	reloadmapafterbattle
 	end
 
 UnknownScript_0x195ec3:
 	writetext UnknownText_0x19620c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FuschiaGym4Script_0x195ec9:
 	checkevent EVENT_BEAT_CAMPER_BARRY
 	iftrue UnknownScript_0x195eda
-	applymovement $6, MovementData_0x195f27
+	applymovement FUCHSIAGYM_FUCHSIA_GYM_4, MovementData_0x195f27
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
 	special RunCallback_04
 UnknownScript_0x195eda:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_CAMPER_BARRY
 	iftrue UnknownScript_0x195efd
 	writetext UnknownText_0x196228
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x19624a, 0
 	loadtrainer CAMPER, BARRY
 	startbattle
 	iftrue UnknownScript_0x195ef8
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_CAMPER_BARRY
 	end
 
 UnknownScript_0x195ef8:
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_JANINE
-	returnafterbattle
+	reloadmapafterbattle
 	end
 
 UnknownScript_0x195efd:
 	writetext UnknownText_0x19626b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FuchsiaGymGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_JANINE
 	iftrue .FuchsiaGymGuyWinScript
 	writetext FuchsiaGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FuchsiaGymGuyWinScript
 	writetext FuchsiaGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FuchsiaGymStatue:

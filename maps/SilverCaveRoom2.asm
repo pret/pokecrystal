@@ -1,3 +1,8 @@
+const_value set 2
+	const SILVERCAVEROOM2_POKE_BALL1
+	const SILVERCAVEROOM2_POKE_BALL2
+	const SILVERCAVEROOM2_POKE_BALL3
+
 SilverCaveRoom2_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -5,16 +10,16 @@ SilverCaveRoom2_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ItemFragment_0x18c5b2:
-	db CALCIUM, 1
+SilverCaveRoom2Calcium:
+	itemball CALCIUM
 
-ItemFragment_0x18c5b4:
-	db ULTRA_BALL, 1
+SilverCaveRoom2UltraBall:
+	itemball ULTRA_BALL
 
-ItemFragment_0x18c5b6:
-	db PP_UP, 1
+SilverCaveRoom2PPUp:
+	itemball PP_UP
 
-MapSilverCaveRoom2SignpostItem0:
+SilverCaveRoom2HiddenMaxPotion:
 	dwb EVENT_SILVER_CAVE_ROOM_2_HIDDEN_MAX_POTION, MAX_POTION
 	
 
@@ -34,10 +39,10 @@ SilverCaveRoom2_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 31, 14, SIGNPOST_ITEM, MapSilverCaveRoom2SignpostItem0
+	signpost 31, 14, SIGNPOST_ITEM, SilverCaveRoom2HiddenMaxPotion
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_POKE_BALL, 10, 24, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x18c5b2, EVENT_SILVER_CAVE_ROOM_2_CALCIUM
-	person_event SPRITE_POKE_BALL, 24, 22, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x18c5b4, EVENT_SILVER_CAVE_ROOM_2_ULTRA_BALL
-	person_event SPRITE_POKE_BALL, 20, 4, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x18c5b6, EVENT_SILVER_CAVE_ROOM_2_PP_UP
+	person_event SPRITE_POKE_BALL, 10, 24, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, SilverCaveRoom2Calcium, EVENT_SILVER_CAVE_ROOM_2_CALCIUM
+	person_event SPRITE_POKE_BALL, 24, 22, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, SilverCaveRoom2UltraBall, EVENT_SILVER_CAVE_ROOM_2_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 20, 4, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, SilverCaveRoom2PPUp, EVENT_SILVER_CAVE_ROOM_2_PP_UP

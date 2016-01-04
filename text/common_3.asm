@@ -1,3 +1,9 @@
+_UsedSurfText::
+	text_from_ram StringBuffer2
+	text " used"
+	line "SURF!"
+	done
+
 _CantSurfText::
 	text "You can't SURF"
 	line "here."
@@ -1059,7 +1065,7 @@ UnknownText_0x1c1b03::
 
 UnknownText_0x1c1b2c::
 	text "Took @"
-	text_from_ram wd050_MonNick
+	text_from_ram wMonOrItemNameBuffer
 	text "'s"
 	line "@"
 	text_from_ram StringBuffer1
@@ -1073,7 +1079,7 @@ UnknownText_0x1c1b2c::
 
 UnknownText_0x1c1b57::
 	text "Made @"
-	text_from_ram wd050_MonNick
+	text_from_ram wMonOrItemNameBuffer
 	text ""
 	line "hold @"
 	text_from_ram StringBuffer2
@@ -1086,7 +1092,7 @@ UnknownText_0x1c1b6f::
 	prompt
 
 UnknownText_0x1c1b8e::
-	text_from_ram wd050_MonNick
+	text_from_ram wMonOrItemNameBuffer
 	text " isn't"
 	line "holding anything."
 	prompt
@@ -1101,12 +1107,12 @@ UnknownText_0x1c1bc4::
 	text_from_ram StringBuffer1
 	text ""
 	line "from @"
-	text_from_ram wd050_MonNick
+	text_from_ram wMonOrItemNameBuffer
 	text "."
 	prompt
 
 UnknownText_0x1c1bdc::
-	text_from_ram wd050_MonNick
+	text_from_ram wMonOrItemNameBuffer
 	text " is"
 	line "already holding"
 

@@ -1,3 +1,9 @@
+const_value set 2
+	const ROUTE3_FISHER1
+	const ROUTE3_YOUNGSTER1
+	const ROUTE3_YOUNGSTER2
+	const ROUTE3_FISHER2
+
 Route3_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,44 +15,44 @@ TrainerFirebreatherOtis:
 	trainer EVENT_BEAT_FIREBREATHER_OTIS, FIREBREATHER, OTIS, FirebreatherOtisSeenText, FirebreatherOtisBeatenText, 0, FirebreatherOtisScript
 
 FirebreatherOtisScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1adff7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerYoungsterWarren:
 	trainer EVENT_BEAT_YOUNGSTER_WARREN, YOUNGSTER, WARREN, YoungsterWarrenSeenText, YoungsterWarrenBeatenText, 0, YoungsterWarrenScript
 
 YoungsterWarrenScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ae051
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerYoungsterJimmy:
 	trainer EVENT_BEAT_YOUNGSTER_JIMMY, YOUNGSTER, JIMMY, YoungsterJimmySeenText, YoungsterJimmyBeatenText, 0, YoungsterJimmyScript
 
 YoungsterJimmyScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ae0a9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFirebreatherBurt:
 	trainer EVENT_BEAT_FIREBREATHER_BURT, FIREBREATHER, BURT, FirebreatherBurtSeenText, FirebreatherBurtBeatenText, 0, FirebreatherBurtScript
 
 FirebreatherBurtScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ae118
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute3Signpost0Script:

@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE5_POKEFAN_M
+
 Route5_MapScriptHeader:
 .MapTriggers:
 	db 0

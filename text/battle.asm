@@ -1,4 +1,4 @@
-BattleText_PlayerPickuedUpPayDayMoney: ; 0x80730
+BattleText_PlayerPickedUpPayDayMoney: ; 0x80730
 	text "<PLAYER> picked up"
 	line "¥@"
 	deciram wPayDayMoney, 3, 6
@@ -474,9 +474,9 @@ BecameConfusedText: ; 0x80d97
 	text "<TARGET>"
 	line "became confused!"
 	prompt
-; 0x80dab
+; ItemHealedConfusion
 
-BattleText_0x80dab: ; 0x80dab
+BattleText_ItemHealedConfusion: ; ItemHealedConfusion
 	text "A @"
 	text_from_ram StringBuffer1
 	text " rid"

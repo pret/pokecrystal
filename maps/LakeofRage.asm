@@ -1,10 +1,24 @@
+const_value set 2
+	const LAKEOFRAGE_LANCE
+	const LAKEOFRAGE_GRAMPS
+	const LAKEOFRAGE_SUPER_NERD1
+	const LAKEOFRAGE_COOLTRAINER_F1
+	const LAKEOFRAGE_FISHER1
+	const LAKEOFRAGE_FISHER2
+	const LAKEOFRAGE_COOLTRAINER_M
+	const LAKEOFRAGE_COOLTRAINER_F2
+	const LAKEOFRAGE_GYARADOS
+	const LAKEOFRAGE_SUPER_NERD2
+	const LAKEOFRAGE_POKE_BALL1
+	const LAKEOFRAGE_POKE_BALL2
+
 LakeofRage_MapScriptHeader:
 .MapTriggers:
 	db 2
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
-	dw .Trigger2, 0
 
 .MapCallbacks:
 	db 2
@@ -14,10 +28,10 @@ LakeofRage_MapScriptHeader:
 	dbw 5, .FlyPoint
 	dbw 2, .Wesley
 
-.Trigger1
+.Trigger0
 	end
 
-.Trigger2
+.Trigger1
 	end
 
 .FlyPoint
@@ -27,30 +41,30 @@ LakeofRage_MapScriptHeader:
 .Wesley
 	checkcode VAR_WEEKDAY
 	if_equal WEDNESDAY, .WesleyAppears
-	disappear $b
+	disappear LAKEOFRAGE_SUPER_NERD2
 	return
 
 .WesleyAppears
-	appear $b
+	appear LAKEOFRAGE_SUPER_NERD2
 	return
 
 LanceScript_0x70022:
 	checkevent EVENT_REFUSED_TO_HELP_LANCE_AT_LAKE_OF_RAGE
 	iftrue UnknownScript_0x70057
-	loadfont
+	opentext
 	writetext UnknownText_0x70157
-	keeptextopen
+	buttonsound
 	faceplayer
 	writetext UnknownText_0x701b4
 	yesorno
 	iffalse UnknownScript_0x7004e
 UnknownScript_0x70035:
 	writetext UnknownText_0x702c6
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_WARP_TO
-	applymovement $2, MovementData_0x70155
-	disappear $2
+	applymovement LAKEOFRAGE_LANCE, MovementData_0x70155
+	disappear LAKEOFRAGE_LANCE
 	clearevent EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
 	setevent EVENT_DECIDED_TO_HELP_LANCE
 	domaptrigger MAHOGANY_MART_1F, $1
@@ -58,58 +72,58 @@ UnknownScript_0x70035:
 
 UnknownScript_0x7004e:
 	writetext UnknownText_0x70371
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_REFUSED_TO_HELP_LANCE_AT_LAKE_OF_RAGE
 	end
 
 UnknownScript_0x70057:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x703a5
 	yesorno
 	iffalse UnknownScript_0x7004e
 	jump UnknownScript_0x70035
 
 GyaradosScript_0x70063:
-	loadfont
+	opentext
 	writetext UnknownText_0x703cb
 	pause 15
 	cry GYARADOS
-	loadmovesprites
-	loadpokedata GYARADOS, 30
+	closetext
+	loadwildmon GYARADOS, 30
 	writecode VAR_BATTLETYPE, BATTLETYPE_SHINY
 	startbattle
 	if_equal $1, UnknownScript_0x7007a
-	disappear $a
+	disappear LAKEOFRAGE_GYARADOS
 UnknownScript_0x7007a:
-	returnafterbattle
-	loadfont
+	reloadmapafterbattle
+	opentext
 	giveitem RED_SCALE
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x703df
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
-	loadmovesprites
+	closetext
 	dotrigger $0
-	appear $2
+	appear LAKEOFRAGE_LANCE
 	end
 
 GrampsScript_0x7008e:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x7009c
 	writetext UnknownText_0x703f8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7009c:
 	writetext UnknownText_0x70421
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SuperNerdScript_0x700a2:
@@ -122,67 +136,67 @@ MapLakeofRageSignpost0Script:
 	jumptext UnknownText_0x708d7
 
 MapLakeofRageSignpost1Script:
-	loadfont
+	opentext
 	writetext UnknownText_0x70903
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x700b8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x700b8:
-	keeptextopen
+	buttonsound
 	special Special_MagikarpHouseSign
-	loadmovesprites
+	closetext
 	end
 
 TrainerFisherAndre:
 	trainer EVENT_BEAT_FISHER_ANDRE, FISHER, ANDRE, FisherAndreSeenText, FisherAndreBeatenText, 0, FisherAndreScript
 
 FisherAndreScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x7058f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFisherRaymond:
 	trainer EVENT_BEAT_FISHER_RAYMOND, FISHER, RAYMOND, FisherRaymondSeenText, FisherRaymondBeatenText, 0, FisherRaymondScript
 
 FisherRaymondScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x70611
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainermAaron:
 	trainer EVENT_BEAT_COOLTRAINERM_AARON, COOLTRAINERM, AARON, CooltrainermAaronSeenText, CooltrainermAaronBeatenText, 0, CooltrainermAaronScript
 
 CooltrainermAaronScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x7069c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainerfLois:
 	trainer EVENT_BEAT_COOLTRAINERF_LOIS, COOLTRAINERF, LOIS, CooltrainerfLoisSeenText, CooltrainerfLoisBeatenText, 0, CooltrainerfLoisScript
 
 CooltrainerfLoisScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x70752
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 WesleyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_BLACKBELT_FROM_WESLEY
 	iftrue WesleyWednesdayScript
 	checkcode VAR_WEEKDAY
@@ -190,47 +204,47 @@ WesleyScript:
 	checkevent EVENT_MET_WESLEY_OF_WEDNESDAY
 	iftrue .MetWesley
 	writetext MeetWesleyText
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_WESLEY_OF_WEDNESDAY
 .MetWesley
 	writetext WesleyGivesGiftText
-	keeptextopen
+	buttonsound
 	verbosegiveitem BLACKBELT
 	iffalse WesleyDoneScript
 	setevent EVENT_GOT_BLACKBELT_FROM_WESLEY
 	writetext WesleyGaveGiftText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 WesleyWednesdayScript:
 	writetext WesleyWednesdayText
-	closetext
+	waitbutton
 WesleyDoneScript:
-	loadmovesprites
+	closetext
 	end
 
 WesleyNotWednesdayScript:
 	writetext WesleyNotWednesdayText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-ItemFragment_0x70148:
-	db ELIXER, 1
+LakeofRageElixer:
+	itemball ELIXER
 
-ItemFragment_0x7014a:
-	db TM_DETECT, 1
+LakeofRageTMDetect:
+	itemball TM_DETECT
 
-MapLakeofRageSignpostItem2:
+LakeofRageHiddenFullRestore:
 	dwb EVENT_LAKE_OF_RAGE_HIDDEN_FULL_RESTORE, FULL_RESTORE
 	
 
-MapLakeofRageSignpostItem3:
+LakeofRageHiddenRareCandy:
 	dwb EVENT_LAKE_OF_RAGE_HIDDEN_RARE_CANDY, RARE_CANDY
 	
 
-MapLakeofRageSignpostItem4:
+LakeofRageHiddenMaxPotion:
 	dwb EVENT_LAKE_OF_RAGE_HIDDEN_MAX_POTION, MAX_POTION
 	
 
@@ -503,9 +517,9 @@ LakeofRage_MapEventHeader:
 	db 5
 	signpost 27, 21, SIGNPOST_READ, MapLakeofRageSignpost0Script
 	signpost 31, 25, SIGNPOST_READ, MapLakeofRageSignpost1Script
-	signpost 28, 11, SIGNPOST_ITEM, MapLakeofRageSignpostItem2
-	signpost 4, 4, SIGNPOST_ITEM, MapLakeofRageSignpostItem3
-	signpost 5, 35, SIGNPOST_ITEM, MapLakeofRageSignpostItem4
+	signpost 28, 11, SIGNPOST_ITEM, LakeofRageHiddenFullRestore
+	signpost 4, 4, SIGNPOST_ITEM, LakeofRageHiddenRareCandy
+	signpost 5, 35, SIGNPOST_ITEM, LakeofRageHiddenMaxPotion
 
 .PersonEvents:
 	db 12
@@ -519,5 +533,5 @@ LakeofRage_MapEventHeader:
 	person_event SPRITE_COOLTRAINER_F, 7, 36, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 0, TrainerCooltrainerfLois, EVENT_LAKE_OF_RAGE_CIVILIANS
 	person_event SPRITE_GYARADOS, 22, 18, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, GyaradosScript_0x70063, EVENT_LAKE_OF_RAGE_RED_GYARADOS
 	person_event SPRITE_SUPER_NERD, 4, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, WesleyScript, EVENT_LAKE_OF_RAGE_WESLEY_OF_WEDNESDAY
-	person_event SPRITE_POKE_BALL, 10, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x70148, EVENT_LAKE_OF_RAGE_ELIXER
-	person_event SPRITE_POKE_BALL, 2, 35, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x7014a, EVENT_LAKE_OF_RAGE_TM_DETECT
+	person_event SPRITE_POKE_BALL, 10, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, LakeofRageElixer, EVENT_LAKE_OF_RAGE_ELIXER
+	person_event SPRITE_POKE_BALL, 2, 35, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, LakeofRageTMDetect, EVENT_LAKE_OF_RAGE_TM_DETECT

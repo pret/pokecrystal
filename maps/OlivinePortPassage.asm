@@ -1,3 +1,6 @@
+const_value set 2
+	const OLIVINEPORTPASSAGE_POKEFAN_M
+
 OlivinePortPassage_MapScriptHeader:
 .MapTriggers:
 	db 0

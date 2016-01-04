@@ -1,3 +1,15 @@
+const_value set 2
+	const ROUTE39_SAILOR
+	const ROUTE39_POKEFAN_M
+	const ROUTE39_POKEFAN_F1
+	const ROUTE39_TAUROS1
+	const ROUTE39_TAUROS2
+	const ROUTE39_TAUROS3
+	const ROUTE39_TAUROS4
+	const ROUTE39_STANDING_YOUNGSTER
+	const ROUTE39_FRUIT_TREE
+	const ROUTE39_POKEFAN_F2
+
 Route39_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,11 +18,11 @@ Route39_MapScriptHeader:
 	db 0
 
 TaurosScript_0x1a5af5:
-	loadfont
+	opentext
 	writetext UnknownText_0x1a5bf9
 	cry MILTANK
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokefanmDerek1:
@@ -18,8 +30,8 @@ TrainerPokefanmDerek1:
 
 PokefanmDerek1Script:
 	writecode VAR_CALLERID, PHONE_POKEFANM_DEREK
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	checkflag ENGINE_DEREK_HAS_NUGGET
 	iftrue UnknownScript_0x1a5b4a
 	checkcellnum PHONE_POKEFANM_DEREK
@@ -29,7 +41,7 @@ PokefanmDerek1Script:
 	checkevent EVENT_DEREK_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a5b33
 	writetext UnknownText_0x1a5cf8
-	keeptextopen
+	buttonsound
 	setevent EVENT_DEREK_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a5b62
 	jump UnknownScript_0x1a5b36
@@ -56,8 +68,8 @@ UnknownScript_0x1a5b59:
 
 UnknownScript_0x1a5b5c:
 	writetext UnknownText_0x1a5dec
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1a5b62:
@@ -96,63 +108,63 @@ TrainerPokefanfRuth:
 	trainer EVENT_BEAT_POKEFANF_RUTH, POKEFANF, RUTH, PokefanfRuthSeenText, PokefanfRuthBeatenText, 0, PokefanfRuthScript
 
 PokefanfRuthScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a5db2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSailorEugene:
 	trainer EVENT_BEAT_SAILOR_EUGENE, SAILOR, EUGENE, SailorEugeneSeenText, SailorEugeneBeatenText, 0, SailorEugeneScript
 
 SailorEugeneScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a5c4d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPsychicNorman:
 	trainer EVENT_BEAT_PSYCHIC_NORMAN, PSYCHIC_T, NORMAN, PsychicNormanSeenText, PsychicNormanBeatenText, 0, PsychicNormanScript
 
 PsychicNormanScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a5e57
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokefanFScript_0x1a5bbe:
 	faceplayer
-	loadfont
+	opentext
 	checknite
 	iffalse UnknownScript_0x1a5be5
 	checkevent EVENT_BEAT_POKEFANF_JAIME
 	iftrue UnknownScript_0x1a5bdf
 	writetext UnknownText_0x1a5ee8
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x1a5f17, 0
 	loadtrainer POKEFANF, JAIME
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_POKEFANF_JAIME
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x1a5bdf:
 	writetext UnknownText_0x1a5f31
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1a5be5:
 	writetext UnknownText_0x1a5ec4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute39Signpost2Script:
@@ -167,7 +179,7 @@ MapRoute39Signpost0Script:
 FruitTreeScript_0x1a5bf4:
 	fruittree FRUITTREE_ROUTE_39
 
-MapRoute39SignpostItem3:
+Route39HiddenNugget:
 	dwb EVENT_ROUTE_39_HIDDEN_NUGGET, NUGGET
 	
 
@@ -349,7 +361,7 @@ Route39_MapEventHeader:
 	signpost 31, 5, SIGNPOST_READ, MapRoute39Signpost0Script
 	signpost 5, 9, SIGNPOST_READ, MapRoute39Signpost1Script
 	signpost 7, 15, SIGNPOST_READ, MapRoute39Signpost2Script
-	signpost 13, 5, SIGNPOST_ITEM, MapRoute39SignpostItem3
+	signpost 13, 5, SIGNPOST_ITEM, Route39HiddenNugget
 
 .PersonEvents:
 	db 10

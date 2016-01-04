@@ -1,11 +1,20 @@
+SLOTS_NOMATCH EQU -1
+SLOTS_SEVEN EQU $00
+SLOTS_POKEBALL EQU $04
+SLOTS_CHERRY EQU $08
+SLOTS_PIKACHU EQU $0c
+SLOTS_SQUIRTLE EQU $10
+SLOTS_STARYU EQU $14
+REEL_SIZE EQU 15
+
 _SlotMachine:
 	ld hl, Options
 	set 4, [hl]
-	call Function926f7
+	call .InitGFX
 	call DelayFrame
-.asm_926d2
-	call Function927af
-	jr nc, .asm_926d2
+.loop
+	call SlotsLoop
+	jr nc, .loop
 	call WaitSFX
 	ld de, SFX_QUIT_SLOTS
 	call PlaySFX
@@ -18,7 +27,7 @@ _SlotMachine:
 	res 2, [hl]
 	ret
 
-Function926f7: ; 926f7 (24:66f7)
+.InitGFX: ; 926f7 (24:66f7)
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
@@ -27,132 +36,140 @@ Function926f7: ; 926f7 (24:66f7)
 	call DelayFrame
 	call DisableLCD
 	hlbgcoord 0, 0
-	lb bc, 4, 0
+	ld bc, VBGMap1 - VBGMap0
 	ld a, " "
 	call ByteFill
-	ld b, SCGB_05
+	ld b, SCGB_SLOT_MACHINE
 	call GetSGBLayout
-	callab Function8cf53
-	ld hl, wc6d0
-	ld bc, $48
+	callab ClearSpriteAnims
+	ld hl, wSlots
+	ld bc, wSlotsDataEnd - wSlots
 	xor a
 	call ByteFill
+
 	ld hl, Slots2LZ
 	ld de, VTiles0 tile $00
 	call Decompress
+
 	ld hl, Slots3LZ
 	ld de, VTiles0 tile $40
 	call Decompress
+
 	ld hl, Slots1LZ
 	ld de, VTiles2 tile $00
 	call Decompress
+
 	ld hl, Slots2LZ
 	ld de, VTiles2 tile $25
 	call Decompress
+
 	ld hl, SlotsTilemap
 	decoord 0, 0
-	ld bc, 20 * 12
+	ld bc, SCREEN_WIDTH * 12
 	call CopyBytes
+
 	ld hl, rLCDC ; $ff40
 	set 2, [hl]
 	call EnableLCD
-	ld hl, wc6d0
-	ld bc, $64
+	ld hl, wSlots ; Alias: wTrademons
+	ld bc, wSlotsEnd - wSlots ; Alias: wTrademonsEnd
 	xor a
 	call ByteFill
-	call Function92a98
-	call Function9279b
+	call InitReelTiles
+	call Slots_GetPals
 	ld a, $7
-	ld hl, wc300
+	ld hl, wSpriteAnimDict
 	ld [hli], a
 	ld [hl], $40
 	xor a
 	ld [wJumptableIndex], a
-	ld a, $ff
-	ld [wc709], a
+	ld a, SLOTS_NOMATCH
+	ld [wSlotBias], a
 	ld de, MUSIC_GAME_CORNER
 	call PlayMusic
 	xor a
 	ld [wd002], a
 	call Random
-	and $2a
+	and %00101010
 	ret nz
 	ld a, $1
 	ld [wd002], a
 	ret
 
-Function9279b: ; 9279b (24:679b)
-	ld a, $e4
+Slots_GetPals: ; 9279b (24:679b)
+	ld a, %11100100
 	call DmgToCgbBGPals
-	lb de, $e4, $e4
+	lb de, %11100100, %11100100
 	ld a, [hCGB]
 	and a
-	jr nz, .asm_927ab
-	lb de, $c0, $e4
-.asm_927ab
+	jr nz, .cgb
+	lb de, %11000000, %11100100
+.cgb
 	call DmgToCgbObjPals
 	ret
 
-Function927af: ; 927af (24:67af)
+SlotsLoop: ; 927af (24:67af)
 	ld a, [wJumptableIndex]
 	bit 7, a
-	jr nz, .asm_927d1
-	call Function92844
-	call Function92b0f
+	jr nz, .stop
+	call SlotsJumptable
+	call Slots_SpinReels
 	xor a
-	ld [wc3b5], a
-	callab Function8cfa8
-	call Function927f8
-	call Function927d3
+	ld [wCurrSpriteOAMAddr], a
+	callab DoNextFrameForFirst16Sprites
+	call .PrintCoinsAndPayout
+	call .DummyFunc
 	call DelayFrame
 	and a
 	ret
-.asm_927d1
+
+.stop
 	scf
 	ret
 
-Function927d3: ; 927d3 (24:67d3)
+.DummyFunc: ; 927d3 (24:67d3)
+; dummied out
 	ret
-; 927d4 (24:67d4)
-
-Function927d4: ; 927d4
-	ld a, [wc6d0]
+	ld a, [wReel1ReelAction]
 	and a
 	ret nz
-	ld a, [wc6e0]
+	ld a, [wReel2ReelAction]
 	and a
 	ret nz
-	ld a, [wc70c]
+	ld a, [wFirstTwoReelsMatchingSevens]
 	and a
-	jr nz, .asm_927ea
-	ld a, $e4
+	jr nz, .matching_sevens
+	ld a, %11100100
 	call DmgToCgbBGPals
 	ret
 
-.asm_927ea
+.matching_sevens
 	ld a, [TextDelayFrames]
 	and $7
 	ret nz
 	ld a, [rBGP]
-	xor %1100
+	xor %00001100
 	call DmgToCgbBGPals
 	ret
+
 ; 927f8
 
-Function927f8: ; 927f8 (24:67f8)
+.PrintCoinsAndPayout: ; 927f8 (24:67f8)
 	hlcoord 5, 1
 	ld de, Coins
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 4
 	call PrintNum
 	hlcoord 11, 1
-	ld de, wc711
+	ld de, wPayout
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 4
 	call PrintNum
 	ret
+
 ; 92811 (24:6811)
 
 Function92811: ; 92811
-	ld a, [wc709]
+; unreferenced - debug function?
+	ld a, [wSlotBias]
 	add 0
 	daa
 	ld e, a
@@ -167,17 +184,20 @@ Function92811: ; 92811
 	hlcoord 0, 0
 	ld [hl], a
 	ret
+
 ; 9282c
 
 Function9282c: ; 9282c
+; unreferenced
+; animate OAM tiles?
 	ld hl, wcf66
 	ld a, [hl]
 	inc [hl]
 	and $7
 	ret nz
-	ld hl, Sprites + $42
-	ld c, $18
-.asm_92839
+	ld hl, Sprites + 16 * 4 + 2
+	ld c, 40 - 16
+.loop
 	ld a, [hl]
 	xor $20
 	ld [hli], a
@@ -185,224 +205,210 @@ rept 3
 	inc hl
 endr
 	dec c
-	jr nz, .asm_92839
+	jr nz, .loop
 	ret
+
 ; 92844
 
-Function92844: ; 92844 (24:6844)
-	ld a, [wJumptableIndex]
-	ld e, a
-	ld d, 0
-	ld hl, Jumptable_92853
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
-; 92853 (24:6853)
+SlotsJumptable: ; 92844 (24:6844)
+	jumptable .Jumptable, wJumptableIndex
 
+.Jumptable
+	dw Slots_Init        ; 00
+	dw Slots_BetAndStart ; 01
+	dw Slots_WaitStart     ; 02
+	dw Slots_WaitReel1   ; 03
+	dw Slots_WaitStopReel1     ; 04
+	dw Slots_WaitReel2   ; 05
+	dw Slots_WaitStopReel2     ; 06
+	dw Slots_WaitReel3   ; 07
+	dw Slots_WaitStopReel3     ; 08
+	dw Slots_Next          ; 09
+	dw Slots_Next          ; 0a
+	dw Slots_Next          ; 0b
+	dw Slots_FlashIfWin     ; 0c
+	dw Slots_FlashScreen     ; 0d
+	dw Slots_GiveEarnedCoins     ; 0e
+	dw Slots_PayoutTextAndAnim     ; 0f
+	dw Slots_PayoutAnim     ; 10
+	dw Slots_RestartOrQuit     ; 11
+	dw Slots_Quit        ; 12
 
-Jumptable_92853: ; 92853 (24:6853)
-	dw Function9287e
-	dw Function9288e
-	dw Function928c6
-	dw Function928d6
-	dw Function928e6
-	dw Function92900
-	dw Function92910
-	dw Function9292a
-	dw Function9293a
-	dw Function92879
-	dw Function92879
-	dw Function92879
-	dw Function92955
-	dw Function9296b
-	dw Function92987
-	dw Function9299e
-	dw Function929a4
-	dw Function929d9
-	dw Function929f0
-
-
-Function92879: ; 92879 (24:6879)
+Slots_Next: ; 92879 (24:6879)
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
-Function9287e: ; 9287e (24:687e)
-	call Function92879
+Slots_Init: ; 9287e (24:687e)
+	call Slots_Next
 	xor a
-	ld [wc70b], a
-	ld [wc70c], a
-	ld a, $ff
-	ld [wc70d], a
+	ld [wFirstTwoReelsMatching], a
+	ld [wFirstTwoReelsMatchingSevens], a
+	ld a, -1
+	ld [wSlotMatched], a
 	ret
 
-Function9288e: ; 9288e (24:688e)
-	call Function9307c
-	jr nc, .asm_92899
-	ld a, $12
+Slots_BetAndStart: ; 9288e (24:688e)
+	call Slots_AskBet
+	jr nc, .proceed
+	ld a, 18
 	ld [wJumptableIndex], a
 	ret
-.asm_92899
-	call Function92879
-	call Function9303f
-	call Function93002
-	ld a, $20
+
+.proceed
+	call Slots_Next
+	call Slots_IlluminateBetLights
+	call Slots_InitBias
+	ld a, 32
 	ld [wcf64], a
+	ld a, 4
+	ld [wReel1ReelAction], a
+	ld [wReel2ReelAction], a
+	ld [wReel3ReelAction], a
 	ld a, $4
-	ld [wc6d0], a
-	ld [wc6e0], a
-	ld [wc6f0], a
-	ld a, $4
-	ld [wc6d9], a
-	ld [wc6e9], a
-	ld [wc6f9], a
+	ld [wReel1Slot09], a
+	ld [wReel2Slot09], a
+	ld [wReel3Slot09], a
 	call WaitSFX
 	ld a, SFX_SLOT_MACHINE_START
-	call Function9331e
+	call Slots_PlaySFX
 	ret
 
-Function928c6: ; 928c6 (24:68c6)
+Slots_WaitStart: ; 928c6 (24:68c6)
 	ld hl, wcf64
 	ld a, [hl]
 	and a
-	jr z, .asm_928cf
+	jr z, .proceed
 	dec [hl]
 	ret
-.asm_928cf
-	call Function92879
+
+.proceed
+	call Slots_Next
 	xor a
 	ld [hJoypadSum], a
 	ret
 
-Function928d6: ; 928d6 (24:68d6)
+Slots_WaitReel1: ; 928d6 (24:68d6)
 	ld hl, hJoypadSum ; $ffa5
 	ld a, [hl]
 	and A_BUTTON
 	ret z
-	call Function92879
-	call Function92a2b
-	ld [wc6d0], a
-
-Function928e6: ; 928e6 (24:68e6)
-	ld a, [wc6d0]
+	call Slots_Next
+	call Slots_StopReel1
+	ld [wReel1ReelAction], a
+Slots_WaitStopReel1: ; 928e6 (24:68e6)
+	ld a, [wReel1ReelAction]
 	cp $0
 	ret nz
 	ld a, SFX_STOP_SLOT
-	call Function9331e
-	ld bc, wc6d0
-	ld de, wc700
-	call Function929f6
-	call Function92879
+	call Slots_PlaySFX
+	ld bc, wReel1
+	ld de, wReel1Stopped
+	call Slots_LoadReelState
+	call Slots_Next
 	xor a
 	ld [hJoypadSum], a
-
-Function92900: ; 92900 (24:6900)
+Slots_WaitReel2: ; 92900 (24:6900)
 	ld hl, hJoypadSum ; $ffa5
 	ld a, [hl]
 	and A_BUTTON
 	ret z
-	call Function92879
-	call Function92a2e
-	ld [wc6e0], a
-
-Function92910: ; 92910 (24:6910)
-	ld a, [wc6e0]
+	call Slots_Next
+	call Slots_StopReel2
+	ld [wReel2ReelAction], a
+Slots_WaitStopReel2: ; 92910 (24:6910)
+	ld a, [wReel2ReelAction]
 	cp $0
 	ret nz
 	ld a, SFX_STOP_SLOT
-	call Function9331e
-	ld bc, wc6e0
-	ld de, wc703
-	call Function929f6
-	call Function92879
+	call Slots_PlaySFX
+	ld bc, wReel2
+	ld de, wReel2Stopped
+	call Slots_LoadReelState
+	call Slots_Next
 	xor a
 	ld [hJoypadSum], a
-
-Function9292a: ; 9292a (24:692a)
+Slots_WaitReel3: ; 9292a (24:692a)
 	ld hl, hJoypadSum ; $ffa5
 	ld a, [hl]
 	and A_BUTTON
 	ret z
-	call Function92879
-	call Function92a60
-	ld [wc6f0], a
-
-Function9293a: ; 9293a (24:693a)
-	ld a, [wc6f0]
+	call Slots_Next
+	call Slots_StopReel3
+	ld [wReel3ReelAction], a
+Slots_WaitStopReel3: ; 9293a (24:693a)
+	ld a, [wReel3ReelAction]
 	cp $0
 	ret nz
 	ld a, SFX_STOP_SLOT
-	call Function9331e
-	ld bc, wc6f0
-	ld de, wc706
-	call Function929f6
-	call Function92879
+	call Slots_PlaySFX
+	ld bc, wReel3
+	ld de, wReel3Stopped
+	call Slots_LoadReelState
+	call Slots_Next
 	xor a
 	ld [hJoypadSum], a
 	ret
 
-Function92955: ; 92955 (24:6955)
-	ld a, [wc70d]
-	cp $ff
-	jr nz, .asm_92963
-	call Function92879
-	call Function92879
+Slots_FlashIfWin: ; 92955 (24:6955)
+	ld a, [wSlotMatched]
+	cp -1
+	jr nz, .GotIt
+	call Slots_Next
+	call Slots_Next
 	ret
-.asm_92963
-	call Function92879
-	ld a, $10
+
+.GotIt
+	call Slots_Next
+	ld a, 16
 	ld [wcf64], a
-
-Function9296b: ; 9296b (24:696b)
+Slots_FlashScreen: ; 9296b (24:696b)
 	ld hl, wcf64
 	ld a, [hl]
 	and a
-	jr z, .asm_92980
+	jr z, .done
 	dec [hl]
 	srl a
 	ret z
+
 	ld a, [rOBP0]
 	xor $ff
 	ld e, a
 	ld d, a
 	call DmgToCgbObjPals
 	ret
-.asm_92980
-	call Function9279b
-	call Function92879
+
+.done
+	call Slots_GetPals
+	call Slots_Next
 	ret
 
-Function92987: ; 92987 (24:6987)
+Slots_GiveEarnedCoins: ; 92987 (24:6987)
 	xor a
-	ld [wc70b], a
-	ld [wc70c], a
-	ld a, $e4
+	ld [wFirstTwoReelsMatching], a
+	ld [wFirstTwoReelsMatchingSevens], a
+	ld a, %11100100
 	call DmgToCgbBGPals
-	call Function93124
+	call SlotGetPayout
 	xor a
 	ld [wcf64], a
-	call Function92879
+	call Slots_Next
 	ret
 
-Function9299e: ; 9299e (24:699e)
-	call Function93158
-	call Function92879
-
-Function929a4: ; 929a4 (24:69a4)
+Slots_PayoutTextAndAnim: ; 9299e (24:699e)
+	call SlotPayoutText
+	call Slots_Next
+Slots_PayoutAnim: ; 929a4 (24:69a4)
 	ld hl, wcf64
 	ld a, [hl]
 	inc [hl]
 	and $1
 	ret z
-	ld hl, wc711
+	ld hl, wPayout
 	ld a, [hli]
 	ld d, a
 	or [hl]
-	jr z, .asm_929d5
+	jr z, .done
 	ld e, [hl]
 	dec de
 	ld [hl], e
@@ -412,44 +418,46 @@ Function929a4: ; 929a4 (24:69a4)
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
-	call Function92a04
-	jr c, .asm_929c5
+	call Slot_CheckCoinCaseFull
+	jr c, .okay
 	inc de
-.asm_929c5
+.okay
 	ld [hl], e
 	dec hl
 	ld [hl], d
 	ld a, [wcf64]
 	and $7
-	ret z
+	ret z ; ret nz would be more appropriate
 	ld de, SFX_GET_COIN_FROM_SLOTS
 	call PlaySFX
 	ret
-.asm_929d5
-	call Function92879
+
+.done
+	call Slots_Next
 	ret
 
-Function929d9: ; 929d9 (24:69d9)
-	call Function9304c
+Slots_RestartOrQuit: ; 929d9 (24:69d9)
+	call Slots_DeilluminateBetLights
 	call WaitPressAorB_BlinkCursor
-	call Function930e9
-	jr c, .asm_929ea
-	ld a, $0
-	ld [wJumptableIndex], a
-	ret
-.asm_929ea
-	ld a, $12
+	call Slots_AskPlayAgain
+	jr c, .exit_slots
+	ld a, 0
 	ld [wJumptableIndex], a
 	ret
 
-Function929f0: ; 929f0 (24:69f0)
+.exit_slots
+	ld a, 18
+	ld [wJumptableIndex], a
+	ret
+
+Slots_Quit: ; 929f0 (24:69f0)
 	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
 
-Function929f6: ; 929f6 (24:69f6)
+Slots_LoadReelState: ; 929f6 (24:69f6)
 	push de
-	call Function92a12
+	call Slots_GetCurrentReelState
 	pop de
 	ld a, [hli]
 	ld [de], a
@@ -461,32 +469,33 @@ Function929f6: ; 929f6 (24:69f6)
 	ld [de], a
 	ret
 
-Function92a04: ; 92a04 (24:6a04)
+Slot_CheckCoinCaseFull: ; 92a04 (24:6a04)
 	ld a, d
 	cp 9999 / $100
-	jr c, .asm_92a10
+	jr c, .not_full
 	ld a, e
 	cp 9999 % $100
-	jr c, .asm_92a10
+	jr c, .not_full
 	scf
 	ret
-.asm_92a10
+
+.not_full
 	and a
 	ret
 
-Function92a12: ; 92a12 (24:6a12)
-	ld hl, $3
+Slots_GetCurrentReelState: ; 92a12 (24:6a12)
+	ld hl, wReel1Position - wReel1
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr nz, .asm_92a1c
+	jr nz, .okay
 	ld a, $f
-.asm_92a1c
+.okay
 	dec a
 	and $f
 	ld e, a
 	ld d, $0
-	ld hl, $1
+	ld hl, wReel1TilemapAddr - wReel1
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -494,180 +503,186 @@ Function92a12: ; 92a12 (24:6a12)
 	add hl, de
 	ret
 
-Function92a2b: ; 92a2b (24:6a2b)
+Slots_StopReel1: ; 92a2b (24:6a2b)
 	ld a, $7
 	ret
 
-Function92a2e: ; 92a2e (24:6a2e)
-	ld a, [wc70a]
+Slots_StopReel2: ; 92a2e (24:6a2e)
+	ld a, [wSlotBet]
 	cp $2
-	jr c, .asm_92a4e
-	ld a, [wc709]
+	jr c, .dont_jump
+	ld a, [wSlotBias]
 	and a
-	jr z, .asm_92a3f
-	cp $ff
-	jr nz, .asm_92a4e
-.asm_92a3f
-	call Function92a51
-	jr nz, .asm_92a4e
+	jr z, .skip
+	cp SLOTS_NOMATCH
+	jr nz, .dont_jump
+.skip
+	call .CheckReel1ForASeven
+	jr nz, .dont_jump
 	call Random
-	cp $50
-	jr nc, .asm_92a4e
+	cp $50 ; 32%
+	jr nc, .dont_jump
 	ld a, $a
 	ret
-.asm_92a4e
+
+.dont_jump
 	ld a, $8
 	ret
 
-Function92a51: ; 92a51 (24:6a51)
-	ld a, [wc700]
+.CheckReel1ForASeven: ; 92a51 (24:6a51)
+	ld a, [wReel1Stopped]
 	and a
 	ret z
-	ld a, [wc701]
+	ld a, [wReel1Stopped + 1]
 	and a
 	ret z
-	ld a, [wc702]
+	ld a, [wReel1Stopped + 2]
 	and a
 	ret
 
-Function92a60: ; 92a60 (24:6a60)
-	ld a, [wc70b]
+Slots_StopReel3: ; 92a60 (24:6a60)
+	ld a, [wFirstTwoReelsMatching]
 	and a
-	jr z, .asm_92a95
-	ld a, [wc70c]
+	jr z, .stop
+	ld a, [wFirstTwoReelsMatchingSevens]
 	and a
-	jr z, .asm_92a95
-	ld a, [wc709]
+	jr z, .stop
+	ld a, [wSlotBias]
 	and a
-	jr nz, .asm_92a84
+	jr nz, .biased
 	call Random
 	cp 180
-	jr nc, .asm_92a95
+	jr nc, .stop
 	cp 120
-	jr nc, .asm_92a92
+	jr nc, .slow_advance
 	cp 60
-	jr nc, .asm_92a8f
+	jr nc, .golem
 	ld a, $15
 	ret
-.asm_92a84
+
+.biased
 	call Random
-	cp $a0
-	jr nc, .asm_92a95
-	cp $50
-	jr nc, .asm_92a92
-.asm_92a8f
+	cp 160
+	jr nc, .stop
+	cp 80
+	jr nc, .slow_advance
+.golem
 	ld a, $12
 	ret
-.asm_92a92
+
+.slow_advance
 	ld a, $10
 	ret
-.asm_92a95
+
+.stop
 	ld a, $9
 	ret
 
-Function92a98: ; 92a98 (24:6a98)
-	ld bc, wc6d0
-	ld hl, $6
+InitReelTiles: ; 92a98 (24:6a98)
+	ld bc, wReel1
+	ld hl, wReel1OAMAddr - wReel1
 	add hl, bc
-	ld de, Sprites + $40
+	ld de, Sprites + 16 * 4
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, $1
+	ld hl, wReel1TilemapAddr - wReel1
 	add hl, bc
-	ld de, Unknown_93327
+	ld de, Reel1Tilemap
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, $8
+	ld hl, wReel1XCoord - wReel1
 	add hl, bc
-	ld [hl], $30
-	call Function92af9
-	ld bc, wc6e0
-	ld hl, $6
+	ld [hl], 6 * 8
+	call .OAM
+
+	ld bc, wReel2
+	ld hl, wReel1OAMAddr - wReel1
 	add hl, bc
-	ld de, Sprites + $60
+	ld de, Sprites + 24 * 4
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, $1
+	ld hl, wReel1TilemapAddr - wReel1
 	add hl, bc
-	ld de, Unknown_93339
+	ld de, Reel2Tilemap
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, $8
+	ld hl, wReel1XCoord - wReel1
 	add hl, bc
-	ld [hl], $50
-	call Function92af9
-	ld bc, wc6f0
-	ld hl, $6
+	ld [hl], 10 * 8
+	call .OAM
+
+	ld bc, wReel3
+	ld hl, wReel1OAMAddr - wReel1
 	add hl, bc
-	ld de, Sprites + $80
+	ld de, Sprites + 32 * 4
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, $1
+	ld hl, wReel1TilemapAddr - wReel1
 	add hl, bc
-	ld de, Unknown_9334b
+	ld de, Reel3Tilemap
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, $8
+	ld hl, wReel1XCoord - wReel1
 	add hl, bc
-	ld [hl], $70
-	call Function92af9
+	ld [hl], 14 * 8
+	call .OAM
 	ret
 
-Function92af9: ; 92af9 (24:6af9)
-	ld hl, 0
+.OAM: ; 92af9 (24:6af9)
+	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	ld [hl], $0
-	ld hl, $3
+	ld hl, wReel1Position - wReel1
 	add hl, bc
-	ld [hl], $e
-	ld hl, $4
+	ld [hl], REEL_SIZE - 1
+	ld hl, wReel1SpinDistance - wReel1
 	add hl, bc
 	ld [hl], $0
-	call Function92b53
+	call UpdateReelPositionAndOAM
 	ret
 
-Function92b0f: ; 92b0f (24:6b0f)
-	ld bc, wc6d0
-	call Function92b22
-	ld bc, wc6e0
-	call Function92b22
-	ld bc, wc6f0
-	call Function92b22
+Slots_SpinReels: ; 92b0f (24:6b0f)
+	ld bc, wReel1
+	call .SpinReel
+	ld bc, wReel2
+	call .SpinReel
+	ld bc, wReel3
+	call .SpinReel
 	ret
 
-Function92b22: ; 92b22 (24:6b22)
-	ld hl, $4
+.SpinReel: ; 92b22 (24:6b22)
+	ld hl, wReel1SpinDistance - wReel1
 	add hl, bc
 	ld a, [hl]
 	and $f
-	jr nz, .asm_92b2e
+	jr nz, .skip
 	call Function92bd4
-.asm_92b2e
-	ld hl, $5
+.skip
+	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld a, [hl]
 	and a
 	ret z
 	ld d, a
-	ld hl, $4
+	ld hl, wReel1SpinDistance - wReel1
 	add hl, bc
 	add [hl]
 	ld [hl], a
 	and $f
-	jr z, Function92b53
-	ld hl, $6
+	jr z, UpdateReelPositionAndOAM
+	ld hl, wReel1OAMAddr - wReel1
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld e, $8
-.asm_92b49
+.loop
 	ld a, [hl]
 	add d
 	ld [hli], a
@@ -675,21 +690,21 @@ rept 3
 	inc hl
 endr
 	dec e
-	jr nz, .asm_92b49
+	jr nz, .loop
 	ret
 
-Function92b53: ; 92b53 (24:6b53)
-	ld hl, $8
+UpdateReelPositionAndOAM: ; 92b53 (24:6b53)
+	ld hl, wReel1XCoord - wReel1
 	add hl, bc
 	ld a, [hl]
-	ld [wc712 + 1], a
-	ld a, $50
-	ld [wc712 + 2], a
-	ld hl, $3
+	ld [wCurrReelXCoord], a
+	ld a, 10 * 8
+	ld [wCurrReelYCoord], a
+	ld hl, wReel1Position - wReel1
 	add hl, bc
 	ld e, [hl]
-	ld d, $0
-	ld hl, $1
+	ld d, 0
+	ld hl, wReel1TilemapAddr - wReel1
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -697,29 +712,29 @@ Function92b53: ; 92b53 (24:6b53)
 	add hl, de
 	ld e, l
 	ld d, h
-	call Function92b83
-	ld hl, $3
+	call .LoadOAM
+	ld hl, wReel1Position - wReel1
 	add hl, bc
 	ld a, [hl]
 	inc a
 	and $f
-	cp $f
-	jr nz, .asm_92b81
+	cp REEL_SIZE
+	jr nz, .load
 	xor a
-.asm_92b81
+.load
 	ld [hl], a
 	ret
 
-Function92b83: ; 92b83 (24:6b83)
-	ld hl, $6
+.LoadOAM: ; 92b83 (24:6b83)
+	ld hl, wReel1OAMAddr - wReel1
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-.asm_92b8a
-	ld a, [wc712 + 2]
+.loop
+	ld a, [wCurrReelYCoord]
 	ld [hli], a
-	ld a, [wc712 + 1]
+	ld a, [wCurrReelXCoord]
 	ld [hli], a
 	ld a, [de]
 	ld [hli], a
@@ -727,27 +742,28 @@ Function92b83: ; 92b83 (24:6b83)
 	srl a
 	set 7, a
 	ld [hli], a
-	ld a, [wc712 + 2]
+
+	ld a, [wCurrReelYCoord]
 	ld [hli], a
-	ld a, [wc712 + 1]
-	add $8
+	ld a, [wCurrReelXCoord]
+	add 1 * 8
 	ld [hli], a
 	ld a, [de]
-rept 2
 	inc a
-endr
+	inc a
 	ld [hli], a
 	srl a
 	srl a
 	set 7, a
 	ld [hli], a
 	inc de
-	ld a, [wc712 + 2]
-	sub $10
-	ld [wc712 + 2], a
-	cp $10
-	jr nz, .asm_92b8a
+	ld a, [wCurrReelYCoord]
+	sub 2 * 8
+	ld [wCurrReelYCoord], a
+	cp 2 * 8
+	jr nz, .loop
 	ret
+
 ; 92bbe (24:6bbe)
 
 Function92bbe: ; 92bbe
@@ -762,6 +778,7 @@ Function92bbe: ; 92bbe
 	ld a, [hl]
 	pop hl
 	ret
+
 ; 92bce
 
 Unknown_92bce: ; 92bce
@@ -769,136 +786,143 @@ Unknown_92bce: ; 92bce
 ; 92bd4
 
 Function92bd4: ; 92bd4 (24:6bd4)
-	ld hl, 0
+	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
-	ld hl, Jumptable_92be4
-rept 2
+	ld hl, .dw
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
+
 ; 92be4 (24:6be4)
 
-Jumptable_92be4: ; 92be4
-	dw Function92c16
-	dw Function92c4c
-	dw Function92c17
-	dw Function92c1e
-	dw Function92c25
-	dw Function92c2c
-	dw Function92c33
-	dw Function92c5e
-	dw Function92c86
-	dw Function92ca9
-	dw Function92cd2
-	dw Function92cf8
-	dw Function92d13
-	dw Function92df7
-	dw Function92e10
-	dw Function92e31
-	dw Function92e47
-	dw Function92e64
-	dw Function92d20
-	dw Function92d4f
-	dw Function92d6e
-	dw Function92d7e
-	dw Function92da4
-	dw Function92db3
-	dw Function92dca
+.dw: ; 92be4
+	
+	dw ReelAction_DoNothing                   ; 00
+	dw Slots_StopReelIgnoreJoypad             ; 01
+	dw ReelAction_QuadrupleRate               ; 02
+	dw ReelAction_DoubleRate                  ; 03
+	dw ReelAction_NormalRate                  ; 04
+	dw ReelAction_HalfRate                    ; 05
+	dw ReelAction_QuarterRate                 ; 06
+	dw ReelAction_StopReel1                   ; 07
+	dw ReelAction_StopReel2                   ; 08
+	dw ReelAction_StopReel3                   ; 09
+	dw ReelAction_SetUpReel2SkipTo7           ; 0a
+	dw ReelAction_WaitReel2SkipTo7            ; 0b
+	dw ReelAction_FastSpinReel2UntilLinedUp7s ; 0c
+	dw ReelAction_BoringReelDrops             ; 0d
+	dw ReelAction_CheckDropReel               ; 0e
+	dw ReelAction_WaitDropReel                ; 0f
+	dw ReelAction_StartSlowAdvanceReel3       ; 10
+	dw ReelAction_WaitSlowAdvanceReel3        ; 11
+	dw ReelAction_InitGolem                   ; 12
+	dw ReelAction_WaitGolem                   ; 13
+	dw ReelAction_EndGolem                    ; 14
+	dw Slots_InitChansey                      ; 15
+	dw ReelAction_WaitChansey                 ; 16
+	dw ReelAction_WaitEgg                     ; 17
+	dw ReelAction_DropReel                    ; 18
 ; 92c16
 
-Function92c16: ; 92c16
+ReelAction_DoNothing: ; 92c16
 	ret
+
 ; 92c17
 
-Function92c17: ; 92c17
-	ld hl, $5
+ReelAction_QuadrupleRate: ; 92c17
+	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld [hl], $10
 	ret
+
 ; 92c1e
 
-Function92c1e: ; 92c1e
-	ld hl, $5
+ReelAction_DoubleRate: ; 92c1e
+	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld [hl], $8
 	ret
+
 ; 92c25
 
-Function92c25: ; 92c25
-	ld hl, $5
+ReelAction_NormalRate: ; 92c25
+	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld [hl], $4
 	ret
+
 ; 92c2c
 
-Function92c2c: ; 92c2c
-	ld hl, $5
+ReelAction_HalfRate: ; 92c2c
+	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld [hl], $2
 	ret
+
 ; 92c33
 
-Function92c33: ; 92c33
-	ld hl, $5
+ReelAction_QuarterRate: ; 92c33
+	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld [hl], $1
 	ret
+
 ; 92c3a
 
-Function92c3a: ; 92c3a
-	ld hl, $5
+Slots_StopReel: ; 92c3a
+	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld [hl], $0
-	ld hl, 0
+	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	ld [hl], $1
-	ld hl, $f
+	ld hl, wReel1Slot0f - wReel1
 	add hl, bc
 	ld [hl], $3
-
-Function92c4c: ; 92c4c
-	ld hl, $f
+Slots_StopReelIgnoreJoypad: ; 92c4c
+	ld hl, wReel1Slot0f - wReel1
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_92c56
+	jr z, .EndReel
 	dec [hl]
 	ret
 
-.asm_92c56
-	ld hl, 0
+.EndReel
+	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	ld a, $0
 	ld [hl], a
 	ret
+
 ; 92c5e
 
-Function92c5e: ; 92c5e
-	ld a, [wc709]
-	cp $ff
-	jr z, .asm_92c72
-	ld hl, $9
+ReelAction_StopReel1: ; 92c5e
+	ld a, [wSlotBias]
+	cp SLOTS_NOMATCH
+	jr z, .NoBias
+	ld hl, wReel1Slot09 - wReel1
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_92c72
+	jr z, .NoBias
 	dec [hl]
-	call Function92c76
+	call .CheckForBias
 	ret nz
-
-.asm_92c72
-	call Function92c3a
+.NoBias
+	call Slots_StopReel
 	ret
+
 ; 92c76
 
-Function92c76: ; 92c76
-	call Function92a12
-	ld a, [wc709]
+.CheckForBias: ; 92c76
+	call Slots_GetCurrentReelState
+	ld a, [wSlotBias]
 	ld e, a
 	ld a, [hli]
 	cp e
@@ -909,40 +933,41 @@ Function92c76: ; 92c76
 	ld a, [hl]
 	cp e
 	ret
+
 ; 92c86
 
-Function92c86: ; 92c86
-	call Function92e94
-	jr nc, .asm_92c94
-	ld a, [wc717]
-	ld hl, wc709
+ReelAction_StopReel2: ; 92c86
+	call Slots_CheckMatchedFirstTwoReels
+	jr nc, .nope
+	ld a, [wSlotBuildingMatch]
+	ld hl, wSlotBias
 	cp [hl]
-	jr z, .asm_92ca5
-
-.asm_92c94
-	ld a, [wc709]
-	cp $ff
-	jr z, .asm_92ca5
-	ld hl, $9
+	jr z, .NoBias
+.nope
+	ld a, [wSlotBias]
+	cp SLOTS_NOMATCH
+	jr z, .NoBias
+	ld hl, wReel1Slot09 - wReel1
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_92ca5
+	jr z, .NoBias
 	dec [hl]
 	ret
 
-.asm_92ca5
-	call Function92c3a
+.NoBias
+	call Slots_StopReel
 	ret
+
 ; 92ca9
 
-Function92ca9: ; 92ca9
-	call Function92f1d
-	jr nc, .asm_92cbd
-	ld hl, wc709
+ReelAction_StopReel3: ; 92ca9
+	call Slots_CheckMatchedAllThreeReels
+	jr nc, .NoMatch
+	ld hl, wSlotBias
 	cp [hl]
-	jr z, .asm_92cce
-	ld hl, $9
+	jr z, .NoBias
+	ld hl, wReel1Slot09 - wReel1
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -950,49 +975,51 @@ Function92ca9: ; 92ca9
 	dec [hl]
 	ret
 
-.asm_92cbd
-	ld a, [wc709]
-	cp $ff
-	jr z, .asm_92cce
-	ld hl, $9
+.NoMatch
+	ld a, [wSlotBias]
+	cp SLOTS_NOMATCH
+	jr z, .NoBias
+	ld hl, wReel1Slot09 - wReel1
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_92cce
+	jr z, .NoBias
 	dec [hl]
 	ret
 
-.asm_92cce
-	call Function92c3a
+.NoBias
+	call Slots_StopReel
 	ret
+
 ; 92cd2
 
-Function92cd2: ; 92cd2
-	call Function92e94
-	jr nc, .asm_92ce1
-	ld a, [wc70c]
+ReelAction_SetUpReel2SkipTo7: ; 92cd2
+	call Slots_CheckMatchedFirstTwoReels
+	jr nc, .no_match
+	ld a, [wFirstTwoReelsMatchingSevens]
 	and a
-	jr z, .asm_92ce1
-	call Function92c3a
+	jr z, .no_match
+	call Slots_StopReel
 	ret
 
-.asm_92ce1
+.no_match
 	ld a, SFX_STOP_SLOT
-	call Function9331e
-	ld hl, 0
+	call Slots_PlaySFX
+	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	inc [hl]
-	ld hl, $a
+	ld hl, wReel1Slot0a - wReel1
 	add hl, bc
 	ld [hl], $20
-	ld hl, $5
+	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld [hl], $0
 	ret
+
 ; 92cf8
 
-Function92cf8: ; 92cf8
-	ld hl, $a
+ReelAction_WaitReel2SkipTo7: ; 92cf8
+	ld hl, wReel1Slot0a - wReel1
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -1002,489 +1029,506 @@ Function92cf8: ; 92cf8
 
 .asm_92d02
 	ld a, SFX_THROW_BALL
-	call Function9331e
-	ld hl, 0
+	call Slots_PlaySFX
+	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	inc [hl]
-	ld hl, $5
+	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld [hl], $8
 	ret
+
 ; 92d13
 
-Function92d13: ; 92d13
-	call Function92e94
+ReelAction_FastSpinReel2UntilLinedUp7s: ; 92d13
+	call Slots_CheckMatchedFirstTwoReels
 	ret nc
-	ld a, [wc70c]
+	ld a, [wFirstTwoReelsMatchingSevens]
 	and a
 	ret z
-	call Function92c3a
+	call Slots_StopReel
 	ret
+
 ; 92d20
 
-Function92d20: ; 92d20
-	call Function92f1d
+ReelAction_InitGolem: ; 92d20
+	call Slots_CheckMatchedAllThreeReels
 	ret c
 	ld a, SFX_STOP_SLOT
-	call Function9331e
-	call Function93316
-	ld hl, 0
+	call Slots_PlaySFX
+	call Slots_WaitSFX
+	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	inc [hl]
-	ld hl, $5
+	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld [hl], $0
 	call Function92fc0
 	push bc
 	push af
 	depixel 12, 13
-	ld a, SPRITE_ANIM_INDEX_06
+	ld a, SPRITE_ANIM_INDEX_SLOT_GOLEM
 	call _InitSpriteAnimStruct
-	ld hl, $e
+	ld hl, SPRITEANIMSTRUCT_0E
 	add hl, bc
 	pop af
 	ld [hl], a
 	pop bc
 	xor a
 	ld [wcf64], a
-
-Function92d4f: ; 92d4f
+ReelAction_WaitGolem: ; 92d4f
 	ld a, [wcf64]
-	cp $2
-	jr z, .asm_92d5b
-	cp $1
-	jr z, .asm_92d62
+	cp 2
+	jr z, .two
+	cp 1
+	jr z, .one
 	ret
 
-.asm_92d5b
-	call Function92f1d
-	call Function92c3a
+.two
+	call Slots_CheckMatchedAllThreeReels
+	call Slots_StopReel
 	ret
 
-.asm_92d62
-	ld hl, 0
+.one
+	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	inc [hl]
-	ld hl, $5
+	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld [hl], $8
 	ret
+
 ; 92d6e
 
-Function92d6e: ; 92d6e
+ReelAction_EndGolem: ; 92d6e
 	xor a
 	ld [wcf64], a
-	ld hl, 0
+	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	dec [hl]
-	ld hl, $5
+	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld [hl], $0
 	ret
+
 ; 92d7e
 
-Function92d7e: ; 92d7e
-	call Function92f1d
+Slots_InitChansey: ; 92d7e
+	call Slots_CheckMatchedAllThreeReels
 	ret c
 	ld a, SFX_STOP_SLOT
-	call Function9331e
-	call Function93316
-	ld hl, 0
+	call Slots_PlaySFX
+	call Slots_WaitSFX
+	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	inc [hl]
-	ld hl, $5
+	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld [hl], $0
 	push bc
 	depixel 12, 0
-	ld a, SPRITE_ANIM_INDEX_07
+	ld a, SPRITE_ANIM_INDEX_SLOTS_CHANSEY
 	call _InitSpriteAnimStruct
 	pop bc
 	xor a
 	ld [wcf64], a
 	ret
+
 ; 92da4
 
-Function92da4: ; 92da4
+ReelAction_WaitChansey: ; 92da4
 	ld a, [wcf64]
 	and a
 	ret z
-	ld hl, 0
+	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	inc [hl]
 	ld a, $2
 	ld [wcf64], a
-
-Function92db3: ; 92db3
+ReelAction_WaitEgg: ; 92db3
 	ld a, [wcf64]
 	cp $4
 	ret c
-	ld hl, 0
+	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	inc [hl]
-	ld hl, $5
+	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld [hl], $10
-	ld hl, $a
+	ld hl, wReel1Slot0a - wReel1
 	add hl, bc
 	ld [hl], $11
-
-Function92dca: ; 92dca
-	ld hl, $a
+ReelAction_DropReel: ; 92dca
+	ld hl, wReel1Slot0a - wReel1
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_92dd4
+	jr z, .check_match
 	dec [hl]
 	ret
 
-.asm_92dd4
-	call Function92f1d
-	jr nc, .asm_92de5
+.check_match
+	call Slots_CheckMatchedAllThreeReels
+	jr nc, .EggAgain
 	and a
-	jr nz, .asm_92de5
+	jr nz, .EggAgain
 	ld a, $5
 	ld [wcf64], a
-	call Function92c3a
+	call Slots_StopReel
 	ret
 
-.asm_92de5
-	ld hl, $5
+.EggAgain
+	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld [hl], $0
-	ld hl, 0
+	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
-rept 2
 	dec [hl]
-endr
+	dec [hl]
 	ld a, $1
 	ld [wcf64], a
 	ret
+
 ; 92df7
 
-Function92df7: ; 92df7
-	call Function92f1d
+ReelAction_BoringReelDrops: ; 92df7
+	call Slots_CheckMatchedAllThreeReels
 	ret c
 	ld a, SFX_STOP_SLOT
-	call Function9331e
-	call Function93316
-	ld hl, 0
+	call Slots_PlaySFX
+	call Slots_WaitSFX
+	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	inc [hl]
 	call Function92fc0
-	ld hl, $a
+	ld hl, wReel1Slot0a - wReel1
 	add hl, bc
 	ld [hl], a
-
-Function92e10: ; 92e10
-	ld hl, $a
+ReelAction_CheckDropReel: ; 92e10
+	ld hl, wReel1Slot0a - wReel1
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr nz, .asm_92e1f
-	call Function92f1d
-	call Function92c3a
+	jr nz, .spin
+	call Slots_CheckMatchedAllThreeReels
+	call Slots_StopReel
 	ret
 
-.asm_92e1f
+.spin
 	dec [hl]
-	ld hl, 0
+	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	inc [hl]
-	ld hl, $b
+	ld hl, wReel1Slot0b - wReel1
 	add hl, bc
 	ld [hl], $20
-	ld hl, $5
+	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld [hl], $0
-
-Function92e31: ; 92e31
-	ld hl, $b
+ReelAction_WaitDropReel: ; 92e31
+	ld hl, wReel1Slot0b - wReel1
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_92e3b
+	jr z, .DropReel
 	dec [hl]
 	ret
 
-.asm_92e3b
-	ld hl, 0
+.DropReel
+	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	dec [hl]
-	ld hl, $5
+	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
-	ld [hl], $8
+	ld [hl], $8 ; 2x
 	ret
+
 ; 92e47
 
-Function92e47: ; 92e47
-	call Function92f1d
+ReelAction_StartSlowAdvanceReel3: ; 92e47
+	call Slots_CheckMatchedAllThreeReels
 	ret c
 	ld a, SFX_STOP_SLOT
-	call Function9331e
-	call Function93316
-	ld hl, $5
+	call Slots_PlaySFX
+	call Slots_WaitSFX
+	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld [hl], $1
-	ld hl, 0
+	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	inc [hl]
-	ld hl, $a
+	ld hl, wReel1Slot0a - wReel1
 	add hl, bc
 	ld [hl], $10
-
-Function92e64: ; 92e64
-	ld hl, $a
+ReelAction_WaitSlowAdvanceReel3: ; 92e64
+	ld hl, wReel1Slot0a - wReel1
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_92e73
+	jr z, .check1
 	dec [hl]
-.asm_92e6d
+.play_sfx
 	ld a, SFX_GOT_SAFARI_BALLS
-	call Function9331e
+	call Slots_PlaySFX
 	ret
 
-.asm_92e73
-	ld a, [wc709]
+.check1
+	ld a, [wSlotBias]
 	and a
-	jr nz, .asm_92e88
-	call Function92f1d
-	jr nc, .asm_92e6d
+	jr nz, .check2
+	call Slots_CheckMatchedAllThreeReels
+	jr nc, .play_sfx
 	and a
-	jr nz, .asm_92e6d
-	call Function92c3a
+	jr nz, .play_sfx
+	call Slots_StopReel
 	call WaitSFX
 	ret
 
-.asm_92e88
-	call Function92f1d
-	jr c, .asm_92e6d
-	call Function92c3a
+.check2
+	call Slots_CheckMatchedAllThreeReels
+	jr c, .play_sfx
+	call Slots_StopReel
 	call WaitSFX
 	ret
+
 ; 92e94
 
-Function92e94: ; 92e94
+Slots_CheckMatchedFirstTwoReels: ; 92e94
 	xor a
-	ld [wc70b], a
-	ld [wc70c], a
-	call Function92a12
-	call Function92fb4
-	ld a, [wc70a]
+	ld [wFirstTwoReelsMatching], a
+	ld [wFirstTwoReelsMatchingSevens], a
+	call Slots_GetCurrentReelState
+	call Slots_CopyReelState
+	ld a, [wSlotBet]
 	and 3
 	ld e, a
 	ld d, 0
-	ld hl, Jumptable_92ebd
-rept 2
+	ld hl, .Jumptable
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, .asm_92eb6
+	ld de, .return
 	push de
 	jp [hl]
 
-.asm_92eb6
-	ld a, [wc70b]
+.return
+	ld a, [wFirstTwoReelsMatching]
 	and a
 	ret z
 	scf
 	ret
+
 ; 92ebd
 
-Jumptable_92ebd: ; 92ebd
-	dw Function92ed4
-	dw Function92ed1
-	dw Function92ecb
-	dw Function92ec5
+.Jumptable: ; 92ebd
+	
+	dw .zero
+	dw .one
+	dw .two
+	dw .three
 ; 92ec5
 
-Function92ec5: ; 92ec5
-	call Function92ee0
-	call Function92ef6
+.three: ; 92ec5
+	call .CheckUpwardsDiag
+	call .CheckDownwardsDiag
 
-Function92ecb: ; 92ecb
-	call Function92ed5
-	call Function92f01
+.two: ; 92ecb
+	call .CheckBottomRow
+	call .CheckTopRow
 
-Function92ed1: ; 92ed1
-	call Function92eeb
+.one: ; 92ed1
+	call .CheckMiddleRow
 
-Function92ed4: ; 92ed4
+.zero: ; 92ed4
 	ret
+
 ; 92ed5
 
-Function92ed5: ; 92ed5
-	ld hl, wc70e
-	ld a, [EnemyScreens]
+.CheckBottomRow: ; 92ed5
+	ld hl, wCurrReelStopped
+	ld a, [wReel1Stopped]
 	cp [hl]
-	call z, Function92f0c
+	call z, .StoreResult
 	ret
+
 ; 92ee0
 
-Function92ee0: ; 92ee0
-	ld hl, wEnemyGoesFirst
-	ld a, [wc700]
+.CheckUpwardsDiag: ; 92ee0
+	ld hl, wCurrReelStopped + 1
+	ld a, [wReel1Stopped]
 	cp [hl]
-	call z, Function92f0c
+	call z, .StoreResult
 	ret
+
 ; 92eeb
 
-Function92eeb: ; 92eeb
-	ld hl, wEnemyGoesFirst
-	ld a, [wc701]
+.CheckMiddleRow: ; 92eeb
+	ld hl, wCurrReelStopped + 1
+	ld a, [wReel1Stopped + 1]
 	cp [hl]
-	call z, Function92f0c
+	call z, .StoreResult
 	ret
+
 ; 92ef6
 
-Function92ef6: ; 92ef6
-	ld hl, wEnemyGoesFirst
-	ld a, [wc702]
+.CheckDownwardsDiag: ; 92ef6
+	ld hl, wCurrReelStopped + 1
+	ld a, [wReel1Stopped + 2]
 	cp [hl]
-	call z, Function92f0c
+	call z, .StoreResult
 	ret
+
 ; 92f01
 
-Function92f01: ; 92f01
-	ld hl, wc710
-	ld a, [wc702]
+.CheckTopRow: ; 92f01
+	ld hl, wCurrReelStopped + 2
+	ld a, [wReel1Stopped + 2]
 	cp [hl]
-	call z, Function92f0c
+	call z, .StoreResult
 	ret
+
 ; 92f0c
 
-Function92f0c: ; 92f0c
-	ld [wc717], a
+.StoreResult: ; 92f0c
+	ld [wSlotBuildingMatch], a
 	and a
-	jr nz, .asm_92f17
+	jr nz, .matching_sevens
 	ld a, $1
-	ld [wc70c], a
+	ld [wFirstTwoReelsMatchingSevens], a
 
-.asm_92f17
+.matching_sevens
 	ld a, $1
-	ld [wc70b], a
+	ld [wFirstTwoReelsMatching], a
 	ret
+
 ; 92f1d
 
-Function92f1d: ; 92f1d
+Slots_CheckMatchedAllThreeReels: ; 92f1d
 	ld a, $ff
-	ld [EffectFailed], a
-	call Function92a12
-	call Function92fb4
-	ld a, [wc70a]
+	ld [wSlotMatched], a
+	call Slots_GetCurrentReelState
+	call Slots_CopyReelState
+	ld a, [wSlotBet]
 	and 3
 	ld e, a
 	ld d, 0
-	ld hl, Jumptable_92f48
-rept 2
+	ld hl, .Jumptable
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, .asm_92f3d
+	ld de, .return
 	push de
 	jp [hl]
 
-.asm_92f3d
-	ld a, [wc70d]
+.return
+	ld a, [wSlotMatched]
 	cp $ff
-	jr nz, .asm_92f46
+	jr nz, .matched_nontrivial
 	and a
 	ret
 
-.asm_92f46
+.matched_nontrivial
 	scf
 	ret
+
 ; 92f48
 
-Jumptable_92f48: ; 92f48
-	dw Function92f5f
-	dw Function92f5c
-	dw Function92f56
-	dw Function92f50
+.Jumptable: ; 92f48
+	
+	dw .zero
+	dw .one
+	dw .two
+	dw .three
 ; 92f50
 
-Function92f50: ; 92f50
-	call Function92f70
-	call Function92f90
+.three: ; 92f50
+	call .CheckUpwardsDiag
+	call .CheckDownwardsDiag
 
-Function92f56: ; 92f56
-	call Function92f60
-	call Function92fa0
+.two: ; 92f56
+	call .CheckBottomRow
+	call .CheckTopRow
 
-Function92f5c: ; 92f5c
-	call Function92f80
+.one: ; 92f5c
+	call .CheckMiddleRow
 
-Function92f5f: ; 92f5f
+.zero: ; 92f5f
 	ret
+
 ; 92f60
 
-Function92f60: ; 92f60
-	ld hl, wc70e
-	ld a, [wc700]
+.CheckBottomRow: ; 92f60
+	ld hl, wCurrReelStopped
+	ld a, [wReel1Stopped]
 	cp [hl]
 	ret nz
-	ld hl, wc703
+	ld hl, wReel2Stopped
 	cp [hl]
-	call z, Function92fb0
+	call z, .StoreResult
 	ret
+
 ; 92f70
 
-Function92f70: ; 92f70
-	ld hl, wc710
-	ld a, [wc700]
+.CheckUpwardsDiag: ; 92f70
+	ld hl, wCurrReelStopped + 2
+	ld a, [wReel1Stopped]
 	cp [hl]
 	ret nz
-	ld hl, wc704
+	ld hl, wReel2Stopped + 1
 	cp [hl]
-	call z, Function92fb0
+	call z, .StoreResult
 	ret
+
 ; 92f80
 
-Function92f80: ; 92f80
-	ld hl, wEnemyGoesFirst
-	ld a, [wc701]
+.CheckMiddleRow: ; 92f80
+	ld hl, wCurrReelStopped + 1
+	ld a, [wReel1Stopped + 1]
 	cp [hl]
 	ret nz
-	ld hl, wc704
+	ld hl, wReel2Stopped + 1
 	cp [hl]
-	call z, Function92fb0
+	call z, .StoreResult
 	ret
+
 ; 92f90
 
-Function92f90: ; 92f90
-	ld hl, wc70e
-	ld a, [wc702]
+.CheckDownwardsDiag: ; 92f90
+	ld hl, wCurrReelStopped
+	ld a, [wReel1Stopped + 2]
 	cp [hl]
 	ret nz
-	ld hl, wc704
+	ld hl, wReel2Stopped + 1
 	cp [hl]
-	call z, Function92fb0
+	call z, .StoreResult
 	ret
+
 ; 92fa0
 
-Function92fa0: ; 92fa0
-	ld hl, wc710
-	ld a, [wc702]
+.CheckTopRow: ; 92fa0
+	ld hl, wCurrReelStopped + 2
+	ld a, [wReel1Stopped + 2]
 	cp [hl]
 	ret nz
-	ld hl, wc705
+	ld hl, wReel2Stopped + 2
 	cp [hl]
-	call z, Function92fb0
+	call z, .StoreResult
 	ret
+
 ; 92fb0
 
-Function92fb0: ; 92fb0
-	ld [wc70d], a
+.StoreResult: ; 92fb0
+	ld [wSlotMatched], a
 	ret
+
 ; 92fb4
 
-Function92fb4: ; 92fb4
-	ld de, wc70e
+Slots_CopyReelState: ; 92fb4
+	ld de, wCurrReelStopped
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -1494,211 +1538,219 @@ Function92fb4: ; 92fb4
 	ld a, [hl]
 	ld [de], a
 	ret
+
 ; 92fc0
 
 Function92fc0: ; 92fc0
-	ld hl, $3
+	ld hl, wReel1Position - wReel1
 	add hl, bc
 	ld a, [hl]
 	push af
 	push hl
-	call Function92fcf
+	call .Check7Bias
 	pop hl
 	pop af
 	ld [hl], a
 	ld a, e
 	ret
+
 ; 92fcf
 
-Function92fcf: ; 92fcf
-	ld a, [wc709]
+.Check7Bias: ; 92fcf
+	ld a, [wSlotBias]
 	and a
-	jr nz, .asm_92fe8
+	jr nz, .not_biased_to_seven
 	ld e, $0
-.asm_92fd7
-	ld hl, $3
+.loop1
+	ld hl, wReel1Position - wReel1
 	add hl, bc
 	inc [hl]
 	inc e
 	push de
-	call Function92f1d
+	call Slots_CheckMatchedAllThreeReels
 	pop de
-	jr nc, .asm_92fd7
+	jr nc, .loop1
 	and a
-	jr nz, .asm_92fd7
+	jr nz, .loop1
 	ret
 
-.asm_92fe8
+.not_biased_to_seven
 	call Random
 	and $7
-	cp $4
-	jr c, .asm_92fe8
+	cp $4 ; ((50 percent) & 7) + 1
+	jr c, .not_biased_to_seven
 	ld e, a
-.asm_92ff2
+.loop2
 	ld a, e
 	inc e
-	ld hl, $3
+	ld hl, wReel1Position - wReel1
 	add hl, bc
 	add [hl]
 	ld [hl], a
 	push de
-	call Function92f1d
+	call Slots_CheckMatchedAllThreeReels
 	pop de
-	jr c, .asm_92ff2
+	jr c, .loop2
 	ret
+
 ; 93002
 
-Function93002: ; 93002 (24:7002)
-	ld a, [wc709]
+Slots_InitBias: ; 93002 (24:7002)
+	ld a, [wSlotBias]
 	and a
 	ret z
-	ld hl, Unknown_93023
+	ld hl, .Normal
 	ld a, [ScriptVar]
 	and a
-	jr z, .asm_93013
-	ld hl, Unknown_93031
-.asm_93013
+	jr z, .okay
+	ld hl, .Lucky
+.okay
 	call Random
 	ld c, a
-.asm_93017
+.loop
 	ld a, [hli]
 	cp c
-	jr nc, .asm_9301e
+	jr nc, .done
 	inc hl
-	jr .asm_93017
-.asm_9301e
+	jr .loop
+
+.done
 	ld a, [hl]
-	ld [wc709], a
+	ld [wSlotBias], a
 	ret
+
 ; 93023 (24:7023)
 
-Unknown_93023: ; 93023
-	db $01, $00
-	db $03, $04
-	db $0a, $14
-	db $14, $10
-	db $28, $0c
-	db $30, $08
-	db $ff, $ff
+.Normal: ; 93023
+	db $01, SLOTS_SEVEN    ; 1/256
+	db $03, SLOTS_POKEBALL ; 1/128
+	db $0a, SLOTS_STARYU   ; 7/256
+	db $14, SLOTS_SQUIRTLE ; 5/128
+	db $28, SLOTS_PIKACHU  ; 5/64
+	db $30, SLOTS_CHERRY   ; 1/32
+	db $ff, SLOTS_NOMATCH  ; everything else
 ; 93031
 
-Unknown_93031: ; 93031
-	db $02, $00
-	db $03, $04
-	db $08, $14
-	db $10, $10
-	db $1e, $0c
-	db $50, $08
-	db $ff, $ff
+.Lucky: ; 93031
+	db $02, SLOTS_SEVEN    ;  1/128
+	db $03, SLOTS_POKEBALL ;  1/256
+	db $08, SLOTS_STARYU   ;  5/256
+	db $10, SLOTS_SQUIRTLE ;  1/32
+	db $1e, SLOTS_PIKACHU  ;  7/128
+	db $50, SLOTS_CHERRY   ; 25/128
+	db $ff, SLOTS_NOMATCH  ; everything else
 ; 9303f
 
-Function9303f: ; 9303f (24:703f)
-	ld b, $14
-	ld a, [wc70a]
+Slots_IlluminateBetLights: ; 9303f (24:703f)
+	ld b, $14 ; turned on
+	ld a, [wSlotBet]
 	dec a
-	jr z, asm_93066
+	jr z, Slots_Lights1OnOff
 	dec a
-	jr z, asm_9305a
-	jr asm_9304e
+	jr z, Slots_Lights2OnOff
+	jr Slots_Lights3OnOff
 
-Function9304c: ; 9304c (24:704c)
-	ld b, $23
-asm_9304e: ; 9304e (24:704e)
+Slots_DeilluminateBetLights: ; 9304c (24:704c)
+	ld b, $23 ; turned off
+Slots_Lights3OnOff: ; 9304e (24:704e)
 	hlcoord 3, 2
-	call Function93069
+	call Slots_TurnLightsOnOrOff
 	hlcoord 3, 10
-	call Function93069
-asm_9305a: ; 9305a (24:705a)
+	call Slots_TurnLightsOnOrOff
+Slots_Lights2OnOff: ; 9305a (24:705a)
 	hlcoord 3, 4
-	call Function93069
+	call Slots_TurnLightsOnOrOff
 	hlcoord 3, 8
-	call Function93069
-asm_93066: ; 93066 (24:7066)
+	call Slots_TurnLightsOnOrOff
+Slots_Lights1OnOff: ; 93066 (24:7066)
 	hlcoord 3, 6
 
-Function93069: ; 93069 (24:7069)
+Slots_TurnLightsOnOrOff: ; 93069 (24:7069)
 	ld a, b
 	ld [hl], a
-	ld de, $d
+	ld de, SCREEN_WIDTH / 2 + 3
 	add hl, de
 	ld [hl], a
-	ld de, $7
+	ld de, SCREEN_WIDTH / 2 - 3
 	add hl, de
 	inc a
 	ld [hl], a
-	ld de, $d
+	ld de, SCREEN_WIDTH / 2 + 3
 	add hl, de
 	ld [hl], a
 	ret
 
-Function9307c: ; 9307c (24:707c)
-	ld hl, UnknownText_0x930c7
+Slots_AskBet: ; 9307c (24:707c)
+.loop
+	ld hl, .Text_BetHowManyCoins
 	call PrintText
-	ld hl, MenuDataHeader_0x930d6
+	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
-	call InterpretMenu2
-	call WriteBackup
+	call VerticalMenu
+	call CloseWindow
 	ret c
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld b, a
-	ld a, $4
+	ld a, 4
 	sub b
-	ld [wc70a], a
+	ld [wSlotBet], a
 	ld hl, Coins
 	ld c, a
 	ld a, [hli]
 	and a
-	jr nz, .asm_930ad
+	jr nz, .Start
 	ld a, [hl]
 	cp c
-	jr nc, .asm_930ad
-	ld hl, UnknownText_0x930d1
+	jr nc, .Start
+	ld hl, .Text_NotEnoughCoins
 	call PrintText
-	jr Function9307c
-.asm_930ad
+	jr .loop
+
+.Start
 	ld hl, Coins + 1
 	ld a, [hl]
 	sub c
 	ld [hld], a
-	jr nc, .asm_930b6
+	jr nc, .ok
 	dec [hl]
-.asm_930b6
+.ok
 	call WaitSFX
 	ld de, SFX_PAY_DAY
 	call PlaySFX
-	ld hl, UnknownText_0x930cc
+	ld hl, .Text_Start
 	call PrintText
 	and a
 	ret
+
 ; 930c7 (24:70c7)
 
-UnknownText_0x930c7: ; 0x930c7
+.Text_BetHowManyCoins: ; 0x930c7
 	; Bet how many coins?
 	text_jump UnknownText_0x1c5049
 	db "@"
 ; 0x930cc
 
-UnknownText_0x930cc: ; 0x930cc
+.Text_Start: ; 0x930cc
 	; Start!
 	text_jump UnknownText_0x1c505e
 	db "@"
 ; 0x930d1
 
-UnknownText_0x930d1: ; 0x930d1
+.Text_NotEnoughCoins: ; 0x930d1
 	; Not enough coins.
 	text_jump UnknownText_0x1c5066
 	db "@"
 ; 0x930d6
 
-MenuDataHeader_0x930d6: ; 0x930d6
+.MenuDataHeader: ; 0x930d6
 	db $40 ; flags
 	db 10, 14 ; start coords
 	db 17, 19 ; end coords
-	dw MenuData2_0x930de
+	dw .MenuData2
 	db 1 ; default option
 ; 0x930de
 
-MenuData2_0x930de: ; 0x930de
+.MenuData2: ; 0x930de
 	db $80 ; flags
 	db 3 ; items
 	db " 3@"
@@ -1706,128 +1758,125 @@ MenuData2_0x930de: ; 0x930de
 	db " 1@"
 ; 0x930e9
 
-Function930e9: ; 930e9 (24:70e9)
+Slots_AskPlayAgain: ; 930e9 (24:70e9)
 	ld hl, Coins
 	ld a, [hli]
 	or [hl]
-	jr nz, .asm_930fd
-	ld hl, UnknownText_9311a
+	jr nz, .you_have_coins
+	ld hl, .Text_OutOfCoins
 	call PrintText
 	ld c, 60
 	call DelayFrames
-	jr .asm_93118
-.asm_930fd
-	ld hl, UnknownText_9311f
+	jr .exit_slots
+
+.you_have_coins
+	ld hl, .Text_PlayAgain
 	call PrintText
 	call LoadMenuTextBox
 	lb bc, 14, 12
 	call PlaceYesNoBox
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
-	call WriteBackup
+	call CloseWindow
 	and a
-	jr nz, .asm_93118
+	jr nz, .exit_slots
 	and a
 	ret
-.asm_93118
+
+.exit_slots
 	scf
 	ret
+
 ; 9311a (24:711a)
 
-UnknownText_9311a: ; 9311a
+.Text_OutOfCoins: ; 9311a
 	text_jump UnknownText_0x1c5079
 	db "@"
 
-UnknownText_9311f: ; 9311f
+.Text_PlayAgain: ; 9311f
 	text_jump UnknownText_0x1c5092
 	db "@"
 
-Function93124: ; 93124 (24:7124)
-	ld a, [EffectFailed]
-	cp $ff
-	jr z, .asm_93151
+SlotGetPayout: ; 93124 (24:7124)
+	ld a, [wSlotMatched]
+	cp -1
+	jr z, .no_win
 	srl a
 	ld e, a
 	ld d, 0
-	ld hl, .data_93145
+	ld hl, .PayoutTable
 	add hl, de
 	ld a, [hli]
-	ld [PlayerUsedMoves], a
+	ld [wPayout + 1], a
 	ld e, a
 	ld a, [hl]
-	ld [wc711], a
+	ld [wPayout], a
 	ld d, a
 	callba MobileFn_105fe3
 	ret
 
-.data_93145
-	db $2c, $01
-	db $32, $00
-	db $06, $00
-	db $08, $00
-	db $0a, $00
-	db $0f, $00
+.PayoutTable
+	dw 300
+	dw  50
+	dw   6
+	dw   8
+	dw  10
+	dw  15
 
-.asm_93151
-	ld hl, wc711
+.no_win
+	ld hl, wPayout
 	xor a
 	ld [hli], a
 	ld [hl], a
 	ret
 
-Function93158: ; 93158 (24:7158)
-	ld a, [EffectFailed]
-	cp $ff
-	jr nz, .asm_9316c
-	ld hl, UnknownText_0x931e0
+SlotPayoutText: ; 93158 (24:7158)
+	ld a, [wSlotMatched]
+	cp -1
+	jr nz, .MatchedSomething
+	ld hl, .Text_Darn
 	call PrintText
 	callba MobileFn_105fd0
 	ret
-.asm_9316c
+
+.MatchedSomething
 	srl a
 	ld e, a
 	ld d, 0
-	ld hl, Unknown_93195
+	ld hl, .PayoutStrings
 rept 3
 	add hl, de
 endr
 	ld de, StringBuffer2
-	ld bc, $4
+	ld bc, 4
 	call CopyBytes
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, .asm_93188
+	ld de, .return
 	push de
 	jp [hl]
-.asm_93188
-	ld hl, UnknownText_0x931b9
+
+.return
+	ld hl, .Text_PrintPayout
 	call PrintText
 	callba MobileFn_105f9f
 	ret
+
 ; 93195 (24:7195)
 
-Unknown_93195: ; 93195
-	db "300@"
-	dw Function931e5
-	db "50@@"
-	dw Function9320b
-	db "6@@@"
-	dw Function93214
-	db "8@@@"
-	dw Function93214
-	db "10@@"
-	dw Function93214
-	db "15@@"
-	dw Function93214
+.PayoutStrings: ; 93195
+	dbw "300@", .LinedUpSevens
+	dbw "50@@", .LinedUpPokeballs
+	dbw "6@@@", .LinedUpMonOrCherry
+	dbw "8@@@", .LinedUpMonOrCherry
+	dbw "10@@", .LinedUpMonOrCherry
+	dbw "15@@", .LinedUpMonOrCherry
 ; 931b9
 
-UnknownText_0x931b9: ; 0x931b9
+.Text_PrintPayout: ; 0x931b9
 	start_asm
-; 0x931ba
-
-Function931ba: ; 931ba
-	ld a, [EffectFailed]
+	ld a, [wSlotMatched]
 	add $25
 	ldcoord_a 2, 13
 	inc a
@@ -1837,29 +1886,30 @@ Function931ba: ; 931ba
 	inc a
 	ldcoord_a 3, 14
 	hlcoord 18, 17
-	ld [hl], $ee
-	ld hl, UnknownText_0x931db
+	ld [hl], "▼"
+	ld hl, .Text_LinedUpWonCoins
 rept 4
 	inc bc
 endr
 	ret
+
 ; 931db
 
-UnknownText_0x931db: ; 0x931db
+.Text_LinedUpWonCoins: ; 0x931db
 	; lined up! Won @  coins!
 	text_jump UnknownText_0x1c509f
 	db "@"
 ; 0x931e0
 
-UnknownText_0x931e0: ; 0x931e0
+.Text_Darn: ; 0x931e0
 	; Darn!
 	text_jump UnknownText_0x1c50bb
 	db "@"
 ; 0x931e5
 
-Function931e5: ; 931e5
+.LinedUpSevens: ; 931e5
 	ld a, SFX_2ND_PLACE
-	call Function9331e
+	call Slots_PlaySFX
 	call WaitSFX
 	ld a, [wd002]
 	and a
@@ -1868,7 +1918,7 @@ Function931e5: ; 931e5
 	and $14
 	ret z
 	ld a, $ff
-	ld [wc709], a
+	ld [wSlotBias], a
 	ret
 
 .asm_931ff
@@ -1876,108 +1926,112 @@ Function931e5: ; 931e5
 	and $1c
 	ret z
 	ld a, $ff
-	ld [wc709], a
+	ld [wSlotBias], a
 	ret
+
 ; 9320b
 
-Function9320b: ; 9320b
+.LinedUpPokeballs: ; 9320b
 	ld a, SFX_3RD_PLACE
-	call Function9331e
+	call Slots_PlaySFX
 	call WaitSFX
 	ret
+
 ; 93214
 
-Function93214: ; 93214
+.LinedUpMonOrCherry: ; 93214
 	ld a, SFX_PRESENT
-	call Function9331e
+	call Slots_PlaySFX
 	call WaitSFX
 	ret
+
 ; 9321d
 
-Function9321d: ; 9321d (24:721d)
-	ld hl, $b
+SlotMachine_AnimateGolem: ; 9321d (24:721d)
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
-	ld hl, Jumptable_9322d
-rept 2
+	ld hl, .Jumptable
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
 
-Jumptable_9322d: ; 9322d (24:722d)
-	dw Function93233
-	dw Function93259
-	dw Function93289
+.Jumptable: ; 9322d (24:722d)
+	
+	dw .init
+	dw .fall
+	dw .roll
 
 
-Function93233: ; 93233 (24:7233)
-	ld hl, $e
+.init: ; 93233 (24:7233)
+	ld hl, SPRITEANIMSTRUCT_0E
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr nz, .asm_93247
+	jr nz, .retain
 	ld a, $2
 	ld [wcf64], a
-	ld hl, 0
+	ld hl, SPRITEANIMSTRUCT_INDEX
 	add hl, bc
 	ld [hl], $0
 	ret
-.asm_93247
+
+.retain
 	dec [hl]
-	ld hl, $b
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	inc [hl]
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $30
-	ld hl, $6
+	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld [hl], $0
 
-Function93259: ; 93259 (24:7259)
-	ld hl, $c
+.fall: ; 93259 (24:7259)
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	cp $20
-	jr c, .asm_93273
+	jr c, .play_sound
 	dec [hl]
 	ld e, a
-	ld d, $70
-	callba Functionce765
+	ld d, 14 * 8
+	callba BattleAnim_Sine_e
 	ld a, e
-	ld hl, $7
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	ret
-.asm_93273
-	ld hl, $b
+
+.play_sound
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	inc [hl]
-	ld hl, $d
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld [hl], $2
 	ld a, $1
 	ld [wcf64], a
 	ld a, SFX_PLACE_PUZZLE_PIECE_DOWN
-	call Function9331e
+	call Slots_PlaySFX
 	ret
 
-Function93289: ; 93289 (24:7289)
-	ld hl, $6
+.roll: ; 93289 (24:7289)
+	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld a, [hl]
-rept 2
 	inc [hl]
-endr
-	cp $48
-	jr nc, .asm_932a3
+	inc [hl]
+	cp 9 * 8
+	jr nc, .restart
 	and $3
 	ret nz
-	ld hl, $d
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
 	xor $ff
@@ -1985,114 +2039,175 @@ endr
 	ld [hl], a
 	ld [hSCY], a
 	ret
-.asm_932a3
-	ld hl, $b
+
+.restart
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	xor a
 	ld [hl], a
 	ld [hSCY], a
 	ret
 
-Function932ac: ; 932ac (24:72ac)
-	ld hl, $b
+Slots_AnimateChansey: ; 932ac (24:72ac)
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
-	ld hl, Jumptable_932bc
-rept 2
+	ld hl, .Jumptable
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
 
-Jumptable_932bc: ; 932bc (24:72bc)
-	dw Function932c2
-	dw Function932e0
-	dw Function932fc
+.Jumptable: ; 932bc (24:72bc)
+	
+	dw .walk
+	dw .one
+	dw .two
 
 
-Function932c2: ; 932c2 (24:72c2)
-	ld hl, $4
+.walk: ; 932c2 (24:72c2)
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	cp $68
-	jr z, .asm_932d6
+	cp 13 * 8
+	jr z, .limit
 	and $f
 	ret nz
 	ld de, SFX_JUMP_OVER_LEDGE
 	call PlaySFX
 	ret
-.asm_932d6
-	ld hl, $b
+
+.limit
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	inc [hl]
 	ld a, $1
 	ld [wcf64], a
 
-Function932e0: ; 932e0 (24:72e0)
+.one: ; 932e0 (24:72e0)
 	ld a, [wcf64]
 	cp $2
-	jr z, .asm_932f1
+	jr z, .retain
 	cp $5
 	ret nz
-	ld hl, 0
+	ld hl, SPRITEANIMSTRUCT_INDEX
 	add hl, bc
 	ld [hl], $0
 	ret
-.asm_932f1
-	ld hl, $b
+
+.retain
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	inc [hl]
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $8
-
-Function932fc: ; 932fc (24:72fc)
-	ld hl, $c
+.two: ; 932fc (24:72fc)
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_93306
+	jr z, .spawn_egg
 	dec [hl]
 	ret
-.asm_93306
-	ld hl, $b
+
+.spawn_egg
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	dec [hl]
 	push bc
 	depixel 12, 13, 0, 4
-	ld a, SPRITE_ANIM_INDEX_08
+	ld a, SPRITE_ANIM_INDEX_SLOTS_EGG
 	call _InitSpriteAnimStruct
 	pop bc
 	ret
+
 ; 93316 (24:7316)
 
-Function93316: ; 93316
+Slots_WaitSFX: ; 93316
 	push bc
 	ld c, 16
 	call DelayFrames
 	pop bc
 	ret
+
 ; 9331e
 
-Function9331e: ; 9331e (24:731e)
+Slots_PlaySFX: ; 9331e (24:731e)
 	push de
 	ld e, a
 	ld d, 0
 	call PlaySFX
 	pop de
 	ret
+
 ; 93327 (24:7327)
 
-Unknown_93327: ; 93327
-	db $00, $08, $14, $0c, $10, $00, $08, $14, $0c, $10, $04, $08, $14, $0c, $10, $00, $08, $14
-Unknown_93339: ; 93339
-	db $00, $0c, $08, $10, $14, $04, $0c, $08, $10, $14, $04, $0c, $08, $10, $14, $00, $0c, $08
-Unknown_9334b: ; 9334b
-	db $00, $0c, $08, $10, $14, $0c, $08, $10, $14, $0c, $04, $08, $10, $14, $0c, $00, $0c, $08
+; The first three positions are repeated to
+; avoid needing to check indices when copying.
+Reel1Tilemap: ; 93327
+	db SLOTS_SEVEN    ;  0
+	db SLOTS_CHERRY   ;  1
+	db SLOTS_STARYU   ;  2
+	db SLOTS_PIKACHU  ;  3
+	db SLOTS_SQUIRTLE ;  4
+	db SLOTS_SEVEN    ;  5
+	db SLOTS_CHERRY   ;  6
+	db SLOTS_STARYU   ;  7
+	db SLOTS_PIKACHU  ;  8
+	db SLOTS_SQUIRTLE ;  9
+	db SLOTS_POKEBALL ; 10
+	db SLOTS_CHERRY   ; 11
+	db SLOTS_STARYU   ; 12
+	db SLOTS_PIKACHU  ; 13
+	db SLOTS_SQUIRTLE ; 14
+	db SLOTS_SEVEN    ;  0
+	db SLOTS_CHERRY   ;  1
+	db SLOTS_STARYU   ;  2
+
+Reel2Tilemap: ; 93339
+	db SLOTS_SEVEN    ;  0
+	db SLOTS_PIKACHU  ;  1
+	db SLOTS_CHERRY   ;  2
+	db SLOTS_SQUIRTLE ;  3
+	db SLOTS_STARYU   ;  4
+	db SLOTS_POKEBALL ;  5
+	db SLOTS_PIKACHU  ;  6
+	db SLOTS_CHERRY   ;  7
+	db SLOTS_SQUIRTLE ;  8
+	db SLOTS_STARYU   ;  9
+	db SLOTS_POKEBALL ; 10
+	db SLOTS_PIKACHU  ; 11
+	db SLOTS_CHERRY   ; 12
+	db SLOTS_SQUIRTLE ; 13
+	db SLOTS_STARYU   ; 14
+	db SLOTS_SEVEN    ;  0
+	db SLOTS_PIKACHU  ;  1
+	db SLOTS_CHERRY   ;  2
+
+Reel3Tilemap: ; 9334b
+	db SLOTS_SEVEN    ;  0
+	db SLOTS_PIKACHU  ;  1
+	db SLOTS_CHERRY   ;  2
+	db SLOTS_SQUIRTLE ;  3
+	db SLOTS_STARYU   ;  4
+	db SLOTS_PIKACHU  ;  5
+	db SLOTS_CHERRY   ;  6
+	db SLOTS_SQUIRTLE ;  7
+	db SLOTS_STARYU   ;  8
+	db SLOTS_PIKACHU  ;  9
+	db SLOTS_POKEBALL ; 10
+	db SLOTS_CHERRY   ; 11
+	db SLOTS_SQUIRTLE ; 12
+	db SLOTS_STARYU   ; 13
+	db SLOTS_PIKACHU  ; 14
+	db SLOTS_SEVEN    ;  0
+	db SLOTS_PIKACHU  ;  1
+	db SLOTS_CHERRY   ;  2
 ; 9335d
 
 SlotsTilemap: ; 9335d

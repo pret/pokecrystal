@@ -87,7 +87,7 @@ Function13a47: ; unreferenced
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, MON_EXP + 2
+	ld hl, MON_STAT_EXP - 1
 	add hl, bc
 	ld b, $1
 	predef CalcPkmnStats

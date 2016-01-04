@@ -1,3 +1,18 @@
+const_value set 2
+	const ROUTE45_POKEFAN_M1
+	const ROUTE45_POKEFAN_M2
+	const ROUTE45_POKEFAN_M3
+	const ROUTE45_POKEFAN_M4
+	const ROUTE45_BLACK_BELT
+	const ROUTE45_COOLTRAINER_M
+	const ROUTE45_COOLTRAINER_F
+	const ROUTE45_FRUIT_TREE
+	const ROUTE45_POKE_BALL1
+	const ROUTE45_POKE_BALL2
+	const ROUTE45_POKE_BALL3
+	const ROUTE45_POKE_BALL4
+	const ROUTE45_YOUNGSTER
+
 Route45_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -10,15 +25,15 @@ TrainerBlackbeltKenji:
 
 BlackbeltKenji3Script:
 	writecode VAR_CALLERID, PHONE_BLACKBELT_KENJI
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	checkcellnum PHONE_BLACKBELT_KENJI
 	iftrue UnknownScript_0x19e0e4
 	checkevent EVENT_KENJI_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19e0cd
 	special Special_SampleKenjiBreakCountdown
 	writetext UnknownText_0x19e5e2
-	closetext
+	waitbutton
 	setevent EVENT_KENJI_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19e11b
 	jump UnknownScript_0x19e0d0
@@ -51,14 +66,14 @@ UnknownScript_0x19e0e4:
 
 UnknownScript_0x19e10c:
 	writetext UnknownText_0x19e634
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19e112:
 	writetext UnknownText_0x19e66c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19e118:
@@ -113,22 +128,22 @@ TrainerHikerErik:
 	trainer EVENT_BEAT_HIKER_ERIK, HIKER, ERIK, HikerErikSeenText, HikerErikBeatenText, 0, HikerErikScript
 
 HikerErikScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19e301
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerHikerMichael:
 	trainer EVENT_BEAT_HIKER_MICHAEL, HIKER, MICHAEL, HikerMichaelSeenText, HikerMichaelBeatenText, 0, HikerMichaelScript
 
 HikerMichaelScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19e3b1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerHikerParry:
@@ -136,8 +151,8 @@ TrainerHikerParry:
 
 HikerParry3Script:
 	writecode VAR_CALLERID, PHONE_HIKER_PARRY
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	checkflag ENGINE_PARRY
 	iftrue UnknownScript_0x19e1b8
 	checkcellnum PHONE_HIKER_PARRY
@@ -145,7 +160,7 @@ HikerParry3Script:
 	checkevent EVENT_PARRY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19e1a1
 	writetext UnknownText_0x19e434
-	keeptextopen
+	buttonsound
 	setevent EVENT_PARRY_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19e11b
 	jump UnknownScript_0x19e1a4
@@ -176,7 +191,7 @@ UnknownScript_0x19e1b8:
 .LoadFight0
 	loadtrainer HIKER, PARRY3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wParryFightCount, 1
 	clearflag ENGINE_PARRY
 	end
@@ -184,7 +199,7 @@ UnknownScript_0x19e1b8:
 .LoadFight1
 	loadtrainer HIKER, PARRY1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wParryFightCount, 2
 	clearflag ENGINE_PARRY
 	end
@@ -192,7 +207,7 @@ UnknownScript_0x19e1b8:
 .LoadFight2
 	loadtrainer HIKER, PARRY2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_PARRY
 	checkevent EVENT_PARRY_IRON
 	iftrue UnknownScript_0x19e219
@@ -208,9 +223,9 @@ UnknownScript_0x19e218:
 	end
 
 UnknownScript_0x19e219:
-	loadfont
+	opentext
 	writetext UnknownText_0x19e52c
-	closetext
+	waitbutton
 	verbosegiveitem IRON
 	iffalse UnknownScript_0x19e13f
 	clearevent EVENT_PARRY_IRON
@@ -221,61 +236,61 @@ TrainerHikerTimothy:
 	trainer EVENT_BEAT_HIKER_TIMOTHY, HIKER, TIMOTHY, HikerTimothySeenText, HikerTimothyBeatenText, 0, HikerTimothyScript
 
 HikerTimothyScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19e4f1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainermRyan:
 	trainer EVENT_BEAT_COOLTRAINERM_RYAN, COOLTRAINERM, RYAN, CooltrainermRyanSeenText, CooltrainermRyanBeatenText, 0, CooltrainermRyanScript
 
 CooltrainermRyanScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19e70d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainerfKelly:
 	trainer EVENT_BEAT_COOLTRAINERF_KELLY, COOLTRAINERF, KELLY, CooltrainerfKellySeenText, CooltrainerfKellyBeatenText, 0, CooltrainerfKellyScript
 
 CooltrainerfKellyScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19e7d1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x19e269:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_CAMPER_QUENTIN
 	iftrue UnknownScript_0x19e285
 	writetext UnknownText_0x19e87f
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x19e899, 0
 	loadtrainer CAMPER, QUENTIN
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_CAMPER_QUENTIN
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x19e285:
 	writetext UnknownText_0x19e8bb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19e28b:
 	writetext UnknownText_0x19e830
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute45Signpost0Script:
@@ -284,19 +299,19 @@ MapRoute45Signpost0Script:
 FruitTreeScript_0x19e294:
 	fruittree FRUITTREE_ROUTE_45
 
-ItemFragment_0x19e296:
-	db NUGGET, 1
+Route45Nugget:
+	itemball NUGGET
 
-ItemFragment_0x19e298:
-	db REVIVE, 1
+Route45Revive:
+	itemball REVIVE
 
-ItemFragment_0x19e29a:
-	db ELIXER, 1
+Route45Elixer:
+	itemball ELIXER
 
-ItemFragment_0x19e29c:
-	db MAX_POTION, 1
+Route45MaxPotion:
+	itemball MAX_POTION
 
-MapRoute45SignpostItem1:
+Route45HiddenPpUp:
 	dwb EVENT_ROUTE_45_HIDDEN_PP_UP, PP_UP
 	
 
@@ -531,7 +546,7 @@ Route45_MapEventHeader:
 .Signposts:
 	db 2
 	signpost 4, 10, SIGNPOST_READ, MapRoute45Signpost0Script
-	signpost 80, 13, SIGNPOST_ITEM, MapRoute45SignpostItem1
+	signpost 80, 13, SIGNPOST_ITEM, Route45HiddenPpUp
 
 .PersonEvents:
 	db 13
@@ -543,8 +558,8 @@ Route45_MapEventHeader:
 	person_event SPRITE_COOLTRAINER_M, 18, 17, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 1, TrainerCooltrainermRyan, -1
 	person_event SPRITE_COOLTRAINER_F, 36, 5, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerCooltrainerfKelly, -1
 	person_event SPRITE_FRUIT_TREE, 82, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x19e294, -1
-	person_event SPRITE_POKE_BALL, 51, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x19e296, EVENT_ROUTE_45_NUGGET
-	person_event SPRITE_POKE_BALL, 66, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x19e298, EVENT_ROUTE_45_REVIVE
-	person_event SPRITE_POKE_BALL, 20, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x19e29a, EVENT_ROUTE_45_ELIXER
-	person_event SPRITE_POKE_BALL, 33, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x19e29c, EVENT_ROUTE_45_MAX_POTION
+	person_event SPRITE_POKE_BALL, 51, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route45Nugget, EVENT_ROUTE_45_NUGGET
+	person_event SPRITE_POKE_BALL, 66, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route45Revive, EVENT_ROUTE_45_REVIVE
+	person_event SPRITE_POKE_BALL, 20, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route45Elixer, EVENT_ROUTE_45_ELIXER
+	person_event SPRITE_POKE_BALL, 33, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route45MaxPotion, EVENT_ROUTE_45_MAX_POTION
 	person_event SPRITE_YOUNGSTER, 70, 4, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x19e269, -1

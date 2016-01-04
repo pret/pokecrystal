@@ -1,3 +1,9 @@
+const_value set 2
+	const VIOLETGYM_FALKNER
+	const VIOLETGYM_YOUNGSTER1
+	const VIOLETGYM_YOUNGSTER2
+	const VIOLETGYM_GYM_GUY
+
 VioletGym_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,21 +13,21 @@ VioletGym_MapScriptHeader:
 
 FalknerScript_0x683c2:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_FALKNER
 	iftrue .FightDone
 	writetext UnknownText_0x68473
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x6854a, 0
 	loadtrainer FALKNER, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_FALKNER
-	loadfont
+	opentext
 	writetext UnknownText_0x685af
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_ZEPHYRBADGE
 	checkcode VAR_BADGES
 	scall VioletGymTriggerRockets
@@ -33,20 +39,20 @@ FalknerScript_0x683c2:
 	domaptrigger ELMS_LAB, $2
 	specialphonecall SPECIALCALL_ASSISTANT
 	writetext UnknownText_0x685c8
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_MUD_SLAP
 	iffalse .NoRoomForMudSlap
 	setevent EVENT_GOT_TM31_MUD_SLAP
 	writetext UnknownText_0x68648
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .SpeechAfterTM:
 	writetext UnknownText_0x68735
-	closetext
+	waitbutton
 .NoRoomForMudSlap:
-	loadmovesprites
+	closetext
 	end
 
 VioletGymTriggerRockets:
@@ -64,38 +70,38 @@ TrainerBird_keeperRod:
 	trainer EVENT_BEAT_BIRD_KEEPER_ROD, BIRD_KEEPER, ROD, Bird_keeperRodSeenText, Bird_keeperRodBeatenText, 0, Bird_keeperRodScript
 
 Bird_keeperRodScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x68837
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBird_keeperAbe:
 	trainer EVENT_BEAT_BIRD_KEEPER_ABE, BIRD_KEEPER, ABE, Bird_keeperAbeSeenText, Bird_keeperAbeBeatenText, 0, Bird_keeperAbeScript
 
 Bird_keeperAbeScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x688c7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 VioletGymGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_FALKNER
 	iftrue .VioletGymGuyWinScript
 	writetext VioletGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .VioletGymGuyWinScript
 	writetext VioletGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 VioletGymStatue:

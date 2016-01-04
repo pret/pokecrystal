@@ -1,3 +1,16 @@
+const_value set 2
+	const ILEXFOREST_BIRD
+	const ILEXFOREST_YOUNGSTER1
+	const ILEXFOREST_BLACK_BELT
+	const ILEXFOREST_ROCKER
+	const ILEXFOREST_POKE_BALL1
+	const ILEXFOREST_KURT
+	const ILEXFOREST_LASS
+	const ILEXFOREST_YOUNGSTER2
+	const ILEXFOREST_POKE_BALL2
+	const ILEXFOREST_POKE_BALL3
+	const ILEXFOREST_POKE_BALL4
+
 IlexForest_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,343 +20,345 @@ IlexForest_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x6eb03
+	dbw 2, .FarfetchdCallback
 
-UnknownScript_0x6eb03:
+.FarfetchdCallback:
 	checkevent EVENT_GOT_HM01_CUT
-	iftrue UnknownScript_0x6eb34
+	iftrue .Static
 	copybytetovar FarfetchdPosition
-	if_equal $1, UnknownScript_0x6eb35
-	if_equal $2, UnknownScript_0x6eb3c
-	if_equal $3, UnknownScript_0x6eb43
-	if_equal $4, UnknownScript_0x6eb4a
-	if_equal $5, UnknownScript_0x6eb51
-	if_equal $6, UnknownScript_0x6eb58
-	if_equal $7, UnknownScript_0x6eb5f
-	if_equal $8, UnknownScript_0x6eb66
-	if_equal $9, UnknownScript_0x6eb6d
-	if_equal $a, UnknownScript_0x6eb74
-UnknownScript_0x6eb34:
+	if_equal  1, .PositionOne
+	if_equal  2, .PositionTwo
+	if_equal  3, .PositionThree
+	if_equal  4, .PositionFour
+	if_equal  5, .PositionFive
+	if_equal  6, .PositionSix
+	if_equal  7, .PositionSeven
+	if_equal  8, .PositionEight
+	if_equal  9, .PositionNine
+	if_equal 10, .PositionTen
+.Static:
 	return
 
-UnknownScript_0x6eb35:
-	moveperson $2, $e, $1f
-	appear $2
+.PositionOne:
+	moveperson ILEXFOREST_BIRD, $e, $1f
+	appear ILEXFOREST_BIRD
 	return
 
-UnknownScript_0x6eb3c:
-	moveperson $2, $f, $19
-	appear $2
+.PositionTwo:
+	moveperson ILEXFOREST_BIRD, $f, $19
+	appear ILEXFOREST_BIRD
 	return
 
-UnknownScript_0x6eb43:
-	moveperson $2, $14, $18
-	appear $2
+.PositionThree:
+	moveperson ILEXFOREST_BIRD, $14, $18
+	appear ILEXFOREST_BIRD
 	return
 
-UnknownScript_0x6eb4a:
-	moveperson $2, $1d, $16
-	appear $2
+.PositionFour:
+	moveperson ILEXFOREST_BIRD, $1d, $16
+	appear ILEXFOREST_BIRD
 	return
 
-UnknownScript_0x6eb51:
-	moveperson $2, $1c, $1f
-	appear $2
+.PositionFive:
+	moveperson ILEXFOREST_BIRD, $1c, $1f
+	appear ILEXFOREST_BIRD
 	return
 
-UnknownScript_0x6eb58:
-	moveperson $2, $18, $23
-	appear $2
+.PositionSix:
+	moveperson ILEXFOREST_BIRD, $18, $23
+	appear ILEXFOREST_BIRD
 	return
 
-UnknownScript_0x6eb5f:
-	moveperson $2, $16, $1f
-	appear $2
+.PositionSeven:
+	moveperson ILEXFOREST_BIRD, $16, $1f
+	appear ILEXFOREST_BIRD
 	return
 
-UnknownScript_0x6eb66:
-	moveperson $2, $f, $1d
-	appear $2
+.PositionEight:
+	moveperson ILEXFOREST_BIRD, $f, $1d
+	appear ILEXFOREST_BIRD
 	return
 
-UnknownScript_0x6eb6d:
-	moveperson $2, $a, $23
-	appear $2
+.PositionNine:
+	moveperson ILEXFOREST_BIRD, $a, $23
+	appear ILEXFOREST_BIRD
 	return
 
-UnknownScript_0x6eb74:
-	moveperson $2, $6, $1c
-	appear $2
+.PositionTen:
+	moveperson ILEXFOREST_BIRD, $6, $1c
+	appear ILEXFOREST_BIRD
 	return
 
-YoungsterScript_0x6eb7b:
+IlexForestCharcoalApprenticeScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_HERDED_FARFETCHD
-	iftrue UnknownScript_0x6eb89
+	iftrue .DoneFarfetchd
 	writetext UnknownText_0x6ef5c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-UnknownScript_0x6eb89:
+.DoneFarfetchd:
 	writetext UnknownText_0x6f019
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-BirdScript_0x6eb8f:
+IlexForestFarfetchdScript:
 	copybytetovar FarfetchdPosition
-	if_equal $1, UnknownScript_0x6ebba
-	if_equal $2, UnknownScript_0x6ebd9
-	if_equal $3, UnknownScript_0x6ec02
-	if_equal $4, UnknownScript_0x6ec2b
-	if_equal $5, UnknownScript_0x6ec54
-	if_equal $6, UnknownScript_0x6eca7
-	if_equal $7, UnknownScript_0x6ecd0
-	if_equal $8, UnknownScript_0x6ed0e
-	if_equal $9, UnknownScript_0x6ed50
-	if_equal $a, UnknownScript_0x6ed96
-UnknownScript_0x6ebba:
+	if_equal  1, .Position1
+	if_equal  2, .Position2
+	if_equal  3, .Position3
+	if_equal  4, .Position4
+	if_equal  5, .Position5
+	if_equal  6, .Position6
+	if_equal  7, .Position7
+	if_equal  8, .Position8
+	if_equal  9, .Position9
+	if_equal 10, .Position10
+
+.Position1:
 	faceplayer
-	loadfont
-	writetext UnknownText_0x6f06f
-	keeptextopen
-	writetext UnknownText_0x6f086
+	opentext
+	writetext Text_ItsTheMissingPokemon
+	buttonsound
+	writetext Text_Kwaaaa
 	cry FARFETCH_D
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement $2, MovementData_0x6ee8f
-	moveperson $2, $f, $19
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $2
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetchd_Pos1_Pos2
+	moveperson ILEXFOREST_BIRD, $f, $19
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 2
 	end
 
-UnknownScript_0x6ebd9:
-	scall UnknownScript_0x6eda1
-	if_equal $0, UnknownScript_0x6ebf1
-	applymovement $2, MovementData_0x6ee95
-	moveperson $2, $14, $18
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $3
+.Position2:
+	scall .CryAndCheckFacing
+	if_equal DOWN, .Position2_Down
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetchd_Pos2_Pos3
+	moveperson ILEXFOREST_BIRD, $14, $18
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 3
 	end
 
-UnknownScript_0x6ebf1:
-	applymovement $2, MovementData_0x6ee9e
-	moveperson $2, $f, $1d
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $8
+.Position2_Down:
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetchd_Pos2_Pos8
+	moveperson ILEXFOREST_BIRD, $f, $1d
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 8
 	end
 
-UnknownScript_0x6ec02:
-	scall UnknownScript_0x6eda1
-	if_equal $2, UnknownScript_0x6ec1a
-	applymovement $2, MovementData_0x6eea4
-	moveperson $2, $1d, $16
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $4
+.Position3:
+	scall .CryAndCheckFacing
+	if_equal LEFT, .Position3_Left
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetchd_Pos3_Pos4
+	moveperson ILEXFOREST_BIRD, $1d, $16
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 4
 	end
 
-UnknownScript_0x6ec1a:
-	applymovement $2, MovementData_0x6eeab
-	moveperson $2, $f, $19
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $2
+.Position3_Left:
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetchd_Pos3_Pos2
+	moveperson ILEXFOREST_BIRD, $f, $19
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 2
 	end
 
-UnknownScript_0x6ec2b:
-	scall UnknownScript_0x6eda1
-	if_equal $1, UnknownScript_0x6ec43
-	applymovement $2, MovementData_0x6eeb1
-	moveperson $2, $1c, $1f
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $5
+.Position4:
+	scall .CryAndCheckFacing
+	if_equal UP, .Position4_Up
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetchd_Pos4_Pos5
+	moveperson ILEXFOREST_BIRD, $1c, $1f
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 5
 	end
 
-UnknownScript_0x6ec43:
-	applymovement $2, MovementData_0x6eeb8
-	moveperson $2, $14, $18
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $3
+.Position4_Up:
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetchd_Pos4_Pos3
+	moveperson ILEXFOREST_BIRD, $14, $18
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 3
 	end
 
-UnknownScript_0x6ec54:
-	scall UnknownScript_0x6eda1
-	if_equal $1, UnknownScript_0x6ec85
-	if_equal $2, UnknownScript_0x6ec74
-	if_equal $3, UnknownScript_0x6ec96
-	applymovement $2, MovementData_0x6eebd
-	moveperson $2, $18, $23
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $6
+.Position5:
+	scall .CryAndCheckFacing
+	if_equal UP, .Position5_Up
+	if_equal LEFT, .Position5_Left
+	if_equal RIGHT, .Position5_Right
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetchd_Pos5_Pos6
+	moveperson ILEXFOREST_BIRD, $18, $23
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 6
 	end
 
-UnknownScript_0x6ec74:
-	applymovement $2, MovementData_0x6eec7
-	moveperson $2, $16, $1f
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $7
+.Position5_Left:
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetchd_Pos5_Pos7
+	moveperson ILEXFOREST_BIRD, $16, $1f
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 7
 	end
 
-UnknownScript_0x6ec85:
-	applymovement $2, MovementData_0x6eecc
-	moveperson $2, $1d, $16
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $4
+.Position5_Up:
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos5_Pos4_Up
+	moveperson ILEXFOREST_BIRD, $1d, $16
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 4
 	end
 
-UnknownScript_0x6ec96:
-	applymovement $2, MovementData_0x6eed2
-	moveperson $2, $1d, $16
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $4
+.Position5_Right:
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos5_Pos4_Right
+	moveperson ILEXFOREST_BIRD, $1d, $16
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 4
 	end
 
-UnknownScript_0x6eca7:
-	scall UnknownScript_0x6eda1
-	if_equal $3, UnknownScript_0x6ecbf
-	applymovement $2, MovementData_0x6eee6
-	moveperson $2, $16, $1f
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $7
+.Position6:
+	scall .CryAndCheckFacing
+	if_equal RIGHT, .Position6_Right
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos6_Pos7
+	moveperson ILEXFOREST_BIRD, $16, $1f
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 7
 	end
 
-UnknownScript_0x6ecbf:
-	applymovement $2, MovementData_0x6eeef
-	moveperson $2, $1c, $1f
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $5
+.Position6_Right:
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos6_Pos5
+	moveperson ILEXFOREST_BIRD, $1c, $1f
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 5
 	end
 
-UnknownScript_0x6ecd0:
-	scall UnknownScript_0x6eda1
-	if_equal $0, UnknownScript_0x6ecfd
-	if_equal $2, UnknownScript_0x6ecec
-	applymovement $2, MovementData_0x6eef8
-	moveperson $2, $f, $1d
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $8
+.Position7:
+	scall .CryAndCheckFacing
+	if_equal DOWN, .Position7_Down
+	if_equal LEFT, .Position7_Left
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos7_Pos8
+	moveperson ILEXFOREST_BIRD, $f, $1d
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 8
 	end
 
-UnknownScript_0x6ecec:
-	applymovement $2, MovementData_0x6ef00
-	moveperson $2, $18, $23
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $6
+.Position7_Left:
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos7_Pos6
+	moveperson ILEXFOREST_BIRD, $18, $23
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 6
 	end
 
-UnknownScript_0x6ecfd:
-	applymovement $2, MovementData_0x6ef09
-	moveperson $2, $1c, $1f
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $5
+.Position7_Down:
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos7_Pos5
+	moveperson ILEXFOREST_BIRD, $1c, $1f
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 5
 	end
 
-UnknownScript_0x6ed0e:
-	scall UnknownScript_0x6eda1
-	if_equal $1, UnknownScript_0x6ed3f
-	if_equal $2, UnknownScript_0x6ed3f
-	if_equal $3, UnknownScript_0x6ed2e
-	applymovement $2, MovementData_0x6ef10
-	moveperson $2, $a, $23
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $9
+.Position8:
+	scall .CryAndCheckFacing
+	if_equal UP, .Position8_Up
+	if_equal LEFT, .Position8_Left
+	if_equal RIGHT, .Position8_Right
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos8_Pos9
+	moveperson ILEXFOREST_BIRD, $a, $23
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 9
 	end
 
-UnknownScript_0x6ed2e:
-	applymovement $2, MovementData_0x6ef18
-	moveperson $2, $16, $1f
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $7
+.Position8_Right:
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos8_Pos7
+	moveperson ILEXFOREST_BIRD, $16, $1f
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 7
 	end
 
-UnknownScript_0x6ed3f:
-	applymovement $2, MovementData_0x6ef1e
-	moveperson $2, $f, $19
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $2
+.Position8_Up:
+.Position8_Left:
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos8_Pos2
+	moveperson ILEXFOREST_BIRD, $f, $19
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 2
 	end
 
-UnknownScript_0x6ed50:
-	scall UnknownScript_0x6eda1
-	if_equal $0, UnknownScript_0x6ed85
-	if_equal $3, UnknownScript_0x6ed74
-	applymovement $2, MovementData_0x6ef23
-	moveperson $2, $6, $1c
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $a
-	appear $4
+.Position9:
+	scall .CryAndCheckFacing
+	if_equal DOWN, .Position9_Down
+	if_equal RIGHT, .Position9_Right
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos9_Pos10
+	moveperson ILEXFOREST_BIRD, $6, $1c
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 10
+	appear ILEXFOREST_BLACK_BELT
 	setevent EVENT_CHARCOAL_KILN_BOSS
 	setevent EVENT_HERDED_FARFETCHD
 	end
 
-UnknownScript_0x6ed74:
-	applymovement $2, MovementData_0x6ef33
-	moveperson $2, $f, $1d
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $8
+.Position9_Right:
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos9_Pos8_Right
+	moveperson ILEXFOREST_BIRD, $f, $1d
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 8
 	end
 
-UnknownScript_0x6ed85:
-	applymovement $2, MovementData_0x6ef3d
-	moveperson $2, $f, $1d
-	disappear $2
-	appear $2
-	loadvar FarfetchdPosition, $8
+.Position9_Down:
+	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos9_Pos8_Down
+	moveperson ILEXFOREST_BIRD, $f, $1d
+	disappear ILEXFOREST_BIRD
+	appear ILEXFOREST_BIRD
+	loadvar FarfetchdPosition, 8
 	end
 
-UnknownScript_0x6ed96:
+.Position10:
 	faceplayer
-	loadfont
-	writetext UnknownText_0x6f086
+	opentext
+	writetext Text_Kwaaaa
 	cry FARFETCH_D
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-UnknownScript_0x6eda1:
+.CryAndCheckFacing:
 	faceplayer
-	loadfont
-	writetext UnknownText_0x6f086
+	opentext
+	writetext Text_Kwaaaa
 	cry FARFETCH_D
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcode VAR_FACING
 	end
 
-BlackBeltScript_0x6edae:
+IlexForestCharcoalMasterScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_HM01_CUT
-	iftrue UnknownScript_0x6edd8
-	writetext UnknownText_0x6f099
-	keeptextopen
+	iftrue .AlreadyGotCut
+	writetext Text_CharcoalMasterIntro
+	buttonsound
 	verbosegiveitem HM_CUT
 	setevent EVENT_GOT_HM01_CUT
-	writetext UnknownText_0x6f141
+	writetext Text_CharcoalMasterOutro
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_ILEX_FOREST_FARFETCHD
 	setevent EVENT_ILEX_FOREST_APPRENTICE
 	setevent EVENT_ILEX_FOREST_CHARCOAL_MASTER
@@ -352,64 +367,64 @@ BlackBeltScript_0x6edae:
 	clearevent EVENT_CHARCOAL_KILN_BOSS
 	end
 
-UnknownScript_0x6edd8:
-	writetext UnknownText_0x6f1c0
+.AlreadyGotCut:
+	writetext Text_CharcoalMasterTalkAfter
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-RockerScript_0x6edde:
+IlexForestHeadbuttGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM02_HEADBUTT
-	iftrue UnknownScript_0x6edf3
-	writetext UnknownText_0x6f21b
-	keeptextopen
+	iftrue .AlreadyGotHeadbutt
+	writetext Text_HeadbuttIntro
+	buttonsound
 	verbosegiveitem TM_HEADBUTT
-	iffalse UnknownScript_0x6edf7
+	iffalse .BagFull
 	setevent EVENT_GOT_TM02_HEADBUTT
-UnknownScript_0x6edf3:
-	writetext UnknownText_0x6f26d
+.AlreadyGotHeadbutt:
+	writetext Text_HeadbuttOutro
+	waitbutton
+.BagFull:
 	closetext
-UnknownScript_0x6edf7:
-	loadmovesprites
 	end
 
 TrainerBug_catcherWayne:
 	trainer EVENT_BEAT_BUG_CATCHER_WAYNE, BUG_CATCHER, WAYNE, Bug_catcherWayneSeenText, Bug_catcherWayneBeatenText, 0, Bug_catcherWayneScript
 
 Bug_catcherWayneScript:
-	talkaftercancel
-	loadfont
-	writetext UnknownText_0x6f571
+	end_if_just_battled
+	opentext
+	writetext Bug_catcherWayneAfterText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-LassScript_0x6ee0d:
-	jumptextfaceplayer UnknownText_0x6f2af
+IlexForestLassScript:
+	jumptextfaceplayer Text_IlexForestLass
 
-ItemFragment_0x6ee10:
-	db REVIVE, 1
+IlexForestRevive:
+	itemball REVIVE
 
-ItemFragment_0x6ee12:
-	db X_ATTACK, 1
+IlexForestXAttack:
+	itemball X_ATTACK
 
-ItemFragment_0x6ee14:
-	db ANTIDOTE, 1
+IlexForestAntidote:
+	itemball ANTIDOTE
 
-ItemFragment_0x6ee16:
-	db ETHER, 1
+IlexForestEther:
+	itemball ETHER
 
-MapIlexForestSignpostItem1:
+IlexForestHiddenEther:
 	dwb EVENT_ILEX_FOREST_HIDDEN_ETHER, ETHER
 	
 
-MapIlexForestSignpostItem2:
+IlexForestHiddenSuperPotion:
 	dwb EVENT_ILEX_FOREST_HIDDEN_SUPER_POTION, SUPER_POTION
 	
 
-MapIlexForestSignpostItem3:
+IlexForestHiddenFullHeal:
 	dwb EVENT_ILEX_FOREST_HIDDEN_FULL_HEAL, FULL_HEAL
 
 IlexForestBoulder:
@@ -417,63 +432,63 @@ IlexForestBoulder:
 	jumpstd strengthboulder
 
 MapIlexForestSignpost0Script:
-	jumptext UnknownText_0x6f2de
+	jumptext Text_IlexForestSignpost0
 
 MapIlexForestSignpost4Script:
 	checkevent EVENT_FOREST_IS_RESTLESS
-	iftrue UnknownScript_0x6ee30
-	jump UnknownScript_0x6ee35
+	iftrue .ForestIsRestless
+	jump .DontDoCelebiEvent
 
-UnknownScript_0x6ee30:
+.ForestIsRestless:
 	checkitem GS_BALL
-	iftrue UnknownScript_0x6ee38
-UnknownScript_0x6ee35:
-	jumptext UnknownText_0x6f358
+	iftrue .AskCelebiEvent
+.DontDoCelebiEvent:
+	jumptext Text_IlexForestShrine
 
-UnknownScript_0x6ee38:
-	loadfont
-	writetext UnknownText_0x6f394
+.AskCelebiEvent:
+	opentext
+	writetext Text_ShrineCelebiEvent
 	yesorno
-	iftrue UnknownScript_0x6ee42
-	loadmovesprites
+	iftrue .CelebiEvent
+	closetext
 	end
 
-UnknownScript_0x6ee42:
+.CelebiEvent:
 	takeitem GS_BALL
 	clearevent EVENT_FOREST_IS_RESTLESS
 	setevent EVENT_AZALEA_TOWN_KURT
-	disappear $8
+	disappear ILEXFOREST_LASS
 	clearevent EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
-	writetext UnknownText_0x6f43b
+	writetext Text_InsertGSBall
+	waitbutton
 	closetext
-	loadmovesprites
 	pause 20
 	showemote EMOTE_SHOCK, PLAYER, 20
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	applymovement PLAYER, MovementData_0x6ef58
 	pause 30
 	spriteface PLAYER, DOWN
 	pause 20
 	clearflag ENGINE_HAVE_EXAMINED_GS_BALL
 	special Special_CelebiShrineEvent
-	loadpokedata CELEBI, 30
+	loadwildmon CELEBI, 30
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	pause 20
 	special CheckCaughtCelebi
-	iffalse UnknownScript_0x6ee8e
-	appear $7
-	applymovement $7, MovementData_0x6ef4e
-	loadfont
-	writetext UnknownText_0x6f452
+	iffalse .DidntCatchCelebi
+	appear ILEXFOREST_KURT
+	applymovement ILEXFOREST_KURT, MovementData_0x6ef4e
+	opentext
+	writetext Text_KurtCaughtCelebi
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement $7, MovementData_0x6ef53
-	disappear $7
-UnknownScript_0x6ee8e:
+	applymovement ILEXFOREST_KURT, MovementData_0x6ef53
+	disappear ILEXFOREST_KURT
+.DidntCatchCelebi:
 	end
 
-MovementData_0x6ee8f:
+MovementData_Farfetchd_Pos1_Pos2:
 	big_step_up
 	big_step_up
 	big_step_up
@@ -481,7 +496,7 @@ MovementData_0x6ee8f:
 	big_step_up
 	step_end
 
-MovementData_0x6ee95:
+MovementData_Farfetchd_Pos2_Pos3:
 	big_step_up
 	big_step_up
 	big_step_right
@@ -492,7 +507,7 @@ MovementData_0x6ee95:
 	big_step_down
 	step_end
 
-MovementData_0x6ee9e:
+MovementData_Farfetchd_Pos2_Pos8:
 	big_step_down
 	big_step_down
 	big_step_down
@@ -500,7 +515,7 @@ MovementData_0x6ee9e:
 	big_step_down
 	step_end
 
-MovementData_0x6eea4:
+MovementData_Farfetchd_Pos3_Pos4:
 	big_step_right
 	big_step_right
 	big_step_right
@@ -509,7 +524,7 @@ MovementData_0x6eea4:
 	big_step_right
 	step_end
 
-MovementData_0x6eeab:
+MovementData_Farfetchd_Pos3_Pos2:
 	big_step_up
 	big_step_left
 	big_step_left
@@ -517,7 +532,7 @@ MovementData_0x6eeab:
 	big_step_left
 	step_end
 
-MovementData_0x6eeb1:
+MovementData_Farfetchd_Pos4_Pos5:
 	big_step_down
 	big_step_down
 	big_step_down
@@ -526,14 +541,14 @@ MovementData_0x6eeb1:
 	big_step_down
 	step_end
 
-MovementData_0x6eeb8:
+MovementData_Farfetchd_Pos4_Pos3:
 	big_step_left
 	jump_step_left
 	big_step_left
 	big_step_left
 	step_end
 
-MovementData_0x6eebd:
+MovementData_Farfetchd_Pos5_Pos6:
 	big_step_down
 	big_step_down
 	big_step_down
@@ -545,14 +560,14 @@ MovementData_0x6eebd:
 	big_step_left
 	step_end
 
-MovementData_0x6eec7:
+MovementData_Farfetchd_Pos5_Pos7:
 	big_step_left
 	big_step_left
 	big_step_left
 	big_step_left
 	step_end
 
-MovementData_0x6eecc:
+MovementData_Farfetched_Pos5_Pos4_Up:
 	big_step_up
 	big_step_up
 	big_step_up
@@ -560,14 +575,14 @@ MovementData_0x6eecc:
 	big_step_up
 	step_end
 
-MovementData_0x6eed2:
+MovementData_Farfetched_Pos5_Pos4_Right:
 	big_step_right
 	turn_head_up
-	db $3e ; movement
+	step_sleep_1
 	turn_head_down
-	db $3e ; movement
+	step_sleep_1
 	turn_head_up
-	db $3e ; movement
+	step_sleep_1
 	big_step_down
 	big_step_down
 	fix_facing
@@ -582,7 +597,7 @@ MovementData_0x6eed2:
 	big_step_up
 	step_end
 
-MovementData_0x6eee6:
+MovementData_Farfetched_Pos6_Pos7:
 	big_step_left
 	big_step_left
 	big_step_left
@@ -593,7 +608,7 @@ MovementData_0x6eee6:
 	big_step_up
 	step_end
 
-MovementData_0x6eeef:
+MovementData_Farfetched_Pos6_Pos5:
 	big_step_right
 	big_step_right
 	big_step_right
@@ -604,7 +619,7 @@ MovementData_0x6eeef:
 	big_step_up
 	step_end
 
-MovementData_0x6eef8:
+MovementData_Farfetched_Pos7_Pos8:
 	big_step_up
 	big_step_up
 	big_step_left
@@ -614,7 +629,7 @@ MovementData_0x6eef8:
 	big_step_left
 	step_end
 
-MovementData_0x6ef00:
+MovementData_Farfetched_Pos7_Pos6:
 	big_step_down
 	big_step_down
 	big_step_left
@@ -625,7 +640,7 @@ MovementData_0x6ef00:
 	big_step_right
 	step_end
 
-MovementData_0x6ef09:
+MovementData_Farfetched_Pos7_Pos5:
 	big_step_right
 	big_step_right
 	big_step_right
@@ -634,7 +649,7 @@ MovementData_0x6ef09:
 	big_step_right
 	step_end
 
-MovementData_0x6ef10:
+MovementData_Farfetched_Pos8_Pos9:
 	big_step_down
 	big_step_left
 	big_step_down
@@ -644,7 +659,7 @@ MovementData_0x6ef10:
 	big_step_down
 	step_end
 
-MovementData_0x6ef18:
+MovementData_Farfetched_Pos8_Pos7:
 	big_step_right
 	big_step_right
 	big_step_right
@@ -652,14 +667,14 @@ MovementData_0x6ef18:
 	big_step_right
 	step_end
 
-MovementData_0x6ef1e:
+MovementData_Farfetched_Pos8_Pos2:
 	big_step_up
 	big_step_up
 	big_step_up
 	big_step_up
 	step_end
 
-MovementData_0x6ef23:
+MovementData_Farfetched_Pos9_Pos10:
 	big_step_left
 	big_step_left
 	fix_facing
@@ -677,7 +692,7 @@ MovementData_0x6ef23:
 	big_step_up
 	step_end
 
-MovementData_0x6ef33:
+MovementData_Farfetched_Pos9_Pos8_Right:
 	big_step_right
 	big_step_right
 	big_step_right
@@ -689,7 +704,7 @@ MovementData_0x6ef33:
 	big_step_up
 	step_end
 
-MovementData_0x6ef3d:
+MovementData_Farfetched_Pos9_Pos8_Down:
 	big_step_left
 	big_step_left
 	fix_facing
@@ -757,16 +772,16 @@ UnknownText_0x6f019:
 	cont "a BADGE."
 	done
 
-UnknownText_0x6f06f:
+Text_ItsTheMissingPokemon:
 	text "It's the missing"
 	line "#MON!"
 	done
 
-UnknownText_0x6f086:
+Text_Kwaaaa:
 	text "FARFETCH'D: Kwaa!"
 	done
 
-UnknownText_0x6f099:
+Text_CharcoalMasterIntro:
 	text "Ah! My FARFETCH'D!"
 
 	para "You found it for"
@@ -787,7 +802,7 @@ UnknownText_0x6f099:
 	line "this."
 	done
 
-UnknownText_0x6f141:
+Text_CharcoalMasterOutro:
 	text "That's the CUT HM."
 	line "Teach that to a"
 
@@ -801,7 +816,7 @@ UnknownText_0x6f141:
 	line "AZALEA to use it."
 	done
 
-UnknownText_0x6f1c0:
+Text_CharcoalMasterTalkAfter:
 	text "Do you want to"
 	line "apprentice as a"
 
@@ -812,7 +827,7 @@ UnknownText_0x6f1c0:
 	line "rate in ten years!"
 	done
 
-UnknownText_0x6f21b:
+Text_HeadbuttIntro:
 	text "What am I doing?"
 
 	para "I'm shaking trees"
@@ -822,20 +837,20 @@ UnknownText_0x6f21b:
 	line "you try it too!"
 	done
 
-UnknownText_0x6f26d:
+Text_HeadbuttOutro:
 	text "Rattle trees with"
 	line "HEADBUTT. Some-"
 	cont "times, sleeping"
 	cont "#MON fall out."
 	done
 
-UnknownText_0x6f2af:
+Text_IlexForestLass:
 	text "Did something"
 	line "happen to the"
 	cont "forest's guardian?"
 	done
 
-UnknownText_0x6f2de:
+Text_IlexForestSignpost0:
 	text "ILEX FOREST is"
 	line "so overgrown with"
 
@@ -847,7 +862,7 @@ UnknownText_0x6f2de:
 	cont "have been dropped."
 	done
 
-UnknownText_0x6f358:
+Text_IlexForestShrine:
 	text "ILEX FOREST"
 	line "SHRINE…"
 
@@ -856,7 +871,7 @@ UnknownText_0x6f358:
 	cont "protector…"
 	done
 
-UnknownText_0x6f394:
+Text_ShrineCelebiEvent:
 	text "ILEX FOREST"
 	line "SHRINE…"
 
@@ -876,12 +891,12 @@ UnknownText_0x6f394:
 	line "BALL here?"
 	done
 
-UnknownText_0x6f43b:
+Text_InsertGSBall:
 	text "<PLAYER> put in the"
 	line "GS BALL."
 	done
 
-UnknownText_0x6f452:
+Text_KurtCaughtCelebi:
 	text "Whew, wasn't that"
 	line "something!"
 
@@ -914,7 +929,7 @@ Bug_catcherWayneBeatenText:
 	line "#MON before…"
 	done
 
-UnknownText_0x6f571:
+Bug_catcherWayneAfterText:
 	text "A #MON I've"
 	line "never seen before"
 
@@ -943,21 +958,21 @@ IlexForest_MapEventHeader:
 .Signposts:
 	db 5
 	signpost 17, 3, SIGNPOST_READ, MapIlexForestSignpost0Script
-	signpost 7, 11, SIGNPOST_ITEM, MapIlexForestSignpostItem1
-	signpost 14, 22, SIGNPOST_ITEM, MapIlexForestSignpostItem2
-	signpost 17, 1, SIGNPOST_ITEM, MapIlexForestSignpostItem3
+	signpost 7, 11, SIGNPOST_ITEM, IlexForestHiddenEther
+	signpost 14, 22, SIGNPOST_ITEM, IlexForestHiddenSuperPotion
+	signpost 17, 1, SIGNPOST_ITEM, IlexForestHiddenFullHeal
 	signpost 22, 8, SIGNPOST_UP, MapIlexForestSignpost4Script
 
 .PersonEvents:
 	db 11
-	person_event SPRITE_BIRD, 31, 14, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, BirdScript_0x6eb8f, EVENT_ILEX_FOREST_FARFETCHD
-	person_event SPRITE_YOUNGSTER, 28, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x6eb7b, EVENT_ILEX_FOREST_APPRENTICE
-	person_event SPRITE_BLACK_BELT, 28, 5, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BlackBeltScript_0x6edae, EVENT_ILEX_FOREST_CHARCOAL_MASTER
-	person_event SPRITE_ROCKER, 14, 15, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RockerScript_0x6edde, -1
-	person_event SPRITE_POKE_BALL, 32, 20, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x6ee10, EVENT_ILEX_FOREST_REVIVE
+	person_event SPRITE_BIRD, 31, 14, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, IlexForestFarfetchdScript, EVENT_ILEX_FOREST_FARFETCHD
+	person_event SPRITE_YOUNGSTER, 28, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, IlexForestCharcoalApprenticeScript, EVENT_ILEX_FOREST_APPRENTICE
+	person_event SPRITE_BLACK_BELT, 28, 5, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, IlexForestCharcoalMasterScript, EVENT_ILEX_FOREST_CHARCOAL_MASTER
+	person_event SPRITE_ROCKER, 14, 15, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, IlexForestHeadbuttGuyScript, -1
+	person_event SPRITE_POKE_BALL, 32, 20, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, IlexForestRevive, EVENT_ILEX_FOREST_REVIVE
 	person_event SPRITE_KURT, 29, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_ILEX_FOREST_KURT
-	person_event SPRITE_LASS, 24, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, LassScript_0x6ee0d, EVENT_ILEX_FOREST_LASS
+	person_event SPRITE_LASS, 24, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, IlexForestLassScript, EVENT_ILEX_FOREST_LASS
 	person_event SPRITE_YOUNGSTER, 1, 12, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 0, TrainerBug_catcherWayne, -1
-	person_event SPRITE_POKE_BALL, 17, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x6ee12, EVENT_ILEX_FOREST_X_ATTACK
-	person_event SPRITE_POKE_BALL, 7, 17, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x6ee14, EVENT_ILEX_FOREST_ANTIDOTE
-	person_event SPRITE_POKE_BALL, 1, 27, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x6ee16, EVENT_ILEX_FOREST_ETHER
+	person_event SPRITE_POKE_BALL, 17, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, IlexForestXAttack, EVENT_ILEX_FOREST_X_ATTACK
+	person_event SPRITE_POKE_BALL, 7, 17, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, IlexForestAntidote, EVENT_ILEX_FOREST_ANTIDOTE
+	person_event SPRITE_POKE_BALL, 1, 27, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, IlexForestEther, EVENT_ILEX_FOREST_ETHER

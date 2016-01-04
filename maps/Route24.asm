@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE24_ROCKET
+
 Route24_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -8,26 +11,26 @@ Route24_MapScriptHeader:
 RocketScript_0x1adbfa:
 	faceplayer
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	loadfont
+	opentext
 	writetext UnknownText_0x1adc2e
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x1add67, -1
 	loadtrainer GRUNTM, 31
 	startbattle
-	reloadmapmusic
-	returnafterbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	loadfont
+	opentext
 	writetext UnknownText_0x1addc0
-	keeptextopen
-	special Special_RotatePalettesRightMusic
+	buttonsound
+	special Special_FadeOutMusic
 	writetext UnknownText_0x1adee1
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
-	disappear $2
+	disappear ROUTE24_ROCKET
 	pause 25
 	special Special_FadeInQuickly
 	playmapmusic

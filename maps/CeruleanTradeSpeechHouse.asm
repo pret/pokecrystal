@@ -1,3 +1,9 @@
+const_value set 2
+	const CERULEANTRADESPEECHHOUSE_GRANNY
+	const CERULEANTRADESPEECHHOUSE_GRAMPS
+	const CERULEANTRADESPEECHHOUSE_RHYDON
+	const CERULEANTRADESPEECHHOUSE_ZUBAT
+
 CeruleanTradeSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -12,19 +18,19 @@ GrampsScript_0x188136:
 	jumptextfaceplayer UnknownText_0x18818a
 
 RhydonScript_0x188139:
-	loadfont
+	opentext
 	writetext UnknownText_0x18819c
 	cry KANGASKHAN
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ZubatScript_0x188143:
-	loadfont
+	opentext
 	writetext UnknownText_0x1881b5
 	cry ZUBAT
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x18814d:

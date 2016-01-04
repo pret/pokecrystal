@@ -1,3 +1,4 @@
+
 WhirlIslandCave_MapScriptHeader:
 .MapTriggers:
 	db 0

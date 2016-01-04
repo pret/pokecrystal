@@ -1,3 +1,6 @@
+const_value set 2
+	const LAVENDERTOWNSPEECHHOUSE_POKEFAN_F
+
 LavenderTownSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,7 @@
+const_value set 2
+	const MAHOGANYREDGYARADOSSPEECHHOUSE_BLACK_BELT
+	const MAHOGANYREDGYARADOSSPEECHHOUSE_TEACHER
+
 MahoganyRedGyaradosSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -10,18 +14,18 @@ BlackBeltScript_0x19997f:
 
 TeacherScript_0x199982:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue UnknownScript_0x199990
 	writetext UnknownText_0x199a0e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x199990:
 	writetext UnknownText_0x199a3d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x195996:

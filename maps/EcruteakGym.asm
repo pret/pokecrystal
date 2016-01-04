@@ -1,3 +1,12 @@
+const_value set 2
+	const ECRUTEAKGYM_MORTY
+	const ECRUTEAKGYM_SAGE1
+	const ECRUTEAKGYM_SAGE2
+	const ECRUTEAKGYM_GRANNY1
+	const ECRUTEAKGYM_GRANNY2
+	const ECRUTEAKGYM_GYM_GUY
+	const ECRUTEAKGYM_GRAMPS
+
 EcruteakGym_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -18,21 +27,21 @@ UnknownScript_0x99d57:
 
 MortyScript_0x99d58:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_MORTY
 	iftrue .FightDone
 	writetext UnknownText_0x99e65
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x9a00a, 0
 	loadtrainer MORTY, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_MORTY
-	loadfont
+	opentext
 	writetext UnknownText_0x9a043
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_FOGBADGE
 	checkcode VAR_BADGES
 	scall EcruteakGymTriggerRockets
@@ -47,20 +56,20 @@ MortyScript_0x99d58:
 	setevent EVENT_BEAT_MEDIUM_MARTHA
 	setevent EVENT_BEAT_MEDIUM_GRACE
 	writetext UnknownText_0x9a059
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_SHADOW_BALL
 	iffalse UnknownScript_0x99db5
 	setevent EVENT_GOT_TM30_SHADOW_BALL
 	writetext UnknownText_0x9a0ec
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x99db1:
 	writetext UnknownText_0x9a145
-	closetext
+	waitbutton
 UnknownScript_0x99db5:
-	loadmovesprites
+	closetext
 	end
 
 EcruteakGymTriggerRockets:
@@ -76,17 +85,17 @@ EcruteakGymTriggerRockets:
 
 UnknownScript_0x99dc6:
 	applymovement PLAYER, MovementData_0x99e5d
-	applymovement $8, MovementData_0x99e63
-	loadfont
+	applymovement ECRUTEAKGYM_GRAMPS, MovementData_0x99e63
+	opentext
 	writetext UnknownText_0x9a49c
+	waitbutton
 	closetext
-	loadmovesprites
-	follow PLAYER, $8
+	follow PLAYER, ECRUTEAKGYM_GRAMPS
 	applymovement PLAYER, MovementData_0x99e5f
 	stopfollow
 	special FadeOutPalettes
 	playsound SFX_ENTER_DOOR
-	waitbutton
+	waitsfx
 	warp ECRUTEAK_CITY, $6, $1b
 	end
 
@@ -94,60 +103,60 @@ TrainerSageJeffrey:
 	trainer EVENT_BEAT_SAGE_JEFFREY, SAGE, JEFFREY, SageJeffreySeenText, SageJeffreyBeatenText, 0, SageJeffreyScript
 
 SageJeffreyScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x9a263
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSagePing:
 	trainer EVENT_BEAT_SAGE_PING, SAGE, PING, SagePingSeenText, SagePingBeatenText, 0, SagePingScript
 
 SagePingScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x9a2b7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerMediumMartha:
 	trainer EVENT_BEAT_MEDIUM_MARTHA, MEDIUM, MARTHA, MediumMarthaSeenText, MediumMarthaBeatenText, 0, MediumMarthaScript
 
 MediumMarthaScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x9a318
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerMediumGrace:
 	trainer EVENT_BEAT_MEDIUM_GRACE, MEDIUM, GRACE, MediumGraceSeenText, MediumGraceBeatenText, 0, MediumGraceScript
 
 MediumGraceScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x9a38a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 EcruteakGymGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_MORTY
 	iftrue .EcruteakGymGuyWinScript
 	writetext EcruteakGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .EcruteakGymGuyWinScript
 	writetext EcruteakGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 EcruteakGymStatue:

@@ -2,22 +2,22 @@ FindItemInBallScript:: ; 0x122ce
 	callasm .TryReceiveItem
 	iffalse .no_room
 	disappear LAST_TALKED
-	loadfont
+	opentext
 	writetext .text_found
 	playsound SFX_ITEM
 	pause 60
 	itemnotify
-	loadmovesprites
+	closetext
 	end
 ; 0x122e3
 
 .no_room: ; 0x122e3
-	loadfont
+	opentext
 	writetext .text_found
-	closetext
+	waitbutton
 	writetext .text_bag_full
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x122ee
 
@@ -37,7 +37,7 @@ FindItemInBallScript:: ; 0x122ce
 	xor a
 	ld [ScriptVar], a
 	ld a, [EngineBuffer1]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	ld hl, StringBuffer3
 	call CopyName2

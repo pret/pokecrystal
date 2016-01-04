@@ -1,3 +1,9 @@
+const_value set 2
+	const ROUTE14_POKEFAN_M1
+	const ROUTE14_YOUNGSTER
+	const ROUTE14_POKEFAN_M2
+	const ROUTE14_TEACHER
+
 Route14_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,43 +13,43 @@ Route14_MapScriptHeader:
 
 TeacherScript_0x1ad47f:
 	faceplayer
-	loadfont
+	opentext
 	trade $5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokefanmCarter:
 	trainer EVENT_BEAT_POKEFANM_CARTER, POKEFANM, CARTER, PokefanmCarterSeenText, PokefanmCarterBeatenText, 0, PokefanmCarterScript
 
 PokefanmCarterScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ad508
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBird_keeperRoy:
 	trainer EVENT_BEAT_BIRD_KEEPER_ROY, BIRD_KEEPER, ROY, Bird_keeperRoySeenText, Bird_keeperRoyBeatenText, 0, Bird_keeperRoyScript
 
 Bird_keeperRoyScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ad5a4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokefanmTrevor:
 	trainer EVENT_BEAT_POKEFANM_TREVOR, POKEFANM, TREVOR, PokefanmTrevorSeenText, PokefanmTrevorBeatenText, 0, PokefanmTrevorScript
 
 PokefanmTrevorScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ad660
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokefanmCarterSeenText:

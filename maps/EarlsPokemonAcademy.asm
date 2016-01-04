@@ -1,3 +1,11 @@
+const_value set 2
+	const EARLSPOKEMONACADEMY_FISHER
+	const EARLSPOKEMONACADEMY_YOUNGSTER1
+	const EARLSPOKEMONACADEMY_GAMEBOY_KID1
+	const EARLSPOKEMONACADEMY_GAMEBOY_KID2
+	const EARLSPOKEMONACADEMY_YOUNGSTER2
+	const EARLSPOKEMONACADEMY_POKEDEX
+
 EarlsPokemonAcademy_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,9 +14,9 @@ EarlsPokemonAcademy_MapScriptHeader:
 	db 0
 
 AcademyEarl:
-	applymovement $2, MovementData_0x68b2d
+	applymovement EARLSPOKEMONACADEMY_FISHER, MovementData_0x68b2d
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x68b3b
 	yesorno
 	iffalse .Part1
@@ -20,14 +28,14 @@ AcademyEarl:
 	yesorno
 	iffalse .Done
 	writetext UnknownText_0x68c7b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Done
 	writetext UnknownText_0x68d31
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x68a83:
@@ -35,63 +43,63 @@ YoungsterScript_0x68a83:
 
 GameboyKidScript_0x68a86:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x68dda
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $4, DOWN
+	spriteface EARLSPOKEMONACADEMY_GAMEBOY_KID1, DOWN
 	end
 
 GameboyKidScript_0x68a91:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x68e07
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $5, DOWN
+	spriteface EARLSPOKEMONACADEMY_GAMEBOY_KID2, DOWN
 	end
 
 YoungsterScript_0x68a9c:
 	jumptextfaceplayer UnknownText_0x68e39
 
 AcademyBlackboard:
-	loadfont
+	opentext
 	writetext AcademyBlackboardText
 .Loop
 	loadmenudata .MenuHeader
-	interpretmenu
-	writebackup
+	_2dmenu
+	closewindow
 	if_equal $1, .Poison
 	if_equal $2, .Paralysis
 	if_equal $3, .Sleep
 	if_equal $4, .Burn
 	if_equal $5, .Freeze
-	loadmovesprites
+	closetext
 	end
 
 .Poison
 	writetext AcademyPoisonText
-	closetext
+	waitbutton
 	jump .Loop
 
 .Paralysis
 	writetext AcademyParalysisText
-	closetext
+	waitbutton
 	jump .Loop
 
 .Sleep
 	writetext AcademySleepText
-	closetext
+	waitbutton
 	jump .Loop
 
 .Burn
 	writetext AcademyBurnText
-	closetext
+	waitbutton
 	jump .Loop
 
 .Freeze:
 	writetext AcademyFreezeText
-	closetext
+	waitbutton
 	jump .Loop
 
 .MenuHeader
@@ -106,7 +114,7 @@ AcademyBlackboard:
 	dn 3, 2 ; rows, columns
 	db 5 ; spacing
 	dba .Text
-	dbw $1a, 0
+	dbw BANK(AcademyBlackboard), 0
 
 .Text
 	db "PSN@"
@@ -117,7 +125,7 @@ AcademyBlackboard:
 	db "QUIT@"
 
 AcademyNotebook:
-	loadfont
+	opentext
 	writetext AcademyNotebookText
 	yesorno
 	iffalse .Done
@@ -128,9 +136,9 @@ AcademyNotebook:
 	yesorno
 	iffalse .Done
 	writetext AcademyNotebookText3
-	closetext
+	waitbutton
 .Done
-	loadmovesprites
+	closetext
 	end
 
 AcademyStickerMachine:

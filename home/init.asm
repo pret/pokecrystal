@@ -22,17 +22,17 @@ Reset:: ; 150
 
 _Start:: ; 16e
 	cp $11
-	jr z, .asm_175
+	jr z, .cgb
 	xor a
-	jr .asm_177
+	jr .load
 
-.asm_175
+.cgb
 	ld a, $1
 
-.asm_177
+.load
 	ld [hCGB], a
 	ld a, $1
-	ld [$ffea], a
+	ld [hFFEA], a
 ; 17d
 
 
@@ -69,29 +69,29 @@ Init:: ; 17d
 	ld [rLCDC], a
 
 ; Clear WRAM bank 0
-	ld hl, $c000
-	ld bc, $d000 - $c000
-.asm_1b1
+	ld hl, wc000
+	ld bc, wd000 - wc000
+.ByteFill
 	ld [hl], 0
 	inc hl
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_1b1
+	jr nz, .ByteFill
 
 	ld sp, Stack
 
 ; Clear HRAM
 	ld a, [hCGB]
 	push af
-	ld a, [$ffea]
+	ld a, [hFFEA]
 	push af
 	xor a
-	ld hl, $ff80
-	ld bc, $ffff - $ff80
+	ld hl, HRAM_START
+	ld bc, HRAM_END - HRAM_START
 	call ByteFill
 	pop af
-	ld [$ffea], a
+	ld [hFFEA], a
 	pop af
 	ld [hCGB], a
 

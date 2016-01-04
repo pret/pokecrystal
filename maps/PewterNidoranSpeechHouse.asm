@@ -1,3 +1,7 @@
+const_value set 2
+	const PEWTERNIDORANSPEECHHOUSE_SUPER_NERD
+	const PEWTERNIDORANSPEECHHOUSE_GROWLITHE
+
 PewterNidoranSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,11 +13,11 @@ SuperNerdScript_0x1a2807:
 	jumptextfaceplayer UnknownText_0x1a2814
 
 GrowlitheScript_0x1a280a:
-	loadfont
+	opentext
 	writetext UnknownText_0x1a2825
 	cry NIDORAN_M
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x1a2814:

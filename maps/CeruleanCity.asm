@@ -1,3 +1,11 @@
+const_value set 2
+	const CERULEANCITY_COOLTRAINER_M
+	const CERULEANCITY_SUPER_NERD
+	const CERULEANCITY_SLOWPOKE
+	const CERULEANCITY_COOLTRAINER_F
+	const CERULEANCITY_FISHER
+	const CERULEANCITY_YOUNGSTER
+
 CeruleanCity_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -14,106 +22,106 @@ CeruleanCity_MapScriptHeader:
 
 CooltrainerMScript_0x184009:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x184017
 	writetext UnknownText_0x1840bc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x184017:
 	writetext UnknownText_0x184144
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SuperNerdScript_0x18401d:
 	jumptextfaceplayer UnknownText_0x1841a8
 
 CeruleanCitySlowbro:
-	loadfont
+	opentext
 	writetext CeruleanCitySlowbroText
 	cry SLOWBRO
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CooltrainerFScript_0x18402a:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x1841fa
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $5, LEFT
-	loadfont
+	spriteface CERULEANCITY_COOLTRAINER_F, LEFT
+	opentext
 	writetext UnknownText_0x184229
+	waitbutton
 	closetext
-	loadmovesprites
-	loadfont
+	opentext
 	writetext CeruleanCitySlowbroText
 	cry SLOWBRO
+	waitbutton
 	closetext
-	loadmovesprites
-	loadfont
+	opentext
 	writetext UnknownText_0x18424b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FisherScript_0x18404a:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x184058
 	checkevent EVENT_MET_ROCKET_GRUNT_AT_CERULEAN_GYM
 	iftrue UnknownScript_0x18405e
 UnknownScript_0x184058:
 	writetext UnknownText_0x18424e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x18405e:
 	writetext UnknownText_0x184275
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x184064:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x1842a9
+	waitbutton
 	closetext
-	loadmovesprites
 	checkevent EVENT_FOUND_BERSERK_GENE_IN_CERULEAN_CITY
 	iffalse UnknownScript_0x184072
 	end
 
 UnknownScript_0x184072:
-	waitbutton
+	waitsfx
 	playsound SFX_SECOND_PART_OF_ITEMFINDER
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
-	waitbutton
+	waitsfx
 	playsound SFX_SECOND_PART_OF_ITEMFINDER
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
-	waitbutton
+	waitsfx
 	playsound SFX_SECOND_PART_OF_ITEMFINDER
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
-	waitbutton
+	waitsfx
 	playsound SFX_SECOND_PART_OF_ITEMFINDER
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
-	waitbutton
-	showemote EMOTE_SHOCK, $7, 15
-	spriteface $7, LEFT
-	loadfont
+	waitsfx
+	showemote EMOTE_SHOCK, CERULEANCITY_YOUNGSTER, 15
+	spriteface CERULEANCITY_YOUNGSTER, LEFT
+	opentext
 	writetext UnknownText_0x1842ee
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CeruleanCitySign:
@@ -140,7 +148,7 @@ CeruleanCityPokeCenterSign:
 CeruleanCityMartSign:
 	jumpstd martsign
 
-MapCeruleanCitySignpostItem8:
+CeruleanCityHiddenBerserkGene:
 	dwb EVENT_FOUND_BERSERK_GENE_IN_CERULEAN_CITY, BERSERK_GENE
 
 UnknownText_0x1840bc:
@@ -295,7 +303,7 @@ CeruleanCity_MapEventHeader:
 	signpost 29, 14, SIGNPOST_READ, CeruleanLockedDoor
 	signpost 21, 20, SIGNPOST_READ, CeruleanCityPokeCenterSign
 	signpost 29, 26, SIGNPOST_READ, CeruleanCityMartSign
-	signpost 12, 2, SIGNPOST_ITEM, MapCeruleanCitySignpostItem8
+	signpost 12, 2, SIGNPOST_ITEM, CeruleanCityHiddenBerserkGene
 
 .PersonEvents:
 	db 6

@@ -1,3 +1,7 @@
+const_value set 2
+	const SLOWPOKEWELLB2F_GYM_GUY
+	const SLOWPOKEWELLB2F_POKE_BALL
+
 SlowpokeWellB2F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,26 +11,26 @@ SlowpokeWellB2F_MapScriptHeader:
 
 GymGuyScript_0x5ad0b:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL
 	iftrue UnknownScript_0x5ad22
 	writetext UnknownText_0x5ad2a
-	keeptextopen
+	buttonsound
 	verbosegiveitem KINGS_ROCK
 	iffalse UnknownScript_0x5ad20
 	setevent EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL
 UnknownScript_0x5ad20:
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x5ad22:
 	writetext UnknownText_0x5adf2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-ItemFragment_0x5ad28:
-	db TM_RAIN_DANCE, 1
+SlowpokeWellB2FTMRainDance:
+	itemball TM_RAIN_DANCE
 
 UnknownText_0x5ad2a:
 	text "I'm waiting to see"
@@ -74,4 +78,4 @@ SlowpokeWellB2F_MapEventHeader:
 .PersonEvents:
 	db 2
 	person_event SPRITE_GYM_GUY, 4, 5, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 1, GymGuyScript_0x5ad0b, -1
-	person_event SPRITE_POKE_BALL, 5, 15, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x5ad28, EVENT_SLOWPOKE_WELL_B2F_TM_RAIN_DANCE
+	person_event SPRITE_POKE_BALL, 5, 15, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, SlowpokeWellB2FTMRainDance, EVENT_SLOWPOKE_WELL_B2F_TM_RAIN_DANCE

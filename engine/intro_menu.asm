@@ -7,7 +7,7 @@ _MainMenu: ; 5ae8
 	ld [wMapMusic], a
 	call PlayMusic
 	callba MainMenu
-	jp Function6219
+	jp StartTitleScreen
 ; 5b04
 
 ; unreferenced
@@ -50,7 +50,7 @@ NewGame_ClearTileMapEtc: ; 5b44
 	call ClearTileMap
 	call LoadFontsExtra
 	call LoadStandardFont
-	call ResetTextRelatedRAM
+	call ClearWindowData
 	ret
 ; 5b54
 
@@ -68,7 +68,7 @@ OptionsMenu: ; 5b64
 
 NewGame: ; 5b6b
 	xor a
-	ld [wc2cc], a
+	ld [wMonStatusFlags], a
 	call ResetWRAM
 	call NewGame_ClearTileMapEtc
 	call AreYouABoyOrAreYouAGirl
@@ -86,7 +86,7 @@ NewGame: ; 5b6b
 ; 5b8f
 
 AreYouABoyOrAreYouAGirl: ; 5b8f
-	callba Function10632f ; some mobile stuff
+	callba Mobile_AlwaysReturnNotCarry ; some mobile stuff
 	jr c, .ok
 	callba InitGender
 	ret
@@ -211,9 +211,9 @@ ENDC
 	ld [Money + 2], a
 
 	xor a
-	ld [wdc17], a
+	ld [wWhichMomItem], a
 
-	ld hl, wdc19
+	ld hl, MomItemTriggerBalance
 	ld [hl], 2300 / $10000
 	inc hl
 	ld [hl], 2300 / $100 % $100
@@ -353,7 +353,7 @@ LoadOrRegenerateLuckyIDNumber: ; 5d33
 Continue: ; 5d65
 	callba TryLoadSaveFile
 	jr c, .FailToLoad
-	callba Function150b9
+	callba _LoadData
 	call LoadStandardMenuDataHeader
 	call DisplaySaveInfoOnContinue
 	ld a, $1
@@ -362,13 +362,13 @@ Continue: ; 5d65
 	call DelayFrames
 	call ConfirmContinue
 	jr nc, .Check1Pass
-	call WriteBackup
+	call CloseWindow
 	jr .FailToLoad
 
 .Check1Pass
 	call Continue_CheckRTC_RestartClock
 	jr nc, .Check2Pass
-	call WriteBackup
+	call CloseWindow
 	jr .FailToLoad
 
 .Check2Pass
@@ -380,12 +380,12 @@ Continue: ; 5d65
 	ld [MusicFadeIDHi], a
 	call ClearBGPalettes
 	call Continue_MobileAdapterMenu
-	call WriteBackup
+	call CloseWindow
 	call ClearTileMap
 	ld c, 20
 	call DelayFrames
 	callba JumpRoamMons
-	callba Function105091 ; Mystery Gift
+	callba MysteryGift_CopyReceivedDecosToPC ; Mystery Gift
 	callba Function140ae ; time-related
 	ld a, [wSpawnAfterChampion]
 	cp SPAWN_LANCE
@@ -399,14 +399,14 @@ Continue: ; 5d65
 
 .SpawnAfterE4
 	ld a, SPAWN_NEW_BARK
-	ld [wd001], a
+	ld [DefaultSpawnpoint], a
 	call PostCreditsSpawn
 	jp FinishContinueFunction
 ; 5de2
 
 SpawnAfterRed: ; 5de2
 	ld a, SPAWN_MT_SILVER
-	ld [wd001], a
+	ld [DefaultSpawnpoint], a
 ; 5de7
 
 PostCreditsSpawn: ; 5de7
@@ -418,8 +418,11 @@ PostCreditsSpawn: ; 5de7
 ; 5df0
 
 Continue_MobileAdapterMenu: ; 5df0
-	callba Function10632f ; mobile check
+	callba Mobile_AlwaysReturnNotCarry ; mobile check
 	ret nc
+
+; the rest of this stuff is never reached because
+; the previous function returns with carry not set
 	ld hl, wd479
 	bit 1, [hl]
 	ret nz
@@ -450,9 +453,9 @@ ConfirmContinue: ; 5e34
 	call DelayFrame
 	call GetJoypad
 	ld hl, hJoyPressed
-	bit 0, [hl]
+	bit A_BUTTON_F, [hl]
 	jr nz, .PressA
-	bit 1, [hl]
+	bit B_BUTTON_F, [hl]
 	jr z, .loop
 	scf
 	ret
@@ -480,7 +483,7 @@ Continue_CheckRTC_RestartClock: ; 5e48
 FinishContinueFunction: ; 5e5d
 .loop
 	xor a
-	ld [wc2c1], a
+	ld [wDontPlayMapMusicOnReload], a
 	ld [wLinkMode], a
 	ld hl, GameTimerPause
 	set 0, [hl]
@@ -545,9 +548,9 @@ Continue_LoadMenuHeader: ; 5ebf
 	ld hl, .MenuDataHeader_NoDex
 
 .pokedex_header
-	call Function1e35
+	call _OffsetMenuDataHeader
 	call MenuBox
-	call Function1c89
+	call PlaceVerticalMenuItems
 	ret
 ; 5ed9
 
@@ -641,7 +644,7 @@ Continue_DisplayBadgeCount: ; 5f58
 
 Continue_DisplayPokedexNumCaught: ; 5f6b
 	ld a, [StatusFlags]
-	bit 0, a
+	bit 0, a ; Pokedex
 	ret z
 	push hl
 	ld hl, PokedexCaught
@@ -685,7 +688,7 @@ OakSpeech: ; 0x5f99
 	ld [TrainerClass], a
 	call Intro_PrepTrainerPic
 
-	ld b, SCGB_1C
+	ld b, SCGB_FRONTPICPALS
 	call GetSGBLayout
 	call Intro_RotatePalettesLeftFrontpic
 
@@ -706,7 +709,7 @@ OakSpeech: ; 0x5f99
 	ld [TempMonDVs], a
 	ld [TempMonDVs + 1], a
 
-	ld b, SCGB_1C
+	ld b, SCGB_FRONTPICPALS
 	call GetSGBLayout
 	call Intro_WipeInFrontpic
 
@@ -723,7 +726,7 @@ OakSpeech: ; 0x5f99
 	ld [TrainerClass], a
 	call Intro_PrepTrainerPic
 
-	ld b, SCGB_1C
+	ld b, SCGB_FRONTPICPALS
 	call GetSGBLayout
 	call Intro_RotatePalettesLeftFrontpic
 
@@ -736,7 +739,7 @@ OakSpeech: ; 0x5f99
 	ld [CurPartySpecies], a
 	callba DrawIntroPlayerPic
 
-	ld b, SCGB_1C
+	ld b, SCGB_FRONTPICPALS
 	call GetSGBLayout
 	call Intro_RotatePalettesLeftFrontpic
 
@@ -783,11 +786,11 @@ OakText7: ; 0x606f
 NamePlayer: ; 0x6074
 	callba MovePlayerPicRight
 	callba ShowPlayerNamingChoices
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	jr z, .NewName
 	call StorePlayerName
-	callba Function8c1d
+	callba ApplyMonOrTrainerPals
 	callba MovePlayerPicLeft
 	ret
 
@@ -806,7 +809,7 @@ NamePlayer: ; 0x6074
 	ld [CurPartySpecies], a
 	callba DrawIntroPlayerPic
 
-	ld b, SCGB_1C
+	ld b, SCGB_FRONTPICPALS
 	call GetSGBLayout
 	call RotateThreePalettesLeft
 
@@ -828,11 +831,11 @@ NamePlayer: ; 0x6074
 
 Function60e9: ; Unreferenced
 	call LoadMenuDataHeader
-	call InterpretMenu2
-	ld a, [MenuSelection2]
+	call VerticalMenu
+	ld a, [wMenuCursorY]
 	dec a
 	call CopyNameFromMenu
-	call WriteBackup
+	call CloseWindow
 	ret
 ; 60fa
 
@@ -1003,19 +1006,19 @@ Intro_PlacePlayerSprite: ; 61cd
 
 .sprites ; 61fe
 	db 4
-	db $4c, $48, 0
-	db $4c, $50, 1
-	db $54, $48, 2
-	db $54, $50, 3
+	db  9 * 8 + 4,  9 * 8, 0
+	db  9 * 8 + 4, 10 * 8, 1
+	db 10 * 8 + 4,  9 * 8, 2
+	db 10 * 8 + 4, 10 * 8, 3
 ; 620b
 
 
-Function620b: ; 620b
-	callab Functione4579
-	jr c, Function6219
+CrystalIntroSequence: ; 620b
+	callab Copyright_GFPresents
+	jr c, StartTitleScreen
 	callba CrystalIntro
 
-Function6219: ; 6219
+StartTitleScreen: ; 6219
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -1024,7 +1027,7 @@ Function6219: ; 6219
 	call .TitleScreen
 	call DelayFrame
 .loop
-	call Function627b
+	call RunTitleScreen
 	jr nc, .loop
 
 	call ClearSprites
@@ -1036,9 +1039,9 @@ Function6219: ; 6219
 	ld hl, rLCDC
 	res 2, [hl]
 	call ClearScreen
-	call Function3200
+	call WaitBGMap2
 	xor a
-	ld [hLCDStatCustom], a
+	ld [hFFC6], a
 	ld [hSCX], a
 	ld [hSCY], a
 	ld a, $7
@@ -1055,21 +1058,20 @@ Function6219: ; 6219
 .ok
 	ld e, a
 	ld d, 0
-	ld hl, .jumptable
-rept 2
+	ld hl, .dw
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
 ; 626a
 
-.jumptable
+.dw
 	dw _MainMenu
-	dw Function6389
-	dw Function620b
-	dw Function620b
+	dw DeleteSaveData
+	dw CrystalIntroSequence
+	dw CrystalIntroSequence
 	dw ResetClock
 ; 6274
 
@@ -1079,7 +1081,7 @@ endr
 	ret
 ; 627b
 
-Function627b: ; 627b
+RunTitleScreen: ; 627b
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .done_title
@@ -1110,9 +1112,8 @@ TitleScreenScene: ; 62a3
 	ld e, a
 	ld d, 0
 	ld hl, .scenes
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1126,7 +1127,7 @@ endr
 	dw TitleScreenEnd
 ; 62b7
 
-Function62b7: ; Unreferenced
+.NextScene ; Unreferenced
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
@@ -1152,7 +1153,7 @@ TitleScreenEntrance: ; 62bc
 ; Reversed signage for every other line's position.
 ; This is responsible for the interlaced effect.
 	ld a, e
-	xor -1
+	xor $ff
 	inc a
 
 	ld b, 8 * 10 / 2 ; logo height / 2
@@ -1171,7 +1172,7 @@ TitleScreenEntrance: ; 62bc
 	ld hl, wJumptableIndex
 	inc [hl]
 	xor a
-	ld [hLCDStatCustom], a
+	ld [hFFC6], a
 
 ; Play the title screen music.
 	ld de, MUSIC_TITLE
@@ -1191,7 +1192,7 @@ TitleScreenTimer: ; 62f6
 
 ; Start a timer
 	ld hl, wcf65
-	ld de, $1140 ; 73.6 seconds
+	ld de, 73 * 60 + 36
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -1225,7 +1226,7 @@ TitleScreenMain: ; 6304
 ; To bring up the clock reset dialog:
 
 ; Hold Down + B + Select to initiate the sequence.
-	ld a, [$ffeb]
+	ld a, [hClockResetTrigger]
 	cp $34
 	jr z, .check_clock_reset
 
@@ -1235,17 +1236,17 @@ TitleScreenMain: ; 6304
 	jr nz, .check_start
 
 	ld a, $34
-	ld [$ffeb], a
+	ld [hClockResetTrigger], a
 	jr .check_start
 
 ; Keep Select pressed, and hold Left + Up.
 ; Then let go of Select.
 .check_clock_reset
-	bit 2, [hl] ; SELECT
+	bit SELECT_F, [hl]
 	jr nz, .check_start
 
 	xor a
-	ld [$ffeb], a
+	ld [hClockResetTrigger], a
 
 	ld a, [hl]
 	and D_LEFT + D_UP
@@ -1320,8 +1321,8 @@ TitleScreenEnd: ; 6375
 	ret
 ; 6389
 
-Function6389: ; 6389
-	callba Function4d54c
+DeleteSaveData: ; 6389
+	callba _DeleteSaveData
 	jp Init
 ; 6392
 
@@ -1336,26 +1337,23 @@ Function639b: ; unreferenced
 	and $3
 	ret nz
 	ld bc, SpriteAnim10
-	ld hl, SpriteAnim10FrameIndex - SpriteAnim10
+	ld hl, SPRITEANIMSTRUCT_FRAME
 	add hl, bc ; over-the-top compicated way to load wc3ae into hl
 	ld l, [hl]
 	ld h, 0
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld de, Data63ca
 	add hl, de
 	; If bit 2 of [wcf65] is set, get the second dw; else, get the first dw
 	ld a, [wcf65]
 	and %00000100
-rept 2
 	srl a
-endr
+	srl a
 	ld e, a
 	ld d, 0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	and a
 	ret z
@@ -1368,12 +1366,12 @@ endr
 
 Data63ca: ; 63ca
 ; frame 0 y, x; frame 1 y, x
-	db $5c, $50, $00, $00
-	db $5c, $68, $5c, $58
-	db $5c, $68, $5c, $78
-	db $5c, $88, $5c, $78
-	db $00, $00, $5c, $78
-	db $00, $00, $5c, $58
+	db 11 * 8 + 4, 10 * 8,  0 * 8,      0 * 8
+	db 11 * 8 + 4, 13 * 8, 11 * 8 + 4, 11 * 8
+	db 11 * 8 + 4, 13 * 8, 11 * 8 + 4, 15 * 8
+	db 11 * 8 + 4, 17 * 8, 11 * 8 + 4, 15 * 8
+	db  0 * 8,      0 * 8, 11 * 8 + 4, 15 * 8
+	db  0 * 8,      0 * 8, 11 * 8 + 4, 11 * 8
 ; 63e2
 
 Copyright: ; 63e2
@@ -1390,27 +1388,23 @@ Copyright: ; 63e2
 
 CopyrightString: ; 63fd
 	; ©1995-2001 Nintendo
-	db $60, $61, $62, $63, $64, $65, $66
-	db $67, $68, $69, $6a, $6b, $6c
-
-	db $4e
+	db   $60, $61, $62, $63, $64, $65, $66
+	db   $67, $68, $69, $6a, $6b, $6c
 
 	; ©1995-2001 Creatures inc.
-	db $60, $61, $62, $63, $64, $65, $66, $6d
-	db $6e, $6f, $70, $71, $72, $7a, $7b, $7c
-
-	db $4e
+	next $60, $61, $62, $63, $64, $65, $66
+	db   $6d, $6e, $6f, $70, $71, $72, $7a, $7b, $7c
 
 	; ©1995-2001 GAME FREAK inc.
-	db $60, $61, $62, $63, $64, $65, $66, $73, $74
-	db $75, $76, $77, $78, $79, $7a, $7b, $7c
+	next $60, $61, $62, $63, $64, $65, $66
+	db   $73, $74, $75, $76, $77, $78, $79, $7a, $7b, $7c
 
 	db "@"
 ; 642e
 
 GameInit:: ; 642e
 	callba TryLoadSaveData
-	call ResetTextRelatedRAM
+	call ClearWindowData
 	call ClearBGPalettes
 	call ClearTileMap
 	ld a, VBGMap0 / $100
@@ -1423,5 +1417,5 @@ GameInit:: ; 642e
 	ld a, $90
 	ld [hWY], a
 	call WaitBGMap
-	jp Function620b
+	jp CrystalIntroSequence
 ; 6454

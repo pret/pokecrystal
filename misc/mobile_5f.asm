@@ -274,35 +274,35 @@ CheckStringForErrors_IgnoreTerminator: ; 17d0b3
 
 Function17d0f3: ; 17d0f3
 	ld a, [$c608 + 5]
-	ld [wc702], a
+	ld [wOTTrademonSpecies], a
 	ld [CurPartySpecies], a
 	ld a, [wcd81]
 	ld [wc74e], a
 	ld hl, $c63d
-	ld de, wc724
-	ld bc, $0005
+	ld de, wOTTrademonOTName
+	ld bc, 5
 	call CopyBytes
-	ld a, $50
+	ld a, "@"
 	ld [de], a
 	ld a, [$c608 + 11]
-	ld [wEnemyWrapCount], a
+	ld [wOTTrademonID], a
 	ld a, [$c608 + 12]
-	ld [wPlayerCharging], a
+	ld [wOTTrademonID + 1], a
 	ld hl, $c608 + 26
 	ld a, [hli]
-	ld [wEnemyTrappingMove], a
+	ld [wOTTrademonDVs], a
 	ld a, [hl]
-	ld [wPlayerWrapCount], a
+	ld [wOTTrademonDVs + 1], a
 	ld bc, $c608 + 5
 	callba GetCaughtGender
 	ld a, c
-	ld [wEnemyCharging], a
+	ld [wOTTrademonCaughtData], a
 	call SpeechTextBox
 	call FadeToMenu
 	callba Function10804d
 	callba Function17d1f1
 	ld a, $1
-	ld [wd1e9], a
+	ld [wForceEvolution], a
 	ld a, $2
 	ld [wLinkMode], a
 	callba EvolvePokemon
@@ -326,58 +326,58 @@ Function17d0f3: ; 17d0f3
 	ld [de], a
 
 .asm_17d180
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	call RestartMapMusic
 	ret
 ; 17d187
 
-Function17d187: ; 17d187
-	ld hl, Unknown_17d194
+Mobile_CopyDefaultOTName: ; 17d187
+	ld hl, Mobile5F_KrissName
 	ld de, $c63d
-	ld bc, $0005
+	ld bc, 5
 	call CopyBytes
 	ret
 ; 17d194
 
-Unknown_17d194:
+Mobile5F_KrissName:
 	db "クりス@@"
 ; 17d198
 
-Function17d199: ; 17d199
-	ld hl, Unknown_17d1a6
+Mobile_CopyDefaultNickname: ; 17d199
+	ld hl, .DefaultNickname
 	ld de, $c642
-	ld bc, $0005
+	ld bc, 5
 	call CopyBytes
 	ret
 ; 17d1a6
 
-Unknown_17d1a6:
+.DefaultNickname:
 	db "?????"
 
-Function17d1ab: ; 17d1ab
-	ld a, $50
+Mobile_CopyDefaultMail: ; 17d1ab
+	ld a, "@"
 	ld hl, $c647
-	ld bc, $0021
+	ld bc, MAIL_MSG_LENGTH + 1
 	call ByteFill
-	ld hl, Unknown_17d1c3
+	ld hl, .DefaultMessage
 	ld de, $c647
-	ld bc, $0006
+	ld bc, 6
 	call CopyBytes
 	ret
 ; 17d1c3
 
-Unknown_17d1c3:
+.DefaultMessage:
 	db "こんにちは@"
 ; 17d1c9
 
-Function17d1c9: ; 17d1c9
-	ld a, $50
+Mobile_CopyDefaultMailAuthor: ; 17d1c9
+	ld a, "@"
 	ld de, $c668
-	ld bc, $0005
+	ld bc, 5
 	call ByteFill
-	ld hl, Unknown_17d194
+	ld hl, Mobile5F_KrissName
 	ld de, $c668
-	ld bc, $0005
+	ld bc, 5
 	call CopyBytes
 	ret
 ; 17d1e1
@@ -418,12 +418,12 @@ Function17d1f1: ; 17d1f1
 	call AddNTimes
 	predef GetUnownLetter
 	callab UpdateUnownDex
-	ld a, [wdef4]
+	ld a, [wFirstUnownSeen]
 	and a
 	jr nz, .asm_17d223
 
 	ld a, [UnownLetter]
-	ld [wdef4], a
+	ld [wFirstUnownSeen], a
 
 .asm_17d223
 	ret
@@ -456,25 +456,25 @@ Special_Menu_ChallengeExplanationCancel: ; 17d224
 .Load_Interpret
 	call LoadMenuDataHeader
 	call Function17d246
-	call WriteBackup
+	call CloseWindow
 	ret
 ; 17d246
 
 Function17d246: ; 17d246
-	call InterpretMenu2
+	call VerticalMenu
 	jr c, .Exit
 	ld a, [ScriptVar]
 	cp $5
-	jr nz, .UseMenuSelection2
-	ld a, [MenuSelection2]
+	jr nz, .UsewMenuCursorY
+	ld a, [wMenuCursorY]
 	cp $3
 	ret z
-	jr c, .UseMenuSelection2
+	jr c, .UsewMenuCursorY
 	dec a
 	jr .LoadToScriptVar
 
-.UseMenuSelection2
-	ld a, [MenuSelection2]
+.UsewMenuCursorY
+	ld a, [wMenuCursorY]
 
 .LoadToScriptVar
 	ld [ScriptVar], a
@@ -564,7 +564,7 @@ Function17d2ce: ; 17d2ce
 	ld [MusicFadeIDHi], a
 	call PlayMusic
 	call ReturnToMapFromSubmenu
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	ret
 ; 17d314
 
@@ -708,7 +708,7 @@ Function17d405:
 	ld [rSVBK], a
 	ld hl, Palette_17eff6
 	ld de, UnknBGPals
-	ld bc, $0040
+	ld bc, 8 palettes
 	call CopyBytes
 	call SetPalettes
 	pop af
@@ -733,17 +733,7 @@ Function17d45a: ; 17d45a
 ; 17d474
 
 Function17d474: ; 17d474
-	ld a, [wcd77]
-	ld e, a
-	ld d, 0
-	ld hl, Jumptable_17d483
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
+	jumptable Jumptable_17d483, wcd77
 ; 17d483
 
 Jumptable_17d483: ; 17d483
@@ -802,7 +792,7 @@ Function17d48d: ; 17d48d
 	jr z, .asm_17d4e0
 	ld a, e
 	ld [wcd6c], a
-	ld [wc2c0], a
+	ld [wMapMusic], a
 	ld d, $0
 	call PlayMusic2
 
@@ -920,16 +910,14 @@ Function17d48d: ; 17d48d
 	ld a, [wcd42]
 	ld c, a
 	ld b, $0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, l
 	ld [wcd4b], a
 	ld a, h
 	ld [wcd4c], a
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, l
 	ld [wcd4d], a
 	ld a, h
@@ -949,18 +937,17 @@ Function17d5c4:
 	ld a, [hJoyPressed]
 	and a
 	ret z
-	ld c, $0
+	ld c, 0
 	ld b, c
 	ld hl, wcd32
-.asm_17d5ce
+.loop
 	srl a
-	jr c, .asm_17d5d6
-rept 2
+	jr c, .got_button
 	inc c
-endr
-	jr .asm_17d5ce
+	inc c
+	jr .loop
 
-.asm_17d5d6
+.got_button
 	add hl, bc
 	ld a, [hli]
 	ld c, a
@@ -969,7 +956,7 @@ endr
 	and c
 	cp $ff
 	ret z
-	ld a, [BGMapBuffer]
+	ld a, [wcd20]
 	ld l, a
 	ld a, [wcd21]
 	ld h, a
@@ -988,7 +975,7 @@ Function17d5f6: ; 17d5f6
 	ld [rSVBK], a
 	ld hl, $c608
 	ld de, UnknBGPals
-	ld bc, $0040
+	ld bc, 8 palettes
 	call CopyBytes
 	ld a, $4
 	ld [rSVBK], a
@@ -1044,12 +1031,10 @@ Function17d60b: ; 17d60b
 	ld [wcd4c], a
 	pop de
 	pop hl
-rept 2
 	inc b
-endr
-rept 2
+	inc b
 	dec c
-endr
+	dec c
 	jr z, .asm_17d684
 	push bc
 	push de
@@ -1095,17 +1080,15 @@ Function17d6a1: ; 17d6a1
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $b1d3
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld [wcd47], a
 	ld a, [hl]
 	ld [BGMapPalBuffer], a
 	ld hl, $b1b3
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld c, a
 	ld a, [hl]
@@ -1121,9 +1104,8 @@ endr
 	ld de, wcd60
 	ld bc, $0004
 	call CopyBytes
-rept 2
 	inc hl
-endr
+	inc hl
 	ld de, wcd64
 	ld bc, $0004
 	call CopyBytes
@@ -1153,15 +1135,14 @@ Function17d6fd: ; 17d6fd
 	jr z, asm_17d721
 
 Function17d711:
-.asm_17d711
+.crash_loop
 	cp $31
-	jr nc, .asm_17d711
+	jr nc, .crash_loop
 	ld e, a
 	ld d, 0
-	ld hl, Jumptable_17d72a
-rept 2
+	ld hl, Jumptable17d72a
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1174,7 +1155,7 @@ asm_17d721
 	ret
 ; 17d72a
 
-Jumptable_17d72a: ; 17d72a
+Jumptable17d72a: ; 17d72a
 	dw Function17d78c
 	dw Function17d78d
 	dw Function17d7b4
@@ -1933,16 +1914,16 @@ Function17dc1f: ; 17dc1f
 	ld [wEnemyGoesFirst], a
 	ld hl, wc708
 	call LoadMenuDataHeader
-	call InterpretMenu2
+	call VerticalMenu
 	jr nc, .asm_17dc6e
 	ld a, $2
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 
 .asm_17dc6e
-	call WriteBackup
+	call CloseWindow
 	pop af
 	ld [rSVBK], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $1
 	jr nz, .asm_17dc85
 	ld a, [$c68a]
@@ -2015,9 +1996,8 @@ Function17dccf: ; 17dccf
 	ld a, [wcd2e]
 	ld c, a
 	ld b, $0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld c, a
 	ld a, [hl]
@@ -2032,9 +2012,9 @@ endr
 	ld a, [hl]
 	cp $ff
 	jr z, .asm_17dd0d
-.asm_17dcfa
+.crash_loop
 	cp $31
-	jr nc, .asm_17dcfa
+	jr nc, .crash_loop
 	call Function17d711
 	ld a, [wcd77]
 	bit 7, a
@@ -2432,9 +2412,8 @@ Function17ded9: ; 17ded9
 	jr .asm_17df7b
 
 .asm_17df79
-rept 2
 	inc hl
-endr
+	inc hl
 
 .asm_17df7b
 	bit 4, b
@@ -2487,9 +2466,8 @@ endr
 	jr .asm_17dfd2
 
 .asm_17dfd0
-rept 2
 	inc hl
-endr
+	inc hl
 
 .asm_17dfd2
 	bit 5, b
@@ -2614,9 +2592,8 @@ Function17e026: ; 17e026
 	jr .asm_17e0a4
 
 .asm_17e0a2
-rept 2
 	inc hl
-endr
+	inc hl
 
 .asm_17e0a4
 	bit 4, b
@@ -2632,9 +2609,8 @@ endr
 	jr .asm_17e0b6
 
 .asm_17e0b4
-rept 2
 	inc hl
-endr
+	inc hl
 
 .asm_17e0b6
 	bit 5, b
@@ -2656,9 +2632,8 @@ endr
 	call CloseSRAM
 	pop hl
 	pop bc
-rept 2
 	inc hl
-endr
+	inc hl
 	jr asm_17e0ee
 
 .asm_17e0e1
@@ -2703,9 +2678,8 @@ Function17e0fd: ; 17e0fd
 	call ReceiveItem
 	pop hl
 	jr c, .asm_17e127
-rept 2
 	inc hl
-endr
+	inc hl
 
 .asm_17e127
 	ld a, [hli]
@@ -2735,9 +2709,8 @@ Function17e133: ; 17e133
 	callba MobileCheckOwnMonAnywhere
 	pop hl
 	jr c, .asm_17e159
-rept 2
 	inc hl
-endr
+	inc hl
 
 .asm_17e159
 	ld a, [hli]
@@ -2773,9 +2746,8 @@ Function17e165: ; 17e165
 	call CheckItem
 	pop hl
 	jr c, .asm_17e195
-rept 2
 	inc hl
-endr
+	inc hl
 
 .asm_17e195
 	ld a, [hli]
@@ -3240,9 +3212,8 @@ Function17e451: ; 17e451
 	ld [wcd2e], a
 	ld c, a
 	ld b, $0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	push hl
 	hlcoord 0, 0
 	ld bc, $0014
@@ -3467,9 +3438,8 @@ Function17e5af: ; 17e5af
 	ld l, a
 	ld a, [wcd4e]
 	ld h, a
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -3534,9 +3504,8 @@ Function17e613: ; 17e613
 	ld [hli], a
 	ld a, [de]
 	inc de
-rept 2
 	dec a
-endr
+	dec a
 	jr z, .asm_17e63f
 	ld c, a
 	ld a, [wcd53]
@@ -3555,9 +3524,8 @@ endr
 	add hl, bc
 	ld a, [de]
 	dec de
-rept 2
 	dec a
-endr
+	dec a
 	jr z, .asm_17e674
 	ld b, a
 .asm_17e651
@@ -3566,9 +3534,8 @@ endr
 	add $3
 	ld [hli], a
 	ld a, [de]
-rept 2
 	dec a
-endr
+	dec a
 	jr z, .asm_17e664
 	ld c, a
 	ld a, $7f
@@ -3594,9 +3561,8 @@ endr
 	add $5
 	ld [hli], a
 	ld a, [de]
-rept 2
 	dec a
-endr
+	dec a
 	jr z, .asm_17e689
 	ld c, a
 	ld a, [wcd53]
@@ -3622,9 +3588,8 @@ Function17e691: ; 17e691
 	inc de
 	push af
 	ld a, [de]
-rept 2
 	inc de
-endr
+	inc de
 	and a
 .asm_17e69f
 	jr z, .asm_17e6a5
@@ -3776,9 +3741,8 @@ Function17f047: ; 17f047
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_17f061
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -3815,9 +3779,8 @@ Function17f081: ; 17f081
 	ld de, $0004
 	add hl, de
 	ld a, [hli]
-rept 2
 	inc hl
-endr
+	inc hl
 	ld e, l
 	ld d, h
 	ld l, c
@@ -3960,9 +3923,8 @@ Function17f154: ; 17f154
 	pop hl
 	call Function17f524
 	jr c, .asm_17f167
-rept 2
 	inc hl
-endr
+	inc hl
 	ld e, l
 	ld d, h
 	ld a, [de]
@@ -4150,9 +4112,8 @@ Function17f220: ; 17f220
 	ld e, a
 	ld d, 0
 	ld hl, .Genders
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
@@ -4414,9 +4375,8 @@ Function17f3f0: ; 17f3f0
 	ld a, [de]
 	ld c, a
 	ld b, $0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -4431,9 +4391,8 @@ endr
 	ld e, a
 	ld d, $0
 	pop hl
-rept 2
 	add hl, de
-endr
+	add hl, de
 rept 3
 	inc hl
 endr
@@ -4497,9 +4456,8 @@ Function17f44f: ; 17f44f
 	ld de, $0005
 	add hl, de
 	ld a, [hli]
-rept 2
 	inc hl
-endr
+	inc hl
 	ld e, l
 	ld d, h
 	ld l, c
@@ -4673,7 +4631,9 @@ Function17f53d: ; 17f53d
 	push af
 	ld a, $1
 	ld [rSVBK], a
+
 	call Function17f555
+
 	pop af
 	ld [rSVBK], a
 	call ExitAllMenus
@@ -4681,21 +4641,20 @@ Function17f53d: ; 17f53d
 ; 17f555
 
 Function17f555: ; 17f555
-.asm_17f555
+.loop
 	call JoyTextDelay
-	call Function17f5ae
+	call .RunJumptable
 	ld a, [wc303]
 	bit 7, a
-	jr nz, .asm_17f56a
+	jr nz, .quit
 	callba Function104000
-	jr .asm_17f555
+	jr .loop
 
-.asm_17f56a
-	call Function17f56e
+.quit
+	call .deinit
 	ret
-; 17f56e
 
-Function17f56e: ; 17f56e
+.deinit
 	ld a, [wc300]
 	cp $22
 	jr z, .asm_17f597
@@ -4732,26 +4691,16 @@ Function17f56e: ; 17f56e
 	ld a, $5
 	call GetSRAMBank
 	xor a
-	ld [$aa4b], a
+	ld [sMobileLoginPassword], a
 	call CloseSRAM
 	ret
 ; 17f5ae
 
-Function17f5ae: ; 17f5ae
-	ld a, [wc303]
-	ld e, a
-	ld d, 0
-	ld hl, Table17f5bd
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
+.RunJumptable: ; 17f5ae
+	jumptable .Jumptable, wc303
 ; 17f5bd
 
-Table17f5bd: ; 17f5bd
+.Jumptable: ; 17f5bd
 	dw Function17f5c3
 	dw Function17ff23
 	dw Function17f5d2
@@ -4818,9 +4767,8 @@ Function17f5e4: ; 17f5e4
 	ld e, a
 	ld d, $0
 	ld hl, Table_17f706
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [wc301]
 	ld e, a
 	ld a, [wc302]
@@ -4858,9 +4806,8 @@ endr
 	jr .asm_17f67d
 
 .asm_17f674
-rept 2
 	inc hl
-endr
+	inc hl
 	dec c
 	jr nz, .asm_17f65d
 
@@ -4878,9 +4825,8 @@ endr
 	ld e, a
 	ld d, 0
 	ld hl, Table_17f699
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
@@ -4913,26 +4859,26 @@ Palette_17f6af: ; 17f6af
 
 Function17f6b7: ; 17f6b7
 	ld a, [wc300]
-	call Function17f6cd
+	call .bcd_two_digits
 	inc hl
 	ld a, [wc302]
 	and $f
-	call Function17f6d8
+	call .bcd_digit
 	ld a, [wc301]
-	call Function17f6cd
+	call .bcd_two_digits
 	ret
 ; 17f6cd
 
-Function17f6cd: ; 17f6cd
+.bcd_two_digits: ; 17f6cd
 	ld c, a
 	and $f0
 	swap a
-	call Function17f6d8
+	call .bcd_digit
 	ld a, c
 	and $f
 
-Function17f6d8: ; 17f6d8
-	add $f6
+.bcd_digit: ; 17f6d8
+	add "0"
 	ld [hli], a
 	ret
 ; 17f6dc

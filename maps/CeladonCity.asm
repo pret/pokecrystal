@@ -1,3 +1,14 @@
+const_value set 2
+	const CELADONCITY_FISHER
+	const CELADONCITY_POLIWAG
+	const CELADONCITY_TEACHER1
+	const CELADONCITY_GRAMPS1
+	const CELADONCITY_GRAMPS2
+	const CELADONCITY_YOUNGSTER1
+	const CELADONCITY_YOUNGSTER2
+	const CELADONCITY_TEACHER2
+	const CELADONCITY_LASS
+
 CeladonCity_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -16,11 +27,11 @@ FisherScript_0x1a9f43:
 	jumptextfaceplayer UnknownText_0x1a9f7d
 
 CeladonCityPoliwrath:
-	loadfont
+	opentext
 	writetext CeladonCityPoliwrathText
 	cry POLIWRATH
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TeacherScript_0x1a9f50:
@@ -65,7 +76,7 @@ CeladonCityTrainerTips:
 CeladonCityPokeCenterSign:
 	jumpstd pokecentersign
 
-MapCeladonCitySignpostItem7:
+CeladonCityHiddenPpUp:
 	dwb EVENT_CELADON_CITY_HIDDEN_PP_UP, PP_UP
 
 UnknownText_0x1a9f7d:
@@ -253,7 +264,7 @@ CeladonCity_MapEventHeader:
 	signpost 21, 19, SIGNPOST_READ, CeladonCityGameCornerSign
 	signpost 21, 29, SIGNPOST_READ, CeladonCityTrainerTips
 	signpost 9, 30, SIGNPOST_READ, CeladonCityPokeCenterSign
-	signpost 21, 37, SIGNPOST_ITEM, MapCeladonCitySignpostItem7
+	signpost 21, 37, SIGNPOST_ITEM, CeladonCityHiddenPpUp
 
 .PersonEvents:
 	db 9

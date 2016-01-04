@@ -77,7 +77,7 @@ BattleAnimRunScript: ; cc11c
 	call BattleAnimRestoreHuds
 
 .disabled
-	ld a, [wcfca]
+	ld a, [wNumHits]
 	and a
 	jr z, .done
 
@@ -92,54 +92,54 @@ BattleAnimRunScript: ; cc11c
 
 .hi_byte
 	call WaitSFX
-	call Functioncc881
+	call PlayHitSound
 	call RunBattleAnimScript
 
 .done
-	call Functioncc8f6
+	call BattleAnim_RevertPals
 	ret
 ; cc163
 
 RunBattleAnimScript: ; cc163
 
-	call Functioncc8d3
+	call ClearBattleAnims
 
 .playframe
-	call Functioncc25f
-	call Functionccb48
-	call Functioncc96e
+	call RunBattleAnimCommand
+	call _ExecuteBGEffects
+	call BattleAnim_UpdateOAM_All
 	call Function3b0c
 	call BattleAnimRequestPals
 
 ; Speed up Rollout's animation.
 	ld a, [FXAnimIDHi]
 	or a
-	jr nz, .asm_cc193
+	jr nz, .not_rollout
 
 	ld a, [FXAnimIDLo]
 	cp ROLLOUT
-	jr nz, .asm_cc193
+	jr nz, .not_rollout
 
 	ld a, $2e
 	ld b, 5
 	ld de, 4
 	ld hl, ActiveBGEffects
-.asm_cc18c
+.find
 	cp [hl]
-	jr z, .asm_cc196
+	jr z, .done
 	add hl, de
 	dec b
-	jr nz, .asm_cc18c
+	jr nz, .find
 
-.asm_cc193
+.not_rollout
 	call BattleAnimDelayFrame
 
-.asm_cc196
+.done
 	ld a, [BattleAnimFlags]
 	bit 0, a
 	jr z, .playframe
 
-	call Functioncc23d
+	call BattleAnim_ClearCGB_OAMFlags
 	ret
 ; cc1a1
 
@@ -191,15 +191,15 @@ BattleAnimRequestPals: ; cc1e2
 
 	ld a, [rBGP]
 	ld b, a
-	ld a, [wcfc7]
+	ld a, [wBGP]
 	cp b
-	call nz, Functioncc91a
+	call nz, BattleAnim_SetBGPals
 
 	ld a, [rOBP0]
 	ld b, a
-	ld a, [wcfc8]
+	ld a, [wOBP0]
 	cp b
-	call nz, Functioncc94b
+	call nz, BattleAnim_SetOBPals
 	ret
 ; cc1fb
 
@@ -241,7 +241,7 @@ Functioncc220: ; cc220
 	ld [hBGMapAddress], a
 	ld a, (VBGMap0 tile $28) / $100
 	ld [hBGMapAddress + 1], a
-	call Function3200
+	call WaitBGMap2
 	ld a, $60
 	ld [hWY], a
 	xor a
@@ -253,11 +253,11 @@ Functioncc220: ; cc220
 ; cc23d
 
 
-Functioncc23d: ; cc23d
+BattleAnim_ClearCGB_OAMFlags: ; cc23d
 
 	ld a, [BattleAnimFlags]
 	bit 3, a
-	jr z, .skip
+	jr z, .delete
 
 	ld hl, Sprites + 3
 	ld c, (SpritesEnd - Sprites) / 4
@@ -272,7 +272,7 @@ endr
 	jr nz, .loop
 	ret
 
-.skip
+.delete
 	ld hl, Sprites
 	ld c, SpritesEnd - Sprites
 	xor a
@@ -283,7 +283,7 @@ endr
 	ret
 ; cc25f
 
-Functioncc25f: ; cc25f
+RunBattleAnimCommand: ; cc25f
 	call .CheckTimer
 	ret nc
 	call .RunScript
@@ -341,9 +341,8 @@ Functioncc25f: ; cc25f
 	ld e, a
 	ld d, 0
 	ld hl, BattleAnimCommands
-rept 2
 	add hl, de
-endr
+	add hl, de
 
 	ld a, [hli]
 	ld h, [hl]
@@ -460,19 +459,19 @@ BattleAnimCmd_Loop: ; cc348 (33:4348)
 	call GetBattleAnimByte
 	ld hl, BattleAnimFlags
 	bit 2, [hl]
-	jr nz, .asm_cc35b
+	jr nz, .continue_loop
 	and a
-	jr z, .asm_cc363
+	jr z, .perpetual
 	dec a
 	set 2, [hl]
 	ld [BattleAnimLoops], a
-.asm_cc35b
+.continue_loop
 	ld hl, BattleAnimLoops
 	ld a, [hl]
 	and a
-	jr z, .asm_cc372
+	jr z, .return_from_loop
 	dec [hl]
-.asm_cc363
+.perpetual
 	call GetBattleAnimByte
 	ld e, a
 	call GetBattleAnimByte
@@ -482,26 +481,26 @@ BattleAnimCmd_Loop: ; cc348 (33:4348)
 	inc hl
 	ld [hl], d
 	ret
-.asm_cc372
+
+.return_from_loop
 	ld hl, BattleAnimFlags
 	res 2, [hl]
 	ld hl, BattleAnimAddress
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-rept 2
 	inc de
-endr
+	inc de
 	ld [hl], d
 	dec hl
 	ld [hl], e
 	ret
 
 BattleAnimCmd_JumpUntil: ; cc383 (33:4383)
-	ld hl, wKickCounter
+	ld hl, wBattleAnimParam
 	ld a, [hl]
 	and a
-	jr z, .asm_cc39a
+	jr z, .dont_jump
 
 	dec [hl]
 	call GetBattleAnimByte
@@ -514,14 +513,13 @@ BattleAnimCmd_JumpUntil: ; cc383 (33:4383)
 	ld [hl], d
 	ret
 
-.asm_cc39a
+.dont_jump
 	ld hl, BattleAnimAddress
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-rept 2
 	inc de
-endr
+	inc de
 	ld [hl], d
 	dec hl
 	ld [hl], e
@@ -547,9 +545,8 @@ BattleAnimCmd_JumpVar: ; cc3b2 (33:43b2)
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-rept 2
 	inc de
-endr
+	inc de
 	ld [hl], d
 	dec hl
 	ld [hl], e
@@ -568,7 +565,7 @@ endr
 
 BattleAnimCmd_JumpIf: ; cc3d6 (33:43d6)
 	call GetBattleAnimByte
-	ld hl, wKickCounter
+	ld hl, wBattleAnimParam
 	cp [hl]
 	jr z, .jump
 
@@ -576,9 +573,8 @@ BattleAnimCmd_JumpIf: ; cc3d6 (33:43d6)
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-rept 2
 	inc de
-endr
+	inc de
 	ld [hl], d
 	dec hl
 	ld [hl], e
@@ -598,7 +594,7 @@ endr
 BattleAnimCmd_JumpAnd: ; cc3fa (33:43fa)
 	call GetBattleAnimByte
 	ld e, a
-	ld a, [wKickCounter]
+	ld a, [wBattleAnimParam]
 	and e
 	jr nz, .jump
 
@@ -606,9 +602,8 @@ BattleAnimCmd_JumpAnd: ; cc3fa (33:43fa)
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-rept 2
 	inc de
-endr
+	inc de
 	ld [hl], d
 	dec hl
 	ld [hl], e
@@ -625,62 +620,63 @@ endr
 	ret
 
 BattleAnimCmd_Obj: ; cc41f (33:441f)
+; index, x, y, param
 	call GetBattleAnimByte
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	call GetBattleAnimByte
-	ld [BattleAnimTemps + 1], a
+	ld [wBattleAnimTemp1], a
 	call GetBattleAnimByte
-	ld [BattleAnimTemps + 2], a
+	ld [wBattleAnimTemp2], a
 	call GetBattleAnimByte
-	ld [BattleAnimTemps + 3], a
-	call Functioncc9a1
+	ld [wBattleAnimTemp3], a
+	call QueueBattleAnimation
 	ret
 
 BattleAnimCmd_BGEffect: ; cc43b (33:443b)
 	call GetBattleAnimByte
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	call GetBattleAnimByte
-	ld [BattleAnimTemps + 1], a
+	ld [wBattleAnimTemp1], a
 	call GetBattleAnimByte
-	ld [BattleAnimTemps + 2], a
+	ld [wBattleAnimTemp2], a
 	call GetBattleAnimByte
-	ld [BattleAnimTemps + 3], a
-	call Functionccb4f
+	ld [wBattleAnimTemp3], a
+	call _QueueBGEffect
 	ret
 
 BattleAnimCmd_BGP: ; cc457 (33:4457)
 	call GetBattleAnimByte
-	ld [wcfc7], a
+	ld [wBGP], a
 	ret
 
 BattleAnimCmd_OBP0: ; cc45e (33:445e)
 	call GetBattleAnimByte
-	ld [wcfc8], a
+	ld [wOBP0], a
 	ret
 
 BattleAnimCmd_OBP1: ; cc465 (33:4465)
 	call GetBattleAnimByte
-	ld [wcfc9], a
+	ld [wOBP1], a
 	ret
 
 BattleAnimCmd_ResetObp0: ; cc46c (33:446c)
 	ld a, [hSGB]
 	and a
 	ld a, $e0
-	jr z, .asm_cc475
+	jr z, .not_sgb
 	ld a, $f0
-.asm_cc475
-	ld [wcfc8], a
+.not_sgb
+	ld [wOBP0], a
 	ret
 
 BattleAnimCmd_ClearObjs: ; cc479 (33:4479)
-	ld hl, OTPartyMon3HP
+	ld hl, ActiveAnimObjects
 	ld a, $a0
-.asm_cc47e
+.loop
 	ld [hl], $0
 	inc hl
 	dec a
-	jr nz, .asm_cc47e
+	jr nz, .loop
 	ret
 
 BattleAnimCmd_1GFX:
@@ -691,16 +687,16 @@ BattleAnimCmd_5GFX: ; cc485 (33:4485)
 	ld a, [BattleAnimByte]
 	and $f
 	ld c, a
-	ld hl, w5_d300
+	ld hl, wBattleAnimTileDict
 	xor a
-	ld [BattleAnimTemps], a
-.asm_cc492
-	ld a, [BattleAnimTemps]
-	cp $4f
+	ld [wBattleAnimTemp0], a
+.loop
+	ld a, [wBattleAnimTemp0]
+	cp (VTiles1 - VTiles0) / $10 - $31
 	ret nc
 	call GetBattleAnimByte
 	ld [hli], a
-	ld a, [BattleAnimTemps]
+	ld a, [wBattleAnimTemp0]
 	ld [hli], a
 	push bc
 	push hl
@@ -712,102 +708,104 @@ endr
 	ld de, VTiles0 tile $31
 	add hl, de
 	ld a, [BattleAnimByte]
-	call Functionce846
-	ld a, [BattleAnimTemps]
+	call LoadBattleAnimObj
+	ld a, [wBattleAnimTemp0]
 	add c
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	pop hl
 	pop bc
 	dec c
-	jr nz, .asm_cc492
+	jr nz, .loop
 	ret
 
 BattleAnimCmd_IncObj: ; cc4c0 (33:44c0)
 	call GetBattleAnimByte
-	ld e, $a
-	ld bc, OTPartyMon3HP
-.asm_cc4c8
-	ld hl, $0
+	ld e, 10
+	ld bc, ActiveAnimObjects
+.loop
+	ld hl, BATTLEANIMSTRUCT_INDEX
 	add hl, bc
 	ld d, [hl]
 	ld a, [BattleAnimByte]
 	cp d
-	jr z, .asm_cc4dd
-	ld hl, $18
+	jr z, .found
+	ld hl, BATTLEANIMSTRUCT_LENGTH
 	add hl, bc
 	ld c, l
 	ld b, h
 	dec e
-	jr nz, .asm_cc4c8
+	jr nz, .loop
 	ret
-.asm_cc4dd
-	ld hl, $e
+
+.found
+	ld hl, BATTLEANIMSTRUCT_ANON_JT_INDEX
 	add hl, bc
 	inc [hl]
 	ret
 
 BattleAnimCmd_IncBGEffect: ; cc4e3 (33:44e3)
 	call GetBattleAnimByte
-	ld e, $5
+	ld e, 5
 	ld bc, ActiveBGEffects
-.asm_cc4eb
+.loop
 	ld hl, $0
 	add hl, bc
 	ld d, [hl]
 	ld a, [BattleAnimByte]
 	cp d
-	jr z, .asm_cc500
-	ld hl, $4
+	jr z, .found
+	ld hl, 4
 	add hl, bc
 	ld c, l
 	ld b, h
 	dec e
-	jr nz, .asm_cc4eb
+	jr nz, .loop
 	ret
-.asm_cc500
-	ld hl, $1
+
+.found
+	ld hl, BG_EFFECT_STRUCT_JT_INDEX
 	add hl, bc
 	inc [hl]
 	ret
 
 BattleAnimCmd_SetObj: ; cc506 (33:4506)
 	call GetBattleAnimByte
-	ld e, $a
-	ld bc, OTPartyMon3HP
-.asm_cc50e
-	ld hl, $0
+	ld e, 10
+	ld bc, ActiveAnimObjects
+.loop
+	ld hl, BATTLEANIMSTRUCT_INDEX
 	add hl, bc
 	ld d, [hl]
 	ld a, [BattleAnimByte]
 	cp d
-	jr z, .asm_cc523
-	ld hl, $18
+	jr z, .found
+	ld hl, BATTLEANIMSTRUCT_LENGTH
 	add hl, bc
 	ld c, l
 	ld b, h
 	dec e
-	jr nz, .asm_cc50e
+	jr nz, .loop
 	ret
-.asm_cc523
+
+.found
 	call GetBattleAnimByte
-	ld hl, $e
+	ld hl, BATTLEANIMSTRUCT_ANON_JT_INDEX
 	add hl, bc
 	ld [hl], a
 	ret
 
 BattleAnimCmd_EnemyFeetObj: ; cc52c (33:452c)
 
-	ld hl, w5_d300
-.asm_cc52f
+	ld hl, wBattleAnimTileDict
+.loop
 	ld a, [hl]
 	and a
-	jr z, .asm_cc537
-rept 2
+	jr z, .okay
 	inc hl
-endr
-	jr .asm_cc52f
+	inc hl
+	jr .loop
 
-.asm_cc537
+.okay
 	ld a, $28
 	ld [hli], a
 	ld a, $42
@@ -820,50 +818,49 @@ endr
 	ld hl, VTiles0 tile $73
 	ld de, VTiles2 tile $06
 	ld a, $70
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	ld a, $7
-	call Functioncc561
+	call .LoadFootprint
 	ld de, VTiles2 tile $31
 	ld a, $60
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	ld a, $6
-	call Functioncc561
+	call .LoadFootprint
 	ret
 
-Functioncc561: ; cc561 (33:4561)
+.LoadFootprint: ; cc561 (33:4561)
 	push af
 	push hl
 	push de
-	ld bc, $3301
+	lb bc, BANK(BattleAnimCmd_EnemyFeetObj), 1
 	call Request2bpp
 	pop de
-	ld a, [BattleAnimTemps]
+	ld a, [wBattleAnimTemp0]
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, de
 	ld e, l
 	ld d, h
 	pop hl
-	ld bc, $10
+	ld bc, 1 tiles
 	add hl, bc
 	pop af
 	dec a
-	jr nz, Functioncc561
+	jr nz, .LoadFootprint
 	ret
 
 BattleAnimCmd_PlayerHeadObj: ; cc57e (33:457e)
 
-	ld hl, w5_d300
-.asm_cc581
+	ld hl, wBattleAnimTileDict
+.loop
 	ld a, [hl]
 	and a
-	jr z, .asm_cc589
-rept 2
+	jr z, .okay
 	inc hl
-endr
-	jr .asm_cc581
+	inc hl
+	jr .loop
 
-.asm_cc589
+.okay
 	ld a, $28
 	ld [hli], a
 	ld a, $35
@@ -876,35 +873,35 @@ endr
 	ld hl, VTiles0 tile $66
 	ld de, VTiles2 tile $05
 	ld a, $70
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	ld a, $7
-	call Functioncc5b3
+	call .LoadHead
 	ld de, VTiles2 tile $31
 	ld a, $60
-	ld [BattleAnimTemps], a
+	ld [wBattleAnimTemp0], a
 	ld a, $6
-	call Functioncc5b3
+	call .LoadHead
 	ret
 
-Functioncc5b3: ; cc5b3 (33:45b3)
+.LoadHead: ; cc5b3 (33:45b3)
 	push af
 	push hl
 	push de
-	ld bc, $3302
+	lb bc, BANK(BattleAnimCmd_EnemyFeetObj), 2
 	call Request2bpp
 	pop de
-	ld a, [BattleAnimTemps]
+	ld a, [wBattleAnimTemp0]
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, de
 	ld e, l
 	ld d, h
 	pop hl
-	ld bc, $20
+	ld bc, 2 tiles
 	add hl, bc
 	pop af
 	dec a
-	jr nz, Functioncc5b3
+	jr nz, .LoadHead
 	ret
 
 BattleAnimCmd_CheckPokeball: ; cc5d0 (33:45d0)
@@ -996,18 +993,18 @@ GetSubstitutePic: ; cc64c
 	and a
 	jr z, .player
 
-	ld hl, MonsterSpriteGFX
-	ld de, sScratch + $130
-	call CopyMonsterSpriteTile
-	ld hl, MonsterSpriteGFX + $10
-	ld de, sScratch + $1a0
-	call CopyMonsterSpriteTile
-	ld hl, MonsterSpriteGFX + $20
-	ld de, sScratch + $140
-	call CopyMonsterSpriteTile
-	ld hl, MonsterSpriteGFX + $30
-	ld de, sScratch + $1b0
-	call CopyMonsterSpriteTile
+	ld hl, MonsterSpriteGFX + 0 tiles
+	ld de, sScratch + $13 tiles
+	call .CopyTile
+	ld hl, MonsterSpriteGFX + 1 tiles
+	ld de, sScratch + $1a tiles
+	call .CopyTile
+	ld hl, MonsterSpriteGFX + 2 tiles
+	ld de, sScratch + $14 tiles
+	call .CopyTile
+	ld hl, MonsterSpriteGFX + 3 tiles
+	ld de, sScratch + $1b tiles
+	call .CopyTile
 
 	ld hl, VTiles2 tile $00
 	ld de, sScratch
@@ -1016,18 +1013,18 @@ GetSubstitutePic: ; cc64c
 	jr .done
 
 .player
-	ld hl, MonsterSpriteGFX + $40
-	ld de, sScratch + $100
-	call CopyMonsterSpriteTile
-	ld hl, MonsterSpriteGFX + $50
-	ld de, sScratch + $160
-	call CopyMonsterSpriteTile
-	ld hl, MonsterSpriteGFX + $60
-	ld de, sScratch + $110
-	call CopyMonsterSpriteTile
-	ld hl, MonsterSpriteGFX + $70
-	ld de, sScratch + $170
-	call CopyMonsterSpriteTile
+	ld hl, MonsterSpriteGFX + 4 tiles
+	ld de, sScratch + $10 tiles
+	call .CopyTile
+	ld hl, MonsterSpriteGFX + 5 tiles
+	ld de, sScratch + $16 tiles
+	call .CopyTile
+	ld hl, MonsterSpriteGFX + 6 tiles
+	ld de, sScratch + $11 tiles
+	call .CopyTile
+	ld hl, MonsterSpriteGFX + 7 tiles
+	ld de, sScratch + $17 tiles
+	call .CopyTile
 
 	ld hl, VTiles2 tile $31
 	ld de, sScratch
@@ -1040,8 +1037,8 @@ GetSubstitutePic: ; cc64c
 	ld [rSVBK], a
 	ret
 
-CopyMonsterSpriteTile: ; cc6c6 (33:46c6)
-	ld bc, $10
+.CopyTile: ; cc6c6 (33:46c6)
+	ld bc, 1 tiles
 	ld a, BANK(MonsterSpriteGFX)
 	call FarCopyBytes
 	ret
@@ -1062,7 +1059,7 @@ BattleAnimCmd_MinimizeOpp: ; cc6cf (33:46cf)
 
 GetMinimizePic: ; cc6e7 (33:46e7)
 	ld hl, sScratch
-	ld bc, $310
+	ld bc, $31 tiles
 .loop
 	xor a
 	ld [hli], a
@@ -1075,7 +1072,7 @@ GetMinimizePic: ; cc6e7 (33:46e7)
 	and a
 	jr z, .player
 
-	ld de, sScratch + $1a0
+	ld de, sScratch + $1a tiles
 	call CopyMinimizePic
 	ld hl, VTiles2 tile $00
 	ld de, sScratch
@@ -1129,11 +1126,11 @@ BattleAnimCmd_DropSub: ; cc750 (33:4750)
 	and a
 	jr z, .player
 
-	callab Function3f486
+	callab DropEnemySub
 	jr .done
 
 .player
-	callab Function3f447
+	callab DropPlayerSub
 
 .done
 	pop af
@@ -1150,21 +1147,21 @@ BattleAnimCmd_BeatUp: ; cc776 (33:4776)
 	ld a, [CurPartySpecies] ; CurPartySpecies
 	push af
 
-	ld a, [wKickCounter]
+	ld a, [wBattleAnimParam]
 	ld [CurPartySpecies], a ; CurPartySpecies
 
 	ld a, [hBattleTurn]
 	and a
 	jr z, .player
 
-	ld hl, BattleMonDVs ; BattleMonDVs
+	ld hl, BattleMonDVs
 	predef GetUnownLetter
 	ld de, VTiles2 tile $00
 	predef GetFrontpic
 	jr .done
 
 .player
-	ld hl, EnemyMonDVs ; EnemyMonDVs
+	ld hl, EnemyMonDVs
 	predef GetUnownLetter
 	ld de, VTiles2 tile $31
 	predef GetBackpic
@@ -1172,7 +1169,7 @@ BattleAnimCmd_BeatUp: ; cc776 (33:4776)
 .done
 	pop af
 	ld [CurPartySpecies], a ; CurPartySpecies
-	ld b, SCGB_01
+	ld b, SCGB_BATTLE_COLORS
 	call GetSGBLayout
 	pop af
 	ld [rSVBK], a
@@ -1207,17 +1204,17 @@ BattleAnimCmd_Sound: ; cc7cd (33:47cd)
 	ld e, a
 	srl a
 	srl a
-	ld [wc2be], a
-	call Functioncc7fc
+	ld [wSFXDuration], a
+	call .GetCryTrack
 	and 3
 	ld [CryTracks], a ; CryTracks
 
 	ld e, a
 	ld d, 0
-	ld hl, Datacc7f8
+	ld hl, .GetPanning
 	add hl, de
 	ld a, [hl]
-	ld [wc2bc], a
+	ld [wStereoPanningMask], a
 
 	call GetBattleAnimByte
 	ld e, a
@@ -1227,11 +1224,11 @@ BattleAnimCmd_Sound: ; cc7cd (33:47cd)
 	ret
 ; cc7f8 (33:47f8)
 
-Datacc7f8: ; cc7f8
+.GetPanning: ; cc7f8
 	db $f0, $0f, $f0, $0f
 ; cc7fc
 
-Functioncc7fc: ; cc7fc (33:47fc)
+.GetCryTrack: ; cc7fc (33:47fc)
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .enemy
@@ -1249,7 +1246,7 @@ BattleAnimCmd_Cry: ; cc807 (33:4807)
 	and 3
 	ld e, a
 	ld d, 0
-	ld hl, Datacc871
+	ld hl, .CryData
 rept 4
 	add hl, de
 endr
@@ -1266,14 +1263,14 @@ endr
 	ld a, $f0
 	ld [CryTracks], a ; CryTracks
 	ld a, [BattleMonSpecies] ; BattleMonSpecies
-	jr .asm_cc834
+	jr .done_cry_tracks
 
 .enemy
 	ld a, $0f
 	ld [CryTracks], a ; CryTracks
 	ld a, [EnemyMonSpecies] ; EnemyMon
 
-.asm_cc834
+.done_cry_tracks
 	push hl
 	call LoadCryHeader
 	pop hl
@@ -1310,7 +1307,7 @@ endr
 	ld a, h
 	ld [CryLength + 1], a
 	ld a, 1
-	ld [wc2bc], a
+	ld [wStereoPanningMask], a
 
 	callab _PlayCryHeader
 
@@ -1320,17 +1317,17 @@ endr
 	ret
 ; cc871 (33:4871)
 
-Datacc871: ; cc871
+.CryData: ; cc871
 ; +pitch, +length
-	dw 0, $c0
-	dw 0, $40
-	dw 0, $00
-	dw 0, $00
+	dw $0000, $00c0
+	dw $0000, $0040
+	dw $0000, $0000
+	dw $0000, $0000
 ; cc881
 
 
-Functioncc881: ; cc881
-	ld a, [wcfca]
+PlayHitSound: ; cc881
+	ld a, [wNumHits]
 	cp $1
 	jr z, .okay
 	cp $4
@@ -1366,24 +1363,24 @@ BattleAnimAssignPals: ; cc8a4
 	ld a, %11110000
 
 .sgb
-	ld [wcfc8], a
+	ld [wOBP0], a
 	ld a, %11100100
-	ld [wcfc7], a
-	ld [wcfc9], a
+	ld [wBGP], a
+	ld [wOBP1], a
 	ret
 
 .cgb
 	ld a, %11100100
-	ld [wcfc7], a
-	ld [wcfc8], a
-	ld [wcfc9], a
+	ld [wBGP], a
+	ld [wOBP0], a
+	ld [wOBP1], a
 	call DmgToCgbBGPals
 	lb de, %11100100, %11100100
 	call DmgToCgbObjPals
 	ret
 ; cc8d3
 
-Functioncc8d3: ; cc8d3
+ClearBattleAnims: ; cc8d3
 ; Clear animation block
 	ld hl, LYOverrides
 	ld bc, wBattleAnimEnd - LYOverrides
@@ -1400,21 +1397,20 @@ Functioncc8d3: ; cc8d3
 	inc hl
 	ld d, [hl]
 	ld hl, BattleAnimations
-rept 2
 	add hl, de
-endr
+	add hl, de
 	call GetBattleAnimPointer
 	call BattleAnimAssignPals
 	call BattleAnimDelayFrame
 	ret
 ; cc8f6
 
-Functioncc8f6: ; cc8f6
+BattleAnim_RevertPals: ; cc8f6
 	call WaitTop
 	ld a, %11100100
-	ld [wcfc7], a
-	ld [wcfc8], a
-	ld [wcfc9], a
+	ld [wBGP], a
+	ld [wOBP0], a
+	ld [wOBP1], a
 	call DmgToCgbBGPals
 	lb de, %11100100, %11100100
 	call DmgToCgbObjPals
@@ -1427,7 +1423,7 @@ Functioncc8f6: ; cc8f6
 	ret
 ; cc91a
 
-Functioncc91a: ; cc91a
+BattleAnim_SetBGPals: ; cc91a
 	ld [rBGP], a
 	ld a, [hCGB]
 	and a
@@ -1455,7 +1451,7 @@ Functioncc91a: ; cc91a
 	ret
 ; cc94b
 
-Functioncc94b: ; cc94b
+BattleAnim_SetOBPals: ; cc94b
 	ld [rOBP0], a
 	ld a, [hCGB]
 	and a
@@ -1477,41 +1473,41 @@ Functioncc94b: ; cc94b
 	ret
 ; cc96e
 
-Functioncc96e: ; cc96e
+BattleAnim_UpdateOAM_All: ; cc96e
 	ld a, $0
-	ld [w5_d418], a
-	ld hl, OTPartyMon3HP
-	ld e, $a
-.asm_cc978
+	ld [wBattleAnimOAMPointerLo], a
+	ld hl, ActiveAnimObjects
+	ld e, 10
+.loop
 	ld a, [hl]
 	and a
-	jr z, .asm_cc98a
+	jr z, .next
 	ld c, l
 	ld b, h
 	push hl
 	push de
-	call Functionccfbe
-	call Functioncca09
+	call DoBattleAnimFrame
+	call BattleAnimOAMUpdate
 	pop de
 	pop hl
-	jr c, .asm_cc9a0
+	jr c, .done
 
-.asm_cc98a
-	ld bc, $0018
+.next
+	ld bc, BATTLEANIMSTRUCT_LENGTH
 	add hl, bc
 	dec e
-	jr nz, .asm_cc978
-	ld a, [w5_d418]
+	jr nz, .loop
+	ld a, [wBattleAnimOAMPointerLo]
 	ld l, a
-	ld h, $c4
-.asm_cc997
+	ld h, Sprites / $100
+.loop2
 	ld a, l
-	cp $a0
-	jr nc, .asm_cc9a0
+	cp SpritesEnd % $100
+	jr nc, .done
 	xor a
 	ld [hli], a
-	jr .asm_cc997
+	jr .loop2
 
-.asm_cc9a0
+.done
 	ret
 ; cc9a1

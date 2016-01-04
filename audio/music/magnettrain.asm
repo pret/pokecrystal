@@ -1,8 +1,8 @@
 Music_MagnetTrain: ; ef5f0
-	dbw $c0, Music_MagnetTrain_Ch1
-	dbw $01, Music_MagnetTrain_Ch2
-	dbw $02, Music_MagnetTrain_Ch3
-	dbw $03, Music_MagnetTrain_Ch4
+	musicheader 4, 1, Music_MagnetTrain_Ch1
+	musicheader 1, 2, Music_MagnetTrain_Ch2
+	musicheader 1, 3, Music_MagnetTrain_Ch3
+	musicheader 1, 4, Music_MagnetTrain_Ch4
 ; ef5fc
 
 Music_MagnetTrain_Ch1: ; ef5fc

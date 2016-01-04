@@ -1,8 +1,8 @@
 Music_LookRocket: ; f74a2
-	dbw $c0, Music_LookRocket_Ch1
-	dbw $01, Music_LookRocket_Ch2
-	dbw $02, Music_LookRocket_Ch3
-	dbw $03, Music_LookRocket_Ch4
+	musicheader 4, 1, Music_LookRocket_Ch1
+	musicheader 1, 2, Music_LookRocket_Ch2
+	musicheader 1, 3, Music_LookRocket_Ch3
+	musicheader 1, 4, Music_LookRocket_Ch4
 ; f74ae
 
 Music_LookRocket_Ch1: ; f74ae

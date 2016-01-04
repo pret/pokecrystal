@@ -1,3 +1,10 @@
+const_value set 2
+	const VERMILIONGYM_SURGE
+	const VERMILIONGYM_GENTLEMAN
+	const VERMILIONGYM_ROCKER
+	const VERMILIONGYM_SUPER_NERD
+	const VERMILIONGYM_GYM_GUY
+
 VermilionGym_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,83 +14,83 @@ VermilionGym_MapScriptHeader:
 
 SurgeScript_0x1920a5:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_THUNDERBADGE
 	iftrue .FightDone
 	writetext UnknownText_0x192142
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x192238, 0
 	loadtrainer LT_SURGE, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_LTSURGE
 	setevent EVENT_BEAT_GENTLEMAN_GREGORY
 	setevent EVENT_BEAT_GUITARIST_VINCENT
 	setevent EVENT_BEAT_JUGGLER_HORTON
-	loadfont
+	opentext
 	writetext UnknownText_0x192277
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_THUNDERBADGE
 	writetext UnknownText_0x192291
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FightDone
 	writetext UnknownText_0x192303
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGentlemanGregory:
 	trainer EVENT_BEAT_GENTLEMAN_GREGORY, GENTLEMAN, GREGORY, GentlemanGregorySeenText, GentlemanGregoryBeatenText, 0, GentlemanGregoryScript
 
 GentlemanGregoryScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1923b0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGuitaristVincent:
 	trainer EVENT_BEAT_GUITARIST_VINCENT, GUITARIST, VINCENT, GuitaristVincentSeenText, GuitaristVincentBeatenText, 0, GuitaristVincentScript
 
 GuitaristVincentScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19244b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerJugglerHorton:
 	trainer EVENT_BEAT_JUGGLER_HORTON, JUGGLER, HORTON, JugglerHortonSeenText, JugglerHortonBeatenText, 0, JugglerHortonScript
 
 JugglerHortonScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1924d6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 VermilionGymGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_LTSURGE
 	iftrue .VermilionGymGuyWinScript
 	writetext VermilionGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .VermilionGymGuyWinScript
 	writetext VermilionGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapVermilionGymSignpost14Script:

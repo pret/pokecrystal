@@ -1,3 +1,6 @@
+const_value set 2
+	const MRPSYCHICSHOUSE_FISHING_GURU
+
 MrPsychicsHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,19 +10,19 @@ MrPsychicsHouse_MapScriptHeader:
 
 MrPsychic:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM29_PSYCHIC
 	iftrue .AlreadyGotItem
 	writetext MrPsychicText1
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_PSYCHIC
 	iffalse .Done
 	setevent EVENT_GOT_TM29_PSYCHIC
 .AlreadyGotItem
 	writetext MrPsychicText2
-	closetext
+	waitbutton
 .Done
-	loadmovesprites
+	closetext
 	end
 
 MrPsychicsHouseBookshelf:

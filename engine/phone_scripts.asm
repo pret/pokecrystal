@@ -1,3 +1,6 @@
+SWARM_DUNSPARCE EQU 0
+SWARM_YANMA     EQU 1
+
 UnusedPhoneScript: ; 0xbcea5
 	farwritetext UnusedPhoneText
 	end
@@ -19,7 +22,7 @@ MomPhoneScript: ; 0xbceaa
 	checkevent EVENT_IN_YOUR_ROOM
 	iftrue MomPhoneHangUpScript
 	farwritetext MomPhoneGreetingText
-	keeptextopen
+	buttonsound
 	mapnametotext $0
 	checkcode VAR_ROOFPALETTE
 	if_equal $1, UnknownScript_0xbcee7
@@ -28,7 +31,7 @@ MomPhoneScript: ; 0xbceaa
 
 UnknownScript_0xbcedf: ; 0xbcedf
 	farwritetext UnknownText_0x1b4021
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0xbcf37
 
 UnknownScript_0xbcee7: ; 0xbcee7
@@ -39,37 +42,37 @@ UnknownScript_0xbcee7: ; 0xbcee7
 	if_equal GROUP_AZALEA_TOWN, .azalea
 	if_equal GROUP_GOLDENROD_CITY, .goldenrod
 	farwritetext MomPhoneGenericAreaText
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0xbcf37
 
 .newbark ; 0xbcf05
 	farwritetext MomPhoneNewBarkText
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0xbcf37
 
 .cherrygrove ; 0xbcf0d
 	farwritetext MomPhoneCherrygroveText
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0xbcf37
 
 .violet ; 0xbcf15
-	displaylocation SPROUT_TOWER, 1
+	landmarktotext SPROUT_TOWER, 1
 	jump UnknownScript_0xbcedf
 .azalea ; 0xbcf1b
-	displaylocation SLOWPOKE_WELL, 1
+	landmarktotext SLOWPOKE_WELL, 1
 	jump UnknownScript_0xbcedf
 .goldenrod ; 0xbcf21
-	displaylocation RADIO_TOWER, 1
+	landmarktotext RADIO_TOWER, 1
 	jump UnknownScript_0xbcedf
 
 UnknownScript_0xbcf27: ; 0xbcf27
 	farwritetext UnknownText_0x1b411c
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0xbcf37
 
 UnknownScript_0xbcf2f: ; 0xbcf2f
 	farwritetext UnknownText_0x1b4150
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0xbcf37
 
 UnknownScript_0xbcf37: ; 0xbcf37
@@ -113,13 +116,13 @@ UnknownScript_0xbcf79: ; 0xbcf79
 MomPhoneSaveMoneyScript: ; 0xbcf87
 	setflag ENGINE_MOM_SAVING_MONEY
 	farwritetext UnknownText_0x1b4289
-	keeptextopen
+	buttonsound
 	jump MomPhoneHangUpScript
 
 MomPhoneWontSaveMoneyScript: ; 0xbcf92
 	clearflag ENGINE_MOM_SAVING_MONEY
 	farwritetext MomPhoneWontSaveMoneyText
-	keeptextopen
+	buttonsound
 	jump MomPhoneHangUpScript
 
 MomPhoneHangUpScript: ; 0xbcf9d
@@ -155,22 +158,22 @@ BillPhoneScript1: ; 0xbcfc5
 	checknite
 	iftrue .nitegreet
 	farwritetext BillPhoneMornGreetingText
-	keeptextopen
+	buttonsound
 	jump .main
 
 .daygreet ; 0xbcfd7
 	farwritetext BillPhoneDayGreetingText
-	keeptextopen
+	buttonsound
 	jump .main
 
 .nitegreet ; 0xbcfdf
 	farwritetext BillPhoneNiteGreetingText
-	keeptextopen
+	buttonsound
 	jump .main
 
 .main ; 0xbcfe7
 	farwritetext BillPhoneGeneriText
-	keeptextopen
+	buttonsound
 	checkcode VAR_BOXSPACE
 	RAM2MEM $0
 	if_equal $0, .full
@@ -188,7 +191,7 @@ BillPhoneScript1: ; 0xbcfc5
 
 BillPhoneScript2: ; 0xbd007
 	farwritetext BillPhoneNewlyFullText
-	closetext
+	waitbutton
 	end
 
 ; Elm
@@ -302,7 +305,7 @@ JackPhoneScript1:
 	trainertotext SCHOOLBOY, JACK1, $0
 	checkflag ENGINE_JACK
 	iftrue UnknownScript_0xbd0f3
-	farscall UnknownScript_0xbde4e
+	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_JACK_MONDAY_MORNING
 	iftrue UnknownScript_0xbd0ef
 	checkcode VAR_WEEKDAY
@@ -314,23 +317,23 @@ UnknownScript_0xbd0ef:
 	farjump UnknownScript_0xa08f8
 
 UnknownScript_0xbd0f3:
-	displaylocation NATIONAL_PARK, $2
+	landmarktotext NATIONAL_PARK, $2
 	farjump UnknownScript_0xa0a2d
 
 JackPhoneScript2:
 	trainertotext SCHOOLBOY, JACK1, $0
-	farscall UnknownScript_0xbe1b6
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_GreetPhone_Male
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbd13b
 	checkflag ENGINE_JACK
 	iftrue UnknownScript_0xbd11e
 	checkflag ENGINE_JACK_MONDAY_MORNING
 	iftrue UnknownScript_0xbd11e
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbd12d
 
 UnknownScript_0xbd11e:
-	farscall UnknownScript_0xbde42
+	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbd137
 	farjump UnknownScript_0xa0000
 
@@ -338,7 +341,7 @@ UnknownScript_0xbd12a:
 	setflag ENGINE_JACK_MONDAY_MORNING
 
 UnknownScript_0xbd12d:
-	displaylocation NATIONAL_PARK, $2
+	landmarktotext NATIONAL_PARK, $2
 	setflag ENGINE_JACK
 	farjump UnknownScript_0xa0376
 
@@ -352,21 +355,21 @@ UnknownScript_0xbd13b:
 
 BeverlyPhoneScript1:
 	trainertotext POKEFANF, BEVERLY1, $0
-	farscall UnknownScript_0xbe0b6
+	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_BEVERLY_HAS_NUGGET
 	iftrue UnknownScript_0xbd151
 	farjump UnknownScript_0xa0900
 
 UnknownScript_0xbd151:
-	displaylocation NATIONAL_PARK, $2
+	landmarktotext NATIONAL_PARK, $2
 	farjump UnknownScript_0xa0aa5
 
 BeverlyPhoneScript2:
 	trainertotext POKEFANF, BEVERLY1, $0
-	farscall UnknownScript_0xbe41e
+	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_BEVERLY_HAS_NUGGET
 	iftrue UnknownScript_0xbd16e
-	farscall UnknownScript_0xbde45
+	farscall PhoneScript_Random4
 	if_equal $0, UnknownScript_0xbd172
 
 UnknownScript_0xbd16e:
@@ -374,7 +377,7 @@ UnknownScript_0xbd16e:
 
 UnknownScript_0xbd172:
 	setflag ENGINE_BEVERLY_HAS_NUGGET
-	displaylocation NATIONAL_PARK, $2
+	landmarktotext NATIONAL_PARK, $2
 	farjump UnknownScript_0xa061e
 
 ; Huey
@@ -383,7 +386,7 @@ HueyPhoneScript1:
 	trainertotext SAILOR, HUEY1, $0
 	checkflag ENGINE_HUEY
 	iftrue UnknownScript_0xbd1a2
-	farscall UnknownScript_0xbde4e
+	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_HUEY_WEDNESDAY_NIGHT
 	iftrue UnknownScript_0xbd19b
 	checkcode VAR_WEEKDAY
@@ -396,28 +399,28 @@ UnknownScript_0xbd19b:
 	farjump UnknownScript_0xa0908
 
 UnknownScript_0xbd1a2:
-	displaylocation LIGHTHOUSE, $2
+	landmarktotext LIGHTHOUSE, $2
 	farjump UnknownScript_0xa0a32
 
 HueyPhoneScript2:
 	trainertotext SAILOR, HUEY1, $0
-	farscall UnknownScript_0xbe1b6
+	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_HUEY
 	iftrue UnknownScript_0xbd1c9
 	checkflag ENGINE_HUEY_WEDNESDAY_NIGHT
 	iftrue UnknownScript_0xbd1c9
-	farscall UnknownScript_0xbde42
+	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbd1d0
 	if_equal $1, UnknownScript_0xbd1d0
 
 UnknownScript_0xbd1c9:
-	farjump UnknownScript_0xbe622
+	farjump PhoneScript_MonFlavorText
 
 UnknownScript_0xbd1cd:
 	setflag ENGINE_HUEY_WEDNESDAY_NIGHT
 
 UnknownScript_0xbd1d0:
-	displaylocation LIGHTHOUSE, $2
+	landmarktotext LIGHTHOUSE, $2
 	setflag ENGINE_HUEY
 	farjump UnknownScript_0xa0376
 
@@ -427,7 +430,7 @@ GavenPhoneScript1:
 	trainertotext COOLTRAINERM, GAVEN3, $0
 	checkflag ENGINE_GAVEN
 	iftrue UnknownScript_0xbd1fd
-	farscall UnknownScript_0xbde4e
+	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_GAVEN_THURSDAY_MORNING
 	iftrue UnknownScript_0xbd1f9
 	checkcode VAR_WEEKDAY
@@ -439,21 +442,21 @@ UnknownScript_0xbd1f9:
 	farjump UnknownScript_0xa0910
 
 UnknownScript_0xbd1fd:
-	displaylocation ROUTE_26, $2
+	landmarktotext ROUTE_26, $2
 	farjump UnknownScript_0xa0a37
 
 GavenPhoneScript2:
 	trainertotext COOLTRAINERM, GAVEN3, $0
-	farscall UnknownScript_0xbe1b6
+	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_GAVEN
 	iftrue UnknownScript_0xbd220
 	checkflag ENGINE_GAVEN_THURSDAY_MORNING
 	iftrue UnknownScript_0xbd220
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbd22f
 
 UnknownScript_0xbd220:
-	farscall UnknownScript_0xbde42
+	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbd239
 	farjump UnknownScript_0xa0000
 
@@ -461,7 +464,7 @@ UnknownScript_0xbd22c:
 	setflag ENGINE_GAVEN_THURSDAY_MORNING
 
 UnknownScript_0xbd22f:
-	displaylocation ROUTE_26, $2
+	landmarktotext ROUTE_26, $2
 	setflag ENGINE_GAVEN
 	farjump UnknownScript_0xa0376
 
@@ -474,7 +477,7 @@ BethPhoneScript1:
 	trainertotext COOLTRAINERF, BETH1, $0
 	checkflag ENGINE_BETH
 	iftrue UnknownScript_0xbd260
-	farscall UnknownScript_0xbe0b6
+	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_BETH_FRIDAY_AFTERNOON
 	iftrue UnknownScript_0xbd25c
 	checkcode VAR_WEEKDAY
@@ -486,17 +489,17 @@ UnknownScript_0xbd25c:
 	farjump UnknownScript_0xa0918
 
 UnknownScript_0xbd260:
-	displaylocation ROUTE_26, $2
+	landmarktotext ROUTE_26, $2
 	farjump UnknownScript_0xa0a3c
 
 BethPhoneScript2:
 	trainertotext COOLTRAINERF, BETH1, $0
-	farscall UnknownScript_0xbe41e
+	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_BETH
 	iftrue UnknownScript_0xbd283
 	checkflag ENGINE_BETH_FRIDAY_AFTERNOON
 	iftrue UnknownScript_0xbd283
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbd28a
 
 UnknownScript_0xbd283:
@@ -506,7 +509,7 @@ UnknownScript_0xbd287:
 	setflag ENGINE_BETH_FRIDAY_AFTERNOON
 
 UnknownScript_0xbd28a:
-	displaylocation ROUTE_26, $2
+	landmarktotext ROUTE_26, $2
 	setflag ENGINE_BETH
 	farjump UnknownScript_0xa037e
 
@@ -516,7 +519,7 @@ JosePhoneScript1:
 	trainertotext BIRD_KEEPER, JOSE2, $0
 	checkflag ENGINE_JOSE
 	iftrue UnknownScript_0xbd2bd
-	farscall UnknownScript_0xbde4e
+	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_JOSE_SATURDAY_NIGHT
 	iftrue UnknownScript_0xbd2b9
 	checkflag ENGINE_JOSE_HAS_STAR_PIECE
@@ -530,29 +533,29 @@ UnknownScript_0xbd2b9:
 	farjump UnknownScript_0xa0920
 
 UnknownScript_0xbd2bd:
-	displaylocation ROUTE_27, $2
+	landmarktotext ROUTE_27, $2
 	farjump UnknownScript_0xa0a41
 
 UnknownScript_0xbd2c4:
-	displaylocation ROUTE_27, $2
+	landmarktotext ROUTE_27, $2
 	farjump UnknownScript_0xa0a41
 
 JosePhoneScript2:
 	trainertotext BIRD_KEEPER, JOSE2, $0
-	farscall UnknownScript_0xbe1b6
+	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_JOSE
 	iftrue UnknownScript_0xbd2f5
 	checkflag ENGINE_JOSE_SATURDAY_NIGHT
 	iftrue UnknownScript_0xbd2f5
 	checkflag ENGINE_JOSE_HAS_STAR_PIECE
 	iftrue UnknownScript_0xbd2f5
-	farscall UnknownScript_0xbde42
+	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbd304
-	farscall UnknownScript_0xbde42
+	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbd312
 
 UnknownScript_0xbd2f5:
-	farscall UnknownScript_0xbde42
+	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbd30e
 	farjump UnknownScript_0xa0000
 
@@ -560,7 +563,7 @@ UnknownScript_0xbd301:
 	setflag ENGINE_JOSE_SATURDAY_NIGHT
 
 UnknownScript_0xbd304:
-	displaylocation ROUTE_27, $2
+	landmarktotext ROUTE_27, $2
 	setflag ENGINE_JOSE
 	farjump UnknownScript_0xa0376
 
@@ -569,7 +572,7 @@ UnknownScript_0xbd30e:
 
 UnknownScript_0xbd312:
 	setflag ENGINE_JOSE_HAS_STAR_PIECE
-	displaylocation ROUTE_27, $2
+	landmarktotext ROUTE_27, $2
 	farjump UnknownScript_0xa05e6
 
 ; Reena
@@ -578,7 +581,7 @@ ReenaPhoneScript1:
 	trainertotext COOLTRAINERF, REENA1, $0
 	checkflag ENGINE_REENA
 	iftrue UnknownScript_0xbd33f
-	farscall UnknownScript_0xbe0b6
+	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_REENA_SUNDAY_MORNING
 	iftrue UnknownScript_0xbd33b
 	checkcode VAR_WEEKDAY
@@ -590,17 +593,17 @@ UnknownScript_0xbd33b:
 	farjump UnknownScript_0xa0928
 
 UnknownScript_0xbd33f:
-	displaylocation ROUTE_27, $2
+	landmarktotext ROUTE_27, $2
 	farjump UnknownScript_0xa0a46
 
 ReenaPhoneScript2:
 	trainertotext COOLTRAINERF, REENA1, $0
-	farscall UnknownScript_0xbe41e
+	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_REENA
 	iftrue UnknownScript_0xbd362
 	checkflag ENGINE_REENA_SUNDAY_MORNING
 	iftrue UnknownScript_0xbd362
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbd369
 
 UnknownScript_0xbd362:
@@ -610,7 +613,7 @@ UnknownScript_0xbd366:
 	setflag ENGINE_REENA_SUNDAY_MORNING
 
 UnknownScript_0xbd369:
-	displaylocation ROUTE_27, $2
+	landmarktotext ROUTE_27, $2
 	setflag ENGINE_REENA
 	farjump UnknownScript_0xa037e
 
@@ -620,7 +623,7 @@ JoeyPhoneScript1:
 	trainertotext YOUNGSTER, JOEY1, $0
 	checkflag ENGINE_JOEY
 	iftrue UnknownScript_0xbd399
-	farscall UnknownScript_0xbde4e
+	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_JOEY_MONDAY_AFTERNOON
 	iftrue UnknownScript_0xbd392
 	checkcode VAR_WEEKDAY
@@ -633,17 +636,17 @@ UnknownScript_0xbd392:
 	farjump UnknownScript_0xa0930
 
 UnknownScript_0xbd399:
-	displaylocation ROUTE_30, $2
+	landmarktotext ROUTE_30, $2
 	farjump UnknownScript_0xa0a4b
 
 JoeyPhoneScript2:
 	trainertotext YOUNGSTER, JOEY1, $0
-	farscall UnknownScript_0xbe1b6
+	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_JOEY
 	iftrue UnknownScript_0xbd3c0
 	checkflag ENGINE_JOEY_MONDAY_AFTERNOON
 	iftrue UnknownScript_0xbd3c0
-	farscall UnknownScript_0xbde42
+	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbd3c7
 	if_equal $1, UnknownScript_0xbd3c7
 
@@ -654,7 +657,7 @@ UnknownScript_0xbd3c4:
 	setflag ENGINE_JOEY_MONDAY_AFTERNOON
 
 UnknownScript_0xbd3c7:
-	displaylocation ROUTE_30, $2
+	landmarktotext ROUTE_30, $2
 	setflag ENGINE_JOEY
 	farjump UnknownScript_0xa0376
 
@@ -664,7 +667,7 @@ WadePhoneScript1:
 	trainertotext BUG_CATCHER, WADE1, $0
 	checkflag ENGINE_WADE
 	iftrue UnknownScript_0xbd41a
-	farscall UnknownScript_0xbde4e
+	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_WADE_TUESDAY_NIGHT
 	iftrue UnknownScript_0xbd3f6
 	checkflag ENGINE_WADE_HAS_ITEM
@@ -675,7 +678,7 @@ WadePhoneScript1:
 	iftrue UnknownScript_0xbd484
 
 UnknownScript_0xbd3f6:
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbd412
 	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue UnknownScript_0xbd412
@@ -691,17 +694,17 @@ UnknownScript_0xbd416:
 	farjump UnknownScript_0xa05a4
 
 UnknownScript_0xbd41a:
-	displaylocation ROUTE_31, $2
+	landmarktotext ROUTE_31, $2
 	farjump UnknownScript_0xa0a50
 
 UnknownScript_0xbd421:
-	displaylocation ROUTE_31, $2
+	landmarktotext ROUTE_31, $2
 	farjump UnknownScript_0xa0ab5
 
 WadePhoneScript2:
 	trainertotext BUG_CATCHER, WADE1, $0
-	farscall UnknownScript_0xbe1b6
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_GreetPhone_Male
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbd44c
 	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue UnknownScript_0xbd44c
@@ -717,15 +720,15 @@ UnknownScript_0xbd44c:
 	iftrue UnknownScript_0xbd474
 	checkflag ENGINE_WADE_HAS_ITEM
 	iftrue UnknownScript_0xbd474
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbd495
 	checkflag ENGINE_FLYPOINT_GOLDENROD
 	iffalse UnknownScript_0xbd474
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbd487
 
 UnknownScript_0xbd474:
-	farscall UnknownScript_0xbde42
+	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbd491
 	farjump UnknownScript_0xa0000
 
@@ -736,7 +739,7 @@ UnknownScript_0xbd484:
 	setflag ENGINE_WADE_TUESDAY_NIGHT
 
 UnknownScript_0xbd487:
-	displaylocation ROUTE_31, $2
+	landmarktotext ROUTE_31, $2
 	setflag ENGINE_WADE
 	farjump UnknownScript_0xa0376
 
@@ -745,7 +748,7 @@ UnknownScript_0xbd491:
 
 UnknownScript_0xbd495:
 	setflag ENGINE_WADE_HAS_ITEM
-	displaylocation ROUTE_31, $2
+	landmarktotext ROUTE_31, $2
 	clearevent EVENT_WADE_HAS_BERRY
 	clearevent EVENT_WADE_HAS_PSNCUREBERRY
 	clearevent EVENT_WADE_HAS_PRZCUREBERRY
@@ -779,59 +782,56 @@ UnknownScript_0xbd4ce:
 RalphPhoneScript1:
 	trainertotext FISHER, RALPH1, $0
 	checkflag ENGINE_RALPH
-	iftrue UnknownScript_0xbd4fb
-	farscall UnknownScript_0xbde4e
+	iftrue Ralph_Rematch
+	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_RALPH_WEDNESDAY_MORNING
-	iftrue UnknownScript_0xbd4f1
+	iftrue Ralph_CheckSwarm
 	checkcode VAR_WEEKDAY
-	if_not_equal WEDNESDAY, UnknownScript_0xbd4f1
+	if_not_equal WEDNESDAY, Ralph_CheckSwarm
 	checkmorn
-	iftrue UnknownScript_0xbd537
-
-UnknownScript_0xbd4f1:
+	iftrue Ralph_WednesdayMorning
+Ralph_CheckSwarm:
 	checkflag ENGINE_SPECIAL_WILDDATA
-	iftrue UnknownScript_0xbd502
+	iftrue Ralph_ReportSwarm
 	farjump UnknownScript_0xa0940
 
-UnknownScript_0xbd4fb:
-	displaylocation ROUTE_32, $2
+Ralph_Rematch:
+	landmarktotext ROUTE_32, $2
 	farjump UnknownScript_0xa0a55
 
-UnknownScript_0xbd502:
-	displaylocation ROUTE_32, $2
+Ralph_ReportSwarm:
+	landmarktotext ROUTE_32, $2
 	farjump UnknownScript_0xa0af5
 
 RalphPhoneScript2:
 	trainertotext FISHER, RALPH1, $0
-	farscall UnknownScript_0xbe1b6
+	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_FLYPOINT_GOLDENROD
-	iffalse UnknownScript_0xbd52b
+	iffalse Ralph_CheckSwarm2
 	checkflag ENGINE_RALPH
-	iftrue UnknownScript_0xbd52b
+	iftrue Ralph_CheckSwarm2
 	checkflag ENGINE_RALPH_WEDNESDAY_MORNING
-	iftrue UnknownScript_0xbd52b
-	farscall UnknownScript_0xbde3f
-	if_equal $0, UnknownScript_0xbd53a
-
-UnknownScript_0xbd52b:
-	farscall UnknownScript_0xbde48
-	if_equal $0, UnknownScript_0xbd544
+	iftrue Ralph_CheckSwarm2
+	farscall PhoneScript_Random2
+	if_equal $0, Ralph_FightMe
+Ralph_CheckSwarm2:
+	farscall PhoneScript_Random5
+	if_equal $0, Ralph_SetUpSwarm
 	farjump UnknownScript_0xa0000
 
-UnknownScript_0xbd537:
+Ralph_WednesdayMorning:
 	setflag ENGINE_RALPH_WEDNESDAY_MORNING
-
-UnknownScript_0xbd53a:
-	displaylocation ROUTE_32, $2
+Ralph_FightMe:
+	landmarktotext ROUTE_32, $2
 	setflag ENGINE_RALPH
 	farjump UnknownScript_0xa0376
 
-UnknownScript_0xbd544:
+Ralph_SetUpSwarm:
 	checkflag ENGINE_SPECIAL_WILDDATA
 	iftrue UnknownScript_0xbd55c
 	setflag ENGINE_SPECIAL_WILDDATA
 	pokenamemem QWILFISH, $1
-	displaylocation ROUTE_32, $2
+	landmarktotext ROUTE_32, $2
 	writebyte $1
 	special Special_ActivateFishingSwarm
 	farjump UnknownScript_0xa05d6
@@ -845,7 +845,7 @@ LizPhoneScript1:
 	trainertotext PICNICKER, LIZ1, $0
 	checkflag ENGINE_LIZ
 	iftrue UnknownScript_0xbd586
-	farscall UnknownScript_0xbe0b6
+	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_LIZ_THURSDAY_AFTERNOON
 	iftrue UnknownScript_0xbd57f
 	checkcode VAR_WEEKDAY
@@ -858,25 +858,25 @@ UnknownScript_0xbd57f:
 	farjump UnknownScript_0xa0948
 
 UnknownScript_0xbd586:
-	displaylocation ROUTE_32, $2
+	landmarktotext ROUTE_32, $2
 	farjump UnknownScript_0xa0a5a
 
 LizPhoneScript2:
 	trainertotext PICNICKER, LIZ1, $0
-	farscall UnknownScript_0xbde45
+	farscall PhoneScript_Random4
 	if_equal $0, UnknownScript_0xbd5d0
-	farscall UnknownScript_0xbe41e
+	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_LIZ
 	iftrue UnknownScript_0xbd5a9
 	checkflag ENGINE_LIZ_THURSDAY_AFTERNOON
 	iftrue UnknownScript_0xbd5a9
 
 UnknownScript_0xbd5a9:
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbd5d4
 	checkflag ENGINE_FLYPOINT_GOLDENROD
 	iffalse UnknownScript_0xbd5bf
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbd5c6
 
 UnknownScript_0xbd5bf:
@@ -886,7 +886,7 @@ UnknownScript_0xbd5c3:
 	setflag ENGINE_LIZ_THURSDAY_AFTERNOON
 
 UnknownScript_0xbd5c6:
-	displaylocation ROUTE_32, $2
+	landmarktotext ROUTE_32, $2
 	setflag ENGINE_LIZ
 	farjump UnknownScript_0xa037e
 
@@ -950,7 +950,7 @@ AnthonyPhoneScript1:
 	trainertotext HIKER, ANTHONY2, $0
 	checkflag ENGINE_ANTHONY
 	iftrue UnknownScript_0xbd65d
-	farscall UnknownScript_0xbde4e
+	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_ANTHONY_FRIDAY_NIGHT
 	iftrue UnknownScript_0xbd653
 	checkcode VAR_WEEKDAY
@@ -964,27 +964,27 @@ UnknownScript_0xbd653:
 	farjump UnknownScript_0xa0950
 
 UnknownScript_0xbd65d:
-	displaylocation ROUTE_33, $2
+	landmarktotext ROUTE_33, $2
 	farjump UnknownScript_0xa0a5f
 
 UnknownScript_0xbd664:
-	displaylocation ROUTE_33, $2
+	landmarktotext ROUTE_33, $2
 	farjump UnknownScript_0xa0afa
 
 AnthonyPhoneScript2:
 	trainertotext HIKER, ANTHONY2, $0
-	farscall UnknownScript_0xbe1b6
+	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_FLYPOINT_GOLDENROD
 	iffalse UnknownScript_0xbd68d
 	checkflag ENGINE_ANTHONY
 	iftrue UnknownScript_0xbd68d
 	checkflag ENGINE_ANTHONY_FRIDAY_NIGHT
 	iftrue UnknownScript_0xbd68d
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbd69c
 
 UnknownScript_0xbd68d:
-	farscall UnknownScript_0xbde48
+	farscall PhoneScript_Random5
 	if_equal $0, UnknownScript_0xbd6a6
 	farjump UnknownScript_0xa0000
 
@@ -992,7 +992,7 @@ UnknownScript_0xbd699:
 	setflag ENGINE_ANTHONY_FRIDAY_NIGHT
 
 UnknownScript_0xbd69c:
-	displaylocation ROUTE_33, $2
+	landmarktotext ROUTE_33, $2
 	setflag ENGINE_ANTHONY
 	farjump UnknownScript_0xa0376
 
@@ -1001,8 +1001,8 @@ UnknownScript_0xbd6a6:
 	iftrue UnknownScript_0xbd6bd
 	setflag ENGINE_DUNSPARCE_SWARM
 	pokenamemem DUNSPARCE, $1
-	loadwilddata $0, DARK_CAVE_VIOLET_ENTRANCE
-	displaylocation DARK_CAVE, $2
+	swarm SWARM_DUNSPARCE, DARK_CAVE_VIOLET_ENTRANCE
+	landmarktotext DARK_CAVE, $2
 	farjump UnknownScript_0xa05de
 
 UnknownScript_0xbd6bd:
@@ -1014,7 +1014,7 @@ ToddPhoneScript1:
 	trainertotext CAMPER, TODD1, $0
 	checkflag ENGINE_TODD
 	iftrue UnknownScript_0xbd6ea
-	farscall UnknownScript_0xbde4e
+	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_TODD_SATURDAY_MORNING
 	iftrue UnknownScript_0xbd6e0
 	checkcode VAR_WEEKDAY
@@ -1028,7 +1028,7 @@ UnknownScript_0xbd6e0:
 	farjump UnknownScript_0xa0958
 
 UnknownScript_0xbd6ea:
-	displaylocation ROUTE_34, $2
+	landmarktotext ROUTE_34, $2
 	farjump UnknownScript_0xa0a64
 
 UnknownScript_0xbd6f1:
@@ -1036,22 +1036,22 @@ UnknownScript_0xbd6f1:
 
 ToddPhoneScript2:
 	trainertotext CAMPER, TODD1, $0
-	farscall UnknownScript_0xbe1b6
+	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_TODD
 	iftrue UnknownScript_0xbd717
 	checkflag ENGINE_TODD_SATURDAY_MORNING
 	iftrue UnknownScript_0xbd717
 	checkflag ENGINE_FLYPOINT_GOLDENROD
 	iffalse UnknownScript_0xbd71f
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbd72e
 
 UnknownScript_0xbd717:
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbd73c
 
 UnknownScript_0xbd71f:
-	farscall UnknownScript_0xbde42
+	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbd738
 	farjump UnknownScript_0xa0000
 
@@ -1059,7 +1059,7 @@ UnknownScript_0xbd72b:
 	setflag ENGINE_TODD_SATURDAY_MORNING
 
 UnknownScript_0xbd72e:
-	displaylocation ROUTE_34, $2
+	landmarktotext ROUTE_34, $2
 	setflag ENGINE_TODD
 	farjump UnknownScript_0xa0376
 
@@ -1076,7 +1076,7 @@ GinaPhoneScript1:
 	trainertotext PICNICKER, GINA1, $0
 	checkflag ENGINE_GINA
 	iftrue UnknownScript_0xbd776
-	farscall UnknownScript_0xbe0b6
+	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_GINA_SUNDAY_AFTERNOON
 	iftrue UnknownScript_0xbd768
 	checkflag ENGINE_GINA_HAS_LEAF_STONE
@@ -1095,16 +1095,16 @@ UnknownScript_0xbd772:
 	farjump UnknownScript_0xa05c6
 
 UnknownScript_0xbd776:
-	displaylocation ROUTE_34, $2
+	landmarktotext ROUTE_34, $2
 	farjump UnknownScript_0xa0a69
 
 UnknownScript_0xbd77d:
-	displaylocation ROUTE_34, $2
+	landmarktotext ROUTE_34, $2
 	farjump UnknownScript_0xa0abd
 
 GinaPhoneScript2:
 	trainertotext PICNICKER, GINA1, $0
-	farscall UnknownScript_0xbe41e
+	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue UnknownScript_0xbd7d9
 	checkflag ENGINE_GINA
@@ -1115,15 +1115,15 @@ GinaPhoneScript2:
 	iftrue UnknownScript_0xbd7c8
 	checkevent EVENT_GINA_GAVE_LEAF_STONE
 	iftrue UnknownScript_0xbd7b2
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbd7dd
 
 UnknownScript_0xbd7b2:
-	farscall UnknownScript_0xbde4b
+	farscall PhoneScript_Random11
 	if_equal $0, UnknownScript_0xbd7dd
 	checkflag ENGINE_FLYPOINT_GOLDENROD
 	iffalse UnknownScript_0xbd7c8
-	farscall UnknownScript_0xbde42
+	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbd7cf
 
 UnknownScript_0xbd7c8:
@@ -1133,7 +1133,7 @@ UnknownScript_0xbd7cc:
 	setflag ENGINE_GINA_SUNDAY_AFTERNOON
 
 UnknownScript_0xbd7cf:
-	displaylocation ROUTE_34, $2
+	landmarktotext ROUTE_34, $2
 	setflag ENGINE_GINA
 	farjump UnknownScript_0xa037e
 
@@ -1142,14 +1142,14 @@ UnknownScript_0xbd7d9:
 
 UnknownScript_0xbd7dd:
 	setflag ENGINE_GINA_HAS_LEAF_STONE
-	displaylocation ROUTE_34, $2
+	landmarktotext ROUTE_34, $2
 	farjump UnknownScript_0xa061e
 
 ; Irwin
 
 IrwinPhoneScript1:
 	trainertotext JUGGLER, IRWIN1, $0
-	farscall UnknownScript_0xbde4e
+	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue UnknownScript_0xbd7f9
 	farjump UnknownScript_0xa09c8
@@ -1159,7 +1159,7 @@ UnknownScript_0xbd7f9:
 
 IrwinPhoneScript2:
 	trainertotext JUGGLER, IRWIN1, $0
-	farscall UnknownScript_0xbe1b6
+	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue UnknownScript_0xbd80f
 	farjump UnknownScript_0xa0848
@@ -1173,7 +1173,7 @@ ArniePhoneScript1:
 	trainertotext BUG_CATCHER, ARNIE1, $0
 	checkflag ENGINE_ARNIE
 	iftrue UnknownScript_0xbd83c
-	farscall UnknownScript_0xbde4e
+	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_ARNIE_TUESDAY_MORNING
 	iftrue UnknownScript_0xbd832
 	checkcode VAR_WEEKDAY
@@ -1187,27 +1187,27 @@ UnknownScript_0xbd832:
 	farjump UnknownScript_0xa0968
 
 UnknownScript_0xbd83c:
-	displaylocation ROUTE_35, $2
+	landmarktotext ROUTE_35, $2
 	farjump UnknownScript_0xa0a6e
 
 UnknownScript_0xbd843:
-	displaylocation ROUTE_35, $2
+	landmarktotext ROUTE_35, $2
 	farjump UnknownScript_0xa0aff
 
 ArniePhoneScript2:
 	trainertotext BUG_CATCHER, ARNIE1, $0
-	farscall UnknownScript_0xbe1b6
+	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_ARNIE
 	iftrue UnknownScript_0xbd866
 	checkflag ENGINE_ARNIE_TUESDAY_MORNING
 	iftrue UnknownScript_0xbd866
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbd87d
 
 UnknownScript_0xbd866:
-	farscall UnknownScript_0xbde48
+	farscall PhoneScript_Random5
 	if_equal $0, UnknownScript_0xbd887
-	farscall UnknownScript_0xbde42
+	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbd89e
 	farjump UnknownScript_0xa0000
 
@@ -1215,17 +1215,17 @@ UnknownScript_0xbd87a:
 	setflag ENGINE_ARNIE_TUESDAY_MORNING
 
 UnknownScript_0xbd87d:
-	displaylocation ROUTE_35, $2
+	landmarktotext ROUTE_35, $2
 	setflag ENGINE_ARNIE
 	farjump UnknownScript_0xa0376
 
-UnknownScript_0xbd887:
+UnknownScript_0xbd887: ; start swarm
 	checkflag ENGINE_YANMA_SWARM
 	iftrue UnknownScript_0xbd8a2
 	setflag ENGINE_YANMA_SWARM
 	pokenamemem YANMA, $1
-	loadwilddata $1, ROUTE_35
-	displaylocation ROUTE_35, $2
+	swarm SWARM_YANMA, ROUTE_35
+	landmarktotext ROUTE_35, $2
 	farjump UnknownScript_0xa05ce
 
 UnknownScript_0xbd89e:
@@ -1240,7 +1240,7 @@ AlanPhoneScript1:
 	trainertotext SCHOOLBOY, ALAN1, $0
 	checkflag ENGINE_ALAN
 	iftrue UnknownScript_0xbd8cf
-	farscall UnknownScript_0xbde4e
+	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_ALAN_WEDNESDAY_AFTERNOON
 	iftrue UnknownScript_0xbd8cb
 	checkflag ENGINE_ALAN_HAS_FIRE_STONE
@@ -1254,31 +1254,31 @@ UnknownScript_0xbd8cb:
 	farjump UnknownScript_0xa0970
 
 UnknownScript_0xbd8cf:
-	displaylocation ROUTE_36, $2
+	landmarktotext ROUTE_36, $2
 	farjump UnknownScript_0xa0a73
 
 UnknownScript_0xbd8d6:
-	displaylocation ROUTE_36, $2
+	landmarktotext ROUTE_36, $2
 	farjump UnknownScript_0xa0ac5
 
 AlanPhoneScript2:
 	trainertotext SCHOOLBOY, ALAN1, $0
-	farscall UnknownScript_0xbe1b6
+	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_ALAN
 	iftrue UnknownScript_0xbd915
 	checkflag ENGINE_ALAN_WEDNESDAY_AFTERNOON
 	iftrue UnknownScript_0xbd915
 	checkflag ENGINE_ALAN_HAS_FIRE_STONE
 	iftrue UnknownScript_0xbd915
-	farscall UnknownScript_0xbde42
+	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbd91c
 	checkevent EVENT_ALAN_GAVE_FIRE_STONE
 	iftrue UnknownScript_0xbd90d
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbd926
 
 UnknownScript_0xbd90d:
-	farscall UnknownScript_0xbde4b
+	farscall PhoneScript_Random11
 	if_equal $0, UnknownScript_0xbd926
 
 UnknownScript_0xbd915:
@@ -1288,13 +1288,13 @@ UnknownScript_0xbd919:
 	setflag ENGINE_ALAN_WEDNESDAY_AFTERNOON
 
 UnknownScript_0xbd91c:
-	displaylocation ROUTE_36, $2
+	landmarktotext ROUTE_36, $2
 	setflag ENGINE_ALAN
 	farjump UnknownScript_0xa0376
 
 UnknownScript_0xbd926:
 	setflag ENGINE_ALAN_HAS_FIRE_STONE
-	displaylocation ROUTE_36, $2
+	landmarktotext ROUTE_36, $2
 	farjump UnknownScript_0xa05e6
 
 ; Dana
@@ -1303,7 +1303,7 @@ DanaPhoneScript1:
 	trainertotext LASS, DANA1, $0
 	checkflag ENGINE_DANA
 	iftrue UnknownScript_0xbd959
-	farscall UnknownScript_0xbe0b6
+	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_DANA_THURSDAY_NIGHT
 	iftrue UnknownScript_0xbd955
 	checkflag ENGINE_DANA_HAS_THUNDERSTONE
@@ -1317,35 +1317,35 @@ UnknownScript_0xbd955:
 	farjump UnknownScript_0xa0978
 
 UnknownScript_0xbd959:
-	displaylocation ROUTE_38, $2
+	landmarktotext ROUTE_38, $2
 	farjump UnknownScript_0xa0a78
 
 UnknownScript_0xbd960:
-	displaylocation ROUTE_38, $2
+	landmarktotext ROUTE_38, $2
 	farjump UnknownScript_0xa0acd
 
 DanaPhoneScript2:
 	trainertotext LASS, DANA1, $0
-	farscall UnknownScript_0xbe41e
+	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_DANA
 	iftrue UnknownScript_0xbd99f
 	checkflag ENGINE_DANA_THURSDAY_NIGHT
 	iftrue UnknownScript_0xbd99f
 	checkflag ENGINE_DANA_HAS_THUNDERSTONE
 	iftrue UnknownScript_0xbd99f
-	farscall UnknownScript_0xbde42
+	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbd9ae
 	checkevent EVENT_DANA_GAVE_THUNDERSTONE
 	iftrue UnknownScript_0xbd997
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbd9bc
 
 UnknownScript_0xbd997:
-	farscall UnknownScript_0xbde4b
+	farscall PhoneScript_Random11
 	if_equal $0, UnknownScript_0xbd9bc
 
 UnknownScript_0xbd99f:
-	farscall UnknownScript_0xbde42
+	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbd9b8
 	farjump UnknownScript_0xa0017
 
@@ -1353,7 +1353,7 @@ UnknownScript_0xbd9ab:
 	setflag ENGINE_DANA_THURSDAY_NIGHT
 
 UnknownScript_0xbd9ae:
-	displaylocation ROUTE_38, $2
+	landmarktotext ROUTE_38, $2
 	setflag ENGINE_DANA
 	farjump UnknownScript_0xa037e
 
@@ -1362,7 +1362,7 @@ UnknownScript_0xbd9b8:
 
 UnknownScript_0xbd9bc:
 	setflag ENGINE_DANA_HAS_THUNDERSTONE
-	displaylocation ROUTE_38, $2
+	landmarktotext ROUTE_38, $2
 	farjump UnknownScript_0xa061e
 
 ; Chad
@@ -1371,7 +1371,7 @@ ChadPhoneScript1:
 	trainertotext SCHOOLBOY, CHAD1, $0
 	checkflag ENGINE_CHAD
 	iftrue UnknownScript_0xbd9e9
-	farscall UnknownScript_0xbde4e
+	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_CHAD_FRIDAY_MORNING
 	iftrue UnknownScript_0xbd9e5
 	checkcode VAR_WEEKDAY
@@ -1383,23 +1383,23 @@ UnknownScript_0xbd9e5:
 	farjump UnknownScript_0xa0980
 
 UnknownScript_0xbd9e9:
-	displaylocation ROUTE_38, $2
+	landmarktotext ROUTE_38, $2
 	farjump UnknownScript_0xa0a7d
 
 ChadPhoneScript2:
 	trainertotext SCHOOLBOY, CHAD1, $0
-	farscall UnknownScript_0xbe1b6
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_GreetPhone_Male
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbda31
 	checkflag ENGINE_CHAD
 	iftrue UnknownScript_0xbda14
 	checkflag ENGINE_CHAD_FRIDAY_MORNING
 	iftrue UnknownScript_0xbda14
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbda23
 
 UnknownScript_0xbda14:
-	farscall UnknownScript_0xbde42
+	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbda2d
 	farjump UnknownScript_0xa0000
 
@@ -1407,7 +1407,7 @@ UnknownScript_0xbda20:
 	setflag ENGINE_CHAD_FRIDAY_MORNING
 
 UnknownScript_0xbda23:
-	displaylocation ROUTE_38, $2
+	landmarktotext ROUTE_38, $2
 	setflag ENGINE_CHAD
 	farjump UnknownScript_0xa0376
 
@@ -1419,10 +1419,10 @@ UnknownScript_0xbda31:
 
 DerekPhoneScript1:
 	trainertotext POKEFANM, DEREK1, $0
-	farscall UnknownScript_0xbde4e
+	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_DEREK_HAS_NUGGET
 	iftrue UnknownScript_0xbda67
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbda5f
 	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue UnknownScript_0xbda5f
@@ -1438,13 +1438,13 @@ UnknownScript_0xbda63:
 	farjump UnknownScript_0xa05a4
 
 UnknownScript_0xbda67:
-	displaylocation ROUTE_39, $2
+	landmarktotext ROUTE_39, $2
 	farjump UnknownScript_0xa0ad5
 
 DerekPhoneScript2:
 	trainertotext POKEFANM, DEREK1, $0
-	farscall UnknownScript_0xbe1b6
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_GreetPhone_Male
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbda92
 	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue UnknownScript_0xbda92
@@ -1454,7 +1454,7 @@ DerekPhoneScript2:
 	if_equal SATURDAY, UnknownScript_0xbda9e
 
 UnknownScript_0xbda92:
-	farscall UnknownScript_0xbde45
+	farscall PhoneScript_Random4
 	if_equal $0, UnknownScript_0xbdaa2
 	farjump UnknownScript_0xa0000
 
@@ -1463,14 +1463,14 @@ UnknownScript_0xbda9e:
 
 UnknownScript_0xbdaa2:
 	setflag ENGINE_DEREK_HAS_NUGGET
-	displaylocation ROUTE_39, $2
+	landmarktotext ROUTE_39, $2
 	farjump UnknownScript_0xa05e6
 
 TullyPhoneScript1:
 	trainertotext FISHER, TULLY1, $0
 	checkflag ENGINE_TULLY
 	iftrue UnknownScript_0xbdad5
-	farscall UnknownScript_0xbde4e
+	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_TULLY_SUNDAY_NIGHT
 	iftrue UnknownScript_0xbdad1
 	checkflag ENGINE_TULLY_HAS_WATER_STONE
@@ -1484,31 +1484,31 @@ UnknownScript_0xbdad1:
 	farjump UnknownScript_0xa0990
 
 UnknownScript_0xbdad5:
-	displaylocation ROUTE_42, $2
+	landmarktotext ROUTE_42, $2
 	farjump UnknownScript_0xa0a82
 
 UnknownScript_0xbdadc:
-	displaylocation ROUTE_42, $2
+	landmarktotext ROUTE_42, $2
 	farjump UnknownScript_0xa0add
 
 TullyPhoneScript2:
 	trainertotext FISHER, TULLY1, $0
-	farscall UnknownScript_0xbe1b6
+	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_TULLY
 	iftrue UnknownScript_0xbdb1b
 	checkflag ENGINE_TULLY_SUNDAY_NIGHT
 	iftrue UnknownScript_0xbdb1b
 	checkflag ENGINE_TULLY_HAS_WATER_STONE
 	iftrue UnknownScript_0xbdb1b
-	farscall UnknownScript_0xbde42
+	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbdb22
 	checkevent EVENT_TULLY_GAVE_WATER_STONE
 	iftrue UnknownScript_0xbdb13
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbdb2c
 
 UnknownScript_0xbdb13:
-	farscall UnknownScript_0xbde4b
+	farscall PhoneScript_Random11
 	if_equal $0, UnknownScript_0xbdb2c
 
 UnknownScript_0xbdb1b:
@@ -1518,20 +1518,20 @@ UnknownScript_0xbdb1f:
 	setflag ENGINE_TULLY_SUNDAY_NIGHT
 
 UnknownScript_0xbdb22:
-	displaylocation ROUTE_42, $2
+	landmarktotext ROUTE_42, $2
 	setflag ENGINE_TULLY
 	farjump UnknownScript_0xa0376
 
 UnknownScript_0xbdb2c:
 	setflag ENGINE_TULLY_HAS_WATER_STONE
-	displaylocation ROUTE_42, $2
+	landmarktotext ROUTE_42, $2
 	farjump UnknownScript_0xa05e6
 
 BrentPhoneScript1:
 	trainertotext POKEMANIAC, BRENT1, $0
 	checkflag ENGINE_BRENT
 	iftrue UnknownScript_0xbdb59
-	farscall UnknownScript_0xbde4e
+	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_BRENT_MONDAY_MORNING
 	iftrue UnknownScript_0xbdb55
 	checkcode VAR_WEEKDAY
@@ -1543,19 +1543,19 @@ UnknownScript_0xbdb55:
 	farjump UnknownScript_0xa0998
 
 UnknownScript_0xbdb59:
-	displaylocation ROUTE_43, $2
+	landmarktotext ROUTE_43, $2
 	farjump UnknownScript_0xa0a87
 
 BrentPhoneScript2:
 	trainertotext POKEMANIAC, BRENT1, $0
-	farscall UnknownScript_0xbe1b6
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_GreetPhone_Male
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbdb95
 	checkflag ENGINE_BRENT
 	iftrue UnknownScript_0xbdb84
 	checkflag ENGINE_BRENT_MONDAY_MORNING
 	iftrue UnknownScript_0xbdb84
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbdb8b
 
 UnknownScript_0xbdb84:
@@ -1565,7 +1565,7 @@ UnknownScript_0xbdb88:
 	setflag ENGINE_BRENT_MONDAY_MORNING
 
 UnknownScript_0xbdb8b:
-	displaylocation ROUTE_43, $2
+	landmarktotext ROUTE_43, $2
 	setflag ENGINE_BRENT
 	farjump UnknownScript_0xa0376
 
@@ -1576,7 +1576,7 @@ TiffanyPhoneScript1:
 	trainertotext PICNICKER, TIFFANY3, $0
 	checkflag ENGINE_TIFFANY
 	iftrue UnknownScript_0xbdbc2
-	farscall UnknownScript_0xbe0b6
+	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_TIFFANY_TUESDAY_AFTERNOON
 	iftrue UnknownScript_0xbdbbe
 	checkflag ENGINE_TIFFANY_HAS_PINK_BOW
@@ -1590,33 +1590,33 @@ UnknownScript_0xbdbbe:
 	farjump UnknownScript_0xa09a0
 
 UnknownScript_0xbdbc2:
-	displaylocation ROUTE_43, $2
+	landmarktotext ROUTE_43, $2
 	farjump UnknownScript_0xa0a8c
 
 UnknownScript_0xbdbc9:
-	displaylocation ROUTE_43, $2
+	landmarktotext ROUTE_43, $2
 	farjump UnknownScript_0xa0ae5
 
 TiffanyPhoneScript2:
 	trainertotext PICNICKER, TIFFANY3, $0
-	farscall UnknownScript_0xbde45
+	farscall PhoneScript_Random4
 	if_equal $0, UnknownScript_0xbdc21
-	farscall UnknownScript_0xbe41e
+	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_TIFFANY
 	iftrue UnknownScript_0xbdc10
 	checkflag ENGINE_TIFFANY_TUESDAY_AFTERNOON
 	iftrue UnknownScript_0xbdc10
 	checkflag ENGINE_TIFFANY_HAS_PINK_BOW
 	iftrue UnknownScript_0xbdc10
-	farscall UnknownScript_0xbde42
+	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbdc17
 	checkevent EVENT_TIFFANY_GAVE_PINK_BOW
 	iftrue UnknownScript_0xbdc08
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbdc69
 
 UnknownScript_0xbdc08:
-	farscall UnknownScript_0xbde4b
+	farscall PhoneScript_Random11
 	if_equal $0, UnknownScript_0xbdc69
 
 UnknownScript_0xbdc10:
@@ -1626,7 +1626,7 @@ UnknownScript_0xbdc14:
 	setflag ENGINE_TIFFANY_TUESDAY_AFTERNOON
 
 UnknownScript_0xbdc17:
-	displaylocation ROUTE_43, $2
+	landmarktotext ROUTE_43, $2
 	setflag ENGINE_TIFFANY
 	farjump UnknownScript_0xa037e
 
@@ -1668,7 +1668,7 @@ UnknownScript_0xbdc65:
 
 UnknownScript_0xbdc69:
 	setflag ENGINE_TIFFANY_HAS_PINK_BOW
-	displaylocation ROUTE_43, $2
+	landmarktotext ROUTE_43, $2
 	farjump UnknownScript_0xa061e
 
 ; Vance
@@ -1677,7 +1677,7 @@ VancePhoneScript1:
 	trainertotext BIRD_KEEPER, VANCE1, $0
 	checkflag ENGINE_VANCE
 	iftrue UnknownScript_0xbdc96
-	farscall UnknownScript_0xbde4e
+	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_VANCE_WEDNESDAY_NIGHT
 	iftrue UnknownScript_0xbdc92
 	checkcode VAR_WEEKDAY
@@ -1689,17 +1689,17 @@ UnknownScript_0xbdc92:
 	farjump UnknownScript_0xa09a8
 
 UnknownScript_0xbdc96:
-	displaylocation ROUTE_44, $2
+	landmarktotext ROUTE_44, $2
 	farjump UnknownScript_0xa0a91
 
 VancePhoneScript2:
 	trainertotext BIRD_KEEPER, VANCE1, $0
-	farscall UnknownScript_0xbe1b6
+	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_VANCE
 	iftrue UnknownScript_0xbdcbd
 	checkflag ENGINE_VANCE_WEDNESDAY_NIGHT
 	iftrue UnknownScript_0xbdcbd
-	farscall UnknownScript_0xbde42
+	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbdcc4
 	if_equal $1, UnknownScript_0xbdcc4
 
@@ -1710,7 +1710,7 @@ UnknownScript_0xbdcc1:
 	setflag ENGINE_VANCE_WEDNESDAY_NIGHT
 
 UnknownScript_0xbdcc4:
-	displaylocation ROUTE_44, $2
+	landmarktotext ROUTE_44, $2
 	setflag ENGINE_VANCE
 	farjump UnknownScript_0xa0376
 
@@ -1718,7 +1718,7 @@ WiltonPhoneScript1:
 	trainertotext FISHER, WILTON1, $0
 	checkflag ENGINE_WILTON
 	iftrue UnknownScript_0xbdcf7
-	farscall UnknownScript_0xbde4e
+	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_WILTON_THRUSDAY_MORNING
 	iftrue UnknownScript_0xbdcf3
 	checkflag ENGINE_WILTON_HAS_ITEM
@@ -1732,25 +1732,25 @@ UnknownScript_0xbdcf3:
 	farjump UnknownScript_0xa09b0
 
 UnknownScript_0xbdcf7:
-	displaylocation ROUTE_44, $2
+	landmarktotext ROUTE_44, $2
 	farjump UnknownScript_0xa0a96
 
 UnknownScript_0xbdcfe:
-	displaylocation ROUTE_44, $2
+	landmarktotext ROUTE_44, $2
 	farjump UnknownScript_0xa0aed
 
 WiltonPhoneScript2:
 	trainertotext FISHER, WILTON1, $0
-	farscall UnknownScript_0xbe1b6
+	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_WILTON
 	iftrue UnknownScript_0xbdd2f
 	checkflag ENGINE_WILTON_THRUSDAY_MORNING
 	iftrue UnknownScript_0xbdd2f
 	checkflag ENGINE_WILTON_HAS_ITEM
 	iftrue UnknownScript_0xbdd2f
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbdd36
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbdd40
 
 UnknownScript_0xbdd2f:
@@ -1760,13 +1760,13 @@ UnknownScript_0xbdd33:
 	setflag ENGINE_WILTON_THRUSDAY_MORNING
 
 UnknownScript_0xbdd36:
-	displaylocation ROUTE_44, $2
+	landmarktotext ROUTE_44, $2
 	setflag ENGINE_WILTON
 	farjump UnknownScript_0xa0376
 
 UnknownScript_0xbdd40:
 	setflag ENGINE_WILTON_HAS_ITEM
-	displaylocation ROUTE_44, $2
+	landmarktotext ROUTE_44, $2
 	clearevent EVENT_WILTON_HAS_ULTRA_BALL
 	clearevent EVENT_WILTON_HAS_GREAT_BALL
 	clearevent EVENT_WILTON_HAS_POKE_BALL
@@ -1794,12 +1794,12 @@ UnknownScript_0xbdd6d:
 
 KenjiPhoneScript1:
 	trainertotext BLACKBELT_T, KENJI3, $0
-	farscall UnknownScript_0xbde4e
+	farscall PhoneScript_AnswerPhone_Male
 	farjump UnknownScript_0xa09ee
 
 KenjiPhoneScript2:
 	trainertotext BLACKBELT_T, KENJI3, $0
-	farscall UnknownScript_0xbe1b6
+	farscall PhoneScript_GreetPhone_Male
 	farjump UnknownScript_0xa064c
 
 ; Parry
@@ -1808,7 +1808,7 @@ ParryPhoneScript1:
 	trainertotext HIKER, PARRY1, $0
 	checkflag ENGINE_PARRY
 	iftrue UnknownScript_0xbddac
-	farscall UnknownScript_0xbde4e
+	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_PARRY_FRIDAY_AFTERNOON
 	iftrue UnknownScript_0xbdda8
 	checkcode VAR_WEEKDAY
@@ -1820,17 +1820,17 @@ UnknownScript_0xbdda8:
 	farjump UnknownScript_0xa09b8
 
 UnknownScript_0xbddac:
-	displaylocation ROUTE_45, $2
+	landmarktotext ROUTE_45, $2
 	farjump UnknownScript_0xa0a9b
 
 ParryPhoneScript2:
 	trainertotext HIKER, PARRY1, $0
-	farscall UnknownScript_0xbe1b6
+	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_PARRY
 	iftrue UnknownScript_0xbddd3
 	checkflag ENGINE_PARRY_FRIDAY_AFTERNOON
 	iftrue UnknownScript_0xbddd3
-	farscall UnknownScript_0xbde3f
+	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbddda
 	if_equal $1, UnknownScript_0xbddda
 
@@ -1841,7 +1841,7 @@ UnknownScript_0xbddd7:
 	setflag ENGINE_PARRY_FRIDAY_AFTERNOON
 
 UnknownScript_0xbddda:
-	displaylocation ROUTE_45, $2
+	landmarktotext ROUTE_45, $2
 	setflag ENGINE_PARRY
 	farjump UnknownScript_0xa0376
 
@@ -1851,7 +1851,7 @@ ErinPhoneScript1:
 	trainertotext PICNICKER, ERIN1, $0
 	checkflag ENGINE_ERIN
 	iftrue UnknownScript_0xbde07
-	farscall UnknownScript_0xbe0b6
+	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_ERIN_SATURDAY_NIGHT
 	iftrue UnknownScript_0xbde03
 	checkcode VAR_WEEKDAY
@@ -1863,17 +1863,17 @@ UnknownScript_0xbde03:
 	farjump UnknownScript_0xa09c0
 
 UnknownScript_0xbde07:
-	displaylocation ROUTE_46, $2
+	landmarktotext ROUTE_46, $2
 	farjump UnknownScript_0xa0aa0
 
 ErinPhoneScript2:
 	trainertotext PICNICKER, ERIN1, $0
-	farscall UnknownScript_0xbe41e
+	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_ERIN
 	iftrue UnknownScript_0xbde2e
 	checkflag ENGINE_ERIN_SATURDAY_NIGHT
 	iftrue UnknownScript_0xbde2e
-	farscall UnknownScript_0xbde42
+	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbde35
 	if_equal $1, UnknownScript_0xbde35
 
@@ -1884,35 +1884,35 @@ UnknownScript_0xbde32:
 	setflag ENGINE_ERIN_SATURDAY_NIGHT
 
 UnknownScript_0xbde35:
-	displaylocation ROUTE_46, $2
+	landmarktotext ROUTE_46, $2
 	setflag ENGINE_ERIN
 	farjump UnknownScript_0xa037e
 
-UnknownScript_0xbde3f:
-	random $2
+PhoneScript_Random2:
+	random 2
 	end
 
-UnknownScript_0xbde42:
-	random $3
+PhoneScript_Random3:
+	random 3
 	end
 
-UnknownScript_0xbde45:
-	random $4
+PhoneScript_Random4:
+	random 4
 	end
 
-UnknownScript_0xbde48:
-	random $5
+PhoneScript_Random5:
+	random 5
 	end
 
-UnknownScript_0xbde4b:
-	random $b
+PhoneScript_Random11:
+	random 11
 	end
 
-UnknownScript_0xbde4e:
+PhoneScript_AnswerPhone_Male:
 	checkday
-	iftrue UnknownScript_0xbdf22
+	iftrue PhoneScript_AnswerPhone_Male_Day
 	checknite
-	iftrue UnknownScript_0xbdfec
+	iftrue PhoneScript_AnswerPhone_Male_Nite
 	checkcode VAR_CALLERID
 	if_equal PHONE_SCHOOLBOY_JACK, .Jack
 	if_equal PHONE_SAILOR_HUEY, .Huey
@@ -1937,105 +1937,105 @@ UnknownScript_0xbde4e:
 
 .Jack:
 	farwritetext UnknownText_0x1b4dc5
-	keeptextopen
+	buttonsound
 	end
 
 .Huey:
 	farwritetext UnknownText_0x1b5073
-	keeptextopen
+	buttonsound
 	end
 
 .Gaven:
 	farwritetext UnknownText_0x1b5270
-	keeptextopen
+	buttonsound
 	end
 
 .Jose:
 	farwritetext UnknownText_0x1b55ae
-	keeptextopen
+	buttonsound
 	end
 
 .Joey:
 	farwritetext UnknownText_0x1b589a
-	keeptextopen
+	buttonsound
 	end
 
 .Wade:
 	farwritetext UnknownText_0x1b5a3b
-	keeptextopen
+	buttonsound
 	end
 
 .Ralph:
 	farwritetext UnknownText_0x1b5c10
-	keeptextopen
+	buttonsound
 	end
 
 .Anthony:
 	farwritetext UnknownText_0x1b5f7a
-	keeptextopen
+	buttonsound
 	end
 
 .Todd:
 	farwritetext UnknownText_0x1b60f5
-	keeptextopen
+	buttonsound
 	end
 
 .Irwin:
 	farwritetext UnknownText_0x1b638c
-	keeptextopen
+	buttonsound
 	end
 
 .Arnie:
 	farwritetext UnknownText_0x1b6454
-	keeptextopen
+	buttonsound
 	end
 
 .Alan:
 	farwritetext UnknownText_0x1b659d
-	keeptextopen
+	buttonsound
 	end
 
 .Chad:
 	farwritetext UnknownText_0x1b67e2
-	keeptextopen
+	buttonsound
 	end
 
 .Derek:
 	farwritetext UnknownText_0x1b69a8
-	keeptextopen
+	buttonsound
 	end
 
 .Tully:
 	farwritetext UnknownText_0x1b6b39
-	keeptextopen
+	buttonsound
 	end
 
 .Brent:
 	farwritetext UnknownText_0x1b6c96
-	keeptextopen
+	buttonsound
 	end
 
 .Vance:
 	farwritetext UnknownText_0x1b7019
-	keeptextopen
+	buttonsound
 	end
 
 .Wilton:
 	farwritetext UnknownText_0x1b71d5
-	keeptextopen
+	buttonsound
 	end
 
 .Kenji:
 	farwritetext UnknownText_0x1b730b
-	keeptextopen
+	buttonsound
 	end
 
 .Parry:
 	farwritetext UnknownText_0x1b73c7
-	keeptextopen
+	buttonsound
 	end
 
-UnknownScript_0xbdf22:
+PhoneScript_AnswerPhone_Male_Day:
 	checkcode VAR_CALLERID
 	if_equal PHONE_SCHOOLBOY_JACK, .Jack
 	if_equal PHONE_SAILOR_HUEY, .Huey
@@ -2060,105 +2060,105 @@ UnknownScript_0xbdf22:
 
 .Jack:
 	farwritetext UnknownText_0x1b4ded
-	keeptextopen
+	buttonsound
 	end
 
 .Huey:
 	farwritetext UnknownText_0x1b509b
-	keeptextopen
+	buttonsound
 	end
 
 .Gaven:
 	farwritetext UnknownText_0x1b52a5
-	keeptextopen
+	buttonsound
 	end
 
 .Jose:
 	farwritetext UnknownText_0x1b55da
-	keeptextopen
+	buttonsound
 	end
 
 .Joey:
 	farwritetext UnknownText_0x1b58c2
-	keeptextopen
+	buttonsound
 	end
 
 .Wade:
 	farwritetext UnknownText_0x1b5a74
-	keeptextopen
+	buttonsound
 	end
 
 .Ralph:
 	farwritetext UnknownText_0x1b5c63
-	keeptextopen
+	buttonsound
 	end
 
 .Anthony:
 	farwritetext UnknownText_0x1b5f9e
-	keeptextopen
+	buttonsound
 	end
 
 .Todd:
 	farwritetext UnknownText_0x1b611b
-	keeptextopen
+	buttonsound
 	end
 
 .Irwin:
 	farwritetext UnknownText_0x1b63a8
-	keeptextopen
+	buttonsound
 	end
 
 .Arnie:
 	farwritetext UnknownText_0x1b647e
-	keeptextopen
+	buttonsound
 	end
 
 .Alan:
 	farwritetext UnknownText_0x1b65c7
-	keeptextopen
+	buttonsound
 	end
 
 .Chad:
 	farwritetext UnknownText_0x1b680e
-	keeptextopen
+	buttonsound
 	end
 
 .Derek:
 	farwritetext UnknownText_0x1b69d2
-	keeptextopen
+	buttonsound
 	end
 
 .Tully:
 	farwritetext UnknownText_0x1b6b65
-	keeptextopen
+	buttonsound
 	end
 
 .Brent:
 	farwritetext UnknownText_0x1b6cc6
-	keeptextopen
+	buttonsound
 	end
 
 .Vance:
 	farwritetext UnknownText_0x1b7057
-	keeptextopen
+	buttonsound
 	end
 
 .Wilton:
 	farwritetext UnknownText_0x1b71fc
-	keeptextopen
+	buttonsound
 	end
 
 .Kenji:
 	farwritetext UnknownText_0x1b7331
-	keeptextopen
+	buttonsound
 	end
 
 .Parry:
 	farwritetext UnknownText_0x1b73ef
-	keeptextopen
+	buttonsound
 	end
 
-UnknownScript_0xbdfec:
+PhoneScript_AnswerPhone_Male_Nite:
 	checkcode VAR_CALLERID
 	if_equal PHONE_SCHOOLBOY_JACK, .Jack
 	if_equal PHONE_SAILOR_HUEY, .Huey
@@ -2183,109 +2183,109 @@ UnknownScript_0xbdfec:
 
 .Jack:
 	farwritetext UnknownText_0x1b4e16
-	keeptextopen
+	buttonsound
 	end
 
 .Huey:
 	farwritetext UnknownText_0x1b50c2
-	keeptextopen
+	buttonsound
 	end
 
 .Gaven:
 	farwritetext UnknownText_0x1b52cc
-	keeptextopen
+	buttonsound
 	end
 
 .Jose:
 	farwritetext UnknownText_0x1b55fc
-	keeptextopen
+	buttonsound
 	end
 
 .Joey:
 	farwritetext UnknownText_0x1b58ea
-	keeptextopen
+	buttonsound
 	end
 
 .Wade:
 	farwritetext UnknownText_0x1b5a9f
-	keeptextopen
+	buttonsound
 	end
 
 .Ralph:
 	farwritetext UnknownText_0x1b5cb6
-	keeptextopen
+	buttonsound
 	end
 
 .Anthony:
 	farwritetext UnknownText_0x1b5fc9
-	keeptextopen
+	buttonsound
 	end
 
 .Todd:
 	farwritetext UnknownText_0x1b6149
-	keeptextopen
+	buttonsound
 	end
 
 .Irwin:
 	farwritetext UnknownText_0x1b63c4
-	keeptextopen
+	buttonsound
 	end
 
 .Arnie:
 	farwritetext UnknownText_0x1b64a8
-	keeptextopen
+	buttonsound
 	end
 
 .Alan:
 	farwritetext UnknownText_0x1b65e3
-	keeptextopen
+	buttonsound
 	end
 
 .Chad:
 	farwritetext UnknownText_0x1b6836
-	keeptextopen
+	buttonsound
 	end
 
 .Derek:
 	farwritetext UnknownText_0x1b69f8
-	keeptextopen
+	buttonsound
 	end
 
 .Tully:
 	farwritetext UnknownText_0x1b6b92
-	keeptextopen
+	buttonsound
 	end
 
 .Brent:
 	farwritetext UnknownText_0x1b6cf6
-	keeptextopen
+	buttonsound
 	end
 
 .Vance:
 	farwritetext UnknownText_0x1b7092
-	keeptextopen
+	buttonsound
 	end
 
 .Wilton:
 	farwritetext UnknownText_0x1b722a
-	keeptextopen
+	buttonsound
 	end
 
 .Kenji:
 	farwritetext UnknownText_0x1b7357
-	keeptextopen
+	buttonsound
 	end
 
 .Parry:
 	farwritetext UnknownText_0x1b7417
-	keeptextopen
+	buttonsound
 	end
 
-UnknownScript_0xbe0b6:
+PhoneScript_AnswerPhone_Female:
 	checkday
-	iftrue UnknownScript_0xbe112
+	iftrue PhoneScript_AnswerPhone_Female_Day
 	checknite
-	iftrue UnknownScript_0xbe164
+	iftrue PhoneScript_AnswerPhone_Female_Nite
 	checkcode VAR_CALLERID
 	if_equal PHONE_POKEFAN_BEVERLY, .Beverly
 	if_equal PHONE_COOLTRAINERF_BETH, .Beth
@@ -2298,45 +2298,45 @@ UnknownScript_0xbe0b6:
 
 .Beverly:
 	farwritetext UnknownText_0x1b4f21
-	keeptextopen
+	buttonsound
 	end
 
 .Beth:
 	farwritetext UnknownText_0x1b53f7
-	keeptextopen
+	buttonsound
 	end
 
 .Reena:
 	farwritetext UnknownText_0x1b5702
-	keeptextopen
+	buttonsound
 	end
 
 .Liz:
 	farwritetext UnknownText_0x1b5d9f
-	keeptextopen
+	buttonsound
 	end
 
 .Gina:
 	farwritetext UnknownText_0x1b626a
-	keeptextopen
+	buttonsound
 	end
 
 .Dana:
 	farwritetext UnknownText_0x1b66c8
-	keeptextopen
+	buttonsound
 	end
 
 .Tiffany:
 	farwritetext UnknownText_0x1b6e7c
-	keeptextopen
+	buttonsound
 	end
 
 .Erin:
 	farwritetext UnknownText_0x1b751a
-	keeptextopen
+	buttonsound
 	end
 
-UnknownScript_0xbe112:
+PhoneScript_AnswerPhone_Female_Day:
 	checkcode VAR_CALLERID
 	if_equal PHONE_POKEFAN_BEVERLY, .Beverly
 	if_equal PHONE_COOLTRAINERF_BETH, .Beth
@@ -2349,45 +2349,45 @@ UnknownScript_0xbe112:
 
 .Beverly:
 	farwritetext UnknownText_0x1b4f4d
-	keeptextopen
+	buttonsound
 	end
 
 .Beth:
 	farwritetext UnknownText_0x1b5424
-	keeptextopen
+	buttonsound
 	end
 
 .Reena:
 	farwritetext UnknownText_0x1b572e
-	keeptextopen
+	buttonsound
 	end
 
 .Liz:
 	farwritetext UnknownText_0x1b5dcc
-	keeptextopen
+	buttonsound
 	end
 
 .Gina:
 	farwritetext UnknownText_0x1b6296
-	keeptextopen
+	buttonsound
 	end
 
 .Dana:
 	farwritetext UnknownText_0x1b66ec
-	keeptextopen
+	buttonsound
 	end
 
 .Tiffany:
 	farwritetext UnknownText_0x1b6ea6
-	keeptextopen
+	buttonsound
 	end
 
 .Erin:
 	farwritetext UnknownText_0x1b7548
-	keeptextopen
+	buttonsound
 	end
 
-UnknownScript_0xbe164:
+PhoneScript_AnswerPhone_Female_Nite:
 	checkcode VAR_CALLERID
 	if_equal PHONE_POKEFAN_BEVERLY, .Beverly
 	if_equal PHONE_COOLTRAINERF_BETH, .Beth
@@ -2400,49 +2400,49 @@ UnknownScript_0xbe164:
 
 .Beverly:
 	farwritetext UnknownText_0x1b4f75
-	keeptextopen
+	buttonsound
 	end
 
 .Beth:
 	farwritetext UnknownText_0x1b5446
-	keeptextopen
+	buttonsound
 	end
 
 .Reena:
 	farwritetext UnknownText_0x1b575a
-	keeptextopen
+	buttonsound
 	end
 
 .Liz:
 	farwritetext UnknownText_0x1b5df8
-	keeptextopen
+	buttonsound
 	end
 
 .Gina:
 	farwritetext UnknownText_0x1b62c5
-	keeptextopen
+	buttonsound
 	end
 
 .Dana:
 	farwritetext UnknownText_0x1b6713
-	keeptextopen
+	buttonsound
 	end
 
 .Tiffany:
 	farwritetext UnknownText_0x1b6ec9
-	keeptextopen
+	buttonsound
 	end
 
 .Erin:
 	farwritetext UnknownText_0x1b756f
-	keeptextopen
+	buttonsound
 	end
 
-UnknownScript_0xbe1b6:
+PhoneScript_GreetPhone_Male:
 	checkday
-	iftrue UnknownScript_0xbe28a
+	iftrue PhoneScript_GreetPhone_Male_Day
 	checknite
-	iftrue UnknownScript_0xbe354
+	iftrue PhoneScript_GreetPhone_Male_Nite
 	checkcode VAR_CALLERID
 	if_equal PHONE_SCHOOLBOY_JACK, .Jack
 	if_equal PHONE_SAILOR_HUEY, .Huey
@@ -2467,105 +2467,105 @@ UnknownScript_0xbe1b6:
 
 .Jack:
 	farwritetext UnknownText_0x1b4e3e
-	keeptextopen
+	buttonsound
 	end
 
 .Huey:
 	farwritetext UnknownText_0x1b50e9
-	keeptextopen
+	buttonsound
 	end
 
 .Gaven:
 	farwritetext UnknownText_0x1b5301
-	keeptextopen
+	buttonsound
 	end
 
 .Jose:
 	farwritetext UnknownText_0x1b5628
-	keeptextopen
+	buttonsound
 	end
 
 .Joey:
 	farwritetext UnknownText_0x1b5912
-	keeptextopen
+	buttonsound
 	end
 
 .Wade:
 	farwritetext UnknownText_0x1b5ad8
-	keeptextopen
+	buttonsound
 	end
 
 .Ralph:
 	farwritetext UnknownText_0x1b5d09
-	keeptextopen
+	buttonsound
 	end
 
 .Anthony:
 	farwritetext UnknownText_0x1b5ff6
-	keeptextopen
+	buttonsound
 	end
 
 .Todd:
 	farwritetext UnknownText_0x1b616e
-	keeptextopen
+	buttonsound
 	end
 
 .Irwin:
 	farwritetext UnknownText_0x1b63e3
-	keeptextopen
+	buttonsound
 	end
 
 .Arnie:
 	farwritetext UnknownText_0x1b64d2
-	keeptextopen
+	buttonsound
 	end
 
 .Alan:
 	farwritetext UnknownText_0x1b660d
-	keeptextopen
+	buttonsound
 	end
 
 .Chad:
 	farwritetext UnknownText_0x1b6862
-	keeptextopen
+	buttonsound
 	end
 
 .Derek:
 	farwritetext UnknownText_0x1b6a22
-	keeptextopen
+	buttonsound
 	end
 
 .Tully:
 	farwritetext UnknownText_0x1b6bb9
-	keeptextopen
+	buttonsound
 	end
 
 .Brent:
 	farwritetext UnknownText_0x1b6d26
-	keeptextopen
+	buttonsound
 	end
 
 .Vance:
 	farwritetext UnknownText_0x1b70e7
-	keeptextopen
+	buttonsound
 	end
 
 .Wilton:
 	farwritetext UnknownText_0x1b725c
-	keeptextopen
+	buttonsound
 	end
 
 .Kenji:
 	farwritetext UnknownText_0x1b737f
-	keeptextopen
+	buttonsound
 	end
 
 .Parry:
 	farwritetext UnknownText_0x1b743f
-	keeptextopen
+	buttonsound
 	end
 
-UnknownScript_0xbe28a:
+PhoneScript_GreetPhone_Male_Day:
 	checkcode VAR_CALLERID
 	if_equal PHONE_SCHOOLBOY_JACK, .Jack
 	if_equal PHONE_SAILOR_HUEY, .Huey
@@ -2590,105 +2590,105 @@ UnknownScript_0xbe28a:
 
 .Jack:
 	farwritetext UnknownText_0x1b4e72
-	keeptextopen
+	buttonsound
 	end
 
 .Huey:
 	farwritetext UnknownText_0x1b511a
-	keeptextopen
+	buttonsound
 	end
 
 .Gaven:
 	farwritetext UnknownText_0x1b5335
-	keeptextopen
+	buttonsound
 	end
 
 .Jose:
 	farwritetext UnknownText_0x1b564c
-	keeptextopen
+	buttonsound
 	end
 
 .Joey:
 	farwritetext UnknownText_0x1b5948
-	keeptextopen
+	buttonsound
 	end
 
 .Wade:
 	farwritetext UnknownText_0x1b5b0b
-	keeptextopen
+	buttonsound
 	end
 
 .Ralph:
 	farwritetext UnknownText_0x1b5d21
-	keeptextopen
+	buttonsound
 	end
 
 .Anthony:
 	farwritetext UnknownText_0x1b6017
-	keeptextopen
+	buttonsound
 	end
 
 .Todd:
 	farwritetext UnknownText_0x1b618f
-	keeptextopen
+	buttonsound
 	end
 
 .Irwin:
 	farwritetext UnknownText_0x1b6407
-	keeptextopen
+	buttonsound
 	end
 
 .Arnie:
 	farwritetext UnknownText_0x1b6506
-	keeptextopen
+	buttonsound
 	end
 
 .Alan:
 	farwritetext UnknownText_0x1b6624
-	keeptextopen
+	buttonsound
 	end
 
 .Chad:
 	farwritetext UnknownText_0x1b6890
-	keeptextopen
+	buttonsound
 	end
 
 .Derek:
 	farwritetext UnknownText_0x1b6a56
-	keeptextopen
+	buttonsound
 	end
 
 .Tully:
 	farwritetext UnknownText_0x1b6bef
-	keeptextopen
+	buttonsound
 	end
 
 .Brent:
 	farwritetext UnknownText_0x1b6d57
-	keeptextopen
+	buttonsound
 	end
 
 .Vance:
 	farwritetext UnknownText_0x1b7112
-	keeptextopen
+	buttonsound
 	end
 
 .Wilton:
 	farwritetext UnknownText_0x1b7283
-	keeptextopen
+	buttonsound
 	end
 
 .Kenji:
 	farwritetext UnknownText_0x1b7397
-	keeptextopen
+	buttonsound
 	end
 
 .Parry:
 	farwritetext UnknownText_0x1b746f
-	keeptextopen
+	buttonsound
 	end
 
-UnknownScript_0xbe354:
+PhoneScript_GreetPhone_Male_Nite:
 	checkcode VAR_CALLERID
 	if_equal PHONE_SCHOOLBOY_JACK, .Jack
 	if_equal PHONE_SAILOR_HUEY, .Huey
@@ -2713,109 +2713,109 @@ UnknownScript_0xbe354:
 
 .Jack:
 	farwritetext UnknownText_0x1b4e9e
-	keeptextopen
+	buttonsound
 	end
 
 .Huey:
 	farwritetext UnknownText_0x1b5154
-	keeptextopen
+	buttonsound
 	end
 
 .Gaven:
 	farwritetext UnknownText_0x1b535f
-	keeptextopen
+	buttonsound
 	end
 
 .Jose:
 	farwritetext UnknownText_0x1b5670
-	keeptextopen
+	buttonsound
 	end
 
 .Joey:
 	farwritetext UnknownText_0x1b597c
-	keeptextopen
+	buttonsound
 	end
 
 .Wade:
 	farwritetext UnknownText_0x1b5b37
-	keeptextopen
+	buttonsound
 	end
 
 .Ralph:
 	farwritetext UnknownText_0x1b5d39
-	keeptextopen
+	buttonsound
 	end
 
 .Anthony:
 	farwritetext UnknownText_0x1b6041
-	keeptextopen
+	buttonsound
 	end
 
 .Todd:
 	farwritetext UnknownText_0x1b61bd
-	keeptextopen
+	buttonsound
 	end
 
 .Irwin:
 	farwritetext UnknownText_0x1b642c
-	keeptextopen
+	buttonsound
 	end
 
 .Arnie:
 	farwritetext UnknownText_0x1b6539
-	keeptextopen
+	buttonsound
 	end
 
 .Alan:
 	farwritetext UnknownText_0x1b663b
-	keeptextopen
+	buttonsound
 	end
 
 .Chad:
 	farwritetext UnknownText_0x1b68ba
-	keeptextopen
+	buttonsound
 	end
 
 .Derek:
 	farwritetext UnknownText_0x1b6a8b
-	keeptextopen
+	buttonsound
 	end
 
 .Tully:
 	farwritetext UnknownText_0x1b6c23
-	keeptextopen
+	buttonsound
 	end
 
 .Brent:
 	farwritetext UnknownText_0x1b6d88
-	keeptextopen
+	buttonsound
 	end
 
 .Vance:
 	farwritetext UnknownText_0x1b7132
-	keeptextopen
+	buttonsound
 	end
 
 .Wilton:
 	farwritetext UnknownText_0x1b72a5
-	keeptextopen
+	buttonsound
 	end
 
 .Kenji:
 	farwritetext UnknownText_0x1b73af
-	keeptextopen
+	buttonsound
 	end
 
 .Parry:
 	farwritetext UnknownText_0x1b749b
-	keeptextopen
+	buttonsound
 	end
 
-UnknownScript_0xbe41e:
+PhoneScript_GreetPhone_Female:
 	checkday
-	iftrue UnknownScript_0xbe47a
+	iftrue PhoneScript_GreetPhone_Female_Day
 	checknite
-	iftrue UnknownScript_0xbe4cc
+	iftrue PhoneScript_GreetPhone_Female_Nite
 	checkcode VAR_CALLERID
 	if_equal PHONE_POKEFAN_BEVERLY, .Beverly
 	if_equal PHONE_COOLTRAINERF_BETH, .Beth
@@ -2828,45 +2828,45 @@ UnknownScript_0xbe41e:
 
 .Beverly:
 	farwritetext UnknownText_0x1b4fa1
-	keeptextopen
+	buttonsound
 	end
 
 .Beth:
 	farwritetext UnknownText_0x1b5472
-	keeptextopen
+	buttonsound
 	end
 
 .Reena:
 	farwritetext UnknownText_0x1b5786
-	keeptextopen
+	buttonsound
 	end
 
 .Liz:
 	farwritetext UnknownText_0x1b5e25
-	keeptextopen
+	buttonsound
 	end
 
 .Gina:
 	farwritetext UnknownText_0x1b62f1
-	keeptextopen
+	buttonsound
 	end
 
 .Dana:
 	farwritetext UnknownText_0x1b6738
-	keeptextopen
+	buttonsound
 	end
 
 .Tiffany:
 	farwritetext UnknownText_0x1b6ef3
-	keeptextopen
+	buttonsound
 	end
 
 .Erin:
 	farwritetext UnknownText_0x1b758f
-	keeptextopen
+	buttonsound
 	end
 
-UnknownScript_0xbe47a:
+PhoneScript_GreetPhone_Female_Day:
 	checkcode VAR_CALLERID
 	if_equal PHONE_POKEFAN_BEVERLY, .Beverly
 	if_equal PHONE_COOLTRAINERF_BETH, .Beth
@@ -2879,45 +2879,45 @@ UnknownScript_0xbe47a:
 
 .Beverly:
 	farwritetext UnknownText_0x1b4fda
-	keeptextopen
+	buttonsound
 	end
 
 .Beth:
 	farwritetext UnknownText_0x1b54a6
-	keeptextopen
+	buttonsound
 	end
 
 .Reena:
 	farwritetext UnknownText_0x1b57b7
-	keeptextopen
+	buttonsound
 	end
 
 .Liz:
 	farwritetext UnknownText_0x1b5e59
-	keeptextopen
+	buttonsound
 	end
 
 .Gina:
 	farwritetext UnknownText_0x1b630e
-	keeptextopen
+	buttonsound
 	end
 
 .Dana:
 	farwritetext UnknownText_0x1b6757
-	keeptextopen
+	buttonsound
 	end
 
 .Tiffany:
 	farwritetext UnknownText_0x1b6f1c
-	keeptextopen
+	buttonsound
 	end
 
 .Erin:
 	farwritetext UnknownText_0x1b75ac
-	keeptextopen
+	buttonsound
 	end
 
-UnknownScript_0xbe4cc:
+PhoneScript_GreetPhone_Female_Nite:
 	checkcode VAR_CALLERID
 	if_equal PHONE_POKEFAN_BEVERLY, .Beverly
 	if_equal PHONE_COOLTRAINERF_BETH, .Beth
@@ -2930,45 +2930,45 @@ UnknownScript_0xbe4cc:
 
 .Beverly:
 	farwritetext UnknownText_0x1b5004
-	keeptextopen
+	buttonsound
 	end
 
 .Beth:
 	farwritetext UnknownText_0x1b54d4
-	keeptextopen
+	buttonsound
 	end
 
 .Reena:
 	farwritetext UnknownText_0x1b57e8
-	keeptextopen
+	buttonsound
 	end
 
 .Liz:
 	farwritetext UnknownText_0x1b5e8e
-	keeptextopen
+	buttonsound
 	end
 
 .Gina:
 	farwritetext UnknownText_0x1b6331
-	keeptextopen
+	buttonsound
 	end
 
 .Dana:
 	farwritetext UnknownText_0x1b6776
-	keeptextopen
+	buttonsound
 	end
 
 .Tiffany:
 	farwritetext UnknownText_0x1b6f37
-	keeptextopen
+	buttonsound
 	end
 
 .Erin:
 	farwritetext UnknownText_0x1b75c9
-	keeptextopen
+	buttonsound
 	end
 
-UnknownScript_0xbe51e:
+PhoneScript_Generic_Male:
 	checkcode VAR_CALLERID
 	if_equal PHONE_SCHOOLBOY_JACK, .Jack
 	if_equal PHONE_COOLTRAINERM_GAVEN, .Gaven
@@ -2990,95 +2990,95 @@ UnknownScript_0xbe51e:
 
 .Jack:
 	farwritetext UnknownText_0x1b4ecd
-	keeptextopen
+	buttonsound
 	end
 
 .Unknown:
 	farwritetext UnknownText_0x1b518b
-	keeptextopen
+	buttonsound
 	end
 
 .Gaven:
 	farwritetext UnknownText_0x1b5393
-	keeptextopen
+	buttonsound
 	end
 
 .Jose:
 	farwritetext UnknownText_0x1b5694
-	keeptextopen
+	buttonsound
 	end
 
 .Joey:
 	farwritetext UnknownText_0x1b59b2
-	keeptextopen
+	buttonsound
 	end
 
 .Wade:
 	farwritetext UnknownText_0x1b5b68
-	keeptextopen
+	buttonsound
 	end
 
 .Ralph:
 	farwritetext UnknownText_0x1b5d51
-	keeptextopen
+	buttonsound
 	end
 
 .Anthony:
 	farwritetext UnknownText_0x1b606f
-	keeptextopen
+	buttonsound
 	end
 
 .Todd:
 	farwritetext UnknownText_0x1b61f2
-	keeptextopen
+	buttonsound
 	end
 
 .Arnie:
 	farwritetext UnknownText_0x1b656c
-	keeptextopen
+	buttonsound
 	end
 
 .Alan:
 	farwritetext UnknownText_0x1b6652
-	keeptextopen
+	buttonsound
 	end
 
 .Chad:
 	farwritetext UnknownText_0x1b68e8
-	keeptextopen
+	buttonsound
 	end
 
 .Derek:
 	farwritetext UnknownText_0x1b6ac2
-	keeptextopen
+	buttonsound
 	end
 
 .Tully:
 	farwritetext UnknownText_0x1b6c56
-	keeptextopen
+	buttonsound
 	end
 
 .Brent:
 	farwritetext UnknownText_0x1b6db9
-	keeptextopen
+	buttonsound
 	end
 
 .Vance:
 	farwritetext UnknownText_0x1b7161
-	keeptextopen
+	buttonsound
 	end
 
 .Wilton:
 	farwritetext UnknownText_0x1b72d0
-	keeptextopen
+	buttonsound
 	end
 
 .Parry:
 	farwritetext UnknownText_0x1b74c8
-	keeptextopen
+	buttonsound
 	end
 
-UnknownScript_0xbe5d0:
+PhoneScript_Generic_Female:
 	checkcode VAR_CALLERID
 	if_equal PHONE_POKEFAN_BEVERLY, .Beverly
 	if_equal PHONE_COOLTRAINERF_BETH, .Beth
@@ -3091,59 +3091,59 @@ UnknownScript_0xbe5d0:
 
 .Beverly:
 	farwritetext UnknownText_0x1b502b
-	keeptextopen
+	buttonsound
 	end
 
 .Beth:
 	farwritetext UnknownText_0x1b5510
-	keeptextopen
+	buttonsound
 	end
 
 .Reena:
 	farwritetext UnknownText_0x1b5819
-	keeptextopen
+	buttonsound
 	end
 
 .Liz:
 	farwritetext UnknownText_0x1b5ebe
-	keeptextopen
+	buttonsound
 	end
 
 .Gina:
 	farwritetext UnknownText_0x1b6352
-	keeptextopen
+	buttonsound
 	end
 
 .Dana:
 	farwritetext UnknownText_0x1b6795
-	keeptextopen
+	buttonsound
 	end
 
 .Tiffany:
 	farwritetext UnknownText_0x1b6f60
-	keeptextopen
+	buttonsound
 	end
 
 .Erin:
 	farwritetext UnknownText_0x1b75e5
-	keeptextopen
+	buttonsound
 	end
 
-UnknownScript_0xbe622:
+PhoneScript_MonFlavorText:
 	special RandomPhoneMon
-	farscall UnknownScript_0xbde3f
-	if_equal $0, UnknownScript_0xbe636
+	farscall PhoneScript_Random2
+	if_equal $0, .TooEnergetic
 	farwritetext UnknownText_0x1b518b
-	keeptextopen
-	farjump UnknownScript_0xa0484
+	buttonsound
+	farjump PhoneScript_HangupText_Male
 
-UnknownScript_0xbe636:
-	farjump UnknownScript_0xbe63a
+.TooEnergetic:
+	farjump .unnecessary
 
-UnknownScript_0xbe63a:
+.unnecessary:
 	farwritetext UnknownText_0x1b522b
-	keeptextopen
-	farjump UnknownScript_0xa0484
+	buttonsound
+	farjump PhoneScript_HangupText_Male
 ; be643
 
 

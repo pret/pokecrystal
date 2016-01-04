@@ -1,3 +1,8 @@
+const_value set 2
+	const VERMILIONMART_CLERK
+	const VERMILIONMART_SUPER_NERD
+	const VERMILIONMART_BUENA
+
 VermilionMart_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,9 +11,9 @@ VermilionMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x191f7e:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_VERMILION
-	loadmovesprites
+	closetext
 	end
 
 SuperNerdScript_0x191f85:

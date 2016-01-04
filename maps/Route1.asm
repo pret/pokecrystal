@@ -1,3 +1,8 @@
+const_value set 2
+	const ROUTE1_YOUNGSTER
+	const ROUTE1_COOLTRAINER_F
+	const ROUTE1_FRUIT_TREE
+
 Route1_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,22 +14,22 @@ TrainerSchoolboyDanny:
 	trainer EVENT_BEAT_SCHOOLBOY_DANNY, SCHOOLBOY, DANNY, SchoolboyDannySeenText, SchoolboyDannyBeatenText, 0, SchoolboyDannyScript
 
 SchoolboyDannyScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ac5d7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainerfQuinn:
 	trainer EVENT_BEAT_COOLTRAINERF_QUINN, COOLTRAINERF, QUINN, CooltrainerfQuinnSeenText, CooltrainerfQuinnBeatenText, 0, CooltrainerfQuinnScript
 
 CooltrainerfQuinnScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ac640
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute1Signpost0Script:

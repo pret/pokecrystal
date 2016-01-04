@@ -1,3 +1,7 @@
+const_value set 2
+	const ICEPATHB3F_POKE_BALL
+	const ICEPATHB3F_ROCK
+
 IcePathB3F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -5,8 +9,8 @@ IcePathB3F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ItemFragment_0x7e66f:
-	db NEVERMELTICE, 1
+IcePathB3FNevermeltice:
+	itemball NEVERMELTICE
 
 IcePathB3FRock:
 	jumpstd smashrock
@@ -28,5 +32,5 @@ IcePathB3F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKE_BALL, 7, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x7e66f, EVENT_ICE_PATH_B3F_NEVERMELTICE
+	person_event SPRITE_POKE_BALL, 7, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, IcePathB3FNevermeltice, EVENT_ICE_PATH_B3F_NEVERMELTICE
 	person_event SPRITE_ROCK, 6, 6, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, IcePathB3FRock, -1

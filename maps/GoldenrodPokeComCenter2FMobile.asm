@@ -1,3 +1,8 @@
+const_value set 2
+	const GOLDENRODPOKECOMCENTER2FMOBILE_SCIENTIST1
+	const GOLDENRODPOKECOMCENTER2FMOBILE_SCIENTIST2
+	const GOLDENRODPOKECOMCENTER2FMOBILE_SCIENTIST3
+
 GoldenrodPokeComCenter2FMobile_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -15,32 +20,32 @@ ScientistScript_0x625d7:
 	jumptextfaceplayer UnknownText_0x62795
 
 MapGoldenrodPokeComCenter2FMobileSignpost0Script:
-	loadfont
+	opentext
 	writetext UnknownText_0x627ee
-	closetext
+	waitbutton
 UnknownScript_0x625df:
 	reloadmappart
 	loadmenudata MenuDataHeader_0x62602
-	interpretmenu2
-	writebackup
+	verticalmenu
+	closewindow
 	if_equal $1, UnknownScript_0x625f0
 	if_equal $2, UnknownScript_0x625f8
 	jump UnknownScript_0x62600
 
 UnknownScript_0x625f0:
-	loadfont
+	opentext
 	writetext UnknownText_0x62828
-	closetext
+	waitbutton
 	jump UnknownScript_0x625df
 
 UnknownScript_0x625f8:
-	loadfont
+	opentext
 	writetext UnknownText_0x628f4
-	closetext
+	waitbutton
 	jump UnknownScript_0x625df
 
 UnknownScript_0x62600:
-	loadmovesprites
+	closetext
 	end
 
 
@@ -60,32 +65,32 @@ MenuData2_0x6260a:
 
 
 MapGoldenrodPokeComCenter2FMobileSignpost1Script:
-	loadfont
+	opentext
 	writetext UnknownText_0x62989
-	closetext
+	waitbutton
 UnknownScript_0x62629:
 	reloadmappart
 	loadmenudata MenuDataHeader_0x6264c
-	interpretmenu2
-	writebackup
+	verticalmenu
+	closewindow
 	if_equal $1, UnknownScript_0x6263a
 	if_equal $2, UnknownScript_0x62642
 	jump UnknownScript_0x6264a
 
 UnknownScript_0x6263a:
-	loadfont
+	opentext
 	writetext UnknownText_0x629ae
-	closetext
+	waitbutton
 	jump UnknownScript_0x62629
 
 UnknownScript_0x62642:
-	loadfont
+	opentext
 	writetext UnknownText_0x62a5a
-	closetext
+	waitbutton
 	jump UnknownScript_0x62629
 
 UnknownScript_0x6264a:
-	loadmovesprites
+	closetext
 	end
 
 

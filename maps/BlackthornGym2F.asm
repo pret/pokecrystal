@@ -1,3 +1,13 @@
+const_value set 2
+	const BLACKTHORNGYM2F_COOLTRAINER_M
+	const BLACKTHORNGYM2F_COOLTRAINER_F
+	const BLACKTHORNGYM2F_BOULDER1
+	const BLACKTHORNGYM2F_BOULDER2
+	const BLACKTHORNGYM2F_BOULDER3
+	const BLACKTHORNGYM2F_BOULDER4
+	const BLACKTHORNGYM2F_BOULDER5
+	const BLACKTHORNGYM2F_BOULDER6
+
 BlackthornGym2F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -17,36 +27,30 @@ BlackthornGym2F_MapScriptHeader:
 	db 0, 0 ; filler
 
 .BoulderTable
-	db 5, 4 ; warp, person
-	dw .Disappear4
-
-	db 3, 5 ; warp, person
-	dw .Disappear5
-
-	db 4, 6 ; warp, person
-	dw .Disappear6
-
-	db $ff ; end
+	stonetable 5, BLACKTHORNGYM2F_BOULDER1, .Disappear4
+	stonetable 3, BLACKTHORNGYM2F_BOULDER2, .Disappear5
+	stonetable 4, BLACKTHORNGYM2F_BOULDER3, .Disappear6
+	db -1 ; end
 
 .Disappear4
-	disappear 4
+	disappear BLACKTHORNGYM2F_BOULDER1
 	jump .Fall
 
 .Disappear5
-	disappear 5
+	disappear BLACKTHORNGYM2F_BOULDER2
 	jump .Fall
 
 .Disappear6
-	disappear 6
+	disappear BLACKTHORNGYM2F_BOULDER3
 	jump .Fall
 
 .Fall
 	pause 30
 	scall .FX
-	loadfont
+	opentext
 	writetext BlackthornGym2FBoulderFellText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FX
@@ -62,22 +66,22 @@ TrainerCooltrainermCody:
 	trainer EVENT_BEAT_COOLTRAINERM_CODY, COOLTRAINERM, CODY, CooltrainermCodySeenText, CooltrainermCodyBeatenText, 0, CooltrainermCodyScript
 
 CooltrainermCodyScript:
-	talkaftercancel
-	loadfont
-	writetext UnknownText_0x1957d5
+	end_if_just_battled
+	opentext
+	writetext CooltrainermCodyAfterText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainerfFran:
 	trainer EVENT_BEAT_COOLTRAINERF_FRAN, COOLTRAINERF, FRAN, CooltrainerfFranSeenText, CooltrainerfFranBeatenText, 0, CooltrainerfFranScript
 
 CooltrainerfFranScript:
-	talkaftercancel
-	loadfont
-	writetext UnknownText_0x195883
+	end_if_just_battled
+	opentext
+	writetext CooltrainerfFranAfterText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CooltrainermCodySeenText:
@@ -91,7 +95,7 @@ CooltrainermCodyBeatenText:
 	line "had a dragon!"
 	done
 
-UnknownText_0x1957d5:
+CooltrainermCodyAfterText:
 	text "Members of our"
 	line "dragon-user clan"
 
@@ -115,7 +119,7 @@ CooltrainerfFranBeatenText:
 	text "Awww… I lost…"
 	done
 
-UnknownText_0x195883:
+CooltrainerfFranAfterText:
 	text "Uh-oh… CLAIR is"
 	line "going to be mad…"
 	done

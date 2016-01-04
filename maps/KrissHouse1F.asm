@@ -1,3 +1,10 @@
+const_value set 2
+	const KRISSHOUSE1F_MOM1
+	const KRISSHOUSE1F_MOM2
+	const KRISSHOUSE1F_MOM3
+	const KRISSHOUSE1F_MOM4
+	const KRISSHOUSE1F_POKEFAN_F
+
 KrissHouse1F_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -20,19 +27,19 @@ UnknownScript_0x7a4d8:
 
 UnknownScript_0x7a4db:
 	playmusic MUSIC_MOM
-	showemote EMOTE_SHOCK, $2, 15
+	showemote EMOTE_SHOCK, KRISSHOUSE1F_MOM1, 15
 	spriteface PLAYER, LEFT
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x7a4f2
-	applymovement $2, MovementData_0x7a5fc
+	applymovement KRISSHOUSE1F_MOM1, MovementData_0x7a5fc
 	jump UnknownScript_0x7a4f6
 
 UnknownScript_0x7a4f2:
-	applymovement $2, MovementData_0x7a5fe
+	applymovement KRISSHOUSE1F_MOM1, MovementData_0x7a5fe
 UnknownScript_0x7a4f6:
-	loadfont
+	opentext
 	writetext UnknownText_0x7a604
-	keeptextopen
+	buttonsound
 	stringtotext GearName, $1
 	scall UnknownScript_0x7a57e
 	setflag ENGINE_POKEGEAR
@@ -42,7 +49,7 @@ UnknownScript_0x7a4f6:
 	setevent EVENT_KRISS_HOUSE_MOM_1
 	clearevent EVENT_KRISS_HOUSE_MOM_2
 	writetext UnknownText_0x7a6bd
-	keeptextopen
+	buttonsound
 	special Special_SetDayOfWeek
 UnknownScript_0x7a519:
 	writetext UnknownText_0x7a742
@@ -65,18 +72,18 @@ UnknownScript_0x7a531:
 
 UnknownScript_0x7a53b:
 	writetext UnknownText_0x7a7cb
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0x7a549
 
 UnknownScript_0x7a542:
 	writetext UnknownText_0x7a807
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0x7a549
 
 UnknownScript_0x7a549:
 	writetext UnknownText_0x7a850
+	waitbutton
 	closetext
-	loadmovesprites
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x7a55d
 	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
@@ -84,16 +91,16 @@ UnknownScript_0x7a549:
 	jump UnknownScript_0x7a56b
 
 UnknownScript_0x7a55d:
-	applymovement $2, MovementData_0x7a600
+	applymovement KRISSHOUSE1F_MOM1, MovementData_0x7a600
 	jump UnknownScript_0x7a56b
 
 UnknownScript_0x7a564:
-	applymovement $2, MovementData_0x7a602
+	applymovement KRISSHOUSE1F_MOM1, MovementData_0x7a602
 	jump UnknownScript_0x7a56b
 
 UnknownScript_0x7a56b:
 	special RestartMapMusic
-	spriteface $2, LEFT
+	spriteface KRISSHOUSE1F_MOM1, LEFT
 	end
 
 UnknownScript_0x7a572:
@@ -112,7 +119,7 @@ MomScript_0x7a582:
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	checktriggers
 	iffalse UnknownScript_0x7a572
-	loadfont
+	opentext
 	checkevent EVENT_FIRST_TIME_BANKING_WITH_MOM
 	iftrue UnknownScript_0x7a5af
 	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
@@ -122,20 +129,20 @@ MomScript_0x7a582:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue UnknownScript_0x7a5a9
 	writetext UnknownText_0x7a8b5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7a5a9:
 	writetext UnknownText_0x7a8e5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7a5af:
 	writetext UnknownText_0x7a957
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7a5b5:
@@ -143,13 +150,13 @@ UnknownScript_0x7a5b5:
 UnknownScript_0x7a5b8:
 	setevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	special Special_BankOfMom
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 NeighborScript:
 	faceplayer
-	loadfont
+	opentext
 	checkmorn
 	iftrue .MornScript
 	checkday
@@ -159,24 +166,24 @@ NeighborScript:
 
 .MornScript
 	writetext NeighborMornIntroText
-	keeptextopen
+	buttonsound
 	jump .Main
 
 .DayScript
 	writetext NeighborDayIntroText
-	keeptextopen
+	buttonsound
 	jump .Main
 
 .NiteScript
 	writetext NeighborNiteIntroText
-	keeptextopen
+	buttonsound
 	jump .Main
 
 .Main
 	writetext NeighborText
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $6, RIGHT
+	spriteface KRISSHOUSE1F_POKEFAN_F, RIGHT
 	end
 
 TVScript:

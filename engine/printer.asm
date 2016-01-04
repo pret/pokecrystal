@@ -20,7 +20,7 @@ Function84022: ; 84022
 	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
-	ld hl, Jumptable_84031
+	ld hl, .Jumptable
 rept 2
 	add hl, de
 endr
@@ -31,7 +31,8 @@ endr
 ; 84031
 
 
-Jumptable_84031: ; 84031 (21:4031)
+.Jumptable: ; 84031 (21:4031)
+	
 	dw Function84077
 	dw Function84143
 	dw Function84120
@@ -427,12 +428,12 @@ Unknown_842d5: db 15, 0, $00, 0, 15, 0 ; unused
 ; 842db
 
 
-Function842db:: ; 842db
+_PrinterReceive:: ; 842db
 	ld a, [wc2d5]
 	add a
 	ld e, a
 	ld d, 0
-	ld hl, Jumptable_842ea
+	ld hl, .Jumptable
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
@@ -441,7 +442,8 @@ Function842db:: ; 842db
 ; 842ea
 
 
-Jumptable_842ea: ; 842ea (21:42ea)
+.Jumptable: ; 842ea (21:42ea)
+	
 	dw Function8432f
 	dw Function84330
 	dw Function84339
@@ -672,7 +674,7 @@ PrintDexEntry: ; 8442c
 	call Function84000
 	ld a, $10
 	ld [wcbfa], a
-	callba Function1dc1b0
+	callba PrintPage1
 	call ClearTileMap
 	ld a, $e4
 	call DmgToCgbBGPals
@@ -694,7 +696,7 @@ PrintDexEntry: ; 8442c
 	call Function84000
 	ld a, $3
 	ld [wcbfa], a
-	callba Function1dc213
+	callba PrintPage2
 	call Function84742
 	ld a, $4
 	ld [wcf65], a

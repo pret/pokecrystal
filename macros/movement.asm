@@ -1,3 +1,4 @@
+
 	enum_start
 
 	enum movement_turn_head_down
@@ -20,24 +21,24 @@ turn_head_right: macro
 	db movement_turn_head_right ; $03
 	endm
 
-	enum movement_half_step_down
-half_step_down: macro
-	db movement_half_step_down ; $04
+	enum movement_turn_step_down
+turn_step_down: macro
+	db movement_turn_step_down ; $04
 	endm
 
-	enum movement_half_step_up
-half_step_up: macro
-	db movement_half_step_up ; $05
+	enum movement_turn_step_up
+turn_step_up: macro
+	db movement_turn_step_up ; $05
 	endm
 
-	enum movement_half_step_left
-half_step_left: macro
-	db movement_half_step_left ; $06
+	enum movement_turn_step_left
+turn_step_left: macro
+	db movement_turn_step_left ; $06
 	endm
 
-	enum movement_half_step_right
-half_step_right: macro
-	db movement_half_step_right ; $07
+	enum movement_turn_step_right
+turn_step_right: macro
+	db movement_turn_step_right ; $07
 	endm
 
 	enum movement_slow_step_down
@@ -367,7 +368,10 @@ step_loop: macro
 	db movement_step_loop ; $4a
 	endm
 
-__enum__ = $4c
+	enum movement_step_4b
+step_4b: macro
+	db movement_step_4b ; $4b
+	endm
 
 	enum movement_teleport_from
 teleport_from: macro
@@ -432,4 +436,9 @@ rock_smash: macro
 return_dig: macro
 	db movement_return_dig ; $58
 	db \1
+	endm
+
+	enum movement_skyfall_top
+skyfall_top: macro
+	db movement_skyfall_top ; $59
 	endm

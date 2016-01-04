@@ -1,3 +1,9 @@
+const_value set 2
+	const ROUTE34ILEXFORESTGATE_TEACHER1
+	const ROUTE34ILEXFORESTGATE_BUTTERFREE
+	const ROUTE34ILEXFORESTGATE_LASS
+	const ROUTE34ILEXFORESTGATE_TEACHER2
+
 Route34IlexForestGate_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -12,64 +18,64 @@ Route34IlexForestGate_MapScriptHeader:
 UnknownScript_0x62d2d:
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iffalse UnknownScript_0x62d38
-	disappear $2
-	appear $5
+	disappear ROUTE34ILEXFORESTGATE_TEACHER1
+	appear ROUTE34ILEXFORESTGATE_TEACHER2
 	return
 
 UnknownScript_0x62d38:
-	disappear $5
-	appear $2
+	disappear ROUTE34ILEXFORESTGATE_TEACHER2
+	appear ROUTE34ILEXFORESTGATE_TEACHER1
 	return
 
 UnknownScript_0x62d3d:
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iffalse UnknownScript_0x62d62
-	showemote EMOTE_SHOCK, $5, 20
-	spriteface $5, LEFT
+	showemote EMOTE_SHOCK, ROUTE34ILEXFORESTGATE_TEACHER2, 20
+	spriteface ROUTE34ILEXFORESTGATE_TEACHER2, LEFT
 	spriteface PLAYER, RIGHT
-	follow PLAYER, $5
+	follow PLAYER, ROUTE34ILEXFORESTGATE_TEACHER2
 	applymovement PLAYER, MovementData_0x62d97
 	stopfollow
 	spriteface PLAYER, DOWN
-	loadfont
+	opentext
 	writetext UnknownText_0x62e41
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement $5, MovementData_0x62d9a
+	applymovement ROUTE34ILEXFORESTGATE_TEACHER2, MovementData_0x62d9a
 UnknownScript_0x62d62:
 	end
 
 TeacherScript_0x62d63:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iftrue UnknownScript_0x62d84
 	checkevent EVENT_GOT_TM12_SWEET_SCENT
 	iftrue UnknownScript_0x62d7e
 	writetext UnknownText_0x62d9d
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_SWEET_SCENT
 	iffalse UnknownScript_0x62d82
 	setevent EVENT_GOT_TM12_SWEET_SCENT
 UnknownScript_0x62d7e:
 	writetext UnknownText_0x62df6
-	closetext
+	waitbutton
 UnknownScript_0x62d82:
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x62d84:
 	writetext UnknownText_0x62e41
-	keeptextopen
-	loadmovesprites
+	buttonsound
+	closetext
 	end
 
 ButterfreeScript_0x62d8a:
-	loadfont
+	opentext
 	writetext UnknownText_0x62e83
 	cry BUTTERFREE
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 LassScript_0x62d94:

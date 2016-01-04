@@ -1,3 +1,7 @@
+const_value set 2
+	const VERMILIONMAGNETTRAINSPEECHHOUSE_POKEFAN_F
+	const VERMILIONMAGNETTRAINSPEECHHOUSE_YOUNGSTER
+
 VermilionMagnetTrainSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

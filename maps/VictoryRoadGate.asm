@@ -1,3 +1,8 @@
+const_value set 2
+	const VICTORYROADGATE_OFFICER
+	const VICTORYROADGATE_BLACK_BELT1
+	const VICTORYROADGATE_BLACK_BELT2
+
 VictoryRoadGate_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -22,21 +27,21 @@ UnknownScript_0x9b9fd:
 OfficerScript_0x9ba03:
 	faceplayer
 UnknownScript_0x9ba04:
-	loadfont
+	opentext
 	writetext UnknownText_0x9ba29
-	keeptextopen
+	buttonsound
 	checkcode VAR_BADGES
 	if_greater_than 7, UnknownScript_0x9ba19
 	writetext UnknownText_0x9ba5f
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x9ba27
 	end
 
 UnknownScript_0x9ba19:
 	writetext UnknownText_0x9bab4
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $1
 	end
 

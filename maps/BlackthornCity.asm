@@ -1,3 +1,14 @@
+const_value set 2
+	const BLACKTHORNCITY_SUPER_NERD1
+	const BLACKTHORNCITY_SUPER_NERD2
+	const BLACKTHORNCITY_GRAMPS1
+	const BLACKTHORNCITY_GRAMPS2
+	const BLACKTHORNCITY_BLACK_BELT
+	const BLACKTHORNCITY_COOLTRAINER_F1
+	const BLACKTHORNCITY_YOUNGSTER1
+	const BLACKTHORNCITY_YOUNGSTER2
+	const BLACKTHORNCITY_COOLTRAINER_F2
+
 BlackthornCity_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -16,102 +27,102 @@ BlackthornCity_MapScriptHeader:
 .Santos
 	checkcode VAR_WEEKDAY
 	if_equal SATURDAY, .SantosAppears
-	disappear $9
+	disappear BLACKTHORNCITY_YOUNGSTER2
 	return
 
 .SantosAppears
-	appear $9
+	appear BLACKTHORNCITY_YOUNGSTER2
 	return
 
-SuperNerdScript_0x1a46e8:
+BlackthornSuperNerdScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_CLAIR
-	iftrue UnknownScript_0x1a4702
+	iftrue .BeatClair
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue UnknownScript_0x1a46fc
-	writetext UnknownText_0x1a477a
+	iftrue .ClearedRadioTower
+	writetext Text_ClairIsOut
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-UnknownScript_0x1a46fc:
-	writetext UnknownText_0x1a47f3
+.ClearedRadioTower:
+	writetext Text_ClairIsIn
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-UnknownScript_0x1a4702:
-	writetext UnknownText_0x1a4865
+.BeatClair:
+	writetext Text_ClairIsBeaten
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-GrampsScript_0x1a4708:
-	jumptextfaceplayer UnknownText_0x1a48c3
+BlackthornGramps1Script:
+	jumptextfaceplayer BlackthornGrampsRefusesEntryText
 
-GrampsScript_0x1a470b:
-	jumptextfaceplayer UnknownText_0x1a48fb
+BlackthornGramps2Script:
+	jumptextfaceplayer BlackthornGrampsGrantsEntryText
 
-BlackBeltScript_0x1a470e:
+BlackthornBlackBeltScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue UnknownScript_0x1a471c
-	writetext UnknownText_0x1a494a
+	iftrue .ClearedRadioTower
+	writetext BlackBeltText_WeirdRadio
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-UnknownScript_0x1a471c:
-	writetext UnknownText_0x1a4983
+.ClearedRadioTower:
+	writetext BlackBeltText_VoicesInMyHead
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-CooltrainerFScript_0x1a4722:
-	jumptextfaceplayer UnknownText_0x1a49bd
+BlackthornCooltrainerF1Script:
+	jumptextfaceplayer BlackthornCooltrainerF1Text
 
-YoungsterScript_0x1a4725:
-	jumptextfaceplayer UnknownText_0x1a49f1
+BlackthornYoungsterScript:
+	jumptextfaceplayer BlackthornYoungsterText
 
-CooltrainerFScript_0x1a4728:
-	jumptextfaceplayer UnknownText_0x1a4b1e
+BlackthornCooltrainerF2Script:
+	jumptextfaceplayer BlackthornCooltrainerF2Text
 
 SantosScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_SPELL_TAG_FROM_SANTOS
-	iftrue SantosSaturdayScript
+	iftrue .Saturday
 	checkcode VAR_WEEKDAY
-	if_not_equal SATURDAY, SantosNotSaturdayScript
+	if_not_equal SATURDAY, .NotSaturday
 	checkevent EVENT_MET_SANTOS_OF_SATURDAY
 	iftrue .MetSantos
 	writetext MeetSantosText
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_SANTOS_OF_SATURDAY
 .MetSantos
 	writetext SantosGivesGiftText
-	keeptextopen
+	buttonsound
 	verbosegiveitem SPELL_TAG
-	iffalse SantosDoneScript
+	iffalse .Done
 	setevent EVENT_GOT_SPELL_TAG_FROM_SANTOS
 	writetext SantosGaveGiftText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-SantosSaturdayScript:
+.Saturday
 	writetext SantosSaturdayText
+	waitbutton
+.Done
 	closetext
-SantosDoneScript:
-	loadmovesprites
 	end
 
-SantosNotSaturdayScript:
+.NotSaturday
 	writetext SantosNotSaturdayText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 BlackthornCitySign:
@@ -135,7 +146,7 @@ BlackthornCityPokeCenterSign:
 BlackthornCityMartSign:
 	jumpstd martsign
 
-UnknownText_0x1a477a:
+Text_ClairIsOut:
 	text "I am sorry."
 
 	para "CLAIR, our GYM"
@@ -149,7 +160,7 @@ UnknownText_0x1a477a:
 	cont "will return."
 	done
 
-UnknownText_0x1a47f3:
+Text_ClairIsIn:
 	text "CLAIR, our GYM"
 	line "LEADER, is waiting"
 	cont "for you."
@@ -161,7 +172,7 @@ UnknownText_0x1a47f3:
 	line "trainer to win."
 	done
 
-UnknownText_0x1a4865:
+Text_ClairIsBeaten:
 	text "You defeated"
 	line "CLAIR?"
 
@@ -174,7 +185,7 @@ UnknownText_0x1a4865:
 	line "LANCE."
 	done
 
-UnknownText_0x1a48c3:
+BlackthornGrampsRefusesEntryText:
 	text "No. Only chosen"
 	line "trainers may train"
 
@@ -182,7 +193,7 @@ UnknownText_0x1a48c3:
 	line "Please leave."
 	done
 
-UnknownText_0x1a48fb:
+BlackthornGrampsGrantsEntryText:
 	text "If CLAIR allows"
 	line "it, her grand-"
 	cont "father--our MASTER"
@@ -191,13 +202,13 @@ UnknownText_0x1a48fb:
 	para "You may enter."
 	done
 
-UnknownText_0x1a494a:
+BlackBeltText_WeirdRadio:
 	text "My radio's busted?"
 	line "Lately, I only get"
 	cont "this weird signal."
 	done
 
-UnknownText_0x1a4983:
+BlackBeltText_VoicesInMyHead:
 	text "Arooo! Voices in"
 	line "my head!"
 
@@ -205,13 +216,13 @@ UnknownText_0x1a4983:
 	line "to my radio!"
 	done
 
-UnknownText_0x1a49bd:
+BlackthornCooltrainerF1Text:
 	text "Are you going to"
 	line "make your #MON"
 	cont "forget some moves?"
 	done
 
-UnknownText_0x1a49f1:
+BlackthornYoungsterText:
 	text "Dragon masters all"
 	line "come from the city"
 	cont "of BLACKTHORN."
@@ -257,7 +268,7 @@ SantosNotSaturdayText:
 	line "not Saturday…"
 	done
 
-UnknownText_0x1a4b1e:
+BlackthornCooltrainerF2Text:
 	text "Wow, you came"
 	line "through the ICE"
 	cont "PATH?"
@@ -333,12 +344,12 @@ BlackthornCity_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_SUPER_NERD, 12, 18, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x1a46e8, EVENT_BLACKTHORN_CITY_SUPER_NERD_BLOCKS_GYM
-	person_event SPRITE_SUPER_NERD, 12, 19, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x1a46e8, EVENT_BLACKTHORN_CITY_SUPER_NERD_DOES_NOT_BLOCK_GYM
-	person_event SPRITE_GRAMPS, 2, 20, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrampsScript_0x1a4708, EVENT_BLACKTHORN_CITY_GRAMPS_BLOCKS_DRAGONS_DEN
-	person_event SPRITE_GRAMPS, 2, 21, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrampsScript_0x1a470b, EVENT_BLACKTHORN_CITY_GRAMPS_NOT_BLOCKING_DRAGONS_DEN
-	person_event SPRITE_BLACK_BELT, 31, 24, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, BlackBeltScript_0x1a470e, -1
-	person_event SPRITE_COOLTRAINER_F, 25, 9, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x1a4722, -1
-	person_event SPRITE_YOUNGSTER, 15, 13, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x1a4725, -1
+	person_event SPRITE_SUPER_NERD, 12, 18, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, BlackthornSuperNerdScript, EVENT_BLACKTHORN_CITY_SUPER_NERD_BLOCKS_GYM
+	person_event SPRITE_SUPER_NERD, 12, 19, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, BlackthornSuperNerdScript, EVENT_BLACKTHORN_CITY_SUPER_NERD_DOES_NOT_BLOCK_GYM
+	person_event SPRITE_GRAMPS, 2, 20, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BlackthornGramps1Script, EVENT_BLACKTHORN_CITY_GRAMPS_BLOCKS_DRAGONS_DEN
+	person_event SPRITE_GRAMPS, 2, 21, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BlackthornGramps2Script, EVENT_BLACKTHORN_CITY_GRAMPS_NOT_BLOCKING_DRAGONS_DEN
+	person_event SPRITE_BLACK_BELT, 31, 24, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, BlackthornBlackBeltScript, -1
+	person_event SPRITE_COOLTRAINER_F, 25, 9, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, BlackthornCooltrainerF1Script, -1
+	person_event SPRITE_YOUNGSTER, 15, 13, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BlackthornYoungsterScript, -1
 	person_event SPRITE_YOUNGSTER, 20, 22, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SantosScript, EVENT_BLACKTHORN_CITY_SANTOS_OF_SATURDAY
-	person_event SPRITE_COOLTRAINER_F, 19, 35, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x1a4728, -1
+	person_event SPRITE_COOLTRAINER_F, 19, 35, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, BlackthornCooltrainerF2Script, -1

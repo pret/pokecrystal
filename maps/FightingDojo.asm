@@ -1,3 +1,7 @@
+const_value set 2
+	const FIGHTINGDOJO_BLACK_BELT
+	const FIGHTINGDOJO_POKE_BALL
+
 FightingDojo_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -14,8 +18,8 @@ MapFightingDojoSignpost0Script:
 MapFightingDojoSignpost1Script:
 	jumptext UnknownText_0x189be0
 
-ItemFragment_0x189b6a:
-	db FOCUS_BAND, 1
+FightingDojoFocusBand:
+	itemball FOCUS_BAND
 
 UnknownText_0x189b6c:
 	text "Hello!"
@@ -58,4 +62,4 @@ FightingDojo_MapEventHeader:
 .PersonEvents:
 	db 2
 	person_event SPRITE_BLACK_BELT, 4, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, BlackBeltScript_0x189b61, -1
-	person_event SPRITE_POKE_BALL, 1, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x189b6a, EVENT_PICKED_UP_FOCUS_BAND
+	person_event SPRITE_POKE_BALL, 1, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, FightingDojoFocusBand, EVENT_PICKED_UP_FOCUS_BAND

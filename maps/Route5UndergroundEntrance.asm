@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE5UNDERGROUNDENTRANCE_TEACHER
+
 Route5UndergroundEntrance_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -395,7 +395,7 @@ Function81adb: ; 81adb
 	hlcoord 4, 1
 	call PlaceString
 	xor a
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	hlcoord 12, 3
 	call _PrepMonFrontpic
 	ld de, VTiles2 tile $31
@@ -425,7 +425,7 @@ Function81adb: ; 81adb
 .asm_81b7a
 	ld a, [wd265]
 	ld [TrainerClass], a
-	callab Function3957b
+	callab GetTrainerAttributes
 	ld de, StringBuffer1
 	hlcoord 4, 1
 	call PlaceString
@@ -542,7 +542,7 @@ Function81c33: ; 81c33
 	ret
 
 .asm_81c69
-	ld hl, wcda9
+	ld hl, wSGBPals
 	ld a, $1
 	ld [hli], a
 	ld a, $ff
@@ -562,7 +562,7 @@ rept 2
 	ld [hli], a
 endr
 	ld [hl], a
-	ld hl, wcda9
+	ld hl, wSGBPals
 	call Function81f0c
 	hlcoord 10, 2
 	ld de, wc608
@@ -828,7 +828,7 @@ Function81df4: ; 81df4
 	ld [wd265], a
 	predef GetTMHMMove
 	ld a, [wd265]
-	ld [wd262], a
+	ld [wPutativeTMHMMove], a
 	call GetMoveName
 	hlcoord 10, 12
 	call PlaceString
@@ -1149,7 +1149,7 @@ TilesetColorTest:
 	ld [hMapAnims], a
 	call ClearSprites
 	call OverworldTextModeSwitch
-	call Function3200
+	call WaitBGMap2
 	xor a
 	ld [hBGMapMode], a
 	ld de, DebugColorTestGFX + $10
@@ -1184,7 +1184,7 @@ TilesetColorTest:
 	call Function821d2
 	call Function821f4
 	call Function8220f
-	call Function3200
+	call WaitBGMap2
 	ld [wJumptableIndex], a
 	ld a, $40
 	ld [hWY], a
@@ -1355,7 +1355,7 @@ Function822f0: ; 822f0
 	and 3
 	ld e, a
 	ld d, 0
-	ld hl, .jumptable
+	ld hl, .dw
 rept 2
 	add hl, de
 endr
@@ -1365,7 +1365,7 @@ endr
 	jp [hl]
 ; 82301
 
-.jumptable: ; 82301
+.dw: ; 82301
 	dw Function82309
 	dw Function82339
 	dw Function8234b

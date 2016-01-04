@@ -1,3 +1,16 @@
+PrinterReceive:: ; 2057
+	ld a, [hROMBank]
+	push af
+	ld a, BANK(_PrinterReceive)
+	rst Bankswitch
+
+	call _PrinterReceive
+	pop af
+	rst Bankswitch
+
+	ret
+; 2063
+
 AskSerial:: ; 2063
 ; send out a handshake while serial int is off
 	ld a, [wc2d4]

@@ -1,3 +1,8 @@
+const_value set 2
+	const LAVENDERMART_CLERK
+	const LAVENDERMART_POKEFAN_M
+	const LAVENDERMART_ROCKER
+
 LavenderMart_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,9 +11,9 @@ LavenderMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x7eb1c:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_LAVENDER
-	loadmovesprites
+	closetext
 	end
 
 PokefanMScript_0x7eb23:

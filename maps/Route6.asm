@@ -1,3 +1,8 @@
+const_value set 2
+	const ROUTE6_POKEFAN_M1
+	const ROUTE6_POKEFAN_M2
+	const ROUTE6_POKEFAN_M3
+
 Route6_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,22 +14,22 @@ TrainerPokefanmRex:
 	trainer EVENT_BEAT_POKEFANM_REX, POKEFANM, REX, PokefanmRexSeenText, PokefanmRexBeatenText, 0, PokefanmRexScript
 
 PokefanmRexScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ad9ff
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokefanmAllan:
 	trainer EVENT_BEAT_POKEFANM_ALLAN, POKEFANM, ALLAN, PokefanmAllanSeenText, PokefanmAllanBeatenText, 0, PokefanmAllanScript
 
 PokefanmAllanScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ada88
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokefanMScript_0x1ad951:

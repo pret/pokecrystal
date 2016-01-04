@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE2GATE_SCIENTIST
+
 Route2Gate_MapScriptHeader:
 .MapTriggers:
 	db 0

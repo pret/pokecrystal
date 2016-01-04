@@ -1,3 +1,8 @@
+const_value set 2
+	const CHARCOALKILN_BLACK_BELT
+	const CHARCOALKILN_YOUNGSTER
+	const CHARCOALKILN_MOLTRES
+
 CharcoalKiln_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,63 +12,63 @@ CharcoalKiln_MapScriptHeader:
 
 CharcoalKilnBoss:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_HM01_CUT
 	iftrue .GotCut
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iftrue .SavedSlowpoke
 	writetext CharcoalKilnBossText1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .SavedSlowpoke
 	writetext CharcoalKilnBossText2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .GotCut
 	writetext CharcoalKilnBossText3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CharcoalKilnApprentice:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_CHARCOAL_IN_CHARCOAL_KILN
 	iftrue .YoureTheCoolest
 	checkevent EVENT_GOT_HM01_CUT
 	iftrue .Thanks
 	writetext CharcoalKilnApprenticeText1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Thanks
 	writetext CharcoalKilnApprenticeText2
-	keeptextopen
+	buttonsound
 	verbosegiveitem CHARCOAL
 	iffalse .Done
 	setevent EVENT_GOT_CHARCOAL_IN_CHARCOAL_KILN
-	loadmovesprites
+	closetext
 	end
 
 .YoureTheCoolest
 	writetext CharcoalKilnApprenticeText3
-	closetext
+	waitbutton
 .Done
-	loadmovesprites
+	closetext
 	end
 
 CharcoalKilnFarfetchd:
 	faceplayer
-	loadfont
+	opentext
 	writetext FarfetchdText
 	cry FARFETCH_D
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CharcoalKilnBookshelf:

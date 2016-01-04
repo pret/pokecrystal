@@ -1,3 +1,8 @@
+const_value set 2
+	const ROUTE43GATE_OFFICER
+	const ROUTE43GATE_ROCKET1
+	const ROUTE43GATE_ROCKET2
+
 Route43Gate_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -33,21 +38,21 @@ UnknownScript_0x19abd5:
 UnknownScript_0x19abda:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	checkcode VAR_FACING
-	if_equal $0, UnknownScript_0x19abea
-	if_equal $1, UnknownScript_0x19ac38
+	if_equal DOWN, UnknownScript_0x19abea
+	if_equal UP, UnknownScript_0x19ac38
 	dotrigger $1
 	end
 
 UnknownScript_0x19abea:
 	applymovement PLAYER, MovementData_0x19aca2
-	showemote EMOTE_SHOCK, $4, 15
-	applymovement $4, MovementData_0x19acbb
-	spriteface $3, UP
-	showemote EMOTE_SHOCK, $3, 15
-	applymovement $3, MovementData_0x19aca4
-	loadfont
+	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET2, 15
+	applymovement ROUTE43GATE_ROCKET2, MovementData_0x19acbb
+	spriteface ROUTE43GATE_ROCKET1, UP
+	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET1, 15
+	applymovement ROUTE43GATE_ROCKET1, MovementData_0x19aca4
+	opentext
 	writetext UnknownText_0x19acd2
-	keeptextopen
+	buttonsound
 	checkmoney $0, 999
 	if_equal $0, UnknownScript_0x19ac12
 	jump UnknownScript_0x19ac1d
@@ -63,23 +68,23 @@ UnknownScript_0x19ac1d:
 	jump UnknownScript_0x19ac28
 
 UnknownScript_0x19ac28:
-	keeptextopen
-	loadmovesprites
-	applymovement $3, MovementData_0x19acaa
-	applymovement $4, MovementData_0x19acc1
+	buttonsound
+	closetext
+	applymovement ROUTE43GATE_ROCKET1, MovementData_0x19acaa
+	applymovement ROUTE43GATE_ROCKET2, MovementData_0x19acc1
 	dotrigger $1
 	special RestartMapMusic
 	end
 
 UnknownScript_0x19ac38:
-	showemote EMOTE_SHOCK, $3, 15
-	applymovement $3, MovementData_0x19acaf
-	spriteface $4, DOWN
-	showemote EMOTE_SHOCK, $4, 15
-	applymovement $4, MovementData_0x19acc7
-	loadfont
+	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET1, 15
+	applymovement ROUTE43GATE_ROCKET1, MovementData_0x19acaf
+	spriteface ROUTE43GATE_ROCKET2, DOWN
+	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET2, 15
+	applymovement ROUTE43GATE_ROCKET2, MovementData_0x19acc7
+	opentext
 	writetext UnknownText_0x19acd2
-	keeptextopen
+	buttonsound
 	checkmoney $0, 999
 	if_equal $0, UnknownScript_0x19ac5c
 	jump UnknownScript_0x19ac67
@@ -95,10 +100,10 @@ UnknownScript_0x19ac67:
 	jump UnknownScript_0x19ac72
 
 UnknownScript_0x19ac72:
-	keeptextopen
-	loadmovesprites
-	applymovement $4, MovementData_0x19accd
-	applymovement $3, MovementData_0x19acb5
+	buttonsound
+	closetext
+	applymovement ROUTE43GATE_ROCKET2, MovementData_0x19accd
+	applymovement ROUTE43GATE_ROCKET1, MovementData_0x19acb5
 	dotrigger $1
 	special RestartMapMusic
 	end
@@ -108,22 +113,22 @@ RocketScript_0x19ac82:
 
 OfficerScript_0x19ac85:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM36_SLUDGE_BOMB
 	iftrue UnknownScript_0x19ac9c
 	writetext UnknownText_0x19ad9b
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_SLUDGE_BOMB
 	iffalse UnknownScript_0x19aca0
 	setevent EVENT_GOT_TM36_SLUDGE_BOMB
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x19ac9c:
 	writetext UnknownText_0x19ae2d
-	closetext
+	waitbutton
 UnknownScript_0x19aca0:
-	loadmovesprites
+	closetext
 	end
 
 MovementData_0x19aca2:

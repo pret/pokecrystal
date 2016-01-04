@@ -1,3 +1,6 @@
+const_value set 2
+	const WILLSROOM_WILL
+
 WillsRoom_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -38,41 +41,41 @@ UnknownScript_0x1804e0:
 	earthquake 80
 	changeblock $4, $e, $2a
 	reloadmappart
-	loadmovesprites
+	closetext
 	dotrigger $1
 	setevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
-	waitbutton
+	waitsfx
 	end
 
 WillScript_0x1804f8:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_ELITE_4_WILL
 	iftrue UnknownScript_0x180526
 	writetext UnknownText_0x180531
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x18062c, 0
 	loadtrainer WILL, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_ELITE_4_WILL
-	loadfont
+	opentext
 	writetext UnknownText_0x180644
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_ENTER_DOOR
 	changeblock $4, $2, $16
 	reloadmappart
-	loadmovesprites
+	closetext
 	setevent EVENT_WILLS_ROOM_EXIT_OPEN
-	waitbutton
+	waitsfx
 	end
 
 UnknownScript_0x180526:
 	writetext UnknownText_0x180644
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MovementData_0x18052c:

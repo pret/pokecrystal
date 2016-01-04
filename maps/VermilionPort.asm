@@ -1,10 +1,15 @@
+const_value set 2
+	const VERMILIONPORT_SAILOR1
+	const VERMILIONPORT_SAILOR2
+	const VERMILIONPORT_SUPER_NERD
+
 VermilionPort_MapScriptHeader:
 .MapTriggers:
 	db 2
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
-	dw .Trigger2, 0
 
 .MapCallbacks:
 	db 1
@@ -12,10 +17,10 @@ VermilionPort_MapScriptHeader:
 	; callbacks
 	dbw 5, .FlyPoint
 
-.Trigger1
+.Trigger0
 	end
 
-.Trigger2
+.Trigger1
 	priorityjump UnknownScript_0x74da6
 	end
 
@@ -25,7 +30,7 @@ VermilionPort_MapScriptHeader:
 
 UnknownScript_0x74da6:
 	applymovement PLAYER, MovementData_0x74ef3
-	appear $2
+	appear VERMILIONPORT_SAILOR1
 	dotrigger $0
 	setevent EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
 	setevent EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
@@ -38,21 +43,21 @@ UnknownScript_0x74da6:
 
 SailorScript_0x74dc4:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74e1a
 	writetext UnknownText_0x74f06
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $2, DOWN
+	spriteface VERMILIONPORT_SAILOR1, DOWN
 	pause 10
 	playsound SFX_EXIT_BUILDING
-	disappear $2
-	waitbutton
+	disappear VERMILIONPORT_SAILOR1
+	waitsfx
 	applymovement PLAYER, MovementData_0x74ef1
 	playsound SFX_EXIT_BUILDING
 	special FadeOutPalettes
-	waitbutton
+	waitsfx
 	setevent EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
 	clearevent EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
 	clearevent EVENT_BEAT_POKEMANIAC_ETHAN
@@ -66,25 +71,25 @@ SailorScript_0x74dc4:
 	clearevent EVENT_BEAT_SCHOOLBOY_NATE
 	clearevent EVENT_BEAT_SCHOOLBOY_RICKY
 	setevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
-	appear $2
+	appear VERMILIONPORT_SAILOR1
 	domaptrigger FAST_SHIP_1F, $1
 	warp FAST_SHIP_1F, $19, $1
 	end
 
 UnknownScript_0x74e1a:
 	writetext UnknownText_0x74f31
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x74e20:
-	spriteface $3, RIGHT
+	spriteface VERMILIONPORT_SAILOR2, RIGHT
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74e86
 	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
 	iftrue UnknownScript_0x74e86
 	spriteface PLAYER, LEFT
-	loadfont
+	opentext
 	checkcode VAR_WEEKDAY
 	if_equal MONDAY, UnknownScript_0x74e72
 	if_equal TUESDAY, UnknownScript_0x74e72
@@ -95,34 +100,34 @@ UnknownScript_0x74e20:
 	yesorno
 	iffalse UnknownScript_0x74e8d
 	writetext UnknownText_0x74f8b
-	keeptextopen
+	buttonsound
 	checkitem S_S_TICKET
 	iffalse UnknownScript_0x74e68
 	writetext UnknownText_0x74fc2
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	applymovement PLAYER, MovementData_0x74ef8
 	jump SailorScript_0x74dc4
 
 UnknownScript_0x74e68:
 	writetext UnknownText_0x74ff2
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x74ef5
 	end
 
 UnknownScript_0x74e72:
 	writetext UnknownText_0x75059
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x74ef5
 	end
 
 UnknownScript_0x74e7c:
 	writetext UnknownText_0x75080
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x74ef5
 	end
 
@@ -131,20 +136,20 @@ UnknownScript_0x74e86:
 
 UnknownScript_0x74e87:
 	writetext UnknownText_0x74fa7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x74e8d:
 	writetext UnknownText_0x74fa7
+	waitbutton
 	closetext
-	loadmovesprites
 	applymovement PLAYER, MovementData_0x74ef5
 	end
 
 SailorScript_0x74e97:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74e1a
 	checkcode VAR_WEEKDAY
@@ -157,43 +162,43 @@ SailorScript_0x74e97:
 	yesorno
 	iffalse UnknownScript_0x74e87
 	writetext UnknownText_0x74f8b
-	keeptextopen
+	buttonsound
 	checkitem S_S_TICKET
 	iffalse UnknownScript_0x74ed4
 	writetext UnknownText_0x74fc2
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	applymovement PLAYER, MovementData_0x74efe
 	jump SailorScript_0x74dc4
 
 UnknownScript_0x74ed4:
 	writetext UnknownText_0x74ff2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x74eda:
 	writetext UnknownText_0x75059
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x74ee0:
 	writetext UnknownText_0x75080
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SuperNerdScript_0x74ee6:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x750a6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-MapVermilionPortSignpostItem0:
+VermilionPortHiddenIron:
 	dwb EVENT_VERMILION_PORT_HIDDEN_IRON, IRON
 	
 
@@ -313,7 +318,7 @@ VermilionPort_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 13, 16, SIGNPOST_ITEM, MapVermilionPortSignpostItem0
+	signpost 13, 16, SIGNPOST_ITEM, VermilionPortHiddenIron
 
 .PersonEvents:
 	db 3

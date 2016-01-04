@@ -1,3 +1,7 @@
+const_value set 2
+	const VIRIDIANGYM_BLUE
+	const VIRIDIANGYM_GYM_GUY
+
 ViridianGym_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,47 +11,47 @@ ViridianGym_MapScriptHeader:
 
 BlueScript_0x9aa26:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_EARTHBADGE
 	iftrue .FightDone
 	writetext UnknownText_0x9aa7b
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x9abae, 0
 	loadtrainer BLUE, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_BLUE
-	loadfont
+	opentext
 	writetext UnknownText_0x9ac0f
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_EARTHBADGE
 	writetext UnknownText_0x9ac27
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FightDone
 	writetext UnknownText_0x9acab
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ViridianGymGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_BLUE
 	iftrue .ViridianGymGuyWinScript
 	writetext ViridianGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .ViridianGymGuyWinScript
 	writetext ViridianGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ViridianGymStatue:

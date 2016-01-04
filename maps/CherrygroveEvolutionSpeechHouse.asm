@@ -1,3 +1,7 @@
+const_value set 2
+	const CHERRYGROVEEVOLUTIONSPEECHHOUSE_LASS
+	const CHERRYGROVEEVOLUTIONSPEECHHOUSE_YOUNGSTER
+
 CherrygroveEvolutionSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,17 +10,17 @@ CherrygroveEvolutionSpeechHouse_MapScriptHeader:
 	db 0
 
 YoungsterScript_0x196cb2:
-	loadfont
+	opentext
 	writetext UnknownText_0x196cc3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 LassScript_0x196cb9:
-	loadfont
+	opentext
 	writetext UnknownText_0x196cfc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CherrygroveEvolutionSpeechHouseBookshelf:

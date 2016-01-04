@@ -135,7 +135,50 @@ s1_b277::
 sLinkBattleStatsEnd::
 
 sHallOfFame:: ; b2c0
-	ds HOF_LENGTH * NUM_HOF_TEAMS
+; temporary until I can find a way to macrofy it
+	hall_of_fame sHallOfFame01
+	hall_of_fame sHallOfFame02
+	hall_of_fame sHallOfFame03
+	hall_of_fame sHallOfFame04
+	hall_of_fame sHallOfFame05
+	hall_of_fame sHallOfFame06
+	hall_of_fame sHallOfFame07
+	hall_of_fame sHallOfFame08
+	hall_of_fame sHallOfFame09
+	hall_of_fame sHallOfFame10
+	hall_of_fame sHallOfFame11
+	hall_of_fame sHallOfFame12
+	hall_of_fame sHallOfFame13
+	hall_of_fame sHallOfFame14
+	hall_of_fame sHallOfFame15
+	hall_of_fame sHallOfFame16
+	hall_of_fame sHallOfFame17
+	hall_of_fame sHallOfFame18
+	hall_of_fame sHallOfFame19
+	hall_of_fame sHallOfFame20
+	hall_of_fame sHallOfFame21
+	hall_of_fame sHallOfFame22
+	hall_of_fame sHallOfFame23
+	hall_of_fame sHallOfFame24
+	hall_of_fame sHallOfFame25
+	hall_of_fame sHallOfFame26
+	hall_of_fame sHallOfFame27
+	hall_of_fame sHallOfFame28
+	hall_of_fame sHallOfFame29
+	hall_of_fame sHallOfFame30
+
+; x = 1
+; rept NUM_HOF_TEAMS
+; ; PRINTT("{x}\n")
+; if STRLEN({x}) == 2
+	; PRINTT(STRSUB({x},2,1))
+	; hall_of_fame STRCAT("sHallOfFame0", STRSUB({x},2,1))
+; else
+	; PRINTT(STRSUB({x},2,2))
+	; hall_of_fame STRCAT("sHallOfFame", STRSUB({x},2,2))
+; endc
+; x = x + 1
+; endr
 sHallOfFameEnd::
 
 sMobileEventIndex:: ds 1
@@ -152,7 +195,7 @@ sBattleTowerChallengeState:: ds 1
 
 sBattleTower:: ; be46
 sNrOfBeatenBattleTowerTrainers:: ds 1
-sbe47:: ds 1
+sBTChoiceOfLevelGroup:: ds 1
 ; The 7 trainers of the BattleTower are saved here, so nobody appears more than once
 sBTTrainers:: ; sbe48
 	ds 7

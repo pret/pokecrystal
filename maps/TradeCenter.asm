@@ -1,10 +1,14 @@
+const_value set 2
+	const TRADECENTER_CHRIS1
+	const TRADECENTER_CHRIS2
+
 TradeCenter_MapScriptHeader:
 .MapTriggers:
 	db 2
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
-	dw .Trigger2, 0
 
 .MapCallbacks:
 	db 1
@@ -13,23 +17,23 @@ TradeCenter_MapScriptHeader:
 
 	dbw 2, TradeCenter_SetWhichChris
 
-.Trigger1:
+.Trigger0:
 	priorityjump TradeCenter_Initialize
 	end
 
-.Trigger2:
+.Trigger1:
 	end
 
 TradeCenter_SetWhichChris:
 	special Special_CableClubCheckWhichChris
 	iffalse .Chris2
-	disappear $3
-	appear $2
+	disappear TRADECENTER_CHRIS2
+	appear TRADECENTER_CHRIS1
 	return
 
 .Chris2:
-	disappear $2
-	appear $3
+	disappear TRADECENTER_CHRIS1
+	appear TRADECENTER_CHRIS2
 	return
 
 TradeCenter_Initialize:
@@ -43,10 +47,10 @@ MapTradeCenterSignpost1Script:
 	end
 
 ChrisScript_0x19340b:
-	loadfont
+	opentext
 	writetext .FriendReadyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FriendReadyText:

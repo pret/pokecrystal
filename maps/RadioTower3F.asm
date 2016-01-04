@@ -1,3 +1,12 @@
+const_value set 2
+	const RADIOTOWER3F_SUPER_NERD
+	const RADIOTOWER3F_GYM_GUY
+	const RADIOTOWER3F_COOLTRAINER_F
+	const RADIOTOWER3F_ROCKET1
+	const RADIOTOWER3F_ROCKET2
+	const RADIOTOWER3F_ROCKET3
+	const RADIOTOWER3F_SCIENTIST
+
 RadioTower3F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -24,23 +33,23 @@ SuperNerdScript_0x5e553:
 
 GymGuyScript_0x5e556:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x5e564
 	writetext UnknownText_0x5e682
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x5e564:
 	writetext UnknownText_0x5e6eb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CooltrainerFScript_0x5e56a:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_SUNNY_DAY_FROM_RADIO_TOWER
 	iftrue UnknownScript_0x5e59d
 	checkevent EVENT_CLEARED_RADIO_TOWER
@@ -48,100 +57,100 @@ CooltrainerFScript_0x5e56a:
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	iftrue UnknownScript_0x5e584
 	writetext UnknownText_0x5e754
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x5e584:
 	writetext UnknownText_0x5e7cb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x5e58a:
 	writetext UnknownText_0x5e7e2
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_SUNNY_DAY
 	iffalse UnknownScript_0x5e5a1
 	writetext UnknownText_0x5e821
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_GOT_SUNNY_DAY_FROM_RADIO_TOWER
 	end
 
 UnknownScript_0x5e59d:
 	writetext UnknownText_0x5e85c
-	closetext
+	waitbutton
 UnknownScript_0x5e5a1:
-	loadmovesprites
+	closetext
 	end
 
 TrainerGruntM7:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_7, GRUNTM, 7, GruntM7SeenText, GruntM7BeatenText, 0, GruntM7Script
 
 GruntM7Script:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x5e8d0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGruntM8:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_8, GRUNTM, 8, GruntM8SeenText, GruntM8BeatenText, 0, GruntM8Script
 
 GruntM8Script:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x5e944
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGruntM9:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_9, GRUNTM, 9, GruntM9SeenText, GruntM9BeatenText, 0, GruntM9Script
 
 GruntM9Script:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x5e9d0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerScientistMarc:
 	trainer EVENT_BEAT_SCIENTIST_MARC, SCIENTIST, MARC, ScientistMarcSeenText, ScientistMarcBeatenText, 0, ScientistMarcScript
 
 ScientistMarcScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x5ea61
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRadioTower3FSignpost2Script::
-	loadfont
+	opentext
 	writetext UnknownText_0x5eaa4
-	closetext
+	waitbutton
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	iftrue UnknownScript_0x5e603
 	checkitem CARD_KEY
 	iftrue UnknownScript_0x5e605
 UnknownScript_0x5e603:
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x5e605:
 	writetext UnknownText_0x5eabc
-	closetext
+	waitbutton
 	setevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	playsound SFX_ENTER_DOOR
 	changeblock $e, $2, $2a
 	changeblock $e, $4, $1
 	reloadmappart
-	loadmovesprites
-	waitbutton
+	closetext
+	waitsfx
 	end
 
 MapRadioTower3FSignpost0Script:

@@ -1,3 +1,14 @@
+const_value set 2
+	const DANCETHEATRE_KIMONO_GIRL1
+	const DANCETHEATRE_KIMONO_GIRL2
+	const DANCETHEATRE_KIMONO_GIRL3
+	const DANCETHEATRE_KIMONO_GIRL4
+	const DANCETHEATRE_KIMONO_GIRL5
+	const DANCETHEATRE_GENTLEMAN
+	const DANCETHEATRE_RHYDON
+	const DANCETHEATRE_COOLTRAINER_M
+	const DANCETHEATRE_GRANNY
+
 DanceTheatre_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,62 +20,62 @@ TrainerKimono_girlNaoko2:
 	trainer EVENT_BEAT_KIMONO_GIRL_NAOKO, KIMONO_GIRL, NAOKO2, Kimono_girlNaoko2SeenText, Kimono_girlNaoko2BeatenText, 0, Kimono_girlNaoko2Script
 
 Kimono_girlNaoko2Script:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x99579
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerKimono_girlSayo:
 	trainer EVENT_BEAT_KIMONO_GIRL_SAYO, KIMONO_GIRL, SAYO, Kimono_girlSayoSeenText, Kimono_girlSayoBeatenText, 0, Kimono_girlSayoScript
 
 Kimono_girlSayoScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x9960b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerKimono_girlZuki:
 	trainer EVENT_BEAT_KIMONO_GIRL_ZUKI, KIMONO_GIRL, ZUKI, Kimono_girlZukiSeenText, Kimono_girlZukiBeatenText, 0, Kimono_girlZukiScript
 
 Kimono_girlZukiScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x99688
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerKimono_girlKuni:
 	trainer EVENT_BEAT_KIMONO_GIRL_KUNI, KIMONO_GIRL, KUNI, Kimono_girlKuniSeenText, Kimono_girlKuniBeatenText, 0, Kimono_girlKuniScript
 
 Kimono_girlKuniScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x99714
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerKimono_girlMiki:
 	trainer EVENT_BEAT_KIMONO_GIRL_MIKI, KIMONO_GIRL, MIKI, Kimono_girlMikiSeenText, Kimono_girlMikiBeatenText, 0, Kimono_girlMikiScript
 
 Kimono_girlMikiScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x997a8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GentlemanScript_0x994c6:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x9980a
-	keeptextopen
+	buttonsound
 	checkevent EVENT_GOT_HM03_SURF
 	iftrue UnknownScript_0x99515
 	checkevent EVENT_BEAT_KIMONO_GIRL_NAOKO
@@ -83,38 +94,38 @@ UnknownScript_0x994f3:
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue UnknownScript_0x994ff
 	writetext UnknownText_0x99891
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x994ff:
 	writetext UnknownText_0x998d4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x99505:
 	writetext UnknownText_0x9991a
-	keeptextopen
+	buttonsound
 	verbosegiveitem HM_SURF
 	setevent EVENT_GOT_HM03_SURF
 	writetext UnknownText_0x9999b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x99515:
 	writetext UnknownText_0x999d5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 RhydonScript_0x9951b:
-	loadfont
+	opentext
 	writetext UnknownText_0x99a0a
 	cry RHYDON
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CooltrainerMScript_0x99525:

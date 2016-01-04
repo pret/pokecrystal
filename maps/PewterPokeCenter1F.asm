@@ -1,3 +1,10 @@
+const_value set 2
+	const PEWTERPOKECENTER1F_NURSE
+	const PEWTERPOKECENTER1F_TEACHER
+	const PEWTERPOKECENTER1F_JIGGLYPUFF
+	const PEWTERPOKECENTER1F_BUG_CATCHER
+	const PEWTERPOKECENTER1F_POKEFAN_M
+
 PewterPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -12,11 +19,11 @@ TeacherScript_0x1a2eea:
 	jumptextfaceplayer UnknownText_0x1a2f01
 
 JigglypuffScript_0x1a2eed:
-	loadfont
+	opentext
 	writetext UnknownText_0x1a2f5d
 	cry JIGGLYPUFF
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 BugCatcherScript_0x1a2ef7:
@@ -24,10 +31,10 @@ BugCatcherScript_0x1a2ef7:
 
 PokefanMScript_0x1a2efa:
 	faceplayer
-	loadfont
+	opentext
 	trade $4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x1a2f01:

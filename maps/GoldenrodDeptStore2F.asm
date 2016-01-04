@@ -1,3 +1,10 @@
+const_value set 2
+	const GOLDENRODDEPTSTORE2F_CLERK1
+	const GOLDENRODDEPTSTORE2F_CLERK2
+	const GOLDENRODDEPTSTORE2F_YOUNGSTER
+	const GOLDENRODDEPTSTORE2F_COOLTRAINER_F
+	const GOLDENRODDEPTSTORE2F_GENTLEMAN
+
 GoldenrodDeptStore2F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,16 +14,16 @@ GoldenrodDeptStore2F_MapScriptHeader:
 
 ClerkScript_0x55b5d:
 	faceplayer
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_2F_1
-	loadmovesprites
+	closetext
 	end
 
 ClerkScript_0x55b65:
 	faceplayer
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_2F_2
-	loadmovesprites
+	closetext
 	end
 
 YoungsterScript_0x55b6d:

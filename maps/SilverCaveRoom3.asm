@@ -1,3 +1,6 @@
+const_value set 2
+	const SILVERCAVEROOM3_RED
+
 SilverCaveRoom3_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,25 +9,25 @@ SilverCaveRoom3_MapScriptHeader:
 	db 0
 
 RedScript_0x18c603:
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x18c637
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x18c63c, UnknownText_0x18c63c
 	loadtrainer RED, 1
 	startbattle
-	reloadmapmusic
-	returnafterbattle
-	special Special_RotatePalettesRightMusic
-	loadfont
+	dontrestartmapmusic
+	reloadmapafterbattle
+	special Special_FadeOutMusic
+	opentext
 	writetext UnknownText_0x18c63f
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
-	disappear $2
+	disappear SILVERCAVEROOM3_RED
 	pause 15
 	special Special_FadeInQuickly
 	pause 30

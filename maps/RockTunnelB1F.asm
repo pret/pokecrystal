@@ -1,3 +1,8 @@
+const_value set 2
+	const ROCKTUNNELB1F_POKE_BALL1
+	const ROCKTUNNELB1F_POKE_BALL2
+	const ROCKTUNNELB1F_POKE_BALL3
+
 RockTunnelB1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -5,16 +10,16 @@ RockTunnelB1F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ItemFragment_0x74409:
-	db IRON, 1
+RockTunnelB1FIron:
+	itemball IRON
 
-ItemFragment_0x7440b:
-	db PP_UP, 1
+RockTunnelB1FPPUp:
+	itemball PP_UP
 
-ItemFragment_0x7440d:
-	db REVIVE, 1
+RockTunnelB1FRevive:
+	itemball REVIVE
 
-MapRockTunnelB1FSignpostItem0:
+RockTunnelB1FHiddenMaxPotion:
 	dwb EVENT_ROCK_TUNNEL_B1F_HIDDEN_MAX_POTION, MAX_POTION
 	
 
@@ -34,10 +39,10 @@ RockTunnelB1F_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 14, 4, SIGNPOST_ITEM, MapRockTunnelB1FSignpostItem0
+	signpost 14, 4, SIGNPOST_ITEM, RockTunnelB1FHiddenMaxPotion
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_POKE_BALL, 25, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x74409, EVENT_ROCK_TUNNEL_B1F_IRON
-	person_event SPRITE_POKE_BALL, 17, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x7440b, EVENT_ROCK_TUNNEL_B1F_PP_UP
-	person_event SPRITE_POKE_BALL, 2, 15, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x7440d, EVENT_ROCK_TUNNEL_B1F_REVIVE
+	person_event SPRITE_POKE_BALL, 25, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, RockTunnelB1FIron, EVENT_ROCK_TUNNEL_B1F_IRON
+	person_event SPRITE_POKE_BALL, 17, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, RockTunnelB1FPPUp, EVENT_ROCK_TUNNEL_B1F_PP_UP
+	person_event SPRITE_POKE_BALL, 2, 15, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, RockTunnelB1FRevive, EVENT_ROCK_TUNNEL_B1F_REVIVE

@@ -1,3 +1,14 @@
+const_value set 2
+	const CIANWOODGYM_CHUCK
+	const CIANWOODGYM_BLACK_BELT1
+	const CIANWOODGYM_BLACK_BELT2
+	const CIANWOODGYM_BLACK_BELT3
+	const CIANWOODGYM_BLACK_BELT4
+	const CIANWOODGYM_BOULDER1
+	const CIANWOODGYM_BOULDER2
+	const CIANWOODGYM_BOULDER3
+	const CIANWOODGYM_BOULDER4
+
 CianwoodGym_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,36 +18,36 @@ CianwoodGym_MapScriptHeader:
 
 ChuckScript_0x9d60f:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_CHUCK
 	iftrue .FightDone
 	writetext UnknownText_0x9d6f9
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $2, RIGHT
-	loadfont
+	spriteface CIANWOODGYM_CHUCK, RIGHT
+	opentext
 	writetext UnknownText_0x9d76f
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement $7, MovementData_0x9d6f3
+	applymovement CIANWOODGYM_BOULDER1, MovementData_0x9d6f3
 	playsound SFX_STRENGTH
 	earthquake 80
-	disappear $7
+	disappear CIANWOODGYM_BOULDER1
 	pause 30
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x9d78a
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x9d7f6, 0
 	loadtrainer CHUCK, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_CHUCK
-	loadfont
+	opentext
 	writetext UnknownText_0x9d835
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_STORMBADGE
 	checkcode VAR_BADGES
 	scall CianwoodGymTriggerRockets
@@ -48,20 +59,20 @@ ChuckScript_0x9d60f:
 	setevent EVENT_BEAT_BLACKBELT_NOB
 	setevent EVENT_BEAT_BLACKBELT_LUNG
 	writetext UnknownText_0x9d84d
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_DYNAMICPUNCH
 	iffalse UnknownScript_0x9d67f
 	setevent EVENT_GOT_TM01_DYNAMICPUNCH
 	writetext UnknownText_0x9d8da
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x9d67b:
 	writetext UnknownText_0x9d930
-	closetext
+	waitbutton
 UnknownScript_0x9d67f:
-	loadmovesprites
+	closetext
 	end
 
 CianwoodGymTriggerRockets:
@@ -79,44 +90,44 @@ TrainerBlackbeltYoshi:
 	trainer EVENT_BEAT_BLACKBELT_YOSHI, BLACKBELT_T, YOSHI, BlackbeltYoshiSeenText, BlackbeltYoshiBeatenText, 0, BlackbeltYoshiScript
 
 BlackbeltYoshiScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x9d9fa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBlackbeltLao:
 	trainer EVENT_BEAT_BLACKBELT_LAO, BLACKBELT_T, LAO, BlackbeltLaoSeenText, BlackbeltLaoBeatenText, 0, BlackbeltLaoScript
 
 BlackbeltLaoScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x9da61
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBlackbeltNob:
 	trainer EVENT_BEAT_BLACKBELT_NOB, BLACKBELT_T, NOB, BlackbeltNobSeenText, BlackbeltNobBeatenText, 0, BlackbeltNobScript
 
 BlackbeltNobScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x9dac0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBlackbeltLung:
 	trainer EVENT_BEAT_BLACKBELT_LUNG, BLACKBELT_T, LUNG, BlackbeltLungSeenText, BlackbeltLungBeatenText, 0, BlackbeltLungScript
 
 BlackbeltLungScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x9db14
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CianwoodGymBoulder:

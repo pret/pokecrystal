@@ -1,3 +1,9 @@
+const_value set 2
+	const AZALEAPOKECENTER1F_NURSE
+	const AZALEAPOKECENTER1F_GENTLEMAN
+	const AZALEAPOKECENTER1F_FISHING_GURU
+	const AZALEAPOKECENTER1F_POKEFAN_F
+
 AzaleaPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 1

@@ -1,10 +1,15 @@
+const_value set 2
+	const NEWBARKTOWN_TEACHER
+	const NEWBARKTOWN_FISHER
+	const NEWBARKTOWN_SILVER
+
 NewBarkTown_MapScriptHeader:
 .MapTriggers:
 	db 2
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
-	dw .Trigger2, 0
 
 .MapCallbacks:
 	db 1
@@ -12,10 +17,10 @@ NewBarkTown_MapScriptHeader:
 	; callbacks
 	dbw 5, .FlyPoint
 
-.Trigger1
+.Trigger0
 	end
 
-.Trigger2
+.Trigger1
 	end
 
 .FlyPoint
@@ -23,129 +28,129 @@ NewBarkTown_MapScriptHeader:
 	clearevent EVENT_FIRST_TIME_BANKING_WITH_MOM
 	return
 
-UnknownScript_0x1a8016:
+NewBarkTown_TeacherStopsYouTrigger1:
 	playmusic MUSIC_MOM
-	spriteface $2, LEFT
-	loadfont
-	writetext UnknownText_0x1a8134
+	spriteface NEWBARKTOWN_TEACHER, LEFT
+	opentext
+	writetext Text_WaitPlayer
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, RIGHT
-	applymovement $2, MovementData_0x1a80d4
-	loadfont
-	writetext UnknownText_0x1a813e
+	applymovement NEWBARKTOWN_TEACHER, Movement_TeacherRunsToYou1_NBT
+	opentext
+	writetext Text_WhatDoYouThinkYoureDoing
+	waitbutton
 	closetext
-	loadmovesprites
-	follow $2, PLAYER
-	applymovement $2, MovementData_0x1a80e0
+	follow NEWBARKTOWN_TEACHER, PLAYER
+	applymovement NEWBARKTOWN_TEACHER, Movement_TeacherBringsYouBack1_NBT
 	stopfollow
-	loadfont
-	writetext UnknownText_0x1a815e
+	opentext
+	writetext Text_ItsDangerousToGoAlone
+	waitbutton
 	closetext
-	loadmovesprites
 	special RestartMapMusic
 	end
 
-UnknownScript_0x1a8041:
+NewBarkTown_TeacherStopsYouTrigger2:
 	playmusic MUSIC_MOM
-	spriteface $2, LEFT
-	loadfont
-	writetext UnknownText_0x1a8134
+	spriteface NEWBARKTOWN_TEACHER, LEFT
+	opentext
+	writetext Text_WaitPlayer
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, RIGHT
-	applymovement $2, MovementData_0x1a80d9
+	applymovement NEWBARKTOWN_TEACHER, Movement_TeacherRunsToYou2_NBT
 	spriteface PLAYER, UP
-	loadfont
-	writetext UnknownText_0x1a813e
+	opentext
+	writetext Text_WhatDoYouThinkYoureDoing
+	waitbutton
 	closetext
-	loadmovesprites
-	follow $2, PLAYER
-	applymovement $2, MovementData_0x1a80e6
+	follow NEWBARKTOWN_TEACHER, PLAYER
+	applymovement NEWBARKTOWN_TEACHER, Movement_TeacherBringsYouBack2_NBT
 	stopfollow
-	loadfont
-	writetext UnknownText_0x1a815e
+	opentext
+	writetext Text_ItsDangerousToGoAlone
+	waitbutton
 	closetext
-	loadmovesprites
 	special RestartMapMusic
 	end
 
-TeacherScript_0x1a806f:
+NewBarkTownTeacherScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
-	iftrue UnknownScript_0x1a8095
+	iftrue .CallMom
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
-	iftrue UnknownScript_0x1a808f
+	iftrue .TellMomYoureLeaving
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
-	iftrue UnknownScript_0x1a8089
-	writetext UnknownText_0x1a80f7
+	iftrue .MonIsAdorable
+	writetext Text_GearIsImpressive
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-UnknownScript_0x1a8089:
-	writetext UnknownText_0x1a81c4
+.MonIsAdorable:
+	writetext Text_YourMonIsAdorable
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-UnknownScript_0x1a808f:
-	writetext UnknownText_0x1a81f2
+.TellMomYoureLeaving:
+	writetext Text_TellMomIfLeaving
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-UnknownScript_0x1a8095:
-	writetext UnknownText_0x1a8236
+.CallMom:
+	writetext Text_CallMomOnGear
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-FisherScript_0x1a809b:
-	jumptextfaceplayer UnknownText_0x1a8274
+NewBarkTownFisherScript:
+	jumptextfaceplayer Text_ElmDiscoveredNewMon
 
-SilverScript_0x1a809e:
-	loadfont
-	writetext UnknownText_0x1a82a6
+NewBarkTownSilverScript:
+	opentext
+	writetext NewBarkTownRivalText1
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $4, LEFT
-	loadfont
-	writetext UnknownText_0x1a82cd
+	spriteface NEWBARKTOWN_SILVER, LEFT
+	opentext
+	writetext NewBarkTownRivalText2
+	waitbutton
 	closetext
-	loadmovesprites
-	follow PLAYER, $4
-	applymovement PLAYER, MovementData_0x1a80ed
+	follow PLAYER, NEWBARKTOWN_SILVER
+	applymovement PLAYER, Movement_SilverPushesYouAway_NBT
 	stopfollow
 	pause 5
-	spriteface $4, DOWN
+	spriteface NEWBARKTOWN_SILVER, DOWN
 	pause 5
 	playsound SFX_TACKLE
-	applymovement PLAYER, MovementData_0x1a80f0
-	applymovement $4, MovementData_0x1a80f5
+	applymovement PLAYER, Movement_SilverShovesYouOut_NBT
+	applymovement NEWBARKTOWN_SILVER, Movement_SilverReturnsToTheShadows_NBT
 	end
 
 MapNewBarkTownSignpost0Script:
-	jumptext UnknownText_0x1a82e8
+	jumptext NewBarkTownSignText
 
 MapNewBarkTownSignpost1Script:
-	jumptext UnknownText_0x1a8328
+	jumptext PlayersHouseSignText
 
 MapNewBarkTownSignpost2Script:
-	jumptext UnknownText_0x1a8332
+	jumptext ElmsLabSignText
 
 MapNewBarkTownSignpost3Script:
-	jumptext UnknownText_0x1a8340
+	jumptext ElmsHouseSignText
 
-MovementData_0x1a80d4:
+Movement_TeacherRunsToYou1_NBT:
 	step_left
 	step_left
 	step_left
 	step_left
 	step_end
 
-MovementData_0x1a80d9:
+Movement_TeacherRunsToYou2_NBT:
 	step_left
 	step_left
 	step_left
@@ -154,7 +159,7 @@ MovementData_0x1a80d9:
 	turn_head_down
 	step_end
 
-MovementData_0x1a80e0:
+Movement_TeacherBringsYouBack1_NBT:
 	step_right
 	step_right
 	step_right
@@ -162,7 +167,7 @@ MovementData_0x1a80e0:
 	turn_head_left
 	step_end
 
-MovementData_0x1a80e6:
+Movement_TeacherBringsYouBack2_NBT:
 	step_right
 	step_right
 	step_right
@@ -171,23 +176,23 @@ MovementData_0x1a80e6:
 	turn_head_left
 	step_end
 
-MovementData_0x1a80ed:
+Movement_SilverPushesYouAway_NBT:
 	turn_head_up
 	step_down
 	step_end
 
-MovementData_0x1a80f0:
+Movement_SilverShovesYouOut_NBT:
 	turn_head_up
 	fix_facing
 	jump_step_down
 	remove_fixed_facing
 	step_end
 
-MovementData_0x1a80f5:
+Movement_SilverReturnsToTheShadows_NBT:
 	step_right
 	step_end
 
-UnknownText_0x1a80f7:
+Text_GearIsImpressive:
 	text "Wow, your #GEAR"
 	line "is impressive!"
 
@@ -195,16 +200,16 @@ UnknownText_0x1a80f7:
 	line "it for you?"
 	done
 
-UnknownText_0x1a8134:
+Text_WaitPlayer:
 	text "Wait, <PLAY_G>!"
 	done
 
-UnknownText_0x1a813e:
+Text_WhatDoYouThinkYoureDoing:
 	text "What do you think"
 	line "you're doing?"
 	done
 
-UnknownText_0x1a815e:
+Text_ItsDangerousToGoAlone:
 	text "It's dangerous to"
 	line "go out without a"
 	cont "#MON!"
@@ -216,13 +221,13 @@ UnknownText_0x1a815e:
 	line "to the next town."
 	done
 
-UnknownText_0x1a81c4:
+Text_YourMonIsAdorable:
 	text "Oh! Your #MON"
 	line "is adorable!"
 	cont "I wish I had one!"
 	done
 
-UnknownText_0x1a81f2:
+Text_TellMomIfLeaving:
 	text "Hi, <PLAY_G>!"
 	line "Leaving again?"
 
@@ -231,7 +236,7 @@ UnknownText_0x1a81f2:
 	cont "are leaving."
 	done
 
-UnknownText_0x1a8236:
+Text_CallMomOnGear:
 	text "Call your mom on"
 	line "your #GEAR to"
 
@@ -239,7 +244,7 @@ UnknownText_0x1a8236:
 	line "you're doing."
 	done
 
-UnknownText_0x1a8274:
+Text_ElmDiscoveredNewMon:
 	text "Yo, <PLAYER>!"
 
 	para "I hear PROF.ELM"
@@ -247,20 +252,20 @@ UnknownText_0x1a8274:
 	cont "new #MON."
 	done
 
-UnknownText_0x1a82a6:
-	text $56
+NewBarkTownRivalText1:
+	text "<......>"
 
 	para "So this is the"
 	line "famous ELM #MON"
 	cont "LAB…"
 	done
 
-UnknownText_0x1a82cd:
+NewBarkTownRivalText2:
 	text "…What are you"
 	line "staring at?"
 	done
 
-UnknownText_0x1a82e8:
+NewBarkTownSignText:
 	text "NEW BARK TOWN"
 
 	para "The Town Where the"
@@ -268,15 +273,15 @@ UnknownText_0x1a82e8:
 	cont "Beginning Blow"
 	done
 
-UnknownText_0x1a8328:
+PlayersHouseSignText:
 	text "<PLAYER>'s House"
 	done
 
-UnknownText_0x1a8332:
+ElmsLabSignText:
 	text "ELM #MON LAB"
 	done
 
-UnknownText_0x1a8340:
+ElmsHouseSignText:
 	text "ELM'S HOUSE"
 	done
 
@@ -293,8 +298,8 @@ NewBarkTown_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 0, $8, $1, $0, UnknownScript_0x1a8016, $0, $0
-	xy_trigger 0, $9, $1, $0, UnknownScript_0x1a8041, $0, $0
+	xy_trigger 0, $8, $1, $0, NewBarkTown_TeacherStopsYouTrigger1, $0, $0
+	xy_trigger 0, $9, $1, $0, NewBarkTown_TeacherStopsYouTrigger2, $0, $0
 
 .Signposts:
 	db 4
@@ -305,6 +310,6 @@ NewBarkTown_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_TEACHER, 8, 6, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TeacherScript_0x1a806f, -1
-	person_event SPRITE_FISHER, 9, 12, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, FisherScript_0x1a809b, -1
-	person_event SPRITE_SILVER, 2, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SilverScript_0x1a809e, EVENT_RIVAL_NEW_BARK_TOWN
+	person_event SPRITE_TEACHER, 8, 6, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NewBarkTownTeacherScript, -1
+	person_event SPRITE_FISHER, 9, 12, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, NewBarkTownFisherScript, -1
+	person_event SPRITE_SILVER, 2, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NewBarkTownSilverScript, EVENT_RIVAL_NEW_BARK_TOWN

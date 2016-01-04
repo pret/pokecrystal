@@ -1,8 +1,8 @@
 Music_ShowMeAround: ; edbd8
-	dbw $c0, Music_ShowMeAround_Ch1
-	dbw $01, Music_ShowMeAround_Ch2
-	dbw $02, Music_ShowMeAround_Ch3
-	dbw $03, Music_ShowMeAround_Ch4
+	musicheader 4, 1, Music_ShowMeAround_Ch1
+	musicheader 1, 2, Music_ShowMeAround_Ch2
+	musicheader 1, 3, Music_ShowMeAround_Ch3
+	musicheader 1, 4, Music_ShowMeAround_Ch4
 ; edbe4
 
 Music_ShowMeAround_Ch1: ; edbe4

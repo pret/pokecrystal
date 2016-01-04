@@ -1,62 +1,62 @@
 Elevator:: ; 1342d
-	call Function1344a
-	call Function1347d
-	jr c, .asm_13448
-	ld [wd041], a
-	call Function134dd
-	jr c, .asm_13448
-	ld hl, wd041
+	call .LoadPointer
+	call .FindCurrentFloor
+	jr c, .quit
+	ld [wElevatorOriginFloor], a
+	call Elevator_AskWhichFloor
+	jr c, .quit
+	ld hl, wElevatorOriginFloor
 	cp [hl]
-	jr z, .asm_13448
-	call Function134c0
+	jr z, .quit
+	call Elevator_GoToFloor
 	and a
 	ret
 
-.asm_13448
+.quit
 	scf
 	ret
 ; 1344a
 
-Function1344a: ; 1344a
+.LoadPointer: ; 1344a
 	ld a, b
-	ld [EngineBuffer1], a
+	ld [wElevatorPointerBank], a
 	ld a, e
-	ld [wd03f], a
+	ld [wElevatorPointerLo], a
 	ld a, d
-	ld [wd040], a
-	call Function1345a
+	ld [wElevatorPointerHi], a
+	call .LoadFloors
 	ret
 ; 1345a
 
-Function1345a: ; 1345a
-	ld de, OBPals + 8 * 6
+.LoadFloors: ; 1345a
+	ld de, CurElevator
 	ld bc, 4
-	ld hl, wd03f
+	ld hl, wElevatorPointerLo
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [EngineBuffer1]
+	ld a, [wElevatorPointerBank]
 	call GetFarByte
 	inc hl
 	ld [de], a
 	inc de
-.asm_1346f
-	ld a, [EngineBuffer1]
+.loop
+	ld a, [wElevatorPointerBank]
 	call GetFarByte
 	ld [de], a
 	inc de
 	add hl, bc
-	cp $ff
-	jr nz, .asm_1346f
+	cp -1
+	jr nz, .loop
 	ret
 ; 1347d
 
-Function1347d: ; 1347d
-	ld hl, wd03f
+.FindCurrentFloor: ; 1347d
+	ld hl, wElevatorPointerLo
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [EngineBuffer1]
+	ld a, [wElevatorPointerBank]
 	call GetFarByte
 	ld c, a
 	inc hl
@@ -64,47 +64,46 @@ Function1347d: ; 1347d
 	ld d, a
 	ld a, [BackupMapNumber]
 	ld e, a
-	ld b, $0
-.asm_13495
-	ld a, [EngineBuffer1]
+	ld b, 0
+.loop2
+	ld a, [wElevatorPointerBank]
 	call GetFarByte
-	cp $ff
-	jr z, .asm_134be
+	cp -1
+	jr z, .fail
 rept 2
 	inc hl
 endr
-	ld a, [EngineBuffer1]
+	ld a, [wElevatorPointerBank]
 	call GetFarByte
 	inc hl
 	cp d
-	jr nz, .asm_134b7
-	ld a, [EngineBuffer1]
+	jr nz, .next1
+	ld a, [wElevatorPointerBank]
 	call GetFarByte
 	inc hl
 	cp e
-	jr nz, .asm_134b8
-	jr .asm_134bb
+	jr nz, .next2
+	jr .done
 
-.asm_134b7
+.next1
 	inc hl
-
-.asm_134b8
+.next2
 	inc b
-	jr .asm_13495
+	jr .loop2
 
-.asm_134bb
+.done
 	xor a
 	ld a, b
 	ret
 
-.asm_134be
+.fail
 	scf
 	ret
 ; 134c0
 
-Function134c0: ; 134c0
+Elevator_GoToFloor: ; 134c0
 	push af
-	ld hl, wd03f
+	ld hl, wElevatorPointerLo
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -114,13 +113,13 @@ Function134c0: ; 134c0
 	call AddNTimes
 	inc hl
 	ld de, BackupWarpNumber
-	ld a, [EngineBuffer1]
+	ld a, [wElevatorPointerBank]
 	ld bc, 3
 	call FarCopyBytes
 	ret
 ; 134dd
 
-Function134dd: ; 134dd
+Elevator_AskWhichFloor: ; 134dd
 	call LoadStandardMenuDataHeader
 	ld hl, Elevator_WhichFloorText
 	call PrintText
@@ -131,16 +130,16 @@ Function134dd: ; 134dd
 	call UpdateSprites
 	xor a
 	ld [wMenuScrollPosition], a
-	call HandleScrollingMenu
-	call WriteBackup
-	ld a, [wcf73]
-	cp $2
-	jr z, .asm_1350b
+	call ScrollingMenu
+	call CloseWindow
+	ld a, [wMenuJoypad]
+	cp B_BUTTON
+	jr z, .cancel
 	xor a
-	ld a, [wcf77]
+	ld a, [wScrollingMenuCursorPosition]
 	ret
 
-.asm_1350b
+.cancel
 	scf
 	ret
 ; 1350d
@@ -178,10 +177,10 @@ Elevator_CurrentFloorText: ; 13537
 
 Elevator_GetCurrentFloorString: ; 1353f
 	push hl
-	ld a, [wd041]
+	ld a, [wElevatorOriginFloor]
 	ld e, a
 	ld d, 0
-	ld hl, wd0f1
+	ld hl, CurElevatorFloors
 	add hl, de
 	ld a, [hl]
 	pop de
@@ -201,7 +200,7 @@ Elevator_MenuData2: ; 0x13558
 	db $10 ; flags
 	db 4, 0 ; rows, columns
 	db 1 ; horizontal spacing
-	dbw 0, OBPals + 8 * 6
+	dbw 0, CurElevator
 	dba GetElevatorFlorStrings
 	dba NULL
 	dba NULL
@@ -209,7 +208,6 @@ Elevator_MenuData2: ; 0x13558
 
 GetElevatorFlorStrings: ; 13568
 	ld a, [MenuSelection]
-
 GetFloorString: ; 1356b
 	push de
 	call FloorToString

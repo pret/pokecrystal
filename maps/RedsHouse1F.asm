@@ -1,3 +1,6 @@
+const_value set 2
+	const REDSHOUSE1F_REDS_MOM
+
 RedsHouse1F_MapScriptHeader:
 .MapTriggers:
 	db 1
@@ -13,18 +16,18 @@ RedsHouse1F_MapScriptHeader:
 
 RedsMom:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_MET_REDS_MOM
 	iftrue .MetAlready
 	writetext RedsMomText1
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_MET_REDS_MOM
 	end
 .MetAlready
 	writetext RedsMomText2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 RedsHouse1FTV:

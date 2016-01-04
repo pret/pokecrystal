@@ -1,3 +1,8 @@
+const_value set 2
+	const ROUTE32POKECENTER1F_NURSE
+	const ROUTE32POKECENTER1F_FISHING_GURU
+	const ROUTE32POKECENTER1F_COOLTRAINER_F
+
 Route32PokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -10,31 +15,31 @@ NurseScript_0x69b52:
 
 FishingGuruScript_0x69b55:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_OLD_ROD
 	iftrue UnknownScript_0x69b7a
 	writetext UnknownText_0x69b83
 	yesorno
 	iffalse UnknownScript_0x69b74
 	writetext UnknownText_0x69be8
-	keeptextopen
+	buttonsound
 	verbosegiveitem OLD_ROD
 	writetext UnknownText_0x69c1b
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_GOT_OLD_ROD
 	end
 
 UnknownScript_0x69b74:
 	writetext UnknownText_0x69c6c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x69b7a:
 	writetext UnknownText_0x69c8d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CooltrainerFScript_0x69b80:

@@ -1,3 +1,10 @@
+const_value set 2
+	const ROUTE11_YOUNGSTER1
+	const ROUTE11_YOUNGSTER2
+	const ROUTE11_YOUNGSTER3
+	const ROUTE11_YOUNGSTER4
+	const ROUTE11_FRUIT_TREE
+
 Route11_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,44 +16,44 @@ TrainerYoungsterOwen:
 	trainer EVENT_BEAT_YOUNGSTER_OWEN, YOUNGSTER, OWEN, YoungsterOwenSeenText, YoungsterOwenBeatenText, 0, YoungsterOwenScript
 
 YoungsterOwenScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x680b2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerYoungsterJason:
 	trainer EVENT_BEAT_YOUNGSTER_JASON, YOUNGSTER, JASON, YoungsterJasonSeenText, YoungsterJasonBeatenText, 0, YoungsterJasonScript
 
 YoungsterJasonScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x6814a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPsychicHerman:
 	trainer EVENT_BEAT_PSYCHIC_HERMAN, PSYCHIC_T, HERMAN, PsychicHermanSeenText, PsychicHermanBeatenText, 0, PsychicHermanScript
 
 PsychicHermanScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x6817b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPsychicFidel:
 	trainer EVENT_BEAT_PSYCHIC_FIDEL, PSYCHIC_T, FIDEL, PsychicFidelSeenText, PsychicFidelBeatenText, 0, PsychicFidelScript
 
 PsychicFidelScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x681ec
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute11Signpost0Script:
@@ -55,7 +62,7 @@ MapRoute11Signpost0Script:
 FruitTreeScript_0x68055:
 	fruittree FRUITTREE_ROUTE_11
 
-MapRoute11SignpostItem1:
+Route11HiddenRevive:
 	dwb EVENT_ROUTE_11_HIDDEN_REVIVE, REVIVE
 	
 
@@ -152,7 +159,7 @@ Route11_MapEventHeader:
 .Signposts:
 	db 2
 	signpost 7, 3, SIGNPOST_READ, MapRoute11Signpost0Script
-	signpost 5, 32, SIGNPOST_ITEM, MapRoute11SignpostItem1
+	signpost 5, 32, SIGNPOST_ITEM, Route11HiddenRevive
 
 .PersonEvents:
 	db 5

@@ -1,3 +1,8 @@
+const_value set 2
+	const OLIVINEMART_CLERK
+	const OLIVINEMART_COOLTRAINER_F
+	const OLIVINEMART_LASS
+
 OlivineMart_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,9 +11,9 @@ OlivineMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x9cac7:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_OLIVINE
-	loadmovesprites
+	closetext
 	end
 
 CooltrainerFScript_0x9cace:

@@ -1,610 +1,655 @@
+UNDERGROUND_DOOR_CLOSED1 EQU $2a
+UNDERGROUND_DOOR_CLOSED2 EQU $3e
+UNDERGROUND_DOOR_CLOSED3 EQU $3f
+UNDERGROUND_DOOR_OPEN1   EQU $2d
+UNDERGROUND_DOOR_OPEN2   EQU $3d
+
+ugdoor: macro
+\1_YCOORD EQU \2
+\1_XCOORD EQU \3
+endm
+
+	ugdoor UGDOOR_1,  $10, $06
+	ugdoor UGDOOR_2,  $0a, $06
+	ugdoor UGDOOR_3,  $02, $06
+	ugdoor UGDOOR_4,  $02, $0a
+	ugdoor UGDOOR_5,  $0a, $0a
+	ugdoor UGDOOR_6,  $10, $0a
+	ugdoor UGDOOR_7,  $0c, $06
+	ugdoor UGDOOR_8,  $0c, $08
+	ugdoor UGDOOR_9,  $06, $06
+	ugdoor UGDOOR_10, $06, $08
+	ugdoor UGDOOR_11, $0c, $0a
+	ugdoor UGDOOR_12, $0c, $0c
+	ugdoor UGDOOR_13, $06, $0a
+	ugdoor UGDOOR_14, $06, $0c
+	ugdoor UGDOOR_15, $12, $0a
+	ugdoor UGDOOR_16, $12, $0c
+
+doorstate: macro
+	changeblock UGDOOR_\1_YCOORD, UGDOOR_\1_XCOORD, UNDERGROUND_DOOR_\2
+endm
+
+const_value set 2
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_PHARMACIST1
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_PHARMACIST2
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_ROCKET1
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_ROCKET2
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_ROCKET3
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_ROCKET_GIRL
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_TEACHER
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_SUPER_NERD
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_POKE_BALL1
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_POKE_BALL2
+	const UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
+
 UndergroundPathSwitchRoomEntrances_MapScriptHeader:
 .MapTriggers:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x7c9f5, 0
-	dw UnknownScript_0x7c9f6, 0
+	dw .Trigger0, 0
+	dw .Trigger1, 0
 
 .MapCallbacks:
 	db 1
 
 	; callbacks
 
-	dbw 1, UnknownScript_0x7c9f7
+	dbw 1, .UpdateDoorPositions
 
-UnknownScript_0x7c9f5:
+.Trigger0:
 	end
 
-UnknownScript_0x7c9f6:
+.Trigger1:
 	end
 
-UnknownScript_0x7c9f7:
+.UpdateDoorPositions:
 	checkevent EVENT_SWITCH_4
-	iffalse UnknownScript_0x7ca01
-	changeblock $10, $6, $2d
-UnknownScript_0x7ca01:
+	iffalse .false4
+	doorstate 1, OPEN1
+.false4:
 	checkevent EVENT_SWITCH_5
-	iffalse UnknownScript_0x7ca0b
-	changeblock $a, $6, $2d
-UnknownScript_0x7ca0b:
+	iffalse .false5
+	doorstate 2, OPEN1
+.false5:
 	checkevent EVENT_SWITCH_6
-	iffalse UnknownScript_0x7ca15
-	changeblock $2, $6, $2d
-UnknownScript_0x7ca15:
+	iffalse .false6
+	doorstate 3, OPEN1
+.false6:
 	checkevent EVENT_SWITCH_7
-	iffalse UnknownScript_0x7ca1f
-	changeblock $2, $a, $2d
-UnknownScript_0x7ca1f:
+	iffalse .false7
+	doorstate 4, OPEN1
+.false7:
 	checkevent EVENT_SWITCH_8
-	iffalse UnknownScript_0x7ca29
-	changeblock $a, $a, $2d
-UnknownScript_0x7ca29:
+	iffalse .false8
+	doorstate 5, OPEN1
+.false8:
 	checkevent EVENT_SWITCH_9
-	iffalse UnknownScript_0x7ca33
-	changeblock $10, $a, $2d
-UnknownScript_0x7ca33:
+	iffalse .false9
+	doorstate 6, OPEN1
+.false9:
 	checkevent EVENT_SWITCH_10
-	iffalse UnknownScript_0x7ca41
-	changeblock $c, $6, $2a
-	changeblock $c, $8, $2d
-UnknownScript_0x7ca41:
+	iffalse .false10
+	doorstate 7, CLOSED1
+	doorstate 8, OPEN1
+.false10:
 	checkevent EVENT_SWITCH_11
-	iffalse UnknownScript_0x7ca4f
-	changeblock $6, $6, $2a
-	changeblock $6, $8, $2d
-UnknownScript_0x7ca4f:
+	iffalse .false11
+	doorstate 9, CLOSED1
+	doorstate 10, OPEN1
+.false11:
 	checkevent EVENT_SWITCH_12
-	iffalse UnknownScript_0x7ca5d
-	changeblock $c, $a, $2a
-	changeblock $c, $c, $2d
-UnknownScript_0x7ca5d:
+	iffalse .false12
+	doorstate 11, CLOSED1
+	doorstate 12, OPEN1
+.false12:
 	checkevent EVENT_SWITCH_13
-	iffalse UnknownScript_0x7ca6b
-	changeblock $6, $a, $2a
-	changeblock $6, $c, $2d
-UnknownScript_0x7ca6b:
+	iffalse .false13
+	doorstate 13, CLOSED1
+	doorstate 14, OPEN1
+.false13:
 	checkevent EVENT_SWITCH_14
-	iffalse UnknownScript_0x7ca79
-	changeblock $12, $a, $2a
-	changeblock $12, $c, $2d
-UnknownScript_0x7ca79:
+	iffalse .false14
+	doorstate 15, CLOSED1
+	doorstate 16, OPEN1
+.false14:
 	return
 
 SuperNerdScript_0x7ca7a:
-	jumptextfaceplayer UnknownText_0x7d176
+	jumptextfaceplayer UndergroundPathSwitchRoomEntrances_SuperNerdText
 
 TeacherScript_0x7ca7d:
-	jumptextfaceplayer UnknownText_0x7d1d0
+	jumptextfaceplayer UndergroundPathSwitchRoomEntrances_TeacherText
 
-UnknownScript_0x7ca80:
+UndergroundSilverTrigger1:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 15
 	playsound SFX_EXIT_BUILDING
-	appear $c
-	waitbutton
-	applymovement $c, MovementData_0x7ce87
+	appear UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
+	waitsfx
+	applymovement UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER, UndergroundSilverApproachMovement1
 	spriteface PLAYER, RIGHT
-	scall UnknownScript_0x7cad4
-	applymovement $c, MovementData_0x7ce92
+	scall UndergroundSilverBattleScript
+	applymovement UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER, UndergroundSilverRetreatMovement1
 	playsound SFX_EXIT_BUILDING
-	disappear $c
-	dotrigger $1
-	waitbutton
+	disappear UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
+	dotrigger 1
+	waitsfx
 	playmapmusic
 	end
 
-UnknownScript_0x7caaa:
+UndergroundSilverTrigger2:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 15
 	playsound SFX_EXIT_BUILDING
-	appear $c
-	waitbutton
-	applymovement $c, MovementData_0x7ce8c
+	appear UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
+	waitsfx
+	applymovement UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER, UndergroundSilverApproachMovement2
 	spriteface PLAYER, RIGHT
-	scall UnknownScript_0x7cad4
-	applymovement $c, MovementData_0x7ce97
+	scall UndergroundSilverBattleScript
+	applymovement UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER, UndergroundSilverRetreatMovement2
 	playsound SFX_EXIT_BUILDING
-	disappear $c
-	dotrigger $1
-	waitbutton
+	disappear UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
+	dotrigger 1
+	waitsfx
 	playmapmusic
 	end
 
-UnknownScript_0x7cad4:
+UndergroundSilverBattleScript:
 	checkevent EVENT_RIVAL_BURNED_TOWER
-	iftrue UnknownScript_0x7cae1
+	iftrue .Continue
 	setevent EVENT_RIVAL_BURNED_TOWER
-	domaptrigger BURNED_TOWER_1F, $1
-UnknownScript_0x7cae1:
+	domaptrigger BURNED_TOWER_1F, 1
+.Continue:
 	playmusic MUSIC_RIVAL_ENCOUNTER
-	loadfont
-	writetext UnknownText_0x7ce9d
+	opentext
+	writetext UndergroundSilverBeforeText
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_RIVAL_UNDERGROUND_PATH
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
-	iftrue UnknownScript_0x7cb09
+	iftrue .Totodile
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
-	iftrue UnknownScript_0x7cb19
-	winlosstext UnknownText_0x7cf5d, UnknownText_0x7d102
-	setlasttalked $c
+	iftrue .Chikorita
+	winlosstext UndergroundSilverWinText, UndergroundSilverLossText
+	setlasttalked UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
 	loadtrainer RIVAL1, RIVAL1_12
 	startbattle
-	reloadmapmusic
-	returnafterbattle
-	jump UnknownScript_0x7cb29
+	dontrestartmapmusic
+	reloadmapafterbattle
+	jump .FinishRivalBattle
 
-UnknownScript_0x7cb09:
-	winlosstext UnknownText_0x7cf5d, UnknownText_0x7d102
-	setlasttalked $c
+.Totodile:
+	winlosstext UndergroundSilverWinText, UndergroundSilverLossText
+	setlasttalked UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
 	loadtrainer RIVAL1, RIVAL1_10
 	startbattle
-	reloadmapmusic
-	returnafterbattle
-	jump UnknownScript_0x7cb29
+	dontrestartmapmusic
+	reloadmapafterbattle
+	jump .FinishRivalBattle
 
-UnknownScript_0x7cb19:
-	winlosstext UnknownText_0x7cf5d, UnknownText_0x7d102
-	setlasttalked $c
+.Chikorita:
+	winlosstext UndergroundSilverWinText, UndergroundSilverLossText
+	setlasttalked UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
 	loadtrainer RIVAL1, RIVAL1_11
 	startbattle
-	reloadmapmusic
-	returnafterbattle
-	jump UnknownScript_0x7cb29
+	dontrestartmapmusic
+	reloadmapafterbattle
+	jump .FinishRivalBattle
 
-UnknownScript_0x7cb29:
+.FinishRivalBattle:
 	playmusic MUSIC_RIVAL_AFTER
-	loadfont
-	writetext UnknownText_0x7cfc2
+	opentext
+	writetext UndergroundSilverAfterText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGruntM11:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_11, GRUNTM, 11, GruntM11SeenText, GruntM11BeatenText, 0, GruntM11Script
 
 GruntM11Script:
-	talkaftercancel
-	loadfont
-	writetext UnknownText_0x7d290
+	end_if_just_battled
+	opentext
+	writetext GruntM11AfterText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGruntM25:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_25, GRUNTM, 25, GruntM25SeenText, GruntM25BeatenText, 0, GruntM25Script
 
 GruntM25Script:
-	talkaftercancel
-	loadfont
-	writetext UnknownText_0x7d347
+	end_if_just_battled
+	opentext
+	writetext GruntM25AfterText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBurglarDuncan:
 	trainer EVENT_BEAT_BURGLAR_DUNCAN, BURGLAR, DUNCAN, BurglarDuncanSeenText, BurglarDuncanBeatenText, 0, BurglarDuncanScript
 
 BurglarDuncanScript:
-	talkaftercancel
-	loadfont
-	writetext UnknownText_0x7d3cf
+	end_if_just_battled
+	opentext
+	writetext BurglarDuncanAfterText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBurglarEddie:
 	trainer EVENT_BEAT_BURGLAR_EDDIE, BURGLAR, EDDIE, BurglarEddieSeenText, BurglarEddieBeatenText, 0, BurglarEddieScript
 
 BurglarEddieScript:
-	talkaftercancel
-	loadfont
-	writetext UnknownText_0x7d45b
+	end_if_just_battled
+	opentext
+	writetext BurglarEddieAfterText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGruntM13:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_13, GRUNTM, 13, GruntM13SeenText, GruntM13BeatenText, 0, GruntM13Script
 
 GruntM13Script:
-	talkaftercancel
-	loadfont
-	writetext UnknownText_0x7d51f
+	end_if_just_battled
+	opentext
+	writetext GruntM13AfterText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGruntF3:
 	trainer EVENT_BEAT_ROCKET_GRUNTF_3, GRUNTF, 3, GruntF3SeenText, GruntF3BeatenText, 0, GruntF3Script
 
 GruntF3Script:
-	talkaftercancel
-	loadfont
-	writetext UnknownText_0x7d5e6
+	end_if_just_battled
+	opentext
+	writetext GruntF3AfterText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-MapUndergroundPathSwitchRoomEntrancesSignpost0Script:
-	loadfont
-	writetext UnknownText_0x7d554
-	keeptextopen
+Switch1Script:
+	opentext
+	writetext SwitchRoomText_Switch1
+	buttonsound
 	checkevent EVENT_SWITCH_1
-	iftrue UnknownScript_0x7cbcb
-	writetext UnknownText_0x7d617
+	iftrue .On
+	writetext SwitchRoomText_OffTurnOn
 	yesorno
-	iffalse UnknownScript_0x7cc8b
+	iffalse UndergroundPathSwitchRoomEntrances_DontToggle
 	copybytetovar UndergroundSwitchPositions
-	addvar $1
+	addvar 1
 	copyvartobyte UndergroundSwitchPositions
 	setevent EVENT_SWITCH_1
-	jump UnknownScript_0x7cc8d
+	jump UndergroundPathSwitchRoomEntrances_UpdateDoors
 
-UnknownScript_0x7cbcb:
-	writetext UnknownText_0x7d62d
+.On:
+	writetext SwitchRoomText_OnTurnOff
 	yesorno
-	iffalse UnknownScript_0x7cc8b
+	iffalse UndergroundPathSwitchRoomEntrances_DontToggle
 	copybytetovar UndergroundSwitchPositions
 	addvar -1
 	copyvartobyte UndergroundSwitchPositions
 	clearevent EVENT_SWITCH_1
-	jump UnknownScript_0x7cc8d
+	jump UndergroundPathSwitchRoomEntrances_UpdateDoors
 
-MapUndergroundPathSwitchRoomEntrancesSignpost1Script:
-	loadfont
-	writetext UnknownText_0x7d643
-	keeptextopen
+Switch2Script:
+	opentext
+	writetext SwitchRoomText_Switch2
+	buttonsound
 	checkevent EVENT_SWITCH_2
-	iftrue UnknownScript_0x7cc00
-	writetext UnknownText_0x7d617
+	iftrue .On
+	writetext SwitchRoomText_OffTurnOn
 	yesorno
-	iffalse UnknownScript_0x7cc8b
+	iffalse UndergroundPathSwitchRoomEntrances_DontToggle
 	copybytetovar UndergroundSwitchPositions
-	addvar $2
+	addvar 2
 	copyvartobyte UndergroundSwitchPositions
 	setevent EVENT_SWITCH_2
-	jump UnknownScript_0x7cc8d
+	jump UndergroundPathSwitchRoomEntrances_UpdateDoors
 
-UnknownScript_0x7cc00:
-	writetext UnknownText_0x7d62d
+.On:
+	writetext SwitchRoomText_OnTurnOff
 	yesorno
-	iffalse UnknownScript_0x7cc8b
+	iffalse UndergroundPathSwitchRoomEntrances_DontToggle
 	copybytetovar UndergroundSwitchPositions
 	addvar -2
 	copyvartobyte UndergroundSwitchPositions
 	clearevent EVENT_SWITCH_2
-	jump UnknownScript_0x7cc8d
+	jump UndergroundPathSwitchRoomEntrances_UpdateDoors
 
-MapUndergroundPathSwitchRoomEntrancesSignpost2Script:
-	loadfont
-	writetext UnknownText_0x7d65a
-	keeptextopen
+Switch3Script:
+	opentext
+	writetext SwitchRoomText_Switch3
+	buttonsound
 	checkevent EVENT_SWITCH_3
-	iftrue UnknownScript_0x7cc35
-	writetext UnknownText_0x7d617
+	iftrue .On
+	writetext SwitchRoomText_OffTurnOn
 	yesorno
-	iffalse UnknownScript_0x7cc8b
+	iffalse UndergroundPathSwitchRoomEntrances_DontToggle
 	copybytetovar UndergroundSwitchPositions
-	addvar $3
+	addvar 3
 	copyvartobyte UndergroundSwitchPositions
 	setevent EVENT_SWITCH_3
-	jump UnknownScript_0x7cc8d
+	jump UndergroundPathSwitchRoomEntrances_UpdateDoors
 
-UnknownScript_0x7cc35:
-	writetext UnknownText_0x7d62d
+.On:
+	writetext SwitchRoomText_OnTurnOff
 	yesorno
-	iffalse UnknownScript_0x7cc8b
+	iffalse UndergroundPathSwitchRoomEntrances_DontToggle
 	copybytetovar UndergroundSwitchPositions
 	addvar -3
 	copyvartobyte UndergroundSwitchPositions
 	clearevent EVENT_SWITCH_3
-	jump UnknownScript_0x7cc8d
+	jump UndergroundPathSwitchRoomEntrances_UpdateDoors
 
-MapUndergroundPathSwitchRoomEntrancesSignpost3Script:
-	loadfont
-	writetext UnknownText_0x7d671
-	keeptextopen
+EmergencySwitchScript:
+	opentext
+	writetext SwitchRoomText_Emergency
+	buttonsound
 	checkevent EVENT_EMERGENCY_SWITCH
-	iftrue UnknownScript_0x7cc70
-	writetext UnknownText_0x7d617
+	iftrue .On
+	writetext SwitchRoomText_OffTurnOn
 	yesorno
-	iffalse UnknownScript_0x7cc8b
-	writebyte $7
+	iffalse UndergroundPathSwitchRoomEntrances_DontToggle
+	writebyte 7
 	copyvartobyte UndergroundSwitchPositions
 	setevent EVENT_EMERGENCY_SWITCH
 	setevent EVENT_SWITCH_1
 	setevent EVENT_SWITCH_2
 	setevent EVENT_SWITCH_3
-	jump UnknownScript_0x7cc8d
+	jump UndergroundPathSwitchRoomEntrances_UpdateDoors
 
-UnknownScript_0x7cc70:
-	writetext UnknownText_0x7d62d
+.On:
+	writetext SwitchRoomText_OnTurnOff
 	yesorno
-	iffalse UnknownScript_0x7cc8b
-	writebyte $0
+	iffalse UndergroundPathSwitchRoomEntrances_DontToggle
+	writebyte 0
 	copyvartobyte UndergroundSwitchPositions
 	clearevent EVENT_EMERGENCY_SWITCH
 	clearevent EVENT_SWITCH_1
 	clearevent EVENT_SWITCH_2
 	clearevent EVENT_SWITCH_3
-	jump UnknownScript_0x7cc8d
+	jump UndergroundPathSwitchRoomEntrances_UpdateDoors
 
-UnknownScript_0x7cc8b:
-	loadmovesprites
+UndergroundPathSwitchRoomEntrances_DontToggle:
+	closetext
 	end
 
-UnknownScript_0x7cc8d:
+UndergroundPathSwitchRoomEntrances_UpdateDoors:
 	copybytetovar UndergroundSwitchPositions
-	if_equal $0, UnknownScript_0x7ccb0
-	if_equal $1, UnknownScript_0x7ccd7
-	if_equal $2, UnknownScript_0x7ccf2
-	if_equal $3, UnknownScript_0x7cd0d
-	if_equal $4, UnknownScript_0x7cd28
-	if_equal $5, UnknownScript_0x7cd43
-	if_equal $6, UnknownScript_0x7cd5e
-	if_equal $7, UnknownScript_0x7cd79
-UnknownScript_0x7ccb0:
+	if_equal 0, .Position0
+	if_equal 1, .Position1
+	if_equal 2, .Position2
+	if_equal 3, .Position3
+	if_equal 4, .Position4
+	if_equal 5, .Position5
+	if_equal 6, .Position6
+	if_equal 7, .EmergencyPosition
+.Position0:
 	playsound SFX_ENTER_DOOR
-	scall UnknownScript_0x7ce11
-	scall UnknownScript_0x7ce19
-	scall UnknownScript_0x7ce21
-	scall UnknownScript_0x7ce29
-	scall UnknownScript_0x7ce31
-	scall UnknownScript_0x7ce39
-	scall UnknownScript_0x7ce41
-	scall UnknownScript_0x7ce4d
-	scall UnknownScript_0x7ce59
-	scall UnknownScript_0x7ce65
-	scall UnknownScript_0x7ce71
+	scall .Clear4
+	scall .Clear5
+	scall .Clear6
+	scall .Clear7
+	scall .Clear8
+	scall .Clear9
+	scall .Clear10
+	scall .Clear11
+	scall .Clear12
+	scall .Clear13
+	scall .Clear14
 	reloadmappart
-	loadmovesprites
+	closetext
 	end
 
-UnknownScript_0x7ccd7:
+.Position1:
 	playsound SFX_ENTER_DOOR
-	scall UnknownScript_0x7cda5
-	scall UnknownScript_0x7cdd5
-	scall UnknownScript_0x7cdf9
-	scall UnknownScript_0x7ce39
-	scall UnknownScript_0x7ce4d
-	scall UnknownScript_0x7ce59
-	scall UnknownScript_0x7ce71
+	scall .Set4
+	scall .Set10
+	scall .Set13
+	scall .Clear9
+	scall .Clear11
+	scall .Clear12
+	scall .Clear14
 	reloadmappart
-	loadmovesprites
+	closetext
 	end
 
-UnknownScript_0x7ccf2:
+.Position2:
 	playsound SFX_ENTER_DOOR
-	scall UnknownScript_0x7cdad
-	scall UnknownScript_0x7cde1
-	scall UnknownScript_0x7cded
-	scall UnknownScript_0x7ce31
-	scall UnknownScript_0x7ce41
-	scall UnknownScript_0x7ce65
-	scall UnknownScript_0x7ce71
+	scall .Set5
+	scall .Set11
+	scall .Set12
+	scall .Clear8
+	scall .Clear10
+	scall .Clear13
+	scall .Clear14
 	reloadmappart
-	loadmovesprites
+	closetext
 	end
 
-UnknownScript_0x7cd0d:
+.Position3:
 	playsound SFX_ENTER_DOOR
-	scall UnknownScript_0x7cdb5
-	scall UnknownScript_0x7cdd5
-	scall UnknownScript_0x7cdf9
-	scall UnknownScript_0x7ce29
-	scall UnknownScript_0x7ce4d
-	scall UnknownScript_0x7ce59
-	scall UnknownScript_0x7ce71
+	scall .Set6
+	scall .Set10
+	scall .Set13
+	scall .Clear7
+	scall .Clear11
+	scall .Clear12
+	scall .Clear14
 	reloadmappart
-	loadmovesprites
+	closetext
 	end
 
-UnknownScript_0x7cd28:
+.Position4:
 	playsound SFX_ENTER_DOOR
-	scall UnknownScript_0x7cdbd
-	scall UnknownScript_0x7cde1
-	scall UnknownScript_0x7cded
-	scall UnknownScript_0x7ce21
-	scall UnknownScript_0x7ce41
-	scall UnknownScript_0x7ce65
-	scall UnknownScript_0x7ce71
+	scall .Set7
+	scall .Set11
+	scall .Set12
+	scall .Clear6
+	scall .Clear10
+	scall .Clear13
+	scall .Clear14
 	reloadmappart
-	loadmovesprites
+	closetext
 	end
 
-UnknownScript_0x7cd43:
+.Position5:
 	playsound SFX_ENTER_DOOR
-	scall UnknownScript_0x7cdc5
-	scall UnknownScript_0x7cdd5
-	scall UnknownScript_0x7cdf9
-	scall UnknownScript_0x7ce19
-	scall UnknownScript_0x7ce4d
-	scall UnknownScript_0x7ce59
-	scall UnknownScript_0x7ce71
+	scall .Set8
+	scall .Set10
+	scall .Set13
+	scall .Clear5
+	scall .Clear11
+	scall .Clear12
+	scall .Clear14
 	reloadmappart
-	loadmovesprites
+	closetext
 	end
 
-UnknownScript_0x7cd5e:
+.Position6:
 	playsound SFX_ENTER_DOOR
-	scall UnknownScript_0x7cdcd
-	scall UnknownScript_0x7cde1
-	scall UnknownScript_0x7cded
-	scall UnknownScript_0x7ce05
-	scall UnknownScript_0x7ce11
-	scall UnknownScript_0x7ce41
-	scall UnknownScript_0x7ce65
+	scall .Set9
+	scall .Set11
+	scall .Set12
+	scall .Set14
+	scall .Clear4
+	scall .Clear10
+	scall .Clear13
 	reloadmappart
-	loadmovesprites
+	closetext
 	end
 
-UnknownScript_0x7cd79:
+.EmergencyPosition:
 	playsound SFX_ENTER_DOOR
-	scall UnknownScript_0x7ce11
-	scall UnknownScript_0x7ce19
-	scall UnknownScript_0x7cdb5
-	scall UnknownScript_0x7ce29
-	scall UnknownScript_0x7cdc5
-	scall UnknownScript_0x7cdcd
-	scall UnknownScript_0x7ce41
-	scall UnknownScript_0x7cde1
-	scall UnknownScript_0x7cded
-	scall UnknownScript_0x7ce65
-	scall UnknownScript_0x7ce05
+	scall .Clear4
+	scall .Clear5
+	scall .Set6
+	scall .Clear7
+	scall .Set8
+	scall .Set9
+	scall .Clear10
+	scall .Set11
+	scall .Set12
+	scall .Clear13
+	scall .Set14
 	reloadmappart
-	loadmovesprites
-	writebyte $6
+	closetext
+	writebyte 6
 	copyvartobyte UndergroundSwitchPositions
 	end
 
-UnknownScript_0x7cda5:
-	changeblock $10, $6, $2d
+.Set4:
+	doorstate 1, OPEN1
 	setevent EVENT_SWITCH_4
 	end
 
-UnknownScript_0x7cdad:
-	changeblock $a, $6, $2d
+.Set5:
+	doorstate 2, OPEN1
 	setevent EVENT_SWITCH_5
 	end
 
-UnknownScript_0x7cdb5:
-	changeblock $2, $6, $2d
+.Set6:
+	doorstate 3, OPEN1
 	setevent EVENT_SWITCH_6
 	end
 
-UnknownScript_0x7cdbd:
-	changeblock $2, $a, $2d
+.Set7:
+	doorstate 4, OPEN1
 	setevent EVENT_SWITCH_7
 	end
 
-UnknownScript_0x7cdc5:
-	changeblock $a, $a, $2d
+.Set8:
+	doorstate 5, OPEN1
 	setevent EVENT_SWITCH_8
 	end
 
-UnknownScript_0x7cdcd:
-	changeblock $10, $a, $2d
+.Set9:
+	doorstate 6, OPEN1
 	setevent EVENT_SWITCH_9
 	end
 
-UnknownScript_0x7cdd5:
-	changeblock $c, $6, $2a
-	changeblock $c, $8, $2d
+.Set10:
+	doorstate 7, CLOSED1
+	doorstate 8, OPEN1
 	setevent EVENT_SWITCH_10
 	end
 
-UnknownScript_0x7cde1:
-	changeblock $6, $6, $2a
-	changeblock $6, $8, $2d
+.Set11:
+	doorstate 9, CLOSED1
+	doorstate 10, OPEN1
 	setevent EVENT_SWITCH_11
 	end
 
-UnknownScript_0x7cded:
-	changeblock $c, $a, $2a
-	changeblock $c, $c, $2d
+.Set12:
+	doorstate 11, CLOSED1
+	doorstate 12, OPEN1
 	setevent EVENT_SWITCH_12
 	end
 
-UnknownScript_0x7cdf9:
-	changeblock $6, $a, $2a
-	changeblock $6, $c, $2d
+.Set13:
+	doorstate 13, CLOSED1
+	doorstate 14, OPEN1
 	setevent EVENT_SWITCH_13
 	end
 
-UnknownScript_0x7ce05:
-	changeblock $12, $a, $2a
-	changeblock $12, $c, $2d
+.Set14:
+	doorstate 15, CLOSED1
+	doorstate 16, OPEN1
 	setevent EVENT_SWITCH_14
 	end
 
-UnknownScript_0x7ce11:
-	changeblock $10, $6, $3e
+.Clear4:
+	doorstate 1, CLOSED2
 	clearevent EVENT_SWITCH_4
 	end
 
-UnknownScript_0x7ce19:
-	changeblock $a, $6, $3e
+.Clear5:
+	doorstate 2, CLOSED2
 	clearevent EVENT_SWITCH_5
 	end
 
-UnknownScript_0x7ce21:
-	changeblock $2, $6, $3e
+.Clear6:
+	doorstate 3, CLOSED2
 	clearevent EVENT_SWITCH_6
 	end
 
-UnknownScript_0x7ce29:
-	changeblock $2, $a, $3e
+.Clear7:
+	doorstate 4, CLOSED2
 	clearevent EVENT_SWITCH_7
 	end
 
-UnknownScript_0x7ce31:
-	changeblock $a, $a, $3e
+.Clear8:
+	doorstate 5, CLOSED2
 	clearevent EVENT_SWITCH_8
 	end
 
-UnknownScript_0x7ce39:
-	changeblock $10, $a, $3e
+.Clear9:
+	doorstate 6, CLOSED2
 	clearevent EVENT_SWITCH_9
 	end
 
-UnknownScript_0x7ce41:
-	changeblock $c, $6, $3f
-	changeblock $c, $8, $3d
+.Clear10:
+	doorstate 7, CLOSED3
+	doorstate 8, OPEN2
 	clearevent EVENT_SWITCH_10
 	end
 
-UnknownScript_0x7ce4d:
-	changeblock $6, $6, $3f
-	changeblock $6, $8, $3d
+.Clear11:
+	doorstate 9, CLOSED3
+	doorstate 10, OPEN2
 	clearevent EVENT_SWITCH_11
 	end
 
-UnknownScript_0x7ce59:
-	changeblock $c, $a, $3f
-	changeblock $c, $c, $3d
+.Clear12:
+	doorstate 11, CLOSED3
+	doorstate 12, OPEN2
 	clearevent EVENT_SWITCH_12
 	end
 
-UnknownScript_0x7ce65:
-	changeblock $6, $a, $3f
-	changeblock $6, $c, $3d
+.Clear13:
+	doorstate 13, CLOSED3
+	doorstate 14, OPEN2
 	clearevent EVENT_SWITCH_13
 	end
 
-UnknownScript_0x7ce71:
-	changeblock $12, $a, $3f
-	changeblock $12, $c, $3d
+.Clear14:
+	doorstate 15, CLOSED3
+	doorstate 16, OPEN2
 	clearevent EVENT_SWITCH_14
 	end
 
-ItemFragment_0x7ce7d:
-	db SMOKE_BALL, 1
+UndergroundPathSwitchRoomEntrancesSmokeBall:
+	itemball SMOKE_BALL
 
-ItemFragment_0x7ce7f:
-	db FULL_HEAL, 1
+UndergroundPathSwitchRoomEntrancesFullHeal:
+	itemball FULL_HEAL
 
-MapUndergroundPathSwitchRoomEntrancesSignpostItem4:
+UndergroundPathSwitchRoomEntrancesHiddenMaxPotion:
 	dwb EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_HIDDEN_MAX_POTION, MAX_POTION
 	
 
-MapUndergroundPathSwitchRoomEntrancesSignpostItem5:
+UndergroundPathSwitchRoomEntrancesHiddenRevive:
 	dwb EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_HIDDEN_REVIVE, REVIVE
 	
 
-MovementData_0x7ce87:
+UndergroundSilverApproachMovement1:
 	step_down
 	step_left
 	step_left
 	step_left
 	step_end
 
-MovementData_0x7ce8c:
+UndergroundSilverApproachMovement2:
 	step_down
 	step_down
 	step_left
@@ -612,14 +657,14 @@ MovementData_0x7ce8c:
 	step_left
 	step_end
 
-MovementData_0x7ce92:
+UndergroundSilverRetreatMovement1:
 	step_right
 	step_right
 	step_right
 	step_up
 	step_end
 
-MovementData_0x7ce97:
+UndergroundSilverRetreatMovement2:
 	step_right
 	step_right
 	step_right
@@ -627,7 +672,7 @@ MovementData_0x7ce97:
 	step_up
 	step_end
 
-UnknownText_0x7ce9d:
+UndergroundSilverBeforeText:
 	text "Hold it!"
 
 	para "I saw you, so I"
@@ -650,7 +695,7 @@ UnknownText_0x7ce9d:
 	line "debts!"
 	done
 
-UnknownText_0x7cf5d:
+UndergroundSilverWinText:
 	text "…Why…"
 	line "Why do I lose?"
 
@@ -663,7 +708,7 @@ UnknownText_0x7cf5d:
 	para "So why do I lose?"
 	done
 
-UnknownText_0x7cfc2:
+UndergroundSilverAfterText:
 	text "…I don't under-"
 	line "stand…"
 
@@ -699,7 +744,7 @@ UnknownText_0x7cfc2:
 	line "#MON trainer!"
 	done
 
-UnknownText_0x7d102:
+UndergroundSilverLossText:
 	text "Humph. This is my"
 	line "real power, wimp."
 
@@ -711,7 +756,7 @@ UnknownText_0x7d102:
 	cont "under my heels."
 	done
 
-UnknownText_0x7d176:
+UndergroundPathSwitchRoomEntrances_SuperNerdText:
 	text "I was challenged"
 	line "to a battle down-"
 	cont "stairs."
@@ -721,7 +766,7 @@ UnknownText_0x7d176:
 	cont "better be careful."
 	done
 
-UnknownText_0x7d1d0:
+UndergroundPathSwitchRoomEntrances_TeacherText:
 	text "There are some"
 	line "shops downstairs…"
 
@@ -745,7 +790,7 @@ GruntM11BeatenText:
 	line "by indecision!"
 	done
 
-UnknownText_0x7d290:
+GruntM11AfterText:
 	text "I'm confused too…"
 	line "The switch on the"
 
@@ -769,7 +814,7 @@ GruntM25BeatenText:
 	line "I blew it."
 	done
 
-UnknownText_0x7d347:
+GruntM25AfterText:
 	text "All right. A hint!"
 
 	para "Change the order"
@@ -789,7 +834,7 @@ BurglarDuncanBeatenText:
 	text "Mercy!"
 	done
 
-UnknownText_0x7d3cf:
+BurglarDuncanAfterText:
 	text "Steal and sell!"
 	line "That's basic in"
 	cont "crime, kid!"
@@ -808,7 +853,7 @@ BurglarEddieBeatenText:
 	text "Over the top!"
 	done
 
-UnknownText_0x7d45b:
+BurglarEddieAfterText:
 	text "UNDERGROUND WARE-"
 	line "HOUSE?"
 
@@ -833,13 +878,13 @@ GruntM13BeatenText:
 	line "you're cool, huh?"
 	done
 
-UnknownText_0x7d51f:
+GruntM13AfterText:
 	text "You must have ice"
 	line "in your veins to"
 	cont "dis TEAM ROCKET."
 	done
 
-UnknownText_0x7d554:
+SwitchRoomText_Switch1:
 	text "It's labeled"
 	line "SWITCH 1."
 	done
@@ -860,33 +905,33 @@ GruntF3BeatenText:
 	text "How could you?"
 	done
 
-UnknownText_0x7d5e6:
+GruntF3AfterText:
 	text "Go wherever you'd"
 	line "like! Get lost!"
 	cont "See if I care!"
 	done
 
-UnknownText_0x7d617:
+SwitchRoomText_OffTurnOn:
 	text "It's OFF."
 	line "Turn it ON?"
 	done
 
-UnknownText_0x7d62d:
+SwitchRoomText_OnTurnOff:
 	text "It's ON."
 	line "Turn it OFF?"
 	done
 
-UnknownText_0x7d643:
+SwitchRoomText_Switch2:
 	text "It's labeled"
 	line "SWITCH 2."
 	done
 
-UnknownText_0x7d65a:
+SwitchRoomText_Switch3:
 	text "It's labeled"
 	line "SWITCH 3."
 	done
 
-UnknownText_0x7d671:
+SwitchRoomText_Emergency:
 	text "It's labeled"
 	line "EMERGENCY."
 	done
@@ -909,17 +954,17 @@ UndergroundPathSwitchRoomEntrances_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 0, $4, $13, $0, UnknownScript_0x7ca80, $0, $0
-	xy_trigger 0, $5, $13, $0, UnknownScript_0x7caaa, $0, $0
+	xy_trigger 0, $4, $13, $0, UndergroundSilverTrigger1, $0, 0
+	xy_trigger 0, $5, $13, $0, UndergroundSilverTrigger2, $0, 0
 
 .Signposts:
 	db 6
-	signpost 1, 16, SIGNPOST_READ, MapUndergroundPathSwitchRoomEntrancesSignpost0Script
-	signpost 1, 10, SIGNPOST_READ, MapUndergroundPathSwitchRoomEntrancesSignpost1Script
-	signpost 1, 2, SIGNPOST_READ, MapUndergroundPathSwitchRoomEntrancesSignpost2Script
-	signpost 11, 20, SIGNPOST_READ, MapUndergroundPathSwitchRoomEntrancesSignpost3Script
-	signpost 9, 8, SIGNPOST_ITEM, MapUndergroundPathSwitchRoomEntrancesSignpostItem4
-	signpost 8, 1, SIGNPOST_ITEM, MapUndergroundPathSwitchRoomEntrancesSignpostItem5
+	signpost 1, 16, SIGNPOST_READ, Switch1Script
+	signpost 1, 10, SIGNPOST_READ, Switch2Script
+	signpost 1, 2, SIGNPOST_READ, Switch3Script
+	signpost 11, 20, SIGNPOST_READ, EmergencySwitchScript
+	signpost 9, 8, SIGNPOST_ITEM, UndergroundPathSwitchRoomEntrancesHiddenMaxPotion
+	signpost 8, 1, SIGNPOST_ITEM, UndergroundPathSwitchRoomEntrancesHiddenRevive
 
 .PersonEvents:
 	db 11
@@ -931,6 +976,6 @@ UndergroundPathSwitchRoomEntrances_MapEventHeader:
 	person_event SPRITE_ROCKET_GIRL, 12, 19, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 1, TrainerGruntF3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	person_event SPRITE_TEACHER, 27, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TeacherScript_0x7ca7d, -1
 	person_event SPRITE_SUPER_NERD, 27, 19, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x7ca7a, -1
-	person_event SPRITE_POKE_BALL, 12, 1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x7ce7d, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_SMOKE_BALL
-	person_event SPRITE_POKE_BALL, 9, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x7ce7f, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_FULL_HEAL
+	person_event SPRITE_POKE_BALL, 12, 1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, UndergroundPathSwitchRoomEntrancesSmokeBall, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_SMOKE_BALL
+	person_event SPRITE_POKE_BALL, 9, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, UndergroundPathSwitchRoomEntrancesFullHeal, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_FULL_HEAL
 	person_event SPRITE_SILVER, 3, 23, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_UNDERGROUND_PATH

@@ -1,3 +1,8 @@
+const_value set 2
+	const VIOLETMART_CLERK
+	const VIOLETMART_GRANNY
+	const VIOLETMART_COOLTRAINER_M
+
 VioletMart_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,9 +11,9 @@ VioletMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x68295:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_VIOLET
-	loadmovesprites
+	closetext
 	end
 
 GrannyScript_0x6829c:

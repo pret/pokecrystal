@@ -1,3 +1,11 @@
+const_value set 2
+	const COPYCATSHOUSE2F_COPYCAT1
+	const COPYCATSHOUSE2F_MOLTRES
+	const COPYCATSHOUSE2F_FAIRY
+	const COPYCATSHOUSE2F_MONSTER
+	const COPYCATSHOUSE2F_BIRD
+	const COPYCATSHOUSE2F_COPYCAT2
+
 CopycatsHouse2F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -12,12 +20,12 @@ CopycatsHouse2F_MapScriptHeader:
 CopycatsHouse2FCallback:
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part1
-	disappear $7
-	appear $2
+	disappear COPYCATSHOUSE2F_COPYCAT2
+	appear COPYCATSHOUSE2F_COPYCAT1
 	jump .Done
 .Part1
-	disappear $2
-	appear $7
+	disappear COPYCATSHOUSE2F_COPYCAT1
+	appear COPYCATSHOUSE2F_COPYCAT2
 .Done
 	return
 
@@ -31,20 +39,20 @@ Copycat:
 	iftrue .Part12
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part1
-	applymovement $2, MovementData_0x18afd0
+	applymovement COPYCATSHOUSE2F_COPYCAT1, MovementData_0x18afd0
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_CHRIS
 	jump .Part2
 
 .Part1
-	applymovement $7, MovementData_0x18afd0
+	applymovement COPYCATSHOUSE2F_COPYCAT2, MovementData_0x18afd0
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
 .Part2
 	special RunCallback_04
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .Part7
-	loadfont
+	opentext
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part3
 	writetext UnknownText_0x18afda
@@ -53,27 +61,27 @@ Copycat:
 .Part3
 	writetext UnknownText_0x18b316
 .Part4
+	waitbutton
 	closetext
-	loadmovesprites
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part5
-	applymovement $2, MovementData_0x18afd0
+	applymovement COPYCATSHOUSE2F_COPYCAT1, MovementData_0x18afd0
 	jump .Part6
 
 .Part5
-	applymovement $7, MovementData_0x18afd0
+	applymovement COPYCATSHOUSE2F_COPYCAT2, MovementData_0x18afd0
 .Part6
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	special RunCallback_04
-	loadfont
+	opentext
 	writetext UnknownText_0x18b028
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Part7
-	loadfont
+	opentext
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part8
 	writetext UnknownText_0x18b064
@@ -82,63 +90,63 @@ Copycat:
 .Part8
 	writetext UnknownText_0x18b366
 .Part9
+	waitbutton
 	closetext
-	loadmovesprites
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part10
-	applymovement $2, MovementData_0x18afd0
+	applymovement COPYCATSHOUSE2F_COPYCAT1, MovementData_0x18afd0
 	jump .Part11
 
 .Part10
-	applymovement $7, MovementData_0x18afd0
+	applymovement COPYCATSHOUSE2F_COPYCAT2, MovementData_0x18afd0
 .Part11
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	special RunCallback_04
-	loadfont
+	opentext
 	writetext UnknownText_0x18b116
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM
 	end
 
 .Part12
-	loadfont
+	opentext
 	writetext UnknownText_0x18b17f
-	keeptextopen
+	buttonsound
 	takeitem LOST_ITEM
 	setevent EVENT_RETURNED_LOST_ITEM_TO_COPYCAT
 	clearevent EVENT_COPYCATS_HOUSE_2F_DOLL
 	jump .Part14
 
 .Part13
-	loadfont
+	opentext
 .Part14
 	writetext UnknownText_0x18b1e2
-	keeptextopen
+	buttonsound
 	verbosegiveitem PASS
 	iffalse .Part22
 	setevent EVENT_GOT_PASS_FROM_COPYCAT
 	writetext UnknownText_0x18b214
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Part15
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part16
-	applymovement $2, MovementData_0x18afd0
+	applymovement COPYCATSHOUSE2F_COPYCAT1, MovementData_0x18afd0
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_CHRIS
 	jump .Part17
 
 .Part16
-	applymovement $7, MovementData_0x18afd0
+	applymovement COPYCATSHOUSE2F_COPYCAT2, MovementData_0x18afd0
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
 .Part17
 	special RunCallback_04
-	loadfont
+	opentext
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part18
 	writetext UnknownText_0x18b298
@@ -147,34 +155,34 @@ Copycat:
 .Part18
 	writetext UnknownText_0x18b415
 .Part19
+	waitbutton
 	closetext
-	loadmovesprites
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part20
-	applymovement $2, MovementData_0x18afd0
+	applymovement COPYCATSHOUSE2F_COPYCAT1, MovementData_0x18afd0
 	jump .Part21
 
 .Part20
-	applymovement $7, MovementData_0x18afd0
+	applymovement COPYCATSHOUSE2F_COPYCAT2, MovementData_0x18afd0
 .Part21
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	special RunCallback_04
-	loadfont
+	opentext
 	writetext UnknownText_0x18b2f5
-	closetext
+	waitbutton
 .Part22
-	loadmovesprites
+	closetext
 	end
 
 CopycatsDodrio:
-	loadfont
+	opentext
 	writetext CopycatsDodrioText1
 	cry DODRIO
-	keeptextopen
+	buttonsound
 	writetext CopycatsDodrioText2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CopycatsHouse2FDoll:

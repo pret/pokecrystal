@@ -1,3 +1,20 @@
+const_value set 2
+	const GOLDENRODCITY_POKEFAN_M1
+	const GOLDENRODCITY_YOUNGSTER1
+	const GOLDENRODCITY_COOLTRAINER_F1
+	const GOLDENRODCITY_COOLTRAINER_F2
+	const GOLDENRODCITY_YOUNGSTER2
+	const GOLDENRODCITY_LASS
+	const GOLDENRODCITY_GRAMPS
+	const GOLDENRODCITY_ROCKET1
+	const GOLDENRODCITY_ROCKET2
+	const GOLDENRODCITY_ROCKET3
+	const GOLDENRODCITY_ROCKET4
+	const GOLDENRODCITY_ROCKET5
+	const GOLDENRODCITY_ROCKET6
+	const GOLDENRODCITY_ROCKET7
+	const GOLDENRODCITY_POKEFAN_M2
+
 GoldenrodCity_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -27,19 +44,19 @@ GoldenrodCity_MapScriptHeader:
 	if_equal WEDNESDAY, .MoveTutorAppear
 	if_equal SATURDAY, .MoveTutorAppear
 .MoveTutorDisappear
-	disappear $10
+	disappear GOLDENRODCITY_POKEFAN_M2
 	return
 
 .MoveTutorAppear
 	checkflag ENGINE_DAILY_MOVE_TUTOR
 	iftrue .MoveTutorDone
-	appear $10
+	appear GOLDENRODCITY_POKEFAN_M2
 .MoveTutorDone
 	return
 
 MoveTutor:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x199042
 	yesorno
 	iffalse .Refused
@@ -51,8 +68,8 @@ MoveTutor:
 	if_equal $2, .NotEnoughMoney
 	writetext UnknownText_0x1990ce
 	loadmenudata .MoveMenuDataHeader
-	interpretmenu2
-	writebackup
+	verticalmenu
+	closewindow
 	if_equal $1, .Flamethrower
 	if_equal $2, .Thunderbolt
 	if_equal $3, .IceBeam
@@ -98,51 +115,51 @@ MoveTutor:
 
 .Refused:
 	writetext UnknownText_0x1990b4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Refused2:
 	writetext UnknownText_0x199107
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .TeachMove:
 	writetext UnknownText_0x19913a
-	keeptextopen
+	buttonsound
 	takecoins 4000
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	special Special_DisplayCoinCaseBalance
 	writetext UnknownText_0x19918b
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcode VAR_FACING
-	if_equal $2, .WalkAroundPlayer
-	applymovement $10, MovementData_0x198a5f
+	if_equal LEFT, .WalkAroundPlayer
+	applymovement GOLDENRODCITY_POKEFAN_M2, MovementData_0x198a5f
 	jump .GoInside
 
 .WalkAroundPlayer:
-	applymovement $10, MovementData_0x198a63
+	applymovement GOLDENRODCITY_POKEFAN_M2, MovementData_0x198a63
 .GoInside:
 	playsound SFX_ENTER_DOOR
-	disappear $10
+	disappear GOLDENRODCITY_POKEFAN_M2
 	clearevent EVENT_GOLDENROD_GAME_CORNER_MOVE_TUTOR
 	setflag ENGINE_DAILY_MOVE_TUTOR
-	waitbutton
+	waitsfx
 	end
 
 .Incompatible:
 	writetext UnknownText_0x1991a4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .NotEnoughMoney:
 	writetext UnknownText_0x1991ac
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokefanMScript_0x1989e3:
@@ -153,34 +170,34 @@ YoungsterScript_0x1989e6:
 
 CooltrainerFScript_0x1989e9:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .ClearedRadioTower
 	writetext UnknownText_0x198ae6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .ClearedRadioTower:
 	writetext UnknownText_0x198b2d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CooltrainerFScript_0x1989fd:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_RADIO_CARD
 	iftrue .GotRadioCard
 	writetext UnknownText_0x198b73
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .GotRadioCard:
 	writetext UnknownText_0x198c14
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x198a11:
@@ -193,14 +210,14 @@ GrampsScript_0x198a17:
 	jumptextfaceplayer UnknownText_0x198ccf
 
 RocketScript_0x198a1a:
-	loadfont
+	opentext
 	writetext UnknownText_0x198d0d
-	keeptextopen
+	buttonsound
 	faceplayer
 	writetext UnknownText_0x198d2a
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $9, UP
+	spriteface GOLDENRODCITY_ROCKET1, UP
 	end
 
 RocketScript_0x198a29:

@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE26HEALSPEECHHOUSE_TEACHER
+
 Route26HealSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,10 +10,10 @@ Route26HealSpeechHouse_MapScriptHeader:
 
 TeacherScript_0x7b125:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x7b14d
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
 	special Mobile_HealParty
@@ -19,10 +22,10 @@ TeacherScript_0x7b125:
 	pause 60
 	special Special_FadeInQuickly
 	special RestartMapMusic
-	loadfont
+	opentext
 	writetext UnknownText_0x7b18b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route26HealHouseBookshelf:

@@ -8,8 +8,8 @@ SpecialDratini: ; 0x8b170
 	ret nc
 	ld bc, PartyCount
 	ld a, [bc]
-	ld hl, 0
-	call GetNthPartyMon
+	ld hl, MON_SPECIES
+	call .GetNthPartyMon
 	ld a, [bc]
 	ld c, a
 	ld de, PARTYMON_STRUCT_LENGTH
@@ -85,7 +85,7 @@ endr
 	db TWISTER
 	db 0
 
-GetNthPartyMon: ; 0x8b1ce
+.GetNthPartyMon: ; 0x8b1ce
 ; inputs:
 ; hl must be set to 0 before calling this function.
 ; a must be set to the number of Pokémon in the party.
@@ -106,6 +106,7 @@ GetNthPartyMon: ; 0x8b1ce
 	dec a
 	jr nz, .loop
 	ret
+
 .EmptyParty
 	scf
 	ret

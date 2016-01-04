@@ -1,5 +1,6 @@
 ; trainer groups
 	enum_start
+CHRIS EQU __enum__
 	trainerclass TRAINER_NONE ; 0
 	const PHONECONTACT_MOM
 	const PHONECONTACT_BIKESHOP
@@ -7,6 +8,7 @@
 	const PHONECONTACT_ELM
 	const PHONECONTACT_BUENA
 	
+KRIS EQU __enum__
 	trainerclass FALKNER ; 1
 
 	trainerclass WHITNEY ; 2
@@ -639,8 +641,8 @@ const_value = 0
 	const TRNATTR_ITEM1
 	const TRNATTR_ITEM2
 	const TRNATTR_BASEMONEY
-	const TRNATTR_AI1
+	const TRNATTR_AI_MOVE_WEIGHTS
 	const TRNATTR_AI2
-	const TRNATTR_AI3
+	const TRNATTR_AI_ITEM_SWITCH
 	const TRNATTR_AI4
 NUM_TRAINER_ATTRIBUTES EQU const_value

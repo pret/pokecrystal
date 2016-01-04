@@ -16,7 +16,6 @@ INCLUDE "macros/mobile.asm"
 INCLUDE "macros/trainer.asm"
 INCLUDE "macros/trade_anim.asm"
 
-
 RGB: MACRO
 	dw ((\3) << 10) + ((\2) << 5) + (\1)
 	ENDM
@@ -93,11 +92,11 @@ dab: MACRO ; dwb address, bank
 	ENDM
 
 lb: MACRO ; r, hi, lo
-	ld \1, (\2) << 8 + (\3)
+	ld \1, (\2 & $ff) << 8 + (\3 & $ff)
 	ENDM
 
 ln: MACRO ; r, hi, lo
-	ld \1, (\2) << 4 + (\3)
+	ld \1, (\2 & $f) << 4 + (\3 & $f)
 	ENDM
 
 bccoord equs "coord bc,"
@@ -213,17 +212,26 @@ ENDM
 palettes EQUS "* 8"
 
 ldpixel: MACRO
-if _NARG == 5
+if _NARG >= 5
 	lb \1, \2 * 8 + \4, \3 * 8 + \5
 else
 	lb \1, \2 * 8, \3 * 8
 endc
-	endm
+endm
 
 depixel EQUS "ldpixel de,"
+bcpixel EQUS "ldpixel bc,"
+
+dbpixel: MACRO
+if _NARG >= 4
+	db \1 * 8 + \3, \2 * 8 + \4
+else
+	db \1 * 8, \2 * 8
+endc
+endm
 
 bgcoord: MACRO
-IF _NARG == 4
+IF _NARG >= 4
 	ld \1, \3 * $20 + \2 + \4
 ELSE
 	ld \1, \3 * $20 + \2 + VBGMap0
@@ -234,3 +242,30 @@ hlbgcoord EQUS "bgcoord hl,"
 debgcoord EQUS "bgcoord de,"
 bcbgcoord EQUS "bgcoord bc,"
 bgrows EQUS "* $20"
+
+palred EQUS "$0400 *"
+palgreen EQUS "$0020 *"
+palblue EQUS "$0001 *"
+
+dsprite: MACRO
+; conditional segment is there because not every instance of
+; this macro is directly OAM
+if _NARG >= 7 ; y tile, y pxl, x tile, x pxl, vtile offset, flags, palette
+	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5, (\6 << 3) + (\7 & 7)
+else
+	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5, \6
+endc
+endm
+
+jumptable: MACRO
+	ld a, [\2]
+	ld e, a
+	ld d, 0
+	ld hl, \1
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+endm

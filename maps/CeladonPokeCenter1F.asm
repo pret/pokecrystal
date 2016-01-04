@@ -1,3 +1,10 @@
+const_value set 2
+	const CELADONPOKECENTER1F_NURSE
+	const CELADONPOKECENTER1F_GENTLEMAN
+	const CELADONPOKECENTER1F_PHARMACIST
+	const CELADONPOKECENTER1F_COOLTRAINER_F
+	const CELADONPOKECENTER1F_SUPER_NERD
+
 CeladonPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -19,35 +26,35 @@ PharmacistScript_0x71e2b:
 
 SuperNerdScript_0x71e2e:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x71f22
-	keeptextopen
+	buttonsound
 	writebyte SUICUNE
 	special SpecialMonCheck
 	iffalse UnknownScript_0x71e46
 	special SpecialBeastsCheck
 	iftrue UnknownScript_0x71e48
 	writetext UnknownText_0x7201a
-	closetext
+	waitbutton
 UnknownScript_0x71e46:
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x71e48:
 	writetext UnknownText_0x71f65
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcode VAR_FACING
 	if_equal $1, UnknownScript_0x71e5a
-	applymovement $6, MovementData_0x71e6b
+	applymovement CELADONPOKECENTER1F_SUPER_NERD, MovementData_0x71e6b
 	jump UnknownScript_0x71e5e
 
 UnknownScript_0x71e5a:
-	applymovement $6, MovementData_0x71e65
+	applymovement CELADONPOKECENTER1F_SUPER_NERD, MovementData_0x71e65
 UnknownScript_0x71e5e:
-	disappear $6
+	disappear CELADONPOKECENTER1F_SUPER_NERD
 	playsound SFX_EXIT_BUILDING
-	waitbutton
+	waitsfx
 	end
 
 MovementData_0x71e65:

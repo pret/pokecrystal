@@ -1,3 +1,10 @@
+const_value set 2
+	const GOLDENRODPOKECENTER1F_NURSE
+	const GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
+	const GOLDENRODPOKECENTER1F_GAMEBOY_KID
+	const GOLDENRODPOKECENTER1F_LASS
+	const GOLDENRODPOKECENTER1F_POKEFAN_F
+
 GoldenrodPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,7 +16,7 @@ NurseScript_0x60f91:
 	jumpstd pokecenternurse
 
 GoldenrodPokeCenter1F_GSBallTriggerLeft:
-	writebyte BATTLE_TOWER_ACTION_0B
+	writebyte BATTLETOWERACTION_CHECKMOBILEEVENT
 	special BattleTowerAction
 	if_equal MOBILE_EVENT_OBJECT_GS_BALL, .gsball
 	end
@@ -18,30 +25,30 @@ GoldenrodPokeCenter1F_GSBallTriggerLeft:
 	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	iftrue .cancel
 	playsound SFX_EXIT_BUILDING
-	moveperson $3, $0, $7
-	disappear $3
-	appear $3
+	moveperson GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, $0, $7
+	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
+	appear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playmusic MUSIC_SHOW_ME_AROUND
-	applymovement $3, MovementData_0x6105a
+	applymovement GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, MovementData_0x6105a
 	spriteface PLAYER, UP
-	loadfont
+	opentext
 	writetext UnknownText_0x622f0
-	closetext
+	waitbutton
 	verbosegiveitem GS_BALL
 	setevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	setevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	writetext UnknownText_0x62359
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement $3, MovementData_0x61060
+	applymovement GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, MovementData_0x61060
 	special RestartMapMusic
-	disappear $3
+	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playsound SFX_EXIT_BUILDING
 .cancel:
 	end
 
 GoldenrodPokeCenter1F_GSBallTriggerRight:
-	writebyte BATTLE_TOWER_ACTION_0B
+	writebyte BATTLETOWERACTION_CHECKMOBILEEVENT
 	special BattleTowerAction
 	if_equal MOBILE_EVENT_OBJECT_GS_BALL, .gsball
 	end
@@ -50,24 +57,24 @@ GoldenrodPokeCenter1F_GSBallTriggerRight:
 	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	iftrue .cancel
 	playsound SFX_EXIT_BUILDING
-	moveperson $3, $0, $7
-	disappear $3
-	appear $3
+	moveperson GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, $0, $7
+	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
+	appear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playmusic MUSIC_SHOW_ME_AROUND
-	applymovement $3, MovementData_0x61065
+	applymovement GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, MovementData_0x61065
 	spriteface PLAYER, UP
-	loadfont
+	opentext
 	writetext UnknownText_0x622f0
-	closetext
+	waitbutton
 	verbosegiveitem GS_BALL
 	setevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	setevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	writetext UnknownText_0x62359
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement $3, MovementData_0x6106c
+	applymovement GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, MovementData_0x6106c
 	special RestartMapMusic
-	disappear $3
+	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playsound SFX_EXIT_BUILDING
 .cancel:
 	end
@@ -80,36 +87,36 @@ LassScript_0x61021:
 
 PokefanFScript_0x61024:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x623fb
-	closetext
+	waitbutton
 	writetext UnknownText_0x6248c
 	yesorno
 	iffalse UnknownScript_0x6104b
 	takeitem EON_MAIL
 	iffalse UnknownScript_0x6104b
 	writetext UnknownText_0x62549
-	closetext
+	waitbutton
 	writetext UnknownText_0x624a4
-	closetext
+	waitbutton
 	verbosegiveitem REVIVE
 	iffalse UnknownScript_0x61051
 	writetext UnknownText_0x624e9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6104b:
 	writetext UnknownText_0x62509
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x61051:
 	giveitem EON_MAIL
 	writetext UnknownText_0x6252a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MovementData_0x6105a:

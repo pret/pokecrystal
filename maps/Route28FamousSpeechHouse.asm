@@ -1,3 +1,7 @@
+const_value set 2
+	const ROUTE28FAMOUSSPEECHHOUSE_COOLTRAINER_F
+	const ROUTE28FAMOUSSPEECHHOUSE_MOLTRES
+
 Route28FamousSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 1
@@ -13,29 +17,29 @@ Route28FamousSpeechHouse_MapScriptHeader:
 
 Celebrity:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM47_STEEL_WING
 	iftrue .AlreadyGotItem
 	writetext CelebrityText1
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_STEEL_WING
 	iffalse .Done
 	setevent EVENT_GOT_TM47_STEEL_WING
 .Done
-	loadmovesprites
+	closetext
 	end
 .AlreadyGotItem
 	writetext CelebrityText2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CelebritysFearow:
-	loadfont
+	opentext
 	writetext CelebritysFearowText
 	cry FEAROW
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CelebrityHouseBookshelf:

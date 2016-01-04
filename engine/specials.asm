@@ -26,7 +26,7 @@ SpecialsPointers:: ; c029
 	add_special Special_CheckBothSelectedSameRoom
 	add_special Special_FailedLinkToPast
 	add_special Special_CloseLink
-	add_special Special_AbortLink
+	add_special WaitForOtherPlayerToExit
 	add_special Special_SetBitsForBattleRequest
 	add_special Special_SetBitsForTimeCapsuleRequest
 	add_special Special_CheckTimeCapsuleCompatibility
@@ -101,7 +101,7 @@ SpecialsPointers:: ; c029
 	add_special SpecialCheckPokerus
 	add_special Special_DisplayCoinCaseBalance
 	add_special Special_DisplayMoneyAndCoinBalance
-	add_special PlaceMoneyTopRightOW
+	add_special PlaceMoneyTopRight
 	add_special Special_CheckForLuckyNumberWinners
 	add_special Special_CheckLuckyNumberShowFlag
 	add_special Special_ResetLuckyNumberShowFlag
@@ -126,7 +126,7 @@ SpecialsPointers:: ; c029
 	add_special SpecialTrainerHouse
 	add_special PhotoStudio
 	add_special InitRoamMons
-	add_special Special_RotatePalettesRightMusic
+	add_special Special_FadeOutMusic
 	add_special Diploma
 	add_special PrintDiploma
 
@@ -147,7 +147,7 @@ SpecialsPointers:: ; c029
 	add_special Function_LoadOpponentTrainerAndPokemonsWithOTSprite
 	add_special Function11ba38
 	add_special SpecialCheckForBattleTowerRules
-	add_special Function117656
+	add_special Special_GiveOddEgg
 	add_special Reset
 	add_special Function1011f1
 	add_special Function101220
@@ -175,7 +175,7 @@ SpecialsPointers:: ; c029
 	add_special SpecialBeastsCheck
 	add_special SpecialMonCheck
 	add_special Special_SetPlayerPalette
-	add_special Function170bd2
+	add_special ret_170bd2
 	add_special Mobile_SelectThreeMons
 	add_special Function1037eb
 	add_special Function10383c
@@ -256,7 +256,7 @@ Special_FindThatSpeciesYourTrainerID: ; c284
 	jr FoundOne
 
 FoundOne: ; c292
-	ld a, $1
+	ld a, TRUE
 	ld [ScriptVar], a
 	ret
 
@@ -334,11 +334,11 @@ Special_GetMysteryGiftItem: ; c309
 	call GetSRAMBank
 	ld a, [sMysteryGiftItem]
 	ld [CurItem], a
-	ld a, $1
+	ld a, 1
 	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
 	call ReceiveItem
-	jr nc, .asm_c33d
+	jr nc, .no_room
 	xor a
 	ld [sMysteryGiftItem], a
 	call CloseSRAM
@@ -347,11 +347,11 @@ Special_GetMysteryGiftItem: ; c309
 	call GetItemName
 	ld hl, .ReceiveItemText
 	call PrintText
-	ld a, $1
+	ld a, TRUE
 	ld [ScriptVar], a
 	ret
 
-.asm_c33d
+.no_room
 	call CloseSRAM
 	xor a
 	ld [ScriptVar], a
@@ -380,8 +380,8 @@ MapRadio: ; c355
 
 Special_UnownPuzzle: ; c360
 	call FadeToMenu
-	callba Functione1190
-	ld a, [wd0ec]
+	callba UnownPuzzle
+	ld a, [wSolvedUnownPuzzle]
 	ld [ScriptVar], a
 	call ExitAllMenus
 	ret
@@ -433,35 +433,35 @@ Special_CheckCoins: ; c3ae
 	ld hl, Coins
 	ld a, [hli]
 	or [hl]
-	jr z, .asm_c3c4
+	jr z, .no_coins
 	ld a, COIN_CASE
 	ld [CurItem], a
 	ld hl, NumItems
 	call CheckItem
-	jr nc, .asm_c3c9
+	jr nc, .no_coin_case
 	and a
 	ret
 
-.asm_c3c4
-	ld hl, UnknownText_0xc3d1
-	jr .asm_c3cc
+.no_coins
+	ld hl, .NoCoinsText
+	jr .print
 
-.asm_c3c9
-	ld hl, UnknownText_0xc3d6
+.no_coin_case
+	ld hl, .NoCoinCaseText
 
-.asm_c3cc
+.print
 	call PrintText
 	scf
 	ret
 ; c3d1
 
-UnknownText_0xc3d1: ; 0xc3d1
+.NoCoinsText: ; 0xc3d1
 	; You have no coins.
 	text_jump UnknownText_0x1bd3d7
 	db "@"
 ; 0xc3d6
 
-UnknownText_0xc3d6: ; 0xc3d6
+.NoCoinCaseText: ; 0xc3d6
 	; You don't have a COIN CASE.
 	text_jump UnknownText_0x1bd3eb
 	db "@"
@@ -498,22 +498,22 @@ Special_ActivateFishingSwarm: ; c3fc
 ; c403
 
 
-LoadWildData:: ; c403
+StoreSwarmMapIndices:: ; c403
 	ld a, c
 	and a
-	jr nz, .swarm_route35
+	jr nz, .yanma
 ; swarm dark cave violet entrance
 	ld a, d
-	ld [wdfcc], a
+	ld [wDunsparceMapGroup], a
 	ld a, e
-	ld [wdfcd], a
+	ld [wDunsparceMapNumber], a
 	ret
 
-.swarm_route35
+.yanma
 	ld a, d
-	ld [wdc5a], a
+	ld [wYanmaMapGroup], a
 	ld a, e
-	ld [wdc5b], a
+	ld [wYanmaMapNumber], a
 	ret
 ; c419
 
@@ -557,7 +557,7 @@ SpecialSnorlaxAwake: ; 0xc43d
 	ld hl, .ProximityCoords
 .loop
 	ld a, [hli]
-	cp $ff
+	cp -1
 	jr z, .nope
 	cp b
 	jr nz, .nextcoord
@@ -565,7 +565,7 @@ SpecialSnorlaxAwake: ; 0xc43d
 	cp c
 	jr nz, .loop
 
-	ld a, $1
+	ld a, TRUE
 	jr .done
 
 .nextcoord
@@ -585,7 +585,7 @@ SpecialSnorlaxAwake: ; 0xc43d
 	db 35, 10 ; below
 	db 36,  8 ; right
 	db 36,  9 ; right
-	db $ff
+	db -1
 
 
 PlayCurMonCry: ; c472
@@ -616,7 +616,7 @@ SpecialGameboyCheck: ; c478
 	ret
 
 
-Special_RotatePalettesRightMusic: ; c48f
+Special_FadeOutMusic: ; c48f
 	ld a, MUSIC_NONE % $100
 	ld [MusicFadeIDLo], a
 	ld a, MUSIC_NONE / $100

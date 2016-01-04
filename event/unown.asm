@@ -150,10 +150,10 @@ endr
 	ld bc, AttrMap - TileMap
 	add hl, bc
 	call Function8aee9
-	call Function3200
+	call WaitBGMap2
 	call JoyWaitAorB
 	call PlayClickSFX
-	call WriteBackup
+	call CloseWindow
 	ret
 ; 8aebc
 

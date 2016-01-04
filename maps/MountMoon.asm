@@ -1,82 +1,85 @@
+const_value set 2
+	const MOUNTMOON_SILVER
+
 MountMoon_MapScriptHeader:
 .MapTriggers:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x74089, 0
-	dw UnknownScript_0x7408d, 0
+	dw .Trigger0, 0
+	dw .Trigger1, 0
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x74089:
-	priorityjump UnknownScript_0x7408e
+.Trigger0:
+	priorityjump .RivalBattle
 	end
 
-UnknownScript_0x7408d:
+.Trigger1:
 	end
 
-UnknownScript_0x7408e:
+.RivalBattle:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 15
-	applymovement $2, MovementData_0x740f9
+	applymovement MOUNTMOON_SILVER, MountMoonSilverMovementBefore
 	playmusic MUSIC_RIVAL_ENCOUNTER
-	loadfont
-	writetext UnknownText_0x74105
+	opentext
+	writetext MountMoonSilverTextBefore
+	waitbutton
 	closetext
-	loadmovesprites
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
-	iftrue UnknownScript_0x740c3
+	iftrue .Totodile
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
-	iftrue UnknownScript_0x740d3
-	winlosstext UnknownText_0x7419d, UnknownText_0x742e0
-	setlasttalked $2
+	iftrue .Chikorita
+	winlosstext MountMoonSilverTextWin, MountMoonSilverTextLoss
+	setlasttalked MOUNTMOON_SILVER
 	loadtrainer RIVAL2, 3
 	startbattle
-	reloadmapmusic
-	returnafterbattle
-	jump UnknownScript_0x740e3
+	dontrestartmapmusic
+	reloadmapafterbattle
+	jump .FinishBattle
 
-UnknownScript_0x740c3:
-	winlosstext UnknownText_0x7419d, UnknownText_0x742e0
-	setlasttalked $2
+.Totodile:
+	winlosstext MountMoonSilverTextWin, MountMoonSilverTextLoss
+	setlasttalked MOUNTMOON_SILVER
 	loadtrainer RIVAL2, 1
 	startbattle
-	reloadmapmusic
-	returnafterbattle
-	jump UnknownScript_0x740e3
+	dontrestartmapmusic
+	reloadmapafterbattle
+	jump .FinishBattle
 
-UnknownScript_0x740d3:
-	winlosstext UnknownText_0x7419d, UnknownText_0x742e0
-	setlasttalked $2
+.Chikorita:
+	winlosstext MountMoonSilverTextWin, MountMoonSilverTextLoss
+	setlasttalked MOUNTMOON_SILVER
 	loadtrainer RIVAL2, 2
 	startbattle
-	reloadmapmusic
-	returnafterbattle
-	jump UnknownScript_0x740e3
+	dontrestartmapmusic
+	reloadmapafterbattle
+	jump .FinishBattle
 
-UnknownScript_0x740e3:
+.FinishBattle:
 	playmusic MUSIC_RIVAL_AFTER
-	loadfont
-	writetext UnknownText_0x741fa
+	opentext
+	writetext MountMoonSilverTextAfter
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement $2, MovementData_0x740fd
-	disappear $2
+	applymovement MOUNTMOON_SILVER, MountMoonSilverMovementAfter
+	disappear MOUNTMOON_SILVER
 	dotrigger $1
 	setevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	playmapmusic
 	end
 
-MovementData_0x740f9:
+MountMoonSilverMovementBefore:
 	step_left
 	step_left
 	step_left
 	step_end
 
-MovementData_0x740fd:
+MountMoonSilverMovementAfter:
 	step_right
 	step_right
 	step_down
@@ -86,7 +89,7 @@ MovementData_0x740fd:
 	step_down
 	step_end
 
-UnknownText_0x74105:
+MountMoonSilverTextBefore:
 	text "<......> <......> <......>"
 
 	para "It's been a while,"
@@ -106,7 +109,7 @@ UnknownText_0x74105:
 	line "show you!"
 	done
 
-UnknownText_0x7419d:
+MountMoonSilverTextWin:
 	text "<......> <......> <......>"
 
 	para "I thought I raised"
@@ -119,7 +122,7 @@ UnknownText_0x7419d:
 	line "wasn't enough…"
 	done
 
-UnknownText_0x741fa:
+MountMoonSilverTextAfter:
 	text "<......> <......> <......>"
 
 	para "…You won, fair"
@@ -145,7 +148,7 @@ UnknownText_0x741fa:
 	line "beating you."
 	done
 
-UnknownText_0x742e0:
+MountMoonSilverTextLoss:
 	text "<......> <......> <......>"
 
 	para "I've repaid my"

@@ -1,3 +1,9 @@
+const_value set 2
+	const OLIVINELIGHTHOUSE3F_SAILOR
+	const OLIVINELIGHTHOUSE3F_GENTLEMAN
+	const OLIVINELIGHTHOUSE3F_YOUNGSTER
+	const OLIVINELIGHTHOUSE3F_POKE_BALL
+
 OlivineLighthouse3F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,37 +15,37 @@ TrainerBird_keeperTheo:
 	trainer EVENT_BEAT_BIRD_KEEPER_THEO, BIRD_KEEPER, THEO, Bird_keeperTheoSeenText, Bird_keeperTheoBeatenText, 0, Bird_keeperTheoScript
 
 Bird_keeperTheoScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x5b2df
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGentlemanPreston:
 	trainer EVENT_BEAT_GENTLEMAN_PRESTON, GENTLEMAN, PRESTON, GentlemanPrestonSeenText, GentlemanPrestonBeatenText, 0, GentlemanPrestonScript
 
 GentlemanPrestonScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x5b457
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSailorTerrell:
 	trainer EVENT_BEAT_SAILOR_TERRELL, SAILOR, TERRELL, SailorTerrellSeenText, SailorTerrellBeatenText, 0, SailorTerrellScript
 
 SailorTerrellScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x5b384
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-ItemFragment_0x5b279:
-	db ETHER, 1
+OlivineLighthouse3FEther:
+	itemball ETHER
 
 Bird_keeperTheoSeenText:
 	text "Why are you here?"
@@ -133,4 +139,4 @@ OlivineLighthouse3F_MapEventHeader:
 	person_event SPRITE_SAILOR, 2, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 1, TrainerSailorTerrell, -1
 	person_event SPRITE_GENTLEMAN, 5, 13, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 4, TrainerGentlemanPreston, -1
 	person_event SPRITE_YOUNGSTER, 9, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerBird_keeperTheo, -1
-	person_event SPRITE_POKE_BALL, 2, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x5b279, EVENT_OLIVINE_LIGHTHOUSE_3F_ETHER
+	person_event SPRITE_POKE_BALL, 2, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, OlivineLighthouse3FEther, EVENT_OLIVINE_LIGHTHOUSE_3F_ETHER

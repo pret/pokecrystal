@@ -1,3 +1,10 @@
+const_value set 2
+	const ECRUTEAKPOKECENTER1F_NURSE
+	const ECRUTEAKPOKECENTER1F_POKEFAN_M
+	const ECRUTEAKPOKECENTER1F_COOLTRAINER_F
+	const ECRUTEAKPOKECENTER1F_GYM_GUY
+	const ECRUTEAKPOKECENTER1F_BILL
+
 EcruteakPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -19,37 +26,37 @@ UnknownScript_0x98e63:
 UnknownScript_0x98e64:
 	pause 30
 	playsound SFX_EXIT_BUILDING
-	appear $6
-	waitbutton
-	applymovement $6, MovementData_0x98ec5
+	appear ECRUTEAKPOKECENTER1F_BILL
+	waitsfx
+	applymovement ECRUTEAKPOKECENTER1F_BILL, MovementData_0x98ec5
 	applymovement PLAYER, MovementData_0x98ed4
-	spriteface $2, UP
+	spriteface ECRUTEAKPOKECENTER1F_NURSE, UP
 	pause 10
-	spriteface $2, DOWN
+	spriteface ECRUTEAKPOKECENTER1F_NURSE, DOWN
 	pause 30
-	spriteface $2, UP
+	spriteface ECRUTEAKPOKECENTER1F_NURSE, UP
 	pause 10
-	spriteface $2, DOWN
+	spriteface ECRUTEAKPOKECENTER1F_NURSE, DOWN
 	pause 20
-	spriteface $6, DOWN
+	spriteface ECRUTEAKPOKECENTER1F_BILL, DOWN
 	pause 10
-	loadfont
+	opentext
 	writetext UnknownText_0x98ed8
-	keeptextopen
+	buttonsound
 	jump UnknownScript_0x98e95
 
 UnknownScript_0x98e95:
 	writetext UnknownText_0x98f22
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, DOWN
-	applymovement $6, MovementData_0x98ece
+	applymovement ECRUTEAKPOKECENTER1F_BILL, MovementData_0x98ece
 	playsound SFX_EXIT_BUILDING
-	disappear $6
+	disappear ECRUTEAKPOKECENTER1F_BILL
 	clearevent EVENT_MET_BILL
 	setflag ENGINE_TIME_CAPSULE
 	dotrigger $1
-	waitbutton
+	waitsfx
 	end
 
 NurseScript_0x98eb0:

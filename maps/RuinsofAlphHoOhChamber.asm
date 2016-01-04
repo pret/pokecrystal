@@ -1,3 +1,4 @@
+
 RuinsofAlphHoOhChamber_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -50,14 +51,14 @@ UnknownScript_0x58596:
 	reloadmappart
 	earthquake 50
 	dotrigger $1
-	loadmovesprites
+	closetext
 	end
 
 MapRuinsofAlphHoOhChamberSignpost2Script:
 	refreshscreen $0
 	writebyte $3
 	special Special_UnownPuzzle
-	loadmovesprites
+	closetext
 	iftrue UnknownScript_0x585ba
 	end
 
@@ -75,7 +76,7 @@ UnknownScript_0x585ba:
 	earthquake 80
 	applymovement PLAYER, MovementData_0x58610
 	playsound SFX_KINESIS
-	waitbutton
+	waitsfx
 	pause 20
 	warpcheck
 	end
@@ -87,28 +88,28 @@ MapRuinsofAlphHoOhChamberSignpost3Script:
 	jumptext UnknownText_0x586aa
 
 MapRuinsofAlphHoOhChamberSignpost4Script:
-	loadfont
+	opentext
 	writetext UnknownText_0x58612
 	writebyte $3
 	special Special_DisplayUnownWords
-	loadmovesprites
+	closetext
 	end
 
 MapRuinsofAlphHoOhChamberSignpost5Script:
 	checkevent EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
 	iftrue UnknownScript_0x58609
-	loadfont
+	opentext
 	writetext UnknownText_0x58644
 	writebyte $3
 	special Special_DisplayUnownWords
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x58609:
-	loadfont
+	opentext
 	writetext UnknownText_0x58665
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MovementData_0x58610:

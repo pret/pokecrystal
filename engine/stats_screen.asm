@@ -1,4 +1,4 @@
-Function4dc7b: ; 4dc7b (13:5c7b)
+BattleStatsScreenInit: ; 4dc7b (13:5c7b)
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	jr nz, StatsScreenInit
@@ -6,13 +6,13 @@ Function4dc7b: ; 4dc7b (13:5c7b)
 	ld a, [wBattleMode] ; wd22d (aliases: EnemyMonEnd)
 	and a
 	jr z, StatsScreenInit
-	jr Function4dc8f
+	jr _BattleStatsScreenInit
 
 StatsScreenInit: ; 4dc8a
 	ld hl, StatsScreenMain
 	jr StatsScreenInit_gotaddress
 
-Function4dc8f: ; 4dc8f
+_BattleStatsScreenInit: ; 4dc8f
 	ld hl, StatsScreenBattle
 	jr StatsScreenInit_gotaddress
 
@@ -21,7 +21,7 @@ StatsScreenInit_gotaddress: ; 4dc94
 	push af
 	xor a
 	ld [hMapAnims], a ; disable overworld tile animations
-	ld a, [wc2c6] ; whether sprite is to be mirrorred
+	ld a, [wBoxAlignment] ; whether sprite is to be mirrorred
 	push af
 	ld a, [wJumptableIndex]
 	ld b, a
@@ -46,7 +46,7 @@ StatsScreenInit_gotaddress: ; 4dc94
 	ld a, c
 	ld [wcf64], a
 	pop af
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	pop af
 	ld [hMapAnims], a
 	ret
@@ -66,7 +66,7 @@ StatsScreenMain: ; 0x4dcd2
 	and $7f
 	ld hl, StatsScreenPointerTable
 	rst JumpTable
-	call Function4dd3a ; check for keys?
+	call StatsScreen_WaitAnim ; check for keys?
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr z, .loop
@@ -83,12 +83,12 @@ StatsScreenBattle: ; 4dcf7
 	or $1
 	ld [wcf64], a
 .loop
-	callba Function100dd2
+	callba Mobile_SetOverworldDelay
 	ld a, [wJumptableIndex]
 	and $7f
 	ld hl, StatsScreenPointerTable
 	rst JumpTable
-	call Function4dd3a
+	call StatsScreen_WaitAnim
 	callba Function100dfd
 	jr c, .exit
 	ld a, [wJumptableIndex]
@@ -100,44 +100,46 @@ StatsScreenBattle: ; 4dcf7
 ; 4dd2a
 
 StatsScreenPointerTable: ; 4dd2a
-	dw MonStatsInit ; regular pokémon
-	dw EggStatsInit ; egg
+	
+	dw MonStatsInit       ; regular pokémon
+	dw EggStatsInit       ; egg
 	dw StatsScreenWaitCry
-	dw Function4ddac
-	dw Function4ddc6
+	dw EggStatsJoypad
+	dw StatsScreen_LoadPage
 	dw StatsScreenWaitCry
-	dw Function4ddd6
-	dw Function4dd6c
+	dw MonStatsJoypad
+	dw StatsScreen_Exit
 ; 4dd3a
 
 
-Function4dd3a: ; 4dd3a (13:5d3a)
+StatsScreen_WaitAnim: ; 4dd3a (13:5d3a)
 	ld hl, wcf64
 	bit 6, [hl]
-	jr nz, .asm_4dd49
+	jr nz, .try_anim
 	bit 5, [hl]
-	jr nz, .asm_4dd56
+	jr nz, .finish
 	call DelayFrame
 	ret
-.asm_4dd49
-	callba Functiond00b4
-	jr nc, .asm_4dd56
+
+.try_anim
+	callba SetUpPokeAnim
+	jr nc, .finish
 	ld hl, wcf64
 	res 6, [hl]
-.asm_4dd56
+.finish
 	ld hl, wcf64
 	res 5, [hl]
 	callba Function10402d
 	ret
 
-Function4dd62: ; 4dd62 (13:5d62)
+StatsScreen_SetJumptableIndex: ; 4dd62 (13:5d62)
 	ld a, [wJumptableIndex]
 	and $80
 	or h
 	ld [wJumptableIndex], a
 	ret
 
-Function4dd6c: ; 4dd6c (13:5d6c)
+StatsScreen_Exit: ; 4dd6c (13:5d6c)
 	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
@@ -148,19 +150,20 @@ MonStatsInit: ; 4dd72 (13:5d72)
 	call ClearBGPalettes
 	call ClearTileMap
 	callba Function10402d
-	call Function4ddf2
+	call StatsScreen_CopyToTempMon
 	ld a, [CurPartySpecies]
 	cp EGG
-	jr z, .asm_4dd9b
-	call Function4deea
+	jr z, .egg
+	call StatsScreen_InitUpperHalf
 	ld hl, wcf64
 	set 4, [hl]
-	ld h, $4
-	call Function4dd62
+	ld h, 4
+	call StatsScreen_SetJumptableIndex
 	ret
-.asm_4dd9b
-	ld h, $1
-	call Function4dd62
+
+.egg
+	ld h, 1
+	call StatsScreen_SetJumptableIndex
 	ret
 
 EggStatsInit: ; 4dda1
@@ -172,24 +175,26 @@ EggStatsInit: ; 4dda1
 ; 0x4ddac
 
 
-Function4ddac: ; 4ddac (13:5dac)
-	call Function4de2c
-	jr nc, .asm_4ddb7
-	ld h, $0
-	call Function4dd62
-	ret
-.asm_4ddb7
-	bit 0, a
-	jr nz, .asm_4ddc0
-	and $c3
-	jp Function4de54
-.asm_4ddc0
-	ld h, $7
-	call Function4dd62
+EggStatsJoypad: ; 4ddac (13:5dac)
+	call StatsScreen_GetJoypad
+	jr nc, .check
+	ld h, 0
+	call StatsScreen_SetJumptableIndex
 	ret
 
-Function4ddc6: ; 4ddc6 (13:5dc6)
-	call Function4dfb6
+.check
+	bit A_BUTTON_F, a
+	jr nz, .quit
+	and D_DOWN | D_UP | A_BUTTON | B_BUTTON
+	jp StatsScreen_JoypadAction
+
+.quit
+	ld h, 7
+	call StatsScreen_SetJumptableIndex
+	ret
+
+StatsScreen_LoadPage: ; 4ddc6 (13:5dc6)
+	call StatsScreen_LoadGFX
 	ld hl, wcf64
 	res 4, [hl]
 	ld a, [wJumptableIndex]
@@ -197,16 +202,16 @@ Function4ddc6: ; 4ddc6 (13:5dc6)
 	ld [wJumptableIndex], a
 	ret
 
-Function4ddd6: ; 4ddd6 (13:5dd6)
-	call Function4de2c
-	jr nc, .asm_4dde1
-	ld h, $0
-	call Function4dd62
+MonStatsJoypad: ; 4ddd6 (13:5dd6)
+	call StatsScreen_GetJoypad
+	jr nc, .next
+	ld h, 0
+	call StatsScreen_SetJumptableIndex
 	ret
 
-.asm_4dde1
-	and $f3
-	jp Function4de54
+.next
+	and D_DOWN | D_UP | D_LEFT | D_RIGHT | A_BUTTON | B_BUTTON
+	jp StatsScreen_JoypadAction
 
 StatsScreenWaitCry: ; 4dde6 (13:5de6)
 	call IsSFXPlaying
@@ -216,32 +221,33 @@ StatsScreenWaitCry: ; 4dde6 (13:5de6)
 	ld [wJumptableIndex], a
 	ret
 
-Function4ddf2: ; 4ddf2 (13:5df2)
+StatsScreen_CopyToTempMon: ; 4ddf2 (13:5df2)
 	ld a, [MonType]
 	cp BREEDMON
-	jr nz, .asm_4de10
-	ld a, [wd018_Mon]
+	jr nz, .breedmon
+	ld a, [wBufferMon]
 	ld [CurSpecies], a
 	call GetBaseData
-	ld hl, wd018_Mon
+	ld hl, wBufferMon
 	ld de, TempMon
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	jr .asm_4de2a
-.asm_4de10
+	jr .done
+
+.breedmon
 	callba CopyPkmnToTempMon
 	ld a, [CurPartySpecies]
 	cp EGG
-	jr z, .asm_4de2a
+	jr z, .done
 	ld a, [MonType]
 	cp BOXMON
-	jr c, .asm_4de2a
-	callba Function50890
-.asm_4de2a
+	jr c, .done
+	callba CalcTempmonStats
+.done
 	and a
 	ret
 
-Function4de2c: ; 4de2c (13:5e2c)
+StatsScreen_GetJoypad: ; 4de2c (13:5e2c)
 	call GetJoypad
 	ld a, [MonType]
 	cp BREEDMON
@@ -249,14 +255,14 @@ Function4de2c: ; 4de2c (13:5e2c)
 	push hl
 	push de
 	push bc
-	callba Functione2f95
+	callba StatsScreenDPad
 	pop bc
 	pop de
 	pop hl
-	ld a, [wcf73]
-	and $c0
+	ld a, [wMenuJoypad]
+	and D_DOWN | D_UP
 	jr nz, .set_carry
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	jr .clear_flags
 
 .notbreedmon
@@ -269,100 +275,107 @@ Function4de2c: ; 4de2c (13:5e2c)
 	scf
 	ret
 
-Function4de54: ; 4de54 (13:5e54)
+StatsScreen_JoypadAction: ; 4de54 (13:5e54)
 	push af
 	ld a, [wcf64]
 	and $3
 	ld c, a
 	pop af
-	bit 1, a
-	jp nz, Function4dee4
-	bit 5, a
-	jr nz, .asm_4dec7
-	bit 4, a
-	jr nz, .asm_4debd
-	bit 0, a
-	jr nz, .asm_4deb8
-	bit 6, a
-	jr nz, .asm_4dea0
-	bit 7, a
-	jr nz, .asm_4de77
-	jr .asm_4dece
-.asm_4de77
+	bit B_BUTTON_F, a
+	jp nz, .b_button
+	bit D_LEFT_F, a
+	jr nz, .d_left
+	bit D_RIGHT_F, a
+	jr nz, .d_right
+	bit A_BUTTON_F, a
+	jr nz, .a_button
+	bit D_UP_F, a
+	jr nz, .d_up
+	bit D_DOWN_F, a
+	jr nz, .d_down
+	jr .done
+
+.d_down
 	ld a, [MonType]
 	cp BOXMON
-	jr nc, .asm_4dece
+	jr nc, .done
 	and a
 	ld a, [PartyCount]
-	jr z, .asm_4de87
+	jr z, .next_mon
 	ld a, [OTPartyCount]
-.asm_4de87
+.next_mon
 	ld b, a
 	ld a, [CurPartyMon]
 	inc a
 	cp b
-	jr z, .asm_4dece
+	jr z, .done
 	ld [CurPartyMon], a
 	ld b, a
 	ld a, [MonType]
 	and a
-	jr nz, .asm_4dede
+	jr nz, .load_mon
 	ld a, b
 	inc a
-	ld [wd0d8], a
-	jr .asm_4dede
-.asm_4dea0
+	ld [wPartyMenuCursor], a
+	jr .load_mon
+
+.d_up
 	ld a, [CurPartyMon]
 	and a
-	jr z, .asm_4dece
+	jr z, .done
 	dec a
 	ld [CurPartyMon], a
 	ld b, a
 	ld a, [MonType]
 	and a
-	jr nz, .asm_4dede
+	jr nz, .load_mon
 	ld a, b
 	inc a
-	ld [wd0d8], a
-	jr .asm_4dede
-.asm_4deb8
+	ld [wPartyMenuCursor], a
+	jr .load_mon
+
+.a_button
 	ld a, c
 	cp $3
-	jr z, Function4dee4
-.asm_4debd
+	jr z, .b_button
+.d_right
 	inc c
 	ld a, $3
 	cp c
-	jr nc, .asm_4decf
+	jr nc, .set_page
 	ld c, $1
-	jr .asm_4decf
-.asm_4dec7
+	jr .set_page
+
+.d_left
 	dec c
-	jr nz, .asm_4decf
+	jr nz, .set_page
 	ld c, $3
-	jr .asm_4decf
-.asm_4dece
+	jr .set_page
+
+.done
 	ret
-.asm_4decf
+
+.set_page
 	ld a, [wcf64]
-	and $fc
+	and %11111100
 	or c
 	ld [wcf64], a
-	ld h, $4
-	call Function4dd62
-	ret
-.asm_4dede
-	ld h, $0
-	call Function4dd62
+	ld h, 4
+	call StatsScreen_SetJumptableIndex
 	ret
 
-Function4dee4: ; 4dee4 (13:5ee4)
-	ld h, $7
-	call Function4dd62
+.load_mon
+	ld h, 0
+	call StatsScreen_SetJumptableIndex
 	ret
 
-Function4deea: ; 4deea (13:5eea)
-	call Function4df45
+.b_button: ; 4dee4 (13:5ee4)
+	ld h, 7
+	call StatsScreen_SetJumptableIndex
+	ret
+
+StatsScreen_InitUpperHalf: ; 4deea (13:5eea)
+	call .PlaceHPBar
 	xor a
 	ld [hBGMapMode], a
 	ld a, [CurBaseData] ; wd236 (aliases: BaseDexNo)
@@ -379,13 +392,13 @@ Function4deea: ; 4deea (13:5eea)
 	call PrintNum
 	hlcoord 14, 0
 	call PrintLevel
-	ld hl, Unknown_4df77
-	call Function4e528
-	call Function4e505
+	ld hl, .NicknamePointers
+	call GetNicknamePointer
+	call CopyNickname
 	hlcoord 8, 2
 	call PlaceString
 	hlcoord 18, 0
-	call Function4df66
+	call .PlaceGenderChar
 	hlcoord 9, 4
 	ld a, "/"
 	ld [hli], a
@@ -393,12 +406,12 @@ Function4deea: ; 4deea (13:5eea)
 	ld [wd265], a
 	call GetPokemonName
 	call PlaceString
-	call Function4df8f
-	call Function4df9b
-	call Function4dfa6
+	call StatsScreen_PlaceHorizontalDivider
+	call StatsScreen_PlacePageSwitchArrows
+	call StatsScreen_PlaceShinyIcon
 	ret
 
-Function4df45: ; 4df45 (13:5f45)
+.PlaceHPBar: ; 4df45 (13:5f45)
 	ld hl, TempMonHP
 	ld a, [hli]
 	ld b, a
@@ -407,15 +420,15 @@ Function4df45: ; 4df45 (13:5f45)
 	ld a, [hli]
 	ld d, a
 	ld e, [hl]
-	callba DrawPartyMenuHPBar
+	callba ComputeHPBarPixels
 	ld hl, wcda1
 	call SetHPPal
-	ld b, SCGB_03
+	ld b, SCGB_STATS_SCREEN_HP_PALS
 	call GetSGBLayout
 	call DelayFrame
 	ret
 
-Function4df66: ; 4df66 (13:5f66)
+.PlaceGenderChar: ; 4df66 (13:5f66)
 	push hl
 	callba GetGender
 	pop hl
@@ -428,14 +441,15 @@ Function4df66: ; 4df66 (13:5f66)
 	ret
 ; 4df77 (13:5f77)
 
-Unknown_4df77: ; 4df77
+.NicknamePointers: ; 4df77
 	dw PartyMonNicknames
 	dw OTPartyMonNicknames
 	dw sBoxMonNicknames
-	dw wd002
+	dw wBufferMonNick
 ; 4df7f
 
 Function4df7f: ; 4df7f
+; unreferenced
 	hlcoord 7, 0
 	ld bc, SCREEN_WIDTH
 	ld d, SCREEN_HEIGHT
@@ -448,7 +462,7 @@ Function4df7f: ; 4df7f
 	ret
 ; 4df8f
 
-Function4df8f: ; 4df8f (13:5f8f)
+StatsScreen_PlaceHorizontalDivider: ; 4df8f (13:5f8f)
 	hlcoord 0, 7
 	ld b, SCREEN_WIDTH
 	ld a, "_"
@@ -458,14 +472,14 @@ Function4df8f: ; 4df8f (13:5f8f)
 	jr nz, .loop
 	ret
 
-Function4df9b: ; 4df9b (13:5f9b)
+StatsScreen_PlacePageSwitchArrows: ; 4df9b (13:5f9b)
 	hlcoord 12, 6
 	ld [hl], "◀"
 	hlcoord 19, 6
 	ld [hl], "▶"
 	ret
 
-Function4dfa6: ; 4dfa6 (13:5fa6)
+StatsScreen_PlaceShinyIcon: ; 4dfa6 (13:5fa6)
 	ld bc, TempMonDVs
 	callba CheckShininess
 	ret nc
@@ -473,126 +487,127 @@ Function4dfa6: ; 4dfa6 (13:5fa6)
 	ld [hl], "<SHINY>"
 	ret
 
-Function4dfb6: ; 4dfb6 (13:5fb6)
-	ld a, [CurBaseData] ; wd236 (aliases: BaseDexNo)
+StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
+	ld a, [BaseDexNo] ; wd236 (aliases: BaseDexNo)
 	ld [wd265], a
 	ld [CurSpecies], a
 	xor a
 	ld [hBGMapMode], a
-	call Function4dfda
-	call Function4e002
-	call Function4dfed
+	call .ClearBox
+	call .PageTilemap
+	call .LoadPals
 	ld hl, wcf64
 	bit 4, [hl]
-	jr nz, .asm_4dfd6
+	jr nz, .place_frontpic
 	call SetPalettes
 	ret
 
-.asm_4dfd6
-	call Function4e226
+.place_frontpic
+	call StatsScreen_PlaceFrontpic
 	ret
 
-Function4dfda: ; 4dfda (13:5fda)
+.ClearBox: ; 4dfda (13:5fda)
 	ld a, [wcf64]
 	and $3
 	ld c, a
-	call Function4e4cd
+	call StatsScreen_LoadPageIndicators
 	hlcoord 0, 8
 	lb bc, 10, 20
 	call ClearBox
 	ret
 
-Function4dfed: ; 4dfed (13:5fed)
+.LoadPals: ; 4dfed (13:5fed)
 	ld a, [wcf64]
 	and $3
 	ld c, a
-	callba Function8c8a
+	callba LoadStatsScreenPals
 	call DelayFrame
 	ld hl, wcf64
 	set 5, [hl]
 	ret
 
-Function4e002: ; 4e002 (13:6002)
+.PageTilemap: ; 4e002 (13:6002)
 	ld a, [wcf64]
 	and $3
 	dec a
-	ld hl, Jumptable_4e00d
+	ld hl, .Jumptable
 	rst JumpTable
 	ret
 
-Jumptable_4e00d: ; 4e00d (13:600d)
-	dw Function4e013
-	dw Function4e147
-	dw Function4e1ae
+.Jumptable: ; 4e00d (13:600d)
+	
+	dw .PinkPage
+	dw .GreenPage
+	dw .BluePage
 
 
-Function4e013: ; 4e013 (13:6013)
+.PinkPage: ; 4e013 (13:6013)
 	hlcoord 0, 9
 	ld b, $0
 	predef DrawPlayerHP
 	hlcoord 8, 9
 	ld [hl], $41
-	ld de, String_4e119
+	ld de, .Status_Type
 	hlcoord 0, 12
 	call PlaceString
 	ld a, [TempMonPokerusStatus]
 	ld b, a
 	and $f
-	jr nz, .asm_4e055
+	jr nz, .HasPokerus
 	ld a, b
 	and $f0
-	jr z, .asm_4e03d
+	jr z, .NotImmuneToPkrs
 	hlcoord 8, 8
-	ld [hl], $e8
-.asm_4e03d
+	ld [hl], "."
+.NotImmuneToPkrs
 	ld a, [MonType]
-	cp $2
-	jr z, .asm_4e060
+	cp BOXMON
+	jr z, .StatusOK
 	hlcoord 6, 13
 	push hl
 	ld de, TempMonStatus
 	predef PlaceStatusString
 	pop hl
-	jr nz, .asm_4e066
-	jr .asm_4e060
-.asm_4e055
-	ld de, String_4e142
+	jr nz, .done_status
+	jr .StatusOK
+.HasPokerus
+	ld de, .PkrsStr
 	hlcoord 1, 13
 	call PlaceString
-	jr .asm_4e066
-.asm_4e060
-	ld de, String_4e127
+	jr .done_status
+.StatusOK
+	ld de, .OK_str
 	call PlaceString
-.asm_4e066
+.done_status
 	hlcoord 1, 15
 	predef PrintMonTypes
 	hlcoord 9, 8
-	ld de, $14
-	ld b, $a
+	ld de, SCREEN_WIDTH
+	ld b, 10
 	ld a, $31
-.asm_4e078
+.vertical_divider
 	ld [hl], a
 	add hl, de
 	dec b
-	jr nz, .asm_4e078
-	ld de, String_4e12b
+	jr nz, .vertical_divider
+	ld de, .ExpPointStr
 	hlcoord 10, 9
 	call PlaceString
 	hlcoord 17, 14
-	call Function4e0d3
+	call .PrintNextLevel
 	hlcoord 13, 10
 	lb bc, 3, 7
 	ld de, TempMonExp
 	call PrintNum
-	call Function4e0e7
+	call .CalcExpToNextLevel
 	hlcoord 13, 13
 	lb bc, 3, 7
 	ld de, Buffer1 ; wd1ea (aliases: MagikarpLength)
 	call PrintNum
-	ld de, String_4e136
+	ld de, .LevelUpStr
 	hlcoord 10, 12
 	call PlaceString
-	ld de, String_4e13f
+	ld de, .ToStr
 	hlcoord 14, 14
 	call PlaceString
 	hlcoord 11, 16
@@ -606,34 +621,34 @@ Function4e013: ; 4e013 (13:6013)
 	ld [hl], $41
 	ret
 
-Function4e0d3: ; 4e0d3 (13:60d3)
+.PrintNextLevel: ; 4e0d3 (13:60d3)
 	ld a, [TempMonLevel]
 	push af
 	cp MAX_LEVEL
-	jr z, .asm_4e0df
+	jr z, .AtMaxLevel
 	inc a
 	ld [TempMonLevel], a
-.asm_4e0df
+.AtMaxLevel
 	call PrintLevel
 	pop af
 	ld [TempMonLevel], a
 	ret
 
-Function4e0e7: ; 4e0e7 (13:60e7)
+.CalcExpToNextLevel: ; 4e0e7 (13:60e7)
 	ld a, [TempMonLevel]
 	cp MAX_LEVEL
-	jr z, .asm_4e111
+	jr z, .AlreadyAtMaxLevel
 	inc a
 	ld d, a
 	callba CalcExpAtLevel
 rept 2
 	ld hl, TempMonExp + 2
 endr
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	sub [hl]
 	dec hl
-	ld [wd1ec], a
-	ld a, [$ffb5]
+	ld [Buffer3], a
+	ld a, [hQuotient + 1]
 	sbc [hl]
 	dec hl
 	ld [Buffer2], a ; wd1eb (aliases: MovementType)
@@ -641,7 +656,8 @@ endr
 	sbc [hl]
 	ld [Buffer1], a ; wd1ea (aliases: MagikarpLength)
 	ret
-.asm_4e111
+
+.AlreadyAtMaxLevel
 	ld hl, Buffer1 ; wd1ea (aliases: MagikarpLength)
 	xor a
 rept 2
@@ -651,39 +667,39 @@ endr
 	ret
 ; 4e119 (13:6119)
 
-String_4e119: ; 4e119
+.Status_Type: ; 4e119
 	db   "STATUS/"
 	next "TYPE/@"
 ; 4e127
 
-String_4e127: ; 4e127
+.OK_str: ; 4e127
 	db "OK @"
 ; 4e12b
 
-String_4e12b: ; 4e12b
+.ExpPointStr: ; 4e12b
 	db "EXP POINTS@"
 ; 4e136
 
-String_4e136: ; 4e136
+.LevelUpStr: ; 4e136
 	db "LEVEL UP@"
 ; 4e13f
 
-String_4e13f: ; 4e13f
+.ToStr: ; 4e13f
 	db "TO@"
 ; 4e142
 
-String_4e142: ; 4e142
+.PkrsStr: ; 4e142
 	db "#RUS@"
 ; 4e147
 
-Function4e147: ; 4e147 (13:6147)
-	ld de, String_4e1a0
+.GreenPage: ; 4e147 (13:6147)
+	ld de, .Item
 	hlcoord 0, 8
 	call PlaceString
-	call Function4e189
+	call .GetItemName
 	hlcoord 8, 8
 	call PlaceString
-	ld de, String_4e1a9
+	ld de, .Move
 	hlcoord 0, 10
 	call PlaceString
 	ld hl, TempMonMoves
@@ -695,53 +711,53 @@ Function4e147: ; 4e147 (13:6147)
 	ld [Buffer1], a
 	predef ListMoves
 	hlcoord 12, 11
-	ld a, $28
+	ld a, SCREEN_WIDTH * 2
 	ld [Buffer1], a
-	predef Function50c50
+	predef ListMovePP
 	ret
 
-Function4e189: ; 4e189 (13:6189)
-	ld de, String_4e1a5
+.GetItemName: ; 4e189 (13:6189)
+	ld de, .ThreeDashes
 	ld a, [TempMonItem]
 	and a
 	ret z
 	ld b, a
-	callba Function28771
+	callba TimeCapsule_ReplaceTeruSama
 	ld a, b
 	ld [wd265], a
 	call GetItemName
 	ret
 ; 4e1a0 (13:61a0)
 
-String_4e1a0: ; 4e1a0
+.Item: ; 4e1a0
 	db "ITEM@"
 ; 4e1a5
 
-String_4e1a5: ; 4e1a5
+.ThreeDashes: ; 4e1a5
 	db "---@"
 ; 4e1a9
 
-String_4e1a9: ; 4e1a9
+.Move: ; 4e1a9
 	db "MOVE@"
 ; 4e1ae
 
-Function4e1ae: ; 4e1ae (13:61ae)
-	call Function4e1cc
+.BluePage: ; 4e1ae (13:61ae)
+	call .PlaceOTInfo
 	hlcoord 10, 8
-	ld de, $14
-	ld b, $a
+	ld de, SCREEN_WIDTH
+	ld b, 10
 	ld a, $31
-.asm_4e1bb
+.BluePageVerticalDivider
 	ld [hl], a
 	add hl, de
 	dec b
-	jr nz, .asm_4e1bb
+	jr nz, .BluePageVerticalDivider
 	hlcoord 11, 8
-	ld bc, $6
+	ld bc, 6
 	predef PrintTempMonStats
 	ret
 
-Function4e1cc: ; 4e1cc (13:61cc)
+.PlaceOTInfo: ; 4e1cc (13:61cc)
 	ld de, IDNoString
 	hlcoord 0, 9
 	call PlaceString
@@ -752,101 +768,106 @@ Function4e1cc: ; 4e1cc (13:61cc)
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	ld de, TempMonID
 	call PrintNum
-	ld hl, Unknown_4e216
-	call Function4e528
-	call Function4e505
+	ld hl, .OTNamePointers
+	call GetNicknamePointer
+	call CopyNickname
 	callba CheckNickErrors
 	hlcoord 2, 13
 	call PlaceString
 	ld a, [TempMonCaughtGender]
 	and a
-	jr z, .asm_4e215
+	jr z, .done
 	cp $7f
-	jr z, .asm_4e215
+	jr z, .done
 	and $80
 	ld a, "♂"
-	jr z, .asm_4e211
+	jr z, .got_gender
 	ld a, "♀"
-.asm_4e211
+.got_gender
 	hlcoord 9, 13
 	ld [hl], a
-.asm_4e215
+.done
 	ret
 ; 4e216 (13:6216)
 
-Unknown_4e216: ; 4e216
+.OTNamePointers: ; 4e216
 	dw PartyMonOT
 	dw OTPartyMonOT
 	dw sBoxMonOT
-	dw wd00d
+	dw wBufferMonOT
 ; 4e21e
 
 IDNoString: ; 4e21e
-	db $73, "№.@"
+	db "<ID>№.@"
 
 OTString: ; 4e222
 	db "OT/@"
 ; 4e226
 
 
-Function4e226: ; 4e226 (13:6226)
+StatsScreen_PlaceFrontpic: ; 4e226 (13:6226)
 	ld hl, TempMonDVs
 	predef GetUnownLetter
-	call Function4e2ad
-	jr c, .asm_4e238
+	call StatsScreen_GetAnimationParam
+	jr c, .egg
 	and a
-	jr z, .asm_4e23f
-	jr .asm_4e246
-.asm_4e238
-	call Function4e271
+	jr z, .no_cry
+	jr .cry
+
+.egg
+	call .AnimateEgg
 	call SetPalettes
 	ret
-.asm_4e23f
-	call Function4e253
+
+.no_cry
+	call .AnimateMon
 	call SetPalettes
 	ret
-.asm_4e246
+
+.cry
 	call SetPalettes
-	call Function4e253
+	call .AnimateMon
 	ld a, [CurPartySpecies]
 	call PlayCry2
 	ret
 
-Function4e253: ; 4e253 (13:6253)
+.AnimateMon: ; 4e253 (13:6253)
 	ld hl, wcf64
 	set 5, [hl]
 	ld a, [CurPartySpecies]
 	cp UNOWN
-	jr z, .asm_4e266
+	jr z, .unown
 	hlcoord 0, 0
 	call PrepMonFrontpic
 	ret
-.asm_4e266
+
+.unown
 	xor a
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	hlcoord 0, 0
 	call _PrepMonFrontpic
 	ret
 
-Function4e271: ; 4e271 (13:6271)
+.AnimateEgg: ; 4e271 (13:6271)
 	ld a, [CurPartySpecies]
 	cp UNOWN
-	jr z, .asm_4e281
-	ld a, $1
-	ld [wc2c6], a
-	call Function4e289
-	ret
-.asm_4e281
-	xor a
-	ld [wc2c6], a
-	call Function4e289
+	jr z, .unownegg
+	ld a, TRUE
+	ld [wBoxAlignment], a
+	call .get_animation
 	ret
 
-Function4e289: ; 4e289 (13:6289)
+.unownegg
+	xor a
+	ld [wBoxAlignment], a
+	call .get_animation
+	ret
+
+.get_animation: ; 4e289 (13:6289)
 	ld a, [CurPartySpecies]
 	call IsAPokemon
 	ret c
-	call Function4e307
+	call StatsScreen_LoadTextBoxSpaceGFX
 	ld de, VTiles2 tile $00
 	predef FrontpicPredef
 	hlcoord 0, 0
@@ -857,34 +878,34 @@ Function4e289: ; 4e289 (13:6289)
 	set 6, [hl]
 	ret
 
-Function4e2ad: ; 4e2ad (13:62ad)
+StatsScreen_GetAnimationParam: ; 4e2ad (13:62ad)
 	ld a, [MonType]
 	ld hl, .Jumptable
 	rst JumpTable
 	ret
 
 .Jumptable: ; 4e2b5 (13:62b5)
-	dw Function4e2bf
-	dw Function4e2cf
-	dw Function4e2d1
-	dw Function4e2ed
-	dw Function4e301
+	dw .PartyMon
+	dw .OTPartyMon
+	dw .BoxMon
+	dw .Tempmon
+	dw .Wildmon
 
 
-Function4e2bf: ; 4e2bf (13:62bf)
+.PartyMon: ; 4e2bf (13:62bf)
 	ld a, [CurPartyMon]
 	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld b, h
 	ld c, l
-	jr Function4e2f2
+	jr .CheckEggFaintedFrzSlp
 
-Function4e2cf: ; 4e2cf (13:62cf)
+.OTPartyMon: ; 4e2cf (13:62cf)
 	xor a
 	ret
 
-Function4e2d1: ; 4e2d1 (13:62d1)
+.BoxMon: ; 4e2d1 (13:62d1)
 	ld hl, sBoxMons
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [CurPartyMon]
@@ -893,36 +914,37 @@ Function4e2d1: ; 4e2d1 (13:62d1)
 	ld c, l
 	ld a, BANK(sBoxMons)
 	call GetSRAMBank
-	call Function4e2f2
+	call .CheckEggFaintedFrzSlp
 	push af
 	call CloseSRAM
 	pop af
 	ret
 
-Function4e2ed: ; 4e2ed (13:62ed)
+.Tempmon: ; 4e2ed (13:62ed)
 	ld bc, TempMonSpecies ; wd10e (aliases: TempMon)
-	jr Function4e2f2 ; utterly pointless
+	jr .CheckEggFaintedFrzSlp ; utterly pointless
 
-Function4e2f2: ; 4e2f2 (13:62f2)
+.CheckEggFaintedFrzSlp: ; 4e2f2 (13:62f2)
 	ld a, [CurPartySpecies]
 	cp EGG
 	jr z, .egg
 	call CheckFaintedFrzSlp
-	jr c, Function4e305
+	jr c, .FaintedFrzSlp
 .egg
 	xor a
 	scf
 	ret
 
-Function4e301: ; 4e301 (13:6301)
+.Wildmon: ; 4e301 (13:6301)
 	ld a, $1
 	and a
 	ret
-Function4e305: ; 4e305 (13:6305)
+
+.FaintedFrzSlp: ; 4e305 (13:6305)
 	xor a
 	ret
 
-Function4e307: ; 4e307 (13:6307)
+StatsScreen_LoadTextBoxSpaceGFX: ; 4e307 (13:6307)
 	nop
 	push hl
 	push de
@@ -956,9 +978,9 @@ EggStatsScreen: ; 4e33a
 	ld [hBGMapMode], a
 	ld hl, wcda1
 	call SetHPPal
-	ld b, SCGB_03
+	ld b, SCGB_STATS_SCREEN_HP_PALS
 	call GetSGBLayout
-	call Function4df8f
+	call StatsScreen_PlaceHorizontalDivider
 	ld de, EggString
 	hlcoord 8, 1
 	call PlaceString
@@ -995,7 +1017,7 @@ EggStatsScreen: ; 4e33a
 	hlcoord 0, 0
 	call PrepMonFrontpic
 	callba Function10402d
-	call Function4e497
+	call StatsScreen_AnimateEgg
 
 	ld a, [TempMonHappiness]
 	cp 6
@@ -1034,22 +1056,23 @@ EggALotMoreTimeString: ; 0x4e46e
 ; 0x4e497
 
 
-Function4e497: ; 4e497 (13:6497)
-	call Function4e2ad
+StatsScreen_AnimateEgg: ; 4e497 (13:6497)
+	call StatsScreen_GetAnimationParam
 	ret nc
 	ld a, [TempMonHappiness]
 	ld e, $7
-	cp $6
-	jr c, .asm_4e4ab
+	cp 6
+	jr c, .animate
 	ld e, $8
-	cp $b
-	jr c, .asm_4e4ab
+	cp 11
+	jr c, .animate
 	ret
-.asm_4e4ab
+
+.animate
 	push de
 	ld a, $1
-	ld [wc2c6], a
-	call Function4e307
+	ld [wBoxAlignment], a
+	call StatsScreen_LoadTextBoxSpaceGFX
 	ld de, VTiles2 tile $00
 	predef FrontpicPredef
 	pop de
@@ -1060,7 +1083,7 @@ Function4e497: ; 4e497 (13:6497)
 	set 6, [hl]
 	ret
 
-Function4e4cd: ; 4e4cd (13:64cd)
+StatsScreen_LoadPageIndicators: ; 4e4cd (13:64cd)
 	hlcoord 13, 5
 	ld a, $36
 	call .load_square
@@ -1092,7 +1115,7 @@ Function4e4cd: ; 4e4cd (13:64cd)
 	pop bc
 	ret
 
-Function4e505: ; 4e505 (13:6505)
+CopyNickname: ; 4e505 (13:6505)
 	ld de, StringBuffer1
 	ld bc, PKMN_NAME_LENGTH
 	jr .okay ; uuterly pointless
@@ -1114,7 +1137,7 @@ Function4e505: ; 4e505 (13:6505)
 	pop de
 	ret
 
-Function4e528: ; 4e528 (13:6528)
+GetNicknamePointer: ; 4e528 (13:6528)
 	ld a, [MonType]
 	add a
 	ld c, a
@@ -1124,7 +1147,7 @@ Function4e528: ; 4e528 (13:6528)
 	ld h, [hl]
 	ld l, a
 	ld a, [MonType]
-	cp $3
+	cp BREEDMON
 	ret z
 	ld a, [CurPartyMon]
 	jp SkipNames

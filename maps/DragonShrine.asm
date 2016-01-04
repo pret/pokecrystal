@@ -1,34 +1,40 @@
+const_value set 2
+	const DRAGONSHRINE_ELDER1
+	const DRAGONSHRINE_ELDER2
+	const DRAGONSHRINE_ELDER3
+	const DRAGONSHRINE_CLAIR
+
 DragonShrine_MapScriptHeader:
 .MapTriggers:
 	db 2
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
-	dw .Trigger2, 0
 
 .MapCallbacks:
 	db 0
 
-.Trigger1:
+.Trigger0:
 	priorityjump DragonShrineTestScript
 	end
 
-.Trigger2:
+.Trigger1:
 	end
 
 DragonShrineTestScript:
 	applymovement PLAYER, MovementData_0x18d2bf
-	applymovement $2, MovementData_0x18d2c7
-	loadfont
+	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2c7
+	opentext
 	writetext UnknownText_0x18d2ea
-	keeptextopen
+	buttonsound
 .Question1:
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	writetext UnknownText_0x18d3bc
-	keeptextopen
+	buttonsound
 	loadmenudata MenuDataHeader_0x18d215
-	interpretmenu2
-	writebackup
+	verticalmenu
+	closewindow
 	if_equal $1, .RightAnswer
 	if_equal $2, .WrongAnswer
 	if_equal $3, .RightAnswer
@@ -37,40 +43,40 @@ DragonShrineTestScript:
 .Question2:
 	setevent EVENT_DRAGON_SHRINE_QUESTION_2
 	writetext UnknownText_0x18d3d3
-	keeptextopen
+	buttonsound
 	loadmenudata MenuDataHeader_0x18d234
-	interpretmenu2
-	writebackup
+	verticalmenu
+	closewindow
 	if_equal $1, .RightAnswer
 	if_equal $2, .RightAnswer
 	if_equal $3, .WrongAnswer
 .Question3:
 	setevent EVENT_DRAGON_SHRINE_QUESTION_3
 	writetext UnknownText_0x18d3f3
-	keeptextopen
+	buttonsound
 	loadmenudata MenuDataHeader_0x18d258
-	interpretmenu2
-	writebackup
+	verticalmenu
+	closewindow
 	if_equal $1, .WrongAnswer
 	if_equal $2, .RightAnswer
 	if_equal $3, .RightAnswer
 .Question4:
 	setevent EVENT_DRAGON_SHRINE_QUESTION_4
 	writetext UnknownText_0x18d420
-	keeptextopen
+	buttonsound
 	loadmenudata MenuDataHeader_0x18d283
-	interpretmenu2
-	writebackup
+	verticalmenu
+	closewindow
 	if_equal $1, .RightAnswer
 	if_equal $2, .WrongAnswer
 	if_equal $3, .RightAnswer
 .Question5:
 	setevent EVENT_DRAGON_SHRINE_QUESTION_5
 	writetext UnknownText_0x18d44a
-	keeptextopen
+	buttonsound
 	loadmenudata MenuDataHeader_0x18d2a5
-	interpretmenu2
-	writebackup
+	verticalmenu
+	closewindow
 	if_equal $1, .WrongAnswer
 	if_equal $2, .RightAnswer
 	if_equal $3, .WrongAnswer
@@ -78,7 +84,7 @@ DragonShrineTestScript:
 	checkevent EVENT_DRAGON_SHRINE_QUESTION_5
 	iftrue .PassedTheTest
 	writetext UnknownText_0x18d82d
-	keeptextopen
+	buttonsound
 	checkevent EVENT_DRAGON_SHRINE_QUESTION_4
 	iftrue .Question5
 	checkevent EVENT_DRAGON_SHRINE_QUESTION_3
@@ -88,19 +94,19 @@ DragonShrineTestScript:
 	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
 	iftrue .Question2
 .WrongAnswer:
-	loadmovesprites
-	spriteface $2, LEFT
-	loadfont
+	closetext
+	spriteface DRAGONSHRINE_ELDER1, LEFT
+	opentext
 	writetext UnknownText_0x18d7f6
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $2, DOWN
-	loadfont
+	spriteface DRAGONSHRINE_ELDER1, DOWN
+	opentext
 	writetext UnknownText_0x18d816
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
-	loadfont
+	opentext
 	checkevent EVENT_DRAGON_SHRINE_QUESTION_5
 	iftrue .Question5
 	checkevent EVENT_DRAGON_SHRINE_QUESTION_4
@@ -113,83 +119,83 @@ DragonShrineTestScript:
 	iftrue .Question1
 .PassedTheTest:
 	writetext UnknownText_0x18d47c
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_ENTER_DOOR
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_CLAIR
-	appear $5
-	waitbutton
+	appear DRAGONSHRINE_CLAIR
+	waitsfx
 	spriteface PLAYER, DOWN
 	pause 30
-	applymovement $5, MovementData_0x18d2d4
-	spriteface $5, RIGHT
+	applymovement DRAGONSHRINE_CLAIR, MovementData_0x18d2d4
+	spriteface DRAGONSHRINE_CLAIR, RIGHT
 	spriteface PLAYER, LEFT
-	spriteface $2, LEFT
-	loadfont
+	spriteface DRAGONSHRINE_ELDER1, LEFT
+	opentext
 	writetext UnknownText_0x18d916
+	waitbutton
 	closetext
-	loadmovesprites
-	special Special_RotatePalettesRightMusic
-	applymovement $5, MovementData_0x18d2da
-	loadfont
+	special Special_FadeOutMusic
+	applymovement DRAGONSHRINE_CLAIR, MovementData_0x18d2da
+	opentext
 	writetext UnknownText_0x18d974
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement $5, MovementData_0x18d2dd
-	loadfont
+	applymovement DRAGONSHRINE_CLAIR, MovementData_0x18d2dd
+	opentext
 	writetext UnknownText_0x18d983
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement $2, MovementData_0x18d2c9
-	spriteface $5, UP
-	loadfont
+	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2c9
+	spriteface DRAGONSHRINE_CLAIR, UP
+	opentext
 	writetext UnknownText_0x18d520
+	waitbutton
 	closetext
-	loadmovesprites
-	showemote EMOTE_SHOCK, $5, 15
-	loadfont
+	showemote EMOTE_SHOCK, DRAGONSHRINE_CLAIR, 15
+	opentext
 	writetext UnknownText_0x18d9ae
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement $5, MovementData_0x18d2e0
-	loadfont
+	applymovement DRAGONSHRINE_CLAIR, MovementData_0x18d2e0
+	opentext
 	writetext UnknownText_0x18d9bf
-	closetext
+	waitbutton
 	setflag ENGINE_RISINGBADGE
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	special RestartMapMusic
 	specialphonecall SPECIALCALL_MASTERBALL
 	dotrigger $1
 	domaptrigger DRAGONS_DEN_B1F, $1
 	writetext UnknownText_0x18d9f2
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x18da0b
-	closetext
-	loadmovesprites
-	applymovement $2, MovementData_0x18d2ce
-	spriteface $5, UP
-	applymovement $2, MovementData_0x18d2d1
-	spriteface PLAYER, UP
-	loadfont
-	writetext UnknownText_0x18d5a3
-	closetext
-	loadmovesprites
-	loadfont
-	writetext UnknownText_0x18dab4
-	closetext
-	loadmovesprites
-	applymovement $5, MovementData_0x18d2e3
-	playsound SFX_ENTER_DOOR
-	disappear $5
 	waitbutton
+	closetext
+	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2ce
+	spriteface DRAGONSHRINE_CLAIR, UP
+	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2d1
+	spriteface PLAYER, UP
+	opentext
+	writetext UnknownText_0x18d5a3
+	waitbutton
+	closetext
+	opentext
+	writetext UnknownText_0x18dab4
+	waitbutton
+	closetext
+	applymovement DRAGONSHRINE_CLAIR, MovementData_0x18d2e3
+	playsound SFX_ENTER_DOOR
+	disappear DRAGONSHRINE_CLAIR
+	waitsfx
 	setevent EVENT_GAVE_KURT_APRICORNS
 	end
 
 ElderScript_0x18d1a5:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue .DontGiveDratiniYet
 	checkevent EVENT_JUST_RECEIVED_DRATINI
@@ -199,66 +205,66 @@ ElderScript_0x18d1a5:
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iftrue .BeatRivalInMtMoon
 	writetext UnknownText_0x18d724
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .GiveDratini:
 	writetext UnknownText_0x18d604
-	closetext
+	waitbutton
 	checkcode VAR_PARTYCOUNT
 	if_equal 6, .PartyFull
 	writetext UnknownText_0x18d697
 	playsound SFX_CAUGHT_MON
-	waitbutton
+	waitsfx
 	givepoke DRATINI, 15
 	checkevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
 	special SpecialDratini
 	setevent EVENT_GOT_DRATINI
 	setevent EVENT_JUST_RECEIVED_DRATINI
 	writetext UnknownText_0x18d6ca
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .PartyFull:
 	writetext UnknownText_0x18d6ac
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .BeatRivalInMtMoon:
 	writetext UnknownText_0x18d782
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .DontGiveDratiniYet:
 	writetext UnknownText_0x18d5e5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .ReceivedDratini:
 	writetext UnknownText_0x18d6ca
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ElderScript_0x18d205:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x18d840
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ElderScript_0x18d20d:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x18d8b1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 

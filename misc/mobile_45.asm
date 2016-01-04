@@ -78,45 +78,45 @@ Jumptable_114165: ; 114165
 ; 11417f
 
 Unknown_11417f: ; 11417f
-	dw String_114199
-	dw String_11419f
-	dw String_1141a7
-	dw String_1141b1
-	dw String_1141b5
-	dw String_1141b9
-	dw String_1141c2
-	dw String_1141c8
-	dw String_1141d6
-	dw String_1141e4
-	dw String_1141ee
-	dw String_1141fc
-	dw String_114209
+	dw .From
+	dw .Sender
+	dw .ReplyTo
+	dw .To
+	dw .CC
+	dw .Subject
+	dw .Date
+	dw .ContentType
+	dw .MimeVersion
+	dw .XMailer
+	dw .XGameTitle
+	dw .XGameCode
+	dw .XGBMailType
 
-String_114199: ; 114199
+.From: ; 114199
 	db "FROM:", 0
-String_11419f: ; 11419f
+.Sender: ; 11419f
 	db "SENDER:", 0
-String_1141a7: ; 1141a7
+.ReplyTo: ; 1141a7
 	db "REPLY-TO:", 0
-String_1141b1: ; 1141b1
+.To: ; 1141b1
 	db "TO:", 0
-String_1141b5: ; 1141b5
+.CC: ; 1141b5
 	db "CC:", 0
-String_1141b9: ; 1141b9
+.Subject: ; 1141b9
 	db "SUBJECT:", 0
-String_1141c2: ; 1141c2
+.Date: ; 1141c2
 	db "DATE:", 0
-String_1141c8: ; 1141c8
+.ContentType: ; 1141c8
 	db "CONTENT-TYPE:", 0
-String_1141d6: ; 1141d6
+.MimeVersion: ; 1141d6
 	db "MIME-VERSION:", 0
-String_1141e4: ; 1141e4
+.XMailer: ; 1141e4
 	db "X-MAILER:", 0
-String_1141ee: ; 1141ee
+.XGameTitle: ; 1141ee
 	db "X-GAME-TITLE:", 0
-String_1141fc: ; 1141fc
+.XGameCode: ; 1141fc
 	db "X-GAME-CODE:", 0
-String_114209: ; 114209
+.XGBMailType: ; 114209
 	db "X-GBMAIL-TYPE:", 0
 ; 114218
 
@@ -131,10 +131,10 @@ String_114232: ; 114232
 ; 114243
 
 Function114243:: ; 114243
-	ld a, $a
+	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
-	ld a, [$ff8c]
-	push af
+	ld a, [hFF8C]
+	push af ; if [wdc02] == 0, this is popped to pc.
 	push de
 	ld a, [wdc02]
 	add a
@@ -153,9 +153,9 @@ Function11425c: ; 11425c
 	ld [wdc02], a
 	pop af
 rept 2
-	ld [$ff8c], a
+	ld [hFF8C], a
 endr
-	ld [$4000], a
+	ld [MBC3SRamBank], a
 	ret
 ; 114268
 
@@ -171,8 +171,8 @@ Function114269: ; 114269
 	ld [wdc03], a
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -370,8 +370,8 @@ Function11433c: ; 11433c
 	pop bc
 	ld a, [wdc03]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	call Function114c0b
 	ld hl, String_114004
 .asm_114394
@@ -429,8 +429,8 @@ Function1143b7: ; 1143b7
 	push af
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -473,7 +473,7 @@ Function1143f3: ; 1143f3
 	jr nc, .asm_114400
 
 .asm_114407
-	ld bc, VBlank5
+	lb bc, $4, $0
 	ld a, $2
 	ret
 
@@ -486,8 +486,8 @@ Function1143f3: ; 1143f3
 Function114412: ; 114412
 	ld a, c
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld hl, Unknown_11417f
 	ld a, b
 	add a
@@ -506,17 +506,17 @@ Function114412: ; 114412
 	jp z, .asm_1144c2
 	inc e
 	call z, Function1144c8
-	cp $d
+	cp $d ; CR
 	jr nz, .asm_11442b
 	ld a, [de]
 	inc e
 	call z, Function1144c8
-	cp $a
+	cp $a ; NL
 	jr nz, .asm_11442b
 	ld a, [de]
-	cp $2e
+	cp $2e ; .
 	jr z, .asm_1144ae
-	cp $d
+	cp $d  ; CR
 	jr z, .asm_1144b8
 
 .asm_11444a
@@ -527,9 +527,9 @@ Function114412: ; 114412
 	jr z, .asm_1144c2
 	inc e
 	call z, Function1144c8
-	cp $61
+	cp $61 ; "a"
 	jr c, .asm_114462
-	cp $7b
+	cp $7b ; "z" + 1
 	jr nc, .asm_114462
 	sub $20
 
@@ -553,10 +553,10 @@ Function114412: ; 114412
 	jr .asm_11446e
 
 .asm_114476
-	ld a, $20
+	ld a, $20 ; " "
 	cp b
 	jr z, .asm_114481
-	ld a, $a
+	ld a, $a ; NL
 	cp b
 	jr z, .asm_114481
 	dec de
@@ -572,18 +572,18 @@ Function114412: ; 114412
 	inc bc
 	inc e
 	call z, Function1144c8
-	cp $d
+	cp $d ; CR
 	jr nz, .asm_114486
 	ld a, [de]
 	inc bc
 	inc e
 	call z, Function1144c8
-	cp $a
+	cp $a ; NL
 	jr nz, .asm_114486
 	ld a, [de]
-	cp $20
+	cp $20 ; " "
 	jr z, .asm_114486
-	cp $9
+	cp $9 ; TAB
 	jr z, .asm_114486
 	ld d, h
 	ld e, l
@@ -596,14 +596,14 @@ Function114412: ; 114412
 	inc e
 	call z, Function1144c8
 	ld a, [de]
-	cp $d
+	cp $d ; CR
 	jp nz, .asm_11442b
 
 .asm_1144b8
 	inc e
 	call z, Function1144c8
 	ld a, [de]
-	cp $a
+	cp $a ; NL
 	jp nz, .asm_11442b
 
 .asm_1144c2
@@ -676,8 +676,8 @@ endr
 	pop hl
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -693,8 +693,8 @@ endr
 	ld hl, wdc06
 	ld a, [hl]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld hl, wdc09
 	ld e, [hl]
 	inc hl
@@ -753,8 +753,8 @@ Function114576: ; 114576
 	jr nz, .asm_1145b4
 	ld a, h
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	push hl
 	push de
 	push bc
@@ -771,8 +771,8 @@ Function114576: ; 114576
 	jr nz, .asm_1145ba
 	ld a, h
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld hl, String_114218
 	call Function114acf
 
@@ -945,8 +945,8 @@ Function11463c: ; 11463c
 	pop de
 	pop af
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	xor a
 	ld [Carpet], a
 	ld a, $1
@@ -968,8 +968,8 @@ Function1146a4: ; 1146a4
 	ld hl, wdc03
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -982,8 +982,8 @@ Function1146a4: ; 1146a4
 	ld hl, wdc03
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1027,8 +1027,8 @@ Function1146fa: ; 1146fa
 	ld hl, wdc03
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1041,8 +1041,8 @@ Function1146fa: ; 1146fa
 	ld a, $1
 	ld [wdc0e], a
 	ld a, [wdc00]
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, $1
 	ld [RightOrnament], a
 	call Function1147cd
@@ -1068,8 +1068,8 @@ Function1146fa: ; 1146fa
 	ld hl, wdc03
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1123,8 +1123,8 @@ endr
 	ld hl, wdc03
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	call Function114a7a
 	and a
 	jr z, .asm_1147cb
@@ -1236,8 +1236,8 @@ Function114843: ; 114843
 	ld a, [wdc00]
 	push af
 	push de
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	call Function114a18
 	and a
 	jr nz, .asm_11485f
@@ -1260,8 +1260,8 @@ Function114867: ; 114867
 	ld hl, wdc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1327,8 +1327,8 @@ Function1148c2: ; 1148c2
 	ld hl, wdc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1427,8 +1427,8 @@ Function11494d: ; 11494d
 	ld hl, wdc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1519,8 +1519,8 @@ Function1149cc: ; 1149cc
 	ld hl, wdc06
 	ld a, [hl]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	push de
 	ld hl, wdc09
 	ld e, [hl]
@@ -1874,8 +1874,8 @@ endr
 	ld hl, wdc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1913,8 +1913,8 @@ Function114bbc: ; 114bbc
 	jr nz, .asm_114bff
 	ld a, h
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	call Function114c0b
 	ld hl, wdc24
 	call Function114c5e
@@ -1924,8 +1924,8 @@ Function114bbc: ; 114bbc
 	pop hl
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -2136,8 +2136,8 @@ Function114cd9: ; 114cd9
 	ld [wdc04], a
 	ld a, h
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld hl, wdc24
 	call Function114d39
 	ld hl, wdc24
@@ -2155,8 +2155,8 @@ endr
 	pop hl
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -2460,8 +2460,8 @@ Function114ea0: ; 114ea0
 	ld hl, wdc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -2666,8 +2666,8 @@ Function114f59: ; 114f59
 	inc hl
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -2745,8 +2745,8 @@ Function115020: ; 115020
 	ld hl, wdc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -2804,8 +2804,8 @@ Function115062: ; 115062
 	ld c, a
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -2958,8 +2958,8 @@ Function115136: ; 115136
 	ld hl, wdc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -3013,8 +3013,8 @@ Function115179: ; 115179
 	ld hl, wdc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -3133,8 +3133,8 @@ Function115217: ; 115217
 	ld hl, wdc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -3228,8 +3228,8 @@ Function11528f: ; 11528f
 	inc hl
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -3483,8 +3483,8 @@ Function1153d2: ; 1153d2
 .asm_1153f5
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -3617,8 +3617,8 @@ Function1153d2: ; 1153d2
 	ld hl, RightOrnament
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -3854,8 +3854,8 @@ Function11560a: ; 11560a
 	ld [wCurrentMapSignpostCount], a
 	ld a, [wdc17]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld hl, wdc1a
 	ld c, [hl]
 	inc hl
@@ -3927,8 +3927,8 @@ Function11560a: ; 11560a
 	ld [hl], d
 	pop bc
 	ld a, [wCurrentMapSignpostCount]
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld hl, wCurrMapTriggerCount
 	ld e, [hl]
 	inc hl
@@ -4238,8 +4238,8 @@ Function11581e: ; 11581e
 	ld hl, wdc02
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -4292,8 +4292,8 @@ Function11581e: ; 11581e
 	ld hl, wCurrMapTriggerCount
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -4767,8 +4767,8 @@ Function115b00: ; 115b00
 	ld hl, wdc02
 	ld a, [hli]
 	ld [wdc00], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -4856,8 +4856,8 @@ endr
 	ld hl, wCurrMapTriggerCount
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -5258,8 +5258,8 @@ Function115d80: ; 115d80
 	ld a, [bc]
 	inc a
 	ld [bc], a
-	ld [$ff8c], a
-	ld [$4000], a
+	ld [hFF8C], a
+	ld [MBC3SRamBank], a
 	ld a, e
 	ld d, $a0
 	ld e, $0
@@ -5588,7 +5588,7 @@ INCBIN "gfx/unknown/11601a.2bpp"
 Function11615a: ; 11615a
 	xor a
 	ld [wc30d], a
-	ld [wc314 + 5], a
+	ld [$c319], a
 	ld [wc310], a
 	ld [wc311], a
 	ld [wc312], a
@@ -5617,7 +5617,7 @@ Function11619d: ; 11619d
 	ld a, [wc30d]
 	and a
 	ret z
-	ld a, [wc314 + 5]
+	ld a, [$c319]
 	cp $2
 	jr c, .asm_1161b4
 	ld a, $a0
@@ -5631,10 +5631,10 @@ Function11619d: ; 11619d
 ; 1161b8
 
 Function1161b8: ; 1161b8
-	ld a, [wc314 + 5]
+	ld a, [$c319]
 	ld e, a
 	ld d, 0
-	ld hl, Jumptable_1161c7
+	ld hl, .Jumptable
 rept 2
 	add hl, de
 endr
@@ -5644,7 +5644,7 @@ endr
 	jp [hl]
 ; 1161c7
 
-Jumptable_1161c7: ; 1161c7
+.Jumptable: ; 1161c7
 	dw Function1161d5
 	dw Function116294
 	dw Function1162cb
@@ -5662,16 +5662,17 @@ Function1161d5: ; 1161d5
 	ld [rSVBK], a
 
 	ld hl, Unknown_117356
-	ld de, w6_d000
+	ld de, wDecompressScratch
 	ld bc, $0300
 	call CopyBytes
 
 	di
 
-.asm_1161e9
+.wait_for_vblank
+; Wait until a vblank would occur had interrupts not just been disabled.
 	ld a, [rLY]
 	cp $91
-	jr nz, .asm_1161e9
+	jr nz, .wait_for_vblank
 
 	ld a, $d0
 	ld [rHDMA1], a
@@ -5755,12 +5756,12 @@ Function1161d5: ; 1161d5
 	ld [MusicFade], a
 	ld de, MUSIC_MOBILE_ADAPTER
 	ld a, e
-	ld [wc2a9], a
+	ld [MusicFadeIDLo], a
 	ld a, d
-	ld [wc2aa], a
-	ld a, [wc314 + 5]
+	ld [MusicFadeIDHi], a
+	ld a, [$c319]
 	inc a
-	ld [wc314 + 5], a
+	ld [$c319], a
 	ret
 ; 11628c
 
@@ -5774,20 +5775,20 @@ MenuDataHeader_11628c: ; 11628c
 
 Function116294: ; 116294
 	callba Function170d02
-	ld a, [wc314 + 5]
+	ld a, [$c319]
 	inc a
-	ld [wc314 + 5], a
+	ld [$c319], a
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, wd030
-	ld de, wc314 + 12
-	ld bc, $0010
+	ld hl, UnknBGPals + 8 * 6
+	ld de, $c320
+	ld bc, 2 palettes
 	call CopyBytes
 	ld hl, Palette_11734e
 	ld de, UnknBGPals + 8 * 7
-	ld bc, $0008
+	ld bc, 1 palettes
 	call CopyBytes
 	call SetPalettes
 	pop af
@@ -5799,16 +5800,16 @@ Function116294: ; 116294
 
 Function1162cb: ; 1162cb
 	callba Function170cc6
-	ld a, [wc314 + 5]
+	ld a, [$c319]
 	inc a
-	ld [wc314 + 5], a
+	ld [$c319], a
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_11730e
-	ld de, wd050
-	ld bc, $0030
+	ld de, UnknOBPals + 2 palettes
+	ld bc, 6 palettes
 	call CopyBytes
 	call SetPalettes
 	pop af
@@ -5821,7 +5822,7 @@ Function1162f2: ; 1162f2
 	call Function116758
 	call Function1167a6
 	ld a, [wc310]
-	cp $fd
+	cp EGG
 	ret z
 	sla a
 	ld c, a
@@ -5924,7 +5925,7 @@ Function11636e: ; 11636e
 	ld [rSVBK], a
 	ld a, $a0
 	ld hl, Sprites
-	ld bc, $0040
+	ld bc, 16 * 4
 	call ByteFill
 	ld a, $90
 	ld [hWY], a
@@ -5934,12 +5935,12 @@ Function11636e: ; 11636e
 	callba ReloadMapPart
 	ld a, $8
 	ld [MusicFade], a
-	ld a, [wc2c0]
-	ld [wc2a9], a
+	ld a, [wMapMusic]
+	ld [MusicFadeIDLo], a
 	xor a
-	ld [wc2aa], a
+	ld [MusicFadeIDHi], a
 	xor a
-	ld [wc314 + 5], a
+	ld [$c319], a
 	ld [wc30d], a
 	ret
 ; 1163c0
@@ -5951,17 +5952,17 @@ Function1163c0: ; 1163c0
 	ld [rSVBK], a
 	ld a, $a0
 	ld hl, Sprites
-	ld bc, $0040
+	ld bc, 16 * 4
 	call ByteFill
 	call DelayFrame
 	callba Function14146
-	ld b, SCGB_09
+	ld b, SCGB_MAPPALS
 	call GetSGBLayout
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, wc314 + 12
+	ld hl, $c320
 	ld de, wd030
 	ld bc, $0010
 	call CopyBytes
@@ -5981,23 +5982,23 @@ Function1163c0: ; 1163c0
 	jr z, .asm_11642a
 	ld a, $8
 	ld [MusicFade], a
-	ld a, [wc2c0]
-	ld [wc2a9], a
+	ld a, [wMapMusic]
+	ld [MusicFadeIDLo], a
 	xor a
-	ld [wc2aa], a
+	ld [MusicFadeIDHi], a
 	jr .asm_116439
 
 .asm_11642a
 	ld a, $8
 	ld [MusicFade], a
 	ld a, $0
-	ld [wc2a9], a
+	ld [MusicFadeIDLo], a
 	ld a, $0
-	ld [wc2aa], a
+	ld [MusicFadeIDHi], a
 
 .asm_116439
 	xor a
-	ld [wc314 + 5], a
+	ld [$c319], a
 	ld [wc30d], a
 	ret
 ; 116441
@@ -6009,12 +6010,12 @@ Function116441: ; 116441
 	callba ReloadMapPart
 	ld a, $8
 	ld [MusicFade], a
-	ld a, [wc2c0]
-	ld [wc2a9], a
+	ld a, [wMapMusic]
+	ld [MusicFadeIDLo], a
 	xor a
-	ld [wc2aa], a
+	ld [MusicFadeIDHi], a
 	xor a
-	ld [wc314 + 5], a
+	ld [$c319], a
 	ld [wc30d], a
 	ret
 ; 116468
@@ -6424,7 +6425,7 @@ Function1166d6:
 	cp $ff
 	ret nz
 	ld a, $4
-	ld [wc314 + 5], a
+	ld [$c319], a
 	xor a
 	ld [wc314], a
 	ret
@@ -7595,7 +7596,7 @@ Palette_11734e:
 	RGB 10,  9,  9
 	RGB 15, 14, 14
 
-Unknown_117356:
+Unknown_117356: ; 117356
 	db $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9, $c9
 	db $c9, $c9, $c9, $c9, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1, $c1
 	db $c5, $c6, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2, $c2
@@ -7650,7 +7651,7 @@ Unknown_117356:
 
 SECTION "Mobile Stadium", ROMX, BANK[$45]
 
-Function117656: ; 117656
+Special_GiveOddEgg: ; 117656
 	callba GiveOddEgg
 	ret
 ; 11765d
@@ -7712,20 +7713,22 @@ Function117699: ; 117699 (45:7699)
 	call ClearSprites
 	callba Function171c87
 	callba ReloadMapPart
-	callba Function8cf53
+	callba ClearSpriteAnims
 	ret
 
 Function1176ee: ; 1176ee (45:76ee)
+.loop
 	call JoyTextDelay
 	ld a, [wcd49]
 	bit 7, a
-	jr nz, .asm_117709
+	jr nz, .quit
 	call Function117719
-	callba Function8cf69
+	callba PlaySpriteAnimations
 	callba ReloadMapPart
-	jr Function1176ee
-.asm_117709
-	callba Function8cf53
+	jr .loop
+
+.quit
+	callba ClearSpriteAnims
 	call ClearBGPalettes
 	call ClearScreen
 	call ClearSprites
@@ -7773,7 +7776,7 @@ Function117738: ; 117738 (45:7738)
 	ld [hl], a
 	ld a, $3
 	ld [wcd23], a
-	jp Function117a0a
+	jp MobilePassword_IncrementJumptable
 
 Function117764: ; 117764 (45:7764)
 	ld a, [wcd4a]
@@ -7787,37 +7790,37 @@ Function117764: ; 117764 (45:7764)
 	ld [wcd24], a
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
-	and $4
-	jr nz, Function1177a5
+	and SELECT
+	jr nz, Function117764_select
 	ld a, [hl]
-	and $8
-	jr nz, Function1177ac
+	and START
+	jr nz, Function117764_start
 	ld a, [hl]
-	and $1
-	jp nz, Function11784c
+	and A_BUTTON
+	jp nz, Function117764_a_button
 	ld a, [hl]
-	and $2
-	jr nz, asm_1177d6
+	and B_BUTTON
+	jr nz, Function117764_b_button
 	ld hl, hJoyLast
 	ld a, [hl]
-	and $40
-	jr nz, asm_1177f1
+	and D_UP
+	jr nz, Function117764_d_up
 	ld a, [hl]
-	and $80
-	jr nz, asm_11780a
+	and D_DOWN
+	jr nz, Function117764_d_down
 	ld a, [hl]
-	and $20
-	jp nz, Function11782d
+	and D_LEFT
+	jp nz, Function117764_d_left
 	ld a, [hl]
-	and $10
-	jp nz, Function117837
+	and D_RIGHT
+	jp nz, Function117764_d_right
 	ret
 
-Function1177a5: ; 1177a5 (45:77a5)
+Function117764_select: ; 1177a5 (45:77a5)
 	callba Function171cf0
 	ret
 
-Function1177ac: ; 1177ac (45:77ac)
+Function117764_start: ; 1177ac (45:77ac)
 	ld a, $2
 	ld [wcd4c], a
 	ld a, $4
@@ -7830,7 +7833,8 @@ Function1177b7: ; 1177b7 (45:77b7)
 	ld a, [wcd4a]
 	and a
 	jr z, .asm_1177c5
-	jp Function117a0a
+	jp MobilePassword_IncrementJumptable
+
 .asm_1177c5
 	ld a, $6
 	ld [wcd49], a
@@ -7840,8 +7844,9 @@ Function1177cb: ; 1177cb (45:77cb)
 	ld a, $80
 	ld [wcd49], a
 	ld [ScriptVar], a
-	jp Function117a0a
-asm_1177d6: ; 1177d6 (45:77d6)
+	jp MobilePassword_IncrementJumptable
+
+Function117764_b_button: ; 1177d6 (45:77d6)
 	call PlayClickSFX
 	ld a, [wcd4a]
 	and a
@@ -7858,7 +7863,8 @@ asm_1177d6: ; 1177d6 (45:77d6)
 	add hl, de
 	ld [hl], a
 	ret
-asm_1177f1: ; 1177f1 (45:77f1)
+
+Function117764_d_up: ; 1177f1 (45:77f1)
 	ld a, [wcd4d]
 	and a
 	ret z
@@ -7871,10 +7877,10 @@ asm_1177f1: ; 1177f1 (45:77f1)
 	sla a
 	sla a
 	add e
-asm_117806: ; 117806 (45:7806)
+Function117764_d_vertical_load: ; 117806 (45:7806)
 	ld [wcd4c], a
 	ret
-asm_11780a: ; 11780a (45:780a)
+Function117764_d_down: ; 11780a (45:780a)
 	ld a, [wcd4d]
 	cp $4
 	ret z
@@ -7888,15 +7894,15 @@ asm_11780a: ; 11780a (45:780a)
 	cp $5
 	jr nc, .asm_117829
 	xor a
-	jr asm_117806
+	jr Function117764_d_vertical_load
 .asm_117825
 	ld a, $2
-	jr asm_117806
+	jr Function117764_d_vertical_load
 .asm_117829
 	ld a, $1
-	jr asm_117806
+	jr Function117764_d_vertical_load
 
-Function11782d: ; 11782d (45:782d)
+Function117764_d_left: ; 11782d (45:782d)
 	ld a, [wcd4c]
 	and a
 	ret z
@@ -7904,13 +7910,13 @@ Function11782d: ; 11782d (45:782d)
 	ld [wcd4c], a
 	ret
 
-Function117837: ; 117837 (45:7837)
+Function117764_d_right: ; 117837 (45:7837)
 	ld e, $d
 	ld a, [wcd4d]
 	cp $4
-	jr nz, .asm_117842
+	jr nz, .wrap
 	ld e, $2
-.asm_117842
+.wrap
 	ld a, [wcd4c]
 	cp e
 	ret z
@@ -7918,33 +7924,34 @@ Function117837: ; 117837 (45:7837)
 	ld [wcd4c], a
 	ret
 
-Function11784c: ; 11784c (45:784c)
+Function117764_a_button: ; 11784c (45:784c)
 	call PlayClickSFX
 	ld a, [wcd4d]
 	cp $4
-	jr nz, .asm_117866
+	jr nz, .not_4
 	ld a, [wcd4c]
 	cp $2
 	jp z, Function1177b7
 	cp $1
 	jp z, Function1177cb
-	jp Function1177a5
-.asm_117866
+	jp Function117764_select
+
+.not_4
 	ld a, [wcd4a]
 	ld e, a
 	cp $10
-	jp z, Function1177ac
+	jp z, Function117764_start
 	inc a
 	ld [wcd4a], a
 	ld d, $0
 	ld a, [wcd4b]
 	and a
-	jr nz, .asm_117880
+	jr nz, .ascii_symbols
 	ld hl, Unknown_117a0f
-	jr .asm_117883
-.asm_117880
+	jr .got_ascii
+.ascii_symbols
 	ld hl, Unknown_117a47
-.asm_117883
+.got_ascii
 	push de
 	ld a, [wcd4c]
 	ld b, a
@@ -7967,7 +7974,7 @@ Function11784c: ; 11784c (45:784c)
 	ld a, e
 	cp $f
 	ret nz
-	jp Function1177ac
+	jp Function117764_start
 
 Function1178aa: ; 1178aa (45:78aa)
 	ld hl, MenuDataHeader_1179b5
@@ -7980,27 +7987,27 @@ Function1178aa: ; 1178aa (45:78aa)
 	call MenuBoxCoord2Tile
 	callba ReloadMapPart
 	hlcoord 16, 8
-	ld de, String_1179c5
+	ld de, YessNoString_1179c5
 	call PlaceString
 	hlcoord 15, 10
-	ld a, $ed
+	ld a, "▶"
 	ld [hl], a
 	hlcoord 1, 14
-	ld de, String_1179cc
+	ld de, AskSavePasswordString
 	call PlaceString
 	ld a, $1
 	ld [wcd4e], a
-	jp Function117a0a
+	jp MobilePassword_IncrementJumptable
 
 Function1178e8: ; 1178e8 (45:78e8)
 	ld a, [hJoyPressed]
-	cp $2
-	jr z, .asm_117939
-	cp $1
-	jr z, .asm_117925
-	cp $80
-	jr z, .asm_11790f
-	cp $40
+	cp B_BUTTON
+	jr z, .b_button
+	cp A_BUTTON
+	jr z, .a_button
+	cp D_DOWN
+	jr z, .d_down
+	cp D_UP
 	ret nz
 	ld a, [wcd4e]
 	and a
@@ -8008,59 +8015,62 @@ Function1178e8: ; 1178e8 (45:78e8)
 	dec a
 	ld [wcd4e], a
 	hlcoord 15, 8
-	ld a, $ed
+	ld a, "▶"
 	ld [hl], a
 	hlcoord 15, 10
-	ld a, $7f
+	ld a, " "
 	ld [hl], a
 	ret
-.asm_11790f
+
+.d_down
 	ld a, [wcd4e]
 	and a
 	ret nz
 	inc a
 	ld [wcd4e], a
 	hlcoord 15, 8
-	ld a, $7f
+	ld a, " "
 	ld [hl], a
 	hlcoord 15, 10
-	ld a, $ed
+	ld a, "▶"
 	ld [hl], a
 	ret
-.asm_117925
+
+.a_button
 	call PlayClickSFX
 	ld a, [wcd4e]
 	and a
-	jr nz, .asm_117939
+	jr nz, .b_button
 	call ExitMenu
 	ld a, $1
 	ld [wcd4f], a
-	jp Function117a0a
-.asm_117939
+	jp MobilePassword_IncrementJumptable
+
+.b_button
 	call ExitMenu
 	call ExitMenu
-	jp Function117a0a
+	jp MobilePassword_IncrementJumptable
 
 Function117942: ; 117942 (45:7942)
 	call SpeechTextBox
 	hlcoord 1, 14
-	ld de, String_1179f7
+	ld de, SavedPasswordString
 	call PlaceString
 	ld a, $1e
 	ld [wcd4e], a
 	ld a, $5
 	call GetSRAMBank
 	ld a, [wcd4f]
-	ld [$aa4b], a
+	ld [sMobileLoginPassword], a
 	ld hl, wc708
-	ld de, $aa4c
-	ld bc, $11
+	ld de, sMobileLoginPassword + 1
+	ld bc, LOGIN_PASSWORD_LENGTH
 	call CopyBytes
 	call CloseSRAM
 	ld a, [wcd4f]
 	and a
 	jr z, asm_11797e
-	call Function117a0a
+	call MobilePassword_IncrementJumptable
 
 Function117976: ; 117976 (45:7976)
 	ld hl, wcd4e
@@ -8079,11 +8089,11 @@ Function117984: ; 117984 (45:7984)
 	call MenuBoxCoord2Tile
 	callba ReloadMapPart
 	hlcoord 1, 14
-	ld de, String_1179e1
+	ld de, NotAPokemonPasswordString
 	call PlaceString
 	ld a, $1e
 	ld [wcd4e], a
-	call Function117a0a
+	call MobilePassword_IncrementJumptable
 
 Function1179a7: ; 1179a7 (45:79a7)
 	ld hl, wcd4e
@@ -8112,27 +8122,27 @@ MenuDataHeader_1179bd: ; 1179bd
 ; 1179c5
 
 
-String_1179c5: ; 1179c5
+YessNoString_1179c5: ; 1179c5
 	db   "はい"
 	next "いいえ@"
 ; 1179cc
 
-String_1179cc: ; 1179cc
-	db   "こ", $25, "パスワード", $1f, "ほぞんして"
+AskSavePasswordString: ; 1179cc
+	db   "こ%パスワード¯ほぞんして"
 	line "おきますか?@"
 ; 1179e1
 
-String_1179e1: ; 1179e1
-	db   "パスワード", $4a, "にゅうりょく"
+NotAPokemonPasswordString: ; 1179e1
+	db   "パスワード<PKMN>にゅうりょく"
 	line "されていません!@"
 ; 1179f7
 
-String_1179f7: ; 1179f7
-	db   "ログインパスワード", $1f, "ほぞん"
+SavedPasswordString: ; 1179f7
+	db   "ログインパスワード¯ほぞん"
 	line "しました@"
 ; 117a0a
 
-Function117a0a: ; 117a0a (45:7a0a)
+MobilePassword_IncrementJumptable: ; 117a0a (45:7a0a)
 	ld hl, wcd49
 	inc [hl]
 	ret
@@ -8192,7 +8202,7 @@ Function117acd: ; 0x117acd
 	call JoyTextDelay
 	ld a, [wJumptableIndex]
 	bit 7, a
-	jr nz, .asm_117ae2 ; 0x117ad5 $b
+	jr nz, .asm_117ae2
 	call Function117ae9
 	callba Function104000
 	jr Function117acd
@@ -8205,7 +8215,7 @@ Function117ae9: ; 0x117ae9
 	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, $0
-	ld hl, Pointers117af8
+	ld hl, .Jumptable
 rept 2
 	add hl, de
 endr
@@ -8214,7 +8224,7 @@ endr
 	ld l, a
 	jp [hl]
 
-Pointers117af8: ; 0x117af8
+.Jumptable: ; 0x117af8
 	dw Function117b06
 	dw Function117b14
 	dw Function117b28
@@ -8227,25 +8237,25 @@ Function117b06:
 	callba Function172eb9
 	ld a, $10
 	ld [wcf64], a
-	jp Function117cdd
+	jp MobileStudium_JumptableIncrement
 
 Function117b14:
 	ld hl, wcf64
 	dec [hl]
 	ret nz
-	ld hl, Data117cbc
+	ld hl, MenuDataHeader_117cbc
 	call LoadMenuDataHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
-	jp Function117cdd
+	jp MobileStudium_JumptableIncrement
 
 Function117b28:
 	ld hl, MobileStadiumEntryText
 	call PrintText
-	jp Function117cdd
+	jp MobileStudium_JumptableIncrement
 
 Function117b31:
-	ld hl, Data117cc4
+	ld hl, MenuDataHeader_117cc4
 	call LoadMenuDataHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
@@ -8255,17 +8265,17 @@ Function117b31:
 	hlcoord 15, 8
 	ld a, "▶"
 	ld [hl], a
-	jp Function117cdd
+	jp MobileStudium_JumptableIncrement
 
 Function117b4f:
 	ld a, [hJoyPressed]
-	cp $2
-	jr z, .asm_117ba4 ; 0x117b53 $4f
-	cp $1
-	jr z, .asm_117b8c ; 0x117b57 $33
-	cp $80
-	jr z, .asm_117b76 ; 0x117b5b $19
-	cp $40
+	cp B_BUTTON
+	jr z, .b_button
+	cp A_BUTTON
+	jr z, .a_button
+	cp D_DOWN
+	jr z, .d_down
+	cp D_UP
 	ret nz
 	ld a, [wcf64]
 	and a
@@ -8279,7 +8289,8 @@ Function117b4f:
 	ld a, " "
 	ld [hl], a
 	ret
-.asm_117b76
+
+.d_down
 	ld a, [wcf64]
 	and a
 	ret nz
@@ -8292,16 +8303,18 @@ Function117b4f:
 	ld a, "▶"
 	ld [hl], a
 	ret
-.asm_117b8c
+
+.a_button
 	call PlayClickSFX
 	ld a, [wcf64]
 	and a
-	jr nz, .asm_117ba4 ; 0x117b93 $f
+	jr nz, .b_button
 	call ExitMenu
 	call ExitMenu
 	callba ReloadMapPart
-	jp Function117cdd
-.asm_117ba4
+	jp MobileStudium_JumptableIncrement
+
+.b_button
 	call ExitMenu
 	call ExitMenu
 	callba ReloadMapPart
@@ -8317,9 +8330,9 @@ Function117bb6:
 	call ClearSprites
 	ld a, [wc300]
 	and a
-	jr z, .asm_117be7 ; 0x117bca $1b
+	jr z, .asm_117be7
 	cp $a
-	jr z, .asm_117be1 ; 0x117bce $11
+	jr z, .asm_117be1
 .asm_117bd0
 	ld a, $2
 	ld [wc303], a
@@ -8338,31 +8351,31 @@ Function117bb6:
 	ld [rSVBK], a
 	ld a, [wcd89]
 	and $1
-	jr nz, .asm_117c16 ; 0x117bf3 $21
-	ld a, [wd000]
+	jr nz, .asm_117c16
+	ld a, [w3_d000]
 	cp $fe
-	jr nz, .asm_117c16 ; 0x117bfa $1a
-	ld a, [wd001]
+	jr nz, .asm_117c16
+	ld a, [w3_d001]
 	cp $f
-	jr nz, .asm_117c16 ; 0x117c01 $13
-	ld hl, $e000 - 20
+	jr nz, .asm_117c16
+	ld hl, w3_dfec
 	ld de, wcd69
 	ld c, $10
 .asm_117c0b
 	ld a, [de]
 	inc de
 	cp [hl]
-	jr nz, .asm_117c16 ; 0x117c0e $6
+	jr nz, .asm_117c16
 	inc hl
 	dec c
-	jr nz, .asm_117c0b ; 0x117c12 $f7
-	jr .asm_117c20 ; 0x117c14 $a
+	jr nz, .asm_117c0b
+	jr .asm_117c20
 .asm_117c16
 	pop af
 	ld [rSVBK], a
 	ld a, $d3
 	ld [wc300], a
-	jr .asm_117bd0 ; 0x117c1e $b0
+	jr .asm_117bd0
 .asm_117c20
 	pop af
 	ld [rSVBK], a
@@ -8373,17 +8386,17 @@ Function117bb6:
 	ld [rSVBK], a
 	ld a, $7
 	call GetSRAMBank
-	ld hl, wd002
+	ld hl, w3_d002
 	ld de, $b000
 	ld bc, $1000
 	call CopyBytes
 	call CloseSRAM
 	pop af
 	ld [rSVBK], a
-	jp Function117cdd
+	jp MobileStudium_JumptableIncrement
 
 Function117c4a:
-	ld hl, Data117cbc
+	ld hl, MenuDataHeader_117cbc
 	call LoadMenuDataHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
@@ -8394,19 +8407,19 @@ Function117c4a:
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, wd000
-	ld de, $0008
-	ld c, $8
-.asm_117c71
+	ld hl, UnknBGPals
+	ld de, 1 palettes
+	ld c, 8
+.loop
 	push hl
-	ld a, $ff
+	ld a, $7fff % $100
 	ld [hli], a
-	ld a, " "
+	ld a, $7fff / $100
 	ld [hl], a
 	pop hl
 	add hl, de
 	dec c
-	jr nz, .asm_117c71 ; 0x117c7b $f4
+	jr nz, .loop
 	call RotateThreePalettesRight
 	pop af
 	ld [rSVBK], a
@@ -8432,28 +8445,35 @@ Function117c89:
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_117c97 ; 0x117ca2 $f3
+	jr nz, .asm_117c97
 	ld a, l
 	ld [wcd83], a
 	ld a, h
 	ld [wcd84], a
 	ld hl, $bfea
 	ld de, wcd69
-	ld bc, $0010
+	ld bc, $10
 	call CopyBytes
 	call CloseSRAM
 	ret
 
-Data117cbc: ; 0x117cbc
-	db $40, $0c, $00, $11, $13, $00, $00, $00
+MenuDataHeader_117cbc: ; 0x117cbc
+	db $40    ; flags
+	db 12,  0 ; start coords
+	db 17, 19 ; end coords
+	dw NULL   ; menu data 2
+	db 0      ; default option
 
-Data117cc4: ; 0x117cc4
-	db $40, $07, $0e, $0b, $13, $00, $00, $00 ; XXX what is this
+MenuDataHeader_117cc4: ; 0x117cc4
+	db $40    ; flags
+	db  7, 14 ; start coords
+	db 11, 19 ; end coords
+	dw NULL   ; menu data 2
+	db 0      ; default item
 
 YesNo117ccc: ; 0x117ccc
 	db   "はい"
-	next "いいえ"
-	db   "@"
+	next "いいえ@"
 
 MobileStadiumEntryText: ; 0x117cd3
 	text_jump _MobileStadiumEntryText
@@ -8463,9 +8483,7 @@ MobileStadiumSuccessText: ; 0x117cd8
 	text_jump _MobileStadiumSuccessText
 	db "@"
 
-Function117cdd: ; 0x117cdd
+MobileStudium_JumptableIncrement: ; 0x117cdd
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
-
-

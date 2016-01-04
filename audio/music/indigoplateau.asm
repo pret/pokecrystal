@@ -1,8 +1,8 @@
 Music_IndigoPlateau: ; ee852
-	dbw $c0, Music_IndigoPlateau_Ch1
-	dbw $01, Music_IndigoPlateau_Ch2
-	dbw $02, Music_IndigoPlateau_Ch3
-	dbw $03, Music_IndigoPlateau_Ch4
+	musicheader 4, 1, Music_IndigoPlateau_Ch1
+	musicheader 1, 2, Music_IndigoPlateau_Ch2
+	musicheader 1, 3, Music_IndigoPlateau_Ch3
+	musicheader 1, 4, Music_IndigoPlateau_Ch4
 ; ee85e
 
 Music_IndigoPlateau_Ch1: ; ee85e

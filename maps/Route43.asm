@@ -1,3 +1,13 @@
+const_value set 2
+	const ROUTE43_SUPER_NERD1
+	const ROUTE43_SUPER_NERD2
+	const ROUTE43_SUPER_NERD3
+	const ROUTE43_FISHER
+	const ROUTE43_LASS
+	const ROUTE43_YOUNGSTER
+	const ROUTE43_FRUIT_TREE
+	const ROUTE43_POKE_BALL
+
 Route43_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -23,22 +33,22 @@ TrainerCamperSpencer:
 	trainer EVENT_BEAT_CAMPER_SPENCER, CAMPER, SPENCER, CamperSpencerSeenText, CamperSpencerBeatenText, 0, CamperSpencerScript
 
 CamperSpencerScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19d57e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokemaniacBen:
 	trainer EVENT_BEAT_POKEMANIAC_BEN, POKEMANIAC, BEN, PokemaniacBenSeenText, PokemaniacBenBeatenText, 0, PokemaniacBenScript
 
 PokemaniacBenScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19d2d2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokemaniacBrent1:
@@ -46,8 +56,8 @@ TrainerPokemaniacBrent1:
 
 PokemaniacBrent1Script:
 	writecode VAR_CALLERID, PHONE_POKEMANIAC_BRENT
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	checkflag ENGINE_BRENT
 	iftrue UnknownScript_0x19d0cf
 	checkcellnum PHONE_POKEMANIAC_BRENT
@@ -55,7 +65,7 @@ PokemaniacBrent1Script:
 	checkevent EVENT_BRENT_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19d0b8
 	writetext UnknownText_0x19d359
-	keeptextopen
+	buttonsound
 	setevent EVENT_BRENT_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19d12c
 	jump UnknownScript_0x19d0bb
@@ -90,7 +100,7 @@ UnknownScript_0x19d0cf:
 .LoadFight0
 	loadtrainer POKEMANIAC, BRENT1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wBrentFightCount, 1
 	clearflag ENGINE_BRENT
 	end
@@ -98,7 +108,7 @@ UnknownScript_0x19d0cf:
 .LoadFight1
 	loadtrainer POKEMANIAC, BRENT2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wBrentFightCount, 2
 	clearflag ENGINE_BRENT
 	end
@@ -106,7 +116,7 @@ UnknownScript_0x19d0cf:
 .LoadFight2
 	loadtrainer POKEMANIAC, BRENT3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wBrentFightCount, 3
 	clearflag ENGINE_BRENT
 	end
@@ -114,7 +124,7 @@ UnknownScript_0x19d0cf:
 .LoadFight3
 	loadtrainer POKEMANIAC, BRENT4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_BRENT
 	end
 
@@ -150,22 +160,22 @@ TrainerPokemaniacRon:
 	trainer EVENT_BEAT_POKEMANIAC_RON, POKEMANIAC, RON, PokemaniacRonSeenText, PokemaniacRonBeatenText, 0, PokemaniacRonScript
 
 PokemaniacRonScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19d3f8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFisherMarvin:
 	trainer EVENT_BEAT_FISHER_MARVIN, FISHER, MARVIN, FisherMarvinSeenText, FisherMarvinBeatenText, 0, FisherMarvinScript
 
 FisherMarvinScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19d4d3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPicnickerTiffany3:
@@ -173,8 +183,8 @@ TrainerPicnickerTiffany3:
 
 PicnickerTiffany3Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_TIFFANY
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	checkflag ENGINE_TIFFANY
 	iftrue UnknownScript_0x19d1c1
 	checkflag ENGINE_TIFFANY_HAS_PINK_BOW
@@ -186,7 +196,7 @@ PicnickerTiffany3Script:
 	checkevent EVENT_TIFFANY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19d1aa
 	writetext UnknownText_0x19d618
-	keeptextopen
+	buttonsound
 	setevent EVENT_TIFFANY_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19d239
 	jump UnknownScript_0x19d1ad
@@ -221,7 +231,7 @@ UnknownScript_0x19d1c1:
 .LoadFight0
 	loadtrainer PICNICKER, TIFFANY3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wTiffanyFightCount, 1
 	clearflag ENGINE_TIFFANY
 	end
@@ -229,7 +239,7 @@ UnknownScript_0x19d1c1:
 .LoadFight1
 	loadtrainer PICNICKER, TIFFANY1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wTiffanyFightCount, 2
 	clearflag ENGINE_TIFFANY
 	end
@@ -237,7 +247,7 @@ UnknownScript_0x19d1c1:
 .LoadFight2
 	loadtrainer PICNICKER, TIFFANY2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wTiffanyFightCount, 3
 	clearflag ENGINE_TIFFANY
 	end
@@ -245,7 +255,7 @@ UnknownScript_0x19d1c1:
 .LoadFight3
 	loadtrainer PICNICKER, TIFFANY4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_TIFFANY
 	end
 
@@ -262,8 +272,8 @@ UnknownScript_0x19d230:
 
 UnknownScript_0x19d233:
 	writetext UnknownText_0x19d64b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19d239:
@@ -314,8 +324,8 @@ MapRoute43Signpost2Script:
 FruitTreeScript_0x19d266:
 	fruittree FRUITTREE_ROUTE_43
 
-ItemFragment_0x19d268:
-	db MAX_ETHER, 1
+Route43MaxEther:
+	itemball MAX_ETHER
 
 PokemaniacBenSeenText:
 	text "I love #MON!"
@@ -523,4 +533,4 @@ Route43_MapEventHeader:
 	person_event SPRITE_LASS, 25, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 2, TrainerPicnickerTiffany3, -1
 	person_event SPRITE_YOUNGSTER, 40, 13, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 3, TrainerCamperSpencer, -1
 	person_event SPRITE_FRUIT_TREE, 26, 1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x19d266, -1
-	person_event SPRITE_POKE_BALL, 32, 12, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x19d268, EVENT_ROUTE_43_MAX_ETHER
+	person_event SPRITE_POKE_BALL, 32, 12, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route43MaxEther, EVENT_ROUTE_43_MAX_ETHER

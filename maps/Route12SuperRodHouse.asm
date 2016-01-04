@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE12SUPERRODHOUSE_FISHING_GURU
+
 Route12SuperRodHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,28 +10,28 @@ Route12SuperRodHouse_MapScriptHeader:
 
 FishingGuruScript_0x7f484:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_SUPER_ROD
 	iftrue UnknownScript_0x7f4a0
 	writetext UnknownText_0x7f4af
 	yesorno
 	iffalse UnknownScript_0x7f4a6
 	writetext UnknownText_0x7f52f
-	keeptextopen
+	buttonsound
 	verbosegiveitem SUPER_ROD
 	iffalse UnknownScript_0x7f4aa
 	setevent EVENT_GOT_SUPER_ROD
 UnknownScript_0x7f4a0:
 	writetext UnknownText_0x7f57c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7f4a6:
 	writetext UnknownText_0x7f5ec
-	closetext
+	waitbutton
 UnknownScript_0x7f4aa:
-	loadmovesprites
+	closetext
 	end
 
 SuperRodHouseBookshelf:

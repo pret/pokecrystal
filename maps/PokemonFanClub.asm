@@ -1,3 +1,11 @@
+const_value set 2
+	const POKEMONFANCLUB_GENTLEMAN
+	const POKEMONFANCLUB_RECEPTIONIST
+	const POKEMONFANCLUB_FISHER
+	const POKEMONFANCLUB_TEACHER
+	const POKEMONFANCLUB_FAIRY
+	const POKEMONFANCLUB_ODDISH
+
 PokemonFanClub_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,7 +15,7 @@ PokemonFanClub_MapScriptHeader:
 
 GentlemanScript_0x1917e9:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT
 	iftrue UnknownScript_0x191815
 	checkevent EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT_BUT_BAG_WAS_FULL
@@ -16,29 +24,29 @@ GentlemanScript_0x1917e9:
 	yesorno
 	iffalse UnknownScript_0x19181b
 	writetext UnknownText_0x191911
-	keeptextopen
+	buttonsound
 UnknownScript_0x191802:
 	writetext UnknownText_0x191a3d
-	keeptextopen
+	buttonsound
 	verbosegiveitem RARE_CANDY
 	iffalse UnknownScript_0x19181f
 	setevent EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT
 	writetext UnknownText_0x191a72
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x191815:
 	writetext UnknownText_0x191ae0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19181b:
 	writetext UnknownText_0x191b38
-	closetext
+	waitbutton
 UnknownScript_0x19181f:
-	loadmovesprites
+	closetext
 	end
 
 ReceptionistScript_0x191821:
@@ -46,50 +54,50 @@ ReceptionistScript_0x191821:
 
 FisherScript_0x191824:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_LOST_ITEM_FROM_FAN_CLUB
 	iftrue UnknownScript_0x19185f
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x191838
 	writetext UnknownText_0x191ba0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x191838:
 	writetext UnknownText_0x191bff
 	checkevent EVENT_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM
 	iftrue UnknownScript_0x191844
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x191844:
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x191c5a
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	giveitem LOST_ITEM
 	iffalse UnknownScript_0x191865
-	disappear $6
+	disappear POKEMONFANCLUB_FAIRY
 	writetext UnknownText_0x191d0a
 	playsound SFX_KEY_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
 	setevent EVENT_GOT_LOST_ITEM_FROM_FAN_CLUB
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x19185f:
 	writetext UnknownText_0x191d1e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x191865:
 	writetext UnknownText_0x191d58
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TeacherScript_0x19186b:
@@ -99,11 +107,11 @@ FairyScript_0x19186e:
 	jumptext UnknownText_0x191db1
 
 OddishScript_0x191871:
-	loadfont
+	opentext
 	writetext UnknownText_0x191de9
 	cry BAYLEEF
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapPokemonFanClubSignpost0Script:

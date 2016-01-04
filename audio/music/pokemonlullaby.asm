@@ -1,7 +1,7 @@
 Music_PokemonLullaby: ; f6d79
-	dbw $80, Music_PokemonLullaby_Ch1
-	dbw $01, Music_PokemonLullaby_Ch2
-	dbw $02, Music_PokemonLullaby_Ch3
+	musicheader 3, 1, Music_PokemonLullaby_Ch1
+	musicheader 1, 2, Music_PokemonLullaby_Ch2
+	musicheader 1, 3, Music_PokemonLullaby_Ch3
 ; f6d82
 
 Music_PokemonLullaby_Ch1: ; f6d82

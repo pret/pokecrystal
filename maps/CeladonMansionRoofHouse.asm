@@ -1,3 +1,6 @@
+const_value set 2
+	const CELADONMANSIONROOFHOUSE_PHARMACIST
+
 CeladonMansionRoofHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,29 +10,29 @@ CeladonMansionRoofHouse_MapScriptHeader:
 
 PharmacistScript_0x71afd:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM03_CURSE
 	iftrue UnknownScript_0x71b21
 	writetext UnknownText_0x71b27
-	keeptextopen
+	buttonsound
 	checknite
 	iftrue UnknownScript_0x71b14
 	writetext UnknownText_0x71b4a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x71b14:
 	writetext UnknownText_0x71ba3
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_CURSE
 	iffalse UnknownScript_0x71b25
 	setevent EVENT_GOT_TM03_CURSE
 UnknownScript_0x71b21:
 	writetext UnknownText_0x71db3
-	closetext
+	waitbutton
 UnknownScript_0x71b25:
-	loadmovesprites
+	closetext
 	end
 
 UnknownText_0x71b27:

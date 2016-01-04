@@ -95,7 +95,7 @@ RestartClock: ; 20021 (8:4021)
 	ld [StringBuffer2 + 2], a
 	xor a
 	ld [StringBuffer2 + 3], a
-	call Function677
+	call InitTime
 	call .PrintTime
 	ld hl, .Text_ClockReset
 	call PrintText

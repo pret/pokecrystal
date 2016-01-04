@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE6SAFFRONGATE_OFFICER
+
 Route6SaffronGate_MapScriptHeader:
 .MapTriggers:
 	db 1
@@ -13,18 +16,18 @@ UnknownScript_0x1926e9:
 
 OfficerScript_0x1926ea:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x1926f8
 	writetext UnknownText_0x1926fe
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1926f8:
 	writetext UnknownText_0x1927cb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x1926fe:

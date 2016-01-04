@@ -1,3 +1,11 @@
+const_value set 2
+	const ROUTE8_BIKER1
+	const ROUTE8_BIKER2
+	const ROUTE8_BIKER3
+	const ROUTE8_SUPER_NERD1
+	const ROUTE8_SUPER_NERD2
+	const ROUTE8_FRUIT_TREE
+
 Route8_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,55 +17,55 @@ TrainerBikerDwayne:
 	trainer EVENT_BEAT_BIKER_DWAYNE, BIKER, DWAYNE, BikerDwayneSeenText, BikerDwayneBeatenText, 0, BikerDwayneScript
 
 BikerDwayneScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x6c0c8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBikerHarris:
 	trainer EVENT_BEAT_BIKER_HARRIS, BIKER, HARRIS, BikerHarrisSeenText, BikerHarrisBeatenText, 0, BikerHarrisScript
 
 BikerHarrisScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x6c143
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBikerZeke:
 	trainer EVENT_BEAT_BIKER_ZEKE, BIKER, ZEKE, BikerZekeSeenText, BikerZekeBeatenText, 0, BikerZekeScript
 
 BikerZekeScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x6c1a3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSupernerdSam:
 	trainer EVENT_BEAT_SUPER_NERD_SAM, SUPER_NERD, SAM, SupernerdSamSeenText, SupernerdSamBeatenText, 0, SupernerdSamScript
 
 SupernerdSamScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x6c219
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSupernerdTom:
 	trainer EVENT_BEAT_SUPER_NERD_TOM, SUPER_NERD, TOM, SupernerdTomSeenText, SupernerdTomBeatenText, 0, SupernerdTomScript
 
 SupernerdTomScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x6c27e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute8Signpost1Script:

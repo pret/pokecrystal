@@ -1,3 +1,7 @@
+const_value set 2
+	const KRISSNEIGHBORSHOUSE_COOLTRAINER_F
+	const KRISSNEIGHBORSHOUSE_POKEFAN_F
+
 KrissNeighborsHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -20,7 +24,7 @@ KrissNeighborsHouseRadio:
 	checkevent EVENT_LISTENED_TO_INITIAL_RADIO
 	iftrue .AbbreviatedRadio
 	playmusic MUSIC_POKEMON_TALK
-	loadfont
+	opentext
 	writetext KrisNeighborRadioText1
 	pause 45
 	writetext KrisNeighborRadioText2
@@ -30,16 +34,16 @@ KrissNeighborsHouseRadio:
 	musicfadeout MUSIC_NEW_BARK_TOWN, $10
 	writetext KrisNeighborRadioText4
 	pause 45
-	loadmovesprites
+	closetext
 	setevent EVENT_LISTENED_TO_INITIAL_RADIO
 	end
 .NormalRadio
 	jumpstd radio1
 .AbbreviatedRadio
-	loadfont
+	opentext
 	writetext KrisNeighborRadioText4
 	pause 45
-	loadmovesprites
+	closetext
 	end
 
 KrissNeighborsDaughterText:

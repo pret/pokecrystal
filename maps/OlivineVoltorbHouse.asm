@@ -1,3 +1,6 @@
+const_value set 2
+	const OLIVINEVOLTORBHOUSE_FISHING_GURU
+
 OlivineVoltorbHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,10 +10,10 @@ OlivineVoltorbHouse_MapScriptHeader:
 
 Tim:
 	faceplayer
-	loadfont
+	opentext
 	trade $2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TimsHouseBookshelf:

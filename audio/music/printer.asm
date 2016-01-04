@@ -1,5 +1,5 @@
 Music_Printer: ; f07fd
-	dbw $02, Music_Printer_Ch3
+	musicheader 1, 3, Music_Printer_Ch3
 ; f0800
 
 Music_Printer_Ch3: ; f0800

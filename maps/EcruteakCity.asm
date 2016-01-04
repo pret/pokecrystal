@@ -1,3 +1,12 @@
+const_value set 2
+	const ECRUTEAKCITY_GRAMPS1
+	const ECRUTEAKCITY_GRAMPS2
+	const ECRUTEAKCITY_LASS1
+	const ECRUTEAKCITY_LASS2
+	const ECRUTEAKCITY_FISHER
+	const ECRUTEAKCITY_YOUNGSTER
+	const ECRUTEAKCITY_GRAMPS3
+
 EcruteakCity_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -26,34 +35,34 @@ LassScript_0x1a4012:
 
 LassScript_0x1a4015:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RELEASED_THE_BEASTS
 	iftrue UnknownScript_0x1a4023
 	writetext UnknownText_0x1a421a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1a4023:
 	writetext UnknownText_0x1a4269
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FisherScript_0x1a4029:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_JASMINE_RETURNED_TO_GYM
 	iftrue UnknownScript_0x1a4037
 	writetext UnknownText_0x1a42ac
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1a4037:
 	writetext UnknownText_0x1a4325
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x1a403d:
@@ -80,7 +89,7 @@ EcruteakCityPokeCenterSign:
 EcruteakCityMartSign:
 	jumpstd martsign
 
-MapEcruteakCitySignpostItem7:
+EcruteakCityHiddenHyperPotion:
 	dwb EVENT_ECRUTEAK_CITY_HIDDEN_HYPER_POTION, HYPER_POTION
 
 UnusedMissingDaughterText:
@@ -286,7 +295,7 @@ EcruteakCity_MapEventHeader:
 	signpost 10, 2, SIGNPOST_READ, BurnedTowerSign
 	signpost 27, 24, SIGNPOST_READ, EcruteakCityPokeCenterSign
 	signpost 21, 30, SIGNPOST_READ, EcruteakCityMartSign
-	signpost 14, 23, SIGNPOST_ITEM, MapEcruteakCitySignpostItem7
+	signpost 14, 23, SIGNPOST_ITEM, EcruteakCityHiddenHyperPotion
 
 .PersonEvents:
 	db 7

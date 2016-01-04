@@ -1,3 +1,8 @@
+const_value set 2
+	const FUCHSIAMART_CLERK
+	const FUCHSIAMART_FISHER
+	const FUCHSIAMART_COOLTRAINER_F
+
 FuchsiaMart_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,9 +11,9 @@ FuchsiaMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x195ce8:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_FUCHSIA
-	loadmovesprites
+	closetext
 	end
 
 FisherScript_0x195cef:

@@ -1,3 +1,9 @@
+const_value set 2
+	const CELADONDEPTSTORE2F_CLERK1
+	const CELADONDEPTSTORE2F_CLERK2
+	const CELADONDEPTSTORE2F_POKEFAN_M
+	const CELADONDEPTSTORE2F_YOUNGSTER
+
 CeladonDeptStore2F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,16 +13,16 @@ CeladonDeptStore2F_MapScriptHeader:
 
 ClerkScript_0x70bad:
 	faceplayer
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_CELADON_2F_1
-	loadmovesprites
+	closetext
 	end
 
 ClerkScript_0x70bb5:
 	faceplayer
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_CELADON_2F_2
-	loadmovesprites
+	closetext
 	end
 
 PokefanMScript_0x70bbd:

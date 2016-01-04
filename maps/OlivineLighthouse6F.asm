@@ -1,3 +1,8 @@
+const_value set 2
+	const OLIVINELIGHTHOUSE6F_JASMINE
+	const OLIVINELIGHTHOUSE6F_MONSTER
+	const OLIVINELIGHTHOUSE6F_POKE_BALL
+
 OlivineLighthouse6F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,18 +12,18 @@ OlivineLighthouse6F_MapScriptHeader:
 
 JasmineScript_0x60b91:
 	faceplayer
-	loadfont
+	opentext
 	checkitem SECRETPOTION
 	iftrue UnknownScript_0x60bab
 	checkevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
 	iftrue UnknownScript_0x60ba5
 	writetext UnknownText_0x60c81
-	keeptextopen
+	buttonsound
 	setevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
 UnknownScript_0x60ba5:
 	writetext UnknownText_0x60d64
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x60bab:
@@ -26,72 +31,72 @@ UnknownScript_0x60bab:
 	yesorno
 	iffalse UnknownScript_0x60c25
 	writetext UnknownText_0x60dc3
-	keeptextopen
+	buttonsound
 	takeitem SECRETPOTION
 	writetext UnknownText_0x60dea
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $2, RIGHT
+	spriteface OLIVINELIGHTHOUSE6F_JASMINE, RIGHT
 	pause 15
-	spriteface $3, LEFT
-	loadfont
+	spriteface OLIVINELIGHTHOUSE6F_MONSTER, LEFT
+	opentext
 	playmusic MUSIC_HEAL
 	writetext UnknownText_0x60e44
 	pause 60
-	keeptextopen
-	loadmovesprites
+	buttonsound
+	closetext
 	special RestartMapMusic
 	cry AMPHAROS
 	special FadeOutPalettes
 	pause 10
 	special FadeInPalettes
-	loadfont
+	opentext
 	writetext UnknownText_0x60f3d
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $3, RIGHT
+	spriteface OLIVINELIGHTHOUSE6F_MONSTER, RIGHT
 	pause 10
-	spriteface $3, LEFT
+	spriteface OLIVINELIGHTHOUSE6F_MONSTER, LEFT
 	pause 10
-	spriteface $3, RIGHT
+	spriteface OLIVINELIGHTHOUSE6F_MONSTER, RIGHT
 	pause 10
-	spriteface $3, LEFT
+	spriteface OLIVINELIGHTHOUSE6F_MONSTER, LEFT
 	pause 10
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x60e6c
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_JASMINE_RETURNED_TO_GYM
 	clearevent EVENT_OLIVINE_GYM_JASMINE
 	checkcode VAR_FACING
-	if_equal $0, UnknownScript_0x60c17
-	if_equal $3, UnknownScript_0x60c1e
-	applymovement $2, MovementData_0x60c68
-	disappear $2
+	if_equal DOWN, UnknownScript_0x60c17
+	if_equal RIGHT, UnknownScript_0x60c1e
+	applymovement OLIVINELIGHTHOUSE6F_JASMINE, MovementData_0x60c68
+	disappear OLIVINELIGHTHOUSE6F_JASMINE
 	end
 
 UnknownScript_0x60c17:
-	applymovement $2, MovementData_0x60c70
-	disappear $2
+	applymovement OLIVINELIGHTHOUSE6F_JASMINE, MovementData_0x60c70
+	disappear OLIVINELIGHTHOUSE6F_JASMINE
 	end
 
 UnknownScript_0x60c1e:
-	applymovement $2, MovementData_0x60c79
-	disappear $2
+	applymovement OLIVINELIGHTHOUSE6F_JASMINE, MovementData_0x60c79
+	disappear OLIVINELIGHTHOUSE6F_JASMINE
 	end
 
 UnknownScript_0x60c25:
 	writetext UnknownText_0x60edf
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $2, RIGHT
+	spriteface OLIVINELIGHTHOUSE6F_JASMINE, RIGHT
 	pause 15
-	spriteface $3, LEFT
-	loadfont
+	spriteface OLIVINELIGHTHOUSE6F_MONSTER, LEFT
+	opentext
 	writetext UnknownText_0x60ef1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x60c39:
@@ -99,31 +104,31 @@ UnknownScript_0x60c39:
 
 MonsterScript_0x60c3a:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_JASMINE_RETURNED_TO_GYM
 	iftrue UnknownScript_0x60c51
 	writetext UnknownText_0x60f03
 	writebyte AMPHAROS
 	special PlaySlowCry
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x60f19
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x60c51:
 	writetext UnknownText_0x60f3d
 	cry AMPHAROS
+	waitbutton
 	closetext
-	loadmovesprites
 	special FadeOutPalettes
 	special FadeInPalettes
 	special FadeOutPalettes
 	special FadeInPalettes
 	end
 
-ItemFragment_0x60c66:
-	db SUPER_POTION, 1
+OlivineLighthouse6FSuperPotion:
+	itemball SUPER_POTION
 
 MovementData_0x60c68:
 	slow_step_up
@@ -272,4 +277,4 @@ OlivineLighthouse6F_MapEventHeader:
 	db 3
 	person_event SPRITE_JASMINE, 8, 8, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, JasmineScript_0x60b91, EVENT_OLIVINE_LIGHTHOUSE_JASMINE
 	person_event SPRITE_MONSTER, 8, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, MonsterScript_0x60c3a, -1
-	person_event SPRITE_POKE_BALL, 4, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x60c66, EVENT_OLIVINE_LIGHTHOUSE_6F_SUPER_POTION
+	person_event SPRITE_POKE_BALL, 4, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, OlivineLighthouse6FSuperPotion, EVENT_OLIVINE_LIGHTHOUSE_6F_SUPER_POTION

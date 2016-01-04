@@ -1,3 +1,8 @@
+const_value set 2
+	const ROUTE20_SWIMMER_GIRL1
+	const ROUTE20_SWIMMER_GIRL2
+	const ROUTE20_SWIMMER_GUY
+
 Route20_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -17,33 +22,33 @@ TrainerSwimmerfNicole:
 	trainer EVENT_BEAT_SWIMMERF_NICOLE, SWIMMERF, NICOLE, SwimmerfNicoleSeenText, SwimmerfNicoleBeatenText, 0, SwimmerfNicoleScript
 
 SwimmerfNicoleScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1acd93
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmerfLori:
 	trainer EVENT_BEAT_SWIMMERF_LORI, SWIMMERF, LORI, SwimmerfLoriSeenText, SwimmerfLoriBeatenText, 0, SwimmerfLoriScript
 
 SwimmerfLoriScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ace15
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmermCameron:
 	trainer EVENT_BEAT_SWIMMERM_CAMERON, SWIMMERM, CAMERON, SwimmermCameronSeenText, SwimmermCameronBeatenText, 0, SwimmermCameronScript
 
 SwimmermCameronScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ace8b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute20Signpost0Script:

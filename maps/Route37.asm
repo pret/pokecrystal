@@ -1,3 +1,12 @@
+const_value set 2
+	const ROUTE37_WEIRD_TREE1
+	const ROUTE37_WEIRD_TREE2
+	const ROUTE37_YOUNGSTER
+	const ROUTE37_FRUIT_TREE1
+	const ROUTE37_BUG_CATCHER
+	const ROUTE37_FRUIT_TREE2
+	const ROUTE37_FRUIT_TREE3
+
 Route37_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -12,49 +21,49 @@ Route37_MapScriptHeader:
 SunnyCallback:
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, .SunnyAppears
-	disappear $6
+	disappear ROUTE37_BUG_CATCHER
 	return
 
 .SunnyAppears
-	appear $6
+	appear ROUTE37_BUG_CATCHER
 	return
 
 TrainerTwinsAnnandanne1:
 	trainer EVENT_BEAT_TWINS_ANN_AND_ANNE, TWINS, ANNANDANNE1, TwinsAnnandanne1SeenText, TwinsAnnandanne1BeatenText, 0, TwinsAnnandanne1Script
 
 TwinsAnnandanne1Script:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a8e62
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerTwinsAnnandanne2:
 	trainer EVENT_BEAT_TWINS_ANN_AND_ANNE, TWINS, ANNANDANNE2, TwinsAnnandanne2SeenText, TwinsAnnandanne2BeatenText, 0, TwinsAnnandanne2Script
 
 TwinsAnnandanne2Script:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a8eec
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPsychicGreg:
 	trainer EVENT_BEAT_PSYCHIC_GREG, PSYCHIC_T, GREG, PsychicGregSeenText, PsychicGregBeatenText, 0, PsychicGregScript
 
 PsychicGregScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a8f80
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SunnyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_MAGNET_FROM_SUNNY
 	iftrue SunnySundayScript
 	checkcode VAR_WEEKDAY
@@ -62,37 +71,37 @@ SunnyScript:
 	checkevent EVENT_MET_SUNNY_OF_SUNDAY
 	iftrue .MetSunny
 	writetext MeetSunnyText
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_SUNNY_OF_SUNDAY
 .MetSunny
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Kris
 	writetext SunnyGivesGiftText1
-	keeptextopen
+	buttonsound
 	jump .next
 .Kris
 	writetext SunnyGivesGiftText2
-	keeptextopen
+	buttonsound
 .next
 	verbosegiveitem MAGNET
 	iffalse SunnyDoneScript
 	setevent EVENT_GOT_MAGNET_FROM_SUNNY
 	writetext SunnyGaveGiftText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SunnySundayScript:
 	writetext SunnySundayText
-	closetext
+	waitbutton
 SunnyDoneScript:
-	loadmovesprites
+	closetext
 	end
 
 SunnyNotSundayScript:
 	writetext SunnyNotSundayText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute37Signpost0Script:
@@ -107,7 +116,7 @@ FruitTreeScript_0x1a8e0b:
 FruitTreeScript_0x1a8e0d:
 	fruittree FRUITTREE_ROUTE_37_3
 
-MapRoute37SignpostItem1:
+Route37HiddenEther:
 	dwb EVENT_ROUTE_37_HIDDEN_ETHER, ETHER
 	
 
@@ -245,7 +254,7 @@ Route37_MapEventHeader:
 .Signposts:
 	db 2
 	signpost 3, 5, SIGNPOST_READ, MapRoute37Signpost0Script
-	signpost 2, 4, SIGNPOST_ITEM, MapRoute37SignpostItem1
+	signpost 2, 4, SIGNPOST_ITEM, Route37HiddenEther
 
 .PersonEvents:
 	db 7

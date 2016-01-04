@@ -1,3 +1,10 @@
+const_value set 2
+	const KURTSHOUSE_KURT1
+	const KURTSHOUSE_TWIN1
+	const KURTSHOUSE_SLOWPOKE
+	const KURTSHOUSE_KURT2
+	const KURTSHOUSE_TWIN2
+
 KurtsHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -16,56 +23,56 @@ UnknownScript_0x18e154:
 	iftrue UnknownScript_0x18e177
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue UnknownScript_0x18e16f
-	disappear $5
-	appear $2
-	disappear $6
-	appear $3
+	disappear KURTSHOUSE_KURT2
+	appear KURTSHOUSE_KURT1
+	disappear KURTSHOUSE_TWIN2
+	appear KURTSHOUSE_TWIN1
 	return
 
 UnknownScript_0x18e16f:
-	disappear $2
-	appear $5
-	disappear $3
-	appear $6
+	disappear KURTSHOUSE_KURT1
+	appear KURTSHOUSE_KURT2
+	disappear KURTSHOUSE_TWIN1
+	appear KURTSHOUSE_TWIN2
 UnknownScript_0x18e177:
 	return
 
 KurtScript_0x18e178:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_KURT_GAVE_YOU_LURE_BALL
 	iftrue .GotLureBall
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iftrue .ClearedSlowpokeWell
 	writetext UnknownText_0x18e473
+	waitbutton
 	closetext
-	loadmovesprites
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	setevent EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
 	checkcode VAR_FACING
 	if_equal UP, .RunAround
 	spriteface PLAYER, DOWN
 	playsound SFX_FLY
-	applymovement $2, MovementData_0x18e466
+	applymovement KURTSHOUSE_KURT1, MovementData_0x18e466
 	playsound SFX_EXIT_BUILDING
-	disappear $2
-	waitbutton
+	disappear KURTSHOUSE_KURT1
+	waitsfx
 	special RestartMapMusic
 	end
 
 .RunAround:
 	spriteface PLAYER, DOWN
 	playsound SFX_FLY
-	applymovement $2, MovementData_0x18e46c
+	applymovement KURTSHOUSE_KURT1, MovementData_0x18e46c
 	playsound SFX_EXIT_BUILDING
-	disappear $2
-	waitbutton
+	disappear KURTSHOUSE_KURT1
+	waitsfx
 	special RestartMapMusic
 	end
 
 .ClearedSlowpokeWell:
 	writetext UnknownText_0x18e615
-	keeptextopen
+	buttonsound
 	verbosegiveitem LURE_BALL
 	iffalse .NoRoomForBall
 	setevent EVENT_KURT_GAVE_YOU_LURE_BALL
@@ -94,7 +101,7 @@ KurtScript_0x18e178:
 	checkevent EVENT_DRAGON_SHRINE_QUESTION_2
 	iftrue .CheckApricorns
 	writetext UnknownText_0x18e6c9
-	closetext
+	waitbutton
 .CheckApricorns:
 	checkitem RED_APRICORN
 	iftrue .AskApricorn
@@ -114,18 +121,18 @@ KurtScript_0x18e178:
 	iftrue .ThatTurnedOutGreat
 	checkevent EVENT_DRAGON_SHRINE_QUESTION_2
 	iftrue .IMakeBallsFromApricorns
-	loadmovesprites
+	closetext
 	end
 
 .IMakeBallsFromApricorns:
 	writetext UnknownText_0x18e6c9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .AskApricorn:
 	writetext UnknownText_0x18e736
-	keeptextopen
+	buttonsound
 	setevent EVENT_DRAGON_SHRINE_QUESTION_2
 	special Special_SelectApricornForKurt
 	if_equal $0, .Cancel
@@ -168,30 +175,30 @@ KurtScript_0x18e178:
 	setflag ENGINE_KURT_MAKING_BALLS
 .WaitForApricorns:
 	writetext UnknownText_0x18e779
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Cancel:
 	writetext UnknownText_0x18e7bc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ._ThatTurnedOutGreat:
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 .ThatTurnedOutGreat:
 	writetext UnknownText_0x18e82a
-	closetext
+	waitbutton
 .NoRoomForBall:
-	loadmovesprites
+	closetext
 	end
 
 .GiveLevelBall:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
-	keeptextopen
+	buttonsound
 	verbosegiveitem2 LEVEL_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_RED_APRICORN
@@ -201,7 +208,7 @@ KurtScript_0x18e178:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
-	keeptextopen
+	buttonsound
 	verbosegiveitem2 LURE_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_BLU_APRICORN
@@ -211,7 +218,7 @@ KurtScript_0x18e178:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
-	keeptextopen
+	buttonsound
 	verbosegiveitem2 MOON_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_YLW_APRICORN
@@ -221,7 +228,7 @@ KurtScript_0x18e178:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
-	keeptextopen
+	buttonsound
 	verbosegiveitem2 FRIEND_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_GRN_APRICORN
@@ -231,7 +238,7 @@ KurtScript_0x18e178:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
-	keeptextopen
+	buttonsound
 	verbosegiveitem2 FAST_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_WHT_APRICORN
@@ -241,7 +248,7 @@ KurtScript_0x18e178:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
-	keeptextopen
+	buttonsound
 	verbosegiveitem2 HEAVY_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_BLK_APRICORN
@@ -251,7 +258,7 @@ KurtScript_0x18e178:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue KurtMakingBallsScript
 	writetext UnknownText_0x18e7fb
-	keeptextopen
+	buttonsound
 	verbosegiveitem2 LOVE_BALL, VAR_KURT_APRICORNS
 	iffalse .NoRoomForBall
 	clearevent EVENT_GAVE_KURT_PNK_APRICORN
@@ -263,8 +270,8 @@ KurtScript_0x18e178:
 	checkitem GS_BALL
 	iffalse .NoGSBall
 	writetext UnknownText_0x18e8ab
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_GAVE_GS_BALL_TO_KURT
 	takeitem GS_BALL
 	setflag ENGINE_KURT_MAKING_BALLS
@@ -274,71 +281,71 @@ KurtScript_0x18e178:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iffalse .NotMakingBalls
 	writetext UnknownText_0x18e934
-	closetext
+	waitbutton
 	writetext UnknownText_0x18e949
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .NotMakingBalls:
 	writetext UnknownText_0x18e95c
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_FOREST_IS_RESTLESS
 	clearevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	clearevent EVENT_GAVE_GS_BALL_TO_KURT
-	special Special_RotatePalettesRightMusic
+	special Special_FadeOutMusic
 	pause 20
-	showemote EMOTE_SHOCK, $2, 30
+	showemote EMOTE_SHOCK, KURTSHOUSE_KURT1, 30
 	checkcode VAR_FACING
 	if_equal UP, .GSBallRunAround
 	spriteface PLAYER, DOWN
 	playsound SFX_FLY
-	applymovement $2, MovementData_0x18e466
+	applymovement KURTSHOUSE_KURT1, MovementData_0x18e466
 	jump .KurtHasLeftTheBuilding
 
 .GSBallRunAround:
 	spriteface PLAYER, DOWN
 	playsound SFX_FLY
-	applymovement $2, MovementData_0x18e46c
+	applymovement KURTSHOUSE_KURT1, MovementData_0x18e46c
 .KurtHasLeftTheBuilding:
 	playsound SFX_EXIT_BUILDING
-	disappear $2
+	disappear KURTSHOUSE_KURT1
 	clearevent EVENT_AZALEA_TOWN_KURT
-	waitbutton
+	waitsfx
 	special RestartMapMusic
 	domaptrigger AZALEA_TOWN, $2
 	end
 
 KurtScript_0x18e3bd:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_GS_BALL_TO_KURT
 	iftrue KurtScript_ImCheckingItNow
 KurtMakingBallsScript:
 	checkevent EVENT_BUGGING_KURT_TOO_MUCH
 	iffalse Script_FirstTimeBuggingKurt
 	writetext UnknownText_0x18e7d8
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $5, UP
+	spriteface KURTSHOUSE_KURT2, UP
 	end
 
 Script_FirstTimeBuggingKurt:
 	writetext UnknownText_0x18e863
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $5, UP
+	spriteface KURTSHOUSE_KURT2, UP
 	setevent EVENT_BUGGING_KURT_TOO_MUCH
 	end
 
 KurtScript_ImCheckingItNow:
 	writetext UnknownText_0x18e934
-	closetext
-	spriteface $5, UP
+	waitbutton
+	spriteface KURTSHOUSE_KURT2, UP
 	writetext UnknownText_0x18e949
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 KurtsGranddaughter1:
@@ -355,66 +362,66 @@ KurtsGranddaughter1:
 	iftrue .SlowpokeBack
 	checkevent EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
 	iftrue .Lonely
-	loadfont
+	opentext
 	writetext KurtsGranddaughterSlowpokeGoneText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .SlowpokeBack
-	loadfont
+	opentext
 	writetext KurtsGranddaughterSlowpokeBackText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Lonely
-	loadfont
+	opentext
 	writetext KurtsGranddaughterLonelyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Dad
-	loadfont
+	opentext
 	writetext KurtsGranddaughterDadText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 KurtsGranddaughter2:
 	faceplayer
 KurtsGranddaughter2Subscript:
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_GS_BALL_TO_KURT
 	iftrue .GSBall
 	writetext KurtsGranddaughterHelpText
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $6, RIGHT
+	spriteface KURTSHOUSE_TWIN2, RIGHT
 	end
 
 .GSBall
 	writetext KurtsGranddaughterGSBallText
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $6, RIGHT
+	spriteface KURTSHOUSE_TWIN2, RIGHT
 	end
 
 KurtsGranddaughterFunScript:
-	loadfont
+	opentext
 	writetext KurtsGranddaughterFunText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 KurtsHouseSlowpoke:
 	faceplayer
-	loadfont
+	opentext
 	writetext KurtsHouseSlowpokeText
 	cry SLOWPOKE
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 KurtsHouseOakPhoto:

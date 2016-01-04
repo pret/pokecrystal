@@ -1,3 +1,14 @@
+const_value set 2
+	const UNIONCAVE1F_POKEFAN_M1
+	const UNIONCAVE1F_SUPER_NERD
+	const UNIONCAVE1F_POKEFAN_M2
+	const UNIONCAVE1F_FISHER1
+	const UNIONCAVE1F_FISHER2
+	const UNIONCAVE1F_POKE_BALL1
+	const UNIONCAVE1F_POKE_BALL2
+	const UNIONCAVE1F_POKE_BALL3
+	const UNIONCAVE1F_POKE_BALL4
+
 UnionCave1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,68 +20,68 @@ TrainerPokemaniacLarry:
 	trainer EVENT_BEAT_POKEMANIAC_LARRY, POKEMANIAC, LARRY, PokemaniacLarrySeenText, PokemaniacLarryBeatenText, 0, PokemaniacLarryScript
 
 PokemaniacLarryScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x59d31
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerHikerRussell:
 	trainer EVENT_BEAT_HIKER_RUSSELL, HIKER, RUSSELL, HikerRussellSeenText, HikerRussellBeatenText, 0, HikerRussellScript
 
 HikerRussellScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x59c6c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerHikerDaniel:
 	trainer EVENT_BEAT_HIKER_DANIEL, HIKER, DANIEL, HikerDanielSeenText, HikerDanielBeatenText, 0, HikerDanielScript
 
 HikerDanielScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x59dc9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFirebreatherBill:
 	trainer EVENT_BEAT_FIREBREATHER_BILL, FIREBREATHER, BILL, FirebreatherBillSeenText, FirebreatherBillBeatenText, 0, FirebreatherBillScript
 
 FirebreatherBillScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x59e6f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFirebreatherRay:
 	trainer EVENT_BEAT_FIREBREATHER_RAY, FIREBREATHER, RAY, FirebreatherRaySeenText, FirebreatherRayBeatenText, 0, FirebreatherRayScript
 
 FirebreatherRayScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x59efc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-ItemFragment_0x59c00:
-	db GREAT_BALL, 1
+UnionCave1FGreatBall:
+	itemball GREAT_BALL
 
-ItemFragment_0x59c02:
-	db X_ATTACK, 1
+UnionCave1FXAttack:
+	itemball X_ATTACK
 
-ItemFragment_0x59c04:
-	db POTION, 1
+UnionCave1FPotion:
+	itemball POTION
 
-ItemFragment_0x59c06:
-	db AWAKENING, 1
+UnionCave1FAwakening:
+	itemball AWAKENING
 
 UnknownScript_0x59c08:
 	jumptext UnknownText_0x59f29
@@ -212,7 +223,7 @@ UnionCave1F_MapEventHeader:
 	person_event SPRITE_POKEFAN_M, 8, 11, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 1, TrainerHikerRussell, -1
 	person_event SPRITE_FISHER, 27, 15, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 4, TrainerFirebreatherRay, -1
 	person_event SPRITE_FISHER, 19, 14, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 4, TrainerFirebreatherBill, -1
-	person_event SPRITE_POKE_BALL, 21, 17, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x59c00, EVENT_UNION_CAVE_1F_GREAT_BALL
-	person_event SPRITE_POKE_BALL, 2, 4, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x59c02, EVENT_UNION_CAVE_1F_X_ATTACK
-	person_event SPRITE_POKE_BALL, 17, 4, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x59c04, EVENT_UNION_CAVE_1F_POTION
-	person_event SPRITE_POKE_BALL, 33, 12, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x59c06, EVENT_UNION_CAVE_1F_AWAKENING
+	person_event SPRITE_POKE_BALL, 21, 17, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, UnionCave1FGreatBall, EVENT_UNION_CAVE_1F_GREAT_BALL
+	person_event SPRITE_POKE_BALL, 2, 4, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, UnionCave1FXAttack, EVENT_UNION_CAVE_1F_X_ATTACK
+	person_event SPRITE_POKE_BALL, 17, 4, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, UnionCave1FPotion, EVENT_UNION_CAVE_1F_POTION
+	person_event SPRITE_POKE_BALL, 33, 12, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, UnionCave1FAwakening, EVENT_UNION_CAVE_1F_AWAKENING

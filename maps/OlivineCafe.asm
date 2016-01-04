@@ -1,3 +1,8 @@
+const_value set 2
+	const OLIVINECAFE_SAILOR1
+	const OLIVINECAFE_FISHING_GURU
+	const OLIVINECAFE_SAILOR2
+
 OlivineCafe_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,17 +12,17 @@ OlivineCafe_MapScriptHeader:
 
 SailorScript_0x9c8c1:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_HM04_STRENGTH
 	iftrue UnknownScript_0x9c8d3
 	writetext UnknownText_0x9c8df
-	keeptextopen
+	buttonsound
 	verbosegiveitem HM_STRENGTH
 	setevent EVENT_GOT_HM04_STRENGTH
 UnknownScript_0x9c8d3:
 	writetext UnknownText_0x9c965
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FishingGuruScript_0x9c8d9:

@@ -1,3 +1,9 @@
+const_value set 2
+	const VIRIDIANNICKNAMESPEECHHOUSE_POKEFAN_M
+	const VIRIDIANNICKNAMESPEECHHOUSE_LASS
+	const VIRIDIANNICKNAMESPEECHHOUSE_MOLTRES
+	const VIRIDIANNICKNAMESPEECHHOUSE_GROWLITHE
+
 ViridianNicknameSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -12,19 +18,19 @@ LassScript_0x9ae3d:
 	jumptextfaceplayer UnknownText_0x9aecb
 
 MoltresScript_0x9ae40:
-	loadfont
+	opentext
 	writetext UnknownText_0x9aefe
 	cry SPEAROW
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GrowlitheScript_0x9ae4a:
-	loadfont
+	opentext
 	writetext UnknownText_0x9af10
 	cry RATTATA
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x9ae54:

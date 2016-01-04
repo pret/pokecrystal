@@ -1,3 +1,6 @@
+const_value set 2
+	const LAKEOFRAGEHIDDENPOWERHOUSE_FISHER
+
 LakeofRageHiddenPowerHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,23 +10,23 @@ LakeofRageHiddenPowerHouse_MapScriptHeader:
 
 HiddenPowerGuy:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM10_HIDDEN_POWER
 	iftrue .AlreadyGotItem
 	writetext HiddenPowerGuyText1
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_HIDDEN_POWER
 	iffalse .Done
 	setevent EVENT_GOT_TM10_HIDDEN_POWER
 	writetext HiddenPowerGuyText2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 .AlreadyGotItem
 	writetext HiddenPowerGuyText3
-	closetext
+	waitbutton
 .Done
-	loadmovesprites
+	closetext
 	end
 
 HiddenPowerHouseBookshelf:

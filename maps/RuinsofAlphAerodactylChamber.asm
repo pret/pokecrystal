@@ -1,3 +1,4 @@
+
 RuinsofAlphAerodactylChamber_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -49,14 +50,14 @@ UnknownScript_0x58dd3:
 	reloadmappart
 	earthquake 50
 	dotrigger $1
-	loadmovesprites
+	closetext
 	end
 
 MapRuinsofAlphAerodactylChamberSignpost2Script:
 	refreshscreen $0
 	writebyte $2
 	special Special_UnownPuzzle
-	loadmovesprites
+	closetext
 	iftrue UnknownScript_0x58df7
 	end
 
@@ -74,7 +75,7 @@ UnknownScript_0x58df7:
 	earthquake 80
 	applymovement PLAYER, MovementData_0x58e4d
 	playsound SFX_KINESIS
-	waitbutton
+	waitsfx
 	pause 20
 	warpcheck
 	end
@@ -86,28 +87,28 @@ MapRuinsofAlphAerodactylChamberSignpost3Script:
 	jumptext UnknownText_0x58ee7
 
 MapRuinsofAlphAerodactylChamberSignpost4Script:
-	loadfont
+	opentext
 	writetext UnknownText_0x58e4f
 	writebyte $1
 	special Special_DisplayUnownWords
-	loadmovesprites
+	closetext
 	end
 
 MapRuinsofAlphAerodactylChamberSignpost5Script:
 	checkevent EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
 	iftrue UnknownScript_0x58e46
-	loadfont
+	opentext
 	writetext UnknownText_0x58e81
 	writebyte $1
 	special Special_DisplayUnownWords
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x58e46:
-	loadfont
+	opentext
 	writetext UnknownText_0x58ea2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MovementData_0x58e4d:

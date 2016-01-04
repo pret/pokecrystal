@@ -1,3 +1,6 @@
+const_value set 2
+	const CIANWOODPHARMACY_PHARMACIST
+
 CianwoodPharmacy_MapScriptHeader:
 .MapTriggers:
 	db 1
@@ -13,27 +16,27 @@ CianwoodPharmacyTrigger:
 
 CianwoodPharmacist:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_SECRETPOTION_FROM_PHARMACY
 	iftrue .Mart
 	checkevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
 	iffalse .Mart
 	writetext PharmacistGiveSecretpotionText
-	keeptextopen
+	buttonsound
 	giveitem SECRETPOTION
 	writetext ReceivedSecretpotionText
 	playsound SFX_KEY_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
 	setevent EVENT_GOT_SECRETPOTION_FROM_PHARMACY
 	writetext PharmacistDescribeSecretpotionText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Mart
 	pokemart MARTTYPE_PHARMACY, MART_CIANWOOD
-	loadmovesprites
+	closetext
 	end
 
 CianwoodPharmacyBookshelf:

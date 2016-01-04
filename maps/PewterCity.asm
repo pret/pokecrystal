@@ -1,3 +1,10 @@
+const_value set 2
+	const PEWTERCITY_COOLTRAINER_F
+	const PEWTERCITY_BUG_CATCHER
+	const PEWTERCITY_GRAMPS
+	const PEWTERCITY_FRUIT_TREE1
+	const PEWTERCITY_FRUIT_TREE2
+
 PewterCity_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -20,20 +27,20 @@ BugCatcherScript_0x18c00c:
 
 GrampsScript_0x18c00f:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_SILVER_WING
 	iftrue UnknownScript_0x18c023
 	writetext UnknownText_0x18c0c6
-	keeptextopen
+	buttonsound
 	verbosegiveitem SILVER_WING
 	setevent EVENT_GOT_SILVER_WING
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x18c023:
 	writetext UnknownText_0x18c1aa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PewterCitySign:

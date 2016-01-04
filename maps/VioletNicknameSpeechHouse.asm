@@ -1,3 +1,8 @@
+const_value set 2
+	const VIOLETNICKNAMESPEECHHOUSE_TEACHER
+	const VIOLETNICKNAMESPEECHHOUSE_LASS
+	const VIOLETNICKNAMESPEECHHOUSE_BIRD
+
 VioletNicknameSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -13,11 +18,11 @@ LassScript_0x693ec:
 
 BirdScript_0x693ef:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x6947c
 	cry PIDGEY
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x693fa:

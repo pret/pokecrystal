@@ -1,8 +1,8 @@
 Music_RocketTheme: ; f766d
-	dbw $c0, Music_RocketTheme_Ch1
-	dbw $01, Music_RocketTheme_Ch2
-	dbw $02, Music_RocketTheme_Ch3
-	dbw $03, Music_RocketTheme_Ch4
+	musicheader 4, 1, Music_RocketTheme_Ch1
+	musicheader 1, 2, Music_RocketTheme_Ch2
+	musicheader 1, 3, Music_RocketTheme_Ch3
+	musicheader 1, 4, Music_RocketTheme_Ch4
 ; f7679
 
 Music_RocketTheme_Ch1: ; f7679

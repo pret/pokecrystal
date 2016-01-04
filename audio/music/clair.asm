@@ -1,8 +1,8 @@
 Music_Clair: ; 1fa8d
-	dbw $c0, Music_Clair_Ch1
-	dbw $01, Music_Clair_Ch2
-	dbw $02, Music_Clair_Ch3
-	dbw $03, Music_Clair_Ch4
+	musicheader 4, 1, Music_Clair_Ch1
+	musicheader 1, 2, Music_Clair_Ch2
+	musicheader 1, 3, Music_Clair_Ch3
+	musicheader 1, 4, Music_Clair_Ch4
 ; 1fa99
 
 Music_Clair_Ch1: ; 1fa99

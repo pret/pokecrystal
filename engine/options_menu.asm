@@ -47,7 +47,7 @@ _OptionsMenu: ; e41d0
 	jr c, .ExitOptions
 
 .dpad
-	call Functione455c
+	call Options_UpdateCursorPosition
 	ld c, 3
 	call DelayFrames
 	jr .joypad_loop
@@ -563,3 +563,20 @@ OptionsControl: ; e452a
 	scf
 	ret
 ; e455c
+
+Options_UpdateCursorPosition: ; e455c
+	hlcoord 1, 1
+	ld de, SCREEN_WIDTH
+	ld c, $10
+.loop
+	ld [hl], " "
+	add hl, de
+	dec c
+	jr nz, .loop
+	hlcoord 1, 2
+	ld bc, 2 * SCREEN_WIDTH
+	ld a, [wJumptableIndex]
+	call AddNTimes
+	ld [hl], "▶"
+	ret
+; e4579

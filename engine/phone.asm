@@ -274,7 +274,7 @@ endr
 	push hl
 	call LoadCallerScript
 	pop hl
-	ld de, wd048
+	ld de, wPhoneScriptPointer
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -442,10 +442,10 @@ WrongNumber: ; 90233
 Script_ReceivePhoneCall: ; 0x90241
 	refreshscreen $0
 	callasm RingTwice_StartCall
-	ptcall wd048
-	closetext
+	ptcall wPhoneScriptPointer
+	waitbutton
 	callasm HangUp
-	loadmovesprites
+	closetext
 	callasm InitCallReceiveDelay
 	end
 ; 0x90255

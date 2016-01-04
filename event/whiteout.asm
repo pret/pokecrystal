@@ -9,7 +9,7 @@ Script_OverworldWhiteout:: ; 0x124c8
 
 Script_Whiteout: ; 0x124ce
 	writetext .WhitedOutText
-	closetext
+	waitbutton
 	special FadeOutPalettes
 	pause 40
 	special HealParty
@@ -20,7 +20,7 @@ Script_Whiteout: ; 0x124ce
 	farscall Script_AbortBugContest
 	special WarpToSpawnPoint
 	newloadmap MAPSETUP_WARP
-	resetfuncs
+	end_all
 
 .bug_contest
 	jumpstd bugcontestresultswarp
@@ -35,14 +35,14 @@ Script_Whiteout: ; 0x124ce
 OverworldBGMap: ; 124fa
 	call ClearPalettes
 	call ClearScreen
-	call Function3200
+	call WaitBGMap2
 	call HideSprites
 	call RotateThreePalettesLeft
 	ret
 ; 1250a
 
 BattleBGMap: ; 1250a
-	ld b, SCGB_00
+	ld b, SCGB_BATTLE_GRAYSCALE
 	call GetSGBLayout
 	call SetPalettes
 	ret

@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE16FUCHSIASPEECHHOUSE_SUPER_NERD
+
 Route16FuchsiaSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

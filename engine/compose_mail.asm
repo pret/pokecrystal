@@ -34,7 +34,7 @@ _ComposeMailMessage: ; 11e75 (mail?)
 	ld a, BANK(.MailIcon)
 	call FarCopyBytes
 	xor a
-	ld hl, wc300
+	ld hl, wSpriteAnimDict
 	ld [hli], a
 	ld [hl], a
 
@@ -43,7 +43,7 @@ _ComposeMailMessage: ; 11e75 (mail?)
 	ld a, SPRITE_ANIM_INDEX_00
 	call _InitSpriteAnimStruct
 
-	ld hl, $2
+	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
 	ld [hl], $0
 	call .InitCharset
@@ -57,7 +57,7 @@ _ComposeMailMessage: ; 11e75 (mail?)
 	ld a, %11100100
 	call DmgToCgbBGPals
 	ld a, %11100100
-	call Functioncf8
+	call DmgToCgbObjPal0
 	call Function11be0
 	ld hl, wc6d0
 	ld e, [hl]
@@ -67,6 +67,7 @@ _ComposeMailMessage: ; 11e75 (mail?)
 	add hl, de
 	ld [hl], $4e
 	ret
+
 ; 11ef4 (4:5ef4)
 
 .MailIcon: ; 11ef4
@@ -77,6 +78,7 @@ INCBIN "gfx/icon/mail2.2bpp"
 	ld a, $21
 	ld [wc6d3], a
 	ret
+
 ; 11f7a (4:5f7a)
 
 .Dummy: ; dummied out
@@ -123,13 +125,14 @@ INCBIN "gfx/icon/mail2.2bpp"
 	bit 7, a
 	jr nz, .exit_mail
 	call .DoJumptable
-	callba Function8cf62
+	callba PlaySpriteAnimationsAndDelayFrame
 	call .Update
 	call DelayFrame
 	and a
 	ret
+
 .exit_mail
-	callab Function8cf53
+	callab ClearSpriteAnims
 	call ClearSprites
 	xor a
 	ld [hSCX], a
@@ -179,10 +182,10 @@ endr
 	ld [wc6d5], a
 	ld a, b
 	ld [wc6d6], a
-	ld hl, $1
+	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld a, [hl]
-	ld hl, $e
+	ld hl, SPRITEANIMSTRUCT_0E
 	add hl, bc
 	ld [hl], a
 	ld hl, wJumptableIndex
@@ -232,10 +235,10 @@ endr
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $9
-	ld hl, $d
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld [hl], $5
 	ret
@@ -268,44 +271,47 @@ endr
 	ld de, MailEntry_Uppercase
 	call .PlaceMailCharset
 	ret
+
 .switch_to_lowercase
 	ld de, MailEntry_Lowercase
 	call .PlaceMailCharset
 	ret
 
+; called from engine/sprite_anims.asm
 Function120c1: ; 120c1 (4:60c1)
 	call Function1210c
-	ld hl, SpriteAnim1Sprite0d - SpriteAnim1
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
 	ld e, a
 	swap e
-	ld hl, SpriteAnim1YOffset - SpriteAnim1
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], e
 	cp $5
 	ld de, Unknown_120f8
-	ld a, $0
+	ld a, 0
 	jr nz, .asm_120df
 	ld de, Unknown_12102
-	ld a, $1
+	ld a, 1
 .asm_120df
-	ld hl, SpriteAnim1Sprite0e - SpriteAnim1
+	ld hl, SPRITEANIMSTRUCT_0E
 	add hl, bc
 	add [hl]
-	ld hl, SpriteAnim1Sprite01 - SpriteAnim1
+	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld [hl], a
-	ld hl, SpriteAnim1Sprite0c - SpriteAnim1
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld l, [hl]
-	ld h, SpriteAnim1Index - SpriteAnim1
+	ld h, 0
 	add hl, de
 	ld a, [hl]
-	ld hl, SpriteAnim1XOffset - SpriteAnim1
+	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld [hl], a
 	ret
+
 ; 120f8 (4:60f8)
 
 Unknown_120f8: ; 120f8
@@ -329,20 +335,23 @@ Function1210c: ; 1210c (4:610c)
 	and D_RIGHT
 	jr nz, .right
 	ret
+
 .right
 	call Function1218b
 	and a
 	jr nz, .asm_12138
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	cp $9
 	jr nc, .asm_12135
 	inc [hl]
 	ret
+
 .asm_12135
 	ld [hl], $0
 	ret
+
 .asm_12138
 	cp $3
 	jr nz, .asm_1213d
@@ -351,24 +360,27 @@ Function1210c: ; 1210c (4:610c)
 	ld e, a
 	add a
 	add e
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], a
 	ret
+
 .left
 	call Function1218b
 	and a
 	jr nz, .asm_12159
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	and a
 	jr z, .asm_12156
 	dec [hl]
 	ret
+
 .asm_12156
 	ld [hl], $9
 	ret
+
 .asm_12159
 	cp $1
 	jr nz, .asm_1215f
@@ -380,29 +392,33 @@ endr
 	ld e, a
 	add a
 	add e
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], a
 	ret
+
 .down
-	ld hl, $d
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
 	cp $5
 	jr nc, .asm_12175
 	inc [hl]
 	ret
+
 .asm_12175
 	ld [hl], $0
 	ret
+
 .up
-	ld hl, $d
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
 	and a
 	jr z, .asm_12182
 	dec [hl]
 	ret
+
 .asm_12182
 	ld [hl], $5
 	ret
@@ -414,12 +430,12 @@ Function12185: ; 12185 (4:6185)
 	ld b, [hl]
 
 Function1218b: ; 1218b (4:618b)
-	ld hl, $d
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
 	cp $5
 	jr nz, .asm_121aa
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	cp $3
@@ -428,12 +444,15 @@ Function1218b: ; 1218b (4:618b)
 	jr c, .asm_121a7
 	ld a, $3
 	ret
+
 .asm_121a4
 	ld a, $1
 	ret
+
 .asm_121a7
 	ld a, $2
 	ret
+
 .asm_121aa
 	xor a
 	ret

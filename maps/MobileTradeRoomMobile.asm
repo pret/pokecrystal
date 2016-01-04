@@ -1,19 +1,20 @@
+
 MobileTradeRoomMobile_MapScriptHeader:
 .MapTriggers:
 	db 2
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
-	dw .Trigger2, 0
 
 .MapCallbacks:
 	db 0
 
-.Trigger1:
+.Trigger0:
 	priorityjump MobileTradeRoomMobile_Initialize
 	end
 
-.Trigger2:
+.Trigger1:
 	end
 
 MobileTradeRoomMobile_Initialize:
@@ -25,10 +26,10 @@ MapMobileTradeRoomMobileSignpost0Script:
 	refreshscreen $0
 	special Function1037c2
 	writetext MobileTradeRoomMobile_EstablishingCommsText
-	closetext
+	waitbutton
 	reloadmappart
 	special Function101231
-	loadmovesprites
+	closetext
 	end
 
 MobileTradeRoomMobile_EstablishingCommsText:

@@ -1,3 +1,9 @@
+const_value set 2
+	const CELADONMANSION1F_GRANNY
+	const CELADONMANSION1F_GROWLITHE1
+	const CELADONMANSION1F_CLEFAIRY
+	const CELADONMANSION1F_GROWLITHE2
+
 CeladonMansion1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,27 +15,27 @@ CeladonMansionManager:
 	jumptextfaceplayer CeladonMansionManagerText
 
 CeladonMansion1FMeowth:
-	loadfont
+	opentext
 	writetext CeladonMansion1FMeowthText
 	cry MEOWTH
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CeladonMansion1FClefairy:
-	loadfont
+	opentext
 	writetext CeladonMansion1FClefairyText
 	cry CLEFAIRY
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CeladonMansion1FNidoranF:
-	loadfont
+	opentext
 	writetext CeladonMansion1FNidoranFText
 	cry NIDORAN_F
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CeladonMansionManagersSuiteSign:

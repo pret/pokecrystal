@@ -1,11 +1,11 @@
 Predef_StartBattle: ; 8c20f
 	call Function8c26d
 	ld a, [rBGP]
-	ld [wcfc7], a
+	ld [wBGP], a
 	ld a, [rOBP0]
-	ld [wcfc8], a
+	ld [wOBP0], a
 	ld a, [rOBP1]
-	ld [wcfc9], a
+	ld [wOBP1], a
 	call DelayFrame
 	ld hl, hVBlank
 	ld a, [hl]
@@ -35,13 +35,13 @@ Predef_StartBattle: ; 8c20f
 	ld [rSVBK], a
 
 	ld a, %11111111
-	ld [wcfc7], a
+	ld [wBGP], a
 	call DmgToCgbBGPals
 	call DelayFrame
 	xor a
-	ld [hLCDStatCustom], a
-	ld [hLCDStatCustom + 1], a
-	ld [hLCDStatCustom + 2], a
+	ld [hFFC6], a
+	ld [hFFC7], a
+	ld [hFFC8], a
 	ld [hSCY], a
 
 	ld a, $1
@@ -74,9 +74,8 @@ Function8c26d: ; 8c26d
 	ld [hBGMapMode], a
 	ld hl, wJumptableIndex
 	xor a
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld [hl], a
 	call WipeLYOverrides
 	ret
@@ -120,7 +119,7 @@ Function8c2cf: ; 8c2cf
 	ld a, $6
 	ld [rSVBK], a
 	push hl
-	ld hl, w6_d000
+	ld hl, wDecompressScratch
 	ld bc, $28 * $10
 
 .loop
@@ -132,7 +131,7 @@ Function8c2cf: ; 8c2cf
 	jr nz, .loop
 
 	pop hl
-	ld de, w6_d000
+	ld de, wDecompressScratch
 	ld b, BANK(Function8c2cf) ; BANK(@)
 	ld c, $28
 	call Request2bpp
@@ -146,20 +145,10 @@ INCBIN "gfx/overworld/trainer_battle_pokeball_tiles.2bpp"
 
 
 FlashyTransitionToBattle: ; 8c314
-	ld a, [wJumptableIndex]
-	ld e, a
-	ld d, 0
-	ld hl, .jumptable
-rept 2
-	add hl, de
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
+	jumptable .dw, wJumptableIndex
 ; 8c323
 
-.jumptable: ; 8c323 (23:4323)
+.dw: ; 8c323 (23:4323)
 	dw StartTrainerBattle_DetermineWhichAnimation ; 00
 
 	; Animation 1: cave
@@ -264,8 +253,8 @@ StartTrainerBattle_Flash: ; 8c3ab (23:43ab)
 	ret
 
 .DoFlashAnimation: ; 8c3b3 (23:43b3)
-	ld a, [wd847]
-	cp -1
+	ld a, [wTimeOfDayPalset]
+	cp %11111111 ; dark cave
 	jr z, .done
 	ld hl, wcf64
 	ld a, [hl]
@@ -278,7 +267,7 @@ StartTrainerBattle_Flash: ; 8c3ab (23:43ab)
 	ld a, [hl]
 	cp %00000001
 	jr z, .done
-	ld [wcfc7], a
+	ld [wBGP], a
 	call DmgToCgbBGPals
 	and a
 	ret
@@ -314,11 +303,11 @@ StartTrainerBattle_SetUpForWavyOutro: ; 8c3e8 (23:43e8)
 	call StartTrainerBattle_NextScene
 
 	ld a, $43
-	ld [hLCDStatCustom], a
+	ld [hFFC6], a
 	xor a
-	ld [hLCDStatCustom + 1], a
+	ld [hFFC7], a
 	ld a, $90
-	ld [hLCDStatCustom + 2], a
+	ld [hFFC8], a
 	xor a
 	ld [wcf64], a
 	ld [wcf65], a
@@ -784,9 +773,8 @@ StartTrainerBattle_DrawSineWave: ; 8c6f7 (23:46f7)
 	ld a, d
 	ld d, 0
 	ld hl, .sinewave
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]

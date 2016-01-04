@@ -1,3 +1,6 @@
+const_value set 2
+	const OLIVINEGOODRODHOUSE_FISHING_GURU
+
 OlivineGoodRodHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,31 +10,31 @@ OlivineGoodRodHouse_MapScriptHeader:
 
 GoodRodGuru:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_GOOD_ROD
 	iftrue .AlreadyGotItem
 	writetext OfferGoodRodText
 	yesorno
 	iffalse .DontWantIt
 	writetext GiveGoodRodText
-	keeptextopen
+	buttonsound
 	verbosegiveitem GOOD_ROD
 	writetext GaveGoodRodText
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_GOT_GOOD_ROD
 	end
 
 .DontWantIt
 	writetext DontWantGoodRodText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .AlreadyGotItem
 	writetext HaveGoodRodText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GoodRodHouseBookshelf:

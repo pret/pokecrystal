@@ -1,6 +1,5 @@
 INCLUDE "includes.asm"
 
-
 SECTION "Events", ROMX, BANK[EVENTS]
 
 OverworldLoop:: ; 966b0
@@ -22,7 +21,6 @@ OverworldLoop:: ; 966b0
 	dw HandleMap
 	dw .done
 ; 966cb
-
 
 DisableEvents: ; 966cb
 	xor a
@@ -114,21 +112,16 @@ CheckWildEncountersScriptFlag: ; 9671e
 	ret
 ; 96724
 
-
 StartMap: ; 96724
 	xor a
 	ld [ScriptVar], a
 	xor a
 	ld [ScriptRunning], a
 	ld hl, MapStatus
-	ld bc, $3e ; 62
+	ld bc, wMapStatusEnd - MapStatus
 	call ByteFill
 	callba InitCallReceiveDelay
 	call ClearJoypad
-	; fallthrough
-; 9673e
-
-
 EnterMap: ; 9673e
 	xor a
 	ld [wd453], a
@@ -157,17 +150,15 @@ EnterMap: ; 9673e
 	ret
 ; 9676d
 
-
-Function9676d: ; 9676d
+UnusedWait30Frames: ; 9676d
 	ld c, 30
 	call DelayFrames
 	ret
 ; 96773
 
-
 HandleMap: ; 96773
 	call ResetOverworldDelay
-	call Function967c1
+	call HandleMapTimeAndJoypad
 	callba HandleCmdQueue ; no need to farcall
 	call MapEvents
 
@@ -182,7 +173,6 @@ HandleMap: ; 96773
 	call Function967f4
 	ret
 ; 96795
-
 
 MapEvents: ; 96795
 	ld a, [MapEventStatus]
@@ -206,7 +196,6 @@ MapEvents: ; 96795
 	ret
 ; 967af
 
-
 MaxOverworldDelay: ; 967af
 	db 2
 ; 967b0
@@ -226,7 +215,7 @@ NextOverworldFrame: ; 967b7
 	ret
 ; 967c1
 
-Function967c1: ; 967c1
+HandleMapTimeAndJoypad: ; 967c1
 	ld a, [MapEventStatus]
 	cp 1 ; no events
 	ret z
@@ -239,28 +228,27 @@ Function967c1: ; 967c1
 
 Function967d1: ; 967d1
 	callba Function576a ; engine/map_objects.asm
-	callba Functiond497
-	call Function96812
+	callba _HandlePlayerStep
+	call _CheckObjectEnteringVisibleRange
 	ret
 ; 967e1
 
 Function967e1: ; 967e1
 	callba _UpdateSprites
-	callba Functiond4d2
+	callba ScrollScreen
 	callba PlaceMapNameSign
 	ret
 ; 967f4
 
 Function967f4: ; 967f4
 	ld a, [wPlayerStepFlags]
-	bit 5, a
+	bit 5, a ; in the middle of step
 	jr z, .events
-	bit 6, a
+	bit 6, a ; stopping step
 	jr z, .noevents
-	bit 4, a
+	bit 4, a ; in midair
 	jr nz, .noevents
 	call EnableEvents
-
 .events
 	ld a, 0 ; events
 	ld [MapEventStatus], a
@@ -272,18 +260,15 @@ Function967f4: ; 967f4
 	ret
 ; 96812
 
-Function96812: ; 96812
+_CheckObjectEnteringVisibleRange: ; 96812
 	ld hl, wPlayerStepFlags
 	bit 6, [hl]
 	ret z
-
-	callba Function81ca
+	callba CheckObjectEnteringVisibleRange
 	ret
 ; 9681f
 
-
 PlayerEvents: ; 9681f
-
 	xor a
 ; If there's already a player event, don't interrupt it.
 	ld a, [ScriptRunning]
@@ -313,7 +298,6 @@ PlayerEvents: ; 9681f
 	xor a
 	ret
 
-
 .ok
 	push af
 	callba EnableScriptMode
@@ -335,7 +319,6 @@ PlayerEvents: ; 9681f
 	ret
 ; 96867
 
-
 CheckTrainerBattle3: ; 96867
 	nop
 	nop
@@ -350,7 +333,6 @@ CheckTrainerBattle3: ; 96867
 	xor a
 	ret
 ; 96874
-
 
 CheckTileEvent: ; 96874
 ; Check for warps, tile triggers or wild battles.
@@ -417,7 +399,6 @@ CheckTileEvent: ; 96874
 	call CallScript
 	ret
 ; 968c7
-
 
 CheckWildEncounterCooldown:: ; 968c7
 	ld hl, wWildEncounterCooldown
@@ -491,11 +472,11 @@ endr
 	bit 3, [hl]
 	jr z, .nope
 
-	ld hl, ScriptDelay + 2
+	ld hl, wPriorityScriptAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [ScriptDelay + 1]
+	ld a, [wPriorityScriptBank]
 	call CallScript
 	scf
 	ret
@@ -543,7 +524,6 @@ CheckTimeEvents: ; 9693a
 	ret
 ; 96974
 
-
 OWPlayerInput: ; 96974
 
 	call PlayerMovement
@@ -573,7 +553,6 @@ OWPlayerInput: ; 96974
 	ret
 ; 96999
 
-
 CheckAPressOW: ; 96999
 	ld a, [hJoyPressed]
 	and A_BUTTON
@@ -588,7 +567,6 @@ CheckAPressOW: ; 96999
 	ret
 ; 969ac
 
-
 PlayTalkObject: ; 969ac
 	push de
 	ld de, SFX_READ_TEXT_2
@@ -596,7 +574,6 @@ PlayTalkObject: ; 969ac
 	pop de
 	ret
 ; 969b5
-
 
 TryObjectEvent: ; 969b5
 	callba CheckFacingObject
@@ -641,7 +618,7 @@ TryObjectEvent: ; 969b5
 
 .pointers
 	dbw PERSONTYPE_SCRIPT, .script
-	dbw PERSONTYPE_ITEMFRAGMENT, .itemfragment
+	dbw PERSONTYPE_ITEMBALL, .itemball
 	dbw PERSONTYPE_TRAINER, .trainer
 	; the remaining four are dummy events
 	dbw PERSONTYPE_3, .three
@@ -662,7 +639,7 @@ TryObjectEvent: ; 969b5
 	ret
 ; 96a12
 
-.itemfragment ; 96a12
+.itemball ; 96a12
 	ld hl, MAPOBJECT_SCRIPT_POINTER
 	add hl, bc
 	ld a, [hli]
@@ -703,7 +680,6 @@ TryObjectEvent: ; 969b5
 	xor a
 	ret
 ; 96a38
-
 
 TryReadSign: ; 96a38
 	call CheckFacingSign
@@ -767,8 +743,8 @@ TryReadSign: ; 96a38
 	ld de, EngineBuffer1
 	ld bc, 3
 	call FarCopyBytes
-	ld a, BANK(SignpostItemScript)
-	ld hl, SignpostItemScript
+	ld a, BANK(HiddenItemScript)
+	ld hl, HiddenItemScript
 	call CallScript
 	scf
 	ret
@@ -795,9 +771,8 @@ TryReadSign: ; 96a38
 	push hl
 	call PlayTalkObject
 	pop hl
-rept 2
 	inc hl
-endr
+	inc hl
 	call GetMapScriptHeaderBank
 	call GetFarHalfword
 	call GetMapScriptHeaderBank
@@ -809,7 +784,6 @@ endr
 	xor a
 	ret
 ; 96ad8
-
 
 CheckSignFlag: ; 96ad8
 	ld hl, EngineBuffer4
@@ -828,7 +802,6 @@ CheckSignFlag: ; 96ad8
 	pop hl
 	ret
 ; 96af0
-
 
 PlayerMovement: ; 96af0
 	callba DoPlayerMovement
@@ -896,7 +869,6 @@ PlayerMovement: ; 96af0
 	ret
 ; 96b30
 
-
 CheckMenuOW: ; 96b30
 	xor a
 	ld [hMenuReturn], a
@@ -928,7 +900,6 @@ CheckMenuOW: ; 96b30
 	ret
 ; 96b58
 
-
 StartMenuScript: ; 96b58
 	callasm StartMenu
 	jump StartMenuCallback
@@ -955,7 +926,6 @@ SelectMenuCallback: ; 96b66
 	ptcallasm wQueuedScriptBank
 	end
 ; 96b79
-
 
 CountStep: ; 96b79
 	; Don't count steps in link communication rooms.
@@ -1023,7 +993,6 @@ CountStep: ; 96b79
 	scf
 	ret
 ; 96bd3
-
 
 .unreferenced: ; 96bd3
 	ld a, 7

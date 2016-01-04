@@ -1,3 +1,11 @@
+const_value set 2
+	const SAFFRONGYM_SABRINA
+	const SAFFRONGYM_GRANNY1
+	const SAFFRONGYM_YOUNGSTER1
+	const SAFFRONGYM_GRANNY2
+	const SAFFRONGYM_YOUNGSTER2
+	const SAFFRONGYM_GYM_GUY
+
 SaffronGym_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,95 +15,95 @@ SaffronGym_MapScriptHeader:
 
 SabrinaScript_0x189c2e:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_MARSHBADGE
 	iftrue .FightDone
 	writetext UnknownText_0x189cdf
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x189df4, 0
 	loadtrainer SABRINA, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_SABRINA
 	setevent EVENT_BEAT_MEDIUM_REBECCA
 	setevent EVENT_BEAT_MEDIUM_DORIS
 	setevent EVENT_BEAT_PSYCHIC_FRANKLIN
 	setevent EVENT_BEAT_PSYCHIC_JARED
-	loadfont
+	opentext
 	writetext UnknownText_0x189e95
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_MARSHBADGE
 	writetext UnknownText_0x189ead
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FightDone
 	writetext UnknownText_0x189f6c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerMediumRebecca:
 	trainer EVENT_BEAT_MEDIUM_REBECCA, MEDIUM, REBECCA, MediumRebeccaSeenText, MediumRebeccaBeatenText, 0, MediumRebeccaScript
 
 MediumRebeccaScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x18a034
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPsychicFranklin:
 	trainer EVENT_BEAT_PSYCHIC_FRANKLIN, PSYCHIC_T, FRANKLIN, PsychicFranklinSeenText, PsychicFranklinBeatenText, 0, PsychicFranklinScript
 
 PsychicFranklinScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x18a0a6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerMediumDoris:
 	trainer EVENT_BEAT_MEDIUM_DORIS, MEDIUM, DORIS, MediumDorisSeenText, MediumDorisBeatenText, 0, MediumDorisScript
 
 MediumDorisScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x18a136
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPsychicJared:
 	trainer EVENT_BEAT_PSYCHIC_JARED, PSYCHIC_T, JARED, PsychicJaredSeenText, PsychicJaredBeatenText, 0, PsychicJaredScript
 
 PsychicJaredScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x18a1b3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SaffronGymGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_SABRINA
 	iftrue .SaffronGymGuyWinScript
 	writetext SaffronGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .SaffronGymGuyWinScript
 	writetext SaffronGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SaffronGymStatue:

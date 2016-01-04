@@ -1,3 +1,9 @@
+const_value set 2
+	const VERMILIONPOKECENTER1F_NURSE
+	const VERMILIONPOKECENTER1F_FISHING_GURU
+	const VERMILIONPOKECENTER1F_SAILOR
+	const VERMILIONPOKECENTER1F_BUG_CATCHER
+
 VermilionPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -10,18 +16,18 @@ NurseScript_0x191603:
 
 FishingGuruScript_0x191606:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_FOUGHT_SNORLAX
 	iftrue UnknownScript_0x191614
 	writetext UnknownText_0x191620
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x191614:
 	writetext UnknownText_0x191698
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SailorScript_0x19161a:

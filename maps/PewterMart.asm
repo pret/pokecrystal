@@ -1,3 +1,8 @@
+const_value set 2
+	const PEWTERMART_CLERK
+	const PEWTERMART_YOUNGSTER
+	const PEWTERMART_SUPER_NERD
+
 PewterMart_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,9 +11,9 @@ PewterMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x1a2dcb:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_PEWTER
-	loadmovesprites
+	closetext
 	end
 
 YoungsterScript_0x1a2dd2:

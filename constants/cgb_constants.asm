@@ -1,14 +1,14 @@
 	const_def
-	const SCGB_00
-	const SCGB_01
-	const SCGB_02
-	const SCGB_03
+	const SCGB_BATTLE_GRAYSCALE
+	const SCGB_BATTLE_COLORS
+	const SCGB_POKEGEAR_PALS
+	const SCGB_STATS_SCREEN_HP_PALS
 	const SCGB_04
-	const SCGB_05
+	const SCGB_SLOT_MACHINE
 	const SCGB_06
 	const SCGB_07
 	const SCGB_08
-	const SCGB_09
+	const SCGB_MAPPALS
 	const SCGB_0A
 	const SCGB_0B
 	const SCGB_0C
@@ -19,17 +19,17 @@
 	const SCGB_11
 	const SCGB_12
 	const SCGB_13
-	const SCGB_14
-	const SCGB_15
+	const SCGB_PACKPALS
+	const SCGB_TRAINER_CARD
 	const SCGB_16
 	const SCGB_17
 	const SCGB_18
 	const SCGB_19
 	const SCGB_1A
 	const SCGB_1B
-	const SCGB_1C
+	const SCGB_FRONTPICPALS
 	const SCGB_1D
 	const SCGB_1E
 
-SCGB_FC  EQU -4
+SCGB_PARTY_MENU_HP_PALS  EQU -4
 SCGB_RAM EQU -1

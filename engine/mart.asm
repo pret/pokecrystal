@@ -70,10 +70,10 @@ BargainShop: ; 15a84
 Pharmacist: ; 15aae
 	call FarReadMart
 	call LoadStandardMenuDataHeader
-	ld hl, UnknownText_0x15e90
+	ld hl, Text_Pharmacist_Intro
 	call MartTextBox
 	call BuyMenu
-	ld hl, UnknownText_0x15eae
+	ld hl, Text_Pharmacist_ComeAgain
 	call MartTextBox
 	ret
 ; 15ac4
@@ -185,9 +185,9 @@ StandardMart: ; 15b47
 .TopMenu: ; 15b6e
 	ld hl, MenuDataHeader_BuySell
 	call CopyMenuDataHeader
-	call InterpretMenu2
+	call VerticalMenu
 	jr c, .quit
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $1
 	jr z, .buy
 	cp $2
@@ -369,7 +369,7 @@ BargainShopData: ; 15c51
 
 BuyMenu: ; 15c62
 	call FadeToMenu
-	callba Function8000
+	callba BlankScreen
 	xor a
 	ld [wd045 + 1], a
 	ld a, 1
@@ -377,7 +377,7 @@ BuyMenu: ; 15c62
 .loop
 	call BuyMenuLoop ; menu loop
 	jr nc, .loop
-	call ReturnToCallingMenu
+	call CloseSubmenu
 	ret
 ; 15c7d
 
@@ -470,7 +470,7 @@ endr
 
 
 BuyMenuLoop: ; 15cef
-	callba PlaceMoneyTopRightOW
+	callba PlaceMoneyTopRight
 	call UpdateSprites
 	ld hl, MenuDataHeader_Buy
 	call CopyMenuDataHeader
@@ -478,13 +478,13 @@ BuyMenuLoop: ; 15cef
 	ld [wMenuCursorBuffer], a
 	ld a, [wd045 + 1]
 	ld [wMenuScrollPosition], a
-	call HandleScrollingMenu
+	call ScrollingMenu
 	ld a, [wMenuScrollPosition]
 	ld [wd045 + 1], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wd045], a
 	call SpeechTextBox
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	cp B_BUTTON
 	jr z, .set_carry
 	cp A_BUTTON
@@ -493,7 +493,7 @@ BuyMenuLoop: ; 15cef
 .useless_pointer
 	call MartAskPurchaseQuantity
 	jr c, .cancel
-	call Function15d97
+	call MartConfirmPurchase
 	jr c, .cancel
 	ld de, Money
 	ld bc, hMoneyTemp
@@ -546,12 +546,12 @@ StandardMartAskPurchaseQuantity:
 	ld [wItemQuantityBuffer], a
 	ld a, MARTTEXT_HOW_MANY
 	call LoadBuyMenuText
-	callba Function24fc9
+	callba SelectQuantityToBuy
 	call ExitMenu
 	ret
 ; 15d97
 
-Function15d97: ; 15d97
+MartConfirmPurchase: ; 15d97
 	predef PartyMonItemName
 	ld a, MARTTEXT_COSTS_THIS_MUCH
 	call LoadBuyMenuText
@@ -606,7 +606,7 @@ RooftopSaleAskPurchaseQuantity:
 	call .GetSalePrice
 	ld a, 99
 	ld [wItemQuantityBuffer], a
-	callba Function24fcf
+	callba RooftopSale_SelectQuantityToBuy
 	call ExitMenu
 	ret
 ; 15df9
@@ -662,7 +662,7 @@ MenuDataHeader_Buy: ; 0x15e18
 ; 15e30
 
 .PrintBCDPrices: ; 15e30
-	ld a, [wcf77]
+	ld a, [wScrollingMenuCursorPosition]
 	ld c, a
 	ld b, 0
 	ld hl, wMartItem1BCD
@@ -764,7 +764,7 @@ Text_BargainShop_ComeAgain: ; 0x15e8b
 	db "@"
 ; 0x15e90
 
-UnknownText_0x15e90: ; 0x15e90
+Text_Pharmacist_Intro: ; 0x15e90
 	; What's up? Need some medicine?
 	text_jump UnknownText_0x1c4e5f
 	db "@"
@@ -800,7 +800,7 @@ Text_Pharmacy_InsufficientFunds: ; 0x15ea9
 	db "@"
 ; 0x15eae
 
-UnknownText_0x15eae: ; 0x15eae
+Text_Pharmacist_ComeAgain: ; 0x15eae
 	; All right. See you around.
 	text_jump UnknownText_0x1c4ef6
 	db "@"
@@ -809,45 +809,44 @@ UnknownText_0x15eae: ; 0x15eae
 
 SellMenu: ; 15eb3
 	call DisableSpriteUpdates
-	callba Function106a5
-.asm_15ebc
-	callba Function106be
+	callba DepositSellInitPackBuffers
+.loop
+	callba DepositSellPack
 	ld a, [wcf66]
 	and a
-	jp z, Function15ece
-	call Function15ee0
-	jr .asm_15ebc
-; 15ece
+	jp z, .quit
+	call .TryToSellItem
+	jr .loop
 
-Function15ece: ; 15ece
-	call Function2b74
+.quit
+	call ReturnToMapWithSpeechTextbox
 	and a
 	ret
 ; 15ed3
 
-Function15ed3: ; unreferenced
-	ld hl, UnknownText_0x15edb
+.NothingToSell: ; unreferenced
+	ld hl, .NothingToSellText
 	call MenuTextBoxBackup
 	and a
 	ret
 ; 15edb
 
-UnknownText_0x15edb: ; 0x15edb
+.NothingToSellText: ; 0x15edb
 	; You don't have anything to sell.
 	text_jump UnknownText_0x1c4f12
 	db "@"
 ; 0x15ee0
 
 
-Function15ee0: ; 15ee0
+.TryToSellItem: ; 15ee0
 	callba CheckItemMenu
 	ld a, [wItemAttributeParamBuffer]
-	ld hl, .jumptable
+	ld hl, .dw
 	rst JumpTable
 	ret
 ; 15eee
 
-.jumptable: ; 15eee
+.dw: ; 15eee
 	dw .try_sell
 	dw .cant_buy
 	dw .cant_buy
@@ -875,8 +874,8 @@ Function15ee0: ; 15ee0
 .okay_to_sell
 	ld hl, Text_Mart_SellHowMany
 	call PrintText
-	callba PlaceMoneyTopRightMenu
-	callba Function24fe1
+	callba PlaceMoneyAtTopLeftOfTextbox
+	callba SelectQuantityToSell
 	call ExitMenu
 	jr c, .declined
 	hlcoord 1, 14
@@ -899,7 +898,7 @@ Function15ee0: ; 15ee0
 	ld hl, Text_Mart_SoldForAmount
 	call PrintTextBoxText
 	call PlayTransactionSound
-	callba PlaceMoneyBottomLeftOW
+	callba PlaceMoneyBottomLeft
 	call JoyWaitAorB
 
 .declined

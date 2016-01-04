@@ -1,3 +1,9 @@
+const_value set 2
+	const CELADONMANSION3F_COOLTRAINER_M
+	const CELADONMANSION3F_GYM_GUY
+	const CELADONMANSION3F_SUPER_NERD
+	const CELADONMANSION3F_FISHER
+
 CeladonMansion3F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,36 +13,36 @@ CeladonMansion3F_MapScriptHeader:
 
 CooltrainerMScript_0x71670:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x716ce
 	checkcode VAR_DEXCAUGHT
 	if_greater_than 248, UnknownScript_0x7167e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7167e:
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x71725
 	playsound SFX_DEX_FANFARE_230_PLUS
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x71760
-	keeptextopen
+	buttonsound
 	special Diploma
 	writetext UnknownText_0x71763
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_ENABLE_DIPLOMA_PRINTING
 	end
 
 GymGuyScript_0x71696:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
 	iftrue UnknownScript_0x716a4
 	writetext UnknownText_0x717b4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x716a4:
@@ -44,19 +50,19 @@ UnknownScript_0x716a4:
 	yesorno
 	iffalse UnknownScript_0x716b0
 	special PrintDiploma
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x716b0:
 	writetext UnknownText_0x71830
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x716b6:
 	writetext UnknownText_0x71863
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SuperNerdScript_0x716bc:

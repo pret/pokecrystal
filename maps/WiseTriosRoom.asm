@@ -1,3 +1,11 @@
+const_value set 2
+	const WISETRIOSROOM_SAGE1
+	const WISETRIOSROOM_SAGE2
+	const WISETRIOSROOM_SAGE3
+	const WISETRIOSROOM_SAGE4
+	const WISETRIOSROOM_SAGE5
+	const WISETRIOSROOM_SAGE6
+
 WiseTriosRoom_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -50,39 +58,39 @@ SageScript_0x985a0:
 	jumptextfaceplayer UnknownText_0x987af
 
 UnknownScript_0x985a3:
-	spriteface $4, UP
+	spriteface WISETRIOSROOM_SAGE3, UP
 	spriteface PLAYER, DOWN
-	showemote EMOTE_SHOCK, $4, 20
-	follow PLAYER, $4
+	showemote EMOTE_SHOCK, WISETRIOSROOM_SAGE3, 20
+	follow PLAYER, WISETRIOSROOM_SAGE3
 	applymovement PLAYER, MovementData_0x98622
 	stopfollow
 	spriteface PLAYER, RIGHT
-	loadfont
+	opentext
 	writetext UnknownText_0x98712
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement $4, MovementData_0x98625
-	spriteface $4, LEFT
+	applymovement WISETRIOSROOM_SAGE3, MovementData_0x98625
+	spriteface WISETRIOSROOM_SAGE3, LEFT
 	end
 
 TrainerSageGaku:
 	trainer EVENT_BEAT_SAGE_GAKU, SAGE, GAKU, SageGakuSeenText, SageGakuBeatenText, 0, SageGakuScript
 
 SageGakuScript:
-	loadfont
+	opentext
 	writetext UnknownText_0x98938
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSageMasa:
 	trainer EVENT_BEAT_SAGE_MASA, SAGE, MASA, SageMasaSeenText, SageMasaBeatenText, 0, SageMasaScript
 
 SageMasaScript:
-	loadfont
+	opentext
 	writetext UnknownText_0x98a35
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSageKoji:
@@ -92,24 +100,24 @@ SageKojiScript:
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	iftrue UnknownScript_0x9861b
 	pause 10
-	showemote EMOTE_SHOCK, $7, 20
-	loadfont
+	showemote EMOTE_SHOCK, WISETRIOSROOM_SAGE6, 20
+	opentext
 	writetext UnknownText_0x98c6c
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x98cac
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement $7, MovementData_0x98628
-	spriteface $7, UP
+	applymovement WISETRIOSROOM_SAGE6, MovementData_0x98628
+	spriteface WISETRIOSROOM_SAGE6, UP
 	setevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	dotrigger $1
 	end
 
 UnknownScript_0x9861b:
-	loadfont
+	opentext
 	writetext UnknownText_0x98db5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MovementData_0x98622:

@@ -4,7 +4,7 @@ _DoItemEffect:: ; e722
 	call GetItemName
 	call CopyName1
 	ld a, 1
-	ld [wPlayerAction], a
+	ld [wItemEffectSucceeded], a
 	ld a, [CurItem]
 	dec a
 	ld hl, ItemEffects
@@ -39,7 +39,7 @@ ItemEffects: ; e73c
 	dw Thunderstone
 	dw WaterStone
 	dw Item19
-	dw HpUp
+	dw HPUp
 	dw Protein
 	dw Iron
 	dw Carbos
@@ -75,7 +75,7 @@ ItemEffects: ; e73c
 	dw GoodRod
 	dw SilverLeaf
 	dw SuperRod
-	dw PpUp
+	dw PPUp
 	dw Ether
 	dw MaxEther
 	dw Elixer
@@ -413,7 +413,7 @@ endr
 	xor a
 	ld [hBattleTurn], a
 	ld [Buffer2], a
-	ld [wcfca], a
+	ld [wNumHits], a
 	predef PlayBattleAnim
 
 	ld a, [wWildMon]
@@ -654,14 +654,14 @@ endr
 	ld [CurPartyMon], a
 	ld a, BOXMON
 	ld [MonType], a
-	ld de, wd050
+	ld de, wMonOrItemNameBuffer
 	ld b, $0
 	callba NamingScreen
 
 	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
 
-	ld hl, wd050
+	ld hl, wMonOrItemNameBuffer
 	ld de, sBoxMonNicknames
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
@@ -677,7 +677,7 @@ endr
 	call GetSRAMBank
 
 	ld hl, sBoxMonNicknames
-	ld de, wd050
+	ld de, wMonOrItemNameBuffer
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
@@ -1206,7 +1206,7 @@ SunStone: ; ee0f
 	jr z, .NoEffect
 
 	ld a, $1
-	ld [wd1e9], a
+	ld [wForceEvolution], a
 	callba EvolvePokemon
 
 	ld a, [wMonTriedToEvolve]
@@ -1220,12 +1220,12 @@ SunStone: ; ee0f
 
 .DecidedNotToUse
 	xor a
-	ld [wPlayerAction], a
+	ld [wItemEffectSucceeded], a
 	ret
 ; ee3d
 
 
-HpUp:
+HPUp:
 Protein:
 Iron:
 Carbos:
@@ -1285,7 +1285,7 @@ UpdateStatsAfterItem: ; ee8c
 	call GetPartyParamLocation
 	ld d, h
 	ld e, l
-	ld a, MON_EXP + 2
+	ld a, MON_STAT_EXP - 1
 	call GetPartyParamLocation
 	ld b, $1
 	predef_jump CalcPkmnStats
@@ -1293,7 +1293,7 @@ UpdateStatsAfterItem: ; ee8c
 
 RareCandy_StatBooster_ExitMenu: ; ee9f
 	xor a
-	ld [wPlayerAction], a
+	ld [wItemEffectSucceeded], a
 	jp ClearPalettes
 ; eea6
 
@@ -1447,7 +1447,7 @@ RareCandy: ; ef14
 	predef LearnLevelMoves
 
 	xor a
-	ld [wd1e9], a
+	ld [wForceEvolution], a
 	callba EvolvePokemon
 
 	jp UseDisposableItem
@@ -1614,11 +1614,11 @@ GetItemHealingAction: ; f058 (3:7058)
 ; f09e
 
 StatusHealer_Jumptable: ; f09e (3:709e)
-	ld hl, .jumptable
+	ld hl, .dw
 	rst JumpTable
 	ret
 
-.jumptable: ; f0a3 (3:70a3)
+.dw: ; f0a3 (3:70a3)
 	dw StatusHealer_ClearPalettes
 	dw StatusHealer_NoEffect
 	dw StatusHealer_ExitMenu
@@ -1842,7 +1842,7 @@ HealHP_SFX_GFX: ; f1db (3:71db)
 	ld bc, SCREEN_WIDTH * 2
 	call AddNTimes
 	ld a, $2
-	ld [wd10a], a
+	ld [wWhichHPBar], a
 	predef_jump AnimateHPBar
 
 UseItem_SelectMon: ; f1f9 (3:71f9)
@@ -1930,7 +1930,7 @@ StatusHealer_NoEffect: ; f299 (3:7299)
 
 StatusHealer_ExitMenu: ; f29e (3:729e)
 	xor a
-	ld [wPlayerAction], a
+	ld [wItemEffectSucceeded], a
 StatusHealer_ClearPalettes: ; f2a2 (3:72a2)
 	call ClearPalettes
 	ret
@@ -2161,7 +2161,7 @@ endr
 
 Softboiled_MilkDrinkFunction: ; f3df (3:73df)
 ; Softboiled/Milk Drink in the field
-	ld a, [wd0d8]
+	ld a, [wPartyMenuCursor]
 	dec a
 	ld b, a
 	call .SelectMilkDrinkRecipient ; select pokemon
@@ -2186,7 +2186,7 @@ Softboiled_MilkDrinkFunction: ; f3df (3:73df)
 .skip
 	ld a, b
 	inc a
-	ld [wd0d8], a
+	ld [wPartyMenuCursor], a
 	ret
 
 .SelectMilkDrinkRecipient: ; f419 (3:7419)
@@ -2197,7 +2197,7 @@ Softboiled_MilkDrinkFunction: ; f3df (3:73df)
 	call ChoosePkmnToUseItemOn
 	pop bc
 	jr c, .set_carry
-	ld a, [wd0d8]
+	ld a, [wPartyMenuCursor]
 	dec a
 	ld c, a
 	ld a, b
@@ -2233,10 +2233,10 @@ Softboiled_MilkDrinkFunction: ; f3df (3:73df)
 
 EscapeRope: ; f44f
 	xor a
-	ld [wPlayerAction], a
+	ld [wItemEffectSucceeded], a
 	callba EscapeRopeFunction
 
-	ld a, [wPlayerAction]
+	ld a, [wItemEffectSucceeded]
 	cp 1
 	call z, UseDisposableItem
 	ret
@@ -2298,7 +2298,7 @@ PokeDoll: ; f48f
 
 .asm_f4a6
 	xor a
-	ld [wPlayerAction], a
+	ld [wItemEffectSucceeded], a
 	ret
 ; f4ab
 
@@ -2512,7 +2512,7 @@ Itemfinder: ; f5b8
 
 
 MaxElixer:
-PpUp:
+PPUp:
 Ether:
 MaxEther:
 Elixer:
@@ -2667,7 +2667,7 @@ Not_PP_Up: ; f6a7
 
 Elixer_RestorePPofAllMoves: ; f6af
 	xor a
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	ld [hli], a
 	ld [hl], a
 	ld b, NUM_MOVES
@@ -2682,16 +2682,16 @@ Elixer_RestorePPofAllMoves: ; f6af
 
 	call RestorePP
 	jr z, .next
-	ld hl, wcfaa
+	ld hl, wMenuCursorX
 	inc [hl]
 
 .next
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	inc [hl]
 	pop bc
 	dec b
 	jr nz, .moveLoop
-	ld a, [wcfaa]
+	ld a, [wMenuCursorX]
 	and a
 	jp nz, BattleRestorePP
 
@@ -2701,7 +2701,7 @@ PPRestoreItem_NoEffect: ; f6dd
 PPRestoreItem_Cancel: ; f6e0
 	call ClearPalettes
 	xor a
-	ld [wPlayerAction], a
+	ld [wItemEffectSucceeded], a
 	ret
 ; f6e8
 
@@ -2802,7 +2802,7 @@ BasementKey: ; f74c
 
 SacredAsh: ; f753
 	callba _SacredAsh
-	ld a, [wPlayerAction]
+	ld a, [wItemEffectSucceeded]
 	cp $1
 	ret nz
 	call UseDisposableItem
@@ -2811,28 +2811,26 @@ SacredAsh: ; f753
 
 
 NormalBox: ; f763
-	ld c, $2c
-	jr Function_0xf769
+	ld c, DECOFLAG_SILVER_TROPHY_DOLL
+	jr OpenBox
 ; f767
 
 GorgeousBox: ; f767
-	ld c, $2b
-; f769
-
-Function_0xf769: ; f769
+	ld c, DECOFLAG_GOLD_TROPHY_DOLL
+OpenBox: ; f769
 	callba SetSpecificDecorationFlag
 
-	ld hl, UnknownText_0xf778
+	ld hl, .text
 	call PrintText
 
 	jp UseDisposableItem
 ; f778
 
-UnknownText_0xf778: ; 0xf778
+.text: ; 0xf778
+	; There was a trophy inside!
 	text_jump UnknownText_0x1c5d03
 	db "@"
 ; 0xf77d
-
 
 Brightpowder:
 Item19:
@@ -2923,7 +2921,8 @@ ItemAB:
 UpGrade:
 ItemB0:
 RainbowWing:
-ItemB3: ; f77d
+ItemB3:
+TeruSama: ; f77d
 	jp IsntTheTimeMessage
 ; f780
 
@@ -2958,7 +2957,7 @@ UseBallInTrainerBattle: ; f7a0
 	xor a
 	ld [wKickCounter], a
 	ld [hBattleTurn], a
-	ld [wcfca], a
+	ld [wNumHits], a
 	predef PlayBattleAnim
 	ld hl, BlockedTheBallText
 	call PrintText
@@ -2973,7 +2972,7 @@ WontHaveAnyEffect_NotUsedMessage: ; f7ca
 
 	; Item wasn't used.
 	ld a, $2
-	ld [wPlayerAction], a
+	ld [wItemEffectSucceeded], a
 	ret
 ; f7d6
 
@@ -2988,7 +2987,7 @@ Ball_BoxIsFullMessage: ; f7dc
 
 	; Item wasn't used.
 	ld a, $2
-	ld [wPlayerAction], a
+	ld [wItemEffectSucceeded], a
 	ret
 ; f7e8
 
@@ -3018,7 +3017,7 @@ CantGetOnYourBikeMessage: ; f801
 CantUseItemMessage: ; f804
 ; Item couldn't be used.
 	xor a
-	ld [wPlayerAction], a
+	ld [wItemEffectSucceeded], a
 	jp PrintText
 ; f80b
 
@@ -3120,7 +3119,7 @@ ApplyPPUp: ; f84c
 	ld a, [wd265]
 	dec a
 	jr nz, .use
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	inc a
 	cp b
 	jr nz, .skip
@@ -3197,7 +3196,7 @@ RestoreAllPP: ; f8b9
 	call GetPartyParamLocation
 	pop de
 	xor a ; PARTYMON
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	ld [MonType], a
 	ld c, NUM_MOVES
 .loop
@@ -3217,7 +3216,7 @@ RestoreAllPP: ; f8b9
 	add b
 	ld [de], a
 	inc de
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	inc [hl]
 	pop hl
 	dec c
@@ -3310,7 +3309,7 @@ GetMthMoveOfNthPartymon: ; f963
 	call AddNTimes
 
 GetMthMoveOfCurrentMon: ; f969
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld c, a
 	ld b, 0
 	add hl, bc

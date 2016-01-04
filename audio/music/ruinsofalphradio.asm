@@ -1,7 +1,7 @@
 Music_RuinsOfAlphRadio: ; eedcb
-	dbw $80, Music_RuinsOfAlphRadio_Ch1
-	dbw $01, Music_RuinsOfAlphRadio_Ch2
-	dbw $02, Music_RuinsOfAlphRadio_Ch3
+	musicheader 3, 1, Music_RuinsOfAlphRadio_Ch1
+	musicheader 1, 2, Music_RuinsOfAlphRadio_Ch2
+	musicheader 1, 3, Music_RuinsOfAlphRadio_Ch3
 ; eedd4
 
 Music_RuinsOfAlphRadio_Ch1: ; eedd4

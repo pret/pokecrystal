@@ -1,8 +1,8 @@
 UnknownScript_0xa0000:
 	special RandomPhoneMon
-	farscall UnknownScript_0xbde3f
-	if_equal $0, UnknownScript_0xa0013
-	farscall UnknownScript_0xbe51e
+	farscall PhoneScript_Random2
+	if_equal 0, UnknownScript_0xa0013
+	farscall PhoneScript_Generic_Male
 	farjump UnknownScript_0xa003e
 
 UnknownScript_0xa0013:
@@ -10,9 +10,9 @@ UnknownScript_0xa0013:
 
 UnknownScript_0xa0017:
 	special RandomPhoneMon
-	farscall UnknownScript_0xbde3f
-	if_equal $0, UnknownScript_0xa002a
-	farscall UnknownScript_0xbe5d0
+	farscall PhoneScript_Random2
+	if_equal 0, UnknownScript_0xa002a
+	farscall PhoneScript_Generic_Female
 	farjump UnknownScript_0xa0055
 
 UnknownScript_0xa002a:
@@ -28,31 +28,31 @@ UnknownScript_0xa0036:
 
 UnknownScript_0xa003e:
 	special RandomPhoneWildMon
-	farscall UnknownScript_0xbde3f
-	if_equal $0, UnknownScript_0xa0051
+	farscall PhoneScript_Random2
+	if_equal 0, UnknownScript_0xa0051
 	farscall UnknownScript_0xa017a
-	farjump UnknownScript_0xa0484
+	farjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0051:
 	farjump UnknownScript_0xa006c
 
 UnknownScript_0xa0055:
 	special RandomPhoneWildMon
-	farscall UnknownScript_0xbde3f
-	if_equal $0, UnknownScript_0xa0068
+	farscall PhoneScript_Random2
+	if_equal 0, UnknownScript_0xa0068
 	farscall UnknownScript_0xa0226
-	farjump UnknownScript_0xa053a
+	farjump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0068:
 	farjump UnknownScript_0xa0074
 
 UnknownScript_0xa006c:
 	farscall UnknownScript_0xa0278
-	farjump UnknownScript_0xa0484
+	farjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0074:
 	farscall UnknownScript_0xa0324
-	farjump UnknownScript_0xa053a
+	farjump PhoneScript_HangupText_Female
 
 UnknownScript_0xa007c:
 	checkcode VAR_CALLERID
@@ -76,87 +76,87 @@ UnknownScript_0xa007c:
 
 .Jack:
 	farwritetext UnknownText_0x1740c0
-	keeptextopen
+	buttonsound
 	end
 
 .Gaven:
 	farwritetext UnknownText_0x174a24
-	keeptextopen
+	buttonsound
 	end
 
 .Jose:
 	farwritetext UnknownText_0x174f2f
-	keeptextopen
+	buttonsound
 	end
 
 .Joey:
 	farwritetext UnknownText_0x175530
-	keeptextopen
+	buttonsound
 	end
 
 .Wade:
 	farwritetext UnknownText_0x1757d4
-	keeptextopen
+	buttonsound
 	end
 
 .Ralph:
 	farwritetext UnknownText_0x175bc4
-	keeptextopen
+	buttonsound
 	end
 
 .Anthony:
 	farwritetext UnknownText_0x176a2f
-	keeptextopen
+	buttonsound
 	end
 
 .Todd:
 	farwritetext UnknownText_0x176e5d
-	keeptextopen
+	buttonsound
 	end
 
 .Arnie:
 	farwritetext UnknownText_0x649dc
-	keeptextopen
+	buttonsound
 	end
 
 .Alan:
 	farwritetext UnknownText_0x64cbd
-	keeptextopen
+	buttonsound
 	end
 
 .Chad:
 	farwritetext UnknownText_0x65271
-	keeptextopen
+	buttonsound
 	end
 
 .Derek:
 	farwritetext UnknownText_0x65ab2
-	keeptextopen
+	buttonsound
 	end
 
 .Tully:
 	farwritetext UnknownText_0x65de4
-	keeptextopen
+	buttonsound
 	end
 
 .Brent:
 	farwritetext UnknownText_0x660be
-	keeptextopen
+	buttonsound
 	end
 
 .Vance:
 	farwritetext UnknownText_0x66980
-	keeptextopen
+	buttonsound
 	end
 
 .Wilton:
 	farwritetext UnknownText_0x66afc
-	keeptextopen
+	buttonsound
 	end
 
 .Parry:
 	farwritetext UnknownText_0x66f9f
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xa0128:
@@ -172,42 +172,42 @@ UnknownScript_0xa0128:
 
 .Beverly:
 	farwritetext UnknownText_0x174688
-	keeptextopen
+	buttonsound
 	end
 
 .Beth:
 	farwritetext UnknownText_0x174c7f
-	keeptextopen
+	buttonsound
 	end
 
 .Reena:
 	farwritetext UnknownText_0x1752f5
-	keeptextopen
+	buttonsound
 	end
 
 .Liz:
 	farwritetext UnknownText_0x175fda
-	keeptextopen
+	buttonsound
 	end
 
 .Gina:
 	farwritetext UnknownText_0x1771fd
-	keeptextopen
+	buttonsound
 	end
 
 .Dana:
 	farwritetext UnknownText_0x64f74
-	keeptextopen
+	buttonsound
 	end
 
 .Tiffany:
 	farwritetext UnknownText_0x665ad
-	keeptextopen
+	buttonsound
 	end
 
 .Erin:
 	farwritetext UnknownText_0x6717a
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xa017a:
@@ -232,87 +232,87 @@ UnknownScript_0xa017a:
 
 .Jack:
 	farwritetext UnknownText_0x174106
-	keeptextopen
+	buttonsound
 	end
 
 .Gaven:
 	farwritetext UnknownText_0x174a80
-	keeptextopen
+	buttonsound
 	end
 
 .Jose:
 	farwritetext UnknownText_0x174f90
-	keeptextopen
+	buttonsound
 	end
 
 .Joey:
 	farwritetext UnknownText_0x175591
-	keeptextopen
+	buttonsound
 	end
 
 .Wade:
 	farwritetext UnknownText_0x175869
-	keeptextopen
+	buttonsound
 	end
 
 .Ralph:
 	farwritetext UnknownText_0x175c24
-	keeptextopen
+	buttonsound
 	end
 
 .Anthony:
 	farwritetext UnknownText_0x176aef
-	keeptextopen
+	buttonsound
 	end
 
 .Todd:
 	farwritetext UnknownText_0x176e9c
-	keeptextopen
+	buttonsound
 	end
 
 .Arnie:
 	farwritetext UnknownText_0x64a13
-	keeptextopen
+	buttonsound
 	end
 
 .Alan:
 	farwritetext UnknownText_0x64cf3
-	keeptextopen
+	buttonsound
 	end
 
 .Chad:
 	farwritetext UnknownText_0x65318
-	keeptextopen
+	buttonsound
 	end
 
 .Derek:
 	farwritetext UnknownText_0x65b29
-	keeptextopen
+	buttonsound
 	end
 
 .Tully:
 	farwritetext UnknownText_0x65e42
-	keeptextopen
+	buttonsound
 	end
 
 .Brent:
 	farwritetext UnknownText_0x6613c
-	keeptextopen
+	buttonsound
 	end
 
 .Vance:
 	farwritetext UnknownText_0x669b2
-	keeptextopen
+	buttonsound
 	end
 
 .Wilton:
 	farwritetext UnknownText_0x66b3e
-	keeptextopen
+	buttonsound
 	end
 
 .Parry:
 	farwritetext UnknownText_0x66fc0
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xa0226:
@@ -328,42 +328,42 @@ UnknownScript_0xa0226:
 
 .Beverly:
 	farwritetext UnknownText_0x1746c3
-	keeptextopen
+	buttonsound
 	end
 
 .Beth:
 	farwritetext UnknownText_0x174cf6
-	keeptextopen
+	buttonsound
 	end
 
 .Reena:
 	farwritetext UnknownText_0x17536b
-	keeptextopen
+	buttonsound
 	end
 
 .Liz:
 	farwritetext UnknownText_0x17602d
-	keeptextopen
+	buttonsound
 	end
 
 .Gina:
 	farwritetext UnknownText_0x177237
-	keeptextopen
+	buttonsound
 	end
 
 .Dana:
 	farwritetext UnknownText_0x64fb2
-	keeptextopen
+	buttonsound
 	end
 
 .Tiffany:
 	farwritetext UnknownText_0x66605
-	keeptextopen
+	buttonsound
 	end
 
 .Erin:
 	farwritetext UnknownText_0x671a4
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xa0278:
@@ -388,87 +388,87 @@ UnknownScript_0xa0278:
 
 .Jack:
 	farwritetext UnknownText_0x174165
-	keeptextopen
+	buttonsound
 	end
 
 .Gaven:
 	farwritetext UnknownText_0x174b2d
-	keeptextopen
+	buttonsound
 	end
 
 .Jose:
 	farwritetext UnknownText_0x174ffd
-	keeptextopen
+	buttonsound
 	end
 
 .Joey:
 	farwritetext UnknownText_0x175611
-	keeptextopen
+	buttonsound
 	end
 
 .Wade:
 	farwritetext UnknownText_0x1758e4
-	keeptextopen
+	buttonsound
 	end
 
 .Ralph:
 	farwritetext UnknownText_0x175c9f
-	keeptextopen
+	buttonsound
 	end
 
 .Anthony:
 	farwritetext UnknownText_0x176b45
-	keeptextopen
+	buttonsound
 	end
 
 .Todd:
 	farwritetext UnknownText_0x176eee
-	keeptextopen
+	buttonsound
 	end
 
 .Arnie:
 	farwritetext UnknownText_0x64a71
-	keeptextopen
+	buttonsound
 	end
 
 .Alan:
 	farwritetext UnknownText_0x64d4f
-	keeptextopen
+	buttonsound
 	end
 
 .Chad:
 	farwritetext UnknownText_0x65399
-	keeptextopen
+	buttonsound
 	end
 
 .Derek:
 	farwritetext UnknownText_0x65bc8
-	keeptextopen
+	buttonsound
 	end
 
 .Tully:
 	farwritetext UnknownText_0x65eac
-	keeptextopen
+	buttonsound
 	end
 
 .Brent:
 	farwritetext UnknownText_0x6618c
-	keeptextopen
+	buttonsound
 	end
 
 .Vance:
 	farwritetext UnknownText_0x669ed
-	keeptextopen
+	buttonsound
 	end
 
 .Wilton:
 	farwritetext UnknownText_0x66b8f
-	keeptextopen
+	buttonsound
 	end
 
 .Parry:
 	farwritetext UnknownText_0x67001
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xa0324:
@@ -484,53 +484,53 @@ UnknownScript_0xa0324:
 
 .Beverly:
 	farwritetext UnknownText_0x174734
-	keeptextopen
+	buttonsound
 	end
 
 .Beth:
 	farwritetext UnknownText_0x174d86
-	keeptextopen
+	buttonsound
 	end
 
 .Reena:
 	farwritetext UnknownText_0x1753c5
-	keeptextopen
+	buttonsound
 	end
 
 .Liz:
 	farwritetext UnknownText_0x176095
-	keeptextopen
+	buttonsound
 	end
 
 .Gina:
 	farwritetext UnknownText_0x177297
-	keeptextopen
+	buttonsound
 	end
 
 .Dana:
 	farwritetext UnknownText_0x6501c
-	keeptextopen
+	buttonsound
 	end
 
 .Tiffany:
 	farwritetext UnknownText_0x66688
-	keeptextopen
+	buttonsound
 	end
 
 .Erin:
 	farwritetext UnknownText_0x671eb
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xa0376:
-	farscall UnknownScript_0xa0386
-	farjump UnknownScript_0xa0484
+	farscall PhoneScript_RematchText_Male
+	farjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa037e:
-	farscall UnknownScript_0xa0432
-	farjump UnknownScript_0xa053a
+	farscall PhoneScript_RematchText_Female
+	farjump PhoneScript_HangupText_Female
 
-UnknownScript_0xa0386:
+PhoneScript_RematchText_Male:
 	checkcode VAR_CALLERID
 	if_equal PHONE_SCHOOLBOY_JACK, .Jack
 	if_equal PHONE_SAILOR_HUEY, .Huey
@@ -552,90 +552,90 @@ UnknownScript_0xa0386:
 
 .Jack:
 	farwritetext UnknownText_0x1741e1
-	keeptextopen
+	buttonsound
 	end
 
 .Huey:
 	farwritetext UnknownText_0x1748ea
-	keeptextopen
+	buttonsound
 	end
 
 .Gaven:
 	farwritetext UnknownText_0x174bc5
-	keeptextopen
+	buttonsound
 	end
 
 .Jose:
 	farwritetext UnknownText_0x17507d
-	keeptextopen
+	buttonsound
 	end
 
 .Joey:
 	farwritetext UnknownText_0x175693
-	keeptextopen
+	buttonsound
 	end
 
 .Wade:
 	farwritetext UnknownText_0x175976
-	keeptextopen
+	buttonsound
 	end
 
 .Ralph:
 	farwritetext UnknownText_0x175d40
-	keeptextopen
+	buttonsound
 	end
 
 .Anthony:
 	farwritetext UnknownText_0x176bee
-	keeptextopen
+	buttonsound
 	end
 
 .Todd:
 	farwritetext UnknownText_0x176f60
-	keeptextopen
+	buttonsound
 	end
 
 .Arnie:
 	farwritetext UnknownText_0x64ada
-	keeptextopen
+	buttonsound
 	end
 
 .Alan:
 	farwritetext UnknownText_0x64da4
-	keeptextopen
+	buttonsound
 	end
 
 .Chad:
 	farwritetext UnknownText_0x65419
-	keeptextopen
+	buttonsound
 	end
 
 .Tully:
 	farwritetext UnknownText_0x65f17
-	keeptextopen
+	buttonsound
 	end
 
 .Brent:
 	farwritetext UnknownText_0x66214
-	keeptextopen
+	buttonsound
 	end
 
 .Vance:
 	farwritetext UnknownText_0x66a3a
-	keeptextopen
+	buttonsound
 	end
 
 .Wilton:
 	farwritetext UnknownText_0x66bf3
-	keeptextopen
+	buttonsound
 	end
 
 .Parry:
 	farwritetext UnknownText_0x67096
-	keeptextopen
+	buttonsound
 	end
 
-UnknownScript_0xa0432:
+PhoneScript_RematchText_Female:
 	checkcode VAR_CALLERID
 	if_equal PHONE_COOLTRAINERF_BETH, .Beth
 	if_equal PHONE_COOLTRAINERF_REENA, .Reena
@@ -647,37 +647,37 @@ UnknownScript_0xa0432:
 
 .Beth:
 	farwritetext UnknownText_0x174e4e
-	keeptextopen
+	buttonsound
 	end
 
 .Reena:
 	farwritetext UnknownText_0x17543a
-	keeptextopen
+	buttonsound
 	end
 
 .Liz:
 	farwritetext UnknownText_0x17610a
-	keeptextopen
+	buttonsound
 	end
 
 .Gina:
 	farwritetext UnknownText_0x1772e2
-	keeptextopen
+	buttonsound
 	end
 
 .Dana:
 	farwritetext UnknownText_0x65091
-	keeptextopen
+	buttonsound
 	end
 
 .Tiffany:
 	farwritetext UnknownText_0x66730
-	keeptextopen
+	buttonsound
 	end
 
 .Erin:
 	farwritetext UnknownText_0x6722e
-	keeptextopen
+	buttonsound
 	end
 
 UnknownScript_0xa047a:
@@ -688,7 +688,7 @@ UnknownScript_0xa047f:
 	farwritetext UnknownText_0x66796
 	end
 
-UnknownScript_0xa0484:
+PhoneScript_HangupText_Male:
 	checkcode VAR_CALLERID
 	if_equal PHONE_SCHOOLBOY_JACK, .Jack
 	if_equal PHONE_SAILOR_HUEY, .Huey
@@ -791,7 +791,7 @@ UnknownScript_0xa0484:
 	farwritetext UnknownText_0x670eb
 	end
 
-UnknownScript_0xa053a:
+PhoneScript_HangupText_Female:
 	checkcode VAR_CALLERID
 	if_equal PHONE_POKEFAN_BEVERLY, .Beverly
 	if_equal PHONE_COOLTRAINERF_BETH, .Beth
@@ -840,7 +840,7 @@ UnknownScript_0xa0584:
 	farjump UnknownScript_0xa0000
 
 UnknownScript_0xa058e:
-	farjump UnknownScript_0xa0484
+	farjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0592:
 	scall UnknownScript_0xa05a0
@@ -848,7 +848,7 @@ UnknownScript_0xa0592:
 	farjump UnknownScript_0xa0017
 
 UnknownScript_0xa059c:
-	farjump UnknownScript_0xa053a
+	farjump PhoneScript_HangupText_Female
 
 UnknownScript_0xa05a0:
 	special RandomPhoneRareWildMon
@@ -861,38 +861,38 @@ UnknownScript_0xa05a4:
 
 .Wade:
 	farwritetext UnknownText_0x1759f7
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 .Derek:
 	farwritetext UnknownText_0x65c66
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa05be:
 	farwritetext UnknownText_0x64032
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa05c6:
 	farwritetext UnknownText_0x177378
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa05ce:
 	farwritetext UnknownText_0x64b5f
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa05d6:
 	farwritetext UnknownText_0x175dd9
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa05de:
 	farwritetext UnknownText_0x176c61
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa05e6:
 	checkcode VAR_CALLERID
@@ -952,271 +952,271 @@ UnknownScript_0xa061e:
 
 UnknownScript_0xa0644:
 	farwritetext UnknownText_0x176feb
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa064c:
 	farwritetext UnknownText_0x66dc5
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0654:
-	random $b
-	if_equal $0, UnknownScript_0xa0682
-	if_equal $1, UnknownScript_0xa068a
-	if_equal $2, UnknownScript_0xa0692
-	if_equal $3, UnknownScript_0xa069a
-	if_equal $4, UnknownScript_0xa06a2
-	if_equal $5, UnknownScript_0xa06aa
-	if_equal $6, UnknownScript_0xa06b2
-	if_equal $7, UnknownScript_0xa06ba
-	if_equal $8, UnknownScript_0xa06c2
-	if_equal $9, UnknownScript_0xa06ca
-	if_equal $a, UnknownScript_0xa06d2
+	random 11
+	if_equal  0, UnknownScript_0xa0682
+	if_equal  1, UnknownScript_0xa068a
+	if_equal  2, UnknownScript_0xa0692
+	if_equal  3, UnknownScript_0xa069a
+	if_equal  4, UnknownScript_0xa06a2
+	if_equal  5, UnknownScript_0xa06aa
+	if_equal  6, UnknownScript_0xa06b2
+	if_equal  7, UnknownScript_0xa06ba
+	if_equal  8, UnknownScript_0xa06c2
+	if_equal  9, UnknownScript_0xa06ca
+	if_equal 10, UnknownScript_0xa06d2
 
 UnknownScript_0xa0682:
 	farwritetext UnknownText_0x174261
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa068a:
 	farwritetext UnknownText_0x17429d
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0692:
 	farwritetext UnknownText_0x1742ee
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa069a:
 	farwritetext UnknownText_0x174340
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa06a2:
 	farwritetext UnknownText_0x174391
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa06aa:
 	farwritetext UnknownText_0x1743e3
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa06b2:
 	farwritetext UnknownText_0x174433
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa06ba:
 	farwritetext UnknownText_0x174485
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa06c2:
 	farwritetext UnknownText_0x1744d6
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa06ca:
 	farwritetext UnknownText_0x174522
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa06d2:
 	farwritetext UnknownText_0x174571
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa06da:
-	random $a
-	if_equal $0, UnknownScript_0xa0704
-	if_equal $1, UnknownScript_0xa070c
-	if_equal $2, UnknownScript_0xa0714
-	if_equal $3, UnknownScript_0xa071c
-	if_equal $4, UnknownScript_0xa0724
-	if_equal $5, UnknownScript_0xa072c
-	if_equal $6, UnknownScript_0xa0734
-	if_equal $7, UnknownScript_0xa073c
-	if_equal $8, UnknownScript_0xa0744
-	if_equal $9, UnknownScript_0xa074c
+	random 10
+	if_equal 0, UnknownScript_0xa0704
+	if_equal 1, UnknownScript_0xa070c
+	if_equal 2, UnknownScript_0xa0714
+	if_equal 3, UnknownScript_0xa071c
+	if_equal 4, UnknownScript_0xa0724
+	if_equal 5, UnknownScript_0xa072c
+	if_equal 6, UnknownScript_0xa0734
+	if_equal 7, UnknownScript_0xa073c
+	if_equal 8, UnknownScript_0xa0744
+	if_equal 9, UnknownScript_0xa074c
 
 UnknownScript_0xa0704:
 	farwritetext UnknownText_0x176223
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa070c:
 	farwritetext UnknownText_0x1762c3
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0714:
 	farwritetext UnknownText_0x17638a
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa071c:
 	farwritetext UnknownText_0x176424
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0724:
 	farwritetext UnknownText_0x1764eb
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa072c:
 	farwritetext UnknownText_0x176599
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0734:
 	farwritetext UnknownText_0x1766ac
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa073c:
 	farwritetext UnknownText_0x17674f
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0744:
 	farwritetext UnknownText_0x176816
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa074c:
 	farwritetext UnknownText_0x17686d
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0754:
-	random $a
-	if_equal $0, UnknownScript_0xa077e
-	if_equal $1, UnknownScript_0xa0786
-	if_equal $2, UnknownScript_0xa078e
-	if_equal $3, UnknownScript_0xa0796
-	if_equal $4, UnknownScript_0xa079e
-	if_equal $5, UnknownScript_0xa07a6
-	if_equal $6, UnknownScript_0xa07ae
-	if_equal $7, UnknownScript_0xa07b6
-	if_equal $8, UnknownScript_0xa07be
-	if_equal $9, UnknownScript_0xa07c6
+	random 10
+	if_equal 0, UnknownScript_0xa077e
+	if_equal 1, UnknownScript_0xa0786
+	if_equal 2, UnknownScript_0xa078e
+	if_equal 3, UnknownScript_0xa0796
+	if_equal 4, UnknownScript_0xa079e
+	if_equal 5, UnknownScript_0xa07a6
+	if_equal 6, UnknownScript_0xa07ae
+	if_equal 7, UnknownScript_0xa07b6
+	if_equal 8, UnknownScript_0xa07be
+	if_equal 9, UnknownScript_0xa07c6
 
 UnknownScript_0xa077e:
 	farwritetext UnknownText_0x65481
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0786:
 	farwritetext UnknownText_0x654ea
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa078e:
 	farwritetext UnknownText_0x65555
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0796:
 	farwritetext UnknownText_0x655c7
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa079e:
 	farwritetext UnknownText_0x65628
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa07a6:
 	farwritetext UnknownText_0x6569b
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa07ae:
 	farwritetext UnknownText_0x6574a
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa07b6:
 	farwritetext UnknownText_0x65810
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa07be:
 	farwritetext UnknownText_0x658c6
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa07c6:
 	farwritetext UnknownText_0x65969
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa07ce:
-	random $a
-	if_equal $0, UnknownScript_0xa07f8
-	if_equal $1, UnknownScript_0xa0800
-	if_equal $2, UnknownScript_0xa0808
-	if_equal $3, UnknownScript_0xa0810
-	if_equal $4, UnknownScript_0xa0818
-	if_equal $5, UnknownScript_0xa0820
-	if_equal $6, UnknownScript_0xa0828
-	if_equal $7, UnknownScript_0xa0830
-	if_equal $8, UnknownScript_0xa0838
-	if_equal $9, UnknownScript_0xa0840
+	random 10
+	if_equal 0, UnknownScript_0xa07f8
+	if_equal 1, UnknownScript_0xa0800
+	if_equal 2, UnknownScript_0xa0808
+	if_equal 3, UnknownScript_0xa0810
+	if_equal 4, UnknownScript_0xa0818
+	if_equal 5, UnknownScript_0xa0820
+	if_equal 6, UnknownScript_0xa0828
+	if_equal 7, UnknownScript_0xa0830
+	if_equal 8, UnknownScript_0xa0838
+	if_equal 9, UnknownScript_0xa0840
 
 UnknownScript_0xa07f8:
 	farwritetext UnknownText_0x662bc
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0800:
 	farwritetext UnknownText_0x662fc
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0808:
 	farwritetext UnknownText_0x66335
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0810:
 	farwritetext UnknownText_0x66366
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0818:
 	farwritetext UnknownText_0x663a1
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0820:
 	farwritetext UnknownText_0x663e6
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0828:
 	farwritetext UnknownText_0x66421
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0830:
 	farwritetext UnknownText_0x6645f
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0838:
 	farwritetext UnknownText_0x6649b
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0840:
 	farwritetext UnknownText_0x664dd
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0848:
 	checkevent EVENT_OPENED_MT_SILVER
@@ -1244,232 +1244,232 @@ UnknownScript_0xa0848:
 	checkflag ENGINE_PLAINBADGE
 	iftrue UnknownScript_0xa0898
 	farwritetext UnknownText_0x646a3
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0898:
 	farwritetext UnknownText_0x64099
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa08a0:
 	farwritetext UnknownText_0x640e6
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa08a8:
 	farwritetext UnknownText_0x6416d
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa08b0:
 	farwritetext UnknownText_0x641e8
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa08b8:
 	farwritetext UnknownText_0x64247
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa08c0:
 	farwritetext UnknownText_0x642bb
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa08c8:
 	farwritetext UnknownText_0x643d4
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa08d0:
 	farwritetext UnknownText_0x64448
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa08d8:
 	farwritetext UnknownText_0x6455b
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa08e0:
 	farwritetext UnknownText_0x645ff
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa08e8:
 	farwritetext UnknownText_0x646df
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa08f0:
 	farwritetext UnknownText_0x647d8
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa08f8:
 	farwritetext UnknownText_0x1745c2
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0900:
 	farwritetext UnknownText_0x17485b
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0908:
 	farwritetext UnknownText_0x17496b
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0910:
 	farwritetext UnknownText_0x174c29
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0918:
 	farwritetext UnknownText_0x174ec5
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0920:
 	farwritetext UnknownText_0x17519b
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0928:
 	farwritetext UnknownText_0x17549b
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0930:
 	farwritetext UnknownText_0x17571d
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0938:
 	farwritetext UnknownText_0x175abe
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0940:
 	farwritetext UnknownText_0x175eaf
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0948:
 	farwritetext UnknownText_0x1768b0
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0950:
 	farwritetext UnknownText_0x176d32
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0958:
 	farwritetext UnknownText_0x1770fb
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0960:
 	farwritetext UnknownText_0x177465
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0968:
 	farwritetext UnknownText_0x64bc6
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0970:
 	farwritetext UnknownText_0x64e90
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0978:
 	farwritetext UnknownText_0x65161
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0980:
 	farwritetext UnknownText_0x65a23
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0988:
 	farwritetext UnknownText_0x65d5c
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0990:
 	farwritetext UnknownText_0x65ff2
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0998:
 	farwritetext UnknownText_0x6651e
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa09a0:
 	farwritetext UnknownText_0x66882
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa09a8:
 	farwritetext UnknownText_0x66aa5
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa09b0:
 	farwritetext UnknownText_0x66ca7
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa09b8:
 	farwritetext UnknownText_0x67106
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa09c0:
 	farwritetext UnknownText_0x67294
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa09c8:
-	random $3
-	if_equal $0, UnknownScript_0xa09d6
-	if_equal $1, UnknownScript_0xa09de
-	if_equal $2, UnknownScript_0xa09e6
+	random 3
+	if_equal 0, UnknownScript_0xa09d6
+	if_equal 1, UnknownScript_0xa09de
+	if_equal 2, UnknownScript_0xa09e6
 
 UnknownScript_0xa09d6:
 	farwritetext UnknownText_0x64846
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa09de:
 	farwritetext UnknownText_0x64881
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa09e6:
 	farwritetext UnknownText_0x648dc
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa09ee:
 	checkcode VAR_KENJI_BREAK
-	if_equal $2, UnknownScript_0xa0a00
-	if_equal $1, UnknownScript_0xa0a08
+	if_equal 2, UnknownScript_0xa0a00
+	if_equal 1, UnknownScript_0xa0a08
 	farwritetext UnknownText_0x66e17
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0a00:
 	farwritetext UnknownText_0x66e67
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0a08:
 	checkmorn
@@ -1478,18 +1478,18 @@ UnknownScript_0xa0a08:
 	iftrue UnknownScript_0xa0a25
 	setevent EVENT_KENJI_ON_BREAK
 	farwritetext UnknownText_0x66f11
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0a1d:
 	farwritetext UnknownText_0x66ed3
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0a25:
 	farwritetext UnknownText_0x66f52
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0a2d:
 	farwritetext UnknownText_0x174638
@@ -1589,53 +1589,53 @@ UnknownScript_0xa0aa0:
 
 UnknownScript_0xa0aa5:
 	farwritetext UnknownText_0x174895
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0aad:
 	farwritetext UnknownText_0x17529c
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0ab5:
 	farwritetext UnknownText_0x175b6d
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0abd:
 	farwritetext UnknownText_0x17750e
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0ac5:
 	farwritetext UnknownText_0x64f1a
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0acd:
 	farwritetext UnknownText_0x6520f
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0ad5:
 	farwritetext UnknownText_0x65da6
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0add:
 	farwritetext UnknownText_0x66087
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0ae5:
 	farwritetext UnknownText_0x6691d
-	keeptextopen
-	jump UnknownScript_0xa053a
+	buttonsound
+	jump PhoneScript_HangupText_Female
 
 UnknownScript_0xa0aed:
 	farwritetext UnknownText_0x66d45
-	keeptextopen
-	jump UnknownScript_0xa0484
+	buttonsound
+	jump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0af5:
 	farwritetext UnknownText_0x175f70

@@ -1,7 +1,7 @@
 Music_LookOfficer: ; ed82d
-	dbw $80, Music_LookOfficer_Ch1
-	dbw $01, Music_LookOfficer_Ch2
-	dbw $02, Music_LookOfficer_Ch3
+	musicheader 3, 1, Music_LookOfficer_Ch1
+	musicheader 1, 2, Music_LookOfficer_Ch2
+	musicheader 1, 3, Music_LookOfficer_Ch3
 ; ed836
 
 Music_LookOfficer_Ch1: ; ed836

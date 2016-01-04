@@ -13,7 +13,7 @@ HealMachineAnim: ; 12324
 	ld [Buffer2], a
 	call .DoJumptableFunctions
 	ld a, [Buffer2]
-	call Functiond24
+	call DmgToCgbObjPal1
 	ret
 ; 1233e
 

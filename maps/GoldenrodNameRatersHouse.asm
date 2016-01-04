@@ -1,3 +1,6 @@
+const_value set 2
+	const GOLDENRODNAMERATERSHOUSE_GENTLEMAN
+
 GoldenrodNameRatersHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,10 +10,10 @@ GoldenrodNameRatersHouse_MapScriptHeader:
 
 GentlemanScript_0x5577c:
 	faceplayer
-	loadfont
+	opentext
 	special SpecialNameRater
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GoldenrodNameRatersHouseBookshelf:

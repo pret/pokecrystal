@@ -6,17 +6,17 @@ Serial:: ; 6ef
 	push de
 	push hl
 
-	ld a, [hFFC9]
+	ld a, [hMobileReceive]
 	and a
-	jr nz, .asm_71c
+	jr nz, .mobile
 
 	ld a, [wc2d4]
 	bit 0, a
-	jr nz, .asm_721
+	jr nz, .printer
 
 	ld a, [hLinkPlayerNumber]
 	inc a ; is it equal to -1?
-	jr z, .asm_726
+	jr z, .init_player_number
 
 	ld a, [rSB]
 	ld [hSerialReceive], a
@@ -26,62 +26,62 @@ Serial:: ; 6ef
 
 	ld a, [hLinkPlayerNumber]
 	cp $2
-	jr z, .asm_752
+	jr z, .player2
 
 	ld a, 0 << rSC_ON
 	ld [rSC], a
 	ld a, 1 << rSC_ON
 	ld [rSC], a
-	jr .asm_752
+	jr .player2
 
-.asm_71c
-	call Function3e80
-	jr .asm_75a
+.mobile
+	call MobileReceive
+	jr .end
 
-.asm_721
-	call Function2057
-	jr .asm_75a
+.printer
+	call PrinterReceive
+	jr .end
 
-.asm_726
+.init_player_number
 	ld a, [rSB]
 	cp $1
-	jr z, .asm_730
+	jr z, .player1
 	cp $2
-	jr nz, .asm_752
+	jr nz, .player2
 
-.asm_730
+.player1
 	ld [hSerialReceive], a
 	ld [hLinkPlayerNumber], a
 	cp $2
-	jr z, .asm_74f
+	jr z, ._player2
 
 	xor a
 	ld [rSB], a
 	ld a, $3
 	ld [rDIV], a
 
-.asm_73f
+.wait_bit_7
 	ld a, [rDIV]
 	bit 7, a
-	jr nz, .asm_73f
+	jr nz, .wait_bit_7
 
 	ld a, 0 << rSC_ON
 	ld [rSC], a
 	ld a, 1 << rSC_ON
 	ld [rSC], a
-	jr .asm_752
+	jr .player2
 
-.asm_74f
+._player2
 	xor a
 	ld [rSB], a
 
-.asm_752
+.player2
 	ld a, $1
 	ld [hFFCA], a
-	ld a, $fe
+	ld a, -2
 	ld [hSerialSend], a
 
-.asm_75a
+.end
 	pop hl
 	pop de
 	pop bc
@@ -92,7 +92,7 @@ Serial:: ; 6ef
 Function75f:: ; 75f
 	ld a, $1
 	ld [hFFCC], a
-.asm_763
+.loop
 	ld a, [hl]
 	ld [hSerialSend], a
 	call Function78a
@@ -100,28 +100,28 @@ Function75f:: ; 75f
 	ld b, a
 	inc hl
 	ld a, $30
-.asm_76e
+.wait
 	dec a
-	jr nz, .asm_76e
+	jr nz, .wait
 	ld a, [hFFCC]
 	and a
 	ld a, b
 	pop bc
-	jr z, .asm_782
+	jr z, .load
 	dec hl
 	cp $fd
-	jr nz, .asm_763
+	jr nz, .loop
 	xor a
 	ld [hFFCC], a
-	jr .asm_763
+	jr .loop
 
-.asm_782
+.load
 	ld [de], a
 	inc de
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_763
+	jr nz, .loop
 	ret
 ; 78a
 
@@ -292,7 +292,7 @@ Function87d:: ; 87d
 	ld a, $ff
 	ld [wOtherPlayerLinkAction], a
 .loop
-	call LinkCommunicationsSendReceive
+	call LinkTransfer
 	call DelayFrame
 	call Function82b
 	jr z, .check
@@ -318,14 +318,14 @@ Function87d:: ; 87d
 	ld b, 10
 .receive
 	call DelayFrame
-	call LinkCommunicationsSendReceive
+	call LinkTransfer
 	dec b
 	jr nz, .receive
 
 	ld b, 10
 .acknowledge
 	call DelayFrame
-	call LinkCommunicationsSignalDataReceived
+	call LinkDataReceived
 	dec b
 	jr nz, .acknowledge
 
@@ -334,7 +334,7 @@ Function87d:: ; 87d
 	ret
 ; 8c1
 
-LinkCommunicationsSendReceive:: ; 8c1
+LinkTransfer:: ; 8c1
 	push bc
 	ld b, SERIAL_TIMECAPSULE
 	ld a, [wLinkMode]
@@ -380,7 +380,7 @@ LinkCommunicationsSendReceive:: ; 8c1
 	ret
 ; 908
 
-LinkCommunicationsSignalDataReceived:: ; 908
+LinkDataReceived:: ; 908
 ; Let the other system know that the data has been received.
 	xor a
 	ld [hSerialSend], a

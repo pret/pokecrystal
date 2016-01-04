@@ -1,3 +1,13 @@
+const_value set 2
+	const SAFFRONCITY_LASS1
+	const SAFFRONCITY_POKEFAN_M
+	const SAFFRONCITY_COOLTRAINER_M
+	const SAFFRONCITY_COOLTRAINER_F
+	const SAFFRONCITY_FISHER
+	const SAFFRONCITY_YOUNGSTER1
+	const SAFFRONCITY_YOUNGSTER2
+	const SAFFRONCITY_LASS2
+
 SaffronCity_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -14,34 +24,34 @@ SaffronCity_MapScriptHeader:
 
 LassScript_0x19932a:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x199338
 	writetext UnknownText_0x19938d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x199338:
 	writetext UnknownText_0x19940d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokefanMScript_0x19933e:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x19934c
 	writetext UnknownText_0x199460
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19934c:
 	writetext UnknownText_0x1994ae
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CooltrainerMScript_0x199352:
@@ -52,18 +62,18 @@ CooltrainerFScript_0x199355:
 
 FisherScript_0x199358:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x199366
 	writetext UnknownText_0x1995fc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x199366:
 	writetext UnknownText_0x19964b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x19936c:

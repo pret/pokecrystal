@@ -1,3 +1,12 @@
+const_value set 2
+	const FASTSHIPCABINS_NNW_NNE_NE_COOLTRAINER_M
+	const FASTSHIPCABINS_NNW_NNE_NE_COOLTRAINER_F
+	const FASTSHIPCABINS_NNW_NNE_NE_SUPER_NERD
+	const FASTSHIPCABINS_NNW_NNE_NE_POKEFAN_M
+	const FASTSHIPCABINS_NNW_NNE_NE_SAILOR
+	const FASTSHIPCABINS_NNW_NNE_NE_GENTLEMAN
+	const FASTSHIPCABINS_NNW_NNE_NE_PHARMACIST
+
 FastShipCabins_NNW_NNE_NE_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,100 +18,100 @@ TrainerCooltrainermSean:
 	trainer EVENT_BEAT_COOLTRAINERM_SEAN, COOLTRAINERM, SEAN, CooltrainermSeanSeenText, CooltrainermSeanBeatenText, 0, CooltrainermSeanScript
 
 CooltrainermSeanScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x7567b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainerfCarol:
 	trainer EVENT_BEAT_COOLTRAINERF_CAROL, COOLTRAINERF, CAROL, CooltrainerfCarolSeenText, CooltrainerfCarolBeatenText, 0, CooltrainerfCarolScript
 
 CooltrainerfCarolScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x756f7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokemaniacEthan:
 	trainer EVENT_BEAT_POKEMANIAC_ETHAN, POKEMANIAC, ETHAN, PokemaniacEthanSeenText, PokemaniacEthanBeatenText, 0, PokemaniacEthanScript
 
 PokemaniacEthanScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x7574b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerHikerNoland:
 	trainer EVENT_BEAT_HIKER_NOLAND, HIKER, NOLAND, HikerNolandSeenText, HikerNolandBeatenText, 0, HikerNolandScript
 
 HikerNolandScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x757d4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGentlemanEdward:
 	trainer EVENT_BEAT_GENTLEMAN_EDWARD, GENTLEMAN, EDWARD, GentlemanEdwardSeenText, GentlemanEdwardBeatenText, 0, GentlemanEdwardScript
 
 GentlemanEdwardScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x75937
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBurglarCorey:
 	trainer EVENT_BEAT_BURGLAR_COREY, BURGLAR, COREY, BurglarCoreySeenText, BurglarCoreyBeatenText, 0, BurglarCoreyScript
 
 BurglarCoreyScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x75996
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SailorScript_0x755f1:
 	playmusic MUSIC_HIKER_ENCOUNTER
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x75812
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x75897, 0
 	loadtrainer SAILOR, STANLY
 	startbattle
 	reloadmap
 	special HealParty
 	setevent EVENT_BEAT_SAILOR_STANLY
-	loadfont
+	opentext
 	writetext UnknownText_0x758b1
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_FAST_SHIP_LAZY_SAILOR
 	domaptrigger FAST_SHIP_B1F, $1
 	checkcode VAR_FACING
 	if_equal $3, UnknownScript_0x75629
-	applymovement $6, MovementData_0x75637
+	applymovement FASTSHIPCABINS_NNW_NNE_NE_SAILOR, MovementData_0x75637
 	playsound SFX_EXIT_BUILDING
-	disappear $6
-	waitbutton
+	disappear FASTSHIPCABINS_NNW_NNE_NE_SAILOR
+	waitsfx
 	end
 
 UnknownScript_0x75629:
-	applymovement $6, MovementData_0x7563c
+	applymovement FASTSHIPCABINS_NNW_NNE_NE_SAILOR, MovementData_0x7563c
 	playsound SFX_EXIT_BUILDING
-	disappear $6
-	waitbutton
+	disappear FASTSHIPCABINS_NNW_NNE_NE_SAILOR
+	waitsfx
 	end
 
 FastShipCabins_NNW_NNE_NETrashcan:

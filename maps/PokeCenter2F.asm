@@ -1,74 +1,80 @@
+const_value set 2
+	const POKECENTER2F_TRADE_RECEPTIONIST
+	const POKECENTER2F_BATTLE_RECEPTIONIST
+	const POKECENTER2F_TIME_CAPSULE_RECEPTIONIST
+	const POKECENTER2F_OFFICER
+
 PokeCenter2F_MapScriptHeader:
 .MapTriggers:
 	db 6
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
 	dw .Trigger2, 0
 	dw .Trigger3, 0
 	dw .Trigger4, 0
 	dw .Trigger5, 0
-	dw .Trigger6, 0
 
 .MapCallbacks:
 	db 0
 
-.Trigger1:
+.Trigger0:
 	special Special_CheckMysteryGift
-	if_equal $0, .Trigger1Done
+	if_equal $0, .Trigger0Done
 	clearevent EVENT_MYSTERY_GIFT_DELIVERY_GUY
 	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
-	iftrue .Trigger1Done
+	iftrue .Trigger0Done
 	priorityjump PokeCenter2F_AppearMysteryGiftDeliveryGuy
 
-.Trigger1Done:
+.Trigger0Done:
 	end
 
-.Trigger2:
+.Trigger1:
 	priorityjump Script_LeftCableTradeCenter
 	end
 
-.Trigger3:
+.Trigger2:
 	priorityjump Script_LeftCableColosseum
 	end
 
-.Trigger4:
+.Trigger3:
 	priorityjump Script_LeftTimeCapsule
 	end
 
-.Trigger5:
+.Trigger4:
 	priorityjump Script_LeftMobileTradeRoom
 	end
 
-.Trigger6:
+.Trigger5:
 	priorityjump Script_LeftMobileBattleRoom
 	end
 
 PokeCenter2F_AppearMysteryGiftDeliveryGuy:
-	appear $5
+	appear POKECENTER2F_OFFICER
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	end
 
 Script_TradeCenterClosed:
 	faceplayer
-	loadfont
+	opentext
 	writetext Text_TradeRoomClosed
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Script_BattleRoomClosed:
 	faceplayer
-	loadfont
+	opentext
 	writetext Text_BattleRoomClosed
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 LinkReceptionistScript_Trade:
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iffalse Script_TradeCenterClosed
-	loadfont
+	opentext
 	writetext Text_TradeReceptionistIntro
 	yesorno
 	iffalse .Cancel
@@ -96,29 +102,29 @@ LinkReceptionistScript_Trade:
 	special Special_CheckBothSelectedSameRoom
 	iffalse .IncompatibleRooms
 	writetext Text_PleaseComeIn2
+	waitbutton
 	closetext
-	loadmovesprites
 	scall PokeCenter2F_CheckGender
 	warpcheck
 	end
 
 .FriendNotReady:
-	special Special_AbortLink
+	special WaitForOtherPlayerToExit
 	writetext Text_FriendNotReady
-	loadmovesprites
+	closetext
 	end
 
 .LinkedToFirstGen:
 	special Special_FailedLinkToPast
 	writetext Text_CantLinkToThePast
 	special Special_CloseLink
-	loadmovesprites
+	closetext
 	end
 
 .IncompatibleRooms:
 	writetext Text_IncompatibleRooms
 	special Special_CloseLink
-	loadmovesprites
+	closetext
 	end
 
 .LinkTimedOut:
@@ -128,9 +134,9 @@ LinkReceptionistScript_Trade:
 .DidNotSave:
 	writetext Text_PleaseComeAgain
 .AbortLink:
-	special Special_AbortLink
+	special WaitForOtherPlayerToExit
 .Cancel:
-	loadmovesprites
+	closetext
 	end
 
 .Mobile:
@@ -151,26 +157,26 @@ LinkReceptionistScript_Trade:
 	iffalse .Mobile_DidNotSave
 	special Function1011f1
 	writetext Text_PleaseComeIn2
+	waitbutton
 	closetext
-	loadmovesprites
 	writebyte $0
 	end
 
 .Mobile_DidNotSave:
 	writetext Text_PleaseComeAgain
-	loadmovesprites
+	closetext
 	writebyte $1
 	end
 
 BattleTradeMobile_WalkIn:
-	applymovement2 MovementData_0x192cce
-	applymovement PLAYER, MovementData_0x192ce7
+	applymovement2 PokeCenter2FMobileMobileMovementData_ReceptionistWalksUpAndLeft_LookDown
+	applymovement PLAYER, PokeCenter2FMobileMovementData_PlayerWalksIntoMobileBattleRoom
 	end
 
 LinkReceptionistScript_Battle:
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iffalse Script_BattleRoomClosed
-	loadfont
+	opentext
 	writetext Text_BattleReceptionistIntro
 	yesorno
 	iffalse .Cancel
@@ -198,29 +204,29 @@ LinkReceptionistScript_Battle:
 	special Special_CheckBothSelectedSameRoom
 	iffalse .IncompatibleRooms
 	writetext Text_PleaseComeIn2
+	waitbutton
 	closetext
-	loadmovesprites
 	scall PokeCenter2F_CheckGender
 	warpcheck
 	end
 
 .FriendNotReady:
-	special Special_AbortLink
+	special WaitForOtherPlayerToExit
 	writetext Text_FriendNotReady
-	loadmovesprites
+	closetext
 	end
 
 .LinkedToFirstGen:
 	special Special_FailedLinkToPast
 	writetext Text_CantLinkToThePast
 	special Special_CloseLink
-	loadmovesprites
+	closetext
 	end
 
 .IncompatibleRooms:
 	writetext Text_IncompatibleRooms
 	special Special_CloseLink
-	loadmovesprites
+	closetext
 	end
 
 .LinkTimedOut:
@@ -230,9 +236,9 @@ LinkReceptionistScript_Battle:
 .DidNotSave:
 	writetext Text_PleaseComeAgain
 .AbortLink:
-	special Special_AbortLink
+	special WaitForOtherPlayerToExit
 .Cancel:
-	loadmovesprites
+	closetext
 	end
 
 .Mobile:
@@ -255,14 +261,14 @@ LinkReceptionistScript_Battle:
 	iffalse .Mobile_DidNotSave
 	special Function1011f1
 	writetext Text_PleaseComeIn2
+	waitbutton
 	closetext
-	loadmovesprites
 	writebyte $0
 	end
 
 .Mobile_DidNotSave:
 	writetext Text_PleaseComeAgain
-	loadmovesprites
+	closetext
 	writebyte $1
 	end
 
@@ -276,9 +282,9 @@ LinkReceptionistScript_Battle:
 
 .Mobile_InvalidParty:
 	writetext Text_BrokeStadiumRules
-	closetext
+	waitbutton
 .Mobile_DidNotSelect:
-	loadmovesprites
+	closetext
 	writebyte $0
 	end
 
@@ -288,10 +294,10 @@ LinkReceptionistScript_Battle:
 
 Script_TimeCapsuleClosed:
 	faceplayer
-	loadfont
+	opentext
 	writetext Text_TimeCapsuleClosed
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 LinkReceptionistScript_TimeCapsule:
@@ -301,7 +307,7 @@ LinkReceptionistScript_TimeCapsule:
 	iftrue Script_TimeCapsuleClosed
 	special Special_SetBitsForTimeCapsuleRequest
 	faceplayer
-	loadfont
+	opentext
 	writetext Text_TimeCapsuleReceptionistIntro
 	yesorno
 	iffalse .Cancel
@@ -325,22 +331,22 @@ LinkReceptionistScript_TimeCapsule:
 	special Special_CheckBothSelectedSameRoom
 	writetext Text_IncompatibleRooms
 	special Special_CloseLink
-	loadmovesprites
+	closetext
 	end
 
 .OK:
 	special Special_EnterTimeCapsule
 	writetext Text_PleaseComeIn2
+	waitbutton
 	closetext
-	loadmovesprites
 	scall TimeCapsuleScript_CheckPlayerGender
 	warpcheck
 	end
 
 .FriendNotReady:
-	special Special_AbortLink
+	special WaitForOtherPlayerToExit
 	writetext Text_FriendNotReady
-	loadmovesprites
+	closetext
 	end
 
 .LinkTimedOut:
@@ -350,28 +356,28 @@ LinkReceptionistScript_TimeCapsule:
 .DidNotSave:
 	writetext Text_PleaseComeAgain
 .Cancel:
-	special Special_AbortLink
-	loadmovesprites
+	special WaitForOtherPlayerToExit
+	closetext
 	end
 
 .MonTooNew:
 	writetext Text_RejectNewMon
-	loadmovesprites
+	closetext
 	end
 
 .MonMoveTooNew:
 	writetext Text_RejectMonWithNewMove
-	loadmovesprites
+	closetext
 	end
 
 .MonHasMail:
 	writetext Text_RejectMonWithMail
-	loadmovesprites
+	closetext
 	end
 
 Script_LeftCableTradeCenter:
-	special Special_AbortLink
-	scall Script_CleanUpFemaleFlagAfterTrade
+	special WaitForOtherPlayerToExit
+	scall Script_WalkOutOfLinkTradeRoom
 	dotrigger $0
 	domaptrigger TRADE_CENTER, $0
 	end
@@ -384,14 +390,14 @@ Script_LeftMobileTradeRoom:
 	end
 
 Script_WalkOutOfMobileTradeRoom:
-	applymovement $2, MovementData_0x192d0b
-	applymovement PLAYER, MovementData_0x192d0f
-	applymovement $2, MovementData_0x192d14
+	applymovement POKECENTER2F_TRADE_RECEPTIONIST, PokeCenter2FMobileMovementData_ReceptionistWalksUpAndLeft
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerWalksOutOfMobileRoom
+	applymovement POKECENTER2F_TRADE_RECEPTIONIST, PokeCenter2FMobileMovementData_ReceptionistWalksRightAndDown
 	end
 
 Script_LeftCableColosseum:
-	special Special_AbortLink
-	scall Script_CleanUpFemaleFlagAfterBattle
+	special WaitForOtherPlayerToExit
+	scall Script_WalkOutOfLinkBattleRoom
 	dotrigger $0
 	domaptrigger COLOSSEUM, $0
 	end
@@ -404,88 +410,88 @@ Script_LeftMobileBattleRoom:
 	end
 
 Script_WalkOutOfMobileBattleRoom:
-	applymovement $3, MovementData_0x192d0b
-	applymovement PLAYER, MovementData_0x192d0f
-	applymovement $3, MovementData_0x192d14
+	applymovement POKECENTER2F_BATTLE_RECEPTIONIST, PokeCenter2FMobileMovementData_ReceptionistWalksUpAndLeft
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerWalksOutOfMobileRoom
+	applymovement POKECENTER2F_BATTLE_RECEPTIONIST, PokeCenter2FMobileMovementData_ReceptionistWalksRightAndDown
 	end
 
 PokeCenter2F_CheckGender:
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Female
-	applymovement2 MovementData_0x192cca
-	applymovement PLAYER, MovementData_0x192cde
+	applymovement2 PokeCenter2FMovementData_ReceptionistWalksUpAndLeft_LookRight
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerTakesThreeStepsUp
 	end
 
 .Female:
-	applymovement2 MovementData_0x192cd8
-	applymovement PLAYER, MovementData_0x192ce2
-	loadfont
+	applymovement2 PokeCenter2FMovementData_ReceptionistWalksUpAndLeft_LookRight_2
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerTakesTwoStepsUp
+	opentext
 	writetext Text_OhPleaseWait
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement2 MovementData_0x192cdc
+	applymovement2 PokeCenter2FMovementData_ReceptionistLooksRight
 	spriteface PLAYER, LEFT
-	loadfont
+	opentext
 	writetext Text_ChangeTheLook
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_TINGLE
-	applymovement PLAYER, MovementData_0x192d17
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight
 	writebyte (1 << 7) | (PAL_OW_RED << 4)
 	special Special_SetPlayerPalette
-	applymovement PLAYER, MovementData_0x192d1c
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft
 	setflag ENGINE_KRIS_IN_CABLE_CLUB
 	special ReplaceKrisSprite
-	loadfont
+	opentext
 	writetext Text_LikeTheLook
+	waitbutton
 	closetext
-	loadmovesprites
 	showemote EMOTE_SHOCK, PLAYER, 15
-	applymovement PLAYER, MovementData_0x192ce5
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerTakesOneStepUp
 	end
 
-Script_CleanUpFemaleFlagAfterTrade:
+Script_WalkOutOfLinkTradeRoom:
 	checkflag ENGINE_KRIS_IN_CABLE_CLUB
 	iftrue .Female
-	applymovement $2, MovementData_0x192d04
-	applymovement PLAYER, MovementData_0x192cf5
-	applymovement $2, MovementData_0x192cfe
+	applymovement POKECENTER2F_TRADE_RECEPTIONIST, PokeCenter2FMovementData_ReceptionistStepsRightLooksDown_3
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerTakesThreeStepsDown
+	applymovement POKECENTER2F_TRADE_RECEPTIONIST, PokeCenter2FMovementData_ReceptionistStepsRightAndDown
 	end
 
 .Female:
-	applymovement $2, MovementData_0x192d04
-	applymovement PLAYER, MovementData_0x192d28
+	applymovement POKECENTER2F_TRADE_RECEPTIONIST, PokeCenter2FMovementData_ReceptionistStepsRightLooksDown_3
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerTakesOneStepDown_2
 	clearflag ENGINE_KRIS_IN_CABLE_CLUB
 	playsound SFX_TINGLE
-	applymovement PLAYER, MovementData_0x192d17
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight
 	writebyte (1 << 7) | (PAL_OW_BLUE << 4)
 	special Special_SetPlayerPalette
-	applymovement PLAYER, MovementData_0x192d1c
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft
 	special ReplaceKrisSprite
-	applymovement PLAYER, MovementData_0x192d2a
-	applymovement $2, MovementData_0x192cfe
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerTakesTwoStepsDown_2
+	applymovement POKECENTER2F_TRADE_RECEPTIONIST, PokeCenter2FMovementData_ReceptionistStepsRightAndDown
 	end
 
-Script_CleanUpFemaleFlagAfterBattle:
+Script_WalkOutOfLinkBattleRoom:
 	checkflag ENGINE_KRIS_IN_CABLE_CLUB
 	iftrue .Female
-	applymovement $3, MovementData_0x192d04
-	applymovement PLAYER, MovementData_0x192cf5
-	applymovement $3, MovementData_0x192cfe
+	applymovement POKECENTER2F_BATTLE_RECEPTIONIST, PokeCenter2FMovementData_ReceptionistStepsRightLooksDown_3
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerTakesThreeStepsDown
+	applymovement POKECENTER2F_BATTLE_RECEPTIONIST, PokeCenter2FMovementData_ReceptionistStepsRightAndDown
 	end
 
 .Female:
-	applymovement $3, MovementData_0x192d04
-	applymovement PLAYER, MovementData_0x192d28
+	applymovement POKECENTER2F_BATTLE_RECEPTIONIST, PokeCenter2FMovementData_ReceptionistStepsRightLooksDown_3
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerTakesOneStepDown_2
 	clearflag ENGINE_KRIS_IN_CABLE_CLUB
 	playsound SFX_TINGLE
-	applymovement PLAYER, MovementData_0x192d17
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight
 	writebyte (1 << 7) | (PAL_OW_BLUE << 4)
 	special Special_SetPlayerPalette
-	applymovement PLAYER, MovementData_0x192d1c
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft
 	special ReplaceKrisSprite
-	applymovement PLAYER, MovementData_0x192d2a
-	applymovement $3, MovementData_0x192cfe
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerTakesTwoStepsDown_2
+	applymovement POKECENTER2F_BATTLE_RECEPTIONIST, PokeCenter2FMovementData_ReceptionistStepsRightAndDown
 	end
 
 TimeCapsuleScript_CheckPlayerGender:
@@ -494,86 +500,86 @@ TimeCapsuleScript_CheckPlayerGender:
 	checkcode VAR_FACING
 	if_equal LEFT, .MaleFacingLeft
 	if_equal RIGHT, .MaleFacingRight
-	applymovement2 MovementData_0x192cd2
-	applymovement PLAYER, MovementData_0x192cec
+	applymovement2 PokeCenter2FMovementData_ReceptionistStepsLeftLooksDown
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerTakesTwoStepsUp_2
 	end
 
 .MaleFacingLeft:
-	applymovement2 MovementData_0x192cd2
-	applymovement PLAYER, MovementData_0x192cef
+	applymovement2 PokeCenter2FMovementData_ReceptionistStepsLeftLooksDown
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerWalksLeftAndUp
 	end
 
 .MaleFacingRight:
-	applymovement2 MovementData_0x192cd5
-	applymovement PLAYER, MovementData_0x192cf2
+	applymovement2 PokeCenter2FMovementData_ReceptionistStepsRightLooksDown
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerWalksRightAndUp
 	end
 
 .Female:
 	checkcode VAR_FACING
 	if_equal RIGHT, .FemaleFacingRight
 	if_equal LEFT, .FemaleFacingLeft
-	applymovement2 MovementData_0x192d33
-	applymovement PLAYER, MovementData_0x192d2d
+	applymovement2 PokeCenter2FMovementData_ReceptionistStepsLeftLooksRight_2
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerTakesOneStepUp_2
 	jump .FemaleContinue
 
 .FemaleFacingRight:
-	applymovement2 MovementData_0x192d36
-	applymovement PLAYER, MovementData_0x192d2f
+	applymovement2 PokeCenter2FMovementData_ReceptionistStepsRightLooksLeft_2
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerTakesOneStepRight
 	jump .FemaleContinue
 
 .FemaleFacingLeft:
-	applymovement2 MovementData_0x192d33
-	applymovement PLAYER, MovementData_0x192d31
+	applymovement2 PokeCenter2FMovementData_ReceptionistStepsLeftLooksRight_2
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerTakesOneStepLeft
 .FemaleContinue:
-	loadfont
+	opentext
 	writetext Text_OhPleaseWait
+	waitbutton
 	closetext
-	loadmovesprites
 	checkcode VAR_FACING
 	if_not_equal UP, .FemaleChangeApperance
 	spriteface PLAYER, LEFT
 .FemaleChangeApperance:
-	loadfont
+	opentext
 	writetext Text_ChangeTheLook
+	waitbutton
 	closetext
-	loadmovesprites
 	playsound SFX_TINGLE
-	applymovement PLAYER, MovementData_0x192d17
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight
 	writebyte (1 << 7) | (PAL_OW_RED << 4)
 	special Special_SetPlayerPalette
-	applymovement PLAYER, MovementData_0x192d22
-	faceperson PLAYER, $4
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerSpinsClockwiseEndsFacingDown
+	faceperson PLAYER, POKECENTER2F_TIME_CAPSULE_RECEPTIONIST
 	setflag ENGINE_KRIS_IN_CABLE_CLUB
 	special ReplaceKrisSprite
-	loadfont
+	opentext
 	writetext Text_LikeTheLook
+	waitbutton
 	closetext
-	loadmovesprites
 	showemote EMOTE_SHOCK, PLAYER, 15
-	applymovement PLAYER, MovementData_0x192d2d
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerTakesOneStepUp_2
 	end
 
 Script_LeftTimeCapsule:
-	special Special_AbortLink
+	special WaitForOtherPlayerToExit
 	checkflag ENGINE_KRIS_IN_CABLE_CLUB
 	iftrue .Female
-	applymovement $4, MovementData_0x192d08
-	applymovement PLAYER, MovementData_0x192cf9
-	applymovement $4, MovementData_0x192d01
+	applymovement POKECENTER2F_TIME_CAPSULE_RECEPTIONIST, PokeCenter2FMovementData_ReceptionistStepsLeftLooksRight
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerTakesTwoStepsDown
+	applymovement POKECENTER2F_TIME_CAPSULE_RECEPTIONIST, PokeCenter2FMovementData_ReceptionistStepsRightLooksDown_2
 	jump .Done
 
 .Female:
-	applymovement $4, MovementData_0x192d08
-	applymovement PLAYER, MovementData_0x192cfc
+	applymovement POKECENTER2F_TIME_CAPSULE_RECEPTIONIST, PokeCenter2FMovementData_ReceptionistStepsLeftLooksRight
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerTakesOneStepDown
 	clearflag ENGINE_KRIS_IN_CABLE_CLUB
 	playsound SFX_TINGLE
-	applymovement PLAYER, MovementData_0x192d17
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight
 	writebyte (1 << 7) | (PAL_OW_BLUE << 4)
 	special Special_SetPlayerPalette
-	applymovement PLAYER, MovementData_0x192d1c
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft
 	special ReplaceKrisSprite
-	applymovement PLAYER, MovementData_0x192cfc
-	applymovement $4, MovementData_0x192d01
+	applymovement PLAYER, PokeCenter2FMovementData_PlayerTakesOneStepDown
+	applymovement POKECENTER2F_TIME_CAPSULE_RECEPTIONIST, PokeCenter2FMovementData_ReceptionistStepsRightLooksDown_2
 .Done:
 	dotrigger $0
 	domaptrigger TIME_CAPSULE, $0
@@ -582,173 +588,173 @@ Script_LeftTimeCapsule:
 MapPokeCenter2FSignpost0Script:
 	refreshscreen $0
 	special Special_DisplayLinkRecord
-	loadmovesprites
+	closetext
 	end
 
 OfficerScript_0x192c9a:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_MYSTERY_GIFT_DELIVERY_GUY
 	iftrue .AlreadyGotGift
 	writetext Text_MysteryGiftDeliveryGuy_Intro
 	yesorno
 	iffalse .RefusedGift
 	writetext Text_MysteryGiftDeliveryGuy_HereYouGo
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	special Special_GetMysteryGiftItem
 	iffalse .BagIsFull
 	itemnotify
 	setevent EVENT_MYSTERY_GIFT_DELIVERY_GUY
 .AlreadyGotGift:
 	writetext Text_MysteryGiftDeliveryGuy_Outro
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .BagIsFull:
 	writetext Text_MysteryGiftDeliveryGuy_NoRoom
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .RefusedGift:
 	writetext Text_MysteryGiftDeliveryGuy_SaidNo
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-MovementData_0x192cca:
+PokeCenter2FMovementData_ReceptionistWalksUpAndLeft_LookRight:
 	slow_step_up
 	slow_step_left
 	turn_head_right
 	step_end
 
-MovementData_0x192cce:
+PokeCenter2FMobileMobileMovementData_ReceptionistWalksUpAndLeft_LookDown:
 	slow_step_up
 	slow_step_left
 	turn_head_down
 	step_end
 
-MovementData_0x192cd2:
+PokeCenter2FMovementData_ReceptionistStepsLeftLooksDown:
 	slow_step_left
 	turn_head_down
 	step_end
 
-MovementData_0x192cd5:
+PokeCenter2FMovementData_ReceptionistStepsRightLooksDown:
 	slow_step_right
 	turn_head_down
 	step_end
 
-MovementData_0x192cd8:
+PokeCenter2FMovementData_ReceptionistWalksUpAndLeft_LookRight_2:
 	slow_step_up
 	slow_step_left
 	turn_head_right
 	step_end
 
-MovementData_0x192cdc:
+PokeCenter2FMovementData_ReceptionistLooksRight:
 	turn_head_right
 	step_end
 
-MovementData_0x192cde:
+PokeCenter2FMovementData_PlayerTakesThreeStepsUp:
 	step_up
 	step_up
 	step_up
 	step_end
 
-MovementData_0x192ce2:
+PokeCenter2FMovementData_PlayerTakesTwoStepsUp:
 	step_up
 	step_up
 	step_end
 
-MovementData_0x192ce5:
+PokeCenter2FMovementData_PlayerTakesOneStepUp:
 	step_up
 	step_end
 
-MovementData_0x192ce7:
+PokeCenter2FMobileMovementData_PlayerWalksIntoMobileBattleRoom:
 	step_up
 	step_up
 	step_right
 	step_up
 	step_end
 
-MovementData_0x192cec:
+PokeCenter2FMovementData_PlayerTakesTwoStepsUp_2:
 	step_up
 	step_up
 	step_end
 
-MovementData_0x192cef:
+PokeCenter2FMovementData_PlayerWalksLeftAndUp:
 	step_left
 	step_up
 	step_end
 
-MovementData_0x192cf2:
+PokeCenter2FMovementData_PlayerWalksRightAndUp:
 	step_right
 	step_up
 	step_end
 
-MovementData_0x192cf5:
+PokeCenter2FMovementData_PlayerTakesThreeStepsDown:
 	step_down
 	step_down
 	step_down
 	step_end
 
-MovementData_0x192cf9:
+PokeCenter2FMovementData_PlayerTakesTwoStepsDown:
 	step_down
 	step_down
 	step_end
 
-MovementData_0x192cfc:
+PokeCenter2FMovementData_PlayerTakesOneStepDown:
 	step_down
 	step_end
 
-MovementData_0x192cfe:
+PokeCenter2FMovementData_ReceptionistStepsRightAndDown:
 	slow_step_right
 	slow_step_down
 	step_end
 
-MovementData_0x192d01:
+PokeCenter2FMovementData_ReceptionistStepsRightLooksDown_2:
 	slow_step_right
 	turn_head_down
 	step_end
 
-MovementData_0x192d04:
+PokeCenter2FMovementData_ReceptionistStepsRightLooksDown_3:
 	slow_step_up
 	slow_step_left
 	turn_head_right
 	step_end
 
-MovementData_0x192d08:
+PokeCenter2FMovementData_ReceptionistStepsLeftLooksRight:
 	slow_step_left
 	turn_head_right
 	step_end
 
-MovementData_0x192d0b:
+PokeCenter2FMobileMovementData_ReceptionistWalksUpAndLeft:
 	slow_step_up
 	slow_step_left
 	turn_head_right
 	step_end
 
-MovementData_0x192d0f:
+PokeCenter2FMovementData_PlayerWalksOutOfMobileRoom:
 	step_down
 	step_left
 	step_down
 	step_down
 	step_end
 
-MovementData_0x192d14:
+PokeCenter2FMobileMovementData_ReceptionistWalksRightAndDown:
 	slow_step_right
 	slow_step_down
 	step_end
 
-MovementData_0x192d17:
+PokeCenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight:
 	turn_head_down
 	turn_head_left
 	turn_head_up
 	turn_head_right
 	step_end
 
-MovementData_0x192d1c:
+PokeCenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft:
 	turn_head_down
 	turn_head_left
 	turn_head_up
@@ -756,7 +762,7 @@ MovementData_0x192d1c:
 	turn_head_left
 	step_end
 
-MovementData_0x192d22:
+PokeCenter2FMovementData_PlayerSpinsClockwiseEndsFacingDown:
 	turn_head_down
 	turn_head_left
 	turn_head_up
@@ -764,33 +770,33 @@ MovementData_0x192d22:
 	turn_head_down
 	step_end
 
-MovementData_0x192d28:
+PokeCenter2FMovementData_PlayerTakesOneStepDown_2:
 	step_down
 	step_end
 
-MovementData_0x192d2a:
+PokeCenter2FMovementData_PlayerTakesTwoStepsDown_2:
 	step_down
 	step_down
 	step_end
 
-MovementData_0x192d2d:
+PokeCenter2FMovementData_PlayerTakesOneStepUp_2:
 	step_up
 	step_end
 
-MovementData_0x192d2f:
+PokeCenter2FMovementData_PlayerTakesOneStepRight:
 	step_right
 	step_end
 
-MovementData_0x192d31:
+PokeCenter2FMovementData_PlayerTakesOneStepLeft:
 	step_left
 	step_end
 
-MovementData_0x192d33:
+PokeCenter2FMovementData_ReceptionistStepsLeftLooksRight_2:
 	slow_step_left
 	turn_head_right
 	step_end
 
-MovementData_0x192d36:
+PokeCenter2FMovementData_ReceptionistStepsRightLooksLeft_2:
 	slow_step_right
 	turn_head_left
 	step_end

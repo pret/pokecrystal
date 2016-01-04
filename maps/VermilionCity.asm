@@ -1,3 +1,11 @@
+const_value set 2
+	const VERMILIONCITY_TEACHER
+	const VERMILIONCITY_GRAMPS
+	const VERMILIONCITY_MACHOP
+	const VERMILIONCITY_SUPER_NERD
+	const VERMILIONCITY_BIG_SNORLAX
+	const VERMILIONCITY_POKEFAN_M
+
 VermilionCity_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -19,46 +27,46 @@ GrampsScript_0x1aa986:
 	jumptextfaceplayer UnknownText_0x1aaa6f
 
 VermilionMachop:
-	loadfont
+	opentext
 	writetext UnknownText_0x1aaaca
 	cry MACHOP
+	waitbutton
 	closetext
-	loadmovesprites
 	earthquake 30
-	loadfont
+	opentext
 	writetext UnknownText_0x1aaae2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SuperNerdScript_0x1aa99b:
 	jumptextfaceplayer UnknownText_0x1aab1a
 
 VermilionSnorlax:
-	loadfont
+	opentext
 	special SpecialSnorlaxAwake
 	iftrue UnknownScript_0x1aa9ab
 	writetext UnknownText_0x1aab64
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x1aa9ab:
 	writetext UnknownText_0x1aab84
 	pause 15
 	cry SNORLAX
-	loadmovesprites
+	closetext
 	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
-	loadpokedata SNORLAX, 50
+	loadwildmon SNORLAX, 50
 	startbattle
-	disappear $6
+	disappear VERMILIONCITY_BIG_SNORLAX
 	setevent EVENT_FOUGHT_SNORLAX
-	returnafterbattle
+	reloadmapafterbattle
 	end
 
 VermilionGymBadgeGuy:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_HP_UP_FROM_VERMILION_GUY
 	iftrue .AlreadyGotItem
 	checkcode VAR_BADGES
@@ -66,33 +74,33 @@ VermilionGymBadgeGuy:
 	if_greater_than 13, .MostBadges
 	if_greater_than 9, .SomeBadges
 	writetext UnknownText_0x1aabc8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .SomeBadges
 	writetext UnknownText_0x1aac2b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .MostBadges
 	writetext UnknownText_0x1aac88
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .AllBadges
 	writetext UnknownText_0x1aacf3
-	keeptextopen
+	buttonsound
 	verbosegiveitem HP_UP
 	iffalse .Done
 	setevent EVENT_GOT_HP_UP_FROM_VERMILION_GUY
 .AlreadyGotItem
 	writetext UnknownText_0x1aad4a
-	closetext
+	waitbutton
 .Done
-	loadmovesprites
+	closetext
 	end
 
 VermilionCitySign:
@@ -116,7 +124,7 @@ VermilionCityPokeCenterSign:
 VermilionCityMartSign:
 	jumpstd martsign
 
-MapVermilionCitySignpostItem7:
+VermilionCityHiddenFullHeal:
 	dwb EVENT_VERMILION_CITY_HIDDEN_FULL_HEAL, FULL_HEAL
 
 UnknownText_0x1aaa15:
@@ -290,7 +298,7 @@ VermilionCity_MapEventHeader:
 	signpost 15, 27, SIGNPOST_READ, VermilionCityPortSign
 	signpost 5, 10, SIGNPOST_READ, VermilionCityPokeCenterSign
 	signpost 13, 22, SIGNPOST_READ, VermilionCityMartSign
-	signpost 19, 12, SIGNPOST_ITEM, MapVermilionCitySignpostItem7
+	signpost 19, 12, SIGNPOST_ITEM, VermilionCityHiddenFullHeal
 
 .PersonEvents:
 	db 6

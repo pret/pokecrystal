@@ -1,3 +1,8 @@
+const_value set 2
+	const CIANWOODLUGIASPEECHHOUSE_TEACHER
+	const CIANWOODLUGIASPEECHHOUSE_LASS
+	const CIANWOODLUGIASPEECHHOUSE_TWIN
+
 CianwoodLugiaSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

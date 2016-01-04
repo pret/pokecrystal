@@ -1,3 +1,7 @@
+const_value set 2
+	const ROUTE5CLEANSETAGSPEECHHOUSE_GRANNY
+	const ROUTE5CLEANSETAGSPEECHHOUSE_TEACHER
+
 Route5CleanseTagSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,19 +11,19 @@ Route5CleanseTagSpeechHouse_MapScriptHeader:
 
 GrannyScript_0x18b634:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_CLEANSE_TAG
 	iftrue UnknownScript_0x18b649
 	writetext UnknownText_0x18b655
-	keeptextopen
+	buttonsound
 	verbosegiveitem CLEANSE_TAG
 	iffalse UnknownScript_0x18b64d
 	setevent EVENT_GOT_CLEANSE_TAG
 UnknownScript_0x18b649:
 	writetext UnknownText_0x18b6a7
-	closetext
+	waitbutton
 UnknownScript_0x18b64d:
-	loadmovesprites
+	closetext
 	end
 
 TeacherScript_0x18b64f:

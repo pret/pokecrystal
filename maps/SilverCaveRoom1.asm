@@ -1,3 +1,9 @@
+const_value set 2
+	const SILVERCAVEROOM1_POKE_BALL1
+	const SILVERCAVEROOM1_POKE_BALL2
+	const SILVERCAVEROOM1_POKE_BALL3
+	const SILVERCAVEROOM1_POKE_BALL4
+
 SilverCaveRoom1_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -5,23 +11,23 @@ SilverCaveRoom1_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ItemFragment_0x18c554:
-	db MAX_ELIXER, 1
+SilverCaveRoom1MaxElixer:
+	itemball MAX_ELIXER
 
-ItemFragment_0x18c556:
-	db PROTEIN, 1
+SilverCaveRoom1Protein:
+	itemball PROTEIN
 
-ItemFragment_0x18c558:
-	db ESCAPE_ROPE, 1
+SilverCaveRoom1EscapeRope:
+	itemball ESCAPE_ROPE
 
-ItemFragment_0x18c55a:
-	db ULTRA_BALL, 1
+SilverCaveRoom1UltraBall:
+	itemball ULTRA_BALL
 
-MapSilverCaveRoom1SignpostItem0:
+SilverCaveRoom1HiddenDireHit:
 	dwb EVENT_SILVER_CAVE_ROOM_1_HIDDEN_DIRE_HIT, DIRE_HIT
 	
 
-MapSilverCaveRoom1SignpostItem1:
+SilverCaveRoom1HiddenUltraBall:
 	dwb EVENT_SILVER_CAVE_ROOM_1_HIDDEN_ULTRA_BALL, ULTRA_BALL
 	
 
@@ -39,12 +45,12 @@ SilverCaveRoom1_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 23, 16, SIGNPOST_ITEM, MapSilverCaveRoom1SignpostItem0
-	signpost 12, 17, SIGNPOST_ITEM, MapSilverCaveRoom1SignpostItem1
+	signpost 23, 16, SIGNPOST_ITEM, SilverCaveRoom1HiddenDireHit
+	signpost 12, 17, SIGNPOST_ITEM, SilverCaveRoom1HiddenUltraBall
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_POKE_BALL, 9, 4, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x18c554, EVENT_SILVER_CAVE_ROOM_1_MAX_ELIXER
-	person_event SPRITE_POKE_BALL, 29, 15, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x18c556, EVENT_SILVER_CAVE_ROOM_1_PROTEIN
-	person_event SPRITE_POKE_BALL, 30, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x18c558, EVENT_SILVER_CAVE_ROOM_1_ESCAPE_ROPE
-	person_event SPRITE_POKE_BALL, 18, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x18c55a, EVENT_SILVER_CAVE_ROOM_1_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 9, 4, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, SilverCaveRoom1MaxElixer, EVENT_SILVER_CAVE_ROOM_1_MAX_ELIXER
+	person_event SPRITE_POKE_BALL, 29, 15, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, SilverCaveRoom1Protein, EVENT_SILVER_CAVE_ROOM_1_PROTEIN
+	person_event SPRITE_POKE_BALL, 30, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, SilverCaveRoom1EscapeRope, EVENT_SILVER_CAVE_ROOM_1_ESCAPE_ROPE
+	person_event SPRITE_POKE_BALL, 18, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, SilverCaveRoom1UltraBall, EVENT_SILVER_CAVE_ROOM_1_ULTRA_BALL

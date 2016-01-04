@@ -1,3 +1,14 @@
+const_value set 2
+	const ROUTE42_FISHER
+	const ROUTE42_POKEFAN_M
+	const ROUTE42_SUPER_NERD
+	const ROUTE42_FRUIT_TREE1
+	const ROUTE42_FRUIT_TREE2
+	const ROUTE42_FRUIT_TREE3
+	const ROUTE42_POKE_BALL1
+	const ROUTE42_POKE_BALL2
+	const ROUTE42_SUICUNE
+
 Route42_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -19,8 +30,8 @@ UnknownScript_0x1a9218:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	pause 15
 	playsound SFX_WARP_FROM
-	applymovement $a, MovementData_0x1a9356
-	disappear $a
+	applymovement ROUTE42_SUICUNE, MovementData_0x1a9356
+	disappear ROUTE42_SUICUNE
 	pause 10
 	dotrigger $0
 	clearevent EVENT_SAW_SUICUNE_ON_ROUTE_36
@@ -32,8 +43,8 @@ TrainerFisherTully1:
 
 FisherTully1Script:
 	writecode VAR_CALLERID, PHONE_FISHER_TULLY
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	checkflag ENGINE_TULLY
 	iftrue UnknownScript_0x1a927f
 	checkflag ENGINE_TULLY_HAS_WATER_STONE
@@ -43,7 +54,7 @@ FisherTully1Script:
 	checkevent EVENT_TULLY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a9268
 	writetext UnknownText_0x1a93ab
-	keeptextopen
+	buttonsound
 	setevent EVENT_TULLY_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a92f1
 	jump UnknownScript_0x1a926b
@@ -78,7 +89,7 @@ UnknownScript_0x1a927f:
 .LoadFight0
 	loadtrainer FISHER, TULLY1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wTullyFightCount, 1
 	clearflag ENGINE_TULLY
 	end
@@ -86,7 +97,7 @@ UnknownScript_0x1a927f:
 .LoadFight1
 	loadtrainer FISHER, TULLY2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wTullyFightCount, 2
 	clearflag ENGINE_TULLY
 	end
@@ -94,7 +105,7 @@ UnknownScript_0x1a927f:
 .LoadFight2
 	loadtrainer FISHER, TULLY3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wTullyFightCount, 3
 	clearflag ENGINE_TULLY
 	end
@@ -102,7 +113,7 @@ UnknownScript_0x1a927f:
 .LoadFight3
 	loadtrainer FISHER, TULLY4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_TULLY
 	end
 
@@ -157,22 +168,22 @@ TrainerPokemaniacShane:
 	trainer EVENT_BEAT_POKEMANIAC_SHANE, POKEMANIAC, SHANE, PokemaniacShaneSeenText, PokemaniacShaneBeatenText, 0, PokemaniacShaneScript
 
 PokemaniacShaneScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a94d6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerHikerBenjamin:
 	trainer EVENT_BEAT_HIKER_BENJAMIN, HIKER, BENJAMIN, HikerBenjaminSeenText, HikerBenjaminBeatenText, 0, HikerBenjaminScript
 
 HikerBenjaminScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a943f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute42Signpost0Script:
@@ -187,11 +198,11 @@ MapRoute42Signpost2Script:
 MapRoute42Signpost3Script:
 	jumptext UnknownText_0x1a95a1
 
-ItemFragment_0x1a9349:
-	db ULTRA_BALL, 1
+Route42UltraBall:
+	itemball ULTRA_BALL
 
-ItemFragment_0x1a934b:
-	db SUPER_POTION, 1
+Route42SuperPotion:
+	itemball SUPER_POTION
 
 FruitTreeScript_0x1a934d:
 	fruittree FRUITTREE_ROUTE_42_1
@@ -202,7 +213,7 @@ FruitTreeScript_0x1a934f:
 FruitTreeScript_0x1a9351:
 	fruittree FRUITTREE_ROUTE_42_3
 
-MapRoute42SignpostItem4:
+Route42HiddenMaxPotion:
 	dwb EVENT_ROUTE_42_HIDDEN_MAX_POTION, MAX_POTION
 	
 
@@ -332,7 +343,7 @@ Route42_MapEventHeader:
 	signpost 5, 7, SIGNPOST_READ, MapRoute42Signpost1Script
 	signpost 9, 45, SIGNPOST_READ, MapRoute42Signpost2Script
 	signpost 8, 54, SIGNPOST_READ, MapRoute42Signpost3Script
-	signpost 11, 16, SIGNPOST_ITEM, MapRoute42SignpostItem4
+	signpost 11, 16, SIGNPOST_ITEM, Route42HiddenMaxPotion
 
 .PersonEvents:
 	db 9
@@ -342,6 +353,6 @@ Route42_MapEventHeader:
 	person_event SPRITE_FRUIT_TREE, 16, 27, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a934d, -1
 	person_event SPRITE_FRUIT_TREE, 16, 28, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a934f, -1
 	person_event SPRITE_FRUIT_TREE, 16, 29, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a9351, -1
-	person_event SPRITE_POKE_BALL, 4, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x1a9349, EVENT_ROUTE_42_ULTRA_BALL
-	person_event SPRITE_POKE_BALL, 8, 33, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x1a934b, EVENT_ROUTE_42_SUPER_POTION
+	person_event SPRITE_POKE_BALL, 4, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route42UltraBall, EVENT_ROUTE_42_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 8, 33, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route42SuperPotion, EVENT_ROUTE_42_SUPER_POTION
 	person_event SPRITE_SUICUNE, 16, 26, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42

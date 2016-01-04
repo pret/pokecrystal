@@ -8,12 +8,12 @@ SelectMonFromParty: ; 50000
 	call SetPalettes
 	call DelayFrame
 	call PartyMenuSelect
-	call Function2b74
+	call ReturnToMapWithSpeechTextbox
 	ret
 ; 5001d
 
 
-Function5001d: ; 5001d
+SelectTradeOrDaycareMon: ; 5001d
 	ld a, b
 	ld [PartyMenuActionText], a
 	call DisableSpriteUpdates
@@ -25,7 +25,7 @@ Function5001d: ; 5001d
 	call SetPalettes
 	call DelayFrame
 	call PartyMenuSelect
-	call Function2b74
+	call ReturnToMapWithSpeechTextbox
 	ret
 ; 5003f
 
@@ -41,7 +41,7 @@ Function5003f: ; 5003f
 LoadPartyMenuGFX: ; 5004f
 	call LoadFontsBattleExtra
 	callab Function8ad1 ; engine/color.asm
-	callab ClearSpriteAnims
+	callab ClearSpriteAnims2
 	ret
 ; 5005f
 
@@ -125,7 +125,7 @@ endr
 
 PlacePartyHPBar: ; 500cf
 	xor a
-	ld [wcda9], a
+	ld [wSGBPals], a
 	ld a, [PartyCount]
 	and a
 	ret z
@@ -143,17 +143,16 @@ PlacePartyHPBar: ; 500cf
 	ld d, $6
 	ld b, $0
 	call DrawBattleHPBar
-	ld hl, wcd9b
-	ld a, [wcda9]
+	ld hl, wHPPals
+	ld a, [wSGBPals]
 	ld c, a
 	ld b, $0
 	add hl, bc
 	call SetHPPal
-	ld b, SCGB_FC
+	ld b, SCGB_PARTY_MENU_HP_PALS
 	call GetSGBLayout
-
 .skip
-	ld hl, wcda9
+	ld hl, wSGBPals
 	inc [hl]
 	pop hl
 	ld de, 2 * SCREEN_WIDTH
@@ -190,7 +189,7 @@ PlacePartymonHPBar: ; 50117
 	ld d, a
 	ld a, [hli]
 	ld e, a
-	predef DrawPartyMenuHPBar
+	predef ComputeHPBarPixels
 	ret
 ; 50138
 
@@ -670,7 +669,7 @@ InitPartyMenuGFX: ; 503e0
 	pop bc
 	dec c
 	jr nz, .loop
-	callab Function8cf69
+	callab PlaySpriteAnimations
 	ret
 ; 50405
 
@@ -679,10 +678,10 @@ InitPartyMenuWithCancel: ; 50405
 	xor a
 	ld [wSwitchMon], a
 	ld de, PartyMenuAttributes
-	call InitMenu3
+	call SetMenuAttributes
 	ld a, [PartyCount]
 	inc a
-	ld [wcfa3], a ; list length
+	ld [w2DMenuNumRows], a ; list length
 	dec a
 	ld b, a
 	ld a, [wPartyMenuCursor]
@@ -693,21 +692,21 @@ InitPartyMenuWithCancel: ; 50405
 	jr c, .done
 
 .skip
-	ld a, $1
+	ld a, 1
 
 .done
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	ld a, A_BUTTON | B_BUTTON
-	ld [wcfa8], a
+	ld [wMenuJoypadFilter], a
 	ret
 ; 5042d
 
 InitPartyMenuNoCancel: ; 0x5042d
 ; no cancel
 	ld de, PartyMenuAttributes
-	call InitMenu3
+	call SetMenuAttributes
 	ld a, [PartyCount]
-	ld [wcfa3], a ; list length
+	ld [w2DMenuNumRows], a ; list length
 	ld b, a
 	ld a, [wPartyMenuCursor]
 	and a
@@ -716,34 +715,38 @@ InitPartyMenuNoCancel: ; 0x5042d
 	cp b
 	jr c, .done
 .skip
-	ld a, $1
+	ld a, 1
 .done
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	ld a, A_BUTTON | B_BUTTON
-	ld [wcfa8], a
+	ld [wMenuJoypadFilter], a
 	ret
 ; 5044f (14:444f)
 
 PartyMenuAttributes: ; 5044f
 ; cursor y
 ; cursor x
-; list length
-; ?
+; num rows
+; num cols
 ; bit 6: animate sprites  bit 5: wrap around
 ; ?
 ; distance between items (hi: y, lo: x)
 ; allowed buttons (mask)
-	db $01, $00, $00, $01, $60, $00, $20, $00
+	db 1, 0
+	db 0, 1
+	db $60, $00
+	dn 2, 0
+	db 0
 ; 50457
 
 PartyMenuSelect: ; 0x50457
 ; sets carry if exitted menu.
-	call Function1bc9
-	call Function1bee
+	call StaticMenuJoypad
+	call PlaceHollowCursor
 	ld a, [PartyCount]
 	inc a
 	ld b, a
-	ld a, [MenuSelection2] ; menu selection?
+	ld a, [wMenuCursorY] ; menu selection?
 	cp b
 	jr z, .exitmenu ; CANCEL
 	ld [wPartyMenuCursor], a
@@ -751,7 +754,7 @@ PartyMenuSelect: ; 0x50457
 	ld b, a
 	bit 1, b
 	jr nz, .exitmenu ; B button?
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
 	ld [CurPartyMon], a
 	ld c, a

@@ -1,3 +1,8 @@
+const_value set 2
+	const ROUTE35GOLDENRODGATE_OFFICER
+	const ROUTE35GOLDENRODGATE_POKEFAN_F
+	const ROUTE35GOLDENRODGATE_FISHER
+
 Route35Goldenrodgate_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,7 +12,7 @@ Route35Goldenrodgate_MapScriptHeader:
 
 OfficerScript_0x69d37:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_HP_UP_FROM_RANDY
 	iftrue .gothpup
 	checkevent EVENT_GAVE_KENYA
@@ -18,45 +23,45 @@ OfficerScript_0x69d37:
 	yesorno
 	iffalse .refused
 	writetext UnknownText_0x69e48
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	checkcode VAR_PARTYCOUNT
 	if_equal PARTY_LENGTH, .partyfull
 	writetext UnknownText_0x69eb8
 	playsound SFX_KEY_ITEM
-	waitbutton
+	waitsfx
 	givepoke SPEAROW, 10, NO_ITEM, 1, GiftSpearowName, GiftSpearowOTName
 	givepokeitem GiftSpearowMail
 	setevent EVENT_GOT_KENYA
 .alreadyhavekenya:
 	writetext UnknownText_0x69ed6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .partyfull:
 	writetext UnknownText_0x69f56
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .refused:
 	writetext UnknownText_0x69f74
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .questcomplete:
 	writetext UnknownText_0x69f8b
-	keeptextopen
+	buttonsound
 	verbosegiveitem HP_UP
 	iffalse .bagfull
 	setevent EVENT_GOT_HP_UP_FROM_RANDY
 .gothpup:
 	writetext UnknownText_0x69fd9
-	closetext
+	waitbutton
 .bagfull:
-	loadmovesprites
+	closetext
 	end
 
 GiftSpearowMail:
@@ -72,18 +77,18 @@ GiftSpearowOTName:
 
 PokefanFScript_0x69dc6:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_FOUGHT_SUDOWOODO
 	iftrue .aftersudowoodo
 	writetext UnknownText_0x6a00a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .aftersudowoodo:
 	writetext UnknownText_0x6a09a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FisherScript_0x69dda:

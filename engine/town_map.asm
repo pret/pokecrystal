@@ -20,7 +20,7 @@ _TownMap: ; 9191c
 	call ClearSprites
 	call DisableLCD
 	call Function90c4e
-	callba Function8cf53
+	callba ClearSpriteAnims
 	ld a, 8
 	call SkipMusic
 	ld a, $e3
@@ -31,7 +31,7 @@ _TownMap: ; 9191c
 	xor a
 	ld [hBGMapMode], a
 	call Function91a04
-	call Function3200
+	call WaitBGMap2
 	ld a, [wd002]
 	call Function9106a
 	ld a, [wd003]
@@ -40,14 +40,14 @@ _TownMap: ; 9191c
 	ld [wd004], a
 	ld a, b
 	ld [wd005], a
-	ld b, SCGB_02
+	ld b, SCGB_POKEGEAR_PALS
 	call GetSGBLayout
 	call SetPalettes
 	ld a, [hCGB]
 	and a
 	jr z, .sgb
 	ld a, $e4
-	call Functioncf8
+	call DmgToCgbObjPal0
 	call DelayFrame
 
 .sgb
@@ -92,7 +92,7 @@ Function919b0: ; 919b0
 	jr nz, .pressed_down
 .loop2
 	push de
-	callba Function8cf69
+	callba PlaySpriteAnimations
 	pop de
 	call DelayFrame
 	jr .loop

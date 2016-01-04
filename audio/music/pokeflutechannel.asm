@@ -1,7 +1,7 @@
 Music_PokeFluteChannel: ; f7b13
-	dbw $80, Music_PokeFluteChannel_Ch1
-	dbw $01, Music_PokeFluteChannel_Ch2
-	dbw $02, Music_PokeFluteChannel_Ch3
+	musicheader 3, 1, Music_PokeFluteChannel_Ch1
+	musicheader 1, 2, Music_PokeFluteChannel_Ch2
+	musicheader 1, 3, Music_PokeFluteChannel_Ch3
 ; f7b1c
 
 Music_PokeFluteChannel_Ch1: ; f7b1c

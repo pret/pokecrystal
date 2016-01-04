@@ -1,3 +1,8 @@
+const_value set 2
+	const TINTOWER4F_POKE_BALL1
+	const TINTOWER4F_POKE_BALL2
+	const TINTOWER4F_POKE_BALL3
+
 TinTower4F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -5,16 +10,16 @@ TinTower4F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ItemFragment_0x185a58:
-	db ULTRA_BALL, 1
+TinTower4FUltraBall:
+	itemball ULTRA_BALL
 
-ItemFragment_0x185a5a:
-	db PP_UP, 1
+TinTower4FPPUp:
+	itemball PP_UP
 
-ItemFragment_0x185a5c:
-	db ESCAPE_ROPE, 1
+TinTower4FEscapeRope:
+	itemball ESCAPE_ROPE
 
-MapTinTower4FSignpostItem0:
+TinTower4FHiddenMaxPotion:
 	dwb EVENT_TIN_TOWER_4F_HIDDEN_MAX_POTION, MAX_POTION
 	
 
@@ -34,10 +39,10 @@ TinTower4F_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 6, 11, SIGNPOST_ITEM, MapTinTower4FSignpostItem0
+	signpost 6, 11, SIGNPOST_ITEM, TinTower4FHiddenMaxPotion
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_POKE_BALL, 10, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x185a58, EVENT_TIN_TOWER_4F_ULTRA_BALL
-	person_event SPRITE_POKE_BALL, 14, 17, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x185a5a, EVENT_TIN_TOWER_4F_PP_UP
-	person_event SPRITE_POKE_BALL, 12, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x185a5c, EVENT_TIN_TOWER_4F_ESCAPE_ROPE
+	person_event SPRITE_POKE_BALL, 10, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TinTower4FUltraBall, EVENT_TIN_TOWER_4F_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 14, 17, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TinTower4FPPUp, EVENT_TIN_TOWER_4F_PP_UP
+	person_event SPRITE_POKE_BALL, 12, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TinTower4FEscapeRope, EVENT_TIN_TOWER_4F_ESCAPE_ROPE

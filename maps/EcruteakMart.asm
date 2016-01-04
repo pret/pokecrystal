@@ -1,3 +1,8 @@
+const_value set 2
+	const ECRUTEAKMART_CLERK
+	const ECRUTEAKMART_SUPER_NERD
+	const ECRUTEAKMART_GRANNY
+
 EcruteakMart_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,9 +11,9 @@ EcruteakMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x99c3b:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_ECRUTEAK
-	loadmovesprites
+	closetext
 	end
 
 SuperNerdScript_0x99c42:

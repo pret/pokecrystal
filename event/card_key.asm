@@ -9,7 +9,7 @@ _CardKey: ; 50779
 	jr nz, .nope
 ; Are we facing the slot?
 	ld a, [PlayerDirection]
-	and $c
+	and %1100
 	cp OW_UP
 	jr nz, .nope
 
@@ -23,17 +23,17 @@ _CardKey: ; 50779
 ; Let's use the Card Key.
 	ld hl, .CardKeyScript
 	call QueueScript
-	ld a, $1
-	ld [wd0ec], a
+	ld a, TRUE
+	ld [wItemEffectSucceeded], a
 	ret
 
 .nope
-	ld a, $0
-	ld [wd0ec], a
+	ld a, FALSE
+	ld [wItemEffectSucceeded], a
 	ret
 ; 507af
 
 .CardKeyScript: ; 0x507af
-	loadmovesprites
+	closetext
 	farjump MapRadioTower3FSignpost2Script
 ; 0x507b4

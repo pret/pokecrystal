@@ -1,3 +1,9 @@
+const_value set 2
+	const SAFFRONPOKECENTER1F_NURSE
+	const SAFFRONPOKECENTER1F_TEACHER
+	const SAFFRONPOKECENTER1F_FISHER
+	const SAFFRONPOKECENTER1F_YOUNGSTER
+
 SaffronPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -18,18 +24,18 @@ TeacherScript_0x18a480:
 
 FisherScript_0x18a48c:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .SolvedKantoPowerCrisis
 	writetext UnknownText_0x18a5d3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .SolvedKantoPowerCrisis:
 	writetext UnknownText_0x18a62e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x18a4a0:

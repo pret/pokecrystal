@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE43MAHOGANYGATE_OFFICER
+
 Route43MahoganyGate_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,18 +10,18 @@ Route43MahoganyGate_MapScriptHeader:
 
 OfficerScript_0x19ab0b:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19ab19
 	writetext UnknownText_0x19ab1f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19ab19:
 	writetext UnknownText_0x19ab65
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x19ab1f:

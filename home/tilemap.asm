@@ -1,19 +1,19 @@
-BackUpTiles:: ; 1c00
-	callab _BackUpTiles
+PushWindow:: ; 1c00
+	callab _PushWindow
 	ret
 ; 1c07
 
 ExitMenu:: ; 0x1c07
 	push af
-	callab Function243e8
+	callab _ExitMenu
 	pop af
 	ret
 
-Function1c10:: ; 0x1c10
-	callab Function2446d
+InitVerticalMenuCursor:: ; 0x1c10
+	callab _InitVerticalMenuCursor
 	ret
 
-WriteBackup:: ; 0x1c17
+CloseWindow:: ; 0x1c17
 	push af
 	call ExitMenu
 	call ApplyTilemap
@@ -54,7 +54,7 @@ RestoreTileBackup:: ; 0x1c23
 
 	ret
 
-Function1c47:: ; 0x1c47
+PopWindow:: ; 0x1c47
 	ld b, $10
 	ld de, wMenuFlags
 .loop
@@ -98,8 +98,8 @@ CopyMenuData2:: ; 1c66
 	ret
 ; 1c7e
 
-Function1c7e:: ; 1c7e
-	ld hl, wcf71
+GetWindowStackTop:: ; 1c7e
+	ld hl, wWindowStackPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -110,7 +110,7 @@ Function1c7e:: ; 1c7e
 	ret
 ; 1c89
 
-Function1c89:: ; 1c89
+PlaceVerticalMenuItems:: ; 1c89
 	call CopyMenuData2
 	ld hl, wMenuData2Pointer
 	ld e, [hl]
@@ -131,6 +131,7 @@ Function1c89:: ; 1c89
 	pop bc
 	dec b
 	jr nz, .loop
+
 	ld a, [wMenuData2Flags]
 	bit 4, a
 	ret z
@@ -213,13 +214,11 @@ Coord2Tile:: ; 1d05
 	ld a, c
 	ld b, h
 	ld c, l
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	add hl, bc
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld c, a
 	xor a
 	ld b, a
@@ -243,13 +242,11 @@ Coord2Attr:: ; 1d21
 	ld a, c
 	ld b, h
 	ld c, l
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	add hl, bc
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld c, a
 	xor a
 	ld b, a

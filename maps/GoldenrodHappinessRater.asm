@@ -1,3 +1,8 @@
+const_value set 2
+	const GOLDENRODHAPPINESSRATER_TEACHER
+	const GOLDENRODHAPPINESSRATER_POKEFAN_M
+	const GOLDENRODHAPPINESSRATER_TWIN
+
 GoldenrodHappinessRater_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,10 +12,10 @@ GoldenrodHappinessRater_MapScriptHeader:
 
 TeacherScript_0x54953:
 	faceplayer
-	loadfont
+	opentext
 	special GetFirstPokemonHappiness
 	writetext UnknownText_0x549a3
-	keeptextopen
+	buttonsound
 	if_greater_than $f9, UnknownScript_0x54973
 	if_greater_than $c7, UnknownScript_0x54979
 	if_greater_than $95, UnknownScript_0x5497f
@@ -20,38 +25,38 @@ TeacherScript_0x54953:
 
 UnknownScript_0x54973:
 	writetext UnknownText_0x549fc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x54979:
 	writetext UnknownText_0x54a2c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x5497f:
 	writetext UnknownText_0x54a5a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x54985:
 	writetext UnknownText_0x54a8e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x5498b:
 	writetext UnknownText_0x54a9f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x54991:
 	writetext UnknownText_0x54ad1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokefanMScript_0x54997:

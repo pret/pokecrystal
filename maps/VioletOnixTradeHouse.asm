@@ -1,3 +1,7 @@
+const_value set 2
+	const VIOLETONIXTRADEHOUSE_POKEFAN_M
+	const VIOLETONIXTRADEHOUSE_YOUNGSTER
+
 VioletOnixTradeHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -10,10 +14,10 @@ PokefanMScript_0x6998d:
 
 YoungsterScript_0x69990:
 	faceplayer
-	loadfont
+	opentext
 	trade $1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x69997:

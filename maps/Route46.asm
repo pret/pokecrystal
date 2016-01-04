@@ -1,3 +1,11 @@
+const_value set 2
+	const ROUTE46_POKEFAN_M
+	const ROUTE46_YOUNGSTER
+	const ROUTE46_LASS
+	const ROUTE46_FRUIT_TREE1
+	const ROUTE46_FRUIT_TREE2
+	const ROUTE46_POKE_BALL
+
 Route46_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,11 +17,11 @@ TrainerCamperTed:
 	trainer EVENT_BEAT_CAMPER_TED, CAMPER, TED, CamperTedSeenText, CamperTedBeatenText, 0, CamperTedScript
 
 CamperTedScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a9851
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPicnickerErin1:
@@ -21,8 +29,8 @@ TrainerPicnickerErin1:
 
 PicnickerErin1Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_ERIN
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	checkflag ENGINE_ERIN
 	iftrue UnknownScript_0x1a96da
 	checkcellnum PHONE_PICNICKER_ERIN
@@ -30,7 +38,7 @@ PicnickerErin1Script:
 	checkevent EVENT_ERIN_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a96c3
 	writetext UnknownText_0x1a98c6
-	keeptextopen
+	buttonsound
 	setevent EVENT_ERIN_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a974f
 	jump UnknownScript_0x1a96c6
@@ -61,7 +69,7 @@ UnknownScript_0x1a96da:
 .LoadFight0
 	loadtrainer PICNICKER, ERIN1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wErinFightCount, 1
 	clearflag ENGINE_ERIN
 	end
@@ -69,7 +77,7 @@ UnknownScript_0x1a96da:
 .LoadFight1
 	loadtrainer PICNICKER, ERIN2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wErinFightCount, 2
 	clearflag ENGINE_ERIN
 	end
@@ -77,7 +85,7 @@ UnknownScript_0x1a96da:
 .LoadFight2
 	loadtrainer PICNICKER, ERIN3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_ERIN
 	checkevent EVENT_ERIN_CALCIUM
 	iftrue UnknownScript_0x1a973b
@@ -93,9 +101,9 @@ UnknownScript_0x1a973a:
 	end
 
 UnknownScript_0x1a973b:
-	loadfont
+	opentext
 	writetext UnknownText_0x1a9927
-	closetext
+	waitbutton
 	verbosegiveitem CALCIUM
 	iffalse UnknownScript_0x1a976b
 	clearevent EVENT_ERIN_CALCIUM
@@ -143,18 +151,18 @@ TrainerHikerBailey:
 	trainer EVENT_BEAT_HIKER_BAILEY, HIKER, BAILEY, HikerBaileySeenText, HikerBaileyBeatenText, 0, HikerBaileyScript
 
 HikerBaileyScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a97e8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute46Signpost0Script:
 	jumptext UnknownText_0x1a99be
 
-ItemFragment_0x1a978d:
-	db X_SPEED, 1
+Route46XSpeed:
+	itemball X_SPEED
 
 FruitTreeScript_0x1a978f:
 	fruittree FRUITTREE_ROUTE_46_1
@@ -266,4 +274,4 @@ Route46_MapEventHeader:
 	person_event SPRITE_LASS, 13, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 2, TrainerPicnickerErin1, -1
 	person_event SPRITE_FRUIT_TREE, 5, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a978f, -1
 	person_event SPRITE_FRUIT_TREE, 6, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a9791, -1
-	person_event SPRITE_POKE_BALL, 15, 1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x1a978d, EVENT_ROUTE_46_X_SPEED
+	person_event SPRITE_POKE_BALL, 15, 1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route46XSpeed, EVENT_ROUTE_46_X_SPEED

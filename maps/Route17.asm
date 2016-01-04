@@ -1,3 +1,9 @@
+const_value set 2
+	const ROUTE17_BIKER1
+	const ROUTE17_BIKER2
+	const ROUTE17_BIKER3
+	const ROUTE17_BIKER4
+
 Route17_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -18,51 +24,51 @@ TrainerBikerCharles:
 	trainer EVENT_BEAT_BIKER_CHARLES, BIKER, CHARLES, BikerCharlesSeenText, BikerCharlesBeatenText, 0, BikerCharlesScript
 
 BikerCharlesScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ad293
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBikerRiley:
 	trainer EVENT_BEAT_BIKER_RILEY, BIKER, RILEY, BikerRileySeenText, BikerRileyBeatenText, 0, BikerRileyScript
 
 BikerRileyScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ad13b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBikerJoel:
 	trainer EVENT_BEAT_BIKER_JOEL, BIKER, JOEL, BikerJoelSeenText, BikerJoelBeatenText, 0, BikerJoelScript
 
 BikerJoelScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ad196
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBikerGlenn:
 	trainer EVENT_BEAT_BIKER_GLENN, BIKER, GLENN, BikerGlennSeenText, BikerGlennBeatenText, 0, BikerGlennScript
 
 BikerGlennScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ad225
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-MapRoute17SignpostItem0:
+Route17HiddenMaxEther:
 	dwb EVENT_ROUTE_17_HIDDEN_MAX_ETHER, MAX_ETHER
 	
 
-MapRoute17SignpostItem1:
+Route17HiddenMaxElixer:
 	dwb EVENT_ROUTE_17_HIDDEN_MAX_ELIXER, MAX_ELIXER
 	
 
@@ -145,8 +151,8 @@ Route17_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 54, 9, SIGNPOST_ITEM, MapRoute17SignpostItem0
-	signpost 77, 8, SIGNPOST_ITEM, MapRoute17SignpostItem1
+	signpost 54, 9, SIGNPOST_ITEM, Route17HiddenMaxEther
+	signpost 77, 8, SIGNPOST_ITEM, Route17HiddenMaxElixer
 
 .PersonEvents:
 	db 4

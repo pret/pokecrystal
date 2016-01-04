@@ -1,3 +1,16 @@
+const_value set 2
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_CAPTAIN
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN1
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN2
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_POKEFAN_M1
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN3
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN4
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_SUPER_NERD1
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_POKEFAN_M2
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_POKEFAN_F
+	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_SUPER_NERD2
+
 FastShipCabins_SE_SSE_CaptainsCabin_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -10,198 +23,198 @@ UnknownScript_0x75ea6:
 
 CaptainScript_0x75ea7:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue UnknownScript_0x75eb5
 	writetext UnknownText_0x76012
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x75eb5:
 	writetext UnknownText_0x76064
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TwinScript_0x75ebb:
-	spriteface $5, RIGHT
-	loadfont
+	spriteface FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN2, RIGHT
+	opentext
 	writetext UnknownText_0x761e0
+	waitbutton
 	closetext
-	loadmovesprites
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x7621f
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
-	disappear $5
+	disappear FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN2
 	applymovement PLAYER, MovementData_0x76004
-	moveperson $4, $3, $13
-	appear $4
+	moveperson FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN1, $3, $13
+	appear FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN1
 	spriteface PLAYER, UP
-	spriteface $4, UP
+	spriteface FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN1, UP
 	special Special_FadeInQuickly
-	spriteface $3, DOWN
-	showemote EMOTE_SHOCK, $3, 15
-	applymovement $4, MovementData_0x7600c
-	spriteface $3, RIGHT
+	spriteface FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN, DOWN
+	showemote EMOTE_SHOCK, FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN, 15
+	applymovement FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN1, MovementData_0x7600c
+	spriteface FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN, RIGHT
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue UnknownScript_0x75f03
-	loadfont
+	opentext
 	writetext UnknownText_0x76284
+	waitbutton
 	closetext
-	loadmovesprites
 	jump UnknownScript_0x75f09
 
 UnknownScript_0x75f03:
-	loadfont
+	opentext
 	writetext UnknownText_0x762c6
+	waitbutton
 	closetext
-	loadmovesprites
 UnknownScript_0x75f09:
-	spriteface $5, DOWN
-	applymovement $3, MovementData_0x76010
-	loadfont
+	spriteface FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN2, DOWN
+	applymovement FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN, MovementData_0x76010
+	opentext
 	writetext UnknownText_0x76143
-	keeptextopen
+	buttonsound
 	setevent EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
 	domaptrigger FAST_SHIP_1F, $0
 	jump UnknownScript_0x75f37
 
 GentlemanScript_0x75f1f:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_METAL_COAT_FROM_GRANDPA_ON_SS_AQUA
 	iftrue UnknownScript_0x75f67
 	checkevent EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_2
 	iftrue UnknownScript_0x75f58
 	writetext UnknownText_0x760ae
+	waitbutton
 	closetext
-	loadmovesprites
 	domaptrigger FAST_SHIP_1F, $0
 	end
 
 UnknownScript_0x75f37:
 	writetext UnknownText_0x7619b
-	keeptextopen
+	buttonsound
 	verbosegiveitem METAL_COAT
 	iffalse UnknownScript_0x75f44
 	setevent EVENT_GOT_METAL_COAT_FROM_GRANDPA_ON_SS_AQUA
 UnknownScript_0x75f44:
-	loadmovesprites
-	waitbutton
+	closetext
+	waitsfx
 	playsound SFX_ELEVATOR_END
 	pause 30
-	loadfont
+	opentext
 	writetext UnknownText_0x76645
-	closetext
+	waitbutton
 	setevent EVENT_FAST_SHIP_HAS_ARRIVED
 	setevent EVENT_FAST_SHIP_FOUND_GIRL
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x75f58:
 	writetext UnknownText_0x7619b
-	keeptextopen
+	buttonsound
 	verbosegiveitem METAL_COAT
 	iffalse UnknownScript_0x75f65
 	setevent EVENT_GOT_METAL_COAT_FROM_GRANDPA_ON_SS_AQUA
 UnknownScript_0x75f65:
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x75f67:
 	writetext UnknownText_0x761be
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TwinScript_0x75f6d:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x7630d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokefanmColin:
 	trainer EVENT_BEAT_POKEFANM_COLIN, POKEFANM, COLIN, PokefanmColinSeenText, PokefanmColinBeatenText, 0, PokefanmColinScript
 
 PokefanmColinScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x7635b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerTwinsMegandpeg1:
 	trainer EVENT_BEAT_TWINS_MEG_AND_PEG, TWINS, MEGANDPEG1, TwinsMegandpeg1SeenText, TwinsMegandpeg1BeatenText, 0, TwinsMegandpeg1Script
 
 TwinsMegandpeg1Script:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x763c2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerTwinsMegandpeg2:
 	trainer EVENT_BEAT_TWINS_MEG_AND_PEG, TWINS, MEGANDPEG2, TwinsMegandpeg2SeenText, TwinsMegandpeg2BeatenText, 0, TwinsMegandpeg2Script
 
 TwinsMegandpeg2Script:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x76428
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPsychicRodney:
 	trainer EVENT_BEAT_PSYCHIC_RODNEY, PSYCHIC_T, RODNEY, PsychicRodneySeenText, PsychicRodneyBeatenText, 0, PsychicRodneyScript
 
 PsychicRodneyScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x76497
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokefanmJeremy:
 	trainer EVENT_BEAT_POKEFANM_JEREMY, POKEFANM, JEREMY, PokefanmJeremySeenText, PokefanmJeremyBeatenText, 0, PokefanmJeremyScript
 
 PokefanmJeremyScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x7651c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokefanfGeorgia:
 	trainer EVENT_BEAT_POKEFANF_GEORGIA, POKEFANF, GEORGIA, PokefanfGeorgiaSeenText, PokefanfGeorgiaBeatenText, 0, PokefanfGeorgiaScript
 
 PokefanfGeorgiaScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x76596
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSupernerdShawn:
 	trainer EVENT_BEAT_SUPER_NERD_SHAWN, SUPER_NERD, SHAWN, SupernerdShawnSeenText, SupernerdShawnBeatenText, 0, SupernerdShawnScript
 
 SupernerdShawnScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x7660f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FastShipCaptainsCabinTrashcan:

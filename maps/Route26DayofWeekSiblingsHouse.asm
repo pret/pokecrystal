@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE26DAYOFWEEKSIBLINGSHOUSE_POKEDEX
+
 Route26DayofWeekSiblingsHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,7 +9,7 @@ Route26DayofWeekSiblingsHouse_MapScriptHeader:
 	db 0
 
 PokedexScript_0x7b1e4:
-	loadfont
+	opentext
 	writetext UnknownText_0x7b1f9
 	yesorno
 	iffalse UnknownText_0x7b1f7
@@ -14,9 +17,9 @@ PokedexScript_0x7b1e4:
 	yesorno
 	iffalse UnknownText_0x7b1f7
 	writetext UnknownText_0x7b2b9
-	closetext
+	waitbutton
 UnknownText_0x7b1f7:
-	loadmovesprites
+	closetext
 	end
 
 UnknownText_0x7b1f9:

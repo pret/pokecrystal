@@ -18,17 +18,17 @@ _BasementKey: ; 507b4
 ; Let's use the Basement Key
 	ld hl, .BasementKeyScript
 	call QueueScript
-	ld a, 1
-	ld [wd0ec], a
+	ld a, TRUE
+	ld [wItemEffectSucceeded], a
 	ret
 
 .nope
-	ld a, $0
-	ld [wd0ec], a
+	ld a, FALSE
+	ld [wItemEffectSucceeded], a
 	ret
 ; 507e1
 
 .BasementKeyScript: ; 0x507e1
-	loadmovesprites
+	closetext
 	farjump BasementDoorScript
 ; 0x507e6

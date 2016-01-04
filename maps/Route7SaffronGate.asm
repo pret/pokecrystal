@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE7SAFFRONGATE_OFFICER
+
 Route7SaffronGate_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,18 +10,18 @@ Route7SaffronGate_MapScriptHeader:
 
 OfficerScript_0x73518:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x73526
 	writetext UnknownText_0x7352c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x73526:
 	writetext UnknownText_0x73592
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x7352c:

@@ -1,3 +1,4 @@
+
 Route22_MapScriptHeader:
 .MapTriggers:
 	db 0

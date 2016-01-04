@@ -1,3 +1,14 @@
+const_value set 2
+	const ROUTE27_COOLTRAINER_M1
+	const ROUTE27_COOLTRAINER_M2
+	const ROUTE27_COOLTRAINER_F1
+	const ROUTE27_COOLTRAINER_F2
+	const ROUTE27_YOUNGSTER1
+	const ROUTE27_YOUNGSTER2
+	const ROUTE27_POKE_BALL1
+	const ROUTE27_POKE_BALL2
+	const ROUTE27_FISHER
+
 Route27_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -16,23 +27,23 @@ UnknownScript_0x1a0872:
 	end
 
 UnknownScript_0x1a0873:
-	spriteface $a, LEFT
-	showemote EMOTE_SHOCK, $a, 15
-	applymovement $a, MovementData_0x1a0a66
+	spriteface ROUTE27_FISHER, LEFT
+	showemote EMOTE_SHOCK, ROUTE27_FISHER, 15
+	applymovement ROUTE27_FISHER, MovementData_0x1a0a66
 	jump UnknownScript_0x1a088c
 
 UnknownScript_0x1a0881:
-	spriteface $a, LEFT
-	showemote EMOTE_SHOCK, $a, 15
-	applymovement $a, MovementData_0x1a0a69
+	spriteface ROUTE27_FISHER, LEFT
+	showemote EMOTE_SHOCK, ROUTE27_FISHER, 15
+	applymovement ROUTE27_FISHER, MovementData_0x1a0a69
 UnknownScript_0x1a088c:
 	spriteface PLAYER, RIGHT
-	loadfont
+	opentext
 	writetext UnknownText_0x1a0a6b
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x1a0a71
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $1
 	end
 
@@ -43,11 +54,11 @@ TrainerPsychicGilbert:
 	trainer EVENT_BEAT_PSYCHIC_GILBERT, PSYCHIC_T, GILBERT, PsychicGilbertSeenText, PsychicGilbertBeatenText, 0, PsychicGilbertScript
 
 PsychicGilbertScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a0dd2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBird_keeperJose2:
@@ -55,8 +66,8 @@ TrainerBird_keeperJose2:
 
 Bird_keeperJose2Script:
 	writecode VAR_CALLERID, PHONE_BIRDKEEPER_JOSE
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	checkflag ENGINE_JOSE
 	iftrue UnknownScript_0x1a08ff
 	checkflag ENGINE_JOSE_HAS_STAR_PIECE
@@ -66,7 +77,7 @@ Bird_keeperJose2Script:
 	checkevent EVENT_JOSE_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a08e8
 	writetext UnknownText_0x1a0e42
-	keeptextopen
+	buttonsound
 	setevent EVENT_JOSE_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a0957
 	jump UnknownScript_0x1a08eb
@@ -97,7 +108,7 @@ UnknownScript_0x1a08ff:
 .LoadFight0
 	loadtrainer BIRD_KEEPER, JOSE2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wJoseFightCount, 1
 	clearflag ENGINE_JOSE
 	end
@@ -105,7 +116,7 @@ UnknownScript_0x1a08ff:
 .LoadFight1
 	loadtrainer BIRD_KEEPER, JOSE1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wJoseFightCount, 2
 	clearflag ENGINE_JOSE
 	end
@@ -113,7 +124,7 @@ UnknownScript_0x1a08ff:
 .LoadFight2
 	loadtrainer BIRD_KEEPER, JOSE3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_JOSE
 	end
 
@@ -167,22 +178,22 @@ TrainerCooltrainermBlake:
 	trainer EVENT_BEAT_COOLTRAINERM_BLAKE, COOLTRAINERM, BLAKE, CooltrainermBlakeSeenText, CooltrainermBlakeBeatenText, 0, CooltrainermBlakeScript
 
 CooltrainermBlakeScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a0b0b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainermBrian:
 	trainer EVENT_BEAT_COOLTRAINERM_BRIAN, COOLTRAINERM, BRIAN, CooltrainermBrianSeenText, CooltrainermBrianBeatenText, 0, CooltrainermBrianScript
 
 CooltrainermBrianScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a0bac
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainerfReena:
@@ -190,8 +201,8 @@ TrainerCooltrainerfReena:
 
 CooltrainerfReena1Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERF_REENA
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	checkflag ENGINE_REENA
 	iftrue UnknownScript_0x1a09e9
 	checkcellnum PHONE_COOLTRAINERF_REENA
@@ -199,7 +210,7 @@ CooltrainerfReena1Script:
 	checkevent EVENT_REENA_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a09d2
 	writetext UnknownText_0x1a0c35
-	keeptextopen
+	buttonsound
 	setevent EVENT_REENA_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a0a2f
 	jump UnknownScript_0x1a09d5
@@ -230,7 +241,7 @@ UnknownScript_0x1a09e9:
 .LoadFight0
 	loadtrainer COOLTRAINERF, REENA1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wReenaFightCount, 1
 	clearflag ENGINE_REENA
 	end
@@ -238,7 +249,7 @@ UnknownScript_0x1a09e9:
 .LoadFight1
 	loadtrainer COOLTRAINERF, REENA2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wReenaFightCount, 2
 	clearflag ENGINE_REENA
 	end
@@ -246,7 +257,7 @@ UnknownScript_0x1a09e9:
 .LoadFight2
 	loadtrainer COOLTRAINERF, REENA3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_REENA
 	end
 
@@ -282,21 +293,21 @@ TrainerCooltrainerfMegan:
 	trainer EVENT_BEAT_COOLTRAINERF_MEGAN, COOLTRAINERF, MEGAN, CooltrainerfMeganSeenText, CooltrainerfMeganBeatenText, 0, CooltrainerfMeganScript
 
 CooltrainerfMeganScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a0cce
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute27Signpost0Script:
 	jumptext UnknownText_0x1a0e7f
 
-ItemFragment_0x1a0a62:
-	db TM_SOLARBEAM, 1
+Route27TMSolarbeam:
+	itemball TM_SOLARBEAM
 
-ItemFragment_0x1a0a64:
-	db RARE_CANDY, 1
+Route27RareCandy:
+	itemball RARE_CANDY
 
 MovementData_0x1a0a66:
 	step_left
@@ -485,6 +496,6 @@ Route27_MapEventHeader:
 	person_event SPRITE_COOLTRAINER_F, 6, 37, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 2, TrainerCooltrainerfMegan, -1
 	person_event SPRITE_YOUNGSTER, 7, 65, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerPsychicGilbert, -1
 	person_event SPRITE_YOUNGSTER, 13, 58, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerBird_keeperJose2, -1
-	person_event SPRITE_POKE_BALL, 12, 60, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x1a0a62, EVENT_ROUTE_27_TM_SOLARBEAM
-	person_event SPRITE_POKE_BALL, 12, 53, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x1a0a64, EVENT_ROUTE_27_RARE_CANDY
+	person_event SPRITE_POKE_BALL, 12, 60, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route27TMSolarbeam, EVENT_ROUTE_27_TM_SOLARBEAM
+	person_event SPRITE_POKE_BALL, 12, 53, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route27RareCandy, EVENT_ROUTE_27_RARE_CANDY
 	person_event SPRITE_FISHER, 10, 21, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 3, FisherScript_0x1a089c, -1

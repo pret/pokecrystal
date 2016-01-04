@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE5SAFFRONCITYGATE_OFFICER
+
 Route5SaffronCityGate_MapScriptHeader:
 .MapTriggers:
 	db 0

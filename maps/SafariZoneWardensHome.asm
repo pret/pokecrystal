@@ -1,3 +1,6 @@
+const_value set 2
+	const SAFARIZONEWARDENSHOME_LASS
+
 SafariZoneWardensHome_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,18 +10,18 @@ SafariZoneWardensHome_MapScriptHeader:
 
 WardensGranddaughter:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_TALKED_TO_WARDENS_GRANDDAUGHTER
 	iftrue .AlreadyMet
 	writetext WardensGranddaughterText1
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_TALKED_TO_WARDENS_GRANDDAUGHTER
 	end
 .AlreadyMet
 	writetext WardensGranddaughterText2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 WardenPhoto:

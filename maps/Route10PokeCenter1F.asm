@@ -1,3 +1,9 @@
+const_value set 2
+	const ROUTE10POKECENTER1F_NURSE
+	const ROUTE10POKECENTER1F_GENTLEMAN
+	const ROUTE10POKECENTER1F_GYM_GUY
+	const ROUTE10POKECENTER1F_COOLTRAINER_F
+
 Route10PokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -13,18 +19,18 @@ GentlemanScript_0x188bd7:
 
 GymGuyScript_0x188bda:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188be8
 	writetext UnknownText_0x188c26
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x188be8:
 	writetext UnknownText_0x188c9e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CooltrainerFScript_0x188bee:

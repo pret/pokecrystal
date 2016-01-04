@@ -1,14 +1,14 @@
 
 _SacredAsh: ; 507e6
 	ld a, $0
-	ld [wd0ec], a
+	ld [wItemEffectSucceeded], a
 	call CheckAnyFaintedMon
 	ret nc
 
 	ld hl, SacredAshScript
 	call QueueScript
 	ld a, $1
-	ld [wd0ec], a
+	ld [wItemEffectSucceeded], a
 	ret
 ; 507fb
 
@@ -58,12 +58,12 @@ SacredAshScript: ; 0x50821
 	special FadeInPalettes
 	special FadeOutPalettes
 	special FadeInPalettes
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x50845
 	playsound SFX_CAUGHT_MON
+	waitsfx
 	waitbutton
 	closetext
-	loadmovesprites
 	end
 ; 0x50845
 

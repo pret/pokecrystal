@@ -1,11 +1,25 @@
+const_value set 2
+	const ROUTE36NATIONALPARKGATE_OFFICER1
+	const ROUTE36NATIONALPARKGATE_YOUNGSTER1
+	const ROUTE36NATIONALPARKGATE_YOUNGSTER2
+	const ROUTE36NATIONALPARKGATE_ROCKER
+	const ROUTE36NATIONALPARKGATE_POKEFAN_M
+	const ROUTE36NATIONALPARKGATE_YOUNGSTER3
+	const ROUTE36NATIONALPARKGATE_YOUNGSTER4
+	const ROUTE36NATIONALPARKGATE_LASS
+	const ROUTE36NATIONALPARKGATE_YOUNGSTER5
+	const ROUTE36NATIONALPARKGATE_YOUNGSTER6
+	const ROUTE36NATIONALPARKGATE_YOUNGSTER7
+	const ROUTE36NATIONALPARKGATE_OFFICER2
+
 Route36NationalParkgate_MapScriptHeader:
 .MapTriggers:
 	db 3
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
 	dw .Trigger2, 0
-	dw .Trigger3, 0
 
 .MapCallbacks:
 	db 2
@@ -16,13 +30,13 @@ Route36NationalParkgate_MapScriptHeader:
 
 	dbw 2, .CheckIfContestAvailable
 
+.Trigger0:
+	end
+
 .Trigger1:
 	end
 
 .Trigger2:
-	end
-
-.Trigger3:
 	priorityjump .LeftTheContestEarly
 	end
 
@@ -45,19 +59,19 @@ Route36NationalParkgate_MapScriptHeader:
 	if_equal SATURDAY, .SetContestOfficer
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue .SetContestOfficer
-	disappear $2
-	appear $d
+	disappear ROUTE36NATIONALPARKGATE_OFFICER1
+	appear ROUTE36NATIONALPARKGATE_OFFICER2
 	return
 
 .SetContestOfficer:
-	appear $2
-	disappear $d
+	appear ROUTE36NATIONALPARKGATE_OFFICER1
+	disappear ROUTE36NATIONALPARKGATE_OFFICER2
 .Return:
 	return
 
 .LeftTheContestEarly:
 	spriteface PLAYER, UP
-	loadfont
+	opentext
 	checkcode VAR_CONTESTMINUTES
 	addvar $1
 	RAM2MEM $0
@@ -65,13 +79,13 @@ Route36NationalParkgate_MapScriptHeader:
 	yesorno
 	iffalse .GoBackToContest
 	writetext UnknownText_0x6b2c5
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
 	scall .CopyContestants
-	disappear $2
-	appear $d
+	disappear ROUTE36NATIONALPARKGATE_OFFICER1
+	appear ROUTE36NATIONALPARKGATE_OFFICER2
 	applymovement PLAYER, MovementData_0x6add1
 	pause 15
 	special Special_FadeInQuickly
@@ -79,55 +93,55 @@ Route36NationalParkgate_MapScriptHeader:
 
 .GoBackToContest:
 	writetext UnknownText_0x6b300
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, LEFT
 	playsound SFX_EXIT_BUILDING
 	special FadeOutPalettes
-	waitbutton
+	waitsfx
 	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, $21, $12
 	end
 
 .CopyContestants:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_1A
 	iftrue .Not1
-	appear $3
+	appear ROUTE36NATIONALPARKGATE_YOUNGSTER1
 .Not1:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_2A
 	iftrue .Not2
-	appear $4
+	appear ROUTE36NATIONALPARKGATE_YOUNGSTER2
 .Not2:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_3A
 	iftrue .Not3
-	appear $5
+	appear ROUTE36NATIONALPARKGATE_ROCKER
 .Not3:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_4A
 	iftrue .Not4
-	appear $6
+	appear ROUTE36NATIONALPARKGATE_POKEFAN_M
 .Not4:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_5A
 	iftrue .Not5
-	appear $7
+	appear ROUTE36NATIONALPARKGATE_YOUNGSTER3
 .Not5:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_6A
 	iftrue .Not6
-	appear $8
+	appear ROUTE36NATIONALPARKGATE_YOUNGSTER4
 .Not6:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_7A
 	iftrue .Not7
-	appear $9
+	appear ROUTE36NATIONALPARKGATE_LASS
 .Not7:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_8A
 	iftrue .Not8
-	appear $a
+	appear ROUTE36NATIONALPARKGATE_YOUNGSTER5
 .Not8:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_9A
 	iftrue .Not9
-	appear $b
+	appear ROUTE36NATIONALPARKGATE_YOUNGSTER6
 .Not9:
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_10A
 	iftrue .Not10
-	appear $c
+	appear ROUTE36NATIONALPARKGATE_YOUNGSTER7
 .Not10:
 	special UpdateSprites
 	end
@@ -139,7 +153,7 @@ Route36OfficerScriptContest:
 	if_equal WEDNESDAY, _ContestNotOn
 	if_equal FRIDAY, _ContestNotOn
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue Route36Officer_ContestHasConcluded
 	scall Route36Parkgate_DayToText
@@ -154,20 +168,20 @@ Route36OfficerScriptContest:
 	setflag ENGINE_BUG_CONTEST_TIMER
 	special PlayMapMusic
 	writetext UnknownText_0x6ae87
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	writetext UnknownText_0x6aeb1
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	writetext UnknownText_0x6aecc
+	waitbutton
 	closetext
-	loadmovesprites
 	setflag ENGINE_BUG_CONTEST_TIMER
 	special Special_GiveParkBalls
 	spriteface PLAYER, LEFT
 	playsound SFX_EXIT_BUILDING
 	special FadeOutPalettes
-	waitbutton
+	waitsfx
 	special Special_SelectRandomBugContestContestants
 	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, $21, $12
 	end
@@ -187,41 +201,41 @@ Route36OfficerScriptContest:
 	iftrue .FirstMonIsFainted
 	setevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 	writetext UnknownText_0x6b021
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x6b055
 	playsound SFX_GOT_SAFARI_BALLS
-	waitbutton
-	keeptextopen
+	waitsfx
+	buttonsound
 	jump .ResumeStartingContest
 
 .DecidedNotToJoinContest:
 	writetext UnknownText_0x6b0c6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .RefusedToLeaveMons:
 	writetext UnknownText_0x6b081
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FirstMonIsFainted:
 	writetext UnknownText_0x6b0f2
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .BoxFull:
 	writetext UnknownText_0x6b166
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FirstMonIsEgg:
 	writetext UnknownText_0x6b209
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route36Officer_ContestHasConcluded:
@@ -234,50 +248,50 @@ Route36Officer_ContestHasConcluded:
 	checkevent EVENT_CONTEST_OFFICER_HAS_BERRY
 	iftrue .Berry
 	writetext UnknownText_0x6b32b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Sunstone:
 	writetext UnknownText_0x6b97f
-	keeptextopen
+	buttonsound
 	verbosegiveitem SUN_STONE
 	iffalse .BagFull
 	clearevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
-	loadmovesprites
+	closetext
 	end
 
 .Everstone:
 	writetext UnknownText_0x6b97f
-	keeptextopen
+	buttonsound
 	verbosegiveitem EVERSTONE
 	iffalse .BagFull
 	clearevent EVENT_CONTEST_OFFICER_HAS_EVERSTONE
-	loadmovesprites
+	closetext
 	end
 
 .GoldBerry:
 	writetext UnknownText_0x6b97f
-	keeptextopen
+	buttonsound
 	verbosegiveitem GOLD_BERRY
 	iffalse .BagFull
 	clearevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
-	loadmovesprites
+	closetext
 	end
 
 .Berry:
 	writetext UnknownText_0x6b97f
-	keeptextopen
+	buttonsound
 	verbosegiveitem BERRY
 	iffalse .BagFull
 	clearevent EVENT_CONTEST_OFFICER_HAS_BERRY
-	loadmovesprites
+	closetext
 	end
 
 .BagFull:
 	writetext UnknownText_0x6b910
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 _ContestNotOn:
@@ -285,12 +299,12 @@ _ContestNotOn:
 
 OfficerScript_0x6acf4:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue Route36Officer_ContestHasConcluded
 	writetext UnknownText_0x6b370
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Route36Parkgate_DayToText:
@@ -299,162 +313,162 @@ Route36Parkgate_DayToText:
 
 YoungsterScript_0x6ad06:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad14
 	writetext UnknownText_0x6b399
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6ad14:
 	writetext UnknownText_0x6b3c4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x6ad1a:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad28
 	writetext UnknownText_0x6b40f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6ad28:
 	writetext UnknownText_0x6b440
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 RockerScript_0x6ad2e:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad3c
 	writetext UnknownText_0x6b462
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6ad3c:
 	writetext UnknownText_0x6b496
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokefanMScript_0x6ad42:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad50
 	writetext UnknownText_0x6b4da
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6ad50:
 	writetext UnknownText_0x6b50a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x6ad56:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad64
 	writetext UnknownText_0x6b54e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6ad64:
 	writetext UnknownText_0x6b57c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x6ad6a:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad78
 	writetext UnknownText_0x6b5b0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6ad78:
 	writetext UnknownText_0x6b5dd
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 LassScript_0x6ad7e:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ad8c
 	writetext UnknownText_0x6b64b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6ad8c:
 	writetext UnknownText_0x6b698
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x6ad92:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6ada0
 	writetext UnknownText_0x6b6b8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6ada0:
 	writetext UnknownText_0x6b6e9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x6ada6:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6adb4
 	writetext UnknownText_0x6b71b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6adb4:
 	writetext UnknownText_0x6b740
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x6adba:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x6adc8
 	writetext UnknownText_0x6b76f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6adc8:
 	writetext UnknownText_0x6b7af
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x6adce:

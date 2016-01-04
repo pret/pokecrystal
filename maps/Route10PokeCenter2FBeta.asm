@@ -1,3 +1,4 @@
+
 Route10PokeCenter2FBeta_MapScriptHeader:
 .MapTriggers:
 	db 0

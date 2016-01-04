@@ -1,3 +1,7 @@
+const_value set 2
+	const OLIVINEHOUSEBETA_TEACHER
+	const OLIVINEHOUSEBETA_RHYDON
+
 OlivineHouseBeta_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,11 +13,11 @@ TeacherScript_0x9c58f:
 	jumptextfaceplayer UnknownText_0x9c5a2
 
 RhydonScript_0x9c592:
-	loadfont
+	opentext
 	writetext UnknownText_0x9c5f0
 	cry RHYDON
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 OlivineHouseBetaBookshelf1:

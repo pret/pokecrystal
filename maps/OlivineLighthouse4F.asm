@@ -1,3 +1,7 @@
+const_value set 2
+	const OLIVINELIGHTHOUSE4F_SAILOR
+	const OLIVINELIGHTHOUSE4F_LASS
+
 OlivineLighthouse4F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,22 +13,22 @@ TrainerLassConnie:
 	trainer EVENT_BEAT_LASS_CONNIE, LASS, CONNIE1, LassConnie1SeenText, LassConnie1BeatenText, 0, LassConnie1Script
 
 LassConnie1Script:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x5b63c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSailorKent:
 	trainer EVENT_BEAT_SAILOR_KENT, SAILOR, KENT, SailorKentSeenText, SailorKentBeatenText, 0, SailorKentScript
 
 SailorKentScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x5b584
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SailorKentSeenText:

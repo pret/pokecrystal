@@ -1,3 +1,4 @@
+
 CeladonDeptStoreElevator_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,14 +7,14 @@ CeladonDeptStoreElevator_MapScriptHeader:
 	db 0
 
 MapCeladonDeptStoreElevatorSignpost0Script:
-	loadfont
+	opentext
 	elevator Elevator_0x713be
-	loadmovesprites
+	closetext
 	iffalse UnknownScript_0x713bd
 	pause 5
 	playsound SFX_ELEVATOR
 	earthquake 60
-	waitbutton
+	waitsfx
 UnknownScript_0x713bd:
 	end
 

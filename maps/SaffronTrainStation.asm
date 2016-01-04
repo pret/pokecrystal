@@ -1,24 +1,30 @@
+const_value set 2
+	const SAFFRONTRAINSTATION_OFFICER
+	const SAFFRONTRAINSTATION_GYM_GUY
+	const SAFFRONTRAINSTATION_TEACHER
+	const SAFFRONTRAINSTATION_LASS
+
 SaffronTrainStation_MapScriptHeader:
 .MapTriggers:
 	db 1
 
 	; triggers
-	dw .Trigger1, 0
+	dw .Trigger0, 0
 
 .MapCallbacks:
 	db 0
 
-.Trigger1:
+.Trigger0:
 	end
 
 OfficerScript_0x18a81e:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .MagnetTrainToGoldenrod
 	writetext UnknownText_0x18a8a9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .MagnetTrainToGoldenrod:
@@ -28,9 +34,9 @@ OfficerScript_0x18a81e:
 	checkitem PASS
 	iffalse .PassNotInBag
 	writetext UnknownText_0x18a917
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement $2, MovementData_0x18a88f
+	applymovement SAFFRONTRAINSTATION_OFFICER, MovementData_0x18a88f
 	applymovement PLAYER, MovementData_0x18a898
 	writebyte $1
 	special Special_MagnetTrain
@@ -46,40 +52,40 @@ OfficerScript_0x18a81e:
 
 .PassNotInBag:
 	writetext UnknownText_0x18a956
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .DecidedNotToRide:
 	writetext UnknownText_0x18a978
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Script_ArriveFromGoldenrod:
-	applymovement $2, MovementData_0x18a88f
+	applymovement SAFFRONTRAINSTATION_OFFICER, MovementData_0x18a88f
 	applymovement PLAYER, MovementData_0x18a8a1
-	applymovement $2, MovementData_0x18a894
-	loadfont
+	applymovement SAFFRONTRAINSTATION_OFFICER, MovementData_0x18a894
+	opentext
 	writetext UnknownText_0x18a993
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GymGuyScript_0x18a875:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x18a883
 	writetext UnknownText_0x18a9ca
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x18a883:
 	writetext UnknownText_0x18aa61
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TeacherScript_0x18a889:

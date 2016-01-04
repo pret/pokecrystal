@@ -1,3 +1,4 @@
+
 Route7_MapScriptHeader:
 .MapTriggers:
 	db 0

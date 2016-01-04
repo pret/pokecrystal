@@ -1,6 +1,6 @@
 Function8b342:: ; 8b342
 ; Loads the secondary map header pointer, then runs through a
-; jumptable with three dummy functions.  Spends a lot of energy
+; dw with three dummy functions.  Spends a lot of energy
 ; doing pretty much nothing.
 	call GetSecondaryMapHeaderPointer
 	ld d, h
@@ -10,7 +10,7 @@ Function8b342:: ; 8b342
 	xor a
 .loop
 	push af
-	ld hl, .jumptable
+	ld hl, .dw
 	rst JumpTable
 	pop af
 	inc a
@@ -19,7 +19,7 @@ Function8b342:: ; 8b342
 	ret
 ; 8b354
 
-.jumptable: ; 8b354
+.dw: ; 8b354
 	dw .zero
 	dw .one
 	dw .two
@@ -48,7 +48,7 @@ Function8b35d: ; 8b35d
 
 Function8b363: ; 8b363
 	push bc
-	callba Function10632f
+	callba Mobile_AlwaysReturnNotCarry
 	pop bc
 	ret
 ; 8b36c
@@ -542,9 +542,6 @@ UnknownText_0x8b64c: ; 0x8b64c
 	; CARD FOLDER open.@ @
 	text_jump UnknownText_0x1bc288
 	start_asm
-; 0x8b651
-
-Function8b651: ; 8b651
 	ld de, SFX_TWINKLE
 	call PlaySFX
 	call WaitSFX
@@ -818,7 +815,7 @@ Function8b7bd: ; 8b7bd
 	and a
 	jr z, .asm_8b7ea
 	dec a
-	ld [wcf77], a
+	ld [wScrollingMenuCursorPosition], a
 
 .asm_8b7ea
 	hlcoord 0, 2
@@ -828,9 +825,9 @@ Function8b7bd: ; 8b7bd
 	call Function8b75d
 	call UpdateSprites
 	call Function89209
-	call HandleScrollingMenu
+	call ScrollingMenu
 	call Function8920f
-	ld a, [wcf73]
+	ld a, [wMenuJoypad]
 	cp $2
 	jr z, .asm_8b823
 	cp $20
@@ -854,7 +851,7 @@ Function8b7bd: ; 8b7bd
 
 .asm_8b824
 	ld c, a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wd030], a
 	ld a, [wMenuScrollPosition]
 	ld [wd031], a
@@ -880,7 +877,7 @@ Function8b83e: ; 8b83e
 
 Function8b84b: ; 8b84b
 	ld [wMenuScrollPosition], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld [wMenuCursorBuffer], a
 	ret
 ; 8b855

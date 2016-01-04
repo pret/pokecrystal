@@ -538,7 +538,7 @@ Paragraph:: ; 12f2
 
 .linkbattle
 	call Function13b6
-	call KeepTextOpen
+	call ButtonSound
 	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY
 	lb bc, TEXTBOX_INNERH - 1, TEXTBOX_INNERW
 	call ClearBox
@@ -561,7 +561,7 @@ Char4B:: ; 131f
 	call Function13b6
 
 	push de
-	call KeepTextOpen
+	call ButtonSound
 	pop de
 
 	ld a, [wLinkMode]
@@ -611,7 +611,7 @@ PromptText:: ; 135a
 
 .ok
 	call Function13b6
-	call KeepTextOpen
+	call ButtonSound
 	ld a, [wLinkMode]
 	cp LINK_COLOSSEUM
 	jr z, DoneText
@@ -723,15 +723,15 @@ PokeFluteTerminatorCharacter:: ; 13e0
 
 
 PlaceWholeStringInBoxAtOnce:: ; 13e5
-	ld a, [TextBoxFrame + 1]
+	ld a, [TextBoxFlags]
 	push af
 	set 1, a
-	ld [TextBoxFrame + 1], a
+	ld [TextBoxFlags], a
 
 	call DoTextUntilTerminator
 
 	pop af
-	ld [TextBoxFrame + 1], a
+	ld [TextBoxFlags], a
 	ret
 ; 13f6
 
@@ -934,7 +934,7 @@ Text_WAIT_BUTTON:: ; 149f
 	push hl
 	call LoadBlinkingCursor
 	push bc
-	call KeepTextOpen
+	call ButtonSound
 	pop bc
 	call UnloadBlinkingCursor
 	pop hl
@@ -1101,7 +1101,7 @@ Text_0D:: ; 1562
 ; display arrow
 	push hl
 	push bc
-	call KeepTextOpen
+	call ButtonSound
 	pop bc
 	pop hl
 	ret

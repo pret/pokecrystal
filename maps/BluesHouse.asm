@@ -1,3 +1,6 @@
+const_value set 2
+	const BLUESHOUSE_DAISY
+
 BluesHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,12 +10,12 @@ BluesHouse_MapScriptHeader:
 
 DaisyScript_0x19b0d0:
 	faceplayer
-	loadfont
+	opentext
 	checkcode VAR_HOUR
 	if_equal $f, UnknownScript_0x19b0de
 	writetext UnknownText_0x19b130
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19b0de:
@@ -22,44 +25,44 @@ UnknownScript_0x19b0de:
 	yesorno
 	iffalse UnknownScript_0x19b124
 	writetext UnknownText_0x19b244
-	closetext
+	waitbutton
 	special Special_DaisyMassage
 	if_equal 0, UnknownScript_0x19b124
 	if_equal 1, UnknownScript_0x19b12a
 	setflag ENGINE_TEA_IN_BLUES_HOUSE
 	writetext UnknownText_0x19b266
+	waitbutton
 	closetext
-	loadmovesprites
 	special FadeOutPalettes
 	playmusic MUSIC_HEAL
 	pause 60
 	special FadeInPalettes
 	special RestartMapMusic
-	loadfont
+	opentext
 	writetext UnknownText_0x19b296
 	special PlayCurMonCry
-	keeptextopen
+	buttonsound
 	writetext UnknownText_0x19b2aa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19b11e:
 	writetext UnknownText_0x19b2fa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19b124:
 	writetext UnknownText_0x19b334
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19b12a:
 	writetext UnknownText_0x19b377
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x19b130:

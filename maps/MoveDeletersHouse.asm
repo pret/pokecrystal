@@ -1,3 +1,6 @@
+const_value set 2
+	const MOVEDELETERSHOUSE_SUPER_NERD
+
 MoveDeletersHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,10 +10,10 @@ MoveDeletersHouse_MapScriptHeader:
 
 MoveDeleter:
 	faceplayer
-	loadfont
+	opentext
 	special MoveDeletion
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MoveDeletersHouseBookshelf:

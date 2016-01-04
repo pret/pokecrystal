@@ -1,8 +1,8 @@
 Music_Evolution: ; f06e1
-	dbw $c0, Music_Evolution_Ch1
-	dbw $01, Music_Evolution_Ch2
-	dbw $02, Music_Evolution_Ch3
-	dbw $03, Music_Evolution_Ch4
+	musicheader 4, 1, Music_Evolution_Ch1
+	musicheader 1, 2, Music_Evolution_Ch2
+	musicheader 1, 3, Music_Evolution_Ch3
+	musicheader 1, 4, Music_Evolution_Ch4
 ; f06ed
 
 Music_Evolution_Ch1: ; f06ed
@@ -13,13 +13,13 @@ Music_Evolution_Ch1: ; f06ed
 	dutycycle $2
 	notetype $c, $92
 	octave 3
-	unknownmusic0xe0 $0, $4a
+	unknownmusic0xe0 $0, 4, A_
 	note C_, 1
-	unknownmusic0xe0 $0, $4a
+	unknownmusic0xe0 $0, 4, A_
 	note G_, 1
-	unknownmusic0xe0 $0, $4a
+	unknownmusic0xe0 $0, 4, A_
 	note C_, 1
-	unknownmusic0xe0 $0, $4a
+	unknownmusic0xe0 $0, 4, A_
 	note G_, 1
 	note __, 4
 	dutycycle $3

@@ -1,15 +1,15 @@
 FruitTreeScript:: ; 44000
 	callasm GetCurTreeFruit
-	loadfont
+	opentext
 	copybytetovar CurFruit
 	itemtotext $0, $0
 	writetext FruitBearingTreeText
-	keeptextopen
+	buttonsound
 	callasm TryResetFruitTrees
 	callasm CheckFruitTree
 	iffalse .fruit
 	writetext NothingHereText
-	closetext
+	waitbutton
 	jump .end
 
 .fruit
@@ -17,7 +17,7 @@ FruitTreeScript:: ; 44000
 	copybytetovar CurFruit
 	giveitem ITEM_FROM_MEM
 	iffalse .packisfull
-	keeptextopen
+	buttonsound
 	writetext ObtainedFruitText
 	callasm PickedFruitTree
 	specialsound
@@ -25,12 +25,12 @@ FruitTreeScript:: ; 44000
 	jump .end
 
 .packisfull
-	keeptextopen
+	buttonsound
 	writetext FruitPackIsFullText
-	closetext
+	waitbutton
 
 .end
-	loadmovesprites
+	closetext
 	end
 ; 44041
 

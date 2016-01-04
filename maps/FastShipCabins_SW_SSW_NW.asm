@@ -1,3 +1,9 @@
+const_value set 2
+	const FASTSHIPCABINS_SW_SSW_NW_FISHER
+	const FASTSHIPCABINS_SW_SSW_NW_BUG_CATCHER
+	const FASTSHIPCABINS_SW_SSW_NW_BUENA
+	const FASTSHIPCABINS_SW_SSW_NW_ROCKER
+
 FastShipCabins_SW_SSW_NW_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,60 +15,60 @@ TrainerFirebreatherLyle:
 	trainer EVENT_BEAT_FIREBREATHER_LYLE, FIREBREATHER, LYLE, FirebreatherLyleSeenText, FirebreatherLyleBeatenText, 0, FirebreatherLyleScript
 
 FirebreatherLyleScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x75b52
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBug_catcherKen:
 	trainer EVENT_BEAT_BUG_CATCHER_KEN, BUG_CATCHER, KEN, Bug_catcherKenSeenText, Bug_catcherKenBeatenText, 0, Bug_catcherKenScript
 
 Bug_catcherKenScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x75bd5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBeautyCassie:
 	trainer EVENT_BEAT_BEAUTY_CASSIE, BEAUTY, CASSIE, BeautyCassieSeenText, BeautyCassieBeatenText, 0, BeautyCassieScript
 
 BeautyCassieScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x75c43
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerGuitaristClyde:
 	trainer EVENT_BEAT_GUITARIST_CLYDE, GUITARIST, CLYDE, GuitaristClydeSeenText, GuitaristClydeBeatenText, 0, GuitaristClydeScript
 
 GuitaristClydeScript:
-	talkaftercancel
+	end_if_just_battled
 	special Mobile_DummyReturnFalse
 	iftrue .mobile
-	loadfont
+	opentext
 	writetext UnknownText_0x75d65
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .mobile:
-	loadfont
+	opentext
 	writetext UnknownText_0x75cfe
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FastShipBed:
-	loadfont
+	opentext
 	writetext FastShipBedText1
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
 	special Mobile_HealParty
@@ -71,10 +77,10 @@ FastShipBed:
 	pause 60
 	special RestartMapMusic
 	special Special_FadeInQuickly
-	loadfont
+	opentext
 	writetext FastShipBedText2
+	waitbutton
 	closetext
-	loadmovesprites
 	checkevent EVENT_FAST_SHIP_HAS_ARRIVED
 	iftrue UnknownScript_0x75ae1
 	checkevent EVENT_FAST_SHIP_FOUND_GIRL
@@ -89,18 +95,18 @@ UnknownScript_0x75ae2:
 	pause 30
 	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	iftrue UnknownScript_0x75af7
-	loadfont
+	opentext
 	writetext FastShipArrivedVermilionText
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_FAST_SHIP_HAS_ARRIVED
 	end
 
 UnknownScript_0x75af7:
-	loadfont
+	opentext
 	writetext FastShipArrivedOlivineText
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_FAST_SHIP_HAS_ARRIVED
 	end
 

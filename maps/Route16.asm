@@ -1,3 +1,4 @@
+
 Route16_MapScriptHeader:
 .MapTriggers:
 	db 0

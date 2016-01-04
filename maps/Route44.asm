@@ -1,3 +1,16 @@
+const_value set 2
+	const ROUTE44_FISHER1
+	const ROUTE44_FISHER2
+	const ROUTE44_YOUNGSTER1
+	const ROUTE44_SUPER_NERD
+	const ROUTE44_YOUNGSTER2
+	const ROUTE44_COOLTRAINER_M
+	const ROUTE44_COOLTRAINER_F
+	const ROUTE44_FRUIT_TREE
+	const ROUTE44_POKE_BALL1
+	const ROUTE44_POKE_BALL2
+	const ROUTE44_POKE_BALL3
+
 Route44_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -10,8 +23,8 @@ TrainerBird_keeperVance1:
 
 Bird_keeperVance1Script:
 	writecode VAR_CALLERID, PHONE_BIRDKEEPER_VANCE
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	checkflag ENGINE_VANCE
 	iftrue UnknownScript_0x19d86a
 	checkcellnum PHONE_BIRDKEEPER_VANCE
@@ -19,7 +32,7 @@ Bird_keeperVance1Script:
 	checkevent EVENT_VANCE_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19d853
 	writetext UnknownText_0x19dbf3
-	keeptextopen
+	buttonsound
 	setevent EVENT_VANCE_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19d8df
 	jump UnknownScript_0x19d856
@@ -50,7 +63,7 @@ UnknownScript_0x19d86a:
 .LoadFight0
 	loadtrainer BIRD_KEEPER, VANCE1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wVanceFightCount, 1
 	clearflag ENGINE_VANCE
 	end
@@ -58,7 +71,7 @@ UnknownScript_0x19d86a:
 .LoadFight1
 	loadtrainer BIRD_KEEPER, VANCE2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wVanceFightCount, 2
 	clearflag ENGINE_VANCE
 	end
@@ -66,7 +79,7 @@ UnknownScript_0x19d86a:
 .LoadFight2
 	loadtrainer BIRD_KEEPER, VANCE3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_VANCE
 	checkevent EVENT_VANCE_CARBOS
 	iftrue UnknownScript_0x19d8cb
@@ -82,9 +95,9 @@ UnknownScript_0x19d8ca:
 	end
 
 UnknownScript_0x19d8cb:
-	loadfont
+	opentext
 	writetext UnknownText_0x19dc67
-	closetext
+	waitbutton
 	verbosegiveitem CARBOS
 	iffalse UnknownScript_0x19d903
 	clearevent EVENT_VANCE_CARBOS
@@ -140,11 +153,11 @@ TrainerPsychicPhil:
 	trainer EVENT_BEAT_PSYCHIC_PHIL, PSYCHIC_T, PHIL, PsychicPhilSeenText, PsychicPhilBeatenText, 0, PsychicPhilScript
 
 PsychicPhilScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19dcfc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFisherWilton1:
@@ -152,8 +165,8 @@ TrainerFisherWilton1:
 
 FisherWilton1Script:
 	writecode VAR_CALLERID, PHONE_FISHER_WILTON
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	checkflag ENGINE_WILTON
 	iftrue UnknownScript_0x19d96e
 	checkflag ENGINE_WILTON_HAS_ITEM
@@ -163,7 +176,7 @@ FisherWilton1Script:
 	checkevent EVENT_WILTON_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19d957
 	writetext UnknownText_0x19daa8
-	keeptextopen
+	buttonsound
 	setevent EVENT_WILTON_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x19d8df
 	jump UnknownScript_0x19d95a
@@ -194,7 +207,7 @@ UnknownScript_0x19d96e:
 .LoadFight0
 	loadtrainer FISHER, WILTON1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wWiltonFightCount, 1
 	clearflag ENGINE_WILTON
 	end
@@ -202,7 +215,7 @@ UnknownScript_0x19d96e:
 .LoadFight1
 	loadtrainer FISHER, WILTON2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wWiltonFightCount, 2
 	clearflag ENGINE_WILTON
 	end
@@ -210,7 +223,7 @@ UnknownScript_0x19d96e:
 .LoadFight2
 	loadtrainer FISHER, WILTON3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_WILTON
 	end
 
@@ -246,44 +259,44 @@ TrainerFisherEdgar:
 	trainer EVENT_BEAT_FISHER_EDGAR, FISHER, EDGAR, FisherEdgarSeenText, FisherEdgarBeatenText, 0, FisherEdgarScript
 
 FisherEdgarScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19db6f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainerfCybil:
 	trainer EVENT_BEAT_COOLTRAINERF_CYBIL, COOLTRAINERF, CYBIL, CooltrainerfCybilSeenText, CooltrainerfCybilBeatenText, 0, CooltrainerfCybilScript
 
 CooltrainerfCybilScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19df4d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokemaniacZach:
 	trainer EVENT_BEAT_POKEMANIAC_ZACH, POKEMANIAC, ZACH, PokemaniacZachSeenText, PokemaniacZachBeatenText, 0, PokemaniacZachScript
 
 PokemaniacZachScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19dd7e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainermAllen:
 	trainer EVENT_BEAT_COOLTRAINERM_ALLEN, COOLTRAINERM, ALLEN, CooltrainermAllenSeenText, CooltrainermAllenBeatenText, 0, CooltrainermAllenScript
 
 CooltrainermAllenScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19de66
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute44Signpost0Script:
@@ -295,16 +308,16 @@ MapRoute44Signpost1Script:
 FruitTreeScript_0x19da40:
 	fruittree FRUITTREE_ROUTE_44
 
-ItemFragment_0x19da42:
-	db MAX_REVIVE, 1
+Route44MaxRevive:
+	itemball MAX_REVIVE
 
-ItemFragment_0x19da44:
-	db ULTRA_BALL, 1
+Route44UltraBall:
+	itemball ULTRA_BALL
 
-ItemFragment_0x19da46:
-	db MAX_REPEL, 1
+Route44MaxRepel:
+	itemball MAX_REPEL
 
-MapRoute44SignpostItem2:
+Route44HiddenElixer:
 	dwb EVENT_ROUTE_44_HIDDEN_ELIXER, ELIXER
 	
 
@@ -509,7 +522,7 @@ Route44_MapEventHeader:
 	db 3
 	signpost 7, 53, SIGNPOST_READ, MapRoute44Signpost0Script
 	signpost 10, 6, SIGNPOST_READ, MapRoute44Signpost1Script
-	signpost 9, 32, SIGNPOST_ITEM, MapRoute44SignpostItem2
+	signpost 9, 32, SIGNPOST_ITEM, Route44HiddenElixer
 
 .PersonEvents:
 	db 11
@@ -521,6 +534,6 @@ Route44_MapEventHeader:
 	person_event SPRITE_COOLTRAINER_M, 15, 41, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 5, TrainerCooltrainermAllen, -1
 	person_event SPRITE_COOLTRAINER_F, 14, 31, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 5, TrainerCooltrainerfCybil, -1
 	person_event SPRITE_FRUIT_TREE, 5, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x19da40, -1
-	person_event SPRITE_POKE_BALL, 8, 30, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x19da42, EVENT_ROUTE_44_MAX_REVIVE
-	person_event SPRITE_POKE_BALL, 4, 45, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x19da44, EVENT_ROUTE_44_ULTRA_BALL
-	person_event SPRITE_POKE_BALL, 9, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x19da46, EVENT_ROUTE_44_MAX_REPEL
+	person_event SPRITE_POKE_BALL, 8, 30, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route44MaxRevive, EVENT_ROUTE_44_MAX_REVIVE
+	person_event SPRITE_POKE_BALL, 4, 45, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route44UltraBall, EVENT_ROUTE_44_ULTRA_BALL
+	person_event SPRITE_POKE_BALL, 9, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route44MaxRepel, EVENT_ROUTE_44_MAX_REPEL

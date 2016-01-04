@@ -1,3 +1,6 @@
+const_value set 2
+	const TINTOWER3F_POKE_BALL
+
 TinTower3F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -5,8 +8,8 @@ TinTower3F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ItemFragment_0x185a37:
-	db FULL_HEAL, 1
+TinTower3FFullHeal:
+	itemball FULL_HEAL
 
 TinTower3F_MapEventHeader:
 	; filler
@@ -25,4 +28,4 @@ TinTower3F_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKE_BALL, 14, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x185a37, EVENT_TIN_TOWER_3F_FULL_HEAL
+	person_event SPRITE_POKE_BALL, 14, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TinTower3FFullHeal, EVENT_TIN_TOWER_3F_FULL_HEAL

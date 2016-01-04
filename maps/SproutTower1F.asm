@@ -1,3 +1,11 @@
+const_value set 2
+	const SPROUTTOWER1F_SAGE1
+	const SPROUTTOWER1F_SAGE2
+	const SPROUTTOWER1F_GRANNY
+	const SPROUTTOWER1F_TEACHER
+	const SPROUTTOWER1F_SAGE3
+	const SPROUTTOWER1F_POKE_BALL
+
 SproutTower1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -21,15 +29,15 @@ TrainerSageChow:
 	trainer EVENT_BEAT_SAGE_CHOW, SAGE, CHOW, SageChowSeenText, SageChowBeatenText, 0, SageChowScript
 
 SageChowScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x184583
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-ItemFragment_0x18451e:
-	db PARLYZ_HEAL, 1
+SproutTower1FParlyzHeal:
+	itemball PARLYZ_HEAL
 
 MapSproutTower1FSignpost1Script:
 	jumptext UnknownText_0x1846d6
@@ -121,4 +129,4 @@ SproutTower1F_MapEventHeader:
 	person_event SPRITE_GRANNY, 12, 11, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrannyScript_0x184504, -1
 	person_event SPRITE_TEACHER, 9, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TeacherScript_0x184507, -1
 	person_event SPRITE_SAGE, 5, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 4, TrainerSageChow, -1
-	person_event SPRITE_POKE_BALL, 7, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x18451e, EVENT_SPROUT_TOWER1F_PARLYZ_HEAL
+	person_event SPRITE_POKE_BALL, 7, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, SproutTower1FParlyzHeal, EVENT_SPROUT_TOWER1F_PARLYZ_HEAL

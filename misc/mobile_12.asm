@@ -6,7 +6,7 @@ InitMobileProfile: ; 4802f (12:402f)
 	set 0, [hl]
 	ld a, c
 	and a
-	call z, Function48000
+	call z, InitCrystalData
 	call ClearBGPalettes
 	call Function48d3d
 	ld a, [wd479]
@@ -46,11 +46,11 @@ InitMobileProfile: ; 4802f (12:402f)
 	ld c, 20
 	call DelayFrames
 	ld b, $1
-	call Function4930f
+	call GetMysteryGift_MobileAdapterLayout
 	call ClearBGPalettes
 	hlcoord 0, 0
-	ld b, $2
-	ld c, $14
+	ld b,  2
+	ld c, 20
 	call ClearBox
 	hlcoord 0, 1
 	ld a, $c
@@ -66,20 +66,20 @@ InitMobileProfile: ; 4802f (12:402f)
 	ld c, $12
 	call Function48cdc
 	hlcoord 2, 4
-	ld de, String_48482
+	ld de, MobileString_Gender
 	call PlaceString
 .asm_480d7
 	hlcoord 2, 6
-	ld de, String_48489
+	ld de, MobileString_Age
 	call PlaceString
 	hlcoord 2, 8
-	ld de, String_4848d
+	ld de, MobileString_Address
 	call PlaceString
 	hlcoord 2, 10
-	ld de, String_48495
+	ld de, MobileString_ZipCode
 	call PlaceString
 	hlcoord 2, 12
-	ld de, String_4849e
+	ld de, MobileString_OK
 	call PlaceString
 	ld a, [wd002]
 	bit 6, a
@@ -109,20 +109,20 @@ InitMobileProfile: ; 4802f (12:402f)
 	ld c, $12
 	call TextBox
 	hlcoord 1, 16
-	ld de, String_48275
+	ld de, MobileString_PersonalInfo
 	call PlaceString
 	call Function48187
-	call Function3200
+	call WaitBGMap2
 	call SetPalettes
-	call Function1bc9
-	ld hl, MenuSelection2
+	call StaticMenuJoypad
+	ld hl, wMenuCursorY
 	ld b, [hl]
 	push bc
 	jr asm_4815f
 
 Function48157: ; 48157 (12:4157)
-	call Function1bd3
-	ld hl, MenuSelection2
+	call ScrollingMenuJoypad
+	ld hl, wMenuCursorY
 	ld b, [hl]
 	push bc
 
@@ -163,7 +163,7 @@ Function48187: ; 48187 (12:4187)
 .asm_481a2
 	push de
 	hlcoord 2, 12
-	ld de, String_4849e
+	ld de, MobileString_OK
 	call PlaceString
 	pop de
 .asm_481ad
@@ -203,19 +203,19 @@ Function48187: ; 48187 (12:4187)
 	jr nz, .asm_48201
 .asm_481f8
 	hlcoord 11, 10
-	ld de, String_48202
+	ld de, .String_TellLater
 	call PlaceString
 .asm_48201
 	ret
 ; 48202 (12:4202)
 
-String_48202: ; 48202
+.String_TellLater: ; 48202
 	db "Tell Later@"
 ; 4820d
 
 Function4820d: ; 4820d (12:420d)
-	call Function1bee
-	ld hl, MenuSelection2
+	call PlaceHollowCursor
+	ld hl, wMenuCursorY
 	ld a, [hl]
 	push af
 	ld a, [wd002]
@@ -235,7 +235,7 @@ Function4820d: ; 4820d (12:420d)
 	cp $4
 	jp z, Function488d3
 	ld a, $2
-	call Function1ff8
+	call MenuClickSound
 	ld a, [wd002]
 	bit 6, a
 	jr z, .asm_4825c
@@ -246,7 +246,7 @@ Function4820d: ; 4820d (12:420d)
 	ld b, $2
 	ld c, $12
 	call ClearBox
-	ld de, String_484a1
+	ld de, MobileString_ProfileChanged
 	hlcoord 1, 16
 	call PlaceString
 	call WaitBGMap
@@ -269,7 +269,7 @@ Function48272: ; 48272 (12:4272)
 	jp Function4840c
 ; 48275 (12:4275)
 
-String_48275: ; 48275
+MobileString_PersonalInfo: ; 48275
 	db "Personal Info@"
 ; 48283
 
@@ -282,7 +282,7 @@ Function48283: ; 48283 (12:4283)
 asm_4828d: ; 4828d (12:428d)
 	call Function48283
 	hlcoord 1, 16
-	ld de, String_484b1
+	ld de, MobileDesc_Gender
 	call PlaceString
 	ld hl, MenuDataHeader_0x484f1
 	call LoadMenuDataHeader
@@ -301,12 +301,12 @@ asm_4828d: ; 4828d (12:428d)
 	ld a, [PlayerGender]
 	inc a
 	ld [wMenuCursorBuffer], a
-	call Function1bc9
+	call StaticMenuJoypad
 	call PlayClickSFX
 	call ExitMenu
 	bit 0, a
 	jp z, Function4840c
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	ld a, [hl]
 	ld hl, Strings_484fb
 	cp $1
@@ -334,7 +334,7 @@ asm_4828d: ; 4828d (12:428d)
 Function48304: ; 48304 (12:4304)
 	call Function48283
 	hlcoord 1, 16
-	ld de, String_484cf
+	ld de, MobileDesc_Address
 	call PlaceString
 	ld hl, MenuDataHeader_0x48504
 	call LoadMenuDataHeader
@@ -361,7 +361,7 @@ Function48304: ; 48304 (12:4304)
 	ld [wMenuScrollPosition], a
 	callba Function104148
 .asm_48348
-	call HandleScrollingMenu
+	call ScrollingMenu
 	ld de, $629
 	call Function48383
 	jr c, .asm_48348
@@ -415,7 +415,7 @@ Function48383: ; 48383 (12:4383)
 	ld [wMenuScrollPosition], a
 	jr .asm_483af
 .asm_483af
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	ld a, [hl]
 	ld [wMenuCursorBuffer], a
 	scf
@@ -426,7 +426,7 @@ Function48383: ; 48383 (12:4383)
 	ret
 
 Function483bb: ; 483bb (12:43bb)
-	ld hl, wcf77
+	ld hl, wScrollingMenuCursorPosition
 	ld a, [hl]
 	inc a
 	ld [wd474], a
@@ -489,42 +489,41 @@ Function4840c: ; 4840c (12:440c)
 	call Function48187
 	call Function48283
 	hlcoord 1, 16
-	ld de, String_48275
+	ld de, MobileString_PersonalInfo
 	call PlaceString
 	call Function486bf
 	pop bc
-	ld hl, MenuSelection2
+	ld hl, wMenuCursorY
 	ld [hl], b
 	ld a, [wd002]
 	bit 6, a
 	jr nz, .asm_48437
-	ld b, $9
-	ld c, $1
+	ld b, 9
+	ld c, 1
 	hlcoord 1, 4
 	call ClearBox
 	jp Function48157
 .asm_48437
-	ld b, $7
-	ld c, $1
+	ld b, 7
+	ld c, 1
 	hlcoord 1, 6
 	call ClearBox
 	jp Function48157
 
-Function48444: ; 48444 (12:4444)
+Mobile12_Bin2Dec: ; 48444 (12:4444)
 	push bc
 	push af
 	push de
 	push hl
-	ld hl, Unknown_4845d
-.asm_4844b
+	ld hl, .DigitStrings
+.loop
 	and a
-	jr z, .asm_48453
-rept 2
+	jr z, .got_string
 	inc hl
-endr
+	inc hl
 	dec a
-	jr .asm_4844b
-.asm_48453
+	jr .loop
+.got_string
 	ld d, h
 	ld e, l
 	pop hl
@@ -535,7 +534,7 @@ endr
 	ret
 ; 4845d (12:445d)
 
-Unknown_4845d: ; 4845d
+.DigitStrings: ; 4845d
 ; 4845d
 	db "0@"
 	db "1@"
@@ -549,17 +548,17 @@ Unknown_4845d: ; 4845d
 	db "9@"
 ; 48471
 
-MobileProfileString: db "  Mobile Profile@"
-String_48482: db "Gender@"
-String_48489: db "Age@"
-String_4848d: db "Address@"
-String_48495: db "Zip Code@"
-String_4849e: db "OK@"
-String_484a1: db "Profile Changed@"
-String_484b1: db "Boy or girl?@"
-String_484be: db "How old are you?@"
-String_484cf: db "Where do you live?@"
-String_484e2: db "Your zip code?@"
+MobileProfileString:         db "  Mobile Profile@"
+MobileString_Gender:         db "Gender@"
+MobileString_Age:            db "Age@"
+MobileString_Address:        db "Address@"
+MobileString_ZipCode:        db "Zip Code@"
+MobileString_OK:             db "OK@"
+MobileString_ProfileChanged: db "Profile Changed@"
+MobileDesc_Gender:           db "Boy or girl?@"
+MobileDesc_Age:              db "How old are you?@"
+MobileDesc_Address:          db "Where do you live?@"
+MobileDesc_ZipCode:          db "Your zip code?@"
 ; 484f1
 
 MenuDataHeader_0x484f1: ; 0x484f1
@@ -665,7 +664,7 @@ Function48689: ; 48689 (12:4689)
 	ld c, 7
 	call DelayFrames
 	ld b, $1
-	call Function4930f
+	call GetMysteryGift_MobileAdapterLayout
 	call ClearBGPalettes
 	hlcoord 0, 0
 	ld b, $4
@@ -687,7 +686,7 @@ Function48689: ; 48689 (12:4689)
 	ret
 
 Function486bf: ; 486bf (12:46bf)
-	ld hl, wcfa1
+	ld hl, w2DMenuCursorInitY
 	ld a, [wd002]
 	bit 6, a
 	jr nz, .asm_486ce
@@ -746,9 +745,8 @@ Function486bf: ; 486bf (12:46bf)
 	pop af
 	ld [hli], a
 	ld a, $1
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	xor a
 rept 3
 	ld [hli], a
@@ -772,7 +770,7 @@ Function48725: ; 48725 (12:4725)
 	ret
 
 Function4873c: ; 4873c (12:473c)
-	ld hl, wcfa1
+	ld hl, w2DMenuCursorInitY
 	ld a, $4
 	ld [hli], a
 	ld a, $c
@@ -811,7 +809,7 @@ endr
 Function4876f: ; 4876f (12:476f)
 	call Function48283
 	hlcoord 1, 16
-	ld de, String_484be
+	ld de, MobileDesc_Age
 	call PlaceString
 	ld hl, MenuDataHeader_0x48509
 	call LoadMenuDataHeader
@@ -853,7 +851,7 @@ Function4876f: ; 4876f (12:476f)
 	call Function4880e
 	jr nc, .asm_487c6
 	ld a, $1
-	call Function1ff8
+	call MenuClickSound
 	pop bc
 	jr nz, .asm_487da
 	ld a, b
@@ -1012,7 +1010,7 @@ INCBIN "gfx/unknown/0488cb.2bpp"
 Function488d3: ; 488d3 (12:48d3)
 	call Function48283
 	hlcoord 1, 16
-	ld de, String_484e2
+	ld de, MobileDesc_ZipCode
 	call PlaceString
 	call Function48a3a
 	jp c, Function4840c
@@ -1154,7 +1152,7 @@ asm_48972: ; 48972 (12:4972)
 	push de
 	push hl
 	ld a, $1
-	call Function1ff8
+	call MenuClickSound
 	pop hl
 	pop de
 	pop bc
@@ -1173,16 +1171,16 @@ Function489ea: ; 489ea (12:49ea)
 	push de
 	ld a, [wd475]
 	and $f
-	call Function48444
+	call Mobile12_Bin2Dec
 	ld a, [wd476]
 	and $f0
 	swap a
 	inc hl
-	call Function48444
+	call Mobile12_Bin2Dec
 	ld a, [wd476]
 	and $f
 	inc hl
-	call Function48444
+	call Mobile12_Bin2Dec
 	inc hl
 	ld de, String_48a38
 	call PlaceString
@@ -1190,20 +1188,20 @@ Function489ea: ; 489ea (12:49ea)
 	and $f0
 	swap a
 	inc hl
-	call Function48444
+	call Mobile12_Bin2Dec
 	ld a, [wd477]
 	and $f
 	inc hl
-	call Function48444
+	call Mobile12_Bin2Dec
 	ld a, [wd478]
 	and $f0
 	swap a
 	inc hl
-	call Function48444
+	call Mobile12_Bin2Dec
 	ld a, [wd478]
 	and $f
 	inc hl
-	call Function48444
+	call Mobile12_Bin2Dec
 	pop de
 	ret
 ; 48a38 (12:4a38)
@@ -1217,11 +1215,11 @@ Function48a3a: ; 48a3a (12:4a3a)
 	call LoadMenuDataHeader
 	call Function4873c
 	ld a, $a
-	ld [wcfa1], a
+	ld [w2DMenuCursorInitY], a
 	ld a, $b
-	ld [wcfa2], a
+	ld [w2DMenuCursorInitX], a
 	ld a, $1
-	ld [MenuSelection2], a
+	ld [wMenuCursorY], a
 	hlcoord 10, 8
 	ld b, $4
 	ld c, $8
@@ -1229,14 +1227,14 @@ Function48a3a: ; 48a3a (12:4a3a)
 	hlcoord 12, 10
 	ld de, String_48aa1
 	call PlaceString
-	call Function1bc9
+	call StaticMenuJoypad
 	push af
 	call PlayClickSFX
 	call ExitMenu
 	pop af
 	bit 1, a
 	jp nz, Function48a9a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp $1
 	jr z, .asm_48a98
 	ld a, [wd003]
@@ -1605,7 +1603,8 @@ Function48c63: ; 48c63
 ; 48c8e
 
 Function48c8e: ; 48c8e
-	ld hl, wd02a
+; unreferenced
+	ld hl, $d02a
 	ld d, h
 	ld e, l
 	callba Function48c63
@@ -1646,13 +1645,13 @@ Function48ca3: ; 48ca3
 
 .asm_48cc7
 	ld a, b
-	call Function48444
+	call Mobile12_Bin2Dec
 	inc hl
 	ld a, c
-	call Function48444
+	call Mobile12_Bin2Dec
 	inc hl
 	ld a, d
-	call Function48444
+	call Mobile12_Bin2Dec
 	pop hl
 	pop de
 	pop bc
@@ -1672,12 +1671,10 @@ Function48cdc: ; 48cdc (12:4cdc)
 	pop bc
 	ld de, AttrMap - TileMap
 	add hl, de
-rept 2
 	inc b
-endr
-rept 2
+	inc b
 	inc c
-endr
+	inc c
 	ld a, $0
 .asm_48ced
 	push bc

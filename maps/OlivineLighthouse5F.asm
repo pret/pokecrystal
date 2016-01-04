@@ -1,3 +1,10 @@
+const_value set 2
+	const OLIVINELIGHTHOUSE5F_SAILOR
+	const OLIVINELIGHTHOUSE5F_YOUNGSTER
+	const OLIVINELIGHTHOUSE5F_POKE_BALL1
+	const OLIVINELIGHTHOUSE5F_POKE_BALL2
+	const OLIVINELIGHTHOUSE5F_POKE_BALL3
+
 OlivineLighthouse5F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,34 +16,34 @@ TrainerBird_keeperDenis:
 	trainer EVENT_BEAT_BIRD_KEEPER_DENIS, BIRD_KEEPER, DENIS, Bird_keeperDenisSeenText, Bird_keeperDenisBeatenText, 0, Bird_keeperDenisScript
 
 Bird_keeperDenisScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x60ac3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSailorErnest:
 	trainer EVENT_BEAT_SAILOR_ERNEST, SAILOR, ERNEST, SailorErnestSeenText, SailorErnestBeatenText, 0, SailorErnestScript
 
 SailorErnestScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x60a1f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-ItemFragment_0x609aa:
-	db RARE_CANDY, 1
+OlivineLighthouse5FRareCandy:
+	itemball RARE_CANDY
 
-ItemFragment_0x609ac:
-	db SUPER_REPEL, 1
+OlivineLighthouse5FSuperRepel:
+	itemball SUPER_REPEL
 
-ItemFragment_0x609ae:
-	db TM_SWAGGER, 1
+OlivineLighthouse5FTMSwagger:
+	itemball TM_SWAGGER
 
-MapOlivineLighthouse5FSignpostItem0:
+OlivineLighthouse5FHiddenHyperPotion:
 	dwb EVENT_OLIVINE_LIGHTHOUSE_5F_HIDDEN_HYPER_POTION, HYPER_POTION
 	
 
@@ -103,12 +110,12 @@ OlivineLighthouse5F_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 13, 3, SIGNPOST_ITEM, MapOlivineLighthouse5FSignpostItem0
+	signpost 13, 3, SIGNPOST_ITEM, OlivineLighthouse5FHiddenHyperPotion
 
 .PersonEvents:
 	db 5
 	person_event SPRITE_SAILOR, 11, 8, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerSailorErnest, -1
 	person_event SPRITE_YOUNGSTER, 3, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 4, TrainerBird_keeperDenis, -1
-	person_event SPRITE_POKE_BALL, 12, 15, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x609aa, EVENT_OLIVINE_LIGHTHOUSE_5F_RARE_CANDY
-	person_event SPRITE_POKE_BALL, 15, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x609ac, EVENT_OLIVINE_LIGHTHOUSE_5F_SUPER_REPEL
-	person_event SPRITE_POKE_BALL, 13, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x609ae, EVENT_OLIVINE_LIGHTHOUSE_5F_TM_SWAGGER
+	person_event SPRITE_POKE_BALL, 12, 15, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, OlivineLighthouse5FRareCandy, EVENT_OLIVINE_LIGHTHOUSE_5F_RARE_CANDY
+	person_event SPRITE_POKE_BALL, 15, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, OlivineLighthouse5FSuperRepel, EVENT_OLIVINE_LIGHTHOUSE_5F_SUPER_REPEL
+	person_event SPRITE_POKE_BALL, 13, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, OlivineLighthouse5FTMSwagger, EVENT_OLIVINE_LIGHTHOUSE_5F_TM_SWAGGER

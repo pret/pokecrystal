@@ -9,8 +9,7 @@ scall: macro
 	enum farscall_command
 farscall: macro
 	db farscall_command
-	db BANK(\1)
-	dw \1
+	dba \1
 	endm
 
 	enum ptcall_command
@@ -28,8 +27,7 @@ jump: macro
 	enum farjump_command
 farjump: macro
 	db farjump_command
-	db BANK(\1)
-	dw \1
+	dba \1
 	endm
 
 	enum ptjump_command
@@ -93,8 +91,7 @@ callstd: macro
 	enum callasm_command
 callasm: macro
 	db callasm_command
-	db BANK(\1)
-	dw \1
+	dba \1
 	endm
 
 
@@ -106,8 +103,7 @@ special: macro
 
 add_special: MACRO
 \1Special::
-	db BANK(\1)
-	dw \1
+	dba \1
 ENDM
 
 
@@ -480,9 +476,9 @@ pocketisfull: macro
 	db pocketisfull_command
 	endm
 
-	enum loadfont_command
-loadfont: macro
-	db loadfont_command
+	enum opentext_command
+opentext: macro
+	db opentext_command
 	endm
 
 	enum refreshscreen_command
@@ -491,9 +487,9 @@ refreshscreen: macro
 	db \1 ; dummy
 	endm
 
-	enum loadmovesprites_command
-loadmovesprites: macro
-	db loadmovesprites_command
+	enum closetext_command
+closetext: macro
+	db closetext_command
 	endm
 
 	enum loadbytec2cf_command
@@ -505,8 +501,7 @@ loadbytec2cf: macro
 	enum farwritetext_command
 farwritetext: macro
 	db farwritetext_command
-	db BANK(\1)
-	dw \1
+	dba \1
 	endm
 
 	enum writetext_command
@@ -533,9 +528,9 @@ loadmenudata: macro
 	dw \1 ; data
 	endm
 
-	enum writebackup_command
-writebackup: macro
-	db writebackup_command
+	enum closewindow_command
+closewindow: macro
+	db closewindow_command
 	endm
 
 	enum jumptextfaceplayer_command
@@ -548,8 +543,7 @@ jumptextfaceplayer: macro
 	enum farjumptext_command
 farjumptext: macro
 	db farjumptext_command
-	db BANK(\1)
-	dw \1
+	dba \1
 	endm
 ; ENDC
 
@@ -559,14 +553,14 @@ jumptext: macro
 	dw \1 ; text_pointer
 	endm
 
-	enum closetext_command
-closetext: macro
-	db closetext_command
+	enum waitbutton_command
+waitbutton: macro
+	db waitbutton_command
 	endm
 
-	enum keeptextopen_command
-keeptextopen: macro
-	db keeptextopen_command
+	enum buttonsound_command
+buttonsound: macro
+	db buttonsound_command
 	endm
 
 	enum pokepic_command
@@ -575,19 +569,19 @@ pokepic: macro
 	db \1 ; pokemon
 	endm
 
-	enum pokepicyesorno_command
-pokepicyesorno: macro
-	db pokepicyesorno_command
+	enum closepokepic_command
+closepokepic: macro
+	db closepokepic_command
 	endm
 
-	enum interpretmenu_command
-interpretmenu: macro
-	db interpretmenu_command
+	enum _2dmenu_command
+_2dmenu: macro
+	db _2dmenu_command
 	endm
 
-	enum interpretmenu2_command
-interpretmenu2: macro
-	db interpretmenu2_command
+	enum verticalmenu_command
+verticalmenu: macro
+	db verticalmenu_command
 	endm
 
 	enum loadpikachudata_command
@@ -595,19 +589,19 @@ loadpikachudata: macro
 	db loadpikachudata_command
 	endm
 
-	enum battlecheck_command
-battlecheck: macro
-	db battlecheck_command
+	enum randomwildmon_command
+randomwildmon: macro
+	db randomwildmon_command
 	endm
 
-	enum loadtrainerdata_command
-loadtrainerdata: macro
-	db loadtrainerdata_command
+	enum loadmemtrainer_command
+loadmemtrainer: macro
+	db loadmemtrainer_command
 	endm
 
-	enum loadpokedata_command
-loadpokedata: macro
-	db loadpokedata_command
+	enum loadwildmon_command
+loadwildmon: macro
+	db loadwildmon_command
 	db \1 ; pokemon
 	db \2 ; level
 	endm
@@ -624,9 +618,9 @@ startbattle: macro
 	db startbattle_command
 	endm
 
-	enum returnafterbattle_command
-returnafterbattle: macro
-	db returnafterbattle_command
+	enum reloadmapafterbattle_command
+reloadmapafterbattle: macro
+	db reloadmapafterbattle_command
 	endm
 
 	enum catchtutorial_command
@@ -641,9 +635,9 @@ trainertext: macro
 	db \1 ; which_text
 	endm
 
-	enum trainerstatus_command
-trainerstatus: macro
-	db trainerstatus_command
+	enum trainerflagaction_command
+trainerflagaction: macro
+	db trainerflagaction_command
 	db \1 ; action
 	endm
 
@@ -659,14 +653,14 @@ scripttalkafter: macro
 	db scripttalkafter_command
 	endm
 
-	enum talkaftercancel_command
-talkaftercancel: macro
-	db talkaftercancel_command
+	enum end_if_just_battled_command
+end_if_just_battled: macro
+	db end_if_just_battled_command
 	endm
 
-	enum talkaftercheck_command
-talkaftercheck: macro
-	db talkaftercheck_command
+	enum check_just_battled_command
+check_just_battled: macro
+	db check_just_battled_command
 	endm
 
 	enum setlasttalked_command
@@ -822,9 +816,9 @@ playmusic: macro
 	dw \1 ; music_pointer
 	endm
 
-	enum playrammusic_command
-playrammusic: macro
-	db playrammusic_command
+	enum encountermusic_command
+encountermusic: macro
+	db encountermusic_command
 	endm
 
 	enum musicfadeout_command
@@ -839,9 +833,9 @@ playmapmusic: macro
 	db playmapmusic_command
 	endm
 
-	enum reloadmapmusic_command
-reloadmapmusic: macro
-	db reloadmapmusic_command
+	enum dontrestartmapmusic_command
+dontrestartmapmusic: macro
+	db dontrestartmapmusic_command
 	endm
 
 	enum cry_command
@@ -856,9 +850,9 @@ playsound: macro
 	dw \1 ; sound_pointer
 	endm
 
-	enum waitbutton_command
-waitbutton: macro
-	db waitbutton_command
+	enum waitsfx_command
+waitsfx: macro
+	db waitsfx_command
 	endm
 
 	enum warpsound_command
@@ -928,9 +922,9 @@ reloadandreturn: macro
 	db \1 ; which_method
 	endm
 
-	enum resetfuncs_command
-resetfuncs: macro
-	db resetfuncs_command
+	enum end_all_command
+end_all: macro
+	db end_all_command
 	endm
 
 	enum pokemart_command
@@ -1010,9 +1004,9 @@ verbosegiveitem2: macro
 	db \2 ; var
 	endm
 
-	enum loadwilddata_command
-loadwilddata: macro
-	db loadwilddata_command
+	enum swarm_command
+swarm: macro
+	db swarm_command
 	db \1 ; flag
 	map \2 ; map
 	endm
@@ -1042,9 +1036,9 @@ battletowertext: macro
 	db \1 ; memory
 	endm
 
-	enum displaylocation_command
-displaylocation: macro
-	db displaylocation_command
+	enum landmarktotext_command
+landmarktotext: macro
+	db landmarktotext_command
 	db \1 ; id
 	db \2 ; memory
 	endm

@@ -1,3 +1,6 @@
+const_value set 2
+	const LAVENDERNAMERATER_GENTLEMAN
+
 LavenderNameRater_MapScriptHeader:
 .MapTriggers:
 	db 1
@@ -13,10 +16,10 @@ UnknownScript_0x7eaf1:
 
 LavenderNameRater:
 	faceplayer
-	loadfont
+	opentext
 	special SpecialNameRater
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 LavenderNameRaterBookshelf:

@@ -1,3 +1,9 @@
+const_value set 2
+	const ROUTE4_YOUNGSTER
+	const ROUTE4_LASS1
+	const ROUTE4_LASS2
+	const ROUTE4_POKE_BALL
+
 Route4_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,42 +15,42 @@ TrainerBird_keeperHank:
 	trainer EVENT_BEAT_BIRD_KEEPER_HANK, BIRD_KEEPER, HANK, Bird_keeperHankSeenText, Bird_keeperHankBeatenText, 0, Bird_keeperHankScript
 
 Bird_keeperHankScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ae258
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPicnickerHope:
 	trainer EVENT_BEAT_PICNICKER_HOPE, PICNICKER, HOPE, PicnickerHopeSeenText, PicnickerHopeBeatenText, 0, PicnickerHopeScript
 
 PicnickerHopeScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ae320
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPicnickerSharon:
 	trainer EVENT_BEAT_PICNICKER_SHARON, PICNICKER, SHARON, PicnickerSharonSeenText, PicnickerSharonBeatenText, 0, PicnickerSharonScript
 
 PicnickerSharonScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ae369
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute4Signpost0Script:
 	jumptext UnknownText_0x1ae384
 
-ItemFragment_0x1ae20f:
-	db HP_UP, 1
+Route4HPUp:
+	itemball HP_UP
 
-MapRoute4SignpostItem1:
+Route4HiddenUltraBall:
 	dwb EVENT_ROUTE_4_HIDDEN_ULTRA_BALL, ULTRA_BALL
 	
 
@@ -129,11 +135,11 @@ Route4_MapEventHeader:
 .Signposts:
 	db 2
 	signpost 7, 3, SIGNPOST_READ, MapRoute4Signpost0Script
-	signpost 3, 10, SIGNPOST_ITEM, MapRoute4SignpostItem1
+	signpost 3, 10, SIGNPOST_ITEM, Route4HiddenUltraBall
 
 .PersonEvents:
 	db 4
 	person_event SPRITE_YOUNGSTER, 9, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerBird_keeperHank, -1
 	person_event SPRITE_LASS, 8, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 4, TrainerPicnickerHope, -1
 	person_event SPRITE_LASS, 6, 21, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 4, TrainerPicnickerSharon, -1
-	person_event SPRITE_POKE_BALL, 3, 26, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x1ae20f, EVENT_ROUTE_4_HP_UP
+	person_event SPRITE_POKE_BALL, 3, 26, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route4HPUp, EVENT_ROUTE_4_HP_UP

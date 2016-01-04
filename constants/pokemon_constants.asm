@@ -291,6 +291,7 @@ MON_SAT                  EQUS "(PartyMon1SpclAtk - PartyMon1)"
 MON_SDF                  EQUS "(PartyMon1SpclDef - PartyMon1)"
 BOXMON_STRUCT_LENGTH     EQUS "(PartyMon1End - PartyMon1)"
 PARTYMON_STRUCT_LENGTH   EQUS "(PartyMon1StatsEnd - PartyMon1)"
+REDMON_STRUCT_LENGTH EQU 44
 
 const_value SET 1
 	const MONMENU_CUT        ; 1

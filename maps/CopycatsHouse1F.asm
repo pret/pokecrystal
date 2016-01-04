@@ -1,3 +1,8 @@
+const_value set 2
+	const COPYCATSHOUSE1F_POKEFAN_M
+	const COPYCATSHOUSE1F_POKEFAN_F
+	const COPYCATSHOUSE1F_CLEFAIRY
+
 CopycatsHouse1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -10,26 +15,26 @@ PokefanMScript_0x18ad13:
 
 PokefanFScript_0x18ad16:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x18ad24
 	writetext UnknownText_0x18ad95
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x18ad24:
 	writetext UnknownText_0x18add3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ClefairyScript_0x18ad2a:
-	loadfont
+	opentext
 	writetext UnknownText_0x18ae4b
 	cry BLISSEY
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x18ad34:

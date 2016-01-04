@@ -1,3 +1,9 @@
+const_value set 2
+	const CHERRYGROVEPOKECENTER1F_NURSE
+	const CHERRYGROVEPOKECENTER1F_FISHER
+	const CHERRYGROVEPOKECENTER1F_GENTLEMAN
+	const CHERRYGROVEPOKECENTER1F_TEACHER
+
 CherrygrovePokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -16,18 +22,18 @@ GentlemanScript_0x196973:
 
 TeacherScript_0x196976:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x196984
 	writetext UnknownText_0x1969f1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x196984:
 	writetext UnknownText_0x196a46
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x19698a:

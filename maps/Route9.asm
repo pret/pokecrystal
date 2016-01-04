@@ -1,3 +1,11 @@
+const_value set 2
+	const ROUTE9_YOUNGSTER1
+	const ROUTE9_LASS1
+	const ROUTE9_YOUNGSTER2
+	const ROUTE9_LASS2
+	const ROUTE9_POKEFAN_M1
+	const ROUTE9_POKEFAN_M2
+
 Route9_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,72 +17,72 @@ TrainerCamperDean:
 	trainer EVENT_BEAT_CAMPER_DEAN, CAMPER, DEAN, CamperDeanSeenText, CamperDeanBeatenText, 0, CamperDeanScript
 
 CamperDeanScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1aafd9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPicnickerHeidi:
 	trainer EVENT_BEAT_PICNICKER_HEIDI, PICNICKER, HEIDI, PicnickerHeidiSeenText, PicnickerHeidiBeatenText, 0, PicnickerHeidiScript
 
 PicnickerHeidiScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ab07c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCamperSid:
 	trainer EVENT_BEAT_CAMPER_SID, CAMPER, SID, CamperSidSeenText, CamperSidBeatenText, 0, CamperSidScript
 
 CamperSidScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ab0f6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPicnickerEdna:
 	trainer EVENT_BEAT_PICNICKER_EDNA, PICNICKER, EDNA, PicnickerEdnaSeenText, PicnickerEdnaBeatenText, 0, PicnickerEdnaScript
 
 PicnickerEdnaScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ab15f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerHikerTim:
 	trainer EVENT_BEAT_HIKER_TIM, HIKER, TIM, HikerTimSeenText, HikerTimBeatenText, 0, HikerTimScript
 
 HikerTimScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ab210
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerHikerSidney:
 	trainer EVENT_BEAT_HIKER_SIDNEY, HIKER, SIDNEY, HikerSidneySeenText, HikerSidneyBeatenText, 0, HikerSidneyScript
 
 HikerSidneyScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1ab278
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute9Signpost0Script:
 	jumptext UnknownText_0x1ab2a2
 
-MapRoute9SignpostItem1:
+Route9HiddenEther:
 	dwb EVENT_ROUTE_9_HIDDEN_ETHER, ETHER
 	
 
@@ -212,7 +220,7 @@ Route9_MapEventHeader:
 .Signposts:
 	db 2
 	signpost 7, 15, SIGNPOST_READ, MapRoute9Signpost0Script
-	signpost 15, 41, SIGNPOST_ITEM, MapRoute9SignpostItem1
+	signpost 15, 41, SIGNPOST_ITEM, Route9HiddenEther
 
 .PersonEvents:
 	db 6

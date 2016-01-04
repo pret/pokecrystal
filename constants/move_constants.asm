@@ -287,7 +287,7 @@ const_value SET const_value + -1
 	const ANIM_SHAKE             ; $114
 	const ANIM_HIT_CONFUSION     ; $115
 
-; wcfca uses offsets from ANIM_MISS
+; wNumHits uses offsets from ANIM_MISS
 	const_def
 	const BATTLEANIM_NONE
 	const BATTLEANIM_ENEMY_DAMAGE

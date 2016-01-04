@@ -1,29 +1,35 @@
+const_value set 2
+	const FASTSHIP1F_SAILOR1
+	const FASTSHIP1F_SAILOR2
+	const FASTSHIP1F_SAILOR3
+	const FASTSHIP1F_GENTLEMAN
+
 FastShip1F_MapScriptHeader:
 .MapTriggers:
 	db 3
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
 	dw .Trigger2, 0
-	dw .Trigger3, 0
 
 .MapCallbacks:
 	db 0
 
-.Trigger1:
+.Trigger0:
 	end
 
-.Trigger2:
+.Trigger1:
 	priorityjump .PriorityJump2
 	end
 
-.Trigger3:
+.Trigger2:
 	end
 
 .PriorityJump2:
-	applymovement $2, MovementData_0x7520e
+	applymovement FASTSHIP1F_SAILOR1, MovementData_0x7520e
 	applymovement PLAYER, MovementData_0x75217
-	applymovement $2, MovementData_0x75211
+	applymovement FASTSHIP1F_SAILOR1, MovementData_0x75211
 	pause 30
 	playsound SFX_BOAT
 	earthquake 30
@@ -40,32 +46,32 @@ FastShip1F_MapScriptHeader:
 
 SailorScript_0x75160:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_FAST_SHIP_HAS_ARRIVED
 	iftrue .Arrived
 	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	iftrue .Olivine
 	writetext UnknownText_0x7523b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Olivine
 	writetext UnknownText_0x7529b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Arrived:
 	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	iftrue ._Olivine
 	writetext UnknownText_0x754be
+	waitbutton
 	closetext
-	loadmovesprites
 	scall .LetThePlayerOut
 	playsound SFX_EXIT_BUILDING
 	special FadeOutPalettes
-	waitbutton
+	waitsfx
 	setevent EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
 	domaptrigger VERMILION_PORT, $1
 	warp VERMILION_PORT, $7, $11
@@ -73,12 +79,12 @@ SailorScript_0x75160:
 
 ._Olivine
 	writetext UnknownText_0x7548d
+	waitbutton
 	closetext
-	loadmovesprites
 	scall .LetThePlayerOut
 	playsound SFX_EXIT_BUILDING
 	special FadeOutPalettes
-	waitbutton
+	waitsfx
 	setevent EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
 	domaptrigger OLIVINE_PORT, $1
 	warp OLIVINE_PORT, $7, $17
@@ -87,50 +93,50 @@ SailorScript_0x75160:
 .LetThePlayerOut:
 	checkcode VAR_FACING
 	if_equal RIGHT, .YouAreFacingRight
-	applymovement $2, MovementData_0x7520e
+	applymovement FASTSHIP1F_SAILOR1, MovementData_0x7520e
 	applymovement PLAYER, MovementData_0x75235
 	end
 
 .YouAreFacingRight:
-	applymovement $2, MovementData_0x75214
+	applymovement FASTSHIP1F_SAILOR1, MovementData_0x75214
 	applymovement PLAYER, MovementData_0x75238
 	end
 
 SailorScript_0x751d0:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue .Vermilion
 	writetext UnknownText_0x752f9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Vermilion:
 	writetext UnknownText_0x7534f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SailorScript_0x751e4:
 	jumptextfaceplayer UnknownText_0x753c0
 
 WorriedGrandpaTriggerRight:
-	moveperson $5, $14, $6
+	moveperson FASTSHIP1F_GENTLEMAN, $14, $6
 
 WorriedGrandpaTriggerLeft:
-	appear $5
-	applymovement $5, MovementData_0x7521b
+	appear FASTSHIP1F_GENTLEMAN
+	applymovement FASTSHIP1F_GENTLEMAN, MovementData_0x7521b
 	playsound SFX_TACKLE
 	applymovement PLAYER, MovementData_0x7522e
-	applymovement $5, MovementData_0x75220
-	loadfont
+	applymovement FASTSHIP1F_GENTLEMAN, MovementData_0x75220
+	opentext
 	writetext UnknownText_0x75412
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, RIGHT
-	applymovement $5, MovementData_0x75222
-	disappear $5
+	applymovement FASTSHIP1F_GENTLEMAN, MovementData_0x75222
+	disappear FASTSHIP1F_GENTLEMAN
 	dotrigger $0
 	end
 

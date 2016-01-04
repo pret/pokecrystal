@@ -1,3 +1,9 @@
+const_value set 2
+	const SOULHOUSE_GRAMPS
+	const SOULHOUSE_TEACHER
+	const SOULHOUSE_LASS
+	const SOULHOUSE_GRANNY
+
 SoulHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -1,3 +1,7 @@
+const_value set 2
+	const ROUTE39FARMHOUSE_POKEFAN_M
+	const ROUTE39FARMHOUSE_POKEFAN_F
+
 Route39Farmhouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,12 +11,12 @@ Route39Farmhouse_MapScriptHeader:
 
 PokefanMScript_0x9ceb4:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_HEALED_MOOMOO
 	iftrue UnknownScript_0x9cec5
 	writetext UnknownText_0x9cf38
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_TALKED_TO_FARMER_ABOUT_MOOMOO
 	end
 
@@ -20,7 +24,7 @@ UnknownScript_0x9cec5:
 	checkitem MOOMOO_MILK
 	iftrue UnknownScript_0x9cf08
 	writetext UnknownText_0x9cfe1
-	special PlaceMoneyTopRightOW
+	special PlaceMoneyTopRight
 	yesorno
 	iffalse UnknownScript_0x9cf02
 	checkmoney $0, 500
@@ -28,62 +32,62 @@ UnknownScript_0x9cec5:
 	giveitem MOOMOO_MILK
 	iffalse UnknownScript_0x9cefc
 	takemoney $0, 500
-	special PlaceMoneyTopRightOW
-	waitbutton
+	special PlaceMoneyTopRight
+	waitsfx
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x9d05d
-	keeptextopen
+	buttonsound
 	itemnotify
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x9cef6:
 	writetext UnknownText_0x9d07c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x9cefc:
 	writetext UnknownText_0x9d09d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x9cf02:
 	writetext UnknownText_0x9d0b7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x9cf08:
 	writetext UnknownText_0x9d0dc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokefanFScript_0x9cf0e:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_TM13_SNORE_FROM_MOOMOO_FARM
 	iftrue UnknownScript_0x9cf2f
 	checkevent EVENT_HEALED_MOOMOO
 	iftrue UnknownScript_0x9cf22
 	writetext UnknownText_0x9d0f6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x9cf22:
 	writetext UnknownText_0x9d156
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_SNORE
 	iffalse UnknownScript_0x9cf33
 	setevent EVENT_GOT_TM13_SNORE_FROM_MOOMOO_FARM
 UnknownScript_0x9cf2f:
 	writetext UnknownText_0x9d1c7
-	closetext
+	waitbutton
 UnknownScript_0x9cf33:
-	loadmovesprites
+	closetext
 	end
 
 FarmhouseBookshelf:

@@ -1,3 +1,6 @@
+const_value set 2
+	const TINTOWER7F_POKE_BALL
+
 TinTower7F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -5,8 +8,8 @@ TinTower7F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ItemFragment_0x185b05:
-	db MAX_REVIVE, 1
+TinTower7FMaxRevive:
+	itemball MAX_REVIVE
 
 TinTower7F_MapEventHeader:
 	; filler
@@ -28,4 +31,4 @@ TinTower7F_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKE_BALL, 1, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x185b05, EVENT_TIN_TOWER_7F_MAX_REVIVE
+	person_event SPRITE_POKE_BALL, 1, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TinTower7FMaxRevive, EVENT_TIN_TOWER_7F_MAX_REVIVE

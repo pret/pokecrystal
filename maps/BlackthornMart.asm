@@ -1,3 +1,8 @@
+const_value set 2
+	const BLACKTHORNMART_CLERK
+	const BLACKTHORNMART_COOLTRAINER_M
+	const BLACKTHORNMART_BLACK_BELT
+
 BlackthornMart_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,9 +11,9 @@ BlackthornMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x195a5d:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_BLACKTHORN
-	loadmovesprites
+	closetext
 	end
 
 CooltrainerMScript_0x195a64:

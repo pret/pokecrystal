@@ -1,3 +1,10 @@
+const_value set 2
+	const LAVRADIOTOWER1F_RECEPTIONIST
+	const LAVRADIOTOWER1F_OFFICER
+	const LAVRADIOTOWER1F_SUPER_NERD1
+	const LAVRADIOTOWER1F_GENTLEMAN
+	const LAVRADIOTOWER1F_SUPER_NERD2
+
 LavRadioTower1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -16,26 +23,26 @@ SuperNerdScript_0x7ee69:
 
 GentlemanScript_0x7ee6c:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_EXPN_CARD
 	iftrue .UnknownScript_0x7ee8e
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .UnknownScript_0x7ee80
 	writetext UnknownText_0x7effb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .UnknownScript_0x7ee80:
 	writetext UnknownText_0x7f0a1
-	keeptextopen
+	buttonsound
 	stringtotext .expncardname, $1
 	scall .UnknownScript_0x7ee94
 	setflag ENGINE_EXPN_CARD
 .UnknownScript_0x7ee8e
 	writetext UnknownText_0x7f141
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .UnknownScript_0x7ee94
@@ -47,18 +54,18 @@ GentlemanScript_0x7ee6c:
 
 SuperNerdScript_0x7eea2:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_EXPN_CARD
 	iftrue UnknownScript_0x7eeb0
 	writetext UnknownText_0x7f193
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7eeb0:
 	writetext UnknownText_0x7f248
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapLavRadioTower1FSignpost0Script:

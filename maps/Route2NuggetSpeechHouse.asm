@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE2NUGGETSPEECHHOUSE_FISHER
+
 Route2NuggetSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,19 +10,19 @@ Route2NuggetSpeechHouse_MapScriptHeader:
 
 FisherScript_0x9b847:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_NUGGET_FROM_GUY
 	iftrue .GotItem
 	writetext UnknownText_0x9b865
-	keeptextopen
+	buttonsound
 	verbosegiveitem NUGGET
 	iffalse .Done
 	setevent EVENT_GOT_NUGGET_FROM_GUY
 .GotItem
 	writetext UnknownText_0x9b8e5
-	closetext
+	waitbutton
 .Done
-	loadmovesprites
+	closetext
 	end
 
 Route2NuggetSpeechHouseBookshelf:

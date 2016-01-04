@@ -1,4 +1,4 @@
-Function8c001:: ; 8c001
+UpdateTimeOfDayPal:: ; 8c001
 	call UpdateTime
 	ld a, [TimeOfDay]
 	ld [CurTimeOfDay], a
@@ -12,7 +12,7 @@ _TimeOfDayPals:: ; 8c011
 ; return carry if pals are changed
 
 ; forced pals?
-	ld hl, wd846
+	ld hl, wTimeOfDayPalFlags
 	bit 7, [hl]
 	jr nz, .dontchange
 
@@ -65,7 +65,7 @@ _TimeOfDayPals:: ; 8c011
 
 
 ; update sgb pals
-	ld b, SCGB_09
+	ld b, SCGB_MAPPALS
 	call GetSGBLayout
 
 
@@ -125,7 +125,7 @@ FadeInPalettes:: ; 8c079
 ; 8c084
 
 FadeOutPalettes:: ; 8c084
-	call Function8c0c1
+	call FillWhiteBGColor
 	ld c, $9
 	call GetTimePalFade
 	ld b, $4
@@ -134,7 +134,7 @@ FadeOutPalettes:: ; 8c084
 ; 8c092
 
 Special_BattleTowerFade: ; 8c092
-	call Function8c0c1
+	call FillWhiteBGColor
 	ld c, $9
 	call GetTimePalFade
 	ld b, $4
@@ -167,19 +167,20 @@ Special_FadeBlackQuickly: ; 8c0b6
 ; 8c0c1
 
 
-Function8c0c1: ; 8c0c1
+FillWhiteBGColor: ; 8c0c1
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
+
 	ld hl, UnknBGPals
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	ld hl, UnknBGPals + 8
-	ld c, $6
-.asm_8c0d4
+	ld hl, UnknBGPals + 1 palettes
+	ld c, 6
+.loop
 	ld a, e
 	ld [hli], a
 	ld a, d
@@ -188,7 +189,8 @@ rept 6
 	inc hl
 endr
 	dec c
-	jr nz, .asm_8c0d4
+	jr nz, .loop
+
 	pop af
 	ld [rSVBK], a
 	ret
@@ -198,9 +200,9 @@ brightlevel: MACRO
 	db (\1 << 6) | (\2 << 4) | (\3 << 2) | \4
 ENDM
 
-Function8c0e5: ; 8c0e5
+ReplaceTimeOfDayPals: ; 8c0e5
 	ld hl, .BrightnessLevels
-	ld a, [wc2d0]
+	ld a, [wMapTimeOfDay]
 	cp $4 ; Dark cave, needs Flash
 	jr z, .DarkCave
 	and $7
@@ -210,18 +212,20 @@ Function8c0e5: ; 8c0e5
 	adc h
 	ld h, a
 	ld a, [hl]
-	ld [wd847], a
+	ld [wTimeOfDayPalset], a
 	ret
+
 .DarkCave
 	ld a, [StatusFlags]
-	bit 2, a
+	bit 2, a ; Flash
 	jr nz, .UsedFlash
-	ld a, $ff ; 3, 3, 3, 3
-	ld [wd847], a
+	ld a, %11111111 ; 3, 3, 3, 3
+	ld [wTimeOfDayPalset], a
 	ret
+
 .UsedFlash
-	ld a, $aa ; 2, 2, 2, 2
-	ld [wd847], a
+	ld a, %10101010 ; 2, 2, 2, 2
+	ld [wTimeOfDayPalset], a
 	ret
 ; 8c10f (23:410f)
 
@@ -257,25 +261,25 @@ endr
 	dw .DarknessPalette
 
 .MorningPalette
-	ld a, [wd847]
+	ld a, [wTimeOfDayPalset]
 	and %00000011 ; 0
 	ret
 
 .DayPalette
-	ld a, [wd847]
+	ld a, [wTimeOfDayPalset]
 	and %00001100 ; 1
 	srl a
 	srl a
 	ret
 
 .NitePalette
-	ld a, [wd847]
+	ld a, [wTimeOfDayPalset]
 	and %00110000 ; 2
 	swap a
 	ret
 
 .DarknessPalette
-	ld a, [wd847]
+	ld a, [wTimeOfDayPalset]
 	and %11000000 ; 3
 	rlca
 	rlca
@@ -304,7 +308,7 @@ ConvertTimePalsIncHL: ; 8c15e
 rept 3
 	inc hl
 endr
-	ld c, $2
+	ld c, 2
 	call DelayFrames
 	dec b
 	jr nz, .loop
@@ -317,7 +321,7 @@ ConvertTimePalsDecHL: ; 8c16d
 rept 3
 	dec hl
 endr
-	ld c, $2
+	ld c, 2
 	call DelayFrames
 	dec b
 	jr nz, .loop

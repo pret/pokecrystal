@@ -1,3 +1,7 @@
+const_value set 2
+	const CELADONDEPTSTORE6F_SUPER_NERD
+	const CELADONDEPTSTORE6F_YOUNGSTER
+
 CeladonDeptStore6F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -20,17 +24,17 @@ YoungsterScript_0x7117d:
 	jumptextfaceplayer UnknownText_0x71310
 
 CeladonVendingMachine:
-	loadfont
+	opentext
 	writetext CeladonVendingText
 .Start
-	special PlaceMoneyTopRightOW
+	special PlaceMoneyTopRight
 	loadmenudata .MenuData
-	interpretmenu2
-	writebackup
+	verticalmenu
+	closewindow
 	if_equal $1, .FreshWater
 	if_equal $2, .SodaPop
 	if_equal $3, .Lemonade
-	loadmovesprites
+	closetext
 	end
 
 .FreshWater
@@ -64,18 +68,18 @@ CeladonVendingMachine:
 	pause 10
 	playsound SFX_ENTER_DOOR
 	writetext CeladonClangText
-	keeptextopen
+	buttonsound
 	itemnotify
 	jump .Start
 
 .NotEnoughMoney
 	writetext CeladonVendingNoMoneyText
-	closetext
+	waitbutton
 	jump .Start
 
 .NotEnoughSpace
 	writetext CeladonVendingNoSpaceText
-	closetext
+	waitbutton
 	jump .Start
 
 .MenuData

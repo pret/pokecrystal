@@ -1,3 +1,4 @@
+
 Route10North_MapScriptHeader:
 .MapTriggers:
 	db 0

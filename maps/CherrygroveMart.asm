@@ -1,3 +1,8 @@
+const_value set 2
+	const CHERRYGROVEMART_CLERK
+	const CHERRYGROVEMART_COOLTRAINER_M
+	const CHERRYGROVEMART_YOUNGSTER
+
 CherrygroveMart_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,32 +11,32 @@ CherrygroveMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x19680a:
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x196817
 	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x196817:
 	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE_DEX
-	loadmovesprites
+	closetext
 	end
 
 CooltrainerMScript_0x19681d:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x19682b
 	writetext UnknownText_0x196834
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19682b:
 	writetext UnknownText_0x196873
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x196831:

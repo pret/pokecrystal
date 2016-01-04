@@ -1,3 +1,6 @@
+const_value set 2
+	const PEWTERSNOOZESPEECHHOUSE_GRAMPS
+
 PewterSnoozeSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

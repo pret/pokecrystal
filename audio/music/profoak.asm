@@ -1,7 +1,7 @@
 Music_ProfOak: ; f4dea
-	dbw $80, Music_ProfOak_Ch1
-	dbw $01, Music_ProfOak_Ch2
-	dbw $02, Music_ProfOak_Ch3
+	musicheader 3, 1, Music_ProfOak_Ch1
+	musicheader 1, 2, Music_ProfOak_Ch2
+	musicheader 1, 3, Music_ProfOak_Ch3
 ; f4df3
 
 Music_ProfOak_Ch1: ; f4df3

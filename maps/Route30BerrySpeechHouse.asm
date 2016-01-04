@@ -1,3 +1,6 @@
+const_value set 2
+	const ROUTE30BERRYSPEECHHOUSE_POKEFAN_M
+
 Route30BerrySpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,19 +10,19 @@ Route30BerrySpeechHouse_MapScriptHeader:
 
 PokefanMScript_0x196d64:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_BERRY_FROM_ROUTE_30_HOUSE
 	iftrue UnknownScript_0x196d79
 	writetext UnknownText_0x196d82
-	keeptextopen
+	buttonsound
 	verbosegiveitem BERRY
 	iffalse UnknownScript_0x196d7d
 	setevent EVENT_GOT_BERRY_FROM_ROUTE_30_HOUSE
 UnknownScript_0x196d79:
 	writetext UnknownText_0x196dec
-	closetext
+	waitbutton
 UnknownScript_0x196d7d:
-	loadmovesprites
+	closetext
 	end
 
 Route30BerrySpeechHouseBookshelf:

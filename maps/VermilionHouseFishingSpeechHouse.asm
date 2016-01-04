@@ -1,3 +1,6 @@
+const_value set 2
+	const VERMILIONHOUSEFISHINGSPEECHHOUSE_FISHING_GURU
+
 VermilionHouseFishingSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

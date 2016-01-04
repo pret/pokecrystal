@@ -1,3 +1,6 @@
+const_value set 2
+	const TINTOWER5F_POKE_BALL
+
 TinTower5F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -5,14 +8,14 @@ TinTower5F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ItemFragment_0x185aa9:
-	db RARE_CANDY, 1
+TinTower5FRareCandy:
+	itemball RARE_CANDY
 
-MapTinTower5FSignpostItem0:
+TinTower5FHiddenFullRestore:
 	dwb EVENT_TIN_TOWER_5F_HIDDEN_FULL_RESTORE, FULL_RESTORE
 	
 
-MapTinTower5FSignpostItem1:
+TinTower5FHiddenCarbos:
 	dwb EVENT_TIN_TOWER_5F_HIDDEN_CARBOS, CARBOS
 	
 
@@ -32,9 +35,9 @@ TinTower5F_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 14, 16, SIGNPOST_ITEM, MapTinTower5FSignpostItem0
-	signpost 15, 3, SIGNPOST_ITEM, MapTinTower5FSignpostItem1
+	signpost 14, 16, SIGNPOST_ITEM, TinTower5FHiddenFullRestore
+	signpost 15, 3, SIGNPOST_ITEM, TinTower5FHiddenCarbos
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKE_BALL, 9, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x185aa9, EVENT_TIN_TOWER_5F_RARE_CANDY
+	person_event SPRITE_POKE_BALL, 9, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TinTower5FRareCandy, EVENT_TIN_TOWER_5F_RARE_CANDY

@@ -97,7 +97,7 @@ AnimateFrontpic: ; d008e
 	ret c
 	call LoadMonAnimation
 .loop
-	call Functiond00b4
+	call SetUpPokeAnim
 	push af
 	callba Function10402d
 	pop af
@@ -121,7 +121,7 @@ endr
 	ret
 ; d00b4
 
-Functiond00b4: ; d00b4
+SetUpPokeAnim: ; d00b4
 	ld a, [rSVBK]
 	push af
 	ld a, $2
@@ -184,8 +184,8 @@ PokeAnim_Wait: ; d00fe
 ; d010b
 
 PokeAnim_Setup: ; d010b
-	ld c, $0
-	ld b, $0
+	ld c, FALSE
+	ld b, 0
 	call Functiond0228
 	call Functiond0504
 	ld a, [wPokeAnimSceneIndex]
@@ -195,8 +195,8 @@ PokeAnim_Setup: ; d010b
 ; d011d
 
 PokeAnim_Setup2: ; d011d
-	ld c, $0
-	ld b, $4
+	ld c, FALSE
+	ld b, 4
 	call Functiond0228
 	call Functiond0504
 	ld a, [wPokeAnimSceneIndex]
@@ -206,8 +206,8 @@ PokeAnim_Setup2: ; d011d
 ; d012f
 
 PokeAnim_Extra: ; d012f
-	ld c, $1
-	ld b, $0
+	ld c, TRUE
+	ld b, 0
 	call Functiond0228
 	call Functiond0504
 	ld a, [wPokeAnimSceneIndex]
@@ -365,18 +365,18 @@ Functiond0228: ; d0228
 	ld a, $2
 	ld [rSVBK], a
 	push bc
-	ld hl, w2_d172
-	ld bc, wPokeAnimStructEnd - w2_d172
+	ld hl, wPokeAnimExtraFlag
+	ld bc, wPokeAnimStructEnd - wPokeAnimExtraFlag
 	xor a
 	call ByteFill
 	pop bc
 	ld a, b
 	ld [w2_d173], a
 	ld a, c
-	ld [w2_d172], a
-	call Functiond055c
-	call Functiond05ce
-	call Functiond061b
+	ld [wPokeAnimExtraFlag], a
+	call GetMonAnimPointer
+	call GetMonFramesPointer
+	call GetMonBitmaskPointer
 	pop af
 	ld [rSVBK], a
 	ret
@@ -425,16 +425,16 @@ Functiond0282: ; d0282
 
 PokeAnim_SetRepeat: ; d028e
 	ld a, [w2_d183]
-	ld [w2_d17f], a
+	ld [wPokeAnimRepeatTimer], a
 	jr Functiond0253
 ; d0296
 
 PokeAnim_DoRepeat: ; d0296
-	ld a, [w2_d17f]
+	ld a, [wPokeAnimRepeatTimer]
 	and a
 	ret z
 	dec a
-	ld [w2_d17f], a
+	ld [wPokeAnimRepeatTimer], a
 	ret z
 	ld a, [w2_d183]
 	ld [w2_d17d], a
@@ -509,14 +509,14 @@ Functiond02f8: ; d02f8
 	ld a, [w2_d17d]
 	ld e, a
 	ld d, $0
-	ld hl, w2_d175
+	ld hl, wPokeAnimPointerAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 rept 2
 	add hl, de
 endr
-	ld a, [w2_d174]
+	ld a, [wPokeAnimPointerBank]
 	call GetFarHalfword
 	ld a, l
 	ld [w2_d182], a
@@ -533,16 +533,16 @@ Functiond031b: ; d031b
 	dec a
 	ld c, a
 	ld b, $0
-	ld hl, w2_d178
+	ld hl, wPokeAnimFramesAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 rept 2
 	add hl, bc
 endr
-	ld a, [w2_d177]
+	ld a, [wPokeAnimFramesBank]
 	call GetFarHalfword
-	ld a, [w2_d177]
+	ld a, [wPokeAnimFramesBank]
 	call GetFarByte
 	ld [w2_d180], a
 	inc hl
@@ -552,7 +552,7 @@ endr
 Functiond033b: ; d033b
 	call Functiond0356
 	push bc
-	ld hl, w2_d17b
+	ld hl, wPokeAnimBitmaskAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -560,7 +560,7 @@ Functiond033b: ; d033b
 	call AddNTimes
 	pop bc
 	ld de, w2_d188
-	ld a, [w2_d17a]
+	ld a, [wPokeAnimBitmaskBank]
 	call FarCopyBytes
 	ret
 ; d0356
@@ -594,7 +594,7 @@ Functiond036b: ; d036b
 	and a
 	jr z, .next
 
-	ld a, [w2_d177]
+	ld a, [wPokeAnimFramesBank]
 	call GetFarByte
 	inc hl
 	push hl
@@ -663,7 +663,7 @@ Functiond03cd: ; d03cd
 	ld a, [w2_d186]
 	ld bc, SCREEN_WIDTH
 	call AddNTimes
-	ld a, [wc2c6]
+	ld a, [wBoxAlignment]
 	and a
 	jr nz, .go
 	ld a, [w2_d185]
@@ -737,20 +737,34 @@ Functiond03f7: ; d03f7
 	ret
 ; d042f
 
+macro_d042f: MACRO
+y = 7
+rept 7 +- \1
+x = \1
+rept 7 +- \1
+	db x + y
+x = x + 1
+endr
+y = y + 7
+endr
+endm
+
 Unknown_d042f:
-	db  9, 10, 11, 12, 13
-	db 16, 17, 18, 19, 20
-	db 23, 24, 25, 26, 27
-	db 30, 31, 32, 33, 34
-	db 37, 38, 39, 40, 41
+	macro_d042f 2
+	; db  9, 10, 11, 12, 13
+	; db 16, 17, 18, 19, 20
+	; db 23, 24, 25, 26, 27
+	; db 30, 31, 32, 33, 34
+	; db 37, 38, 39, 40, 41
 
 Unknown_d0448:
-	db  8,  9, 10, 11, 12, 13
-	db 15, 16, 17, 18, 19, 20
-	db 22, 23, 24, 25, 26, 27
-	db 29, 30, 31, 32, 33, 34
-	db 36, 37, 38, 39, 40, 41
-	db 43, 44, 45, 46, 47, 48
+	macro_d042f 1
+	; db  8,  9, 10, 11, 12, 13
+	; db 15, 16, 17, 18, 19, 20
+	; db 22, 23, 24, 25, 26, 27
+	; db 29, 30, 31, 32, 33, 34
+	; db 36, 37, 38, 39, 40, 41
+	; db 43, 44, 45, 46, 47, 48
 
 
 Functiond046c: ; d046c
@@ -772,7 +786,7 @@ Functiond046c: ; d046c
 	ld bc, 45
 .okay
 
-	ld a, [wc2c6]
+	ld a, [wBoxAlignment]
 	and a
 	jr nz, .add_bc
 	add hl, de
@@ -810,7 +824,7 @@ Functiond0499: ; d0499
 
 Functiond04bd: ; d04bd
 	call Functiond04f6
-	ld a, [wc2c6]
+	ld a, [wBoxAlignment]
 	and a
 	jr nz, .minus_one_and_six
 	ld de, 1
@@ -931,7 +945,7 @@ Functiond0551: ; d0551
 	ret
 ; d055c
 
-Functiond055c: ; d055c
+GetMonAnimPointer: ; d055c
 	call PokeAnim_IsEgg
 	jr z, .egg
 
@@ -945,12 +959,12 @@ Functiond055c: ; d055c
 	ld de, AnimationExtraPointers
 .unown
 
-	ld a, [w2_d172]
+	ld a, [wPokeAnimExtraFlag]
 	and a
-	jr z, .asm_d057e
+	jr z, .extras
 	ld h, d
 	ld l, e
-.asm_d057e
+.extras
 
 	ld a, [wPokeAnimSpeciesOrUnown]
 	dec a
@@ -960,30 +974,30 @@ rept 2
 	add hl, de
 endr
 	ld a, c
-	ld [w2_d174], a
+	ld [wPokeAnimPointerBank], a
 	call GetFarHalfword
 	ld a, l
-	ld [w2_d175], a
+	ld [wPokeAnimPointerAddr], a
 	ld a, h
-	ld [w2_d176], a
+	ld [wPokeAnimPointerAddr + 1], a
 	ret
 
 .egg
 	ld hl, EggAnimation
 	ld c, BANK(EggAnimation)
-	ld a, [w2_d172]
+	ld a, [wPokeAnimExtraFlag]
 	and a
-	jr z, .asm_d05a7
+	jr z, .extras_egg
 	ld hl, EggAnimationExtra
 	ld c, BANK(EggAnimationExtra)
-.asm_d05a7
+.extras_egg
 
 	ld a, c
-	ld [w2_d174], a
+	ld [wPokeAnimPointerBank], a
 	ld a, l
-	ld [w2_d175], a
+	ld [wPokeAnimPointerAddr], a
 	ld a, h
-	ld [w2_d176], a
+	ld [wPokeAnimPointerAddr + 1], a
 	ret
 ; d05b4
 
@@ -1003,7 +1017,7 @@ PokeAnim_GetFrontpicDims: ; d05b4
 	ret
 ; d05ce
 
-Functiond05ce: ; d05ce
+GetMonFramesPointer: ; d05ce
 	call PokeAnim_IsEgg
 	jr z, .egg
 
@@ -1013,7 +1027,7 @@ Functiond05ce: ; d05ce
 	ld hl, UnownFramesPointers
 	jr z, .got_frames
 	ld a, [wPokeAnimSpecies]
-	cp 151 + 1
+	cp CHIKORITA
 	ld b, BANK(FramesPointers)
 	ld c, BANK(KantoFrames)
 	ld hl, FramesPointers
@@ -1021,7 +1035,7 @@ Functiond05ce: ; d05ce
 	ld c, BANK(JohtoFrames)
 .got_frames
 	ld a, c
-	ld [w2_d177], a
+	ld [wPokeAnimFramesBank], a
 
 	ld a, [wPokeAnimSpeciesOrUnown]
 	dec a
@@ -1033,24 +1047,24 @@ endr
 	ld a, b
 	call GetFarHalfword
 	ld a, l
-	ld [w2_d178], a
+	ld [wPokeAnimFramesAddr], a
 	ld a, h
-	ld [w2_d179], a
+	ld [wPokeAnimFramesAddr + 1], a
 	ret
 
 .egg
 	ld hl, EggFrames
 	ld c, BANK(EggFrames)
 	ld a, c
-	ld [w2_d177], a
+	ld [wPokeAnimFramesBank], a
 	ld a, l
-	ld [w2_d178], a
+	ld [wPokeAnimFramesAddr], a
 	ld a, h
-	ld [w2_d179], a
+	ld [wPokeAnimFramesAddr + 1], a
 	ret
 ; d061b
 
-Functiond061b: ; d061b
+GetMonBitmaskPointer: ; d061b
 	call PokeAnim_IsEgg
 	jr z, .egg
 
@@ -1061,7 +1075,7 @@ Functiond061b: ; d061b
 	ld a, BANK(BitmasksPointers)
 	ld hl, BitmasksPointers
 .unown
-	ld [w2_d17a], a
+	ld [wPokeAnimBitmaskBank], a
 
 	ld a, [wPokeAnimSpeciesOrUnown]
 	dec a
@@ -1070,23 +1084,23 @@ Functiond061b: ; d061b
 rept 2
 	add hl, de
 endr
-	ld a, [w2_d17a]
+	ld a, [wPokeAnimBitmaskBank]
 	call GetFarHalfword
 	ld a, l
-	ld [w2_d17b], a
+	ld [wPokeAnimBitmaskAddr], a
 	ld a, h
-	ld [w2_d17c], a
+	ld [wPokeAnimBitmaskAddr + 1], a
 	ret
 
 .egg
 	ld c, BANK(EggBitmasks)
 	ld hl, EggBitmasks
 	ld a, c
-	ld [w2_d17a], a
+	ld [wPokeAnimBitmaskBank], a
 	ld a, l
-	ld [w2_d17b], a
+	ld [wPokeAnimBitmaskAddr], a
 	ld a, h
-	ld [w2_d17c], a
+	ld [wPokeAnimBitmaskAddr + 1], a
 	ret
 ; d065c
 
@@ -1103,7 +1117,7 @@ PokeAnim_GetSpeciesOrUnown: ; d065c
 
 Functiond0669: ; d0669
 	ld a, $1
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 
 Functiond066e: ; d066e
 	call AnimateMon_CheckIfPokemon
@@ -1120,12 +1134,12 @@ Functiond066e: ; d066e
 	ld e, c
 	call AnimateFrontpic
 	xor a
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	ret
 
 .asm_d068c
 	xor a
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	inc a
 	ld [CurPartySpecies], a
 	ret

@@ -1,3 +1,6 @@
+const_value set 2
+	const POKESEERSHOUSE_GRANNY
+
 PokeSeersHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,10 +10,10 @@ PokeSeersHouse_MapScriptHeader:
 
 SeerScript:
 	faceplayer
-	loadfont
+	opentext
 	special SpecialPokeSeer
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokeSeersHouse_MapEventHeader:

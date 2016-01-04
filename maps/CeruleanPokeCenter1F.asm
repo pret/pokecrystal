@@ -1,3 +1,8 @@
+const_value set 2
+	const CERULEANPOKECENTER1F_NURSE
+	const CERULEANPOKECENTER1F_SUPER_NERD
+	const CERULEANPOKECENTER1F_GYM_GUY
+
 CeruleanPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 0

@@ -34,6 +34,7 @@ Function170000: ; 170000
 	ld bc, $008f
 	call CopyBytes
 	ret
+
 ; 17005a
 
 Function17005a: ; 17005a
@@ -71,85 +72,11 @@ Function17005a: ; 17005a
 	ld [wc74e], a
 	call CloseSRAM
 	ret
+
 ; 1700b0
 
 INCLUDE "misc/battle_tower_5c.asm"
 
-Function_LoadOpponentTrainerAndPokemonsWithOTSprite: ; 0x170b44
-	callba Function_LoadOpponentTrainerAndPokemons
-	ld a, [rSVBK]
-	push af
-	ld a, $3
-	ld [rSVBK], a
-	ld hl, wd10a
-	ld a, [hl]
-	dec a
-	ld c, a
-	ld b, $0
-	pop af
-	ld [rSVBK], a
-	ld hl, Unknown_170b90
-	add hl, bc
-	ld a, [hl]
-	ld [wcd49], a
-
-; Load sprite of the opponent trainer
-; because s/he is chosen randomly and appears out of nowhere
-	ld a, [ScriptVar]
-	dec a
-	sla a
-	ld e, a
-	sla a
-	sla a
-	sla a
-	ld c, a
-	ld b, $0
-	ld d, $0
-	ld hl, MapObjects
-	add hl, bc
-	inc hl
-	ld a, [wcd49]
-	ld [hl], a
-	ld hl, UsedSprites
-	add hl, de
-	ld [hli], a
-	ld [hUsedSpriteIndex], a
-	ld a, [hl]
-	ld [hUsedSpriteTile], a
-	callba GetUsedSprite
-	ret
-; 170b90
-
-Unknown_170b90:
-	db $12, $13, $14, $15, $18, $17
-	db $16, $19, $04, $05, $11, $01
-	db $1c, $1b, $21, $1e, $1a, $1d
-	db $1f, $3c, $20, $27, $27, $27
-	db $28, $0a, $23, $24, $2a, $2b
-	db $35, $40, $2a, $29, $22, $25
-	db $3a, $2b, $24, $49, $2b, $07
-	db $2c, $2d, $4a, $0d, $4b, $3a
-	db $2b, $41, $35, $27, $28, $27
-	db $36, $3e, $30, $2c, $2d, $3d
-	db $26, $2e, $06, $07, $43, $36
-
-Function170bd2: ; 170bd2
-	ret
-; 170bd3
-
-SpecialCheckForBattleTowerRules: ; 170bd3
-	callba CheckForBattleTowerRules
-	jr c, .asm_170bde
-	xor a
-	jr .asm_170be0
-
-.asm_170bde
-	ld a, $1
-
-.asm_170be0
-	ld [ScriptVar], a
-	ret
-; 170be4
 Function170be4: ; 170be4
 	ld a, $5
 	call GetSRAMBank
@@ -159,6 +86,7 @@ Function170be4: ; 170be4
 	call ByteFill
 	call CloseSRAM
 	ret
+
 ; 170bf7
 
 Clears5_a89a: ; 170bf7
@@ -170,6 +98,7 @@ Clears5_a89a: ; 170bf7
 	ld [hl], a
 	call CloseSRAM
 	ret
+
 ; 170c06
 
 Function170c06: ; 170c06
@@ -275,6 +204,7 @@ endr
 	ld [hl], a
 	call CloseSRAM
 	ret
+
 ; 170c8b
 
 Function170c8b: ; 170c8b
@@ -287,6 +217,7 @@ Function170c8b: ; 170c8b
 	dec b
 	jr nz, .asm_170c90
 	ret
+
 ; 170c98
 
 CheckBTMonMovesForErrors: ; 170c98
@@ -330,6 +261,7 @@ CheckBTMonMovesForErrors: ; 170c98
 	dec c
 	jr nz, .loop
 	ret
+
 ; 170cc6
 
 Function170cc6: ; 170cc6
@@ -338,7 +270,7 @@ Function170cc6: ; 170cc6
 	ld a, $6
 	ld [rSVBK], a
 	ld hl, LZ_170d16
-	ld de, wd000
+	ld de, wDecompressScratch
 	call Decompress
 	ld a, $1
 	ld [rVBK], a
@@ -358,6 +290,7 @@ Function170cc6: ; 170cc6
 	pop af
 	ld [rSVBK], a
 	ret
+
 ; 170d02
 
 Function170d02: ; 170d02
@@ -370,6 +303,7 @@ Function170d02: ; 170d02
 	xor a
 	ld [rVBK], a
 	ret
+
 ; 170d16
 
 LZ_170d16:
@@ -413,20 +347,21 @@ Function1719ed: ; 1719ed (5c:59ed)
 	call ClearSprites
 	callba Function171d2b
 	callba ReloadMapPart
-	callba Function8cf53
+	callba ClearSpriteAnims
 	ret
 
 Function171a11: ; 171a11 (5c:5a11)
+.loop
 	call JoyTextDelay
 	ld a, [wcd49]
 	bit 7, a
-	jr nz, .asm_171a2c
+	jr nz, .done
 	call Function171a36
-	callba Function8cf69
+	callba PlaySpriteAnimations
 	callba ReloadMapPart
-	jr Function171a11
-.asm_171a2c
-	callba Function8cf53
+	jr .loop
+.done
+	callba ClearSpriteAnims
 	call ClearSprites
 	ret
 
@@ -465,6 +400,7 @@ Function171a5d: ; 171a5d (5c:5a5d)
 	bit 0, a
 	ret nz
 	jp Function171c66
+
 .asm_171a6a
 	ld a, $0
 	call Function3e32
@@ -492,6 +428,7 @@ Function171a95: ; 171a95 (5c:5a95)
 	ld de, String_171aa7
 	call PlaceString
 	jp Function171c66
+
 ; 171aa7 (5c:5aa7)
 
 String_171aa7: ; 171aa7
@@ -626,6 +563,7 @@ Function171b9f: ; 171b9f (5c:5b9f)
 	ld a, $80
 	ld [wcd49], a
 	ret
+
 asm_171ba5: ; 171ba5 (5c:5ba5)
 	ld a, [wcd4a]
 	and a
@@ -633,6 +571,7 @@ asm_171ba5: ; 171ba5 (5c:5ba5)
 	dec a
 	ld [wcd4a], a
 	ret
+
 asm_171baf: ; 171baf (5c:5baf)
 	ld a, [wcd4b]
 	ld c, a
@@ -715,7 +654,7 @@ Function171c41: ; 171c41 (5c:5c41)
 	dec [hl]
 	ret nz
 	call ClearBGPalettes
-	callba Function106462
+	callba MobileFunc_106462
 	callba Function106464
 	ld a, $2
 	ld [wc303], a
@@ -729,6 +668,7 @@ Function171c66: ; 171c66 (5c:5c66)
 	ld hl, wcd49
 	inc [hl]
 	ret
+
 ; 171c6b (5c:5c6b)
 
 MenuDataHeader_171c6b: ; 171c6b
@@ -807,6 +747,7 @@ endr
 	hlcoord 3, 16
 	ld de, String_172e3f
 	jp PlaceString
+
 .asm_171d16
 	ld hl, Tilemap_1725f9
 	decoord 0, 7
@@ -841,6 +782,7 @@ Function171d2b: ; 171d2b (5c:5d2b)
 	ld de, String_172e58
 	call PlaceString
 	ret
+
 ; 171d71 (5c:5d71)
 
 Palette_171d71:
@@ -931,6 +873,7 @@ Function172e78: ; 172e78 (5c:6e78)
 	ld bc, $168
 	call CopyBytes
 	ret
+
 ; 172eb9 (5c:6eb9)
 
 Function172eb9:
@@ -950,6 +893,7 @@ Function172eb9:
 	pop af
 	ld [rSVBK], a
 	ret
+
 ; 172edf (5c:6edf)
 
 Palette_172edf:

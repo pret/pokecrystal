@@ -1,3 +1,6 @@
+const_value set 2
+	const MANIASHOUSE_ROCKER
+
 ManiasHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,7 +10,7 @@ ManiasHouse_MapScriptHeader:
 
 ManiaScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_MANIA_TOOK_SHUCKIE_OR_LET_YOU_KEEP_HIM
 	iftrue .default_postevent
 	checkevent EVENT_GOT_SHUCKIE
@@ -18,12 +21,12 @@ ManiaScript:
 	special SpecialGiveShuckle
 	iffalse .partyfull
 	writetext ManiaText_TakeCareOfShuckle
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	writetext ManiaText_GotShuckle
 	playsound SFX_KEY_ITEM
-	waitbutton
-	loadmovesprites
+	waitsfx
+	closetext
 	setevent EVENT_GOT_SHUCKIE
 	end
 
@@ -31,20 +34,20 @@ ManiaScript:
 	checkflag ENGINE_SHUCKLE_GIVEN
 	iffalse .returnshuckie
 	writetext ManiaText_TakeCareOfShuckle
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .partyfull:
 	writetext ManiaText_PartyFull
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .refusetotakeshuckie:
 	writetext ManiaText_IfHeComesBack
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .returnshuckie:
@@ -57,40 +60,40 @@ ManiaScript:
 	if_equal $3, .superhappy
 	if_equal $4, .default_postevent
 	writetext ManiaText_ThankYou
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_MANIA_TOOK_SHUCKIE_OR_LET_YOU_KEEP_HIM
 	end
 
 .wrong:
 	writetext ManiaText_ShuckleNotThere
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .superhappy:
 	writetext ManiaText_ShuckleLikesYou
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_MANIA_TOOK_SHUCKIE_OR_LET_YOU_KEEP_HIM
 	end
 
 .refused:
 	writetext ManiaText_SameAsBeingRobbed
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .nothingleft:
 	writetext ManiaText_ShuckleIsYourLastMon
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .default_postevent:
 	writetext ManiaText_HappinessSpeech
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x9d300:

@@ -1,3 +1,6 @@
+const_value set 2
+	const BLACKTHORNDODRIOTRADEHOUSE_LASS
+
 BlackthornDodrioTradeHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,10 +10,10 @@ BlackthornDodrioTradeHouse_MapScriptHeader:
 
 Emy:
 	faceplayer
-	loadfont
+	opentext
 	trade $3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 EmysHouseBookshelf:

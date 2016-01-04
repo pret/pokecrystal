@@ -1,6 +1,6 @@
 Music_LookSage: ; ee35e
-	dbw $40, Music_LookSage_Ch1
-	dbw $02, Music_LookSage_Ch3
+	musicheader 2, 1, Music_LookSage_Ch1
+	musicheader 1, 3, Music_LookSage_Ch3
 ; ee364
 
 Music_LookSage_Ch1: ; ee364

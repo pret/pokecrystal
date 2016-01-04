@@ -1,3 +1,6 @@
+const_value set 2
+	const CIANWOODCITYPHOTOSTUDIO_FISHING_GURU
+
 CianwoodCityPhotoStudio_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,21 +10,21 @@ CianwoodCityPhotoStudio_MapScriptHeader:
 
 FishingGuruScript_0x9e0e0:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x9e0f9
 	yesorno
 	iffalse UnknownScript_0x9e0f3
 	writetext UnknownText_0x9e142
-	closetext
+	waitbutton
 	special PhotoStudio
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x9e0f3:
 	writetext UnknownText_0x9e156
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x9e0f9:

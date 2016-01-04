@@ -1,3 +1,8 @@
+const_value set 2
+	const CERULEANPOLICESTATION_FISHING_GURU
+	const CERULEANPOLICESTATION_POKEFAN_F
+	const CERULEANPOLICESTATION_DIGLETT
+
 CeruleanPoliceStation_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -12,11 +17,11 @@ PokefanFScript_0x18804d:
 	jumptextfaceplayer UnknownText_0x1880c3
 
 DiglettScript_0x188050:
-	loadfont
+	opentext
 	writetext UnknownText_0x1880e7
 	cry DIGLETT
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownText_0x18805a:

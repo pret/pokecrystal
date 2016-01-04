@@ -1,3 +1,17 @@
+const_value set 2
+	const ROUTE40_OLIVINE_RIVAL1
+	const ROUTE40_OLIVINE_RIVAL2
+	const ROUTE40_SWIMMER_GIRL1
+	const ROUTE40_SWIMMER_GIRL2
+	const ROUTE40_ROCK1
+	const ROUTE40_ROCK2
+	const ROUTE40_ROCK3
+	const ROUTE40_LASS1
+	const ROUTE40_BUENA
+	const ROUTE40_POKEFAN_M
+	const ROUTE40_LASS2
+	const ROUTE40_STANDING_YOUNGSTER
+
 Route40_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -13,55 +27,55 @@ MonicaCallback:
 	clearevent EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
 	checkcode VAR_WEEKDAY
 	if_equal MONDAY, .MonicaAppears
-	disappear $a
+	disappear ROUTE40_BUENA
 	return
 
 .MonicaAppears
-	appear $a
+	appear ROUTE40_BUENA
 	return
 
 TrainerSwimmerfElaine:
 	trainer EVENT_BEAT_SWIMMERF_ELAINE, SWIMMERF, ELAINE, SwimmerfElaineSeenText, SwimmerfElaineBeatenText, 0, SwimmerfElaineScript
 
 SwimmerfElaineScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a637b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmerfPaula:
 	trainer EVENT_BEAT_SWIMMERF_PAULA, SWIMMERF, PAULA, SwimmerfPaulaSeenText, SwimmerfPaulaBeatenText, 0, SwimmerfPaulaScript
 
 SwimmerfPaulaScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a63f5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmermSimon:
 	trainer EVENT_BEAT_SWIMMERM_SIMON, SWIMMERM, SIMON, SwimmermSimonSeenText, SwimmermSimonBeatenText, 0, SwimmermSimonScript
 
 SwimmermSimonScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a6282
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSwimmermRandall:
 	trainer EVENT_BEAT_SWIMMERM_RANDALL, SWIMMERM, RANDALL, SwimmermRandallSeenText, SwimmermRandallBeatenText, 0, SwimmermRandallScript
 
 SwimmermRandallScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a62fa
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 LassScript_0x1a61c4:
@@ -83,7 +97,7 @@ StandingYoungsterScript_0x1a61d6:
 
 MonicaScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_SHARP_BEAK_FROM_MONICA
 	iftrue MonicaMondayScript
 	checkcode VAR_WEEKDAY
@@ -91,30 +105,30 @@ MonicaScript:
 	checkevent EVENT_MET_MONICA_OF_MONDAY
 	iftrue .MetMonica
 	writetext MeetMonicaText
-	keeptextopen
+	buttonsound
 	setevent EVENT_MET_MONICA_OF_MONDAY
 .MetMonica
 	writetext MonicaGivesGiftText
-	keeptextopen
+	buttonsound
 	verbosegiveitem SHARP_BEAK
 	iffalse MonicaDoneScript
 	setevent EVENT_GOT_SHARP_BEAK_FROM_MONICA
 	writetext MonicaGaveGiftText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MonicaMondayScript:
 	writetext MonicaMondayText
-	closetext
+	waitbutton
 MonicaDoneScript:
-	loadmovesprites
+	closetext
 	end
 
 MonicaNotMondayScript:
 	writetext MonicaNotMondayText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute40Signpost0Script:
@@ -123,7 +137,7 @@ MapRoute40Signpost0Script:
 Route40Rock:
 	jumpstd smashrock
 
-MapRoute40SignpostItem1:
+Route40HiddenHyperPotion:
 	dwb EVENT_ROUTE_40_HIDDEN_HYPER_POTION, HYPER_POTION
 
 MovementData_0x1a621c:
@@ -340,7 +354,7 @@ Route40_MapEventHeader:
 .Signposts:
 	db 2
 	signpost 10, 14, SIGNPOST_READ, MapRoute40Signpost0Script
-	signpost 8, 7, SIGNPOST_ITEM, MapRoute40SignpostItem1
+	signpost 8, 7, SIGNPOST_ITEM, Route40HiddenHyperPotion
 
 .PersonEvents:
 	db 12

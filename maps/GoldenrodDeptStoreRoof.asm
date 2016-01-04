@@ -1,3 +1,13 @@
+const_value set 2
+	const GOLDENRODDEPTSTOREROOF_CLERK
+	const GOLDENRODDEPTSTOREROOF_POKEFAN_F
+	const GOLDENRODDEPTSTOREROOF_FISHER
+	const GOLDENRODDEPTSTOREROOF_TWIN
+	const GOLDENRODDEPTSTOREROOF_SUPER_NERD
+	const GOLDENRODDEPTSTOREROOF_POKEFAN_M
+	const GOLDENRODDEPTSTOREROOF_TEACHER
+	const GOLDENRODDEPTSTOREROOF_BUG_CATCHER
+
 GoldenrodDeptStoreRoof_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -34,9 +44,9 @@ GoldenrodDeptStoreRoof_MapScriptHeader:
 	return
 
 ClerkScript_0x5673f:
-	loadfont
+	opentext
 	pokemart MARTTYPE_ROOFTOP, 0
-	loadmovesprites
+	closetext
 	end
 
 PokefanFScript_0x56746:
@@ -44,27 +54,27 @@ PokefanFScript_0x56746:
 
 FisherScript_0x56749:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x567d2
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $4, UP
+	spriteface GOLDENRODDEPTSTOREROOF_FISHER, UP
 	end
 
 TwinScript_0x56754:
 	jumptextfaceplayer UnknownText_0x56839
 
 SuperNerdScript_0x56757:
-	loadfont
+	opentext
 	writetext UnknownText_0x56867
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $6, UP
-	loadfont
+	spriteface GOLDENRODDEPTSTOREROOF_SUPER_NERD, UP
+	opentext
 	writetext UnknownText_0x56871
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $6, RIGHT
+	spriteface GOLDENRODDEPTSTOREROOF_SUPER_NERD, RIGHT
 	end
 
 PokefanMScript_0x5676a:

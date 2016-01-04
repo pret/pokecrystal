@@ -1,6 +1,6 @@
 ; These functions seem to be related to backwards compatibility
 
-Functionfb57e: ; fb57e
+ValidateOTTrademon: ; fb57e
 	ld a, [wd003]
 	ld hl, OTPartyMon1Species
 	call GetPartyLocation
@@ -14,21 +14,21 @@ Functionfb57e: ; fb57e
 	ld a, [hl]
 	pop hl
 	cp EGG
-	jr z, .asm_fb59c
+	jr z, .matching_or_egg
 	cp [hl]
-	jr nz, .asm_fb5db
+	jr nz, .abnormal
 
-.asm_fb59c
+.matching_or_egg
 	ld b, h
 	ld c, l
 	ld hl, MON_LEVEL
 	add hl, bc
 	ld a, [hl]
-	cp 101
-	jr nc, .asm_fb5db
+	cp MAX_LEVEL + 1
+	jr nc, .abnormal
 	ld a, [wLinkMode]
 	cp LINK_TIMECAPSULE
-	jr nz, .asm_fb5d9
+	jr nz, .normal
 	ld hl, OTPartySpecies
 	ld a, [wd003]
 	ld c, a
@@ -39,29 +39,29 @@ Functionfb57e: ; fb57e
 	; Magnemite and Magneton's types changed
 	; from Electric to Electric/Steel.
 	cp MAGNEMITE
-	jr z, .asm_fb5d9
+	jr z, .normal
 	cp MAGNETON
-	jr z, .asm_fb5d9
+	jr z, .normal
 
 	ld [CurSpecies], a
 	call GetBaseData
-	ld hl, wcbea
+	ld hl, wLinkOTPartyMonTypes
 rept 2
 	add hl, bc
 endr
 	ld a, [BaseType1]
 	cp [hl]
-	jr nz, .asm_fb5db
+	jr nz, .abnormal
 	inc hl
 	ld a, [BaseType2]
 	cp [hl]
-	jr nz, .asm_fb5db
+	jr nz, .abnormal
 
-.asm_fb5d9
+.normal
 	and a
 	ret
 
-.asm_fb5db
+.abnormal
 	scf
 	ret
 ; fb5dd
@@ -72,10 +72,10 @@ Functionfb5dd: ; fb5dd
 	ld a, [PartyCount]
 	ld b, a
 	ld c, $0
-.asm_fb5e7
+.loop
 	ld a, c
 	cp d
-	jr z, .asm_fb5f8
+	jr z, .next
 	push bc
 	ld a, c
 	ld hl, PartyMon1HP
@@ -83,48 +83,47 @@ Functionfb5dd: ; fb5dd
 	pop bc
 	ld a, [hli]
 	or [hl]
-	jr nz, .asm_fb60b
+	jr nz, .done
 
-.asm_fb5f8
+.next
 	inc c
 	dec b
-	jr nz, .asm_fb5e7
+	jr nz, .loop
 	ld a, [wd003]
 	ld hl, OTPartyMon1HP
 	call GetPartyLocation
 	ld a, [hli]
 	or [hl]
-	jr nz, .asm_fb60b
+	jr nz, .done
 	scf
 	ret
 
-.asm_fb60b
+.done
 	and a
 	ret
 ; fb60d
 
-Functionfb60d: ; fb60d
+PlaceTradePartnerNamesAndParty: ; fb60d
 	hlcoord 4, 0
 	ld de, PlayerName
 	call PlaceString
 	ld a, $14
 	ld [bc], a
 	hlcoord 4, 8
-	ld de, wd26b
+	ld de, OTPlayerName
 	call PlaceString
 	ld a, $14
 	ld [bc], a
 	hlcoord 7, 1
 	ld de, PartySpecies
-	call Functionfb634
+	call .PlaceSpeciesNames
 	hlcoord 7, 9
 	ld de, OTPartySpecies
-
-Functionfb634: ; fb634
+.PlaceSpeciesNames: ; fb634
 	ld c, $0
-.asm_fb636
+.loop
 	ld a, [de]
-	cp $ff
+	cp -1
 	ret z
 	ld [wd265], a
 	push bc
@@ -143,7 +142,7 @@ Functionfb634: ; fb634
 	add hl, bc
 	pop bc
 	inc c
-	jr .asm_fb636
+	jr .loop
 ; fb656
 
 KantoMonSpecials: ; fb656
@@ -355,18 +354,18 @@ NewPokedexEntry: ; fb877
 	ld [hSCX], a
 	xor a
 	ld [wPokedexStatus], a
-	callba Function41a7f
+	callba _NewPokedexEntry
 	call WaitPressAorB_BlinkCursor
 	ld a, $1
 	ld [wPokedexStatus], a
-	callba Function4424d
+	callba DisplayDexEntry
 	call WaitPressAorB_BlinkCursor
 	pop af
 	ld [wPokedexStatus], a
 	call MaxVolume
 	call RotateThreePalettesRight
 	ld a, [hSCX]
-	add $fb
+	add -5 ; 251 ; NUM_POKEMON
 	ld [hSCX], a
 	call Functionfb8c8
 	pop af
@@ -378,14 +377,14 @@ Functionfb8c8: ; fb8c8
 	call ClearTileMap
 	call LoadFontsExtra
 	call LoadStandardFont
-	callba Function40ab2
-	call Function3200
+	callba Pokedex_PlaceFrontpicTopLeftCorner
+	call WaitBGMap2
 	callba GetEnemyMonDVs
 	ld a, [hli]
 	ld [TempMonDVs], a
 	ld a, [hl]
 	ld [TempMonDVs + 1], a
-	ld b, SCGB_1C
+	ld b, SCGB_FRONTPICPALS
 	call GetSGBLayout
 	call SetPalettes
 	ret

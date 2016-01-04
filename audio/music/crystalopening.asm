@@ -1,8 +1,8 @@
 Music_CrystalOpening: ; 1786e8
-	dbw $c0, Music_CrystalOpening_Ch1
-	dbw $01, Music_CrystalOpening_Ch2
-	dbw $02, Music_CrystalOpening_Ch3
-	dbw $03, Music_CrystalOpening_Ch4
+	musicheader 4, 1, Music_CrystalOpening_Ch1
+	musicheader 1, 2, Music_CrystalOpening_Ch2
+	musicheader 1, 3, Music_CrystalOpening_Ch3
+	musicheader 1, 4, Music_CrystalOpening_Ch4
 ; 1786f4
 
 Music_CrystalOpening_Ch1: ; 1786f4

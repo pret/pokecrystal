@@ -1,3 +1,12 @@
+const_value set 2
+	const UNIONCAVEB1F_POKEFAN_M1
+	const UNIONCAVEB1F_POKEFAN_M2
+	const UNIONCAVEB1F_SUPER_NERD1
+	const UNIONCAVEB1F_SUPER_NERD2
+	const UNIONCAVEB1F_POKE_BALL1
+	const UNIONCAVEB1F_BOULDER
+	const UNIONCAVEB1F_POKE_BALL2
+
 UnionCaveB1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,51 +18,51 @@ TrainerPokemaniacAndrew:
 	trainer EVENT_BEAT_POKEMANIAC_ANDREW, POKEMANIAC, ANDREW, PokemaniacAndrewSeenText, PokemaniacAndrewBeatenText, 0, PokemaniacAndrewScript
 
 PokemaniacAndrewScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x5a181
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokemaniacCalvin:
 	trainer EVENT_BEAT_POKEMANIAC_CALVIN, POKEMANIAC, CALVIN, PokemaniacCalvinSeenText, PokemaniacCalvinBeatenText, 0, PokemaniacCalvinScript
 
 PokemaniacCalvinScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x5a230
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerHikerPhillip:
 	trainer EVENT_BEAT_HIKER_PHILLIP, HIKER, PHILLIP, HikerPhillipSeenText, HikerPhillipBeatenText, 0, HikerPhillipScript
 
 HikerPhillipScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x5a073
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerHikerLeonard:
 	trainer EVENT_BEAT_HIKER_LEONARD, HIKER, LEONARD, HikerLeonardSeenText, HikerLeonardBeatenText, 0, HikerLeonardScript
 
 HikerLeonardScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x5a0fb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-ItemFragment_0x5a016:
-	db TM_SWIFT, 1
+UnionCaveB1FTMSwift:
+	itemball TM_SWIFT
 
-ItemFragment_0x5a018:
-	db X_DEFEND, 1
+UnionCaveB1FXDefend:
+	itemball X_DEFEND
 
 UnionCaveB1FBoulder:
 	jumpstd strengthboulder
@@ -167,6 +176,6 @@ UnionCaveB1F_MapEventHeader:
 	person_event SPRITE_POKEFAN_M, 7, 16, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 3, TrainerHikerLeonard, -1
 	person_event SPRITE_SUPER_NERD, 32, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerPokemaniacAndrew, -1
 	person_event SPRITE_SUPER_NERD, 30, 17, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerPokemaniacCalvin, -1
-	person_event SPRITE_POKE_BALL, 16, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x5a016, EVENT_UNION_CAVE_B1F_TM_SWIFT
+	person_event SPRITE_POKE_BALL, 16, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, UnionCaveB1FTMSwift, EVENT_UNION_CAVE_B1F_TM_SWIFT
 	person_event SPRITE_BOULDER, 10, 7, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, UnionCaveB1FBoulder, -1
-	person_event SPRITE_POKE_BALL, 23, 17, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x5a018, EVENT_UNION_CAVE_B1F_X_DEFEND
+	person_event SPRITE_POKE_BALL, 23, 17, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, UnionCaveB1FXDefend, EVENT_UNION_CAVE_B1F_X_DEFEND

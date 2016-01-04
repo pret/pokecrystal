@@ -1,3 +1,7 @@
+const_value set 2
+	const CELADONGAMECORNERPRIZEROOM_GENTLEMAN
+	const CELADONGAMECORNERPRIZEROOM_PHARMACIST
+
 CeladonGameCornerPrizeRoom_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -5,25 +9,25 @@ CeladonGameCornerPrizeRoom_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-GentlemanScript_0x726e9:
-	jumptextfaceplayer UnknownText_0x728b8
+CeladonGameCornerPrizeRoomGentlemanScript:
+	jumptextfaceplayer CeladonGameCornerPrizeRoomGentlemanText
 
-PharmacistScript_0x726ec:
-	jumptextfaceplayer UnknownText_0x728e9
+CeladonGameCornerPrizeRoomPharmacistScript:
+	jumptextfaceplayer CeladonGameCornerPrizeRoomPharmacistText
 
-MapCeladonGameCornerPrizeRoomSignpost0Script:
+GoldenrodGameCornerTMVendor:
 	faceplayer
-	loadfont
-	writetext UnknownText_0x7293e
-	closetext
+	opentext
+	writetext CeladonPrizeRoom_PrizeVendorIntroText
+	waitbutton
 	checkitem COIN_CASE
 	iffalse CeladonPrizeRoom_NoCoinCase
-	writetext UnknownText_0x72974
+	writetext CeladonPrizeRoom_AskWhichPrizeText
 CeladonPrizeRoom_tmcounterloop:
 	special Special_DisplayCoinCaseBalance
-	loadmenudata MenuDataHeader_0x72790
-	interpretmenu2
-	writebackup
+	loadmenudata CeladonPrizeRoom_TMMenuDataHeader
+	verticalmenu
+	closewindow
 	if_equal $1, .doubleteam
 	if_equal $2, .psychic
 	if_equal $3, .hyperbeam
@@ -63,50 +67,50 @@ CeladonPrizeRoom_tmcounterloop:
 	jump CeladonPrizeRoom_purchased
 
 CeladonPrizeRoom_askbuy:
-	writetext UnknownText_0x72991
+	writetext CeladonPrizeRoom_ConfirmPurchaseText
 	yesorno
 	end
 
 CeladonPrizeRoom_purchased:
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
-	writetext UnknownText_0x729ad
-	closetext
+	writetext CeladonPrizeRoom_HereYouGoText
+	waitbutton
 	jump CeladonPrizeRoom_tmcounterloop
 
 CeladonPrizeRoom_notenoughcoins:
-	writetext UnknownText_0x729bb
+	writetext CeladonPrizeRoom_NotEnoughCoinsText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CeladonPrizeRoom_notenoughroom:
-	writetext UnknownText_0x729d8
+	writetext CeladonPrizeRoom_NotEnoughRoomText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CeladonPrizeRoom_cancel:
-	writetext UnknownText_0x729f2
+	writetext CeladonPrizeRoom_ComeAgainText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CeladonPrizeRoom_NoCoinCase:
-	writetext UnknownText_0x72a14
+	writetext CeladonPrizeRoom_NoCoinCaseText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 
-MenuDataHeader_0x72790:
+CeladonPrizeRoom_TMMenuDataHeader:
 	db $40 ; flags
 	db 02, 00 ; start coords
 	db 11, 15 ; end coords
-	dw MenuData2_0x72798
+	dw .MenuData2
 	db 1 ; default option
 
-MenuData2_0x72798:
+.MenuData2:
 	db $80 ; flags
 	db 4 ; items
 	db "TM32    1500@"
@@ -115,19 +119,19 @@ MenuData2_0x72798:
 	db "CANCEL@"
 
 
-MapCeladonGameCornerPrizeRoomSignpost1Script:
+GoldenrodGameCornerPokemonVendor:
 	faceplayer
-	loadfont
-	writetext UnknownText_0x7293e
-	closetext
+	opentext
+	writetext CeladonPrizeRoom_PrizeVendorIntroText
+	waitbutton
 	checkitem COIN_CASE
 	iffalse CeladonPrizeRoom_NoCoinCase
 .loop:
-	writetext UnknownText_0x72974
+	writetext CeladonPrizeRoom_AskWhichPrizeText
 	special Special_DisplayCoinCaseBalance
-	loadmenudata MenuDataHeader_0x72877
-	interpretmenu2
-	writebackup
+	loadmenudata .MenuDataHeader
+	verticalmenu
+	closewindow
 	if_equal $1, .pikachu
 	if_equal $2, .porygon
 	if_equal $3, .larvitar
@@ -141,10 +145,10 @@ MapCeladonGameCornerPrizeRoomSignpost1Script:
 	pokenamemem PIKACHU, $0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
-	writetext UnknownText_0x729ad
-	closetext
+	writetext CeladonPrizeRoom_HereYouGoText
+	waitbutton
 	writebyte PIKACHU
 	special Special_GameCornerPrizeMonCheckDex
 	givepoke PIKACHU, 25
@@ -159,10 +163,10 @@ MapCeladonGameCornerPrizeRoomSignpost1Script:
 	pokenamemem PORYGON, $0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
-	writetext UnknownText_0x729ad
-	closetext
+	writetext CeladonPrizeRoom_HereYouGoText
+	waitbutton
 	writebyte PORYGON
 	special Special_GameCornerPrizeMonCheckDex
 	givepoke PORYGON, 15
@@ -177,10 +181,10 @@ MapCeladonGameCornerPrizeRoomSignpost1Script:
 	pokenamemem LARVITAR, $0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
-	writetext UnknownText_0x729ad
-	closetext
+	writetext CeladonPrizeRoom_HereYouGoText
+	waitbutton
 	writebyte LARVITAR
 	special Special_GameCornerPrizeMonCheckDex
 	givepoke LARVITAR, 40
@@ -188,14 +192,14 @@ MapCeladonGameCornerPrizeRoomSignpost1Script:
 	jump .loop
 
 
-MenuDataHeader_0x72877:
+.MenuDataHeader:
 	db $40 ; flags
 	db 02, 00 ; start coords
 	db 11, 17 ; end coords
-	dw MenuData2_0x7287f
+	dw .MenuData2
 	db 1 ; default option
 
-MenuData2_0x7287f:
+.MenuData2:
 	db $80 ; flags
 	db 4 ; items
 	db "PIKACHU    2222@"
@@ -204,13 +208,13 @@ MenuData2_0x7287f:
 	db "CANCEL@"
 
 
-UnknownText_0x728b8:
+CeladonGameCornerPrizeRoomGentlemanText:
 	text "I wanted PORYGON,"
 	line "but I was short by"
 	cont "100 coins…"
 	done
 
-UnknownText_0x728e9:
+CeladonGameCornerPrizeRoomPharmacistText:
 	text "Whew…"
 
 	para "I've got to stay"
@@ -221,7 +225,7 @@ UnknownText_0x728e9:
 	cont "all my money…"
 	done
 
-UnknownText_0x7293e:
+CeladonPrizeRoom_PrizeVendorIntroText:
 	text "Welcome!"
 
 	para "We exchange your"
@@ -229,38 +233,38 @@ UnknownText_0x7293e:
 	cont "prizes!"
 	done
 
-UnknownText_0x72974:
+CeladonPrizeRoom_AskWhichPrizeText:
 	text "Which prize would"
 	line "you like?"
 	done
 
-UnknownText_0x72991:
+CeladonPrizeRoom_ConfirmPurchaseText:
 	text "OK, so you wanted"
 	line "a @"
 	text_from_ram StringBuffer3
 	text "?"
 	done
 
-UnknownText_0x729ad:
+CeladonPrizeRoom_HereYouGoText:
 	text "Here you go!"
 	done
 
-UnknownText_0x729bb:
+CeladonPrizeRoom_NotEnoughCoinsText:
 	text "You don't have"
 	line "enough coins."
 	done
 
-UnknownText_0x729d8:
+CeladonPrizeRoom_NotEnoughRoomText:
 	text "You have no room"
 	line "for it."
 	done
 
-UnknownText_0x729f2:
+CeladonPrizeRoom_ComeAgainText:
 	text "Oh. Please come"
 	line "back with coins!"
 	done
 
-UnknownText_0x72a14:
+CeladonPrizeRoom_NoCoinCaseText:
 	text "Oh? You don't have"
 	line "a COIN CASE."
 	done
@@ -279,10 +283,10 @@ CeladonGameCornerPrizeRoom_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 1, 2, SIGNPOST_READ, MapCeladonGameCornerPrizeRoomSignpost0Script
-	signpost 1, 4, SIGNPOST_READ, MapCeladonGameCornerPrizeRoomSignpost1Script
+	signpost 1, 2, SIGNPOST_READ, GoldenrodGameCornerTMVendor
+	signpost 1, 4, SIGNPOST_READ, GoldenrodGameCornerPokemonVendor
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_GENTLEMAN, 2, 0, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, GentlemanScript_0x726e9, -1
-	person_event SPRITE_PHARMACIST, 4, 4, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, PharmacistScript_0x726ec, -1
+	person_event SPRITE_GENTLEMAN, 2, 0, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, CeladonGameCornerPrizeRoomGentlemanScript, -1
+	person_event SPRITE_PHARMACIST, 4, 4, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, CeladonGameCornerPrizeRoomPharmacistScript, -1

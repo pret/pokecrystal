@@ -1,3 +1,11 @@
+const_value set 2
+	const CELADONGYM_ERIKA
+	const CELADONGYM_LASS1
+	const CELADONGYM_LASS2
+	const CELADONGYM_BUENA
+	const CELADONGYM_TWIN1
+	const CELADONGYM_TWIN2
+
 CeladonGym_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,93 +15,93 @@ CeladonGym_MapScriptHeader:
 
 ErikaScript_0x72a6a:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_RAINBOWBADGE
 	iftrue .FightDone
 	writetext UnknownText_0x72b28
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x72c3e, 0
 	loadtrainer ERIKA, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_ERIKA
 	setevent EVENT_BEAT_LASS_MICHELLE
 	setevent EVENT_BEAT_PICNICKER_TANYA
 	setevent EVENT_BEAT_BEAUTY_JULIA
 	setevent EVENT_BEAT_TWINS_JO_AND_ZOE
-	loadfont
+	opentext
 	writetext UnknownText_0x72c96
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_RAINBOWBADGE
 .FightDone
 	checkevent EVENT_GOT_TM19_GIGA_DRAIN
 	iftrue UnknownScript_0x72aae
 	writetext UnknownText_0x72cb0
-	keeptextopen
+	buttonsound
 	verbosegiveitem TM_GIGA_DRAIN
 	iffalse UnknownScript_0x72aae
 	setevent EVENT_GOT_TM19_GIGA_DRAIN
 UnknownScript_0x72aae:
 	writetext UnknownText_0x72d8f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerLassMichelle:
 	trainer EVENT_BEAT_LASS_MICHELLE, LASS, MICHELLE, LassMichelleSeenText, LassMichelleBeatenText, 0, LassMichelleScript
 
 LassMichelleScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x72e30
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPicnickerTanya:
 	trainer EVENT_BEAT_PICNICKER_TANYA, PICNICKER, TANYA, PicnickerTanyaSeenText, PicnickerTanyaBeatenText, 0, PicnickerTanyaScript
 
 PicnickerTanyaScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x72e8e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerBeautyJulia:
 	trainer EVENT_BEAT_BEAUTY_JULIA, BEAUTY, JULIA, BeautyJuliaSeenText, BeautyJuliaBeatenText, 0, BeautyJuliaScript
 
 BeautyJuliaScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x72f01
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerTwinsJoandzoe1:
 	trainer EVENT_BEAT_TWINS_JO_AND_ZOE, TWINS, JOANDZOE1, TwinsJoandzoe1SeenText, TwinsJoandzoe1BeatenText, 0, TwinsJoandzoe1Script
 
 TwinsJoandzoe1Script:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x72f70
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerTwinsJoandzoe2:
 	trainer EVENT_BEAT_TWINS_JO_AND_ZOE, TWINS, JOANDZOE2, TwinsJoandzoe2SeenText, TwinsJoandzoe2BeatenText, 0, TwinsJoandzoe2Script
 
 TwinsJoandzoe2Script:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x72fc0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CeladonGymStatue:

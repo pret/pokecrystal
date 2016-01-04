@@ -694,22 +694,22 @@ MailGFX_GenerateMonochromeTilesColor2: ; b97f8
 
 MailGFX_PlaceMessage: ; b9803
 	ld bc, MAIL_STRUCT_LENGTH
-	ld de, wd002
-	ld a, $0
+	ld de, wTempMail
+	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	call CopyBytes
 	call CloseSRAM
-	ld hl, wd002 + sPartyMon1MailAuthor - sPartyMon1Mail
-	ld de, wd050
+	ld hl, wTempMailAuthor
+	ld de, wMonOrItemNameBuffer
 	ld bc, NAME_LENGTH - 1
 	call CopyBytes
 	ld a, "@"
-	ld [wd002 + sPartyMon1MailAuthor - sPartyMon1Mail], a
-	ld [wd050 + NAME_LENGTH - 1], a
-	ld de, wd002
+	ld [wTempMailAuthor], a
+	ld [wMonOrItemNameBuffer + NAME_LENGTH - 1], a
+	ld de, wTempMailMessage
 	hlcoord 2, 7
 	call PlaceString
-	ld de, wd050
+	ld de, wMonOrItemNameBuffer
 	ld a, [de]
 	and a
 	ret z

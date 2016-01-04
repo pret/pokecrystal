@@ -1,3 +1,7 @@
+const_value set 2
+	const GOLDENRODDEPTSTORE6F_LASS
+	const GOLDENRODDEPTSTORE6F_SUPER_NERD
+
 GoldenrodDeptStore6F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,17 +10,17 @@ GoldenrodDeptStore6F_MapScriptHeader:
 	db 0
 
 GoldenrodVendingMachine:
-	loadfont
+	opentext
 	writetext GoldenrodVendingText
 .Start
-	special PlaceMoneyTopRightOW
+	special PlaceMoneyTopRight
 	loadmenudata .MenuData
-	interpretmenu2
-	writebackup
+	verticalmenu
+	closewindow
 	if_equal $1, .FreshWater
 	if_equal $2, .SodaPop
 	if_equal $3, .Lemonade
-	loadmovesprites
+	closetext
 	end
 
 .FreshWater
@@ -50,18 +54,18 @@ GoldenrodVendingMachine:
 	pause 10
 	playsound SFX_ENTER_DOOR
 	writetext GoldenrodClangText
-	keeptextopen
+	buttonsound
 	itemnotify
 	jump .Start
 
 .NotEnoughMoney
 	writetext GoldenrodVendingNoMoneyText
-	closetext
+	waitbutton
 	jump .Start
 
 .NotEnoughSpace
 	writetext GoldenrodVendingNoSpaceText
-	closetext
+	waitbutton
 	jump .Start
 
 .MenuData

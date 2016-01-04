@@ -1,3 +1,10 @@
+const_value set 2
+	const RUINSOFALPHOUTSIDE_YOUNGSTER1
+	const RUINSOFALPHOUTSIDE_SCIENTIST
+	const RUINSOFALPHOUTSIDE_FISHER
+	const RUINSOFALPHOUTSIDE_YOUNGSTER2
+	const RUINSOFALPHOUTSIDE_YOUNGSTER3
+
 RuinsofAlphOutside_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -32,36 +39,36 @@ UnknownScript_0x5801e:
 	jump UnknownScript_0x5802c
 
 UnknownScript_0x58027:
-	appear $3
+	appear RUINSOFALPHOUTSIDE_SCIENTIST
 	dotrigger $1
 	return
 
 UnknownScript_0x5802c:
-	disappear $3
+	disappear RUINSOFALPHOUTSIDE_SCIENTIST
 	dotrigger $0
 	return
 
 UnknownScript_0x58031:
-	spriteface $3, UP
+	spriteface RUINSOFALPHOUTSIDE_SCIENTIST, UP
 	spriteface PLAYER, DOWN
 	jump UnknownScript_0x58044
 
 UnknownScript_0x5803a:
-	spriteface $3, LEFT
+	spriteface RUINSOFALPHOUTSIDE_SCIENTIST, LEFT
 	spriteface PLAYER, RIGHT
 	jump UnknownScript_0x58044
 
 ScientistScript_0x58043:
 	faceplayer
 UnknownScript_0x58044:
-	loadfont
+	opentext
 	writetext UnknownText_0x580c7
+	waitbutton
 	closetext
-	loadmovesprites
 	playmusic MUSIC_SHOW_ME_AROUND
-	follow $3, PLAYER
-	applymovement $3, MovementData_0x580ba
-	disappear $3
+	follow RUINSOFALPHOUTSIDE_SCIENTIST, PLAYER
+	applymovement RUINSOFALPHOUTSIDE_SCIENTIST, MovementData_0x580ba
+	disappear RUINSOFALPHOUTSIDE_SCIENTIST
 	stopfollow
 	applymovement PLAYER, MovementData_0x580c5
 	domaptrigger RUINS_OF_ALPH_RESEARCH_CENTER, $1
@@ -70,44 +77,44 @@ UnknownScript_0x58044:
 
 FisherScript_0x58061:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_TALKED_TO_RUINS_COWARD
 	iftrue .Next
 	setevent EVENT_TALKED_TO_RUINS_COWARD
 	writetext UnknownText_0x583a4
-	keeptextopen
+	buttonsound
 .Next
 	writetext UnknownText_0x58420
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x58076:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x58449
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x5807e:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5848e
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $6, UP
+	spriteface RUINSOFALPHOUTSIDE_YOUNGSTER3, UP
 	end
 
 TrainerPsychicNathan:
 	trainer EVENT_BEAT_PSYCHIC_NATHAN, PSYCHIC_T, NATHAN, PsychicNathanSeenText, PsychicNathanBeatenText, 0, PsychicNathanScript
 
 PsychicNathanScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x5830e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 
@@ -115,11 +122,11 @@ TrainerSuperNerdStan:
 	trainer EVENT_BEAT_SUPER_NERD_STAN, SUPER_NERD, STAN, UnknownText_0x581e5, UnknownText_0x58217, 0, UnknownScript_0x580a9
 
 UnknownScript_0x580a9:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x58250
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 

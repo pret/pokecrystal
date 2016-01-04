@@ -1,3 +1,7 @@
+const_value set 2
+	const MOUNTMORTAR1FOUTSIDE_POKE_BALL1
+	const MOUNTMORTAR1FOUTSIDE_POKE_BALL2
+
 MountMortar1FOutside_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -5,13 +9,13 @@ MountMortar1FOutside_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ItemFragment_0x7ddf6:
-	db ETHER, 1
+MountMortar1FOutsideEther:
+	itemball ETHER
 
-ItemFragment_0x7ddf8:
-	db REVIVE, 1
+MountMortar1FOutsideRevive:
+	itemball REVIVE
 
-MapMountMortar1FOutsideSignpostItem0:
+MountMortar1FOutsideHiddenHyperPotion:
 	dwb EVENT_MOUNT_MORTAR_1F_OUTSIDE_HIDDEN_HYPER_POTION, HYPER_POTION
 	
 
@@ -36,9 +40,9 @@ MountMortar1FOutside_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 22, 25, SIGNPOST_ITEM, MapMountMortar1FOutsideSignpostItem0
+	signpost 22, 25, SIGNPOST_ITEM, MountMortar1FOutsideHiddenHyperPotion
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKE_BALL, 15, 13, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x7ddf6, EVENT_MOUNT_MORTAR_1F_OUTSIDE_ETHER
-	person_event SPRITE_POKE_BALL, 18, 31, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x7ddf8, EVENT_MOUNT_MORTAR_1F_OUTSIDE_REVIVE
+	person_event SPRITE_POKE_BALL, 15, 13, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, MountMortar1FOutsideEther, EVENT_MOUNT_MORTAR_1F_OUTSIDE_ETHER
+	person_event SPRITE_POKE_BALL, 18, 31, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, MountMortar1FOutsideRevive, EVENT_MOUNT_MORTAR_1F_OUTSIDE_REVIVE

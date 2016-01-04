@@ -1,3 +1,8 @@
+const_value set 2
+	const RUINSOFALPHINNERCHAMBER_FISHER
+	const RUINSOFALPHINNERCHAMBER_TEACHER
+	const RUINSOFALPHINNERCHAMBER_GRAMPS
+
 RuinsofAlphInnerChamber_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -19,10 +24,10 @@ UnknownScript_0x58f6d:
 	end
 
 UnknownScript_0x58f6e:
-	loadfont
+	opentext
 	writetext UnknownText_0x58f89
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $0
 	setevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	clearevent EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_FISHER

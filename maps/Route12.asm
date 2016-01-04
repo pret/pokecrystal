@@ -1,3 +1,11 @@
+const_value set 2
+	const ROUTE12_FISHER1
+	const ROUTE12_FISHER2
+	const ROUTE12_FISHER3
+	const ROUTE12_FISHER4
+	const ROUTE12_POKE_BALL1
+	const ROUTE12_POKE_BALL2
+
 Route12_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,44 +17,44 @@ TrainerFisherKyle:
 	trainer EVENT_BEAT_FISHER_KYLE, FISHER, KYLE, FisherKyleSeenText, FisherKyleBeatenText, 0, FisherKyleScript
 
 FisherKyleScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a7238
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFisherMartin:
 	trainer EVENT_BEAT_FISHER_MARTIN, FISHER, MARTIN, FisherMartinSeenText, FisherMartinBeatenText, 0, FisherMartinScript
 
 FisherMartinScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a704c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFisherStephen:
 	trainer EVENT_BEAT_FISHER_STEPHEN, FISHER, STEPHEN, FisherStephenSeenText, FisherStephenBeatenText, 0, FisherStephenScript
 
 FisherStephenScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a70d4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFisherBarney:
 	trainer EVENT_BEAT_FISHER_BARNEY, FISHER, BARNEY, FisherBarneySeenText, FisherBarneyBeatenText, 0, FisherBarneyScript
 
 FisherBarneyScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a716d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute12Signpost0Script:
@@ -55,13 +63,13 @@ MapRoute12Signpost0Script:
 MapRoute12Signpost1Script:
 	jumptext UnknownText_0x1a72c1
 
-ItemFragment_0x1a700b:
-	db CALCIUM, 1
+Route12Calcium:
+	itemball CALCIUM
 
-ItemFragment_0x1a700d:
-	db NUGGET, 1
+Route12Nugget:
+	itemball NUGGET
 
-MapRoute12SignpostItem2:
+Route12HiddenElixer:
 	dwb EVENT_ROUTE_12_HIDDEN_ELIXER, ELIXER
 	
 
@@ -174,7 +182,7 @@ Route12_MapEventHeader:
 	db 3
 	signpost 27, 11, SIGNPOST_READ, MapRoute12Signpost0Script
 	signpost 9, 13, SIGNPOST_READ, MapRoute12Signpost1Script
-	signpost 13, 14, SIGNPOST_ITEM, MapRoute12SignpostItem2
+	signpost 13, 14, SIGNPOST_ITEM, Route12HiddenElixer
 
 .PersonEvents:
 	db 6
@@ -182,5 +190,5 @@ Route12_MapEventHeader:
 	person_event SPRITE_FISHER, 23, 14, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 1, TrainerFisherStephen, -1
 	person_event SPRITE_FISHER, 38, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 5, TrainerFisherBarney, -1
 	person_event SPRITE_FISHER, 7, 6, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 3, TrainerFisherKyle, -1
-	person_event SPRITE_POKE_BALL, 43, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x1a700b, EVENT_ROUTE_12_CALCIUM
-	person_event SPRITE_POKE_BALL, 51, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x1a700d, EVENT_ROUTE_12_NUGGET
+	person_event SPRITE_POKE_BALL, 43, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route12Calcium, EVENT_ROUTE_12_CALCIUM
+	person_event SPRITE_POKE_BALL, 51, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route12Nugget, EVENT_ROUTE_12_NUGGET

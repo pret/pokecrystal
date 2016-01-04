@@ -1,3 +1,10 @@
+const_value set 2
+	const CELADONCAFE_SUPER_NERD
+	const CELADONCAFE_FISHER1
+	const CELADONCAFE_FISHER2
+	const CELADONCAFE_FISHER3
+	const CELADONCAFE_TEACHER
+
 CeladonCafe_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,77 +14,77 @@ CeladonCafe_MapScriptHeader:
 
 SuperNerdScript_0x73049:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x730de
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FisherScript_0x73051:
-	loadfont
+	opentext
 	writetext UnknownText_0x73129
+	waitbutton
 	closetext
-	loadmovesprites
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x7313a
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $3, LEFT
+	spriteface CELADONCAFE_FISHER1, LEFT
 	end
 
 FisherScript_0x73062:
-	loadfont
+	opentext
 	writetext UnknownText_0x7316a
+	waitbutton
 	closetext
-	loadmovesprites
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x73178
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $4, RIGHT
+	spriteface CELADONCAFE_FISHER2, RIGHT
 	end
 
 FisherScript_0x73073:
-	loadfont
+	opentext
 	writetext UnknownText_0x731ae
+	waitbutton
 	closetext
-	loadmovesprites
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x731bd
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $5, RIGHT
+	spriteface CELADONCAFE_FISHER3, RIGHT
 	end
 
 TeacherScript_0x73084:
 	checkitem COIN_CASE
 	iftrue UnknownScript_0x7309a
-	loadfont
+	opentext
 	writetext UnknownText_0x73201
+	waitbutton
 	closetext
-	loadmovesprites
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x73212
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $6, LEFT
+	spriteface CELADONCAFE_TEACHER, LEFT
 	end
 
 UnknownScript_0x7309a:
-	loadfont
+	opentext
 	writetext UnknownText_0x73254
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $6, RIGHT
-	loadfont
+	spriteface CELADONCAFE_TEACHER, RIGHT
+	opentext
 	writetext UnknownText_0x73278
+	waitbutton
 	closetext
-	loadmovesprites
-	spriteface $6, LEFT
+	spriteface CELADONCAFE_TEACHER, LEFT
 	end
 
 EatathonContestPoster:
@@ -88,24 +95,24 @@ CeladonCafeTrashcan:
 	iftrue .TrashEmpty
 	giveitem LEFTOVERS
 	iffalse .PackFull
-	loadfont
+	opentext
 	itemtotext LEFTOVERS, $0
 	writetext FoundLeftoversText
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
-	loadmovesprites
+	closetext
 	setevent EVENT_FOUND_LEFTOVERS_IN_CELADON_CAFE
 	end
 
 .PackFull
-	loadfont
+	opentext
 	itemtotext LEFTOVERS, $0
 	writetext FoundLeftoversText
-	keeptextopen
+	buttonsound
 	writetext NoRoomForLeftoversText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .TrashEmpty

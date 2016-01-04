@@ -1,3 +1,4 @@
+
 RuinsofAlphAerodactylWordRoom_MapScriptHeader:
 .MapTriggers:
 	db 0

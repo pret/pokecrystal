@@ -274,7 +274,7 @@ endr
 	ld [CurPartySpecies], a
 	call GetPokemonName
 	ld hl, StringBuffer1
-	ld de, wOaksPkmnTalkPkmnNameBuffer
+	ld de, wMonOrItemNameBuffer
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	; Now that we've chosen our wild Pokemon,

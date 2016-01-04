@@ -1,5 +1,5 @@
 ItemFinder: ; 12580
-	callba CheckForSignpostItems
+	callba CheckForHiddenItems
 	jr c, .found_something
 	ld hl, .Script_FoundNothing
 	jr .resume
@@ -10,12 +10,12 @@ ItemFinder: ; 12580
 .resume
 	call QueueScript
 	ld a, $1
-	ld [wd0ec], a
+	ld [wItemEffectSucceeded], a
 	ret
 ; 12599
 
 .ItemfinderSound: ; 12599
-	ld c, $4
+	ld c, 4
 .sfx_loop
 	push bc
 	ld de, SFX_SECOND_PART_OF_ITEMFINDER
@@ -33,7 +33,7 @@ ItemFinder: ; 12580
 	special UpdateTimePals
 	callasm .ItemfinderSound
 	writetext .Text_FoundSomething
-	loadmovesprites
+	closetext
 	end
 ; 0x125ba
 
@@ -41,7 +41,7 @@ ItemFinder: ; 12580
 	reloadmappart
 	special UpdateTimePals
 	writetext .Text_FoundNothing
-	loadmovesprites
+	closetext
 	end
 ; 0x125c3
 

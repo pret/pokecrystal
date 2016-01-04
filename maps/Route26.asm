@@ -1,3 +1,13 @@
+const_value set 2
+	const ROUTE26_COOLTRAINER_M1
+	const ROUTE26_COOLTRAINER_M2
+	const ROUTE26_COOLTRAINER_F1
+	const ROUTE26_COOLTRAINER_F2
+	const ROUTE26_YOUNGSTER
+	const ROUTE26_FISHER
+	const ROUTE26_FRUIT_TREE
+	const ROUTE26_POKE_BALL
+
 Route26_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,11 +19,11 @@ TrainerCooltrainermJake:
 	trainer EVENT_BEAT_COOLTRAINERM_JAKE, COOLTRAINERM, JAKE, CooltrainermJakeSeenText, CooltrainermJakeBeatenText, 0, CooltrainermJakeScript
 
 CooltrainermJakeScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a4f08
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainermGaven3:
@@ -21,8 +31,8 @@ TrainerCooltrainermGaven3:
 
 CooltrainermGaven3Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERM_GAVEN
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	checkflag ENGINE_GAVEN
 	iftrue UnknownScript_0x1a4d79
 	checkcellnum PHONE_COOLTRAINERM_GAVEN
@@ -30,7 +40,7 @@ CooltrainermGaven3Script:
 	checkevent EVENT_GAVEN_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a4d62
 	writetext UnknownText_0x1a4fe4
-	keeptextopen
+	buttonsound
 	setevent EVENT_GAVEN_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a4dbf
 	jump UnknownScript_0x1a4d65
@@ -61,7 +71,7 @@ UnknownScript_0x1a4d79:
 .LoadFight0
 	loadtrainer COOLTRAINERM, GAVEN3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wGavenFightCount, 1
 	clearflag ENGINE_GAVEN
 	end
@@ -69,7 +79,7 @@ UnknownScript_0x1a4d79:
 .LoadFight1
 	loadtrainer COOLTRAINERM, GAVEN1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wGavenFightCount, 2
 	clearflag ENGINE_GAVEN
 	end
@@ -77,7 +87,7 @@ UnknownScript_0x1a4d79:
 .LoadFight2
 	loadtrainer COOLTRAINERM, GAVEN2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_GAVEN
 	end
 
@@ -113,11 +123,11 @@ TrainerCooltrainerfJoyce:
 	trainer EVENT_BEAT_COOLTRAINERF_JOYCE, COOLTRAINERF, JOYCE, CooltrainerfJoyceSeenText, CooltrainerfJoyceBeatenText, 0, CooltrainerfJoyceScript
 
 CooltrainerfJoyceScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a50d7
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCooltrainerfBeth1:
@@ -125,8 +135,8 @@ TrainerCooltrainerfBeth1:
 
 CooltrainerfBeth1Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERF_BETH
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	checkflag ENGINE_BETH
 	iftrue UnknownScript_0x1a4e35
 	checkcellnum PHONE_COOLTRAINERF_BETH
@@ -134,7 +144,7 @@ CooltrainerfBeth1Script:
 	checkevent EVENT_BETH_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x1a4e1e
 	writetext UnknownText_0x1a51d9
-	keeptextopen
+	buttonsound
 	setevent EVENT_BETH_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a4e7b
 	jump UnknownScript_0x1a4e21
@@ -165,7 +175,7 @@ UnknownScript_0x1a4e35:
 .LoadFight0
 	loadtrainer COOLTRAINERF, BETH1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wBethFightCount, 1
 	clearflag ENGINE_BETH
 	end
@@ -173,7 +183,7 @@ UnknownScript_0x1a4e35:
 .LoadFight1
 	loadtrainer COOLTRAINERF, BETH2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wBethFightCount, 2
 	clearflag ENGINE_BETH
 	end
@@ -181,7 +191,7 @@ UnknownScript_0x1a4e35:
 .LoadFight2
 	loadtrainer COOLTRAINERF, BETH3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_BETH
 	end
 
@@ -217,22 +227,22 @@ TrainerPsychicRichard:
 	trainer EVENT_BEAT_PSYCHIC_RICHARD, PSYCHIC_T, RICHARD, PsychicRichardSeenText, PsychicRichardBeatenText, 0, PsychicRichardScript
 
 PsychicRichardScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a5278
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerFisherScott:
 	trainer EVENT_BEAT_FISHER_SCOTT, FISHER, SCOTT, FisherScottSeenText, FisherScottBeatenText, 0, FisherScottScript
 
 FisherScottScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a5326
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRoute26Signpost0Script:
@@ -241,8 +251,8 @@ MapRoute26Signpost0Script:
 FruitTreeScript_0x1a4ec2:
 	fruittree FRUITTREE_ROUTE_26
 
-ItemFragment_0x1a4ec4:
-	db MAX_ELIXER, 1
+Route26MaxElixer:
+	itemball MAX_ELIXER
 
 CooltrainermJakeSeenText:
 	text "I'm making my"
@@ -428,4 +438,4 @@ Route26_MapEventHeader:
 	person_event SPRITE_YOUNGSTER, 79, 13, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 2, TrainerPsychicRichard, -1
 	person_event SPRITE_FISHER, 92, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 3, TrainerFisherScott, -1
 	person_event SPRITE_FRUIT_TREE, 54, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a4ec2, -1
-	person_event SPRITE_POKE_BALL, 15, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x1a4ec4, EVENT_ROUTE_26_MAX_ELIXER
+	person_event SPRITE_POKE_BALL, 15, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route26MaxElixer, EVENT_ROUTE_26_MAX_ELIXER

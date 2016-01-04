@@ -1,10 +1,16 @@
+const_value set 2
+	const MAHOGANYTOWN_POKEFAN_M
+	const MAHOGANYTOWN_GRAMPS
+	const MAHOGANYTOWN_FISHER
+	const MAHOGANYTOWN_LASS
+
 MahoganyTown_MapScriptHeader:
 .MapTriggers:
 	db 2
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
-	dw .Trigger2, 0
 
 .MapCallbacks:
 	db 1
@@ -12,10 +18,10 @@ MahoganyTown_MapScriptHeader:
 	; callbacks
 	dbw 5, .FlyPoint
 
-.Trigger1
+.Trigger0
 	end
 
-.Trigger2
+.Trigger1
 	end
 
 .FlyPoint
@@ -23,14 +29,14 @@ MahoganyTown_MapScriptHeader:
 	return
 
 UnknownScript_0x190013:
-	showemote EMOTE_SHOCK, $2, 15
-	applymovement $2, MovementData_0x1900a9
-	follow PLAYER, $2
+	showemote EMOTE_SHOCK, MAHOGANYTOWN_POKEFAN_M, 15
+	applymovement MAHOGANYTOWN_POKEFAN_M, MovementData_0x1900a9
+	follow PLAYER, MAHOGANYTOWN_POKEFAN_M
 	applymovement PLAYER, MovementData_0x1900a7
 	stopfollow
 	spriteface PLAYER, RIGHT
 	scall UnknownScript_0x19002f
-	applymovement $2, MovementData_0x1900ad
+	applymovement MAHOGANYTOWN_POKEFAN_M, MovementData_0x1900ad
 	end
 
 PokefanMScript_0x19002e:
@@ -42,63 +48,63 @@ UnknownScript_0x19002f:
 	end
 
 UnknownScript_0x190039:
-	loadfont
+	opentext
 	writetext UnknownText_0x1901a6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x190040:
-	loadfont
+	opentext
 	writetext UnknownText_0x1900b0
-	special PlaceMoneyTopRightOW
+	special PlaceMoneyTopRight
 	yesorno
 	iffalse UnknownScript_0x190072
 	checkmoney $0, 300
 	if_equal $2, UnknownScript_0x19006c
 	giveitem RAGECANDYBAR
 	iffalse UnknownScript_0x190078
-	waitbutton
+	waitsfx
 	playsound SFX_TRANSACTION
 	takemoney $0, 300
-	special PlaceMoneyTopRightOW
+	special PlaceMoneyTopRight
 	writetext UnknownText_0x19014a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19006c:
 	writetext UnknownText_0x19015b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x190072:
 	writetext UnknownText_0x190178
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x190078:
 	writetext UnknownText_0x190188
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GrampsScript_0x19007e:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19008c
 	writetext UnknownText_0x1901e5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x19008c:
 	writetext UnknownText_0x19021d
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 FisherScript_0x190092:

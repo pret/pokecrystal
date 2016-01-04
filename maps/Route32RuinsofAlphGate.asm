@@ -1,3 +1,8 @@
+const_value set 2
+	const ROUTE32RUINSOFALPHGATE_OFFICER
+	const ROUTE32RUINSOFALPHGATE_POKEFAN_M
+	const ROUTE32RUINSOFALPHGATE_YOUNGSTER
+
 Route32RuinsofAlphGate_MapScriptHeader:
 .MapTriggers:
 	db 0

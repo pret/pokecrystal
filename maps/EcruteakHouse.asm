@@ -1,10 +1,16 @@
+const_value set 2
+	const ECRUTEAKHOUSE_SAGE1
+	const ECRUTEAKHOUSE_SAGE2
+	const ECRUTEAKHOUSE_SAGE3
+	const ECRUTEAKHOUSE_GRAMPS
+
 EcruteakHouse_MapScriptHeader:
 .MapTriggers:
 	db 2
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
-	dw .Trigger2, 0
 
 .MapCallbacks:
 	db 1
@@ -13,10 +19,10 @@ EcruteakHouse_MapScriptHeader:
 
 	dbw 2, .InitializeSages
 
-.Trigger1:
+.Trigger0:
 	end
 
-.Trigger2:
+.Trigger1:
 	end
 
 .InitializeSages:
@@ -45,21 +51,21 @@ EcruteakHouse_MapScriptHeader:
 EcruteakHouse_XYTrigger1:
 	checkevent EVENT_RANG_CLEAR_BELL_2
 	iftrue EcruteakHouse_XYTrigger_DontMove
-	applymovement $3, MovementData_0x980c7
-	moveperson $2, $4, $6
-	appear $2
+	applymovement ECRUTEAKHOUSE_SAGE2, MovementData_0x980c7
+	moveperson ECRUTEAKHOUSE_SAGE1, $4, $6
+	appear ECRUTEAKHOUSE_SAGE1
 	pause 5
-	disappear $3
+	disappear ECRUTEAKHOUSE_SAGE2
 	end
 
 EcruteakHouse_XYTrigger2:
 	checkevent EVENT_RANG_CLEAR_BELL_1
 	iftrue EcruteakHouse_XYTrigger_DontMove
-	applymovement $2, MovementData_0x980cc
-	moveperson $3, $5, $6
-	appear $3
+	applymovement ECRUTEAKHOUSE_SAGE1, MovementData_0x980cc
+	moveperson ECRUTEAKHOUSE_SAGE2, $5, $6
+	appear ECRUTEAKHOUSE_SAGE2
 	pause 5
-	disappear $2
+	disappear ECRUTEAKHOUSE_SAGE1
 	end
 
 EcruteakHouse_XYTrigger_DontMove:
@@ -67,20 +73,20 @@ EcruteakHouse_XYTrigger_DontMove:
 
 SageScript_0x98062:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .CheckForClearBell
 	checkflag ENGINE_FOGBADGE
 	iftrue .BlockPassage_GotFogBadge
 	writetext UnknownText_0x980d1
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .BlockPassage_GotFogBadge:
 	writetext UnknownText_0x98131
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .CheckForClearBell:
@@ -91,14 +97,14 @@ SageScript_0x98062:
 	checkitem CLEAR_BELL
 	iftrue .RingClearBell
 	writetext UnknownText_0x981a4
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .RingClearBell:
 	writetext UnknownText_0x98250
+	waitbutton
 	closetext
-	loadmovesprites
 	dotrigger $1
 	setevent EVENT_RANG_CLEAR_BELL_2
 	clearevent EVENT_RANG_CLEAR_BELL_1
@@ -107,30 +113,30 @@ SageScript_0x98062:
 
 .AllowedThrough:
 	writetext UnknownText_0x9837e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Event000:
 	writetext UnknownText_0x98391
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 SageScript_0x980b0:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_CLEAR_BELL
 	iftrue .GotClearBell
 	writetext UnknownText_0x9840b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .GotClearBell:
 	writetext UnknownText_0x9846f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GrampsScript_0x980c4:

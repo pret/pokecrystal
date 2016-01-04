@@ -1,3 +1,16 @@
+const_value set 2
+	const ROUTE25_MISTY
+	const ROUTE25_COOLTRAINER_M1
+	const ROUTE25_YOUNGSTER1
+	const ROUTE25_LASS1
+	const ROUTE25_YOUNGSTER2
+	const ROUTE25_LASS2
+	const ROUTE25_YOUNGSTER3
+	const ROUTE25_LASS3
+	const ROUTE25_SUPER_NERD
+	const ROUTE25_COOLTRAINER_M2
+	const ROUTE25_POKE_BALL
+
 Route25_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -16,52 +29,52 @@ UnknownScript_0x19ee9f:
 	end
 
 UnknownScript_0x19eea0:
-	showemote EMOTE_HEART, $2, 15
+	showemote EMOTE_HEART, ROUTE25_MISTY, 15
 	pause 30
-	showemote EMOTE_SHOCK, $3, 10
-	spriteface $2, DOWN
-	applymovement $3, MovementData_0x19efe8
-	disappear $3
+	showemote EMOTE_SHOCK, ROUTE25_COOLTRAINER_M1, 10
+	spriteface ROUTE25_MISTY, DOWN
+	applymovement ROUTE25_COOLTRAINER_M1, MovementData_0x19efe8
+	disappear ROUTE25_COOLTRAINER_M1
 	pause 15
 	playmusic MUSIC_BEAUTY_ENCOUNTER
-	spriteface $2, UP
+	spriteface ROUTE25_MISTY, UP
 	pause 10
-	applymovement $2, MovementData_0x19efed
-	loadfont
+	applymovement ROUTE25_MISTY, MovementData_0x19efed
+	opentext
 	writetext UnknownText_0x19f006
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, DOWN
-	applymovement $2, MovementData_0x19effa
+	applymovement ROUTE25_MISTY, MovementData_0x19effa
 	spriteface PLAYER, LEFT
-	applymovement $2, MovementData_0x19f000
-	disappear $2
+	applymovement ROUTE25_MISTY, MovementData_0x19f000
+	disappear ROUTE25_MISTY
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
 	dotrigger $0
 	special RestartMapMusic
 	end
 
 UnknownScript_0x19eee0:
-	showemote EMOTE_HEART, $2, 15
+	showemote EMOTE_HEART, ROUTE25_MISTY, 15
 	pause 30
-	showemote EMOTE_SHOCK, $3, 10
-	spriteface $2, DOWN
-	applymovement $3, MovementData_0x19efea
-	disappear $3
+	showemote EMOTE_SHOCK, ROUTE25_COOLTRAINER_M1, 10
+	spriteface ROUTE25_MISTY, DOWN
+	applymovement ROUTE25_COOLTRAINER_M1, MovementData_0x19efea
+	disappear ROUTE25_COOLTRAINER_M1
 	pause 15
 	playmusic MUSIC_BEAUTY_ENCOUNTER
-	spriteface $2, UP
+	spriteface ROUTE25_MISTY, UP
 	pause 10
-	applymovement $2, MovementData_0x19eff4
-	loadfont
+	applymovement ROUTE25_MISTY, MovementData_0x19eff4
+	opentext
 	writetext UnknownText_0x19f006
+	waitbutton
 	closetext
-	loadmovesprites
 	spriteface PLAYER, UP
-	applymovement $2, MovementData_0x19effd
+	applymovement ROUTE25_MISTY, MovementData_0x19effd
 	spriteface PLAYER, LEFT
-	applymovement $2, MovementData_0x19f000
-	disappear $2
+	applymovement ROUTE25_MISTY, MovementData_0x19f000
+	disappear ROUTE25_MISTY
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
 	dotrigger $0
 	special RestartMapMusic
@@ -71,115 +84,115 @@ TrainerSchoolboyDudley:
 	trainer EVENT_BEAT_SCHOOLBOY_DUDLEY, SCHOOLBOY, DUDLEY, SchoolboyDudleySeenText, SchoolboyDudleyBeatenText, 0, SchoolboyDudleyScript
 
 SchoolboyDudleyScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19f1b5
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerLassEllen:
 	trainer EVENT_BEAT_LASS_ELLEN, LASS, ELLEN, LassEllenSeenText, LassEllenBeatenText, 0, LassEllenScript
 
 LassEllenScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19f208
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSchoolboyJoe:
 	trainer EVENT_BEAT_SCHOOLBOY_JOE, SCHOOLBOY, JOE, SchoolboyJoeSeenText, SchoolboyJoeBeatenText, 0, SchoolboyJoeScript
 
 SchoolboyJoeScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19f25c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerLassLaura:
 	trainer EVENT_BEAT_LASS_LAURA, LASS, LAURA, LassLauraSeenText, LassLauraBeatenText, 0, LassLauraScript
 
 LassLauraScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19f2a6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCamperLloyd:
 	trainer EVENT_BEAT_CAMPER_LLOYD, CAMPER, LLOYD, CamperLloydSeenText, CamperLloydBeatenText, 0, CamperLloydScript
 
 CamperLloydScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19f2f8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerLassShannon:
 	trainer EVENT_BEAT_LASS_SHANNON, LASS, SHANNON, LassShannonSeenText, LassShannonBeatenText, 0, LassShannonScript
 
 LassShannonScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19f35b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSupernerdPat:
 	trainer EVENT_BEAT_SUPER_NERD_PAT, SUPER_NERD, PAT, SupernerdPatSeenText, SupernerdPatBeatenText, 0, SupernerdPatScript
 
 SupernerdPatScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x19f41a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 CooltrainerMScript_0x19efac:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_COOLTRAINERM_KEVIN
 	iftrue UnknownScript_0x19efda
 	checkevent EVENT_CLEARED_NUGGET_BRIDGE
 	iftrue UnknownScript_0x19efc7
 	writetext UnknownText_0x19f43b
-	keeptextopen
+	buttonsound
 	verbosegiveitem NUGGET
 	iffalse UnknownScript_0x19efde
 	setevent EVENT_CLEARED_NUGGET_BRIDGE
 UnknownScript_0x19efc7:
 	writetext UnknownText_0x19f49d
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x19f4fd, 0
 	loadtrainer COOLTRAINERM, KEVIN
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_COOLTRAINERM_KEVIN
-	loadfont
+	opentext
 UnknownScript_0x19efda:
 	writetext UnknownText_0x19f520
-	closetext
+	waitbutton
 UnknownScript_0x19efde:
-	loadmovesprites
+	closetext
 	end
 
 MapRoute25Signpost0Script:
 	jumptext UnknownText_0x19f567
 
-ItemFragment_0x19efe3:
-	db PROTEIN, 1
+Route25Protein:
+	itemball PROTEIN
 
-MapRoute25SignpostItem1:
+Route25HiddenPotion:
 	dwb EVENT_ROUTE_25_HIDDEN_POTION, POTION
 	
 
@@ -435,7 +448,7 @@ Route25_MapEventHeader:
 .Signposts:
 	db 2
 	signpost 5, 45, SIGNPOST_READ, MapRoute25Signpost0Script
-	signpost 5, 4, SIGNPOST_ITEM, MapRoute25SignpostItem1
+	signpost 5, 4, SIGNPOST_ITEM, Route25HiddenPotion
 
 .PersonEvents:
 	db 11
@@ -449,4 +462,4 @@ Route25_MapEventHeader:
 	person_event SPRITE_LASS, 11, 28, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 1, TrainerLassShannon, -1
 	person_event SPRITE_SUPER_NERD, 7, 31, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 1, TrainerSupernerdPat, -1
 	person_event SPRITE_COOLTRAINER_M, 8, 37, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x19efac, -1
-	person_event SPRITE_POKE_BALL, 4, 32, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x19efe3, EVENT_ROUTE_25_PROTEIN
+	person_event SPRITE_POKE_BALL, 4, 32, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route25Protein, EVENT_ROUTE_25_PROTEIN

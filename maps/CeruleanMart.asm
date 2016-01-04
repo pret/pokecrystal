@@ -1,3 +1,8 @@
+const_value set 2
+	const CERULEANMART_CLERK
+	const CERULEANMART_COOLTRAINER_M
+	const CERULEANMART_COOLTRAINER_F
+
 CeruleanMart_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,9 +11,9 @@ CeruleanMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x188ac0:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_CERULEAN
-	loadmovesprites
+	closetext
 	end
 
 CooltrainerMScript_0x188ac7:

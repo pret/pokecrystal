@@ -1,3 +1,10 @@
+const_value set 2
+	const MRFUJISHOUSE_SUPER_NERD
+	const MRFUJISHOUSE_LASS
+	const MRFUJISHOUSE_RHYDON
+	const MRFUJISHOUSE_GROWLITHE
+	const MRFUJISHOUSE_MOLTRES
+
 MrFujisHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -12,27 +19,27 @@ LassScript_0x7e8cd:
 	jumptextfaceplayer UnknownText_0x7e940
 
 MrFujisPsyduck:
-	loadfont
+	opentext
 	writetext MrFujisPsyduckText
 	cry PSYDUCK
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MrFujisNidorino:
-	loadfont
+	opentext
 	writetext MrFujisNidorinoText
 	cry NIDORINO
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MrFujisPidgey:
-	loadfont
+	opentext
 	writetext MrFujisPidgeyText
 	cry PIDGEY
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MrFujisHouseBookshelf:

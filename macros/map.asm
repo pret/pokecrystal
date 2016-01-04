@@ -170,3 +170,16 @@ elevfloor: MACRO
 	db \1, \2
 	map \3
 ENDM
+
+itemball: MACRO
+if _NARG == 2
+	db \1, \2
+else
+	db \1, 1
+endc
+endm
+
+stonetable: MACRO
+	db \1, \2
+	dw \3
+endm

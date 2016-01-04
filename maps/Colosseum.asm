@@ -1,11 +1,15 @@
+const_value set 2
+	const COLOSSEUM_CHRIS1
+	const COLOSSEUM_CHRIS2
+
 Colosseum_MapScriptHeader:
 .MapTriggers:
 	db 3
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
 	dw .Trigger2, 0
-	dw .Trigger3, 0
 
 .MapCallbacks:
 	db 2
@@ -16,26 +20,26 @@ Colosseum_MapScriptHeader:
 
 	dbw 5, ColosseumScript_InitializeCB
 
-.Trigger1:
+.Trigger0:
 	priorityjump ColosseumScript_Initialize
+	end
+
+.Trigger1:
 	end
 
 .Trigger2:
 	end
 
-.Trigger3:
-	end
-
 ColosseumScript_SetWhichChris:
 	special Special_CableClubCheckWhichChris
 	iffalse .Chris2
-	disappear $3
-	appear $2
+	disappear COLOSSEUM_CHRIS2
+	appear COLOSSEUM_CHRIS1
 	return
 
 .Chris2:
-	disappear $2
-	appear $3
+	disappear COLOSSEUM_CHRIS1
+	appear COLOSSEUM_CHRIS2
 	return
 
 ColosseumScript_InitializeCB:
@@ -53,10 +57,10 @@ MapColosseumSignpost1Script:
 	end
 
 ChrisScript_0x193499:
-	loadfont
+	opentext
 	writetext .FriendReadyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FriendReadyText:

@@ -38,7 +38,7 @@ InitClock: ; 90672 (24:4672)
 	call .ClearScreen
 	call WaitBGMap
 	call RotateFourPalettesRight
-	ld hl, UnknownText_0x90874
+	ld hl, Text_WokeUpOak
 	call PrintText
 	ld hl, wc608
 	ld bc, 50
@@ -48,7 +48,7 @@ InitClock: ; 90672 (24:4672)
 	ld [wInitHourBuffer], a
 
 .loop
-	ld hl, UnknownText_0x90879
+	ld hl, Text_WhatTimeIsIt
 	call PrintText
 	hlcoord 3, 7
 	ld b, 2
@@ -71,7 +71,7 @@ InitClock: ; 90672 (24:4672)
 	ld a, [wInitHourBuffer]
 	ld [StringBuffer2 + 1], a
 	call .ClearScreen
-	ld hl, UnknownText_0x90886
+	ld hl, Text_WhatHrs
 	call PrintText
 	call YesNoBox
 	jr nc, .HourIsSet
@@ -79,7 +79,7 @@ InitClock: ; 90672 (24:4672)
 	jr .loop
 
 .HourIsSet
-	ld hl, UnknownText_0x9089a
+	ld hl, Text_HowManyMinutes
 	call PrintText
 	hlcoord 11, 7
 	lb bc, 2, 7
@@ -101,7 +101,7 @@ InitClock: ; 90672 (24:4672)
 	ld a, [BattleMonNick + 5]
 	ld [StringBuffer2 + 2], a
 	call .ClearScreen
-	ld hl, UnknownText_0x908a4
+	ld hl, Text_WhoaMins
 	call PrintText
 	call YesNoBox
 	jr nc, .MinutesAreSet
@@ -109,7 +109,7 @@ InitClock: ; 90672 (24:4672)
 	jr .HourIsSet
 
 .MinutesAreSet
-	call Function658
+	call SetTimeOfDay
 	ld hl, OakText_ResponseToSetTime
 	call PrintText
 	call WaitPressAorB_BlinkCursor
@@ -194,7 +194,7 @@ DisplayHourOClock: ; 907de (24:47de)
 	ret
 ; 907f1 (24:47f1)
 
-Function907f1: ; 907f1
+UnreferencedFunction907f1: ; 907f1
 	ld h, d
 	ld l, e
 	push hl
@@ -203,11 +203,11 @@ Function907f1: ; 907f1
 rept 2
 	inc de
 endr
-	ld a, $9c
+	ld a, ":"
 	ld [de], a
 	inc de
 	push de
-	ld hl, $3
+	ld hl, 3
 	add hl, de
 	ld a, [de]
 	inc de
@@ -225,37 +225,39 @@ endr
 SetMinutes: ; 90810 (24:4810)
 	ld a, [hJoyPressed]
 	and A_BUTTON
-	jr nz, .asm_90857
+	jr nz, .a_button
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_UP
-	jr nz, .asm_90835
+	jr nz, .d_up
 	ld a, [hl]
 	and D_DOWN
-	jr nz, .asm_90828
+	jr nz, .d_down
 	call DelayFrame
 	and a
 	ret
-.asm_90828
+
+.d_down
 	ld hl, BattleMonNick + 5
 	ld a, [hl]
 	and a
-	jr nz, .asm_90831
+	jr nz, .decrease
 	ld a, 59 + 1
-.asm_90831
+.decrease
 	dec a
 	ld [hl], a
-	jr .asm_90841
-.asm_90835
+	jr .finish_dpad
+
+.d_up
 	ld hl, BattleMonNick + 5
 	ld a, [hl]
 	cp 59
-	jr c, .asm_9083f
+	jr c, .increase
 	ld a, -1
-.asm_9083f
+.increase
 	inc a
 	ld [hl], a
-.asm_90841
+.finish_dpad
 	hlcoord 12, 9
 	ld a, " "
 	ld bc, 7
@@ -265,7 +267,7 @@ SetMinutes: ; 90810 (24:4810)
 	call WaitBGMap
 	and a
 	ret
-.asm_90857
+.a_button
 	scf
 	ret
 
@@ -288,13 +290,13 @@ PrintTwoDigitNumberRightAlign: ; 90867 (24:4867)
 	ret
 ; 90874 (24:4874)
 
-UnknownText_0x90874: ; 0x90874
+Text_WokeUpOak: ; 0x90874
 	; Zzz… Hm? Wha…? You woke me up! Will you check the clock for me?
 	text_jump UnknownText_0x1bc29c
 	db "@"
 ; 0x90879
 
-UnknownText_0x90879: ; 0x90879
+Text_WhatTimeIsIt: ; 0x90879
 	; What time is it?
 	text_jump UnknownText_0x1bc2eb
 	db "@"
@@ -304,23 +306,23 @@ String_oclock:
 	db "o'clock@"
 ; 90886
 
-UnknownText_0x90886: ; 0x90886
+Text_WhatHrs: ; 0x90886
 	; What?@ @
 	text_jump UnknownText_0x1bc2fd
 	start_asm
 	hlcoord 1, 16
 	call DisplayHourOClock
-	ld hl, UnknownText_0x90895
+	ld hl, .QuestionMark
 	ret
 ; 90895 (24:4895)
 
-UnknownText_0x90895: ; 0x90895
+.QuestionMark: ; 0x90895
 	; ?
 	text_jump UnknownText_0x1bc305
 	db "@"
 ; 0x9089a
 
-UnknownText_0x9089a: ; 0x9089a
+Text_HowManyMinutes: ; 0x9089a
 	; How many minutes?
 	text_jump UnknownText_0x1bc308
 	db "@"
@@ -330,18 +332,17 @@ String_min:
 	db "min.@"
 ; 908a4
 
-UnknownText_0x908a4: ; 0x908a4
+Text_WhoaMins: ; 0x908a4
 	; Whoa!@ @
 	text_jump UnknownText_0x1bc31b
 	start_asm
-; 0x908a9
 	hlcoord 7, 14
 	call DisplayMinutesWithMinString
-	ld hl, UnknownText_0x908b3
+	ld hl, .QuestionMark
 	ret
 ; 908b3 (24:48b3)
 
-UnknownText_0x908b3: ; 0x908b3
+.QuestionMark: ; 0x908b3
 	; ?
 	text_jump UnknownText_0x1bc323
 	db "@"
@@ -418,108 +419,108 @@ Special_SetDayOfWeek: ; 90913
 	lb bc, BANK(GFX_9090b), 1
 	call Request1bpp
 	xor a
-	ld [wd002], a
-.asm_90936
+	ld [wTempDayOfWeek], a
+.loop
 	hlcoord 0, 12
 	lb bc, 4, 18
 	call TextBox
 	call LoadStandardMenuDataHeader
-	ld hl, UnknownText_0x90a3f
+	ld hl, .WhatDayIsItText
 	call PrintText
 	hlcoord 9, 3
 	ld b, 2
 	ld c, 9
 	call TextBox
 	hlcoord 14, 3
-	ld [hl], $ef
+	ld [hl], "♂" ; gets overwritten with special up arrow
 	hlcoord 14, 6
-	ld [hl], $f5
+	ld [hl], "♀" ; gets overwritten with special down arrow
 	hlcoord 10, 5
-	call Function909de
+	call .PlaceWeekdayString
 	call ApplyTilemap
 	ld c, 10
 	call DelayFrames
-.asm_9096a
+.loop2
 	call JoyTextDelay
-	call Function90993
-	jr nc, .asm_9096a
+	call .GetJoypadAction
+	jr nc, .loop2
 	call ExitMenu
 	call UpdateSprites
-	ld hl, UnknownText_0x90a44
+	ld hl, .ConfirmWeekdayText
 	call PrintText
 	call YesNoBox
-	jr c, .asm_90936
-	ld a, [wd002]
+	jr c, .loop
+	ld a, [wTempDayOfWeek]
 	ld [StringBuffer2], a
-	call Function663
+	call SetDayOfWeek
 	call LoadStandardFont
 	pop af
 	ld [hInMenu], a
 	ret
 ; 90993
 
-Function90993: ; 90993
+.GetJoypadAction: ; 90993
 	ld a, [hJoyPressed]
 	and A_BUTTON
-	jr z, .asm_9099b
+	jr z, .not_A
 	scf
 	ret
 
-.asm_9099b
+.not_A
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_UP
-	jr nz, .asm_909ba
+	jr nz, .d_up
 	ld a, [hl]
 	and D_DOWN
-	jr nz, .asm_909ad
+	jr nz, .d_down
 	call DelayFrame
 	and a
 	ret
 
-.asm_909ad
-	ld hl, wd002
+.d_down
+	ld hl, wTempDayOfWeek
 	ld a, [hl]
 	and a
-	jr nz, .asm_909b6
+	jr nz, .decrease
 	ld a, 6 + 1
 
-.asm_909b6
+.decrease
 	dec a
 	ld [hl], a
-	jr .asm_909c6
+	jr .finish_dpad
 
-.asm_909ba
-	ld hl, wd002
+.d_up
+	ld hl, wTempDayOfWeek
 	ld a, [hl]
 	cp 6
-	jr c, .asm_909c4
-	ld a, -1
+	jr c, .increase
+	ld a, 0 - 1
 
-.asm_909c4
+.increase
 	inc a
 	ld [hl], a
 
-.asm_909c6
+.finish_dpad
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 10, 4
-	ld b, $2
-	ld c, $9
+	ld b, 2
+	ld c, 9
 	call ClearBox
 	hlcoord 10, 5
-	call Function909de
+	call .PlaceWeekdayString
 	call WaitBGMap
 	and a
 	ret
 ; 909de
 
-Function909de: ; 909de
+.PlaceWeekdayString: ; 909de
 	push hl
-	ld a, [wd002]
+	ld a, [wTempDayOfWeek]
 	ld e, a
 	ld d, 0
-	ld hl, WeekdaysStrings
+	ld hl, .WeekdayStrings
 rept 2
 	add hl, de
 endr
@@ -531,40 +532,40 @@ endr
 	ret
 ; 909f2
 
-WeekdaysStrings: ; 909f2
-	dw Sunday
-	dw Monday
-	dw Tuesday
-	dw Wednesday
-	dw Thursday
-	dw Friday
-	dw Saturday
-	dw Sunday
+.WeekdayStrings: ; 909f2
+	dw .Sunday
+	dw .Monday
+	dw .Tuesday
+	dw .Wednesday
+	dw .Thursday
+	dw .Friday
+	dw .Saturday
+	dw .Sunday
 
-Sunday:    db " SUNDAY@"
-Monday:    db " MONDAY@"
-Tuesday:   db " TUESDAY@"
-Wednesday: db "WEDNESDAY@"
-Thursday:  db "THURSDAY@"
-Friday:    db " FRIDAY@"
-Saturday:  db "SATURDAY@"
+.Sunday:    db " SUNDAY@"
+.Monday:    db " MONDAY@"
+.Tuesday:   db " TUESDAY@"
+.Wednesday: db "WEDNESDAY@"
+.Thursday:  db "THURSDAY@"
+.Friday:    db " FRIDAY@"
+.Saturday:  db "SATURDAY@"
 
 
-UnknownText_0x90a3f: ; 0x90a3f
+.WhatDayIsItText: ; 0x90a3f
 	; What day is it?
 	text_jump UnknownText_0x1bc369
 	db "@"
 ; 0x90a44
 
-UnknownText_0x90a44: ; 0x90a44
+.ConfirmWeekdayText: ; 0x90a44
 	start_asm
 	hlcoord 1, 14
-	call Function909de
-	ld hl, UnknownText_0x90a4f
+	call .PlaceWeekdayString
+	ld hl, .IsIt
 	ret
 ; 90a4f (24:4a4f)
 
-UnknownText_0x90a4f: ; 0x90a4f
+.IsIt: ; 0x90a4f
 	; , is it?
 	text_jump UnknownText_0x1bc37a
 	db "@"
@@ -577,12 +578,12 @@ Special_InitialSetDSTFlag: ; 90a54
 	hlcoord 1, 14
 	lb bc, 3, 18
 	call ClearBox
-	ld hl, UnknownText_0x90a6c
+	ld hl, .Text
 	call PlaceWholeStringInBoxAtOnce
 	ret
 ; 90a6c
 
-UnknownText_0x90a6c: ; 90a6c
+.Text: ; 90a6c
 	start_asm
 	call UpdateTime
 	ld a, [hHours]
@@ -591,11 +592,11 @@ UnknownText_0x90a6c: ; 90a6c
 	ld c, a
 	decoord 1, 14
 	callba PrintHoursMins
-	ld hl, TextJump_DSTIsThatOK
+	ld hl, .DSTIsThatOK
 	ret
 ; 90a83 (24:4a83)
 
-TextJump_DSTIsThatOK: ; 0x90a83
+.DSTIsThatOK: ; 0x90a83
 	; DST, is that OK?
 	text_jump Text_DSTIsThatOK
 	db "@"
@@ -608,12 +609,12 @@ Special_InitialClearDSTFlag: ; 90a88
 	hlcoord 1, 14
 	lb bc, 3, 18
 	call ClearBox
-	ld hl, UnknownText_0x90aa0
+	ld hl, .Text
 	call PlaceWholeStringInBoxAtOnce
 	ret
 ; 90aa0
 
-UnknownText_0x90aa0: ; 90aa0
+.Text: ; 90aa0
 	start_asm
 	call UpdateTime
 	ld a, [hHours]
@@ -622,28 +623,27 @@ UnknownText_0x90aa0: ; 90aa0
 	ld c, a
 	decoord 1, 14
 	callba PrintHoursMins
-	ld hl, UnknownText_0x90ab7
+	ld hl, .IsThatOK
 	ret
 ; 90ab7
 
-UnknownText_0x90ab7: ; 0x90ab7
+.IsThatOK: ; 0x90ab7
 	; , is that OK?
 	text_jump UnknownText_0x1c5ff1
 	db "@"
 ; 0x90abc
 
-Function90abc: ; 90abc
+DebugDisplayTime: ; 90abc
 	hlcoord 1, 14
 	lb bc, 3, SCREEN_WIDTH - 2
 	call ClearBox
-	ld hl, UnknownText_0x90acc
+	ld hl, .Text
 	call PlaceWholeStringInBoxAtOnce
 	ret
 ; 90acc
 
-UnknownText_0x90acc: ; 0x90acc
+.Text: ; 0x90acc
 	start_asm
-
 	call UpdateTime
 
 	hlcoord 1, 14
@@ -655,7 +655,7 @@ UnknownText_0x90acc: ; 0x90acc
 	inc hl
 
 	ld de, hRTCDayLo
-	call Function90b23
+	call .PrintTime
 
 	hlcoord 1, 16
 	ld [hl], "D"
@@ -666,7 +666,7 @@ UnknownText_0x90acc: ; 0x90acc
 	inc hl
 
 	ld de, StartDay
-	call Function90b23
+	call .PrintTime
 
 	ld [hl], " "
 	inc hl
@@ -690,16 +690,16 @@ UnknownText_0x90acc: ; 0x90acc
 	inc hl
 
 .done
-	ld hl, UnknownText_0x90b13
+	ld hl, .NowOnDebug
 	ret
 ; 90b13
 
-UnknownText_0x90b13: ; 0x90b13
+.NowOnDebug: ; 0x90b13
 	text "<PARA>Now on DEBUG…"
 	prompt
 ; 0x90b23
 
-Function90b23: ; 90b23
+.PrintTime: ; 90b23
 	lb bc, 1, 3
 	call PrintNum
 	ld [hl], "."

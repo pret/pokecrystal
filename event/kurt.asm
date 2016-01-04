@@ -1,22 +1,22 @@
 Kurt_PrintTextWhichApricorn: ; 88000
-	ld hl, UnknownText_0x88007
+	ld hl, .Text
 	call PrintText
 	ret
 ; 88007
 
-UnknownText_0x88007: ; 0x88007
+.Text: ; 0x88007
 	; Which APRICORN should I use?
 	text_jump UnknownText_0x1bc06b
 	db "@"
 ; 0x8800c
 
 Kurt_PrintTextHowMany: ; 8800c
-	ld hl, UnknownText_0x88013
+	ld hl, .Text
 	call PrintText
 	ret
 ; 88013
 
-UnknownText_0x88013: ; 0x88013
+.Text: ; 0x88013
 	; How many should I make?
 	text_jump UnknownText_0x1bc089
 	db "@"
@@ -40,7 +40,7 @@ Special_SelectApricornForKurt: ; 88018
 	and a
 	jr z, .done
 	ld [CurItem], a
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	ld c, a
 	push bc
 	call Kurt_PrintTextHowMany
@@ -67,9 +67,9 @@ Kurt_SelectApricorn: ; 88055
 	ld [hBGMapMode], a
 	call InitScrollingMenu
 	call UpdateSprites
-	call HandleScrollingMenu
-	ld a, [wcf73]
-	cp $2
+	call ScrollingMenu
+	ld a, [wMenuJoypad]
+	cp B_BUTTON
 	jr z, .nope
 	ld a, [MenuSelection]
 	cp -1
@@ -116,7 +116,7 @@ Kurt_SelectApricorn: ; 88055
 	call Kurt_GetQuantityOfApricorn
 	ret z
 	ld a, [wItemQuantityChangeBuffer]
-	ld [wcf75], a
+	ld [MenuSelectionQuantity], a
 	callba PlaceMenuItemQuantity
 	ret
 ; 880c2
@@ -154,7 +154,7 @@ Kurt_SelectQuantity: ; 880c2
 	scf
 
 .done
-	call WriteBackup
+	call CloseWindow
 	ret
 ; 8810d
 
@@ -167,7 +167,7 @@ Kurt_SelectQuantity: ; 880c2
 
 .PlaceApricornName: ; 88116
 	call MenuBoxCoord2Tile
-	ld de, $0015
+	ld de, SCREEN_WIDTH + 1
 	add hl, de
 	ld d, h
 	ld e, l
@@ -177,7 +177,7 @@ Kurt_SelectQuantity: ; 880c2
 
 PlaceApricornQuantity: ; 88126
 	call MenuBoxCoord2Tile
-	ld de, $0032
+	ld de, 2 * SCREEN_WIDTH + 10
 	add hl, de
 	ld [hl], "×"
 	inc hl
@@ -231,16 +231,16 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 	ld c, a
 	ld e, $0
 	xor a
-	ld [ItemCountBuffer], a
+	ld [CurItemQuantity], a
 	ld a, -1
-	ld [wd002], a
+	ld [wApricorns], a
 
 ; Search for [CurItem] in the bag.
 .loop1
 ; Increase the total count.
-	ld a, [ItemCountBuffer]
+	ld a, [CurItemQuantity]
 	inc a
-	ld [ItemCountBuffer], a
+	ld [CurItemQuantity], a
 ; Get the index of the next item.
 	inc hl
 	ld a, [hli]
@@ -253,10 +253,10 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 ; Increment the result counter and store the bag index of the match.
 	ld d, $0
 	push hl
-	ld hl, wd002
+	ld hl, wApricorns
 	add hl, de
 	inc e
-	ld a, [ItemCountBuffer]
+	ld a, [CurItemQuantity]
 	dec a
 	ld [hli], a
 	ld a, -1
@@ -271,7 +271,7 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 	jr z, .done
 	dec a
 	jr z, .OnlyOne
-	ld hl, wd002
+	ld hl, wApricorns
 
 .loop2
 	ld a, [hl]
@@ -316,13 +316,13 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 	jr nz, .loop2
 
 .OnlyOne
-	ld hl, wd002
+	ld hl, wApricorns
 .loop4
 	ld a, [hl]
 	cp -1
 	jr z, .done
 	push hl
-	ld [ItemCountBuffer], a
+	ld [CurItemQuantity], a
 	call Kurt_GetRidOfItem
 	pop hl
 	ld a, [wItemQuantityChangeBuffer]
@@ -375,7 +375,7 @@ endr
 Kurt_GetRidOfItem: ; 88211
 	push bc
 	ld hl, NumItems
-	ld a, [ItemCountBuffer]
+	ld a, [CurItemQuantity]
 	ld c, a
 	ld b, $0
 	inc hl

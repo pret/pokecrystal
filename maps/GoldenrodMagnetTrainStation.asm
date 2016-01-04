@@ -1,24 +1,28 @@
+const_value set 2
+	const GOLDENRODMAGNETTRAINSTATION_OFFICER
+	const GOLDENRODMAGNETTRAINSTATION_GENTLEMAN
+
 GoldenrodMagnetTrainStation_MapScriptHeader:
 .MapTriggers:
 	db 1
 
 	; triggers
-	dw .Trigger1, 0
+	dw .Trigger0, 0
 
 .MapCallbacks:
 	db 0
 
-.Trigger1:
+.Trigger0:
 	end
 
 OfficerScript_0x550ec:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .MagnetTrainToSaffron
 	writetext UnknownText_0x55160
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .MagnetTrainToSaffron:
@@ -28,9 +32,9 @@ OfficerScript_0x550ec:
 	checkitem PASS
 	iffalse .PassNotInBag
 	writetext UnknownText_0x551ed
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement $2, MovementData_0x55146
+	applymovement GOLDENRODMAGNETTRAINSTATION_OFFICER, MovementData_0x55146
 	applymovement PLAYER, MovementData_0x5514f
 	writebyte $0
 	special Special_MagnetTrain
@@ -46,24 +50,24 @@ OfficerScript_0x550ec:
 
 .PassNotInBag:
 	writetext UnknownText_0x5522c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .DecidedNotToRide:
 	writetext UnknownText_0x5524f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 Script_ArriveFromSaffron:
-	applymovement $2, MovementData_0x55146
+	applymovement GOLDENRODMAGNETTRAINSTATION_OFFICER, MovementData_0x55146
 	applymovement PLAYER, MovementData_0x55158
-	applymovement $2, MovementData_0x5514b
-	loadfont
+	applymovement GOLDENRODMAGNETTRAINSTATION_OFFICER, MovementData_0x5514b
+	opentext
 	writetext UnknownText_0x5526a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GentlemanScript_0x55143:

@@ -1,3 +1,7 @@
+const_value set 2
+	const ECRUTEAKLUGIASPEECHHOUSE_GRAMPS
+	const ECRUTEAKLUGIASPEECHHOUSE_YOUNGSTER
+
 EcruteakLugiaSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 0

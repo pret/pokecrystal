@@ -1,3 +1,8 @@
+const_value set 2
+	const SAFFRONMART_CLERK
+	const SAFFRONMART_COOLTRAINER_M
+	const SAFFRONMART_COOLTRAINER_F
+
 SaffronMart_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,9 +11,9 @@ SaffronMart_MapScriptHeader:
 	db 0
 
 ClerkScript_0x18a3bf:
-	loadfont
+	opentext
 	pokemart MARTTYPE_STANDARD, MART_SAFFRON
-	loadmovesprites
+	closetext
 	end
 
 CooltrainerMScript_0x18a3c6:

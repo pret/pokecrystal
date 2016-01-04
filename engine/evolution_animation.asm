@@ -9,7 +9,7 @@ EvolutionAnimation: ; 4e5e1
 	ld a, [BaseDexNo]
 	push af
 
-	call _EvolutionAnimation
+	call .EvolutionAnimation
 
 	pop af
 	ld [BaseDexNo], a
@@ -21,7 +21,7 @@ EvolutionAnimation: ; 4e5e1
 	pop de
 	pop hl
 
-	ld a, [wd1ed]
+	ld a, [Buffer4]
 	and a
 	ret z
 
@@ -29,18 +29,18 @@ EvolutionAnimation: ; 4e5e1
 	ret
 ; 4e607
 
-_EvolutionAnimation: ; 4e607
+.EvolutionAnimation: ; 4e607
 	ld a, $e4
 	ld [rOBP0], a
 
 	ld de, MUSIC_NONE
 	call PlayMusic
 
-	callba Function8cf53
+	callba ClearSpriteAnims
 
-	ld de, EvolutionGFX
+	ld de, .GFX
 	ld hl, VTiles0
-	lb bc, BANK(EvolutionGFX), 8
+	lb bc, BANK(.GFX), 8
 	call Request2bpp
 
 	xor a
@@ -76,7 +76,7 @@ _EvolutionAnimation: ; 4e607
 
 	ld a, $1
 	ld [hBGMapMode], a
-	call Function4e794
+	call .check_statused
 	jr c, .skip_cry
 
 	ld a, [Buffer1]
@@ -99,22 +99,22 @@ _EvolutionAnimation: ; 4e607
 
 	call .ReplaceFrontpic
 	xor a
-	ld [wd1ed], a
+	ld [Buffer4], a
 
 	ld a, [Buffer2]
 	ld [PlayerHPPal], a
 
 	ld c, $0
 	call .GetSGBLayout
-	call Function4e7a6
-	callba Function8cf53
-	call Function4e794
-	jr c, .asm_4e6de
+	call .PlayEvolvedSFX
+	callba ClearSpriteAnims
+	call .check_statused
+	jr c, .no_anim
 
-	ld a, [wc2c6]
+	ld a, [wBoxAlignment]
 	push af
 	ld a, $1
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	ld a, [CurPartySpecies]
 	push af
 
@@ -128,24 +128,24 @@ _EvolutionAnimation: ; 4e607
 	pop af
 	ld [CurPartySpecies], a
 	pop af
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	ret
 
-.asm_4e6de
+.no_anim
 	ret
 
 .cancel_evo
 	ld a, $1
-	ld [wd1ed], a
+	ld [Buffer4], a
 
 	ld a, [Buffer1]
 	ld [PlayerHPPal], a
 
 	ld c, $0
 	call .GetSGBLayout
-	call Function4e7a6
-	callba Function8cf53
-	call Function4e794
+	call .PlayEvolvedSFX
+	callba ClearSpriteAnims
+	call .check_statused
 	ret c
 
 	ld a, [PlayerHPPal]
@@ -167,11 +167,11 @@ _EvolutionAnimation: ; 4e607
 .LoadFrontpic: ; 4e711
 	call GetBaseData
 	ld a, $1
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	ld de, VTiles2
 	predef FrontpicPredef
 	xor a
-	ld [wc2c6], a
+	ld [wBoxAlignment], a
 	ret
 ; 4e726
 
@@ -252,14 +252,14 @@ endr
 	ret
 
 .pressed_b
-	ld a, [wd1e9]
+	ld a, [wForceEvolution]
 	and a
 	jr nz, .loop3
 	scf
 	ret
 ; 4e794
 
-Function4e794: ; 4e794
+.check_statused: ; 4e794
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Species
 	call GetPartyLocation
@@ -269,8 +269,8 @@ Function4e794: ; 4e794
 	ret
 ; 4e7a6
 
-Function4e7a6: ; 4e7a6
-	ld a, [wd1ed]
+.PlayEvolvedSFX: ; 4e7a6
+	ld a, [Buffer4]
 	and a
 	ret nz
 	ld de, SFX_EVOLVED
@@ -279,70 +279,70 @@ Function4e7a6: ; 4e7a6
 	ld a, [hl]
 	push af
 	ld [hl], $0
-.loop
-	call Function4e7cf
+.loop4
+	call .balls_of_light
 	jr nc, .done
-	call Function4e80c
-	jr .loop
+	call .AnimateBallsOfLight
+	jr .loop4
 
 .done
-	ld c, $20
-.loop2
-	call Function4e80c
+	ld c, 32
+.loop5
+	call .AnimateBallsOfLight
 	dec c
-	jr nz, .loop2
+	jr nz, .loop5
 	pop af
 	ld [wJumptableIndex], a
 	ret
 ; 4e7cf
 
-Function4e7cf: ; 4e7cf
+.balls_of_light: ; 4e7cf
 	ld hl, wJumptableIndex
 	ld a, [hl]
-	cp $20
+	cp 32
 	ret nc
 	ld d, a
 	inc [hl]
 	and $1
-	jr nz, .asm_4e7e6
+	jr nz, .done_balls
 	ld e, $0
-	call Function4e7e8
+	call .GenerateBallOfLight
 	ld e, $10
-	call Function4e7e8
+	call .GenerateBallOfLight
 
-.asm_4e7e6
+.done_balls
 	scf
 	ret
 ; 4e7e8
 
-Function4e7e8: ; 4e7e8
+.GenerateBallOfLight: ; 4e7e8
 	push de
-	lb de, $48, $58
-	ld a, $13
+	depixel 9, 11
+	ld a, SPRITE_ANIM_INDEX_13
 	call _InitSpriteAnimStruct
-	ld hl, $b
+	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [wJumptableIndex]
-	and $e
+	and %1110
 	sla a
 	pop de
 	add e
 	ld [hl], a
-	ld hl, $3
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $0
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $10
 	ret
 ; 4e80c
 
-Function4e80c: ; 4e80c
+.AnimateBallsOfLight: ; 4e80c
 	push bc
-	callab Function8cf69
+	callab PlaySpriteAnimations
 	; a = (([hVBlankCounter] + 4) / 2) % NUM_PALETTES
 	ld a, [hVBlankCounter]
-	and $e
+	and %1110
 	srl a
 rept 2
 	inc a
@@ -351,7 +351,7 @@ endr
 	ld b, a
 	ld hl, Sprites + 3 ; attributes
 	ld c, 40
-.loop
+.loop6
 	ld a, [hl]
 	or b
 	ld [hli], a
@@ -359,98 +359,13 @@ rept 3
 	inc hl
 endr
 	dec c
-	jr nz, .loop
+	jr nz, .loop6
 	pop bc
 	call DelayFrame
 	ret
 ; 4e831
 
 
-EvolutionGFX:
+.GFX:
 INCBIN "gfx/evo/bubble_large.2bpp"
 INCBIN "gfx/evo/bubble.2bpp"
-
-Function4e881: ; 4e881
-	call ClearBGPalettes
-	call ClearTileMap
-	call ClearSprites
-	call DisableLCD
-	call LoadStandardFont
-	call LoadFontsBattleExtra
-	hlbgcoord 0, 0
-	ld bc, VBGMap1 - VBGMap0
-	ld a, " "
-	call ByteFill
-	hlcoord 0, 0, AttrMap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	xor a
-	call ByteFill
-	xor a
-	ld [hSCY], a
-	ld [hSCX], a
-	call EnableLCD
-	ld hl, UnknownText_0x4e8bd
-	call PrintText
-	call Function3200
-	call SetPalettes
-	ret
-; 4e8bd
-
-UnknownText_0x4e8bd: ; 0x4e8bd
-	; SAVING RECORD… DON'T TURN OFF!
-	text_jump UnknownText_0x1bd39e
-	db "@"
-; 0x4e8c2
-
-
-Function4e8c2: ; 4e8c2
-	call ClearBGPalettes
-	call ClearTileMap
-	call ClearSprites
-	call DisableLCD
-	call LoadStandardFont
-	call LoadFontsBattleExtra
-	hlbgcoord 0, 0
-	ld bc, VBGMap1 - VBGMap0
-	ld a, " "
-	call ByteFill
-	hlcoord 0, 0, AttrMap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	xor a
-	call ByteFill
-	ld hl, wd000
-	ld c, $40
-.asm_4e8ee
-	ld a, -1
-	ld [hli], a
-	ld a, " "
-	ld [hli], a
-	dec c
-	jr nz, .asm_4e8ee
-	xor a
-	ld [hSCY], a
-	ld [hSCX], a
-	call EnableLCD
-	call Function3200
-	call SetPalettes
-	ret
-; 4e906
-
-Function4e906: ; 4e906
-	ld a, [rSVBK]
-	push af
-	ld a, $6
-	ld [rSVBK], a
-	ld hl, w6_d000
-	ld bc, w6_d400 - w6_d000
-	ld a, " "
-	call ByteFill
-	hlbgcoord 0, 0
-	ld de, w6_d000
-	ld b, $0
-	ld c, $40
-	call Request2bpp
-	pop af
-	ld [rSVBK], a
-	ret
-; 4e929

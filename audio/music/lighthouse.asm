@@ -1,8 +1,8 @@
 Music_Lighthouse: ; ee569
-	dbw $c0, Music_Lighthouse_Ch1
-	dbw $01, Music_Lighthouse_Ch2
-	dbw $02, Music_Lighthouse_Ch3
-	dbw $03, Music_Lighthouse_Ch4
+	musicheader 4, 1, Music_Lighthouse_Ch1
+	musicheader 1, 2, Music_Lighthouse_Ch2
+	musicheader 1, 3, Music_Lighthouse_Ch3
+	musicheader 1, 4, Music_Lighthouse_Ch4
 ; ee575
 
 Music_Lighthouse_Ch1: ; ee575

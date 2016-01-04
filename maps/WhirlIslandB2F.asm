@@ -1,3 +1,8 @@
+const_value set 2
+	const WHIRLISLANDB2F_POKE_BALL1
+	const WHIRLISLANDB2F_POKE_BALL2
+	const WHIRLISLANDB2F_POKE_BALL3
+
 WhirlIslandB2F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -5,14 +10,14 @@ WhirlIslandB2F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ItemFragment_0x18c4b8:
-	db FULL_RESTORE, 1
+WhirlIslandB2FFullRestore:
+	itemball FULL_RESTORE
 
-ItemFragment_0x18c4ba:
-	db MAX_REVIVE, 1
+WhirlIslandB2FMaxRevive:
+	itemball MAX_REVIVE
 
-ItemFragment_0x18c4bc:
-	db MAX_ELIXER, 1
+WhirlIslandB2FMaxElixer:
+	itemball MAX_ELIXER
 
 WhirlIslandB2F_MapEventHeader:
 	; filler
@@ -33,6 +38,6 @@ WhirlIslandB2F_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_POKE_BALL, 11, 10, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x18c4b8, EVENT_WHIRL_ISLAND_B2F_FULL_RESTORE
-	person_event SPRITE_POKE_BALL, 4, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x18c4ba, EVENT_WHIRL_ISLAND_B2F_MAX_REVIVE
-	person_event SPRITE_POKE_BALL, 12, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x18c4bc, EVENT_WHIRL_ISLAND_B2F_MAX_ELIXER
+	person_event SPRITE_POKE_BALL, 11, 10, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, WhirlIslandB2FFullRestore, EVENT_WHIRL_ISLAND_B2F_FULL_RESTORE
+	person_event SPRITE_POKE_BALL, 4, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, WhirlIslandB2FMaxRevive, EVENT_WHIRL_ISLAND_B2F_MAX_REVIVE
+	person_event SPRITE_POKE_BALL, 12, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, WhirlIslandB2FMaxElixer, EVENT_WHIRL_ISLAND_B2F_MAX_ELIXER

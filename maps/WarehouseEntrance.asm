@@ -1,3 +1,14 @@
+const_value set 2
+	const WAREHOUSEENTRANCE_SUPER_NERD1
+	const WAREHOUSEENTRANCE_SUPER_NERD2
+	const WAREHOUSEENTRANCE_SUPER_NERD3
+	const WAREHOUSEENTRANCE_SUPER_NERD4
+	const WAREHOUSEENTRANCE_POKE_BALL
+	const WAREHOUSEENTRANCE_GRAMPS
+	const WAREHOUSEENTRANCE_SUPER_NERD5
+	const WAREHOUSEENTRANCE_SUPER_NERD6
+	const WAREHOUSEENTRANCE_GRANNY
+
 WarehouseEntrance_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -52,104 +63,104 @@ WarehouseEntrance_MapScriptHeader:
 	if_equal SATURDAY, .Saturday
 
 .Sunday:
-	disappear $7
-	disappear $8
-	appear $9
-	appear $a
+	disappear WAREHOUSEENTRANCE_GRAMPS
+	disappear WAREHOUSEENTRANCE_SUPER_NERD5
+	appear WAREHOUSEENTRANCE_SUPER_NERD6
+	appear WAREHOUSEENTRANCE_GRANNY
 	return
 
 .Monday:
-	disappear $7
+	disappear WAREHOUSEENTRANCE_GRAMPS
 	checkmorn
 	iffalse .NotMondayMorning
-	appear $7
+	appear WAREHOUSEENTRANCE_GRAMPS
 .NotMondayMorning:
-	disappear $8
-	disappear $9
-	disappear $a
+	disappear WAREHOUSEENTRANCE_SUPER_NERD5
+	disappear WAREHOUSEENTRANCE_SUPER_NERD6
+	disappear WAREHOUSEENTRANCE_GRANNY
 	return
 
 .Tuesday:
-	disappear $7
-	appear $8
-	disappear $9
-	disappear $a
+	disappear WAREHOUSEENTRANCE_GRAMPS
+	appear WAREHOUSEENTRANCE_SUPER_NERD5
+	disappear WAREHOUSEENTRANCE_SUPER_NERD6
+	disappear WAREHOUSEENTRANCE_GRANNY
 	return
 
 .Wednesday:
-	disappear $7
-	disappear $8
-	appear $9
-	disappear $a
+	disappear WAREHOUSEENTRANCE_GRAMPS
+	disappear WAREHOUSEENTRANCE_SUPER_NERD5
+	appear WAREHOUSEENTRANCE_SUPER_NERD6
+	disappear WAREHOUSEENTRANCE_GRANNY
 	return
 
 .Thursday:
-	disappear $7
-	appear $8
-	disappear $9
-	disappear $a
+	disappear WAREHOUSEENTRANCE_GRAMPS
+	appear WAREHOUSEENTRANCE_SUPER_NERD5
+	disappear WAREHOUSEENTRANCE_SUPER_NERD6
+	disappear WAREHOUSEENTRANCE_GRANNY
 	return
 
 .Friday:
-	disappear $7
-	disappear $8
-	appear $9
-	disappear $a
+	disappear WAREHOUSEENTRANCE_GRAMPS
+	disappear WAREHOUSEENTRANCE_SUPER_NERD5
+	appear WAREHOUSEENTRANCE_SUPER_NERD6
+	disappear WAREHOUSEENTRANCE_GRANNY
 	return
 
 .Saturday:
-	disappear $7
-	appear $8
-	disappear $9
-	appear $a
+	disappear WAREHOUSEENTRANCE_GRAMPS
+	appear WAREHOUSEENTRANCE_SUPER_NERD5
+	disappear WAREHOUSEENTRANCE_SUPER_NERD6
+	appear WAREHOUSEENTRANCE_GRANNY
 	return
 
 TrainerSupernerdEric:
 	trainer EVENT_BEAT_SUPER_NERD_ERIC, SUPER_NERD, ERIC, SupernerdEricSeenText, SupernerdEricBeatenText, 0, SupernerdEricScript
 
 SupernerdEricScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x7c36c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSupernerdTeru:
 	trainer EVENT_BEAT_SUPER_NERD_TERU, SUPER_NERD, TERU, SupernerdTeruSeenText, SupernerdTeruBeatenText, 0, SupernerdTeruScript
 
 SupernerdTeruScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x7c410
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokemaniacIssac:
 	trainer EVENT_BEAT_POKEMANIAC_ISSAC, POKEMANIAC, ISSAC, PokemaniacIssacSeenText, PokemaniacIssacBeatenText, 0, PokemaniacIssacScript
 
 PokemaniacIssacScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x7c498
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerPokemaniacDonald:
 	trainer EVENT_BEAT_POKEMANIAC_DONALD, POKEMANIAC, DONALD, PokemaniacDonaldSeenText, PokemaniacDonaldBeatenText, 0, PokemaniacDonaldScript
 
 PokemaniacDonaldScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x7c52f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 GrannyScript_0x7c132:
-	loadfont
+	opentext
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, .Open
 	if_equal SATURDAY, .Open
@@ -157,11 +168,11 @@ GrannyScript_0x7c132:
 
 .Open:
 	pokemart MARTTYPE_BITTER, MART_UNDERGROUND
-	loadmovesprites
+	closetext
 	end
 
 GrampsScript_0x7c146:
-	loadfont
+	opentext
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_MERCHANT_CLOSED
 	iftrue WarehouseEntranceScript_ShopClosed
 	checkcode VAR_WEEKDAY
@@ -172,11 +183,11 @@ GrampsScript_0x7c146:
 	checkmorn
 	iffalse WarehouseEntranceScript_ShopClosed
 	pokemart MARTTYPE_BARGAIN, 0
-	loadmovesprites
+	closetext
 	end
 
 OlderHaircutBrotherScript:
-	loadfont
+	opentext
 	checkcode VAR_WEEKDAY
 	if_equal TUESDAY, .DoHaircut
 	if_equal THURSDAY, .DoHaircut
@@ -186,14 +197,14 @@ OlderHaircutBrotherScript:
 .DoHaircut:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	iftrue .AlreadyGotHaircut
-	special PlaceMoneyTopRightOW
+	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c5f9
 	yesorno
 	iffalse .Refused
 	checkmoney $0, 500
 	if_equal $2, .NotEnoughMoney
 	writetext UnknownText_0x7c69a
-	keeptextopen
+	buttonsound
 	special Special_YoungerHaircutBrother
 	if_equal $0, .Refused
 	if_equal $1, .Refused
@@ -222,18 +233,18 @@ OlderHaircutBrotherScript:
 
 .then:
 	takemoney $0, 500
-	special PlaceMoneyTopRightOW
+	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c6b8
+	waitbutton
 	closetext
-	loadmovesprites
 	special FadeOutPalettes
 	playmusic MUSIC_HEAL
 	pause 60
 	special FadeInPalettes
 	special RestartMapMusic
-	loadfont
+	opentext
 	writetext UnknownText_0x7c6d8
-	closetext
+	waitbutton
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x7c2bb
 	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
@@ -242,24 +253,24 @@ OlderHaircutBrotherScript:
 
 .Refused:
 	writetext UnknownText_0x7c6ea
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .NotEnoughMoney:
 	writetext UnknownText_0x7c709
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .AlreadyGotHaircut:
 	writetext UnknownText_0x7c72b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungerHaircutBrotherScript:
-	loadfont
+	opentext
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, .DoHaircut
 	if_equal WEDNESDAY, .DoHaircut
@@ -269,14 +280,14 @@ YoungerHaircutBrotherScript:
 .DoHaircut:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	iftrue .AlreadyGotHaircut
-	special PlaceMoneyTopRightOW
+	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c75c
 	yesorno
 	iffalse .Refused
 	checkmoney $0, 300
 	if_equal $2, .NotEnoughMoney
 	writetext UnknownText_0x7c7f1
-	keeptextopen
+	buttonsound
 	special Special_OlderHaircutBrother
 	if_equal $0, .Refused
 	if_equal $1, .Refused
@@ -305,18 +316,18 @@ YoungerHaircutBrotherScript:
 
 .then:
 	takemoney $0, 300
-	special PlaceMoneyTopRightOW
+	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c80e
+	waitbutton
 	closetext
-	loadmovesprites
 	special FadeOutPalettes
 	playmusic MUSIC_HEAL
 	pause 60
 	special FadeInPalettes
 	special RestartMapMusic
-	loadfont
+	opentext
 	writetext UnknownText_0x7c82a
-	closetext
+	waitbutton
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x7c2bb
 	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
@@ -325,92 +336,92 @@ YoungerHaircutBrotherScript:
 
 .Refused:
 	writetext UnknownText_0x7c842
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .NotEnoughMoney:
 	writetext UnknownText_0x7c85b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .AlreadyGotHaircut:
 	writetext UnknownText_0x7c87b
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7c2bb:
 	writetext HaircutBrosText_SlightlyHappier
 	special PlayCurMonCry
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7c2c4:
 	writetext HaircutBrosText_Happier
 	special PlayCurMonCry
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x7c2cd:
 	writetext HaircutBrosText_MuchHappier
 	special PlayCurMonCry
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 BasementDoorScript::
-	loadfont
+	opentext
 	checkevent EVENT_USED_BASEMENT_KEY
 	iftrue .Open
 	checkitem BASEMENT_KEY
 	iftrue .Unlock
 	writetext UnknownText_0x7c5b0
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .Unlock:
 	playsound SFX_TRANSACTION
 	writetext UnknownText_0x7c5d6
+	waitbutton
 	closetext
-	loadmovesprites
 	changeblock $12, $6, $2e
 	reloadmappart
-	loadmovesprites
+	closetext
 	setevent EVENT_USED_BASEMENT_KEY
 	end
 
 .Open:
 	writetext UnknownText_0x7c5c3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 WarehouseEntranceScript_ShopClosed:
 	writetext UnknownText_0x7c904
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-ItemFragment_0x7c306:
-	db COIN_CASE, 1
+WarehouseEntranceCoinCase:
+	itemball COIN_CASE
 
 MapWarehouseEntranceSignpost1Script:
 	jumptext UnknownText_0x7c91a
 
-MapWarehouseEntranceSignpostItem2:
+WarehouseEntranceHiddenParlyzHeal:
 	dwb EVENT_WAREHOUSE_ENTRANCE_HIDDEN_PARLYZ_HEAL, PARLYZ_HEAL
 	
 
-MapWarehouseEntranceSignpostItem3:
+WarehouseEntranceHiddenSuperPotion:
 	dwb EVENT_WAREHOUSE_ENTRANCE_HIDDEN_SUPER_POTION, SUPER_POTION
 	
 
-MapWarehouseEntranceSignpostItem4:
+WarehouseEntranceHiddenAntidote:
 	dwb EVENT_WAREHOUSE_ENTRANCE_HIDDEN_ANTIDOTE, ANTIDOTE
 	
 
@@ -663,9 +674,9 @@ WarehouseEntrance_MapEventHeader:
 	db 5
 	signpost 6, 18, SIGNPOST_READ, BasementDoorScript
 	signpost 6, 19, SIGNPOST_READ, MapWarehouseEntranceSignpost1Script
-	signpost 13, 6, SIGNPOST_ITEM, MapWarehouseEntranceSignpostItem2
-	signpost 18, 4, SIGNPOST_ITEM, MapWarehouseEntranceSignpostItem3
-	signpost 8, 17, SIGNPOST_ITEM, MapWarehouseEntranceSignpostItem4
+	signpost 13, 6, SIGNPOST_ITEM, WarehouseEntranceHiddenParlyzHeal
+	signpost 18, 4, SIGNPOST_ITEM, WarehouseEntranceHiddenSuperPotion
+	signpost 8, 17, SIGNPOST_ITEM, WarehouseEntranceHiddenAntidote
 
 .PersonEvents:
 	db 9
@@ -673,7 +684,7 @@ WarehouseEntrance_MapEventHeader:
 	person_event SPRITE_SUPER_NERD, 9, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 2, TrainerSupernerdTeru, -1
 	person_event SPRITE_SUPER_NERD, 27, 3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 2, TrainerPokemaniacIssac, -1
 	person_event SPRITE_SUPER_NERD, 6, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerPokemaniacDonald, -1
-	person_event SPRITE_POKE_BALL, 25, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x7c306, EVENT_WAREHOUSE_ENTRANCE_COIN_CASE
+	person_event SPRITE_POKE_BALL, 25, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, WarehouseEntranceCoinCase, EVENT_WAREHOUSE_ENTRANCE_COIN_CASE
 	person_event SPRITE_GRAMPS, 11, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, GrampsScript_0x7c146, EVENT_WAREHOUSE_ENTRANCE_GRAMPS
 	person_event SPRITE_SUPER_NERD, 14, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, OlderHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_OLDER_HAIRCUT_BROTHER
 	person_event SPRITE_SUPER_NERD, 15, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, YoungerHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_YOUNGER_HAIRCUT_BROTHER

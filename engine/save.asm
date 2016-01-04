@@ -18,7 +18,7 @@ SaveMenu: ; 14a1a
 
 .refused
 	call ExitMenu
-	call Functiond90
+	call ret_d90
 	callba SaveMenu_LoadEDTile
 	scf
 	ret
@@ -182,7 +182,7 @@ AskOverwriteSaveFile: ; 14b89
 	ld a, [wSaveFileExists]
 	and a
 	jr z, .erase
-	call Function14bcb
+	call CompareLoadedAndSavedPlayerID
 	jr z, .yoursavefile
 	ld hl, UnknownText_0x15297
 	call SaveTheGame_yesorno
@@ -213,17 +213,17 @@ SaveTheGame_yesorno: ; 14baf
 	call LoadMenuTextBox
 	lb bc, 0, 7
 	call PlaceYesNoBox
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	dec a
-	call WriteBackup
+	call CloseWindow
 	push af
-	call Functiond90
+	call ret_d90
 	pop af
 	and a
 	ret
 ; 14bcb
 
-Function14bcb: ; 14bcb
+CompareLoadedAndSavedPlayerID: ; 14bcb
 	ld a, BANK(sPlayerData)
 	call GetSRAMBank
 	ld hl, sPlayerData + (PlayerID - wPlayerData)
@@ -291,7 +291,7 @@ SaveGameData_: ; 14c10
 	ld a, BANK(sBattleTowerChallengeState)
 	call GetSRAMBank
 	ld a, [sBattleTowerChallengeState]
-	cp $4
+	cp BATTLETOWER_RECEIVED_REWARD
 	jr nz, .ok
 	xor a
 	ld [sBattleTowerChallengeState], a
@@ -373,7 +373,7 @@ ErasePreviousSave: ; 14cbb
 	call EraseLinkBattleStats
 	call EraseMysteryGift
 	call SaveData
-	call Function14d5c
+	call EraseBattleTowerStatus
 	ld a, BANK(sStackTop)
 	call GetSRAMBank
 	xor a
@@ -437,7 +437,7 @@ Unknown_14d2c: ; 14d2c
 	db $11, $0c, $0c, $06, $06, $04
 ; 14d5c
 
-Function14d5c: ; 14d5c
+EraseBattleTowerStatus: ; 14d5c
 	ld a, BANK(sBattleTowerChallengeState)
 	call GetSRAMBank
 	xor a
@@ -486,7 +486,7 @@ Function14d93: ; 14d93
 ; 14da0
 
 
-Function14da0: ; 14da0
+HallOfFame_InitSaveIfNeeded: ; 14da0
 	ld a, [wSavedAtLeastOnce]
 	and a
 	ret nz
@@ -512,7 +512,7 @@ SaveOptions: ; 14dbb
 	ld bc, OptionsEnd - Options
 	call CopyBytes
 	ld a, [Options]
-	and $ef
+	and $ff ^ (1 << NO_TEXT_SCROLL)
 	ld [sOptions], a
 	jp CloseSRAM
 ; 14dd7
@@ -791,9 +791,9 @@ LoadPlayerData: ; 14fd7 (5:4fd7)
 	ld a, BANK(sBattleTowerChallengeState)
 	call GetSRAMBank
 	ld a, [sBattleTowerChallengeState]
-	cp $4
+	cp BATTLETOWER_RECEIVED_REWARD
 	jr nz, .not_4
-	ld a, $3
+	ld a, BATTLETOWER_WON_CHALLENGE
 	ld [sBattleTowerChallengeState], a
 .not_4
 	call CloseSRAM
@@ -892,7 +892,7 @@ _SaveData: ; 1509a
 	jp CloseSRAM
 
 
-Function150b9: ; 150b9
+_LoadData: ; 150b9
 	ld a, BANK(sCrystalData)
 	call GetSRAMBank
 	ld hl, sCrystalData
@@ -938,8 +938,11 @@ endr
 ; 150f9
 
 SaveBoxAddress: ; 150f9
+; Save box via wMisc.
+; We do this in three steps because the size of wMisc is less than
+; the size of sBox.
 	push hl
-
+; Load the first part of the active box.
 	push af
 	push de
 	ld a, BANK(sBox)
@@ -951,7 +954,7 @@ SaveBoxAddress: ; 150f9
 	call CloseSRAM
 	pop de
 	pop af
-
+; Save it to the target box.
 	push af
 	push de
 	call GetSRAMBank
@@ -959,6 +962,8 @@ SaveBoxAddress: ; 150f9
 	ld bc, (wMiscEnd - wMisc)
 	call CopyBytes
 	call CloseSRAM
+
+; Load the second part of the active box.
 	ld a, BANK(sBox)
 	call GetSRAMBank
 	ld hl, sBox + (wMiscEnd - wMisc)
@@ -973,7 +978,7 @@ SaveBoxAddress: ; 150f9
 	add hl, de
 	ld e, l
 	ld d, h
-
+; Save it to the next part of the target box.
 	push af
 	push de
 	call GetSRAMBank
@@ -981,6 +986,8 @@ SaveBoxAddress: ; 150f9
 	ld bc, (wMiscEnd - wMisc)
 	call CopyBytes
 	call CloseSRAM
+
+; Load the third and final part of the active box.
 	ld a, BANK(sBox)
 	call GetSRAMBank
 	ld hl, sBox + (wMiscEnd - wMisc) * 2
@@ -995,7 +1002,7 @@ SaveBoxAddress: ; 150f9
 	add hl, de
 	ld e, l
 	ld d, h
-
+; Save it to the final part of the target box.
 	call GetSRAMBank
 	ld hl, wMisc
 	ld bc, sBoxEnd - (sBox + (wMiscEnd - wMisc) * 2) ; $8e
@@ -1008,10 +1015,13 @@ SaveBoxAddress: ; 150f9
 
 
 LoadBoxAddress: ; 1517d (5:517d)
+; Load box via wMisc.
+; We do this in three steps because the size of wMisc is less than
+; the size of sBox.
 	push hl
 	ld l, e
 	ld h, d
-
+; Load part 1
 	push af
 	push hl
 	call GetSRAMBank
@@ -1031,7 +1041,7 @@ LoadBoxAddress: ; 1517d (5:517d)
 
 	ld de, (wMiscEnd - wMisc)
 	add hl, de
-
+; Load part 2
 	push af
 	push hl
 	call GetSRAMBank
@@ -1048,7 +1058,7 @@ LoadBoxAddress: ; 1517d (5:517d)
 	call CloseSRAM
 	pop hl
 	pop af
-
+; Load part 3
 	ld de, (wMiscEnd - wMisc)
 	add hl, de
 	call GetSRAMBank

@@ -1,3 +1,7 @@
+const_value set 2
+	const OLIVINELIGHTHOUSE2F_SAILOR
+	const OLIVINELIGHTHOUSE2F_GENTLEMAN
+
 OlivineLighthouse2F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -9,11 +13,11 @@ TrainerGentlemanAlfred:
 	trainer EVENT_BEAT_GENTLEMAN_ALFRED, GENTLEMAN, ALFRED, GentlemanAlfredSeenText, GentlemanAlfredBeatenText, 0, GentlemanAlfredScript
 
 GentlemanAlfredScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x5b13e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerSailorHuey1:
@@ -21,8 +25,8 @@ TrainerSailorHuey1:
 
 SailorHuey1Script:
 	writecode VAR_CALLERID, PHONE_SAILOR_HUEY
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	checkflag ENGINE_HUEY
 	iftrue UnknownScript_0x5afc7
 	checkcellnum PHONE_SAILOR_HUEY
@@ -63,7 +67,7 @@ UnknownScript_0x5afc7:
 .LoadFight0
 	loadtrainer SAILOR, HUEY1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wHueyFightCount, 1
 	clearflag ENGINE_HUEY
 	end
@@ -71,7 +75,7 @@ UnknownScript_0x5afc7:
 .LoadFight1
 	loadtrainer SAILOR, HUEY2
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wHueyFightCount, 2
 	clearflag ENGINE_HUEY
 	end
@@ -79,7 +83,7 @@ UnknownScript_0x5afc7:
 .LoadFight2
 	loadtrainer SAILOR, HUEY3
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	loadvar wHueyFightCount, 3
 	clearflag ENGINE_HUEY
 	end
@@ -87,7 +91,7 @@ UnknownScript_0x5afc7:
 .LoadFight3
 	loadtrainer SAILOR, HUEY4
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	clearflag ENGINE_HUEY
 	checkevent EVENT_HUEY_PROTEIN
 	iftrue UnknownScript_0x5b03f
@@ -103,9 +107,9 @@ UnknownScript_0x5b03e:
 	end
 
 UnknownScript_0x5b03f:
-	loadfont
+	opentext
 	writetext UnknownText_0x5b1b6
-	closetext
+	waitbutton
 	verbosegiveitem PROTEIN
 	iffalse UnknownScript_0x5b06f
 	clearevent EVENT_HUEY_PROTEIN

@@ -1,3 +1,8 @@
+const_value set 2
+	const RUINSOFALPHRESEARCHCENTER_SCIENTIST1
+	const RUINSOFALPHRESEARCHCENTER_SCIENTIST2
+	const RUINSOFALPHRESEARCHCENTER_SCIENTIST3
+
 RuinsofAlphResearchCenter_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -26,12 +31,12 @@ UnknownScript_0x59185:
 	return
 
 UnknownScript_0x5918b:
-	moveperson $4, $3, $7
-	appear $4
+	moveperson RUINSOFALPHRESEARCHCENTER_SCIENTIST3, $3, $7
+	appear RUINSOFALPHRESEARCHCENTER_SCIENTIST3
 	return
 
 UnknownScript_0x59192:
-	applymovement $4, MovementData_0x5926f
+	applymovement RUINSOFALPHRESEARCHCENTER_SCIENTIST3, MovementData_0x5926f
 	playsound SFX_BOOT_PC
 	pause 60
 	playsound SFX_SWITCH_POKEMON
@@ -40,44 +45,44 @@ UnknownScript_0x59192:
 	pause 30
 	playsound SFX_TRANSACTION
 	pause 30
-	spriteface $4, DOWN
-	loadfont
+	spriteface RUINSOFALPHRESEARCHCENTER_SCIENTIST3, DOWN
+	opentext
 	writetext UnknownText_0x59278
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement $4, MovementData_0x59274
-	loadfont
+	applymovement RUINSOFALPHRESEARCHCENTER_SCIENTIST3, MovementData_0x59274
+	opentext
 	writetext UnknownText_0x592fa
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	setflag ENGINE_UNOWN_DEX
 	writetext UnknownText_0x59311
+	waitbutton
 	closetext
-	loadmovesprites
-	applymovement $4, MovementData_0x59276
+	applymovement RUINSOFALPHRESEARCHCENTER_SCIENTIST3, MovementData_0x59276
 	dotrigger $0
 	special RestartMapMusic
 	end
 
 ScientistScript_0x591d1:
 	faceplayer
-	loadfont
+	opentext
 	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x591df
 	writetext UnknownText_0x59311
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x591df:
 	writetext UnknownText_0x5935f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ScientistScript_0x591e5:
 	faceplayer
-	loadfont
+	opentext
 	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x5920b
 	checkflag ENGINE_UNOWN_DEX
@@ -85,88 +90,88 @@ ScientistScript_0x591e5:
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x591ff
 	writetext UnknownText_0x593ed
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x591ff:
 	writetext UnknownText_0x59478
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x59205:
 	writetext UnknownText_0x59445
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x5920b:
 	writetext UnknownText_0x594cb
+	waitbutton
 	closetext
-	loadmovesprites
 	clearevent EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS
 	end
 
 ScientistScript_0x59214:
 	faceplayer
-	loadfont
+	opentext
 	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x5922e
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x59228
 	writetext UnknownText_0x5954f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x59228:
 	writetext UnknownText_0x595cb
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x5922e:
 	writetext UnknownText_0x59769
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRuinsofAlphResearchCenterSignpost1Script:
-	loadfont
+	opentext
 	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	iftrue UnknownScript_0x59241
 	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x59247
 UnknownScript_0x59241:
 	writetext UnknownText_0x597b6
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x59247:
 	writetext UnknownText_0x597d9
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapRuinsofAlphResearchCenterSignpost2Script:
-	loadfont
+	opentext
 	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	iftrue UnknownScript_0x5925a
 	checkcode VAR_UNOWNCOUNT
 	if_equal 26, UnknownScript_0x59260
 UnknownScript_0x5925a:
 	writetext UnknownText_0x5980e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x59260:
 	writetext UnknownText_0x5982d
-	closetext
+	waitbutton
 	special Special_UnownPrinter
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x59269:

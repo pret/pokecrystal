@@ -6,21 +6,21 @@ InitDecorations: ; 26751 (9:6751)
 	ret
 
 _KrisDecorationMenu: ; 0x2675c
-	ld a, [wcf76]
+	ld a, [wWhichIndexSet]
 	push af
 	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
 	xor a
-	ld [wd1ee], a
+	ld [Buffer5], a
 	ld a, $1
-	ld [wd1ef], a
+	ld [Buffer6], a
 .top_loop
-	ld a, [wd1ef]
+	ld a, [Buffer6]
 	ld [wMenuCursorBuffer], a
 	call .FindCategoriesWithOwnedDecos
 	call DoNthMenu
-	ld a, [MenuSelection2]
-	ld [wd1ef], a
+	ld a, [wMenuCursorY]
+	ld [Buffer6], a
 	jr c, .exit_menu
 	ld a, [MenuSelection]
 	ld hl, .pointers
@@ -30,8 +30,8 @@ _KrisDecorationMenu: ; 0x2675c
 .exit_menu
 	call ExitMenu
 	pop af
-	ld [wcf76], a
-	ld a, [wd1ee]
+	ld [wWhichIndexSet], a
+	ld a, [Buffer5]
 	ld c, a
 	ret
 ; 0x2679a
@@ -74,7 +74,7 @@ _KrisDecorationMenu: ; 0x2675c
 
 .FindCategoriesWithOwnedDecos: ; 26806
 	xor a
-	ld [wcf76], a
+	ld [wWhichIndexSet], a
 	call .ClearStringBuffer2
 	call .FindOwndDecos
 	ld a, 7
@@ -104,7 +104,7 @@ _KrisDecorationMenu: ; 0x2675c
 	ret
 
 .FindOwndDecos: ; 2683a (9:683a)
-	ld hl, .jumptable
+	ld hl, .dw
 .loop
 	ld a, [hli]
 	ld e, a
@@ -127,7 +127,7 @@ _KrisDecorationMenu: ; 0x2675c
 	ret
 ; 26855 (9:6855)
 
-.jumptable: ; 26855
+.dw: ; 26855
 	dwb FindOwnedBeds, 0 ; bed
 	dwb FindOwnedCarpets, 1 ; carpet
 	dwb FindOwnedPlants, 2 ; plant
@@ -207,7 +207,7 @@ DecoBedMenu: ; 268b5
 
 FindOwnedBeds: ; 268bd
 	ld hl, .beds
-	ld c, DECO_BEDS
+	ld c, BEDS
 	jp FindOwnedDecosInCategory
 ; 268c5
 
@@ -228,7 +228,7 @@ DecoCarpetMenu: ; 268ca
 
 FindOwnedCarpets: ; 268d2
 	ld hl, .carpets
-	ld c, DECO_CARPETS
+	ld c, CARPETS
 	jp FindOwnedDecosInCategory
 ; 268da
 
@@ -249,7 +249,7 @@ DecoPlantMenu: ; 268df
 
 FindOwnedPlants: ; 268e7
 	ld hl, .plants
-	ld c, DECO_0B
+	ld c, PLANTS
 	jp FindOwnedDecosInCategory
 ; 268ef
 
@@ -269,7 +269,7 @@ DecoPosterMenu: ; 268f3
 
 FindOwnedPosters: ; 268fb
 	ld hl, .posters
-	ld c, DECO_POSTERS
+	ld c, POSTERS
 	jp FindOwnedDecosInCategory
 ; 26903
 
@@ -290,7 +290,7 @@ DecoConsoleMenu: ; 26908
 
 FindOwnedConsoles: ; 26910
 	ld hl, .consoles
-	ld c, DECO_CONSOLES
+	ld c, CONSOLES
 	jp FindOwnedDecosInCategory
 ; 26918
 
@@ -311,7 +311,7 @@ DecoOrnamentMenu: ; 2691d
 
 FindOwnedOrnaments: ; 26925
 	ld hl, .ornaments
-	ld c, DECO_DOLLS
+	ld c, DOLLS
 	jp FindOwnedDecosInCategory
 ; 2692d
 
@@ -351,7 +351,7 @@ DecoBigDollMenu: ; 26945
 
 FindOwnedBigDolls: ; 2694d
 	ld hl, .big_dolls
-	ld c, DECO_BIG_DOLLS
+	ld c, BIG_DOLLS
 	jp FindOwnedDecosInCategory
 ; 26955
 
@@ -374,7 +374,7 @@ PopulateDecoCategoryMenu: ; 2695b
 	cp 8
 	jr nc, .beyond_eight
 	xor a
-	ld [wcf76], a
+	ld [wWhichIndexSet], a
 	ld hl, .NonscrollingMenuDataHeader
 	call LoadMenuDataHeader
 	call DoNthMenu
@@ -400,8 +400,8 @@ PopulateDecoCategoryMenu: ; 2695b
 	call InitScrollingMenu
 	xor a
 	ld [wMenuScrollPosition], a
-	call HandleScrollingMenu
-	ld a, [wcf73]
+	call ScrollingMenu
+	ld a, [wMenuJoypad]
 	cp 2
 	jr z, .no_action_2
 	call DoDecorationAction2
@@ -803,7 +803,7 @@ DecoAction_TrySetItUp: ; 26d2d
 	call DecoAction_SetItUp
 	jr c, .failed
 	ld a, 1
-	ld [wd1ee], a
+	ld [Buffer5], a
 	pop hl
 	ld a, [MenuSelection]
 	ld [hl], a
@@ -865,7 +865,7 @@ DecoAction_TryPutItAway: ; 26d86
 	jr z, .nothingthere
 ; Put it away.
 	ld a, $1
-	ld [wd1ee], a
+	ld [Buffer5], a
 	ld a, [Buffer1]
 	ld [MenuSelection], a
 	ld hl, StringBuffer3
@@ -889,7 +889,7 @@ DecoAction_setupornament: ; 26db3
 	call DecoAction_SetItUp_Ornament
 	jr c, .cancel
 	ld a, $1
-	ld [wd1ee], a
+	ld [Buffer5], a
 	jr DecoAction_FinishUp_Ornament
 
 .cancel
@@ -981,7 +981,7 @@ DecoAction_PutItAway_Ornament: ; 26e46
 	ld hl, StringBuffer3
 	call GetDecorationName
 	ld a, $1
-	ld [wd1ee], a
+	ld [Buffer5], a
 	xor a
 	ld [wd1ec], a
 	ld hl, DecoText_PutAwayTheDeco
@@ -1009,7 +1009,7 @@ DecoAction_AskWhichSide: ; 26e70
 	call ExitMenu
 	call CopyMenuData2
 	jr c, .nope
-	ld a, [MenuSelection2]
+	ld a, [wMenuCursorY]
 	cp 3
 	jr z, .nope
 	ld [Buffer2], a
@@ -1244,11 +1244,11 @@ DecorationDesc_PosterPointers: ; 26f84
 ; 26f91
 
 DecorationDesc_TownMapPoster: ; 0x26f91
-	loadfont
+	opentext
 	writetext .TownMapText
-	closetext
+	waitbutton
 	special Special_TownMap
-	loadmovesprites
+	closetext
 	end
 ; 0x26f9b
 

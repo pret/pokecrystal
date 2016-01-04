@@ -1,3 +1,10 @@
+const_value set 2
+	const VIOLETPOKECENTER1F_NURSE
+	const VIOLETPOKECENTER1F_GAMEBOY_KID
+	const VIOLETPOKECENTER1F_GENTLEMAN
+	const VIOLETPOKECENTER1F_YOUNGSTER
+	const VIOLETPOKECENTER1F_SCIENTIST
+
 VioletPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -5,71 +12,71 @@ VioletPokeCenter1F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-NurseScript_0x694c9:
+VioletPokeCenterNurse:
 	jumpstd pokecenternurse
 
-ScientistScript_0x694cc:
+VioletPokeCenter1F_ElmsAideScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_REFUSED_TO_TAKE_EGG_FROM_ELMS_AIDE
-	iftrue UnknownScript_0x6953a
+	iftrue .SecondTimeAsking
 	writetext UnknownText_0x69555
-UnknownScript_0x694d7:
+.AskTakeEgg:
 	yesorno
-	iffalse UnknownScript_0x69531
+	iffalse .RefusedEgg
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, UnknownScript_0x6952b
+	if_equal PARTY_LENGTH, .PartyFull
 	giveegg TOGEPI, 5
 	stringtotext .eggname, $1
-	scall UnknownScript_0x69527
+	scall .AideGivesEgg
 	setevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	clearevent EVENT_ELMS_AIDE_IN_LAB
 	clearevent EVENT_TOGEPI_HATCHED
 	domaptrigger ROUTE_32, $1
 	writetext UnknownText_0x695c5
-	closetext
-	loadmovesprites
-	checkcode VAR_FACING
-	if_equal $1, .UnknownScript_0x69511
-	spriteface PLAYER, DOWN
-	applymovement $6, MovementData_0x69549
-	playsound SFX_EXIT_BUILDING
-	disappear $6
 	waitbutton
+	closetext
+	checkcode VAR_FACING
+	if_equal UP, .AideWalksAroundPlayer
+	spriteface PLAYER, DOWN
+	applymovement VIOLETPOKECENTER1F_SCIENTIST, MovementData_AideWalksStraightOutOfPokecenter
+	playsound SFX_EXIT_BUILDING
+	disappear VIOLETPOKECENTER1F_SCIENTIST
+	waitsfx
 	end
 
-.UnknownScript_0x69511
-	applymovement $6, MovementData_0x6954e
+.AideWalksAroundPlayer
+	applymovement VIOLETPOKECENTER1F_SCIENTIST, MovementData_AideWalksLeftToExitPokecenter
 	spriteface PLAYER, DOWN
-	applymovement $6, MovementData_0x69551
+	applymovement VIOLETPOKECENTER1F_SCIENTIST, MovementData_AideFinishesLeavingPokecenter
 	playsound SFX_EXIT_BUILDING
-	disappear $6
-	waitbutton
+	disappear VIOLETPOKECENTER1F_SCIENTIST
+	waitsfx
 	end
 
 .eggname
 	db "EGG@"
 
-UnknownScript_0x69527:
+.AideGivesEgg:
 	jumpstd receivetogepiegg
 	end
 
-UnknownScript_0x6952b:
+.PartyFull:
 	writetext UnknownText_0x69693
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
-UnknownScript_0x69531:
+.RefusedEgg:
 	writetext UnknownText_0x696f2
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_REFUSED_TO_TAKE_EGG_FROM_ELMS_AIDE
 	end
 
-UnknownScript_0x6953a:
+.SecondTimeAsking:
 	writetext UnknownText_0x69712
-	jump UnknownScript_0x694d7
+	jump .AskTakeEgg
 
 GameboyKidScript_0x69540:
 	jumptextfaceplayer UnknownText_0x69809
@@ -80,19 +87,19 @@ GentlemanScript_0x69543:
 YoungsterScript_0x69546:
 	jumptextfaceplayer UnknownText_0x698b8
 
-MovementData_0x69549:
+MovementData_AideWalksStraightOutOfPokecenter:
 	step_down
 	step_down
 	step_down
 	step_down
 	step_end
 
-MovementData_0x6954e:
+MovementData_AideWalksLeftToExitPokecenter:
 	step_left
 	step_down
 	step_end
 
-MovementData_0x69551:
+MovementData_AideFinishesLeavingPokecenter:
 	step_down
 	step_down
 	step_down
@@ -226,8 +233,8 @@ VioletPokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NurseScript_0x694c9, -1
+	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, VioletPokeCenterNurse, -1
 	person_event SPRITE_GAMEBOY_KID, 6, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, GameboyKidScript_0x69540, -1
 	person_event SPRITE_GENTLEMAN, 4, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GentlemanScript_0x69543, -1
 	person_event SPRITE_YOUNGSTER, 1, 8, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x69546, -1
-	person_event SPRITE_SCIENTIST, 3, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, ScientistScript_0x694cc, EVENT_ELMS_AIDE_IN_VIOLET_POKEMON_CENTER
+	person_event SPRITE_SCIENTIST, 3, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, VioletPokeCenter1F_ElmsAideScript, EVENT_ELMS_AIDE_IN_VIOLET_POKEMON_CENTER

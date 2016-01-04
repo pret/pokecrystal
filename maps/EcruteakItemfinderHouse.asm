@@ -1,3 +1,7 @@
+const_value set 2
+	const ECRUTEAKITEMFINDERHOUSE_COOLTRAINER_M
+	const ECRUTEAKITEMFINDERHOUSE_POKEDEX
+
 EcruteakItemfinderHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,47 +11,47 @@ EcruteakItemfinderHouse_MapScriptHeader:
 
 CooltrainerMScript_0x9a5fb:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_GOT_ITEMFINDER
 	iftrue UnknownScript_0x9a614
 	writetext UnknownText_0x9a63c
 	yesorno
 	iffalse UnknownScript_0x9a61a
 	writetext UnknownText_0x9a6b5
-	keeptextopen
+	buttonsound
 	verbosegiveitem ITEMFINDER
 	setevent EVENT_GOT_ITEMFINDER
 UnknownScript_0x9a614:
 	writetext UnknownText_0x9a70e
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x9a61a:
 	writetext UnknownText_0x9a805
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokedexScript_0x9a620:
-	loadfont
+	opentext
 	writetext UnknownText_0x9a826
 	yesorno
 	iftrue UnknownScript_0x9a62a
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x9a62a:
 	writetext UnknownText_0x9a84c
 	yesorno
 	iftrue UnknownScript_0x9a633
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x9a633:
 	writetext UnknownText_0x9a902
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 ItemFinderHouseRadio:

@@ -1,3 +1,8 @@
+const_value set 2
+	const TINTOWER8F_POKE_BALL1
+	const TINTOWER8F_POKE_BALL2
+	const TINTOWER8F_POKE_BALL3
+
 TinTower8F_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -5,14 +10,14 @@ TinTower8F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ItemFragment_0x185b35:
-	db NUGGET, 1
+TinTower8FNugget:
+	itemball NUGGET
 
-ItemFragment_0x185b37:
-	db MAX_ELIXER, 1
+TinTower8FMaxElixer:
+	itemball MAX_ELIXER
 
-ItemFragment_0x185b39:
-	db FULL_RESTORE, 1
+TinTower8FFullRestore:
+	itemball FULL_RESTORE
 
 TinTower8F_MapEventHeader:
 	; filler
@@ -35,6 +40,6 @@ TinTower8F_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_POKE_BALL, 13, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x185b35, EVENT_TIN_TOWER_8F_NUGGET
-	person_event SPRITE_POKE_BALL, 6, 11, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x185b37, EVENT_TIN_TOWER_8F_MAX_ELIXER
-	person_event SPRITE_POKE_BALL, 1, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x185b39, EVENT_TIN_TOWER_8F_FULL_RESTORE
+	person_event SPRITE_POKE_BALL, 13, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TinTower8FNugget, EVENT_TIN_TOWER_8F_NUGGET
+	person_event SPRITE_POKE_BALL, 6, 11, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TinTower8FMaxElixer, EVENT_TIN_TOWER_8F_MAX_ELIXER
+	person_event SPRITE_POKE_BALL, 1, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TinTower8FFullRestore, EVENT_TIN_TOWER_8F_FULL_RESTORE

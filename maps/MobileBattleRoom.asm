@@ -1,19 +1,20 @@
+
 MobileBattleRoom_MapScriptHeader:
 .MapTriggers:
 	db 2
 
 	; triggers
+	dw .Trigger0, 0
 	dw .Trigger1, 0
-	dw .Trigger2, 0
 
 .MapCallbacks:
 	db 0
 
-.Trigger1:
+.Trigger0:
 	priorityjump MobileBattleRoom_Initialize
 	end
 
-.Trigger2:
+.Trigger1:
 	end
 
 MobileBattleRoom_Initialize:
@@ -34,7 +35,7 @@ MapMobileBattleRoomSignpost0Script:
 .one_:
 	writetext MobileBattleRoom_HealText
 	pause 20
-	loadmovesprites
+	closetext
 	special FadeOutPalettes
 	playmusic MUSIC_HEAL
 	special LoadMapPalettes
@@ -50,11 +51,11 @@ MapMobileBattleRoomSignpost0Script:
 .one:
 	special Function10387b
 	writetext MobileBattleRoom_EstablishingCommsText
-	closetext
+	waitbutton
 	reloadmappart
 	special Function101225
 .false:
-	loadmovesprites
+	closetext
 	end
 
 MobileBattleRoom_EstablishingCommsText:

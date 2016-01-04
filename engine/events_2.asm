@@ -3,7 +3,7 @@
 
 WarpToSpawnPoint:: ; 97c28
 	ld hl, StatusFlags2
-	res 1, [hl] ; ??
+	res 1, [hl] ; safari zone?
 	res 2, [hl] ; bug contest
 	ret
 ; 97c30
@@ -142,9 +142,9 @@ RandomEncounter:: ; 97cc0
 ; 97cf9
 
 WildBattleScript: ; 97cf9
-	battlecheck
+	randomwildmon
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	end
 ; 97cfd
 
@@ -514,7 +514,7 @@ CmdQueue_Null2: ; 97eb8
 
 CmdQueue_Type4: ; 97ebc
 	call CmdQueueAnonymousJumptable
-	; anonymous jumptable
+	; anonymous dw
 	dw .zero
 	dw .one
 ; 97ec3
@@ -560,7 +560,7 @@ CmdQueue_Type4: ; 97ebc
 
 CmdQueue_Type3: ; 97ef9
 	call CmdQueueAnonymousJumptable
-	; anonymous jumptable
+	; anonymous dw
 	dw .zero
 	dw .one
 	dw .two
@@ -627,7 +627,7 @@ CmdQueue_StoneTable: ; 97f42
 	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, de
 	ld a, [hl]
-	cp STEP_TYPE_19
+	cp STEP_TYPE_SKYFALL_TOP
 	jr nz, .next
 
 	ld hl, OBJECT_NEXT_TILE

@@ -20,7 +20,7 @@ AI_SwitchOrTryItem: ; 38000
 	and a
 	jr nz, DontSwitch
 
-	ld hl, TrainerClassAttributes + 5
+	ld hl, TrainerClassAttributes + TRNATTR_AI_ITEM_SWITCH
 	ld a, [InBattleTowerBattle] ; Load always the first TrainerClass for BattleTower-Trainers
 	and a
 	jr nz, .ok
@@ -663,7 +663,7 @@ EnemyPotionFinish: ; 38436
 	call PrintText_UsedItemOn
 	hlcoord 2, 2
 	xor a
-	ld [wd10a], a
+	ld [wWhichHPBar], a
 	call AIUsedItemSound
 	predef AnimateHPBar
 	jp AIUpdateHUD
@@ -866,7 +866,7 @@ PrintText_UsedItemOn: ; 38571
 	ld [wd265], a
 	call GetItemName
 	ld hl, StringBuffer1
-	ld de, wd050
+	ld de, wMonOrItemNameBuffer
 	ld bc, ITEM_NAME_LENGTH
 	call CopyBytes
 	ld hl, TextJump_EnemyUsedOn

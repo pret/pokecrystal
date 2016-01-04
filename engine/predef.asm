@@ -34,7 +34,7 @@ PredefPointers:: ; 856b
 	add_predef Predef1
 	add_predef HealParty
 	add_predef FlagPredef
-	add_predef DrawPartyMenuHPBar
+	add_predef ComputeHPBarPixels
 	add_predef FillPP
 	add_predef TryAddMonToParty
 	add_predef AddTempmonToParty
@@ -65,7 +65,7 @@ PredefPointers:: ; 856b
 	add_predef ListMoves ; $20
 	add_predef PlaceNonFaintStatus
 	add_predef Function50cdb
-	add_predef Function50c50
+	add_predef ListMovePP
 	add_predef GetGender
 	add_predef StatsScreenInit
 	add_predef DrawPlayerHP
@@ -76,11 +76,11 @@ PredefPointers:: ; 856b
 	add_predef PrintType
 	add_predef PrintMonTypes
 	add_predef GetUnownLetter
-	add_predef Functioncbcdd
+	add_predef LoadPoisonBGPals
 	add_predef Predef2F
 	add_predef Function9853 ; $30
 	add_predef Predef_LoadSGBLayout
-	add_predef Function91d11
+	add_predef _Area
 	add_predef CheckContestMon
 	add_predef Predef_StartBattle
 	add_predef Predef35

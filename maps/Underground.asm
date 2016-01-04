@@ -1,3 +1,4 @@
+
 Underground_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -5,11 +6,11 @@ Underground_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-MapUndergroundSignpostItem0:
+UndergroundHiddenFullRestore:
 	dwb EVENT_UNDERGROUND_HIDDEN_FULL_RESTORE, FULL_RESTORE
 	
 
-MapUndergroundSignpostItem1:
+UndergroundHiddenXSpecial:
 	dwb EVENT_UNDERGROUND_HIDDEN_X_SPECIAL, X_SPECIAL
 	
 
@@ -27,8 +28,8 @@ Underground_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 9, 3, SIGNPOST_ITEM, MapUndergroundSignpostItem0
-	signpost 19, 1, SIGNPOST_ITEM, MapUndergroundSignpostItem1
+	signpost 9, 3, SIGNPOST_ITEM, UndergroundHiddenFullRestore
+	signpost 19, 1, SIGNPOST_ITEM, UndergroundHiddenXSpecial
 
 .PersonEvents:
 	db 0

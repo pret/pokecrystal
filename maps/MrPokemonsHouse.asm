@@ -1,3 +1,7 @@
+const_value set 2
+	const MRPOKEMONSHOUSE_GENTLEMAN
+	const MRPOKEMONSHOUSE_OAK
+
 MrPokemonsHouse_MapScriptHeader:
 .MapTriggers:
 	db 2
@@ -17,52 +21,52 @@ UnknownScript_0x196e55:
 	end
 
 UnknownScript_0x196e56:
-	showemote EMOTE_SHOCK, $2, 15
-	spriteface $2, DOWN
-	loadfont
+	showemote EMOTE_SHOCK, MRPOKEMONSHOUSE_GENTLEMAN, 15
+	spriteface MRPOKEMONSHOUSE_GENTLEMAN, DOWN
+	opentext
 	writetext UnknownText_0x196f66
-	closetext
-	loadmovesprites
-	applymovement PLAYER, MovementData_0x196f5a
-	loadfont
-	writetext UnknownText_0x196fa8
-	keeptextopen
 	waitbutton
+	closetext
+	applymovement PLAYER, MovementData_0x196f5a
+	opentext
+	writetext UnknownText_0x196fa8
+	buttonsound
+	waitsfx
 	giveitem MYSTERY_EGG
 	writetext UnknownText_0x196fd2
 	playsound SFX_KEY_ITEM
-	waitbutton
+	waitsfx
 	itemnotify
 	setevent EVENT_GOT_MYSTERY_EGG_FROM_MR_POKEMON
 	blackoutmod CHERRYGROVE_CITY
 	writetext UnknownText_0x196feb
-	keeptextopen
-	spriteface $2, RIGHT
+	buttonsound
+	spriteface MRPOKEMONSHOUSE_GENTLEMAN, RIGHT
 	writetext UnknownText_0x197092
-	keeptextopen
-	spriteface $2, DOWN
-	spriteface $3, LEFT
+	buttonsound
+	spriteface MRPOKEMONSHOUSE_GENTLEMAN, DOWN
+	spriteface MRPOKEMONSHOUSE_OAK, LEFT
 	writetext UnknownText_0x1970b7
+	waitbutton
 	closetext
-	loadmovesprites
 	jump UnknownScript_0x196ec9
 
 GentlemanScript_0x196e97:
 	faceplayer
-	loadfont
+	opentext
 	checkitem RED_SCALE
 	iftrue UnknownScript_0x196eb0
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x196eaa
 	writetext UnknownText_0x197134
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x196eaa:
 	writetext UnknownText_0x19714a
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 UnknownScript_0x196eb0:
@@ -76,38 +80,38 @@ UnknownScript_0x196eb0:
 
 UnknownScript_0x196ec3:
 	writetext UnknownText_0x19750d
-	closetext
+	waitbutton
 UnknownScript_0x196ec7:
-	loadmovesprites
+	closetext
 	end
 
 UnknownScript_0x196ec9:
 	playmusic MUSIC_PROF_OAK
-	applymovement $3, MovementData_0x196f5d
+	applymovement MRPOKEMONSHOUSE_OAK, MovementData_0x196f5d
 	spriteface PLAYER, RIGHT
-	loadfont
+	opentext
 	writetext UnknownText_0x197185
-	keeptextopen
-	waitbutton
+	buttonsound
+	waitsfx
 	writetext UnknownText_0x1973cc
 	playsound SFX_ITEM
-	waitbutton
+	waitsfx
 	setflag ENGINE_POKEDEX
 	writetext UnknownText_0x1973de
-	closetext
-	loadmovesprites
-	spriteface PLAYER, DOWN
-	applymovement $3, MovementData_0x196f61
-	playsound SFX_EXIT_BUILDING
-	disappear $3
 	waitbutton
+	closetext
+	spriteface PLAYER, DOWN
+	applymovement MRPOKEMONSHOUSE_OAK, MovementData_0x196f61
+	playsound SFX_EXIT_BUILDING
+	disappear MRPOKEMONSHOUSE_OAK
+	waitsfx
 	special RestartMapMusic
 	pause 15
 	spriteface PLAYER, UP
-	loadfont
+	opentext
 	writetext UnknownText_0x1970ed
+	waitbutton
 	closetext
-	loadmovesprites
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
 	playmusic MUSIC_HEAL
@@ -116,10 +120,10 @@ UnknownScript_0x196ec9:
 	pause 60
 	special Special_FadeInQuickly
 	special RestartMapMusic
-	loadfont
+	opentext
 	writetext UnknownText_0x197134
+	waitbutton
 	closetext
-	loadmovesprites
 	setevent EVENT_RIVAL_NEW_BARK_TOWN
 	setevent EVENT_KRISS_HOUSE_1F_NEIGHBOR
 	clearevent EVENT_KRISS_NEIGHBORS_HOUSE_NEIGHBOR

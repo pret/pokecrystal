@@ -5,12 +5,12 @@ SelectMenu:: ; 13327
 	jp UseRegisteredItem
 
 .NotRegistered
-	call LoadFont
+	call OpenText
 	ld b, BANK(ItemMayBeRegisteredText)
 	ld hl, ItemMayBeRegisteredText
 	call MapTextbox
-	call CloseText
-	jp LoadMoveSprites
+	call WaitButton
+	jp CloseText
 ; 13340
 
 
@@ -139,39 +139,39 @@ UseRegisteredItem: ; 133c3
 ; 133df
 
 .NoFunction ; 133df
-	call LoadFont
+	call OpenText
 	call CantUseItem
-	call LoadMoveSprites
+	call CloseText
 	and a
 	ret
 ; 133ea
 
 .Current ; 133ea
-	call LoadFont
+	call OpenText
 	call DoItemEffect
-	call LoadMoveSprites
+	call CloseText
 	and a
 	ret
 ; 133f5
 
 .Party ; 133f5
-	call ResetWindow
+	call RefreshScreen
 	call FadeToMenu
 	call DoItemEffect
-	call ReturnToCallingMenu
-	call LoadMoveSprites
+	call CloseSubmenu
+	call CloseText
 	and a
 	ret
 ; 13406
 
 .Overworld ; 13406
-	call ResetWindow
+	call RefreshScreen
 	ld a, 1
-	ld [wd0ef], a
+	ld [wUsingItemWithSelect], a
 	call DoItemEffect
 	xor a
-	ld [wd0ef], a
-	ld a, [wd0ec]
+	ld [wUsingItemWithSelect], a
+	ld a, [wItemEffectSucceeded]
 	cp 1
 	jr nz, ._cantuse
 	scf
@@ -181,11 +181,11 @@ UseRegisteredItem: ; 133c3
 ; 13422
 
 .CantUse ; 13422
-	call ResetWindow
+	call RefreshScreen
 
 ._cantuse
 	call CantUseItem
-	call LoadMoveSprites
+	call CloseText
 	and a
 	ret
 ; 1342d

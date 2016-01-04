@@ -1,3 +1,17 @@
+const_value set 2
+	const NATIONALPARKBUGCONTEST_YOUNGSTER1
+	const NATIONALPARKBUGCONTEST_YOUNGSTER2
+	const NATIONALPARKBUGCONTEST_ROCKER
+	const NATIONALPARKBUGCONTEST_POKEFAN_M
+	const NATIONALPARKBUGCONTEST_YOUNGSTER3
+	const NATIONALPARKBUGCONTEST_YOUNGSTER4
+	const NATIONALPARKBUGCONTEST_LASS
+	const NATIONALPARKBUGCONTEST_YOUNGSTER5
+	const NATIONALPARKBUGCONTEST_YOUNGSTER6
+	const NATIONALPARKBUGCONTEST_YOUNGSTER7
+	const NATIONALPARKBUGCONTEST_POKE_BALL1
+	const NATIONALPARKBUGCONTEST_POKE_BALL2
+
 NationalParkBugContest_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,82 +21,82 @@ NationalParkBugContest_MapScriptHeader:
 
 YoungsterScript_0x5c8ec:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5c94c
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x5c8f4:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5c973
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 RockerScript_0x5c8fc:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5c9a3
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PokefanMScript_0x5c904:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5c9cc
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x5c90c:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5ca15
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x5c914:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5ca52
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 LassScript_0x5c91c:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5ca8f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x5c924:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5cac8
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x5c92c:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5cb25
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 YoungsterScript_0x5c934:
 	faceplayer
-	loadfont
+	opentext
 	writetext UnknownText_0x5cb64
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 MapNationalParkBugContestSignpost0Script:
@@ -94,13 +108,13 @@ MapNationalParkBugContestSignpost1Script:
 MapNationalParkBugContestSignpost3Script:
 	jumptext UnknownText_0x5cc1d
 
-ItemFragment_0x5c945:
-	db PARLYZ_HEAL, 1
+NationalParkBugContestParlyzHeal:
+	itemball PARLYZ_HEAL
 
-ItemFragment_0x5c947:
-	db TM_DIG, 1
+NationalParkBugContestTMDig:
+	itemball TM_DIG
 
-MapNationalParkBugContestSignpostItem2:
+NationalParkBugContestHiddenFullHeal:
 	dwb EVENT_NATIONAL_PARK_HIDDEN_FULL_HEAL, FULL_HEAL
 	
 
@@ -225,7 +239,7 @@ NationalParkBugContest_MapEventHeader:
 	db 4
 	signpost 44, 14, SIGNPOST_READ, MapNationalParkBugContestSignpost0Script
 	signpost 31, 27, SIGNPOST_READ, MapNationalParkBugContestSignpost1Script
-	signpost 47, 6, SIGNPOST_ITEM, MapNationalParkBugContestSignpostItem2
+	signpost 47, 6, SIGNPOST_ITEM, NationalParkBugContestHiddenFullHeal
 	signpost 4, 12, SIGNPOST_READ, MapNationalParkBugContestSignpost3Script
 
 .PersonEvents:
@@ -240,5 +254,5 @@ NationalParkBugContest_MapEventHeader:
 	person_event SPRITE_YOUNGSTER, 27, 11, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x5c924, EVENT_BUG_CATCHING_CONTESTANT_8A
 	person_event SPRITE_YOUNGSTER, 8, 16, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x5c92c, EVENT_BUG_CATCHING_CONTESTANT_9A
 	person_event SPRITE_YOUNGSTER, 34, 17, SPRITEMOVEDATA_WANDER, 3, 3, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x5c934, EVENT_BUG_CATCHING_CONTESTANT_10A
-	person_event SPRITE_POKE_BALL, 12, 35, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x5c945, EVENT_NATIONAL_PARK_PARLYZ_HEAL
-	person_event SPRITE_POKE_BALL, 43, 1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMFRAGMENT, 0, ItemFragment_0x5c947, EVENT_NATIONAL_PARK_TM_DIG
+	person_event SPRITE_POKE_BALL, 12, 35, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, NationalParkBugContestParlyzHeal, EVENT_NATIONAL_PARK_PARLYZ_HEAL
+	person_event SPRITE_POKE_BALL, 43, 1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, NationalParkBugContestTMDig, EVENT_NATIONAL_PARK_TM_DIG

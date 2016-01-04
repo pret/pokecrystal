@@ -1,3 +1,8 @@
+const_value set 2
+	const PEWTERGYM_BROCK
+	const PEWTERGYM_YOUNGSTER
+	const PEWTERGYM_GYM_GUY
+
 PewterGym_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -7,59 +12,59 @@ PewterGym_MapScriptHeader:
 
 BrockScript_0x1a2864:
 	faceplayer
-	loadfont
+	opentext
 	checkflag ENGINE_BOULDERBADGE
 	iftrue .FightDone
 	writetext UnknownText_0x1a28d0
+	waitbutton
 	closetext
-	loadmovesprites
 	winlosstext UnknownText_0x1a29bb, 0
 	loadtrainer BROCK, 1
 	startbattle
-	returnafterbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_BROCK
 	setevent EVENT_BEAT_CAMPER_JERRY
-	loadfont
+	opentext
 	writetext UnknownText_0x1a2a3d
 	playsound SFX_GET_BADGE
-	waitbutton
+	waitsfx
 	setflag ENGINE_BOULDERBADGE
 	writetext UnknownText_0x1a2a57
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .FightDone
 	writetext UnknownText_0x1a2ada
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 TrainerCamperJerry:
 	trainer EVENT_BEAT_CAMPER_JERRY, CAMPER, JERRY, CamperJerrySeenText, CamperJerryBeatenText, 0, CamperJerryScript
 
 CamperJerryScript:
-	talkaftercancel
-	loadfont
+	end_if_just_battled
+	opentext
 	writetext UnknownText_0x1a2c0f
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PewterGymGuyScript:
 	faceplayer
-	loadfont
+	opentext
 	checkevent EVENT_BEAT_BROCK
 	iftrue .PewterGymGuyWinScript
 	writetext PewterGymGuyText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 .PewterGymGuyWinScript
 	writetext PewterGymGuyWinText
+	waitbutton
 	closetext
-	loadmovesprites
 	end
 
 PewterGymStatue:
