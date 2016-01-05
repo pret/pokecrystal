@@ -13,8 +13,8 @@ Route29_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw .Trigger0, 0
-	dw .Trigger1, 0
+	maptrigger .Trigger0
+	maptrigger .Trigger1
 
 .MapCallbacks:
 	db 1

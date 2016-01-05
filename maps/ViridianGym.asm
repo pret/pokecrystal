@@ -14,26 +14,26 @@ BlueScript_0x9aa26:
 	opentext
 	checkflag ENGINE_EARTHBADGE
 	iftrue .FightDone
-	writetext UnknownText_0x9aa7b
+	writetext LeaderBlueBeforeText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x9abae, 0
+	winlosstext LeaderBlueWinText, 0
 	loadtrainer BLUE, 1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BLUE
 	opentext
-	writetext UnknownText_0x9ac0f
+	writetext Text_ReceivedEarthBadge
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_EARTHBADGE
-	writetext UnknownText_0x9ac27
+	writetext LeaderBlueAfterText
 	waitbutton
 	closetext
 	end
 
 .FightDone
-	writetext UnknownText_0x9acab
+	writetext LeaderBlueEpilogueText
 	waitbutton
 	closetext
 	end
@@ -58,11 +58,12 @@ ViridianGymStatue:
 	checkflag ENGINE_EARTHBADGE
 	iftrue .Beaten
 	jumpstd gymstatue1
+
 .Beaten
 	trainertotext BLUE, 1, $1
 	jumpstd gymstatue2
 
-UnknownText_0x9aa7b:
+LeaderBlueBeforeText:
 	text "BLUE: Yo! Finally"
 	line "got here, huh?"
 
@@ -95,7 +96,7 @@ UnknownText_0x9aa7b:
 	line "CHAMP?"
 	done
 
-UnknownText_0x9abae:
+LeaderBlueWinText:
 	text "BLUE: What?"
 
 	para "How the heck did I"
@@ -108,12 +109,12 @@ UnknownText_0x9abae:
 	cont "it's EARTHBADGE."
 	done
 
-UnknownText_0x9ac0f:
+Text_ReceivedEarthBadge:
 	text "<PLAYER> received"
 	line "EARTHBADGE."
 	done
 
-UnknownText_0x9ac27:
+LeaderBlueAfterText:
 	text "BLUE: …"
 
 	para "All right, I was"
@@ -129,7 +130,7 @@ UnknownText_0x9ac27:
 	line "it!"
 	done
 
-UnknownText_0x9acab:
+LeaderBlueEpilogueText:
 	text "BLUE: Listen, you."
 
 	para "You'd better not"

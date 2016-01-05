@@ -45,23 +45,23 @@ _TownMap: ; 9191c
 	call SetPalettes
 	ld a, [hCGB]
 	and a
-	jr z, .sgb
-	ld a, $e4
+	jr z, .dmg
+	ld a, %11100100
 	call DmgToCgbObjPal0
 	call DelayFrame
 
-.sgb
+.dmg
 	ld a, [wd002]
 	cp KANTO_LANDMARK
 	jr nc, .kanto
 	ld d, KANTO_LANDMARK - 1
 	ld e, 1
-	call Function919b0
+	call .loop
 	jr .resume
 
 .kanto
-	call Function910e8
-	call Function919b0
+	call TownMap_GetKantoLandmarkLimits
+	call .loop
 
 .resume
 	pop af
@@ -72,9 +72,7 @@ _TownMap: ; 9191c
 	ld [Options], a
 	call ClearBGPalettes
 	ret
-; 919b0
 
-Function919b0: ; 919b0
 .loop
 	call JoyTextDelay
 	ld hl, hJoyPressed

@@ -195,7 +195,7 @@ InitializeStartDay: ; 114dd
 	ret
 ; 114e7
 
-CheckPokerusTrick:: ; 114e7
+CheckPokerusTick:: ; 114e7
 	ld hl, wStartDay
 	call CalcDaysSince
 	call GetDaysSince

@@ -213,14 +213,14 @@ Function90d70: ; 90d70 (24:4d70)
 	call GetWorldMapLocation
 
 .LoadLandmark
-	ld [wc6d8], a
-	ld [wc6d7], a
+	ld [wTownMapPlayerIconLandmark], a
+	ld [wTownMapCursorLandmark], a
 	ret
 
 .FastShip
-	ld [wc6d8], a
+	ld [wTownMapPlayerIconLandmark], a
 	ld a, NEW_BARK_TOWN
-	ld [wc6d7], a
+	ld [wTownMapCursorLandmark], a
 	ret
 
 Function90d9e: ; 90d9e (24:4d9e)
@@ -321,7 +321,7 @@ Function90e1a: ; 90e1a
 
 Function90e3f: ; 90e3f
 
-	ld a, [wc6d8]
+	ld a, [wTownMapPlayerIconLandmark]
 	cp FAST_SHIP
 	jr z, .johto
 	cp KANTO_LANDMARK
@@ -341,7 +341,7 @@ Function90e3f: ; 90e3f
 	ld [hl], $6
 	hlcoord 19, 2
 	ld [hl], $17
-	ld a, [wc6d7]
+	ld a, [wTownMapCursorLandmark]
 	call Function910b4
 	ret
 ; 90e72
@@ -547,7 +547,7 @@ UnknownText_0x90faf: ; 0x90faf
 ; 0x90fb4
 
 Function90fb4: ; 90fb4 (24:4fb4)
-	ld a, [wc6d8]
+	ld a, [wTownMapPlayerIconLandmark]
 	cp FAST_SHIP
 	jr z, .johto
 	cp KANTO_LANDMARK
@@ -567,9 +567,9 @@ Function90fb4: ; 90fb4 (24:4fb4)
 
 Function90fcd: ; 90fcd (24:4fcd)
 	call Function90da8
-	ld a, [wc6d8]
+	ld a, [wTownMapPlayerIconLandmark]
 	call Function9106a
-	ld a, [wc6d7]
+	ld a, [wTownMapCursorLandmark]
 	call Function91098
 	ld a, c
 	ld [wc6d5], a
@@ -580,7 +580,7 @@ Function90fcd: ; 90fcd (24:4fcd)
 	ret
 
 Function90fe9: ; 90fe9 (24:4fe9)
-	call Function910e8
+	call TownMap_GetKantoLandmarkLimits
 	jr Function90ff2
 
 Function90fee: ; 90fee (24:4fee)
@@ -637,7 +637,7 @@ Function9102f: ; 9102f (24:502f)
 	jr nz, .down
 	ret
 .up
-	ld hl, wc6d7
+	ld hl, wTownMapCursorLandmark
 	ld a, [hl]
 	cp d
 	jr c, .asm_91047
@@ -649,7 +649,7 @@ Function9102f: ; 9102f (24:502f)
 	jr .done
 
 .down
-	ld hl, wc6d7
+	ld hl, wTownMapCursorLandmark
 	ld a, [hl]
 	cp e
 	jr nz, .asm_91054
@@ -660,13 +660,13 @@ Function9102f: ; 9102f (24:502f)
 	dec [hl]
 
 .done
-	ld a, [wc6d7]
+	ld a, [wTownMapCursorLandmark]
 	call Function910b4
 	ld a, [wc6d5]
 	ld c, a
 	ld a, [wc6d6]
 	ld b, a
-	ld a, [wc6d7]
+	ld a, [wTownMapCursorLandmark]
 	call Function910d4
 	ret
 
@@ -747,17 +747,17 @@ Function910d4: ; 910d4
 	ret
 ; 910e8
 
-Function910e8: ; 910e8
+TownMap_GetKantoLandmarkLimits: ; 910e8
 	ld a, [StatusFlags]
 	bit 6, a
-	jr z, .asm_910f4
-	ld d, $5e
-	ld e, $2f
+	jr z, .not_hof
+	ld d, ROUTE_28
+	ld e, PALLET_TOWN
 	ret
 
-.asm_910f4
-	ld d, $5e
-	ld e, $58
+.not_hof
+	ld d, ROUTE_28
+	ld e, VICTORY_ROAD
 	ret
 ; 910f9
 
@@ -1558,7 +1558,7 @@ RadioChannels:
 	jp LoadStation_BuenasPassword
 
 .RuinsOfAlphRadio
-	ld a, [wc6d8]
+	ld a, [wTownMapPlayerIconLandmark]
 	cp RUINS_OF_ALPH
 	jr nz, .NoSignal
 	jp LoadStation_UnownRadio
@@ -1594,7 +1594,7 @@ RadioChannels:
 	bit 4, a
 	jr z, .NoSignal
 
-	ld a, [wc6d8]
+	ld a, [wTownMapPlayerIconLandmark]
 	cp MAHOGANY_TOWN
 	jr z, .ok
 	cp ROUTE_43
@@ -1611,7 +1611,7 @@ RadioChannels:
 .InJohto
 ; if in Johto or on the S.S. Aqua, set carry
 ; otherwise clear carry
-	ld a, [wc6d8]
+	ld a, [wTownMapPlayerIconLandmark]
 	cp FAST_SHIP
 	jr z, .johto
 	cp KANTO_LANDMARK

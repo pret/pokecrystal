@@ -10,9 +10,9 @@ BurnedTower1F_MapScriptHeader:
 	db 3
 
 	; triggers
-	dw .Trigger0, 0
-	dw .Trigger1, 0
-	dw .Trigger2, 0
+	maptrigger .Trigger0
+	maptrigger .Trigger1
+	maptrigger .Trigger2
 
 .MapCallbacks:
 	db 1

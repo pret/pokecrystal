@@ -19,10 +19,10 @@ TeamRocketBaseB3F_MapScriptHeader:
 	db 4
 
 	; triggers
-	dw .Trigger0, 0
-	dw .Trigger1, 0
-	dw .Trigger2, 0
-	dw .Trigger3, 0
+	maptrigger .Trigger0
+	maptrigger .Trigger1
+	maptrigger .Trigger2
+	maptrigger .Trigger3
 
 .MapCallbacks:
 	db 1

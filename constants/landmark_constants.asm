@@ -1,102 +1,102 @@
 
 	const_def
 
-	const SPECIAL_MAP
-	const NEW_BARK_TOWN
-	const ROUTE_29
-	const CHERRYGROVE_CITY
-	const ROUTE_30
-	const ROUTE_31
-	const VIOLET_CITY
-	const SPROUT_TOWER
-	const ROUTE_32
-	const RUINS_OF_ALPH
-	const UNION_CAVE
-	const ROUTE_33
-	const AZALEA_TOWN
-	const SLOWPOKE_WELL
-	const ILEX_FOREST
-	const ROUTE_34
-	const GOLDENROD_CITY
-	const RADIO_TOWER
-	const ROUTE_35
-	const NATIONAL_PARK
-	const ROUTE_36
-	const ROUTE_37
-	const ECRUTEAK_CITY
-	const TIN_TOWER
-	const BURNED_TOWER
-	const ROUTE_38
-	const ROUTE_39
-	const OLIVINE_CITY
-	const LIGHTHOUSE
-	const BATTLE_TOWER
-	const ROUTE_40
-	const WHIRL_ISLANDS
-	const ROUTE_41
-	const CIANWOOD_CITY
-	const ROUTE_42
-	const MT_MORTAR
-	const MAHOGANY_TOWN
-	const ROUTE_43
-	const LAKE_OF_RAGE
-	const ROUTE_44
-	const ICE_PATH
-	const BLACKTHORN_CITY
-	const DRAGONS_DEN
-	const ROUTE_45
-	const DARK_CAVE
-	const ROUTE_46
-	const SILVER_CAVE
+	const SPECIAL_MAP       ; 00
+	const NEW_BARK_TOWN     ; 01
+	const ROUTE_29          ; 02
+	const CHERRYGROVE_CITY  ; 03
+	const ROUTE_30          ; 04
+	const ROUTE_31          ; 05
+	const VIOLET_CITY       ; 06
+	const SPROUT_TOWER      ; 07
+	const ROUTE_32          ; 08
+	const RUINS_OF_ALPH     ; 09
+	const UNION_CAVE        ; 0a
+	const ROUTE_33          ; 0b
+	const AZALEA_TOWN       ; 0c
+	const SLOWPOKE_WELL     ; 0d
+	const ILEX_FOREST       ; 0e
+	const ROUTE_34          ; 0f
+	const GOLDENROD_CITY    ; 10
+	const RADIO_TOWER       ; 11
+	const ROUTE_35          ; 12
+	const NATIONAL_PARK     ; 13
+	const ROUTE_36          ; 14
+	const ROUTE_37          ; 15
+	const ECRUTEAK_CITY     ; 16
+	const TIN_TOWER         ; 17
+	const BURNED_TOWER      ; 18
+	const ROUTE_38          ; 19
+	const ROUTE_39          ; 1a
+	const OLIVINE_CITY      ; 1b
+	const LIGHTHOUSE        ; 1c
+	const BATTLE_TOWER      ; 1d
+	const ROUTE_40          ; 1e
+	const WHIRL_ISLANDS     ; 1f
+	const ROUTE_41          ; 20
+	const CIANWOOD_CITY     ; 21
+	const ROUTE_42          ; 22
+	const MT_MORTAR         ; 23
+	const MAHOGANY_TOWN     ; 24
+	const ROUTE_43          ; 25
+	const LAKE_OF_RAGE      ; 26
+	const ROUTE_44          ; 27
+	const ICE_PATH          ; 28
+	const BLACKTHORN_CITY   ; 29
+	const DRAGONS_DEN       ; 2a
+	const ROUTE_45          ; 2b
+	const DARK_CAVE         ; 2c
+	const ROUTE_46          ; 2d
+	const SILVER_CAVE       ; 2e
 
 KANTO_LANDMARK EQU const_value
 
-	const PALLET_TOWN
-	const ROUTE_1
-	const VIRIDIAN_CITY
-	const ROUTE_2
-	const PEWTER_CITY
-	const ROUTE_3
-	const MT_MOON
-	const ROUTE_4
-	const CERULEAN_CITY
-	const ROUTE_24
-	const ROUTE_25
-	const ROUTE_5
-	const UNDERGROUND
-	const ROUTE_6
-	const VERMILION_CITY
-	const DIGLETTS_CAVE
-	const ROUTE_7
-	const ROUTE_8
-	const ROUTE_9
-	const ROCK_TUNNEL
-	const ROUTE_10
-	const POWER_PLANT
-	const LAVENDER_TOWN
-	const LAV_RADIO_TOWER
-	const CELADON_CITY
-	const SAFFRON_CITY
-	const ROUTE_11
-	const ROUTE_12
-	const ROUTE_13
-	const ROUTE_14
-	const ROUTE_15
-	const ROUTE_16
-	const ROUTE_17
-	const ROUTE_18
-	const FUCHSIA_CITY
-	const ROUTE_19
-	const ROUTE_20
-	const SEAFOAM_ISLANDS
-	const CINNABAR_ISLAND
-	const ROUTE_21
-	const ROUTE_22
-	const VICTORY_ROAD
-	const ROUTE_23
-	const INDIGO_PLATEAU
-	const ROUTE_26
-	const ROUTE_27
-	const TOHJO_FALLS
-	const ROUTE_28
-	const FAST_SHIP
+	const PALLET_TOWN       ; 2f
+	const ROUTE_1           ; 30
+	const VIRIDIAN_CITY     ; 31
+	const ROUTE_2           ; 32
+	const PEWTER_CITY       ; 33
+	const ROUTE_3           ; 34
+	const MT_MOON           ; 35
+	const ROUTE_4           ; 36
+	const CERULEAN_CITY     ; 37
+	const ROUTE_24          ; 38
+	const ROUTE_25          ; 39
+	const ROUTE_5           ; 3a
+	const UNDERGROUND       ; 3b
+	const ROUTE_6           ; 3c
+	const VERMILION_CITY    ; 3d
+	const DIGLETTS_CAVE     ; 3e
+	const ROUTE_7           ; 3f
+	const ROUTE_8           ; 40
+	const ROUTE_9           ; 41
+	const ROCK_TUNNEL       ; 42
+	const ROUTE_10          ; 43
+	const POWER_PLANT       ; 44
+	const LAVENDER_TOWN     ; 45
+	const LAV_RADIO_TOWER   ; 46
+	const CELADON_CITY      ; 47
+	const SAFFRON_CITY      ; 48
+	const ROUTE_11          ; 49
+	const ROUTE_12          ; 4a
+	const ROUTE_13          ; 4b
+	const ROUTE_14          ; 4c
+	const ROUTE_15          ; 4d
+	const ROUTE_16          ; 4e
+	const ROUTE_17          ; 4f
+	const ROUTE_18          ; 50
+	const FUCHSIA_CITY      ; 51
+	const ROUTE_19          ; 52
+	const ROUTE_20          ; 53
+	const SEAFOAM_ISLANDS   ; 54
+	const CINNABAR_ISLAND   ; 55
+	const ROUTE_21          ; 56
+	const ROUTE_22          ; 57
+	const VICTORY_ROAD      ; 58
+	const ROUTE_23          ; 59
+	const INDIGO_PLATEAU    ; 5a
+	const ROUTE_26          ; 5b
+	const ROUTE_27          ; 5c
+	const TOHJO_FALLS       ; 5d
+	const ROUTE_28          ; 5e
+	const FAST_SHIP         ; 5f

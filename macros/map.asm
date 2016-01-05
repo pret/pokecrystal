@@ -183,3 +183,7 @@ stonetable: MACRO
 	db \1, \2
 	dw \3
 endm
+
+maptrigger: MACRO
+	dw \1, 0
+endm

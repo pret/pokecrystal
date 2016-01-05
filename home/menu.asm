@@ -113,9 +113,8 @@ CopyNameFromMenu::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-rept 2
 	inc hl
-endr
+	inc hl
 	pop af
 	call GetNthString
 	ld d, h
@@ -444,9 +443,8 @@ PlaceNthMenuStrings:: ; 1f8d
 	push de
 	ld a, [MenuSelection]
 	call GetMenuDataPointerTableEntry
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -458,9 +456,8 @@ endr
 Function1f9e:: ; 1f9e
 ; unreferenced
 	call GetMenuDataPointerTableEntry
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -483,9 +480,10 @@ GetMenuDataPointerTableEntry:: ; 1fb1
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-rept 4
 	add hl, de
-endr
+	add hl, de
+	add hl, de
+	add hl, de
 	ret
 ; 1fbf
 
@@ -506,9 +504,8 @@ ClearWindowData:: ; 1fbf
 
 	xor a
 	ld hl, wWindowStackBottom
-rept 2
 	ld [hld], a
-endr
+	ld [hld], a
 	ld a, l
 	ld [wWindowStackPointer], a
 	ld a, h

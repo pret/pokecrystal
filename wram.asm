@@ -907,9 +907,11 @@ wc6d6::
 EnemySpdLevel:: ; c6d6
 	ds 1
 wc6d7::
+wTownMapCursorLandmark::
 EnemySAtkLevel:: ; c6d7
 	ds 1
 wc6d8::
+wTownMapPlayerIconLandmark::
 EnemySDefLevel:: ; c6d8
 	ds 1
 wc6d9::

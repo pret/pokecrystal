@@ -502,7 +502,7 @@ CheckTimeEvents: ; 9693a
 
 .do_daily
 	callba CheckDailyResetTimer
-	callba CheckPokerusTrick
+	callba CheckPokerusTick
 	callba CheckPhoneCall
 	ret c
 
