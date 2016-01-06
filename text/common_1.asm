@@ -835,82 +835,82 @@ UnknownText_0x1bcc72::
 	text_from_ram StringBuffer1
 	db "@@"
 
-UnknownText_0x1bcc80::
+_PnP_cute::
 	text ""
 	line "is cute."
 	done
 
-UnknownText_0x1bcc8b::
+_PnP_lazy::
 	text ""
 	line "is sort of lazy."
 	done
 
-UnknownText_0x1bcc9e::
+_PnP_happy::
 	text ""
 	line "is always happy."
 	done
 
-UnknownText_0x1bccb1::
+_PnP_noisy::
 	text ""
 	line "is quite noisy."
 	done
 
-UnknownText_0x1bccc3::
+_PnP_precocious::
 	text ""
 	line "is precocious."
 	done
 
-UnknownText_0x1bccd4::
+_PnP_bold::
 	text ""
 	line "is somewhat bold."
 	done
 
-UnknownText_0x1bcce8::
+_PnP_picky::
 	text ""
 	line "is too picky!"
 	done
 
-UnknownText_0x1bccf8::
+_PnP_sortofok::
 	text ""
 	line "is sort of OK."
 	done
 
-UnknownText_0x1bcd09::
+_PnP_soso::
 	text ""
 	line "is just so-so."
 	done
 
-UnknownText_0x1bcd1a::
+_PnP_great::
 	text ""
 	line "is actually great."
 	done
 
-UnknownText_0x1bcd2f::
+_PnP_mytype::
 	text ""
 	line "is just my type."
 	done
 
-UnknownText_0x1bcd42::
+_PnP_cool::
 	text ""
 	line "is so cool, no?"
 	done
 
-UnknownText_0x1bcd54::
+_PnP_inspiring::
 	text ""
 	line "is inspiring!"
 	done
 
-UnknownText_0x1bcd64::
+_PnP_weird::
 	text ""
 	line "is kind of weird."
 	done
 
-UnknownText_0x1bcd78::
+_PnP_rightforme::
 	text ""
 	line "is right for me?"
 	done
 
-UnknownText_0x1bcd8b::
+_PnP_odd::
 	text ""
 	line "is definitely odd!"
 	done

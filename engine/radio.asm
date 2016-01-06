@@ -1337,9 +1337,8 @@ endr
 	ld a, PLACES_AND_PEOPLE_6 ; Places
 .ok
 	jp NextRadioLine
-; b8d7d (2e:4d7d)
 
-.Descriptors: ; b8d7d
+.Descriptors
 	dw PnP_cute
 	dw PnP_lazy
 	dw PnP_happy
@@ -1348,111 +1347,94 @@ endr
 	dw PnP_bold
 	dw PnP_picky
 	dw PnP_sortofok
-	dw PnP_justsoso
-	dw PnP_actuallygreat
-	dw PnP_justmytype
-	dw PnP_socool
+	dw PnP_soso
+	dw PnP_great
+	dw PnP_mytype
+	dw PnP_cool
 	dw PnP_inspiring
 	dw PnP_weird
 	dw PnP_rightforme
 	dw PnP_odd
-; b8d9d
 
-PnP_cute: ; 0xb8d9d
+PnP_cute:
 	; is cute.
-	text_jump UnknownText_0x1bcc80
+	text_jump _PnP_cute
 	db "@"
-; 0xb8da2
 
-PnP_lazy: ; 0xb8da2
+PnP_lazy:
 	; is sort of lazy.
-	text_jump UnknownText_0x1bcc8b
+	text_jump _PnP_lazy
 	db "@"
-; 0xb8da7
 
-PnP_happy: ; 0xb8da7
+PnP_happy:
 	; is always happy.
-	text_jump UnknownText_0x1bcc9e
+	text_jump _PnP_happy
 	db "@"
-; 0xb8dac
 
-PnP_noisy: ; 0xb8dac
+PnP_noisy:
 	; is quite noisy.
-	text_jump UnknownText_0x1bccb1
+	text_jump _PnP_noisy
 	db "@"
-; 0xb8db1
 
-PnP_precocious: ; 0xb8db1
+PnP_precocious:
 	; is precocious.
-	text_jump UnknownText_0x1bccc3
+	text_jump _PnP_precocious
 	db "@"
-; 0xb8db6
 
-PnP_bold: ; 0xb8db6
+PnP_bold:
 	; is somewhat bold.
-	text_jump UnknownText_0x1bccd4
+	text_jump _PnP_bold
 	db "@"
-; 0xb8dbb
 
-PnP_picky: ; 0xb8dbb
+PnP_picky:
 	; is too picky!
-	text_jump UnknownText_0x1bcce8
+	text_jump _PnP_picky
 	db "@"
-; 0xb8dc0
 
-PnP_sortofok: ; 0xb8dc0
+PnP_sortofok:
 	; is sort of OK.
-	text_jump UnknownText_0x1bccf8
+	text_jump _PnP_sortofok
 	db "@"
-; 0xb8dc5
 
-PnP_justsoso: ; 0xb8dc5
+PnP_soso:
 	; is just so-so.
-	text_jump UnknownText_0x1bcd09
+	text_jump _PnP_soso
 	db "@"
-; 0xb8dca
 
-PnP_actuallygreat: ; 0xb8dca
+PnP_great:
 	; is actually great.
-	text_jump UnknownText_0x1bcd1a
+	text_jump _PnP_great
 	db "@"
-; 0xb8dcf
 
-PnP_justmytype: ; 0xb8dcf
+PnP_mytype:
 	; is just my type.
-	text_jump UnknownText_0x1bcd2f
+	text_jump _PnP_mytype
 	db "@"
-; 0xb8dd4
 
-PnP_socool: ; 0xb8dd4
+PnP_cool:
 	; is so cool, no?
-	text_jump UnknownText_0x1bcd42
+	text_jump _PnP_cool
 	db "@"
-; 0xb8dd9
 
-PnP_inspiring: ; 0xb8dd9
+PnP_inspiring:
 	; is inspiring!
-	text_jump UnknownText_0x1bcd54
+	text_jump _PnP_inspiring
 	db "@"
-; 0xb8dde
 
-PnP_weird: ; 0xb8dde
+PnP_weird:
 	; is kind of weird.
-	text_jump UnknownText_0x1bcd64
+	text_jump _PnP_weird
 	db "@"
-; 0xb8de3
 
-PnP_rightforme: ; 0xb8de3
+PnP_rightforme:
 	; is right for me?
-	text_jump UnknownText_0x1bcd78
+	text_jump _PnP_rightforme
 	db "@"
-; 0xb8de8
 
-PnP_odd: ; 0xb8de8
+PnP_odd:
 	; is definitely odd!
-	text_jump UnknownText_0x1bcd8b
+	text_jump _PnP_odd
 	db "@"
-; 0xb8ded
 
 PeoplePlaces6: ; Places
 	call Random
@@ -1519,7 +1501,7 @@ endr
 	jp PrintRadioLine
 ; b8e52 (2e:4e52)
 
-.Descriptors: ; b8e52
+.Descriptors:
 	dw PnP_cute
 	dw PnP_lazy
 	dw PnP_happy
@@ -1528,15 +1510,14 @@ endr
 	dw PnP_bold
 	dw PnP_picky
 	dw PnP_sortofok
-	dw PnP_justsoso
-	dw PnP_actuallygreat
-	dw PnP_justmytype
-	dw PnP_socool
+	dw PnP_soso
+	dw PnP_great
+	dw PnP_mytype
+	dw PnP_cool
 	dw PnP_inspiring
 	dw PnP_weird
 	dw PnP_rightforme
 	dw PnP_odd
-; b8e72
 
 RocketRadio1: ; b8e72 (2e:4e72)
 	call StartRadioStation
