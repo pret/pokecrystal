@@ -9,7 +9,7 @@ RunCallback_05_03: ; 1045b0
 	call RunMapCallback
 RunCallback_03: ; 1045c4
 	callba ClearCmdQueue
-	ld a, MAPCALLBACK_PALETTES
+	ld a, MAPCALLBACK_CMDQUEUE
 	call RunMapCallback
 	call GetMapHeaderTimeOfDayNybble
 	ld [wMapTimeOfDay], a

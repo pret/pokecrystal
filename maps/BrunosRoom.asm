@@ -6,32 +6,32 @@ BrunosRoom_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x180993, 0
-	dw UnknownScript_0x180997, 0
+	dw .Trigger0, 0
+	dw .Trigger1, 0
 
 .MapCallbacks:
 	db 1
 
 	; callbacks
 
-	dbw MAPCALLBACK_TILES, UnknownScript_0x180998
+	dbw MAPCALLBACK_TILES, .BrunosRoomDoors
 
-UnknownScript_0x180993:
+.Trigger0
 	priorityjump UnknownScript_0x1809ad
 	end
 
-UnknownScript_0x180997:
+.Trigger1
 	end
 
-UnknownScript_0x180998:
+.BrunosRoomDoors:
 	checkevent EVENT_BRUNOS_ROOM_ENTRANCE_CLOSED
-	iffalse UnknownScript_0x1809a2
+	iffalse .KeepDoorClosed
 	changeblock $4, $e, $2a
-UnknownScript_0x1809a2:
+.KeepDoorClosed
 	checkevent EVENT_BRUNOS_ROOM_EXIT_OPEN
-	iffalse UnknownScript_0x1809ac
+	iffalse .OpenDoor
 	changeblock $4, $2, $16
-UnknownScript_0x1809ac:
+.OpenDoor
 	return
 
 UnknownScript_0x1809ad:

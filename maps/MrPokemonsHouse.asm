@@ -3,105 +3,105 @@ const_value set 2
 	const MRPOKEMONSHOUSE_OAK
 
 MrPokemonsHouse_MapScriptHeader:
-.MapTriggers:
+.MapTriggers
 	db 2
 
 	; triggers
-	dw UnknownScript_0x196e51, 0
-	dw UnknownScript_0x196e55, 0
+	maptrigger .Trigger0
+	maptrigger .Trigger1
 
-.MapCallbacks:
+.MapCallbacks
 	db 0
 
-UnknownScript_0x196e51:
-	priorityjump UnknownScript_0x196e56
+.Trigger0
+	priorityjump .MrPokemonEvent
 	end
 
-UnknownScript_0x196e55:
+.Trigger1
 	end
 
-UnknownScript_0x196e56:
+.MrPokemonEvent
 	showemote EMOTE_SHOCK, MRPOKEMONSHOUSE_GENTLEMAN, 15
 	spriteface MRPOKEMONSHOUSE_GENTLEMAN, DOWN
 	opentext
-	writetext UnknownText_0x196f66
+	writetext MrPokemonIntroText1
 	waitbutton
 	closetext
-	applymovement PLAYER, MovementData_0x196f5a
+	applymovement PLAYER, MrPokemonsHouse_PlayerWalksToMrPokemon
 	opentext
-	writetext UnknownText_0x196fa8
+	writetext MrPokemonIntroText2
 	buttonsound
 	waitsfx
 	giveitem MYSTERY_EGG
-	writetext UnknownText_0x196fd2
+	writetext MrPokemonsHouse_GotEggText
 	playsound SFX_KEY_ITEM
 	waitsfx
 	itemnotify
 	setevent EVENT_GOT_MYSTERY_EGG_FROM_MR_POKEMON
 	blackoutmod CHERRYGROVE_CITY
-	writetext UnknownText_0x196feb
+	writetext MrPokemonIntroText3
 	buttonsound
 	spriteface MRPOKEMONSHOUSE_GENTLEMAN, RIGHT
-	writetext UnknownText_0x197092
+	writetext MrPokemonIntroText4
 	buttonsound
 	spriteface MRPOKEMONSHOUSE_GENTLEMAN, DOWN
 	spriteface MRPOKEMONSHOUSE_OAK, LEFT
-	writetext UnknownText_0x1970b7
+	writetext MrPokemonIntroText5
 	waitbutton
 	closetext
-	jump UnknownScript_0x196ec9
+	jump MrPokemonsHouse_OakScript
 
-GentlemanScript_0x196e97:
+MrPokemonsHouse_MrPokemonScript:
 	faceplayer
 	opentext
 	checkitem RED_SCALE
-	iftrue UnknownScript_0x196eb0
+	iftrue .RedScale
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
-	iftrue UnknownScript_0x196eaa
-	writetext UnknownText_0x197134
+	iftrue .AlwaysNewDiscoveries
+	writetext MrPokemonText_ImDependingOnYou
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x196eaa:
-	writetext UnknownText_0x19714a
+.AlwaysNewDiscoveries
+	writetext MrPokemonText_AlwaysNewDiscoveries
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x196eb0:
-	writetext UnknownText_0x197476
+.RedScale
+	writetext MrPokemonText_GimmeTheScale
 	yesorno
-	iffalse UnknownScript_0x196ec3
+	iffalse .refused
 	verbosegiveitem EXP_SHARE
-	iffalse UnknownScript_0x196ec7
+	iffalse .full
 	takeitem RED_SCALE
-	jump UnknownScript_0x196eaa
+	jump .AlwaysNewDiscoveries
 
-UnknownScript_0x196ec3:
-	writetext UnknownText_0x19750d
+.refused
+	writetext MrPokemonText_Disappointed
 	waitbutton
-UnknownScript_0x196ec7:
+.full
 	closetext
 	end
 
-UnknownScript_0x196ec9:
+MrPokemonsHouse_OakScript:
 	playmusic MUSIC_PROF_OAK
-	applymovement MRPOKEMONSHOUSE_OAK, MovementData_0x196f5d
+	applymovement MRPOKEMONSHOUSE_OAK, MrPokemonsHouse_OakWalksToPlayer
 	spriteface PLAYER, RIGHT
 	opentext
-	writetext UnknownText_0x197185
+	writetext MrPokemonsHouse_OakText1
 	buttonsound
 	waitsfx
-	writetext UnknownText_0x1973cc
+	writetext MrPokemonsHouse_GetDexText
 	playsound SFX_ITEM
 	waitsfx
 	setflag ENGINE_POKEDEX
-	writetext UnknownText_0x1973de
+	writetext MrPokemonsHouse_OakText2
 	waitbutton
 	closetext
 	spriteface PLAYER, DOWN
-	applymovement MRPOKEMONSHOUSE_OAK, MovementData_0x196f61
+	applymovement MRPOKEMONSHOUSE_OAK, MrPokemonsHouse_OakExits
 	playsound SFX_EXIT_BUILDING
 	disappear MRPOKEMONSHOUSE_OAK
 	waitsfx
@@ -109,7 +109,7 @@ UnknownScript_0x196ec9:
 	pause 15
 	spriteface PLAYER, UP
 	opentext
-	writetext UnknownText_0x1970ed
+	writetext MrPokemonsHouse_MrPokemonHealText
 	waitbutton
 	closetext
 	special Special_FadeBlackQuickly
@@ -121,7 +121,7 @@ UnknownScript_0x196ec9:
 	special Special_FadeInQuickly
 	special RestartMapMusic
 	opentext
-	writetext UnknownText_0x197134
+	writetext MrPokemonText_ImDependingOnYou
 	waitbutton
 	closetext
 	setevent EVENT_RIVAL_NEW_BARK_TOWN
@@ -133,48 +133,48 @@ UnknownScript_0x196ec9:
 	specialphonecall SPECIALCALL_ROBBED
 	clearevent EVENT_COP_IN_ELMS_LAB
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
-	iftrue UnknownScript_0x196f49
+	iftrue .RivalTakesChikorita
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
-	iftrue UnknownScript_0x196f4d
+	iftrue .RivalTakesCyndaquil
 	setevent EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
 	end
 
-UnknownScript_0x196f49:
+.RivalTakesChikorita
 	setevent EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
 	end
 
-UnknownScript_0x196f4d:
+.RivalTakesCyndaquil
 	setevent EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
 	end
 
 MapMrPokemonsHouseSignpost1Script:
-	jumptext UnknownText_0x197543
+	jumptext MrPokemonsHouse_ForeignMagazinesText
 
 MapMrPokemonsHouseSignpost3Script:
-	jumptext UnknownText_0x197584
+	jumptext MrPokemonsHouse_BrokenComputerText
 
 MapMrPokemonsHouseSignpost4Script:
-	jumptext UnknownText_0x1975ac
+	jumptext MrPokemonsHouse_StrangeCoinsText
 
-MovementData_0x196f5a:
+MrPokemonsHouse_PlayerWalksToMrPokemon:
 	step_right
 	step_up
 	step_end
 
-MovementData_0x196f5d:
+MrPokemonsHouse_OakWalksToPlayer:
 	step_down
 	step_left
 	step_left
 	step_end
 
-MovementData_0x196f61:
+MrPokemonsHouse_OakExits:
 	step_down
 	step_left
 	turn_head_down
 	db $3f ; movement
 	step_end
 
-UnknownText_0x196f66:
+MrPokemonIntroText1:
 	text "Hello, hello! You"
 	line "must be <PLAY_G>."
 
@@ -182,18 +182,18 @@ UnknownText_0x196f66:
 	line "you would visit."
 	done
 
-UnknownText_0x196fa8:
+MrPokemonIntroText2:
 	text "This is what I"
 	line "want PROF.ELM to"
 	cont "examine."
 	done
 
-UnknownText_0x196fd2:
+MrPokemonsHouse_GotEggText:
 	text "<PLAYER> received"
 	line "MYSTERY EGG."
 	done
 
-UnknownText_0x196feb:
+MrPokemonIntroText3:
 	text "I know a couple"
 	line "who run a #MON"
 	cont "DAY-CARE service."
@@ -210,18 +210,18 @@ UnknownText_0x196feb:
 	cont "the authority."
 	done
 
-UnknownText_0x197092:
+MrPokemonIntroText4:
 	text "Even PROF.OAK here"
 	line "recognizes that."
 	done
 
-UnknownText_0x1970b7:
+MrPokemonIntroText5:
 	text "If my assumption"
 	line "is correct, PROF."
 	cont "ELM will know it."
 	done
 
-UnknownText_0x1970ed:
+MrPokemonsHouse_MrPokemonHealText:
 	text "You are returning"
 	line "to PROF.ELM?"
 
@@ -230,12 +230,12 @@ UnknownText_0x1970ed:
 	cont "rest."
 	done
 
-UnknownText_0x197134:
+MrPokemonText_ImDependingOnYou:
 	text "I'm depending on"
 	line "you!"
 	done
 
-UnknownText_0x19714a:
+MrPokemonText_AlwaysNewDiscoveries:
 	text "Life is delight-"
 	line "ful! Always, new"
 
@@ -243,7 +243,7 @@ UnknownText_0x19714a:
 	line "made!"
 	done
 
-UnknownText_0x197185:
+MrPokemonsHouse_OakText1:
 	text "OAK: Aha! So"
 	line "you're <PLAY_G>!"
 
@@ -307,12 +307,12 @@ UnknownText_0x197185:
 	line "encyclopedia!"
 	done
 
-UnknownText_0x1973cc:
+MrPokemonsHouse_GetDexText:
 	text "<PLAYER> received"
 	line "#DEX!"
 	done
 
-UnknownText_0x1973de:
+MrPokemonsHouse_OakText2:
 	text "Go meet many kinds"
 	line "of #MON and"
 
@@ -330,7 +330,7 @@ UnknownText_0x1973de:
 	line "counting on you!"
 	done
 
-UnknownText_0x197476:
+MrPokemonText_GimmeTheScale:
 	text "Hm? That SCALE!"
 	line "What's that?"
 	cont "A red GYARADOS?"
@@ -346,13 +346,13 @@ UnknownText_0x197476:
 	cont "from PROF.OAK."
 	done
 
-UnknownText_0x19750d:
+MrPokemonText_Disappointed:
 	text "That's disappoint-"
 	line "ing. That happens"
 	cont "to be very rare."
 	done
 
-UnknownText_0x197543:
+MrPokemonsHouse_ForeignMagazinesText:
 	text "It's packed with"
 	line "foreign magazines."
 
@@ -360,13 +360,13 @@ UnknownText_0x197543:
 	line "their titles…"
 	done
 
-UnknownText_0x197584:
+MrPokemonsHouse_BrokenComputerText:
 	text "It's a big com-"
 	line "puter. Hmm. It's"
 	cont "broken."
 	done
 
-UnknownText_0x1975ac:
+MrPokemonsHouse_StrangeCoinsText:
 	text "A whole pile of"
 	line "strange coins!"
 
@@ -396,5 +396,5 @@ MrPokemonsHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_GENTLEMAN, 5, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GentlemanScript_0x196e97, -1
+	person_event SPRITE_GENTLEMAN, 5, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, MrPokemonsHouse_MrPokemonScript, -1
 	person_event SPRITE_OAK, 5, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_MR_POKEMONS_HOUSE_OAK

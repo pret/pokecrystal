@@ -3067,12 +3067,12 @@ PoisonStepCount:: ; dc74
 	ds 1
 
 	ds 2
-wdc77:: ds 2
-wdc79::
+wHappinessStepCount:: ds 1
+	ds 1
 wParkBallsRemaining::
-wSafariBallsRemaining:: ds 1
-wSafariTimeRemaining:: ds 2
-wPhoneList:: ds CONTACT_LIST_SIZE
+wSafariBallsRemaining:: ds 1 ; dc79
+wSafariTimeRemaining:: ds 2 ; dc7a
+wPhoneList:: ds CONTACT_LIST_SIZE ; dc7c
 	ds 23
 wLuckyNumberShowFlag:: ds 2 ; dc9d
 wLuckyIDNumber:: ds 2 ; dc9f

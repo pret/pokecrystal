@@ -141,7 +141,7 @@ ScriptCommandTable: ; 96cb1
 	dw Script_stringtotext               ; 44
 	dw Script_itemnotify                 ; 45
 	dw Script_pocketisfull               ; 46
-	dw Script_textbox                   ; 47
+	dw Script_textbox                    ; 47
 	dw Script_refreshscreen              ; 48
 	dw Script_closetext                  ; 49
 	dw Script_loadbytec2cf               ; 4a
@@ -160,15 +160,15 @@ ENDC
 	dw Script_buttonsound                ; 55
 	dw Script_pokepic                    ; 56
 	dw Script_closepokepic               ; 57
-	dw Script__2dmenu              ; 58
-	dw Script_verticalmenu             ; 59
+	dw Script__2dmenu                    ; 58
+	dw Script_verticalmenu               ; 59
 	dw Script_loadpikachudata            ; 5a
 	dw Script_randomwildmon              ; 5b
 	dw Script_loadmemtrainer             ; 5c
 	dw Script_loadwildmon                ; 5d
 	dw Script_loadtrainer                ; 5e
 	dw Script_startbattle                ; 5f
-	dw Script_reloadmapafterbattle          ; 60
+	dw Script_reloadmapafterbattle       ; 60
 	dw Script_catchtutorial              ; 61
 	dw Script_trainertext                ; 62
 	dw Script_trainerflagaction          ; 63
@@ -203,7 +203,7 @@ ENDC
 	dw Script_encountermusic             ; 80
 	dw Script_musicfadeout               ; 81
 	dw Script_playmapmusic               ; 82
-	dw Script_dontrestartmapmusic             ; 83
+	dw Script_dontrestartmapmusic        ; 83
 	dw Script_cry                        ; 84
 	dw Script_playsound                  ; 85
 	dw Script_waitsfx                    ; 86

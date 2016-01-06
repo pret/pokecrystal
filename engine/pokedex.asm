@@ -577,15 +577,15 @@ Jumptable_40405: ; 40405 (10:4405)
 ; 4040d
 
 Function4040d: ; 4040d (10:440d)
-	ld b, $0
+	ld b, DEXMODE_NEW
 	jr Function40417
 
 Function40411: ; 40411 (10:4411)
-	ld b, $1
+	ld b, DEXMODE_OLD
 	jr Function40417
 
 Function40415: ; 40415 (10:4415)
-	ld b, $2
+	ld b, DEXMODE_ABC
 Function40417: ; 40417 (10:4417)
 	ld a, [wCurrentDexMode]
 	cp b

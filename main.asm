@@ -383,7 +383,7 @@ endr
 StepHappiness:: ; 725a
 ; Raise the party's happiness by 1 point every other step cycle.
 
-	ld hl, wdc77
+	ld hl, wHappinessStepCount
 	ld a, [hl]
 	inc a
 	and 1

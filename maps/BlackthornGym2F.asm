@@ -16,7 +16,7 @@ BlackthornGym2F_MapScriptHeader:
 	db 1
 
 	; callbacks
-	dbw MAPCALLBACK_PALETTES, .Boulders
+	dbw MAPCALLBACK_CMDQUEUE, .Boulders
 
 .Boulders
 	writecmdqueue .BoulderCmdQueue

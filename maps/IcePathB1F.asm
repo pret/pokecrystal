@@ -14,7 +14,7 @@ IcePathB1F_MapScriptHeader:
 
 	; callbacks
 
-	dbw MAPCALLBACK_PALETTES, .SetUpStoneTable
+	dbw MAPCALLBACK_CMDQUEUE, .SetUpStoneTable
 
 .SetUpStoneTable:
 	writecmdqueue .CommandQueue
