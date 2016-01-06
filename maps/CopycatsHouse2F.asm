@@ -15,7 +15,7 @@ CopycatsHouse2F_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, CopycatsHouse2FCallback
+	dbw MAPCALLBACK_OBJECTS, CopycatsHouse2FCallback
 
 CopycatsHouse2FCallback:
 	checkflag ENGINE_PLAYER_IS_FEMALE

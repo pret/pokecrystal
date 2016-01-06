@@ -17,8 +17,8 @@ BlackthornCity_MapScriptHeader:
 	db 2
 
 	; callbacks
-	dbw 5, .FlyPoint
-	dbw 2, .Santos
+	dbw MAPCALLBACK_NEWMAP, .FlyPoint
+	dbw MAPCALLBACK_OBJECTS, .Santos
 
 .FlyPoint
 	setflag ENGINE_FLYPOINT_BLACKTHORN

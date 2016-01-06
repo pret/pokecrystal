@@ -14,7 +14,7 @@ WillsRoom_MapScriptHeader:
 
 	; callbacks
 
-	dbw 1, UnknownScript_0x1804cb
+	dbw MAPCALLBACK_TILES, UnknownScript_0x1804cb
 
 UnknownScript_0x1804c6:
 	priorityjump UnknownScript_0x1804e0

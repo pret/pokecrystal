@@ -15,7 +15,7 @@ TradeCenter_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, TradeCenter_SetWhichChris
+	dbw MAPCALLBACK_OBJECTS, TradeCenter_SetWhichChris
 
 .Trigger0:
 	priorityjump TradeCenter_Initialize

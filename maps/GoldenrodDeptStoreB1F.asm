@@ -17,9 +17,9 @@ GoldenrodDeptStoreB1F_MapScriptHeader:
 
 	; callbacks
 
-	dbw 1, UnknownScript_0x7d781
+	dbw MAPCALLBACK_TILES, UnknownScript_0x7d781
 
-	dbw 5, UnknownScript_0x7d7ac
+	dbw MAPCALLBACK_NEWMAP, UnknownScript_0x7d7ac
 
 UnknownScript_0x7d781:
 	checkevent EVENT_RECEIVED_CARD_KEY

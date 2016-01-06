@@ -15,7 +15,7 @@ GoldenrodDeptStore5F_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, .CheckIfSunday
+	dbw MAPCALLBACK_OBJECTS, .CheckIfSunday
 
 .CheckIfSunday:
 	checkcode VAR_WEEKDAY

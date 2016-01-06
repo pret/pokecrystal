@@ -29,7 +29,7 @@ TeamRocketBaseB2F_MapScriptHeader:
 
 	; callbacks
 
-	dbw 1, UnknownScript_0x6cf89
+	dbw MAPCALLBACK_TILES, UnknownScript_0x6cf89
 
 UnknownScript_0x6cf85:
 	end

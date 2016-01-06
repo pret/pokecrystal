@@ -14,7 +14,7 @@ BrunosRoom_MapScriptHeader:
 
 	; callbacks
 
-	dbw 1, UnknownScript_0x180998
+	dbw MAPCALLBACK_TILES, UnknownScript_0x180998
 
 UnknownScript_0x180993:
 	priorityjump UnknownScript_0x1809ad

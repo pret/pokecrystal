@@ -15,7 +15,7 @@ UnionCaveB2F_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x5a30d
+	dbw MAPCALLBACK_OBJECTS, UnknownScript_0x5a30d
 
 UnknownScript_0x5a30d:
 	checkflag ENGINE_UNION_CAVE_LAPRAS

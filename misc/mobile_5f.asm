@@ -4708,7 +4708,7 @@ Function17f555: ; 17f555
 
 Function17f5c3: ; 17f5c3
 	call Function17f5e4
-	callba Function2b5c
+	callba FinishExitMenu
 	ld a, $1
 	ld [wc303], a
 	ret

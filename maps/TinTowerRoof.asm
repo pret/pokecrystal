@@ -10,7 +10,7 @@ TinTowerRoof_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x77230
+	dbw MAPCALLBACK_OBJECTS, UnknownScript_0x77230
 
 UnknownScript_0x77230:
 	checkevent EVENT_FOUGHT_HO_OH

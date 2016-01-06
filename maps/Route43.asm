@@ -17,7 +17,7 @@ Route43_MapScriptHeader:
 
 	; callbacks
 
-	dbw 5, UnknownScript_0x19d051
+	dbw MAPCALLBACK_NEWMAP, UnknownScript_0x19d051
 
 UnknownScript_0x19d051:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT

@@ -22,7 +22,7 @@ DragonsDenB1F_MapScriptHeader:
 
 	; callbacks
 
-	dbw 5, .CheckSilver
+	dbw MAPCALLBACK_NEWMAP, .CheckSilver
 
 .Trigger0:
 	end

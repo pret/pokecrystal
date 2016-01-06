@@ -16,9 +16,9 @@ Colosseum_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, ColosseumScript_SetWhichChris
+	dbw MAPCALLBACK_OBJECTS, ColosseumScript_SetWhichChris
 
-	dbw 5, ColosseumScript_InitializeCB
+	dbw MAPCALLBACK_NEWMAP, ColosseumScript_InitializeCB
 
 .Trigger0:
 	priorityjump ColosseumScript_Initialize

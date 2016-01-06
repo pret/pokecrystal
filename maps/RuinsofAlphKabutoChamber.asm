@@ -15,7 +15,7 @@ RuinsofAlphKabutoChamber_MapScriptHeader:
 
 	; callbacks
 
-	dbw 1, UnknownScript_0x58737
+	dbw MAPCALLBACK_TILES, UnknownScript_0x58737
 
 UnknownScript_0x5872b:
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER

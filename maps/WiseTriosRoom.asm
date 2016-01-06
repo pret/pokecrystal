@@ -19,7 +19,7 @@ WiseTriosRoom_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x98574
+	dbw MAPCALLBACK_OBJECTS, UnknownScript_0x98574
 
 UnknownScript_0x98572:
 	end

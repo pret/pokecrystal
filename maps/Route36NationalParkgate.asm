@@ -26,9 +26,9 @@ Route36NationalParkgate_MapScriptHeader:
 
 	; callbacks
 
-	dbw 5, .CheckIfContestRunning
+	dbw MAPCALLBACK_NEWMAP, .CheckIfContestRunning
 
-	dbw 2, .CheckIfContestAvailable
+	dbw MAPCALLBACK_OBJECTS, .CheckIfContestAvailable
 
 .Trigger0:
 	end

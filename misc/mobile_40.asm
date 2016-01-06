@@ -3061,7 +3061,7 @@ Function1013aa: ; 1013aa
 	call ReloadTilesetAndPalettes
 	callba Function106464
 	call UpdateSprites
-	call Function2b5c
+	call FinishExitMenu
 	ret
 ; 1013c0
 
@@ -3069,7 +3069,7 @@ Function1013c0: ; 1013c0
 	callba BlankScreen
 	callba MobileFunc_106462
 	callba Function106464
-	call Function2b5c
+	call FinishExitMenu
 	ret
 ; 1013d6
 

@@ -25,8 +25,8 @@ LakeofRage_MapScriptHeader:
 
 	; callbacks
 
-	dbw 5, .FlyPoint
-	dbw 2, .Wesley
+	dbw MAPCALLBACK_NEWMAP, .FlyPoint
+	dbw MAPCALLBACK_OBJECTS, .Wesley
 
 .Trigger0
 	end

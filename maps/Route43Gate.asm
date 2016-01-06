@@ -16,7 +16,7 @@ Route43Gate_MapScriptHeader:
 
 	; callbacks
 
-	dbw 5, UnknownScript_0x19abca
+	dbw MAPCALLBACK_NEWMAP, UnknownScript_0x19abca
 
 UnknownScript_0x19abc5:
 	priorityjump UnknownScript_0x19abda

@@ -18,7 +18,7 @@ MahoganyMart1F_MapScriptHeader:
 
 	; callbacks
 
-	dbw 1, UnknownScript_0x6c35b
+	dbw MAPCALLBACK_TILES, UnknownScript_0x6c35b
 
 UnknownScript_0x6c356:
 	end

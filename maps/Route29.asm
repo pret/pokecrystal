@@ -21,7 +21,7 @@ Route29_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, .Tuscany
+	dbw MAPCALLBACK_OBJECTS, .Tuscany
 
 .Trigger0:
 	end

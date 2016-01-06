@@ -11,7 +11,7 @@ Route40BattleTowerGate_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x9f665
+	dbw MAPCALLBACK_OBJECTS, UnknownScript_0x9f665
 
 UnknownScript_0x9f665:
 	clearevent EVENT_BATTLE_TOWER_OUTSIDE_SAILOR

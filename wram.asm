@@ -1905,6 +1905,8 @@ MenuItemsList::
 CurFruitTree::
 CurInput::
 wElevatorPointerBank::
+wCurCoordEventTriggerID::
+wCurSignpostYCoord::
 EngineBuffer1:: ; d03e
 	ds 1
 
@@ -1913,24 +1915,30 @@ wJumpStdScriptBuffer::
 CurFruit:: ; d03f
 MartPointerBank::
 wElevatorPointerLo::
+wCurCoordEventMapY::
+wCurSignpostXCoord::
 EngineBuffer2::
 	ds 1
 
 wd040::
 wElevatorPointerHi::
 MartPointer:: ; d040
+wCurCoordEventMapX::
+wCurSignpostType::
 EngineBuffer3::
 	ds 1
 
 wd041::
 wElevatorOriginFloor::
-EngineBuffer4::
 wTempTrainerHeader::
 wTempTrainerEventFlagLo::
+wCurSignpostScriptAddr::
+EngineBuffer4::
 	ds 1
 
 wTempTrainerEventFlagHi::
 MovementAnimation:: ; d042
+wCurCoordEventScriptAddr::
 EngineBuffer5::
 	ds 1
 
@@ -2963,8 +2971,8 @@ wCurrentCaller:: ds 2
 wCurrMapWarpCount:: ds 1
 wCurrMapWarpHeaderPointer:: ds 1
 wdbfd:: ds 1
-wCurrentNextMapXYTriggerCount:: ds 1
-wCurrentNextMapXYTriggerHeaderPointer:: ds 1
+wCurrentMapXYTriggerCount:: ds 1
+wCurrentMapXYTriggerHeaderPointer:: ds 1
 wdc00:: ds 1
 wCurrentMapSignpostCount:: ds 1
 wCurrentMapSignpostHeaderPointer::

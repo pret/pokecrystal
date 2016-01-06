@@ -350,7 +350,7 @@ CheckTileEvent: ; 96874
 	call CheckCoordEventScriptFlag
 	jr z, .coord_events_disabled
 
-	call CheckCurrentNextMapXYTriggers
+	call CheckCurrentMapXYTriggers
 	jr c, .coord_event
 
 .coord_events_disabled
@@ -391,7 +391,7 @@ CheckTileEvent: ; 96874
 	ret
 
 .coord_event
-	ld hl, EngineBuffer5
+	ld hl, wCurCoordEventScriptAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

@@ -16,7 +16,7 @@ UndergroundWarehouse_MapScriptHeader:
 
 	; callbacks
 
-	dbw 5, .ResetSwitches
+	dbw MAPCALLBACK_NEWMAP, .ResetSwitches
 
 .ResetSwitches:
 	clearevent EVENT_SWITCH_1

@@ -12,7 +12,7 @@ RuinsofAlphHoOhChamber_MapScriptHeader:
 
 	; callbacks
 
-	dbw 1, UnknownScript_0x5857c
+	dbw MAPCALLBACK_TILES, UnknownScript_0x5857c
 
 UnknownScript_0x5856d:
 	special SpecialHoOhChamber

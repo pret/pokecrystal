@@ -22,7 +22,7 @@ Route36_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, ArthurCallback
+	dbw MAPCALLBACK_OBJECTS, ArthurCallback
 
 UnknownScript_0x19400d:
 	end

@@ -18,11 +18,11 @@ WarehouseEntrance_MapScriptHeader:
 
 	; callbacks
 
-	dbw 5, .ResetSwitches
+	dbw MAPCALLBACK_NEWMAP, .ResetSwitches
 
-	dbw 1, .CheckBasementKey
+	dbw MAPCALLBACK_TILES, .CheckBasementKey
 
-	dbw 2, .CheckDayOfWeek
+	dbw MAPCALLBACK_OBJECTS, .CheckDayOfWeek
 
 .ResetSwitches:
 	clearevent EVENT_SWITCH_1

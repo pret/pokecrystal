@@ -11,7 +11,7 @@ CeladonDeptStore6F_MapScriptHeader:
 
 	; callbacks
 
-	dbw 1, .Callback
+	dbw MAPCALLBACK_TILES, .Callback
 
 .Callback:
 	changeblock $c, $0, $3

@@ -13,7 +13,7 @@ Route34IlexForestGate_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x62d2d
+	dbw MAPCALLBACK_OBJECTS, UnknownScript_0x62d2d
 
 UnknownScript_0x62d2d:
 	checkevent EVENT_FOREST_IS_RESTLESS

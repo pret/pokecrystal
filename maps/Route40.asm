@@ -21,7 +21,7 @@ Route40_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, MonicaCallback
+	dbw MAPCALLBACK_OBJECTS, MonicaCallback
 
 MonicaCallback:
 	clearevent EVENT_BATTLE_TOWER_OUTSIDE_SAILOR

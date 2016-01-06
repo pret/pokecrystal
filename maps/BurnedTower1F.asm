@@ -19,7 +19,7 @@ BurnedTower1F_MapScriptHeader:
 
 	; callbacks
 
-	dbw 1, .HoleAndLadder
+	dbw MAPCALLBACK_TILES, .HoleAndLadder
 
 .Trigger0:
 	priorityjump .EusineTrigger

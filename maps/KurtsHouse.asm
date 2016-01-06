@@ -14,7 +14,7 @@ KurtsHouse_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x18e154
+	dbw MAPCALLBACK_OBJECTS, UnknownScript_0x18e154
 
 UnknownScript_0x18e154:
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL

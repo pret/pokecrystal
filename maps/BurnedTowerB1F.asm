@@ -22,7 +22,7 @@ BurnedTowerB1F_MapScriptHeader:
 
 	; callbacks
 
-	dbw 1, UnknownScript_0x186160
+	dbw MAPCALLBACK_TILES, UnknownScript_0x186160
 
 UnknownScript_0x18615e:
 	end

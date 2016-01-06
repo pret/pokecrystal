@@ -14,7 +14,7 @@ KogasRoom_MapScriptHeader:
 
 	; callbacks
 
-	dbw 1, UnknownScript_0x18072d
+	dbw MAPCALLBACK_TILES, UnknownScript_0x18072d
 
 UnknownScript_0x180728:
 	priorityjump UnknownScript_0x180742

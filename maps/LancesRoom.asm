@@ -16,7 +16,7 @@ LancesRoom_MapScriptHeader:
 
 	; callbacks
 
-	dbw 1, UnknownScript_0x180e3e
+	dbw MAPCALLBACK_TILES, UnknownScript_0x180e3e
 
 UnknownScript_0x180e39:
 	priorityjump UnknownScript_0x180e53

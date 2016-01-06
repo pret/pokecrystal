@@ -16,7 +16,7 @@ Route31_MapScriptHeader:
 
 	; callbacks
 
-	dbw 5, .CheckMomCall
+	dbw MAPCALLBACK_NEWMAP, .CheckMomCall
 
 .CheckMomCall:
 	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST

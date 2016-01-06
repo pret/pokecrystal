@@ -12,7 +12,7 @@ RuinsofAlphAerodactylChamber_MapScriptHeader:
 
 	; callbacks
 
-	dbw 1, UnknownScript_0x58db9
+	dbw MAPCALLBACK_TILES, UnknownScript_0x58db9
 
 UnknownScript_0x58dad:
 	checkevent EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER

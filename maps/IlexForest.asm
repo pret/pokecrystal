@@ -20,7 +20,7 @@ IlexForest_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, .FarfetchdCallback
+	dbw MAPCALLBACK_OBJECTS, .FarfetchdCallback
 
 .FarfetchdCallback:
 	checkevent EVENT_GOT_HM01_CUT

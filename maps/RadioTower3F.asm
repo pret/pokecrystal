@@ -16,7 +16,7 @@ RadioTower3F_MapScriptHeader:
 
 	; callbacks
 
-	dbw 1, UnknownScript_0x5e543
+	dbw MAPCALLBACK_TILES, UnknownScript_0x5e543
 
 UnknownScript_0x5e543:
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER

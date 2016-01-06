@@ -16,7 +16,7 @@ Route37_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, SunnyCallback
+	dbw MAPCALLBACK_OBJECTS, SunnyCallback
 
 SunnyCallback:
 	checkcode VAR_WEEKDAY

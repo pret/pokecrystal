@@ -12,8 +12,8 @@ BattleTowerOutside_MapScriptHeader:
 	db 2
 
 	; callbacks
-	dbw 1, .Callback1
-	dbw 2, .Callback2
+	dbw MAPCALLBACK_TILES, .Callback1
+	dbw MAPCALLBACK_OBJECTS, .Callback2
 
 .Callback1
 	return

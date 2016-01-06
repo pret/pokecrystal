@@ -12,7 +12,7 @@ RuinsofAlphOmanyteChamber_MapScriptHeader:
 
 	; callbacks
 
-	dbw 1, UnknownScript_0x58bf8
+	dbw MAPCALLBACK_TILES, UnknownScript_0x58bf8
 
 UnknownScript_0x58be9:
 	special SpecialOmanyteChamber

@@ -16,7 +16,7 @@ MahoganyTown_MapScriptHeader:
 	db 1
 
 	; callbacks
-	dbw 5, .FlyPoint
+	dbw MAPCALLBACK_NEWMAP, .FlyPoint
 
 .Trigger0
 	end

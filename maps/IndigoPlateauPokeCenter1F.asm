@@ -18,7 +18,7 @@ IndigoPlateauPokeCenter1F_MapScriptHeader:
 
 	; callbacks
 
-	dbw 5, UnknownScript_0x18000a
+	dbw MAPCALLBACK_NEWMAP, UnknownScript_0x18000a
 
 UnknownScript_0x180009:
 	end

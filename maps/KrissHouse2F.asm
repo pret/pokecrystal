@@ -13,9 +13,9 @@ KrissHouse2F_MapScriptHeader:
 
 	; callbacks
 
-	dbw 5, .InitializeRoom
+	dbw MAPCALLBACK_NEWMAP, .InitializeRoom
 
-	dbw 1, .SetSpawn
+	dbw MAPCALLBACK_TILES, .SetSpawn
 
 .Null:
 	end

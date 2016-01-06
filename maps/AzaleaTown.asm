@@ -25,7 +25,7 @@ AzaleaTown_MapScriptHeader:
 	db 1
 
 	; callbacks
-	dbw 5, .Flypoint
+	dbw MAPCALLBACK_NEWMAP, .Flypoint
 
 .Trigger0
 	end

@@ -5,11 +5,11 @@ RunCallback_05_03: ; 1045b0
 	call ResetFlashIfOutOfCave
 	call GetCurrentMapTrigger
 	call ResetBikeFlags
-	ld a, $5
+	ld a, MAPCALLBACK_NEWMAP
 	call RunMapCallback
 RunCallback_03: ; 1045c4
 	callba ClearCmdQueue
-	ld a, $3
+	ld a, MAPCALLBACK_PALETTES
 	call RunMapCallback
 	call GetMapHeaderTimeOfDayNybble
 	ld [wMapTimeOfDay], a

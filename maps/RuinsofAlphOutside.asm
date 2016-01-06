@@ -18,7 +18,7 @@ RuinsofAlphOutside_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x5800f
+	dbw MAPCALLBACK_OBJECTS, UnknownScript_0x5800f
 
 UnknownScript_0x5800d:
 	end

@@ -15,9 +15,9 @@ MountMoonSquare_MapScriptHeader:
 
 	; callbacks
 
-	dbw 5, UnknownScript_0x77093
+	dbw MAPCALLBACK_NEWMAP, UnknownScript_0x77093
 
-	dbw 2, UnknownScript_0x77097
+	dbw MAPCALLBACK_OBJECTS, UnknownScript_0x77097
 
 UnknownScript_0x77092:
 	end

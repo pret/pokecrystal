@@ -12,7 +12,7 @@ Route20_MapScriptHeader:
 
 	; callbacks
 
-	dbw 5, .ClearRocks
+	dbw MAPCALLBACK_NEWMAP, .ClearRocks
 
 .ClearRocks
 	setevent EVENT_CINNABAR_ROCKS_CLEARED

@@ -166,7 +166,7 @@ endr
 
 
 RunCallback_04: ; 14209
-	ld a, $4
+	ld a, MAPCALLBACK_SPRITES
 	call RunMapCallback
 	call GetUsedSprites
 	call .LoadMiscTiles

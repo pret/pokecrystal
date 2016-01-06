@@ -23,7 +23,7 @@ ElmsLab_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, .Callback_MoveElm
+	dbw MAPCALLBACK_OBJECTS, .Callback_MoveElm
 
 .Trigger0:
 	priorityjump ElmsLab_AutowalkUpToElm

@@ -13,7 +13,7 @@ PewterCity_MapScriptHeader:
 	db 1
 
 	; callbacks
-	dbw 5, .FlyPoint
+	dbw MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint
 	setflag ENGINE_FLYPOINT_PEWTER

@@ -15,7 +15,7 @@ TimeCapsule_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, TimeCapsule_SetWhichChris
+	dbw MAPCALLBACK_OBJECTS, TimeCapsule_SetWhichChris
 
 .Trigger0:
 	priorityjump TimeCapsule_Initialize

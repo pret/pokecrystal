@@ -17,7 +17,7 @@ EcruteakHouse_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, .InitializeSages
+	dbw MAPCALLBACK_OBJECTS, .InitializeSages
 
 .Trigger0:
 	end

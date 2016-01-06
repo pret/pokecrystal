@@ -2,7 +2,7 @@
 
 Clearwc7e8:: ; 210f
 	ld hl, wc7e8
-	ld bc, $0018
+	ld bc, 24
 	ld a, $0
 	call ByteFill
 	ret
@@ -308,9 +308,8 @@ GetDestinationWarpNumber:: ; 2252
 	ret
 
 .IncreaseHLTwice
-rept 2
 	inc hl
-endr
+	inc hl
 	scf
 	ret
 ; 22a7
@@ -424,9 +423,8 @@ ReadMapEventHeader:: ; 2336
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-rept 2
 	inc hl
-endr
+	inc hl
 	call ReadWarps
 	call ReadCoordEvents
 	call ReadSignposts
@@ -563,11 +561,11 @@ ReadWarps:: ; 23da
 ReadCoordEvents:: ; 23f1
 	ld a, [hli]
 	ld c, a
-	ld [wCurrentNextMapXYTriggerCount], a
+	ld [wCurrentMapXYTriggerCount], a
 	ld a, l
-	ld [wCurrentNextMapXYTriggerHeaderPointer], a
+	ld [wCurrentMapXYTriggerHeaderPointer], a
 	ld a, h
-	ld [wCurrentNextMapXYTriggerHeaderPointer + 1], a
+	ld [wCurrentMapXYTriggerHeaderPointer + 1], a
 
 	ld a, c
 	and a
@@ -737,7 +735,7 @@ LoadBlockData:: ; 24cd
 	call ByteFill
 	call ChangeMap
 	call FillMapConnections
-	ld a, $1
+	ld a, MAPCALLBACK_TILES
 	call RunMapCallback
 	ret
 ; 24e4
@@ -1198,7 +1196,7 @@ MaskObject:: ; 2712
 	ld d, $0
 	ld hl, wObjectMasks
 	add hl, de
-	ld [hl], -1 ; ,masked
+	ld [hl], -1 ; , masked
 	ret
 ; 271e
 
@@ -1340,9 +1338,8 @@ UpdateBGMapRow:: ; 27d3
 	ld a, d
 	ld [hli], a
 	ld a, e
-rept 2
 	inc a
-endr
+	inc a
 	and $1f
 	ld b, a
 	ld a, e
@@ -1568,8 +1565,8 @@ SaveScreen_LoadNeighbor:: ; 28f7
 GetMovementPermissions:: ; 2914
 	xor a
 	ld [TilePermissions], a
-	call GetLeftRightCollision
-	call GetUpDownCollision
+	call .LeftRight
+	call .UpDown
 ; get coords of current tile
 	ld a, [PlayerNextMapX]
 	ld d, a
@@ -1577,12 +1574,12 @@ GetMovementPermissions:: ; 2914
 	ld e, a
 	call GetCoordTile
 	ld [PlayerNextTile], a
-	call Function29ff
+	call .CheckHiNybble
 	ret nz
 
 	ld a, [PlayerNextTile]
 	and 7
-	ld hl, .data_2945
+	ld hl, .MovementPermissionsData
 	add l
 	ld l, a
 	ld a, 0
@@ -1595,11 +1592,11 @@ GetMovementPermissions:: ; 2914
 	ret
 ; 2945
 
-.data_2945 ; 2945
+.MovementPermissionsData ; 2945
 	db 1, 2, 4, 8, 9, 10, 5, 6
 ; 294d
 
-GetUpDownCollision:: ; 294d
+.UpDown
 	ld a, [PlayerNextMapX]
 	ld d, a
 	ld a, [PlayerNextMapY]
@@ -1609,17 +1606,17 @@ GetUpDownCollision:: ; 294d
 	inc e
 	call GetCoordTile
 	ld [TileDown], a
-	call Function298b
+	call .Down
 
 	pop de
 	dec e
 	call GetCoordTile
 	ld [TileUp], a
-	call Function29a8
+	call .Up
 	ret
 ; 296c
 
-GetLeftRightCollision:: ; 296c
+.LeftRight
 	ld a, [PlayerNextMapX]
 	ld d, a
 	ld a, [PlayerNextMapY]
@@ -1629,93 +1626,93 @@ GetLeftRightCollision:: ; 296c
 	dec d
 	call GetCoordTile
 	ld [TileLeft], a
-	call Function29e2
+	call .Left
 
 	pop de
 	inc d
 	call GetCoordTile
 	ld [TileRight], a
-	call Function29c5
+	call .Right
 	ret
 ; 298b
 
-Function298b:: ; 298b
-	call Function29ff
+.Down
+	call .CheckHiNybble
 	ret nz
 	ld a, [TileDown]
 	and 7
 	cp $2
-	jr z, .ok
+	jr z, .ok_down
 	cp $6
-	jr z, .ok
+	jr z, .ok_down
 	cp $7
 	ret nz
 
-.ok
+.ok_down
 	ld a, [TilePermissions]
 	or FACE_DOWN
 	ld [TilePermissions], a
 	ret
 ; 29a8
 
-Function29a8:: ; 29a8
-	call Function29ff
+.Up
+	call .CheckHiNybble
 	ret nz
 	ld a, [TileUp]
 	and 7
 	cp $3
-	jr z, .ok
+	jr z, .ok_up
 	cp $4
-	jr z, .ok
+	jr z, .ok_up
 	cp $5
 	ret nz
 
-.ok
+.ok_up
 	ld a, [TilePermissions]
 	or FACE_UP
 	ld [TilePermissions], a
 	ret
 ; 29c5
 
-Function29c5:: ; 29c5
-	call Function29ff
+.Right
+	call .CheckHiNybble
 	ret nz
 	ld a, [TileRight]
 	and 7
 	cp $1
-	jr z, .ok
+	jr z, .ok_right
 	cp $5
-	jr z, .ok
+	jr z, .ok_right
 	cp $7
 	ret nz
 
-.ok
+.ok_right
 	ld a, [TilePermissions]
 	or FACE_RIGHT
 	ld [TilePermissions], a
 	ret
 ; 29e2
 
-Function29e2:: ; 29e2
-	call Function29ff
+.Left
+	call .CheckHiNybble
 	ret nz
 	ld a, [TileLeft]
 	and 7
 	cp $0
-	jr z, .ok
+	jr z, .ok_left
 	cp $4
-	jr z, .ok
+	jr z, .ok_left
 	cp $6
 	ret nz
 
-.ok
+.ok_left
 	ld a, [TilePermissions]
 	or FACE_LEFT
 	ld [TilePermissions], a
 	ret
 ; 29ff
 
-Function29ff:: ; 29ff
+.CheckHiNybble
 	and $f0
 	cp $b0
 	ret z
@@ -1733,9 +1730,8 @@ GetFacingTileCoord:: ; 2a07
 	srl a
 	ld l, a
 	ld h, 0
-rept 2
-	add hl,hl
-endr
+	add hl, hl
+	add hl, hl
 	ld de, .Directions
 	add hl, de
 
@@ -1777,9 +1773,8 @@ GetCoordTile:: ; 2a3c
 	jr z, .nope
 	ld l, a
 	ld h, $0
-rept 2
-	add hl,hl
-endr
+	add hl, hl
+	add hl, hl
 	ld a, [TilesetCollisionAddress]
 	ld c, a
 	ld a, [TilesetCollisionAddress + 1]
@@ -1792,9 +1787,8 @@ endr
 .nocarry
 	rr e
 	jr nc, .nocarry2
-rept 2
 	inc hl
-endr
+	inc hl
 
 .nocarry2
 	ld a, [TilesetCollisionBank]
@@ -1895,16 +1889,16 @@ CheckIfFacingTileCoordIsSign:: ; 2aaa
 
 .copysign
 	pop hl
-	ld de, EngineBuffer1
+	ld de, wCurSignpostYCoord
 	ld bc, 5 ; signpost event length
 	call CopyBytes
 	scf
 	ret
 ; 2ad4
 
-CheckCurrentNextMapXYTriggers:: ; 2ad4
+CheckCurrentMapXYTriggers:: ; 2ad4
 ; If there are no xy triggers, we don't need to be here.
-	ld a, [wCurrentNextMapXYTriggerCount]
+	ld a, [wCurrentMapXYTriggerCount]
 	and a
 	ret z
 ; Copy the trigger count into c.
@@ -1912,16 +1906,15 @@ CheckCurrentNextMapXYTriggers:: ; 2ad4
 	ld a, [hROMBank]
 	push af
 	call SwitchToMapScriptHeaderBank
-	call CheckStandingOnXYTrigger
+	call .TriggerCheck
 	pop hl
 	ld a, h
 	rst Bankswitch
 	ret
-; 2ae7
 
-CheckStandingOnXYTrigger:: ; 2ae7
+.TriggerCheck
 ; Checks to see if you are standing on an xy-trigger.  If yes, copies the trigger to EngineBuffer1 and sets carry.
-	ld hl, wCurrentNextMapXYTriggerHeaderPointer
+	ld hl, wCurrentMapXYTriggerHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1969,7 +1962,7 @@ CheckStandingOnXYTrigger:: ; 2ae7
 
 .copytrigger
 	pop hl
-	ld de, EngineBuffer1
+	ld de, wCurCoordEventTriggerID
 	ld bc, 8 ; xy-trigger size
 	call CopyBytes
 	scf
@@ -1992,7 +1985,7 @@ CloseSubmenu:: ; 2b3c
 	call UpdateSprites
 	call Call_ExitMenu
 	call ret_d90
-	jr Function2b5c
+	jr FinishExitMenu
 ; 2b4d
 
 ExitAllMenus:: ; 2b4d
@@ -2001,7 +1994,7 @@ ExitAllMenus:: ; 2b4d
 	call ReloadTilesetAndPalettes
 	call UpdateSprites
 	call ret_d90
-Function2b5c:: ; 2b5c
+FinishExitMenu:: ; 2b5c
 	ld b, SCGB_MAPPALS
 	call GetSGBLayout
 	callba LoadOW_BGPal7
@@ -2066,8 +2059,6 @@ GetMapHeaderPointer:: ; 2be5
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-; 2bed
-
 GetAnyMapHeaderPointer:: ; 0x2bed
 ; Prior to calling this function, you must have switched banks so that
 ; MapGroupPointers is visible.
@@ -2085,9 +2076,8 @@ GetAnyMapHeaderPointer:: ; 0x2bed
 	ld c, b
 	ld b, 0
 	ld hl, MapGroupPointers
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 
 	ld a, [hli]
 	ld h, [hl]
@@ -2116,8 +2106,6 @@ GetMapHeaderMember:: ; 0x2c04
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-	; fallthrough
-
 GetAnyMapHeaderMember:: ; 0x2c0c
 	; bankswitch
 	ld a, [hROMBank]
@@ -2142,8 +2130,6 @@ SwitchToMapBank:: ; 2c1c
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-; 2c24
-
 SwitchToAnyMapBank:: ; 2c24
 	call GetAnyMapBank
 	rst Bankswitch
@@ -2155,8 +2141,6 @@ GetMapBank:: ; 2c29
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-; 2c31
-
 GetAnyMapBank:: ; 2c31
 	push hl
 	push de
@@ -2253,8 +2237,7 @@ GetMapPermission:: ; 2c8a
 	ret
 ; 2c98
 
-Function2c98:: ; 2c98
-	ret
+	ret ; XXX
 ; 2c99
 
 GetAnyMapPermission:: ; 2c99

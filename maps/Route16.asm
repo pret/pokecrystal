@@ -8,7 +8,7 @@ Route16_MapScriptHeader:
 
 	; callbacks
 
-	dbw 5, UnknownScript_0x1ad318
+	dbw MAPCALLBACK_NEWMAP, UnknownScript_0x1ad318
 
 UnknownScript_0x1ad318:
 	checkcode VAR_YCOORD

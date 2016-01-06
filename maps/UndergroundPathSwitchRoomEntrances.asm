@@ -56,7 +56,7 @@ UndergroundPathSwitchRoomEntrances_MapScriptHeader:
 
 	; callbacks
 
-	dbw 1, .UpdateDoorPositions
+	dbw MAPCALLBACK_TILES, .UpdateDoorPositions
 
 .Trigger0:
 	end

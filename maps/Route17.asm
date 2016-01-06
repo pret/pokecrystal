@@ -13,7 +13,7 @@ Route17_MapScriptHeader:
 
 	; callbacks
 
-	dbw 5, UnknownScript_0x1ad0ab
+	dbw MAPCALLBACK_NEWMAP, UnknownScript_0x1ad0ab
 
 UnknownScript_0x1ad0ab:
 	setflag ENGINE_ALWAYS_ON_BIKE

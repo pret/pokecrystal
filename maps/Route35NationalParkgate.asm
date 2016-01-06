@@ -17,9 +17,9 @@ Route35NationalParkgate_MapScriptHeader:
 
 	; callbacks
 
-	dbw 5, Route35NationalParkgate_CheckIfStillInContest
+	dbw MAPCALLBACK_NEWMAP, Route35NationalParkgate_CheckIfStillInContest
 
-	dbw 2, Route35NationalParkgate_CheckIfContestDay
+	dbw MAPCALLBACK_OBJECTS, Route35NationalParkgate_CheckIfContestDay
 
 Route35NationalParkgate_Trigger1:
 	end

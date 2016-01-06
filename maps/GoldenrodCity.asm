@@ -23,8 +23,8 @@ GoldenrodCity_MapScriptHeader:
 	db 2
 
 	; callbacks
-	dbw 5, .FlyPointAndFloria
-	dbw 2, .MoveTutor
+	dbw MAPCALLBACK_NEWMAP, .FlyPointAndFloria
+	dbw MAPCALLBACK_OBJECTS, .MoveTutor
 
 .FlyPointAndFloria
 	setflag ENGINE_FLYPOINT_GOLDENROD

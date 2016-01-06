@@ -12,6 +12,13 @@ const_value SET $f1
 	const MAPSETUP_BADWARP
 	const MAPSETUP_FLY
 
+const_value SET 1
+	const MAPCALLBACK_TILES
+	const MAPCALLBACK_OBJECTS
+	const MAPCALLBACK_PALETTES
+	const MAPCALLBACK_SPRITES
+	const MAPCALLBACK_NEWMAP
+
 ; Command descriptions from Condensation water's scripting compendium.	const_def
 	const_def
 

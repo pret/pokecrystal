@@ -14,14 +14,14 @@ IcePathB1F_MapScriptHeader:
 
 	; callbacks
 
-	dbw 3, .SetUpStoneTable
+	dbw MAPCALLBACK_PALETTES, .SetUpStoneTable
 
 .SetUpStoneTable:
 	writecmdqueue .CommandQueue
 	return
 
 .CommandQueue:
-	dbw 2, .StoneTable ; check if any stones are sitting on a warp
+	dbw MAPCALLBACK_OBJECTS, .StoneTable ; check if any stones are sitting on a warp
 	db 0, 0 ; filler
 
 .StoneTable:

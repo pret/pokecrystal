@@ -14,7 +14,7 @@ KarensRoom_MapScriptHeader:
 
 	; callbacks
 
-	dbw 1, UnknownScript_0x180bc1
+	dbw MAPCALLBACK_TILES, UnknownScript_0x180bc1
 
 UnknownScript_0x180bbc:
 	priorityjump UnknownScript_0x180bd6

@@ -24,7 +24,7 @@ CianwoodCity_MapScriptHeader:
 	db 1
 
 	; callbacks
-	dbw 5, .FlyPointAndSuicune
+	dbw MAPCALLBACK_NEWMAP, .FlyPointAndSuicune
 
 .Trigger0
 	end

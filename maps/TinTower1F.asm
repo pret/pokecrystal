@@ -23,9 +23,9 @@ TinTower1F_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x18502f
+	dbw MAPCALLBACK_OBJECTS, UnknownScript_0x18502f
 
-	dbw 1, UnknownScript_0x185084
+	dbw MAPCALLBACK_TILES, UnknownScript_0x185084
 
 UnknownScript_0x18502a:
 	priorityjump UnknownScript_0x18508f

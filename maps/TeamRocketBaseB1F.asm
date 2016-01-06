@@ -18,7 +18,7 @@ TeamRocketBaseB1F_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, .Callback1
+	dbw MAPCALLBACK_OBJECTS, .Callback1
 
 .Trigger0:
 	end

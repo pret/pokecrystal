@@ -28,7 +28,7 @@ Route32_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, .Frieda
+	dbw MAPCALLBACK_OBJECTS, .Frieda
 
 .Trigger0:
 	end

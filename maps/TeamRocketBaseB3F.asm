@@ -29,7 +29,7 @@ TeamRocketBaseB3F_MapScriptHeader:
 
 	; callbacks
 
-	dbw 1, .CheckGiovanniDoor
+	dbw MAPCALLBACK_TILES, .CheckGiovanniDoor
 
 .Trigger0:
 	priorityjump LanceScript_0x6dffc

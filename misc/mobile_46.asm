@@ -5573,7 +5573,7 @@ Function11a9ce: ; 11a9ce
 	callba MobileFunc_106462
 	callba Function106464
 	call ret_d90
-	callba Function2b5c
+	callba FinishExitMenu
 	call UpdateSprites
 	ret
 ; 11a9f0

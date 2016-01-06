@@ -10,7 +10,7 @@ WhirlIslandLugiaChamber_MapScriptHeader:
 
 	; callbacks
 
-	dbw 2, UnknownScript_0x18c504
+	dbw MAPCALLBACK_OBJECTS, UnknownScript_0x18c504
 
 UnknownScript_0x18c504:
 	checkevent EVENT_FOUGHT_LUGIA
