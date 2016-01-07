@@ -1,4 +1,4 @@
-PlayRadioShow: ; b8612
+PlayRadioShow:
 ; If we're already in the radio program proper, we don't need to be here.
 	ld a, [wCurrentRadioLine]
 	cp POKE_FLUTE_RADIO
@@ -20,15 +20,14 @@ PlayRadioShow: ; b8612
 	ld e, a
 	ld d, 0
 	ld hl, RadioJumptable
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
 
-RadioJumptable: ; b863a (2e:463a)
+RadioJumptable:
 	dw OaksPkmnTalk1  ; $00
 	dw PokedexShow1 ; $01
 	dw BenMonMusic1  ; $02
@@ -127,7 +126,7 @@ RadioJumptable: ; b863a (2e:463a)
 	dw PokedexShow8 ; $57
 
 
-PrintRadioLine: ; b86ea (2e:46ea)
+PrintRadioLine:
 	ld [wNextRadioLine], a
 	ld hl, wRadioText
 	ld a, [wNumRadioLinesPrinted]
@@ -150,9 +149,8 @@ PrintRadioLine: ; b86ea (2e:46ea)
 	ld a, 100
 	ld [wRadioTextDelay], a
 	ret
-; b8718 (2e:4718)
 
-ReplacePeriodsWithSpaces: ; b8718
+ReplacePeriodsWithSpaces:
 	push hl
 	ld b, SCREEN_WIDTH * 2
 .loop
@@ -167,9 +165,8 @@ ReplacePeriodsWithSpaces: ; b8718
 	jr nz, .loop
 	pop hl
 	ret
-; b8728
 
-RadioScroll: ; b8728 (2e:4728)
+RadioScroll:
 	ld hl, wRadioTextDelay
 	ld a, [hl]
 	and a
@@ -184,25 +181,25 @@ RadioScroll: ; b8728 (2e:4728)
 	call nz, CopyBottomLineToTopLine
 	jp ClearBottomLine
 
-OaksPkmnTalk1: ; b8742 (2e:4742)
+OaksPkmnTalk1:
 	ld a, 5
 	ld [wOaksPkmnTalkSegmentCounter], a
 	call StartRadioStation
-	ld hl, UnknownText_0xb8820
+	ld hl, OPT_IntroText1
 	ld a, OAKS_POKEMON_TALK_2
 	jp NextRadioLine
 
-OaksPkmnTalk2: ; b8752 (2e:4752)
-	ld hl, UnknownText_0xb8825
+OaksPkmnTalk2:
+	ld hl, OPT_IntroText2
 	ld a, OAKS_POKEMON_TALK_3
 	jp NextRadioLine
 
-OaksPkmnTalk3: ; b875a (2e:475a)
-	ld hl, UnknownText_0xb882a
+OaksPkmnTalk3:
+	ld hl, OPT_IntroText3
 	ld a, OAKS_POKEMON_TALK_4
 	jp NextRadioLine
 
-OaksPkmnTalk4: ; b8762 (2e:4762)
+OaksPkmnTalk4:
 ; Choose a random route, and a random Pokemon from that route.
 	call Random
 	and $1f
@@ -212,9 +209,8 @@ OaksPkmnTalk4: ; b8762 (2e:4762)
 	ld hl, .routes
 	ld c, a
 	ld b, 0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld b, [hl]
 	inc hl
 	ld c, [hl]
@@ -264,9 +260,8 @@ endr
 	jr nc, .loop3
 	ld e, a
 	ld d, 0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	inc hl ; skip level
 	ld a, BANK(JohtoGrassWildMons)
 	call GetFarByte
@@ -283,7 +278,7 @@ endr
 	call GetWorldMapLocation
 	ld e, a
 	callba GetLandmarkName
-	ld hl, UnknownText_0xb882f
+	ld hl, OPT_OakText1
 	call CopyRadioTextToRAM
 	ld a, OAKS_POKEMON_TALK_5
 	jp PrintRadioLine
@@ -292,9 +287,8 @@ endr
 	pop bc
 	ld a, OAKS_POKEMON_TALK
 	jp PrintRadioLine
-; b87f2 (2e:47f2)
 
-.routes: ; b87f2
+.routes
 	map ROUTE_29
 	map ROUTE_46
 	map ROUTE_30
@@ -310,87 +304,75 @@ endr
 	map ROUTE_45
 	map ROUTE_36
 	map ROUTE_31
-; b8810
 
-OaksPkmnTalk5: ; b8810 (2e:4810)
-	ld hl, UnknownText_0xb8834
+OaksPkmnTalk5:
+	ld hl, OPT_OakText2
 	ld a, OAKS_POKEMON_TALK_6
 	jp NextRadioLine
 
-OaksPkmnTalk6: ; b8818 (2e:4818)
-	ld hl, UnknownText_0xb8839
+OaksPkmnTalk6:
+	ld hl, OPT_OakText3
 	ld a, OAKS_POKEMON_TALK_7
 	jp NextRadioLine
-; b8820 (2e:4820)
 
-UnknownText_0xb8820: ; 0xb8820
+OPT_IntroText1:
 	; MARY: PROF.OAK'S
-	text_jump UnknownText_0x1bc81a
+	text_jump _OPT_IntroText1
 	db "@"
-; 0xb8825
 
-UnknownText_0xb8825: ; 0xb8825
+OPT_IntroText2:
 	; #MON TALK!
-	text_jump UnknownText_0x1bc82d
+	text_jump _OPT_IntroText2
 	db "@"
-; 0xb882a
 
-UnknownText_0xb882a: ; 0xb882a
+OPT_IntroText3:
 	; With me, MARY!
-	text_jump UnknownText_0x1bc83a
+	text_jump _OPT_IntroText3
 	db "@"
-; 0xb882f
 
-UnknownText_0xb882f: ; 0xb882f
+OPT_OakText1:
 	; OAK: @ @
-	text_jump UnknownText_0x1bc84b
+	text_jump _OPT_OakText1
 	db "@"
-; 0xb8834
 
-UnknownText_0xb8834: ; 0xb8834
+OPT_OakText2:
 	; may be seen around
-	text_jump UnknownText_0x1bc858
+	text_jump _OPT_OakText2
 	db "@"
-; 0xb8839
 
-UnknownText_0xb8839: ; 0xb8839
+OPT_OakText3:
 	; @ .
-	text_jump UnknownText_0x1bc86d
+	text_jump _OPT_OakText3
 	db "@"
-; 0xb883e
 
-OaksPkmnTalk7: ; b883e (2e:483e)
+OaksPkmnTalk7:
 	ld a, [CurPartySpecies]
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
-	ld hl, UnknownText_0xb884f
+	ld hl, OPT_MaryText1
 	ld a, OAKS_POKEMON_TALK_8
 	jp NextRadioLine
-; b884f (2e:484f)
 
-UnknownText_0xb884f: ; 0xb884f
+OPT_MaryText1:
 	; MARY: @ 's
-	text_jump UnknownText_0x1bc876
+	text_jump _OPT_MaryText1
 	db "@"
-; 0xb8854
 
-OaksPkmnTalk8: ; b8854 (2e:4854)
+OaksPkmnTalk8:
 	call Random
 	and $f
 	ld e, a
 	ld d, 0
 	ld hl, .Descriptors
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld a, OAKS_POKEMON_TALK_9
 	jp NextRadioLine
-; b8869 (2e:4869)
 
-.Descriptors: ; b8869
+.Descriptors
 	dw .sweetadorably
 	dw .wigglyslickly
 	dw .aptlynamed
@@ -407,113 +389,95 @@ endr
 	dw .provocatively
 	dw .flippedout
 	dw .heartmeltingly
-; b8889
 
-.sweetadorably: ; 0xb8889
+.sweetadorably
 	; sweet and adorably
-	text_jump UnknownText_0x1bc885
+	text_jump OPT_SweetAdorably
 	db "@"
-; 0xb888e
 
-.wigglyslickly: ; 0xb888e
+.wigglyslickly
 	; wiggly and slickly
-	text_jump UnknownText_0x1bc89a
+	text_jump OPT_WigglySlickly
 	db "@"
-; 0xb8893
 
-.aptlynamed: ; 0xb8893
+.aptlynamed
 	; aptly named and
-	text_jump UnknownText_0x1bc8af
+	text_jump OPT_AptlyNamed
 	db "@"
-; 0xb8898
 
-.undeniablykindof: ; 0xb8898
+.undeniablykindof
 	; undeniably kind of
-	text_jump UnknownText_0x1bc8c1
+	text_jump OPT_UndeniablyKindOf
 	db "@"
-; 0xb889d
 
-.unbearably: ; 0xb889d
+.unbearably
 	; so, so unbearably
-	text_jump UnknownText_0x1bc8d6
+	text_jump OPT_Unbearably
 	db "@"
-; 0xb88a2
 
-.wowimpressively: ; 0xb88a2
+.wowimpressively
 	; wow, impressively
-	text_jump UnknownText_0x1bc8ea
+	text_jump OPT_WowImpressively
 	db "@"
-; 0xb88a7
 
-.almostpoisonously: ; 0xb88a7
+.almostpoisonously
 	; almost poisonously
-	text_jump UnknownText_0x1bc8fe
+	text_jump OPT_AlmostPoisonously
 	db "@"
-; 0xb88ac
 
-.sensually: ; 0xb88ac
+.sensually
 	; ooh, so sensually
-	text_jump UnknownText_0x1bc913
+	text_jump OPT_Sensually
 	db "@"
-; 0xb88b1
 
-.mischievously: ; 0xb88b1
+.mischievously
 	; so mischievously
-	text_jump UnknownText_0x1bc927
+	text_jump OPT_Mischievously
 	db "@"
-; 0xb88b6
 
-.topically: ; 0xb88b6
+.topically
 	; so very topically
-	text_jump UnknownText_0x1bc93a
+	text_jump OPT_Topically
 	db "@"
-; 0xb88bb
 
-.addictively: ; 0xb88bb
+.addictively
 	; sure addictively
-	text_jump UnknownText_0x1bc94e
+	text_jump OPT_Addictively
 	db "@"
-; 0xb88c0
 
-.looksinwater: ; 0xb88c0
+.looksinwater
 	; looks in water is
-	text_jump UnknownText_0x1bc961
+	text_jump OPT_LooksInWater
 	db "@"
-; 0xb88c5
 
-.evolutionmustbe: ; 0xb88c5
+.evolutionmustbe
 	; evolution must be
-	text_jump UnknownText_0x1bc975
+	text_jump OPT_EvolutionMustBe
 	db "@"
-; 0xb88ca
 
-.provocatively: ; 0xb88ca
+.provocatively
 	; provocatively
-	text_jump UnknownText_0x1bc989
+	text_jump OPT_Provocatively
 	db "@"
-; 0xb88cf
 
-.flippedout: ; 0xb88cf
+.flippedout
 	; so flipped out and
-	text_jump UnknownText_0x1bc999
+	text_jump OPT_FlippedOut
 	db "@"
-; 0xb88d4
 
-.heartmeltingly: ; 0xb88d4
+.heartmeltingly
 	; heart-meltingly
-	text_jump UnknownText_0x1bc9ae
+	text_jump OPT_HeartMeltingly
 	db "@"
-; 0xb88d9
 
-OaksPkmnTalk9: ; b88d9 (2e:48d9)
+OaksPkmnTalk9:
 	call Random
 	and $f
 	ld e, a
 	ld d, 0
 	ld hl, .Descriptors
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -527,9 +491,8 @@ endr
 	ld a, OAKS_POKEMON_TALK_10
 .ok
 	jp NextRadioLine
-; b88fe (2e:48fe)
 
-.Descriptors: ; b88fe
+.Descriptors
 	dw .cute
 	dw .weird
 	dw .pleasant
@@ -546,129 +509,109 @@ endr
 	dw .guarded
 	dw .lovely
 	dw .speedy
-; b891e
 
-.cute: ; 0xb891e
+.cute
 	; cute.
-	text_jump UnknownText_0x1bc9c0
+	text_jump OPT_Cute
 	db "@"
-; 0xb8923
 
-.weird: ; 0xb8923
+.weird
 	; weird.
-	text_jump UnknownText_0x1bc9c8
+	text_jump OPT_Weird
 	db "@"
-; 0xb8928
 
-.pleasant: ; 0xb8928
+.pleasant
 	; pleasant.
-	text_jump UnknownText_0x1bc9d1
+	text_jump OPT_Pleasant
 	db "@"
-; 0xb892d
 
-.boldsortof: ; 0xb892d
+.boldsortof
 	; bold, sort of.
-	text_jump UnknownText_0x1bc9dd
+	text_jump OPT_BoldSortOf
 	db "@"
-; 0xb8932
 
-.frightening: ; 0xb8932
+.frightening
 	; frightening.
-	text_jump UnknownText_0x1bc9ee
+	text_jump OPT_Frightening
 	db "@"
-; 0xb8937
 
-.suavedebonair: ; 0xb8937
+.suavedebonair
 	; suave & debonair!
-	text_jump UnknownText_0x1bc9fd
+	text_jump OPT_SuaveDebonair
 	db "@"
-; 0xb893c
 
-.powerful: ; 0xb893c
+.powerful
 	; powerful.
-	text_jump UnknownText_0x1bca11
+	text_jump OPT_Powerful
 	db "@"
-; 0xb8941
 
-.exciting: ; 0xb8941
+.exciting
 	; exciting.
-	text_jump UnknownText_0x1bca1d
+	text_jump OPT_Exciting
 	db "@"
-; 0xb8946
 
-.groovy: ; 0xb8946
+.groovy
 	; groovy!
-	text_jump UnknownText_0x1bca29
+	text_jump OPT_Groovy
 	db "@"
-; 0xb894b
 
-.inspiring: ; 0xb894b
+.inspiring
 	; inspiring.
-	text_jump UnknownText_0x1bca33
+	text_jump OPT_Inspiring
 	db "@"
-; 0xb8950
 
-.friendly: ; 0xb8950
+.friendly
 	; friendly.
-	text_jump UnknownText_0x1bca40
+	text_jump OPT_Friendly
 	db "@"
-; 0xb8955
 
-.hothothot: ; 0xb8955
+.hothothot
 	; hot, hot, hot!
-	text_jump UnknownText_0x1bca4c
+	text_jump OPT_HotHotHot
 	db "@"
-; 0xb895a
 
-.stimulating: ; 0xb895a
+.stimulating
 	; stimulating.
-	text_jump UnknownText_0x1bca5d
+	text_jump OPT_Stimulating
 	db "@"
-; 0xb895f
 
-.guarded: ; 0xb895f
+.guarded
 	; guarded.
-	text_jump UnknownText_0x1bca6c
+	text_jump OPT_Guarded
 	db "@"
-; 0xb8964
 
-.lovely: ; 0xb8964
+.lovely
 	; lovely.
-	text_jump UnknownText_0x1bca77
+	text_jump OPT_Lovely
 	db "@"
-; 0xb8969
 
-.speedy: ; 0xb8969
+.speedy
 	; speedy.
-	text_jump UnknownText_0x1bca81
+	text_jump OPT_Speedy
 	db "@"
-; 0xb896e
 
-OaksPkmnTalk10: ; b896e (2e:496e)
+OaksPkmnTalk10:
 	callba RadioMusicRestartPokemonChannel
-	ld hl, UnknownText_0xb8993
+	ld hl, OPT_RestartText
 	call PrintText
 	call WaitBGMap
-	ld hl, UnknownText_0xb898e
+	ld hl, OPT_PokemonChannelText
 	call PrintText
 	ld a, OAKS_POKEMON_TALK_11
 	ld [wCurrentRadioLine], a
 	ld a, 100
 	ld [wRadioTextDelay], a
 	ret
-; b898e (2e:498e)
 
-UnknownText_0xb898e: ; 0xb898e
+OPT_PokemonChannelText:
 	; #MON
-	text_jump UnknownText_0x1bca8b
+	text_jump _OPT_PokemonChannelText
 	db "@"
-; 0xb8993
 
-UnknownText_0xb8993: ; 0xb8993
+OPT_RestartText:
 	db "@"
-; 0xb8994
 
-OaksPkmnTalk11: ; b8994 (2e:4994)
+OaksPkmnTalk11:
 	ld hl, wRadioTextDelay
 	dec [hl]
 	ret nz
@@ -676,13 +619,11 @@ OaksPkmnTalk11: ; b8994 (2e:4994)
 	ld de, .pokemon_string
 	ld a, OAKS_POKEMON_TALK_12
 	jp PlaceRadioString
-; b89a4 (2e:49a4)
 
-.pokemon_string:
+.pokemon_string
 	db "#MON@"
-; b89a9
 
-OaksPkmnTalk12: ; b89a9 (2e:49a9)
+OaksPkmnTalk12:
 	ld hl, wRadioTextDelay
 	dec [hl]
 	ret nz
@@ -690,13 +631,11 @@ OaksPkmnTalk12: ; b89a9 (2e:49a9)
 	ld de, .pokemon_channel_string
 	ld a, OAKS_POKEMON_TALK_13
 	jp PlaceRadioString
-; b89b9 (2e:49b9)
 
-.pokemon_channel_string:
+.pokemon_channel_string
 	db "#MON Channel@"
-; b89c6
 
-OaksPkmnTalk13: ; b89c6 (2e:49c6)
+OaksPkmnTalk13:
 	ld hl, wRadioTextDelay
 	dec [hl]
 	ret nz
@@ -704,13 +643,11 @@ OaksPkmnTalk13: ; b89c6 (2e:49c6)
 	ld de, .terminator
 	ld a, OAKS_POKEMON_TALK_14
 	jp PlaceRadioString
-; b89d6 (2e:49d6)
 
-.terminator:
+.terminator
 	db "@"
-; b89d7
 
-OaksPkmnTalk14: ; b89d7 (2e:49d7)
+OaksPkmnTalk14:
 	ld hl, wRadioTextDelay
 	dec [hl]
 	ret nz
@@ -727,25 +664,23 @@ OaksPkmnTalk14: ; b89d7 (2e:49d7)
 	ld a, 10
 	ld [wRadioTextDelay], a
 	ret
-; b89ff (2e:49ff)
 
-.terminator: ; 0xb89ff
+.terminator
 	db "@"
-; 0xb8a00
 
-PlaceRadioString: ; b8a00 (2e:4a00)
+PlaceRadioString:
 	ld [wCurrentRadioLine], a
 	ld a, 100
 	ld [wRadioTextDelay], a
 	jp PlaceString
 
-CopyBottomLineToTopLine: ; b8a0b (2e:4a0b)
+CopyBottomLineToTopLine:
 	hlcoord 0, 15
 	decoord 0, 13
 	ld bc, SCREEN_WIDTH * 2
 	jp CopyBytes
 
-ClearBottomLine: ; b8a17 (2e:4a17)
+ClearBottomLine:
 	hlcoord 1, 15
 	ld bc, SCREEN_WIDTH - 2
 	ld a, " "
@@ -755,7 +690,7 @@ ClearBottomLine: ; b8a17 (2e:4a17)
 	ld a, " "
 	jp ByteFill
 
-PokedexShow_GetDexEntryBank: ; b8a2d (2e:4a2d)
+PokedexShow_GetDexEntryBank:
 	push hl
 	push de
 	ld a, [CurPartySpecies]
@@ -771,16 +706,14 @@ PokedexShow_GetDexEntryBank: ; b8a2d (2e:4a2d)
 	pop de
 	pop hl
 	ret
-; b8a42 (2e:4a42)
 
 .pokedexbanks
 	db BANK(PokedexEntries1)
 	db BANK(PokedexEntries2)
 	db BANK(PokedexEntries3)
 	db BANK(PokedexEntries4)
-; b8a46
 
-PokedexShow1: ; b8a46 (2e:4a46)
+PokedexShow1:
 	call StartRadioStation
 .loop
 	call Random
@@ -797,19 +730,18 @@ PokedexShow1: ; b8a46 (2e:4a46)
 	ld [CurPartySpecies], a
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
-	ld hl, UnknownText_0xb8b30
+	ld hl, PokedexShowText
 	ld a, POKEDEX_SHOW_2
 	jp NextRadioLine
 
-PokedexShow2: ; b8a6c (2e:4a6c)
+PokedexShow2:
 	ld a, [CurPartySpecies]
 	dec a
 	ld hl, PokedexDataPointerTable
 	ld c, a
 	ld b, 0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, BANK(PokedexDataPointerTable)
 	call GetFarHalfword
 	call PokedexShow_GetDexEntryBank
@@ -833,37 +765,37 @@ endr
 	ld a, POKEDEX_SHOW_3
 	jp PrintRadioLine
 
-PokedexShow3: ; b8aa4 (2e:4aa4)
+PokedexShow3:
 	call CopyDexEntry
 	ld a, POKEDEX_SHOW_4
 	jp PrintRadioLine
 
-PokedexShow4: ; b8aac (2e:4aac)
+PokedexShow4:
 	call CopyDexEntry
 	ld a, POKEDEX_SHOW_5
 	jp PrintRadioLine
 
-PokedexShow5: ; b8ab4 (2e:4ab4)
+PokedexShow5:
 	call CopyDexEntry
 	ld a, POKEDEX_SHOW_6
 	jp PrintRadioLine
 
-PokedexShow6: ; b8abc (2e:4abc)
+PokedexShow6:
 	call CopyDexEntry
 	ld a, POKEDEX_SHOW_7
 	jp PrintRadioLine
 
-PokedexShow7: ; b8ac4 (2e:4ac4)
+PokedexShow7:
 	call CopyDexEntry
 	ld a, POKEDEX_SHOW_8
 	jp PrintRadioLine
 
-PokedexShow8: ; b8acc (2e:4acc)
+PokedexShow8:
 	call CopyDexEntry
 	ld a, POKEDEX_SHOW
 	jp PrintRadioLine
 
-CopyDexEntry: ; b8ad4 (2e:4ad4)
+CopyDexEntry:
 	ld a, [wPokedexShowPointerAddr]
 	ld l, a
 	ld a, [wPokedexShowPointerAddr + 1]
@@ -881,7 +813,7 @@ CopyDexEntry: ; b8ad4 (2e:4ad4)
 	call CopyDexEntryPart2
 	ret
 
-CopyDexEntryPart1: ; b8af3 (2e:4af3)
+CopyDexEntryPart1:
 	ld de, wPokedexShowPointerBank
 	ld bc, SCREEN_WIDTH - 1
 	call FarCopyBytes
@@ -900,7 +832,7 @@ CopyDexEntryPart1: ; b8af3 (2e:4af3)
 	ret z
 	jr .loop
 
-CopyDexEntryPart2: ; b8b11 (2e:4b11)
+CopyDexEntryPart2:
 	ld d, a
 .loop
 	ld a, d
@@ -920,70 +852,68 @@ CopyDexEntryPart2: ; b8b11 (2e:4b11)
 	ld a, d
 	ld [wPokedexShowPointerBank], a
 	ret
-; b8b30 (2e:4b30)
 
-UnknownText_0xb8b30: ; 0xb8b30
+PokedexShowText:
 	; @ @
-	text_jump UnknownText_0x1bca91
+	text_jump _PokedexShowText
 	db "@"
-; 0xb8b35
 
-BenMonMusic1: ; b8b35 (2e:4b35)
+BenMonMusic1:
 	call StartPokemonMusicChannel
-	ld hl, UnknownText_0xb8baa
+	ld hl, BenIntroText1
 	ld a, POKEMON_MUSIC_2
 	jp NextRadioLine
 
-BenMonMusic2: ; b8b40 (2e:4b40)
-	ld hl, UnknownText_0xb8baf
+BenMonMusic2:
+	ld hl, BenIntroText2
 	ld a, POKEMON_MUSIC_3
 	jp NextRadioLine
 
-BenMonMusic3: ; b8b48 (2e:4b48)
-	ld hl, UnknownText_0xb8bb4
+BenMonMusic3:
+	ld hl, BenIntroText3
 	ld a, POKEMON_MUSIC_4
 	jp NextRadioLine
 
-FernMonMusic1: ; b8b50 (2e:4b50)
+FernMonMusic1:
 	call StartPokemonMusicChannel
-	ld hl, UnknownText_0xb8bb9
+	ld hl, FernIntroText1
 	ld a, LETS_ALL_SING_2
 	jp NextRadioLine
 
-FernMonMusic2: ; b8b5b (2e:4b5b)
-	ld hl, UnknownText_0xb8bbe
+FernMonMusic2:
+	ld hl, FernIntroMusic2
 	ld a, POKEMON_MUSIC_4
 	jp NextRadioLine
 
-BenFernMusic4: ; b8b63 (2e:4b63)
-	ld hl, UnknownText_0xb8bc3
+BenFernMusic4:
+	ld hl, BenFernText1
 	ld a, POKEMON_MUSIC_5
 	jp NextRadioLine
 
-BenFernMusic5: ; b8b6b (2e:4b6b)
+BenFernMusic5:
 	call GetWeekday
 	and 1
-	ld hl, UnknownText_0xb8bc8
+	ld hl, BenFernText2A
 	jr z, .SunTueThurSun
-	ld hl, UnknownText_0xb8bcd
+	ld hl, BenFernText2B
 .SunTueThurSun
 	ld a, POKEMON_MUSIC_6
 	jp NextRadioLine
 
-BenFernMusic6: ; b8b7d (2e:4b7d)
+BenFernMusic6:
 	call GetWeekday
 	and 1
-	ld hl, UnknownText_0xb8bd2
+	ld hl, BenFernText3A
 	jr z, .SunTueThurSun
-	ld hl, UnknownText_0xb8bd7
+	ld hl, BenFernText3B
 .SunTueThurSun
 	ld a, POKEMON_MUSIC_7
 	jp NextRadioLine
 
-BenFernMusic7: ; b8b8f (2e:4b8f)
+BenFernMusic7:
 	ret
 
-StartPokemonMusicChannel: ; b8b90 (2e:4b90)
+StartPokemonMusicChannel:
 	call RadioTerminator
 	call PrintText
 	ld de, MUSIC_POKEMON_MARCH
@@ -994,141 +924,130 @@ StartPokemonMusicChannel: ; b8b90 (2e:4b90)
 .SunTueThurSun
 	callab RadioMusicRestartDE
 	ret
-; b8baa (2e:4baa)
 
-UnknownText_0xb8baa: ; 0xb8baa
+BenIntroText1:
 	; BEN: #MON MUSIC
-	text_jump UnknownText_0x1bca99
+	text_jump _BenIntroText1
 	db "@"
-; 0xb8baf
 
-UnknownText_0xb8baf: ; 0xb8baf
+BenIntroText2:
 	; CHANNEL!
-	text_jump UnknownText_0x1bcaab
+	text_jump _BenIntroText2
 	db "@"
-; 0xb8bb4
 
-UnknownText_0xb8bb4: ; 0xb8bb4
+BenIntroText3:
 	; It's me, DJ BEN!
-	text_jump UnknownText_0x1bcab6
+	text_jump _BenIntroText3
 	db "@"
-; 0xb8bb9
 
-UnknownText_0xb8bb9: ; 0xb8bb9
+FernIntroText1:
 	; FERN: #MUSIC!
-	text_jump UnknownText_0x1bcac8
+	text_jump _FernIntroText1
 	db "@"
-; 0xb8bbe
 
-UnknownText_0xb8bbe: ; 0xb8bbe
+FernIntroMusic2:
 	; With DJ FERN!
-	text_jump UnknownText_0x1bcad8
+	text_jump _FernIntroText2
 	db "@"
-; 0xb8bc3
 
-UnknownText_0xb8bc3: ; 0xb8bc3
+BenFernText1:
 	; Today's @ ,
-	text_jump UnknownText_0x1bcae8
+	text_jump _BenFernText1
 	db "@"
-; 0xb8bc8
 
-UnknownText_0xb8bc8: ; 0xb8bc8
+BenFernText2A:
 	; so let us jam to
-	text_jump UnknownText_0x1bcaf6
+	text_jump _BenFernText2A
 	db "@"
-; 0xb8bcd
 
-UnknownText_0xb8bcd: ; 0xb8bcd
+BenFernText2B:
 	; so chill out to
-	text_jump UnknownText_0x1bcb09
+	text_jump _BenFernText2B
 	db "@"
-; 0xb8bd2
 
-UnknownText_0xb8bd2: ; 0xb8bd2
+BenFernText3A:
 	; #MON March!
-	text_jump UnknownText_0x1bcb1b
+	text_jump _BenFernText3A
 	db "@"
-; 0xb8bd7
 
-UnknownText_0xb8bd7: ; 0xb8bd7
+BenFernText3B:
 	; #MON Lullaby!
-	text_jump UnknownText_0x1bcb29
+	text_jump _BenFernText3B
 	db "@"
-; 0xb8bdc
 
-LuckyNumberShow1: ; b8bdc (2e:4bdc)
+LuckyNumberShow1:
 	call StartRadioStation
 	callab Special_CheckLuckyNumberShowFlag
 	jr nc, .dontreset
 	callab Special_ResetLuckyNumberShowFlag
 .dontreset
-	ld hl, UnknownText_0xb8c7e
+	ld hl, LC_Text1
 	ld a, LUCKY_NUMBER_SHOW_2
 	jp NextRadioLine
 
-LuckyNumberShow2: ; b8bf5 (2e:4bf5)
-	ld hl, UnknownText_0xb8c83
+LuckyNumberShow2:
+	ld hl, LC_Text2
 	ld a, LUCKY_NUMBER_SHOW_3
 	jp NextRadioLine
 
-LuckyNumberShow3: ; b8bfd (2e:4bfd)
-	ld hl, UnknownText_0xb8c88
+LuckyNumberShow3:
+	ld hl, LC_Text3
 	ld a, LUCKY_NUMBER_SHOW_4
 	jp NextRadioLine
 
-LuckyNumberShow4: ; b8c05 (2e:4c05)
-	ld hl, UnknownText_0xb8c8d
+LuckyNumberShow4:
+	ld hl, LC_Text4
 	ld a, LUCKY_NUMBER_SHOW_5
 	jp NextRadioLine
 
-LuckyNumberShow5: ; b8c0d (2e:4c0d)
-	ld hl, UnknownText_0xb8c92
+LuckyNumberShow5:
+	ld hl, LC_Text5
 	ld a, LUCKY_NUMBER_SHOW_6
 	jp NextRadioLine
 
-LuckyNumberShow6: ; b8c15 (2e:4c15)
-	ld hl, UnknownText_0xb8c97
+LuckyNumberShow6:
+	ld hl, LC_Text6
 	ld a, LUCKY_NUMBER_SHOW_7
 	jp NextRadioLine
 
-LuckyNumberShow7: ; b8c1d (2e:4c1d)
-	ld hl, UnknownText_0xb8c9c
+LuckyNumberShow7:
+	ld hl, LC_Text7
 	ld a, LUCKY_NUMBER_SHOW_8
 	jp NextRadioLine
 
-LuckyNumberShow8: ; b8c25 (2e:4c25)
+LuckyNumberShow8:
 	ld hl, StringBuffer1
 	ld de, wLuckyIDNumber
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	ld a, "@"
 	ld [StringBuffer1 + 5], a
-	ld hl, UnknownText_0xb8ca1
+	ld hl, LC_Text8
 	ld a, LUCKY_NUMBER_SHOW_9
 	jp NextRadioLine
 
-LuckyNumberShow9: ; b8c3e (2e:4c3e)
-	ld hl, UnknownText_0xb8ca6
+LuckyNumberShow9:
+	ld hl, LC_Text9
 	ld a, LUCKY_NUMBER_SHOW_10
 	jp NextRadioLine
 
-LuckyNumberShow10: ; b8c46 (2e:4c46)
-	ld hl, UnknownText_0xb8c9c
+LuckyNumberShow10:
+	ld hl, LC_Text7
 	ld a, LUCKY_NUMBER_SHOW_11
 	jp NextRadioLine
 
-LuckyNumberShow11: ; b8c4e (2e:4c4e)
-	ld hl, UnknownText_0xb8ca1
+LuckyNumberShow11:
+	ld hl, LC_Text8
 	ld a, LUCKY_NUMBER_SHOW_12
 	jp NextRadioLine
 
-LuckyNumberShow12: ; b8c56 (2e:4c56)
-	ld hl, UnknownText_0xb8cab
+LuckyNumberShow12:
+	ld hl, LC_Text10
 	ld a, LUCKY_NUMBER_SHOW_13
 	jp NextRadioLine
 
-LuckyNumberShow13: ; b8c5e (2e:4c5e)
-	ld hl, UnknownText_0xb8cb0
+LuckyNumberShow13:
+	ld hl, LC_Text11
 	call Random
 	and a
 	ld a, LUCKY_CHANNEL
@@ -1137,108 +1056,94 @@ LuckyNumberShow13: ; b8c5e (2e:4c5e)
 .okay
 	jp NextRadioLine
 
-LuckyNumberShow14: ; b8c6e (2e:4c6e)
-	ld hl, UnknownText_0xb8cb5
+LuckyNumberShow14:
+	ld hl, LC_DragText1
 	ld a, LUCKY_NUMBER_SHOW_15
 	jp NextRadioLine
 
-LuckyNumberShow15: ; b8c76 (2e:4c76)
-	ld hl, UnknownText_0xb8cba
+LuckyNumberShow15:
+	ld hl, LC_DragText2
 	ld a, LUCKY_CHANNEL
 	jp NextRadioLine
-; b8c7e (2e:4c7e)
 
-UnknownText_0xb8c7e: ; 0xb8c7e
+LC_Text1:
 	; REED: Yeehaw! How
-	text_jump UnknownText_0x1bcb39
+	text_jump _LC_Text1
 	db "@"
-; 0xb8c83
 
-UnknownText_0xb8c83: ; 0xb8c83
+LC_Text2:
 	; y'all doin' now?
-	text_jump UnknownText_0x1bcb4d
+	text_jump _LC_Text2
 	db "@"
-; 0xb8c88
 
-UnknownText_0xb8c88: ; 0xb8c88
+LC_Text3:
 	; Whether you're up
-	text_jump UnknownText_0x1bcb60
+	text_jump _LC_Text3
 	db "@"
-; 0xb8c8d
 
-UnknownText_0xb8c8d: ; 0xb8c8d
+LC_Text4:
 	; or way down low,
-	text_jump UnknownText_0x1bcb73
+	text_jump _LC_Text4
 	db "@"
-; 0xb8c92
 
-UnknownText_0xb8c92: ; 0xb8c92
+LC_Text5:
 	; don't you miss the
-	text_jump UnknownText_0x1bcb86
+	text_jump _LC_Text5
 	db "@"
-; 0xb8c97
 
-UnknownText_0xb8c97: ; 0xb8c97
+LC_Text6:
 	; LUCKY NUMBER SHOW!
-	text_jump UnknownText_0x1bcb9a
+	text_jump _LC_Text6
 	db "@"
-; 0xb8c9c
 
-UnknownText_0xb8c9c: ; 0xb8c9c
+LC_Text7:
 	; This week's Lucky
-	text_jump UnknownText_0x1bcbaf
+	text_jump _LC_Text7
 	db "@"
-; 0xb8ca1
 
-UnknownText_0xb8ca1: ; 0xb8ca1
+LC_Text8:
 	; Number is @ !
-	text_jump UnknownText_0x1bcbc2
+	text_jump _LC_Text8
 	db "@"
-; 0xb8ca6
 
-UnknownText_0xb8ca6: ; 0xb8ca6
+LC_Text9:
 	; I'll repeat that!
-	text_jump UnknownText_0x1bcbd6
+	text_jump _LC_Text9
 	db "@"
-; 0xb8cab
 
-UnknownText_0xb8cab: ; 0xb8cab
+LC_Text10:
 	; Match it and go to
-	text_jump UnknownText_0x1bcbe9
+	text_jump _LC_Text10
 	db "@"
-; 0xb8cb0
 
-UnknownText_0xb8cb0: ; 0xb8cb0
+LC_Text11:
 	; the RADIO TOWER!
-	text_jump UnknownText_0x1bcbfe
+	text_jump _LC_Text11
 	db "@"
-; 0xb8cb5
 
-UnknownText_0xb8cb5: ; 0xb8cb5
+LC_DragText1:
 	; …Repeating myself
-	text_jump UnknownText_0x1bcc11
+	text_jump _LC_DragText1
 	db "@"
-; 0xb8cba
 
-UnknownText_0xb8cba: ; 0xb8cba
+LC_DragText2:
 	; gets to be a drag…
-	text_jump UnknownText_0x1bcc25
+	text_jump _LC_DragText2
 	db "@"
-; 0xb8cbf
 
-PeoplePlaces1: ; b8cbf (2e:4cbf)
+PeoplePlaces1:
 	call StartRadioStation
-	ld hl, UnknownText_0xb8ce3
+	ld hl, PnP_Text1
 	ld a, PLACES_AND_PEOPLE_2
 	jp NextRadioLine
 
-PeoplePlaces2: ; b8cca (2e:4cca)
-	ld hl, UnknownText_0xb8ce8
+PeoplePlaces2:
+	ld hl, PnP_Text2
 	ld a, PLACES_AND_PEOPLE_3
 	jp NextRadioLine
 
-PeoplePlaces3: ; b8cd2 (2e:4cd2)
-	ld hl, UnknownText_0xb8ced
+PeoplePlaces3:
+	ld hl, PnP_Text3
 	call Random
 	cp $7b ; 48 percent
 	ld a, PLACES_AND_PEOPLE_4 ; People
@@ -1246,25 +1151,21 @@ PeoplePlaces3: ; b8cd2 (2e:4cd2)
 	ld a, PLACES_AND_PEOPLE_6 ; Places
 .ok
 	jp NextRadioLine
-; b8ce3 (2e:4ce3)
 
-UnknownText_0xb8ce3: ; 0xb8ce3
+PnP_Text1:
 	; PLACES AND PEOPLE!
-	text_jump UnknownText_0x1bcc3a
+	text_jump _PnP_Text1
 	db "@"
-; 0xb8ce8
 
-UnknownText_0xb8ce8: ; 0xb8ce8
+PnP_Text2:
 	; Brought to you by
-	text_jump UnknownText_0x1bcc4f
+	text_jump _PnP_Text2
 	db "@"
-; 0xb8ced
 
-UnknownText_0xb8ced: ; 0xb8ced
+PnP_Text3:
 	; me, DJ LILY!
-	text_jump UnknownText_0x1bcc63
+	text_jump _PnP_Text3
 	db "@"
-; 0xb8cf2
 
 PeoplePlaces4: ; People
 	call Random
@@ -1297,32 +1198,28 @@ PeoplePlaces4: ; People
 	pop bc
 	ld b, 1
 	callab GetTrainerName
-	ld hl, UnknownText_0xb8d51
+	ld hl, PnP_Text4
 	ld a, PLACES_AND_PEOPLE_5
 	jp NextRadioLine
-; b8d3e (2e:4d3e)
 
 .E4Names:          db WILL, BRUNO, KAREN, KOGA, CHAMPION
 .KantoLeaderNames: db BROCK, MISTY, LT_SURGE, ERIKA, JANINE, SABRINA, BLAINE, BLUE
 .MiscNames:        db RIVAL1, POKEMON_PROF, CAL, RIVAL2, RED
                    db -1
-; b8d51
 
-UnknownText_0xb8d51: ; 0xb8d51
+PnP_Text4:
 	; @  @ @
-	text_jump UnknownText_0x1bcc72
+	text_jump _PnP_Text4
 	db "@"
-; 0xb8d56
 
-PeoplePlaces5: ; b8d56 (2e:4d56)
+PeoplePlaces5:
 	call Random
 	and $f
 	ld e, a
 	ld d, 0
 	ld hl, .Descriptors
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1337,9 +1234,8 @@ endr
 	ld a, PLACES_AND_PEOPLE_6 ; Places
 .ok
 	jp NextRadioLine
-; b8d7d (2e:4d7d)
 
-.Descriptors: ; b8d7d
+.Descriptors
 	dw PnP_cute
 	dw PnP_lazy
 	dw PnP_happy
@@ -1348,111 +1244,94 @@ endr
 	dw PnP_bold
 	dw PnP_picky
 	dw PnP_sortofok
-	dw PnP_justsoso
-	dw PnP_actuallygreat
-	dw PnP_justmytype
-	dw PnP_socool
+	dw PnP_soso
+	dw PnP_great
+	dw PnP_mytype
+	dw PnP_cool
 	dw PnP_inspiring
 	dw PnP_weird
 	dw PnP_rightforme
 	dw PnP_odd
-; b8d9d
 
-PnP_cute: ; 0xb8d9d
+PnP_cute:
 	; is cute.
-	text_jump UnknownText_0x1bcc80
+	text_jump _PnP_cute
 	db "@"
-; 0xb8da2
 
-PnP_lazy: ; 0xb8da2
+PnP_lazy:
 	; is sort of lazy.
-	text_jump UnknownText_0x1bcc8b
+	text_jump _PnP_lazy
 	db "@"
-; 0xb8da7
 
-PnP_happy: ; 0xb8da7
+PnP_happy:
 	; is always happy.
-	text_jump UnknownText_0x1bcc9e
+	text_jump _PnP_happy
 	db "@"
-; 0xb8dac
 
-PnP_noisy: ; 0xb8dac
+PnP_noisy:
 	; is quite noisy.
-	text_jump UnknownText_0x1bccb1
+	text_jump _PnP_noisy
 	db "@"
-; 0xb8db1
 
-PnP_precocious: ; 0xb8db1
+PnP_precocious:
 	; is precocious.
-	text_jump UnknownText_0x1bccc3
+	text_jump _PnP_precocious
 	db "@"
-; 0xb8db6
 
-PnP_bold: ; 0xb8db6
+PnP_bold:
 	; is somewhat bold.
-	text_jump UnknownText_0x1bccd4
+	text_jump _PnP_bold
 	db "@"
-; 0xb8dbb
 
-PnP_picky: ; 0xb8dbb
+PnP_picky:
 	; is too picky!
-	text_jump UnknownText_0x1bcce8
+	text_jump _PnP_picky
 	db "@"
-; 0xb8dc0
 
-PnP_sortofok: ; 0xb8dc0
+PnP_sortofok:
 	; is sort of OK.
-	text_jump UnknownText_0x1bccf8
+	text_jump _PnP_sortofok
 	db "@"
-; 0xb8dc5
 
-PnP_justsoso: ; 0xb8dc5
+PnP_soso:
 	; is just so-so.
-	text_jump UnknownText_0x1bcd09
+	text_jump _PnP_soso
 	db "@"
-; 0xb8dca
 
-PnP_actuallygreat: ; 0xb8dca
+PnP_great:
 	; is actually great.
-	text_jump UnknownText_0x1bcd1a
+	text_jump _PnP_great
 	db "@"
-; 0xb8dcf
 
-PnP_justmytype: ; 0xb8dcf
+PnP_mytype:
 	; is just my type.
-	text_jump UnknownText_0x1bcd2f
+	text_jump _PnP_mytype
 	db "@"
-; 0xb8dd4
 
-PnP_socool: ; 0xb8dd4
+PnP_cool:
 	; is so cool, no?
-	text_jump UnknownText_0x1bcd42
+	text_jump _PnP_cool
 	db "@"
-; 0xb8dd9
 
-PnP_inspiring: ; 0xb8dd9
+PnP_inspiring:
 	; is inspiring!
-	text_jump UnknownText_0x1bcd54
+	text_jump _PnP_inspiring
 	db "@"
-; 0xb8dde
 
-PnP_weird: ; 0xb8dde
+PnP_weird:
 	; is kind of weird.
-	text_jump UnknownText_0x1bcd64
+	text_jump _PnP_weird
 	db "@"
-; 0xb8de3
 
-PnP_rightforme: ; 0xb8de3
+PnP_rightforme:
 	; is right for me?
-	text_jump UnknownText_0x1bcd78
+	text_jump _PnP_rightforme
 	db "@"
-; 0xb8de8
 
-PnP_odd: ; 0xb8de8
+PnP_odd:
 	; is definitely odd!
-	text_jump UnknownText_0x1bcd8b
+	text_jump _PnP_odd
 	db "@"
-; 0xb8ded
 
 PeoplePlaces6: ; Places
 	call Random
@@ -1461,21 +1340,19 @@ PeoplePlaces6: ; Places
 	ld hl, .Maps
 	ld c, a
 	ld b, 0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld b, [hl]
 	inc hl
 	ld c, [hl]
 	call GetWorldMapLocation
 	ld e, a
 	callba GetLandmarkName
-	ld hl, UnknownText_0xb8e23
+	ld hl, PnP_Text5
 	ld a, PLACES_AND_PEOPLE_7
 	jp NextRadioLine
-; b8e11 (2e:4e11)
 
-.Maps: ; b8e11
+.Maps
 	map PALLET_TOWN
 	map ROUTE_22
 	map PEWTER_CITY
@@ -1485,23 +1362,20 @@ endr
 	map ROUTE_16
 	map ROUTE_14
 	map CINNABAR_POKECENTER_2F_BETA
-; b8e23
 
-UnknownText_0xb8e23: ; 0xb8e23
+PnP_Text5:
 	; @ @
-	text_jump UnknownText_0x1bcda0
+	text_jump _PnP_Text5
 	db "@"
-; 0xb8e28
 
-PeoplePlaces7: ; b8e28 (2e:4e28)
+PeoplePlaces7:
 	call Random
 	and $f
 	ld e, a
 	ld d, 0
 	ld hl, .Descriptors
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1517,9 +1391,8 @@ endr
 	ld a, PLACES_AND_PEOPLE_6 ; Places
 .ok
 	jp PrintRadioLine
-; b8e52 (2e:4e52)
 
-.Descriptors: ; b8e52
+.Descriptors
 	dw PnP_cute
 	dw PnP_lazy
 	dw PnP_happy
@@ -1528,147 +1401,135 @@ endr
 	dw PnP_bold
 	dw PnP_picky
 	dw PnP_sortofok
-	dw PnP_justsoso
-	dw PnP_actuallygreat
-	dw PnP_justmytype
-	dw PnP_socool
+	dw PnP_soso
+	dw PnP_great
+	dw PnP_mytype
+	dw PnP_cool
 	dw PnP_inspiring
 	dw PnP_weird
 	dw PnP_rightforme
 	dw PnP_odd
-; b8e72
 
-RocketRadio1: ; b8e72 (2e:4e72)
+RocketRadio1:
 	call StartRadioStation
-	ld hl, UnknownText_0xb8ec5
+	ld hl, RocketRadioText1
 	ld a, ROCKET_RADIO_2
 	jp NextRadioLine
 
-RocketRadio2: ; b8e7d (2e:4e7d)
-	ld hl, UnknownText_0xb8eca
+RocketRadio2:
+	ld hl, RocketRadioText2
 	ld a, ROCKET_RADIO_3
 	jp NextRadioLine
 
-RocketRadio3: ; b8e85 (2e:4e85)
-	ld hl, UnknownText_0xb8ecf
+RocketRadio3:
+	ld hl, RocketRadioText3
 	ld a, ROCKET_RADIO_4
 	jp NextRadioLine
 
-RocketRadio4: ; b8e8d (2e:4e8d)
-	ld hl, UnknownText_0xb8ed4
+RocketRadio4:
+	ld hl, RocketRadioText4
 	ld a, ROCKET_RADIO_5
 	jp NextRadioLine
 
-RocketRadio5: ; b8e95 (2e:4e95)
-	ld hl, UnknownText_0xb8ed9
+RocketRadio5:
+	ld hl, RocketRadioText5
 	ld a, ROCKET_RADIO_6
 	jp NextRadioLine
 
-RocketRadio6: ; b8e9d (2e:4e9d)
-	ld hl, UnknownText_0xb8ede
+RocketRadio6:
+	ld hl, RocketRadioText6
 	ld a, ROCKET_RADIO_7
 	jp NextRadioLine
 
-RocketRadio7: ; b8ea5 (2e:4ea5)
-	ld hl, UnknownText_0xb8ee3
+RocketRadio7:
+	ld hl, RocketRadioText7
 	ld a, ROCKET_RADIO_8
 	jp NextRadioLine
 
-RocketRadio8: ; b8ead (2e:4ead)
-	ld hl, UnknownText_0xb8ee8
+RocketRadio8:
+	ld hl, RocketRadioText8
 	ld a, ROCKET_RADIO_9
 	jp NextRadioLine
 
-RocketRadio9: ; b8eb5 (2e:4eb5)
-	ld hl, UnknownText_0xb8eed
+RocketRadio9:
+	ld hl, RocketRadioText9
 	ld a, ROCKET_RADIO_10
 	jp NextRadioLine
 
-RocketRadio10: ; b8ebd (2e:4ebd)
-	ld hl, UnknownText_0xb8ef2
+RocketRadio10:
+	ld hl, RocketRadioText10
 	ld a, ROCKET_RADIO
 	jp NextRadioLine
-; b8ec5 (2e:4ec5)
 
-UnknownText_0xb8ec5: ; 0xb8ec5
+RocketRadioText1:
 	; … …Ahem, we are
-	text_jump UnknownText_0x1bcda8
+	text_jump _RocketRadioText1
 	db "@"
-; 0xb8eca
 
-UnknownText_0xb8eca: ; 0xb8eca
+RocketRadioText2:
 	; TEAM ROCKET!
-	text_jump UnknownText_0x1bcdba
+	text_jump _RocketRadioText2
 	db "@"
-; 0xb8ecf
 
-UnknownText_0xb8ecf: ; 0xb8ecf
+RocketRadioText3:
 	; After three years
-	text_jump UnknownText_0x1bcdc9
+	text_jump _RocketRadioText3
 	db "@"
-; 0xb8ed4
 
-UnknownText_0xb8ed4: ; 0xb8ed4
+RocketRadioText4:
 	; of preparation, we
-	text_jump UnknownText_0x1bcddd
+	text_jump _RocketRadioText4
 	db "@"
-; 0xb8ed9
 
-UnknownText_0xb8ed9: ; 0xb8ed9
+RocketRadioText5:
 	; have risen again
-	text_jump UnknownText_0x1bcdf2
+	text_jump _RocketRadioText5
 	db "@"
-; 0xb8ede
 
-UnknownText_0xb8ede: ; 0xb8ede
+RocketRadioText6:
 	; from the ashes!
-	text_jump UnknownText_0x1bce05
+	text_jump _RocketRadioText6
 	db "@"
-; 0xb8ee3
 
-UnknownText_0xb8ee3: ; 0xb8ee3
+RocketRadioText7:
 	; GIOVANNI! @ Can you
-	text_jump UnknownText_0x1bce17
+	text_jump _RocketRadioText7
 	db "@"
-; 0xb8ee8
 
-UnknownText_0xb8ee8: ; 0xb8ee8
+RocketRadioText8:
 	; hear?@  We did it!
-	text_jump UnknownText_0x1bce2e
+	text_jump _RocketRadioText8
 	db "@"
-; 0xb8eed
 
-UnknownText_0xb8eed: ; 0xb8eed
+RocketRadioText9:
 	; @ Where is our boss?
-	text_jump UnknownText_0x1bce44
+	text_jump _RocketRadioText9
 	db "@"
-; 0xb8ef2
 
-UnknownText_0xb8ef2: ; 0xb8ef2
+RocketRadioText10:
 	; @ Is he listening?
-	text_jump UnknownText_0x1bce5c
+	text_jump _RocketRadioText10
 	db "@"
-; 0xb8ef7
 
-PokeFluteRadio: ; b8ef7 (2e:4ef7)
+PokeFluteRadio:
 	call StartRadioStation
 	ld a, 1
 	ld [wNumRadioLinesPrinted], a
 	ret
 
-UnownRadio: ; b8f00 (2e:4f00)
+UnownRadio:
 	call StartRadioStation
 	ld a, 1
 	ld [wNumRadioLinesPrinted], a
 	ret
 
-EvolutionRadio: ; b8f09 (2e:4f09)
+EvolutionRadio:
 	call StartRadioStation
 	ld a, 1
 	ld [wNumRadioLinesPrinted], a
 	ret
 
-BuenasPassword1: ; b8f12 (2e:4f12)
+BuenasPassword1:
 ; Determine if we need to be here
 	call BuenasPasswordCheckTime
 	jp nc, .PlayPassword
@@ -1677,34 +1538,34 @@ BuenasPassword1: ; b8f12 (2e:4f12)
 	jp z, BuenasPassword20
 	jp BuenasPassword8
 
-.PlayPassword: ; b8f22 (2e:4f22)
+.PlayPassword
 	call StartRadioStation
 	ld a, [hBGMapMode]
 	push af
 	xor a
 	ld [hBGMapMode], a
-	ld de, String_b9171
+	ld de, BuenasPasswordChannelName
 	hlcoord 2, 9
 	call PlaceString
 	pop af
 	ld [hBGMapMode], a
-	ld hl, UnknownText_0xb9182
+	ld hl, BuenaRadioText1
 	ld a, BUENAS_PASSWORD_2
 	jp NextRadioLine
 
-BuenasPassword2: ; b8f3f (2e:4f3f)
-	ld hl, UnknownText_0xb9187
+BuenasPassword2:
+	ld hl, BuenaRadioText2
 	ld a, BUENAS_PASSWORD_3
 	jp NextRadioLine
 
-BuenasPassword3: ; b8f47 (2e:4f47)
+BuenasPassword3:
 	call BuenasPasswordCheckTime
-	ld hl, UnknownText_0xb918c
+	ld hl, BuenaRadioText3
 	jp c, BuenasPasswordAfterMidnight
 	ld a, BUENAS_PASSWORD_4
 	jp NextRadioLine
 
-BuenasPassword4: ; b8f55 (2e:4f55)
+BuenasPassword4:
 	call BuenasPasswordCheckTime
 	jp c, BuenasPassword8
 	ld a, [wBuenasPassword]
@@ -1736,11 +1597,11 @@ BuenasPassword4: ; b8f55 (2e:4f55)
 .AlreadyGotIt
 	ld c, a
 	call GetBuenasPassword
-	ld hl, UnknownText_0xb9191
+	ld hl, BuenaRadioText4
 	ld a, BUENAS_PASSWORD_5
 	jp NextRadioLine
 
-GetBuenasPassword: ; b8f8f
+GetBuenasPassword:
 ; The password indices are held in c.  High nybble contains the group index, low nybble contains the word index.
 ; Load the password group pointer in hl.
 	ld a, c
@@ -1749,9 +1610,8 @@ GetBuenasPassword: ; b8f8f
 	ld hl, PasswordTable
 	ld d, 0
 	ld e, a
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1767,9 +1627,8 @@ endr
 	push hl
 	ld hl, .StringFunctionJumpTable
 	ld e, b
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1778,32 +1637,30 @@ endr
 	pop hl
 	ld c, [hl]
 	ret
-; b8fb8
 
-
-.StringFunctionJumpTable: ; b8fb8 (2e:4fb8)
+.StringFunctionJumpTable
 	dw .Mon
 	dw .Item
 	dw .Move
 	dw .RawString
 
 
-.Mon: ; b8fc0 (2e:4fc0)
+.Mon
 	call .GetTheIndex
 	call GetPokemonName
 	ret
 
-.Item: ; b8fc7 (2e:4fc7)
+.Item
 	call .GetTheIndex
 	call GetItemName
 	ret
 
-.Move: ; b8fce (2e:4fce)
+.Move
 	call .GetTheIndex
 	call GetMoveName
 	ret
 
-.GetTheIndex: ; b8fd5 (2e:4fd5)
+.GetTheIndex
 	ld h, 0
 	ld l, c
 	add hl, de
@@ -1811,7 +1668,7 @@ endr
 	ld [wNamedObjectIndexBuffer], a
 	ret
 
-.RawString: ; b8fde (2e:4fde)
+.RawString
 ; Get the string from the table...
 	ld a, c
 	and a
@@ -1834,9 +1691,8 @@ endr
 	jr nz, .copy_loop
 	ld de, StringBuffer1
 	ret
-; b8ff9 (2e:4ff9)
 
-PasswordTable: ; b8ff9
+PasswordTable:
 	dw .JohtoStarters
 	dw .Beverages
 	dw .HealingItems
@@ -1848,8 +1704,7 @@ PasswordTable: ; b8ff9
 	dw .Moves
 	dw .XItems
 	dw .RadioStations
-; b900f
-                     ; string type, points, option 1, option 2, option 3
+                    ; string type, points, option 1, option 2, option 3
 .JohtoStarters:      db BUENA_MON,    10, CYNDAQUIL, TOTODILE, CHIKORITA
 .Beverages:          db BUENA_ITEM,   12, FRESH_WATER, SODA_POP, LEMONADE
 .HealingItems:       db BUENA_ITEM,   12, POTION, ANTIDOTE, PARLYZ_HEAL
@@ -1861,26 +1716,25 @@ PasswordTable: ; b8ff9
 .Moves:              db BUENA_MOVE,   12, TACKLE, GROWL, MUD_SLAP
 .XItems:             db BUENA_ITEM,   12, X_ATTACK, X_DEFEND, X_SPEED
 .RadioStations:      db BUENA_STRING, 13, "#MON Talk@", "#MON Music@", "Lucky Channel@"
-; b909c
 
-BuenasPassword5: ; b909c (2e:509c)
-	ld hl, UnknownText_0xb9196
+BuenasPassword5:
+	ld hl, BuenaRadioText5
 	ld a, BUENAS_PASSWORD_6
 	jp NextRadioLine
 
-BuenasPassword6: ; b90a4 (2e:50a4)
-	ld hl, UnknownText_0xb919b
+BuenasPassword6:
+	ld hl, BuenaRadioText6
 	ld a, BUENAS_PASSWORD_7
 	jp NextRadioLine
 
-BuenasPassword7: ; b90ac (2e:50ac)
+BuenasPassword7:
 	call BuenasPasswordCheckTime
-	ld hl, UnknownText_0xb91a0
+	ld hl, BuenaRadioText7
 	jr c, BuenasPasswordAfterMidnight
 	ld a, BUENAS_PASSWORD
 	jp NextRadioLine
 
-BuenasPasswordAfterMidnight: ; b90b9 (2e:50b9)
+BuenasPasswordAfterMidnight:
 	push hl
 	ld hl, WeeklyFlags
 	res 7, [hl]
@@ -1888,69 +1742,69 @@ BuenasPasswordAfterMidnight: ; b90b9 (2e:50b9)
 	ld a, BUENAS_PASSWORD_8
 	jp NextRadioLine
 
-BuenasPassword8: ; b90c5 (2e:50c5)
+BuenasPassword8:
 	ld hl, WeeklyFlags
 	res 7, [hl]
-	ld hl, UnknownText_0xb91d2
+	ld hl, BuenaRadioMidnightText10
 	ld a, BUENAS_PASSWORD_9
 	jp NextRadioLine
 
-BuenasPassword9: ; b90d2 (2e:50d2)
-	ld hl, UnknownText_0xb91a5
+BuenasPassword9:
+	ld hl, BuenaRadioMidnightText1
 	ld a, BUENAS_PASSWORD_10
 	jp NextRadioLine
 
-BuenasPassword10: ; b90da (2e:50da)
-	ld hl, UnknownText_0xb91aa
+BuenasPassword10:
+	ld hl, BuenaRadioMidnightText2
 	ld a, BUENAS_PASSWORD_11
 	jp NextRadioLine
 
-BuenasPassword11: ; b90e2 (2e:50e2)
-	ld hl, UnknownText_0xb91af
+BuenasPassword11:
+	ld hl, BuenaRadioMidnightText3
 	ld a, BUENAS_PASSWORD_12
 	jp NextRadioLine
 
-BuenasPassword12: ; b90ea (2e:50ea)
-	ld hl, UnknownText_0xb91b4
+BuenasPassword12:
+	ld hl, BuenaRadioMidnightText4
 	ld a, BUENAS_PASSWORD_13
 	jp NextRadioLine
 
-BuenasPassword13: ; b90f2 (2e:50f2)
-	ld hl, UnknownText_0xb91b9
+BuenasPassword13:
+	ld hl, BuenaRadioMidnightText5
 	ld a, BUENAS_PASSWORD_14
 	jp NextRadioLine
 
-BuenasPassword14: ; b90fa (2e:50fa)
-	ld hl, UnknownText_0xb91be
+BuenasPassword14:
+	ld hl, BuenaRadioMidnightText6
 	ld a, BUENAS_PASSWORD_15
 	jp NextRadioLine
 
-BuenasPassword15: ; b9102 (2e:5102)
-	ld hl, UnknownText_0xb91c3
+BuenasPassword15:
+	ld hl, BuenaRadioMidnightText7
 	ld a, BUENAS_PASSWORD_16
 	jp NextRadioLine
 
-BuenasPassword16: ; b910a (2e:510a)
-	ld hl, UnknownText_0xb91c8
+BuenasPassword16:
+	ld hl, BuenaRadioMidnightText8
 	ld a, BUENAS_PASSWORD_17
 	jp NextRadioLine
 
-BuenasPassword17: ; b9112 (2e:5112)
-	ld hl, UnknownText_0xb91cd
+BuenasPassword17:
+	ld hl, BuenaRadioMidnightText9
 	ld a, BUENAS_PASSWORD_18
 	jp NextRadioLine
 
-BuenasPassword18: ; b911a (2e:511a)
-	ld hl, UnknownText_0xb91d2
+BuenasPassword18:
+	ld hl, BuenaRadioMidnightText10
 	ld a, BUENAS_PASSWORD_19
 	jp NextRadioLine
 
-BuenasPassword19: ; b9122 (2e:5122)
-	ld hl, UnknownText_0xb91d2
+BuenasPassword19:
+	ld hl, BuenaRadioMidnightText10
 	ld a, BUENAS_PASSWORD_20
 	jp NextRadioLine
 
-BuenasPassword20: ; b912a (2e:512a)
+BuenasPassword20:
 	ld a, [hBGMapMode]
 	push af
 	callba NoRadioMusic
@@ -1963,141 +1817,121 @@ BuenasPassword20: ; b912a (2e:512a)
 	ld [wCurrentRadioLine], a
 	xor a
 	ld [wNumRadioLinesPrinted], a
-	ld hl, UnknownText_0xb91d7
+	ld hl, BuenaOffTheAirText
 	ld a, BUENAS_PASSWORD_21
 	jp NextRadioLine
 
-BuenasPassword21: ; b9152 (2e:5152)
+BuenasPassword21:
 	ld a, BUENAS_PASSWORD
 	ld [wCurrentRadioLine], a
 	xor a
 	ld [wNumRadioLinesPrinted], a
 	call BuenasPasswordCheckTime
 	jp nc, BuenasPassword1
-	ld hl, UnknownText_0xb91d7
+	ld hl, BuenaOffTheAirText
 	ld a, BUENAS_PASSWORD_21
 	jp NextRadioLine
 
-BuenasPasswordCheckTime: ; b9169 (2e:5169)
+BuenasPasswordCheckTime:
 	call UpdateTime
 	ld a, [hHours]
 	cp 18 ; 6 PM
 	ret
-; b9171 (2e:5171)
 
-String_b9171:
+BuenasPasswordChannelName:
 	db "BUENA'S PASSWORD@"
-; b9182
 
-UnknownText_0xb9182: ; 0xb9182
+BuenaRadioText1:
 	; BUENA: BUENA here!
-	text_jump UnknownText_0x1bce72
+	text_jump _BuenaRadioText1
 	db "@"
-; 0xb9187
 
-UnknownText_0xb9187: ; 0xb9187
+BuenaRadioText2:
 	; Today's password!
-	text_jump UnknownText_0x1bce87
+	text_jump _BuenaRadioText2
 	db "@"
-; 0xb918c
 
-UnknownText_0xb918c: ; 0xb918c
+BuenaRadioText3:
 	; Let me think… It's
-	text_jump UnknownText_0x1bce9a
+	text_jump _BuenaRadioText3
 	db "@"
-; 0xb9191
 
-UnknownText_0xb9191: ; 0xb9191
+BuenaRadioText4:
 	; @ !
-	text_jump UnknownText_0x1bceae
+	text_jump _BuenaRadioText4
 	db "@"
-; 0xb9196
 
-UnknownText_0xb9196: ; 0xb9196
+BuenaRadioText5:
 	; Don't forget it!
-	text_jump UnknownText_0x1bceb7
+	text_jump _BuenaRadioText5
 	db "@"
-; 0xb919b
 
-UnknownText_0xb919b: ; 0xb919b
+BuenaRadioText6:
 	; I'm in GOLDENROD's
-	text_jump UnknownText_0x1bcec9
+	text_jump _BuenaRadioText6
 	db "@"
-; 0xb91a0
 
-UnknownText_0xb91a0: ; 0xb91a0
+BuenaRadioText7:
 	; RADIO TOWER!
-	text_jump UnknownText_0x1bcedc
+	text_jump _BuenaRadioText7
 	db "@"
-; 0xb91a5
 
-UnknownText_0xb91a5: ; 0xb91a5
+BuenaRadioMidnightText1:
 	; BUENA: Oh my…
-	text_jump UnknownText_0x1bceeb
+	text_jump _BuenaRadioMidnightText1
 	db "@"
-; 0xb91aa
 
-UnknownText_0xb91aa: ; 0xb91aa
+BuenaRadioMidnightText2:
 	; It's midnight! I
-	text_jump UnknownText_0x1bcefb
+	text_jump _BuenaRadioMidnightText2
 	db "@"
-; 0xb91af
 
-UnknownText_0xb91af: ; 0xb91af
+BuenaRadioMidnightText3:
 	; have to shut down!
-	text_jump UnknownText_0x1bcf0d
+	text_jump _BuenaRadioMidnightText3
 	db "@"
-; 0xb91b4
 
-UnknownText_0xb91b4: ; 0xb91b4
+BuenaRadioMidnightText4:
 	; Thanks for tuning
-	text_jump UnknownText_0x1bcf22
+	text_jump _BuenaRadioMidnightText4
 	db "@"
-; 0xb91b9
 
-UnknownText_0xb91b9: ; 0xb91b9
+BuenaRadioMidnightText5:
 	; in to the end! But
-	text_jump UnknownText_0x1bcf36
+	text_jump _BuenaRadioMidnightText5
 	db "@"
-; 0xb91be
 
-UnknownText_0xb91be: ; 0xb91be
+BuenaRadioMidnightText6:
 	; don't stay up too
-	text_jump UnknownText_0x1bcf4b
+	text_jump _BuenaRadioMidnightText6
 	db "@"
-; 0xb91c3
 
-UnknownText_0xb91c3: ; 0xb91c3
+BuenaRadioMidnightText7:
 	; late! Presented to
-	text_jump UnknownText_0x1bcf5e
+	text_jump _BuenaRadioMidnightText7
 	db "@"
-; 0xb91c8
 
-UnknownText_0xb91c8: ; 0xb91c8
+BuenaRadioMidnightText8:
 	; you by DJ BUENA!
-	text_jump UnknownText_0x1bcf73
+	text_jump _BuenaRadioMidnightText8
 	db "@"
-; 0xb91cd
 
-UnknownText_0xb91cd: ; 0xb91cd
+BuenaRadioMidnightText9:
 	; I'm outta here!
-	text_jump UnknownText_0x1bcf86
+	text_jump _BuenaRadioMidnightText9
 	db "@"
-; 0xb91d2
 
-UnknownText_0xb91d2: ; 0xb91d2
+BuenaRadioMidnightText10:
 	; …
-	text_jump UnknownText_0x1bcf96
+	text_jump _BuenaRadioMidnightText10
 	db "@"
-; 0xb91d7
 
-UnknownText_0xb91d7: ; 0xb91d7
+BuenaOffTheAirText:
 	;
-	text_jump UnknownText_0x1bcf99
+	text_jump _BuenaOffTheAirText
 	db "@"
-; 0xb91dc
 
-CopyRadioTextToRAM: ; b91dc (2e:51dc)
+CopyRadioTextToRAM:
 	ld a, [hl]
 	cp TX_FAR
 	jp z, FarCopyRadioText
@@ -2105,7 +1939,7 @@ CopyRadioTextToRAM: ; b91dc (2e:51dc)
 	ld bc, SCREEN_WIDTH * 2
 	jp CopyBytes
 
-StartRadioStation: ; b91eb (2e:51eb)
+StartRadioStation:
 	ld a, [wNumRadioLinesPrinted]
 	and a
 	ret nz
@@ -2115,17 +1949,15 @@ StartRadioStation: ; b91eb (2e:51eb)
 	ld a, [wCurrentRadioLine]
 	ld c, a
 	ld b, 0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	callab RadioMusicRestartDE
 	ret
-; b920b (2e:520b)
 
-RadioChannelSongs: ; b920b
+RadioChannelSongs:
 	dw MUSIC_POKEMON_TALK
 	dw MUSIC_POKEMON_CENTER
 	dw MUSIC_TITLE
@@ -2137,11 +1969,9 @@ RadioChannelSongs: ; b920b
 	dw MUSIC_POKE_FLUTE_CHANNEL
 	dw MUSIC_RUINS_OF_ALPH_RADIO
 	dw MUSIC_LAKE_OF_RAGE_ROCKET_RADIO
-; b9221
 
-NextRadioLine: ; b9221 (2e:5221)
+NextRadioLine:
 	push af
 	call CopyRadioTextToRAM
 	pop af
 	jp PrintRadioLine
-; b9229

@@ -23,11 +23,9 @@ PlaceWaitingText:: ; 4000
 	call PlaceString
 	ld c, 50
 	jp DelayFrames
-; 4025
 
 .Waiting ; 4025
 	db "Waiting...!@"
-; 4031
 
 LoadPushOAM:: ; 4031
 	ld c, hPushOAM - $ff00
@@ -40,7 +38,6 @@ LoadPushOAM:: ; 4031
 	dec b
 	jr nz, .loop
 	ret
-; 403f
 
 PushOAM: ; 403f
 	ld a, Sprites / $100
@@ -51,7 +48,6 @@ PushOAM: ; 403f
 	jr nz, .loop
 	ret
 PushOAMEnd
-; 4049
 
 INCLUDE "engine/map_objects.asm"
 
@@ -77,7 +73,6 @@ Function6454:: ; 6454
 	ld hl, VramState
 	set 6, [hl]
 	ret
-; 6473
 
 .Function6473
 	xor a
@@ -108,14 +103,12 @@ Function6454:: ; 6454
 	ld [hSCY], a
 	call Function5958
 	ret
-; 64b9
 
 .Function64b9: ; 64b9
 	ld [hBGMapAddress + 1], a
 	xor a
 	ld [hBGMapAddress], a
 	ret
-; 64bf
 
 Function64bf:: ; 64bf
 	ld a, [hOAMUpdate]
@@ -136,7 +129,6 @@ Function64bf:: ; 64bf
 	call Function2e31
 	call LoadStandardFont
 	ret
-; 64db
 
 Function64db: ; 64db
 	ld a, [rSVBK]
@@ -163,7 +155,6 @@ Function64db: ; 64db
 	pop af
 	ld [rSVBK], a
 	ret
-; 6508
 
 INCLUDE "engine/learn.asm"
 
@@ -228,7 +219,6 @@ CheckNickErrors:: ; 669f
 	pop de
 	pop bc
 	ret
-; 66cf
 
 .textcommands ; 66cf
 ; table defining which characters are actually text commands
@@ -242,13 +232,11 @@ CheckNickErrors:: ; 669f
 	db $49,        "<TM>"    + 1
 	db "<ROCKET>", "┘"       + 1
 	db -1 ; end
-; 66de
 
 INCLUDE "engine/math.asm"
 
 ItemAttributes: ; 67c1
 INCLUDE "items/item_attributes.asm"
-; 6ec1
 INCLUDE "engine/npc_movement.asm"
 
 GetFirstPokemonHappiness: ; 718d
@@ -269,7 +257,6 @@ GetFirstPokemonHappiness: ; 718d
 	ld [ScriptVar], a
 	call GetPokemonName
 	jp CopyPokemonName_Buffer1_Buffer3
-; 71ac
 
 CheckFirstMonIsEgg: ; 71ac
 	ld a, [PartySpecies]
@@ -283,7 +270,6 @@ CheckFirstMonIsEgg: ; 71ac
 	ld [ScriptVar], a
 	call GetPokemonName
 	jp CopyPokemonName_Buffer1_Buffer3
-; 71c2
 
 ChangeHappiness: ; 71c2
 ; Perform happiness action c on CurPartyMon
@@ -356,7 +342,6 @@ endr
 	ld a, [de]
 	ld [BattleMonHappiness], a
 	ret
-; 7221
 
 .Actions
 	db  +5,  +3,  +2 ; Gained a level
@@ -378,7 +363,6 @@ endr
 	db -15, -15, -20 ; Used Revival Herb (bitter)
 	db  +3,  +3,  +1 ; Grooming
 	db +10,  +6,  +4 ; Gained a level in the place where it was caught
-; 725a
 
 StepHappiness:: ; 725a
 ; Raise the party's happiness by 1 point every other step cycle.
@@ -414,7 +398,6 @@ StepHappiness:: ; 725a
 	dec c
 	jr nz, .loop
 	ret
-; 7282
 
 DaycareStep:: ; 7282
 
@@ -494,7 +477,6 @@ DaycareStep:: ; 7282
 	res 5, [hl]
 	set 6, [hl]
 	ret
-; 7305
 
 SpecialGiveShuckle: ; 7305
 
@@ -567,7 +549,6 @@ SpecialShuckleOT:
 	db "MANIA@"
 SpecialShuckleNick:
 	db "SHUCKIE@"
-; 737e
 
 SpecialReturnShuckle: ; 737e
 	callba SelectMonFromParty
@@ -583,7 +564,6 @@ SpecialReturnShuckle: ; 737e
 	call AddNTimes
 
 ; OT ID
-; 00518
 	ld a, [hli]
 	cp 00518 / $100
 	jr nz, .DontReturn
@@ -639,7 +619,6 @@ SpecialReturnShuckle: ; 737e
 	ld a, $4
 	ld [ScriptVar], a
 	ret
-; 73f7
 
 Special_BillsGrandfather: ; 73f7
 	callba SelectMonFromParty
@@ -654,7 +633,6 @@ Special_BillsGrandfather: ; 73f7
 	xor a
 	ld [ScriptVar], a
 	ret
-; 7413
 
 Special_YoungerHaircutBrother: ; 7413
 	ld hl, Data_YoungerHaircutBrother
@@ -712,7 +690,6 @@ endr
 	ld a, 1
 	ld [ScriptVar], a
 	ret
-; 7459
 
 Data_YoungerHaircutBrother: ; 7459
 	db $4c, 2, HAPPINESS_YOUNGCUT1 ; 30% chance
@@ -726,19 +703,16 @@ Data_OlderHaircutBrother: ; 7462
 
 Data_DaisyMassage: ; 746b
 	db $ff, 2, HAPPINESS_MASSAGE ; 99.6% chance
-; 746e
 
 CopyPokemonName_Buffer1_Buffer3: ; 746e
 	ld hl, StringBuffer1
 	ld de, StringBuffer3
 	ld bc, PKMN_NAME_LENGTH
 	jp CopyBytes
-; 747a
 
 Predef1: ; 747a
 ; not used
 	ret
-; 747b
 
 SECTION "bank2", ROMX, BANK[$2]
 
@@ -759,7 +733,6 @@ BlankScreen: ; 8000
 	call WaitBGMap2
 	call SetPalettes
 	ret
-; 8029
 
 GetSpawnCoord: ; 8029
 	ld a, -1
@@ -795,14 +768,12 @@ GetSpawnCoord: ; 8029
 	ld a, PLAYER
 	ld [wCenteredObject], a
 	ret
-; 8071
 
 PlayerObjectTemplate: ; 8071
 ; A dummy map object used to initialize the player object.
 ; Shorter than the actual amount copied by two bytes.
 ; Said bytes seem to be unused.
 	person_event SPRITE_CHRIS, -4, -4, SPRITEMOVEDATA_PLAYER, 15, 15, -1, -1, 0, PERSONTYPE_SCRIPT, 0, 0, -1
-; 807e
 
 CopyDECoordsToMapObject:: ; 807e
 	push de
@@ -816,7 +787,6 @@ CopyDECoordsToMapObject:: ; 807e
 	add hl, bc
 	ld [hl], e
 	ret
-; 808f
 
 PlayerSpawn_ConvertCoords: ; 808f
 	push bc
@@ -829,7 +799,6 @@ PlayerSpawn_ConvertCoords: ; 808f
 	pop bc
 	call CopyDECoordsToMapObject
 	ret
-; 80a1
 
 WritePersonXY:: ; 80a1
 	ld a, b
@@ -847,7 +816,6 @@ WritePersonXY:: ; 80a1
 	call CopyDECoordsToMapObject
 	and a
 	ret
-; 80b8
 
 RefreshPlayerCoords: ; 80b8
 	ld a, [XCoord]
@@ -876,7 +844,6 @@ RefreshPlayerCoords: ; 80b8
 	cp $0
 	ret nz ; wtf
 	ret
-; 80e7
 
 CopyObjectStruct:: ; 80e7
 	call CheckObjectMask
@@ -911,13 +878,11 @@ CopyObjectStruct:: ; 80e7
 	add hl, de
 	set 5, [hl]
 	ret
-; 8116
 
 CopyMapObjectToObjectStruct: ; 8116
 	call .CopyMapObjectToTempObject
 	call CopyTempObjectToObjectStruct
 	ret
-; 811d
 
 .CopyMapObjectToTempObject: ; 811d
 	ld a, [hObjectStructIndexBuffer]
@@ -975,7 +940,6 @@ CopyMapObjectToObjectStruct: ; 8116
 	ld a, [hl]
 	ld [wTempObjectCopyRadius], a
 	ret
-; 8177
 
 InitializeVisibleSprites: ; 8177
 	ld bc, MapObjects + OBJECT_LENGTH
@@ -1034,11 +998,9 @@ InitializeVisibleSprites: ; 8177
 	cp NUM_OBJECTS
 	jr nz, .loop
 	ret
-; 81c9
 
 .ret: ; 81c9
 	ret
-; 81ca
 
 CheckObjectEnteringVisibleRange:: ; 81ca
 	nop
@@ -1048,14 +1010,12 @@ CheckObjectEnteringVisibleRange:: ; 81ca
 	ld hl, .dw
 	rst JumpTable
 	ret
-; 81d6
 
 .dw: ; 81d6
 	dw .Down
 	dw .Up
 	dw .Left
 	dw .Right
-; 81de
 
 .Up: ; 81de
 	ld a, [YCoord]
@@ -1112,7 +1072,6 @@ CheckObjectEnteringVisibleRange:: ; 81ca
 	cp NUM_OBJECTS
 	jr nz, .loop_v
 	ret
-; 8232
 
 .Left: ; 8232
 	ld a, [XCoord]
@@ -1169,7 +1128,6 @@ CheckObjectEnteringVisibleRange:: ; 81ca
 	cp NUM_OBJECTS
 	jr nz, .loop_h
 	ret
-; 8286
 
 CopyTempObjectToObjectStruct: ; 8286
 	ld a, [wTempObjectCopyMapObjectIndex]
@@ -1220,7 +1178,6 @@ CopyTempObjectToObjectStruct: ; 8286
 
 	and a
 	ret
-; 82d5
 
 .InitYCoord: ; 82d5
 	ld hl, OBJECT_INIT_Y
@@ -1241,7 +1198,6 @@ CopyTempObjectToObjectStruct: ; 8286
 	add hl, de
 	ld [hl], a
 	ret
-; 82f1
 
 .InitXCoord: ; 82f1
 	ld hl, OBJECT_INIT_X
@@ -1260,7 +1216,6 @@ CopyTempObjectToObjectStruct: ; 8286
 	add hl, de
 	ld [hl], a
 	ret
-; 830d
 
 .InitRadius: ; 830d
 	ld h, a
@@ -1275,7 +1230,6 @@ CopyTempObjectToObjectStruct: ; 8286
 	add hl, de
 	ld [hl], a
 	ret
-; 831e
 
 TrainerWalkToPlayer: ; 831e
 	ld a, [hLastTalked]
@@ -1296,7 +1250,6 @@ TrainerWalkToPlayer: ; 831e
 	ld a, movement_step_end
 	call AppendToMovementBuffer
 	ret
-; 8341
 
 .GetPathToPlayer: ; 8341
 	push de
@@ -1341,7 +1294,6 @@ TrainerWalkToPlayer: ; 831e
 	pop af
 	call ComputePathToWalkToPlayer
 	ret
-; 8379
 
 Special_SurfStartStep: ; 8379
 	call InitMovementBuffer
@@ -1350,7 +1302,6 @@ Special_SurfStartStep: ; 8379
 	ld a, movement_step_end
 	call AppendToMovementBuffer
 	ret
-; 8388
 
 .GetMovementData: ; 8388
 	ld a, [PlayerDirection]
@@ -1363,14 +1314,12 @@ Special_SurfStartStep: ; 8379
 	add hl, de
 	ld a, [hl]
 	ret
-; 839a
 
 .movement_data
 	slow_step_down
 	slow_step_up
 	slow_step_left
 	slow_step_right
-; 839e
 
 FollowNotExact:: ; 839e
 	push bc
@@ -1458,7 +1407,6 @@ FollowNotExact:: ; 839e
 	add hl, de
 	ld [hl], STEP_TYPE_00
 	ret
-; 8417
 
 GetRelativeFacing:: ; 8417
 ; Determines which way map object e would have to turn to face map object d.  Returns carry if it's impossible for whatever reason.
@@ -1484,7 +1432,6 @@ GetRelativeFacing:: ; 8417
 .carry
 	scf
 	ret
-; 8439
 
 .GetFacing_e_relativeto_d: ; 8439
 ; Determines which way object e would have to turn to face object d.  Returns carry if it's impossible.
@@ -1566,7 +1513,6 @@ GetRelativeFacing:: ; 8417
 .same_x_and_y
 	scf
 	ret
-; 848a
 
 QueueFollowerFirstStep: ; 848a
 	call .QueueFirstStep
@@ -1580,7 +1526,6 @@ QueueFollowerFirstStep: ; 848a
 	ld a, -1
 	ld [wFollowerMovementQueueLength], a
 	ret
-; 849d
 
 .QueueFirstStep
 	ld a, [wObjectFollow_Leader]
@@ -1627,7 +1572,6 @@ QueueFollowerFirstStep: ; 848a
 .same_xy
 	scf
 	ret
-; 84d9
 
 _Sine:: ; 84d9
 ; A simple sine function.
@@ -1650,7 +1594,6 @@ _Sine:: ; 84d9
 	xor -1
 	inc a
 	ret
-; 84ef
 
 .ApplySineWave: ; 84ef
 	ld e, a
@@ -1675,13 +1618,11 @@ _Sine:: ; 84d9
 	and a
 	jr nz, .multiply
 	ret
-; 850b
 
 .sinewave: ; 850b
 ; A $20-word table representing a sine wave.
 ; 90 degrees is index $10 at a base amplitude of $100.
 	sine_wave $100
-; 854b
 
 INCLUDE "engine/predef.asm"
 
@@ -1701,7 +1642,6 @@ CheckTime:: ; c000
 	xor a
 	ld c, a
 	ret
-; c012
 
 TimeOfDayTable: ; c012
 	db MORN, 1 << MORN
@@ -1709,7 +1649,6 @@ TimeOfDayTable: ; c012
 	db NITE, 1 << NITE
 	db NITE, 1 << NITE
 	db -1
-; c01b
 
 INCLUDE "engine/specials.asm"
 
@@ -1892,7 +1831,6 @@ _PrintNum:: ; c4c7
 	pop de
 	pop bc
 	ret
-; c5ba
 
 .PrintYen: ; c5ba
 	push af
@@ -1908,7 +1846,6 @@ _PrintNum:: ; c4c7
 .stop
 	pop af
 	ret
-; c5cb
 
 .PrintDigit: ; c5cb (3:45cb)
 	dec e
@@ -2015,7 +1952,6 @@ _PrintNum:: ; c4c7
 .inc
 	inc hl
 	ret
-; c658
 
 HealParty: ; c658
 	xor a
@@ -2040,7 +1976,6 @@ HealParty: ; c658
 
 .done
 	ret
-; c677
 
 HealPartyMon: ; c677
 	ld a, MON_SPECIES
@@ -2071,7 +2006,6 @@ HealPartyMon: ; c677
 
 	callba RestoreAllPP
 	ret
-; c699
 
 ComputeHPBarPixels: ; c699
 ; bc * (6 * 8) / de
@@ -2123,14 +2057,12 @@ ComputeHPBarPixels: ; c699
 .zero
 	ld e, 0
 	ret
-; c6e0
 
 AnimateHPBar: ; c6e0
 	call WaitBGMap
 	call _AnimateHPBar
 	call WaitBGMap
 	ret
-; c6ea
 
 ClearBuffer1: ; c6ea
 	xor a
@@ -2138,7 +2070,6 @@ ClearBuffer1: ; c6ea
 	ld bc, 7
 	call ByteFill
 	ret
-; c6f5
 
 FieldMoveJumptable: ; c6f5
 	ld a, [Buffer1]
@@ -2153,7 +2084,6 @@ FieldMoveJumptable: ; c6f5
 	and $7f
 	scf
 	ret
-; c706
 
 GetPartyNick: ; c706
 ; write CurPartyMon nickname to StringBuffer1-3
@@ -2168,7 +2098,6 @@ GetPartyNick: ; c706
 	ld hl, StringBuffer3
 	call CopyName2
 	ret
-; c721
 
 CheckEngineFlag: ; c721
 ; Check engine flag de
@@ -2183,7 +2112,6 @@ CheckEngineFlag: ; c721
 .isset
 	xor a
 	ret
-; c731
 
 CheckBadge: ; c731
 ; Check engine flag a (ENGINE_ZEPHYRBADGE thru ENGINE_EARTHBADGE)
@@ -2194,14 +2122,12 @@ CheckBadge: ; c731
 	call MenuTextBoxBackup ; push text to queue
 	scf
 	ret
-; c73d
 
 .BadgeRequiredText: ; c73d
 	; Sorry! A new BADGE
 	; is required.
 	text_jump _BadgeRequiredText
 	db "@"
-; c742
 
 CheckPartyMove: ; c742
 ; Check if a monster in your party has move d.
@@ -2246,19 +2172,16 @@ CheckPartyMove: ; c742
 .no
 	scf
 	ret
-; c779
 
 FieldMoveFailed: ; c779
 	ld hl, .CantUseHere
 	call MenuTextBoxBackup
 	ret
-; c780
 
 .CantUseHere: ; 0xc780
 	; Can't use that here.
 	text_jump UnknownText_0x1c05c8
 	db "@"
-; 0xc785
 
 CutFunction: ; c785
 	call ClearBuffer1
@@ -2269,7 +2192,6 @@ CutFunction: ; c785
 	and $7f
 	ld [wFieldMoveSucceeded], a
 	ret
-; c796
 
 .Jumptable: ; c796 (3:4796)
 	
@@ -2310,13 +2232,11 @@ Text_UsedCut: ; 0xc7c4
 	; used CUT!
 	text_jump UnknownText_0x1c05dd
 	db "@"
-; 0xc7c9
 
 Text_NothingToCut: ; 0xc7c9
 	; There's nothing to CUT here.
 	text_jump UnknownText_0x1c05ec
 	db "@"
-; 0xc7ce
 
 CheckMapForSomethingToCut: ; c7ce
 	; Does the collision data of the facing tile permit cutting?
@@ -2352,7 +2272,6 @@ CheckMapForSomethingToCut: ; c7ce
 .fail
 	scf
 	ret
-; c7fe
 
 Script_CutFromMenu: ; c7fe
 	reloadmappart
@@ -2365,7 +2284,6 @@ Script_Cut: ; 0xc802
 	callasm CutDownTreeOrGrass
 	closetext
 	end
-; 0xc810
 
 CutDownTreeOrGrass: ; c810
 	ld hl, Buffer3 ; OverworldMapTile
@@ -2388,7 +2306,6 @@ CutDownTreeOrGrass: ; c810
 	call DelayFrame
 	call LoadStandardFont
 	ret
-; c840
 
 CheckOverworldTileArrays: ; c840
 	; Input: c contains the tile you're facing
@@ -2425,7 +2342,6 @@ CheckOverworldTileArrays: ; c840
 .nope
 	xor a
 	ret
-; c862
 
 CutTreeBlockPointers: ; c862
 ; Which tileset are we in?
@@ -2435,7 +2351,6 @@ CutTreeBlockPointers: ; c862
 	dbw TILESET_PARK, .park
 	dbw TILESET_ILEX_FOREST, .ilex
 	db -1
-; c872
 
 .johto1: ; Johto OW
 ; Which meta tile are we facing, which should we replace it with, and which animation?
@@ -2445,12 +2360,10 @@ CutTreeBlockPointers: ; c862
 	db $63, $3f, $00 ; tree
 	db $67, $3e, $00 ; tree
 	db -1
-; c882
 
 .johto2: ; Goldenrod area
 	db $03, $02, $01 ; grass
 	db -1
-; c886
 
 .kanto: ; Kanto OW
 	db $0b, $0a, $01 ; grass
@@ -2460,35 +2373,29 @@ CutTreeBlockPointers: ; c862
 	db $35, $4c, $00 ; tree
 	db $60, $6e, $00 ; tree
 	db -1
-; c899
 
 .park: ; National Park
 	db $13, $03, $01 ; grass
 	db $03, $04, $01 ; grass
 	db -1
-; c8a0
 
 .ilex: ; Ilex Forest
 	db $0f, $17, $00
 	db -1
-; c8a4
 
 WhirlpoolBlockPointers: ; c8a4
 	dbw TILESET_JOHTO_1, .johto
 	db -1
-; c8a8
 
 .johto: ; c8a8
 	db $07, $36, $00
 	db -1
-; c8ac
 
 OWFlash: ; c8ac
 	call .CheckUseFlash
 	and $7f
 	ld [wFieldMoveSucceeded], a
 	ret
-; c8b5
 
 .CheckUseFlash: ; c8b5
 ; Flash
@@ -2515,12 +2422,10 @@ OWFlash: ; c8ac
 .nozephyrbadge
 	ld a, $80
 	ret
-; c8e0
 
 UseFlash: ; c8e0
 	ld hl, Script_UseFlash
 	jp QueueScript
-; c8e6
 
 Script_UseFlash: ; 0xc8e6
 	reloadmappart
@@ -2529,7 +2434,6 @@ Script_UseFlash: ; 0xc8e6
 	callasm BlindingFlash
 	closetext
 	end
-; 0xc8f3
 
 UnknownText_0xc8f3: ; 0xc8f3
 	text_jump UnknownText_0x1c0609
@@ -2540,11 +2444,9 @@ UnknownText_0xc8f3: ; 0xc8f3
 	call WaitSFX
 	ld hl, .BlankText
 	ret
-; c908
 
 .BlankText: ; 0xc908
 	db "@"
-; 0xc909
 
 SurfFunction: ; c909
 	call ClearBuffer1
@@ -2555,7 +2457,6 @@ SurfFunction: ; c909
 	and $7f
 	ld [wFieldMoveSucceeded], a
 	ret
-; c91a
 
 .Jumptable: ; c91a (3:491a)
 	dw .TrySurf
@@ -2615,7 +2516,6 @@ SurfFunction: ; c909
 	call MenuTextBoxBackup
 	ld a, $80
 	ret
-; c983 (3:4983)
 
 SurfFromMenuScript: ; c983
 	special UpdateTimePals
@@ -2636,27 +2536,22 @@ UsedSurfScript: ; c986
 	special Special_SurfStartStep ; (slow_step_x, step_end)
 	applymovement PLAYER, MovementBuffer ; PLAYER, MovementBuffer
 	end
-; c9a2
 
 Functionc9a2: ; c9a2
 	callba MobileFn_1060bb ; empty
 	ret
-; c9a9
 
 UsedSurfText: ; c9a9
 	text_jump _UsedSurfText
 	db "@"
-; c9ae
 
 CantSurfText: ; c9ae
 	text_jump _CantSurfText
 	db "@"
-; c9b3
 
 AlreadySurfingText: ; c9b3
 	text_jump _AlreadySurfingText
 	db "@"
-; c9b8
 
 GetSurfType: ; c9b8
 ; Surfing on Pikachu uses an alternate sprite.
@@ -2674,7 +2569,6 @@ GetSurfType: ; c9b8
 	ret z
 	ld a, PLAYER_SURF
 	ret
-; c9cb
 
 CheckDirection: ; c9cb
 ; Return carry if a tile permission prevents you
@@ -2706,7 +2600,6 @@ CheckDirection: ; c9cb
 	db FACE_UP
 	db FACE_LEFT
 	db FACE_RIGHT
-; c9e7
 
 TrySurfOW:: ; c9e7
 ; Checking a tile in the overworld.
@@ -2755,7 +2648,6 @@ TrySurfOW:: ; c9e7
 .quit
 	xor a
 	ret
-; ca2c
 
 AskSurfScript: ; ca2c
 	opentext
@@ -2764,12 +2656,10 @@ AskSurfScript: ; ca2c
 	iftrue UsedSurfScript
 	closetext
 	end
-; ca36
 
 AskSurfText: ; ca36
 	text_jump _AskSurfText ; The water is calm.
 	db "@"              ; Want to SURF?
-; ca3b
 
 FlyFunction: ; ca3b
 	call ClearBuffer1
@@ -2780,13 +2670,11 @@ FlyFunction: ; ca3b
 	and $7f
 	ld [wFieldMoveSucceeded], a
 	ret
-; ca4c
 
 .Jumptable
  	dw .TryFly
  	dw .DoFly
  	dw .FailFly
-; ca52
 
 .TryFly: ; ca52
 ; Fly
@@ -2828,20 +2716,17 @@ FlyFunction: ; ca3b
 	call WaitBGMap
 	ld a, $80
 	ret
-; ca94
 
 .DoFly: ; ca94
 	ld hl, .FlyScript
 	call QueueScript
 	ld a, $81
 	ret
-; ca9d
 
 .FailFly: ; ca9d
 	call FieldMoveFailed
 	ld a, $82
 	ret
-; caa3
 
 .FlyScript: ; 0xcaa3
 	reloadmappart
@@ -2857,7 +2742,6 @@ FlyFunction: ; ca3b
 	special WaitSFX
 	callasm .ReturnFromFly
 	end
-; 0xcacb
 
 .ReturnFromFly: ; cacb
 	callba Function561d
@@ -2865,14 +2749,12 @@ FlyFunction: ; ca3b
 	call ReplaceKrisSprite
 	callba LoadOverworldFont
 	ret
-; cade
 
 WaterfallFunction: ; cade
 	call .TryWaterfall
 	and $7f
 	ld [wFieldMoveSucceeded], a
 	ret
-; cae7
 
 .TryWaterfall: ; cae7
 ; Waterfall
@@ -2891,7 +2773,6 @@ WaterfallFunction: ; cade
 	call FieldMoveFailed
 	ld a, $80
 	ret
-; cb07
 
 CheckMapCanWaterfall: ; cb07
 	ld a, [PlayerDirection]
@@ -2907,7 +2788,6 @@ CheckMapCanWaterfall: ; cb07
 .failed
 	scf
 	ret
-; cb1c
 
 Script_WaterfallFromMenu: ; 0xcb1c
 	reloadmappart
@@ -2924,7 +2804,6 @@ Script_UsedWaterfall: ; 0xcb20
 	callasm .CheckContinueWaterfall
 	iffalse .loop
 	end
-; 0xcb38
 
 .CheckContinueWaterfall: ; cb38
 	xor a
@@ -2936,18 +2815,15 @@ Script_UsedWaterfall: ; 0xcb20
 	ld a, $1
 	ld [ScriptVar], a
 	ret
-; cb4f
 
 .WaterfallStep: ; cb4f
 	turn_waterfall_up
 	step_end
-; cb51
 
 .Text_UsedWaterfall: ; 0xcb51
 	; used WATERFALL!
 	text_jump UnknownText_0x1c068e
 	db "@"
-; 0xcb56
 
 TryWaterfallOW:: ; cb56
 	ld d, WATERFALL
@@ -2970,17 +2846,14 @@ TryWaterfallOW:: ; cb56
 	call CallScript
 	scf
 	ret
-; cb7e
 
 Script_CantDoWaterfall: ; 0xcb7e
 	jumptext .Text_CantDoWaterfall
-; 0xcb81
 
 .Text_CantDoWaterfall: ; 0xcb81
 	; Wow, it's a huge waterfall.
 	text_jump UnknownText_0x1c06a3
 	db "@"
-; 0xcb86
 
 Script_AskWaterfall: ; 0xcb86
 	opentext
@@ -2989,13 +2862,11 @@ Script_AskWaterfall: ; 0xcb86
 	iftrue Script_UsedWaterfall
 	closetext
 	end
-; 0xcb90
 
 .AskUseWaterfall: ; 0xcb90
 	; Do you want to use WATERFALL?
 	text_jump UnknownText_0x1c06bf
 	db "@"
-; 0xcb95
 
 EscapeRopeFunction: ; cb95
 	call ClearBuffer1
@@ -3015,13 +2886,11 @@ dig_incave
 	and $7f
 	ld [wFieldMoveSucceeded], a
 	ret
-; cbb2
 
 .DigTable: ; cbb2
 	dw .CheckCanDig
 	dw .DoDig
 	dw .FailDig
-; cbb8
 
 .CheckCanDig: ; cbb8
 	call GetMapPermission
@@ -3046,7 +2915,6 @@ dig_incave
 	jr z, .fail
 	ld a, $1
 	ret
-; cbd8
 
 .DoDig: ; cbd8
 	ld hl, wDigWarp
@@ -3068,7 +2936,6 @@ dig_incave
 	call QueueScript
 	ld a, $81
 	ret
-; cc06
 
 .FailDig: ; cc06
 	ld a, [Buffer2]
@@ -3082,32 +2949,27 @@ dig_incave
 .failescaperope
 	ld a, $80
 	ret
-; cc1c
 
 .Text_UsedDig: ; 0xcc1c
 	; used DIG!
 	text_jump UnknownText_0x1c06de
 	db "@"
-; 0xcc21
 
 .Text_UsedEscapeRope: ; 0xcc21
 	; used an ESCAPE ROPE.
 	text_jump UnknownText_0x1c06ed
 	db "@"
-; 0xcc26
 
 .Text_CantUseHere: ; 0xcc26
 	; Can't use that here.
 	text_jump UnknownText_0x1c0705
 	db "@"
-; 0xcc2b
 
 .UsedEscapeRopeScript: ; 0xcc2b
 	reloadmappart
 	special UpdateTimePals
 	writetext .Text_UsedEscapeRope
 	jump .UsedDigOrEscapeRopeScript
-; 0xcc35
 
 .UsedDigScript: ; 0xcc35
 	reloadmappart
@@ -3126,19 +2988,16 @@ dig_incave
 	playsound SFX_WARP_FROM
 	applymovement PLAYER, .DigReturn
 	end
-; 0xcc59
 
 .DigOut: ; 0xcc59
 	step_dig 32
 	hide_person
 	step_end
-; 0xcc5d
 
 .DigReturn: ; 0xcc5d
 	show_person
 	return_dig 32
 	step_end
-; 0xcc61
 
 TeleportFunction: ; cc61
 	call ClearBuffer1
@@ -3149,13 +3008,11 @@ TeleportFunction: ; cc61
 	and $7f
 	ld [wFieldMoveSucceeded], a
 	ret
-; cc72
 
 .Jumptable: ; cc72
 	dw .TryTeleport
 	dw .DoTeleport
 	dw .FailTeleport
-; cc78
 
 .TryTeleport: ; cc78
 	call GetMapPermission
@@ -3178,7 +3035,6 @@ TeleportFunction: ; cc61
 .nope
 	ld a, $2
 	ret
-; cc9c
 
 .DoTeleport: ; cc9c
 	call GetPartyNick
@@ -3186,26 +3042,22 @@ TeleportFunction: ; cc61
 	call QueueScript
 	ld a, $81
 	ret
-; cca8
 
 .FailTeleport: ; cca8
 	ld hl, .Text_CantUseHere
 	call MenuTextBoxBackup
 	ld a, $80
 	ret
-; ccb1
 
 .Text_ReturnToLastMonCenter: ; 0xccb1
 	; Return to the last #MON CENTER.
 	text_jump UnknownText_0x1c071a
 	db "@"
-; 0xccb6
 
 .Text_CantUseHere: ; 0xccb6
 	; Can't use that here.
 	text_jump UnknownText_0x1c073b
 	db "@"
-; 0xccbb
 
 .TeleportScript: ; 0xccbb
 	reloadmappart
@@ -3223,24 +3075,20 @@ TeleportFunction: ; cc61
 	playsound SFX_WARP_FROM
 	applymovement PLAYER, .TeleportTo
 	end
-; 0xcce1
 
 .TeleportFrom: ; cce1
 	teleport_from
 	step_end
-; cce3
 
 .TeleportTo: ; cce3
 	teleport_to
 	step_end
-; cce5
 
 StrengthFunction: ; cce5
 	call .TryStrength
 	and $7f
 	ld [wFieldMoveSucceeded], a
 	ret
-; ccee
 
 .TryStrength: ; ccee
 ; Strength
@@ -3248,31 +3096,26 @@ StrengthFunction: ; cce5
 	call CheckBadge
 	jr c, .Failed
 	jr .UseStrength
-; ccf8
 
 .AlreadyUsing: ; unreferenced
 	ld hl, .JumpText
 	call MenuTextBoxBackup
 	ld a, $80
 	ret
-; cd01
 
 .JumpText: ; 0xcd01
 	text_jump UnknownText_0x1c0751
 	db "@"
-; 0xcd06
 
 .Failed: ; cd06
 	ld a, $80
 	ret
-; cd09
 
 .UseStrength: ; cd09
 	ld hl, Script_StrengthFromMenu
 	call QueueScript
 	ld a, $81
 	ret
-; cd12
 
 SetStrengthFlag: ; cd12
 	ld hl, BikeFlags
@@ -3286,7 +3129,6 @@ SetStrengthFlag: ; cd12
 	ld [Buffer6], a
 	call GetPartyNick
 	ret
-; cd29
 
 Script_StrengthFromMenu: ; 0xcd29
 	reloadmappart
@@ -3301,32 +3143,26 @@ Script_UsedStrength: ; 0xcd2d
 	writetext .StrengthAllowedItToMoveBoulders
 	closetext
 	end
-; 0xcd41
 
 .UsedStrength: ; 0xcd41
 	text_jump UnknownText_0x1c0774
 	db "@"
-; 0xcd46
 
 .StrengthAllowedItToMoveBoulders: ; 0xcd46
 	text_jump UnknownText_0x1c0788
 	db "@"
-; 0xcd4b
 
 AskStrengthScript:
 	callasm TryStrengthOW
 	iffalse .AskStrength
 	if_equal $1, .DontMeetRequirements
 	jump .AlreadyUsedStrength
-; 0xcd59
 
 .DontMeetRequirements: ; 0xcd59
 	jumptext UnknownText_0xcd73
-; 0xcd5c
 
 .AlreadyUsedStrength: ; 0xcd5c
 	jumptext UnknownText_0xcd6e
-; 0xcd5f
 
 .AskStrength: ; 0xcd5f
 	opentext
@@ -3335,25 +3171,21 @@ AskStrengthScript:
 	iftrue Script_UsedStrength
 	closetext
 	end
-; 0xcd69
 
 UnknownText_0xcd69: ; 0xcd69
 	; A #MON may be able to move this. Want to use STRENGTH?
 	text_jump UnknownText_0x1c07a0
 	db "@"
-; 0xcd6e
 
 UnknownText_0xcd6e: ; 0xcd6e
 	; Boulders may now be moved!
 	text_jump UnknownText_0x1c07d8
 	db "@"
-; 0xcd73
 
 UnknownText_0xcd73: ; 0xcd73
 	; A #MON may be able to move this.
 	text_jump UnknownText_0x1c07f4
 	db "@"
-; 0xcd78
 
 TryStrengthOW: ; cd78
 	ld d, STRENGTH
@@ -3382,7 +3214,6 @@ TryStrengthOW: ; cd78
 .done
 	ld [ScriptVar], a
 	ret
-; cd9d
 
 WhirlpoolFunction: ; cd9d
 	call ClearBuffer1
@@ -3393,13 +3224,11 @@ WhirlpoolFunction: ; cd9d
 	and $7f
 	ld [wFieldMoveSucceeded], a
 	ret
-; cdae
 
 Jumptable_cdae: ; cdae
 	dw .TryWhirlpool
 	dw .DoWhirlpool
 	dw .FailWhirlpool
-; cdb4
 
 .TryWhirlpool: ; cdb4
 	ld de, ENGINE_GLACIERBADGE
@@ -3417,26 +3246,22 @@ Jumptable_cdae: ; cdae
 .noglacierbadge
 	ld a, $80
 	ret
-; cdca
 
 .DoWhirlpool: ; cdca
 	ld hl, Script_WhirlpoolFromMenu
 	call QueueScript
 	ld a, $81
 	ret
-; cdd3
 
 .FailWhirlpool: ; cdd3
 	call FieldMoveFailed
 	ld a, $80
 	ret
-; cdd9
 
 Text_UsedWhirlpool: ; 0xcdd9
 	; used WHIRLPOOL!
 	text_jump UnknownText_0x1c0816
 	db "@"
-; 0xcdde
 
 TryWhirlpoolMenu: ; cdde
 	call GetFacingTileCoord
@@ -3466,7 +3291,6 @@ TryWhirlpoolMenu: ; cdde
 .failed
 	scf
 	ret
-; ce0b
 
 Script_WhirlpoolFromMenu: ; 0xce0b
 	reloadmappart
@@ -3479,7 +3303,6 @@ Script_UsedWhirlpool: ; 0xce0f
 	callasm DisappearWhirlpool
 	closetext
 	end
-; 0xce1d
 
 DisappearWhirlpool: ; ce1d
 	ld hl, Buffer3
@@ -3497,7 +3320,6 @@ DisappearWhirlpool: ; ce1d
 	call BufferScreen
 	call GetMovementPermissions
 	ret
-; ce3e
 
 TryWhirlpoolOW:: ; ce3e
 	ld d, WHIRLPOOL
@@ -3520,16 +3342,13 @@ TryWhirlpoolOW:: ; ce3e
 	call CallScript
 	scf
 	ret
-; ce66
 
 Script_MightyWhirlpool: ; 0xce66
 	jumptext .MightyWhirlpoolText
-; 0xce69
 
 .MightyWhirlpoolText: ; 0xce69
 	text_jump UnknownText_0x1c082b
 	db "@"
-; 0xce6e
 
 Script_AskWhirlpoolOW: ; 0xce6e
 	opentext
@@ -3538,19 +3357,16 @@ Script_AskWhirlpoolOW: ; 0xce6e
 	iftrue Script_UsedWhirlpool
 	closetext
 	end
-; 0xce78
 
 UnknownText_0xce78: ; 0xce78
 	text_jump UnknownText_0x1c0864
 	db "@"
-; 0xce7d
 
 HeadbuttFunction: ; ce7d
 	call TryHeadbuttFromMenu
 	and $7f
 	ld [wFieldMoveSucceeded], a
 	ret
-; ce86
 
 TryHeadbuttFromMenu: ; ce86
 	call GetFacingTileCoord
@@ -3566,19 +3382,16 @@ TryHeadbuttFromMenu: ; ce86
 	call FieldMoveFailed
 	ld a, $80
 	ret
-; ce9d
 
 UnknownText_0xce9d: ; 0xce9d
 	; did a HEADBUTT!
 	text_jump UnknownText_0x1c0897
 	db "@"
-; 0xcea2
 
 UnknownText_0xcea2: ; 0xcea2
 	; Nope. Nothing…
 	text_jump UnknownText_0x1c08ac
 	db "@"
-; 0xcea7
 
 HeadbuttFromMenuScript: ; 0xcea7
 	reloadmappart
@@ -3604,7 +3417,6 @@ HeadbuttScript: ; 0xceab
 	waitbutton
 	closetext
 	end
-; 0xcec9
 
 TryHeadbuttOW:: ; cec9
 	ld d, HEADBUTT
@@ -3620,7 +3432,6 @@ TryHeadbuttOW:: ; cec9
 .no
 	xor a
 	ret
-; cedc
 
 AskHeadbuttScript: ; 0xcedc
 	opentext
@@ -3629,20 +3440,17 @@ AskHeadbuttScript: ; 0xcedc
 	iftrue HeadbuttScript
 	closetext
 	end
-; 0xcee6
 
 UnknownText_0xcee6: ; 0xcee6
 	; A #MON could be in this tree. Want to HEADBUTT it?
 	text_jump UnknownText_0x1c08bc
 	db "@"
-; 0xceeb
 
 RockSmashFunction: ; ceeb
 	call TryRockSmashFromMenu
 	and $7f
 	ld [wFieldMoveSucceeded], a
 	ret
-; cef4
 
 TryRockSmashFromMenu: ; cef4
 	call GetFacingObject
@@ -3660,7 +3468,6 @@ TryRockSmashFromMenu: ; cef4
 	call FieldMoveFailed
 	ld a, $80
 	ret
-; cf0d
 
 GetFacingObject: ; cf0d
 	callba CheckFacingObject
@@ -3683,7 +3490,6 @@ GetFacingObject: ; cf0d
 .fail
 	scf
 	ret
-; cf2e
 
 RockSmashFromMenuScript: ; 0xcf2e
 	reloadmappart
@@ -3707,7 +3513,6 @@ RockSmashScript: ; cf32
 	reloadmapafterbattle
 .done
 	end
-; 0xcf55
 
 MovementData_0xcf55: ; 0xcf55
 	rock_smash 10
@@ -3716,7 +3521,6 @@ MovementData_0xcf55: ; 0xcf55
 UnknownText_0xcf58: ; 0xcf58
 	text_jump UnknownText_0x1c08f0
 	db "@"
-; 0xcf5d
 
 AskRockSmashScript: ; 0xcf5d
 	callasm HasRockSmash
@@ -3730,19 +3534,16 @@ AskRockSmashScript: ; 0xcf5d
 	end
 .no
 	jumptext UnknownText_0xcf72
-; 0xcf72
 
 UnknownText_0xcf72: ; 0xcf72
 	; Maybe a #MON can break this.
 	text_jump UnknownText_0x1c0906
 	db "@"
-; 0xcf77
 
 UnknownText_0xcf77: ; 0xcf77
 	; This rock looks breakable. Want to use ROCK SMASH?
 	text_jump UnknownText_0x1c0924
 	db "@"
-; 0xcf7c
 
 HasRockSmash: ; cf7c
 	ld d, ROCK_SMASH
@@ -3771,7 +3572,6 @@ FishFunction: ; cf8e
 	and $7f
 	ld [wFieldMoveSucceeded], a
 	ret
-; cfa5
 
 .FishTable: ; cfa5
 	dw .TryFish
@@ -3779,7 +3579,6 @@ FishFunction: ; cf8e
 	dw .FishGotSomething
 	dw .SurfingFish
 	dw .FailFish
-; cfaf
 
 .TryFish: ; cfaf
 	ld a, [PlayerState]
@@ -3822,12 +3621,10 @@ FishFunction: ; cf8e
 .nonibble
 	ld a, $1
 	ret
-; cff1
 
 .SurfingFish: ; cff1
 	ld a, $80
 	ret
-; cff4
 
 .FishGotSomething: ; cff4
 	ld a, $1
@@ -3836,7 +3633,6 @@ FishFunction: ; cf8e
 	call QueueScript
 	ld a, $81
 	ret
-; d002
 
 .FishNoBite: ; d002
 	ld a, $2
@@ -3845,7 +3641,6 @@ FishFunction: ; cf8e
 	call QueueScript
 	ld a, $81
 	ret
-; d010
 
 .FailFish: ; d010
 	ld a, $0
@@ -3854,13 +3649,11 @@ FishFunction: ; cf8e
 	call QueueScript
 	ld a, $81
 	ret
-; d01e
 
 Script_NotEvenANibble: ; 0xd01e
 	scall Script_FishCastRod
 	writetext UnknownText_0xd0a9
 	jump Script_NotEvenANibble_FallThrough
-; 0xd027
 
 Script_NotEvenANibble2: ; 0xd027
 	scall Script_FishCastRod
@@ -3871,7 +3664,6 @@ Script_NotEvenANibble_FallThrough: ; 0xd02d
 	callasm PutTheRodAway
 	closetext
 	end
-; 0xd035
 
 Script_GotABite: ; 0xd035
 	scall Script_FishCastRod
@@ -3879,7 +3671,6 @@ Script_GotABite: ; 0xd035
 	iffalse .NotFacingUp
 	applymovement PLAYER, .Movement_FacingUp
 	jump .FightTheHookedPokemon
-; 0xd046
 
 .NotFacingUp: ; 0xd046
 	applymovement PLAYER, .Movement_NotFacingUp
@@ -3894,7 +3685,6 @@ Script_GotABite: ; 0xd035
 	startbattle
 	reloadmapafterbattle
 	end
-; 0xd05c
 
 .Movement_NotFacingUp: ; d05c
 	fish_got_bite
@@ -3903,7 +3693,6 @@ Script_GotABite: ; 0xd035
 	fish_got_bite
 	show_emote
 	step_end
-; d062
 
 .Movement_FacingUp: ; d062
 	fish_got_bite
@@ -3913,13 +3702,11 @@ Script_GotABite: ; 0xd035
 	step_sleep_1
 	show_emote
 	step_end
-; d069
 
 .Movement_RestoreRod: ; d069
 	hide_emote
 	fish_cast_rod
 	step_end
-; d06c
 
 Fishing_CheckFacingUp: ; d06c
 	ld a, [PlayerDirection]
@@ -3932,7 +3719,6 @@ Fishing_CheckFacingUp: ; d06c
 .up
 	ld [ScriptVar], a
 	ret
-; d07c
 
 Script_FishCastRod: ; 0xd07c
 	reloadmappart
@@ -3944,12 +3730,10 @@ Script_FishCastRod: ; 0xd07c
 	applymovement PLAYER, MovementData_0xd093
 	pause 40
 	end
-; 0xd093
 
 MovementData_0xd093: ; d093
 	fish_cast_rod
 	step_end
-; d095
 
 PutTheRodAway: ; d095
 	xor a
@@ -3959,32 +3743,27 @@ PutTheRodAway: ; d095
 	call UpdateSprites
 	call ReplaceKrisSprite
 	ret
-; d0a4
 
 UnknownText_0xd0a4: ; 0xd0a4
 	; Oh! A bite!
 	text_jump UnknownText_0x1c0958
 	db "@"
-; 0xd0a9
 
 UnknownText_0xd0a9: ; 0xd0a9
 	; Not even a nibble!
 	text_jump UnknownText_0x1c0965
 	db "@"
-; 0xd0ae
 
 UnknownText_0xd0ae: ; unused
 	; Looks like there's nothing here.
 	text_jump UnknownText_0x1c0979
 	db "@"
-; 0xd0b3
 
 BikeFunction: ; d0b3
 	call .TryBike
 	and $7f
 	ld [wFieldMoveSucceeded], a
 	ret
-; d0bc
 
 .TryBike: ; d0bc
 	call .CheckEnvironment
@@ -4036,7 +3815,6 @@ BikeFunction: ; d0b3
 	call QueueScript
 	ld a, $1
 	ret
-; d119
 
 .CheckIfRegistered: ; d119
 	ld a, [wUsingItemWithSelect]
@@ -4045,7 +3823,6 @@ BikeFunction: ; d0b3
 	ld h, d
 	ld l, e
 	ret
-; d121
 
 .CheckEnvironment: ; d121
 	call GetMapPermission
@@ -4067,7 +3844,6 @@ BikeFunction: ; d0b3
 .nope
 	scf
 	ret
-; d13e
 
 Script_GetOnBike: ; 0xd13e
 	reloadmappart
@@ -4078,14 +3854,12 @@ Script_GetOnBike: ; 0xd13e
 	closetext
 	special ReplaceKrisSprite
 	end
-; 0xd14e
 
 Script_GetOnBike_Register: ; 0xd14e
 	writecode VAR_MOVEMENT, PLAYER_BIKE
 	closetext
 	special ReplaceKrisSprite
 	end
-; 0xd156
 
 Functiond156: ; unreferenced
 	nop
@@ -4103,37 +3877,31 @@ FinishGettingOffBike:
 	special ReplaceKrisSprite
 	special PlayMapMusic
 	end
-; 0xd16b
 
 Script_GetOffBike_Register: ; 0xd16b
 	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	jump FinishGettingOffBike
-; 0xd171
 
 UnknownScript_0xd171: ; 0xd171
 	writetext UnknownText_0xd177
 	waitbutton
 	closetext
 	end
-; 0xd177
 
 UnknownText_0xd177: ; 0xd177
 	; You can't get off here!
 	text_jump UnknownText_0x1c099a
 	db "@"
-; 0xd17c
 
 UnknownText_0xd17c: ; 0xd17c
 	; got on the @ .
 	text_jump UnknownText_0x1c09b2
 	db "@"
-; 0xd181
 
 UnknownText_0xd181: ; 0xd181
 	; got off the @ .
 	text_jump UnknownText_0x1c09c7
 	db "@"
-; 0xd186
 
 TryCutOW:: ; d186
 	ld d, CUT
@@ -4156,7 +3924,6 @@ TryCutOW:: ; d186
 	call CallScript
 	scf
 	ret
-; d1a9
 
 AskCutScript: ; 0xd1a9
 	opentext
@@ -4168,7 +3935,6 @@ AskCutScript: ; 0xd1a9
 .script_d1b8
 	closetext
 	end
-; 0xd1ba
 
 .CheckMap: ; d1ba
 	xor a
@@ -4178,21 +3944,17 @@ AskCutScript: ; 0xd1a9
 	ld a, TRUE
 	ld [ScriptVar], a
 	ret
-; d1c8
 
 UnknownText_0xd1c8: ; 0xd1c8
 	text_jump UnknownText_0x1c09dd
 	db "@"
-; 0xd1cd
 
 CantCutScript: ; 0xd1cd
 	jumptext UnknownText_0xd1d0
-; 0xd1d0
 
 UnknownText_0xd1d0: ; 0xd1d0
 	text_jump UnknownText_0x1c0a05
 	db "@"
-; 0xd1d5
 
 _ReceiveItem:: ; d1d5
 	call DoesHLEqualNumItems
@@ -4205,31 +3967,26 @@ _ReceiveItem:: ; d1d5
 	ld hl, .Pockets
 	rst JumpTable
 	ret
-; d1e9
 
 .Pockets: ; d1e9
 	dw .Item
 	dw .KeyItem
 	dw .Ball
 	dw .TMHM
-; d1f1
 
 .Item: ; d1f1
 	ld h, d
 	ld l, e
 	jp PutItemInPocket
-; d1f6
 
 .KeyItem: ; d1f6
 	ld h, d
 	ld l, e
 	jp ReceiveKeyItem
-; d1fb
 
 .Ball: ; d1fb
 	ld hl, NumBalls
 	jp PutItemInPocket
-; d201
 
 .TMHM: ; d201
 	ld h, d
@@ -4238,7 +3995,6 @@ _ReceiveItem:: ; d1d5
 	ld c, a
 	call GetTMHMNumber
 	jp ReceiveTMHM
-; d20d
 
 _TossItem:: ; d20d
 	call DoesHLEqualNumItems
@@ -4257,12 +4013,10 @@ _TossItem:: ; d20d
 	dw .KeyItem
 	dw .Ball
 	dw .TMHM
-; d228
 
 .Ball ; d228
 	ld hl, NumBalls
 	jp RemoveItemFromPocket
-; d22e
 
 .TMHM ; d22e
 	ld h, d
@@ -4271,22 +4025,18 @@ _TossItem:: ; d20d
 	ld c, a
 	call GetTMHMNumber
 	jp TossTMHM
-; d23a
 
 .KeyItem ; d23a
 	ld h, d
 	ld l, e
 	jp TossKeyItem
-; d23f
 
 .Item ; d23f
 	ld h, d
 	ld l, e
-; d241
 
 .remove
 	jp RemoveItemFromPocket
-; d244
 
 _CheckItem:: ; d244
 	call DoesHLEqualNumItems
@@ -4305,12 +4055,10 @@ _CheckItem:: ; d244
 	dw .KeyItem
 	dw .Ball
 	dw .TMHM
-; d25f
 
 .Ball ; d25f
 	ld hl, NumBalls
 	jp CheckTheItem
-; d265
 
 .TMHM ; d265
 	ld h, d
@@ -4319,22 +4067,18 @@ _CheckItem:: ; d244
 	ld c, a
 	call GetTMHMNumber
 	jp CheckTMHM
-; d271
 
 .KeyItem ; d271
 	ld h, d
 	ld l, e
 	jp CheckKeyItems
-; d276
 
 .Item ; d276
 	ld h, d
 	ld l, e
-; d278
 
 .nope
 	jp CheckTheItem
-; d27b
 
 DoesHLEqualNumItems: ; d27b
 	ld a, l
@@ -4343,7 +4087,6 @@ DoesHLEqualNumItems: ; d27b
 	ld a, h
 	cp NumItems / $100
 	ret
-; d283
 
 GetPocketCapacity: ; d283
 	ld c, MAX_ITEMS
@@ -4366,7 +4109,6 @@ GetPocketCapacity: ; d283
 .not_pc
 	ld c, MAX_BALLS
 	ret
-; d29c
 
 PutItemInPocket: ; d29c
 	ld d, h
@@ -4443,7 +4185,6 @@ PutItemInPocket: ; d29c
 .done
 	scf
 	ret
-; d2ff
 
 RemoveItemFromPocket: ; d2ff
 	ld d, h
@@ -4509,7 +4250,6 @@ RemoveItemFromPocket: ; d2ff
 .nope
 	and a
 	ret
-; d349
 
 CheckTheItem: ; d349
 	ld a, [CurItem]
@@ -4527,7 +4267,6 @@ CheckTheItem: ; d349
 .done
 	and a
 	ret
-; d35a
 
 ReceiveKeyItem: ; d35a
 	ld hl, NumKeyItems
@@ -4548,7 +4287,6 @@ ReceiveKeyItem: ; d35a
 .nope
 	and a
 	ret
-; d374
 
 TossKeyItem: ; d374
 	ld a, [wd107]
@@ -4579,7 +4317,6 @@ TossKeyItem: ; d374
 	jr nz, .loop
 	scf
 	ret
-; d396
 
 .Toss: ; d396
 	ld hl, NumKeyItems
@@ -4601,7 +4338,6 @@ TossKeyItem: ; d374
 	ld [NumKeyItems], a
 	scf
 	ret
-; d3b1
 
 CheckKeyItems: ; d3b1
 	ld a, [CurItem]
@@ -4619,7 +4355,6 @@ CheckKeyItems: ; d3b1
 .done
 	scf
 	ret
-; d3c4
 
 ReceiveTMHM: ; d3c4
 	dec c
@@ -4637,7 +4372,6 @@ ReceiveTMHM: ; d3c4
 .toomany
 	and a
 	ret
-; d3d8
 
 TossTMHM: ; d3d8
 	dec c
@@ -4665,7 +4399,6 @@ TossTMHM: ; d3d8
 .nope
 	and a
 	ret
-; d3fb
 
 CheckTMHM: ; d3fb
 	dec c
@@ -4677,7 +4410,6 @@ CheckTMHM: ; d3fb
 	ret z
 	scf
 	ret
-; d407
 
 GetTMHMNumber:: ; d407
 ; Return the number of a TM/HM by item id c.
@@ -4698,7 +4430,6 @@ GetTMHMNumber:: ; d407
 	inc a
 	ld c, a
 	ret
-; d417
 
 GetNumberedTMHM: ; d417
 ; Return the item id of a TM/HM by number c.
@@ -4720,7 +4451,6 @@ GetNumberedTMHM: ; d417
 	dec a
 	ld c, a
 	ret
-; d427
 
 _CheckTossableItem:: ; d427
 ; Return 1 in wItemAttributeParamBuffer and carry if CurItem can't be removed from the bag.
@@ -4730,7 +4460,6 @@ _CheckTossableItem:: ; d427
 	jr nz, ItemAttr_ReturnCarry
 	and a
 	ret
-; d432
 
 CheckSelectableItem: ; d432
 ; Return 1 in wItemAttributeParamBuffer and carry if CurItem can't be selected.
@@ -4740,7 +4469,6 @@ CheckSelectableItem: ; d432
 	jr nz, ItemAttr_ReturnCarry
 	and a
 	ret
-; d43d
 
 CheckItemPocket:: ; d43d
 ; Return the pocket for CurItem in wItemAttributeParamBuffer.
@@ -4749,7 +4477,6 @@ CheckItemPocket:: ; d43d
 	and $f
 	ld [wItemAttributeParamBuffer], a
 	ret
-; d448
 
 CheckItemContext: ; d448
 ; Return the context for CurItem in wItemAttributeParamBuffer.
@@ -4758,7 +4485,6 @@ CheckItemContext: ; d448
 	and $f
 	ld [wItemAttributeParamBuffer], a
 	ret
-; d453
 
 CheckItemMenu: ; d453
 ; Return the menu for CurItem in wItemAttributeParamBuffer.
@@ -4768,7 +4494,6 @@ CheckItemMenu: ; d453
 	and $f
 	ld [wItemAttributeParamBuffer], a
 	ret
-; d460
 
 GetItemAttr: ; d460
 ; Get attribute a of CurItem.
@@ -4795,14 +4520,12 @@ GetItemAttr: ; d460
 	pop bc
 	pop hl
 	ret
-; d47f
 
 ItemAttr_ReturnCarry: ; d47f
 	ld a, 1
 	ld [wItemAttributeParamBuffer], a
 	scf
 	ret
-; d486
 
 GetItemPrice: ; d486
 ; Return the price of CurItem in de.
@@ -4817,7 +4540,6 @@ GetItemPrice: ; d486
 	pop bc
 	pop hl
 	ret
-; d497
 
 INCLUDE "engine/player_step.asm"
 INCLUDE "engine/anim_hp_bar.asm"
@@ -4838,13 +4560,11 @@ _BillsPC: ; e3fd
 	call MenuTextBoxBackup
 	scf
 	ret
-; e417 (3:6417)
 
 .Text_GottaHavePokemon: ; 0xe417
 	; You gotta have #MON to call!
 	text_jump UnknownText_0x1c1006
 	db "@"
-; 0xe41c
 
 .LogIn: ; e41c (3:641c)
 	xor a
@@ -4861,13 +4581,11 @@ _BillsPC: ; e3fd
 	ld [Options], a
 	call LoadFontsBattleExtra
 	ret
-; e43a (3:643a)
 
 .Text_What: ; 0xe43a
 	; What?
 	text_jump UnknownText_0x1c1024
 	db "@"
-; 0xe43f
 
 .LogOut: ; e43f (3:643f)
 	call CloseSubmenu
@@ -4896,7 +4614,6 @@ _BillsPC: ; e3fd
 .cancel
 	call CloseWindow
 	ret
-; e46f (3:646f)
 
 .MenuDataHeader: ; 0xe46f
 	db $40 ; flags
@@ -4904,7 +4621,6 @@ _BillsPC: ; e3fd
 	db 17, 19 ; end coords
 	dw .MenuData2
 	db 1 ; default option
-; 0xe477
 
 .MenuData2: ; 0xe477
 	db $80 ; flags
@@ -4912,7 +4628,6 @@ _BillsPC: ; e3fd
 	dw .items
 	dw PlaceMenuStrings
 	dw .strings
-; 0xe47f
 
 .strings: ; e47f
 	db "WITHDRAW <PK><MN>@"
@@ -4927,7 +4642,6 @@ _BillsPC: ; e3fd
 	dw BillsPC_ChangeBoxMenu
 	dw BillsPC_MovePKMNMenu
 	dw BillsPC_SeeYa
-; e4c4
 
 .items: ; e4c4
 	db 5
@@ -4937,12 +4651,10 @@ _BillsPC: ; e3fd
 	db 3 ; MOVE PKMN
 	db 4 ; SEE YA!
 	db -1
-; e4cb
 
 BillsPC_SeeYa: ; e4cb
 	scf
 	ret
-; e4cd
 
 BillsPC_MovePKMNMenu: ; e4cd
 	call LoadStandardMenuDataHeader
@@ -4963,13 +4675,11 @@ BillsPC_MovePKMNMenu: ; e4cd
 	call CloseWindow
 	and a
 	ret
-; e4f9
 
 .Text_MonHoldingMail: ; 0xe4f9
 	; There is a #MON holding MAIL. Please remove the MAIL.
 	text_jump UnknownText_0x1c102b
 	db "@"
-; 0xe4fe
 
 BillsPC_DepositMenu: ; e4fe (3:64fe)
 	call LoadStandardMenuDataHeader
@@ -4979,7 +4689,6 @@ BillsPC_DepositMenu: ; e4fe (3:64fe)
 	call CloseWindow
 	and a
 	ret
-; e512 (3:6512)
 
 Functione512: ; unused
 	ld a, [PartyCount]
@@ -5001,19 +4710,16 @@ Functione512: ; unused
 	call MenuTextBoxBackup
 	scf
 	ret
-; e52e
 
 .Text_NoPKMN: ; 0xe52e
 	; You don't have a single #MON!
 	text_jump UnknownText_0x1c1062
 	db "@"
-; 0xe533
 
 .Text_ItsYourLastPKMN: ; 0xe533
 	; You can't deposit your last #MON!
 	text_jump UnknownText_0x1c1080
 	db "@"
-; 0xe538
 
 CheckCurPartyMonFainted: ; e538
 	ld hl, PartyMon1HP
@@ -5043,7 +4749,6 @@ CheckCurPartyMonFainted: ; e538
 .notfainted
 	and a
 	ret
-; e559
 
 BillsPC_WithdrawMenu: ; e559 (3:6559)
 	call LoadStandardMenuDataHeader
@@ -5053,7 +4758,6 @@ BillsPC_WithdrawMenu: ; e559 (3:6559)
 	call CloseWindow
 	and a
 	ret
-; e56d (3:656d)
 
 Functione56d: ; unused
 	ld a, [PartyCount]
@@ -5067,13 +4771,11 @@ Functione56d: ; unused
 	call MenuTextBoxBackup
 	scf
 	ret
-; e57e
 
 UnknownText_0xe57e: ; 0xe57e
 	; You can't take any more #MON.
 	text_jump UnknownText_0x1c10a2
 	db "@"
-; 0xe583
 
 BillsPC_ChangeBoxMenu: ; e583 (3:6583)
 	callba _ChangeBox
@@ -5099,7 +4801,6 @@ ClearPCItemScreen: ; e58b
 	call WaitBGMap2
 	call SetPalettes ; load regular palettes?
 	ret
-; 0xe5bb
 
 CopyBoxmonToTempMon: ; e5bb
 	ld a, [CurPartyMon]
@@ -5113,7 +4814,6 @@ CopyBoxmonToTempMon: ; e5bb
 	call CopyBytes
 	call CloseSRAM
 	ret
-; e5d9
 
 Functione5d9: ; unreferenced
 	ld a, [wCurBox]
@@ -5217,7 +4917,6 @@ Functione5d9: ; unreferenced
 .empty_box
 	call CloseSRAM
 	ret
-; e66e
 
 .BoxAddrs: ; e66e
 	dba sBox1
@@ -5234,7 +4933,6 @@ Functione5d9: ; unreferenced
 	dba sBox12
 	dba sBox13
 	dba sBox14
-; e698
 
 GetBreedMon1LevelGrowth: ; e698
 	ld hl, wBreedMon1Stats
@@ -5249,7 +4947,6 @@ GetBreedMon1LevelGrowth: ; e698
 	sub b
 	ld d, a
 	ret
-; e6b3
 
 GetBreedMon2LevelGrowth: ; e6b3
 	ld hl, wBreedMon2Stats
@@ -5264,7 +4961,6 @@ GetBreedMon2LevelGrowth: ; e6b3
 	sub b
 	ld d, a
 	ret
-; e6ce
 
 BugContest_SetCaughtContestMon: ; e6ce
 	ld a, [wContestMon]
@@ -5285,7 +4981,6 @@ BugContest_SetCaughtContestMon: ; e6ce
 	ld hl, .caughttext
 	call PrintText
 	ret
-; e6fd
 
 .generatestats: ; e6fd
 	ld a, [TempEnemyMonSpecies]
@@ -5300,13 +4995,11 @@ BugContest_SetCaughtContestMon: ; e6ce
 	ld [MonType], a
 	ld hl, wContestMon
 	jp GeneratePartyMonStats
-; e71d
 
 .caughttext: ; 0xe71d
 	; Caught @ !
 	text_jump UnknownText_0x1c10c0
 	db "@"
-; 0xe722
 
 INCLUDE "items/item_effects.asm"
 
@@ -5370,7 +5063,6 @@ GetPokeBallWobble: ; f971 (3:7971)
 	ld a, e
 	pop de
 	ret
-; f9ba (3:79ba)
 
 .WobbleProbabilities: ; f9ba
 ; catch rate, chance of wobbling / 255
@@ -5399,7 +5091,6 @@ GetPokeBallWobble: ; f971 (3:7971)
 	db 240, 251
 	db 254, 253
 	db 255, 255
-; f9ea
 
 KnowsMove: ; f9ea
 	ld a, MON_MOVES
@@ -5421,13 +5112,11 @@ KnowsMove: ; f9ea
 	call PrintText
 	scf
 	ret
-; fa06
 
 .Text_knows: ; 0xfa06
 	; knows @ .
 	text_jump UnknownText_0x1c5ea8
 	db "@"
-; 0xfa0b
 
 SECTION "bank4", ROMX, BANK[$4]
 
@@ -5444,7 +5133,6 @@ Script_AbortBugContest: ; 0x122c1
 	special ContestReturnMons
 .finish
 	end
-; 0x122ce
 
 INCLUDE "event/itemball.asm"
 INCLUDE "engine/healmachineanim.asm"
@@ -5462,7 +5150,6 @@ Special_GiveParkBalls: ; 135db
 	ld [wParkBallsRemaining], a
 	callba StartBugContestTimer
 	ret
-; 135eb
 
 BugCatchingContestBattleScript:: ; 0x135eb
 	writecode VAR_BATTLETYPE, BATTLETYPE_CONTEST
@@ -5472,7 +5159,6 @@ BugCatchingContestBattleScript:: ; 0x135eb
 	copybytetovar wParkBallsRemaining
 	iffalse BugCatchingContestOutOfBallsScript
 	end
-; 0x135f8
 
 BugCatchingContestOverScript:: ; 0x135f8
 	playsound SFX_ELEVATOR_END
@@ -5480,7 +5166,6 @@ BugCatchingContestOverScript:: ; 0x135f8
 	writetext BugCatchingContestText_BeeepTimesUp
 	waitbutton
 	jump BugCatchingContestReturnToGateScript
-; 0x13603
 
 BugCatchingContestOutOfBallsScript: ; 0x13603
 	playsound SFX_ELEVATOR_END
@@ -5491,19 +5176,16 @@ BugCatchingContestOutOfBallsScript: ; 0x13603
 BugCatchingContestReturnToGateScript: ; 0x1360b
 	closetext
 	jumpstd bugcontestresultswarp
-; 0x1360f
 
 BugCatchingContestText_BeeepTimesUp: ; 0x1360f
 	; ANNOUNCER: BEEEP! Time's up!
 	text_jump UnknownText_0x1bd2ca
 	db "@"
-; 0x13614
 
 BugCatchingContestText_ContestIsOver: ; 0x13614
 	; ANNOUNCER: The Contest is over!
 	text_jump UnknownText_0x1bd2e7
 	db "@"
-; 0x13619
 
 RepelWoreOffScript:: ; 0x13619
 	opentext
@@ -5511,13 +5193,11 @@ RepelWoreOffScript:: ; 0x13619
 	waitbutton
 	closetext
 	end
-; 0x13620
 
 .text: ; 0x13620
 	; REPEL's effect wore off.
 	text_jump UnknownText_0x1bd308
 	db "@"
-; 0x13625
 
 HiddenItemScript:: ; 0x13625
 	opentext
@@ -5530,7 +5210,6 @@ HiddenItemScript:: ; 0x13625
 	specialsound
 	itemnotify
 	jump .finish
-; 0x1363e
 
 .bag_full: ; 0x1363e
 	buttonsound
@@ -5540,19 +5219,16 @@ HiddenItemScript:: ; 0x13625
 .finish: ; 13643
 	closetext
 	end
-; 0x13645
 
 .found_text: ; 0x13645
 	; found @ !
 	text_jump UnknownText_0x1bd321
 	db "@"
-; 0x1364a
 
 .no_room_text: ; 0x1364a
 	; But   has no space left…
 	text_jump UnknownText_0x1bd331
 	db "@"
-; 0x1364f
 
 SetMemEvent: ; 1364f
 	ld hl, EngineBuffer1 ; wd03e (aliases: MenuItemsList, CurFruitTree, CurInput)
@@ -5587,7 +5263,6 @@ CheckFacingTileForStd:: ; 1365b
 .notintable
 	xor a
 	ret
-; 13681
 
 .table1
 	dbw $91, magazinebookshelf
@@ -5599,11 +5274,9 @@ CheckFacingTileForStd:: ; 1365b
 	dbw $9d, window
 	dbw $9f, incenseburner
 	db   -1 ; end
-; 1369a
 
 Script_JumpStdFromRAM: ; 0x1369a
 	jump wJumpStdScriptBuffer
-; 0x1369d
 
 INCLUDE "event/bug_contest_judging.asm"
 
@@ -5635,7 +5308,6 @@ ApplyPokerusTick: ; 13988
 	dec c
 	jr nz, .loop
 	ret
-; 139a8
 
 INCLUDE "event/bug_contest_2.asm"
 
@@ -5671,7 +5343,6 @@ root	set 1
 	dw root*root
 root	set root+1
 	endr
-; 13d96
 
 SECTION "bank5", ROMX, BANK[$5]
 
@@ -5720,7 +5391,6 @@ StringBufferPointers:: ; 24000
 	dw StringBuffer1
 	dw EnemyMonNick
 	dw BattleMonNick
-; 2400e
 
 INCLUDE "engine/menu.asm"
 
@@ -5737,7 +5407,6 @@ UpdateItemDescription: ; 0x244c3
 	decoord 1, 14
 	callba PrintItemDescription
 	ret
-; 0x244e3
 
 Pokepic:: ; 244e3
 	ld hl, PokepicMenuDataHeader
@@ -5767,7 +5436,6 @@ Pokepic:: ; 244e3
 	predef FillBox
 	call WaitBGMap
 	ret
-; 24528
 
 ClosePokepic:: ; 24528
 	ld hl, PokepicMenuDataHeader
@@ -5782,7 +5450,6 @@ ClosePokepic:: ; 24528
 	call UpdateSprites
 	call LoadStandardFont
 	ret
-; 24547
 
 PokepicMenuDataHeader: ; 0x24547
 	db $40 ; flags
@@ -5790,7 +5457,6 @@ PokepicMenuDataHeader: ; 0x24547
 	db 13, 14 ; end coords
 	dw NULL
 	db 1 ; default option
-; 0x2454f
 
 LoadObjectMasks: ; 2454f
 	ld hl, wObjectMasks
@@ -5874,7 +5540,6 @@ PlaceMenuItemName: ; 0x24ab4
 	pop hl
 	call PlaceString
 	ret
-; 0x24ac3
 
 PlaceMenuItemQuantity: ; 0x24ac3
 	push de
@@ -5895,7 +5560,6 @@ PlaceMenuItemQuantity: ; 0x24ac3
 
 .done
 	ret
-; 0x24ae8
 
 PlaceMoneyTopRight: ; 24ae8
 	ld hl, MenuDataHeader_0x24b15
@@ -5921,7 +5585,6 @@ PlaceMoneyDataHeader: ; 24b01
 	lb bc, PRINTNUM_MONEY | 3, 6
 	call PrintNum
 	ret
-; 24b15
 
 MenuDataHeader_0x24b15: ; 0x24b15
 	db $40 ; flags
@@ -5929,7 +5592,6 @@ MenuDataHeader_0x24b15: ; 0x24b15
 	db 02, 19 ; end coords
 	dw NULL
 	db 1 ; default option
-; 0x24b1d
 
 MenuDataHeader_0x24b1d: ; 0x24b1d
 	db $40 ; flags
@@ -5937,7 +5599,6 @@ MenuDataHeader_0x24b1d: ; 0x24b1d
 	db 13, 08 ; end coords
 	dw NULL
 	db 1 ; default option
-; 0x24b25
 
 Special_DisplayCoinCaseBalance: ; 24b25
 	; Place a text box of size 1x7 at 11, 0.
@@ -5956,7 +5617,6 @@ Special_DisplayCoinCaseBalance: ; 24b25
 	hlcoord 13, 1
 	call PrintNum
 	ret
-; 24b4e
 
 Special_DisplayMoneyAndCoinBalance: ; 24b4e
 	hlcoord 5, 0
@@ -5978,7 +5638,6 @@ Special_DisplayMoneyAndCoinBalance: ; 24b4e
 	lb bc, 2, 4
 	call PrintNum
 	ret
-; 24b83
 
 MoneyString: ; 24b83
 	db "MONEY@"
@@ -5986,7 +5645,6 @@ CoinString: ; 24b89
 	db "COIN@"
 ShowMoney_TerminatorString: ; 24b8e
 	db "@"
-; 24b8f
 
 Function24b8f: ; 24b8f
 ; unreferenced, related to safari?
@@ -6015,13 +5673,11 @@ Function24b8f: ; 24b8f
 	pop af
 	ld [Options], a
 	ret
-; 24bcf
 
 .slash_500: ; 24bcf
 	db "/500@"
 .booru_ko: ; 24bd4
 	db "ボール   こ@"
-; 24bdc
 
 Function24bdc: ; 24bdc
 	hlcoord 0, 0
@@ -6029,7 +5685,6 @@ Function24bdc: ; 24bdc
 	ld c, $11
 	call TextBox
 	ret
-; 24be7
 
 Function24be7: ; 24be7
 	ld hl, Options
@@ -6074,7 +5729,6 @@ Function24be7: ; 24be7
 	pop af
 	ld [Options], a
 	ret
-; 24c43
 
 String24c43: ; 24c43
 	db "ボール   こ@"
@@ -6086,7 +5740,6 @@ String24c59: ; 24c59
 	db "None@"
 String24c5e: ; 24c5e
 	db "LEVEL@"
-; 24c64
 
 FindApricornsInBag: ; 24c64
 ; Checks the bag for Apricorns.
@@ -6121,7 +5774,6 @@ FindApricornsInBag: ; 24c64
 	ret nz
 	scf
 	ret
-; 24c94
 
 .addtobuffer: ; 24c94
 	push hl
@@ -6133,7 +5785,6 @@ FindApricornsInBag: ; 24c64
 	ld [hl], a
 	pop hl
 	ret
-; 24ca0
 
 .ApricornBalls: ; 24ca0
 	db RED_APRICORN, LEVEL_BALL
@@ -6144,7 +5795,6 @@ FindApricornsInBag: ; 24c64
 	db BLK_APRICORN, HEAVY_BALL
 	db PNK_APRICORN, LOVE_BALL
 	db -1
-; 24caf
 
 INCLUDE "engine/mon_menu.asm"
 INCLUDE "battle/menu.asm"
@@ -6163,7 +5813,6 @@ ProfOaksPC: ; 0x265d3
 	call JoyWaitAorB
 	call ExitMenu
 	ret
-; 0x265ee
 
 ProfOaksPCBoot ; 0x265ee
 	ld hl, OakPCText2
@@ -6173,7 +5822,6 @@ ProfOaksPCBoot ; 0x265ee
 	call JoyWaitAorB
 	call WaitSFX
 	ret
-; 0x26601
 
 ProfOaksPCRating: ; 0x26601
 	call Rate
@@ -6185,7 +5833,6 @@ ProfOaksPCRating: ; 0x26601
 	call JoyWaitAorB
 	call WaitSFX
 	ret
-; 0x26616
 
 Rate: ; 0x26616
 ; calculate Seen/Owned
@@ -6210,7 +5857,6 @@ Rate: ; 0x26616
 	call PrintText
 	pop de
 	ret
-; 0x26647
 
 .UpdateRatingBuffers: ; 0x26647
 	ld hl, StringBuffer3
@@ -6220,7 +5866,6 @@ Rate: ; 0x26616
 	ld de, wd003
 	call .UpdateRatingBuffer
 	ret
-; 0x2665a
 
 .UpdateRatingBuffer: ; 0x2665a
 	push hl
@@ -6231,7 +5876,6 @@ Rate: ; 0x26616
 	lb bc, PRINTNUM_RIGHTALIGN | 1, 3
 	call PrintNum
 	ret
-; 0x2666b
 
 FindOakRating: ; 0x2666b
 ; return sound effect in de
@@ -6256,7 +5900,6 @@ endr
 	ld h, [hl]
 	ld l, a
 	ret
-; 0x2667f
 
 OakRatings: ; 0x2667f
 oakrating: MACRO
@@ -6388,7 +6031,6 @@ PadCoords_de: ; 27092
 	ld e, a
 	call GetBlockLocation
 	ret
-; 2709e
 
 LevelUpHappinessMod: ; 2709e
 	ld a, [CurPartyMon]
@@ -6410,7 +6052,6 @@ LevelUpHappinessMod: ; 2709e
 .ok
 	callab ChangeHappiness
 	ret
-; 270c4
 
 INCLUDE "trainers/dvs.asm"
 
@@ -6433,7 +6074,6 @@ _ReturnToBattle_UseBall: ; 2715c
 	call LoadStandardMenuDataHeader
 	call WaitBGMap
 	jp SetPalettes
-; 27192
 
 ConsumeHeldItem: ; 27192
 	push hl
@@ -6490,7 +6130,6 @@ ConsumeHeldItem: ; 27192
 	pop de
 	pop hl
 	ret
-; 271de
 
 .ConsumableEffects: ; 271de
 ; Consumable items?
@@ -6516,7 +6155,6 @@ ConsumeHeldItem: ; 27192
 	db HELD_ESCAPE
 	db HELD_CRITICAL_UP
 	db -1
-; 271f4
 
 MoveEffectsPointers: ; 271f4
 INCLUDE "battle/moves/move_effects_pointers.asm"
@@ -6528,7 +6166,6 @@ Function27a28: ; 27a28
 	call BuySellToss_InterpretJoypad
 	ld b, a
 	ret
-; 27a2d
 
 SECTION "bankA", ROMX, BANK[$A]
 
@@ -6544,7 +6181,6 @@ Function29fe4: ; unreferenced
 	ld a, c
 	and a
 	ret
-; 29ff8
 
 INCLUDE "engine/wildmons.asm"
 
@@ -6607,7 +6243,6 @@ DetermineLinkBattleResult: ; 2b930
 	add $2
 	ld [wBattleResult], a
 	ret
-; 2b995
 
 .CountMonsRemaining: ; 2b995
 	ld c, 0
@@ -6624,7 +6259,6 @@ DetermineLinkBattleResult: ; 2b930
 	dec b
 	jr nz, .loop
 	ret
-; 2b9a6
 
 .CalcPercentHPRemaining: ; 2b9a6
 	ld de, 0
@@ -6668,7 +6302,6 @@ DetermineLinkBattleResult: ; 2b930
 	dec c
 	jr nz, .loop2
 	ret
-; 2b9e1
 
 .BothSides_CheckNumberMonsAtFullHealth: ; 2b9e1
 	ld hl, PartyMon1HP
@@ -6688,7 +6321,6 @@ DetermineLinkBattleResult: ; 2b930
 	ld a, $1
 	and a
 	ret
-; 2ba01
 
 .CheckFaintedOrFullHealth: ; 2ba01
 	ld d, 3
@@ -6714,15 +6346,12 @@ DetermineLinkBattleResult: ; 2b930
 	dec d
 	jr nz, .loop3
 	ret
-; 2ba1a
 
 ChrisBackpic: ; 2ba1a
 INCBIN "gfx/misc/player.6x6.2bpp.lz"
-; 2bbaa
 
 DudeBackpic: ; 2bbaa
 INCBIN "gfx/misc/dude.6x6.2bpp.lz"
-; 2bcea
 
 SECTION "bankB", ROMX, BANK[$B]
 
@@ -6741,7 +6370,6 @@ INCLUDE "engine/tmhm2.asm"
 
 MoveDescriptions:: ; 2cb52
 INCLUDE "battle/moves/move_descriptions.asm"
-; 2ed44
 
 GivePokerusAndConvertBerries: ; 2ed44
 	call ConvertBerriesToBerryJuice
@@ -6865,7 +6493,6 @@ GivePokerusAndConvertBerries: ; 2ed44
 	add b
 	ld [hl], a
 	ret
-; 2ede6
 
 ; any berry held by a Shuckle may be converted to berry juice
 ConvertBerriesToBerryJuice: ; 2ede6
@@ -6904,7 +6531,6 @@ ConvertBerriesToBerryJuice: ; 2ede6
 	pop hl
 	pop af
 	ret
-; 2ee18
 
 ShowLinkBattleParticipants: ; 2ee18
 ; If we're not in a communications room,
@@ -6919,7 +6545,6 @@ ShowLinkBattleParticipants: ; 2ee18
 	call ClearTileMap
 	call ClearSprites
 	ret
-; 2ee2f
 
 FindFirstAliveMon: ; 2ee2f
 	xor a
@@ -6954,7 +6579,6 @@ FindFirstAliveMon: ; 2ee2f
 	ld [rWY], a
 	ld [hMapAnims], a
 	ret
-; 2ee6c
 
 PlayBattleMusic: ; 2ee6c
 
@@ -7056,7 +6680,6 @@ PlayBattleMusic: ; 2ee6c
 	pop de
 	pop hl
 	ret
-; 2ef18
 
 ClearBattleRAM: ; 2ef18
 	xor a
@@ -7107,7 +6730,6 @@ endr
 	ld [hli], a
 	ld [hl], VBGMap0 / $100
 	ret
-; 2ef6e
 
 FillBox: ; 2ef6e
 ; Fill wBoxAlignment-aligned box width b height c
@@ -7165,7 +6787,6 @@ FillBox: ; 2ef6e
 	dec b
 	jr nz, .x2
 	ret
-; 2ef9f
 
 SECTION "Tileset Data 4", ROMX, BANK[TILESETS_4]
 
@@ -7202,7 +6823,6 @@ GetTrainerClassName: ; 3952d
 	call CopyBytes
 	pop de
 	ret
-; 39550
 
 GetOTName: ; 39550
 	ld hl, OTPlayerName
@@ -7228,7 +6848,6 @@ GetOTName: ; 39550
 	call CopyBytes
 	pop de
 	ret
-; 3957b
 
 GetTrainerAttributes: ; 3957b
 	ld a, [TrainerClass]
@@ -7248,7 +6867,6 @@ GetTrainerAttributes: ; 3957b
 	ld a, [hl]
 	ld [wEnemyTrainerBaseReward], a
 	ret
-; 3959c
 
 INCLUDE "trainers/attributes.asm"
 
@@ -7308,7 +6926,6 @@ AnimateDexSearchSlowpoke: ; 441cf
 	ld c, 32
 	call DelayFrames
 	ret
-; 441fc
 
 .FrameIDs: ; 441fc
 	; frame ID, duration
@@ -7318,7 +6935,6 @@ AnimateDexSearchSlowpoke: ; 441cf
 	db 3, 7
 	db 4, 7
 	db -2
-; 44207
 
 DoDexSearchSlowpokeFrame: ; 44207
 	ld a, [wDexSearchSlowpokeFrame]
@@ -7345,7 +6961,6 @@ DoDexSearchSlowpokeFrame: ; 44207
 	ld [de], a
 	inc de
 	jr .loop
-; 44228
 
 .SpriteData: ; 44228
 	dsprite 11, 0,  9, 0, $00, $00
@@ -7358,7 +6973,6 @@ DoDexSearchSlowpokeFrame: ; 44207
 	dsprite 13, 0, 10, 0, $21, $00
 	dsprite 13, 0, 11, 0, $22, $00
 	db -1
-; 4424d
 
 DisplayDexEntry: ; 4424d
 	call GetPokemonName
@@ -7494,11 +7108,9 @@ DisplayDexEntry: ; 4424d
 	hlcoord 2, 11
 	call FarString
 	ret
-; 44331
 
 String_44331: ; 44331
 	db "#@"
-; 44333
 
 GetDexEntryPointer: ; 44333
 ; return dex entry pointer b:de
@@ -7525,7 +7137,6 @@ GetDexEntryPointer: ; 44333
 	pop de
 	pop hl
 	ret
-; 44351
 
 .PokedexEntryBanks: ; 44351
 
@@ -7538,7 +7149,6 @@ GLOBAL PokedexEntries4
 	db BANK(PokedexEntries2)
 	db BANK(PokedexEntries3)
 	db BANK(PokedexEntries4)
-; 44355
 
 GetDexEntryPagePointer: ; 44355
 	call GetDexEntryPointer ; b:de
@@ -7572,7 +7182,6 @@ endr
 	ld e, l
 	pop hl
 	ret
-; 44378
 
 PokedexDataPointerTable: ; 0x44378
 INCLUDE "data/pokedex/entry_pointers.asm"
@@ -7594,18 +7203,15 @@ DrawKrisPackGFX: ; 48e81
 	lb bc, BANK(PackFGFX), 15
 	call Request2bpp
 	ret
-; 48e93
 
 PackFGFXPointers: ; 48e93
 	dw PackFGFX + (15 tiles) * 1
 	dw PackFGFX + (15 tiles) * 3
 	dw PackFGFX + (15 tiles) * 0
 	dw PackFGFX + (15 tiles) * 2
-; 48e9b
 
 PackFGFX: ; 48e9b
 INCBIN "gfx/misc/pack_f.2bpp"
-; 4925b
 
 Special_MoveTutor: ; 4925b
 	call FadeToMenu
@@ -7641,7 +7247,6 @@ Special_MoveTutor: ; 4925b
 .quit
 	call CloseSubmenu
 	ret
-; 492a5
 
 .GetMoveTutorMove: ; 492a5
 	ld a, [ScriptVar]
@@ -7659,7 +7264,6 @@ Special_MoveTutor: ; 4925b
 .thunderbolt
 	ld a, THUNDERBOLT
 	ret
-; 492b9
 
 CheckCanLearnMoveTutorMove: ; 492b9
 	ld hl, .MenuDataHeader
@@ -7707,13 +7311,11 @@ CheckCanLearnMoveTutorMove: ; 492b9
 	call ExitMenu
 	scf
 	ret
-; 4930a
 
 .MenuDataHeader: ; 0x4930a
 	db $40 ; flags
 	db 12, 00 ; start coords
 	db 17, 19 ; end coords
-; 4930f
 
 INCLUDE "predef/crystal.asm"
 
@@ -7743,7 +7345,6 @@ AskRememberPassword: ; 4ae12
 .okay
 	ld [ScriptVar], a
 	ret
-; 4ae1f
 
 .DoMenu: ; 4ae1f
 	lb bc, 14, 7
@@ -7778,7 +7379,6 @@ AskRememberPassword: ; 4ae12
 	ld [wMenuCursorY], a
 	scf
 	ret
-; 4ae5e
 
 Buena_ExitMenu: ; 4ae5e
 	ld a, [hOAMUpdate]
@@ -7794,7 +7394,6 @@ Buena_ExitMenu: ; 4ae5e
 	pop af
 	ld [hOAMUpdate], a
 	ret
-; 4ae78
 
 SECTION "bank13", ROMX, BANK[$13]
 
@@ -7843,7 +7442,6 @@ SwapTextboxPalettes:: ; 4c000
 	dec b
 	jr nz, .loop
 	ret
-; 4c03f
 
 ScrollBGMapPalettes:: ; 4c03f
 	ld hl, BGMapBuffer
@@ -7885,7 +7483,6 @@ ScrollBGMapPalettes:: ; 4c03f
 	dec c
 	jr nz, .loop
 	ret
-; 4c075
 
 INCLUDE "tilesets/palette_maps.asm"
 
@@ -7931,7 +7528,6 @@ TileCollisionTable:: ; 4ce1f
 	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
 	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
 	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + WATRTILE
-; 4cf1f
 
 EmptyAllSRAMBanks: ; 4cf1f
 	ld a, $0
@@ -7943,7 +7539,6 @@ EmptyAllSRAMBanks: ; 4cf1f
 	ld a, $3
 	call .EmptyBank
 	ret
-; 4cf34
 
 .EmptyBank: ; 4cf34
 	call GetSRAMBank
@@ -7953,7 +7548,6 @@ EmptyAllSRAMBanks: ; 4cf1f
 	call ByteFill
 	call CloseSRAM
 	ret
-; 4cf45
 
 SaveMenu_LoadEDTile: ; 4cf45 (13:4f45)
 	ld a, [hCGB]
@@ -8053,7 +7647,6 @@ CheckSave:: ; 4cffe
 .ok
 	ld c, $0
 	ret
-; 4d01e
 
 INCLUDE "engine/map_triggers.asm"
 
@@ -8093,7 +7686,6 @@ _LoadMapPart:: ; 4d15b
 	dec b
 	jr nz, .loop
 	ret
-; 4d188
 
 PhoneRing_LoadEDTile: ; 4d188
 	ld a, [hCGB]
@@ -8137,7 +7729,6 @@ PhoneRing_LoadEDTile: ; 4d188
 	pop af
 	ld [hBGMapMode], a
 	ret
-; 4d1cb
 
 .LoadEDTile: ; 4d1cb
 	ld [hSPBuffer], sp
@@ -8176,14 +7767,12 @@ endr
 	ld h, a
 	ld sp, hl
 	ret
-; 4d249
 
 Shrink1Pic: ; 4d249
 INCBIN "gfx/shrink1.2bpp.lz"
 
 Shrink2Pic: ; 4d2d9
 INCBIN "gfx/shrink2.2bpp.lz"
-; 4d319
 
 LinkMonStatsScreen: ; 4d319
 	ld a, [wMenuCursorY]
@@ -8203,13 +7792,11 @@ LinkMonStatsScreen: ; 4d319
 	callba Function28eff
 	call WaitBGMap2
 	ret
-; 4d354
 
 Link_WaitBGMap: ; 4d354
 	call WaitBGMap
 	call WaitBGMap2
 	ret
-; 4d35b
 
 LinkTextbox2: ; 4d35b
 	ld h, d
@@ -8240,7 +7827,6 @@ LinkTextbox2: ; 4d35b
 	dec b
 	jr nz, .row
 	ret
-; 4d37e
 
 .PlaceBorder: ; 4d37e
 	push hl
@@ -8271,7 +7857,6 @@ LinkTextbox2: ; 4d35b
 	call .PlaceRow
 	ld [hl], "└"
 	ret
-; 4d3ab
 
 .PlaceRow: ; 4d3ab
 	ld d, c
@@ -8280,7 +7865,6 @@ LinkTextbox2: ; 4d35b
 	dec d
 	jr nz, .row_loop
 	ret
-; 4d3b1
 
 _ResetClock: ; 4d3b1
 	callba BlankScreen
@@ -8314,25 +7898,21 @@ _ResetClock: ; 4d3b1
 	ld hl, .text_wrong
 	call PrintText
 	ret
-; 4d3fe
 
 .text_okay: ; 0x4d3fe
 	; Password OK. Select CONTINUE & reset settings.
 	text_jump UnknownText_0x1c55db
 	db "@"
-; 0x4d403
 
 .text_wrong: ; 0x4d403
 	; Wrong password!
 	text_jump UnknownText_0x1c560b
 	db "@"
-; 0x4d408
 
 .text_askreset: ; 0x4d408
 	; Reset the clock?
 	text_jump UnknownText_0x1c561c
 	db "@"
-; 0x4d40d
 
 .NoYes_MenuDataHeader: ; 0x4d40d
 	db $00 ; flags
@@ -8340,14 +7920,12 @@ _ResetClock: ; 4d3b1
 	db 11, 19 ; end coords
 	dw .NoYes_MenuData2
 	db 1 ; default option
-; 0x4d415
 
 .NoYes_MenuData2: ; 0x4d415
 	db $c0 ; flags
 	db 2 ; items
 	db "NO@"
 	db "YES@"
-; 0x4d41e
 
 ClockResetPassword: ; 4d41e
 	call .CalculatePassword
@@ -8391,13 +7969,11 @@ ClockResetPassword: ; 4d41e
 .nope
 	scf
 	ret
-; 4d463
 
 .pleaseenterpasswordtext: ; 0x4d463
 	; Please enter the password.
 	text_jump UnknownText_0x1c562e
 	db "@"
-; 0x4d468
 
 .updateIDdisplay: ; 4d468
 	hlcoord 14, 15
@@ -8421,7 +7997,6 @@ ClockResetPassword: ; 4d41e
 	add hl, de
 	ld [hl], $61
 	ret
-; 4d490
 
 .dpadinput: ; 4d490
 	ld a, b
@@ -8479,7 +8054,6 @@ ClockResetPassword: ; 4d41e
 .wraparound_down
 	ld [hl], 9
 	ret
-; 4d4d5
 
 .getcurrentdigit: ; 4d4d5
 	ld a, [StringBuffer2 + 5]
@@ -8488,7 +8062,6 @@ ClockResetPassword: ; 4d41e
 	ld hl, StringBuffer2
 	add hl, de
 	ret
-; 4d4e0
 
 .ConvertDecIDToBytes: ; 4d4e0
 	ld hl, 0
@@ -8513,7 +8086,6 @@ ClockResetPassword: ; 4d41e
 	pop hl
 	add hl, bc
 	ret
-; 4d50f
 
 .CalculatePassword: ; 4d50f
 	ld a, BANK(sPlayerData)
@@ -8530,7 +8102,6 @@ ClockResetPassword: ; 4d41e
 	call .ComponentFromNumber
 	call CloseSRAM
 	ret
-; 4d533
 
 .ComponentFromNumber: ; 4d533
 	ld a, [hli]
@@ -8542,7 +8113,6 @@ ClockResetPassword: ; 4d41e
 	dec c
 	jr nz, .ComponentFromNumber
 	ret
-; 4d53e
 
 .ComponentFromString: ; 4d53e
 	ld a, [hli]
@@ -8556,7 +8126,6 @@ ClockResetPassword: ; 4d41e
 	dec c
 	jr nz, .ComponentFromString
 	ret
-; 4d54c
 
 _DeleteSaveData: ; 4d54c
 	callba BlankScreen
@@ -8577,13 +8146,11 @@ _DeleteSaveData: ; 4d54c
 	ret z
 	callba EmptyAllSRAMBanks
 	ret
-; 4d580
 
 .Text_ClearAllSaveData: ; 0x4d580
 	; Clear all save data?
 	text_jump UnknownText_0x1c564a
 	db "@"
-; 0x4d585
 
 .NoYesMenuDataHeader: ; 0x4d585
 	db $00 ; flags
@@ -8591,14 +8158,12 @@ _DeleteSaveData: ; 4d54c
 	db 11, 19 ; end coords
 	dw .MenuData2
 	db 1 ; default option
-; 0x4d58d
 
 .MenuData2: ; 0x4d58d
 	db $c0 ; flags
 	db 2 ; items
 	db "NO@"
 	db "YES@"
-; 0x4d596
 
 Tilesets::
 INCLUDE "tilesets/tileset_headers.asm"
@@ -8673,7 +8238,6 @@ FlagPredef: ; 4d7c1
 	pop hl
 	ld c, a
 	ret
-; 4d7fd
 
 GetTrademonFrontpic: ; 4d7fd
 	ld a, [wOTTrademonSpecies]
@@ -8689,7 +8253,6 @@ GetTrademonFrontpic: ; 4d7fd
 	pop de
 	predef FrontpicPredef
 	ret
-; 4d81e
 
 AnimateTrademonFrontpic: ; 4d81e
 	ld a, [wOTTrademonSpecies]
@@ -8714,7 +8277,6 @@ AnimateTrademonFrontpic: ; 4d81e
 	ld e, ANIM_MON_TRADE
 	predef AnimateFrontpic
 	ret
-; 4d860
 
 CheckPokerus: ; 4d860
 ; Return carry if a monster in your party has Pokerus
@@ -8741,7 +8303,6 @@ CheckPokerus: ; 4d860
 .HasPokerus
 	scf
 	ret
-; 4d87a
 
 Special_CheckForLuckyNumberWinners: ; 4d87a
 	xor a
@@ -8862,7 +8423,6 @@ endr
 
 .print
 	jp PrintText
-; 4d939
 
 .CompareLuckyNumberToMonID: ; 4d939
 	push bc
@@ -8935,7 +8495,6 @@ endr
 	pop bc
 	and a
 	ret
-; 4d99f
 
 .BoxBankAddresses: ; 4d99f
 	dba sBox1
@@ -8952,19 +8511,16 @@ endr
 	dba sBox12
 	dba sBox13
 	dba sBox14
-; 4d9c9
 
 .FoundPartymonText: ; 0x4d9c9
 	; Congratulations! We have a match with the ID number of @  in your party.
 	text_jump UnknownText_0x1c1261
 	db "@"
-; 0x4d9ce
 
 .FoundBoxmonText: ; 0x4d9ce
 	; Congratulations! We have a match with the ID number of @  in your PC BOX.
 	text_jump UnknownText_0x1c12ae
 	db "@"
-; 0x4d9d3
 
 Special_PrintTodaysLuckyNumber: ; 4d9d3
 	ld hl, StringBuffer3
@@ -8974,7 +8530,6 @@ Special_PrintTodaysLuckyNumber: ; 4d9d3
 	ld a, "@"
 	ld [StringBuffer3 + 5], a
 	ret
-; 4d9e5
 
 CheckPartyFullAfterContest: ; 4d9e5
 	ld a, [wContestMon]
@@ -9062,7 +8617,6 @@ CheckPartyFullAfterContest: ; 4d9e5
 	and a
 	ld [ScriptVar], a
 	ret
-; 4daa3
 
 .TryAddToBox: ; 4daa3
 	ld a, BANK(sBoxCount)
@@ -9124,25 +8678,21 @@ CheckPartyFullAfterContest: ; 4d9e5
 	ld a, $1
 	ld [ScriptVar], a
 	ret
-; 4db35
 
 .DidntCatchAnything: ; 4db35
 	ld a, $2
 	ld [ScriptVar], a
 	ret
-; 4db3b
 
 GiveANickname_YesNo: ; 4db3b
 	ld hl, TextJump_GiveANickname
 	call PrintText
 	jp YesNoBox
-; 4db44
 
 TextJump_GiveANickname: ; 0x4db44
 	; Give a nickname to the @  you received?
 	text_jump UnknownText_0x1c12fc
 	db "@"
-; 0x4db49
 
 SetCaughtData: ; 4db49
 	ld a, [PartyCount]
@@ -9181,7 +8731,6 @@ SetBoxmonOrEggmonCaughtData: ; 4db53
 	or b
 	ld [hl], a
 	ret
-; 4db83
 
 SetBoxMonCaughtData: ; 4db83
 	ld a, BANK(sBoxMon1CaughtLevel)
@@ -9190,7 +8739,6 @@ SetBoxMonCaughtData: ; 4db83
 	call SetBoxmonOrEggmonCaughtData
 	call CloseSRAM
 	ret
-; 4db92
 
 SetGiftBoxMonCaughtData: ; 4db92
 	push bc
@@ -9201,7 +8749,6 @@ SetGiftBoxMonCaughtData: ; 4db92
 	call SetGiftMonCaughtData
 	call CloseSRAM
 	ret
-; 4dba3
 
 SetGiftPartyMonCaughtData: ; 4dba3
 	ld a, [PartyCount]
@@ -9218,7 +8765,6 @@ SetGiftMonCaughtData: ; 4dbaf
 	or b
 	ld [hl], a
 	ret
-; 4dbb8
 
 SetEggMonCaughtData: ; 4dbb8 (13:5bb8)
 	ld a, [CurPartyMon]
@@ -9237,18 +8783,15 @@ _FindGreaterThanThatLevel: ; 4dbd2
 	ld hl, PartyMon1Level
 	call FindGreaterThanThatLevel
 	ret
-; 4dbd9
 
 _FindAtLeastThatHappy: ; 4dbd9
 	ld hl, PartyMon1Happiness
 	call FindAtLeastThatHappy
 	ret
-; 4dbe0
 
 _FindThatSpecies: ; 4dbe0
 	ld hl, PartyMon1Species
 	jp FindThatSpecies
-; 4dbe6
 
 _FindThatSpeciesYourTrainerID: ; 4dbe6
 	ld hl, PartyMon1Species
@@ -9272,7 +8815,6 @@ _FindThatSpeciesYourTrainerID: ; 4dbe6
 .nope
 	xor a
 	ret
-; 4dc0a
 
 FindAtLeastThatHappy: ; 4dc0a
 ; Sets the bits for the Pokemon that have a happiness greater than or equal to b.
@@ -9307,7 +8849,6 @@ FindAtLeastThatHappy: ; 4dc0a
 	ld a, c
 	and a
 	ret
-; 4dc31
 
 FindGreaterThanThatLevel: ; 4dc31
 	ld c, $0
@@ -9337,7 +8878,6 @@ FindGreaterThanThatLevel: ; 4dc31
 	ld a, c
 	and a
 	ret
-; 4dc56
 
 FindThatSpecies: ; 4dc56
 ; Find species b in your party.
@@ -9356,7 +8896,6 @@ FindThatSpecies: ; 4dc56
 	ld a, $1
 	and a
 	ret
-; 4dc67
 
 RetroactivelyIgnoreEggs: ; 4dc67
 	ld e, -2
@@ -9374,7 +8913,6 @@ RetroactivelyIgnoreEggs: ; 4dc67
 .skip_notegg
 	rlc e
 	jr .loop
-; 4dc7b
 
 INCLUDE "engine/stats_screen.asm"
 
@@ -9390,7 +8928,6 @@ CatchTutorial:: ; 4e554
 	ld h, [hl]
 	ld l, a
 	jp [hl]
-; 4e564
 
 .dw: ; 4e564 (13:6564)
 	dw .DudeTutorial
@@ -9454,15 +8991,12 @@ CatchTutorial:: ; 4e554
 	ld [hli], a
 	ld [hl], -1
 	ret
-; 4e5da (13:65da)
 
 .Dude: ; 4e5da
 	db "DUDE@"
-; 4e5df
 
 .AutoInput: ; 4e5df
 	db NO_INPUT, $ff ; end
-; 4e5e1
 
 INCLUDE "engine/evolution_animation.asm"
 
@@ -9490,13 +9024,11 @@ Function4e881: ; 4e881
 	call WaitBGMap2
 	call SetPalettes
 	ret
-; 4e8bd
 
 .SavingRecordDontTurnOff: ; 0x4e8bd
 	; SAVING RECORD… DON'T TURN OFF!
 	text_jump UnknownText_0x1bd39e
 	db "@"
-; 0x4e8c2
 
 Function4e8c2: ; 4e8c2
 	call ClearBGPalettes
@@ -9529,7 +9061,6 @@ Function4e8c2: ; 4e8c2
 	call WaitBGMap2
 	call SetPalettes
 	ret
-; 4e906
 
 Function4e906: ; 4e906
 	ld a, [rSVBK]
@@ -9548,7 +9079,6 @@ Function4e906: ; 4e906
 	pop af
 	ld [rSVBK], a
 	ret
-; 4e929
 
 Function4e929: ; mobile function
 	ld h, b
@@ -9556,7 +9086,6 @@ Function4e929: ; mobile function
 	call Function4e930
 	ld c, a
 	ret
-; 4e930
 
 Function4e930: ; 4e930
 	ld a, [hli]
@@ -9595,7 +9124,6 @@ Function4e930: ; 4e930
 	add hl, bc
 	ld a, [hl]
 	ret
-; 4e95d
 
 MaleTrainers: ; 4e95d
 	db BURGLAR
@@ -9624,7 +9152,6 @@ MaleTrainers: ; 4e95d
 	db BIKER
 	db SCIENTIST
 MaleTrainersEnd:
-; 4e976
 
 FemaleTrainers: ; 4e976
 	db MEDIUM
@@ -9638,7 +9165,6 @@ FemaleTrainers: ; 4e976
 	db POKEFANF
 	db COOLTRAINERF
 FemaleTrainersEnd:
-; 4e980
 
 INCLUDE "battle/sliding_intro.asm"
 
@@ -9672,7 +9198,6 @@ Function4ea0a: ; 4ea0a
 	ld c, 180
 	call DelayFrames
 	ret
-; 4ea44
 
 CheckBattleScene: ; 4ea44
 ; Return carry if battle scene is turned off.
@@ -9721,7 +9246,6 @@ CheckBattleScene: ; 4ea44
 .off
 	scf
 	ret
-; 4ea82
 
 INCLUDE "misc/gbc_only.asm"
 
@@ -9770,12 +9294,10 @@ CopyPkmnToTempMon: ; 5084a
 
 .done
 	ret
-; 5088b
 
 CalcwBufferMonStats: ; 5088b
 	ld bc, wBufferMon
 	jr _TempMonStatsCalculation
-; 50890
 
 CalcTempmonStats: ; 50890
 	ld bc, TempMon
@@ -9822,7 +9344,6 @@ _TempMonStatsCalculation: ; 50893
 	ld [hli], a
 	ld [hl], a
 	ret
-; 508d5
 
 GetPkmnSpecies: ; 508d5
 ; [MonType] has the type of the Pkmn
@@ -9867,7 +9388,6 @@ GetPkmnSpecies: ; 508d5
 .done2
 	ld [CurPartySpecies], a
 	ret
-; 5090d
 
 INCLUDE "text/types.asm"
 
@@ -9890,7 +9410,6 @@ Function50a28: ; 50a28
 	cp "@"
 	jr nz, .copy
 	ret
-; 50a42
 
 Strings50a42: ; 50a42
 ; Untranslated trainer class names from Red.
@@ -9963,7 +9482,6 @@ Strings50a42: ; 50a42
 .Rocket       db "だんいん@"
 .CooltrainerM db "エりート♂@"
 .CooltrainerF db "エりート♀@"
-; 50b0a
 
 DrawPlayerHP: ; 50b0a
 	ld a, $1
@@ -10047,7 +9565,6 @@ DrawHP: ; 50b10
 	pop hl
 	pop de
 	ret
-; 50b7b
 
 PrintTempMonStats: ; 50b7b
 ; Print TempMon's stats at hl, with spacing bc.
@@ -10071,7 +9588,6 @@ PrintTempMonStats: ; 50b7b
 	call .PrintStat
 	ld de, TempMonSpeed
 	jp PrintNum
-; 50bab
 
 .PrintStat: ; 50bab
 	push hl
@@ -10080,7 +9596,6 @@ PrintTempMonStats: ; 50b7b
 	ld de, SCREEN_WIDTH * 2
 	add hl, de
 	ret
-; 50bb5
 
 .StatNames: ; 50bb5
 	db   "ATTACK"
@@ -10089,7 +9604,6 @@ PrintTempMonStats: ; 50b7b
 	next "SPCL.DEF"
 	next "SPEED"
 	next "@"
-; 50bdd
 
 GetGender: ; 50bdd
 ; Return the gender of a given monster (CurPartyMon/CurOTMon/CurWildMon).
@@ -10204,7 +9718,6 @@ GetGender: ; 50bdd
 .Genderless
 	scf
 	ret
-; 50c50
 
 ListMovePP: ; 50c50
 	ld a, [wNumMoves]
@@ -10286,7 +9799,6 @@ endr
 
 .done
 	ret
-; 50cc9
 
 .load_loop: ; 50cc9
 	ld [hli], a
@@ -10295,7 +9807,6 @@ endr
 	dec c
 	jr nz, .load_loop
 	ret
-; 50cd0
 
 Function50cd0: ; 50cd0
 .asm_50cd0
@@ -10307,7 +9818,6 @@ Function50cd0: ; 50cd0
 	dec c
 	jr nz, .asm_50cd0
 	ret
-; 50cdb
 
 Function50cdb: ; unreferenced predef
 	push hl
@@ -10336,7 +9846,6 @@ Function50cdb: ; unreferenced predef
 
 .asm_50d09
 	ret
-; 50d0a
 
 PlaceStatusString: ; 50d0a
 	push de
@@ -10356,11 +9865,9 @@ PlaceStatusString: ; 50d0a
 	ld a, $1
 	and a
 	ret
-; 50d22
 
 FntString: ; 50d22
 	db "FNT@"
-; 50d25
 
 CopyStatusString: ; 50d25
 	ld a, [de]
@@ -10372,7 +9879,6 @@ CopyStatusString: ; 50d25
 	ld a, [de]
 	ld [hl], a
 	ret
-; 50d2e
 
 PlaceNonFaintStatus: ; 50d2e
 	push de
@@ -10401,14 +9907,12 @@ PlaceNonFaintStatus: ; 50d2e
 .no_status
 	pop de
 	ret
-; 50d5b
 
 SlpString: db "SLP@"
 PsnString: db "PSN@"
 BrnString: db "BRN@"
 FrzString: db "FRZ@"
 ParString: db "PAR@"
-; 50d6f
 
 ListMoves: ; 50d6f
 ; List moves at hl, spaced every [Buffer1] tiles.
@@ -10463,7 +9967,6 @@ ListMoves: ; 50d6f
 
 .done
 	ret
-; 50db9
 
 Function50db9: ; 50db9
 	ld a, [wd263]
@@ -10520,7 +10023,6 @@ Function50db9: ; 50db9
 	ld a, b
 	ld [wd105], a
 	ret
-; 50e1b
 
 CalcLevel: ; 50e1b
 	ld a, [TempMonSpecies]
@@ -10553,7 +10055,6 @@ CalcLevel: ; 50e1b
 .got_level
 	dec d
 	ret
-; 50e47
 
 CalcExpAtLevel: ; 50e47
 ; (a/b)*n**3 + c*n**2 + d*n - e
@@ -10674,7 +10175,6 @@ CalcExpAtLevel: ; 50e47
 	adc b
 	ld [hMultiplicand], a
 	ret
-; 50eed
 
 .LevelSquared: ; 50eed
 	xor a
@@ -10684,7 +10184,6 @@ CalcExpAtLevel: ; 50e47
 	ld [hMultiplicand + 2], a
 	ld [hMultiplier], a
 	jp Multiply
-; 50efa
 
 GrowthRates: ; 50efa
 
@@ -10705,7 +10204,6 @@ ENDM
 	growth_rate 6, 5, -15, 100, 140 ; Medium Slow
 	growth_rate 4, 5,   0,   0,   0 ; Fast
 	growth_rate 5, 4,   0,   0,   0 ; Slow
-; 50f12
 
 _SwitchPartyMons:
 	ld a, [wd0e3]
@@ -10902,7 +10400,6 @@ GetUnownLetter: ; 51040
 	inc a
 	ld [UnownLetter], a
 	ret
-; 51077
 
 GetFrontpic: ; 51077
 	ld a, [CurPartySpecies]
@@ -10915,7 +10412,6 @@ GetFrontpic: ; 51077
 	pop af
 	ld [rSVBK], a
 	ret
-; 5108b
 
 FrontpicPredef: ; 5108b
 	ld a, [CurPartySpecies]
@@ -10931,7 +10427,6 @@ FrontpicPredef: ; 5108b
 	pop af
 	ld [rSVBK], a
 	ret
-; 510a5
 
 _GetFrontpic: ; 510a5
 	push de
@@ -10959,7 +10454,6 @@ _GetFrontpic: ; 510a5
 	call Get2bpp
 	pop hl
 	ret
-; 510d7
 
 GetFrontpicPointer: ; 510d7
 GLOBAL PicPointers, UnownPicPointers
@@ -10989,7 +10483,6 @@ GLOBAL PicPointers, UnownPicPointers
 	call GetFarHalfword
 	pop bc
 	ret
-; 51103
 
 Function51103: ; 51103
 	ld a, $1
@@ -11033,7 +10526,6 @@ Function51103: ; 51103
 	xor a
 	ld [rVBK], a
 	ret
-; 5114f
 
 Function5114f: ; 5114f
 	ld hl, wDecompressScratch
@@ -11055,7 +10547,6 @@ Function5114f: ; 5114f
 	dec b
 	jr nz, .asm_51161
 	ret
-; 5116c
 
 GetBackpic: ; 5116c
 	ld a, [CurPartySpecies]
@@ -11109,7 +10600,6 @@ GetBackpic: ; 5116c
 	pop af
 	ld [rSVBK], a
 	ret
-; 511c5
 
 FixPicBank: ; 511c5
 ; This is a thing for some reason.
@@ -11124,7 +10614,6 @@ FixPicBank: ; 511c5
 	pop bc
 	pop hl
 	ret
-; 511d4
 
 .PicsBanks: ; 511d4
 	db PICS_1
@@ -11170,7 +10659,6 @@ Function511ec: ; 511ec
 	pop de
 	call FarDecompress
 	ret
-; 0x5120d
 
 GetTrainerPic: ; 5120d
 	ld a, [TrainerClass]
@@ -11213,7 +10701,6 @@ GetTrainerPic: ; 5120d
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
-; 5125d
 
 DecompressPredef: ; 5125d
 ; Decompress lz data from b:hl to scratch space at 6:d000, then copy it to address de.
@@ -11238,7 +10725,6 @@ DecompressPredef: ; 5125d
 	pop af
 	ld [rSVBK], a
 	ret
-; 5127c
 
 FixBackpicAlignment: ; 5127c
 	push de
@@ -11275,7 +10761,6 @@ FixBackpicAlignment: ; 5127c
 	pop bc
 	pop de
 	ret
-; 512ab
 
 Function512ab: ; 512ab
 	ld a, b
@@ -11327,7 +10812,6 @@ Function512ab: ; 512ab
 	dec c
 	jr nz, .Fill
 	ret
-; 512f2
 
 LoadFrontpic: ; 512f2
 	ld a, [wBoxAlignment]
@@ -11357,7 +10841,6 @@ LoadFrontpic: ; 512f2
 	jr nz, .right_loop
 	pop bc
 	ret
-; 51322
 
 Function51322: ; 51322
 	ld a, BANK(sBoxCount)
@@ -11397,7 +10880,6 @@ Function51322: ; 51322
 	ld b, a
 	callba Functiondcb6
 	jp CloseSRAM
-; 5138b
 
 Function5138b: ; 5138b
 	ld hl, PartyCount
@@ -11424,7 +10906,6 @@ Function5138b: ; 5138b
 	ld de, wBufferMon
 	call Function513e0
 	ret
-; 513cb
 
 Function513cb: ; 513cb
 	inc [hl]
@@ -11443,7 +10924,6 @@ Function513cb: ; 513cb
 	ld c, a
 	jr nz, .asm_513d8
 	ret
-; 513e0
 
 Function513e0: ; 513e0
 	push de
@@ -11495,7 +10975,6 @@ Function513e0: ; 513e0
 	pop hl
 	call CopyBytes
 	ret
-; 51424
 
 BaseData::
 INCLUDE "data/base_stats.asm"
@@ -11516,12 +10995,10 @@ Unknown_53d84: ; unreferenced
 	db $f6, $1e
 	db $ff, $1f
 	db $ff, $20
-; 53d9c
 
 UnknownEggPic:: ; 53d9c
 ; Another egg pic. This is shifted up a few pixels.
 INCBIN "gfx/misc/unknown_egg.5x5.2bpp.lz"
-; 53e2e
 
 SECTION "bank19", ROMX, BANK[$19]
 
@@ -11532,7 +11009,6 @@ SECTION "bank20", ROMX, BANK[$20]
 INCLUDE "engine/player_movement.asm"
 
 INCLUDE "engine/engine_flags.asm"
-; 80648
 
 INCLUDE "engine/variables.asm"
 
@@ -11564,7 +11040,6 @@ Function88248: ; 88248
 	ld a, c
 	ld [TrainerClass], a
 	ret
-; 88258
 
 MovePlayerPicRight: ; 88258
 	hlcoord 6, 4
@@ -11610,7 +11085,6 @@ MovePlayerPic: ; 88266
 	pop bc
 	pop hl
 	jr .loop
-; 88297
 
 ShowPlayerNamingChoices: ; 88297
 	ld hl, ChrisNameMenuHeader
@@ -11626,7 +11100,6 @@ ShowPlayerNamingChoices: ; 88297
 	call CopyNameFromMenu
 	call CloseWindow
 	ret
-; 882b5
 
 ChrisNameMenuHeader: ; 882b5
 	db $40 ; flags
@@ -11635,7 +11108,6 @@ ChrisNameMenuHeader: ; 882b5
 	dw .MaleNames
 	db 1 ; ????
 	db 0 ; default option
-; 882be
 
 .MaleNames: ; 882be
 	db $91 ; flags
@@ -11648,7 +11120,6 @@ MalePlayerNameArray: ; 882c9
 	db "JON@"
 	db 2 ; displacement
 	db " NAME @" ; title
-; 882e5
 
 KrisNameMenuHeader: ; 882e5
 	db $40 ; flags
@@ -11657,7 +11128,6 @@ KrisNameMenuHeader: ; 882e5
 	dw .FemaleNames
 	db 1 ; ????
 	db 0 ; default option
-; 882ee
 
 .FemaleNames: ; 882ee
 	db $91 ; flags
@@ -11670,7 +11140,6 @@ FemalePlayerNameArray: ; 882f9
 	db "JODI@"
 	db 2 ; displacement
 	db " NAME @" ; title
-; 88318
 
 GetPlayerNameArray: ; 88318 This Function is never called
 	ld hl, PlayerName
@@ -11683,7 +11152,6 @@ GetPlayerNameArray: ; 88318 This Function is never called
 .done
 	call InitName
 	ret
-; 8832c
 
 GetPlayerIcon: ; 8832c
 ; Get the player icon corresponding to gender
@@ -11702,7 +11170,6 @@ GetPlayerIcon: ; 8832c
 
 .done
 	ret
-; 8833e
 
 GetCardPic: ; 8833e
 	ld hl, ChrisCardPic
@@ -11721,19 +11188,15 @@ GetCardPic: ; 8833e
 	ld a, BANK(CardGFX)
 	call FarCopyBytes
 	ret
-; 88365 (22:4365)
 
 ChrisCardPic: ; 88365
 INCBIN "gfx/misc/chris_card.5x7.2bpp"
-; 88595
 
 KrisCardPic: ; 88595
 INCBIN "gfx/misc/kris_card.5x7.2bpp"
-; 887c5
 
 CardGFX: ; 887c5
 INCBIN "gfx/misc/trainer_card.2bpp"
-; 88825
 
 GetPlayerBackpic: ; 88825
 	ld a, [PlayerGender]
@@ -11749,7 +11212,6 @@ GetChrisBackpic: ; 88830
 	ld c, 7 * 7
 	predef DecompressPredef
 	ret
-; 88840
 
 Function88840: ; 88840
 	call WaitBGMap
@@ -11779,7 +11241,6 @@ Function88840: ; 88840
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
-; 88874
 
 DrawIntroPlayerPic: ; 88874
 ; Draw the player pic at (6,4).
@@ -11813,15 +11274,12 @@ DrawIntroPlayerPic: ; 88874
 	lb bc, 7, 7
 	predef FillBox
 	ret
-; 888a9
 
 ChrisPic: ; 888a9
 INCBIN "gfx/misc/chris.7x7.2bpp"
-; 88bb9
 
 KrisPic: ; 88bb9
 INCBIN "gfx/misc/kris.7x7.2bpp"
-; 88ec9
 
 GetKrisBackpic: ; 88ec9
 ; Kris's backpic is uncompressed.
@@ -11830,15 +11288,12 @@ GetKrisBackpic: ; 88ec9
 	lb bc, BANK(KrisBackpic), 7 * 7 ; dimensions
 	call Get2bpp
 	ret
-; 88ed6
 
 KrisBackpic: ; 88ed6
 INCBIN "gfx/misc/kris_back.6x6.2bpp"
-; 89116
 
 String_89116:
 	db "-----@"
-; 8911c
 
 INCLUDE "misc/mobile_22.asm"
 INCLUDE "event/unown.asm"
@@ -11852,7 +11307,6 @@ SECTION "bank23", ROMX, BANK[$23]
 Predef35: ; 8c000
 Predef36:
 	ret
-; 8c001
 
 INCLUDE "engine/timeofdaypals.asm"
 INCLUDE "engine/battle_start.asm"
@@ -11864,7 +11318,6 @@ Function8c7c9: ; unreferenced
 	xor a
 	ld [hBGMapMode], a
 	ret
-; 8c7d4
 
 INCLUDE "event/field_moves.asm"
 INCLUDE "event/magnet_train.asm"
@@ -11872,7 +11325,6 @@ INCLUDE "event/magnet_train.asm"
 Function8cf4f: ; 8cf4f
 	call Function3238
 	ret
-; 8cf53
 
 INCLUDE "engine/sprites.asm"
 
@@ -11937,7 +11389,6 @@ TalkToTrainerScript:: ; 0xbe66a
 	loadmemtrainer
 	encountermusic
 	jump StartBattleWithMapTrainerScript
-; 0xbe675
 
 SeenByTrainerScript:: ; 0xbe675
 	loadmemtrainer
@@ -11948,7 +11399,6 @@ SeenByTrainerScript:: ; 0xbe675
 	writepersonxy LAST_TALKED
 	faceperson PLAYER, LAST_TALKED
 	jump StartBattleWithMapTrainerScript
-; 0xbe68a
 
 StartBattleWithMapTrainerScript: ; 0xbe68a
 	opentext
@@ -11963,7 +11413,6 @@ StartBattleWithMapTrainerScript: ; 0xbe68a
 
 AlreadyBeatenTrainerScript:
 	scripttalkafter
-; 0xbe699
 
 SECTION "bank30", ROMX, BANK[$30]
 
@@ -11985,7 +11434,6 @@ LoadPoisonBGPals: ; cbcdd
 	and a
 	ret nz
 	ret
-; cbce5
 
 .LoadPals: ; cbce5
 	ld a, [hCGB]
@@ -12028,11 +11476,9 @@ LoadPoisonBGPals: ; cbcdd
 	call DelayFrames
 	callba _UpdateTimePals
 	ret
-; cbd2e
 
 TheEndGFX:: ; cbd2e
 INCBIN "gfx/credits/theend.2bpp"
-; cbe2e
 
 SECTION "bank33", ROMX, BANK[$33]
 
@@ -12117,7 +11563,6 @@ DisplayCaughtContestMonStats: ; cc000
 	call GetSGBLayout
 	call SetPalettes
 	ret
-; cc0a7
 
 .Health
 	db "HEALTH@"
@@ -12130,25 +11575,21 @@ SwitchMonText: ; cc0c2
 	; Switch #MON?
 	text_jump UnknownText_0x1c10cf
 	db "@"
-; cc0c7
 
 DisplayAlreadyCaughtText: ; cc0c7
 	call GetPokemonName
 	ld hl, .AlreadyCaughtText
 	jp PrintText
-; cc0d0
 
 .AlreadyCaughtText: ; 0xcc0d0
 	; You already caught a @ .
 	text_jump UnknownText_0x1c10dd
 	db "@"
-; 0xcc0d5
 
 Predef2F:
 Predef38:
 Predef39: ; cc0d5
 	ret
-; cc0d6
 
 INCLUDE "battle/anim_commands.asm"
 
@@ -12259,7 +11700,6 @@ Functione0000: ; e0000
 	call Get2bpp
 	call CloseSRAM
 	ret
-; e004e
 
 .Copy: ; e004e
 	ld c, $10
@@ -12270,7 +11710,6 @@ Functione0000: ; e0000
 	dec c
 	jr nz, .loop_copy
 	ret
-; e0057
 
 .Decompress: ; e0057
 	ld hl, wd012
@@ -12293,7 +11732,6 @@ Functione0000: ; e0000
 	dec d
 	jr nz, .loop_decompress
 	ret
-; e0078
 
 .CountSetBit: ; e0078
 	ld b, 0
@@ -12314,7 +11752,6 @@ Functione0000: ; e0000
 	dec c
 	jr nz, .loop_count
 	ret
-; e008b
 
 overworldmaptile EQUS "dw OverworldMap + $10 *"
 overworldmaprect: MACRO
@@ -12331,7 +11768,6 @@ endm
 
 Unknown_e008b: ; e008b
 	overworldmaprect 7, 7
-; e00ed
 
 Unknown_e00ed:
 ; Graphics for an unused Game Corner
@@ -12340,7 +11776,6 @@ Unknown_e00ed:
 ret_e00ed: ; e00ed (38:40ed)
 ; How many coins?
 	ret
-; e00ee (38:40ee)
 
 INCLUDE "engine/card_flip.asm"
 INCLUDE "engine/unown_puzzle.asm"
@@ -12351,7 +11786,6 @@ SECTION "bank39", ROMX, BANK[$39]
 
 CopyrightGFX:: ; e4000
 INCBIN "gfx/misc/copyright.2bpp"
-; e41d0
 
 INCLUDE "engine/options_menu.asm"
 INCLUDE "engine/crystal_intro.asm"
@@ -12399,7 +11833,6 @@ SECTION "Intro Logo", ROMX, BANK[$42]
 
 IntroLogoGFX: ; 109407
 INCBIN "gfx/intro/logo.2bpp.lz"
-; 109847
 
 INCLUDE "misc/unused_title.asm"
 
@@ -12436,7 +11869,6 @@ _UpdateBattleHUDs:
 	call SetHPPal
 	callba FinishBattleAnim
 	ret
-; 17801f (5e:401f)
 
 INCLUDE "misc/mobile_5f.asm"
 
@@ -12474,15 +11906,10 @@ INCLUDE "battle/move_names.asm"
 
 INCLUDE "engine/landmarks.asm"
 
-SECTION "bank75", ROMX, BANK[$75]
-
-SECTION "bank76", ROMX, BANK[$76]
-
 SECTION "bank77", ROMX, BANK[$77]
 
 UnownFont: ; 1dc000
 INCBIN "gfx/misc/unown_font.2bpp"
-; 1dc1b0
 
 INCLUDE "misc/printer_77.asm"
 
@@ -12512,7 +11939,6 @@ Function1dd6a9: ; 1dd6a9
 	call PrintNum
 	pop bc
 	ret
-; 1dd6bb
 
 PrintHoursMins ; 1dd6bb (77:56bb)
 ; Hours in b, minutes in c
@@ -12559,11 +11985,9 @@ PrintHoursMins ; 1dd6bb (77:56bb)
 	inc hl
 	call PlaceString
 	ret
-; 1dd6fc (77:56fc)
 
 String_AM: db "AM@" ; 1dd6fc
 String_PM: db "PM@" ; 1dd6ff
-; 1dd702
 
 INCLUDE "engine/diploma.asm"
 
@@ -12572,7 +11996,6 @@ LoadSGBPokedexGFX: ; 1ddf1c
 	ld de, VTiles2 tile $31
 	call Decompress
 	ret
-; 1ddf26
 
 Function1ddf26: ; 1ddf26 (77:5f26)
 	ld hl, LZ_1ddf33
@@ -12580,22 +12003,18 @@ Function1ddf26: ; 1ddf26 (77:5f26)
 	lb bc, BANK(LZ_1ddf33), $3a
 	call DecompressRequest2bpp
 	ret
-; 1ddf33 (77:5f33)
 
 LZ_1ddf33: ; 1ddf33
 INCBIN "gfx/pokedex/sgb.2bpp.lz"
-; 1de0d7
 
 LoadQuestionMarkPic: ; 1de0d7
 	ld hl, .QuestionMarkLZ
 	ld de, sScratch
 	call Decompress
 	ret
-; 1de0e1
 
 .QuestionMarkLZ: ; 1de0e1
 INCBIN "gfx/pics/questionmark/front.2bpp.lz"
-; 1de171
 
 DrawPokedexListWindow: ; 1de171 (77:6171)
 	ld a, $32
@@ -12684,14 +12103,12 @@ DrawPokedexSearchResultsWindow: ; 1de1d1 (77:61d1)
 	hlcoord 0, 12
 	call PlaceString
 	ret
-; 1de23c (77:623c)
 
 .esults_D: ; 1de23c
 ; (SEARCH R)
 	db   "ESULTS<NEXT>"
 ; (### FOUN)
 	next "D!@"
-; 1de247
 
 Function1de247: ; 1de247
 	ld a, [hBGMapAddress]
@@ -12724,7 +12141,6 @@ Function1de247: ; 1de247
 	ld a, h
 	ld [hBGMapAddress + 1], a
 	ret
-; 1de27f
 
 Bank77_FillColumn: ; 1de27f
 	push de
@@ -12736,28 +12152,23 @@ Bank77_FillColumn: ; 1de27f
 	jr nz, .loop
 	pop de
 	ret
-; 1de28a
 
 _DudeAutoInput_A:: ; 1de28a
 	ld hl, DudeAutoInput_A
 	jr _DudeAutoInput
-; 1de28f
 
 _DudeAutoInput_RightA: ; 1de28f
 	ld hl, DudeAutoInput_RightA
 	jr _DudeAutoInput
-; 1de294
 
 _DudeAutoInput_DownA: ; 1de294
 	ld hl, DudeAutoInput_DownA
 	jr _DudeAutoInput
-; 1de299
 
 _DudeAutoInput: ; 1de299
 	ld a, BANK(DudeAutoInputs)
 	call StartAutoInput
 	ret
-; 1de29f
 
 DudeAutoInputs:
 
@@ -12765,7 +12176,6 @@ DudeAutoInput_A: ; 1de29f
 	db NO_INPUT, $50
 	db A_BUTTON, $00
 	db NO_INPUT, $ff ; end
-; 1de2a5
 
 DudeAutoInput_RightA: ; 1de2a5
 	db NO_INPUT, $08
@@ -12773,7 +12183,6 @@ DudeAutoInput_RightA: ; 1de2a5
 	db NO_INPUT, $08
 	db A_BUTTON, $00
 	db NO_INPUT, $ff ; end
-; 1de2af
 
 DudeAutoInput_DownA: ; 1de2af
 	db NO_INPUT, $fe
@@ -12787,7 +12196,6 @@ DudeAutoInput_DownA: ; 1de2af
 	db NO_INPUT, $fe
 	db A_BUTTON, $00
 	db NO_INPUT, $ff ; end
-; 1de2c5
 
 Function1de2c5: ; 1de2c5
 	ld hl, StringBuffer1
@@ -12810,11 +12218,9 @@ Function1de2c5: ; 1de2c5
 	hlcoord 9, 0
 	call PlaceString
 	ret
-; 1de2e4
 
 PokegearGFX: ; 1de2e4
 INCBIN "gfx/misc/pokegear.2bpp.lz"
-; 1de5c8
 
 IsMailEuropean: ; 1de5c8
 ; return 1 if French
@@ -12843,7 +12249,6 @@ IsMailEuropean: ; 1de5c8
 	ret z
 	ld c, $0
 	ret
-; 1de5e6
 
 ; The regular font.
 StandardEnglishFont: ; 1de5e6
@@ -12885,7 +12290,6 @@ HandleFrenchGermanMail: ; 1df1e6
 	dec b
 	jr nz, .loop
 	ret
-; 1df203
 
 LireLeCourrierAnglais:
 DeutenEnglischenPost: ; 1df203
@@ -12918,7 +12322,6 @@ DeutenEnglischenPost: ; 1df203
 	dec b
 	jr nz, .loop
 	ret
-; 1df220
 
 HandleSpanishItalianMail: ; 1df220
 LeerCorreosIngleses:
@@ -12948,15 +12351,10 @@ LeggiPostaInglese:
 	dec b
 	jr nz, .loop
 	ret
-; 1df238
 
 SECTION "Tileset Data 8", ROMX, BANK[TILESETS_8]
 
 INCLUDE "tilesets/data_8.asm"
-
-SECTION "bank79", ROMX, BANK[$79]
-
-SECTION "bank7A", ROMX, BANK[$7A]
 
 SECTION "bank7B", ROMX, BANK[$7B]
 
@@ -12979,7 +12377,6 @@ Function1f4003: ; 1f4003
 	call CopyBytes
 	call CloseSRAM
 	ret
-; 1f4018
 
 Unknown_1f4018:
 INCBIN "unknown/1f4018.bin"
@@ -12993,7 +12390,6 @@ Function1f4dbe: ; 1f4dbe
 	call CopyBytes
 	call CloseSRAM
 	ret
-; 1f4dd3
 
 Unknown_1f4dd3:
 INCBIN "unknown/1f4dd3.bin"
@@ -13007,7 +12403,6 @@ Function1f5d9f: ; 1f5d9f
 	call CopyBytes
 	call CloseSRAM
 	ret
-; 1f5db4
 
 Unknown_1f5db4:
 INCBIN "unknown/1f5db4.bin"
