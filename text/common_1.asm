@@ -482,304 +482,310 @@ UnknownText_0x1bc80a::
 	line "back!"
 	done
 
-UnknownText_0x1bc81a::
+; Oak's Pokémon Talk
+
+_OPT_IntroText1::
 	text ""
 	line "MARY: PROF.OAK'S"
 	done
 
-UnknownText_0x1bc82d::
+_OPT_IntroText2::
 	text ""
 	line "#MON TALK!"
 	done
 
-UnknownText_0x1bc83a::
+_OPT_IntroText3::
 	text ""
 	line "With me, MARY!"
 	done
 
-UnknownText_0x1bc84b::
+_OPT_OakText1::
 	text ""
 	line "OAK: @"
 	text_from_ram wMonOrItemNameBuffer
 	db "@@"
 
-UnknownText_0x1bc858::
+_OPT_OakText2::
 	text ""
 	line "may be seen around"
 	done
 
-UnknownText_0x1bc86d::
+_OPT_OakText3::
 	text ""
 	line "@"
 	text_from_ram StringBuffer1
 	text "."
 	done
 
-UnknownText_0x1bc876::
+_OPT_MaryText1::
 	text ""
 	line "MARY: @"
 	text_from_ram StringBuffer1
 	text "'s"
 	done
 
-UnknownText_0x1bc885::
+OPT_SweetAdorably::
 	text ""
 	line "sweet and adorably"
 	done
 
-UnknownText_0x1bc89a::
+OPT_WigglySlickly::
 	text ""
 	line "wiggly and slickly"
 	done
 
-UnknownText_0x1bc8af::
+OPT_AptlyNamed::
 	text ""
 	line "aptly named and"
 	done
 
-UnknownText_0x1bc8c1::
+OPT_UndeniablyKindOf::
 	text ""
 	line "undeniably kind of"
 	done
 
-UnknownText_0x1bc8d6::
+OPT_Unbearably::
 	text ""
 	line "so, so unbearably"
 	done
 
-UnknownText_0x1bc8ea::
+OPT_WowImpressively::
 	text ""
 	line "wow, impressively"
 	done
 
-UnknownText_0x1bc8fe::
+OPT_AlmostPoisonously::
 	text ""
 	line "almost poisonously"
 	done
 
-UnknownText_0x1bc913::
+OPT_Sensually::
 	text ""
 	line "ooh, so sensually"
 	done
 
-UnknownText_0x1bc927::
+OPT_Mischievously::
 	text ""
 	line "so mischievously"
 	done
 
-UnknownText_0x1bc93a::
+OPT_Topically::
 	text ""
 	line "so very topically"
 	done
 
-UnknownText_0x1bc94e::
+OPT_Addictively::
 	text ""
 	line "sure addictively"
 	done
 
-UnknownText_0x1bc961::
+OPT_LooksInWater::
 	text ""
 	line "looks in water is"
 	done
 
-UnknownText_0x1bc975::
+OPT_EvolutionMustBe::
 	text ""
 	line "evolution must be"
 	done
 
-UnknownText_0x1bc989::
+OPT_Provocatively::
 	text ""
 	line "provocatively"
 	done
 
-UnknownText_0x1bc999::
+OPT_FlippedOut::
 	text ""
 	line "so flipped out and"
 	done
 
-UnknownText_0x1bc9ae::
+OPT_HeartMeltingly::
 	text ""
 	line "heart-meltingly"
 	done
 
-UnknownText_0x1bc9c0::
+OPT_Cute::
 	text ""
 	line "cute."
 	done
 
-UnknownText_0x1bc9c8::
+OPT_Weird::
 	text ""
 	line "weird."
 	done
 
-UnknownText_0x1bc9d1::
+OPT_Pleasant::
 	text ""
 	line "pleasant."
 	done
 
-UnknownText_0x1bc9dd::
+OPT_BoldSortOf::
 	text ""
 	line "bold, sort of."
 	done
 
-UnknownText_0x1bc9ee::
+OPT_Frightening::
 	text ""
 	line "frightening."
 	done
 
-UnknownText_0x1bc9fd::
+OPT_SuaveDebonair::
 	text ""
 	line "suave & debonair!"
 	done
 
-UnknownText_0x1bca11::
+OPT_Powerful::
 	text ""
 	line "powerful."
 	done
 
-UnknownText_0x1bca1d::
+OPT_Exciting::
 	text ""
 	line "exciting."
 	done
 
-UnknownText_0x1bca29::
+OPT_Groovy::
 	text ""
 	line "groovy!"
 	done
 
-UnknownText_0x1bca33::
+OPT_Inspiring::
 	text ""
 	line "inspiring."
 	done
 
-UnknownText_0x1bca40::
+OPT_Friendly::
 	text ""
 	line "friendly."
 	done
 
-UnknownText_0x1bca4c::
+OPT_HotHotHot::
 	text ""
 	line "hot, hot, hot!"
 	done
 
-UnknownText_0x1bca5d::
+OPT_Stimulating::
 	text ""
 	line "stimulating."
 	done
 
-UnknownText_0x1bca6c::
+OPT_Guarded::
 	text ""
 	line "guarded."
 	done
 
-UnknownText_0x1bca77::
+OPT_Lovely::
 	text ""
 	line "lovely."
 	done
 
-UnknownText_0x1bca81::
+OPT_Speedy::
 	text ""
 	line "speedy."
 	done
 
-UnknownText_0x1bca8b::
+_OPT_PokemonChannelText::
 	text "#MON"
 	done
 
-UnknownText_0x1bca91::
+_PokedexShowText::
 	text ""
 	line "@"
 	text_from_ram StringBuffer1
 	db "@@"
 
-UnknownText_0x1bca99::
+; Pokémon Music Channel / Pokémusic
+
+_BenIntroText1::
 	text ""
 	line "BEN: #MON MUSIC"
 	done
 
-UnknownText_0x1bcaab::
+_BenIntroText2::
 	text ""
 	line "CHANNEL!"
 	done
 
-UnknownText_0x1bcab6::
+_BenIntroText3::
 	text ""
 	line "It's me, DJ BEN!"
 	done
 
-UnknownText_0x1bcac8::
+_FernIntroText1::
 	text ""
 	line "FERN: #MUSIC!"
 	done
 
-UnknownText_0x1bcad8::
+_FernIntroText2::
 	text ""
 	line "With DJ FERN!"
 	done
 
-UnknownText_0x1bcae8::
+_BenFernText1::
 	text ""
 	line "Today's @"
 	current_day
 	text ","
 	done
 
-UnknownText_0x1bcaf6::
+_BenFernText2A::
 	text ""
 	line "so let us jam to"
 	done
 
-UnknownText_0x1bcb09::
+_BenFernText2B::
 	text ""
 	line "so chill out to"
 	done
 
-UnknownText_0x1bcb1b::
+_BenFernText3A::
 	text ""
 	line "#MON March!"
 	done
 
-UnknownText_0x1bcb29::
+_BenFernText3B::
 	text ""
 	line "#MON Lullaby!"
 	done
 
-UnknownText_0x1bcb39::
+; Lucky Channel
+
+_LC_Text1::
 	text ""
 	line "REED: Yeehaw! How"
 	done
 
-UnknownText_0x1bcb4d::
+_LC_Text2::
 	text ""
 	line "y'all doin' now?"
 	done
 
-UnknownText_0x1bcb60::
+_LC_Text3::
 	text ""
 	line "Whether you're up"
 	done
 
-UnknownText_0x1bcb73::
+_LC_Text4::
 	text ""
 	line "or way down low,"
 	done
 
-UnknownText_0x1bcb86::
+_LC_Text5::
 	text ""
 	line "don't you miss the"
 	done
 
-UnknownText_0x1bcb9a::
+_LC_Text6::
 	text ""
 	line "LUCKY NUMBER SHOW!"
 	done
 
-UnknownText_0x1bcbaf::
+_LC_Text7::
 	text ""
 	line "This week's Lucky"
 	done
 
-UnknownText_0x1bcbc2::
+_LC_Text8::
 	text ""
 	line "Number is @"
 	interpret_data
@@ -787,47 +793,49 @@ UnknownText_0x1bcbc2::
 	text "!"
 	done
 
-UnknownText_0x1bcbd6::
+_LC_Text9::
 	text ""
 	line "I'll repeat that!"
 	done
 
-UnknownText_0x1bcbe9::
+_LC_Text10::
 	text ""
 	line "Match it and go to"
 	done
 
-UnknownText_0x1bcbfe::
+_LC_Text11::
 	text ""
 	line "the RADIO TOWER!"
 	done
 
-UnknownText_0x1bcc11::
+_LC_DragText1::
 	text ""
 	line "…Repeating myself"
 	done
 
-UnknownText_0x1bcc25::
+_LC_DragText2::
 	text ""
 	line "gets to be a drag…"
 	done
 
-UnknownText_0x1bcc3a::
+; Places and People
+
+_PnP_Text1::
 	text ""
 	line "PLACES AND PEOPLE!"
 	done
 
-UnknownText_0x1bcc4f::
+_PnP_Text2::
 	text ""
 	line "Brought to you by"
 	done
 
-UnknownText_0x1bcc63::
+_PnP_Text3::
 	text ""
 	line "me, DJ LILY!"
 	done
 
-UnknownText_0x1bcc72::
+_PnP_Text4::
 	text ""
 	line "@"
 	text_from_ram StringBuffer2
@@ -915,156 +923,156 @@ _PnP_odd::
 	line "is definitely odd!"
 	done
 
-UnknownText_0x1bcda0::
+_PnP_Text5::
 	text ""
 	line "@"
 	text_from_ram StringBuffer1
 	db "@@"
 
-UnknownText_0x1bcda8::
+_RocketRadioText1::
 	text ""
 	line "… …Ahem, we are"
 	done
 
-UnknownText_0x1bcdba::
+_RocketRadioText2::
 	text ""
 	line "TEAM ROCKET!"
 	done
 
-UnknownText_0x1bcdc9::
+_RocketRadioText3::
 	text ""
 	line "After three years"
 	done
 
-UnknownText_0x1bcddd::
+_RocketRadioText4::
 	text ""
 	line "of preparation, we"
 	done
 
-UnknownText_0x1bcdf2::
+_RocketRadioText5::
 	text ""
 	line "have risen again"
 	done
 
-UnknownText_0x1bce05::
+_RocketRadioText6::
 	text ""
 	line "from the ashes!"
 	done
 
-UnknownText_0x1bce17::
+_RocketRadioText7::
 	text ""
 	line "GIOVANNI! @"
 	interpret_data
 	text "Can you"
 	done
 
-UnknownText_0x1bce2e::
+_RocketRadioText8::
 	text ""
 	line "hear?@"
 	interpret_data
 	text " We did it!"
 	done
 
-UnknownText_0x1bce44::
+_RocketRadioText9::
 	text ""
 	line "@"
 	interpret_data
 	text "Where is our boss?"
 	done
 
-UnknownText_0x1bce5c::
+_RocketRadioText10::
 	text ""
 	line "@"
 	interpret_data
 	text "Is he listening?"
 	done
 
-UnknownText_0x1bce72::
+_BuenaRadioText1::
 	text ""
 	line "BUENA: BUENA here!"
 	done
 
-UnknownText_0x1bce87::
+_BuenaRadioText2::
 	text ""
 	line "Today's password!"
 	done
 
-UnknownText_0x1bce9a::
+_BuenaRadioText3::
 	text ""
 	line "Let me think… It's"
 	done
 
-UnknownText_0x1bceae::
+_BuenaRadioText4::
 	text ""
 	line "@"
 	text_from_ram StringBuffer1
 	text "!"
 	done
 
-UnknownText_0x1bceb7::
+_BuenaRadioText5::
 	text ""
 	line "Don't forget it!"
 	done
 
-UnknownText_0x1bcec9::
+_BuenaRadioText6::
 	text ""
 	line "I'm in GOLDENROD's"
 	done
 
-UnknownText_0x1bcedc::
+_BuenaRadioText7::
 	text ""
 	line "RADIO TOWER!"
 	done
 
-UnknownText_0x1bceeb::
+_BuenaRadioMidnightText1::
 	text ""
 	line "BUENA: Oh my…"
 	done
 
-UnknownText_0x1bcefb::
+_BuenaRadioMidnightText2::
 	text ""
 	line "It's midnight! I"
 	done
 
-UnknownText_0x1bcf0d::
+_BuenaRadioMidnightText3::
 	text ""
 	line "have to shut down!"
 	done
 
-UnknownText_0x1bcf22::
+_BuenaRadioMidnightText4::
 	text ""
 	line "Thanks for tuning"
 	done
 
-UnknownText_0x1bcf36::
+_BuenaRadioMidnightText5::
 	text ""
 	line "in to the end! But"
 	done
 
-UnknownText_0x1bcf4b::
+_BuenaRadioMidnightText6::
 	text ""
 	line "don't stay up too"
 	done
 
-UnknownText_0x1bcf5e::
+_BuenaRadioMidnightText7::
 	text ""
 	line "late! Presented to"
 	done
 
-UnknownText_0x1bcf73::
+_BuenaRadioMidnightText8::
 	text ""
 	line "you by DJ BUENA!"
 	done
 
-UnknownText_0x1bcf86::
+_BuenaRadioMidnightText9::
 	text "I'm outta here!"
 	done
 
-UnknownText_0x1bcf96::
+_BuenaRadioMidnightText10::
 	text "…"
 	done
 
-UnknownText_0x1bcf99::
+_BuenaOffTheAirText::
 	text ""
 	line ""
 	done
