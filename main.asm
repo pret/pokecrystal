@@ -11896,10 +11896,6 @@ INCLUDE "battle/move_names.asm"
 
 INCLUDE "engine/landmarks.asm"
 
-SECTION "bank75", ROMX, BANK[$75]
-
-SECTION "bank76", ROMX, BANK[$76]
-
 SECTION "bank77", ROMX, BANK[$77]
 
 UnownFont: ; 1dc000
@@ -12349,10 +12345,6 @@ LeggiPostaInglese:
 SECTION "Tileset Data 8", ROMX, BANK[TILESETS_8]
 
 INCLUDE "tilesets/data_8.asm"
-
-SECTION "bank79", ROMX, BANK[$79]
-
-SECTION "bank7A", ROMX, BANK[$7A]
 
 SECTION "bank7B", ROMX, BANK[$7B]
 
