@@ -10,7 +10,7 @@ GBCOnlyScreen: ; 4ea82
 	call ClearTileMap
 
 	ld hl, GBCOnlyGFX
-	ld de, wd000
+	ld de, $d000
 	ld a, [rSVBK]
 	push af
 	ld a, 0
@@ -19,7 +19,7 @@ GBCOnlyScreen: ; 4ea82
 	pop af
 	ld [rSVBK], a
 
-	ld de, wd000
+	ld de, $d000
 	ld hl, VTiles2
 	lb bc, BANK(GBCOnlyGFX), $54
 	call Get2bpp
