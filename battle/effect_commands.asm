@@ -136,7 +136,7 @@ BattleCommand_CheckTurn: ; 34084
 	ld [wKickCounter], a
 	ld [AlreadyDisobeyed], a
 	ld [AlreadyFailed], a
-	ld [wc73e], a
+	ld [wSomeoneIsRampaging], a
 
 	ld a, 10 ; 1.0
 	ld [TypeModifier], a
@@ -2114,10 +2114,10 @@ BattleCommand_LowerSub: ; 34eee
 	ret
 
 .rollout_rampage
-	ld a, [wc73e]
+	ld a, [wSomeoneIsRampaging]
 	and a
 	ld a, 0
-	ld [wc73e], a
+	ld [wSomeoneIsRampaging], a
 	ret
 
 ; 34f57
@@ -6600,7 +6600,7 @@ BattleCommand_Rampage: ; 36751
 	inc a
 	ld [de], a
 	ld a, 1
-	ld [wc73e], a
+	ld [wSomeoneIsRampaging], a
 	ret
 
 ; 36778

@@ -36,17 +36,17 @@ BattleCommand_RolloutPower: ; 37734
 	ld hl, PlayerRolloutCount
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_37747
+	jr z, .got_rollout_count
 	ld hl, EnemyRolloutCount
 
-.asm_37747
+.got_rollout_count
 	ld a, [hl]
 	and a
-	jr nz, .asm_37750
+	jr nz, .skip_set_rampage
 	ld a, 1
-	ld [wc73e], a
+	ld [wSomeoneIsRampaging], a
 
-.asm_37750
+.skip_set_rampage
 	ld a, [AttackMissed]
 	and a
 	jr z, .hit
@@ -61,38 +61,39 @@ BattleCommand_RolloutPower: ; 37734
 	ld a, [hl]
 	ld b, a
 	cp MAX_ROLLOUT_COUNT
-	jr c, .asm_3776e
+	jr c, .not_done_with_rollout
 
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVarAddr
 	res SUBSTATUS_ROLLOUT, [hl]
-	jr .asm_37775
+	jr .done_with_substatus_flag
 
-.asm_3776e
+.not_done_with_rollout
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVarAddr
 	set SUBSTATUS_ROLLOUT, [hl]
 
-.asm_37775
+.done_with_substatus_flag
 	ld a, BATTLE_VARS_SUBSTATUS2
 	call GetBattleVar
 	bit SUBSTATUS_CURLED, a
-	jr z, .asm_3777f
+	jr z, .not_curled
 	inc b
-.asm_3777f
+.not_curled
+.loop
 	dec b
-	jr z, .asm_37790
+	jr z, .done_damage
 
 	ld hl, CurDamage + 1
 	sla [hl]
 	dec hl
 	rl [hl]
-	jr nc, .asm_3777f
+	jr nc, .loop
 
 	ld a, $ff
 	ld [hli], a
 	ld [hl], a
 
-.asm_37790
+.done_damage
 	ret
 ; 37791

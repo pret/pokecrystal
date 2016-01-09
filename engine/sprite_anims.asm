@@ -218,7 +218,7 @@ DoAnimFrame: ; 8d24b
 	ret
 
 .five: ; 8d36c (23:536c)
-	callab Function11a3b
+	callab NamingScreen_AnimateCursor
 	ret
 
 .twelve: ; 8d373 (23:5373)

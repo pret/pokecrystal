@@ -210,3 +210,15 @@ hall_of_fame: MACRO
 \1Mon6:: hof_mon \1Mon6
 \1End:: ds 1
 ENDM
+
+trademon: MACRO
+\1Species:: ds 1 ; wc6d0 | wc702
+\1SpeciesName:: ds PKMN_NAME_LENGTH ; wc6d1 | wc703
+\1Nickname:: ds PKMN_NAME_LENGTH ; wc6dc | wc70e
+\1SenderName:: ds NAME_LENGTH ; wc6e7 | wc719
+\1OTName:: ds NAME_LENGTH ; wc6f2 | wc724
+\1DVs:: ds 2 ; wc6fd | wc72f
+\1ID:: ds 2 ; wc6ff | wc731
+\1CaughtData:: ds 1 ; wc701 | wc733
+\1End::
+ENDM

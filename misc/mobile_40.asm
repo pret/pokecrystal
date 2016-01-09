@@ -2599,7 +2599,7 @@ Function10107d: ; 10107d
 	ld bc, NAME_LENGTH
 	call .CopyAllFromOT
 	ld hl, OTPartyMon1Species
-	ld de, wc68a + 15
+	ld de, $c699
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call .CopyAllFromOT
 	ld a, $50

@@ -17,7 +17,7 @@
 	const SCGB_0F
 	const SCGB_10
 	const SCGB_11
-	const SCGB_12
+	const SCGB_POKEPIC
 	const SCGB_13
 	const SCGB_PACKPALS
 	const SCGB_TRAINER_CARD

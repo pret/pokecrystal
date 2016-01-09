@@ -429,7 +429,6 @@ AttackMissed:: ; c667
 ; nonzero for a miss
 	ds 1
 
-wc668::
 PlayerSubStatus1:: ; c668
 ; bit
 ; 7 attract
@@ -527,7 +526,6 @@ EnemyToxicCount:: ; c67c
 	ds 1
 EnemyDisableCount:: ; c67d
 	ds 1
-wc67e::
 EnemyEncoreCount:: ; c67e
 	ds 1
 EnemyPerishCount:: ; c67f
@@ -546,7 +544,6 @@ wBattleReward:: ds 3
 wBattleAnimParam::
 wKickCounter::
 wPresentPower:: ds 1
-wc68a::
 BattleScriptBuffer:: ; c68a
 	ds 40
 
@@ -574,102 +571,6 @@ PlayerSpdLevel:: ; c6ce
 PlayerSAtkLevel:: ; c6cf
 	ds 1
 
-trademon: MACRO
-\1Species:: ds 1 ; wc6d0 | wDummyGameNumberTriesRemaining
-\1SpeciesName:: ds PKMN_NAME_LENGTH ; wc6d1 | wDummyGameLastMatches
-\1Nickname:: ds PKMN_NAME_LENGTH ; wc6dc | wc70e
-\1SenderName:: ds NAME_LENGTH ; wc6e7 | wc719
-\1OTName:: ds NAME_LENGTH ; wc6f2 | wc724
-\1DVs:: ds 2 ; wc6fd | wc72f
-\1ID:: ds 2 ; wc6ff | wc731
-\1CaughtData:: ds 1 ; wc701 | wc733
-\1End::
-ENDM
-wTrademons::
-wPlayerTrademon:: trademon wPlayerTrademon
-wOTTrademon::     trademon wOTTrademon
-wTrademonsEnd::
-	ds wTrademons - @
-
-; Slot Machine
-wSlots::
-slot_reel: MACRO
-\1ReelAction::   db
-\1TilemapAddr::  dw
-\1Position::     db
-\1SpinDistance:: db
-\1SpinRate::     db
-\1OAMAddr::      dw
-\1XCoord::       db
-\1Slot09::       ds 1
-\1Slot0a::       ds 1
-\1Slot0b::       ds 1
-\1Slot0c::       ds 1
-\1Slot0d::       ds 1
-\1Slot0e::       ds 1
-\1Slot0f::       ds 1
-endm
-; c6d0
-wReel1:: slot_reel wReel1
-wReel2:: slot_reel wReel2
-wReel3:: slot_reel wReel3
-; c700
-wReel1Stopped:: ds 3
-wReel2Stopped:: ds 3
-wReel3Stopped:: ds 3
-wSlotBias:: ds 1
-wSlotBet:: ds 1
-wFirstTwoReelsMatching:: ds 1
-wFirstTwoReelsMatchingSevens:: ds 1
-wSlotMatched:: ds 1
-wCurrReelStopped:: ds 3
-wPayout:: ds 2
-wCurrReelXCoord:: ds 1
-wCurrReelYCoord:: ds 1
-	ds 2
-wSlotBuildingMatch:: ds 1
-wSlotsDataEnd::
-	ds 28
-wSlotsEnd::
-	ds wSlots - @
-
-; Card Flip
-; c6d0
-wCardFlip::
-wDeck:: ds 24
-wDeckEnd::
-; c6e8
-wCardFlipNumCardsPlayed:: ds 1
-wCardFlipFaceUpCard:: ds 1
-wDiscardPile:: ds 24
-wDiscardPileEnd::
-wCardFlipEnd::
-	ds wCardFlip - @
-
-; Dummy Game
-; c6d0
-wDummyGame::
-wDummyGameCards:: ds 9 * 5
-wDummyGameCardsEnd::
-wDummyGameLastCardPicked:: ds 1 ; c6fd
-wDummyGameCard1:: ds 1 ; c6fe
-wDummyGameCard2:: ds 1 ; c6ff
-wDummyGameCard1Location:: ds 1 ; c700
-wDummyGameCard2Location:: ds 1 ; c701
-wDummyGameNumberTriesRemaining:: ds 1 ; c702
-wDummyGameLastMatches:: ds 5 ; c703
-wDummyGameCounter:: ds 1 ; c708
-wDummyGameNumCardsMatched:: ds 1 ; c709
-wDummyGameEnd::
-	ds wDummyGame - @
-; Unown Puzzle
-wUnownPuzzle::
-wPuzzlePieces::
-	ds 6 * 6
-wUnownPuzzleEnd::
-	ds wUnownPuzzle - @
-
-; Battle RAM
 wc6d0::
 PlayerSDefLevel:: ; c6d0
 	ds 1
@@ -681,9 +582,9 @@ PlayerEvaLevel:: ; c6d2
 	ds 1
 ; c6d3
 wc6d3:: ds 1
-wc6d4::
 PlayerStatLevelsEnd::
 
+wc6d4::
 EnemyStatLevels:: ; c6d4
 ; 07 neutral
 EnemyAtkLevel:: ; c6d4
@@ -892,29 +793,119 @@ wc734::
 BattleEnded:: ; c734
 	ds 1
 
-wWildMonMoves::
-wc735:: ds 1
-wLinkPlayer1Name:: ds NAME_LENGTH
-wLinkPlayer2Name:: ds NAME_LENGTH
-	ds wLinkPlayer1Name - @
-wc736:: ds 3
+wWildMonMoves:: ds NUM_MOVES
 wWildMonPP:: ds NUM_MOVES
 wAmuletCoin:: ds 1
-wc73e:: ds 1
+wSomeoneIsRampaging:: ds 1
 wPlayerJustGotFrozen:: ds 1
 wEnemyJustGotFrozen:: ds 1
-wc741::
 wBattleEnd::
-; c741
+; Battle RAM
 
-	ds 11
-wc74c:: ds 1
-wc74d:: ds 1
+; c741
+	ds wc6d0 - @
+wTrademons::
+wPlayerTrademon:: trademon wPlayerTrademon
+wOTTrademon::     trademon wOTTrademon
+wTrademonsEnd::
+	ds 2
+wLinkPlayer1Name:: ds NAME_LENGTH
+wLinkPlayer2Name:: ds NAME_LENGTH
+wLinkTradeSendmonSpecies:: ds 1
+wLinkTradeGetmonSpecies:: ds 1
 wc74e:: ds 107
 wc7b9:: ds 1
 wc7ba:: ds 1
 wc7bb:: ds 2
 wc7bd::
+	ds wc6d0 - @
+
+wNamingScreenDestinationPointer:: ds 2 ; c6d0
+wNamingScreenCurrNameLength:: ds 1 ; c6d2
+wNamingScreenMaxNameLength:: ds 1 ; c6d3
+wNamingScreenType:: ds 1 ; c6d4
+wNamingScreenCursorObjectPointer:: ds 2 ; c6d5
+wNamingScreenLastCharacter:: ds 1 ; c6d7
+wNamingScreenStringEntryCoord:: ds 2 ; c6d8
+	ds wc6d0 - @
+
+; Slot Machine
+wSlots::
+slot_reel: MACRO
+\1ReelAction::   db
+\1TilemapAddr::  dw
+\1Position::     db
+\1SpinDistance:: db
+\1SpinRate::     db
+\1OAMAddr::      dw
+\1XCoord::       db
+\1Slot09::       ds 1
+\1Slot0a::       ds 1
+\1Slot0b::       ds 1
+\1Slot0c::       ds 1
+\1Slot0d::       ds 1
+\1Slot0e::       ds 1
+\1Slot0f::       ds 1
+endm
+; c6d0
+wReel1:: slot_reel wReel1
+wReel2:: slot_reel wReel2
+wReel3:: slot_reel wReel3
+; c700
+wReel1Stopped:: ds 3
+wReel2Stopped:: ds 3
+wReel3Stopped:: ds 3
+wSlotBias:: ds 1
+wSlotBet:: ds 1
+wFirstTwoReelsMatching:: ds 1
+wFirstTwoReelsMatchingSevens:: ds 1
+wSlotMatched:: ds 1
+wCurrReelStopped:: ds 3
+wPayout:: ds 2
+wCurrReelXCoord:: ds 1
+wCurrReelYCoord:: ds 1
+	ds 2
+wSlotBuildingMatch:: ds 1
+wSlotsDataEnd::
+	ds 28
+wSlotsEnd::
+	ds wSlots - @
+
+; Card Flip
+; c6d0
+wCardFlip::
+wDeck:: ds 24
+wDeckEnd::
+; c6e8
+wCardFlipNumCardsPlayed:: ds 1
+wCardFlipFaceUpCard:: ds 1
+wDiscardPile:: ds 24
+wDiscardPileEnd::
+wCardFlipEnd::
+	ds wCardFlip - @
+
+; Dummy Game
+; c6d0
+wDummyGame::
+wDummyGameCards:: ds 9 * 5
+wDummyGameCardsEnd::
+wDummyGameLastCardPicked:: ds 1 ; c6fd
+wDummyGameCard1:: ds 1 ; c6fe
+wDummyGameCard2:: ds 1 ; c6ff
+wDummyGameCard1Location:: ds 1 ; c700
+wDummyGameCard2Location:: ds 1 ; c701
+wDummyGameNumberTriesRemaining:: ds 1 ; c702
+wDummyGameLastMatches:: ds 5 ; c703
+wDummyGameCounter:: ds 1 ; c708
+wDummyGameNumCardsMatched:: ds 1 ; c709
+wDummyGameEnd::
+	ds wDummyGame - @
+; Unown Puzzle
+wUnownPuzzle::
+wPuzzlePieces::
+	ds 6 * 6
+wUnownPuzzleEnd::
+
 	ds wc6d0 - @
 
 wPokedexDataStart::

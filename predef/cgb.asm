@@ -51,7 +51,7 @@ Predef_LoadSGBLayoutCGB: ; 8d59
 	dw _CGB0f
 	dw _CGB10
 	dw _CGB11
-	dw _CGB12
+	dw _CGB_Pokepic
 	dw _CGB13
 	dw _CGB_PackPals
 	dw _CGB_TrainerCard
@@ -948,7 +948,7 @@ _CGB_PackPals: ; 93d3
 	RGB 00, 00, 00
 ; 9499
 
-_CGB12: ; 9499
+_CGB_Pokepic: ; 9499
 	call _CGB_MapPals
 	ld de, SCREEN_WIDTH
 	hlcoord 0, 0, AttrMap

@@ -2525,7 +2525,7 @@ UsedSurfScript: ; c986
 	waitbutton
 	closetext
 
-	callasm Functionc9a2 ; empty function
+	callasm .empty_fn ; empty function
 
 	copybytetovar Buffer2
 	writevarcode VAR_MOVEMENT
@@ -2537,7 +2537,7 @@ UsedSurfScript: ; c986
 	applymovement PLAYER, MovementBuffer ; PLAYER, MovementBuffer
 	end
 
-Functionc9a2: ; c9a2
+.empty_fn: ; c9a2
 	callba MobileFn_1060bb ; empty
 	ret
 
@@ -5124,7 +5124,6 @@ INCLUDE "engine/pack.asm"
 INCLUDE "engine/time.asm"
 INCLUDE "engine/tmhm.asm"
 INCLUDE "engine/namingscreen.asm"
-INCLUDE "engine/compose_mail.asm"
 
 Script_AbortBugContest: ; 0x122c1
 	checkflag ENGINE_BUG_CONTEST_TIMER
@@ -5414,7 +5413,7 @@ Pokepic:: ; 244e3
 	call MenuBox
 	call UpdateSprites
 	call ApplyTilemap
-	ld b, SCGB_12
+	ld b, SCGB_POKEPIC
 	call GetSGBLayout
 	xor a
 	ld [hBGMapMode], a
