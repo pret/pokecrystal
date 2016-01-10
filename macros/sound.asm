@@ -57,6 +57,19 @@ notetype: macro
 	endc
 	endm
 
+notetype_: macro
+    db $d8
+    db (\1)
+    if _NARG >= 2
+    if "\3" == "decrease"
+    x = 0
+    else
+    x = 1
+    endc
+    db (\2) << 4 | x << 3 | (\4)
+    endc
+endm
+
 transpose: macro
 ; \1: octave (0 - 15)
 ; \2: pitch (0 - 15)
