@@ -1173,7 +1173,7 @@ endr
 	ret
 
 .a
-	call Function12185
+	call NamingScreen_PressedA_GetCursorCommand
 	cp $1
 	jr z, .select
 	cp $2
@@ -1181,7 +1181,7 @@ endr
 	cp $3
 	jr z, .finished
 	call NamingScreen_GetLastCharacter
-	call Function121ac
+	call MailComposition_TryAddLastCharacter
 	jr c, .start
 	ld hl, wNamingScreenCurrNameLength
 	ld a, [hl]
@@ -1242,8 +1242,8 @@ endr
 	ret
 
 ; called from engine/sprite_anims.asm
-Function120c1: ; 120c1 (4:60c1)
-	call Function1210c
+ComposeMail_AnimateCursor: ; 120c1 (4:60c1)
+	call .GetDPad
 	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
@@ -1253,12 +1253,12 @@ Function120c1: ; 120c1 (4:60c1)
 	add hl, bc
 	ld [hl], e
 	cp $5
-	ld de, Unknown_120f8
+	ld de, .LetterEntries
 	ld a, 0
-	jr nz, .asm_120df
-	ld de, Unknown_12102
+	jr nz, .got_pointer
+	ld de, .CaseDelEnd
 	ld a, 1
-.asm_120df
+.got_pointer
 	ld hl, SPRITEANIMSTRUCT_0E
 	add hl, bc
 	add [hl]
@@ -1278,14 +1278,14 @@ Function120c1: ; 120c1 (4:60c1)
 
 ; 120f8 (4:60f8)
 
-Unknown_120f8: ; 120f8
+.LetterEntries: ; 120f8
 	db $00, $10, $20, $30, $40, $50, $60, $70, $80, $90
 
-Unknown_12102: ; 12102
+.CaseDelEnd: ; 12102
 	db $00, $00, $00, $30, $30, $30, $60, $60, $60, $60
 ; 1210c
 
-Function1210c: ; 1210c (4:610c)
+.GetDPad: ; 1210c (4:610c)
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_UP
@@ -1302,26 +1302,26 @@ Function1210c: ; 1210c (4:610c)
 	ret
 
 .right
-	call Function1218b
+	call ComposeMail_GetCursorPosition
 	and a
-	jr nz, .asm_12138
+	jr nz, .case_del_done_right
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	cp $9
-	jr nc, .asm_12135
+	jr nc, .wrap_around_letter_right
 	inc [hl]
 	ret
 
-.asm_12135
+.wrap_around_letter_right
 	ld [hl], $0
 	ret
 
-.asm_12138
+.case_del_done_right
 	cp $3
-	jr nz, .asm_1213d
+	jr nz, .wrap_around_command_right
 	xor a
-.asm_1213d
+.wrap_around_command_right
 	ld e, a
 	add a
 	add e
@@ -1331,26 +1331,26 @@ Function1210c: ; 1210c (4:610c)
 	ret
 
 .left
-	call Function1218b
+	call ComposeMail_GetCursorPosition
 	and a
-	jr nz, .asm_12159
+	jr nz, .caps_del_done_left
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_12156
+	jr z, .wrap_around_letter_left
 	dec [hl]
 	ret
 
-.asm_12156
+.wrap_around_letter_left
 	ld [hl], $9
 	ret
 
-.asm_12159
+.caps_del_done_left
 	cp $1
-	jr nz, .asm_1215f
+	jr nz, .wrap_around_command_left
 	ld a, $4
-.asm_1215f
+.wrap_around_command_left
 rept 2
 	dec a
 endr
@@ -1367,11 +1367,11 @@ endr
 	add hl, bc
 	ld a, [hl]
 	cp $5
-	jr nc, .asm_12175
+	jr nc, .wrap_around_down
 	inc [hl]
 	ret
 
-.asm_12175
+.wrap_around_down
 	ld [hl], $0
 	ret
 
@@ -1380,54 +1380,54 @@ endr
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_12182
+	jr z, .wrap_around_up
 	dec [hl]
 	ret
 
-.asm_12182
+.wrap_around_up
 	ld [hl], $5
 	ret
 
-Function12185: ; 12185 (4:6185)
+NamingScreen_PressedA_GetCursorCommand: ; 12185 (4:6185)
 	ld hl, wNamingScreenCursorObjectPointer
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
 
-Function1218b: ; 1218b (4:618b)
+ComposeMail_GetCursorPosition: ; 1218b (4:618b)
 	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
 	cp $5
-	jr nz, .asm_121aa
+	jr nz, .letter
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	cp $3
-	jr c, .asm_121a4
+	jr c, .case
 	cp $6
-	jr c, .asm_121a7
+	jr c, .del
 	ld a, $3
 	ret
 
-.asm_121a4
+.case
 	ld a, $1
 	ret
 
-.asm_121a7
+.del
 	ld a, $2
 	ret
 
-.asm_121aa
+.letter
 	xor a
 	ret
 
-Function121ac: ; 121ac (4:61ac)
+MailComposition_TryAddLastCharacter: ; 121ac (4:61ac)
 	ld a, [wNamingScreenLastCharacter]
 	jp MailComposition_TryAddCharacter
 ; 121b2 (4:61b2)
 
-Function121b2: ; unreferenced
+; XXX
 	ld a, [wNamingScreenCurrNameLength]
 	and a
 	ret z

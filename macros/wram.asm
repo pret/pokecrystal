@@ -222,3 +222,13 @@ trademon: MACRO
 \1CaughtData:: ds 1 ; wc701 | wc733
 \1End::
 ENDM
+
+move_struct: MACRO
+\1Animation:: ds 1
+\1Effect:: ds 1
+\1Power:: ds 1
+\1Type:: ds 1
+\1Accuracy:: ds 1
+\1PP:: ds 1
+\1EffectChance:: ds 1
+endm

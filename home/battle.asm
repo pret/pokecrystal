@@ -218,19 +218,19 @@ endr
 .lastmoveopp    db ENEMY_LAST_MOVE,       PLAYER_LAST_MOVE
 
 .vars
-	dw PlayerSubStatus1,     EnemySubStatus1
-	dw PlayerSubStatus2,     EnemySubStatus2
-	dw PlayerSubStatus3,     EnemySubStatus3
-	dw PlayerSubStatus4,     EnemySubStatus4
-	dw PlayerSubStatus5,     EnemySubStatus5
-	dw BattleMonStatus,      EnemyMonStatus
-	dw wPlayerMoveStruct + MOVE_ANIM,   wEnemyMoveStruct + MOVE_ANIM
-	dw wPlayerMoveStruct + MOVE_EFFECT, wEnemyMoveStruct + MOVE_EFFECT
-	dw wPlayerMoveStruct + MOVE_POWER,  wEnemyMoveStruct + MOVE_POWER
-	dw wPlayerMoveStruct + MOVE_TYPE,   wEnemyMoveStruct + MOVE_TYPE
-	dw CurPlayerMove,        CurEnemyMove
-	dw LastEnemyCounterMove, LastPlayerCounterMove
-	dw LastPlayerMove,       LastEnemyMove
+	dw PlayerSubStatus1,             EnemySubStatus1
+	dw PlayerSubStatus2,             EnemySubStatus2
+	dw PlayerSubStatus3,             EnemySubStatus3
+	dw PlayerSubStatus4,             EnemySubStatus4
+	dw PlayerSubStatus5,             EnemySubStatus5
+	dw BattleMonStatus,              EnemyMonStatus
+	dw wPlayerMoveStructAnimation,   wEnemyMoveStructAnimation
+	dw wPlayerMoveStructEffect,      wEnemyMoveStructEffect
+	dw wPlayerMoveStructPower,       wEnemyMoveStructPower
+	dw wPlayerMoveStructType,        wEnemyMoveStructType
+	dw CurPlayerMove,                CurEnemyMove
+	dw LastEnemyCounterMove,         LastPlayerCounterMove
+	dw LastPlayerMove,               LastEnemyMove
 ; 3a90
 
 

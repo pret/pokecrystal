@@ -2799,7 +2799,7 @@ PlayerAttackDamage: ; 352e2
 
 	call ResetDamage
 
-	ld hl, wPlayerMoveStruct + MOVE_POWER
+	ld hl, wPlayerMoveStructPower
 	ld a, [hli]
 	and a
 	ld d, a
@@ -2946,7 +2946,7 @@ GetDamageStats: ; 3537e
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .enemy
-	ld a, [wPlayerMoveStruct + MOVE_TYPE]
+	ld a, [wPlayerMoveStructType]
 	cp SPECIAL
 ; special
 	ld a, [PlayerSAtkLevel]
@@ -2960,7 +2960,7 @@ GetDamageStats: ; 3537e
 	jr .end
 
 .enemy
-	ld a, [wEnemyMoveStruct + MOVE_TYPE]
+	ld a, [wEnemyMoveStructType]
 	cp SPECIAL
 ; special
 	ld a, [EnemySAtkLevel]
@@ -3063,8 +3063,8 @@ EnemyAttackDamage: ; 353f6
 	call ResetDamage
 
 ; No damage dealt with 0 power.
-	ld hl, wEnemyMoveStruct + MOVE_POWER
-	ld a, [hli] ; hl = wEnemyMoveStruct + MOVE_TYPE
+	ld hl, wEnemyMoveStructPower
+	ld a, [hli] ; hl = wEnemyMoveStructType
 	ld d, a
 	and a
 	ret z
@@ -3211,7 +3211,7 @@ BattleCommand_BeatUp: ; 35461
 	ld a, [hl]
 	ld e, a
 	pop bc
-	ld a, [wPlayerMoveStruct + MOVE_POWER]
+	ld a, [wPlayerMoveStructPower]
 	ld d, a
 	ret
 
@@ -3317,7 +3317,7 @@ BattleCommand_BeatUp: ; 35461
 	ld a, [hl]
 	ld e, a
 	pop bc
-	ld a, [wEnemyMoveStruct + MOVE_POWER]
+	ld a, [wEnemyMoveStructPower]
 	ld d, a
 	ret
 
@@ -3401,7 +3401,7 @@ endr
 	ld l, [hl]
 	ld h, a
 	call TruncateHL_BC
-	ld d, $28
+	ld d, 40
 	pop af
 	ld e, a
 	ret
@@ -3806,14 +3806,14 @@ BattleCommand_ConstantDamage: ; 35726
 	ld a, [hl]
 	jr nz, .notPlayersTurn
 
-	ld hl, wPlayerMoveStruct + MOVE_POWER
+	ld hl, wPlayerMoveStructPower
 	ld [hl], a
 	push hl
 	call PlayerAttackDamage
 	jr .notEnemysTurn
 
 .notPlayersTurn
-	ld hl, wEnemyMoveStruct + MOVE_POWER
+	ld hl, wEnemyMoveStructPower
 	ld [hl], a
 	push hl
 	call EnemyAttackDamage
@@ -6521,8 +6521,8 @@ BattleCommand_UnleashEnergy: ; 366e5
 	ld [de], a
 	inc de
 	ld [de], a
-	ld [wPlayerMoveStruct + MOVE_EFFECT], a
-	ld [wEnemyMoveStruct + MOVE_EFFECT], a
+	ld [wPlayerMoveStructEffect], a
+	ld [wEnemyMoveStructEffect], a
 	call BattleRandom
 	and 1
 	inc a
@@ -6752,7 +6752,7 @@ BattleCommand_ForceSwitch: ; 3680f
 	inc a
 	ld [wForcedSwitch], a
 	call SetBattleDraw
-	ld a, [wPlayerMoveStruct + MOVE_ANIM]
+	ld a, [wPlayerMoveStructAnimation]
 	jp .succeed
 
 .trainer
@@ -6845,7 +6845,7 @@ BattleCommand_ForceSwitch: ; 3680f
 	inc a
 	ld [wForcedSwitch], a
 	call SetBattleDraw
-	ld a, [wEnemyMoveStruct + MOVE_ANIM]
+	ld a, [wEnemyMoveStructAnimation]
 	jr .succeed
 
 .vs_trainer

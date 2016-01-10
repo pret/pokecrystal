@@ -374,9 +374,9 @@ wMisc:: ; ds (SCREEN_WIDTH + 4) * (SCREEN_HEIGHT + 2)
 wBattle::
 wc608::
 
-wEnemyMoveStruct::  ds MOVE_LENGTH ; c608
+wEnemyMoveStruct::  move_struct wEnemyMoveStruct
 wc60f::
-wPlayerMoveStruct:: ds MOVE_LENGTH ; c60f
+wPlayerMoveStruct:: move_struct wPlayerMoveStruct
 wc616::
 	ds -4
 wc612:: ds 4

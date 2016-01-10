@@ -222,7 +222,7 @@ DoAnimFrame: ; 8d24b
 	ret
 
 .twelve: ; 8d373 (23:5373)
-	callab Function120c1
+	callab ComposeMail_AnimateCursor
 	ret
 
 .GameFreakLogo: ; 8d37a (23:537a)
