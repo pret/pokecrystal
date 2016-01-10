@@ -501,7 +501,7 @@ Pokedex_InitOptionScreen: ; 4039d (10:439d)
 	ld [wDexArrowCursorPosIndex], a
 	call Pokedex_DisplayModeDescription
 	call WaitBGMap
-	ld a, $10
+	ld a, SCGB_POKEDEX_SEARCH_OPTION
 	call Pokedex_GetSGBLayout
 	call Pokedex_IncrementDexPointer
 	ret
@@ -609,7 +609,7 @@ Pokedex_InitSearchScreen: ; 40443 (10:4443)
 	ld [wDexSearchSlowpokeFrame], a
 	callba DoDexSearchSlowpokeFrame
 	call WaitBGMap
-	ld a, $10
+	ld a, SCGB_POKEDEX_SEARCH_OPTION
 	call Pokedex_GetSGBLayout
 	call Pokedex_IncrementDexPointer
 	ret
@@ -788,7 +788,7 @@ Pokedex_InitUnownMode: ; 405bd (10:45bd)
 	call Pokedex_UnownModePlaceCursor
 	callba PrintUnownWord
 	call WaitBGMap
-	ld a, $16
+	ld a, SCGB_POKEDEX_UNOWN_MODE
 	call Pokedex_GetSGBLayout
 	call Pokedex_IncrementDexPointer
 	ret
