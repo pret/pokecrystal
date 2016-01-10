@@ -578,7 +578,7 @@ FixDataForLinkTransfer: ; 28434
 rept 3
 	ld [hli], a
 endr
-	ld b, wc6d3 - (wMisc + 3)
+	ld b, $c8
 	xor a
 .loop3
 	ld [hli], a

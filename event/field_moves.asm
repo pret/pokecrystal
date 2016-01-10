@@ -330,7 +330,7 @@ FlyFromAnim: ; 8caed
 	ld [VramState], a
 	call FlyFunction_InitGFX
 	depixel 10, 10, 4, 0
-	ld a, SPRITE_ANIM_INDEX_WALK_CYCLE
+	ld a, SPRITE_ANIM_INDEX_RED_WALK
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
@@ -365,7 +365,7 @@ FlyToAnim: ; 8cb33
 	ld [VramState], a
 	call FlyFunction_InitGFX
 	depixel 31, 10, 4, 0
-	ld a, SPRITE_ANIM_INDEX_WALK_CYCLE
+	ld a, SPRITE_ANIM_INDEX_RED_WALK
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc

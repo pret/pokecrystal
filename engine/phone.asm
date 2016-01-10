@@ -651,15 +651,16 @@ Function90380: ; 90380 (24:4380)
 	call GetCallerName
 	ret
 
-Function9038a: ; 9038a (24:438a)
+CheckCanDeletePhoneNumber: ; 9038a (24:438a)
 	ld a, c
 	call GetCallerTrainerClass
 	ld a, c
+	; and a
 	ret nz
 	ld a, b
-	cp $1
+	cp PHONECONTACT_MOM
 	ret z
-	cp $4
+	cp PHONECONTACT_ELM
 	ret z
 	ld c, $1
 	ret

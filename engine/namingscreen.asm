@@ -3,6 +3,7 @@ _NamingScreen: ; 0x116b7
 	call NamingScreen
 	call ReturnToMapWithSpeechTextbox
 	ret
+
 ; 0x116c1
 
 NamingScreen: ; 116c1
@@ -37,6 +38,7 @@ NamingScreen: ; 116c1
 	ld [Options], a
 	call ClearJoypad
 	ret
+
 ; 116f8
 
 .SetUpNamingScreen: ; 116f8
@@ -54,6 +56,7 @@ NamingScreen: ; 116c1
 	call SetPalettes
 	call NamingScreen_InitNameEntry
 	ret
+
 ; 1171d
 
 .GetNamingScreenSetup: ; 1171d
@@ -69,8 +72,8 @@ endr
 	ld h, [hl]
 	ld l, a
 	jp [hl]
-; 1172e
 
+; 1172e
 
 .Jumptable: ; 1172e (4:572e)
 	dw .Pokemon
@@ -81,7 +84,6 @@ endr
 	dw .Tomodachi
 	dw .Pokemon
 	dw .Pokemon
-
 
 .Pokemon: ; 1173e (4:573e)
 	ld a, [CurPartySpecies]
@@ -113,11 +115,13 @@ endr
 .genderless
 	call .StoreMonIconParams
 	ret
+
 ; 11780 (4:5780)
 
 .NicknameStrings: ; 11780
 	db "'S@"
 	db "NICKNAME?@"
+
 ; 1178d
 
 .Player: ; 1178d (4:578d)
@@ -128,10 +132,12 @@ endr
 	call PlaceString
 	call .StoreSpriteIconParams
 	ret
+
 ; 117a3 (4:57a3)
 
 .PlayerNameString: ; 117a3
 	db "YOUR NAME?@"
+
 ; 117ae
 
 .Rival: ; 117ae (4:57ae)
@@ -143,10 +149,12 @@ endr
 	call PlaceString
 	call .StoreSpriteIconParams
 	ret
+
 ; 117c3 (4:57c3)
 
 .RivalNameString: ; 117c3
 	db "RIVAL'S NAME?@"
+
 ; 117d1
 
 .Mom: ; 117d1 (4:57d1)
@@ -158,10 +166,12 @@ endr
 	call PlaceString
 	call .StoreSpriteIconParams
 	ret
+
 ; 117e6 (4:57e6)
 
 .MomNameString: ; 117e6
 	db "MOTHER'S NAME?@"
+
 ; 117f5
 
 .Box: ; 117f5 (4:57f5)
@@ -170,11 +180,11 @@ endr
 	lb bc, BANK(PokeBallSpriteGFX), $4
 	call Request2bpp
 	xor a
-	ld hl, wc300
+	ld hl, wSpriteAnimDict
 	ld [hli], a
 	ld [hl], a
 	depixel 4, 4, 4, 0
-	ld a, SPRITE_ANIM_INDEX_WALK_CYCLE
+	ld a, SPRITE_ANIM_INDEX_RED_WALK
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
@@ -184,10 +194,12 @@ endr
 	call PlaceString
 	call .StoreBoxIconParams
 	ret
+
 ; 11822 (4:5822)
 
 .BoxNameString: ; 11822
 	db "BOX NAME?@"
+
 ; 1182c
 
 .Tomodachi: ; 1182c (4:582c)
@@ -196,10 +208,12 @@ endr
 	call PlaceString
 	call .StoreSpriteIconParams
 	ret
+
 ; 11839 (4:5839)
 
 .oTomodachi_no_namae_sutoringu: ; 11839
 	db "おともだち の なまえは?@"
+
 ; 11847
 
 .LoadSprite: ; 11847 (4:5847)
@@ -216,18 +230,18 @@ endr
 	ld hl, VTiles0 tile $04
 	call Request2bpp
 	xor a
-	ld hl, wc300
+	ld hl, wSpriteAnimDict
 	ld [hli], a
 	ld [hl], a
 	pop de
-	ld b, SPRITE_ANIM_INDEX_WALK_CYCLE
+	ld b, SPRITE_ANIM_INDEX_RED_WALK
 	ld a, d
 	cp KrisSpriteGFX / $100
 	jr nz, .not_kris
 	ld a, e
 	cp KrisSpriteGFX % $100
 	jr nz, .not_kris
-	ld b, SPRITE_ANIM_INDEX_1E
+	ld b, SPRITE_ANIM_INDEX_BLUE_WALK
 .not_kris
 	ld a, b
 	depixel 4, 4, 4, 0
@@ -257,7 +271,6 @@ endr
 	ld [wNamingScreenStringEntryCoord + 1], a
 	ret
 
-
 NamingScreen_IsTargetBox: ; 1189c
 	push bc
 	push af
@@ -268,6 +281,7 @@ NamingScreen_IsTargetBox: ; 1189c
 	dec b
 	pop bc
 	ret
+
 ; 118a8
 
 NamingScreen_InitText: ; 118a8
@@ -330,6 +344,7 @@ NamingScreen_ApplyTextInputMode: ; 118ca
 	dec b
 	jr nz, .row
 	ret
+
 ; 11915
 
 NamingScreenJoypadLoop: ; 11915
@@ -352,6 +367,7 @@ NamingScreenJoypadLoop: ; 11915
 	ld [hSCY], a
 	scf
 	ret
+
 ; 11940
 
 .UpdateStringEntry: ; 11940
@@ -377,6 +393,7 @@ NamingScreenJoypadLoop: ; 11915
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
+
 ; 11968
 
 .RunJumptable: ; 11968
@@ -391,13 +408,12 @@ endr
 	ld h, [hl]
 	ld l, a
 	jp [hl]
-; 11977
 
+; 11977
 
 .Jumptable: ; 11977 (4:5977)
 	dw .InitCursor
 	dw .ReadButtons
-
 
 .InitCursor: ; 1197b (4:597b)
 	depixel 10, 3
@@ -410,7 +426,7 @@ endr
 	ld a, c
 	ld [wNamingScreenCursorObjectPointer], a
 	ld a, b
-	ld [wc6d6], a
+	ld [wNamingScreenCursorObjectPointer + 1], a
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld a, [hl]
@@ -569,6 +585,7 @@ NamingScreen_AnimateCursor: ; 11a3b (4:5a3b)
 	add hl, bc
 	ld [hl], a
 	ret
+
 ; 11a79 (4:5a79)
 
 .LetterEntries: ; 11a79
@@ -576,6 +593,7 @@ NamingScreen_AnimateCursor: ; 11a3b (4:5a3b)
 
 .CaseDelEnd: ; 11a82
 	db $00, $00, $00, $30, $30, $30, $60, $60, $60
+
 ; 11a8b
 
 .GetDPad: ; 11a8b (4:5a8b)
@@ -593,6 +611,7 @@ NamingScreen_AnimateCursor: ; 11a3b (4:5a3b)
 	and D_RIGHT
 	jr nz, .right
 	ret
+
 .right
 	call NamingScreen_GetCursorPosition
 	and a
@@ -604,9 +623,11 @@ NamingScreen_AnimateCursor: ; 11a3b (4:5a3b)
 	jr nc, .asm_11ab4
 	inc [hl]
 	ret
+
 .asm_11ab4
 	ld [hl], $0
 	ret
+
 .asm_11ab7
 	cp $3
 	jr nz, .asm_11abc
@@ -619,6 +640,7 @@ NamingScreen_AnimateCursor: ; 11a3b (4:5a3b)
 	add hl, bc
 	ld [hl], a
 	ret
+
 .left
 	call NamingScreen_GetCursorPosition
 	and a
@@ -630,9 +652,11 @@ NamingScreen_AnimateCursor: ; 11a3b (4:5a3b)
 	jr z, .asm_11ad5
 	dec [hl]
 	ret
+
 .asm_11ad5
 	ld [hl], $8
 	ret
+
 .asm_11ad8
 	cp $1
 	jr nz, .asm_11ade
@@ -648,6 +672,7 @@ endr
 	add hl, bc
 	ld [hl], a
 	ret
+
 .down
 	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
@@ -658,14 +683,17 @@ endr
 	jr nc, .asm_11aff
 	inc [hl]
 	ret
+
 .asm_11af9
 	cp $4
 	jr nc, .asm_11aff
 	inc [hl]
 	ret
+
 .asm_11aff
 	ld [hl], $0
 	ret
+
 .up
 	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
@@ -674,6 +702,7 @@ endr
 	jr z, .asm_11b0c
 	dec [hl]
 	ret
+
 .asm_11b0c
 	ld [hl], $4
 	call NamingScreen_IsTargetBox
@@ -710,6 +739,7 @@ NamingScreen_AdvanceCursor_CheckEndOfString: ; 11b27
 .end_of_string
 	scf
 	ret
+
 ; 11b39 (4:5b39)
 
 ; XXX
@@ -735,6 +765,7 @@ NamingScreen_AdvanceCursor_CheckEndOfString: ; 11b27
 .done
 	ld a, [hl]
 	jr NamingScreen_LoadNextCharacter
+
 ; 11b56
 
 Dakutens: ; Dummied out
@@ -752,6 +783,7 @@ Handakutens: ; Dummied out
 	db "はぱ", "ひぴ", "ふぷ", "へぺ", "ほぽ"
 	db "ハパ", "ヒピ", "フプ", "へぺ", "ホポ"
 	db $ff
+
 ; 11bbc
 
 NamingScreen_DeleteCharacter: ; 11bbc (4:5bbc)
@@ -781,6 +813,7 @@ NamingScreen_GetTextCursorPosition: ; 11bd0 (4:5bd0)
 	add hl, de
 	pop af
 	ret
+
 ; 11be0
 
 NamingScreen_InitNameEntry: ; 11be0
@@ -801,8 +834,8 @@ NamingScreen_InitNameEntry: ; 11be0
 	jr nz, .loop
 	ld [hl], "@"
 	ret
-; 11bf7
 
+; 11bf7
 
 NamingScreen_StoreEntry: ; 11bf7 (4:5bf7)
 	ld hl, wNamingScreenDestinationPointer
@@ -861,12 +894,12 @@ NamingScreen_GetLastCharacter: ; 11c11 (4:5c11)
 	add hl, bc
 	dec d
 	jr .loop
+
 .done
 	add hl, de
 	ld a, [hl]
 	ld [wNamingScreenLastCharacter], a
 	ret
-
 
 LoadNamingScreenGFX: ; 11c51
 	call ClearSprites
@@ -912,6 +945,7 @@ LoadNamingScreenGFX: ; 11c51
 	ld a, $7
 	ld [hWX], a
 	ret
+
 ; 11cb7
 
 NamingScreenGFX_Border: ; 11cb7
@@ -928,6 +962,7 @@ NameInputLower:
 	db "s t u v w x y z  "
 	db "× ( ) : ; [ ] <PK> <MN>"
 	db "UPPER  DEL   END "
+
 BoxNameInputLower:
 	db "a b c d e f g h i"
 	db "j k l m n o p q r"
@@ -935,12 +970,14 @@ BoxNameInputLower:
 	db "é 'd 'l 'm 'r 's 't 'v 0"
 	db "1 2 3 4 5 6 7 8 9"
 	db "UPPER  DEL   END "
+
 NameInputUpper: ; Unreferenced?
 	db "A B C D E F G H I"
 	db "J K L M N O P Q R"
 	db "S T U V W X Y Z  "
 	db "- ? ! / . ,      "
 	db "lower  DEL   END "
+
 BoxNameInputUpper:
 	db "A B C D E F G H I"
 	db "J K L M N O P Q R"
@@ -948,6 +985,7 @@ BoxNameInputUpper:
 	db "× ( ) : ; [ ] <PK> <MN>"
 	db "- ? ! ♂ ♀ / . , &"
 	db "lower  DEL   END "
+
 ; 11e5d
 
 GFX_11e5d: ; ????
@@ -1047,6 +1085,7 @@ INCBIN "gfx/icon/mail2.2bpp"
 
 .Dummy: ; dummied out
 	db "メールを かいてね@"
+
 ; 11f84
 
 .InitCharset: ; 11f84 (4:5f84)
@@ -1136,7 +1175,6 @@ endr
 .Jumptable: ; 12017 (4:6017)
 	dw .init_blinking_cursor
 	dw .process_joypad
-
 
 .init_blinking_cursor: ; 1201b (4:601b)
 	depixel 9, 2
@@ -1242,6 +1280,7 @@ endr
 	ret
 
 ; called from engine/sprite_anims.asm
+
 ComposeMail_AnimateCursor: ; 120c1 (4:60c1)
 	call .GetDPad
 	ld hl, SPRITEANIMSTRUCT_0D
@@ -1283,6 +1322,7 @@ ComposeMail_AnimateCursor: ; 120c1 (4:60c1)
 
 .CaseDelEnd: ; 12102
 	db $00, $00, $00, $30, $30, $30, $60, $60, $60, $60
+
 ; 1210c
 
 .GetDPad: ; 1210c (4:610c)
@@ -1425,6 +1465,7 @@ ComposeMail_GetCursorPosition: ; 1218b (4:618b)
 MailComposition_TryAddLastCharacter: ; 121ac (4:61ac)
 	ld a, [wNamingScreenLastCharacter]
 	jp MailComposition_TryAddCharacter
+
 ; 121b2 (4:61b2)
 
 ; XXX
@@ -1461,6 +1502,7 @@ endr
 .asm_121d9
 	ld a, [hl]
 	jp NamingScreen_LoadNextCharacter
+
 ; 121dd
 
 MailEntry_Uppercase: ; 122dd
@@ -1470,6 +1512,7 @@ MailEntry_Uppercase: ; 122dd
 	db "1 2 3 4 5 6 7 8 9 0"
 	db "<PK> <MN> <PO> <KE> é ♂ ♀ ¥ … ×"
 	db "lower  DEL   END   "
+
 ; 1224f
 
 MailEntry_Lowercase: ; 1224f
@@ -1479,4 +1522,5 @@ MailEntry_Lowercase: ; 1224f
 	db "'d 'l 'm 'r 's 't 'v & ( )"
 	db "<``> <''> [ ] ' : ;      "
 	db "UPPER  DEL   END   "
+
 ; 122c1

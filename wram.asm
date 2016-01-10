@@ -574,44 +574,34 @@ PlayerSAtkLevel:: ; c6cf
 wc6d0::
 PlayerSDefLevel:: ; c6d0
 	ds 1
-wc6d1::
 PlayerAccLevel:: ; c6d1
 	ds 1
-wc6d2::
 PlayerEvaLevel:: ; c6d2
 	ds 1
 ; c6d3
-wc6d3:: ds 1
+	ds 1
 PlayerStatLevelsEnd::
 
-wc6d4::
 EnemyStatLevels:: ; c6d4
 ; 07 neutral
 EnemyAtkLevel:: ; c6d4
 	ds 1
-wc6d5::
 EnemyDefLevel:: ; c6d5
 	ds 1
-wc6d6::
 EnemySpdLevel:: ; c6d6
 	ds 1
-wc6d7::
 wTownMapCursorLandmark::
 EnemySAtkLevel:: ; c6d7
 	ds 1
-wc6d8::
 wTownMapPlayerIconLandmark::
 EnemySDefLevel:: ; c6d8
 	ds 1
-wc6d9::
 EnemyAccLevel:: ; c6d9
 	ds 1
-wc6da::
 EnemyEvaLevel:: ; c6da
 	ds 1
 
-wc6db:: ds 1
-wc6dc::
+	ds 1
 EnemyTurnsTaken:: ; c6dc
 	ds 1
 PlayerTurnsTaken:: ; c6dd
@@ -621,7 +611,6 @@ PlayerTurnsTaken:: ; c6dd
 
 PlayerSubstituteHP:: ; c6df
 	ds 1
-wc6e0::
 EnemySubstituteHP:: ; c6e0
 	ds 1
 
@@ -820,6 +809,7 @@ wc7bb:: ds 2
 wc7bd::
 	ds wc6d0 - @
 
+; naming screen
 wNamingScreenDestinationPointer:: ds 2 ; c6d0
 wNamingScreenCurrNameLength:: ds 1 ; c6d2
 wNamingScreenMaxNameLength:: ds 1 ; c6d3
@@ -829,24 +819,21 @@ wNamingScreenLastCharacter:: ds 1 ; c6d7
 wNamingScreenStringEntryCoord:: ds 2 ; c6d8
 	ds wc6d0 - @
 
-; Slot Machine
+; pokegear
+wPokegearPhoneLoadNameBuffer:: ds 1 ; c6d0
+wPokegearPhoneCursorPosition:: ds 1 ; c6d1
+wPokegearPhoneScrollPosition:: ds 1 ; c6d2
+wPokegearPhoneSelectedPerson:: ds 1 ; c6d3
+wPokegearPhoneSubmenuCursor:: ds 1 ; c6d4
+wPokegearMapCursorObjectPointer:: ds 2 ; c6d5
+	ds 2
+wPokegearRadioChannelBank:: ds 1 ; c6d9
+wPokegearRadioChannelAddr:: ds 2 ; c6da
+wPokegearRadioMusicPlaying:: ds 1 ; c6dc
+	ds wc6d0 - @
+
 wSlots::
-slot_reel: MACRO
-\1ReelAction::   db
-\1TilemapAddr::  dw
-\1Position::     db
-\1SpinDistance:: db
-\1SpinRate::     db
-\1OAMAddr::      dw
-\1XCoord::       db
-\1Slot09::       ds 1
-\1Slot0a::       ds 1
-\1Slot0b::       ds 1
-\1Slot0c::       ds 1
-\1Slot0d::       ds 1
-\1Slot0e::       ds 1
-\1Slot0f::       ds 1
-endm
+; Slot Machine
 ; c6d0
 wReel1:: slot_reel wReel1
 wReel2:: slot_reel wReel2
@@ -2577,6 +2564,11 @@ PCItemsEnd::
 	ds 1
 
 wPokegearFlags:: ds 1
+; bit 0: map
+; bit 1: radio
+; bit 2: phone
+; bit 3: expn
+; bit 7: on/off
 wRadioTuningKnob:: ds 1
 wLastDexMode:: ds 2
 WhichRegisteredItem:: ; d95b
