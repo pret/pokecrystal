@@ -1,3 +1,18 @@
+	const_def
+	const DEXSTATE_MAIN_SCR
+	const DEXSTATE_UPDATE_MAIN_SCR
+	const DEXSTATE_DEX_ENTRY_SCR
+	const DEXSTATE_UPDATE_DEX_ENTRY_SCR
+	const DEXSTATE_REINIT_DEX_ENTRY_SCR
+	const DEXSTATE_SEARCH_SCR
+	const DEXSTATE_UPDATE_SEARCH_SCR
+	const DEXSTATE_OPTION_SCR
+	const DEXSTATE_UPDATE_OPTION_SCR
+	const DEXSTATE_SEARCH_RESULTS_SCR
+	const DEXSTATE_UPDATE_SEARCH_RESULTS_SCR
+	const DEXSTATE_UNOWN_MODE
+	const DEXSTATE_UPDATE_UNOWN_MODE
+	const DEXSTATE_EXIT
 
 Pokedex: ; 40000
 
@@ -31,7 +46,7 @@ Pokedex: ; 40000
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .exit
-	call Pokedex_Main
+	call Pokedex_RunJumptable
 	call DelayFrame
 	jr .main
 
@@ -163,7 +178,7 @@ Pokedex_GetLandmark: ; 400ed
 	ld [wDexCurrentLocation], a
 	ret
 
-Pokedex_Main: ; 4010b
+Pokedex_RunJumptable: ; 4010b
 	ld a, [wJumptableIndex]
 	ld hl, .Jumptable
 	call Pokedex_LoadPointer
@@ -184,7 +199,7 @@ Pokedex_Main: ; 4010b
 	dw Pokedex_UpdateSearchResultsScreen
 	dw Pokedex_InitUnownMode
 	dw Pokedex_UpdateUnownMode
-	dw Pokedex_CloseDex
+	dw Pokedex_Exit
 
 
 Pokedex_IncrementDexPointer: ; 40131 (10:4131)
@@ -192,7 +207,7 @@ Pokedex_IncrementDexPointer: ; 40131 (10:4131)
 	inc [hl]
 	ret
 
-Pokedex_CloseDex: ; 40136 (10:4136)
+Pokedex_Exit: ; 40136 (10:4136)
 	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
@@ -273,15 +288,15 @@ Pokedex_UpdateMainScreen: ; 401ae (10:41ae)
 	call Pokedex_GetSelectedMon
 	call Pokedex_CheckSeen
 	ret z
-	ld a, $2
+	ld a, DEXSTATE_DEX_ENTRY_SCR
 	ld [wJumptableIndex], a
-	ld a, $0
+	ld a, DEXSTATE_MAIN_SCR
 	ld [wDexEntryPrevJumptableIndex], a
 	ret
 
 .select
 	call Pokedex_BlackOutBG
-	ld a, $7
+	ld a, DEXSTATE_OPTION_SCR
 	ld [wJumptableIndex], a
 	xor a
 	ld [hSCX], a
@@ -292,7 +307,7 @@ Pokedex_UpdateMainScreen: ; 401ae (10:41ae)
 
 .start
 	call Pokedex_BlackOutBG
-	ld a, $5
+	ld a, DEXSTATE_SEARCH_SCR
 	ld [wJumptableIndex], a
 	xor a
 	ld [hSCX], a
@@ -302,7 +317,7 @@ Pokedex_UpdateMainScreen: ; 401ae (10:41ae)
 	ret
 
 .b
-	ld a, $d
+	ld a, DEXSTATE_EXIT
 	ld [wJumptableIndex], a
 	ret
 
@@ -534,7 +549,7 @@ Pokedex_UpdateOptionScreen: ; 403be (10:43be)
 
 .return_to_main_screen
 	call Pokedex_BlackOutBG
-	ld a, $0
+	ld a, DEXSTATE_MAIN_SCR
 	ld [wJumptableIndex], a
 	ret
 
@@ -584,13 +599,13 @@ Pokedex_UpdateOptionScreen: ; 403be (10:43be)
 
 .skip_changing_mode
 	call Pokedex_BlackOutBG
-	ld a, $0
+	ld a, DEXSTATE_MAIN_SCR
 	ld [wJumptableIndex], a
 	ret
 
 .MenuAction_UnownMode: ; 4043a (10:443a)
 	call Pokedex_BlackOutBG
-	ld a, $b
+	ld a, DEXSTATE_UNOWN_MODE
 	ld [wJumptableIndex], a
 	ret
 
@@ -636,7 +651,7 @@ Pokedex_UpdateSearchScreen: ; 40471 (10:4471)
 
 .cancel
 	call Pokedex_BlackOutBG
-	ld a, $0
+	ld a, DEXSTATE_MAIN_SCR
 	ld [wJumptableIndex], a
 	ret
 
@@ -688,13 +703,13 @@ Pokedex_UpdateSearchScreen: ; 40471 (10:4471)
 	ld [wDexListingScrollOffset], a
 	ld [wDexListingCursor], a
 	call Pokedex_BlackOutBG
-	ld a, $9
+	ld a, DEXSTATE_SEARCH_RESULTS_SCR
 	ld [wJumptableIndex], a
 	ret
 
 .MenuAction_Cancel: ; 40501
 	call Pokedex_BlackOutBG
-	ld a, $0
+	ld a, DEXSTATE_MAIN_SCR
 	ld [wJumptableIndex], a
 	ret
 
@@ -755,9 +770,9 @@ Pokedex_UpdateSearchResultsScreen: ; 40562 (10:4562)
 	call Pokedex_GetSelectedMon
 	call Pokedex_CheckSeen
 	ret z
-	ld a, $2
+	ld a, DEXSTATE_DEX_ENTRY_SCR
 	ld [wJumptableIndex], a
-	ld a, $9
+	ld a, DEXSTATE_SEARCH_RESULTS_SCR
 	ld [wDexEntryPrevJumptableIndex], a
 	ret
 
@@ -771,7 +786,7 @@ Pokedex_UpdateSearchResultsScreen: ; 40562 (10:4562)
 	call Pokedex_BlackOutBG
 	call ClearSprites
 	call Pokedex_OrderMonsByMode
-	ld a, $5
+	ld a, DEXSTATE_SEARCH_SCR
 	ld [wJumptableIndex], a
 	xor a
 	ld [hSCX], a
@@ -803,7 +818,7 @@ Pokedex_UpdateUnownMode: ; 405df (10:45df)
 
 .a_b
 	call Pokedex_BlackOutBG
-	ld a, $7
+	ld a, DEXSTATE_OPTION_SCR
 	ld [wJumptableIndex], a
 	call DelayFrame
 	call Pokedex_CheckSGB
