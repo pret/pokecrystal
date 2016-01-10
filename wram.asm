@@ -1348,6 +1348,7 @@ wIntroSceneFrameCounter::
 wHoldingUnownPuzzlePiece::
 wCardFlipCursorY::
 wCreditsBorderFrame::
+wDexEntryPrevJumptableIndex::
 wcf64:: ds 1
 IF !DEF(CRYSTAL11)
 wPokedexStatus::
