@@ -939,8 +939,8 @@ wDexArrowCursorDelayCounter:: ds 1
 wDexArrowCursorBlinkCounter:: ds 1
 wDexSearchSlowpokeFrame:: ds 1
 wUnlockedUnownMode:: ds 1
-wc7dd:: ds 1
-wc7de:: ds 1
+wDexCurrentUnownIndex:: ds 1
+wDexUnownCount:: ds 1
 wDexConvertedMonType:: ds 1 ; mon type converted from dex search mon type
 wc7e0:: ds 1
 wc7e1:: ds 1

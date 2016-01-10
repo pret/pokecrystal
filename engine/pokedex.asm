@@ -83,7 +83,7 @@ InitPokedex: ; 40063
 	call Pokedex_OrderMonsByMode
 	call Pokedex_InitCursorPosition
 	call Pokedex_GetLandmark
-	callba Function1de247
+	callba DrawDexEntryScreenRightEdge
 	call Pokedex_ResetBGMapMode
 	ret
 
@@ -781,11 +781,11 @@ Pokedex_UpdateSearchResultsScreen: ; 40562 (10:4562)
 
 Pokedex_InitUnownMode: ; 405bd (10:45bd)
 	call Pokedex_LoadUnownFont
-	call Function409f1
+	call Pokedex_DrawUnownModeBG
 	xor a
-	ld [wc7dd], a
-	call Function41a58
-	call Function40658
+	ld [wDexCurrentUnownIndex], a
+	call Pokedex_LoadUnownFrontpicTiles
+	call Pokedex_UnownModePlaceCursor
 	callba PrintUnownWord
 	call WaitBGMap
 	ld a, $16
@@ -831,9 +831,9 @@ Pokedex_UnownModeHandleDPadInput: ; 40610 (10:4610)
 	ret
 
 .right
-	ld a, [wc7de]
+	ld a, [wDexUnownCount]
 	ld e, a
-	ld hl, wc7dd
+	ld hl, wDexCurrentUnownIndex
 	ld a, [hl]
 	inc a
 	cp e
@@ -843,7 +843,7 @@ Pokedex_UnownModeHandleDPadInput: ; 40610 (10:4610)
 	jr .update
 
 .left
-	ld hl, wc7dd
+	ld hl, wDexCurrentUnownIndex
 	ld a, [hl]
 	and a
 	ret z
@@ -855,9 +855,9 @@ Pokedex_UnownModeHandleDPadInput: ; 40610 (10:4610)
 	xor a
 	ld [hBGMapMode], a
 	pop af
-	call Function40654
-	call Function41a58
-	call Function40658
+	call Pokedex_UnownModeEraseCursor
+	call Pokedex_LoadUnownFrontpicTiles
+	call Pokedex_UnownModePlaceCursor
 	callba PrintUnownWord
 	ld a, $1
 	ld [hBGMapMode], a
@@ -865,17 +865,18 @@ Pokedex_UnownModeHandleDPadInput: ; 40610 (10:4610)
 	call DelayFrame
 	ret
 
-Function40654: ; 40654 (10:4654)
-	ld c, $7f
-	jr asm_4065d
+Pokedex_UnownModeEraseCursor: ; 40654 (10:4654)
+	ld c, " "
+	jr Pokedex_UnownModeUpdateCursorGfx
 
-Function40658: ; 40658 (10:4658)
-	ld a, [wc7dd]
-	ld c, $5a
-asm_4065d: ; 4065d (10:465d)
+Pokedex_UnownModePlaceCursor: ; 40658 (10:4658)
+	ld a, [wDexCurrentUnownIndex]
+	ld c, $5a ; diamond cursor
+
+Pokedex_UnownModeUpdateCursorGfx: ; 4065d (10:465d)
 	ld e, a
 	ld d, 0
-	ld hl, Unknown_40a3e + 2
+	ld hl, UnownModeLetterAndCursorCoords + 2
 rept 4
 	add hl, de
 endr
@@ -1283,7 +1284,7 @@ Pokedex_PlaceSearchResultsTypeStrings: ; 409cf (10:49cf)
 .done
 	ret
 
-Function409f1: ; 409f1 (10:49f1)
+Pokedex_DrawUnownModeBG: ; 409f1 (10:49f1)
 	call Pokedex_FillBackgroundColor2
 	hlcoord 2, 1
 	lb bc, 10, 13
@@ -1307,7 +1308,7 @@ Function409f1: ; 409f1 (10:49f1)
 	and a
 	jr z, .done
 	push af
-	ld hl, Unknown_40a3e
+	ld hl, UnownModeLetterAndCursorCoords
 rept 4
 	add hl, de
 endr
@@ -1323,10 +1324,10 @@ endr
 	jr nz, .loop
 .done
 	ld a, b
-	ld [wc7de], a
+	ld [wDexUnownCount], a
 	ret
 
-Unknown_40a3e: ; 40a3e
+UnownModeLetterAndCursorCoords: ; 40a3e
 ;           letter, cursor
 	dwcoord   4,11,   3,11
 	dwcoord   4,10,   3,10
@@ -2526,12 +2527,12 @@ Pokedex_LoadUnownFont: ; 41a2c
 	call CloseSRAM
 	ret
 
-Function41a58: ; 41a58 (10:5a58)
+Pokedex_LoadUnownFrontpicTiles: ; 41a58 (10:5a58)
 	ld a, [UnownLetter]
 	push af
-	ld a, [wc7dd]
+	ld a, [wDexCurrentUnownIndex]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, UnownDex
 	add hl, de
 	ld a, [hl]
@@ -2548,7 +2549,7 @@ Function41a58: ; 41a58 (10:5a58)
 _NewPokedexEntry: ; 41a7f
 	xor a
 	ld [hBGMapMode], a
-	callba Function1de247
+	callba DrawDexEntryScreenRightEdge
 	call Pokedex_ResetBGMapMode
 	call DisableLCD
 	call LoadStandardFont
