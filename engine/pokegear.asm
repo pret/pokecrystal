@@ -11,7 +11,7 @@ PokeGear: ; 90b8d (24:4b8d)
 	push af
 	xor a
 	ld [VramState], a
-	call Function90bea
+	call .InitTilemap
 	call DelayFrame
 .loop
 	call UpdateTime
@@ -41,10 +41,10 @@ PokeGear: ; 90b8d (24:4b8d)
 	ld [hBGMapAddress + 1], a
 	ld a, $90
 	ld [hWY], a
-	call Function91492
+	call ExitPokegearRadio_HandleMusic
 	ret
 
-Function90bea: ; 90bea (24:4bea)
+.InitTilemap: ; 90bea (24:4bea)
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
@@ -54,14 +54,14 @@ Function90bea: ; 90bea (24:4bea)
 	ld [hSCX], a
 	ld a, $7
 	ld [hWX], a
-	call Function90c4e
+	call Pokegear_LoadGFX
 	callba ClearSpriteAnims
 	call InitPokegearModeIndicatorArrow
 	ld a, 8
 	call SkipMusic
 	ld a, $e3
 	ld [rLCDC], a
-	call Function90d70
+	call TownMap_InitCursorAndPlayerIconPositions
 	xor a
 	ld [wJumptableIndex], a
 	ld [wcf64], a
@@ -85,7 +85,7 @@ Function90bea: ; 90bea (24:4bea)
 	call DmgToCgbObjPal0
 	ret
 
-Function90c4e: ; 90c4e
+Pokegear_LoadGFX: ; 90c4e
 	call ClearVBank1
 	ld hl, TownMapGFX
 	ld de, VTiles2
@@ -148,25 +148,25 @@ InitPokegearModeIndicatorArrow: ; 90d32 (24:4d32)
 	ld [hl], $0
 	ret
 
-Function90d41: ; 90d41 (24:4d41)
+AnimatePokegearModeIndicatorArrow: ; 90d41 (24:4d41)
 	ld hl, wcf64
 	ld e, [hl]
 	ld d, 0
-	ld hl, Unknown_90d52
+	ld hl, .XCoords
 	add hl, de
 	ld a, [hl]
-	ld hl, $6
+	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld [hl], a
 	ret
 
 ; 90d52 (24:4d52)
 
-Unknown_90d52: ; 90d52
+.XCoords: ; 90d52
 	db $00, $10, $20, $30
 ; 90d56
 
-Function90d56: ; 90d56
+TownMap_GetCurrentLandmark: ; 90d56
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
@@ -183,7 +183,7 @@ Function90d56: ; 90d56
 
 ; 90d70
 
-Function90d70: ; 90d70 (24:4d70)
+TownMap_InitCursorAndPlayerIconPositions: ; 90d70 (24:4d70)
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
@@ -238,7 +238,7 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 	jp [hl]
 
 .return_from_jumptable
-	call Function90eb0
+	call Pokegear_FinishTilemap
 	callba TownMapPals
 	ld a, [wcf65]
 	and a
@@ -269,12 +269,12 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 .UpdateBGMap: ; 90e00 (24:4e00)
 	ld a, [hCGB]
 	and a
-	jr z, .asm_90e0e
+	jr z, .dmg
 	ld a, $2
 	ld [hBGMapMode], a
 	ld c, 3
 	call DelayFrames
-.asm_90e0e
+.dmg
 	call WaitBGMap
 	ret
 
@@ -329,7 +329,7 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 	hlcoord 19, 2
 	ld [hl], $17
 	ld a, [wTownMapCursorLandmark]
-	call Function910b4
+	call PokegearMap_UpdateLandmarkName
 	ret
 
 ; 90e72
@@ -350,13 +350,13 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 	hlcoord 0, 12
 	lb bc, 4, 18
 	call TextBox
-	call Function90e98
+	call .PlacePhoneBars
 	call PokegearPhone_UpdateDisplayList
 	ret
 
 ; 90e98
 
-Function90e98: ; 90e98 (24:4e98)
+.PlacePhoneBars: ; 90e98 (24:4e98)
 	hlcoord 17, 1
 	ld a, $3c
 	ld [hli], a
@@ -372,7 +372,7 @@ Function90e98: ; 90e98 (24:4e98)
 	ld [hl], $3f
 	ret
 
-Function90eb0: ; 90eb0 (24:4eb0)
+Pokegear_FinishTilemap: ; 90eb0 (24:4eb0)
 	hlcoord 0, 0
 	ld bc, $8
 	ld a, $4f
@@ -384,32 +384,32 @@ Function90eb0: ; 90eb0 (24:4eb0)
 	ld de, wPokegearFlags
 	ld a, [de]
 	bit 0, a
-	call nz, Function90ee4
+	call nz, .PlaceMapIcon
 	ld a, [de]
 	bit 2, a
-	call nz, Function90eeb
+	call nz, .PlacePhoneIcon
 	ld a, [de]
 	bit 1, a
-	call nz, Function90ef2
+	call nz, .PlaceRadioIcon
 	hlcoord 0, 0
 	ld a, $46
-	call Function90ef7
+	call .PlacePokegearCardIcon
 	ret
 
-Function90ee4: ; 90ee4 (24:4ee4)
+.PlaceMapIcon: ; 90ee4 (24:4ee4)
 	hlcoord 2, 0
 	ld a, $40
-	jr Function90ef7
+	jr .PlacePokegearCardIcon
 
-Function90eeb: ; 90eeb (24:4eeb)
+.PlacePhoneIcon: ; 90eeb (24:4eeb)
 	hlcoord 4, 0
 	ld a, $44
-	jr Function90ef7
+	jr .PlacePokegearCardIcon
 
-Function90ef2: ; 90ef2 (24:4ef2)
+.PlaceRadioIcon: ; 90ef2 (24:4ef2)
 	hlcoord 6, 0
 	ld a, $42
-Function90ef7: ; 90ef7 (24:4ef7)
+.PlacePokegearCardIcon: ; 90ef7 (24:4ef7)
 	ld [hli], a
 	inc a
 	ld [hld], a
@@ -454,7 +454,7 @@ PokegearClock_Init: ; 90f2d (24:4f2d)
 	call PrintText
 	ld hl, wJumptableIndex
 	inc [hl]
-	call Function91492
+	call ExitPokegearRadio_HandleMusic
 	ret
 
 PokegearClock_Joypad: ; 90f3e (24:4f3e)
@@ -544,7 +544,7 @@ PokegearMap_CheckRegion: ; 90fb4 (24:4fb4)
 	ld a, 5
 .done
 	ld [wJumptableIndex], a
-	call Function91492
+	call ExitPokegearRadio_HandleMusic
 	ret
 
 PokegearMap_Init: ; 90fcd (24:4fcd)
@@ -644,13 +644,13 @@ PokegearMap_ContinueMap: ; 90ff2 (24:4ff2)
 	dec [hl]
 .done_dpad
 	ld a, [wTownMapCursorLandmark]
-	call Function910b4
+	call PokegearMap_UpdateLandmarkName
 	ld a, [wPokegearMapCursorObjectPointer]
 	ld c, a
 	ld a, [wPokegearMapCursorObjectPointer + 1]
 	ld b, a
 	ld a, [wTownMapCursorLandmark]
-	call Function910d4
+	call PokegearMap_UpdateCursorPosition
 	ret
 
 PokegearMap_InitPlayerIcon: ; 9106a
@@ -695,13 +695,13 @@ PokegearMap_InitCursor: ; 91098
 	ld [hl], SPRITE_ANIM_SEQ_NULL
 	pop af
 	push bc
-	call Function910d4
+	call PokegearMap_UpdateCursorPosition
 	pop bc
 	ret
 
 ; 910b4
 
-Function910b4: ; 910b4
+PokegearMap_UpdateLandmarkName: ; 910b4
 	push af
 	hlcoord 8, 0
 	lb bc, 2, 12
@@ -718,7 +718,7 @@ Function910b4: ; 910b4
 
 ; 910d4
 
-Function910d4: ; 910d4
+PokegearMap_UpdateCursorPosition: ; 910d4
 	push bc
 	ld e, a
 	callba GetLandmarkCoords
@@ -782,23 +782,23 @@ PokegearRadio_Joypad: ; 91112 (24:5112)
 .left
 	ld a, [wPokegearFlags]
 	bit 2, a
-	jr z, .asm_9113b
+	jr z, .no_phone
 	ld c, $7
 	ld b, $2
-	jr .asm_9114c
+	jr .switch_page
 
-.asm_9113b
+.no_phone
 	ld a, [wPokegearFlags]
 	bit 0, a
-	jr z, .asm_91148
+	jr z, .no_map
 	ld c, $2
 	ld b, $1
-	jr .asm_9114c
+	jr .switch_page
 
-.asm_91148
+.no_map
 	ld c, $0
 	ld b, $0
-.asm_9114c
+.switch_page
 	call Pokegear_SwitchPage
 	ret
 
@@ -815,7 +815,7 @@ PokegearPhone_Init: ; 91156 (24:5156)
 	ld [wPokegearPhoneCursorPosition], a
 	ld [wPokegearPhoneSelectedPerson], a
 	call InitPokegearTilemap
-	call Function91492
+	call ExitPokegearRadio_HandleMusic
 	ld hl, PokegearText_WhomToCall
 	call PrintText
 	ret
@@ -841,15 +841,15 @@ PokegearPhone_Joypad: ; 91171 (24:5171)
 .left
 	ld a, [wPokegearFlags]
 	bit 0, a
-	jr z, .asm_9119c
+	jr z, .no_map
 	ld c, $2
 	ld b, $1
-	jr .asm_911ac
+	jr .switch_page
 
-.asm_9119c
+.no_map
 	ld c, $0
 	ld b, $0
-	jr .asm_911ac
+	jr .switch_page
 
 .right
 	ld a, [wPokegearFlags]
@@ -857,7 +857,7 @@ PokegearPhone_Joypad: ; 91171 (24:5171)
 	ret z
 	ld c, $b
 	ld b, $3
-.asm_911ac
+.switch_page
 	call Pokegear_SwitchPage
 	ret
 
@@ -886,12 +886,12 @@ PokegearPhone_Joypad: ; 91171 (24:5171)
 	call AddNTimes
 	ld [hl], "▷"
 	call PokegearPhoneContactSubmenu
-	jr c, .asm_911e5
+	jr c, .quit_submenu
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
-.asm_911e5
+.quit_submenu
 	ld a, $8
 	ld [wJumptableIndex], a
 	ret
@@ -899,19 +899,19 @@ PokegearPhone_Joypad: ; 91171 (24:5171)
 PokegearPhone_MakePhoneCall: ; 911eb (24:51eb)
 	call GetMapHeaderPhoneServiceNybble
 	and a
-	jr nz, .asm_91234
+	jr nz, .no_service
 	ld hl, Options
 	res NO_TEXT_SCROLL, [hl]
 	xor a
 	ld [hInMenu], a
 	ld de, SFX_CALL
 	call PlaySFX
-	ld hl, UnknownText_0x9124c
+	ld hl, .dotdotdot
 	call PrintText
 	call WaitSFX
 	ld de, SFX_CALL
 	call PlaySFX
-	ld hl, UnknownText_0x9124c
+	ld hl, .dotdotdot
 	call PrintText
 	call WaitSFX
 	ld a, [wPokegearPhoneSelectedPerson]
@@ -928,9 +928,9 @@ PokegearPhone_MakePhoneCall: ; 911eb (24:51eb)
 	inc [hl]
 	ret
 
-.asm_91234
+.no_service
 	callba Phone_NoSignal
-	ld hl, OutOfServiceAreaText
+	ld hl, .OutOfServiceArea
 	call PrintText
 	ld a, $8
 	ld [wJumptableIndex], a
@@ -940,14 +940,14 @@ PokegearPhone_MakePhoneCall: ; 911eb (24:51eb)
 
 ; 9124c (24:524c)
 
-UnknownText_0x9124c: ; 0x9124c
+.dotdotdot: ; 0x9124c
 	;
 	text_jump UnknownText_0x1c5824
 	db "@"
 
 ; 0x91251
 
-OutOfServiceAreaText: ; 0x91251
+.OutOfServiceArea: ; 0x91251
 	; You're out of the service area.
 	text_jump UnknownText_0x1c5827
 	db "@"
@@ -1336,17 +1336,17 @@ Pokegear_SwitchPage: ; 91480 (24:5480)
 	call DeleteSpriteAnimStruct2ToEnd
 	ret
 
-Function91492: ; 91492
+ExitPokegearRadio_HandleMusic: ; 91492
 	ld a, [wPokegearRadioMusicPlaying]
 	cp $fe
-	jr z, .asm_914a3
+	jr z, .restart_map_music
 	cp $ff
 	call z, EnterMapMusic
 	xor a
 	ld [wPokegearRadioMusicPlaying], a
 	ret
 
-.asm_914a3
+.restart_map_music
 	call RestartMapMusic
 	xor a
 	ld [wPokegearRadioMusicPlaying], a
@@ -1364,8 +1364,10 @@ DeleteSpriteAnimStruct2ToEnd: ; 914ab (24:54ab)
 	ret
 
 Pokegear_LoadTilemapRLE: ; 914bb (24:54bb)
+	; Format: repeat count, tile ID
+	; Terminated with $FF
 	hlcoord 0, 0
-.row
+.loop
 	ld a, [de]
 	cp $ff
 	ret z
@@ -1375,11 +1377,11 @@ Pokegear_LoadTilemapRLE: ; 914bb (24:54bb)
 	ld c, a
 	inc de
 	ld a, b
-.col
+.load
 	ld [hli], a
 	dec c
-	jr nz, .col
-	jr .row
+	jr nz, .load
+	jr .loop
 
 ; 914ce (24:54ce)
 
@@ -1409,11 +1411,11 @@ INCBIN "gfx/misc/pokegear_sprites.2bpp.lz"
 ; 9150d
 
 RadioTilemapRLE: ; 9150d
-INCBIN "gfx/unknown/09150d.tilemap.rle"
+INCBIN "gfx/pokegear/radio.tilemap.rle"
 PhoneTilemapRLE: ; 9158a
-INCBIN "gfx/unknown/09158a.tilemap.rle"
+INCBIN "gfx/pokegear/phone.tilemap.rle"
 ClockTilemapRLE: ; 915db
-INCBIN "gfx/unknown/0915db.tilemap.rle"
+INCBIN "gfx/pokegear/clock.tilemap.rle"
 ; 9163e
 
 _UpdateRadioStation: ; 9163e (24:563e)
@@ -1498,7 +1500,7 @@ UpdateRadioStation: ; 9166f (24:566f)
 
 ; 916a1 (24:56a1)
 
-Function916a1: ; 916a1
+; XXX
 	ld [wPokegearRadioChannelBank], a
 	ld a, [hli]
 	ld [wPokegearRadioChannelAddr], a
@@ -1846,13 +1848,13 @@ _TownMap: ; 9191c
 	call ClearTileMap
 	call ClearSprites
 	call DisableLCD
-	call Function90c4e
+	call Pokegear_LoadGFX
 	callba ClearSpriteAnims
 	ld a, 8
 	call SkipMusic
 	ld a, $e3
 	ld [rLCDC], a
-	call Function90d56
+	call TownMap_GetCurrentLandmark
 	ld [wd002], a
 	ld [wd003], a
 	xor a
@@ -1950,13 +1952,13 @@ _TownMap: ; 9191c
 .next
 	push de
 	ld a, [wd003]
-	call Function910b4
+	call PokegearMap_UpdateLandmarkName
 	ld a, [wd004]
 	ld c, a
 	ld a, [wd005]
 	ld b, a
 	ld a, [wd003]
-	call Function910d4
+	call PokegearMap_UpdateCursorPosition
 	pop de
 	jr .loop2
 ; 91a04
@@ -1964,14 +1966,13 @@ _TownMap: ; 9191c
 .InitTilemap: ; 91a04
 	ld a, [wd002]
 	cp KANTO_LANDMARK
-	jr nc, .kanto
+	jr nc, .kanto2
 	ld e, $0
-	jr .okay
+	jr .okay_tilemap
 
-.kanto
+.kanto2
 	ld e, $1
-
-.okay
+.okay_tilemap
 	callba PokegearMap
 	ld a, $7
 	ld bc, 6
@@ -1992,7 +1993,7 @@ _TownMap: ; 9191c
 	hlcoord 19, 2
 	ld [hl], $17
 	ld a, [wd003]
-	call Function910b4
+	call PokegearMap_UpdateLandmarkName
 	callba TownMapPals
 	ret
 ; 91a53
@@ -2025,7 +2026,7 @@ PlayRadio: ; 91a53
 .stop
 	pop af
 	ld [Options], a
-	call Function91492
+	call ExitPokegearRadio_HandleMusic
 	ret
 
 ; 91a87
@@ -2687,7 +2688,7 @@ _Area: ; 91d11
 .ShowPlayerLoop
 	ld a, [de]
 	cp $80
-	jr z, .copy
+	jr z, .clear_oam
 	add b
 	ld [hli], a
 	inc de
@@ -2711,9 +2712,9 @@ _Area: ; 91d11
 	pop bc
 	jr .ShowPlayerLoop
 
-.copy
-	ld hl, Sprites + $10
-	ld bc, SpritesEnd - (Sprites + $10)
+.clear_oam
+	ld hl, Sprites + 4 * 4
+	ld bc, SpritesEnd - (Sprites + 4 * 4)
 	xor a
 	call ByteFill
 	ret
@@ -2980,8 +2981,8 @@ PokedexNestIconGFX: ; 922d1
 INCBIN "gfx/pokegear/dexmap_nest_icon.2bpp"
 FlyMapLabelBorderGFX: ; 922e1
 INCBIN "gfx/pokegear/flymap_label_border.2bpp"
-Function92311: ; 92311
-; unreferenced
+
+; XXX
 	xor a
 	ld [wd002], a
 	call ClearBGPalettes
@@ -3034,7 +3035,7 @@ Function92311: ; 92311
 
 .pressedB
 	ld a, -1
-	jr .asm_9239f
+	jr .finished_a_b
 
 .pressedA
 	ld a, [wd002]
@@ -3044,7 +3045,7 @@ Function92311: ; 92311
 	ld de, Flypoints + 1
 	add hl, de
 	ld a, [hl]
-.asm_9239f
+.finished_a_b
 	ld [wd002], a
 	pop af
 	ld [hInMenu], a

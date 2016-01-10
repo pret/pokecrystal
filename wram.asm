@@ -308,7 +308,7 @@ wGlobalAnimYOffset:: ds 1
 wGlobalAnimXOffset:: ds 1
 wSpriteAnimsEnd::
 
-wc3c1:: ds 11
+	ds 11
 wc3cc:: ds 1
 wc3cd:: ds 31
 wc3ec:: ds 1
@@ -373,19 +373,21 @@ wBT_OTTemp:: battle_tower_struct wBT_OTTemp
 wMisc:: ; ds (SCREEN_WIDTH + 4) * (SCREEN_HEIGHT + 2)
 wBattle::
 wc608::
+	ds 7
+wc60f::
+	ds 3
+wc612::
+	ds 10
+wInitHourBuffer:: ; c61c
+	ds 10
+wc626::
+	ds wc608 - @
 
 wEnemyMoveStruct::  move_struct wEnemyMoveStruct
-wc60f::
 wPlayerMoveStruct:: move_struct wPlayerMoveStruct
-wc616::
-	ds -4
-wc612:: ds 4
+
 EnemyMonNick::  ds PKMN_NAME_LENGTH ; c616
-	ds -5
-wInitHourBuffer:: ds 5
 BattleMonNick:: ds PKMN_NAME_LENGTH ; c621
-	ds -6
-wc626:: ds 6
 
 BattleMon:: battle_struct BattleMon ; c62c
 
@@ -637,10 +639,9 @@ wc6eb:: ds 1
 wPayDayMoney:: ds 3 ; c6ec
 
 wSafariMonAngerCount:: ds 1
-wSafariMonEating::
-wc6f0:: ds 2
+wSafariMonEating:: ds 2
 wEnemyBackupDVs:: ; used when enemy is transformed
-wc6f2:: ds 2
+	ds 2
 AlreadyDisobeyed:: ; c6f4
 	ds 1
 
@@ -2763,15 +2764,12 @@ wdc0d:: ds 1
 wdc0e:: ds 1
 
 ; Sprite id of each decoration
-wdc0f::
 Bed:: ; dc0f
 	ds 1
 Carpet:: ; dc10
 	ds 1
-wdc11::
 Plant:: ; dc11
 	ds 1
-wdc12::
 Poster:: ; dc12
 	ds 1
 Console:: ; dc13
@@ -2810,8 +2808,8 @@ FruitTreeFlags:: ; dc27
 
 wLuckyNumberDayBuffer:: ds 2
 	ds 2
-wSpecialPhoneCallID:: ds 2
-wdc33:: ds 2
+wSpecialPhoneCallID:: ds 1
+	ds 3
 wBugContestStartTime:: ds 4 ; day, hour, min, sec
 wdc39:: ds 1
 wUnusedTwoDayTimer:: ds 1

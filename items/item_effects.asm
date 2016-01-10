@@ -452,23 +452,23 @@ endr
 	push af
 	set SUBSTATUS_TRANSFORMED, [hl]
 	bit SUBSTATUS_TRANSFORMED, a
-	jr nz, .asm_ea13
-	jr .asm_ea1a
+	jr nz, .ditto
+	jr .not_ditto
 
-.asm_ea13
+.ditto
 	ld a, DITTO
 	ld [TempEnemyMonSpecies], a
-	jr .asm_ea27
+	jr .load_data
 
-.asm_ea1a
-	set 3, [hl]
-	ld hl, wc6f2
+.not_ditto
+	set SUBSTATUS_TRANSFORMED, [hl]
+	ld hl, wEnemyBackupDVs
 	ld a, [EnemyMonDVs]
 	ld [hli], a
 	ld a, [EnemyMonDVs + 1]
 	ld [hl], a
 
-.asm_ea27
+.load_data
 	ld a, [TempEnemyMonSpecies]
 	ld [CurPartySpecies], a
 	ld a, [EnemyMonLevel]

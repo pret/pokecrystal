@@ -5279,29 +5279,27 @@ Script_JumpStdFromRAM: ; 0x1369a
 
 INCLUDE "event/bug_contest_judging.asm"
 
-; decreases all pokemon's pokerus counter by b. if the lower nybble reaches zero, the pokerus is cured.
 ApplyPokerusTick: ; 13988
+; decreases all pokemon's pokerus counter by b. if the lower nybble reaches zero, the pokerus is cured.
 	ld hl, PartyMon1PokerusStatus ; PartyMon1 + MON_PKRS
 	ld a, [PartyCount]
 	and a
-	ret z
+	ret z ; make sure it's not wasting time on an empty party
 	ld c, a
 .loop
 	ld a, [hl]
-	and $f
-	jr z, .does_not_have_pokerus
-	sub b
-	jr nc, .ok
+	and $f ; lower nybble is the number of days remaining
+	jr z, .next ; if already 0, skip
+	sub b ; subtract the number of days
+	jr nc, .ok ; max(result, 0)
 	xor a
-
 .ok
-	ld d, a
+	ld d, a ; back up this value because we need to preserve the strain (upper nybble)
 	ld a, [hl]
 	and $f0
 	add d
-	ld [hl], a
-
-.does_not_have_pokerus
+	ld [hl], a ; this prevents a cured pokemon from recontracting pokerus
+.next
 	ld de, PARTYMON_STRUCT_LENGTH
 	add hl, de
 	dec c
@@ -5678,44 +5676,44 @@ Function24b8f: ; 24b8f
 .booru_ko: ; 24bd4
 	db "ボール   こ@"
 
-Function24bdc: ; 24bdc
+StartMenu_DrawBugContestStatusBox: ; 24bdc
 	hlcoord 0, 0
-	ld b, $5
-	ld c, $11
+	ld b, 5
+	ld c, 17
 	call TextBox
 	ret
 
-Function24be7: ; 24be7
+StartMenu_PrintBugContestStatus: ; 24be7
 	ld hl, Options
 	ld a, [hl]
 	push af
-	set 4, [hl]
-	call Function24bdc
+	set NO_TEXT_SCROLL, [hl]
+	call StartMenu_DrawBugContestStatusBox
 	hlcoord 1, 5
-	ld de, String24c52
+	ld de, .Balls_EN
 	call PlaceString
 	hlcoord 8, 5
-	ld de, wSafariBallsRemaining
+	ld de, wParkBallsRemaining
 	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
 	call PrintNum
 	hlcoord 1, 1
-	ld de, String24c4b
+	ld de, .CAUGHT
 	call PlaceString
 	ld a, [wContestMon]
 	and a
-	ld de, String24c59
-	jr z, .asm_24c1e
+	ld de, .None
+	jr z, .no_contest_mon
 	ld [wd265], a
 	call GetPokemonName
 
-.asm_24c1e
+.no_contest_mon
 	hlcoord 8, 1
 	call PlaceString
 	ld a, [wContestMon]
 	and a
-	jr z, .asm_24c3e
+	jr z, .skip_level
 	hlcoord 1, 3
-	ld de, String24c5e
+	ld de, .LEVEL
 	call PlaceString
 	ld a, [wContestMonLevel]
 	ld h, b
@@ -5724,20 +5722,20 @@ Function24be7: ; 24be7
 	ld c, $3
 	call Function3842
 
-.asm_24c3e
+.skip_level
 	pop af
 	ld [Options], a
 	ret
 
-String24c43: ; 24c43
+.Balls_JP: ; 24c43
 	db "ボール   こ@"
-String24c4b: ; 24c4b
+.CAUGHT: ; 24c4b
 	db "CAUGHT@"
-String24c52: ; 24c52
+.Balls_EN: ; 24c52
 	db "BALLS:@"
-String24c59: ; 24c59
+.None: ; 24c59
 	db "None@"
-String24c5e: ; 24c5e
+.LEVEL: ; 24c5e
 	db "LEVEL@"
 
 FindApricornsInBag: ; 24c64
@@ -5799,226 +5797,7 @@ INCLUDE "engine/mon_menu.asm"
 INCLUDE "battle/menu.asm"
 INCLUDE "engine/buy_sell_toss.asm"
 INCLUDE "engine/trainer_card.asm"
-
-ProfOaksPC: ; 0x265d3
-	ld hl, OakPCText1
-	call MenuTextBox
-	call YesNoBox
-	jr c, .shutdown
-	call ProfOaksPCBoot ; player chose "yes"?
-.shutdown
-	ld hl, OakPCText4
-	call PrintText
-	call JoyWaitAorB
-	call ExitMenu
-	ret
-
-ProfOaksPCBoot ; 0x265ee
-	ld hl, OakPCText2
-	call PrintText
-	call Rate
-	call PlaySFX ; sfx loaded by previous Rate function call
-	call JoyWaitAorB
-	call WaitSFX
-	ret
-
-ProfOaksPCRating: ; 0x26601
-	call Rate
-	push de
-	ld de, MUSIC_NONE
-	call PlayMusic
-	pop de
-	call PlaySFX
-	call JoyWaitAorB
-	call WaitSFX
-	ret
-
-Rate: ; 0x26616
-; calculate Seen/Owned
-	ld hl, PokedexSeen
-	ld b, EndPokedexSeen - PokedexSeen
-	call CountSetBits
-	ld [wd002], a
-	ld hl, PokedexCaught
-	ld b, EndPokedexCaught - PokedexCaught
-	call CountSetBits
-	ld [wd003], a
-
-; print appropriate rating
-	call .UpdateRatingBuffers
-	ld hl, OakPCText3
-	call PrintText
-	call JoyWaitAorB
-	ld a, [wd003]
-	ld hl, OakRatings
-	call FindOakRating
-	push de
-	call PrintText
-	pop de
-	ret
-
-.UpdateRatingBuffers: ; 0x26647
-	ld hl, StringBuffer3
-	ld de, wd002
-	call .UpdateRatingBuffer
-	ld hl, StringBuffer4
-	ld de, wd003
-	call .UpdateRatingBuffer
-	ret
-
-.UpdateRatingBuffer: ; 0x2665a
-	push hl
-	ld a, "@"
-	ld bc, ITEM_NAME_LENGTH
-	call ByteFill
-	pop hl
-	lb bc, PRINTNUM_RIGHTALIGN | 1, 3
-	call PrintNum
-	ret
-
-FindOakRating: ; 0x2666b
-; return sound effect in de
-; return text pointer in hl
-	nop
-	ld c, a
-.loop
-	ld a, [hli]
-	cp c
-	jr nc, .match
-rept 4
-	inc hl
-endr
-	jr .loop
-
-.match
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ret
-
-OakRatings: ; 0x2667f
-oakrating: MACRO
-	db \1
-	dw \2, \3
-endm
-
-; if you caught at most this many, play this sound, load this text
-	oakrating   9, SFX_DEX_FANFARE_LESS_THAN_20, OakRating01
-	oakrating  19, SFX_DEX_FANFARE_LESS_THAN_20, OakRating02
-	oakrating  34, SFX_DEX_FANFARE_20_49,        OakRating03
-	oakrating  49, SFX_DEX_FANFARE_20_49,        OakRating04
-	oakrating  64, SFX_DEX_FANFARE_50_79,        OakRating05
-	oakrating  79, SFX_DEX_FANFARE_50_79,        OakRating06
-	oakrating  94, SFX_DEX_FANFARE_80_109,       OakRating07
-	oakrating 109, SFX_DEX_FANFARE_80_109,       OakRating08
-	oakrating 124, SFX_CAUGHT_MON,               OakRating09
-	oakrating 139, SFX_CAUGHT_MON,               OakRating10
-	oakrating 154, SFX_DEX_FANFARE_140_169,      OakRating11
-	oakrating 169, SFX_DEX_FANFARE_140_169,      OakRating12
-	oakrating 184, SFX_DEX_FANFARE_170_199,      OakRating13
-	oakrating 199, SFX_DEX_FANFARE_170_199,      OakRating14
-	oakrating 214, SFX_DEX_FANFARE_200_229,      OakRating15
-	oakrating 229, SFX_DEX_FANFARE_200_229,      OakRating16
-	oakrating 239, SFX_DEX_FANFARE_230_PLUS,     OakRating17
-	oakrating 248, SFX_DEX_FANFARE_230_PLUS,     OakRating18
-	oakrating 255, SFX_DEX_FANFARE_230_PLUS,     OakRating19
-
-OakPCText1: ; 0x266de
-	text_jump _OakPCText1
-	db "@"
-
-OakPCText2: ; 0x266e3
-	text_jump _OakPCText2
-	db "@"
-
-OakPCText3: ; 0x266e8
-	text_jump _OakPCText3
-	db "@"
-
-OakRating01:
-	text_jump _OakRating01
-	db "@"
-
-OakRating02:
-	text_jump _OakRating02
-	db "@"
-
-OakRating03:
-	text_jump _OakRating03
-	db "@"
-
-OakRating04:
-	text_jump _OakRating04
-	db "@"
-
-OakRating05:
-	text_jump _OakRating05
-	db "@"
-
-OakRating06:
-	text_jump _OakRating06
-	db "@"
-
-OakRating07:
-	text_jump _OakRating07
-	db "@"
-
-OakRating08:
-	text_jump _OakRating08
-	db "@"
-
-OakRating09:
-	text_jump _OakRating09
-	db "@"
-
-OakRating10:
-	text_jump _OakRating10
-	db "@"
-
-OakRating11:
-	text_jump _OakRating11
-	db "@"
-
-OakRating12:
-	text_jump _OakRating12
-	db "@"
-
-OakRating13:
-	text_jump _OakRating13
-	db "@"
-
-OakRating14:
-	text_jump _OakRating14
-	db "@"
-
-OakRating15:
-	text_jump _OakRating15
-	db "@"
-
-OakRating16:
-	text_jump _OakRating16
-	db "@"
-
-OakRating17:
-	text_jump _OakRating17
-	db "@"
-
-OakRating18:
-	text_jump _OakRating18
-	db "@"
-
-OakRating19:
-	text_jump _OakRating19
-	db "@"
-
-OakPCText4: ; 0x2674c
-	text_jump _OakPCText4
-	db "@"
-
+INCLUDE "engine/prof_oaks_pc.asm"
 INCLUDE "engine/decorations.asm"
 
 PadCoords_de: ; 27092
@@ -6161,7 +5940,7 @@ INCLUDE "battle/moves/move_effects_pointers.asm"
 MoveEffects: ; 2732e
 INCLUDE "battle/moves/move_effects.asm"
 
-Function27a28: ; 27a28
+Kurt_SelectQuantity_InterpretJoypad: ; 27a28
 	call BuySellToss_InterpretJoypad
 	ld b, a
 	ret

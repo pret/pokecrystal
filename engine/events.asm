@@ -454,7 +454,7 @@ DoMapTrigger: ; 968ec
 	ld h, [hl]
 	ld l, a
 rept 4
-	add hl,de
+	add hl, de
 endr
 	
 	call GetMapScriptHeaderBank
@@ -1031,7 +1031,7 @@ DoPlayerEvent: ; 96beb
 	ld b, 0
 	ld hl, PlayerEventScriptPointers
 rept 3
-	add hl,bc
+	add hl, bc
 endr
 	ld a, [hli]
 	ld [ScriptBank], a

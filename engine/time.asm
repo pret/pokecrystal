@@ -200,11 +200,9 @@ CheckPokerusTick:: ; 114e7
 	call CalcDaysSince
 	call GetDaysSince
 	and a
-	jr z, .done
-
+	jr z, .done ; not even a day has passed since game start
 	ld b, a
 	callba ApplyPokerusTick
-
 .done
 	xor a
 	ret
@@ -229,13 +227,13 @@ CheckUnusedTwoDayTimer: ; 1150c
 	ret
 ; 1151c
 
-Function1151c: ; unreferenced
+; XXX
 	ld hl, DailyFlags
 	set 2, [hl]
 	ret
 ; 11522
 
-Function11522: ; unreferenced
+; XXX
 	and a
 	ld hl, DailyFlags
 	bit 2, [hl]

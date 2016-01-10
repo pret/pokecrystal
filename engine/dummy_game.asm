@@ -109,7 +109,7 @@ endr
 
 .spawn_object
 	depixel 6, 3, 4, 4
-	ld a, SPRITE_ANIM_INDEX_0C
+	ld a, SPRITE_ANIM_INDEX_COMPOSE_MAIL_CURSOR
 	call _InitSpriteAnimStruct
 	ld a, 5
 	ld [wDummyGameNumberTriesRemaining], a

@@ -4142,7 +4142,7 @@ GetEnemyMonDVs: ; 3da97
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_TRANSFORMED, a
 	ret z
-	ld hl, wc6f2
+	ld hl, wEnemyBackupDVs
 	ld a, [wBattleMode]
 	dec a
 	ret z
@@ -5009,7 +5009,7 @@ DrawEnemyHUD: ; 3e043
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_TRANSFORMED, a
 	jr z, .ok
-	ld hl, wc6f2
+	ld hl, wEnemyBackupDVs
 .ok
 	ld a, [hli]
 	ld [de], a
@@ -6336,7 +6336,7 @@ LoadEnemyMon: ; 3e8eb
 	jr z, .InitDVs
 
 ; Unknown
-	ld hl, wc6f2
+	ld hl, wEnemyBackupDVs
 	ld de, EnemyMonDVs
 	ld a, [hli]
 	ld [de], a
