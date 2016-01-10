@@ -28,7 +28,7 @@ Predef_LoadSGBLayout: ; 864c
 	dw .SGB_BattleColors
 	dw .SGB_PokegearPals
 	dw .SGB_StatsScreenHPPals
-	dw .SGB04
+	dw .SGB_Pokedex
 	dw .SGB_SlotMachine
 	dw .SGB06
 	dw .SGB07
@@ -209,7 +209,7 @@ endr
 	ret
 ; 87b2
 
-.SGB04: ; 87b2
+.SGB_Pokedex: ; 87b2
 	ld hl, PalPacket_9ce6
 	ld de, wSGBPals
 	ld bc, $10
@@ -267,7 +267,7 @@ endr
 ; 8823
 
 .SGB16: ; 8823
-	call .SGB04
+	call .SGB_Pokedex
 	ld de, BlkPacket_9af6
 	ret
 ; 882a

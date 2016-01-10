@@ -37,7 +37,7 @@ Predef_LoadSGBLayoutCGB: ; 8d59
 	dw _CGB_BattleColors
 	dw _CGB_PokegearPals
 	dw _CGB_StatsScreenHPPals
-	dw _CGB04
+	dw _CGB_Pokedex
 	dw _CGB_SlotMachine
 	dw _CGB06
 	dw _CGB07
@@ -282,7 +282,7 @@ StatsScreenPals: ; 8f6a
 	RGB 17, 31, 31
 ; 8f70
 
-_CGB04: ; 8f70
+_CGB_Pokedex: ; 8f70
 	ld de, UnknBGPals
 	ld a, $1d
 	call GetPredefPal
