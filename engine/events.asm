@@ -378,7 +378,7 @@ CheckTileEvent: ; 96874
 	ret
 
 .warp_tile
-	ld a, [PlayerNextTile]
+	ld a, [PlayerStandingTile]
 	call CheckPitTile
 	jr nz, .not_pit
 	ld a, PLAYEREVENT_FALL

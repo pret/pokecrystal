@@ -79,15 +79,15 @@ DoesSpriteHaveFacings:: ; 1836
 
 
 
-Function184a:: ; 184a
-	ld a, [PlayerNextTile]
+GetPlayerStandingTile:: ; 184a
+	ld a, [PlayerStandingTile]
 	call GetTileCollision
 	ld b, a
 	ret
 ; 1852
 
 CheckOnWater:: ; 1852
-	ld a, [PlayerNextTile]
+	ld a, [PlayerStandingTile]
 	call GetTileCollision
 	sub 1
 	ret z
@@ -125,17 +125,6 @@ GetTileCollision:: ; 185d
 
 
 CheckGrassTile:: ; 1875
-	; and %00110111
-	; cp $10
-	; ret c
-	; cp $30
-	; jr nc, .okay
-	; scf
-	; ret
-	; .okay
-	; xor a
-	; ret
-
 	ld d, a
 	and $f0
 	cp $10
@@ -222,7 +211,7 @@ CheckWaterfallTile:: ; 18bd
 ; 18c3
 
 CheckStandingOnEntrance:: ; 18c3
-	ld a, [PlayerNextTile]
+	ld a, [PlayerStandingTile]
 	cp $71 ; door
 	ret z
 	cp $79

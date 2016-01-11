@@ -256,10 +256,10 @@ GetDestinationWarpNumber:: ; 2252
 ; 2266
 
 .GetDestinationWarpNumber ; 2266
-	ld a, [PlayerNextMapY]
+	ld a, [PlayerStandingMapY]
 	sub $4
 	ld e, a
-	ld a, [PlayerNextMapX]
+	ld a, [PlayerStandingMapX]
 	sub $4
 	ld d, a
 	ld a, [wCurrMapWarpCount]
@@ -1568,16 +1568,16 @@ GetMovementPermissions:: ; 2914
 	call .LeftRight
 	call .UpDown
 ; get coords of current tile
-	ld a, [PlayerNextMapX]
+	ld a, [PlayerStandingMapX]
 	ld d, a
-	ld a, [PlayerNextMapY]
+	ld a, [PlayerStandingMapY]
 	ld e, a
 	call GetCoordTile
-	ld [PlayerNextTile], a
+	ld [PlayerStandingTile], a
 	call .CheckHiNybble
 	ret nz
 
-	ld a, [PlayerNextTile]
+	ld a, [PlayerStandingTile]
 	and 7
 	ld hl, .MovementPermissionsData
 	add l
@@ -1597,9 +1597,9 @@ GetMovementPermissions:: ; 2914
 ; 294d
 
 .UpDown
-	ld a, [PlayerNextMapX]
+	ld a, [PlayerStandingMapX]
 	ld d, a
-	ld a, [PlayerNextMapY]
+	ld a, [PlayerStandingMapY]
 	ld e, a
 
 	push de
@@ -1617,9 +1617,9 @@ GetMovementPermissions:: ; 2914
 ; 296c
 
 .LeftRight
-	ld a, [PlayerNextMapX]
+	ld a, [PlayerStandingMapX]
 	ld d, a
-	ld a, [PlayerNextMapY]
+	ld a, [PlayerStandingMapY]
 	ld e, a
 
 	push de
@@ -1744,10 +1744,10 @@ GetFacingTileCoord:: ; 2a07
 	ld h, [hl]
 	ld l, a
 
-	ld a, [PlayerNextMapX]
+	ld a, [PlayerStandingMapX]
 	add d
 	ld d, a
-	ld a, [PlayerNextMapY]
+	ld a, [PlayerStandingMapY]
 	add e
 	ld e, a
 	ld a, [hl]
@@ -1922,10 +1922,10 @@ CheckCurrentMapXYTriggers:: ; 2ad4
 	call CheckTriggers
 	ld b, a
 ; Load your current coordinates into de.  This will be used to check if your position is in the xy-trigger table for the current map.
-	ld a, [PlayerNextMapX]
+	ld a, [PlayerStandingMapX]
 	sub 4
 	ld d, a
-	ld a, [PlayerNextMapY]
+	ld a, [PlayerStandingMapY]
 	sub 4
 	ld e, a
 

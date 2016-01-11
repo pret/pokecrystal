@@ -349,7 +349,7 @@ CheckMovingOffEdgeOfMap:: ; 104820 (41:4820)
 	ret
 
 .down
-	ld a, [PlayerNextMapY]
+	ld a, [PlayerStandingMapY]
 	sub 4
 	ld b, a
 	ld a, [MapHeight]
@@ -360,7 +360,7 @@ CheckMovingOffEdgeOfMap:: ; 104820 (41:4820)
 	ret
 
 .up
-	ld a, [PlayerNextMapY]
+	ld a, [PlayerStandingMapY]
 	sub 4
 	cp -1
 	jr z, .ok
@@ -368,7 +368,7 @@ CheckMovingOffEdgeOfMap:: ; 104820 (41:4820)
 	ret
 
 .left
-	ld a, [PlayerNextMapX]
+	ld a, [PlayerStandingMapX]
 	sub $4
 	cp -1
 	jr z, .ok
@@ -376,7 +376,7 @@ CheckMovingOffEdgeOfMap:: ; 104820 (41:4820)
 	ret
 
 .right
-	ld a, [PlayerNextMapX]
+	ld a, [PlayerStandingMapX]
 	sub 4
 	ld b, a
 	ld a, [MapWidth]

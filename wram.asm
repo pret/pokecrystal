@@ -2399,12 +2399,12 @@ object_struct: MACRO
 \1Action:: ds 1
 \1ObjectStepFrame:: ds 1
 \1Facing:: ds 1
-\1NextTile:: ds 1     ; collision
 \1StandingTile:: ds 1 ; collision
-\1NextMapX:: ds 1
-\1NextMapY:: ds 1
-\1MapX:: ds 1
-\1MapY:: ds 1
+\1LastTile:: ds 1     ; collision
+\1StandingMapX:: ds 1
+\1StandingMapY:: ds 1
+\1LastMapX:: ds 1
+\1LastMapY:: ds 1
 \1ObjectInitX:: ds 1
 \1ObjectInitY:: ds 1
 \1Radius:: ds 1

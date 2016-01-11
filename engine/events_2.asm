@@ -161,7 +161,7 @@ CanUseSweetScent:: ; 97cfd
 	jr nc, .no
 
 .ice_check
-	ld a, [PlayerNextTile]
+	ld a, [PlayerStandingTile]
 	call CheckIceTile
 	jr z, .no
 	scf
@@ -235,7 +235,7 @@ ChooseWildEncounter_BugContest:: ; 97d31
 ; 97d64
 
 TryWildEncounter_BugContest: ; 97d64
-	ld a, [PlayerNextTile]
+	ld a, [PlayerStandingTile]
 	call CheckSuperTallGrassTile
 	ld b, 40 percent
 	jr z, .ok

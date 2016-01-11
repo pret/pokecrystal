@@ -118,7 +118,7 @@ DoPlayerMovement:: ; 80000
 ; Tiles such as waterfalls and warps move the player
 ; in a given direction, overriding input.
 
-	ld a, [PlayerNextTile]
+	ld a, [PlayerStandingTile]
 	ld c, a
 	call CheckWhirlpoolTile
 	jr c, .asm_800c4
@@ -277,7 +277,7 @@ DoPlayerMovement:: ; 80000
 	cp 2
 	jr z, .bump
 
-	ld a, [PlayerNextTile]
+	ld a, [PlayerStandingTile]
 	call CheckIceTile
 	jr nc, .ice
 
@@ -362,7 +362,7 @@ DoPlayerMovement:: ; 80000
 ; 801f3
 
 .TryJump: ; 801f3
-	ld a, [PlayerNextTile]
+	ld a, [PlayerStandingTile]
 	ld e, a
 	and $f0
 	cp $a0 ; ledge
@@ -413,7 +413,7 @@ DoPlayerMovement:: ; 80000
 	ld d, 0
 	ld hl, .EdgeWarps
 	add hl, de
-	ld a, [PlayerNextTile]
+	ld a, [PlayerStandingTile]
 	cp [hl]
 	jr nz, .not_warp
 
@@ -615,7 +615,7 @@ DoPlayerMovement:: ; 80000
 ;	tile collision pointer
 .table1
 	db STANDING, FACE_CURRENT, 0, 0
-	dw PlayerNextTile
+	dw PlayerStandingTile
 .table2
 	db RIGHT, FACE_RIGHT,  1,  0
 	dw TileRight
@@ -634,13 +634,13 @@ DoPlayerMovement:: ; 80000
 	ld a, 0
 	ld [hMapObjectIndexBuffer], a
 ; Load the next X coordinate into d
-	ld a, [PlayerNextMapX]
+	ld a, [PlayerStandingMapX]
 	ld d, a
 	ld a, [WalkingX]
 	add d
 	ld d, a
 ; Load the next Y coordinate into e
-	ld a, [PlayerNextMapY]
+	ld a, [PlayerStandingMapY]
 	ld e, a
 	ld a, [WalkingY]
 	add e
@@ -817,7 +817,7 @@ CheckStandingOnIce:: ; 80404
 	jr z, .not_ice
 	cp $f0
 	jr z, .not_ice
-	ld a, [PlayerNextTile]
+	ld a, [PlayerStandingTile]
 	call CheckIceTile
 	jr nc, .yep
 	ld a, [PlayerState]

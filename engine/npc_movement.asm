@@ -234,14 +234,14 @@ CheckFacingObject:: ; 6fd9
 	call CheckCounterTile
 	jr nz, .asm_6ff1
 
-	ld a, [PlayerNextMapX]
+	ld a, [PlayerStandingMapX]
 	sub d
 	cpl
 	inc a
 	add d
 	ld d, a
 
-	ld a, [PlayerNextMapY]
+	ld a, [PlayerStandingMapY]
 	sub e
 	cpl
 	inc a
@@ -482,9 +482,9 @@ IsPersonMovingOffEdgeOfScreen: ; 70ed
 ; 7113
 
 Function7113: ; unreferenced
-	ld a, [PlayerNextMapX]
+	ld a, [PlayerStandingMapX]
 	ld d, a
-	ld a, [PlayerNextMapY]
+	ld a, [PlayerStandingMapY]
 	ld e, a
 	ld bc, ObjectStructs
 	xor a
