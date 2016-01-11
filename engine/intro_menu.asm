@@ -318,7 +318,7 @@ InitializeNPCNames: ; 5ce9
 
 InitializeWorld: ; 5d23
 	call ShrinkPlayer
-	callba GetSpawnCoord
+	callba SpawnPlayer
 	callba _InitializeStartDay
 	ret
 ; 5d33

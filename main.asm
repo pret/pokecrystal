@@ -734,13 +734,13 @@ BlankScreen: ; 8000
 	call SetPalettes
 	ret
 
-GetSpawnCoord: ; 8029
+SpawnPlayer: ; 8029
 	ld a, -1
 	ld [wObjectFollow_Leader], a
 	ld [wObjectFollow_Follower], a
 	ld a, $0
 	ld hl, PlayerObjectTemplate
-	call Function19a6
+	call CopyPlayerObjectTemplate
 	ld b, $0
 	call PlayerSpawn_ConvertCoords
 	ld a, $0
