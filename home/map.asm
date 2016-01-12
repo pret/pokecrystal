@@ -381,7 +381,7 @@ CheckIndoorMap:: ; 22f4
 	ret
 ; 2300
 
-Function2300:: ; unreferenced
+; XXX
 	cp INDOOR
 	ret z
 	cp GATE
@@ -549,11 +549,11 @@ ReadWarps:: ; 23da
 	ld a, l
 	ld [wCurrMapWarpHeaderPointer], a
 	ld a, h
-	ld [wdbfd], a
+	ld [wCurrMapWarpHeaderPointer + 1], a
 	ld a, c
 	and a
 	ret z
-	ld bc, $0005
+	ld bc, 5
 	call AddNTimes
 	ret
 ; 23f1
@@ -765,25 +765,25 @@ endr
 	ld d, a
 	ld a, [MapHeight]
 	ld b, a
-.asm_250c
+.row
 	push hl
 	ld a, [hConnectedMapWidth]
 	ld c, a
-.asm_2510
+.col
 	ld a, [de]
 	inc de
 	ld [hli], a
 	dec c
-	jr nz, .asm_2510
+	jr nz, .col
 	pop hl
 	ld a, [hConnectionStripLength]
 	add l
 	ld l, a
-	jr nc, .asm_251e
+	jr nc, .okay
 	inc h
-.asm_251e
+.okay
 	dec b
-	jr nz, .asm_250c
+	jr nz, .row
 
 	pop af
 	rst Bankswitch
@@ -916,9 +916,9 @@ FillSouthConnectionStrip:: ; 25d3
 	add 6
 	add e
 	ld e, a
-	jr nc, .asm_25f2
+	jr nc, .okay
 	inc d
-.asm_25f2
+.okay
 	dec c
 	jr nz, .y
 	ret
@@ -927,7 +927,7 @@ FillSouthConnectionStrip:: ; 25d3
 FillWestConnectionStrip::
 FillEastConnectionStrip:: ; 25f6
 
-.asm_25f6
+.loop
 	ld a, [MapWidth]
 	add 6
 	ld [hConnectedMapWidth], a
@@ -955,11 +955,11 @@ FillEastConnectionStrip:: ; 25f6
 	ld a, [hConnectedMapWidth]
 	add e
 	ld e, a
-	jr nc, .asm_2617
+	jr nc, .okay
 	inc d
-.asm_2617
+.okay
 	dec b
-	jr nz, .asm_25f6
+	jr nz, .loop
 	ret
 ; 261b
 
@@ -1452,15 +1452,15 @@ BufferScreen:: ; 2879
 	ld de, wScreenSave
 	ld c, $5
 	ld b, $6
-.asm_2886
+.row
 	push bc
 	push hl
-.asm_2888
+.col
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_2888
+	jr nz, .col
 	pop hl
 	ld a, [MapWidth]
 	add $6
@@ -1469,7 +1469,7 @@ BufferScreen:: ; 2879
 	add hl, bc
 	pop bc
 	dec c
-	jr nz, .asm_2886
+	jr nz, .row
 	ret
 ; 289d
 

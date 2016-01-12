@@ -288,7 +288,7 @@ CheckForHiddenItems: ; b8172
 	add SCREEN_HEIGHT / 4
 	ld [wd1ec], a
 ; Get the pointer for the first signpost header in the map...
-	ld hl, wdc02
+	ld hl, wCurrentMapSignpostHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

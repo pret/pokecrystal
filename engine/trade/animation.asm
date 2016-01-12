@@ -864,9 +864,9 @@ TradeAnim_ShowFrontpic: ; 294c3
 	call Function297cf
 	hlcoord 7, 2
 	xor a
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	lb bc, 7, 7
-	predef FillBox
+	predef PlaceGraphic
 	call WaitBGMap
 	ret
 ; 294e7

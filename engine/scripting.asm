@@ -2806,9 +2806,9 @@ Script_xycompare: ; 97a01
 ;     pointer (MultiByteParam)
 
 	call GetScriptByte
-	ld [wd453], a
+	ld [wXYComparePointer], a
 	call GetScriptByte
-	ld [wd454], a
+	ld [wXYComparePointer + 1], a
 	ret
 ; 97a0e
 

@@ -401,10 +401,10 @@ Function81adb: ; 81adb
 	ld de, VTiles2 tile $31
 	predef GetBackpic
 	ld a, $31
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	hlcoord 2, 4
 	lb bc, 6, 6
-	predef FillBox
+	predef PlaceGraphic
 	ld a, [wd003]
 	and a
 	jr z, .asm_81b66
@@ -433,10 +433,10 @@ Function81adb: ; 81adb
 	callab GetTrainerPic
 	xor a
 	ld [TempEnemyMonSpecies], a
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	hlcoord 2, 3
 	lb bc, 7, 7
-	predef FillBox
+	predef PlaceGraphic
 
 .asm_81ba9
 	ld a, $1

@@ -982,7 +982,7 @@ AI_Smart_Whirlwind: ; 38a2a
 
 	push hl
 	callab CheckPlayerMoveTypeMatchups
-	ld a, [wc716]
+	ld a, [wEnemyAISwitchScore]
 	cp 10 ; neutral
 	pop hl
 	ret c
@@ -1909,7 +1909,7 @@ AI_Smart_MeanLook: ; 38dfb
 ; Otherwise, discourage this move unless the player only has not very effective moves against the enemy.	
 	push hl
 	callab CheckPlayerMoveTypeMatchups
-	ld a, [wc716]
+	ld a, [wEnemyAISwitchScore]
 	cp $b ; not very effective
 	pop hl
 	ret nc
@@ -2170,7 +2170,7 @@ AI_Smart_PerishSong: ; 38f4a
 
 	push hl
 	callab CheckPlayerMoveTypeMatchups
-	ld a, [wc716]
+	ld a, [wEnemyAISwitchScore]
 	cp 10 ; 1.0
 	pop hl
 	ret c
@@ -2432,7 +2432,7 @@ AI_Smart_BatonPass: ; 39062
 
 	push hl
 	callab CheckPlayerMoveTypeMatchups
-	ld a, [wc716]
+	ld a, [wEnemyAISwitchScore]
 	cp 10 ; neutral
 	pop hl
 	ret c

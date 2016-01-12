@@ -34,7 +34,7 @@ hJoyLast           EQU $ffa9
 hInMenu            EQU $ffaa
 
 hPrinter           EQU $ffac
-hFillBox           EQU $ffad
+hGraphicStartTile           EQU $ffad
 hMoveMon           EQU $ffae
 hMapObjectIndexBuffer EQU $ffaf
 hObjectStructIndexBuffer EQU $ffb0

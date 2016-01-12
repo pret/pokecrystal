@@ -199,14 +199,14 @@ TownMap_InitCursorAndPlayerIconPositions: ; 90d70 (24:4d70)
 	ld c, a
 	call GetWorldMapLocation
 .LoadLandmark
-	ld [wTownMapPlayerIconLandmark], a
-	ld [wTownMapCursorLandmark], a
+	ld [wPokegearMapPlayerIconLandmark], a
+	ld [wPokegearMapCursorLandmark], a
 	ret
 
 .FastShip
-	ld [wTownMapPlayerIconLandmark], a
+	ld [wPokegearMapPlayerIconLandmark], a
 	ld a, NEW_BARK_TOWN
-	ld [wTownMapCursorLandmark], a
+	ld [wPokegearMapCursorLandmark], a
 	ret
 
 Pokegear_InitJumptableIndices: ; 90d9e (24:4d9e)
@@ -307,7 +307,7 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 ; 90e3f
 
 .Map: ; 90e3f
-	ld a, [wTownMapPlayerIconLandmark]
+	ld a, [wPokegearMapPlayerIconLandmark]
 	cp FAST_SHIP
 	jr z, .johto
 	cp KANTO_LANDMARK
@@ -328,7 +328,7 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 	ld [hl], $6
 	hlcoord 19, 2
 	ld [hl], $17
-	ld a, [wTownMapCursorLandmark]
+	ld a, [wPokegearMapCursorLandmark]
 	call PokegearMap_UpdateLandmarkName
 	ret
 
@@ -530,7 +530,7 @@ Pokegear_UpdateClock: ; 90f86 (24:4f86)
 ; 0x90fb4
 
 PokegearMap_CheckRegion: ; 90fb4 (24:4fb4)
-	ld a, [wTownMapPlayerIconLandmark]
+	ld a, [wPokegearMapPlayerIconLandmark]
 	cp FAST_SHIP
 	jr z, .johto
 	cp KANTO_LANDMARK
@@ -549,9 +549,9 @@ PokegearMap_CheckRegion: ; 90fb4 (24:4fb4)
 
 PokegearMap_Init: ; 90fcd (24:4fcd)
 	call InitPokegearTilemap
-	ld a, [wTownMapPlayerIconLandmark]
+	ld a, [wPokegearMapPlayerIconLandmark]
 	call PokegearMap_InitPlayerIcon
-	ld a, [wTownMapCursorLandmark]
+	ld a, [wPokegearMapCursorLandmark]
 	call PokegearMap_InitCursor
 	ld a, c
 	ld [wPokegearMapCursorObjectPointer], a
@@ -621,7 +621,7 @@ PokegearMap_ContinueMap: ; 90ff2 (24:4ff2)
 	ret
 
 .up
-	ld hl, wTownMapCursorLandmark
+	ld hl, wPokegearMapCursorLandmark
 	ld a, [hl]
 	cp d
 	jr c, .wrap_around_up
@@ -633,7 +633,7 @@ PokegearMap_ContinueMap: ; 90ff2 (24:4ff2)
 	jr .done_dpad
 
 .down
-	ld hl, wTownMapCursorLandmark
+	ld hl, wPokegearMapCursorLandmark
 	ld a, [hl]
 	cp e
 	jr nz, .wrap_around_down
@@ -643,13 +643,13 @@ PokegearMap_ContinueMap: ; 90ff2 (24:4ff2)
 .wrap_around_down
 	dec [hl]
 .done_dpad
-	ld a, [wTownMapCursorLandmark]
+	ld a, [wPokegearMapCursorLandmark]
 	call PokegearMap_UpdateLandmarkName
 	ld a, [wPokegearMapCursorObjectPointer]
 	ld c, a
 	ld a, [wPokegearMapCursorObjectPointer + 1]
 	ld b, a
-	ld a, [wTownMapCursorLandmark]
+	ld a, [wPokegearMapCursorLandmark]
 	call PokegearMap_UpdateCursorPosition
 	ret
 
@@ -1552,7 +1552,7 @@ RadioChannels:
 	jp LoadStation_BuenasPassword
 
 .RuinsOfAlphRadio
-	ld a, [wTownMapPlayerIconLandmark]
+	ld a, [wPokegearMapPlayerIconLandmark]
 	cp RUINS_OF_ALPH
 	jr nz, .NoSignal
 	jp LoadStation_UnownRadio
@@ -1586,7 +1586,7 @@ RadioChannels:
 	ld a, [StatusFlags]
 	bit 4, a
 	jr z, .NoSignal
-	ld a, [wTownMapPlayerIconLandmark]
+	ld a, [wPokegearMapPlayerIconLandmark]
 	cp MAHOGANY_TOWN
 	jr z, .ok
 	cp ROUTE_43
@@ -1604,7 +1604,7 @@ RadioChannels:
 ; if in Johto or on the S.S. Aqua, set carry
 
 ; otherwise clear carry
-	ld a, [wTownMapPlayerIconLandmark]
+	ld a, [wPokegearMapPlayerIconLandmark]
 	cp FAST_SHIP
 	jr z, .johto
 	cp KANTO_LANDMARK

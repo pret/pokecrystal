@@ -1665,9 +1665,9 @@ _PrepMonFrontpic:: ; 378b
 	predef GetFrontpic
 	pop hl
 	xor a
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	lb bc, 7, 7
-	predef FillBox
+	predef PlaceGraphic
 	xor a
 	ld [wBoxAlignment], a
 	ret

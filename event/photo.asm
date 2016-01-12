@@ -144,9 +144,9 @@ UnownPrinter: ; 16be4
 	call Function16cff
 	hlcoord 1, 6
 	xor a
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	lb bc, 7, 7
-	predef FillBox
+	predef PlaceGraphic
 	ld de, VTiles2 tile $31
 	callba Functione0000
 	ret
@@ -228,9 +228,9 @@ Function16dac: ; 16dac
 	call ByteFill
 	hlcoord 7, 11
 	ld a, $31
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	lb bc, 7, 7
-	predef FillBox
+	predef PlaceGraphic
 	ret
 ; 16dc7
 

@@ -549,7 +549,7 @@ AIUpdateHUD: ; 38387
 	callba UpdateEnemyHUD
 	ld a, $1
 	ld [hBGMapMode], a
-	ld hl, wc6e6
+	ld hl, wEnemyItemState
 	dec [hl]
 	scf
 	ret

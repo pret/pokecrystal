@@ -748,7 +748,7 @@ endr
 	jr z, .clear
 	cp -3
 	jr z, .skip
-	call .FillBox
+	call .PlaceGraphic
 .skip
 	call BattleBGEffects_IncrementJumptable
 	ld a, $1
@@ -798,7 +798,7 @@ endr
 	pop bc
 	ret
 
-.FillBox
+.PlaceGraphic
 ; get dims
 	push bc
 	push hl

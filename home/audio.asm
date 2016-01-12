@@ -560,7 +560,7 @@ CheckSFX:: ; 3dde
 	ret
 ; 3dfe
 
-Function3dfe:: ; 3dfe
+TerminateExpBarSound:: ; 3dfe
 	xor a
 	ld [Channel5Flags], a
 	ld [SoundInput], a

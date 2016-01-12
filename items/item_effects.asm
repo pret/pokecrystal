@@ -1665,7 +1665,7 @@ RevivePokemon: ; f0d6
 	ld a, [CurPartyMon]
 	ld c, a
 	ld d, 0
-	ld hl, wc6fc
+	ld hl, wBattleParticipantsIncludingFainted
 	ld b, CHECK_FLAG
 	predef FlagPredef
 	ld a, c

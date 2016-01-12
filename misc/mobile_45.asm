@@ -134,9 +134,9 @@ Function114243:: ; 114243
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
 	ld a, [hFF8C]
-	push af ; if [wdc02] == 0, this is popped to pc.
+	push af ; if [$dc02] == 0, this is popped to pc.
 	push de
-	ld a, [wdc02]
+	ld a, [$dc02]
 	add a
 	ld e, a
 	ld d, 0
@@ -151,7 +151,7 @@ Function114243:: ; 114243
 ; 11425c
 
 Function11425c: ; 11425c
-	ld [wdc02], a
+	ld [$dc02], a
 	pop af
 rept 2
 	ld [hFF8C], a
@@ -161,8 +161,7 @@ endr
 
 ; 114268
 
-Function114268: ; 114268
-	ret
+Function114268: mobile
 
 ; 114269
 
@@ -170,10 +169,10 @@ Function114269: ; 114269
 	ld h, d
 	ld l, e
 	xor a
-	ld [wdc02], a
-	ld [wdc03], a
+	ld [$dc02], a
+	ld [$dc03], a
 	ld a, [hli]
-	ld [wdc00], a
+	ld [$dc00], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -188,7 +187,7 @@ Function114269: ; 114269
 	and a
 	jr z, .asm_1142a4
 	ld h, a
-	ld a, [wdc03]
+	ld a, [$dc03]
 	and a
 	jr nz, .asm_114292
 	ld a, h
@@ -200,7 +199,7 @@ Function114269: ; 114269
 	cp $d
 	jr z, .asm_1142bb
 	xor a
-	ld [wdc02], a
+	ld [$dc02], a
 .asm_11429b
 	inc e
 	call z, Function114333
@@ -210,7 +209,7 @@ Function114269: ; 114269
 	jr nz, .asm_114282
 
 .asm_1142a4
-	ld a, [wdc03]
+	ld a, [$dc03]
 	and a
 	jr nz, .asm_114303
 	ld b, $80
@@ -220,7 +219,7 @@ Function114269: ; 114269
 	ld b, $81
 
 .asm_1142b0
-	ld a, [wdc00]
+	ld a, [$dc00]
 	ld c, a
 	ld a, $1
 	ld h, d
@@ -238,7 +237,7 @@ Function114269: ; 114269
 	jr z, .asm_1142a4
 	ld a, [de]
 	ld h, a
-	ld a, [wdc03]
+	ld a, [$dc03]
 	and a
 	jr nz, .asm_1142d4
 	ld a, h
@@ -249,14 +248,14 @@ Function114269: ; 114269
 	ld a, h
 	cp $a
 	jr nz, .asm_1142ae
-	ld a, [wdc03]
+	ld a, [$dc03]
 	and a
 	jr nz, .asm_11430d
-	ld a, [wdc02]
+	ld a, [$dc02]
 	and a
 	jr nz, .asm_114309
 	ld a, $1
-	ld [wdc02], a
+	ld [$dc02], a
 	inc e
 	call z, Function114333
 	dec bc
@@ -282,14 +281,14 @@ Function114269: ; 114269
 
 .asm_114309
 	xor a
-	ld [wdc02], a
+	ld [$dc02], a
 
 .asm_11430d
-	ld a, [wdc02]
+	ld a, [$dc02]
 	and a
 	jr nz, .asm_1142fe
 	ld a, $1
-	ld [wdc03], a
+	ld [$dc03], a
 	inc e
 	call z, Function114333
 	dec bc
@@ -302,14 +301,14 @@ Function114269: ; 114269
 	cp $2e
 	jp nz, .asm_114282
 	ld a, $1
-	ld [wdc02], a
+	ld [$dc02], a
 	jp .asm_11429b
 
 ; 114333
 
 Function114333: ; 114333
 	push bc
-	ld bc, wdc00
+	ld bc, $dc00
 	call Function115d80
 	pop bc
 	ret
@@ -348,7 +347,7 @@ Function11433c: ; 11433c
 
 .asm_114360
 	ld a, h
-	ld [wdc03], a
+	ld [$dc03], a
 	pop hl
 	push bc
 	push de
@@ -373,14 +372,14 @@ Function11433c: ; 11433c
 .asm_114381
 	pop de
 	pop bc
-	ld a, [wdc03]
-	ld [wdc00], a
+	ld a, [$dc03]
+	ld [$dc00], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	call Function114c0b
 	ld hl, String_114004
 .asm_114394
-	ld de, wdc24
+	ld de, $dc24
 .asm_114397
 	ld a, [hli]
 	and a
@@ -493,7 +492,7 @@ Function1143f3: ; 1143f3
 
 Function114412: ; 114412
 	ld a, c
-	ld [wdc00], a
+	ld [$dc00], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld hl, Unknown_11417f
@@ -528,8 +527,8 @@ Function114412: ; 114412
 	jr z, .asm_1144b8
 
 .asm_11444a
-	ld a, [wdc00]
-	ld [wdc02], a
+	ld a, [$dc00]
+	ld [$dc02], a
 	ld a, [de]
 	and a
 	jr z, .asm_1144c2
@@ -595,7 +594,7 @@ Function114412: ; 114412
 	jr z, .asm_114486
 	ld d, h
 	ld e, l
-	ld a, [wdc02]
+	ld a, [$dc02]
 	ld h, a
 	xor a
 	ret
@@ -624,7 +623,7 @@ Function114412: ; 114412
 
 Function1144c8: ; 1144c8
 	push bc
-	ld bc, wdc00
+	ld bc, $dc00
 	call Function115d80
 	pop bc
 	ret
@@ -654,10 +653,10 @@ endr
 	ld [hl], a
 	xor a
 	ld [BigDoll], a
-	ld [wdc17], a
+	ld [$dc17], a
 	ld a, $2
-	ld [wdc0e], a
-	ld hl, wdc03
+	ld [$dc0e], a
+	ld hl, $dc03
 	ld c, [hl]
 	inc hl
 	ld e, [hl]
@@ -669,7 +668,7 @@ endr
 	and a
 	jr z, .asm_114511
 	ld a, $1
-	ld [wdc0d], a
+	ld [$dc0d], a
 	call Function1146fa
 	and a
 	jr nz, .asm_11455b
@@ -680,7 +679,7 @@ endr
 	and a
 	jr nz, .asm_11455b
 	ld a, $2
-	ld [wdc0d], a
+	ld [$dc0d], a
 
 .asm_11451c
 	pop hl
@@ -691,7 +690,7 @@ endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld a, [wdc0d]
+	ld a, [$dc0d]
 	ld [de], a
 	ld b, $0
 	ld a, [BigDoll]
@@ -700,12 +699,12 @@ endr
 	ld b, $1
 
 .asm_114537
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [hl]
 	ld [wCurrentMapSignpostCount], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
-	ld hl, wdc09
+	ld hl, $dc09
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -732,7 +731,7 @@ endr
 ; 114561
 
 Function114561: ; 114561
-	ld hl, wdc03
+	ld hl, $dc03
 	ld a, [de]
 	ld [hli], a
 	inc de
@@ -764,13 +763,13 @@ Function114576: ; 114576
 	and a
 	jr nz, .asm_1145b4
 	ld a, h
-	ld [wdc00], a
+	ld [$dc00], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	push hl
 	push de
 	push bc
-	ld hl, wdc24
+	ld hl, $dc24
 	call Function115d53
 	call Function1145c5
 	pop bc
@@ -782,7 +781,7 @@ Function114576: ; 114576
 	and a
 	jr nz, .asm_1145ba
 	ld a, h
-	ld [wdc00], a
+	ld [$dc00], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld hl, String_114218
@@ -811,7 +810,7 @@ Function114576: ; 114576
 ; 1145c5
 
 Function1145c5: ; 1145c5
-	ld hl, wdc24
+	ld hl, $dc24
 	ld de, String_11421e
 	ld c, $0
 .asm_1145cd
@@ -905,7 +904,7 @@ Function1145c5: ; 1145c5
 ; 11463c
 
 Function11463c: ; 11463c
-	ld a, [wdc00]
+	ld a, [$dc00]
 	push af
 	push de
 	ld hl, $ddc8
@@ -958,7 +957,7 @@ Function11463c: ; 11463c
 .asm_11468a
 	pop de
 	pop af
-	ld [wdc00], a
+	ld [$dc00], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	xor a
@@ -970,7 +969,7 @@ Function11463c: ; 11463c
 
 Function11469b: ; 11469b
 	push bc
-	ld bc, wdc00
+	ld bc, $dc00
 	call Function115d80
 	pop bc
 	ret
@@ -981,9 +980,9 @@ Function1146a4: ; 1146a4
 	call Function114867
 	and a
 	jr nz, .asm_1146e4
-	ld hl, wdc03
+	ld hl, $dc03
 	ld a, [hli]
-	ld [wdc00], a
+	ld [$dc00], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -995,9 +994,9 @@ Function1146a4: ; 1146a4
 	call Function1148c2
 	and a
 	jr nz, .asm_1146e4
-	ld hl, wdc03
+	ld hl, $dc03
 	ld a, [hli]
-	ld [wdc00], a
+	ld [$dc00], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -1021,7 +1020,7 @@ endr
 	jr .asm_1146f7
 
 .asm_1146e8
-	ld a, [wdc17]
+	ld a, [$dc17]
 	and a
 	jr z, .asm_1146f5
 	ld a, $1
@@ -1041,9 +1040,9 @@ Function1146fa: ; 1146fa
 	call Function114867
 	and a
 	jp nz, .asm_11478a
-	ld hl, wdc03
+	ld hl, $dc03
 	ld a, [hli]
-	ld [wdc00], a
+	ld [$dc00], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -1056,8 +1055,8 @@ Function1146fa: ; 1146fa
 	and a
 	jp nz, .asm_11478a
 	ld a, $1
-	ld [wdc0e], a
-	ld a, [wdc00]
+	ld [$dc0e], a
+	ld a, [$dc00]
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, $1
@@ -1069,7 +1068,7 @@ Function1146fa: ; 1146fa
 	call Function114843
 	cp $1
 	jr nz, .asm_114749
-	ld a, [wdc17]
+	ld a, [$dc17]
 	and a
 	jr z, .asm_114794
 	ld a, $1
@@ -1082,9 +1081,9 @@ Function1146fa: ; 1146fa
 	ld a, [BigDoll]
 	and a
 	jr nz, .asm_114786
-	ld hl, wdc03
+	ld hl, $dc03
 	ld a, [hli]
-	ld [wdc00], a
+	ld [$dc00], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -1093,7 +1092,7 @@ Function1146fa: ; 1146fa
 	call Function1147cd
 	and a
 	jr nz, .asm_1147b7
-	ld a, [wdc0e]
+	ld a, [$dc0e]
 	cp $3
 	jr nz, .asm_114773
 rept 2
@@ -1104,9 +1103,9 @@ endr
 	call Function1149cc
 	and a
 	jr nz, .asm_11478a
-	ld a, [wdc0d]
+	ld a, [$dc0d]
 	inc a
-	ld [wdc0d], a
+	ld [$dc0d], a
 	ld a, [BigDoll]
 	and a
 	jr z, .asm_114799
@@ -1120,7 +1119,7 @@ endr
 	jr .asm_114796
 
 .asm_11478e
-	ld a, [wdc17]
+	ld a, [$dc17]
 	and a
 	jr nz, .asm_114796
 
@@ -1137,9 +1136,9 @@ endr
 	jr z, .asm_114737
 	jr .asm_1147cb
 
-	ld hl, wdc03
+	ld hl, $dc03
 	ld a, [hli]
-	ld [wdc00], a
+	ld [$dc00], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	call Function114a7a
@@ -1149,12 +1148,12 @@ endr
 	ld [BigDoll], a
 
 .asm_1147b7
-	ld a, [wdc17]
+	ld a, [$dc17]
 	and a
 	jr z, .asm_114794
 	ld a, $1
 	ld [BigDoll], a
-	ld a, [wdc0d]
+	ld a, [$dc0d]
 	cp $1
 	jr nz, .asm_114773
 	ld b, $1
@@ -1235,7 +1234,7 @@ Function1147cd: ; 1147cd
 	and a
 	jr nz, .asm_114837
 	ld a, $1
-	ld [wdc17], a
+	ld [$dc17], a
 
 .asm_114837
 	ld a, $1
@@ -1245,7 +1244,7 @@ Function1147cd: ; 1147cd
 
 Function11483a: ; 11483a
 	push bc
-	ld bc, wdc00
+	ld bc, $dc00
 	call Function115d80
 	pop bc
 	ret
@@ -1253,7 +1252,7 @@ Function11483a: ; 11483a
 ; 114843
 
 Function114843: ; 114843
-	ld a, [wdc00]
+	ld a, [$dc00]
 	push af
 	push de
 	ld [hFF8C], a
@@ -1263,7 +1262,7 @@ Function114843: ; 114843
 	jr nz, .asm_11485f
 	pop de
 	pop af
-	ld [wdc00], a
+	ld [$dc00], a
 	ld hl, String_114218
 	call Function114acf
 	ret
@@ -1271,14 +1270,14 @@ Function114843: ; 114843
 .asm_11485f
 	pop de
 	pop af
-	ld [wdc00], a
+	ld [$dc00], a
 	ld a, $1
 	ret
 
 ; 114867
 
 Function114867: ; 114867
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
 	ld [hFF8C], a
@@ -1294,7 +1293,7 @@ Function114867: ; 114867
 	ld [de], a
 	inc e
 	call z, Function1148b9
-	ld hl, wdc03
+	ld hl, $dc03
 	ld a, [hli]
 	ld [de], a
 	inc e
@@ -1307,7 +1306,7 @@ Function114867: ; 114867
 	ld [de], a
 	inc e
 	call z, Function1148b9
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld [hl], e
@@ -1347,7 +1346,7 @@ Function1148b9: ; 1148b9
 ; 1148c2
 
 Function1148c2: ; 1148c2
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
 	ld [hFF8C], a
@@ -1363,7 +1362,7 @@ Function1148c2: ; 1148c2
 	ld [de], a
 	inc e
 	call z, Function114944
-	ld a, [wdc0e]
+	ld a, [$dc0e]
 	ld [de], a
 	inc e
 	call z, Function114944
@@ -1388,7 +1387,7 @@ Function1148c2: ; 1148c2
 	call z, Function114944
 
 .asm_114904
-	ld hl, wdc03
+	ld hl, $dc03
 	ld a, [hli]
 	ld [de], a
 	inc e
@@ -1401,7 +1400,7 @@ Function1148c2: ; 1148c2
 	ld [de], a
 	inc e
 	call z, Function114944
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld [hl], e
@@ -1411,7 +1410,7 @@ Function1148c2: ; 1148c2
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-	ld a, [wdc0e]
+	ld a, [$dc0e]
 	cp $3
 	jr z, .asm_114932
 	ld d, $6
@@ -1449,7 +1448,7 @@ Function114944: ; 114944
 ; 11494d
 
 Function11494d: ; 11494d
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
 	ld [hFF8C], a
@@ -1457,7 +1456,7 @@ Function11494d: ; 11494d
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld a, [wdc0e]
+	ld a, [$dc0e]
 	ld [de], a
 	inc e
 	call z, Function1149c3
@@ -1482,7 +1481,7 @@ Function11494d: ; 11494d
 	call z, Function1149c3
 
 .asm_114983
-	ld hl, wdc03
+	ld hl, $dc03
 	ld a, [hli]
 	ld [de], a
 	inc e
@@ -1495,7 +1494,7 @@ Function11494d: ; 11494d
 	ld [de], a
 	inc e
 	call z, Function1149c3
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld [hl], e
@@ -1505,7 +1504,7 @@ Function11494d: ; 11494d
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-	ld a, [wdc0e]
+	ld a, [$dc0e]
 	cp $3
 	jr z, .asm_1149b1
 	ld d, $4
@@ -1543,13 +1542,13 @@ Function1149c3: ; 1149c3
 ; 1149cc
 
 Function1149cc: ; 1149cc
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [hl]
 	ld [wCurrentMapSignpostCount], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	push de
-	ld hl, wdc09
+	ld hl, $dc09
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1576,7 +1575,7 @@ Function1149cc: ; 1149cc
 	ld [de], a
 	inc e
 	call z, Function114a0f
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld [hl], e
@@ -1641,8 +1640,8 @@ Function114a18: ; 114a18
 	dec bc
 
 .asm_114a52
-	ld hl, wdc03
-	ld a, [wdc00]
+	ld hl, $dc03
+	ld a, [$dc00]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -1662,7 +1661,7 @@ Function114a18: ; 114a18
 	and a
 	jr nz, .asm_114a6e
 	ld a, $1
-	ld [wdc17], a
+	ld [$dc17], a
 
 .asm_114a6e
 	ld a, $1
@@ -1672,7 +1671,7 @@ Function114a18: ; 114a18
 
 Function114a71: ; 114a71
 	push bc
-	ld bc, wdc00
+	ld bc, $dc00
 	call Function115d80
 	pop bc
 	ret
@@ -1711,8 +1710,8 @@ Function114a7a: ; 114a7a
 	jr nz, .asm_114abb
 	inc e
 	call z, Function114ac6
-	ld hl, wdc03
-	ld a, [wdc00]
+	ld hl, $dc03
+	ld a, [$dc00]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -1724,7 +1723,7 @@ Function114a7a: ; 114a7a
 	and a
 	jr nz, .asm_114ac3
 	ld a, $1
-	ld [wdc17], a
+	ld [$dc17], a
 
 .asm_114ac3
 	ld a, $1
@@ -1734,7 +1733,7 @@ Function114a7a: ; 114a7a
 
 Function114ac6: ; 114ac6
 	push bc
-	ld bc, wdc00
+	ld bc, $dc00
 	call Function115d80
 	pop bc
 	ret
@@ -1768,7 +1767,7 @@ Function114acf: ; 114acf
 	jr nz, .asm_114ad1
 .asm_114aec
 	ld a, $2
-	ld [wdc0e], a
+	ld [$dc0e], a
 	pop bc
 	pop hl
 	ret
@@ -1816,7 +1815,7 @@ Function114acf: ; 114acf
 
 .asm_114b26
 	ld hl, Plant
-	ld a, [wdc00]
+	ld a, [$dc00]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -1839,7 +1838,7 @@ Function114acf: ; 114acf
 	pop bc
 	pop hl
 	ld a, $3
-	ld [wdc0e], a
+	ld [$dc0e], a
 	xor a
 	ret
 
@@ -1847,7 +1846,7 @@ Function114acf: ; 114acf
 
 Function114b4c: ; 114b4c
 	push bc
-	ld bc, wdc00
+	ld bc, $dc00
 	call Function115d80
 	pop bc
 	ret
@@ -1857,13 +1856,13 @@ Function114b4c: ; 114b4c
 Function114b55: ; 114b55
 	call Function114561
 	ld b, $0
-	ld hl, wdc03
+	ld hl, $dc03
 	ld c, [hl]
 	inc hl
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, wdc24
+	ld hl, $dc24
 .asm_114b65
 	push de
 	push bc
@@ -1906,7 +1905,7 @@ endr
 	jr .asm_114b82
 
 .asm_114b96
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
 	ld [hFF8C], a
@@ -1916,7 +1915,7 @@ endr
 	ld d, [hl]
 	inc hl
 	ld bc, $004e
-	ld hl, wdc24
+	ld hl, $dc24
 	call Function115d6a
 	jp Function11425c
 
@@ -1948,11 +1947,11 @@ Function114bbc: ; 114bbc
 	and a
 	jr nz, .asm_114bff
 	ld a, h
-	ld [wdc00], a
+	ld [$dc00], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	call Function114c0b
-	ld hl, wdc24
+	ld hl, $dc24
 	call Function114c5e
 	ld a, b
 	or c
@@ -1965,7 +1964,7 @@ Function114bbc: ; 114bbc
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ld hl, wdc24
+	ld hl, $dc24
 	push bc
 	call Function115d6a
 	pop hl
@@ -1986,11 +1985,11 @@ Function114bbc: ; 114bbc
 ; 114c0b
 
 Function114c0b: ; 114c0b
-	ld hl, wdc24
+	ld hl, $dc24
 	push bc
 	call Function115d53
 	pop bc
-	ld hl, wdc24
+	ld hl, $dc24
 	ld d, h
 	ld e, l
 .asm_114c18
@@ -2006,7 +2005,7 @@ Function114c0b: ; 114c0b
 .asm_114c24
 	xor a
 	ld [de], a
-	ld hl, wdc24
+	ld hl, $dc24
 	ld bc, NULL
 .asm_114c2c
 	ld a, [hli]
@@ -2047,7 +2046,7 @@ Function114c0b: ; 114c0b
 
 Function114c55: ; 114c55
 	push bc
-	ld bc, wdc00
+	ld bc, $dc00
 	call Function115d80
 	pop bc
 	ret
@@ -2096,9 +2095,9 @@ rept 2
 	dec bc
 endr
 	ld a, l
-	ld [wdc03], a
+	ld [$dc03], a
 	ld a, h
-	ld [wdc04], a
+	ld [$dc04], a
 	pop hl
 	push de
 	call Function115c49
@@ -2117,9 +2116,9 @@ endr
 	ld a, b
 	or c
 	jr nz, .asm_114ca6
-	ld a, [wdc03]
+	ld a, [$dc03]
 	ld l, a
-	ld a, [wdc04]
+	ld a, [$dc04]
 	ld h, a
 	jr .asm_114c62
 
@@ -2172,15 +2171,15 @@ Function114cd9: ; 114cd9
 	call Function1143f3
 	and a
 	jr nz, .asm_114d33
-	ld [wdc03], a
-	ld [wdc04], a
+	ld [$dc03], a
+	ld [$dc04], a
 	ld a, h
-	ld [wdc00], a
+	ld [$dc00], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
-	ld hl, wdc24
+	ld hl, $dc24
 	call Function114d39
-	ld hl, wdc24
+	ld hl, $dc24
 	call Function114d99
 	pop hl
 	push hl
@@ -2226,7 +2225,7 @@ endr
 
 Function114d39: ; 114d39
 .asm_114d39
-	ld a, [wdc04]
+	ld a, [$dc04]
 	and a
 	jr nz, .asm_114d4a
 	ld a, [de]
@@ -2245,27 +2244,27 @@ Function114d39: ; 114d39
 	jr .asm_114d84
 
 .asm_114d55
-	ld [wdc03], a
+	ld [$dc03], a
 	ld a, $1
-	ld [wdc04], a
+	ld [$dc04], a
 	jr .asm_114d84
 
 .asm_114d5f
-	ld a, [wdc03]
+	ld a, [$dc03]
 	cp $28
 	jr nz, .asm_114d84
 	xor a
-	ld [wdc03], a
-	ld [wdc04], a
+	ld [$dc03], a
+	ld [$dc04], a
 	jr .asm_114d84
 
 .asm_114d6f
-	ld a, [wdc03]
+	ld a, [$dc03]
 	cp $22
 	jr nz, .asm_114d84
 	xor a
-	ld [wdc03], a
-	ld [wdc04], a
+	ld [$dc03], a
+	ld [$dc04], a
 	jr .asm_114d84
 
 .asm_114d7f
@@ -2281,7 +2280,7 @@ Function114d39: ; 114d39
 	inc e
 	jr nz, .asm_114d39
 	push bc
-	ld bc, wdc00
+	ld bc, $dc00
 	call Function115d80
 	pop bc
 	jr .asm_114d39
@@ -2480,7 +2479,7 @@ Function114e62: ; 114e62
 	call Function114ea0
 	and a
 	jr nz, .asm_114e99
-	ld hl, wdc09
+	ld hl, $dc09
 	ld a, [hli]
 	cpl
 	ld e, a
@@ -2503,7 +2502,7 @@ Function114e62: ; 114e62
 ; 114ea0
 
 Function114ea0: ; 114ea0
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
 	ld [hFF8C], a
@@ -2529,7 +2528,7 @@ Function114ea0: ; 114ea0
 	dec bc
 	inc e
 	call z, Function114ee0
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
@@ -2560,7 +2559,7 @@ Function114ee0: ; 114ee0
 ; 114ee9
 
 Function114ee9: ; 114ee9
-	ld hl, wdc03
+	ld hl, $dc03
 	ld a, b
 	ld [hli], a
 	ld a, c
@@ -2599,7 +2598,7 @@ Function114f0a: ; 114f0a
 	call Function114f39
 	and a
 	jr nz, .asm_114f26
-	ld a, [wdc03]
+	ld a, [$dc03]
 	cp $6
 	jr c, .asm_114f21
 	cp $c
@@ -2620,7 +2619,7 @@ Function114f0a: ; 114f0a
 	call Function114f59
 	and a
 	jr nz, .asm_114f23
-	ld hl, wdc0d
+	ld hl, $dc0d
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -2633,7 +2632,7 @@ Function114f0a: ; 114f0a
 ; 114f39
 
 Function114f39: ; 114f39
-	ld hl, wdc0d
+	ld hl, $dc0d
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -2652,7 +2651,7 @@ Function114f39: ; 114f39
 	ld a, [de]
 	ld [hli], a
 	inc de
-	ld hl, wdc0d
+	ld hl, $dc0d
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -2668,7 +2667,7 @@ Function114f59: ; 114f59
 	ld a, [wStartDay]
 	and a
 	jr nz, .asm_114f7c
-	ld a, [wdc03]
+	ld a, [$dc03]
 	cp $11
 	jr z, .asm_114fa7
 	add a
@@ -2686,7 +2685,7 @@ Function114f59: ; 114f59
 	ld [wStartDay], a
 
 .asm_114f7c
-	ld a, [wdc03]
+	ld a, [$dc03]
 	cp $5
 	jr c, .asm_114fc9
 	jr z, .asm_114fec
@@ -2716,15 +2715,15 @@ Function114f59: ; 114f59
 	ld c, [hl]
 	inc hl
 	ld a, [hli]
-	ld [wdc00], a
+	ld [$dc00], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, wdc24
+	ld hl, $dc24
 	call Function115d53
-	ld hl, wdc24
+	ld hl, $dc24
 	call Function115020
 	and a
 	jr nz, .asm_114fe7
@@ -2734,9 +2733,9 @@ Function114f59: ; 114f59
 	call Function115062
 	and a
 	jr nz, .asm_114fe7
-	ld a, [wdc04]
+	ld a, [$dc04]
 	dec a
-	ld [wdc04], a
+	ld [$dc04], a
 	and a
 	jr z, .asm_114fdf
 	call Function114f39
@@ -2744,8 +2743,8 @@ Function114f59: ; 114f59
 	jr nz, .asm_114fc9
 
 .asm_114fdf
-	ld a, [wdc05]
-	ld [wdc04], a
+	ld a, [$dc05]
+	ld [$dc04], a
 	jr .asm_11501e
 
 .asm_114fe7
@@ -2774,7 +2773,7 @@ Function114f59: ; 114f59
 
 .asm_115007
 	call Function11528f
-	ld hl, wdc24
+	ld hl, $dc24
 	call Function115217
 	and a
 	jr nz, .asm_114fe7
@@ -2794,7 +2793,7 @@ Function114f59: ; 114f59
 
 Function115020: ; 115020
 	push hl
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
 	ld [hFF8C], a
@@ -2822,7 +2821,7 @@ Function115020: ; 115020
 	jr .asm_115036
 
 .asm_115046
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
@@ -2857,14 +2856,14 @@ Function115062: ; 115062
 	jr z, .asm_1150ae
 	ld c, a
 	ld a, [hli]
-	ld [wdc00], a
+	ld [$dc00], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	ld b, $0
-	ld hl, wdc24
+	ld hl, $dc24
 	ld a, [wStartDay]
 	cp $1
 	jr z, .asm_11509b
@@ -2906,7 +2905,7 @@ Function115062: ; 115062
 ; 1150b3
 
 Function1150b3: ; 1150b3
-	ld hl, wdc24
+	ld hl, $dc24
 	ld de, PartyMon5Defense
 	ld b, $0
 .asm_1150bb
@@ -3011,7 +3010,7 @@ endr
 ; 115136
 
 Function115136: ; 115136
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
 	ld [hFF8C], a
@@ -3039,7 +3038,7 @@ Function115136: ; 115136
 	jr .asm_11514d
 
 .asm_11515d
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
@@ -3068,7 +3067,7 @@ Function115170: ; 115170
 ; 115179
 
 Function115179: ; 115179
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
 	ld [hFF8C], a
@@ -3164,7 +3163,7 @@ Function115179: ; 115179
 	jr z, .asm_1151ef
 	inc e
 	call z, Function11520e
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
@@ -3190,7 +3189,7 @@ Function11520e: ; 11520e
 
 Function115217: ; 115217
 	push hl
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurrentMapSignpostCount], a
 	ld [hFF8C], a
@@ -3218,7 +3217,7 @@ Function115217: ; 115217
 	jr .asm_11522d
 
 .asm_11523d
-	ld a, [wdc03]
+	ld a, [$dc03]
 	cp $b
 	jr z, .asm_115278
 	cp $c
@@ -3230,7 +3229,7 @@ Function115217: ; 115217
 	jr .asm_115262
 
 .asm_115252
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [wCurrentMapSignpostCount]
 	ld [hli], a
 	ld a, e
@@ -3289,14 +3288,14 @@ Function11528f: ; 11528f
 	ld c, [hl]
 	inc hl
 	ld a, [hli]
-	ld [wdc00], a
+	ld [$dc00], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	ld hl, wdc24
+	ld hl, $dc24
 .asm_1152a4
 	ld a, [de]
 	ld [hli], a
@@ -3311,7 +3310,7 @@ Function11528f: ; 11528f
 
 Function1152af: ; 1152af
 	push bc
-	ld bc, wdc00
+	ld bc, $dc00
 	call Function115d80
 	pop bc
 	ret
@@ -3332,12 +3331,12 @@ Function1152b8: ; 1152b8
 	and a
 	jr nz, .asm_1152f9
 .asm_1152ca
-	ld hl, wdc0d
+	ld hl, $dc0d
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 .asm_1152d0
-	ld a, [wdc03]
+	ld a, [$dc03]
 	cp $3
 	jr nz, .asm_1152d8
 	push de
@@ -3358,11 +3357,11 @@ Function1152b8: ; 1152b8
 	inc de
 	and a
 	jr nz, .asm_115301
-	ld a, [wdc03]
+	ld a, [$dc03]
 	cp $6
 	jr z, .asm_115335
 	inc a
-	ld [wdc03], a
+	ld [$dc03], a
 	jr .asm_1152d0
 
 .asm_1152f9
@@ -3372,29 +3371,29 @@ Function1152b8: ; 1152b8
 	jp Function11425c
 
 .asm_115301
-	ld hl, wdc0d
+	ld hl, $dc0d
 	ld [hl], e
 	inc hl
 	ld [hl], d
 .asm_115307
-	ld [wdc05], a
+	ld [$dc05], a
 	ld a, $1
-	ld [wdc04], a
+	ld [$dc04], a
 	call Function1153b5
 	call Function114f59
 	and a
 	jr nz, .asm_1152f9
-	ld a, [wdc05]
+	ld a, [$dc05]
 	dec a
 	jr nz, .asm_115307
-	ld a, [wdc03]
+	ld a, [$dc03]
 	inc a
-	ld [wdc03], a
+	ld [$dc03], a
 	call Function114ea0
 	and a
 	jr nz, .asm_1152f9
 	ld [wStartDay], a
-	ld a, [wdc03]
+	ld a, [$dc03]
 	cp $6
 	jr nz, .asm_1152ca
 
@@ -3408,9 +3407,9 @@ Function1152b8: ; 1152b8
 	call Function114ea0
 	and a
 	jr nz, .asm_1152f9
-	ld a, [wdc03]
+	ld a, [$dc03]
 	inc a
-	ld [wdc03], a
+	ld [$dc03], a
 	cp $9
 	jr nz, .asm_115335
 	pop bc
@@ -3428,7 +3427,7 @@ Function1152b8: ; 1152b8
 	jr nz, .asm_1152f9
 
 .asm_11536b
-	ld hl, wdc09
+	ld hl, $dc09
 	ld a, [hli]
 	cpl
 	ld e, a
@@ -3446,7 +3445,7 @@ Function1152b8: ; 1152b8
 ; 11537d
 
 Function11537d: ; 11537d
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [de]
 	ld [hli], a
 	inc de
@@ -3484,19 +3483,19 @@ Function11537d: ; 11537d
 	ld a, [de]
 	ld [hli], a
 	inc de
-	ld hl, wdc0d
+	ld hl, $dc0d
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	xor a
-	ld [wdc03], a
+	ld [$dc03], a
 	ld [wStartDay], a
 	ret
 
 ; 1153b5
 
 Function1153b5: ; 1153b5
-	ld hl, wdc0d
+	ld hl, $dc0d
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -3515,7 +3514,7 @@ endr
 	ld a, [de]
 	ld [Bed], a
 	inc de
-	ld hl, wdc0d
+	ld hl, $dc0d
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -3524,14 +3523,14 @@ endr
 ; 1153d2
 
 Function1153d2: ; 1153d2
-	ld a, [wdc03]
+	ld a, [$dc03]
 	ld d, a
-	ld a, [wdc04]
+	ld a, [$dc04]
 	ld e, a
 	push de
 	xor a
-	ld [wdc03], a
-	ld [wdc04], a
+	ld [$dc03], a
+	ld [$dc04], a
 	ld a, $24
 	ld [Console], a
 	ld a, $dc
@@ -3549,7 +3548,7 @@ Function1153d2: ; 1153d2
 	push bc
 .asm_1153f5
 	ld a, [hli]
-	ld [wdc00], a
+	ld [$dc00], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -3598,7 +3597,7 @@ Function1153d2: ; 1153d2
 	ld [LeftOrnament], a
 	xor a
 	ld [de], a
-	ld hl, wdc24
+	ld hl, $dc24
 .asm_11543d
 	ld a, [hli]
 	and a
@@ -3614,14 +3613,14 @@ Function1153d2: ; 1153d2
 .asm_11544b
 	pop hl
 	ld a, h
-	ld [wdc03], a
+	ld [$dc03], a
 	ld a, l
-	ld [wdc04], a
+	ld [$dc04], a
 	ld a, $1
 	ret
 
 .asm_115457
-	ld hl, wdc24
+	ld hl, $dc24
 	call Function114d99
 	ld hl, $ddc8
 .asm_115460
@@ -3703,9 +3702,9 @@ Function1153d2: ; 1153d2
 	ld d, a
 	pop hl
 	ld a, h
-	ld [wdc03], a
+	ld [$dc03], a
 	ld a, l
-	ld [wdc04], a
+	ld [$dc04], a
 	xor a
 	ret
 
@@ -3737,7 +3736,7 @@ Function1154d4: ; 1154d4
 
 .asm_115502
 	ld a, $a
-	ld [wdc03], a
+	ld [$dc03], a
 	call Function114f59
 	and a
 	jr z, .asm_11551a
@@ -3745,7 +3744,7 @@ Function1154d4: ; 1154d4
 
 .asm_11550f
 	ld a, $c
-	ld [wdc03], a
+	ld [$dc03], a
 	call Function114f59
 	and a
 	jr nz, .asm_11552c
@@ -3769,7 +3768,7 @@ Function1154d4: ; 1154d4
 	ld a, $1
 	ld [wDailyResetTimer], a
 	ld a, $b
-	ld [wdc03], a
+	ld [$dc03], a
 	call Function114f59
 	and a
 	jr nz, .asm_11552c
@@ -3781,7 +3780,7 @@ Function1154d4: ; 1154d4
 	and a
 	jr nz, .asm_11552c
 	ld a, $e
-	ld [wdc03], a
+	ld [$dc03], a
 	call Function114f59
 	and a
 	jr nz, .asm_11552c
@@ -3798,7 +3797,7 @@ Function1154d4: ; 1154d4
 	and a
 	jr z, .asm_11557d
 	ld a, $f
-	ld [wdc03], a
+	ld [$dc03], a
 	call Function114f59
 	and a
 	jr nz, .asm_11552c
@@ -3810,14 +3809,14 @@ Function1154d4: ; 1154d4
 
 .asm_11557d
 	ld a, $10
-	ld [wdc03], a
+	ld [$dc03], a
 	call Function114f59
 	and a
 	jr nz, .asm_11552c
 	call Function114ea0
 	and a
 	jr nz, .asm_11552c
-	ld hl, wdc09
+	ld hl, $dc09
 	ld a, [hli]
 	cpl
 	ld e, a
@@ -3844,7 +3843,7 @@ Function1154d4: ; 1154d4
 ; 1155af
 
 Function1155af: ; 1155af
-	ld hl, wdc06
+	ld hl, $dc06
 	ld a, [de]
 	ld [hli], a
 	inc de
@@ -3876,9 +3875,9 @@ Function1155af: ; 1155af
 ; 1155d1
 
 Function1155d1: ; 1155d1
-	ld a, [wdc0d]
+	ld a, [$dc0d]
 	ld l, a
-	ld a, [wdc0e]
+	ld a, [$dc0e]
 	ld h, a
 	ld a, [hli]
 	ld [BigDoll], a
@@ -3897,7 +3896,7 @@ Function1155d1: ; 1155d1
 	ld [Bed], a
 
 .asm_1155f0
-	ld de, wdc17
+	ld de, $dc17
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -3913,21 +3912,21 @@ Function1155d1: ; 1155d1
 	ld a, [hli]
 	ld [de], a
 	ld a, l
-	ld [wdc0d], a
+	ld [$dc0d], a
 	ld a, h
-	ld [wdc0e], a
+	ld [$dc0e], a
 	ret
 
 ; 11560a
 
 Function11560a: ; 11560a
-	ld a, [wdc06]
+	ld a, [$dc06]
 	ld [wCurrentMapSignpostCount], a
-	ld a, [wdc17]
-	ld [wdc00], a
+	ld a, [$dc17]
+	ld [$dc00], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
-	ld hl, wdc1a
+	ld hl, $dc1a
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
@@ -3935,7 +3934,7 @@ Function11560a: ; 11560a
 	cp b
 	jp c, .asm_1156b1
 	jr nz, .asm_115631
-	ld a, [wdc09]
+	ld a, [$dc09]
 	cp c
 	jp c, .asm_1156b1
 
@@ -3943,7 +3942,7 @@ Function11560a: ; 11560a
 	ld a, b
 	or c
 	jr z, .asm_1156a9
-	ld a, [wdc09]
+	ld a, [$dc09]
 	ld l, a
 	ld a, [wCurrMapCallbackCount]
 	ld h, a
@@ -3956,7 +3955,7 @@ Function11560a: ; 11560a
 	inc de
 	add hl, de
 	ld a, l
-	ld [wdc09], a
+	ld [$dc09], a
 	ld a, h
 	ld [wCurrMapCallbackCount], a
 .asm_11564d
@@ -3969,9 +3968,9 @@ Function11560a: ; 11560a
 	jr c, .asm_1156b6
 
 .asm_115659
-	ld a, [wdc1a]
+	ld a, [$dc1a]
 	ld e, a
-	ld a, [wdc1b]
+	ld a, [$dc1b]
 	ld d, a
 	ld a, c
 	cpl
@@ -3982,15 +3981,15 @@ Function11560a: ; 11560a
 	inc hl
 	add hl, de
 	ld a, l
-	ld [wdc1a], a
+	ld [$dc1a], a
 	ld a, h
-	ld [wdc1b], a
+	ld [$dc1b], a
 	push bc
 	ld hl, $dc18
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, wdc24
+	ld hl, $dc24
 	call Function115d53
 	ld hl, $dc18
 	ld [hl], e
@@ -4004,13 +4003,13 @@ Function11560a: ; 11560a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, wdc24
+	ld hl, $dc24
 	call Function115d6a
 	ld hl, wCurrMapTriggerCount
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, wdc1a
+	ld hl, $dc1a
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
@@ -4020,7 +4019,7 @@ Function11560a: ; 11560a
 
 .asm_1156a9
 	ld a, [wCurrentMapSignpostCount]
-	ld [wdc06], a
+	ld [$dc06], a
 	xor a
 	ret
 
@@ -4037,7 +4036,7 @@ Function11560a: ; 11560a
 	cpl
 	ld l, a
 	add hl, bc
-	ld de, wdc1a
+	ld de, $dc1a
 	ld a, l
 	ld [de], a
 	inc de
@@ -4113,7 +4112,7 @@ Function1156cc: ; 1156cc
 ; 115732
 
 Function115732: ; 115732
-	ld hl, wdc02
+	ld hl, $dc02
 	ld a, [de]
 	ld [hli], a
 	inc de
@@ -4157,7 +4156,7 @@ Function115732: ; 115732
 ; 11575c
 
 Function11575c: ; 11575c
-	ld hl, wdc05
+	ld hl, $dc05
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -4245,11 +4244,11 @@ Function11575c: ; 11575c
 ; 1157d0
 
 Function1157d0: ; 1157d0
-	ld hl, wdc05
+	ld hl, $dc05
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wdc0e]
+	ld a, [$dc0e]
 	ld c, a
 	ld a, [Bed]
 	ld b, a
@@ -4276,15 +4275,15 @@ Function1157d0: ; 1157d0
 	inc bc
 	add hl, bc
 	ld a, l
-	ld [wdc05], a
+	ld [$dc05], a
 	ld a, h
-	ld [wdc06], a
+	ld [$dc06], a
 	ld a, h
 	or l
 	jr nz, .asm_11580f
 	pop bc
 	ld a, c
-	ld [wdc0e], a
+	ld [$dc0e], a
 	ld a, b
 	ld [Bed], a
 	ld a, $4
@@ -4294,7 +4293,7 @@ Function1157d0: ; 1157d0
 .asm_11580f
 	pop bc
 	ld a, c
-	ld [wdc0e], a
+	ld [$dc0e], a
 	ld a, b
 	ld [Bed], a
 	ld a, $3
@@ -4307,29 +4306,29 @@ Function11581e: ; 11581e
 	ld a, [wStartDay]
 	and a
 	ret z
-	ld a, [wdc0e]
+	ld a, [$dc0e]
 	ld c, a
 	ld a, [Bed]
 	ld b, a
-	ld hl, wdc02
+	ld hl, $dc02
 	ld a, [hli]
-	ld [wdc00], a
+	ld [$dc00], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, wdc24
+	ld hl, $dc24
 	push bc
 	call Function115d53
 	pop bc
-	ld hl, wdc02
-	ld a, [wdc00]
+	ld hl, $dc02
+	ld a, [$dc00]
 	ld [hli], a
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, wdc24
+	ld hl, $dc24
 	ld de, PartyMon5Defense
 	call Function1158c2
 	ld hl, PartyMon5Defense
@@ -4415,18 +4414,18 @@ Function1158c2: ; 1158c2
 	ld a, e
 	ld [SwarmFlags], a
 	ld a, d
-	ld [wdc21], a
+	ld [$dc21], a
 	xor a
-	ld [wdc22], a
+	ld [$dc22], a
 	xor a
 	ld [de], a
 	inc de
 	ld [de], a
 	inc de
 	ld a, c
-	ld [wdc19], a
+	ld [$dc19], a
 	ld a, b
-	ld [wdc1a], a
+	ld [$dc1a], a
 	ld c, e
 	ld b, d
 	ld e, l
@@ -4439,16 +4438,16 @@ Function1158c2: ; 1158c2
 .asm_1158e5
 	ld b, $3
 	push hl
-	ld hl, wdc1b
+	ld hl, $dc1b
 .asm_1158eb
 	ld a, [de]
 	inc de
 	ld [hli], a
 	dec b
 	jr nz, .asm_1158eb
-	ld a, [wdc19]
+	ld a, [$dc19]
 	ld c, a
-	ld a, [wdc1a]
+	ld a, [$dc1a]
 	ld b, a
 	xor a
 	or b
@@ -4475,9 +4474,9 @@ rept 3
 	dec bc
 endr
 	ld a, c
-	ld [wdc19], a
+	ld [$dc19], a
 	ld a, b
-	ld [wdc1a], a
+	ld [$dc1a], a
 	push de
 	push hl
 	ld hl, SwarmFlags
@@ -4547,20 +4546,20 @@ endr
 	inc bc
 	call Function1159dc
 	ld [hli], a
-	ld a, [wdc22]
+	ld a, [$dc22]
 	inc a
 	cp $10
 	jr nz, .asm_1159b1
 	push af
 	push bc
-	ld a, [wdc19]
+	ld a, [$dc19]
 	ld b, a
-	ld a, [wdc1a]
+	ld a, [$dc1a]
 	or b
 	jr nz, .asm_115998
-	ld a, [wdc05]
+	ld a, [$dc05]
 	ld b, a
-	ld a, [wdc06]
+	ld a, [$dc06]
 	or b
 	jr nz, .asm_115998
 	pop bc
@@ -4592,11 +4591,11 @@ endr
 	xor a
 
 .asm_1159b1
-	ld [wdc22], a
-	ld a, [wdc19]
+	ld [$dc22], a
+	ld a, [$dc19]
 	cp $0
 	jp nz, .asm_1158e5
-	ld a, [wdc1a]
+	ld a, [$dc1a]
 	cp $0
 	jp nz, .asm_1158e5
 
@@ -4717,7 +4716,7 @@ Function1159fb: ; 1159fb
 ; 115a5f
 
 Function115a5f: ; 115a5f
-	ld hl, wdc05
+	ld hl, $dc05
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -4778,11 +4777,11 @@ Function115a5f: ; 115a5f
 ; 115ab0
 
 Function115ab0: ; 115ab0
-	ld hl, wdc05
+	ld hl, $dc05
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wdc0e]
+	ld a, [$dc0e]
 	ld c, a
 	ld a, [Bed]
 	ld b, a
@@ -4809,15 +4808,15 @@ Function115ab0: ; 115ab0
 	inc bc
 	add hl, bc
 	ld a, l
-	ld [wdc05], a
+	ld [$dc05], a
 	ld a, h
-	ld [wdc06], a
+	ld [$dc06], a
 	ld a, h
 	or l
 	jr nz, .asm_115af0
 	pop bc
 	ld a, c
-	ld [wdc0e], a
+	ld [$dc0e], a
 	ld a, b
 	ld [Bed], a
 	ld a, $4
@@ -4828,7 +4827,7 @@ Function115ab0: ; 115ab0
 .asm_115af0
 	pop bc
 	ld a, c
-	ld [wdc0e], a
+	ld [$dc0e], a
 	ld a, b
 	ld [Bed], a
 	ld a, $3
@@ -4842,13 +4841,13 @@ Function115b00: ; 115b00
 	ld a, [wStartDay]
 	and a
 	ret z
-	ld a, [wdc0e]
+	ld a, [$dc0e]
 	ld c, a
 	ld a, [Bed]
 	ld b, a
-	ld hl, wdc02
+	ld hl, $dc02
 	ld a, [hli]
-	ld [wdc00], a
+	ld [$dc00], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -4893,16 +4892,16 @@ endr
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld hl, wdc02
-	ld a, [wdc00]
+	ld hl, $dc02
+	ld a, [$dc00]
 	ld [hli], a
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	ld hl, PartyMon5Defense
-	ld de, wdc24
+	ld de, $dc24
 	call Function115c49
-	ld hl, wdc24
+	ld hl, $dc24
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
@@ -4943,7 +4942,7 @@ endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, wdc26
+	ld hl, $dc26
 	call Function115d6a
 	ld hl, wCurrMapTriggerCount
 	ld a, [wCurrentMapSignpostCount]
@@ -5064,7 +5063,7 @@ endr
 
 .Function115c3d:
 	push bc
-	ld bc, wdc00
+	ld bc, $dc00
 	call Function115d80
 	pop bc
 	ret
@@ -5087,9 +5086,9 @@ Function115c49: ; 115c49
 	inc de
 
 	ld a, c
-	ld [wdc19], a
+	ld [$dc19], a
 	ld a, b
-	ld [wdc1a], a
+	ld [$dc1a], a
 	ld c, e
 	ld b, d
 	ld e, l
@@ -5098,17 +5097,17 @@ Function115c49: ; 115c49
 	ld h, b
 
 .asm_115c64
-	ld a, [wdc1a]
+	ld a, [$dc1a]
 	or a
 	jr nz, .asm_115c71
-	ld a, [wdc19]
+	ld a, [$dc19]
 	cp $4
 	jr c, .asm_115c99
 
 .asm_115c71
 	ld b, $4
 	push hl
-	ld hl, wdc1b
+	ld hl, $dc1b
 .asm_115c77
 	ld a, [de]
 	inc de
@@ -5116,9 +5115,9 @@ Function115c49: ; 115c49
 	ld [hli], a
 	dec b
 	jr nz, .asm_115c77
-	ld a, [wdc19]
+	ld a, [$dc19]
 	ld c, a
-	ld a, [wdc1a]
+	ld a, [$dc1a]
 	ld b, a
 rept 4
 	dec bc
@@ -5142,9 +5141,9 @@ endr
 
 .asm_115c9f
 	ld a, c
-	ld [wdc19], a
+	ld [$dc19], a
 	ld a, b
-	ld [wdc1a], a
+	ld [$dc1a], a
 	push de
 	push hl
 	ld hl, WeeklyFlags
@@ -5204,10 +5203,10 @@ endr
 	inc bc
 	ld a, [bc]
 	ld [hli], a
-	ld a, [wdc19]
+	ld a, [$dc19]
 	cp $0
 	jp nz, .asm_115c64
-	ld a, [wdc1a]
+	ld a, [$dc1a]
 	cp $0
 	jp nz, .asm_115c64
 	ret
@@ -5303,7 +5302,7 @@ Function115d53: ; 115d53
 
 Function115d61: ; 115d61
 	push bc
-	ld bc, wdc00
+	ld bc, $dc00
 	call Function115d80
 	pop bc
 	ret
@@ -6882,7 +6881,7 @@ Function11766b: ; 11766b (45:766b)
 	ld de, wcd49
 	ld bc, $8
 	call CopyBytes
-	ld de, wc708
+	ld de, $c708
 	ld bc, $11
 	call CopyBytes
 	call CloseSRAM
@@ -6897,7 +6896,7 @@ Function117699: ; 117699 (45:7699)
 	ld de, $b1f3
 	ld bc, $8
 	call CopyBytes
-	ld hl, wc708
+	ld hl, $c708
 	ld bc, $11
 	call CopyBytes
 	call CloseSRAM
@@ -6909,7 +6908,7 @@ Function117699: ; 117699 (45:7699)
 	ld [wcd4d], a
 	ld [wcd4e], a
 	ld [wcd4f], a
-	ld hl, wc708
+	ld hl, $c708
 	ld bc, $11
 	call ByteFill
 	call ClearBGPalettes
@@ -7059,7 +7058,7 @@ Function117764_b_button: ; 1177d6 (45:77d6)
 	ld [wcd4a], a
 	ld e, a
 	ld d, $0
-	ld hl, wc708
+	ld hl, $c708
 	add hl, de
 	xor a
 	ld [hl], a
@@ -7171,7 +7170,7 @@ Function117764_a_button: ; 11784c (45:784c)
 	ld b, $0
 	add hl, bc
 	ld a, [hl]
-	ld hl, wc708
+	ld hl, $c708
 	add hl, de
 	ld [hl], a
 	pop de
@@ -7270,7 +7269,7 @@ Function117942: ; 117942 (45:7942)
 	call GetSRAMBank
 	ld a, [wcd4f]
 	ld [sMobileLoginPassword], a
-	ld hl, wc708
+	ld hl, $c708
 	ld de, sMobileLoginPassword + 1
 	ld bc, LOGIN_PASSWORD_LENGTH
 	call CopyBytes

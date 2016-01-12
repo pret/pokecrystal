@@ -3155,7 +3155,7 @@ BattleCommand_BeatUp: ; 35461
 	xor a
 	ld [PlayerRolloutCount], a
 	ld [wd002], a
-	ld [wc72d], a
+	ld [wBeatUpHitAtLeastOnce], a
 	jr .got_mon
 
 .next_mon
@@ -3188,7 +3188,7 @@ BattleCommand_BeatUp: ; 35461
 	jp nz, .beatup_fail
 
 	ld a, $1
-	ld [wc72d], a
+	ld [wBeatUpHitAtLeastOnce], a
 	ld hl, BeatUpAttackText
 	call StdBattleTextBox
 	ld a, [EnemyMonSpecies]
@@ -3223,7 +3223,7 @@ BattleCommand_BeatUp: ; 35461
 	xor a
 	ld [EnemyRolloutCount], a
 	ld [wd002], a
-	ld [wc72d], a
+	ld [wBeatUpHitAtLeastOnce], a
 	jr .enemy_continue
 
 .not_first_enemy_beatup
@@ -3283,7 +3283,7 @@ BattleCommand_BeatUp: ; 35461
 	jr nz, .beatup_fail
 
 	ld a, $1
-	ld [wc72d], a
+	ld [wBeatUpHitAtLeastOnce], a
 	jr .finish_beatup
 
 .wild
@@ -3332,7 +3332,7 @@ BattleCommand_BeatUp: ; 35461
 
 
 BattleCommanda8: ; 355b5
-	ld a, [wc72d]
+	ld a, [wBeatUpHitAtLeastOnce]
 	and a
 	ret nz
 

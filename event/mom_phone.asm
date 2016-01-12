@@ -275,7 +275,7 @@ _MomText_ItsInRoom: ; 0xfd1ca
 
 	db 0 ; XXX
 
-Functionfd1d0: ; fd1d0
+Predef3A: ; fd1d0
 	ret
 ; fd1d1
 

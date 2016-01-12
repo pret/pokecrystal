@@ -1051,14 +1051,14 @@ asm_4073f: ; 4073f (10:473f)
 	scf
 	ret
 
-Function40741: ; 40741
+Pokedex_FillColumn: ; 40741
 	push de
-	ld de, $0014
-.asm_40745
+	ld de, SCREEN_WIDTH
+.loop
 	ld [hl], a
 	add hl, de
 	dec b
-	jr nz, .asm_40745
+	jr nz, .loop
 	pop de
 	ret
 ; 4074c
@@ -1076,7 +1076,7 @@ Function4074c: ; 4074c (10:474c)
 	lb bc, 7, 7
 	call Pokedex_PlaceBorder
 	hlcoord 0, 9
-	ld bc, $607
+	lb bc, 6, 7
 	call Pokedex_PlaceBorder
 	hlcoord 1, 11
 	ld de, String_SEEN
@@ -1102,13 +1102,13 @@ Function4074c: ; 4074c (10:474c)
 	ld de, String_SELECT_OPTION
 	call Pokedex_PlaceString
 	hlcoord 8, 1
-	ld b, $7
+	ld b, 7
 	ld a, $5a
-	call Function40741
+	call Pokedex_FillColumn
 	hlcoord 8, 10
-	ld b, $6
+	ld b, 6
 	ld a, $5a
-	call Function40741
+	call Pokedex_FillColumn
 	hlcoord 8, 0
 	ld [hl], $59
 	hlcoord 8, 8
@@ -1134,22 +1134,22 @@ String_START_SEARCH: ; 407f2
 Function407fd: ; 407fd
 	call Pokedex_FillBackgroundColor2
 	hlcoord 0, 0
-	ld bc, $0f12
+	lb bc, 15, 18
 	call Pokedex_PlaceBorder
 	hlcoord 19, 0
 	ld [hl], $34
 	hlcoord 19, 1
-	ld a, $7f
-	ld b, $f
-	call Function40741
+	ld a, " "
+	ld b, 15
+	call Pokedex_FillColumn
 	ld [hl], $39
 	hlcoord 1, 10
-	ld bc, $0013
+	ld bc, 19
 	ld a, $61
 	call ByteFill
 	hlcoord 1, 17
-	ld bc, $0012
-	ld a, $7f
+	ld bc, 18
+	ld a, " "
 	call ByteFill
 	hlcoord 9, 7
 	ld de, Unknown_40852
@@ -1218,38 +1218,38 @@ Function408f0: ; 408f0 (10:48f0)
 	lb bc, 14, 18
 	call Pokedex_PlaceBorder
 	hlcoord 0, 1
-	ld de, Unknown_4092a
+	ld de, .SEARCH
 	call Pokedex_PlaceString
 	hlcoord 8, 4
-	ld de, Unknown_40935
+	ld de, .BLANK
 	call Pokedex_PlaceString
 	hlcoord 8, 6
-	ld de, Unknown_40935
+	ld de, .BLANK
 	call Pokedex_PlaceString
 	hlcoord 3, 4
-	ld de, String_40940
+	ld de, .Type1Type2
 	call PlaceString
 	hlcoord 3, 13
-	ld de, String_4094c
+	ld de, BeginSearch_Cancel
 	call PlaceString
 	ret
 ; 4092a (10:492a)
 
-Unknown_4092a: ; 4092a
+.SEARCH: ; 4092a
 	db $3b, " SEARCH ", $3c, $ff
 ; 40925
 
-Unknown_40935: ; 40935
+.BLANK: ; 40935
 	db $3d, "        ", $3e, $ff
 ; 40940
 
-String_40940: ; 40940
+.Type1Type2: ; 40940
 	db   "TYPE1"
 	next "TYPE2"
 	db   "@"
 ; 4094c
 
-String_4094c: ; 4094c
+BeginSearch_Cancel: ; 4094c
 	db   "BEGIN SEARCH!!"
 	next "CANCEL"
 	db   "@"
@@ -1273,9 +1273,9 @@ Function40962: ; 40962 (10:4962)
 	hlcoord 8, 0
 	ld [hl], $59
 	hlcoord 8, 1
-	ld b, $7
+	ld b, 7
 	ld a, $5a
-	call Function40741
+	call Pokedex_FillColumn
 	hlcoord 8, 8
 	ld [hl], $53
 	hlcoord 8, 9
@@ -1736,7 +1736,7 @@ Function40e5b: ; 40e5b
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 12
-	lb bc, 4, SCREEN_WIDTH - 2
+	lb bc, 4, 18
 	call Pokedex_PlaceBorder
 	ld a, [wc7d8]
 	ld hl, Unknown_40e7d
@@ -1781,7 +1781,7 @@ Function40f08: ; 40f08 (10:4f08)
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 12
-	lb bc, 4, SCREEN_WIDTH - 2
+	lb bc, 4, 18
 	call Pokedex_PlaceBorder
 	ld de, String_ChangingModesPleaseWait
 	hlcoord 1, 14
@@ -2018,7 +2018,7 @@ Function41107: ; 41107
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 12
-	ld bc, $0412
+	lb bc, 4, 18
 	call Pokedex_PlaceBorder
 	ld de, String_41126
 	hlcoord 1, 14

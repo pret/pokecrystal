@@ -124,8 +124,8 @@ StartMap: ; 96724
 	call ClearJoypad
 EnterMap: ; 9673e
 	xor a
-	ld [wd453], a
-	ld [wd454], a
+	ld [wXYComparePointer], a
+	ld [wXYComparePointer + 1], a
 	call SetUpFiveStepWildEncounterCooldown
 	callba RunMapSetupScript
 	call DisableEvents

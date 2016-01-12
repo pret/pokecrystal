@@ -108,7 +108,7 @@ ENDM
 	engine_flag wMomSavingMoney, 0 ; mom saving money ; $8
 	engine_flag wMomSavingMoney, 7 ; dst
 
-	engine_flag wdc39, 0 ; unused, possibly related to a 2-day timer
+	engine_flag wUnusedTwoDayTimerOn, 0 ; unused, possibly related to a 2-day timer
 
 	engine_flag StatusFlags, 0 ; pokedex
 	engine_flag StatusFlags, 1 ; unown dex

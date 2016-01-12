@@ -1,32 +1,32 @@
 Function170000: ; 170000
 	ld a, [$c62b]
-	ld [$c6d0], a
+	ld [wPlayerTrademonSpecies], a
 	ld hl, $c62e
-	ld de, $c6e7
+	ld de, wPlayerTrademonSenderName
 	ld bc, $0005
 	call CopyBytes
 	ld a, $50
 	ld [de], a
 	ld hl, $c663
-	ld de, $c6f2
+	ld de, wPlayerTrademonOTName
 	ld bc, $0005
 	call CopyBytes
 	ld a, $50
 	ld [de], a
 	ld hl, $c648
 	ld a, [hli]
-	ld [$c6fd], a
+	ld [wPlayerTrademonDVs], a
 	ld a, [hl]
-	ld [$c6fe], a
+	ld [wPlayerTrademonDVs + 1], a
 	ld hl, $c639
 	ld a, [hli]
-	ld [$c6ff], a
+	ld [wPlayerTrademonID], a
 	ld a, [hl]
-	ld [wc700], a
+	ld [wPlayerTrademonID + 1], a
 	ld bc, $c633
 	callba GetCaughtGender
 	ld a, c
-	ld [wc701], a
+	ld [wPlayerTrademonCaughtData], a
 	ld a, [wcd81]
 	ld [wc74e], a
 	ld hl, $c608
@@ -41,33 +41,33 @@ Function17005a: ; 17005a
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$a824]
-	ld [wc702], a
+	ld [wOTTrademonSpecies], a
 	ld hl, $a827
-	ld de, wc719
-	ld bc, $0005
+	ld de, wOTTrademonSenderName
+	ld bc, 5 ; Japanese Name Length
 	call CopyBytes
-	ld a, $50
+	ld a, "@"
 	ld [de], a
 	ld hl, $a85c
-	ld de, wc724
-	ld bc, $0005
+	ld de, wOTTrademonOTName
+	ld bc, 5 ; Japanese Name Length
 	call CopyBytes
-	ld a, $50
+	ld a, "@"
 	ld [de], a
 	ld hl, $a841
 	ld a, [hli]
-	ld [wEnemyTrappingMove], a
+	ld [wOTTrademonDVs], a
 	ld a, [hl]
-	ld [wPlayerWrapCount], a
+	ld [wOTTrademonDVs + 1], a
 	ld hl, $a832
 	ld a, [hli]
-	ld [wEnemyWrapCount], a
+	ld [wOTTrademonID], a
 	ld a, [hl]
-	ld [wPlayerCharging], a
+	ld [wOTTrademonID + 1], a
 	ld bc, $a82c
 	callba GetCaughtGender
 	ld a, c
-	ld [wEnemyCharging], a
+	ld [wOTTrademonCaughtData], a
 	ld a, [wcd81]
 	ld [wc74e], a
 	call CloseSRAM

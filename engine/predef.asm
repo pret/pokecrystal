@@ -49,7 +49,7 @@ PredefPointers:: ; 856b
 	add_predef Predef_LinkTextbox ; $ 10
 	add_predef PrintMoveDesc
 	add_predef UpdatePlayerHUD
-	add_predef FillBox
+	add_predef PlaceGraphic
 	add_predef CheckPlayerPartyForFitPkmn
 	add_predef UpdateEnemyHUD
 	add_predef StartBattle
@@ -88,7 +88,7 @@ PredefPointers:: ; 856b
 	add_predef PlayBattleAnim
 	add_predef Predef38 ; $38
 	add_predef Predef39
-	add_predef Functionfd1d0
+	add_predef Predef3A
 	add_predef PartyMonItemName
 	add_predef GetFrontpic
 	add_predef GetBackpic
@@ -103,6 +103,6 @@ PredefPointers:: ; 856b
 	add_predef LoadMonAnimation
 	add_predef AnimateFrontpic
 	add_predef Functiond0669 ; $48
-	add_predef Functiond066e
+	add_predef HOF_AnimateFrontpic
 	dbw $ff, Function2d43 ; ????
 ; 864c

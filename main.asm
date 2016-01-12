@@ -5428,9 +5428,9 @@ Pokepic:: ; 244e3
 	ld c, a
 	call Coord2Tile
 	ld a, $80
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	lb bc, 7, 7
-	predef FillBox
+	predef PlaceGraphic
 	call WaitBGMap
 	ret
 
@@ -6509,9 +6509,9 @@ endr
 	ld [hl], VBGMap0 / $100
 	ret
 
-FillBox: ; 2ef6e
+PlaceGraphic: ; 2ef6e
 ; Fill wBoxAlignment-aligned box width b height c
-; with iterating tile starting from hFillBox at hl.
+; with iterating tile starting from hGraphicStartTile at hl.
 ; Predef $13
 
 	ld de, SCREEN_WIDTH
@@ -6520,7 +6520,7 @@ FillBox: ; 2ef6e
 	and a
 	jr nz, .right
 
-	ld a, [hFillBox]
+	ld a, [hGraphicStartTile]
 .x1
 	push bc
 	push hl
@@ -6547,7 +6547,7 @@ FillBox: ; 2ef6e
 	add hl, bc
 	pop bc
 
-	ld a, [hFillBox]
+	ld a, [hGraphicStartTile]
 .x2
 	push bc
 	push hl
@@ -8973,7 +8973,7 @@ CheckBattleScene: ; 4ea44
 
 .asm_4ea72
 	ld a, $5
-	ld hl, wdc00
+	ld hl, w5_dc00
 	call GetFarWRAMByte
 	bit 0, a
 	jr z, .off
@@ -10799,7 +10799,7 @@ MovePlayerPic: ; 88266
 	xor a
 	ld [hBGMapMode], a
 	lb bc, 7, 7
-	predef FillBox
+	predef PlaceGraphic
 	xor a
 	ld [hBGMapThird], a
 	call WaitBGMap
@@ -10951,7 +10951,7 @@ GetChrisBackpic: ; 88830
 	predef DecompressPredef
 	ret
 
-Function88840: ; 88840
+HOF_LoadTrainerFrontpic: ; 88840
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
@@ -11007,10 +11007,10 @@ DrawIntroPlayerPic: ; 88874
 
 ; Draw
 	xor a
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	hlcoord 6, 4
 	lb bc, 7, 7
-	predef FillBox
+	predef PlaceGraphic
 	ret
 
 ChrisPic: ; 888a9

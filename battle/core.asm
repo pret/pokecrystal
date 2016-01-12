@@ -3,7 +3,7 @@ BattleCore:
 DoBattle: ; 3c000
 	xor a
 	ld [wBattleParticipantsNotFainted], a
-	ld [wc6fc], a
+	ld [wBattleParticipantsIncludingFainted], a
 	ld [wPlayerAction], a
 	ld [BattleEnded], a
 	inc a
@@ -2110,8 +2110,8 @@ HandleEnemyMonFaint: ; 3cd55
 	or [hl]
 	call z, FaintYourPokemon
 	xor a
-	ld [wc6f7], a
-	call Function3ce01
+	ld [wWhichMonFaintedFirst], a
+	call UpdateBattleStateAndExperienceAfterEnemyFaint
 	call CheckPlayerPartyForFitPkmn
 	ld a, d
 	and a
@@ -2202,7 +2202,7 @@ DoubleSwitch: ; 3cdca
 	ret
 ; 3ce01
 
-Function3ce01: ; 3ce01
+UpdateBattleStateAndExperienceAfterEnemyFaint: ; 3ce01
 	call UpdateBattleMonInParty
 	ld a, [wBattleMode]
 	dec a
@@ -2231,14 +2231,14 @@ Function3ce01: ; 3ce01
 .wild2
 	call StopDangerSound
 	ld a, $1
-	ld [wc6fd], a
+	ld [wDanger], a
 
 .trainer
 	ld hl, BattleMonHP
 	ld a, [hli]
 	or [hl]
 	jr nz, .player_mon_did_not_faint
-	ld a, [wc6f7]
+	ld a, [wWhichMonFaintedFirst]
 	and a
 	jr nz, .player_mon_did_not_faint
 	call PlayerMonFaintHappinessMod
@@ -2256,10 +2256,10 @@ Function3ce01: ; 3ce01
 	ld a, [wBattleResult]
 	and $c0
 	ld [wBattleResult], a
-	call DoOthersShareExperience
+	call IsAnyMonHoldingExpShare
 	jr z, .skip_exp
 	ld hl, EnemyMonBaseStats
-	ld b, $7
+	ld b, EnemyMonEnd - EnemyMonBaseStats
 .loop
 	srl [hl]
 	inc hl
@@ -2268,32 +2268,32 @@ Function3ce01: ; 3ce01
 
 .skip_exp
 	ld hl, EnemyMonBaseStats
-	ld de, wc720
+	ld de, wBackupEnemyMonBaseStats
 	ld bc, EnemyMonEnd - EnemyMonBaseStats
 	call CopyBytes
 	xor a
-	ld [wc71f], a
+	ld [wGivingExperienceToExpShareHolders], a
 	call GiveExperiencePoints
-	call DoOthersShareExperience
+	call IsAnyMonHoldingExpShare
 	ret z
 
 	ld a, [wBattleParticipantsNotFainted]
 	push af
 	ld a, d
 	ld [wBattleParticipantsNotFainted], a
-	ld hl, wc720
+	ld hl, wBackupEnemyMonBaseStats
 	ld de, EnemyMonBaseStats
 	ld bc, EnemyMonEnd - EnemyMonBaseStats
 	call CopyBytes
 	ld a, $1
-	ld [wc71f], a
+	ld [wGivingExperienceToExpShareHolders], a
 	call GiveExperiencePoints
 	pop af
 	ld [wBattleParticipantsNotFainted], a
 	ret
 ; 3ceaa
 
-DoOthersShareExperience: ; 3ceaa
+IsAnyMonHoldingExpShare: ; 3ceaa
 	ld a, [PartyCount]
 	ld b, a
 	ld hl, PartyMon1
@@ -2465,7 +2465,7 @@ WinTrainerBattle: ; 3cfa4
 ; Player won the battle
 	call StopDangerSound
 	ld a, $1
-	ld [wc6fd], a
+	ld [wDanger], a
 	ld [BattleEnded], a
 	ld a, [wLinkMode]
 	and a
@@ -2682,7 +2682,7 @@ PlayVictoryMusic: ; 3d0ea
 	dec a
 	jr nz, .trainer_victory
 	push de
-	call DoOthersShareExperience
+	call IsAnyMonHoldingExpShare
 	pop de
 	jr nz, .play_music
 	ld hl, wPayDayMoney
@@ -2771,7 +2771,7 @@ HandlePlayerMonFaint: ; 3d14e
 	or [hl]
 	call z, FaintEnemyPokemon
 	ld a, $1
-	ld [wc6f7], a
+	ld [wWhichMonFaintedFirst], a
 	call PlayerMonFaintHappinessMod
 	call CheckPlayerPartyForFitPkmn
 	ld a, d
@@ -2781,7 +2781,7 @@ HandlePlayerMonFaint: ; 3d14e
 	ld a, [hli]
 	or [hl]
 	jr nz, .notfainted
-	call Function3ce01
+	call UpdateBattleStateAndExperienceAfterEnemyFaint
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .trainer
@@ -2847,7 +2847,7 @@ PlayerMonFaintHappinessMod: ; 3d1aa
 	and %11000000
 	add $1
 	ld [wBattleResult], a
-	ld a, [wc6f7]
+	ld a, [wWhichMonFaintedFirst]
 	and a
 	ret z
 	ret ; ??????????
@@ -3338,7 +3338,7 @@ EnemySwitch: ; 3d4e1
 	; If we're here, then we're switching too
 	xor a
 	ld [wBattleParticipantsNotFainted], a
-	ld [wc6fc], a
+	ld [wBattleParticipantsIncludingFainted], a
 	ld [wPlayerAction], a
 	inc a
 	ld [wEnemyIsSwitching], a
@@ -3403,7 +3403,7 @@ ResetEnemyBattleVars: ; 3d557
 	ld [LastEnemyMove], a
 	ld [CurEnemyMove], a
 	dec a
-	ld [wc6e6], a
+	ld [wEnemyItemState], a
 	xor a
 	ld [wPlayerWrapCount], a
 	hlcoord 18, 0
@@ -3416,7 +3416,7 @@ ResetEnemyBattleVars: ; 3d557
 ResetBattleParticipants: ; 3d57a
 	xor a
 	ld [wBattleParticipantsNotFainted], a
-	ld [wc6fc], a
+	ld [wBattleParticipantsIncludingFainted], a
 AddBattleParticipant: ; 3d581
 	ld a, [CurBattleMon]
 	ld c, a
@@ -3425,7 +3425,7 @@ AddBattleParticipant: ; 3d581
 	push bc
 	predef FlagPredef
 	pop bc
-	ld hl, wc6fc
+	ld hl, wBattleParticipantsIncludingFainted
 	predef_jump FlagPredef
 ; 3d599
 
@@ -4250,7 +4250,7 @@ SendOutPlayerMon: ; 3db5f
 	ld [hBGMapMode], a
 	call GetMonBackpic
 	xor a
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	ld [wd0d2], a
 	ld [CurMoveNum], a
 	ld [TypeModifier], a
@@ -4418,7 +4418,7 @@ PursuitSwitch: ; 3dc5b
 	ld [CryTracks], a
 	ld a, [BattleMonSpecies]
 	call PlayStereoCry
-	ld a, [wc71a]
+	ld a, [LastPlayerMon]
 	ld c, a
 	ld hl, wBattleParticipantsNotFainted
 	ld b, RESET_FLAG
@@ -4887,7 +4887,7 @@ CheckDanger: ; 3df9e
 	ld a, [hli]
 	or [hl]
 	jr z, .no_danger
-	ld a, [wc6fd]
+	ld a, [wDanger]
 	and a
 	jr nz, .done
 	ld a, [PlayerHPPal]
@@ -5771,7 +5771,7 @@ MoveSelectionScreen: ; 3e4bc
 	dec a
 	cp c
 	jr z, .move_disabled
-	ld a, [wc6e1]
+	ld a, [wUnusedPlayerLockedMove]
 	and a
 	jr nz, .skip2
 	ld a, [wMenuCursorY]
@@ -7383,7 +7383,7 @@ GiveExperiencePoints: ; 3ee3b
 	bit 0, a
 	ret nz
 
-	call Function3f0d4
+	call .EvenlyDivideExpAmongParticipants
 	xor a
 	ld [CurPartyMon], a
 	ld bc, PartyMon1Species
@@ -7407,6 +7407,7 @@ GiveExperiencePoints: ; 3ee3b
 	pop bc
 	jp z, .skip_stats
 
+; give stat exp
 	ld hl, MON_STAT_EXP + 1
 	add hl, bc
 	ld d, h
@@ -7472,6 +7473,7 @@ GiveExperiencePoints: ; 3ee3b
 	ld [hDivisor], a
 	ld b, 4
 	call Divide
+; Boost Experience for traded Pokemon
 	pop bc
 	ld hl, MON_ID
 	add hl, bc
@@ -7489,10 +7491,12 @@ GiveExperiencePoints: ; 3ee3b
 	ld a, $1
 
 .no_boost
+; Boost experience for a Trainer Battle
 	ld [StringBuffer2 + 2], a
 	ld a, [wBattleMode]
 	dec a
 	call nz, BoostExp
+; Boost experience for Lucky Egg
 	push bc
 	ld a, MON_ITEM
 	call GetPartyParamLocation
@@ -7513,7 +7517,7 @@ GiveExperiencePoints: ; 3ee3b
 	ld a, [StringBuffer2]
 	ld [hQuotient + 1], a
 	pop bc
-	call Function3f136
+	call AnimateExpBar
 	push bc
 	call LoadTileMapToTempTileMap
 	pop bc
@@ -7748,26 +7752,26 @@ GiveExperiencePoints: ; 3ee3b
 	jp ResetBattleParticipants
 ; 3f0d4
 
-Function3f0d4: ; 3f0d4
+.EvenlyDivideExpAmongParticipants
 ; count number of battle participants
 	ld a, [wBattleParticipantsNotFainted]
 	ld b, a
 	ld c, PARTY_LENGTH
 	ld d, 0
-.loop
+.count_loop
 	xor a
 	srl b
 	adc d
 	ld d, a
 	dec c
-	jr nz, .loop
+	jr nz, .count_loop
 	cp 2
 	ret c
 
 	ld [wd265], a
 	ld hl, EnemyMonBaseStats
 	ld c, EnemyMonEnd - EnemyMonBaseStats
-.loop2
+.count_loop2
 	xor a
 	ld [hDividend + 0], a
 	ld a, [hl]
@@ -7779,7 +7783,7 @@ Function3f0d4: ; 3f0d4
 	ld a, [hQuotient + 2]
 	ld [hli], a
 	dec c
-	jr nz, .loop2
+	jr nz, .count_loop2
 	ret
 ; 3f106
 
@@ -7827,7 +7831,7 @@ TextJump_StringBuffer2ExpPoints: ; 3f131
 ; 3f136
 
 
-Function3f136: ; 3f136
+AnimateExpBar: ; 3f136
 	push bc
 
 	ld hl, CurPartyMon
@@ -7864,15 +7868,15 @@ Function3f136: ; 3f136
 	ld a, [wd003]
 	adc [hl]
 	ld [hld], a
-	jr nc, .asm_3f186
+	jr nc, .NoOverflow
 	inc [hl]
-	jr nz, .asm_3f186
+	jr nz, .NoOverflow
 	ld a, $ff
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
 
-.asm_3f186
+.NoOverflow
 	ld d, MAX_LEVEL
 	callab CalcExpAtLevel
 	ld a, [hProduct + 1]
@@ -7888,7 +7892,7 @@ Function3f136: ; 3f136
 	sbc c
 	ld a, [hl]
 	sbc b
-	jr c, .asm_3f1a8
+	jr c, .AlreadyAtMaxExp
 	ld a, b
 	ld [hli], a
 	ld a, c
@@ -7896,37 +7900,37 @@ Function3f136: ; 3f136
 	ld a, d
 	ld [hld], a
 
-.asm_3f1a8
+.AlreadyAtMaxExp
 	callab CalcLevel
 	ld a, d
 	pop bc
 	pop de
 	ld d, a
 	cp e
-	jr nc, .asm_3f1b7
+	jr nc, .LoopLevels
 	ld a, e
 	ld d, a
 
-.asm_3f1b7
+.LoopLevels
 	ld a, e
 	cp MAX_LEVEL
-	jr nc, .asm_3f1ff
+	jr nc, .FinishExpBar
 	cp d
-	jr z, .asm_3f1ff
+	jr z, .FinishExpBar
 	inc a
 	ld [TempMonLevel], a
 	ld [CurPartyLevel], a
 	ld [BattleMonLevel], a
 	push de
-	call Function3f21b
+	call .PlayExpBarSound
 	ld c, $40
-	call Function3f22c
+	call .LoopBarAnimation
 	call PrintPlayerHUD
 	ld hl, BattleMonNick
 	ld de, StringBuffer1
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
-	call Function3dfe
+	call TerminateExpBarSound
 	ld de, SFX_HIT_END_OF_EXP_BAR
 	call PlaySFX
 	callba AnimateEndOfExpBar
@@ -7936,9 +7940,9 @@ Function3f136: ; 3f136
 	pop de
 	inc e
 	ld b, $0
-	jr .asm_3f1b7
+	jr .LoopLevels
 
-.asm_3f1ff
+.FinishExpBar
 	push bc
 	ld b, d
 	ld de, TempMonExp + 2
@@ -7946,9 +7950,9 @@ Function3f136: ; 3f136
 	ld a, b
 	pop bc
 	ld c, a
-	call Function3f21b
-	call Function3f22c
-	call Function3dfe
+	call .PlayExpBarSound
+	call .LoopBarAnimation
+	call TerminateExpBarSound
 	pop af
 	ld [hProduct + 2], a
 	pop af
@@ -7957,9 +7961,8 @@ Function3f136: ; 3f136
 .finish
 	pop bc
 	ret
-; 3f21b
 
-Function3f21b: ; 3f21b
+.PlayExpBarSound
 	push bc
 	call WaitSFX
 	ld de, SFX_EXP_BAR
@@ -7968,12 +7971,11 @@ Function3f21b: ; 3f21b
 	call DelayFrames
 	pop bc
 	ret
-; 3f22c
 
-Function3f22c: ; 3f22c
-	ld d, $3
+.LoopBarAnimation
+	ld d, 3
 	dec b
-.asm_3f22f
+.anim_loop
 	inc b
 	push bc
 	push de
@@ -7989,7 +7991,7 @@ Function3f22c: ; 3f22c
 	pop bc
 	ld a, c
 	cp b
-	jr z, .asm_3f268
+	jr z, .end_animation
 	inc b
 	push bc
 	push de
@@ -8003,16 +8005,14 @@ Function3f22c: ; 3f22c
 	xor a
 	ld [hBGMapMode], a
 	dec d
-	jr nz, .asm_3f263
-	ld d, $1
-
-.asm_3f263
+	jr nz, .min_number_of_frames
+	ld d, 1
+.min_number_of_frames
 	pop bc
 	ld a, c
 	cp b
-	jr nz, .asm_3f22f
-
-.asm_3f268
+	jr nz, .anim_loop
+.end_animation
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
@@ -8575,12 +8575,12 @@ InitEnemyTrainer: ; 3f594
 	ld de, VTiles2
 	callab GetTrainerPic
 	xor a
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	dec a
-	ld [wc6e6], a
+	ld [wEnemyItemState], a
 	hlcoord 12, 0
 	lb bc, 7, 7
-	predef FillBox
+	predef PlaceGraphic
 	ld a, -1
 	ld [CurOTMon], a
 	ld a, TRAINER_BATTLE
@@ -8640,10 +8640,10 @@ InitEnemyWildmon: ; 3f607
 	predef FrontpicPredef
 	xor a
 	ld [TrainerClass], a
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	hlcoord 12, 0
 	lb bc, 7, 7
-	predef FillBox
+	predef PlaceGraphic
 	ret
 ; 3f662
 
@@ -9402,10 +9402,10 @@ InitBattleDisplay: ; 3fb6c
 	ld a, $1
 	ld [hBGMapMode], a
 	ld a, $31
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	hlcoord 2, 6
 	lb bc, 6, 6
-	predef FillBox
+	predef PlaceGraphic
 	xor a
 	ld [hWY], a
 	ld [rWY], a
@@ -9499,10 +9499,10 @@ CopyBackpic: ; 3fc30
 	ld [rSVBK], a
 	call Function3fc5b
 	ld a, $31
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	hlcoord 2, 6
 	lb bc, 6, 6
-	predef FillBox
+	predef PlaceGraphic
 	ret
 ; 3fc5b
 

@@ -947,10 +947,10 @@ Intro_PrepTrainerPic: ; 619c
 	ld de, VTiles2
 	callba GetTrainerPic
 	xor a
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	hlcoord 6, 4
 	lb bc, 7, 7
-	predef FillBox
+	predef PlaceGraphic
 	ret
 ; 61b4
 
@@ -959,10 +959,10 @@ ShrinkFrame: ; 61b4
 	ld c, $31
 	predef DecompressPredef
 	xor a
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	hlcoord 6, 4
 	lb bc, 7, 7
-	predef FillBox
+	predef PlaceGraphic
 	ret
 ; 61cd
 
