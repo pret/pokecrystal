@@ -2005,7 +2005,7 @@ Function100c98: ; 100c98
 	dn 2, 0
 	db D_UP | D_DOWN | A_BUTTON | B_BUTTON
 
-Function100cb5: ; 100cb5
+Mobile_PartyMenuSelect: ; 100cb5
 	call Function100dd8
 	ret c
 	ld hl, w2DMenuFlags1

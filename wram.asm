@@ -2173,8 +2173,8 @@ wd271:: ds 5
 
 
 ; SECTION "Enemy Party", WRAMX, BANK [1]
-OTPlayerName:: ds NAME_LENGTH
-OTPlayerID:: ds 2
+OTPlayerName:: ds NAME_LENGTH ; d26b
+OTPlayerID:: ds 2 ; d276
 	ds 8
 OTPartyCount::   ds 1 ; d280
 OTPartySpecies:: ds PARTY_LENGTH ; d281

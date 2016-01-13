@@ -2158,14 +2158,14 @@ HandleEnemyMonFaint: ; 3cd55
 
 	ld a, $1
 	ld [wPlayerAction], a
-	call Function3cf4a
+	call HandleEnemySwitch
 	jp z, WildFled_EnemyFled_LinkBattleCanceled
 	jr DoubleSwitch
 
 .player_mon_not_fainted
 	ld a, $1
 	ld [wPlayerAction], a
-	call Function3cf4a
+	call HandleEnemySwitch
 	jp z, WildFled_EnemyFled_LinkBattleCanceled
 	xor a
 	ld [wPlayerAction], a
@@ -2406,7 +2406,7 @@ CheckEnemyTrainerDefeated: ; 3cf35
 	ret
 ; 3cf4a
 
-Function3cf4a: ; 3cf4a
+HandleEnemySwitch: ; 3cf4a
 	ld hl, EnemyHPPal
 	ld e, HP_BAR_LENGTH_PX
 	call UpdateHPPal
@@ -2442,15 +2442,13 @@ EnemyPartyMonEntrance: ; 3cf78
 	call BreakAttraction
 	pop af
 	and a
-	jr nz, .asm_3cf8f
-
+	jr nz, .set
 	call EnemySwitch
-	jr .asm_3cf92
+	jr .done_switch
 
-.asm_3cf8f
+.set
 	call EnemySwitch_SetMode
-
-.asm_3cf92
+.done_switch
 	call ResetBattleParticipants
 	call SetEnemyTurn
 	call SpikesDamage
@@ -2499,7 +2497,7 @@ WinTrainerBattle: ; 3cfa4
 	call PrintWinLossText
 
 .skip_win_loss_text
-	jp Function3d02b
+	jp HandleBattleReward
 
 .mobile
 	call BattleWinSlideInEnemyTrainerFrontpic
@@ -2528,7 +2526,7 @@ WinTrainerBattle: ; 3cfa4
 	ret
 ; 3d02b
 
-Function3d02b: ; 3d02b
+HandleBattleReward: ; 3d02b
 	ld a, [wAmuletCoin]
 	and a
 	call nz, .DoubleReward
@@ -2809,7 +2807,7 @@ HandlePlayerMonFaint: ; 3d14e
 	ret nz
 	ld a, $1
 	ld [wPlayerAction], a
-	call Function3cf4a
+	call HandleEnemySwitch
 	jp z, WildFled_EnemyFled_LinkBattleCanceled
 	jp DoubleSwitch
 ; 3d1aa
@@ -2999,7 +2997,7 @@ SetUpBattlePartyMenu: ; switch to fullscreen menu?
 	ret
 ; 3d313
 
-Function3d313: ; 3d313
+JumpToPartyMenuAndPrintText: ; 3d313
 	callba WritePartyMenuTilemap
 	callba PrintPartyMenuText
 	call WaitBGMap
@@ -3008,14 +3006,14 @@ Function3d313: ; 3d313
 	ret
 ; 3d329
 
-Function3d329: ; 3d329
+SelectBattleMon: ; 3d329
 	call IsMobileBattle
 	jr z, .mobile
 	callba PartyMenuSelect
 	ret
 
 .mobile
-	callba Function100cb5
+	callba Mobile_PartyMenuSelect
 	ret
 ; 3d33c
 
@@ -3023,8 +3021,8 @@ PickPartyMonInBattle: ; 3d33c
 .loop
 	ld a, $2 ; Which PKMN?
 	ld [PartyMenuActionText], a
-	call Function3d313
-	call Function3d329
+	call JumpToPartyMenuAndPrintText
+	call SelectBattleMon
 	ret c
 	call CheckIfPartyHasPkmnToBattleWith
 	jr z, .loop
@@ -3434,7 +3432,7 @@ FindPkmnInOTPartyToSwitchIntoBattle: ; 3d599
 	ld a, $1
 	ld [Buffer1], a
 	ld [Buffer2], a
-.asm_3d5a3
+.loop
 	ld hl, Buffer1
 	sla [hl]
 	inc hl
@@ -3442,10 +3440,10 @@ FindPkmnInOTPartyToSwitchIntoBattle: ; 3d599
 	inc b
 	ld a, [OTPartyCount]
 	cp b
-	jp z, Function3d672
+	jp z, ScoreMonTypeMatchups
 	ld a, [CurOTMon]
 	cp b
-	jr z, .asm_3d5d0
+	jr z, .discourage
 	ld hl, OTPartyMon1HP
 	push bc
 	ld a, b
@@ -3455,15 +3453,15 @@ FindPkmnInOTPartyToSwitchIntoBattle: ; 3d599
 	ld a, [hl]
 	or c
 	pop bc
-	jr z, .asm_3d5d0
+	jr z, .discourage
 	call LookUpTheEffectivenessOfEveryMove
 	call IsThePlayerPkmnTypesEffectiveAgainstOTPkmn
-	jr .asm_3d5a3
+	jr .loop
 
-.asm_3d5d0
+.discourage
 	ld hl, Buffer2
 	set 0, [hl]
-	jr .asm_3d5a3
+	jr .loop
 ; 3d5d7
 
 LookUpTheEffectivenessOfEveryMove: ; 3d5d7
@@ -3517,7 +3515,7 @@ IsThePlayerPkmnTypesEffectiveAgainstOTPkmn: ; 3d618
 	ld a, [hl]
 	dec a
 	ld hl, BaseData + 7 ; type
-	ld bc, $20
+	ld bc, BaseData1 - BaseData0
 	call AddNTimes
 	ld de, EnemyMonType
 	ld bc, 2
@@ -3529,80 +3527,80 @@ IsThePlayerPkmnTypesEffectiveAgainstOTPkmn: ; 3d618
 	callab BattleCheckTypeMatchup
 	ld a, [wd265]
 	cp 10 + 1 ; 1.0 + 0.1
-	jr nc, .asm_3d663
+	jr nc, .super_effective
 	ld a, [BattleMonType2]
 	ld [wPlayerMoveStruct + MOVE_TYPE], a
 	callab BattleCheckTypeMatchup
 	ld a, [wd265]
 	cp 10 + 1 ; 1.0 + 0.1
-	jr nc, .asm_3d663
+	jr nc, .super_effective
 	pop bc
 	ret
 
-.asm_3d663
+.super_effective
 	pop bc
 	ld hl, Buffer1
 	bit 0, [hl]
-	jr nz, .asm_3d66f
+	jr nz, .reset
 	inc hl
 	set 0, [hl]
 	ret
 
-.asm_3d66f
+.reset
 	res 0, [hl]
 	ret
 ; 3d672
 
-Function3d672: ; 3d672
-.asm_3d672
+ScoreMonTypeMatchups: ; 3d672
+.loop1
 	ld hl, Buffer1
 	sla [hl]
 	inc hl
 	sla [hl]
-	jr nc, .asm_3d672
+	jr nc, .loop1
 	ld a, [OTPartyCount]
 	ld b, a
 	ld c, [hl]
-.asm_3d681
+.loop2
 	sla c
-	jr nc, .asm_3d68a
+	jr nc, .okay
 	dec b
-	jr z, .asm_3d6a7
-	jr .asm_3d681
+	jr z, .loop5
+	jr .loop2
 
-.asm_3d68a
+.okay
 	ld a, [Buffer1]
 	and a
-	jr z, .asm_3d69a
+	jr z, .okay2
 	ld b, $ff
 	ld c, a
-.asm_3d693
+.loop3
 	inc b
 	sla c
-	jr nc, .asm_3d693
-	jr .asm_3d6c9
+	jr nc, .loop3
+	jr .quit
 
-.asm_3d69a
+.okay2
 	ld b, $ff
 	ld a, [Buffer2]
 	ld c, a
-.asm_3d6a0
+.loop4
 	inc b
 	sla c
-	jr c, .asm_3d6a0
-	jr .asm_3d6c9
+	jr c, .loop4
+	jr .quit
 
-.asm_3d6a7
+.loop5
 	ld a, [OTPartyCount]
 	ld b, a
 	call BattleRandom
 	and $7
 	cp b
-	jr nc, .asm_3d6a7
+	jr nc, .loop5
 	ld b, a
 	ld a, [CurOTMon]
 	cp b
-	jr z, .asm_3d6a7
+	jr z, .loop5
 	ld hl, OTPartyMon1HP
 	push bc
 	ld a, b
@@ -3612,9 +3610,9 @@ Function3d672: ; 3d672
 	ld c, a
 	ld a, [hl]
 	or c
-	jr z, .asm_3d6a7
+	jr z, .loop5
 
-.asm_3d6c9
+.quit
 	ret
 ; 3d6ca
 
@@ -4163,7 +4161,7 @@ ResetPlayerStatLevels: ; 3dab1
 ; 3dabd
 
 
-Function3dabd: ; 3dabd
+InitEnemyMon: ; 3dabd
 	ld a, [CurPartyMon]
 	ld hl, OTPartyMon1Species
 	call GetPartyLocation
@@ -4205,12 +4203,12 @@ endr
 	ld hl, BaseStats
 	ld de, EnemyMonBaseStats
 	ld b, 5
-.asm_3db25
+.loop
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_3db25
+	jr nz, .loop
 	ld a, [CurPartyMon]
 	ld [CurOTMon], a
 	ret
@@ -4452,7 +4450,7 @@ PursuitSwitch: ; 3dc5b
 	ret
 ; 3dce6
 
-Function3dce6: ; 3dce6
+RecallPlayerMon: ; 3dce6
 	ld a, [hBattleTurn]
 	push af
 	xor a
@@ -5322,7 +5320,7 @@ BattleMenu_Pack: ; 3e1c7
 
 BattleMenu_PKMN: ; 3e28d
 	call LoadStandardMenuDataHeader
-Function3e290:
+BattleMenuPKMN_ReturnFromStats:
 	call ExitMenu
 	call LoadStandardMenuDataHeader
 	call ClearBGPalettes
@@ -5330,8 +5328,8 @@ BattleMenuPKMN_Loop:
 	call SetUpBattlePartyMenu
 	xor a
 	ld [PartyMenuActionText], a
-	call Function3d313
-	call Function3d329
+	call JumpToPartyMenuAndPrintText
+	call SelectBattleMon
 	jr c, .Cancel
 .loop
 	callba FreezeMonIcons
@@ -5356,7 +5354,7 @@ BattleMenuPKMN_Loop:
 	call Battle_StatsScreen
 	call CheckMobileBattleError
 	jr c, .Cancel
-	jp Function3e290
+	jp BattleMenuPKMN_ReturnFromStats
 
 .Cancel
 	call ClearSprites
@@ -5519,7 +5517,7 @@ BattleMonEntrance: ; 3e40b
 	call SetEnemyTurn
 	call PursuitSwitch
 	jr c, .ok
-	call Function3dce6
+	call RecallPlayerMon
 .ok
 
 	hlcoord 9, 7
@@ -6258,12 +6256,12 @@ LoadEnemyMon: ; 3e8eb
 ; We don't need to be here if we're in a link battle
 	ld a, [wLinkMode]
 	and a
-	jp nz, Function3dabd
+	jp nz, InitEnemyMon
 
 ; and also not in a BattleTower-Battle
 	ld a, [InBattleTowerBattle] ; ????
 	bit 0, a
-	jp nz, Function3dabd
+	jp nz, InitEnemyMon
 
 ; Make sure everything knows what species we're working with
 	ld a, [TempEnemyMonSpecies]
@@ -6848,7 +6846,8 @@ CheckUnownLetter: ; 3eb75
 ; 3ebc7
 
 
-Function3ebc7: ; 3ebc7
+SwapBattlerLevels: ; 3ebc7
+; unreferenced
 	push bc
 	ld a, [BattleMonLevel]
 	ld b, a
@@ -8184,7 +8183,7 @@ TextJump_GoodComeBack: ; 3f352
 	db "@"
 ; 3f357
 
-Function_TextJump_ComeBack: ; 3f357
+UnusedFunction_TextJump_ComeBack: ; 3f357
 ; this function doesn't seem to be used
 	ld hl, TextJump_ComeBack
 	ret
@@ -8648,6 +8647,7 @@ InitEnemyWildmon: ; 3f607
 ; 3f662
 
 Function3f662: ; 3f662
+; XXX
 	ld hl, EnemyMonMoves
 	ld de, wListMoves_MoveIndicesBuffer
 	ld b, NUM_MOVES
@@ -8852,8 +8852,8 @@ DetermineMobileBattleResult: ; 3f77c
 	ld a, BANK(sLinkBattleStats)
 	call GetSRAMBank
 
-	call Function3fa42
-	call Function3f85f
+	call AddLastMobileBattleToLinkRecord
+	call ReadAndPrintLinkBattleRecord
 
 	call CloseSRAM
 
@@ -8905,7 +8905,7 @@ DisplayLinkRecord: ; 3f836
 	ld a, BANK(sLinkBattleStats)
 	call GetSRAMBank
 
-	call Function3f85f
+	call ReadAndPrintLinkBattleRecord
 
 	call CloseSRAM
 	hlcoord 0, 0, AttrMap
@@ -8916,86 +8916,85 @@ DisplayLinkRecord: ; 3f836
 	ld b, SCGB_08
 	call GetSGBLayout
 	call SetPalettes
-	ld c, $8
+	ld c, 8
 	call DelayFrames
 	call WaitPressAorB_BlinkCursor
 	ret
 ; 3f85f
 
 
-Function3f85f: ; 3f85f
+ReadAndPrintLinkBattleRecord: ; 3f85f
 	call ClearTileMap
 	call ClearSprites
-	call .asm_3f8e0
+	call .PrintBattleRecord
 	hlcoord 0, 8
-	ld b, $5
-	ld de, sLinkBattleStats + $8
-.asm_3f870
+	ld b, 5
+	ld de, sLinkBattleRecord + 2
+.loop
 	push bc
 	push hl
 	push de
 	ld a, [de]
 	and a
-	jr z, .asm_3f8c9
+	jr z, .PrintFormatString
 	ld a, [wSavedAtLeastOnce]
 	and a
-	jr z, .asm_3f8c9
+	jr z, .PrintFormatString
 	push hl
 	push hl
 	ld h, d
 	ld l, e
 	ld de, wd002
-	ld bc, $000a
+	ld bc, 10
 	call CopyBytes
-	ld a, $50
+	ld a, "@"
 	ld [de], a
 	inc de
-	ld bc, $0006
+	ld bc, 6
 	call CopyBytes
 	ld de, wd002
 	pop hl
 	call PlaceString
 	pop hl
-	ld de, $001a
+	ld de, 26
 	add hl, de
 	push hl
 	ld de, wd00d
 	lb bc, 2, 4
 	call PrintNum
 	pop hl
-	ld de, $0005
+	ld de, 5
 	add hl, de
 	push hl
 	ld de, wd00f
 	lb bc, 2, 4
 	call PrintNum
 	pop hl
-	ld de, $0005
+	ld de, 5
 	add hl, de
 	ld de, wd011
 	lb bc, 2, 4
 	call PrintNum
-	jr .asm_3f8cf
+	jr .next
 
-.asm_3f8c9
+.PrintFormatString
 	ld de, .Format
 	call PlaceString
-
-.asm_3f8cf
+.next
 	pop hl
-	ld bc, $0012
+	ld bc, 18
 	add hl, bc
 	ld d, h
 	ld e, l
 	pop hl
-	ld bc, $0028
+	ld bc, 2 * SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .asm_3f870
+	jr nz, .loop
 	ret
 
-.asm_3f8e0
+.PrintBattleRecord
 	hlcoord 1, 0
 	ld de, .Record
 	call PlaceString
@@ -9010,30 +9009,30 @@ Function3f85f: ; 3f85f
 
 	hlcoord 6, 4
 	ld de, sLinkBattleWins
-	call .asm_3f92b
-	jr c, .asm_3f92a
+	call .PrintZerosIfNoSaveFileExists
+	jr c, .quit
 
 	lb bc, 2, 4
 	call PrintNum
 
 	hlcoord 11, 4
 	ld de, sLinkBattleLosses
-	call .asm_3f92b
+	call .PrintZerosIfNoSaveFileExists
 
 	lb bc, 2, 4
 	call PrintNum
 
 	hlcoord 16, 4
 	ld de, sLinkBattleDraws
-	call .asm_3f92b
+	call .PrintZerosIfNoSaveFileExists
 
 	lb bc, 2, 4
 	call PrintNum
 
-.asm_3f92a
+.quit
 	ret
 
-.asm_3f92b
+.PrintZerosIfNoSaveFileExists
 	ld a, [wSavedAtLeastOnce]
 	and a
 	ret nz
@@ -9048,7 +9047,8 @@ Function3f85f: ; 3f85f
 ; 3f947
 
 .Format ; 3f947
-	db "  ---  <LNBRK>         -    -    -@"
+	db "  ---  <LNBRK>"
+	db "         -    -    -@"
 .Record ; 3f964
 	db "<PLAYER>'s RECORD@"
 .Result ; 3f96e
@@ -9166,17 +9166,17 @@ GetRoamMonSpecies: ; 3fa31
 ; 3fa42
 
 
-Function3fa42: ; 3fa42
+AddLastMobileBattleToLinkRecord: ; 3fa42
 	ld hl, OTPlayerID
 	ld de, StringBuffer1
 	ld bc, 2
 	call CopyBytes
 	ld hl, OTPlayerName
-	ld bc, 10
+	ld bc, NAME_LENGTH - 1
 	call CopyBytes
-	ld hl, s1_b254
-	call Function3faa0
-	ld hl, s1_b266
+	ld hl, sLinkBattleResults
+	call .StoreResult
+	ld hl, sLinkBattleRecord
 	ld d, 5
 .loop
 	push hl
@@ -9218,24 +9218,22 @@ Function3fa42: ; 3fa42
 	pop hl
 
 .done
-	call Function3faa0
-	call Function3fac8
+	call .StoreResult
+	call .FindOpponentAndAppendRecord
 	ret
 ; 3faa0
-
-Function3faa0: ; 3faa0
+.StoreResult: ; 3faa0
 	ld a, [wBattleResult]
 	and $f
 	cp $1
-	ld bc, 13
+	ld bc, sLinkBattleWins + 1 - sLinkBattleResults
 	jr c, .okay
-	ld bc, 15
+	ld bc, sLinkBattleLosses + 1 - sLinkBattleResults
 	jr z, .okay
-	ld bc, 17
-
+	ld bc, sLinkBattleDraws + 1 - sLinkBattleResults
 .okay
 	add hl, bc
-	call Function3fabe
+	call .CheckOverflow
 	ret nc
 	inc [hl]
 	ret nz
@@ -9244,26 +9242,26 @@ Function3faa0: ; 3faa0
 	ret
 ; 3fabe
 
-Function3fabe: ; 3fabe
+.CheckOverflow: ; 3fabe
 	dec hl
 	ld a, [hl]
 	inc hl
-	cp $27
+	cp 9999 / $100
 	ret c
 	ld a, [hl]
-	cp $f
+	cp 9999 % $100
 	ret
 ; 3fac8
 
-Function3fac8: ; 3fac8
-	ld b, $5
-	ld hl, s1_b277
+.FindOpponentAndAppendRecord: ; 3fac8
+	ld b, 5
+	ld hl, sLinkBattleRecord + 17
 	ld de, wd002
-.loop
+.loop3
 	push bc
 	push de
 	push hl
-	call Function3fb54
+	call .LoadPointer
 	pop hl
 	ld a, e
 	pop de
@@ -9279,10 +9277,10 @@ Function3fac8: ; 3fac8
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .loop
+	jr nz, .loop3
 	ld b, $0
 	ld c, $1
-.loop2
+.loop4
 	ld a, b
 	add b
 	add b
@@ -9302,30 +9300,30 @@ Function3fac8: ; 3fac8
 	ld e, l
 	pop hl
 	push bc
-	ld c, $3
+	ld c, 3
 	call StringCmp
 	pop bc
 	jr z, .equal
-	jr nc, .done
+	jr nc, .done2
 
 .equal
 	inc c
 	ld a, c
 	cp $5
-	jr nz, .loop2
+	jr nz, .loop4
 	inc b
 	ld c, b
 	inc c
 	ld a, b
 	cp $4
-	jr nz, .loop2
+	jr nz, .loop4
 	ret
 
-.done
+.done2
 	push bc
 	ld a, b
 	ld bc, 18
-	ld hl, s1_b266
+	ld hl, sLinkBattleRecord
 	call AddNTimes
 	push hl
 	ld de, wd002
@@ -9336,7 +9334,7 @@ Function3fac8: ; 3fac8
 	push hl
 	ld a, c
 	ld bc, 18
-	ld hl, s1_b266
+	ld hl, sLinkBattleRecord
 	call AddNTimes
 	pop de
 	push hl
@@ -9349,7 +9347,7 @@ Function3fac8: ; 3fac8
 	ret
 ; 3fb54
 
-Function3fb54: ; 3fb54
+.LoadPointer: ; 3fb54
 	ld e, $0
 	ld a, [hld]
 	ld c, a
@@ -9361,10 +9359,10 @@ Function3fb54: ; 3fb54
 	ld a, [hld]
 	adc b
 	ld b, a
-	jr nc, .okay
+	jr nc, .okay2
 	inc e
 
-.okay
+.okay2
 	ld a, [hld]
 	add c
 	ld c, a
@@ -9497,7 +9495,7 @@ CopyBackpic: ; 3fc30
 	call Get2bpp
 	pop af
 	ld [rSVBK], a
-	call Function3fc5b
+	call .LoadTrainerBackpicAsOAM
 	ld a, $31
 	ld [hGraphicStartTile], a
 	hlcoord 2, 6
@@ -9506,15 +9504,15 @@ CopyBackpic: ; 3fc30
 	ret
 ; 3fc5b
 
-Function3fc5b: ; 3fc5b
+.LoadTrainerBackpicAsOAM: ; 3fc5b
 	ld hl, Sprites
 	xor a
 	ld [hMapObjectIndexBuffer], a
 	ld b, $6
-	ld e, $a8
+	ld e, 21 * 8
 .outer_loop
 	ld c, $3
-	ld d, $40
+	ld d, 8 * 8
 .inner_loop
 	ld [hl], d
 	inc hl
