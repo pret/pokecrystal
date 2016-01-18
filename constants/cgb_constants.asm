@@ -3,7 +3,7 @@
 	const SCGB_BATTLE_COLORS
 	const SCGB_POKEGEAR_PALS
 	const SCGB_STATS_SCREEN_HP_PALS
-	const SCGB_04
+	const SCGB_POKEDEX
 	const SCGB_SLOT_MACHINE
 	const SCGB_06
 	const SCGB_07
@@ -15,13 +15,13 @@
 	const SCGB_0D
 	const SCGB_0E
 	const SCGB_0F
-	const SCGB_10
+	const SCGB_POKEDEX_SEARCH_OPTION
 	const SCGB_11
 	const SCGB_POKEPIC
 	const SCGB_13
 	const SCGB_PACKPALS
 	const SCGB_TRAINER_CARD
-	const SCGB_16
+	const SCGB_POKEDEX_UNOWN_MODE
 	const SCGB_17
 	const SCGB_18
 	const SCGB_19

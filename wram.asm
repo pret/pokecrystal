@@ -864,26 +864,27 @@ wPokedexDataStart::
 wPokedexOrder:: ds NUM_POKEMON +- 1
 wPokedexOrderEnd:: ds 6
 wPokedexMetadata::
-wDexListingPage::
-wc7d0:: ds 1 ; Dex list page
+wDexListingScrollOffset:: ; offset of the first displayed entry from the start
+wc7d0:: ds 1
 wDexListingCursor::
 wc7d1:: ds 1 ; Dex cursor
 wDexListingEnd::
 wc7d2:: ds 1 ; Last mon to display
-wc7d3:: ds 1 ; Number of mons visible per dex list page
+wDexListingHeight:: ; number of entries displayed at once in the dex listing
+wc7d3:: ds 1
 wCurrentDexMode::   ; Pokedex Mode
 wc7d4:: ds 1 ; Index of the topmost visible item in a scrolling menu
-wc7d5:: ds 1 ; Which row the cursor is at in a scrolling menu (0-6)
-wc7d6:: ds 1
-wc7d7:: ds 1
-wc7d8:: ds 1
-wc7d9:: ds 1
-wc7da:: ds 1
+wDexSearchMonType1:: ds 1 ; first type to search
+wDexSearchMonType2:: ds 1 ; second type to search
+wDexSearchResultCount:: ds 1
+wDexArrowCursorPosIndex:: ds 1
+wDexArrowCursorDelayCounter:: ds 1
+wDexArrowCursorBlinkCounter:: ds 1
 wDexSearchSlowpokeFrame:: ds 1
 wUnlockedUnownMode:: ds 1
-wc7dd:: ds 1
-wc7de:: ds 1
-wc7df:: ds 1
+wDexCurrentUnownIndex:: ds 1
+wDexUnownCount:: ds 1
+wDexConvertedMonType:: ds 1 ; mon type converted from dex search mon type
 wc7e0:: ds 1
 wc7e1:: ds 1
 wBackupDexListingCursor::
@@ -1290,6 +1291,7 @@ wIntroSceneFrameCounter::
 wHoldingUnownPuzzlePiece::
 wCardFlipCursorY::
 wCreditsBorderFrame::
+wDexEntryPrevJumptableIndex::
 wcf64:: ds 1
 IF !DEF(CRYSTAL11)
 wPokedexStatus::

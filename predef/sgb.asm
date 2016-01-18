@@ -28,7 +28,7 @@ Predef_LoadSGBLayout: ; 864c
 	dw .SGB_BattleColors
 	dw .SGB_PokegearPals
 	dw .SGB_StatsScreenHPPals
-	dw .SGB04
+	dw .SGB_Pokedex
 	dw .SGB_SlotMachine
 	dw .SGB06
 	dw .SGB07
@@ -40,13 +40,13 @@ Predef_LoadSGBLayout: ; 864c
 	dw .SGB0d
 	dw .SGB0e
 	dw .SGB0f
-	dw .SGB10
+	dw .SGB_PokedexSearchOption
 	dw .SGB11
 	dw .SGB12
 	dw .SGB13
 	dw .SGB_PackPals
 	dw .SGB_TrainerCard
-	dw .SGB16
+	dw .SGB_PokedexUnownMode
 	dw .SGB17
 	dw .SGB18
 	dw .SGB19
@@ -209,7 +209,7 @@ endr
 	ret
 ; 87b2
 
-.SGB04: ; 87b2
+.SGB_Pokedex: ; 87b2
 	ld hl, PalPacket_9ce6
 	ld de, wSGBPals
 	ld bc, $10
@@ -266,13 +266,13 @@ endr
 	ret
 ; 8823
 
-.SGB16: ; 8823
-	call .SGB04
+.SGB_PokedexUnownMode: ; 8823
+	call .SGB_Pokedex
 	ld de, BlkPacket_9af6
 	ret
 ; 882a
 
-.SGB10: ; 882a
+.SGB_PokedexSearchOption: ; 882a
 	ld hl, PalPacket_9ce6
 	ld de, wSGBPals
 	ld bc, $10

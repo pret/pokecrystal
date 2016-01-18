@@ -5866,7 +5866,7 @@ Function11ad1b: ; 11ad1b
 	ld [wcd30], a
 	ld a, $2
 	ld [wc7d4], a
-	callba Pokedex_ChangeMode
+	callba Pokedex_OrderMonsByMode
 	ret
 ; 11ad6e
 

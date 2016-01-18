@@ -25,7 +25,7 @@ PrintUnownWord: ; fba2e (3e:7a2e)
 	ld bc, 12
 	ld a, " "
 	call ByteFill
-	ld a, [wc7dd]
+	ld a, [wDexCurrentUnownIndex]
 	ld e, a
 	ld d, 0
 	ld hl, UnownDex
