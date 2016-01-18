@@ -12110,7 +12110,7 @@ DrawPokedexSearchResultsWindow: ; 1de1d1 (77:61d1)
 ; (### FOUN)
 	next "D!@"
 
-Function1de247: ; 1de247
+DrawDexEntryScreenRightEdge: ; 1de247
 	ld a, [hBGMapAddress]
 	ld l, a
 	ld a, [hBGMapAddress + 1]

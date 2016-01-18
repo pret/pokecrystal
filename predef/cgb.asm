@@ -37,7 +37,7 @@ Predef_LoadSGBLayoutCGB: ; 8d59
 	dw _CGB_BattleColors
 	dw _CGB_PokegearPals
 	dw _CGB_StatsScreenHPPals
-	dw _CGB04
+	dw _CGB_Pokedex
 	dw _CGB_SlotMachine
 	dw _CGB06
 	dw _CGB07
@@ -49,13 +49,13 @@ Predef_LoadSGBLayoutCGB: ; 8d59
 	dw _CGB0d
 	dw _CGB0e
 	dw _CGB0f
-	dw _CGB10
+	dw _CGB_PokedexSearchOption
 	dw _CGB11
 	dw _CGB12
 	dw _CGB13
 	dw _CGB_PackPals
 	dw _CGB_TrainerCard
-	dw _CGB16
+	dw _CGB_PokedexUnownMode
 	dw _CGB17
 	dw _CGB18
 	dw _CGB19
@@ -282,7 +282,7 @@ StatsScreenPals: ; 8f6a
 	RGB 17, 31, 31
 ; 8f70
 
-_CGB04: ; 8f70
+_CGB_Pokedex: ; 8f70
 	ld de, UnknBGPals
 	ld a, $1d
 	call GetPredefPal
@@ -389,7 +389,7 @@ Palette9036: ; 9036
 	RGB 00, 00, 00
 ; 903e
 
-_CGB16: ; 903e
+_CGB_PokedexUnownMode: ; 903e
 	ld de, UnknBGPals
 	ld a, $1d
 	call GetPredefPal
@@ -822,7 +822,7 @@ _CGB0f: ; 93a6
 	ret
 ; 93ba
 
-_CGB10: ; 93ba
+_CGB_PokedexSearchOption: ; 93ba
 	ld de, UnknBGPals
 	ld a, $1d
 	call GetPredefPal
