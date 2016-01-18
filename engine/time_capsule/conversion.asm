@@ -367,13 +367,13 @@ NewPokedexEntry: ; fb877
 	ld a, [hSCX]
 	add -5 ; 251 ; NUM_POKEMON
 	ld [hSCX], a
-	call Functionfb8c8
+	call .ReturnFromDexRegistration
 	pop af
 	ld [hMapAnims], a
 	ret
 ; fb8c8
 
-Functionfb8c8: ; fb8c8
+.ReturnFromDexRegistration: ; fb8c8
 	call ClearTileMap
 	call LoadFontsExtra
 	call LoadStandardFont

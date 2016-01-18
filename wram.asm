@@ -12,7 +12,7 @@ StackTop::
 
 
 SECTION "Audio", WRAM0
-
+wMusic::
 MusicPlaying:: ; c100
 ; nonzero if playing
 	ds 1
@@ -33,7 +33,7 @@ Channel8:: channel_struct Channel8 ; c25f
 wCurTrackDuty:: ds 1
 wCurTrackIntensity:: ds 1
 wCurTrackFrequency:: dw
-wc296:: ds 1 ; used only in an unused script
+wc296:: ds 1 ; BCD value, dummied out
 wc297:: ds 1 ; used in MusicE0 and LoadNote
 
 CurMusicByte:: ; c298
@@ -132,7 +132,7 @@ wMapMusic:: ; c2c0
 	ds 1
 
 wDontPlayMapMusicOnReload:: ds 1
-
+wMusicEnd::
 
 SECTION "WRAM", WRAM0
 
@@ -397,7 +397,7 @@ wEnemyTrainerItem1:: ds 1
 wEnemyTrainerItem2:: ds 1
 wEnemyTrainerBaseReward:: ds 1
 wEnemyTrainerAIFlags:: ds 3
-OTName:: ds NAME_LENGTH ; c656
+OTClassName:: ds NAME_LENGTH ; c656
 
 	ds 2
 
@@ -1816,9 +1816,9 @@ wItemQuantityBuffer:: ds 1
 TempMon:: ; d10e
 	party_struct TempMon
 
-wSpriteFlags:: ds 1
+wSpriteFlags:: ds 1 ; d13e
 
-wHandlePlayerStep:: ds 2
+wHandlePlayerStep:: ds 2 ; d13f
 
 PartyMenuActionText:: ; d141
 	ds 1

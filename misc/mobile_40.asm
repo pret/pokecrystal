@@ -2595,7 +2595,7 @@ Function10107d: ; 10107d
 	ld bc, NAME_LENGTH
 	call .CopyAllFromOT
 	ld hl, OTPartyMonOT
-	ld de, OTName + 1
+	ld de, OTClassName + 1
 	ld bc, NAME_LENGTH
 	call .CopyAllFromOT
 	ld hl, OTPartyMon1Species
@@ -4039,7 +4039,7 @@ Function1019ee: ; 1019ee
 	ld a, c
 	ld [OtherTrainerClass], a
 	ld hl, OTPlayerName
-	ld de, OTName
+	ld de, OTClassName
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	ld a, [wcd2f]

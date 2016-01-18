@@ -1248,7 +1248,7 @@ HandlePerishSong: ; 3c801
 	res SUBSTATUS_PERISH, [hl]
 	ld a, [hBattleTurn]
 	and a
-	jr nz, .asm_3c85c
+	jr nz, .kill_enemy
 	ld hl, BattleMonHP
 	xor a
 	ld [hli], a
@@ -1261,7 +1261,7 @@ HandlePerishSong: ; 3c801
 	ld [hl], a
 	ret
 
-.asm_3c85c
+.kill_enemy
 	ld hl, EnemyMonHP
 	xor a
 	ld [hli], a
@@ -1334,12 +1334,12 @@ HandleWrap: ; 3c874
 	call GetSixteenthMaxHP
 	call SubtractHPFromUser
 	ld hl, BattleText_UsersHurtByStringBuffer1
-	jr .asm_3c8e1
+	jr .print_text
 
 .release_from_bounds
 	ld hl, BattleText_UserWasReleasedFromStringBuffer1
 
-.asm_3c8e1
+.print_text
 	jp StdBattleTextBox
 ; 3c8e4
 
@@ -1396,7 +1396,7 @@ HandleLeftovers: ; 3c8eb
 	call GetSixteenthMaxHP
 	call SwitchTurnCore
 	call RestoreHP
-	ld hl, BattleText_0x80880
+	ld hl, BattleText_TargetRecoveredWithItem
 	jp StdBattleTextBox
 ; 3c93c
 
@@ -1569,7 +1569,7 @@ HandleFutureSight: ; 3ca26
 	cp $1
 	ret nz
 
-	ld hl, BattleText_0x808b6
+	ld hl, BattleText_TargetWasHitByFutureSight
 	call StdBattleTextBox
 
 	ld a, BATTLE_VARS_MOVE
@@ -1645,12 +1645,12 @@ HanleDefrost: ; 3ca8f
 
 	ld a, [wBattleMode]
 	dec a
-	jr z, .asm_3caef
+	jr z, .wild
 	ld a, [CurOTMon]
 	ld hl, OTPartyMon1Status
 	call GetPartyLocation
 	ld [hl], 0
-.asm_3caef
+.wild
 
 	call UpdateBattleHuds
 	call SetPlayerTurn
@@ -1661,13 +1661,13 @@ HanleDefrost: ; 3ca8f
 HandleSafeguard: ; 3cafb
 	ld a, [hLinkPlayerNumber]
 	cp $1
-	jr z, .asm_3cb06
-	call .asm_3cb09
-	jr .asm_3cb1c
+	jr z, .player1
+	call .CheckPlayer
+	jr .CheckEnemy
 
-.asm_3cb06
-	call .asm_3cb1c
-.asm_3cb09
+.player1
+	call .CheckEnemy
+.CheckPlayer
 	ld a, [PlayerScreens]
 	bit SCREENS_SAFEGUARD, a
 	ret z
@@ -1677,9 +1677,9 @@ HandleSafeguard: ; 3cafb
 	res SCREENS_SAFEGUARD, a
 	ld [PlayerScreens], a
 	xor a
-	jr .asm_3cb2e
+	jr .print
 
-.asm_3cb1c
+.CheckEnemy
 	ld a, [EnemyScreens]
 	bit SCREENS_SAFEGUARD, a
 	ret z
@@ -1690,7 +1690,7 @@ HandleSafeguard: ; 3cafb
 	ld [EnemyScreens], a
 	ld a, $1
 
-.asm_3cb2e
+.print
 	ld [hBattleTurn], a
 	ld hl, BattleText_SafeguardFaded
 	jp StdBattleTextBox
@@ -1712,7 +1712,7 @@ HandleScreens: ; 3cb36
 	call .Copy
 	ld hl, PlayerScreens
 	ld de, PlayerLightScreenCount
-	jr .FadeScreens
+	jr .TickScreens
 
 .CheckEnemy
 	call SetEnemyTurn
@@ -1721,11 +1721,11 @@ HandleScreens: ; 3cb36
 	ld hl, EnemyScreens
 	ld de, EnemyLightScreenCount
 
-.FadeScreens
+.TickScreens
 	bit SCREENS_LIGHT_SCREEN, [hl]
-	call nz, FadeLightScreen
+	call nz, .LightScreenTick
 	bit SCREENS_REFLECT, [hl]
-	call nz, FadeReflect
+	call nz, .ReflectTick
 	ret
 
 .Copy
@@ -1740,7 +1740,7 @@ HandleScreens: ; 3cb36
 ; 3cb80
 
 
-FadeLightScreen: ; 3cb80
+.LightScreenTick: ; 3cb80
 	ld a, [de]
 	dec a
 	ld [de], a
@@ -1748,21 +1748,21 @@ FadeLightScreen: ; 3cb80
 	res SCREENS_LIGHT_SCREEN, [hl]
 	push hl
 	push de
-	ld hl, BattleText_PkmnnLightScreenFell
+	ld hl, BattleText_PkmnLightScreenFell
 	call StdBattleTextBox
 	pop de
 	pop hl
 	ret
 ; 3cb91
 
-FadeReflect: ; 3cb91
+.ReflectTick: ; 3cb91
 	inc de
 	ld a, [de]
 	dec a
 	ld [de], a
 	ret nz
 	res SCREENS_REFLECT, [hl]
-	ld hl, BattleText_0x80905
+	ld hl, BattleText_PkmnReflectFaded
 	jp StdBattleTextBox
 ; 3cb9e
 
@@ -3969,7 +3969,7 @@ TryToRunAwayFromBattle: ; 3d8b3
 	and a
 	jr z, .can_escape
 	ld [hDivisor], a
-	ld b, $2
+	ld b, 2
 	call Divide
 	ld a, [hQuotient + 1]
 	and a
@@ -4941,16 +4941,16 @@ PrintPlayerHUD: ; 3dfbf
 	ld [MonType], a
 	callab GetGender
 	ld a, " "
-	jr c, .asm_3e013
+	jr c, .got_gender_char
 	ld a, "♂"
-	jr nz, .asm_3e013
+	jr nz, .got_gender_char
 	ld a, "♀"
 
-.asm_3e013
+.got_gender_char
 	hlcoord 17, 8
 	ld [hl], a
 	hlcoord 14, 8
-	push af
+	push af ; back up gender
 	push hl
 	ld de, BattleMonStatus
 	predef PlaceNonFaintStatus
@@ -4959,10 +4959,10 @@ PrintPlayerHUD: ; 3dfbf
 	ret nz
 	ld a, b
 	cp " "
-	jr nz, .asm_3e02d
-	dec hl
+	jr nz, .copy_level ; male or female
+	dec hl ; genderless
 
-.asm_3e02d
+.copy_level
 	ld a, [BattleMonLevel]
 	ld [TempMonLevel], a
 	jp PrintLevel

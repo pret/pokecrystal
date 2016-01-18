@@ -6621,7 +6621,7 @@ GetOTName: ; 39550
 
 .ok
 	ld bc, TRAINER_CLASS_NAME_LENGTH
-	ld de, OTName
+	ld de, OTClassName
 	push de
 	call CopyBytes
 	pop de
@@ -9154,50 +9154,50 @@ Strings50a42: ; 50a42
 	dw .Youngster
 	dw .BugCatcher
 	dw .Lass
-	dw OTName
+	dw OTClassName
 	dw .JrTrainerM
 	dw .JrTrainerF
 	dw .Pokemaniac
 	dw .SuperNerd
-	dw OTName
-	dw OTName
+	dw OTClassName
+	dw OTClassName
 	dw .Burglar
 	dw .Engineer
 	dw .Jack
-	dw OTName
+	dw OTClassName
 	dw .Swimmer
-	dw OTName
-	dw OTName
+	dw OTClassName
+	dw OTClassName
 	dw .Beauty
-	dw OTName
+	dw OTClassName
 	dw .Rocker
 	dw .Juggler
-	dw OTName
-	dw OTName
+	dw OTClassName
+	dw OTClassName
 	dw .Blackbelt
-	dw OTName
+	dw OTClassName
 	dw .ProfOak
 	dw .Chief
 	dw .Scientist
-	dw OTName
+	dw OTClassName
 	dw .Rocket
 	dw .CooltrainerM
 	dw .CooltrainerF
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
 
 .Youngster    db "たんパン@"
 .BugCatcher   db "むしとり@"

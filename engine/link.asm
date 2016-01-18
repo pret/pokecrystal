@@ -427,7 +427,7 @@ Gen2ToGen2LinkComms: ; 28177
 	or $3
 	ld [hl], a
 	ld hl, OTPlayerName
-	ld de, OTName
+	ld de, OTClassName
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	call ReturnToMapFromSubmenu

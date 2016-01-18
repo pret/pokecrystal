@@ -136,7 +136,7 @@ DoPlayerMovement:: ; 80000
 	jr z, .land2
 	cp $70 ; warps
 	jr z, .warps
-	jr .asm_8013c
+	jr .no_walk
 
 .water
 	ld a, c
@@ -147,7 +147,7 @@ DoPlayerMovement:: ; 80000
 	add hl, bc
 	ld a, [hl]
 	ld [WalkingDirection], a
-	jr .asm_8013e
+	jr .continue_walk
 
 .water_table
 	db RIGHT
@@ -164,9 +164,9 @@ DoPlayerMovement:: ; 80000
 	add hl, bc
 	ld a, [hl]
 	cp STANDING
-	jr z, .asm_8013c
+	jr z, .no_walk
 	ld [WalkingDirection], a
-	jr .asm_8013e
+	jr .continue_walk
 
 .land1_table
 	db STANDING
@@ -187,9 +187,9 @@ DoPlayerMovement:: ; 80000
 	add hl, bc
 	ld a, [hl]
 	cp STANDING
-	jr z, .asm_8013c
+	jr z, .no_walk
 	ld [WalkingDirection], a
-	jr .asm_8013e
+	jr .continue_walk
 
 .land2_table
 	db RIGHT
@@ -210,18 +210,18 @@ DoPlayerMovement:: ; 80000
 	cp $7a ; stairs
 	jr z, .down
 	cp $7b ; cave
-	jr nz, .asm_8013c
+	jr nz, .no_walk
 
 .down
 	ld a, DOWN
 	ld [WalkingDirection], a
-	jr .asm_8013e
+	jr .continue_walk
 
-.asm_8013c
+.no_walk
 	xor a
 	ret
 
-.asm_8013e
+.continue_walk
 	ld a, STEP_WALK
 	call .DoStep
 	ld a, 5

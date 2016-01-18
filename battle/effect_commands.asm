@@ -1928,6 +1928,7 @@ BattleCommand_CheckHit: ; 34d32
 	ld a, [hBattleTurn]
 	and a
 
+	; load the user's accuracy into b and the opponent's evasion into c.
 	ld hl, wPlayerMoveStruct + MOVE_ACC
 	ld a, [PlayerAccLevel]
 	ld b, a
@@ -1944,26 +1945,31 @@ BattleCommand_CheckHit: ; 34d32
 
 .got_acc_eva
 	cp b
-	jr c, .eva_less_than_acc
+	jr c, .skip_foresight_check
 
+	; if the target's evasion is greater than the user's accuracy,
+	; check the target's foresight status
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
 	bit SUBSTATUS_IDENTIFIED, a
 	ret nz
 
-.eva_less_than_acc
+.skip_foresight_check
+	; subtract evasion from 14
 	ld a, 14
 	sub c
 	ld c, a
+	; store the base move accuracy for math ops
 	xor a
 	ld [hMultiplicand + 0], a
 	ld [hMultiplicand + 1], a
 	ld a, [hl]
 	ld [hMultiplicand + 2], a
 	push hl
-	ld d, 2
+	ld d, 2 ; do this twice, once for the user's accuracy and once for the target's evasion
 
 .accuracy_loop
+	; look up the multiplier from the table
 	push bc
 	ld hl, .AccProb
 	dec b
@@ -1972,27 +1978,32 @@ BattleCommand_CheckHit: ; 34d32
 	ld b, 0
 	add hl, bc
 	pop bc
+	; multiply by the first byte in that row...
 	ld a, [hli]
 	ld [hMultiplier], a
 	call Multiply
+	; ... and divide by the second byte
 	ld a, [hl]
 	ld [hDivisor], a
 	ld b, 4
 	call Divide
+	; minimum accuracy is $0001
 	ld a, [hQuotient + 2]
 	ld b, a
 	ld a, [hQuotient + 1]
 	or b
 	jr nz, .min_accuracy
 	ld [hQuotient + 1], a
-	ld a, $1
+	ld a, 1
 	ld [hQuotient + 2], a
 
 .min_accuracy
+	; do the same thing to the target's evasion
 	ld b, c
 	dec d
 	jr nz, .accuracy_loop
 
+	; if the result is more than 2 bytes, max out at 100%
 	ld a, [hQuotient + 1]
 	and a
 	ld a, [hQuotient + 2]
@@ -8393,148 +8404,7 @@ BattleCommand_Heal: ; 3713e
 
 ; 371cd
 
-
-BattleCommand_Transform: ; 371cd
-; transform
-
-	call ClearLastMove
-	ld a, BATTLE_VARS_SUBSTATUS5_OPP
-	call GetBattleVarAddr
-	bit SUBSTATUS_TRANSFORMED, [hl]
-	jp nz, BattleEffect_ButItFailed
-	call CheckHiddenOpponent
-	jp nz, BattleEffect_ButItFailed
-	xor a
-	ld [wNumHits], a
-	ld [FXAnimIDHi], a
-	ld a, $1
-	ld [wKickCounter], a
-	ld a, BATTLE_VARS_SUBSTATUS4
-	call GetBattleVarAddr
-	bit SUBSTATUS_SUBSTITUTE, [hl]
-	push af
-	jr z, .mimic_substitute
-	call CheckUserIsCharging
-	jr nz, .mimic_substitute
-	ld a, SUBSTITUTE
-	call LoadAnim
-.mimic_substitute
-	ld a, BATTLE_VARS_SUBSTATUS5
-	call GetBattleVarAddr
-	set SUBSTATUS_TRANSFORMED, [hl]
-	call ResetActorDisable
-	ld hl, BattleMonSpecies
-	ld de, EnemyMonSpecies
-	ld a, [hBattleTurn]
-	and a
-	jr nz, .got_mon_species
-	ld hl, EnemyMonSpecies
-	ld de, BattleMonSpecies
-	xor a
-	ld [CurMoveNum], a
-.got_mon_species
-	push hl
-	ld a, [hli]
-	ld [de], a
-	inc hl
-	inc de
-	inc de
-	ld bc, NUM_MOVES
-	call CopyBytes
-	ld a, [hBattleTurn]
-	and a
-	jr z, .mimic_enemy_backup
-	ld a, [de]
-	ld [wEnemyBackupDVs], a
-	inc de
-	ld a, [de]
-	ld [wEnemyBackupDVs + 1], a
-	dec de
-.mimic_enemy_backup
-; copy DVs
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	inc de
-; move pointer to stats
-	ld bc, BattleMonStats - BattleMonPP
-	add hl, bc
-	push hl
-	ld h, d
-	ld l, e
-	add hl, bc
-	ld d, h
-	ld e, l
-	pop hl
-	ld bc, BattleMonStructEnd - BattleMonStats
-	call CopyBytes
-; init the power points
-	ld bc, BattleMonMoves - BattleMonStructEnd
-	add hl, bc
-	push de
-	ld d, h
-	ld e, l
-	pop hl
-	ld bc, BattleMonPP - BattleMonStructEnd
-	add hl, bc
-	ld b, NUM_MOVES
-.pp_loop
-	ld a, [de]
-	inc de
-	and a
-	jr z, .done_move
-	cp SKETCH
-	ld a, 1
-	jr z, .done_move
-	ld a, 5
-.done_move
-	ld [hli], a
-	dec b
-	jr nz, .pp_loop
-	pop hl
-	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
-	call GetPokemonName
-	ld hl, EnemyStats
-	ld de, PlayerStats
-	ld bc, 2 * 5
-	call BattleSideCopy
-	ld hl, EnemyStatLevels
-	ld de, PlayerStatLevels
-	ld bc, 8
-	call BattleSideCopy
-	call _CheckBattleScene
-	jr c, .mimic_anims
-	ld a, [hBattleTurn]
-	and a
-	ld a, [wPlayerMinimized]
-	jr z, .got_byte
-	ld a, [wEnemyMinimized]
-.got_byte
-	and a
-	jr nz, .mimic_anims
-	call LoadMoveAnim
-	jr .after_anim
-
-.mimic_anims
-	call BattleCommand_MoveDelay
-	call BattleCommand_RaiseSubNoAnim
-.after_anim
-	xor a
-	ld [wNumHits], a
-	ld [FXAnimIDHi], a
-	ld a, $2
-	ld [wKickCounter], a
-	pop af
-	ld a, SUBSTITUTE
-	call nz, LoadAnim
-	ld hl, TransformedText
-	jp StdBattleTextBox
-
-; 372c6
-
+INCLUDE "battle/effects/transform.asm"
 
 BattleSideCopy: ; 372c6
 ; Copy bc bytes from hl to de if it's the player's turn.
