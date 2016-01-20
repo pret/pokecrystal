@@ -1053,8 +1053,9 @@ Pokedex_ListingPosChanged: ; 4073f (10:473f)
 	scf
 	ret
 
-Pokedex_HLDownBRows: ; 40741
-; Moves the tilemap pointer in HL down by B rows.
+Pokedex_FillColumn: ; 40741
+; Fills a column starting at HL, going downwards.
+; B is the height of the column and A is the tile it's filled with.
 	push de
 	ld de, SCREEN_WIDTH
 .loop
@@ -1107,11 +1108,11 @@ Pokedex_DrawMainScreenBG: ; 4074c (10:474c)
 	hlcoord 8, 1
 	ld b, $7
 	ld a, $5a
-	call Pokedex_HLDownBRows
+	call Pokedex_FillColumn
 	hlcoord 8, 10
 	ld b, $6
 	ld a, $5a
-	call Pokedex_HLDownBRows
+	call Pokedex_FillColumn
 	hlcoord 8, 0
 	ld [hl], $59
 	hlcoord 8, 8
@@ -1142,7 +1143,7 @@ Pokedex_DrawDexEntryScreenBG: ; 407fd
 	hlcoord 19, 1
 	ld a, $7f
 	ld b, $f
-	call Pokedex_HLDownBRows
+	call Pokedex_FillColumn
 	ld [hl], $39
 	hlcoord 1, 10
 	ld bc, $0013
@@ -1265,7 +1266,7 @@ Pokedex_DrawSearchResultsScreenBG: ; 40962 (10:4962)
 	hlcoord 8, 1
 	ld b, $7
 	ld a, $5a
-	call Pokedex_HLDownBRows
+	call Pokedex_FillColumn
 	hlcoord 8, 8
 	ld [hl], $53
 	hlcoord 8, 9
