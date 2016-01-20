@@ -6804,7 +6804,7 @@ DisplayDexEntry: ; 4424d
 	ld d, h
 	ld e, l
 	hlcoord 12, 7
-	lb bc, 2, 36
+	lb bc, 2, PRINTNUM_MONEY | 4
 	call PrintNum
 	hlcoord 14, 7
 	ld [hl], $5e ; ft symbol
