@@ -190,7 +190,7 @@ sHallOfFame:: ; b2c0
 ; endr
 sHallOfFameEnd::
 
-sMobileEventIndex:: ds 1
+sMobileEventIndex:: ds 1 ; be3c
 
 sCrystalData::
 	ds wCrystalDataEnd - wCrystalData

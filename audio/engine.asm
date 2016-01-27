@@ -2260,7 +2260,6 @@ GetFrequency: ; e8a5d
 	add hl, bc
 	ld a, [hl]
 	and $f ; lo nybble
-	;
 	ld l, a ; ok
 	ld d, 0
 	ld h, d

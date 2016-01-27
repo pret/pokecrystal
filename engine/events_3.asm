@@ -4,7 +4,7 @@ ReturnFromMapSetupScript:: ; b8000
 	; For some reson, GameFreak chose to use a callba here instead of just falling through.
 	; No other function in the game references the function at 2E:400A, here labeled
 	; ReturnFromMapSetupScript.inefficientcallba.
-	callba .inefficientcallba ; this is a waste of 6 ROM bytes and 2 stack bytes
+	callba .inefficientcallba ; this is a waste of 6 ROM bytes and 6 stack bytes
 	ret
 ; b800a
 

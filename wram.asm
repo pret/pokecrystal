@@ -391,12 +391,12 @@ BattleMon:: battle_struct BattleMon ; c62c
 
 	ds 2
 
-wWildMon:: ds 1
+wWildMon:: ds 1 ; c64e
 	ds 1
-wEnemyTrainerItem1:: ds 1
-wEnemyTrainerItem2:: ds 1
-wEnemyTrainerBaseReward:: ds 1
-wEnemyTrainerAIFlags:: ds 3
+wEnemyTrainerItem1:: ds 1 ; c650
+wEnemyTrainerItem2:: ds 1 ; c651
+wEnemyTrainerBaseReward:: ds 1 ; c652
+wEnemyTrainerAIFlags:: ds 3 ; c653
 OTClassName:: ds NAME_LENGTH ; c656
 
 	ds 2
@@ -1875,11 +1875,11 @@ wd182:: ds 1
 wd191:: ds 1
 wd192:: ds 1
 wd193:: ds 1
-wOverworldMapAnchor:: dw
-wMetatileStandingY:: ds 1
-wMetatileStandingX:: ds 1
-wSecondMapHeaderBank:: ds 1
-wTileset:: ds 1
+wOverworldMapAnchor:: dw ; d194
+wMetatileStandingY:: ds 1 ; d196
+wMetatileStandingX:: ds 1 ; d197
+wSecondMapHeaderBank:: ds 1 ; d198
+wTileset:: ds 1 ; d199
 wPermission:: ds 1 ; d19a
 wSecondMapHeaderAddr:: dw ; d19b
 
@@ -2256,25 +2256,25 @@ wScriptTextBank::
 wPriorityScriptAddr::
 wScriptTextAddr:: ds 2 ; d44f
 	ds 1
-wWildEncounterCooldown:: ds 1
-wXYComparePointer:: ds 2
+wWildEncounterCooldown:: ds 1 ; d452
+wXYComparePointer:: ds 2 ; d453
 	ds 4
 
-wBattleScriptFlags:: ds 2
-wPlayerSpriteSetupFlags:: ds 1
+wBattleScriptFlags:: ds 2 ; d459
+wPlayerSpriteSetupFlags:: ds 1 ; d45b
 ; bit 7: if set, cancel PlayerAction
 ; bit 5: if set, set facing according to bits 0-1
 ; bits 0-1: direction facing
-wMapReentryScriptQueueFlag:: ds 1 ; MemScriptFlag
-wMapReentryScriptBank:: ds 1 ; MemScriptBank
-wMapReentryScriptAddress:: ds 2 ; MemScriptAddr
+wMapReentryScriptQueueFlag:: ds 1 ; d45c MemScriptFlag
+wMapReentryScriptBank:: ds 1 ; d45d MemScriptBank
+wMapReentryScriptAddress:: ds 2 ; d45e MemScriptAddr
 	ds 4     ; ?????????????
-wTimeCyclesSinceLastCall:: ds 1
-wReceiveCallDelay_MinsRemaining:: ds 1
-wReceiveCallDelay_StartTime:: ds 3
+wTimeCyclesSinceLastCall:: ds 1 ; d464
+wReceiveCallDelay_MinsRemaining:: ds 1 ; d465
+wReceiveCallDelay_StartTime:: ds 3 ; d466
 	ds 3
-wBugContestMinsRemaining:: ds 1
-wBugContestSecsRemaining:: ds 1
+wBugContestMinsRemaining:: ds 1 ; d46c
+wBugContestSecsRemaining:: ds 1 ; d46d
 	ds 2
 wMapStatusEnd:: ds 2 ; d470
 
@@ -2753,7 +2753,7 @@ wLuckyNumberDayBuffer:: ds 2
 	ds 2
 wSpecialPhoneCallID:: ds 1
 	ds 3
-wBugContestStartTime:: ds 4 ; day, hour, min, sec
+wBugContestStartTime:: ds 4 ; day, hour, min, sec ; dc35
 wUnusedTwoDayTimerOn:: ds 1 ; dc39
 wUnusedTwoDayTimer:: ds 1
 wUnusedTwoDayTimerStartDate:: ds 1

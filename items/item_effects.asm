@@ -403,7 +403,7 @@ endr
 	jr c, .not_kurt_ball
 	ld a, POKE_BALL
 .not_kurt_ball
-	ld [wKickCounter], a
+	ld [wBattleAnimParam], a
 
 	ld de, ANIM_THROW_POKE_BALL
 	ld a, e
@@ -2955,7 +2955,7 @@ UseBallInTrainerBattle: ; f7a0
 	ld a, d
 	ld [FXAnimIDHi], a
 	xor a
-	ld [wKickCounter], a
+	ld [wBattleAnimParam], a
 	ld [hBattleTurn], a
 	ld [wNumHits], a
 	predef PlayBattleAnim

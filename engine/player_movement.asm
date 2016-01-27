@@ -446,7 +446,7 @@ DoPlayerMovement:: ; 80000
 	db $70, $78, $76, $7e
 ; 8025f
 
-.DoStep: ; 8025f
+.DoStep
 	ld e, a
 	ld d, 0
 	ld hl, .Steps
