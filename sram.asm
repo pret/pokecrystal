@@ -122,16 +122,25 @@ s1_ad0f::     ds 1 ; loaded with 0x7f, used to check save corruption
 ; b160
 
 	ds $f4
-s1_b254:: ds $c
+sLinkBattleResults:: ds $c
 
 sLinkBattleStats:: ; b260
 sLinkBattleWins::   ds 2
 sLinkBattleLosses:: ds 2 ; b262
 sLinkBattleDraws::  ds 2 ; b264
-s1_b266::
-	ds 17
-s1_b277::
-	ds 73
+link_battle_record: MACRO
+\1Name:: ds NAME_LENGTH +- 1
+\1ID:: ds 2
+\1Wins:: ds 2
+\1Losses:: ds 2
+\1Draws:: ds 2
+endm
+sLinkBattleRecord::
+sLinkBattleRecord1:: link_battle_record sLinkBattleRecord1
+sLinkBattleRecord2:: link_battle_record sLinkBattleRecord2
+sLinkBattleRecord3:: link_battle_record sLinkBattleRecord3
+sLinkBattleRecord4:: link_battle_record sLinkBattleRecord4
+sLinkBattleRecord5:: link_battle_record sLinkBattleRecord5
 sLinkBattleStatsEnd::
 
 sHallOfFame:: ; b2c0
@@ -181,7 +190,7 @@ sHallOfFame:: ; b2c0
 ; endr
 sHallOfFameEnd::
 
-sMobileEventIndex:: ds 1
+sMobileEventIndex:: ds 1 ; be3c
 
 sCrystalData::
 	ds wCrystalDataEnd - wCrystalData

@@ -140,7 +140,7 @@ Kurt_SelectQuantity: ; 880c2
 	call .PlaceApricornName
 	call PlaceApricornQuantity
 	call ApplyTilemap
-	callba Function27a28
+	callba Kurt_SelectQuantity_InterpretJoypad
 	jr nc, .loop
 
 	push bc

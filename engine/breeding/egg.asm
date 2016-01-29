@@ -677,9 +677,9 @@ Hatch_UpdateFrontpicBGMapCenter: ; 17254 (5:7254)
 	ld a, b
 	ld [hBGMapAddress + 1], a
 	ld a, c
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	lb bc, 7, 7
-	predef FillBox
+	predef PlaceGraphic
 	pop af
 	call Hatch_LoadFrontpicPal
 	call SetPalettes

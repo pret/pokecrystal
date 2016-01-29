@@ -6,7 +6,7 @@ CheckPlayerMoveTypeMatchups: ; 3484e
 	push de
 	push bc
 	ld a, 10
-	ld [wc716], a
+	ld [wEnemyAISwitchScore], a
 	ld hl, PlayerUsedMoves
 	ld a, [hl]
 	and a
@@ -167,17 +167,17 @@ endr
 
 
 .DecreaseScore: ; 34931
-	ld a, [wc716]
+	ld a, [wEnemyAISwitchScore]
 	dec a
-	ld [wc716], a
+	ld [wEnemyAISwitchScore], a
 	ret
 ; 34939
 
 
 .IncreaseScore: ; 34939
-	ld a, [wc716]
+	ld a, [wEnemyAISwitchScore]
 	inc a
-	ld [wc716], a
+	ld [wEnemyAISwitchScore], a
 	ret
 ; 34941
 
@@ -206,7 +206,7 @@ CheckAbleToSwitch: ; 34941
 	cp 2
 	jr nz, .not_2
 
-	ld a, [wc716]
+	ld a, [wEnemyAISwitchScore]
 	add $30
 	ld [wEnemySwitchMonParam], a
 	ret
@@ -230,7 +230,7 @@ CheckAbleToSwitch: ; 34941
 .no_perish
 
 	call CheckPlayerMoveTypeMatchups
-	ld a, [wc716]
+	ld a, [wEnemyAISwitchScore]
 	cp 11
 	ret nc
 
@@ -239,13 +239,13 @@ CheckAbleToSwitch: ; 34941
 	jr z, .no_last_counter_move
 
 	call Function34a2a
-	ld a, [wc716]
+	ld a, [wEnemyAISwitchScore]
 	and a
 	jr z, .no_last_counter_move
 
 	ld c, a
 	call Function34aa7
-	ld a, [wc716]
+	ld a, [wEnemyAISwitchScore]
 	cp $ff
 	ret z
 
@@ -255,7 +255,7 @@ CheckAbleToSwitch: ; 34941
 	jr z, .not_2_again
 
 	call CheckPlayerMoveTypeMatchups
-	ld a, [wc716]
+	ld a, [wEnemyAISwitchScore]
 	cp 10
 	ret nc
 
@@ -267,7 +267,7 @@ CheckAbleToSwitch: ; 34941
 .not_2_again
 	ld c, $10
 	call CheckPlayerMoveTypeMatchups
-	ld a, [wc716]
+	ld a, [wEnemyAISwitchScore]
 	cp 10
 	jr nc, .okay
 	ld c, $20
@@ -280,7 +280,7 @@ CheckAbleToSwitch: ; 34941
 
 .no_last_counter_move
 	call CheckPlayerMoveTypeMatchups
-	ld a, [wc716]
+	ld a, [wEnemyAISwitchScore]
 	cp 10
 	ret nc
 
@@ -293,7 +293,7 @@ CheckAbleToSwitch: ; 34941
 	cp $2
 	ret nz
 
-	ld a, [wc716]
+	ld a, [wEnemyAISwitchScore]
 	add $10
 	ld [wEnemySwitchMonParam], a
 	ret
@@ -359,7 +359,7 @@ Function34a2a: ; 34a2a
 	ld c, 1 << (PARTY_LENGTH - 1)
 	ld d, 0
 	xor a
-	ld [wc716], a
+	ld [wEnemyAISwitchScore], a
 
 .asm_34a39
 	ld a, [CurOTMon]
@@ -395,9 +395,9 @@ Function34a2a: ; 34a2a
 	and a
 	jr nz, .asm_34a77
 
-	ld a, [wc716]
+	ld a, [wEnemyAISwitchScore]
 	or c
-	ld [wc716], a
+	ld [wEnemyAISwitchScore], a
 .asm_34a77
 	pop hl
 	dec b
@@ -451,7 +451,7 @@ Function34a85: ; 34a85
 Function34aa7: ; 34aa7
 
 	ld a, $ff
-	ld [wc716], a
+	ld [wEnemyAISwitchScore], a
 	ld hl, OTPartyMon1Moves
 	ld b, 1 << (PARTY_LENGTH - 1)
 	ld d, 0
@@ -540,7 +540,7 @@ Function34aa7: ; 34aa7
 	jr nc, .loop2
 
 	ld a, c
-	ld [wc716], a
+	ld [wEnemyAISwitchScore], a
 	pop bc
 	ret
 ; 34b20

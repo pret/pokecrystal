@@ -734,13 +734,13 @@ BlankScreen: ; 8000
 	call SetPalettes
 	ret
 
-GetSpawnCoord: ; 8029
+SpawnPlayer: ; 8029
 	ld a, -1
 	ld [wObjectFollow_Leader], a
 	ld [wObjectFollow_Follower], a
 	ld a, $0
 	ld hl, PlayerObjectTemplate
-	call Function19a6
+	call CopyPlayerObjectTemplate
 	ld b, $0
 	call PlayerSpawn_ConvertCoords
 	ld a, $0
@@ -821,23 +821,23 @@ RefreshPlayerCoords: ; 80b8
 	ld a, [XCoord]
 	add 4
 	ld d, a
-	ld hl, PlayerNextMapX
+	ld hl, PlayerStandingMapX
 	sub [hl]
 	ld [hl], d
 	ld hl, MapObjects + MAPOBJECT_X_COORD
 	ld [hl], d
-	ld hl, PlayerMapX
+	ld hl, PlayerLastMapX
 	ld [hl], d
 	ld d, a
 	ld a, [YCoord]
 	add 4
 	ld e, a
-	ld hl, PlayerNextMapY
+	ld hl, PlayerStandingMapY
 	sub [hl]
 	ld [hl], e
 	ld hl, MapObjects + MAPOBJECT_Y_COORD
 	ld [hl], e
-	ld hl, PlayerMapY
+	ld hl, PlayerLastMapY
 	ld [hl], e
 	ld e, a
 	ld a, [wObjectFollow_Leader]
@@ -2473,9 +2473,9 @@ SurfFunction: ; c909
 	jr nz, .cannotsurf
 	ld a, [PlayerState]
 	cp PLAYER_SURF
-	jr z, .alreadysurfing
+	jr z, .alreadyfail
 	cp PLAYER_SURF_PIKA
-	jr z, .alreadysurfing
+	jr z, .alreadyfail
 	call GetFacingTileCoord
 	call GetTileCollision
 	cp $1
@@ -2489,7 +2489,7 @@ SurfFunction: ; c909
 .asm_c956
 	ld a, $80
 	ret
-.alreadysurfing
+.alreadyfail
 	ld a, $3
 	ret
 .cannotsurf
@@ -2525,7 +2525,7 @@ UsedSurfScript: ; c986
 	waitbutton
 	closetext
 
-	callasm Functionc9a2 ; empty function
+	callasm .empty_fn ; empty function
 
 	copybytetovar Buffer2
 	writevarcode VAR_MOVEMENT
@@ -2537,7 +2537,7 @@ UsedSurfScript: ; c986
 	applymovement PLAYER, MovementBuffer ; PLAYER, MovementBuffer
 	end
 
-Functionc9a2: ; c9a2
+.empty_fn: ; c9a2
 	callba MobileFn_1060bb ; empty
 	ret
 
@@ -2603,9 +2603,9 @@ CheckDirection: ; c9cb
 
 TrySurfOW:: ; c9e7
 ; Checking a tile in the overworld.
-; Return carry if surfing is allowed.
+; Return carry if fail is allowed.
 
-; Don't ask to surf if already surfing.
+; Don't ask to surf if already fail.
 	ld a, [PlayerState]
 	cp PLAYER_SURF_PIKA
 	jr z, .quit
@@ -2808,7 +2808,7 @@ Script_UsedWaterfall: ; 0xcb20
 .CheckContinueWaterfall: ; cb38
 	xor a
 	ld [ScriptVar], a
-	ld a, [PlayerNextTile]
+	ld a, [PlayerStandingTile]
 	call CheckWaterfallTile
 	ret z
 	callba MobileFn_1060c1
@@ -3577,21 +3577,20 @@ FishFunction: ; cf8e
 	dw .TryFish
 	dw .FishNoBite
 	dw .FishGotSomething
-	dw .SurfingFish
 	dw .FailFish
+	dw .FishNoFish
 
 .TryFish: ; cfaf
 	ld a, [PlayerState]
 	cp PLAYER_SURF
-	jr z, .surfing
+	jr z, .fail
 	cp PLAYER_SURF_PIKA
-	jr z, .surfing
+	jr z, .fail
 	call GetFacingTileCoord
 	call GetTileCollision
 	cp $1
 	jr z, .facingwater
-
-.surfing
+.fail
 	ld a, $3
 	ret
 
@@ -3622,7 +3621,7 @@ FishFunction: ; cf8e
 	ld a, $1
 	ret
 
-.SurfingFish: ; cff1
+.FailFish: ; cff1
 	ld a, $80
 	ret
 
@@ -3642,7 +3641,7 @@ FishFunction: ; cf8e
 	ld a, $81
 	ret
 
-.FailFish: ; d010
+.FishNoFish: ; d010
 	ld a, $0
 	ld [Buffer6], a
 	ld hl, Script_NotEvenANibble2
@@ -3804,7 +3803,7 @@ BikeFunction: ; d0b3
 	jr .done
 
 .CantGetOffBike
-	ld hl, UnknownScript_0xd171
+	ld hl, Script_CantGetOffBike
 	jr .done
 
 .CannotUseBike
@@ -3835,8 +3834,8 @@ BikeFunction: ; d0b3
 	jr .nope
 
 .ok
-	call Function184a
-	and $f
+	call GetPlayerStandingTile
+	and $f ; can't use our bike in a wall or on water
 	jr nz, .nope
 	xor a
 	ret
@@ -3849,7 +3848,7 @@ Script_GetOnBike: ; 0xd13e
 	reloadmappart
 	special UpdateTimePals
 	writecode VAR_MOVEMENT, PLAYER_BIKE
-	writetext UnknownText_0xd17c
+	writetext GotOnTheBikeText
 	waitbutton
 	closetext
 	special ReplaceKrisSprite
@@ -3861,7 +3860,7 @@ Script_GetOnBike_Register: ; 0xd14e
 	special ReplaceKrisSprite
 	end
 
-Functiond156: ; unreferenced
+; XXX
 	nop
 	ret
 
@@ -3869,7 +3868,7 @@ Script_GetOffBike: ; 0xd158
 	reloadmappart
 	special UpdateTimePals
 	writecode VAR_MOVEMENT, PLAYER_NORMAL
-	writetext UnknownText_0xd181
+	writetext GotOffTheBikeText
 	waitbutton
 
 FinishGettingOffBike:
@@ -3882,23 +3881,23 @@ Script_GetOffBike_Register: ; 0xd16b
 	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	jump FinishGettingOffBike
 
-UnknownScript_0xd171: ; 0xd171
-	writetext UnknownText_0xd177
+Script_CantGetOffBike: ; 0xd171
+	writetext .CantGetOffBikeText
 	waitbutton
 	closetext
 	end
 
-UnknownText_0xd177: ; 0xd177
+.CantGetOffBikeText: ; 0xd177
 	; You can't get off here!
 	text_jump UnknownText_0x1c099a
 	db "@"
 
-UnknownText_0xd17c: ; 0xd17c
+GotOnTheBikeText: ; 0xd17c
 	; got on the @ .
 	text_jump UnknownText_0x1c09b2
 	db "@"
 
-UnknownText_0xd181: ; 0xd181
+GotOffTheBikeText: ; 0xd181
 	; got off the @ .
 	text_jump UnknownText_0x1c09c7
 	db "@"
@@ -5124,7 +5123,6 @@ INCLUDE "engine/pack.asm"
 INCLUDE "engine/time.asm"
 INCLUDE "engine/tmhm.asm"
 INCLUDE "engine/namingscreen.asm"
-INCLUDE "engine/compose_mail.asm"
 
 Script_AbortBugContest: ; 0x122c1
 	checkflag ENGINE_BUG_CONTEST_TIMER
@@ -5280,29 +5278,27 @@ Script_JumpStdFromRAM: ; 0x1369a
 
 INCLUDE "event/bug_contest_judging.asm"
 
-; decreases all pokemon's pokerus counter by b. if the lower nybble reaches zero, the pokerus is cured.
 ApplyPokerusTick: ; 13988
+; decreases all pokemon's pokerus counter by b. if the lower nybble reaches zero, the pokerus is cured.
 	ld hl, PartyMon1PokerusStatus ; PartyMon1 + MON_PKRS
 	ld a, [PartyCount]
 	and a
-	ret z
+	ret z ; make sure it's not wasting time on an empty party
 	ld c, a
 .loop
 	ld a, [hl]
-	and $f
-	jr z, .does_not_have_pokerus
-	sub b
-	jr nc, .ok
+	and $f ; lower nybble is the number of days remaining
+	jr z, .next ; if already 0, skip
+	sub b ; subtract the number of days
+	jr nc, .ok ; max(result, 0)
 	xor a
-
 .ok
-	ld d, a
+	ld d, a ; back up this value because we need to preserve the strain (upper nybble)
 	ld a, [hl]
 	and $f0
 	add d
-	ld [hl], a
-
-.does_not_have_pokerus
+	ld [hl], a ; this prevents a cured pokemon from recontracting pokerus
+.next
 	ld de, PARTYMON_STRUCT_LENGTH
 	add hl, de
 	dec c
@@ -5408,55 +5404,7 @@ UpdateItemDescription: ; 0x244c3
 	callba PrintItemDescription
 	ret
 
-Pokepic:: ; 244e3
-	ld hl, PokepicMenuDataHeader
-	call CopyMenuDataHeader
-	call MenuBox
-	call UpdateSprites
-	call ApplyTilemap
-	ld b, SCGB_12
-	call GetSGBLayout
-	xor a
-	ld [hBGMapMode], a
-	ld a, [CurPartySpecies]
-	ld [CurSpecies], a
-	call GetBaseData
-	ld de, VTiles1
-	predef GetFrontpic
-	ld a, [wMenuBorderTopCoord]
-	inc a
-	ld b, a
-	ld a, [wMenuBorderLeftCoord]
-	inc a
-	ld c, a
-	call Coord2Tile
-	ld a, $80
-	ld [hFillBox], a
-	lb bc, 7, 7
-	predef FillBox
-	call WaitBGMap
-	ret
-
-ClosePokepic:: ; 24528
-	ld hl, PokepicMenuDataHeader
-	call CopyMenuDataHeader
-	call ClearMenuBoxInterior
-	call WaitBGMap
-	call GetMemSGBLayout
-	xor a
-	ld [hBGMapMode], a
-	call OverworldTextModeSwitch
-	call ApplyTilemap
-	call UpdateSprites
-	call LoadStandardFont
-	ret
-
-PokepicMenuDataHeader: ; 0x24547
-	db $40 ; flags
-	db 04, 06 ; start coords
-	db 13, 14 ; end coords
-	dw NULL
-	db 1 ; default option
+INCLUDE "engine/pokepic.asm"
 
 LoadObjectMasks: ; 2454f
 	ld hl, wObjectMasks
@@ -5679,44 +5627,44 @@ Function24b8f: ; 24b8f
 .booru_ko: ; 24bd4
 	db "ボール   こ@"
 
-Function24bdc: ; 24bdc
+StartMenu_DrawBugContestStatusBox: ; 24bdc
 	hlcoord 0, 0
-	ld b, $5
-	ld c, $11
+	ld b, 5
+	ld c, 17
 	call TextBox
 	ret
 
-Function24be7: ; 24be7
+StartMenu_PrintBugContestStatus: ; 24be7
 	ld hl, Options
 	ld a, [hl]
 	push af
-	set 4, [hl]
-	call Function24bdc
+	set NO_TEXT_SCROLL, [hl]
+	call StartMenu_DrawBugContestStatusBox
 	hlcoord 1, 5
-	ld de, String24c52
+	ld de, .Balls_EN
 	call PlaceString
 	hlcoord 8, 5
-	ld de, wSafariBallsRemaining
+	ld de, wParkBallsRemaining
 	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
 	call PrintNum
 	hlcoord 1, 1
-	ld de, String24c4b
+	ld de, .CAUGHT
 	call PlaceString
 	ld a, [wContestMon]
 	and a
-	ld de, String24c59
-	jr z, .asm_24c1e
+	ld de, .None
+	jr z, .no_contest_mon
 	ld [wd265], a
 	call GetPokemonName
 
-.asm_24c1e
+.no_contest_mon
 	hlcoord 8, 1
 	call PlaceString
 	ld a, [wContestMon]
 	and a
-	jr z, .asm_24c3e
+	jr z, .skip_level
 	hlcoord 1, 3
-	ld de, String24c5e
+	ld de, .LEVEL
 	call PlaceString
 	ld a, [wContestMonLevel]
 	ld h, b
@@ -5725,20 +5673,20 @@ Function24be7: ; 24be7
 	ld c, $3
 	call Function3842
 
-.asm_24c3e
+.skip_level
 	pop af
 	ld [Options], a
 	ret
 
-String24c43: ; 24c43
+.Balls_JP: ; 24c43
 	db "ボール   こ@"
-String24c4b: ; 24c4b
+.CAUGHT: ; 24c4b
 	db "CAUGHT@"
-String24c52: ; 24c52
+.Balls_EN: ; 24c52
 	db "BALLS:@"
-String24c59: ; 24c59
+.None: ; 24c59
 	db "None@"
-String24c5e: ; 24c5e
+.LEVEL: ; 24c5e
 	db "LEVEL@"
 
 FindApricornsInBag: ; 24c64
@@ -5800,226 +5748,7 @@ INCLUDE "engine/mon_menu.asm"
 INCLUDE "battle/menu.asm"
 INCLUDE "engine/buy_sell_toss.asm"
 INCLUDE "engine/trainer_card.asm"
-
-ProfOaksPC: ; 0x265d3
-	ld hl, OakPCText1
-	call MenuTextBox
-	call YesNoBox
-	jr c, .shutdown
-	call ProfOaksPCBoot ; player chose "yes"?
-.shutdown
-	ld hl, OakPCText4
-	call PrintText
-	call JoyWaitAorB
-	call ExitMenu
-	ret
-
-ProfOaksPCBoot ; 0x265ee
-	ld hl, OakPCText2
-	call PrintText
-	call Rate
-	call PlaySFX ; sfx loaded by previous Rate function call
-	call JoyWaitAorB
-	call WaitSFX
-	ret
-
-ProfOaksPCRating: ; 0x26601
-	call Rate
-	push de
-	ld de, MUSIC_NONE
-	call PlayMusic
-	pop de
-	call PlaySFX
-	call JoyWaitAorB
-	call WaitSFX
-	ret
-
-Rate: ; 0x26616
-; calculate Seen/Owned
-	ld hl, PokedexSeen
-	ld b, EndPokedexSeen - PokedexSeen
-	call CountSetBits
-	ld [wd002], a
-	ld hl, PokedexCaught
-	ld b, EndPokedexCaught - PokedexCaught
-	call CountSetBits
-	ld [wd003], a
-
-; print appropriate rating
-	call .UpdateRatingBuffers
-	ld hl, OakPCText3
-	call PrintText
-	call JoyWaitAorB
-	ld a, [wd003]
-	ld hl, OakRatings
-	call FindOakRating
-	push de
-	call PrintText
-	pop de
-	ret
-
-.UpdateRatingBuffers: ; 0x26647
-	ld hl, StringBuffer3
-	ld de, wd002
-	call .UpdateRatingBuffer
-	ld hl, StringBuffer4
-	ld de, wd003
-	call .UpdateRatingBuffer
-	ret
-
-.UpdateRatingBuffer: ; 0x2665a
-	push hl
-	ld a, "@"
-	ld bc, ITEM_NAME_LENGTH
-	call ByteFill
-	pop hl
-	lb bc, PRINTNUM_RIGHTALIGN | 1, 3
-	call PrintNum
-	ret
-
-FindOakRating: ; 0x2666b
-; return sound effect in de
-; return text pointer in hl
-	nop
-	ld c, a
-.loop
-	ld a, [hli]
-	cp c
-	jr nc, .match
-rept 4
-	inc hl
-endr
-	jr .loop
-
-.match
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ret
-
-OakRatings: ; 0x2667f
-oakrating: MACRO
-	db \1
-	dw \2, \3
-endm
-
-; if you caught at most this many, play this sound, load this text
-	oakrating   9, SFX_DEX_FANFARE_LESS_THAN_20, OakRating01
-	oakrating  19, SFX_DEX_FANFARE_LESS_THAN_20, OakRating02
-	oakrating  34, SFX_DEX_FANFARE_20_49,        OakRating03
-	oakrating  49, SFX_DEX_FANFARE_20_49,        OakRating04
-	oakrating  64, SFX_DEX_FANFARE_50_79,        OakRating05
-	oakrating  79, SFX_DEX_FANFARE_50_79,        OakRating06
-	oakrating  94, SFX_DEX_FANFARE_80_109,       OakRating07
-	oakrating 109, SFX_DEX_FANFARE_80_109,       OakRating08
-	oakrating 124, SFX_CAUGHT_MON,               OakRating09
-	oakrating 139, SFX_CAUGHT_MON,               OakRating10
-	oakrating 154, SFX_DEX_FANFARE_140_169,      OakRating11
-	oakrating 169, SFX_DEX_FANFARE_140_169,      OakRating12
-	oakrating 184, SFX_DEX_FANFARE_170_199,      OakRating13
-	oakrating 199, SFX_DEX_FANFARE_170_199,      OakRating14
-	oakrating 214, SFX_DEX_FANFARE_200_229,      OakRating15
-	oakrating 229, SFX_DEX_FANFARE_200_229,      OakRating16
-	oakrating 239, SFX_DEX_FANFARE_230_PLUS,     OakRating17
-	oakrating 248, SFX_DEX_FANFARE_230_PLUS,     OakRating18
-	oakrating 255, SFX_DEX_FANFARE_230_PLUS,     OakRating19
-
-OakPCText1: ; 0x266de
-	text_jump _OakPCText1
-	db "@"
-
-OakPCText2: ; 0x266e3
-	text_jump _OakPCText2
-	db "@"
-
-OakPCText3: ; 0x266e8
-	text_jump _OakPCText3
-	db "@"
-
-OakRating01:
-	text_jump _OakRating01
-	db "@"
-
-OakRating02:
-	text_jump _OakRating02
-	db "@"
-
-OakRating03:
-	text_jump _OakRating03
-	db "@"
-
-OakRating04:
-	text_jump _OakRating04
-	db "@"
-
-OakRating05:
-	text_jump _OakRating05
-	db "@"
-
-OakRating06:
-	text_jump _OakRating06
-	db "@"
-
-OakRating07:
-	text_jump _OakRating07
-	db "@"
-
-OakRating08:
-	text_jump _OakRating08
-	db "@"
-
-OakRating09:
-	text_jump _OakRating09
-	db "@"
-
-OakRating10:
-	text_jump _OakRating10
-	db "@"
-
-OakRating11:
-	text_jump _OakRating11
-	db "@"
-
-OakRating12:
-	text_jump _OakRating12
-	db "@"
-
-OakRating13:
-	text_jump _OakRating13
-	db "@"
-
-OakRating14:
-	text_jump _OakRating14
-	db "@"
-
-OakRating15:
-	text_jump _OakRating15
-	db "@"
-
-OakRating16:
-	text_jump _OakRating16
-	db "@"
-
-OakRating17:
-	text_jump _OakRating17
-	db "@"
-
-OakRating18:
-	text_jump _OakRating18
-	db "@"
-
-OakRating19:
-	text_jump _OakRating19
-	db "@"
-
-OakPCText4: ; 0x2674c
-	text_jump _OakPCText4
-	db "@"
-
+INCLUDE "engine/prof_oaks_pc.asm"
 INCLUDE "engine/decorations.asm"
 
 PadCoords_de: ; 27092
@@ -6162,7 +5891,7 @@ INCLUDE "battle/moves/move_effects_pointers.asm"
 MoveEffects: ; 2732e
 INCLUDE "battle/moves/move_effects.asm"
 
-Function27a28: ; 27a28
+Kurt_SelectQuantity_InterpretJoypad: ; 27a28
 	call BuySellToss_InterpretJoypad
 	ld b, a
 	ret
@@ -6731,9 +6460,9 @@ endr
 	ld [hl], VBGMap0 / $100
 	ret
 
-FillBox: ; 2ef6e
+PlaceGraphic: ; 2ef6e
 ; Fill wBoxAlignment-aligned box width b height c
-; with iterating tile starting from hFillBox at hl.
+; with iterating tile starting from hGraphicStartTile at hl.
 ; Predef $13
 
 	ld de, SCREEN_WIDTH
@@ -6742,7 +6471,7 @@ FillBox: ; 2ef6e
 	and a
 	jr nz, .right
 
-	ld a, [hFillBox]
+	ld a, [hGraphicStartTile]
 .x1
 	push bc
 	push hl
@@ -6769,7 +6498,7 @@ FillBox: ; 2ef6e
 	add hl, bc
 	pop bc
 
-	ld a, [hFillBox]
+	ld a, [hGraphicStartTile]
 .x2
 	push bc
 	push hl
@@ -6843,7 +6572,7 @@ GetOTName: ; 39550
 
 .ok
 	ld bc, TRAINER_CLASS_NAME_LENGTH
-	ld de, OTName
+	ld de, OTClassName
 	push de
 	call CopyBytes
 	pop de
@@ -7026,7 +6755,7 @@ DisplayDexEntry: ; 4424d
 	ld d, h
 	ld e, l
 	hlcoord 12, 7
-	lb bc, 2, 36
+	lb bc, 2, PRINTNUM_MONEY | 4
 	call PrintNum
 	hlcoord 14, 7
 	ld [hl], $5e ; ft symbol
@@ -7487,47 +7216,7 @@ ScrollBGMapPalettes:: ; 4c03f
 INCLUDE "tilesets/palette_maps.asm"
 
 TileCollisionTable:: ; 4ce1f
-; 00 land
-; 01 water
-; 0f wall
-; 11 talkable water
-; 1f talkable wall
-
-	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + WATRTILE
-	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + WATRTILE
-	db NULL + LANDTILE, NULL + LANDTILE, TALK + WATRTILE, NULL + LANDTILE, NULL + LANDTILE, TALK + WATRTILE, NULL + LANDTILE, NULL + LANDTILE
-	db NULL + LANDTILE, NULL + LANDTILE, TALK + WATRTILE, NULL + LANDTILE, NULL + LANDTILE, TALK + WATRTILE, NULL + LANDTILE, NULL + LANDTILE
-	db NULL + WALLTILE, NULL + WALLTILE, TALK + WALLTILE, NULL + LANDTILE, TALK + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WATRTILE
-	db NULL + WALLTILE, NULL + WALLTILE, TALK + WALLTILE, NULL + LANDTILE, TALK + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WATRTILE
-	db NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE
-	db NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE
-
-	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
-	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
-	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
-	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
-	db NULL + LANDTILE, NULL + LANDTILE, NULL + WATRTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
-	db NULL + LANDTILE, NULL + LANDTILE, NULL + WATRTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
-	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
-	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
-
-	db NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
-	db NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
-	db NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE
-	db NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE, NULL + WATRTILE
-	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
-	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
-	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
-	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
-
-	db NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE
-	db NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE, NULL + WALLTILE
-	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
-	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
-	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
-	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
-	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE
-	db NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + LANDTILE, NULL + WATRTILE
+INCLUDE "tilesets/collision.asm"
 
 EmptyAllSRAMBanks: ; 4cf1f
 	ld a, $0
@@ -9235,7 +8924,7 @@ CheckBattleScene: ; 4ea44
 
 .asm_4ea72
 	ld a, $5
-	ld hl, wdc00
+	ld hl, w5_dc00
 	call GetFarWRAMByte
 	bit 0, a
 	jr z, .off
@@ -9416,50 +9105,50 @@ Strings50a42: ; 50a42
 	dw .Youngster
 	dw .BugCatcher
 	dw .Lass
-	dw OTName
+	dw OTClassName
 	dw .JrTrainerM
 	dw .JrTrainerF
 	dw .Pokemaniac
 	dw .SuperNerd
-	dw OTName
-	dw OTName
+	dw OTClassName
+	dw OTClassName
 	dw .Burglar
 	dw .Engineer
 	dw .Jack
-	dw OTName
+	dw OTClassName
 	dw .Swimmer
-	dw OTName
-	dw OTName
+	dw OTClassName
+	dw OTClassName
 	dw .Beauty
-	dw OTName
+	dw OTClassName
 	dw .Rocker
 	dw .Juggler
-	dw OTName
-	dw OTName
+	dw OTClassName
+	dw OTClassName
 	dw .Blackbelt
-	dw OTName
+	dw OTClassName
 	dw .ProfOak
 	dw .Chief
 	dw .Scientist
-	dw OTName
+	dw OTClassName
 	dw .Rocket
 	dw .CooltrainerM
 	dw .CooltrainerF
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
-	dw OTName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
+	dw OTClassName
 
 .Youngster    db "たんパン@"
 .BugCatcher   db "むしとり@"
@@ -10351,496 +10040,7 @@ _SwitchPartyMons:
 	call CopyBytes
 	ret
 
-GetUnownLetter: ; 51040
-; Return Unown letter in UnownLetter based on DVs at hl
-
-; Take the middle 2 bits of each DV and place them in order:
-;	atk  def  spd  spc
-;	.ww..xx.  .yy..zz.
-
-	; atk
-	ld a, [hl]
-	and %01100000
-	sla a
-	ld b, a
-	; def
-	ld a, [hli]
-	and %00000110
-	swap a
-	srl a
-	or b
-	ld b, a
-
-	; spd
-	ld a, [hl]
-	and %01100000
-	swap a
-	sla a
-	or b
-	ld b, a
-	; spc
-	ld a, [hl]
-	and %00000110
-	srl a
-	or b
-
-; Divide by 10 to get 0-25
-	ld [hDividend + 3], a
-	xor a
-	ld [hDividend], a
-	ld [hDividend + 1], a
-	ld [hDividend + 2], a
-	ld a, 10
-	ld [hDivisor], a
-	ld b, 4
-	call Divide
-
-; Increment to get 1-26
-	ld a, [hQuotient + 2]
-	inc a
-	ld [UnownLetter], a
-	ret
-
-GetFrontpic: ; 51077
-	ld a, [CurPartySpecies]
-	ld [CurSpecies], a
-	call IsAPokemon
-	ret c
-	ld a, [rSVBK]
-	push af
-	call _GetFrontpic
-	pop af
-	ld [rSVBK], a
-	ret
-
-FrontpicPredef: ; 5108b
-	ld a, [CurPartySpecies]
-	ld [CurSpecies], a
-	call IsAPokemon
-	ret c
-	ld a, [rSVBK]
-	push af
-	xor a
-	ld [hBGMapMode], a
-	call _GetFrontpic
-	call Function51103
-	pop af
-	ld [rSVBK], a
-	ret
-
-_GetFrontpic: ; 510a5
-	push de
-	call GetBaseData
-	ld a, [BasePicSize]
-	and $f
-	ld b, a
-	push bc
-	call GetFrontpicPointer
-	ld a, $6
-	ld [rSVBK], a
-	ld a, b
-	ld de, wDecompressScratch + $800
-	call FarDecompress
-	pop bc
-	ld hl, wDecompressScratch
-	ld de, wDecompressScratch + $800
-	call Function512ab
-	pop hl
-	push hl
-	ld de, wDecompressScratch
-	ld c, 7 * 7
-	ld a, [hROMBank]
-	ld b, a
-	call Get2bpp
-	pop hl
-	ret
-
-GetFrontpicPointer: ; 510d7
-GLOBAL PicPointers, UnownPicPointers
-
-	ld a, [CurPartySpecies]
-	cp UNOWN
-	jr z, .unown
-	ld a, [CurPartySpecies]
-	ld d, BANK(PicPointers)
-	jr .ok
-
-.unown
-	ld a, [UnownLetter]
-	ld d, BANK(UnownPicPointers)
-
-.ok
-	ld hl, PicPointers ; UnownPicPointers
-	dec a
-	ld bc, 6
-	call AddNTimes
-	ld a, d
-	call GetFarByte
-	call FixPicBank
-	push af
-	inc hl
-	ld a, d
-	call GetFarHalfword
-	pop bc
-	ret
-
-Function51103: ; 51103
-	ld a, $1
-	ld [rVBK], a
-	push hl
-	ld de, wDecompressScratch
-	ld c, 7 * 7
-	ld a, [hROMBank]
-	ld b, a
-	call Get2bpp
-	pop hl
-	ld de, 7 * 7 tiles
-	add hl, de
-	push hl
-	ld a, $1
-	ld hl, BasePicSize
-	call GetFarWRAMByte
-	pop hl
-	and $f
-	ld de, w6_d800 + 5 * 5 tiles
-	ld c, 5 * 5
-	cp 5
-	jr z, .got_dims
-	ld de, w6_d800 + 6 * 6 tiles
-	ld c, 6 * 6
-	cp 6
-	jr z, .got_dims
-	ld de, w6_d800 + 7 * 7 tiles
-	ld c, 7 * 7
-.got_dims
-
-	push hl
-	push bc
-	call Function5114f
-	pop bc
-	pop hl
-	ld de, wDecompressScratch
-	ld a, [hROMBank]
-	ld b, a
-	call Get2bpp
-	xor a
-	ld [rVBK], a
-	ret
-
-Function5114f: ; 5114f
-	ld hl, wDecompressScratch
-	swap c
-	ld a, c
-	and $f
-	ld b, a
-	ld a, c
-	and $f0
-	ld c, a
-	push bc
-	call LoadFrontpic
-	pop bc
-.asm_51161
-	push bc
-	ld c, $0
-	call LoadFrontpic
-	pop bc
-	dec b
-	jr nz, .asm_51161
-	ret
-
-GetBackpic: ; 5116c
-	ld a, [CurPartySpecies]
-	call IsAPokemon
-	ret c
-
-	ld a, [CurPartySpecies]
-	ld b, a
-	ld a, [UnownLetter]
-	ld c, a
-	ld a, [rSVBK]
-	push af
-	ld a, $6
-	ld [rSVBK], a
-	push de
-
-	; These are assumed to be at the same
-	; address in their respective banks.
-	GLOBAL PicPointers,  UnownPicPointers
-	ld hl, PicPointers ; UnownPicPointers
-	ld a, b
-	ld d, BANK(PicPointers)
-	cp UNOWN
-	jr nz, .ok
-	ld a, c
-	ld d, BANK(UnownPicPointers)
-.ok
-	dec a
-	ld bc, 6
-	call AddNTimes
-	ld bc, 3
-	add hl, bc
-	ld a, d
-	call GetFarByte
-	call FixPicBank
-	push af
-	inc hl
-	ld a, d
-	call GetFarHalfword
-	ld de, wDecompressScratch
-	pop af
-	call FarDecompress
-	ld hl, wDecompressScratch
-	ld c, 6 * 6
-	call FixBackpicAlignment
-	pop hl
-	ld de, wDecompressScratch
-	ld a, [hROMBank]
-	ld b, a
-	call Get2bpp
-	pop af
-	ld [rSVBK], a
-	ret
-
-FixPicBank: ; 511c5
-; This is a thing for some reason.
-	push hl
-	push bc
-	sub PICS_1 - PICS_FIX
-	ld c, a
-	ld b, 0
-	ld hl, .PicsBanks
-	add hl, bc
-	ld a, [hl]
-	pop bc
-	pop hl
-	ret
-
-.PicsBanks: ; 511d4
-	db PICS_1
-	db PICS_2
-	db PICS_3
-	db PICS_4
-	db PICS_5
-	db PICS_6
-	db PICS_7
-	db PICS_8
-	db PICS_9
-	db PICS_10
-	db PICS_11
-	db PICS_12
-	db PICS_13
-	db PICS_14
-	db PICS_15
-	db PICS_16
-	db PICS_17
-	db PICS_18
-	db PICS_19
-	db PICS_19 + 1
-	db PICS_19 + 2
-	db PICS_19 + 3
-	db PICS_19 + 4
-	db PICS_19 + 5
-
-Function511ec: ; 511ec
-	ld a, c
-	push de
-	ld hl, PicPointers
-	dec a
-	ld bc, 6
-	call AddNTimes
-	ld a, BANK(PicPointers)
-	call GetFarByte
-	call FixPicBank
-	push af
-	inc hl
-	ld a, BANK(PicPointers)
-	call GetFarHalfword
-	pop af
-	pop de
-	call FarDecompress
-	ret
-
-GetTrainerPic: ; 5120d
-	ld a, [TrainerClass]
-	and a
-	ret z
-	cp NUM_TRAINER_CLASSES
-	ret nc
-	call WaitBGMap
-	xor a
-	ld [hBGMapMode], a
-	ld hl, TrainerPicPointers
-	ld a, [TrainerClass]
-	dec a
-	ld bc, 3
-	call AddNTimes
-	ld a, [rSVBK]
-	push af
-	ld a, $6
-	ld [rSVBK], a
-	push de
-	ld a, BANK(TrainerPicPointers)
-	call GetFarByte
-	call FixPicBank
-	push af
-	inc hl
-	ld a, BANK(TrainerPicPointers)
-	call GetFarHalfword
-	pop af
-	ld de, wDecompressScratch
-	call FarDecompress
-	pop hl
-	ld de, wDecompressScratch
-	ld c, 7 * 7
-	ld a, [hROMBank]
-	ld b, a
-	call Get2bpp
-	pop af
-	ld [rSVBK], a
-	call WaitBGMap
-	ld a, $1
-	ld [hBGMapMode], a
-	ret
-
-DecompressPredef: ; 5125d
-; Decompress lz data from b:hl to scratch space at 6:d000, then copy it to address de.
-
-	ld a, [rSVBK]
-	push af
-	ld a, 6
-	ld [rSVBK], a
-
-	push de
-	push bc
-	ld a, b
-	ld de, wDecompressScratch
-	call FarDecompress
-	pop bc
-	ld de, wDecompressScratch
-	pop hl
-	ld a, [hROMBank]
-	ld b, a
-	call Get2bpp
-
-	pop af
-	ld [rSVBK], a
-	ret
-
-FixBackpicAlignment: ; 5127c
-	push de
-	push bc
-	ld a, [wBoxAlignment]
-	and a
-	jr z, .keep_dims
-	ld a, c
-	cp 7 * 7
-	ld de, 7 * 7 tiles
-	jr z, .got_dims
-	cp 6 * 6
-	ld de, 6 * 6 tiles
-	jr z, .got_dims
-	ld de, 5 * 5 tiles
-
-.got_dims
-	ld a, [hl]
-	ld b, $0
-	ld c, $8
-.loop
-	rra
-	rl b
-	dec c
-	jr nz, .loop
-	ld a, b
-	ld [hli], a
-	dec de
-	ld a, e
-	or d
-	jr nz, .got_dims
-
-.keep_dims
-	pop bc
-	pop de
-	ret
-
-Function512ab: ; 512ab
-	ld a, b
-	cp 6
-	jr z, .six
-	cp 5
-	jr z, .five
-
-.seven_loop
-	ld c, $70
-	call LoadFrontpic
-	dec b
-	jr nz, .seven_loop
-	ret
-
-.six
-	ld c, $70
-	xor a
-	call .Fill
-.six_loop
-	ld c, $10
-	xor a
-	call .Fill
-	ld c, $60
-	call LoadFrontpic
-	dec b
-	jr nz, .six_loop
-	ret
-
-.five
-	ld c, $70
-	xor a
-	call .Fill
-.five_loop
-	ld c, $20
-	xor a
-	call .Fill
-	ld c, $50
-	call LoadFrontpic
-	dec b
-	jr nz, .five_loop
-	ld c, $70
-	xor a
-	call .Fill
-	ret
-
-.Fill
-	ld [hli], a
-	dec c
-	jr nz, .Fill
-	ret
-
-LoadFrontpic: ; 512f2
-	ld a, [wBoxAlignment]
-	and a
-	jr nz, .x_flip
-.left_loop
-	ld a, [de]
-	inc de
-	ld [hli], a
-	dec c
-	jr nz, .left_loop
-	ret
-
-.x_flip
-	push bc
-.right_loop
-	ld a, [de]
-	inc de
-	ld b, a
-	xor a
-	rept 8
-	rr b
-	rla
-	endr
-	ld [hli], a
-	dec c
-	jr nz, .right_loop
-	pop bc
-	ret
+INCLUDE "gfx/load_pics.asm"
 
 Function51322: ; 51322
 	ld a, BANK(sBoxCount)
@@ -11061,7 +10261,7 @@ MovePlayerPic: ; 88266
 	xor a
 	ld [hBGMapMode], a
 	lb bc, 7, 7
-	predef FillBox
+	predef PlaceGraphic
 	xor a
 	ld [hBGMapThird], a
 	call WaitBGMap
@@ -11213,7 +10413,7 @@ GetChrisBackpic: ; 88830
 	predef DecompressPredef
 	ret
 
-Function88840: ; 88840
+HOF_LoadTrainerFrontpic: ; 88840
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
@@ -11269,10 +10469,10 @@ DrawIntroPlayerPic: ; 88874
 
 ; Draw
 	xor a
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	hlcoord 6, 4
 	lb bc, 7, 7
-	predef FillBox
+	predef PlaceGraphic
 	ret
 
 ChrisPic: ; 888a9

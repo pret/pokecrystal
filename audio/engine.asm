@@ -1423,7 +1423,7 @@ MusicCommands: ; e8720
 	dw Music_ToggleNoise ; music noise sampling
 	dw Music_Panning ; force panning
 	dw Music_Volume ; volume
-	dw Music_Tone ; tune
+	dw Music_Tone ; tone
 	dw MusicE7 ; unused
 	dw MusicE8 ; unused
 	dw Music_TempoRelative ; global tempo
@@ -2260,7 +2260,6 @@ GetFrequency: ; e8a5d
 	add hl, bc
 	ld a, [hl]
 	and $f ; lo nybble
-	;
 	ld l, a ; ok
 	ld d, 0
 	ld h, d

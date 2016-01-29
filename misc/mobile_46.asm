@@ -1118,7 +1118,7 @@ Function1188c8: ; 1188c8 (46:48c8)
 	ld a, $1
 	ld [wcd65], a
 	call Function1188e7
-	ld hl, wc708
+	ld hl, $c708
 .asm_1188d3
 	ld a, [de]
 	inc de
@@ -1127,7 +1127,7 @@ Function1188c8: ; 1188c8 (46:48c8)
 	jr nz, .asm_1188d3
 	call Function119eb4
 	call Function119ec2
-	ld hl, wc708
+	ld hl, $c708
 	ld a, $6
 	jp Function119e2b
 
@@ -1908,9 +1908,9 @@ Function118f68:
 	ld [hli], a
 	ld a, [wcd4c]
 	ld [hli], a
-	ld a, wc708 % $100
+	ld a, $c708 % $100
 	ld [hli], a
-	ld a, wc708 / $100
+	ld a, $c708 / $100
 	ld [hli], a
 	ld a, $60
 	ld [hli], a
@@ -2537,9 +2537,9 @@ Function1193a0:
 	ld [hli], a
 	xor a
 	ld [hli], a
-	ld a, wc708 % $100
+	ld a, $c708 % $100
 	ld [hli], a
-	ld a, wc708 / $100
+	ld a, $c708 / $100
 	ld [hli], a
 	ld a, $60
 	ld [hli], a
@@ -2975,7 +2975,7 @@ Function119694: ; 119694 (46:5694)
 	ld b, 0
 	ld hl, Unknown_1196b8
 .asm_119699
-	ld de, wc708
+	ld de, $c708
 	ld a, [de]
 	inc de
 	cp [hl]
@@ -3018,7 +3018,7 @@ SECTION "bank46_2", ROMX, BANK[$46]
 ; A hack to use ascii above.
 
 Function1196cd: ; 1196cd (46:56cd)
-	ld de, wc719
+	ld de, $c719
 	call Function1196de
 	ld [wcd4a], a
 	inc de
@@ -3029,6 +3029,8 @@ Function1196cd: ; 1196cd (46:56cd)
 Function1196de: ; 1196de (46:56de)
 	ld a, [de]
 	inc de
+	; b = ([de] - 48) * 2
+	; c = ([de] - 48) * 10
 	sub $30
 	sla a
 	ld b, a
@@ -3362,9 +3364,9 @@ Function1198f7:
 	ld [hli], a
 	xor a
 	ld [hli], a
-	ld a, wc708 % $100
+	ld a, $c708 % $100
 	ld [hli], a
-	ld a, wc708 / $100
+	ld a, $c708 / $100
 	ld [hli], a
 	ld a, [wcd51]
 	ld [hli], a
@@ -7231,7 +7233,7 @@ Function11b483: ; 11b483
 	jp Function11ad8a
 
 .InitRAM
-	ld bc, wc626
+	ld bc, $c626
 	ld a, [PlayerID]
 	ld [wcd2a], a
 	ld [bc], a
@@ -7444,9 +7446,9 @@ Function11b6b4: ; 11b6b4
 	ld a, $5
 	call GetSRAMBank
 	ld a, [wcd30]
-	ld [wc708], a
+	ld [$c708], a
 	ld a, [wcd31]
-	ld [wc709], a
+	ld [$c709], a
 
 	ld a, $c708 % $100
 	ld [wMobileMonSpeciesPointerBuffer], a
@@ -7735,8 +7737,8 @@ Function11b920: ; 11b920
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $a81f
-	ld de, wc626
-	ld bc, $0008
+	ld de, $c626
+	ld bc, 8
 	call CopyBytes
 	call CloseSRAM
 	call Function118000

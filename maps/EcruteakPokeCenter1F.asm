@@ -10,26 +10,26 @@ EcruteakPokeCenter1F_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x98e5f, 0
-	dw UnknownScript_0x98e63, 0
+	maptrigger .Trigger0
+	maptrigger .Trigger1
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x98e5f:
-	priorityjump UnknownScript_0x98e64
+.Trigger0:
+	priorityjump .BillActivatesTimeCapsule
 	end
 
-UnknownScript_0x98e63:
+.Trigger1:
 	end
 
-UnknownScript_0x98e64:
+.BillActivatesTimeCapsule:
 	pause 30
 	playsound SFX_EXIT_BUILDING
 	appear ECRUTEAKPOKECENTER1F_BILL
 	waitsfx
-	applymovement ECRUTEAKPOKECENTER1F_BILL, MovementData_0x98ec5
-	applymovement PLAYER, MovementData_0x98ed4
+	applymovement ECRUTEAKPOKECENTER1F_BILL, EcruteakPokeCenter1FBillMovement1
+	applymovement PLAYER, EcruteakPokeCenter1FPlayerMovement1
 	spriteface ECRUTEAKPOKECENTER1F_NURSE, UP
 	pause 10
 	spriteface ECRUTEAKPOKECENTER1F_NURSE, DOWN
@@ -41,16 +41,16 @@ UnknownScript_0x98e64:
 	spriteface ECRUTEAKPOKECENTER1F_BILL, DOWN
 	pause 10
 	opentext
-	writetext UnknownText_0x98ed8
+	writetext EcruteakPokeCenter1F_BillText1
 	buttonsound
-	jump UnknownScript_0x98e95
+	jump .PointlessJump
 
-UnknownScript_0x98e95:
-	writetext UnknownText_0x98f22
+.PointlessJump
+	writetext EcruteakPokeCenter1F_BillText2
 	waitbutton
 	closetext
 	spriteface PLAYER, DOWN
-	applymovement ECRUTEAKPOKECENTER1F_BILL, MovementData_0x98ece
+	applymovement ECRUTEAKPOKECENTER1F_BILL, EcruteakPokeCenter1FBillMovement2
 	playsound SFX_EXIT_BUILDING
 	disappear ECRUTEAKPOKECENTER1F_BILL
 	clearevent EVENT_MET_BILL
@@ -59,24 +59,24 @@ UnknownScript_0x98e95:
 	waitsfx
 	end
 
-NurseScript_0x98eb0:
+EcruteakPokeCenter1FNurseScript:
 	jumpstd pokecenternurse
 
-PokefanMScript_0x98eb3:
+EcruteakPokeCenter1FPokefanMScript:
 	special Mobile_DummyReturnFalse
 	iftrue .mobile
-	jumptextfaceplayer UnknownText_0x99155
+	jumptextfaceplayer EcruteakPokeCenter1FPokefanMText
 
 .mobile:
-	jumptextfaceplayer UnknownText_0x991aa
+	jumptextfaceplayer EcruteakPokeCenter1FPokefanMTextMobile
 
-CooltrainerFScript_0x98ebf:
-	jumptextfaceplayer UnknownText_0x99240
+EcruteakPokeCenter1FCooltrainerFScript:
+	jumptextfaceplayer EcruteakPokeCenter1FCooltrainerFText
 
-GymGuyScript_0x98ec2:
-	jumptextfaceplayer UnknownText_0x99286
+EcruteakPokeCenter1FGymGuyScript:
+	jumptextfaceplayer EcruteakPokeCenter1FGymGuyText
 
-MovementData_0x98ec5:
+EcruteakPokeCenter1FBillMovement1:
 	step_up
 	step_up
 	step_up
@@ -87,7 +87,7 @@ MovementData_0x98ec5:
 	turn_head_up
 	step_end
 
-MovementData_0x98ece:
+EcruteakPokeCenter1FBillMovement2:
 	step_right
 	step_down
 	step_down
@@ -95,13 +95,13 @@ MovementData_0x98ece:
 	step_down
 	step_end
 
-MovementData_0x98ed4:
+EcruteakPokeCenter1FPlayerMovement1:
 	step_up
 	step_up
 	step_up
 	step_end
 
-UnknownText_0x98ed8:
+EcruteakPokeCenter1F_BillText1:
 	text "Hi, I'm BILL. And"
 	line "who are you?"
 
@@ -110,7 +110,7 @@ UnknownText_0x98ed8:
 	cont "right time."
 	done
 
-UnknownText_0x98f22:
+EcruteakPokeCenter1F_BillText2:
 	text "I just finished"
 	line "adjustments on my"
 	cont "TIME CAPSULE."
@@ -164,7 +164,7 @@ UnknownText_0x98f22:
 	para "Buh-bye!"
 	done
 
-UnknownText_0x99155:
+EcruteakPokeCenter1FPokefanMText:
 	text "The way the KIMONO"
 	line "GIRLS dance is"
 
@@ -173,7 +173,7 @@ UnknownText_0x99155:
 	cont "use their #MON."
 	done
 
-UnknownText_0x991aa:
+EcruteakPokeCenter1FPokefanMTextMobile:
 	text "You must be hoping"
 	line "to battle more"
 
@@ -189,7 +189,7 @@ UnknownText_0x991aa:
 	line "OLIVINE CITY."
 	done
 
-UnknownText_0x99240:
+EcruteakPokeCenter1FCooltrainerFText:
 	text "MORTY, the GYM"
 	line "LEADER, is soooo"
 	cont "cool."
@@ -198,7 +198,7 @@ UnknownText_0x99240:
 	line "really tough too."
 	done
 
-UnknownText_0x99286:
+EcruteakPokeCenter1FGymGuyText:
 	text "LAKE OF RAGE…"
 
 	para "The appearance of"
@@ -226,8 +226,8 @@ EcruteakPokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NurseScript_0x98eb0, -1
-	person_event SPRITE_POKEFAN_M, 6, 7, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x98eb3, -1
-	person_event SPRITE_COOLTRAINER_F, 4, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x98ebf, -1
-	person_event SPRITE_GYM_GUY, 1, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, GymGuyScript_0x98ec2, -1
+	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, EcruteakPokeCenter1FNurseScript, -1
+	person_event SPRITE_POKEFAN_M, 6, 7, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, EcruteakPokeCenter1FPokefanMScript, -1
+	person_event SPRITE_COOLTRAINER_F, 4, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, EcruteakPokeCenter1FCooltrainerFScript, -1
+	person_event SPRITE_GYM_GUY, 1, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, EcruteakPokeCenter1FGymGuyScript, -1
 	person_event SPRITE_BILL, 7, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_ECRUTEAK_POKE_CENTER_BILL

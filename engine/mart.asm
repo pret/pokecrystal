@@ -139,7 +139,7 @@ GetMart: ; 15b31
 	ld a, e
 	cp (MartsEnd - Marts) / 2
 	jr c, .IsAMart
-	ld b, $5
+	ld b, BANK(DefaultMart)
 	ld de, DefaultMart
 	ret
 
@@ -151,7 +151,7 @@ endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld b, $5
+	ld b, BANK(Marts)
 	ret
 ; 15b47
 

@@ -274,7 +274,7 @@ BattleAnimFunction_12: ; cd15c (33:515c)
 	dw .ten
 	dw .eleven
 .zero
-	call GetBallAnimFunction
+	call GetBallAnimPal
 	call BattleAnim_IncAnonJumptableIndex
 	ret
 
@@ -342,7 +342,7 @@ BattleAnimFunction_12: ; cd15c (33:515c)
 	ret
 
 .seven
-	call GetBallAnimFunction
+	call GetBallAnimPal
 	ld a, $a
 	call ReinitBattleAnimFrameset
 	call BattleAnim_IncAnonJumptableIndex
@@ -382,7 +382,7 @@ BattleAnimFunction_13: ; cd212 (33:5212)
 	dw .one
 	dw .two
 .zero
-	call GetBallAnimFunction
+	call GetBallAnimPal
 	call BattleAnim_IncAnonJumptableIndex
 	ret
 
@@ -415,7 +415,7 @@ BattleAnimFunction_13: ; cd212 (33:5212)
 	call DeinitBattleAnimation
 	ret
 
-GetBallAnimFunction: ; cd249 (33:5249)
+GetBallAnimPal: ; cd249 (33:5249)
 	ld hl, .balls
 	ld a, [rSVBK]
 	push af

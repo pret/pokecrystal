@@ -66,7 +66,7 @@ SpriteAnimFrameData: ; 8d6e6
 	dw .Frameset_40 ; 40 celebi on the left
 	dw .Frameset_41 ; 41 celebi on the right
 ; 8d76a
-				; OAM idx (see SpriteAnimOAMData), flip flags/duration
+; OAM idx (see SpriteAnimOAMData), flip flags/duration
 .Frameset_00:
 	db $00, $20
 	db -1

@@ -6,7 +6,6 @@ EvolvePokemon: ; 421d8
 	ld c, a
 	ld b, SET_FLAG
 	call EvoFlagAction
-
 EvolveAfterBattle: ; 421e6
 	xor a
 	ld [wMonTriedToEvolve], a
@@ -19,7 +18,7 @@ EvolveAfterBattle: ; 421e6
 
 	push hl
 
-CheckForEvolvablePokemon: ; 421f5
+EvolveAfterBattle_MasterLoop
 	ld hl, CurPartyMon
 	inc [hl]
 
@@ -28,7 +27,7 @@ CheckForEvolvablePokemon: ; 421f5
 	inc hl
 	ld a, [hl]
 	cp $ff
-	jp z, Evolution_ReturnToMap
+	jp z, .ReturnToMap
 
 	ld [Buffer1], a
 
@@ -40,7 +39,7 @@ CheckForEvolvablePokemon: ; 421f5
 	call EvoFlagAction
 	ld a, c
 	and a
-	jp z, CheckForEvolvablePokemon
+	jp z, EvolveAfterBattle_MasterLoop
 
 	ld a, [Buffer1]
 	dec a
@@ -63,7 +62,7 @@ endr
 .loop
 	ld a, [hli]
 	and a
-	jr z, CheckForEvolvablePokemon
+	jr z, EvolveAfterBattle_MasterLoop
 
 	ld b, a
 
@@ -324,7 +323,7 @@ endr
 	push hl
 	ld l, e
 	ld h, d
-	jp CheckForEvolvablePokemon
+	jp EvolveAfterBattle_MasterLoop
 ; 423f8
 
 .dont_evolve_1
@@ -334,12 +333,10 @@ endr
 .dont_evolve_3
 	inc hl
 	jp .loop
-; 423fe
 
-; dummy pop
+; XXX
 	pop hl
-
-Evolution_ReturnToMap: ; 423ff
+.ReturnToMap
 	pop de
 	pop bc
 	pop hl
@@ -393,7 +390,7 @@ CancelEvolution: ; 42454
 	call PrintText
 	call ClearTileMap
 	pop hl
-	jp CheckForEvolvablePokemon
+	jp EvolveAfterBattle_MasterLoop
 ; 42461
 
 IsMonHoldingEverstone: ; 42461

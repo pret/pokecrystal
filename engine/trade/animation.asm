@@ -3,12 +3,12 @@ TradeAnimation: ; 28f24
 	ld [wcf66], a
 	ld hl, wPlayerTrademonSenderName
 	ld de, wOTTrademonSenderName
-	call Function297ff
+	call LinkTradeAnim_LoadTradePlayerNames
 	ld hl, wPlayerTrademonSpecies
 	ld de, wOTTrademonSpecies
-	call Function29814
+	call LinkTradeAnim_LoadTradeMonSpecies
 	ld de, .data_28f3f
-	jr Function28fa1
+	jr RunTradeAnimSequence
 
 .data_28f3f
 	tradeanim_setup_givemon_scroll
@@ -54,12 +54,12 @@ TradeAnimationPlayer2: ; 28f63
 	ld [wcf66], a
 	ld hl, wOTTrademonSenderName
 	ld de, wPlayerTrademonSenderName
-	call Function297ff
+	call LinkTradeAnim_LoadTradePlayerNames
 	ld hl, wOTTrademonSpecies
 	ld de, wPlayerTrademonSpecies
-	call Function29814
+	call LinkTradeAnim_LoadTradeMonSpecies
 	ld de, .data_28f7e
-	jr Function28fa1
+	jr RunTradeAnimSequence
 
 .data_28f7e
 	tradeanim_ot_sends_text_2
@@ -99,7 +99,7 @@ TradeAnimationPlayer2: ; 28f63
 	tradeanim_scroll_out_right
 	tradeanim_end
 
-Function28fa1: ; 28fa1
+RunTradeAnimSequence: ; 28fa1
 	ld hl, wTradeAnimPointer
 	ld [hl], e
 	inc hl
@@ -116,7 +116,7 @@ Function28fa1: ; 28fa1
 	ld a, [hl]
 	push af
 	set 4, [hl]
-	call Function28fdb
+	call .TradeAnimLayout
 	ld a, [wcf66]
 	and a
 	jr nz, .anim_loop
@@ -134,7 +134,7 @@ Function28fa1: ; 28fa1
 	ret
 ; 28fdb
 
-Function28fdb: ; 28fdb
+.TradeAnimLayout: ; 28fdb
 	xor a
 	ld [wJumptableIndex], a
 	call ClearBGPalettes
@@ -145,7 +145,7 @@ Function28fdb: ; 28fdb
 	callab ClearSpriteAnims
 	ld a, [hCGB]
 	and a
-	jr z, .asm_2900b
+	jr z, .NotCGB
 	ld a, $1
 	ld [rVBK], a
 	ld hl, VTiles0
@@ -155,7 +155,7 @@ Function28fdb: ; 28fdb
 	ld a, $0
 	ld [rVBK], a
 
-.asm_2900b
+.NotCGB
 	hlbgcoord 0, 0
 	ld bc, sScratch - VBGMap0
 	ld a, " "
@@ -182,7 +182,7 @@ Function28fdb: ; 28fdb
 	ld [hWY], a
 	callba GetTrademonFrontpic
 	call EnableLCD
-	call Function2982b
+	call LoadTradeBallAndCableGFX
 	ld a, [wPlayerTrademonSpecies]
 	ld hl, wPlayerTrademonDVs
 	ld de, VTiles0
@@ -313,7 +313,7 @@ TradeAnim_End: ; 29123
 TradeAnim_TubeToOT1: ; 29129
 	ld a, $ed
 	call Function292f6
-	ld a, [wc74c]
+	ld a, [wLinkTradeSendmonSpecies]
 	ld [wd265], a
 	xor a
 	depixel 5, 11, 4, 0
@@ -323,7 +323,7 @@ TradeAnim_TubeToOT1: ; 29129
 TradeAnim_TubeToPlayer1: ; 2913c
 	ld a, $ee
 	call Function292f6
-	ld a, [wc74d]
+	ld a, [wLinkTradeGetmonSpecies]
 	ld [wd265], a
 	ld a, $2
 	depixel 9, 18, 4, 4
@@ -350,7 +350,7 @@ Function2914e: ; 2914e
 	ld a, $70
 	ld [hWY], a
 	call EnableLCD
-	call Function2985a
+	call LoadTradeBubbleGFX
 	pop de
 	ld a, SPRITE_ANIM_INDEX_11
 	call _InitSpriteAnimStruct
@@ -476,7 +476,7 @@ TradeAnim_TubeToPlayer8: ; 29229
 	ld a, $90
 	ld [hWY], a
 	call EnableLCD
-	call Function2982b
+	call LoadTradeBallAndCableGFX
 	call WaitBGMap
 	call Function297ed
 	call TradeAnim_Next
@@ -864,9 +864,9 @@ TradeAnim_ShowFrontpic: ; 294c3
 	call Function297cf
 	hlcoord 7, 2
 	xor a
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	lb bc, 7, 7
-	predef FillBox
+	predef PlaceGraphic
 	call WaitBGMap
 	ret
 ; 294e7
@@ -1376,17 +1376,17 @@ Function297ed: ; 297ed
 	ld a, [hSGB]
 	and a
 	ld a, %11100100 ; 3,2,1,0
-	jr z, .asm_297f6
+	jr z, .not_sgb
 	ld a, $f0
 
-.asm_297f6
+.not_sgb
 	call DmgToCgbObjPal0
 	ld a, %11100100 ; 3,2,1,0
 	call DmgToCgbBGPals
 	ret
 ; 297ff
 
-Function297ff: ; 297ff
+LinkTradeAnim_LoadTradePlayerNames: ; 297ff
 	push de
 	ld de, wLinkPlayer1Name
 	ld bc, NAME_LENGTH
@@ -1398,11 +1398,11 @@ Function297ff: ; 297ff
 	ret
 ; 29814
 
-Function29814: ; 29814
+LinkTradeAnim_LoadTradeMonSpecies: ; 29814
 	ld a, [hl]
-	ld [wc74c], a
+	ld [wLinkTradeSendmonSpecies], a
 	ld a, [de]
-	ld [wc74d], a
+	ld [wLinkTradeGetmonSpecies], a
 	ret
 ; 2981d
 
@@ -1416,7 +1416,7 @@ Function2981d: ; 2981d
 	ret
 ; 2982b
 
-Function2982b: ; 2982b
+LoadTradeBallAndCableGFX: ; 2982b
 	call DelayFrame
 	ld de, TradeBallGFX
 	ld hl, VTiles0 tile $62
@@ -1431,13 +1431,13 @@ Function2982b: ; 2982b
 	lb bc, BANK(TradeCableGFX), $4
 	call Request2bpp
 	xor a
-	ld hl, wc300
+	ld hl, wSpriteAnimDict
 	ld [hli], a
 	ld [hl], $62
 	ret
 ; 2985a
 
-Function2985a: ; 2985a
+LoadTradeBubbleGFX: ; 2985a
 	call DelayFrame
 	ld e, $3
 	callab Function8e83f
@@ -1446,7 +1446,7 @@ Function2985a: ; 2985a
 	lb bc, BANK(TradeBubbleGFX), $4
 	call Request2bpp
 	xor a
-	ld hl, wc300
+	ld hl, wSpriteAnimDict
 	ld [hli], a
 	ld [hl], $62
 	ret

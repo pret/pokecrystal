@@ -2,10 +2,10 @@
 * -text
 
 # hexdump binary files
-*.png  diff=hex
-*.lz   diff=hex
-*.2bpp diff=hex
-*.1bpp diff=hex
-*.bin  diff=hex
-*.blk  diff=hex
+*.png  binary diff=hex
+*.lz   binary diff=hex
+*.2bpp binary diff=hex
+*.1bpp binary diff=hex
+*.bin  binary diff=hex
+*.blk  binary diff=hex
 

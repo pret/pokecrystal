@@ -210,3 +210,42 @@ hall_of_fame: MACRO
 \1Mon6:: hof_mon \1Mon6
 \1End:: ds 1
 ENDM
+
+trademon: MACRO
+\1Species:: ds 1 ; wc6d0 | wc702
+\1SpeciesName:: ds PKMN_NAME_LENGTH ; wc6d1 | wc703
+\1Nickname:: ds PKMN_NAME_LENGTH ; wc6dc | wc70e
+\1SenderName:: ds NAME_LENGTH ; wc6e7 | wc719
+\1OTName:: ds NAME_LENGTH ; wc6f2 | wc724
+\1DVs:: ds 2 ; wc6fd | wc72f
+\1ID:: ds 2 ; wc6ff | wc731
+\1CaughtData:: ds 1 ; wc701 | wc733
+\1End::
+ENDM
+
+move_struct: MACRO
+\1Animation:: ds 1
+\1Effect:: ds 1
+\1Power:: ds 1
+\1Type:: ds 1
+\1Accuracy:: ds 1
+\1PP:: ds 1
+\1EffectChance:: ds 1
+endm
+
+slot_reel: MACRO
+\1ReelAction::   db
+\1TilemapAddr::  dw
+\1Position::     db
+\1SpinDistance:: db
+\1SpinRate::     db
+\1OAMAddr::      dw
+\1XCoord::       db
+\1Slot09::       ds 1
+\1Slot0a::       ds 1
+\1Slot0b::       ds 1
+\1Slot0c::       ds 1
+\1Slot0d::       ds 1
+\1Slot0e::       ds 1
+\1Slot0f::       ds 1
+endm

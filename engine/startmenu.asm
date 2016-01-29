@@ -393,7 +393,7 @@ endr
 	ld hl, StatusFlags2
 	bit 2, [hl] ; bug catching contest
 	ret z
-	callba Function24bdc
+	callba StartMenu_DrawBugContestStatusBox
 	ret
 ; 128de
 
@@ -403,7 +403,7 @@ endr
 	jr nz, .contest
 	ret
 .contest
-	callba Function24be7
+	callba StartMenu_PrintBugContestStatus
 	ret
 ; 128ed
 

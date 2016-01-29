@@ -18,16 +18,16 @@ Function8e83f: ; 8e83f
 	push hl
 	push de
 	push bc
-	call Function8e849
+	call .LoadIcon
 	pop bc
 	pop de
 	pop hl
 	ret
 ; 8e849
 
-Function8e849: ; 8e849
+.LoadIcon: ; 8e849
 	ld d, 0
-	ld hl, .dw
+	ld hl, .Jumptable
 rept 2
 	add hl, de
 endr
@@ -38,23 +38,23 @@ endr
 ; 8e854
 
 
-.dw: ; 8e854 (23:6854)
+.Jumptable: ; 8e854 (23:6854)
 	dw Function8e8d5 ; init
 	dw Function8e961
 	dw Function8e97d
-	dw Function8e99a
+	dw Trade_LoadMonIconGFX
 	dw Function8e898
 	dw Mobile_InitPartyMenuBGPal71
-	dw Function8e862
+	dw .GetPartyMenuMonIcon
 
 
-Function8e862: ; 8e862 (23:6862)
+.GetPartyMenuMonIcon: ; 8e862 (23:6862)
 	call InitPartyMenuIcon
-	call Function8e86c
+	call .GetPartyMonItemGFX
 	call SetPartyMonIconAnimSpeed
 	ret
 
-Function8e86c: ; 8e86c (23:686c)
+.GetPartyMonItemGFX: ; 8e86c (23:686c)
 	push bc
 	ld a, [hObjectStructIndexBuffer]
 	ld hl, PartyMon1Item
@@ -63,22 +63,23 @@ Function8e86c: ; 8e86c (23:686c)
 	pop bc
 	ld a, [hl]
 	and a
-	jr z, .asm_8e890
+	jr z, .no_item
 	push hl
 	push bc
 	ld d, a
 	callab ItemIsMail
 	pop bc
 	pop hl
-	jr c, .asm_8e88e
+	jr c, .not_mail
 	ld a, $6
-	jr .asm_8e892
-.asm_8e88e
+	jr .got_tile
+.not_mail
 	ld a, $5
-	; jr .asm_8e892
-.asm_8e890
+	; jr .got_tile
+
+.no_item
 	ld a, $4
-.asm_8e892
+.got_tile
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld [hl], a
@@ -246,7 +247,7 @@ Function8e97d: ; 8e97d (23:697d)
 	ld [hl], SPRITE_ANIM_SEQ_NULL
 	ret
 
-Function8e99a: ; 8e99a (23:699a)
+Trade_LoadMonIconGFX: ; 8e99a (23:699a)
 	ld a, [wd265]
 	call ReadMonMenuIcon
 	ld [CurIcon], a

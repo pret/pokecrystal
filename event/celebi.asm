@@ -61,8 +61,8 @@ endr
 	inc a
 	dec c
 	jr nz, .OAMloop
-	ld hl, Sprites + $10
-	ld bc, $90
+	ld hl, Sprites + 4 * 4
+	ld bc, 36 * 4
 	xor a
 	call ByteFill
 	ret

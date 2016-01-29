@@ -368,10 +368,10 @@ UnknownText_0x1bc6c7::
 	done
 
 UnknownText_0x1bc6e9::
-	text_from_ram wc6d1
+	text_from_ram wPlayerTrademonSpeciesName
 	text " was"
 	line "sent to @"
-	text_from_ram wc719
+	text_from_ram wOTTrademonSenderName
 	text "."
 	done
 
@@ -380,104 +380,104 @@ UnknownText_0x1bc701::
 	done
 
 UnknownText_0x1bc703::
-	text_from_ram wc719
+	text_from_ram wOTTrademonSenderName
 	text " bids"
 	line "farewell to"
 	done
 
 UnknownText_0x1bc719::
-	text_from_ram wc703
+	text_from_ram wOTTrademonSpeciesName
 	text "."
 	done
 
 UnknownText_0x1bc71f::
 	text "Take good care of"
 	line "@"
-	text_from_ram wc703
+	text_from_ram wOTTrademonSpeciesName
 	text "."
 	done
 
 UnknownText_0x1bc739::
 	text "For @"
-	text_from_ram wc6e7
+	text_from_ram wPlayerTrademonSenderName
 	text "'s"
 	line "@"
-	text_from_ram wc6d1
+	text_from_ram wPlayerTrademonSpeciesName
 	text ","
 	done
 
 UnknownText_0x1bc74c::
-	text_from_ram wc719
+	text_from_ram wOTTrademonSenderName
 	text " sends"
 	line "@"
-	text_from_ram wc703
+	text_from_ram wOTTrademonSpeciesName
 	text "."
 	done
 
 UnknownText_0x1bc75e::
-	text_from_ram wc719
+	text_from_ram wOTTrademonSenderName
 	text " will"
 	line "trade @"
-	text_from_ram wc703
+	text_from_ram wOTTrademonSpeciesName
 	db "@@"
 
 UnknownText_0x1bc774::
 	text "for @"
-	text_from_ram wc6e7
+	text_from_ram wPlayerTrademonSenderName
 	text "'s"
 	line "@"
-	text_from_ram wc6d1
+	text_from_ram wPlayerTrademonSpeciesName
 	text "."
 	done
 
 UnknownText_0x1bc787::
-	text_from_ram wc6e7
+	text_from_ram wPlayerTrademonSenderName
 	text " will"
 	line "trade @"
-	text_from_ram wc6d1
+	text_from_ram wPlayerTrademonSpeciesName
 	db "@@"
 
 UnknownText_0x1bc79d::
 	text "for @"
-	text_from_ram wc719
+	text_from_ram wOTTrademonSenderName
 	text "'s"
 	line "@"
-	text_from_ram wc703
+	text_from_ram wOTTrademonSpeciesName
 	text "."
 	done
 
 UnknownText_0x1bc7b0::
-	text_from_ram wc6e7
+	text_from_ram wPlayerTrademonSenderName
 	text "'s"
 	line "@"
-	text_from_ram wc6d1
+	text_from_ram wPlayerTrademonSpeciesName
 	text " trade…"
 	done
 
 UnknownText_0x1bc7c3::
 	text "Take good care of"
 	line "@"
-	text_from_ram wc703
+	text_from_ram wOTTrademonSpeciesName
 	text "."
 	done
 
 UnknownText_0x1bc7dd::
-	text_from_ram wc6e7
+	text_from_ram wPlayerTrademonSenderName
 	text "'s"
 	line "@"
-	text_from_ram wc6d1
+	text_from_ram wPlayerTrademonSpeciesName
 	text " trade…"
 	done
 
 UnknownText_0x1bc7f0::
 	text "Take good care of"
 	line "@"
-	text_from_ram wc703
+	text_from_ram wOTTrademonSpeciesName
 	text "."
 	done
 
 UnknownText_0x1bc80a::
-	text_from_ram wc703
+	text_from_ram wOTTrademonSpeciesName
 	text " came"
 	line "back!"
 	done

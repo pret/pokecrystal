@@ -1115,13 +1115,13 @@ PokeAnim_GetSpeciesOrUnown: ; d065c
 	ret
 ; d0669
 
-Functiond0669: ; d0669
+Functiond0669: ; d0669 Predef 48
 	ld a, $1
 	ld [wBoxAlignment], a
 
-Functiond066e: ; d066e
+HOF_AnimateFrontpic: ; d066e Predef 49
 	call AnimateMon_CheckIfPokemon
-	jr c, .asm_d068c
+	jr c, .fail
 	ld h, d
 	ld l, e
 	push bc
@@ -1137,7 +1137,7 @@ Functiond066e: ; d066e
 	ld [wBoxAlignment], a
 	ret
 
-.asm_d068c
+.fail
 	xor a
 	ld [wBoxAlignment], a
 	inc a

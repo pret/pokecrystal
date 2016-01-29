@@ -430,21 +430,22 @@ GetTradeMonNames: ; fce1b
 
 NPCTrades: ; fce58
 npctrade: MACRO
-	db \1, \2, \3, \4
-	dw \5
-	db \6
-	dw \7
-	db \8, \9, 0
+	db \1, \2, \3, \4 ; dialog set, requested mon, offered mon, nickname
+	db \5, \6 ; dvs
+	shift
+	db \6 ; item
+	dw \7 ; OT ID
+	db \8, \9, 0 ; OT name, gender requested
 ENDM
 
 
-	npctrade 0, ABRA,       MACHOP,     "MUSCLE@@@@@", $6637, GOLD_BERRY,   37460, "MIKE@@@@@@@", TRADE_EITHER_GENDER
-	npctrade 0, BELLSPROUT, ONIX,       "ROCKY@@@@@@", $6696, BITTER_BERRY, 48926, "KYLE@@@@@@@", TRADE_EITHER_GENDER
-	npctrade 1, KRABBY,     VOLTORB,    "VOLTY@@@@@@", $8898, PRZCUREBERRY, 29189, "TIM@@@@@@@@", TRADE_EITHER_GENDER
-	npctrade 3, DRAGONAIR,  DODRIO,     "DORIS@@@@@@", $6677, SMOKE_BALL,   00283, "EMY@@@@@@@@", TRADE_FEMALE_ONLY
-	npctrade 2, HAUNTER,    XATU,       "PAUL@@@@@@@", $8696, MYSTERYBERRY, 15616, "CHRIS@@@@@@", TRADE_EITHER_GENDER
-	npctrade 3, CHANSEY,    AERODACTYL, "AEROY@@@@@@", $6696, GOLD_BERRY,   26491, "KIM@@@@@@@@", TRADE_EITHER_GENDER
-	npctrade 0, DUGTRIO,    MAGNETON,   "MAGGIE@@@@@", $6696, METAL_COAT,   50082, "FOREST@@@@@", TRADE_EITHER_GENDER
+	npctrade 0, ABRA,       MACHOP,     "MUSCLE@@@@@", $37, $66, GOLD_BERRY,   37460, "MIKE@@@@@@@", TRADE_EITHER_GENDER
+	npctrade 0, BELLSPROUT, ONIX,       "ROCKY@@@@@@", $96, $66, BITTER_BERRY, 48926, "KYLE@@@@@@@", TRADE_EITHER_GENDER
+	npctrade 1, KRABBY,     VOLTORB,    "VOLTY@@@@@@", $98, $88, PRZCUREBERRY, 29189, "TIM@@@@@@@@", TRADE_EITHER_GENDER
+	npctrade 3, DRAGONAIR,  DODRIO,     "DORIS@@@@@@", $77, $66, SMOKE_BALL,   00283, "EMY@@@@@@@@", TRADE_FEMALE_ONLY
+	npctrade 2, HAUNTER,    XATU,       "PAUL@@@@@@@", $96, $86, MYSTERYBERRY, 15616, "CHRIS@@@@@@", TRADE_EITHER_GENDER
+	npctrade 3, CHANSEY,    AERODACTYL, "AEROY@@@@@@", $96, $66, GOLD_BERRY,   26491, "KIM@@@@@@@@", TRADE_EITHER_GENDER
+	npctrade 0, DUGTRIO,    MAGNETON,   "MAGGIE@@@@@", $96, $66, METAL_COAT,   50082, "FOREST@@@@@", TRADE_EITHER_GENDER
 ; fcf38
 
 

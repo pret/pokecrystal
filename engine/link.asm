@@ -427,7 +427,7 @@ Gen2ToGen2LinkComms: ; 28177
 	or $3
 	ld [hl], a
 	ld hl, OTPlayerName
-	ld de, OTName
+	ld de, OTClassName
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	call ReturnToMapFromSubmenu
@@ -578,7 +578,7 @@ FixDataForLinkTransfer: ; 28434
 rept 3
 	ld [hli], a
 endr
-	ld b, wc6d3 - (wMisc + 3)
+	ld b, $c8
 	xor a
 .loop3
 	ld [hli], a

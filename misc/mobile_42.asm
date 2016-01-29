@@ -1242,9 +1242,9 @@ asm_108966
 	call MobileTradeAnim_ClearTilemap
 	hlcoord 7, 2
 	xor a
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	lb bc, 7, 7
-	predef FillBox
+	predef PlaceGraphic
 	call WaitBGMap
 	ret
 ; 10898a
@@ -1256,9 +1256,9 @@ Function10898a: ; 10898a
 	call MobileTradeAnim_ClearTilemap
 	hlcoord 7, 2
 	xor a
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	lb bc, 7, 7
-	predef FillBox
+	predef PlaceGraphic
 	call WaitBGMap
 	ret
 ; 1089a8

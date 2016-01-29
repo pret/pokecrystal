@@ -277,7 +277,7 @@ Function17d0f3: ; 17d0f3
 	ld [wOTTrademonSpecies], a
 	ld [CurPartySpecies], a
 	ld a, [wcd81]
-	ld [wc74e], a
+	ld [$c74e], a
 	ld hl, $c63d
 	ld de, wOTTrademonOTName
 	ld bc, 5
@@ -1000,7 +1000,7 @@ Function17d60b: ; 17d60b
 	call CloseSRAM
 	ld a, $6
 	call GetSRAMBank
-	ld de, wc708
+	ld de, $c708
 	ld a, c
 	and a
 	jr z, .asm_17d684
@@ -1060,7 +1060,7 @@ Function17d60b: ; 17d60b
 	call CloseSRAM
 	ld a, $5
 	call GetSRAMBank
-	ld hl, wc708
+	ld hl, $c708
 	ld de, $b1b3
 	ld a, [$b1b1]
 	ld c, a
@@ -1477,7 +1477,7 @@ Function17d902: ; 17d902
 
 Function17d93a: ; 17d93a
 	call Function17e415
-	ld de, wc708
+	ld de, $c708
 	ld bc, $0005
 	call CopyBytes
 	call Function17e41e
@@ -1486,25 +1486,25 @@ Function17d93a: ; 17d93a
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	ld a, [wc70c]
+	ld a, [$c70c]
 	call Function17e6de
-	ld a, [wc70a]
+	ld a, [$c70a]
 	ld [CurPartySpecies], a
-	ld a, [wc70c]
+	ld a, [$c70c]
 	ld e, a
 	callba Function8bc6
 	call SetPalettes
-	ld a, [wc708]
+	ld a, [$c708]
 	ld l, a
-	ld a, [wc709]
+	ld a, [$c709]
 	ld h, a
-	ld a, [wc70b]
+	ld a, [$c70b]
 	ld c, a
 	decoord 0, 0
 	add hl, de
 	ld e, l
 	ld d, h
-	callba Functiond066e
+	callba HOF_AnimateFrontpic
 	pop af
 	ld [rSVBK], a
 	call Function17e349
@@ -1513,7 +1513,7 @@ Function17d93a: ; 17d93a
 
 Function17d98b: ; 17d98b
 	call Function17e415
-	ld de, wc708
+	ld de, $c708
 	ld bc, $0004
 	call CopyBytes
 	call Function17e41e
@@ -1522,17 +1522,17 @@ Function17d98b: ; 17d98b
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	ld a, [wc70b]
+	ld a, [$c70b]
 	call Function17e6de
-	ld a, [wc70a]
+	ld a, [$c70a]
 	ld [TrainerClass], a
-	ld a, [wc70b]
+	ld a, [$c70b]
 	ld e, a
 	callba Function8bbd
 	call SetPalettes
-	ld a, [wc708]
+	ld a, [$c708]
 	ld e, a
-	ld a, [wc709]
+	ld a, [$c709]
 	ld d, a
 	push de
 	ld de, VTiles2
@@ -1541,7 +1541,7 @@ Function17d98b: ; 17d98b
 	decoord 0, 0
 	add hl, de
 	ld bc, $0707
-	predef FillBox
+	predef PlaceGraphic
 	pop af
 	ld [rSVBK], a
 	call Function17e349
@@ -1550,34 +1550,34 @@ Function17d98b: ; 17d98b
 
 Function17d9e3: ; 17d9e3
 	call Function17e415
-	ld de, wc708
+	ld de, $c708
 	ld bc, $0007
 	call CopyBytes
 	call Function17e41e
-	ld a, [wc70b]
+	ld a, [$c70b]
 	push af
 	cp $c0
 	jr c, .asm_17da01
-	ld a, [wc70c]
+	ld a, [$c70c]
 	ld [rSVBK], a
 	jr .asm_17da07
 
 .asm_17da01
-	ld a, [wc70c]
+	ld a, [$c70c]
 	call GetSRAMBank
 
 .asm_17da07
-	ld a, [wc708]
+	ld a, [$c708]
 	ld l, a
-	ld a, [wc709]
+	ld a, [$c709]
 	ld h, a
-	ld a, [wc70a]
+	ld a, [$c70a]
 	ld e, a
-	ld a, [wc70b]
+	ld a, [$c70b]
 	ld d, a
-	ld a, [wc70d]
+	ld a, [$c70d]
 	ld c, a
-	ld a, [wc70e]
+	ld a, [$c70e]
 	ld b, a
 	call CopyBytes
 	pop af
@@ -1596,28 +1596,28 @@ Function17d9e3: ; 17d9e3
 
 Function17da31: ; 17da31
 	call Function17e415
-	ld de, wc708
+	ld de, $c708
 	ld bc, $0004
 	call CopyBytes
 	call Function17e41e
-	ld a, [wc709]
+	ld a, [$c709]
 	push af
 	cp $c0
 	jr c, .asm_17da4f
-	ld a, [wc70a]
+	ld a, [$c70a]
 	ld [rSVBK], a
 	jr .asm_17da55
 
 .asm_17da4f
-	ld a, [wc70a]
+	ld a, [$c70a]
 	call GetSRAMBank
 
 .asm_17da55
-	ld a, [wc708]
+	ld a, [$c708]
 	ld e, a
-	ld a, [wc709]
+	ld a, [$c709]
 	ld d, a
-	ld a, [wc70b]
+	ld a, [$c70b]
 	ld c, a
 	bit 7, c
 	jr nz, .asm_17da70
@@ -1897,22 +1897,22 @@ Function17dc1f: ; 17dc1f
 	ld [rSVBK], a
 	ld hl, $c688
 	ld a, $40
-	ld [wc708], a
+	ld [$c708], a
 	ld a, [hli]
-	ld [wc70a], a
+	ld [$c70a], a
 	add $5
-	ld [wc70c], a
+	ld [$c70c], a
 	ld a, [hli]
-	ld [wc709], a
+	ld [$c709], a
 	add $4
-	ld [wc70b], a
+	ld [$c70b], a
 	ld a, $96
-	ld [wc70d], a
+	ld [$c70d], a
 	ld a, $5c
-	ld [wc70e], a
+	ld [$c70e], a
 	ld a, $1
-	ld [wEnemyGoesFirst], a
-	ld hl, wc708
+	ld [$c70f], a
+	ld hl, $c708
 	call LoadMenuDataHeader
 	call VerticalMenu
 	jr nc, .asm_17dc6e
@@ -2075,112 +2075,112 @@ Function17dd30: ; 17dd30
 
 Function17dd49: ; 17dd49
 	call Function17e415
-	ld de, wc708
+	ld de, $c708
 	ld bc, $000a
 	call CopyBytes
-	ld a, [wc711]
+	ld a, [$c711]
 	ld c, a
 	ld b, $0
 	call CopyBytes
-	ld a, [wc70a]
+	ld a, [$c70a]
 	cp $c0
-	jr c, .asm_17dd6c
-	ld a, [wc708]
+	jr c, .sram
+	ld a, [$c708]
 	ld [rSVBK], a
-	jr .asm_17dd72
+	jr .got_bank
 
-.asm_17dd6c
-	ld a, [wc708]
+.sram
+	ld a, [$c708]
 	call GetSRAMBank
 
-.asm_17dd72
-	ld a, [wc709]
+.got_bank
+	ld a, [$c709]
 	ld l, a
-	ld a, [wc70a]
+	ld a, [$c70a]
 	ld h, a
 	ld de, $c688
-	ld a, [wc711]
+	ld a, [$c711]
 	ld c, a
 	ld b, $0
 	call CopyBytes
-	ld a, [wc70a]
+	ld a, [$c70a]
 	cp $c0
-	jr c, .asm_17dd93
+	jr c, .close_sram
 	ld a, $4
 	ld [rSVBK], a
-	jr .asm_17dd96
+	jr .exited_bank
 
-.asm_17dd93
+.close_sram
 	call CloseSRAM
 
-.asm_17dd96
-	ld a, [wc711]
+.exited_bank
+	ld a, [$c711]
 	ld c, a
-	ld hl, wc712
+	ld hl, $c712
 	ld de, $c688
-.asm_17dda0
+.loop
 	ld a, [de]
 	inc de
 	cp [hl]
 	inc hl
-	jr z, .asm_17ddaa
-	jr c, .asm_17ddc1
-	jr .asm_17ddb7
+	jr z, .next
+	jr c, .load
+	jr .load2
 
-.asm_17ddaa
+.next
 	dec c
-	jr nz, .asm_17dda0
-	ld a, [wc70d]
+	jr nz, .loop
+	ld a, [$c70d]
 	ld l, a
-	ld a, [wc70e]
+	ld a, [$c70e]
 	ld h, a
-	jr .asm_17ddc9
+	jr .done
 
-.asm_17ddb7
-	ld a, [wEnemyGoesFirst]
+.load2
+	ld a, [$c70f]
 	ld l, a
-	ld a, [wc710]
+	ld a, [$c710]
 	ld h, a
-	jr .asm_17ddc9
+	jr .done
 
-.asm_17ddc1
-	ld a, [wc70b]
+.load
+	ld a, [$c70b]
 	ld l, a
-	ld a, [wc70c]
+	ld a, [$c70c]
 	ld h, a
 
-.asm_17ddc9
+.done
 	call Function17e40f
 	ret
 ; 17ddcd
 
 Function17ddcd: ; 17ddcd
 	call Function17e415
-	ld de, wc708
+	ld de, $c708
 	ld bc, $0008
 	call CopyBytes
-	ld a, [wc70a]
+	ld a, [$c70a]
 	cp $c0
 	jr c, .asm_17dde7
-	ld a, [wc708]
+	ld a, [$c708]
 	ld [rSVBK], a
 	jr .asm_17dded
 
 .asm_17dde7
-	ld a, [wc708]
+	ld a, [$c708]
 	call GetSRAMBank
 
 .asm_17dded
-	ld a, [wc709]
+	ld a, [$c709]
 	ld e, a
-	ld a, [wc70a]
+	ld a, [$c70a]
 	ld d, a
 	ld a, [de]
-	ld [wc710], a
-	ld a, [wc70b]
+	ld [$c710], a
+	ld a, [$c70b]
 	ld c, a
 	ld b, $0
-	ld a, [wc70a]
+	ld a, [$c70a]
 	cp $c0
 	jr c, .asm_17de0c
 	ld a, $4
@@ -2195,20 +2195,20 @@ Function17ddcd: ; 17ddcd
 	ld hl, Unknown_17da8c
 	add hl, bc
 	ld a, [hl]
-	ld hl, wc710
+	ld hl, $c710
 	and [hl]
 	pop hl
 	jr nz, .asm_17de26
-	ld a, [wc70e]
+	ld a, [$c70e]
 	ld l, a
-	ld a, [wEnemyGoesFirst]
+	ld a, [$c70f]
 	ld h, a
 	jr .asm_17de2e
 
 .asm_17de26
-	ld a, [wc70c]
+	ld a, [$c70c]
 	ld l, a
-	ld a, [wc70d]
+	ld a, [$c70d]
 	ld h, a
 
 .asm_17de2e
@@ -2218,26 +2218,26 @@ Function17ddcd: ; 17ddcd
 
 Function17de32: ; 17de32
 	call Function17e415
-	ld de, wc708
+	ld de, $c708
 	ld bc, $0009
 	call CopyBytes
-	ld a, [wc710]
+	ld a, [$c710]
 	ld c, a
 	ld b, $0
 	call CopyBytes
 	ld a, $6
 	call GetSRAMBank
 	call Function17f4f6
-	ld a, [wc708]
+	ld a, [$c708]
 	ld e, a
-	ld a, [wc709]
+	ld a, [$c709]
 	ld d, a
 	add hl, de
 	ld e, l
 	ld d, h
-	ld a, [wc710]
+	ld a, [$c710]
 	ld c, a
-	ld hl, wc711
+	ld hl, $c711
 .asm_17de61
 	ld a, [de]
 	inc de
@@ -2250,23 +2250,23 @@ Function17de32: ; 17de32
 .asm_17de6b
 	dec c
 	jr nz, .asm_17de61
-	ld a, [wc70c]
+	ld a, [$c70c]
 	ld l, a
-	ld a, [wc70d]
+	ld a, [$c70d]
 	ld h, a
 	jr .asm_17de8a
 
 .asm_17de78
-	ld a, [wc70e]
+	ld a, [$c70e]
 	ld l, a
-	ld a, [wEnemyGoesFirst]
+	ld a, [$c70f]
 	ld h, a
 	jr .asm_17de8a
 
 .asm_17de82
-	ld a, [wc70a]
+	ld a, [$c70a]
 	ld l, a
-	ld a, [wc70b]
+	ld a, [$c70b]
 	ld h, a
 
 .asm_17de8a
@@ -2277,20 +2277,20 @@ Function17de32: ; 17de32
 
 Function17de91: ; 17de91
 	call Function17e415
-	ld de, wc708
+	ld de, $c708
 	ld bc, $0007
 	call CopyBytes
 	ld a, $6
 	call GetSRAMBank
 	call Function17f4f6
-	ld a, [wc708]
+	ld a, [$c708]
 	ld e, a
-	ld a, [wc709]
+	ld a, [$c709]
 	ld d, a
 	add hl, de
 	ld e, l
 	ld d, h
-	ld a, [wc70a]
+	ld a, [$c70a]
 	ld c, a
 	ld b, $0
 	ld hl, Unknown_17da8c
@@ -2300,16 +2300,16 @@ Function17de91: ; 17de91
 	ld h, d
 	and [hl]
 	jr nz, .asm_17deca
-	ld a, [wc70d]
+	ld a, [$c70d]
 	ld l, a
-	ld a, [wc70e]
+	ld a, [$c70e]
 	ld h, a
 	jr .asm_17ded2
 
 .asm_17deca
-	ld a, [wc70b]
+	ld a, [$c70b]
 	ld l, a
-	ld a, [wc70c]
+	ld a, [$c70c]
 	ld h, a
 
 .asm_17ded2
@@ -2320,7 +2320,7 @@ Function17de91: ; 17de91
 
 Function17ded9: ; 17ded9
 	call Function17e415
-	ld de, wc708
+	ld de, $c708
 	ld bc, $001f
 	call CopyBytes
 	call Function17e32b
@@ -2328,7 +2328,7 @@ Function17ded9: ; 17ded9
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	ld hl, wc708
+	ld hl, $c708
 	ld a, [hli]
 	ld [CurPartySpecies], a
 	ld [TempEnemyMonSpecies], a
@@ -2661,14 +2661,14 @@ asm_17e0ee
 
 Function17e0fd: ; 17e0fd
 	call Function17e415
-	ld de, wc708
+	ld de, $c708
 	ld bc, $0006
 	call CopyBytes
 	ld a, [rSVBK]
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	ld hl, wc708
+	ld hl, $c708
 	ld a, [hli]
 	ld [CurItem], a
 	ld a, [hli]
@@ -2695,14 +2695,14 @@ Function17e0fd: ; 17e0fd
 
 Function17e133: ; 17e133
 	call Function17e415
-	ld de, wc708
+	ld de, $c708
 	ld bc, $0005
 	call CopyBytes
 	ld a, [rSVBK]
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	ld hl, wc708
+	ld hl, $c708
 	ld a, [hli]
 	ld [ScriptVar], a
 	push hl
@@ -2726,14 +2726,14 @@ Function17e133: ; 17e133
 
 Function17e165: ; 17e165
 	call Function17e415
-	ld de, wc708
+	ld de, $c708
 	ld bc, $0005
 	call CopyBytes
 	ld a, [rSVBK]
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	ld hl, wc708
+	ld hl, $c708
 	ld a, [hli]
 	ld [CurItem], a
 	push hl
@@ -2763,31 +2763,31 @@ Function17e165: ; 17e165
 
 Function17e1a1: ; 17e1a1
 	call Function17e415
-	ld de, wc708
+	ld de, $c708
 	ld bc, $000d
 	call CopyBytes
-	ld a, [wc70a]
+	ld a, [$c70a]
 	cp $c0
 	jr c, .asm_17e1bb
-	ld a, [wc708]
+	ld a, [$c708]
 	ld [rSVBK], a
 	jr .asm_17e1c1
 
 .asm_17e1bb
-	ld a, [wc708]
+	ld a, [$c708]
 	call GetSRAMBank
 
 .asm_17e1c1
-	ld a, [wc709]
+	ld a, [$c709]
 	ld l, a
-	ld a, [wc70a]
+	ld a, [$c70a]
 	ld h, a
 	ld de, $c608
-	ld a, [wc70b]
+	ld a, [$c70b]
 	ld c, a
 	ld b, $0
 	call CopyBytes
-	ld a, [wc70a]
+	ld a, [$c70a]
 	cp $c0
 	jr c, .asm_17e1e2
 	ld a, $4
@@ -2798,28 +2798,28 @@ Function17e1a1: ; 17e1a1
 	call CloseSRAM
 
 .asm_17e1e5
-	ld a, [wc70e]
+	ld a, [$c70e]
 	cp $c0
 	jr c, .asm_17e1f3
-	ld a, [wc70c]
+	ld a, [$c70c]
 	ld [rSVBK], a
 	jr .asm_17e1f9
 
 .asm_17e1f3
-	ld a, [wc70c]
+	ld a, [$c70c]
 	call GetSRAMBank
 
 .asm_17e1f9
-	ld a, [wc70d]
+	ld a, [$c70d]
 	ld l, a
-	ld a, [wc70e]
+	ld a, [$c70e]
 	ld h, a
 	ld de, $c688
-	ld a, [wc70b]
+	ld a, [$c70b]
 	ld c, a
 	ld b, $0
 	call CopyBytes
-	ld a, [wc70e]
+	ld a, [$c70e]
 	cp $c0
 	jr c, .asm_17e21a
 	ld a, $4
@@ -2830,7 +2830,7 @@ Function17e1a1: ; 17e1a1
 	call CloseSRAM
 
 .asm_17e21d
-	ld a, [wc70b]
+	ld a, [$c70b]
 	ld c, a
 	ld hl, $c688
 	ld de, $c608
@@ -2846,23 +2846,23 @@ Function17e1a1: ; 17e1a1
 .asm_17e231
 	dec c
 	jr nz, .asm_17e227
-	ld a, [wc711]
+	ld a, [$c711]
 	ld l, a
-	ld a, [wc712]
+	ld a, [$c712]
 	ld h, a
 	jr .asm_17e250
 
 .asm_17e23e
-	ld a, [wEnemyGoesFirst]
+	ld a, [$c70f]
 	ld l, a
-	ld a, [wc710]
+	ld a, [$c710]
 	ld h, a
 	jr .asm_17e250
 
 .asm_17e248
-	ld a, [wc712 + 1]
+	ld a, [$c712 + 1]
 	ld l, a
-	ld a, [wc712 + 2]
+	ld a, [$c712 + 2]
 	ld h, a
 
 .asm_17e250
@@ -3647,9 +3647,9 @@ Function17e691: ; 17e691
 
 Function17e6de: ; 17e6de
 	push af
-	ld a, [wc708]
+	ld a, [$c708]
 	ld l, a
-	ld a, [wc709]
+	ld a, [$c709]
 	ld h, a
 	decoord 0, 0, AttrMap
 	add hl, de
@@ -4345,14 +4345,14 @@ Function17f382: ; 17f382
 Function17f3c9: ; 17f3c9
 	push bc
 	ld hl, wcd36
-	ld de, wc708
+	ld de, $c708
 	ld bc, $000c
 	call CopyBytes
 	pop de
 	ld c, $0
 	callba Function11c075
 	push hl
-	ld hl, wc708
+	ld hl, $c708
 	ld de, wcd36
 	ld bc, $000c
 	call CopyBytes

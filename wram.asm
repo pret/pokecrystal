@@ -12,7 +12,7 @@ StackTop::
 
 
 SECTION "Audio", WRAM0
-
+wMusic::
 MusicPlaying:: ; c100
 ; nonzero if playing
 	ds 1
@@ -33,7 +33,7 @@ Channel8:: channel_struct Channel8 ; c25f
 wCurTrackDuty:: ds 1
 wCurTrackIntensity:: ds 1
 wCurTrackFrequency:: dw
-wc296:: ds 1 ; used only in an unused script
+wc296:: ds 1 ; BCD value, dummied out
 wc297:: ds 1 ; used in MusicE0 and LoadNote
 
 CurMusicByte:: ; c298
@@ -132,7 +132,7 @@ wMapMusic:: ; c2c0
 	ds 1
 
 wDontPlayMapMusicOnReload:: ds 1
-
+wMusicEnd::
 
 SECTION "WRAM", WRAM0
 
@@ -308,7 +308,7 @@ wGlobalAnimYOffset:: ds 1
 wGlobalAnimXOffset:: ds 1
 wSpriteAnimsEnd::
 
-wc3c1:: ds 11
+	ds 11
 wc3cc:: ds 1
 wc3cd:: ds 31
 wc3ec:: ds 1
@@ -359,45 +359,45 @@ TileMapEnd::
 
 
 SECTION "Battle", WRAM0
+wc608::
 wOddEgg:: party_struct OddEgg
 wOddEggName:: ds PKMN_NAME_LENGTH
 wOddEggOTName:: ds PKMN_NAME_LENGTH
-	ds wOddEgg - @
+	ds wc608 - @
 
 wBT_OTTemp:: battle_tower_struct wBT_OTTemp
-	ds wBT_OTTemp - @
+	ds wc608 - @
 
 	hall_of_fame wHallOfFameTemp
-	ds wHallOfFameTemp - @
+	ds wc608 - @
 
 wMisc:: ; ds (SCREEN_WIDTH + 4) * (SCREEN_HEIGHT + 2)
-wBattle::
-wc608::
+	ds 10
+wc612::
+	ds 10
+wInitHourBuffer:: ; c61c
+	ds 10
+wc626::
+	ds wc608 - @
 
-wEnemyMoveStruct::  ds MOVE_LENGTH ; c608
-wc60f::
-wPlayerMoveStruct:: ds MOVE_LENGTH ; c60f
-wc616::
-	ds -4
-wc612:: ds 4
+wBattle::
+wEnemyMoveStruct::  move_struct wEnemyMoveStruct ; c608
+wPlayerMoveStruct:: move_struct wPlayerMoveStruct ; c60f
+
 EnemyMonNick::  ds PKMN_NAME_LENGTH ; c616
-	ds -5
-wInitHourBuffer:: ds 5
 BattleMonNick:: ds PKMN_NAME_LENGTH ; c621
-	ds -6
-wc626:: ds 6
 
 BattleMon:: battle_struct BattleMon ; c62c
 
 	ds 2
 
-wWildMon:: ds 1
+wWildMon:: ds 1 ; c64e
 	ds 1
-wEnemyTrainerItem1:: ds 1
-wEnemyTrainerItem2:: ds 1
-wEnemyTrainerBaseReward:: ds 1
-wEnemyTrainerAIFlags:: ds 3
-OTName:: ds NAME_LENGTH ; c656
+wEnemyTrainerItem1:: ds 1 ; c650
+wEnemyTrainerItem2:: ds 1 ; c651
+wEnemyTrainerBaseReward:: ds 1 ; c652
+wEnemyTrainerAIFlags:: ds 3 ; c653
+OTClassName:: ds NAME_LENGTH ; c656
 
 	ds 2
 
@@ -429,7 +429,6 @@ AttackMissed:: ; c667
 ; nonzero for a miss
 	ds 1
 
-wc668::
 PlayerSubStatus1:: ; c668
 ; bit
 ; 7 attract
@@ -527,7 +526,6 @@ EnemyToxicCount:: ; c67c
 	ds 1
 EnemyDisableCount:: ; c67d
 	ds 1
-wc67e::
 EnemyEncoreCount:: ; c67e
 	ds 1
 EnemyPerishCount:: ; c67f
@@ -542,18 +540,17 @@ PlayerDamageTaken:: ; c682
 EnemyDamageTaken:: ; c684
 	ds 2
 
-wBattleReward:: ds 3
+wBattleReward:: ds 3 ; c686
 wBattleAnimParam::
 wKickCounter::
-wPresentPower:: ds 1
-wc68a::
+wPresentPower:: ds 1 ; c689
 BattleScriptBuffer:: ; c68a
 	ds 40
 
 BattleScriptBufferLoc:: ; c6b2
 	ds 2
 
-wTurnEnded:: ds 1
+wTurnEnded:: ds 1 ; c6b4
 	ds 1
 
 PlayerStats:: ; c6b6
@@ -574,41 +571,234 @@ PlayerSpdLevel:: ; c6ce
 PlayerSAtkLevel:: ; c6cf
 	ds 1
 
-trademon: MACRO
-\1Species:: ds 1 ; wc6d0 | wDummyGameNumberTriesRemaining
-\1SpeciesName:: ds PKMN_NAME_LENGTH ; wc6d1 | wDummyGameLastMatches
-\1Nickname:: ds PKMN_NAME_LENGTH ; wc6dc | wc70e
-\1SenderName:: ds NAME_LENGTH ; wc6e7 | wc719
-\1OTName:: ds NAME_LENGTH ; wc6f2 | wc724
-\1DVs:: ds 2 ; wc6fd | wc72f
-\1ID:: ds 2 ; wc6ff | wc731
-\1CaughtData:: ds 1 ; wc701 | wc733
-\1End::
-ENDM
+wc6d0::
+PlayerSDefLevel:: ; c6d0
+	ds 1
+PlayerAccLevel:: ; c6d1
+	ds 1
+PlayerEvaLevel:: ; c6d2
+	ds 1
+; c6d3
+	ds 1
+PlayerStatLevelsEnd::
+
+EnemyStatLevels:: ; c6d4
+; 07 neutral
+EnemyAtkLevel:: ; c6d4
+	ds 1
+EnemyDefLevel:: ; c6d5
+	ds 1
+EnemySpdLevel:: ; c6d6
+	ds 1
+EnemySAtkLevel:: ; c6d7
+	ds 1
+EnemySDefLevel:: ; c6d8
+	ds 1
+EnemyAccLevel:: ; c6d9
+	ds 1
+EnemyEvaLevel:: ; c6da
+	ds 1
+
+	ds 1
+EnemyTurnsTaken:: ; c6dc
+	ds 1
+PlayerTurnsTaken:: ; c6dd
+	ds 1
+
+	ds 1
+
+PlayerSubstituteHP:: ; c6df
+	ds 1
+EnemySubstituteHP:: ; c6e0
+	ds 1
+
+wUnusedPlayerLockedMove:: ds 1 ; c6e1
+	ds 1
+CurPlayerMove:: ; c6e3
+	ds 1
+CurEnemyMove:: ; c6e4
+	ds 1
+
+LinkBattleRNCount:: ; c6e5
+; how far through the prng stream
+	ds 1
+
+wEnemyItemState:: ds 1 ; c6e6
+	ds 2
+CurEnemyMoveNum:: ; c6e9
+	ds 1
+
+wEnemyHPAtTimeOfPlayerSwitch:: ds 2 ; c6ea
+wPayDayMoney:: ds 3 ; c6ec
+
+wSafariMonAngerCount:: ds 1
+wSafariMonEating:: ds 2
+wEnemyBackupDVs:: ; used when enemy is transformed
+	ds 2
+AlreadyDisobeyed:: ; c6f4
+	ds 1
+
+DisabledMove:: ; c6f5
+	ds 1
+EnemyDisabledMove:: ; c6f6
+	ds 1
+wWhichMonFaintedFirst:: ds 1
+
+; exists so you can't counter on switch
+LastEnemyCounterMove:: ; c6f8
+	ds 1
+LastPlayerCounterMove:: ; c6f9
+	ds 1
+
+wEnemyMinimized:: ds 1 ; c6fa
+
+AlreadyFailed:: ; c6fb
+	ds 1
+
+wBattleParticipantsIncludingFainted:: ds 1 ; c6fc
+wDanger:: ds 1 ; c6fd
+wPlayerMinimized:: ds 1 ; c6fe
+PlayerScreens:: ; c6ff
+; bit
+; 4 reflect
+; 3 light screen
+; 2 safeguard
+; 0 spikes
+	ds 1
+
+EnemyScreens:: ; c700
+; see PlayerScreens
+	ds 1
+
+PlayerSafeguardCount:: ; c701
+	ds 1
+PlayerLightScreenCount:: ; c702
+	ds 1
+PlayerReflectCount:: ; c703
+	ds 1
+
+	ds 1
+EnemySafeguardCount:: ; c705
+	ds 1
+EnemyLightScreenCount:: ; c706
+	ds 1
+EnemyReflectCount:: ; c707
+	ds 1
+	ds 2
+Weather:: ; c70a
+; 00 normal
+; 01 rain
+; 02 sun
+; 03 sandstorm
+; 04 rain stopped
+; 05 sunliight faded
+; 06 sandstorm subsided
+	ds 1
+
+WeatherCount:: ; c70b
+; # turns remaining
+	ds 1
+
+LoweredStat:: ; c70c
+	ds 1
+EffectFailed:: ; c70d
+	ds 1
+FailedMessage:: ; c70e
+	ds 1
+wEnemyGoesFirst:: ; c70f
+	ds 1
+wPlayerIsSwitching:: ds 1 ; c710
+wEnemyIsSwitching::  ds 1 ; c711
+
+PlayerUsedMoves:: ; c712
+; add a move that has been used once by the player
+; added in order of use
+	ds NUM_MOVES
+
+wEnemyAISwitchScore:: ds 1 ; c716
+wEnemySwitchMonParam:: ds 1 ; c717
+wEnemySwitchMonIndex:: ds 1 ; c718
+wTempLevel:: ds 1 ; c719
+LastPlayerMon:: ds 1 ; c71a
+LastPlayerMove:: ; c71b
+	ds 1
+LastEnemyMove:: ; c71c
+	ds 1
+
+wPlayerFutureSightCount:: ds 1 ; c71d
+wEnemyFutureSightCount:: ds 1 ; c71e
+wGivingExperienceToExpShareHolders:: ds 1 ; c71f
+wBackupEnemyMonBaseStats:: ds 5 ; c720
+wBackupEnemyMonCatchRate:: db ; c725
+wBackupEnemyMonBaseExp:: db ; c726
+wPlayerFutureSightDamage:: ds 2 ; c727
+wEnemyFutureSightDamage:: ds 2 ; c729
+wPlayerRageCounter:: ds 1 ; c72b
+wEnemyRageCounter:: ds 1 ; c72c
+wBeatUpHitAtLeastOnce:: ds 1 ; c72d
+wPlayerTrappingMove:: ds 1 ; c72e
+wEnemyTrappingMove:: ds 1 ; c72f
+wPlayerWrapCount:: ds 1 ; c730
+wEnemyWrapCount:: ds 1 ; c731
+wPlayerCharging:: ds 1 ; c732
+wEnemyCharging:: ds 1 ; c733
+BattleEnded:: ; c734
+	ds 1
+
+wWildMonMoves:: ds NUM_MOVES ; c735
+wWildMonPP:: ds NUM_MOVES ; c739
+wAmuletCoin:: ds 1 ; c73a
+wSomeoneIsRampaging:: ds 1 ; c73b
+wPlayerJustGotFrozen:: ds 1 ; c73c
+wEnemyJustGotFrozen:: ds 1 ; c73d
+wBattleEnd::
+; Battle RAM
+
+; c741
+	ds wc6d0 - @
 wTrademons::
 wPlayerTrademon:: trademon wPlayerTrademon
 wOTTrademon::     trademon wOTTrademon
 wTrademonsEnd::
-	ds wTrademons - @
+wTradeAnimPointer::
+	ds 2
+wLinkPlayer1Name:: ds NAME_LENGTH
+wLinkPlayer2Name:: ds NAME_LENGTH
+wLinkTradeSendmonSpecies:: ds 1
+wLinkTradeGetmonSpecies:: ds 1
+wc74e:: ds 107
+wc7b9:: ds 1
+wc7ba:: ds 1
+wc7bb:: ds 2
+wc7bd::
+	ds wc6d0 - @
 
-; Slot Machine
+; naming screen
+wNamingScreenDestinationPointer:: ds 2 ; c6d0
+wNamingScreenCurrNameLength:: ds 1 ; c6d2
+wNamingScreenMaxNameLength:: ds 1 ; c6d3
+wNamingScreenType:: ds 1 ; c6d4
+wNamingScreenCursorObjectPointer:: ds 2 ; c6d5
+wNamingScreenLastCharacter:: ds 1 ; c6d7
+wNamingScreenStringEntryCoord:: ds 2 ; c6d8
+	ds wc6d0 - @
+
+; pokegear
+wPokegearPhoneLoadNameBuffer:: ds 1 ; c6d0
+wPokegearPhoneCursorPosition:: ds 1 ; c6d1
+wPokegearPhoneScrollPosition:: ds 1 ; c6d2
+wPokegearPhoneSelectedPerson:: ds 1 ; c6d3
+wPokegearPhoneSubmenuCursor:: ds 1 ; c6d4
+wPokegearMapCursorObjectPointer:: ds 2 ; c6d5
+wPokegearMapCursorLandmark:: ds 1 ; c6d7
+wPokegearMapPlayerIconLandmark:: ds 1 ; c6d8
+wPokegearRadioChannelBank:: ds 1 ; c6d9
+wPokegearRadioChannelAddr:: ds 2 ; c6da
+wPokegearRadioMusicPlaying:: ds 1 ; c6dc
+	ds wc6d0 - @
+
 wSlots::
-slot_reel: MACRO
-\1ReelAction::   db
-\1TilemapAddr::  dw
-\1Position::     db
-\1SpinDistance:: db
-\1SpinRate::     db
-\1OAMAddr::      dw
-\1XCoord::       db
-\1Slot09::       ds 1
-\1Slot0a::       ds 1
-\1Slot0b::       ds 1
-\1Slot0c::       ds 1
-\1Slot0d::       ds 1
-\1Slot0e::       ds 1
-\1Slot0f::       ds 1
-endm
+; Slot Machine
 ; c6d0
 wReel1:: slot_reel wReel1
 wReel2:: slot_reel wReel2
@@ -667,254 +857,7 @@ wUnownPuzzle::
 wPuzzlePieces::
 	ds 6 * 6
 wUnownPuzzleEnd::
-	ds wUnownPuzzle - @
 
-; Battle RAM
-wc6d0::
-PlayerSDefLevel:: ; c6d0
-	ds 1
-wc6d1::
-PlayerAccLevel:: ; c6d1
-	ds 1
-wc6d2::
-PlayerEvaLevel:: ; c6d2
-	ds 1
-; c6d3
-wc6d3:: ds 1
-wc6d4::
-PlayerStatLevelsEnd::
-
-EnemyStatLevels:: ; c6d4
-; 07 neutral
-EnemyAtkLevel:: ; c6d4
-	ds 1
-wc6d5::
-EnemyDefLevel:: ; c6d5
-	ds 1
-wc6d6::
-EnemySpdLevel:: ; c6d6
-	ds 1
-wc6d7::
-wTownMapCursorLandmark::
-EnemySAtkLevel:: ; c6d7
-	ds 1
-wc6d8::
-wTownMapPlayerIconLandmark::
-EnemySDefLevel:: ; c6d8
-	ds 1
-wc6d9::
-EnemyAccLevel:: ; c6d9
-	ds 1
-wc6da::
-EnemyEvaLevel:: ; c6da
-	ds 1
-
-wc6db:: ds 1
-wc6dc::
-EnemyTurnsTaken:: ; c6dc
-	ds 1
-PlayerTurnsTaken:: ; c6dd
-	ds 1
-
-	ds 1
-
-PlayerSubstituteHP:: ; c6df
-	ds 1
-wc6e0::
-EnemySubstituteHP:: ; c6e0
-	ds 1
-
-wc6e1:: ds 2
-CurPlayerMove:: ; c6e3
-	ds 1
-CurEnemyMove:: ; c6e4
-	ds 1
-
-LinkBattleRNCount:: ; c6e5
-; how far through the prng stream
-	ds 1
-
-wc6e6:: ds 1
-wc6e7:: ds 1
-wc6e8:: ds 1
-wc6e9::
-CurEnemyMoveNum:: ; c6e9
-	ds 1
-
-wEnemyHPAtTimeOfPlayerSwitch::
-wc6ea:: ds 1
-wc6eb:: ds 1
-wPayDayMoney:: ds 3 ; c6ec
-
-wSafariMonAngerCount:: ds 1
-wSafariMonEating::
-wc6f0:: ds 2
-wEnemyBackupDVs:: ; used when enemy is transformed
-wc6f2:: ds 2
-AlreadyDisobeyed:: ; c6f4
-	ds 1
-
-DisabledMove:: ; c6f5
-	ds 1
-EnemyDisabledMove:: ; c6f6
-	ds 1
-wc6f7:: ds 1
-
-; exists so you can't counter on switch
-LastEnemyCounterMove:: ; c6f8
-	ds 1
-wc6f9::
-LastPlayerCounterMove:: ; c6f9
-	ds 1
-
-wEnemyMinimized:: ds 1 ; c6fa
-
-AlreadyFailed:: ; c6fb
-	ds 1
-
-wc6fc:: ds 1
-wc6fd:: ds 1
-wc6fe::
-wPlayerMinimized:: ds 1 ; c6fe
-wc6ff::
-PlayerScreens:: ; c6ff
-; bit
-; 4 reflect
-; 3 light screen
-; 2 safeguard
-; 0 spikes
-	ds 1
-
-wc700::
-EnemyScreens:: ; c700
-; see PlayerScreens
-	ds 1
-
-wc701::
-PlayerSafeguardCount:: ; c701
-	ds 1
-wc702::
-PlayerLightScreenCount:: ; c702
-	ds 1
-wc703::
-PlayerReflectCount:: ; c703
-	ds 1
-
-wc704:: ds 1
-wc705::
-EnemySafeguardCount:: ; c705
-	ds 1
-wc706::
-EnemyLightScreenCount:: ; c706
-	ds 1
-EnemyReflectCount:: ; c707
-	ds 1
-
-wc708:: ds 1
-wc709:: ds 1
-wc70a::
-Weather:: ; c70a
-; 00 normal
-; 01 rain
-; 02 sun
-; 03 sandstorm
-; 04 rain stopped
-; 05 sunliight faded
-; 06 sandstorm subsided
-	ds 1
-
-wc70b::
-WeatherCount:: ; c70b
-; # turns remaining
-	ds 1
-
-wc70c::
-LoweredStat:: ; c70c
-	ds 1
-wc70d::
-EffectFailed:: ; c70d
-	ds 1
-wc70e::
-FailedMessage:: ; c70e
-	ds 1
-wc70f::
-wEnemyGoesFirst::
-	ds 1
-wc710::
-wPlayerIsSwitching:: ds 1 ; c710
-wc711::
-wEnemyIsSwitching::  ds 1 ; c711
-
-wc712::
-PlayerUsedMoves:: ; c712
-; add a move that has been used once by the player
-; added in order of use
-	ds NUM_MOVES
-
-wc716:: ds 1
-wEnemySwitchMonParam::
-wc717:: ds 1
-wc718::
-wEnemySwitchMonIndex:: ds 1
-wTempLevel::
-wc719:: ds 1
-LastPlayerMon:: ; c71a
-wc71a:: ds 1
-LastPlayerMove:: ; c71b
-	ds 1
-LastEnemyMove:: ; c71c
-	ds 1
-
-wPlayerFutureSightCount:: ds 1
-wEnemyFutureSightCount:: ds 1
-wc71f:: ds 1
-wc720:: ds 4 ; copy from/to EnemyMonBaseStats, length=7
-wc724:: ds 3
-wPlayerFutureSightDamage:: ds 2
-wEnemyFutureSightDamage:: ds 2
-wPlayerRageCounter:: ds 1
-wEnemyRageCounter:: ds 1
-wc72d:: ds 1 ; if 0 then PrintButItFailed
-wc72e::
-wPlayerTrappingMove:: ds 1
-wc72f::
-wEnemyTrappingMove:: ds 1
-wc730::
-wPlayerWrapCount:: ds 1
-wc731::
-wEnemyWrapCount:: ds 1
-wc732::
-wPlayerCharging:: ds 1
-wEnemyCharging::
-wc733:: ds 1
-wTradeAnimPointer::
-wc734::
-BattleEnded:: ; c734
-	ds 1
-
-wWildMonMoves::
-wc735:: ds 1
-wLinkPlayer1Name:: ds NAME_LENGTH
-wLinkPlayer2Name:: ds NAME_LENGTH
-	ds wLinkPlayer1Name - @
-wc736:: ds 3
-wWildMonPP:: ds NUM_MOVES
-wAmuletCoin:: ds 1
-wc73e:: ds 1
-wPlayerJustGotFrozen:: ds 1
-wEnemyJustGotFrozen:: ds 1
-wc741::
-wBattleEnd::
-; c741
-
-	ds 11
-wc74c:: ds 1
-wc74d:: ds 1
-wc74e:: ds 107
-wc7b9:: ds 1
-wc7ba:: ds 1
-wc7bb:: ds 2
-wc7bd::
 	ds wc6d0 - @
 
 wPokedexDataStart::
@@ -1875,9 +1818,9 @@ wItemQuantityBuffer:: ds 1
 TempMon:: ; d10e
 	party_struct TempMon
 
-wSpriteFlags:: ds 1
+wSpriteFlags:: ds 1 ; d13e
 
-wHandlePlayerStep:: ds 2
+wHandlePlayerStep:: ds 2 ; d13f
 
 PartyMenuActionText:: ; d141
 	ds 1
@@ -1932,11 +1875,11 @@ wd182:: ds 1
 wd191:: ds 1
 wd192:: ds 1
 wd193:: ds 1
-wOverworldMapAnchor:: dw
-wMetatileStandingY:: ds 1
-wMetatileStandingX:: ds 1
-wSecondMapHeaderBank:: ds 1
-wTileset:: ds 1
+wOverworldMapAnchor:: dw ; d194
+wMetatileStandingY:: ds 1 ; d196
+wMetatileStandingX:: ds 1 ; d197
+wSecondMapHeaderBank:: ds 1 ; d198
+wTileset:: ds 1 ; d199
 wPermission:: ds 1 ; d19a
 wSecondMapHeaderAddr:: dw ; d19b
 
@@ -2232,8 +2175,8 @@ wd271:: ds 5
 
 
 ; SECTION "Enemy Party", WRAMX, BANK [1]
-OTPlayerName:: ds NAME_LENGTH
-OTPlayerID:: ds 2
+OTPlayerName:: ds NAME_LENGTH ; d26b
+OTPlayerID:: ds 2 ; d276
 	ds 8
 OTPartyCount::   ds 1 ; d280
 OTPartySpecies:: ds PARTY_LENGTH ; d281
@@ -2249,8 +2192,8 @@ wDudeKeyItems:: ds 18
 wDudeKeyItemsEnd:: ds 1
 
 wDudeNumBalls:: ds 1 ; d2a6
-wDudeBalls:: ds 2 * 4
-wDudeBallsEnd:: ds 1
+wDudeBalls:: ds 2 * 4 ; d2a7
+wDudeBallsEnd:: ds 1 ; d2af
 wDudeBagEnd::
 	ds wDudeBag - @
 
@@ -2309,32 +2252,29 @@ ScriptDelay:: ; d44d
 
 wPriorityScriptBank::
 wScriptTextBank::
-wd44e:: ds 1
+	ds 1 ; d44e
 wPriorityScriptAddr::
-wScriptTextAddr::
-wd44f:: ds 1
-wd450:: ds 1
-wd451:: ds 1
-wWildEncounterCooldown:: ds 1
-wd453:: ds 1
-wd454:: ds 1
+wScriptTextAddr:: ds 2 ; d44f
+	ds 1
+wWildEncounterCooldown:: ds 1 ; d452
+wXYComparePointer:: ds 2 ; d453
 	ds 4
 
-wBattleScriptFlags:: ds 2
-wPlayerSpriteSetupFlags:: ds 1
+wBattleScriptFlags:: ds 2 ; d459
+wPlayerSpriteSetupFlags:: ds 1 ; d45b
 ; bit 7: if set, cancel PlayerAction
 ; bit 5: if set, set facing according to bits 0-1
 ; bits 0-1: direction facing
-wMapReentryScriptQueueFlag:: ds 1 ; MemScriptFlag
-wMapReentryScriptBank:: ds 1 ; MemScriptBank
-wMapReentryScriptAddress:: ds 2 ; MemScriptAddr
+wMapReentryScriptQueueFlag:: ds 1 ; d45c MemScriptFlag
+wMapReentryScriptBank:: ds 1 ; d45d MemScriptBank
+wMapReentryScriptAddress:: ds 2 ; d45e MemScriptAddr
 	ds 4     ; ?????????????
-wTimeCyclesSinceLastCall:: ds 1
-wReceiveCallDelay_MinsRemaining:: ds 1
-wReceiveCallDelay_StartTime:: ds 3
+wTimeCyclesSinceLastCall:: ds 1 ; d464
+wReceiveCallDelay_MinsRemaining:: ds 1 ; d465
+wReceiveCallDelay_StartTime:: ds 3 ; d466
 	ds 3
-wBugContestMinsRemaining:: ds 1
-wBugContestSecsRemaining:: ds 1
+wBugContestMinsRemaining:: ds 1 ; d46c
+wBugContestSecsRemaining:: ds 1 ; d46d
 	ds 2
 wMapStatusEnd:: ds 2 ; d470
 
@@ -2422,12 +2362,12 @@ object_struct: MACRO
 \1Action:: ds 1
 \1ObjectStepFrame:: ds 1
 \1Facing:: ds 1
-\1NextTile:: ds 1     ; collision
 \1StandingTile:: ds 1 ; collision
-\1NextMapX:: ds 1
-\1NextMapY:: ds 1
-\1MapX:: ds 1
-\1MapY:: ds 1
+\1LastTile:: ds 1     ; collision
+\1StandingMapX:: ds 1
+\1StandingMapY:: ds 1
+\1LastMapX:: ds 1
+\1LastMapY:: ds 1
 \1ObjectInitX:: ds 1
 \1ObjectInitY:: ds 1
 \1Radius:: ds 1
@@ -2517,8 +2457,7 @@ CurTimeOfDay:: ; d848
 
 	ds 1
 
-wSecretID:: ds 1
-wd84b:: ds 1
+wSecretID:: ds 2
 StatusFlags:: ; d84c
 	; 0 - pokedex
 	; 1 - unown dex
@@ -2588,6 +2527,11 @@ PCItemsEnd::
 	ds 1
 
 wPokegearFlags:: ds 1
+; bit 0: map
+; bit 1: radio
+; bit 2: phone
+; bit 3: expn
+; bit 7: on/off
 wRadioTuningKnob:: ds 1
 wLastDexMode:: ds 2
 WhichRegisteredItem:: ; d95b
@@ -2599,7 +2543,8 @@ PlayerState:: ; d95d
 	ds 1
 
 wHallOfFameCount:: ds 2
-wTradeFlags:: ds 2
+wTradeFlags:: flag_array 6 ; d960
+	ds 1
 MooMooBerries:: ; d962
 	ds 1 ; how many berries fed to MooMoo
 UndergroundSwitchPositions:: ; d963
@@ -2697,8 +2642,8 @@ wMobileBattleRoomTrigger::                   ds 1 ; d9c0
 
 ;SECTION "Events", WRAMX, BANK [1]
 
-wJackFightCount::    ds 1
-                     ds 1
+wJackFightCount::    ds 1 ; d9f2
+wBeverlyFightCount:: ds 1 ; unused
 wHueyFightCount::    ds 1
 wGavenFightCount::   ds 1
 wBethFightCount::    ds 1
@@ -2711,23 +2656,21 @@ wLizFightCount::     ds 1
 wAnthonyFightCount:: ds 1
 wToddFightCount::    ds 1
 wGinaFightCount::    ds 1
-
-wda00:: ds 1
-
+wIrwinFightCount::   ds 1 ; unused
 wArnieFightCount::   ds 1
 wAlanFightCount::    ds 1
 wDanaFightCount::    ds 1
 wChadFightCount::    ds 1
-                     ds 1
+wDerekFightCount::   ds 1 ; unused
 wTullyFightCount::   ds 1
 wBrentFightCount::   ds 1
 wTiffanyFightCount:: ds 1
 wVanceFightCount::   ds 1
 wWiltonFightCount::  ds 1
-                     ds 1
+wKenjiFightCount::   ds 1 ; unused
 wParryFightCount::   ds 1
 wErinFightCount::    ds 1
-
+; da0e
 	ds 100
 
 EventFlags:: ; da72
@@ -2754,43 +2697,30 @@ BikeFlags:: ; dbf5
 	ds 1
 
 	ds 1
-wCurrentMapTriggerPointer:: ; dbf7
+wCurrentMapTriggerPointer:: ds 2 ; dbf7
+
+wCurrentCaller:: ds 2 ; dbf9
+wCurrMapWarpCount:: ds 1 ; dbfb
+wCurrMapWarpHeaderPointer:: ds 2 ; dbfc
+wCurrentMapXYTriggerCount:: ds 1 ; dbfe
+wCurrentMapXYTriggerHeaderPointer:: ds 2 ; dbff
+wCurrentMapSignpostCount:: ds 1 ; dc01
+wCurrentMapSignpostHeaderPointer:: ds 2 ; dc02
+wCurrentMapPersonEventCount:: ds 1 ; dc04
+wCurrentMapPersonEventHeaderPointer:: ds 2 ; dc05
+wCurrMapTriggerCount:: ds 1 ; dc07
+wCurrMapTriggerHeaderPointer:: ds 2 ; dc08
+wCurrMapCallbackCount:: ds 1 ; dc0a
+wCurrMapCallbackHeaderPointer:: ds 2 ; dc0b
 	ds 2
 
-wCurrentCaller:: ds 2
-wCurrMapWarpCount:: ds 1
-wCurrMapWarpHeaderPointer:: ds 1
-wdbfd:: ds 1
-wCurrentMapXYTriggerCount:: ds 1
-wCurrentMapXYTriggerHeaderPointer:: ds 1
-wdc00:: ds 1
-wCurrentMapSignpostCount:: ds 1
-wCurrentMapSignpostHeaderPointer::
-wdc02:: ds 1
-wdc03:: ds 1
-wCurrentMapPersonEventCount::
-wdc04:: ds 1
-wCurrentMapPersonEventHeaderPointer::
-wdc05:: ds 1
-wdc06:: ds 1
-wCurrMapTriggerCount:: ds 1
-wCurrMapTriggerHeaderPointer:: ds 1
-wdc09:: ds 1
-wCurrMapCallbackCount:: ds 1
-wCurrMapCallbackHeaderPointer:: ds 2
-wdc0d:: ds 1
-wdc0e:: ds 1
-
 ; Sprite id of each decoration
-wdc0f::
 Bed:: ; dc0f
 	ds 1
 Carpet:: ; dc10
 	ds 1
-wdc11::
 Plant:: ; dc11
 	ds 1
-wdc12::
 Poster:: ; dc12
 	ds 1
 Console:: ; dc13
@@ -2803,40 +2733,32 @@ BigDoll:: ; dc16
 	ds 1
 
 ; Items bought from Mom
-wWhichMomItem::
-wdc17:: ds 1
-wWhichMomItemSet::
-	ds 1
-MomItemTriggerBalance::
-wdc19:: ds 1
-wdc1a:: ds 1
-wdc1b:: ds 1
+wWhichMomItem:: ds 1 ; dc17
+wWhichMomItemSet:: ds 1 ; dc18
+MomItemTriggerBalance:: ds 3 ; dc19
 
 wDailyResetTimer:: ds 2
 DailyFlags:: ds 1
 WeeklyFlags:: ds 1
 SwarmFlags:: ds 1
-wdc21:: ds 1
-wdc22:: ds 1
+	ds 2
 wStartDay:: ds 1
-wdc24:: ds 2
-wdc26:: ds 1
+	ds 3
 
-FruitTreeFlags:: ; dc27
-	ds 1
+FruitTreeFlags:: flag_array NUM_FRUIT_TREES ; dc27
 
-	ds 5
+	ds 2
 
 wLuckyNumberDayBuffer:: ds 2
 	ds 2
-wSpecialPhoneCallID:: ds 2
-wdc33:: ds 2
-wBugContestStartTime:: ds 4 ; day, hour, min, sec
-wdc39:: ds 1
+wSpecialPhoneCallID:: ds 1
+	ds 3
+wBugContestStartTime:: ds 4 ; day, hour, min, sec ; dc35
+wUnusedTwoDayTimerOn:: ds 1 ; dc39
 wUnusedTwoDayTimer:: ds 1
 wUnusedTwoDayTimerStartDate:: ds 1
 	ds 4
-wdc40:: ds 1
+wMobileOrCable_LastSelection:: ds 1
 wdc41:: ds 1
 wdc42:: ds 8
 wBuenasPassword:: ds 1
@@ -2863,6 +2785,7 @@ wParkBallsRemaining::
 wSafariBallsRemaining:: ds 1 ; dc79
 wSafariTimeRemaining:: ds 2 ; dc7a
 wPhoneList:: ds CONTACT_LIST_SIZE ; dc7c
+; dc86
 	ds 23
 wLuckyNumberShowFlag:: ds 2 ; dc9d
 wLuckyIDNumber:: ds 2 ; dc9f
@@ -2987,11 +2910,7 @@ wEggNick:: ds PKMN_NAME_LENGTH ; df65
 wEggOT::   ds NAME_LENGTH ; df70
 wEggMon::  box_struct wEggMon ; df7b
 
-wdf9b::
 wBugContestSecondPartySpecies:: ds 1
-
-
-wdf9c::
 wContestMon:: party_struct wContestMon ; df9c
 
 wDunsparceMapGroup:: ds 1
@@ -3018,8 +2937,7 @@ wRoamMons_LastMapGroup:: ds 1
 wBestMagikarpLengthFeet:: ds 1
 wBestMagikarpLengthInches:: ds 1
 wMagikarpRecordHoldersName:: ds NAME_LENGTH
-wdff5::
-
+; dff5
 wPokemonDataEnd::
 wGameDataEnd::
 

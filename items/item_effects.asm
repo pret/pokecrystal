@@ -403,7 +403,7 @@ endr
 	jr c, .not_kurt_ball
 	ld a, POKE_BALL
 .not_kurt_ball
-	ld [wKickCounter], a
+	ld [wBattleAnimParam], a
 
 	ld de, ANIM_THROW_POKE_BALL
 	ld a, e
@@ -452,23 +452,23 @@ endr
 	push af
 	set SUBSTATUS_TRANSFORMED, [hl]
 	bit SUBSTATUS_TRANSFORMED, a
-	jr nz, .asm_ea13
-	jr .asm_ea1a
+	jr nz, .ditto
+	jr .not_ditto
 
-.asm_ea13
+.ditto
 	ld a, DITTO
 	ld [TempEnemyMonSpecies], a
-	jr .asm_ea27
+	jr .load_data
 
-.asm_ea1a
-	set 3, [hl]
-	ld hl, wc6f2
+.not_ditto
+	set SUBSTATUS_TRANSFORMED, [hl]
+	ld hl, wEnemyBackupDVs
 	ld a, [EnemyMonDVs]
 	ld [hli], a
 	ld a, [EnemyMonDVs + 1]
 	ld [hl], a
 
-.asm_ea27
+.load_data
 	ld a, [TempEnemyMonSpecies]
 	ld [CurPartySpecies], a
 	ld a, [EnemyMonLevel]
@@ -1665,7 +1665,7 @@ RevivePokemon: ; f0d6
 	ld a, [CurPartyMon]
 	ld c, a
 	ld d, 0
-	ld hl, wc6fc
+	ld hl, wBattleParticipantsIncludingFainted
 	ld b, CHECK_FLAG
 	predef FlagPredef
 	ld a, c
@@ -2955,7 +2955,7 @@ UseBallInTrainerBattle: ; f7a0
 	ld a, d
 	ld [FXAnimIDHi], a
 	xor a
-	ld [wKickCounter], a
+	ld [wBattleAnimParam], a
 	ld [hBattleTurn], a
 	ld [wNumHits], a
 	predef PlayBattleAnim

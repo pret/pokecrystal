@@ -399,7 +399,7 @@ PlaceEnemysName:: ; 121b
 	cp RIVAL2
 	jr z, .rival
 
-	ld de, OTName
+	ld de, OTClassName
 	call PlaceString
 	ld h, b
 	ld l, c
@@ -416,7 +416,7 @@ PlaceEnemysName:: ; 121b
 	jr PlaceCommandCharacter
 
 .linkbattle
-	ld de, OTName
+	ld de, OTClassName
 	jr PlaceCommandCharacter
 
 

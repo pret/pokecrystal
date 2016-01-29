@@ -4,7 +4,7 @@ ReturnFromMapSetupScript:: ; b8000
 	; For some reson, GameFreak chose to use a callba here instead of just falling through.
 	; No other function in the game references the function at 2E:400A, here labeled
 	; ReturnFromMapSetupScript.inefficientcallba.
-	callba .inefficientcallba ; this is a waste of 6 ROM bytes and 2 stack bytes
+	callba .inefficientcallba ; this is a waste of 6 ROM bytes and 6 stack bytes
 	ret
 ; b800a
 
@@ -288,7 +288,7 @@ CheckForHiddenItems: ; b8172
 	add SCREEN_HEIGHT / 4
 	ld [wd1ec], a
 ; Get the pointer for the first signpost header in the map...
-	ld hl, wdc02
+	ld hl, wCurrentMapSignpostHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

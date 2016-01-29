@@ -569,7 +569,7 @@ LoadEDTile:: ; 323d
 	jr .LoadEDTile
 ; 323f
 
-.unreferenced_323f ; 323f
+; XXX
 	callba Function104000
 	ret
 ; 3246
@@ -661,18 +661,18 @@ SetPalettes:: ; 32f9
 	ld a, [hCGB]
 	and a
 	jr nz, .SetPalettesForGameBoyColor
-	ld a, $e4
+	ld a, %11100100
 	ld [rBGP], a
-	ld a, $d0
+	ld a, %11010000
 	ld [rOBP0], a
 	ld [rOBP1], a
 	ret
 
 .SetPalettesForGameBoyColor
 	push de
-	ld a, $e4
+	ld a, %11100100
 	call DmgToCgbBGPals
-	ld de, $e4e4
+	lb de, %11100100, %11100100
 	call DmgToCgbObjPals
 	pop de
 	ret
@@ -702,7 +702,7 @@ ClearPalettes:: ; 3317
 
 ; Fill BGPals and OBPals with $ffff (white)
 	ld hl, BGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	ld a, $ff
 	call ByteFill
 
@@ -1462,11 +1462,11 @@ FacingPlayerDistance:: ; 36ad
 	add hl, bc
 	ld e, [hl]
 
-	ld a, [PlayerNextMapX]
+	ld a, [PlayerStandingMapX]
 	cp d
 	jr z, .CheckY
 
-	ld a, [PlayerNextMapY]
+	ld a, [PlayerStandingMapY]
 	cp e
 	jr z, .CheckX
 
@@ -1474,7 +1474,7 @@ FacingPlayerDistance:: ; 36ad
 	ret
 
 .CheckY
-	ld a, [PlayerNextMapY]
+	ld a, [PlayerStandingMapY]
 	sub e
 	jr z, .NotFacing
 	jr nc, .Above
@@ -1492,7 +1492,7 @@ FacingPlayerDistance:: ; 36ad
 	jr .CheckFacing
 
 .CheckX
-	ld a, [PlayerNextMapX]
+	ld a, [PlayerStandingMapX]
 	sub d
 	jr z, .NotFacing
 	jr nc, .Left
@@ -1665,9 +1665,9 @@ _PrepMonFrontpic:: ; 378b
 	predef GetFrontpic
 	pop hl
 	xor a
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	lb bc, 7, 7
-	predef FillBox
+	predef PlaceGraphic
 	xor a
 	ld [wBoxAlignment], a
 	ret

@@ -120,7 +120,7 @@ Function8c2cf: ; 8c2cf
 	ld [rSVBK], a
 	push hl
 	ld hl, wDecompressScratch
-	ld bc, $28 * $10
+	ld bc, $28 tiles
 
 .loop
 	ld [hl], -1
@@ -568,7 +568,7 @@ StartTrainerBattle_SpeckleToBlack: ; 8c58f (23:458f)
 StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	ld a, [OtherTrainerClass]
 	and a
-	jp z, .nextscene
+	jp z, .nextscene ; don't need to be here if wild
 
 	xor a
 	ld [hBGMapMode], a
@@ -579,6 +579,7 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	jr .enter_loop_midway
 
 .loop
+; set all pals to 7
 	ld a, [hl]
 	or %00000111
 	ld [hli], a
@@ -588,7 +589,7 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	dec b
 	jr nz, .loop
 
-	call .loadpokeballgfx ; load a, [OtherTrainerClass] \ ld de, PokeBallTransition
+	call .loadpokeballgfx ; ld a, [OtherTrainerClass] \ ld de, PokeBallTransition \ ret
 	hlcoord 2, 1
 
 	ld b, SCREEN_WIDTH - 4
@@ -605,7 +606,7 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	jr z, .done
 	sla a
 	jr nc, .no_load
-	ld [hl], $fe ; "8"
+	ld [hl], $fe
 .no_load
 	inc hl
 	jr .loop4
@@ -650,12 +651,12 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	ld [rSVBK], a
 	call .copypals
 	push hl
-	ld de, UnknBGPals + 8 * 7
-	ld bc, $8
+	ld de, UnknBGPals + 7 palettes
+	ld bc, 1 palettes
 	call CopyBytes
 	pop hl
-	ld de, BGPals + 8 * 7
-	ld bc, $8
+	ld de, BGPals + 7 palettes
+	ld bc, 1 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -669,21 +670,21 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	ret
 
 .copypals: ; 8c677 (23:4677)
-	ld de, UnknBGPals + 8 * 7
+	ld de, UnknBGPals + 7 palettes
 	call .copy
-	ld de, BGPals + 8 * 7
+	ld de, BGPals + 7 palettes
 	call .copy
-	ld de, UnknOBPals + 8 * 6
+	ld de, UnknOBPals + 6 palettes
 	call .copy
-	ld de, OBPals + 8 * 6
+	ld de, OBPals + 6 palettes
 	call .copy
-	ld de, UnknOBPals + 8 * 7
+	ld de, UnknOBPals + 7 palettes
 	call .copy
-	ld de, OBPals + 8 * 7
+	ld de, OBPals + 7 palettes
 
 .copy: ; 8c698 (23:4698)
 	push hl
-	ld bc, $8
+	ld bc, 1 palettes
 	call CopyBytes
 	pop hl
 	ret

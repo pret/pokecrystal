@@ -196,16 +196,16 @@ TMHM_PocketLoop: ; 2c8d3 (b:48d3)
 	xor a
 	ld [hBGMapMode], a
 	call TMHM_DisplayPocketItems
-	ld a, $2
+	ld a, 2
 	ld [w2DMenuCursorInitY], a
-	ld a, $7
+	ld a, 7
 	ld [w2DMenuCursorInitX], a
-	ld a, $1
+	ld a, 1
 	ld [w2DMenuNumCols], a
-	ld a, $5
+	ld a, 5
 	sub d
 	inc a
-	cp $6
+	cp 6
 	jr nz, .okay
 	dec a
 .okay

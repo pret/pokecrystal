@@ -124,8 +124,8 @@ StartMap: ; 96724
 	call ClearJoypad
 EnterMap: ; 9673e
 	xor a
-	ld [wd453], a
-	ld [wd454], a
+	ld [wXYComparePointer], a
+	ld [wXYComparePointer + 1], a
 	call SetUpFiveStepWildEncounterCooldown
 	callba RunMapSetupScript
 	call DisableEvents
@@ -378,7 +378,7 @@ CheckTileEvent: ; 96874
 	ret
 
 .warp_tile
-	ld a, [PlayerNextTile]
+	ld a, [PlayerStandingTile]
 	call CheckPitTile
 	jr nz, .not_pit
 	ld a, PLAYEREVENT_FALL
@@ -454,7 +454,7 @@ DoMapTrigger: ; 968ec
 	ld h, [hl]
 	ld l, a
 rept 4
-	add hl,de
+	add hl, de
 endr
 	
 	call GetMapScriptHeaderBank
@@ -1031,7 +1031,7 @@ DoPlayerEvent: ; 96beb
 	ld b, 0
 	ld hl, PlayerEventScriptPointers
 rept 3
-	add hl,bc
+	add hl, bc
 endr
 	ld a, [hli]
 	ld [ScriptBank], a

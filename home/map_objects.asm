@@ -1,6 +1,5 @@
 ; Functions handling map objects.
 
-
 GetSpritePalette:: ; 17ff
 	push hl
 	push de
@@ -15,7 +14,6 @@ GetSpritePalette:: ; 17ff
 	pop hl
 	ret
 ; 180e
-
 
 GetSpriteVTile:: ; 180e
 	push hl
@@ -77,24 +75,21 @@ DoesSpriteHaveFacings:: ; 1836
 	ret
 ; 184a
 
-
-
-Function184a:: ; 184a
-	ld a, [PlayerNextTile]
+GetPlayerStandingTile:: ; 184a
+	ld a, [PlayerStandingTile]
 	call GetTileCollision
 	ld b, a
 	ret
 ; 1852
 
 CheckOnWater:: ; 1852
-	ld a, [PlayerNextTile]
+	ld a, [PlayerStandingTile]
 	call GetTileCollision
 	sub 1
 	ret z
 	and a
 	ret
 ; 185d
-
 
 GetTileCollision:: ; 185d
 ; Get the collision type of tile a.
@@ -123,19 +118,7 @@ GetTileCollision:: ; 185d
 	ret
 ; 1875
 
-
 CheckGrassTile:: ; 1875
-	; and %00110111
-	; cp $10
-	; ret c
-	; cp $30
-	; jr nc, .okay
-	; scf
-	; ret
-	; .okay
-	; xor a
-	; ret
-
 	ld d, a
 	and $f0
 	cp $10
@@ -222,7 +205,7 @@ CheckWaterfallTile:: ; 18bd
 ; 18c3
 
 CheckStandingOnEntrance:: ; 18c3
-	ld a, [PlayerNextTile]
+	ld a, [PlayerStandingTile]
 	cp $71 ; door
 	ret z
 	cp $79
@@ -233,7 +216,6 @@ CheckStandingOnEntrance:: ; 18c3
 	ret
 ; 18d2
 
-
 GetMapObject:: ; 18d2
 ; Return the location of map object a in bc.
 	ld hl, MapObjects
@@ -243,7 +225,6 @@ GetMapObject:: ; 18d2
 	ld c, l
 	ret
 ; 18de
-
 
 CheckObjectVisibility:: ; 18de
 ; Sets carry if the object is not visible on the screen.
@@ -338,14 +319,12 @@ CheckObjectTime:: ; 18f5
 	ret
 ; 194d
 
-Function194d:: ; 194d
+; XXX
 	ld [hMapObjectIndexBuffer], a
 	call GetMapObject
 	call CopyObjectStruct
 	ret
 ; 1956
-
-
 
 _CopyObjectStruct:: ; 1956
 	ld [hMapObjectIndexBuffer], a
@@ -356,7 +335,7 @@ _CopyObjectStruct:: ; 1956
 	ret
 ; 1967
 
-Function1967:: ; 1967
+ApplyDeletionToMapObject:: ; 1967
 	ld [hMapObjectIndexBuffer], a
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
@@ -366,21 +345,19 @@ Function1967:: ; 1967
 	ret z ; already hidden
 	ld [hl], -1
 	push af
-	call Function1985
+	call .CheckStopFollow
 	pop af
 	call GetObjectStruct
 	callba DeleteMapObject
 	ret
-; 1985
 
-Function1985:: ; 1985
+.CheckStopFollow
 	ld hl, wObjectFollow_Leader
 	cp [hl]
 	jr z, .ok
 	ld hl, wObjectFollow_Follower
 	cp [hl]
 	ret nz
-
 .ok
 	callba StopFollow
 	ld a, -1
@@ -390,12 +367,12 @@ Function1985:: ; 1985
 ; 199f
 
 DeleteObjectStruct:: ; 199f
-	call Function1967
+	call ApplyDeletionToMapObject
 	call MaskObject
 	ret
 ; 19a6
 
-Function19a6:: ; 19a6
+CopyPlayerObjectTemplate:: ; 19a6
 	push hl
 	call GetMapObject
 	ld d, b
@@ -409,7 +386,7 @@ Function19a6:: ; 19a6
 	ret
 ; 19b8
 
-Function19b8:: ; 19b8
+; XXX
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
@@ -439,8 +416,6 @@ Function19b8:: ; 19b8
 	ret
 ; 19e9
 
-
-
 LoadMovementDataPointer:: ; 19e9
 ; Load the movement data pointer for person a.
 	ld [wMovementPerson], a
@@ -467,8 +442,6 @@ LoadMovementDataPointer:: ; 19e9
 	and a
 	ret
 ; 1a13
-
-
 
 FindFirstEmptyObjectStruct:: ; 1a13
 ; Returns the index of the first empty object struct in A and its address in HL, then sets carry.
@@ -499,8 +472,6 @@ FindFirstEmptyObjectStruct:: ; 1a13
 	pop bc
 	ret
 ; 1a2f
-
-
 
 GetSpriteMovementFunction:: ; 1a2f
 	ld hl, OBJECT_MOVEMENTTYPE
@@ -540,7 +511,6 @@ endr
 	pop bc
 	ret
 ; 1a61
-
 
 CopySpriteMovementData:: ; 1a61
 	ld l, a
@@ -649,7 +619,6 @@ ResetVramState_Bit0:: ; 1acc
 	ret
 ; 1ad2
 
-
 UpdateSprites:: ; 1ad2
 	ld a, [VramState]
 	bit 0, a
@@ -659,7 +628,6 @@ UpdateSprites:: ; 1ad2
 	callba _UpdateSprites
 	ret
 ; 1ae5
-
 
 GetObjectStruct:: ; 1ae5
 	ld bc, OBJECT_STRUCT_LENGTH
@@ -692,7 +660,6 @@ SetSpriteDirection:: ; 1af8
 	ld [hl], a
 	ret
 ; 1b07
-
 
 GetSpriteDirection:: ; 1b07
 	ld hl, OBJECT_FACING

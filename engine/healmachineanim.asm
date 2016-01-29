@@ -19,7 +19,7 @@ HealMachineAnim: ; 12324
 
 .DoJumptableFunctions: ; 1233e
 	xor a
-	ld [wd1ec], a
+	ld [Buffer3], a
 .jumpable_loop
 	ld a, [Buffer1]
 	ld e, a
@@ -31,10 +31,10 @@ endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wd1ec]
+	ld a, [Buffer3]
 	ld e, a
 	inc a
-	ld [wd1ec], a
+	ld [Buffer3], a
 	add hl, de
 	ld a, [hl]
 	cp 5
@@ -81,14 +81,14 @@ endr
 
 .PC_LoadBallsOntoMachine: ; 12393
 	ld hl, Sprites + $80
-	ld de, .PC_ElmsLab_TileMap
+	ld de, .PC_ElmsLab_OAM
 	call .PlaceHealingMachineTile
 	call .PlaceHealingMachineTile
 	jr .LoadBallsOntoMachine
 
 .HOF_LoadBallsOntoMachine: ; 123a1
 	ld hl, Sprites + $80
-	ld de, .HOF_TileMap
+	ld de, .HOF_OAM
 
 .LoadBallsOntoMachine: ; 123a7
 	ld a, [PartyCount]
@@ -126,28 +126,28 @@ endr
 	ret
 ; 123dc
 
-.PC_ElmsLab_TileMap: ; 123dc
-	db $20, $22, $7c, $16
-	db $20, $26, $7c, $16
-	db $26, $20, $7d, $16
-	db $26, $28, $7d, $36
-	db $2b, $20, $7d, $16
-	db $2b, $28, $7d, $36
-	db $30, $20, $7d, $16
-	db $30, $28, $7d, $36
+.PC_ElmsLab_OAM: ; 123dc
+	dsprite   4, 0,   4, 2, $7c, $16
+	dsprite   4, 0,   4, 6, $7c, $16
+	dsprite   4, 6,   4, 0, $7d, $16
+	dsprite   4, 6,   5, 0, $7d, $36 ; xflip
+	dsprite   5, 3,   4, 0, $7d, $16
+	dsprite   5, 3,   5, 0, $7d, $36 ; xflip
+	dsprite   6, 0,   4, 0, $7d, $16
+	dsprite   6, 0,   5, 0, $7d, $36 ; xflip
 ; 123fc
 
 .HealMachineGFX: ; 123fc
 INCBIN "gfx/unknown/0123fc.2bpp"
 ; 1241c
 
-.HOF_TileMap: ; 1241c
-	db $3c, $51, $7d, $16
-	db $3c, $56, $7d, $16
-	db $3b, $4d, $7d, $16
-	db $3b, $5a, $7d, $16
-	db $39, $49, $7d, $16
-	db $39, $5d, $7d, $16
+.HOF_OAM: ; 1241c
+	dsprite   7, 4,  10, 1, $7d, $16
+	dsprite   7, 4,  10, 6, $7d, $16
+	dsprite   7, 3,   9, 5, $7d, $16
+	dsprite   7, 3,  11, 2, $7d, $16
+	dsprite   7, 1,   9, 1, $7d, $16
+	dsprite   7, 1,  11, 5, $7d, $16
 ; 12434
 
 .LoadPalettes: ; 12434
@@ -241,10 +241,10 @@ endr
 .PlaceHealingMachineTile: ; 124a3
 	push bc
 	ld a, [Buffer1]
-	lb bc, $10, $20
+	bcpixel 2, 4
 	cp $1 ; ElmsLab
 	jr z, .okay
-	lb bc, $00, $00
+	bcpixel 0, 0
 
 .okay
 	ld a, [de]

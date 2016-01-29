@@ -272,7 +272,7 @@ MapSetupCommands: ; 15440
 	dba GetCoordOfUpperLeftCorner ; 1f
 	dba RestoreFacingAfterWarp ; 20
 	dba SpawnInFacingDown ; 21
-	dba GetSpawnCoord ; 22
+	dba SpawnPlayer ; 22
 	dba RefreshPlayerCoords ; 23
 	dba DelayClearingOldSprites ; 24
 	dba DelayLoadingNewSprites ; 25

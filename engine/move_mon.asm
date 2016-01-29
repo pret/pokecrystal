@@ -287,17 +287,16 @@ endr
 	dec a
 	jr nz, .generatestats
 	ld hl, EnemyMonMaxHP
-	ld bc, 2*6 ; MaxHP + 5 Stats
+	ld bc, 2 * 6 ; MaxHP + 5 Stats
 	call CopyBytes
 	pop hl
 	jr .next3
 
 .generatestats
 	pop hl
-	ld bc, 2*5 ; 5 Stats
+	ld bc, MON_STAT_EXP - 1
 	add hl, bc
-	ld b, $0 ; if b = 1, then the Stats of the Pkmn are calculated
-             ; only the current HP aren't set to MaxHP after this
+	ld b, $0 ; if b = 1, then stat calculation takes stat exp into account.
 	call CalcPkmnStats
 
 .next3

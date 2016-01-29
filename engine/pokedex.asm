@@ -1080,7 +1080,7 @@ Pokedex_DrawMainScreenBG: ; 4074c (10:474c)
 	lb bc, 7, 7
 	call Pokedex_PlaceBorder
 	hlcoord 0, 9
-	ld bc, $607
+	lb bc, 6, 7
 	call Pokedex_PlaceBorder
 	hlcoord 1, 11
 	ld de, String_SEEN
@@ -1106,11 +1106,11 @@ Pokedex_DrawMainScreenBG: ; 4074c (10:474c)
 	ld de, String_SELECT_OPTION
 	call Pokedex_PlaceString
 	hlcoord 8, 1
-	ld b, $7
+	ld b, 7
 	ld a, $5a
 	call Pokedex_FillColumn
 	hlcoord 8, 10
-	ld b, $6
+	ld b, 6
 	ld a, $5a
 	call Pokedex_FillColumn
 	hlcoord 8, 0
@@ -1136,22 +1136,22 @@ String_START_SEARCH: ; 407f2
 Pokedex_DrawDexEntryScreenBG: ; 407fd
 	call Pokedex_FillBackgroundColor2
 	hlcoord 0, 0
-	ld bc, $0f12
+	lb bc, 15, 18
 	call Pokedex_PlaceBorder
 	hlcoord 19, 0
 	ld [hl], $34
 	hlcoord 19, 1
-	ld a, $7f
-	ld b, $f
+	ld a, " "
+	ld b, 15
 	call Pokedex_FillColumn
 	ld [hl], $39
 	hlcoord 1, 10
-	ld bc, $0013
+	ld bc, 19
 	ld a, $61
 	call ByteFill
 	hlcoord 1, 17
-	ld bc, $0012
-	ld a, $7f
+	ld bc, 18
+	ld a, " "
 	call ByteFill
 	hlcoord 9, 7
 	ld de, .Height
@@ -1264,7 +1264,7 @@ Pokedex_DrawSearchResultsScreenBG: ; 40962 (10:4962)
 	hlcoord 8, 0
 	ld [hl], $59
 	hlcoord 8, 1
-	ld b, $7
+	ld b, 7
 	ld a, $5a
 	call Pokedex_FillColumn
 	hlcoord 8, 8
@@ -1718,7 +1718,7 @@ Pokedex_DisplayModeDescription: ; 40e5b
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 12
-	lb bc, 4, SCREEN_WIDTH - 2
+	lb bc, 4, 18
 	call Pokedex_PlaceBorder
 	ld a, [wDexArrowCursorPosIndex]
 	ld hl, .Modes
@@ -1757,7 +1757,7 @@ Pokedex_DisplayChangingModesMessage: ; 40f08 (10:4f08)
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 12
-	lb bc, 4, SCREEN_WIDTH - 2
+	lb bc, 4, 18
 	call Pokedex_PlaceBorder
 	ld de, String_ChangingModesPleaseWait
 	hlcoord 1, 14
@@ -1996,7 +1996,7 @@ Pokedex_DisplayTypeNotFoundMessage: ; 41107
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 12
-	ld bc, $0412
+	lb bc, 4, 18
 	call Pokedex_PlaceBorder
 	ld de, .TypeNotFound
 	hlcoord 1, 14

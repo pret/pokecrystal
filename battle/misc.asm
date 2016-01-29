@@ -32,8 +32,8 @@ AppearUser: ; fbd77 (3e:7d77)
 	call GetPlayerBackpicCoords
 	ld a, $31
 .okay
-	ld [hFillBox], a
-	predef FillBox
+	ld [hGraphicStartTile], a
+	predef PlaceGraphic
 FinishAppearDisappearUser: ; fbd91 (3e:7d91)
 	ld a, $1
 	ld [hBGMapMode], a

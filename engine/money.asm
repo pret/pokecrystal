@@ -86,7 +86,7 @@ CompareFunds: ; 1600d
 	jr .skip_carry
 
 .set_carry
-	ld a, TRUE
+	ld a, 1
 	and a
 	scf
 .skip_carry

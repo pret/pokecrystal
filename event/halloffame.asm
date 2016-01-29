@@ -111,7 +111,7 @@ AnimateHallOfFame: ; 864c3
 	jr .loop
 
 .done
-	call Function86810
+	call HOF_AnimatePlayerPic
 	ld a, $4
 	ld [MusicFade], a
 	call RotateThreePalettesRight
@@ -128,7 +128,7 @@ AnimateHallOfFame: ; 864c3
 	call WaitBGMap
 	decoord 6, 5
 	ld c, $6
-	predef Functiond066e
+	predef HOF_AnimateFrontpic
 	ld c, 60
 	call DelayFrames
 	and a
@@ -251,10 +251,10 @@ endr
 	ld de, VTiles2 tile $31
 	predef GetBackpic
 	ld a, $31
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	hlcoord 6, 6
 	lb bc, 6, 6
-	predef FillBox
+	predef PlaceGraphic
 	ld a, $d0
 	ld [hSCY], a
 	ld a, $90
@@ -310,21 +310,20 @@ _HallOfFamePC: ; 86650
 	call LoadFontsBattleExtra
 	xor a
 	ld [wJumptableIndex], a
-.loop
+.MasterLoop
 	call LoadHOFTeam
 	ret c
-	call Function86665
+	call .DisplayTeam
 	ret c
 	ld hl, wJumptableIndex
 	inc [hl]
-	jr .loop
-; 86665
+	jr .MasterLoop
 
-Function86665: ; 86665
+.DisplayTeam
 	xor a
 	ld [wcf64], a
 .next
-	call Function86692
+	call .DisplayMonAndStrings
 	jr c, .start_button
 .loop
 	call JoyTextDelay
@@ -353,19 +352,18 @@ Function86665: ; 86665
 .start_button
 	and a
 	ret
-; 86692
 
-Function86692: ; 86692
+.DisplayMonAndStrings
 ; Print the number of times the player has entered the Hall of Fame.
 ; If that number is above 200, print "HOF Master!" instead.
 	ld a, [wcf64]
-	cp $6
+	cp PARTY_LENGTH
 	jr nc, .fail
 	ld hl, wHallOfFameTempMon1
 	ld bc, wHallOfFameTempMon1End - wHallOfFameTempMon1
 	call AddNTimes
 	ld a, [hl]
-	cp $ff
+	cp -1
 	jr nz, .okay
 
 .fail
@@ -380,14 +378,14 @@ Function86692: ; 86692
 	ld a, [wHallOfFameTempWinCount]
 	cp 200 + 1
 	jr c, .print_num_hof
-	ld de, String_866fc
+	ld de, .HOFMaster
 	hlcoord 1, 2
 	call PlaceString
 	hlcoord 13, 2
 	jr .finish
 
 .print_num_hof
-	ld de, String_8670c
+	ld de, .TimeFamer
 	hlcoord 1, 2
 	call PlaceString
 	hlcoord 2, 2
@@ -397,7 +395,7 @@ Function86692: ; 86692
 	hlcoord 11, 2
 
 .finish
-	ld de, String_866fb
+	ld de, .EmptyString
 	call PlaceString
 	call WaitBGMap
 	ld b, SCGB_1A
@@ -405,23 +403,19 @@ Function86692: ; 86692
 	call SetPalettes
 	decoord 6, 5
 	ld c, $6
-	predef Functiond066e
+	predef HOF_AnimateFrontpic
 	and a
 	ret
-; 866fb
 
-String_866fb:
+.EmptyString:
 	db "@"
-; 866fc
 
-String_866fc:
+.HOFMaster:
 	db "    HOF Master!@"
-; 8670c
 
-String_8670c:
+.TimeFamer:
 	db "    -Time Famer@"
 ; 8671c
-
 
 LoadHOFTeam: ; 8671c
 	ld a, [wJumptableIndex]
@@ -537,7 +531,7 @@ DisplayHOFMon: ; 86748
 	ret
 ; 86810
 
-Function86810: ; 86810
+HOF_AnimatePlayerPic: ; 86810
 	call ClearBGPalettes
 	ld hl, VTiles2 tile $63
 	ld de, FontExtra + 13 tiles
@@ -549,10 +543,10 @@ Function86810: ; 86810
 	call ByteFill
 	callba GetPlayerBackpic
 	ld a, $31
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	hlcoord 6, 6
 	lb bc, 6, 6
-	predef FillBox
+	predef PlaceGraphic
 	ld a, $d0
 	ld [hSCY], a
 	ld a, $90
@@ -571,12 +565,12 @@ Function86810: ; 86810
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "
 	call ByteFill
-	callba Function88840
+	callba HOF_LoadTrainerFrontpic
 	xor a
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	hlcoord 12, 5
 	lb bc, 7, 7
-	predef FillBox
+	predef PlaceGraphic
 	ld a, $c0
 	ld [hSCX], a
 	call WaitBGMap

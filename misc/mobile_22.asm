@@ -1255,10 +1255,10 @@ Function897d5: ; 897d5
 
 .asm_897f3
 	ld a, $37
-	ld [hFillBox], a
+	ld [hGraphicStartTile], a
 	hlcoord 12, 3
 	lb bc, 7, 7
-	predef FillBox
+	predef PlaceGraphic
 	call Function8963d
 	pop bc
 	ret

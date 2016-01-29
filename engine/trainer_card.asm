@@ -245,8 +245,8 @@ TrainerCard_PrintTopHalfOfCard: ; 25299 (9:5299)
 	hlcoord 14, 1
 	lb bc, 5, 7
 	xor a
-	ld [hFillBox], a
-	predef FillBox
+	ld [hGraphicStartTile], a
+	predef PlaceGraphic
 	ret
 
 ; 252ec (9:52ec)

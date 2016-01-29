@@ -1,6 +1,6 @@
 CheckWarpCollision:: ; 1499a
 ; Is this tile a warp?
-	ld a, [PlayerNextTile]
+	ld a, [PlayerStandingTile]
 	cp $60
 	jr z, .warp
 	cp $68
@@ -19,7 +19,7 @@ CheckWarpCollision:: ; 1499a
 CheckDirectionalWarp:: ; 149af
 ; If this is a directional warp, clear carry (press the designated button to warp).
 ; Else, set carry (immediate warp).
-	ld a, [PlayerNextTile]
+	ld a, [PlayerStandingTile]
 	cp $70 ; Warp on down
 	jr z, .not_warp
 	cp $76 ; Warp on left
@@ -39,7 +39,7 @@ CheckDirectionalWarp:: ; 149af
 CheckWarpFacingDown: ; 149c6
 	ld de, 1
 	ld hl, .blocks
-	ld a, [PlayerNextTile]
+	ld a, [PlayerStandingTile]
 	call IsInArray
 	ret
 ; 149d3
@@ -58,7 +58,7 @@ CheckWarpFacingDown: ; 149c6
 ; 149dd
 
 CheckGrassCollision:: ; 149dd
-	ld a, [PlayerNextTile]
+	ld a, [PlayerStandingTile]
 	ld hl, .blocks
 	ld de, 1
 	call IsInArray
@@ -98,7 +98,7 @@ CheckCutCollision: ; 149f5
 ; 14a07
 
 Function14a07:: ; 14a07
-	ld a, [PlayerNextTile]
+	ld a, [PlayerStandingTile]
 	ld de, $1f
 	cp $71 ; door
 	ret z

@@ -19,14 +19,14 @@ DoAnimFrame: ; 8d24b
 	dw .two         ; bouncing mon icon, selected
 	dw .three       ; bouncing mon icon, menu open
 	dw .four
-	dw .five
+	dw .namingscreencursor
 	dw .GameFreakLogo         ; Game Freak logo
 	dw .seven
 	dw .eight
 	dw .SlotsGolem        ; Something to do with slots
 	dw .SlotsChansey         ; Something to do with slots
 	dw .SlotsChanseyEgg      ; Something to do with slots
-	dw .twelve      ; blinking cursor
+	dw .mailcompositioncursor      ; blinking cursor
 	dw .thirteen
 	dw .fourteen
 	dw .fifteen
@@ -217,12 +217,12 @@ DoAnimFrame: ; 8d24b
 	ld [hl], a
 	ret
 
-.five: ; 8d36c (23:536c)
-	callab Function11a3b
+.namingscreencursor: ; 8d36c (23:536c)
+	callab NamingScreen_AnimateCursor
 	ret
 
-.twelve: ; 8d373 (23:5373)
-	callab Function120c1
+.mailcompositioncursor: ; 8d373 (23:5373)
+	callab ComposeMail_AnimateCursor
 	ret
 
 .GameFreakLogo: ; 8d37a (23:537a)
@@ -409,7 +409,7 @@ DoAnimFrame: ; 8d24b
 	ret
 
 .fifteen: ; 8d475 (23:5475)
-	callab Function90d41
+	callab AnimatePokegearModeIndicatorArrow
 	ret
 
 .fourteen: ; 8d47c (23:547c)

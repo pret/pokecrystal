@@ -104,7 +104,7 @@ PerishCountText: ; 0x80864
 	prompt
 ; 0x80880
 
-BattleText_0x80880: ; 0x80880
+BattleText_TargetRecoveredWithItem: ; 0x80880
 	text "<TARGET>"
 	line "recovered with"
 	cont "@"
@@ -122,7 +122,7 @@ BattleText_UserRecoveredPPUsing: ; 0x80899
 	prompt
 ; 0x808b6
 
-BattleText_0x808b6: ; 0x808b6
+BattleText_TargetWasHitByFutureSight: ; 0x808b6
 	text "<TARGET>"
 	line "was hit by FUTURE"
 	cont "SIGHT!"
@@ -135,14 +135,14 @@ BattleText_SafeguardFaded: ; 0x808d2
 	prompt
 ; 0x808e7
 
-BattleText_PkmnnLightScreenFell: ; 0x808e7
+BattleText_PkmnLightScreenFell: ; 0x808e7
 	text_from_ram StringBuffer1
 	text " #MON's"
 	line "LIGHT SCREEN fell!"
 	prompt
 ; 0x80905
 
-BattleText_0x80905: ; 0x80905
+BattleText_PkmnReflectFaded: ; 0x80905
 	text_from_ram StringBuffer1
 	text " #MON's"
 	line "REFLECT faded!"

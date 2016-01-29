@@ -36,8 +36,18 @@ const_value SET 1
 	const TILESET_ICE_PATH             ; 1d
 	const TILESET_WHIRL_ISLANDS        ; 1e
 	const TILESET_ILEX_FOREST          ; 1f
-	const TILESET_20                   ; 20
+	const TILESET_32                   ; 20
 	const TILESET_HO_OH_WORD_ROOM      ; 21
 	const TILESET_KABUTO_WORD_ROOM     ; 22
 	const TILESET_OMANYTE_WORD_ROOM    ; 23
 	const TILESET_AERODACTYL_WORD_ROOM ; 24
+
+	const_def
+	const PAL_BG_GRAY
+	const PAL_BG_RED
+	const PAL_BG_GREEN
+	const PAL_BG_WATER
+	const PAL_BG_YELLOW
+	const PAL_BG_BROWN
+	const PAL_BG_ROOF
+	const PAL_BG_TEXT
