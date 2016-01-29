@@ -12,7 +12,7 @@ includes  := $(PYTHON) $(poketools)/scan_includes.py
 
 crystal11_obj := \
 wram11.o \
-crystal11.o \
+main11.o \
 lib/mobile/main.o \
 home.o \
 audio.o \
@@ -42,10 +42,10 @@ misc/crystal_misc.o \
 text/common_text.o \
 gfx/pics.o
 
-all_obj := $(crystal_obj) crystal11.o wram11.o
+all_obj := $(crystal_obj) main11.o wram11.o
 
 # object dependencies
-$(foreach obj, $(all_obj), \
+$(foreach obj, $(crystal_obj), \
 	$(eval $(obj:.o=)_dep := $(shell $(includes) $(obj:.o=.asm))) \
 )
 
@@ -64,7 +64,9 @@ compare: pokecrystal.gbc pokecrystal11.gbc
 	@$(MD5) roms.md5
 
 %.asm: ;
-$(all_obj): $$*.asm $$($$*_dep)
+%11.o: %.asm $$(%_dep)
+	rgbasm -D CRYSTAL11 -o $@ $<
+%.o: %.asm $$(%_dep)
 	rgbasm -o $@ $<
 
 pokecrystal11.gbc: $(crystal11_obj)

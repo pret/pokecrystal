@@ -934,7 +934,7 @@ GFX_172f1f:
 INCBIN "gfx/unknown/172f1f.2bpp"
 
 Tilemap_1733af:
-IF DEF(CORRUPT_TILES)
+IF DEF(CRYSTAL11)
 INCBIN "gfx/unknown/1733af_corrupt.tilemap"
 ELSE
 INCBIN "gfx/unknown/1733af.tilemap"
