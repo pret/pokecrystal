@@ -16,12 +16,12 @@ main11.o \
 lib/mobile/main.o \
 home.o \
 audio.o \
-maps_crystal.o \
-engine/events_crystal.o \
-engine/credits_crystal.o \
-data/egg_moves_crystal.o \
-data/evos_attacks_crystal.o \
-data/pokedex/entries_crystal.o \
+maps.o \
+engine/events.o \
+engine/credits.o \
+data/egg_moves.o \
+data/evos_attacks.o \
+data/pokedex/entries.o \
 misc/crystal_misc.o \
 text/common_text.o \
 gfx/pics.o
@@ -32,12 +32,12 @@ main.o \
 lib/mobile/main.o \
 home.o \
 audio.o \
-maps_crystal.o \
-engine/events_crystal.o \
-engine/credits_crystal.o \
-data/egg_moves_crystal.o \
-data/evos_attacks_crystal.o \
-data/pokedex/entries_crystal.o \
+maps.o \
+engine/events.o \
+engine/credits.o \
+data/egg_moves.o \
+data/evos_attacks.o \
+data/pokedex/entries.o \
 misc/crystal_misc.o \
 text/common_text.o \
 gfx/pics.o
@@ -67,6 +67,10 @@ compare: pokecrystal.gbc pokecrystal11.gbc
 %11.o: %.asm $$(%_dep)
 	rgbasm -D CRYSTAL11 -o $@ $<
 %.o: %.asm $$(%_dep)
+	rgbasm -o $@ $<
+
+# This seems to be required because of a filename collision (but not a path collision).
+lib/%.o: lib/%.asm $$(lib/%_dep)
 	rgbasm -o $@ $<
 
 pokecrystal11.gbc: $(crystal11_obj)
