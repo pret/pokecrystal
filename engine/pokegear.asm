@@ -1523,7 +1523,7 @@ RadioChannels:
 	dbw 72, .LetsAllSing
 	dbw 78, .PokeFluteRadio
 	dbw 80, .EvolutionRadio
-	db $ff
+	db -1
 
 .PkmnTalkAndPokedexShow
 ; Pokédex Show in the morning
