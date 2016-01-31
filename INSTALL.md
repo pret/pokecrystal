@@ -1,6 +1,10 @@
+The source files are assembled into a rom using [*rgbds*][https://github.com/bentley/rgbds].
+These instructions explain how to set up the tools required to build.
+
+
 # Linux
 
-Note that this requires python2.7 for the moment.
+Python 2.7 is required.
 
 ```bash
 sudo apt-get install make gcc bison git python python-pip
