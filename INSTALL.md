@@ -1,4 +1,4 @@
-The source files are assembled into a rom using [*rgbds*][https://github.com/bentley/rgbds].
+The source files are assembled into a rom using [**rgbds**](https://github.com/bentley/rgbds).
 These instructions explain how to set up the tools required to build.
 
 
