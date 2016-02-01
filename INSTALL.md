@@ -1,6 +1,10 @@
+The source files are assembled into a rom using [**rgbds**](https://github.com/bentley/rgbds).
+These instructions explain how to set up the tools required to build.
+
+
 # Linux
 
-Note that this requires python2.7 for the moment.
+Python 2.7 is required.
 
 ```bash
 sudo apt-get install make gcc bison git python python-pip
@@ -50,15 +54,14 @@ make
 
 To build on Windows, use [**Cygwin**](http://cygwin.com/install.html). Use the default settings.
 
+In the installer, select the following packages: `make` `git` `python` `python-setuptools` `gcc-core` `libsasl2-3` `ca-certificates`
+
 Then get the most recent version of [**rgbds**](https://github.com/bentley/rgbds/releases/).
 Extract the archive and put `rgbasm.exe`, `rgblink.exe` and `rgbfix.exe` in `C:\cygwin\usr\local\bin`.
 
 In the **Cygwin terminal**:
 
 ```bash
-install $(lynx -source rawgit.com/transcode-open/apt-cyg/master/apt-cyg) /bin
-apt-cyg install make git python gcc-core libsasl2-3 ca-certificates
-
 lynx -source bootstrap.pypa.io/get-pip.py | python
 pip install pypng
 
@@ -69,37 +72,5 @@ cd pokecrystal
 To build **pokecrystal.gbc**:
 
 ```bash
-make
-```
-
-
-# Vagrant
-
-The simplest way to get pokecrystal to compile is to use Vagrant and
-VirtualBox. Follow these steps:
-
-* [Download and install Vagrant](http://www.vagrantup.com/downloads.html)
-* Follow the instructions to [download and install VirtualBox](http://docs-v1.vagrantup.com/v1/docs/getting-started/)
-* Run these commands:
-
-```bash
-vagrant box add pokecrystal http://diyhpl.us/~bryan/irc/pokecrystal/pokecrystal.box
-mkdir vagrantbox
-cd vagrantbox
-vagrant init pokecrystal
-vagrant up
-vagrant ssh -c "cd /vagrant && git clone --recursive https://github.com/pret/pokecrystal"
-vagrant ssh
-```
-
-Running "vagrant ssh" will give you a shell to type commands into for compiling
-the source code. Then the "virtualbox" directory on the host appears as a shared
-folder inside of the guest virtual machine at "/vagrant".
-
-To build the project, run these commands in the guest (that is, inside "vagrant
-ssh"):
-
-```bash
-cd /vagrant/pokecrystal
 make
 ```
