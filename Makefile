@@ -10,22 +10,6 @@ gfx       := $(PYTHON) gfx.py
 includes  := $(PYTHON) $(poketools)/scan_includes.py
 
 
-crystal11_obj := \
-wram11.o \
-main11.o \
-lib/mobile/main.o \
-home.o \
-audio.o \
-maps.o \
-engine/events.o \
-engine/credits.o \
-data/egg_moves.o \
-data/evos_attacks.o \
-data/pokedex/entries.o \
-misc/crystal_misc.o \
-text/common_text.o \
-gfx/pics.o
-
 crystal_obj := \
 wram.o \
 main.o \
@@ -42,11 +26,10 @@ misc/crystal_misc.o \
 text/common_text.o \
 gfx/pics.o
 
-all_obj := $(crystal_obj) main11.o wram11.o
+crystal11_obj := $(crystal_obj:.o=11.o)
 
-# object dependencies
-$(foreach obj, $(crystal_obj), \
-	$(eval $(obj:.o=)_dep := $(shell $(includes) $(obj:.o=.asm))) \
+$(foreach obj, $(crystal_obj:.o=), \
+	$(eval $(obj)_dep := $(shell $(includes) $(obj).asm)) \
 )
 
 
@@ -54,23 +37,18 @@ roms := pokecrystal.gbc
 
 all: $(roms)
 crystal: pokecrystal.gbc
-
 crystal11: pokecrystal11.gbc
 
 clean:
-	rm -f $(roms) $(all_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
+	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
 
 compare: pokecrystal.gbc pokecrystal11.gbc
 	@$(MD5) roms.md5
 
 %.asm: ;
-%11.o: %.asm $$(%_dep)
+$(crystal11_obj): %11.o: %.asm $$(%_dep)
 	rgbasm -D CRYSTAL11 -o $@ $<
-%.o: %.asm $$(%_dep)
-	rgbasm -o $@ $<
-
-# This seems to be required because of a filename collision (but not a path collision).
-lib/%.o: lib/%.asm $$(lib/%_dep)
+$(crystal_obj): %.o: %.asm $$(%_dep)
 	rgbasm -o $@ $<
 
 pokecrystal11.gbc: $(crystal11_obj)
