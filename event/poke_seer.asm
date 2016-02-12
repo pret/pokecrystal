@@ -168,7 +168,7 @@ GetCaughtLevel: ; 4f18c
 	jr z, .unknown
 	cp 1 ; hatched from an egg
 	jr nz, .print
-	ld a, 5 ; egg hatch level
+	ld a, EGG_LEVEL ; egg hatch level
 
 .print
 	ld [wSeerCaughtLevel], a
