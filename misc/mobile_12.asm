@@ -1805,8 +1805,8 @@ Function48d94: ; 48d94 (12:4d94)
 	ld [hDivisor], a
 	ld b, 2
 	call Divide
-	ld a, [hDivisor]
-	ld c, $a
+	ld a, [hRemainder]
+	ld c, 10
 	call SimpleDivide
 	sla b
 	sla b
