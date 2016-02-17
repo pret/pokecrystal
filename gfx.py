@@ -12,11 +12,23 @@ pics = [
 	'gfx/shrink2',
 ]
 
+def recursive_read(filename):
+	def recurse(filename_):
+		lines = []
+		for line in open(filename_):
+			if 'include "' in line.lower():
+				lines += recurse(line.split('"')[1])
+			else:
+				lines += [line]
+		return lines
+	lines = recurse(filename)
+	return ''.join(lines)
+
 base_stats = None
 def get_base_stats():
 	global base_stats
 	if not base_stats:
-		base_stats = open('data/base_stats.asm').read()
+		base_stats = recursive_read('data/base_stats.asm')
 	return base_stats
 
 def get_pokemon_dimensions(name):
@@ -25,7 +37,7 @@ def get_pokemon_dimensions(name):
 	if name.startswith('unown_'):
 		name = 'unown'
 	base_stats = get_base_stats()
-	start = base_stats.find(name.title() + 'BaseData:')
+	start = base_stats.find('\tdb ' + name.upper())
 	start = base_stats.find('\tdn ', start)
 	end = base_stats.find('\n', start)
 	line = base_stats[start:end].replace(',', ' ')
@@ -37,12 +49,15 @@ def filepath_rules(filepath):
 	args = {}
 
 	filedir, filename = os.path.split(filepath)
+	if filedir.startswith('./'):
+		filedir = filedir[2:]
+
 	name, ext = os.path.splitext(filename)
 
 	pokemon_name = ''
 
 	if 'gfx/pics/' in filedir:
-		pokemon_name = filedir.split('/')[3]
+		pokemon_name = filedir.split('/')[-1]
 		if pokemon_name.startswith('unown_'):
 			index = filedir.find(pokemon_name)
 			if index != -1:
