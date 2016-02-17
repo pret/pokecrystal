@@ -32,17 +32,22 @@ def get_base_stats():
 	return base_stats
 
 def get_pokemon_dimensions(name):
-	if name == 'egg':
-		return 5, 5
-	if name.startswith('unown_'):
-		name = 'unown'
-	base_stats = get_base_stats()
-	start = base_stats.find('\tdb ' + name.upper())
-	start = base_stats.find('\tdn ', start)
-	end = base_stats.find('\n', start)
-	line = base_stats[start:end].replace(',', ' ')
-	w, h = map(int, line.split()[1:3])
-	return w, h
+	try:
+		if name == 'egg':
+			return 5, 5
+		if name == 'questionmark':
+			return 7, 7
+		if name.startswith('unown_'):
+			name = 'unown'
+		base_stats = get_base_stats()
+		start = base_stats.find('\tdb ' + name.upper())
+		start = base_stats.find('\tdn ', start)
+		end = base_stats.find('\n', start)
+		line = base_stats[start:end].replace(',', ' ')
+		w, h = map(int, line.split()[1:3])
+		return w, h
+	except:
+		return 7, 7
 
 def filepath_rules(filepath):
 	"""Infer attributes of certain graphics by their location in the filesystem."""
