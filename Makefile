@@ -2,7 +2,7 @@ PYTHON := python
 MD5 := md5sum -c --quiet
 
 .SUFFIXES: .asm .o .gbc .png .2bpp .1bpp .lz .pal .bin .blk .tilemap
-.PHONY: all clean crystal crystal11 pngs
+.PHONY: all clean crystal crystal11
 .SECONDEXPANSION:
 
 poketools := extras/pokemontools
@@ -60,12 +60,7 @@ pokecrystal.gbc: $(crystal_obj)
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 
 
-pngs:
-	find . -iname "*.lz"      -exec $(gfx) unlz {} +
-	find . -iname "*.[12]bpp" -exec $(gfx) png  {} +
-	find . -iname "*.[12]bpp" -exec touch {} \;
-	find . -iname "*.lz"      -exec touch {} \;
-
+%.png: ;
 %.2bpp: %.png ; $(gfx) 2bpp $<
 %.1bpp: %.png ; $(gfx) 1bpp $<
 %.lz:   %     ; $(gfx) lz $<
