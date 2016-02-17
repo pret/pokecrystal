@@ -58,6 +58,8 @@ def filepath_rules(filepath):
 		filedir = filedir[2:]
 
 	name, ext = os.path.splitext(filename)
+	if ext == '.lz':
+		name, ext = os.path.splitext(name)
 
 	pokemon_name = ''
 
@@ -104,22 +106,31 @@ def filepath_rules(filepath):
 
 
 def to_1bpp(filename, **kwargs):
-	_, ext = os.path.splitext(filename)
+	name, ext = os.path.splitext(filename)
 	if   ext == '.1bpp': pass
 	elif ext == '.2bpp': gfx.export_2bpp_to_1bpp(filename, **kwargs)
 	elif ext == '.png':  gfx.export_png_to_1bpp(filename, **kwargs)
+	elif ext == '.lz':
+		decompress(filename, **kwargs)
+		to_1bpp(name, **kwargs)
 
 def to_2bpp(filename, **kwargs):
-	_, ext = os.path.splitext(filename)
+	name, ext = os.path.splitext(filename)
 	if   ext == '.1bpp': gfx.export_1bpp_to_2bpp(filename, **kwargs)
 	elif ext == '.2bpp': pass
 	elif ext == '.png':  gfx.export_png_to_2bpp(filename, **kwargs)
+	elif ext == '.lz':
+		decompress(filename, **kwargs)
+		to_2bpp(name, **kwargs)
 
 def to_png(filename, **kwargs):
-	_, ext = os.path.splitext(filename)
+	name, ext = os.path.splitext(filename)
 	if   ext == '.1bpp': gfx.export_1bpp_to_png(filename, **kwargs)
 	elif ext == '.2bpp': gfx.export_2bpp_to_png(filename, **kwargs)
 	elif ext == '.png':  pass
+	elif ext == '.lz':
+		decompress(filename, **kwargs)
+		to_png(name, **kwargs)
 
 def compress(filename, **kwargs):
 	data = open(filename, 'rb').read()
