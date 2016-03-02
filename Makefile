@@ -1,7 +1,8 @@
 PYTHON := python
 MD5 := md5sum -c --quiet
 
-.SUFFIXES: .asm .o .gbc .png .2bpp .1bpp .lz .pal .bin .blk .tilemap
+.SUFFIXES:
+.SUFFIXES: .2bpp
 .PHONY: all clean crystal crystal11
 .SECONDEXPANSION:
 
