@@ -45,12 +45,10 @@ compare: pokecrystal.gbc pokecrystal11.gbc
 %.asm: ;
 
 %11.o: dep = $(shell $(includes) $(@D)/$*.asm)
-$(crystal11_obj): %11.o:
 %11.o: %.asm $$(dep)
 	rgbasm -D CRYSTAL11 -o $@ $<
 
 %.o: dep = $(shell $(includes) $(@D)/$*.asm)
-$(crystal_obj): %.o:
 %.o: %.asm $$(dep)
 	rgbasm -o $@ $<
 
