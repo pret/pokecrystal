@@ -29,10 +29,6 @@ gfx/pics.o
 
 crystal11_obj := $(crystal_obj:.o=11.o)
 
-$(foreach obj, $(crystal_obj:.o=), \
-	$(eval $(obj)_dep := $(shell $(includes) $(obj).asm)) \
-)
-
 
 roms := pokecrystal.gbc
 
@@ -47,9 +43,15 @@ compare: pokecrystal.gbc pokecrystal11.gbc
 	@$(MD5) roms.md5
 
 %.asm: ;
-$(crystal11_obj): %11.o: %.asm $$(%_dep)
+
+%11.o: dep = $(shell $(includes) $(@D)/$*.asm)
+$(crystal11_obj): %11.o:
+%11.o: %.asm $$(dep)
 	rgbasm -D CRYSTAL11 -o $@ $<
-$(crystal_obj): %.o: %.asm $$(%_dep)
+
+%.o: dep = $(shell $(includes) $(@D)/$*.asm)
+$(crystal_obj): %.o:
+%.o: %.asm $$(dep)
 	rgbasm -o $@ $<
 
 pokecrystal11.gbc: $(crystal11_obj)
