@@ -76,7 +76,7 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
     const ANIM_OBJ_2F
     const ANIM_OBJ_30
     const ANIM_OBJ_31
-    const ANIM_OBJ_32
+    const ANIM_OBJ_LIGHTNING_BOLT
     const ANIM_OBJ_33
     const ANIM_OBJ_34
     const ANIM_OBJ_35
@@ -136,8 +136,8 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
     const ANIM_OBJ_6B
     const ANIM_OBJ_6C
     const ANIM_OBJ_6D
-    const ANIM_OBJ_6E
-    const ANIM_OBJ_6F
+    const ANIM_OBJ_SKY_ATTACK_FEAROW
+    const ANIM_OBJ_LICK
     const ANIM_OBJ_70
     const ANIM_OBJ_71
     const ANIM_OBJ_72
@@ -168,7 +168,7 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
     const ANIM_OBJ_8B
     const ANIM_OBJ_8C
     const ANIM_OBJ_8D
-    const ANIM_OBJ_8E
+    const ANIM_OBJ_SPIKES
     const ANIM_OBJ_8F
     const ANIM_OBJ_90
     const ANIM_OBJ_91
@@ -192,7 +192,7 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
     const ANIM_OBJ_A3
     const ANIM_OBJ_A4
     const ANIM_OBJ_A5
-    const ANIM_OBJ_A6
+    const ANIM_OBJ_PERISH_SONG
     const ANIM_OBJ_A7
     const ANIM_OBJ_A8
     const ANIM_OBJ_A9
@@ -742,7 +742,7 @@ const_value SET 1
 	const ANIM_BG_25
 	const ANIM_BG_26
 	const ANIM_BG_27
-	const ANIM_BG_28
+	const ANIM_BG_WAVE_DEFORM_USER
 	const ANIM_BG_PSYCHIC
 	const ANIM_BG_2A
 	const ANIM_BG_2B
@@ -767,6 +767,47 @@ const_value SET 1
 	const ANIM_MON_UNUSED  ; 6
 	const ANIM_MON_EGG1    ; 7
 	const ANIM_MON_EGG2    ; 8
+
+const_value SET 1
+	const ANIM_GFX_HIT
+	const ANIM_GFX_CUT
+	const ANIM_GFX_FIRE
+	const ANIM_GFX_WATER
+	const ANIM_GFX_LIGHTNING
+	const ANIM_GFX_PLANT
+	const ANIM_GFX_SMOKE
+	const ANIM_GFX_EXPLOSION
+	const ANIM_GFX_ROCKS
+	const ANIM_GFX_ICE
+	const ANIM_GFX_POKE_BALL
+	const ANIM_GFX_POISON
+	const ANIM_GFX_BUBBLE
+	const ANIM_GFX_NOISE
+	const ANIM_GFX_POWDER
+	const ANIM_GFX_BEAM
+	const ANIM_GFX_SPEED
+	const ANIM_GFX_CHARGE
+	const ANIM_GFX_WIND
+	const ANIM_GFX_WHIP
+	const ANIM_GFX_EGG
+	const ANIM_GFX_ROPE
+	const ANIM_GFX_PSYCHIC
+	const ANIM_GFX_REFLECT
+	const ANIM_GFX_STATUS
+	const ANIM_GFX_SAND
+	const ANIM_GFX_WEB
+	const ANIM_GFX_HAZE
+	const ANIM_GFX_HORN
+	const ANIM_GFX_FLOWER
+	const ANIM_GFX_MISC
+	const ANIM_GFX_SKY_ATTACK
+	const ANIM_GFX_GLOBE
+	const ANIM_GFX_SHAPES
+	const ANIM_GFX_OBJECTS
+	const ANIM_GFX_SHINE
+	const ANIM_GFX_ANGELS
+	const ANIM_GFX_WAVE
+	const ANIM_GFX_AEROBLAST
 
 	const_def
 	const BG_EFFECT_STRUCT_FUNCTION

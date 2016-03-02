@@ -8,11 +8,11 @@ object_gfx: MACRO
 ENDM
 
 	object_gfx  0, AnimObj00GFX
-	object_gfx 21, AnimObj01GFX
-	object_gfx  6, AnimObj02GFX
-	object_gfx  6, AnimObj03GFX
-	object_gfx 20, AnimObj04GFX
-	object_gfx 26, AnimObj05GFX
+	object_gfx 21, AnimObjHitGFX
+	object_gfx  6, AnimObjCutGFX
+	object_gfx  6, AnimObjFireGFX
+	object_gfx 20, AnimObjWaterGFX
+	object_gfx 26, AnimObjLightningGFX
 	object_gfx 18, AnimObj06GFX
 	object_gfx 12, AnimObj07GFX
 	object_gfx  9, AnimObj08GFX

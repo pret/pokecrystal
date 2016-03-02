@@ -7,7 +7,7 @@ DoBattle: ; 3c000
 	ld [wPlayerAction], a
 	ld [BattleEnded], a
 	inc a
-	ld [wd264], a
+	ld [wAISwitch], a
 	ld hl, OTPartyMon1HP
 	ld bc, PARTYMON_STRUCT_LENGTH - 1
 	ld d, BATTLEACTION_SWITCH1 - 1
@@ -60,7 +60,7 @@ DoBattle: ; 3c000
 	xor a
 	ld [CurPartyMon], a
 .loop2
-	call CheckIfPartyHasPkmnToBattleWith
+	call CheckIfCurPartyMonIsFitToFight
 	jr nz, .alive2
 	ld hl, CurPartyMon
 	inc [hl]
@@ -170,7 +170,7 @@ BattleTurn: ; 3c12f
 	xor a
 	ld [wPlayerIsSwitching], a
 	ld [wEnemyIsSwitching], a
-	ld [wd264], a
+	ld [wAISwitch], a
 	ld [wPlayerJustGotFrozen], a
 	ld [wEnemyJustGotFrozen], a
 	ld [CurDamage], a
@@ -2497,7 +2497,7 @@ WinTrainerBattle: ; 3cfa4
 	call PrintWinLossText
 
 .skip_win_loss_text
-	jp HandleBattleReward
+	jp .GiveMoney
 
 .mobile
 	call BattleWinSlideInEnemyTrainerFrontpic
@@ -2524,9 +2524,8 @@ WinTrainerBattle: ; 3cfa4
 	call ClearTileMap
 	call ClearBGPalettes
 	ret
-; 3d02b
 
-HandleBattleReward: ; 3d02b
+.GiveMoney
 	ld a, [wAmuletCoin]
 	and a
 	call nz, .DoubleReward
@@ -3024,7 +3023,7 @@ PickPartyMonInBattle: ; 3d33c
 	call JumpToPartyMenuAndPrintText
 	call SelectBattleMon
 	ret c
-	call CheckIfPartyHasPkmnToBattleWith
+	call CheckIfCurPartyMonIsFitToFight
 	jr z, .loop
 	xor a
 	ret
@@ -3373,14 +3372,14 @@ CheckWhetherSwitchmonIsPredetermined: ; 3d533
 .not_linked
 	ld a, [wEnemySwitchMonIndex]
 	and a
-	jr z, .check_wd264
+	jr z, .check_wAISwitch
 
 	dec a
 	ld b, a
 	jr .return_carry
 
-.check_wd264
-	ld a, [wd264]
+.check_wAISwitch
+	ld a, [wAISwitch]
 	and a
 	ld b, $0
 	jr nz, .return_carry
@@ -3656,7 +3655,7 @@ LoadEnemyPkmnToSwitchTo: ; 3d6ca
 ; 3d714
 
 CheckWhetherToAskSwitch: ; 3d714
-	ld a, [wd264]
+	ld a, [wAISwitch]
 	dec a
 	jp z, .return_nc
 	ld a, [PartyCount]
@@ -3836,19 +3835,19 @@ CheckPlayerPartyForFitPkmn: ; 3d873
 	xor a
 	ld hl, PartyMon1HP
 	ld bc, PartyMon2 - (PartyMon1 + 1)
-.asm_3d87e
+.loop
 	or [hl]
 	inc hl
 	or [hl]
 	add hl, bc
 	dec e
-	jr nz, .asm_3d87e
+	jr nz, .loop
 	ld d, a
 	ret
 ; 3d887
 
 
-CheckIfPartyHasPkmnToBattleWith: ; 3d887
+CheckIfCurPartyMonIsFitToFight: ; 3d887
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1HP
 	call GetPartyLocation
@@ -3856,9 +3855,9 @@ CheckIfPartyHasPkmnToBattleWith: ; 3d887
 	or [hl]
 	ret nz
 
-	ld a, [wd264]
+	ld a, [wAISwitch]
 	and a
-	jr nz, .asm_3d8b1
+	jr nz, .finish_fail
 	ld hl, PartySpecies
 	ld a, [CurPartyMon]
 	ld c, a
@@ -3867,14 +3866,14 @@ CheckIfPartyHasPkmnToBattleWith: ; 3d887
 	ld a, [hl]
 	cp EGG
 	ld hl, BattleText_AnEGGCantBattle
-	jr z, .asm_3d8ae
+	jr z, .print_textbox
 
 	ld hl, BattleText_TheresNoWillToBattle
 
-.asm_3d8ae
+.print_textbox
 	call StdBattleTextBox
 
-.asm_3d8b1
+.finish_fail
 	xor a
 	ret
 ; 3d8b3
@@ -4501,6 +4500,8 @@ HandleHPHealingItem: ; 3dd2f
 	ld hl, BattleMonMaxHP
 
 .go
+; If, and only if, Pokemon's HP is less than half max, use the item.
+; Store current HP in Buffer 3/4
 	push bc
 	ld a, [de]
 	ld [Buffer3], a
@@ -4528,6 +4529,7 @@ HandleHPHealingItem: ; 3dd2f
 
 .less
 	call ItemRecoveryAnim
+	; store max HP in Buffer1/2
 	ld a, [hli]
 	ld [Buffer2], a
 	ld a, [hl]
@@ -5434,7 +5436,7 @@ TryPlayerSwitch: ; 3e358
 	jp BattleMenuPKMN_Loop
 
 .try_switch
-	call CheckIfPartyHasPkmnToBattleWith
+	call CheckIfCurPartyMonIsFitToFight
 	jp z, BattleMenuPKMN_Loop
 	ld a, [CurBattleMon]
 	ld [LastPlayerMon], a
@@ -5675,15 +5677,15 @@ MoveSelectionScreen: ; 3e4bc
 	ld c, $2c
 	ld a, [wMoveSelectionMenuType]
 	dec a
-	ld b, $c1
+	ld b, D_DOWN | D_UP | A_BUTTON
 	jr z, .okay
 	dec a
-	ld b, $c3
+	ld b, D_DOWN | D_UP | A_BUTTON | B_BUTTON
 	jr z, .okay
 	ld a, [wLinkMode]
 	and a
 	jr nz, .okay
-	ld b, $c7
+	ld b, D_DOWN | D_UP | A_BUTTON | B_BUTTON | SELECT
 
 .okay
 	ld a, b
@@ -5727,6 +5729,7 @@ MoveSelectionScreen: ; 3e4bc
 	bit SELECT_F, a
 	jp nz, .pressed_select
 	bit B_BUTTON_F, a
+	; A button
 	push af
 
 	xor a
@@ -6106,7 +6109,7 @@ ParseEnemyAction: ; 3e7c1
 	jp .finish
 
 .skip_encore
-	call CheckSubstatus_RechargeChargedRampageBideRollout
+	call CheckEnemyLockedIn
 	jp nz, ResetVarsForSubstatusRage
 	jr .continue
 
@@ -6173,7 +6176,7 @@ ParseEnemyAction: ; 3e7c1
 .skip_load
 	call SetEnemyTurn
 	callab UpdateMoveData
-	call CheckSubstatus_RechargeChargedRampageBideRollout
+	call CheckEnemyLockedIn
 	jr nz, .raging
 	xor a
 	ld [wEnemyCharging], a
@@ -6219,7 +6222,7 @@ ResetVarsForSubstatusRage: ; 3e8c1
 	ret
 ; 3e8d1
 
-CheckSubstatus_RechargeChargedRampageBideRollout: ; 3e8d1
+CheckEnemyLockedIn: ; 3e8d1
 	ld a, [EnemySubStatus4]
 	and 1 << SUBSTATUS_RECHARGE
 	ret nz
@@ -8025,7 +8028,7 @@ SendOutPkmnText: ; 3f26d
 
 	ld hl, JumpText_GoPkmn ; If we're in a LinkBattle print just "Go <PlayerMon>"
 
-	ld a, [wd264] ; unless this (unidentified) variable is set
+	ld a, [wAISwitch] ; unless this (unidentified) variable is set
 	and a
 	jr nz, .skip_to_textbox
 
@@ -8482,7 +8485,7 @@ BattleIntro: ; 3f4dd
 	ld [hMapAnims], a
 	callba PlayBattleMusic
 	callba ShowLinkBattleParticipants
-	callba FindFirstAliveMon
+	callba FindFirstAliveMonAndStartBattle
 	call DisableSpriteUpdates
 	callba ClearBattleRAM
 	call InitEnemy

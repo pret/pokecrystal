@@ -133,7 +133,7 @@ endr
 ; 11485
 
 Special_SampleKenjiBreakCountdown: ; 11485
-; Generate a random number between 3 and 5
+; Generate a random number between 3 and 6
 	call Random
 	and 3
 	add 3

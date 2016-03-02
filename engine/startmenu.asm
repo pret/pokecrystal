@@ -91,7 +91,7 @@ StartMenu:: ; 125cd
 	ld [MenuSelection], a
 .loop
 	call .PrintMenuAccount
-	call Function1f1a
+	call GetScrollingMenuJoypad
 	ld a, [wMenuJoypad]
 	cp B_BUTTON
 	jr z, .b
@@ -591,70 +591,66 @@ HasNoItems: ; 129d5
 	and a
 	ret
 
-Function129f4: ; 129f4
+TossItemFromPC: ; 129f4
 	push de
 	call PartyMonItemName
 	callba _CheckTossableItem
 	ld a, [wItemAttributeParamBuffer]
 	and a
-	jr nz, .asm_12a3f
-	ld hl, UnknownText_0x12a45
+	jr nz, .key_item
+	ld hl, .TossHowMany
 	call MenuTextBox
 	callba SelectQuantityToToss
 	push af
 	call CloseWindow
 	call ExitMenu
 	pop af
-	jr c, .asm_12a42
-	ld hl, UnknownText_0x12a4a
+	jr c, .quit
+	ld hl, .ConfirmToss
 	call MenuTextBox
 	call YesNoBox
 	push af
 	call ExitMenu
 	pop af
-	jr c, .asm_12a42
+	jr c, .quit
 	pop hl
 	ld a, [wd107]
 	call TossItem
 	call PartyMonItemName
-	ld hl, UnknownText_0x12a4f
+	ld hl, .TossedThisMany
 	call MenuTextBox
 	call ExitMenu
 	and a
 	ret
-.asm_12a3f
-	call Function12a54
-.asm_12a42
+
+.key_item
+	call .CantToss
+.quit
 	pop hl
 	scf
 	ret
-; 12a45 (4:6a45)
 
-UnknownText_0x12a45: ; 0x12a45
+.TossHowMany
 	; Toss out how many @ (S)?
 	text_jump UnknownText_0x1c1a90
 	db "@"
-; 0x12a4a
 
-UnknownText_0x12a4a: ; 0x12a4a
+.ConfirmToss
 	; Throw away @ @ (S)?
 	text_jump UnknownText_0x1c1aad
 	db "@"
-; 0x12a4f
 
-UnknownText_0x12a4f: ; 0x12a4f
+.TossedThisMany
 	; Discarded @ (S).
 	text_jump UnknownText_0x1c1aca
 	db "@"
-; 0x12a54
 
-Function12a54: ; 12a54 (4:6a54)
-	ld hl, UnknownText_0x12a5b
+.CantToss
+	ld hl, .TooImportantToToss
 	call MenuTextBoxBackup
 	ret
-; 12a5b (4:6a5b)
 
-UnknownText_0x12a5b: ; 0x12a5b
+.TooImportantToToss
 	; That's too impor- tant to toss out!
 	text_jump UnknownText_0x1c1adf
 	db "@"
@@ -830,7 +826,7 @@ GiveTakePartyMonItem: ; 12b60
 ; 12ba9
 
 
-.GiveItem: ; 12ba9
+.GiveItem
 
 	callba DepositSellInitPackBuffers
 
@@ -1168,7 +1164,7 @@ MonMailAction: ; 12d45
 ; 12dc9
 
 
-.MenuDataHeader: ; 0x12dc9
+.MenuDataHeader
 	db $40 ; flags
 	db 10, 12 ; start coords
 	db 17, 19 ; end coords
@@ -1176,7 +1172,7 @@ MonMailAction: ; 12d45
 	db 1 ; default option
 ; 0x12dd1
 
-.MenuData2: ; 0x12dd1
+.MenuData2
 	db $80 ; flags
 	db 3 ; items
 	db "READ@"
@@ -1185,37 +1181,37 @@ MonMailAction: ; 12d45
 ; 0x12de2
 
 
-.mailwilllosemessagetext: ; 0x12de2
+.mailwilllosemessagetext
 ; The MAIL will lose its message. OK?
 	text_jump UnknownText_0x1c1c22
 	db "@"
 ; 0x12de7
 
-.tookmailfrommontext: ; 0x12de7
+.tookmailfrommontext
 ; MAIL detached from <POKEMON>.
 	text_jump UnknownText_0x1c1c47
 	db "@"
 ; 0x12dec
 
-.bagfulltext: ; 0x12dec
+.bagfulltext
 ; There's no space for removing MAIL.
 	text_jump UnknownText_0x1c1c62
 	db "@"
 ; 0x12df1
 
-.sendmailtopctext: ; 0x12df1
+.sendmailtopctext
 ; Send the removed MAIL to your PC?
 	text_jump UnknownText_0x1c1c86
 	db "@"
 ; 0x12df6
 
-.mailboxfulltext: ; 0x12df6
+.mailboxfulltext
 ; Your PC's MAILBOX is full.
 	text_jump UnknownText_0x1c1ca9
 	db "@"
 ; 0x12dfb
 
-.sentmailtopctext: ; 0x12dfb
+.sentmailtopctext
 ; The MAIL was sent to your PC.
 	text_jump UnknownText_0x1c1cc4
 	db "@"
@@ -1392,13 +1388,13 @@ MonMenu_Softboiled_MilkDrink: ; 12ee6
 	ret
 ; 12f00
 
-.Text_NotEnoughHP: ; 0x12f00
+.Text_NotEnoughHP
 	; Not enough HP!
 	text_jump UnknownText_0x1c1ce3
 	db "@"
 ; 0x12f05
 
-.CheckMonHasEnoughHP: ; 12f05
+.CheckMonHasEnoughHP
 ; Need to have at least (MaxHP / 5) HP left.
 	ld a, MON_MAXHP
 	call GetPartyParamLocation
@@ -1471,7 +1467,7 @@ ChooseMoveToDelete: ; 12f5b
 	ret
 ; 12f73
 
-.asm_12f73: ; 12f73
+.asm_12f73
 	call SetUpMoveScreenBG
 	ld de, DeleteMoveScreenAttrs
 	call SetMenuAttributes
@@ -1480,27 +1476,27 @@ ChooseMoveToDelete: ; 12f5b
 	set 6, [hl]
 	jr .asm_12f93
 
-.asm_12f86: ; 12f86
+.asm_12f86
 	call ScrollingMenuJoypad
 	bit 1, a
 	jp nz, .asm_12f9f
 	bit 0, a
 	jp nz, .asm_12f9c
 
-.asm_12f93: ; 12f93
+.asm_12f93
 	call PrepareToPlaceMoveData
 	call PlaceMoveData
 	jp .asm_12f86
 ; 12f9c
 
-.asm_12f9c: ; 12f9c
+.asm_12f9c
 	and a
 	jr .asm_12fa0
 
-.asm_12f9f: ; 12f9f
+.asm_12f9f
 	scf
 
-.asm_12fa0: ; 12fa0
+.asm_12fa0
 	push af
 	xor a
 	ld [wSwitchMon], a
@@ -1583,7 +1579,7 @@ MoveScreenLoop: ; 12fd5
 	ld de, String_1316b
 	call PlaceString
 	jp .joy_loop
-.b_button: ; 13038
+.b_button
 	call PlayClickSFX
 	call WaitSFX
 	ld a, [wMoveSwapBuffer]
@@ -1600,7 +1596,7 @@ MoveScreenLoop: ; 12fd5
 	jp .loop
 ; 1305b
 
-.d_right: ; 1305b
+.d_right
 	ld a, [wMoveSwapBuffer]
 	and a
 	jp nz, .joy_loop
@@ -1615,7 +1611,7 @@ MoveScreenLoop: ; 12fd5
 	jp z, .joy_loop
 	jp MoveScreenLoop
 
-.d_left: ; 13075
+.d_left
 	ld a, [wMoveSwapBuffer]
 	and a
 	jp nz, .joy_loop
@@ -1665,7 +1661,7 @@ MoveScreenLoop: ; 12fd5
 	jr .cycle_left_loop
 ; 130c6
 
-.a_button: ; 130c6
+.a_button
 	call PlayClickSFX
 	call WaitSFX
 	ld a, [wMoveSwapBuffer]
@@ -1716,7 +1712,7 @@ MoveScreenLoop: ; 12fd5
 	jp .loop
 ; 1313a
 
-.copy_move: ; 1313a
+.copy_move
 	push hl
 	ld a, [wMenuCursorY]
 	dec a
@@ -1739,7 +1735,7 @@ MoveScreenLoop: ; 12fd5
 	ret
 ; 13154
 
-.exit: ; 13154
+.exit
 	xor a
 	ld [wMoveSwapBuffer], a
 	ld hl, w2DMenuFlags1
@@ -1776,7 +1772,7 @@ SetUpMoveScreenBG: ; 13172
 	ld a, [hl]
 	ld [wd265], a
 	ld e, $2
-	callba Function8e83f
+	callba LoadMenuMonIcon
 	hlcoord 0, 1
 	ld b, 9
 	ld c, 18

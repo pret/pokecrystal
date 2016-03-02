@@ -121,12 +121,12 @@ DoPlayerMovement:: ; 80000
 	ld a, [PlayerStandingTile]
 	ld c, a
 	call CheckWhirlpoolTile
-	jr c, .asm_800c4
+	jr c, .not_whirlpool
 	ld a, 3
 	scf
 	ret
 
-.asm_800c4
+.not_whirlpool
 	and $f0
 	cp $30 ; moving water
 	jr z, .water

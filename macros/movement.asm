@@ -281,7 +281,15 @@ fast_jump_step_right: macro
 	db movement_fast_jump_step_right ; $37
 	endm
 
-__enum__ = $3a
+	enum movement_remove_sliding
+remove_sliding: macro
+	db movement_remove_sliding ; $38
+	endm
+
+	enum movement_set_sliding
+set_sliding: macro
+	db movement_set_sliding ; $39
+	endm
 
 	enum movement_remove_fixed_facing
 remove_fixed_facing: macro

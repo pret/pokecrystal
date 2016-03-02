@@ -1,8 +1,8 @@
 _AnimateHPBar: ; d627
-	call Functiond65f
-	jr c, .do_player
-	call Functiond670
-.enemy_loop
+	call .IsMaximumMoreThan48Pixels
+	jr c, .MoreThan48Pixels
+	call .ComputePixels
+.ShortAnimLoop
 	push bc
 	push hl
 	call Functiond6e2
@@ -16,12 +16,12 @@ _AnimateHPBar: ; d627
 	pop hl
 	pop bc
 	pop af
-	jr nc, .enemy_loop
+	jr nc, .ShortAnimLoop
 	ret
 
-.do_player
-	call Functiond670
-.player_loop
+.MoreThan48Pixels
+	call .ComputePixels
+.LongAnimLoop
 	push bc
 	push hl
 	call Functiond6f5
@@ -36,11 +36,11 @@ _AnimateHPBar: ; d627
 	pop hl
 	pop bc
 	pop af
-	jr nc, .player_loop
+	jr nc, .LongAnimLoop
 	ret
 ; d65f
 
-Functiond65f: ; d65f
+.IsMaximumMoreThan48Pixels: ; d65f
 	ld a, [Buffer2]
 	and a
 	jr nz, .player
@@ -55,7 +55,7 @@ Functiond65f: ; d65f
 	ret
 ; d670
 
-Functiond670: ; d670
+.ComputePixels: ; d670
 ; Buffer1-2: Max HP
 ; Buffer3-4: Old HP
 ; Buffer5-6: New HP
@@ -72,7 +72,7 @@ Functiond670: ; d670
 	pop hl
 	call ComputeHPBarPixels
 	ld a, e
-	ld [wd1f1], a
+	ld [wCurHPBarPixels], a
 
 	ld a, [Buffer5]
 	ld c, a
@@ -84,7 +84,7 @@ Functiond670: ; d670
 	ld d, a
 	call ComputeHPBarPixels
 	ld a, e
-	ld [wd1f2], a
+	ld [wNewHPBarPixels], a
 
 	push hl
 	ld hl, Buffer3
@@ -103,15 +103,15 @@ Functiond670: ; d670
 	ld a, d
 	sbc b
 	ld d, a
-	jr c, .asm_d6c1
+	jr c, .negative
 	ld a, [Buffer3]
 	ld [wd1f5], a
 	ld a, [Buffer5]
 	ld [wd1f6], a
 	ld bc, 1
-	jr .asm_d6d9
+	jr .got_direction
 
-.asm_d6c1
+.negative
 	ld a, [Buffer3]
 	ld [wd1f6], a
 	ld a, [Buffer5]
@@ -123,8 +123,8 @@ Functiond670: ; d670
 	ld a, d
 	xor $ff
 	ld d, a
-	ld bc, rIE
-.asm_d6d9
+	ld bc, -1
+.got_direction
 	ld a, d
 	ld [wd1f3], a
 	ld a, e
@@ -133,14 +133,14 @@ Functiond670: ; d670
 ; d6e2
 
 Functiond6e2: ; d6e2
-	ld hl, wd1f1
-	ld a, [wd1f2]
+	ld hl, wCurHPBarPixels
+	ld a, [wNewHPBarPixels]
 	cp [hl]
-	jr nz, .asm_d6ed
+	jr nz, .not_finished
 	scf
 	ret
 
-.asm_d6ed
+.not_finished
 	ld a, c
 	add [hl]
 	ld [hl], a
@@ -150,7 +150,7 @@ Functiond6e2: ; d6e2
 ; d6f5
 
 Functiond6f5: ; d6f5
-.asm_d6f5
+.loop
 	ld hl, Buffer3
 	ld a, [hli]
 	ld e, a
@@ -158,22 +158,22 @@ Functiond6f5: ; d6f5
 	ld d, a
 	ld a, e
 	cp [hl]
-	jr nz, .asm_d707
+	jr nz, .next
 	inc hl
 	ld a, d
 	cp [hl]
-	jr nz, .asm_d707
+	jr nz, .next
 	scf
 	ret
 
-.asm_d707
+.next
 	ld l, e
 	ld h, d
 	add hl, bc
 	ld a, l
 	ld [Buffer3], a
 	ld a, h
-	ld [wd1ed], a
+	ld [Buffer4], a
 	push hl
 	push de
 	push bc
@@ -191,9 +191,9 @@ Functiond6f5: ; d6f5
 	pop de
 	pop hl
 	ld a, e
-	ld hl, wd1f1
+	ld hl, wCurHPBarPixels
 	cp [hl]
-	jr z, .asm_d6f5
+	jr z, .loop
 	ld [hl], a
 	and a
 	ret
@@ -205,7 +205,7 @@ Functiond730: ; d730
 	ld a, [wWhichHPBar]
 	and $1
 	ld b, a
-	ld a, [wd1f1]
+	ld a, [wCurHPBarPixels]
 	ld e, a
 	ld c, a
 	push de
@@ -219,7 +219,7 @@ Functiond749: ; d749
 	call Functiond784
 	ld a, [Buffer3]
 	ld c, a
-	ld a, [wd1ed]
+	ld a, [Buffer4]
 	ld b, a
 	ld a, [Buffer1]
 	ld e, a
@@ -275,7 +275,7 @@ endr
 	dec hl
 	ld a, [Buffer3]
 	ld [StringBuffer2 + 1], a
-	ld a, [wd1ed]
+	ld a, [Buffer4]
 	ld [StringBuffer2], a
 	ld de, StringBuffer2
 	lb bc, 2, 3
@@ -375,7 +375,7 @@ Functiond839: ; d839
 	ld c, a
 	ld b, 0
 	ld hl, 0
-	ld a, [wd1f1]
+	ld a, [wCurHPBarPixels]
 	cp 6 * 8
 	jr nc, .coppy_buffer
 	and a

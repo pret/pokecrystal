@@ -21,31 +21,31 @@ ChuckScript_0x9d60f:
 	opentext
 	checkevent EVENT_BEAT_CHUCK
 	iftrue .FightDone
-	writetext UnknownText_0x9d6f9
+	writetext ChuckIntroText1
 	waitbutton
 	closetext
 	spriteface CIANWOODGYM_CHUCK, RIGHT
 	opentext
-	writetext UnknownText_0x9d76f
+	writetext ChuckIntroText2
 	waitbutton
 	closetext
-	applymovement CIANWOODGYM_BOULDER1, MovementData_0x9d6f3
+	applymovement CIANWOODGYM_BOULDER1, CianwoodGymMovement_ChuckChucksBoulder
 	playsound SFX_STRENGTH
 	earthquake 80
 	disappear CIANWOODGYM_BOULDER1
 	pause 30
 	faceplayer
 	opentext
-	writetext UnknownText_0x9d78a
+	writetext ChuckIntroText3
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x9d7f6, 0
+	winlosstext ChuckLossText, 0
 	loadtrainer CHUCK, 1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CHUCK
 	opentext
-	writetext UnknownText_0x9d835
+	writetext GetStormBadgeText
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_STORMBADGE
@@ -53,25 +53,25 @@ ChuckScript_0x9d60f:
 	scall CianwoodGymTriggerRockets
 .FightDone
 	checkevent EVENT_GOT_TM01_DYNAMICPUNCH
-	iftrue UnknownScript_0x9d67b
+	iftrue .AlreadyGotTM
 	setevent EVENT_BEAT_BLACKBELT_YOSHI
 	setevent EVENT_BEAT_BLACKBELT_LAO
 	setevent EVENT_BEAT_BLACKBELT_NOB
 	setevent EVENT_BEAT_BLACKBELT_LUNG
-	writetext UnknownText_0x9d84d
+	writetext ChuckExplainBadgeText
 	buttonsound
 	verbosegiveitem TM_DYNAMICPUNCH
-	iffalse UnknownScript_0x9d67f
+	iffalse .BagFull
 	setevent EVENT_GOT_TM01_DYNAMICPUNCH
-	writetext UnknownText_0x9d8da
+	writetext ChuckExplainTMText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x9d67b:
-	writetext UnknownText_0x9d930
+.AlreadyGotTM:
+	writetext ChuckAfterText
 	waitbutton
-UnknownScript_0x9d67f:
+.BagFull:
 	closetext
 	end
 
@@ -87,45 +87,45 @@ CianwoodGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerBlackbeltYoshi:
-	trainer EVENT_BEAT_BLACKBELT_YOSHI, BLACKBELT_T, YOSHI, BlackbeltYoshiSeenText, BlackbeltYoshiBeatenText, 0, BlackbeltYoshiScript
+	trainer EVENT_BEAT_BLACKBELT_YOSHI, BLACKBELT_T, YOSHI, BlackbeltYoshiSeenText, BlackbeltYoshiBeatenText, 0, .Script
 
-BlackbeltYoshiScript:
+.Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x9d9fa
+	writetext BlackbeltYoshiAfterText
 	waitbutton
 	closetext
 	end
 
 TrainerBlackbeltLao:
-	trainer EVENT_BEAT_BLACKBELT_LAO, BLACKBELT_T, LAO, BlackbeltLaoSeenText, BlackbeltLaoBeatenText, 0, BlackbeltLaoScript
+	trainer EVENT_BEAT_BLACKBELT_LAO, BLACKBELT_T, LAO, BlackbeltLaoSeenText, BlackbeltLaoBeatenText, 0, .Script
 
-BlackbeltLaoScript:
+.Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x9da61
+	writetext BlackbeltLaoAfterText
 	waitbutton
 	closetext
 	end
 
 TrainerBlackbeltNob:
-	trainer EVENT_BEAT_BLACKBELT_NOB, BLACKBELT_T, NOB, BlackbeltNobSeenText, BlackbeltNobBeatenText, 0, BlackbeltNobScript
+	trainer EVENT_BEAT_BLACKBELT_NOB, BLACKBELT_T, NOB, BlackbeltNobSeenText, BlackbeltNobBeatenText, 0, .Script
 
-BlackbeltNobScript:
+.Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x9dac0
+	writetext BlackbeltNobAfterText
 	waitbutton
 	closetext
 	end
 
 TrainerBlackbeltLung:
-	trainer EVENT_BEAT_BLACKBELT_LUNG, BLACKBELT_T, LUNG, BlackbeltLungSeenText, BlackbeltLungBeatenText, 0, BlackbeltLungScript
+	trainer EVENT_BEAT_BLACKBELT_LUNG, BLACKBELT_T, LUNG, BlackbeltLungSeenText, BlackbeltLungBeatenText, 0, .Script
 
-BlackbeltLungScript:
+.Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x9db14
+	writetext BlackbeltLungAfterText
 	waitbutton
 	closetext
 	end
@@ -141,15 +141,15 @@ CianwoodGymStatue:
 	trainertotext CHUCK, 1, $1
 	jumpstd gymstatue2
 
-MovementData_0x9d6f3:
-	db $39 ; movement
+CianwoodGymMovement_ChuckChucksBoulder:
+	set_sliding
 	big_step_left
 	big_step_up
 	fast_jump_step_right
-	db $38 ; movement
+	remove_sliding
 	step_end
 
-UnknownText_0x9d6f9:
+ChuckIntroText1:
 	text "WAHAHAH!"
 
 	para "So you've come"
@@ -165,14 +165,14 @@ UnknownText_0x9d6f9:
 	para "Watch this!"
 	done
 
-UnknownText_0x9d76f:
+ChuckIntroText2:
 	text "CHUCK: Urggh!"
 	line "…"
 
 	para "Oooarrgh!"
 	done
 
-UnknownText_0x9d78a:
+ChuckIntroText3:
 	text "There! Scared now,"
 	line "are you?"
 
@@ -186,7 +186,7 @@ UnknownText_0x9d78a:
 	line "do battle!"
 	done
 
-UnknownText_0x9d7f6:
+ChuckLossText:
 	text "Wha? Huh?"
 	line "I lost?"
 
@@ -195,12 +195,12 @@ UnknownText_0x9d7f6:
 	cont "STORMBADGE!"
 	done
 
-UnknownText_0x9d835:
+GetStormBadgeText:
 	text "<PLAYER> received"
 	line "STORMBADGE."
 	done
 
-UnknownText_0x9d84d:
+ChuckExplainBadgeText:
 	text "STORMBADGE makes"
 	line "all #MON up to"
 
@@ -217,7 +217,7 @@ UnknownText_0x9d84d:
 	line "too!"
 	done
 
-UnknownText_0x9d8da:
+ChuckExplainTMText:
 	text "That is DYNAMIC-"
 	line "PUNCH."
 
@@ -228,7 +228,7 @@ UnknownText_0x9d8da:
 	line "confusion!"
 	done
 
-UnknownText_0x9d930:
+ChuckAfterText:
 	text "WAHAHAH! I enjoyed"
 	line "battling you!"
 
@@ -253,7 +253,7 @@ BlackbeltYoshiBeatenText:
 	text "This isn't real!"
 	done
 
-UnknownText_0x9d9fa:
+BlackbeltYoshiAfterText:
 	text "You seem to have a"
 	line "strong bond with"
 	cont "your #MON too!"
@@ -268,7 +268,7 @@ BlackbeltLaoBeatenText:
 	text "That's shocking!"
 	done
 
-UnknownText_0x9da61:
+BlackbeltLaoAfterText:
 	text "Fighting #MON"
 	line "are afraid of psy-"
 	cont "chics…"
@@ -284,7 +284,7 @@ BlackbeltNobBeatenText:
 	text "…"
 	done
 
-UnknownText_0x9dac0:
+BlackbeltNobAfterText:
 	text "I lost! "
 	line "I'm speechless!"
 	done
@@ -299,7 +299,7 @@ BlackbeltLungBeatenText:
 	text "I got shattered!"
 	done
 
-UnknownText_0x9db14:
+BlackbeltLungAfterText:
 	text "My #MON lost…"
 	line "My… my pride is"
 	cont "shattered…"

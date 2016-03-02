@@ -3079,7 +3079,7 @@ Function1013d6: ; 1013d6
 ; 1013dd
 
 Function1013dd: ; 1013dd
-	call Function3238
+	call CGBOnly_LoadEDTile
 	ret
 ; 1013e1
 

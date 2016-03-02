@@ -118,7 +118,7 @@ Channel1JumpCondition:: ds 1
 Channel2JumpCondition:: ds 1
 Channel3JumpCondition:: ds 1
 Channel4JumpCondition:: ds 1
-wStereoPanningMask:: ds 1
+wStereoPanningMask:: ds 1 ; c2bc
 CryTracks:: ; c2bd
 ; plays only in left or right track depending on what side the monster is on
 ; both tracks active outside of battle
@@ -127,7 +127,7 @@ wSFXDuration:: ds 1
 CurSFX:: ; c2bf
 ; id of sfx currently playing
 	ds 1
-
+ChannelsEnd::
 wMapMusic:: ; c2c0
 	ds 1
 
@@ -1328,9 +1328,9 @@ wWindowStackPointer:: dw ; cf71
 wMenuJoypad:: ds 1   ; cf73
 MenuSelection:: ds 1 ; cf74
 MenuSelectionQuantity:: ds 1 ; cf75
-wWhichIndexSet:: ds 1
-wScrollingMenuCursorPosition:: ds 1
-wWindowStackSize:: ds 9
+wWhichIndexSet:: ds 1 ; cf76
+wScrollingMenuCursorPosition:: ds 1 ; cf77
+wWindowStackSize:: ds 9 ; cf78
 
 ; menu data header
 wMenuDataHeader:: ; cf81
@@ -1727,18 +1727,21 @@ CurMoveNum:: ; d0d5
 	ds 1
 
 wLastPocket:: ds 1
-wd0d7:: ds 1
-wd0d8::
+
+wPCItemsCursor:: ds 1
 wPartyMenuCursor:: ds 1
 wItemsPocketCursor:: ds 1
 wKeyItemsPocketCursor:: ds 1
 wBallsPocketCursor:: ds 1
 wTMHMPocketCursor:: ds 1
-wd0dd:: ds 2
+
+wPCItemsScrollPosition:: ds 1
+wPartyMenuScrollPosition:: ds 1 ; unused
 wItemsPocketScrollPosition:: ds 1
 wKeyItemsPocketScrollPosition:: ds 1
 wBallsPocketScrollPosition:: ds 1
 wTMHMPocketScrollPosition:: ds 1
+
 wMoveSwapBuffer::
 wSwitchMon::
 wSwitchItem::
@@ -1764,9 +1767,9 @@ VramState:: ; d0ed
 ;        flickers when climbing waterfall
 	ds 1
 
-wBattleResult:: ds 1
-wUsingItemWithSelect:: ds 1
-CurMart:: ds 16
+wBattleResult:: ds 1 ; d0ee
+wUsingItemWithSelect:: ds 1 ; d0ef
+CurMart:: ds 16 ; d0f0
 CurMartEnd::
 	ds CurMart - @
 CurElevator:: ds 1
@@ -1776,7 +1779,7 @@ wCurMessageIndex:: ds 1
 wd0f2::
 wMailboxCount:: ds 1
 wMailboxItems:: ds MAILBOX_CAPACITY
-wMailboxEnd:: ds 1 ; d1fe
+wMailboxEnd:: ds 1 ; d0fe
 	ds 2
 
 wd100:: ds 1
@@ -1786,9 +1789,7 @@ wd103:: ds 1
 wd104:: ds 1
 wd105:: ds 1
 
-CurItem:: ; d106
-	ds 1
-
+CurItem:: ds 1 ; d106
 CurItemQuantity:: ; d107
 wMartItemID::
 wd107:: ds 1
@@ -2027,7 +2028,9 @@ wd1ee:: ds 1
 Buffer6::
 wd1ef:: ds 1
 wd1f0:: ds 1
+wCurHPBarPixels::
 wd1f1:: ds 1
+wNewHPBarPixels::
 wd1f2:: ds 1
 wd1f3:: ds 1
 wd1f4:: ds 1
@@ -2148,7 +2151,7 @@ wWaterEncounterRate:: ds 1 ; d25d
 wListMoves_MoveIndicesBuffer:: ds NUM_MOVES
 wPutativeTMHMMove:: ds 1
 wd263:: ds 1
-wd264:: ds 1
+wAISwitch:: ds 1
 wFoundMatchingIDInParty::
 wNamedObjectIndexBuffer::
 wCurTMHM::
@@ -2801,16 +2804,16 @@ wMapData::
 VisitedSpawns:: ; dca5
 	flag_array NUM_SPAWNS
 
-wDigWarp:: ds 1
-wDigMapGroup:: ds 1
-wDigMapNumber:: ds 1
+wDigWarp:: ds 1 ; dcaa
+wDigMapGroup:: ds 1 ; dcab
+wDigMapNumber:: ds 1 ; dcac
 ; used on maps like second floor pokécenter, which are reused, so we know which
 ; map to return to
-BackupWarpNumber:: ; dcac
+BackupWarpNumber:: ; dcad
 	ds 1
-BackupMapGroup:: ; dcad
+BackupMapGroup:: ; dcae
 	ds 1
-BackupMapNumber:: ; dcae
+BackupMapNumber:: ; dcaf
 	ds 1
 
 	ds 3

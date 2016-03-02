@@ -55,8 +55,8 @@ MovementPointers: ; 5075
 	dw Movement_fast_jump_step_up     ; 35
 	dw Movement_fast_jump_step_left   ; 36
 	dw Movement_fast_jump_step_right  ; 37
-	dw Movement_38                    ; 38
-	dw Movement_39                    ; 39
+	dw Movement_remove_sliding                    ; 38
+	dw Movement_set_sliding                    ; 39
 	dw Movement_remove_fixed_facing   ; 3a
 	dw Movement_fix_facing            ; 3b
 	dw Movement_show_person           ; 3c
@@ -373,14 +373,14 @@ Movement_56: ; 5279
 	ret
 ; 5293
 
-Movement_38: ; 5293
+Movement_remove_sliding: ; 5293
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	res SLIDING, [hl]
 	jp ContinueReadingMovement
 ; 529c
 
-Movement_39: ; 529c
+Movement_set_sliding: ; 529c
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	set SLIDING, [hl]

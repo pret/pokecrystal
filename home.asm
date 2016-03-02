@@ -560,7 +560,7 @@ ApplyTilemap:: ; 321c
 	ret
 ; 3238
 
-Function3238:: ; 3238
+CGBOnly_LoadEDTile:: ; 3238
 	ld a, [hCGB]
 	and a
 	jr z, WaitBGMap

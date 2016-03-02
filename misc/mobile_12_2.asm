@@ -443,7 +443,7 @@ Function4aad3: ; 4aad3
 	push bc
 	push hl
 	ld e, 0
-	callba Function8e83f
+	callba LoadMenuMonIcon
 	ld a, [hObjectStructIndexBuffer]
 	inc a
 	ld [hObjectStructIndexBuffer], a

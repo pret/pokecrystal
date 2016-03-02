@@ -1323,7 +1323,7 @@ BattleAnim_Thundershock: ; c9b53
 
 BattleAnim_Thunderbolt: ; c9b66
 	anim_2gfx ANIM_GFX_LIGHTNING, ANIM_GFX_EXPLOSION
-	anim_obj ANIM_OBJ_32, -15, 0,   7, 0, $2
+	anim_obj ANIM_OBJ_LIGHTNING_BOLT, -15, 0,   7, 0, $2
 	anim_wait 16
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
 	anim_sound 0, 1, SFX_THUNDERSHOCK
@@ -2497,10 +2497,10 @@ BattleAnim_Transform: ; ca54d
 	anim_call BattleAnim_FollowPlayerHead_0
 	anim_transform
 	anim_sound 0, 0, SFX_PSYBEAM
-	anim_bgeffect ANIM_BG_28, $0, $1, $0
+	anim_bgeffect ANIM_BG_WAVE_DEFORM_USER, $0, $1, $0
 	anim_wait 48
 	anim_updateactorpic
-	anim_incbgeffect ANIM_BG_28
+	anim_incbgeffect ANIM_BG_WAVE_DEFORM_USER
 	anim_wait 48
 	anim_call BattleAnim_ShowMon_0
 	anim_ret
@@ -2759,10 +2759,10 @@ BattleAnim_Minimize: ; ca78a
 	anim_1gfx ANIM_GFX_HIT
 	anim_call BattleAnim_FollowPlayerHead_0
 	anim_minimize
-	anim_bgeffect ANIM_BG_28, $0, $1, $0
+	anim_bgeffect ANIM_BG_WAVE_DEFORM_USER, $0, $1, $0
 	anim_wait 48
 	anim_updateactorpic
-	anim_incbgeffect ANIM_BG_28
+	anim_incbgeffect ANIM_BG_WAVE_DEFORM_USER
 	anim_wait 48
 	anim_call BattleAnim_ShowMon_0
 	anim_ret
@@ -2774,7 +2774,7 @@ BattleAnim_SkyAttack: ; ca7a1
 	anim_bgeffect ANIM_BG_27, $0, $1, $0
 	anim_wait 32
 	anim_sound 0, 0, SFX_HYPER_BEAM
-	anim_obj ANIM_OBJ_6E,   6, 0,  11, 0, $40
+	anim_obj ANIM_OBJ_SKY_ATTACK_FEAROW,   6, 0,  11, 0, $40
 	anim_wait 64
 	anim_incobj  1
 	anim_wait 21
@@ -2805,7 +2805,7 @@ BattleAnim_NightShade: ; ca7cc
 BattleAnim_Lick: ; ca7e5
 	anim_1gfx ANIM_GFX_WATER
 	anim_sound 0, 1, SFX_LICK
-	anim_obj ANIM_OBJ_6F, -15, 0,   7, 0, $0
+	anim_obj ANIM_OBJ_LICK, -15, 0,   7, 0, $0
 	anim_wait 64
 	anim_ret
 ; ca7f1
@@ -3025,9 +3025,9 @@ BattleAnim_Meditate: ; ca9d8
 	anim_1gfx ANIM_GFX_HIT
 	anim_call BattleAnim_FollowEnemyFeet_0
 	anim_sound 0, 0, SFX_PSYBEAM
-	anim_bgeffect ANIM_BG_28, $0, $1, $0
+	anim_bgeffect ANIM_BG_WAVE_DEFORM_USER, $0, $1, $0
 	anim_wait 48
-	anim_incbgeffect ANIM_BG_28
+	anim_incbgeffect ANIM_BG_WAVE_DEFORM_USER
 	anim_wait 48
 	anim_call BattleAnim_ShowMon_0
 	anim_ret
@@ -3765,13 +3765,13 @@ BattleAnim_Octazooka: ; cb06f
 BattleAnim_Spikes: ; cb092
 	anim_1gfx ANIM_GFX_MISC
 	anim_sound 6, 2, SFX_MENU
-	anim_obj ANIM_OBJ_8E,   6, 0,  11, 0, $20
+	anim_obj ANIM_OBJ_SPIKES,   6, 0,  11, 0, $20
 	anim_wait 8
 	anim_sound 6, 2, SFX_MENU
-	anim_obj ANIM_OBJ_8E,   6, 0,  11, 0, $30
+	anim_obj ANIM_OBJ_SPIKES,   6, 0,  11, 0, $30
 	anim_wait 8
 	anim_sound 6, 2, SFX_MENU
-	anim_obj ANIM_OBJ_8E,   6, 0,  11, 0, $28
+	anim_obj ANIM_OBJ_SPIKES,   6, 0,  11, 0, $28
 	anim_wait 64
 	anim_ret
 ; cb0b0
@@ -3784,7 +3784,7 @@ BattleAnim_ZapCannon: ; cb0b0
 	anim_obj ANIM_OBJ_A3,   8, 0,  11, 4, $2
 	anim_wait 40
 	anim_sound 0, 1, SFX_THUNDERSHOCK
-	anim_obj ANIM_OBJ_32, -15, 0,   7, 0, $2
+	anim_obj ANIM_OBJ_LIGHTNING_BOLT, -15, 0,   7, 0, $2
 	anim_wait 16
 	anim_obj ANIM_OBJ_31, -15, 0,   7, 0, $0
 	anim_wait 128
@@ -3830,14 +3830,14 @@ BattleAnim_PerishSong: ; cb113
 	anim_bgeffect ANIM_BG_06, $0, $2, $0
 	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
 	anim_sound 0, 2, SFX_PERISH_SONG
-	anim_obj ANIM_OBJ_A6,  11, 0,   0, 0, $0
-	anim_obj ANIM_OBJ_A6,  11, 0,   0, 0, $8
-	anim_obj ANIM_OBJ_A6,  11, 0,   0, 0, $10
-	anim_obj ANIM_OBJ_A6,  11, 0,   0, 0, $18
-	anim_obj ANIM_OBJ_A6,  11, 0,   0, 0, $20
-	anim_obj ANIM_OBJ_A6,  11, 0,   0, 0, $28
-	anim_obj ANIM_OBJ_A6,  11, 0,   0, 0, $30
-	anim_obj ANIM_OBJ_A6,  11, 0,   0, 0, $38
+	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $0
+	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $8
+	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $10
+	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $18
+	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $20
+	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $28
+	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $30
+	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $38
 	anim_wait 112
 	anim_ret
 ; cb14c
@@ -4087,7 +4087,7 @@ BattleAnim_Spark: ; cb34d
 	anim_incobj  2
 	anim_wait 1
 	anim_sound 0, 1, SFX_THUNDERSHOCK
-	anim_obj ANIM_OBJ_32, -15, 0,   7, 0, $2
+	anim_obj ANIM_OBJ_LIGHTNING_BOLT, -15, 0,   7, 0, $2
 	anim_obj ANIM_OBJ_33, -15, 0,   7, 0, $0
 	anim_wait 32
 	anim_ret

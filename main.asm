@@ -3799,7 +3799,7 @@ BikeFunction: ; d0b3
 	ld hl, Script_GetOffBike
 	ld de, Script_GetOffBike_Register
 	call .CheckIfRegistered
-	ld a, $3
+	ld a, BANK(Script_GetOffBike)
 	jr .done
 
 .CantGetOffBike
@@ -6275,7 +6275,7 @@ ShowLinkBattleParticipants: ; 2ee18
 	call ClearSprites
 	ret
 
-FindFirstAliveMon: ; 2ee2f
+FindFirstAliveMonAndStartBattle: ; 2ee2f
 	xor a
 	ld [hMapAnims], a
 	call DelayFrame
@@ -10522,8 +10522,8 @@ Function8c7c9: ; unreferenced
 INCLUDE "event/field_moves.asm"
 INCLUDE "event/magnet_train.asm"
 
-Function8cf4f: ; 8cf4f
-	call Function3238
+BattleStart_LoadEDTile: ; 8cf4f
+	call CGBOnly_LoadEDTile
 	ret
 
 INCLUDE "engine/sprites.asm"

@@ -5846,12 +5846,12 @@ Function11ad1b: ; 11ad1b
 	ld [hObjectStructIndexBuffer], a
 	ld a, $10
 	ld [wCurIconTile], a
-	ld hl, Function8e83f
-	ld a, BANK(Function8e83f)
+	ld hl, LoadMenuMonIcon
+	ld a, BANK(LoadMenuMonIcon)
 	ld e, $4
 	rst FarCall
-	ld hl, Function8e83f
-	ld a, BANK(Function8e83f)
+	ld hl, LoadMenuMonIcon
+	ld a, BANK(LoadMenuMonIcon)
 	ld e, $5
 	rst FarCall
 	ld hl, $c6d0

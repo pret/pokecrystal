@@ -21,17 +21,17 @@ CheckDirectionalWarp:: ; 149af
 ; Else, set carry (immediate warp).
 	ld a, [PlayerStandingTile]
 	cp $70 ; Warp on down
-	jr z, .not_warp
+	jr z, .directional
 	cp $76 ; Warp on left
-	jr z, .not_warp
+	jr z, .directional
 	cp $78 ; Warp on up
-	jr z, .not_warp
+	jr z, .directional
 	cp $7e ; Warp on right
-	jr z, .not_warp
+	jr z, .directional
 	scf
 	ret
 
-.not_warp
+.directional
 	xor a
 	ret
 ; 149c6

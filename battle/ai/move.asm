@@ -12,7 +12,7 @@ AIChooseMove: ; 440ce
 	ret nz
 
 ; No use picking a move if there's no choice.
-	callba CheckSubstatus_RechargeChargedRampageBideRollout
+	callba CheckEnemyLockedIn
 	ret nz
 
 

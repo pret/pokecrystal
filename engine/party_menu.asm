@@ -658,8 +658,8 @@ InitPartyMenuGFX: ; 503e0
 .loop
 	push bc
 	push hl
-	ld hl, Function8e83f
-	ld a, BANK(Function8e83f)
+	ld hl, LoadMenuMonIcon
+	ld a, BANK(LoadMenuMonIcon)
 	ld e, $0
 	rst FarCall
 	ld a, [hObjectStructIndexBuffer]
@@ -752,8 +752,8 @@ PartyMenuSelect: ; 0x50457
 	ld [wPartyMenuCursor], a
 	ld a, [hJoyLast]
 	ld b, a
-	bit 1, b
-	jr nz, .exitmenu ; B button?
+	bit B_BUTTON_F, b
+	jr nz, .exitmenu ; B button
 	ld a, [wMenuCursorY]
 	dec a
 	ld [CurPartyMon], a

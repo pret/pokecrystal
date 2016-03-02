@@ -1,5 +1,5 @@
 Predef_StartBattle: ; 8c20f
-	call Function8c26d
+	call .InitGFX
 	ld a, [rBGP]
 	ld [wBGP], a
 	ld a, [rOBP0]
@@ -52,15 +52,15 @@ Predef_StartBattle: ; 8c20f
 	ret
 ; 8c26d
 
-Function8c26d: ; 8c26d
+.InitGFX: ; 8c26d
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	jr z, .mobile
 	callba Function6454
 	call UpdateSprites
 	call DelayFrame
-	call Function8c2a0
-	call Function8cf4f
+	call .NonMobile_LoadPokeballTiles
+	call BattleStart_LoadEDTile
 	jr .resume
 
 .mobile
@@ -81,7 +81,7 @@ Function8c26d: ; 8c26d
 	ret
 ; 8c2a0
 
-Function8c2a0: ; 8c2a0
+.NonMobile_LoadPokeballTiles: ; 8c2a0
 	call LoadTrainerBattlePokeballTiles
 	hlbgcoord 0, 0
 	call Function8c2cf
@@ -663,7 +663,7 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	call DelayFrame
-	call Function8cf4f
+	call BattleStart_LoadEDTile
 
 .nextscene: ; 8c673 (23:4673)
 	call StartTrainerBattle_NextScene

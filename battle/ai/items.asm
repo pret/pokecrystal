@@ -9,7 +9,7 @@ AI_SwitchOrTryItem: ; 38000
 	and a
 	ret nz
 
-	callba CheckSubstatus_RechargeChargedRampageBideRollout
+	callba CheckEnemyLockedIn
 	ret nz
 
 	ld a, [PlayerSubStatus5]
@@ -716,7 +716,7 @@ AI_Switch: ; 3846c
 	ld d, h
 	ld e, l
 	ld hl, EnemyMonStatus
-	ld bc, $0004
+	ld bc, MON_MAXHP - MON_STATUS
 	call CopyBytes
 	pop af
 
@@ -726,7 +726,7 @@ AI_Switch: ; 3846c
 
 .skiptext
 	ld a, 1
-	ld [wd264], a
+	ld [wAISwitch], a
 	callab NewEnemyMonStatus
 	callab ResetEnemyStatLevels
 	ld hl, PlayerSubStatus1
@@ -734,7 +734,7 @@ AI_Switch: ; 3846c
 	callba EnemySwitch
 	callba ResetBattleParticipants
 	xor a
-	ld [wd264], a
+	ld [wAISwitch], a
 	ld a, [wLinkMode]
 	and a
 	ret nz

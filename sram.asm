@@ -69,7 +69,7 @@ sMysteryGiftTimerStartDay:: ds 1
 sMysteryGiftTrainerHouseFlag:: ds 1
 sMysteryGiftPartnerName:: ds NAME_LENGTH
 s0_ac09:: ds 1
-sMysteryGiftTrainer:: ds (1 + 1 + NUM_MOVES) * PARTY_LENGTH + 2
+sMysteryGiftTrainer:: ds (1 + 1 + NUM_MOVES) * PARTY_LENGTH + 2 ; ac0a
 sBackupMysteryGiftItemEnd::
 
 	ds $30

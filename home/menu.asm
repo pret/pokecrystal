@@ -232,7 +232,7 @@ DoNthMenu:: ; 1e5d
 	call MenuFunc_1e7f
 	call MenuWriteText
 	call Function1eff
-	call Function1f23
+	call GetStaticMenuJoypad
 	call GetMenuJoypad
 	call MenuClickSound
 	ret
@@ -360,20 +360,20 @@ Function1eff:: ; 1eff
 ; 1f1a
 
 
-Function1f1a:: ; 1f1a
+GetScrollingMenuJoypad:: ; 1f1a
 	call ScrollingMenuJoypad
 	ld hl, wMenuJoypadFilter
 	and [hl]
-	jr Function1f2a
+	jr ContinueGettingMenuJoypad
 ; 1f23
 
-Function1f23:: ; 1f23
+GetStaticMenuJoypad:: ; 1f23
 	xor a
 	ld [wMenuJoypad], a
 	call StaticMenuJoypad
 ; 1f2a
 
-Function1f2a:: ; 1f2a
+ContinueGettingMenuJoypad:
 	bit A_BUTTON_F, a
 	jr nz, .a_button
 	bit B_BUTTON_F, a

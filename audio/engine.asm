@@ -38,8 +38,8 @@ _MapSetup_Sound_Off:: ; e8000
 	dec e
 	jr nz, .clearsound
 
-	ld hl, Channel1 ; start of channel data
-	ld de, $1bf ; length of area to clear (entire sound wram area)
+	ld hl, Channels ; start of channel data
+	ld de, ChannelsEnd - Channels ; length of area to clear (entire sound wram area)
 .clearchannels ; clear Channel1-$c2bf
 	xor a
 	ld [hli], a

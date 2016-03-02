@@ -130,53 +130,53 @@ BurnedTowerB1FBoulder:
 	jumpstd strengthboulder
 
 MovementData_0x186236:
-	db $39 ; movement
+	set_sliding
 	fast_jump_step_down
 	fast_jump_step_left
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 MovementData_0x18623b:
-	db $39 ; movement
+	set_sliding
 	fast_jump_step_right
 	fast_jump_step_down
 	fast_jump_step_right
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 MovementData_0x186241:
-	db $39 ; movement
+	set_sliding
 	fast_jump_step_right
 	fast_jump_step_down
 	fast_jump_step_down
 	fast_jump_step_left
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 MovementData_0x186248:
-	db $39 ; movement
+	set_sliding
 	fast_jump_step_left
 	fast_jump_step_up
 	big_step_up
 	fast_jump_step_right
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 MovementData_0x18624f:
-	db $39 ; movement
+	set_sliding
 	big_step_down
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 MovementData_0x186253:
-	db $39 ; movement
+	set_sliding
 	big_step_up
 	fast_jump_step_right
 	fast_jump_step_down
 	fast_jump_step_down
 	fast_jump_step_down
 	fast_jump_step_down
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 MovementData_0x18625c:
