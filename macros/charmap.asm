@@ -191,6 +191,7 @@
 	charmap "ビ", $1a
 	charmap "ブ", $1b
 	charmap "ボ", $1c
+;	charmap "ベ", $1d
 
 	charmap "が", $26
 	charmap "ぎ", $27
@@ -273,11 +274,13 @@
 	charmap "ュ", $ae
 	charmap "ョ", $af
 	charmap "ィ", $b0
+
 	charmap "あ", $b1
 	charmap "い", $b2
 	charmap "う", $b3
 	charmap "え", $b4
 	charmap "お", $b5
+
 	charmap "か", $b6
 	charmap "き", $b7
 	charmap "く", $b8
@@ -303,6 +306,7 @@
 	charmap "ふ", $cc
 	charmap "へ", $cd
 	charmap "ほ", $ce
+
 	charmap "ま", $cf
 	charmap "み", $d0
 	charmap "む", $d1
@@ -323,6 +327,10 @@
 	charmap "ゃ", $e0
 	charmap "ゅ", $e1
 	charmap "ょ", $e2
+
 	charmap "ー", $e3
+
+	charmap "ﾟ", $e4
+	charmap "ﾞ", $e5
 
 	charmap "ァ", $e9
