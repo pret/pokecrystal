@@ -270,16 +270,17 @@ endm
 	dict "<PLAY_G>", PlaceGenderedPlayerName
 
 	cp "ﾟ"
-	jr z, .place
+	jr z, .place ; should be .diacritic
 	cp "ﾞ"
-	jr z, .place
+	jr z, .place ; should be .diacritic
+	jr .not_diacritic
 
-	jr .nope
+.diacritic
 	ld b, a
 	call Diacritic
 	jp NextChar
-.nope
 
+.not_diacritic
 	cp $60 ; Regular characters
 	jr nc, .place
 
