@@ -189,12 +189,13 @@ LongAnim_UpdateVariables: ; d6f5
 	; This routine is buggy. The result from ComputeHPBarPixels is stored
 	; in e. However, the pop de opcode deletes this result before it is even
 	; used. The game then proceeds as though it never deleted that output.
-	; To fix, move the line "ld a, e" to here.
+	; To fix, uncomment the line below.
 	call ComputeHPBarPixels
+	; ld a, e
 	pop bc
 	pop de
 	pop hl
-	ld a, e
+	ld a, e ; Comment or delete this line to fix the above bug.
 	ld hl, wCurHPBarPixels
 	cp [hl]
 	jr z, .loop
