@@ -226,23 +226,10 @@ endc
 endm
 
 dict2: macro
-if \1 == 0
-	and a
-else
 	cp \1
-endc
-	jr nz, \@
+	jr nz, ._\@
 	ld a, \2
-\@:
-endm
-
-dict3: macro
-if \1 == 0
-	and a
-else
-	cp \1
-endc
-	jr z, \2
+._\@:
 endm
 
 	dict "<DAY>", Char15
@@ -281,31 +268,34 @@ endm
 	dict "<USER>", PlaceMoveUsersName
 	dict "<ENEMY>", PlaceEnemysName
 	dict "<PLAY_G>", PlaceGenderedPlayerName
-	dict3 $e4, .place
-	dict3 $e5, .place
 
-	jr .nope
+	cp "ﾟ"
+	jr z, .place ; should be .diacritic
+	cp "ﾞ"
+	jr z, .place ; should be .diacritic
+	jr .not_diacritic
+
+.diacritic
 	ld b, a
 	call Diacritic
 	jp NextChar
-.nope
 
-	cp $60
+.not_diacritic
+	cp $60 ; Regular characters
 	jr nc, .place
 
-	cp $40
+	cp "パ"
 	jr nc, .handakuten
 
 .dakuten
-
 	cp $20
 	jr nc, .daku1
-	add $80
+	add "カ" - "ガ"
 	jr .daku2
 .daku1
-	add $90
+	add "か" - "が"
 .daku2
-	ld b, $e5 ; dakuten
+	ld b, "ﾞ" ; dakuten
 	call Diacritic
 	jr .place
 
@@ -317,7 +307,7 @@ endm
 .han1
 	add "は" - "ぱ"
 .han2
-	ld b, $e4 ; handakuten
+	ld b, "ﾟ" ; handakuten
 	call Diacritic
 
 .place
@@ -347,18 +337,18 @@ PrintRivalName:  print_name RivalName  ; 1194
 PrintRedsName:   print_name RedsName   ; 119b
 PrintGreensName: print_name GreensName ; 11a2
 
-TrainerChar: print_name TrainerCharText ; 11a9
-TMChar: print_name TMCharText ; 11b0
-PCChar: print_name PCCharText ; 11b7
-RocketChar: print_name RocketCharText ; 11be
-PlacePOKe: print_name PlacePOKeText ; 11c5
-PlaceKougeki: print_name KougekiText ; 11cc
-SixDotsChar: print_name SixDotsCharText ; 11d3
-PlacePKMN: print_name PlacePKMNText ; 11da
-PlacePOKE: print_name PlacePOKEText ; 11e1
-Char35: print_name Char35Text ; 11e8
-Char36: print_name Char36Text ; 11ef
-Char37: print_name Char37Text ; 11f6
+TrainerChar:  print_name TrainerCharText ; 11a9
+TMChar:       print_name TMCharText      ; 11b0
+PCChar:       print_name PCCharText      ; 11b7
+RocketChar:   print_name RocketCharText  ; 11be
+PlacePOKe:    print_name PlacePOKeText   ; 11c5
+PlaceKougeki: print_name KougekiText     ; 11cc
+SixDotsChar:  print_name SixDotsCharText ; 11d3
+PlacePKMN:    print_name PlacePKMNText   ; 11da
+PlacePOKE:    print_name PlacePOKEText   ; 11e1
+Char35:       print_name Char35Text      ; 11e8
+Char36:       print_name Char36Text      ; 11ef
+Char37:       print_name Char37Text      ; 11f6
 
 
 PlaceMoveTargetsName:: ; 11fd

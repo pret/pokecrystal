@@ -2,9 +2,9 @@ PYTHON := python
 MD5 := md5sum -c --quiet
 
 .SUFFIXES:
-.SUFFIXES: .2bpp
 .PHONY: all clean crystal crystal11
 .SECONDEXPANSION:
+.PRECIOUS: %.2bpp %.1bpp
 
 poketools := extras/pokemontools
 gfx       := $(PYTHON) gfx.py
@@ -60,16 +60,13 @@ pokecrystal.gbc: $(crystal_obj)
 	rgblink -n $*.sym -m $*.map -o $@ $^
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 
-
 %.png: ;
 %.2bpp: %.png ; $(gfx) 2bpp $<
 %.1bpp: %.png ; $(gfx) 1bpp $<
-%.lz:   %     ; $(gfx) lz $<
-
+%.lz: % ; $(gfx) lz $<
 
 %.pal: %.2bpp ;
 gfx/pics/%/normal.pal gfx/pics/%/bitmask.asm gfx/pics/%/frames.asm: gfx/pics/%/front.2bpp ;
 %.bin: ;
 %.blk: ;
 %.tilemap: ;
-
