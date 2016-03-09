@@ -2008,7 +2008,7 @@ HealPartyMon: ; c677
 	ret
 
 ComputeHPBarPixels: ; c699
-; bc * (6 * 8) / de
+; e = bc * (6 * 8) / de
 	ld a, b
 	or c
 	jr z, .zero

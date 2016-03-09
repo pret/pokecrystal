@@ -1806,6 +1806,7 @@ CurPartyMon:: ; d109
 wWhichHPBar::
 ; 0: Enemy
 ; 1: Player
+; 2: Party Menu
 	ds 1
 wPokemonWithdrawDepositParameter::
 ; 0: Take from PC

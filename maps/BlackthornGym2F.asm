@@ -23,8 +23,8 @@ BlackthornGym2F_MapScriptHeader:
 	return
 
 .BoulderCmdQueue
-	dbw MAPCALLBACK_OBJECTS, .BoulderTable ; check if any stones are sitting on a warp
-	db 0, 0 ; filler
+	dbw CMDQUEUE_STONETABLE, .BoulderTable ; check if any stones are sitting on a warp
+	dw 0 ; filler
 
 .BoulderTable
 	stonetable 5, BLACKTHORNGYM2F_BOULDER1, .Disappear4
@@ -137,9 +137,9 @@ BlackthornGym2F_MapEventHeader:
 	db 5
 	warp_def $7, $1, 3, BLACKTHORN_GYM_1F
 	warp_def $9, $7, 4, BLACKTHORN_GYM_1F
-	warp_def $5, $2, 5, BLACKTHORN_GYM_1F
-	warp_def $7, $8, 6, BLACKTHORN_GYM_1F
-	warp_def $3, $8, 7, BLACKTHORN_GYM_1F
+	warp_def $5, $2, 5, BLACKTHORN_GYM_1F ; hole
+	warp_def $7, $8, 6, BLACKTHORN_GYM_1F ; hole
+	warp_def $3, $8, 7, BLACKTHORN_GYM_1F ; hole
 
 .XYTriggers:
 	db 0

@@ -2924,7 +2924,9 @@ TruncateHL_BC: ; 3534d
 	ld a, [wLinkMode]
 	cp 3
 	jr z, .done
-
+; If we go back to the loop point,
+; it's the same as doing this exact
+; same check twice.
 	ld a, h
 	or b
 	jr nz, .loop

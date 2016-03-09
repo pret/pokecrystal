@@ -21,8 +21,8 @@ IcePathB1F_MapScriptHeader:
 	return
 
 .CommandQueue:
-	dbw MAPCALLBACK_OBJECTS, .StoneTable ; check if any stones are sitting on a warp
-	db 0, 0 ; filler
+	dbw CMDQUEUE_STONETABLE, .StoneTable ; check if any stones are sitting on a warp
+	dw 0 ; filler
 
 .StoneTable:
 	stonetable 3, ICEPATHB1F_BOULDER1, .Boulder1
@@ -90,10 +90,10 @@ IcePathB1F_MapEventHeader:
 	db 8
 	warp_def $f, $3, 3, ICE_PATH_1F
 	warp_def $3, $11, 1, ICE_PATH_B2F_MAHOGANY_SIDE
-	warp_def $2, $b, 3, ICE_PATH_B2F_MAHOGANY_SIDE
-	warp_def $7, $4, 4, ICE_PATH_B2F_MAHOGANY_SIDE
-	warp_def $c, $5, 5, ICE_PATH_B2F_MAHOGANY_SIDE
-	warp_def $d, $c, 6, ICE_PATH_B2F_MAHOGANY_SIDE
+	warp_def $2, $b, 3, ICE_PATH_B2F_MAHOGANY_SIDE ; hole
+	warp_def $7, $4, 4, ICE_PATH_B2F_MAHOGANY_SIDE ; hole
+	warp_def $c, $5, 5, ICE_PATH_B2F_MAHOGANY_SIDE ; hole
+	warp_def $d, $c, 6, ICE_PATH_B2F_MAHOGANY_SIDE ; hole
 	warp_def $19, $5, 4, ICE_PATH_1F
 	warp_def $1b, $b, 1, ICE_PATH_B2F_BLACKTHORN_SIDE
 
