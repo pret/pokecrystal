@@ -3605,7 +3605,7 @@ FishFunction: ; cf8e
 	ld d, a
 	ld a, [Buffer2]
 	ld e, a
-	callba FishAction
+	callba Fish
 	ld a, d
 	and a
 	jr z, .nonibble

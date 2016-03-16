@@ -1,4 +1,4 @@
-FishAction: ; 92402
+Fish: ; 92402
 ; Using a fishing rod.
 ; Fish for monsters with rod e in encounter group d.
 ; Return monster e at level d.
@@ -7,16 +7,14 @@ FishAction: ; 92402
 	push bc
 	push hl
 
-; Get the fishing group for this map.
 	ld b, e
-	call GetFishGroupHeader
+	call GetFishGroupIndex
 
-	ld hl, FishGroupHeaders
+	ld hl, FishGroups
 rept 7
 	add hl, de
 endr
-
-	call Fish
+	call .Fish
 
 	pop hl
 	pop bc
@@ -25,22 +23,18 @@ endr
 ; 9241a
 
 
-Fish: ; 9241a
-; Grandfathered from Red.
-
+.Fish: ; 9241a
 ; Fish for monsters with rod b from encounter data in FishGroup at hl.
 ; Return monster e at level d.
 
 	call Random
-
-; Got a bite?
 	cp [hl]
-	jr nc, .NoBite
+	jr nc, .no_bite
 
-; Get encounter data by rod:
-; 	0: Old
-; 	1: Good
-; 	2: Super
+	; Get encounter data by rod:
+	; 0: Old
+	; 1: Good
+	; 2: Super
 	inc hl
 	ld e, b
 	ld d, 0
@@ -51,41 +45,34 @@ endr
 	ld h, [hl]
 	ld l, a
 
-; Encounter chance for this monster:
+	; Compare the encounter chance to select a Pokemon.
 	call Random
-
-.CheckEncounter
+.loop
 	cp [hl]
-	jr z, .ReadMon
-	jr c, .ReadMon
-
-; Next monster...
+	jr z, .ok
+	jr c, .ok
 rept 3
 	inc hl
 endr
-	jr .CheckEncounter
-
-.ReadMon
-; We're done with the encounter chance
+	jr .loop
+.ok
 	inc hl
 
-; Species 0 triggers a read from a time-based encounter table.
+	; Species 0 reads from a time-based encounter table.
 	ld a, [hli]
 	ld d, a
 	and a
 	call z, .TimeEncounter
 
-; Level
 	ld e, [hl]
 	ret
 
-.NoBite
+.no_bite
 	ld de, 0
 	ret
 
-.TimeEncounter
-
-; The level byte is repurposed as the index for the new table.
+.TimeEncounter:
+	; The level byte is repurposed as the index for the new table.
 	ld e, [hl]
 	ld d, 0
 	ld hl, TimeFishGroups
@@ -93,402 +80,280 @@ rept 4
 	add hl, de
 endr
 
-; One nightmon, then one daymon
 	ld a, [TimeOfDay]
 	and 3
 	cp NITE
-	jr c, .TimeSpecies
+	jr c, .time_species
 rept 2
 	inc hl
 endr
 
-.TimeSpecies
+.time_species
 	ld d, [hl]
 	inc hl
 	ret
 ; 9245b
 
 
-
-
-GetFishGroupHeader: ; 9245b
-; Return fishing encounter group header d in de.
+GetFishGroupIndex: ; 9245b
+; Return the index of fishgroup d in de.
 
 	push hl
 	ld hl, DailyFlags
 	bit 2, [hl]
 	pop hl
-	jr z, .end
+	jr z, .done
 
-; Groups 11 and 12 have special attributes.
 	ld a, d
-	cp 11
-	jr z, .group11
-	cp 12
-	jr z, .group12
+	cp FISHGROUP_QWILFISH
+	jr z, .qwilfish
+	cp FISHGROUP_REMORAID
+	jr z, .remoraid
 
-.end
+.done
 	dec d
 	ld e, d
 	ld d, 0
 	ret
 
-.group11
+.qwilfish
 	ld a, [wFishingSwarmFlag]
-	cp 1
-	jr nz, .end
-	ld d, 6
-	jr .end
+	cp FISHSWARM_QWILFISH
+	jr nz, .done
+	ld d, FISHGROUP_QWILFISH_SWARM
+	jr .done
 
-.group12
+.remoraid
 	ld a, [wFishingSwarmFlag]
-	cp 2
-	jr nz, .end
-	ld d, 7
-	jr .end
+	cp FISHSWARM_REMORAID
+	jr nz, .done
+	ld d, FISHGROUP_REMORAID_SWARM
+	jr .done
 ; 92488
 
 
-FishGroupHeaders:
+FishGroups:
+	dbwww 50 percent + 1, .Shore_Old,            .Shore_Good,            .Shore_Super
+	dbwww 50 percent + 1, .Ocean_Old,            .Ocean_Good,            .Ocean_Super
+	dbwww 50 percent + 1, .Lake_Old,             .Lake_Good,             .Lake_Super
+	dbwww 50 percent + 1, .Pond_Old,             .Pond_Good,             .Pond_Super
+	dbwww 50 percent + 1, .Dratini_Old,          .Dratini_Good,          .Dratini_Super
+	dbwww 50 percent + 1, .Qwilfish_Swarm_Old,   .Qwilfish_Swarm_Good,   .Qwilfish_Swarm_Super
+	dbwww 50 percent + 1, .Remoraid_Swarm_Old,   .Remoraid_Swarm_Good,   .Remoraid_Swarm_Super
+	dbwww 50 percent + 1, .Gyarados_Old,         .Gyarados_Good,         .Gyarados_Super
+	dbwww 50 percent + 1, .Dratini_2_Old,        .Dratini_2_Good,        .Dratini_2_Super
+	dbwww 50 percent + 1, .WhirlIslands_Old,     .WhirlIslands_Good,     .WhirlIslands_Super
+	dbwww 50 percent + 1, .Qwilfish_Old,         .Qwilfish_Good,         .Qwilfish_Super
+	dbwww 50 percent + 1, .Remoraid_Old,         .Remoraid_Good,         .Remoraid_Super
+	dbwww 50 percent + 1, .Qwilfish_NoSwarm_Old, .Qwilfish_NoSwarm_Good, .Qwilfish_NoSwarm_Super
 
-FishGroup1Header: ; 92488
-	db $80 ; 50%
-	dw FishGroup1_Old
-	dw FishGroup1_Good
-	dw FishGroup1_Super
+.Shore_Old: ; 924e3
+	db  70 percent + 1, MAGIKARP,   10
+	db  85 percent + 1, MAGIKARP,   10
+	db 100 percent,     KRABBY,     10
+.Shore_Good: ; 924ec
+	db  35 percent,     MAGIKARP,   20
+	db  70 percent,     KRABBY,     20
+	db  90 percent + 1, KRABBY,     20
+	db 100 percent,     0, 0
+.Shore_Super: ; 924f8
+	db  40 percent,     KRABBY,     40
+	db  70 percent,     0, 1
+	db  90 percent + 1, KRABBY,     40
+	db 100 percent,     KINGLER,    40
 
-FishGroup2Header: ; 9248f
-	db $80 ; 50%
-	dw FishGroup2_Old
-	dw FishGroup2_Good
-	dw FishGroup2_Super
+.Ocean_Old: ; 92504
+	db  70 percent + 1, MAGIKARP,   10
+	db  85 percent + 1, MAGIKARP,   10
+	db 100 percent,     TENTACOOL,  10
+.Ocean_Good: ; 9250d
+	db  35 percent,     MAGIKARP,   20
+	db  70 percent,     TENTACOOL,  20
+	db  90 percent + 1, CHINCHOU,   20
+	db 100 percent,     0, 2
+.Ocean_Super: ; 92519
+	db  40 percent,     CHINCHOU,   40
+	db  70 percent,     0, 3
+	db  90 percent + 1, TENTACRUEL, 40
+	db 100 percent,     LANTURN,    40
 
-FishGroup3Header: ; 92496
-	db $80 ; 50%
-	dw FishGroup3_Old
-	dw FishGroup3_Good
-	dw FishGroup3_Super
+.Lake_Old: ; 92525
+	db  70 percent + 1, MAGIKARP,   10
+	db  85 percent + 1, MAGIKARP,   10
+	db 100 percent,     GOLDEEN,    10
+.Lake_Good: ; 9252e
+	db  35 percent,     MAGIKARP,   20
+	db  70 percent,     GOLDEEN,    20
+	db  90 percent + 1, GOLDEEN,    20
+	db 100 percent,     0, 4
+.Lake_Super: ; 9253a
+	db  40 percent,     GOLDEEN,    40
+	db  70 percent,     0, 5
+	db  90 percent + 1, MAGIKARP,   40
+	db 100 percent,     SEAKING,    40
 
-FishGroup4Header: ; 9249d
-	db $80 ; 50%
-	dw FishGroup4_Old
-	dw FishGroup4_Good
-	dw FishGroup4_Super
+.Pond_Old: ; 92546
+	db  70 percent + 1, MAGIKARP,   10
+	db  85 percent + 1, MAGIKARP,   10
+	db 100 percent,     POLIWAG,    10
+.Pond_Good: ; 9254f
+	db  35 percent,     MAGIKARP,   20
+	db  70 percent,     POLIWAG,    20
+	db  90 percent + 1, POLIWAG,    20
+	db 100 percent,     0, 6
+.Pond_Super: ; 9255b
+	db  40 percent,     POLIWAG,    40
+	db  70 percent,     0, 7
+	db  90 percent + 1, MAGIKARP,   40
+	db 100 percent,     POLIWAG,    40
 
-FishGroup5Header: ; 924a4
-	db $80 ; 50%
-	dw FishGroup5_Old
-	dw FishGroup5_Good
-	dw FishGroup5_Super
+.Dratini_Old: ; 92567
+	db  70 percent + 1, MAGIKARP,   10
+	db  85 percent + 1, MAGIKARP,   10
+	db 100 percent,     MAGIKARP,   10
+.Dratini_Good: ; 92570
+	db  35 percent,     MAGIKARP,   20
+	db  70 percent,     MAGIKARP,   20
+	db  90 percent + 1, MAGIKARP,   20
+	db 100 percent,     0, 8
+.Dratini_Super: ; 9257c
+	db  40 percent,     MAGIKARP,   40
+	db  70 percent,     0, 9
+	db  90 percent + 1, MAGIKARP,   40
+	db 100 percent,     DRAGONAIR,  40
 
-FishGroup6Header: ; 924ab
-	db $80 ; 50%
-	dw FishGroup6_Old
-	dw FishGroup6_Good
-	dw FishGroup6_Super
+.Qwilfish_Swarm_Old: ; 92588
+	db  70 percent + 1, MAGIKARP,   5
+	db  85 percent + 1, MAGIKARP,   5
+	db 100 percent,     QWILFISH,   5
+.Qwilfish_Swarm_Good: ; 92591
+	db  35 percent,     MAGIKARP,   20
+	db  70 percent,     QWILFISH,   20
+	db  90 percent + 1, QWILFISH,   20
+	db 100 percent,     0, 10
+.Qwilfish_Swarm_Super: ; 9259d
+	db  40 percent,     QWILFISH,   40
+	db  70 percent,     0, 11
+	db  90 percent + 1, QWILFISH,   40
+	db 100 percent,     QWILFISH,   40
 
-FishGroup7Header: ; 924b2
-	db $80 ; 50%
-	dw FishGroup7_Old
-	dw FishGroup7_Good
-	dw FishGroup7_Super
+.Remoraid_Swarm_Old: ; 925a9
+	db  70 percent + 1, MAGIKARP,   10
+	db  85 percent + 1, MAGIKARP,   10
+	db 100 percent,     REMORAID,   10
+.Remoraid_Swarm_Good: ; 925b2
+	db  35 percent,     MAGIKARP,   20
+	db  70 percent,     REMORAID,   20
+	db  90 percent + 1, REMORAID,   20
+	db 100 percent,     0, 12
+.Remoraid_Swarm_Super: ; 925be
+	db  40 percent,     REMORAID,   40
+	db  70 percent,     0, 13
+	db  90 percent + 1, REMORAID,   40
+	db 100 percent,     REMORAID,   40
 
-FishGroup8Header: ; 924b9
-	db $80 ; 50%
-	dw FishGroup8_Old
-	dw FishGroup8_Good
-	dw FishGroup8_Super
+.Gyarados_Old: ; 925ca
+	db  70 percent + 1, MAGIKARP,   10
+	db  85 percent + 1, MAGIKARP,   10
+	db 100 percent,     MAGIKARP,   10
+.Gyarados_Good: ; 925d3
+	db  35 percent,     MAGIKARP,   20
+	db  70 percent,     MAGIKARP,   20
+	db  90 percent + 1, MAGIKARP,   20
+	db 100 percent,     0, 14
+.Gyarados_Super: ; 925df
+	db  40 percent,     MAGIKARP,   40
+	db  70 percent,     0, 15
+	db  90 percent + 1, MAGIKARP,   40
+	db 100 percent,     MAGIKARP,   40
 
-FishGroup9Header: ; 924c0
-	db $80 ; 50%
-	dw FishGroup9_Old
-	dw FishGroup9_Good
-	dw FishGroup9_Super
+.Dratini_2_Old: ; 925eb
+	db  70 percent + 1, MAGIKARP,   10
+	db  85 percent + 1, MAGIKARP,   10
+	db 100 percent,     MAGIKARP,   10
+.Dratini_2_Good: ; 925f4
+	db  35 percent,     MAGIKARP,   10
+	db  70 percent,     MAGIKARP,   10
+	db  90 percent + 1, MAGIKARP,   10
+	db 100 percent,     0, 16
+.Dratini_2_Super: ; 92600
+	db  40 percent,     MAGIKARP,   10
+	db  70 percent,     0, 17
+	db  90 percent + 1, MAGIKARP,   10
+	db 100 percent,     DRAGONAIR,  10
 
-FishGroup10Header: ; 924c7
-	db $80 ; 50%
-	dw FishGroup10_Old
-	dw FishGroup10_Good
-	dw FishGroup10_Super
+.WhirlIslands_Old: ; 9260c
+	db  70 percent + 1, MAGIKARP,   10
+	db  85 percent + 1, MAGIKARP,   10
+	db 100 percent,     KRABBY,     10
+.WhirlIslands_Good: ; 92615
+	db  35 percent,     MAGIKARP,   20
+	db  70 percent,     KRABBY,     20
+	db  90 percent + 1, KRABBY,     20
+	db 100 percent,     0, 18
+.WhirlIslands_Super: ; 92621
+	db  40 percent,     KRABBY,     40
+	db  70 percent,     0, 19
+	db  90 percent + 1, KINGLER,    40
+	db 100 percent,     SEADRA,     40
 
-FishGroup11Header: ; 924ce
-	db $80 ; 50%
-	dw FishGroup11_Old
-	dw FishGroup11_Good
-	dw FishGroup11_Super
+.Qwilfish_NoSwarm_Old:
+.Qwilfish_Old: ; 9262d
+	db  70 percent + 1, MAGIKARP,   10
+	db  85 percent + 1, MAGIKARP,   10
+	db 100 percent,     TENTACOOL,  10
+.Qwilfish_NoSwarm_Good:
+.Qwilfish_Good: ; 92636
+	db  35 percent,     MAGIKARP,   20
+	db  70 percent,     TENTACOOL,  20
+	db  90 percent + 1, TENTACOOL,  20
+	db 100 percent,     0, 20
+.Qwilfish_NoSwarm_Super:
+.Qwilfish_Super: ; 92642
+	db  40 percent,     TENTACOOL,  40
+	db  70 percent,     0, 21
+	db  90 percent + 1, MAGIKARP,   40
+	db 100 percent,     QWILFISH,   40
 
-FishGroup12Header: ; 924d5
-	db $80 ; 50%
-	dw FishGroup12_Old
-	dw FishGroup12_Good
-	dw FishGroup12_Super
-
-FishGroup13Header: ; 924dc
-	db $80 ; 50%
-	dw FishGroup11_Old
-	dw FishGroup11_Good
-	dw FishGroup11_Super
-
-FishGroup1:
-FishGroup1_Old: ; 924e3
-	db $b3, MAGIKARP,   10
-	db $d9, MAGIKARP,   10
-	db -1, KRABBY,     10
-FishGroup1_Good: ; 924ec
-	db $59, MAGIKARP,   20
-	db $b2, KRABBY,     20
-	db $e6, KRABBY,     20
-	db -1, $0,         0
-FishGroup1_Super: ; 924f8
-	db $66, KRABBY,     40
-	db $b2, $0,         1
-	db $e6, KRABBY,     40
-	db -1, KINGLER,    40
-
-FishGroup2:
-FishGroup2_Old: ; 92504
-	db $b3, MAGIKARP,   10
-	db $d9, MAGIKARP,   10
-	db -1, TENTACOOL,  10
-FishGroup2_Good: ; 9250d
-	db $59, MAGIKARP,   20
-	db $b2, TENTACOOL,  20
-	db $e6, CHINCHOU,   20
-	db -1, $0,         2
-FishGroup2_Super: ; 92519
-	db $66, CHINCHOU,   40
-	db $b2, $0,         3
-	db $e6, TENTACRUEL, 40
-	db -1, LANTURN,    40
-
-FishGroup3:
-FishGroup3_Old: ; 92525
-	db $b3, MAGIKARP,   10
-	db $d9, MAGIKARP,   10
-	db -1, GOLDEEN,    10
-FishGroup3_Good: ; 9252e
-	db $59, MAGIKARP,   20
-	db $b2, GOLDEEN,    20
-	db $e6, GOLDEEN,    20
-	db -1, $0,         4
-FishGroup3_Super: ; 9253a
-	db $66, GOLDEEN,    40
-	db $b2, $0,         5
-	db $e6, MAGIKARP,   40
-	db -1, SEAKING,    40
-
-FishGroup4:
-FishGroup4_Old: ; 92546
-	db $b3, MAGIKARP,   10
-	db $d9, MAGIKARP,   10
-	db -1, POLIWAG,    10
-FishGroup4_Good: ; 9254f
-	db $59, MAGIKARP,   20
-	db $b2, POLIWAG,    20
-	db $e6, POLIWAG,    20
-	db -1, $0,         6
-FishGroup4_Super: ; 9255b
-	db $66, POLIWAG,    40
-	db $b2, $0,         7
-	db $e6, MAGIKARP,   40
-	db -1, POLIWAG,    40
-
-FishGroup5:
-FishGroup5_Old: ; 92567
-	db $b3, MAGIKARP,   10
-	db $d9, MAGIKARP,   10
-	db -1, MAGIKARP,   10
-FishGroup5_Good: ; 92570
-	db $59, MAGIKARP,   20
-	db $b2, MAGIKARP,   20
-	db $e6, MAGIKARP,   20
-	db -1, $0,         8
-FishGroup5_Super: ; 9257c
-	db $66, MAGIKARP,   40
-	db $b2, $0,         9
-	db $e6, MAGIKARP,   40
-	db -1, DRAGONAIR,  40
-
-FishGroup6:
-FishGroup6_Old: ; 92588
-	db $b3, MAGIKARP,   5
-	db $d9, MAGIKARP,   5
-	db -1, QWILFISH,   5
-FishGroup6_Good: ; 92591
-	db $59, MAGIKARP,   20
-	db $b2, QWILFISH,   20
-	db $e6, QWILFISH,   20
-	db -1, $0,         10
-FishGroup6_Super: ; 9259d
-	db $66, QWILFISH,   40
-	db $b2, $0,         11
-	db $e6, QWILFISH,   40
-	db -1, QWILFISH,   40
-
-FishGroup7:
-FishGroup7_Old: ; 925a9
-	db $b3, MAGIKARP,   10
-	db $d9, MAGIKARP,   10
-	db -1, REMORAID,   10
-FishGroup7_Good: ; 925b2
-	db $59, MAGIKARP,   20
-	db $b2, REMORAID,   20
-	db $e6, REMORAID,   20
-	db -1, $0,         12
-FishGroup7_Super: ; 925be
-	db $66, REMORAID,   40
-	db $b2, $0,         13
-	db $e6, REMORAID,   40
-	db -1, REMORAID,   40
-
-FishGroup8:
-FishGroup8_Old: ; 925ca
-	db $b3, MAGIKARP,   10
-	db $d9, MAGIKARP,   10
-	db -1, MAGIKARP,   10
-FishGroup8_Good: ; 925d3
-	db $59, MAGIKARP,   20
-	db $b2, MAGIKARP,   20
-	db $e6, MAGIKARP,   20
-	db -1, $0,         14
-FishGroup8_Super: ; 925df
-	db $66, MAGIKARP,   40
-	db $b2, $0,         15
-	db $e6, MAGIKARP,   40
-	db -1, MAGIKARP,   40
-
-FishGroup9:
-FishGroup9_Old: ; 925eb
-	db $b3, MAGIKARP,   10
-	db $d9, MAGIKARP,   10
-	db -1, MAGIKARP,   10
-FishGroup9_Good: ; 925f4
-	db $59, MAGIKARP,   10
-	db $b2, MAGIKARP,   10
-	db $e6, MAGIKARP,   10
-	db -1, $0,         16
-FishGroup9_Super: ; 92600
-	db $66, MAGIKARP,   10
-	db $b2, $0,         17
-	db $e6, MAGIKARP,   10
-	db -1, DRAGONAIR,  10
-
-FishGroup10:
-FishGroup10_Old: ; 9260c
-	db $b3, MAGIKARP,   10
-	db $d9, MAGIKARP,   10
-	db -1, KRABBY,     10
-FishGroup10_Good: ; 92615
-	db $59, MAGIKARP,   20
-	db $b2, KRABBY,     20
-	db $e6, KRABBY,     20
-	db -1, $0,         18
-FishGroup10_Super: ; 92621
-	db $66, KRABBY,     40
-	db $b2, $0,         19
-	db $e6, KINGLER,    40
-	db -1, SEADRA,     40
-
-FishGroup11:
-FishGroup11_Old: ; 9262d
-	db $b3, MAGIKARP,   10
-	db $d9, MAGIKARP,   10
-	db -1, TENTACOOL,  10
-FishGroup11_Good: ; 92636
-	db $59, MAGIKARP,   20
-	db $b2, TENTACOOL,  20
-	db $e6, TENTACOOL,  20
-	db -1, $0,         20
-FishGroup11_Super: ; 92642
-	db $66, TENTACOOL,  40
-	db $b2, $0,         21
-	db $e6, MAGIKARP,   40
-	db -1, QWILFISH,   40
-
-FishGroup12:
-FishGroup12_Old: ; 9264e
-	db $b3, MAGIKARP,   10
-	db $d9, MAGIKARP,   10
-	db -1, POLIWAG,    10
-FishGroup12_Good: ; 92657
-	db $59, MAGIKARP,   20
-	db $b2, POLIWAG,    20
-	db $e6, POLIWAG,    20
-	db -1, $0,         6
-FishGroup12_Super: ; 92663
-	db $66, POLIWAG,    40
-	db $b2, $0,         7
-	db $e6, MAGIKARP,   40
-	db -1, REMORAID,   40
-
+.Remoraid_Old: ; 9264e
+	db  70 percent + 1, MAGIKARP,   10
+	db  85 percent + 1, MAGIKARP,   10
+	db 100 percent,     POLIWAG,    10
+.Remoraid_Good: ; 92657
+	db  35 percent,     MAGIKARP,   20
+	db  70 percent,     POLIWAG,    20
+	db  90 percent + 1, POLIWAG,    20
+	db 100 percent,     0, 6
+.Remoraid_Super: ; 92663
+	db  40 percent,     POLIWAG,    40
+	db  70 percent,     0, 7
+	db  90 percent + 1, MAGIKARP,   40
+	db 100 percent,     REMORAID,   40
 ; 9266f
 
-TimeFishGroups: ; 9266f
-; 0
-	db CORSOLA,    20 ; nite
-	db STARYU,     20 ; day
-; 1
-	db CORSOLA,    40 ; nite
-	db STARYU,     40 ; day
-; 2
-	db SHELLDER,   20 ; nite
-	db SHELLDER,   20 ; day
-; 3
-	db SHELLDER,   40 ; nite
-	db SHELLDER,   40 ; day
-; 4
-	db GOLDEEN,    20 ; nite
-	db GOLDEEN,    20 ; day
-; 5
-	db GOLDEEN,    40 ; nite
-	db GOLDEEN,    40 ; day
-; 6
-	db POLIWAG,    20 ; nite
-	db POLIWAG,    20 ; day
-; 7
-	db POLIWAG,    40 ; nite
-	db POLIWAG,    40 ; day
-; 8
-	db DRATINI,    20 ; nite
-	db DRATINI,    20 ; day
-; 9
-	db DRATINI,    40 ; nite
-	db DRATINI,    40 ; day
-; 10
-	db QWILFISH,   20 ; nite
-	db QWILFISH,   20 ; day
-; 11
-	db QWILFISH,   40 ; nite
-	db QWILFISH,   40 ; day
-; 12
-	db REMORAID,   20 ; nite
-	db REMORAID,   20 ; day
-; 13
-	db REMORAID,   40 ; nite
-	db REMORAID,   40 ; day
-; 14
-	db GYARADOS,   20 ; nite
-	db GYARADOS,   20 ; day
-; 15
-	db GYARADOS,   40 ; nite
-	db GYARADOS,   40 ; day
-; 16
-	db DRATINI,    10 ; nite
-	db DRATINI,    10 ; day
-; 17
-	db DRATINI,    10 ; nite
-	db DRATINI,    10 ; day
-; 18
-	db HORSEA,     20 ; nite
-	db HORSEA,     20 ; day
-; 19
-	db HORSEA,     40 ; nite
-	db HORSEA,     40 ; day
-; 20
-	db TENTACOOL,  20 ; nite
-	db TENTACOOL,  20 ; day
-; 21
-	db TENTACOOL,  40 ; nite
-	db TENTACOOL,  40 ; day
 
+TimeFishGroups: ; 9266f
+	;  day              nite
+	db CORSOLA,    20,  STARYU,     20
+	db CORSOLA,    40,  STARYU,     40
+	db SHELLDER,   20,  SHELLDER,   20
+	db SHELLDER,   40,  SHELLDER,   40
+	db GOLDEEN,    20,  GOLDEEN,    20
+	db GOLDEEN,    40,  GOLDEEN,    40
+	db POLIWAG,    20,  POLIWAG,    20
+	db POLIWAG,    40,  POLIWAG,    40
+	db DRATINI,    20,  DRATINI,    20
+	db DRATINI,    40,  DRATINI,    40
+	db QWILFISH,   20,  QWILFISH,   20
+	db QWILFISH,   40,  QWILFISH,   40
+	db REMORAID,   20,  REMORAID,   20
+	db REMORAID,   40,  REMORAID,   40
+	db GYARADOS,   20,  GYARADOS,   20
+	db GYARADOS,   40,  GYARADOS,   40
+	db DRATINI,    10,  DRATINI,    10
+	db DRATINI,    10,  DRATINI,    10
+	db HORSEA,     20,  HORSEA,     20
+	db HORSEA,     40,  HORSEA,     40
+	db TENTACOOL,  20,  TENTACOOL,  20
+	db TENTACOOL,  40,  TENTACOOL,  40
 ; 926c7
