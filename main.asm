@@ -3605,7 +3605,7 @@ FishFunction: ; cf8e
 	ld d, a
 	ld a, [Buffer2]
 	ld e, a
-	callba FishAction
+	callba Fish
 	ld a, d
 	and a
 	jr z, .nonibble
@@ -10536,7 +10536,7 @@ INCLUDE "engine/phone.asm"
 INCLUDE "engine/timeset.asm"
 INCLUDE "engine/pokegear.asm"
 
-INCLUDE "data/wild/fish.asm"
+INCLUDE "engine/fish.asm"
 INCLUDE "engine/slot_machine.asm"
 
 SECTION "Phone Engine", ROMX, BANK[$28]
