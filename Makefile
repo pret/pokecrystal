@@ -4,7 +4,7 @@ MD5 := md5sum -c --quiet
 .SUFFIXES:
 .PHONY: all clean crystal crystal11
 .SECONDEXPANSION:
-.PRECIOUS: %.2bpp %.1bpp
+.PRECIOUS: %.2bpp %.1bpp %.blk %.bin %.tilemap
 
 poketools := extras/pokemontools
 gfx       := $(PYTHON) gfx.py
