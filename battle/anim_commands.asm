@@ -980,7 +980,7 @@ BattleAnimCmd_RaiseSub: ; cc640 (33:4640)
 GetSubstitutePic: ; cc64c
 
 	ld hl, sScratch
-	ld bc, $310
+	ld bc, (7 * 7) tiles
 .loop
 	xor a
 	ld [hli], a
@@ -994,16 +994,16 @@ GetSubstitutePic: ; cc64c
 	jr z, .player
 
 	ld hl, MonsterSpriteGFX + 0 tiles
-	ld de, sScratch + $13 tiles
+	ld de, sScratch + (2 * 7 + 5) tiles
 	call .CopyTile
 	ld hl, MonsterSpriteGFX + 1 tiles
-	ld de, sScratch + $1a tiles
+	ld de, sScratch + (3 * 7 + 5) tiles
 	call .CopyTile
 	ld hl, MonsterSpriteGFX + 2 tiles
-	ld de, sScratch + $14 tiles
+	ld de, sScratch + (2 * 7 + 6) tiles
 	call .CopyTile
 	ld hl, MonsterSpriteGFX + 3 tiles
-	ld de, sScratch + $1b tiles
+	ld de, sScratch + (3 * 7 + 6) tiles
 	call .CopyTile
 
 	ld hl, VTiles2 tile $00
@@ -1014,16 +1014,16 @@ GetSubstitutePic: ; cc64c
 
 .player
 	ld hl, MonsterSpriteGFX + 4 tiles
-	ld de, sScratch + $10 tiles
+	ld de, sScratch + (2 * 6 + 4) tiles
 	call .CopyTile
 	ld hl, MonsterSpriteGFX + 5 tiles
-	ld de, sScratch + $16 tiles
+	ld de, sScratch + (3 * 6 + 4) tiles
 	call .CopyTile
 	ld hl, MonsterSpriteGFX + 6 tiles
-	ld de, sScratch + $11 tiles
+	ld de, sScratch + (2 * 6 + 5) tiles
 	call .CopyTile
 	ld hl, MonsterSpriteGFX + 7 tiles
-	ld de, sScratch + $17 tiles
+	ld de, sScratch + (3 * 6 + 5) tiles
 	call .CopyTile
 
 	ld hl, VTiles2 tile $31

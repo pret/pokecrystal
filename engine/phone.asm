@@ -451,22 +451,20 @@ Script_ReceivePhoneCall: ; 0x90241
 ; 0x90255
 
 Script_SpecialBillCall:: ; 0x90255
-	callasm Function9025c
+	callasm .LoadBillScript
 	jump Script_ReceivePhoneCall
-; 0x9025c
 
-Function9025c: ; 9025c
+.LoadBillScript
 	ld e, PHONE_BILL
 	jp LoadCallerScript
 ; 90261
 
 UnknownScript_0x90261: ; 0x90261
-	callasm Function9026a
+	callasm .LoadElmScript
 	pause 30
 	jump Script_ReceivePhoneCall
-; 0x9026a
 
-Function9026a: ; 9026a
+.LoadElmScript
 	ld e, PHONE_ELM
 	jp LoadCallerScript
 ; 9026f
@@ -493,7 +491,6 @@ Phone_CallerTextboxWithName: ; 90292 (24:4292)
 	ld b, a
 	call Function90363
 	ret
-
 
 PhoneCall:: ; 9029a
 	ld a, b

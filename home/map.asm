@@ -1812,7 +1812,7 @@ GetBlockLocation:: ; 2a66
 	add 6
 	ld c, a
 	ld b, 0
-	ld hl, wc801
+	ld hl, OverworldMap + 1
 	add hl, bc
 	ld a, e
 	srl a

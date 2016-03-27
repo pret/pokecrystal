@@ -81,7 +81,7 @@ sLuckyIDNumber:: ds 2
 SECTION "Backup Save", SRAM [$b200], BANK [0]
 sBackupOptions:: ds OptionsEnd - Options
 
-s0_b208:: ds 1
+s0_b208:: ds 1 ; loaded with 99, used to check save corruption
 
 sBackupGameData::
 sBackupPlayerData::  ds wPlayerDataEnd - wPlayerData
@@ -94,11 +94,11 @@ sBackupGameDataEnd::
 ; bf0d
 
 sBackupChecksum:: ds 2
-s0_bf0f:: ds 1
+s0_bf0f:: ds 1 ; loaded with 0x7f, used to check save corruption
 sStackTop:: ds 2
 
 
-SECTION "SRAM Bank 1", SRAM, BANK [1]
+SECTION "Save", SRAM, BANK [1]
 
 sOptions:: ds OptionsEnd - Options
 
@@ -117,11 +117,13 @@ sGameDataEnd::
 sChecksum::   ds 2
 s1_ad0f::     ds 1 ; loaded with 0x7f, used to check save corruption
 
+SECTION "Active Box", SRAM, BANK [1]
 ; ad10
 	box sBox
 ; b160
 
 	ds $f4
+SECTION "Link Battle Data", SRAM, BANK [1]
 sLinkBattleResults:: ds $c
 
 sLinkBattleStats:: ; b260
@@ -143,6 +145,7 @@ sLinkBattleRecord4:: link_battle_record sLinkBattleRecord4
 sLinkBattleRecord5:: link_battle_record sLinkBattleRecord5
 sLinkBattleStatsEnd::
 
+SECTION "SRAM Hall of Fame", SRAM, BANK [1]
 sHallOfFame:: ; b2c0
 ; temporary until I can find a way to macrofy it
 	hall_of_fame sHallOfFame01
@@ -190,6 +193,7 @@ sHallOfFame:: ; b2c0
 ; endr
 sHallOfFameEnd::
 
+SECTION "SRAM Crystal Data", SRAM, BANK [1]
 sMobileEventIndex:: ds 1 ; be3c
 
 sCrystalData::
@@ -208,7 +212,7 @@ sBTChoiceOfLevelGroup:: ds 1
 ; The 7 trainers of the BattleTower are saved here, so nobody appears more than once
 sBTTrainers:: ; sbe48
 	ds 7
-sbe4f:: ds 1
+s1_be4f:: ds 1
 sBattleTowerReward:: ds 1
 ; Pkmn of previous trainer
 sBTPkmnOfTrainers:: ; 0xbe51

@@ -62,7 +62,7 @@ ReceptionistScript_0x9e3e2:
 	opentext
 	writetext Text_BattleTowerWelcomesYou
 	buttonsound
-	writebyte BATTLETOWERACTION_00 ; if new save file: bit 1, [sbe4f]
+	writebyte BATTLETOWERACTION_00 ; if new save file: bit 1, [s1_be4f]
 	special BattleTowerAction
 	if_not_equal $0, Script_Menu_ChallengeExplanationCancel
 	jump Script_BattleTowerIntroductionYesNo
@@ -87,7 +87,7 @@ Script_ChoseChallenge: ; 0x9e40f
 	special Special_TryQuickSave
 	iffalse Script_Menu_ChallengeExplanationCancel
 	dotrigger $1
-	writebyte BATTLETOWERACTION_01 ; set 1, [sbe4f]
+	writebyte BATTLETOWERACTION_01 ; set 1, [s1_be4f]
 	special BattleTowerAction
 	special Function1700b0
 	if_equal $a, Script_Menu_ChallengeExplanationCancel

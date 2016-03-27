@@ -338,11 +338,13 @@ endr
 ; catch rate than BRN/PSN/PAR, which in turn provide a higher catch rate than
 ; no status effect at all. But instead, it makes BRN/PSN/PAR provide no
 ; benefit.
+; Uncomment the line below to fix this.
 	ld b, a
 	ld a, [EnemyMonStatus]
 	and 1 << FRZ | SLP
 	ld c, 10
 	jr nz, .addstatus
+	; ld a, [EnemyMonStatus]
 	and a
 	ld c, 5
 	jr nz, .addstatus
@@ -3315,3 +3317,5 @@ GetMthMoveOfCurrentMon: ; f969
 	add hl, bc
 	ret
 ; f971
+
+INCLUDE "items/pokeball_wobble.asm"

@@ -7873,7 +7873,7 @@ BattleCommand_Substitute: ; 36e7c
 	ld [hl], a
 	ld [de], a
 	call _CheckBattleScene
-	jr c, .mobile
+	jr c, .no_anim
 
 	xor a
 	ld [wNumHits], a
@@ -7883,7 +7883,7 @@ BattleCommand_Substitute: ; 36e7c
 	call LoadAnim
 	jr .finish
 
-.mobile
+.no_anim
 	call BattleCommand_RaiseSubNoAnim
 .finish
 	ld hl, MadeSubstituteText

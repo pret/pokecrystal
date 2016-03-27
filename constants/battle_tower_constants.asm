@@ -19,8 +19,8 @@
 	const BATTLETOWERACTION_11 ; store 0 in 5:aa8d
 	const BATTLETOWERACTION_12 ; store 1 in 5:aa8d
 	const BATTLETOWERACTION_13 ; check 5:aa8d
-	const BATTLETOWERACTION_14 ; if save file is yours: bit 0, [sbe4f]
-	const BATTLETOWERACTION_15 ; set 0, [sbe4f]
+	const BATTLETOWERACTION_14 ; if save file is yours: bit 0, [s1_be4f]
+	const BATTLETOWERACTION_15 ; set 0, [s1_be4f]
 	const BATTLETOWERACTION_16 ; update time in SRAM bank 5
 	const BATTLETOWERACTION_17 ; check time in SRAM bank 5
 	const BATTLETOWERACTION_18 ; level check
