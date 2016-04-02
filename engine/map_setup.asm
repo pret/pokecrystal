@@ -248,7 +248,7 @@ MapSetupCommands: ; 15440
 	dba EnterMapMusic ; 07
 	dba ForceMapMusic ; 08
 	dba FadeInMusic ; 09
-	dba LoadBlockData ; 0a
+	dba LoadBlockData ; 0a (callback 1)
 	dba LoadNeighboringBlockData ; 0b
 	dba SaveScreen ; 0c
 	dba BufferScreen ; 0d

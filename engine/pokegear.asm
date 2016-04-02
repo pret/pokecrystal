@@ -2841,7 +2841,7 @@ TownMapPals: ; 91f13
 ; The palette data is condensed to nybbles,
 
 ; least-significant first.
-	ld hl, TownMapPalMap
+	ld hl, .PalMap
 	srl a
 	jr c, .odd
 ; Even-numbered tile ids take the bottom nybble...
@@ -2878,13 +2878,20 @@ TownMapPals: ; 91f13
 	jr nz, .loop
 	ret
 
-TownMapPalMap:
-	dn 1, 1, 2, 1, 2, 2, 0, 0, 1, 1, 1, 3, 5, 4, 5, 4
-	dn 1, 1, 2, 1, 2, 2, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0
-	dn 1, 1, 2, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-	dn 0, 0, 0, 0, 4, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0
-	dn 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 3
-	dn 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0
+.PalMap
+townmappals: MACRO
+rept _NARG / 2
+	dn \2, \1
+	shift
+	shift
+endr
+endm
+	townmappals 1, 1, 1, 2, 2, 2, 0, 0, 1, 1, 3, 1, 4, 5, 4, 5
+	townmappals 1, 1, 1, 2, 2, 2, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0
+	townmappals 1, 1, 1, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	townmappals 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	townmappals 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0
+	townmappals 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0
 ; 91f7b
 
 TownMapMon: ; 91f7b
