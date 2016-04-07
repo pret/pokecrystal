@@ -146,14 +146,14 @@ Route38_BlockData:
 BetaCianwoodCity_BlockData:
 	INCBIN "maps/BetaCianwoodCity.blk"
 
-OlivineVoltorbHouse_BlockData:
+OlivineTimsHouse_BlockData:
 OlivineHouseBeta_BlockData:
 OlivinePunishmentSpeechHouse_BlockData:
 OlivineGoodRodHouse_BlockData:
 Route39Farmhouse_BlockData:
 MahoganyRedGyaradosSpeechHouse_BlockData:
 BlackthornDragonSpeechHouse_BlockData:
-BlackthornDodrioTradeHouse_BlockData:
+BlackthornEmysHouse_BlockData:
 MoveDeletersHouse_BlockData:
 CeruleanGymBadgeSpeechHouse_BlockData:
 CeruleanPoliceStation_BlockData:
@@ -165,7 +165,7 @@ LakeofRageMagikarpHouse_BlockData:
 GoldenrodHappinessRater_BlockData:
 GoldenrodBillsHouse_BlockData:
 GoldenrodPPSpeechHouse_BlockData:
-GoldenrodNameRatersHouse_BlockData:
+GoldenrodNameRater_BlockData:
 VermilionHouseFishingSpeechHouse_BlockData:
 VermilionMagnetTrainSpeechHouse_BlockData:
 VermilionHouseDiglettsCaveSpeechHouse_BlockData:

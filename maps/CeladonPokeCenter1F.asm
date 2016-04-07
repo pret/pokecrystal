@@ -3,7 +3,7 @@ const_value set 2
 	const CELADONPOKECENTER1F_GENTLEMAN
 	const CELADONPOKECENTER1F_PHARMACIST
 	const CELADONPOKECENTER1F_COOLTRAINER_F
-	const CELADONPOKECENTER1F_SUPER_NERD
+	const CELADONPOKECENTER1F_EUSINE
 
 CeladonPokeCenter1F_MapScriptHeader:
 .MapTriggers:
@@ -24,40 +24,40 @@ CooltrainerFScript_0x71e28:
 PharmacistScript_0x71e2b:
 	jumptextfaceplayer UnknownText_0x71ec1
 
-SuperNerdScript_0x71e2e:
+CeladonEusine:
 	faceplayer
 	opentext
-	writetext UnknownText_0x71f22
+	writetext CeladonEusineText1
 	buttonsound
 	writebyte SUICUNE
 	special SpecialMonCheck
-	iffalse UnknownScript_0x71e46
+	iffalse .NoSuicune
 	special SpecialBeastsCheck
-	iftrue UnknownScript_0x71e48
-	writetext UnknownText_0x7201a
+	iftrue .HoOh
+	writetext NoBeastsText
 	waitbutton
-UnknownScript_0x71e46:
+.NoSuicune
 	closetext
 	end
 
-UnknownScript_0x71e48:
-	writetext UnknownText_0x71f65
+.HoOh
+	writetext EusineLeavesCeladonText
 	waitbutton
 	closetext
 	checkcode VAR_FACING
-	if_equal $1, UnknownScript_0x71e5a
-	applymovement CELADONPOKECENTER1F_SUPER_NERD, MovementData_0x71e6b
-	jump UnknownScript_0x71e5e
+	if_equal $1, .Location1
+	applymovement CELADONPOKECENTER1F_EUSINE, .Movement1
+	jump .Continue
 
-UnknownScript_0x71e5a:
-	applymovement CELADONPOKECENTER1F_SUPER_NERD, MovementData_0x71e65
-UnknownScript_0x71e5e:
-	disappear CELADONPOKECENTER1F_SUPER_NERD
+.Location1
+	applymovement CELADONPOKECENTER1F_EUSINE, .Movement2
+.Continue
+	disappear CELADONPOKECENTER1F_EUSINE
 	playsound SFX_EXIT_BUILDING
 	waitsfx
 	end
 
-MovementData_0x71e65:
+.Movement2
 	step_left
 	step_down
 	step_down
@@ -65,7 +65,7 @@ MovementData_0x71e65:
 	step_down
 	step_end
 
-MovementData_0x71e6b:
+.Movement1
 	step_down
 	step_down
 	step_down
@@ -92,7 +92,7 @@ UnknownText_0x71ec1:
 	line "three years ago."
 	done
 
-UnknownText_0x71f22:
+CeladonEusineText1:
 	text "EUSINE: Hi!"
 
 	para "I'm back visiting"
@@ -102,7 +102,7 @@ UnknownText_0x71f22:
 	line "while."
 	done
 
-UnknownText_0x71f65:
+EusineLeavesCeladonText:
 	text "<PLAYER>, have you"
 	line "heard?"
 
@@ -123,7 +123,7 @@ UnknownText_0x71f65:
 	line "you, <PLAYER>!"
 	done
 
-UnknownText_0x7201a:
+NoBeastsText:
 	text "Oh, by the way,"
 	line "<PLAYER>."
 
@@ -167,4 +167,4 @@ CeladonPokeCenter1F_MapEventHeader:
 	person_event SPRITE_GENTLEMAN, 5, 1, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GentlemanScript_0x71e25, -1
 	person_event SPRITE_PHARMACIST, 3, 0, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, PharmacistScript_0x71e2b, -1
 	person_event SPRITE_COOLTRAINER_F, 6, 8, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x71e28, -1
-	person_event SPRITE_SUPER_NERD, 3, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x71e2e, EVENT_SET_WHEN_FOUGHT_HO_OH
+	person_event SPRITE_SUPER_NERD, 3, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, CeladonEusine, EVENT_SET_WHEN_FOUGHT_HO_OH

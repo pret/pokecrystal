@@ -3,12 +3,12 @@ const_value set 2
 	const TEAMROCKETBASEB2F_ROCKET_GIRL
 	const TEAMROCKETBASEB2F_LANCE
 	const TEAMROCKETBASEB2F_DRAGON
-	const TEAMROCKETBASEB2F_VOLTORB1
-	const TEAMROCKETBASEB2F_VOLTORB2
-	const TEAMROCKETBASEB2F_VOLTORB3
-	const TEAMROCKETBASEB2F_VOLTORB4
-	const TEAMROCKETBASEB2F_VOLTORB5
-	const TEAMROCKETBASEB2F_VOLTORB6
+	const TEAMROCKETBASEB2F_ELECTRODE1
+	const TEAMROCKETBASEB2F_ELECTRODE2
+	const TEAMROCKETBASEB2F_ELECTRODE3
+	const TEAMROCKETBASEB2F_ELECTRODE4
+	const TEAMROCKETBASEB2F_ELECTRODE5
+	const TEAMROCKETBASEB2F_ELECTRODE6
 	const TEAMROCKETBASEB2F_ROCKET2
 	const TEAMROCKETBASEB2F_ROCKET3
 	const TEAMROCKETBASEB2F_ROCKET4
@@ -29,7 +29,7 @@ TeamRocketBaseB2F_MapScriptHeader:
 
 	; callbacks
 
-	dbw MAPCALLBACK_TILES, UnknownScript_0x6cf89
+	dbw MAPCALLBACK_TILES, TransmitterDoorCallback
 
 UnknownScript_0x6cf85:
 	end
@@ -43,12 +43,12 @@ UnknownScript_0x6cf87:
 UnknownScript_0x6cf88:
 	end
 
-UnknownScript_0x6cf89:
+TransmitterDoorCallback:
 	checkevent EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER
-	iftrue UnknownScript_0x6cf90
+	iftrue .Change
 	return
 
-UnknownScript_0x6cf90:
+.Change
 	changeblock $e, $c, $7
 	return
 
@@ -159,16 +159,16 @@ UnknownScript_0x6d07a:
 	applymovement PLAYER, MovementData_0x6d278
 	end
 
-UnknownScript_0x6d085:
+LanceHealsScript1:
 	spriteface PLAYER, UP
-	jump UnknownScript_0x6d091
+	jump LanceHealsCommon
 
-UnknownScript_0x6d08b:
+LanceHealsScript2:
 	spriteface PLAYER, RIGHT
 	spriteface TEAMROCKETBASEB2F_LANCE, LEFT
-UnknownScript_0x6d091:
+LanceHealsCommon:
 	opentext
-	writetext UnknownText_0x6da97
+	writetext LanceHealsText1
 	waitbutton
 	closetext
 	special FadeOutPalettes
@@ -177,7 +177,7 @@ UnknownScript_0x6d091:
 	special HealParty
 	special FadeInPalettes
 	opentext
-	writetext UnknownText_0x6daf7
+	writetext LanceHealsText2
 	waitbutton
 	closetext
 	dotrigger $1
@@ -226,13 +226,13 @@ GruntM19Script:
 	closetext
 	end
 
-VoltorbScript_0x6d101:
+RocketElectrode1:
 	cry ELECTRODE
 	loadwildmon ELECTRODE, 23
 	startbattle
 	iftrue UnknownScript_0x6d182
-	disappear TEAMROCKETBASEB2F_VOLTORB1
-	disappear TEAMROCKETBASEB2F_VOLTORB4
+	disappear TEAMROCKETBASEB2F_ELECTRODE1
+	disappear TEAMROCKETBASEB2F_ELECTRODE4
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
 	iffalse UnknownScript_0x6d182
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
@@ -244,13 +244,13 @@ VoltorbScript_0x6d101:
 	applymovement PLAYER, MovementData_0x6d28c
 	jump UnknownScript_0x6d184
 
-VoltorbScript_0x6d12c:
+RocketElectrode2:
 	cry ELECTRODE
 	loadwildmon ELECTRODE, 23
 	startbattle
 	iftrue UnknownScript_0x6d182
-	disappear TEAMROCKETBASEB2F_VOLTORB2
-	disappear TEAMROCKETBASEB2F_VOLTORB5
+	disappear TEAMROCKETBASEB2F_ELECTRODE2
+	disappear TEAMROCKETBASEB2F_ELECTRODE5
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
 	iffalse UnknownScript_0x6d182
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
@@ -262,13 +262,13 @@ VoltorbScript_0x6d12c:
 	applymovement PLAYER, MovementData_0x6d299
 	jump UnknownScript_0x6d184
 
-VoltorbScript_0x6d157:
+RocketElectrode3:
 	cry ELECTRODE
 	loadwildmon ELECTRODE, 23
 	startbattle
 	iftrue UnknownScript_0x6d182
-	disappear TEAMROCKETBASEB2F_VOLTORB3
-	disappear TEAMROCKETBASEB2F_VOLTORB6
+	disappear TEAMROCKETBASEB2F_ELECTRODE3
+	disappear TEAMROCKETBASEB2F_ELECTRODE6
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
 	iffalse UnknownScript_0x6d182
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
@@ -793,7 +793,7 @@ UnknownText_0x6d994:
 	line "seeing you again!"
 	done
 
-UnknownText_0x6da97:
+LanceHealsText1:
 	text "LANCE: Are you all"
 	line "right?"
 
@@ -805,7 +805,7 @@ UnknownText_0x6da97:
 	cont "cine."
 	done
 
-UnknownText_0x6daf7:
+LanceHealsText2:
 	text "LANCE: <PLAY_G>,"
 	line "let's give it our"
 	cont "best for #MON."
@@ -930,8 +930,8 @@ TeamRocketBaseB2F_MapEventHeader:
 
 .XYTriggers:
 	db 9
-	xy_trigger 0, $e, $5, $0, UnknownScript_0x6d085, $0, $0
-	xy_trigger 0, $d, $4, $0, UnknownScript_0x6d08b, $0, $0
+	xy_trigger 0, $e, $5, $0, LanceHealsScript1, $0, $0
+	xy_trigger 0, $d, $4, $0, LanceHealsScript2, $0, $0
 	xy_trigger 1, $b, $e, $0, UnknownScript_0x6cf95, $0, $0
 	xy_trigger 1, $b, $f, $0, UnknownScript_0x6cf9c, $0, $0
 	xy_trigger 2, $c, $e, $0, UnknownScript_0x6d075, $0, $0
@@ -972,9 +972,9 @@ TeamRocketBaseB2F_MapEventHeader:
 	person_event SPRITE_ROCKET_GIRL, 16, 20, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_EXECUTIVE
 	person_event SPRITE_LANCE, 13, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_LANCE
 	person_event SPRITE_DRAGON, 13, 9, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_DRAGONITE
-	person_event SPRITE_VOLTORB, 5, 7, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, VoltorbScript_0x6d101, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
-	person_event SPRITE_VOLTORB, 7, 7, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, VoltorbScript_0x6d12c, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
-	person_event SPRITE_VOLTORB, 9, 7, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, VoltorbScript_0x6d157, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
+	person_event SPRITE_VOLTORB, 5, 7, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RocketElectrode1, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
+	person_event SPRITE_VOLTORB, 7, 7, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RocketElectrode2, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
+	person_event SPRITE_VOLTORB, 9, 7, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RocketElectrode3, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
 	person_event SPRITE_VOLTORB, 5, 22, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
 	person_event SPRITE_VOLTORB, 7, 22, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
 	person_event SPRITE_VOLTORB, 9, 22, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3

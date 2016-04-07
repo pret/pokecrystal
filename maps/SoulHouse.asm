@@ -1,5 +1,5 @@
 const_value set 2
-	const SOULHOUSE_GRAMPS
+	const SOULHOUSE_MRFUJI
 	const SOULHOUSE_TEACHER
 	const SOULHOUSE_LASS
 	const SOULHOUSE_GRANNY
@@ -11,8 +11,8 @@ SoulHouse_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-GrampsScript_0x7ec47:
-	jumptextfaceplayer UnknownText_0x7ec53
+MrFuji:
+	jumptextfaceplayer MrFujiText
 
 TeacherScript_0x7ec4a:
 	jumptextfaceplayer UnknownText_0x7ed4d
@@ -23,7 +23,7 @@ LassScript_0x7ec4d:
 GrannyScript_0x7ec50:
 	jumptextfaceplayer UnknownText_0x7eddb
 
-UnknownText_0x7ec53:
+MrFujiText:
 	text "MR.FUJI: Welcome."
 
 	para "Hmm… You appear to"
@@ -89,7 +89,7 @@ SoulHouse_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_GRAMPS, 2, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, GrampsScript_0x7ec47, -1
+	person_event SPRITE_GRAMPS, 2, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, MrFuji, -1
 	person_event SPRITE_TEACHER, 3, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, TeacherScript_0x7ec4a, -1
 	person_event SPRITE_LASS, 5, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, LassScript_0x7ec4d, -1
 	person_event SPRITE_GRANNY, 3, 1, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, GrannyScript_0x7ec50, -1

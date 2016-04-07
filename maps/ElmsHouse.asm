@@ -1,6 +1,6 @@
 const_value set 2
-	const ELMSHOUSE_TEACHER
-	const ELMSHOUSE_BUG_CATCHER
+	const ELMSHOUSE_ELMS_WIFE
+	const ELMSHOUSE_ELMS_SON
 
 ElmsHouse_MapScriptHeader:
 .MapTriggers:

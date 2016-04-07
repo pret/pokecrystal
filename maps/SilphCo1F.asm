@@ -9,8 +9,8 @@ SilphCo1F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ReceptionistScript_0x18abe5:
-	jumptextfaceplayer UnknownText_0x18ac03
+SilphCoReceptionist:
+	jumptextfaceplayer SilphCoReceptionistText
 
 OfficerScript_0x18abe8:
 	faceplayer
@@ -29,7 +29,7 @@ UnknownScript_0x18ac01:
 	closetext
 	end
 
-UnknownText_0x18ac03:
+SilphCoReceptionistText:
 	text "Welcome. This is"
 	line "SILPH CO.'s HEAD"
 	cont "OFFICE BUILDING."
@@ -72,5 +72,5 @@ SilphCo1F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_RECEPTIONIST, 2, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, ReceptionistScript_0x18abe5, -1
+	person_event SPRITE_RECEPTIONIST, 2, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, SilphCoReceptionist, -1
 	person_event SPRITE_OFFICER, 1, 13, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, OfficerScript_0x18abe8, -1

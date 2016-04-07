@@ -1,6 +1,6 @@
 const_value set 2
 	const VIOLETONIXTRADEHOUSE_POKEFAN_M
-	const VIOLETONIXTRADEHOUSE_YOUNGSTER
+	const VIOLETONIXTRADEHOUSE_KYLE
 
 VioletOnixTradeHouse_MapScriptHeader:
 .MapTriggers:
@@ -12,7 +12,7 @@ VioletOnixTradeHouse_MapScriptHeader:
 PokefanMScript_0x6998d:
 	jumptextfaceplayer UnknownText_0x69997
 
-YoungsterScript_0x69990:
+Kyle:
 	faceplayer
 	opentext
 	trade $1
@@ -50,4 +50,4 @@ VioletOnixTradeHouse_MapEventHeader:
 .PersonEvents:
 	db 2
 	person_event SPRITE_POKEFAN_M, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x6998d, -1
-	person_event SPRITE_YOUNGSTER, 5, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x69990, -1
+	person_event SPRITE_YOUNGSTER, 5, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, Kyle, -1

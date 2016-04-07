@@ -8,21 +8,21 @@ SilverCaveRoom3_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-RedScript_0x18c603:
+Red:
 	special Special_FadeOutMusic
 	faceplayer
 	opentext
-	writetext UnknownText_0x18c637
+	writetext .Text1
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x18c63c, UnknownText_0x18c63c
+	winlosstext .Text2, .Text2
 	loadtrainer RED, 1
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
 	special Special_FadeOutMusic
 	opentext
-	writetext UnknownText_0x18c63f
+	writetext .Text3
 	waitbutton
 	closetext
 	special Special_FadeBlackQuickly
@@ -36,16 +36,16 @@ RedScript_0x18c603:
 	credits
 	end
 
-UnknownText_0x18c637:
+.Text1:
 	text $56
 	line $56
 	done
 
-UnknownText_0x18c63c:
+.Text2:
 	text "…"
 	done
 
-UnknownText_0x18c63f:
+.Text3:
 	text $56
 	line $56
 	done
@@ -66,4 +66,4 @@ SilverCaveRoom3_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_RED, 10, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, RedScript_0x18c603, EVENT_RED_IN_MT_SILVER
+	person_event SPRITE_RED, 10, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, Red, EVENT_RED_IN_MT_SILVER

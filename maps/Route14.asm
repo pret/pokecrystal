@@ -2,7 +2,7 @@ const_value set 2
 	const ROUTE14_POKEFAN_M1
 	const ROUTE14_YOUNGSTER
 	const ROUTE14_POKEFAN_M2
-	const ROUTE14_TEACHER
+	const ROUTE14_KIM
 
 Route14_MapScriptHeader:
 .MapTriggers:
@@ -11,7 +11,7 @@ Route14_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-TeacherScript_0x1ad47f:
+Kim:
 	faceplayer
 	opentext
 	trade $5
@@ -133,4 +133,4 @@ Route14_MapEventHeader:
 	person_event SPRITE_POKEFAN_M, 15, 11, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerPokefanmCarter, -1
 	person_event SPRITE_YOUNGSTER, 27, 11, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerBird_keeperRoy, -1
 	person_event SPRITE_POKEFAN_M, 11, 6, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerPokefanmTrevor, -1
-	person_event SPRITE_TEACHER, 5, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 4, TeacherScript_0x1ad47f, -1
+	person_event SPRITE_TEACHER, 5, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 4, Kim, -1

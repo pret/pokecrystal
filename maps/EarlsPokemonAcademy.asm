@@ -1,5 +1,5 @@
 const_value set 2
-	const EARLSPOKEMONACADEMY_FISHER
+	const EARLSPOKEMONACADEMY_EARL
 	const EARLSPOKEMONACADEMY_YOUNGSTER1
 	const EARLSPOKEMONACADEMY_GAMEBOY_KID1
 	const EARLSPOKEMONACADEMY_GAMEBOY_KID2
@@ -14,7 +14,7 @@ EarlsPokemonAcademy_MapScriptHeader:
 	db 0
 
 AcademyEarl:
-	applymovement EARLSPOKEMONACADEMY_FISHER, MovementData_0x68b2d
+	applymovement EARLSPOKEMONACADEMY_EARL, MovementData_0x68b2d
 	faceplayer
 	opentext
 	writetext UnknownText_0x68b3b

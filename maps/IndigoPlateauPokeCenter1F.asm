@@ -4,7 +4,7 @@ const_value set 2
 	const INDIGOPLATEAUPOKECENTER1F_COOLTRAINER_M
 	const INDIGOPLATEAUPOKECENTER1F_SILVER
 	const INDIGOPLATEAUPOKECENTER1F_GRAMPS
-	const INDIGOPLATEAUPOKECENTER1F_JYNX
+	const INDIGOPLATEAUPOKECENTER1F_ABRA
 
 IndigoPlateauPokeCenter1F_MapScriptHeader:
 .MapTriggers:
@@ -48,96 +48,97 @@ UnknownScript_0x18000a:
 	setevent EVENT_LANCES_ROOM_OAK_AND_MARY
 	return
 
-UnknownScript_0x180053:
+PlateauRivalBattle1:
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
-	iffalse UnknownScript_0x18012b
+	iffalse PlateauRivalScriptDone
 	checkflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
-	iftrue UnknownScript_0x18012b
+	iftrue PlateauRivalScriptDone
 	checkcode VAR_WEEKDAY
-	if_equal SUNDAY, UnknownScript_0x18012b
-	if_equal TUESDAY, UnknownScript_0x18012b
-	if_equal THURSDAY, UnknownScript_0x18012b
-	if_equal FRIDAY, UnknownScript_0x18012b
-	if_equal SATURDAY, UnknownScript_0x18012b
+	if_equal SUNDAY, PlateauRivalScriptDone
+	if_equal TUESDAY, PlateauRivalScriptDone
+	if_equal THURSDAY, PlateauRivalScriptDone
+	if_equal FRIDAY, PlateauRivalScriptDone
+	if_equal SATURDAY, PlateauRivalScriptDone
 	moveperson INDIGOPLATEAUPOKECENTER1F_SILVER, $11, $9
 	appear INDIGOPLATEAUPOKECENTER1F_SILVER
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_FadeOutMusic
 	pause 15
-	applymovement INDIGOPLATEAUPOKECENTER1F_SILVER, MovementData_0x180164
+	applymovement INDIGOPLATEAUPOKECENTER1F_SILVER, PlateauRivalMovement1
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	spriteface PLAYER, RIGHT
-	jump UnknownScript_0x1800ce
+	jump PlateauRivalBattleCommon
 
-UnknownScript_0x180094:
+PlateauRivalBattle2:
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
-	iffalse UnknownScript_0x18012b
+	iffalse PlateauRivalScriptDone
 	checkflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
-	iftrue UnknownScript_0x18012b
+	iftrue PlateauRivalScriptDone
 	checkcode VAR_WEEKDAY
-	if_equal SUNDAY, UnknownScript_0x18012b
-	if_equal TUESDAY, UnknownScript_0x18012b
-	if_equal THURSDAY, UnknownScript_0x18012b
-	if_equal FRIDAY, UnknownScript_0x18012b
-	if_equal SATURDAY, UnknownScript_0x18012b
+	if_equal SUNDAY, PlateauRivalScriptDone
+	if_equal TUESDAY, PlateauRivalScriptDone
+	if_equal THURSDAY, PlateauRivalScriptDone
+	if_equal FRIDAY, PlateauRivalScriptDone
+	if_equal SATURDAY, PlateauRivalScriptDone
 	appear INDIGOPLATEAUPOKECENTER1F_SILVER
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_FadeOutMusic
 	pause 15
-	applymovement INDIGOPLATEAUPOKECENTER1F_SILVER, MovementData_0x18016b
+	applymovement INDIGOPLATEAUPOKECENTER1F_SILVER, PlateauRivalMovement2
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	spriteface PLAYER, LEFT
-UnknownScript_0x1800ce:
+PlateauRivalBattleCommon:
 	opentext
-	writetext UnknownText_0x1801f5
+	writetext PlateauRivalText1
 	waitbutton
 	closetext
 	setevent EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
-	iftrue UnknownScript_0x1800f3
+	iftrue .Totodile
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
-	iftrue UnknownScript_0x180103
-	winlosstext UnknownText_0x180295, UnknownText_0x1802fd
+	iftrue .Chikorita
+	; Cyndaquil
+	winlosstext PlateauRivalWinText, PlateauRivalLoseText
 	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
 	loadtrainer RIVAL2, 6
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
-	jump UnknownScript_0x180113
+	jump PlateauRivalPostBattle
 
-UnknownScript_0x1800f3:
-	winlosstext UnknownText_0x180295, UnknownText_0x1802fd
+.Totodile
+	winlosstext PlateauRivalWinText, PlateauRivalLoseText
 	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
 	loadtrainer RIVAL2, 4
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
-	jump UnknownScript_0x180113
+	jump PlateauRivalPostBattle
 
-UnknownScript_0x180103:
-	winlosstext UnknownText_0x180295, UnknownText_0x1802fd
+.Chikorita
+	winlosstext PlateauRivalWinText, PlateauRivalLoseText
 	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
 	loadtrainer RIVAL2, 5
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
-	jump UnknownScript_0x180113
+	jump PlateauRivalPostBattle
 
-UnknownScript_0x180113:
+PlateauRivalPostBattle:
 	playmusic MUSIC_RIVAL_AFTER
 	opentext
-	writetext UnknownText_0x1802a4
+	writetext PlateauRivalText2
 	waitbutton
 	closetext
 	spriteface PLAYER, DOWN
-	applymovement INDIGOPLATEAUPOKECENTER1F_SILVER, MovementData_0x180172
+	applymovement INDIGOPLATEAUPOKECENTER1F_SILVER, PlateauRivalLeavesMovement
 	disappear INDIGOPLATEAUPOKECENTER1F_SILVER
 	dotrigger $0
 	playmapmusic
 	setflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
-UnknownScript_0x18012b:
+PlateauRivalScriptDone:
 	end
 
 NurseScript_0x18012c:
@@ -181,7 +182,7 @@ AbraScript:
 	closetext
 	end
 
-MovementData_0x180164:
+PlateauRivalMovement1:
 	step_up
 	step_up
 	step_up
@@ -190,7 +191,7 @@ MovementData_0x180164:
 	turn_head_left
 	step_end
 
-MovementData_0x18016b:
+PlateauRivalMovement2:
 	step_up
 	step_up
 	step_up
@@ -199,7 +200,7 @@ MovementData_0x18016b:
 	turn_head_right
 	step_end
 
-MovementData_0x180172:
+PlateauRivalLeavesMovement:
 	step_down
 	step_down
 	step_down
@@ -221,7 +222,7 @@ UnknownText_0x180178:
 	line "start all over!"
 	done
 
-UnknownText_0x1801f5:
+PlateauRivalText1:
 	text "Hold it."
 
 	para "You're going to"
@@ -243,13 +244,13 @@ UnknownText_0x1801f5:
 	line "I challenge you!"
 	done
 
-UnknownText_0x180295:
+PlateauRivalWinText:
 	text "…"
 
 	para "OK--I lost…"
 	done
 
-UnknownText_0x1802a4:
+PlateauRivalText2:
 	text "…Darn… I still"
 	line "can't win…"
 
@@ -261,7 +262,7 @@ UnknownText_0x1802a4:
 	line "lose!"
 	done
 
-UnknownText_0x1802fd:
+PlateauRivalLoseText:
 	text "…"
 
 	para "Whew…"
@@ -319,8 +320,8 @@ IndigoPlateauPokeCenter1F_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 0, $4, $10, $0, UnknownScript_0x180053, $0, $0
-	xy_trigger 0, $4, $11, $0, UnknownScript_0x180094, $0, $0
+	xy_trigger 0, $4, $10, $0, PlateauRivalBattle1, $0, $0
+	xy_trigger 0, $4, $11, $0, PlateauRivalBattle2, $0, $0
 
 .Signposts:
 	db 0

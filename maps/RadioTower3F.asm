@@ -16,14 +16,14 @@ RadioTower3F_MapScriptHeader:
 
 	; callbacks
 
-	dbw MAPCALLBACK_TILES, UnknownScript_0x5e543
+	dbw MAPCALLBACK_TILES, CardKeyShutterCallback
 
-UnknownScript_0x5e543:
+CardKeyShutterCallback:
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
-	iftrue UnknownScript_0x5e54a
+	iftrue .Change
 	return
 
-UnknownScript_0x5e54a:
+.Change
 	changeblock $e, $2, $2a
 	changeblock $e, $4, $1
 	return

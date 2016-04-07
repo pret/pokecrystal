@@ -103,12 +103,12 @@ UnknownScript_0x191865:
 TeacherScript_0x19186b:
 	jumptextfaceplayer UnknownText_0x191d73
 
-FairyScript_0x19186e:
-	jumptext UnknownText_0x191db1
+ClefairyDoll:
+	jumptext ClefairyDollText
 
-OddishScript_0x191871:
+FanClubBayleef:
 	opentext
-	writetext UnknownText_0x191de9
+	writetext FanClubBayleefText
 	cry BAYLEEF
 	waitbutton
 	closetext
@@ -272,7 +272,7 @@ UnknownText_0x191d73:
 	line "head is so cute!"
 	done
 
-UnknownText_0x191db1:
+ClefairyDollText:
 	text "It's a CLEFAIRY!"
 	line "Huh?"
 
@@ -281,7 +281,7 @@ UnknownText_0x191db1:
 	cont "DOLL."
 	done
 
-UnknownText_0x191de9:
+FanClubBayleefText:
 	text "BAYLEEF: Li liif!"
 	done
 
@@ -319,5 +319,5 @@ PokemonFanClub_MapEventHeader:
 	person_event SPRITE_RECEPTIONIST, 1, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, ReceptionistScript_0x191821, -1
 	person_event SPRITE_FISHER, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FisherScript_0x191824, -1
 	person_event SPRITE_TEACHER, 2, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TeacherScript_0x19186b, -1
-	person_event SPRITE_FAIRY, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FairyScript_0x19186e, EVENT_VERMILION_FAN_CLUB_DOLL
-	person_event SPRITE_ODDISH, 3, 7, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, OddishScript_0x191871, -1
+	person_event SPRITE_FAIRY, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ClefairyDoll, EVENT_VERMILION_FAN_CLUB_DOLL
+	person_event SPRITE_ODDISH, 3, 7, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, FanClubBayleef, -1

@@ -10,27 +10,27 @@ WhirlIslandLugiaChamber_MapScriptHeader:
 
 	; callbacks
 
-	dbw MAPCALLBACK_OBJECTS, UnknownScript_0x18c504
+	dbw MAPCALLBACK_OBJECTS, .Lugia
 
-UnknownScript_0x18c504:
+.Lugia
 	checkevent EVENT_FOUGHT_LUGIA
-	iftrue UnknownScript_0x18c515
+	iftrue .NoAppear
 	checkitem SILVER_WING
-	iftrue UnknownScript_0x18c512
-	jump UnknownScript_0x18c515
+	iftrue .Appear
+	jump .NoAppear
 
-UnknownScript_0x18c512:
+.Appear
 	appear WHIRLISLANDLUGIACHAMBER_LUGIA
 	return
 
-UnknownScript_0x18c515:
+.NoAppear
 	disappear WHIRLISLANDLUGIACHAMBER_LUGIA
 	return
 
-LugiaScript_0x18c518:
+Lugia:
 	faceplayer
 	opentext
-	writetext UnknownText_0x18c531
+	writetext LugiaText
 	cry LUGIA
 	pause 15
 	closetext
@@ -42,7 +42,7 @@ LugiaScript_0x18c518:
 	reloadmapafterbattle
 	end
 
-UnknownText_0x18c531:
+LugiaText:
 	text "Gyaaas!"
 	done
 
@@ -62,4 +62,4 @@ WhirlIslandLugiaChamber_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_LUGIA, 5, 9, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, LugiaScript_0x18c518, EVENT_WHIRL_ISLAND_LUGIA_CHAMBER_LUGIA
+	person_event SPRITE_LUGIA, 5, 9, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, Lugia, EVENT_WHIRL_ISLAND_LUGIA_CHAMBER_LUGIA

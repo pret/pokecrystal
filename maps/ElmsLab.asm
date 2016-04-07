@@ -1,6 +1,6 @@
 const_value set 2
 	const ELMSLAB_ELM
-	const ELMSLAB_SCIENTIST
+	const ELMSLAB_ELMS_AIDE
 	const ELMSLAB_POKE_BALL1
 	const ELMSLAB_POKE_BALL2
 	const ELMSLAB_POKE_BALL3
@@ -463,17 +463,17 @@ ElmJumpRightScript:
 	end
 
 AideScript_WalkPotions1:
-	applymovement ELMSLAB_SCIENTIST, AideWalksRight1
+	applymovement ELMSLAB_ELMS_AIDE, AideWalksRight1
 	spriteface PLAYER, DOWN
 	scall AideScript_GivePotions
-	applymovement ELMSLAB_SCIENTIST, AideWalksLeft1
+	applymovement ELMSLAB_ELMS_AIDE, AideWalksLeft1
 	end
 
 AideScript_WalkPotions2:
-	applymovement ELMSLAB_SCIENTIST, AideWalksRight2
+	applymovement ELMSLAB_ELMS_AIDE, AideWalksRight2
 	spriteface PLAYER, DOWN
 	scall AideScript_GivePotions
-	applymovement ELMSLAB_SCIENTIST, AideWalksLeft2
+	applymovement ELMSLAB_ELMS_AIDE, AideWalksLeft2
 	end
 
 AideScript_GivePotions:
@@ -488,17 +488,17 @@ AideScript_GivePotions:
 	end
 
 AideScript_WalkBalls1:
-	applymovement ELMSLAB_SCIENTIST, AideWalksRight1
+	applymovement ELMSLAB_ELMS_AIDE, AideWalksRight1
 	spriteface PLAYER, DOWN
 	scall AideScript_GiveYouBalls
-	applymovement ELMSLAB_SCIENTIST, AideWalksLeft1
+	applymovement ELMSLAB_ELMS_AIDE, AideWalksLeft1
 	end
 
 AideScript_WalkBalls2:
-	applymovement ELMSLAB_SCIENTIST, AideWalksRight2
+	applymovement ELMSLAB_ELMS_AIDE, AideWalksRight2
 	spriteface PLAYER, DOWN
 	scall AideScript_GiveYouBalls
-	applymovement ELMSLAB_SCIENTIST, AideWalksLeft2
+	applymovement ELMSLAB_ELMS_AIDE, AideWalksLeft2
 	end
 
 AideScript_GiveYouBalls:

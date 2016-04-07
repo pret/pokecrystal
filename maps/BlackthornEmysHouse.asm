@@ -1,7 +1,7 @@
 const_value set 2
-	const BLACKTHORNDODRIOTRADEHOUSE_LASS
+	const BLACKTHORNEMYSHOUSE_EMY
 
-BlackthornDodrioTradeHouse_MapScriptHeader:
+BlackthornEmysHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
 
@@ -19,7 +19,7 @@ Emy:
 EmysHouseBookshelf:
 	jumpstd magazinebookshelf
 
-BlackthornDodrioTradeHouse_MapEventHeader:
+BlackthornEmysHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
