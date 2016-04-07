@@ -52,6 +52,7 @@ BetaBlackthornCity_BlockData:
 Route10South_BlockData:
 	INCBIN "maps/Route10South.blk"
 
+PokeCenter2F_BlockData:
 CinnabarPokeCenter2FBeta_BlockData:
 CeruleanPokeCenter2FBeta_BlockData:
 Route10PokeCenter2FBeta_BlockData:
@@ -59,11 +60,10 @@ VermilionPokeCenter2FBeta_BlockData:
 PewterPokeCEnter2FBeta_BlockData:
 FuchsiaPokeCenter2FBeta_BlockData:
 LavenderPokeCenter2FBeta_BlockData:
-PokeCenter2F_BlockData:
 CeladonPokeCenter2FBeta_BlockData:
 ViridianPokeCenter2FBeta_BlockData:
 SaffronPokeCenter2FBeta_BlockData:
-	INCBIN "maps/CinnabarPokeCenter2FBeta.blk"
+	INCBIN "maps/PokeCenter2F.blk"
 
 Route41_BlockData:
 	INCBIN "maps/Route41.blk"
@@ -196,7 +196,7 @@ CherrygroveGymSpeechHouse_BlockData:
 GuideGentsHouse_BlockData:
 CherrygroveEvolutionSpeechHouse_BlockData:
 Route30BerrySpeechHouse_BlockData:
-	INCBIN "maps/OlivineVoltorbHouse.blk"
+	INCBIN "maps/House1.blk"
 
 SafariZoneFuchsiaGateBeta_BlockData:
 Route19FuchsiaGate_BlockData:
@@ -210,7 +210,7 @@ Route40BattleTowerGate_BlockData:
 Route2Gate_BlockData:
 Route2946Gate_BlockData:
 Route5SaffronCityGate_BlockData:
-	INCBIN "maps/SafariZoneFuchsiaGateBeta.blk"
+	INCBIN "maps/NorthSouthGate.blk"
 
 BetaTeakCity_BlockData:
 	INCBIN "maps/BetaTeakCity.blk"
@@ -276,7 +276,7 @@ Route16Gate_BlockData:
 Route7SaffronGate_BlockData:
 Route1718Gate_BlockData:
 Route31VioletGate_BlockData:
-	INCBIN "maps/Route38EcruteakGate.blk"
+	INCBIN "maps/EastWestGate.blk"
 
 BetaAzaleaTown_BlockData:
 	INCBIN "maps/BetaAzaleaTown.blk"
