@@ -68,11 +68,11 @@ SupernerdTomScript:
 	closetext
 	end
 
-MapRoute8Signpost1Script:
-	jumptext UnknownText_0x6c2aa
+Route8LockedDoor:
+	jumptext Route8LockedDoorText
 
-MapRoute8Signpost0Script:
-	jumptext UnknownText_0x6c2b7
+Route8UndergroundPathSign:
+	jumptext Route8UndergroundPathSignText
 
 FruitTreeScript_0x6c06c:
 	fruittree FRUITTREE_ROUTE_8
@@ -161,11 +161,11 @@ UnknownText_0x6c27e:
 	cont "battles."
 	done
 
-UnknownText_0x6c2aa:
+Route8LockedDoorText:
 	text "It's locked…"
 	done
 
-UnknownText_0x6c2b7:
+Route8UndergroundPathSignText:
 	text "The flyer's torn."
 
 	para "It's impossible to"
@@ -186,8 +186,8 @@ Route8_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 7, 11, SIGNPOST_READ, MapRoute8Signpost0Script
-	signpost 5, 10, SIGNPOST_READ, MapRoute8Signpost1Script
+	signpost 7, 11, SIGNPOST_READ, Route8UndergroundPathSign
+	signpost 5, 10, SIGNPOST_READ, Route8LockedDoor
 
 .PersonEvents:
 	db 6

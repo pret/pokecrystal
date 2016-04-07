@@ -5,7 +5,7 @@ const_value set 2
 	const ROUTE29_FRUIT_TREE
 	const ROUTE29_FISHER
 	const ROUTE29_COOLTRAINER_M2
-	const ROUTE29_TEACHER2
+	const ROUTE29_TUSCANY
 	const ROUTE29_POKE_BALL
 
 Route29_MapScriptHeader:
@@ -34,13 +34,13 @@ Route29_MapScriptHeader:
 	iftrue .DoesTuscanyAppear
 
 .TuscanyDisappears
-	disappear ROUTE29_TEACHER2
+	disappear ROUTE29_TUSCANY
 	return
 
 .DoesTuscanyAppear
 	checkcode VAR_WEEKDAY
 	if_not_equal TUESDAY, .TuscanyDisappears
-	appear ROUTE29_TEACHER2
+	appear ROUTE29_TUSCANY
 	return
 
 Route29Tutorial1:
@@ -207,11 +207,11 @@ TuscanyNotTuesdayScript:
 	closetext
 	end
 
-MapRoute29Signpost0Script:
-	jumptext Route29SignText1
+Route29Sign1:
+	jumptext Route29Sign1Text
 
-MapRoute29Signpost1Script:
-	jumptext Route29SignText2
+Route29Sign2:
+	jumptext Route29Sign2Text
 
 Route29FruitTree:
 	fruittree FRUITTREE_ROUTE_29
@@ -406,14 +406,14 @@ TuscanyNotTuesdayText:
 	cont "is unfortunate…"
 	done
 
-Route29SignText1:
+Route29Sign1Text:
 	text "ROUTE 29"
 
 	para "CHERRYGROVE CITY -"
 	line "NEW BARK TOWN"
 	done
 
-Route29SignText2:
+Route29Sign2Text:
 	text "ROUTE 29"
 
 	para "CHERRYGROVE CITY -"
@@ -435,8 +435,8 @@ Route29_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 7, 51, SIGNPOST_READ, MapRoute29Signpost0Script
-	signpost 5, 3, SIGNPOST_READ, MapRoute29Signpost1Script
+	signpost 7, 51, SIGNPOST_READ, Route29Sign1
+	signpost 5, 3, SIGNPOST_READ, Route29Sign2
 
 .PersonEvents:
 	db 8

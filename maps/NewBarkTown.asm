@@ -131,7 +131,7 @@ NewBarkTownSilverScript:
 	applymovement NEWBARKTOWN_SILVER, Movement_SilverReturnsToTheShadows_NBT
 	end
 
-MapNewBarkTownSignpost0Script:
+NewBarkTownSign:
 	jumptext NewBarkTownSignText
 
 MapNewBarkTownSignpost1Script:
@@ -303,7 +303,7 @@ NewBarkTown_MapEventHeader:
 
 .Signposts:
 	db 4
-	signpost 8, 8, SIGNPOST_READ, MapNewBarkTownSignpost0Script
+	signpost 8, 8, SIGNPOST_READ, NewBarkTownSign
 	signpost 5, 11, SIGNPOST_READ, MapNewBarkTownSignpost1Script
 	signpost 3, 3, SIGNPOST_READ, MapNewBarkTownSignpost2Script
 	signpost 13, 9, SIGNPOST_READ, MapNewBarkTownSignpost3Script

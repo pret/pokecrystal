@@ -1,4 +1,3 @@
-
 Underground_MapScriptHeader:
 .MapTriggers:
 	db 0

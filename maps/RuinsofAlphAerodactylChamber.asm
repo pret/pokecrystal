@@ -1,4 +1,3 @@
-
 RuinsofAlphAerodactylChamber_MapScriptHeader:
 .MapTriggers:
 	db 2

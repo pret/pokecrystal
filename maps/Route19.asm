@@ -93,23 +93,23 @@ FisherScript_0x19ea61:
 	faceplayer
 	opentext
 	checkevent EVENT_CINNABAR_ROCKS_CLEARED
-	iftrue UnknownScript_0x19ea6f
-	writetext UnknownText_0x19ed45
+	iftrue .RocksCleared
+	writetext Route19FisherText1
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x19ea6f:
-	writetext UnknownText_0x19ed7d
+.RocksCleared
+	writetext Route19FisherText2
 	waitbutton
 	closetext
 	end
 
-MapRoute19Signpost0Script:
-	jumptext UnknownText_0x19edbc
+Route19Sign:
+	jumptext Route19SignText
 
-MapRoute19Signpost1Script:
-	jumptext UnknownText_0x19ede5
+CarefulSwimmingSign:
+	jumptext CarefulSwimmingSignText
 
 SwimmermHaroldSeenText:
 	text "Have you ever gone"
@@ -207,13 +207,13 @@ UnknownText_0x19ed24:
 	line "Time for a swim!"
 	done
 
-UnknownText_0x19ed45:
+Route19FisherText1:
 	text "Who knows how long"
 	line "it would take to"
 	cont "move this boulder…"
 	done
 
-UnknownText_0x19ed7d:
+Route19FisherText2:
 	text "The roadwork is"
 	line "finally finished."
 
@@ -221,14 +221,14 @@ UnknownText_0x19ed7d:
 	line "fishing again."
 	done
 
-UnknownText_0x19edbc:
+Route19SignText:
 	text "ROUTE 19"
 
 	para "FUCHSIA CITY -"
 	line "SEAFOAM ISLANDS"
 	done
 
-UnknownText_0x19ede5:
+CarefulSwimmingSignText:
 	text "Please be careful"
 	line "if you are swim-"
 	cont "ming to SEAFOAM"
@@ -250,8 +250,8 @@ Route19_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 13, 11, SIGNPOST_READ, MapRoute19Signpost0Script
-	signpost 1, 11, SIGNPOST_READ, MapRoute19Signpost1Script
+	signpost 13, 11, SIGNPOST_READ, Route19Sign
+	signpost 1, 11, SIGNPOST_READ, CarefulSwimmingSign
 
 .PersonEvents:
 	db 6

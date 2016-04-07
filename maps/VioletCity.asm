@@ -1,5 +1,5 @@
 const_value set 2
-	const VIOLETCITY_FISHER
+	const VIOLETCITY_EARL
 	const VIOLETCITY_LASS
 	const VIOLETCITY_SUPER_NERD
 	const VIOLETCITY_GRAMPS
@@ -23,7 +23,7 @@ VioletCity_MapScriptHeader:
 	return
 
 VioletCityEarlScript:
-	applymovement VIOLETCITY_FISHER, VioletCitySpinningEarl_MovementData
+	applymovement VIOLETCITY_EARL, VioletCitySpinningEarl_MovementData
 	faceplayer
 	opentext
 	writetext Text_EarlAsksIfYouBeatFalkner
@@ -42,20 +42,20 @@ VioletCityEarlScript:
 	waitbutton
 	closetext
 	playmusic MUSIC_SHOW_ME_AROUND
-	follow VIOLETCITY_FISHER, PLAYER
-	applymovement VIOLETCITY_FISHER, VioletCityFollowEarl_MovementData
+	follow VIOLETCITY_EARL, PLAYER
+	applymovement VIOLETCITY_EARL, VioletCityFollowEarl_MovementData
 	spriteface PLAYER, UP
-	applymovement VIOLETCITY_FISHER, VioletCitySpinningEarl_MovementData
+	applymovement VIOLETCITY_EARL, VioletCitySpinningEarl_MovementData
 	stopfollow
 	special RestartMapMusic
 	opentext
 	writetext Text_HereTeacherIAm
 	waitbutton
 	closetext
-	applymovement VIOLETCITY_FISHER, VioletCitySpinningEarl_MovementData
-	applymovement VIOLETCITY_FISHER, VioletCityFinishFollowEarl_MovementData
+	applymovement VIOLETCITY_EARL, VioletCitySpinningEarl_MovementData
+	applymovement VIOLETCITY_EARL, VioletCityFinishFollowEarl_MovementData
 	playsound SFX_ENTER_DOOR
-	disappear VIOLETCITY_FISHER
+	disappear VIOLETCITY_EARL
 	clearevent EVENT_EARLS_ACADEMY_EARL
 	waitsfx
 	end

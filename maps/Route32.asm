@@ -11,7 +11,7 @@ const_value set 2
 	const ROUTE32_FISHER4
 	const ROUTE32_POKE_BALL1
 	const ROUTE32_FISHER5
-	const ROUTE32_LASS2
+	const ROUTE32_FRIEDA
 	const ROUTE32_POKE_BALL2
 
 Route32_MapScriptHeader:
@@ -42,11 +42,11 @@ Route32_MapScriptHeader:
 .Frieda:
 	checkcode VAR_WEEKDAY
 	if_equal FRIDAY, .FriedaAppears
-	disappear ROUTE32_LASS2
+	disappear ROUTE32_FRIEDA
 	return
 
 .FriedaAppears
-	appear ROUTE32_LASS2
+	appear ROUTE32_FRIEDA
 	return
 
 Route32CooltrainerMScript:

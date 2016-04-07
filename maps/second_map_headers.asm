@@ -1,4 +1,3 @@
-
 	map_header_2 NewBarkTown, NEW_BARK_TOWN, $5, WEST | EAST
 	connection west, ROUTE_29, Route29, 0, 0, 9, NEW_BARK_TOWN
 	connection east, ROUTE_27, Route27, 0, 0, 9, NEW_BARK_TOWN

@@ -300,8 +300,8 @@ CooltrainerfMeganScript:
 	closetext
 	end
 
-MapRoute27Signpost0Script:
-	jumptext UnknownText_0x1a0e7f
+TohjoFallsSign:
+	jumptext TohjoFallsSignText
 
 Route27TMSolarbeam:
 	itemball TM_SOLARBEAM
@@ -462,7 +462,7 @@ UnknownText_0x1a0e42:
 	line "mand #MON."
 	done
 
-UnknownText_0x1a0e7f:
+TohjoFallsSignText:
 	text "TOHJO FALLS"
 
 	para "THE LINK BETWEEN"
@@ -486,7 +486,7 @@ Route27_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 7, 25, SIGNPOST_READ, MapRoute27Signpost0Script
+	signpost 7, 25, SIGNPOST_READ, TohjoFallsSign
 
 .PersonEvents:
 	db 9

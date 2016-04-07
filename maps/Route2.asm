@@ -48,8 +48,8 @@ Bug_catcherDougScript:
 	closetext
 	end
 
-MapRoute2Signpost0Script:
-	jumptext UnknownText_0x1ac47a
+Route2Sign:
+	jumptext Route2SignText
 
 MapRoute2Signpost1Script:
 	jumptext UnknownText_0x1ac49f
@@ -135,7 +135,7 @@ UnknownText_0x1ac423:
 	line "feel!"
 	done
 
-UnknownText_0x1ac47a:
+Route2SignText:
 	text "ROUTE 2"
 
 	para "VIRIDIAN CITY -"
@@ -163,7 +163,7 @@ Route2_MapEventHeader:
 
 .Signposts:
 	db 6
-	signpost 51, 7, SIGNPOST_READ, MapRoute2Signpost0Script
+	signpost 51, 7, SIGNPOST_READ, Route2Sign
 	signpost 9, 11, SIGNPOST_READ, MapRoute2Signpost1Script
 	signpost 23, 7, SIGNPOST_ITEM, Route2HiddenMaxEther
 	signpost 14, 4, SIGNPOST_ITEM, Route2HiddenFullHeal

@@ -267,8 +267,8 @@ UnknownScript_0x19ca73:
 	closetext
 	end
 
-MapRoute35Signpost1Script:
-	jumptext UnknownText_0x19cf94
+Route35Sign:
+	jumptext Route35SignText
 
 Route35TMRollout:
 	itemball TM_ROLLOUT
@@ -458,7 +458,7 @@ UnknownText_0x19cf56:
 	line "where safely."
 	done
 
-UnknownText_0x19cf94:
+Route35SignText:
 	text "ROUTE 35"
 	done
 
@@ -477,8 +477,8 @@ Route35_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 7, 1, SIGNPOST_READ, MapRoute35Signpost1Script
-	signpost 31, 11, SIGNPOST_READ, MapRoute35Signpost1Script
+	signpost 7, 1, SIGNPOST_READ, Route35Sign
+	signpost 31, 11, SIGNPOST_READ, Route35Sign
 
 .PersonEvents:
 	db 11

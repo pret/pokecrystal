@@ -251,11 +251,11 @@ ReceivedSpearowMailText:
 Route31YoungsterScript:
 	jumptextfaceplayer Route31YoungsterText
 
-MapRoute31Signpost0Script:
-	jumptext Route31Signpost0Text
+Route31Sign:
+	jumptext Route31SignText
 
-MapRoute31Signpost1Script:
-	jumptext Route31Signpost1Text
+DarkCaveSign:
+	jumptext DarkCaveSignText
 
 Route31CooltrainerMScript:
 	jumptextfaceplayer Route31CooltrainerMText
@@ -408,14 +408,14 @@ Route31YoungsterText:
 	line "VIOLET CITY's GYM."
 	done
 
-Route31Signpost0Text:
+Route31SignText:
 	text "ROUTE 31"
 
 	para "VIOLET CITY -"
 	line "CHERRYGROVE CITY"
 	done
 
-Route31Signpost1Text:
+DarkCaveSignText:
 	text "DARK CAVE"
 	done
 
@@ -434,8 +434,8 @@ Route31_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 5, 7, SIGNPOST_READ, MapRoute31Signpost0Script
-	signpost 5, 31, SIGNPOST_READ, MapRoute31Signpost1Script
+	signpost 5, 7, SIGNPOST_READ, Route31Sign
+	signpost 5, 31, SIGNPOST_READ, DarkCaveSign
 
 .PersonEvents:
 	db 7

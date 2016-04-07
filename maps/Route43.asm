@@ -312,14 +312,14 @@ UnknownScript_0x19d259:
 	jumpstd packfullf
 	end
 
-MapRoute43Signpost0Script:
-	jumptext UnknownText_0x19d67b
+Route43Sign1:
+	jumptext Route43Sign1Text
 
-MapRoute43Signpost1Script:
-	jumptext UnknownText_0x19d6a2
+Route43Sign2:
+	jumptext Route43Sign2Text
 
-MapRoute43Signpost2Script:
-	jumptext UnknownText_0x19d6c9
+Route43TrainerTips:
+	jumptext Route43TrainerTipsText
 
 FruitTreeScript_0x19d266:
 	fruittree FRUITTREE_ROUTE_43
@@ -467,21 +467,21 @@ UnknownText_0x19d64b:
 	cont "adorable thing?"
 	done
 
-UnknownText_0x19d67b:
+Route43Sign1Text:
 	text "ROUTE 43"
 
 	para "LAKE OF RAGE -"
 	line "MAHOGANY TOWN"
 	done
 
-UnknownText_0x19d6a2:
+Route43Sign2Text:
 	text "ROUTE 43"
 
 	para "LAKE OF RAGE -"
 	line "MAHOGANY TOWN"
 	done
 
-UnknownText_0x19d6c9:
+Route43TrainerTipsText:
 	text "TRAINER TIPS"
 
 	para "All #MON have"
@@ -520,9 +520,9 @@ Route43_MapEventHeader:
 
 .Signposts:
 	db 3
-	signpost 3, 13, SIGNPOST_READ, MapRoute43Signpost0Script
-	signpost 49, 11, SIGNPOST_READ, MapRoute43Signpost1Script
-	signpost 38, 16, SIGNPOST_READ, MapRoute43Signpost2Script
+	signpost 3, 13, SIGNPOST_READ, Route43Sign1
+	signpost 49, 11, SIGNPOST_READ, Route43Sign2
+	signpost 38, 16, SIGNPOST_READ, Route43TrainerTips
 
 .PersonEvents:
 	db 8

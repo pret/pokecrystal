@@ -57,11 +57,11 @@ FisherBarneyScript:
 	closetext
 	end
 
-MapRoute12Signpost0Script:
-	jumptext UnknownText_0x1a72a0
+Route12Sign:
+	jumptext Route12SignText
 
-MapRoute12Signpost1Script:
-	jumptext UnknownText_0x1a72c1
+FishingSpotSign:
+	jumptext FishingSpotSignText
 
 Route12Calcium:
 	itemball CALCIUM
@@ -156,14 +156,14 @@ UnknownText_0x1a7238:
 	cont "an angler like me."
 	done
 
-UnknownText_0x1a72a0:
+Route12SignText:
 	text "ROUTE 12"
 
 	para "NORTH TO LAVENDER"
 	line "TOWN"
 	done
 
-UnknownText_0x1a72c1:
+FishingSpotSignText:
 	text "FISHING SPOT"
 	done
 
@@ -180,8 +180,8 @@ Route12_MapEventHeader:
 
 .Signposts:
 	db 3
-	signpost 27, 11, SIGNPOST_READ, MapRoute12Signpost0Script
-	signpost 9, 13, SIGNPOST_READ, MapRoute12Signpost1Script
+	signpost 27, 11, SIGNPOST_READ, Route12Sign
+	signpost 9, 13, SIGNPOST_READ, FishingSpotSign
 	signpost 13, 14, SIGNPOST_ITEM, Route12HiddenElixer
 
 .PersonEvents:

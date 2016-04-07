@@ -299,11 +299,11 @@ CooltrainermAllenScript:
 	closetext
 	end
 
-MapRoute44Signpost0Script:
-	jumptext UnknownText_0x19dfb3
+Route44Sign1:
+	jumptext Route44Sign1Text
 
-MapRoute44Signpost1Script:
-	jumptext UnknownText_0x19dfcc
+Route44Sign2:
+	jumptext Route44Sign2Text
 
 FruitTreeScript_0x19da40:
 	fruittree FRUITTREE_ROUTE_44
@@ -495,12 +495,12 @@ UnknownText_0x19df4d:
 	cont "today--an elite."
 	done
 
-UnknownText_0x19dfb3:
+Route44Sign1Text:
 	text "ROUTE 44"
 	line "ICE PATH AHEAD"
 	done
 
-UnknownText_0x19dfcc:
+Route44Sign2Text:
 	text "ROUTE 44"
 
 	para "MAHOGANY TOWN -"
@@ -520,8 +520,8 @@ Route44_MapEventHeader:
 
 .Signposts:
 	db 3
-	signpost 7, 53, SIGNPOST_READ, MapRoute44Signpost0Script
-	signpost 10, 6, SIGNPOST_READ, MapRoute44Signpost1Script
+	signpost 7, 53, SIGNPOST_READ, Route44Sign1
+	signpost 10, 6, SIGNPOST_READ, Route44Sign2
 	signpost 9, 32, SIGNPOST_ITEM, Route44HiddenElixer
 
 .PersonEvents:

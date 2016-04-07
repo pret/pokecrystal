@@ -31,8 +31,8 @@ PokefanmRobertScript:
 	closetext
 	end
 
-MapRoute10SouthSignpost0Script:
-	jumptext UnknownText_0x1ae4dc
+Route10Sign:
+	jumptext Route10SignText
 
 HikerJimSeenText:
 	text "Hahahah!"
@@ -68,7 +68,7 @@ UnknownText_0x1ae4a9:
 	line "this…"
 	done
 
-UnknownText_0x1ae4dc:
+Route10SignText:
 	text "ROUTE 10"
 
 	para "CERULEAN CITY -"
@@ -88,7 +88,7 @@ Route10South_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 3, 5, SIGNPOST_READ, MapRoute10SouthSignpost0Script
+	signpost 3, 5, SIGNPOST_READ, Route10Sign
 
 .PersonEvents:
 	db 2

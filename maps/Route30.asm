@@ -226,17 +226,17 @@ Route30YoungsterScript:
 Route30CooltrainerFScript:
 	jumptextfaceplayer Route30CooltrainerFText
 
-MapRoute30Signpost0Script:
-	jumptext Route30MapSignText
+Route30Sign:
+	jumptext Route30SignText
 
-MapRoute30Signpost1Script:
-	jumptext Route30DirectionsToMrPokemonsHouseSignText
+MrPokemonsHouseDirectionsSign:
+	jumptext MrPokemonsHouseDirectionsSignText
 
-MapRoute30Signpost2Script:
-	jumptext Route30MrPokemonsHouseSignText
+MrPokemonsHouseSign:
+	jumptext MrPokemonsHouseSignText
 
-MapRoute30Signpost3Script:
-	jumptext Route30TrainerTipsSignText
+Route30TrainerTips:
+	jumptext Route30TrainerTipsText
 
 Route30Antidote:
 	itemball ANTIDOTE
@@ -365,23 +365,23 @@ Route30CooltrainerFText:
 	cont "prepare to battle."
 	done
 
-Route30MapSignText:
+Route30SignText:
 	text "ROUTE 30"
 
 	para "VIOLET CITY -"
 	line "CHERRYGROVE CITY"
 	done
 
-Route30DirectionsToMrPokemonsHouseSignText:
+MrPokemonsHouseDirectionsSignText:
 	text "MR.#MON'S HOUSE"
 	line "STRAIGHT AHEAD!"
 	done
 
-Route30MrPokemonsHouseSignText:
+MrPokemonsHouseSignText:
 	text "MR.#MON'S HOUSE"
 	done
 
-Route30TrainerTipsSignText:
+Route30TrainerTipsText:
 	text "TRAINER TIPS"
 
 	para "No stealing other"
@@ -421,10 +421,10 @@ Route30_MapEventHeader:
 
 .Signposts:
 	db 5
-	signpost 43, 9, SIGNPOST_READ, MapRoute30Signpost0Script
-	signpost 29, 13, SIGNPOST_READ, MapRoute30Signpost1Script
-	signpost 5, 15, SIGNPOST_READ, MapRoute30Signpost2Script
-	signpost 21, 3, SIGNPOST_READ, MapRoute30Signpost3Script
+	signpost 43, 9, SIGNPOST_READ, Route30Sign
+	signpost 29, 13, SIGNPOST_READ, MrPokemonsHouseDirectionsSign
+	signpost 5, 15, SIGNPOST_READ, MrPokemonsHouseSign
+	signpost 21, 3, SIGNPOST_READ, Route30TrainerTips
 	signpost 9, 14, SIGNPOST_ITEM, Route30HiddenPotion
 
 .PersonEvents:

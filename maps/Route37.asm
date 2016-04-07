@@ -3,7 +3,7 @@ const_value set 2
 	const ROUTE37_WEIRD_TREE2
 	const ROUTE37_YOUNGSTER
 	const ROUTE37_FRUIT_TREE1
-	const ROUTE37_BUG_CATCHER
+	const ROUTE37_SUNNY
 	const ROUTE37_FRUIT_TREE2
 	const ROUTE37_FRUIT_TREE3
 
@@ -21,11 +21,11 @@ Route37_MapScriptHeader:
 SunnyCallback:
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, .SunnyAppears
-	disappear ROUTE37_BUG_CATCHER
+	disappear ROUTE37_SUNNY
 	return
 
 .SunnyAppears
-	appear ROUTE37_BUG_CATCHER
+	appear ROUTE37_SUNNY
 	return
 
 TrainerTwinsAnnandanne1:
@@ -104,8 +104,8 @@ SunnyNotSundayScript:
 	closetext
 	end
 
-MapRoute37Signpost0Script:
-	jumptext UnknownText_0x1a9197
+Route37Sign:
+	jumptext Route37SignText
 
 FruitTreeScript_0x1a8e09:
 	fruittree FRUITTREE_ROUTE_37_1
@@ -237,7 +237,7 @@ SunnyNotSundayText:
 	cont "Um… I forgot!"
 	done
 
-UnknownText_0x1a9197:
+Route37SignText:
 	text "ROUTE 37"
 	done
 
@@ -253,7 +253,7 @@ Route37_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 3, 5, SIGNPOST_READ, MapRoute37Signpost0Script
+	signpost 3, 5, SIGNPOST_READ, Route37Sign
 	signpost 2, 4, SIGNPOST_ITEM, Route37HiddenEther
 
 .PersonEvents:

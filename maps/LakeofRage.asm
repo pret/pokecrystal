@@ -8,7 +8,7 @@ const_value set 2
 	const LAKEOFRAGE_COOLTRAINER_M
 	const LAKEOFRAGE_COOLTRAINER_F2
 	const LAKEOFRAGE_GYARADOS
-	const LAKEOFRAGE_SUPER_NERD2
+	const LAKEOFRAGE_WESLEY
 	const LAKEOFRAGE_POKE_BALL1
 	const LAKEOFRAGE_POKE_BALL2
 
@@ -41,11 +41,11 @@ LakeofRage_MapScriptHeader:
 .Wesley
 	checkcode VAR_WEEKDAY
 	if_equal WEDNESDAY, .WesleyAppears
-	disappear LAKEOFRAGE_SUPER_NERD2
+	disappear LAKEOFRAGE_WESLEY
 	return
 
 .WesleyAppears
-	appear LAKEOFRAGE_SUPER_NERD2
+	appear LAKEOFRAGE_WESLEY
 	return
 
 LanceScript_0x70022:

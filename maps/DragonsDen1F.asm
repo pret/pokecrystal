@@ -1,4 +1,3 @@
-
 DragonsDen1F_MapScriptHeader:
 .MapTriggers:
 	db 0

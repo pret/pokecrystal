@@ -1,4 +1,3 @@
-
 Route6UndergroundEntrance_MapScriptHeader:
 .MapTriggers:
 	db 0

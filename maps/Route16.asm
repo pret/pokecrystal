@@ -1,4 +1,3 @@
-
 Route16_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -22,10 +21,10 @@ UnknownScript_0x1ad328:
 	clearflag ENGINE_ALWAYS_ON_BIKE
 	return
 
-MapRoute16Signpost0Script:
-	jumptext UnknownText_0x1ad32f
+CyclingRoadSign:
+	jumptext CyclingRoadSignText
 
-UnknownText_0x1ad32f:
+CyclingRoadSignText:
 	text "CYCLING ROAD"
 
 	para "DOWNHILL COASTING"
@@ -49,7 +48,7 @@ Route16_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 5, 5, SIGNPOST_READ, MapRoute16Signpost0Script
+	signpost 5, 5, SIGNPOST_READ, CyclingRoadSign
 
 .PersonEvents:
 	db 0

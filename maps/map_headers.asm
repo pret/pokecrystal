@@ -1,4 +1,3 @@
-
 MapGroupPointers::
 ; pointers to the first map header of each map group
 	dw MapGroup1

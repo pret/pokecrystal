@@ -35,8 +35,8 @@ PokefanmAllanScript:
 PokefanMScript_0x1ad951:
 	jumptextfaceplayer UnknownText_0x1ad957
 
-MapRoute6Signpost0Script:
-	jumptext UnknownText_0x1ad99b
+Route6UndergroundPathSign:
+	jumptext Route6UndergroundPathSignText
 
 UnknownText_0x1ad957:
 	text "The road is closed"
@@ -46,7 +46,7 @@ UnknownText_0x1ad957:
 	line "is solved."
 	done
 
-UnknownText_0x1ad99b:
+Route6UndergroundPathSignText:
 	text "UNDERGROUND PATH"
 
 	para "CERULEAN CITY -"
@@ -105,7 +105,7 @@ Route6_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 5, 19, SIGNPOST_READ, MapRoute6Signpost0Script
+	signpost 5, 19, SIGNPOST_READ, Route6UndergroundPathSign
 
 .PersonEvents:
 	db 3

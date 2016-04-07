@@ -158,8 +158,8 @@ HikerBaileyScript:
 	closetext
 	end
 
-MapRoute46Signpost0Script:
-	jumptext UnknownText_0x1a99be
+Route46Sign:
+	jumptext Route46SignText
 
 Route46XSpeed:
 	itemball X_SPEED
@@ -245,7 +245,7 @@ UnknownText_0x1a9927:
 	cont "the other time."
 	done
 
-UnknownText_0x1a99be:
+Route46SignText:
 	text "ROUTE 46"
 	line "MOUNTAIN RD. AHEAD"
 	done
@@ -265,7 +265,7 @@ Route46_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 27, 9, SIGNPOST_READ, MapRoute46Signpost0Script
+	signpost 27, 9, SIGNPOST_READ, Route46Sign
 
 .PersonEvents:
 	db 6

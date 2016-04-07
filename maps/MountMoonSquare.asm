@@ -30,7 +30,7 @@ UnknownScript_0x77097:
 	disappear MOUNTMOONSQUARE_ROCK
 	return
 
-UnknownScript_0x7709a:
+ClefairyDance:
 	checkflag ENGINE_MT_MOON_SQUARE_CLEFAIRY
 	iftrue .NoDancing
 	checkcode VAR_WEEKDAY
@@ -84,8 +84,8 @@ MountMoonSquareHiddenMoonStone:
 	dwb EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE, MOON_STONE
 	
 
-MapMountMoonSquareSignpost1Script:
-	jumptext UnknownText_0x7713b
+DontLitterSign:
+	jumptext DontLitterSignText
 
 MtMoonSquareRock:
 	jumpstd smashrock
@@ -134,7 +134,7 @@ MovementData_0x77134:
 	step_right
 	step_end
 
-UnknownText_0x7713b:
+DontLitterSignText:
 	text "MT.MOON SQUARE"
 	line "DON'T LITTER"
 	done
@@ -151,12 +151,12 @@ MountMoonSquare_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 0, $b, $7, $0, UnknownScript_0x7709a, $0, $0
+	xy_trigger 0, $b, $7, $0, ClefairyDance, $0, $0
 
 .Signposts:
 	db 2
 	signpost 7, 7, SIGNPOST_ITEM, MountMoonSquareHiddenMoonStone
-	signpost 7, 17, SIGNPOST_READ, MapMountMoonSquareSignpost1Script
+	signpost 7, 17, SIGNPOST_READ, DontLitterSign
 
 .PersonEvents:
 	db 3

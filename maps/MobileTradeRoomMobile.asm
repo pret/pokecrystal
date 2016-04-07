@@ -1,4 +1,3 @@
-
 MobileTradeRoomMobile_MapScriptHeader:
 .MapTriggers:
 	db 2

@@ -6,7 +6,7 @@ const_value set 2
 	const BLACKTHORNCITY_BLACK_BELT
 	const BLACKTHORNCITY_COOLTRAINER_F1
 	const BLACKTHORNCITY_YOUNGSTER1
-	const BLACKTHORNCITY_YOUNGSTER2
+	const BLACKTHORNCITY_SANTOS
 	const BLACKTHORNCITY_COOLTRAINER_F2
 
 BlackthornCity_MapScriptHeader:
@@ -27,11 +27,11 @@ BlackthornCity_MapScriptHeader:
 .Santos
 	checkcode VAR_WEEKDAY
 	if_equal SATURDAY, .SantosAppears
-	disappear BLACKTHORNCITY_YOUNGSTER2
+	disappear BLACKTHORNCITY_SANTOS
 	return
 
 .SantosAppears
-	appear BLACKTHORNCITY_YOUNGSTER2
+	appear BLACKTHORNCITY_SANTOS
 	return
 
 BlackthornSuperNerdScript:

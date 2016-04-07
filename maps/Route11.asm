@@ -56,8 +56,8 @@ PsychicFidelScript:
 	closetext
 	end
 
-MapRoute11Signpost0Script:
-	jumptext UnknownText_0x68238
+Route11Sign:
+	jumptext Route11SignText
 
 FruitTreeScript_0x68055:
 	fruittree FRUITTREE_ROUTE_11
@@ -142,7 +142,7 @@ UnknownText_0x681ec:
 	cont "in your #MON."
 	done
 
-UnknownText_0x68238:
+Route11SignText:
 	text "ROUTE 11"
 	done
 
@@ -158,7 +158,7 @@ Route11_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 7, 3, SIGNPOST_READ, MapRoute11Signpost0Script
+	signpost 7, 3, SIGNPOST_READ, Route11Sign
 	signpost 5, 32, SIGNPOST_ITEM, Route11HiddenRevive
 
 .PersonEvents:

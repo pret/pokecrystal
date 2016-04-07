@@ -138,8 +138,8 @@ TrainerHikerAnthony:
 	jumpstd rematchm
 	end
 
-MapRoute33Signpost0Script:
-	jumptext Route33RouteSignText
+Route33Sign:
+	jumptext Route33SignText
 
 Route33FruitTreeScript:
 	fruittree FRUITTREE_ROUTE_33
@@ -190,7 +190,7 @@ Route33LassText:
 	line "outside."
 	done
 
-Route33RouteSignText:
+Route33SignText:
 	text "ROUTE 33"
 	done
 
@@ -207,7 +207,7 @@ Route33_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 11, 11, SIGNPOST_READ, MapRoute33Signpost0Script
+	signpost 11, 11, SIGNPOST_READ, Route33Sign
 
 .PersonEvents:
 	db 3

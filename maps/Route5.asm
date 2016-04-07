@@ -11,11 +11,11 @@ Route5_MapScriptHeader:
 PokefanMScript_0x1adb19:
 	jumptextfaceplayer UnknownText_0x1adb22
 
-MapRoute5Signpost0Script:
-	jumptext UnknownText_0x1adb66
+Route5UndergroundPathSign:
+	jumptext Route5UndergroundPathSignText
 
-MapRoute5Signpost1Script:
-	jumptext UnknownText_0x1adb97
+HouseForSaleSign:
+	jumptext HouseForSaleSignText
 
 UnknownText_0x1adb22:
 	text "The road is closed"
@@ -25,14 +25,14 @@ UnknownText_0x1adb22:
 	line "is solved."
 	done
 
-UnknownText_0x1adb66:
+Route5UndergroundPathSignText:
 	text "UNDERGROUND PATH"
 
 	para "CERULEAN CITY -"
 	line "VERMILION CITY"
 	done
 
-UnknownText_0x1adb97:
+HouseForSaleSignText:
 	text "What's this?"
 
 	para "House for Sale…"
@@ -55,8 +55,8 @@ Route5_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 17, 17, SIGNPOST_READ, MapRoute5Signpost0Script
-	signpost 11, 10, SIGNPOST_READ, MapRoute5Signpost1Script
+	signpost 17, 17, SIGNPOST_READ, Route5UndergroundPathSign
+	signpost 11, 10, SIGNPOST_READ, HouseForSaleSign
 
 .PersonEvents:
 	db 1

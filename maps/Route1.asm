@@ -32,8 +32,8 @@ CooltrainerfQuinnScript:
 	closetext
 	end
 
-MapRoute1Signpost0Script:
-	jumptext UnknownText_0x1ac675
+Route1Sign:
+	jumptext Route1SignText
 
 FruitTreeScript_0x1ac581:
 	fruittree FRUITTREE_ROUTE_1
@@ -73,7 +73,7 @@ UnknownText_0x1ac640:
 	line "have trained hard."
 	done
 
-UnknownText_0x1ac675:
+Route1SignText:
 	text "ROUTE 1"
 
 	para "PALLET TOWN -"
@@ -92,7 +92,7 @@ Route1_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 27, 7, SIGNPOST_READ, MapRoute1Signpost0Script
+	signpost 27, 7, SIGNPOST_READ, Route1Sign
 
 .PersonEvents:
 	db 3

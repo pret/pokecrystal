@@ -51,8 +51,8 @@ SwimmermCameronScript:
 	closetext
 	end
 
-MapRoute20Signpost0Script:
-	jumptext UnknownText_0x1acec2
+CinnabarGymSign:
+	jumptext CinnabarGymSignText
 
 SwimmerfNicoleSeenText:
 	text "I feel so much"
@@ -107,7 +107,7 @@ UnknownText_0x1ace8b:
 	cont "ponds and rivers."
 	done
 
-UnknownText_0x1acec2:
+CinnabarGymSignText:
 	text "What does this"
 	line "sign say?"
 
@@ -128,7 +128,7 @@ Route20_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 11, 37, SIGNPOST_READ, MapRoute20Signpost0Script
+	signpost 11, 37, SIGNPOST_READ, CinnabarGymSign
 
 .PersonEvents:
 	db 3

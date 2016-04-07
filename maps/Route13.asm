@@ -67,14 +67,14 @@ HikerKennyScript:
 	closetext
 	end
 
-MapRoute13Signpost0Script:
-	jumptext UnknownText_0x1a271c
+Route13TrainerTips:
+	jumptext Route13TrainerTipsText
 
-MapRoute13Signpost1Script:
-	jumptext UnknownText_0x1a275b
+Route13Sign:
+	jumptext Route13SignText
 
-MapRoute13Signpost2Script:
-	jumptext UnknownText_0x1a277d
+Route13DirectionsSign:
+	jumptext Route13DirectionsSignText
 
 Route13HiddenCalcium:
 	dwb EVENT_ROUTE_13_HIDDEN_CALCIUM, CALCIUM
@@ -169,7 +169,7 @@ UnknownText_0x1a26c2:
 	cont "little."
 	done
 
-UnknownText_0x1a271c:
+Route13TrainerTipsText:
 	text "TRAINER TIPS"
 
 	para "Look! Right there,"
@@ -177,14 +177,14 @@ UnknownText_0x1a271c:
 	cont "of the post."
 	done
 
-UnknownText_0x1a275b:
+Route13SignText:
 	text "ROUTE 13"
 
 	para "NORTH TO SILENCE"
 	line "BRIDGE"
 	done
 
-UnknownText_0x1a277d:
+Route13DirectionsSignText:
 	text "NORTH TO LAVENDER"
 	line "TOWN"
 
@@ -204,9 +204,9 @@ Route13_MapEventHeader:
 
 .Signposts:
 	db 4
-	signpost 13, 29, SIGNPOST_READ, MapRoute13Signpost0Script
-	signpost 11, 41, SIGNPOST_READ, MapRoute13Signpost1Script
-	signpost 13, 17, SIGNPOST_READ, MapRoute13Signpost2Script
+	signpost 13, 29, SIGNPOST_READ, Route13TrainerTips
+	signpost 11, 41, SIGNPOST_READ, Route13Sign
+	signpost 13, 17, SIGNPOST_READ, Route13DirectionsSign
 	signpost 13, 30, SIGNPOST_ITEM, Route13HiddenCalcium
 
 .PersonEvents:
