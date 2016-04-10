@@ -17,13 +17,13 @@ NewBarkTown_MapScriptHeader:
 	; callbacks
 	dbw MAPCALLBACK_NEWMAP, .FlyPoint
 
-.Trigger0
+.Trigger0:
 	end
 
-.Trigger1
+.Trigger1:
 	end
 
-.FlyPoint
+.FlyPoint:
 	setflag ENGINE_FLYPOINT_NEW_BARK
 	clearevent EVENT_FIRST_TIME_BANKING_WITH_MOM
 	return

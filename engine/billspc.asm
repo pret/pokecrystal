@@ -42,7 +42,7 @@ _DepositPKMN: ; e2391 (38:6391)
 	jp [hl]
 
 .Jumptable: ; e23df (38:63df)
-	
+
 	dw .Init
 	dw .HandleJoypad
 	dw .WhatsUp
@@ -151,7 +151,7 @@ endr
 	jp [hl]
 
 BillsPCDepositJumptable: ; e24a1 (38:64a1)
-	
+
 	dw BillsPCDepositFuncDeposit ; Deposit Pokemon
 	dw BillsPCDepositFuncStats ; Pokemon Stats
 	dw BillsPCDepositFuncRelease ; Release Pokemon
@@ -310,7 +310,7 @@ _WithdrawPKMN: ; e2583 (38:6583)
 	jp [hl]
 
 .Jumptable: ; e25d2 (38:65d2)
-	
+
 	dw .Init
 	dw .Joypad
 	dw .PrepSubmenu
@@ -437,7 +437,7 @@ endr
 	ld [wBillsPC_CursorPosition], a
 	ld [wBillsPC_ScrollPosition], a
 	ret
-.FailedWithdraw
+.FailedWithdraw:
 	ld de, PCString_WhatsUp
 	call BillsPC_PlaceString
 	ret
@@ -483,7 +483,7 @@ endr
 	ld [wBillsPC_ScrollPosition], a
 	pop af
 	ret
-.FailedRelease
+.FailedRelease:
 	ld de, PCString_WhatsUp
 	call BillsPC_PlaceString
 	pop af
@@ -562,7 +562,7 @@ _MovePKMNWithoutMail: ; e2759
 ; e27ac
 
 .Jumptable: ; e27ac
-	
+
 	dw .Init
 	dw .Joypad
 	dw .PrepSubmenu
@@ -1664,21 +1664,21 @@ BillsPC_CheckMail_PreventBlackout: ; e2f18 (38:6f18)
 	ld a, [wBillsPC_MonHasMail]
 	and a
 	jr nz, .HasMail
-.Okay
+.Okay:
 	and a
 	ret
 
-.HasMail
+.HasMail:
 	ld de, PCString_RemoveMail
 	jr .NotOkay
 
-.AllOthersFainted
+.AllOthersFainted:
 	ld de, PCString_NoMoreUsablePKMN
 	jr .NotOkay
 
-.ItsYourLastPokemon
+.ItsYourLastPokemon:
 	ld de, PCString_ItsYourLastPKMN
-.NotOkay
+.NotOkay:
 	call BillsPC_PlaceString
 	ld de, SFX_WRONG
 	call WaitPlaySFX
@@ -1918,7 +1918,7 @@ TryWithdrawPokemon: ; e30fa (38:70fa)
 	and a
 	ret
 
-.PartyFull
+.PartyFull:
 	ld de, PCString_PartyFull
 	call BillsPC_PlaceString
 	ld de, SFX_WRONG
@@ -2033,7 +2033,7 @@ endr
 ; e3245
 
 .Jumptable: ; e3245
-	
+
 	dw .BoxToBox
 	dw .PartyToBox
 	dw .BoxToParty
@@ -2519,7 +2519,7 @@ BillsPC_ChangeBoxSubmenu: ; e36f9 (38:76f9)
 	and a
 	ret
 
-.Print
+.Print:
 	call GetBoxCount
 	and a
 	jr z, .EmptyBox
@@ -2533,12 +2533,12 @@ BillsPC_ChangeBoxSubmenu: ; e36f9 (38:76f9)
 	and a
 	ret
 
-.EmptyBox
+.EmptyBox:
 	call BillsPC_PlaceEmptyBoxString_SFX
 	and a
 	ret
 
-.Switch
+.Switch:
 	ld a, [MenuSelection]
 	dec a
 	ld e, a
@@ -2548,7 +2548,7 @@ BillsPC_ChangeBoxSubmenu: ; e36f9 (38:76f9)
 	callba ChangeBoxSaveGame
 	ret
 
-.Name
+.Name:
 	ld b, $4 ; box
 	ld de, wd002
 	callba NamingScreen

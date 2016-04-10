@@ -164,7 +164,7 @@ UpdateBGMap:: ; 164c
 	ret
 
 
-.Attr
+.Attr:
 	ld a, 1
 	ld [rVBK], a
 
@@ -176,13 +176,13 @@ UpdateBGMap:: ; 164c
 	ret
 
 
-.Tiles
+.Tiles:
 	hlcoord 0, 0
 
 
 .update
 	ld [hSPBuffer], sp
-	
+
 ; Which third?
 	ld a, [hBGMapThird]
 	and a ; 0
@@ -306,13 +306,13 @@ Serve1bppRequest:: ; 170a
 	ld h, [hl]
 	ld l, a
 	ld sp, hl
-	
+
 ; Destination
 	ld hl, Requested1bppDest
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	
+
 ; # tiles to copy
 	ld a, [Requested1bpp]
 	ld b, a
@@ -389,27 +389,27 @@ _Serve2bppRequest:: ; 177d
 ; Copy [Requested2bpp] 2bpp tiles from [Requested2bppSource] to [Requested2bppDest]
 
 	ld [hSPBuffer], sp
-	
+
 ; Source
 	ld hl, Requested2bppSource
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld sp, hl
-	
+
 ; Destination
 	ld hl, Requested2bppDest
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	
+
 ; # tiles to copy
 	ld a, [Requested2bpp]
 	ld b, a
 
 	xor a
 	ld [Requested2bpp], a
-	
+
 .next
 
 rept 7
@@ -451,7 +451,7 @@ AnimateTileset:: ; 17d3
 	ld a, [hMapAnims]
 	and a
 	ret z
-	
+
 ; Back out if we're too far into VBlank
 	ld a, [rLY]
 	cp 144

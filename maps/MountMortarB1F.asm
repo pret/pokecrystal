@@ -73,7 +73,7 @@ MountMortarB1FPPUp:
 
 MountMortarB1FHiddenMaxRevive:
 	dwb EVENT_MOUNT_MORTAR_B1F_HIDDEN_MAX_REVIVE, MAX_REVIVE
-	
+
 
 UnknownText_0x7e24d:
 	text "Hey!"

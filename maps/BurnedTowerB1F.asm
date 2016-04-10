@@ -34,7 +34,7 @@ BurnedTowerB1FLadderCallback:
 	checkevent EVENT_RELEASED_THE_BEASTS
 	iftrue .NoChange
 	changeblock $6, $e, $2
-.NoChange
+.NoChange:
 	return
 
 ReleaseTheBeasts:
@@ -115,7 +115,7 @@ BurnedTowerB1FEusine:
 	applymovement BURNEDTOWERB1F_EUSINE, BurnedTowerB1FEusineMovement1
 	jump UnknownScript_0x18622a
 
-.Movement
+.Movement:
 	applymovement BURNEDTOWERB1F_EUSINE, BurnedTowerB1FEusineMovement2
 UnknownScript_0x18622a:
 	disappear BURNEDTOWERB1F_EUSINE

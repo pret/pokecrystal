@@ -39,7 +39,7 @@ LoadMenuTextBox:: ; 1d58
 	ret
 ; 1d5f
 
-.MenuDataHeader ; 1d5f
+.MenuDataHeader: ; 1d5f
 	db $40 ; tile backup
 	db 12, 0 ; start coords
 	db 17, 19 ; end coords
@@ -59,7 +59,7 @@ LoadStandardMenuDataHeader:: ; 1d6e
 	ret
 ; 1d75
 
-.MenuDataHeader ; 1d75
+.MenuDataHeader: ; 1d75
 	db $40 ; tile backup
 	db 0, 0 ; start coords
 	db 17, 19 ; end coords
@@ -190,7 +190,7 @@ YesNoMenuDataHeader:: ; 1e1d
 	db 1 ; default option
 ; 1e25
 
-.MenuData2 ; 1e25
+.MenuData2: ; 1e25
 	db $c0 ; flags
 	db 2
 	db "YES@"

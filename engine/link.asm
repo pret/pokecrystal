@@ -204,7 +204,7 @@ Gen2ToGen2LinkComms: ; 28177
 	ld a, $81
 	ld [rSC], a
 
-.Player1
+.Player1:
 	ld de, MUSIC_NONE
 	call PlayMusic
 	ld c, 3
@@ -1127,7 +1127,7 @@ TimeCapsule_ReplaceTeruSama: ; 28771
 	pop hl
 	ret
 
-.TimeCapsuleAlt ; 28785
+.TimeCapsuleAlt: ; 28785
 ; Pokémon traded from RBY do not have held items, so GSC usually interprets the
 ; catch rate as an item. However, if the catch rate appears in this table, the
 ; item associated with the table entry is used instead.

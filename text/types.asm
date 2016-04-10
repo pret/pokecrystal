@@ -22,7 +22,7 @@ PrintMonTypes: ; 5090d
 	ld bc, SCREEN_WIDTH
 	add hl, bc
 
-.Print
+.Print:
 	ld b, a
 	jr PrintType
 

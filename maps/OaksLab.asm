@@ -24,13 +24,13 @@ Oak:
 	writetext OakWelcomeKantoText
 	buttonsound
 	setevent EVENT_TALKED_TO_OAK_IN_KANTO
-.CheckBadges
+.CheckBadges:
 	checkcode VAR_BADGES
 	if_equal 16, .OpenMtSilver
 	if_equal  8, .Complain
 	jump .AhGood
 
-.CheckPokedex
+.CheckPokedex:
 	writetext OakLabDexCheckText
 	waitbutton
 	special ProfOaksPCBoot
@@ -39,18 +39,18 @@ Oak:
 	closetext
 	end
 
-.OpenMtSilver
+.OpenMtSilver:
 	writetext OakOpenMtSilverText
 	buttonsound
 	setevent EVENT_OPENED_MT_SILVER
 	jump .CheckPokedex
 
-.Complain
+.Complain:
 	writetext OakNoKantoBadgesText
 	buttonsound
 	jump .CheckPokedex
 
-.AhGood
+.AhGood:
 	writetext OakYesKantoBadgesText
 	buttonsound
 	jump .CheckPokedex

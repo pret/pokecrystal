@@ -10,33 +10,33 @@ const_value set 2
 	const ROUTE36_SUICUNE
 
 Route36_MapScriptHeader:
-.MapTriggers
+.MapTriggers:
 	db 2
 
 	; triggers
 	dw .Trigger0, 0
 	dw .Trigger1, 0
 
-.MapCallbacks
+.MapCallbacks:
 	db 1
 
 	; callbacks
 
 	dbw MAPCALLBACK_OBJECTS, .ArthurCallback
 
-.Trigger0
+.Trigger0:
 	end
 
-.Trigger1
+.Trigger1:
 	end
 
-.ArthurCallback
+.ArthurCallback:
 	checkcode VAR_WEEKDAY
 	if_equal THURSDAY, .ArthurAppears
 	disappear ROUTE36_ARTHUR
 	return
 
-.ArthurAppears
+.ArthurAppears:
 	appear ROUTE36_ARTHUR
 	return
 
@@ -63,7 +63,7 @@ SudowoodoScript:
 	applymovement ROUTE36_WEIRD_TREE, SudowoodoShakeMovement
 	end
 
-.Fight
+.Fight:
 	opentext
 	writetext UseSquirtbottleText
 	yesorno
@@ -119,12 +119,12 @@ Route36FloriaScript:
 	disappear ROUTE36_FLORIA
 	end
 
-.Up
+.Up:
 	applymovement ROUTE36_FLORIA, FloriaMovement2
 	disappear ROUTE36_FLORIA
 	end
 
-.SecondTimeTalking
+.SecondTimeTalking:
 	writetext FloriaText2
 	waitbutton
 	closetext
@@ -142,16 +142,16 @@ Route36RockSmashGuyScript:
 	closetext
 	end
 
-.ClearedSudowoodo
+.ClearedSudowoodo:
 	writetext RockSmashGuyText2
 	buttonsound
 	verbosegiveitem TM_ROCK_SMASH
 	iffalse .NoRoomForTM
 	setevent EVENT_GOT_TM08_ROCK_SMASH
-.AlreadyGotRockSmash
+.AlreadyGotRockSmash:
 	writetext RockSmashGuyText3
 	waitbutton
-.NoRoomForTM
+.NoRoomForTM:
 	closetext
 	end
 
@@ -165,7 +165,7 @@ LassScript_0x1940e0:
 	closetext
 	end
 
-.ClearedSudowoodo
+.ClearedSudowoodo:
 	writetext UnknownText_0x19469e
 	waitbutton
 	closetext
@@ -174,7 +174,7 @@ LassScript_0x1940e0:
 TrainerSchoolboyAlan1:
 	trainer EVENT_BEAT_SCHOOLBOY_ALAN, SCHOOLBOY, ALAN1, SchoolboyAlan1SeenText, SchoolboyAlan1BeatenText, 0, .Script
 
-.Script
+.Script:
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_ALAN
 	end_if_just_battled
 	opentext
@@ -192,9 +192,9 @@ TrainerSchoolboyAlan1:
 	scall .AskNumber1
 	jump .ContinueAskForPhoneNumber
 
-.AskAgainForPhoneNumber
+.AskAgainForPhoneNumber:
 	scall .AskNumber2
-.ContinueAskForPhoneNumber
+.ContinueAskForPhoneNumber:
 	askforphonenumber PHONE_SCHOOLBOY_ALAN
 	if_equal $1, .PhoneFull
 	if_equal $2, .NumberDeclined
@@ -202,7 +202,7 @@ TrainerSchoolboyAlan1:
 	scall .RegisteredNumber
 	jump .NumberAccepted
 
-.ChooseRematch
+.ChooseRematch:
 	scall .Rematch
 	winlosstext SchoolboyAlan1BeatenText, 0
 	copybytetovar wAlanFightCount
@@ -211,19 +211,19 @@ TrainerSchoolboyAlan1:
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
-.Fight4
+.Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4
-.Fight3
+.Fight3:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight3
-.Fight2
+.Fight2:
 	checkflag ENGINE_FLYPOINT_BLACKTHORN
 	iftrue .LoadFight2
-.Fight1
+.Fight1:
 	checkflag ENGINE_FLYPOINT_OLIVINE
 	iftrue .LoadFight1
-.LoadFight0
+.LoadFight0:
 	loadtrainer SCHOOLBOY, ALAN1
 	startbattle
 	reloadmapafterbattle
@@ -231,7 +231,7 @@ TrainerSchoolboyAlan1:
 	clearflag ENGINE_ALAN
 	end
 
-.LoadFight1
+.LoadFight1:
 	loadtrainer SCHOOLBOY, ALAN2
 	startbattle
 	reloadmapafterbattle
@@ -239,7 +239,7 @@ TrainerSchoolboyAlan1:
 	clearflag ENGINE_ALAN
 	end
 
-.LoadFight2
+.LoadFight2:
 	loadtrainer SCHOOLBOY, ALAN3
 	startbattle
 	reloadmapafterbattle
@@ -247,7 +247,7 @@ TrainerSchoolboyAlan1:
 	clearflag ENGINE_ALAN
 	end
 
-.LoadFight3
+.LoadFight3:
 	loadtrainer SCHOOLBOY, ALAN4
 	startbattle
 	reloadmapafterbattle
@@ -255,14 +255,14 @@ TrainerSchoolboyAlan1:
 	clearflag ENGINE_ALAN
 	end
 
-.LoadFight4
+.LoadFight4:
 	loadtrainer SCHOOLBOY, ALAN5
 	startbattle
 	reloadmapafterbattle
 	clearflag ENGINE_ALAN
 	end
 
-.GiveFireStone
+.GiveFireStone:
 	scall .Gift
 	verbosegiveitem FIRE_STONE
 	iffalse .BagFull
@@ -270,49 +270,49 @@ TrainerSchoolboyAlan1:
 	setevent EVENT_ALAN_GAVE_FIRE_STONE
 	jump .NumberAccepted
 
-.BagFull
+.BagFull:
 	jump .PackFull
 
-.AskNumber1
+.AskNumber1:
 	jumpstd asknumber1m
 	end
 
-.AskNumber2
+.AskNumber2:
 	jumpstd asknumber2m
 	end
 
-.RegisteredNumber
+.RegisteredNumber:
 	jumpstd registerednumberm
 	end
 
-.NumberAccepted
+.NumberAccepted:
 	jumpstd numberacceptedm
 	end
 
-.NumberDeclined
+.NumberDeclined:
 	jumpstd numberdeclinedm
 	end
 
-.PhoneFull
+.PhoneFull:
 	jumpstd phonefullm
 	end
 
-.Rematch
+.Rematch:
 	jumpstd rematchm
 	end
 
-.Gift
+.Gift:
 	jumpstd giftm
 	end
 
-.PackFull
+.PackFull:
 	jumpstd packfullm
 	end
 
 TrainerPsychicMark:
 	trainer EVENT_BEAT_PSYCHIC_MARK, PSYCHIC_T, MARK, PsychicMarkSeenText, PsychicMarkBeatenText, 0, .Script
 
-.Script
+.Script:
 	end_if_just_battled
 	opentext
 	writetext UnknownText_0x19471e
@@ -332,7 +332,7 @@ ArthurScript:
 	writetext MeetArthurText
 	buttonsound
 	setevent EVENT_MET_ARTHUR_OF_THURSDAY
-.MetArthur
+.MetArthur:
 	writetext ArthurGivesGiftText
 	buttonsound
 	verbosegiveitem HARD_STONE
@@ -343,10 +343,10 @@ ArthurScript:
 	closetext
 	end
 
-.AlreadyGotStone
+.AlreadyGotStone:
 	writetext ArthurThursdayText
 	waitbutton
-.BagFull
+.BagFull:
 	closetext
 	end
 
@@ -668,26 +668,26 @@ Route36_MapEventHeader:
 	; filler
 	db 0, 0
 
-.Warps
+.Warps:
 	db 4
 	warp_def $8, $12, 3, ROUTE_36_NATIONAL_PARK_GATE
 	warp_def $9, $12, 4, ROUTE_36_NATIONAL_PARK_GATE
 	warp_def $d, $2f, 1, ROUTE_36_RUINS_OF_ALPH_GATE
 	warp_def $d, $30, 2, ROUTE_36_RUINS_OF_ALPH_GATE
 
-.XYTriggers
+.XYTriggers:
 	db 2
 	xy_trigger 1, $7, $14, $0, Route36SuicuneScript, $0, $0
 	xy_trigger 1, $7, $16, $0, Route36SuicuneScript, $0, $0
 
-.Signposts
+.Signposts:
 	db 4
 	signpost 1, 29, SIGNPOST_READ, Route36TrainerTips2
 	signpost 11, 45, SIGNPOST_READ, RuinsOfAlphNorthSign
 	signpost 7, 55, SIGNPOST_READ, Route36Sign
 	signpost 7, 21, SIGNPOST_READ, Route36TrainerTips1
 
-.PersonEvents
+.PersonEvents:
 	db 9
 	person_event SPRITE_YOUNGSTER, 13, 20, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerPsychicMark, -1
 	person_event SPRITE_YOUNGSTER, 14, 31, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 5, TrainerSchoolboyAlan1, -1

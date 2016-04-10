@@ -1,7 +1,7 @@
 ; HeracrossPokedexEntry: ; 0x1d0907
 	db "SINGLEHORN@" ; species name
 	dw 411, 1190 ; height, width
-	
+
 	db   "With its Herculean"
 	next "powers, it can"
 	next "easily throw arou-"

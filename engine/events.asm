@@ -456,7 +456,7 @@ DoMapTrigger: ; 968ec
 rept 4
 	add hl, de
 endr
-	
+
 	call GetMapScriptHeaderBank
 	call GetFarHalfword
 	call GetMapScriptHeaderBank
@@ -541,11 +541,11 @@ OWPlayerInput: ; 96974
 	call CheckMenuOW
 	jr c, .Action
 
-.NoAction
+.NoAction:
 	xor a
 	ret
 
-.Action
+.Action:
 	push af
 	callba Function80422
 	pop af
@@ -581,7 +581,7 @@ TryObjectEvent: ; 969b5
 	xor a
 	ret
 
-.IsObject
+.IsObject:
 	call PlayTalkObject
 	ld a, [hObjectStructIndexBuffer]
 	call GetObjectStruct
@@ -687,7 +687,7 @@ TryReadSign: ; 96a38
 	xor a
 	ret
 
-.IsSign
+.IsSign:
 	ld a, [EngineBuffer3]
 	ld hl, .signs
 	rst JumpTable
@@ -887,11 +887,11 @@ CheckMenuOW: ; 96b30
 	scf
 	ret
 
-.NoMenu
+.NoMenu:
 	xor a
 	ret
 
-.Select
+.Select:
 	call PlayTalkObject
 	ld a, BANK(SelectMenuScript)
 	ld hl, SelectMenuScript
@@ -918,11 +918,11 @@ SelectMenuCallback: ; 96b66
 	end
 ; 96b72
 
-.Script ; 96b72
+.Script: ; 96b72
 	ptjump wQueuedScriptBank
 ; 96b75
 
-.Asm ; 96b75
+.Asm: ; 96b75
 	ptcallasm wQueuedScriptBank
 	end
 ; 96b79

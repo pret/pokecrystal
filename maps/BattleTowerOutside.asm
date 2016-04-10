@@ -15,10 +15,10 @@ BattleTowerOutside_MapScriptHeader:
 	dbw MAPCALLBACK_TILES, .Callback1
 	dbw MAPCALLBACK_OBJECTS, .Callback2
 
-.Callback1
+.Callback1:
 	return
 
-.Callback2
+.Callback2:
 	clearevent EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
 	return
 

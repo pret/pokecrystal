@@ -121,15 +121,15 @@ SpecialBuenaPrize: ; 8afd4
 	call PrintBlueCardBalance
 	jr .Purchase
 
-.InsufficientBalance
+.InsufficientBalance:
 	ld hl, .Text_NotEnoughPoints
 	jr .print
 
-.BagFull
+.BagFull:
 	ld hl, .Text_NoRoom
 	jr .print
 
-.Purchase
+.Purchase:
 	ld de, SFX_TRANSACTION
 	call PlaySFX
 	ld hl, .Text_HereYouGo
@@ -160,7 +160,7 @@ SpecialBuenaPrize: ; 8afd4
 	db "@"
 ; 0x8b07c
 
-.Text_HereYouGo	; Here you go!
+.Text_HereYouGo:	; Here you go!
 	text_jump UnknownText_0x1c58d1
 	db "@"
 ; 0x8b081

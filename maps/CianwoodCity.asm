@@ -26,13 +26,13 @@ CianwoodCity_MapScriptHeader:
 	; callbacks
 	dbw MAPCALLBACK_NEWMAP, .FlyPointAndSuicune
 
-.Trigger0
+.Trigger0:
 	end
 
-.Trigger1
+.Trigger1:
 	end
 
-.FlyPointAndSuicune
+.FlyPointAndSuicune:
 	setflag ENGINE_FLYPOINT_CIANWOOD
 	setevent EVENT_EUSINE_IN_BURNED_TOWER
 	checkevent EVENT_FOUGHT_EUSINE
@@ -83,7 +83,7 @@ UnknownScript_0x1a001e:
 	special Special_FadeOutMusic
 	playmapmusic
 	pause 10
-.Done
+.Done:
 	end
 
 PokefanFScript_0x1a0084:

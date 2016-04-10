@@ -14,7 +14,7 @@ FuchsiaCity_MapScriptHeader:
 	; callbacks
 	dbw MAPCALLBACK_NEWMAP, .FlyPoint
 
-.FlyPoint
+.FlyPoint:
 	setflag ENGINE_FLYPOINT_FUCHSIA
 	return
 

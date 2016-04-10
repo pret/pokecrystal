@@ -53,19 +53,19 @@ TrainerHikerAnthony:
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
-.Fight4
+.Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4
-.Fight3
+.Fight3:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight3
-.Fight2
+.Fight2:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .LoadFight2
-.Fight1
+.Fight1:
 	checkflag ENGINE_FLYPOINT_OLIVINE
 	iftrue .LoadFight1
-.LoadFight0
+.LoadFight0:
 	loadtrainer HIKER, ANTHONY2
 	startbattle
 	reloadmapafterbattle
@@ -73,7 +73,7 @@ TrainerHikerAnthony:
 	clearflag ENGINE_ANTHONY
 	end
 
-.LoadFight1
+.LoadFight1:
 	loadtrainer HIKER, ANTHONY1
 	startbattle
 	reloadmapafterbattle
@@ -81,7 +81,7 @@ TrainerHikerAnthony:
 	clearflag ENGINE_ANTHONY
 	end
 
-.LoadFight2
+.LoadFight2:
 	loadtrainer HIKER, ANTHONY3
 	startbattle
 	reloadmapafterbattle
@@ -89,7 +89,7 @@ TrainerHikerAnthony:
 	clearflag ENGINE_ANTHONY
 	end
 
-.LoadFight3
+.LoadFight3:
 	loadtrainer HIKER, ANTHONY4
 	startbattle
 	reloadmapafterbattle
@@ -97,7 +97,7 @@ TrainerHikerAnthony:
 	clearflag ENGINE_ANTHONY
 	end
 
-.LoadFight4
+.LoadFight4:
 	loadtrainer HIKER, ANTHONY5
 	startbattle
 	reloadmapafterbattle

@@ -481,7 +481,7 @@ Function4ab06: ; 4ab06
 	jr nz, .NotFainted
 	scf
 
-.NotFainted
+.NotFainted:
 	ret
 ; 4ab1a
 

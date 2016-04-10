@@ -252,7 +252,7 @@ sprite_anim_struct: MACRO
 \1YCoord:: ds 1         ; 5
 \1XOffset:: ds 1        ; 6
 \1YOffset:: ds 1        ; 7
-\1Duration:: ds 1       ; 8 
+\1Duration:: ds 1       ; 8
 \1DurationOffset:: ds 1 ; 9
 \1FrameIndex:: ds 1     ; a
 \1Sprite0b:: ds 1
@@ -2465,7 +2465,7 @@ wSecretID:: ds 2
 StatusFlags:: ; d84c
 	; 0 - pokedex
 	; 1 - unown dex
-	; 2 - 
+	; 2 -
 	; 3 - pokerus
 	; 4 - rocket signal
 	; 5 - wild encounters on/off
@@ -2475,9 +2475,9 @@ StatusFlags:: ; d84c
 
 StatusFlags2:: ; d84d
 	; 0 - rockets
-	; 1 - 
+	; 1 -
 	; 2 - bug contest timer
-	; 3 - 
+	; 3 -
 	; 4 - bike shop call
 	; 5 - pokerus
 	; 6 - berry juice?
@@ -2847,7 +2847,7 @@ PartySpecies:: ; dcd8
 	ds PARTY_LENGTH ; species of each Pokémon in party
 PartyEnd:: ; dcde
 	ds 1 ; legacy scripts don't check PartyCount
-		
+
 PartyMons::
 PartyMon1:: party_struct PartyMon1 ; dcdf
 PartyMon2:: party_struct PartyMon2 ; dd0f
@@ -2997,7 +2997,7 @@ w3_d090::
 
 w3_d100:: ; BattleTower OpponentTrainer-Data (length = 0xe0 = $a + $1 + 3*$3b + $24)
 BT_OTTrainer:: battle_tower_struct BT_OT
-; d1e0	
+; d1e0
 	ds $20
 ; d200
 BT_TrainerTextIndex:: ds 2

@@ -31,24 +31,24 @@ endr
 
 	ld hl, EnemyMonMoves
 	ld c, 0
-.CheckDisabledMove
+.CheckDisabledMove:
 	cp [hl]
 	jr z, .ScoreDisabledMove
 	inc c
 	inc hl
 	jr .CheckDisabledMove
-.ScoreDisabledMove
+.ScoreDisabledMove:
 	ld hl, Buffer1
 	ld b, 0
 	add hl, bc
 	ld [hl], 80
 
 ; Don't pick moves with 0 PP.
-.CheckPP
+.CheckPP:
 	ld hl, Buffer1 - 1
 	ld de, EnemyMonPP
 	ld b, 0
-.CheckMovePP
+.CheckMovePP:
 	inc b
 	ld a, b
 	cp EnemyMonMovesEnd - EnemyMonMoves + 1
@@ -63,7 +63,7 @@ endr
 
 
 ; Apply AI scoring layers depending on the trainer class.
-.ApplyLayers
+.ApplyLayers:
 	ld hl, TrainerClassAttributes + TRNATTR_AI_MOVE_WEIGHTS
 
 	; If we have a battle in BattleTower just load the Attributes of the first TrainerClass (Falkner)
@@ -82,7 +82,7 @@ endr
 	push bc
 	push hl
 
-.CheckLayer
+.CheckLayer:
 	pop hl
 	pop bc
 
@@ -119,12 +119,12 @@ endr
 	jr .CheckLayer
 
 ; Decrement the scores of all moves one by one until one reaches 0.
-.DecrementScores
+.DecrementScores:
 	ld hl, Buffer1
 	ld de, EnemyMonMoves
 	ld c, EnemyMonMovesEnd - EnemyMonMoves
 
-.DecrementNextScore
+.DecrementNextScore:
 	; If the enemy has no moves, this will infinite.
 	ld a, [de]
 	inc de
@@ -145,7 +145,7 @@ endr
 ; In order to avoid bias towards the moves located first in memory, increment the scores
 ; that were decremented one more time than the rest (in case there was a tie).
 ; This means that the minimum score will be 1.
-.PickLowestScoreMoves
+.PickLowestScoreMoves:
 	ld a, c
 
 .move_loop
@@ -159,14 +159,14 @@ endr
 	ld de, EnemyMonMoves
 	ld c, NUM_MOVES
 
-; Give a score of 0 to a blank move	
+; Give a score of 0 to a blank move
 .loop2
 	ld a, [de]
 	and a
 	jr nz, .skip_load
 	ld [hl], a
 
-; Disregard the move if its score is not 1	
+; Disregard the move if its score is not 1
 .skip_load
 	ld a, [hl]
 	dec a
@@ -183,8 +183,8 @@ endr
 	dec c
 	jr nz, .loop2
 
-; Randomly choose one of the moves with a score of 1 	
-.ChooseMove
+; Randomly choose one of the moves with a score of 1
+.ChooseMove:
 	ld hl, Buffer1
 	call Random
 	and 3

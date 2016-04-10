@@ -155,7 +155,7 @@ RunTradeAnimSequence: ; 28fa1
 	ld a, $0
 	ld [rVBK], a
 
-.NotCGB
+.NotCGB:
 	hlbgcoord 0, 0
 	ld bc, sScratch - VBGMap0
 	ld a, " "

@@ -33,15 +33,15 @@ WhirlIslandB1FBoulder:
 
 WhirlIslandB1FHiddenRareCandy:
 	dwb EVENT_WHIRL_ISLAND_B1F_HIDDEN_RARE_CANDY, RARE_CANDY
-	
+
 
 WhirlIslandB1FHiddenUltraBall:
 	dwb EVENT_WHIRL_ISLAND_B1F_HIDDEN_ULTRA_BALL, ULTRA_BALL
-	
+
 
 WhirlIslandB1FHiddenFullRestore:
 	dwb EVENT_WHIRL_ISLAND_B1F_HIDDEN_FULL_RESTORE, FULL_RESTORE
-	
+
 
 WhirlIslandB1F_MapEventHeader:
 	; filler

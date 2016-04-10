@@ -71,7 +71,7 @@ Init:: ; 17d
 ; Clear WRAM bank 0
 	ld hl, wc000
 	ld bc, wd000 - wc000
-.ByteFill
+.ByteFill:
 	ld [hl], 0
 	inc hl
 	dec bc

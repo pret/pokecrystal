@@ -36,11 +36,11 @@ CheckShininess:
 	cp  SHINY_SPC_VAL
 	jr nz, .NotShiny
 
-.Shiny
+.Shiny:
 	scf
 	ret
 
-.NotShiny
+.NotShiny:
 	and a
 	ret
 
@@ -70,11 +70,11 @@ CheckContestMon:
 	cp 10
 	jr c, .Bad
 
-.Good
+.Good:
 	scf
 	ret
 
-.Bad
+.Bad:
 	and a
 	ret
 
@@ -155,13 +155,13 @@ Function8b07:
 	ld [hCGBPalUpdate], a
 	ret
 
-.BGPal
+.BGPal:
 	RGB 31, 31, 31
 	RGB 18, 23, 31
 	RGB 15, 20, 31
 	RGB 00, 00, 00
 
-.OBPal
+.OBPal:
 	RGB 31, 31, 31
 	RGB 31, 31, 12
 	RGB 08, 16, 28
@@ -337,11 +337,11 @@ ApplyHPBarPals:
 	jr z, .PartyMenu
 	ret
 
-.Enemy
+.Enemy:
 	ld de, BGPals + 2 palettes + 2
 	jr .okay
 
-.Player
+.Player:
 	ld de, BGPals + 3 palettes + 2
 
 .okay
@@ -358,7 +358,7 @@ ApplyHPBarPals:
 	ld [hCGBPalUpdate], a
 	ret
 
-.PartyMenu
+.PartyMenu:
 	ld e, c
 	inc e
 	hlcoord 11, 1, AttrMap
@@ -665,7 +665,7 @@ ApplyAttrMap:
 	ld [hBGMapMode], a
 	ret
 
-.UpdateVBank1
+.UpdateVBank1:
 	hlcoord 0, 0, AttrMap
 	debgcoord 0, 0
 	ld b, SCREEN_HEIGHT
@@ -998,7 +998,7 @@ Function9890::
 	ld [rSVBK], a
 	ret
 
-.LoadWhitePals
+.LoadWhitePals:
 	ld c, 4 * 16
 .loop
 	ld a, $7fff % $100
@@ -1960,7 +1960,7 @@ endr
 	call FarCopyWRAM
 	ret
 
-.TilesetColorsPointers
+.TilesetColorsPointers:
 	dw .OutdoorColors ; unused
 	dw .OutdoorColors ; TOWN
 	dw .OutdoorColors ; ROUTE
@@ -1971,25 +1971,25 @@ endr
 	dw .DungeonColors ; DUNGEON
 
 ; Valid indices: $00 - $29
-.OutdoorColors
+.OutdoorColors:
 	db $00, $01, $02, $28, $04, $05, $06, $07 ; morn
 	db $08, $09, $0a, $28, $0c, $0d, $0e, $0f ; day
 	db $10, $11, $12, $29, $14, $15, $16, $17 ; nite
 	db $18, $19, $1a, $1b, $1c, $1d, $1e, $1f ; dark
 
-.IndoorColors
+.IndoorColors:
 	db $20, $21, $22, $23, $24, $25, $26, $07 ; morn
 	db $20, $21, $22, $23, $24, $25, $26, $07 ; day
 	db $10, $11, $12, $13, $14, $15, $16, $07 ; nite
 	db $18, $19, $1a, $1b, $1c, $1d, $1e, $07 ; dark
 
-.DungeonColors
+.DungeonColors:
 	db $00, $01, $02, $03, $04, $05, $06, $07 ; morn
 	db $08, $09, $0a, $0b, $0c, $0d, $0e, $0f ; day
 	db $10, $11, $12, $13, $14, $15, $16, $17 ; nite
 	db $18, $19, $1a, $1b, $1c, $1d, $1e, $1f ; dark
 
-.Perm5Colors
+.Perm5Colors:
 	db $00, $01, $02, $03, $04, $05, $06, $07 ; morn
 	db $08, $09, $0a, $0b, $0c, $0d, $0e, $0f ; day
 	db $10, $11, $12, $13, $14, $15, $16, $17 ; nite

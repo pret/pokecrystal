@@ -60,7 +60,7 @@ Phone_FindOpenSlot: ; 9002d
 	xor a
 	ret
 
-.FoundOpenSpace
+.FoundOpenSpace:
 	dec hl
 	scf
 	ret
@@ -196,7 +196,7 @@ ChooseRandomCaller: ; 900bf (24:40bf)
 	scf
 	ret
 
-.NothingToSample
+.NothingToSample:
 	xor a
 	ret
 
@@ -288,7 +288,7 @@ endr
 	call CallScript
 	scf
 	ret
-.NoPhoneCall
+.NoPhoneCall:
 	xor a
 	ret
 ; 90173 (24:4173)
@@ -363,7 +363,7 @@ Function90199: ; 90199 (24:4199)
 	ld hl, PhoneScript_JustTalkToThem
 	jr .DoPhoneCall
 
-.GetPhoneScript
+.GetPhoneScript:
 	ld hl, PHONE_CONTACT_SCRIPT1_BANK
 	add hl, de
 	ld b, [hl]
@@ -374,13 +374,13 @@ Function90199: ; 90199 (24:4199)
 	ld l, a
 	jr .DoPhoneCall
 
-.OutOfArea
+.OutOfArea:
 	ld b, BANK(UnknownScript_0x90209)
 	ld de, UnknownScript_0x90209
 	call ExecuteCallbackScript
 	ret
 
-.DoPhoneCall
+.DoPhoneCall:
 	ld a, b
 	ld [wd002], a
 	ld a, l
@@ -454,7 +454,7 @@ Script_SpecialBillCall:: ; 0x90255
 	callasm .LoadBillScript
 	jump Script_ReceivePhoneCall
 
-.LoadBillScript
+.LoadBillScript:
 	ld e, PHONE_BILL
 	jp LoadCallerScript
 ; 90261
@@ -464,7 +464,7 @@ UnknownScript_0x90261: ; 0x90261
 	pause 30
 	jump Script_ReceivePhoneCall
 
-.LoadElmScript
+.LoadElmScript:
 	ld e, PHONE_ELM
 	jp LoadCallerScript
 ; 9026f
@@ -694,7 +694,7 @@ GetCallerName: ; 903a9 (24:43a9)
 	call PlaceString
 	ret
 
-.NotTrainer
+.NotTrainer:
 	push hl
 	ld c, b
 	ld b, 0

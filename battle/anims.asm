@@ -321,7 +321,7 @@ BattleAnim_ThrowPokeBall
 	anim_jump .Shake
 ; c92f2
 
-.TheTrainerBlockedTheBall
+.TheTrainerBlockedTheBall:
 	anim_2gfx ANIM_GFX_POKE_BALL, ANIM_GFX_HIT
 	anim_sound 6, 2, SFX_THROW_BALL
 	anim_obj ANIM_OBJ_16,   8, 0,  11, 4, $20
@@ -331,7 +331,7 @@ BattleAnim_ThrowPokeBall
 	anim_ret
 ; c9305
 
-.UltraBall
+.UltraBall:
 	anim_2gfx ANIM_GFX_POKE_BALL, ANIM_GFX_SMOKE
 	anim_sound 6, 2, SFX_THROW_BALL
 	anim_obj ANIM_OBJ_POKE_BALL,   8, 4,  11, 4, $40
@@ -345,7 +345,7 @@ BattleAnim_ThrowPokeBall
 	anim_jump .Shake
 ; c9326
 
-.GreatBall
+.GreatBall:
 	anim_2gfx ANIM_GFX_POKE_BALL, ANIM_GFX_SMOKE
 	anim_sound 6, 2, SFX_THROW_BALL
 	anim_obj ANIM_OBJ_POKE_BALL,   8, 4,  11, 4, $40
@@ -359,7 +359,7 @@ BattleAnim_ThrowPokeBall
 	anim_jump .Shake
 ; c9347
 
-.MasterBall
+.MasterBall:
 	anim_3gfx ANIM_GFX_POKE_BALL, ANIM_GFX_SMOKE, ANIM_GFX_SPEED
 	anim_sound 6, 2, SFX_THROW_BALL
 	anim_obj ANIM_OBJ_POKE_BALL,   8, 0,  11, 4, $20
@@ -380,7 +380,7 @@ BattleAnim_ThrowPokeBall
 	anim_obj ANIM_OBJ_2B, -15, 0,   7, 0, $36
 	anim_obj ANIM_OBJ_2B, -15, 0,   7, 0, $37
 	anim_wait 64
-.Shake
+.Shake:
 	anim_bgeffect ANIM_BG_RETURN_MON, $0, $0, $0
 	anim_wait 8
 	anim_incobj  2
@@ -394,7 +394,7 @@ BattleAnim_ThrowPokeBall
 	anim_wait 32
 	anim_wait 8
 	anim_setvar $0
-.Loop
+.Loop:
 	anim_wait 48
 	anim_checkpokeball
 	anim_jumpvar $1, .Click
@@ -404,12 +404,12 @@ BattleAnim_ThrowPokeBall
 	anim_jump .Loop
 ; c93bc
 
-.Click
+.Click:
 	anim_clearsprites
 	anim_ret
 ; c93be
 
-.BreakFree
+.BreakFree:
 	anim_setobj $1, $b
 	anim_sound 0, 1, SFX_BALL_POOF
 	anim_obj ANIM_OBJ_1C, -15, 0,   8, 0, $10
@@ -434,7 +434,7 @@ BattleAnim_SendOutMon: ; c93d1
 	anim_call BattleAnim_ShowMon_0
 	anim_ret
 
-.Unknown
+.Unknown:
 	anim_1gfx ANIM_GFX_SMOKE
 	anim_call BattleAnim_FollowEnemyFeet_0
 	anim_bgeffect ANIM_BG_2A, $0, $1, $0
@@ -449,7 +449,7 @@ BattleAnim_SendOutMon: ; c93d1
 	anim_call BattleAnim_ShowMon_0
 	anim_ret
 
-.Shiny
+.Shiny:
 	anim_1gfx ANIM_GFX_SPEED
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $3
 	anim_bgeffect ANIM_BG_06, $0, $2, $0
@@ -479,7 +479,7 @@ BattleAnim_SendOutMon: ; c93d1
 	anim_wait 32
 	anim_ret
 
-.Normal
+.Normal:
 	anim_1gfx ANIM_GFX_SMOKE
 	anim_sound 0, 0, SFX_BALL_POOF
 	anim_obj ANIM_OBJ_1C,   5, 4,  12, 0, $0

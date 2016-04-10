@@ -108,7 +108,7 @@ PlateauRivalBattleCommon:
 	reloadmapafterbattle
 	jump PlateauRivalPostBattle
 
-.Totodile
+.Totodile:
 	winlosstext PlateauRivalWinText, PlateauRivalLoseText
 	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
 	loadtrainer RIVAL2, 4
@@ -117,7 +117,7 @@ PlateauRivalBattleCommon:
 	reloadmapafterbattle
 	jump PlateauRivalPostBattle
 
-.Chikorita
+.Chikorita:
 	winlosstext PlateauRivalWinText, PlateauRivalLoseText
 	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
 	loadtrainer RIVAL2, 5
@@ -168,7 +168,7 @@ TeleportGuyScript:
 	warp NEW_BARK_TOWN, $d, $6
 	end
 
-.No
+.No:
 	writetext TeleportGuyNoText
 	waitbutton
 	closetext

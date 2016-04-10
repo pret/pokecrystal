@@ -22,10 +22,10 @@ HiddenPowerGuy:
 	waitbutton
 	closetext
 	end
-.AlreadyGotItem
+.AlreadyGotItem:
 	writetext HiddenPowerGuyText3
 	waitbutton
-.Done
+.Done:
 	closetext
 	end
 

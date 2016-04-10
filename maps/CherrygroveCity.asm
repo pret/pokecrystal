@@ -19,13 +19,13 @@ CherrygroveCity_MapScriptHeader:
 	; callbacks
 	dbw MAPCALLBACK_NEWMAP, .FlyPoint
 
-.Trigger0
+.Trigger0:
 	end
 
-.Trigger1
+.Trigger1:
 	end
 
-.FlyPoint
+.FlyPoint:
 	setflag ENGINE_FLYPOINT_CHERRYGROVE
 	return
 
@@ -36,7 +36,7 @@ CherrygroveCityGuideGent:
 	yesorno
 	iffalse .No
 	jump .Yes
-.Yes
+.Yes:
 	writetext GuideGentTourText1
 	waitbutton
 	closetext
@@ -91,14 +91,14 @@ CherrygroveCityGuideGent:
 	waitsfx
 	end
 
-.JumpstdReceiveItem
+.JumpstdReceiveItem:
 	jumpstd receiveitem
 	end
 
 .mapcardname
 	db "MAP CARD@"
 
-.No
+.No:
 	writetext GuideGentNoText
 	waitbutton
 	closetext

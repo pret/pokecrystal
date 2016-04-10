@@ -121,7 +121,7 @@ endr
 	ret
 ; 1ba5
 
-.MovementData
+.MovementData:
 	slow_step_down
 	slow_step_up
 	slow_step_left

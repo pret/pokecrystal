@@ -181,8 +181,8 @@ ScientistMitchScript:
 BossDoor:
 	dw EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE
 	dw .Script
-	
-.Script
+
+.Script:
 	opentext
 	checkevent EVENT_LEARNED_SLOWPOKETAIL
 	iffalse .NeedsPassword
@@ -190,13 +190,13 @@ BossDoor:
 	iffalse .NeedsPassword
 	jump .OpenSesame
 
-.NeedsPassword
+.NeedsPassword:
 	writetext UnknownText_0x6e970
 	waitbutton
 	closetext
 	end
 
-.OpenSesame
+.OpenSesame:
 	writetext UnknownText_0x6e9a3
 	waitbutton
 	playsound SFX_ENTER_DOOR

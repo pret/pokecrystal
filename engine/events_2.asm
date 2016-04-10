@@ -191,13 +191,13 @@ ChooseWildEncounter_BugContest:: ; 97d31
 
 	ld hl, ContestMons
 	ld de, 4
-.CheckMon
+.CheckMon:
 	sub [hl]
 	jr c, .GotMon
 	add hl, de
 	jr .CheckMon
 
-.GotMon
+.GotMon:
 	inc hl
 
 ; Species
@@ -218,7 +218,7 @@ ChooseWildEncounter_BugContest:: ; 97d31
 	ld a, d
 	jr .GotLevel
 
-.RandomLevel
+.RandomLevel:
 ; Get a random level between the min and max.
 	ld c, a
 	inc c
@@ -227,7 +227,7 @@ ChooseWildEncounter_BugContest:: ; 97d31
 	call SimpleDivide
 	add d
 
-.GotLevel
+.GotLevel:
 	ld [CurPartyLevel], a
 
 	xor a
@@ -330,7 +330,7 @@ DoBikeStep:: ; 97db3
 	scf
 	ret
 
-.NoCall
+.NoCall:
 	xor a
 	ret
 ; 97df9

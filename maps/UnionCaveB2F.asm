@@ -17,16 +17,16 @@ UnionCaveB2F_MapScriptHeader:
 
 	dbw MAPCALLBACK_OBJECTS, .Lapras
 
-.Lapras
+.Lapras:
 	checkflag ENGINE_UNION_CAVE_LAPRAS
 	iftrue .NoAppear
 	checkcode VAR_WEEKDAY
 	if_equal FRIDAY, .Appear
-.NoAppear
+.NoAppear:
 	disappear UNIONCAVEB2F_LAPRAS
 	return
 
-.Appear
+.Appear:
 	appear UNIONCAVEB2F_LAPRAS
 	return
 

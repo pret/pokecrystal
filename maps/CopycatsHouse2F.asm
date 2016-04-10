@@ -23,10 +23,10 @@ CopycatsHouse2FCallback:
 	disappear COPYCATSHOUSE2F_COPYCAT2
 	appear COPYCATSHOUSE2F_COPYCAT1
 	jump .Done
-.Part1
+.Part1:
 	disappear COPYCATSHOUSE2F_COPYCAT1
 	appear COPYCATSHOUSE2F_COPYCAT2
-.Done
+.Done:
 	return
 
 Copycat:
@@ -44,11 +44,11 @@ Copycat:
 	variablesprite SPRITE_COPYCAT, SPRITE_CHRIS
 	jump .Part2
 
-.Part1
+.Part1:
 	applymovement COPYCATSHOUSE2F_COPYCAT2, MovementData_0x18afd0
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
-.Part2
+.Part2:
 	special RunCallback_04
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .Part7
@@ -58,9 +58,9 @@ Copycat:
 	writetext UnknownText_0x18afda
 	jump .Part4
 
-.Part3
+.Part3:
 	writetext UnknownText_0x18b316
-.Part4
+.Part4:
 	waitbutton
 	closetext
 	checkflag ENGINE_PLAYER_IS_FEMALE
@@ -68,9 +68,9 @@ Copycat:
 	applymovement COPYCATSHOUSE2F_COPYCAT1, MovementData_0x18afd0
 	jump .Part6
 
-.Part5
+.Part5:
 	applymovement COPYCATSHOUSE2F_COPYCAT2, MovementData_0x18afd0
-.Part6
+.Part6:
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	special RunCallback_04
@@ -80,16 +80,16 @@ Copycat:
 	closetext
 	end
 
-.Part7
+.Part7:
 	opentext
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part8
 	writetext UnknownText_0x18b064
 	jump .Part9
 
-.Part8
+.Part8:
 	writetext UnknownText_0x18b366
-.Part9
+.Part9:
 	waitbutton
 	closetext
 	checkflag ENGINE_PLAYER_IS_FEMALE
@@ -97,9 +97,9 @@ Copycat:
 	applymovement COPYCATSHOUSE2F_COPYCAT1, MovementData_0x18afd0
 	jump .Part11
 
-.Part10
+.Part10:
 	applymovement COPYCATSHOUSE2F_COPYCAT2, MovementData_0x18afd0
-.Part11
+.Part11:
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	special RunCallback_04
@@ -110,7 +110,7 @@ Copycat:
 	setevent EVENT_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM
 	end
 
-.Part12
+.Part12:
 	opentext
 	writetext UnknownText_0x18b17f
 	buttonsound
@@ -119,9 +119,9 @@ Copycat:
 	clearevent EVENT_COPYCATS_HOUSE_2F_DOLL
 	jump .Part14
 
-.Part13
+.Part13:
 	opentext
-.Part14
+.Part14:
 	writetext UnknownText_0x18b1e2
 	buttonsound
 	verbosegiveitem PASS
@@ -132,7 +132,7 @@ Copycat:
 	closetext
 	end
 
-.Part15
+.Part15:
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part16
 	applymovement COPYCATSHOUSE2F_COPYCAT1, MovementData_0x18afd0
@@ -140,11 +140,11 @@ Copycat:
 	variablesprite SPRITE_COPYCAT, SPRITE_CHRIS
 	jump .Part17
 
-.Part16
+.Part16:
 	applymovement COPYCATSHOUSE2F_COPYCAT2, MovementData_0x18afd0
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
-.Part17
+.Part17:
 	special RunCallback_04
 	opentext
 	checkflag ENGINE_PLAYER_IS_FEMALE
@@ -152,9 +152,9 @@ Copycat:
 	writetext UnknownText_0x18b298
 	jump .Part19
 
-.Part18
+.Part18:
 	writetext UnknownText_0x18b415
-.Part19
+.Part19:
 	waitbutton
 	closetext
 	checkflag ENGINE_PLAYER_IS_FEMALE
@@ -162,16 +162,16 @@ Copycat:
 	applymovement COPYCATSHOUSE2F_COPYCAT1, MovementData_0x18afd0
 	jump .Part21
 
-.Part20
+.Part20:
 	applymovement COPYCATSHOUSE2F_COPYCAT2, MovementData_0x18afd0
-.Part21
+.Part21:
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	special RunCallback_04
 	opentext
 	writetext UnknownText_0x18b2f5
 	waitbutton
-.Part22
+.Part22:
 	closetext
 	end
 

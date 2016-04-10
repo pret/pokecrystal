@@ -135,15 +135,15 @@ IsInJohto:: ; 2f17
 	ld c, a
 	call GetWorldMapLocation
 
-.CheckRegion
+.CheckRegion:
 	cp KANTO_LANDMARK
 	jr nc, .Kanto
 
-.Johto
+.Johto:
 	xor a
 	ret
 
-.Kanto
+.Kanto:
 	ld a, 1
 	ret
 ; 2f3e
@@ -267,11 +267,11 @@ IsInArray:: ; 30e1
 	add hl, de
 	jr .loop
 
-.NotInArray
+.NotInArray:
 	and a
 	ret
 
-.InArray
+.InArray:
 	scf
 	ret
 ; 30f4
@@ -497,7 +497,7 @@ CompareLong:: ; 31e4
 	scf
 	ret
 
-.Diff
+.Diff:
 	and a
 	ret
 ; 31f3
@@ -574,7 +574,7 @@ LoadEDTile:: ; 323d
 	ret
 ; 3246
 
-.LoadEDTile ; 3246
+.LoadEDTile: ; 3246
 	ld a, [hBGMapMode]
 	push af
 	xor a
@@ -613,7 +613,7 @@ LoadEDTile:: ; 323d
 	ret
 ; 327b
 
-.StackPointerMagic ; 327b
+.StackPointerMagic: ; 327b
 ; Copy all tiles to VBGMap
 	ld [hSPBuffer], sp
 	ld sp, hl
@@ -668,7 +668,7 @@ SetPalettes:: ; 32f9
 	ld [rOBP1], a
 	ret
 
-.SetPalettesForGameBoyColor
+.SetPalettesForGameBoyColor:
 	push de
 	ld a, %11100100
 	call DmgToCgbBGPals
@@ -828,7 +828,7 @@ GetName:: ; 33c3
 	ld d, h
 	jr .done
 
-.NotPokeName
+.NotPokeName:
 	ld a, [wNamedObjectTypeBuffer]
 	dec a
 	ld e, a
@@ -963,9 +963,9 @@ GetItemName:: ; 3468
 	ld [wNamedObjectTypeBuffer], a
 	call GetName
 	jr .Copied
-.TM
+.TM:
 	call GetTMHMName
-.Copied
+.Copied:
 	ld de, StringBuffer1
 	pop bc
 	pop hl
@@ -990,7 +990,7 @@ GetTMHMName:: ; 3487
 	ld bc, .HMTextEnd - .HMText
 	jr .asm_34a1
 
-.TM
+.TM:
 	ld hl, .TMText
 	ld bc, .TMTextEnd - .TMText
 
@@ -1044,14 +1044,14 @@ GetTMHMName:: ; 3487
 	pop hl
 	ret
 
-.TMText
+.TMText:
 	db "TM"
-.TMTextEnd
+.TMTextEnd:
 	db "@"
 
-.HMText
+.HMText:
 	db "HM"
-.HMTextEnd
+.HMTextEnd:
 	db "@"
 ; 34df
 
@@ -1060,7 +1060,7 @@ IsHM:: ; 34df
 	jr c, .NotHM
 	scf
 	ret
-.NotHM
+.NotHM:
 	and a
 	ret
 ; 34e7
@@ -1070,7 +1070,7 @@ IsHMMove:: ; 34e7
 	ld de, 1
 	jp IsInArray
 
-.HMMoves
+.HMMoves:
 	db CUT
 	db FLY
 	db SURF
@@ -1116,7 +1116,7 @@ ScrollingMenu:: ; 350c
 	ret
 ; 3524
 
-.UpdatePalettes ; 3524
+.UpdatePalettes: ; 3524
 	ld hl, VramState
 	bit 0, [hl]
 	jp nz, UpdateTimePals
@@ -1176,7 +1176,7 @@ HandleStoneQueue:: ; 3567
 	ret
 ; 3574
 
-.WarpAction ; 3574
+.WarpAction: ; 3574
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, de
 	ld a, [hl]
@@ -1202,7 +1202,7 @@ HandleStoneQueue:: ; 3567
 	ret
 ; 3599
 
-.IsPersonOnWarp ; 3599
+.IsPersonOnWarp: ; 3599
 	push de
 
 	ld hl, OBJECT_NEXT_MAP_X
@@ -1269,7 +1269,7 @@ HandleStoneQueue:: ; 3567
 	ret
 ; 35de
 
-.IsObjectInStoneTable ; 35de
+.IsObjectInStoneTable: ; 35de
 	inc e
 	ld hl, CMDQUEUE_ADDR
 	add hl, bc
@@ -1473,7 +1473,7 @@ FacingPlayerDistance:: ; 36ad
 	and a
 	ret
 
-.CheckY
+.CheckY:
 	ld a, [PlayerStandingMapY]
 	sub e
 	jr z, .NotFacing
@@ -1486,12 +1486,12 @@ FacingPlayerDistance:: ; 36ad
 	ld e, OW_UP
 	jr .CheckFacing
 
-.Above
+.Above:
 	ld d, a
 	ld e, OW_DOWN
 	jr .CheckFacing
 
-.CheckX
+.CheckX:
 	ld a, [PlayerStandingMapX]
 	sub d
 	jr z, .NotFacing
@@ -1504,18 +1504,18 @@ FacingPlayerDistance:: ; 36ad
 	ld e, OW_LEFT
 	jr .CheckFacing
 
-.Left
+.Left:
 	ld d, a
 	ld e, OW_RIGHT
 
-.CheckFacing
+.CheckFacing:
 	call GetSpriteDirection
 	cp e
 	jr nz, .NotFacing
 	scf
 	ret
 
-.NotFacing
+.NotFacing:
 	and a
 	ret
 ; 36f5
@@ -1581,11 +1581,11 @@ IsAPokemon:: ; 3741
 	cp NUM_POKEMON + 1
 	jr c, .Pokemon
 
-.NotAPokemon
+.NotAPokemon:
 	scf
 	ret
 
-.Pokemon
+.Pokemon:
 	and a
 	ret
 ; 3750

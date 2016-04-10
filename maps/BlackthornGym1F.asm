@@ -15,7 +15,7 @@ BlackthornGym1F_MapScriptHeader:
 	; callbacks
 	dbw MAPCALLBACK_TILES, .Boulders
 
-.Boulders
+.Boulders:
 	checkevent EVENT_BOULDER_IN_BLACKTHORN_GYM_1
 	iffalse .skip1
 	changeblock $8, $2, $3b
@@ -59,13 +59,13 @@ BlackthornGymClairScript:
 	clearevent EVENT_BLACKTHORN_CITY_GRAMPS_NOT_BLOCKING_DRAGONS_DEN
 	end
 
-.FightDone
+.FightDone:
 	writetext ClairText_TooMuchToExpect
 	waitbutton
 	closetext
 	end
 
-.AlreadyGotBadge
+.AlreadyGotBadge:
 	checkevent EVENT_GOT_TM24_DRAGONBREATH
 	iftrue .GotTM24
 	writetext BlackthornGymClairText_YouKeptMeWaiting
@@ -137,7 +137,7 @@ BlackthornGymGuyScript:
 	closetext
 	end
 
-.BlackthornGymGuyWinScript
+.BlackthornGymGuyWinScript:
 	writetext BlackthornGymGuyWinText
 	waitbutton
 	closetext
@@ -147,7 +147,7 @@ BlackthornGymStatue:
 	checkflag ENGINE_RISINGBADGE
 	iftrue .Beaten
 	jumpstd gymstatue1
-.Beaten
+.Beaten:
 	trainertotext CLAIR, 1, $1
 	jumpstd gymstatue2
 

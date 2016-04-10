@@ -115,11 +115,11 @@ VictoryRoadHPUp:
 
 VictoryRoadHiddenMaxPotion:
 	dwb EVENT_VICTORY_ROAD_HIDDEN_MAX_POTION, MAX_POTION
-	
+
 
 VictoryRoadHiddenFullHeal:
 	dwb EVENT_VICTORY_ROAD_HIDDEN_FULL_HEAL, FULL_HEAL
-	
+
 
 MovementData_0x74539:
 	step_left

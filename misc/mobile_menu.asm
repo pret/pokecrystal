@@ -424,7 +424,7 @@ Function4a28a: ; 4a28a (12:628a)
 	scf
 	ret
 
-.DeleteLoginPassword
+.DeleteLoginPassword:
 	call PlaceHollowCursor
 	ld hl, UnknownText_0x4a358
 	call PrintText

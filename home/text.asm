@@ -41,7 +41,7 @@ ClearTileMap:: ; fc8
 	ld a, " "
 	ld bc, TileMapEnd - TileMap
 	call ByteFill
-	
+
 	; Update the BG Map.
 	ld a, [rLCDC]
 	bit 7, a
@@ -1153,7 +1153,7 @@ endr
 	pop hl
 	ret
 
-.Days ; 15a2
+.Days: ; 15a2
 	dw .Sun
 	dw .Mon
 	dw .Tues
@@ -1162,12 +1162,12 @@ endr
 	dw .Fri
 	dw .Satur
 
-.Sun    db "SUN@"
-.Mon    db "MON@"
-.Tues   db "TUES@"
-.Wednes db "WEDNES@"
-.Thurs  db "THURS@"
-.Fri    db "FRI@"
-.Satur  db "SATUR@"
-.Day    db "DAY@"
+.Sun:    db "SUN@"
+.Mon:    db "MON@"
+.Tues:   db "TUES@"
+.Wednes: db "WEDNES@"
+.Thurs:  db "THURS@"
+.Fri:    db "FRI@"
+.Satur:  db "SATUR@"
+.Day:    db "DAY@"
 ; 15d8

@@ -172,7 +172,7 @@ const_value = 1
 	const HAPPINESS_REVIVALHERB       ; 11
 	const HAPPINESS_MASSAGE           ; 12
 	const HAPPINESS_GAINLEVELATHOME   ; 13
-	
+
 
 	const_def
 	const LINK_NULL

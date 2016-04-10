@@ -182,13 +182,13 @@ UnknownScript_0x19e1b8:
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
-.Fight2
+.Fight2:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight2
-.Fight1
+.Fight1:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
-.LoadFight0
+.LoadFight0:
 	loadtrainer HIKER, PARRY3
 	startbattle
 	reloadmapafterbattle
@@ -196,7 +196,7 @@ UnknownScript_0x19e1b8:
 	clearflag ENGINE_PARRY
 	end
 
-.LoadFight1
+.LoadFight1:
 	loadtrainer HIKER, PARRY1
 	startbattle
 	reloadmapafterbattle
@@ -204,7 +204,7 @@ UnknownScript_0x19e1b8:
 	clearflag ENGINE_PARRY
 	end
 
-.LoadFight2
+.LoadFight2:
 	loadtrainer HIKER, PARRY2
 	startbattle
 	reloadmapafterbattle
@@ -313,7 +313,7 @@ Route45MaxPotion:
 
 Route45HiddenPpUp:
 	dwb EVENT_ROUTE_45_HIDDEN_PP_UP, PP_UP
-	
+
 
 HikerErikSeenText:
 	text "Be prepared for"

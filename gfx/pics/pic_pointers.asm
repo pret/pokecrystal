@@ -399,11 +399,11 @@
 	add_pic SlowkingBackpic
 	add_pic MisdreavusFrontpic
 	add_pic MisdreavusBackpic
-	
+
 	; Unown pics have their own table. See UnownPicPointers
 	dbw -1, -1
 	dbw -1, -1
-	
+
 	add_pic WobbuffetFrontpic
 	add_pic WobbuffetBackpic
 	add_pic GirafarigFrontpic

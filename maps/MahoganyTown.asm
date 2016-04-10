@@ -18,13 +18,13 @@ MahoganyTown_MapScriptHeader:
 	; callbacks
 	dbw MAPCALLBACK_NEWMAP, .FlyPoint
 
-.Trigger0
+.Trigger0:
 	end
 
-.Trigger1
+.Trigger1:
 	end
 
-.FlyPoint
+.FlyPoint:
 	setflag ENGINE_FLYPOINT_MAHOGANY
 	return
 

@@ -2509,7 +2509,7 @@ Function11d0b6: ; 11d0b6 (47:50b6)
 	ld l, a
 	jp [hl]
 
-.Jumptable
+.Jumptable:
 	dw .zero
 	dw .one
 	dw .two
@@ -3142,7 +3142,7 @@ Function11d3ba: ; 11d3ba
 	jr z, .ExitMasterLoop
 	jp .MasterLoop
 
-.ExitMasterLoop
+.ExitMasterLoop:
 	pop af
 	ld [rSVBK], a
 	ret

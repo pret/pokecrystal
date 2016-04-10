@@ -20,17 +20,17 @@ BlackthornCity_MapScriptHeader:
 	dbw MAPCALLBACK_NEWMAP, .FlyPoint
 	dbw MAPCALLBACK_OBJECTS, .Santos
 
-.FlyPoint
+.FlyPoint:
 	setflag ENGINE_FLYPOINT_BLACKTHORN
 	return
 
-.Santos
+.Santos:
 	checkcode VAR_WEEKDAY
 	if_equal SATURDAY, .SantosAppears
 	disappear BLACKTHORNCITY_SANTOS
 	return
 
-.SantosAppears
+.SantosAppears:
 	appear BLACKTHORNCITY_SANTOS
 	return
 
@@ -101,7 +101,7 @@ SantosScript:
 	writetext MeetSantosText
 	buttonsound
 	setevent EVENT_MET_SANTOS_OF_SATURDAY
-.MetSantos
+.MetSantos:
 	writetext SantosGivesGiftText
 	buttonsound
 	verbosegiveitem SPELL_TAG
@@ -112,14 +112,14 @@ SantosScript:
 	closetext
 	end
 
-.Saturday
+.Saturday:
 	writetext SantosSaturdayText
 	waitbutton
-.Done
+.Done:
 	closetext
 	end
 
-.NotSaturday
+.NotSaturday:
 	writetext SantosNotSaturdayText
 	waitbutton
 	closetext

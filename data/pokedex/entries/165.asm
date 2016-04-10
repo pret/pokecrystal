@@ -1,7 +1,7 @@
 ; LedybaPokedexEntry: ; 0x1ccf2c
 	db "FIVE STAR@" ; species name
 	dw 303, 240 ; height, width
-	
+
 	db   "It is timid and"
 	next "clusters together"
 	next "with others. The"

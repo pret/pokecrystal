@@ -218,27 +218,27 @@ BattleAnimOAMData: ; ceeae
 	dbbw $00, 14, .OAMData_d6 ; d6
 	dbbw $00, 12, .OAMData_d7 ; d7
 
-.OAMData_11
+.OAMData_11:
 	dsprite  -1, 0,  -1, 4, $00, $00
 	dsprite   0, 0,  -1, 4, $01, $00
 
-.OAMData_56
+.OAMData_56:
 	dsprite  -1, 4,  -1, 0, $00, $00
 	dsprite  -1, 4,   0, 0, $01, $00
 
-.OAMData_03
+.OAMData_03:
 	dsprite  -1, 0,  -1, 0, $00, $00
 	dsprite  -1, 0,   0, 0, $01, $00
 	dsprite   0, 0,  -1, 0, $02, $00
 	dsprite   0, 0,   0, 0, $03, $00
 
-.OAMData_02
+.OAMData_02:
 	dsprite  -1, 0,  -1, 0, $00, $00
 	dsprite  -1, 0,   0, 0, $00, $20
 	dsprite   0, 0,  -1, 0, $00, $40
 	dsprite   0, 0,   0, 0, $00, $60
 
-.OAMData_c3
+.OAMData_c3:
 	dsprite  -2, 4,  -2, 4, $00, $00
 	dsprite  -2, 4,  -1, 4, $01, $00
 	dsprite  -2, 4,   0, 4, $02, $00
@@ -249,7 +249,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite   0, 4,  -1, 4, $07, $00
 	dsprite   0, 4,   0, 4, $08, $00
 
-.OAMData_01
+.OAMData_01:
 	dsprite  -2, 4,  -2, 4, $00, $00
 	dsprite  -2, 4,  -1, 4, $01, $00
 	dsprite  -2, 4,   0, 4, $00, $20
@@ -260,7 +260,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite   0, 4,  -1, 4, $01, $60
 	dsprite   0, 4,   0, 4, $00, $60
 
-.OAMData_cf
+.OAMData_cf:
 	dsprite  -2, 0,  -2, 4, $00, $00
 	dsprite  -2, 0,  -1, 4, $01, $00
 	dsprite  -2, 0,   0, 4, $02, $00
@@ -274,7 +274,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite   1, 0,  -1, 4, $01, $60
 	dsprite   1, 0,   0, 4, $00, $60
 
-.OAMData_1c
+.OAMData_1c:
 	dsprite  -2, 0,  -2, 0, $00, $00
 	dsprite  -2, 0,  -1, 0, $01, $00
 	dsprite  -2, 0,   0, 0, $02, $00
@@ -292,7 +292,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite   1, 0,   0, 0, $0e, $00
 	dsprite   1, 0,   1, 0, $0f, $00
 
-.OAMData_00
+.OAMData_00:
 	dsprite  -2, 0,  -2, 0, $00, $00
 	dsprite  -2, 0,  -1, 0, $01, $00
 	dsprite  -1, 0,  -2, 0, $02, $00
@@ -310,7 +310,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite   1, 0,   0, 0, $01, $60
 	dsprite   1, 0,   1, 0, $00, $60
 
-.OAMData_09
+.OAMData_09:
 	dsprite  -3, 4,  -3, 4, $00, $00
 	dsprite  -3, 4,  -2, 4, $01, $00
 	dsprite  -2, 4,  -3, 4, $02, $00
@@ -328,33 +328,33 @@ BattleAnimOAMData: ; ceeae
 	dsprite   1, 4,   0, 4, $01, $60
 	dsprite   1, 4,   1, 4, $00, $60
 
-.OAMData_0c
+.OAMData_0c:
 	dsprite  -1, 4,  -1, 0, $00, $00
 	dsprite  -1, 4,   0, 0, $00, $20
 
-.OAMData_6a
+.OAMData_6a:
 	dsprite   0, 0,  -1, 0, $00, $00
 	dsprite   0, 0,   0, 0, $00, $20
 
-.OAMData_04
+.OAMData_04:
 	dsprite  -1, 0,  -1, 0, $00, $00
 	dsprite  -1, 0,   0, 0, $00, $20
 	dsprite   0, 0,  -1, 0, $01, $00
 	dsprite   0, 0,   0, 0, $01, $20
 
-.OAMData_5d
+.OAMData_5d:
 	dsprite  -1, 0,  -1, 0, $00, $00
 	dsprite  -1, 0,   0, 0, $01, $00
 	dsprite   0, 0,  -1, 0, $00, $40
 	dsprite   0, 0,   0, 0, $01, $40
 
-.OAMData_13
+.OAMData_13:
 	dsprite  -1, 2,  -1, 0, $02, $00
 	dsprite   0, 2,  -1, 0, $03, $00
 	dsprite  -2, 6,   0, 0, $02, $00
 	dsprite  -1, 6,   0, 0, $03, $00
 
-.OAMData_22
+.OAMData_22:
 	dsprite   1, 0, -11, 0, $01, $00
 	dsprite   0, 0, -10, 0, $02, $00
 	dsprite   0, 0,  -9, 0, $03, $00
@@ -378,14 +378,14 @@ BattleAnimOAMData: ; ceeae
 	dsprite  -1, 0,   9, 0, $01, $00
 	dsprite  -2, 0,  10, 0, $02, $00
 
-.OAMData_2a
+.OAMData_2a:
 	dsprite  -3, 4,  -1, 0, $00, $00
 	dsprite  -3, 4,   0, 0, $00, $20
 	dsprite  -2, 4,  -1, 0, $01, $00
 	dsprite  -2, 4,   0, 0, $01, $20
 	dsprite  -1, 4,  -1, 4, $02, $00
 
-.OAMData_2b
+.OAMData_2b:
 	dsprite  -4, 4,  -1, 0, $00, $00
 	dsprite  -4, 4,   0, 0, $00, $20
 	dsprite  -3, 4,  -1, 0, $01, $00
@@ -393,7 +393,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite  -2, 4,  -1, 4, $02, $00
 	dsprite  -1, 4,  -1, 4, $02, $00
 
-.OAMData_2c
+.OAMData_2c:
 	dsprite  -5, 4,  -1, 0, $00, $00
 	dsprite  -5, 4,   0, 0, $00, $20
 	dsprite  -4, 4,  -1, 0, $01, $00
@@ -402,7 +402,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite  -2, 4,  -1, 4, $02, $00
 	dsprite  -1, 4,  -1, 4, $02, $00
 
-.OAMData_2d
+.OAMData_2d:
 	dsprite  -6, 4,  -1, 0, $00, $00
 	dsprite  -6, 4,   0, 0, $00, $20
 	dsprite  -5, 4,  -1, 0, $01, $00
@@ -412,7 +412,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite  -2, 4,  -1, 4, $02, $00
 	dsprite  -1, 4,  -1, 4, $02, $00
 
-.OAMData_2e
+.OAMData_2e:
 	dsprite  -7, 4,  -1, 0, $00, $00
 	dsprite  -7, 4,   0, 0, $00, $20
 	dsprite  -6, 4,  -1, 0, $01, $00
@@ -423,19 +423,19 @@ BattleAnimOAMData: ; ceeae
 	dsprite  -2, 4,  -1, 4, $02, $00
 	dsprite  -1, 4,  -1, 4, $02, $00
 
-.OAMData_2f
+.OAMData_2f:
 	dsprite  -1, 0,  -1, 0, $00, $00
 	dsprite  -1, 0,   0, 0, $00, $20
 	dsprite   0, 0,  -1, 0, $01, $00
 	dsprite   0, 0,   0, 0, $00, $60
 
-.OAMData_30
+.OAMData_30:
 	dsprite  -1, 0,  -1, 0, $00, $00
 	dsprite  -1, 0,   0, 0, $01, $00
 	dsprite   0, 0,  -1, 0, $01, $60
 	dsprite   0, 0,   0, 0, $00, $60
 
-.OAMData_31
+.OAMData_31:
 	dsprite  -2, 4,  -1, 0, $00, $00
 	dsprite  -2, 4,   0, 0, $01, $00
 	dsprite  -1, 4,  -1, 0, $02, $00
@@ -443,11 +443,11 @@ BattleAnimOAMData: ; ceeae
 	dsprite   0, 4,  -1, 0, $04, $00
 	dsprite   0, 4,   0, 0, $05, $00
 
-.OAMData_76
+.OAMData_76:
 	dsprite  -1, 5,  -1, 0, $00, $00
 	dsprite  -1, 1,   0, 0, $00, $00
 
-.OAMData_32
+.OAMData_32:
 	dsprite  -1, 0,  -2, 4, $00, $00
 	dsprite  -1, 0,   0, 4, $00, $00
 	dsprite  -3, 0,  -2, 4, $00, $00
@@ -463,7 +463,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite  -1, 0,   1, 4, $01, $00
 	dsprite  -1, 0,   2, 4, $00, $00
 
-.OAMData_33
+.OAMData_33:
 	dsprite  -2, 0,  -2, 4, $00, $00
 	dsprite  -2, 0,   0, 4, $00, $00
 	dsprite  -1, 0,  -3, 4, $00, $00
@@ -486,7 +486,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite  -1, 0,  -4, 4, $01, $00
 	dsprite  -1, 0,   2, 4, $01, $00
 
-.OAMData_36
+.OAMData_36:
 	dsprite  -7, 4,  -1, 0, $00, $00
 	dsprite  -7, 4,   0, 0, $01, $00
 	dsprite  -6, 4,  -1, 0, $02, $00
@@ -502,7 +502,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite  -1, 4,  -1, 0, $0c, $00
 	dsprite  -1, 4,   0, 0, $0d, $00
 
-.OAMData_3a
+.OAMData_3a:
 	dsprite  -7, 4,  -1, 0, $0c, $00
 	dsprite  -7, 4,   0, 0, $0d, $00
 	dsprite  -6, 4,  -1, 0, $08, $00
@@ -518,7 +518,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite  -1, 4,   0, 0, $0a, $00
 	dsprite  -1, 4,   1, 0, $0b, $00
 
-.OAMData_3e
+.OAMData_3e:
 	dsprite   1, 4,  -2, 0, $00, $40
 	dsprite   1, 4,  -1, 0, $02, $40
 	dsprite   1, 4,   0, 0, $02, $60
@@ -546,7 +546,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite  -2, 4,   1, 0, $02, $00
 	dsprite  -2, 4,   2, 0, $03, $00
 
-.OAMData_41
+.OAMData_41:
 	dsprite  -3, 4,  -2, 0, $00, $00
 	dsprite  -3, 4,  -1, 0, $02, $00
 	dsprite  -3, 4,   0, 0, $02, $20
@@ -574,7 +574,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite   1, 4,   0, 0, $02, $60
 	dsprite   1, 4,   1, 0, $00, $60
 
-.OAMData_42
+.OAMData_42:
 	dsprite  -3, 0,  -1, 4, $02, $00
 	dsprite   2, 0,  -1, 4, $02, $60
 	dsprite  -1, 4,  -3, 0, $01, $00
@@ -584,7 +584,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite  -1, 4,  -4, 0, $01, $00
 	dsprite  -1, 4,   3, 0, $01, $60
 
-.OAMData_44
+.OAMData_44:
 	dsprite  -3, 5,  -3, 5, $00, $20
 	dsprite  -3, 5,   1, 3, $00, $00
 	dsprite   1, 3,  -3, 5, $00, $60
@@ -594,19 +594,19 @@ BattleAnimOAMData: ; ceeae
 	dsprite   2, 3,  -4, 5, $00, $60
 	dsprite   2, 3,   2, 3, $00, $40
 
-.OAMData_46
+.OAMData_46:
 	dsprite  -3, 4,  -1, 4, $02, $00
 	dsprite   1, 4,  -1, 4, $02, $60
 	dsprite  -1, 4,  -3, 4, $01, $00
 	dsprite  -1, 4,   1, 4, $01, $60
 
-.OAMData_47
+.OAMData_47:
 	dsprite  -2, 0,  -2, 0, $00, $20
 	dsprite  -2, 0,   1, 0, $00, $00
 	dsprite   1, 0,  -2, 0, $00, $60
 	dsprite   1, 0,   1, 0, $00, $40
 
-.OAMData_48
+.OAMData_48:
 	dsprite  -3, 0,  -1, 4, $00, $00
 	dsprite  -2, 0,  -1, 2, $00, $00
 	dsprite  -1, 0,  -1, 0, $00, $00
@@ -614,24 +614,24 @@ BattleAnimOAMData: ; ceeae
 	dsprite   1, 0,  -1, 2, $00, $00
 	dsprite   2, 0,  -1, 4, $00, $00
 
-.OAMData_49
+.OAMData_49:
 	dsprite  -1, 4,  -2, 0, $00, $20
 	dsprite  -1, 2,  -1, 0, $00, $20
 	dsprite  -1, 2,   0, 0, $00, $00
 	dsprite  -1, 4,   1, 0, $00, $00
 
-.OAMData_4a
+.OAMData_4a:
 	dsprite  -1, 4,  -1, 0, $00, $60
 	dsprite  -1, 4,   0, 0, $00, $40
 
-.OAMData_0f
+.OAMData_0f:
 	dsprite  -1, 4,  -1, 4, $00, $00
 	dsprite  -1, 4,  -2, 4, $01, $00
 	dsprite  -1, 4,  -1, 4, $01, $20
 	dsprite   0, 4,  -2, 4, $01, $40
 	dsprite   0, 4,  -1, 4, $01, $60
 
-.OAMData_4c
+.OAMData_4c:
 	dsprite  -1, 4,  -1, 4, $00, $00
 	dsprite   0, 2,  -2, 6, $00, $00
 	dsprite   0, 2,  -3, 6, $01, $00
@@ -639,7 +639,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite   1, 2,  -3, 6, $01, $40
 	dsprite   1, 2,  -2, 6, $01, $60
 
-.OAMData_4d
+.OAMData_4d:
 	dsprite  -1, 4,  -1, 4, $00, $00
 	dsprite   0, 2,  -2, 6, $00, $00
 	dsprite   1, 0,  -2, 0, $00, $00
@@ -648,7 +648,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite   2, 0,  -3, 0, $01, $40
 	dsprite   2, 0,  -2, 0, $01, $60
 
-.OAMData_4f
+.OAMData_4f:
 	dsprite  -1, 4,  -1, 4, $00, $00
 	dsprite   0, 2,  -2, 6, $00, $00
 	dsprite   1, 0,  -2, 0, $00, $00
@@ -658,7 +658,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite   2, 6,  -4, 2, $01, $40
 	dsprite   2, 6,  -3, 2, $01, $60
 
-.OAMData_50
+.OAMData_50:
 	dsprite  -1, 4,  -1, 4, $00, $00
 	dsprite   0, 2,  -2, 6, $00, $00
 	dsprite   1, 0,  -2, 0, $00, $00
@@ -669,7 +669,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite   3, 4,  -5, 4, $01, $40
 	dsprite   3, 4,  -4, 4, $01, $60
 
-.OAMData_51
+.OAMData_51:
 	dsprite  -1, 4,  -1, 4, $00, $00
 	dsprite   0, 2,  -2, 6, $00, $00
 	dsprite   1, 0,  -2, 0, $00, $00
@@ -681,25 +681,25 @@ BattleAnimOAMData: ; ceeae
 	dsprite   4, 2,  -6, 6, $01, $40
 	dsprite   4, 2,  -5, 6, $01, $60
 
-.OAMData_59
+.OAMData_59:
 	dsprite  -1, 4,  -2, 0, $00, $00
 	dsprite  -1, 4,  -1, 0, $01, $00
 	dsprite  -1, 4,   0, 0, $01, $20
 	dsprite  -1, 4,   1, 0, $00, $20
 
-.OAMData_5a
+.OAMData_5a:
 	dsprite  -1, 4,  -2, 0, $02, $00
 	dsprite  -1, 4,  -1, 0, $01, $00
 	dsprite  -1, 4,   0, 0, $01, $20
 	dsprite  -1, 4,   1, 0, $02, $20
 
-.OAMData_60
+.OAMData_60:
 	dsprite  -1, 0,  -1, 4, $00, $00
 
-.OAMData_69
+.OAMData_69:
 	dsprite   0, 0,  -1, 4, $00, $00
 
-.OAMData_61
+.OAMData_61:
 	dsprite  -1, 4,  -4, 4, $00, $00
 	dsprite  -1, 4,  -3, 4, $01, $00
 	dsprite  -1, 4,  -2, 4, $02, $00
@@ -710,7 +710,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite  -2, 4,   1, 4, $07, $00
 	dsprite  -2, 4,   2, 4, $08, $00
 
-.OAMData_65
+.OAMData_65:
 	dsprite  -2, 4,  -4, 4, $08, $20
 	dsprite  -2, 4,  -3, 4, $07, $20
 	dsprite  -1, 4,  -4, 4, $06, $20
@@ -721,7 +721,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite  -1, 4,   1, 4, $01, $20
 	dsprite  -1, 4,   2, 4, $00, $20
 
-.OAMData_d4
+.OAMData_d4:
 	dsprite   0, 0,  -4, 4, $00, $10
 	dsprite   0, 0,  -3, 4, $01, $10
 	dsprite   0, 0,  -2, 4, $02, $10
@@ -730,7 +730,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite   0, 0,   1, 4, $05, $10
 	dsprite   0, 0,   2, 4, $06, $10
 
-.OAMData_d6
+.OAMData_d6:
 	dsprite  -1, 0,  -4, 4, $00, $10
 	dsprite   0, 0,  -4, 4, $01, $10
 	dsprite  -1, 0,  -3, 4, $02, $10
@@ -746,7 +746,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite  -1, 0,   2, 4, $0c, $10
 	dsprite   0, 0,   2, 4, $0d, $10
 
-.OAMData_d5
+.OAMData_d5:
 	dsprite   0, 0,  -3, 0, $00, $11
 	dsprite   0, 0,  -2, 0, $01, $11
 	dsprite   0, 0,  -1, 0, $02, $11
@@ -754,7 +754,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite   0, 0,   1, 0, $04, $11
 	dsprite   0, 0,   2, 0, $05, $11
 
-.OAMData_d7
+.OAMData_d7:
 	dsprite   0, 0,  -3, 0, $00, $11
 	dsprite   1, 0,  -3, 0, $01, $11
 	dsprite   0, 0,  -2, 0, $02, $11
@@ -768,27 +768,27 @@ BattleAnimOAMData: ; ceeae
 	dsprite   0, 0,   2, 0, $0a, $11
 	dsprite   1, 0,   2, 0, $0b, $11
 
-.OAMData_6e
+.OAMData_6e:
 	dsprite  -2, 4,   0, 4, $00, $00
 	dsprite  -1, 4,  -2, 4, $01, $00
 	dsprite  -1, 4,  -1, 4, $02, $00
 	dsprite  -1, 4,   0, 4, $03, $00
 	dsprite   0, 4,  -2, 4, $04, $00
 
-.OAMData_6f
+.OAMData_6f:
 	dsprite  -1, 4,  -2, 4, $00, $00
 	dsprite  -1, 4,  -1, 4, $01, $00
 	dsprite  -1, 4,   0, 4, $02, $00
 
-.OAMData_77
+.OAMData_77:
 	dsprite  -4, 4,   1, 4, $01, $60
 
-.OAMData_78
+.OAMData_78:
 	dsprite  -4, 4,   1, 4, $00, $00
 	dsprite  -4, 4,   0, 4, $01, $60
 	dsprite  -3, 4,   1, 4, $01, $60
 
-.OAMData_79
+.OAMData_79:
 	dsprite  -4, 4,   1, 4, $01, $00
 	dsprite  -4, 4,   0, 4, $00, $00
 	dsprite  -4, 4,  -1, 4, $01, $60
@@ -796,7 +796,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite  -3, 4,   0, 4, $01, $60
 	dsprite  -2, 4,   1, 4, $01, $60
 
-.OAMData_7a
+.OAMData_7a:
 	dsprite  -4, 4,  -2, 4, $01, $60
 	dsprite  -4, 4,  -1, 4, $00, $00
 	dsprite  -4, 4,   0, 4, $01, $00
@@ -807,7 +807,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite  -2, 4,   1, 4, $00, $00
 	dsprite  -1, 4,   1, 4, $01, $60
 
-.OAMData_7b
+.OAMData_7b:
 	dsprite  -4, 4,  -3, 4, $01, $60
 	dsprite  -4, 4,  -2, 4, $00, $00
 	dsprite  -4, 4,  -1, 4, $01, $00
@@ -821,7 +821,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite  -1, 4,   1, 4, $00, $00
 	dsprite   0, 4,   1, 4, $01, $60
 
-.OAMData_7c
+.OAMData_7c:
 	dsprite  -4, 4,  -3, 4, $00, $00
 	dsprite  -4, 4,  -2, 4, $01, $00
 	dsprite  -3, 4,  -3, 4, $01, $60
@@ -837,7 +837,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite   0, 4,   1, 4, $00, $00
 	dsprite   1, 4,   1, 4, $01, $60
 
-.OAMData_7d
+.OAMData_7d:
 	dsprite  -4, 4,  -3, 4, $01, $00
 	dsprite  -3, 4,  -3, 4, $00, $00
 	dsprite  -3, 4,  -2, 4, $01, $00
@@ -854,7 +854,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite   1, 4,   1, 4, $00, $00
 	dsprite   2, 4,   1, 4, $01, $60
 
-.OAMData_70
+.OAMData_70:
 	dsprite  -2, 0,  -1, 0, $00, $00
 	dsprite  -1, 0,  -1, 0, $01, $00
 	dsprite  -2, 0,   0, 0, $00, $20
@@ -864,13 +864,13 @@ BattleAnimOAMData: ; ceeae
 	dsprite   0, 0,   0, 0, $01, $60
 	dsprite   1, 0,   0, 0, $00, $60
 
-.OAMData_81
+.OAMData_81:
 	dsprite  -1, 0,  -1, 0, $00, $00
 	dsprite  -1, 0,   0, 0, $01, $00
 	dsprite   0, 0,  -1, 0, $01, $60
 	dsprite   0, 0,   0, 0, $00, $60
 
-.OAMData_87
+.OAMData_87:
 	dsprite  -2, 4,  -1, 0, $00, $00
 	dsprite  -2, 4,   0, 0, $01, $00
 	dsprite  -1, 4,  -1, 0, $02, $00
@@ -888,7 +888,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite   1, 4,  -1, 0, $02, $00
 	dsprite   1, 4,   0, 0, $03, $00
 
-.OAMData_88
+.OAMData_88:
 	dsprite  -2, 0,  -1, 0, $00, $00
 	dsprite  -2, 0,   0, 0, $01, $00
 	dsprite  -1, 0,  -1, 0, $02, $00
@@ -902,7 +902,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite   1, 0,  -1, 0, $02, $00
 	dsprite   1, 0,   0, 0, $03, $00
 
-.OAMData_8a
+.OAMData_8a:
 	dsprite  -1, 4,  -1, 4, $00, $00
 	dsprite  -1, 0,   0, 4, $00, $00
 	dsprite  -2, 4,   1, 4, $00, $00
@@ -912,20 +912,20 @@ BattleAnimOAMData: ; ceeae
 	dsprite  -4, 0,   5, 4, $00, $00
 	dsprite  -5, 4,   6, 4, $00, $00
 
-.OAMData_8e
+.OAMData_8e:
 	dsprite  -3, 4,  -1, 4, $00, $00
 	dsprite  -2, 4,  -1, 4, $01, $00
 	dsprite  -1, 4,  -1, 4, $02, $00
 	dsprite   0, 4,  -1, 4, $01, $40
 	dsprite   1, 4,  -1, 4, $00, $40
 
-.OAMData_8f
+.OAMData_8f:
 	dsprite  -1, 4,  -2, 0, $00, $00
 	dsprite  -1, 4,  -1, 0, $01, $00
 	dsprite  -1, 4,   0, 0, $02, $00
 	dsprite  -1, 4,   1, 0, $03, $00
 
-.OAMData_93
+.OAMData_93:
 	dsprite  -1, 0,  -2, 4, $00, $00
 	dsprite  -1, 0,  -1, 4, $01, $00
 	dsprite  -1, 0,   0, 4, $02, $00
@@ -933,13 +933,13 @@ BattleAnimOAMData: ; ceeae
 	dsprite   0, 0,  -1, 4, $04, $00
 	dsprite   0, 0,   0, 4, $05, $00
 
-.OAMData_99
+.OAMData_99:
 	dsprite  -1, 0,  -1, 0, $00, $00
 	dsprite  -1, 0,   0, 0, $05, $00
 	dsprite   0, 0,  -1, 0, $01, $00
 	dsprite   0, 0,   0, 0, $05, $00
 
-.OAMData_9b
+.OAMData_9b:
 	dsprite  -4, 4,   1, 0, $00, $00
 	dsprite  -4, 4,   2, 0, $01, $00
 	dsprite  -3, 4,  -1, 0, $02, $00
@@ -977,7 +977,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite   1, 4,   1, 0, $22, $00
 	dsprite   2, 4,   0, 0, $23, $00
 
-.OAMData_9c
+.OAMData_9c:
 	dsprite   0, 4,  -1, 0, $02, $00
 	dsprite   0, 4,   0, 0, $03, $00
 	dsprite  -1, 4,  -1, 0, $01, $00
@@ -985,7 +985,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite  -2, 4,  -1, 0, $00, $00
 	dsprite  -2, 4,   0, 0, $00, $20
 
-.OAMData_9f
+.OAMData_9f:
 	dsprite  -1, 0,  -2, 0, $00, $00
 	dsprite  -1, 0,  -1, 0, $01, $00
 	dsprite  -1, 0,   0, 0, $02, $00
@@ -995,7 +995,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite   0, 0,   0, 0, $06, $00
 	dsprite   0, 0,   1, 0, $07, $00
 
-.OAMData_a0
+.OAMData_a0:
 	dsprite  -2, 4,  -1, 4, $00, $00
 	dsprite  -1, 4,  -1, 4, $00, $00
 	dsprite   0, 4,  -1, 4, $00, $00
@@ -1004,7 +1004,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite  -4, 4,  -1, 4, $00, $00
 	dsprite   2, 4,  -1, 4, $00, $00
 
-.OAMData_a4
+.OAMData_a4:
 	dsprite  -2, 4,  -2, 4, $00, $00
 	dsprite  -2, 4,  -1, 4, $01, $00
 	dsprite  -2, 4,   0, 4, $02, $00
@@ -1015,13 +1015,13 @@ BattleAnimOAMData: ; ceeae
 	dsprite   0, 4,  -1, 4, $01, $40
 	dsprite   0, 4,   0, 4, $02, $40
 
-.OAMData_ac
+.OAMData_ac:
 	dsprite  -1, 4,  -2, 0, $00, $00
 	dsprite  -1, 4,  -1, 0, $01, $00
 	dsprite  -1, 4,   0, 0, $01, $20
 	dsprite  -1, 4,   1, 0, $00, $20
 
-.OAMData_bc
+.OAMData_bc:
 	dsprite  -1, 4,  -3, 0, $00, $00
 	dsprite  -1, 4,  -2, 0, $01, $00
 	dsprite  -1, 4,  -1, 0, $02, $00
@@ -1029,7 +1029,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite  -1, 4,   1, 0, $01, $20
 	dsprite  -1, 4,   2, 0, $00, $20
 
-.OAMData_c1
+.OAMData_c1:
 	dsprite  -2, 0,  -2, 0, $00, $00
 	dsprite  -2, 0,  -1, 0, $01, $00
 	dsprite  -2, 0,   0, 0, $02, $00
@@ -1047,7 +1047,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite   1, 0,   0, 0, $01, $60
 	dsprite   1, 0,   1, 0, $00, $60
 
-.OAMData_c2
+.OAMData_c2:
 	dsprite  -1, 0,  -2, 0, $00, $00
 	dsprite  -1, 0,  -1, 0, $01, $00
 	dsprite  -1, 0,   0, 0, $00, $60
@@ -1055,7 +1055,7 @@ BattleAnimOAMData: ; ceeae
 	dsprite   0, 0,   0, 0, $01, $00
 	dsprite   0, 0,   1, 0, $00, $60
 
-.OAMData_c8
+.OAMData_c8:
 	dsprite  -1, 0,   1, 4, $00, $00
 	dsprite  -1, 0,   2, 4, $01, $00
 	dsprite   0, 0,  -1, 4, $02, $00
@@ -1063,13 +1063,13 @@ BattleAnimOAMData: ; ceeae
 	dsprite   0, 0,   1, 4, $04, $00
 	dsprite   0, 0,   2, 4, $05, $00
 
-.OAMData_ca
+.OAMData_ca:
 	dsprite  -1, 0,  -1, 0, $00, $00
 	dsprite  -1, 0,   0, 0, $01, $60
 	dsprite   0, 0,  -1, 0, $01, $00
 	dsprite   0, 0,   0, 0, $01, $20
 
-.OAMData_cc
+.OAMData_cc:
 	dsprite  -2, 0, -13, 4, $00, $00
 	dsprite  -4, 0, -11, 4, $00, $00
 	dsprite  -1, 0,  -9, 4, $00, $00

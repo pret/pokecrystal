@@ -3,39 +3,39 @@ _TitleScreen: ; 10ed67
 	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
-	
+
 ; Turn BG Map update off
 	xor a
 	ld [hBGMapMode], a
-	
+
 ; Reset timing variables
 	ld hl, wJumptableIndex
 	ld [hli], a ; cf63 ; Scene?
 	ld [hli], a ; cf64
 	ld [hli], a ; cf65 ; Timer lo
 	ld [hl], a  ; cf66 ; Timer hi
-	
+
 ; Turn LCD off
 	call DisableLCD
-	
-	
+
+
 ; VRAM bank 1
 	ld a, 1
 	ld [rVBK], a
-	
-	
+
+
 ; Decompress running Suicune gfx
 	ld hl, TitleSuicuneGFX
 	ld de, VTiles1
 	call Decompress
-	
-	
+
+
 ; Clear screen palettes
 	hlbgcoord 0, 0
 	ld bc, 20 bgrows
 	xor a
 	call ByteFill
-	
+
 
 ; Fill tile palettes:
 
@@ -77,94 +77,94 @@ _TitleScreen: ; 10ed67
 	ld bc, 2 bgrows
 	ld a, 6
 	call ByteFill
-	
+
 
 ; 'CRYSTAL VERSION'
 	hlbgcoord 5, 9
 	ld bc, NAME_LENGTH ; length of version text
 	ld a, 1
 	call ByteFill
-	
+
 ; Suicune gfx
 	hlbgcoord 0, 12
 	ld bc, 6 bgrows ; the rest of the screen
 	ld a, 8
 	call ByteFill
-	
-	
+
+
 ; Back to VRAM bank 0
 	ld a, $0
 	ld [rVBK], a
-	
-	
+
+
 ; Decompress logo
 	ld hl, TitleLogoGFX
 	ld de, VTiles1
 	call Decompress
-	
+
 ; Decompress background crystal
 	ld hl, TitleCrystalGFX
 	ld de, VTiles0
 	call Decompress
-	
-	
+
+
 ; Clear screen tiles
 	hlbgcoord 0, 0
 	ld bc, 64 bgrows
 	ld a, " "
 	call ByteFill
-	
+
 ; Draw Pokemon logo
 	hlcoord 0, 3
 	lb bc, 7, 20
 	ld d, $80
 	ld e, $14
 	call DrawTitleGraphic
-	
+
 ; Draw copyright text
 	hlbgcoord 3, 0, VBGMap1
 	lb bc, 1, 13
 	ld d, $c
 	ld e, $10
 	call DrawTitleGraphic
-	
+
 ; Initialize running Suicune?
 	ld d, $0
 	call LoadSuicuneFrame
-	
+
 ; Initialize background crystal
 	call InitializeBackground
-	
+
 ; Save WRAM bank
 	ld a, [rSVBK]
 	push af
 ; WRAM bank 5
 	ld a, 5
 	ld [rSVBK], a
-	
+
 ; Update palette colors
 	ld hl, TitleScreenPalettes
 	ld de, UnknBGPals
 	ld bc, 4 * 32
 	call CopyBytes
-	
+
 	ld hl, TitleScreenPalettes
 	ld de, BGPals
 	ld bc, 4 * 32
 	call CopyBytes
-	
+
 ; Restore WRAM bank
 	pop af
 	ld [rSVBK], a
-	
-	
+
+
 ; LY/SCX trickery starts here
-	
+
 	ld a, [rSVBK]
 	push af
 	ld a, 5 ; BANK(LYOverrides)
 	ld [rSVBK], a
-	
+
 ; Make alternating lines come in from opposite sides
 
 ; ( This part is actually totally pointless, you can't
@@ -180,30 +180,30 @@ _TitleScreen: ; 10ed67
 	inc hl
 	dec b
 	jr nz, .loop
-	
+
 ; Make sure the rest of the buffer is empty
 	ld hl, LYOverrides + 80
 	xor a
 	ld bc, LYOverridesEnd - (LYOverrides + 80)
 	call ByteFill
-	
+
 ; Let LCD Stat know we're messing around with SCX
 	ld a, rSCX - rJOYP
 	ld [hFFC6], a
-	
+
 	pop af
 	ld [rSVBK], a
-	
-	
+
+
 ; Reset audio
 	call ChannelsOff
 	call EnableLCD
-	
+
 ; Set sprite size to 8x16
 	ld a, [rLCDC]
 	set 2, a
 	ld [rLCDC], a
-	
+
 	ld a, +112
 	ld [hSCX], a
 	ld a, 8
@@ -212,21 +212,21 @@ _TitleScreen: ; 10ed67
 	ld [hWX], a
 	ld a, -112
 	ld [hWY], a
-	
+
 	ld a, $1
 	ld [hCGBPalUpdate], a
-	
+
 ; Update BG Map 0 (bank 0)
 	ld [hBGMapMode], a
-	
+
 	xor a
 	ld [UnknBGPals + 2], a
-	
+
 ; Play starting sound effect
 	call SFXChannelsOff
 	ld de, SFX_TITLE_SCREEN_ENTRANCE
 	call PlaySFX
-	
+
 	ret
 ; 10eea7
 
@@ -371,7 +371,7 @@ AnimateTitleCrystal: ; 10ef32
 	ld a, [hl]
 	cp 6 + $10
 	ret z
-	
+
 ; Move all 30 parts of the crystal down by 2
 	ld c, 30
 .loop
@@ -383,7 +383,7 @@ rept 3
 endr
 	dec c
 	jr nz, .loop
-	
+
 	ret
 ; 10ef46
 
@@ -405,78 +405,78 @@ TitleScreenPalettes:
 	RGB 19, 00, 00
 	RGB 15, 08, 31
 	RGB 15, 08, 31
-	
+
 	RGB 00, 00, 00
 	RGB 31, 31, 31
 	RGB 15, 16, 31
 	RGB 31, 01, 13
-	
+
 	RGB 00, 00, 00
 	RGB 07, 07, 07
 	RGB 31, 31, 31
 	RGB 02, 03, 30
-	
+
 	RGB 00, 00, 00
 	RGB 13, 13, 13
 	RGB 31, 31, 18
 	RGB 02, 03, 30
-	
+
 	RGB 00, 00, 00
 	RGB 19, 19, 19
 	RGB 29, 28, 12
 	RGB 02, 03, 30
-	
+
 	RGB 00, 00, 00
 	RGB 25, 25, 25
 	RGB 28, 25, 06
 	RGB 02, 03, 30
-	
+
 	RGB 00, 00, 00
 	RGB 31, 31, 31
 	RGB 26, 21, 00
 	RGB 02, 03, 30
-	
+
 	RGB 00, 00, 00
 	RGB 11, 11, 19
 	RGB 31, 31, 31
 	RGB 00, 00, 00
-	
+
 ; OBJ
 	RGB 00, 00, 00
 	RGB 10, 00, 15
 	RGB 17, 05, 22
 	RGB 19, 09, 31
-	
+
 	RGB 31, 31, 31
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	RGB 00, 00, 00
-	
+
 	RGB 31, 31, 31
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	RGB 00, 00, 00
-	
+
 	RGB 31, 31, 31
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	RGB 00, 00, 00
-	
+
 	RGB 31, 31, 31
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	RGB 00, 00, 00
-	
+
 	RGB 31, 31, 31
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	RGB 00, 00, 00
-	
+
 	RGB 31, 31, 31
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	RGB 00, 00, 00
-	
+
 	RGB 31, 31, 31
 	RGB 00, 00, 00
 	RGB 00, 00, 00

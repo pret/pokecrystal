@@ -368,21 +368,21 @@ KurtsGranddaughter1:
 	closetext
 	end
 
-.SlowpokeBack
+.SlowpokeBack:
 	opentext
 	writetext KurtsGranddaughterSlowpokeBackText
 	waitbutton
 	closetext
 	end
 
-.Lonely
+.Lonely:
 	opentext
 	writetext KurtsGranddaughterLonelyText
 	waitbutton
 	closetext
 	end
 
-.Dad
+.Dad:
 	opentext
 	writetext KurtsGranddaughterDadText
 	waitbutton
@@ -401,7 +401,7 @@ KurtsGranddaughter2Subscript:
 	spriteface KURTSHOUSE_TWIN2, RIGHT
 	end
 
-.GSBall
+.GSBall:
 	writetext KurtsGranddaughterGSBallText
 	waitbutton
 	closetext

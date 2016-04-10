@@ -32,7 +32,7 @@ BlueScript_0x9aa26:
 	closetext
 	end
 
-.FightDone
+.FightDone:
 	writetext LeaderBlueEpilogueText
 	waitbutton
 	closetext
@@ -48,7 +48,7 @@ ViridianGymGuyScript:
 	closetext
 	end
 
-.ViridianGymGuyWinScript
+.ViridianGymGuyWinScript:
 	writetext ViridianGymGuyWinText
 	waitbutton
 	closetext
@@ -59,7 +59,7 @@ ViridianGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 
-.Beaten
+.Beaten:
 	trainertotext BLUE, 1, $1
 	jumpstd gymstatue2
 

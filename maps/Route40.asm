@@ -30,7 +30,7 @@ MonicaCallback:
 	disappear ROUTE40_MONICA
 	return
 
-.MonicaAppears
+.MonicaAppears:
 	appear ROUTE40_MONICA
 	return
 
@@ -107,7 +107,7 @@ MonicaScript:
 	writetext MeetMonicaText
 	buttonsound
 	setevent EVENT_MET_MONICA_OF_MONDAY
-.MetMonica
+.MetMonica:
 	writetext MonicaGivesGiftText
 	buttonsound
 	verbosegiveitem SHARP_BEAK

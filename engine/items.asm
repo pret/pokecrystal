@@ -50,17 +50,17 @@ _TossItem:: ; d20d
 	rst JumpTable
 	ret
 
-.Pockets
+.Pockets:
 	dw .Item
 	dw .KeyItem
 	dw .Ball
 	dw .TMHM
 
-.Ball ; d228
+.Ball: ; d228
 	ld hl, NumBalls
 	jp RemoveItemFromPocket
 
-.TMHM ; d22e
+.TMHM: ; d22e
 	ld h, d
 	ld l, e
 	ld a, [CurItem]
@@ -68,12 +68,12 @@ _TossItem:: ; d20d
 	call GetTMHMNumber
 	jp TossTMHM
 
-.KeyItem ; d23a
+.KeyItem: ; d23a
 	ld h, d
 	ld l, e
 	jp TossKeyItem
 
-.Item ; d23f
+.Item: ; d23f
 	ld h, d
 	ld l, e
 
@@ -92,17 +92,17 @@ _CheckItem:: ; d244
 	rst JumpTable
 	ret
 
-.Pockets
+.Pockets:
 	dw .Item
 	dw .KeyItem
 	dw .Ball
 	dw .TMHM
 
-.Ball ; d25f
+.Ball: ; d25f
 	ld hl, NumBalls
 	jp CheckTheItem
 
-.TMHM ; d265
+.TMHM: ; d265
 	ld h, d
 	ld l, e
 	ld a, [CurItem]
@@ -110,12 +110,12 @@ _CheckItem:: ; d244
 	call GetTMHMNumber
 	jp CheckTMHM
 
-.KeyItem ; d271
+.KeyItem: ; d271
 	ld h, d
 	ld l, e
 	jp CheckKeyItems
 
-.Item ; d276
+.Item: ; d276
 	ld h, d
 	ld l, e
 

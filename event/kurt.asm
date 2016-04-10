@@ -315,7 +315,7 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 	cp -1
 	jr nz, .loop2
 
-.OnlyOne
+.OnlyOne:
 	ld hl, wApricorns
 .loop4
 	ld a, [hl]

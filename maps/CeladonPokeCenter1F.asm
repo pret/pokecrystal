@@ -36,11 +36,11 @@ CeladonEusine:
 	iftrue .HoOh
 	writetext NoBeastsText
 	waitbutton
-.NoSuicune
+.NoSuicune:
 	closetext
 	end
 
-.HoOh
+.HoOh:
 	writetext EusineLeavesCeladonText
 	waitbutton
 	closetext
@@ -49,15 +49,15 @@ CeladonEusine:
 	applymovement CELADONPOKECENTER1F_EUSINE, .Movement1
 	jump .Continue
 
-.Location1
+.Location1:
 	applymovement CELADONPOKECENTER1F_EUSINE, .Movement2
-.Continue
+.Continue:
 	disappear CELADONPOKECENTER1F_EUSINE
 	playsound SFX_EXIT_BUILDING
 	waitsfx
 	end
 
-.Movement2
+.Movement2:
 	step_left
 	step_down
 	step_down
@@ -65,7 +65,7 @@ CeladonEusine:
 	step_down
 	step_end
 
-.Movement1
+.Movement1:
 	step_down
 	step_down
 	step_down

@@ -276,7 +276,7 @@ CheckObjectTime:: ; 18f5
 	and a
 	ret
 
-.TimeOfDayValues_191e
+.TimeOfDayValues_191e:
 	db 1 << MORN ; 1
 	db 1 << DAY  ; 2
 	db 1 << NITE ; 4
@@ -351,7 +351,7 @@ ApplyDeletionToMapObject:: ; 1967
 	callba DeleteMapObject
 	ret
 
-.CheckStopFollow
+.CheckStopFollow:
 	ld hl, wObjectFollow_Leader
 	cp [hl]
 	jr z, .ok
@@ -530,7 +530,7 @@ CopySpriteMovementData:: ; 1a61
 	ret
 ; 1a71
 
-.CopyData ; 1a71
+.CopyData: ; 1a71
 	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, de
 	ld [hl], a

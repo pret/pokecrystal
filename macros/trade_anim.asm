@@ -167,7 +167,7 @@ endm
 
 ; Mobile
 	enum_start 1
-	
+
 	enum mobiletradeanim_showgivemon_command
 mobiletradeanim_showgivemon: macro
 	db mobiletradeanim_showgivemon_command ; 01

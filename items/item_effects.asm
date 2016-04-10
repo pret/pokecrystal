@@ -504,7 +504,7 @@ endr
 	ld de, EnemyMonPP
 	ld bc, NUM_MOVES
 	call CopyBytes
-.Transformed
+.Transformed:
 
 	ld a, [EnemyMonSpecies]
 	ld [wWildMon], a
@@ -580,7 +580,7 @@ endr
 
 	ld a, FRIEND_BALL_HAPPINESS
 	ld [hl], a
-.SkipPartyMonFriendBall
+.SkipPartyMonFriendBall:
 
 	ld hl, Text_AskNicknameNewlyCaughtMon
 	call PrintText
@@ -617,7 +617,7 @@ endr
 
 	jp .return_from_capture
 
-.SendToPC
+.SendToPC:
 	call ClearSprites
 
 	predef SentPkmnIntoBox
@@ -632,14 +632,14 @@ endr
 	jr nz, .BoxNotFullYet
 	ld hl, wBattleResult
 	set 7, [hl]
-.BoxNotFullYet
+.BoxNotFullYet:
 	ld a, [CurItem]
 	cp FRIEND_BALL
 	jr nz, .SkipBoxMonFriendBall
 	; Bug: overwrites the happiness of the first mon in the box!
 	ld a, FRIEND_BALL_HAPPINESS
 	ld [sBoxMon1Happiness], a
-.SkipBoxMonFriendBall
+.SkipBoxMonFriendBall:
 	call CloseSRAM
 
 	ld hl, Text_AskNicknameNewlyCaughtMon
@@ -674,7 +674,7 @@ endr
 
 	call CloseSRAM
 
-.SkipBoxMonNickname
+.SkipBoxMonNickname:
 	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
 
@@ -696,7 +696,7 @@ endr
 	callba BugContest_SetCaughtContestMon
 	jr .return_from_capture
 
-.FinishTutorial
+.FinishTutorial:
 	ld hl, Text_GotchaMonWasCaught
 
 .shake_and_break_free
@@ -782,7 +782,7 @@ GetPokedexEntryBank:
 	pop hl
 	ret
 
-.PokedexEntryBanks
+.PokedexEntryBanks:
 
 GLOBAL PokedexEntries1
 GLOBAL PokedexEntries2
@@ -811,7 +811,7 @@ endr
 	ld a, BANK(PokedexDataPointerTable)
 	call GetFarHalfword
 
-.SkipText
+.SkipText:
 	call GetPokedexEntryBank
 	call GetFarByte
 	inc hl
@@ -890,7 +890,7 @@ endr
 	ld b, $1
 	ret
 
-.WeightsTable
+.WeightsTable:
 ; weight factor, boost
 	db 2048 >> 8, 0
 	db 3072 >> 8, 20
@@ -1217,10 +1217,10 @@ SunStone: ; ee0f
 
 	jp UseDisposableItem
 
-.NoEffect
+.NoEffect:
 	call WontHaveAnyEffectMessage
 
-.DecidedNotToUse
+.DecidedNotToUse:
 	xor a
 	ld [wItemEffectSucceeded], a
 	ret
@@ -1717,7 +1717,7 @@ FullRestore: ; f128
 
 	jp FullyHealStatus
 
-.NotAtFullHealth
+.NotAtFullHealth:
 	call .FullRestore
 	jp StatusHealer_Jumptable
 ; f144
@@ -2132,7 +2132,7 @@ rept 2
 endr
 	jr .next
 
-.NotFound
+.NotFound:
 	scf
 .done
 	ld e, [hl]
@@ -2413,7 +2413,7 @@ PokeFlute: ; f50c
 	jp PrintText
 
 
-.CureSleep
+.CureSleep:
 	ld de, PARTYMON_STRUCT_LENGTH
 	ld c, PARTY_LENGTH
 
@@ -2581,7 +2581,7 @@ Mysteryberry: ; f5bf
 	cp 3 << 6 ; have 3 PP Ups already been used?
 	jr c, .do_ppup
 
-.CantUsePPUpOnSketch
+.CantUsePPUpOnSketch:
 .pp_is_maxed_out
 	ld hl, TextJump_PPIsMaxedOut
 	call PrintText
@@ -2624,7 +2624,7 @@ BattleRestorePP: ; f652
 	call PrintText
 	jr FinishPPRestore
 
-.UpdateBattleMonPP
+.UpdateBattleMonPP:
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Moves
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -3184,7 +3184,7 @@ ComputeMaxPP: ; f881
 	dec c
 	jr nz, .loop
 
-.NoPPUp
+.NoPPUp:
 	ld [hl], b
 	pop bc
 	ret

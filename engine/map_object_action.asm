@@ -191,7 +191,7 @@ Function453f: ; 453f
 	ret
 ; 456a
 
-.Directions ; 456a
+.Directions: ; 456a
 	db OW_DOWN, OW_RIGHT, OW_UP, OW_LEFT
 ; 456e
 

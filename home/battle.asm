@@ -167,7 +167,7 @@ endr
 	and a
 	jr z, .getvar
 	inc hl
-	
+
 .getvar
 ; var id
 	ld a, [hl]
@@ -182,9 +182,9 @@ endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	
+
 	ld a, [hl]
-	
+
 	pop bc
 	ret
 

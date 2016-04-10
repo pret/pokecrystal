@@ -296,7 +296,7 @@ DoneTileAnimation: ; fc2fb
 ; Reset the animation command loop.
 	xor a
 	ld [hTileAnimFrame], a
-	
+
 WaitTileAnimation: ; fc2fe
 ; Do nothing this frame.
 	ret
@@ -466,29 +466,29 @@ AnimateWaterTile: ; fc402
 	ld hl, [sp+0]
 	ld b, h
 	ld c, l
-	
+
 	ld a, [TileAnimationTimer]
-	
+
 ; 4 tile graphics, updated every other frame.
 	and 3 << 1
-	
+
 ; 2 x 8 = 16 bytes per tile
 rept 3
 	add a
 endr
-	
+
 	add WaterTileFrames % $100
 	ld l, a
 	ld a, 0
 	adc WaterTileFrames / $100
 	ld h, a
-	
+
 ; Stack now points to the start of the tile for this frame.
 	ld sp, hl
-	
+
 	ld l, e
 	ld h, d
-	
+
 	jp WriteTile
 ; fc41c
 
@@ -675,16 +675,16 @@ AnimateFlowerTile: ; fc56d
 	ld hl, [sp+0]
 	ld b, h
 	ld c, l
-	
+
 ; Alternate tile graphic every other frame
 	ld a, [TileAnimationTimer]
 	and 1 << 1
 	ld e, a
-	
+
 ; CGB has different color mappings for flowers.
 	ld a, [hCGB]
 	and 1
-	
+
 	add e
 	swap a ; << 4 (16 bytes)
 	ld e, a
@@ -692,9 +692,9 @@ AnimateFlowerTile: ; fc56d
 	ld hl, FlowerTileFrames
 	add hl, de
 	ld sp, hl
-	
+
 	ld hl, VTiles2 + $30 ; tile 4
-	
+
 	jp WriteTile
 ; fc58c
 
@@ -825,7 +825,7 @@ AnimateWhirlpoolTile: ; fc678
 	ld hl, [sp+0]
 	ld b, h
 	ld c, l
-	
+
 ; de = VRAM address
 	ld l, e
 	ld h, d
@@ -834,12 +834,12 @@ AnimateWhirlpoolTile: ; fc678
 	ld d, [hl]
 	inc hl
 ; Tile address is now at hl.
-	
+
 ; Get the tile for this frame.
 	ld a, [TileAnimationTimer]
 	and %11 ; 4 frames x2
 	swap a  ; * 16 bytes per tile
-	
+
 	add [hl]
 	inc hl
 	ld h, [hl]
@@ -847,17 +847,17 @@ AnimateWhirlpoolTile: ; fc678
 	ld a, 0
 	adc h
 	ld h, a
-	
+
 ; Stack now points to the desired frame.
 	ld sp, hl
-	
+
 	ld l, e
 	ld h, d
-	
+
 	jr WriteTile
 ; fc696
-	
-	
+
+
 WriteTileFromBuffer: ; fc696
 ; Write tiledata at wTileAnimBuffer to de.
 ; wTileAnimBuffer is loaded to sp for WriteTile.
@@ -865,16 +865,16 @@ WriteTileFromBuffer: ; fc696
 	ld hl, [sp+0]
 	ld b, h
 	ld c, l
-	
+
 	ld hl, wTileAnimBuffer
 	ld sp, hl
-	
+
 	ld h, d
 	ld l, e
 	jr WriteTile
 ; fc6a2
-	
-	
+
+
 WriteTileToBuffer: ; fc6a2
 ; Write tiledata de to wTileAnimBuffer.
 ; de is loaded to sp for WriteTile.
@@ -882,13 +882,13 @@ WriteTileToBuffer: ; fc6a2
 	ld hl, [sp+0]
 	ld b, h
 	ld c, l
-	
+
 	ld h, d
 	ld l, e
 	ld sp, hl
-	
+
 	ld hl, wTileAnimBuffer
-	
+
 	; fallthrough
 
 WriteTile: ; fc6ac
@@ -901,7 +901,7 @@ WriteTile: ; fc6ac
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	
+
 rept 7
 	pop de
 	inc hl
@@ -909,7 +909,7 @@ rept 7
 	inc hl
 	ld [hl], d
 endr
-	
+
 ; restore sp
 	ld h, b
 	ld l, c
@@ -925,37 +925,37 @@ TileAnimationPalette: ; fc6d7
 	ld a, [hCGB]
 	and a
 	ret z
-	
+
 ; We don't want to mess with non-standard palettes.
 	ld a, [rBGP] ; BGP
 	cp %11100100
 	ret nz
-	
+
 ; Only update on even frames.
 	ld a, [TileAnimationTimer]
 	ld l, a
 	and 1 ; odd
 	ret nz
-	
+
 ; Ready for BGPD input...
 	ld a, %10011000 ; auto increment, index $18 (pal 3 color 0)
 	ld [rBGPI], a
-	
+
 	ld a, [rSVBK]
 	push af
 	ld a, 5 ; wra5: gfx
 	ld [rSVBK], a
-	
+
 ; Update color 0 in order 0 1 2 1
-	
+
 	ld a, l
 	and %110 ; frames 0 2 4 6
-	
+
 	jr z, .color0
-	
+
 	cp 4
 	jr z, .color2
-	
+
 .color1
 	ld hl, UnknBGPals + $1a ; pal 3 color 1
 	ld a, [hli]
@@ -963,7 +963,7 @@ TileAnimationPalette: ; fc6d7
 	ld a, [hli]
 	ld [rBGPD], a
 	jr .end
-	
+
 .color0
 	ld hl, UnknBGPals + $18 ; pal 3 color 0
 	ld a, [hli]
@@ -971,14 +971,14 @@ TileAnimationPalette: ; fc6d7
 	ld a, [hli]
 	ld [rBGPD], a
 	jr .end
-	
+
 .color2
 	ld hl, UnknBGPals + $1c ; pal 3 color 2
 	ld a, [hli]
 	ld [rBGPD], a
 	ld a, [hli]
 	ld [rBGPD], a
-	
+
 .end
 	pop af
 	ld [rSVBK], a

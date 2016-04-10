@@ -63,7 +63,7 @@ InitClock: ; 90672 (24:4672)
 	ld c, 10
 	call DelayFrames
 
-.SetHourLoop
+.SetHourLoop:
 	call JoyTextDelay
 	call SetHour
 	jr nc, .SetHourLoop
@@ -78,7 +78,7 @@ InitClock: ; 90672 (24:4672)
 	call .ClearScreen
 	jr .loop
 
-.HourIsSet
+.HourIsSet:
 	ld hl, Text_HowManyMinutes
 	call PrintText
 	hlcoord 11, 7
@@ -93,7 +93,7 @@ InitClock: ; 90672 (24:4672)
 	ld c, 10
 	call DelayFrames
 
-.SetMinutesLoop
+.SetMinutesLoop:
 	call JoyTextDelay
 	call SetMinutes
 	jr nc, .SetMinutesLoop
@@ -108,7 +108,7 @@ InitClock: ; 90672 (24:4672)
 	call .ClearScreen
 	jr .HourIsSet
 
-.MinutesAreSet
+.MinutesAreSet:
 	call SetTimeOfDay
 	ld hl, OakText_ResponseToSetTime
 	call PrintText
@@ -150,7 +150,7 @@ SetHour: ; 90795 (24:4795)
 	and a
 	jr nz, .DecreaseThroughMidnight
 	ld a, 23 + 1
-.DecreaseThroughMidnight
+.DecreaseThroughMidnight:
 	dec a
 	ld [hl], a
 	jr .okay
@@ -161,7 +161,7 @@ SetHour: ; 90795 (24:4795)
 	cp 23
 	jr c, .AdvanceThroughMidnight
 	ld a, -1
-.AdvanceThroughMidnight
+.AdvanceThroughMidnight:
 	inc a
 	ld [hl], a
 
@@ -176,7 +176,7 @@ SetHour: ; 90795 (24:4795)
 	and a
 	ret
 
-.Confirm
+.Confirm:
 	scf
 	ret
 
@@ -368,13 +368,13 @@ OakText_ResponseToSetTime: ; 0x908b8
 	jr c, .MORN
 	cp 18
 	jr c, .DAY
-.NITE
+.NITE:
 	ld hl, .sodark
 	ret
-.MORN
+.MORN:
 	ld hl, .overslept
 	ret
-.DAY
+.DAY:
 	ld hl, .yikes
 	ret
 ; 908ec (24:48ec)

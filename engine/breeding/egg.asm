@@ -166,11 +166,11 @@ CheckBreedmonCompatibility: ; 16e1d
 	cp c
 	jr z, .Compatible
 
-.Incompatible
+.Incompatible:
 	and a
 	ret
 
-.Compatible
+.Compatible:
 	scf
 	ret
 ; 16f3e

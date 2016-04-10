@@ -23,7 +23,7 @@ GoldenrodGameCorner_MapScriptHeader:
 
 	dbw MAPCALLBACK_OBJECTS, .Callback
 
-.Callback
+.Callback:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .finish
 	checkitem COIN_CASE
@@ -149,7 +149,7 @@ GoldenrodGameCornerTMVendorMenuData:
 	dw .MenuData2
 	db 1 ; default option
 
-.MenuData2
+.MenuData2:
 	db $80 ; flags
 	db 4 ; items
 	db "TM25    5500@"

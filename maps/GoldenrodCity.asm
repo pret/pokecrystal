@@ -26,16 +26,16 @@ GoldenrodCity_MapScriptHeader:
 	dbw MAPCALLBACK_NEWMAP, .FlyPointAndFloria
 	dbw MAPCALLBACK_OBJECTS, .MoveTutor
 
-.FlyPointAndFloria
+.FlyPointAndFloria:
 	setflag ENGINE_FLYPOINT_GOLDENROD
 	setflag ENGINE_FLORIA
 	checkevent EVENT_MET_FLORIA
 	iftrue .FloriaDone
 	clearevent EVENT_FLORIA_AT_SUDOWOODO
-.FloriaDone
+.FloriaDone:
 	return
 
-.MoveTutor
+.MoveTutor:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .MoveTutorDone
 	checkitem COIN_CASE
@@ -43,15 +43,15 @@ GoldenrodCity_MapScriptHeader:
 	checkcode VAR_WEEKDAY
 	if_equal WEDNESDAY, .MoveTutorAppear
 	if_equal SATURDAY, .MoveTutorAppear
-.MoveTutorDisappear
+.MoveTutorDisappear:
 	disappear GOLDENRODCITY_POKEFAN_M2
 	return
 
-.MoveTutorAppear
+.MoveTutorAppear:
 	checkflag ENGINE_DAILY_MOVE_TUTOR
 	iftrue .MoveTutorDone
 	appear GOLDENRODCITY_POKEFAN_M2
-.MoveTutorDone
+.MoveTutorDone:
 	return
 
 MoveTutor:

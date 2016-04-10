@@ -243,7 +243,7 @@ Text_1_2_and_Poof: ; 6684
 	ld hl, .PoofForgot
 	ret
 
-.PoofForgot
+.PoofForgot:
 ; Poof! <MON> forgot <MOVE>. And…
 	text_jump UnknownText_0x1c574e
 	db "@"

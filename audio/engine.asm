@@ -233,7 +233,7 @@ UpdateChannels: ; e8125
 	jp [hl]
 
 
-.ChannelFnPtrs
+.ChannelFnPtrs:
 	dw .Channel1
 	dw .Channel2
 	dw .Channel3
@@ -245,11 +245,11 @@ UpdateChannels: ; e8125
 	dw .Channel7
 	dw .Channel8
 
-.Channel1
+.Channel1:
 	ld a, [Danger]
 	bit 7, a
 	ret nz
-.Channel5
+.Channel5:
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
 	bit NOTE_UNKN_3, [hl]
@@ -317,8 +317,8 @@ UpdateChannels: ; e8125
 	ld [rNR14], a
 	ret
 
-.Channel2
-.Channel6
+.Channel2:
+.Channel6:
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
 	bit NOTE_REST, [hl] ; rest
@@ -377,8 +377,8 @@ UpdateChannels: ; e8125
 	ld [rNR24], a
 	ret
 
-.Channel3
-.Channel7
+.Channel3:
+.Channel7:
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
 	bit NOTE_REST, [hl] ; rest
@@ -478,8 +478,8 @@ endr
 	ld [rNR32], a
 	ret
 
-.Channel4
-.Channel8
+.Channel4:
+.Channel8:
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
 	bit NOTE_REST, [hl] ; rest
@@ -2483,62 +2483,62 @@ _PlayCryHeader:: ; e8b79
 ; Play cry de using parameters:
 ;	CryPitch
 ;	CryLength
-	
+
 	call MusicOff
-	
+
 ; Overload the music id with the cry id
 	ld hl, MusicID
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	
+
 ; 3-byte pointers (bank, address)
 	ld hl, Cries
 rept 3
 	add hl, de
 endr
-	
+
 	ld a, [hli]
 	ld [MusicBank], a
-	
+
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	
+
 ; Read the cry's sound header
 	call LoadMusicByte
 	; Top 2 bits contain the number of channels
 	rlca
 	rlca
 	and 3
-	
+
 ; For each channel:
 	inc a
 .loop
 	push af
 	call LoadChannel
-	
+
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
 	set SOUND_REST, [hl]
-	
+
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
 	set SOUND_CRY_PITCH, [hl]
-	
+
 	ld hl, Channel1CryPitch - Channel1
 	add hl, bc
 	ld a, [CryPitch]
 	ld [hli], a
 	ld a, [CryPitch + 1]
 	ld [hl], a
-	
+
 ; No tempo for channel 4
 	ld a, [CurChannel]
 	and 3
 	cp 3
 	jr nc, .start
-	
+
 ; Tempo is effectively length
 	ld hl, Channel1Tempo - Channel1
 	add hl, bc
@@ -2551,14 +2551,14 @@ endr
 	ld a, [wStereoPanningMask]
 	and a
 	jr z, .next
-	
+
 ; Stereo only: Play cry from the monster's side.
 ; This only applies in-battle.
-	
+
 	ld a, [Options]
 	bit 5, a ; stereo
 	jr z, .next
-	
+
 ; [Tracks] &= [CryTracks]
 	ld hl, Channel1Tracks - Channel1
 	add hl, bc
@@ -2568,23 +2568,23 @@ endr
 	ld hl, Channel1Tracks - Channel1
 	add hl, bc
 	ld [hl], a
-	
+
 .next
 	pop af
 	dec a
 	jr nz, .loop
-	
-	
+
+
 ; Cries play at max volume, so we save the current volume for later.
 	ld a, [LastVolume]
 	and a
 	jr nz, .end
-	
+
 	ld a, [Volume]
 	ld [LastVolume], a
 	ld a, $77
 	ld [Volume], a
-	
+
 .end
 	ld a, 1 ; stop playing music
 	ld [SFXPriority], a
@@ -2699,24 +2699,24 @@ PlayStereoSFX:: ; e8ca6
 ; play sfx de
 
 	call MusicOff
-	
+
 ; standard procedure if stereo's off
 	ld a, [Options]
 	bit 5, a
 	jp z, _PlaySFX
-	
+
 ; else, let's go ahead with this
 	ld hl, MusicID
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	
+
 ; get sfx ptr
 	ld hl, SFX
 rept 3
 	add hl, de
 endr
-	
+
 ; bank
 	ld a, [hli]
 	ld [MusicBank], a
@@ -2724,22 +2724,22 @@ endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	
+
 ; bit 2-3
 	call LoadMusicByte
 	rlca
 	rlca
 	and 3 ; ch1-4
 	inc a
-	
+
 .loop
 	push af
 	call LoadChannel
-	
+
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
 	set SOUND_SFX, [hl]
-	
+
 	push de
 	; get tracks for this channel
 	ld a, [CurChannel]
@@ -2751,47 +2751,47 @@ endr
 	ld a, [hl]
 	ld hl, wStereoPanningMask
 	and [hl]
-	
+
 	ld hl, Channel1Tracks - Channel1
 	add hl, bc
 	ld [hl], a
-	
+
 	ld hl, Channel1Field0x30 - Channel1 ; $c131 - Channel1
 	add hl, bc
 	ld [hl], a
-	
+
 	ld a, [CryTracks]
 	cp 2 ; ch 1-2
 	jr c, .skip
-	
+
 ; ch3-4
 	ld a, [wSFXDuration]
-	
+
 	ld hl, Channel1Field0x2e - Channel1 ; $c12f - Channel1
 	add hl, bc
 	ld [hl], a
-	
+
 	ld hl, Channel1Field0x2f - Channel1 ; $c130 - Channel1
 	add hl, bc
 	ld [hl], a
-	
+
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
 	set SOUND_UNKN_0F, [hl]
-	
+
 .skip
 	pop de
-	
+
 ; turn channel on
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
 	set SOUND_CHANNEL_ON, [hl] ; on
-	
+
 ; done?
 	pop af
 	dec a
 	jr nz, .loop
-	
+
 ; we're done
 	call MusicOn
 	ret

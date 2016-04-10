@@ -45,7 +45,7 @@ Route32_MapScriptHeader:
 	disappear ROUTE32_FRIEDA
 	return
 
-.FriedaAppears
+.FriedaAppears:
 	appear ROUTE32_FRIEDA
 	return
 
@@ -210,19 +210,19 @@ TrainerFisherRalph1:
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
-.Fight4
+.Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4
-.Fight3
+.Fight3:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight3
-.Fight2
+.Fight2:
 	checkflag ENGINE_FLYPOINT_LAKE_OF_RAGE
 	iftrue .LoadFight2
-.Fight1
+.Fight1:
 	checkflag ENGINE_FLYPOINT_ECRUTEAK
 	iftrue .LoadFight1
-.LoadFight0
+.LoadFight0:
 	loadtrainer FISHER, RALPH1
 	startbattle
 	reloadmapafterbattle
@@ -230,7 +230,7 @@ TrainerFisherRalph1:
 	clearflag ENGINE_RALPH
 	end
 
-.LoadFight1
+.LoadFight1:
 	loadtrainer FISHER, RALPH2
 	startbattle
 	reloadmapafterbattle
@@ -238,7 +238,7 @@ TrainerFisherRalph1:
 	clearflag ENGINE_RALPH
 	end
 
-.LoadFight2
+.LoadFight2:
 	loadtrainer FISHER, RALPH3
 	startbattle
 	reloadmapafterbattle
@@ -246,7 +246,7 @@ TrainerFisherRalph1:
 	clearflag ENGINE_RALPH
 	end
 
-.LoadFight3
+.LoadFight3:
 	loadtrainer FISHER, RALPH4
 	startbattle
 	reloadmapafterbattle
@@ -254,7 +254,7 @@ TrainerFisherRalph1:
 	clearflag ENGINE_RALPH
 	end
 
-.LoadFight4
+.LoadFight4:
 	loadtrainer FISHER, RALPH5
 	startbattle
 	reloadmapafterbattle
@@ -316,7 +316,7 @@ TrainerPicnickerLiz1:
 	checkflag ENGINE_LIZ
 	iftrue .Rematch
 	checkcellnum PHONE_PICNICKER_LIZ
-	iftrue .NumberAccepted	
+	iftrue .NumberAccepted
 	checkevent EVENT_LIZ_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskAgain
 	writetext PicnickerLiz1AfterText
@@ -344,19 +344,19 @@ TrainerPicnickerLiz1:
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
-.Fight4
+.Fight4:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight4
-.Fight3
+.Fight3:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .LoadFight3
-.Fight2
+.Fight2:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .LoadFight2
-.Fight1
+.Fight1:
 	checkflag ENGINE_FLYPOINT_ECRUTEAK
 	iftrue .LoadFight1
-.LoadFight0
+.LoadFight0:
 	loadtrainer PICNICKER, LIZ1
 	startbattle
 	reloadmapafterbattle
@@ -364,7 +364,7 @@ TrainerPicnickerLiz1:
 	clearflag ENGINE_LIZ
 	end
 
-.LoadFight1
+.LoadFight1:
 	loadtrainer PICNICKER, LIZ2
 	startbattle
 	reloadmapafterbattle
@@ -372,7 +372,7 @@ TrainerPicnickerLiz1:
 	clearflag ENGINE_LIZ
 	end
 
-.LoadFight2
+.LoadFight2:
 	loadtrainer PICNICKER, LIZ3
 	startbattle
 	reloadmapafterbattle
@@ -380,7 +380,7 @@ TrainerPicnickerLiz1:
 	clearflag ENGINE_LIZ
 	end
 
-.LoadFight3
+.LoadFight3:
 	loadtrainer PICNICKER, LIZ4
 	startbattle
 	reloadmapafterbattle
@@ -388,7 +388,7 @@ TrainerPicnickerLiz1:
 	clearflag ENGINE_LIZ
 	end
 
-.LoadFight4
+.LoadFight4:
 	loadtrainer PICNICKER, LIZ5
 	startbattle
 	reloadmapafterbattle
@@ -468,7 +468,7 @@ FriedaScript:
 	writetext MeetFriedaText
 	buttonsound
 	setevent EVENT_MET_FRIEDA_OF_FRIDAY
-.MetFrieda
+.MetFrieda:
 	writetext FriedaGivesGiftText
 	buttonsound
 	verbosegiveitem POISON_BARB
@@ -512,11 +512,11 @@ Route32PokeCenterSign:
 
 Route32HiddenGreatBall:
 	dwb EVENT_ROUTE_32_HIDDEN_GREAT_BALL, GREAT_BALL
-	
+
 
 Route32HiddenSuperPotion:
 	dwb EVENT_ROUTE_32_HIDDEN_SUPER_POTION, SUPER_POTION
-	
+
 
 Movement_Route32CooltrainerMPushesYouBackToViolet:
 	step_up

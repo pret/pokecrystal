@@ -22,25 +22,25 @@ MapGoldenrodDeptStoreElevatorSignpost0Script:
 	iftrue .BoxLayout2
 	checkevent EVENT_WAREHOUSE_LAYOUT_3
 	iftrue .BoxLayout3
-.BoxLayout3
+.BoxLayout3:
 	setevent EVENT_WAREHOUSE_LAYOUT_1
 	clearevent EVENT_WAREHOUSE_LAYOUT_2
 	clearevent EVENT_WAREHOUSE_LAYOUT_3
 	end
 
-.BoxLayout1
+.BoxLayout1:
 	clearevent EVENT_WAREHOUSE_LAYOUT_1
 	setevent EVENT_WAREHOUSE_LAYOUT_2
 	clearevent EVENT_WAREHOUSE_LAYOUT_3
 	end
 
-.BoxLayout2
+.BoxLayout2:
 	clearevent EVENT_WAREHOUSE_LAYOUT_1
 	clearevent EVENT_WAREHOUSE_LAYOUT_2
 	setevent EVENT_WAREHOUSE_LAYOUT_3
 	end
 
-.Done
+.Done:
 	end
 
 

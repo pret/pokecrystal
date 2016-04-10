@@ -528,7 +528,7 @@ TrainerWalkToPlayer: ; 831e
 	call .GetPathToPlayer
 	call DecrementMovementBufferCount
 
-.TerminateStep
+.TerminateStep:
 	ld a, movement_step_end
 	call AppendToMovementBuffer
 	ret
@@ -809,7 +809,7 @@ QueueFollowerFirstStep: ; 848a
 	ld [wFollowerMovementQueueLength], a
 	ret
 
-.QueueFirstStep
+.QueueFirstStep:
 	ld a, [wObjectFollow_Leader]
 	call GetObjectStruct
 	ld hl, OBJECT_NEXT_MAP_X

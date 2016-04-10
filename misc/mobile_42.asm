@@ -9,7 +9,7 @@ MobileTradeAnimation_SendGivemonToGTS: ; 108000
 	mobiletradeanim_showgtsgivemon
 	mobiletradeanim_12
 	mobiletradeanim_10
-	mobiletradeanim_sendmon 
+	mobiletradeanim_sendmon
 	mobiletradeanim_06
 	mobiletradeanim_0f
 	mobiletradeanim_end
@@ -29,7 +29,7 @@ asm_108018:
 .TradeAnimScript:
 	mobiletradeanim_11
 	mobiletradeanim_07
-	mobiletradeanim_receivemon 
+	mobiletradeanim_receivemon
 	mobiletradeanim_showgtsgetmon
 	mobiletradeanim_end
 
@@ -50,9 +50,9 @@ asm_10802c:
 	mobiletradeanim_showgivemon
 	mobiletradeanim_12
 	mobiletradeanim_02
-	mobiletradeanim_sendmon 
+	mobiletradeanim_sendmon
 	mobiletradeanim_05
-	mobiletradeanim_receivemon 
+	mobiletradeanim_receivemon
 	mobiletradeanim_showgetmon
 	mobiletradeanim_end
 
@@ -66,7 +66,7 @@ Function10803d: ; 10803d
 .TradeAnimScript:
 	mobiletradeanim_11
 	mobiletradeanim_07
-	mobiletradeanim_receivemon 
+	mobiletradeanim_receivemon
 	mobiletradeanim_showoddegg
 	mobiletradeanim_end
 
@@ -351,7 +351,7 @@ MobileTradeAnim_JumptableLoop: ; 10824b
 	and a
 	ret
 
-.StopAnim
+.StopAnim:
 	xor a
 	ld [hSCX], a
 	ld [hSCY], a
@@ -382,7 +382,7 @@ endr
 ; 10828a
 
 .Jumptable: ; 10828a
-	
+
 	dw GetMobileTradeAnimByte ; 00
 	dw MobileTradeAnim_ShowPlayerMonToBeSent ; 01
 	dw MobileTradeAnim_02 ; 02
@@ -1534,7 +1534,7 @@ Function108b78: ; 108b78
 	ld de, (31 << 10) + (31 << 5) + 31 ; $7fff
 	jr .load_pal
 
-.Orange
+.Orange:
 	ld de, ( 1 << 10) + (15 << 5) + 31 ; $05ff
 .load_pal
 	ld a, e
@@ -1680,7 +1680,7 @@ Function108c40: ; 108c40
 	call DelayFrames
 	ret
 
-.Getmon
+.Getmon:
 	ld hl, .TakeGoodCareOf
 	call PrintText
 	ld c, 80

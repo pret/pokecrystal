@@ -85,7 +85,7 @@ BattleCommand_Present: ; 37874
 .do_animation
 	jp EndMoveEffect
 
-.PresentPower
+.PresentPower:
 	db 40 percent,     40
 	db 70 percent + 1, 80
 	db 80 percent,    120

@@ -366,7 +366,7 @@ LinkTransfer:: ; 8c1
 	ret
 ; 8f3
 
-.Receive ; 8f3
+.Receive: ; 8f3
 	ld a, [hSerialReceive]
 	ld [wOtherPlayerLinkMode], a
 	and $f0

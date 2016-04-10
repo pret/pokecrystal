@@ -8,7 +8,7 @@ Route23_MapScriptHeader:
 	; callbacks
 	dbw MAPCALLBACK_NEWMAP, .FlyPoint
 
-.FlyPoint
+.FlyPoint:
 	setflag ENGINE_FLYPOINT_INDIGO_PLATEAU
 	return
 

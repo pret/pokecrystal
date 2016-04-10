@@ -16,22 +16,22 @@ BrunosRoom_MapScriptHeader:
 
 	dbw MAPCALLBACK_TILES, .BrunosRoomDoors
 
-.Trigger0
+.Trigger0:
 	priorityjump UnknownScript_0x1809ad
 	end
 
-.Trigger1
+.Trigger1:
 	end
 
 .BrunosRoomDoors:
 	checkevent EVENT_BRUNOS_ROOM_ENTRANCE_CLOSED
 	iffalse .KeepDoorClosed
 	changeblock $4, $e, $2a
-.KeepDoorClosed
+.KeepDoorClosed:
 	checkevent EVENT_BRUNOS_ROOM_EXIT_OPEN
 	iffalse .OpenDoor
 	changeblock $4, $2, $16
-.OpenDoor
+.OpenDoor:
 	return
 
 UnknownScript_0x1809ad:

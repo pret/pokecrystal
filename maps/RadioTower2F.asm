@@ -34,7 +34,7 @@ TeacherScript_0x5d701:
 	closetext
 	end
 
-.Rockets
+.Rockets:
 	writetext UnknownText_0x5d983
 	waitbutton
 	closetext

@@ -45,7 +45,7 @@ VioletPokeCenter1F_ElmsAideScript:
 	waitsfx
 	end
 
-.AideWalksAroundPlayer
+.AideWalksAroundPlayer:
 	applymovement VIOLETPOKECENTER1F_SCIENTIST, MovementData_AideWalksLeftToExitPokecenter
 	spriteface PLAYER, DOWN
 	applymovement VIOLETPOKECENTER1F_SCIENTIST, MovementData_AideFinishesLeavingPokecenter

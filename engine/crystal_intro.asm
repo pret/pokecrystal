@@ -154,7 +154,7 @@ PlaceGameFreakPresents_1: ; e468d
 	inc [hl]
 	ret
 
-.PlaceGameFreak
+.PlaceGameFreak:
 	ld [hl], 0
 	ld hl, .GAME_FREAK
 	decoord 5, 10
@@ -166,7 +166,7 @@ PlaceGameFreakPresents_1: ; e468d
 	ret
 ; e46af
 
-.GAME_FREAK
+.GAME_FREAK:
 	;  G  A  M  E   _  F  R  E  A  K
 	db 0, 1, 2, 3, 13, 4, 5, 3, 1, 6
 .end
@@ -396,7 +396,7 @@ CrystalIntro: ; e48ac
 	call DelayFrame
 	jp .loop
 
-.ShutOffMusic
+.ShutOffMusic:
 	ld de, MUSIC_NONE
 	call PlayMusic
 
@@ -547,7 +547,7 @@ IntroScene2: ; e49d6 (39:49d6)
 	ld de, SFX_INTRO_UNOWN_1
 	call PlaySFX
 	pop af
-.DontPlaySound
+.DontPlaySound:
 	ld [wcf65], a
 	xor a
 	call CrystalIntro_UnownFade
@@ -686,27 +686,27 @@ IntroScene6: ; e4af7 (39:4af7)
 	jr z, .FirstUnown
 	jr .NoUnown
 
-.FirstUnown
+.FirstUnown:
 	push af
 	depixel 7, 15
 	call CrystalIntro_InitUnownAnim
 	ld de, SFX_INTRO_UNOWN_2
 	call PlaySFX
 	pop af
-.NoUnown
+.NoUnown:
 	ld [wcf65], a
 	xor a
 	call CrystalIntro_UnownFade
 	ret
 
-.SecondUnown
+.SecondUnown:
 	push af
 	depixel 14, 6
 	call CrystalIntro_InitUnownAnim
 	ld de, SFX_INTRO_UNOWN_1
 	call PlaySFX
 	pop af
-.StopUnown
+.StopUnown:
 	ld [wcf65], a
 	ld a, $1
 	call CrystalIntro_UnownFade
@@ -1347,7 +1347,7 @@ IntroScene20: ; e5019 (39:5019)
 	ld [hSCY], a
 	ret
 
-.AppearUnown
+.AppearUnown:
 	sub $18
 	ld c, a
 	and $3
@@ -1952,7 +1952,7 @@ Intro_Scene16_AnimateSuicune: ; e5441 (39:5441)
 	jr z, .PrepareForSuicuneSwap
 	ret
 
-.PrepareForSuicuneSwap
+.PrepareForSuicuneSwap:
 	xor a
 	ld [hBGMapMode], a
 	ret

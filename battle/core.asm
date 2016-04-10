@@ -273,7 +273,7 @@ HandleBetweenTurnEffects: ; 3c1d6
 	ret c
 	jr .NoMoreFaintingConditions
 
-.CheckEnemyFirst
+.CheckEnemyFirst:
 	call CheckFaint_EnemyThenPlayer
 	ret c
 	call HandleFutureSight
@@ -289,7 +289,7 @@ HandleBetweenTurnEffects: ; 3c1d6
 	call CheckFaint_EnemyThenPlayer
 	ret c
 
-.NoMoreFaintingConditions
+.NoMoreFaintingConditions:
 	call HandleLeftovers
 	call HandleMysteryberry
 	call HanleDefrost
@@ -310,7 +310,7 @@ CheckFaint_PlayerThenEnemy: ; 3c23c
 	and a
 	jr nz, .BattleIsOver
 
-.PlayerNotFainted
+.PlayerNotFainted:
 	call HasEnemyFainted
 	jr nz, .BattleContinues
 	call HandleEnemyMonFaint
@@ -318,11 +318,11 @@ CheckFaint_PlayerThenEnemy: ; 3c23c
 	and a
 	jr nz, .BattleIsOver
 
-.BattleContinues
+.BattleContinues:
 	and a
 	ret
 
-.BattleIsOver
+.BattleIsOver:
 	scf
 	ret
 ; 3c25c
@@ -335,7 +335,7 @@ CheckFaint_EnemyThenPlayer: ; 3c25c
 	and a
 	jr nz, .BattleIsOver
 
-.EnemyNotFainted
+.EnemyNotFainted:
 	call HasPlayerFainted
 	jr nz, .BattleContinues
 	call HandlePlayerMonFaint
@@ -343,11 +343,11 @@ CheckFaint_EnemyThenPlayer: ; 3c25c
 	and a
 	jr nz, .BattleIsOver
 
-.BattleContinues
+.BattleContinues:
 	and a
 	ret
 
-.BattleIsOver
+.BattleIsOver:
 	scf
 	ret
 ; 3c27c
@@ -816,11 +816,11 @@ TryEnemyFlee: ; 3c543
 	call IsInArray
 	jr c, .Flee
 
-.Stay
+.Stay:
 	and a
 	ret
 
-.Flee
+.Flee:
 	scf
 	ret
 ; 3c59a
@@ -1218,7 +1218,7 @@ HandlePerishSong: ; 3c801
 	call SetEnemyTurn
 	jp .do_it
 
-.EnemyFirst
+.EnemyFirst:
 	call SetEnemyTurn
 	call .do_it
 	call SetPlayerTurn
@@ -1287,7 +1287,7 @@ HandleWrap: ; 3c874
 	call SetEnemyTurn
 	jp .do_it
 
-.EnemyFirst
+.EnemyFirst:
 	call SetEnemyTurn
 	call .do_it
 	call SetPlayerTurn
@@ -1359,7 +1359,7 @@ HandleLeftovers: ; 3c8eb
 	call SetEnemyTurn
 	jp .do_it
 
-.DoEnemyFirst
+.DoEnemyFirst:
 	call SetEnemyTurn
 	call .do_it
 	call SetPlayerTurn
@@ -1409,7 +1409,7 @@ HandleMysteryberry: ; 3c93c
 	call SetEnemyTurn
 	jp .do_it
 
-.DoEnemyFirst
+.DoEnemyFirst:
 	call SetEnemyTurn
 	call .do_it
 	call SetPlayerTurn
@@ -1667,7 +1667,7 @@ HandleSafeguard: ; 3cafb
 
 .player1
 	call .CheckEnemy
-.CheckPlayer
+.CheckPlayer:
 	ld a, [PlayerScreens]
 	bit SCREENS_SAFEGUARD, a
 	ret z
@@ -1679,7 +1679,7 @@ HandleSafeguard: ; 3cafb
 	xor a
 	jr .print
 
-.CheckEnemy
+.CheckEnemy:
 	ld a, [EnemyScreens]
 	bit SCREENS_SAFEGUARD, a
 	ret z
@@ -1703,10 +1703,10 @@ HandleScreens: ; 3cb36
 	call .CheckPlayer
 	jr .CheckEnemy
 
-.Both
+.Both:
 	call .CheckEnemy
 
-.CheckPlayer
+.CheckPlayer:
 	call SetPlayerTurn
 	ld de, .Your
 	call .Copy
@@ -1714,28 +1714,28 @@ HandleScreens: ; 3cb36
 	ld de, PlayerLightScreenCount
 	jr .TickScreens
 
-.CheckEnemy
+.CheckEnemy:
 	call SetEnemyTurn
 	ld de, .Enemy
 	call .Copy
 	ld hl, EnemyScreens
 	ld de, EnemyLightScreenCount
 
-.TickScreens
+.TickScreens:
 	bit SCREENS_LIGHT_SCREEN, [hl]
 	call nz, .LightScreenTick
 	bit SCREENS_REFLECT, [hl]
 	call nz, .ReflectTick
 	ret
 
-.Copy
+.Copy:
 	ld hl, StringBuffer1
 	jp CopyName2
 ; 3cb75
 
-.Your
+.Your:
 	db "Your@"
-.Enemy
+.Enemy:
 	db "Enemy@"
 ; 3cb80
 
@@ -1797,7 +1797,7 @@ HandleWeather: ; 3cb9e
 	call .SandstormDamage
 	call SetPlayerTurn
 
-.SandstormDamage
+.SandstormDamage:
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVar
 	bit SUBSTATUS_UNDERGROUND, a
@@ -1844,7 +1844,7 @@ HandleWeather: ; 3cb9e
 	ld [Weather], a
 	ret
 
-.PrintWeatherMessage
+.PrintWeatherMessage:
 	ld a, [Weather]
 	dec a
 	ld c, a
@@ -1857,11 +1857,11 @@ HandleWeather: ; 3cb9e
 	jp StdBattleTextBox
 ; 3cc2d
 
-.WeatherMessages
+.WeatherMessages:
 	dw BattleText_RainContinuesToFall
 	dw BattleText_TheSunlightIsStrong
 	dw BattleText_TheSandstormRages
-.WeatherEndedMessages
+.WeatherEndedMessages:
 	dw BattleText_TheRainStopped
 	dw BattleText_TheSunlightFaded
 	dw BattleText_TheSandstormSubsided
@@ -2525,7 +2525,7 @@ WinTrainerBattle: ; 3cfa4
 	call ClearBGPalettes
 	ret
 
-.GiveMoney
+.GiveMoney:
 	ld a, [wAmuletCoin]
 	and a
 	call nz, .DoubleReward
@@ -2578,7 +2578,7 @@ WinTrainerBattle: ; 3cfa4
 	ld l, a
 	jp StdBattleTextBox
 
-.KeepItAll
+.KeepItAll:
 	ld hl, GotMoneyForWinningText
 	jp StdBattleTextBox
 ; 3d081
@@ -3143,7 +3143,7 @@ LostBattle: ; 3d38e
 	call SetPalettes
 	jr .end
 
-.LostLinkBattle
+.LostLinkBattle:
 	call UpdateEnemyMonInParty
 	call CheckEnemyTrainerDefeated
 	jr nz, .not_tied
@@ -3202,13 +3202,13 @@ MonFaintedAnimation: ; 3d444
 	ld [wcfbe], a
 	ld b, 7
 
-.OuterLoop
+.OuterLoop:
 	push bc
 	push de
 	push hl
 	ld b, 6
 
-.InnerLoop
+.InnerLoop:
 	push bc
 	push hl
 	push de
@@ -3246,7 +3246,7 @@ MonFaintedAnimation: ; 3d444
 	ret
 ; 3d488
 
-.Spaces
+.Spaces:
 	db "       @"
 ; 3d490
 
@@ -4655,7 +4655,7 @@ UseHeldStatusHealingItem: ; 3dde9
 	ret
 ; 3de44
 
-.Statuses ; 3de44
+.Statuses: ; 3de44
 	db HELD_HEAL_POISON, 1 << PSN
 	db HELD_HEAL_FREEZE, 1 << FRZ
 	db HELD_HEAL_BURN, 1 << BRN
@@ -4779,7 +4779,7 @@ HandleStatBoostingHeldItems: ; 3de97
 	ret
 ; 3defc
 
-.StatUpItems
+.StatUpItems:
 	dbw HELD_ATTACK_UP,     BattleCommand_AttackUp
 	dbw HELD_DEFENSE_UP,    BattleCommand_DefenseUp
 	dbw HELD_SPEED_UP,      BattleCommand_SpeedUp
@@ -5347,18 +5347,18 @@ BattleMenuPKMN_Loop:
 	jr z, .Cancel
 	jr .loop
 
-.PressedB
+.PressedB:
 	call CheckMobileBattleError
 	jr c, .Cancel
 	jr BattleMenuPKMN_Loop
 
-.Stats
+.Stats:
 	call Battle_StatsScreen
 	call CheckMobileBattleError
 	jr c, .Cancel
 	jp BattleMenuPKMN_ReturnFromStats
 
-.Cancel
+.Cancel:
 	call ClearSprites
 	call ClearPalettes
 	call DelayFrame
@@ -5984,9 +5984,9 @@ MoveInfoBox: ; 3e6c8
 	ret
 ; 3e74f
 
-.Disabled
+.Disabled:
 	db "Disabled!@"
-.Type
+.Type:
 	db "TYPE/@"
 ; 3e75f
 
@@ -6291,7 +6291,7 @@ LoadEnemyMon: ; 3e8eb
 	jr .UpdateItem
 
 
-.WildItem
+.WildItem:
 ; In a wild battle, we pull from the item slots in BaseData
 
 ; Force Item1
@@ -6321,7 +6321,7 @@ LoadEnemyMon: ; 3e8eb
 	ld a, [BaseItems+1]
 
 
-.UpdateItem
+.UpdateItem:
 	ld [EnemyMonItem], a
 
 
@@ -6347,7 +6347,7 @@ LoadEnemyMon: ; 3e8eb
 	jp .Happiness
 
 
-.InitDVs
+.InitDVs:
 
 ; Trainer DVs
 
@@ -6403,7 +6403,7 @@ LoadEnemyMon: ; 3e8eb
 	jr .UpdateDVs
 
 
-.NotRoaming
+.NotRoaming:
 ; Register a contains BattleType
 
 ; Forced shiny battle type
@@ -6415,14 +6415,14 @@ LoadEnemyMon: ; 3e8eb
 	ld c, SPDSPCDV_SHINY ; $aa
 	jr .UpdateDVs
 
-.GenerateDVs
+.GenerateDVs:
 ; Generate new random DVs
 	call BattleRandom
 	ld b, a
 	call BattleRandom
 	ld c, a
 
-.UpdateDVs
+.UpdateDVs:
 ; Input DVs in register bc
 	ld hl, EnemyMonDVs
 	ld a, b
@@ -6453,7 +6453,7 @@ LoadEnemyMon: ; 3e8eb
 	jr c, .GenerateDVs ; try again
 
 
-.Magikarp
+.Magikarp:
 ; Skimming this part recommended
 
 	ld a, [TempEnemyMonSpecies]
@@ -6488,7 +6488,7 @@ LoadEnemyMon: ; 3e8eb
 	cp a, $40
 	jr nc, .GenerateDVs
 
-.CheckMagikarpArea
+.CheckMagikarpArea:
 ; The z checks are supposed to be nz
 ; Instead, all maps in GROUP_LAKE_OF_RAGE (mahogany area)
 ; and routes 20 and 44 are treated as Lake of Rage
@@ -6516,7 +6516,7 @@ LoadEnemyMon: ; 3e8eb
 
 ; Finally done with DVs
 
-.Happiness
+.Happiness:
 ; Set happiness
 	ld a, BASE_HAPPINESS
 	ld [EnemyMonHappiness], a
@@ -6543,7 +6543,7 @@ LoadEnemyMon: ; 3e8eb
 	bit SUBSTATUS_TRANSFORMED, a
 	jp nz, .Moves
 
-.TreeMon
+.TreeMon:
 ; If we're headbutting trees, some monsters enter battle asleep
 	call CheckSleepingTreeMon
 	ld a, SLP ; Asleep for 7 turns
@@ -6551,7 +6551,7 @@ LoadEnemyMon: ; 3e8eb
 ; Otherwise, no status
 	xor a
 
-.UpdateStatus
+.UpdateStatus:
 	ld hl, EnemyMonStatus
 	ld [hli], a
 
@@ -6581,7 +6581,7 @@ LoadEnemyMon: ; 3e8eb
 	ld [EnemyMonHP + 1], a
 	jr .Moves
 
-.InitRoamHP
+.InitRoamHP:
 ; HP only uses the lo byte in the RoamMon struct since
 ; Raikou/Entei/Suicune will have < 256 hp at level 40
 	ld a, [EnemyMonHP + 1]
@@ -6589,7 +6589,7 @@ LoadEnemyMon: ; 3e8eb
 	jr .Moves
 
 
-.OpponentParty
+.OpponentParty:
 ; Get HP from the party struct
 	ld hl, (OTPartyMon1HP + 1)
 	ld a, [CurPartyMon]
@@ -6609,7 +6609,7 @@ LoadEnemyMon: ; 3e8eb
 	ld [EnemyMonStatus], a
 
 
-.Moves
+.Moves:
 	ld hl, BaseType1
 	ld de, EnemyMonType1
 	ld a, [hli]
@@ -6632,7 +6632,7 @@ LoadEnemyMon: ; 3e8eb
 	call CopyBytes
 	jr .PP
 
-.WildMoves
+.WildMoves:
 ; Clear EnemyMonMoves
 	xor a
 	ld h, d
@@ -6646,7 +6646,7 @@ endr
 ; Fill moves based on level
 	predef FillMoves
 
-.PP
+.PP:
 ; Trainer battle?
 	ld a, [wBattleMode]
 	cp a, TRAINER_BATTLE
@@ -6658,7 +6658,7 @@ endr
 	predef FillPP
 	jr .Finish
 
-.TrainerPP
+.TrainerPP:
 ; Copy PP from the party struct
 	ld hl, OTPartyMon1PP
 	ld a, [CurPartyMon]
@@ -6667,7 +6667,7 @@ endr
 	ld bc, NUM_MOVES
 	call CopyBytes
 
-.Finish
+.Finish:
 ; Only the first five base stats are copied..
 	ld hl, BaseStats
 	ld de, EnemyMonBaseStats
@@ -6737,18 +6737,18 @@ CheckSleepingTreeMon: ; 3eb38
 	jr z, .Check
 	ld hl, .Nite
 
-.Check
+.Check:
 	ld a, [TempEnemyMonSpecies]
 	ld de, 1 ; length of species id
 	call IsInArray
 ; If it's a match, the opponent is asleep
 	ret c
 
-.NotSleeping
+.NotSleeping:
 	and a
 	ret
 
-.Nite
+.Nite:
 	db CATERPIE
 	db METAPOD
 	db BUTTERFREE
@@ -6762,7 +6762,7 @@ CheckSleepingTreeMon: ; 3eb38
 	db AIPOM
 	db -1 ; end
 
-.Day
+.Day:
 	db VENONAT
 	db HOOTHOOT
 	db NOCTOWL
@@ -6770,7 +6770,7 @@ CheckSleepingTreeMon: ; 3eb38
 	db HERACROSS
 	db -1 ; end
 
-.Morn
+.Morn:
 	db VENONAT
 	db HOOTHOOT
 	db NOCTOWL
@@ -6827,22 +6827,22 @@ CheckUnownLetter: ; 3eb75
 	and a
 	ret
 
-.LetterSets
+.LetterSets:
 	dw .Set1
 	dw .Set2
 	dw .Set3
 	dw .Set4
 
-.Set1
+.Set1:
 	;  A   B   C   D   E   F   G   H   I   J   K
 	db 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, $ff
-.Set2
+.Set2:
 	;  L   M   N   O   P   Q   R
 	db 12, 13, 14, 15, 16, 17, 18, $ff
-.Set3
+.Set3:
 	;  S   T   U   V   W
 	db 19, 20, 21, 22, 23, $ff
-.Set4
+.Set4:
 	;  X   Y   Z
 	db 24, 25, 26, $ff
 
@@ -7124,7 +7124,7 @@ ApplyStatLevelMultiplier: ; 3ecb7
 	ret
 ; 3ed2b
 
-.StatLevelMultipliers
+.StatLevelMultipliers:
 ;	      /
 	db 25, 100 ; 25%
 	db 28, 100 ; 28%
@@ -7186,7 +7186,7 @@ BadgeStatBoosts: ; 3ed45
 
 	ld hl, BattleMonAttack
 	ld c, 4
-.CheckBadge
+.CheckBadge:
 	ld a, b
 	srl b
 	call c, BoostStat
@@ -7754,7 +7754,7 @@ GiveExperiencePoints: ; 3ee3b
 	jp ResetBattleParticipants
 ; 3f0d4
 
-.EvenlyDivideExpAmongParticipants
+.EvenlyDivideExpAmongParticipants:
 ; count number of battle participants
 	ld a, [wBattleParticipantsNotFainted]
 	ld b, a
@@ -7878,7 +7878,7 @@ AnimateExpBar: ; 3f136
 	ld [hli], a
 	ld [hl], a
 
-.NoOverflow
+.NoOverflow:
 	ld d, MAX_LEVEL
 	callab CalcExpAtLevel
 	ld a, [hProduct + 1]
@@ -7902,7 +7902,7 @@ AnimateExpBar: ; 3f136
 	ld a, d
 	ld [hld], a
 
-.AlreadyAtMaxExp
+.AlreadyAtMaxExp:
 	callab CalcLevel
 	ld a, d
 	pop bc
@@ -7913,7 +7913,7 @@ AnimateExpBar: ; 3f136
 	ld a, e
 	ld d, a
 
-.LoopLevels
+.LoopLevels:
 	ld a, e
 	cp MAX_LEVEL
 	jr nc, .FinishExpBar
@@ -7944,7 +7944,7 @@ AnimateExpBar: ; 3f136
 	ld b, $0
 	jr .LoopLevels
 
-.FinishExpBar
+.FinishExpBar:
 	push bc
 	ld b, d
 	ld de, TempMonExp + 2
@@ -7964,7 +7964,7 @@ AnimateExpBar: ; 3f136
 	pop bc
 	ret
 
-.PlayExpBarSound
+.PlayExpBarSound:
 	push bc
 	call WaitSFX
 	ld de, SFX_EXP_BAR
@@ -7974,7 +7974,7 @@ AnimateExpBar: ; 3f136
 	pop bc
 	ret
 
-.LoopBarAnimation
+.LoopBarAnimation:
 	ld d, 3
 	dec b
 .anim_loop
@@ -8119,7 +8119,7 @@ WithdrawPkmnText: ; 3f2f4
 	ld hl, .WithdrawPkmnText
 	jp BattleTextBox
 
-.WithdrawPkmnText
+.WithdrawPkmnText:
 	text_jump Text_BattleMonNickComma
 	start_asm
 ; Print text to withdraw Pkmn
@@ -8523,7 +8523,7 @@ LoadTrainerOrWildMonPic: ; 3f54e
 	ld a, [TempWildMonSpecies]
 	ld [CurPartySpecies], a
 
-.Trainer
+.Trainer:
 	ld [TempEnemyMonSpecies], a
 	ret
 ; 3f55e
@@ -8873,11 +8873,11 @@ DetermineMobileBattleResult: ; 3f77c
 	ret
 ; 3f7f7
 
-.Win
+.Win:
 	db "YOU WIN@"
-.Lose
+.Lose:
 	db "YOU LOSE@"
-.Draw
+.Draw:
 	db "  DRAW@"
 ; 3f80f
 
@@ -8892,7 +8892,7 @@ DetermineMobileBattleResult: ; 3f77c
 	ret
 ; 3f821
 
-.Invalid
+.Invalid:
 	db "INVALID BATTLE@"
 ; 3f830
 
@@ -8980,7 +8980,7 @@ ReadAndPrintLinkBattleRecord: ; 3f85f
 	call PrintNum
 	jr .next
 
-.PrintFormatString
+.PrintFormatString:
 	ld de, .Format
 	call PlaceString
 .next
@@ -8997,7 +8997,7 @@ ReadAndPrintLinkBattleRecord: ; 3f85f
 	jr nz, .loop
 	ret
 
-.PrintBattleRecord
+.PrintBattleRecord:
 	hlcoord 1, 0
 	ld de, .Record
 	call PlaceString
@@ -9035,7 +9035,7 @@ ReadAndPrintLinkBattleRecord: ; 3f85f
 .quit
 	ret
 
-.PrintZerosIfNoSaveFileExists
+.PrintZerosIfNoSaveFileExists:
 	ld a, [wSavedAtLeastOnce]
 	and a
 	ret nz
@@ -9045,18 +9045,18 @@ ReadAndPrintLinkBattleRecord: ; 3f85f
 	ret
 ; 3f938
 
-.Scores
+.Scores:
 	db "   0    0    0@"
 ; 3f947
 
-.Format ; 3f947
+.Format: ; 3f947
 	db "  ---  <LNBRK>"
 	db "         -    -    -@"
-.Record ; 3f964
+.Record: ; 3f964
 	db "<PLAYER>'s RECORD@"
-.Result ; 3f96e
+.Result: ; 3f96e
 	db "RESULT WIN LOSE DRAW@"
-.Total ; 3f983
+.Total: ; 3f983
 	db "TOTAL  WIN LOSE DRAW@"
 ; 3f998
 
@@ -9472,12 +9472,12 @@ GetTrainerBackpic: ; 3fbff
 	callba GetKrisBackpic
 	ret
 
-.Chris
+.Chris:
 ; It's a boy.
 	ld b, BANK(ChrisBackpic)
 	ld hl, ChrisBackpic
 
-.Decompress
+.Decompress:
 	ld de, VTiles2 tile $31
 	ld c, $31
 	predef DecompressPredef
@@ -9603,7 +9603,7 @@ BattleStartMessage: ; 3fc8b
 	ld hl, HookedPokemonAttackedText
 	jr .PlaceBattleStartText
 
-.NotFishing
+.NotFishing:
 	ld hl, PokemonFellFromTreeText
 	cp BATTLETYPE_TREE
 	jr z, .PlaceBattleStartText
@@ -9612,7 +9612,7 @@ BattleStartMessage: ; 3fc8b
 	jr z, .PlaceBattleStartText
 	ld hl, WildPokemonAppearedText
 
-.PlaceBattleStartText
+.PlaceBattleStartText:
 	push hl
 	callba BattleStart_TrainerHuds
 	pop hl

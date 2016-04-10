@@ -27,16 +27,16 @@ AzaleaTown_MapScriptHeader:
 	; callbacks
 	dbw MAPCALLBACK_NEWMAP, .Flypoint
 
-.Trigger0
+.Trigger0:
 	end
 
-.Trigger1
+.Trigger1:
 	end
 
-.Trigger2
+.Trigger2:
 	end
 
-.Flypoint
+.Flypoint:
 	setflag ENGINE_FLYPOINT_AZALEA
 	return
 
@@ -216,7 +216,7 @@ WhiteApricornTree:
 
 AzaleaTownHiddenFullHeal:
 	dwb EVENT_AZALEA_TOWN_HIDDEN_FULL_HEAL, FULL_HEAL
-	
+
 
 AzaleaTownRivalBattleApproachMovement1:
 	step_left

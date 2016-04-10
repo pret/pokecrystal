@@ -763,7 +763,7 @@ Error_Cant_ExitMenu: ; 2445d
 	ld hl, .Text_NoWindowsAvailableForPopping
 	call PrintText
 	call WaitBGMap
-.InfiniteLoop
+.InfiniteLoop:
 	jr .InfiniteLoop
 ; 24468
 

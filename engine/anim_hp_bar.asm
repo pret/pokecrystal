@@ -2,7 +2,7 @@ _AnimateHPBar: ; d627
 	call .IsMaximumMoreThan48Pixels
 	jr c, .MoreThan48Pixels
 	call .ComputePixels
-.ShortAnimLoop
+.ShortAnimLoop:
 	push bc
 	push hl
 	call ShortAnim_UpdateVariables
@@ -19,9 +19,9 @@ _AnimateHPBar: ; d627
 	jr nc, .ShortAnimLoop
 	ret
 
-.MoreThan48Pixels
+.MoreThan48Pixels:
 	call .ComputePixels
-.LongAnimLoop
+.LongAnimLoop:
 	push bc
 	push hl
 	call LongAnim_UpdateVariables

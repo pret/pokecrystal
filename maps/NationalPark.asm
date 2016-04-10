@@ -109,19 +109,19 @@ UnknownScript_0x5c088:
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
-.Fight4
+.Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4
-.Fight3
+.Fight3:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight3
-.Fight2
+.Fight2:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .LoadFight2
-.Fight1
+.Fight1:
 	checkflag ENGINE_FLYPOINT_OLIVINE
 	iftrue .LoadFight1
-.LoadFight0
+.LoadFight0:
 	loadtrainer SCHOOLBOY, JACK1
 	startbattle
 	reloadmapafterbattle
@@ -129,7 +129,7 @@ UnknownScript_0x5c088:
 	clearflag ENGINE_JACK
 	end
 
-.LoadFight1
+.LoadFight1:
 	loadtrainer SCHOOLBOY, JACK2
 	startbattle
 	reloadmapafterbattle
@@ -137,7 +137,7 @@ UnknownScript_0x5c088:
 	clearflag ENGINE_JACK
 	end
 
-.LoadFight2
+.LoadFight2:
 	loadtrainer SCHOOLBOY, JACK3
 	startbattle
 	reloadmapafterbattle
@@ -145,7 +145,7 @@ UnknownScript_0x5c088:
 	clearflag ENGINE_JACK
 	end
 
-.LoadFight3
+.LoadFight3:
 	loadtrainer SCHOOLBOY, JACK4
 	startbattle
 	reloadmapafterbattle
@@ -153,7 +153,7 @@ UnknownScript_0x5c088:
 	clearflag ENGINE_JACK
 	end
 
-.LoadFight4
+.LoadFight4:
 	loadtrainer SCHOOLBOY, JACK5
 	startbattle
 	reloadmapafterbattle
@@ -306,7 +306,7 @@ NationalParkTMDig:
 
 NationalParkHiddenFullHeal:
 	dwb EVENT_NATIONAL_PARK_HIDDEN_FULL_HEAL, FULL_HEAL
-	
+
 
 UnknownText_0x5c1d3:
 	text "Look! Check out my"

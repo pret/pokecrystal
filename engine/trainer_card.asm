@@ -118,7 +118,7 @@ TrainerCard_Page1_Joypad: ; 251d7 (9:51d7)
 	ld [wJumptableIndex], a
 	ret
 
-.KantoCheck
+.KantoCheck:
 ; unreferenced
 	ld a, [KantoBadges]
 	and a
@@ -164,7 +164,7 @@ TrainerCard_Page2_Joypad: ; 25221 (9:5221)
 	ld [wJumptableIndex], a
 	ret
 
-.KantoCheck
+.KantoCheck:
 ; unreferenced
 	ld a, [KantoBadges]
 	and a
@@ -173,7 +173,7 @@ TrainerCard_Page2_Joypad: ; 25221 (9:5221)
 	ld [wJumptableIndex], a
 	ret
 
-.Quit
+.Quit:
 	ld a, $6
 	ld [wJumptableIndex], a
 	ret
@@ -289,11 +289,11 @@ TrainerCard_Page1_PrintDexCaught_GameTime: ; 2530a (9:530a)
 	call ClearBox
 	ret
 
-.Dex_PlayTime
+.Dex_PlayTime:
 	db   "#DEX"
 	next "PLAY TIME@@"
 
-.Badges
+.Badges:
 	db "  BADGES▶@"
 
 .StatusTilemap: ; 25366

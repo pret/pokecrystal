@@ -12,7 +12,7 @@ StartMenu:: ; 125cd
 	ld hl, .MenuDataHeader
 	jr z, .GotMenuData
 	ld hl, .ContestMenuDataHeader
-.GotMenuData
+.GotMenuData:
 
 	call LoadMenuDataHeader
 	call .SetUpMenuItems
@@ -28,14 +28,14 @@ StartMenu:: ; 125cd
 	call UpdateTimePals
 	jr .Select
 
-.Reopen
+.Reopen:
 	call UpdateSprites
 	call UpdateTimePals
 	call .SetUpMenuItems
 	ld a, [wd0d2]
 	ld [wMenuCursorBuffer], a
 
-.Select
+.Select:
 	call .GetInput
 	jr c, .Exit
 	call .DrawMenuAccount
@@ -57,7 +57,7 @@ StartMenu:: ; 125cd
 	ld l, a
 	jp [hl]
 
-.MenuReturns
+.MenuReturns:
 	dw .Reopen
 	dw .Exit
 	dw .ExitMenuCallFuncCloseText
@@ -66,7 +66,7 @@ StartMenu:: ; 125cd
 	dw .ReturnEnd
 	dw .ReturnRedraw
 
-.Exit
+.Exit:
 	ld a, [hOAMUpdate]
 	push af
 	ld a, 1
@@ -74,14 +74,14 @@ StartMenu:: ; 125cd
 	call LoadFontsExtra
 	pop af
 	ld [hOAMUpdate], a
-.ReturnEnd
+.ReturnEnd:
 	call ExitMenu
-.ReturnEnd2
+.ReturnEnd2:
 	call CloseText
 	call UpdateTimePals
 	ret
 
-.GetInput
+.GetInput:
 ; Return carry on exit, and no-carry on selection.
 	xor a
 	ld [hBGMapMode], a
@@ -107,21 +107,21 @@ StartMenu:: ; 125cd
 	ret
 ; 12691
 
-.ExitMenuRunScript ; 12691
+.ExitMenuRunScript: ; 12691
 	call ExitMenu
 	ld a, HMENURETURN_SCRIPT
 	ld [hMenuReturn], a
 	ret
 ; 12699
 
-.ExitMenuRunScriptCloseText ; 12699
+.ExitMenuRunScriptCloseText: ; 12699
 	call ExitMenu
 	ld a, HMENURETURN_SCRIPT
 	ld [hMenuReturn], a
 	jr .ReturnEnd2
 ; 126a2
 
-.ExitMenuCallFuncCloseText ; 126a2
+.ExitMenuCallFuncCloseText: ; 126a2
 	call ExitMenu
 	ld hl, wQueuedScriptAddr
 	ld a, [hli]
@@ -132,12 +132,12 @@ StartMenu:: ; 125cd
 	jr .ReturnEnd2
 ; 126b1
 
-.ReturnRedraw ; 126b1
+.ReturnRedraw: ; 126b1
 	call .Clear
 	jp .Reopen
 ; 126b7
 
-.Clear ; 126b7
+.Clear: ; 126b7
 	call ClearBGPalettes
 	call Call_ExitMenu
 	call ReloadTilesetAndPalettes
@@ -151,28 +151,28 @@ StartMenu:: ; 125cd
 ; 126d3
 
 
-.MenuDataHeader
+.MenuDataHeader:
 	db $40 ; tile backup
 	db 0, 10 ; start coords
 	db 17, 19 ; end coords
 	dw .MenuData
 	db 1 ; default selection
 
-.ContestMenuDataHeader
+.ContestMenuDataHeader:
 	db $40 ; tile backup
 	db 2, 10 ; start coords
 	db 17, 19 ; end coords
 	dw .MenuData
 	db 1 ; default selection
 
-.MenuData
+.MenuData:
 	db %10101000 ; x padding, wrap around, start can close
 	dn 0, 0 ; rows, columns
 	dw MenuItemsList
 	dw .MenuString
 	dw .Items
 
-.Items
+.Items:
 	dw StartMenu_Pokedex,  .PokedexString,  .PokedexDesc
 	dw StartMenu_Pokemon,  .PartyString,    .PartyDesc
 	dw StartMenu_Pack,     .PackString,     .PackDesc
@@ -183,45 +183,45 @@ StartMenu:: ; 125cd
 	dw StartMenu_Pokegear, .PokegearString, .PokegearDesc
 	dw StartMenu_Quit,     .QuitString,     .QuitDesc
 
-.PokedexString 	db "#DEX@"
-.PartyString   	db "#MON@"
-.PackString    	db "PACK@"
-.StatusString  	db "<PLAYER>@"
-.SaveString    	db "SAVE@"
-.OptionString  	db "OPTION@"
-.ExitString    	db "EXIT@"
-.PokegearString	db $24, "GEAR@"
-.QuitString    	db "QUIT@"
+.PokedexString: 	db "#DEX@"
+.PartyString:   	db "#MON@"
+.PackString:    	db "PACK@"
+.StatusString:  	db "<PLAYER>@"
+.SaveString:    	db "SAVE@"
+.OptionString:  	db "OPTION@"
+.ExitString:    	db "EXIT@"
+.PokegearString:	db $24, "GEAR@"
+.QuitString:    	db "QUIT@"
 
-.PokedexDesc  db   "#MON"
+.PokedexDesc:  db   "#MON"
               next "database@"
 
-.PartyDesc    db   "Party ", $4a
+.PartyDesc:    db   "Party ", $4a
               next "status@"
 
-.PackDesc     db   "Contains"
+.PackDesc:     db   "Contains"
               next "items@"
 
-.PokegearDesc db   "Trainer's"
+.PokegearDesc: db   "Trainer's"
               next "key device@"
 
-.StatusDesc   db   "Your own"
+.StatusDesc:   db   "Your own"
               next "status@"
 
-.SaveDesc     db   "Save your"
+.SaveDesc:     db   "Save your"
               next "progress@"
 
-.OptionDesc   db   "Change"
+.OptionDesc:   db   "Change"
               next "settings@"
 
-.ExitDesc     db   "Close this"
+.ExitDesc:     db   "Close this"
               next "menu@"
 
-.QuitDesc     db   "Quit and"
+.QuitDesc:     db   "Quit and"
               next "be judged.@"
 
 
-.OpenMenu ; 127e5
+.OpenMenu: ; 127e5
 	ld a, [MenuSelection]
 	call .GetMenuAccountTextPointer
 	ld a, [hli]
@@ -230,7 +230,7 @@ StartMenu:: ; 125cd
 	jp [hl]
 ; 127ef
 
-.MenuString ; 127ef
+.MenuString: ; 127ef
 	push de
 	ld a, [MenuSelection]
 	call .GetMenuAccountTextPointer
@@ -244,7 +244,7 @@ StartMenu:: ; 125cd
 	ret
 ; 12800
 
-.MenuDesc ; 12800
+.MenuDesc: ; 12800
 	push de
 	ld a, [MenuSelection]
 	cp $ff
@@ -265,7 +265,7 @@ endr
 ; 12819
 
 
-.GetMenuAccountTextPointer ; 12819
+.GetMenuAccountTextPointer: ; 12819
 	ld e, a
 	ld d, 0
 	ld hl, wMenuData2PointerTableAddr
@@ -279,7 +279,7 @@ endr
 ; 12829
 
 
-.SetUpMenuItems ; 12829
+.SetUpMenuItems: ; 12829
 	xor a
 	ld [wWhichIndexSet], a
 	call .FillMenuList
@@ -340,7 +340,7 @@ endr
 ; 1288d
 
 
-.FillMenuList ; 1288d
+.FillMenuList: ; 1288d
 	xor a
 	ld hl, MenuItemsList
 	ld [hli], a
@@ -352,18 +352,18 @@ endr
 	ret
 ; 128a0
 
-.AppendMenuList ; 128a0
+.AppendMenuList: ; 128a0
 	ld [de], a
 	inc de
 	inc c
 	ret
 ; 128a4
 
-.DrawMenuAccount_ ; 128a4
+.DrawMenuAccount_: ; 128a4
 	jp .DrawMenuAccount
 ; 128a7
 
-.PrintMenuAccount ; 128a7
+.PrintMenuAccount: ; 128a7
 	call .IsMenuAccountOn
 	ret z
 	call .DrawMenuAccount
@@ -371,7 +371,7 @@ endr
 	jp .MenuDesc
 ; 128b4
 
-.DrawMenuAccount ; 128b4
+.DrawMenuAccount: ; 128b4
 	call .IsMenuAccountOn
 	ret z
 	hlcoord 0, 13
@@ -383,13 +383,13 @@ endr
 	jp TextBoxPalette
 ; 128cb
 
-.IsMenuAccountOn ; 128cb
+.IsMenuAccountOn: ; 128cb
 	ld a, [Options2]
 	and 1
 	ret
 ; 128d1
 
-.DrawBugContestStatusBox ; 128d1
+.DrawBugContestStatusBox: ; 128d1
 	ld hl, StatusFlags2
 	bit 2, [hl] ; bug catching contest
 	ret z
@@ -397,7 +397,7 @@ endr
 	ret
 ; 128de
 
-.DrawBugContestStatus ; 128de
+.DrawBugContestStatus: ; 128de
 	ld hl, StatusFlags2
 	bit 2, [hl] ; bug catching contest
 	jr nz, .contest
@@ -428,11 +428,11 @@ StartMenu_Quit: ; 128f0
 	ld a, 4
 	ret
 
-.DontEndContest
+.DontEndContest:
 	ld a, 0
 	ret
 
-.EndTheContestText
+.EndTheContestText:
 	text_jump UnknownText_0x1c1a6c
 	db "@"
 ; 1290b
@@ -630,27 +630,27 @@ TossItemFromPC: ; 129f4
 	scf
 	ret
 
-.TossHowMany
+.TossHowMany:
 	; Toss out how many @ (S)?
 	text_jump UnknownText_0x1c1a90
 	db "@"
 
-.ConfirmToss
+.ConfirmToss:
 	; Throw away @ @ (S)?
 	text_jump UnknownText_0x1c1aad
 	db "@"
 
-.TossedThisMany
+.TossedThisMany:
 	; Discarded @ (S).
 	text_jump UnknownText_0x1c1aca
 	db "@"
 
-.CantToss
+.CantToss:
 	ld hl, .TooImportantToToss
 	call MenuTextBoxBackup
 	ret
 
-.TooImportantToToss
+.TooImportantToToss:
 	; That's too impor- tant to toss out!
 	text_jump UnknownText_0x1c1adf
 	db "@"
@@ -707,7 +707,7 @@ PokemonActionSubmenu: ; 12a88
 	ld a, 0
 	ret
 
-.Actions
+.Actions:
 	dbw MONMENU_CUT,        MonMenu_Cut ; Cut
 	dbw MONMENU_FLY,        MonMenu_Fly ; Fly
 	dbw MONMENU_SURF,       MonMenu_Surf ; Surf
@@ -776,7 +776,7 @@ SwitchPartyMons: ; 12aec
 	ld a, 1
 	ret
 
-.DontSwitch
+.DontSwitch:
 	xor a
 	ld [PartyMenuActionText], a
 	call CancelPokemonAction
@@ -826,7 +826,7 @@ GiveTakePartyMonItem: ; 12b60
 ; 12ba9
 
 
-.GiveItem
+.GiveItem:
 
 	callba DepositSellInitPackBuffers
 
@@ -982,7 +982,7 @@ GiveTakeItemMenuData: ; 12c9b
 	dw .Items
 	db 1 ; default option
 
-.Items
+.Items:
 	db %10000000 ; x padding
 	db 2 ; # items
 	db "GIVE@"
@@ -1132,12 +1132,12 @@ MonMailAction: ; 12d45
 	call MenuTextBoxBackup
 	jr .done
 
-.MailboxFull
+.MailboxFull:
 	ld hl, .mailboxfulltext
 	call MenuTextBoxBackup
 	jr .done
 
-.RemoveMailToBag
+.RemoveMailToBag:
 	ld hl, .mailwilllosemessagetext
 	call StartMenuYesNo
 	jr c, .done
@@ -1153,7 +1153,7 @@ MonMailAction: ; 12d45
 	call MenuTextBoxBackup
 	jr .done
 
-.BagIsFull
+.BagIsFull:
 	ld hl, .bagfulltext
 	call MenuTextBoxBackup
 	jr .done
@@ -1164,7 +1164,7 @@ MonMailAction: ; 12d45
 ; 12dc9
 
 
-.MenuDataHeader
+.MenuDataHeader:
 	db $40 ; flags
 	db 10, 12 ; start coords
 	db 17, 19 ; end coords
@@ -1172,7 +1172,7 @@ MonMailAction: ; 12d45
 	db 1 ; default option
 ; 0x12dd1
 
-.MenuData2
+.MenuData2:
 	db $80 ; flags
 	db 3 ; items
 	db "READ@"
@@ -1242,7 +1242,7 @@ MonMenu_Cut: ; 12e1b
 	ld a, $2
 	ret
 
-.Fail
+.Fail:
 	ld a, $3
 	ret
 ; 12e30
@@ -1260,15 +1260,15 @@ MonMenu_Fly: ; 12e30
 	ld a, $2
 	ret
 
-.Fail
+.Fail:
 	ld a, $3
 	ret
 
-.Error
+.Error:
 	ld a, $0
 	ret
 
-.Unused
+.Unused:
 	ld a, $1
 	ret
 ; 12e55
@@ -1282,7 +1282,7 @@ MonMenu_Flash: ; 12e55
 	ld a, $2
 	ret
 
-.Fail
+.Fail:
 	ld a, $3
 	ret
 ; 12e6a
@@ -1296,7 +1296,7 @@ MonMenu_Strength: ; 12e6a
 	ld a, $2
 	ret
 
-.Fail
+.Fail:
 	ld a, $3
 	ret
 ; 12e7f
@@ -1310,7 +1310,7 @@ MonMenu_Whirlpool: ; 12e7f
 	ld a, $2
 	ret
 
-.Fail
+.Fail:
 	ld a, $3
 	ret
 ; 12e94
@@ -1324,7 +1324,7 @@ MonMenu_Waterfall: ; 12e94
 	ld a, $2
 	ret
 
-.Fail
+.Fail:
 	ld a, $3
 	ret
 ; 12ea9
@@ -1338,7 +1338,7 @@ MonMenu_Teleport: ; 12ea9
 	ld a, $2
 	ret
 
-.Fail
+.Fail:
 	ld a, $3
 	ret
 ; 12ebd
@@ -1352,7 +1352,7 @@ MonMenu_Surf: ; 12ebd
 	ld a, $2
 	ret
 
-.Fail
+.Fail:
 	ld a, $3
 	ret
 ; 12ed1
@@ -1366,7 +1366,7 @@ MonMenu_Dig: ; 12ed1
 	ld a, $2
 	ret
 
-.Fail
+.Fail:
 	ld a, $3
 	ret
 ; 12ee6
@@ -1377,7 +1377,7 @@ MonMenu_Softboiled_MilkDrink: ; 12ee6
 	callba Softboiled_MilkDrinkFunction
 	jr .finish
 
-.NotEnoughHP
+.NotEnoughHP:
 	ld hl, .Text_NotEnoughHP
 	call PrintText
 
@@ -1388,13 +1388,13 @@ MonMenu_Softboiled_MilkDrink: ; 12ee6
 	ret
 ; 12f00
 
-.Text_NotEnoughHP
+.Text_NotEnoughHP:
 	; Not enough HP!
 	text_jump UnknownText_0x1c1ce3
 	db "@"
 ; 0x12f05
 
-.CheckMonHasEnoughHP
+.CheckMonHasEnoughHP:
 ; Need to have at least (MaxHP / 5) HP left.
 	ld a, MON_MAXHP
 	call GetPartyParamLocation
@@ -1425,7 +1425,7 @@ MonMenu_Headbutt: ; 12f26
 	ld a, $2
 	ret
 
-.Fail
+.Fail:
 	ld a, $3
 	ret
 ; 12f3b
@@ -1439,7 +1439,7 @@ MonMenu_RockSmash: ; 12f3b
 	ld a, $2
 	ret
 
-.Fail
+.Fail:
 	ld a, $3
 	ret
 ; 12f50

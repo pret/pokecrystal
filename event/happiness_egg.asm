@@ -102,7 +102,7 @@ endr
 	ld [BattleMonHappiness], a
 	ret
 
-.Actions
+.Actions:
 	db  +5,  +3,  +2 ; Gained a level
 	db  +5,  +3,  +2 ; Vitamin
 	db  +1,  +1,  +0 ; X Item

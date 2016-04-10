@@ -35,11 +35,11 @@ BurnedTower1F_MapScriptHeader:
 	checkevent EVENT_HOLE_IN_BURNED_TOWER
 	iftrue .Next
 	changeblock $a, $8, $32 ; hole
-.Next
+.Next:
 	checkevent EVENT_RELEASED_THE_BEASTS
 	iftrue .Done
 	changeblock $6, $e, $9 ; ladder
-.Done
+.Done:
 	return
 
 .EusineTrigger:
@@ -137,11 +137,11 @@ BurnedTower1FRock:
 
 BurnedTower1FHiddenEther:
 	dwb EVENT_BURNED_TOWER_1F_HIDDEN_ETHER, ETHER
-	
+
 
 BurnedTower1FHiddenUltraBall:
 	dwb EVENT_BURNED_TOWER_1F_HIDDEN_ULTRA_BALL, ULTRA_BALL
-	
+
 
 BurnedTower1FHPUp:
 	itemball HP_UP

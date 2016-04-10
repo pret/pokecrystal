@@ -31,7 +31,7 @@ FalknerScript_0x683c2:
 	setflag ENGINE_ZEPHYRBADGE
 	checkcode VAR_BADGES
 	scall VioletGymTriggerRockets
-.FightDone
+.FightDone:
 	checkevent EVENT_GOT_TM31_MUD_SLAP
 	iftrue .SpeechAfterTM
 	setevent EVENT_BEAT_BIRD_KEEPER_ROD
@@ -60,10 +60,10 @@ VioletGymTriggerRockets:
 	if_equal 6, .GoldenrodRockets
 	end
 
-.GoldenrodRockets
+.GoldenrodRockets:
 	jumpstd goldenrodrockets
 
-.RadioTowerRockets
+.RadioTowerRockets:
 	jumpstd radiotowerrockets
 
 TrainerBird_keeperRod:
@@ -98,7 +98,7 @@ VioletGymGuyScript:
 	closetext
 	end
 
-.VioletGymGuyWinScript
+.VioletGymGuyWinScript:
 	writetext VioletGymGuyWinText
 	waitbutton
 	closetext
@@ -108,7 +108,7 @@ VioletGymStatue:
 	checkflag ENGINE_ZEPHYRBADGE
 	iftrue .Beaten
 	jumpstd gymstatue1
-.Beaten
+.Beaten:
 	trainertotext FALKNER, 1, $1
 	jumpstd gymstatue2
 

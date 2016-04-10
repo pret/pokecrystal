@@ -28,7 +28,7 @@ BlaineScript_0x1ab4fb:
 	startbattle
 	iftrue .ReturnAfterBattle
 	appear SEAFOAMGYM_GYM_GUY
-.ReturnAfterBattle
+.ReturnAfterBattle:
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BLAINE
 	opentext
@@ -41,7 +41,7 @@ BlaineScript_0x1ab4fb:
 	closetext
 	end
 
-.FightDone
+.FightDone:
 	writetext UnknownText_0x1ab71c
 	waitbutton
 	closetext
@@ -58,7 +58,7 @@ SeafoamGymGuyScript:
 	setevent EVENT_TALKED_TO_SEAFOAM_GYM_GUY_ONCE
 	end
 
-.TalkedToSeafoamGymGuyScript
+.TalkedToSeafoamGymGuyScript:
 	writetext SeafoamGymGuyWinText2
 	waitbutton
 	closetext

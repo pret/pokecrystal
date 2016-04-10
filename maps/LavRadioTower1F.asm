@@ -39,13 +39,13 @@ GentlemanScript_0x7ee6c:
 	stringtotext .expncardname, $1
 	scall .UnknownScript_0x7ee94
 	setflag ENGINE_EXPN_CARD
-.UnknownScript_0x7ee8e
+.UnknownScript_0x7ee8e:
 	writetext UnknownText_0x7f141
 	waitbutton
 	closetext
 	end
 
-.UnknownScript_0x7ee94
+.UnknownScript_0x7ee94:
 	jumpstd receiveitem
 	end
 

@@ -186,35 +186,35 @@ BattleAnimFrameData: ; ce85e
 	dw .Frameset_b8 ; b8
 
      ; OAM index (see battle/objects/oam.asm), flip flags / duration
-.Frameset_00 
+.Frameset_00:
 	db BATTLEANIMOAMSET_00, $06
 	db -4
 
-.Frameset_01 
+.Frameset_01:
 	db BATTLEANIMOAMSET_01, $06
 	db -4
 
-.Frameset_02 
+.Frameset_02:
 	db BATTLEANIMOAMSET_02, $06
 	db -4
 
-.Frameset_03 
+.Frameset_03:
 	db BATTLEANIMOAMSET_03, $06
 	db -4
 
-.Frameset_04 
+.Frameset_04:
 	db BATTLEANIMOAMSET_04, $06
 	db -4
 
-.Frameset_05 
+.Frameset_05:
 	db BATTLEANIMOAMSET_05, $06
 	db -4
 
-.Frameset_06 
+.Frameset_06:
 	db BATTLEANIMOAMSET_06, $06
 	db -4
 
-.Frameset_07 
+.Frameset_07:
 	db BATTLEANIMOAMSET_03, $04
 	db BATTLEANIMOAMSET_01, $01
 	db BATTLEANIMOAMSET_03, $04
@@ -225,7 +225,7 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_01, $01
 	db -4
 
-.Frameset_3e 
+.Frameset_3e:
 	db BATTLEANIMOAMSET_4B, $02
 	db BATTLEANIMOAMSET_4C, $02
 	db BATTLEANIMOAMSET_4D, $04
@@ -238,7 +238,7 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_4E, $02
 	db -4
 
-.Frameset_3f 
+.Frameset_3f:
 	db BATTLEANIMOAMSET_4B, $42
 	db BATTLEANIMOAMSET_4C, $42
 	db BATTLEANIMOAMSET_4D, $44
@@ -251,7 +251,7 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_4E, $42
 	db -4
 
-.Frameset_40 
+.Frameset_40:
 	db BATTLEANIMOAMSET_4B, $c2
 	db BATTLEANIMOAMSET_4C, $c2
 	db BATTLEANIMOAMSET_4D, $c4
@@ -264,7 +264,7 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_4E, $c2
 	db -4
 
-.Frameset_41 
+.Frameset_41:
 	db BATTLEANIMOAMSET_4B, $01
 	db BATTLEANIMOAMSET_4C, $01
 	db BATTLEANIMOAMSET_4D, $01
@@ -280,7 +280,7 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_52, $02
 	db -4
 
-.Frameset_42 
+.Frameset_42:
 	db BATTLEANIMOAMSET_4B, $41
 	db BATTLEANIMOAMSET_4C, $41
 	db BATTLEANIMOAMSET_4D, $41
@@ -296,33 +296,33 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_52, $42
 	db -4
 
-.Frameset_08 
+.Frameset_08:
 	db BATTLEANIMOAMSET_00, $03
 	db BATTLEANIMOAMSET_07, $03
 	db BATTLEANIMOAMSET_08, $03
 	db BATTLEANIMOAMSET_09, $03
 	db -4
 
-.Frameset_09 
+.Frameset_09:
 	db BATTLEANIMOAMSET_0A, $07
 	db BATTLEANIMOAMSET_0B, $07
 	db BATTLEANIMOAMSET_0A, $07
 	db BATTLEANIMOAMSET_0B, $47
 	db -2
 
-.Frameset_0a 
+.Frameset_0a:
 	db BATTLEANIMOAMSET_0C, $08
 	db -1
 
-.Frameset_0b 
+.Frameset_0b:
 	db BATTLEANIMOAMSET_0D, $08
 	db -1
 
-.Frameset_0c 
+.Frameset_0c:
 	db BATTLEANIMOAMSET_0A, $08
 	db -1
 
-.Frameset_0d 
+.Frameset_0d:
 	db BATTLEANIMOAMSET_0A, $07
 	db BATTLEANIMOAMSET_0B, $07
 	db BATTLEANIMOAMSET_0A, $07
@@ -330,21 +330,21 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_0A, $07
 	db -1
 
-.Frameset_0e 
+.Frameset_0e:
 	db BATTLEANIMOAMSET_0A, $08
 	db -1
 
-.Frameset_0f 
+.Frameset_0f:
 	db BATTLEANIMOAMSET_0A, $04
 	db BATTLEANIMOAMSET_0E, $04
 	db -2
 
-.Frameset_10 
+.Frameset_10:
 	db BATTLEANIMOAMSET_0F, $04
 	db BATTLEANIMOAMSET_10, $04
 	db -2
 
-.Frameset_11 
+.Frameset_11:
 	db BATTLEANIMOAMSET_10, $04
 	db BATTLEANIMOAMSET_0F, $04
 	db BATTLEANIMOAMSET_0E, $04
@@ -355,7 +355,7 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_0A, $04
 	db -4
 
-.Frameset_12 
+.Frameset_12:
 	db BATTLEANIMOAMSET_10, $01
 	db BATTLEANIMOAMSET_0F, $01
 	db BATTLEANIMOAMSET_12, $01
@@ -364,7 +364,7 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_0F, $01
 	db -2
 
-.Frameset_13 
+.Frameset_13:
 	db BATTLEANIMOAMSET_10, $03
 	db BATTLEANIMOAMSET_0F, $03
 	db BATTLEANIMOAMSET_12, $01
@@ -378,20 +378,20 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_12, $03
 	db -4
 
-.Frameset_14 
+.Frameset_14:
 	db BATTLEANIMOAMSET_13, $14
 	db -4
 
-.Frameset_15 
+.Frameset_15:
 	db BATTLEANIMOAMSET_10, $01
 	db BATTLEANIMOAMSET_0F, $01
 	db -2
 
-.Frameset_16 
+.Frameset_16:
 	db BATTLEANIMOAMSET_14, $08
 	db -1
 
-.Frameset_17 
+.Frameset_17:
 	db BATTLEANIMOAMSET_17, $04
 	db BATTLEANIMOAMSET_16, $08
 	db BATTLEANIMOAMSET_15, $08
@@ -404,11 +404,11 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_17, $04
 	db -2
 
-.Frameset_56 
+.Frameset_56:
 	db BATTLEANIMOAMSET_69, $08
 	db -1
 
-.Frameset_57 
+.Frameset_57:
 	db BATTLEANIMOAMSET_69, $20
 	db BATTLEANIMOAMSET_6A, $04
 	db BATTLEANIMOAMSET_6B, $04
@@ -416,94 +416,94 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_6C, $04
 	db -1
 
-.Frameset_58 
+.Frameset_58:
 	db BATTLEANIMOAMSET_6C, $08
 	db BATTLEANIMOAMSET_6D, $08
 	db -2
 
-.Frameset_18 
+.Frameset_18:
 	db BATTLEANIMOAMSET_18, $04
 	db BATTLEANIMOAMSET_19, $04
 	db BATTLEANIMOAMSET_1A, $04
 	db -4
 
-.Frameset_19 
+.Frameset_19:
 	db BATTLEANIMOAMSET_1B, $08
 	db -1
 
-.Frameset_1a 
+.Frameset_1a:
 	db BATTLEANIMOAMSET_0F, $08
 	db -1
 
-.Frameset_1b 
+.Frameset_1b:
 	db BATTLEANIMOAMSET_1C, $08
 	db -1
 
-.Frameset_1c 
+.Frameset_1c:
 	db BATTLEANIMOAMSET_0A, $08
 	db -4
 
-.Frameset_1d 
+.Frameset_1d:
 	db BATTLEANIMOAMSET_1D, $08
 	db -1
 
-.Frameset_1e 
+.Frameset_1e:
 	db BATTLEANIMOAMSET_17, $08
 	db -1
 
-.Frameset_1f 
+.Frameset_1f:
 	db BATTLEANIMOAMSET_0F, $03
 	db BATTLEANIMOAMSET_10, $03
 	db BATTLEANIMOAMSET_1E, $03
 	db -1
 
-.Frameset_20 
+.Frameset_20:
 	db BATTLEANIMOAMSET_1F, $10
 	db BATTLEANIMOAMSET_20, $03
 	db -4
 
-.Frameset_21 
+.Frameset_21:
 	db BATTLEANIMOAMSET_20, $08
 	db -1
 
-.Frameset_22 
+.Frameset_22:
 	db BATTLEANIMOAMSET_20, $08
 	db BATTLEANIMOAMSET_21, $08
 	db BATTLEANIMOAMSET_1B, $08
 	db BATTLEANIMOAMSET_21, $08
 	db -2
 
-.Frameset_23 
+.Frameset_23:
 	db BATTLEANIMOAMSET_22, $08
 	db -1
 
-.Frameset_24 
+.Frameset_24:
 	db BATTLEANIMOAMSET_1B, $08
 	db -1
 
-.Frameset_25 
+.Frameset_25:
 	db BATTLEANIMOAMSET_23, $08
 	db -1
 
-.Frameset_26 
+.Frameset_26:
 	db BATTLEANIMOAMSET_24, $08
 	db -1
 
-.Frameset_27 
+.Frameset_27:
 	db BATTLEANIMOAMSET_25, $08
 	db -1
 
-.Frameset_28 
+.Frameset_28:
 	db BATTLEANIMOAMSET_26, $08
 	db BATTLEANIMOAMSET_27, $08
 	db -1
 
-.Frameset_29 
+.Frameset_29:
 	db BATTLEANIMOAMSET_28, $08
 	db BATTLEANIMOAMSET_29, $08
 	db -4
 
-.Frameset_2a 
+.Frameset_2a:
 	db BATTLEANIMOAMSET_2A, $01
 	db BATTLEANIMOAMSET_2B, $01
 	db BATTLEANIMOAMSET_2C, $01
@@ -515,26 +515,26 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_2A, $01
 	db -4
 
-.Frameset_2b 
+.Frameset_2b:
 	db BATTLEANIMOAMSET_14, $01
 	db BATTLEANIMOAMSET_15, $01
 	db -2
 
-.Frameset_2c 
+.Frameset_2c:
 	db BATTLEANIMOAMSET_2F, $04
 	db BATTLEANIMOAMSET_30, $28
 	db -4
 
-.Frameset_2d 
+.Frameset_2d:
 	db BATTLEANIMOAMSET_31, $08
 	db -1
 
-.Frameset_2e 
+.Frameset_2e:
 	db BATTLEANIMOAMSET_32, $20
 	db BATTLEANIMOAMSET_33, $20
 	db BATTLEANIMOAMSET_34, $20
 	db BATTLEANIMOAMSET_35, $20 ; fallthrough
-.Frameset_2f 
+.Frameset_2f:
 	db -3, $02
 	db BATTLEANIMOAMSET_35, $04
 	db -3, $02
@@ -545,39 +545,39 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_35, $04
 	db -4
 
-.Frameset_30 
+.Frameset_30:
 	db BATTLEANIMOAMSET_14, $04
 	db BATTLEANIMOAMSET_15, $04
 	db -2
 
-.Frameset_31 
+.Frameset_31:
 	db BATTLEANIMOAMSET_36, $02
 	db BATTLEANIMOAMSET_37, $02
 	db BATTLEANIMOAMSET_38, $02
 	db BATTLEANIMOAMSET_39, $20
 	db -4
 
-.Frameset_32 
+.Frameset_32:
 	db BATTLEANIMOAMSET_3A, $02
 	db BATTLEANIMOAMSET_3B, $02
 	db BATTLEANIMOAMSET_3C, $02
 	db BATTLEANIMOAMSET_3D, $20
 	db -4
 
-.Frameset_33 
+.Frameset_33:
 	db BATTLEANIMOAMSET_3A, $42
 	db BATTLEANIMOAMSET_3B, $42
 	db BATTLEANIMOAMSET_3C, $42
 	db BATTLEANIMOAMSET_3D, $60
 	db -4
 
-.Frameset_34 
+.Frameset_34:
 	db BATTLEANIMOAMSET_3E, $08
 	db BATTLEANIMOAMSET_3F, $08
 	db BATTLEANIMOAMSET_40, $08
 	db -1
 
-.Frameset_35 
+.Frameset_35:
 	db BATTLEANIMOAMSET_40, $02
 	db -3, $02
 	db BATTLEANIMOAMSET_40, $02
@@ -588,57 +588,57 @@ BattleAnimFrameData: ; ce85e
 	db -3, $02
 	db -2
 
-.Frameset_36 
+.Frameset_36:
 	db BATTLEANIMOAMSET_42, $02
 	db BATTLEANIMOAMSET_43, $02
 	db BATTLEANIMOAMSET_44, $02
 	db BATTLEANIMOAMSET_45, $02
 	db -2
 
-.Frameset_37 
+.Frameset_37:
 	db BATTLEANIMOAMSET_19, $02
 	db -3, $02
 	db -2
 
-.Frameset_38 
+.Frameset_38:
 	db BATTLEANIMOAMSET_46, $04
 	db BATTLEANIMOAMSET_47, $04
 	db -2
 
-.Frameset_39 
+.Frameset_39:
 	db BATTLEANIMOAMSET_18, $02
 	db -3, $02
 	db -2
 
-.Frameset_3a 
+.Frameset_3a:
 	db BATTLEANIMOAMSET_48, $08
 	db -1
 
-.Frameset_3b 
+.Frameset_3b:
 	db BATTLEANIMOAMSET_48, $48
 	db -1
 
-.Frameset_3c 
+.Frameset_3c:
 	db BATTLEANIMOAMSET_49, $08
 	db -1
 
-.Frameset_3d 
+.Frameset_3d:
 	db BATTLEANIMOAMSET_4A, $08
 	db -1
 
-.Frameset_43 
+.Frameset_43:
 	db BATTLEANIMOAMSET_20, $10
 	db BATTLEANIMOAMSET_1F, $10
 	db BATTLEANIMOAMSET_1E, $10
 	db -1
 
-.Frameset_4c 
+.Frameset_4c:
 	db BATTLEANIMOAMSET_20, $08
 	db BATTLEANIMOAMSET_1F, $08
 	db BATTLEANIMOAMSET_1E, $08
 	db -1
 
-.Frameset_44 
+.Frameset_44:
 	db -3, $14
 	db BATTLEANIMOAMSET_55, $28
 	db BATTLEANIMOAMSET_54, $28
@@ -651,13 +651,13 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_53, $04
 	db -4
 
-.Frameset_7e 
+.Frameset_7e:
 	db BATTLEANIMOAMSET_1E, $08
 	db BATTLEANIMOAMSET_1F, $08
 	db BATTLEANIMOAMSET_20, $08
 	db -4
 
-.Frameset_45 
+.Frameset_45:
 	db -3, $00
 	db BATTLEANIMOAMSET_14, $00
 	db BATTLEANIMOAMSET_15, $00
@@ -668,17 +668,17 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_16, $00
 	db -2
 
-.Frameset_46 
+.Frameset_46:
 	db BATTLEANIMOAMSET_56, $02
 	db BATTLEANIMOAMSET_57, $04
 	db -4
 
-.Frameset_47 
+.Frameset_47:
 	db BATTLEANIMOAMSET_56, $c2
 	db BATTLEANIMOAMSET_57, $c4
 	db -4
 
-.Frameset_48 
+.Frameset_48:
 	db BATTLEANIMOAMSET_56, $01
 	db BATTLEANIMOAMSET_57, $01
 	db BATTLEANIMOAMSET_58, $01
@@ -687,7 +687,7 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_57, $02
 	db -4
 
-.Frameset_49 
+.Frameset_49:
 	db BATTLEANIMOAMSET_56, $c1
 	db BATTLEANIMOAMSET_57, $c1
 	db BATTLEANIMOAMSET_58, $c1
@@ -696,21 +696,21 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_57, $c2
 	db -4
 
-.Frameset_4a 
+.Frameset_4a:
 	db BATTLEANIMOAMSET_57, $c1
 	db BATTLEANIMOAMSET_58, $c1
 	db BATTLEANIMOAMSET_57, $01
 	db BATTLEANIMOAMSET_58, $01
 	db -2
 
-.Frameset_4b 
+.Frameset_4b:
 	db BATTLEANIMOAMSET_59, $01
 	db BATTLEANIMOAMSET_5A, $01
 	db BATTLEANIMOAMSET_5B, $01
 	db BATTLEANIMOAMSET_5C, $02
 	db -4
 
-.Frameset_4d 
+.Frameset_4d:
 	db BATTLEANIMOAMSET_0A, $0a
 	db BATTLEANIMOAMSET_0B, $43
 	db BATTLEANIMOAMSET_5D, $43
@@ -721,7 +721,7 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_0B, $01
 	db -2
 
-.Frameset_4e 
+.Frameset_4e:
 	db BATTLEANIMOAMSET_0A, $03
 	db BATTLEANIMOAMSET_0B, $47
 	db BATTLEANIMOAMSET_0A, $07
@@ -729,55 +729,55 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_0A, $03
 	db -2
 
-.Frameset_4f 
+.Frameset_4f:
 	db BATTLEANIMOAMSET_5E, $20
 	db BATTLEANIMOAMSET_5E, $20
 	db -4
 
-.Frameset_50 
+.Frameset_50:
 	db BATTLEANIMOAMSET_5F, $20
 	db BATTLEANIMOAMSET_5F, $20
 	db -4
 
-.Frameset_51 
+.Frameset_51:
 	db BATTLEANIMOAMSET_60, $08
 	db -1
 
-.Frameset_52 
+.Frameset_52:
 	db BATTLEANIMOAMSET_61, $01
 	db BATTLEANIMOAMSET_62, $01
 	db BATTLEANIMOAMSET_63, $01
 	db -1
 
-.Frameset_53 
+.Frameset_53:
 	db BATTLEANIMOAMSET_63, $07
 	db BATTLEANIMOAMSET_64, $07
 	db -2
 
-.Frameset_54 
+.Frameset_54:
 	db BATTLEANIMOAMSET_65, $01
 	db BATTLEANIMOAMSET_66, $01
 	db BATTLEANIMOAMSET_67, $01
 	db -1
 
-.Frameset_55 
+.Frameset_55:
 	db BATTLEANIMOAMSET_67, $07
 	db BATTLEANIMOAMSET_68, $07
 	db -2
 
-.Frameset_59 
+.Frameset_59:
 	db BATTLEANIMOAMSET_6E, $08
 	db -1
 
-.Frameset_5a 
+.Frameset_5a:
 	db BATTLEANIMOAMSET_6F, $08
 	db -1
 
-.Frameset_5b 
+.Frameset_5b:
 	db BATTLEANIMOAMSET_6E, $88
 	db -1
 
-.Frameset_5c 
+.Frameset_5c:
 	db BATTLEANIMOAMSET_18, $04
 	db BATTLEANIMOAMSET_70, $04
 	db BATTLEANIMOAMSET_71, $04
@@ -785,16 +785,16 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_73, $04
 	db -4
 
-.Frameset_5d 
+.Frameset_5d:
 	db BATTLEANIMOAMSET_74, $04
 	db BATTLEANIMOAMSET_75, $04
 	db -2
 
-.Frameset_5e 
+.Frameset_5e:
 	db BATTLEANIMOAMSET_14, $08
 	db -1
 
-.Frameset_7a 
+.Frameset_7a:
 	db BATTLEANIMOAMSET_74, $03
 	db BATTLEANIMOAMSET_14, $03
 	db BATTLEANIMOAMSET_15, $03
@@ -802,7 +802,7 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_15, $03
 	db -4
 
-.Frameset_af 
+.Frameset_af:
 	db BATTLEANIMOAMSET_14, $00
 	db BATTLEANIMOAMSET_15, $00
 	db BATTLEANIMOAMSET_14, $00
@@ -810,11 +810,11 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_74, $0c
 	db -4
 
-.Frameset_5f 
+.Frameset_5f:
 	db BATTLEANIMOAMSET_76, $08
 	db -1
 
-.Frameset_60 
+.Frameset_60:
 	db BATTLEANIMOAMSET_77, $01
 	db BATTLEANIMOAMSET_78, $01
 	db BATTLEANIMOAMSET_79, $01
@@ -830,29 +830,29 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_77, $c1
 	db -4
 
-.Frameset_61 
+.Frameset_61:
 	db BATTLEANIMOAMSET_1B, $04
 	db BATTLEANIMOAMSET_7E, $04
 	db -2
 
-.Frameset_62 
+.Frameset_62:
 	db BATTLEANIMOAMSET_1B, $44
 	db BATTLEANIMOAMSET_7E, $44
 	db -2
 
-.Frameset_63 
+.Frameset_63:
 	db BATTLEANIMOAMSET_7F, $08
 	db -1
 
-.Frameset_64 
+.Frameset_64:
 	db BATTLEANIMOAMSET_25, $08
 	db -1
 
-.Frameset_65 
+.Frameset_65:
 	db BATTLEANIMOAMSET_80, $08
 	db -1
 
-.Frameset_66 
+.Frameset_66:
 	db BATTLEANIMOAMSET_83, $07
 	db BATTLEANIMOAMSET_82, $07
 	db BATTLEANIMOAMSET_81, $07
@@ -862,11 +862,11 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_81, $07
 	db -4
 
-.Frameset_67 
+.Frameset_67:
 	db BATTLEANIMOAMSET_1B, $10
 	db -4
 
-.Frameset_68 
+.Frameset_68:
 	db -3, $0f
 	db BATTLEANIMOAMSET_84, $0f
 	db BATTLEANIMOAMSET_85, $0f
@@ -875,85 +875,85 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_86, $20
 	db -4
 
-.Frameset_69 
+.Frameset_69:
 	db BATTLEANIMOAMSET_1B, $03
 	db BATTLEANIMOAMSET_87, $03
 	db BATTLEANIMOAMSET_88, $03
 	db BATTLEANIMOAMSET_89, $03
 	db -4
 
-.Frameset_6a 
+.Frameset_6a:
 	db BATTLEANIMOAMSET_8A, $02
 	db BATTLEANIMOAMSET_8B, $02
 	db BATTLEANIMOAMSET_8C, $02
 	db BATTLEANIMOAMSET_8D, $02
 	db -4
 
-.Frameset_6b 
+.Frameset_6b:
 	db BATTLEANIMOAMSET_61, $02
 	db BATTLEANIMOAMSET_62, $02
 	db BATTLEANIMOAMSET_63, $02
 	db -1
 
-.Frameset_6c 
+.Frameset_6c:
 	db BATTLEANIMOAMSET_65, $02
 	db BATTLEANIMOAMSET_66, $02
 	db BATTLEANIMOAMSET_67, $02
 	db -1
 
-.Frameset_6d 
+.Frameset_6d:
 	db BATTLEANIMOAMSET_8E, $08
 	db -1
 
-.Frameset_6e 
+.Frameset_6e:
 	db BATTLEANIMOAMSET_8E, $48
 	db -1
 
-.Frameset_6f 
+.Frameset_6f:
 	db BATTLEANIMOAMSET_8F, $10
 	db BATTLEANIMOAMSET_90, $10
 	db -2
 
-.Frameset_70 
+.Frameset_70:
 	db BATTLEANIMOAMSET_91, $10
 	db BATTLEANIMOAMSET_92, $10
 	db -2
 
-.Frameset_71 
+.Frameset_71:
 	db BATTLEANIMOAMSET_93, $08
 	db -1
 
-.Frameset_72 
+.Frameset_72:
 	db BATTLEANIMOAMSET_1E, $08
 	db -1
 
-.Frameset_73 
+.Frameset_73:
 	db BATTLEANIMOAMSET_1B, $07
 	db BATTLEANIMOAMSET_94, $07
 	db -2
 
-.Frameset_74 
+.Frameset_74:
 	db BATTLEANIMOAMSET_95, $08
 	db -1
 
-.Frameset_75 
+.Frameset_75:
 	db BATTLEANIMOAMSET_96, $08
 	db -1
 
-.Frameset_76 
+.Frameset_76:
 	db BATTLEANIMOAMSET_95, $08
 	db -1
 
-.Frameset_77 
+.Frameset_77:
 	db BATTLEANIMOAMSET_97, $01
 	db BATTLEANIMOAMSET_97, $41
 	db -2
 
-.Frameset_78 
+.Frameset_78:
 	db BATTLEANIMOAMSET_98, $08
 	db -1
 
-.Frameset_79 
+.Frameset_79:
 	db BATTLEANIMOAMSET_99, $20
 	db BATTLEANIMOAMSET_99, $20
 	db BATTLEANIMOAMSET_99, $20
@@ -962,11 +962,11 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_9A, $08
 	db -1
 
-.Frameset_7b 
+.Frameset_7b:
 	db BATTLEANIMOAMSET_9B, $08
 	db -1
 
-.Frameset_7c 
+.Frameset_7c:
 	db BATTLEANIMOAMSET_9C, $02
 	db BATTLEANIMOAMSET_9D, $02
 	db BATTLEANIMOAMSET_9E, $08
@@ -978,31 +978,31 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_9E, $02
 	db -4
 
-.Frameset_7d 
+.Frameset_7d:
 	db BATTLEANIMOAMSET_9F, $08
 	db -1
 
-.Frameset_7f 
+.Frameset_7f:
 	db BATTLEANIMOAMSET_0F, $08
 	db -1
 
-.Frameset_80 
+.Frameset_80:
 	db BATTLEANIMOAMSET_6B, $18
 	db -4
 
-.Frameset_81 
+.Frameset_81:
 	db BATTLEANIMOAMSET_A0, $01 ; fallthrough
-.Frameset_82 
+.Frameset_82:
 	db BATTLEANIMOAMSET_A1, $01 ; fallthrough
-.Frameset_83 
+.Frameset_83:
 	db BATTLEANIMOAMSET_A2, $01
 	db -4
 
-.Frameset_84 
+.Frameset_84:
 	db BATTLEANIMOAMSET_A3, $08
 	db -1
 
-.Frameset_85 
+.Frameset_85:
 	db BATTLEANIMOAMSET_A4, $04
 	db BATTLEANIMOAMSET_A5, $04
 	db BATTLEANIMOAMSET_A6, $04
@@ -1011,7 +1011,7 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_A5, $44
 	db -2
 
-.Frameset_86 
+.Frameset_86:
 	db BATTLEANIMOAMSET_A8, $04
 	db BATTLEANIMOAMSET_A9, $04
 	db BATTLEANIMOAMSET_AA, $04
@@ -1020,137 +1020,137 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_A9, $44
 	db -2
 
-.Frameset_87 
+.Frameset_87:
 	db BATTLEANIMOAMSET_1B, $08
 	db -1
 
-.Frameset_88 
+.Frameset_88:
 	db BATTLEANIMOAMSET_AC, $08
 	db -1
 
-.Frameset_89 
+.Frameset_89:
 	db BATTLEANIMOAMSET_AD, $08
 	db -1
 
-.Frameset_8a 
+.Frameset_8a:
 	db BATTLEANIMOAMSET_AE, $08
 	db -1
 
-.Frameset_8b 
+.Frameset_8b:
 	db BATTLEANIMOAMSET_AF, $08
 	db -1
 
-.Frameset_8c 
+.Frameset_8c:
 	db BATTLEANIMOAMSET_B0, $20
 	db -4
 
-.Frameset_8d 
+.Frameset_8d:
 	db BATTLEANIMOAMSET_B1, $07
 	db BATTLEANIMOAMSET_B1, $47
 	db -2
 
-.Frameset_8e 
+.Frameset_8e:
 	db BATTLEANIMOAMSET_B2, $08
 	db -1
 
-.Frameset_8f 
+.Frameset_8f:
 	db BATTLEANIMOAMSET_B3, $08
 	db -1
 
-.Frameset_90 
+.Frameset_90:
 	db BATTLEANIMOAMSET_B3, $48
 	db -1
 
-.Frameset_91 
+.Frameset_91:
 	db BATTLEANIMOAMSET_B3, $88
 	db -1
 
-.Frameset_92 
+.Frameset_92:
 	db BATTLEANIMOAMSET_B3, $c8
 	db -1
 
-.Frameset_93 
+.Frameset_93:
 	db BATTLEANIMOAMSET_B5, $08
 	db -1
 
-.Frameset_94 
+.Frameset_94:
 	db BATTLEANIMOAMSET_B5, $48
 	db -1
 
-.Frameset_95 
+.Frameset_95:
 	db BATTLEANIMOAMSET_B5, $88
 	db -1
 
-.Frameset_96 
+.Frameset_96:
 	db BATTLEANIMOAMSET_B5, $c8
 	db -1
 
-.Frameset_97 
+.Frameset_97:
 	db BATTLEANIMOAMSET_B4, $08
 	db -1
 
-.Frameset_98 
+.Frameset_98:
 	db BATTLEANIMOAMSET_6B, $08
 	db -1
 
-.Frameset_99 
+.Frameset_99:
 	db BATTLEANIMOAMSET_B6, $08
 	db -1
 
-.Frameset_9a 
+.Frameset_9a:
 	db BATTLEANIMOAMSET_B7, $20
 	db -1
 
-.Frameset_9b 
+.Frameset_9b:
 	db BATTLEANIMOAMSET_1B, $20
 	db -1
 
-.Frameset_9c 
+.Frameset_9c:
 	db BATTLEANIMOAMSET_B8, $20
 	db -1
 
-.Frameset_9d 
+.Frameset_9d:
 	db BATTLEANIMOAMSET_B8, $60
 	db -1
 
-.Frameset_9e 
+.Frameset_9e:
 	db BATTLEANIMOAMSET_B9, $20
 	db -1
 
-.Frameset_9f 
+.Frameset_9f:
 	db BATTLEANIMOAMSET_BA, $20
 	db -1
 
-.Frameset_a0 
+.Frameset_a0:
 	db BATTLEANIMOAMSET_BB, $60
 	db -1
 
-.Frameset_a1 
+.Frameset_a1:
 	db BATTLEANIMOAMSET_BB, $20
 	db -1
 
-.Frameset_a2 
+.Frameset_a2:
 	db BATTLEANIMOAMSET_BC, $20
 	db -1
 
-.Frameset_a3 
+.Frameset_a3:
 	db BATTLEANIMOAMSET_BD, $0b
 	db BATTLEANIMOAMSET_BE, $0b
 	db BATTLEANIMOAMSET_1B, $0b
 	db -4
 
-.Frameset_a4 
+.Frameset_a4:
 	db BATTLEANIMOAMSET_BF, $04
 	db BATTLEANIMOAMSET_C0, $04
 	db BATTLEANIMOAMSET_C1, $04
 	db -4
 
-.Frameset_a5 
+.Frameset_a5:
 	db BATTLEANIMOAMSET_C2, $20
 	db BATTLEANIMOAMSET_C2, $20
 	db -4
 
-.Frameset_a6 
+.Frameset_a6:
 	db BATTLEANIMOAMSET_4B, $02
 	db BATTLEANIMOAMSET_4C, $02
 	db BATTLEANIMOAMSET_4D, $20
@@ -1168,7 +1168,7 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_52, $02
 	db -4
 
-.Frameset_a7 
+.Frameset_a7:
 	db BATTLEANIMOAMSET_4B, $c2
 	db BATTLEANIMOAMSET_4C, $c2
 	db BATTLEANIMOAMSET_4D, $e0
@@ -1186,84 +1186,84 @@ BattleAnimFrameData: ; ce85e
 	db BATTLEANIMOAMSET_52, $c2
 	db -4
 
-.Frameset_a8 
+.Frameset_a8:
 	db BATTLEANIMOAMSET_C3, $01
 	db BATTLEANIMOAMSET_C3, $c1
 	db -2
 
-.Frameset_a9 
+.Frameset_a9:
 	db BATTLEANIMOAMSET_C4, $20
 	db -1
 
-.Frameset_aa 
+.Frameset_aa:
 	db BATTLEANIMOAMSET_C5, $04
 	db BATTLEANIMOAMSET_C6, $04
 	db BATTLEANIMOAMSET_C7, $04
 	db -4
 
-.Frameset_ab 
+.Frameset_ab:
 	db BATTLEANIMOAMSET_C8, $01
 	db BATTLEANIMOAMSET_C8, $41
 	db -2
 
-.Frameset_ac 
+.Frameset_ac:
 	db BATTLEANIMOAMSET_C9, $03
 	db BATTLEANIMOAMSET_05, $03
 	db -4
 
-.Frameset_ad 
+.Frameset_ad:
 	db BATTLEANIMOAMSET_CA, $20
 	db BATTLEANIMOAMSET_CB, $03
 	db BATTLEANIMOAMSET_CA, $03
 	db BATTLEANIMOAMSET_CB, $03
 	db -2
 
-.Frameset_ae 
+.Frameset_ae:
 	db BATTLEANIMOAMSET_03, $a0
 	db -1
 
-.Frameset_b0 
+.Frameset_b0:
 	db BATTLEANIMOAMSET_CC, $20
 	db -1
 
-.Frameset_b1 
+.Frameset_b1:
 	db BATTLEANIMOAMSET_7F, $02
 	db BATTLEANIMOAMSET_25, $02
 	db BATTLEANIMOAMSET_80, $02
 	db BATTLEANIMOAMSET_25, $02
 	db -2
 
-.Frameset_b2 
+.Frameset_b2:
 	db BATTLEANIMOAMSET_CD, $04
 	db BATTLEANIMOAMSET_CE, $04
 	db BATTLEANIMOAMSET_CD, $c4
 	db BATTLEANIMOAMSET_CE, $c4
 	db -2
 
-.Frameset_b3 
+.Frameset_b3:
 	db BATTLEANIMOAMSET_CF, $04
 	db BATTLEANIMOAMSET_D0, $04
 	db BATTLEANIMOAMSET_D1, $04
 	db BATTLEANIMOAMSET_D2, $04
 	db -4
 
-.Frameset_b4 
+.Frameset_b4:
 	db BATTLEANIMOAMSET_D3, $20
 	db -1
 
-.Frameset_b5 
+.Frameset_b5:
 	db BATTLEANIMOAMSET_D4, $08
 	db -1
 
-.Frameset_b6 
+.Frameset_b6:
 	db BATTLEANIMOAMSET_D5, $08
 	db -1
 
-.Frameset_b7 
+.Frameset_b7:
 	db BATTLEANIMOAMSET_D6, $08
 	db -1
 
-.Frameset_b8 
+.Frameset_b8:
 	db BATTLEANIMOAMSET_D7, $08
 	db -1
 

@@ -76,19 +76,19 @@ TrainerYoungsterJoey:
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
-.Fight4
+.Fight4:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight4
-.Fight3
+.Fight3:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .LoadFight3
-.Fight2
+.Fight2:
 	checkflag ENGINE_FLYPOINT_OLIVINE
 	iftrue .LoadFight2
-.Fight1
+.Fight1:
 	checkflag ENGINE_FLYPOINT_GOLDENROD
 	iftrue .LoadFight1
-.LoadFight0
+.LoadFight0:
 	loadtrainer YOUNGSTER, JOEY1
 	startbattle
 	reloadmapafterbattle
@@ -96,7 +96,7 @@ TrainerYoungsterJoey:
 	clearflag ENGINE_JOEY
 	end
 
-.LoadFight1
+.LoadFight1:
 	loadtrainer YOUNGSTER, JOEY2
 	startbattle
 	reloadmapafterbattle
@@ -104,7 +104,7 @@ TrainerYoungsterJoey:
 	clearflag ENGINE_JOEY
 	end
 
-.LoadFight2
+.LoadFight2:
 	loadtrainer YOUNGSTER, JOEY3
 	startbattle
 	reloadmapafterbattle
@@ -112,7 +112,7 @@ TrainerYoungsterJoey:
 	clearflag ENGINE_JOEY
 	end
 
-.LoadFight3
+.LoadFight3:
 	loadtrainer YOUNGSTER, JOEY4
 	startbattle
 	reloadmapafterbattle
@@ -120,7 +120,7 @@ TrainerYoungsterJoey:
 	clearflag ENGINE_JOEY
 	end
 
-.LoadFight4
+.LoadFight4:
 	loadtrainer YOUNGSTER, JOEY5
 	startbattle
 	reloadmapafterbattle
@@ -249,7 +249,7 @@ Route30FruitTree2:
 
 Route30HiddenPotion:
 	dwb EVENT_ROUTE_30_HIDDEN_POTION, POTION
-	
+
 
 Route30_JoeysRattataAttacksMovement:
 	fix_facing

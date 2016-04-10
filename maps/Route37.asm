@@ -24,7 +24,7 @@ SunnyCallback:
 	disappear ROUTE37_SUNNY
 	return
 
-.SunnyAppears
+.SunnyAppears:
 	appear ROUTE37_SUNNY
 	return
 
@@ -73,13 +73,13 @@ SunnyScript:
 	writetext MeetSunnyText
 	buttonsound
 	setevent EVENT_MET_SUNNY_OF_SUNDAY
-.MetSunny
+.MetSunny:
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Kris
 	writetext SunnyGivesGiftText1
 	buttonsound
 	jump .next
-.Kris
+.Kris:
 	writetext SunnyGivesGiftText2
 	buttonsound
 .next
@@ -118,7 +118,7 @@ FruitTreeScript_0x1a8e0d:
 
 Route37HiddenEther:
 	dwb EVENT_ROUTE_37_HIDDEN_ETHER, ETHER
-	
+
 
 TwinsAnnandanne1SeenText:
 	text "ANN: ANNE and I"

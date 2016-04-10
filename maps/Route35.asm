@@ -168,19 +168,19 @@ UnknownScript_0x19c9bb:
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
-.Fight4
+.Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4
-.Fight3
+.Fight3:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight3
-.Fight2
+.Fight2:
 	checkflag ENGINE_FLYPOINT_BLACKTHORN
 	iftrue .LoadFight2
-.Fight1
+.Fight1:
 	checkflag ENGINE_FLYPOINT_LAKE_OF_RAGE
 	iftrue .LoadFight1
-.LoadFight0
+.LoadFight0:
 	loadtrainer BUG_CATCHER, ARNIE1
 	startbattle
 	reloadmapafterbattle
@@ -188,7 +188,7 @@ UnknownScript_0x19c9bb:
 	clearflag ENGINE_ARNIE
 	end
 
-.LoadFight1
+.LoadFight1:
 	loadtrainer BUG_CATCHER, ARNIE2
 	startbattle
 	reloadmapafterbattle
@@ -196,7 +196,7 @@ UnknownScript_0x19c9bb:
 	clearflag ENGINE_ARNIE
 	end
 
-.LoadFight2
+.LoadFight2:
 	loadtrainer BUG_CATCHER, ARNIE3
 	startbattle
 	reloadmapafterbattle
@@ -204,7 +204,7 @@ UnknownScript_0x19c9bb:
 	clearflag ENGINE_ARNIE
 	end
 
-.LoadFight3
+.LoadFight3:
 	loadtrainer BUG_CATCHER, ARNIE4
 	startbattle
 	reloadmapafterbattle
@@ -212,7 +212,7 @@ UnknownScript_0x19c9bb:
 	clearflag ENGINE_ARNIE
 	end
 
-.LoadFight4
+.LoadFight4:
 	loadtrainer BUG_CATCHER, ARNIE5
 	startbattle
 	reloadmapafterbattle

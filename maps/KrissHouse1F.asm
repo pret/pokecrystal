@@ -164,22 +164,22 @@ NeighborScript:
 	checknite
 	iftrue .NiteScript
 
-.MornScript
+.MornScript:
 	writetext NeighborMornIntroText
 	buttonsound
 	jump .Main
 
-.DayScript
+.DayScript:
 	writetext NeighborDayIntroText
 	buttonsound
 	jump .Main
 
-.NiteScript
+.NiteScript:
 	writetext NeighborNiteIntroText
 	buttonsound
 	jump .Main
 
-.Main
+.Main:
 	writetext NeighborText
 	waitbutton
 	closetext

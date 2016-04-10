@@ -255,7 +255,7 @@ GetDestinationWarpNumber:: ; 2252
 	ret
 ; 2266
 
-.GetDestinationWarpNumber ; 2266
+.GetDestinationWarpNumber: ; 2266
 	ld a, [PlayerStandingMapY]
 	sub $4
 	ld e, a
@@ -307,7 +307,7 @@ GetDestinationWarpNumber:: ; 2252
 	scf
 	ret
 
-.IncreaseHLTwice
+.IncreaseHLTwice:
 	inc hl
 	inc hl
 	scf
@@ -327,7 +327,7 @@ CopyWarpData:: ; 22a7
 	ret
 ; 22b4
 
-.CopyWarpData ; 22b4
+.CopyWarpData: ; 22b4
 	push bc
 	ld hl, wCurrMapWarpHeaderPointer
 	ld a, [hli]
@@ -815,7 +815,7 @@ FillMapConnections:: ; 2524
 	ld [hConnectedMapWidth], a
 	call FillNorthConnectionStrip
 
-.South
+.South:
 	ld a, [SouthConnectedMapGroup]
 	cp $ff
 	jr z, .West
@@ -838,7 +838,7 @@ FillMapConnections:: ; 2524
 	ld [hConnectedMapWidth], a
 	call FillSouthConnectionStrip
 
-.West
+.West:
 	ld a, [WestConnectedMapGroup]
 	cp $ff
 	jr z, .East
@@ -861,7 +861,7 @@ FillMapConnections:: ; 2524
 	ld [hConnectionStripLength], a
 	call FillWestConnectionStrip
 
-.East
+.East:
 	ld a, [EastConnectedMapGroup]
 	cp $ff
 	jr z, .Done
@@ -884,7 +884,7 @@ FillMapConnections:: ; 2524
 	ld [hConnectionStripLength], a
 	call FillEastConnectionStrip
 
-.Done
+.Done:
 	ret
 ; 25d3
 
@@ -1592,7 +1592,7 @@ GetMovementPermissions:: ; 2914
 	ret
 ; 2945
 
-.MovementPermissionsData ; 2945
+.MovementPermissionsData: ; 2945
 	db 1 << DOWN
 	db 1 << UP
 	db 1 << LEFT
@@ -1603,7 +1603,7 @@ GetMovementPermissions:: ; 2914
 	db (1 << UP) | (1 << LEFT)
 ; 294d
 
-.UpDown
+.UpDown:
 	ld a, [PlayerStandingMapX]
 	ld d, a
 	ld a, [PlayerStandingMapY]
@@ -1623,7 +1623,7 @@ GetMovementPermissions:: ; 2914
 	ret
 ; 296c
 
-.LeftRight
+.LeftRight:
 	ld a, [PlayerStandingMapX]
 	ld d, a
 	ld a, [PlayerStandingMapY]
@@ -1643,7 +1643,7 @@ GetMovementPermissions:: ; 2914
 	ret
 ; 298b
 
-.Down
+.Down:
 	call .CheckHiNybble
 	ret nz
 	ld a, [TileDown]
@@ -1662,7 +1662,7 @@ GetMovementPermissions:: ; 2914
 	ret
 ; 29a8
 
-.Up
+.Up:
 	call .CheckHiNybble
 	ret nz
 	ld a, [TileUp]
@@ -1681,7 +1681,7 @@ GetMovementPermissions:: ; 2914
 	ret
 ; 29c5
 
-.Right
+.Right:
 	call .CheckHiNybble
 	ret nz
 	ld a, [TileRight]
@@ -1700,7 +1700,7 @@ GetMovementPermissions:: ; 2914
 	ret
 ; 29e2
 
-.Left
+.Left:
 	call .CheckHiNybble
 	ret nz
 	ld a, [TileLeft]
@@ -1719,7 +1719,7 @@ GetMovementPermissions:: ; 2914
 	ret
 ; 29ff
 
-.CheckHiNybble
+.CheckHiNybble:
 	and $f0
 	cp $b0
 	ret z
@@ -1760,7 +1760,7 @@ GetFacingTileCoord:: ; 2a07
 	ld a, [hl]
 	ret
 
-.Directions
+.Directions:
 	;   x,  y
 	db  0,  1
 	dw TileDown
@@ -1919,7 +1919,7 @@ CheckCurrentMapXYTriggers:: ; 2ad4
 	rst Bankswitch
 	ret
 
-.TriggerCheck
+.TriggerCheck:
 ; Checks to see if you are standing on an xy-trigger.  If yes, copies the trigger to EngineBuffer1 and sets carry.
 	ld hl, wCurrentMapXYTriggerHeaderPointer
 	ld a, [hli]

@@ -1,7 +1,7 @@
 ; MagnemitePokedexEntry: ; 0x1b869d
 	db "MAGNET@" ; species name
 	dw 100, 130 ; height, width
-	
+
 	db   "The electricity"
 	next "emitted by the"
 	next "units on each side"

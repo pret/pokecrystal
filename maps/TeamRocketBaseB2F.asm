@@ -48,7 +48,7 @@ TransmitterDoorCallback:
 	iftrue .Change
 	return
 
-.Change
+.Change:
 	changeblock $e, $c, $7
 	return
 
@@ -322,7 +322,7 @@ UnknownScript_0x6d184:
 MapTeamRocketBaseB2FSignpostPtr1:
 	dw EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER
 	dw MapTeamRocketBaseB2FSignpost1Script
-	
+
 
 MapTeamRocketBaseB2FSignpost1Script:
 	opentext
@@ -364,7 +364,7 @@ TeamRocketBaseB2FTMThief:
 
 TeamRocketBaseB2FHiddenFullHeal:
 	dwb EVENT_TEAM_ROCKET_BASE_B2F_HIDDEN_FULL_HEAL, FULL_HEAL
-	
+
 
 MovementData_0x6d212:
 	step_right

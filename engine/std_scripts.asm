@@ -252,37 +252,37 @@ DayToTextScript:
 	if_equal SATURDAY, .Saturday
 	stringtotext .SundayText, 0
 	end
-.Monday
+.Monday:
 	stringtotext .MondayText, 0
 	end
-.Tuesday
+.Tuesday:
 	stringtotext .TuesdayText, 0
 	end
-.Wednesday
+.Wednesday:
 	stringtotext .WednesdayText, 0
 	end
-.Thursday
+.Thursday:
 	stringtotext .ThursdayText, 0
 	end
-.Friday
+.Friday:
 	stringtotext .FridayText, 0
 	end
-.Saturday
+.Saturday:
 	stringtotext .SaturdayText, 0
 	end
-.SundayText
+.SundayText:
 	db "SUNDAY@"
-.MondayText
+.MondayText:
 	db "MONDAY@"
-.TuesdayText
+.TuesdayText:
 	db "TUESDAY@"
-.WednesdayText
+.WednesdayText:
 	db "WEDNESDAY@"
-.ThursdayText
+.ThursdayText:
 	db "THURSDAY@"
-.FridayText
+.FridayText:
 	db "FRIDAY@"
-.SaturdayText
+.SaturdayText:
 	db "SATURDAY@"
 
 GoldenrodRocketsScript:
@@ -643,64 +643,64 @@ AskNumber1MScript:
 	if_equal PHONE_BLACKBELT_KENJI, .Kenji
 	if_equal PHONE_HIKER_PARRY, .Parry
 
-.Jack
+.Jack:
 	farwritetext JackAskNumber1Text
 	end
-.Huey
+.Huey:
 	farwritetext HueyAskNumber1Text
 	end
-.Gaven
+.Gaven:
 	farwritetext GavenAskNumber1Text
 	end
-.Jose
+.Jose:
 	farwritetext JoseAskNumber1Text
 	end
-.Joey
+.Joey:
 	farwritetext JoeyAskNumber1Text
 	end
-.Wade
+.Wade:
 	farwritetext WadeAskNumber1Text
 	end
-.Ralph
+.Ralph:
 	farwritetext RalphAskNumber1Text
 	end
-.Anthony
+.Anthony:
 	farwritetext AnthonyAskNumber1Text
 	end
-.Todd
+.Todd:
 	farwritetext ToddAskNumber1Text
 	end
-.Irwin
+.Irwin:
 	farwritetext IrwinAskNumber1Text
 	end
-.Arnie
+.Arnie:
 	farwritetext ArnieAskNumber1Text
 	end
-.Alan
+.Alan:
 	farwritetext AlanAskNumber1Text
 	end
-.Chad
+.Chad:
 	farwritetext ChadAskNumber1Text
 	end
-.Derek
+.Derek:
 	farwritetext DerekAskNumber1Text
 	end
-.Tully
+.Tully:
 	farwritetext TullyAskNumber1Text
 	end
-.Brent
+.Brent:
 	farwritetext BrentAskNumber1Text
 	end
-.Vance
+.Vance:
 	farwritetext VanceAskNumber1Text
 	end
-.Wilton
+.Wilton:
 	farwritetext WiltonAskNumber1Text
 	end
-.Kenji
+.Kenji:
 	farwritetext KenjiAskNumber1Text
 	end
-.Parry
+.Parry:
 	farwritetext ParryAskNumber1Text
 	end
 
@@ -728,64 +728,64 @@ AskNumber2MScript:
 	if_equal PHONE_BLACKBELT_KENJI, .Kenji
 	if_equal PHONE_HIKER_PARRY, .Parry
 
-.Jack
+.Jack:
 	farwritetext JackAskNumber2Text
 	end
-.Huey
+.Huey:
 	farwritetext HueyAskNumber2Text
 	end
-.Gaven
+.Gaven:
 	farwritetext GavenAskNumber2Text
 	end
-.Jose
+.Jose:
 	farwritetext JoseAskNumber2Text
 	end
-.Joey
+.Joey:
 	farwritetext JoeyAskNumber2Text
 	end
-.Wade
+.Wade:
 	farwritetext WadeAskNumber2Text
 	end
-.Ralph
+.Ralph:
 	farwritetext RalphAskNumber2Text
 	end
-.Anthony
+.Anthony:
 	farwritetext AnthonyAskNumber2Text
 	end
-.Todd
+.Todd:
 	farwritetext ToddAskNumber2Text
 	end
-.Irwin
+.Irwin:
 	farwritetext IrwinAskNumber2Text
 	end
-.Arnie
+.Arnie:
 	farwritetext ArnieAskNumber2Text
 	end
-.Alan
+.Alan:
 	farwritetext AlanAskNumber2Text
 	end
-.Chad
+.Chad:
 	farwritetext ChadAskNumber2Text
 	end
-.Derek
+.Derek:
 	farwritetext DerekAskNumber2Text
 	end
-.Tully
+.Tully:
 	farwritetext TullyAskNumber2Text
 	end
-.Brent
+.Brent:
 	farwritetext BrentAskNumber2Text
 	end
-.Vance
+.Vance:
 	farwritetext VanceAskNumber2Text
 	end
-.Wilton
+.Wilton:
 	farwritetext WiltonAskNumber2Text
 	end
-.Kenji
+.Kenji:
 	farwritetext KenjiAskNumber2Text
 	end
-.Parry
+.Parry:
 	farwritetext ParryAskNumber2Text
 	end
 
@@ -819,102 +819,102 @@ NumberAcceptedMScript:
 	if_equal PHONE_BLACKBELT_KENJI, .Kenji
 	if_equal PHONE_HIKER_PARRY, .Parry
 
-.Jack
+.Jack:
 	farwritetext JackNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Huey
+.Huey:
 	farwritetext HueyNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Gaven
+.Gaven:
 	farwritetext GavenNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Jose
+.Jose:
 	farwritetext JoseNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Joey
+.Joey:
 	farwritetext JoeyNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Wade
+.Wade:
 	farwritetext WadeNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Ralph
+.Ralph:
 	farwritetext RalphNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Anthony
+.Anthony:
 	farwritetext AnthonyNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Todd
+.Todd:
 	farwritetext ToddNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Irwin
+.Irwin:
 	farwritetext IrwinNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Arnie
+.Arnie:
 	farwritetext ArnieNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Alan
+.Alan:
 	farwritetext AlanNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Chad
+.Chad:
 	farwritetext ChadNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Derek
+.Derek:
 	farwritetext DerekNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Tully
+.Tully:
 	farwritetext TullyNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Brent
+.Brent:
 	farwritetext BrentNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Vance
+.Vance:
 	farwritetext VanceNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Wilton
+.Wilton:
 	farwritetext WiltonNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Kenji
+.Kenji:
 	farwritetext KenjiNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Parry
+.Parry:
 	farwritetext ParryNumberAcceptedText
 	waitbutton
 	closetext
@@ -943,102 +943,102 @@ NumberDeclinedMScript:
 	if_equal PHONE_BLACKBELT_KENJI, .Kenji
 	if_equal PHONE_HIKER_PARRY, .Parry
 
-.Jack
+.Jack:
 	farwritetext JackNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Huey
+.Huey:
 	farwritetext HueyNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Gaven
+.Gaven:
 	farwritetext GavenNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Jose
+.Jose:
 	farwritetext JoseNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Joey
+.Joey:
 	farwritetext JoeyNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Wade
+.Wade:
 	farwritetext WadeNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Ralph
+.Ralph:
 	farwritetext RalphNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Anthony
+.Anthony:
 	farwritetext AnthonyNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Todd
+.Todd:
 	farwritetext ToddNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Irwin
+.Irwin:
 	farwritetext IrwinNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Arnie
+.Arnie:
 	farwritetext ArnieNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Alan
+.Alan:
 	farwritetext AlanNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Chad
+.Chad:
 	farwritetext ChadNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Derek
+.Derek:
 	farwritetext DerekNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Tully
+.Tully:
 	farwritetext TullyNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Brent
+.Brent:
 	farwritetext BrentNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Vance
+.Vance:
 	farwritetext VanceNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Wilton
+.Wilton:
 	farwritetext WiltonNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Kenji
+.Kenji:
 	farwritetext KenjiNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Parry
+.Parry:
 	farwritetext ParryNumberDeclinedText
 	waitbutton
 	closetext
@@ -1067,102 +1067,102 @@ PhoneFullMScript:
 	if_equal PHONE_BLACKBELT_KENJI, .Kenji
 	if_equal PHONE_HIKER_PARRY, .Parry
 
-.Jack
+.Jack:
 	farwritetext JackPhoneFullText
 	waitbutton
 	closetext
 	end
-.Huey
+.Huey:
 	farwritetext HueyPhoneFullText
 	waitbutton
 	closetext
 	end
-.Gaven
+.Gaven:
 	farwritetext GavenPhoneFullText
 	waitbutton
 	closetext
 	end
-.Jose
+.Jose:
 	farwritetext JosePhoneFullText
 	waitbutton
 	closetext
 	end
-.Joey
+.Joey:
 	farwritetext JoeyPhoneFullText
 	waitbutton
 	closetext
 	end
-.Wade
+.Wade:
 	farwritetext WadePhoneFullText
 	waitbutton
 	closetext
 	end
-.Ralph
+.Ralph:
 	farwritetext RalphPhoneFullText
 	waitbutton
 	closetext
 	end
-.Anthony
+.Anthony:
 	farwritetext AnthonyPhoneFullText
 	waitbutton
 	closetext
 	end
-.Todd
+.Todd:
 	farwritetext ToddPhoneFullText
 	waitbutton
 	closetext
 	end
-.Irwin
+.Irwin:
 	farwritetext IrwinPhoneFullText
 	waitbutton
 	closetext
 	end
-.Arnie
+.Arnie:
 	farwritetext ArniePhoneFullText
 	waitbutton
 	closetext
 	end
-.Alan
+.Alan:
 	farwritetext AlanPhoneFullText
 	waitbutton
 	closetext
 	end
-.Chad
+.Chad:
 	farwritetext ChadPhoneFullText
 	waitbutton
 	closetext
 	end
-.Derek
+.Derek:
 	farwritetext DerekPhoneFullText
 	waitbutton
 	closetext
 	end
-.Tully
+.Tully:
 	farwritetext TullyPhoneFullText
 	waitbutton
 	closetext
 	end
-.Brent
+.Brent:
 	farwritetext BrentPhoneFullText
 	waitbutton
 	closetext
 	end
-.Vance
+.Vance:
 	farwritetext VancePhoneFullText
 	waitbutton
 	closetext
 	end
-.Wilton
+.Wilton:
 	farwritetext WiltonPhoneFullText
 	waitbutton
 	closetext
 	end
-.Kenji
+.Kenji:
 	farwritetext KenjiPhoneFullText
 	waitbutton
 	closetext
 	end
-.Parry
+.Parry:
 	farwritetext ParryPhoneFullText
 	waitbutton
 	closetext
@@ -1188,87 +1188,87 @@ RematchMScript:
 	if_equal PHONE_FISHER_WILTON, .Wilton
 	if_equal PHONE_HIKER_PARRY, .Parry
 
-.Jack
+.Jack:
 	farwritetext JackRematchText
 	waitbutton
 	closetext
 	end
-.Huey
+.Huey:
 	farwritetext HueyRematchText
 	waitbutton
 	closetext
 	end
-.Gaven
+.Gaven:
 	farwritetext GavenRematchText
 	waitbutton
 	closetext
 	end
-.Jose
+.Jose:
 	farwritetext JoseRematchText
 	waitbutton
 	closetext
 	end
-.Joey
+.Joey:
 	farwritetext JoeyRematchText
 	waitbutton
 	closetext
 	end
-.Wade
+.Wade:
 	farwritetext WadeRematchText
 	waitbutton
 	closetext
 	end
-.Ralph
+.Ralph:
 	farwritetext RalphRematchText
 	waitbutton
 	closetext
 	end
-.Anthony
+.Anthony:
 	farwritetext AnthonyRematchText
 	waitbutton
 	closetext
 	end
-.Todd
+.Todd:
 	farwritetext ToddRematchText
 	waitbutton
 	closetext
 	end
-.Arnie
+.Arnie:
 	farwritetext ArnieRematchText
 	waitbutton
 	closetext
 	end
-.Alan
+.Alan:
 	farwritetext AlanRematchText
 	waitbutton
 	closetext
 	end
-.Chad
+.Chad:
 	farwritetext ChadRematchText
 	waitbutton
 	closetext
 	end
-.Tully
+.Tully:
 	farwritetext TullyRematchText
 	waitbutton
 	closetext
 	end
-.Brent
+.Brent:
 	farwritetext BrentRematchText
 	waitbutton
 	closetext
 	end
-.Vance
+.Vance:
 	farwritetext VanceRematchText
 	waitbutton
 	closetext
 	end
-.Wilton
+.Wilton:
 	farwritetext WiltonRematchText
 	waitbutton
 	closetext
 	end
-.Parry
+.Parry:
 	farwritetext ParryRematchText
 	waitbutton
 	closetext
@@ -1284,31 +1284,31 @@ GiftMScript:
 	if_equal PHONE_FISHER_WILTON, .Wilton
 	if_equal PHONE_BLACKBELT_KENJI, .Kenji
 
-.Jose
+.Jose:
 	farwritetext JoseGiftText
 	buttonsound
 	end
-.Wade
+.Wade:
 	farwritetext WadeGiftText
 	buttonsound
 	end
-.Alan
+.Alan:
 	farwritetext AlanGiftText
 	buttonsound
 	end
-.Derek
+.Derek:
 	farwritetext DerekGiftText
 	buttonsound
 	end
-.Tully
+.Tully:
 	farwritetext TullyGiftText
 	buttonsound
 	end
-.Wilton
+.Wilton:
 	farwritetext WiltonGiftText
 	buttonsound
 	end
-.Kenji
+.Kenji:
 	farwritetext KenjiGiftText
 	buttonsound
 	end
@@ -1327,57 +1327,57 @@ PackFullMScript:
 	if_equal PHONE_BLACKBELT_KENJI, .Kenji
 	if_equal PHONE_HIKER_PARRY, .Parry
 
-.Huey
+.Huey:
 	farwritetext HueyPackFullText
 	waitbutton
 	closetext
 	end
-.Jose
+.Jose:
 	farwritetext JosePackFullText
 	waitbutton
 	closetext
 	end
-.Joey
+.Joey:
 	farwritetext JoeyPackFullText
 	waitbutton
 	closetext
 	end
-.Wade
+.Wade:
 	farwritetext WadePackFullText
 	waitbutton
 	closetext
 	end
-.Alan
+.Alan:
 	farwritetext AlanPackFullText
 	waitbutton
 	closetext
 	end
-.Derek
+.Derek:
 	farwritetext DerekPackFullText
 	waitbutton
 	closetext
 	end
-.Tully
+.Tully:
 	farwritetext TullyPackFullText
 	waitbutton
 	closetext
 	end
-.Vance
+.Vance:
 	farwritetext VancePackFullText
 	waitbutton
 	closetext
 	end
-.Wilton
+.Wilton:
 	farwritetext WiltonPackFullText
 	waitbutton
 	closetext
 	end
-.Kenji
+.Kenji:
 	farwritetext KenjiPackFullText
 	waitbutton
 	closetext
 	end
-.Parry
+.Parry:
 	farwritetext ParryPackFullText
 	waitbutton
 	closetext
@@ -1391,19 +1391,19 @@ RematchGiftMScript:
 	if_equal PHONE_BIRDKEEPER_VANCE, .Vance
 	if_equal PHONE_HIKER_PARRY, .Parry
 
-.Huey
+.Huey:
 	farwritetext HueyRematchGiftText
 	buttonsound
 	end
-.Joey
+.Joey:
 	farwritetext JoeyRematchGiftText
 	buttonsound
 	end
-.Vance
+.Vance:
 	farwritetext VanceRematchGiftText
 	buttonsound
 	end
-.Parry
+.Parry:
 	farwritetext ParryRematchGiftText
 	buttonsound
 	end
@@ -1419,28 +1419,28 @@ AskNumber1FScript:
 	if_equal PHONE_PICNICKER_TIFFANY, .Tiffany
 	if_equal PHONE_PICNICKER_ERIN, .Erin
 
-.Beverly
+.Beverly:
 	farwritetext BeverlyAskNumber1Text
 	end
-.Beth
+.Beth:
 	farwritetext BethAskNumber1Text
 	end
-.Reena
+.Reena:
 	farwritetext ReenaAskNumber1Text
 	end
-.Liz
+.Liz:
 	farwritetext LizAskNumber1Text
 	end
-.Gina
+.Gina:
 	farwritetext GinaAskNumber1Text
 	end
-.Dana
+.Dana:
 	farwritetext DanaAskNumber1Text
 	end
-.Tiffany
+.Tiffany:
 	farwritetext TiffanyAskNumber1Text
 	end
-.Erin
+.Erin:
 	farwritetext ErinAskNumber1Text
 	end
 
@@ -1455,28 +1455,28 @@ AskNumber2FScript:
 	if_equal PHONE_PICNICKER_TIFFANY, .Tiffany
 	if_equal PHONE_PICNICKER_ERIN, .Erin
 
-.Beverly
+.Beverly:
 	farwritetext BeverlyAskNumber2Text
 	end
-.Beth
+.Beth:
 	farwritetext BethAskNumber2Text
 	end
-.Reena
+.Reena:
 	farwritetext ReenaAskNumber2Text
 	end
-.Liz
+.Liz:
 	farwritetext LizAskNumber2Text
 	end
-.Gina
+.Gina:
 	farwritetext GinaAskNumber2Text
 	end
-.Dana
+.Dana:
 	farwritetext DanaAskNumber2Text
 	end
-.Tiffany
+.Tiffany:
 	farwritetext TiffanyAskNumber2Text
 	end
-.Erin
+.Erin:
 	farwritetext ErinAskNumber2Text
 	end
 
@@ -1498,42 +1498,42 @@ NumberAcceptedFScript: ; 0xbcbd3
 	if_equal PHONE_PICNICKER_TIFFANY, .Tiffany
 	if_equal PHONE_PICNICKER_ERIN, .Erin
 
-.Beverly
+.Beverly:
 	farwritetext BeverlyNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Beth
+.Beth:
 	farwritetext BethNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Reena
+.Reena:
 	farwritetext ReenaNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Liz
+.Liz:
 	farwritetext LizNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Gina
+.Gina:
 	farwritetext GinaNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Dana
+.Dana:
 	farwritetext DanaNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Tiffany
+.Tiffany:
 	farwritetext TiffanyNumberAcceptedText
 	waitbutton
 	closetext
 	end
-.Erin
+.Erin:
 	farwritetext ErinNumberAcceptedText
 	waitbutton
 	closetext
@@ -1550,42 +1550,42 @@ NumberDeclinedFScript:
 	if_equal PHONE_PICNICKER_TIFFANY, .Tiffany
 	if_equal PHONE_PICNICKER_ERIN, .Erin
 
-.Beverly
+.Beverly:
 	farwritetext BeverlyNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Beth
+.Beth:
 	farwritetext BethNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Reena
+.Reena:
 	farwritetext ReenaNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Liz
+.Liz:
 	farwritetext LizNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Gina
+.Gina:
 	farwritetext GinaNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Dana
+.Dana:
 	farwritetext DanaNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Tiffany
+.Tiffany:
 	farwritetext TiffanyNumberDeclinedText
 	waitbutton
 	closetext
 	end
-.Erin
+.Erin:
 	farwritetext ErinNumberDeclinedText
 	waitbutton
 	closetext
@@ -1602,42 +1602,42 @@ PhoneFullFScript:
 	if_equal PHONE_PICNICKER_TIFFANY, .Tiffany
 	if_equal PHONE_PICNICKER_ERIN, .Erin
 
-.Beverly
+.Beverly:
 	farwritetext BeverlyPhoneFullText
 	waitbutton
 	closetext
 	end
-.Beth
+.Beth:
 	farwritetext BethPhoneFullText
 	waitbutton
 	closetext
 	end
-.Reena
+.Reena:
 	farwritetext ReenaPhoneFullText
 	waitbutton
 	closetext
 	end
-.Liz
+.Liz:
 	farwritetext LizPhoneFullText
 	waitbutton
 	closetext
 	end
-.Gina
+.Gina:
 	farwritetext GinaPhoneFullText
 	waitbutton
 	closetext
 	end
-.Dana
+.Dana:
 	farwritetext DanaPhoneFullText
 	waitbutton
 	closetext
 	end
-.Tiffany
+.Tiffany:
 	farwritetext TiffanyPhoneFullText
 	waitbutton
 	closetext
 	end
-.Erin
+.Erin:
 	farwritetext ErinPhoneFullText
 	waitbutton
 	closetext
@@ -1653,37 +1653,37 @@ RematchFScript:
 	if_equal PHONE_PICNICKER_TIFFANY, .Tiffany
 	if_equal PHONE_PICNICKER_ERIN, .Erin
 
-.Beth
+.Beth:
 	farwritetext BethRematchText
 	waitbutton
 	closetext
 	end
-.Reena
+.Reena:
 	farwritetext ReenaRematchText
 	waitbutton
 	closetext
 	end
-.Liz
+.Liz:
 	farwritetext LizRematchText
 	waitbutton
 	closetext
 	end
-.Gina
+.Gina:
 	farwritetext GinaRematchText
 	waitbutton
 	closetext
 	end
-.Dana
+.Dana:
 	farwritetext DanaRematchText
 	waitbutton
 	closetext
 	end
-.Tiffany
+.Tiffany:
 	farwritetext TiffanyRematchText
 	waitbutton
 	closetext
 	end
-.Erin
+.Erin:
 	farwritetext ErinRematchText
 	waitbutton
 	closetext
@@ -1696,19 +1696,19 @@ GiftFScript:
 	if_equal PHONE_LASS_DANA, .Dana
 	if_equal PHONE_PICNICKER_TIFFANY, .Tiffany
 
-.Beverly
+.Beverly:
 	farwritetext BeverlyGiftText
 	buttonsound
 	end
-.Gina
+.Gina:
 	farwritetext GinaGiftText
 	buttonsound
 	end
-.Dana
+.Dana:
 	farwritetext DanaGiftText
 	buttonsound
 	end
-.Tiffany
+.Tiffany:
 	farwritetext TiffanyGiftText
 	buttonsound
 	end
@@ -1721,27 +1721,27 @@ PackFullFScript:
 	if_equal PHONE_PICNICKER_TIFFANY, .Tiffany
 	if_equal PHONE_PICNICKER_ERIN, .Erin
 
-.Beverly
+.Beverly:
 	farwritetext BeverlyPackFullText
 	waitbutton
 	closetext
 	end
-.Gina
+.Gina:
 	farwritetext GinaPackFullText
 	waitbutton
 	closetext
 	end
-.Dana
+.Dana:
 	farwritetext DanaPackFullText
 	waitbutton
 	closetext
 	end
-.Tiffany
+.Tiffany:
 	farwritetext TiffanyPackFullText
 	waitbutton
 	closetext
 	end
-.Erin
+.Erin:
 	farwritetext ErinPackFullText
 	waitbutton
 	closetext
@@ -1751,7 +1751,7 @@ RematchGiftFScript:
 	checkcode VAR_CALLERID
 	if_equal PHONE_PICNICKER_ERIN, .Erin
 
-.Erin
+.Erin:
 	opentext
 	farwritetext ErinRematchGiftText
 	buttonsound
@@ -1867,14 +1867,14 @@ CoinVendor_IntroScript: ; 0xbcde0
 ; 0xbce54
 
 
-.MenuDataHeader
+.MenuDataHeader:
 	db $40 ; flags
 	db 04, 00 ; start coords
 	db 11, 15 ; end coords
 	dw .MenuData2
 	db 1 ; default option
 
-.MenuData2
+.MenuData2:
 	db $80 ; flags
 	db 3 ; items
 	db " 50 :  ¥1000@"
@@ -1894,13 +1894,13 @@ HappinessCheckScript:
 	closetext
 	end
 
-.KindaHappy
+.KindaHappy:
 	farwritetext HappinessText2
 	waitbutton
 	closetext
 	end
 
-.Unhappy
+.Unhappy:
 	farwritetext HappinessText1
 	waitbutton
 	closetext

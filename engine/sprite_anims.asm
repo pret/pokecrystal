@@ -13,7 +13,7 @@ DoAnimFrame: ; 8d24b
 ; 8d25b
 
 .Jumptable: ; 8d25b (23:525b)
-	
+
 	dw .Null        ; null
 	dw .one         ; bouncing mon icon
 	dw .two         ; bouncing mon icon, selected

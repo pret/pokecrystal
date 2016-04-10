@@ -31,7 +31,7 @@ CloseText:: ; 2dcf
 	ret
 ; 2de2
 
-.CloseText ; 2de2
+.CloseText: ; 2de2
 	call ClearWindowData
 	xor a
 	ld [hBGMapMode], a

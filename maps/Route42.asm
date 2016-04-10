@@ -77,16 +77,16 @@ UnknownScript_0x1a927f:
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
-.Fight3
+.Fight3:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight3
-.Fight2
+.Fight2:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight2
-.Fight1
+.Fight1:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .LoadFight1
-.LoadFight0
+.LoadFight0:
 	loadtrainer FISHER, TULLY1
 	startbattle
 	reloadmapafterbattle
@@ -94,7 +94,7 @@ UnknownScript_0x1a927f:
 	clearflag ENGINE_TULLY
 	end
 
-.LoadFight1
+.LoadFight1:
 	loadtrainer FISHER, TULLY2
 	startbattle
 	reloadmapafterbattle
@@ -102,7 +102,7 @@ UnknownScript_0x1a927f:
 	clearflag ENGINE_TULLY
 	end
 
-.LoadFight2
+.LoadFight2:
 	loadtrainer FISHER, TULLY3
 	startbattle
 	reloadmapafterbattle
@@ -110,7 +110,7 @@ UnknownScript_0x1a927f:
 	clearflag ENGINE_TULLY
 	end
 
-.LoadFight3
+.LoadFight3:
 	loadtrainer FISHER, TULLY4
 	startbattle
 	reloadmapafterbattle
@@ -215,7 +215,7 @@ FruitTreeScript_0x1a9351:
 
 Route42HiddenMaxPotion:
 	dwb EVENT_ROUTE_42_HIDDEN_MAX_POTION, MAX_POTION
-	
+
 
 MovementData_0x1a9356:
 	db $39 ; movement

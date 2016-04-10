@@ -62,13 +62,13 @@ GentlemanScript_0x5cd3d:
 	if_equal 3, .ThirdPlace
 	jump .NoPrize
 
-.GameOver
+.GameOver:
 	writetext UnknownText_0x5cf7e
 	waitbutton
 	closetext
 	end
 
-.FirstPlace
+.FirstPlace:
 	writetext UnknownText_0x5cfb5
 	playsound SFX_1ST_PLACE
 	waitsfx
@@ -79,7 +79,7 @@ GentlemanScript_0x5cd3d:
 	setflag ENGINE_LUCKY_NUMBER_SHOW
 	jump .GameOver
 
-.SecondPlace
+.SecondPlace:
 	writetext UnknownText_0x5d023
 	playsound SFX_2ND_PLACE
 	waitsfx
@@ -90,7 +90,7 @@ GentlemanScript_0x5cd3d:
 	setflag ENGINE_LUCKY_NUMBER_SHOW
 	jump .GameOver
 
-.ThirdPlace
+.ThirdPlace:
 	writetext UnknownText_0x5d076
 	playsound SFX_3RD_PLACE
 	waitsfx
@@ -101,7 +101,7 @@ GentlemanScript_0x5cd3d:
 	setflag ENGINE_LUCKY_NUMBER_SHOW
 	jump .GameOver
 
-.NoPrize
+.NoPrize:
 	writetext UnknownText_0x5d0c0
 	waitbutton
 	closetext

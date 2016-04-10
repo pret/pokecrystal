@@ -26,21 +26,21 @@ PokemonCenterPC: ; 1559a
 	call CloseWindow
 	ret
 
-.TopMenu
+.TopMenu:
 	db $48 ; flags
 	db 00, 00 ; start coords
 	db 12, 15 ; end coords
 	dw .MenuData2
 	db 1 ; default option
 
-.MenuData2
+.MenuData2:
 	db $a0 ; flags
 	db 0 ; items
 	dw .WhichPC
 	dw PlaceNthMenuStrings
 	dw .JumpTable
 
-.JumpTable
+.JumpTable:
 	dw PlayersPC, .String_PlayersPC
 	dw BillsPC, .String_BillsPC
 	dw OaksPC, .String_OaksPC
@@ -53,7 +53,7 @@ PokemonCenterPC: ; 1559a
 .String_HallOfFame: db "HALL OF FAME@"
 .String_TurnOff:    db "TURN OFF@"
 
-.WhichPC
+.WhichPC:
 	; before pokedex
 	db  3 ; items
 	db  1, 0, 4 ; bill's, player's, turn off
@@ -69,7 +69,7 @@ PokemonCenterPC: ; 1559a
 	db  1, 0, 2, 3, 4 ; bill's, player's, oak's, hall of fame, turn off
 	db -1
 
-.ChooseWhichPCListToUse
+.ChooseWhichPCListToUse:
 	call CheckReceivedDex
 	jr nz, .got_dex
 	ld a, $0
@@ -95,7 +95,7 @@ PC_CheckPartyForPokemon: ; 15650
 	scf
 	ret
 
-.MustHavePokemonToUse
+.MustHavePokemonToUse:
 	; Bzzzzt! You must have a #MON to use this!
 	text_jump UnknownText_0x1c1328
 	db "@"
@@ -238,14 +238,14 @@ KrissPCMenuData: ; 0x15736
 	dw .KrissPCMenuData2
 	db 1 ; default selected option
 
-.KrissPCMenuData2
+.KrissPCMenuData2:
 	db %10100000 ; bit7
 	db 0 ; # items?
 	dw .KrissPCMenuList1
 	dw PlaceNthMenuStrings
 	dw .KrissPCMenuPointers
 
-.KrissPCMenuPointers ; 0x15746
+.KrissPCMenuPointers: ; 0x15746
 	dw KrisWithdrawItemMenu, .WithdrawItem
 	dw KrisDepositItemMenu,  .DepositItem
 	dw KrisTossItemMenu,     .TossItem
@@ -254,13 +254,13 @@ KrissPCMenuData: ; 0x15736
 	dw KrisLogOffMenu,       .LogOff
 	dw KrisLogOffMenu,       .TurnOff
 
-.WithdrawItem db "WITHDRAW ITEM@"
-.DepositItem  db "DEPOSIT ITEM@"
-.TossItem     db "TOSS ITEM@"
-.MailBox      db "MAIL BOX@"
-.Decoration   db "DECORATION@"
-.TurnOff      db "TURN OFF@"
-.LogOff       db "LOG OFF@"
+.WithdrawItem: db "WITHDRAW ITEM@"
+.DepositItem:  db "DEPOSIT ITEM@"
+.TossItem:     db "TOSS ITEM@"
+.MailBox:      db "MAIL BOX@"
+.Decoration:   db "DECORATION@"
+.TurnOff:      db "TURN OFF@"
+.LogOff:       db "LOG OFF@"
 
 WITHDRAW_ITEM EQU 0
 DEPOSIT_ITEM  EQU 1
@@ -270,7 +270,7 @@ DECORATION    EQU 4
 TURN_OFF      EQU 5
 LOG_OFF       EQU 6
 
-.KrissPCMenuList1
+.KrissPCMenuList1:
 	db 5
 	db WITHDRAW_ITEM
 	db DEPOSIT_ITEM
@@ -279,7 +279,7 @@ LOG_OFF       EQU 6
 	db TURN_OFF
 	db -1
 
-.KrissPCMenuList2
+.KrissPCMenuList2:
 	db 6
 	db WITHDRAW_ITEM
 	db DEPOSIT_ITEM
@@ -320,7 +320,7 @@ KrisWithdrawItemMenu: ; 0x157d1
 	xor a
 	ret
 
-.Submenu
+.Submenu:
 	; check if the item has a quantity
 	callba _CheckTossableItem
 	ld a, [wItemAttributeParamBuffer]
@@ -362,7 +362,7 @@ KrisWithdrawItemMenu: ; 0x157d1
 	call ExitMenu
 	ret
 
-.PackFull
+.PackFull:
 	ld hl, .NoRoomText
 	call MenuTextBoxBackup
 	ret
@@ -370,15 +370,15 @@ KrisWithdrawItemMenu: ; 0x157d1
 .done
 	ret
 
-.HowManyText ; 0x15850
+.HowManyText: ; 0x15850
 	text_jump _KrissPCHowManyWithdrawText
 	db "@"
 
-.WithdrewText ; 0x15855
+.WithdrewText: ; 0x15855
 	text_jump _KrissPCWithdrewItemsText
 	db "@"
 
-.NoRoomText ; 0x1585a
+.NoRoomText: ; 0x1585a
 	text_jump _KrissPCNoRoomWithdrawText
 	db "@"
 
@@ -435,7 +435,7 @@ KrisDepositItemMenu: ; 0x1588b
 	xor a
 	ret
 
-.CheckItemsInBag
+.CheckItemsInBag:
 	callba HasNoItems
 	ret nc
 	ld hl, .NoItemsInBag
@@ -443,12 +443,12 @@ KrisDepositItemMenu: ; 0x1588b
 	scf
 	ret
 
-.NoItemsInBag
+.NoItemsInBag:
 	; No items here!
 	text_jump UnknownText_0x1c13df
 	db "@"
 
-.TryDepositItem
+.TryDepositItem:
 	ld a, [wSpriteUpdatesEnabled]
 	push af
 	ld a, $0
@@ -485,7 +485,7 @@ KrisDepositItemMenu: ; 0x1588b
 	ld [Buffer1], a
 	ret
 
-.DepositItem_
+.DepositItem_:
 	callba _CheckTossableItem
 	ld a, [wItemAttributeParamBuffer]
 	and a
@@ -494,7 +494,7 @@ KrisDepositItemMenu: ; 0x1588b
 	ld [wItemQuantityChangeBuffer], a
 	jr .DepositItem
 
-.AskQuantity
+.AskQuantity:
 	ld hl, .HowManyText
 	call MenuTextBox
 	callba SelectQuantityToToss
@@ -504,7 +504,7 @@ KrisDepositItemMenu: ; 0x1588b
 	pop af
 	jr c, .DeclinedToDeposit
 
-.DepositItem
+.DepositItem:
 	ld a, [wItemQuantityChangeBuffer]
 	ld [Buffer1], a
 	ld a, [CurItemQuantity]
@@ -523,24 +523,24 @@ KrisDepositItemMenu: ; 0x1588b
 	call PrintText
 	ret
 
-.NoRoomInPC
+.NoRoomInPC:
 	ld hl, .NoRoomText
 	call PrintText
 	ret
 
-.DeclinedToDeposit
+.DeclinedToDeposit:
 	and a
 	ret
 
-.HowManyText ; 0x1596e
+.HowManyText: ; 0x1596e
 	text_jump _KrissPCHowManyDepositText
 	db "@"
 
-.DepositText ; 0x15973
+.DepositText: ; 0x15973
 	text_jump _KrissPCDepositItemsText
 	db "@"
 
-.NoRoomText ; 0x15978
+.NoRoomText: ; 0x15978
 	text_jump _KrissPCNoRoomDepositText
 	db "@"
 
@@ -619,14 +619,14 @@ PCItemsJoypad: ; 0x15985
 	scf
 	ret
 
-.PCItemsMenuData
+.PCItemsMenuData:
 	db %01000000
 	db  1,  4 ; start coords
 	db 10, 18 ; end coords
 	dw .MenuData2
 	db 1 ; default option
 
-.MenuData2
+.MenuData2:
 	db %10110000
 	db 4, 8 ; rows/cols?
 	db 2 ; horizontal spacing?

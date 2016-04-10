@@ -18,7 +18,7 @@ OfficerScript_0x1ab3f6:
 	closetext
 	end
 
-.RocksCleared
+.RocksCleared:
 	writetext UnknownText_0x1ab48a
 	waitbutton
 	closetext

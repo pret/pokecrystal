@@ -5,9 +5,9 @@ RTC:: ; 46f
 	ld a, [wSpriteUpdatesEnabled]
 	cp 0
 	ret z
-	
+
 	call UpdateTime
-	
+
 ; obj update on?
 	ld a, [VramState]
 	bit 0, a ; obj update

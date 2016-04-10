@@ -269,7 +269,7 @@ endr
 
 
 .Jumptable: ; 109937 (42:5937)
-	
+
 	dw ParseCredits
 	dw Credits_Next
 	dw Credits_Next
@@ -350,17 +350,17 @@ ParseCredits: ; 1099aa
 	ld hl, wJumptableIndex
 	bit 7, [hl]
 	jp nz, .done
-	
+
 ; Wait until the timer has run out to parse the next command.
 	ld hl, CreditsTimer
 	ld a, [hl]
 	and a
 	jr z, .parse
-	
+
 ; One tick has passed.
 	dec [hl]
 	jp .done
-	
+
 .parse
 ; First, let's clear the current text display,
 ; starting from line 5.
@@ -370,12 +370,12 @@ ParseCredits: ; 1099aa
 	ld bc, 20 * 12
 	ld a, " "
 	call ByteFill
-	
+
 ; Then read the script.
-	
+
 .loop
 	call .get
-	
+
 ; Commands:
 	cp CREDITS_END
 	jp z, .end
@@ -391,9 +391,9 @@ ParseCredits: ; 1099aa
 	jr z, .wait2
 	cp CREDITS_THEEND
 	jr z, .theend
-	
+
 ; If it's not a command, it's a string identifier.
-	
+
 	push af
 	ld e, a
 	ld d, 0
@@ -405,27 +405,27 @@ endr
 	ld d, [hl]
 	ld e, a
 	pop af
-	
+
 ; Strings spanning multiple lines have special cases.
-	
+
 	cp COPYRIGHT
 	jr z, .copyright
-	
+
 	cp STAFF
 	jr c, .staff
-	
+
 ; The rest start from line 6.
 
 	hlcoord 0, 6
 	jr .print
-	
+
 .copyright
 	hlcoord 2, 6
 	jr .print
-	
+
 .staff
 	hlcoord 0, 6
-	
+
 .print
 ; Print strings spaced every two lines.
 	call .get
@@ -433,12 +433,12 @@ endr
 	call AddNTimes
 	call PlaceString
 	jr .loop
-	
+
 .theend
 ; Display "The End" graphic.
 	call Credits_TheEnd
 	jr .loop
-	
+
 .scene
 ; Update the scene number and corresponding palette.
 	call .get
@@ -448,13 +448,13 @@ endr
 	call GetCreditsPalette
 	call SetPalettes ; update hw pal registers
 	jr .loop
-	
+
 .clear
 ; Clear the banner.
 	ld a, $ff
 	ld [wCreditsBorderFrame], a ; frame
 	jr .loop
-	
+
 .music
 ; Play the credits music.
 	ld de, MUSIC_CREDITS
@@ -465,26 +465,26 @@ endr
 	pop de
 	call PlayMusic
 	jp .loop
-	
+
 .wait2
 ; Wait for some amount of ticks.
 	call .get
 	ld [CreditsTimer], a
 	jr .done
-	
+
 .wait
 ; Wait for some amount of ticks, and do something else.
 	call .get
 	ld [CreditsTimer], a
-	
+
 	xor a
 	ld [hBGMapThird], a
 	ld a, 1
 	ld [hBGMapMode], a
-	
+
 .done
 	jp Credits_Next
-	
+
 .end
 ; Stop execution.
 	ld hl, wJumptableIndex
@@ -507,7 +507,7 @@ endr
 	ld d, a
 	ld hl, CreditsScript
 	add hl, de
-	
+
 	inc de
 	ld a, e
 	ld [CreditsPos], a
@@ -614,14 +614,14 @@ endr
 
 GetCreditsPalette: ; 109b2c
 	call .GetPalAddress
-	
+
 	push hl
 	ld a, 0
 	call .UpdatePals
 	pop hl
 	ret
-	
-.GetPalAddress
+
+.GetPalAddress:
 ; Each set of palette data is 24 bytes long.
 	ld a, [wCreditsBorderMon] ; scene
 	and 3
@@ -635,10 +635,10 @@ GetCreditsPalette: ; 109b2c
 	add hl, de ; * 3
 	add hl, de
 	ret
-	
-.UpdatePals
+
+.UpdatePals:
 ; Update the first three colors in both palette buffers.
-	
+
 	push af
 	push hl
 	add UnknBGPals % $100
@@ -648,7 +648,7 @@ GetCreditsPalette: ; 109b2c
 	ld d, a
 	ld bc, 24
 	call CopyBytes
-	
+
 	pop hl
 	pop af
 	add BGPals % $100

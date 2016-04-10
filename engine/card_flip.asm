@@ -50,7 +50,7 @@ _CardFlip: ; e00ee (38:40ee)
 	ld [wCardFlipCursorX], a
 	ld de, MUSIC_GAME_CORNER
 	call PlayMusic
-.MasterLoop
+.MasterLoop:
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .leavethegame
@@ -81,7 +81,7 @@ endr
 ; e01a0 (38:41a0)
 
 .Jumptable: ; e01a0
-	
+
 	dw .AskPlayWithThree
 	dw .DeductCoins
 	dw .ChooseACard
@@ -107,7 +107,7 @@ endr
 	call .Increment
 	ret
 
-.SaidNo
+.SaidNo:
 	ld a, 7
 	ld [wJumptableIndex], a
 	ret
@@ -311,7 +311,7 @@ endr
 	call .Increment
 	ret
 
-.Continue
+.Continue:
 	ld a, [wCardFlipNumCardsPlayed]
 	inc a
 	ld [wCardFlipNumCardsPlayed], a
@@ -325,10 +325,10 @@ endr
 	call PrintText
 	jr .LoopAround
 
-.KeepTheCurrentDeck
+.KeepTheCurrentDeck:
 	call CardFlip_BlankDiscardedCardSlot
 
-.LoopAround
+.LoopAround:
 	ld a, 1
 	ld [wJumptableIndex], a
 	ret
@@ -401,7 +401,7 @@ GetCoordsOfChosenCard: ; e03ac
 	bcpixel 2, 3
 	jr .done
 
-.BottomCard
+.BottomCard:
 	hlcoord 2, 6
 	bcpixel 8, 3
 
@@ -659,7 +659,7 @@ CardFlip_BlankDiscardedCardSlot: ; e0534
 ; e0553
 
 .Jumptable: ; e0553
-	
+
 	dw .Level1
 	dw .Level2
 	dw .Level3
@@ -848,7 +848,7 @@ CardFlip_CheckWinCondition: ; e0637
 ; e0643
 
 .Jumptable: ; e0643
-	
+
 	dw .Impossible
 	dw .Impossible
 	dw .PikaJiggly

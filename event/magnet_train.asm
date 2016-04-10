@@ -7,7 +7,7 @@ Special_MagnetTrain: ; 8cc04
 	lb de, (11 * 8) - (11 * 8 + 4), -$60
 	jr .continue
 
-.ToGoldenrod
+.ToGoldenrod:
 	ld a, -1 ; backwards
 	lb bc, -$40, -$60
 	lb de, (11 * 8) + (11 * 8 + 4), $60
@@ -187,7 +187,7 @@ DrawMagnetTrain: ; 8cd27
 	ret
 ; 8cd65
 
-.FillLine ; 8cd65
+.FillLine: ; 8cd65
 	ld a, [de]
 	inc de
 	ld [hli], a
@@ -196,7 +196,7 @@ DrawMagnetTrain: ; 8cd27
 	ret
 ; 8cd6c
 
-.FillAlt ; 8cd6c
+.FillAlt: ; 8cd6c
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -306,7 +306,7 @@ endr
 ; 8ce06
 
 .Jumptable: ; 8ce06
-	
+
 	dw .InitPlayerSpriteAnim
 	dw .WaitScene
 	dw .MoveTrain1
@@ -367,7 +367,7 @@ endr
 	ld [hl], a
 	ret
 
-.PrepareToHoldTrain
+.PrepareToHoldTrain:
 	call .Next
 	ld a, $80
 	ld [wcf66], a
@@ -382,7 +382,7 @@ endr
 	dec [hl]
 	ret
 
-.DoneWaiting
+.DoneWaiting:
 	call .Next
 	ret
 ; 8ce7a
@@ -414,7 +414,7 @@ endr
 
 	ret
 
-.PrepareToFinishAnim
+.PrepareToFinishAnim:
 	call .Next
 	ret
 ; 8cea2

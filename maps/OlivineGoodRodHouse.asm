@@ -25,13 +25,13 @@ GoodRodGuru:
 	setevent EVENT_GOT_GOOD_ROD
 	end
 
-.DontWantIt
+.DontWantIt:
 	writetext DontWantGoodRodText
 	waitbutton
 	closetext
 	end
 
-.AlreadyGotItem
+.AlreadyGotItem:
 	writetext HaveGoodRodText
 	waitbutton
 	closetext

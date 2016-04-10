@@ -9413,7 +9413,7 @@ endr
 	ld [hl], a
 	ret
 
-.Function113dfa
+.Function113dfa:
 	cp $2b
 	jr c, .asm_113e24
 	jr z, .asm_113e31

@@ -143,7 +143,7 @@ GetMart: ; 15b31
 	ld de, DefaultMart
 	ret
 
-.IsAMart
+.IsAMart:
 	ld hl, Marts
 rept 2
 	add hl, de
@@ -165,7 +165,7 @@ StandardMart: ; 15b47
 	jr nz, .loop
 	ret
 
-.MartFunctions
+.MartFunctions:
 	dw .HowMayIHelpYou
 	dw .TopMenu
 	dw .Buy
@@ -241,7 +241,7 @@ FarReadMart: ; 15bbb
 	ld h, [hl]
 	ld l, a
 	ld de, CurMart
-.CopyMart
+.CopyMart:
 	ld a, [MartPointerBank]
 	call GetFarByte
 	ld [de], a
@@ -251,7 +251,7 @@ FarReadMart: ; 15bbb
 	jr nz, .CopyMart
 	ld hl, wMartItem1BCD
 	ld de, CurMart + 1
-.ReadMartItem
+.ReadMartItem:
 	ld a, [de]
 	inc de
 	cp -1
@@ -299,7 +299,7 @@ GetMartPrice: ; 15bf0
 	ret
 ; 15c1a
 
-.CharToNybble ; 15c1a
+.CharToNybble: ; 15c1a
 	ld a, [de]
 	inc de
 	cp " "
@@ -427,7 +427,7 @@ endr
 	ret
 ; 15cb0
 
-.MartTextFunctionPointers ; 15cb0
+.MartTextFunctionPointers: ; 15cb0
 	dwb .StandardMartPointers, 0
 	dwb .HerbShopPointers, 0
 	dwb .BargainShopPointers, 1
@@ -592,7 +592,7 @@ endr
 	and a
 	ret
 
-.SoldOut
+.SoldOut:
 	ld a, MARTTEXT_SOLD_OUT
 	call LoadBuyMenuText
 	call JoyWaitAorB

@@ -24,7 +24,7 @@ PlaceWaitingText:: ; 4000
 	ld c, 50
 	jp DelayFrames
 
-.Waiting ; 4025
+.Waiting: ; 4025
 	db "Waiting...!@"
 
 LoadPushOAM:: ; 4031
@@ -74,7 +74,7 @@ Function6454:: ; 6454
 	set 6, [hl]
 	ret
 
-.Function6473
+.Function6473:
 	xor a
 	ld [hFFC6], a
 	ld [hBGMapMode], a
@@ -122,7 +122,7 @@ Function64bf:: ; 64bf
 	ld [hOAMUpdate], a
 	ret
 
-.Function64cd
+.Function64cd:
 	call LoadFontsExtra
 	ld a, $90
 	ld [hWY], a
@@ -1423,7 +1423,7 @@ GivePokerusAndConvertBerries: ; 2ed44
 	ld [hl], a
 	ret
 
-.TrySpreadPokerus
+.TrySpreadPokerus:
 	call Random
 	cp 1 + 33 percent
 	ret nc              ; 1/3 chance
@@ -2410,7 +2410,7 @@ SwapTextboxPalettes:: ; 4c000
 	and $f
 	jr .next
 
-.UpperNybble
+.UpperNybble:
 	ld hl, TilesetPalettes
 	add [hl]
 	ld l, a
@@ -2454,7 +2454,7 @@ ScrollBGMapPalettes:: ; 4c03f
 	and $f
 	jr .next
 
-.UpperNybble
+.UpperNybble:
 	ld hl, TilesetPalettes
 	add [hl]
 	ld l, a
@@ -2514,7 +2514,7 @@ SaveMenu_LoadEDTile: ; 4cf45 (13:4f45)
 	push af
 	xor a
 	ld [hMapAnims], a
-.WaitLY
+.WaitLY:
 	ld a, [rLY]
 	cp $60
 	jr c, .WaitLY
@@ -2528,7 +2528,7 @@ SaveMenu_LoadEDTile: ; 4cf45 (13:4f45)
 	ld [rVBK], a
 	hlcoord 0, 0
 	call .LoadEDTile
-.WaitLY2
+.WaitLY2:
 	ld a, [rLY]
 	cp $60
 	jr c, .WaitLY2
@@ -3240,7 +3240,7 @@ CheckPokerus: ; 4d860
 ; Check each monster in the party for Pokerus
 	ld hl, PartyMon1PokerusStatus
 	ld de, PARTYMON_STRUCT_LENGTH
-.Check
+.Check:
 	ld a, [hl]
 	and $0f ; only the bottom nybble is used
 	jr nz, .HasPokerus
@@ -3248,10 +3248,10 @@ CheckPokerus: ; 4d860
 	add hl, de
 	dec b
 	jr nz, .Check
-.NoPokerus
+.NoPokerus:
 	and a
 	ret
-.HasPokerus
+.HasPokerus:
 	scf
 	ret
 
@@ -3265,7 +3265,7 @@ Special_CheckForLuckyNumberWinners: ; 4d87a
 	ld d, a
 	ld hl, PartyMon1ID
 	ld bc, PartySpecies
-.PartyLoop
+.PartyLoop:
 	ld a, [bc]
 	inc bc
 	cp EGG
@@ -3284,7 +3284,7 @@ Special_CheckForLuckyNumberWinners: ; 4d87a
 	ld d, a
 	ld hl, sBoxMon1ID
 	ld bc, sBoxSpecies
-.OpenBoxLoop
+.OpenBoxLoop:
 	ld a, [bc]
 	inc bc
 	cp EGG
@@ -3294,7 +3294,7 @@ Special_CheckForLuckyNumberWinners: ; 4d87a
 	ld a, 1
 	ld [wFoundMatchingIDInParty], a
 
-.SkipOpenBoxMon
+.SkipOpenBoxMon:
 	push bc
 	ld bc, BOXMON_STRUCT_LENGTH
 	add hl, bc
@@ -3302,10 +3302,10 @@ Special_CheckForLuckyNumberWinners: ; 4d87a
 	dec d
 	jr nz, .OpenBoxLoop
 
-.SkipOpenBox
+.SkipOpenBox:
 	call CloseSRAM
 	ld c, $0
-.BoxesLoop
+.BoxesLoop:
 	ld a, [wCurBox]
 	and $f
 	cp c
@@ -3330,7 +3330,7 @@ endr
 	ld de, sBoxMon1ID - sBox
 	add hl, de
 	ld d, a
-.BoxNLoop
+.BoxNLoop:
 	ld a, [bc]
 	inc bc
 	cp EGG
@@ -3341,7 +3341,7 @@ endr
 	ld a, 1
 	ld [wFoundMatchingIDInParty], a
 
-.SkipBoxMon
+.SkipBoxMon:
 	push bc
 	ld bc, BOXMON_STRUCT_LENGTH
 	add hl, bc
@@ -3350,7 +3350,7 @@ endr
 	jr nz, .BoxNLoop
 	pop bc
 
-.SkipBox
+.SkipBox:
 	inc c
 	ld a, c
 	cp NUM_BOXES
@@ -3538,7 +3538,7 @@ CheckPartyFullAfterContest: ; 4d9e5
 	ld de, wMonOrItemNameBuffer
 	callab InitNickname
 
-.Party_SkipNickname
+.Party_SkipNickname:
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMonNicknames
@@ -3600,7 +3600,7 @@ CheckPartyFullAfterContest: ; 4d9e5
 	callab InitNickname
 	ld hl, wMonOrItemNameBuffer
 
-.Box_SkipNickname
+.Box_SkipNickname:
 	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
 	ld de, sBoxMonNicknames
@@ -3608,7 +3608,7 @@ CheckPartyFullAfterContest: ; 4d9e5
 	call CopyBytes
 	call CloseSRAM
 
-.BoxFull
+.BoxFull:
 	ld a, BANK(sBoxMon1Level)
 	call GetSRAMBank
 	ld a, [sBoxMon1Level]
@@ -3674,7 +3674,7 @@ SetBoxmonOrEggmonCaughtData: ; 4db53
 	ld a, [BackupMapNumber]
 	ld c, a
 
-.NotPokeCenter2F
+.NotPokeCenter2F:
 	call GetWorldMapLocation
 	ld b, a
 	ld a, [PlayerGender]
@@ -4412,27 +4412,27 @@ Strings50a42: ; 50a42
 	dw OTClassName
 	dw OTClassName
 
-.Youngster    db "たんパン@"
-.BugCatcher   db "むしとり@"
-.Lass         db "ミニスカ@"
-.JrTrainerM   db "ボーイ@"
-.JrTrainerF   db "ガール@"
-.Pokemaniac   db "マニア@"
-.SuperNerd    db "りかけい@"
-.Burglar      db "どろぼう@"
-.Engineer     db "ォヤジ@"
-.Jack         db "ジャック@"
-.Swimmer      db "かいパン@"
-.Beauty       db "おねえさん@"
-.Rocker       db "グループ@"
-.Juggler      db "ジャグラー@"
-.Blackbelt    db "からて@"
-.ProfOak      db "ォーキド@"
-.Chief        db "チーフ@"
-.Scientist    db "けんきゅういん@"
-.Rocket       db "だんいん@"
-.CooltrainerM db "エりート♂@"
-.CooltrainerF db "エりート♀@"
+.Youngster:    db "たんパン@"
+.BugCatcher:   db "むしとり@"
+.Lass:         db "ミニスカ@"
+.JrTrainerM:   db "ボーイ@"
+.JrTrainerF:   db "ガール@"
+.Pokemaniac:   db "マニア@"
+.SuperNerd:    db "りかけい@"
+.Burglar:      db "どろぼう@"
+.Engineer:     db "ォヤジ@"
+.Jack:         db "ジャック@"
+.Swimmer:      db "かいパン@"
+.Beauty:       db "おねえさん@"
+.Rocker:       db "グループ@"
+.Juggler:      db "ジャグラー@"
+.Blackbelt:    db "からて@"
+.ProfOak:      db "ォーキド@"
+.Chief:        db "チーフ@"
+.Scientist:    db "けんきゅういん@"
+.Rocket:       db "だんいん@"
+.CooltrainerM: db "エりート♂@"
+.CooltrainerF: db "エりート♀@"
 
 DrawPlayerHP: ; 50b0a
 	ld a, $1
@@ -4599,12 +4599,12 @@ GetGender: ; 50bdd
 
 ; Get our place in the party/box.
 
-.PartyMon
+.PartyMon:
 .sBoxMon
 	ld a, [CurPartyMon]
 	call AddNTimes
 
-.DVs
+.DVs:
 
 ; sBoxMon data is read directly from SRAM.
 	ld a, [MonType]
@@ -4657,16 +4657,16 @@ GetGender: ; 50bdd
 	cp b
 	jr c, .Male
 
-.Female
+.Female:
 	xor a
 	ret
 
-.Male
+.Male:
 	ld a, 1
 	and a
 	ret
 
-.Genderless
+.Genderless:
 	scf
 	ret
 
@@ -5554,7 +5554,7 @@ ShowPlayerNamingChoices: ; 88297
 	bit 0, a
 	jr z, .GotGender
 	ld hl, KrisNameMenuHeader
-.GotGender
+.GotGender:
 	call LoadMenuDataHeader
 	call VerticalMenu
 	ld a, [wMenuCursorY]
@@ -5639,7 +5639,7 @@ GetCardPic: ; 8833e
 	bit 0, a
 	jr z, .GotClass
 	ld hl, KrisCardPic
-.GotClass
+.GotClass:
 	ld de, VTiles2 tile $00
 	ld bc, $23 tiles
 	ld a, BANK(ChrisCardPic) ; BANK(KrisCardPic)
@@ -5685,7 +5685,7 @@ HOF_LoadTrainerFrontpic: ; 88840
 	jr z, .GotClass
 	ld e, 1
 
-.GotClass
+.GotClass:
 	ld a, e
 	ld [TrainerClass], a
 	ld de, ChrisPic
@@ -5694,7 +5694,7 @@ HOF_LoadTrainerFrontpic: ; 88840
 	jr z, .GotPic
 	ld de, KrisPic
 
-.GotPic
+.GotPic:
 	ld hl, VTiles2
 	ld b, BANK(ChrisPic) ; BANK(KrisPic)
 	ld c, 7 * 7
@@ -5713,7 +5713,7 @@ DrawIntroPlayerPic: ; 88874
 	bit 0, a
 	jr z, .GotClass
 	ld e, KRIS
-.GotClass
+.GotClass:
 	ld a, e
 	ld [TrainerClass], a
 
@@ -5723,7 +5723,7 @@ DrawIntroPlayerPic: ; 88874
 	bit 0, a
 	jr z, .GotPic
 	ld de, KrisPic
-.GotPic
+.GotPic:
 	ld hl, VTiles2
 	ld b, BANK(ChrisPic) ; BANK(KrisPic)
 	ld c, 7 * 7 ; dimensions
@@ -6026,11 +6026,11 @@ DisplayCaughtContestMonStats: ; cc000
 	call SetPalettes
 	ret
 
-.Health
+.Health:
 	db "HEALTH@"
-.Stock
+.Stock:
 	db " STOCK ", $4a, " @"
-.This
+.This:
 	db " THIS ", $4a, "  @"
 
 SwitchMonText: ; cc0c2
@@ -6411,11 +6411,11 @@ PrintHoursMins ; 1dd6bb (77:56bb)
 	jr z, .PM
 	sub 12
 	jr .PM
-.AM
+.AM:
 	or a
 	jr nz, .PM
 	ld a, 12
-.PM
+.PM:
 	ld b, a
 ; Crazy stuff happening with the stack
 	push bc
@@ -6511,7 +6511,7 @@ DrawPokedexListWindow: ; 1de171 (77:6171)
 	ld [hl], $52
 	jr .Done
 
-.OldMode
+.OldMode:
 ; no scroll bar
 	hlcoord 11, 0
 	ld [hl], $66
@@ -6520,7 +6520,7 @@ DrawPokedexListWindow: ; 1de171 (77:6171)
 	ld b, SCREEN_HEIGHT - 3
 	call Bank77_FillColumn
 	ld [hl], $68
-.Done
+.Done:
 	ret
 
 DrawPokedexSearchResultsWindow: ; 1de1d1 (77:61d1)

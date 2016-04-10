@@ -310,7 +310,7 @@ _HallOfFamePC: ; 86650
 	call LoadFontsBattleExtra
 	xor a
 	ld [wJumptableIndex], a
-.MasterLoop
+.MasterLoop:
 	call LoadHOFTeam
 	ret c
 	call .DisplayTeam
@@ -319,7 +319,7 @@ _HallOfFamePC: ; 86650
 	inc [hl]
 	jr .MasterLoop
 
-.DisplayTeam
+.DisplayTeam:
 	xor a
 	ld [wcf64], a
 .next
@@ -353,7 +353,7 @@ _HallOfFamePC: ; 86650
 	and a
 	ret
 
-.DisplayMonAndStrings
+.DisplayMonAndStrings:
 ; Print the number of times the player has entered the Hall of Fame.
 ; If that number is above 200, print "HOF Master!" instead.
 	ld a, [wcf64]
@@ -616,7 +616,7 @@ HOF_AnimatePlayerPic: ; 86810
 	ret
 ; 868ed
 
-.PlayTime
+.PlayTime:
 	db "PLAY TIME@"
 ; 868f7
 

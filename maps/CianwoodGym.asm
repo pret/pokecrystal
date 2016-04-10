@@ -51,7 +51,7 @@ ChuckScript_0x9d60f:
 	setflag ENGINE_STORMBADGE
 	checkcode VAR_BADGES
 	scall CianwoodGymTriggerRockets
-.FightDone
+.FightDone:
 	checkevent EVENT_GOT_TM01_DYNAMICPUNCH
 	iftrue .AlreadyGotTM
 	setevent EVENT_BEAT_BLACKBELT_YOSHI
@@ -80,10 +80,10 @@ CianwoodGymTriggerRockets:
 	if_equal 6, .GoldenrodRockets
 	end
 
-.GoldenrodRockets
+.GoldenrodRockets:
 	jumpstd goldenrodrockets
 
-.RadioTowerRockets
+.RadioTowerRockets:
 	jumpstd radiotowerrockets
 
 TrainerBlackbeltYoshi:
@@ -137,7 +137,7 @@ CianwoodGymStatue:
 	checkflag ENGINE_STORMBADGE
 	iftrue .Beaten
 	jumpstd gymstatue1
-.Beaten
+.Beaten:
 	trainertotext CHUCK, 1, $1
 	jumpstd gymstatue2
 

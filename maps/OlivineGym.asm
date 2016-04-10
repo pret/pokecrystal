@@ -29,7 +29,7 @@ JasmineScript_0x9c12f:
 	setflag ENGINE_MINERALBADGE
 	checkcode VAR_BADGES
 	scall OlivineGymTriggerRockets
-.FightDone
+.FightDone:
 	checkevent EVENT_GOT_TM23_IRON_TAIL
 	iftrue UnknownScript_0x9c172
 	writetext UnknownText_0x9c354
@@ -54,10 +54,10 @@ OlivineGymTriggerRockets:
 	if_equal 6, .GoldenrodRockets
 	end
 
-.GoldenrodRockets
+.GoldenrodRockets:
 	jumpstd goldenrodrockets
 
-.RadioTowerRockets
+.RadioTowerRockets:
 	jumpstd radiotowerrockets
 
 OlivineGymGuyScript:
@@ -72,14 +72,14 @@ OlivineGymGuyScript:
 	closetext
 	end
 
-.OlivineGymGuyWinScript
+.OlivineGymGuyWinScript:
 	opentext
 	writetext OlivineGymGuyWinText
 	waitbutton
 	closetext
 	end
 
-.OlivineGymGuyPreScript
+.OlivineGymGuyPreScript:
 	opentext
 	writetext OlivineGymGuyPreText
 	waitbutton
@@ -90,7 +90,7 @@ OlivineGymStatue:
 	checkflag ENGINE_MINERALBADGE
 	iftrue .Beaten
 	jumpstd gymstatue1
-.Beaten
+.Beaten:
 	trainertotext JASMINE, 1, $1
 	jumpstd gymstatue2
 

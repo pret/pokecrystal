@@ -56,7 +56,7 @@ SailorScript_0x75160:
 	closetext
 	end
 
-.Olivine
+.Olivine:
 	writetext UnknownText_0x7529b
 	waitbutton
 	closetext

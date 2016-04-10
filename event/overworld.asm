@@ -128,7 +128,7 @@ CutFunction: ; c785
 	ret
 
 .Jumptable: ; c796 (3:4796)
-	
+
 	dw .CheckAble
 	dw .DoCut
 	dw .FailCut
@@ -529,7 +529,7 @@ CheckDirection: ; c9cb
 	scf
 	ret
 
-.Directions
+.Directions:
 	db FACE_DOWN
 	db FACE_UP
 	db FACE_LEFT
@@ -605,7 +605,7 @@ FlyFunction: ; ca3b
 	ld [wFieldMoveSucceeded], a
 	ret
 
-.Jumptable
+.Jumptable:
  	dw .TryFly
  	dw .DoFly
  	dw .FailFly
@@ -954,7 +954,7 @@ TeleportFunction: ; cc61
 	jr z, .CheckIfSpawnPoint
 	jr .nope
 
-.CheckIfSpawnPoint
+.CheckIfSpawnPoint:
 	ld a, [wLastSpawnMapGroup]
 	ld d, a
 	ld a, [wLastSpawnMapNumber]
@@ -1708,7 +1708,7 @@ BikeFunction: ; d0b3
 	jr z, .GetOffBike
 	jr .CannotUseBike
 
-.GetOnBike
+.GetOnBike:
 	ld hl, Script_GetOnBike
 	ld de, Script_GetOnBike_Register
 	call .CheckIfRegistered
@@ -1726,7 +1726,7 @@ BikeFunction: ; d0b3
 	ld a, $1
 	ret
 
-.GetOffBike
+.GetOffBike:
 	ld hl, BikeFlags
 	bit 1, [hl]
 	jr nz, .CantGetOffBike
@@ -1736,11 +1736,11 @@ BikeFunction: ; d0b3
 	ld a, BANK(Script_GetOffBike)
 	jr .done
 
-.CantGetOffBike
+.CantGetOffBike:
 	ld hl, Script_CantGetOffBike
 	jr .done
 
-.CannotUseBike
+.CannotUseBike:
 	ld a, $0
 	ret
 

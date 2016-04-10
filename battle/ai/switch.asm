@@ -161,7 +161,7 @@ endr
 
 .doubledown
 	call .DecreaseScore
-	
+
 	; fallthrough
 ; 34931
 

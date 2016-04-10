@@ -1,7 +1,7 @@
 ; CroconawPokedexEntry: ; 0x1ccc84
 	db "BIG JAW@" ; species name
 	dw 307, 550 ; height, width
-	
+
 	db   "The tips of its"
 	next "fangs are slanted"
 	next "backward. Once"

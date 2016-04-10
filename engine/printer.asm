@@ -32,7 +32,7 @@ endr
 
 
 .Jumptable: ; 84031 (21:4031)
-	
+
 	dw Function84077
 	dw Function84143
 	dw Function84120
@@ -443,7 +443,7 @@ _PrinterReceive:: ; 842db
 
 
 .Jumptable: ; 842ea (21:42ea)
-	
+
 	dw Function8432f
 	dw Function84330
 	dw Function84339

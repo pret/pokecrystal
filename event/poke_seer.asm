@@ -248,7 +248,7 @@ GetCaughtLocation: ; 4f20a
 	and a
 	ret
 
-.Unknown
+.Unknown:
 	ld de, wSeerCaughtLocation
 	jp UnknownCaughtData
 

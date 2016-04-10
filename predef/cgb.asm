@@ -341,11 +341,11 @@ _CGB17: ; 8fca
 	call LoadHLPaletteIntoDE
 	jr .Resume
 
-.GetMonPalette
+.GetMonPalette:
 	ld bc, TempMonDVs
 	call GetPlayerOrMonPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
-.Resume
+.Resume:
 	call WipeAttrMap
 	hlcoord 1, 4, AttrMap
 	lb bc, 7, 7

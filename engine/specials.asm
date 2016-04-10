@@ -578,7 +578,7 @@ SpecialSnorlaxAwake: ; 0xc43d
 	ld [ScriptVar], a
 	ret
 
-.ProximityCoords
+.ProximityCoords:
 	;   x,  y
 	db 33,  8 ; left
 	db 34, 10 ; below

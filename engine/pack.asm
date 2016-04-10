@@ -28,7 +28,7 @@ Pack: ; 10000
 ; 10030
 
 .Jumptable: ; 10030 (4:4030)
-	
+
 	dw .InitGFX            ;  0
 	dw .InitItemsPocket    ;  1
 	dw .ItemsPocketMenu    ;  2
@@ -163,7 +163,7 @@ Pack: ; 10000
 ; 0x10137
 
 .Jumptable1: ; 10137
-	
+
 	dw .UseItem
 	dw QuitItemSubmenu
 
@@ -328,7 +328,7 @@ MenuDataHeader_UsableKeyItem: ; 0x10249
 ; 0x1026a
 
 Jumptable_UseGiveTossRegisterQuit: ; 1026a
-	
+
 	dw UseItem
 	dw GiveItem
 	dw TossMenu
@@ -354,7 +354,7 @@ MenuDataHeader_UsableItem: ; 0x10274
 ; 0x10291
 
 Jumptable_UseGiveTossQuit: ; 10291
-	
+
 	dw UseItem
 	dw GiveItem
 	dw TossMenu
@@ -377,7 +377,7 @@ MenuDataHeader_UnusableItem: ; 0x10299
 ; 0x102ac
 
 Jumptable_UseQuit: ; 102ac
-	
+
 	dw UseItem
 	dw QuitItemSubmenu
 ; 102b0
@@ -399,7 +399,7 @@ MenuDataHeader_UnusableKeyItem: ; 0x102b0
 ; 0x102c7
 
 Jumptable_UseRegisterQuit: ; 102c7
-	
+
 	dw UseItem
 	dw RegisterItem
 	dw QuitItemSubmenu
@@ -423,7 +423,7 @@ MenuDataHeader_HoldableKeyItem: ; 0x102cd
 ; 0x102ea
 
 Jumptable_GiveTossRegisterQuit: ; 102ea
-	
+
 	dw GiveItem
 	dw TossMenu
 	dw RegisterItem
@@ -447,7 +447,7 @@ MenuDataHeader_HoldableItem: ; 0x102f2
 ; 0x1030b
 
 Jumptable_GiveTossQuit: ; 1030b
-	
+
 	dw GiveItem
 	dw TossMenu
 	dw QuitItemSubmenu
@@ -463,7 +463,7 @@ UseItem: ; 10311
 ; 1031f
 
 .dw: ; 1031f (4:431f)
-	
+
 	dw .Oak
 	dw .Oak
 	dw .Oak
@@ -494,7 +494,7 @@ UseItem: ; 10311
 	call Pack_InitColors
 	ret
 
-.NoPokemon
+.NoPokemon:
 	ld hl, TextJump_YouDontHaveAPkmn
 	call Pack_PrintTextNoScroll
 	ret
@@ -694,7 +694,7 @@ BattlePack: ; 10493
 ; 104c3
 
 .Jumptable: ; 104c3 (4:44c3)
-	
+
 	dw .InitGFX            ;  0
 	dw .InitItemsPocket    ;  1
 	dw .ItemsPocketMenu    ;  2
@@ -833,7 +833,7 @@ TMHMSubmenu: ; 105dc (4:45dc)
 	ld de, .UsableJumptable
 	jr .proceed
 
-.NoUse
+.NoUse:
 	ld hl, .UnusableMenuDataHeader
 	ld de, .UnusableJumptable
 .proceed
@@ -865,7 +865,7 @@ TMHMSubmenu: ; 105dc (4:45dc)
 ; 0x10614
 
 .UsableJumptable: ; 10614
-	
+
 	dw .Use
 	dw .Quit
 ; 10618
@@ -885,7 +885,7 @@ TMHMSubmenu: ; 105dc (4:45dc)
 ; 0x10627
 
 .UnusableJumptable: ; 10627
-	
+
 	dw .Quit
 ; 10629
 
@@ -897,7 +897,7 @@ TMHMSubmenu: ; 105dc (4:45dc)
 	ret
 
 .ItemFunctionJumptable: ; 10637 (4:4637)
-	
+
 	dw .Oak
 	dw .Oak
 	dw .Oak
@@ -1002,7 +1002,7 @@ DepositSellPack: ; 106be
 ; 106d1
 
 .Jumptable: ; 106d1 (4:46d1)
-	
+
 	dw .ItemsPocket
 	dw .BallsPocket
 	dw .KeyItemsPocket
@@ -1149,7 +1149,7 @@ TutorialPack: ; 107bb
 ; 107e1
 
 .dw: ; 107e1 (4:47e1)
-	
+
 	dw .Items
 	dw .Balls
 	dw .KeyItems

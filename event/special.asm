@@ -60,7 +60,7 @@ SpecialGiveShuckle: ; 7305
 	ld [ScriptVar], a
 	ret
 
-.NotGiven
+.NotGiven:
 	xor a
 	ld [ScriptVar], a
 	ret
@@ -96,7 +96,7 @@ SpecialReturnShuckle: ; 737e
 	ld hl, PartyMonOT
 	call SkipNames
 	ld de, SpecialShuckleOT
-.CheckOT
+.CheckOT:
 	ld a, [de]
 	cp [hl]
 	jr nz, .DontReturn
@@ -121,7 +121,7 @@ SpecialReturnShuckle: ; 737e
 	ld [wPokemonWithdrawDepositParameter], a
 	callab RemoveMonFromPartyOrBox
 	ld a, $2
-.HappyToStayWithYou
+.HappyToStayWithYou:
 	ld [ScriptVar], a
 	ret
 
@@ -130,7 +130,7 @@ SpecialReturnShuckle: ; 737e
 	ld [ScriptVar], a
 	ret
 
-.DontReturn
+.DontReturn:
 	xor a
 	ld [ScriptVar], a
 	ret

@@ -18,10 +18,10 @@ MrPsychic:
 	verbosegiveitem TM_PSYCHIC
 	iffalse .Done
 	setevent EVENT_GOT_TM29_PSYCHIC
-.AlreadyGotItem
+.AlreadyGotItem:
 	writetext MrPsychicText2
 	waitbutton
-.Done
+.Done:
 	closetext
 	end
 

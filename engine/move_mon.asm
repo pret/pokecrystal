@@ -655,7 +655,7 @@ SentGetPkmnIntoFromBox: ; db3f
 	dec a
 	ld b, a
 	call Functiondcb6
-.CloseSRAM_And_ClearCarryFlag
+.CloseSRAM_And_ClearCarryFlag:
 	call CloseSRAM
 	and a
 	ret
@@ -1481,30 +1481,30 @@ endr
 	pop bc
 	jr .GotDV
 
-.Attack
+.Attack:
 	ld a, [hl]
 	swap a
 	and $f
 	jr .GotDV
 
-.Defense
+.Defense:
 	ld a, [hl]
 	and $f
 	jr .GotDV
 
-.Speed
+.Speed:
 	inc hl
 	ld a, [hl]
 	swap a
 	and $f
 	jr .GotDV
 
-.Special
+.Special:
 	inc hl
 	ld a, [hl]
 	and $f
 
-.GotDV
+.GotDV:
 	ld d, 0
 	add e
 	ld e, a

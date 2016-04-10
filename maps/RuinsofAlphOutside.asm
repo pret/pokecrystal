@@ -83,7 +83,7 @@ FisherScript_0x58061:
 	setevent EVENT_TALKED_TO_RUINS_COWARD
 	writetext UnknownText_0x583a4
 	buttonsound
-.Next
+.Next:
 	writetext UnknownText_0x58420
 	waitbutton
 	closetext

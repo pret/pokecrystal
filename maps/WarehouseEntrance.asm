@@ -415,15 +415,15 @@ MapWarehouseEntranceSignpost1Script:
 
 WarehouseEntranceHiddenParlyzHeal:
 	dwb EVENT_WAREHOUSE_ENTRANCE_HIDDEN_PARLYZ_HEAL, PARLYZ_HEAL
-	
+
 
 WarehouseEntranceHiddenSuperPotion:
 	dwb EVENT_WAREHOUSE_ENTRANCE_HIDDEN_SUPER_POTION, SUPER_POTION
-	
+
 
 WarehouseEntranceHiddenAntidote:
 	dwb EVENT_WAREHOUSE_ENTRANCE_HIDDEN_ANTIDOTE, ANTIDOTE
-	
+
 
 SupernerdEricSeenText:
 	text "I got booted out"

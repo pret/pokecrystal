@@ -3,24 +3,24 @@ const_value set 2
 	const MRPOKEMONSHOUSE_OAK
 
 MrPokemonsHouse_MapScriptHeader:
-.MapTriggers
+.MapTriggers:
 	db 2
 
 	; triggers
 	maptrigger .Trigger0
 	maptrigger .Trigger1
 
-.MapCallbacks
+.MapCallbacks:
 	db 0
 
-.Trigger0
+.Trigger0:
 	priorityjump .MrPokemonEvent
 	end
 
-.Trigger1
+.Trigger1:
 	end
 
-.MrPokemonEvent
+.MrPokemonEvent:
 	showemote EMOTE_SHOCK, MRPOKEMONSHOUSE_GENTLEMAN, 15
 	spriteface MRPOKEMONSHOUSE_GENTLEMAN, DOWN
 	opentext
@@ -63,13 +63,13 @@ MrPokemonsHouse_MrPokemonScript:
 	closetext
 	end
 
-.AlwaysNewDiscoveries
+.AlwaysNewDiscoveries:
 	writetext MrPokemonText_AlwaysNewDiscoveries
 	waitbutton
 	closetext
 	end
 
-.RedScale
+.RedScale:
 	writetext MrPokemonText_GimmeTheScale
 	yesorno
 	iffalse .refused
@@ -139,11 +139,11 @@ MrPokemonsHouse_OakScript:
 	setevent EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
 	end
 
-.RivalTakesChikorita
+.RivalTakesChikorita:
 	setevent EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
 	end
 
-.RivalTakesCyndaquil
+.RivalTakesCyndaquil:
 	setevent EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
 	end
 

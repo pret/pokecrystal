@@ -18,10 +18,10 @@ FisherScript_0x9b847:
 	verbosegiveitem NUGGET
 	iffalse .Done
 	setevent EVENT_GOT_NUGGET_FROM_GUY
-.GotItem
+.GotItem:
 	writetext UnknownText_0x9b8e5
 	waitbutton
-.Done
+.Done:
 	closetext
 	end
 

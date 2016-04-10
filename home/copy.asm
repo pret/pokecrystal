@@ -246,7 +246,7 @@ Request2bpp:: ; eba
 	ld a, $6
 	ld [hTilesPerCycle], a
 
-.NotMobile
+.NotMobile:
 	ld a, e
 	ld [Requested2bppSource], a
 	ld a, d
@@ -322,7 +322,7 @@ Request1bpp:: ; f1e
 	ld a, $6
 	ld [hTilesPerCycle], a
 
-.NotMobile
+.NotMobile:
 	ld a, e
 	ld [Requested1bppSource], a
 	ld a, d

@@ -221,7 +221,7 @@ MobileHome_PlaceBox: ; 3f47
 	push bc
 	call .FillTop
 	pop bc
-.RowLoop
+.RowLoop:
 	push bc
 	call .FillMiddle
 	pop bc
@@ -231,28 +231,28 @@ MobileHome_PlaceBox: ; 3f47
 	ret
 ; 3f58
 
-.FillTop
+.FillTop:
 	ld a, $63
 	ld d, $62
 	ld e, $64
 	jr .FillRow
 
-.FillBottom
+.FillBottom:
 	ld a, $68
 	ld d, $67
 	ld e, $69
 	jr .FillRow
 
-.FillMiddle
+.FillMiddle:
 	ld a, $7f
 	ld d, $65
 	ld e, $66
 
-.FillRow
+.FillRow:
 	push hl
 	ld [hl], d
 	inc hl
-.FillLoop
+.FillLoop:
 	ld [hli], a
 	dec c
 	jr nz, .FillLoop

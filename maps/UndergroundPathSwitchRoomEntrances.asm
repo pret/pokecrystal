@@ -636,11 +636,11 @@ UndergroundPathSwitchRoomEntrancesFullHeal:
 
 UndergroundPathSwitchRoomEntrancesHiddenMaxPotion:
 	dwb EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_HIDDEN_MAX_POTION, MAX_POTION
-	
+
 
 UndergroundPathSwitchRoomEntrancesHiddenRevive:
 	dwb EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_HIDDEN_REVIVE, REVIVE
-	
+
 
 UndergroundSilverApproachMovement1:
 	step_down

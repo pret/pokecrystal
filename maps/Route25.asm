@@ -194,7 +194,7 @@ Route25Protein:
 
 Route25HiddenPotion:
 	dwb EVENT_ROUTE_25_HIDDEN_POTION, POTION
-	
+
 
 MovementData_0x19efe8:
 	big_step_down

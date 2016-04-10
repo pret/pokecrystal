@@ -198,9 +198,9 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	inc hl
 	dec d
 	jr .loop
-.Yes
+.Yes:
 	scf
-.No
+.No:
 	jp CloseSRAM
 
 .AddMysteryGiftPartnerID: ; 104a56 (41:4a56)

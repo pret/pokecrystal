@@ -6,7 +6,7 @@ _DummyGame: ; e1e5b (38:5e5b)
 	jr nc, .loop
 	ret
 
-.LoadGFXAndPals
+.LoadGFXAndPals:
 	call DisableLCD
 	ld b, SCGB_08
 	call GetSGBLayout
@@ -42,7 +42,7 @@ _DummyGame: ; e1e5b (38:5e5b)
 	call DmgToCgbObjPal0
 	ret
 
-.JumptableLoop
+.JumptableLoop:
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .quit
@@ -56,10 +56,10 @@ _DummyGame: ; e1e5b (38:5e5b)
 	scf
 	ret
 
-.ExecuteJumptable
+.ExecuteJumptable:
 	jumptable .Jumptable, wJumptableIndex
 
-.Jumptable
+.Jumptable:
 	dw .RestartGame
 	dw .ResetBoard
 	dw .InitBoardTilemapAndCursorObject
@@ -70,13 +70,13 @@ _DummyGame: ; e1e5b (38:5e5b)
 	dw .RevealAll
 	dw .AskPlayAgain
 
-.RestartGame
+.RestartGame:
 	call DummyGame_InitStrings
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
-.ResetBoard
+.ResetBoard:
 	call ret_e00ed
 	jr nc, .proceed
 	ld hl, wJumptableIndex
@@ -95,7 +95,7 @@ rept 4
 endr
 	ld [hl], a
 	ld [wDummyGameNumCardsMatched], a
-.InitBoardTilemapAndCursorObject
+.InitBoardTilemapAndCursorObject:
 	ld hl, wDummyGameCounter
 	ld a, [hl]
 	cp 45
@@ -117,7 +117,7 @@ endr
 	inc [hl]
 	ret
 
-.CheckTriesRemaining
+.CheckTriesRemaining:
 	ld a, [wDummyGameNumberTriesRemaining]
 	hlcoord 17, 0
 	add "0"
@@ -136,7 +136,7 @@ endr
 	ld [wcf64], a
 	ld hl, wJumptableIndex
 	inc [hl]
-.PickCard1
+.PickCard1:
 	ld a, [wcf64]
 	and a
 	ret z
@@ -160,7 +160,7 @@ endr
 	inc [hl]
 	ret
 
-.PickCard2
+.PickCard2:
 	ld a, [wcf64]
 	and a
 	ret z
@@ -185,7 +185,7 @@ endr
 	ld [wDummyGameCounter], a
 	ld hl, wJumptableIndex
 	inc [hl]
-.DelayPickAgain
+.DelayPickAgain:
 	ld hl, wDummyGameCounter
 	ld a, [hl]
 	and a
@@ -193,19 +193,19 @@ endr
 	dec [hl]
 	ret
 
-.PickAgain
+.PickAgain:
 	call DummyGame_CheckMatch
 	ld a, $3
 	ld [wJumptableIndex], a
 	ret
 
-.RevealAll
+.RevealAll:
 	ld a, [hJoypadPressed]
 	and A_BUTTON
 	ret z
 	xor a
 	ld [wDummyGameCounter], a
-.RevelationLoop
+.RevelationLoop:
 	ld hl, wDummyGameCounter
 	ld a, [hl]
 	cp 45
@@ -231,7 +231,7 @@ endr
 	call WaitPressAorB_BlinkCursor
 	ld hl, wJumptableIndex
 	inc [hl]
-.AskPlayAgain
+.AskPlayAgain:
 	call ret_e00ed
 	jr nc, .restart
 	ld hl, wJumptableIndex
@@ -310,7 +310,7 @@ DummyGame_CheckMatch: ; e2010
 	call PrintText
 	ret
 
-.VictoryText
+.VictoryText:
 	start_asm
 	push bc
 	hlcoord 2, 13

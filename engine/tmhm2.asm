@@ -59,12 +59,12 @@ AskTeachTMHM: ; 2c7bf (b:47bf)
 	cp HM01
 	jr c, .TM
 	ld hl, Text_BootedHM ; Booted up an HM
-.TM
+.TM:
 	call PrintText
 	ld hl, Text_ItContained
 	call PrintText
 	call YesNoBox
-.NotTMHM
+.NotTMHM:
 	pop bc
 	ld a, b
 	ld [Options], a
@@ -374,7 +374,7 @@ TMHM_DisplayPocketItems: ; 2c9e2 (b:49e2)
 	call PrintNum
 	jr .okay
 
-.HM
+.HM:
 	push af
 	sub NUM_TMS
 	ld [wd265], a
@@ -421,7 +421,7 @@ TMHM_DisplayPocketItems: ; 2c9e2 (b:49e2)
 	jr nz, .loop2
 	jr .done
 
-.NotTMHM
+.NotTMHM:
 	call TMHMPocket_GetCurrentLineCoord
 rept 3
 	inc hl

@@ -81,7 +81,7 @@ MistyScript_0x188432:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_CASCADEBADGE
-.FightDone
+.FightDone:
 	writetext UnknownText_0x188782
 	waitbutton
 	closetext
@@ -130,7 +130,7 @@ CeruleanGymGuyScript:
 	closetext
 	end
 
-.CeruleanGymGuyWinScript
+.CeruleanGymGuyWinScript:
 	writetext CeruleanGymGuyWinText
 	waitbutton
 	closetext
@@ -138,7 +138,7 @@ CeruleanGymGuyScript:
 
 CeruleanGymHiddenMachinePart:
 	dwb EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM, MACHINE_PART
-	
+
 
 CeruleanGymStatue1:
 	checkevent EVENT_TRAINERS_IN_CERULEAN_GYM
@@ -162,7 +162,7 @@ CeruleanGymStatue:
 	checkflag ENGINE_CASCADEBADGE
 	iftrue .Beaten
 	jumpstd gymstatue1
-.Beaten
+.Beaten:
 	trainertotext MISTY, 1, $1
 	jumpstd gymstatue2
 

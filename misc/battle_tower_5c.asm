@@ -125,7 +125,7 @@ Function170139: ; 170139
 	ld a, PartyMonNicknames / $100
 	ld [wcd4c], a
 	ld a, 3
-.CopyLoop
+.CopyLoop:
 	push af
 	ld a, [wcd49]
 	ld l, a

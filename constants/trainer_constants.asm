@@ -7,7 +7,7 @@ CHRIS EQU __enum__
 	const PHONECONTACT_BILL
 	const PHONECONTACT_ELM
 	const PHONECONTACT_BUENA
-	
+
 KRIS EQU __enum__
 	trainerclass FALKNER ; 1
 

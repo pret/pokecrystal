@@ -37,7 +37,7 @@ endr
 	reti
 ; 2a1
 
-.VBlanks ; 2a1
+.VBlanks: ; 2a1
 	dw VBlank0
 	dw VBlank1
 	dw VBlank2
