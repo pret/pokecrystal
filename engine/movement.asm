@@ -85,7 +85,7 @@ MovementPointers: ; 5075
 	dw Movement_hide_emote            ; 53
 	dw Movement_show_emote            ; 54
 	dw Movement_step_shake            ; 55
-	dw Movement_56                    ; 56
+	dw Movement_tree_shake                    ; 56
 	dw Movement_rock_smash            ; 57
 	dw Movement_return_dig            ; 58
 	dw Movement_skyfall_top       ; 59
@@ -353,7 +353,7 @@ Movement_step_bump: ; 525f
 	ret
 ; 5279
 
-Movement_56: ; 5279
+Movement_tree_shake: ; 5279
 	ld a, 24
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc

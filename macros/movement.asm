@@ -433,7 +433,11 @@ step_shake: macro
 	db \1 ; displacement
 	endm
 
-__enum__ = $57
+	enum movement_tree_shake
+tree_shake: macro
+	db movement_tree_shake
+	endm
+
 	enum movement_rock_smash
 rock_smash: macro
 	db movement_rock_smash ; $57
