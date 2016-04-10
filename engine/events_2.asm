@@ -519,13 +519,13 @@ CmdQueue_Type4: ; 97ebc
 	dw .one
 ; 97ec3
 
-.zero: ; 97ec3
+.zero ; 97ec3
 	ld a, [hSCY]
 	ld hl, 4
 	add hl, bc
 	ld [hl], a
 	call CmdQueueAnonJT_Increment
-.one: ; 97ecd
+.one ; 97ecd
 	ld hl, 1
 	add hl, bc
 	ld a, [hl]
@@ -566,11 +566,11 @@ CmdQueue_Type3: ; 97ef9
 	dw .two
 ; 97f02
 
-.zero: ; 97f02
+.zero ; 97f02
 	call .IsPlayerFacingDown
 	jr z, .PlayerNotFacingDown
 	call CmdQueueAnonJT_Increment
-.one: ; 97f0a
+.one ; 97f0a
 	call .IsPlayerFacingDown
 	jr z, .PlayerNotFacingDown
 	call CmdQueueAnonJT_Increment
@@ -582,7 +582,7 @@ CmdQueue_Type3: ; 97ef9
 	ret
 ; 97f1b
 
-.two: ; 97f1b
+.two ; 97f1b
 	call .IsPlayerFacingDown
 	jr z, .PlayerNotFacingDown
 	call CmdQueueAnonJT_Decrement

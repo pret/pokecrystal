@@ -159,13 +159,13 @@ CooltrainerMScript_0x1a1031:
 	iftrue .day_morn
 	checknite
 	iftrue .nite
-.day_morn:
+.day_morn
 	writetext Text_WaitingForNight
 	waitbutton
 	closetext
 	end
 
-.nite:
+.nite
 	writetext Text_WaitingForMorning
 	waitbutton
 	closetext

@@ -416,7 +416,7 @@ AI_Items: ; 39196
 	jp .Use
 ; 382ae
 
-.asm_382ae: ; This appears to be unused
+.asm_382ae ; This appears to be unused
 	callab AICheckEnemyMaxHP
 	jr c, .dont_use
 	push bc

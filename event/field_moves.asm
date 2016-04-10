@@ -174,7 +174,7 @@ endr
 ; 8ca1b
 
 
-.dw: ; 8ca1b (23:4a1b)
+.dw ; 8ca1b (23:4a1b)
 	dw Cut_SpawnAnimateTree
 	dw Cut_SpawnAnimateLeaves
 	dw Cut_StartWaiting

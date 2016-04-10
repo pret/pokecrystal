@@ -4869,7 +4869,7 @@ Function17f6b7: ; 17f6b7
 	ret
 ; 17f6cd
 
-.bcd_two_digits: ; 17f6cd
+.bcd_two_digits ; 17f6cd
 	ld c, a
 	and $f0
 	swap a
@@ -4877,7 +4877,7 @@ Function17f6b7: ; 17f6b7
 	ld a, c
 	and $f
 
-.bcd_digit: ; 17f6d8
+.bcd_digit ; 17f6d8
 	add "0"
 	ld [hli], a
 	ret

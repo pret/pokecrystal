@@ -30,7 +30,7 @@ ManiaScript:
 	setevent EVENT_GOT_SHUCKIE
 	end
 
-.alreadyhaveshuckie:
+.alreadyhaveshuckie
 	checkflag ENGINE_SHUCKLE_GIVEN
 	iffalse .returnshuckie
 	writetext ManiaText_TakeCareOfShuckle
@@ -38,19 +38,19 @@ ManiaScript:
 	closetext
 	end
 
-.partyfull:
+.partyfull
 	writetext ManiaText_PartyFull
 	waitbutton
 	closetext
 	end
 
-.refusetotakeshuckie:
+.refusetotakeshuckie
 	writetext ManiaText_IfHeComesBack
 	waitbutton
 	closetext
 	end
 
-.returnshuckie:
+.returnshuckie
 	writetext ManiaText_CanIHaveMyMonBack
 	yesorno
 	iffalse .refused
@@ -65,32 +65,32 @@ ManiaScript:
 	setevent EVENT_MANIA_TOOK_SHUCKIE_OR_LET_YOU_KEEP_HIM
 	end
 
-.wrong:
+.wrong
 	writetext ManiaText_ShuckleNotThere
 	waitbutton
 	closetext
 	end
 
-.superhappy:
+.superhappy
 	writetext ManiaText_ShuckleLikesYou
 	waitbutton
 	closetext
 	setevent EVENT_MANIA_TOOK_SHUCKIE_OR_LET_YOU_KEEP_HIM
 	end
 
-.refused:
+.refused
 	writetext ManiaText_SameAsBeingRobbed
 	waitbutton
 	closetext
 	end
 
-.nothingleft:
+.nothingleft
 	writetext ManiaText_ShuckleIsYourLastMon
 	waitbutton
 	closetext
 	end
 
-.default_postevent:
+.default_postevent
 	writetext ManiaText_HappinessSpeech
 	waitbutton
 	closetext

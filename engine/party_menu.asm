@@ -359,11 +359,11 @@ PlacePartyMonTMHMCompatibility: ; 501e0
 	ret
 ; 50221
 
-.string_able: ; 50221
+.string_able ; 50221
 	db "ABLE@"
 ; 50226
 
-.string_not_able: ; 50226
+.string_not_able ; 50226
 	db "NOT ABLE@"
 ; 5022f
 
@@ -448,10 +448,10 @@ endr
 	ret
 ; 502a3
 
-.string_able: ; 502a3
+.string_able ; 502a3
 	db "ABLE@"
 ; 502a8
-.string_not_able: ; 502a8
+.string_not_able ; 502a8
 	db "NOT ABLE@"
 ; 502b1
 
@@ -496,15 +496,15 @@ PlacePartyMonGender: ; 502b1
 	ret
 ; 502ee
 
-.male: ; 502ee
+.male ; 502ee
 	db "♂…MALE@"
 ; 502f5
 
-.female: ; 502f5
+.female ; 502f5
 	db "♀…FEMALE@"
 ; 502fe
 
-.unknown: ; 502fe
+.unknown ; 502fe
 	db "…UNKNOWN@"
 ; 50307
 

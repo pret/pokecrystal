@@ -1270,7 +1270,7 @@ ChooseCard_HandleJoypad: ; e089c
 	ret
 ; e08b8
 
-.d_left: ; e08b8
+.d_left ; e08b8
 	ld hl, wCardFlipCursorX
 	ld a, [wCardFlipCursorY]
 	and a
@@ -1309,7 +1309,7 @@ endr
 	jp .play_sound
 ; e08ef
 
-.d_right: ; e08ef
+.d_right ; e08ef
 	ld hl, wCardFlipCursorX
 	ld a, [wCardFlipCursorY]
 	and a
@@ -1331,7 +1331,7 @@ rept 2
 endr
 	jr .play_sound
 
-.d_up: ; e090a
+.d_up ; e090a
 	ld hl, wCardFlipCursorY
 	ld a, [wCardFlipCursorX]
 	and a
@@ -1369,7 +1369,7 @@ endr
 	ld [wCardFlipCursorX], a
 	jr .play_sound
 
-.d_down: ; e093d
+.d_down ; e093d
 	ld hl, wCardFlipCursorY
 	ld a, [wCardFlipCursorX]
 	and a
@@ -1391,7 +1391,7 @@ rept 2
 	inc [hl]
 endr
 
-.play_sound: ; e0959
+.play_sound ; e0959
 	ld de, SFX_POKEBALLS_PLACED_ON_TABLE
 	call PlaySFX
 	ret
@@ -1684,7 +1684,7 @@ CardFlip_InitAttrPals: ; e0c37 (38:4c37)
 	ret
 ; e0c93 (38:4c93)
 
-.palettes: ; e0c93
+.palettes ; e0c93
 	RGB 31, 31, 31
 	RGB 17, 07, 31
 	RGB 06, 19, 08

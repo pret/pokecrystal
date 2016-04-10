@@ -286,7 +286,7 @@ CutTreeBlockPointers: ; c862
 	dbw TILESET_ILEX_FOREST, .ilex
 	db -1
 
-.johto1: ; Johto OW
+.johto1 ; Johto OW
 ; Which meta tile are we facing, which should we replace it with, and which animation?
 	db $03, $02, $01 ; grass
 	db $5b, $3c, $00 ; tree
@@ -295,11 +295,11 @@ CutTreeBlockPointers: ; c862
 	db $67, $3e, $00 ; tree
 	db -1
 
-.johto2: ; Goldenrod area
+.johto2 ; Goldenrod area
 	db $03, $02, $01 ; grass
 	db -1
 
-.kanto: ; Kanto OW
+.kanto ; Kanto OW
 	db $0b, $0a, $01 ; grass
 	db $32, $6d, $00 ; tree
 	db $33, $6c, $00 ; tree
@@ -308,12 +308,12 @@ CutTreeBlockPointers: ; c862
 	db $60, $6e, $00 ; tree
 	db -1
 
-.park: ; National Park
+.park ; National Park
 	db $13, $03, $01 ; grass
 	db $03, $04, $01 ; grass
 	db -1
 
-.ilex: ; Ilex Forest
+.ilex ; Ilex Forest
 	db $0f, $17, $00
 	db -1
 
@@ -321,7 +321,7 @@ WhirlpoolBlockPointers: ; c8a4
 	dbw TILESET_JOHTO_1, .johto
 	db -1
 
-.johto: ; c8a8
+.johto ; c8a8
 	db $07, $36, $00
 	db -1
 
@@ -471,7 +471,7 @@ UsedSurfScript: ; c986
 	applymovement PLAYER, MovementBuffer ; PLAYER, MovementBuffer
 	end
 
-.empty_fn: ; c9a2
+.empty_fn ; c9a2
 	callba MobileFn_1060bb ; empty
 	ret
 

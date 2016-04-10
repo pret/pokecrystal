@@ -24,7 +24,7 @@ BattleTowerHallway_MapScriptHeader:
 	jump .WalkToChosenBattleRoom
 
 
-.asm_load_battle_room:
+.asm_load_battle_room
 	ld a, [rSVBK]
 	push af
 

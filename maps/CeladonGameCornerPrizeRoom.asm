@@ -33,7 +33,7 @@ CeladonPrizeRoom_tmcounterloop:
 	if_equal $3, .hyperbeam
 	jump CeladonPrizeRoom_cancel
 
-.doubleteam:
+.doubleteam
 	checkcoins 1500
 	if_equal $2, CeladonPrizeRoom_notenoughcoins
 	itemtotext TM_DOUBLE_TEAM, $0
@@ -44,7 +44,7 @@ CeladonPrizeRoom_tmcounterloop:
 	takecoins 1500
 	jump CeladonPrizeRoom_purchased
 
-.psychic:
+.psychic
 	checkcoins 3500
 	if_equal $2, CeladonPrizeRoom_notenoughcoins
 	itemtotext TM_PSYCHIC, $0
@@ -55,7 +55,7 @@ CeladonPrizeRoom_tmcounterloop:
 	takecoins 3500
 	jump CeladonPrizeRoom_purchased
 
-.hyperbeam:
+.hyperbeam
 	checkcoins 7500
 	if_equal $2, CeladonPrizeRoom_notenoughcoins
 	itemtotext TM_HYPER_BEAM, $0
@@ -126,7 +126,7 @@ GoldenrodGameCornerPokemonVendor:
 	waitbutton
 	checkitem COIN_CASE
 	iffalse CeladonPrizeRoom_NoCoinCase
-.loop:
+.loop
 	writetext CeladonPrizeRoom_AskWhichPrizeText
 	special Special_DisplayCoinCaseBalance
 	loadmenudata .MenuDataHeader
@@ -137,7 +137,7 @@ GoldenrodGameCornerPokemonVendor:
 	if_equal $3, .larvitar
 	jump CeladonPrizeRoom_cancel
 
-.pikachu:
+.pikachu
 	checkcoins 2222
 	if_equal $2, CeladonPrizeRoom_notenoughcoins
 	checkcode VAR_PARTYCOUNT
@@ -155,7 +155,7 @@ GoldenrodGameCornerPokemonVendor:
 	takecoins 2222
 	jump .loop
 
-.porygon:
+.porygon
 	checkcoins 5555
 	if_equal $2, CeladonPrizeRoom_notenoughcoins
 	checkcode VAR_PARTYCOUNT
@@ -173,7 +173,7 @@ GoldenrodGameCornerPokemonVendor:
 	takecoins 5555
 	jump .loop
 
-.larvitar:
+.larvitar
 	checkcoins 8888
 	if_equal $2, CeladonPrizeRoom_notenoughcoins
 	checkcode VAR_PARTYCOUNT

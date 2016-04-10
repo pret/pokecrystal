@@ -52,7 +52,7 @@ _KrisDecorationMenu: ; 0x2675c
 	dw .pointers
 ; 0x267aa
 
-.pointers: ; 267aa
+.pointers ; 267aa
 	dw DecoBedMenu, .bed
 	dw DecoCarpetMenu, .carpet
 	dw DecoPlantMenu, .plant
@@ -127,7 +127,7 @@ _KrisDecorationMenu: ; 0x2675c
 	ret
 ; 26855 (9:6855)
 
-.dw: ; 26855
+.dw ; 26855
 	dwb FindOwnedBeds, 0 ; bed
 	dwb FindOwnedCarpets, 1 ; carpet
 	dwb FindOwnedPlants, 2 ; plant
@@ -211,7 +211,7 @@ FindOwnedBeds: ; 268bd
 	jp FindOwnedDecosInCategory
 ; 268c5
 
-.beds: ; 268c5
+.beds ; 268c5
 	db DECO_FEATHERY_BED ; 2
 	db DECO_PINK_BED ; 3
 	db DECO_POLKADOT_BED ; 4
@@ -232,7 +232,7 @@ FindOwnedCarpets: ; 268d2
 	jp FindOwnedDecosInCategory
 ; 268da
 
-.carpets: ; 268da
+.carpets ; 268da
 	db DECO_RED_CARPET ; 7
 	db DECO_BLUE_CARPET ; 8
 	db DECO_YELLOW_CARPET ; 9
@@ -253,7 +253,7 @@ FindOwnedPlants: ; 268e7
 	jp FindOwnedDecosInCategory
 ; 268ef
 
-.plants: ; 268ef
+.plants ; 268ef
 	db DECO_MAGNAPLANT ; c
 	db DECO_TROPICPLANT ; d
 	db DECO_JUMBOPLANT ; e
@@ -273,7 +273,7 @@ FindOwnedPosters: ; 268fb
 	jp FindOwnedDecosInCategory
 ; 26903
 
-.posters: ; 26903
+.posters ; 26903
 	db DECO_TOWN_MAP ; 10
 	db DECO_PIKACHU_POSTER ; 11
 	db DECO_CLEFAIRY_POSTER ; 12
@@ -294,7 +294,7 @@ FindOwnedConsoles: ; 26910
 	jp FindOwnedDecosInCategory
 ; 26918
 
-.consoles: ; 26918
+.consoles ; 26918
 	db DECO_FAMICOM ; 15
 	db DECO_SNES ; 16
 	db DECO_N64 ; 17
@@ -315,7 +315,7 @@ FindOwnedOrnaments: ; 26925
 	jp FindOwnedDecosInCategory
 ; 2692d
 
-.ornaments: ; 2692d
+.ornaments ; 2692d
 	db DECO_PIKACHU_DOLL ; 1e
 	db DECO_SURF_PIKACHU_DOLL ; 1f
 	db DECO_CLEFAIRY_DOLL ; 20
@@ -355,7 +355,7 @@ FindOwnedBigDolls: ; 2694d
 	jp FindOwnedDecosInCategory
 ; 26955
 
-.big_dolls: ; 26955
+.big_dolls ; 26955
 	db DECO_BIG_SNORLAX_DOLL ; 1a
 	db DECO_BIG_ONIX_DOLL ; 1b
 	db DECO_BIG_LAPRAS_DOLL ; 1c
@@ -656,37 +656,37 @@ GetDecoName: ; 26c72
 ; 26c8c
 
 
-.invalid: ; 26c8c
+.invalid ; 26c8c
 	ret
 ; 26c8d
 
-.plant: ; 26c8d
+.plant ; 26c8d
 	ld a, e
 	jr .getdeconame
 
-.bed: ; 26c90
+.bed ; 26c90
 	call .plant
 	ld a, _BED
 	jr .getdeconame
 
-.carpet: ; 26c97
+.carpet ; 26c97
 	call .plant
 	ld a, _CARPET
 	jr .getdeconame
 
-.poster: ; 26c9e
+.poster ; 26c9e
 	ld a, e
 	call .getpokename
 	ld a, _POSTER
 	jr .getdeconame
 
-.doll: ; 26ca6
+.doll ; 26ca6
 	ld a, e
 	call .getpokename
 	ld a, _DOLL
 	jr .getdeconame
 
-.bigdoll: ; 26cae
+.bigdoll ; 26cae
 	push de
 	ld a, BIG_
 	call .getdeconame
@@ -694,21 +694,21 @@ GetDecoName: ; 26c72
 	ld a, e
 	jr .getpokename
 
-.unused: ; 26cb8
+.unused ; 26cb8
 	push de
 	call .getdeconame
 	pop de
 	ld a, e
 	jr .getdeconame
 
-.getpokename: ; 26cc0
+.getpokename ; 26cc0
 	push bc
 	ld [wd265], a
 	call GetPokemonName
 	pop bc
 	jr .copy
 
-.getdeconame: ; 26cca
+.getdeconame ; 26cca
 	call ._getdeconame
 	jr .copy
 
@@ -721,7 +721,7 @@ GetDecoName: ; 26c72
 	pop bc
 	ret
 
-.copy: ; 26cda
+.copy ; 26cda
 	ld h, b
 	ld l, c
 	call CopyName2
@@ -957,7 +957,7 @@ DecoAction_SetItUp_Ornament: ; 26de3
 	ret
 ; 26e33
 
-.getwhichside: ; 26e33
+.getwhichside ; 26e33
 	ld a, [MenuSelection]
 	ld b, a
 	ld a, [wd1ed]

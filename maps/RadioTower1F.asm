@@ -37,7 +37,7 @@ GentlemanScript_0x5cd3d:
 	special Special_CheckLuckyNumberShowFlag
 	iffalse .skip
 	special Special_ResetLuckyNumberShowFlag
-.skip:
+.skip
 	special Special_PrintTodaysLuckyNumber
 	checkflag ENGINE_LUCKY_NUMBER_SHOW
 	iftrue .GameOver

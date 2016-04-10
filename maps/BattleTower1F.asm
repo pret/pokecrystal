@@ -33,7 +33,7 @@ BattleTower1F_MapScriptHeader:
 	priorityjump Script_ResumeBattleTowerChallenge
 	end
 
-.priorityjump1:
+.priorityjump1
 	priorityjump BattleTower_LeftWithoutSaving
 	writebyte BATTLETOWERACTION_CHALLENGECANCELED
 	special BattleTowerAction
@@ -203,7 +203,7 @@ UnreferencedScript_0x9e4ea:
 	writetext Text_CantBeRegistered_PreviousRecordDeleted
 	jump continue
 
-.zero:
+.zero
 	writetext Text_CantBeRegistered
 continue:
 	yesorno

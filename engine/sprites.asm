@@ -649,7 +649,7 @@ Sprites_Sine: ; 8e72c
 	ret
 ; 8e75d
 
-.sinewave: ; 8e75d
+.sinewave ; 8e75d
 	sine_wave $100
 
 

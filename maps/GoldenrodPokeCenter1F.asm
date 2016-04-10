@@ -21,7 +21,7 @@ GoldenrodPokeCenter1F_GSBallTriggerLeft:
 	if_equal MOBILE_EVENT_OBJECT_GS_BALL, .gsball
 	end
 
-.gsball:
+.gsball
 	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	iftrue .cancel
 	playsound SFX_EXIT_BUILDING
@@ -44,7 +44,7 @@ GoldenrodPokeCenter1F_GSBallTriggerLeft:
 	special RestartMapMusic
 	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playsound SFX_EXIT_BUILDING
-.cancel:
+.cancel
 	end
 
 GoldenrodPokeCenter1F_GSBallTriggerRight:
@@ -53,7 +53,7 @@ GoldenrodPokeCenter1F_GSBallTriggerRight:
 	if_equal MOBILE_EVENT_OBJECT_GS_BALL, .gsball
 	end
 
-.gsball:
+.gsball
 	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	iftrue .cancel
 	playsound SFX_EXIT_BUILDING
@@ -76,7 +76,7 @@ GoldenrodPokeCenter1F_GSBallTriggerRight:
 	special RestartMapMusic
 	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playsound SFX_EXIT_BUILDING
-.cancel:
+.cancel
 	end
 
 GameboyKidScript_0x6101e:

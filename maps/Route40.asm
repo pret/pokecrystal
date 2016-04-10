@@ -86,7 +86,7 @@ PokefanMScript_0x1a61c7:
 	iftrue .mobile
 	jumptextfaceplayer UnknownText_0x1a646a
 
-.mobile:
+.mobile
 	jumptextfaceplayer UnknownText_0x1a649b
 
 LassScript_0x1a61d3:

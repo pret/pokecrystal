@@ -332,7 +332,7 @@ BugContest_SetCaughtContestMon: ; e6ce
 	call PrintText
 	ret
 
-.generatestats: ; e6fd
+.generatestats ; e6fd
 	ld a, [TempEnemyMonSpecies]
 	ld [CurSpecies], a
 	ld [CurPartySpecies], a
@@ -346,7 +346,7 @@ BugContest_SetCaughtContestMon: ; e6ce
 	ld hl, wContestMon
 	jp GeneratePartyMonStats
 
-.caughttext: ; 0xe71d
+.caughttext ; 0xe71d
 	; Caught @ !
 	text_jump UnknownText_0x1c10c0
 	db "@"
@@ -454,7 +454,7 @@ RepelWoreOffScript:: ; 0x13619
 	closetext
 	end
 
-.text: ; 0x13620
+.text ; 0x13620
 	; REPEL's effect wore off.
 	text_jump UnknownText_0x1bd308
 	db "@"
@@ -471,21 +471,21 @@ HiddenItemScript:: ; 0x13625
 	itemnotify
 	jump .finish
 
-.bag_full: ; 0x1363e
+.bag_full ; 0x1363e
 	buttonsound
 	writetext .no_room_text
 	waitbutton
 
-.finish: ; 13643
+.finish ; 13643
 	closetext
 	end
 
-.found_text: ; 0x13645
+.found_text ; 0x13645
 	; found @ !
 	text_jump UnknownText_0x1bd321
 	db "@"
 
-.no_room_text: ; 0x1364a
+.no_room_text ; 0x1364a
 	; But   has no space left…
 	text_jump UnknownText_0x1bd331
 	db "@"
@@ -884,9 +884,9 @@ Function24b8f: ; 24b8f
 	ld [Options], a
 	ret
 
-.slash_500: ; 24bcf
+.slash_500 ; 24bcf
 	db "/500@"
-.booru_ko: ; 24bd4
+.booru_ko ; 24bd4
 	db "ボール   こ@"
 
 StartMenu_DrawBugContestStatusBox: ; 24bdc
@@ -985,7 +985,7 @@ FindApricornsInBag: ; 24c64
 	scf
 	ret
 
-.addtobuffer: ; 24c94
+.addtobuffer ; 24c94
 	push hl
 	ld hl, Buffer1
 	inc [hl]
@@ -2850,17 +2850,17 @@ _ResetClock: ; 4d3b1
 	call PrintText
 	ret
 
-.text_okay: ; 0x4d3fe
+.text_okay ; 0x4d3fe
 	; Password OK. Select CONTINUE & reset settings.
 	text_jump UnknownText_0x1c55db
 	db "@"
 
-.text_wrong: ; 0x4d403
+.text_wrong ; 0x4d403
 	; Wrong password!
 	text_jump UnknownText_0x1c560b
 	db "@"
 
-.text_askreset: ; 0x4d408
+.text_askreset ; 0x4d408
 	; Reset the clock?
 	text_jump UnknownText_0x1c561c
 	db "@"
@@ -2921,12 +2921,12 @@ ClockResetPassword: ; 4d41e
 	scf
 	ret
 
-.pleaseenterpasswordtext: ; 0x4d463
+.pleaseenterpasswordtext ; 0x4d463
 	; Please enter the password.
 	text_jump UnknownText_0x1c562e
 	db "@"
 
-.updateIDdisplay: ; 4d468
+.updateIDdisplay ; 4d468
 	hlcoord 14, 15
 	ld de, StringBuffer2
 	ld c, 5
@@ -2949,7 +2949,7 @@ ClockResetPassword: ; 4d41e
 	ld [hl], $61
 	ret
 
-.dpadinput: ; 4d490
+.dpadinput ; 4d490
 	ld a, b
 	and D_LEFT
 	jr nz, .left
@@ -3006,7 +3006,7 @@ ClockResetPassword: ; 4d41e
 	ld [hl], 9
 	ret
 
-.getcurrentdigit: ; 4d4d5
+.getcurrentdigit ; 4d4d5
 	ld a, [StringBuffer2 + 5]
 	ld e, a
 	ld d, $0
@@ -3880,7 +3880,7 @@ CatchTutorial:: ; 4e554
 	ld l, a
 	jp [hl]
 
-.dw: ; 4e564 (13:6564)
+.dw ; 4e564 (13:6564)
 	dw .DudeTutorial
 	dw .DudeTutorial
 	dw .DudeTutorial
@@ -4751,7 +4751,7 @@ endr
 .done
 	ret
 
-.load_loop: ; 50cc9
+.load_loop ; 50cc9
 	ld [hli], a
 	ld [hld], a
 	add hl, de
@@ -6566,7 +6566,7 @@ DrawPokedexSearchResultsWindow: ; 1de1d1 (77:61d1)
 	call PlaceString
 	ret
 
-.esults_D: ; 1de23c
+.esults_D ; 1de23c
 ; (SEARCH R)
 	db   "ESULTS<NEXT>"
 ; (### FOUN)

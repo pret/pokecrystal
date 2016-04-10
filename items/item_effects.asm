@@ -1596,7 +1596,7 @@ GetItemHealingAction: ; f058 (3:7058)
 	ret
 ; f071 (3:7071)
 
-.healingactions: ; f071
+.healingactions ; f071
 ; item, party menu action text, status
 	db ANTIDOTE,     PARTYMENUTEXT_HEAL_PSN, 1 << PSN
 	db BURN_HEAL,    PARTYMENUTEXT_HEAL_BRN, 1 << BRN
@@ -1620,7 +1620,7 @@ StatusHealer_Jumptable: ; f09e (3:709e)
 	rst JumpTable
 	ret
 
-.dw: ; f0a3 (3:70a3)
+.dw ; f0a3 (3:70a3)
 	dw StatusHealer_ClearPalettes
 	dw StatusHealer_NoEffect
 	dw StatusHealer_ExitMenu
@@ -2360,7 +2360,7 @@ endr
 	ret
 ; f504
 
-.x_item_table: ; f504
+.x_item_table ; f504
 	db X_ATTACK,  ATTACK
 	db X_DEFEND,  DEFENSE
 	db X_SPEED,   SPEED
@@ -2828,7 +2828,7 @@ OpenBox: ; f769
 	jp UseDisposableItem
 ; f778
 
-.text: ; 0xf778
+.text ; 0xf778
 	; There was a trophy inside!
 	text_jump UnknownText_0x1c5d03
 	db "@"

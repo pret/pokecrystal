@@ -17,7 +17,7 @@ Route38_MapScriptHeader:
 TrainerBird_keeperToby:
 	trainer EVENT_BEAT_BIRD_KEEPER_TOBY, BIRD_KEEPER, TOBY, Bird_keeperTobySeenText, Bird_keeperTobyBeatenText, 0, .script
 
-.script:
+.script
 	end_if_just_battled
 	opentext
 	writetext UnknownText_0x1a1f86
@@ -28,7 +28,7 @@ TrainerBird_keeperToby:
 TrainerSailorHarry:
 	trainer EVENT_BEAT_SAILOR_HARRY, SAILOR, HARRY, SailorHarrySeenText, SailorHarryBeatenText, 0, .script
 
-.script:
+.script
 	end_if_just_battled
 	opentext
 	writetext UnknownText_0x1a220c
@@ -39,7 +39,7 @@ TrainerSailorHarry:
 TrainerLassDana1:
 	trainer EVENT_BEAT_LASS_DANA, LASS, DANA1, LassDana1SeenText, LassDana1BeatenText, 0, .script
 
-.script:
+.script
 	writecode VAR_CALLERID, PHONE_LASS_DANA
 	end_if_just_battled
 	opentext
@@ -177,7 +177,7 @@ TrainerLassDana1:
 TrainerSchoolboyChad1:
 	trainer EVENT_BEAT_SCHOOLBOY_CHAD, SCHOOLBOY, CHAD1, SchoolboyChad1SeenText, SchoolboyChad1BeatenText, 0, .script
 
-.script:
+.script
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_CHAD
 	end_if_just_battled
 	opentext
@@ -294,7 +294,7 @@ TrainerSchoolboyChad1:
 TrainerBeautyValerie:
 	trainer EVENT_BEAT_BEAUTY_VALERIE, BEAUTY, VALERIE, BeautyValerieSeenText, BeautyValerieBeatenText, 0, .script
 
-.script:
+.script
 	end_if_just_battled
 	opentext
 	writetext UnknownText_0x1a2185
@@ -305,7 +305,7 @@ TrainerBeautyValerie:
 TrainerBeautyOlivia:
 	trainer EVENT_BEAT_BEAUTY_OLIVIA, BEAUTY, OLIVIA, BeautyOliviaSeenText, BeautyOliviaBeatenText, 0, .script
 
-.script:
+.script
 	end_if_just_battled
 	opentext
 	writetext UnknownText_0x1a229a

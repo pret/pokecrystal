@@ -1095,5 +1095,5 @@ LoadOverworldFont:: ; 106594
 	ret
 ; 1065ad
 
-.bgfont:
+.bgfont
 INCBIN "gfx/unknown/1065ad.2bpp"

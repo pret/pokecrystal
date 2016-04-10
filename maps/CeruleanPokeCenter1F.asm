@@ -18,7 +18,7 @@ SuperNerdScript_0x188212:
 	iftrue .mobile
 	jumptextfaceplayer UnknownText_0x188221
 
-.mobile:
+.mobile
 	jumptextfaceplayer UnknownText_0x18828c
 
 GymGuyScript_0x18821e:

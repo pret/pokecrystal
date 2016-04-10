@@ -500,7 +500,7 @@ _Get1bpp:: ; 1042b2
 	jr .loop
 ; 1042d6
 
-.bankswitch: ; 1042d6
+.bankswitch ; 1042d6
 	ld a, [rSVBK]
 	push af
 	ld a, $6

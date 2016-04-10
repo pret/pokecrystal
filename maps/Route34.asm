@@ -69,10 +69,10 @@ DayCareManScript_Outside:
 	applymovement ROUTE34_GRAMPS, Route34MovementData_DayCareManWalksBackInside
 	playsound SFX_ENTER_DOOR
 	disappear ROUTE34_GRAMPS
-.end_fail:
+.end_fail
 	end
 
-.walk_around_player:
+.walk_around_player
 	applymovement ROUTE34_GRAMPS, Route34MovementData_DayCareManWalksBackInside_WalkAroundPlayer
 	playsound SFX_ENTER_DOOR
 	disappear ROUTE34_GRAMPS

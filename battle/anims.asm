@@ -3550,7 +3550,7 @@ BattleAnim_CottonSpore: ; cae84
 	anim_obp0 $54
 	anim_1gfx ANIM_GFX_MISC
 	anim_sound 0, 1, SFX_POWDER
-.loop: ; cae8b
+.loop ; cae8b
 	anim_obj ANIM_OBJ_81, -16, 4,   4, 0, $0
 	anim_wait 8
 	anim_loop 5, .loop
@@ -3592,7 +3592,7 @@ BattleAnim_Spite: ; caed6
 
 BattleAnim_PowderSnow: ; caee2
 	anim_1gfx ANIM_GFX_ICE
-.loop: ; caee4
+.loop ; caee4
 	anim_sound 6, 2, SFX_SHINE
 	anim_obj ANIM_OBJ_8F,   8, 0,  11, 0, $23
 	anim_wait 2

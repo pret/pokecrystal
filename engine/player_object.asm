@@ -281,7 +281,7 @@ InitializeVisibleSprites: ; 8177
 	jr nz, .loop
 	ret
 
-.ret: ; 81c9
+.ret ; 81c9
 	ret
 
 CheckObjectEnteringVisibleRange:: ; 81ca
@@ -293,7 +293,7 @@ CheckObjectEnteringVisibleRange:: ; 81ca
 	rst JumpTable
 	ret
 
-.dw: ; 81d6
+.dw ; 81d6
 	dw .Down
 	dw .Up
 	dw .Left

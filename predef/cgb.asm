@@ -32,7 +32,7 @@ Predef_LoadSGBLayoutCGB: ; 8d59
 	ret
 ; 8d7a
 
-.dw: ; 8d7a
+.dw ; 8d7a
 	dw _CGB_BattleGrayscale
 	dw _CGB_BattleColors
 	dw _CGB_PokegearPals

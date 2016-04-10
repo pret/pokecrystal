@@ -54,7 +54,7 @@ DoAnimFrame: ; 8d24b
 .Null: ; 8d2a1 (23:52a1)
 	ret
 
-.one: ; 8d2a2 (23:52a2)
+.one ; 8d2a2 (23:52a2)
 	ld a, [wMenuCursorY]
 
 	ld hl, SPRITEANIMSTRUCT_INDEX
@@ -71,7 +71,7 @@ DoAnimFrame: ; 8d24b
 	ld [hl], $0
 	ret
 
-.two: ; 8d2b9 (23:52b9)
+.two ; 8d2b9 (23:52b9)
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld [hl], 8 * 3
@@ -113,7 +113,7 @@ DoAnimFrame: ; 8d24b
 	ld [hl], a
 	ret
 
-.three: ; 8d2ea (23:52ea)
+.three ; 8d2ea (23:52ea)
 	ld a, [wMenuCursorY]
 
 	ld hl, SPRITEANIMSTRUCT_INDEX
@@ -132,7 +132,7 @@ DoAnimFrame: ; 8d24b
 	ld [hl], 8 * 3
 	ret
 
-.four: ; 8d302 (23:5302)
+.four ; 8d302 (23:5302)
 	call .anonymous_dw
 	jp [hl]
 ; 8d306 (23:5306)
@@ -142,7 +142,7 @@ DoAnimFrame: ; 8d24b
 	dw .four_one
 ; 8d30a
 
-.four_zero: ; 8d30a
+.four_zero ; 8d30a
 	call .IncrementSpriteAnimStruct0B
 
 	ld hl, SPRITEANIMSTRUCT_INDEX
@@ -160,7 +160,7 @@ DoAnimFrame: ; 8d24b
 	add hl, bc
 	ld [hl], a
 
-.four_one: ; 8d321
+.four_one ; 8d321
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hl]
@@ -203,7 +203,7 @@ DoAnimFrame: ; 8d24b
 	ret
 ; 8d35a
 
-.twentyfive: ; 8d35a (23:535a)
+.twentyfive ; 8d35a (23:535a)
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
@@ -217,11 +217,11 @@ DoAnimFrame: ; 8d24b
 	ld [hl], a
 	ret
 
-.namingscreencursor: ; 8d36c (23:536c)
+.namingscreencursor ; 8d36c (23:536c)
 	callab NamingScreen_AnimateCursor
 	ret
 
-.mailcompositioncursor: ; 8d373 (23:5373)
+.mailcompositioncursor ; 8d373 (23:5373)
 	callab ComposeMail_AnimateCursor
 	ret
 
@@ -229,7 +229,7 @@ DoAnimFrame: ; 8d24b
 	callab GameFreakLogoJumper
 	ret
 
-.seven: ; 8d381 (23:5381)
+.seven ; 8d381 (23:5381)
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
@@ -279,7 +279,7 @@ DoAnimFrame: ; 8d24b
 	call DeinitializeSprite
 	ret
 
-.eight: ; 8d3c3 (23:53c3)
+.eight ; 8d3c3 (23:53c3)
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hli]
@@ -404,19 +404,19 @@ DoAnimFrame: ; 8d24b
 	ld [hl], a
 	ret
 
-.thirteen: ; 8d46e (23:546e)
+.thirteen ; 8d46e (23:546e)
 	callab ret_e00ed
 	ret
 
-.fifteen: ; 8d475 (23:5475)
+.fifteen ; 8d475 (23:5475)
 	callab AnimatePokegearModeIndicatorArrow
 	ret
 
-.fourteen: ; 8d47c (23:547c)
+.fourteen ; 8d47c (23:547c)
 	callab DummyGame_InterpretJoypad_AnimateCursor
 	ret
 
-.sixteen: ; 8d483 (23:5483)
+.sixteen ; 8d483 (23:5483)
 	call .anonymous_dw
 	jp [hl]
 ; 8d487 (23:5487)
@@ -430,7 +430,7 @@ DoAnimFrame: ; 8d24b
 	dw .sixteen_five
 ; 8d493
 
-.sixteen_zero: ; 8d493
+.sixteen_zero ; 8d493
 	ld a, $14
 	call _ReinitSpriteAnimFrame
 
@@ -444,7 +444,7 @@ DoAnimFrame: ; 8d24b
 	ret
 ; 8d4a5
 
-.sixteen_two: ; 8d4a5
+.sixteen_two ; 8d4a5
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
@@ -460,7 +460,7 @@ DoAnimFrame: ; 8d24b
 	add hl, bc
 	ld [hl], $40
 
-.sixteen_three: ; 8d4b8
+.sixteen_three ; 8d4b8
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
@@ -481,7 +481,7 @@ DoAnimFrame: ; 8d24b
 	jr .sixteen_five
 ; 8d4d5
 
-.sixteen_one: ; 8d4d5
+.sixteen_one ; 8d4d5
 	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	ld [hl], $4
@@ -496,7 +496,7 @@ DoAnimFrame: ; 8d24b
 	ret
 ; 8d4e8
 
-.sixteen_four: ; 8d4e8
+.sixteen_four ; 8d4e8
 	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
@@ -542,12 +542,12 @@ DoAnimFrame: ; 8d24b
 	call .IncrementSpriteAnimStruct0B
 	ret
 
-.sixteen_five: ; 8d526
+.sixteen_five ; 8d526
 	call DeinitializeSprite
 	ret
 ; 8d52a
 
-.seventeen: ; 8d52a (23:552a)
+.seventeen ; 8d52a (23:552a)
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hl]
@@ -565,7 +565,7 @@ DoAnimFrame: ; 8d24b
 	call DeinitializeSprite
 	ret
 
-.eighteen: ; 8d543 (23:5543)
+.eighteen ; 8d543 (23:5543)
 	callab Function29676
 	ret
 
@@ -610,7 +610,7 @@ DoAnimFrame: ; 8d24b
 	callab AnimateTuningKnob
 	ret
 
-.twentyone: ; 8d57f (23:557f)
+.twentyone ; 8d57f (23:557f)
 	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld e, [hl]
@@ -749,15 +749,15 @@ endr
 	ld [hl], a
 	ret
 
-.twentyseven: ; 8d630 (23:5630)
+.twentyseven ; 8d630 (23:5630)
 	callba Function108bc7
 	ret
 
-.twentyeight: ; 8d637 (23:5637)
+.twentyeight ; 8d637 (23:5637)
 	callba Function108be0
 	ret
 
-.twentynine: ; 8d63e (23:563e)
+.twentynine ; 8d63e (23:563e)
 	ld a, [wcf65]
 	and a
 	jr nz, .asm_8d645
@@ -784,7 +784,7 @@ endr
 	call _ReinitSpriteAnimFrame
 	ret
 
-.thirty: ; 8d666 (23:5666)
+.thirty ; 8d666 (23:5666)
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
@@ -803,7 +803,7 @@ endr
 .asm_8d67f
 	ret
 
-.thirtytwo: ; 8d680 (23:5680)
+.thirtytwo ; 8d680 (23:5680)
 	ld hl, SPRITEANIMSTRUCT_0B
 	add hl, bc
 	ld d, [hl]
@@ -830,7 +830,7 @@ endr
 	ld [hl], a
 	ret
 
-.thirtythree: ; 8d6a2 (23:56a2)
+.thirtythree ; 8d6a2 (23:56a2)
 	ld a, [wcf64]
 	cp $40
 	ret nz
@@ -838,7 +838,7 @@ endr
 	call _ReinitSpriteAnimFrame
 	ret
 
-.thirtyfour: ; 8d6ae (23:56ae)
+.thirtyfour ; 8d6ae (23:56ae)
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, [hl]
@@ -846,15 +846,15 @@ endr
 	ld [hl], a
 	ret
 
-.twentysix: ; 8d6b7 (23:56b7)
+.twentysix ; 8d6b7 (23:56b7)
 	callba Function11d0b6
 	ret
 
-.thirtyone: ; 8d6be (23:56be)
+.thirtyone ; 8d6be (23:56be)
 	callba UpdateCelebiPosition
 	ret
 
-.anonymous_dw: ; 8d6c5 (23:56c5)
+.anonymous_dw ; 8d6c5 (23:56c5)
 	ld hl, [sp+$0]
 	ld e, [hl]
 	inc hl

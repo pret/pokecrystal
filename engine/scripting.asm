@@ -1455,7 +1455,7 @@ Script_earthquake: ; 973c7
 	jp ScriptCall
 ; 973e6
 
-.script: ; 973e6
+.script ; 973e6
 	applymovement PLAYER, wd002
 	end
 ; 973eb

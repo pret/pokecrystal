@@ -369,7 +369,7 @@ StatsScreen_JoypadAction: ; 4de54 (13:5e54)
 	call StatsScreen_SetJumptableIndex
 	ret
 
-.b_button: ; 4dee4 (13:5ee4)
+.b_button ; 4dee4 (13:5ee4)
 	ld h, 7
 	call StatsScreen_SetJumptableIndex
 	ret
@@ -863,7 +863,7 @@ StatsScreen_PlaceFrontpic: ; 4e226 (13:6226)
 	call .get_animation
 	ret
 
-.get_animation: ; 4e289 (13:6289)
+.get_animation ; 4e289 (13:6289)
 	ld a, [CurPartySpecies]
 	call IsAPokemon
 	ret c
@@ -1101,7 +1101,7 @@ StatsScreen_LoadPageIndicators: ; 4e4cd (13:64cd)
 	hlcoord 15, 5
 	jr z, .load_square
 	hlcoord 17, 5
-.load_square: ; 4e4f7 (13:64f7)
+.load_square ; 4e4f7 (13:64f7)
 	push bc
 	ld [hli], a
 	inc a

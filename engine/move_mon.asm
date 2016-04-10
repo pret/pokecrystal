@@ -1032,7 +1032,7 @@ SentPkmnIntoBox: ; de6e
 	ret
 ; df42
 
-.full: ; df42
+.full ; df42
 	call CloseSRAM
 	and a
 	ret

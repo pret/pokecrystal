@@ -2218,7 +2218,7 @@ BattleBGEffect_VibrateMon: ; c8c61 (32:4c61)
 	dw .one
 
 
-.zero: ; c8c68 (32:4c68)
+.zero ; c8c68 (32:4c68)
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
@@ -2234,7 +2234,7 @@ BattleBGEffect_VibrateMon: ; c8c61 (32:4c61)
 	ld [hl], $20
 	ret
 
-.one: ; c8c85 (32:4c85)
+.one ; c8c85 (32:4c85)
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
@@ -2264,7 +2264,7 @@ BattleBGEffect_WobbleMon: ; c8ca2 (32:4ca2)
 	dw .two
 
 
-.zero: ; c8cab (32:4cab)
+.zero ; c8cab (32:4cab)
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
@@ -2278,7 +2278,7 @@ BattleBGEffect_WobbleMon: ; c8ca2 (32:4ca2)
 	ld [hl], $0
 	ret
 
-.one: ; c8cc3 (32:4cc3)
+.one ; c8cc3 (32:4cc3)
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
@@ -2294,7 +2294,7 @@ BattleBGEffect_WobbleMon: ; c8ca2 (32:4ca2)
 	ld [hl], a
 	ret
 
-.two: ; c8cdd (32:4cdd)
+.two ; c8cdd (32:4cdd)
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
@@ -2429,7 +2429,7 @@ BGEffect_RapidCyclePals: ; c8d77 (32:4d77)
 	dw .two_dmg
 
 
-.zero_dmg: ; c8d8b (32:4d8b)
+.zero_dmg ; c8d8b (32:4d8b)
 	call BattleBGEffects_IncrementJumptable
 	ld a, $e4
 	call BattleBGEffects_SetLYOverrides
@@ -2447,7 +2447,7 @@ BGEffect_RapidCyclePals: ; c8d77 (32:4d77)
 	ld [hl], a
 	ret
 
-.one_dmg: ; c8daa (32:4daa)
+.one_dmg ; c8daa (32:4daa)
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
@@ -2472,7 +2472,7 @@ BGEffect_RapidCyclePals: ; c8d77 (32:4d77)
 	dec [hl]
 	ret
 
-.two_dmg: ; c8dc9 (32:4dc9)
+.two_dmg ; c8dc9 (32:4dc9)
 	call BattleBGEffects_ResetVideoHRAM
 	ld a, %11100100
 	ld [rBGP], a
@@ -2494,7 +2494,7 @@ BGEffect_RapidCyclePals: ; c8d77 (32:4d77)
 	dw .four_cgb
 
 
-.zero_cgb: ; c8de7 (32:4de7)
+.zero_cgb ; c8de7 (32:4de7)
 	call BGEffect_CheckBattleTurn
 	jr nz, .player_turn_cgb
 	call BattleBGEffects_IncrementJumptable
@@ -2510,7 +2510,7 @@ BGEffect_RapidCyclePals: ; c8d77 (32:4d77)
 	ld [hl], a
 	ret
 
-.one_cgb: ; c8e02 (32:4e02)
+.one_cgb ; c8e02 (32:4e02)
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
@@ -2535,13 +2535,13 @@ BGEffect_RapidCyclePals: ; c8d77 (32:4d77)
 	dec [hl]
 	ret
 
-.two_cgb: ; c8e21 (32:4e21)
+.two_cgb ; c8e21 (32:4e21)
 	ld a, $e4
 	call BGEffects_LoadBGPal0_OBPal1
 	call EndBattleBGEffect
 	ret
 
-.three_cgb: ; c8e2a (32:4e2a)
+.three_cgb ; c8e2a (32:4e2a)
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
@@ -2566,7 +2566,7 @@ BGEffect_RapidCyclePals: ; c8d77 (32:4d77)
 	dec [hl]
 	ret
 
-.four_cgb: ; c8e49 (32:4e49)
+.four_cgb ; c8e49 (32:4e49)
 	ld a, $e4
 	call BGEffects_LoadBGPal1_OBPal0
 	call EndBattleBGEffect

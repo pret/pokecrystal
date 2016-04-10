@@ -279,7 +279,7 @@ endr
 
 ; 49b6e (12:5b6e)
 
-.sinewave: ; 49b6e
+.sinewave ; 49b6e
 	sine_wave $100
 ; 49bae
 

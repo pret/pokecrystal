@@ -79,7 +79,7 @@ BurnedTowerRivalBattleScript:
 	reloadmapafterbattle
 	jump .returnfrombattle
 
-.totodile:
+.totodile
 	winlosstext BurnedTowerSilver_WinText, BurnedTowerSilver_LossText
 	setlasttalked BURNEDTOWER1F_SILVER
 	loadtrainer RIVAL1, RIVAL1_7
@@ -88,7 +88,7 @@ BurnedTowerRivalBattleScript:
 	reloadmapafterbattle
 	jump .returnfrombattle
 
-.chikorita:
+.chikorita
 	winlosstext BurnedTowerSilver_WinText, BurnedTowerSilver_LossText
 	setlasttalked BURNEDTOWER1F_SILVER
 	loadtrainer RIVAL1, RIVAL1_8
@@ -97,7 +97,7 @@ BurnedTowerRivalBattleScript:
 	reloadmapafterbattle
 	jump .returnfrombattle
 
-.returnfrombattle:
+.returnfrombattle
 	playmusic MUSIC_RIVAL_AFTER
 	opentext
 	writetext BurnedTowerSilver_AfterText1

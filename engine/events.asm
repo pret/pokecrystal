@@ -994,7 +994,7 @@ CountStep: ; 96b79
 	ret
 ; 96bd3
 
-.unreferenced: ; 96bd3
+.unreferenced ; 96bd3
 	ld a, 7
 	scf
 	ret

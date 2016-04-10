@@ -3337,7 +3337,7 @@ BattleCommand_BeatUp: ; 35461
 ; 355b0
 
 
-.beatup_fail: ; 355b0
+.beatup_fail ; 355b0
 	ld b, buildopponentrage_command
 	jp SkipToBattleCommand
 
@@ -5188,7 +5188,7 @@ BattleCommand_Poison: ; 35f2c
 ; 35fc0
 
 
-.apply_poison: ; 35fc0
+.apply_poison ; 35fc0
 	call AnimateCurrentMove
 	call PoisonOpponent
 	jp RefreshBattleHuds
@@ -5196,7 +5196,7 @@ BattleCommand_Poison: ; 35f2c
 ; 35fc9
 
 
-.check_toxic: ; 35fc9
+.check_toxic ; 35fc9
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call GetBattleVarAddr
 	ld a, [hBattleTurn]
@@ -5671,14 +5671,14 @@ CheckIfStatCanBeRaised: ; 361ef
 ; 3626e
 
 
-.stats_already_max: ; 3626e
+.stats_already_max ; 3626e
 	pop hl
 	dec [hl]
 	; fallthrough
 ; 36270
 
 
-.cant_raise_stat: ; 36270
+.cant_raise_stat ; 36270
 	ld a, $2
 	ld [FailedMessage], a
 	ld a, $1
@@ -5688,7 +5688,7 @@ CheckIfStatCanBeRaised: ; 361ef
 ; 3627b
 
 
-.stat_raise_failed: ; 3627b
+.stat_raise_failed ; 3627b
 	ld a, $1
 	ld [FailedMessage], a
 	ret

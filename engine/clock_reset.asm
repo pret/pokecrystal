@@ -220,7 +220,7 @@ RestartClock: ; 20021 (8:4021)
 	ret
 ; 20160 (8:4160)
 
-.unreferenced: ; 20160
+.unreferenced ; 20160
 	ld a, [Buffer3]
 	ld b, a
 	call Coord2Tile

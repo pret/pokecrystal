@@ -242,7 +242,7 @@ endr
 
 ; 24a91 (9:4a91)
 
-.spacing_dws: ; 24a91
+.spacing_dws ; 24a91
 	dw 0, 1, 2
 ; 24a97
 

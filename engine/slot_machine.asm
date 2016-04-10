@@ -800,7 +800,7 @@ Function92bd4: ; 92bd4 (24:6bd4)
 
 ; 92be4 (24:6be4)
 
-.dw: ; 92be4
+.dw ; 92be4
 
 	dw ReelAction_DoNothing                   ; 00
 	dw Slots_StopReelIgnoreJoypad             ; 01
@@ -1330,18 +1330,18 @@ Slots_CheckMatchedFirstTwoReels: ; 92e94
 	dw .three
 ; 92ec5
 
-.three: ; 92ec5
+.three ; 92ec5
 	call .CheckUpwardsDiag
 	call .CheckDownwardsDiag
 
-.two: ; 92ecb
+.two ; 92ecb
 	call .CheckBottomRow
 	call .CheckTopRow
 
-.one: ; 92ed1
+.one ; 92ed1
 	call .CheckMiddleRow
 
-.zero: ; 92ed4
+.zero ; 92ed4
 	ret
 
 ; 92ed5
@@ -1445,18 +1445,18 @@ Slots_CheckMatchedAllThreeReels: ; 92f1d
 	dw .three
 ; 92f50
 
-.three: ; 92f50
+.three ; 92f50
 	call .CheckUpwardsDiag
 	call .CheckDownwardsDiag
 
-.two: ; 92f56
+.two ; 92f56
 	call .CheckBottomRow
 	call .CheckTopRow
 
-.one: ; 92f5c
+.one ; 92f5c
 	call .CheckMiddleRow
 
-.zero: ; 92f5f
+.zero ; 92f5f
 	ret
 
 ; 92f60
@@ -1967,7 +1967,7 @@ SlotMachine_AnimateGolem: ; 9321d (24:721d)
 	dw .roll
 
 
-.init: ; 93233 (24:7233)
+.init ; 93233 (24:7233)
 	ld hl, SPRITEANIMSTRUCT_0E
 	add hl, bc
 	ld a, [hl]
@@ -1992,7 +1992,7 @@ SlotMachine_AnimateGolem: ; 9321d (24:721d)
 	add hl, bc
 	ld [hl], $0
 
-.fall: ; 93259 (24:7259)
+.fall ; 93259 (24:7259)
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
@@ -2021,7 +2021,7 @@ SlotMachine_AnimateGolem: ; 9321d (24:721d)
 	call Slots_PlaySFX
 	ret
 
-.roll: ; 93289 (24:7289)
+.roll ; 93289 (24:7289)
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld a, [hl]
@@ -2068,7 +2068,7 @@ Slots_AnimateChansey: ; 932ac (24:72ac)
 	dw .two
 
 
-.walk: ; 932c2 (24:72c2)
+.walk ; 932c2 (24:72c2)
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hl]
@@ -2088,7 +2088,7 @@ Slots_AnimateChansey: ; 932ac (24:72ac)
 	ld a, $1
 	ld [wcf64], a
 
-.one: ; 932e0 (24:72e0)
+.one ; 932e0 (24:72e0)
 	ld a, [wcf64]
 	cp $2
 	jr z, .retain
@@ -2106,7 +2106,7 @@ Slots_AnimateChansey: ; 932ac (24:72ac)
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $8
-.two: ; 932fc (24:72fc)
+.two ; 932fc (24:72fc)
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]

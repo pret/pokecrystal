@@ -44,7 +44,7 @@ _Sine:: ; 84d9
 	jr nz, .multiply
 	ret
 
-.sinewave: ; 850b
+.sinewave ; 850b
 ; A $20-word table representing a sine wave.
 ; 90 degrees is index $10 at a base amplitude of $100.
 	sine_wave $100

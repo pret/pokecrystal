@@ -212,7 +212,7 @@ _BattleTowerBattle: ; 17022c
 	ret
 ; 17023a
 
-.do_dw: ; 17023a
+.do_dw ; 17023a
 	ld a, [wBattleTowerBattleEnded]
 	ld e, a
 	ld d, 0
@@ -226,7 +226,7 @@ endr
 	jp [hl]
 ; 170249
 
-.dw: ; 170249
+.dw ; 170249
 	dw RunBattleTowerTrainer
 	dw SkipBattleTowerTrainer
 ; 17024d
@@ -699,7 +699,7 @@ endr
 	jp [hl]
 ; 17051f
 
-.dw: ; 17051f
+.dw ; 17051f
 	dw .Jumptable_0
 	dw .Jumptable_1
 	dw .Jumptable_2
@@ -957,7 +957,7 @@ endr
 ; 170696
 
 
-.dw: ; 170696 (5c:4696)
+.dw ; 170696 (5c:4696)
 	dw Function17075f ; 0x00
 	dw Function170788 ; 0x01
 	dw Function170778 ; 0x02

@@ -202,7 +202,7 @@ SetPartyMonIconAnimSpeed: ; 8e936 (23:6936)
 	ld [hl], a
 	ret
 
-.getspeed: ; 8e94c (23:694c)
+.getspeed ; 8e94c (23:694c)
 	callba PlacePartymonHPBar
 	call GetHPPal
 	ld e, d
@@ -213,7 +213,7 @@ SetPartyMonIconAnimSpeed: ; 8e936 (23:6936)
 	ret
 ; 8e95e (23:695e)
 
-.speeds: ; 8e95e
+.speeds ; 8e95e
 	db $00, $40, $80
 ; 8e961
 

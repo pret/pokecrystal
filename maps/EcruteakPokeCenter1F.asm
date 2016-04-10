@@ -67,7 +67,7 @@ EcruteakPokeCenter1FPokefanMScript:
 	iftrue .mobile
 	jumptextfaceplayer EcruteakPokeCenter1FPokefanMText
 
-.mobile:
+.mobile
 	jumptextfaceplayer EcruteakPokeCenter1FPokefanMTextMobile
 
 EcruteakPokeCenter1FCooltrainerFScript:

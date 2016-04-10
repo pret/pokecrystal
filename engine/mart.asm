@@ -651,7 +651,7 @@ MenuDataHeader_Buy: ; 0x15e18
 	db 1 ; default option
 ; 0x15e20
 
-.menudata2: ; 0x15e20
+.menudata2 ; 0x15e20
 	db $30 ; pointers
 	db 4, 8 ; rows, columns
 	db 1 ; horizontal spacing
@@ -846,7 +846,7 @@ SellMenu: ; 15eb3
 	ret
 ; 15eee
 
-.dw: ; 15eee
+.dw ; 15eee
 	dw .try_sell
 	dw .cant_buy
 	dw .cant_buy
@@ -856,12 +856,12 @@ SellMenu: ; 15eb3
 	dw .try_sell
 ; 15efc
 
-.cant_buy: ; 15efc
+.cant_buy ; 15efc
 	ret
 ; 15efd
 
 
-.try_sell: ; 15efd
+.try_sell ; 15efd
 	callba _CheckTossableItem
 	ld a, [wItemAttributeParamBuffer]
 	and a
@@ -936,7 +936,7 @@ MenuDataHeader_BuySell: ; 0x15f88
 	db 1 ; default option
 ; 0x15f90
 
-.menudata2: ; 0x15f90
+.menudata2 ; 0x15f90
 	db $80 ; strings
 	db 3 ; items
 	db "BUY@"

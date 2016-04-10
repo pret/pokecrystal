@@ -135,7 +135,7 @@ TrainerYoungsterJoey:
 	setevent EVENT_GOT_HP_UP_FROM_JOEY
 	jump .NumberAccepted
 
-.done:
+.done
 	end
 
 .GiveHPUp:

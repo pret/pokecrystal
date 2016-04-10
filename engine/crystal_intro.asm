@@ -129,7 +129,7 @@ endr
 	jp [hl]
 ; e467f
 
-.dw: ; e467f
+.dw ; e467f
 	dw PlaceGameFreakPresents_0
 	dw PlaceGameFreakPresents_1
 	dw PlaceGameFreakPresents_2
@@ -383,7 +383,7 @@ CrystalIntro: ; e48ac
 	ld a, [hVBlank]
 	push af
 	call .InitRAMAddrs
-.loop: ; e48bc
+.loop ; e48bc
 	call JoyTextDelay
 	ld a, [hJoyLast]
 	and BUTTONS
@@ -1827,7 +1827,7 @@ endr
 	ret
 ; e538d (39:538d)
 
-.pal1: ; e538d
+.pal1 ; e538d
 	RGB 24, 12, 09
 	RGB 31, 31, 31
 	RGB 12, 00, 31
@@ -1835,7 +1835,7 @@ endr
 
 ; e5395
 
-.pal2: ; e5395
+.pal2 ; e5395
 	RGB 24, 12, 09
 	RGB 31, 31, 31
 	RGB 31, 31, 31

@@ -940,7 +940,7 @@ PokegearPhone_MakePhoneCall: ; 911eb (24:51eb)
 
 ; 9124c (24:524c)
 
-.dotdotdot: ; 0x9124c
+.dotdotdot ; 0x9124c
 	;
 	text_jump UnknownText_0x1c5824
 	db "@"

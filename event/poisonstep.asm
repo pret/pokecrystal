@@ -118,7 +118,7 @@ DoPoisonStep:: ; 505da
 	end
 ; 50677
 
-.whiteout: ; 50677
+.whiteout ; 50677
 	farjump Script_OverworldWhiteout
 ; 5067b
 

@@ -19,21 +19,21 @@ Function8b342:: ; 8b342
 	ret
 ; 8b354
 
-.dw: ; 8b354
+.dw ; 8b354
 	dw .zero
 	dw .one
 	dw .two
 ; 8b35a
 
-.zero: ; 8b35a
+.zero ; 8b35a
 	mobile
 ; 8b35b
 
-.one: ; 8b35b
+.one ; 8b35b
 	mobile
 ; 8b35c
 
-.two: ; 8b35c
+.two ; 8b35c
 	mobile
 ; 8b35d
 

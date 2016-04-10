@@ -462,7 +462,7 @@ UseItem: ; 10311
 	ret
 ; 1031f
 
-.dw: ; 1031f (4:431f)
+.dw ; 1031f (4:431f)
 
 	dw .Oak
 	dw .Oak
@@ -941,12 +941,12 @@ TMHMSubmenu: ; 105dc (4:45dc)
 	jr z, .Oak
 	cp $2
 	jr z, .didnt_use_item
-.quit_run_script: ; 1067e (4:467e)
+.quit_run_script ; 1067e (4:467e)
 	ld a, 10
 	ld [wJumptableIndex], a
 	ret
 
-.didnt_use_item: ; 10684 (4:4684)
+.didnt_use_item ; 10684 (4:4684)
 	xor a
 	ld [wItemEffectSucceeded], a
 	ret
@@ -1148,7 +1148,7 @@ TutorialPack: ; 107bb
 
 ; 107e1
 
-.dw: ; 107e1 (4:47e1)
+.dw ; 107e1 (4:47e1)
 
 	dw .Items
 	dw .Balls
@@ -1495,7 +1495,7 @@ DrawPocketName: ; 109bb
 	ret
 ; 109e1
 
-.tilemap: ; 109e1
+.tilemap ; 109e1
 	db $00, $04, $04, $04, $01 ; top border
 	db $06, $07, $08, $09, $0a ; Items
 	db $02, $05, $05, $05, $03 ; bottom border

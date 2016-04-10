@@ -408,7 +408,7 @@ ButtonSound:: ; aaf
 	jp DelayFrames
 ; ac6
 
-.wait_input: ; ac6
+.wait_input ; ac6
 	ld a, [hOAMUpdate]
 	push af
 	ld a, $1
@@ -436,7 +436,7 @@ ButtonSound:: ; aaf
 	ret
 ; af5
 
-.blink_cursor: ; af5
+.blink_cursor ; af5
 	ld a, [hVBlankCounter]
 	and %00010000 ; bit 4, a
 	jr z, .cursor_off

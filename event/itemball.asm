@@ -11,7 +11,7 @@ FindItemInBallScript:: ; 0x122ce
 	end
 ; 0x122e3
 
-.no_room: ; 0x122e3
+.no_room ; 0x122e3
 	opentext
 	writetext .text_found
 	waitbutton
@@ -21,13 +21,13 @@ FindItemInBallScript:: ; 0x122ce
 	end
 ; 0x122ee
 
-.text_found: ; 0x122ee
+.text_found ; 0x122ee
 	; found @ !
 	text_jump UnknownText_0x1c0a1c
 	db "@"
 ; 0x122f3
 
-.text_bag_full: ; 0x122f3
+.text_bag_full ; 0x122f3
 	; But   can't carry any more items.
 	text_jump UnknownText_0x1c0a2c
 	db "@"

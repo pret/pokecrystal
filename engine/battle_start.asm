@@ -148,7 +148,7 @@ FlashyTransitionToBattle: ; 8c314
 	jumptable .dw, wJumptableIndex
 ; 8c323
 
-.dw: ; 8c323 (23:4323)
+.dw ; 8c323 (23:4323)
 	dw StartTrainerBattle_DetermineWhichAnimation ; 00
 
 	; Animation 1: cave
@@ -279,7 +279,7 @@ StartTrainerBattle_Flash: ; 8c3ab (23:43ab)
 	ret
 ; 8c3db (23:43db)
 
-.pals: ; 8c3db
+.pals ; 8c3db
 	db %11111001 ; 3321
 	db %11111110 ; 3332
 	db %11111111 ; 3333
@@ -411,7 +411,7 @@ endr
 	ret
 ; 8c490 (23:4490)
 
-.spintable: ; 8c490
+.spintable ; 8c490
 	spintable_entry UPPER_LEFT,  1,  1,  6
 	spintable_entry UPPER_LEFT,  2,  0,  3
 	spintable_entry UPPER_LEFT,  3,  1,  0
@@ -435,7 +435,7 @@ endr
 	db -1
 ; 8c4f5
 
-.load: ; 8c4f5 (23:44f5)
+.load ; 8c4f5 (23:44f5)
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -489,11 +489,11 @@ endr
 	jr .loop
 ; 8c538 (23:4538)
 
-.wedge1: db 2, 3, 5, 4, 9, -1
-.wedge2: db 1, 1, 2, 2, 4, 2, 4, 2, 3, -1
-.wedge3: db 2, 1, 3, 1, 4, 1, 4, 1, 4, 1, 3, 1, 2, 1, 1, 1, 1, -1
-.wedge4: db 4, 1, 4, 0, 3, 1, 3, 0, 2, 1, 2, 0, 1, -1
-.wedge5: db 4, 0, 3, 0, 3, 0, 2, 0, 2, 0, 1, 0, 1, 0, 1, -1
+.wedge1 db 2, 3, 5, 4, 9, -1
+.wedge2 db 1, 1, 2, 2, 4, 2, 4, 2, 3, -1
+.wedge3 db 2, 1, 3, 1, 4, 1, 4, 1, 4, 1, 3, 1, 2, 1, 1, 1, 1, -1
+.wedge4 db 4, 1, 4, 0, 3, 1, 3, 0, 2, 1, 2, 0, 1, -1
+.wedge5 db 4, 0, 3, 0, 3, 0, 2, 0, 2, 0, 1, 0, 1, 0, 1, -1
 ; 8c578
 
 StartTrainerBattle_SetUpForRandomScatterOutro: ; 8c578 (23:4578)
@@ -665,11 +665,11 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	call DelayFrame
 	call BattleStart_LoadEDTile
 
-.nextscene: ; 8c673 (23:4673)
+.nextscene ; 8c673 (23:4673)
 	call StartTrainerBattle_NextScene
 	ret
 
-.copypals: ; 8c677 (23:4677)
+.copypals ; 8c677 (23:4677)
 	ld de, UnknBGPals + 7 palettes
 	call .copy
 	ld de, BGPals + 7 palettes
@@ -682,7 +682,7 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	call .copy
 	ld de, OBPals + 7 palettes
 
-.copy: ; 8c698 (23:4698)
+.copy ; 8c698 (23:4698)
 	push hl
 	ld bc, 1 palettes
 	call CopyBytes
@@ -690,20 +690,20 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	ret
 ; 8c6a1 (23:46a1)
 
-.daypals: ; 8c6a1
+.daypals ; 8c6a1
 	RGB 31, 18, 29
 	RGB 31, 11, 15
 	RGB 31, 05, 05
 	RGB 07, 07, 07
 ; 8c6a9
 
-.nightpals: ; 8c6a9
+.nightpals ; 8c6a9
 	RGB 31, 18, 29
 	RGB 31, 05, 05
 	RGB 31, 05, 05
 	RGB 31, 05, 05
 
-.loadpokeballgfx:
+.loadpokeballgfx
 	ld a, [OtherTrainerClass]
 	ld de, PokeBallTransition
 	ret
@@ -742,7 +742,7 @@ WipeLYOverrides: ; 8c6d8
 	ret
 ; 8c6ef
 
-.wipe: ; 8c6ef
+.wipe ; 8c6ef
 	xor a
 	ld c, SCREEN_HEIGHT_PX
 .loop
@@ -792,7 +792,7 @@ StartTrainerBattle_DrawSineWave: ; 8c6f7 (23:46f7)
 	ret
 ; 8c728 (23:4728)
 
-.sinewave: ; 8c728
+.sinewave ; 8c728
 	sine_wave $100
 ; 8c768
 
@@ -833,7 +833,7 @@ StartTrainerBattle_ZoomToBlack: ; 8c768 (23:4768)
 	ret
 ; 8c792 (23:4792)
 
-.boxes: ; 8c792
+.boxes ; 8c792
 	zoombox  4,  2,  8, 8
 	zoombox  6,  4,  7, 7
 	zoombox  8,  6,  6, 6

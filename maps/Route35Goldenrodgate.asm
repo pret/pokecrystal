@@ -33,34 +33,34 @@ OfficerScript_0x69d37:
 	givepoke SPEAROW, 10, NO_ITEM, 1, GiftSpearowName, GiftSpearowOTName
 	givepokeitem GiftSpearowMail
 	setevent EVENT_GOT_KENYA
-.alreadyhavekenya:
+.alreadyhavekenya
 	writetext UnknownText_0x69ed6
 	waitbutton
 	closetext
 	end
 
-.partyfull:
+.partyfull
 	writetext UnknownText_0x69f56
 	waitbutton
 	closetext
 	end
 
-.refused:
+.refused
 	writetext UnknownText_0x69f74
 	waitbutton
 	closetext
 	end
 
-.questcomplete:
+.questcomplete
 	writetext UnknownText_0x69f8b
 	buttonsound
 	verbosegiveitem HP_UP
 	iffalse .bagfull
 	setevent EVENT_GOT_HP_UP_FROM_RANDY
-.gothpup:
+.gothpup
 	writetext UnknownText_0x69fd9
 	waitbutton
-.bagfull:
+.bagfull
 	closetext
 	end
 
@@ -85,7 +85,7 @@ PokefanFScript_0x69dc6:
 	closetext
 	end
 
-.aftersudowoodo:
+.aftersudowoodo
 	writetext UnknownText_0x6a09a
 	waitbutton
 	closetext

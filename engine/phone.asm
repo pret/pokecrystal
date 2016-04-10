@@ -153,7 +153,7 @@ CheckPhoneCall:: ; 90074 (24:4074)
 	xor a
 	ret
 
-.timecheck: ; 900a6 (24:40a6)
+.timecheck ; 900a6 (24:40a6)
 	callba CheckReceiveCallTimer
 	ret
 
@@ -293,7 +293,7 @@ endr
 	ret
 ; 90173 (24:4173)
 
-.script: ; 0x90173
+.script ; 0x90173
 	pause 30
 	jump Script_ReceivePhoneCall
 ; 0x90178
@@ -430,10 +430,10 @@ LoadCallerScript: ; 9020d (24:420d)
 WrongNumber: ; 90233
 	db TRAINER_NONE, PHONE_00
 	dba .script
-.script:
+.script
 	writetext .text
 	end
-.text:
+.text
 	; Huh? Sorry, wrong number!
 	text_jump UnknownText_0x1c5565
 	db "@"
@@ -718,12 +718,12 @@ NonTrainerCallerNames: ; 903d6
 	dw .elm
 	dw .buena
 
-.none: db "----------@"
-.mom: db "MOM:@"
-.bill: db "BILL:@"
-.elm: db "PROF.ELM:@"
-.bikeshop: db "BIKE SHOP:@"
-.buena: db "BUENA:", $22, "   DISC JOCKEY@"
+.none db "----------@"
+.mom db "MOM:@"
+.bill db "BILL:@"
+.elm db "PROF.ELM:@"
+.bikeshop db "BIKE SHOP:@"
+.buena db "BUENA:", $22, "   DISC JOCKEY@"
 ; 90423
 
 Phone_GetTrainerName: ; 90423 (24:4423)

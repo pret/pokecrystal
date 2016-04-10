@@ -14,7 +14,7 @@ BattleIntroSlidingPics: ; 4e980
 	ret
 ; 4e998
 
-.subfunction1: ; 4e998
+.subfunction1 ; 4e998
 	call .subfunction4
 	ld a, $90
 	ld [hSCX], a
@@ -25,7 +25,7 @@ BattleIntroSlidingPics: ; 4e980
 	ret
 ; 4e9ab
 
-.subfunction2: ; 4e9ab
+.subfunction2 ; 4e9ab
 	ld d, $90
 	ld e, $72
 	ld a, $48
@@ -61,7 +61,7 @@ endr
 	ret
 ; 4e9d6
 
-.subfunction3: ; 4e9d6
+.subfunction3 ; 4e9d6
 	ld hl, Sprites + 1 ; x pixel
 	ld c, $12 ; 18
 	ld de, $4
@@ -75,7 +75,7 @@ endr
 	ret
 ; 4e9e5
 
-.subfunction4: ; 4e9e5
+.subfunction4 ; 4e9e5
 	ld hl, LYOverrides
 	ld a, $90
 	ld bc, SCREEN_HEIGHT_PX
@@ -83,7 +83,7 @@ endr
 	ret
 ; 4e9f1
 
-.subfunction5: ; 4e9f1
+.subfunction5 ; 4e9f1
 	ld hl, LYOverrides
 	ld a, d
 	ld c, $3e ; 62

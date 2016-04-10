@@ -117,7 +117,7 @@ Function110030:: ; 110030 (44:4030)
 	ret ; indirectly jump to the function loaded from the dw, which returns to Function3e60.
 ; 110070 (44:4070)
 
-.dw: ; 110070
+.dw ; 110070
 	dw Function110115
 	dw Function110236
 	dw Function110291

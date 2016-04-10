@@ -44,7 +44,7 @@ CheckWarpFacingDown: ; 149c6
 	ret
 ; 149d3
 
-.blocks: ; 149d3
+.blocks ; 149d3
 	db $71 ; door
 	db $79
 	db $7a ; stairs
@@ -65,7 +65,7 @@ CheckGrassCollision:: ; 149dd
 	ret
 ; 149ea
 
-.blocks: ; 149ea
+.blocks ; 149ea
 	db $08
 	db $18 ; tall grass
 	db $14 ; tall grass
@@ -87,7 +87,7 @@ CheckCutCollision: ; 149f5
 	ret
 ; 14a00
 
-.blocks: ; 14a00
+.blocks ; 14a00
 	db $12 ; cut tree
 	db $1a ; cut tree
 	db $10 ; tall grass

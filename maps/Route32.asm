@@ -142,7 +142,7 @@ _OfferToSellSlowpokeTail:
 	closetext
 	end
 
-.refused:
+.refused
 	writetext Text_RefusedToBuySlowpokeTail
 	waitbutton
 	closetext

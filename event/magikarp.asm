@@ -86,7 +86,7 @@ Magikarp_LoadFeetInchesChars: ; fbbae
 	ret
 ; fbbbb
 
-.feetinchchars: ; fbbb
+.feetinchchars ; fbbb
 INCBIN "gfx/unknown/0fbbbb.2bpp"
 ; fbbdb
 

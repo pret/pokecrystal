@@ -32,7 +32,7 @@ endr
 	jp [hl]
 ; 16242
 
-.dw: ; 16242
+.dw ; 16242
 
 	dw .CheckIfBankInitialized
 	dw .InitializeBank
@@ -534,7 +534,7 @@ Function16571: ; 16571
 	ret
 ; 165b9
 
-.dpadaction: ; 165b9
+.dpadaction ; 165b9
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_UP
@@ -586,7 +586,7 @@ Function16571: ; 16571
 	ret
 ; 16607
 
-.getdigitquantity: ; 16607
+.getdigitquantity ; 16607
 	ld a, [wMomBankDigitCursorPosition]
 	push de
 	ld e, a

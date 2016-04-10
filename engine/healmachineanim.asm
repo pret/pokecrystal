@@ -122,7 +122,7 @@ endr
 	ret
 ; 123db
 
-.dummy_5: ; 123db
+.dummy_5 ; 123db
 	ret
 ; 123dc
 
@@ -168,7 +168,7 @@ INCBIN "gfx/unknown/0123fc.2bpp"
 	ret
 ; 12451
 
-.palettes: ; 12451
+.palettes ; 12451
 	RGB 31, 31, 31
 	RGB 31, 19, 10
 	RGB 31, 07, 01

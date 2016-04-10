@@ -22,7 +22,7 @@ _ScrollingMenu:: ; 245cb
 	jr .loop
 ; 245d6
 
-.exit: ; 245d6
+.exit ; 245d6
 	call MenuClickSound
 	ld [wMenuJoypad], a
 	ld a, 0
@@ -30,7 +30,7 @@ _ScrollingMenu:: ; 245cb
 	ret
 ; 245e1
 
-.zero: ; 245e1
+.zero ; 245e1
 	call ScrollingMenu_InitDisplay
 	ld a, 1
 	ld [hBGMapMode], a
@@ -84,13 +84,13 @@ ScrollingMenuJoyAction: ; 24609
 	jr .loop
 ; 24640
 
-.unreferenced: ; unreferenced
+.unreferenced ; unreferenced
 	ld a, -1
 	and a
 	ret
 ; 24644
 
-.a_button: ; 24644
+.a_button ; 24644
 	call PlaceHollowCursor
 	ld a, [wMenuCursorY]
 	dec a
@@ -111,13 +111,13 @@ ScrollingMenuJoyAction: ; 24609
 	ret
 ; 2466f
 
-.b_button: ; 2466f
+.b_button ; 2466f
 	ld a, B_BUTTON
 	scf
 	ret
 ; 24673
 
-.select: ; 24673
+.select ; 24673
 	ld a, [wMenuData2Flags]
 	bit 7, a
 	jp z, xor_a_dec_a
@@ -135,7 +135,7 @@ ScrollingMenuJoyAction: ; 24609
 	ret
 ; 24695
 
-.start: ; 24695
+.start ; 24695
 	ld a, [wMenuData2Flags]
 	bit 6, a
 	jp z, xor_a_dec_a
@@ -144,7 +144,7 @@ ScrollingMenuJoyAction: ; 24609
 	ret
 ; 246a1
 
-.d_left: ; 246a1
+.d_left ; 246a1
 	ld hl, w2DMenuFlags2
 	bit 7, [hl]
 	jp z, xor_a_dec_a
@@ -156,7 +156,7 @@ ScrollingMenuJoyAction: ; 24609
 	ret
 ; 246b5
 
-.d_right: ; 246b5
+.d_right ; 246b5
 	ld hl, w2DMenuFlags2
 	bit 7, [hl]
 	jp z, xor_a_dec_a
@@ -168,7 +168,7 @@ ScrollingMenuJoyAction: ; 24609
 	ret
 ; 246c9
 
-.d_up: ; 246c9
+.d_up ; 246c9
 	ld hl, w2DMenuFlags2
 	bit 7, [hl]
 	jp z, xor_a
@@ -183,7 +183,7 @@ ScrollingMenuJoyAction: ; 24609
 	jp xor_a_dec_a
 ; 246df
 
-.d_down: ; 246df
+.d_down ; 246df
 	ld hl, w2DMenuFlags2
 	bit 7, [hl]
 	jp z, xor_a

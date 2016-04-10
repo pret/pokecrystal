@@ -19,7 +19,7 @@ TeacherScript_0x18a480:
 	iftrue .mobile
 	jumptextfaceplayer UnknownText_0x18a4a3
 
-.mobile:
+.mobile
 	jumptextfaceplayer UnknownText_0x18a532
 
 FisherScript_0x18a48c:

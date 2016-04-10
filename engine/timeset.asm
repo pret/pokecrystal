@@ -379,19 +379,19 @@ OakText_ResponseToSetTime: ; 0x908b8
 	ret
 ; 908ec (24:48ec)
 
-.overslept: ; 0x908ec
+.overslept ; 0x908ec
 	; ! I overslept!
 	text_jump UnknownText_0x1bc326
 	db "@"
 ; 0x908f1
 
-.yikes: ; 0x908f1
+.yikes ; 0x908f1
 	; ! Yikes! I over- slept!
 	text_jump UnknownText_0x1bc336
 	db "@"
 ; 0x908f6
 
-.sodark: ; 0x908f6
+.sodark ; 0x908f6
 	; ! No wonder it's so dark!
 	text_jump UnknownText_0x1bc34f
 	db "@"

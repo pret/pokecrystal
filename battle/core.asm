@@ -565,7 +565,7 @@ DetermineMoveOrder: ; 3c314
 	ret
 ; 3c3f3
 
-.enemy_first: ; 3c3f3
+.enemy_first ; 3c3f3
 	and a
 	ret
 ; 3c3f5

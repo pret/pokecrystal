@@ -82,7 +82,7 @@ _BillsPC: ; e3fd
 	dw PlaceMenuStrings
 	dw .strings
 
-.strings: ; e47f
+.strings ; e47f
 	db "WITHDRAW <PK><MN>@"
 	db "DEPOSIT <PK><MN>@"
 	db "CHANGE BOX@"
@@ -96,7 +96,7 @@ _BillsPC: ; e3fd
 	dw BillsPC_MovePKMNMenu
 	dw BillsPC_SeeYa
 
-.items: ; e4c4
+.items ; e4c4
 	db 5
 	db 0 ; WITHDRAW
 	db 1;  DEPOSIT

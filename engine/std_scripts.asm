@@ -1807,7 +1807,7 @@ GameCornerCoinVendorScript: ; 0xbcdcd
 CoinVendor_IntroScript: ; 0xbcde0
 	farwritetext CoinVendor_IntroText
 
-.loop: ; 0xbcde4
+.loop ; 0xbcde4
 	special Special_DisplayMoneyAndCoinBalance
 	loadmenudata .MenuDataHeader
 	verticalmenu
