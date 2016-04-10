@@ -712,7 +712,7 @@ GetDecoName: ; 26c72
 	call ._getdeconame
 	jr .copy
 
-._getdeconame: ; 26ccf
+._getdeconame ; 26ccf
 	push bc
 	ld hl, DecorationNames
 	call GetNthString

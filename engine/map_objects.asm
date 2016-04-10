@@ -978,7 +978,7 @@ MapObjectMovementPattern: ; 47dd
 	ld [hl], STEP_TYPE_TRACKING_OBJECT
 	ret
 
-._MovementShadow_Grass_Emote_BoulderDust
+._MovementShadow_Grass_Emote_BoulderDust:
 	ld hl, OBJECT_RANGE
 	add hl, bc
 	ld a, [hl]
@@ -1014,7 +1014,7 @@ MapObjectMovementPattern: ; 47dd
 	ld [hl], STEP_TYPE_15
 	ret
 
-._MovementScreenShake
+._MovementScreenShake:
 	ld d, a
 	and %00111111
 	ld e, a

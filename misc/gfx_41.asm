@@ -228,7 +228,7 @@ CallInSafeGFXMode: ; 104177
 	ret
 ; 10419c
 
-._hl_: ; 10419c
+._hl_ ; 10419c
 	jp [hl]
 ; 10419d
 
