@@ -569,7 +569,7 @@ GoldenrodCity_MapEventHeader:
 	warp_def $d, $9, 2, GOLDENROD_MAGNET_TRAIN_STATION
 	warp_def $5, $1d, 1, GOLDENROD_FLOWER_SHOP
 	warp_def $9, $21, 1, GOLDENROD_PP_SPEECH_HOUSE
-	warp_def $7, $f, 1, GOLDENROD_NAME_RATERS_HOUSE
+	warp_def $7, $f, 1, GOLDENROD_NAME_RATER
 	warp_def $1b, $18, 1, GOLDENROD_DEPT_STORE_1F
 	warp_def $15, $e, 1, GOLDENROD_GAME_CORNER
 	warp_def $f, $5, 1, RADIO_TOWER_1F

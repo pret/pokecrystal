@@ -80,8 +80,8 @@ SchoolboyBillyScript:
 	closetext
 	end
 
-MapRoute15Signpost0Script:
-	jumptext UnknownText_0x1aa8e3
+Route15Sign:
+	jumptext Route15SignText
 
 Route15PPUp:
 	itemball PP_UP
@@ -194,7 +194,7 @@ UnknownText_0x1aa8b0:
 	cont "I'd be the best!"
 	done
 
-UnknownText_0x1aa8e3:
+Route15SignText:
 	text "ROUTE 15"
 
 	para "FUCHSIA CITY -"
@@ -215,7 +215,7 @@ Route15_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 9, 19, SIGNPOST_READ, MapRoute15Signpost0Script
+	signpost 9, 19, SIGNPOST_READ, Route15Sign
 
 .PersonEvents:
 	db 7

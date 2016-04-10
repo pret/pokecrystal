@@ -7,7 +7,7 @@ const_value set 2
 	const ROUTE40_ROCK2
 	const ROUTE40_ROCK3
 	const ROUTE40_LASS1
-	const ROUTE40_BUENA
+	const ROUTE40_MONICA
 	const ROUTE40_POKEFAN_M
 	const ROUTE40_LASS2
 	const ROUTE40_STANDING_YOUNGSTER
@@ -27,11 +27,11 @@ MonicaCallback:
 	clearevent EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
 	checkcode VAR_WEEKDAY
 	if_equal MONDAY, .MonicaAppears
-	disappear ROUTE40_BUENA
+	disappear ROUTE40_MONICA
 	return
 
 .MonicaAppears
-	appear ROUTE40_BUENA
+	appear ROUTE40_MONICA
 	return
 
 TrainerSwimmerfElaine:
@@ -131,8 +131,8 @@ MonicaNotMondayScript:
 	closetext
 	end
 
-MapRoute40Signpost0Script:
-	jumptext UnknownText_0x1a6767
+Route40Sign:
+	jumptext Route40SignText
 
 Route40Rock:
 	jumpstd smashrock
@@ -333,7 +333,7 @@ MonicaNotMondayText:
 	cont "Monday. How sad…"
 	done
 
-UnknownText_0x1a6767:
+Route40SignText:
 	text "ROUTE 40"
 
 	para "CIANWOOD CITY -"
@@ -353,7 +353,7 @@ Route40_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 10, 14, SIGNPOST_READ, MapRoute40Signpost0Script
+	signpost 10, 14, SIGNPOST_READ, Route40Sign
 	signpost 8, 7, SIGNPOST_ITEM, Route40HiddenHyperPotion
 
 .PersonEvents:

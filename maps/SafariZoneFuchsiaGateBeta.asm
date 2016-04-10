@@ -1,4 +1,3 @@
-
 SafariZoneFuchsiaGateBeta_MapScriptHeader:
 .MapTriggers:
 	db 0

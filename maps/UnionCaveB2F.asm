@@ -4,7 +4,7 @@ const_value set 2
 	const UNIONCAVEB2F_COOLTRAINER_F2
 	const UNIONCAVEB2F_POKE_BALL1
 	const UNIONCAVEB2F_POKE_BALL2
-	const UNIONCAVEB2F_SURF
+	const UNIONCAVEB2F_LAPRAS
 
 UnionCaveB2F_MapScriptHeader:
 .MapTriggers:
@@ -15,27 +15,27 @@ UnionCaveB2F_MapScriptHeader:
 
 	; callbacks
 
-	dbw MAPCALLBACK_OBJECTS, UnknownScript_0x5a30d
+	dbw MAPCALLBACK_OBJECTS, .Lapras
 
-UnknownScript_0x5a30d:
+.Lapras
 	checkflag ENGINE_UNION_CAVE_LAPRAS
-	iftrue UnknownScript_0x5a319
+	iftrue .NoAppear
 	checkcode VAR_WEEKDAY
-	if_equal FRIDAY, UnknownScript_0x5a31c
-UnknownScript_0x5a319:
-	disappear UNIONCAVEB2F_SURF
+	if_equal FRIDAY, .Appear
+.NoAppear
+	disappear UNIONCAVEB2F_LAPRAS
 	return
 
-UnknownScript_0x5a31c:
-	appear UNIONCAVEB2F_SURF
+.Appear
+	appear UNIONCAVEB2F_LAPRAS
 	return
 
-SurfScript_0x5a31f:
+UnionCaveLapras:
 	faceplayer
 	cry LAPRAS
 	loadwildmon LAPRAS, 20
 	startbattle
-	disappear UNIONCAVEB2F_SURF
+	disappear UNIONCAVEB2F_LAPRAS
 	setflag ENGINE_UNION_CAVE_LAPRAS
 	reloadmapafterbattle
 	end
@@ -165,4 +165,4 @@ UnionCaveB2F_MapEventHeader:
 	person_event SPRITE_COOLTRAINER_F, 30, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerCooltrainerfEmma, -1
 	person_event SPRITE_POKE_BALL, 2, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, UnionCaveB2FElixer, EVENT_UNION_CAVE_B2F_ELIXER
 	person_event SPRITE_POKE_BALL, 19, 12, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, UnionCaveB2FHyperPotion, EVENT_UNION_CAVE_B2F_HYPER_POTION
-	person_event SPRITE_SURF, 31, 11, SPRITEMOVEDATA_LAPRAS, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, SurfScript_0x5a31f, EVENT_UNION_CAVE_B2F_LAPRAS
+	person_event SPRITE_SURF, 31, 11, SPRITEMOVEDATA_LAPRAS, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, UnionCaveLapras, EVENT_UNION_CAVE_B2F_LAPRAS

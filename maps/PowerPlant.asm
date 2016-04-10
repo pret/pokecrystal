@@ -5,7 +5,7 @@ const_value set 2
 	const POWERPLANT_OFFICER2
 	const POWERPLANT_GYM_GUY3
 	const POWERPLANT_FISHER
-	const POWERPLANT_GYM_GUY4
+	const POWERPLANT_FOREST
 
 PowerPlant_MapScriptHeader:
 .MapTriggers:
@@ -24,7 +24,7 @@ UnknownScript_0x188dc3:
 UnknownScript_0x188dc4:
 	end
 
-UnknownScript_0x188dc5:
+PowerPlantGuardPhoneScript:
 	playsound SFX_CALL
 	showemote EMOTE_SHOCK, POWERPLANT_OFFICER1, 15
 	waitsfx
@@ -190,7 +190,7 @@ UnknownScript_0x188ec5:
 	closetext
 	end
 
-GymGuyScript_0x188ecb:
+Forest:
 	faceplayer
 	opentext
 	trade $6
@@ -401,7 +401,7 @@ PowerPlant_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 1, $c, $5, $0, UnknownScript_0x188dc5, $0, $0
+	xy_trigger 1, $c, $5, $0, PowerPlantGuardPhoneScript, $0, $0
 
 .Signposts:
 	db 2
@@ -416,4 +416,4 @@ PowerPlant_MapEventHeader:
 	person_event SPRITE_OFFICER, 3, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, OfficerScript_0x188e3d, -1
 	person_event SPRITE_GYM_GUY, 2, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, GymGuyScript_0x188e51, -1
 	person_event SPRITE_FISHER, 10, 14, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, PowerPlantManager, -1
-	person_event SPRITE_GYM_GUY, 5, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, GymGuyScript_0x188ecb, -1
+	person_event SPRITE_GYM_GUY, 5, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, Forest, -1

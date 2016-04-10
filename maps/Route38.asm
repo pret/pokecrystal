@@ -313,11 +313,11 @@ TrainerBeautyOlivia:
 	closetext
 	end
 
-MapRoute38Signpost0Script:
-	jumptext UnknownText_0x1a22fd
+Route38Sign:
+	jumptext Route38SignText
 
-MapRoute38Signpost1Script:
-	jumptext UnknownText_0x1a2324
+Route38TrainerTips:
+	jumptext Route38TrainerTipsText
 
 FruitTreeScript_0x1a1f33:
 	fruittree FRUITTREE_ROUTE_38
@@ -449,14 +449,14 @@ UnknownText_0x1a229a:
 	line "bottle at a time."
 	done
 
-UnknownText_0x1a22fd:
+Route38SignText:
 	text "ROUTE 38"
 
 	para "OLIVINE CITY -"
 	line "ECRUTEAK CITY"
 	done
 
-UnknownText_0x1a2324:
+Route38TrainerTipsText:
 	text "TRAINER TIPS"
 
 	para "If a #MON is"
@@ -486,8 +486,8 @@ Route38_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 7, 33, SIGNPOST_READ, MapRoute38Signpost0Script
-	signpost 13, 5, SIGNPOST_READ, MapRoute38Signpost1Script
+	signpost 7, 33, SIGNPOST_READ, Route38Sign
+	signpost 13, 5, SIGNPOST_READ, Route38TrainerTips
 
 .PersonEvents:
 	db 7

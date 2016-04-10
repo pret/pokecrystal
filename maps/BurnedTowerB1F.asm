@@ -7,7 +7,7 @@ const_value set 2
 	const BURNEDTOWERB1F_ENTEI2
 	const BURNEDTOWERB1F_SUICUNE2
 	const BURNEDTOWERB1F_POKE_BALL
-	const BURNEDTOWERB1F_SUPER_NERD
+	const BURNEDTOWERB1F_EUSINE
 
 BurnedTowerB1F_MapScriptHeader:
 .MapTriggers:
@@ -22,7 +22,7 @@ BurnedTowerB1F_MapScriptHeader:
 
 	; callbacks
 
-	dbw MAPCALLBACK_TILES, UnknownScript_0x186160
+	dbw MAPCALLBACK_TILES, BurnedTowerB1FLadderCallback
 
 UnknownScript_0x18615e:
 	end
@@ -30,14 +30,14 @@ UnknownScript_0x18615e:
 UnknownScript_0x18615f:
 	end
 
-UnknownScript_0x186160:
+BurnedTowerB1FLadderCallback:
 	checkevent EVENT_RELEASED_THE_BEASTS
-	iftrue UnknownScript_0x18616a
+	iftrue .NoChange
 	changeblock $6, $e, $2
-UnknownScript_0x18616a:
+.NoChange
 	return
 
-UnknownScript_0x18616b:
+ReleaseTheBeasts:
 	playmusic MUSIC_NONE
 	pause 30
 	appear BURNEDTOWERB1F_RAIKOU1
@@ -61,27 +61,27 @@ UnknownScript_0x18616b:
 	pause 15
 	playsound SFX_WARP_FROM
 	spriteface PLAYER, LEFT
-	applymovement BURNEDTOWERB1F_RAIKOU1, MovementData_0x186236
+	applymovement BURNEDTOWERB1F_RAIKOU1, BurnedTowerRaikouMovement
 	disappear BURNEDTOWERB1F_RAIKOU1
 	waitsfx
 	playsound SFX_WARP_FROM
 	spriteface PLAYER, RIGHT
-	applymovement BURNEDTOWERB1F_ENTEI1, MovementData_0x18623b
+	applymovement BURNEDTOWERB1F_ENTEI1, BurnedTowerEnteiMovement
 	disappear BURNEDTOWERB1F_ENTEI1
 	waitsfx
 	pause 15
 	playsound SFX_WARP_FROM
 	spriteface PLAYER, UP
-	applymovement BURNEDTOWERB1F_SUICUNE1, MovementData_0x186241
+	applymovement BURNEDTOWERB1F_SUICUNE1, BurnedTowerSuicuneMovement1
 	playsound SFX_WARP_FROM
 	spriteface PLAYER, DOWN
-	applymovement BURNEDTOWERB1F_SUICUNE1, MovementData_0x186248
+	applymovement BURNEDTOWERB1F_SUICUNE1, BurnedTowerSuicuneMovement2
 	spriteface PLAYER, UP
 	pause 20
 	cry SUICUNE
 	pause 30
 	playsound SFX_WARP_FROM
-	applymovement BURNEDTOWERB1F_SUICUNE1, MovementData_0x186253
+	applymovement BURNEDTOWERB1F_SUICUNE1, BurnedTowerSuicuneMovement3
 	spriteface PLAYER, DOWN
 	disappear BURNEDTOWERB1F_SUICUNE1
 	waitsfx
@@ -96,7 +96,7 @@ UnknownScript_0x18616b:
 	clearevent EVENT_ECRUTEAK_CITY_GRAMPS
 	setevent EVENT_BURNED_TOWER_MORTY
 	setevent EVENT_BURNED_TOWER_1F_EUSINE
-	appear BURNEDTOWERB1F_SUPER_NERD
+	appear BURNEDTOWERB1F_EUSINE
 	refreshscreen $0
 	changeblock $6, $e, $1b
 	reloadmappart
@@ -104,21 +104,21 @@ UnknownScript_0x18616b:
 	dotrigger $1
 	end
 
-SuperNerdScript_0x186212:
+BurnedTowerB1FEusine:
 	faceplayer
 	opentext
-	writetext UnknownText_0x18626a
+	writetext BurnedTowerB1FEusineText
 	waitbutton
 	closetext
 	checkcode VAR_FACING
-	if_equal $1, UnknownScript_0x186226
-	applymovement BURNEDTOWERB1F_SUPER_NERD, MovementData_0x186263
+	if_equal $1, .Movement
+	applymovement BURNEDTOWERB1F_EUSINE, BurnedTowerB1FEusineMovement1
 	jump UnknownScript_0x18622a
 
-UnknownScript_0x186226:
-	applymovement BURNEDTOWERB1F_SUPER_NERD, MovementData_0x18625c
+.Movement
+	applymovement BURNEDTOWERB1F_EUSINE, BurnedTowerB1FEusineMovement2
 UnknownScript_0x18622a:
-	disappear BURNEDTOWERB1F_SUPER_NERD
+	disappear BURNEDTOWERB1F_EUSINE
 	playsound SFX_EXIT_BUILDING
 	waitsfx
 	end
@@ -129,14 +129,14 @@ BurnedTowerB1FTMEndure:
 BurnedTowerB1FBoulder:
 	jumpstd strengthboulder
 
-MovementData_0x186236:
+BurnedTowerRaikouMovement:
 	set_sliding
 	fast_jump_step_down
 	fast_jump_step_left
 	remove_sliding
 	step_end
 
-MovementData_0x18623b:
+BurnedTowerEnteiMovement:
 	set_sliding
 	fast_jump_step_right
 	fast_jump_step_down
@@ -144,7 +144,7 @@ MovementData_0x18623b:
 	remove_sliding
 	step_end
 
-MovementData_0x186241:
+BurnedTowerSuicuneMovement1:
 	set_sliding
 	fast_jump_step_right
 	fast_jump_step_down
@@ -153,7 +153,7 @@ MovementData_0x186241:
 	remove_sliding
 	step_end
 
-MovementData_0x186248:
+BurnedTowerSuicuneMovement2:
 	set_sliding
 	fast_jump_step_left
 	fast_jump_step_up
@@ -168,7 +168,7 @@ MovementData_0x18624f:
 	remove_sliding
 	step_end
 
-MovementData_0x186253:
+BurnedTowerSuicuneMovement3:
 	set_sliding
 	big_step_up
 	fast_jump_step_right
@@ -179,7 +179,7 @@ MovementData_0x186253:
 	remove_sliding
 	step_end
 
-MovementData_0x18625c:
+BurnedTowerB1FEusineMovement2:
 	step_left
 	step_left
 	step_down
@@ -188,7 +188,7 @@ MovementData_0x18625c:
 	step_down
 	step_end
 
-MovementData_0x186263:
+BurnedTowerB1FEusineMovement1:
 	step_down
 	step_left
 	step_left
@@ -197,7 +197,7 @@ MovementData_0x186263:
 	step_down
 	step_end
 
-UnknownText_0x18626a:
+BurnedTowerB1FEusineText:
 	text "EUSINE: I dug a"
 	line "hole here, too…"
 
@@ -255,7 +255,7 @@ BurnedTowerB1F_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 0, $6, $a, $0, UnknownScript_0x18616b, $0, $0
+	xy_trigger 0, $6, $a, $0, ReleaseTheBeasts, $0, $0
 
 .Signposts:
 	db 0
@@ -270,4 +270,4 @@ BurnedTowerB1F_MapEventHeader:
 	person_event SPRITE_ENTEI, 3, 12, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_SILVER, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
 	person_event SPRITE_SUICUNE, 4, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_SILVER, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_2
 	person_event SPRITE_POKE_BALL, 4, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, BurnedTowerB1FTMEndure, EVENT_BURNED_TOWER_B1F_TM_ENDURE
-	person_event SPRITE_SUPER_NERD, 12, 10, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x186212, EVENT_EUSINE_IN_BURNED_TOWER
+	person_event SPRITE_SUPER_NERD, 12, 10, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, BurnedTowerB1FEusine, EVENT_EUSINE_IN_BURNED_TOWER

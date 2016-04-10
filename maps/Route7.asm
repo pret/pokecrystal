@@ -1,4 +1,3 @@
-
 Route7_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,13 +5,13 @@ Route7_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-MapRoute7Signpost0Script:
-	jumptext UnknownText_0x1ad388
+Route7UndergroundPathSign:
+	jumptext Route7UndergroundPathSignText
 
-MapRoute7Signpost1Script:
-	jumptext UnknownText_0x1ad456
+Route7LockedDoor:
+	jumptext Route7LockedDoorText
 
-UnknownText_0x1ad388:
+Route7UndergroundPathSignText:
 	text "What's this flyer?"
 
 	para "… Uncouth trainers"
@@ -31,7 +30,7 @@ UnknownText_0x1ad388:
 	para "CELADON POLICE"
 	done
 
-UnknownText_0x1ad456:
+Route7LockedDoorText:
 	text "It's locked…"
 	done
 
@@ -49,8 +48,8 @@ Route7_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 11, 5, SIGNPOST_READ, MapRoute7Signpost0Script
-	signpost 9, 6, SIGNPOST_READ, MapRoute7Signpost1Script
+	signpost 11, 5, SIGNPOST_READ, Route7UndergroundPathSign
+	signpost 9, 6, SIGNPOST_READ, Route7LockedDoor
 
 .PersonEvents:
 	db 0

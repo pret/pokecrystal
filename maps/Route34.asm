@@ -475,17 +475,17 @@ TrainerCooltrainerfKate:
 	closetext
 	end
 
-MapRoute34UnusedSignpostScript:
+; unused
 	jumptext MapRoute34UnusedSignpostText
 
-MapRoute34Signpost0Script:
-	jumptext MapRoute34Signpost0Text
+Route34Sign:
+	jumptext Route34SignText
 
-MapRoute34Signpost1Script:
-	jumptext MapRoute34Signpost1Text
+Route34TrainerTips:
+	jumptext Route34TrainerTipsText
 
-MapRoute34Signpost2Script:
-	jumptext MapRoute34Signpost2Text
+DayCareSign:
+	jumptext DayCareSignText
 
 Route34Nugget:
 	itemball NUGGET
@@ -736,7 +736,7 @@ MapRoute34UnusedSignpostText:
 	line "THROUGH THE GATE"
 	done
 
-MapRoute34Signpost0Text:
+Route34SignText:
 	text "ROUTE 34"
 
 	para "GOLDENROD CITY -"
@@ -746,7 +746,7 @@ MapRoute34Signpost0Text:
 	line "SOMEWHERE BETWEEN"
 	done
 
-MapRoute34Signpost1Text:
+Route34TrainerTipsText:
 	text "TRAINER TIPS"
 
 	para "BERRY trees grow"
@@ -758,7 +758,7 @@ MapRoute34Signpost1Text:
 	cont "which BERRIES."
 	done
 
-MapRoute34Signpost2Text:
+DayCareSignText:
 	text "DAY-CARE"
 
 	para "LET US RAISE YOUR"
@@ -782,9 +782,9 @@ Route34_MapEventHeader:
 
 .Signposts:
 	db 5
-	signpost 6, 12, SIGNPOST_READ, MapRoute34Signpost0Script
-	signpost 33, 13, SIGNPOST_READ, MapRoute34Signpost1Script
-	signpost 13, 10, SIGNPOST_READ, MapRoute34Signpost2Script
+	signpost 6, 12, SIGNPOST_READ, Route34Sign
+	signpost 33, 13, SIGNPOST_READ, Route34TrainerTips
+	signpost 13, 10, SIGNPOST_READ, DayCareSign
 	signpost 32, 8, SIGNPOST_ITEM, Route34HiddenRareCandy
 	signpost 19, 17, SIGNPOST_ITEM, Route34HiddenSuperPotion
 

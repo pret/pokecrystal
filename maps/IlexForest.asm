@@ -1,5 +1,5 @@
 const_value set 2
-	const ILEXFOREST_BIRD
+	const ILEXFOREST_FARFETCHD
 	const ILEXFOREST_YOUNGSTER1
 	const ILEXFOREST_BLACK_BELT
 	const ILEXFOREST_ROCKER
@@ -40,53 +40,53 @@ IlexForest_MapScriptHeader:
 	return
 
 .PositionOne:
-	moveperson ILEXFOREST_BIRD, $e, $1f
-	appear ILEXFOREST_BIRD
+	moveperson ILEXFOREST_FARFETCHD, $e, $1f
+	appear ILEXFOREST_FARFETCHD
 	return
 
 .PositionTwo:
-	moveperson ILEXFOREST_BIRD, $f, $19
-	appear ILEXFOREST_BIRD
+	moveperson ILEXFOREST_FARFETCHD, $f, $19
+	appear ILEXFOREST_FARFETCHD
 	return
 
 .PositionThree:
-	moveperson ILEXFOREST_BIRD, $14, $18
-	appear ILEXFOREST_BIRD
+	moveperson ILEXFOREST_FARFETCHD, $14, $18
+	appear ILEXFOREST_FARFETCHD
 	return
 
 .PositionFour:
-	moveperson ILEXFOREST_BIRD, $1d, $16
-	appear ILEXFOREST_BIRD
+	moveperson ILEXFOREST_FARFETCHD, $1d, $16
+	appear ILEXFOREST_FARFETCHD
 	return
 
 .PositionFive:
-	moveperson ILEXFOREST_BIRD, $1c, $1f
-	appear ILEXFOREST_BIRD
+	moveperson ILEXFOREST_FARFETCHD, $1c, $1f
+	appear ILEXFOREST_FARFETCHD
 	return
 
 .PositionSix:
-	moveperson ILEXFOREST_BIRD, $18, $23
-	appear ILEXFOREST_BIRD
+	moveperson ILEXFOREST_FARFETCHD, $18, $23
+	appear ILEXFOREST_FARFETCHD
 	return
 
 .PositionSeven:
-	moveperson ILEXFOREST_BIRD, $16, $1f
-	appear ILEXFOREST_BIRD
+	moveperson ILEXFOREST_FARFETCHD, $16, $1f
+	appear ILEXFOREST_FARFETCHD
 	return
 
 .PositionEight:
-	moveperson ILEXFOREST_BIRD, $f, $1d
-	appear ILEXFOREST_BIRD
+	moveperson ILEXFOREST_FARFETCHD, $f, $1d
+	appear ILEXFOREST_FARFETCHD
 	return
 
 .PositionNine:
-	moveperson ILEXFOREST_BIRD, $a, $23
-	appear ILEXFOREST_BIRD
+	moveperson ILEXFOREST_FARFETCHD, $a, $23
+	appear ILEXFOREST_FARFETCHD
 	return
 
 .PositionTen:
-	moveperson ILEXFOREST_BIRD, $6, $1c
-	appear ILEXFOREST_BIRD
+	moveperson ILEXFOREST_FARFETCHD, $6, $1c
+	appear ILEXFOREST_FARFETCHD
 	return
 
 IlexForestCharcoalApprenticeScript:
@@ -127,64 +127,64 @@ IlexForestFarfetchdScript:
 	cry FARFETCH_D
 	waitbutton
 	closetext
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetchd_Pos1_Pos2
-	moveperson ILEXFOREST_BIRD, $f, $19
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetchd_Pos1_Pos2
+	moveperson ILEXFOREST_FARFETCHD, $f, $19
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 2
 	end
 
 .Position2:
 	scall .CryAndCheckFacing
 	if_equal DOWN, .Position2_Down
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetchd_Pos2_Pos3
-	moveperson ILEXFOREST_BIRD, $14, $18
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetchd_Pos2_Pos3
+	moveperson ILEXFOREST_FARFETCHD, $14, $18
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 3
 	end
 
 .Position2_Down:
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetchd_Pos2_Pos8
-	moveperson ILEXFOREST_BIRD, $f, $1d
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetchd_Pos2_Pos8
+	moveperson ILEXFOREST_FARFETCHD, $f, $1d
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 8
 	end
 
 .Position3:
 	scall .CryAndCheckFacing
 	if_equal LEFT, .Position3_Left
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetchd_Pos3_Pos4
-	moveperson ILEXFOREST_BIRD, $1d, $16
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetchd_Pos3_Pos4
+	moveperson ILEXFOREST_FARFETCHD, $1d, $16
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 4
 	end
 
 .Position3_Left:
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetchd_Pos3_Pos2
-	moveperson ILEXFOREST_BIRD, $f, $19
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetchd_Pos3_Pos2
+	moveperson ILEXFOREST_FARFETCHD, $f, $19
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 2
 	end
 
 .Position4:
 	scall .CryAndCheckFacing
 	if_equal UP, .Position4_Up
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetchd_Pos4_Pos5
-	moveperson ILEXFOREST_BIRD, $1c, $1f
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetchd_Pos4_Pos5
+	moveperson ILEXFOREST_FARFETCHD, $1c, $1f
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 5
 	end
 
 .Position4_Up:
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetchd_Pos4_Pos3
-	moveperson ILEXFOREST_BIRD, $14, $18
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetchd_Pos4_Pos3
+	moveperson ILEXFOREST_FARFETCHD, $14, $18
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 3
 	end
 
@@ -193,52 +193,52 @@ IlexForestFarfetchdScript:
 	if_equal UP, .Position5_Up
 	if_equal LEFT, .Position5_Left
 	if_equal RIGHT, .Position5_Right
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetchd_Pos5_Pos6
-	moveperson ILEXFOREST_BIRD, $18, $23
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetchd_Pos5_Pos6
+	moveperson ILEXFOREST_FARFETCHD, $18, $23
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 6
 	end
 
 .Position5_Left:
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetchd_Pos5_Pos7
-	moveperson ILEXFOREST_BIRD, $16, $1f
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetchd_Pos5_Pos7
+	moveperson ILEXFOREST_FARFETCHD, $16, $1f
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 7
 	end
 
 .Position5_Up:
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos5_Pos4_Up
-	moveperson ILEXFOREST_BIRD, $1d, $16
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetched_Pos5_Pos4_Up
+	moveperson ILEXFOREST_FARFETCHD, $1d, $16
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 4
 	end
 
 .Position5_Right:
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos5_Pos4_Right
-	moveperson ILEXFOREST_BIRD, $1d, $16
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetched_Pos5_Pos4_Right
+	moveperson ILEXFOREST_FARFETCHD, $1d, $16
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 4
 	end
 
 .Position6:
 	scall .CryAndCheckFacing
 	if_equal RIGHT, .Position6_Right
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos6_Pos7
-	moveperson ILEXFOREST_BIRD, $16, $1f
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetched_Pos6_Pos7
+	moveperson ILEXFOREST_FARFETCHD, $16, $1f
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 7
 	end
 
 .Position6_Right:
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos6_Pos5
-	moveperson ILEXFOREST_BIRD, $1c, $1f
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetched_Pos6_Pos5
+	moveperson ILEXFOREST_FARFETCHD, $1c, $1f
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 5
 	end
 
@@ -246,26 +246,26 @@ IlexForestFarfetchdScript:
 	scall .CryAndCheckFacing
 	if_equal DOWN, .Position7_Down
 	if_equal LEFT, .Position7_Left
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos7_Pos8
-	moveperson ILEXFOREST_BIRD, $f, $1d
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetched_Pos7_Pos8
+	moveperson ILEXFOREST_FARFETCHD, $f, $1d
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 8
 	end
 
 .Position7_Left:
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos7_Pos6
-	moveperson ILEXFOREST_BIRD, $18, $23
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetched_Pos7_Pos6
+	moveperson ILEXFOREST_FARFETCHD, $18, $23
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 6
 	end
 
 .Position7_Down:
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos7_Pos5
-	moveperson ILEXFOREST_BIRD, $1c, $1f
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetched_Pos7_Pos5
+	moveperson ILEXFOREST_FARFETCHD, $1c, $1f
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 5
 	end
 
@@ -274,27 +274,27 @@ IlexForestFarfetchdScript:
 	if_equal UP, .Position8_Up
 	if_equal LEFT, .Position8_Left
 	if_equal RIGHT, .Position8_Right
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos8_Pos9
-	moveperson ILEXFOREST_BIRD, $a, $23
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetched_Pos8_Pos9
+	moveperson ILEXFOREST_FARFETCHD, $a, $23
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 9
 	end
 
 .Position8_Right:
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos8_Pos7
-	moveperson ILEXFOREST_BIRD, $16, $1f
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetched_Pos8_Pos7
+	moveperson ILEXFOREST_FARFETCHD, $16, $1f
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 7
 	end
 
 .Position8_Up:
 .Position8_Left:
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos8_Pos2
-	moveperson ILEXFOREST_BIRD, $f, $19
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetched_Pos8_Pos2
+	moveperson ILEXFOREST_FARFETCHD, $f, $19
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 2
 	end
 
@@ -302,10 +302,10 @@ IlexForestFarfetchdScript:
 	scall .CryAndCheckFacing
 	if_equal DOWN, .Position9_Down
 	if_equal RIGHT, .Position9_Right
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos9_Pos10
-	moveperson ILEXFOREST_BIRD, $6, $1c
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetched_Pos9_Pos10
+	moveperson ILEXFOREST_FARFETCHD, $6, $1c
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 10
 	appear ILEXFOREST_BLACK_BELT
 	setevent EVENT_CHARCOAL_KILN_BOSS
@@ -313,18 +313,18 @@ IlexForestFarfetchdScript:
 	end
 
 .Position9_Right:
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos9_Pos8_Right
-	moveperson ILEXFOREST_BIRD, $f, $1d
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetched_Pos9_Pos8_Right
+	moveperson ILEXFOREST_FARFETCHD, $f, $1d
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 8
 	end
 
 .Position9_Down:
-	applymovement ILEXFOREST_BIRD, MovementData_Farfetched_Pos9_Pos8_Down
-	moveperson ILEXFOREST_BIRD, $f, $1d
-	disappear ILEXFOREST_BIRD
-	appear ILEXFOREST_BIRD
+	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetched_Pos9_Pos8_Down
+	moveperson ILEXFOREST_FARFETCHD, $f, $1d
+	disappear ILEXFOREST_FARFETCHD
+	appear ILEXFOREST_FARFETCHD
 	loadvar FarfetchdPosition, 8
 	end
 

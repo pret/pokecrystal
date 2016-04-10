@@ -12,18 +12,18 @@ BlackthornDragonSpeechHouse_MapScriptHeader:
 GrannyScript_0x195949:
 	jumptextfaceplayer UnknownText_0x19595c
 
-EkansScript_0x19594c:
+Dratini:
 	opentext
-	writetext UnknownText_0x1959ee
+	writetext DratiniText
 	cry DRATINI
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x195956:
+; unused
 	jumpstd picturebookshelf
 
-UnknownScript_0x195959:
+; unused
 	jumpstd magazinebookshelf
 
 UnknownText_0x19595c:
@@ -41,7 +41,7 @@ UnknownText_0x19595c:
 	line "this town."
 	done
 
-UnknownText_0x1959ee:
+DratiniText:
 	text "DRATINI: Draa!"
 	done
 
@@ -63,4 +63,4 @@ BlackthornDragonSpeechHouse_MapEventHeader:
 .PersonEvents:
 	db 2
 	person_event SPRITE_GRANNY, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrannyScript_0x195949, -1
-	person_event SPRITE_EKANS, 5, 5, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, EkansScript_0x19594c, -1
+	person_event SPRITE_EKANS, 5, 5, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, Dratini, -1

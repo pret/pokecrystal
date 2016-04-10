@@ -1,4 +1,3 @@
-
 Route28_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,14 +5,14 @@ Route28_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-MapRoute28Signpost0Script:
-	jumptext UnknownText_0x1a5413
+Route28Sign:
+	jumptext Route28SignText
 
 Route28HiddenRareCandy:
 	dwb EVENT_ROUTE_28_HIDDEN_RARE_CANDY, RARE_CANDY
 	
 
-UnknownText_0x1a5413:
+Route28SignText:
 	text "ROUTE 28"
 	done
 
@@ -31,7 +30,7 @@ Route28_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 5, 31, SIGNPOST_READ, MapRoute28Signpost0Script
+	signpost 5, 31, SIGNPOST_READ, Route28Sign
 	signpost 2, 25, SIGNPOST_ITEM, Route28HiddenRareCandy
 
 .PersonEvents:

@@ -1,4 +1,3 @@
-
 	map_header_2 NewBarkTown, NEW_BARK_TOWN, $5, WEST | EAST
 	connection west, ROUTE_29, Route29, 0, 0, 9, NEW_BARK_TOWN
 	connection east, ROUTE_27, Route27, 0, 0, 9, NEW_BARK_TOWN
@@ -363,7 +362,7 @@
 	map_header_2 TohjoFalls, TOHJO_FALLS, $9, 0
 	map_header_2 OlivinePokeCenter1F, OLIVINE_POKECENTER_1F, $0, 0
 	map_header_2 OlivineGym, OLIVINE_GYM, $0, 0
-	map_header_2 OlivineVoltorbHouse, OLIVINE_VOLTORB_HOUSE, $0, 0
+	map_header_2 OlivineTimsHouse, OLIVINE_TIMS_HOUSE, $0, 0
 	map_header_2 OlivineHouseBeta, OLIVINE_HOUSE_BETA, $0, 0
 	map_header_2 OlivinePunishmentSpeechHouse, OLIVINE_PUNISHMENT_SPEECH_HOUSE, $0, 0
 	map_header_2 OlivineGoodRodHouse, OLIVINE_GOOD_ROD_HOUSE, $0, 0
@@ -395,7 +394,7 @@
 	map_header_2 BlackthornGym1F, BLACKTHORN_GYM_1F, $0, 0
 	map_header_2 BlackthornGym2F, BLACKTHORN_GYM_2F, $0, 0
 	map_header_2 BlackthornDragonSpeechHouse, BLACKTHORN_DRAGON_SPEECH_HOUSE, $0, 0
-	map_header_2 BlackthornDodrioTradeHouse, BLACKTHORN_DODRIO_TRADE_HOUSE, $0, 0
+	map_header_2 BlackthornEmysHouse, BLACKTHORN_EMYS_HOUSE, $0, 0
 	map_header_2 BlackthornMart, BLACKTHORN_MART, $0, 0
 	map_header_2 BlackthornPokeCenter1F, BLACKTHORN_POKECENTER_1F, $0, 0
 	map_header_2 MoveDeletersHouse, MOVE_DELETERS_HOUSE, $0, 0
@@ -442,7 +441,7 @@
 	map_header_2 GoldenrodMagnetTrainStation, GOLDENROD_MAGNET_TRAIN_STATION, $0, 0
 	map_header_2 GoldenrodFlowerShop, GOLDENROD_FLOWER_SHOP, $0, 0
 	map_header_2 GoldenrodPPSpeechHouse, GOLDENROD_PP_SPEECH_HOUSE, $0, 0
-	map_header_2 GoldenrodNameRatersHouse, GOLDENROD_NAME_RATERS_HOUSE, $0, 0
+	map_header_2 GoldenrodNameRater, GOLDENROD_NAME_RATER, $0, 0
 	map_header_2 GoldenrodDeptStore1F, GOLDENROD_DEPT_STORE_1F, $0, 0
 	map_header_2 GoldenrodDeptStore2F, GOLDENROD_DEPT_STORE_2F, $0, 0
 	map_header_2 GoldenrodDeptStore3F, GOLDENROD_DEPT_STORE_3F, $0, 0

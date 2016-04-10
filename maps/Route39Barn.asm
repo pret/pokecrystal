@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE39BARN_TWIN1
 	const ROUTE39BARN_TWIN2
-	const ROUTE39BARN_TAUROS
+	const ROUTE39BARN_MOOMOO
 
 Route39Barn_MapScriptHeader:
 .MapTriggers:
@@ -46,7 +46,7 @@ TwinScript_0x9cc90:
 	spriteface ROUTE39BARN_TWIN2, LEFT
 	end
 
-TaurosScript_0x9ccaa:
+MooMoo:
 	opentext
 	checkevent EVENT_HEALED_MOOMOO
 	iftrue .HappyCow
@@ -207,4 +207,4 @@ Route39Barn_MapEventHeader:
 	db 3
 	person_event SPRITE_TWIN, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TwinScript_0x9cc76, -1
 	person_event SPRITE_TWIN, 3, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, TwinScript_0x9cc90, -1
-	person_event SPRITE_TAUROS, 3, 3, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TaurosScript_0x9ccaa, -1
+	person_event SPRITE_TAUROS, 3, 3, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, MooMoo, -1

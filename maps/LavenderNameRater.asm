@@ -1,5 +1,5 @@
 const_value set 2
-	const LAVENDERNAMERATER_GENTLEMAN
+	const LAVENDERNAMERATER_NAME_RATER
 
 LavenderNameRater_MapScriptHeader:
 .MapTriggers:

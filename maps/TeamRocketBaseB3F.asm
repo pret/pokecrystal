@@ -32,7 +32,7 @@ TeamRocketBaseB3F_MapScriptHeader:
 	dbw MAPCALLBACK_TILES, .CheckGiovanniDoor
 
 .Trigger0:
-	priorityjump LanceScript_0x6dffc
+	priorityjump LanceGetPasswordScript
 	end
 
 .Trigger1:
@@ -53,14 +53,14 @@ TeamRocketBaseB3F_MapScriptHeader:
 	changeblock $a, $8, $7
 	return
 
-LanceScript_0x6dffc:
+LanceGetPasswordScript:
 	spriteface PLAYER, LEFT
 	pause 5
 	spriteface TEAMROCKETBASEB3F_MOLTRES, RIGHT
 	pause 20
 	applymovement TEAMROCKETBASEB3F_LANCE, MovementData_0x6e12a
 	opentext
-	writetext UnknownText_0x6e179
+	writetext LanceGetPasswordText
 	waitbutton
 	closetext
 	applymovement TEAMROCKETBASEB3F_LANCE, MovementData_0x6e12c
@@ -68,21 +68,21 @@ LanceScript_0x6dffc:
 	dotrigger $1
 	end
 
-UnknownScript_0x6e019:
+RocketBaseRival:
 	spriteface PLAYER, LEFT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_FadeOutMusic
 	appear TEAMROCKETBASEB3F_SILVER
-	applymovement TEAMROCKETBASEB3F_SILVER, MovementData_0x6e164
+	applymovement TEAMROCKETBASEB3F_SILVER, RocketBaseRivalEnterMovement
 	spriteface PLAYER, LEFT
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
-	writetext UnknownText_0x6e267
+	writetext RocketBaseRivalText
 	waitbutton
 	closetext
 	playsound SFX_TACKLE
-	applymovement PLAYER, MovementData_0x6e175
-	applymovement TEAMROCKETBASEB3F_SILVER, MovementData_0x6e16d
+	applymovement PLAYER, RocketBaseRivalShovesPlayerMovement
+	applymovement TEAMROCKETBASEB3F_SILVER, RocketBaseRivalLeaveMovement
 	disappear TEAMROCKETBASEB3F_SILVER
 	dotrigger $2
 	special RestartMapMusic
@@ -124,15 +124,15 @@ UnknownScript_0x6e056:
 	dotrigger $3
 	end
 
-MoltresScript_0x6e091:
+RocketBaseMurkrow:
 	opentext
-	writetext UnknownText_0x6e585
+	writetext RocketBaseMurkrowText
 	waitbutton
 	closetext
 	setevent EVENT_LEARNED_HAIL_GIOVANNI
 	end
 
-TrainerGruntF5:
+SlowpokeTailGrunt:
 	trainer EVENT_BEAT_ROCKET_GRUNTF_5, GRUNTF, 5, GruntF5SeenText, GruntF5BeatenText, 0, GruntF5Script
 
 GruntF5Script:
@@ -144,7 +144,7 @@ GruntF5Script:
 	setevent EVENT_LEARNED_SLOWPOKETAIL
 	end
 
-TrainerGruntM28:
+RaticateTailGrunt:
 	trainer EVENT_BEAT_ROCKET_GRUNTM_28, GRUNTM, 28, GruntM28SeenText, GruntM28BeatenText, 0, GruntM28Script
 
 GruntM28Script:
@@ -297,7 +297,7 @@ MovementData_0x6e147:
 	big_step_left
 	step_end
 
-MovementData_0x6e164:
+RocketBaseRivalEnterMovement:
 	step_down
 	step_down
 	step_down
@@ -308,7 +308,7 @@ MovementData_0x6e164:
 	step_right
 	step_end
 
-MovementData_0x6e16d:
+RocketBaseRivalLeaveMovement:
 	step_left
 	step_left
 	step_up
@@ -318,13 +318,13 @@ MovementData_0x6e16d:
 	step_up
 	step_end
 
-MovementData_0x6e175:
+RocketBaseRivalShovesPlayerMovement:
 	fix_facing
 	big_step_right
 	remove_fixed_facing
 	step_end
 
-UnknownText_0x6e179:
+LanceGetPasswordText:
 	text "LANCE: It takes"
 	line "two passwords to"
 
@@ -349,7 +349,7 @@ UnknownText_0x6e235:
 	cont "incredibly tough…"
 	done
 
-UnknownText_0x6e267:
+RocketBaseRivalText:
 	text "…"
 
 	para "Didn't I tell you"
@@ -434,7 +434,7 @@ UnknownText_0x6e548:
 	line "the others…"
 	done
 
-UnknownText_0x6e585:
+RocketBaseMurkrowText:
 	text "MURKROW: The"
 	line "password is…"
 
@@ -586,7 +586,7 @@ TeamRocketBaseB3F_MapEventHeader:
 	db 3
 	xy_trigger 2, $8, $a, $0, UnknownScript_0x6e04b, $0, $0
 	xy_trigger 2, $8, $b, $0, UnknownScript_0x6e052, $0, $0
-	xy_trigger 1, $a, $8, $0, UnknownScript_0x6e019, $0, $0
+	xy_trigger 1, $a, $8, $0, RocketBaseRival, $0, $0
 
 .Signposts:
 	db 10
@@ -603,11 +603,11 @@ TeamRocketBaseB3F_MapEventHeader:
 
 .PersonEvents:
 	db 14
-	person_event SPRITE_LANCE, 14, 25, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LanceScript_0x6dffc, EVENT_TEAM_ROCKET_BASE_B3F_LANCE_PASSWORDS
+	person_event SPRITE_LANCE, 14, 25, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LanceGetPasswordScript, EVENT_TEAM_ROCKET_BASE_B3F_LANCE_PASSWORDS
 	person_event SPRITE_ROCKET, 3, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B3F_EXECUTIVE
-	person_event SPRITE_MOLTRES, 2, 7, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, MoltresScript_0x6e091, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_ROCKET_GIRL, 7, 21, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 0, TrainerGruntF5, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_ROCKET, 14, 5, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 3, TrainerGruntM28, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_MOLTRES, 2, 7, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, RocketBaseMurkrow, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_ROCKET_GIRL, 7, 21, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 0, SlowpokeTailGrunt, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_ROCKET, 14, 5, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 3, RaticateTailGrunt, EVENT_TEAM_ROCKET_BASE_POPULATION
 	person_event SPRITE_SCIENTIST, 11, 23, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 0, TrainerScientistRoss, EVENT_TEAM_ROCKET_BASE_POPULATION
 	person_event SPRITE_SCIENTIST, 15, 11, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerScientistMitch, EVENT_TEAM_ROCKET_BASE_POPULATION
 	person_event SPRITE_ROCKET, 14, 24, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RocketScript_0x6e048, EVENT_TEAM_ROCKET_BASE_POPULATION

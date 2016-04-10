@@ -245,8 +245,8 @@ FisherScottScript:
 	closetext
 	end
 
-MapRoute26Signpost0Script:
-	jumptext UnknownText_0x1a5364
+Route26Sign:
+	jumptext Route26SignText
 
 FruitTreeScript_0x1a4ec2:
 	fruittree FRUITTREE_ROUTE_26
@@ -405,7 +405,7 @@ UnknownText_0x1a5326:
 	line "give up."
 	done
 
-UnknownText_0x1a5364:
+Route26SignText:
 	text "ROUTE 26"
 
 	para "#MON LEAGUE"
@@ -427,7 +427,7 @@ Route26_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 6, 8, SIGNPOST_READ, MapRoute26Signpost0Script
+	signpost 6, 8, SIGNPOST_READ, Route26Sign
 
 .PersonEvents:
 	db 8

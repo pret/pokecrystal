@@ -2,11 +2,11 @@ const_value set 2
 	const ROUTE39_SAILOR
 	const ROUTE39_POKEFAN_M
 	const ROUTE39_POKEFAN_F1
-	const ROUTE39_TAUROS1
-	const ROUTE39_TAUROS2
-	const ROUTE39_TAUROS3
-	const ROUTE39_TAUROS4
-	const ROUTE39_STANDING_YOUNGSTER
+	const ROUTE39_MILTANK1
+	const ROUTE39_MILTANK2
+	const ROUTE39_MILTANK3
+	const ROUTE39_MILTANK4
+	const ROUTE39_PSYCHIC_NORMAN
 	const ROUTE39_FRUIT_TREE
 	const ROUTE39_POKEFAN_F2
 
@@ -17,9 +17,9 @@ Route39_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-TaurosScript_0x1a5af5:
+Route39Miltank:
 	opentext
-	writetext UnknownText_0x1a5bf9
+	writetext Route39MiltankText
 	cry MILTANK
 	waitbutton
 	closetext
@@ -167,14 +167,14 @@ UnknownScript_0x1a5be5:
 	closetext
 	end
 
-MapRoute39Signpost2Script:
-	jumptext UnknownText_0x1a5fe3
+Route39Sign:
+	jumptext Route39SignText
 
-MapRoute39Signpost1Script:
-	jumptext UnknownText_0x1a600a
+MoomooFarmSign:
+	jumptext MoomooFarmSignText
 
-MapRoute39Signpost0Script:
-	jumptext UnknownText_0x1a6036
+Route39TrainerTips:
+	jumptext Route39TrainerTipsText
 
 FruitTreeScript_0x1a5bf4:
 	fruittree FRUITTREE_ROUTE_39
@@ -183,7 +183,7 @@ Route39HiddenNugget:
 	dwb EVENT_ROUTE_39_HIDDEN_NUGGET, NUGGET
 	
 
-UnknownText_0x1a5bf9:
+Route39MiltankText:
 	text "MILTANK: Mooo!"
 	done
 
@@ -315,21 +315,21 @@ UnknownText_0x1a5f31:
 	line "anywhere else."
 	done
 
-UnknownText_0x1a5fe3:
+Route39SignText:
 	text "ROUTE 39"
 
 	para "OLIVINE CITY -"
 	line "ECRUTEAK CITY"
 	done
 
-UnknownText_0x1a600a:
+MoomooFarmSignText:
 	text "MOOMOO FARM"
 
 	para "Enjoy Our Fresh"
 	line "and Tasty Milk"
 	done
 
-UnknownText_0x1a6036:
+Route39TrainerTipsText:
 	text "TRAINER TIPS"
 
 	para "Use HEADBUTT on"
@@ -358,9 +358,9 @@ Route39_MapEventHeader:
 
 .Signposts:
 	db 4
-	signpost 31, 5, SIGNPOST_READ, MapRoute39Signpost0Script
-	signpost 5, 9, SIGNPOST_READ, MapRoute39Signpost1Script
-	signpost 7, 15, SIGNPOST_READ, MapRoute39Signpost2Script
+	signpost 31, 5, SIGNPOST_READ, Route39TrainerTips
+	signpost 5, 9, SIGNPOST_READ, MoomooFarmSign
+	signpost 7, 15, SIGNPOST_READ, Route39Sign
 	signpost 13, 5, SIGNPOST_ITEM, Route39HiddenNugget
 
 .PersonEvents:
@@ -368,10 +368,10 @@ Route39_MapEventHeader:
 	person_event SPRITE_SAILOR, 29, 13, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 5, TrainerSailorEugene, -1
 	person_event SPRITE_POKEFAN_M, 22, 10, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 4, TrainerPokefanmDerek1, -1
 	person_event SPRITE_POKEFAN_F, 19, 11, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 4, TrainerPokefanfRuth, -1
-	person_event SPRITE_TAUROS, 12, 3, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_TAUROS, 11, 6, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_TAUROS, 15, 4, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TaurosScript_0x1a5af5, -1
-	person_event SPRITE_TAUROS, 13, 8, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TaurosScript_0x1a5af5, -1
+	person_event SPRITE_TAUROS, 12, 3, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route39Miltank, -1
+	person_event SPRITE_TAUROS, 11, 6, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route39Miltank, -1
+	person_event SPRITE_TAUROS, 15, 4, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route39Miltank, -1
+	person_event SPRITE_TAUROS, 13, 8, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route39Miltank, -1
 	person_event SPRITE_STANDING_YOUNGSTER, 7, 13, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 1, TrainerPsychicNorman, -1
 	person_event SPRITE_FRUIT_TREE, 3, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a5bf4, -1
 	person_event SPRITE_POKEFAN_F, 22, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, PokefanFScript_0x1a5bbe, -1

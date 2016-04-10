@@ -3,7 +3,7 @@ const_value set 2
 	const PEWTERPOKECENTER1F_TEACHER
 	const PEWTERPOKECENTER1F_JIGGLYPUFF
 	const PEWTERPOKECENTER1F_BUG_CATCHER
-	const PEWTERPOKECENTER1F_POKEFAN_M
+	const PEWTERPOKECENTER1F_CHRIS
 
 PewterPokeCenter1F_MapScriptHeader:
 .MapTriggers:
@@ -18,9 +18,9 @@ NurseScript_0x1a2ee7:
 TeacherScript_0x1a2eea:
 	jumptextfaceplayer UnknownText_0x1a2f01
 
-JigglypuffScript_0x1a2eed:
+PewterJigglypuff:
 	opentext
-	writetext UnknownText_0x1a2f5d
+	writetext PewterJigglypuffText
 	cry JIGGLYPUFF
 	waitbutton
 	closetext
@@ -29,7 +29,7 @@ JigglypuffScript_0x1a2eed:
 BugCatcherScript_0x1a2ef7:
 	jumptextfaceplayer UnknownText_0x1a2f75
 
-PokefanMScript_0x1a2efa:
+Chris:
 	faceplayer
 	opentext
 	trade $4
@@ -48,7 +48,7 @@ UnknownText_0x1a2f01:
 	line "phone. Go away!"
 	done
 
-UnknownText_0x1a2f5d:
+PewterJigglypuffText:
 	text "JIGGLYPUFF: Puu"
 	line "pupuu."
 	done
@@ -87,6 +87,6 @@ PewterPokeCenter1F_MapEventHeader:
 	db 5
 	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NurseScript_0x1a2ee7, -1
 	person_event SPRITE_TEACHER, 6, 8, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, TeacherScript_0x1a2eea, -1
-	person_event SPRITE_JIGGLYPUFF, 3, 1, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, JigglypuffScript_0x1a2eed, -1
+	person_event SPRITE_JIGGLYPUFF, 3, 1, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PewterJigglypuff, -1
 	person_event SPRITE_BUG_CATCHER, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, BugCatcherScript_0x1a2ef7, -1
-	person_event SPRITE_POKEFAN_M, 2, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x1a2efa, -1
+	person_event SPRITE_POKEFAN_M, 2, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, Chris, -1

@@ -1,4 +1,3 @@
-
 Route23_MapScriptHeader:
 .MapTriggers:
 	db 0

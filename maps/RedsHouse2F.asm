@@ -1,4 +1,3 @@
-
 RedsHouse2F_MapScriptHeader:
 .MapTriggers:
 	db 0

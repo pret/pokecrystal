@@ -17,7 +17,7 @@ LavenderMart_BlockData:
 ViridianMart_BlockData:
 SaffronMart_BlockData:
 CherrygroveMart_BlockData:
-	INCBIN "maps/OlivineMart.blk"
+	INCBIN "maps/Mart.blk"
 
 Route10North_BlockData:
 	INCBIN "maps/Route10North.blk"
@@ -46,7 +46,7 @@ CianwoodPokeCenter1F_BlockData:
 ViridianPokeCenter1F_BlockData:
 SaffronPokeCenter1F_BlockData:
 CherrygrovePokeCenter1F_BlockData:
-	INCBIN "maps/OlivinePokeCenter1F.blk"
+	INCBIN "maps/PokeCenter1F.blk"
 
 BetaPewterMuseumOfScience1F_BlockData:
 	INCBIN "maps/BetaPewterMuseumOfScience1F.blk"
@@ -71,31 +71,31 @@ BetaCinnabarIslandPokemonLabRoom3_BlockData:
 
 GoldenrodDeptStore1F_BlockData:
 CeladonDeptStore1F_BlockData:
-	INCBIN "maps/GoldenrodDeptStore1F.blk"
+	INCBIN "maps/DeptStore1F.blk"
 
 GoldenrodDeptStore2F_BlockData:
 CeladonDeptStore2F_BlockData:
-	INCBIN "maps/GoldenrodDeptStore2F.blk"
+	INCBIN "maps/DeptStore2F.blk"
 
 GoldenrodDeptStore3F_BlockData:
 CeladonDeptStore3F_BlockData:
-	INCBIN "maps/GoldenrodDeptStore3F.blk"
+	INCBIN "maps/DeptStore3F.blk"
 
 GoldenrodDeptStore4F_BlockData:
 CeladonDeptStore4F_BlockData:
-	INCBIN "maps/GoldenrodDeptStore4F.blk"
+	INCBIN "maps/DeptStore4F.blk"
 
 GoldenrodDeptStore5F_BlockData:
 CeladonDeptStore5F_BlockData:
-	INCBIN "maps/GoldenrodDeptStore5F.blk"
+	INCBIN "maps/DeptStore5F.blk"
 
 GoldenrodDeptStore6F_BlockData:
 CeladonDeptStore6F_BlockData:
-	INCBIN "maps/GoldenrodDeptStore6F.blk"
+	INCBIN "maps/DeptStore6F.blk"
 
 GoldenrodDeptStoreElevator_BlockData:
 CeladonDeptStoreElevator_BlockData:
-	INCBIN "maps/GoldenrodDeptStoreElevator.blk"
+	INCBIN "maps/DeptStoreElevator.blk"
 
 CeladonMansion1F_BlockData:
 	INCBIN "maps/CeladonMansion1F.blk"
@@ -129,7 +129,7 @@ EcruteakLugiaSpeechHouse_BlockData:
 EcruteakItemfinderHouse_BlockData:
 VioletNicknameSpeechHouse_BlockData:
 VioletOnixTradeHouse_BlockData:
-	INCBIN "maps/EcruteakLugiaSpeechHouse.blk"
+	INCBIN "maps/House2.blk"
 
 BetaCave_BlockData:
 	INCBIN "maps/BetaCave.blk"
@@ -149,7 +149,7 @@ NationalParkBugContest_BlockData:
 
 Route6UndergroundEntrance_BlockData:
 Route5UndergroundEntrance_BlockData:
-	INCBIN "maps/Route6UndergroundEntrance.blk"
+	INCBIN "maps/UndergroundPathEntrance.blk"
 
 BetaPokecenterTradeStation_BlockData:
 	INCBIN "maps/BetaPokecenterTradeStation.blk"
@@ -173,7 +173,7 @@ RuinsofAlphHoOhChamber_BlockData:
 RuinsofAlphKabutoChamber_BlockData:
 RuinsofAlphOmanyteChamber_BlockData:
 RuinsofAlphAerodactylChamber_BlockData:
-	INCBIN "maps/RuinsofAlphHoOhChamber.blk"
+	INCBIN "maps/RuinsofAlphPuzzleChamber.blk"
 
 SproutTower1F_BlockData:
 	INCBIN "maps/SproutTower1F.blk"
@@ -384,7 +384,7 @@ BetaRocketHideout3_BlockData:
 
 MahoganyMart1F_BlockData:
 MountMoonGiftShop_BlockData:
-	INCBIN "maps/MahoganyMart1F.blk"
+	INCBIN "maps/GiftShop.blk"
 
 TeamRocketBaseB1F_BlockData:
 	INCBIN "maps/TeamRocketBaseB1F.blk"

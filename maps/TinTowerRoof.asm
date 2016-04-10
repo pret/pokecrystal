@@ -10,27 +10,27 @@ TinTowerRoof_MapScriptHeader:
 
 	; callbacks
 
-	dbw MAPCALLBACK_OBJECTS, UnknownScript_0x77230
+	dbw MAPCALLBACK_OBJECTS, .HoOh
 
-UnknownScript_0x77230:
+.HoOh
 	checkevent EVENT_FOUGHT_HO_OH
-	iftrue UnknownScript_0x77241
+	iftrue .NoAppear
 	checkitem RAINBOW_WING
-	iftrue UnknownScript_0x7723e
-	jump UnknownScript_0x77241
+	iftrue .Appear
+	jump .NoAppear
 
-UnknownScript_0x7723e:
+.Appear
 	appear TINTOWERROOF_HO_OH
 	return
 
-UnknownScript_0x77241:
+.NoAppear
 	disappear TINTOWERROOF_HO_OH
 	return
 
-HoOhScript_0x77244:
+TinTowerHoOh:
 	faceplayer
 	opentext
-	writetext UnknownText_0x77260
+	writetext HoOhText
 	cry HO_OH
 	pause 15
 	closetext
@@ -43,7 +43,7 @@ HoOhScript_0x77244:
 	setevent EVENT_SET_WHEN_FOUGHT_HO_OH
 	end
 
-UnknownText_0x77260:
+HoOhText:
 	text "Shaoooh!"
 	done
 
@@ -63,4 +63,4 @@ TinTowerRoof_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_HO_OH, 5, 9, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, HoOhScript_0x77244, EVENT_TIN_TOWER_ROOF_HO_OH
+	person_event SPRITE_HO_OH, 5, 9, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, TinTowerHoOh, EVENT_TIN_TOWER_ROOF_HO_OH

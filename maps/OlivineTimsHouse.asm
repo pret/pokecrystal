@@ -1,7 +1,7 @@
 const_value set 2
-	const OLIVINEVOLTORBHOUSE_FISHING_GURU
+	const OLIVINETIMSHOUSE_TIM
 
-OlivineVoltorbHouse_MapScriptHeader:
+OlivineTimsHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
 
@@ -19,7 +19,7 @@ Tim:
 TimsHouseBookshelf:
 	jumpstd magazinebookshelf
 
-OlivineVoltorbHouse_MapEventHeader:
+OlivineTimsHouse_MapEventHeader:
 	; filler
 	db 0, 0
 

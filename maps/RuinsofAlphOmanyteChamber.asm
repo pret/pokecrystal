@@ -1,4 +1,3 @@
-
 RuinsofAlphOmanyteChamber_MapScriptHeader:
 .MapTriggers:
 	db 2

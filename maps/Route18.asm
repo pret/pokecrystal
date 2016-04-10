@@ -31,8 +31,8 @@ Bird_keeperBobScript:
 	closetext
 	end
 
-MapRoute18Signpost0Script:
-	jumptext UnknownText_0x1ad051
+Route18Sign:
+	jumptext Route18SignText
 
 Bird_keeperBorisSeenText:
 	text "If you're looking"
@@ -70,7 +70,7 @@ UnknownText_0x1ad00d:
 	line "the shortcut."
 	done
 
-UnknownText_0x1ad051:
+Route18SignText:
 	text "ROUTE 18"
 
 	para "CELADON CITY -"
@@ -91,7 +91,7 @@ Route18_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 5, 9, SIGNPOST_READ, MapRoute18Signpost0Script
+	signpost 5, 9, SIGNPOST_READ, Route18Sign
 
 .PersonEvents:
 	db 2

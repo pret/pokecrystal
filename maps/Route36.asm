@@ -5,8 +5,8 @@ const_value set 2
 	const ROUTE36_LASS1
 	const ROUTE36_FISHER
 	const ROUTE36_FRUIT_TREE
-	const ROUTE36_YOUNGSTER3
-	const ROUTE36_LASS2
+	const ROUTE36_ARTHUR
+	const ROUTE36_FLORIA
 	const ROUTE36_SUICUNE
 
 Route36_MapScriptHeader:
@@ -33,14 +33,14 @@ Route36_MapScriptHeader:
 .ArthurCallback:
 	checkcode VAR_WEEKDAY
 	if_equal THURSDAY, .ArthurAppears
-	disappear ROUTE36_YOUNGSTER3
+	disappear ROUTE36_ARTHUR
 	return
 
 .ArthurAppears
-	appear ROUTE36_YOUNGSTER3
+	appear ROUTE36_ARTHUR
 	return
 
-Route36SuicuneTrigger:
+Route36SuicuneScript:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	pause 15
 	playsound SFX_WARP_FROM
@@ -54,32 +54,33 @@ Route36SuicuneTrigger:
 	domaptrigger CIANWOOD_CITY, $1
 	end
 
-WeirdTreeScript_0x19403c:
+SudowoodoScript:
 	checkitem SQUIRTBOTTLE
-	iftrue .HaveSquirtbottle
+	iftrue .Fight
+
 	waitsfx
 	playsound SFX_SANDSTORM
-	applymovement ROUTE36_WEIRD_TREE, WeirdTreeMovement_Shake
+	applymovement ROUTE36_WEIRD_TREE, SudowoodoShakeMovement
 	end
 
-.HaveSquirtbottle:
+.Fight
 	opentext
-	writetext WeirdTreeText_AskUseBottle
+	writetext UseSquirtbottleText
 	yesorno
-	iffalse DidntWaterSudowoodo
+	iffalse DidntUseSquirtbottleScript
 	closetext
 	; fallthrough
 
-WateredWeirdTreeScript::
+WateredWeirdTreeScript:: ; export (for when you use Squirtbottle from pack)
 	opentext
-	writetext WeirdTreeText_PlayerUsedBottle
+	writetext UsedSquirtbottleText
 	waitbutton
 	closetext
 	waitsfx
 	playsound SFX_SANDSTORM
-	applymovement ROUTE36_WEIRD_TREE, WeirdTreeMovement_Shake
+	applymovement ROUTE36_WEIRD_TREE, SudowoodoShakeMovement
 	opentext
-	writetext WeirdTreeText_DidntLikeTheBottle
+	writetext SudowoodoAttackedText
 	waitbutton
 	closetext
 	loadwildmon SUDOWOODO, 20
@@ -91,7 +92,7 @@ WateredWeirdTreeScript::
 	reloadmapafterbattle
 	end
 
-DidntWaterSudowoodo:
+DidntUseSquirtbottleScript:
 	closetext
 	end
 
@@ -108,25 +109,25 @@ Route36FloriaScript:
 	faceplayer
 	opentext
 	checkevent EVENT_TALKED_TO_FLORIA_AT_FLOWER_SHOP
-	iftrue .TalkedToFloriaAtFlowerShop
+	iftrue .SecondTimeTalking
 	setevent EVENT_MET_FLORIA
-	writetext Route36FloriaText1
+	writetext FloriaText1
 	waitbutton
 	closetext
 	clearevent EVENT_FLORIA_AT_FLOWER_SHOP
 	checkcode VAR_FACING
-	if_equal UP, .Depart2
-	applymovement ROUTE36_LASS2, Route36FloriaDepartureMovement1
-	disappear ROUTE36_LASS2
+	if_equal UP, .Up
+	applymovement ROUTE36_FLORIA, FloriaMovement1
+	disappear ROUTE36_FLORIA
 	end
 
-.Depart2:
-	applymovement ROUTE36_LASS2, Route36FloriaDepartureMovement2
-	disappear ROUTE36_LASS2
+.Up
+	applymovement ROUTE36_FLORIA, FloriaMovement2
+	disappear ROUTE36_FLORIA
 	end
 
-.TalkedToFloriaAtFlowerShop:
-	writetext Route36FloriaText2
+.SecondTimeTalking
+	writetext FloriaText2
 	waitbutton
 	closetext
 	end
@@ -357,23 +358,23 @@ ArthurNotThursdayScript:
 	closetext
 	end
 
-MapRoute36Signpost2Script:
-	jumptext UnknownText_0x194924
+Route36Sign:
+	jumptext Route36SignText
 
-MapRoute36Signpost1Script:
-	jumptext UnknownText_0x19492e
+RuinsOfAlphNorthSign:
+	jumptext RuinsOfAlphNorthSignText
 
-MapRoute36Signpost3Script:
-	jumptext UnknownText_0x19494c
+Route36TrainerTips1:
+	jumptext Route36TrainerTips1Text
 
-MapRoute36Signpost0Script:
-	jumptext UnknownText_0x1949ee
+Route36TrainerTips2:
+	jumptext Route36TrainerTips2Text
 
 FruitTreeScript_0x194247:
 	fruittree FRUITTREE_ROUTE_36
 
-WeirdTreeMovement_Shake:
-	db $56 ; movement
+SudowoodoShakeMovement:
+	db $56 ; shake
 	step_end
 
 WeirdTreeMovement_Flee:
@@ -381,7 +382,7 @@ WeirdTreeMovement_Flee:
 	fast_jump_step_up
 	step_end
 
-Route36FloriaDepartureMovement1:
+FloriaMovement1:
 	step_down
 	step_down
 	step_down
@@ -393,7 +394,7 @@ Route36FloriaDepartureMovement1:
 	step_left
 	step_end
 
-Route36FloriaDepartureMovement2:
+FloriaMovement2:
 	step_left
 	step_down
 	step_down
@@ -416,17 +417,17 @@ Route36SuicuneMovement:
 	remove_sliding
 	step_end
 
-WeirdTreeText_AskUseBottle:
+UseSquirtbottleText:
 	text "It's a weird tree."
 	line "Use SQUIRTBOTTLE?"
 	done
 
-WeirdTreeText_PlayerUsedBottle:
+UsedSquirtbottleText:
 	text "<PLAYER> used the"
 	line "SQUIRTBOTTLE."
 	done
 
-WeirdTreeText_DidntLikeTheBottle:
+SudowoodoAttackedText:
 	text "The weird tree"
 	line "doesn't like the"
 	cont "SQUIRTBOTTLE!"
@@ -435,7 +436,7 @@ WeirdTreeText_DidntLikeTheBottle:
 	line "attacked!"
 	done
 
-Route36FloriaText1:
+FloriaText1:
 	text "I'm the FLOWER"
 	line "SHOP's FLORIA!"
 
@@ -461,7 +462,7 @@ Route36FloriaText1:
 	cont "her water bottle!"
 	done
 
-Route36FloriaText2:
+FloriaText2:
 	text "When I told my sis"
 	line "about the jiggly"
 
@@ -625,16 +626,16 @@ ArthurNotThursdayText:
 	cont "disappointing."
 	done
 
-UnknownText_0x194924:
+Route36SignText:
 	text "ROUTE 36"
 	done
 
-UnknownText_0x19492e:
+RuinsOfAlphNorthSignText:
 	text "RUINS OF ALPH"
 	line "NORTH ENTRANCE"
 	done
 
-UnknownText_0x19494c:
+Route36TrainerTips1Text:
 	text "TRAINER TIPS"
 
 	para "#MON stats"
@@ -651,7 +652,7 @@ UnknownText_0x19494c:
 	line "#MON grow."
 	done
 
-UnknownText_0x1949ee:
+Route36TrainerTips2Text:
 	text "TRAINER TIPS"
 
 	para "Use DIG to return"
@@ -678,21 +679,21 @@ Route36_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 1, $7, $14, $0, Route36SuicuneTrigger, $0, $0
-	xy_trigger 1, $7, $16, $0, Route36SuicuneTrigger, $0, $0
+	xy_trigger 1, $7, $14, $0, Route36SuicuneScript, $0, $0
+	xy_trigger 1, $7, $16, $0, Route36SuicuneScript, $0, $0
 
 .Signposts:
 	db 4
-	signpost 1, 29, SIGNPOST_READ, MapRoute36Signpost0Script
-	signpost 11, 45, SIGNPOST_READ, MapRoute36Signpost1Script
-	signpost 7, 55, SIGNPOST_READ, MapRoute36Signpost2Script
-	signpost 7, 21, SIGNPOST_READ, MapRoute36Signpost3Script
+	signpost 1, 29, SIGNPOST_READ, Route36TrainerTips2
+	signpost 11, 45, SIGNPOST_READ, RuinsOfAlphNorthSign
+	signpost 7, 55, SIGNPOST_READ, Route36Sign
+	signpost 7, 21, SIGNPOST_READ, Route36TrainerTips1
 
 .PersonEvents:
 	db 9
 	person_event SPRITE_YOUNGSTER, 13, 20, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerPsychicMark, -1
 	person_event SPRITE_YOUNGSTER, 14, 31, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 5, TrainerSchoolboyAlan1, -1
-	person_event SPRITE_WEIRD_TREE, 9, 35, SPRITEMOVEDATA_SUDOWOODO, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, WeirdTreeScript_0x19403c, EVENT_ROUTE_36_SUDOWOODO
+	person_event SPRITE_WEIRD_TREE, 9, 35, SPRITEMOVEDATA_SUDOWOODO, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SudowoodoScript, EVENT_ROUTE_36_SUDOWOODO
 	person_event SPRITE_LASS, 8, 51, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LassScript_0x1940e0, -1
 	person_event SPRITE_FISHER, 9, 44, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route36RockSmashGuyScript, -1
 	person_event SPRITE_FRUIT_TREE, 4, 21, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x194247, -1

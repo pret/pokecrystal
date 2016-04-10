@@ -164,7 +164,7 @@ VictoryRoadGate_BlockData:
 
 OlivinePortPassage_BlockData:
 VermilionPortPassage_BlockData:
-	INCBIN "maps/OlivinePortPassage.blk"
+	INCBIN "maps/PortPassage.blk"
 
 FuchsiaGym_BlockData:
 	INCBIN "maps/FuchsiaGym.blk"
@@ -218,7 +218,7 @@ RuinsofAlphHoOhItemRoom_BlockData:
 RuinsofAlphKabutoItemRoom_BlockData:
 RuinsofAlphOmanyteItemRoom_BlockData:
 RuinsofAlphAerodactylItemRoom_BlockData:
-	INCBIN "maps/RuinsofAlphHoOhItemRoom.blk"
+	INCBIN "maps/RuinsofAlphItemRoom.blk"
 
 RuinsofAlphHoOhWordRoom_BlockData:
 	INCBIN "maps/RuinsofAlphHoOhWordRoom.blk"

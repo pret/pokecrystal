@@ -2,7 +2,7 @@ const_value set 2
 	const TINTOWER1F_SUICUNE
 	const TINTOWER1F_RAIKOU
 	const TINTOWER1F_ENTEI
-	const TINTOWER1F_SUPER_NERD
+	const TINTOWER1F_EUSINE
 	const TINTOWER1F_SAGE1
 	const TINTOWER1F_SAGE2
 	const TINTOWER1F_SAGE3
@@ -25,10 +25,10 @@ TinTower1F_MapScriptHeader:
 
 	dbw MAPCALLBACK_OBJECTS, UnknownScript_0x18502f
 
-	dbw MAPCALLBACK_TILES, UnknownScript_0x185084
+	dbw MAPCALLBACK_TILES, TinTowerStairsCallback
 
 UnknownScript_0x18502a:
-	priorityjump UnknownScript_0x18508f
+	priorityjump SuicuneBattle
 	end
 
 UnknownScript_0x18502e:
@@ -45,9 +45,9 @@ UnknownScript_0x18502f:
 	setevent EVENT_TIN_TOWER_1F_WISE_TRIO_1
 UnknownScript_0x185047:
 	checkevent EVENT_FOUGHT_HO_OH
-	iffalse UnknownScript_0x18504f
-	appear TINTOWER1F_SUPER_NERD
-UnknownScript_0x18504f:
+	iffalse .Done
+	appear TINTOWER1F_EUSINE
+.Done
 	return
 
 UnknownScript_0x185050:
@@ -82,46 +82,46 @@ UnknownScript_0x185077:
 	setevent EVENT_TIN_TOWER_1F_WISE_TRIO_2
 	return
 
-UnknownScript_0x185084:
+TinTowerStairsCallback:
 	checkevent EVENT_GOT_RAINBOW_WING
-	iftrue UnknownScript_0x18508e
+	iftrue .NoChange
 	changeblock $a, $2, $9
-UnknownScript_0x18508e:
+.NoChange
 	return
 
-UnknownScript_0x18508f:
-	applymovement PLAYER, MovementData_0x1851cb
+SuicuneBattle:
+	applymovement PLAYER, TinTowerPlayerMovement1
 	pause 15
 	writebyte RAIKOU
 	special SpecialMonCheck
-	iftrue UnknownScript_0x1850b6
-	applymovement TINTOWER1F_RAIKOU, MovementData_0x1851d0
+	iftrue .Next1 ; if player caught Raikou, he doesn't appear in Tin Tower
+	applymovement TINTOWER1F_RAIKOU, TinTowerRaikouMovement1
 	spriteface PLAYER, LEFT
 	cry RAIKOU
 	pause 10
 	playsound SFX_WARP_FROM
-	applymovement TINTOWER1F_RAIKOU, MovementData_0x1851d4
+	applymovement TINTOWER1F_RAIKOU, TinTowerRaikouMovement2
 	disappear TINTOWER1F_RAIKOU
 	playsound SFX_EXIT_BUILDING
 	waitsfx
-UnknownScript_0x1850b6:
+.Next1
 	writebyte ENTEI
 	special SpecialMonCheck
-	iftrue UnknownScript_0x1850d7
-	applymovement TINTOWER1F_ENTEI, MovementData_0x1851da
+	iftrue .Next2 ; if player caught Entei, he doesn't appear in Tin Tower
+	applymovement TINTOWER1F_ENTEI, TinTowerEnteiMovement1
 	spriteface PLAYER, RIGHT
 	cry ENTEI
 	pause 10
 	playsound SFX_WARP_FROM
-	applymovement TINTOWER1F_ENTEI, MovementData_0x1851de
+	applymovement TINTOWER1F_ENTEI, TinTowerEnteiMovement2
 	disappear TINTOWER1F_ENTEI
 	playsound SFX_EXIT_BUILDING
 	waitsfx
-UnknownScript_0x1850d7:
+.Next2
 	spriteface PLAYER, UP
 	pause 10
-	applymovement PLAYER, MovementData_0x1851e8
-	applymovement TINTOWER1F_SUICUNE, MovementData_0x1851e4
+	applymovement PLAYER, TinTowerPlayerMovement2
+	applymovement TINTOWER1F_SUICUNE, TinTowerSuicuneMovement
 	cry SUICUNE
 	pause 20
 	loadwildmon SUICUNE, 40
@@ -143,9 +143,9 @@ UnknownScript_0x1850d7:
 	spriteface PLAYER, DOWN
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
 	playsound SFX_ENTER_DOOR
-	moveperson TINTOWER1F_SUPER_NERD, $a, $f
-	appear TINTOWER1F_SUPER_NERD
-	applymovement TINTOWER1F_SUPER_NERD, MovementData_0x1851ec
+	moveperson TINTOWER1F_EUSINE, $a, $f
+	appear TINTOWER1F_EUSINE
+	applymovement TINTOWER1F_EUSINE, MovementData_0x1851ec
 	playsound SFX_ENTER_DOOR
 	moveperson TINTOWER1F_SAGE1, $9, $f
 	appear TINTOWER1F_SAGE1
@@ -163,12 +163,12 @@ UnknownScript_0x1850d7:
 	moveperson TINTOWER1F_SAGE3, $b, $d
 	spriteface PLAYER, RIGHT
 	opentext
-	writetext UnknownText_0x185203
+	writetext TinTowerEusineSuicuneText
 	waitbutton
 	closetext
-	applymovement TINTOWER1F_SUPER_NERD, MovementData_0x1851f1
+	applymovement TINTOWER1F_EUSINE, MovementData_0x1851f1
 	playsound SFX_EXIT_BUILDING
-	disappear TINTOWER1F_SUPER_NERD
+	disappear TINTOWER1F_EUSINE
 	waitsfx
 	special Special_FadeOutMusic
 	pause 20
@@ -232,23 +232,23 @@ SageScript_0x1851bc:
 UnknownScript_0x1851c5:
 	jumptextfaceplayer UnknownText_0x1858d0
 
-SuperNerdScript_0x1851c8:
-	jumptextfaceplayer UnknownText_0x1856a3
+TinTowerEusine:
+	jumptextfaceplayer TinTowerEusineHoOhText
 
-MovementData_0x1851cb:
+TinTowerPlayerMovement1:
 	slow_step_up
 	slow_step_up
 	slow_step_up
 	slow_step_up
 	step_end
 
-MovementData_0x1851d0:
+TinTowerRaikouMovement1:
 	set_sliding
 	fast_jump_step_down
 	remove_sliding
 	step_end
 
-MovementData_0x1851d4:
+TinTowerRaikouMovement2:
 	set_sliding
 	fast_jump_step_down
 	fast_jump_step_right
@@ -256,13 +256,13 @@ MovementData_0x1851d4:
 	remove_sliding
 	step_end
 
-MovementData_0x1851da:
+TinTowerEnteiMovement1:
 	set_sliding
 	fast_jump_step_down
 	remove_sliding
 	step_end
 
-MovementData_0x1851de:
+TinTowerEnteiMovement2:
 	set_sliding
 	fast_jump_step_down
 	fast_jump_step_left
@@ -270,13 +270,13 @@ MovementData_0x1851de:
 	remove_sliding
 	step_end
 
-MovementData_0x1851e4:
+TinTowerSuicuneMovement:
 	set_sliding
 	fast_jump_step_down
 	remove_sliding
 	step_end
 
-MovementData_0x1851e8:
+TinTowerPlayerMovement2:
 	fix_facing
 	big_step_down
 	remove_fixed_facing
@@ -315,7 +315,7 @@ MovementData_0x1851fe:
 	step_up
 	step_end
 
-UnknownText_0x185203:
+TinTowerEusineSuicuneText:
 	text "EUSINE: Awesome!"
 	line "Too awesome, even!"
 
@@ -448,7 +448,7 @@ UnknownText_0x185654:
 	cont "and advance."
 	done
 
-UnknownText_0x1856a3:
+TinTowerEusineHoOhText:
 	text "I knew it."
 
 	para "I knew you'd get"
@@ -549,7 +549,7 @@ TinTower1F_MapEventHeader:
 	person_event SPRITE_SUICUNE, 9, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_TIN_TOWER_1F_SUICUNE
 	person_event SPRITE_RAIKOU, 9, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_TIN_TOWER_1F_RAIKOU
 	person_event SPRITE_ENTEI, 9, 12, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_TIN_TOWER_1F_ENTEI
-	person_event SPRITE_SUPER_NERD, 3, 8, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x1851c8, EVENT_TIN_TOWER_1F_EUSINE
+	person_event SPRITE_SUPER_NERD, 3, 8, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, TinTowerEusine, EVENT_TIN_TOWER_1F_EUSINE
 	person_event SPRITE_SAGE, 9, 5, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SageScript_0x185173, EVENT_TIN_TOWER_1F_WISE_TRIO_1
 	person_event SPRITE_SAGE, 11, 11, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SageScript_0x185176, EVENT_TIN_TOWER_1F_WISE_TRIO_1
 	person_event SPRITE_SAGE, 6, 14, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SageScript_0x185179, EVENT_TIN_TOWER_1F_WISE_TRIO_1

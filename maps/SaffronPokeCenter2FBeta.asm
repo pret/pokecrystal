@@ -1,4 +1,3 @@
-
 SaffronPokeCenter2FBeta_MapScriptHeader:
 .MapTriggers:
 	db 0

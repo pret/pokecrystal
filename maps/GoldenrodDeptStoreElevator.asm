@@ -1,4 +1,3 @@
-
 GoldenrodDeptStoreElevator_MapScriptHeader:
 .MapTriggers:
 	db 0

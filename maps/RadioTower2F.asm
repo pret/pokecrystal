@@ -28,21 +28,21 @@ TeacherScript_0x5d701:
 	faceplayer
 	opentext
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
-	iftrue UnknownScript_0x5d70f
+	iftrue .Rockets
 	writetext UnknownText_0x5d956
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x5d70f:
+.Rockets
 	writetext UnknownText_0x5d983
 	waitbutton
 	closetext
 	end
 
-JigglypuffScript_0x5d715:
+RadioTowerJigglypuff:
 	opentext
-	writetext UnknownText_0x5d9b6
+	writetext RadioTowerJigglypuffText
 	cry JIGGLYPUFF
 	waitbutton
 	closetext
@@ -361,7 +361,7 @@ UnknownText_0x5d983:
 	cont "the RADIO TOWER?"
 	done
 
-UnknownText_0x5d9b6:
+RadioTowerJigglypuffText:
 	text "JIGGLYPUFF:"
 	line "Jiggly…"
 	done
@@ -741,6 +741,6 @@ RadioTower2F_MapEventHeader:
 	person_event SPRITE_ROCKET_GIRL, 5, 10, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerGruntF2, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	person_event SPRITE_BLACK_BELT, 1, 0, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BlackBeltScript_0x5d71f, EVENT_RADIO_TOWER_BLACKBELT_BLOCKS_STAIRS
 	person_event SPRITE_BLACK_BELT, 1, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BlackBeltScript_0x5d722, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	person_event SPRITE_JIGGLYPUFF, 1, 12, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, JigglypuffScript_0x5d715, -1
+	person_event SPRITE_JIGGLYPUFF, 1, 12, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RadioTowerJigglypuff, -1
 	person_event SPRITE_BUENA, 5, 14, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, Buena, -1
 	person_event SPRITE_RECEPTIONIST, 7, 12, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, ReceptionistScript_0x5d8ff, EVENT_GOLDENROD_CITY_CIVILIANS

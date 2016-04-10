@@ -1,8 +1,8 @@
 const_value set 2
 	const VIRIDIANNICKNAMESPEECHHOUSE_POKEFAN_M
 	const VIRIDIANNICKNAMESPEECHHOUSE_LASS
-	const VIRIDIANNICKNAMESPEECHHOUSE_MOLTRES
-	const VIRIDIANNICKNAMESPEECHHOUSE_GROWLITHE
+	const VIRIDIANNICKNAMESPEECHHOUSE_SPEARY
+	const VIRIDIANNICKNAMESPEECHHOUSE_RATTEY
 
 ViridianNicknameSpeechHouse_MapScriptHeader:
 .MapTriggers:
@@ -17,17 +17,17 @@ PokefanMScript_0x9ae3a:
 LassScript_0x9ae3d:
 	jumptextfaceplayer UnknownText_0x9aecb
 
-MoltresScript_0x9ae40:
+Speary:
 	opentext
-	writetext UnknownText_0x9aefe
+	writetext SpearyText
 	cry SPEAROW
 	waitbutton
 	closetext
 	end
 
-GrowlitheScript_0x9ae4a:
+Rattey:
 	opentext
-	writetext UnknownText_0x9af10
+	writetext RatteyText
 	cry RATTATA
 	waitbutton
 	closetext
@@ -53,11 +53,11 @@ UnknownText_0x9aecb:
 	cont "RATTEY--a RATTATA."
 	done
 
-UnknownText_0x9aefe:
+SpearyText:
 	text "SPEARY: Ch-chun!"
 	done
 
-UnknownText_0x9af10:
+RatteyText:
 	text "RATTEY: Kikiii!"
 	done
 
@@ -80,5 +80,5 @@ ViridianNicknameSpeechHouse_MapEventHeader:
 	db 4
 	person_event SPRITE_POKEFAN_M, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x9ae3a, -1
 	person_event SPRITE_LASS, 4, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, LassScript_0x9ae3d, -1
-	person_event SPRITE_MOLTRES, 2, 5, SPRITEMOVEDATA_POKEMON, 0, 2, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, MoltresScript_0x9ae40, -1
-	person_event SPRITE_GROWLITHE, 3, 6, SPRITEMOVEDATA_POKEMON, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, GrowlitheScript_0x9ae4a, -1
+	person_event SPRITE_MOLTRES, 2, 5, SPRITEMOVEDATA_POKEMON, 0, 2, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, Speary, -1
+	person_event SPRITE_GROWLITHE, 3, 6, SPRITEMOVEDATA_POKEMON, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, Rattey, -1

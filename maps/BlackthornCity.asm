@@ -6,7 +6,7 @@ const_value set 2
 	const BLACKTHORNCITY_BLACK_BELT
 	const BLACKTHORNCITY_COOLTRAINER_F1
 	const BLACKTHORNCITY_YOUNGSTER1
-	const BLACKTHORNCITY_YOUNGSTER2
+	const BLACKTHORNCITY_SANTOS
 	const BLACKTHORNCITY_COOLTRAINER_F2
 
 BlackthornCity_MapScriptHeader:
@@ -27,11 +27,11 @@ BlackthornCity_MapScriptHeader:
 .Santos
 	checkcode VAR_WEEKDAY
 	if_equal SATURDAY, .SantosAppears
-	disappear BLACKTHORNCITY_YOUNGSTER2
+	disappear BLACKTHORNCITY_SANTOS
 	return
 
 .SantosAppears
-	appear BLACKTHORNCITY_YOUNGSTER2
+	appear BLACKTHORNCITY_SANTOS
 	return
 
 BlackthornSuperNerdScript:
@@ -322,7 +322,7 @@ BlackthornCity_MapEventHeader:
 	db 8
 	warp_def $b, $12, 1, BLACKTHORN_GYM_1F
 	warp_def $15, $d, 1, BLACKTHORN_DRAGON_SPEECH_HOUSE
-	warp_def $17, $1d, 1, BLACKTHORN_DODRIO_TRADE_HOUSE
+	warp_def $17, $1d, 1, BLACKTHORN_EMYS_HOUSE
 	warp_def $1d, $f, 2, BLACKTHORN_MART
 	warp_def $1d, $15, 1, BLACKTHORN_POKECENTER_1F
 	warp_def $1f, $9, 1, MOVE_DELETERS_HOUSE

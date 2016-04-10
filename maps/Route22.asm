@@ -1,4 +1,3 @@
-
 Route22_MapScriptHeader:
 .MapTriggers:
 	db 0
@@ -6,10 +5,10 @@ Route22_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-MapRoute22Signpost0Script:
-	jumptext UnknownText_0x7c005
+VictoryRoadEntranceSign:
+	jumptext VictoryRoadEntranceSignText
 
-UnknownText_0x7c005:
+VictoryRoadEntranceSignText:
 	text "#MON LEAGUE"
 
 	para "VICTORY ROAD"
@@ -29,7 +28,7 @@ Route22_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 7, 15, SIGNPOST_READ, MapRoute22Signpost0Script
+	signpost 7, 15, SIGNPOST_READ, VictoryRoadEntranceSign
 
 .PersonEvents:
 	db 0

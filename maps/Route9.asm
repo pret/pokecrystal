@@ -79,8 +79,8 @@ HikerSidneyScript:
 	closetext
 	end
 
-MapRoute9Signpost0Script:
-	jumptext UnknownText_0x1ab2a2
+Route9Sign:
+	jumptext Route9SignText
 
 Route9HiddenEther:
 	dwb EVENT_ROUTE_9_HIDDEN_ETHER, ETHER
@@ -199,7 +199,7 @@ UnknownText_0x1ab278:
 	cont "river."
 	done
 
-UnknownText_0x1ab2a2:
+Route9SignText:
 	text "ROUTE 9"
 
 	para "CERULEAN CITY -"
@@ -219,7 +219,7 @@ Route9_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 7, 15, SIGNPOST_READ, MapRoute9Signpost0Script
+	signpost 7, 15, SIGNPOST_READ, Route9Sign
 	signpost 15, 41, SIGNPOST_ITEM, Route9HiddenEther
 
 .PersonEvents:

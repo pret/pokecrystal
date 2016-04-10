@@ -86,17 +86,17 @@ TeacherScript_0x5676d:
 BugCatcherScript_0x56770:
 	jumptextfaceplayer UnknownText_0x56942
 
-MapGoldenrodDeptStoreRoofSignpost0Script:
-	jumptext UnknownText_0x569c3
+Binoculars1:
+	jumptext Binoculars1Text
 
-MapGoldenrodDeptStoreRoofSignpost1Script:
-	jumptext UnknownText_0x56a2b
+Binoculars2:
+	jumptext Binoculars2Text
 
-MapGoldenrodDeptStoreRoofSignpost2Script:
-	jumptext UnknownText_0x56aa6
+Binoculars3:
+	jumptext Binoculars3Text
 
-MapGoldenrodDeptStoreRoofSignpost3Script:
-	jumptext UnknownText_0x56b11
+PokeDollVendingMachine:
+	jumptext PokeDollVendingMachineText
 
 UnknownText_0x5677f:
 	text "Whew, I'm tired."
@@ -169,7 +169,7 @@ UnknownText_0x56942:
 	line "there's any left?"
 	done
 
-UnknownText_0x569c3:
+Binoculars1Text:
 	text "These binoculars"
 	line "let me see far"
 
@@ -180,7 +180,7 @@ UnknownText_0x569c3:
 	line "the green roof?"
 	done
 
-UnknownText_0x56a2b:
+Binoculars2Text:
 	text "Hey! Some trainers"
 	line "are battling on"
 	cont "the road!"
@@ -193,7 +193,7 @@ UnknownText_0x56a2b:
 	cont "right now!"
 	done
 
-UnknownText_0x56aa6:
+Binoculars3Text:
 	text "A FISHER caught a"
 	line "lot of MAGIKARP…"
 
@@ -204,7 +204,7 @@ UnknownText_0x56aa6:
 	line "going everywhere!"
 	done
 
-UnknownText_0x56b11:
+PokeDollVendingMachineText:
 	text "A vending machine"
 	line "for #MON dolls?"
 
@@ -228,10 +228,10 @@ GoldenrodDeptStoreRoof_MapEventHeader:
 
 .Signposts:
 	db 4
-	signpost 3, 15, SIGNPOST_RIGHT, MapGoldenrodDeptStoreRoofSignpost0Script
-	signpost 5, 15, SIGNPOST_RIGHT, MapGoldenrodDeptStoreRoofSignpost1Script
-	signpost 6, 15, SIGNPOST_RIGHT, MapGoldenrodDeptStoreRoofSignpost2Script
-	signpost 0, 3, SIGNPOST_UP, MapGoldenrodDeptStoreRoofSignpost3Script
+	signpost 3, 15, SIGNPOST_RIGHT, Binoculars1
+	signpost 5, 15, SIGNPOST_RIGHT, Binoculars2
+	signpost 6, 15, SIGNPOST_RIGHT, Binoculars3
+	signpost 0, 3, SIGNPOST_UP, PokeDollVendingMachine
 
 .PersonEvents:
 	db 8

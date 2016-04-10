@@ -10,7 +10,7 @@ MAP_NONE   EQU 0
 
 	mapgroup OLIVINE_POKECENTER_1F,                       4,  5 ;  1
 	mapgroup OLIVINE_GYM,                                 8,  5 ;  2
-	mapgroup OLIVINE_VOLTORB_HOUSE,                       4,  4 ;  3
+	mapgroup OLIVINE_TIMS_HOUSE,                          4,  4 ;  3
 	mapgroup OLIVINE_HOUSE_BETA,                          4,  4 ;  4
 	mapgroup OLIVINE_PUNISHMENT_SPEECH_HOUSE,             4,  4 ;  5
 	mapgroup OLIVINE_GOOD_ROD_HOUSE,                      4,  4 ;  6
@@ -144,7 +144,7 @@ MAP_NONE   EQU 0
 	mapgroup BLACKTHORN_GYM_1F,                           9,  5 ;  1
 	mapgroup BLACKTHORN_GYM_2F,                           9,  5 ;  2
 	mapgroup BLACKTHORN_DRAGON_SPEECH_HOUSE,              4,  4 ;  3
-	mapgroup BLACKTHORN_DODRIO_TRADE_HOUSE,               4,  4 ;  4
+	mapgroup BLACKTHORN_EMYS_HOUSE,                       4,  4 ;  4
 	mapgroup BLACKTHORN_MART,                             4,  6 ;  5
 	mapgroup BLACKTHORN_POKECENTER_1F,                    4,  5 ;  6
 	mapgroup MOVE_DELETERS_HOUSE,                         4,  4 ;  7
@@ -233,7 +233,7 @@ MAP_NONE   EQU 0
 	mapgroup GOLDENROD_MAGNET_TRAIN_STATION,              9, 10 ;  7
 	mapgroup GOLDENROD_FLOWER_SHOP,                       4,  4 ;  8
 	mapgroup GOLDENROD_PP_SPEECH_HOUSE,                   4,  4 ;  9
-	mapgroup GOLDENROD_NAME_RATERS_HOUSE,                 4,  4 ; 10
+	mapgroup GOLDENROD_NAME_RATER,                        4,  4 ; 10
 	mapgroup GOLDENROD_DEPT_STORE_1F,                     4,  8 ; 11
 	mapgroup GOLDENROD_DEPT_STORE_2F,                     4,  8 ; 12
 	mapgroup GOLDENROD_DEPT_STORE_3F,                     4,  8 ; 13

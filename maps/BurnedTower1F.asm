@@ -1,6 +1,6 @@
 const_value set 2
 	const BURNEDTOWER1F_ROCK
-	const BURNEDTOWER1F_SUPER_NERD
+	const BURNEDTOWER1F_EUSINE
 	const BURNEDTOWER1F_SILVER
 	const BURNEDTOWER1F_MORTY
 	const BURNEDTOWER1F_POKE_BALL
@@ -43,14 +43,14 @@ BurnedTower1F_MapScriptHeader:
 	return
 
 .EusineTrigger:
-	spriteface BURNEDTOWER1F_SUPER_NERD, DOWN
-	showemote EMOTE_SHOCK, BURNEDTOWER1F_SUPER_NERD, 15
-	applymovement BURNEDTOWER1F_SUPER_NERD, BurnedTower1FEusineMovement
+	spriteface BURNEDTOWER1F_EUSINE, DOWN
+	showemote EMOTE_SHOCK, BURNEDTOWER1F_EUSINE, 15
+	applymovement BURNEDTOWER1F_EUSINE, BurnedTower1FEusineMovement
 	opentext
 	writetext BurnedTower1FEusineIntroText
 	waitbutton
 	closetext
-	moveperson BURNEDTOWER1F_SUPER_NERD, $9, $e
+	moveperson BURNEDTOWER1F_EUSINE, $9, $e
 	dotrigger $1
 	end
 

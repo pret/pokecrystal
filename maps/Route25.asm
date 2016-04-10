@@ -186,8 +186,8 @@ UnknownScript_0x19efde:
 	closetext
 	end
 
-MapRoute25Signpost0Script:
-	jumptext UnknownText_0x19f567
+BillsHouseSign:
+	jumptext BillsHouseSignText
 
 Route25Protein:
 	itemball PROTEIN
@@ -423,12 +423,12 @@ UnknownText_0x19f520:
 	cont "standing!"
 	done
 
-UnknownText_0x19f567:
+BillsHouseSignText:
 	text "SEA COTTAGE"
 	line "BILL'S HOUSE"
 	done
 
-UnknownText_0x19f581:
+; unused
 	text "BILL'S HOUSE"
 	done
 
@@ -447,7 +447,7 @@ Route25_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 5, 45, SIGNPOST_READ, MapRoute25Signpost0Script
+	signpost 5, 45, SIGNPOST_READ, BillsHouseSign
 	signpost 5, 4, SIGNPOST_ITEM, Route25HiddenPotion
 
 .PersonEvents:

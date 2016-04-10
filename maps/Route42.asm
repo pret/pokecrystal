@@ -26,7 +26,7 @@ UnknownScript_0x1a9216:
 UnknownScript_0x1a9217:
 	end
 
-UnknownScript_0x1a9218:
+Route42SuicuneScript:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	pause 15
 	playsound SFX_WARP_FROM
@@ -186,17 +186,17 @@ HikerBenjaminScript:
 	closetext
 	end
 
-MapRoute42Signpost0Script:
-	jumptext UnknownText_0x1a9537
+Route42Sign1:
+	jumptext Route42Sign1Text
 
-MapRoute42Signpost1Script:
-	jumptext UnknownText_0x1a955f
+MtMortarSign1:
+	jumptext MtMortarSign1Text
 
-MapRoute42Signpost2Script:
-	jumptext UnknownText_0x1a9580
+MtMortarSign2:
+	jumptext MtMortarSign2Text
 
-MapRoute42Signpost3Script:
-	jumptext UnknownText_0x1a95a1
+Route42Sign2:
+	jumptext Route42Sign2Text
 
 Route42UltraBall:
 	itemball ULTRA_BALL
@@ -293,28 +293,28 @@ UnknownText_0x1a94d6:
 	line "it. Please?"
 	done
 
-UnknownText_0x1a9537:
+Route42Sign1Text:
 	text "ROUTE 42"
 
 	para "ECRUTEAK CITY -"
 	line "MAHOGANY TOWN"
 	done
 
-UnknownText_0x1a955f:
+MtMortarSign1Text:
 	text "MT.MORTAR"
 
 	para "WATERFALL CAVE"
 	line "INSIDE"
 	done
 
-UnknownText_0x1a9580:
+MtMortarSign2Text:
 	text "MT.MORTAR"
 
 	para "WATERFALL CAVE"
 	line "INSIDE"
 	done
 
-UnknownText_0x1a95a1:
+Route42Sign2Text:
 	text "ROUTE 42"
 
 	para "ECRUTEAK CITY -"
@@ -335,14 +335,14 @@ Route42_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 1, $e, $18, $0, UnknownScript_0x1a9218, $0, $0
+	xy_trigger 1, $e, $18, $0, Route42SuicuneScript, $0, $0
 
 .Signposts:
 	db 5
-	signpost 10, 4, SIGNPOST_READ, MapRoute42Signpost0Script
-	signpost 5, 7, SIGNPOST_READ, MapRoute42Signpost1Script
-	signpost 9, 45, SIGNPOST_READ, MapRoute42Signpost2Script
-	signpost 8, 54, SIGNPOST_READ, MapRoute42Signpost3Script
+	signpost 10, 4, SIGNPOST_READ, Route42Sign1
+	signpost 5, 7, SIGNPOST_READ, MtMortarSign1
+	signpost 9, 45, SIGNPOST_READ, MtMortarSign2
+	signpost 8, 54, SIGNPOST_READ, Route42Sign2
 	signpost 11, 16, SIGNPOST_ITEM, Route42HiddenMaxPotion
 
 .PersonEvents:

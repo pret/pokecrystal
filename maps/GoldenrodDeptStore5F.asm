@@ -1,9 +1,9 @@
 const_value set 2
 	const GOLDENRODDEPTSTORE5F_CLERK
 	const GOLDENRODDEPTSTORE5F_LASS
-	const GOLDENRODDEPTSTORE5F_COOLTRAINER_M
+	const GOLDENRODDEPTSTORE5F_MIKE
 	const GOLDENRODDEPTSTORE5F_POKEFAN_M
-	const GOLDENRODDEPTSTORE5F_TWIN
+	const GOLDENRODDEPTSTORE5F_CARRIE
 	const GOLDENRODDEPTSTORE5F_RECEPTIONIST
 
 GoldenrodDeptStore5F_MapScriptHeader:
@@ -106,7 +106,7 @@ ReceptionistScript_0x560ce:
 	closetext
 	end
 
-TwinScript_0x56118:
+Carrie:
 	faceplayer
 	opentext
 	special SpecialGameboyCheck
@@ -126,7 +126,7 @@ TwinScript_0x56118:
 LassScript_0x56130:
 	jumptextfaceplayer UnknownText_0x562ad
 
-CooltrainerMScript_0x56133:
+Mike:
 	faceplayer
 	opentext
 	trade $0
@@ -242,7 +242,7 @@ GoldenrodDeptStore5F_MapEventHeader:
 	db 6
 	person_event SPRITE_CLERK, 5, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ClerkScript_0x5609c, -1
 	person_event SPRITE_LASS, 6, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LassScript_0x56130, -1
-	person_event SPRITE_COOLTRAINER_M, 3, 6, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x56133, -1
+	person_event SPRITE_COOLTRAINER_M, 3, 6, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Mike, -1
 	person_event SPRITE_POKEFAN_M, 5, 13, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x5613a, -1
-	person_event SPRITE_TWIN, 1, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, TwinScript_0x56118, -1
+	person_event SPRITE_TWIN, 1, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, Carrie, -1
 	person_event SPRITE_RECEPTIONIST, 5, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, ReceptionistScript_0x560ce, EVENT_GOLDENROD_DEPT_STORE_5F_HAPPINESS_EVENT_LADY

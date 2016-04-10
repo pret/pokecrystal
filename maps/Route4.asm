@@ -44,8 +44,8 @@ PicnickerSharonScript:
 	closetext
 	end
 
-MapRoute4Signpost0Script:
-	jumptext UnknownText_0x1ae384
+MtMoonSquareSign:
+	jumptext MtMoonSquareSignText
 
 Route4HPUp:
 	itemball HP_UP
@@ -114,7 +114,7 @@ UnknownText_0x1ae369:
 	line "some more…"
 	done
 
-UnknownText_0x1ae384:
+MtMoonSquareSignText:
 	text "MT.MOON SQUARE"
 
 	para "Just go up the"
@@ -134,7 +134,7 @@ Route4_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 7, 3, SIGNPOST_READ, MapRoute4Signpost0Script
+	signpost 7, 3, SIGNPOST_READ, MtMoonSquareSign
 	signpost 3, 10, SIGNPOST_ITEM, Route4HiddenUltraBall
 
 .PersonEvents:

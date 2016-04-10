@@ -5,7 +5,7 @@ const_value set 2
 	const NATIONALPARK_YOUNGSTER1
 	const NATIONALPARK_YOUNGSTER2
 	const NATIONALPARK_TEACHER2
-	const NATIONALPARK_GROWLITHE
+	const NATIONALPARK_PERSIAN
 	const NATIONALPARK_YOUNGSTER3
 	const NATIONALPARK_POKEFAN_F2
 	const NATIONALPARK_POKEFAN_M
@@ -53,10 +53,10 @@ YoungsterScript_0x5c026:
 TeacherScript_0x5c029:
 	jumptextfaceplayer UnknownText_0x5c3bc
 
-GrowlitheScript_0x5c02c:
+NationalParkPersian:
 	faceplayer
 	opentext
-	writetext UnknownText_0x5c416
+	writetext NationalParkPersianText
 	cry PERSIAN
 	waitbutton
 	closetext
@@ -377,7 +377,7 @@ UnknownText_0x5c3bc:
 	line "want to battle…"
 	done
 
-UnknownText_0x5c416:
+NationalParkPersianText:
 	text "PERSIAN: Fufushaa!"
 	done
 
@@ -543,7 +543,7 @@ NationalPark_MapEventHeader:
 	person_event SPRITE_YOUNGSTER, 41, 11, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x5c023, -1
 	person_event SPRITE_YOUNGSTER, 41, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x5c026, -1
 	person_event SPRITE_TEACHER, 41, 17, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TeacherScript_0x5c029, -1
-	person_event SPRITE_GROWLITHE, 40, 26, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrowlitheScript_0x5c02c, -1
+	person_event SPRITE_GROWLITHE, 40, 26, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NationalParkPersian, -1
 	person_event SPRITE_YOUNGSTER, 23, 27, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerSchoolboyJack1, -1
 	person_event SPRITE_POKEFAN_F, 29, 18, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 2, TrainerPokefanfBeverly1, -1
 	person_event SPRITE_POKEFAN_M, 9, 16, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 2, TrainerPokefanmWilliam, -1
