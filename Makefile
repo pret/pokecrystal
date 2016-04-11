@@ -6,9 +6,8 @@ MD5 := md5sum -c --quiet
 .SECONDEXPANSION:
 .PRECIOUS: %.2bpp %.1bpp
 
-poketools := extras/pokemontools
 gfx       := $(PYTHON) gfx.py
-includes  := $(PYTHON) $(poketools)/scan_includes.py
+includes  := $(PYTHON) scan_includes.py
 
 
 crystal_obj := \
