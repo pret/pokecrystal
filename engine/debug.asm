@@ -1365,7 +1365,7 @@ endr
 	jp [hl]
 ; 82301
 
-.dw: ; 82301
+.dw ; 82301
 	dw Function82309
 	dw Function82339
 	dw Function8234b

@@ -100,7 +100,7 @@ StatsScreenBattle: ; 4dcf7
 ; 4dd2a
 
 StatsScreenPointerTable: ; 4dd2a
-	
+
 	dw MonStatsInit       ; regular pokémon
 	dw EggStatsInit       ; egg
 	dw StatsScreenWaitCry
@@ -369,7 +369,7 @@ StatsScreen_JoypadAction: ; 4de54 (13:5e54)
 	call StatsScreen_SetJumptableIndex
 	ret
 
-.b_button: ; 4dee4 (13:5ee4)
+.b_button ; 4dee4 (13:5ee4)
 	ld h, 7
 	call StatsScreen_SetJumptableIndex
 	ret
@@ -535,7 +535,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	ret
 
 .Jumptable: ; 4e00d (13:600d)
-	
+
 	dw .PinkPage
 	dw .GreenPage
 	dw .BluePage
@@ -559,7 +559,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	jr z, .NotImmuneToPkrs
 	hlcoord 8, 8
 	ld [hl], "."
-.NotImmuneToPkrs
+.NotImmuneToPkrs:
 	ld a, [MonType]
 	cp BOXMON
 	jr z, .StatusOK
@@ -570,12 +570,12 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	pop hl
 	jr nz, .done_status
 	jr .StatusOK
-.HasPokerus
+.HasPokerus:
 	ld de, .PkrsStr
 	hlcoord 1, 13
 	call PlaceString
 	jr .done_status
-.StatusOK
+.StatusOK:
 	ld de, .OK_str
 	call PlaceString
 .done_status
@@ -628,7 +628,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	jr z, .AtMaxLevel
 	inc a
 	ld [TempMonLevel], a
-.AtMaxLevel
+.AtMaxLevel:
 	call PrintLevel
 	pop af
 	ld [TempMonLevel], a
@@ -657,7 +657,7 @@ endr
 	ld [Buffer1], a ; wd1ea (aliases: MagikarpLength)
 	ret
 
-.AlreadyAtMaxLevel
+.AlreadyAtMaxLevel:
 	ld hl, Buffer1 ; wd1ea (aliases: MagikarpLength)
 	xor a
 rept 2
@@ -747,7 +747,7 @@ endr
 	ld de, SCREEN_WIDTH
 	ld b, 10
 	ld a, $31
-.BluePageVerticalDivider
+.BluePageVerticalDivider:
 	ld [hl], a
 	add hl, de
 	dec b
@@ -863,7 +863,7 @@ StatsScreen_PlaceFrontpic: ; 4e226 (13:6226)
 	call .get_animation
 	ret
 
-.get_animation: ; 4e289 (13:6289)
+.get_animation ; 4e289 (13:6289)
 	ld a, [CurPartySpecies]
 	call IsAPokemon
 	ret c
@@ -1101,7 +1101,7 @@ StatsScreen_LoadPageIndicators: ; 4e4cd (13:64cd)
 	hlcoord 15, 5
 	jr z, .load_square
 	hlcoord 17, 5
-.load_square: ; 4e4f7 (13:64f7)
+.load_square ; 4e4f7 (13:64f7)
 	push bc
 	ld [hli], a
 	inc a

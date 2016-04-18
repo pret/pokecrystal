@@ -163,6 +163,7 @@ GetCaughtLevel: ; 4f18c
 	call ByteFill
 
 	; caught level
+	; Limited to between 1 and 63 for some reason.
 	ld a, [wSeerCaughtData]
 	and $3f
 	jr z, .unknown
@@ -247,7 +248,7 @@ GetCaughtLocation: ; 4f20a
 	and a
 	ret
 
-.Unknown
+.Unknown:
 	ld de, wSeerCaughtLocation
 	jp UnknownCaughtData
 

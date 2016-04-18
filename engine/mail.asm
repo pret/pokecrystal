@@ -322,7 +322,7 @@ _KrisMailBoxMenu: ; 0x447a0
 	jp MenuTextBoxBackup
 ; 0x447b4
 
-.EmptyMailboxText ; 0x447b4
+.EmptyMailboxText: ; 0x447b4
 	text_jump _EmptyMailboxText
 	db "@"
 
@@ -431,13 +431,13 @@ MailboxPC: ; 0x44806
 	ret
 ; 0x44861
 
-.JumpTable
+.JumpTable:
 	dw .ReadMail
 	dw .PutInPack
 	dw .AttachMail
 	dw .Cancel
 
-.ReadMail ; 0x44869
+.ReadMail: ; 0x44869
 	call FadeToMenu
 	ld a, [MenuSelection]
 	dec a
@@ -446,7 +446,7 @@ MailboxPC: ; 0x44806
 	jp CloseSubmenu
 ; 0x44877
 
-.PutInPack ; 0x44877
+.PutInPack: ; 0x44877
 	ld hl, .MessageLostText
 	call MenuTextBox
 	call YesNoBox
@@ -472,15 +472,15 @@ MailboxPC: ; 0x44806
 	jp MenuTextBoxBackup
 ; 0x448ac
 
-.PutAwayText ; 0x448ac
+.PutAwayText: ; 0x448ac
 	text_jump ClearedMailPutAwayText
 	db "@"
 
-.PackFullText ; 0x448b1
+.PackFullText: ; 0x448b1
 	text_jump MailPackFullText
 	db "@"
 
-.MessageLostText ; 0x448b6
+.MessageLostText: ; 0x448b6
 	text_jump MailMessageLostText
 	db "@"
 
@@ -497,7 +497,7 @@ MailboxPC: ; 0x44806
 	jp CloseSRAM
 ; 0x448d2
 
-.AttachMail ; 0x448d2
+.AttachMail: ; 0x448d2
 	call FadeToMenu
 	xor a
 	ld [PartyMenuActionText], a
@@ -542,19 +542,19 @@ MailboxPC: ; 0x44806
 	jp CloseSubmenu
 ; 0x4493c
 
-.HoldingMailText ; 0x4493c
+.HoldingMailText: ; 0x4493c
 	text_jump MailAlreadyHoldingItemText
 	db "@"
 
-.EggText ; 0x44941
+.EggText: ; 0x44941
 	text_jump MailEggText
 	db "@"
 
-.MailMovedText ; 0x44946
+.MailMovedText: ; 0x44946
 	text_jump MailMovedFromBoxText
 	db "@"
 
-.Cancel
+.Cancel:
 	ret
 
 .TopMenuDataHeader: ; 0x4494c
@@ -564,7 +564,7 @@ MailboxPC: ; 0x44806
 	dw .TopMenuData2
 	db 1 ; default option
 
-.TopMenuData2
+.TopMenuData2:
 	db %00010000 ; flags
 	db 4, 0 ; rows/columns?
 	db 1 ; horizontal spacing?
@@ -580,7 +580,7 @@ MailboxPC: ; 0x44806
 	dw .SubMenuData2
 	db 1 ; default option
 
-.SubMenuData2
+.SubMenuData2:
 	db %10000000 ; flags
 	db 4 ; items
 	db "READ MAIL@"

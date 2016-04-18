@@ -188,7 +188,7 @@ endr
 ; e12d9
 
 .Jumptable: ; e12d9
-	
+
 	dw .Function
 ; e12db
 
@@ -321,7 +321,7 @@ UnownPuzzle_A: ; e1376
 	ld [wHoldingUnownPuzzlePiece], a
 	ret
 
-.TryPlacePiece
+.TryPlacePiece:
 	call UnownPuzzle_CheckCurrentTileOccupancy
 	and a
 	jr nz, UnownPuzzle_InvalidAction
@@ -546,7 +546,7 @@ RedrawUnownPuzzlePieces: ; e14d9
 	ld hl, .OAM_HoldingPiece
 	jr .load
 
-.NoPiece
+.NoPiece:
 	ld hl, .OAM_NotHoldingPiece
 
 .load

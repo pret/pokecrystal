@@ -30,7 +30,7 @@ PrintDayOfWeek: ; 5b05
 	ret
 ; 5b1c
 
-.Days ; 5b1c
+.Days: ; 5b1c
 	db "SUN@"
 	db "MON@"
 	db "TUES@"
@@ -40,7 +40,7 @@ PrintDayOfWeek: ; 5b05
 	db "SATUR@"
 ; 5b40
 
-.Day ; 5b40
+.Day: ; 5b40
 	db "DAY@"
 ; 5b44
 
@@ -270,7 +270,7 @@ SetDefaultBoxNames: ; 5ca6
 	jr c, .loop
 	ret
 
-.Box
+.Box:
 	db "BOX@"
 ; 5cd3
 
@@ -285,7 +285,7 @@ InitializeMagikarpHouse: ; 5cd3
 	ret
 ; 5ce3
 
-.Ralph ; 5ce3
+.Ralph: ; 5ce3
 	db "RALPH@"
 ; 5ce9
 
@@ -305,15 +305,15 @@ InitializeNPCNames: ; 5ce9
 	ld hl, .Green
 	ld de, GreensName
 
-.Copy
+.Copy:
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	ret
 
-.Rival  db "???@"
-.Red    db "RED@"
-.Green  db "GREEN@"
-.Mom    db "MOM@"
+.Rival:  db "???@"
+.Red:    db "RED@"
+.Green:  db "GREEN@"
+.Mom:    db "MOM@"
 ; 5d23
 
 InitializeWorld: ; 5d23
@@ -365,13 +365,13 @@ Continue: ; 5d65
 	call CloseWindow
 	jr .FailToLoad
 
-.Check1Pass
+.Check1Pass:
 	call Continue_CheckRTC_RestartClock
 	jr nc, .Check2Pass
 	call CloseWindow
 	jr .FailToLoad
 
-.Check2Pass
+.Check2Pass:
 	ld a, $8
 	ld [MusicFade], a
 	ld a, MUSIC_NONE % $100
@@ -394,10 +394,10 @@ Continue: ; 5d65
 	ld [hMapEntryMethod], a
 	jp FinishContinueFunction
 
-.FailToLoad
+.FailToLoad:
 	ret
 
-.SpawnAfterE4
+.SpawnAfterE4:
 	ld a, SPAWN_NEW_BARK
 	ld [DefaultSpawnpoint], a
 	call PostCreditsSpawn
@@ -460,7 +460,7 @@ ConfirmContinue: ; 5e34
 	scf
 	ret
 
-.PressA
+.PressA:
 	ret
 ; 5e48
 
@@ -496,7 +496,7 @@ FinishContinueFunction: ; 5e5d
 	jr z, .AfterRed
 	jp Reset
 
-.AfterRed
+.AfterRed:
 	call SpawnAfterRed
 	jr .loop
 ; 5e85
@@ -609,7 +609,7 @@ Continue_DisplayBadgesDexPlayerName: ; 5f1c
 	pop hl
 	ret
 
-.Player
+.Player:
 	db "<PLAYER>@"
 ; 5f40
 
@@ -794,7 +794,7 @@ NamePlayer: ; 0x6074
 	callba MovePlayerPicLeft
 	ret
 
-.NewName
+.NewName:
 	ld b, 1
 	ld de, PlayerName
 	callba NamingScreen
@@ -819,13 +819,13 @@ NamePlayer: ; 0x6074
 	bit 0, a
 	jr z, .Male
 	ld de, .Kris
-.Male
+.Male:
 	call InitName
 	ret
 
-.Chris
+.Chris:
 	db "CHRIS@@@@@@"
-.Kris
+.Kris:
 	db "KRIS@@@@@@@"
 ; 60e9
 
@@ -1127,7 +1127,7 @@ TitleScreenScene: ; 62a3
 	dw TitleScreenEnd
 ; 62b7
 
-.NextScene ; Unreferenced
+.NextScene: ; Unreferenced
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret

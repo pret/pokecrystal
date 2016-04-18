@@ -1998,7 +1998,7 @@ Function100c98: ; 100c98
 	ret
 ; 100cad
 
-.attrs: ; 100cad
+.attrs ; 100cad
 	db 10, 1
 	db 255, 1
 	db $a0, $00
@@ -3079,7 +3079,7 @@ Function1013d6: ; 1013d6
 ; 1013dd
 
 Function1013dd: ; 1013dd
-	call Function3238
+	call CGBOnly_LoadEDTile
 	ret
 ; 1013e1
 
@@ -6880,7 +6880,7 @@ Function102e07: ; 102e07
 	ret
 ; 102e32
 
-.waiting: ; 102e32
+.waiting ; 102e32
 	db "Waiting...!@"
 ; 102e3e
 

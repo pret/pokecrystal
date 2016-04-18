@@ -14,7 +14,7 @@ BattleCommand_Metronome: ; 37418
 .asm_3742b
 	call LoadMoveAnim
 
-.GetMove
+.GetMove:
 	call BattleRandom
 
 ; No invalid moves.

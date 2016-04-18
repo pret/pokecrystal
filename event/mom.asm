@@ -32,8 +32,8 @@ endr
 	jp [hl]
 ; 16242
 
-.dw: ; 16242
-	
+.dw ; 16242
+
 	dw .CheckIfBankInitialized
 	dw .InitializeBank
 	dw .IsThisAboutYourMoney
@@ -72,7 +72,7 @@ endr
 	ld a, %10000001
 	jr .done_1
 
-.DontSaveMoney
+.DontSaveMoney:
 	ld a, %10000000
 
 .done_1
@@ -188,17 +188,17 @@ endr
 	ld a, $8
 	jr .done_4
 
-.DontHaveThatMuchToDeposit
+.DontHaveThatMuchToDeposit:
 	ld hl, UnknownText_0x1667b
 	call PrintText
 	ret
 
-.CantDepositThatMuch
+.CantDepositThatMuch:
 	ld hl, UnknownText_0x16680
 	call PrintText
 	ret
 
-.CancelDeposit
+.CancelDeposit:
 	ld a, $7
 
 .done_4
@@ -256,17 +256,17 @@ endr
 	ld a, $8
 	jr .done_5
 
-.InsufficientFundsInBank
+.InsufficientFundsInBank:
 	ld hl, UnknownText_0x16671
 	call PrintText
 	ret
 
-.NotEnoughRoomInWallet
+.NotEnoughRoomInWallet:
 	ld hl, UnknownText_0x16676
 	call PrintText
 	ret
 
-.CancelWithdraw
+.CancelWithdraw:
 	ld a, $7
 
 .done_5
@@ -287,7 +287,7 @@ endr
 	ld [wJumptableIndex], a
 	ret
 
-.StopSavingMoney
+.StopSavingMoney:
 	ld a, $80
 	ld [wMomSavingMoney], a
 	ld a, $7
@@ -315,12 +315,12 @@ DSTChecks: ; 16439
 	jr z, .LostBooklet
 	jr .loop
 
-.NotDST
+.NotDST:
 	cp 23 ; within one hour of 23:00?
 	jr nz, .loop
 	; fallthrough
 
-.LostBooklet
+.LostBooklet:
 	call .ClearBox
 	bccoord 1, 14
 	ld hl, .Text_AdjustClock
@@ -353,7 +353,7 @@ DSTChecks: ; 16439
 	call PlaceWholeStringInBoxAtOnce
 	ret
 
-.SetDST
+.SetDST:
 	ld hl, .Text_SwitchToDST
 	call PlaceWholeStringInBoxAtOnce
 	call YesNoBox
@@ -375,7 +375,7 @@ DSTChecks: ; 16439
 	sub 24
 	jr nc, .DontLoopHourForward
 	add 24
-.DontLoopHourForward
+.DontLoopHourForward:
 	ld [StartHour], a
 	ccf
 	ld a, [StartDay]
@@ -389,13 +389,13 @@ DSTChecks: ; 16439
 	sub 1
 	jr nc, .DontLoopHourBack
 	add 24
-.DontLoopHourBack
+.DontLoopHourBack:
 	ld [StartHour], a
 	ld a, [StartDay]
 	sbc 0
 	jr nc, .DontLoopDayBack
 	add 7
-.DontLoopDayBack
+.DontLoopDayBack:
 	ld [StartDay], a
 	ret
 ; 164ea
@@ -480,7 +480,7 @@ Function1651a: ; 1651a
 	lb bc, PRINTNUM_MONEY | PRINTNUM_LEADINGZEROS | 3, 6
 	call PrintNum
 	call UpdateSprites
-	call Function3238
+	call CGBOnly_LoadEDTile
 	ret
 ; 1656b
 
@@ -534,7 +534,7 @@ Function16571: ; 16571
 	ret
 ; 165b9
 
-.dpadaction: ; 165b9
+.dpadaction ; 165b9
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_UP
@@ -586,7 +586,7 @@ Function16571: ; 16571
 	ret
 ; 16607
 
-.getdigitquantity: ; 16607
+.getdigitquantity ; 16607
 	ld a, [wMomBankDigitCursorPosition]
 	push de
 	ld e, a

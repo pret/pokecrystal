@@ -45,7 +45,7 @@ EcruteakPokeCenter1F_MapScriptHeader:
 	buttonsound
 	jump .PointlessJump
 
-.PointlessJump
+.PointlessJump:
 	writetext EcruteakPokeCenter1F_BillText2
 	waitbutton
 	closetext
@@ -67,7 +67,7 @@ EcruteakPokeCenter1FPokefanMScript:
 	iftrue .mobile
 	jumptextfaceplayer EcruteakPokeCenter1FPokefanMText
 
-.mobile:
+.mobile
 	jumptextfaceplayer EcruteakPokeCenter1FPokefanMTextMobile
 
 EcruteakPokeCenter1FCooltrainerFScript:

@@ -300,7 +300,7 @@ VerifyUniqueness: ; 8b2e9
 	ret
 ; 8b31a
 
-.nextmon: ; 8b31a
+.nextmon ; 8b31a
 	push bc
 	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
@@ -309,7 +309,7 @@ VerifyUniqueness: ; 8b2e9
 	ret
 ; 8b322
 
-.isegg: ; 8b322
+.isegg ; 8b322
 	push bc
 	ld b, a
 	ld a, [de]

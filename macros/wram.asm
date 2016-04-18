@@ -202,11 +202,11 @@ endm
 hall_of_fame: MACRO
 \1::
 \1WinCount:: ds 1
-\1Mon1:: hof_mon \1Mon1	
-\1Mon2:: hof_mon \1Mon2	
-\1Mon3:: hof_mon \1Mon3	
-\1Mon4:: hof_mon \1Mon4	
-\1Mon5:: hof_mon \1Mon5	
+\1Mon1:: hof_mon \1Mon1
+\1Mon2:: hof_mon \1Mon2
+\1Mon3:: hof_mon \1Mon3
+\1Mon4:: hof_mon \1Mon4
+\1Mon5:: hof_mon \1Mon5
 \1Mon6:: hof_mon \1Mon6
 \1End:: ds 1
 ENDM

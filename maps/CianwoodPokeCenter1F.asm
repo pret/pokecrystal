@@ -27,7 +27,7 @@ CianwoodGymGuyScript:
 	closetext
 	end
 
-.CianwoodGymGuyWinScript
+.CianwoodGymGuyWinScript:
 	opentext
 	writetext CianwoodGymGuyWinText
 	waitbutton

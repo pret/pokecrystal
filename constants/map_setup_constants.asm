@@ -19,7 +19,7 @@ const_value SET 1
 	const MAPCALLBACK_SPRITES
 	const MAPCALLBACK_NEWMAP
 
-; Command descriptions from Condensation water's scripting compendium.	const_def
+; Command descriptions from Condensation water's scripting compendium.
 	const_def
 
 	const map_lcd_on              ; 00

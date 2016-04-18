@@ -1858,7 +1858,7 @@ Function118f14:
 	ld hl, Text_SaveFileWillBeSent
 	call Function11a9c0
 
-.DontSendSaveFile
+.DontSendSaveFile:
 	ld a, [wcd57]
 	ld l, a
 	ld a, [wcd58]
@@ -4252,10 +4252,10 @@ Function119ed8: ; 119ed8 (46:5ed8)
 	ld [hBGMapMode], a
 	ret
 
-.RunJumptable
+.RunJumptable:
 	jumptable .Jumptable, wcd3c
 
-.Jumptable
+.Jumptable:
 	dw Function119f3f
 	dw Function119f45
 	dw Function119f56
@@ -5846,12 +5846,12 @@ Function11ad1b: ; 11ad1b
 	ld [hObjectStructIndexBuffer], a
 	ld a, $10
 	ld [wCurIconTile], a
-	ld hl, Function8e83f
-	ld a, BANK(Function8e83f)
+	ld hl, LoadMenuMonIcon
+	ld a, BANK(LoadMenuMonIcon)
 	ld e, $4
 	rst FarCall
-	ld hl, Function8e83f
-	ld a, BANK(Function8e83f)
+	ld hl, LoadMenuMonIcon
+	ld a, BANK(LoadMenuMonIcon)
 	ld e, $5
 	rst FarCall
 	ld hl, $c6d0
@@ -7086,7 +7086,7 @@ Mobile46_RunJumptable: ; 11b45c
 .IterateJumptable: ; 11b46a
 	jumptable .Jumptable, wJumptableIndex
 
-.Jumptable
+.Jumptable:
 	dw Function11b483
 	dw Function11b570
 	dw Function11b5c0
@@ -7232,7 +7232,7 @@ Function11b483: ; 11b483
 	call CloseSRAM
 	jp Function11ad8a
 
-.InitRAM
+.InitRAM:
 	ld bc, $c626
 	ld a, [PlayerID]
 	ld [wcd2a], a
@@ -7285,7 +7285,7 @@ Function11b570: ; 11b570
 	ld [wJumptableIndex], a
 	ret
 
-.SaveData
+.SaveData:
 	ld a, $3
 	ld [rSVBK], a
 
@@ -7390,9 +7390,9 @@ Function11b5e8: ; 11b5e8
 	jr nz, .loop
 	ret
 
-.RunJumptable
+.RunJumptable:
 	jumptable .Jumptable, wJumptableIndex
-.Jumptable
+.Jumptable:
 	dw Function11b66d
 	dw Function11b6b3
 ; 11b66d

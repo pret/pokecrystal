@@ -91,10 +91,10 @@ GiveOddEgg: ; 1fb4b6
 	ret
 ; 1fb546
 
-.Odd
+.Odd:
 	db "ODD@@@@@@@@@"
 
-.Probabilities
+.Probabilities:
 
 prob: MACRO
 prob_total = prob_total + (\1)

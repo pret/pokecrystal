@@ -34,7 +34,7 @@ BrockScript_0x1a2864:
 	closetext
 	end
 
-.FightDone
+.FightDone:
 	writetext UnknownText_0x1a2ada
 	waitbutton
 	closetext
@@ -61,7 +61,7 @@ PewterGymGuyScript:
 	closetext
 	end
 
-.PewterGymGuyWinScript
+.PewterGymGuyWinScript:
 	writetext PewterGymGuyWinText
 	waitbutton
 	closetext
@@ -71,7 +71,7 @@ PewterGymStatue:
 	checkflag ENGINE_BOULDERBADGE
 	iftrue .Beaten
 	jumpstd gymstatue1
-.Beaten
+.Beaten:
 	trainertotext BROCK, 1, $1
 	jumpstd gymstatue2
 

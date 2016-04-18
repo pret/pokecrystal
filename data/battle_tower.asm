@@ -3,19 +3,19 @@ Function_LoadOpponentTrainerAndPokemons: ; 1f8000
 	push af
 	ld a, BANK(BT_OTTrainer)
 	ld [rSVBK], a
-	
+
 	; Fill BT_OTTrainer with zeros
 	xor a
 	ld hl, BT_OTTrainer
 	ld bc, BT_OTTrainerEnd - BT_OTTrainer
 	call ByteFill
-	
+
 	; Write $ff into the Item-Slots
 	ld a, $ff
 	ld [BT_OTPkmn1Item], a
 	ld [BT_OTPkmn2Item], a
 	ld [BT_OTPkmn3Item], a
-	
+
 	; Set BT_OTTrainer as start address to write the following data to
 	ld de, BT_OTTrainer
 
@@ -97,7 +97,7 @@ Function_LoadRandomBattleTowerPkmn: ; 1f8081
 	ld a, BANK(sBTPkmnPrevTrainer1)
 	call GetSRAMBank
 
-.FindARandomBattleTowerPkmn
+.FindARandomBattleTowerPkmn:
 	; From Which LevelGroup are the Pkmn loaded
 	; a = 1..10
 	ld a, [wBTChoiceOfLvlGroup] ; [$d800]

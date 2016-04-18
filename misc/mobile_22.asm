@@ -2216,7 +2216,7 @@ Function89d85: ; 89d85 (22:5d85)
 	push hl
 	call Function8923c
 	call _hl_
-	call Function3238
+	call CGBOnly_LoadEDTile
 	pop hl
 
 asm_89d90: ; 89d90 (22:5d90)
@@ -2661,7 +2661,7 @@ rept 3
 endr
 	ld a, $6
 	call Function8a5a3
-	call Function3238
+	call CGBOnly_LoadEDTile
 	pop bc
 	ld a, c
 	cp $b
@@ -2676,7 +2676,7 @@ endr
 	ld a, $6
 	hlcoord 15, 4, AttrMap
 	call Function8a5a3
-	call Function3238
+	call CGBOnly_LoadEDTile
 	jp Function89e36
 
 Function8a0a1: ; 8a0a1 (22:60a1)

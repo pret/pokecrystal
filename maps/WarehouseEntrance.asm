@@ -213,25 +213,25 @@ OlderHaircutBrotherScript:
 	if_equal $3, .three
 	jump .else
 
-.two:
+.two
 	setevent EVENT_GAVE_KURT_APRICORNS
 	clearevent EVENT_RECEIVED_BALLS_FROM_KURT
 	clearevent EVENT_DRAGON_SHRINE_QUESTION_2
 	jump .then
 
-.three:
+.three
 	clearevent EVENT_GAVE_KURT_APRICORNS
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	clearevent EVENT_DRAGON_SHRINE_QUESTION_2
 	jump .then
 
-.else:
+.else
 	clearevent EVENT_GAVE_KURT_APRICORNS
 	clearevent EVENT_RECEIVED_BALLS_FROM_KURT
 	setevent EVENT_DRAGON_SHRINE_QUESTION_2
 	jump .then
 
-.then:
+.then
 	takemoney $0, 500
 	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c6b8
@@ -296,25 +296,25 @@ YoungerHaircutBrotherScript:
 	if_equal $3, .three
 	jump .else
 
-.two:
+.two
 	setevent EVENT_GAVE_KURT_APRICORNS
 	clearevent EVENT_RECEIVED_BALLS_FROM_KURT
 	clearevent EVENT_DRAGON_SHRINE_QUESTION_2
 	jump .then
 
-.three:
+.three
 	clearevent EVENT_GAVE_KURT_APRICORNS
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	clearevent EVENT_DRAGON_SHRINE_QUESTION_2
 	jump .then
 
-.else:
+.else
 	clearevent EVENT_GAVE_KURT_APRICORNS
 	clearevent EVENT_RECEIVED_BALLS_FROM_KURT
 	setevent EVENT_DRAGON_SHRINE_QUESTION_2
 	jump .then
 
-.then:
+.then
 	takemoney $0, 300
 	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c80e
@@ -415,15 +415,15 @@ MapWarehouseEntranceSignpost1Script:
 
 WarehouseEntranceHiddenParlyzHeal:
 	dwb EVENT_WAREHOUSE_ENTRANCE_HIDDEN_PARLYZ_HEAL, PARLYZ_HEAL
-	
+
 
 WarehouseEntranceHiddenSuperPotion:
 	dwb EVENT_WAREHOUSE_ENTRANCE_HIDDEN_SUPER_POTION, SUPER_POTION
-	
+
 
 WarehouseEntranceHiddenAntidote:
 	dwb EVENT_WAREHOUSE_ENTRANCE_HIDDEN_ANTIDOTE, ANTIDOTE
-	
+
 
 SupernerdEricSeenText:
 	text "I got booted out"

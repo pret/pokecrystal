@@ -53,7 +53,7 @@ Special_CelebiShrineEvent: ; 4989a
 	ld hl, Sprites + 2
 	xor a
 	ld c, $4
-.OAMloop
+.OAMloop:
 	ld [hli], a
 rept 3
 	inc hl
@@ -171,7 +171,7 @@ UpdateCelebiPosition: ; 49aa2 (12:5aa2)
 	jr nc, .ShiftY
 	cp 8 *  8 + 4
 	jr nc, .ReinitSpriteAnimFrame
-.ShiftY
+.ShiftY:
 	pop af
 	push af
 	cp d
@@ -203,7 +203,7 @@ UpdateCelebiPosition: ; 49aa2 (12:5aa2)
 	ld a, [hl]
 	add $1
 	ld [hl], a
-.ReinitSpriteAnimFrame
+.ReinitSpriteAnimFrame:
 	pop af
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
@@ -279,7 +279,7 @@ endr
 
 ; 49b6e (12:5b6e)
 
-.sinewave: ; 49b6e
+.sinewave ; 49b6e
 	sine_wave $100
 ; 49bae
 
@@ -306,22 +306,22 @@ GetCelebiSpriteTile: ; 49bae
 	jr .restart
 
 
-.Frame1
+.Frame1:
 	ld a, $84
 	jr .load_tile
 
 
-.Frame2
+.Frame2:
 	ld a, $88
 	jr .load_tile
 
 
-.Frame3
+.Frame3:
 	ld a, $8c
 	jr .load_tile
 
 
-.Frame4
+.Frame4:
 	ld a, $90
 
 .load_tile

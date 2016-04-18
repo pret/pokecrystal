@@ -11,7 +11,7 @@ DoPlayerMovement:: ; 80000
 	ld [wPlayerNextMovement], a
 	ret
 
-.GetDPad
+.GetDPad:
 
 	ld a, [hJoyDown]
 	ld [CurInput], a
@@ -32,7 +32,7 @@ DoPlayerMovement:: ; 80000
 	ret
 ; 8002d
 
-.TranslateIntoMovement
+.TranslateIntoMovement:
 	ld a, [PlayerState]
 	cp PLAYER_NORMAL
 	jr z, .Normal
@@ -45,7 +45,7 @@ DoPlayerMovement:: ; 80000
 	cp PLAYER_SLIP
 	jr z, .Ice
 
-.Normal
+.Normal:
 	call .CheckForced
 	call .GetAction
 	call .CheckTile
@@ -60,7 +60,7 @@ DoPlayerMovement:: ; 80000
 	ret c
 	jr .NotMoving
 
-.Surf
+.Surf:
 	call .CheckForced
 	call .GetAction
 	call .CheckTile
@@ -71,7 +71,7 @@ DoPlayerMovement:: ; 80000
 	ret c
 	jr .NotMoving
 
-.Ice
+.Ice:
 	call .CheckForced
 	call .GetAction
 	call .CheckTile
@@ -88,12 +88,12 @@ DoPlayerMovement:: ; 80000
 	cp STANDING
 	jr z, .HitWall
 	call .BumpSound
-.HitWall
+.HitWall:
 	call .StandInPlace
 	xor a
 	ret
 
-.NotMoving
+.NotMoving:
 	ld a, [WalkingDirection]
 	cp STANDING
 	jr z, .Standing
@@ -103,12 +103,12 @@ DoPlayerMovement:: ; 80000
 	and a
 	jr nz, .CantMove
 	call .BumpSound
-.CantMove
+.CantMove:
 	call ._WalkInPlace
 	xor a
 	ret
 
-.Standing
+.Standing:
 	call .StandInPlace
 	xor a
 	ret
@@ -121,12 +121,12 @@ DoPlayerMovement:: ; 80000
 	ld a, [PlayerStandingTile]
 	ld c, a
 	call CheckWhirlpoolTile
-	jr c, .asm_800c4
+	jr c, .not_whirlpool
 	ld a, 3
 	scf
 	ret
 
-.asm_800c4
+.not_whirlpool
 	and $f0
 	cp $30 ; moving water
 	jr z, .water
@@ -347,7 +347,7 @@ DoPlayerMovement:: ; 80000
 	scf
 	ret
 
-.ExitWater
+.ExitWater:
 	call .GetOutOfWater
 	call PlayMapMusic
 	ld a, STEP_WALK
@@ -386,7 +386,7 @@ DoPlayerMovement:: ; 80000
 	scf
 	ret
 
-.DontJump
+.DontJump:
 	xor a
 	ret
 
@@ -442,11 +442,11 @@ DoPlayerMovement:: ; 80000
 	xor a
 	ret
 
-.EdgeWarps
+.EdgeWarps:
 	db $70, $78, $76, $7e
 ; 8025f
 
-.DoStep
+.DoStep:
 	ld e, a
 	ld d, 0
 	ld hl, .Steps
@@ -473,7 +473,7 @@ DoPlayerMovement:: ; 80000
 	ld a, 4
 	ret
 
-.Steps
+.Steps:
 	dw .SlowStep
 	dw .NormalStep
 	dw .FastStep
@@ -483,42 +483,42 @@ DoPlayerMovement:: ; 80000
 	dw .BackJumpStep
 	dw .InPlace
 
-.SlowStep
+.SlowStep:
 	slow_step_down
 	slow_step_up
 	slow_step_left
 	slow_step_right
-.NormalStep
+.NormalStep:
 	step_down
 	step_up
 	step_left
 	step_right
-.FastStep
+.FastStep:
 	big_step_down
 	big_step_up
 	big_step_left
 	big_step_right
-.JumpStep
+.JumpStep:
 	jump_step_down
 	jump_step_up
 	jump_step_left
 	jump_step_right
-.SlideStep
+.SlideStep:
 	fast_slide_step_down
 	fast_slide_step_up
 	fast_slide_step_left
 	fast_slide_step_right
-.BackJumpStep
+.BackJumpStep:
 	jump_step_up
 	jump_step_down
 	jump_step_right
 	jump_step_left
-.TurningStep
+.TurningStep:
 	turn_step_down
 	turn_step_up
 	turn_step_left
 	turn_step_right
-.InPlace
+.InPlace:
 	db $80 + movement_turn_head_down
 	db $80 + movement_turn_head_up
 	db $80 + movement_turn_head_left
@@ -719,7 +719,7 @@ DoPlayerMovement:: ; 80000
 	xor a
 	ret
 
-.NotWalkable
+.NotWalkable:
 	scf
 	ret
 ; 803b4
@@ -741,7 +741,7 @@ DoPlayerMovement:: ; 80000
 	and a
 	ret
 
-.NotSurfable
+.NotSurfable:
 	scf
 	ret
 ; 803ca
@@ -779,16 +779,16 @@ DoPlayerMovement:: ; 80000
 
 	jr .Neither
 
-.Water
+.Water:
 	xor a
 	ret
 
-.Land
+.Land:
 	ld a, 1
 	and a
 	ret
 
-.Neither
+.Neither:
 	scf
 	ret
 ; 803ee

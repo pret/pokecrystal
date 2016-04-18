@@ -75,7 +75,7 @@ _LinkTextbox: ; 16d61d
 	ret
 ; 16d640
 
-.draw_border: ; 16d640
+.draw_border ; 16d640
 	push hl
 	ld a, $30
 	ld [hli], a
@@ -107,7 +107,7 @@ _LinkTextbox: ; 16d61d
 	ret
 ; 16d66d
 
-.fill_row: ; 16d66d
+.fill_row ; 16d66d
 	ld d, c
 .loop4
 	ld [hli], a

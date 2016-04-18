@@ -31,12 +31,12 @@ Joypad:: ; 935
 	ld a, [wcfbe]
 	and %11010000
 	ret nz
-	
+
 ; If we're saving, input is disabled.
 	ld a, [wc2cd]
 	and a
 	ret nz
-	
+
 ; We can only get four inputs at a time.
 ; We take d-pad first for no particular reason.
 	ld a, R_DPAD
@@ -45,16 +45,16 @@ Joypad:: ; 935
 rept 2
 	ld a, [rJOYP]
 endr
-	
+
 ; The Joypad register output is in the lo nybble (inversed).
 ; We make the hi nybble of our new container d-pad input.
 	cpl
 	and $f
 	swap a
-	
+
 ; We'll keep this in b for now.
 	ld b, a
-	
+
 ; Buttons make 8 total inputs (A, B, Select, Start).
 ; We can fit this into one byte.
 	ld a, R_BUTTONS
@@ -68,11 +68,11 @@ endr
 	and $f
 	or b
 	ld b, a
-	
+
 ; Reset the joypad register since we're done with it.
 	ld a, $30
 	ld [rJOYP], a
-	
+
 ; To get the delta we xor the last frame's input with the new one.
 	ld a, [hJoypadDown] ; last frame
 	ld e, a
@@ -85,24 +85,24 @@ endr
 	ld a, d
 	and b
 	ld [hJoypadPressed], a
-	
+
 ; Add any new presses to the list of collective presses:
 	ld c, a
 	ld a, [hJoypadSum]
 	or c
 	ld [hJoypadSum], a
-	
+
 ; Currently pressed:
 	ld a, b
 	ld [hJoypadDown], a
-	
+
 ; Now that we have the input, we can do stuff with it.
 
 ; For example, soft reset:
 	and A_BUTTON | B_BUTTON | SELECT | START
 	cp  A_BUTTON | B_BUTTON | SELECT | START
 	jp z, Reset
-	
+
 	ret
 ; 984
 
@@ -127,7 +127,7 @@ GetJoypad:: ; 984
 	push hl
 	push de
 	push bc
-	
+
 ; The player input can be automated using an input stream.
 ; See more below.
 	ld a, [InputType]
@@ -139,31 +139,31 @@ GetJoypad:: ; 984
 	ld b, a
 	ld a, [hJoyDown] ; last frame mirror
 	ld e, a
-	
+
 ; Released this frame:
 	xor b
 	ld d, a
 	and e
 	ld [hJoyReleased], a
-	
+
 ; Pressed this frame:
 	ld a, d
 	and b
 	ld [hJoyPressed], a
-	
+
 ; It looks like the collective presses got commented out here.
 	ld c, a
-	
+
 ; Currently pressed:
 	ld a, b
 	ld [hJoyDown], a ; frame input
-	
+
 .quit
 	pop bc
 	pop de
 	pop hl
 	pop af
-	ret	
+	ret
 
 .auto
 ; Use a predetermined input stream (used in the catching tutorial).
@@ -176,45 +176,45 @@ GetJoypad:: ; 984
 	push af
 	ld a, [AutoInputBank]
 	rst Bankswitch
-	
+
 	ld hl, AutoInputAddress
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	
+
 ; We only update when the input duration has expired.
 	ld a, [AutoInputLength]
 	and a
 	jr z, .updateauto
-	
+
 ; Until then, don't change anything.
 	dec a
 	ld [AutoInputLength], a
 	pop af
 	rst Bankswitch
 	jr .quit
-	
-	
+
+
 .updateauto
 ; An input of $ff will end the stream.
 	ld a, [hli]
 	cp a, -1
 	jr z, .stopauto
 	ld b, a
-	
+
 ; A duration of $ff will end the stream indefinitely.
 	ld a, [hli]
 	ld [AutoInputLength], a
 	cp a, -1
 	jr nz, .next
-	
+
 ; The current input is overwritten.
 rept 2
 	dec hl
 endr
 	ld b, NO_INPUT
 	jr .finishauto
-	
+
 .next
 ; On to the next input...
 	ld a, l
@@ -222,11 +222,11 @@ endr
 	ld a, h
 	ld [AutoInputAddress+1], a
 	jr .finishauto
-	
+
 .stopauto
 	call StopAutoInput
 	ld b, NO_INPUT
-	
+
 .finishauto
 	pop af
 	rst Bankswitch
@@ -239,7 +239,7 @@ endr
 
 StartAutoInput:: ; 9ee
 ; Start reading automated input stream at a:hl.
-	
+
 	ld [AutoInputBank], a
 	ld a, l
 	ld [AutoInputAddress], a
@@ -253,7 +253,7 @@ StartAutoInput:: ; 9ee
 	ld [hJoyPressed], a ; pressed this frame
 	ld [hJoyReleased], a ; released this frame
 	ld [hJoyDown], a ; currently pressed
-	
+
 	ld a, AUTO_INPUT
 	ld [InputType], a
 	ret
@@ -408,7 +408,7 @@ ButtonSound:: ; aaf
 	jp DelayFrames
 ; ac6
 
-.wait_input: ; ac6
+.wait_input ; ac6
 	ld a, [hOAMUpdate]
 	push af
 	ld a, $1
@@ -436,7 +436,7 @@ ButtonSound:: ; aaf
 	ret
 ; af5
 
-.blink_cursor: ; af5
+.blink_cursor ; af5
 	ld a, [hVBlankCounter]
 	and %00010000 ; bit 4, a
 	jr z, .cursor_off

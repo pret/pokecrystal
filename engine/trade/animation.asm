@@ -155,7 +155,7 @@ RunTradeAnimSequence: ; 28fa1
 	ld a, $0
 	ld [rVBK], a
 
-.NotCGB
+.NotCGB:
 	hlbgcoord 0, 0
 	ld bc, sScratch - VBGMap0
 	ld a, " "
@@ -1440,7 +1440,7 @@ LoadTradeBallAndCableGFX: ; 2982b
 LoadTradeBubbleGFX: ; 2985a
 	call DelayFrame
 	ld e, $3
-	callab Function8e83f
+	callab LoadMenuMonIcon
 	ld de, TradeBubbleGFX
 	ld hl, VTiles0 tile $72
 	lb bc, BANK(TradeBubbleGFX), $4

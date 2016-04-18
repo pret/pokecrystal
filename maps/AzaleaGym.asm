@@ -34,7 +34,7 @@ BugsyScript:
 	setflag ENGINE_HIVEBADGE
 	checkcode VAR_BADGES
 	scall AzaleaGymTriggerRockets
-.FightDone
+.FightDone:
 	checkevent EVENT_GOT_TM49_FURY_CUTTER
 	iftrue .GotFuryCutter
 	setevent EVENT_BEAT_TWINS_AMY_AND_MAY
@@ -63,10 +63,10 @@ AzaleaGymTriggerRockets:
 	if_equal 6, .GoldenrodRockets
 	end
 
-.GoldenrodRockets
+.GoldenrodRockets:
 	jumpstd goldenrodrockets
 
-.RadioTowerRockets
+.RadioTowerRockets:
 	jumpstd radiotowerrockets
 
 TrainerTwinsAmyandmay1:
@@ -134,7 +134,7 @@ AzaleaGymGuyScript:
 	closetext
 	end
 
-.AzaleaGymGuyWinScript
+.AzaleaGymGuyWinScript:
 	opentext
 	writetext AzaleaGymGuyWinText
 	waitbutton
@@ -145,7 +145,7 @@ AzaleaGymStatue:
 	checkflag ENGINE_HIVEBADGE
 	iftrue .Beaten
 	jumpstd gymstatue1
-.Beaten
+.Beaten:
 	trainertotext BUGSY, 1, $1
 	jumpstd gymstatue2
 

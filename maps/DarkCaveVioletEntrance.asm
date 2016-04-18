@@ -32,7 +32,7 @@ DarkCaveVioletEntranceRock:
 
 DarkCaveVioletEntranceHiddenElixer:
 	dwb EVENT_DARK_CAVE_VIOLET_ENTRANCE_HIDDEN_ELIXER, ELIXER
-	
+
 
 DarkCaveVioletEntrance_MapEventHeader:
 	; filler

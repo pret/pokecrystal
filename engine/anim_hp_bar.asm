@@ -1,46 +1,46 @@
 _AnimateHPBar: ; d627
-	call Functiond65f
-	jr c, .do_player
-	call Functiond670
-.enemy_loop
+	call .IsMaximumMoreThan48Pixels
+	jr c, .MoreThan48Pixels
+	call .ComputePixels
+.ShortAnimLoop:
 	push bc
 	push hl
-	call Functiond6e2
+	call ShortAnim_UpdateVariables
 	pop hl
 	pop bc
 	push af
 	push bc
 	push hl
-	call Functiond730
-	call Functiond7c9
+	call ShortHPBarAnim_UpdateTiles
+	call HPBarAnim_BGMapUpdate
 	pop hl
 	pop bc
 	pop af
-	jr nc, .enemy_loop
+	jr nc, .ShortAnimLoop
 	ret
 
-.do_player
-	call Functiond670
-.player_loop
+.MoreThan48Pixels:
+	call .ComputePixels
+.LongAnimLoop:
 	push bc
 	push hl
-	call Functiond6f5
+	call LongAnim_UpdateVariables
 	pop hl
 	pop bc
 	ret c
 	push af
 	push bc
 	push hl
-	call Functiond749
-	call Functiond7c9
+	call LongHPBarAnim_UpdateTiles
+	call HPBarAnim_BGMapUpdate
 	pop hl
 	pop bc
 	pop af
-	jr nc, .player_loop
+	jr nc, .LongAnimLoop
 	ret
 ; d65f
 
-Functiond65f: ; d65f
+.IsMaximumMoreThan48Pixels: ; d65f
 	ld a, [Buffer2]
 	and a
 	jr nz, .player
@@ -55,7 +55,7 @@ Functiond65f: ; d65f
 	ret
 ; d670
 
-Functiond670: ; d670
+.ComputePixels: ; d670
 ; Buffer1-2: Max HP
 ; Buffer3-4: Old HP
 ; Buffer5-6: New HP
@@ -72,7 +72,7 @@ Functiond670: ; d670
 	pop hl
 	call ComputeHPBarPixels
 	ld a, e
-	ld [wd1f1], a
+	ld [wCurHPBarPixels], a
 
 	ld a, [Buffer5]
 	ld c, a
@@ -84,7 +84,7 @@ Functiond670: ; d670
 	ld d, a
 	call ComputeHPBarPixels
 	ld a, e
-	ld [wd1f2], a
+	ld [wNewHPBarPixels], a
 
 	push hl
 	ld hl, Buffer3
@@ -103,15 +103,15 @@ Functiond670: ; d670
 	ld a, d
 	sbc b
 	ld d, a
-	jr c, .asm_d6c1
+	jr c, .negative
 	ld a, [Buffer3]
 	ld [wd1f5], a
 	ld a, [Buffer5]
 	ld [wd1f6], a
 	ld bc, 1
-	jr .asm_d6d9
+	jr .got_direction
 
-.asm_d6c1
+.negative
 	ld a, [Buffer3]
 	ld [wd1f6], a
 	ld a, [Buffer5]
@@ -123,8 +123,8 @@ Functiond670: ; d670
 	ld a, d
 	xor $ff
 	ld d, a
-	ld bc, rIE
-.asm_d6d9
+	ld bc, -1
+.got_direction
 	ld a, d
 	ld [wd1f3], a
 	ld a, e
@@ -132,25 +132,25 @@ Functiond670: ; d670
 	ret
 ; d6e2
 
-Functiond6e2: ; d6e2
-	ld hl, wd1f1
-	ld a, [wd1f2]
+ShortAnim_UpdateVariables: ; d6e2
+	ld hl, wCurHPBarPixels
+	ld a, [wNewHPBarPixels]
 	cp [hl]
-	jr nz, .asm_d6ed
+	jr nz, .not_finished
 	scf
 	ret
 
-.asm_d6ed
+.not_finished
 	ld a, c
 	add [hl]
 	ld [hl], a
-	call Functiond839
+	call ShortHPBar_CalcPixelFrame
 	and a
 	ret
 ; d6f5
 
-Functiond6f5: ; d6f5
-.asm_d6f5
+LongAnim_UpdateVariables: ; d6f5
+.loop
 	ld hl, Buffer3
 	ld a, [hli]
 	ld e, a
@@ -158,22 +158,22 @@ Functiond6f5: ; d6f5
 	ld d, a
 	ld a, e
 	cp [hl]
-	jr nz, .asm_d707
+	jr nz, .next
 	inc hl
 	ld a, d
 	cp [hl]
-	jr nz, .asm_d707
+	jr nz, .next
 	scf
 	ret
 
-.asm_d707
+.next
 	ld l, e
 	ld h, d
 	add hl, bc
 	ld a, l
 	ld [Buffer3], a
 	ld a, h
-	ld [wd1ed], a
+	ld [Buffer4], a
 	push hl
 	push de
 	push bc
@@ -186,40 +186,45 @@ Functiond6f5: ; d6f5
 	ld c, a
 	ld a, [hli]
 	ld b, a
+	; This routine is buggy. The result from ComputeHPBarPixels is stored
+	; in e. However, the pop de opcode deletes this result before it is even
+	; used. The game then proceeds as though it never deleted that output.
+	; To fix, uncomment the line below.
 	call ComputeHPBarPixels
+	; ld a, e
 	pop bc
 	pop de
 	pop hl
-	ld a, e
-	ld hl, wd1f1
+	ld a, e ; Comment or delete this line to fix the above bug.
+	ld hl, wCurHPBarPixels
 	cp [hl]
-	jr z, .asm_d6f5
+	jr z, .loop
 	ld [hl], a
 	and a
 	ret
 ; d730
 
-Functiond730: ; d730
-	call Functiond784
+ShortHPBarAnim_UpdateTiles: ; d730
+	call HPBarAnim_UpdateHPRemaining
 	ld d, $6
 	ld a, [wWhichHPBar]
 	and $1
 	ld b, a
-	ld a, [wd1f1]
+	ld a, [wCurHPBarPixels]
 	ld e, a
 	ld c, a
 	push de
-	call Functiond771
+	call HPBarAnim_RedrawHPBar
 	pop de
-	call Functiond7b4
+	call HPBarAnim_PaletteUpdate
 	ret
 ; d749
 
-Functiond749: ; d749
-	call Functiond784
+LongHPBarAnim_UpdateTiles: ; d749
+	call HPBarAnim_UpdateHPRemaining
 	ld a, [Buffer3]
 	ld c, a
-	ld a, [wd1ed]
+	ld a, [Buffer4]
 	ld b, a
 	ld a, [Buffer1]
 	ld e, a
@@ -232,20 +237,20 @@ Functiond749: ; d749
 	and $1
 	ld b, a
 	push de
-	call Functiond771
+	call HPBarAnim_RedrawHPBar
 	pop de
-	call Functiond7b4
+	call HPBarAnim_PaletteUpdate
 	ret
 ; d771
 
-Functiond771: ; d771
+HPBarAnim_RedrawHPBar: ; d771
 	ld a, [wWhichHPBar]
 	cp $2
 	jr nz, .skip
-	ld a, $28
+	ld a, 2 * SCREEN_WIDTH
 	add l
 	ld l, a
-	ld a, $0
+	ld a, 0
 	adc h
 	ld h, a
 .skip
@@ -253,17 +258,17 @@ Functiond771: ; d771
 	ret
 ; d784
 
-Functiond784: ; d784
+HPBarAnim_UpdateHPRemaining: ; d784
 	ld a, [wWhichHPBar]
 	and a
 	ret z
 	cp $1
 	jr z, .load_15
-	ld de, $16
+	ld de, SCREEN_WIDTH + 2
 	jr .loaded_de
 
 .load_15
-	ld de, $15
+	ld de, SCREEN_WIDTH + 1
 .loaded_de
 	push hl
 	add hl, de
@@ -275,7 +280,7 @@ endr
 	dec hl
 	ld a, [Buffer3]
 	ld [StringBuffer2 + 1], a
-	ld a, [wd1ed]
+	ld a, [Buffer4]
 	ld [StringBuffer2], a
 	ld de, StringBuffer2
 	lb bc, 2, 3
@@ -284,7 +289,7 @@ endr
 	ret
 ; d7b4
 
-Functiond7b4: ; d7b4
+HPBarAnim_PaletteUpdate: ; d7b4
 	ld a, [hCGB]
 	and a
 	ret z
@@ -296,7 +301,7 @@ Functiond7b4: ; d7b4
 	ret
 ; d7c9
 
-Functiond7c9: ; d7c9
+HPBarAnim_BGMapUpdate: ; d7c9
 	ld a, [hCGB]
 	and a
 	jr nz, .cgb
@@ -312,13 +317,13 @@ Functiond7c9: ; d7c9
 	jr z, .load_1
 	ld a, [CurPartyMon]
 	cp $3
-	jr nc, .c_is_1
+	jr nc, .bottom_half_of_screen
 	ld c, $0
-	jr .c_is_0
+	jr .got_third
 
-.c_is_1
+.bottom_half_of_screen
 	ld c, $1
-.c_is_0
+.got_third
 	push af
 	cp $2
 	jr z, .skip_delay
@@ -370,14 +375,14 @@ Functiond7c9: ; d7c9
 	ret
 ; d839
 
-Functiond839: ; d839
+ShortHPBar_CalcPixelFrame: ; d839
 	ld a, [Buffer1]
 	ld c, a
 	ld b, 0
 	ld hl, 0
-	ld a, [wd1f1]
+	ld a, [wCurHPBarPixels]
 	cp 6 * 8
-	jr nc, .coppy_buffer
+	jr nc, .return_max
 	and a
 	jr z, .return_zero
 	call AddNTimes
@@ -423,7 +428,7 @@ Functiond839: ; d839
 	ld [Buffer3], a
 	ret
 
-.coppy_buffer
+.return_max
 	ld a, [Buffer1]
 	ld [Buffer3], a
 	ret

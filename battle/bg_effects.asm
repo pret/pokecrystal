@@ -236,7 +236,7 @@ BattleBGEffect_WhiteHues: ; c812d (32:412d)
 	call EndBattleBGEffect
 	ret
 
-.Pals
+.Pals:
 	db %11100100
 	db %11100000
 	db %11010000
@@ -254,7 +254,7 @@ BattleBGEffect_BlackHues: ; c8141 (32:4141)
 	call EndBattleBGEffect
 	ret
 
-.Pals
+.Pals:
 	db %11100100
 	db %11110100
 	db %11111000
@@ -273,7 +273,7 @@ BattleBGEffect_AlternateHues: ; c8155 (32:4155)
 	call EndBattleBGEffect
 	ret
 
-.Pals
+.Pals:
 	db %11100100
 	db %11111000
 	db %11111100
@@ -298,12 +298,12 @@ BattleBGEffect_06: ; c8171 (32:4171)
 	ld [wOBP0], a
 	ret
 
-.PalsCGB
+.PalsCGB:
 	db %11100100
 	db %10010000
 	db -2
 
-.PalsSGB
+.PalsSGB:
 	db %11110000
 	db %11000000
 	db -2
@@ -322,12 +322,12 @@ BattleBGEffect_07: ; c818b (32:418b)
 	ld [wOBP0], a
 	ret
 
-.PalsCGB
+.PalsCGB:
 	db %11100100
 	db %11011000
 	db -2
 
-.PalsSGB
+.PalsSGB:
 	db %11110000
 	db %11001100
 	db -2
@@ -339,7 +339,7 @@ BattleBGEffect_08: ; c81a5 (32:41a5)
 	ld [wBGP], a
 	ret
 
-.Pals
+.Pals:
 	db %00011011
 	db %01100011
 	db %10000111
@@ -405,10 +405,10 @@ BattleBGEffect_ShowMon: ; c81ea (32:41ea)
 	call BattleBGEffect_RunPicResizeScript
 	ret
 
-.PlayerData
+.PlayerData:
 	db  0, $31, 0
 	db -1
-.EnemyData
+.EnemyData:
 	db  3, $00, 3
 	db -1
 ; c8214
@@ -670,12 +670,12 @@ BattleBGEffect_EnterMon: ; c837b (32:437b)
 	call BattleBGEffect_RunPicResizeScript
 	ret
 
-.PlayerData
+.PlayerData:
 	db  2, $31, 2
 	db  1, $31, 1
 	db  0, $31, 0
 	db -1
-.EnemyData
+.EnemyData:
 	db  5, $00, 5
 	db  4, $00, 4
 	db  3, $00, 3
@@ -698,7 +698,7 @@ BattleBGEffect_ReturnMon: ; c83a8 (32:43a8)
 	call BattleBGEffect_RunPicResizeScript
 	ret
 
-.PlayerData
+.PlayerData:
 	db  0, $31, 0
 	db -2, $66, 0
 	db  1, $31, 1
@@ -707,7 +707,7 @@ BattleBGEffect_ReturnMon: ; c83a8 (32:43a8)
 	db -2, $22, 2
 	db -3, $00, 0
 	db -1
-.EnemyData
+.EnemyData:
 	db  3, $00, 3
 	db -2, $77, 3
 	db  4, $00, 4
@@ -773,7 +773,7 @@ endr
 	call EndBattleBGEffect
 	ret
 
-.ClearBox
+.ClearBox:
 ; get dims
 	push bc
 	inc hl
@@ -798,7 +798,7 @@ endr
 	pop bc
 	ret
 
-.PlaceGraphic
+.PlaceGraphic:
 ; get dims
 	push bc
 	push hl
@@ -858,7 +858,7 @@ endr
 	pop bc
 	ret
 
-.Coords
+.Coords:
 	dwcoord  2,  6
 	dwcoord  3,  8
 	dwcoord  4, 10
@@ -866,7 +866,7 @@ endr
 	dwcoord 13,  2
 	dwcoord 14,  4
 
-.BGSquares
+.BGSquares:
 bgsquare: MACRO
 	dn \1,\2
 	dw \3
@@ -879,7 +879,7 @@ endm
 	bgsquare 5, 5, .FiveByFive
 	bgsquare 3, 3, .ThreeByThree
 
-.SixBySix
+.SixBySix:
 	db $00, $06, $0c, $12, $18, $1e
 	db $01, $07, $0d, $13, $19, $1f
 	db $02, $08, $0e, $14, $1a, $20
@@ -887,17 +887,17 @@ endm
 	db $04, $0a, $10, $16, $1c, $22
 	db $05, $0b, $11, $17, $1d, $23
 
-.FourByFour
+.FourByFour:
 	db $00, $0c, $12, $1e
 	db $02, $0e, $14, $20
 	db $03, $0f, $15, $21
 	db $05, $11, $17, $23
 
-.TwoByTwo
+.TwoByTwo:
 	db $00, $1e
 	db $05, $23
 
-.SevenBySeven
+.SevenBySeven:
 	db $00, $07, $0e, $15, $1c, $23, $2a
 	db $01, $08, $0f, $16, $1d, $24, $2b
 	db $02, $09, $10, $17, $1e, $25, $2c
@@ -906,14 +906,14 @@ endm
 	db $05, $0c, $13, $1a, $21, $28, $2f
 	db $06, $0d, $14, $1b, $22, $29, $30
 
-.FiveByFive
+.FiveByFive:
 	db $00, $07, $15, $23, $2a
 	db $01, $08, $16, $24, $2b
 	db $03, $0a, $18, $26, $2d
 	db $05, $0c, $1a, $28, $2f
 	db $06, $0d, $1b, $29, $30
 
-.ThreeByThree
+.ThreeByThree:
 	db $00, $15, $2a
 	db $03, $18, $2d
 	db $06, $1b, $30
@@ -945,7 +945,7 @@ BattleBGEffect_Surf: ; c8545 (32:4545)
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
-.RotatewSurfWaveBGEffect
+.RotatewSurfWaveBGEffect:
 	ld hl, wSurfWaveBGEffect
 	ld de, wSurfWaveBGEffect + 1
 	ld c, wSurfWaveBGEffectEnd - wSurfWaveBGEffect - 1
@@ -1218,7 +1218,7 @@ BattleBGEffect_DoubleTeam: ; c8689 (32:4689)
 .four
 	ret
 
-.UpdateLYOverrides
+.UpdateLYOverrides:
 	ld e, a
 	xor $ff
 	inc a
@@ -1893,7 +1893,7 @@ BattleBGEffect_2a: ; c8a3a (32:4a3a)
 	call BattleBGEffects_IncrementJumptable
 	ret
 
-.SetLYOverridesBackup
+.SetLYOverridesBackup:
 	ld e, a
 	ld a, [hFFC7]
 	ld l, a
@@ -1913,7 +1913,7 @@ BattleBGEffect_2a: ; c8a3a (32:4a3a)
 	call BattleBGEffects_ResetVideoHRAM
 	ret
 
-.GetLYOverride
+.GetLYOverride:
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
@@ -2042,7 +2042,7 @@ BattleBGEffect_1c: ; c8b00 (32:4b00)
 	ld [wOBP1], a
 	ret
 
-.DMG_LYOverrideLoads
+.DMG_LYOverrideLoads:
 	ld hl, LYOverridesBackup
 .loop1
 	ld [hl], d
@@ -2061,7 +2061,7 @@ BattleBGEffect_1c: ; c8b00 (32:4b00)
 	call BatttleBGEffects_GetNamedJumptablePointer
 	jp [hl]
 
-.Jumptable
+.Jumptable:
 	dw .cgb_zero
 	dw .cgb_one
 	dw .cgb_two
@@ -2118,12 +2118,12 @@ BattleBGEffect_1c: ; c8b00 (32:4b00)
 	call EndBattleBGEffect
 	ret
 
-.CGB_DMGEnemyData
+.CGB_DMGEnemyData:
 	db $e4, $e4
 	db $f8, $90
 	db $fc, $40
 	db $f8, $90
-.DMG_PlayerData
+.DMG_PlayerData:
 	db $e4, $e4
 	db $90, $f8
 	db $40, $fc
@@ -2135,7 +2135,7 @@ BattleBGEffect_RapidFlash: ; c8be8 (32:4be8)
 	call BGEffect_RapidCyclePals
 	ret
 
-.FlashPals
+.FlashPals:
 	db $e4, $6c, $fe
 ; c8bf2
 
@@ -2144,7 +2144,7 @@ BattleBGEffect_16: ; c8bf2 (32:4bf2)
 	call BGEffect_RapidCyclePals
 	ret
 
-.Pals
+.Pals:
 	db $e4, $90, $40, $ff
 ; c8bfd
 
@@ -2153,7 +2153,7 @@ BattleBGEffect_17: ; c8bfd (32:4bfd)
 	call BGEffect_RapidCyclePals
 	ret
 
-.Pals
+.Pals:
 	db $e4, $f8, $fc, $ff
 ; c8c08
 
@@ -2162,7 +2162,7 @@ BattleBGEffect_18: ; c8c08 (32:4c08)
 	call BGEffect_RapidCyclePals
 	ret
 
-.Pals
+.Pals:
 	db $e4, $90, $40, $90, $fe
 ; c8c14
 
@@ -2171,7 +2171,7 @@ BattleBGEffect_19: ; c8c14 (32:4c14)
 	call BGEffect_RapidCyclePals
 	ret
 
-.Pals
+.Pals:
 	db $e4, $f8, $fc, $f8, $fe
 ; c8c20
 
@@ -2180,7 +2180,7 @@ BattleBGEffect_1a: ; c8c20 (32:4c20)
 	call BGEffect_RapidCyclePals
 	ret
 
-.Pals
+.Pals:
 	db $e4, $f8, $fc, $f8, $e4, $90, $40, $90, $fe
 ; c8c30
 
@@ -2189,7 +2189,7 @@ BattleBGEffect_1b: ; c8c30 (32:4c30)
 	call BGEffect_RapidCyclePals
 	ret
 
-.Pals
+.Pals:
 	db $e4, $fc, $e4, $00, $fe
 ; c8c3c
 
@@ -2198,7 +2198,7 @@ BattleBGEffect_1d: ; c8c3c (32:4c3c)
 	call BGEffect_RapidCyclePals
 	ret
 
-.Pals
+.Pals:
 	db $e4, $90, $40, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $40, $90, $e4, $ff
 ; c8c55
 
@@ -2207,7 +2207,7 @@ BattleBGEffect_1e: ; c8c55 (32:4c55)
 	call BGEffect_RapidCyclePals
 	ret
 
-.Pals
+.Pals:
 	db $00, $40, $90, $e4, $ff
 ; c8c61
 
@@ -2218,7 +2218,7 @@ BattleBGEffect_VibrateMon: ; c8c61 (32:4c61)
 	dw .one
 
 
-.zero: ; c8c68 (32:4c68)
+.zero ; c8c68 (32:4c68)
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
@@ -2234,7 +2234,7 @@ BattleBGEffect_VibrateMon: ; c8c61 (32:4c61)
 	ld [hl], $20
 	ret
 
-.one: ; c8c85 (32:4c85)
+.one ; c8c85 (32:4c85)
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
@@ -2264,7 +2264,7 @@ BattleBGEffect_WobbleMon: ; c8ca2 (32:4ca2)
 	dw .two
 
 
-.zero: ; c8cab (32:4cab)
+.zero ; c8cab (32:4cab)
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
 	ld a, $43
@@ -2278,7 +2278,7 @@ BattleBGEffect_WobbleMon: ; c8ca2 (32:4ca2)
 	ld [hl], $0
 	ret
 
-.one: ; c8cc3 (32:4cc3)
+.one ; c8cc3 (32:4cc3)
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
 	ld a, [hl]
@@ -2294,7 +2294,7 @@ BattleBGEffect_WobbleMon: ; c8ca2 (32:4ca2)
 	ld [hl], a
 	ret
 
-.two: ; c8cdd (32:4cdd)
+.two ; c8cdd (32:4cdd)
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
@@ -2423,13 +2423,13 @@ BGEffect_RapidCyclePals: ; c8d77 (32:4d77)
 	pop de
 	jp [hl]
 
-.Jumptable_DMG
+.Jumptable_DMG:
 	dw .zero_dmg
 	dw .one_dmg
 	dw .two_dmg
 
 
-.zero_dmg: ; c8d8b (32:4d8b)
+.zero_dmg ; c8d8b (32:4d8b)
 	call BattleBGEffects_IncrementJumptable
 	ld a, $e4
 	call BattleBGEffects_SetLYOverrides
@@ -2447,7 +2447,7 @@ BGEffect_RapidCyclePals: ; c8d77 (32:4d77)
 	ld [hl], a
 	ret
 
-.one_dmg: ; c8daa (32:4daa)
+.one_dmg ; c8daa (32:4daa)
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
@@ -2472,7 +2472,7 @@ BGEffect_RapidCyclePals: ; c8d77 (32:4d77)
 	dec [hl]
 	ret
 
-.two_dmg: ; c8dc9 (32:4dc9)
+.two_dmg ; c8dc9 (32:4dc9)
 	call BattleBGEffects_ResetVideoHRAM
 	ld a, %11100100
 	ld [rBGP], a
@@ -2494,7 +2494,7 @@ BGEffect_RapidCyclePals: ; c8d77 (32:4d77)
 	dw .four_cgb
 
 
-.zero_cgb: ; c8de7 (32:4de7)
+.zero_cgb ; c8de7 (32:4de7)
 	call BGEffect_CheckBattleTurn
 	jr nz, .player_turn_cgb
 	call BattleBGEffects_IncrementJumptable
@@ -2510,7 +2510,7 @@ BGEffect_RapidCyclePals: ; c8d77 (32:4d77)
 	ld [hl], a
 	ret
 
-.one_cgb: ; c8e02 (32:4e02)
+.one_cgb ; c8e02 (32:4e02)
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
@@ -2535,13 +2535,13 @@ BGEffect_RapidCyclePals: ; c8d77 (32:4d77)
 	dec [hl]
 	ret
 
-.two_cgb: ; c8e21 (32:4e21)
+.two_cgb ; c8e21 (32:4e21)
 	ld a, $e4
 	call BGEffects_LoadBGPal0_OBPal1
 	call EndBattleBGEffect
 	ret
 
-.three_cgb: ; c8e2a (32:4e2a)
+.three_cgb ; c8e2a (32:4e2a)
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
@@ -2566,7 +2566,7 @@ BGEffect_RapidCyclePals: ; c8d77 (32:4d77)
 	dec [hl]
 	ret
 
-.four_cgb: ; c8e49 (32:4e49)
+.four_cgb ; c8e49 (32:4e49)
 	ld a, $e4
 	call BGEffects_LoadBGPal1_OBPal0
 	call EndBattleBGEffect
@@ -2836,7 +2836,7 @@ Functionc8f9a: ; c8f9a (32:4f9a)
 	and a
 	ret
 
-.GetLYOverrideBackupAddrOffset
+.GetLYOverrideBackupAddrOffset:
 	ld a, [hFFC7]
 	ld e, a
 	ld a, [wBattleAnimTemp0]

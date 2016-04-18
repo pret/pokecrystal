@@ -443,7 +443,7 @@ Function4aad3: ; 4aad3
 	push bc
 	push hl
 	ld e, 0
-	callba Function8e83f
+	callba LoadMenuMonIcon
 	ld a, [hObjectStructIndexBuffer]
 	inc a
 	ld [hObjectStructIndexBuffer], a
@@ -481,7 +481,7 @@ Function4ab06: ; 4ab06
 	jr nz, .NotFainted
 	scf
 
-.NotFainted
+.NotFainted:
 	ret
 ; 4ab1a
 

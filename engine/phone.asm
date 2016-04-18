@@ -60,7 +60,7 @@ Phone_FindOpenSlot: ; 9002d
 	xor a
 	ret
 
-.FoundOpenSpace
+.FoundOpenSpace:
 	dec hl
 	scf
 	ret
@@ -153,7 +153,7 @@ CheckPhoneCall:: ; 90074 (24:4074)
 	xor a
 	ret
 
-.timecheck: ; 900a6 (24:40a6)
+.timecheck ; 900a6 (24:40a6)
 	callba CheckReceiveCallTimer
 	ret
 
@@ -196,7 +196,7 @@ ChooseRandomCaller: ; 900bf (24:40bf)
 	scf
 	ret
 
-.NothingToSample
+.NothingToSample:
 	xor a
 	ret
 
@@ -288,12 +288,12 @@ endr
 	call CallScript
 	scf
 	ret
-.NoPhoneCall
+.NoPhoneCall:
 	xor a
 	ret
 ; 90173 (24:4173)
 
-.script: ; 0x90173
+.script ; 0x90173
 	pause 30
 	jump Script_ReceivePhoneCall
 ; 0x90178
@@ -363,7 +363,7 @@ Function90199: ; 90199 (24:4199)
 	ld hl, PhoneScript_JustTalkToThem
 	jr .DoPhoneCall
 
-.GetPhoneScript
+.GetPhoneScript:
 	ld hl, PHONE_CONTACT_SCRIPT1_BANK
 	add hl, de
 	ld b, [hl]
@@ -374,13 +374,13 @@ Function90199: ; 90199 (24:4199)
 	ld l, a
 	jr .DoPhoneCall
 
-.OutOfArea
+.OutOfArea:
 	ld b, BANK(UnknownScript_0x90209)
 	ld de, UnknownScript_0x90209
 	call ExecuteCallbackScript
 	ret
 
-.DoPhoneCall
+.DoPhoneCall:
 	ld a, b
 	ld [wd002], a
 	ld a, l
@@ -430,10 +430,10 @@ LoadCallerScript: ; 9020d (24:420d)
 WrongNumber: ; 90233
 	db TRAINER_NONE, PHONE_00
 	dba .script
-.script:
+.script
 	writetext .text
 	end
-.text:
+.text
 	; Huh? Sorry, wrong number!
 	text_jump UnknownText_0x1c5565
 	db "@"
@@ -451,22 +451,20 @@ Script_ReceivePhoneCall: ; 0x90241
 ; 0x90255
 
 Script_SpecialBillCall:: ; 0x90255
-	callasm Function9025c
+	callasm .LoadBillScript
 	jump Script_ReceivePhoneCall
-; 0x9025c
 
-Function9025c: ; 9025c
+.LoadBillScript:
 	ld e, PHONE_BILL
 	jp LoadCallerScript
 ; 90261
 
 UnknownScript_0x90261: ; 0x90261
-	callasm Function9026a
+	callasm .LoadElmScript
 	pause 30
 	jump Script_ReceivePhoneCall
-; 0x9026a
 
-Function9026a: ; 9026a
+.LoadElmScript:
 	ld e, PHONE_ELM
 	jp LoadCallerScript
 ; 9026f
@@ -493,7 +491,6 @@ Phone_CallerTextboxWithName: ; 90292 (24:4292)
 	ld b, a
 	call Function90363
 	ret
-
 
 PhoneCall:: ; 9029a
 	ld a, b
@@ -697,7 +694,7 @@ GetCallerName: ; 903a9 (24:43a9)
 	call PlaceString
 	ret
 
-.NotTrainer
+.NotTrainer:
 	push hl
 	ld c, b
 	ld b, 0
@@ -721,12 +718,12 @@ NonTrainerCallerNames: ; 903d6
 	dw .elm
 	dw .buena
 
-.none: db "----------@"
-.mom: db "MOM:@"
-.bill: db "BILL:@"
-.elm: db "PROF.ELM:@"
-.bikeshop: db "BIKE SHOP:@"
-.buena: db "BUENA:", $22, "   DISC JOCKEY@"
+.none db "----------@"
+.mom db "MOM:@"
+.bill db "BILL:@"
+.elm db "PROF.ELM:@"
+.bikeshop db "BIKE SHOP:@"
+.buena db "BUENA:", $22, "   DISC JOCKEY@"
 ; 90423
 
 Phone_GetTrainerName: ; 90423 (24:4423)

@@ -8,36 +8,36 @@ LancesRoom_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x180e39, 0
-	dw UnknownScript_0x180e3d, 0
+	dw .Trigger0, 0
+	dw .Trigger1, 0
 
 .MapCallbacks:
 	db 1
 
 	; callbacks
 
-	dbw MAPCALLBACK_TILES, UnknownScript_0x180e3e
+	dbw MAPCALLBACK_TILES, .CheckDoor
 
-UnknownScript_0x180e39:
-	priorityjump UnknownScript_0x180e53
+.Trigger0:
+	priorityjump LancesRoom_PlayerWalksIn_DoorsCloseBehind
 	end
 
-UnknownScript_0x180e3d:
+.Trigger1:
 	end
 
-UnknownScript_0x180e3e:
+.CheckDoor:
 	checkevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
-	iffalse UnknownScript_0x180e48
+	iffalse .LanceEntranceOpen
 	changeblock $4, $16, $34
-UnknownScript_0x180e48:
+.LanceEntranceOpen:
 	checkevent EVENT_LANCES_ROOM_EXIT_OPEN
-	iffalse UnknownScript_0x180e52
+	iffalse .LanceExitClosed
 	changeblock $4, $0, $b
-UnknownScript_0x180e52:
+.LanceExitClosed:
 	return
 
-UnknownScript_0x180e53:
-	applymovement PLAYER, MovementData_0x180f33
+LancesRoom_PlayerWalksIn_DoorsCloseBehind:
+	applymovement PLAYER, LancesRoom_PlayerWalksInMovementData
 	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
@@ -48,21 +48,21 @@ UnknownScript_0x180e53:
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	end
 
-UnknownScript_0x180e6a:
+Script_ApproachLanceFromLeft:
 	special Special_FadeOutMusic
-	applymovement PLAYER, MovementData_0x180f38
+	applymovement PLAYER, MovementData_ApproachLanceFromLeft
 	jump LanceScript_0x180e7b
 
-UnknownScript_0x180e74:
+Script_ApproachLanceFromRight:
 	special Special_FadeOutMusic
-	applymovement PLAYER, MovementData_0x180f3c
+	applymovement PLAYER, MovementData_ApproachLanceFromRight
 LanceScript_0x180e7b:
 	spriteface LANCESROOM_LANCE, LEFT
 	opentext
-	writetext UnknownText_0x180f67
+	writetext LanceBattleIntroText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x1810a4, 0
+	winlosstext LanceBattleWinText, 0
 	setlasttalked LANCESROOM_LANCE
 	loadtrainer CHAMPION, LANCE
 	startbattle
@@ -70,7 +70,7 @@ LanceScript_0x180e7b:
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CHAMPION_LANCE
 	opentext
-	writetext UnknownText_0x181132
+	writetext LanceBattleAfterText
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
@@ -85,15 +85,15 @@ LanceScript_0x180e7b:
 	pause 10
 	spriteface PLAYER, DOWN
 	appear LANCESROOM_MARY
-	applymovement LANCESROOM_MARY, MovementData_0x180f41
+	applymovement LANCESROOM_MARY, LancesRoomMovementData_MaryRushesIn
 	opentext
 	writetext UnknownText_0x1811dd
 	waitbutton
 	closetext
 	appear LANCESROOM_OAK
-	applymovement LANCESROOM_OAK, MovementData_0x180f46
+	applymovement LANCESROOM_OAK, LancesRoomMovementData_OakWalksIn
 	follow LANCESROOM_MARY, LANCESROOM_OAK
-	applymovement LANCESROOM_MARY, MovementData_0x180f49
+	applymovement LANCESROOM_MARY, LancesRoomMovementData_MaryYieldsToOak
 	stopfollow
 	spriteface LANCESROOM_OAK, UP
 	spriteface LANCESROOM_LANCE, LEFT
@@ -101,13 +101,13 @@ LanceScript_0x180e7b:
 	writetext UnknownText_0x18121b
 	waitbutton
 	closetext
-	applymovement LANCESROOM_MARY, MovementData_0x180f4c
+	applymovement LANCESROOM_MARY, LancesRoomMovementData_MaryInterviewChampion
 	spriteface PLAYER, LEFT
 	opentext
 	writetext UnknownText_0x18134b
 	waitbutton
 	closetext
-	applymovement LANCESROOM_LANCE, MovementData_0x180f4f
+	applymovement LANCESROOM_LANCE, LancesRoomMovementData_LancePositionsSelfToGuidePlayerAway
 	spriteface PLAYER, UP
 	opentext
 	writetext UnknownText_0x18137b
@@ -116,88 +116,88 @@ LanceScript_0x180e7b:
 	follow LANCESROOM_LANCE, PLAYER
 	spriteface LANCESROOM_MARY, UP
 	spriteface LANCESROOM_OAK, UP
-	applymovement LANCESROOM_LANCE, MovementData_0x180f53
+	applymovement LANCESROOM_LANCE, LancesRoomMovementData_LanceLeadsPlayerToHallOfFame
 	stopfollow
 	playsound SFX_EXIT_BUILDING
 	disappear LANCESROOM_LANCE
-	applymovement PLAYER, MovementData_0x180f55
+	applymovement PLAYER, LancesRoomMovementData_PlayerExits
 	playsound SFX_EXIT_BUILDING
 	disappear PLAYER
-	applymovement LANCESROOM_MARY, MovementData_0x180f57
+	applymovement LANCESROOM_MARY, LancesRoomMovementData_MaryTriesToFollow
 	showemote EMOTE_SHOCK, LANCESROOM_MARY, 15
 	opentext
 	writetext UnknownText_0x1813c5
 	pause 30
 	closetext
-	applymovement LANCESROOM_MARY, MovementData_0x180f5b
+	applymovement LANCESROOM_MARY, LancesRoomMovementData_MaryRunsBackAndForth
 	special FadeOutPalettes
 	pause 15
 	warpfacing UP, HALL_OF_FAME, $4, $d
 	end
 
-MovementData_0x180f33:
+LancesRoom_PlayerWalksInMovementData:
 	step_up
 	step_up
 	step_up
 	step_up
 	step_end
 
-MovementData_0x180f38:
+MovementData_ApproachLanceFromLeft:
 	step_up
 	step_up
 	turn_head_right
 	step_end
 
-MovementData_0x180f3c:
+MovementData_ApproachLanceFromRight:
 	step_up
 	step_left
 	step_up
 	turn_head_right
 	step_end
 
-MovementData_0x180f41:
+LancesRoomMovementData_MaryRushesIn:
 	big_step_up
 	big_step_up
 	big_step_up
 	turn_head_down
 	step_end
 
-MovementData_0x180f46:
+LancesRoomMovementData_OakWalksIn:
 	step_up
 	step_up
 	step_end
 
-MovementData_0x180f49:
+LancesRoomMovementData_MaryYieldsToOak:
 	step_left
 	turn_head_right
 	step_end
 
-MovementData_0x180f4c:
+LancesRoomMovementData_MaryInterviewChampion:
 	big_step_up
 	turn_head_right
 	step_end
 
-MovementData_0x180f4f:
+LancesRoomMovementData_LancePositionsSelfToGuidePlayerAway:
 	step_up
 	step_left
 	turn_head_down
 	step_end
 
-MovementData_0x180f53:
+LancesRoomMovementData_LanceLeadsPlayerToHallOfFame:
 	step_up
 	step_end
 
-MovementData_0x180f55:
+LancesRoomMovementData_PlayerExits:
 	step_up
 	step_end
 
-MovementData_0x180f57:
+LancesRoomMovementData_MaryTriesToFollow:
 	step_up
 	step_right
 	turn_head_up
 	step_end
 
-MovementData_0x180f5b:
+LancesRoomMovementData_MaryRunsBackAndForth:
 	big_step_right
 	big_step_right
 	big_step_left
@@ -211,7 +211,7 @@ MovementData_0x180f5b:
 	turn_head_up
 	step_end
 
-UnknownText_0x180f67:
+LanceBattleIntroText:
 	text "LANCE: I've been"
 	line "waiting for you."
 
@@ -243,7 +243,7 @@ UnknownText_0x180f67:
 	cont "your challenge!"
 	done
 
-UnknownText_0x1810a4:
+LanceBattleWinText:
 	text "…It's over."
 
 	para "But it's an odd"
@@ -260,7 +260,7 @@ UnknownText_0x1810a4:
 	line "CHAMPION!"
 	done
 
-UnknownText_0x181132:
+LanceBattleAfterText:
 	text "…Whew."
 
 	para "You have become"
@@ -355,8 +355,8 @@ LancesRoom_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 1, $5, $4, $0, UnknownScript_0x180e6a, $0, $0
-	xy_trigger 1, $5, $5, $0, UnknownScript_0x180e74, $0, $0
+	xy_trigger 1, $5, $4, $0, Script_ApproachLanceFromLeft, $0, $0
+	xy_trigger 1, $5, $5, $0, Script_ApproachLanceFromRight, $0, $0
 
 .Signposts:
 	db 0

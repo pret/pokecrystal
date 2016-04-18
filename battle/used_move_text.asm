@@ -82,10 +82,10 @@ UsedMoveText_CheckObedience: ; 105e10
 	ret
 ; 105e1a
 
-.UsedInsteadText
+.UsedInsteadText:
 	text_jump _UsedInsteadText
 	start_asm
-.GetMoveNameText
+.GetMoveNameText:
 	ld hl, MoveNameText
 	ret
 ; 105e23

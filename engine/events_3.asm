@@ -8,7 +8,7 @@ ReturnFromMapSetupScript:: ; b8000
 	ret
 ; b800a
 
-.inefficientcallba: ; b800a
+.inefficientcallba ; b800a
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]

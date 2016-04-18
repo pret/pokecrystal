@@ -4,7 +4,7 @@ SelectMenu:: ; 13327
 	jr c, .NotRegistered
 	jp UseRegisteredItem
 
-.NotRegistered
+.NotRegistered:
 	call OpenText
 	ld b, BANK(ItemMayBeRegisteredText)
 	ld hl, ItemMayBeRegisteredText
@@ -32,13 +32,13 @@ CheckRegisteredItem: ; 13345
 	rst JumpTable
 	ret
 
-.Pockets
+.Pockets:
 	dw .CheckItem
 	dw .CheckBall
 	dw .CheckKeyItem
 	dw .CheckTMHM
 
-.CheckItem
+.CheckItem:
 	ld hl, NumItems
 	call .CheckRegisteredNo
 	jr c, .NoRegisteredItem
@@ -53,7 +53,7 @@ endr
 	and a
 	ret
 
-.CheckKeyItem
+.CheckKeyItem:
 	ld a, [RegisteredItem]
 	ld hl, KeyItems
 	ld de, 1
@@ -64,7 +64,7 @@ endr
 	and a
 	ret
 
-.CheckBall
+.CheckBall:
 	ld hl, NumBalls
 	call .CheckRegisteredNo
 	jr nc, .NoRegisteredItem
@@ -78,10 +78,10 @@ endr
 	jr c, .NoRegisteredItem
 	ret
 
-.CheckTMHM
+.CheckTMHM:
 	jr .NoRegisteredItem
 
-.NoRegisteredItem
+.NoRegisteredItem:
 	xor a
 	ld [WhichRegisteredItem], a
 	ld [RegisteredItem], a
@@ -90,7 +90,7 @@ endr
 ; 133a6
 
 
-.CheckRegisteredNo ; 133a6
+.CheckRegisteredNo: ; 133a6
 	ld a, [WhichRegisteredItem]
 	and REGISTERED_NUMBER
 	dec a
@@ -100,13 +100,13 @@ endr
 	and a
 	ret
 
-.NotEnoughItems
+.NotEnoughItems:
 	scf
 	ret
 ; 133b6
 
 
-.IsSameItem ; 133b6
+.IsSameItem: ; 133b6
 	ld a, [RegisteredItem]
 	cp [hl]
 	jr nz, .NotSameItem
@@ -114,7 +114,7 @@ endr
 	and a
 	ret
 
-.NotSameItem
+.NotSameItem:
 	scf
 	ret
 ; 133c3
@@ -128,7 +128,7 @@ UseRegisteredItem: ; 133c3
 	rst JumpTable
 	ret
 
-.SwitchTo
+.SwitchTo:
 	dw .CantUse
 	dw .NoFunction
 	dw .NoFunction
@@ -138,7 +138,7 @@ UseRegisteredItem: ; 133c3
 	dw .Overworld
 ; 133df
 
-.NoFunction ; 133df
+.NoFunction: ; 133df
 	call OpenText
 	call CantUseItem
 	call CloseText
@@ -146,7 +146,7 @@ UseRegisteredItem: ; 133c3
 	ret
 ; 133ea
 
-.Current ; 133ea
+.Current: ; 133ea
 	call OpenText
 	call DoItemEffect
 	call CloseText
@@ -154,7 +154,7 @@ UseRegisteredItem: ; 133c3
 	ret
 ; 133f5
 
-.Party ; 133f5
+.Party: ; 133f5
 	call RefreshScreen
 	call FadeToMenu
 	call DoItemEffect
@@ -164,7 +164,7 @@ UseRegisteredItem: ; 133c3
 	ret
 ; 13406
 
-.Overworld ; 13406
+.Overworld: ; 13406
 	call RefreshScreen
 	ld a, 1
 	ld [wUsingItemWithSelect], a
@@ -180,7 +180,7 @@ UseRegisteredItem: ; 133c3
 	ret
 ; 13422
 
-.CantUse ; 13422
+.CantUse: ; 13422
 	call RefreshScreen
 
 ._cantuse

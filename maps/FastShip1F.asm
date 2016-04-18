@@ -56,7 +56,7 @@ SailorScript_0x75160:
 	closetext
 	end
 
-.Olivine
+.Olivine:
 	writetext UnknownText_0x7529b
 	waitbutton
 	closetext
@@ -77,7 +77,7 @@ SailorScript_0x75160:
 	warp VERMILION_PORT, $7, $11
 	end
 
-._Olivine
+._Olivine:
 	writetext UnknownText_0x7548d
 	waitbutton
 	closetext

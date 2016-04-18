@@ -17,14 +17,14 @@ VermilionPort_MapScriptHeader:
 	; callbacks
 	dbw MAPCALLBACK_NEWMAP, .FlyPoint
 
-.Trigger0
+.Trigger0:
 	end
 
-.Trigger1
+.Trigger1:
 	priorityjump UnknownScript_0x74da6
 	end
 
-.FlyPoint
+.FlyPoint:
 	setflag ENGINE_FLYPOINT_VERMILION
 	return
 
@@ -200,7 +200,7 @@ SuperNerdScript_0x74ee6:
 
 VermilionPortHiddenIron:
 	dwb EVENT_VERMILION_PORT_HIDDEN_IRON, IRON
-	
+
 
 MovementData_0x74ef1:
 	step_down

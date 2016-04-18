@@ -191,7 +191,7 @@ GiveCoins:: ; 1606f
 	ret
 ; 1608d
 
-.maxcoins: ; 1608d
+.maxcoins ; 1608d
 	bigdw 9999
 ; 1608f
 

@@ -9,7 +9,7 @@ AI_SwitchOrTryItem: ; 38000
 	and a
 	ret nz
 
-	callba CheckSubstatus_RechargeChargedRampageBideRollout
+	callba CheckEnemyLockedIn
 	ret nz
 
 	ld a, [PlayerSubStatus5]
@@ -318,7 +318,7 @@ AI_Items: ; 39196
 	jp c, .Use
 	jp .DontUse
 
-.StatusCheckContext
+.StatusCheckContext:
 	ld a, [EnemySubStatus5]
 	bit SUBSTATUS_TOXIC, a
 	jr z, .FailToxicCheck
@@ -328,7 +328,7 @@ AI_Items: ; 39196
 	call Random
 	cp 1 + 50 percent
 	jp c, .Use
-.FailToxicCheck
+.FailToxicCheck:
 	ld a, [EnemyMonStatus]
 	and 1 << FRZ | SLP
 	jp z, .DontUse
@@ -344,7 +344,7 @@ AI_Items: ; 39196
 	call .Status
 	jp c, .DontUse
 
-.UseFullRestore
+.UseFullRestore:
 	call EnemyUsedFullRestore
 	jp .Use
 ; 38220
@@ -416,7 +416,7 @@ AI_Items: ; 39196
 	jp .Use
 ; 382ae
 
-.asm_382ae: ; This appears to be unused
+.asm_382ae ; This appears to be unused
 	callab AICheckEnemyMaxHP
 	jr c, .dont_use
 	push bc
@@ -676,7 +676,7 @@ AI_TrySwitch: ; 3844b
 	ld c, a
 	ld hl, OTPartyMon1HP
 	ld d, 0
-.SwitchLoop
+.SwitchLoop:
 	ld a, [hli]
 	ld b, a
 	ld a, [hld]
@@ -716,7 +716,7 @@ AI_Switch: ; 3846c
 	ld d, h
 	ld e, l
 	ld hl, EnemyMonStatus
-	ld bc, $0004
+	ld bc, MON_MAXHP - MON_STATUS
 	call CopyBytes
 	pop af
 
@@ -726,7 +726,7 @@ AI_Switch: ; 3846c
 
 .skiptext
 	ld a, 1
-	ld [wd264], a
+	ld [wAISwitch], a
 	callab NewEnemyMonStatus
 	callab ResetEnemyStatLevels
 	ld hl, PlayerSubStatus1
@@ -734,7 +734,7 @@ AI_Switch: ; 3846c
 	callba EnemySwitch
 	callba ResetBattleParticipants
 	xor a
-	ld [wd264], a
+	ld [wAISwitch], a
 	ld a, [wLinkMode]
 	and a
 	ret nz

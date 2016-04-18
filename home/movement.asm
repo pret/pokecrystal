@@ -4,9 +4,9 @@ InitMovementBuffer:: ; 1b1e
 	ld [wMovementBufferCount], a
 	ld a, $0 ; useless
 	ld [wd004], a
-	ld a, $7
+	ld a, MovementBuffer % $100
 	ld [wd005], a
-	ld a, $d0
+	ld a, MovementBuffer / $100
 	ld [wd006], a
 	ret
 ; 1b35
@@ -121,7 +121,7 @@ endr
 	ret
 ; 1ba5
 
-.MovementData
+.MovementData:
 	slow_step_down
 	slow_step_up
 	slow_step_left

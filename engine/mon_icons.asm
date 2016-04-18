@@ -14,7 +14,7 @@ LoadOverworldMonIcon: ; 8e82b
 	ret
 ; 8e83f
 
-Function8e83f: ; 8e83f
+LoadMenuMonIcon: ; 8e83f
 	push hl
 	push de
 	push bc
@@ -28,9 +28,8 @@ Function8e83f: ; 8e83f
 .LoadIcon: ; 8e849
 	ld d, 0
 	ld hl, .Jumptable
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -39,13 +38,13 @@ endr
 
 
 .Jumptable: ; 8e854 (23:6854)
-	dw Function8e8d5 ; init
-	dw Function8e961
-	dw Function8e97d
-	dw Trade_LoadMonIconGFX
-	dw Function8e898
-	dw Mobile_InitPartyMenuBGPal71
-	dw .GetPartyMenuMonIcon
+	dw Function8e8d5 ; party menu
+	dw Function8e961 ; naming screen
+	dw Function8e97d ; moves (?)
+	dw Trade_LoadMonIconGFX ; trade
+	dw Function8e898 ; mobile
+	dw Mobile_InitPartyMenuBGPal71 ; mobile
+	dw .GetPartyMenuMonIcon ; unused
 
 
 .GetPartyMenuMonIcon: ; 8e862 (23:6862)
@@ -89,7 +88,7 @@ Function8e898: ; 8e898 (23:6898)
 	call Function8e8d5
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld a, $0
+	ld a, SPRITE_ANIM_SEQ_NULL
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
@@ -106,7 +105,7 @@ Mobile_InitPartyMenuBGPal71: ; 8e8b1 (23:68b1)
 	call SetPartyMonIconAnimSpeed
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld a, $0
+	ld a, SPRITE_ANIM_SEQ_NULL
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
@@ -203,7 +202,7 @@ SetPartyMonIconAnimSpeed: ; 8e936 (23:6936)
 	ld [hl], a
 	ret
 
-.getspeed: ; 8e94c (23:694c)
+.getspeed ; 8e94c (23:694c)
 	callba PlacePartymonHPBar
 	call GetHPPal
 	ld e, d
@@ -214,7 +213,7 @@ SetPartyMonIconAnimSpeed: ; 8e936 (23:6936)
 	ret
 ; 8e95e (23:695e)
 
-.speeds: ; 8e95e
+.speeds ; 8e95e
 	db $00, $40, $80
 ; 8e961
 
@@ -229,7 +228,7 @@ Function8e961: ; 8e961 (23:6961)
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld [hl], $0
+	ld [hl], SPRITE_ANIM_SEQ_NULL
 	ret
 
 Function8e97d: ; 8e97d (23:697d)

@@ -39,7 +39,7 @@ LoadMenuTextBox:: ; 1d58
 	ret
 ; 1d5f
 
-.MenuDataHeader ; 1d5f
+.MenuDataHeader: ; 1d5f
 	db $40 ; tile backup
 	db 12, 0 ; start coords
 	db 17, 19 ; end coords
@@ -59,7 +59,7 @@ LoadStandardMenuDataHeader:: ; 1d6e
 	ret
 ; 1d75
 
-.MenuDataHeader ; 1d75
+.MenuDataHeader: ; 1d75
 	db $40 ; tile backup
 	db 0, 0 ; start coords
 	db 17, 19 ; end coords
@@ -190,7 +190,7 @@ YesNoMenuDataHeader:: ; 1e1d
 	db 1 ; default option
 ; 1e25
 
-.MenuData2 ; 1e25
+.MenuData2: ; 1e25
 	db $c0 ; flags
 	db 2
 	db "YES@"
@@ -232,7 +232,7 @@ DoNthMenu:: ; 1e5d
 	call MenuFunc_1e7f
 	call MenuWriteText
 	call Function1eff
-	call Function1f23
+	call GetStaticMenuJoypad
 	call GetMenuJoypad
 	call MenuClickSound
 	ret
@@ -360,20 +360,20 @@ Function1eff:: ; 1eff
 ; 1f1a
 
 
-Function1f1a:: ; 1f1a
+GetScrollingMenuJoypad:: ; 1f1a
 	call ScrollingMenuJoypad
 	ld hl, wMenuJoypadFilter
 	and [hl]
-	jr Function1f2a
+	jr ContinueGettingMenuJoypad
 ; 1f23
 
-Function1f23:: ; 1f23
+GetStaticMenuJoypad:: ; 1f23
 	xor a
 	ld [wMenuJoypad], a
 	call StaticMenuJoypad
 ; 1f2a
 
-Function1f2a:: ; 1f2a
+ContinueGettingMenuJoypad:
 	bit A_BUTTON_F, a
 	jr nz, .a_button
 	bit B_BUTTON_F, a
@@ -516,7 +516,7 @@ ClearWindowData:: ; 1fbf
 	ret
 ; 1ff0
 
-.bytefill: ; 1ff0
+.bytefill ; 1ff0
 	ld bc, $0010
 	xor a
 	call ByteFill

@@ -68,52 +68,52 @@ UndergroundPathSwitchRoomEntrances_MapScriptHeader:
 	checkevent EVENT_SWITCH_4
 	iffalse .false4
 	doorstate 1, OPEN1
-.false4:
+.false4
 	checkevent EVENT_SWITCH_5
 	iffalse .false5
 	doorstate 2, OPEN1
-.false5:
+.false5
 	checkevent EVENT_SWITCH_6
 	iffalse .false6
 	doorstate 3, OPEN1
-.false6:
+.false6
 	checkevent EVENT_SWITCH_7
 	iffalse .false7
 	doorstate 4, OPEN1
-.false7:
+.false7
 	checkevent EVENT_SWITCH_8
 	iffalse .false8
 	doorstate 5, OPEN1
-.false8:
+.false8
 	checkevent EVENT_SWITCH_9
 	iffalse .false9
 	doorstate 6, OPEN1
-.false9:
+.false9
 	checkevent EVENT_SWITCH_10
 	iffalse .false10
 	doorstate 7, CLOSED1
 	doorstate 8, OPEN1
-.false10:
+.false10
 	checkevent EVENT_SWITCH_11
 	iffalse .false11
 	doorstate 9, CLOSED1
 	doorstate 10, OPEN1
-.false11:
+.false11
 	checkevent EVENT_SWITCH_12
 	iffalse .false12
 	doorstate 11, CLOSED1
 	doorstate 12, OPEN1
-.false12:
+.false12
 	checkevent EVENT_SWITCH_13
 	iffalse .false13
 	doorstate 13, CLOSED1
 	doorstate 14, OPEN1
-.false13:
+.false13
 	checkevent EVENT_SWITCH_14
 	iffalse .false14
 	doorstate 15, CLOSED1
 	doorstate 16, OPEN1
-.false14:
+.false14
 	return
 
 SuperNerdScript_0x7ca7a:
@@ -636,11 +636,11 @@ UndergroundPathSwitchRoomEntrancesFullHeal:
 
 UndergroundPathSwitchRoomEntrancesHiddenMaxPotion:
 	dwb EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_HIDDEN_MAX_POTION, MAX_POTION
-	
+
 
 UndergroundPathSwitchRoomEntrancesHiddenRevive:
 	dwb EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_HIDDEN_REVIVE, REVIVE
-	
+
 
 UndergroundSilverApproachMovement1:
 	step_down

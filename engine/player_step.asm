@@ -59,7 +59,7 @@ HandlePlayerStep: ; d4e5 (3:54e5)
 	ret
 
 .Jumptable: ; d4f2 (3:54f2)
-	
+
 	dw GetMovementPermissions
 	dw BufferScreen
 	dw .mobile
@@ -73,14 +73,14 @@ HandlePlayerStep: ; d4e5 (3:54e5)
 	dw .fail1
 	dw .fail1
 
-.fail1: ; d508 (3:5508)
+.fail1 ; d508 (3:5508)
 	ret
 
-.mobile: ; d509 (3:5509)
+.mobile ; d509 (3:5509)
 	callba MobileFn_10602e
 	ret
 
-.fail2: ; d510 (3:5510)
+.fail2 ; d510 (3:5510)
 	ret
 
 UpdatePlayerCoords: ; d511 (3:5511)

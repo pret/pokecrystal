@@ -54,7 +54,7 @@ MainMenu: ; 49cdc
 	db "MOBILE STUDIUM@"
 
 .Jumptable: ; 0x49d60
-	
+
 	dw MainMenu_Continue
 	dw MainMenu_NewGame
 	dw MainMenu_Options
@@ -202,7 +202,7 @@ MainMenuJoypadLoop: ; 49de4
 	ld a, [w2DMenuFlags1]
 	set 5, a
 	ld [w2DMenuFlags1], a
-	call Function1f1a
+	call GetScrollingMenuJoypad
 	ld a, [wMenuJoypad]
 	cp B_BUTTON
 	jr z, .b_button
@@ -250,7 +250,7 @@ MainMenu_PrintCurrentTimeAndDay: ; 49e09
 	call TextBox
 	ret
 
-.TimeFail
+.TimeFail:
 	call SpeechTextBox
 	ret
 ; 49e3d
@@ -291,11 +291,11 @@ MainMenu_PrintCurrentTimeAndDay: ; 49e09
 	ret
 ; 49e7f
 
-.TimeNotSet ; 49e7f
+.TimeNotSet: ; 49e7f
 	db "TIME NOT SET@"
 ; 49e8c
 
-.UnusedText ; 49e8c
+.UnusedText: ; 49e8c
 	; Clock time unknown
 	text_jump UnknownText_0x1c5182
 	db "@"
@@ -317,7 +317,7 @@ MainMenu_PrintCurrentTimeAndDay: ; 49e09
 	ret
 ; 49ea8
 
-.Days
+.Days:
 	db "SUN@"
 	db "MON@"
 	db "TUES@"
@@ -325,7 +325,7 @@ MainMenu_PrintCurrentTimeAndDay: ; 49e09
 	db "THURS@"
 	db "FRI@"
 	db "SATUR@"
-.Day
+.Day:
 	db "DAY@"
 ; 49ed0
 

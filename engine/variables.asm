@@ -28,7 +28,7 @@ endr
 	call _de_
 	ret
 
-.loadstringbuffer2: ; 8066c (20:466c)
+.loadstringbuffer2 ; 8066c (20:466c)
 	ld de, StringBuffer2
 	ld [de], a
 	ret

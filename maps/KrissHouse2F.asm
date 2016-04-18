@@ -53,7 +53,7 @@ GameConsole:
 
 KrissHousePoster:
 	dw EVENT_KRISS_ROOM_POSTER, .Script
-.Script
+.Script:
 	describedecoration 0
 
 KrissHouseRadio:
@@ -76,10 +76,10 @@ KrissHouseRadio:
 	setevent EVENT_LISTENED_TO_INITIAL_RADIO
 	end
 
-.NormalRadio
+.NormalRadio:
 	jumpstd radio1
 
-.AbbreviatedRadio
+.AbbreviatedRadio:
 	opentext
 	writetext KrisRadioText4
 	pause 45
@@ -95,7 +95,7 @@ KrissHousePC:
 	iftrue .Warp
 	closetext
 	end
-.Warp
+.Warp:
 	warp NONE, $0, $0
 	end
 

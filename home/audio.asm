@@ -185,7 +185,7 @@ endr
 	pop af
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
-	
+
 	pop af
 	pop bc
 	pop de
@@ -247,7 +247,7 @@ WaitSFX:: ; 3c55
 ; infinite loop until sfx is done playing
 
 	push hl
-	
+
 .wait
 	ld hl, Channel5Flags
 	bit 0, [hl]
@@ -261,7 +261,7 @@ WaitSFX:: ; 3c55
 	ld hl, Channel8Flags
 	bit 0, [hl]
 	jr nz, .wait
-	
+
 	pop hl
 	ret
 ; 3c74

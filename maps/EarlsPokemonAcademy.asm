@@ -23,7 +23,7 @@ AcademyEarl:
 	writetext UnknownText_0x68bbd
 	yesorno
 	iffalse .Done
-.Part1
+.Part1:
 	writetext UnknownText_0x68c51
 	yesorno
 	iffalse .Done
@@ -32,7 +32,7 @@ AcademyEarl:
 	closetext
 	end
 
-.Done
+.Done:
 	writetext UnknownText_0x68d31
 	waitbutton
 	closetext
@@ -65,7 +65,7 @@ YoungsterScript_0x68a9c:
 AcademyBlackboard:
 	opentext
 	writetext AcademyBlackboardText
-.Loop
+.Loop:
 	loadmenudata .MenuHeader
 	_2dmenu
 	closewindow
@@ -77,22 +77,22 @@ AcademyBlackboard:
 	closetext
 	end
 
-.Poison
+.Poison:
 	writetext AcademyPoisonText
 	waitbutton
 	jump .Loop
 
-.Paralysis
+.Paralysis:
 	writetext AcademyParalysisText
 	waitbutton
 	jump .Loop
 
-.Sleep
+.Sleep:
 	writetext AcademySleepText
 	waitbutton
 	jump .Loop
 
-.Burn
+.Burn:
 	writetext AcademyBurnText
 	waitbutton
 	jump .Loop
@@ -102,21 +102,21 @@ AcademyBlackboard:
 	waitbutton
 	jump .Loop
 
-.MenuHeader
+.MenuHeader:
 	db $40 ; flags
 	db 00, 00 ; start coords
 	db 08, 11 ; end coords
 	dw .Data
 	db 1 ; default option
 
-.Data
+.Data:
 	db $80 ; flags
 	dn 3, 2 ; rows, columns
 	db 5 ; spacing
 	dba .Text
 	dbw BANK(AcademyBlackboard), 0
 
-.Text
+.Text:
 	db "PSN@"
 	db "PAR@"
 	db "SLP@"
@@ -137,7 +137,7 @@ AcademyNotebook:
 	iffalse .Done
 	writetext AcademyNotebookText3
 	waitbutton
-.Done
+.Done:
 	closetext
 	end
 

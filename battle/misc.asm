@@ -58,7 +58,7 @@ DoWeatherModifiers: ; fbda4
 	ld a, [wd265] ; move type
 	ld c, a
 
-.CheckWeatherType
+.CheckWeatherType:
 	ld a, [de]
 	inc de
 	cp $ff
@@ -71,7 +71,7 @@ DoWeatherModifiers: ; fbda4
 	cp c
 	jr z, .ApplyModifier
 
-.NextWeatherType
+.NextWeatherType:
 rept 2
 	inc de
 endr
@@ -85,7 +85,7 @@ endr
 	call GetBattleVar
 	ld c, a
 
-.CheckWeatherMove
+.CheckWeatherMove:
 	ld a, [de]
 	inc de
 	cp $ff
@@ -98,13 +98,13 @@ endr
 	cp c
 	jr z, .ApplyModifier
 
-.NextWeatherMove
+.NextWeatherMove:
 rept 2
 	inc de
 endr
 	jr .CheckWeatherMove
 
-.ApplyModifier
+.ApplyModifier:
 	xor a
 	ld [hMultiplicand + 0], a
 	ld hl, CurDamage
@@ -138,7 +138,7 @@ endr
 
 	ld bc, 1
 
-.Update
+.Update:
 	ld a, b
 	ld [CurDamage], a
 	ld a, c
@@ -147,14 +147,14 @@ endr
 .done
 	ret
 
-.WeatherTypeModifiers
+.WeatherTypeModifiers:
 	db WEATHER_RAIN, WATER, 15
 	db WEATHER_RAIN, FIRE,  05
 	db WEATHER_SUN,  FIRE,  15
 	db WEATHER_SUN,  WATER, 05
 	db $ff
 
-.WeatherMoveModifiers
+.WeatherMoveModifiers:
 	db WEATHER_RAIN, EFFECT_SOLARBEAM, 05
 	db $ff
 ; fbe24
@@ -183,7 +183,7 @@ DoBadgeTypeBoosts: ; fbe24
 	ld a, [JohtoBadges]
 	ld c, a
 
-.CheckBadge
+.CheckBadge:
 	ld a, [hl]
 	cp $ff
 	jr z, .done
@@ -196,11 +196,11 @@ DoBadgeTypeBoosts: ; fbe24
 	cp [hl]
 	jr z, .ApplyBoost
 
-.NextBadge
+.NextBadge:
 	inc hl
 	jr .CheckBadge
 
-.ApplyBoost
+.ApplyBoost:
 	ld a, [CurDamage]
 	ld h, a
 	ld d, a
@@ -226,7 +226,7 @@ DoBadgeTypeBoosts: ; fbe24
 
 	ld hl, $ffff
 
-.Update
+.Update:
 	ld a, h
 	ld [CurDamage], a
 	ld a, l
@@ -237,7 +237,7 @@ DoBadgeTypeBoosts: ; fbe24
 	pop de
 	ret
 
-.BadgeTypes
+.BadgeTypes:
 	db FLYING   ; zephyrbadge
 	db BUG      ; hivebadge
 	db NORMAL   ; plainbadge

@@ -198,12 +198,12 @@ TownMap_InitCursorAndPlayerIconPositions: ; 90d70 (24:4d70)
 	ld a, [BackupMapNumber]
 	ld c, a
 	call GetWorldMapLocation
-.LoadLandmark
+.LoadLandmark:
 	ld [wPokegearMapPlayerIconLandmark], a
 	ld [wPokegearMapCursorLandmark], a
 	ret
 
-.FastShip
+.FastShip:
 	ld [wPokegearMapPlayerIconLandmark], a
 	ld a, NEW_BARK_TOWN
 	ld [wPokegearMapCursorLandmark], a
@@ -940,7 +940,7 @@ PokegearPhone_MakePhoneCall: ; 911eb (24:51eb)
 
 ; 9124c (24:524c)
 
-.dotdotdot: ; 0x9124c
+.dotdotdot ; 0x9124c
 	;
 	text_jump UnknownText_0x1c5824
 	db "@"
@@ -1240,7 +1240,7 @@ PokegearPhoneContactSubmenu: ; 91342 (24:5342)
 	ld hl, PokegearText_WhomToCall
 	call PrintText
 	call WaitBGMap
-.CancelDelete
+.CancelDelete:
 	scf
 	ret
 
@@ -1525,7 +1525,7 @@ RadioChannels:
 	dbw 80, .EvolutionRadio
 	db -1
 
-.PkmnTalkAndPokedexShow
+.PkmnTalkAndPokedexShow:
 ; Pokédex Show in the morning
 
 ; Oak's Pokémon Talk in the afternoon and evening
@@ -1536,28 +1536,28 @@ RadioChannels:
 	jp z, LoadStation_PokedexShow
 	jp LoadStation_OaksPokemonTalk
 
-.PokemonMusic
+.PokemonMusic:
 	call .InJohto
 	jr nc, .NoSignal
 	jp LoadStation_PokemonMusic
 
-.LuckyChannel
+.LuckyChannel:
 	call .InJohto
 	jr nc, .NoSignal
 	jp LoadStation_LuckyChannel
 
-.BuenasPassword
+.BuenasPassword:
 	call .InJohto
 	jr nc, .NoSignal
 	jp LoadStation_BuenasPassword
 
-.RuinsOfAlphRadio
+.RuinsOfAlphRadio:
 	ld a, [wPokegearMapPlayerIconLandmark]
 	cp RUINS_OF_ALPH
 	jr nz, .NoSignal
 	jp LoadStation_UnownRadio
 
-.PlacesAndPeople
+.PlacesAndPeople:
 	call .InJohto
 	jr c, .NoSignal
 	ld a, [wPokegearFlags]
@@ -1565,7 +1565,7 @@ RadioChannels:
 	jr z, .NoSignal
 	jp LoadStation_PlacesAndPeople
 
-.LetsAllSing
+.LetsAllSing:
 	call .InJohto
 	jr c, .NoSignal
 	ld a, [wPokegearFlags]
@@ -1573,7 +1573,7 @@ RadioChannels:
 	jr z, .NoSignal
 	jp LoadStation_LetsAllSing
 
-.PokeFluteRadio
+.PokeFluteRadio:
 	call .InJohto
 	jr c, .NoSignal
 	ld a, [wPokegearFlags]
@@ -1581,7 +1581,7 @@ RadioChannels:
 	jr z, .NoSignal
 	jp LoadStation_PokeFluteRadio
 
-.EvolutionRadio
+.EvolutionRadio:
 ; This station airs in the Lake of Rage area when Rocket are still in Mahogany.
 	ld a, [StatusFlags]
 	bit 4, a
@@ -1596,11 +1596,11 @@ RadioChannels:
 .ok
 	jp LoadStation_EvolutionRadio
 
-.NoSignal
+.NoSignal:
 	call NoRadioStation
 	ret
 
-.InJohto
+.InJohto:
 ; if in Johto or on the S.S. Aqua, set carry
 
 ; otherwise clear carry
@@ -2185,7 +2185,7 @@ FlyMapScroll: ; 91b73
 	jr nz, .ScrollPrev
 	ret
 
-.ScrollNext
+.ScrollNext:
 	ld hl, wd002
 	ld a, [hl]
 	cp d
@@ -2193,13 +2193,13 @@ FlyMapScroll: ; 91b73
 	ld a, e
 	dec a
 	ld [hl], a
-.NotAtEndYet
+.NotAtEndYet:
 	inc [hl]
 	call CheckIfVisitedFlypoint
 	jr z, .ScrollNext
 	jr .Finally
 
-.ScrollPrev
+.ScrollPrev:
 	ld hl, wd002
 	ld a, [hl]
 	cp e
@@ -2207,11 +2207,11 @@ FlyMapScroll: ; 91b73
 	ld a, d
 	inc a
 	ld [hl], a
-.NotAtStartYet
+.NotAtStartYet:
 	dec [hl]
 	call CheckIfVisitedFlypoint
 	jr z, .ScrollPrev
-.Finally
+.Finally:
 	call TownMapBubble
 	call WaitBGMap
 	xor a
@@ -2261,13 +2261,13 @@ TownMapBubble: ; 91bb5
 	call .Name
 ; Up/down arrows
 	hlcoord 18, 1
-	ld [hl], $34	
+	ld [hl], $34
 	ret
 
-.Where
+.Where:
 	db "Where?@"
 
-.Name
+.Name:
 ; We need the map location of the default flypoint
 	ld a, [wd002]
 	ld l, a
@@ -2398,11 +2398,11 @@ FlyMap: ; 91c90
 	ld a, [BackupMapNumber]
 	ld c, a
 	call GetWorldMapLocation
-.CheckRegion
+.CheckRegion:
 ; The first 46 locations are part of Johto. The rest are in Kanto
 	cp KANTO_LANDMARK
 	jr nc, .KantoFlyMap
-.JohtoFlyMap
+.JohtoFlyMap:
 ; Note that .NoKanto should be modified in tandem with this branch
 	push af
 ; Start from New Bark Town
@@ -2420,7 +2420,7 @@ FlyMap: ; 91c90
 	call TownMapPlayerIcon
 	ret
 
-.KantoFlyMap
+.KantoFlyMap:
 ; The event that there are no flypoints enabled in a map is not
 
 ; accounted for. As a result, if you attempt to select a flypoint
@@ -2457,7 +2457,7 @@ FlyMap: ; 91c90
 	call TownMapPlayerIcon
 	ret
 
-.NoKanto
+.NoKanto:
 ; If Indigo Plateau hasn't been visited, we use Johto's map instead
 
 ; Start from New Bark Town
@@ -2470,7 +2470,7 @@ FlyMap: ; 91c90
 	ld [EndFlypoint], a
 	call FillJohtoMap
 	pop af
-.MapHud
+.MapHud:
 	call TownMapBubble
 	call TownMapPals
 	hlbgcoord 0, 0 ; BG Map 0
@@ -2685,7 +2685,7 @@ _Area: ; 91d11
 	ld b, d
 	ld de, .PlayerOAM
 	ld hl, Sprites
-.ShowPlayerLoop
+.ShowPlayerLoop:
 	ld a, [de]
 	cp $80
 	jr z, .clear_oam
@@ -2770,7 +2770,7 @@ _Area: ; 91d11
 	callba GetPlayerIcon
 	ret
 
-.FastShip
+.FastShip:
 	ld de, FastShipGFX
 	ld b, BANK(FastShipGFX)
 	ret
@@ -2841,7 +2841,7 @@ TownMapPals: ; 91f13
 ; The palette data is condensed to nybbles,
 
 ; least-significant first.
-	ld hl, TownMapPalMap
+	ld hl, .PalMap
 	srl a
 	jr c, .odd
 ; Even-numbered tile ids take the bottom nybble...
@@ -2878,13 +2878,20 @@ TownMapPals: ; 91f13
 	jr nz, .loop
 	ret
 
-TownMapPalMap:
-	dn 1, 1, 2, 1, 2, 2, 0, 0, 1, 1, 1, 3, 5, 4, 5, 4
-	dn 1, 1, 2, 1, 2, 2, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0
-	dn 1, 1, 2, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-	dn 0, 0, 0, 0, 4, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0
-	dn 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 3
-	dn 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0
+.PalMap:
+townmappals: MACRO
+rept _NARG / 2
+	dn \2, \1
+	shift
+	shift
+endr
+endm
+	townmappals 1, 1, 1, 2, 2, 2, 0, 0, 1, 1, 3, 1, 4, 5, 4, 5
+	townmappals 1, 1, 1, 2, 2, 2, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0
+	townmappals 1, 1, 1, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	townmappals 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	townmappals 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0
+	townmappals 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0
 ; 91f7b
 
 TownMapMon: ; 91f7b

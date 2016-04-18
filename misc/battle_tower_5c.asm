@@ -125,7 +125,7 @@ Function170139: ; 170139
 	ld a, PartyMonNicknames / $100
 	ld [wcd4c], a
 	ld a, 3
-.CopyLoop
+.CopyLoop:
 	push af
 	ld a, [wcd49]
 	ld l, a
@@ -212,7 +212,7 @@ _BattleTowerBattle: ; 17022c
 	ret
 ; 17023a
 
-.do_dw: ; 17023a
+.do_dw ; 17023a
 	ld a, [wBattleTowerBattleEnded]
 	ld e, a
 	ld d, 0
@@ -226,7 +226,7 @@ endr
 	jp [hl]
 ; 170249
 
-.dw: ; 170249
+.dw ; 170249
 	dw RunBattleTowerTrainer
 	dw SkipBattleTowerTrainer
 ; 17024d
@@ -699,7 +699,7 @@ endr
 	jp [hl]
 ; 17051f
 
-.dw: ; 17051f
+.dw ; 17051f
 	dw .Jumptable_0
 	dw .Jumptable_1
 	dw .Jumptable_2
@@ -957,7 +957,7 @@ endr
 ; 170696
 
 
-.dw: ; 170696 (5c:4696)
+.dw ; 170696 (5c:4696)
 	dw Function17075f ; 0x00
 	dw Function170788 ; 0x01
 	dw Function170778 ; 0x02
@@ -1085,9 +1085,9 @@ Function17075f: ; 17075f (5c:475f) BattleTowerAction $00
 	and a
 	ret z
 
-	ld a, BANK(sbe4f)
+	ld a, BANK(s1_be4f)
 	call GetSRAMBank
-	ld a, [sbe4f]
+	ld a, [s1_be4f]
 	and $2
 	ld [ScriptVar], a
 	call CloseSRAM
@@ -1103,11 +1103,11 @@ Function170778: ; 170778 (5c:4778) BattleTowerAction $02
 	ret
 
 Function170788: ; 170788 (5c:4788) BattleTowerAction $01
-	ld a, BANK(sbe4f)
+	ld a, BANK(s1_be4f)
 	call GetSRAMBank
-	ld a, [sbe4f]
+	ld a, [s1_be4f]
 	or $2
-	ld [sbe4f], a
+	ld [s1_be4f], a
 	call CloseSRAM
 	ret
 
@@ -1591,20 +1591,20 @@ Function170abe: ; 170abe (5c:4abe) BattleTowerAction $14
 	and a
 	ret z
 
-	ld a, BANK(sbe4f)
+	ld a, BANK(s1_be4f)
 	call GetSRAMBank
-	ld a, [sbe4f]
+	ld a, [s1_be4f]
 	and $1
 	ld [ScriptVar], a
 	call CloseSRAM
 	ret
 
 Function170ad7: ; 170ad7 (5c:4ad7) BattleTowerAction $15
-	ld a, BANK(sbe4f)
+	ld a, BANK(s1_be4f)
 	call GetSRAMBank
-	ld a, [sbe4f]
+	ld a, [s1_be4f]
 	or $1
-	ld [sbe4f], a
+	ld [s1_be4f], a
 	call CloseSRAM
 	ret
 

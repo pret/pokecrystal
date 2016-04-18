@@ -95,14 +95,14 @@ GetPlayerSprite: ; 14183
 	ld [PlayerObjectSprite], a
 	ret
 
-.Chris
+.Chris:
 	db PLAYER_NORMAL,    SPRITE_CHRIS
 	db PLAYER_BIKE,      SPRITE_CHRIS_BIKE
 	db PLAYER_SURF,      SPRITE_SURF
 	db PLAYER_SURF_PIKA, SPRITE_SURFING_PIKACHU
 	db $ff
 
-.Kris
+.Kris:
 	db PLAYER_NORMAL,    SPRITE_KRIS
 	db PLAYER_BIKE,      SPRITE_KRIS_BIKE
 	db PLAYER_SURF,      SPRITE_SURF
@@ -241,11 +241,11 @@ GetMonSprite: ; 14259
 	jr nc, .Variable
 	jr .Icon
 
-.Normal
+.Normal:
 	and a
 	ret
 
-.Icon
+.Icon:
 	sub SPRITE_POKEMON
 	ld e, a
 	ld d, 0
@@ -261,7 +261,7 @@ GetMonSprite: ; 14259
 .wBreedMon2
 	ld a, [wBreedMon2Species]
 
-.Mon
+.Mon:
 	ld e, a
 	and a
 	jr z, .NoBreedmon
@@ -273,7 +273,7 @@ GetMonSprite: ; 14259
 	scf
 	ret
 
-.Variable
+.Variable:
 	sub SPRITE_VARS
 	ld e, a
 	ld d, 0
@@ -283,7 +283,7 @@ GetMonSprite: ; 14259
 	and a
 	jp nz, GetMonSprite
 
-.NoBreedmon
+.NoBreedmon:
 	ld a, 1
 	ld l, 1
 	ld h, 0
@@ -410,7 +410,7 @@ LoadSpriteGFX: ; 14306
 .done
 	ret
 
-.LoadSprite
+.LoadSprite:
 	call GetSprite
 	ld a, l
 	ret
@@ -424,7 +424,7 @@ SortUsedSprites: ; 1431e
 
 	ld c, SPRITE_GFX_LIST_CAPACITY
 	ld de, UsedSprites + (SPRITE_GFX_LIST_CAPACITY - 1) * 2
-.FindLastSprite
+.FindLastSprite:
 	ld a, [de]
 	and a
 	jr nz, .FoundLastSprite
@@ -433,7 +433,7 @@ rept 2
 endr
 	dec c
 	jr nz, .FindLastSprite
-.FoundLastSprite
+.FoundLastSprite:
 	dec c
 	jr z, .quit
 
@@ -443,12 +443,12 @@ endr
 	inc de
 	ld hl, UsedSprites + 1
 
-.CheckSprite
+.CheckSprite:
 	push bc
 	push de
 	push hl
 
-.CheckFollowing
+.CheckFollowing:
 	ld a, [de]
 	cp [hl]
 	jr nc, .loop
@@ -499,7 +499,7 @@ ArrangeUsedSprites: ; 14355
 	ld hl, UsedSprites
 	ld c, SPRITE_GFX_LIST_CAPACITY
 	ld b, 0
-.FirstTableLength
+.FirstTableLength:
 ; Keep going until the end of the list.
 	ld a, [hli]
 	and a
@@ -523,11 +523,11 @@ ArrangeUsedSprites: ; 14355
 	dec c
 	jr nz, .FirstTableLength
 
-.SecondTable
+.SecondTable:
 ; The second tile table starts at tile $80.
 	ld b, $80
 	dec hl
-.SecondTableLength
+.SecondTableLength:
 ; Keep going until the end of the list.
 	ld a, [hli]
 	and a
@@ -565,11 +565,11 @@ GetSpriteLength: ; 14386
 	ld a, 12
 	ret
 
-.AnyDirection
+.AnyDirection:
 	ld a, 12
 	ret
 
-.OneDirection
+.OneDirection:
 	ld a, 4
 	ret
 ; 1439b

@@ -30,7 +30,7 @@ NextCallReceiveDelay: ; 113e9
 	jp RestartReceiveCallDelay
 ; 113fd
 
-.ReceiveCallDelays
+.ReceiveCallDelays:
 	db 20, 10, 5, 3
 ; 11401
 
@@ -124,16 +124,14 @@ endr
 	jr z, .RestartKenjiBreakCountdown
 	dec [hl]
 	jr nz, .DontRestartKenjiBreakCountdown
-
-.RestartKenjiBreakCountdown
+.RestartKenjiBreakCountdown:
 	call Special_SampleKenjiBreakCountdown
-
-.DontRestartKenjiBreakCountdown
+.DontRestartKenjiBreakCountdown:
 	jr RestartDailyResetTimer
 ; 11485
 
 Special_SampleKenjiBreakCountdown: ; 11485
-; Generate a random number between 3 and 5
+; Generate a random number between 3 and 6
 	call Random
 	and 3
 	add 3

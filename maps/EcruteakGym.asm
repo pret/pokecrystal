@@ -48,7 +48,7 @@ MortyScript_0x99d58:
 	domaptrigger ECRUTEAK_HOUSE, $1
 	setevent EVENT_RANG_CLEAR_BELL_1
 	setevent EVENT_RANG_CLEAR_BELL_2
-.FightDone
+.FightDone:
 	checkevent EVENT_GOT_TM30_SHADOW_BALL
 	iftrue UnknownScript_0x99db1
 	setevent EVENT_BEAT_SAGE_JEFFREY
@@ -77,10 +77,10 @@ EcruteakGymTriggerRockets:
 	if_equal 6, .GoldenrodRockets
 	end
 
-.GoldenrodRockets
+.GoldenrodRockets:
 	jumpstd goldenrodrockets
 
-.RadioTowerRockets
+.RadioTowerRockets:
 	jumpstd radiotowerrockets
 
 UnknownScript_0x99dc6:
@@ -153,7 +153,7 @@ EcruteakGymGuyScript:
 	closetext
 	end
 
-.EcruteakGymGuyWinScript
+.EcruteakGymGuyWinScript:
 	writetext EcruteakGymGuyWinText
 	waitbutton
 	closetext
@@ -163,7 +163,7 @@ EcruteakGymStatue:
 	checkflag ENGINE_FOGBADGE
 	iftrue .Beaten
 	jumpstd gymstatue1
-.Beaten
+.Beaten:
 	trainertotext MORTY, 1, $1
 	jumpstd gymstatue2
 

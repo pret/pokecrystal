@@ -71,7 +71,7 @@ Route12Nugget:
 
 Route12HiddenElixer:
 	dwb EVENT_ROUTE_12_HIDDEN_ELIXER, ELIXER
-	
+
 
 FisherMartinSeenText:
 	text "Patience is the"

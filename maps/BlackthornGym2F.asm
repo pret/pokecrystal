@@ -18,33 +18,33 @@ BlackthornGym2F_MapScriptHeader:
 	; callbacks
 	dbw MAPCALLBACK_CMDQUEUE, .Boulders
 
-.Boulders
+.Boulders:
 	writecmdqueue .BoulderCmdQueue
 	return
 
-.BoulderCmdQueue
-	dbw MAPCALLBACK_OBJECTS, .BoulderTable ; check if any stones are sitting on a warp
-	db 0, 0 ; filler
+.BoulderCmdQueue:
+	dbw CMDQUEUE_STONETABLE, .BoulderTable ; check if any stones are sitting on a warp
+	dw 0 ; filler
 
-.BoulderTable
+.BoulderTable:
 	stonetable 5, BLACKTHORNGYM2F_BOULDER1, .Disappear4
 	stonetable 3, BLACKTHORNGYM2F_BOULDER2, .Disappear5
 	stonetable 4, BLACKTHORNGYM2F_BOULDER3, .Disappear6
 	db -1 ; end
 
-.Disappear4
+.Disappear4:
 	disappear BLACKTHORNGYM2F_BOULDER1
 	jump .Fall
 
-.Disappear5
+.Disappear5:
 	disappear BLACKTHORNGYM2F_BOULDER2
 	jump .Fall
 
-.Disappear6
+.Disappear6:
 	disappear BLACKTHORNGYM2F_BOULDER3
 	jump .Fall
 
-.Fall
+.Fall:
 	pause 30
 	scall .FX
 	opentext
@@ -53,7 +53,7 @@ BlackthornGym2F_MapScriptHeader:
 	closetext
 	end
 
-.FX
+.FX:
 	playsound SFX_STRENGTH
 	earthquake 80
 	end
@@ -137,9 +137,9 @@ BlackthornGym2F_MapEventHeader:
 	db 5
 	warp_def $7, $1, 3, BLACKTHORN_GYM_1F
 	warp_def $9, $7, 4, BLACKTHORN_GYM_1F
-	warp_def $5, $2, 5, BLACKTHORN_GYM_1F
-	warp_def $7, $8, 6, BLACKTHORN_GYM_1F
-	warp_def $3, $8, 7, BLACKTHORN_GYM_1F
+	warp_def $5, $2, 5, BLACKTHORN_GYM_1F ; hole
+	warp_def $7, $8, 6, BLACKTHORN_GYM_1F ; hole
+	warp_def $3, $8, 7, BLACKTHORN_GYM_1F ; hole
 
 .XYTriggers:
 	db 0

@@ -103,7 +103,7 @@ CheckBalance_MomItem2: ; fd044
 	scf
 	ret
 
-.AddMoney
+.AddMoney:
 	ld de, MomItemTriggerBalance
 	ld bc, hMoneyTemp
 	callba AddMoney
@@ -198,7 +198,7 @@ GetItemFromMom: ; fd117
 .ok
 	ld de, MomItems_2
 
-.GetFromList1
+.GetFromList1:
 	ld l, a
 	ld h, 0
 rept 3 ; multiply hl by 8

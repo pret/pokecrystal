@@ -582,7 +582,7 @@ GiveItemScript: ; 96f77
 	itemnotify
 	end
 
-.Full
+.Full:
 	buttonsound
 	pocketisfull
 	end
@@ -681,19 +681,19 @@ GetPocketName: ; 96ffe
 	call CopyName2
 	ret
 
-.Pockets
+.Pockets:
 	dw .Item
 	dw .Key
 	dw .Ball
 	dw .TM
 
-.Item
+.Item:
 	db "ITEM POCKET@"
-.Key
+.Key:
 	db "KEY POCKET@"
-.Ball
+.Ball:
 	db "BALL POCKET@"
-.TM
+.TM:
 	db "TM POCKET@"
 ; 97051
 
@@ -1425,12 +1425,12 @@ ShowEmoteScript: ; 973b6
 	applymovement2 .Hide
 	end
 
-.Show
+.Show:
 	show_emote
 	step_sleep_1
 	step_end
 
-.Hide
+.Hide:
 	hide_emote
 	step_sleep_1
 	step_end
@@ -1455,7 +1455,7 @@ Script_earthquake: ; 973c7
 	jp ScriptCall
 ; 973e6
 
-.script: ; 973e6
+.script ; 973e6
 	applymovement PLAYER, wd002
 	end
 ; 973eb

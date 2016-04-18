@@ -38,11 +38,11 @@ UnknownScript_0x7d791:
 	changeblock $a, $8, $d
 	return
 
-.Layout2
+.Layout2:
 	changeblock $4, $a, $d
 	return
 
-.Layout3
+.Layout3:
 	changeblock $a, $c, $d
 	return
 

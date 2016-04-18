@@ -42,7 +42,7 @@ _DepositPKMN: ; e2391 (38:6391)
 	jp [hl]
 
 .Jumptable: ; e23df (38:63df)
-	
+
 	dw .Init
 	dw .HandleJoypad
 	dw .WhatsUp
@@ -151,7 +151,7 @@ endr
 	jp [hl]
 
 BillsPCDepositJumptable: ; e24a1 (38:64a1)
-	
+
 	dw BillsPCDepositFuncDeposit ; Deposit Pokemon
 	dw BillsPCDepositFuncStats ; Pokemon Stats
 	dw BillsPCDepositFuncRelease ; Release Pokemon
@@ -310,7 +310,7 @@ _WithdrawPKMN: ; e2583 (38:6583)
 	jp [hl]
 
 .Jumptable: ; e25d2 (38:65d2)
-	
+
 	dw .Init
 	dw .Joypad
 	dw .PrepSubmenu
@@ -419,14 +419,14 @@ endr
 	ld l, a
 	jp [hl]
 
-.dw: ; e2699 (38:6699) #mark
+.dw ; e2699 (38:6699) #mark
 	dw .withdraw ; Withdraw
 	dw .stats ; Stats
 	dw .release ; Release
 	dw .cancel ; Cancel
 
 
-.withdraw: ; e26a1 (38:66a1)
+.withdraw ; e26a1 (38:66a1)
 	call BillsPC_CheckMail_PreventBlackout
 	jp c, .cancel
 	call TryWithdrawPokemon
@@ -437,12 +437,12 @@ endr
 	ld [wBillsPC_CursorPosition], a
 	ld [wBillsPC_ScrollPosition], a
 	ret
-.FailedWithdraw
+.FailedWithdraw:
 	ld de, PCString_WhatsUp
 	call BillsPC_PlaceString
 	ret
 
-.stats: ; e26c0 (38:66c0)
+.stats ; e26c0 (38:66c0)
 	call LoadStandardMenuDataHeader
 	call BillsPC_StatsScreen
 	call ExitMenu
@@ -453,7 +453,7 @@ endr
 	call BillsPC_ApplyPalettes
 	ret
 
-.release: ; e26d8 (38:66d8)
+.release ; e26d8 (38:66d8)
 	ld a, [wMenuCursorY]
 	push af
 	call BillsPC_IsMonAnEgg
@@ -483,14 +483,14 @@ endr
 	ld [wBillsPC_ScrollPosition], a
 	pop af
 	ret
-.FailedRelease
+.FailedRelease:
 	ld de, PCString_WhatsUp
 	call BillsPC_PlaceString
 	pop af
 	ld [wMenuCursorY], a
 	ret
 
-.cancel: ; e272b (38:672b)
+.cancel ; e272b (38:672b)
 	ld a, $0
 	ld [wJumptableIndex], a
 	ret
@@ -562,7 +562,7 @@ _MovePKMNWithoutMail: ; e2759
 ; e27ac
 
 .Jumptable: ; e27ac
-	
+
 	dw .Init
 	dw .Joypad
 	dw .PrepSubmenu
@@ -1664,21 +1664,21 @@ BillsPC_CheckMail_PreventBlackout: ; e2f18 (38:6f18)
 	ld a, [wBillsPC_MonHasMail]
 	and a
 	jr nz, .HasMail
-.Okay
+.Okay:
 	and a
 	ret
 
-.HasMail
+.HasMail:
 	ld de, PCString_RemoveMail
 	jr .NotOkay
 
-.AllOthersFainted
+.AllOthersFainted:
 	ld de, PCString_NoMoreUsablePKMN
 	jr .NotOkay
 
-.ItsYourLastPokemon
+.ItsYourLastPokemon:
 	ld de, PCString_ItsYourLastPKMN
-.NotOkay
+.NotOkay:
 	call BillsPC_PlaceString
 	ld de, SFX_WRONG
 	call WaitPlaySFX
@@ -1918,7 +1918,7 @@ TryWithdrawPokemon: ; e30fa (38:70fa)
 	and a
 	ret
 
-.PartyFull
+.PartyFull:
 	ld de, PCString_PartyFull
 	call BillsPC_PlaceString
 	ld de, SFX_WRONG
@@ -2021,7 +2021,7 @@ endr
 	jp [hl]
 ; e322a
 
-.dw_return: ; e322a
+.dw_return ; e322a
 	pop af
 	ld e, a
 	callba Function14ad5
@@ -2033,7 +2033,7 @@ endr
 ; e3245
 
 .Jumptable: ; e3245
-	
+
 	dw .BoxToBox
 	dw .PartyToBox
 	dw .BoxToParty
@@ -2226,7 +2226,7 @@ endr
 	ret
 ; e33a6 (38:73a6)
 
-.boxes: ; e33a6
+.boxes ; e33a6
 	;  bank, address
 	dba sBox1
 	dba sBox2
@@ -2352,7 +2352,7 @@ _ChangeBox_menudataheader: ; 0xe35f1
 	db 1 ; default option
 ; 0xe35f9
 
-.menudata2: ; 0xe35f9
+.menudata2 ; 0xe35f9
 	db $22 ; flags
 	db 4, 0
 	db 1
@@ -2362,7 +2362,7 @@ _ChangeBox_menudataheader: ; 0xe35f1
 	dba BillsPC_PrintBoxCountAndCapacity
 ; e3609
 
-.boxes: ; e3609
+.boxes ; e3609
 	db NUM_BOXES
 x = 1
 rept NUM_BOXES
@@ -2372,7 +2372,7 @@ endr
 	db -1
 ; e3619
 
-.boxnames: ; e3619
+.boxnames ; e3619
 	push de
 	ld a, [MenuSelection]
 	dec a
@@ -2416,7 +2416,7 @@ BillsPC_PrintBoxCountAndCapacity: ; e3632
 	db "#MON@"
 ; e3668
 
-.out_of_20: ; e3668
+.out_of_20 ; e3668
 	; db "/20@"
 	db "/"
 	db "0" + MONS_PER_BOX / 10 ; "2"
@@ -2466,7 +2466,7 @@ endr
 	ret
 ; e36a5 (38:76a5)
 
-.boxbanks: ; e36a5
+.boxbanks ; e36a5
 	dba sBox1
 	dba sBox2
 	dba sBox3
@@ -2519,7 +2519,7 @@ BillsPC_ChangeBoxSubmenu: ; e36f9 (38:76f9)
 	and a
 	ret
 
-.Print
+.Print:
 	call GetBoxCount
 	and a
 	jr z, .EmptyBox
@@ -2533,12 +2533,12 @@ BillsPC_ChangeBoxSubmenu: ; e36f9 (38:76f9)
 	and a
 	ret
 
-.EmptyBox
+.EmptyBox:
 	call BillsPC_PlaceEmptyBoxString_SFX
 	and a
 	ret
 
-.Switch
+.Switch:
 	ld a, [MenuSelection]
 	dec a
 	ld e, a
@@ -2548,7 +2548,7 @@ BillsPC_ChangeBoxSubmenu: ; e36f9 (38:76f9)
 	callba ChangeBoxSaveGame
 	ret
 
-.Name
+.Name:
 	ld b, $4 ; box
 	ld de, wd002
 	callba NamingScreen

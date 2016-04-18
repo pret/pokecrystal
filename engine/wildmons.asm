@@ -103,7 +103,7 @@ endr
 
 .SearchMapForMon: ; 2a088
 	inc hl
-.ScanMapLoop
+.ScanMapLoop:
 	push af
 	ld a, [wNamedObjectIndexBuffer]
 	cp [hl]
@@ -128,7 +128,7 @@ endr
 	ld c, a
 	hlcoord 0, 0
 	ld de, SCREEN_WIDTH * SCREEN_HEIGHT
-.AppendNestLoop
+.AppendNestLoop:
 	ld a, [hli]
 	cp c
 	jr z, .found_nest
@@ -459,7 +459,7 @@ _SwarmWildmonCheck
 	scf
 	ret
 
-.CheckYanma
+.CheckYanma:
 	push hl
 	ld hl, SwarmFlags
 	bit 3, [hl]
@@ -611,7 +611,7 @@ endr
 	scf
 	ret
 
-.DontEncounterRoamMon
+.DontEncounterRoamMon:
 	pop hl
 	and a
 	ret
@@ -631,7 +631,7 @@ UpdateRoamMons: ; 2a30d
 	ld a, c
 	ld [wRoamMon1MapNumber], a
 
-.SkipRaikou
+.SkipRaikou:
 	ld a, [wRoamMon2MapGroup]
 	cp GROUP_N_A
 	jr z, .SkipEntei
@@ -644,7 +644,7 @@ UpdateRoamMons: ; 2a30d
 	ld a, c
 	ld [wRoamMon2MapNumber], a
 
-.SkipEntei
+.SkipEntei:
 	ld a, [wRoamMon3MapGroup]
 	cp GROUP_N_A
 	jr z, .SkipSuicune
@@ -657,7 +657,7 @@ UpdateRoamMons: ; 2a30d
 	ld a, c
 	ld [wRoamMon3MapNumber], a
 
-.SkipSuicune
+.SkipSuicune:
 	jp _BackUpMapIndices
 ; 2a355
 
@@ -729,7 +729,7 @@ JumpRoamMons: ; 2a394
 	ld [wRoamMon1MapGroup], a
 	ld a, c
 	ld [wRoamMon1MapNumber], a
-.SkipRaikou
+.SkipRaikou:
 
 	ld a, [wRoamMon2MapGroup]
 	cp GROUP_N_A
@@ -739,7 +739,7 @@ JumpRoamMons: ; 2a394
 	ld [wRoamMon2MapGroup], a
 	ld a, c
 	ld [wRoamMon2MapNumber], a
-.SkipEntei
+.SkipEntei:
 
 	ld a, [wRoamMon3MapGroup]
 	cp GROUP_N_A
@@ -749,7 +749,7 @@ JumpRoamMons: ; 2a394
 	ld [wRoamMon3MapGroup], a
 	ld a, c
 	ld [wRoamMon3MapNumber], a
-.SkipSuicune
+.SkipSuicune:
 
 	jp _BackUpMapIndices
 
@@ -852,7 +852,7 @@ RandomPhoneRareWildMon: ; 2a4ab
 	call LookUpWildmonsForMapDE
 	jr nc, .done
 
-.GetGrassmon
+.GetGrassmon:
 	push hl
 	ld bc, 5 + 4 * 2 ; Location of the level of the 5th wild Pokemon in that map
 	add hl, bc
@@ -908,7 +908,7 @@ endr
 	ld [ScriptVar], a
 	ret
 
-.SawRareMonText
+.SawRareMonText:
 	; I just saw some rare @  in @ . I'll call you if I see another rare #MON, OK?
 	text_jump UnknownText_0x1bd34b
 	db "@"

@@ -238,7 +238,7 @@ LoadBallIconGFX: ; 2c165
 	ret
 ; 2c172
 
-.gfx: ; 2c172
+.gfx ; 2c172
 INCBIN "gfx/battle/balls.2bpp"
 ; 2c1b2
 

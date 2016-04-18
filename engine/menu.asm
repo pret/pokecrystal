@@ -414,7 +414,7 @@ _2DMenuInterpretJoypad: ; 24270
 	and a
 	ret
 
-.set_bit_7: ; 24299
+.set_bit_7 ; 24299
 	ld hl, w2DMenuFlags2
 	set 7, [hl]
 	scf
@@ -515,7 +515,7 @@ _2DMenuInterpretJoypad: ; 24270
 	ret
 ; 24318
 
-.a_b_start_select: ; 24318
+.a_b_start_select ; 24318
 	xor a
 	ret
 ; 2431a
@@ -654,7 +654,7 @@ _PushWindow:: ; 24374
 	ret
 ; 243cd
 
-.copy: ; 243cd
+.copy ; 243cd
 	call GetMenuBoxDims
 	inc b
 	inc c
@@ -681,7 +681,7 @@ _PushWindow:: ; 24374
 	ret
 ; 243e7
 
-.ret: ; 243e7
+.ret ; 243e7
 	ret
 ; 243e8
 
@@ -763,7 +763,7 @@ Error_Cant_ExitMenu: ; 2445d
 	ld hl, .Text_NoWindowsAvailableForPopping
 	call PrintText
 	call WaitBGMap
-.InfiniteLoop
+.InfiniteLoop:
 	jr .InfiniteLoop
 ; 24468
 

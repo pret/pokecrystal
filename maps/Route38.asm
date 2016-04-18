@@ -17,7 +17,7 @@ Route38_MapScriptHeader:
 TrainerBird_keeperToby:
 	trainer EVENT_BEAT_BIRD_KEEPER_TOBY, BIRD_KEEPER, TOBY, Bird_keeperTobySeenText, Bird_keeperTobyBeatenText, 0, .script
 
-.script:
+.script
 	end_if_just_battled
 	opentext
 	writetext UnknownText_0x1a1f86
@@ -28,7 +28,7 @@ TrainerBird_keeperToby:
 TrainerSailorHarry:
 	trainer EVENT_BEAT_SAILOR_HARRY, SAILOR, HARRY, SailorHarrySeenText, SailorHarryBeatenText, 0, .script
 
-.script:
+.script
 	end_if_just_battled
 	opentext
 	writetext UnknownText_0x1a220c
@@ -39,7 +39,7 @@ TrainerSailorHarry:
 TrainerLassDana1:
 	trainer EVENT_BEAT_LASS_DANA, LASS, DANA1, LassDana1SeenText, LassDana1BeatenText, 0, .script
 
-.script:
+.script
 	writecode VAR_CALLERID, PHONE_LASS_DANA
 	end_if_just_battled
 	opentext
@@ -76,19 +76,19 @@ TrainerLassDana1:
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
-.Fight4
+.Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4
-.Fight3
+.Fight3:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight3
-.Fight2
+.Fight2:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .LoadFight2
-.Fight1
+.Fight1:
 	checkflag ENGINE_FLYPOINT_CIANWOOD
 	iftrue .LoadFight1
-.LoadFight0
+.LoadFight0:
 	loadtrainer LASS, DANA1
 	startbattle
 	reloadmapafterbattle
@@ -96,7 +96,7 @@ TrainerLassDana1:
 	clearflag ENGINE_DANA
 	end
 
-.LoadFight1
+.LoadFight1:
 	loadtrainer LASS, DANA2
 	startbattle
 	reloadmapafterbattle
@@ -104,7 +104,7 @@ TrainerLassDana1:
 	clearflag ENGINE_DANA
 	end
 
-.LoadFight2
+.LoadFight2:
 	loadtrainer LASS, DANA3
 	startbattle
 	reloadmapafterbattle
@@ -112,7 +112,7 @@ TrainerLassDana1:
 	clearflag ENGINE_DANA
 	end
 
-.LoadFight3
+.LoadFight3:
 	loadtrainer LASS, DANA4
 	startbattle
 	reloadmapafterbattle
@@ -120,7 +120,7 @@ TrainerLassDana1:
 	clearflag ENGINE_DANA
 	end
 
-.LoadFight4
+.LoadFight4:
 	loadtrainer LASS, DANA5
 	startbattle
 	reloadmapafterbattle
@@ -177,7 +177,7 @@ TrainerLassDana1:
 TrainerSchoolboyChad1:
 	trainer EVENT_BEAT_SCHOOLBOY_CHAD, SCHOOLBOY, CHAD1, SchoolboyChad1SeenText, SchoolboyChad1BeatenText, 0, .script
 
-.script:
+.script
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_CHAD
 	end_if_just_battled
 	opentext
@@ -212,19 +212,19 @@ TrainerSchoolboyChad1:
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
-.Fight4
+.Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4
-.Fight3
+.Fight3:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight3
-.Fight2
+.Fight2:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .LoadFight2
-.Fight1
+.Fight1:
 	checkflag ENGINE_FLYPOINT_MAHOGANY
 	iftrue .LoadFight1
-.LoadFight0
+.LoadFight0:
 	loadtrainer SCHOOLBOY, CHAD1
 	startbattle
 	reloadmapafterbattle
@@ -232,7 +232,7 @@ TrainerSchoolboyChad1:
 	clearflag ENGINE_CHAD
 	end
 
-.LoadFight1
+.LoadFight1:
 	loadtrainer SCHOOLBOY, CHAD2
 	startbattle
 	reloadmapafterbattle
@@ -240,7 +240,7 @@ TrainerSchoolboyChad1:
 	clearflag ENGINE_CHAD
 	end
 
-.LoadFight2
+.LoadFight2:
 	loadtrainer SCHOOLBOY, CHAD3
 	startbattle
 	reloadmapafterbattle
@@ -248,7 +248,7 @@ TrainerSchoolboyChad1:
 	clearflag ENGINE_CHAD
 	end
 
-.LoadFight3
+.LoadFight3:
 	loadtrainer SCHOOLBOY, CHAD4
 	startbattle
 	reloadmapafterbattle
@@ -256,7 +256,7 @@ TrainerSchoolboyChad1:
 	clearflag ENGINE_CHAD
 	end
 
-.LoadFight4
+.LoadFight4:
 	loadtrainer SCHOOLBOY, CHAD5
 	startbattle
 	reloadmapafterbattle
@@ -294,7 +294,7 @@ TrainerSchoolboyChad1:
 TrainerBeautyValerie:
 	trainer EVENT_BEAT_BEAUTY_VALERIE, BEAUTY, VALERIE, BeautyValerieSeenText, BeautyValerieBeatenText, 0, .script
 
-.script:
+.script
 	end_if_just_battled
 	opentext
 	writetext UnknownText_0x1a2185
@@ -305,7 +305,7 @@ TrainerBeautyValerie:
 TrainerBeautyOlivia:
 	trainer EVENT_BEAT_BEAUTY_OLIVIA, BEAUTY, OLIVIA, BeautyOliviaSeenText, BeautyOliviaBeatenText, 0, .script
 
-.script:
+.script
 	end_if_just_battled
 	opentext
 	writetext UnknownText_0x1a229a

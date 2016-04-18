@@ -23,7 +23,7 @@ GoldenrodDeptStore5F_MapScriptHeader:
 	disappear GOLDENRODDEPTSTORE5F_RECEPTIONIST
 	return
 
-.yes:
+.yes
 	appear GOLDENRODDEPTSTORE5F_RECEPTIONIST
 	return
 
@@ -36,27 +36,27 @@ ClerkScript_0x5609c:
 	iftrue .onlyrocksmash
 	jump .neither
 
-.headbutt:
+.headbutt
 	checkevent EVENT_GOT_TM08_ROCK_SMASH
 	iftrue .both
 	jump .onlyheadbutt
 
-.neither:
+.neither
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_5F_1
 	closetext
 	end
 
-.onlyheadbutt:
+.onlyheadbutt
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_5F_2
 	closetext
 	end
 
-.onlyrocksmash:
+.onlyrocksmash
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_5F_3
 	closetext
 	end
 
-.both:
+.both
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_5F_4
 	closetext
 	end

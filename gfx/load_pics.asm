@@ -454,7 +454,7 @@ Function512ab: ; 512ab
 	call .Fill
 	ret
 
-.Fill
+.Fill:
 	ld [hli], a
 	dec c
 	jr nz, .Fill

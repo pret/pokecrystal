@@ -2095,7 +2095,7 @@ FutureSight:
 	damagestats
 	damagecalc
 	futuresight
-	damagevariation
+	damagevariation ; skip here if last turn
 	checkhit
 	hittargetnosub
 	failuretext

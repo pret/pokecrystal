@@ -23,7 +23,7 @@ GoldenrodGameCorner_MapScriptHeader:
 
 	dbw MAPCALLBACK_OBJECTS, .Callback
 
-.Callback
+.Callback:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .finish
 	checkitem COIN_CASE
@@ -149,7 +149,7 @@ GoldenrodGameCornerTMVendorMenuData:
 	dw .MenuData2
 	db 1 ; default option
 
-.MenuData2
+.MenuData2:
 	db $80 ; flags
 	db 4 ; items
 	db "TM25    5500@"
@@ -176,7 +176,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	if_equal $3, .wobbuffet
 	jump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 
-.abra:
+.abra
 	checkcoins 100
 	if_equal $2, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	checkcode VAR_PARTYCOUNT
@@ -194,7 +194,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	takecoins 100
 	jump .loop
 
-.cubone:
+.cubone
 	checkcoins 800
 	if_equal $2, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	checkcode VAR_PARTYCOUNT
@@ -212,7 +212,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	takecoins 800
 	jump .loop
 
-.wobbuffet:
+.wobbuffet
 	checkcoins 1500
 	if_equal $2, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	checkcode VAR_PARTYCOUNT

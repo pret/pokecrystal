@@ -173,7 +173,7 @@ endr
 	ld [hli], a
 	inc de
 ; Look up the third field from the table in the wSpriteAnimDict array (10x2).
-; Take the value and load it in 
+; Take the value and load it in
 	ld a, [de]
 	call GetSpriteAnimVTile
 	ld [hli], a
@@ -649,7 +649,7 @@ Sprites_Sine: ; 8e72c
 	ret
 ; 8e75d
 
-.sinewave: ; 8e75d
+.sinewave ; 8e75d
 	sine_wave $100
 
 

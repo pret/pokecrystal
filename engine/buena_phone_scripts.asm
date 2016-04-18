@@ -21,12 +21,12 @@ BuenaPhoneScript_CheckTimeOfDay1:
 	buttonsound
 	end
 
-.morn:
+.morn
 	writetext UnknownText_0xa0c28
 	buttonsound
 	end
 
-.day:
+.day
 	writetext UnknownText_0xa0c72
 	buttonsound
 	end
@@ -46,12 +46,12 @@ BuenaPhoneScript_CheckTimeOfDay2:
 	buttonsound
 	end
 
-.morn:
+.morn
 	writetext UnknownText_0xa0d96
 	buttonsound
 	end
 
-.day:
+.day
 	writetext UnknownText_0xa0dcf
 	buttonsound
 	end
@@ -90,62 +90,62 @@ BuenaPhoneScript_Random2:
 	if_equal 12, .twelve
 	if_equal 13, .thirteen
 
-.zero:
+.zero
 	writetext UnknownText_0xa0efb
 	jump .finish
 
-.one:
+.one
 	writetext UnknownText_0xa0fcf
 	jump .finish
 
-.two:
+.two
 	writetext UnknownText_0xa109d
 	jump .finish
 
-.three:
+.three
 	writetext UnknownText_0xa1143
 	jump .finish
 
-.four:
+.four
 	writetext UnknownText_0xa1244
 	jump .finish
 
-.five:
+.five
 	writetext UnknownText_0xa1318
 	jump .finish
 
-.six:
+.six
 	writetext UnknownText_0xa13d8
 	jump .finish
 
-.seven:
+.seven
 	writetext UnknownText_0xa1488
 	jump .finish
 
-.eight:
+.eight
 	writetext UnknownText_0xa15de
 	jump .finish
 
-.nine:
+.nine
 	writetext UnknownText_0xa1717
 	jump .finish
 
-.ten:
+.ten
 	writetext UnknownText_0xa183d
 	jump .finish
 
-.eleven:
+.eleven
 	writetext UnknownText_0xa19b1
 	jump .finish
 
-.twelve:
+.twelve
 	writetext UnknownText_0xa1ac0
 	jump .finish
 
-.thirteen:
+.thirteen
 	writetext UnknownText_0xa1bed
 
-.finish:
+.finish
 	end
 
 BuenaPhoneScript_Random1:
@@ -154,15 +154,15 @@ BuenaPhoneScript_Random1:
 	if_equal 1, .one
 	if_equal 2, .two
 
-.zero:
+.zero
 	writetext UnknownText_0xa1c88
 	end
 
-.one:
+.one
 	writetext UnknownText_0xa1d5f
 	end
 
-.two:
+.two
 	writetext UnknownText_0xa1e2f
 	end
 ; a0c28

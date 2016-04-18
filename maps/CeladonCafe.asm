@@ -105,7 +105,7 @@ CeladonCafeTrashcan:
 	setevent EVENT_FOUND_LEFTOVERS_IN_CELADON_CAFE
 	end
 
-.PackFull
+.PackFull:
 	opentext
 	itemtotext LEFTOVERS, $0
 	writetext FoundLeftoversText
@@ -115,7 +115,7 @@ CeladonCafeTrashcan:
 	closetext
 	end
 
-.TrashEmpty
+.TrashEmpty:
 	jumpstd trashcan
 
 UnknownText_0x730de:

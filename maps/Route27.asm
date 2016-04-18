@@ -99,13 +99,13 @@ UnknownScript_0x1a08ff:
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
-.Fight2
+.Fight2:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight2
-.Fight1
+.Fight1:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
-.LoadFight0
+.LoadFight0:
 	loadtrainer BIRD_KEEPER, JOSE2
 	startbattle
 	reloadmapafterbattle
@@ -113,7 +113,7 @@ UnknownScript_0x1a08ff:
 	clearflag ENGINE_JOSE
 	end
 
-.LoadFight1
+.LoadFight1:
 	loadtrainer BIRD_KEEPER, JOSE1
 	startbattle
 	reloadmapafterbattle
@@ -121,7 +121,7 @@ UnknownScript_0x1a08ff:
 	clearflag ENGINE_JOSE
 	end
 
-.LoadFight2
+.LoadFight2:
 	loadtrainer BIRD_KEEPER, JOSE3
 	startbattle
 	reloadmapafterbattle
@@ -232,13 +232,13 @@ UnknownScript_0x1a09e9:
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
-.Fight2
+.Fight2:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight2
-.Fight1
+.Fight1:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
-.LoadFight0
+.LoadFight0:
 	loadtrainer COOLTRAINERF, REENA1
 	startbattle
 	reloadmapafterbattle
@@ -246,7 +246,7 @@ UnknownScript_0x1a09e9:
 	clearflag ENGINE_REENA
 	end
 
-.LoadFight1
+.LoadFight1:
 	loadtrainer COOLTRAINERF, REENA2
 	startbattle
 	reloadmapafterbattle
@@ -254,7 +254,7 @@ UnknownScript_0x1a09e9:
 	clearflag ENGINE_REENA
 	end
 
-.LoadFight2
+.LoadFight2:
 	loadtrainer COOLTRAINERF, REENA3
 	startbattle
 	reloadmapafterbattle

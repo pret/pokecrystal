@@ -166,11 +166,11 @@ CheckBreedmonCompatibility: ; 16e1d
 	cp c
 	jr z, .Compatible
 
-.Incompatible
+.Incompatible:
 	and a
 	ret
 
-.Compatible
+.Compatible:
 	scf
 	ret
 ; 16f3e
@@ -215,7 +215,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	xor a
 	ld [CurPartyMon], a
 
-.loop: ; 16f7a (5:6f7a)
+.loop ; 16f7a (5:6f7a)
 	ld a, [de]
 	inc de
 	cp -1
@@ -348,7 +348,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 
-.next: ; 1707d (5:707d)
+.next ; 1707d (5:707d)
 	ld hl, CurPartyMon
 	inc [hl]
 	pop hl
@@ -357,7 +357,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	pop de
 	jp .loop
 
-.done: ; 1708a (5:708a)
+.done ; 1708a (5:708a)
 	ret
 ; 1708b (5:708b)
 
@@ -989,7 +989,7 @@ DayCareMonPrintEmptyString: ; 174b5
 	ret
 ; 174b9
 
-.string: ; 174b9
+.string ; 174b9
 	db "@"
 ; 174ba
 

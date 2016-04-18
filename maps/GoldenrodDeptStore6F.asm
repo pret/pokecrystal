@@ -12,7 +12,7 @@ GoldenrodDeptStore6F_MapScriptHeader:
 GoldenrodVendingMachine:
 	opentext
 	writetext GoldenrodVendingText
-.Start
+.Start:
 	special PlaceMoneyTopRight
 	loadmenudata .MenuData
 	verticalmenu
@@ -23,7 +23,7 @@ GoldenrodVendingMachine:
 	closetext
 	end
 
-.FreshWater
+.FreshWater:
 	checkmoney $0, 200
 	if_equal $2, .NotEnoughMoney
 	giveitem FRESH_WATER
@@ -32,7 +32,7 @@ GoldenrodVendingMachine:
 	itemtotext FRESH_WATER, $0
 	jump .VendItem
 
-.SodaPop
+.SodaPop:
 	checkmoney $0, 300
 	if_equal $2, .NotEnoughMoney
 	giveitem SODA_POP
@@ -41,7 +41,7 @@ GoldenrodVendingMachine:
 	itemtotext SODA_POP, $0
 	jump .VendItem
 
-.Lemonade
+.Lemonade:
 	checkmoney $0, 350
 	if_equal $2, .NotEnoughMoney
 	giveitem LEMONADE
@@ -50,7 +50,7 @@ GoldenrodVendingMachine:
 	itemtotext LEMONADE, $0
 	jump .VendItem
 
-.VendItem
+.VendItem:
 	pause 10
 	playsound SFX_ENTER_DOOR
 	writetext GoldenrodClangText
@@ -58,24 +58,24 @@ GoldenrodVendingMachine:
 	itemnotify
 	jump .Start
 
-.NotEnoughMoney
+.NotEnoughMoney:
 	writetext GoldenrodVendingNoMoneyText
 	waitbutton
 	jump .Start
 
-.NotEnoughSpace
+.NotEnoughSpace:
 	writetext GoldenrodVendingNoSpaceText
 	waitbutton
 	jump .Start
 
-.MenuData
+.MenuData:
 	db $40 ; flags
 	db 02, 00 ; start coords
 	db 11, 19 ; end coords
 	dw .MenuData2
 	db 1 ; default option
 
-.MenuData2
+.MenuData2:
 	db $80 ; flags
 	db 4 ; items
 	db "FRESH WATER  ¥200@"

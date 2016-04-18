@@ -47,7 +47,7 @@ UnknownScript_0x185047:
 	checkevent EVENT_FOUGHT_HO_OH
 	iffalse .Done
 	appear TINTOWER1F_EUSINE
-.Done
+.Done:
 	return
 
 UnknownScript_0x185050:
@@ -86,7 +86,7 @@ TinTowerStairsCallback:
 	checkevent EVENT_GOT_RAINBOW_WING
 	iftrue .NoChange
 	changeblock $a, $2, $9
-.NoChange
+.NoChange:
 	return
 
 SuicuneBattle:
@@ -104,7 +104,7 @@ SuicuneBattle:
 	disappear TINTOWER1F_RAIKOU
 	playsound SFX_EXIT_BUILDING
 	waitsfx
-.Next1
+.Next1:
 	writebyte ENTEI
 	special SpecialMonCheck
 	iftrue .Next2 ; if player caught Entei, he doesn't appear in Tin Tower
@@ -117,7 +117,7 @@ SuicuneBattle:
 	disappear TINTOWER1F_ENTEI
 	playsound SFX_EXIT_BUILDING
 	waitsfx
-.Next2
+.Next2:
 	spriteface PLAYER, UP
 	pause 10
 	applymovement PLAYER, TinTowerPlayerMovement2
@@ -243,37 +243,37 @@ TinTowerPlayerMovement1:
 	step_end
 
 TinTowerRaikouMovement1:
-	db $39 ; movement
+	set_sliding
 	fast_jump_step_down
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 TinTowerRaikouMovement2:
-	db $39 ; movement
+	set_sliding
 	fast_jump_step_down
 	fast_jump_step_right
 	fast_jump_step_down
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 TinTowerEnteiMovement1:
-	db $39 ; movement
+	set_sliding
 	fast_jump_step_down
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 TinTowerEnteiMovement2:
-	db $39 ; movement
+	set_sliding
 	fast_jump_step_down
 	fast_jump_step_left
 	fast_jump_step_down
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 TinTowerSuicuneMovement:
-	db $39 ; movement
+	set_sliding
 	fast_jump_step_down
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 TinTowerPlayerMovement2:

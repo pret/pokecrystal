@@ -31,7 +31,7 @@ MapMobileBattleRoomSignpost0Script:
 	if_equal $2, .two_
 	jump .false
 
-.one_:
+.one_
 	writetext MobileBattleRoom_HealText
 	pause 20
 	closetext
@@ -42,18 +42,18 @@ MapMobileBattleRoomSignpost0Script:
 	special FadeInPalettes
 	special RestartMapMusic
 	refreshscreen $0
-.two_:
+.two_
 	special Mobile_HealParty
 	special HealParty
 	special Function10383c
 	iftrue .false
-.one:
+.one
 	special Function10387b
 	writetext MobileBattleRoom_EstablishingCommsText
 	waitbutton
 	reloadmappart
 	special Function101225
-.false:
+.false
 	closetext
 	end
 

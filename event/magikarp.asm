@@ -10,7 +10,7 @@ Special_CheckMagikarpLength: ; fbb32
 	ld a, [CurPartySpecies]
 	cp MAGIKARP
 	jr nz, .not_magikarp
-	
+
 	; Now let's compute its length based on its DVs and ID.
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Species
@@ -31,14 +31,14 @@ Special_CheckMagikarpLength: ; fbb32
 	callba MagikarpLength_Mobile
 	ld hl, .MeasureItText
 	call PrintText
-	
+
 	; Did we beat the record?
 	ld hl, Buffer1
 	ld de, wBestMagikarpLengthFeet
 	ld c, 2
 	call StringCmp
 	jr nc, .not_long_enough
-	
+
 	; NEW RECORD!!! Let's save that.
 	ld hl, Buffer1
 	ld de, wBestMagikarpLengthFeet
@@ -86,7 +86,7 @@ Magikarp_LoadFeetInchesChars: ; fbbae
 	ret
 ; fbbbb
 
-.feetinchchars: ; fbbb
+.feetinchchars ; fbbb
 INCBIN "gfx/unknown/0fbbbb.2bpp"
 ; fbbdb
 

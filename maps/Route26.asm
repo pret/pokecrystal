@@ -62,13 +62,13 @@ UnknownScript_0x1a4d79:
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
-.Fight2
+.Fight2:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight2
-.Fight1
+.Fight1:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
-.LoadFight0
+.LoadFight0:
 	loadtrainer COOLTRAINERM, GAVEN3
 	startbattle
 	reloadmapafterbattle
@@ -76,7 +76,7 @@ UnknownScript_0x1a4d79:
 	clearflag ENGINE_GAVEN
 	end
 
-.LoadFight1
+.LoadFight1:
 	loadtrainer COOLTRAINERM, GAVEN1
 	startbattle
 	reloadmapafterbattle
@@ -84,7 +84,7 @@ UnknownScript_0x1a4d79:
 	clearflag ENGINE_GAVEN
 	end
 
-.LoadFight2
+.LoadFight2:
 	loadtrainer COOLTRAINERM, GAVEN2
 	startbattle
 	reloadmapafterbattle
@@ -166,13 +166,13 @@ UnknownScript_0x1a4e35:
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
-.Fight2
+.Fight2:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight2
-.Fight1
+.Fight1:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
-.LoadFight0
+.LoadFight0:
 	loadtrainer COOLTRAINERF, BETH1
 	startbattle
 	reloadmapafterbattle
@@ -180,7 +180,7 @@ UnknownScript_0x1a4e35:
 	clearflag ENGINE_BETH
 	end
 
-.LoadFight1
+.LoadFight1:
 	loadtrainer COOLTRAINERF, BETH2
 	startbattle
 	reloadmapafterbattle
@@ -188,7 +188,7 @@ UnknownScript_0x1a4e35:
 	clearflag ENGINE_BETH
 	end
 
-.LoadFight2
+.LoadFight2:
 	loadtrainer COOLTRAINERF, BETH3
 	startbattle
 	reloadmapafterbattle

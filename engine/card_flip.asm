@@ -50,7 +50,7 @@ _CardFlip: ; e00ee (38:40ee)
 	ld [wCardFlipCursorX], a
 	ld de, MUSIC_GAME_CORNER
 	call PlayMusic
-.MasterLoop
+.MasterLoop:
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .leavethegame
@@ -81,7 +81,7 @@ endr
 ; e01a0 (38:41a0)
 
 .Jumptable: ; e01a0
-	
+
 	dw .AskPlayWithThree
 	dw .DeductCoins
 	dw .ChooseACard
@@ -107,7 +107,7 @@ endr
 	call .Increment
 	ret
 
-.SaidNo
+.SaidNo:
 	ld a, 7
 	ld [wJumptableIndex], a
 	ret
@@ -311,7 +311,7 @@ endr
 	call .Increment
 	ret
 
-.Continue
+.Continue:
 	ld a, [wCardFlipNumCardsPlayed]
 	inc a
 	ld [wCardFlipNumCardsPlayed], a
@@ -325,10 +325,10 @@ endr
 	call PrintText
 	jr .LoopAround
 
-.KeepTheCurrentDeck
+.KeepTheCurrentDeck:
 	call CardFlip_BlankDiscardedCardSlot
 
-.LoopAround
+.LoopAround:
 	ld a, 1
 	ld [wJumptableIndex], a
 	ret
@@ -401,7 +401,7 @@ GetCoordsOfChosenCard: ; e03ac
 	bcpixel 2, 3
 	jr .done
 
-.BottomCard
+.BottomCard:
 	hlcoord 2, 6
 	bcpixel 8, 3
 
@@ -659,7 +659,7 @@ CardFlip_BlankDiscardedCardSlot: ; e0534
 ; e0553
 
 .Jumptable: ; e0553
-	
+
 	dw .Level1
 	dw .Level2
 	dw .Level3
@@ -848,7 +848,7 @@ CardFlip_CheckWinCondition: ; e0637
 ; e0643
 
 .Jumptable: ; e0643
-	
+
 	dw .Impossible
 	dw .Impossible
 	dw .PikaJiggly
@@ -1270,7 +1270,7 @@ ChooseCard_HandleJoypad: ; e089c
 	ret
 ; e08b8
 
-.d_left: ; e08b8
+.d_left ; e08b8
 	ld hl, wCardFlipCursorX
 	ld a, [wCardFlipCursorY]
 	and a
@@ -1309,7 +1309,7 @@ endr
 	jp .play_sound
 ; e08ef
 
-.d_right: ; e08ef
+.d_right ; e08ef
 	ld hl, wCardFlipCursorX
 	ld a, [wCardFlipCursorY]
 	and a
@@ -1331,7 +1331,7 @@ rept 2
 endr
 	jr .play_sound
 
-.d_up: ; e090a
+.d_up ; e090a
 	ld hl, wCardFlipCursorY
 	ld a, [wCardFlipCursorX]
 	and a
@@ -1369,7 +1369,7 @@ endr
 	ld [wCardFlipCursorX], a
 	jr .play_sound
 
-.d_down: ; e093d
+.d_down ; e093d
 	ld hl, wCardFlipCursorY
 	ld a, [wCardFlipCursorX]
 	and a
@@ -1391,7 +1391,7 @@ rept 2
 	inc [hl]
 endr
 
-.play_sound: ; e0959
+.play_sound ; e0959
 	ld de, SFX_POKEBALLS_PLACED_ON_TABLE
 	call PlaySFX
 	ret
@@ -1684,7 +1684,7 @@ CardFlip_InitAttrPals: ; e0c37 (38:4c37)
 	ret
 ; e0c93 (38:4c93)
 
-.palettes: ; e0c93
+.palettes ; e0c93
 	RGB 31, 31, 31
 	RGB 17, 07, 31
 	RGB 06, 19, 08

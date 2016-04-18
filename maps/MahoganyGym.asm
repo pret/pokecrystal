@@ -34,7 +34,7 @@ PryceScript_0x199a9e:
 	setflag ENGINE_GLACIERBADGE
 	checkcode VAR_BADGES
 	scall MahoganyGymTriggerRockets
-.FightDone
+.FightDone:
 	checkevent EVENT_GOT_TM16_ICY_WIND
 	iftrue UnknownScript_0x199af0
 	setevent EVENT_BEAT_SKIER_ROXANNE
@@ -64,10 +64,10 @@ MahoganyGymTriggerRockets:
 	if_equal 6, .GoldenrodRockets
 	end
 
-.GoldenrodRockets
+.GoldenrodRockets:
 	jumpstd goldenrodrockets
 
-.RadioTowerRockets
+.RadioTowerRockets:
 	jumpstd radiotowerrockets
 
 TrainerSkierRoxanne:
@@ -135,7 +135,7 @@ MahoganyGymGuyScript:
 	closetext
 	end
 
-.MahoganyGymGuyWinScript
+.MahoganyGymGuyWinScript:
 	writetext MahoganyGymGuyWinText
 	waitbutton
 	closetext
@@ -145,7 +145,7 @@ MahoganyGymStatue:
 	checkflag ENGINE_GLACIERBADGE
 	iftrue .Beaten
 	jumpstd gymstatue1
-.Beaten
+.Beaten:
 	trainertotext PRYCE, 1, $1
 	jumpstd gymstatue2
 

@@ -1,6 +1,6 @@
 	const_def
 	const OAKS_POKEMON_TALK      ; $00
-	const POKEDEX_SHOW           ; $01  
+	const POKEDEX_SHOW           ; $01
 	const POKEMON_MUSIC          ; $02
 	const LUCKY_CHANNEL          ; $03
 	const BUENAS_PASSWORD        ; $04

@@ -1,7 +1,7 @@
 ; FearowPokedexEntry: ; 0x181f64
 	db "BEAK@" ; species name
 	dw 311, 840 ; height, width
-	
+
 	db   "It uses its long"
 	next "beak to attack. It"
 	next "has a surprisingly"

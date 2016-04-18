@@ -2,7 +2,7 @@ Function104000:: ; 104000
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
-.Function
+.Function:
 	decoord 0, 0, AttrMap
 	ld hl, wBackupAttrMap
 	call CutAndPasteAttrMap
@@ -24,7 +24,7 @@ Function10402d:: ; 10402d
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
-.Function
+.Function:
 	decoord 0, 0
 	ld hl, wDecompressScratch
 	call CutAndPasteTilemap
@@ -39,7 +39,7 @@ Function104047: ; 104047
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
-.Function
+.Function:
 	decoord 0, 0, AttrMap
 	ld hl, wBackupAttrMap
 	call CutAndPasteAttrMap
@@ -54,7 +54,7 @@ ReloadMapPart:: ; 104061
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
-.Function
+.Function:
 	decoord 0, 0, AttrMap
 	ld hl, wBackupAttrMap
 	call CutAndPasteAttrMap
@@ -83,7 +83,7 @@ Function104099: ; 104099
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
-.Function
+.Function:
 	decoord 0, 0, AttrMap
 	ld hl, wBackupAttrMap
 	call CutAndPasteAttrMap
@@ -112,7 +112,7 @@ Function1040d4: ; 1040d4
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
-.Function
+.Function:
 	ld a, $1
 	ld [rVBK], a
 	ld a, $3
@@ -136,7 +136,7 @@ Function1040fb: ; 1040fb
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
-.Function
+.Function:
 	ld a, $1
 	ld [rVBK], a
 	ld a, $3
@@ -151,7 +151,7 @@ Function104110:: ; 104110
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
-.Function
+.Function:
 	decoord 0, 0, AttrMap
 	ld hl, wBackupAttrMap
 	call CutAndPasteAttrMap
@@ -181,7 +181,7 @@ Function104148: ; 104148 (41:4148)
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
-.Function
+.Function:
 	decoord 0, 0, AttrMap
 	ld hl, wBackupAttrMap
 	call CutAndPasteAttrMap
@@ -228,7 +228,7 @@ CallInSafeGFXMode: ; 104177
 	ret
 ; 10419c
 
-._hl_: ; 10419c
+._hl_ ; 10419c
 	jp [hl]
 ; 10419d
 
@@ -454,7 +454,7 @@ endr
 	ld l, e
 	ld de, wDecompressScratch
 	call FarCopyBytes
-	
+
 	pop hl
 	pop bc
 
@@ -500,7 +500,7 @@ _Get1bpp:: ; 1042b2
 	jr .loop
 ; 1042d6
 
-.bankswitch: ; 1042d6
+.bankswitch ; 1042d6
 	ld a, [rSVBK]
 	push af
 	ld a, $6

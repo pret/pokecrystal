@@ -55,16 +55,16 @@ UnknownScript_0x5afc7:
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
-.Fight3
+.Fight3:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight3
-.Fight2
+.Fight2:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight2
-.Fight1
+.Fight1:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .LoadFight1
-.LoadFight0
+.LoadFight0:
 	loadtrainer SAILOR, HUEY1
 	startbattle
 	reloadmapafterbattle
@@ -72,7 +72,7 @@ UnknownScript_0x5afc7:
 	clearflag ENGINE_HUEY
 	end
 
-.LoadFight1
+.LoadFight1:
 	loadtrainer SAILOR, HUEY2
 	startbattle
 	reloadmapafterbattle
@@ -80,7 +80,7 @@ UnknownScript_0x5afc7:
 	clearflag ENGINE_HUEY
 	end
 
-.LoadFight2
+.LoadFight2:
 	loadtrainer SAILOR, HUEY3
 	startbattle
 	reloadmapafterbattle
@@ -88,7 +88,7 @@ UnknownScript_0x5afc7:
 	clearflag ENGINE_HUEY
 	end
 
-.LoadFight3
+.LoadFight3:
 	loadtrainer SAILOR, HUEY4
 	startbattle
 	reloadmapafterbattle

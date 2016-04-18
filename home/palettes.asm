@@ -42,9 +42,9 @@ endr
 
 	dec b
 	jr nz, .bgp
-	
+
 ; hl is now 5:d0c0 OBPals
-	
+
 ; copy 8 pals to obpd
 	ld a, %10000000 ; auto increment, index 0
 	ld [rOBPI], a
@@ -58,7 +58,7 @@ endr
 
 	dec b
 	jr nz, .obp
-	
+
 	pop af
 	ld [rSVBK], a
 
@@ -127,7 +127,7 @@ DmgToCgbObjPals:: ; ccb
 	ld [rOBP0], a
 	ld a, d
 	ld [rOBP1], a
-	
+
 	ld a, [hCGB]
 	and a
 	ret z
@@ -250,7 +250,7 @@ CopyPals:: ; d50
 .loop
 	push de
 	push hl
-	
+
 ; get pal color
 	ld a, b
 	and %11 ; color
@@ -262,7 +262,7 @@ CopyPals:: ; d50
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	
+
 ; dest
 	pop hl
 ; write color
@@ -278,7 +278,7 @@ CopyPals:: ; d50
 ; done pal?
 	dec c
 	jr nz, .loop
-	
+
 ; de += 8 (next pal)
 	ld a, 1 palettes ; NUM_PAL_COLORS * 2 ; bytes per pal
 	add e
@@ -286,7 +286,7 @@ CopyPals:: ; d50
 	inc d
 .ok
 	ld e, a
-	
+
 ; how many more pals?
 	pop bc
 	dec c

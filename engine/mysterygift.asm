@@ -198,9 +198,9 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	inc hl
 	dec d
 	jr .loop
-.Yes
+.Yes:
 	scf
-.No
+.No:
 	jp CloseSRAM
 
 .AddMysteryGiftPartnerID: ; 104a56 (41:4a56)
@@ -1350,7 +1350,7 @@ Function105153: ; 105153 (41:5153)
 .Load16GFX: ; 105236 (41:5236)
 	ld b, 16
 
-.gfx_loop: ; 105238 (41:5238)
+.gfx_loop ; 105238 (41:5238)
 	ld [hli], a
 	inc a
 	dec b
@@ -1368,7 +1368,7 @@ Function105153: ; 105153 (41:5153)
 .Load14Column: ; 105246 (41:5246)
 	ld b, 14
 
-.col_loop: ; 105248 (41:5248)
+.col_loop ; 105248 (41:5248)
 	ld [hl], a
 	ld de, SCREEN_WIDTH
 	add hl, de
@@ -1651,7 +1651,7 @@ Function1057d7: ; 1057d7 (41:57d7)
 .Load12Row: ; 1058ce (41:58ce)
 	ld b, 12
 
-.row_loop: ; 1058d0 (41:58d0)
+.row_loop ; 1058d0 (41:58d0)
 	ld [hli], a
 	inc a
 	dec b
@@ -1669,7 +1669,7 @@ Function1057d7: ; 1057d7 (41:57d7)
 .Load14Column: ; 1058de (41:58de)
 	ld b, 14
 
-.column_loop: ; 1058e0 (41:58e0)
+.column_loop ; 1058e0 (41:58e0)
 	ld [hl], a
 	ld de, SCREEN_WIDTH
 	add hl, de

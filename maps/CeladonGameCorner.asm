@@ -64,14 +64,14 @@ FisherScript_0x72144:
 	scall .UnknownScript_0x72172
 	givecoins 18
 	setevent EVENT_GOT_COINS_FROM_GAMBLER_AT_CELADON
-.UnknownScript_0x72169
+.UnknownScript_0x72169:
 	writetext UnknownText_0x72345
 	waitbutton
 	closetext
 	spriteface LAST_TALKED, LEFT
 	end
 
-.UnknownScript_0x72172
+.UnknownScript_0x72172:
 	jumpstd receiveitem
 	end
 

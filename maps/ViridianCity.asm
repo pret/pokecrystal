@@ -14,7 +14,7 @@ ViridianCity_MapScriptHeader:
 	; callbacks
 	dbw MAPCALLBACK_NEWMAP, .FlyPoint
 
-.FlyPoint
+.FlyPoint:
 	setflag ENGINE_FLYPOINT_VIRIDIAN
 	return
 
@@ -45,7 +45,7 @@ GrampsScript_0x1a9a61:
 	closetext
 	end
 
-.BlueReturned
+.BlueReturned:
 	writetext UnknownText_0x1a9c7e
 	waitbutton
 	closetext

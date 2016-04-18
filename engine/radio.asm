@@ -372,7 +372,7 @@ OaksPkmnTalk8:
 	ld a, OAKS_POKEMON_TALK_9
 	jp NextRadioLine
 
-.Descriptors
+.Descriptors:
 	dw .sweetadorably
 	dw .wigglyslickly
 	dw .aptlynamed
@@ -492,7 +492,7 @@ OaksPkmnTalk9:
 .ok
 	jp NextRadioLine
 
-.Descriptors
+.Descriptors:
 	dw .cute
 	dw .weird
 	dw .pleasant
@@ -896,7 +896,7 @@ BenFernMusic5:
 	ld hl, BenFernText2A
 	jr z, .SunTueThurSun
 	ld hl, BenFernText2B
-.SunTueThurSun
+.SunTueThurSun:
 	ld a, POKEMON_MUSIC_6
 	jp NextRadioLine
 
@@ -906,7 +906,7 @@ BenFernMusic6:
 	ld hl, BenFernText3A
 	jr z, .SunTueThurSun
 	ld hl, BenFernText3B
-.SunTueThurSun
+.SunTueThurSun:
 	ld a, POKEMON_MUSIC_7
 	jp NextRadioLine
 
@@ -921,7 +921,7 @@ StartPokemonMusicChannel:
 	and 1
 	jr z, .SunTueThurSun
 	ld de, MUSIC_POKEMON_LULLABY
-.SunTueThurSun
+.SunTueThurSun:
 	callab RadioMusicRestartDE
 	ret
 
@@ -1235,7 +1235,7 @@ PeoplePlaces5:
 .ok
 	jp NextRadioLine
 
-.Descriptors
+.Descriptors:
 	dw PnP_cute
 	dw PnP_lazy
 	dw PnP_happy
@@ -1352,7 +1352,7 @@ PeoplePlaces6: ; Places
 	ld a, PLACES_AND_PEOPLE_7
 	jp NextRadioLine
 
-.Maps
+.Maps:
 	map PALLET_TOWN
 	map ROUTE_22
 	map PEWTER_CITY
@@ -1392,7 +1392,7 @@ PeoplePlaces7:
 .ok
 	jp PrintRadioLine
 
-.Descriptors
+.Descriptors:
 	dw PnP_cute
 	dw PnP_lazy
 	dw PnP_happy
@@ -1538,7 +1538,7 @@ BuenasPassword1:
 	jp z, BuenasPassword20
 	jp BuenasPassword8
 
-.PlayPassword
+.PlayPassword:
 	call StartRadioStation
 	ld a, [hBGMapMode]
 	push af
@@ -1594,7 +1594,7 @@ BuenasPassword4:
 ; Set the flag so that we don't generate a new password this week.
 	ld hl, WeeklyFlags
 	set 7, [hl]
-.AlreadyGotIt
+.AlreadyGotIt:
 	ld c, a
 	call GetBuenasPassword
 	ld hl, BuenaRadioText4
@@ -1638,29 +1638,29 @@ GetBuenasPassword:
 	ld c, [hl]
 	ret
 
-.StringFunctionJumpTable
+.StringFunctionJumpTable:
 	dw .Mon
 	dw .Item
 	dw .Move
 	dw .RawString
 
 
-.Mon
+.Mon:
 	call .GetTheIndex
 	call GetPokemonName
 	ret
 
-.Item
+.Item:
 	call .GetTheIndex
 	call GetItemName
 	ret
 
-.Move
+.Move:
 	call .GetTheIndex
 	call GetMoveName
 	ret
 
-.GetTheIndex
+.GetTheIndex:
 	ld h, 0
 	ld l, c
 	add hl, de
@@ -1668,7 +1668,7 @@ GetBuenasPassword:
 	ld [wNamedObjectIndexBuffer], a
 	ret
 
-.RawString
+.RawString:
 ; Get the string from the table...
 	ld a, c
 	and a

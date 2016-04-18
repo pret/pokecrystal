@@ -23,7 +23,7 @@ UnknownScript_0x77092:
 	end
 
 UnknownScript_0x77093:
-	setevent EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE 
+	setevent EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE
 	return
 
 UnknownScript_0x77097:
@@ -82,7 +82,7 @@ ClefairyDance:
 
 MountMoonSquareHiddenMoonStone:
 	dwb EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE, MOON_STONE
-	
+
 
 DontLitterSign:
 	jumptext DontLitterSignText

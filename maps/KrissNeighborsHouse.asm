@@ -37,9 +37,9 @@ KrissNeighborsHouseRadio:
 	closetext
 	setevent EVENT_LISTENED_TO_INITIAL_RADIO
 	end
-.NormalRadio
+.NormalRadio:
 	jumpstd radio1
-.AbbreviatedRadio
+.AbbreviatedRadio:
 	opentext
 	writetext KrisNeighborRadioText4
 	pause 45

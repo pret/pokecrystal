@@ -13,7 +13,7 @@ SpecialDratini: ; 0x8b170
 	ld a, [bc]
 	ld c, a
 	ld de, PARTYMON_STRUCT_LENGTH
-.CheckForDratini
+.CheckForDratini:
 ; start at the end of the party and search backwards for a Dratini
 	ld a, [hl]
 	cp DRATINI
@@ -28,7 +28,7 @@ SpecialDratini: ; 0x8b170
 	jr nz, .CheckForDratini
 	ret
 
-.GiveMoveset
+.GiveMoveset:
 	push hl
 	ld a, [ScriptVar]
 	ld hl, .Movesets
@@ -41,7 +41,7 @@ rept 2
 	inc de
 endr
 
-.GiveMoves
+.GiveMoves:
 	ld a, [hl]
 	and a ; is the move 00?
 	ret z ; if so, we're done here
@@ -69,15 +69,15 @@ endr
 	inc hl
 	jr .GiveMoves
 
-.Movesets
-.Moveset0
+.Movesets:
+.Moveset0:
 ; Dratini does not normally learn Extremespeed. This is a special gift.
 	db WRAP
 	db THUNDER_WAVE
 	db TWISTER
 	db EXTREMESPEED
 	db 0
-.Moveset1
+.Moveset1:
 ; This is the normal moveset of a level 15 Dratini
 	db WRAP
 	db LEER
@@ -107,7 +107,7 @@ endr
 	jr nz, .loop
 	ret
 
-.EmptyParty
+.EmptyParty:
 	scf
 	ret
 ; 8b1e1

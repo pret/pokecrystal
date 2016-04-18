@@ -143,7 +143,7 @@ GetMart: ; 15b31
 	ld de, DefaultMart
 	ret
 
-.IsAMart
+.IsAMart:
 	ld hl, Marts
 rept 2
 	add hl, de
@@ -165,7 +165,7 @@ StandardMart: ; 15b47
 	jr nz, .loop
 	ret
 
-.MartFunctions
+.MartFunctions:
 	dw .HowMayIHelpYou
 	dw .TopMenu
 	dw .Buy
@@ -241,7 +241,7 @@ FarReadMart: ; 15bbb
 	ld h, [hl]
 	ld l, a
 	ld de, CurMart
-.CopyMart
+.CopyMart:
 	ld a, [MartPointerBank]
 	call GetFarByte
 	ld [de], a
@@ -251,7 +251,7 @@ FarReadMart: ; 15bbb
 	jr nz, .CopyMart
 	ld hl, wMartItem1BCD
 	ld de, CurMart + 1
-.ReadMartItem
+.ReadMartItem:
 	ld a, [de]
 	inc de
 	cp -1
@@ -299,7 +299,7 @@ GetMartPrice: ; 15bf0
 	ret
 ; 15c1a
 
-.CharToNybble ; 15c1a
+.CharToNybble: ; 15c1a
 	ld a, [de]
 	inc de
 	cp " "
@@ -427,7 +427,7 @@ endr
 	ret
 ; 15cb0
 
-.MartTextFunctionPointers ; 15cb0
+.MartTextFunctionPointers: ; 15cb0
 	dwb .StandardMartPointers, 0
 	dwb .HerbShopPointers, 0
 	dwb .BargainShopPointers, 1
@@ -592,7 +592,7 @@ endr
 	and a
 	ret
 
-.SoldOut
+.SoldOut:
 	ld a, MARTTEXT_SOLD_OUT
 	call LoadBuyMenuText
 	call JoyWaitAorB
@@ -651,7 +651,7 @@ MenuDataHeader_Buy: ; 0x15e18
 	db 1 ; default option
 ; 0x15e20
 
-.menudata2: ; 0x15e20
+.menudata2 ; 0x15e20
 	db $30 ; pointers
 	db 4, 8 ; rows, columns
 	db 1 ; horizontal spacing
@@ -846,7 +846,7 @@ SellMenu: ; 15eb3
 	ret
 ; 15eee
 
-.dw: ; 15eee
+.dw ; 15eee
 	dw .try_sell
 	dw .cant_buy
 	dw .cant_buy
@@ -856,12 +856,12 @@ SellMenu: ; 15eb3
 	dw .try_sell
 ; 15efc
 
-.cant_buy: ; 15efc
+.cant_buy ; 15efc
 	ret
 ; 15efd
 
 
-.try_sell: ; 15efd
+.try_sell ; 15efd
 	callba _CheckTossableItem
 	ld a, [wItemAttributeParamBuffer]
 	and a
@@ -936,7 +936,7 @@ MenuDataHeader_BuySell: ; 0x15f88
 	db 1 ; default option
 ; 0x15f90
 
-.menudata2: ; 0x15f90
+.menudata2 ; 0x15f90
 	db $80 ; strings
 	db 3 ; items
 	db "BUY@"

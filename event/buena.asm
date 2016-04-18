@@ -121,15 +121,15 @@ SpecialBuenaPrize: ; 8afd4
 	call PrintBlueCardBalance
 	jr .Purchase
 
-.InsufficientBalance
+.InsufficientBalance:
 	ld hl, .Text_NotEnoughPoints
 	jr .print
 
-.BagFull
+.BagFull:
 	ld hl, .Text_NoRoom
 	jr .print
 
-.Purchase
+.Purchase:
 	ld de, SFX_TRANSACTION
 	call PlaySFX
 	ld hl, .Text_HereYouGo
@@ -160,7 +160,7 @@ SpecialBuenaPrize: ; 8afd4
 	db "@"
 ; 0x8b07c
 
-.Text_HereYouGo	; Here you go!
+.Text_HereYouGo:	; Here you go!
 	text_jump UnknownText_0x1c58d1
 	db "@"
 ; 0x8b081
@@ -236,7 +236,7 @@ Buena_PlacePrizeMenuBox: ; 8b0d6
 	ret
 ; 8b0dd
 
-.menudataheader: ; 0x8b0dd
+.menudataheader ; 0x8b0dd
 	db $40 ; flags
 	db 00, 00 ; start coords
 	db 11, 17 ; end coords
@@ -288,13 +288,13 @@ Buena_PrizeMenu: ; 8b0e2
 	dba .prizepoints
 ; 8b129
 
-.indices: ; 8b129
+.indices ; 8b129
 	db 9
 	db 1, 2, 3, 4, 5, 6, 7, 8, 9
 	db -1
 ; 8b134
 
-.prizeitem: ; 8b134
+.prizeitem ; 8b134
 	ld a, [MenuSelection]
 	call Buena_getprize
 	ld a, [hl]
@@ -306,7 +306,7 @@ Buena_PrizeMenu: ; 8b0e2
 	ret
 ; 8b147
 
-.prizepoints: ; 8b147
+.prizepoints ; 8b147
 	ld a, [MenuSelection]
 	call Buena_getprize
 	inc hl
@@ -328,7 +328,7 @@ endr
 	ret
 ; 8b15e
 
-.prizes: ; 8b15e
+.prizes ; 8b15e
 	db ULTRA_BALL,   2
 	db FULL_RESTORE, 2
 	db NUGGET,       3

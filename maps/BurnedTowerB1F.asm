@@ -34,7 +34,7 @@ BurnedTowerB1FLadderCallback:
 	checkevent EVENT_RELEASED_THE_BEASTS
 	iftrue .NoChange
 	changeblock $6, $e, $2
-.NoChange
+.NoChange:
 	return
 
 ReleaseTheBeasts:
@@ -115,7 +115,7 @@ BurnedTowerB1FEusine:
 	applymovement BURNEDTOWERB1F_EUSINE, BurnedTowerB1FEusineMovement1
 	jump UnknownScript_0x18622a
 
-.Movement
+.Movement:
 	applymovement BURNEDTOWERB1F_EUSINE, BurnedTowerB1FEusineMovement2
 UnknownScript_0x18622a:
 	disappear BURNEDTOWERB1F_EUSINE
@@ -130,53 +130,53 @@ BurnedTowerB1FBoulder:
 	jumpstd strengthboulder
 
 BurnedTowerRaikouMovement:
-	db $39 ; movement
+	set_sliding
 	fast_jump_step_down
 	fast_jump_step_left
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 BurnedTowerEnteiMovement:
-	db $39 ; movement
+	set_sliding
 	fast_jump_step_right
 	fast_jump_step_down
 	fast_jump_step_right
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 BurnedTowerSuicuneMovement1:
-	db $39 ; movement
+	set_sliding
 	fast_jump_step_right
 	fast_jump_step_down
 	fast_jump_step_down
 	fast_jump_step_left
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 BurnedTowerSuicuneMovement2:
-	db $39 ; movement
+	set_sliding
 	fast_jump_step_left
 	fast_jump_step_up
 	big_step_up
 	fast_jump_step_right
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 MovementData_0x18624f:
-	db $39 ; movement
+	set_sliding
 	big_step_down
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 BurnedTowerSuicuneMovement3:
-	db $39 ; movement
+	set_sliding
 	big_step_up
 	fast_jump_step_right
 	fast_jump_step_down
 	fast_jump_step_down
 	fast_jump_step_down
 	fast_jump_step_down
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 BurnedTowerB1FEusineMovement2:

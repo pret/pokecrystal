@@ -55,8 +55,8 @@ MovementPointers: ; 5075
 	dw Movement_fast_jump_step_up     ; 35
 	dw Movement_fast_jump_step_left   ; 36
 	dw Movement_fast_jump_step_right  ; 37
-	dw Movement_38                    ; 38
-	dw Movement_39                    ; 39
+	dw Movement_remove_sliding                    ; 38
+	dw Movement_set_sliding                    ; 39
 	dw Movement_remove_fixed_facing   ; 3a
 	dw Movement_fix_facing            ; 3b
 	dw Movement_show_person           ; 3c
@@ -85,7 +85,7 @@ MovementPointers: ; 5075
 	dw Movement_hide_emote            ; 53
 	dw Movement_show_emote            ; 54
 	dw Movement_step_shake            ; 55
-	dw Movement_56                    ; 56
+	dw Movement_tree_shake                    ; 56
 	dw Movement_rock_smash            ; 57
 	dw Movement_return_dig            ; 58
 	dw Movement_skyfall_top       ; 59
@@ -353,7 +353,7 @@ Movement_step_bump: ; 525f
 	ret
 ; 5279
 
-Movement_56: ; 5279
+Movement_tree_shake: ; 5279
 	ld a, 24
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
@@ -373,14 +373,14 @@ Movement_56: ; 5279
 	ret
 ; 5293
 
-Movement_38: ; 5293
+Movement_remove_sliding: ; 5293
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	res SLIDING, [hl]
 	jp ContinueReadingMovement
 ; 529c
 
-Movement_39: ; 529c
+Movement_set_sliding: ; 529c
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	set SLIDING, [hl]

@@ -336,7 +336,7 @@ endr
 
 ; XXX
 	pop hl
-.ReturnToMap
+.ReturnToMap:
 	pop de
 	pop bc
 	pop hl
@@ -514,17 +514,17 @@ FillMoves: ; 424e1
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-.GoToAttacks
+.GoToAttacks:
 	ld a, [hli]
 	and a
 	jr nz, .GoToAttacks
 	jr .GetLevel
 
-.NextMove
+.NextMove:
 	pop de
-.GetMove
+.GetMove:
 	inc hl
-.GetLevel
+.GetLevel:
 	ld a, [hli]
 	and a
 	jp z, .done
@@ -539,10 +539,10 @@ FillMoves: ; 424e1
 	cp b
 	jr nc, .GetMove
 
-.CheckMove
+.CheckMove:
 	push de
 	ld c, NUM_MOVES
-.CheckRepeat
+.CheckRepeat:
 	ld a, [de]
 	inc de
 	cp [hl]
@@ -552,7 +552,7 @@ FillMoves: ; 424e1
 	pop de
 	push de
 	ld c, NUM_MOVES
-.CheckSlot
+.CheckSlot:
 	ld a, [de]
 	and a
 	jr z, .LearnMove
@@ -576,10 +576,10 @@ FillMoves: ; 424e1
 	call ShiftMoves
 	pop de
 
-.ShiftedMove
+.ShiftedMove:
 	pop hl
 
-.LearnMove
+.LearnMove:
 	ld a, [hl]
 	ld [de], a
 	ld a, [Buffer1]

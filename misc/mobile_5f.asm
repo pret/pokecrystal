@@ -213,15 +213,15 @@ CheckStringForErrors: ; 17d073
 	cp $49
 	jr c, .NextChar
 
-.Fail
+.Fail:
 	scf
 	ret
 
-.NextChar
+.NextChar:
 	dec c
 	jr nz, .loop
 
-.Done
+.Done:
 	and a
 	ret
 ; 17d0b3
@@ -448,12 +448,12 @@ Special_Menu_ChallengeExplanationCancel: ; 17d224
 	ld hl, MenuDataHeader_17d26a ; Japanese Menu, where you can choose 'News' as an option
 	jr .Load_Interpret
 
-.English
+.English:
 	ld a, $4
 	ld [ScriptVar], a
 	ld hl, MenuDataHeader_ChallengeExplanationCancel ; English Menu
 
-.Load_Interpret
+.Load_Interpret:
 	call LoadMenuDataHeader
 	call Function17d246
 	call CloseWindow
@@ -473,14 +473,14 @@ Function17d246: ; 17d246
 	dec a
 	jr .LoadToScriptVar
 
-.UsewMenuCursorY
+.UsewMenuCursorY:
 	ld a, [wMenuCursorY]
 
-.LoadToScriptVar
+.LoadToScriptVar:
 	ld [ScriptVar], a
 	ret
 
-.Exit
+.Exit:
 	ld a, $4
 	ld [ScriptVar], a
 	ret
@@ -4869,7 +4869,7 @@ Function17f6b7: ; 17f6b7
 	ret
 ; 17f6cd
 
-.bcd_two_digits: ; 17f6cd
+.bcd_two_digits ; 17f6cd
 	ld c, a
 	and $f0
 	swap a
@@ -4877,7 +4877,7 @@ Function17f6b7: ; 17f6b7
 	ld a, c
 	and $f
 
-.bcd_digit: ; 17f6d8
+.bcd_digit ; 17f6d8
 	add "0"
 	ld [hli], a
 	ret

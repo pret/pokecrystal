@@ -11,7 +11,7 @@ RedsHouse1F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-.Trigger
+.Trigger:
 	end
 
 RedsMom:
@@ -24,7 +24,7 @@ RedsMom:
 	closetext
 	setevent EVENT_MET_REDS_MOM
 	end
-.MetAlready
+.MetAlready:
 	writetext RedsMomText2
 	waitbutton
 	closetext

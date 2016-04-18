@@ -40,7 +40,7 @@ SabrinaScript_0x189c2e:
 	closetext
 	end
 
-.FightDone
+.FightDone:
 	writetext UnknownText_0x189f6c
 	waitbutton
 	closetext
@@ -100,7 +100,7 @@ SaffronGymGuyScript:
 	closetext
 	end
 
-.SaffronGymGuyWinScript
+.SaffronGymGuyWinScript:
 	writetext SaffronGymGuyWinText
 	waitbutton
 	closetext
@@ -110,7 +110,7 @@ SaffronGymStatue:
 	checkflag ENGINE_MARSHBADGE
 	iftrue .Beaten
 	jumpstd gymstatue1
-.Beaten
+.Beaten:
 	trainertotext SABRINA, 1, $1
 	jumpstd gymstatue2
 

@@ -17,7 +17,7 @@ Route19_MapScriptHeader:
 
 	dbw MAPCALLBACK_TILES, .ClearRocks
 
-.ClearRocks
+.ClearRocks:
 	checkevent EVENT_CINNABAR_ROCKS_CLEARED
 	iftrue .Done
 	changeblock $6, $6, $7a
@@ -26,7 +26,7 @@ Route19_MapScriptHeader:
 	changeblock $c, $8, $7a
 	changeblock $4, $8, $7a
 	changeblock $a, $a, $7a
-.Done
+.Done:
 	return
 
 TrainerSwimmerfDawn:
@@ -99,7 +99,7 @@ FisherScript_0x19ea61:
 	closetext
 	end
 
-.RocksCleared
+.RocksCleared:
 	writetext Route19FisherText2
 	waitbutton
 	closetext

@@ -69,10 +69,10 @@ DayCareManScript_Outside:
 	applymovement ROUTE34_GRAMPS, Route34MovementData_DayCareManWalksBackInside
 	playsound SFX_ENTER_DOOR
 	disappear ROUTE34_GRAMPS
-.end_fail:
+.end_fail
 	end
 
-.walk_around_player:
+.walk_around_player
 	applymovement ROUTE34_GRAMPS, Route34MovementData_DayCareManWalksBackInside_WalkAroundPlayer
 	playsound SFX_ENTER_DOOR
 	disappear ROUTE34_GRAMPS
@@ -130,19 +130,19 @@ TrainerCamperTodd1:
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
-.Fight4
+.Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4
-.Fight3
+.Fight3:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight3
-.Fight2
+.Fight2:
 	checkflag ENGINE_FLYPOINT_BLACKTHORN
 	iftrue .LoadFight2
-.Fight1
+.Fight1:
 	checkflag ENGINE_FLYPOINT_CIANWOOD
 	iftrue .LoadFight1
-.LoadFight0
+.LoadFight0:
 	loadtrainer CAMPER, TODD1
 	startbattle
 	reloadmapafterbattle
@@ -150,7 +150,7 @@ TrainerCamperTodd1:
 	clearflag ENGINE_TODD
 	end
 
-.LoadFight1
+.LoadFight1:
 	loadtrainer CAMPER, TODD2
 	startbattle
 	reloadmapafterbattle
@@ -158,7 +158,7 @@ TrainerCamperTodd1:
 	clearflag ENGINE_TODD
 	end
 
-.LoadFight2
+.LoadFight2:
 	loadtrainer CAMPER, TODD3
 	startbattle
 	reloadmapafterbattle
@@ -166,7 +166,7 @@ TrainerCamperTodd1:
 	clearflag ENGINE_TODD
 	end
 
-.LoadFight3
+.LoadFight3:
 	loadtrainer CAMPER, TODD4
 	startbattle
 	reloadmapafterbattle
@@ -174,7 +174,7 @@ TrainerCamperTodd1:
 	clearflag ENGINE_TODD
 	end
 
-.LoadFight4
+.LoadFight4:
 	loadtrainer CAMPER, TODD5
 	startbattle
 	reloadmapafterbattle
@@ -255,19 +255,19 @@ TrainerPicnickerGina1:
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
-.Fight4
+.Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4
-.Fight3
+.Fight3:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight3
-.Fight2
+.Fight2:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .LoadFight2
-.Fight1
+.Fight1:
 	checkflag ENGINE_FLYPOINT_MAHOGANY
 	iftrue .LoadFight1
-.LoadFight0
+.LoadFight0:
 	loadtrainer PICNICKER, GINA1
 	startbattle
 	reloadmapafterbattle
@@ -275,7 +275,7 @@ TrainerPicnickerGina1:
 	clearflag ENGINE_GINA
 	end
 
-.LoadFight1
+.LoadFight1:
 	loadtrainer PICNICKER, GINA2
 	startbattle
 	reloadmapafterbattle
@@ -283,7 +283,7 @@ TrainerPicnickerGina1:
 	clearflag ENGINE_GINA
 	end
 
-.LoadFight2
+.LoadFight2:
 	loadtrainer PICNICKER, GINA3
 	startbattle
 	reloadmapafterbattle
@@ -291,7 +291,7 @@ TrainerPicnickerGina1:
 	clearflag ENGINE_GINA
 	end
 
-.LoadFight3
+.LoadFight3:
 	loadtrainer PICNICKER, GINA4
 	startbattle
 	reloadmapafterbattle
@@ -299,7 +299,7 @@ TrainerPicnickerGina1:
 	clearflag ENGINE_GINA
 	end
 
-.LoadFight4
+.LoadFight4:
 	loadtrainer PICNICKER, GINA5
 	startbattle
 	reloadmapafterbattle
@@ -492,11 +492,11 @@ Route34Nugget:
 
 Route34HiddenRareCandy:
 	dwb EVENT_ROUTE_34_HIDDEN_RARE_CANDY, RARE_CANDY
-	
+
 
 Route34HiddenSuperPotion:
 	dwb EVENT_ROUTE_34_HIDDEN_SUPER_POTION, SUPER_POTION
-	
+
 
 Route34MovementData_DayCareManWalksBackInside:
 	slow_step_left

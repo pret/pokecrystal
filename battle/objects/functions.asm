@@ -12,7 +12,7 @@ DoBattleAnimFrame: ; ccfbe
 	jp [hl]
 ; ccfce
 
-.Jumptable
+.Jumptable:
 	dw BattleAnimFunction_00 ; 00
 	dw BattleAnimFunction_01 ; 01
 	dw BattleAnimFunction_02 ; 02
@@ -425,7 +425,7 @@ GetBallAnimPal: ; cd249 (33:5249)
 	ld e, a
 	pop af
 	ld [rSVBK], a
-.IsInArray
+.IsInArray:
 	ld a, [hli]
 	cp -1
 	jr z, .load
@@ -634,7 +634,7 @@ BattleAnimFunction_08: ; cd306 (33:5306)
 	call .SetCoords
 	ret
 
-.SetCoords
+.SetCoords:
 	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc
 	ld a, [hl]
@@ -4100,7 +4100,7 @@ BattleAnim_Sine: ; ce734 (33:6734)
 	inc a
 	ret
 
-.ApplySineWave
+.ApplySineWave:
 	ld e, a
 	ld a, d
 	ld d, 0

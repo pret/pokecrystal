@@ -281,7 +281,15 @@ fast_jump_step_right: macro
 	db movement_fast_jump_step_right ; $37
 	endm
 
-__enum__ = $3a
+	enum movement_remove_sliding
+remove_sliding: macro
+	db movement_remove_sliding ; $38
+	endm
+
+	enum movement_set_sliding
+set_sliding: macro
+	db movement_set_sliding ; $39
+	endm
 
 	enum movement_remove_fixed_facing
 remove_fixed_facing: macro
@@ -425,7 +433,11 @@ step_shake: macro
 	db \1 ; displacement
 	endm
 
-__enum__ = $57
+	enum movement_tree_shake
+tree_shake: macro
+	db movement_tree_shake
+	endm
+
 	enum movement_rock_smash
 rock_smash: macro
 	db movement_rock_smash ; $57

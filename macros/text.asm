@@ -19,7 +19,7 @@ text_from_ram: MACRO
 	db TX_RAM
 	dw \1
 	ENDM
-	
+
 	enum TX_BCD
 text_bcd: macro
 	db TX_BCD

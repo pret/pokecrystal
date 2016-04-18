@@ -37,7 +37,7 @@ Special_DayCareMan: ; 166d6
 	call DayCare_InitBreeding
 	ret
 
-.AskWithdrawMon
+.AskWithdrawMon:
 	callba GetBreedMon1LevelGrowth
 	ld hl, wBreedMon1Nick
 	call GetPriceToRetrieveBreedmon
@@ -76,7 +76,7 @@ Special_DayCareLady: ; 1672a
 	call DayCare_InitBreeding
 	ret
 
-.AskWithdrawMon
+.AskWithdrawMon:
 	callba GetBreedMon2LevelGrowth
 	ld hl, wBreedMon2Nick
 	call GetPriceToRetrieveBreedmon
@@ -144,27 +144,27 @@ DayCareAskDepositPokemon: ; 16798
 	and a
 	ret
 
-.Declined
+.Declined:
 	ld a, DAYCARETEXT_COME_AGAIN
 	scf
 	ret
 
-.Egg
+.Egg:
 	ld a, DAYCARETEXT_CANT_BREED_EGG
 	scf
 	ret
 
-.OnlyOneMon
+.OnlyOneMon:
 	ld a, DAYCARETEXT_LAST_MON
 	scf
 	ret
 
-.OutOfUsableMons
+.OutOfUsableMons:
 	ld a, DAYCARETEXT_LAST_ALIVE_MON
 	scf
 	ret
 
-.HoldingMail
+.HoldingMail:
 	ld a, DAYCARETEXT_REMOVE_MAIL
 	scf
 	ret
@@ -227,7 +227,7 @@ DayCare_AskWithdrawBreedMon: ; 16807
 	scf
 	ret
 
-.PartyFull
+.PartyFull:
 	ld a, DAYCARETEXT_NOT_ENOUGH_MONEY
 	scf
 	ret
@@ -460,16 +460,16 @@ Special_DayCareManOutside: ; 16936
 	ld hl, .TakeGoodCareOfItText
 	jr .Load0
 
-.Declined
+.Declined:
 	ld hl, .IllKeepItThanksText
 
-.Load0
+.Load0:
 	call PrintText
 	xor a
 	ld [ScriptVar], a
 	ret
 
-.PartyFull
+.PartyFull:
 	ld hl, .PartyFullText
 	call PrintText
 	ld a, $1
@@ -575,7 +575,7 @@ DayCare_GiveEgg: ; 169ac
 	and a
 	ret
 
-.PartyFull
+.PartyFull:
 	scf
 	ret
 ; 16a31
@@ -644,14 +644,14 @@ DayCare_InitBreeding: ; 16a3b
 	jr z, .LoadWhichBreedmonIsTheMother
 	inc a
 
-.LoadWhichBreedmonIsTheMother
+.LoadWhichBreedmonIsTheMother:
 	ld [wBreedMotherOrNonDitto], a
 	and a
 	ld a, [wBreedMon1Species]
 	jr z, .GotMother
 	ld a, [wBreedMon2Species]
 
-.GotMother
+.GotMother:
 	ld [CurPartySpecies], a
 	callab GetPreEvolution
 	callab GetPreEvolution
@@ -666,7 +666,7 @@ DayCare_InitBreeding: ; 16a3b
 	ld a, NIDORAN_F
 	jr c, .GotEggSpecies
 	ld a, NIDORAN_M
-.GotEggSpecies
+.GotEggSpecies:
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	ld [wEggMonSpecies], a
@@ -739,14 +739,14 @@ DayCare_InitBreeding: ; 16a3b
 	ld e, c
 	jr .GotDVs
 
-.ParentCheck2
+.ParentCheck2:
 	ld a, [wBreedMotherOrNonDitto]
 	and a
 	jr nz, .GotDVs
 	ld d, b
 	ld e, c
 
-.GotDVs
+.GotDVs:
 	ld a, [de]
 	inc de
 	and $f
@@ -763,7 +763,7 @@ DayCare_InitBreeding: ; 16a3b
 	add b
 	ld [hl], a
 
-.SkipDVs
+.SkipDVs:
 	ld hl, StringBuffer1
 	ld de, wMonOrItemNameBuffer
 	ld bc, NAME_LENGTH

@@ -7,22 +7,22 @@ Script_ForcedMovement:: ; 0x1253d
 	end
 ; 0x12550
 
-.up: ; 0x12550
+.up ; 0x12550
 	applymovement PLAYER, .MovementData_up
 	end
 ; 0x12555
 
-.down: ; 0x12555
+.down ; 0x12555
 	applymovement PLAYER, .MovementData_down
 	end
 ; 0x1255a
 
-.right: ; 0x1255a
+.right ; 0x1255a
 	applymovement PLAYER, .MovementData_right
 	end
 ; 0x1255f
 
-.left: ; 0x1255f
+.left ; 0x1255f
 	applymovement PLAYER, .MovementData_left
 	end
 ; 0x12564

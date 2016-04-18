@@ -116,7 +116,7 @@ NationalParkBugContestTMDig:
 
 NationalParkBugContestHiddenFullHeal:
 	dwb EVENT_NATIONAL_PARK_HIDDEN_FULL_HEAL, FULL_HEAL
-	
+
 
 UnknownText_0x5c94c:
 	text "DON: I'm going to"

@@ -263,7 +263,7 @@ PlacePartyMonLevel: ; 50176
 	ld [hli], a
 	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
 	; jr .okay
-.ThreeDigits
+.ThreeDigits:
 	lb bc, PRINTNUM_RIGHTALIGN | 1, 3
 ; .okay
 	call PrintNum
@@ -359,11 +359,11 @@ PlacePartyMonTMHMCompatibility: ; 501e0
 	ret
 ; 50221
 
-.string_able: ; 50221
+.string_able ; 50221
 	db "ABLE@"
 ; 50226
 
-.string_not_able: ; 50226
+.string_not_able ; 50226
 	db "NOT ABLE@"
 ; 5022f
 
@@ -448,10 +448,10 @@ endr
 	ret
 ; 502a3
 
-.string_able: ; 502a3
+.string_able ; 502a3
 	db "ABLE@"
 ; 502a8
-.string_not_able: ; 502a8
+.string_not_able ; 502a8
 	db "NOT ABLE@"
 ; 502b1
 
@@ -496,15 +496,15 @@ PlacePartyMonGender: ; 502b1
 	ret
 ; 502ee
 
-.male: ; 502ee
+.male ; 502ee
 	db "♂…MALE@"
 ; 502f5
 
-.female: ; 502f5
+.female ; 502f5
 	db "♀…FEMALE@"
 ; 502fe
 
-.unknown: ; 502fe
+.unknown ; 502fe
 	db "…UNKNOWN@"
 ; 50307
 
@@ -658,8 +658,8 @@ InitPartyMenuGFX: ; 503e0
 .loop
 	push bc
 	push hl
-	ld hl, Function8e83f
-	ld a, BANK(Function8e83f)
+	ld hl, LoadMenuMonIcon
+	ld a, BANK(LoadMenuMonIcon)
 	ld e, $0
 	rst FarCall
 	ld a, [hObjectStructIndexBuffer]
@@ -752,8 +752,8 @@ PartyMenuSelect: ; 0x50457
 	ld [wPartyMenuCursor], a
 	ld a, [hJoyLast]
 	ld b, a
-	bit 1, b
-	jr nz, .exitmenu ; B button?
+	bit B_BUTTON_F, b
+	jr nz, .exitmenu ; B button
 	ld a, [wMenuCursorY]
 	dec a
 	ld [CurPartyMon], a

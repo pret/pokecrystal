@@ -33,11 +33,11 @@ Route29_MapScriptHeader:
 	checkflag ENGINE_ZEPHYRBADGE
 	iftrue .DoesTuscanyAppear
 
-.TuscanyDisappears
+.TuscanyDisappears:
 	disappear ROUTE29_TUSCANY
 	return
 
-.DoesTuscanyAppear
+.DoesTuscanyAppear:
 	checkcode VAR_WEEKDAY
 	if_not_equal TUESDAY, .TuscanyDisappears
 	appear ROUTE29_TUSCANY
@@ -159,13 +159,13 @@ CooltrainerMScript_0x1a1031:
 	iftrue .day_morn
 	checknite
 	iftrue .nite
-.day_morn:
+.day_morn
 	writetext Text_WaitingForNight
 	waitbutton
 	closetext
 	end
 
-.nite:
+.nite
 	writetext Text_WaitingForMorning
 	waitbutton
 	closetext
@@ -183,7 +183,7 @@ TuscanyScript:
 	writetext MeetTuscanyText
 	buttonsound
 	setevent EVENT_MET_TUSCANY_OF_TUESDAY
-.MetTuscany
+.MetTuscany:
 	writetext TuscanyGivesGiftText
 	buttonsound
 	verbosegiveitem PINK_BOW

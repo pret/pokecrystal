@@ -79,7 +79,7 @@ LZ_LONG_HI   EQU %00000011
 	ld a, d
 	ld [wLZAddress + 1], a
 
-.Main
+.Main:
 	ld a, [hl]
 	cp LZ_END
 	ret z
@@ -145,7 +145,7 @@ LZ_LONG_HI   EQU %00000011
 	jr z, .Zero
 
 
-.Literal
+.Literal:
 ; Read literal data for bc bytes.
 .lloop
 	dec c
@@ -160,7 +160,7 @@ LZ_LONG_HI   EQU %00000011
 	jr .lloop
 
 
-.Iter
+.Iter:
 ; Write the same byte for bc bytes.
 	ld a, [hli]
 
@@ -176,7 +176,7 @@ LZ_LONG_HI   EQU %00000011
 	jr .iloop
 
 
-.Alt
+.Alt:
 ; Alternate two bytes for bc bytes.
 	dec c
 	jr nz, .anext1
@@ -206,7 +206,7 @@ LZ_LONG_HI   EQU %00000011
 	jr .Main
 
 
-.Zero
+.Zero:
 ; Write 0 for bc bytes.
 	xor a
 
@@ -276,7 +276,7 @@ LZ_LONG_HI   EQU %00000011
 ; For now, it defaults to LZ_REPEAT.
 
 
-.Repeat
+.Repeat:
 ; Copy decompressed data for bc bytes.
 	dec c
 	jr nz, .rnext
@@ -290,7 +290,7 @@ LZ_LONG_HI   EQU %00000011
 	jr .Repeat
 
 
-.Flip
+.Flip:
 ; Copy bitflipped decompressed data for bc bytes.
 	dec c
 	jr nz, .fnext
@@ -316,7 +316,7 @@ LZ_LONG_HI   EQU %00000011
 	jr .Flip
 
 
-.Reverse
+.Reverse:
 ; Copy reversed decompressed data for bc bytes.
 	dec c
 	jr nz, .rvnext

@@ -57,7 +57,7 @@ GuitaristClydeScript:
 	closetext
 	end
 
-.mobile:
+.mobile
 	opentext
 	writetext UnknownText_0x75cfe
 	waitbutton

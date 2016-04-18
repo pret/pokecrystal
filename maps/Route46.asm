@@ -60,13 +60,13 @@ UnknownScript_0x1a96da:
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
 	if_equal 0, .LoadFight0
-.Fight2
+.Fight2:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight2
-.Fight1
+.Fight1:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
-.LoadFight0
+.LoadFight0:
 	loadtrainer PICNICKER, ERIN1
 	startbattle
 	reloadmapafterbattle
@@ -74,7 +74,7 @@ UnknownScript_0x1a96da:
 	clearflag ENGINE_ERIN
 	end
 
-.LoadFight1
+.LoadFight1:
 	loadtrainer PICNICKER, ERIN2
 	startbattle
 	reloadmapafterbattle
@@ -82,7 +82,7 @@ UnknownScript_0x1a96da:
 	clearflag ENGINE_ERIN
 	end
 
-.LoadFight2
+.LoadFight2:
 	loadtrainer PICNICKER, ERIN3
 	startbattle
 	reloadmapafterbattle

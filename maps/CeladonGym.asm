@@ -35,7 +35,7 @@ ErikaScript_0x72a6a:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_RAINBOWBADGE
-.FightDone
+.FightDone:
 	checkevent EVENT_GOT_TM19_GIGA_DRAIN
 	iftrue UnknownScript_0x72aae
 	writetext UnknownText_0x72cb0
@@ -108,7 +108,7 @@ CeladonGymStatue:
 	checkflag ENGINE_RAINBOWBADGE
 	iftrue .Beaten
 	jumpstd gymstatue1
-.Beaten
+.Beaten:
 	trainertotext ERIKA, 1, $1
 	jumpstd gymstatue2
 

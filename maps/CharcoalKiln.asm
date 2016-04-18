@@ -22,13 +22,13 @@ CharcoalKilnBoss:
 	closetext
 	end
 
-.SavedSlowpoke
+.SavedSlowpoke:
 	writetext CharcoalKilnBossText2
 	waitbutton
 	closetext
 	end
 
-.GotCut
+.GotCut:
 	writetext CharcoalKilnBossText3
 	waitbutton
 	closetext
@@ -46,7 +46,7 @@ CharcoalKilnApprentice:
 	closetext
 	end
 
-.Thanks
+.Thanks:
 	writetext CharcoalKilnApprenticeText2
 	buttonsound
 	verbosegiveitem CHARCOAL
@@ -55,10 +55,10 @@ CharcoalKilnApprentice:
 	closetext
 	end
 
-.YoureTheCoolest
+.YoureTheCoolest:
 	writetext CharcoalKilnApprenticeText3
 	waitbutton
-.Done
+.Done:
 	closetext
 	end
 

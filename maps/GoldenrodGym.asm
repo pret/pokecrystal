@@ -42,7 +42,7 @@ WhitneyScript_0x5400c:
 	setevent EVENT_BEAT_BEAUTY_SAMANTHA
 	setevent EVENT_BEAT_LASS_CARRIE
 	setevent EVENT_BEAT_LASS_BRIDGET
-.FightDone
+.FightDone:
 	opentext
 	checkevent EVENT_MADE_WHITNEY_CRY
 	iffalse .StoppedCrying
@@ -51,7 +51,7 @@ WhitneyScript_0x5400c:
 	closetext
 	end
 
-.StoppedCrying
+.StoppedCrying:
 	checkevent EVENT_GOT_TM45_ATTRACT
 	iftrue UnknownScript_0x54077
 	checkflag ENGINE_PLAINBADGE
@@ -88,10 +88,10 @@ GoldenrodGymTriggerRockets:
 	if_equal 6, .GoldenrodRockets
 	end
 
-.GoldenrodRockets
+.GoldenrodRockets:
 	jumpstd goldenrodrockets
 
-.RadioTowerRockets
+.RadioTowerRockets:
 	jumpstd radiotowerrockets
 
 TrainerLassCarrie:
@@ -161,7 +161,7 @@ GoldenrodGymGuyScript:
 	closetext
 	end
 
-.GoldenrodGymGuyWinScript
+.GoldenrodGymGuyWinScript:
 	opentext
 	writetext GoldenrodGymGuyWinText
 	waitbutton
@@ -172,7 +172,7 @@ GoldenrodGymStatue:
 	checkflag ENGINE_PLAINBADGE
 	iftrue .Beaten
 	jumpstd gymstatue1
-.Beaten
+.Beaten:
 	trainertotext WHITNEY, 1, $1
 	jumpstd gymstatue2
 

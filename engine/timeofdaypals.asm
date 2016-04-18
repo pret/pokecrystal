@@ -215,7 +215,7 @@ ReplaceTimeOfDayPals: ; 8c0e5
 	ld [wTimeOfDayPalset], a
 	ret
 
-.DarkCave
+.DarkCave:
 	ld a, [StatusFlags]
 	bit 2, a ; Flash
 	jr nz, .UsedFlash
@@ -223,7 +223,7 @@ ReplaceTimeOfDayPals: ; 8c0e5
 	ld [wTimeOfDayPalset], a
 	ret
 
-.UsedFlash
+.UsedFlash:
 	ld a, %10101010 ; 2, 2, 2, 2
 	ld [wTimeOfDayPalset], a
 	ret
@@ -254,31 +254,31 @@ endr
 	jp [hl]
 ; 8c126
 
-.TimePalettes
+.TimePalettes:
 	dw .MorningPalette
 	dw .DayPalette
 	dw .NitePalette
 	dw .DarknessPalette
 
-.MorningPalette
+.MorningPalette:
 	ld a, [wTimeOfDayPalset]
 	and %00000011 ; 0
 	ret
 
-.DayPalette
+.DayPalette:
 	ld a, [wTimeOfDayPalset]
 	and %00001100 ; 1
 	srl a
 	srl a
 	ret
 
-.NitePalette
+.NitePalette:
 	ld a, [wTimeOfDayPalset]
 	and %00110000 ; 2
 	swap a
 	ret
 
-.DarknessPalette
+.DarknessPalette:
 	ld a, [wTimeOfDayPalset]
 	and %11000000 ; 3
 	rlca
@@ -381,8 +381,8 @@ endr
 	db %00000000, %00000000, %00000000
 
 .day
-	db %11111111, %11111111, %11111111	
-	db %11111110, %11111110, %11111110	
+	db %11111111, %11111111, %11111111
+	db %11111110, %11111110, %11111110
 	db %11111001, %11100100, %11100100
 	db %11100100, %11010000, %11010000
 	db %10010000, %10000000, %10000000

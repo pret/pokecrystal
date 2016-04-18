@@ -24,7 +24,7 @@ CooltrainerMScript_0x9b693:
 	closetext
 	end
 
-.BlueReturned
+.BlueReturned:
 	writetext UnknownText_0x9b6f5
 	waitbutton
 	closetext

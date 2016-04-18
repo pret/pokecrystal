@@ -259,7 +259,7 @@ endr
 	ret
 ; 4e794
 
-.check_statused: ; 4e794
+.check_statused ; 4e794
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Species
 	call GetPartyLocation
@@ -296,7 +296,7 @@ endr
 	ret
 ; 4e7cf
 
-.balls_of_light: ; 4e7cf
+.balls_of_light ; 4e7cf
 	ld hl, wJumptableIndex
 	ld a, [hl]
 	cp 32

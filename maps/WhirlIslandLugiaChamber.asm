@@ -12,18 +12,18 @@ WhirlIslandLugiaChamber_MapScriptHeader:
 
 	dbw MAPCALLBACK_OBJECTS, .Lugia
 
-.Lugia
+.Lugia:
 	checkevent EVENT_FOUGHT_LUGIA
 	iftrue .NoAppear
 	checkitem SILVER_WING
 	iftrue .Appear
 	jump .NoAppear
 
-.Appear
+.Appear:
 	appear WHIRLISLANDLUGIACHAMBER_LUGIA
 	return
 
-.NoAppear
+.NoAppear:
 	disappear WHIRLISLANDLUGIACHAMBER_LUGIA
 	return
 

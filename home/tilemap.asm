@@ -29,7 +29,7 @@ RestoreTileBackup:: ; 0x1c23
 	ret
 ; 0x1c30
 
-.copy: ; 0x1c30
+.copy ; 0x1c30
 	call GetMenuBoxDims
 	inc b
 	inc c

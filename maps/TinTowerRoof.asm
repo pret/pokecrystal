@@ -12,18 +12,18 @@ TinTowerRoof_MapScriptHeader:
 
 	dbw MAPCALLBACK_OBJECTS, .HoOh
 
-.HoOh
+.HoOh:
 	checkevent EVENT_FOUGHT_HO_OH
 	iftrue .NoAppear
 	checkitem RAINBOW_WING
 	iftrue .Appear
 	jump .NoAppear
 
-.Appear
+.Appear:
 	appear TINTOWERROOF_HO_OH
 	return
 
-.NoAppear
+.NoAppear:
 	disappear TINTOWERROOF_HO_OH
 	return
 

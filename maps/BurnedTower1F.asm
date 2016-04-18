@@ -35,11 +35,11 @@ BurnedTower1F_MapScriptHeader:
 	checkevent EVENT_HOLE_IN_BURNED_TOWER
 	iftrue .Next
 	changeblock $a, $8, $32 ; hole
-.Next
+.Next:
 	checkevent EVENT_RELEASED_THE_BEASTS
 	iftrue .Done
 	changeblock $6, $e, $9 ; ladder
-.Done
+.Done:
 	return
 
 .EusineTrigger:
@@ -79,7 +79,7 @@ BurnedTowerRivalBattleScript:
 	reloadmapafterbattle
 	jump .returnfrombattle
 
-.totodile:
+.totodile
 	winlosstext BurnedTowerSilver_WinText, BurnedTowerSilver_LossText
 	setlasttalked BURNEDTOWER1F_SILVER
 	loadtrainer RIVAL1, RIVAL1_7
@@ -88,7 +88,7 @@ BurnedTowerRivalBattleScript:
 	reloadmapafterbattle
 	jump .returnfrombattle
 
-.chikorita:
+.chikorita
 	winlosstext BurnedTowerSilver_WinText, BurnedTowerSilver_LossText
 	setlasttalked BURNEDTOWER1F_SILVER
 	loadtrainer RIVAL1, RIVAL1_8
@@ -97,7 +97,7 @@ BurnedTowerRivalBattleScript:
 	reloadmapafterbattle
 	jump .returnfrombattle
 
-.returnfrombattle:
+.returnfrombattle
 	playmusic MUSIC_RIVAL_AFTER
 	opentext
 	writetext BurnedTowerSilver_AfterText1
@@ -137,11 +137,11 @@ BurnedTower1FRock:
 
 BurnedTower1FHiddenEther:
 	dwb EVENT_BURNED_TOWER_1F_HIDDEN_ETHER, ETHER
-	
+
 
 BurnedTower1FHiddenUltraBall:
 	dwb EVENT_BURNED_TOWER_1F_HIDDEN_ULTRA_BALL, ULTRA_BALL
-	
+
 
 BurnedTower1FHPUp:
 	itemball HP_UP

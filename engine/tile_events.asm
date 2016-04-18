@@ -21,17 +21,17 @@ CheckDirectionalWarp:: ; 149af
 ; Else, set carry (immediate warp).
 	ld a, [PlayerStandingTile]
 	cp $70 ; Warp on down
-	jr z, .not_warp
+	jr z, .directional
 	cp $76 ; Warp on left
-	jr z, .not_warp
+	jr z, .directional
 	cp $78 ; Warp on up
-	jr z, .not_warp
+	jr z, .directional
 	cp $7e ; Warp on right
-	jr z, .not_warp
+	jr z, .directional
 	scf
 	ret
 
-.not_warp
+.directional
 	xor a
 	ret
 ; 149c6
@@ -44,7 +44,7 @@ CheckWarpFacingDown: ; 149c6
 	ret
 ; 149d3
 
-.blocks: ; 149d3
+.blocks ; 149d3
 	db $71 ; door
 	db $79
 	db $7a ; stairs
@@ -65,7 +65,7 @@ CheckGrassCollision:: ; 149dd
 	ret
 ; 149ea
 
-.blocks: ; 149ea
+.blocks ; 149ea
 	db $08
 	db $18 ; tall grass
 	db $14 ; tall grass
@@ -87,7 +87,7 @@ CheckCutCollision: ; 149f5
 	ret
 ; 14a00
 
-.blocks: ; 14a00
+.blocks ; 14a00
 	db $12 ; cut tree
 	db $1a ; cut tree
 	db $10 ; tall grass

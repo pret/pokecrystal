@@ -305,7 +305,7 @@ ElmsLabHealingMachine:
 	closetext
 	end
 
-.CanHeal
+.CanHeal:
 	writetext ElmsLabHealingMachineText2
 	yesorno
 	iftrue ElmsLabHealingMachine_HealParty
@@ -578,13 +578,13 @@ ElmsLabWindow:
 	iftrue .BreakIn
 	jump .Normal
 
-.BreakIn
+.BreakIn:
 	writetext ElmsLabWindowText2
 	waitbutton
 	closetext
 	end
 
-.Normal
+.Normal:
 	writetext ElmsLabWindowText1
 	waitbutton
 	closetext

@@ -38,7 +38,7 @@ SurgeScript_0x1920a5:
 	closetext
 	end
 
-.FightDone
+.FightDone:
 	writetext UnknownText_0x192303
 	waitbutton
 	closetext
@@ -87,7 +87,7 @@ VermilionGymGuyScript:
 	closetext
 	end
 
-.VermilionGymGuyWinScript
+.VermilionGymGuyWinScript:
 	writetext VermilionGymGuyWinText
 	waitbutton
 	closetext
@@ -100,7 +100,7 @@ VermilionGymStatue:
 	checkflag ENGINE_THUNDERBADGE
 	iftrue .Beaten
 	jumpstd gymstatue1
-.Beaten
+.Beaten:
 	trainertotext LT_SURGE, 1, $1
 	jumpstd gymstatue2
 

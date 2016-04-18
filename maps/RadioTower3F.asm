@@ -23,7 +23,7 @@ CardKeyShutterCallback:
 	iftrue .Change
 	return
 
-.Change
+.Change:
 	changeblock $e, $2, $2a
 	changeblock $e, $4, $1
 	return

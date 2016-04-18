@@ -213,7 +213,7 @@ endr
 SlotsJumptable: ; 92844 (24:6844)
 	jumptable .Jumptable, wJumptableIndex
 
-.Jumptable
+.Jumptable:
 	dw Slots_Init        ; 00
 	dw Slots_BetAndStart ; 01
 	dw Slots_WaitStart     ; 02
@@ -358,7 +358,7 @@ Slots_FlashIfWin: ; 92955 (24:6955)
 	call Slots_Next
 	ret
 
-.GotIt
+.GotIt:
 	call Slots_Next
 	ld a, 16
 	ld [wcf64], a
@@ -800,8 +800,8 @@ Function92bd4: ; 92bd4 (24:6bd4)
 
 ; 92be4 (24:6be4)
 
-.dw: ; 92be4
-	
+.dw ; 92be4
+
 	dw ReelAction_DoNothing                   ; 00
 	dw Slots_StopReelIgnoreJoypad             ; 01
 	dw ReelAction_QuadrupleRate               ; 02
@@ -893,7 +893,7 @@ Slots_StopReelIgnoreJoypad: ; 92c4c
 	dec [hl]
 	ret
 
-.EndReel
+.EndReel:
 	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	ld a, $0
@@ -914,7 +914,7 @@ ReelAction_StopReel1: ; 92c5e
 	dec [hl]
 	call .CheckForBias
 	ret nz
-.NoBias
+.NoBias:
 	call Slots_StopReel
 	ret
 
@@ -955,7 +955,7 @@ ReelAction_StopReel2: ; 92c86
 	dec [hl]
 	ret
 
-.NoBias
+.NoBias:
 	call Slots_StopReel
 	ret
 
@@ -975,7 +975,7 @@ ReelAction_StopReel3: ; 92ca9
 	dec [hl]
 	ret
 
-.NoMatch
+.NoMatch:
 	ld a, [wSlotBias]
 	cp SLOTS_NOMATCH
 	jr z, .NoBias
@@ -987,7 +987,7 @@ ReelAction_StopReel3: ; 92ca9
 	dec [hl]
 	ret
 
-.NoBias
+.NoBias:
 	call Slots_StopReel
 	ret
 
@@ -1177,7 +1177,7 @@ ReelAction_DropReel: ; 92dca
 	call Slots_StopReel
 	ret
 
-.EggAgain
+.EggAgain:
 	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld [hl], $0
@@ -1234,7 +1234,7 @@ ReelAction_WaitDropReel: ; 92e31
 	dec [hl]
 	ret
 
-.DropReel
+.DropReel:
 	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	dec [hl]
@@ -1323,25 +1323,25 @@ Slots_CheckMatchedFirstTwoReels: ; 92e94
 ; 92ebd
 
 .Jumptable: ; 92ebd
-	
+
 	dw .zero
 	dw .one
 	dw .two
 	dw .three
 ; 92ec5
 
-.three: ; 92ec5
+.three ; 92ec5
 	call .CheckUpwardsDiag
 	call .CheckDownwardsDiag
 
-.two: ; 92ecb
+.two ; 92ecb
 	call .CheckBottomRow
 	call .CheckTopRow
 
-.one: ; 92ed1
+.one ; 92ed1
 	call .CheckMiddleRow
 
-.zero: ; 92ed4
+.zero ; 92ed4
 	ret
 
 ; 92ed5
@@ -1438,25 +1438,25 @@ Slots_CheckMatchedAllThreeReels: ; 92f1d
 ; 92f48
 
 .Jumptable: ; 92f48
-	
+
 	dw .zero
 	dw .one
 	dw .two
 	dw .three
 ; 92f50
 
-.three: ; 92f50
+.three ; 92f50
 	call .CheckUpwardsDiag
 	call .CheckDownwardsDiag
 
-.two: ; 92f56
+.two ; 92f56
 	call .CheckBottomRow
 	call .CheckTopRow
 
-.one: ; 92f5c
+.one ; 92f5c
 	call .CheckMiddleRow
 
-.zero: ; 92f5f
+.zero ; 92f5f
 	ret
 
 ; 92f60
@@ -1706,7 +1706,7 @@ Slots_AskBet: ; 9307c (24:707c)
 	call PrintText
 	jr .loop
 
-.Start
+.Start:
 	ld hl, Coins + 1
 	ld a, [hl]
 	sub c
@@ -1815,7 +1815,7 @@ SlotGetPayout: ; 93124 (24:7124)
 	callba MobileFn_105fe3
 	ret
 
-.PayoutTable
+.PayoutTable:
 	dw 300
 	dw  50
 	dw   6
@@ -1839,7 +1839,7 @@ SlotPayoutText: ; 93158 (24:7158)
 	callba MobileFn_105fd0
 	ret
 
-.MatchedSomething
+.MatchedSomething:
 	srl a
 	ld e, a
 	ld d, 0
@@ -1961,13 +1961,13 @@ SlotMachine_AnimateGolem: ; 9321d (24:721d)
 	jp [hl]
 
 .Jumptable: ; 9322d (24:722d)
-	
+
 	dw .init
 	dw .fall
 	dw .roll
 
 
-.init: ; 93233 (24:7233)
+.init ; 93233 (24:7233)
 	ld hl, SPRITEANIMSTRUCT_0E
 	add hl, bc
 	ld a, [hl]
@@ -1992,7 +1992,7 @@ SlotMachine_AnimateGolem: ; 9321d (24:721d)
 	add hl, bc
 	ld [hl], $0
 
-.fall: ; 93259 (24:7259)
+.fall ; 93259 (24:7259)
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
@@ -2021,7 +2021,7 @@ SlotMachine_AnimateGolem: ; 9321d (24:721d)
 	call Slots_PlaySFX
 	ret
 
-.roll: ; 93289 (24:7289)
+.roll ; 93289 (24:7289)
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld a, [hl]
@@ -2062,13 +2062,13 @@ Slots_AnimateChansey: ; 932ac (24:72ac)
 	jp [hl]
 
 .Jumptable: ; 932bc (24:72bc)
-	
+
 	dw .walk
 	dw .one
 	dw .two
 
 
-.walk: ; 932c2 (24:72c2)
+.walk ; 932c2 (24:72c2)
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hl]
@@ -2088,7 +2088,7 @@ Slots_AnimateChansey: ; 932ac (24:72ac)
 	ld a, $1
 	ld [wcf64], a
 
-.one: ; 932e0 (24:72e0)
+.one ; 932e0 (24:72e0)
 	ld a, [wcf64]
 	cp $2
 	jr z, .retain
@@ -2106,7 +2106,7 @@ Slots_AnimateChansey: ; 932ac (24:72ac)
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $8
-.two: ; 932fc (24:72fc)
+.two ; 932fc (24:72fc)
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]

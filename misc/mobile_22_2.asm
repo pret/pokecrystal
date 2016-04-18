@@ -19,21 +19,21 @@ Function8b342:: ; 8b342
 	ret
 ; 8b354
 
-.dw: ; 8b354
+.dw ; 8b354
 	dw .zero
 	dw .one
 	dw .two
 ; 8b35a
 
-.zero: ; 8b35a
+.zero ; 8b35a
 	mobile
 ; 8b35b
 
-.one: ; 8b35b
+.one ; 8b35b
 	mobile
 ; 8b35c
 
-.two: ; 8b35c
+.two ; 8b35c
 	mobile
 ; 8b35d
 
@@ -401,7 +401,7 @@ Function8b539: ; 8b539 (22:7539)
 	call Function8b4fd
 	ld e, $0
 	call Function89c44
-	call Function3238
+	call CGBOnly_LoadEDTile
 	ret
 
 Function8b555: ; 8b555 (22:7555)

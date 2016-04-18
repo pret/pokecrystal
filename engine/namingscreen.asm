@@ -88,10 +88,10 @@ endr
 .Pokemon: ; 1173e (4:573e)
 	ld a, [CurPartySpecies]
 	ld [wd265], a
-	ld hl, Function8e83f
-	ld a, BANK(Function8e83f)
+	ld hl, LoadMenuMonIcon
+	ld a, BANK(LoadMenuMonIcon)
 	ld e, $1
-	rst FarCall ;  ; indirect jump to Function8e83f (8e83f (23:683f))
+	rst FarCall ;  ; indirect jump to LoadMenuMonIcon (8e83f (23:683f))
 	ld a, [CurPartySpecies]
 	ld [wd265], a
 	call GetPokemonName
@@ -211,7 +211,7 @@ endr
 
 ; 11839 (4:5839)
 
-.oTomodachi_no_namae_sutoringu: ; 11839
+.oTomodachi_no_namae_sutoringu ; 11839
 	db "おともだち の なまえは?@"
 
 ; 11847
@@ -1076,7 +1076,7 @@ _ComposeMailMessage: ; 11e75 (mail?)
 INCBIN "gfx/icon/mail2.2bpp"
 ; 11f74
 
-.initwNamingScreenMaxNameLength: ; 11f74 (4:5f74)
+.initwNamingScreenMaxNameLength ; 11f74 (4:5f74)
 	ld a, MAIL_MSG_LENGTH + 1
 	ld [wNamingScreenMaxNameLength], a
 	ret
@@ -1176,7 +1176,7 @@ endr
 	dw .init_blinking_cursor
 	dw .process_joypad
 
-.init_blinking_cursor: ; 1201b (4:601b)
+.init_blinking_cursor ; 1201b (4:601b)
 	depixel 9, 2
 	ld a, SPRITE_ANIM_INDEX_09
 	call _InitSpriteAnimStruct
@@ -1194,7 +1194,7 @@ endr
 	inc [hl]
 	ret
 
-.process_joypad: ; 1203a (4:603a)
+.process_joypad ; 1203a (4:603a)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
 	and A_BUTTON

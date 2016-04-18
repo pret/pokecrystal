@@ -277,7 +277,7 @@ Function1047a3: ; 1047a3 (41:47a3)
 	decoord 0, 0, AttrMap
 	ld a, $1
 	ld [rVBK], a
-.copy:
+.copy
 	hlbgcoord 0, 0
 	ld c, SCREEN_WIDTH
 	ld b, SCREEN_HEIGHT

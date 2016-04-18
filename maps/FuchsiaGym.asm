@@ -42,7 +42,7 @@ JanineScript_0x195db9:
 	waitsfx
 	setflag ENGINE_SOULBADGE
 	jump UnknownScript_0x195e02
-.FightDone
+.FightDone:
 	faceplayer
 	opentext
 UnknownScript_0x195e02:
@@ -205,7 +205,7 @@ FuchsiaGymGuyScript:
 	closetext
 	end
 
-.FuchsiaGymGuyWinScript
+.FuchsiaGymGuyWinScript:
 	writetext FuchsiaGymGuyWinText
 	waitbutton
 	closetext
@@ -215,7 +215,7 @@ FuchsiaGymStatue:
 	checkflag ENGINE_SOULBADGE
 	iftrue .Beaten
 	jumpstd gymstatue1
-.Beaten
+.Beaten:
 	trainertotext JANINE, 1, $1
 	jumpstd gymstatue2
 
