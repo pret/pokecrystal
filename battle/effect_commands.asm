@@ -1541,11 +1541,6 @@ BattleCheckTypeMatchup: ; 347c8
 	and a
 	jr z, CheckTypeMatchup
 	ld hl, BattleMonType1
-
-	; fallthrough
-; 347d3
-
-
 CheckTypeMatchup: ; 347d3
 	push hl
 	push de

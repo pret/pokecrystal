@@ -42,7 +42,7 @@ LoadPushOAM:: ; 4031
 PushOAM: ; 403f
 	ld a, Sprites / $100
 	ld [rDMA], a
-	ld a, 40
+	ld a, (SpritesEnd - Sprites) / 4 ; 40
 .loop
 	dec a
 	jr nz, .loop

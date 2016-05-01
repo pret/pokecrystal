@@ -23,7 +23,7 @@ Function14146: ; mobile
 	push af
 	res 7, [hl]
 	set 6, [hl]
-	call RunCallback_04
+	call MapCallbackSprites_LoadUsedSpritesGFX
 	pop af
 	ld [wSpriteFlags], a
 	ret
@@ -35,7 +35,7 @@ Function14157: ; mobile
 	push af
 	set 7, [hl]
 	res 6, [hl]
-	call RunCallback_04
+	call MapCallbackSprites_LoadUsedSpritesGFX
 	pop af
 	ld [wSpriteFlags], a
 	ret
@@ -43,7 +43,7 @@ Function14157: ; mobile
 
 RefreshSprites:: ; 14168
 	call .Refresh
-	call RunCallback_04
+	call MapCallbackSprites_LoadUsedSpritesGFX
 	ret
 ; 1416f
 
@@ -165,7 +165,7 @@ endr
 ; 14209
 
 
-RunCallback_04: ; 14209
+MapCallbackSprites_LoadUsedSpritesGFX: ; 14209
 	ld a, MAPCALLBACK_SPRITES
 	call RunMapCallback
 	call GetUsedSprites

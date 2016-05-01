@@ -114,7 +114,7 @@ SpecialsPointers:: ; c029
 	add_special RandomPhoneRareWildMon
 	add_special RandomPhoneWildMon
 	add_special RandomPhoneMon
-	add_special RunCallback_04
+	add_special MapCallbackSprites_LoadUsedSpritesGFX
 	add_special PlaySlowCry
 	add_special SpecialSnorlaxAwake
 	add_special Special_YoungerHaircutBrother

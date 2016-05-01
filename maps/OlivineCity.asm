@@ -49,7 +49,7 @@ UnknownScript_0x1a8833:
 	disappear OLIVINECITY_OLIVINE_RIVAL
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
-	special RunCallback_04
+	special MapCallbackSprites_LoadUsedSpritesGFX
 	end
 
 UnknownScript_0x1a886b:
@@ -73,7 +73,7 @@ UnknownScript_0x1a886b:
 	dotrigger $1
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
-	special RunCallback_04
+	special MapCallbackSprites_LoadUsedSpritesGFX
 	end
 
 SailorScript_0x1a88a3:

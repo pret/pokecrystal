@@ -99,7 +99,7 @@ DidntCatchSudowoodo:
 	applymovement ROUTE36_WEIRD_TREE, WeirdTreeMovement_Flee
 	disappear ROUTE36_WEIRD_TREE
 	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
-	special RunCallback_04
+	special MapCallbackSprites_LoadUsedSpritesGFX
 	special RefreshSprites
 	end
 

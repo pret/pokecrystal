@@ -1,5 +1,5 @@
 HRAM_START         EQU $ff80
-hPushOAM           EQU $ff80
+hPushOAM           EQU $ff80 ; 10 bytes
 
 hROMBankBackup     EQU $ff8a
 hBuffer            EQU $ff8b

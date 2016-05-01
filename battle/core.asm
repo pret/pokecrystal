@@ -6048,7 +6048,7 @@ CheckPlayerHasUsableMoves: ; 3e786
 	jr .loop
 
 .done
-	and a
+	and a ; This is probably a bug, and will result in a move with PP Up confusing the game.
 	ret nz
 
 .force_struggle

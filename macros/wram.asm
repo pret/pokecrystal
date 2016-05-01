@@ -199,6 +199,21 @@ hof_mon: MACRO
 \1End::
 endm
 
+roam_struct: MACRO
+\1Species::   db
+\1Level::     db
+\1MapGroup::  db
+\1MapNumber:: db
+\1HP::        ds 1
+\1DVs::       ds 2
+ENDM
+
+bugcontestwinner: macro
+\1PersonID:: ds 1
+\1Mon:: ds 1
+\1Score:: ds 2
+endm
+
 hall_of_fame: MACRO
 \1::
 \1WinCount:: ds 1
@@ -248,4 +263,113 @@ slot_reel: MACRO
 \1Slot0d::       ds 1
 \1Slot0e::       ds 1
 \1Slot0f::       ds 1
+endm
+
+object_struct: MACRO
+\1Struct::
+\1Sprite:: ds 1
+\1MapObjectIndex:: ds 1
+\1SpriteTile:: ds 1
+\1MovementType:: ds 1
+\1Flags:: ds 2
+\1Palette:: ds 1
+\1Walking:: ds 1
+\1Direction:: ds 1
+\1StepType:: ds 1
+\1StepDuration:: ds 1
+\1Action:: ds 1
+\1ObjectStepFrame:: ds 1
+\1Facing:: ds 1
+\1StandingTile:: ds 1 ; collision
+\1LastTile:: ds 1     ; collision
+\1StandingMapX:: ds 1
+\1StandingMapY:: ds 1
+\1LastMapX:: ds 1
+\1LastMapY:: ds 1
+\1ObjectInitX:: ds 1
+\1ObjectInitY:: ds 1
+\1Radius:: ds 1
+\1SpriteX:: ds 1
+\1SpriteY:: ds 1
+\1SpriteXOffset:: ds 1
+\1SpriteYOffset:: ds 1
+\1MovementByteIndex:: ds 1
+\1Object28:: ds 1
+\1Object29:: ds 1
+\1Object30:: ds 1
+\1Object31:: ds 1
+\1Range:: ds 1
+	ds 7
+\1StructEnd::
+ENDM
+
+map_object: MACRO
+\1Object::
+\1ObjectStructID::  ds 1
+\1ObjectSprite::    ds 1
+\1ObjectYCoord::    ds 1
+\1ObjectXCoord::    ds 1
+\1ObjectMovement::  ds 1
+\1ObjectRadius::    ds 1
+\1ObjectHour::      ds 1
+\1ObjectTimeOfDay:: ds 1
+\1ObjectColor::     ds 1
+\1ObjectRange::     ds 1
+\1ObjectScript::    ds 2
+\1ObjectEventFlag:: ds 2
+	ds 2
+endm
+
+sprite_anim_struct: MACRO
+\1Index:: ds 1          ; 0
+\1FramesetID:: ds 1     ; 1
+\1AnimSeqID:: ds 1      ; 2
+\1TileID:: ds 1         ; 3
+\1XCoord:: ds 1         ; 4
+\1YCoord:: ds 1         ; 5
+\1XOffset:: ds 1        ; 6
+\1YOffset:: ds 1        ; 7
+\1Duration:: ds 1       ; 8
+\1DurationOffset:: ds 1 ; 9
+\1FrameIndex:: ds 1     ; a
+\1Sprite0b:: ds 1
+\1Sprite0c:: ds 1
+\1Sprite0d:: ds 1
+\1Sprite0e:: ds 1
+\1Sprite0f:: ds 1
+ENDM
+
+battle_anim_struct: MACRO
+; Placeholder until we can figure out what it all means
+\1_Index::  ds 1
+\1_Anim01:: ds 1
+\1_Anim02:: ds 1
+\1_FramesetIndex:: ds 1
+\1_FunctionIndex:: ds 1
+\1_Anim05:: ds 1
+\1_TileID:: ds 1
+\1_XCoord:: ds 1
+\1_YCoord:: ds 1
+\1_XOffset:: ds 1
+\1_YOffset:: ds 1
+\1_Anim0b:: ds 1
+\1_Anim0c:: ds 1
+\1_Anim0d:: ds 1
+\1_AnonJumptableIndex:: ds 1
+\1_Anim0f:: ds 1
+\1_Anim10:: ds 1
+\1_Anim11:: ds 1
+\1_Anim12:: ds 1
+\1_Anim13:: ds 1
+\1_Anim14:: ds 1
+\1_Anim15:: ds 1
+\1_Anim16:: ds 1
+\1_Anim17:: ds 1
+endm
+
+battle_bg_effect: MACRO
+\1_Function:: ds 1
+\1_01:: ds 1
+\1_02:: ds 1
+\1_03:: ds 1
 endm
