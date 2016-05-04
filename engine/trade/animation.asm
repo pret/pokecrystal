@@ -224,9 +224,8 @@ DoTradeAnimation: ; 29082
 	ld e, a
 	ld d, 0
 	ld hl, .JumpTable
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -519,9 +518,8 @@ Function29281: ; 29281
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_2928f
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1105,9 +1103,8 @@ Function29676: ; 29676 (a:5676)
 	ld e, [hl]
 	ld d, 0
 	ld hl, Jumptable_29686
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

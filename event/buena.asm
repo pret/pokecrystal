@@ -322,9 +322,8 @@ Buena_getprize: ; 8b154
 	ld hl, .prizes
 	ld b, 0
 	ld c, a
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ret
 ; 8b15e
 

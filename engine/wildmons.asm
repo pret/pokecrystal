@@ -108,9 +108,8 @@ endr
 	ld a, [wNamedObjectIndexBuffer]
 	cp [hl]
 	jr z, .found
-rept 2
 	inc hl
-endr
+	inc hl
 	pop af
 	dec a
 	jr nz, .ScanMapLoop
@@ -274,9 +273,8 @@ endr
 	call CheckOnWater
 	ld de, .WaterMonTable
 	jr z, .watermon
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [TimeOfDay]
 	ld bc, $e
 	call AddNTimes
@@ -702,9 +700,8 @@ UpdateRoamMons: ; 2a30d
 	inc hl
 	ld c, a
 	ld b, $0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [wRoamMons_LastMapGroup]
 	cp [hl]
 	jr nz, .done
@@ -866,9 +863,8 @@ RandomPhoneRareWildMon: ; 2a4ab
 	dec a
 	ld c, a
 	ld b, $0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 ; We now have the pointer to one of the last (rarest) three wild Pokemon found in that area.
 	inc hl
 	ld c, [hl] ; Contains the species index of this rare Pokemon
@@ -942,9 +938,8 @@ RandomPhoneWildMon: ; 2a51f
 	and $3
 	ld c, a
 	ld b, $0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	inc hl
 	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
@@ -963,9 +958,8 @@ RandomPhoneMon: ; 2a567
 	dec a
 	ld c, a
 	ld b, 0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, BANK(TrainerGroups)
 	call GetFarHalfword
 

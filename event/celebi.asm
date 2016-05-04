@@ -259,9 +259,8 @@ CelebiEvent_Cosine: ; 49b3b (12:5b3b)
 	ld a, d
 	ld d, $0
 	ld hl, .sinewave
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]

@@ -314,9 +314,8 @@ Function8b4d8: ; 8b4d8 (22:74d8)
 	ld hl, Unknown_8b529
 	call Function8b50a
 	push hl
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
@@ -331,9 +330,8 @@ Function8b4ea: ; 8b4ea (22:74ea)
 	ld hl, Unknown_8b529
 	call Function8b50a
 	push hl
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
@@ -698,12 +696,10 @@ Function8b73e: ; 8b73e
 Function8b744: ; 8b744
 	ld de, AttrMap - TileMap
 	add hl, de
-rept 2
 	inc b
-endr
-rept 2
+	inc b
 	inc c
-endr
+	inc c
 	xor a
 .asm_8b74d
 	push bc
@@ -975,9 +971,8 @@ Function8b8c8: ; 8b8c8
 	ld b, 0
 	ld c, a
 	ld hl, Unknown_8b903
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

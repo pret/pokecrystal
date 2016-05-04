@@ -235,9 +235,8 @@ AnimateHOFMonEntrance: ; 865b5
 	ld a, [hli]
 	ld [TempMonSpecies], a
 	ld [CurPartySpecies], a
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hli]
 	ld [TempMonDVs], a
 	ld a, [hli]
@@ -298,9 +297,8 @@ HOF_SlideFrontpic:
 	ld a, [hSCX]
 	and a
 	ret z
-rept 2
 	dec a
-endr
+	dec a
 	ld [hSCX], a
 	call DelayFrame
 	jr .frontpicloop

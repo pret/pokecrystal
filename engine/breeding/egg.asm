@@ -442,9 +442,8 @@ GLOBAL EggMoves
 	ld c, a
 	ld b, 0
 	ld hl, EggMovePointers
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, BANK(EggMovePointers)
 	call GetFarHalfword
 .loop
@@ -477,9 +476,8 @@ endr
 	ld c, a
 	ld b, 0
 	ld hl, EvosAttacksPointers
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, BANK(EvosAttacksPointers)
 	call GetFarHalfword
 .loop3

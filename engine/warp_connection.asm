@@ -369,7 +369,7 @@ CheckMovingOffEdgeOfMap:: ; 104820 (41:4820)
 
 .left
 	ld a, [PlayerStandingMapX]
-	sub $4
+	sub 4
 	cp -1
 	jr z, .ok
 	and a

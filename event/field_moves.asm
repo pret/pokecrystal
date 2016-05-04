@@ -164,9 +164,8 @@ OWCutJumptable: ; 8ca0c
 	ld e, a
 	ld d, 0
 	ld hl, .dw
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -192,9 +191,8 @@ Cut_SpawnAnimateTree: ; 8ca23 (23:4a23)
 	ld [wcf64], a
 ; Cut_StartWaiting
 	ld hl, wJumptableIndex
-rept 2
 	inc [hl]
-endr
+	inc [hl]
 	ret
 
 Cut_SpawnAnimateLeaves: ; 8ca3c (23:4a3c)
@@ -269,9 +267,8 @@ Cut_GetLeafSpawnCoords: ; 8ca8e (23:4a8e)
 	add e
 	ld e, a
 	ld hl, .Coords
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]

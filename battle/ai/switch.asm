@@ -626,9 +626,8 @@ FindEnemyMonsWithEnoughHP: ; 34b77
 	ld b, [hl]
 	inc hl
 	ld c, [hl]
-rept 2
 	inc hl
-endr
+	inc hl
 ; hl = MaxHP + 1
 ; b = (4 * b) % $100 + (c & 3)
 ; c = c / 4

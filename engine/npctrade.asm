@@ -311,9 +311,8 @@ GetTradeAttribute: ; 0xfcdc2
 	ld e, a
 	ld d, 0
 	ld hl, NPCTrades
-rept 2
 	add hl, de
-endr
+	add hl, de
 	pop de
 	add hl, de
 	ret
@@ -458,9 +457,8 @@ PrintTradeText: ; fcf38
 	call AddNTimes
 	ld a, [wcf64]
 	ld c, a
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

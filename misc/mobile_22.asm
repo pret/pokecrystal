@@ -669,9 +669,8 @@ Function894dc: ; 894dc
 	ld c, d
 	ld b, 0
 	ld hl, .PalettePointers
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -787,9 +786,8 @@ Function8956f: ; 8956f
 	ld a, [TrainerClass]
 	ld h, 0
 	ld l, a
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld de, TrainerPalettes
 	add hl, de
 	ld a, [rSVBK]
@@ -1043,9 +1041,8 @@ Function896eb: ; 896eb
 Function896f5: ; 896f5
 	call Function8971f
 	call Function89736
-rept 2
 	inc hl
-endr
+	inc hl
 	ld b, 2
 
 ClearScreenArea: ; 0x896ff
@@ -1071,9 +1068,8 @@ ClearScreenArea: ; 0x896ff
 	jr nz, .loop
 
 	dec hl
-rept 2
 	inc c
-endr
+	inc c
 .asm_89713
 	ld a, $36
 	ld [hli], a
@@ -1107,9 +1103,8 @@ Function8971f: ; 8971f
 
 Function89736: ; 89736
 	push hl
-rept 2
 	inc hl
-endr
+	inc hl
 	ld e, c
 	ld d, $0
 	add hl, de
@@ -1145,9 +1140,8 @@ Function8975b: ; 8975b
 	ld [hli], a
 	ld a, $d
 	ld [hl], a
-rept 2
 	dec hl
-endr
+	dec hl
 	ld a, $4
 	ld e, $3
 .asm_89769
@@ -1912,9 +1906,8 @@ Function89b97: ; 89b97 (22:5b97)
 	and a
 	jr z, .asm_89bae
 .asm_89ba9
-rept 2
 	inc hl
-endr
+	inc hl
 	dec a
 	jr nz, .asm_89ba9
 .asm_89bae
@@ -2523,9 +2516,8 @@ Function89f77: ; 89f77 (22:5f77)
 	ld [hli], a
 	ld a, c
 	ld [hli], a
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, $8
 	add c
 	ld c, a

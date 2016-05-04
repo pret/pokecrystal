@@ -356,9 +356,8 @@ Function16c943: ; 16c943
 	call Function16cae8
 
 .asm_16c9e1
-rept 2
 	inc e
-endr
+	inc e
 	ld a, e
 	cp $8
 	jr nz, .asm_16c969
@@ -459,9 +458,8 @@ Function16ca11: ; 16ca11
 	call Function16cae8
 
 .asm_16ca88
-rept 2
 	inc e
-endr
+	inc e
 	ld a, e
 	cp $8
 	jr nz, .asm_16ca28

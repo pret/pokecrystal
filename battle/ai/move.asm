@@ -107,9 +107,8 @@ endr
 	ld hl, AIScoringPointers
 	dec c
 	ld b, 0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

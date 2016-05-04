@@ -205,9 +205,8 @@ FarCopyBytesDouble:: ; e9b
 .loop
 	ld a, [de]
 	inc de
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 .dec
 	dec c
 	jr nz, .loop

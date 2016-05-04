@@ -372,9 +372,8 @@ MobileTradeAnim_JumptableLoop: ; 10824b
 	ld e, a
 	ld d, 0
 	ld hl, .Jumptable
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -955,9 +954,8 @@ MobileTradeAnim_GiveTrademon1: ; 108763
 	ld a, [hSCX]
 	cp $e0
 	jr z, .loop2
-rept 2
 	dec a
-endr
+	dec a
 	ld [hSCX], a
 	cp $f8
 	jr nz, .next
@@ -974,9 +972,8 @@ endr
 	ld a, [hSCY]
 	cp $f8
 	jr z, .done
-rept 2
 	dec a
-endr
+	dec a
 	ld [hSCY], a
 	cp $40
 	jr z, .init
@@ -1125,9 +1122,8 @@ MobileTradeAnim_GetTrademon2: ; 108894
 	ld a, [hSCY]
 	cp $78
 	jr z, .asm_1088ee
-rept 2
 	inc a
-endr
+	inc a
 	ld [hSCY], a
 	cp $30
 	jr z, .asm_1088c5
@@ -1166,9 +1162,8 @@ endr
 	ld a, [hSCX]
 	cp $c
 	jr z, .asm_108906
-rept 2
 	inc a
-endr
+	inc a
 	ld [hSCX], a
 	cp -8
 	jr nz, .asm_1088e7

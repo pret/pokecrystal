@@ -90,9 +90,8 @@ Functionb92b8: ; b92b8
 	cp -1
 	jr z, .invalid
 	inc c
-rept 2
 	inc hl
-endr
+	inc hl
 	jr .loop
 
 .invalid
@@ -931,9 +930,8 @@ LoadMailGFX_Color3: ; b991e
 .loop
 	ld a, [de]
 	inc de
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	dec c
 	jr nz, .loop
 	ret

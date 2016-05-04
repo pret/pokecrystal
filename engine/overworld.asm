@@ -147,9 +147,8 @@ AddOutdoorSprites: ; 141ee
 	ld c, a
 	ld b, 0
 	ld hl, OutdoorSprites
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -364,9 +363,8 @@ AddSpriteGFX: ; 142e5
 	jr z, .exists
 	and a
 	jr z, .new
-rept 2
 	inc hl
-endr
+	inc hl
 	dec c
 	jr nz, .loop
 
@@ -428,9 +426,8 @@ SortUsedSprites: ; 1431e
 	ld a, [de]
 	and a
 	jr nz, .FoundLastSprite
-rept 2
 	dec de
-endr
+	dec de
 	dec c
 	jr nz, .FindLastSprite
 .FoundLastSprite:
@@ -472,16 +469,14 @@ endr
 ; Keep doing this until everything's in order.
 
 .loop
-rept 2
 	dec de
-endr
+	dec de
 	dec c
 	jr nz, .CheckFollowing
 
 	pop hl
-rept 2
 	inc hl
-endr
+	inc hl
 	pop de
 	pop bc
 	dec c

@@ -187,9 +187,8 @@ EvolutionAnimation: ; 4e5e1
 	call .Flash
 	pop bc
 	inc b
-rept 2
 	dec c
-endr
+	dec c
 	jr nz, .loop
 	and a
 	ret
@@ -344,9 +343,8 @@ endr
 	ld a, [hVBlankCounter]
 	and %1110
 	srl a
-rept 2
 	inc a
-endr
+	inc a
 	and $7
 	ld b, a
 	ld hl, Sprites + 3 ; attributes

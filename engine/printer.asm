@@ -21,9 +21,8 @@ Function84022: ; 84022
 	ld e, a
 	ld d, 0
 	ld hl, .Jumptable
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1133,9 +1132,8 @@ Function84785: ; 84785
 	ld e, a
 	ld d, 0
 	ld hl, PrinterStatusStringPointers
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1166,9 +1164,8 @@ Function847bd: ; 847bd
 	ld e, a
 	ld d, 0
 	ld hl, PrinterStatusStringPointers
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]

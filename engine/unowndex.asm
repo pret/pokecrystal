@@ -34,9 +34,8 @@ PrintUnownWord: ; fba2e (3e:7a2e)
 	ld e, a
 	ld d, 0
 	ld hl, UnownWords
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]

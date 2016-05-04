@@ -273,9 +273,8 @@ HPBarAnim_UpdateHPRemaining: ; d784
 	push hl
 	add hl, de
 	ld a, " "
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld [hld], a
 	dec hl
 	ld a, [Buffer3]

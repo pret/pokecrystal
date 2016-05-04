@@ -129,12 +129,10 @@ TextBoxPalette:: ; 1024
 ; Fill text box width c height b at hl with pal 7
 	ld de, AttrMap - TileMap
 	add hl, de
-rept 2
 	inc b
-endr
-rept 2
+	inc b
 	inc c
-endr
+	inc c
 	ld a, TEXTBOX_PAL
 .col
 	push bc
@@ -640,12 +638,10 @@ TextScroll:: ; 138c
 	dec c
 	jr nz, .row
 
-rept 2
 	inc de
-endr
-rept 2
+	inc de
 	inc hl
-endr
+	inc hl
 	pop af
 	dec a
 	jr nz, .col
@@ -738,9 +734,8 @@ DoTextUntilTerminator:: ; 13f6
 	ld c, a
 	ld b, 0
 	ld hl, TextCommands
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1014,9 +1009,8 @@ Text_PlaySound:: ; 1500
 	jr z, .done
 	cp b
 	jr z, .play
-rept 2
 	inc hl
-endr
+	inc hl
 	jr .loop
 
 .play
@@ -1113,9 +1107,8 @@ Text_TX_STRINGBUFFER:: ; 156a
 	ld e, a
 	ld d, 0
 	ld hl, StringBufferPointers
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, BANK(StringBufferPointers)
 	call GetFarHalfword
 	ld d, h
@@ -1136,9 +1129,8 @@ Text_TX_DAY:: ; 1582
 	ld c, a
 	ld b, 0
 	ld hl, .Days
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

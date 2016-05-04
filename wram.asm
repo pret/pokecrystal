@@ -2661,7 +2661,7 @@ wWhichMomItem:: ds 1 ; dc17
 wWhichMomItemSet:: ds 1 ; dc18
 MomItemTriggerBalance:: ds 3 ; dc19
 
-wDailyResetTimer:: ds 2
+wDailyResetTimer:: ds 2 ; dc1c
 DailyFlags:: ds 1
 WeeklyFlags:: ds 1
 SwarmFlags:: ds 1
@@ -2673,9 +2673,9 @@ FruitTreeFlags:: flag_array NUM_FRUIT_TREES ; dc27
 
 	ds 2
 
-wLuckyNumberDayBuffer:: ds 2
+wLuckyNumberDayBuffer:: ds 2 ; dc2d
 	ds 2
-wSpecialPhoneCallID:: ds 1
+wSpecialPhoneCallID:: ds 1 ; dc31
 	ds 3
 wBugContestStartTime:: ds 4 ; day, hour, min, sec ; dc35
 wUnusedTwoDayTimerOn:: ds 1 ; dc39

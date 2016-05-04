@@ -682,15 +682,13 @@ Function17aaa9: ; 17aaa9 (5e:6aa9)
 Function17aac3: ; 17aac3 (5e:6ac3)
 	ld a, $b
 	push hl
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	pop hl
 	ld de, SCREEN_WIDTH
 	add hl, de
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ret
 
 Function17aad0: ; 17aad0 (5e:6ad0)

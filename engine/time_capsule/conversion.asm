@@ -46,9 +46,8 @@ ValidateOTTrademon: ; fb57e
 	ld [CurSpecies], a
 	call GetBaseData
 	ld hl, wLinkOTPartyMonTypes
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [BaseType1]
 	cp [hl]
 	jr nz, .abnormal

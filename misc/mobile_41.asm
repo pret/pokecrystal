@@ -609,9 +609,8 @@ _MobilePrintNum:: ; 1061ef
 rept 3
 	inc de
 endr
-rept 2
 	dec a
-endr
+	dec a
 
 .digit_loop
 	push af

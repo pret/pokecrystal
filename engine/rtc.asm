@@ -35,9 +35,8 @@ GetTimeOfDay:: ; 14032
 	cp [hl]
 	jr c, .match
 ; else, get the next entry
-rept 2
 	inc hl
-endr
+	inc hl
 ; try again
 	jr .check
 

@@ -216,9 +216,8 @@ endr
 	pop de
 	pop hl
 
-rept 2
 	inc hl
-endr
+	inc hl
 	jr c, .loop
 
 .used_item

@@ -374,9 +374,8 @@ CalcHoursDaysSince: ; 115d2
 ; 115d6
 
 CalcMinsHoursDaysSince: ; 115d6
-rept 2
 	inc hl
-endr
+	inc hl
 	xor a
 	jr _CalcMinsHoursDaysSince
 ; 115db

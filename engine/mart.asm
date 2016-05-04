@@ -145,9 +145,8 @@ GetMart: ; 15b31
 
 .IsAMart:
 	ld hl, Marts
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -393,9 +392,8 @@ LoadBuyMenuText: ; 15c7d
 	pop af
 	ld e, a
 	ld d, 0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -405,9 +403,8 @@ endr
 
 MartAskPurchaseQuantity: ; 15c91
 	call GetMartDialogGroup ; gets a pointer from GetMartDialogGroup.MartTextFunctionPointers
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hl]
 	and a
 	jp z, StandardMartAskPurchaseQuantity

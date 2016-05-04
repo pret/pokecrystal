@@ -153,9 +153,8 @@ Function114243:: ; 114243
 Function11425c: ; 11425c
 	ld [$dc02], a
 	pop af
-rept 2
 	ld [hFF8C], a
-endr
+	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ret
 
@@ -632,9 +631,8 @@ Function1144c8: ; 1144c8
 
 Function1144d1: ; 1144d1
 	call Function114561
-rept 2
 	dec de
-endr
+	dec de
 	push de
 rept 3
 	inc de
@@ -1006,9 +1004,8 @@ Function1146a4: ; 1146a4
 	and a
 	jr nz, .asm_1146e8
 .asm_1146da
-rept 2
 	dec bc
-endr
+	dec bc
 	call Function1149cc
 	and a
 	jr nz, .asm_1146e4
@@ -1095,9 +1092,8 @@ Function1146fa: ; 1146fa
 	ld a, [$dc0e]
 	cp $3
 	jr nz, .asm_114773
-rept 2
 	dec bc
-endr
+	dec bc
 
 .asm_114773
 	call Function1149cc
@@ -2069,9 +2065,8 @@ Function114c5e: ; 114c5e
 	inc de
 	cp $3f
 	jr nz, .asm_114c62
-rept 2
 	dec de
-endr
+	dec de
 .asm_114c75
 	ld a, [hli]
 	cp $3f
@@ -2091,9 +2086,8 @@ endr
 	ld a, [hli]
 	cp $3d
 	jr nz, .asm_114c84
-rept 2
 	dec bc
-endr
+	dec bc
 	ld a, l
 	ld [$dc03], a
 	ld a, h
@@ -2360,9 +2354,8 @@ Function114d99: ; 114d99
 	add hl, de
 	ld b, h
 	ld c, l
-rept 2
 	inc bc
-endr
+	inc bc
 	xor a
 	ret
 
@@ -2563,9 +2556,8 @@ Function114ee9: ; 114ee9
 	ld a, b
 	ld [hli], a
 	ld a, c
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld a, [de]
 	ld [hli], a
 	inc de
@@ -2970,9 +2962,8 @@ Function1150b3: ; 1150b3
 
 .asm_11510b
 	pop hl
-rept 2
 	dec hl
-endr
+	dec hl
 	push de
 	call Function1158c2
 	pop de
@@ -3499,9 +3490,8 @@ Function1153b5: ; 1153b5
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [de]
 	ld [hli], a
 	inc de
@@ -4523,9 +4513,8 @@ endr
 	ld a, $3f
 	and c
 	ld [hld], a
-rept 2
 	dec hl
-endr
+	dec hl
 	pop de
 	ld b, h
 	ld c, l
@@ -4581,9 +4570,8 @@ endr
 	ld a, [hli]
 	ld c, a
 	ld b, [hl]
-rept 2
 	inc bc
-endr
+	inc bc
 	ld a, b
 	ld [hld], a
 	ld [hl], c
@@ -4864,9 +4852,8 @@ Function115b00: ; 115b00
 	ld a, [wStartDay]
 	cp $4
 	jr z, .asm_115b43
-rept 2
 	inc hl
-endr
+	inc hl
 	jr .asm_115b43
 
 .asm_115b36
@@ -5048,9 +5035,8 @@ Function115bc8: ; 115bc8
 	ret
 
 .asm_115c33
-rept 2
 	dec hl
-endr
+	dec hl
 	xor a
 	ld [hl], a
 	ld a, $1
@@ -5406,9 +5392,8 @@ Function11659d: ; 11659d
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_1165af
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -6941,9 +6926,8 @@ Function117719: ; 117719 (45:7719)
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_117728
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -7430,9 +7414,8 @@ Function117ae9: ; 0x117ae9
 	ld e, a
 	ld d, $0
 	ld hl, .Jumptable
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

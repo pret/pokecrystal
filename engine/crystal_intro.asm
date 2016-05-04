@@ -13,7 +13,7 @@ Copyright_GFPresents: ; e4579
 	ld a, $90
 	ld [hWY], a
 	call WaitBGMap
-	ld b, SCGB_19
+	ld b, SCGB_GAMEFREAK_LOGO
 	call GetSGBLayout
 	call SetPalettes
 	ld c, 10
@@ -82,13 +82,13 @@ Copyright_GFPresents: ; e4579
 	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_GAMEFREAK_LOGO
 	call _InitSpriteAnimStruct
-	ld hl, $7
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], $a0
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $60
-	ld hl, $d
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld [hl], $30
 	xor a
@@ -101,7 +101,7 @@ Copyright_GFPresents: ; e4579
 	ld [hBGMapMode], a
 	ld a, $90
 	ld [hWY], a
-	ld de, $e4e4
+	lb de, %11100100, %11100100
 	call DmgToCgbObjPals
 	ret
 ; e465e
@@ -120,9 +120,8 @@ PlaceGameFreakPresents: ; e4670
 	ld e, a
 	ld d, 0
 	ld hl, .dw
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -218,9 +217,8 @@ GameFreakLogoJumper: ; e46ed (39:46ed)
 	ld e, [hl]
 	ld d, 0
 	ld hl, GameFreakLogoScenes
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -317,9 +315,8 @@ GameFreakLogoScene4: ; e4776 (39:4776)
 	ld e, a
 	ld d, $0
 	ld hl, GameFreakLogoPalettes
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -436,9 +433,8 @@ IntroSceneJumper: ; e490f
 	ld e, a
 	ld d, 0
 	ld hl, IntroScenes
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -986,9 +982,8 @@ IntroScene12: ; e4cfa (39:4cfa)
 	ret z
 	cp c
 	jr z, .playsound
-rept 2
 	inc hl
-endr
+	inc hl
 	jr .loop
 .playsound
 	ld a, [hli]
@@ -1667,9 +1662,8 @@ endr
 	ld d, $0
 	ld hl, BGPals
 	add hl, de
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [wcf65]
 	and $3f
 	cp $1f
@@ -1698,9 +1692,8 @@ endr
 
 	push hl
 	ld hl, .BWFade
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -1712,9 +1705,8 @@ endr
 
 	push hl
 	ld hl, .BlackLBlueFade
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -1726,9 +1718,8 @@ endr
 
 	push hl
 	ld hl, .BlackBlueFade
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -2127,9 +2118,8 @@ Intro_PerspectiveScrollBG: ; e552f (39:552f)
 	; grass in the front
 	ld hl, LYOverrides + $5f
 	ld a, [hl]
-rept 2
 	inc a
-endr
+	inc a
 	ld bc, $31
 	call ByteFill
 	ld a, [LYOverrides + 0]

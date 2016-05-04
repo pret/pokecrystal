@@ -231,9 +231,8 @@ ItemSwitch_ConvertSpacingToDW: ; 24a80 (9:4a80)
 	ld c, a
 	ld b, 0
 	ld hl, .spacing_dws
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld c, [hl]
 	inc hl
 	ld b, [hl]

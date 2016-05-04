@@ -153,9 +153,8 @@ GetBattleVarAddr:: ; 39e7
 	ld hl, .battlevarpairs
 	ld c, a
 	ld b, 0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 
 	ld a, [hli]
 	ld h, [hl]
@@ -175,9 +174,8 @@ endr
 	ld b, 0
 
 	ld hl, .vars
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 
 	ld a, [hli]
 	ld h, [hl]

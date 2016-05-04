@@ -300,9 +300,8 @@ Function81a74: ; 81a74
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_81acf
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -482,9 +481,8 @@ Function81bf4: ; 81bf4
 	inc a
 	ld l, a
 	ld h, $0
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld de, OverworldMap
 	add hl, de
 	ld de, wc608
@@ -558,9 +556,8 @@ Function81c33: ; 81c33
 	ld a, [wc608 + 3]
 	ld [hli], a
 	xor a
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld [hl], a
 	ld hl, wSGBPals
 	call Function81f0c
@@ -609,9 +606,8 @@ Function81cc2: ; 81cc2
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_81d02
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -855,9 +851,8 @@ String_81e4d: db "おぼえられない@" ; cannot be taught
 Function81e55: ; 81e55
 	cp $32
 	jr c, .asm_81e5b
-rept 2
 	inc a
-endr
+	inc a
 
 .asm_81e5b
 	add $bf
@@ -938,9 +933,8 @@ Function81eca: ; 81eca
 	inc a
 	ld l, a
 	ld h, $0
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld de, OverworldMap
 	add hl, de
 	ld e, l
@@ -970,9 +964,8 @@ Function81ee3: ; 81ee3
 	inc de
 	ld [hli], a
 	xor a
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	dec c
 	jr nz, .asm_81ee3
 	ret
@@ -1108,9 +1101,8 @@ Function81f5e: ; 81f5e
 	ld a, b
 	ld [hli], a
 	ld a, [de]
-rept 2
 	add a
-endr
+	add a
 	add $18
 	ld [hli], a
 	xor a
@@ -1356,9 +1348,8 @@ Function822f0: ; 822f0
 	ld e, a
 	ld d, 0
 	ld hl, .dw
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1400,9 +1391,8 @@ Function82309: ; 82309
 	ld e, a
 	ld d, $0
 	ld hl, wc608
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld e, l
 	ld d, h
 	call Function81ea5
@@ -1500,9 +1490,8 @@ Function82391: ; 82391
 	ld c, a
 	ld b, $0
 	ld hl, wc608
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, e
 	ld [hli], a
 	ld [hl], d

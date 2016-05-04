@@ -1348,9 +1348,8 @@ GetNoiseSample: ; e86c5
 	ld d, 0
 	; load ptr to noise sample set in hl
 	ld hl, Drumkits
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1363,9 +1362,8 @@ endr
 	; use 'pitch' to seek noise sample set
 	ld e, a
 	ld d, 0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	; load sample pointer into NoiseSampleAddress
 	ld a, [hli]
 	ld [NoiseSampleAddressLo], a
@@ -1387,9 +1385,8 @@ ParseMusicCommand: ; e870f
 	ld d, 0
 	; seek command pointer
 	ld hl, MusicCommands
-rept 2
 	add hl, de
-endr
+	add hl, de
 	; jump to the new pointer
 	ld a, [hli]
 	ld h, [hl]
@@ -1639,9 +1636,8 @@ Music_JumpIf: ; e8817
 	inc hl
 	ld d, [hl]
 	; skip pointer
-rept 2
 	inc de
-endr
+	inc de
 	; update address
 	ld [hl], d
 	dec hl
@@ -1693,9 +1689,8 @@ MusicEE; e883e
 	inc hl
 	ld d, [hl]
 	; skip pointer
-rept 2
 	inc de
-endr
+	inc de
 	; update address
 	ld [hl], d
 	dec hl
@@ -2811,9 +2806,8 @@ LoadChannel: ; e8d1b
 	ld c, a
 	ld b, 0
 	ld hl, ChannelPointers
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld c, [hl]
 	inc hl
 	ld b, [hl] ; bc = channel pointer
@@ -3282,9 +3276,8 @@ ClearChannels:: ; e8fe9
 ; doesn't seem to be used, but functionally identical to MapSetup_Sound_Off
 	ld hl, rNR50
 	xor a
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld a, $80
 	ld [hli], a
 	ld hl, rNR10

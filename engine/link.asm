@@ -1094,14 +1094,12 @@ Function2868a: ; 2868a
 	ld a, $46
 	ld [hli], a
 	xor a
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld [hl], a
 	pop hl
-rept 2
 	inc de
-endr
+	inc de
 	ret
 ; 28771
 

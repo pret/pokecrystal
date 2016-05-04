@@ -58,7 +58,7 @@ Predef_LoadSGBLayoutCGB: ; 8d59
 	dw _CGB_PokedexUnownMode
 	dw _CGB17
 	dw _CGB18
-	dw _CGB19
+	dw _CGB_GamefreakLogo ; called before copyright
 	dw _CGB1a
 	dw _CGB1b
 	dw _CGB_FrontpicPals
@@ -1002,7 +1002,7 @@ _CGB13: ; 94d0
 	ret
 ; 94fa
 
-_CGB19: ; 94fa
+_CGB_GamefreakLogo: ; 94fa
 	ld de, UnknBGPals
 	ld a, $4e
 	call GetPredefPal

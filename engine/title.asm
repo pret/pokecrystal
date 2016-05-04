@@ -351,9 +351,8 @@ InitializeBackground: ; 10ef06
 	ld b, a
 	ld a, e
 	ld [hli], a
-rept 2
 	inc e
-endr
+	inc e
 	ld a, $80
 	ld [hli], a
 	dec c

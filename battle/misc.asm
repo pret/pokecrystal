@@ -72,9 +72,8 @@ DoWeatherModifiers: ; fbda4
 	jr z, .ApplyModifier
 
 .NextWeatherType:
-rept 2
 	inc de
-endr
+	inc de
 	jr .CheckWeatherType
 
 
@@ -99,9 +98,8 @@ endr
 	jr z, .ApplyModifier
 
 .NextWeatherMove:
-rept 2
 	inc de
-endr
+	inc de
 	jr .CheckWeatherMove
 
 .ApplyModifier:

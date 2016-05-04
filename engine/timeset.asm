@@ -200,9 +200,8 @@ UnreferencedFunction907f1: ; 907f1
 	push hl
 	call DisplayHourOClock
 	pop de
-rept 2
 	inc de
-endr
+	inc de
 	ld a, ":"
 	ld [de], a
 	inc de
@@ -521,9 +520,8 @@ Special_SetDayOfWeek: ; 90913
 	ld e, a
 	ld d, 0
 	ld hl, .WeekdayStrings
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a

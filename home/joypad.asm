@@ -42,9 +42,8 @@ Joypad:: ; 935
 	ld a, R_DPAD
 	ld [rJOYP], a
 ; Read twice to give the request time to take.
-rept 2
 	ld a, [rJOYP]
-endr
+	ld a, [rJOYP]
 
 ; The Joypad register output is in the lo nybble (inversed).
 ; We make the hi nybble of our new container d-pad input.
@@ -209,9 +208,8 @@ GetJoypad:: ; 984
 	jr nz, .next
 
 ; The current input is overwritten.
-rept 2
 	dec hl
-endr
+	dec hl
 	ld b, NO_INPUT
 	jr .finishauto
 

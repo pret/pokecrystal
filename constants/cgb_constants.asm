@@ -24,7 +24,7 @@
 	const SCGB_POKEDEX_UNOWN_MODE
 	const SCGB_17
 	const SCGB_18
-	const SCGB_19
+	const SCGB_GAMEFREAK_LOGO
 	const SCGB_1A
 	const SCGB_1B
 	const SCGB_FRONTPICPALS

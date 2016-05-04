@@ -616,9 +616,8 @@ Function4abc3: ; 4abc3
 	ld a, [wMenuCursorY]
 	ld [wMenuCursorY], a
 	ld a, [PartyCount]
-rept 2
 	inc a
-endr
+	inc a
 	ld b, a
 	ld a, [wMenuCursorY]
 	cp b

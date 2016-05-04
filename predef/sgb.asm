@@ -75,9 +75,8 @@ Predef_LoadSGBLayout: ; 864c
 	ld a, [PlayerHPPal]
 	ld l, a
 	ld h, 0
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld de, Palettes_a8be
 	add hl, de
 
@@ -93,9 +92,8 @@ endr
 	ld a, [EnemyHPPal]
 	ld l, a
 	ld h, 0
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 
 	ld de, Palettes_a8be
 	add hl, de
@@ -148,9 +146,8 @@ endr
 
 	ld hl, wSGBPals + 1
 	ld [hl], $10
-rept 2
 	inc hl
-endr
+	inc hl
 
 	ld a, [PlayerHPPal]
 	add $2f
@@ -174,9 +171,8 @@ endr
 	ld a, [wcda1]
 	ld l, a
 	ld h, 0
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld de, Palettes_a8be
 	add hl, de
 	ld a, [hli]

@@ -184,12 +184,10 @@ PlaceMapNameCenterAlign: ; b80e1 (2e:40e1)
 InitMapSignAttrMap: ; b8115
 	ld de, AttrMap - TileMap
 	add hl, de
-rept 2
 	inc b
-endr
-rept 2
+	inc b
 	inc c
-endr
+	inc c
 	ld a, $87
 .loop
 	push bc
@@ -261,15 +259,13 @@ PlaceMapNameFrame: ; b812f
 	jr .enterloop
 
 .continueloop
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 
 .enterloop
 	inc a
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	dec a
 	dec c
 	jr nz, .continueloop
@@ -522,9 +518,8 @@ GetTreeMons: ; b82d2
 	ld e, a
 	ld d, 0
 	ld hl, TreeMons
-rept 2
 	add hl, de
-endr
+	add hl, de
 
 	ld a, [hli]
 	ld h, [hl]

@@ -110,9 +110,8 @@ LoadMonAnimation: ; d00a3
 	ld c, e
 	ld b, 0
 	ld hl, PokeAnims
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld b, [hl]
 	ld c, a
@@ -513,9 +512,8 @@ Functiond02f8: ; d02f8
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [wPokeAnimPointerBank]
 	call GetFarHalfword
 	ld a, l
@@ -537,9 +535,8 @@ Functiond031b: ; d031b
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [wPokeAnimFramesBank]
 	call GetFarHalfword
 	ld a, [wPokeAnimFramesBank]
@@ -970,9 +967,8 @@ GetMonAnimPointer: ; d055c
 	dec a
 	ld e, a
 	ld d, 0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, c
 	ld [wPokeAnimPointerBank], a
 	call GetFarHalfword
@@ -1041,9 +1037,8 @@ GetMonFramesPointer: ; d05ce
 	dec a
 	ld e, a
 	ld d, 0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, b
 	call GetFarHalfword
 	ld a, l
@@ -1081,9 +1076,8 @@ GetMonBitmaskPointer: ; d061b
 	dec a
 	ld e, a
 	ld d, 0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [wPokeAnimBitmaskBank]
 	call GetFarHalfword
 	ld a, l

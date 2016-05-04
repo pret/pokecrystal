@@ -200,13 +200,11 @@ endr
 .PrintNthText: ; 8b2a9
 	push bc
 	call .GetTextPointers
-rept 2
 	inc hl
-endr
+	inc hl
 	ld b, $0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	call .LoadTextPointer
 	call PrintText
 	pop bc

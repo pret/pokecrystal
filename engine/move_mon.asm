@@ -654,7 +654,7 @@ SentGetPkmnIntoFromBox: ; db3f
 	ld a, [sBoxCount]
 	dec a
 	ld b, a
-	call Functiondcb6
+	call RestorePPofDepositedPokemon
 .CloseSRAM_And_ClearCarryFlag:
 	call CloseSRAM
 	and a
@@ -667,7 +667,7 @@ CloseSRAM_And_SetCarryFlag: ; dcb1
 	ret
 ; dcb6
 
-Functiondcb6: ; dcb6
+RestorePPofDepositedPokemon: ; dcb6
 	ld a, b
 	ld hl, sBoxMons
 	ld bc, BOXMON_STRUCT_LENGTH
@@ -696,10 +696,10 @@ Functiondcb6: ; dcb6
 	ld a, [MonType]
 	push af
 	ld b, 0
-.asm_dcec
+.loop
 	ld a, [hli]
 	and a
-	jr z, .asm_dd18
+	jr z, .done
 	ld [TempMonMoves], a
 	ld a, BOXMON
 	ld [MonType], a
@@ -722,9 +722,9 @@ Functiondcb6: ; dcb6
 	inc b
 	ld a, b
 	cp NUM_MOVES
-	jr c, .asm_dcec
+	jr c, .loop
 
-.asm_dd18
+.done
 	pop af
 	ld [MonType], a
 	pop af
@@ -1025,7 +1025,7 @@ SentPkmnIntoBox: ; de6e
 	call CopyBytes
 
 	ld b, 0
-	call Functiondcb6
+	call RestorePPofDepositedPokemon
 
 	call CloseSRAM
 	scf
