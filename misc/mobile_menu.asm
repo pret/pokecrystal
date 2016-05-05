@@ -280,7 +280,7 @@ Function4a149: ; 4a149 (12:6149)
 	call ClearBox
 	hlcoord 1, 14
 	call PlaceString
-	callba Function104148
+	callba Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	call SetPalettes
 	call StaticMenuJoypad
 	ld hl, wMenuCursorY
@@ -403,7 +403,7 @@ Function4a28a: ; 4a28a (12:628a)
 	hlcoord 14, 1
 	ld de, String_4a34b
 	call PlaceString
-	callba Function104148
+	callba Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	call Function4a118
 	call ScrollingMenuJoypad
 	push af
@@ -432,7 +432,7 @@ Function4a28a: ; 4a28a (12:628a)
 	ld b, 3
 	ld c, 4
 	call TextBox
-	callba Function104148
+	callba Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	ld hl, DeletePassword_YesNo_MenuDataHeader
 	call LoadMenuDataHeader
 	call VerticalMenu
@@ -455,7 +455,7 @@ Function4a28a: ; 4a28a (12:628a)
 	call ExitMenu
 .quit
 	call Call_ExitMenu
-	callba Function104148
+	callba Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	xor a
 	ret
 ; 4a346 (12:6346)

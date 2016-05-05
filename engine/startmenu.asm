@@ -5,7 +5,7 @@ StartMenu:: ; 125cd
 	ld de, SFX_MENU
 	call PlaySFX
 
-	callba Function6454
+	callba ReanchorBGMap_NoOAMUpdate
 
 	ld hl, StatusFlags2
 	bit 2, [hl] ; bug catching contest
@@ -22,8 +22,8 @@ StartMenu:: ; 125cd
 	call MenuFunc_1e7f
 	call .DrawBugContestStatusBox
 	call Function2e31
-	call Function2e20
-	callba Function64bf
+	call _OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
+	callba LoadFonts_NoOAMUpdate
 	call .DrawBugContestStatus
 	call UpdateTimePals
 	jr .Select

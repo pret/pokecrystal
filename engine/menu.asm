@@ -296,7 +296,7 @@ Function241d5: ; 241d5
 	call Place2DMenuCursor
 .loop
 	call Move2DMenuCursor
-	call Function10402d ; BUG: This function is in another bank.
+	call HDMATransferTileMapToWRAMBank3 ; BUG: This function is in another bank.
 	                    ; Pointer in current bank (9) is bogus.
 	call .loop2
 	jr nc, .done

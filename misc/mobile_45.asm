@@ -7380,7 +7380,7 @@ Function117a94: ; 0x117a94
 	call ClearBGPalettes
 	call ClearSprites
 	callba Function172e78
-	callba Function104000
+	callba HDMATransferAttrMapAndTileMapToWRAMBank3
 	ret
 
 ; 0x117ab4
@@ -7401,7 +7401,7 @@ Function117acd: ; 0x117acd
 	bit 7, a
 	jr nz, .asm_117ae2
 	call Function117ae9
-	callba Function104000
+	callba HDMATransferAttrMapAndTileMapToWRAMBank3
 	jr Function117acd
 
 .asm_117ae2

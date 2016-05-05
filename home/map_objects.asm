@@ -636,7 +636,7 @@ GetObjectStruct:: ; 1ae5
 	ret
 ; 1af1
 
-GetObjectSprite:: ; 1af1
+DoesObjectHaveASprite:: ; 1af1
 	ld hl, OBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]

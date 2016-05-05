@@ -1,52 +1,52 @@
-Function104000:: ; 104000
+HDMATransferAttrMapAndTileMapToWRAMBank3:: ; 104000
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
 .Function:
 	decoord 0, 0, AttrMap
-	ld hl, wBackupAttrMap
+	ld hl, wScratchAttrMap
 	call CutAndPasteAttrMap
 	decoord 0, 0
-	ld hl, wDecompressScratch
+	ld hl, wScratchTileMap
 	call CutAndPasteTilemap
 	ld a, $0
 	ld [rVBK], a
-	ld hl, wDecompressScratch
-	call Function10419d
+	ld hl, wScratchTileMap
+	call HDMATransferToWRAMBank3
 	ld a, $1
 	ld [rVBK], a
-	ld hl, wBackupAttrMap
-	call Function10419d
+	ld hl, wScratchAttrMap
+	call HDMATransferToWRAMBank3
 	ret
 ; 10402d
 
-Function10402d:: ; 10402d
+HDMATransferTileMapToWRAMBank3:: ; 10402d
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
 .Function:
 	decoord 0, 0
-	ld hl, wDecompressScratch
+	ld hl, wScratchTileMap
 	call CutAndPasteTilemap
 	ld a, $0
 	ld [rVBK], a
-	ld hl, wDecompressScratch
-	call Function10419d
+	ld hl, wScratchTileMap
+	call HDMATransferToWRAMBank3
 	ret
 ; 104047
 
-Function104047: ; 104047
+HDMATransferAttrMapToWRAMBank3: ; 104047
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
 .Function:
 	decoord 0, 0, AttrMap
-	ld hl, wBackupAttrMap
+	ld hl, wScratchAttrMap
 	call CutAndPasteAttrMap
 	ld a, $1
 	ld [rVBK], a
-	ld hl, wBackupAttrMap
-	call Function10419d
+	ld hl, wScratchAttrMap
+	call HDMATransferToWRAMBank3
 	ret
 ; 104061
 
@@ -56,63 +56,67 @@ ReloadMapPart:: ; 104061
 
 .Function:
 	decoord 0, 0, AttrMap
-	ld hl, wBackupAttrMap
+	ld hl, wScratchAttrMap
 	call CutAndPasteAttrMap
 	decoord 0, 0
-	ld hl, wDecompressScratch
+	ld hl, wScratchTileMap
 	call CutAndPasteTilemap
 	call DelayFrame
+
 	di
 	ld a, [rVBK]
 	push af
 	ld a, $1
 	ld [rVBK], a
-	ld hl, wBackupAttrMap
-	call Function1041ad
+	ld hl, wScratchAttrMap
+	call HDMATransfer_Wait127Scanlines_toBGMap
 	ld a, $0
 	ld [rVBK], a
-	ld hl, wDecompressScratch
-	call Function1041ad
+	ld hl, wScratchTileMap
+	call HDMATransfer_Wait127Scanlines_toBGMap
 	pop af
 	ld [rVBK], a
 	ei
+
 	ret
 
-Function104099: ; 104099
+Mobile_ReloadMapPart: ; 104099
 	ld hl, ReloadMapPart ; useless
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
 .Function:
 	decoord 0, 0, AttrMap
-	ld hl, wBackupAttrMap
+	ld hl, wScratchAttrMap
 	call CutAndPasteAttrMap
 	decoord 0, 0
-	ld hl, wDecompressScratch
+	ld hl, wScratchTileMap
 	call CutAndPasteTilemap
 	call DelayFrame
+
 	di
 	ld a, [rVBK]
 	push af
 	ld a, $1
 	ld [rVBK], a
-	ld hl, wBackupAttrMap
-	call Function1041c1
+	ld hl, wScratchAttrMap
+	call HDMATransfer_NoDI
 	ld a, $0
 	ld [rVBK], a
-	ld hl, wDecompressScratch
-	call Function1041c1
+	ld hl, wScratchTileMap
+	call HDMATransfer_NoDI
 	pop af
 	ld [rVBK], a
 	ei
+
 	ret
 ; 1040d4
 
-Function1040d4: ; 1040d4
-	ld hl, .Function
+; XXX
+	ld hl, .unreferenced_1040da
 	jp CallInSafeGFXMode
 
-.Function:
+.unreferenced_1040da
 	ld a, $1
 	ld [rVBK], a
 	ld a, $3
@@ -132,31 +136,34 @@ Function1040d4: ; 1040d4
 	ret
 ; 1040fb
 
-Function1040fb: ; 1040fb
-	ld hl, .Function
+; XXX
+	ld hl, .unreferenced_104101
 	jp CallInSafeGFXMode
 
-.Function:
+.unreferenced_104101
 	ld a, $1
 	ld [rVBK], a
 	ld a, $3
 	ld [rSVBK], a
 	ld hl, w3_d800
-	call Function10419d
+	call HDMATransferToWRAMBank3
 	ret
 ; 104110
 
-Function104110:: ; 104110
+OpenAndCloseMenu_HDMATransferTileMapAndAttrMap:: ; 104110
 ; OpenText
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
 .Function:
+	; Transfer AttrMap and Tilemap to BGMap
+	; Fill vBGAttrs with $00
+	; Fill vBGTiles with " "
 	decoord 0, 0, AttrMap
-	ld hl, wBackupAttrMap
+	ld hl, wScratchAttrMap
 	call CutAndPasteAttrMap
 	decoord 0, 0
-	ld hl, wDecompressScratch
+	ld hl, wScratchTileMap
 	call CutAndPasteTilemap
 	call DelayFrame
 
@@ -165,38 +172,42 @@ Function104110:: ; 104110
 	push af
 	ld a, $1
 	ld [rVBK], a
-	ld hl, wBackupAttrMap
-	call Function1041b7
+	ld hl, wScratchAttrMap
+	call HDMATransfer_Wait123Scanlines_toBGMap
 	ld a, $0
 	ld [rVBK], a
-	ld hl, wDecompressScratch
-	call Function1041b7
+	ld hl, wScratchTileMap
+	call HDMATransfer_Wait123Scanlines_toBGMap
 	pop af
 	ld [rVBK], a
 	ei
 	ret
 ; 104148
 
-Function104148: ; 104148 (41:4148)
+Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap: ; 104148 (41:4148)
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
 .Function:
+	; Transfer AttrMap and Tilemap to BGMap
+	; Fill vBGAttrs with $00
+	; Fill vBGTiles with $ff
 	decoord 0, 0, AttrMap
-	ld hl, wBackupAttrMap
+	ld hl, wScratchAttrMap
 	call CutAndPasteAttrMap
 	ld c, $ff
 	decoord 0, 0
-	ld hl, wDecompressScratch
+	ld hl, wScratchTileMap
 	call CutAndPasteMap
+
 	ld a, $1
 	ld [rVBK], a
-	ld hl, wBackupAttrMap
-	call Function1041ad
+	ld hl, wScratchAttrMap
+	call HDMATransfer_Wait127Scanlines_toBGMap
 	ld a, $0
 	ld [rVBK], a
-	ld hl, wDecompressScratch
-	call Function1041ad
+	ld hl, wScratchTileMap
+	call HDMATransfer_Wait127Scanlines_toBGMap
 	ret
 ; 104177
 
@@ -233,8 +244,8 @@ CallInSafeGFXMode: ; 104177
 ; 10419d
 
 
-Function10419d: ; 10419d (41:419d)
-	call Function10424e
+HDMATransferToWRAMBank3: ; 10419d (41:419d)
+	call _LoadHDMAParameters
 	ld a, $23
 	ld [hDMATransfer], a
 
@@ -246,60 +257,76 @@ WaitDMATransfer: ; 104a14
 	jr nz, .loop
 	ret
 
-Function1041ad: ; 1041ad (41:41ad)
+HDMATransfer_Wait127Scanlines_toBGMap: ; 1041ad (41:41ad)
+; HDMA transfer from hl to [hBGMapAddress]
+; hBGMapAddress -> de
+; 2 * SCREEN_HEIGHT -> c
 	ld a, [hBGMapAddress + 1]
 	ld d, a
 	ld a, [hBGMapAddress]
 	ld e, a
-	ld c, $24
-	jr Function104209
+	ld c, 2 * SCREEN_HEIGHT
+	jr HDMATransfer_Wait127Scanlines
 
-Function1041b7: ; 1041b7 (41:41b7)
+HDMATransfer_Wait123Scanlines_toBGMap: ; 1041b7 (41:41b7)
+; HDMA transfer from hl to [hBGMapAddress]
 ; hBGMapAddress -> de
-; $24 -> c
+; 2 * SCREEN_HEIGHT -> c
 ; $7b --> b
 	ld a, [hBGMapAddress + 1]
 	ld d, a
 	ld a, [hBGMapAddress]
 	ld e, a
-	ld c, $24
-	jr asm_104205
+	ld c, 2 * SCREEN_HEIGHT
+	jr HDMATransfer_Wait123Scanlines
 ; 1041c1 (41:41c1)
 
-Function1041c1: ; 1041c1
+HDMATransfer_NoDI: ; 1041c1
+; HDMA transfer from hl to [hBGMapAddress]
+; [hBGMapAddress] --> de
+; 2 * SCREEN_HEIGHT --> c
 	ld a, [hBGMapAddress + 1]
 	ld d, a
 	ld a, [hBGMapAddress]
 	ld e, a
-	ld c, $24
+	ld c, 2 * SCREEN_HEIGHT
+
+	; [rHDMA1, rHDMA2] = hl & $fff0
 	ld a, h
 	ld [rHDMA1], a
 	ld a, l
 	and $f0
 	ld [rHDMA2], a
+	; [rHDMA3, rHDMA4] = de & $1ff0
 	ld a, d
 	and $1f
 	ld [rHDMA3], a
 	ld a, e
 	and $f0
 	ld [rHDMA4], a
+	; b = c | %10000000
 	ld a, c
 	dec c
 	or $80
 	ld b, a
+	; d = $7f - c + 1
 	ld a, $7f
 	sub c
 	ld d, a
+	; while [rLY] >= d: pass
 .loop1
 	ld a, [rLY]
 	cp d
 	jr nc, .loop1
+	; while not [rSTAT] & 3: pass
 .loop2
 	ld a, [rSTAT]
 	and $3
 	jr z, .loop2
+	; load the 5th byte of HDMA
 	ld a, b
 	ld [rHDMA5], a
+	; wait until rLY advances (c + 1) times
 	ld a, [rLY]
 	inc c
 	ld hl, rLY
@@ -314,49 +341,58 @@ Function1041c1: ; 1041c1
 	ret
 ; 104205
 
-asm_104205:
+HDMATransfer_Wait123Scanlines:
 	ld b, $7b
-	jr asm_10420b
+	jr _continue_HDMATransfer
 
 
-Function104209:
-; LY magic
+HDMATransfer_Wait127Scanlines:
 	ld b, $7f
-asm_10420b:
+_continue_HDMATransfer:
+; a lot of waiting around for hardware registers
+	; [rHDMA1, rHDMA2] = hl & $fff0
 	ld a, h
 	ld [rHDMA1], a
 	ld a, l
 	and $f0 ; high nybble
 	ld [rHDMA2], a
+	; [rHDMA3, rHDMA4] = de & $1ff0
 	ld a, d
 	and $1f ; lower 5 bits
 	ld [rHDMA3], a
 	ld a, e
 	and $f0 ; high nybble
 	ld [rHDMA4], a
+	; e = c | %10000000
 	ld a, c
 	dec c
-	or $80 ; set 7, a
+	or $80
 	ld e, a
+	; d = b - c + 1
 	ld a, b
 	sub c
 	ld d, a
+	; while [rLY] >= d: pass
 .ly_loop
 	ld a, [rLY]
 	cp d
 	jr nc, .ly_loop
 
 	di
+	; while [rSTAT] & 3: pass
 .rstat_loop_1
 	ld a, [rSTAT]
 	and $3
 	jr nz, .rstat_loop_1
+	; while not [rSTAT] & 3: pass
 .rstat_loop_2
 	ld a, [rSTAT]
 	and $3
 	jr z, .rstat_loop_2
+	; load the 5th byte of HDMA
 	ld a, e
 	ld [rHDMA5], a
+	; wait until rLY advances (c + 1) times
 	ld a, [rLY]
 	inc c
 	ld hl, rLY
@@ -374,7 +410,7 @@ asm_10420b:
 ; 10424e
 
 
-Function10424e: ; 10424e (41:424e)
+_LoadHDMAParameters: ; 10424e (41:424e)
 	ld a, h
 	ld [rHDMA1], a
 	ld a, l
@@ -415,7 +451,7 @@ CutAndPasteMap: ; 104265 (41:4265)
 
 ; load the original value of c into hl 12 times
 	ld a, [hMapObjectIndexBuffer]
-	ld b, 12
+	ld b, BG_MAP_WIDTH - SCREEN_WIDTH
 .loop3
 	ld [hli], a
 	dec b
@@ -441,7 +477,7 @@ _Get2bpp:: ; 104284
 	push bc
 	push hl
 
-	; Copy c tiles of the 2bpp from b:de to wDecompressScratch
+	; Copy c tiles of the 2bpp from b:de to wScratchTileMap
 	ld a, b ; bank
 	ld l, c ; number of tiles
 	ld h, $0
@@ -452,7 +488,7 @@ endr
 	ld c, l
 	ld h, d ; address
 	ld l, e
-	ld de, wDecompressScratch
+	ld de, wScratchTileMap
 	call FarCopyBytes
 
 	pop hl
@@ -464,8 +500,8 @@ endr
 
 	ld d, h
 	ld e, l
-	ld hl, wDecompressScratch
-	call Function104209
+	ld hl, wScratchTileMap
+	call HDMATransfer_Wait127Scanlines
 
 	; restore the previous bank
 	pop af
@@ -519,7 +555,7 @@ endr
 	ld b, h
 	ld h, d
 	ld l, e
-	ld de, wDecompressScratch
+	ld de, wScratchTileMap
 	call FarCopyBytesDouble_DoubleBankSwitch
 
 	pop hl
@@ -531,41 +567,41 @@ endr
 
 	ld d, h
 	ld e, l
-	ld hl, wDecompressScratch
-	call Function104209
+	ld hl, wScratchTileMap
+	call HDMATransfer_Wait127Scanlines
 
 	pop af
 	ld [rSVBK], a
 	ret
 ; 104303
 
-Function104303: ; 104303
-	ld hl, Function104309
+HDMATransfer_OnlyTopFourRows: ; 104303
+	ld hl, .Function
 	jp CallInSafeGFXMode
 ; 104309
 
-Function104309:
-	ld hl, wDecompressScratch
+.Function:
+	ld hl, wScratchTileMap
 	decoord 0, 0
-	call Function10433a
-	ld hl, wDecompressScratch + $80
+	call .Copy
+	ld hl, wScratchTileMap + $80
 	decoord 0, 0, AttrMap
-	call Function10433a
+	call .Copy
 	ld a, $1
 	ld [rVBK], a
 	ld c, $8
-	ld hl, wDecompressScratch + $80
+	ld hl, wScratchTileMap + $80
 	debgcoord 0, 0, VBGMap1
-	call Function104209
+	call HDMATransfer_Wait127Scanlines
 	ld a, $0
 	ld [rVBK], a
 	ld c, $8
-	ld hl, wDecompressScratch
+	ld hl, wScratchTileMap
 	debgcoord 0, 0, VBGMap1
-	call Function104209
+	call HDMATransfer_Wait127Scanlines
 	ret
 
-Function10433a: ; 10433a (41:433a)
+.Copy: ; 10433a (41:433a)
 	ld b, 4
 .outer_loop
 	ld c, SCREEN_WIDTH
@@ -576,7 +612,7 @@ Function10433a: ; 10433a (41:433a)
 	dec c
 	jr nz, .inner_loop
 	ld a, l
-	add $20 - SCREEN_WIDTH
+	add BG_MAP_WIDTH - SCREEN_WIDTH
 	ld l, a
 	ld a, h
 	adc $0

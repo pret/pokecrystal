@@ -570,7 +570,7 @@ LoadEDTile:: ; 323d
 ; 323f
 
 ; XXX
-	callba Function104000
+	callba HDMATransferAttrMapAndTileMapToWRAMBank3
 	ret
 ; 3246
 

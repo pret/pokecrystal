@@ -250,7 +250,7 @@ Function104770: ; 104770 (41:4770)
 	ld [wBGMapAnchor], a
 	ld [hSCY], a
 	ld [hSCX], a
-	callba Function5958
+	callba ApplyBGMapAnchorToObjects
 	ld a, [rVBK]
 	push af
 	ld a, $1

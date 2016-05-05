@@ -3,12 +3,12 @@ RefreshScreen:: ; 2dba
 	call ClearWindowData
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(Function6454) ; and BANK(Function64bf)
+	ld a, BANK(ReanchorBGMap_NoOAMUpdate) ; and BANK(LoadFonts_NoOAMUpdate)
 	rst Bankswitch
 
-	call Function6454
-	call Function2e20
-	call Function64bf
+	call ReanchorBGMap_NoOAMUpdate
+	call _OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
+	call LoadFonts_NoOAMUpdate
 
 	pop af
 	rst Bankswitch
@@ -36,7 +36,7 @@ CloseText:: ; 2dcf
 	xor a
 	ld [hBGMapMode], a
 	call OverworldTextModeSwitch
-	call Function2e20
+	call _OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	xor a
 	ld [hBGMapMode], a
 	call Function2e31
@@ -52,26 +52,26 @@ OpenText:: ; 2e08
 	call ClearWindowData
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(Function6454) ; and BANK(Function64bf)
+	ld a, BANK(ReanchorBGMap_NoOAMUpdate) ; and BANK(LoadFonts_NoOAMUpdate)
 	rst Bankswitch
 
-	call Function6454 ; clear bgmap
+	call ReanchorBGMap_NoOAMUpdate ; clear bgmap
 	call SpeechTextBox
-	call Function2e20 ; anchor bgmap
-	call Function64bf ; load font
+	call _OpenAndCloseMenu_HDMATransferTileMapAndAttrMap ; anchor bgmap
+	call LoadFonts_NoOAMUpdate ; load font
 	pop af
 	rst Bankswitch
 
 	ret
 ; 2e20
 
-Function2e20:: ; 2e20
+_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap:: ; 2e20
 	ld a, [hOAMUpdate]
 	push af
 	ld a, $1
 	ld [hOAMUpdate], a
 
-	callba Function104110
+	callba OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 
 	pop af
 	ld [hOAMUpdate], a

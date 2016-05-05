@@ -99,7 +99,7 @@ AnimateFrontpic: ; d008e
 .loop
 	call SetUpPokeAnim
 	push af
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	pop af
 	jr nc, .loop
 	ret
@@ -288,9 +288,9 @@ Functiond01a9: ; d01a9
 	ld a, $2
 	ld [rSVBK], a
 	call Functiond04bd
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	call Functiond0536
-	callba Function104047
+	callba HDMATransferAttrMapToWRAMBank3
 	pop af
 	ld [rSVBK], a
 	ret
@@ -880,7 +880,7 @@ Functiond0504: ; d0504
 	xor a
 	ld [hBGMapMode], a
 	call Functiond051b
-	callba Function104047
+	callba HDMATransferAttrMapToWRAMBank3
 	pop af
 	ld [rSVBK], a
 	ret

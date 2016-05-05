@@ -202,7 +202,7 @@ Function100144: ; 100144
 	ret z
 	res 2, [hl]
 	res 6, [hl]
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	ret
 ; 100163
 
@@ -445,12 +445,12 @@ Function100301: ; 100301
 ; 100320
 
 Function100320: ; 100320
-	callba Function104099
+	callba Mobile_ReloadMapPart
 	ret
 ; 100327
 
 Function100327: ; 100327
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	ret
 ; 100327
 
@@ -1821,7 +1821,7 @@ Function100b45: ; 100b45
 	call Mobile_SetOverworldDelay
 	callba MobileMenuJoypad
 	push bc
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	call Function100e2d
 	pop bc
 	jr c, .asm_100b6b
@@ -1882,7 +1882,7 @@ MobileMoveSelectionScreen: ; 100b9f
 	call Mobile_SetOverworldDelay
 	callba MobileMenuJoypad
 	push bc
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	call Function100e2d
 	pop bc
 	jr c, .b_button
@@ -2016,7 +2016,7 @@ Mobile_PartyMenuSelect: ; 100cb5
 	callba MobileMenuJoypad
 	push bc
 	callba PlaySpriteAnimations
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	call Function100dfd
 	pop bc
 	jr c, .done
@@ -2070,7 +2070,7 @@ MobileBattleMonMenu: ; 100d22
 	callba MobileMenuJoypad
 	push bc
 	callba PlaySpriteAnimations
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	call Function100dfd
 	pop bc
 	jr c, .asm_100d54
@@ -3074,7 +3074,7 @@ Function1013c0: ; 1013c0
 ; 1013d6
 
 Function1013d6: ; 1013d6
-	callba Function104000
+	callba HDMATransferAttrMapAndTileMapToWRAMBank3
 	ret
 ; 1013dd
 
@@ -5182,7 +5182,7 @@ Function10224b: ; 10224b
 .asm_10225e
 	res 1, [hl]
 	res 2, [hl]
-	callba Function104099
+	callba Mobile_ReloadMapPart
 	scf
 	ret
 ; 10226a
@@ -6809,7 +6809,7 @@ Function102d9a: ; 102d9a
 	hlcoord 0, 0, AttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
-	callba Function104000
+	callba HDMATransferAttrMapAndTileMapToWRAMBank3
 	ret
 ; 102db7
 
@@ -7390,7 +7390,7 @@ Function103309: ; 103309
 	ld [wd1ee], a
 	call Function1034be
 	call UpdateSprites
-	callba Function104000
+	callba HDMATransferAttrMapAndTileMapToWRAMBank3
 	ld a, $01
 	ld [wd1f0], a
 	call Function10339a
@@ -7404,7 +7404,7 @@ Function103362: ; 103362
 	call Function1033af
 	call Function10339a
 	call Function10342c
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	ld a, [Buffer2]
 	bit 7, a
 	jr z, .asm_103362

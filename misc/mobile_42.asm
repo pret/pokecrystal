@@ -445,7 +445,7 @@ Function1082db: ; 1082db
 .loop
 	callba PlaySpriteAnimations
 	callba SetUpPokeAnim
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	jr nc, .loop
 	ret
 ; 1082f0

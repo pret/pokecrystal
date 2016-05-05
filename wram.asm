@@ -1504,9 +1504,9 @@ wSeerCaughtData:: ds 1
 wSeerCaughtGender:: ds 1
 	ds wSeerAction - @
 
-wBufferMonNick:: ds PKMN_NAME_LENGTH
-wBufferMonOT:: ds NAME_LENGTH
-wBufferMon:: party_struct wBufferMon
+wBufferMonNick:: ds PKMN_NAME_LENGTH ; d002
+wBufferMonOT:: ds NAME_LENGTH ; d00d
+wBufferMon:: party_struct wBufferMon ; d018
 	ds 8
 wMonOrItemNameBuffer::
 	ds wBufferMonNick - @
@@ -1820,8 +1820,8 @@ wPrevMapGroup:: ds 1
 wPrevMapNumber:: ds 1
 ; d14c
 
-wFollowNotExactPersonX:: ds 1 ; used in FollowNotExact
-wFollowNotExactPersonY:: ds 1 ; used in FollowNotExact
+wPlayerBGMapOffsetX:: ds 1 ; used in FollowNotExact; unit is pixels
+wPlayerBGMapOffsetY:: ds 1 ; used in FollowNotExact; unit is pixels
 
 ; Player movement
 wPlayerStepVectorX:: ds 1   ; d14e
@@ -2923,7 +2923,7 @@ w3_d742:: battle_tower_struct w3_d742
 	ds -$22
 
 wBTChoiceOfLvlGroup::
-w3_d800:: ; ds BG_MAP_WIDTH * SCREEN_HEIGHT ($240)
+w3_d800:: ; ds BG_MAP__WIDTH * SCREEN_HEIGHT ($240)
 	ds $69
 w3_d869:: ds $17
 w3_d880:: ds 1
@@ -3049,8 +3049,10 @@ w5_dc3e:: ds $c
 
 SECTION "WRAM 6", WRAMX, BANK [6]
 
-wDecompressScratch:: ds $400
-wBackupAttrMap:: ds $200
+wDecompressScratch::
+wScratchTileMap::
+	ds BG_MAP_WIDTH * BG_MAP_HEIGHT
+wScratchAttrMap:: ds $200
 w6_d600:: ds $200
 w6_d800::
 

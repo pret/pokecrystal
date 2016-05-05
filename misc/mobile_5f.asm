@@ -4647,7 +4647,7 @@ Function17f555: ; 17f555
 	ld a, [wc303]
 	bit 7, a
 	jr nz, .quit
-	callba Function104000
+	callba HDMATransferAttrMapAndTileMapToWRAMBank3
 	jr .loop
 
 .quit
@@ -4716,7 +4716,7 @@ Function17f5c3: ; 17f5c3
 
 Function17f5d2: ; 17f5d2
 	call Function17f5e4
-	callba Function104000
+	callba HDMATransferAttrMapAndTileMapToWRAMBank3
 	call SetPalettes
 	ld a, $1
 	ld [wc303], a

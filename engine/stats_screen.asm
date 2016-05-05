@@ -129,7 +129,7 @@ StatsScreen_WaitAnim: ; 4dd3a (13:5d3a)
 .finish
 	ld hl, wcf64
 	res 5, [hl]
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	ret
 
 StatsScreen_SetJumptableIndex: ; 4dd62 (13:5d62)
@@ -149,7 +149,7 @@ MonStatsInit: ; 4dd72 (13:5d72)
 	res 6, [hl]
 	call ClearBGPalettes
 	call ClearTileMap
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	call StatsScreen_CopyToTempMon
 	ld a, [CurPartySpecies]
 	cp EGG
@@ -1014,7 +1014,7 @@ EggStatsScreen: ; 4e33a
 	call DelayFrame
 	hlcoord 0, 0
 	call PrepMonFrontpic
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	call StatsScreen_AnimateEgg
 
 	ld a, [TempMonHappiness]

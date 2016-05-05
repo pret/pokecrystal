@@ -2201,7 +2201,7 @@ Function89d75: ; 89d75 (22:5d75)
 	push hl
 	call Function8923c
 	call _hl_
-	callba Function104148
+	callba Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	pop hl
 	jr asm_89d90
 

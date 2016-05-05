@@ -47,7 +47,7 @@ Function17a6a8: ; 17a6a8 (5e:66a8)
 	call Function17aba0
 	callba Function106464
 	call Function17ac0c
-	callba Function104000
+	callba HDMATransferAttrMapAndTileMapToWRAMBank3
 	call Function17abcf
 	callba LoadOW_BGPal7
 	callba Function49420
@@ -169,7 +169,7 @@ Function17a78f: ; 17a78f (5e:678f)
 	bit 7, [hl]
 	res 7, [hl]
 	jr nz, .asm_17a79f
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	ret
 
 .asm_17a79f

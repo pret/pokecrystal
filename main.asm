@@ -53,7 +53,7 @@ INCLUDE "engine/map_objects.asm"
 
 INCLUDE "engine/intro_menu.asm"
 
-Function6454:: ; 6454
+ReanchorBGMap_NoOAMUpdate:: ; 6454
 	call DelayFrame
 	ld a, [hOAMUpdate]
 	push af
@@ -64,7 +64,8 @@ Function6454:: ; 6454
 	push af
 	xor a
 	ld [hBGMapMode], a
-	call .Function6473
+
+	call .ReanchorBGMap
 
 	pop af
 	ld [hBGMapMode], a
@@ -74,7 +75,7 @@ Function6454:: ; 6454
 	set 6, [hl]
 	ret
 
-.Function6473:
+.ReanchorBGMap:
 	xor a
 	ld [hFFC6], a
 	ld [hBGMapMode], a
@@ -82,8 +83,8 @@ Function6454:: ; 6454
 	ld [hWY], a
 	call OverworldTextModeSwitch
 	ld a, VBGMap1 / $100
-	call .Function64b9
-	call Function2e20
+	call .LoadBGMapAddrIntoHRAM
+	call _OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	callba LoadOW_BGPal7
 	callba ApplyPals
 	ld a, $1
@@ -91,9 +92,9 @@ Function6454:: ; 6454
 	xor a
 	ld [hBGMapMode], a
 	ld [hWY], a
-	callba Function64db ; no need to farcall
+	callba HDMATransfer_FillBGMap0WithTile60 ; no need to farcall
 	ld a, VBGMap0 / $100
-	call .Function64b9
+	call .LoadBGMapAddrIntoHRAM
 	xor a
 	ld [wBGMapAnchor], a
 	ld a, VBGMap0 / $100
@@ -101,28 +102,28 @@ Function6454:: ; 6454
 	xor a
 	ld [hSCX], a
 	ld [hSCY], a
-	call Function5958
+	call ApplyBGMapAnchorToObjects
 	ret
 
-.Function64b9: ; 64b9
+.LoadBGMapAddrIntoHRAM: ; 64b9
 	ld [hBGMapAddress + 1], a
 	xor a
 	ld [hBGMapAddress], a
 	ret
 
-Function64bf:: ; 64bf
+LoadFonts_NoOAMUpdate:: ; 64bf
 	ld a, [hOAMUpdate]
 	push af
 	ld a, $1
 	ld [hOAMUpdate], a
 
-	call .Function64cd
+	call .LoadGFX
 
 	pop af
 	ld [hOAMUpdate], a
 	ret
 
-.Function64cd:
+.LoadGFX:
 	call LoadFontsExtra
 	ld a, $90
 	ld [hWY], a
@@ -130,7 +131,7 @@ Function64bf:: ; 64bf
 	call LoadStandardFont
 	ret
 
-Function64db: ; 64db
+HDMATransfer_FillBGMap0WithTile60: ; 64db
 	ld a, [rSVBK]
 	push af
 	ld a, $6
@@ -138,7 +139,7 @@ Function64db: ; 64db
 
 	ld a, $60
 	ld hl, wDecompressScratch
-	ld bc, wBackupAttrMap - wDecompressScratch
+	ld bc, wScratchAttrMap - wDecompressScratch
 	call ByteFill
 	ld a, wDecompressScratch / $100
 	ld [rHDMA1], a
@@ -3354,7 +3355,7 @@ Function4e906: ; 4e906
 	ld a, $6
 	ld [rSVBK], a
 	ld hl, wDecompressScratch
-	ld bc, wBackupAttrMap - wDecompressScratch
+	ld bc, wScratchAttrMap - wDecompressScratch
 	ld a, " "
 	call ByteFill
 	hlbgcoord 0, 0

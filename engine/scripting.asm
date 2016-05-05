@@ -3054,7 +3054,7 @@ Script_loadbytec2cf: ; 97b27
 Script_closetext: ; 97b2f
 ; script command 0x49
 
-	call Function2e20
+	call _OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	call CloseText
 	ret
 ; 97b36

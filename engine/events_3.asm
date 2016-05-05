@@ -45,7 +45,7 @@ ReturnFromMapSetupScript:: ; b8000
 	ld [wLandmarkSignTimer], a
 	call LoadMapNameSignGFX
 	call InitMapNameFrame
-	callba Function104303
+	callba HDMATransfer_OnlyTopFourRows
 	ret
 
 .dont_do_map_sign
@@ -113,7 +113,7 @@ PlaceMapNameSign:: ; b8098 (2e:4098)
 	jr nz, .skip2
 	call InitMapNameFrame
 	call PlaceMapNameCenterAlign
-	callba Function104303
+	callba HDMATransfer_OnlyTopFourRows
 .skip2
 	ld a, $80
 	ld a, $70
