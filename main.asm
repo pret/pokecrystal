@@ -3367,14 +3367,14 @@ Function4e906: ; 4e906
 	ld [rSVBK], a
 	ret
 
-Function4e929: ; mobile function
+GetMobileOTTrainerClass: ; mobile function
 	ld h, b
 	ld l, c
-	call Function4e930
+	call .GetMobileOTTrainerClass
 	ld c, a
 	ret
 
-Function4e930: ; 4e930
+.GetMobileOTTrainerClass: ; 4e930
 	ld a, [hli]
 	xor [hl]
 	ld c, a

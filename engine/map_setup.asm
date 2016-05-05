@@ -289,7 +289,7 @@ MapSetupCommands: ; 15440
 
 DontScrollText: ; 154ca
 	xor a
-	ld [wc2d7], a
+	ld [wDisableTextAcceleration], a
 	ret
 ; 154cf
 

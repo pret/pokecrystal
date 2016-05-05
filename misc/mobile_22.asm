@@ -769,7 +769,7 @@ Function8956f: ; 8956f
 	add hl, bc
 	ld b, h
 	ld c, l
-	callba Function4e929
+	callba GetMobileOTTrainerClass
 	ld a, c
 	ld [TrainerClass], a
 	ld a, [rSVBK]
@@ -1214,7 +1214,7 @@ Function897af: ; 897af
 	add hl, bc
 	ld b, h
 	ld c, l
-	callba Function4e929
+	callba GetMobileOTTrainerClass
 	ld a, c
 	ld [TrainerClass], a
 	xor a

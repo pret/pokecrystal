@@ -1,48 +1,56 @@
 Function16c000: ; 16c000
+; unreferenced
+	; Only for CGB
 	ld a, [hCGB]
 	and a
 	ret z
+	; Only do this once per boot cycle
 	ld a, [hFFEA]
 	and a
 	ret z
+	; Set some flag, preserving the old state
 	ld a, [wcfbe]
 	push af
 	set 7, a
 	ld [wcfbe], a
-	call Function16c108
-	callba Function100063
-	callba Function100082
-	call Function16c031
-	callba Function1000a4
+	; Do stuff
+	call MobileSystemSplashScreen_InitGFX ; Load GFX
+	callba SetRAMStateForMobile
+	callba EnableMobile
+	call .RunJumptable
+	callba DisableMobile
+	; Prevent this routine from running again
+	; until the next time the syatem is turned on
 	xor a
 	ld [hFFEA], a
+	; Restore the flag state
 	pop af
 	ld [wcfbe], a
 	ret
 ; 16c031
 
-Function16c031: ; 16c031
+.RunJumptable: ; 16c031
 	xor a
 	ld [wJumptableIndex], a
 	ld [wcf64], a
 	ld [wd002], a
 	ld [wd003], a
-.asm_16c03e
+.loop
 	call DelayFrame
 	callba Function10635c
 	ld a, [wd002]
-	ld hl, Jumptable_16c05c
+	ld hl, .Jumptable
 	rst JumpTable
 	call Function16cb2e
 	call Function16cbae
 	ld a, [wd002]
 	cp $ff
-	jr nz, .asm_16c03e
+	jr nz, .loop
 	ret
 ; 16c05c
 
-Jumptable_16c05c: ; 16c05c
-	dw Function16c074
+.Jumptable: ; 16c05c
+	dw .init
 	dw Function16c0ba
 	dw Function16c089
 	dw Function16c09e
@@ -53,10 +61,10 @@ Jumptable_16c05c: ; 16c05c
 	dw Function16c0ca
 	dw Function16c0dc
 	dw Function16c0ec
-	dw Function16c081
+	dw .quit
 ; 16c074
 
-Function16c074: ; 16c074
+.init ; 16c074
 	ld a, [wcf64]
 	and a
 	ret z
@@ -66,7 +74,7 @@ Function16c074: ; 16c074
 	ret
 ; 16c081
 
-Function16c081: ; 16c081
+.quit ; 16c081
 	push af
 	ld a, $ff
 	ld [wd002], a
@@ -160,15 +168,15 @@ Function16c0fa: ; 16c0fa
 	ret
 ; 16c108
 
-Function16c108: ; 16c108
+MobileSystemSplashScreen_InitGFX: ; 16c108
 	call DisableLCD
 	ld hl, VTiles2
-	ld de, GFX_16c173
-	lb bc, BANK(GFX_16c173), $68
+	ld de, .Tiles
+	lb bc, BANK(.Tiles), $68
 	call Get2bpp
-	call Function16c130
-	call Function16c145
-	call Function16c15c
+	call .LoadPals
+	call .LoadTileMap
+	call .LoadAttrMap
 	hlbgcoord 0, 0
 	call Function16cc73
 	call Function16cc02
@@ -178,9 +186,9 @@ Function16c108: ; 16c108
 	ret
 ; 16c130
 
-Function16c130: ; 16c130
+.LoadPals: ; 16c130
 	ld de, UnknBGPals
-	ld hl, Unknown_16c903
+	ld hl, UnknownMobilePalettes_16c903
 	ld bc, 8
 	ld a, $5
 	call FarCopyWRAM
@@ -188,40 +196,40 @@ Function16c130: ; 16c130
 	ret
 ; 16c145
 
-Function16c145: ; 16c145
+.LoadTileMap: ; 16c145
 	hlcoord 0, 0
 	ld bc, 20
 	xor a
 	call ByteFill
-	ld hl, Tilemap_16c633
+	ld hl, .TileMap
 	decoord 0, 1
 	ld bc, $0154
 	call CopyBytes
 	ret
 ; 16c15c
 
-Function16c15c: ; 16c15c
+.LoadAttrMap: ; 16c15c
 	hlcoord 0, 0, AttrMap
 	ld bc, SCREEN_WIDTH
 	xor a
 	call ByteFill
-	ld hl, Tilemap_16c79b
+	ld hl, .AttrMap
 	decoord 0, 1, AttrMap
 	ld bc, 17 * SCREEN_WIDTH
 	call CopyBytes
 	ret
 ; 16c173
 
-GFX_16c173:
+.Tiles:
 INCBIN "gfx/unknown/16c173.2bpp"
 
-Tilemap_16c633:
+.TileMap:
 INCBIN "gfx/unknown/16c633.tilemap"
 
-Tilemap_16c79b:
+.AttrMap:
 INCBIN "gfx/unknown/16c79b.tilemap"
 
-Unknown_16c903:
+UnknownMobilePalettes_16c903: ; 16c903
 	RGB 31, 31, 31
 	RGB 04, 10, 20
 	RGB 16, 19, 25
@@ -287,7 +295,7 @@ Function16c943: ; 16c943
 	ld e, $0
 	ld a, $0
 .asm_16c969
-	ld hl, Unknown_16c903
+	ld hl, UnknownMobilePalettes_16c903
 	call Function16cab6
 	call Function16cabb
 	ld d, a
@@ -310,7 +318,7 @@ Function16c943: ; 16c943
 	call Function16cadc
 
 .asm_16c991
-	ld hl, Unknown_16c903
+	ld hl, UnknownMobilePalettes_16c903
 	call Function16cab6
 	call Function16cad8
 	ld d, a
@@ -333,7 +341,7 @@ Function16c943: ; 16c943
 	call Function16cb08
 
 .asm_16c9b9
-	ld hl, Unknown_16c903
+	ld hl, UnknownMobilePalettes_16c903
 	call Function16cab6
 	call Function16cac4
 	ld d, a

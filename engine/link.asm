@@ -431,10 +431,12 @@ Gen2ToGen2LinkComms: ; 28177
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	call ReturnToMapFromSubmenu
-	ld a, [wc2d7]
+
+	; LET'S DO THIS
+	ld a, [wDisableTextAcceleration]
 	push af
-	ld a, $1
-	ld [wc2d7], a
+	ld a, 1
+	ld [wDisableTextAcceleration], a
 	ld a, [rIE]
 	push af
 	ld a, [rIF]
@@ -446,7 +448,9 @@ Gen2ToGen2LinkComms: ; 28177
 	ld [rIE], a
 	pop af
 	ld [rIF], a
+
 	predef StartBattle
+
 	ld a, [rIF]
 	ld h, a
 	xor a
@@ -456,7 +460,7 @@ Gen2ToGen2LinkComms: ; 28177
 	ld a, h
 	ld [rIF], a
 	pop af
-	ld [wc2d7], a
+	ld [wDisableTextAcceleration], a
 	pop af
 	ld [Options], a
 	callba LoadPokemonData

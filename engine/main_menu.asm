@@ -4,7 +4,7 @@ INCBIN "gfx/unknown/049c0c.2bpp"
 
 MainMenu: ; 49cdc
 	xor a
-	ld [wc2d7], a
+	ld [wDisableTextAcceleration], a
 	call Function49ed0
 	ld b, SCGB_08
 	call GetSGBLayout

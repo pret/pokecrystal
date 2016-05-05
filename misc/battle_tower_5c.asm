@@ -111,7 +111,7 @@ Function170139: ; 170139
 	call CopyBytes
 	ld bc, PlayerID
 	ld de, PlayerGender
-	callba Function4e929
+	callba GetMobileOTTrainerClass
 	ld de, wBT_OTTempPkmn1CaughtGender
 	ld a, c
 	ld [de], a

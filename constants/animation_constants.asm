@@ -43,23 +43,23 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
     const ANIM_OBJ_0E
     const ANIM_OBJ_0F
     const ANIM_OBJ_BURNED
-    const ANIM_OBJ_11
+    const ANIM_OBJ_BLIZZARD
     const ANIM_OBJ_12
-    const ANIM_OBJ_13
-    const ANIM_OBJ_14
+    const ANIM_OBJ_ICE_BEAM
+    const ANIM_OBJ_RAZOR_LEAF
     const ANIM_OBJ_POKE_BALL
-    const ANIM_OBJ_16
+    const ANIM_OBJ_POKE_BALL_BLOCKED
     const ANIM_OBJ_17
     const ANIM_OBJ_18
     const ANIM_OBJ_19
     const ANIM_OBJ_1A
     const ANIM_OBJ_1B
-    const ANIM_OBJ_1C
+    const ANIM_OBJ_BALL_POOF
     const ANIM_OBJ_1D
     const ANIM_OBJ_1E
     const ANIM_OBJ_1F
     const ANIM_OBJ_20
-    const ANIM_OBJ_21
+    const ANIM_OBJ_BUBBLE
     const ANIM_OBJ_22
     const ANIM_OBJ_23
     const ANIM_OBJ_24
@@ -67,9 +67,9 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
     const ANIM_OBJ_26
     const ANIM_OBJ_27
     const ANIM_OBJ_28
-    const ANIM_OBJ_29
+    const ANIM_OBJ_ICE_BUILDUP
     const ANIM_OBJ_FROZEN
-    const ANIM_OBJ_2B
+    const ANIM_OBJ_MASTER_BALL_SPARKLE
     const ANIM_OBJ_2C
     const ANIM_OBJ_2D
     const ANIM_OBJ_2E
@@ -95,12 +95,12 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
     const ANIM_OBJ_42
     const ANIM_OBJ_43
     const ANIM_OBJ_44
-    const ANIM_OBJ_45
+    const ANIM_OBJ_ABSORB
     const ANIM_OBJ_46
     const ANIM_OBJ_47
     const ANIM_OBJ_48
     const ANIM_OBJ_49
-    const ANIM_OBJ_4A
+    const ANIM_OBJ_LEECH_SEED
     const ANIM_OBJ_4B
     const ANIM_OBJ_4C
     const ANIM_OBJ_4D
@@ -117,11 +117,11 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
     const ANIM_OBJ_58
     const ANIM_OBJ_PARALYZED
     const ANIM_OBJ_5A
-    const ANIM_OBJ_5B
-    const ANIM_OBJ_5C
-    const ANIM_OBJ_5D
-    const ANIM_OBJ_5E
-    const ANIM_OBJ_5F
+    const ANIM_OBJ_HAZE
+    const ANIM_OBJ_MIST
+    const ANIM_OBJ_SMOG
+    const ANIM_OBJ_POISON_GAS
+    const ANIM_OBJ_HORN
     const ANIM_OBJ_60
     const ANIM_OBJ_61
     const ANIM_OBJ_62
@@ -138,7 +138,7 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
     const ANIM_OBJ_6D
     const ANIM_OBJ_SKY_ATTACK_FEAROW
     const ANIM_OBJ_LICK
-    const ANIM_OBJ_70
+    const ANIM_OBJ_WITHDRAW
     const ANIM_OBJ_71
     const ANIM_OBJ_72
     const ANIM_OBJ_73
@@ -155,7 +155,7 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
     const ANIM_OBJ_HEART
     const ANIM_OBJ_7F
     const ANIM_OBJ_80
-    const ANIM_OBJ_81
+    const ANIM_OBJ_COTTON_SPORE
     const ANIM_OBJ_82
     const ANIM_OBJ_83
     const ANIM_OBJ_84
@@ -227,7 +227,7 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
     const BATTLEANIMFUNC_08
     const BATTLEANIMFUNC_09
     const BATTLEANIMFUNC_0A
-    const BATTLEANIMFUNC_0B
+    const BATTLEANIMFUNC_RAZOR_LEAF
     const BATTLEANIMFUNC_0C
     const BATTLEANIMFUNC_0D
     const BATTLEANIMFUNC_0E
@@ -248,7 +248,7 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
     const BATTLEANIMFUNC_1D
     const BATTLEANIMFUNC_1E
     const BATTLEANIMFUNC_1F
-    const BATTLEANIMFUNC_20
+    const BATTLEANIMFUNC_LEECH_SEED
     const BATTLEANIMFUNC_21
     const BATTLEANIMFUNC_22
     const BATTLEANIMFUNC_23
@@ -257,9 +257,9 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
     const BATTLEANIMFUNC_26
     const BATTLEANIMFUNC_27
     const BATTLEANIMFUNC_28
-    const BATTLEANIMFUNC_29
-    const BATTLEANIMFUNC_2A
-    const BATTLEANIMFUNC_2B
+    const BATTLEANIMFUNC_SPRIAL_DESCENT
+    const BATTLEANIMFUNC_POISON_GAS
+    const BATTLEANIMFUNC_HORN
     const BATTLEANIMFUNC_2C
     const BATTLEANIMFUNC_2D
     const BATTLEANIMFUNC_2E
@@ -735,7 +735,7 @@ const_value SET 1
 	const ANIM_BG_1E
 	const ANIM_BG_1F
 	const ANIM_BG_20
-	const ANIM_BG_21
+	const ANIM_BG_WITHDRAW
 	const ANIM_BG_BOUNCE_DOWN
 	const ANIM_BG_DIG
 	const ANIM_BG_TACKLE

@@ -160,7 +160,7 @@ wMapTimeOfDay:: ds 1
 wc2d4:: ds 1
 wc2d5:: ds 1
 wLastDexEntry:: ds 1
-wc2d7:: ds 1
+wDisableTextAcceleration:: ds 1
 wPreviousLandmark:: ds 1
 wCurrentLandmark:: ds 1
 wLandmarkSignTimer:: ds 2
@@ -1112,7 +1112,7 @@ CreditsTimer:: ; cd22
 
 wcd23:: ds 1
 wcd24:: ds 1
-wcd25:: ds 1
+wMobileCommsJumptableIndex:: ds 1 ; cd25
 wcd26:: ds 1
 wcd27:: ds 1
 wcd28:: ds 1
@@ -1200,7 +1200,7 @@ wcd71:: ds 1
 wcd72:: ds 1
 wcd73:: ds 1
 wcd74:: ds 1
-wcd75:: ds 2
+wOTMonSelection:: ds 2 ; ds 3
 wcd77:: ds 1
 wcd78:: ds 1
 wcd79:: ds 1
@@ -2693,7 +2693,7 @@ wDailyPhoneTimeOfDayFlags:: ds 4
 wKenjiBreakTimer:: ds 2 ; Kenji
 wYanmaMapGroup:: ds 1 ; dc5a
 wYanmaMapNumber:: ds 1
-wdc5c:: ds 3
+wPlayerMonSelection:: ds 3
 wdc5f:: ds 1
 wdc60:: ds 19
 
@@ -2923,7 +2923,7 @@ w3_d742:: battle_tower_struct w3_d742
 	ds -$22
 
 wBTChoiceOfLvlGroup::
-w3_d800:: ; ds BG_MAP__WIDTH * SCREEN_HEIGHT ($240)
+w3_d800:: ; ds BG_MAP_WIDTH * SCREEN_HEIGHT ($240)
 	ds $69
 w3_d869:: ds $17
 w3_d880:: ds 1
@@ -2964,7 +2964,7 @@ wMagnetTrainInitPosition:: ds 1
 wMagnetTrainHoldPosition:: ds 1
 wMagnetTrainFinalPosition:: ds 1
 wMagnetTrainPlayerSpriteInitX:: ds 1
-ds 106
+	ds 106
 
 LYOverridesBackup:: ; d200
 	ds SCREEN_HEIGHT_PX

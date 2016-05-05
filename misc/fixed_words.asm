@@ -941,7 +941,7 @@ Function11c658: ; 11c658 (47:4658)
 	call Function11cfb5
 
 Function11c675: ; 11c675 (47:4675)
-	ld hl, wcd25
+	ld hl, wMobileCommsJumptableIndex
 	ld de, hJoypadPressed ; $ffa3
 	ld a, [de]
 	and A_BUTTON
@@ -975,7 +975,7 @@ Function11c675: ; 11c675 (47:4675)
 	ld [wcd26], a
 	ld a, [hl]
 	ld b, a
-	ld hl, wcd25
+	ld hl, wMobileCommsJumptableIndex
 	ld a, [wcd26]
 	add [hl]
 	jr c, .asm_11c6b9
@@ -986,7 +986,7 @@ Function11c675: ; 11c675 (47:4675)
 	ld hl, wcd26
 	sub [hl]
 	dec a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 .asm_11c6c4
 	call Function11c992
 	call Function11c7bc
@@ -1101,7 +1101,7 @@ Function11c675: ; 11c675 (47:4675)
 
 Function11c770: ; 11c770 (47:4770)
 	xor a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ld [wcd26], a
 	ld [wcd27], a
 	ld a, [wcd2b]
@@ -1390,7 +1390,7 @@ Function11c8f6: ; 11c8f6 (47:48f6)
 	and a
 	jr z, .asm_11c927
 	ld hl, wcd26
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	add [hl]
 .asm_11c911
 	ld e, a
@@ -1412,7 +1412,7 @@ Function11c8f6: ; 11c8f6 (47:48f6)
 
 .asm_11c927
 	ld hl, wcd26
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	add [hl]
 	ld c, a
 	ld b, $0
@@ -1438,7 +1438,7 @@ Function11c8f6: ; 11c8f6 (47:48f6)
 	ld d, $0
 	add hl, de
 	add hl, de
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	ld e, a
 	add hl, de
 	add hl, de
@@ -2554,7 +2554,7 @@ Function11d0b6: ; 11d0b6 (47:50b6)
 .three ; 11d10f (47:510f)
 	ld a, SPRITE_ANIM_FRAMESET_27
 	call ReinitSpriteAnimFrame
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	sla a
 	ld hl, Unknown_11d29e
 	ld e, $8

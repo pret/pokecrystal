@@ -78,8 +78,8 @@ hFFC2              EQU $ffc2
 hMoneyTemp         EQU $ffc3
 
 hFFC6              EQU $ffc6
-hFFC7              EQU $ffc7
-hFFC8              EQU $ffc8
+hLYOverrideStart              EQU $ffc7
+hLYOverrideEnd              EQU $ffc8
 hMobileReceive     EQU $ffc9
 hFFCA              EQU $ffca
 hLinkPlayerNumber  EQU $ffcb

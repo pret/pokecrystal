@@ -139,7 +139,7 @@ Init:: ; 17d
 	ld a, -1
 	ld [hLinkPlayerNumber], a
 
-	callba Function9890
+	callba InitCGBPals
 
 	ld a, VBGMap1 / $100
 	ld [hBGMapAddress + 1], a
@@ -154,9 +154,9 @@ Init:: ; 17d
 
 	ld a, [hCGB]
 	and a
-	jr z, .asm_22b
+	jr z, .no_double_speed
 	call NormalSpeed
-.asm_22b
+.no_double_speed
 
 	xor a
 	ld [rIF], a
@@ -166,7 +166,7 @@ Init:: ; 17d
 
 	call DelayFrame
 
-	predef Function9853
+	predef InitSGBBorder ; SGB init
 
 	call MapSetup_Sound_Off
 	xor a

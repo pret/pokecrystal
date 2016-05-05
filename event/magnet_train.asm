@@ -62,8 +62,8 @@ Special_MagnetTrain: ; 8cc04
 	call ClearBGPalettes
 	xor a
 	ld [hFFC6], a
-	ld [hFFC7], a
-	ld [hFFC8], a
+	ld [hLYOverrideStart], a
+	ld [hLYOverrideEnd], a
 	ld [hSCX], a
 	ld [Requested2bppSource], a
 	ld [Requested2bppSource + 1], a

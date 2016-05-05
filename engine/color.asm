@@ -138,6 +138,7 @@ Function8b07:
 ; Unreferenced
 	call CheckCGB
 	ret z
+; CGB only
 	ld hl, .BGPal
 	ld de, UnknBGPals
 	ld bc, 1 palettes
@@ -534,9 +535,9 @@ CopyPalettes:
 GetPredefPal:
 	ld l, a
 	ld h, $0
-rept 3 ; multiply by 8
 	add hl, hl
-endr
+	add hl, hl
+	add hl, hl
 	ld bc, Palettes_9df6
 	add hl, bc
 	ret
@@ -924,9 +925,10 @@ PushSGBPals:
 	jr nz, .loop
 	ret
 
-Function9853:
+InitSGBBorder:
 	call CheckCGB
 	ret nz
+; SGB/DMG only
 	di
 	ld a, [wcfbe]
 	push af
@@ -936,7 +938,7 @@ Function9853:
 	ld [rJOYP], a
 	ld [hSGB], a
 	call Function994a
-	jr nc, .asm_988a
+	jr nc, .skip
 	ld a, $1
 	ld [hSGB], a
 	call Function98eb
@@ -949,15 +951,16 @@ Function9853:
 	ld hl, PalPacket_9d66
 	call PushSGBPals
 
-.asm_988a
+.skip
 	pop af
 	ld [wcfbe], a
 	ei
 	ret
 
-Function9890::
+InitCGBPals::
 	call CheckCGB
 	ret z
+; CGB only
 	ld a, $1
 	ld [rVBK], a
 	ld hl, VTiles0
@@ -1123,7 +1126,7 @@ Function99ab:
 
 Function99b4:
 	call DisableLCD
-	ld a, $e4
+	ld a, %11100100
 	ld [rBGP], a
 	ld hl, Palettes_9df6
 	ld de, VTiles1
@@ -1198,25 +1201,27 @@ Function9a24:
 
 CopyData: ; 0x9a52
 ; copy bc bytes of data from hl to de
+.loop
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec bc
 	ld a, c
 	or b
-	jr nz, CopyData
+	jr nz, .loop
 	ret
 ; 0x9a5b
 
 ClearBytes: ; 0x9a5b
 ; clear bc bytes of data starting from de
+.loop
 	xor a
 	ld [de], a
 	inc de
 	dec bc
 	ld a, c
 	or b
-	jr nz, ClearBytes
+	jr nz, .loop
 	ret
 ; 0x9a64
 

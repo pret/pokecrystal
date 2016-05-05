@@ -806,17 +806,17 @@ Function106331: ; 106331 - called by Mobile_DummyReturnFalse in Crystal-J
 ; 10635c
 
 Function10635c: ; 10635c
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	bit 7, a
 	ret nz
-	ld a, [wcd25]
-	ld hl, Jumptable_10636a
+	ld a, [wMobileCommsJumptableIndex]
+	ld hl, .Jumptable
 	rst JumpTable
 	ret
 ; 10636a
 
-Jumptable_10636a: ; 10636a
-	dw Function10637c
+.Jumptable: ; 10636a
+	dw .init
 	dw Function106392
 	dw Function1063cc
 	dw Function1063d8
@@ -827,15 +827,15 @@ Jumptable_10636a: ; 10636a
 	dw Function106453
 ; 10637c
 
-Function10637c: ; 10637c
+.init: ; 10637c
 	ld de, wcd30
 	ld hl, $41
 	ld bc, $41
 	ld a, $40
 	call Function3e32
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 106392
 
@@ -857,39 +857,39 @@ Function106392: ; 106392
 	ld a, $b
 	ld [wcf64], a
 	ld a, $7
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 
 .asm_1063b4
 	ld a, $7
 	ld [wcf64], a
 	ld a, $7
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 
 .asm_1063bf
 	ld a, $1
 	ld [wcf64], a
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 1063cc
 
 Function1063cc: ; 1063cc
 	ld a, $78
 	ld [wcd42], a
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 
 Function1063d8: ; 1063d8
 	ld hl, wcd42
 	dec [hl]
 	ret nz
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 1063e5
 
@@ -897,9 +897,9 @@ Function1063e5: ; 1063e5
 	ld a, [wcf64]
 	cp $3
 	ret nz
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 1063f3
 
@@ -907,9 +907,9 @@ Function1063f3: ; 1063f3
 	ld de, wcd31
 	ld a, $32
 	call Function3e32
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 106403
 
@@ -930,9 +930,9 @@ Function106403: ; 106403
 	inc a
 	ld c, a
 	call MobileFn_106314
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 
 .asm_106426
@@ -940,17 +940,17 @@ Function106403: ; 106403
 	ld a, c
 	and a
 	jr z, .asm_106435
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 
 .asm_106435
 	ld c, $0
 	call MobileFn_106314
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 106442
 
@@ -960,14 +960,14 @@ Function106442: ; 106442
 	xor a
 	ld [hMobile], a
 	ld [hMobileReceive], a
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 
 Function106453: ; 106453
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	set 7, a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	nop
 	ld a, $4
 	ld [wcf64], a

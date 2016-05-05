@@ -75,7 +75,7 @@ Function110029: ; 110029 (44:4029)
 Function110030:: ; 110030 (44:4030)
 ; Use the byte at $c988 as a parameter
 ; for a dw.
-; If [$c988] in {12, 14, 16},
+; If [$c988] not in {12, 14, 16},
 ; clear [$c835].
 	push de
 	ld a, [$c988]
@@ -89,24 +89,29 @@ Function110030:: ; 110030 (44:4030)
 	ld [$c835], a
 	ld a, [$c988]
 .noreset
-	ld d, $0
+	; Get the pointer
+	ld d, 0
 	ld e, a
 	ld hl, .dw
 	add hl, de
+	; Store the low byte in [$c988]
 	ld a, [hli]
 	ld [$c988], a
 	ld a, [hl]
+	; restore de
 	pop de
-	ld hl, Function3e60
+	ld hl, Function3e60 ; return here
 	push hl
+	; If the destination function is not Function110236,
+	; call Function1100b4.
 	ld h, a
 	ld a, [$c988]
 	ld l, a
 	push hl
-	ld a, $36
+	ld a, Function110236 % $100
 	cp l
 	jr nz, .okay
-	ld a, $42
+	ld a, Function110236 / $100
 	cp h
 .okay
 	call nz, Function1100b4

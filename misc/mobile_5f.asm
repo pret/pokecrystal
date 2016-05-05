@@ -3224,7 +3224,7 @@ Function17e451: ; 17e451
 	ld b, $0
 	add hl, bc
 	pop bc
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 .asm_17e48b
 	push af
 	push hl
@@ -3339,7 +3339,7 @@ Function17e51b: ; 17e51b
 	ld c, a
 	ld b, $0
 	add hl, bc
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	ld c, a
 	ld a, [wcd27]
 	call SimpleMultiply

@@ -40,8 +40,8 @@ Predef_StartBattle: ; 8c20f
 	call DelayFrame
 	xor a
 	ld [hFFC6], a
-	ld [hFFC7], a
-	ld [hFFC8], a
+	ld [hLYOverrideStart], a
+	ld [hLYOverrideEnd], a
 	ld [hSCY], a
 
 	ld a, $1
@@ -305,9 +305,9 @@ StartTrainerBattle_SetUpForWavyOutro: ; 8c3e8 (23:43e8)
 	ld a, $43
 	ld [hFFC6], a
 	xor a
-	ld [hFFC7], a
+	ld [hLYOverrideStart], a
 	ld a, $90
-	ld [hFFC8], a
+	ld [hLYOverrideEnd], a
 	xor a
 	ld [wcf64], a
 	ld [wcf65], a
