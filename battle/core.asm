@@ -6526,7 +6526,7 @@ LoadEnemyMon: ; 3e8eb
 ; Fill stats
 	ld de, EnemyMonMaxHP
 	ld b, FALSE
-	ld hl, LinkBattleRNs + 7 ; ?
+	ld hl, EnemyMonDVs - (MON_DVS - MON_STAT_EXP + 1) ; LinkBattleRNs + 7 ; ?
 	predef CalcPkmnStats
 
 ; If we're in a trainer battle,
