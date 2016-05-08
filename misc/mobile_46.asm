@@ -1067,7 +1067,7 @@ asm_11886f
 	ld [wcd3c], a
 	call Function119e2e
 	ld a, [wcd33]
-	ld [wcd45], a
+	ld [wMobileInactivityTimerSeconds], a
 
 Function118880: ; 118880 (46:4880)
 	call Function119ed8
@@ -1344,7 +1344,7 @@ Function118982:
 	ld a, $7
 	ld [wcf66], a
 	ld a, $0
-	ld [wcd46], a
+	ld [wMobileInactivityTimerFrames], a
 	ret
 
 
@@ -1615,7 +1615,7 @@ Function118d80: ; 118d80
 	ld a, $9
 	ld [wcd3c], a
 	ld a, $12
-	ld [wcd45], a
+	ld [wMobileInactivityTimerSeconds], a
 	call Function119e2e
 
 Function118d9b:
@@ -1830,9 +1830,9 @@ Function118ec6: ; 118ec6
 	ld a, $1d
 	ld [wcd3c], a
 	ld a, $24
-	ld [wcd45], a
+	ld [wMobileInactivityTimerSeconds], a
 	ld a, $11
-	ld [wcd46], a
+	ld [wMobileInactivityTimerFrames], a
 	ld a, $1c
 	ld [wcd47], a
 	jp Function119e2e
@@ -1871,9 +1871,9 @@ Function118f14:
 	ld a, $9
 	ld [wcd3c], a
 	ld a, $24
-	ld [wcd45], a
+	ld [wMobileInactivityTimerSeconds], a
 	ld a, $13
-	ld [wcd46], a
+	ld [wMobileInactivityTimerFrames], a
 	ld a, $1c
 	ld [wcd47], a
 	jp Function119e2e
@@ -2518,7 +2518,7 @@ Function119388: ; 119388
 	ld a, $9
 	ld [wcd3c], a
 	ld a, $10
-	ld [wcd45], a
+	ld [wMobileInactivityTimerSeconds], a
 	call Function119e2e
 
 Function1193a0:
@@ -2565,7 +2565,7 @@ Function1193e3: ; 1193e3
 	ld a, $9
 	ld [wcd3c], a
 	ld a, $11
-	ld [wcd45], a
+	ld [wMobileInactivityTimerSeconds], a
 	call Function119e2e
 
 Function1193fb:
@@ -2895,9 +2895,9 @@ Function1195f8: ; 1195f8 (46:55f8)
 	ld a, $11
 	ld [wcd3c], a
 	ld a, $1c
-	ld [wcd45], a
+	ld [wMobileInactivityTimerSeconds], a
 	ld a, $f
-	ld [wcd46], a
+	ld [wMobileInactivityTimerFrames], a
 	ld a, $14
 	ld [wcd47], a
 	call Function119e2e
@@ -2907,9 +2907,9 @@ Function119612: ; 119612 (46:5612)
 	ld a, $14
 	ld [wcd3c], a
 	ld a, $1c
-	ld [wcd45], a
+	ld [wMobileInactivityTimerSeconds], a
 	ld a, $10
-	ld [wcd46], a
+	ld [wMobileInactivityTimerFrames], a
 	ld a, $14
 	ld [wcd47], a
 	jp Function119e2e
@@ -2925,7 +2925,7 @@ Function119629: ; 119629 (46:5629)
 	ld a, $9
 	ld [wcd3c], a
 	ld a, $1c
-	ld [wcd45], a
+	ld [wMobileInactivityTimerSeconds], a
 	ld a, $14
 	ld [wcd47], a
 	call Function119e2e
@@ -3219,7 +3219,7 @@ Function1197c9: ; 1197c9
 	ld a, $9
 	ld [wcd3c], a
 	ld a, $12
-	ld [wcd45], a
+	ld [wMobileInactivityTimerSeconds], a
 	call Function119e2e
 
 Function1197dc:
@@ -3943,7 +3943,7 @@ Function119cdf:
 Function119cec:
 	call Function119ed8
 	ret c
-	ld a, [wcd46]
+	ld a, [wMobileInactivityTimerFrames]
 	ld [wcf66], a
 	ret
 ; 119cf7
@@ -4301,16 +4301,16 @@ Function119f45: ; 119f45
 	ld de, String_11a661
 	call PlaceString
 	ld a, $80
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	jp Function11a5b0
 ; 119f56
 
 Function119f56: ; 119f56
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	and a
 	jr z, .asm_119f62
 	dec a
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	scf
 	ret
 
@@ -4320,16 +4320,16 @@ Function119f56: ; 119f56
 	ld de, String_11a6aa
 	call PlaceString
 	ld a, $80
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	jp Function11a5b0
 ; 119f76
 
 Function119f76: ; 119f76
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	and a
 	jr z, .asm_119f82
 	dec a
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	scf
 	ret
 
@@ -4340,7 +4340,7 @@ Function119f76: ; 119f76
 	call PlaceString
 	call Function11a5f5
 	xor a
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	jp Function11a5b0
 ; 119f98
 
@@ -4348,7 +4348,7 @@ Function119f98: ; 119f98
 	call Function11a536
 	ret c
 	call PlayClickSFX
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	and a
 	jr nz, .asm_119fef
 	call ExitMenu
@@ -4385,7 +4385,7 @@ Function119f98: ; 119f98
 	call ExitMenu
 	call ExitMenu
 	callba ReloadMapPart
-	ld a, [wcd45]
+	ld a, [wMobileInactivityTimerSeconds]
 	ld [wcf66], a
 	callba Function115dc3
 	ld a, $a
@@ -4504,12 +4504,12 @@ Function11a113: ; 11a113
 
 Function11a129: ; 11a129
 	ld a, $80
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	jp Function11a5b0
 ; 11a131
 
 Function11a131: ; 11a131
-	ld hl, wcd44
+	ld hl, wMobileInactivityTimerMinutes
 	dec [hl]
 	ret nz
 	ld a, [wcd3c]
@@ -4541,16 +4541,16 @@ Function11a14b: ; 11a14b
 	ld de, String_11a6f1
 	call PlaceString
 	ld a, $80
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	jp Function11a5b0
 ; 11a16d
 
 Function11a16d: ; 11a16d
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	and a
 	jr z, .asm_11a179
 	dec a
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	scf
 	ret
 
@@ -4562,7 +4562,7 @@ Function11a16d: ; 11a16d
 	call PlaceString
 	call Function11a5f5
 	xor a
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	jp Function11a5b0
 ; 11a192
 
@@ -4570,7 +4570,7 @@ Function11a192: ; 11a192
 	call Function11a536
 	ret c
 	call PlayClickSFX
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	and a
 	jr nz, .asm_11a1b6
 	call ExitMenu
@@ -4585,7 +4585,7 @@ Function11a192: ; 11a192
 .asm_11a1b6
 	call ExitMenu
 	callba ReloadMapPart
-	ld a, [wcd45]
+	ld a, [wMobileInactivityTimerSeconds]
 	ld [wcf66], a
 	ld [wcd80], a
 	call Function11a63c
@@ -4649,7 +4649,7 @@ Function11a207: ; 11a207
 	ld a, $ed
 	ld [hl], a
 	xor a
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	jp Function11a5b0
 ; 11a235
 
@@ -4676,11 +4676,11 @@ Function11a235: ; 11a235
 	xor a
 	ld [wcd8a], a
 	ld [wcd8b], a
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	and a
 	jr z, .asm_11a24c
 	xor a
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	hlcoord 15, 8
 	ld a, $ed
 	ld [hl], a
@@ -4693,11 +4693,11 @@ Function11a235: ; 11a235
 	xor a
 	ld [wcd8a], a
 	ld [wcd8b], a
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	and a
 	jr nz, .asm_11a24c
 	inc a
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	hlcoord 15, 8
 	ld a, $7f
 	ld [hl], a
@@ -4711,12 +4711,12 @@ Function11a235: ; 11a235
 	ld [wcd8a], a
 	ld [wcd8b], a
 	call PlayClickSFX
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	and a
 	jr nz, .asm_11a2c4
 	call ExitMenu
 	callba ReloadMapPart
-	ld a, [wcd46]
+	ld a, [wMobileInactivityTimerFrames]
 	cp $0
 	jr z, .asm_11a2b4
 	ld a, [wcd47]
@@ -4774,16 +4774,16 @@ Function11a2e6: ; 11a2e6
 	ld de, String_11a71e
 	call PlaceString
 	ld a, $80
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	jp Function11a5b0
 ; 11a302
 
 Function11a302: ; 11a302
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	and a
 	jr z, .asm_11a30e
 	dec a
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	scf
 	ret
 
@@ -4801,16 +4801,16 @@ Function11a302: ; 11a302
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ld a, $80
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	jp Function11a5b0
 ; 11a33a
 
 Function11a33a: ; 11a33a
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	and a
 	jr z, .asm_11a346
 	dec a
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	scf
 	ret
 
@@ -4828,16 +4828,16 @@ Function11a357: ; 11a357
 	ld de, String_11a743
 	call PlaceString
 	ld a, $80
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	jp Function11a5b0
 ; 11a36b
 
 Function11a36b: ; 11a36b
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	and a
 	jr z, .asm_11a377
 	dec a
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	scf
 	ret
 
@@ -4848,7 +4848,7 @@ Function11a36b: ; 11a36b
 	call PlaceString
 	call Function11a5f5
 	xor a
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	jp Function11a5b0
 ; 11a38d
 
@@ -4856,7 +4856,7 @@ Function11a38d: ; 11a38d
 	call Function11a536
 	ret c
 	call PlayClickSFX
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	and a
 	jr nz, .asm_11a3b1
 	call ExitMenu
@@ -4871,7 +4871,7 @@ Function11a38d: ; 11a38d
 .asm_11a3b1
 	call ExitMenu
 	callba ReloadMapPart
-	ld a, [wcd45]
+	ld a, [wMobileInactivityTimerSeconds]
 	ld [wcf66], a
 	ld [wcd80], a
 	scf
@@ -4884,16 +4884,16 @@ Function11a3c5: ; 11a3c5
 	ld de, String_11a762
 	call PlaceString
 	ld a, $80
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	jp Function11a5b0
 ; 11a3d9
 
 Function11a3d9: ; 11a3d9
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	and a
 	jr z, .asm_11a3e5
 	dec a
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	scf
 	ret
 
@@ -4903,16 +4903,16 @@ Function11a3d9: ; 11a3d9
 	ld de, String_11a779
 	call PlaceString
 	ld a, $80
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	jp Function11a5b0
 ; 11a3f9
 
 Function11a3f9: ; 11a3f9
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	and a
 	jr z, .asm_11a405
 	dec a
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	scf
 	ret
 
@@ -4923,7 +4923,7 @@ Function11a3f9: ; 11a3f9
 	call PlaceString
 	call Function11a5f5
 	xor a
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	jp Function11a5b0
 ; 11a41b
 
@@ -4931,7 +4931,7 @@ Function11a41b: ; 11a41b
 	call Function11a536
 	ret c
 	call PlayClickSFX
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	and a
 	jr nz, .asm_11a43f
 	call ExitMenu
@@ -4959,7 +4959,7 @@ Function11a452: ; 11a452
 	ld de, String_11a791
 	call PlaceString
 	ld a, $80
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	jp Function11a5b0
 ; 11a466
 
@@ -4969,16 +4969,16 @@ Function11a466: ; 11a466
 	ld de, String_11a7c1
 	call PlaceString
 	ld a, $80
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	jp Function11a5b0
 ; 11a47a
 
 Function11a47a: ; 11a47a
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	and a
 	jr z, .asm_11a486
 	dec a
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	scf
 	ret
 
@@ -4994,7 +4994,7 @@ Function11a488: ; 11a488
 	call PlaceString
 	call Function11a5f5
 	xor a
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	jp Function11a5b0
 ; 11a49e
 
@@ -5002,7 +5002,7 @@ Function11a49e: ; 11a49e
 	call Function11a536
 	ret c
 	call PlayClickSFX
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	and a
 	jr nz, .asm_11a4c7
 	call ExitMenu
@@ -5019,7 +5019,7 @@ Function11a49e: ; 11a49e
 .asm_11a4c7
 	call ExitMenu
 	callba ReloadMapPart
-	ld a, [wcd46]
+	ld a, [wMobileInactivityTimerFrames]
 	ld [wcf66], a
 	ld [wcd80], a
 	scf
@@ -5041,7 +5041,7 @@ Function11a4e8: ; 11a4e8
 	call PlaceString
 	call Function11a5f5
 	xor a
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	jp Function11a5b0
 ; 11a4fe
 
@@ -5049,7 +5049,7 @@ Function11a4fe: ; 11a4fe
 	call Function11a536
 	ret c
 	call PlayClickSFX
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	and a
 	jr nz, .asm_11a522
 	call ExitMenu
@@ -5064,7 +5064,7 @@ Function11a4fe: ; 11a4fe
 .asm_11a522
 	call ExitMenu
 	callba ReloadMapPart
-	ld a, [wcd45]
+	ld a, [wMobileInactivityTimerSeconds]
 	ld [wcf66], a
 	ld [wcd80], a
 	scf
@@ -5102,11 +5102,11 @@ Function11a536: ; 11a536
 	xor a
 	ld [wcd8a], a
 	ld [wcd8b], a
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	and a
 	jr z, .asm_11a54d
 	xor a
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	hlcoord 15, 7
 	ld a, $ed
 	ld [hl], a
@@ -5119,11 +5119,11 @@ Function11a536: ; 11a536
 	xor a
 	ld [wcd8a], a
 	ld [wcd8b], a
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	and a
 	jr nz, .asm_11a54d
 	inc a
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	hlcoord 15, 7
 	ld a, $7f
 	ld [hl], a
@@ -5134,7 +5134,7 @@ Function11a536: ; 11a536
 
 .asm_11a5a2
 	ld a, $1
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 
 .asm_11a5a7
 	xor a
@@ -5308,7 +5308,7 @@ String_11a7ac: ; 11a7ac
 	next "ちゅうし しますか?@"
 ; 11a7c1
 
-String_11a7c1: ; 11a7c1
+String_11a7c1: ; 11a7c1 ; new news?
 	db   "あたらしい ニュースは"
 	next "ありません でした@"
 ; 11a7d7

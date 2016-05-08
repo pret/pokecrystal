@@ -321,13 +321,13 @@ DSTChecks: ; 16439
 	call .ClearBox
 	bccoord 1, 14
 	ld hl, .Text_AdjustClock
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	call YesNoBox
 	ret c
 	call .ClearBox
 	bccoord 1, 14
 	ld hl, .Text_LostInstructionBooklet
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	ret
 
 .loop
@@ -337,7 +337,7 @@ DSTChecks: ; 16439
 	bit 7, a
 	jr z, .SetDST
 	ld hl, .Text_IsDSTOver
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	call YesNoBox
 	ret c
 	ld a, [wDST]
@@ -347,12 +347,12 @@ DSTChecks: ; 16439
 	call .ClearBox
 	bccoord 1, 14
 	ld hl, .Text_SetClockBack
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	ret
 
 .SetDST:
 	ld hl, .Text_SwitchToDST
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	call YesNoBox
 	ret c
 	ld a, [wDST]
@@ -362,7 +362,7 @@ DSTChecks: ; 16439
 	call .ClearBox
 	bccoord 1, 14
 	ld hl, .Text_SetClockForward
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	ret
 ; 164b9
 

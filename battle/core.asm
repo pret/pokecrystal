@@ -183,7 +183,7 @@ BattleTurn: ; 3c12f
 	call IsMobileBattle
 	jr nz, .not_disconnected
 	callba Function100da5
-	callba Function100641
+	callba StartMobileInactivityTimer
 	callba Function100dd8
 	jp c, .quit
 .not_disconnected
@@ -2503,8 +2503,8 @@ WinTrainerBattle: ; 3cfa4
 	call BattleWinSlideInEnemyTrainerFrontpic
 	ld c, 40
 	call DelayFrames
-	ld c, $4
-	callba Function4ea0a
+	ld c, $4 ; win
+	callba Mobile_PrintOpponentBattleMessage
 	ret
 
 .battle_tower
@@ -3176,8 +3176,8 @@ LostBattle: ; 3d38e
 	ld c, 40
 	call DelayFrames
 
-	ld c, $3
-	callba Function4ea0a
+	ld c, $3 ; lost
+	callba Mobile_PrintOpponentBattleMessage
 	scf
 	ret
 ; 3d432
@@ -9621,8 +9621,8 @@ BattleStartMessage: ; 3fc8b
 	call IsMobileBattle2
 	ret nz
 
-	ld c, $2
-	callba Function4ea0a
+	ld c, $2 ; start
+	callba Mobile_PrintOpponentBattleMessage
 
 	ret
 ; 3fd26

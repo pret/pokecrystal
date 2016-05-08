@@ -516,7 +516,7 @@ Pokegear_UpdateClock: ; 90f86 (24:4f86)
 	callba PrintHoursMins
 	ld hl, .DayText
 	bccoord 6, 6
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	ret
 
 ; 90fa8 (24:4fa8)
@@ -711,7 +711,7 @@ PokegearMap_UpdateLandmarkName: ; 910b4
 	push de
 	callba GetLandmarkName
 	pop de
-	callba Function1de2c5
+	callba TownMap_ConvertLineBreakCharacters
 	hlcoord 8, 0
 	ld [hl], $34
 	ret

@@ -9,9 +9,9 @@ SaveMenu: ; 14a1a
 	jr nz, .refused
 	call AskOverwriteSaveFile
 	jr c, .refused
-	call SetWRAMStateForSave
+	call PauseGameLogic
 	call _SavingDontTurnOffThePower
-	call ClearWRAMStateAfterSave
+	call ResumeGameLogic
 	call ExitMenu
 	and a
 	ret
@@ -24,7 +24,7 @@ SaveMenu: ; 14a1a
 	ret
 
 Function14a58: ; 14a58
-	call SetWRAMStateForSave
+	call PauseGameLogic
 	callba StageRTCTimeForSave
 	callba BackupMysteryGift
 	call SavePokemonData
@@ -33,7 +33,7 @@ Function14a58: ; 14a58
 	call SaveBackupChecksum
 	callba BackupPartyMonMail
 	callba SaveRTC
-	call ClearWRAMStateAfterSave
+	call ResumeGameLogic
 	ret
 ; 14a83
 
@@ -47,7 +47,7 @@ ChangeBoxSaveGame: ; 14a83 (5:4a83)
 	jr c, .refused
 	call AskOverwriteSaveFile
 	jr c, .refused
-	call SetWRAMStateForSave
+	call PauseGameLogic
 	call SavingDontTurnOffThePower
 	call SaveBox
 	pop de
@@ -55,7 +55,7 @@ ChangeBoxSaveGame: ; 14a83 (5:4a83)
 	ld [wCurBox], a
 	call LoadBox
 	call SavedTheGame
-	call ClearWRAMStateAfterSave
+	call ResumeGameLogic
 	and a
 	ret
 .refused
@@ -65,9 +65,9 @@ ChangeBoxSaveGame: ; 14a83 (5:4a83)
 Link_SaveGame: ; 14ab2
 	call AskOverwriteSaveFile
 	jr c, .refused
-	call SetWRAMStateForSave
+	call PauseGameLogic
 	call _SavingDontTurnOffThePower
-	call ClearWRAMStateAfterSave
+	call ResumeGameLogic
 	and a
 
 .refused
@@ -75,19 +75,19 @@ Link_SaveGame: ; 14ab2
 ; 14ac2
 
 MovePkmnWOMail_SaveGame: ; 14ac2
-	call SetWRAMStateForSave
+	call PauseGameLogic
 	push de
 	call SaveBox
 	pop de
 	ld a, e
 	ld [wCurBox], a
 	call LoadBox
-	call ClearWRAMStateAfterSave
+	call ResumeGameLogic
 	ret
 ; 14ad5
 
 Function14ad5: ; 14ad5
-	call SetWRAMStateForSave
+	call PauseGameLogic
 	push de
 	call SaveBox
 	pop de
@@ -111,7 +111,7 @@ Function14ad5: ; 14ad5
 	callba BackupMobileEventIndex
 	callba SaveRTC
 	call LoadBox
-	call ClearWRAMStateAfterSave
+	call ResumeGameLogic
 	ld de, SFX_SAVE
 	call PlaySFX
 	ld c, 24
@@ -127,9 +127,9 @@ StartMovePkmnWOMail_SaveGame: ; 14b34
 	jr c, .refused
 	call AskOverwriteSaveFile
 	jr c, .refused
-	call SetWRAMStateForSave
+	call PauseGameLogic
 	call _SavingDontTurnOffThePower
-	call ClearWRAMStateAfterSave
+	call ResumeGameLogic
 	and a
 	ret
 
@@ -138,15 +138,15 @@ StartMovePkmnWOMail_SaveGame: ; 14b34
 	ret
 ; 14b54
 
-SetWRAMStateForSave: ; 14b54
+PauseGameLogic: ; 14b54
 	ld a, $1
-	ld [wc2cd], a
+	ld [wGameLogicPaused], a
 	ret
 ; 14b5a
 
-ClearWRAMStateAfterSave: ; 14b5a
+ResumeGameLogic: ; 14b5a
 	xor a
-	ld [wc2cd], a
+	ld [wGameLogicPaused], a
 	ret
 ; 14b5f
 

@@ -182,7 +182,7 @@ BuenaPrintText:: ; 105a
 
 PrintTextBoxText:: ; 1065
 	bccoord TEXTBOX_INNERX, TEXTBOX_INNERY
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	ret
 ; 106c
 
@@ -708,7 +708,7 @@ PokeFluteTerminatorCharacter:: ; 13e0
 ; 13e5
 
 
-PlaceWholeStringInBoxAtOnce:: ; 13e5
+PlaceHLTextAtBC:: ; 13e5
 	ld a, [TextBoxFlags]
 	push af
 	set 1, a

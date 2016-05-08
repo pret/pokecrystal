@@ -481,9 +481,11 @@ _Get2bpp:: ; 104284
 	ld a, b ; bank
 	ld l, c ; number of tiles
 	ld h, $0
-rept 4
-	add hl, hl ; multiply by 16 (16 bytes of a 2bpp = 8 x 8 tile)
-endr
+	; multiply by 16 (16 bytes of a 2bpp = 8 x 8 tile)
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	add hl, hl
 	ld b, h
 	ld c, l
 	ld h, d ; address

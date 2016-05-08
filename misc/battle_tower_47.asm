@@ -81,7 +81,7 @@ ENDC
 	bccoord 1, 14
 	pop af
 	ld [rSVBK], a
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	ret
 ; 11c05d
 

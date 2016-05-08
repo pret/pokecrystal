@@ -33,7 +33,7 @@ Joypad:: ; 935
 	ret nz
 
 ; If we're saving, input is disabled.
-	ld a, [wc2cd]
+	ld a, [wGameLogicPaused]
 	and a
 	ret nz
 

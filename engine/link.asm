@@ -495,7 +495,7 @@ LinkTimeout: ; 283b2
 	pop de
 	pop hl
 	bccoord 1, 14
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	call RotateThreePalettesRight
 	call ClearScreen
 	ld b, SCGB_08
@@ -1255,7 +1255,7 @@ LinkTradeOTPartymonMenuLoop: ; 28835
 	jr z, .not_a_button
 	ld a, $1
 	ld [wd263], a
-	callab Function50db9
+	callab LoadAddrsForLinkMonStatsScreen
 	ld hl, OTPartyMon1Species
 	callba LinkMonStatsScreen
 	jp LinkTradePartiesMenuMasterLoop
@@ -1448,7 +1448,7 @@ Function28926: ; 28926
 	ld [wMenuCursorY], a
 	ld a, $4
 	ld [wd263], a
-	callab Function50db9
+	callab LoadAddrsForLinkMonStatsScreen
 	callba LinkMonStatsScreen
 	call Call_LoadTempTileMapToTileMap
 	hlcoord 6, 1
@@ -1490,7 +1490,7 @@ Function28926: ; 28926
 	callba Link_WaitBGMap
 	ld hl, .Text_CantTradeLastMon
 	bccoord 1, 14
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	jr .cancel_trade
 
 .abnormal
@@ -1512,7 +1512,7 @@ Function28926: ; 28926
 	callba Link_WaitBGMap
 	ld hl, .Text_Abnormal
 	bccoord 1, 14
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 
 .cancel_trade
 	hlcoord 0, 12
@@ -1688,7 +1688,7 @@ LinkTrade: ; 28b87
 	call GetPokemonName
 	ld hl, UnknownText_0x28eb8
 	bccoord 1, 14
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	call LoadStandardMenuDataHeader
 	hlcoord 10, 7
 	ld b, 3
@@ -2030,7 +2030,7 @@ LoadTradeScreenBorder: ; 28ef8
 ; 28eff
 
 Function28eff: ; 28eff
-	callba Function16d6a7
+	callba Function16d6a7 ; just a nested farcall; so wasteful
 	call SetPalettes
 	ret
 ; 28f09

@@ -983,9 +983,9 @@ Function106464:: ; 106464
 	ld hl, VTiles2 tile $60
 	lb bc, BANK(MobilePhoneTilesGFX), 1
 	call Get2bpp
-	ld de, GFX_f9424
+	ld de, FontsExtra2_UpArrowGFX
 	ld hl, VTiles2 tile $61
-	lb bc, BANK(GFX_f9424), 1
+	lb bc, BANK(FontsExtra2_UpArrowGFX), 1
 	call Get2bpp
 	ld de, GFX_106514
 	ld hl, VTiles2 tile $62

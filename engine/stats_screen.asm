@@ -6,14 +6,14 @@ BattleStatsScreenInit: ; 4dc7b (13:5c7b)
 	ld a, [wBattleMode] ; wd22d (aliases: EnemyMonEnd)
 	and a
 	jr z, StatsScreenInit
-	jr _BattleStatsScreenInit
+	jr _MobileStatsScreenInit
 
 StatsScreenInit: ; 4dc8a
 	ld hl, StatsScreenMain
 	jr StatsScreenInit_gotaddress
 
-_BattleStatsScreenInit: ; 4dc8f
-	ld hl, StatsScreenBattle
+_MobileStatsScreenInit: ; 4dc8f
+	ld hl, StatsScreenMobile
 	jr StatsScreenInit_gotaddress
 
 StatsScreenInit_gotaddress: ; 4dc94
@@ -33,7 +33,7 @@ StatsScreenInit_gotaddress: ; 4dc94
 	call ClearBGPalettes
 	call ClearTileMap
 	call UpdateSprites
-	callba Functionfb53e
+	callba StatsScreen_LoadFont
 	pop hl
 	call _hl_
 	call ClearBGPalettes
@@ -73,7 +73,7 @@ StatsScreenMain: ; 0x4dcd2
 	ret
 ; 0x4dcf7
 
-StatsScreenBattle: ; 4dcf7
+StatsScreenMobile: ; 4dcf7
 	xor a
 	ld [wJumptableIndex], a
 	; stupid interns
@@ -89,7 +89,7 @@ StatsScreenBattle: ; 4dcf7
 	ld hl, StatsScreenPointerTable
 	rst JumpTable
 	call StatsScreen_WaitAnim
-	callba Function100dfd
+	callba MobileComms_CheckInactivityTimer
 	jr c, .exit
 	ld a, [wJumptableIndex]
 	bit 7, a
@@ -100,7 +100,6 @@ StatsScreenBattle: ; 4dcf7
 ; 4dd2a
 
 StatsScreenPointerTable: ; 4dd2a
-
 	dw MonStatsInit       ; regular pokémon
 	dw EggStatsInit       ; egg
 	dw StatsScreenWaitCry

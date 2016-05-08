@@ -137,7 +137,7 @@ Function437b: ; 437b
 	cp STEP_TYPE_SLEEP
 	ret z
 .ok3
-	ld hl, Pointers4b45
+	ld hl, StepTypesJumptable
 	rst JumpTable
 	ret
 
@@ -1084,7 +1084,7 @@ SetRandomStepDuration: ; 4b2d
 	ret
 ; 4b45
 
-Pointers4b45: ; 4b45
+StepTypesJumptable: ; 4b45
 ; These pointers use OBJECT_STEP_TYPE.  See constants/sprite_constants.asm
 	dw ObjectMovementReset ; 00
 	dw MapObjectMovementPattern ; unused

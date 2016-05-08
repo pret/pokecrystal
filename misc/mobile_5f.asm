@@ -892,11 +892,11 @@ Function17d48d: ; 17d48d
 	ld a, [hli]
 	ld [wcd43], a
 	ld a, [hli]
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	ld a, [hli]
-	ld [wcd45], a
+	ld [wMobileInactivityTimerSeconds], a
 	ld a, [hli]
-	ld [wcd46], a
+	ld [wMobileInactivityTimerFrames], a
 	ld a, [hli]
 	and a
 	jr z, .asm_17d58a
@@ -2050,7 +2050,7 @@ Function17dd13: ; 17dd13
 	push hl
 	pop bc
 	pop hl
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	ret
 ; 17dd30
 
@@ -3420,16 +3420,16 @@ Function17e5af: ; 17e5af
 	ret z
 	ld a, [wcd43]
 	ld l, a
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	ld h, a
 	bccoord 0, 0
 	add hl, bc
 	ld bc, $ffec
 	add hl, bc
-	ld a, [wcd45]
+	ld a, [wMobileInactivityTimerSeconds]
 	ld c, a
 	ld b, $0
-	ld a, [wcd46]
+	ld a, [wMobileInactivityTimerFrames]
 	call Function17e600
 	ld a, [wcd2e]
 	ld c, a
@@ -3453,7 +3453,7 @@ Function17e5af: ; 17e5af
 	pop de
 	ld a, [wcd43]
 	ld l, a
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	ld h, a
 	bccoord 0, 0
 	add hl, bc

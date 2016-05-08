@@ -319,7 +319,7 @@ Function241d5: ; 241d5
 	ret c
 	ld c, 1
 	ld b, 3
-	call Function10062d ; BUG: This function is in another bank.
+	call AdvanceMobileInactivityTimerAndCheckExpired ; BUG: This function is in another bank.
 	                    ; Pointer in current bank (9) is bogus.
 	ret c
 	callba Function100337

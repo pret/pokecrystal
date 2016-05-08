@@ -1762,7 +1762,7 @@ SetUpMoveScreenBG: ; 13172
 	call ClearSprites
 	xor a
 	ld [hBGMapMode], a
-	callba Functionfb571
+	callba LoadStatsScreenPageTilesGFX
 	callba ClearSpriteAnims2
 	ld a, [CurPartyMon]
 	ld e, a

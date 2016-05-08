@@ -1159,10 +1159,10 @@ BillsPC_LoadMonStats: ; e2b6d (38:6b6d)
 	add [hl]
 	ld e, a
 	ld d, $0
-	ld hl, wBillsPCPokemonList + 1
-rept 3
+	ld hl, wBillsPCPokemonList + 1 ; box number
 	add hl, de
-endr
+	add hl, de
+	add hl, de
 	ld a, [hl]
 	and a
 	jr z, .party
@@ -1274,9 +1274,9 @@ BillsPC_RefreshTextboxes: ; e2c2c (38:6c2c)
 	ld e, a
 	ld d, 0
 	ld hl, wBillsPCPokemonList
-rept 3
 	add hl, de
-endr
+	add hl, de
+	add hl, de
 	ld e, l
 	ld d, h
 	hlcoord 9, 4
@@ -1290,9 +1290,9 @@ endr
 	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	pop de
-rept 3
 	inc de
-endr
+	inc de
+	inc de
 	pop af
 	dec a
 	jr nz, .loop
@@ -1493,9 +1493,9 @@ BillsPC_GetSelectedPokemonSpecies: ; e2def (38:6def)
 	ld e, a
 	ld d, $0
 	ld hl, wBillsPCPokemonList
-rept 3
 	add hl, de
-endr
+	add hl, de
+	add hl, de
 	ld a, [hl]
 	ret
 
@@ -2055,10 +2055,10 @@ MovePKMNWitoutMail_InsertMon: ; e31e7
 .PartyToBox: ; e3267
 	call .CopyFromParty
 	ld a, $1
-	ld [wc2cd], a
+	ld [wGameLogicPaused], a
 	callba SaveGameData
 	xor a
-	ld [wc2cd], a
+	ld [wGameLogicPaused], a
 	call .CopyToBox
 	ret
 ; e327d
@@ -2211,9 +2211,9 @@ GetBoxPointer: ; e3396 (38:7396)
 	ld c, b
 	ld b, 0
 	ld hl, .boxes
-rept 3
 	add hl, bc
-endr
+	add hl, bc
+	add hl, bc
 	ld a, [hli]
 	ld b, a
 	ld a, [hli]
@@ -2429,9 +2429,9 @@ GetBoxCount: ; e366c (38:766c)
 	ld c, a
 	ld b, 0
 	ld hl, .boxbanks
-rept 3
 	add hl, bc
-endr
+	add hl, bc
+	add hl, bc
 	ld a, [hli]
 	ld b, a
 	call GetSRAMBank

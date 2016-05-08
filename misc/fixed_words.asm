@@ -10,7 +10,7 @@ Function11c05d: ; 11c05d
 	cp $ff
 	jr z, .asm_11c071
 	push hl
-	call Function11c156
+	call CopyMobileFixedWordToC608
 	pop hl
 	call PlaceString
 	and a
@@ -21,7 +21,6 @@ Function11c05d: ; 11c05d
 	ld b, h
 	scf
 	ret
-
 ; 11c075
 
 Function11c075: ; 11c075
@@ -32,7 +31,6 @@ Function11c075: ; 11c075
 	ld bc, wcd36
 	call Function11c08f
 	ret
-
 ; 11c082
 
 Function11c082: ; 11c082
@@ -41,9 +39,8 @@ Function11c082: ; 11c082
 	call Function11c254
 	pop de
 	ld bc, wcd36
-	call Function11c0c6
+	call PrintFixedWordBattleMessage
 	ret
-
 ; 11c08f
 
 Function11c08f: ; 11c08f
@@ -96,123 +93,144 @@ Function11c08f: ; 11c08f
 	dec a
 	jr nz, .asm_11c0b0
 	ret
-
 ; 11c0c6
 
-
-Function11c0c6: ; 11c0c6
+PrintFixedWordBattleMessage: ; 11c0c6
+; Use up to 6 words from bc to print text starting at de.
+	; Preserve $cf63, $cf64
 	ld a, [wJumptableIndex]
 	ld l, a
 	ld a, [wcf64]
 	ld h, a
 	push hl
-	ld hl, $c608 + 16
+	; reset value at c618 (not preserved)
+	ld hl, $c618
 	ld a, $0
 	ld [hli], a
+	; preserve de
 	push de
+	; $cf63 keeps track of which line we're on (0, 1, or 2)
+	; $cf64 keeps track of how much room we have left in the current line
 	xor a
 	ld [wJumptableIndex], a
-	ld a, $12
+	ld a, 18
 	ld [wcf64], a
-	ld a, $6
-.asm_11c0e1
+	ld a, $6 ; up to 6 times
+.loop
 	push af
+	; load the 2-byte word data pointed to by bc
 	ld a, [bc]
 	ld e, a
 	inc bc
 	ld a, [bc]
 	ld d, a
 	inc bc
+	; if $0000, we're done
 	or e
-	jr z, .asm_11c133
+	jr z, .done
+	; preserving hl and bc, get the length of the word
 	push hl
 	push bc
-	call Function11c156
-	call Function11c14a
+	call CopyMobileFixedWordToC608
+	call GetLengthOfWordAtC608
 	ld e, c
 	pop bc
 	pop hl
+	; if the functions return 0, we're done
 	ld a, e
 	or a
-	jr z, .asm_11c133
-.asm_11c0fa
+	jr z, .done
+.loop2
+	; e contains the length of the word
+	; add 1 for the space, unless we're at the start of the line
 	ld a, [wcf64]
-	cp $12
-	jr z, .asm_11c102
+	cp 18
+	jr z, .skip_inc
 	inc e
 
-.asm_11c102
+.skip_inc
+	; if the word fits, put it on the same line
 	cp e
-	jr nc, .asm_11c11c
+	jr nc, .same_line
+	; otherwise, go to the next line
 	ld a, [wJumptableIndex]
 	inc a
 	ld [wJumptableIndex], a
-	ld [hl], $4e
+	; if we're on line 2, insert "<NEXT>"
+	ld [hl], "<NEXT>"
 	rra
-	jr c, .asm_11c113
-	ld [hl], $55
+	jr c, .got_line_terminator
+	; else, insert "<CONT>"
+	ld [hl], "<CONT>"
 
-.asm_11c113
+.got_line_terminator
 	inc hl
-	ld a, $12
+	; init the next line, holding on to the same word
+	ld a, 18
 	ld [wcf64], a
 	dec e
-	jr .asm_11c0fa
+	jr .loop2
 
-.asm_11c11c
-	cp $12
-	jr z, .asm_11c123
-	ld [hl], $7f
+.same_line
+	; add the space, unless we're at the start of the line
+	cp 18
+	jr z, .skip_space
+	ld [hl], " "
 	inc hl
 
-.asm_11c123
+.skip_space
+	; deduct the length of the word
 	sub e
 	ld [wcf64], a
 	ld de, $c608
-.asm_11c12a
+.place_string_loop
+	; load the string from de to hl
 	ld a, [de]
-	cp $50
-	jr z, .asm_11c133
+	cp "@"
+	jr z, .done
 	inc de
 	ld [hli], a
-	jr .asm_11c12a
+	jr .place_string_loop
 
-.asm_11c133
+.done
+	; next word?
 	pop af
 	dec a
-	jr nz, .asm_11c0e1
-	ld [hl], $57
+	jr nz, .loop
+	; we're finished, place "<DONE>"
+	ld [hl], "<DONE>"
+	; now, let's place the string from c618 to bc
 	pop bc
-	ld hl, $c608 + 16
-	call PlaceWholeStringInBoxAtOnce
+	ld hl, $c618
+	call PlaceHLTextAtBC
+	; restore the original values of $cf63 and $cf64
 	pop hl
 	ld a, l
 	ld [wJumptableIndex], a
 	ld a, h
 	ld [wcf64], a
 	ret
-
 ; 11c14a
 
-Function11c14a: ; 11c14a
+GetLengthOfWordAtC608: ; 11c14a
 	ld c, $0
 	ld hl, $c608
-.asm_11c14f
+.loop
 	ld a, [hli]
-	cp $50
+	cp "@"
 	ret z
 	inc c
-	jr .asm_11c14f
+	jr .loop
 ; 11c156
 
-Function11c156: ; 11c156
+CopyMobileFixedWordToC608: ; 11c156
 	ld a, [rSVBK]
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	ld a, $50
+	ld a, "@"
 	ld hl, $c608
-	ld bc, $000b
+	ld bc, NAME_LENGTH
 	call ByteFill
 	ld a, d
 	and a
@@ -239,7 +257,7 @@ Function11c156: ; 11c156
 	rl b
 	add hl, bc
 	ld bc, 5 ; length of a string
-.loop
+.copy_string
 	ld de, $c608
 	call CopyBytes
 	ld de, $c608
@@ -253,7 +271,7 @@ Function11c156: ; 11c156
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld bc, PKMN_NAME_LENGTH - 1
-	jr .loop
+	jr .copy_string
 ; 11c1ab
 
 Function11c1ab: ; 11c1ab
@@ -265,7 +283,6 @@ Function11c1ab: ; 11c1ab
 	pop af
 	ld [hInMenu], a
 	ret
-
 ; 11c1b9
 
 Function11c1b9: ; 11c1b9
@@ -278,7 +295,6 @@ Function11c1b9: ; 11c1b9
 	pop af
 	ld [rSVBK], a
 	ret
-
 ; 11c1ca
 
 Function11c1ca: ; 11c1ca
@@ -329,7 +345,6 @@ Function11c1ca: ; 11c1ca
 	call Function11d4aa
 	call Function11d3ba
 	ret
-
 ; 11c254
 
 Function11c254: ; 11c254
@@ -351,9 +366,7 @@ Function11c254: ; 11c254
 	call CopyBytes
 	call CloseSRAM
 	ret
-
 ; 11c277
-
 
 Function11c277: ; 11c277 (47:4277)
 	ld a, " "
@@ -379,13 +392,11 @@ Function11c283: ; 11c283
 	callba ClearSpriteAnims
 	call ClearSprites
 	ret
-
 ; 11c2ac
 
 .DoJumptableFunction: ; 11c2ac
 	jumptable .Jumptable, wJumptableIndex
 ; 11c2bb
-
 
 .Jumptable: ; 11c2bb (47:42bb)
 	dw Function11c2e9 ; 00
@@ -411,7 +422,6 @@ Function11c283: ; 11c283
 	dw Function11cd54 ; 14
 	dw Function11ce0b ; 15
 	dw Function11ce2b ; 16
-
 
 Function11c2e9: ; 11c2e9 (47:42e9)
 	depixel 3, 1, 2, 5
@@ -535,7 +545,6 @@ Function11c38a: ; 11c38a (47:438a)
 	dec a
 	jr nz, .asm_11c392
 	ret
-
 ; 11c3bc (47:43bc)
 
 String_11c3bc: ; 11c3bc
@@ -705,7 +714,6 @@ Function11c4be: ; 11c4be (47:44be)
 	call ByteFill
 	callba ReloadMapPart
 	ret
-
 ; 11c4db (47:44db)
 
 String_11c4db: ; 11c4db
@@ -865,7 +873,6 @@ Function11c53d: ; 11c53d (47:453d)
 .asm_11c5ee
 	ld [hl], a
 	ret
-
 ; 11c5f0
 
 Function11c5f0: ; 11c5f0 (47:45f0)
@@ -903,7 +910,6 @@ Function11c618: ; 11c618 (47:4618)
 	call ByteFill
 	callba ReloadMapPart
 	ret
-
 ; 11c62a (47:462a)
 
 String_11c62a: ; 11c62a
@@ -1265,7 +1271,6 @@ Function11c7bc: ; 11c7bc (47:47bc)
 	pop hl
 	pop de
 	ret
-
 ; 11c854 (47:4854)
 
 Unknown_11c854: ; 11c854
@@ -1339,7 +1344,6 @@ Function11c86e: ; 11c86e (47:486e)
 	dec c
 	jr nz, .asm_11c8c2
 	ret
-
 ; 11c8c7 (47:48c7)
 
 BCD2String: ; 11c8c7
@@ -1363,7 +1367,6 @@ BCD2String: ; 11c8c7
 	add "0"
 	ld [hli], a
 	ret
-
 ; 11c8ec
 
 MobileString_Page: ; 11c8ec
@@ -1480,7 +1483,6 @@ Function11c95d: ; 11c95d (47:495d)
 	jr nz, .asm_11c980
 	pop hl
 	ret
-
 ; 11c986 (47:4986)
 
 Unknown_11c986:
@@ -1606,7 +1608,6 @@ Function11ca19: ; 11ca19 (47:4a19)
 	jr nz, .asm_11ca22
 	callba ReloadMapPart
 	ret
-
 ; 11ca38 (47:4a38)
 
 String_11ca38: ; 11ca38
@@ -1736,7 +1737,6 @@ Function11cab3: ; 11cab3 (47:4ab3)
 	ret nz
 	inc [hl]
 	ret
-
 ; 11cb1c (47:4b1c)
 
 String_11cb1c: ; 11cb1c
@@ -1867,7 +1867,6 @@ Function11cbf5: ; 11cbf5 (47:4bf5)
 	dec hl
 	set 7, [hl]
 	ret
-
 ; 11cc01 (47:4c01)
 
 Unknown_11cc01: ; 11cc01
@@ -1933,7 +1932,6 @@ Function11cd04: ; 11cd04 (47:4d04)
 	ld a, $4
 	ld [wJumptableIndex], a
 	ret
-
 ; 11cd10 (47:4d10)
 
 String_11cd10: ; 11cd10
@@ -2033,7 +2031,6 @@ Function11cdaa: ; 11cdaa (47:4daa)
 	call ByteFill
 	callba ReloadMapPart
 	ret
-
 ; 11cdc7 (47:4dc7)
 
 String_11cdc7: ; 11cdc7
@@ -2162,7 +2159,6 @@ Function11ce2b: ; 11ce2b (47:4e2b)
 	ret z
 	ld [wcd22], a
 	ret
-
 ; 11ceb9 (47:4eb9)
 
 Unknown_11ceb9: ; 11ceb9
@@ -2278,7 +2274,6 @@ Function11cfb5: ; 11cfb5 (47:4fb5)
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
-
 ; 11cfba (47:4fba)
 
 Unknown_11cfba:
@@ -2522,7 +2517,6 @@ Function11d0b6: ; 11d0b6 (47:50b6)
 	dw .nine
 	dw .ten
 
-
 .zero ; 11d0dd (47:50dd)
 	ld a, [wcd20] ; wcd20 (aliases: CreditsPos)
 	sla a
@@ -2702,7 +2696,6 @@ Function11d0b6: ; 11d0b6 (47:50b6)
 	ld e, a
 	call Function11d2ee
 	ret
-
 ; 11d208 (47:5208)
 
 Unknown_11d208: ; 11d208
@@ -2887,7 +2880,6 @@ Function11d323: ; 11d323
 	pop af
 	ld [rSVBK], a
 	ret
-
 ; 11d33a
 
 Palette_11d33a:
@@ -2970,7 +2962,6 @@ Palette_11d33a:
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	RGB 00, 00, 00
-
 ; 11d3ba
 
 Function11d3ba: ; 11d3ba
@@ -3146,7 +3137,6 @@ Function11d3ba: ; 11d3ba
 	pop af
 	ld [rSVBK], a
 	ret
-
 ; 11d493
 
 .CheckSeenMon: ; 11d493
@@ -3165,7 +3155,6 @@ Function11d3ba: ; 11d3ba
 	pop bc
 	pop hl
 	ret
-
 ; 11d4aa
 
 Function11d4aa: ; 11d4aa
@@ -3226,9 +3215,7 @@ Function11d4aa: ; 11d4aa
 	pop af
 	ld [rSVBK], a
 	ret
-
 ; 11d4fe
-
 
 SortedPokemon:
 ; Pokemon sorted by kana.

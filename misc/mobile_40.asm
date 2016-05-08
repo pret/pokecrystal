@@ -1001,52 +1001,51 @@ Mobile_CommunicationStandby: ; 10060d
 	db "つうしんたいきちゅう!@"
 ; 10062d
 
-Function10062d: ; 10062d
+AdvanceMobileInactivityTimerAndCheckExpired: ; 10062d
 	push bc
-	call Function10064e
+	call IncrementMobileInactivityTimerByCFrames
 	pop bc
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	cp b
-	jr nc, .asm_10063a
+	jr nc, .timed_out
 	and a
 	ret
 
-.asm_10063a
+.timed_out
 	ld a, $fa
 	ld [wcd2b], a
 	scf
 	ret
 ; 100641
 
-Function100641: ; 100641
+StartMobileInactivityTimer: ; 100641
 	xor a
-	ld [wcd44], a
-	ld [wcd45], a
-	ld [wcd46], a
+	ld [wMobileInactivityTimerMinutes], a
+	ld [wMobileInactivityTimerSeconds], a
+	ld [wMobileInactivityTimerFrames], a
 	ret
 ; 10064c
 
-Function10064c: ; 10064c
+IncrementMobileInactivityTimerBy1Frame: ; 10064c
 	ld c, 1
-
-Function10064e: ; 10064e
-	ld hl, wcd46
+IncrementMobileInactivityTimerByCFrames: ; 10064e
+	ld hl, wMobileInactivityTimerFrames ; timer?
 	ld a, [hl]
 	add c
-	cp $3c
-	jr c, .asm_100658
+	cp 60
+	jr c, .seconds
 	xor a
 
-.asm_100658
+.seconds
 	ld [hld], a
 	ret c
 	ld a, [hl]
 	inc a
-	cp $3c
-	jr c, .asm_100661
+	cp 60
+	jr c, .minutes
 	xor a
 
-.asm_100661
+.minutes
 	ld [hld], a
 	ret c
 	inc [hl]
@@ -1268,35 +1267,35 @@ Function100772: ; 100772
 Function10079c: ; 10079c
 	ld a, [wcd21]
 	cp $01
-	jr nz, .asm_1007f4
+	jr nz, .dont_quit
 	ld hl, wcd2a
 	bit 5, [hl]
-	jr nz, .asm_1007f4
+	jr nz, .dont_quit
 	ld hl, wcd2a
 	bit 6, [hl]
-	jr nz, .asm_1007f4
+	jr nz, .dont_quit
 	ld a, [wcd6a]
 	add c
-	cp $3c
-	jr nc, .asm_1007be
+	cp 60
+	jr nc, .overflow
 	ld [wcd6a], a
 	and a
 	ret
 
-.asm_1007be
-	sub $3c
+.overflow
+	sub 60
 	ld [wcd6a], a
 	ld d, b
 	push de
 	call Function1007f6
 	pop de
-	jr c, .asm_1007e5
+	jr c, .quit
 	ld a, c
 	and a
-	jr nz, .asm_1007e5
+	jr nz, .quit
 	ld a, b
-	cp $0a
-	jr nc, .asm_1007e5
+	cp 10
+	jr nc, .quit
 	ld a, d
 	and a
 	ret z
@@ -1309,7 +1308,7 @@ Function10079c: ; 10079c
 	and a
 	ret
 
-.asm_1007e5
+.quit
 	call Function1008e0
 	ld hl, wcd2a
 	set 4, [hl]
@@ -1318,7 +1317,7 @@ Function10079c: ; 10079c
 	scf
 	ret
 
-.asm_1007f4
+.dont_quit
 	and a
 	ret
 ; 1007f6
@@ -1704,7 +1703,7 @@ _LinkBattleSendReceiveAction: ; 100a09
 
 .MobileBattle_SendReceiveAction: ; 100a87
 	call Function100acf
-	call Function100641
+	call StartMobileInactivityTimer
 	ld a, 0
 	ld [wcd27], a
 .asm_100a92
@@ -1714,7 +1713,7 @@ _LinkBattleSendReceiveAction: ; 100a09
 	ld c, $01
 	ld b, $03
 	push bc
-	call Function10062d
+	call AdvanceMobileInactivityTimerAndCheckExpired
 	pop bc
 	jr c, .asm_100ac7
 	ld b, $01
@@ -2019,7 +2018,7 @@ Mobile_PartyMenuSelect: ; 100cb5
 	push bc
 	callba PlaySpriteAnimations
 	callba HDMATransferTileMapToWRAMBank3
-	call Function100dfd
+	call MobileComms_CheckInactivityTimer
 	pop bc
 	jr c, .done
 	ld a, [wMenuJoypadFilter]
@@ -2073,7 +2072,7 @@ MobileBattleMonMenu: ; 100d22
 	push bc
 	callba PlaySpriteAnimations
 	callba HDMATransferTileMapToWRAMBank3
-	call Function100dfd
+	call MobileComms_CheckInactivityTimer
 	pop bc
 	jr c, .asm_100d54
 	ld a, [wMenuJoypadFilter]
@@ -2180,7 +2179,7 @@ Mobile_SetOverworldDelay: ; 100dd2
 Function100dd8: ; 100dd8
 	ld c, $01
 	ld b, $03
-	callba Function10062d
+	callba AdvanceMobileInactivityTimerAndCheckExpired
 	jr c, .asm_100dfb
 	ld c, $3c
 	ld b, $01
@@ -2198,7 +2197,7 @@ Function100dd8: ; 100dd8
 	ret
 ; 100dfd
 
-Function100dfd: ; 100dfd
+MobileComms_CheckInactivityTimer: ; 100dfd
 	ld a, [OverworldDelay]
 	ld c, a
 	ld a, 30
@@ -2206,22 +2205,22 @@ Function100dfd: ; 100dfd
 	ld c, a
 	ld b, 3
 	push bc
-	callba Function10062d
+	callba AdvanceMobileInactivityTimerAndCheckExpired ; useless to farcall
 	pop bc
-	jr c, .asm_100e2b
+	jr c, .quit
 	ld b, 1
 	call Function10079c
-	jr c, .asm_100e2b
+	jr c, .quit
 	call Function1009f3
-	jr c, .asm_100e2b
-	callba Function10032e
+	jr c, .quit
+	callba Function10032e ; useless to farcall
 	ld a, [wcd2b]
 	and a
-	jr nz, .asm_100e2b
+	jr nz, .quit
 	xor a
 	ret
 
-.asm_100e2b
+.quit
 	scf
 	ret
 ; 100e2d
@@ -2234,7 +2233,7 @@ Function100e2d: ; 100e2d
 	ld c, a
 	ld b, 3
 	push bc
-	callba Function10062d
+	callba AdvanceMobileInactivityTimerAndCheckExpired
 	pop bc
 	jr c, .asm_100e61
 	ld b, 1
@@ -3277,7 +3276,7 @@ Function1014b7: ; 1014b7
 
 Function1014ce: ; 1014ce
 	callba Function100720
-	callba Function100641
+	callba StartMobileInactivityTimer
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
 	ld [wMobileCommsJumptableIndex], a
@@ -3345,7 +3344,7 @@ Function101537: ; 101537
 ; 101544
 
 Function101544: ; 101544
-	callba Function100641
+	callba StartMobileInactivityTimer
 	ld a, $12
 	call Function3e32
 	ld a, [wMobileCommsJumptableIndex]
@@ -3355,7 +3354,7 @@ Function101544: ; 101544
 ; 101557
 
 Function101557: ; 101557
-	callba Function100641
+	callba StartMobileInactivityTimer
 	ld hl, wcd53
 	ld a, $08
 	call Function3e32
@@ -3387,8 +3386,8 @@ Function101571: ; 101571
 ; 10158a
 
 Function10158a: ; 10158a
-	callba Function10064c
-	ld a, [wcd44]
+	callba IncrementMobileInactivityTimerBy1Frame
+	ld a, [wMobileInactivityTimerMinutes]
 	cp $0a
 	jr c, Function10156d
 	ld a, $fb
@@ -3539,7 +3538,7 @@ Function10168e: ; 10168e
 	ret c
 	ld c, $01
 	ld b, $03
-	callba Function10062d
+	callba AdvanceMobileInactivityTimerAndCheckExpired
 	ret c
 	ld a, [wcd26]
 	ld hl, Jumptable_1016c3
@@ -3772,7 +3771,7 @@ Function1017f5: ; 1017f5
 	ret c
 	ld c, $01
 	ld b, $03
-	callba Function10062d
+	callba AdvanceMobileInactivityTimerAndCheckExpired
 	ret c
 	callba Function100382
 	ld a, [wcd27]
@@ -5277,7 +5276,7 @@ Function1022d0: ; 1022d0
 	sub c
 	ld c, a
 	ld b, $03
-	callba Function10062d
+	callba AdvanceMobileInactivityTimerAndCheckExpired
 	jr c, .asm_1022f3
 	xor a
 	ret
@@ -6153,7 +6152,7 @@ Function1028e8: ; 1028e8
 	ld hl, wcd4b
 	res 6, [hl]
 	ld [wcd50], a
-	callba Function100641
+	callba StartMobileInactivityTimer
 	ld a, 0
 	ld [wcd4a], a
 	ret
@@ -6557,7 +6556,7 @@ Function102bac: ; 102bac
 	ld [CurPartyMon], a
 	call LowVolume
 	call ClearSprites
-	callba _BattleStatsScreenInit
+	callba _MobileStatsScreenInit
 	ld a, [CurPartyMon]
 	inc a
 	ld [wMenuCursorY], a

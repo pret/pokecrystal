@@ -577,7 +577,7 @@ Special_InitialSetDSTFlag: ; 90a54
 	lb bc, 3, 18
 	call ClearBox
 	ld hl, .Text
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	ret
 ; 90a6c
 
@@ -608,7 +608,7 @@ Special_InitialClearDSTFlag: ; 90a88
 	lb bc, 3, 18
 	call ClearBox
 	ld hl, .Text
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	ret
 ; 90aa0
 
@@ -636,7 +636,7 @@ DebugDisplayTime: ; 90abc
 	lb bc, 3, SCREEN_WIDTH - 2
 	call ClearBox
 	ld hl, .Text
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	ret
 ; 90acc
 

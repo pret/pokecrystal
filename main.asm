@@ -3287,7 +3287,7 @@ CatchTutorial:: ; 4e554
 
 INCLUDE "engine/evolution_animation.asm"
 
-Function4e881: ; 4e881
+InitDisplayForHallOfFame: ; 4e881
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
@@ -3317,7 +3317,7 @@ Function4e881: ; 4e881
 	text_jump UnknownText_0x1bd39e
 	db "@"
 
-Function4e8c2: ; 4e8c2
+InitDisplayForRedCredits: ; 4e8c2
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
@@ -3333,7 +3333,7 @@ Function4e8c2: ; 4e8c2
 	xor a
 	call ByteFill
 	ld hl, wd000 ; UnknBGPals
-	ld c, 4 * $10
+	ld c, 4 tiles
 .load_white_palettes
 	ld a, (palred 31 + palgreen 31 + palblue 31) % $100
 	ld [hli], a
@@ -3349,7 +3349,7 @@ Function4e8c2: ; 4e8c2
 	call SetPalettes
 	ret
 
-Function4e906: ; 4e906
+ResetDisplayBetweenHallOfFameMons: ; 4e906
 	ld a, [rSVBK]
 	push af
 	ld a, $6
@@ -3360,8 +3360,8 @@ Function4e906: ; 4e906
 	call ByteFill
 	hlbgcoord 0, 0
 	ld de, wDecompressScratch
-	ld b, $0
-	ld c, $40
+	ld b, 0
+	ld c, 4 tiles
 	call Request2bpp
 	pop af
 	ld [rSVBK], a
@@ -3455,7 +3455,7 @@ FemaleTrainersEnd:
 
 INCLUDE "battle/sliding_intro.asm"
 
-Function4ea0a: ; 4ea0a
+Mobile_PrintOpponentBattleMessage: ; 4ea0a
 	ld a, c
 	push af
 	call SpeechTextBox
@@ -3463,11 +3463,11 @@ Function4ea0a: ; 4ea0a
 	pop af
 	dec a
 	ld bc, $c
-	ld hl, w5_dc1a
+	ld hl, w5_MobileOpponentBattleMessages
 	call AddNTimes
-	ld de, wcd53
+	ld de, wMobileOpponentBattleMessage
 	ld bc, $c
-	ld a, $5 ; BANK(w5_dc1a)
+	ld a, $5 ; BANK(w5_MobileOpponentBattleMessages)
 	call FarCopyWRAM
 
 	ld a, [rSVBK]
@@ -3475,9 +3475,9 @@ Function4ea0a: ; 4ea0a
 	ld a, $1
 	ld [rSVBK], a
 
-	ld bc, wcd53
+	ld bc, wMobileOpponentBattleMessage
 	decoord 1, 14
-	callba Function11c0c6
+	callba PrintFixedWordBattleMessage
 
 	pop af
 	ld [rSVBK], a
@@ -3679,7 +3679,8 @@ GetPkmnSpecies: ; 508d5
 INCLUDE "text/types.asm"
 
 Function50a28: ; 50a28
-	ld hl, Strings50a42
+; XXX
+	ld hl, .Strings
 	ld a, [TrainerClass]
 	dec a
 	ld c, a
@@ -3698,7 +3699,7 @@ Function50a28: ; 50a28
 	jr nz, .copy
 	ret
 
-Strings50a42: ; 50a42
+.Strings: ; 50a42
 ; Untranslated trainer class names from Red.
 	dw .Youngster
 	dw .BugCatcher
@@ -4096,14 +4097,15 @@ endr
 	ret
 
 Function50cd0: ; 50cd0
-.asm_50cd0
+; XXX
+.loop
 	ld [hl], $32
 	inc hl
 	ld [hl], $3e
 	dec hl
 	add hl, de
 	dec c
-	jr nz, .asm_50cd0
+	jr nz, .loop
 	ret
 
 Function50cdb: ; unreferenced predef
@@ -4118,7 +4120,7 @@ Function50cdb: ; unreferenced predef
 	pop hl
 	ld a, [CurPartySpecies]
 	cp EGG
-	jr z, .asm_50d09
+	jr z, .egg
 	push hl
 	ld bc, -12
 	add hl, bc
@@ -4131,7 +4133,7 @@ Function50cdb: ; unreferenced predef
 	call PrintLevel
 	pop de
 
-.asm_50d09
+.egg
 	ret
 
 PlaceStatusString: ; 50d0a
@@ -4255,7 +4257,7 @@ ListMoves: ; 50d6f
 .done
 	ret
 
-Function50db9: ; 50db9
+LoadAddrsForLinkMonStatsScreen: ; 50db9
 	ld a, [wd263]
 
 	cp $1
@@ -4264,38 +4266,37 @@ Function50db9: ; 50db9
 	ld de, OTPartyMonOT
 	ld a, ENEMY_OT_NAME
 	jr .done
-.check_party_ot_name
 
+.check_party_ot_name
 	cp $4
 	jr nz, .check_mon_name
 	ld hl, PartyCount
 	ld de, PartyMonOT
 	ld a, PARTY_OT_NAME
 	jr .done
-.check_mon_name
 
+.check_mon_name
 	cp $5
 	jr nz, .check_item_name
 	ld hl, CurMart
 	ld de, PokemonNames
 	ld a, PKMN_NAME
 	jr .done
-.check_item_name
 
+.check_item_name
 	cp $2
 	jr nz, .check_ob_item_name
 	ld hl, NumItems
 	ld de, ItemNames
 	ld a, ITEM_NAME
 	jr .done
-.check_ob_item_name
 
+.check_ob_item_name
 	ld hl, CurMart
 	ld de, ItemNames
 	ld a, ITEM_NAME
-
 .done
-	ld [wNamedObjectTypeBuffer], a
+	ld [wNamedObjectTypeBuffer], a ; d265
 	ld a, l
 	ld [wd100], a
 	ld a, h
@@ -4304,7 +4305,7 @@ Function50db9: ; 50db9
 	ld [wd102], a
 	ld a, d
 	ld [wd103], a
-	ld bc, ItemAttributes
+	ld bc, ItemAttributes ; ParseEnemyAction, HandleMapTimeAndJoypad, Music_LakeOfRage_Ch3, String_11a7c1 $67c1
 	ld a, c
 	ld [wd104], a
 	ld a, b
@@ -4694,6 +4695,7 @@ SECTION "bank22", ROMX, BANK[$22]
 INCLUDE "event/kurt.asm"
 
 Function88248: ; 88248
+; XXX
 	ld c, CAL
 	ld a, [PlayerGender]
 	bit 0, a
@@ -4975,7 +4977,8 @@ Predef36:
 INCLUDE "engine/timeofdaypals.asm"
 INCLUDE "engine/battle_start.asm"
 
-Function8c7c9: ; unreferenced
+Function8c7c9:
+; XXX
 	ld a, $1
 	ld [hBGMapMode], a
 	call WaitBGMap
@@ -5320,7 +5323,7 @@ INCLUDE "tilesets/data_6.asm"
 
 SECTION "bank38", ROMX, BANK[$38]
 
-Functione0000: ; e0000
+RotateUnownFrontpic: ; e0000
 ; something to do with Unown printer
 	push de
 	xor a
@@ -5333,8 +5336,8 @@ Functione0000: ; e0000
 	push bc
 	ld de, wd002
 	call .Copy
-	call .Decompress
-	ld hl, Unknown_e008b
+	call .Rotate
+	ld hl, UnownPrinter_OverworldMapRectangle
 	pop bc
 	add hl, bc
 	add hl, bc
@@ -5349,7 +5352,7 @@ Functione0000: ; e0000
 	pop bc
 	inc c
 	ld a, c
-	cp $31
+	cp 7 * 7
 	jr c, .loop
 
 	ld hl, OverworldMap
@@ -5375,7 +5378,7 @@ Functione0000: ; e0000
 	jr nz, .loop_copy
 	ret
 
-.Decompress: ; e0057
+.Rotate: ; e0057
 	ld hl, wd012
 	ld e, %10000000
 	ld d, 8
@@ -5417,20 +5420,19 @@ Functione0000: ; e0000
 	jr nz, .loop_count
 	ret
 
-overworldmaptile EQUS "dw OverworldMap + $10 *"
 overworldmaprect: MACRO
 y = 0
 rept \1
 x = \1 * (\2 +- 1) + y
 rept \2
-	overworldmaptile x
+	dw OverworldMap tile x
 x = x +- \2
 endr
 y = y + 1
 endr
 endm
 
-Unknown_e008b: ; e008b
+UnownPrinter_OverworldMapRectangle: ; e008b
 	overworldmaprect 7, 7
 
 Unknown_e00ed:
@@ -5590,6 +5592,7 @@ INCLUDE "tilesets/data_7.asm"
 SECTION "bank77_2", ROMX, BANK[$77]
 
 Function1dd6a9: ; 1dd6a9
+; XXX
 	ld a, b
 	ld b, c
 	ld c, a
@@ -5661,7 +5664,7 @@ LoadSGBPokedexGFX: ; 1ddf1c
 	call Decompress
 	ret
 
-Function1ddf26: ; 1ddf26 (77:5f26)
+LoadSGBPokedexGFX2: ; 1ddf26 (77:5f26)
 	ld hl, LZ_1ddf33
 	ld de, VTiles2 tile $31
 	lb bc, BANK(LZ_1ddf33), $3a
@@ -5861,7 +5864,7 @@ DudeAutoInput_DownA: ; 1de2af
 	db A_BUTTON, $00
 	db NO_INPUT, $ff ; end
 
-Function1de2c5: ; 1de2c5
+TownMap_ConvertLineBreakCharacters: ; 1de2c5
 	ld hl, StringBuffer1
 .loop
 	ld a, [hl]
@@ -6033,42 +6036,44 @@ SECTION "bank7D", ROMX, BANK[$7D]
 	db $cc, $6b, $1e ; XXX
 
 Function1f4003: ; 1f4003
+; XXX
 	ld a, $6
 	call GetSRAMBank
-	ld hl, Unknown_1f4018
+	ld hl, .unknown_data
 	ld de, $a000
 	ld bc, $1000
 	call CopyBytes
 	call CloseSRAM
 	ret
 
-Unknown_1f4018:
+.unknown_data
 INCBIN "unknown/1f4018.bin"
 
 Function1f4dbe: ; 1f4dbe
+; XXX
 	ld a, $6
 	call GetSRAMBank
-	ld hl, Unknown_1f4dd3
+	ld hl, .unknown_data
 	ld de, $a000
 	ld bc, $1000
 	call CopyBytes
 	call CloseSRAM
 	ret
 
-Unknown_1f4dd3:
+.unknown_data
 INCBIN "unknown/1f4dd3.bin"
 
 Function1f5d9f: ; 1f5d9f
 	ld a, $6
 	call GetSRAMBank
-	ld hl, Unknown_1f5db4
+	ld hl, .unknown_data
 	ld de, $a000
 	ld bc, $1000
 	call CopyBytes
 	call CloseSRAM
 	ret
 
-Unknown_1f5db4:
+.unknown_data
 INCBIN "unknown/1f5db4.bin"
 
 SECTION "bank7E", ROMX, BANK[$7E]

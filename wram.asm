@@ -152,7 +152,7 @@ AutoInputLength:: ; c2cb
 	ds 1
 
 wMonStatusFlags:: ds 1
-wc2cd:: ds 1
+wGameLogicPaused:: ds 1 ; c2cd
 wSpriteUpdatesEnabled:: ds 1
 wc2cf:: ds 1
 wMapTimeOfDay:: ds 1
@@ -354,7 +354,9 @@ wBT_OTTemp:: battle_tower_struct wBT_OTTemp
 wMisc:: ; ds (SCREEN_WIDTH + 4) * (SCREEN_HEIGHT + 2)
 	ds 10
 wc612::
-	ds 10
+	ds 6
+wc618::
+	ds 4
 wInitHourBuffer:: ; c61c
 	ds 10
 wc626::
@@ -895,7 +897,7 @@ OverworldMap:: ; c800
 OverworldMapEnd::
 	ds OverworldMap - @
 
-wBillsPCPokemonList::
+wBillsPCPokemonList:: ; c800
 ; Pokemon, box number, list index
 
 wMysteryGiftPartyTemp:: ; ds PARTY_LENGTH * (1 + 1 + NUM_MOVES)
@@ -1131,8 +1133,12 @@ wcd32:: ds 1
 wcd33:: ds 1
 wcd34:: ds 1
 wcd35:: ds 1
-wcd36:: ds 2
-wcd38:: ds 1
+
+; current time for link/mobile?
+wcd36:: ds 1 ; hours
+wcd37:: ds 1 ; mins
+wcd38:: ds 1 ; secs
+
 wcd39:: ds 1
 wcd3a:: ds 1
 wcd3b:: ds 1
@@ -1144,9 +1150,12 @@ wcd40:: ds 1
 wcd41:: ds 1
 wcd42:: ds 1
 wcd43:: ds 1
-wcd44:: ds 1
-wcd45:: ds 1
-wcd46:: ds 1
+
+; some sort of timer in link battles
+wMobileInactivityTimerMinutes:: ds 1 ; mins
+wMobileInactivityTimerSeconds:: ds 1 ; secs
+wMobileInactivityTimerFrames:: ds 1 ; frames
+
 wcd47:: ds 1
 
 BGMapPalBuffer:: ; cd48
@@ -1163,6 +1172,7 @@ wcd4f:: ds 1
 wcd50:: ds 1
 wcd51:: ds 1
 wcd52:: ds 1
+wMobileOpponentBattleMessage:: ; dc $c
 wcd53:: ds 1
 wcd54:: ds 1
 wcd55:: ds 1
@@ -1231,10 +1241,14 @@ wcda1:: ds 8
 wSGBPals:: ds 48 ; cda9
 
 AttrMap:: ; cdd9
-; 20x18 grid of palettes for 8x8 tiles
+; 20x18 grid of bg tile attributes for 8x8 tiles
 ; read horizontally from the top row
-; bit 3: vram bank
-; bit 0-2: palette id
+;		bit 7: priority
+;		bit 6: y flip
+;		bit 5: x flip
+;		bit 4: pal # (non-cgb)
+;		bit 3: vram bank (cgb only)
+;		bit 2-0: pal # (cgb only)
 	ds SCREEN_WIDTH * SCREEN_HEIGHT
 AttrMapEnd::
 	ds 1
@@ -3042,10 +3056,10 @@ w5_da00:: ds $200
 w5_dc00:: ds $d
 w5_dc0d:: ds 4
 w5_dc11:: ds 9
-w5_dc1a:: ds $c
-w5_dc26:: ds $c
-w5_dc32:: ds $c
-w5_dc3e:: ds $c
+w5_MobileOpponentBattleMessages:: ds $c ; dc1a
+w5_MobileOpponentBattleStartMessage:: ds $c ; dc26
+w5_MobileOpponentBattleWinMessage:: ds $c ; dc32
+w5_MobileOpponentBattleLossMessage:: ds $c ; dc3e
 
 SECTION "WRAM 6", WRAMX, BANK [6]
 

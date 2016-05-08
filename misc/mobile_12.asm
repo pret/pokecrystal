@@ -11,14 +11,14 @@ InitMobileProfile: ; 4802f (12:402f)
 	call Function48d3d
 	ld a, [wd479]
 	bit 1, a
-	jr z, .asm_4805a
+	jr z, .not_yet_initialized
 	ld a, [wd003]
 	set 0, a
 	set 1, a
 	set 2, a
 	set 3, a
 	ld [wd003], a
-.asm_4805a
+.not_yet_initialized
 	call Function486bf
 	call LoadFontsExtra
 	ld de, GFX_488c3
@@ -125,22 +125,22 @@ Function48157: ; 48157 (12:4157)
 	ld hl, wMenuCursorY
 	ld b, [hl]
 	push bc
-
 asm_4815f: ; 4815f (12:415f)
-	bit 0, a
+	bit A_BUTTON_F, a
 	jp nz, Function4820d
 	ld b, a
 	ld a, [wd002]
 	bit 6, a
-	jr z, .asm_48177
+	jr z, .dont_check_b_button
 	ld hl, wd479
 	bit 1, [hl]
-	jr z, .asm_48177
-	bit 1, b
-	jr nz, .asm_4817a
-.asm_48177
+	jr z, .dont_check_b_button
+	bit B_BUTTON_F, b
+	jr nz, .b_button
+.dont_check_b_button
 	jp Function48272
-.asm_4817a
+
+.b_button
 	call ClearBGPalettes
 	call Function48d30
 	pop bc
@@ -497,13 +497,14 @@ Function4840c: ; 4840c (12:440c)
 	ld [hl], b
 	ld a, [wd002]
 	bit 6, a
-	jr nz, .asm_48437
+	jr nz, .narrower_box
 	ld b, 9
 	ld c, 1
 	hlcoord 1, 4
 	call ClearBox
 	jp Function48157
-.asm_48437
+
+.narrower_box
 	ld b, 7
 	ld c, 1
 	hlcoord 1, 6
@@ -667,13 +668,13 @@ Function48689: ; 48689 (12:4689)
 	call GetMysteryGift_MobileAdapterLayout
 	call ClearBGPalettes
 	hlcoord 0, 0
-	ld b, $4
-	ld c, $14
+	ld b, 4
+	ld c, SCREEN_WIDTH
 	call ClearBox
 	hlcoord 0, 2
 	ld a, $c
 	ld [hl], a
-	ld bc, $13
+	ld bc, SCREEN_WIDTH - 1
 	add hl, bc
 	ld [hl], a
 	ld de, MobileProfileString
@@ -689,121 +690,139 @@ Function486bf: ; 486bf (12:46bf)
 	ld hl, w2DMenuCursorInitY
 	ld a, [wd002]
 	bit 6, a
-	jr nz, .asm_486ce
-	ld a, $4
+	jr nz, .start_at_6
+	ld a, 4
 	ld [hli], a
-	jr .asm_486d1
-.asm_486ce
-	ld a, $6
+	jr .got_init_y
+
+.start_at_6
+	ld a, 6
 	ld [hli], a
-.asm_486d1
-	ld a, $1
-	ld [hli], a
+.got_init_y
+	ld a, 1
+	ld [hli], a ; init x
 	ld a, [wd002]
 	bit 6, a
-	jr nz, .asm_486e7
+	jr nz, .check_wd479
 	call Function48725
-	ld a, $4
-	jr nc, .asm_486e4
-	ld a, $5
-.asm_486e4
+	ld a, 4
+	jr nc, .got_num_rows_1
+	ld a, 5
+.got_num_rows_1
 	ld [hli], a
-	jr .asm_486fb
-.asm_486e7
+	jr .got_num_rows_2
+
+.check_wd479
 	ld a, [wd479]
 	bit 1, a
-	jr nz, .asm_486f8
+	jr nz, .four_rows
 	call Function48725
-	jr c, .asm_486f8
-	ld a, $3
+	jr c, .four_rows
+	ld a, 3
 	ld [hli], a
-	jr .asm_486fb
-.asm_486f8
-	ld a, $4
+	jr .got_num_rows_2
+
+.four_rows
+	ld a, 4
 	ld [hli], a
-.asm_486fb
-	ld a, $1
-	ld [hli], a
-	ld [hl], $0
+.got_num_rows_2
+	ld a, 1
+	ld [hli], a ; num cols
+	ld [hl], $0 ; flags 1
 	set 5, [hl]
 	inc hl
 	xor a
-	ld [hli], a
+	ld [hli], a ; flags 2
 	ld a, $20
-	ld [hli], a
-	ld a, $1
-	add $40
-	add $80
+	ld [hli], a ; cursor offsets
+	ld a, A_BUTTON
+	add D_UP
+	add D_DOWN
 	push af
 	ld a, [wd002]
 	bit 6, a
-	jr z, .asm_4871a
+	jr z, .got_joypad_mask
 	pop af
-	add $2
+	add B_BUTTON
 	push af
-.asm_4871a
+.got_joypad_mask
 	pop af
 	ld [hli], a
 	ld a, $1
-	ld [hli], a
-	ld [hli], a
+	ld [hli], a ; cursor y
+	ld [hli], a ; cursor x
 	xor a
-rept 3
-	ld [hli], a
-endr
+	ld [hli], a ; off char
+	ld [hli], a ; cursor tile
+	ld [hli], a ; cursor tile + 1
 	ret
 
 Function48725: ; 48725 (12:4725)
+;	 ld a, [wd003]
+;	 and $f
+;	 cp $f
+;	 jr nz, .clear_carry
+;	 scf
+;	 ret
+; .clear_carry
+;	 and a
+;	 ret
+
 	ld a, [wd003]
 	bit 0, a
-	jr z, .asm_4873a
+	jr z, .clear_carry
 	bit 1, a
-	jr z, .asm_4873a
+	jr z, .clear_carry
 	bit 2, a
-	jr z, .asm_4873a
+	jr z, .clear_carry
 	bit 3, a
-	jr z, .asm_4873a
+	jr z, .clear_carry
 	scf
 	ret
-.asm_4873a
+
+.clear_carry
 	and a
 	ret
 
 Function4873c: ; 4873c (12:473c)
 	ld hl, w2DMenuCursorInitY
-	ld a, $4
+	ld a, 4
 	ld [hli], a
-	ld a, $c
-	ld [hli], a
-	ld a, $2
-	ld [hli], a
-	ld a, $1
-	ld [hli], a
-	ld [hl], $0
+	ld a, 12
+	ld [hli], a ; init x
+	ld a, 2
+	ld [hli], a ; num rows
+	ld a, 1
+	ld [hli], a ; num cols
+	ld [hl], $0 ; flags 1
 	set 5, [hl]
 	inc hl
 	xor a
-	ld [hli], a
-	ld a, $20
-	ld [hli], a
-	ld a, $1
-	add $2
-	ld [hli], a
+	ld [hli], a ; flags 2
+	ln a, 2, 0
+	ld [hli], a ; cursor offsets
+	ld a, A_BUTTON
+	add B_BUTTON
+	ld [hli], a ; joypad filter
+	; ld a, [PlayerGender]
+	; xor 1
+	; inc a
 	ld a, [PlayerGender]
 	and a
-	jr z, .asm_48764
-	ld a, $2
-	jr .asm_48766
-.asm_48764
+	jr z, .male
+	ld a, 2
+	jr .okay_gender
+
+.male
+	ld a, 1
+.okay_gender
+	ld [hli], a ; cursor y
 	ld a, $1
-.asm_48766
-	ld [hli], a
-	ld a, $1
-	ld [hli], a
+	ld [hli], a ; cursor x
 	xor a
-rept 3
-	ld [hli], a
-endr
+	ld [hli], a ; off char
+	ld [hli], a ; cursor tile
+	ld [hli], a ; cursor tile + 1
 	ret
 
 Function4876f: ; 4876f (12:476f)

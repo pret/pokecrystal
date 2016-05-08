@@ -3,7 +3,7 @@ HallOfFame:: ; 0x8640e
 	ld a, [StatusFlags]
 	push af
 	ld a, 1
-	ld [wc2cd], a
+	ld [wGameLogicPaused], a
 	call DisableSpriteUpdates
 	ld a, SPAWN_LANCE
 	ld [wSpawnAfterChampion], a
@@ -25,7 +25,7 @@ HallOfFame:: ; 0x8640e
 	callba AddHallOfFameEntry
 
 	xor a
-	ld [wc2cd], a
+	ld [wGameLogicPaused], a
 	call AnimateHallOfFame
 	pop af
 	ld b, a
@@ -44,7 +44,7 @@ RedCredits:: ; 86455
 	xor a
 	ld [VramState], a
 	ld [hMapAnims], a
-	callba Function4e8c2
+	callba InitDisplayForRedCredits
 	ld c, 8
 	call DelayFrames
 	call DisableSpriteUpdates
@@ -67,7 +67,7 @@ HallOfFame_FadeOutMusic: ; 8648e
 	xor a
 	ld [VramState], a
 	ld [hMapAnims], a
-	callba Function4e881
+	callba InitDisplayForHallOfFame
 	ld c, 100
 	jp DelayFrames
 ; 864b4
@@ -230,7 +230,7 @@ GetHallOfFameParty: ; 8653f
 AnimateHOFMonEntrance: ; 865b5
 	push hl
 	call ClearBGPalettes
-	callba Function4e906
+	callba ResetDisplayBetweenHallOfFameMons
 	pop hl
 	ld a, [hli]
 	ld [TempMonSpecies], a

@@ -823,7 +823,7 @@ Pokedex_UpdateUnownMode: ; 405df (10:45df)
 	call DelayFrame
 	call Pokedex_CheckSGB
 	jr nz, .decompress
-	callba Function1ddf26
+	callba LoadSGBPokedexGFX2
 	jr .done
 
 .decompress

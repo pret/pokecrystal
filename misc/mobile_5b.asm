@@ -230,45 +230,7 @@ INCBIN "gfx/unknown/16c633.tilemap"
 INCBIN "gfx/unknown/16c79b.tilemap"
 
 UnknownMobilePalettes_16c903: ; 16c903
-	RGB 31, 31, 31
-	RGB 04, 10, 20
-	RGB 16, 19, 25
-	RGB 25, 27, 29
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
+INCLUDE "gfx/unknown/16c903.pal"
 
 ; 16c943
 
