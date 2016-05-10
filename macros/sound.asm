@@ -70,7 +70,7 @@ soundinput: macro
 	enum sound_duty_cmd
 sound_duty: macro
 	db sound_duty_cmd
-	db \1 ; unknown
+	db \1 | (\2 << 2) | (\3 << 4) | (\4 << 6) ; duty sequence
 	endm
 
 	enum togglesfx_cmd
