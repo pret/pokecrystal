@@ -164,7 +164,7 @@ Function1dc381: ; 1dc381
 	call TextBox
 	hlcoord 8, 2
 	ld a, [TempMonLevel]
-	call Function383d
+	call PrintLevel_Force3Digits
 	hlcoord 12, 2
 	ld [hl], "◀" ; Filled left triangle
 	inc hl

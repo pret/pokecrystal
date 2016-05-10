@@ -1655,9 +1655,9 @@ CrystalIntro_InitUnownAnim: ; e51dc (39:51dc)
 	ret
 
 CrystalIntro_UnownFade: ; e5223 (39:5223)
-rept 3
 	add a
-endr
+	add a
+	add a
 	ld e, a
 	ld d, $0
 	ld hl, BGPals
@@ -1777,9 +1777,9 @@ Intro_Scene20_AppearUnown: ; e5348 (39:5348)
 .got_pointer
 	ld a, [wcf65]
 	and $7
-rept 3
 	add a
-endr
+	add a
+	add a
 	ld c, a
 	ld a, [rSVBK]
 	push af
@@ -1835,9 +1835,9 @@ endr
 ; e539d
 
 Intro_FadeUnownWordPals: ; e539d (39:539d)
-rept 3
 	add a
-endr
+	add a
+	add a
 	ld e, a
 	ld d, $0
 	ld hl, BGPals

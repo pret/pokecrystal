@@ -596,9 +596,9 @@ AI_Smart_Explosion: ; 388a6
 	ret c
 
 .asm_388c6
-rept 3
 	inc [hl]
-endr
+	inc [hl]
+	inc [hl]
 	ret
 ; 388ca
 
@@ -610,9 +610,9 @@ AI_Smart_DreamEater: ; 388ca
 	call Random
 	cp 25
 	ret c
-rept 3
 	dec [hl]
-endr
+	dec [hl]
+	dec [hl]
 	ret
 ; 388d4
 
@@ -1208,9 +1208,9 @@ AI_Smart_Fly: ; 38b12
 	call AICompareSpeed
 	ret nc
 
-rept 3
 	dec [hl]
-endr
+	dec [hl]
+	dec [hl]
 	ret
 ; 38b20
 
@@ -1515,9 +1515,9 @@ AI_Smart_Encore: ; 38c3b
 	ret
 
 .asm_38c81
-rept 3
 	inc [hl]
-endr
+	inc [hl]
+	inc [hl]
 	ret
 
 .EncoreMoves:
@@ -1587,15 +1587,15 @@ AI_Smart_SleepTalk: ; 38cba
 	cp $1
 	jr z, .asm_38cc7
 
-rept 3
 	dec [hl]
-endr
+	dec [hl]
+	dec [hl]
 	ret
 
 .asm_38cc7
-rept 3
 	inc [hl]
-endr
+	inc [hl]
+	inc [hl]
 	ret
 ; 38ccb
 
@@ -1607,9 +1607,9 @@ AI_Smart_DefrostOpponent: ; 38ccb
 	ld a, [EnemyMonStatus]
 	and $20
 	ret z
-rept 3
 	dec [hl]
-endr
+	dec [hl]
+	dec [hl]
 	ret
 ; 38cd5
 
@@ -1708,9 +1708,9 @@ AI_Smart_HealBell: ; 38d1f
 	jr z, .next
 
 	; status
-rept 3
 	dec hl
-endr
+	dec hl
+	dec hl
 	ld a, [hl]
 	or c
 	ld c, a
@@ -1774,9 +1774,9 @@ AI_Smart_PriorityHit: ; 38d5a
 	ld a, [BattleMonHP]
 	sbc b
 	ret nc
-rept 3
 	dec [hl]
-endr
+	dec [hl]
+	dec [hl]
 	ret
 ; 38d93
 
@@ -1900,9 +1900,9 @@ AI_Smart_MeanLook: ; 38dfb
 .asm_38e26
 	call AI_80_20
 	ret c
-rept 3
 	dec [hl]
-endr
+	dec [hl]
+	dec [hl]
 	ret
 ; 38e2e
 
@@ -2233,9 +2233,9 @@ AI_Smart_Endure: ; 38fac
 	call AI_80_20
 	ret c
 
-rept 3
 	dec [hl]
-endr
+	dec [hl]
+	dec [hl]
 	ret
 
 .asm_38fcb
@@ -2274,9 +2274,9 @@ AI_Smart_FuryCutter: ; 38fdb
 
 	cp 3
 	jr c, .end
-rept 3
 	dec [hl]
-endr
+	dec [hl]
+	dec [hl]
 
 .end
 
@@ -2579,9 +2579,9 @@ AI_Smart_WeatherMove: ; 3910d
 ; 3911e
 
 AIBadWeatherType: ; 3911e
-rept 3
 	inc [hl]
-endr
+	inc [hl]
+	inc [hl]
 	ret
 ; 39122
 

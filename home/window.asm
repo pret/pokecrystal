@@ -39,7 +39,7 @@ CloseText:: ; 2dcf
 	call _OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	xor a
 	ld [hBGMapMode], a
-	call Function2e31
+	call SafeUpdateSprites
 	ld a, $90
 	ld [hWY], a
 	call ReplaceKrisSprite
@@ -78,7 +78,7 @@ _OpenAndCloseMenu_HDMATransferTileMapAndAttrMap:: ; 2e20
 	ret
 ; 2e31
 
-Function2e31:: ; 2e31
+SafeUpdateSprites:: ; 2e31
 	ld a, [hOAMUpdate]
 	push af
 	ld a, [hBGMapMode]
@@ -87,7 +87,9 @@ Function2e31:: ; 2e31
 	ld [hBGMapMode], a
 	ld a, $1
 	ld [hOAMUpdate], a
+
 	call UpdateSprites
+
 	xor a
 	ld [hOAMUpdate], a
 	call DelayFrame

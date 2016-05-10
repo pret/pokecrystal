@@ -1652,9 +1652,9 @@ ScriptCall: ; 974cb
 	inc [hl]
 	ld d, $0
 	ld hl, wScriptStack
-rept 3
 	add hl, de
-endr
+	add hl, de
+	add hl, de
 	pop de
 	ld a, [ScriptBank]
 	ld [hli], a
@@ -1825,9 +1825,9 @@ StdScript: ; 9757b
 	call GetScriptByte
 	ld d, a
 	ld hl, StdScripts
-rept 3
 	add hl, de
-endr
+	add hl, de
+	add hl, de
 	ld a, BANK(StdScripts)
 	call GetFarByte
 	ld b, a
@@ -3160,9 +3160,9 @@ ExitScriptSubroutine: ; 97b9a
 	ld e, [hl]
 	ld d, $0
 	ld hl, wScriptStack
-rept 3
 	add hl,de
-endr
+	add hl,de
+	add hl,de
 	ld a, [hli]
 	ld b, a
 	and " "

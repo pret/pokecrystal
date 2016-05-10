@@ -421,9 +421,9 @@ Copy1bpp:: ; fa4
 	push af
 	ld h, 0
 	ld l, c
-rept 3
 	add hl, hl
-endr
+	add hl, hl
+	add hl, hl
 	ld b, h
 	ld c, l
 	pop af

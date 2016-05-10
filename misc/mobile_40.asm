@@ -1167,9 +1167,9 @@ Function1006fd: ; 1006fd
 	ld hl, $a800
 	call GetSRAMBank
 	xor a
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	call CloseSRAM
 	ret
 ; 10070d
@@ -7211,9 +7211,9 @@ Function1030cd: ; 1030cd
 	ld a, [wcf44]
 	ld l, a
 	ld h, 0
-rept 3
 	add hl, hl
-endr
+	add hl, hl
+	add hl, hl
 	ld bc, Unknown_103112
 	add hl, bc
 	ld b, $30

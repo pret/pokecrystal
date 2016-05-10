@@ -4393,9 +4393,9 @@ Function17f3f0: ; 17f3f0
 	pop hl
 	add hl, de
 	add hl, de
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	ld e, l
 	ld d, h
 	ld l, c

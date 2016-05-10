@@ -738,9 +738,9 @@ BattleBGEffect_RunPicResizeScript: ; c83ed (32:43ed)
 	ld l, a
 	ld a, [wBattleAnimTemp2]
 	ld h, a
-rept 3
 	add hl, de
-endr
+	add hl, de
+	add hl, de
 	ld a, [hl]
 	cp -1
 	jr z, .end
@@ -805,9 +805,9 @@ endr
 	ld e, [hl]
 	ld d, 0
 	ld hl, .BGSquares
-rept 3
 	add hl, de
-endr
+	add hl, de
+	add hl, de
 	ld a, [hli]
 	ld b, a
 	and $f

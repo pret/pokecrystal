@@ -48,7 +48,7 @@ Special_MagnetTrain: ; 8cc04
 	callab PlaySpriteAnimations
 	call MagnetTrain_Jumptable
 	call MagnetTrain_UpdateLYOverrides
-	call Function3b0c
+	call PushLYOverrides
 	call DelayFrame
 	jr .loop
 
@@ -149,9 +149,9 @@ MagntTrain_LoadGFX_PlayMusic: ; 8ccc9
 	xor a
 	ld [hli], a
 	ld a, [wMagnetTrainInitPosition]
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld de, MUSIC_MAGNET_TRAIN
 	call PlayMusic2
 	ret
@@ -426,7 +426,7 @@ MagnetTrain_Jumptable_FirstRunThrough: ; 8ceae
 	callba PlaySpriteAnimations
 	call MagnetTrain_Jumptable
 	call MagnetTrain_UpdateLYOverrides
-	call Function3b0c
+	call PushLYOverrides
 	call DelayFrame
 	ld a, [rSVBK]
 	push af

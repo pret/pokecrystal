@@ -836,9 +836,9 @@ Function4a680: ; 4a680 (12:6680)
 	ld [hli], a
 	ld [hli], a
 	xor a
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ret
 
 Function4a6ab: ; 4a6ab (12:66ab)

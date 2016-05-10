@@ -19,9 +19,9 @@ AIChooseMove: ; 440ce
 ; The default score is 20. Unusable moves are given a score of 80.
 	ld a, 20
 	ld hl, Buffer1
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 
 ; Don't pick disabled moves.

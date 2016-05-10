@@ -377,9 +377,9 @@ AnimateTitleCrystal: ; 10ef32
 	ld a, [hl]
 	add 2
 	ld [hli], a
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	dec c
 	jr nz, .loop
 

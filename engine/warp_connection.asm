@@ -326,7 +326,7 @@ RefreshMapSprites: ; 1047f0
 	jr nz, .skip
 	ld hl, VramState
 	set 0, [hl]
-	call Function2e31
+	call SafeUpdateSprites
 .skip
 	ld a, [wPlayerSpriteSetupFlags]
 	and %00011100

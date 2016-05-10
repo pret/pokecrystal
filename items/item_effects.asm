@@ -937,9 +937,9 @@ GLOBAL EvosAttacksPointers
 	pop bc
 	ret nz
 
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 
 ; Moon Stone's constant from Pokémon Red is used.
 ; No Pokémon evolve with Burn Heal,

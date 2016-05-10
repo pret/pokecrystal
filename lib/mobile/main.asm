@@ -745,9 +745,9 @@ Function110438: ; 110438
 	ld a, $c8
 	ld [hli], a
 	xor a
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 	ld a, $ff
 	ld [$c86e], a
@@ -968,9 +968,9 @@ Function1105dd: ; 1105dd
 	ld a, $c8
 	ld [hli], a
 	xor a
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 	ld a, $ff
 	ld [$c86e], a
@@ -2274,9 +2274,9 @@ Function110ddd: ; 110ddd
 .asm_110ee3
 	ld hl, $c98b
 	xor a
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 	pop bc
 	pop de
@@ -3081,9 +3081,9 @@ Function1113fe: ; 1113fe
 	push hl
 	ld hl, $c829
 	xor a
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 	ld de, $cb47
 	ld hl, Unknown_112072
@@ -3578,9 +3578,9 @@ _MobileReceive:: ; 1116c5 (44:56c5)
 	ld [$c800], a
 	xor a
 	ld hl, $c80a
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld hl, $c81f
 	ld a, [hli]
 	ld b, a
@@ -9143,9 +9143,9 @@ Function113c8e: ; 113c8e
 	ld bc, $0003
 
 .asm_113ccf
-rept 3
 	dec bc
-endr
+	dec bc
+	dec bc
 	ld a, c
 	ld [$cc10], a
 	ld a, b

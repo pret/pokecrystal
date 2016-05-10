@@ -310,9 +310,9 @@ TrainerType4: ; 3989d
 ComputeTrainerReward: ; 3991b (e:591b)
 	ld hl, hProduct
 	xor a
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld a, [wEnemyTrainerBaseReward]
 	ld [hli], a
 	ld a, [CurPartyLevel]

@@ -340,9 +340,9 @@ ComputeAIContestantScores: ; 138b0
 	jr z, .loop2
 	ld c, a
 	ld b, 0
-rept 3
 	add hl, bc
-endr
+	add hl, bc
+	add hl, bc
 	ld a, [hli]
 	ld [wBugContestTempMon], a
 	ld a, [hli]

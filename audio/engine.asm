@@ -2489,9 +2489,9 @@ _PlayCryHeader:: ; e8b79
 
 ; 3-byte pointers (bank, address)
 	ld hl, Cries
-rept 3
 	add hl, de
-endr
+	add hl, de
+	add hl, de
 
 	ld a, [hli]
 	ld [MusicBank], a
@@ -2708,9 +2708,9 @@ PlayStereoSFX:: ; e8ca6
 
 ; get sfx ptr
 	ld hl, SFX
-rept 3
 	add hl, de
-endr
+	add hl, de
+	add hl, de
 
 ; bank
 	ld a, [hli]

@@ -472,9 +472,9 @@ endr
 	ld a, [CurPartySpecies]
 	ld l, a
 	ld h, 0
-rept 3
 	add hl, hl
-endr
+	add hl, hl
+	add hl, hl
 	ld de, PokemonPalettes
 	add hl, de
 	ld a, [wcf65]

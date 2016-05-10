@@ -495,9 +495,9 @@ Function171aec: ; 171aec (5c:5aec)
 .asm_171b34
 	pop hl
 	ld bc, $14
-rept 3
 	add hl, bc
-endr
+	add hl, bc
+	add hl, bc
 	pop af
 	dec a
 	jr nz, .asm_171b1b

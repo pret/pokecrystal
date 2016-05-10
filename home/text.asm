@@ -525,7 +525,7 @@ Paragraph:: ; 12f2
 	call LoadBlinkingCursor
 
 .linkbattle
-	call Function13b6
+	call Text_WaitBGMap
 	call ButtonSound
 	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY
 	lb bc, TEXTBOX_INNERH - 1, TEXTBOX_INNERW
@@ -546,7 +546,7 @@ Char4B:: ; 131f
 	call LoadBlinkingCursor
 
 .communication
-	call Function13b6
+	call Text_WaitBGMap
 
 	push de
 	call ButtonSound
@@ -598,7 +598,7 @@ PromptText:: ; 135a
 	call LoadBlinkingCursor
 
 .ok
-	call Function13b6
+	call Text_WaitBGMap
 	call ButtonSound
 	ld a, [wLinkMode]
 	cp LINK_COLOSSEUM
@@ -655,7 +655,7 @@ TextScroll:: ; 138c
 	ret
 ; 13b6
 
-Function13b6:: ; 13b6
+Text_WaitBGMap:: ; 13b6
 	push bc
 	ld a, [hOAMUpdate]
 	push af
@@ -1029,6 +1029,8 @@ Text_PlaySound:: ; 1500
 ; 1522
 
 Function1522:: ; 1522
+; XXX
+; TX_CRY
 	push de
 	ld e, [hl]
 	inc hl

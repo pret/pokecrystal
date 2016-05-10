@@ -576,16 +576,16 @@ Function17aa22: ; 17aa22 (5e:6a22)
 	push de
 	ld a, $3
 	call Function17aae0
-rept 3
 	add a
-endr
+	add a
+	add a
 	add $0
 	push af
 	ld a, $4
 	call Function17aae0
-rept 3
 	add a
-endr
+	add a
+	add a
 	add $8
 	ld c, a
 	pop af

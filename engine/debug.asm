@@ -573,9 +573,9 @@ Function81c33: ; 81c33
 ; 81ca7
 
 Function81ca7: ; 81ca7
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	ld a, [de]
 	call Function81cbc
 	ld a, [de]
@@ -1233,9 +1233,9 @@ Function8220f: ; 8220f
 	ld a, [wcf64]
 	ld l, a
 	ld h, $0
-rept 3
 	add hl, hl
-endr
+	add hl, hl
+	add hl, hl
 	ld de, UnknBGPals
 	add hl, de
 	ld de, wc608

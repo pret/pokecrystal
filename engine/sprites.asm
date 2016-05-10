@@ -154,9 +154,9 @@ InitSpriteAnimStruct:: ; 8cfd6
 	ld e, a
 	ld d, 0
 	ld hl, SpriteAnimSeqData
-rept 3
 	add hl, de
-endr
+	add hl, de
+	add hl, de
 	ld e, l
 	ld d, h
 ; Set hl to the first field (field 0) in the current structure.
@@ -521,9 +521,9 @@ GetFrameOAMPointer: ; 8d1a2
 	ld e, a
 	ld d, 0
 	ld hl, SpriteAnimOAMData
-rept 3
 	add hl, de
-endr
+	add hl, de
+	add hl, de
 	ret
 ; 8d1ac
 

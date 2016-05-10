@@ -181,9 +181,9 @@ MobileFn_105fe3: mobile ; 105fe3
 	inc [hl]
 	jr nz, .asm_106001
 	ld a, $ff
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 
 .asm_106001
@@ -211,9 +211,9 @@ MobileFn_106008: mobile ; 106008
 	inc [hl]
 	jr nz, .asm_106027
 	ld a, $ff
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 
 .asm_106027
@@ -606,9 +606,9 @@ _MobilePrintNum:: ; 1061ef
 	ld de, ._9
 
 .three_to_nine_digits
-rept 3
 	inc de
-endr
+	inc de
+	inc de
 	dec a
 	dec a
 
@@ -689,9 +689,9 @@ endr
 	sbc b
 	ld [hPrintNum6], a
 	ld a, [de]
-rept 3
 	inc de
-endr
+	inc de
+	inc de
 	ld b, a
 	ld a, [hPrintNum1]
 	sbc b

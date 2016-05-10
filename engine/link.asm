@@ -579,9 +579,9 @@ FixDataForLinkTransfer: ; 28434
 	jr nz, .loop2
 	ld hl, wMisc
 	ld a, $fd
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld b, $c8
 	xor a
 .loop3
@@ -1213,9 +1213,9 @@ InitTradeMenuDisplay: ; 287e3
 	callba InitTradeSpeciesList
 	xor a
 	ld hl, wOtherPlayerLinkMode
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 	ld a, 1
 	ld [wMenuCursorY], a

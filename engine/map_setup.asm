@@ -204,9 +204,9 @@ ReadMapSetupScript: ; 1541d
 	ld c, a
 	ld b, 0
 	ld hl, MapSetupCommands
-rept 3
 	add hl, bc
-endr
+	add hl, bc
+	add hl, bc
 
 	; bank
 	ld b, [hl]

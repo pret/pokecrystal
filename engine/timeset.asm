@@ -215,9 +215,9 @@ UnreferencedFunction907f1: ; 907f1
 	ld [hl], a
 	pop hl
 	call DisplayMinutesWithMinString
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	ret
 ; 90810
 

@@ -3767,9 +3767,9 @@ Function119b6b: ; 119b6b
 	ld [hld], a
 	dec hl
 	pop de
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	ld a, h
 	cp $e0
 	jr c, .asm_119b93

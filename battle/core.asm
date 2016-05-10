@@ -4080,9 +4080,9 @@ InitBattleMon: ; 3da0d
 	ld de, BattleMonDVs
 	ld bc, MON_PKRUS - MON_DVS
 	call CopyBytes
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	ld de, BattleMonLevel
 	ld bc, PARTYMON_STRUCT_LENGTH - MON_LEVEL
 	call CopyBytes
@@ -4172,9 +4172,9 @@ InitEnemyMon: ; 3dabd
 	ld de, EnemyMonDVs
 	ld bc, MON_PKRUS - MON_DVS
 	call CopyBytes
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	ld de, EnemyMonLevel
 	ld bc, PARTYMON_STRUCT_LENGTH - MON_LEVEL
 	call CopyBytes
@@ -4302,9 +4302,9 @@ rept 4
 endr
 	ld [hl], a
 	ld hl, PlayerUsedMoves
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 	ld [PlayerDisableCount], a
 	ld [PlayerFuryCutterCount], a
@@ -6637,9 +6637,9 @@ LoadEnemyMon: ; 3e8eb
 	xor a
 	ld h, d
 	ld l, e
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 ; Make sure the predef knows this isn't a partymon
 	ld [MagikarpLength], a

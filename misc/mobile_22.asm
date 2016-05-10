@@ -45,7 +45,9 @@ Function8917a: ; 8917a (22:517a)
 	ret
 
 Function89185: ; 89185 (22:5185)
-; Compares c bytes starting at de and hl and incrementing together until a match is found.
+; strcmp(hl, de, c)
+; Compares c bytes starting at de and hl and incrementing together until a mismatch is found.
+; Preserves hl and de.
 	push de
 	push hl
 .loop
@@ -62,7 +64,9 @@ Function89185: ; 89185 (22:5185)
 	ret
 
 Function89193: ; 89193
+; copy(hl, de, 4)
 ; Copies c bytes from hl to de.
+; Preserves hl and de.
 	push de
 	push hl
 .loop
@@ -355,10 +359,10 @@ Function89305: ; 89305 (22:5305)
 
 Function8931b: ; 8931b
 	push hl
-	ld hl, $a03b
+	ld hl, $a03b ; 4:a03b
 	ld a, [MenuSelection]
 	dec a
-	ld bc, $0025
+	ld bc, 37
 	call AddNTimes
 	ld b, h
 	ld c, l
@@ -371,7 +375,9 @@ Function8932d: ; 8932d
 	add hl, bc
 
 Function89331: ; 89331
-; Scans up to 5 characters starting at hl, looking for a nonspace character up to the next terminator.  Sets carry if it does not find a nonspace character.  Returns the location of the following character in hl.
+; Scans up to 5 characters starting at hl, looking for a nonspace character up to the next terminator.
+; Sets carry if it does not find a nonspace character.
+; Returns the location of the following character in hl.
 	push bc
 	ld c, 5
 .loop
@@ -1649,44 +1655,44 @@ String_89a53: ; 89a53
 ; 89a57
 
 Function89a57: ; 89a57
-	call Function354b
-	bit 6, c
-	jr nz, .asm_89a78
-	bit 7, c
-	jr nz, .asm_89a81
-	bit 0, c
-	jr nz, .asm_89a70
-	bit 1, c
-	jr nz, .asm_89a70
-	bit 3, c
-	jr nz, .asm_89a74
+	call JoyTextDelay_ForcehJoyDown ; joypad
+	bit D_UP_F, c
+	jr nz, .d_up
+	bit D_DOWN_F, c
+	jr nz, .d_down
+	bit A_BUTTON_F, c
+	jr nz, .a_b_button
+	bit B_BUTTON_F, c
+	jr nz, .a_b_button
+	bit START_F, c
+	jr nz, .start_button
 	scf
 	ret
 
-.asm_89a70
+.a_b_button
 	ld a, $1
 	and a
 	ret
 
-.asm_89a74
+.start_button
 	ld a, $2
 	and a
 	ret
 
-.asm_89a78
-	call Function89a9b
-	call nc, Function89a8a
+.d_up
+	call .MoveCursorUp
+	call nc, .PlayPocketSwitchSFX
 	ld a, $0
 	ret
 
-.asm_89a81
-	call Function89a93
-	call nc, Function89a8a
+.d_down
+	call .MoveCursorDown
+	call nc, .PlayPocketSwitchSFX
 	ld a, $0
 	ret
 ; 89a8a
 
-Function89a8a: ; 89a8a
+.PlayPocketSwitchSFX: ; 89a8a
 	push af
 	ld de, SFX_SWITCH_POCKETS
 	call PlaySFX
@@ -1694,42 +1700,42 @@ Function89a8a: ; 89a8a
 	ret
 ; 89a93
 
-Function89a93: ; 89a93
-	ld d, $28
-	ld e, $1
-	call Function89aa3
+.MoveCursorDown: ; 89a93
+	ld d, 40
+	ld e,  1
+	call .ApplyCursorMovement
 	ret
 ; 89a9b
 
-Function89a9b: ; 89a9b
-	ld d, $1
-	ld e, $ff
-	call Function89aa3
+.MoveCursorUp: ; 89a9b
+	ld d,  1
+	ld e, -1
+	call .ApplyCursorMovement
 	ret
 ; 89aa3
 
-Function89aa3: ; 89aa3
+.ApplyCursorMovement: ; 89aa3
 	ld a, [MenuSelection]
 	ld c, a
 	push bc
-.asm_89aa8
+.loop
 	ld a, [MenuSelection]
 	cp d
-	jr z, .asm_89ac0
+	jr z, .equal_to_d
 	add e
-	jr nz, .asm_89ab2
+	jr nz, .not_zero
 	inc a
 
-.asm_89ab2
+.not_zero
 	ld [MenuSelection], a
-	call Function89ac7
-	jr nc, .asm_89aa8
-	call Function89ae6
+	call .Function89ac7 ; BCD conversion of data in SRAM?
+	jr nc, .loop
+	call .Function89ae6 ; split [MenuSelection] into [wd030] + [wd031] where [wd030] <= 5
 	pop bc
 	and a
 	ret
 
-.asm_89ac0
+.equal_to_d
 	pop bc
 	ld a, c
 	ld [MenuSelection], a
@@ -1737,48 +1743,48 @@ Function89aa3: ; 89aa3
 	ret
 ; 89ac7
 
-Function89ac7: ; 89ac7
+.Function89ac7: ; 89ac7
 	call OpenSRAMBank4
 	call Function8931b
-	call Function89ad4
+	call .Function89ad4
 	call CloseSRAM
 	ret
 ; 89ad4
 
-Function89ad4: ; 89ad4
+.Function89ad4: ; 89ad4
 	push de
-	call Function8932d
-	jr c, .asm_89ae3
-	ld hl, $0011
+	call Function8932d ; find a non-space character within 5 bytes of bc
+	jr c, .no_nonspace_character
+	ld hl, 17
 	add hl, bc
 	call Function89b45
-	jr c, .asm_89ae4
+	jr c, .finish_decode
 
-.asm_89ae3
+.no_nonspace_character
 	and a
 
-.asm_89ae4
+.finish_decode
 	pop de
 	ret
 ; 89ae6
 
-Function89ae6: ; 89ae6
+.Function89ae6: ; 89ae6
 	ld hl, wd031
 	xor a
 	ld [hl], a
 	ld a, [MenuSelection]
-.asm_89aee
-	cp $6
-	jr c, .asm_89afc
-	sub $5
+.loop2
+	cp 6
+	jr c, .load_and_ret
+	sub 5
 	ld c, a
 	ld a, [hl]
-	add $5
+	add 5
 	ld [hl], a
 	ld a, c
-	jr .asm_89aee
+	jr .loop2
 
-.asm_89afc
+.load_and_ret
 	ld [wd030], a
 	ret
 ; 89b00
@@ -1823,48 +1829,50 @@ Function89b3b: ; 89b3b (22:5b3b)
 	ret
 
 Function89b45: ; 89b45
+	; some sort of decoder?
+	; BCD?
 	push hl
 	push bc
 	ld c, $10
 	ld e, $0
-.asm_89b4b
+.loop
 	ld a, [hli]
 	ld b, a
 	and $f
-	cp $a
-	jr c, .asm_89b5a
+	cp 10
+	jr c, .low_nybble_less_than_10
 	ld a, c
 	cp $b
-	jr nc, .asm_89b74
-	jr .asm_89b71
+	jr nc, .clear_carry
+	jr .set_carry
 
-.asm_89b5a
+.low_nybble_less_than_10
 	dec c
 	swap b
 	inc e
 	ld a, b
 	and $f
-	cp $a
-	jr c, .asm_89b6c
+	cp 10
+	jr c, .high_nybble_less_than_10
 	ld a, c
 	cp $b
-	jr nc, .asm_89b74
-	jr .asm_89b71
+	jr nc, .clear_carry
+	jr .set_carry
 
-.asm_89b6c
+.high_nybble_less_than_10
 	inc e
 	dec c
-	jr nz, .asm_89b4b
+	jr nz, .loop
 	dec e
 
-.asm_89b71
+.set_carry
 	scf
-	jr .asm_89b75
+	jr .finish
 
-.asm_89b74
+.clear_carry
 	and a
 
-.asm_89b75
+.finish
 	pop bc
 	pop hl
 	ret
@@ -2027,56 +2035,59 @@ Function89c44: ; 89c44 (22:5c44)
 	ret
 
 Function89c67: ; 89c67 (22:5c67)
-	call Function354b
+; menu scrolling?
+	call JoyTextDelay_ForcehJoyDown ; joypad
 	ld b, $0
-	bit 0, c
-	jr z, .asm_89c74
+	bit A_BUTTON_F, c
+	jr z, .not_a_button
 	ld b, $1
 	and a
 	ret
-.asm_89c74
-	bit 1, c
-	jr z, .asm_89c7a
+
+.not_a_button
+	bit B_BUTTON_F, c
+	jr z, .not_b_button
 	scf
 	ret
-.asm_89c7a
+
+.not_b_button
 	xor a
-	bit 6, c
-	jr z, .asm_89c81
+	bit D_UP_F, c
+	jr z, .not_d_up
 	ld a, $1
-.asm_89c81
-	bit 7, c
-	jr z, .asm_89c87
+.not_d_up
+	bit D_DOWN_F, c
+	jr z, .not_d_down
 	ld a, $2
-.asm_89c87
-	bit 5, c
-	jr z, .asm_89c8d
+.not_d_down
+	bit D_LEFT_F, c
+	jr z, .not_d_left
 	ld a, $3
-.asm_89c8d
-	bit 4, c
-	jr z, .asm_89c93
+.not_d_left
+	bit D_RIGHT_F, c
+	jr z, .not_d_right
 	ld a, $4
-.asm_89c93
+.not_d_right
 	and a
-	ret z
+	ret z ; no dpad pressed
 	dec a
 	ld c, a
 	ld d, $0
-	ld hl, Unknown_89cbf
+	ld hl, .ScrollData0
 	ld a, [wd02f]
 	and a
-	jr z, .asm_89ca5
-	ld hl, Unknown_89ccf
-.asm_89ca5
+	jr z, .got_data
+	ld hl, .ScrollData1
+.got_data
 	ld a, [wd011]
 	and a
-	jr z, .asm_89cb1
+	jr z, .got_row
 	ld e, $4
-.asm_89cad
+.add_n_times
 	add hl, de
 	dec a
-	jr nz, .asm_89cad
-.asm_89cb1
+	jr nz, .add_n_times
+.got_row
 	ld e, c
 	add hl, de
 	ld a, [hl]
@@ -2089,13 +2100,13 @@ Function89c67: ; 89c67 (22:5c67)
 	ret
 ; 89cbf (22:5cbf)
 
-Unknown_89cbf: ; 89cbf
+.ScrollData0: ; 89cbf
 	db 0, 2, 0, 0
 	db 1, 3, 0, 0
 	db 2, 4, 0, 0
 	db 3, 0, 0, 0
 
-Unknown_89ccf: ; 89ccf
+.ScrollData1: ; 89ccf
 	db 0, 0, 0, 0
 	db 0, 3, 0, 0
 	db 2, 4, 0, 0
@@ -2305,7 +2316,7 @@ Jumptable_89e18: ; 89e18 (22:5e18)
 
 Function89e1e: ; 89e1e (22:5e1e)
 	call OpenSRAMBank4
-	ld bc, $a037
+	ld bc, $a037 ; 4:a037
 	call Function8b36c
 	call CloseSRAM
 	xor a
@@ -2648,9 +2659,9 @@ Function8a055: ; 8a055 (22:6055)
 	ld a, $5
 	call Function8a5a3
 	pop hl
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	ld a, $6
 	call Function8a5a3
 	call CGBOnly_LoadEDTile
@@ -4061,7 +4072,7 @@ Function8aab6: ; 8aab6 (22:6ab6)
 ; 8aaf0 (22:6af0)
 
 String_8aaf0: ; 8aaf0
-	db "あたらしい めいし", $4a, "できまし", $22, "@"
+	db "あたらしい めいし<PKMN>できまし<LNBRK>@"
 ; 8ab00
 
 Function8ab00: ; 8ab00
@@ -4096,6 +4107,7 @@ Function8ab11: ; 8ab11 (22:6b11)
 	ret
 
 Function8ab3b: ; 8ab3b (22:6b3b)
+.pressed_start
 	call Function891fe
 	call ClearBGPalettes
 	call Function893cc
@@ -4114,23 +4126,24 @@ Function8ab3b: ; 8ab3b (22:6b3b)
 	call Function89a0c
 	call CloseSRAM
 	call Function891ab
-	call Function8ab77
-	jr c, Function8ab3b
+	call .JoypadLoop
+	jr c, .pressed_start
 	ret
 
-Function8ab77: ; 8ab77 (22:6b77)
-	call Function354b
-	bit 0, c
-	jr nz, .asm_8ab8e
-	bit 1, c
-	jr nz, .asm_8ab8e
-	bit 3, c
-	jr z, Function8ab77
+.JoypadLoop: ; 8ab77 (22:6b77)
+	call JoyTextDelay_ForcehJoyDown
+	bit A_BUTTON_F, c
+	jr nz, .a_b_button
+	bit B_BUTTON_F, c
+	jr nz, .a_b_button
+	bit START_F, c
+	jr z, .JoypadLoop
 	call PlayClickSFX
 	call Function89d0d
 	scf
 	ret
-.asm_8ab8e
+
+.a_b_button
 	call PlayClickSFX
 	and a
 	ret

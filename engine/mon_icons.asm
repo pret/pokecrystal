@@ -169,9 +169,10 @@ InitPartyMenuIcon: ; 8e908 (23:6908)
 	call GetMemIconGFX
 	ld a, [hObjectStructIndexBuffer]
 ; y coord
-rept 4
 	add a
-endr
+	add a
+	add a
+	add a
 	add $1c
 	ld d, a
 ; x coord

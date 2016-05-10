@@ -81,9 +81,9 @@ StageBallTilesData: ; 2c059
 	jr z, .fainted
 
 .got_hp
-rept 3
 	dec hl
-endr
+	dec hl
+	dec hl
 	ld a, [hl]
 	and a
 	ld b, $32 ; statused
@@ -92,9 +92,9 @@ endr
 	jr .load
 
 .fainted
-rept 3
 	dec hl
-endr
+	dec hl
+	dec hl
 
 .load
 	ld a, b

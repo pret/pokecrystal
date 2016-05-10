@@ -2,9 +2,9 @@
 Special:: ; c01b
 ; Run script special de.
 	ld hl, SpecialsPointers
-rept 3
 	add hl,de
-endr
+	add hl,de
+	add hl,de
 	ld b, [hl]
 	inc hl
 	ld a, [hli]

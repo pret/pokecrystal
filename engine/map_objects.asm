@@ -268,9 +268,9 @@ EndSpriteMovement: ; 467b
 	ld [hl], a
 	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
 	add hl, bc
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a ; OBJECT_30
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc

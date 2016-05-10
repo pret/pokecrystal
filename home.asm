@@ -798,12 +798,7 @@ NamesPointers:: ; 33ab
 	dbw 0, PartyMonOT
 	dbw 0, OTPartyMonOT
 	dba TrainerClassNames
-; 33c0
-
-Function33c0:
-	inc b
-	ld d, d
-	ld c, e
+	dbw $4, $4b52 ; within PackMenuGFX
 ; 33c3
 
 GetName:: ; 33c3
@@ -834,9 +829,9 @@ GetName:: ; 33c3
 	ld e, a
 	ld d, 0
 	ld hl, NamesPointers
-rept 3
 	add hl, de
-endr
+	add hl, de
+	add hl, de
 	ld a, [hli]
 	rst Bankswitch
 	ld a, [hli]
@@ -1142,7 +1137,7 @@ InitScrollingMenu:: ; 352f
 	jp TextBox
 ; 354b
 
-Function354b:: ; 354b joypad
+JoyTextDelay_ForcehJoyDown:: ; 354b joypad
 	call DelayFrame
 
 	ld a, [hInMenu]
@@ -1692,22 +1687,22 @@ PrintLevel:: ; 382d
 ; How many digits?
 	ld c, 2
 	cp 100
-	jr c, Function3842
+	jr c, Print8BitNumRightAlign
 
 ; 3-digit numbers overwrite the :L.
 	dec hl
 	inc c
-	jr Function3842
+	jr Print8BitNumRightAlign
 ; 383d
 
-Function383d:: ; 383d
+PrintLevel_Force3Digits:: ; 383d
 ; Print :L and all 3 digits
 	ld [hl], "<LV>"
 	inc hl
 	ld c, 3
 ; 3842
 
-Function3842:: ; 3842
+Print8BitNumRightAlign:: ; 3842
 	ld [wd265], a
 	ld de, wd265
 	ld b, PRINTNUM_RIGHTALIGN | 1
@@ -1715,6 +1710,8 @@ Function3842:: ; 3842
 ; 384d
 
 Function384d:: ; 384d
+; XXX
+; GetNthMove
 	ld hl, wListMoves_MoveIndicesBuffer
 	ld c, a
 	ld b, 0
@@ -1907,13 +1904,17 @@ GetPartyLocation:: ; 3927
 ; 392d
 
 Function392d:: ; 392d
+; XXX
+; GetDexNumber
+; Probably used in gen 1 to convert index number to dex number
+; Not required in gen 2 because index number == dex number
 	push hl
 	ld a, b
 	dec a
 	ld b, 0
 	add hl, bc
 	ld hl, BaseData + 0
-	ld bc, $0020
+	ld bc, BaseData1 - BaseData0
 	call AddNTimes
 	ld a, BANK(BaseData)
 	call GetFarHalfword
@@ -1925,7 +1926,7 @@ Function392d:: ; 392d
 
 INCLUDE "home/battle.asm"
 
-Function3b0c:: ; 3b0c
+PushLYOverrides:: ; 3b0c
 
 	ld a, [hFFC6]
 	and a

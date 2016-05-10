@@ -157,9 +157,9 @@ BattleTower_ExecuteJumptable: ; 8b25b
 ; 8b281
 
 .GetTextPointers: ; 8b281
-rept 3
 	inc de
-endr
+	inc de
+	inc de
 	ld a, [de]
 	ld l, a
 	inc de

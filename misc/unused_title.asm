@@ -10,9 +10,9 @@ UnusedTitleScreen: ; 10c000
 	ld [hBGMapMode], a
 
 	ld hl, wJumptableIndex
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 
 	ld hl, UnusedTitleBG_GFX

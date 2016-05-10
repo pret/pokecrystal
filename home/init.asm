@@ -100,7 +100,7 @@ Init:: ; 17d
 	ld [rSVBK], a
 	call ClearVRAM
 	call ClearSprites
-	call Function270
+	call ClearsScratch
 
 
 	ld a, BANK(LoadPushOAM)
@@ -194,9 +194,10 @@ ClearVRAM:: ; 245
 
 ClearWRAM:: ; 25a
 ; Wipe swappable WRAM banks (1-7)
+; Assumes CGB or AGB
 
 	ld a, 1
-.asm_25c
+.bank_loop
 	push af
 	ld [rSVBK], a
 	xor a
@@ -206,15 +207,17 @@ ClearWRAM:: ; 25a
 	pop af
 	inc a
 	cp 8
-	jr nc, .asm_25c
+	jr nc, .bank_loop
 	ret
 ; 270
 
-Function270:: ; 270
-	ld a, $0
+ClearsScratch:: ; 270
+; Wipe the first 32 bytes of sScratch
+
+	ld a, BANK(sScratch)
 	call GetSRAMBank
-	ld hl, $a000
-	ld bc, $0020
+	ld hl, sScratch
+	ld bc, $20
 	xor a
 	call ByteFill
 	call CloseSRAM

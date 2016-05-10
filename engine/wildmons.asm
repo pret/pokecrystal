@@ -62,9 +62,9 @@ FindNest: ; 2a01f
 	ld b, a
 	ld a, [hli]
 	ld c, a
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	ld a, NUM_WILDMONS_PER_AREA_TIME_OF_DAY * 3
 	call .SearchMapForMon
 	jr nc, .next_grass
@@ -267,9 +267,9 @@ ChooseWildEncounter: ; 2a14f
 	call CheckEncounterRoamMon
 	jp c, .startwildbattle
 
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	call CheckOnWater
 	ld de, .WaterMonTable
 	jr z, .watermon
@@ -595,9 +595,9 @@ CheckEncounterRoamMon: ; 2a2ce
 	cp [hl]
 	jr nz, .DontEncounterRoamMon
 ; We've decided to take on a beast, so stage its information for battle.
-rept 3
 	dec hl
-endr
+	dec hl
+	dec hl
 	ld a, [hli]
 	ld [TempWildMonSpecies], a
 	ld a, [hl]

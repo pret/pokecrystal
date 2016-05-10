@@ -188,9 +188,9 @@ MassageOrHaircut: ; 7420
 .loop
 	sub [hl]
 	jr c, .ok
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	jr .loop
 
 .ok

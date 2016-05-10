@@ -18,10 +18,12 @@ LV_CHAR EQU $6e
 ; GetName types
 PKMN_NAME     EQU 1
 MOVE_NAME     EQU 2
+; dummied out EQU 3
 ITEM_NAME     EQU 4
 PARTY_OT_NAME EQU 5
 ENEMY_OT_NAME EQU 6
 TRAINER_NAME  EQU 7
+; broken ptr  EQU 8
 
 ; hp
 HP_GREEN  EQU 0

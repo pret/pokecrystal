@@ -55,9 +55,9 @@ Special_CelebiShrineEvent: ; 4989a
 	ld c, $4
 .OAMloop:
 	ld [hli], a
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	inc a
 	dec c
 	jr nz, .OAMloop

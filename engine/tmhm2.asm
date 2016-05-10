@@ -423,9 +423,9 @@ TMHM_DisplayPocketItems: ; 2c9e2 (b:49e2)
 
 .NotTMHM:
 	call TMHMPocket_GetCurrentLineCoord
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	push de
 	ld de, TMHM_String_Cancel
 	call PlaceString

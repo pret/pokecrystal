@@ -201,9 +201,9 @@ Function9282c: ; 9282c
 	ld a, [hl]
 	xor $20
 	ld [hli], a
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	dec c
 	jr nz, .loop
 	ret
@@ -686,9 +686,9 @@ Slots_SpinReels: ; 92b0f (24:6b0f)
 	ld a, [hl]
 	add d
 	ld [hli], a
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	dec e
 	jr nz, .loop
 	ret
@@ -1844,9 +1844,9 @@ SlotPayoutText: ; 93158 (24:7158)
 	ld e, a
 	ld d, 0
 	ld hl, .PayoutStrings
-rept 3
 	add hl, de
-endr
+	add hl, de
+	add hl, de
 	ld de, StringBuffer2
 	ld bc, 4
 	call CopyBytes

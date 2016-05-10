@@ -554,9 +554,9 @@ _InitMG_Mobile_LinkTradePalMap: ; 49797
 	hlcoord 2, 16, AttrMap
 	ld [hli], a
 	ld a, $7
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld a, $2
 	ld [hl], a
 	hlcoord 2, 17, AttrMap

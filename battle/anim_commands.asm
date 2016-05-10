@@ -108,7 +108,7 @@ RunBattleAnimScript: ; cc163
 	call RunBattleAnimCommand
 	call _ExecuteBGEffects
 	call BattleAnim_UpdateOAM_All
-	call Function3b0c
+	call PushLYOverrides
 	call BattleAnimRequestPals
 
 ; Speed up Rollout's animation.
@@ -265,9 +265,9 @@ BattleAnim_ClearCGB_OAMFlags: ; cc23d
 	ld a, [hl]
 	and $f0
 	ld [hli], a
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	dec c
 	jr nz, .loop
 	ret

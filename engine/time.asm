@@ -102,9 +102,9 @@ CheckDailyResetTimer:: ; 11452
 	ret nc
 	xor a
 	ld hl, DailyFlags
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 	ld hl, wDailyRematchFlags
 rept 4
@@ -381,9 +381,9 @@ CalcMinsHoursDaysSince: ; 115d6
 ; 115db
 
 CalcSecsMinsHoursDaysSince: ; 115db
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	ld a, [hSeconds]
 	ld c, a
 	sub [hl]

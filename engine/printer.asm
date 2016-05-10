@@ -293,9 +293,9 @@ Function841e2: ; 841e2 (21:41e2)
 Function841fb: ; 841fb (21:41fb)
 	xor a
 	ld hl, wca82
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 	ld hl, wca86
 	ld [hli], a
@@ -1362,7 +1362,7 @@ Function848ed: ; 848ed (21:48ed)
 	call AddNTimes
 	ld a, [hl]
 	pop hl
-	call Function383d
+	call PrintLevel_Force3Digits
 .ok2
 	ld hl, wd002
 	inc [hl]

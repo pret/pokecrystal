@@ -196,9 +196,9 @@ AI_TryItem: ; 38105
 	jr z, .has_item
 
 	dec de
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	jr .loop
 
 .has_item

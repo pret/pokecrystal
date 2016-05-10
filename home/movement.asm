@@ -150,9 +150,9 @@ SetMenuAttributes:: ; 1bb1
 	ld [hli], a
 	ld [hli], a
 	xor a
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	pop bc
 	pop hl
 	ret

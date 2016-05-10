@@ -1459,9 +1459,9 @@ CalcPkmnStatC: ; e17b
 	ld a, [hl]
 	swap a
 	and $1
-rept 3
 	add a
-endr
+	add a
+	add a
 	ld b, a
 	ld a, [hli]
 	and $1

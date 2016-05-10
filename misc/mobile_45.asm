@@ -634,9 +634,9 @@ Function1144d1: ; 1144d1
 	dec de
 	dec de
 	push de
-rept 3
 	inc de
-endr
+	inc de
+	inc de
 	inc hl
 	ld a, [de]
 	ld [hli], a
@@ -4460,9 +4460,9 @@ Function1158c2: ; 1158c2
 	ld bc, $0003
 
 .asm_115914
-rept 3
 	dec bc
-endr
+	dec bc
+	dec bc
 	ld a, c
 	ld [$dc19], a
 	ld a, b
@@ -5139,9 +5139,9 @@ endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-rept 3
 	inc de
-endr
+	inc de
+	inc de
 	ld [hl], d
 	dec hl
 	ld [hl], e

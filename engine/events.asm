@@ -1030,9 +1030,9 @@ DoPlayerEvent: ; 96beb
 	ld c, a
 	ld b, 0
 	ld hl, PlayerEventScriptPointers
-rept 3
 	add hl, bc
-endr
+	add hl, bc
+	add hl, bc
 	ld a, [hli]
 	ld [ScriptBank], a
 	ld a, [hli]

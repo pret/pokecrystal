@@ -121,7 +121,7 @@ RestartClock: ; 20021 (8:4021)
 ; 0x200ba
 
 .joy_loop
-	call Function354b
+	call JoyTextDelay_ForcehJoyDown
 	ld c, a
 	push af
 	call .PrintTime

@@ -48,7 +48,7 @@ Toss_Sell_Loop: ; 24ff9
 ; 2500e
 
 BuySellToss_InterpretJoypad: ; 2500e
-	call Function354b ; get joypad
+	call JoyTextDelay_ForcehJoyDown ; get joypad
 	bit B_BUTTON_F, c
 	jr nz, .b
 	bit A_BUTTON_F, c

@@ -127,7 +127,7 @@ LoadFonts_NoOAMUpdate:: ; 64bf
 	call LoadFontsExtra
 	ld a, $90
 	ld [hWY], a
-	call Function2e31
+	call SafeUpdateSprites
 	call LoadStandardFont
 	ret
 
@@ -933,8 +933,8 @@ StartMenu_PrintBugContestStatus: ; 24be7
 	ld h, b
 	ld l, c
 	inc hl
-	ld c, $3
-	call Function3842
+	ld c, 3
+	call Print8BitNumRightAlign
 
 .skip_level
 	pop af
@@ -1517,9 +1517,9 @@ ClearBattleRAM: ; 2ef18
 	ld [wBattleResult], a
 
 	ld hl, wPartyMenuCursor
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 
 	ld [wMenuScrollPosition], a
@@ -2782,9 +2782,9 @@ Special_CheckForLuckyNumberWinners: ; 4d87a
 	jr z, .SkipBox
 	ld hl, .BoxBankAddresses
 	ld b, 0
-rept 3
 	add hl, bc
-endr
+	add hl, bc
+	add hl, bc
 	ld a, [hli]
 	call GetSRAMBank
 	ld a, [hli]
@@ -3505,7 +3505,7 @@ CheckBattleScene: ; 4ea44
 .mobile
 	ld a, [wcd2f]
 	and a
-	jr nz, .asm_4ea72
+	jr nz, .from_wram
 
 	ld a, $4
 	call GetSRAMBank
@@ -3520,7 +3520,7 @@ CheckBattleScene: ; 4ea44
 	and a
 	ret
 
-.asm_4ea72
+.from_wram
 	ld a, $5
 	ld hl, w5_dc00
 	call GetFarWRAMByte
@@ -3782,9 +3782,10 @@ DrawHP: ; 50b10
 	ld [wWhichHPBar], a
 	push hl
 	push bc
+	; box mons have full HP
 	ld a, [MonType]
 	cp BOXMON
-	jr z, .asm_50b30
+	jr z, .at_least_1_hp
 
 	ld a, [TempMonHP]
 	ld b, a
@@ -3793,34 +3794,34 @@ DrawHP: ; 50b10
 
 ; Any HP?
 	or b
-	jr nz, .asm_50b30
+	jr nz, .at_least_1_hp
 
 	xor a
 	ld c, a
 	ld e, a
 	ld a, 6
 	ld d, a
-	jp .asm_50b4a
+	jp .fainted
 
-.asm_50b30
+.at_least_1_hp
 	ld a, [TempMonMaxHP]
 	ld d, a
 	ld a, [TempMonMaxHP + 1]
 	ld e, a
 	ld a, [MonType]
 	cp BOXMON
-	jr nz, .asm_50b41
+	jr nz, .not_boxmon
 
 	ld b, d
 	ld c, e
 
-.asm_50b41
+.not_boxmon
 	predef ComputeHPBarPixels
 	ld a, 6
 	ld d, a
 	ld c, a
 
-.asm_50b4a
+.fainted
 	ld a, c
 	pop bc
 	ld c, a
@@ -3832,14 +3833,14 @@ DrawHP: ; 50b10
 	pop hl
 
 ; Print HP
-	ld bc, $15 ; move (1,1)
+	bccoord 1, 1, 0
 	add hl, bc
 	ld de, TempMonHP
 	ld a, [MonType]
 	cp BOXMON
-	jr nz, .asm_50b66
+	jr nz, .not_boxmon_2
 	ld de, TempMonMaxHP
-.asm_50b66
+.not_boxmon_2
 	lb bc, 2, 3
 	call PrintNum
 
@@ -4029,9 +4030,9 @@ ListMovePP: ; 50c50
 
 .skip
 	pop hl
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	ld d, h
 	ld e, l
 	ld hl, TempMonMoves
@@ -4108,7 +4109,7 @@ Function50cd0: ; 50cd0
 	jr nz, .loop
 	ret
 
-Function50cdb: ; unreferenced predef
+Predef22: ; unreferenced predef
 	push hl
 	push hl
 	ld hl, PartyMonNicknames
@@ -5659,19 +5660,19 @@ String_PM: db "PM@" ; 1dd6ff
 INCLUDE "engine/diploma.asm"
 
 LoadSGBPokedexGFX: ; 1ddf1c
-	ld hl, LZ_1ddf33
+	ld hl, SGBPokedexGFX_LZ
 	ld de, VTiles2 tile $31
 	call Decompress
 	ret
 
 LoadSGBPokedexGFX2: ; 1ddf26 (77:5f26)
-	ld hl, LZ_1ddf33
+	ld hl, SGBPokedexGFX_LZ
 	ld de, VTiles2 tile $31
-	lb bc, BANK(LZ_1ddf33), $3a
+	lb bc, BANK(SGBPokedexGFX_LZ), $3a
 	call DecompressRequest2bpp
 	ret
 
-LZ_1ddf33: ; 1ddf33
+SGBPokedexGFX_LZ: ; 1ddf33
 INCBIN "gfx/pokedex/sgb.2bpp.lz"
 
 LoadQuestionMarkPic: ; 1de0d7

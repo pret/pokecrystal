@@ -3402,9 +3402,9 @@ HitSelfInConfusion: ; 355dd
 	sla c
 	rl b
 .mimic_screen
-rept 3
 	dec hl
-endr
+	dec hl
+	dec hl
 	ld a, [hli]
 	ld l, [hl]
 	ld h, a
@@ -3948,9 +3948,9 @@ BattleCommand_Encore: ; 35864
 	set SUBSTATUS_ENCORED, [hl]
 	call BattleRandom
 	and $3
-rept 3
 	inc a
-endr
+	inc a
+	inc a
 	ld [de], a
 	call CheckOpponentWentFirst
 	jr nz, .finish_move
@@ -4089,12 +4089,12 @@ BattleCommand_PainSplit: ; 35926
 	ld a, [CurDamage + 1]
 	rr a
 	ld [CurDamage + 1], a
-rept 3
 	inc hl
-endr
-rept 3
+	inc hl
+	inc hl
 	inc de
-endr
+	inc de
+	inc de
 
 .EnemyShareHP: ; 359ac
 	ld c, [hl]
@@ -7442,9 +7442,9 @@ BattleCommand_TrapTarget: ; 36c2d
 	ret nz
 	call BattleRandom
 	and 3
-rept 3
 	inc a
-endr
+	inc a
+	inc a
 	ld [hl], a
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar

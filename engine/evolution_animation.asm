@@ -353,9 +353,9 @@ EvolutionAnimation: ; 4e5e1
 	ld a, [hl]
 	or b
 	ld [hli], a
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	dec c
 	jr nz, .loop6
 	pop bc

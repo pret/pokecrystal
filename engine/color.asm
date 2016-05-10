@@ -405,9 +405,9 @@ LoadStatsScreenPals:
 Function8cb4:
 	ld l, e
 	ld h, 0
-rept 3
 	add hl, hl
-endr
+	add hl, hl
+	add hl, hl
 	ld de, Palettes_8d05
 	add hl, de
 	call CheckCGB
@@ -855,9 +855,9 @@ Function97e5:
 GetMonPalettePointer:
 	ld l, a
 	ld h, $0
-rept 3
 	add hl, hl
-endr
+	add hl, hl
+	add hl, hl
 	ld bc, PokemonPalettes
 	add hl, bc
 	ret
@@ -1101,9 +1101,9 @@ endr
 	call SGBDelayCycles
 	ld a, $30
 	ld [rJOYP], a
-rept 3
 	ld a, [rJOYP]
-endr
+	ld a, [rJOYP]
+	ld a, [rJOYP]
 	call SGBDelayCycles
 	call SGBDelayCycles
 	ld a, [rJOYP]
@@ -1946,9 +1946,9 @@ LoadMapPals:
 	ld a, [MapGroup]
 	ld l, a
 	ld h, 0
-rept 3
 	add hl,hl
-endr
+	add hl,hl
+	add hl,hl
 	ld de, RoofPals
 	add hl, de
 	ld a, [TimeOfDayPal]
