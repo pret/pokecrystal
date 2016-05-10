@@ -13,13 +13,13 @@ Music_Evolution_Ch1: ; f06ed
 	dutycycle $2
 	notetype $c, $92
 	octave 3
-	unknownmusic0xe0 $0, 4, A_
+	slidepitchto 0, 4, A_
 	note C_, 1
-	unknownmusic0xe0 $0, 4, A_
+	slidepitchto 0, 4, A_
 	note G_, 1
-	unknownmusic0xe0 $0, 4, A_
+	slidepitchto 0, 4, A_
 	note C_, 1
-	unknownmusic0xe0 $0, 4, A_
+	slidepitchto 0, 4, A_
 	note G_, 1
 	note __, 4
 	dutycycle $3

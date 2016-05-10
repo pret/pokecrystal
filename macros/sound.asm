@@ -78,11 +78,10 @@ togglesfx: macro
 	db togglesfx_cmd
 	endm
 
-	enum unknownmusic0xe0_cmd
-unknownmusic0xe0: macro
-	db unknownmusic0xe0_cmd
+	enum slidepitchto_cmd
+slidepitchto: macro
+	db slidepitchto_cmd
 	db \1 ; unknown
-	; db \2 ; unknown
 	dn \2, \3 ; octave, pitch
 	endm
 

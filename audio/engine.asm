@@ -111,7 +111,7 @@ _UpdateSound:: ; e805c
 	cp $2 ; 1 or 0?
 	jr c, .noteover
 	dec [hl]
-	jr .asm_e8093
+	jr .continue_sound_update
 
 .noteover
 	; reset vibrato delay
@@ -124,12 +124,11 @@ _UpdateSound:: ; e805c
 	; turn vibrato off for now
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	res SOUND_UNKN_09, [hl]
+	res SOUND_PITCH_WHEEL, [hl]
 	; get next note
 	call ParseMusic
-.asm_e8093
-	;
-	call Functione84f9
+.continue_sound_update
+	call ApplyPitchWheel
 	; duty cycle
 	ld hl, Channel1DutyCycle - Channel1
 	add hl, bc
@@ -144,7 +143,7 @@ _UpdateSound:: ; e805c
 	ld a, [hl]
 	ld [wCurTrackFrequency + 1], a
 	;
-	call Functione8466 ; handle vibrato and other things
+	call HandleTrackVibrato ; handle vibrato and other things
 	call HandleNoise
 	; turn off music when playing sfx?
 	ld a, [SFXPriority]
@@ -176,19 +175,19 @@ _UpdateSound:: ; e805c
 	; are we in a sfx channel right now?
 	ld a, [CurChannel]
 	cp $4 ; sfx
-	jr nc, .asm_e80ee
+	jr nc, .sfx_channel
 	ld hl, Channel5Flags - Channel1
 	add hl, bc
 	bit SOUND_CHANNEL_ON, [hl]
-	jr nz, .asm_e80fc
-.asm_e80ee
+	jr nz, .sound_channel_on
+.sfx_channel
 	call UpdateChannels
 	ld hl, Channel1Tracks - Channel1
 	add hl, bc
 	ld a, [SoundOutput]
 	or [hl]
 	ld [SoundOutput], a
-.asm_e80fc
+.sound_channel_on
 	; clear note flags
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
@@ -719,16 +718,16 @@ FadeMusic: ; e8358
 ; e83d1
 
 LoadNote: ; e83d1
-	; check mute??
+	; wait for pitch wheel to finish
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	bit SOUND_UNKN_09, [hl]
+	bit SOUND_PITCH_WHEEL, [hl]
 	ret z
 	; get note duration
 	ld hl, Channel1NoteDuration - Channel1
 	add hl, bc
 	ld a, [hl]
-	ld hl, wc297 ; ????
+	ld hl, wCurNoteDuration
 	sub [hl]
 	jr nc, .ok
 	ld a, 1
@@ -740,8 +739,8 @@ LoadNote: ; e83d1
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	; ????
-	ld hl, Channel1Field0x21 - Channel1
+	; get direction of pitch wheel
+	ld hl, Channel1PitchWheelTarget - Channel1
 	add hl, bc
 	ld a, e
 	sub [hl]
@@ -749,15 +748,13 @@ LoadNote: ; e83d1
 	ld a, d
 	sbc a, 0
 	ld d, a
-	; ????
-	ld hl, Channel1Field0x22 - Channel1
+	ld hl, Channel1PitchWheelTarget + 1 - Channel1
 	add hl, bc
 	sub [hl]
 	jr nc, .greater_than
-	; ????
 	ld hl, Channel1Flags3 - Channel1
 	add hl, bc
-	set SOUND_UNKN_11, [hl]
+	set SOUND_PITCH_WHEEL_DIR, [hl]
 	; get frequency
 	ld hl, Channel1Frequency - Channel1
 	add hl, bc
@@ -765,7 +762,7 @@ LoadNote: ; e83d1
 	inc hl
 	ld d, [hl]
 	; ????
-	ld hl, Channel1Field0x21 - Channel1
+	ld hl, Channel1PitchWheelTarget - Channel1
 	add hl, bc
 	ld a, [hl]
 	sub e
@@ -774,7 +771,7 @@ LoadNote: ; e83d1
 	sbc a, 0
 	ld d, a
 	; ????
-	ld hl, Channel1Field0x22 - Channel1
+	ld hl, Channel1PitchWheelTarget + 1 - Channel1
 	add hl, bc
 	ld a, [hl]
 	sub d
@@ -782,18 +779,17 @@ LoadNote: ; e83d1
 	jr .resume
 
 .greater_than
-	; ????
 	ld hl, Channel1Flags3 - Channel1
 	add hl, bc
-	res SOUND_UNKN_11, [hl]
+	res SOUND_PITCH_WHEEL_DIR, [hl]
 	; get frequency
 	ld hl, Channel1Frequency - Channel1
 	add hl, bc
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	; ????
-	ld hl, Channel1Field0x21 - Channel1
+	; get distance from pitch wheel target
+	ld hl, Channel1PitchWheelTarget - Channel1
 	add hl, bc
 	ld a, e
 	sub [hl]
@@ -801,15 +797,17 @@ LoadNote: ; e83d1
 	ld a, d
 	sbc a, 0
 	ld d, a
-	; ????
-	ld hl, Channel1Field0x22 - Channel1
+	ld hl, Channel1PitchWheelTarget + 1 - Channel1
 	add hl, bc
 	sub [hl]
 	ld d, a
 .resume
+	; de = x * [wCurNoteDuration] + y
+	; x + 1 -> d
+	; y -> a
 	push bc
-	ld hl, wc297
-	ld b, 0; loop count
+	ld hl, wCurNoteDuration
+	ld b, 0 ; quotient
 .loop
 	inc b
 	ld a, e
@@ -823,18 +821,16 @@ LoadNote: ; e83d1
 	jr .loop
 
 .quit
-	ld a, e ; result
+	ld a, e ; remainder
 	add [hl]
-	ld d, b ; loop count
-	; ????
+	ld d, b ; quotient
 	pop bc
-	ld hl, Channel1Field0x23 - Channel1
+	ld hl, Channel1PitchWheelAmount - Channel1
 	add hl, bc
-	ld [hl], d
-	ld hl, Channel1Field0x24 - Channel1
+	ld [hl], d ; quotient
+	ld hl, Channel1PitchWheelAmountFraction - Channel1
 	add hl, bc
-	ld [hl], a
-	; clear ????
+	ld [hl], a ; remainder
 	ld hl, Channel1Field0x25 - Channel1
 	add hl, bc
 	xor a
@@ -843,7 +839,7 @@ LoadNote: ; e83d1
 
 ; e8466
 
-Functione8466: ; e8466
+HandleTrackVibrato: ; e8466
 ; handle vibrato and other things
 ; unknowns: wCurTrackDuty, wCurTrackFrequency
 	ld hl, Channel1Flags2 - Channel1
@@ -963,11 +959,11 @@ Functione8466: ; e8466
 
 ; e84f9
 
-Functione84f9: ; e84f9
-	; quit if ????
+ApplyPitchWheel: ; e84f9
+	; quit if pitch wheel inactive
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	bit SOUND_UNKN_09, [hl]
+	bit SOUND_PITCH_WHEEL, [hl]
 	ret z
 	; de = Frequency
 	ld hl, Channel1Frequency - Channel1
@@ -975,24 +971,24 @@ Functione84f9: ; e84f9
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	;
+	; check whether pitch wheel is going up or down
 	ld hl, Channel1Flags3 - Channel1
 	add hl, bc
-	bit SOUND_UNKN_11, [hl]
-	jr z, .next
-	;
-	ld hl, Channel1Field0x23 - Channel1
+	bit SOUND_PITCH_WHEEL_DIR, [hl]
+	jr z, .decreasing
+	; frequency += [Channel*PitchWheelAmount]
+	ld hl, Channel1PitchWheelAmount - Channel1
 	add hl, bc
 	ld l, [hl]
 	ld h, 0
 	add hl, de
 	ld d, h
 	ld e, l
-	; get ????
-	ld hl, Channel1Field0x24 - Channel1
+	; [Channel*Field0x25] += [Channel*PitchWheelAmountFraction]
+	; if rollover: Frequency += 1
+	ld hl, Channel1PitchWheelAmountFraction - Channel1
 	add hl, bc
 	ld a, [hl]
-	; add it to ????
 	ld hl, Channel1Field0x25 - Channel1
 	add hl, bc
 	add [hl]
@@ -1003,23 +999,26 @@ Functione84f9: ; e84f9
 	ld a, 0
 	adc d
 	ld d, a
-	;
-	ld hl, Channel1Field0x22 - Channel1
+	; Compare the dw at [Channel*PitchWheelTarget] to de.
+	; If frequency is greater, we're finished.
+	; Otherwise, load the frequency and set two flags.
+	ld hl, Channel1PitchWheelTarget + 1 - Channel1
 	add hl, bc
 	ld a, [hl]
 	cp d
-	jp c, .quit1
-	jr nz, .quit2
-	ld hl, Channel1Field0x21 - Channel1
+	jp c, .finished_pitch_wheel
+	jr nz, .continue_pitch_wheel
+	ld hl, Channel1PitchWheelTarget - Channel1
 	add hl, bc
 	ld a, [hl]
 	cp e
-	jp c, .quit1
-	jr .quit2
+	jp c, .finished_pitch_wheel
+	jr .continue_pitch_wheel
 
-.next
+.decreasing
+	; frequency -= [Channel*PitchWheelAmount]
 	ld a, e
-	ld hl, Channel1Field0x23 - Channel1
+	ld hl, Channel1PitchWheelAmount - Channel1
 	add hl, bc
 	ld e, [hl]
 	sub e
@@ -1027,7 +1026,9 @@ Functione84f9: ; e84f9
 	ld a, d
 	sbc a, 0
 	ld d, a
-	ld hl, Channel1Field0x24 - Channel1
+	; [Channel*Field0x25] *= 2
+	; if rollover: Frequency -= 1
+	ld hl, Channel1PitchWheelAmountFraction - Channel1
 	add hl, bc
 	ld a, [hl]
 	add a
@@ -1037,28 +1038,31 @@ Functione84f9: ; e84f9
 	ld e, a
 	ld a, d
 	sbc a, 0
-	ld d,a
-	ld hl, Channel1Field0x22 - Channel1
+	ld d, a
+	; Compare the dw at [Channel*PitchWheelTarget] to de.
+	; If frequency is lower, we're finished.
+	; Otherwise, load the frequency and set two flags.
+	ld hl, Channel1PitchWheelTarget + 1 - Channel1
 	add hl, bc
 	ld a, d
 	cp [hl]
-	jr c, .quit1
-	jr nz, .quit2
-	ld hl, Channel1Field0x21 - Channel1
+	jr c, .finished_pitch_wheel
+	jr nz, .continue_pitch_wheel
+	ld hl, Channel1PitchWheelTarget - Channel1
 	add hl, bc
 	ld a, e
 	cp [hl]
-	jr nc, .quit2
-.quit1
+	jr nc, .continue_pitch_wheel
+.finished_pitch_wheel
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	res SOUND_UNKN_09, [hl]
+	res SOUND_PITCH_WHEEL, [hl]
 	ld hl, Channel1Flags3 - Channel1
 	add hl, bc
-	res SOUND_UNKN_11, [hl]
+	res SOUND_PITCH_WHEEL_DIR, [hl]
 	ret
 
-.quit2
+.continue_pitch_wheel
 	ld hl, Channel1Frequency - Channel1
 	add hl, bc
 	ld [hl], e
@@ -1170,9 +1174,9 @@ ParseMusic: ; e85e1
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
 	bit SOUND_SFX, [hl]
-	jp nz, Functione8698
+	jp nz, ParseSFXOrRest
 	bit SOUND_REST, [hl] ; rest
-	jp nz, Functione8698
+	jp nz, ParseSFXOrRest
 	bit SOUND_NOISE, [hl] ; noise sample
 	jp nz, GetNoiseSample
 ; normal note
@@ -1286,7 +1290,7 @@ RestoreVolume: ; e8679
 
 ; e8698
 
-Functione8698: ; e8698
+ParseSFXOrRest: ; e8698
 	; turn noise sampling on
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
@@ -1414,7 +1418,7 @@ MusicCommands: ; e8720
 	dw Music_SoundStatus ; update sound status
 	dw MusicDE ; ???? + duty cycle
 	dw Music_ToggleSFX ;
-	dw MusicE0 ;
+	dw Music_SlidePitchTo ;
 	dw Music_Vibrato ; vibrato
 	dw MusicE2 ; unused
 	dw Music_ToggleNoise ; music noise sampling
@@ -1796,11 +1800,11 @@ Music_Vibrato: ; e8882
 
 ; e88bd
 
-MusicE0: ; e88bd
+Music_SlidePitchTo: ; e88bd
 ; ????
 ; params: 2
 	call GetMusicByte
-	ld [wc297], a
+	ld [wCurNoteDuration], a
 
 	call GetMusicByte
 	ld d, a
@@ -1812,15 +1816,15 @@ MusicE0: ; e88bd
 	and $f
 	ld d, a
 	call GetFrequency
-	ld hl, Channel1Field0x21 - Channel1
+	ld hl, Channel1PitchWheelTarget - Channel1
 	add hl, bc
 	ld [hl], e
-	ld hl, Channel1Field0x22 - Channel1
+	ld hl, Channel1PitchWheelTarget + 1 - Channel1
 	add hl, bc
 	ld [hl], d
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
-	set SOUND_UNKN_09, [hl]
+	set SOUND_PITCH_WHEEL, [hl]
 	ret
 
 ; e88e4

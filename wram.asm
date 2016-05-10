@@ -34,7 +34,7 @@ wCurTrackDuty:: ds 1
 wCurTrackIntensity:: ds 1
 wCurTrackFrequency:: dw
 wc296:: ds 1 ; BCD value, dummied out
-wc297:: ds 1 ; used in MusicE0 and LoadNote
+wCurNoteDuration:: ds 1 ; used in MusicE0 and LoadNote
 
 CurMusicByte:: ; c298
 	ds 1

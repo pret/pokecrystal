@@ -146,10 +146,9 @@ channel_struct: MACRO
 \1VibratoDelay::      db ; number of frames a note plays until vibrato starts
 \1VibratoExtent::     db
 \1VibratoRate::       db ; hi:frames for each alt lo:frames to the next alt
-\1Field0x21::         ds 1 ; c122
-\1Field0x22::         ds 1 ; c123
-\1Field0x23::         ds 1 ; c124
-\1Field0x24::         ds 1 ; c125
+\1PitchWheelTarget::  dw ; frequency endpoint for pitch wheel
+\1PitchWheelAmount::  db ; c124
+\1PitchWheelAmountFraction::   db ; c125
 \1Field0x25::         ds 1 ; c126
                       ds 1 ; c127
 \1CryPitch::          dw
