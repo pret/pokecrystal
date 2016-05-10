@@ -67,9 +67,9 @@ soundinput: macro
 	db \1 ; input
 	endm
 
-	enum unknownmusic0xde_cmd
-unknownmusic0xde: macro
-	db unknownmusic0xde_cmd
+	enum sound_duty_cmd
+sound_duty: macro
+	db sound_duty_cmd
 	db \1 ; unknown
 	endm
 

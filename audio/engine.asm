@@ -142,7 +142,7 @@ _UpdateSound:: ; e805c
 	ld [wCurTrackFrequency], a
 	ld a, [hl]
 	ld [wCurTrackFrequency + 1], a
-	;
+	; vibrato, noise
 	call HandleTrackVibrato ; handle vibrato and other things
 	call HandleNoise
 	; turn off music when playing sfx?
@@ -840,13 +840,12 @@ LoadNote: ; e83d1
 ; e8466
 
 HandleTrackVibrato: ; e8466
-; handle vibrato and other things
-; unknowns: wCurTrackDuty, wCurTrackFrequency
+; handle duty, cry pitch, and vibrato
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
 	bit SOUND_DUTY, [hl] ; duty
 	jr z, .next
-	ld hl, Channel1Field0x1c - Channel1
+	ld hl, Channel1SFXDutyLoop - Channel1
 	add hl, bc
 	ld a, [hl]
 	rlca
@@ -1416,9 +1415,9 @@ MusicCommands: ; e8720
 	dw Music_DutyCycle ; duty cycle
 	dw Music_Intensity ; intensity
 	dw Music_SoundStatus ; update sound status
-	dw MusicDE ; ???? + duty cycle
-	dw Music_ToggleSFX ;
-	dw Music_SlidePitchTo ;
+	dw Music_SoundDuty ; sfx duty
+	dw Music_ToggleSFX ; sound on/off
+	dw Music_SlidePitchTo ; pitch wheel
 	dw Music_Vibrato ; vibrato
 	dw MusicE2 ; unused
 	dw Music_ToggleNoise ; music noise sampling
@@ -1444,8 +1443,8 @@ MusicCommands: ; e8720
 	dw MusicF7 ; nothing
 	dw MusicF8 ; nothing
 	dw MusicF9 ; unused
-	dw Music_SetCondition ;
-	dw Music_JumpIf ;
+	dw Music_SetCondition ; setcondition
+	dw Music_JumpIf ; jumpif
 	dw Music_JumpChannel ; jump
 	dw Music_LoopChannel ; loop
 	dw Music_CallChannel ; call
@@ -1859,18 +1858,18 @@ MusicE7: ; e88f7
 
 ; e8906
 
-MusicDE: ; e8906
+Music_SoundDuty: ; e8906
 ; ???? + duty cycle
 ; params: 1
 	;
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
 	set SOUND_DUTY, [hl] ; duty cycle
-	;
+	; sound duty sequence
 	call GetMusicByte
 	rrca
 	rrca
-	ld hl, Channel1Field0x1c - Channel1
+	ld hl, Channel1SFXDutyLoop - Channel1
 	add hl, bc
 	ld [hl], a
 	; update duty cycle

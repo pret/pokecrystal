@@ -141,7 +141,7 @@ channel_struct: MACRO
 \1LoopCount::         db
 \1Tempo::             dw
 \1Tracks::            db ; hi:left lo:right
-\1Field0x1c::         ds 1 ; c11d
+\1SFXDutyLoop::         ds 1 ; c11d
 \1VibratoDelayCount:: db ; initialized by \1VibratoDelay
 \1VibratoDelay::      db ; number of frames a note plays until vibrato starts
 \1VibratoExtent::     db
