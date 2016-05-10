@@ -219,7 +219,7 @@ UnownDexBTile: ; 16da4
 INCBIN "gfx/unknown/016da4.1bpp"
 ; 16dac
 
-Function16dac: ; 16dac
+PlaceUnownPrinterFrontpic: ; 16dac
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "

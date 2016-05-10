@@ -49,13 +49,6 @@ Function2d43:: ; 2d43
 INCLUDE "home/farcall.asm"
 INCLUDE "home/predef.asm"
 INCLUDE "home/window.asm"
-
-Function2e4e:: ; 2e4e
-; Unreferenced.
-	scf
-	ret
-; 2e50
-
 INCLUDE "home/flag.asm"
 
 Function2ebb:: ; 2ebb

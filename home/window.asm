@@ -98,4 +98,8 @@ SafeUpdateSprites:: ; 2e31
 	pop af
 	ld [hOAMUpdate], a
 	ret
-; 2e4e
+
+; XXX
+	scf
+	ret
+; 2e50

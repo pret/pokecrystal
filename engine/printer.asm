@@ -821,7 +821,7 @@ PrintUnownStamp: ; 84560
 	xor a
 	ld [hBGMapMode], a
 	call LoadTileMapToTempTileMap
-	callba Function16dac
+	callba PlaceUnownPrinterFrontpic
 	ld a, $0
 	call Function84419
 	call Call_LoadTempTileMapToTileMap
