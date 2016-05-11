@@ -65,7 +65,7 @@ Predef_LoadSGBLayout: ; 864c
 
 .SGB_BattleColors: ; 86b4
 	ld hl, BlkPacket_9aa6
-	call Function9809
+	call PushSGBPals_
 
 	ld hl, PalPacket_9ce6
 	ld de, wSGBPals
@@ -627,7 +627,7 @@ endr
 
 .Finish: ; 8a60
 	push de
-	call Function9809
+	call PushSGBPals_
 	pop hl
-	jp Function9809
+	jp PushSGBPals_
 ; 8a68

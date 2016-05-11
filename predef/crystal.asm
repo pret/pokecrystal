@@ -5,7 +5,7 @@ GetMysteryGift_MobileAdapterLayout: ; 4930f (mobile)
 	ld a, [SGBPredef]
 .not_ram
 	push af
-	callba Function9673
+	callba ResetBGPals
 	pop af
 	ld l, a
 	ld h, 0

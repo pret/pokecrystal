@@ -1492,7 +1492,7 @@ Function17d93a: ; 17d93a
 	ld [CurPartySpecies], a
 	ld a, [$c70c]
 	ld e, a
-	callba Function8bc6
+	callba LoadMonPaletteAsNthBGPal
 	call SetPalettes
 	ld a, [$c708]
 	ld l, a
@@ -1528,7 +1528,7 @@ Function17d98b: ; 17d98b
 	ld [TrainerClass], a
 	ld a, [$c70b]
 	ld e, a
-	callba Function8bbd
+	callba LoadTrainerClassPaletteAsNthBGPal
 	call SetPalettes
 	ld a, [$c708]
 	ld e, a

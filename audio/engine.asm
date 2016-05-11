@@ -1800,8 +1800,10 @@ Music_Vibrato: ; e8882
 ; e88bd
 
 Music_SlidePitchTo: ; e88bd
-; ????
+; set the target for pitch wheel
 ; params: 2
+; note duration
+; target note
 	call GetMusicByte
 	ld [wCurNoteDuration], a
 
@@ -1830,7 +1832,7 @@ Music_SlidePitchTo: ; e88bd
 
 Music_Tone: ; e88e4
 ; tone
-; params: 2
+; params: 1 (dw)
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
 	set SOUND_CRY_PITCH, [hl]
@@ -1859,9 +1861,8 @@ MusicE7: ; e88f7
 ; e8906
 
 Music_SoundDuty: ; e8906
-; ???? + duty cycle
-; params: 1
-	;
+; sequence of 4 duty cycles to be looped
+; params: 1 (4 2-bit duty cycle arguments)
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
 	set SOUND_DUTY, [hl] ; duty cycle

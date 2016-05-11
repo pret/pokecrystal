@@ -14,7 +14,7 @@ Predef_LoadSGBLayoutCGB: ; 8d59
 .not_ram
 	cp SCGB_PARTY_MENU_HP_PALS
 	jp z, CGB_ApplyPartyMenuHPPals
-	call Function9673
+	call ResetBGPals
 	ld l, a
 	ld h, 0
 	add hl, hl
