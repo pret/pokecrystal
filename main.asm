@@ -3643,7 +3643,7 @@ GetPkmnSpecies: ; 508d5
 	jr z, .otpartymon
 	cp BOXMON
 	jr z, .boxmon
-	cp BREEDMON
+	cp TEMPMON
 	jr z, .breedmon
 	; WILDMON
 

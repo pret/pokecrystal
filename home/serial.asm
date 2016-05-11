@@ -10,7 +10,7 @@ Serial:: ; 6ef
 	and a
 	jr nz, .mobile
 
-	ld a, [wc2d4]
+	ld a, [wPrinterConnectionOpen]
 	bit 0, a
 	jr nz, .printer
 

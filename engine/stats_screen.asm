@@ -222,7 +222,7 @@ StatsScreenWaitCry: ; 4dde6 (13:5de6)
 
 StatsScreen_CopyToTempMon: ; 4ddf2 (13:5df2)
 	ld a, [MonType]
-	cp BREEDMON
+	cp TEMPMON
 	jr nz, .breedmon
 	ld a, [wBufferMon]
 	ld [CurSpecies], a
@@ -249,7 +249,7 @@ StatsScreen_CopyToTempMon: ; 4ddf2 (13:5df2)
 StatsScreen_GetJoypad: ; 4de2c (13:5e2c)
 	call GetJoypad
 	ld a, [MonType]
-	cp BREEDMON
+	cp TEMPMON
 	jr nz, .notbreedmon
 	push hl
 	push de
@@ -1144,7 +1144,7 @@ GetNicknamePointer: ; 4e528 (13:6528)
 	ld h, [hl]
 	ld l, a
 	ld a, [MonType]
-	cp BREEDMON
+	cp TEMPMON
 	ret z
 	ld a, [CurPartyMon]
 	jp SkipNames

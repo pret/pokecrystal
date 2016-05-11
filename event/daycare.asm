@@ -723,7 +723,7 @@ DayCare_InitBreeding: ; 16a3b
 	ld a, [wBreedMon2Species]
 	cp DITTO
 	jr z, .GotDVs
-	ld a, BREEDMON
+	ld a, TEMPMON
 	ld [MonType], a
 	push hl
 	callba GetGender

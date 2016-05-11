@@ -255,7 +255,7 @@ Function8b45c: ; 8b45c (22:745c)
 	ld d, $0
 	call Function8b385
 .asm_8b46e
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call Function8b493
 	call Function8b4cc
 	call Function8b518
@@ -276,7 +276,7 @@ Function8b45c: ; 8b45c (22:745c)
 
 Function8b493: ; 8b493 (22:7493)
 	push bc
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call Function8b521
 	ld hl, Jumptable_8b4a0
 	pop bc
@@ -657,7 +657,7 @@ Function8b6ed: ; 8b6ed
 ; 8b703
 
 Function8b703: ; 8b703
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	push hl
 	ld a, $c
 	ld [hli], a
@@ -733,7 +733,7 @@ Function8b744: ; 8b744
 ; 8b75d
 
 Function8b75d: ; 8b75d
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	hlcoord 0, 0
 	ld a, $1
 	ld bc, SCREEN_WIDTH

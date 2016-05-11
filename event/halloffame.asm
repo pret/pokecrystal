@@ -495,7 +495,7 @@ DisplayHOFMon: ; 86748
 	call GetBasePokemonName
 	hlcoord 7, 13
 	call PlaceString
-	ld a, BREEDMON
+	ld a, TEMPMON
 	ld [MonType], a
 	callba GetGender
 	ld a, " "

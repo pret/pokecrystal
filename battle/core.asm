@@ -4939,7 +4939,7 @@ PrintPlayerHUD: ; 3dfbf
 	pop hl
 	dec hl
 
-	ld a, BREEDMON
+	ld a, TEMPMON
 	ld [MonType], a
 	callab GetGender
 	ld a, " "
@@ -5017,7 +5017,7 @@ DrawEnemyHUD: ; 3e043
 	ld a, [hl]
 	ld [de], a
 
-	ld a, BREEDMON
+	ld a, TEMPMON
 	ld [MonType], a
 	callab GetGender
 	ld a, " "

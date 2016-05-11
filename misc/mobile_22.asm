@@ -96,14 +96,14 @@ Function8919e: ; 8919e (22:519e)
 	ret
 
 Function891ab: ; 891ab
-	call Function89240
+	call Mobile22_SetBGMapMode1
 	callba ReloadMapPart
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	ret
 ; 891b8
 
 Function891b8: ; 891b8
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	hlcoord 0, 0
 	ld a, " "
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
@@ -129,7 +129,7 @@ Function891d3: ; 891d3 (22:51d3)
 	ret
 
 Function891de: ; 891de
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call ClearPalettes
 	hlcoord 0, 0, AttrMap
 	ld a, $7
@@ -197,18 +197,18 @@ Function8921f: ; 8921f (22:521f)
 	pop de
 	ret
 
-Function89235: ; 89235 (22:5235)
+Mobile22_ButtonSound: ; 89235 (22:5235)
 	call JoyWaitAorB
 	call PlayClickSFX
 	ret
 
-Function8923c: ; 8923c
+Mobile22_SetBGMapMode0: ; 8923c
 	xor a
 	ld [hBGMapMode], a
 	ret
 ; 89240
 
-Function89240: ; 89240
+Mobile22_SetBGMapMode1: ; 89240
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
@@ -253,7 +253,7 @@ Function89261: ; 89261
 	pop af
 	ld [wMenuCursorBuffer], a
 	call PushWindow
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call Function89209
 	call VerticalMenu
 	push af
@@ -1796,7 +1796,7 @@ Function89b00: ; 89b00 (22:5b00)
 ; 89b07 (22:5b07)
 
 Function89b07: ; 89b07
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call DelayFrame
 	callba Function4a3a7
 	ret
@@ -1824,7 +1824,7 @@ Function89b28: ; 89b28 (22:5b28)
 	ret
 
 Function89b3b: ; 89b3b (22:5b3b)
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	callba Function48cda
 	ret
 
@@ -2152,44 +2152,48 @@ Function89cdf: ; 89cdf (22:5cdf)
 	ret
 
 Function89d0d: ; 89d0d (22:5d0d)
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld c, $8
+
+	ld c, 8
 	ld de, UnknBGPals
-.asm_89d1c
+.loop
 	push bc
-	ld hl, Palette_89d4e
-	ld bc, $8
+	ld hl, .Palette1
+	ld bc, 1 palettes
 	call CopyBytes
 	pop bc
 	dec c
-	jr nz, .asm_89d1c
-	ld hl, Palette_89d56
-	ld de, wd010
-	ld bc, $8
+	jr nz, .loop
+
+	ld hl, .Palette2
+	ld de, UnknBGPals + 2 palettes
+	ld bc, 1 palettes
 	call CopyBytes
+
 	pop af
 	ld [rSVBK], a
+
 	call SetPalettes
-	callba Function845db
-	call Function89240
-	ld c, $18
+	callba PrintMail_
+	call Mobile22_SetBGMapMode1
+	ld c, 24
 	call DelayFrames
 	call RestartMapMusic
 	ret
 ; 89d4e (22:5d4e)
 
-Palette_89d4e: ; 89d4e
+.Palette1: ; 89d4e
 	RGB 31, 31, 31
 	RGB 19, 19, 19
 	RGB 15, 15, 15
 	RGB 00, 00, 00
 ; 89d56
 
-Palette_89d56: ; 89d56
+.Palette2: ; 89d56
 	RGB 31, 31, 31
 	RGB 19, 19, 19
 	RGB 19, 19, 19
@@ -2201,7 +2205,7 @@ Function89d5e: ; 89d5e (22:5d5e)
 	call CopyMenuDataHeader
 	pop af
 	ld [wMenuCursorBuffer], a
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call PlaceVerticalMenuItems
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags1
@@ -2210,7 +2214,7 @@ Function89d5e: ; 89d5e (22:5d5e)
 
 Function89d75: ; 89d75 (22:5d75)
 	push hl
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call _hl_
 	callba Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	pop hl
@@ -2218,13 +2222,13 @@ Function89d75: ; 89d75 (22:5d75)
 
 Function89d85: ; 89d85 (22:5d85)
 	push hl
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call _hl_
 	call CGBOnly_LoadEDTile
 	pop hl
 
 asm_89d90: ; 89d90 (22:5d90)
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	push hl
 	call _hl_
 	call Function89dab
@@ -2242,9 +2246,9 @@ asm_89d90: ; 89d90 (22:5d90)
 	ret
 
 Function89dab: ; 89dab (22:5dab)
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	callba MobileMenuJoypad
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	ld a, c
 	ld hl, wMenuJoypadFilter
 	and [hl]
@@ -2422,7 +2426,7 @@ Function89eb9: ; 89eb9 (22:5eb9)
 Function89ee1: ; 89ee1 (22:5ee1)
 	call ClearBGPalettes
 	call Function893e2
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	callba Function4a3a7
 	callba MG_Mobile_Layout_CreatePalBoxes
 	hlcoord 1, 0
@@ -2628,7 +2632,7 @@ Function89ff6: ; 89ff6 (22:5ff6)
 	call Function89a0c
 	call CloseSRAM
 	call Function891ab
-	call Function89235
+	call Mobile22_ButtonSound
 	jp Function89e36
 
 Function8a03d: ; 8a03d (22:603d)
@@ -2683,7 +2687,7 @@ Function8a055: ; 8a055 (22:6055)
 	jp Function89e36
 
 Function8a0a1: ; 8a0a1 (22:60a1)
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	push bc
 	call Function8a0c9
 	ld e, $6
@@ -2784,7 +2788,7 @@ Function8a116: ; 8a116 (22:6116)
 	ld hl, MenuDataHeader_0x8a176
 	call LoadMenuDataHeader
 .asm_8a121
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call Function8a17b
 	jr c, .asm_8a16b
 	ld a, [wMenuCursorY]
@@ -2951,7 +2955,7 @@ Function8a241: ; 8a241 (22:6241)
 Function8a262: ; 8a262 (22:6262)
 	call ClearBGPalettes
 	call Function893e2
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	callba Function4a3a7
 	callba MG_Mobile_Layout_CreatePalBoxes
 	hlcoord 1, 0
@@ -3045,7 +3049,7 @@ Function8a313: ; 8a313 (22:6313)
 
 Function8a31c: ; 8a31c (22:631c)
 	push bc
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	callba Function4a3a7
 	callba MG_Mobile_Layout_CreatePalBoxes
 	hlcoord 1, 0
@@ -3063,7 +3067,7 @@ Function8a31c: ; 8a31c (22:631c)
 	set 7, [hl]
 .asm_8a34e
 	call Function8a3a2
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call Function8a453
 	call Function8a4d3
 	call Function8a4fc
@@ -3588,7 +3592,7 @@ Function8a6cd: ; 8a6cd (22:66cd)
 	call Function8a765
 	call CloseSRAM
 	jr nc, .asm_8a73f
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call Function89448
 	call Function89a23
 	hlcoord 1, 13
@@ -3807,7 +3811,7 @@ Function8a8c3: ; 8a8c3 (22:68c3)
 	call Function892b4
 	call CloseSRAM
 	call Function89a23
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	hlcoord 1, 13
 	ld de, String_8a926
 	call PlaceString
@@ -4080,7 +4084,7 @@ Function8ab00: ; 8ab00
 	hlcoord 1, 13
 	call PlaceString
 	call WaitBGMap
-	call Function89235
+	call Mobile22_ButtonSound
 	and a
 	ret
 
@@ -4368,7 +4372,7 @@ Function8ad0b: ; 8ad0b
 	jr z, .asm_8ad0b
 	cp $2
 	jr z, .asm_8ad37
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	push bc
 	hlcoord 0, 12
 	ld b, $4
@@ -4380,7 +4384,7 @@ Function8ad0b: ; 8ad0b
 	ld a, $2
 	call Function8925e
 	jr c, .asm_8ad87
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	hlcoord 0, 12
 	ld b, $4
 	ld c, $12

@@ -157,8 +157,8 @@ wSpriteUpdatesEnabled:: ds 1
 wc2cf:: ds 1
 wMapTimeOfDay:: ds 1
 	ds 3
-wc2d4:: ds 1
-wc2d5:: ds 1
+wPrinterConnectionOpen:: ds 1
+wPrinterOpcode:: ds 1
 wLastDexEntry:: ds 1
 wDisableTextAcceleration:: ds 1
 wPreviousLandmark:: ds 1
@@ -897,6 +897,44 @@ OverworldMap:: ; c800
 OverworldMapEnd::
 	ds OverworldMap - @
 
+wGameboyPrinterRAM::
+wGameboyPrinterScreen:: ds SCREEN_HEIGHT * SCREEN_WIDTH ; c800
+wGameboyPrinterScreenEnd:: ; c968
+	ds wGameboyPrinterScreen - @
+wGameboyPrinter2bppSource::
+	ds 40 tiles
+wGameboyPrinter2bppSourceEnd::
+wca80:: ds 1
+wPrinterRowIndex:: ds 1
+wca82:: ds 1
+wca83:: ds 1
+wca84:: ds 1
+wca85:: ds 1
+wPrinterChecksum:: dw ; ca86
+wPrinterHandshake:: ds 1
+wPrinterStatusFlags::
+; bit 7: set if error 1 (battery low)
+; bit 6: set if error 4 (too hot or cold)
+; bit 5: set if error 3 (paper jammed or empty)
+; if this and the previous byte are both $ff: error 2 (connection error)
+	ds 1
+
+wHandshakeFrameDelay:: ds 1
+wPrinterSerialFrameDelay:: ds 1
+wPrinterSendByteOffset:: dw
+wPrinterSendByteCounter:: dw
+
+; tilemap backup?
+wPrinterTileMapBuffer:: ds SCREEN_HEIGHT * SCREEN_WIDTH ; ca90
+wPrinterTileMapBufferEnd::
+wPrinterStatus:: ds 1 ; cbf8
+	ds 1
+wcbfa:: ds 1
+wGBPrinterSettings:: ds 1
+	ds 16
+wGameboyPrinterRAMEnd::
+	ds wGameboyPrinterRAM - @
+
 wBillsPCPokemonList:: ; c800
 ; Pokemon, box number, list index
 
@@ -1018,44 +1056,14 @@ wca40:: ds 16
 wca50:: ds 16
 wca60:: ds 16
 wca70:: ds 16
-wca80:: ds 1
-wca81:: ds 1
-wca82:: ds 1
-wca83:: ds 1
-wca84:: ds 1
-wca85:: ds 1
-wca86:: ds 1
-wca87:: ds 1
 
-; Gameboy Printer
-wca88:: ds 1
-wca89::
-; bit 7: set if error 1
-; bit 6: set if error 4
-; bit 5: set if error 3
-	ds 1
+	ds 35
 
-wca8a:: ds 1
-wca8b:: ds 1
-wca8c:: ds 1
-wca8d:: ds 1
-wca8e:: ds 1
-wca8f:: ds 1
-
-; tilemap backup?
-wca90:: ds 16
-wcaa0:: ds 3
-wcaa3:: ds 2
-wcaa5:: ds 11
-wcab0:: ds 5
+wcaa3:: ds 2 ; caa3
+wcaa5:: ds 16
 wcab5:: ds 10
-wcabf:: ds 1
-wcac0:: ds 9
-wcac9:: ds 7
-wcad0:: ds 16
-wcae0:: ds 16
-wcaf0:: ds 16
-wcb00:: ds 8
+wcabf:: ds 10
+wcac9:: ds 63
 wcb08:: ds 6
 wcb0e:: ds 5
 wcb13:: ds 9
@@ -1078,11 +1086,8 @@ wcb84:: ds 100
 wcbe8:: dw
 wLinkOTPartyMonTypes::
 	ds 2 * PARTY_LENGTH
-	ds 2
+	ds 84
 
-wcbf8:: ds 2
-wcbfa:: ds 1
-wcbfb:: ds 79
 wcc4a:: ds 22
 wcc60:: ds 1
 wcc61:: ds 1
@@ -1295,6 +1300,7 @@ wTitleScreenTimerLo::
 wUnownPuzzleCursorPosition::
 wCardFlipCursorX::
 wCurrPocket::
+wPrinterQueueLength::
 wcf65:: ds 1
 wCreditsLYOverride::
 wTitleScreenTimerHi::
@@ -1544,6 +1550,7 @@ LuckyNumberDigit1Buffer::
 wCurrentRadioLine::
 wMovementBufferCount::
 wMartItem1BCD::
+wWhichBoxMonToPrint::
 	ds 1
 wd003::
 LuckyNumberDigit2Buffer::
@@ -1551,12 +1558,14 @@ PhoneCallerLo::
 wNextRadioLine::
 wMovementBufferPerson::
 wPlaceBallsDirection::
+wFinishedPrintingBox::
 	ds 1
 wd004::
 LuckyNumberDigit3Buffer::
 PhoneCallerHi::
 wRadioTextDelay::
 wTrainerHUDTiles::
+wAddrOfBoxToPrint::
 	ds 1
 wd005::
 LuckyNumberDigit4Buffer::
@@ -1569,9 +1578,11 @@ wMobileParticipant1Nickname::
 LuckyNumberDigit5Buffer::
 EndFlypoint:: ; d006
 wOaksPkmnTalkSegmentCounter::
+wBankOfBoxToPrint::
 	ds 1
 
 wd007::
+wWhichBoxToPrint::
 MovementBuffer:: ; d007
 	ds 1
 

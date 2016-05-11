@@ -13,16 +13,17 @@ PrinterReceive:: ; 2057
 
 AskSerial:: ; 2063
 ; send out a handshake while serial int is off
-	ld a, [wc2d4]
+	ld a, [wPrinterConnectionOpen]
 	bit 0, a
 	ret z
 
-	ld a, [wc2d5]
+; if we're still interpreting data, don't try to receive
+	ld a, [wPrinterOpcode]
 	and a
 	ret nz
 
 ; once every 6 frames
-	ld hl, wca8a
+	ld hl, wHandshakeFrameDelay
 	inc [hl]
 	ld a, [hl]
 	cp 6
@@ -31,8 +32,8 @@ AskSerial:: ; 2063
 	xor a
 	ld [hl], a
 
-	ld a, $c
-	ld [wc2d5], a
+	ld a, 12
+	ld [wPrinterOpcode], a
 
 ; handshake
 	ld a, $88

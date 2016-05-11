@@ -8,7 +8,7 @@ CheckBreedmonCompatibility: ; 16e1d
 	ld [TempMonDVs], a
 	ld a, [wBreedMon1DVs + 1]
 	ld [TempMonDVs + 1], a
-	ld a, BREEDMON
+	ld a, TEMPMON
 	ld [MonType], a
 	predef GetGender
 	jr c, .genderless
@@ -588,7 +588,7 @@ GetHeritableMoves: ; 17197
 	ld [TempMonDVs], a
 	ld a, [wBreedMon2DVs + 1]
 	ld [TempMonDVs + 1], a
-	ld a, BREEDMON
+	ld a, TEMPMON
 	ld [MonType], a
 	predef GetGender
 	jr c, .inherit_mon2_moves
@@ -604,7 +604,7 @@ GetHeritableMoves: ; 17197
 	ld [TempMonDVs], a
 	ld a, [wBreedMon1DVs + 1]
 	ld [TempMonDVs + 1], a
-	ld a, BREEDMON
+	ld a, TEMPMON
 	ld [MonType], a
 	predef GetGender
 	jr c, .inherit_mon1_moves

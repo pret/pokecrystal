@@ -1,27 +1,27 @@
 PrintPage1: ; 1dc1b0
 	hlcoord 0, 0
-	ld de, wca90
+	decoord 0, 0, wPrinterTileMapBuffer
 	ld bc, 17 * SCREEN_WIDTH
 	call CopyBytes
-	ld hl, wcab5
+	hlcoord 17, 1, wPrinterTileMapBuffer
 	ld a, $62
 	ld [hli], a
 	inc a
 	ld [hl], a
-	ld hl, wcac9
+	hlcoord 17, 2, wPrinterTileMapBuffer
 	ld a, $64
 	ld [hli], a
 	inc a
 	ld [hl], a
-	ld hl, wcb45
+	hlcoord 1, 9, wPrinterTileMapBuffer
 	ld a, " "
 	ld [hli], a
 	ld [hl], a
-	ld hl, wcb59
+	hlcoord 1, 10, wPrinterTileMapBuffer
 	ld a, $61
 	ld [hli], a
 	ld [hl], a
-	ld hl, wcb6e
+	hlcoord 2, 11, wPrinterTileMapBuffer
 	lb bc, 5, 18
 	call ClearBox
 	ld a, [wd265]
@@ -34,9 +34,9 @@ PrintPage1: ; 1dc1b0
 	callba GetDexEntryPagePointer
 	pop af
 	ld a, b
-	ld hl, wcb6d
+	hlcoord 1, 11, wPrinterTileMapBuffer
 	call nz, FarString
-	ld hl, wcaa3
+	hlcoord 19, 0, wPrinterTileMapBuffer
 	ld [hl], $35
 	ld de, SCREEN_WIDTH
 	add hl, de
@@ -51,26 +51,26 @@ PrintPage1: ; 1dc1b0
 ; 1dc213
 
 PrintPage2: ; 1dc213
-	ld hl, wca90
-	ld bc, $a0
+	hlcoord 0, 0, wPrinterTileMapBuffer
+	ld bc, 8 * SCREEN_WIDTH
 	ld a, " "
 	call ByteFill
-	ld hl, wca90
+	hlcoord 0, 0, wPrinterTileMapBuffer
 	ld a, $36
-	ld b, $6
+	ld b, 6
 	call .FillColumn
-	ld hl, wcaa3
+	hlcoord 19, 0, wPrinterTileMapBuffer
 	ld a, $37
-	ld b, $6
+	ld b, 6
 	call .FillColumn
-	ld hl, wcb08
+	hlcoord 0, 6, wPrinterTileMapBuffer
 	ld [hl], $38
 	inc hl
 	ld a, $39
 	ld bc, SCREEN_HEIGHT
 	call ByteFill
 	ld [hl], $3a
-	ld hl, wcb1c
+	hlcoord 0, 7, wPrinterTileMapBuffer
 	ld bc, SCREEN_WIDTH
 	ld a, $32
 	call ByteFill
@@ -83,7 +83,7 @@ PrintPage2: ; 1dc213
 	ld c, 2 ; get page 2
 	callba GetDexEntryPagePointer
 	pop af
-	ld hl, wcaa5
+	hlcoord 1, 1, wPrinterTileMapBuffer
 	ld a, b
 	call nz, FarString
 	ret
@@ -102,29 +102,29 @@ PrintPage2: ; 1dc213
 ; 1dc275
 
 GBPrinterStrings:
-String_1dc275: db "@"
-String_1dc276: next " CHECKING LINK...@"
-String_1dc289: next "  TRANSMITTING...@"
-String_1dc29c: next "    PRINTING...@"
-String_1dc2ad:
+GBPrinterString_Null: db "@"
+GBPrinterString_CheckingLink: next " CHECKING LINK...@"
+GBPrinterString_Transmitting: next "  TRANSMITTING...@"
+GBPrinterString_Printing: next "    PRINTING...@"
+GBPrinterString_PrinterError1:
 	db   " Printer Error 1"
 	next ""
 	next "Check the Game Boy"
 	next "Printer Manual."
 	db   "@"
-String_1dc2e2:
+GBPrinterString_PrinterError2:
 	db   " Printer Error 2"
 	next ""
 	next "Check the Game Boy"
 	next "Printer Manual."
 	db   "@"
-String_1dc317:
+GBPrinterString_PrinterError3:
 	db   " Printer Error 3"
 	next ""
 	next "Check the Game Boy"
 	next "Printer Manual."
 	db   "@"
-String_1dc34c:
+GBPrinterString_PrinterError4:
 	db   " Printer Error 4"
 	next ""
 	next "Check the Game Boy"
@@ -132,7 +132,7 @@ String_1dc34c:
 	db   "@"
 ; 1dc381
 
-Function1dc381: ; 1dc381
+PrintPartyMonPage1: ; 1dc381
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
@@ -232,7 +232,7 @@ Function1dc381: ; 1dc381
 	ret
 ; 1dc47b
 
-Function1dc47b: ; 1dc47b
+PrintPartyMonPage2: ; 1dc47b
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
