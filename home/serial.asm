@@ -78,7 +78,7 @@ Serial:: ; 6ef
 .player2
 	ld a, $1
 	ld [hFFCA], a
-	ld a, -2
+	ld a, $fe
 	ld [hSerialSend], a
 
 .end
@@ -126,92 +126,93 @@ Function75f:: ; 75f
 ; 78a
 
 Function78a:: ; 78a
+.loop
 	xor a
 	ld [hFFCA], a
 	ld a, [hLinkPlayerNumber]
 	cp $2
-	jr nz, .asm_79b
+	jr nz, .not_player_2
 	ld a, $1
 	ld [rSC], a
 	ld a, $81
 	ld [rSC], a
-
-.asm_79b
+.not_player_2
+.loop2
 	ld a, [hFFCA]
 	and a
-	jr nz, .asm_7e5
+	jr nz, .reset_ffca
 	ld a, [hLinkPlayerNumber]
 	cp $1
-	jr nz, .asm_7c0
-	call Function82b
-	jr z, .asm_7c0
-	call .asm_825
+	jr nz, .not_player_1_or_wcf5b_zero
+	call Checkwcf5bNonzero
+	jr z, .not_player_1_or_wcf5b_zero
+	call .delay_15_cycles
 	push hl
-	ld hl, wcf5c
+	ld hl, wcf5b + 1
 	inc [hl]
-	jr nz, .asm_7b7
+	jr nz, .no_rollover_up
 	dec hl
 	inc [hl]
 
-.asm_7b7
+.no_rollover_up
 	pop hl
-	call Function82b
-	jr nz, .asm_79b
-	jp Function833
+	call Checkwcf5bNonzero
+	jr nz, .loop2
+	jp SerialDisconnected
 
-.asm_7c0
+.not_player_1_or_wcf5b_zero
 	ld a, [rIE]
 	and $f
 	cp $8
-	jr nz, .asm_79b
+	jr nz, .loop2
 	ld a, [wcf5d]
 	dec a
 	ld [wcf5d], a
-	jr nz, .asm_79b
+	jr nz, .loop2
 	ld a, [wcf5d + 1]
 	dec a
 	ld [wcf5d + 1], a
-	jr nz, .asm_79b
+	jr nz, .loop2
 	ld a, [hLinkPlayerNumber]
 	cp $1
-	jr z, .asm_7e5
-	ld a, $ff
-.asm_7e2
+	jr z, .reset_ffca
+	ld a, 255
+.delay_255_cycles
 	dec a
-	jr nz, .asm_7e2
+	jr nz, .delay_255_cycles
 
-.asm_7e5
+.reset_ffca
 	xor a
 	ld [hFFCA], a
 	ld a, [rIE]
 	and $f
 	sub $8
-	jr nz, .asm_7f8
+	jr nz, .rIE_not_equal_8
 	ld [wcf5d], a
 	ld a, $50
 	ld [wcf5d + 1], a
 
-.asm_7f8
+.rIE_not_equal_8
 	ld a, [hSerialReceive]
 	cp $fe
 	ret nz
-	call Function82b
-	jr z, .asm_813
+	call Checkwcf5bNonzero
+	jr z, .wcf5b_zero
 	push hl
-	ld hl, wcf5c
+	ld hl, wcf5b + 1
 	ld a, [hl]
 	dec a
 	ld [hld], a
 	inc a
-	jr nz, .asm_80d
+	jr nz, .no_rollover
 	dec [hl]
 
-.asm_80d
+.no_rollover
 	pop hl
-	call Function82b
-	jr z, Function833
+	call Checkwcf5bNonzero
+	jr z, SerialDisconnected
 
-.asm_813
+.wcf5b_zero
 	ld a, [rIE]
 	and $f
 	cp $8
@@ -220,17 +221,17 @@ Function78a:: ; 78a
 	ld a, [hl]
 	ld [hSerialSend], a
 	call DelayFrame
-	jp Function78a
+	jp .loop
 
-.asm_825
-	ld a, $f
-.asm_827
+.delay_15_cycles
+	ld a, 15
+.delay_cycles
 	dec a
-	jr nz, .asm_827
+	jr nz, .delay_cycles
 	ret
 ; 82b
 
-Function82b:: ; 82b
+Checkwcf5bNonzero:: ; 82b
 	push hl
 	ld hl, wcf5b
 	ld a, [hli]
@@ -239,10 +240,10 @@ Function82b:: ; 82b
 	ret
 ; 833
 
-Function833:: ; 833
+SerialDisconnected:: ; 833
 	dec a
 	ld [wcf5b], a
-	ld [wcf5c], a
+	ld [wcf5b + 1], a
 	ret
 ; 83b
 
@@ -294,18 +295,19 @@ Function87d:: ; 87d
 .loop
 	call LinkTransfer
 	call DelayFrame
-	call Function82b
+	call Checkwcf5bNonzero
 	jr z, .check
 	push hl
-	ld hl, wcf5c
+	ld hl, wcf5b + 1
 	dec [hl]
 	jr nz, .skip
 	dec hl
 	dec [hl]
 	jr nz, .skip
+	; We might be disconnected
 	pop hl
 	xor a
-	jp Function833
+	jp SerialDisconnected
 
 .skip
 	pop hl
@@ -395,6 +397,7 @@ LinkDataReceived:: ; 908
 ; 919
 
 Function919:: ; 919
+; XXX
 	ld a, [wLinkMode]
 	and a
 	ret nz

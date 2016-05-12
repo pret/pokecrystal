@@ -1268,8 +1268,7 @@ wOtherPlayerLinkMode:: ds 1
 wOtherPlayerLinkAction:: ds 4
 wPlayerLinkAction:: ds 1
 wcf57:: ds 4
-wcf5b:: ds 1
-wcf5c:: ds 1
+wcf5b:: dw
 wcf5d:: ds 2
 
 MonType:: ; cf5f

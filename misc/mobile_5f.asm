@@ -308,7 +308,7 @@ Function17d0f3: ; 17d0f3
 	callba EvolvePokemon
 	xor a
 	ld [wLinkMode], a
-	callba Function14a58
+	callba SaveAfterLinkTrade
 	ld a, $5
 	call GetSRAMBank
 	ld a, $5
@@ -3059,7 +3059,7 @@ Function17e37e: ; 17e37e
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	callba Function14a58
+	callba SaveAfterLinkTrade
 	pop af
 	ld [rSVBK], a
 	ret

@@ -1942,20 +1942,20 @@ LinkTrade: ; 28b87
 	pop af
 	ld c, a
 	cp MEW
-	jr z, .asm_28e49
+	jr z, .loop
 	ld a, [CurPartySpecies]
 	cp MEW
-	jr z, .asm_28e49
+	jr z, .loop
 	ld b, $2
 	ld a, c
 	cp CELEBI
-	jr z, .asm_28e49
+	jr z, .loop
 	ld a, [CurPartySpecies]
 	cp CELEBI
-	jr z, .asm_28e49
+	jr z, .loop
 	ld b, $0
 
-.asm_28e49
+.loop
 	ld a, b
 	ld [wPlayerLinkAction], a
 	push bc
@@ -1963,16 +1963,16 @@ LinkTrade: ; 28b87
 	pop bc
 	ld a, [wLinkMode]
 	cp LINK_TIMECAPSULE
-	jr z, .asm_28e63
+	jr z, .save
 	ld a, b
 	and a
-	jr z, .asm_28e63
+	jr z, .save
 	ld a, [wOtherPlayerLinkAction]
 	cp b
-	jr nz, .asm_28e49
+	jr nz, .loop
 
-.asm_28e63
-	callba Function14a58
+.save
+	callba SaveAfterLinkTrade
 	callba MobileFn_1060af
 	callba BackupMobileEventIndex
 	ld c, 40
@@ -2255,7 +2255,7 @@ Special_WaitForLinkedFriend: ; 29d11
 
 .asm_29d2f
 	ld a, $2
-	ld [wcf5c], a
+	ld [wcf5b + 1], a
 	ld a, $ff
 	ld [wcf5b], a
 .asm_29d39
@@ -2278,9 +2278,9 @@ Special_WaitForLinkedFriend: ; 29d11
 	dec a
 	ld [wcf5b], a
 	jr nz, .asm_29d68
-	ld a, [wcf5c]
+	ld a, [wcf5b + 1]
 	dec a
-	ld [wcf5c], a
+	ld [wcf5b + 1], a
 	jr z, .asm_29d8d
 
 .asm_29d68
@@ -2384,24 +2384,24 @@ Function29e0c: ; 29e0c
 	ld [hFFCA], a
 	ld a, [wcf5b]
 	ld h, a
-	ld a, [wcf5c]
+	ld a, [wcf5b + 1]
 	ld l, a
 	push hl
-	call Function29e3b
+	call .CheckConnected
 	pop hl
-	jr nz, .asm_29e2f
-	call Function29e47
-	call Function29e53
-	call Function29e3b
-	jr nz, .asm_29e2f
-	call Function29e47
+	jr nz, .load_true
+	call .AcknowledgeSerial
+	call .ConvertDW
+	call .CheckConnected
+	jr nz, .load_true
+	call .AcknowledgeSerial
 	xor a
-	jr .asm_29e31
+	jr .load_scriptvar
 
-.asm_29e2f
+.load_true
 	ld a, $1
 
-.asm_29e31
+.load_scriptvar
 	ld [ScriptVar], a
 	ld hl, wcf5b
 	xor a
@@ -2410,7 +2410,7 @@ Function29e0c: ; 29e0c
 	ret
 ; 29e3b
 
-Function29e3b: ; 29e3b
+.CheckConnected: ; 29e3b
 	call Function87d
 	ld hl, wcf5b
 	ld a, [hli]
@@ -2421,17 +2421,19 @@ Function29e3b: ; 29e3b
 	ret
 ; 29e47
 
-Function29e47: ; 29e47
-	ld b, $a
-.asm_29e49
+.AcknowledgeSerial: ; 29e47
+	ld b, 10
+.loop
 	call DelayFrame
 	call LinkDataReceived
 	dec b
-	jr nz, .asm_29e49
+	jr nz, .loop
 	ret
 ; 29e53
 
-Function29e53: ; 29e53
+.ConvertDW: ; 29e53
+	; hl = ((hl - $100) / 4) + $100
+	;    = (hl / 4) + $c0
 	dec h
 	srl h
 	rr l
@@ -2441,7 +2443,7 @@ Function29e53: ; 29e53
 	ld a, h
 	ld [wcf5b], a
 	ld a, l
-	ld [wcf5c], a
+	ld [wcf5b + 1], a
 	ret
 ; 29e66
 

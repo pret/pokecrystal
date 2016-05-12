@@ -7331,7 +7331,7 @@ Function11b5c0: ; 11b5c0
 	ld [wPokemonWithdrawDepositParameter], a
 	callba RemoveMonFromPartyOrBox
 	callba Function170807
-	callba Function14a58
+	callba SaveAfterLinkTrade
 	jp Function11ad8a
 ; 11b5e0
 
@@ -7616,7 +7616,7 @@ Function11b7e5: ; 11b7e5
 	callba EvolvePokemon
 	xor a
 	ld [wLinkMode], a
-	callba Function14a58
+	callba SaveAfterLinkTrade
 	ld a, $5
 	call GetSRAMBank
 	ld a, $5
@@ -7781,7 +7781,7 @@ Function11b93b: ; 11b93b
 	ld a, $c64b / $100
 	ld [wMobileMonMailPointerBuffer + 1], a
 	call AddMobileMonToParty
-	callba Function14a58
+	callba SaveAfterLinkTrade
 	ret
 ; 11b98f
 

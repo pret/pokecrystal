@@ -4,7 +4,7 @@ SaveMenu: ; 14a1a
 	call SpeechTextBox
 	call UpdateSprites
 	callba SaveMenu_LoadEDTile
-	ld hl, UnknownText_0x15283
+	ld hl, Text_WouldYouLikeToSaveTheGame
 	call SaveTheGame_yesorno
 	jr nz, .refused
 	call AskOverwriteSaveFile
@@ -23,7 +23,7 @@ SaveMenu: ; 14a1a
 	scf
 	ret
 
-Function14a58: ; 14a58
+SaveAfterLinkTrade: ; 14a58
 	call PauseGameLogic
 	callba StageRTCTimeForSave
 	callba BackupMysteryGift
@@ -40,7 +40,7 @@ Function14a58: ; 14a58
 
 ChangeBoxSaveGame: ; 14a83 (5:4a83)
 	push de
-	ld hl, UnknownText_0x152a1
+	ld hl, Text_SaveOnBoxSwitch
 	call MenuTextBox
 	call YesNoBox
 	call ExitMenu
@@ -86,7 +86,7 @@ MovePkmnWOMail_SaveGame: ; 14ac2
 	ret
 ; 14ad5
 
-Function14ad5: ; 14ad5
+MovePkmnWOMail_InsertMon_SaveGame: ; 14ad5
 	call PauseGameLogic
 	push de
 	call SaveBox
@@ -120,7 +120,7 @@ Function14ad5: ; 14ad5
 ; 14b34
 
 StartMovePkmnWOMail_SaveGame: ; 14b34
-	ld hl, UnknownText_0x152a6
+	ld hl, Text_SaveOnMovePkmnWOMail
 	call MenuTextBox
 	call YesNoBox
 	call ExitMenu
@@ -184,13 +184,13 @@ AskOverwriteSaveFile: ; 14b89
 	jr z, .erase
 	call CompareLoadedAndSavedPlayerID
 	jr z, .yoursavefile
-	ld hl, UnknownText_0x15297
+	ld hl, Text_AnotherSaveFile
 	call SaveTheGame_yesorno
 	jr nz, .refused
 	jr .erase
 
 .yoursavefile
-	ld hl, UnknownText_0x15292
+	ld hl, Text_AlreadyASaveFile
 	call SaveTheGame_yesorno
 	jr nz, .refused
 	jr .ok
@@ -208,7 +208,7 @@ AskOverwriteSaveFile: ; 14b89
 ; 14baf
 
 SaveTheGame_yesorno: ; 14baf
-	ld b, BANK(UnknownText_0x15283)
+	ld b, BANK(Text_WouldYouLikeToSaveTheGame)
 	call MapTextbox
 	call LoadMenuTextBox
 	lb bc, 0, 7
@@ -253,7 +253,7 @@ SavedTheGame: ; 14be6
 	ld a, 3
 	ld [Options], a
 	; <PLAYER> saved the game!
-	ld hl, UnknownText_0x1528d
+	ld hl, Text_PlayerSavedTheGame
 	call PrintText
 	; restore the original text speed setting
 	pop af
@@ -355,7 +355,7 @@ SavingDontTurnOffThePower: ; 14c99
 	ld a, $3
 	ld [Options], a
 	; SAVING... DON'T TURN OFF THE POWER.
-	ld hl, UnknownText_0x15288
+	ld hl, Text_SavingDontTurnOffThePower
 	call PrintText
 	; Restore the text speed setting
 	pop af
@@ -416,17 +416,18 @@ EraseHallOfFame: ; 14d06
 ; 14d18
 
 Function14d18: ; 14d18
-; copy Unknown_14d2c to SRA4:a007
+; XXX
+; copy .Data to SRA4:a007
 	ld a, $4
 	call GetSRAMBank
-	ld hl, Unknown_14d2c
+	ld hl, .Data
 	ld de, $a007
-	ld bc, 48
+	ld bc, .DataEnd - .Data
 	call CopyBytes
 	jp CloseSRAM
 ; 14d2c
 
-Unknown_14d2c: ; 14d2c
+.Data: ; 14d2c
 	db $0d, $02, $00, $05, $00, $00
 	db $22, $02, $01, $05, $00, $00
 	db $03, $04, $05, $08, $03, $05
@@ -436,6 +437,7 @@ Unknown_14d2c: ; 14d2c
 	db $0f, $05, $14, $07, $05, $05
 	db $11, $0c, $0c, $06, $06, $04
 ; 14d5c
+.DataEnd
 
 EraseBattleTowerStatus: ; 14d5c
 	ld a, BANK(sBattleTowerChallengeState)
@@ -451,6 +453,7 @@ SaveData: ; 14d68
 ; 14d6c
 
 Function14d6c: ; 14d6c
+; XXX
 	ld a, $4
 	call GetSRAMBank
 	ld a, [$a60b]
@@ -467,6 +470,7 @@ Function14d6c: ; 14d6c
 ; 14d83
 
 Function14d83: ; 14d83
+; XXX
 	ld a, $4
 	call GetSRAMBank
 	xor a
@@ -477,6 +481,7 @@ Function14d83: ; 14d83
 ; 14d93
 
 Function14d93: ; 14d93
+; XXX
 	ld a, $7
 	call GetSRAMBank
 	xor a
@@ -664,7 +669,7 @@ TryLoadSaveFile: ; 14ea5 (5:4ea5)
 	push af
 	set NO_TEXT_SCROLL, a
 	ld [Options], a
-	ld hl, UnknownText_0x1529c
+	ld hl, Text_SaveFileCorrupted
 	call PrintText
 	pop af
 	ld [Options], a
@@ -1156,49 +1161,49 @@ Checksum: ; 15273
 ; 15283
 
 
-UnknownText_0x15283: ; 0x15283
+Text_WouldYouLikeToSaveTheGame: ; 0x15283
 	; Would you like to save the game?
 	text_jump UnknownText_0x1c454b
 	db "@"
 ; 0x15288
 
-UnknownText_0x15288: ; 0x15288
+Text_SavingDontTurnOffThePower: ; 0x15288
 	; SAVING… DON'T TURN OFF THE POWER.
 	text_jump UnknownText_0x1c456d
 	db "@"
 ; 0x1528d
 
-UnknownText_0x1528d: ; 0x1528d
+Text_PlayerSavedTheGame: ; 0x1528d
 	; saved the game.
 	text_jump UnknownText_0x1c4590
 	db "@"
 ; 0x15292
 
-UnknownText_0x15292: ; 0x15292
+Text_AlreadyASaveFile: ; 0x15292
 	; There is already a save file. Is it OK to overwrite?
 	text_jump UnknownText_0x1c45a3
 	db "@"
 ; 0x15297
 
-UnknownText_0x15297: ; 0x15297
+Text_AnotherSaveFile: ; 0x15297
 	; There is another save file. Is it OK to overwrite?
 	text_jump UnknownText_0x1c45d9
 	db "@"
 ; 0x1529c
 
-UnknownText_0x1529c: ; 0x1529c
+Text_SaveFileCorrupted: ; 0x1529c
 	; The save file is corrupted!
 	text_jump UnknownText_0x1c460d
 	db "@"
 ; 0x152a1
 
-UnknownText_0x152a1: ; 0x152a1
+Text_SaveOnBoxSwitch: ; 0x152a1
 	; When you change a #MON BOX, data will be saved. OK?
 	text_jump UnknownText_0x1c462a
 	db "@"
 ; 0x152a6
 
-UnknownText_0x152a6: ; 0x152a6
+Text_SaveOnMovePkmnWOMail: ; 0x152a6
 	; Each time you move a #MON, data will be saved. OK?
 	text_jump UnknownText_0x1c465f
 	db "@"

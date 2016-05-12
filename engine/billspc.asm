@@ -2020,7 +2020,7 @@ MovePKMNWitoutMail_InsertMon: ; e31e7
 .dw_return ; e322a
 	pop af
 	ld e, a
-	callba Function14ad5
+	callba MovePkmnWOMail_InsertMon_SaveGame
 	ret
 ; e3233
 
