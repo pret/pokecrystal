@@ -37,7 +37,7 @@ INCLUDE "home/handshake.asm"
 INCLUDE "home/game_time.asm"
 INCLUDE "home/map.asm"
 
-Function2d43:: ; 2d43
+InexplicablyEmptyFunction:: ; 2d43
 ; Inexplicably empty.
 ; Seen in PredefPointers.
 	rept 16
