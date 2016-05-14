@@ -133,17 +133,17 @@ DoAnimFrame: ; 8d24b
 	ret
 
 .four ; 8d302 (23:5302)
-	call .anonymous_dw
+	call .AnonymousJumptable
 	jp [hl]
 ; 8d306 (23:5306)
 
-; Anonymous dw (see .anonymous_dw)
+; Anonymous dw (see .AnonymousJumptable)
 	dw .four_zero
 	dw .four_one
 ; 8d30a
 
 .four_zero ; 8d30a
-	call .IncrementSpriteAnimStruct0B
+	call .IncrementJumptableIndex
 
 	ld hl, SPRITEANIMSTRUCT_INDEX
 	add hl, bc
@@ -245,7 +245,7 @@ DoAnimFrame: ; 8d24b
 	add hl, bc
 	dec [hl]
 .asm_8d395
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld a, [hl]
 	push af
@@ -267,7 +267,7 @@ DoAnimFrame: ; 8d24b
 	add hl, bc
 	ld a, [hl]
 
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	add [hl]
 	ld [hl], a
@@ -290,7 +290,7 @@ DoAnimFrame: ; 8d24b
 	add hl, bc
 	ld d, [hl]
 
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld a, [hl]
 	push af
@@ -345,7 +345,7 @@ DoAnimFrame: ; 8d24b
 	inc hl
 	ld [hl], d
 
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld a, [hl]
 	xor $20
@@ -372,7 +372,7 @@ DoAnimFrame: ; 8d24b
 	ret
 
 .SlotsChanseyEgg: ; 8d43e (23:543e)
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld a, [hl]
 	dec [hl]
@@ -417,11 +417,11 @@ DoAnimFrame: ; 8d24b
 	ret
 
 .sixteen ; 8d483 (23:5483)
-	call .anonymous_dw
+	call .AnonymousJumptable
 	jp [hl]
 ; 8d487 (23:5487)
 
-; Anonymous dw (see .anonymous_dw)
+; Anonymous dw (see .AnonymousJumptable)
 	dw .sixteen_zero
 	dw .sixteen_one
 	dw .sixteen_two
@@ -434,7 +434,7 @@ DoAnimFrame: ; 8d24b
 	ld a, $14
 	call _ReinitSpriteAnimFrame
 
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld [hl], $2
 
@@ -454,7 +454,7 @@ DoAnimFrame: ; 8d24b
 	ret
 
 .asm_8d4af
-	call .IncrementSpriteAnimStruct0B
+	call .IncrementJumptableIndex
 
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
@@ -482,7 +482,7 @@ DoAnimFrame: ; 8d24b
 ; 8d4d5
 
 .sixteen_one ; 8d4d5
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld [hl], $4
 
@@ -539,7 +539,7 @@ DoAnimFrame: ; 8d24b
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
-	call .IncrementSpriteAnimStruct0B
+	call .IncrementJumptableIndex
 	ret
 
 .sixteen_five ; 8d526
@@ -579,7 +579,7 @@ DoAnimFrame: ; 8d24b
 	add $8
 	ld [hl], a
 
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld a, [hl]
 	xor $20
@@ -804,7 +804,7 @@ DoAnimFrame: ; 8d24b
 	ret
 
 .thirtytwo ; 8d680 (23:5680)
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld d, [hl]
 	inc [hl]
@@ -847,21 +847,21 @@ DoAnimFrame: ; 8d24b
 	ret
 
 .twentysix ; 8d6b7 (23:56b7)
-	callba Function11d0b6
+	callba AnimateEZChatCursor
 	ret
 
 .thirtyone ; 8d6be (23:56be)
 	callba UpdateCelebiPosition
 	ret
 
-.anonymous_dw ; 8d6c5 (23:56c5)
+.AnonymousJumptable: ; 8d6c5 (23:56c5)
 	ld hl, [sp+$0]
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	inc de
 
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld l, [hl]
 	ld h, $0
@@ -873,8 +873,8 @@ DoAnimFrame: ; 8d24b
 	ret
 ; 8d6d8 (23:56d8)
 
-.IncrementSpriteAnimStruct0B: ; 8d6d8
-	ld hl, SPRITEANIMSTRUCT_0B
+.IncrementJumptableIndex: ; 8d6d8
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	inc [hl]
 	ret

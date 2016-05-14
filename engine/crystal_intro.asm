@@ -212,7 +212,7 @@ PlaceGameFreakPresents_3: ; e46dd
 
 
 GameFreakLogoJumper: ; e46ed (39:46ed)
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
@@ -232,7 +232,7 @@ GameFreakLogoScenes: ; e46fd (39:46fd)
 	dw GameFreakLogoScene5
 
 GameFreakLogoScene1: ; e4707 (39:4707)
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	inc [hl]
 	ret
@@ -273,7 +273,7 @@ GameFreakLogoScene2: ; e470d (39:470d)
 	ret
 
 .asm_e4747
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	inc [hl]
 	ld hl, SPRITEANIMSTRUCT_0D
@@ -293,7 +293,7 @@ GameFreakLogoScene3: ; e4759 (39:4759)
 	ret
 
 .asm_e4764
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	inc [hl]
 	ld hl, SPRITEANIMSTRUCT_0D
@@ -332,7 +332,7 @@ GameFreakLogoScene4: ; e4776 (39:4776)
 	ret
 
 .asm_e47a3
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	inc [hl]
 	call PlaceGameFreakPresents_AdvanceIndex

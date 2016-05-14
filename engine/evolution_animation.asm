@@ -319,7 +319,7 @@ EvolutionAnimation: ; 4e5e1
 	depixel 9, 11
 	ld a, SPRITE_ANIM_INDEX_13
 	call _InitSpriteAnimStruct
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld a, [wJumptableIndex]
 	and %1110

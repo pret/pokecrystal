@@ -399,8 +399,8 @@ Function11c283: ; 11c283
 ; 11c2bb
 
 .Jumptable: ; 11c2bb (47:42bb)
-	dw Function11c2e9 ; 00
-	dw Function11c346 ; 01
+	dw .SpawnObjects ; 00
+	dw .InitRAM ; 01
 	dw Function11c35f ; 02
 	dw Function11c373 ; 03
 	dw Function11c3c2 ; 04
@@ -423,51 +423,57 @@ Function11c283: ; 11c283
 	dw Function11ce0b ; 15
 	dw Function11ce2b ; 16
 
-Function11c2e9: ; 11c2e9 (47:42e9)
+.SpawnObjects: ; 11c2e9 (47:42e9)
 	depixel 3, 1, 2, 5
 	ld a, SPRITE_ANIM_INDEX_1D
 	call _InitSpriteAnimStruct
 	depixel 8, 1, 2, 5
+
 	ld a, SPRITE_ANIM_INDEX_1D
 	call _InitSpriteAnimStruct
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, $1
 	ld [hl], a
+
 	depixel 9, 2, 2, 0
 	ld a, SPRITE_ANIM_INDEX_1D
 	call _InitSpriteAnimStruct
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, $3
 	ld [hl], a
+
 	depixel 10, 16
 	ld a, SPRITE_ANIM_INDEX_1D
 	call _InitSpriteAnimStruct
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, $4
 	ld [hl], a
+
 	depixel 10, 4
 	ld a, SPRITE_ANIM_INDEX_1D
 	call _InitSpriteAnimStruct
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, $5
 	ld [hl], a
+
 	depixel 10, 2
 	ld a, SPRITE_ANIM_INDEX_1D
 	call _InitSpriteAnimStruct
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, $2
 	ld [hl], a
+
 	ld hl, wcd23
 	set 1, [hl]
 	set 2, [hl]
 	jp Function11cfb5
 
-Function11c346: ; 11c346 (47:4346)
+.InitRAM: ; 11c346 (47:4346)
 	ld a, $9
 	ld [wcd2d], a
 	ld a, $2
@@ -569,7 +575,7 @@ Function11c3c2: ; 11c3c2 (47:43c2)
 	call Function11cfb5
 
 Function11c3ed: ; 11c3ed (47:43ed)
-	ld hl, wcd20 ; wcd20 (aliases: CreditsPos)
+	ld hl, wcd20 ; wcd20
 	ld de, hJoypadPressed ; $ffa3
 	ld a, [de]
 	and $8
@@ -604,11 +610,11 @@ Function11c3ed: ; 11c3ed (47:43ed)
 	jr .asm_11c475
 .asm_11c426
 	ld a, $8
-	ld [wcd20], a ; wcd20 (aliases: CreditsPos)
+	ld [wcd20], a ; wcd20
 	ret
 
 .asm_11c42c
-	ld a, [wcd20] ; wcd20 (aliases: CreditsPos)
+	ld a, [wcd20] ; wcd20
 	cp $6
 	jr c, .asm_11c472
 	sub $6
@@ -790,7 +796,7 @@ Function11c53d: ; 11c53d (47:453d)
 	ld hl, wcd24
 	set 0, [hl]
 	ld a, $8
-	ld [wcd20], a ; wcd20 (aliases: CreditsPos)
+	ld [wcd20], a ; wcd20
 
 .b
 	ld a, $4
@@ -818,7 +824,7 @@ Function11c53d: ; 11c53d (47:453d)
 	ret
 
 .asm_11c5ab
-	ld a, [wcd20] ; wcd20 (aliases: CreditsPos)
+	ld a, [wcd20] ; wcd20
 	call Function11ca6a
 	call PlayClickSFX
 	ret
@@ -1112,37 +1118,41 @@ Function11c770: ; 11c770 (47:4770)
 	ld [wcd27], a
 	ld a, [wcd2b]
 	and a
-	jr nz, .asm_11c7ab
+	jr nz, .cd2b_is_nonzero
 	ld a, [wcd21]
 	and a
-	jr z, .asm_11c799
+	jr z, .cd21_is_zero
+	; load from data array
 	dec a
 	sla a
-	ld hl, Unknown_11f220
+	ld hl, MobileFixedWordData_WordAndPageCounts
 	ld c, a
 	ld b, 0
 	add hl, bc
 	ld a, [hli]
 	ld [wcd28], a
 	ld a, [hl]
-.asm_11c795
+.load
 	ld [wcd29], a
 	ret
 
-.asm_11c799
+.cd21_is_zero
+	; compute from [wc7d2]
 	ld a, [wc7d2]
 	ld [wcd28], a
-.asm_11c79f
-	ld c, $c
+.div_12
+	ld c, 12
 	call SimpleDivide
 	and a
-	jr nz, .asm_11c7a8
+	jr nz, .no_need_to_floor
 	dec b
-.asm_11c7a8
+.no_need_to_floor
 	ld a, b
-	jr .asm_11c795
-.asm_11c7ab
-	ld hl, $c68a + 30
+	jr .load
+
+.cd2b_is_nonzero
+	; compute from [c6a8 + 2 * [cd22]]
+	ld hl, $c6a8 ; $c68a + 30
 	ld a, [wcd22]
 	ld c, a
 	ld b, 0
@@ -1150,7 +1160,7 @@ Function11c770: ; 11c770 (47:4770)
 	add hl, bc
 	ld a, [hl]
 	ld [wcd28], a
-	jr .asm_11c79f
+	jr .div_12
 
 Function11c7bc: ; 11c7bc (47:47bc)
 	ld bc, Unknown_11c854
@@ -1382,7 +1392,7 @@ MobileString_Next: ; 11c8f3
 ; 11c8f6
 
 Function11c8f6: ; 11c8f6 (47:48f6)
-	ld a, [wcd20] ; wcd20 (aliases: CreditsPos)
+	ld a, [wcd20] ; wcd20
 	call Function11c95d
 	push hl
 	ld a, [wcd2b]
@@ -1402,7 +1412,7 @@ Function11c8f6: ; 11c8f6 (47:48f6)
 	push de
 	call Function11c05d
 	pop de
-	ld a, [wcd20] ; wcd20 (aliases: CreditsPos)
+	ld a, [wcd20] ; wcd20
 	ld c, a
 	ld b, $0
 	ld hl, wcd36
@@ -1546,7 +1556,7 @@ Function11c9c3: ; 11c9c3 (47:49c3)
 	jr nz, .asm_11c9e9
 	call Function11ca5e
 	xor a
-	ld [wcd20], a ; wcd20 (aliases: CreditsPos)
+	ld [wcd20], a ; wcd20
 .asm_11c9e9
 	ld hl, wcd24
 	set 4, [hl]
@@ -2116,7 +2126,7 @@ Function11ce2b: ; 11ce2b (47:4e2b)
 	ld hl, wcd24
 	set 0, [hl]
 	ld a, $8
-	ld [wcd20], a ; wcd20 (aliases: CreditsPos)
+	ld [wcd20], a ; wcd20
 .b
 	ld a, $4
 	jr .load
@@ -2142,7 +2152,7 @@ Function11ce2b: ; 11ce2b (47:4e2b)
 	ret
 
 .asm_11cea4
-	ld a, [wcd20] ; wcd20 (aliases: CreditsPos)
+	ld a, [wcd20] ; wcd20
 	call Function11ca6a
 	call PlayClickSFX
 	ret
@@ -2299,19 +2309,19 @@ Unknown_11cfca:
 
 Function11cfce: ; 11cfce (47:4fce)
 	hlcoord 0, 0
-	ld bc, $14
+	ld bc, SCREEN_WIDTH
 	ld a, [de]
 	inc de
 	push af
 	ld a, [de]
 	inc de
 	and a
-.asm_11cfda
-	jr z, .asm_11cfe0
+.add_n_times
+	jr z, .done_add_n_times
 	add hl, bc
 	dec a
-	jr .asm_11cfda
-.asm_11cfe0
+	jr .add_n_times
+.done_add_n_times
 	pop af
 	ld c, a
 	ld b, 0
@@ -2323,82 +2333,82 @@ Function11cfce: ; 11cfce (47:4fce)
 	inc de
 	dec a
 	dec a
-	jr z, .asm_11cff6
+	jr z, .skip_fill
 	ld c, a
 	ld a, $7a
-.asm_11cff2
+.fill_loop
 	ld [hli], a
 	dec c
-	jr nz, .asm_11cff2
-.asm_11cff6
+	jr nz, .fill_loop
+.skip_fill
 	ld a, $7b
 	ld [hl], a
 	pop hl
-	ld bc, $14
+	ld bc, SCREEN_WIDTH
 	add hl, bc
 	ld a, [de]
 	dec de
 	dec a
 	dec a
-	jr z, .asm_11d022
+	jr z, .skip_section
 	ld b, a
-.asm_11d005
+.loop
 	push hl
 	ld a, $7c
 	ld [hli], a
 	ld a, [de]
 	dec a
 	dec a
-	jr z, .asm_11d015
+	jr z, .skip_row
 	ld c, a
 	ld a, $7f
-.asm_11d011
+.row_loop
 	ld [hli], a
 	dec c
-	jr nz, .asm_11d011
-.asm_11d015
+	jr nz, .row_loop
+.skip_row
 	ld a, $7c
 	ld [hl], a
 	pop hl
 	push bc
-	ld bc, $14
+	ld bc, SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .asm_11d005
-.asm_11d022
+	jr nz, .loop
+.skip_section
 	ld a, $7d
 	ld [hli], a
 	ld a, [de]
 	dec a
 	dec a
-	jr z, .asm_11d031
+	jr z, .skip_remainder
 	ld c, a
 	ld a, $7a
-.asm_11d02d
+.final_loop
 	ld [hli], a
 	dec c
-	jr nz, .asm_11d02d
-.asm_11d031
+	jr nz, .final_loop
+.skip_remainder
 	ld a, $7e
 	ld [hl], a
 	ret
 
 Function11d035: ; 11d035 (47:5035)
 	hlcoord 0, 0
-	ld bc, $14
+	ld bc, SCREEN_WIDTH
 	ld a, [de]
 	inc de
 	push af
 	ld a, [de]
 	inc de
 	and a
-.asm_11d041
-	jr z, .asm_11d047
+.add_n_times
+	jr z, .done_add_n_times
 	add hl, bc
 	dec a
-	jr .asm_11d041
-.asm_11d047
+	jr .add_n_times
+.done_add_n_times
 	pop af
 	ld c, a
 	ld b, $0
@@ -2415,27 +2425,27 @@ Function11d035: ; 11d035 (47:5035)
 	add hl, bc
 	ld a, $7b
 	ld [hl], a
-	call Function11d0ac
+	call .AddNMinusOneTimes
 	ld a, $7e
 	ld [hl], a
 	pop hl
 	push hl
-	call Function11d0ac
+	call .AddNMinusOneTimes
 	ld a, $7d
 	ld [hl], a
 	pop hl
 	push hl
 	inc hl
 	push hl
-	call Function11d0ac
+	call .AddNMinusOneTimes
 	pop bc
 	dec de
 	ld a, [de]
 	cp $2
-	jr z, .asm_11d082
+	jr z, .skip
 	dec a
 	dec a
-.asm_11d078
+.loop
 	push af
 	ld a, $7a
 	ld [hli], a
@@ -2443,8 +2453,8 @@ Function11d035: ; 11d035 (47:5035)
 	inc bc
 	pop af
 	dec a
-	jr nz, .asm_11d078
-.asm_11d082
+	jr nz, .loop
+.skip
 	pop hl
 	ld bc, $14
 	add hl, bc
@@ -2465,32 +2475,32 @@ Function11d035: ; 11d035 (47:5035)
 	ld c, a
 	ld b, a
 	ld de, $14
-.asm_11d09c
+.loop2
 	ld a, $7c
 	ld [hl], a
 	add hl, de
 	dec c
-	jr nz, .asm_11d09c
+	jr nz, .loop2
 	pop hl
-.asm_11d0a4
+.loop3
 	ld a, $7c
 	ld [hl], a
 	add hl, de
 	dec b
-	jr nz, .asm_11d0a4
+	jr nz, .loop3
 	ret
 
-Function11d0ac: ; 11d0ac (47:50ac)
+.AddNMinusOneTimes: ; 11d0ac (47:50ac)
 	ld a, [de]
 	dec a
-	ld bc, $14
-.asm_11d0b1
+	ld bc, SCREEN_WIDTH
+.add_n_minus_one_times
 	add hl, bc
 	dec a
-	jr nz, .asm_11d0b1
+	jr nz, .add_n_minus_one_times
 	ret
 
-Function11d0b6: ; 11d0b6 (47:50b6)
+AnimateEZChatCursor: ; 11d0b6 (47:50b6)
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
@@ -2518,30 +2528,31 @@ Function11d0b6: ; 11d0b6 (47:50b6)
 	dw .ten
 
 .zero ; 11d0dd (47:50dd)
-	ld a, [wcd20] ; wcd20 (aliases: CreditsPos)
+	ld a, [wcd20] ; wcd20
 	sla a
-	ld hl, Unknown_11d208
+	ld hl, .Coords_Zero
 	ld e, $1
 	jr .load
 
 .one ; 11d0e9 (47:50e9)
 	ld a, [wcd21]
 	sla a
-	ld hl, Unknown_11d21a
+	ld hl, .Coords_One
 	ld e, $2
 	jr .load
 
 .two ; 11d0f5 (47:50f5)
-	ld hl, Unknown_11d2be
+	ld hl, .FramesetsIDs_Two
 	ld a, [wcd22]
 	ld e, a
 	ld d, $0
 	add hl, de
 	ld a, [hl]
 	call ReinitSpriteAnimFrame
+
 	ld a, [wcd22]
 	sla a
-	ld hl, Unknown_11d23e
+	ld hl, .Coords_Two
 	ld e, $4
 	jr .load
 
@@ -2550,7 +2561,7 @@ Function11d0b6: ; 11d0b6 (47:50b6)
 	call ReinitSpriteAnimFrame
 	ld a, [wMobileCommsJumptableIndex]
 	sla a
-	ld hl, Unknown_11d29e
+	ld hl, .Coords_Three
 	ld e, $8
 .load ; 11d11e (47:511e)
 	push de
@@ -2568,7 +2579,7 @@ Function11d0b6: ; 11d0b6 (47:50b6)
 	ld [hl], a
 	pop de
 	ld a, e
-	call Function11d2ee
+	call .UpdateObjectFlags
 	ret
 
 .four ; 11d134 (47:5134)
@@ -2576,7 +2587,7 @@ Function11d0b6: ; 11d0b6 (47:50b6)
 	call ReinitSpriteAnimFrame
 	ld a, [wcd2a]
 	sla a
-	ld hl, Unknown_11d2b6
+	ld hl, .Coords_Four
 	ld e, $10
 	jr .load
 
@@ -2585,42 +2596,47 @@ Function11d0b6: ; 11d0b6 (47:50b6)
 	call ReinitSpriteAnimFrame
 	ld a, [wcd2c]
 	sla a
-	ld hl, Unknown_11d2ba
+	ld hl, .Coords_Five
 	ld e, $20
 	jr .load
 
 .six ; 11d156 (47:5156)
 	ld a, SPRITE_ANIM_FRAMESET_2A
 	call ReinitSpriteAnimFrame
+	; X = [wcd4a] * 8 + 24
 	ld a, [wcd4a]
 	sla a
 	sla a
 	sla a
 	add $18
-	ld hl, $4
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld [hli], a
+	; Y = 48
 	ld a, $30
 	ld [hl], a
+
 	ld a, $1
 	ld e, a
-	call Function11d2ee
+	call .UpdateObjectFlags
 	ret
 
 .seven ; 11d175 (47:5175)
-	ld a, [wcd4d]
+	ld a, [wFixedWordsCursorYCoord]
 	cp $4
-	jr z, .asm_11d180
+	jr z, .frameset_26
 	ld a, SPRITE_ANIM_FRAMESET_28
-	jr .asm_11d182
-.asm_11d180
+	jr .got_frameset
+
+.frameset_26
 	ld a, SPRITE_ANIM_FRAMESET_26
-.asm_11d182
+.got_frameset
 	call ReinitSpriteAnimFrame
-	ld a, [wcd4d]
+	ld a, [wFixedWordsCursorYCoord]
 	cp $4
 	jr z, .asm_11d1b1
-	ld a, [wcd4c]
+	; X = [wFixedWordsCursorXCoord] * 8 + 32
+	ld a, [wFixedWordsCursorXCoord]
 	sla a
 	sla a
 	sla a
@@ -2628,7 +2644,8 @@ Function11d0b6: ; 11d0b6 (47:50b6)
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld [hli], a
-	ld a, [wcd4d]
+	; Y = [wFixedWordsCursorYCoord] * 16 + 72
+	ld a, [wFixedWordsCursorYCoord]
 	sla a
 	sla a
 	sla a
@@ -2637,11 +2654,12 @@ Function11d0b6: ; 11d0b6 (47:50b6)
 	ld [hl], a
 	ld a, $2
 	ld e, a
-	call Function11d2ee
+	call .UpdateObjectFlags
 	ret
 
 .asm_11d1b1
-	ld a, [wcd4c]
+	; X = [wFixedWordsCursorXCoord] * 40 + 24
+	ld a, [wFixedWordsCursorXCoord]
 	sla a
 	sla a
 	sla a
@@ -2653,11 +2671,12 @@ Function11d0b6: ; 11d0b6 (47:50b6)
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld [hli], a
+	; Y = 138
 	ld a, $8a
 	ld [hl], a
 	ld a, $2
 	ld e, a
-	call Function11d2ee
+	call .UpdateObjectFlags
 	ret
 
 .nine ; 11d1d1 (47:51d1)
@@ -2686,7 +2705,7 @@ Function11d0b6: ; 11d0b6 (47:50b6)
 	ld [hl], a
 	ld a, $4
 	ld e, a
-	call Function11d2ee
+	call .UpdateObjectFlags
 	ret
 
 .ten ; 11d1fc (47:51fc)
@@ -2694,140 +2713,164 @@ Function11d0b6: ; 11d0b6 (47:50b6)
 	call ReinitSpriteAnimFrame
 	ld a, $8
 	ld e, a
-	call Function11d2ee
+	call .UpdateObjectFlags
 	ret
 ; 11d208 (47:5208)
 
-Unknown_11d208: ; 11d208
-	db $0d, $1a
-	db $3d, $1a
-	db $6d, $1a
-	db $0d, $2a
-	db $3d, $2a
-	db $6d, $2a
-	db $0d, $8a
-	db $3d, $8a
-	db $6d, $8a
+.Coords_Zero: ; 11d208
+	dbpixel  1,  3, 5, 2
+	dbpixel  7,  3, 5, 2
+	dbpixel 13,  3, 5, 2
+	dbpixel  1,  5, 5, 2
+	dbpixel  7,  5, 5, 2
+	dbpixel 13,  5, 5, 2
+	dbpixel  1, 17, 5, 2
+	dbpixel  7, 17, 5, 2
+	dbpixel 13, 17, 5, 2
 
-Unknown_11d21a: ; 11d21a
-	db $0d, $42
-	db $3d, $42
-	db $6d, $42
-	db $0d, $52
-	db $3d, $52
-	db $6d, $52
-	db $0d, $62
-	db $3d, $62
-	db $6d, $62
-	db $0d, $72
-	db $3d, $72
-	db $6d, $72
-	db $0d, $82
-	db $3d, $82
-	db $6d, $82
-	db $0d, $92
-	db $3d, $92
-	db $6d, $92
+.Coords_One: ; 11d21a
+	dbpixel  1,  8, 5, 2
+	dbpixel  7,  8, 5, 2
+	dbpixel 13,  8, 5, 2
+	dbpixel  1, 10, 5, 2
+	dbpixel  7, 10, 5, 2
+	dbpixel 13, 10, 5, 2
+	dbpixel  1, 12, 5, 2
+	dbpixel  7, 12, 5, 2
+	dbpixel 13, 12, 5, 2
+	dbpixel  1, 14, 5, 2
+	dbpixel  7, 14, 5, 2
+	dbpixel 13, 14, 5, 2
+	dbpixel  1, 16, 5, 2
+	dbpixel  7, 16, 5, 2
+	dbpixel 13, 16, 5, 2
+	dbpixel  1, 18, 5, 2
+	dbpixel  7, 18, 5, 2
+	dbpixel 13, 18, 5, 2
 
-Unknown_11d23e: ; 11d23e
-	db $10, $48
-	db $18, $48
-	db $20, $48
-	db $28, $48
-	db $30, $48
-	db $10, $58
-	db $18, $58
-	db $20, $58
-	db $28, $58
-	db $30, $58
-	db $10, $68
-	db $18, $68
-	db $20, $68
-	db $28, $68
-	db $30, $68
-	db $10, $78
-	db $18, $78
-	db $20, $78
-	db $28, $78
-	db $30, $78
-	db $40, $48
-	db $48, $48
-	db $50, $48
-	db $58, $48
-	db $60, $48
-	db $40, $58
-	db $48, $58
-	db $50, $58
-	db $58, $58
-	db $60, $58
-	db $40, $68
-	db $48, $68
-	db $50, $68
-	db $58, $68
-	db $60, $68
-	db $70, $48
-	db $80, $48
-	db $90, $48
-	db $40, $78
-	db $48, $78
-	db $50, $78
-	db $58, $78
-	db $60, $78
-	db $70, $58
-	db $70, $68
-	db $0d, $92
-	db $3d, $92
-	db $6d, $92
+.Coords_Two: ; 11d23e
+	dbpixel  2,  9       ; 00
+	dbpixel  3,  9       ; 01
+	dbpixel  4,  9       ; 02
+	dbpixel  5,  9       ; 03
+	dbpixel  6,  9       ; 04
+	dbpixel  2, 11       ; 05
+	dbpixel  3, 11       ; 06
+	dbpixel  4, 11       ; 07
+	dbpixel  5, 11       ; 08
+	dbpixel  6, 11       ; 09
+	dbpixel  2, 13       ; 0a
+	dbpixel  3, 13       ; 0b
+	dbpixel  4, 13       ; 0c
+	dbpixel  5, 13       ; 0d
+	dbpixel  6, 13       ; 0e
+	dbpixel  2, 15       ; 0f
+	dbpixel  3, 15       ; 10
+	dbpixel  4, 15       ; 11
+	dbpixel  5, 15       ; 12
+	dbpixel  6, 15       ; 13
+	dbpixel  8,  9       ; 14
+	dbpixel  9,  9       ; 15
+	dbpixel 10,  9       ; 16
+	dbpixel 11,  9       ; 17
+	dbpixel 12,  9       ; 18
+	dbpixel  8, 11       ; 19
+	dbpixel  9, 11       ; 1a
+	dbpixel 10, 11       ; 1b
+	dbpixel 11, 11       ; 1c
+	dbpixel 12, 11       ; 1d
+	dbpixel  8, 13       ; 1e
+	dbpixel  9, 13       ; 1f
+	dbpixel 10, 13       ; 20
+	dbpixel 11, 13       ; 21
+	dbpixel 12, 13       ; 22
+	dbpixel 14,  9       ; 23
+	dbpixel 16,  9       ; 24
+	dbpixel 18,  9       ; 25
+	dbpixel  8, 15       ; 26
+	dbpixel  9, 15       ; 27
+	dbpixel 10, 15       ; 28
+	dbpixel 11, 15       ; 29
+	dbpixel 12, 15       ; 2a
+	dbpixel 14, 11       ; 2b
+	dbpixel 14, 13       ; 2c
+	dbpixel  1, 18, 5, 2 ; 2d
+	dbpixel  7, 18, 5, 2 ; 2e
+	dbpixel 13, 18, 5, 2 ; 2f
 
-Unknown_11d29e: ; 11d29e
-	db $10, $50
-	db $40, $50
-	db $70, $50
-	db $10, $60
-	db $40, $60
-	db $70, $60
-	db $10, $70
-	db $40, $70
-	db $70, $70
-	db $10, $80
-	db $40, $80
-	db $70, $80
+.Coords_Three: ; 11d29e
+	dbpixel  2, 10
+	dbpixel  8, 10
+	dbpixel 14, 10
+	dbpixel  2, 12
+	dbpixel  8, 12
+	dbpixel 14, 12
+	dbpixel  2, 14
+	dbpixel  8, 14
+	dbpixel 14, 14
+	dbpixel  2, 16
+	dbpixel  8, 16
+	dbpixel 14, 16
 
-Unknown_11d2b6: ; 11d2b6
-	db $80, $50
-	db $80, $60
+.Coords_Four: ; 11d2b6
+	dbpixel 16, 10
+	dbpixel 16, 12
 
-Unknown_11d2ba: ; 11d2ba
-	db $20, $50
-	db $20, $60
+.Coords_Five: ; 11d2ba
+	dbpixel  4, 10
+	dbpixel  4, 12
 
-Unknown_11d2be: ; 11d2be
-	db $28, $28
-	db $28, $28
-	db $28, $28
-	db $28, $28
-	db $28, $28
-	db $28, $28
-	db $28, $28
-	db $28, $28
-	db $28, $28
-	db $28, $28
-	db $28, $28
-	db $28, $28
-	db $28, $28
-	db $28, $28
-	db $28, $28
-	db $28, $28
-	db $28, $28
-	db $28, $28
-	db $28, $28
-	db $28, $28
-	db $28, $28
-	db $28, $28
-	db $29, $26
-	db $26, $26
+.FramesetsIDs_Two: ; 11d2be
+	db SPRITE_ANIM_FRAMESET_28 ; 00
+	db SPRITE_ANIM_FRAMESET_28 ; 01
+	db SPRITE_ANIM_FRAMESET_28 ; 02
+	db SPRITE_ANIM_FRAMESET_28 ; 03
+	db SPRITE_ANIM_FRAMESET_28 ; 04
+	db SPRITE_ANIM_FRAMESET_28 ; 05
+	db SPRITE_ANIM_FRAMESET_28 ; 06
+	db SPRITE_ANIM_FRAMESET_28 ; 07
+	db SPRITE_ANIM_FRAMESET_28 ; 08
+	db SPRITE_ANIM_FRAMESET_28 ; 09
+	db SPRITE_ANIM_FRAMESET_28 ; 0a
+	db SPRITE_ANIM_FRAMESET_28 ; 0b
+	db SPRITE_ANIM_FRAMESET_28 ; 0c
+	db SPRITE_ANIM_FRAMESET_28 ; 0d
+	db SPRITE_ANIM_FRAMESET_28 ; 0e
+	db SPRITE_ANIM_FRAMESET_28 ; 0f
+	db SPRITE_ANIM_FRAMESET_28 ; 10
+	db SPRITE_ANIM_FRAMESET_28 ; 11
+	db SPRITE_ANIM_FRAMESET_28 ; 12
+	db SPRITE_ANIM_FRAMESET_28 ; 13
+	db SPRITE_ANIM_FRAMESET_28 ; 14
+	db SPRITE_ANIM_FRAMESET_28 ; 15
+	db SPRITE_ANIM_FRAMESET_28 ; 16
+	db SPRITE_ANIM_FRAMESET_28 ; 17
+	db SPRITE_ANIM_FRAMESET_28 ; 18
+	db SPRITE_ANIM_FRAMESET_28 ; 19
+	db SPRITE_ANIM_FRAMESET_28 ; 1a
+	db SPRITE_ANIM_FRAMESET_28 ; 1b
+	db SPRITE_ANIM_FRAMESET_28 ; 1c
+	db SPRITE_ANIM_FRAMESET_28 ; 1d
+	db SPRITE_ANIM_FRAMESET_28 ; 1e
+	db SPRITE_ANIM_FRAMESET_28 ; 1f
+	db SPRITE_ANIM_FRAMESET_28 ; 20
+	db SPRITE_ANIM_FRAMESET_28 ; 21
+	db SPRITE_ANIM_FRAMESET_28 ; 22
+	db SPRITE_ANIM_FRAMESET_28 ; 23
+	db SPRITE_ANIM_FRAMESET_28 ; 24
+	db SPRITE_ANIM_FRAMESET_28 ; 25
+	db SPRITE_ANIM_FRAMESET_28 ; 26
+	db SPRITE_ANIM_FRAMESET_28 ; 27
+	db SPRITE_ANIM_FRAMESET_28 ; 28
+	db SPRITE_ANIM_FRAMESET_28 ; 29
+	db SPRITE_ANIM_FRAMESET_28 ; 2a
+	db SPRITE_ANIM_FRAMESET_28 ; 2b
+	db SPRITE_ANIM_FRAMESET_29 ; 2c
+	db SPRITE_ANIM_FRAMESET_26 ; 2d
+	db SPRITE_ANIM_FRAMESET_26 ; 2e
+	db SPRITE_ANIM_FRAMESET_26 ; 2f
 
-Function11d2ee: ; 11d2ee (47:52ee)
+.UpdateObjectFlags: ; 11d2ee (47:52ee)
 	ld hl, wcd24
 	and [hl]
 	jr nz, .update_y_offset
@@ -2996,17 +3039,19 @@ Function11d3ba: ; 11d3ba
 .MasterLoop: ; 11d3ef
 	push af
 ; read row
+; offset
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
+; size
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
 	ld b, a
 ; save the pointer to the next row
 	push hl
-; add de to hl
+; add de to w3_d000
 	ld hl, w3_d000
 	add hl, de
 ; recover de from wcd2d (default: w5_d800)
@@ -3043,6 +3088,7 @@ Function11d3ba: ; 11d3ba
 	ld a, c
 	or b
 	jr nz, .loop1
+
 ; recover the pointer from wcd2f (default: SortedPokemon)
 	ld a, [wcd2f]
 	ld l, a
@@ -3162,47 +3208,72 @@ Function11d4aa: ; 11d4aa
 	push af
 	ld a, $3
 	ld [rSVBK], a
+
+	; load pointers
 	ld hl, MobileFixedWordCategoryPointers
-	ld bc, Unknown_11f220
+	ld bc, MobileFixedWordData_WordAndPageCounts
+
+	; init WRAM registers
 	xor a
 	ld [wcd2d], a
 	inc a
 	ld [wcd2e], a
-	ld a, $e
+
+	; enter the first loop
+	ld a, 14
 .loop1
 	push af
+
+	; load the pointer to the category
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	push hl
+
+	; skip to the attributes
 	ld hl, 5 ; length of a string
 	add hl, de
-	ld a, [bc]
+
+	; get the number of words in the category
+	ld a, [bc] ; number of entries to copy
 	inc bc
 	inc bc
 	push bc
+
 .loop2
 	push af
 	push hl
+
+	; load offset at [hl]
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
 	ld d, a
+
+	; add to w3_d000
 	ld hl, w3_d000
 	add hl, de
+
+	; copy from wcd2d and increment [wcd2d] in place
 	ld a, [wcd2d]
 	ld [hli], a
 	inc a
 	ld [wcd2d], a
+
+	; copy from wcd2e
 	ld a, [wcd2e]
 	ld [hl], a
+
+	; next entry
 	pop hl
 	ld de, 8
 	add hl, de
 	pop af
 	dec a
 	jr nz, .loop2
+
+	; reset and go to next category
 	ld hl, wcd2d
 	xor a
 	ld [hli], a
@@ -4175,21 +4246,31 @@ MobileFixedWordCategoryPointers: ; 11daac
 	db "なんの@@", $2, $4, $0
 ; 11f220
 
-Unknown_11f220:
-	db $12, $01 ; 01
-	db $24, $02 ; 02
-	db $45, $05 ; 03
-	db $45, $05 ; 04
-	db $42, $05 ; 05
-	db $42, $05 ; 06
-	db $45, $05 ; 07
-	db $42, $05 ; 08
-	db $27, $03 ; 09
-	db $27, $03 ; 0a
-	db $45, $05 ; 0b
-	db $27, $03 ; 0c
-	db $42, $05 ; 0d
-	db $24, $02 ; 0e
+MobileFixedWordData_WordAndPageCounts:
+macro_11f220: macro
+; parameter: number of words
+	db \1
+; 12 words per page (0-based indexing)
+x = \1 / 12
+if \1 % 12 == 0
+x = x +- 1
+endc
+	db x
+endm
+	macro_11f220 18 ; 01: Types
+	macro_11f220 36 ; 02: Greetings
+	macro_11f220 69 ; 03: People
+	macro_11f220 69 ; 04: Battle
+	macro_11f220 66 ; 05: Exclamations
+	macro_11f220 66 ; 06: Conversation
+    macro_11f220 69 ; 07: Feelings
+    macro_11f220 66 ; 08: Conditions
+    macro_11f220 39 ; 09: Life
+    macro_11f220 39 ; 0a: Hobbies
+    macro_11f220 69 ; 0b: Actions
+    macro_11f220 39 ; 0c: Time
+    macro_11f220 66 ; 0d: Farewells
+    macro_11f220 36 ; 0e: ThisAndThat
 
 Unknown_11f23c:
 macro_11f23c: macro
@@ -4197,50 +4278,50 @@ macro_11f23c: macro
 x = x + 2 * \1
 endm
 x = $d012
-	macro_11f23c $2f
-	macro_11f23c $1e
-	macro_11f23c $11
-	macro_11f23c $09
-	macro_11f23c $2e
-	macro_11f23c $24
-	macro_11f23c $1b
-	macro_11f23c $09
-	macro_11f23c $07
-	macro_11f23c $1c
-	macro_11f23c $12
-	macro_11f23c $2b
-	macro_11f23c $10
-	macro_11f23c $08
-	macro_11f23c $0c
-	macro_11f23c $2c
-	macro_11f23c $09
-	macro_11f23c $12
-	macro_11f23c $1b
-	macro_11f23c $1a
-	macro_11f23c $1c
-	macro_11f23c $05
-	macro_11f23c $02
-	macro_11f23c $05
-	macro_11f23c $07
-	macro_11f23c $16
-	macro_11f23c $0e
-	macro_11f23c $0c
-	macro_11f23c $05
-	macro_11f23c $16
-	macro_11f23c $19
-	macro_11f23c $0e
-	macro_11f23c $08
-	macro_11f23c $07
-	macro_11f23c $09
-	macro_11f23c $0d
-	macro_11f23c $04
-	macro_11f23c $14
-	macro_11f23c $0b
-	macro_11f23c $01
-	macro_11f23c $02
-	macro_11f23c $02
-	macro_11f23c $02
-	macro_11f23c $15
+	macro_11f23c $2f ; a
+	macro_11f23c $1e ; i
+	macro_11f23c $11 ; u
+	macro_11f23c $09 ; e
+	macro_11f23c $2e ; o
+	macro_11f23c $24 ; ka_ga
+	macro_11f23c $1b ; ki_gi
+	macro_11f23c $09 ; ku_gu
+	macro_11f23c $07 ; ke_ge
+	macro_11f23c $1c ; ko_go
+	macro_11f23c $12 ; sa_za
+	macro_11f23c $2b ; shi_ji
+	macro_11f23c $10 ; su_zu
+	macro_11f23c $08 ; se_ze
+	macro_11f23c $0c ; so_zo
+	macro_11f23c $2c ; ta_da
+	macro_11f23c $09 ; chi_dhi
+	macro_11f23c $12 ; tsu_du
+	macro_11f23c $1b ; te_de
+	macro_11f23c $1a ; to_do
+	macro_11f23c $1c ; na
+	macro_11f23c $05 ; ni
+	macro_11f23c $02 ; nu
+	macro_11f23c $05 ; ne
+	macro_11f23c $07 ; no
+	macro_11f23c $16 ; ha_ba_pa
+	macro_11f23c $0e ; hi_bi_pi
+	macro_11f23c $0c ; fu_bu_pu
+	macro_11f23c $05 ; he_be_pe
+	macro_11f23c $16 ; ho_bo_po
+	macro_11f23c $19 ; ma
+	macro_11f23c $0e ; mi
+	macro_11f23c $08 ; mu
+	macro_11f23c $07 ; me
+	macro_11f23c $09 ; mo
+	macro_11f23c $0d ; ya
+	macro_11f23c $04 ; yu
+	macro_11f23c $14 ; yo
+	macro_11f23c $0b ; ra
+	macro_11f23c $01 ; ri
+	macro_11f23c $02 ; ru
+	macro_11f23c $02 ; re
+	macro_11f23c $02 ; ro
+	macro_11f23c $15 ; wa
 x = $d000
-	macro_11f23c $09
+	macro_11f23c $09 ; end
 Unknown_11f23cEnd:

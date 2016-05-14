@@ -363,7 +363,7 @@ TradeAnim_InitTubeAnim: ; 2914e
 	ld a, SPRITE_ANIM_INDEX_TRADEMON_ICON
 	call _InitSpriteAnimStruct
 
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	pop bc
 	ld [hl], b
@@ -372,7 +372,7 @@ TradeAnim_InitTubeAnim: ; 2914e
 	ld a, SPRITE_ANIM_INDEX_TRADEMON_BUBBLE
 	call _InitSpriteAnimStruct
 
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	pop bc
 	ld [hl], b
@@ -1123,7 +1123,7 @@ TradeAnim_DropBall: ; 2962c
 	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_0E
 	call _InitSpriteAnimStruct
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld [hl], $1
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
@@ -1163,7 +1163,7 @@ TradeAnim_BulgeThroughTube: ; 29660
 ; 29676
 
 TradeAnim_AnimateTrademonInTube: ; 29676 (a:5676)
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
@@ -1187,7 +1187,7 @@ TradeAnim_AnimateTrademonInTube: ; 29676 (a:5676)
 ; 2969a
 
 .JumptableNext: ; 29694 (a:5694)
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	inc [hl]
 	ret
