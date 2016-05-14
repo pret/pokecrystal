@@ -4,19 +4,19 @@
 Function11c05d: ; 11c05d
 	ld a, e
 	or d
-	jr z, .asm_11c071
+	jr z, .error
 	ld a, e
 	and d
 	cp $ff
-	jr z, .asm_11c071
+	jr z, .error
 	push hl
-	call CopyMobileFixedWordToC608
+	call CopyMobileEZChatToC608
 	pop hl
 	call PlaceString
 	and a
 	ret
 
-.asm_11c071
+.error
 	ld c, l
 	ld b, h
 	scf
@@ -34,12 +34,13 @@ Function11c075: ; 11c075
 ; 11c082
 
 Function11c082: ; 11c082
+; XXX
 	push de
 	ld a, c
 	call Function11c254
 	pop de
 	ld bc, wcd36
-	call PrintFixedWordBattleMessage
+	call PrintEZChatBattleMessage
 	ret
 ; 11c08f
 
@@ -47,8 +48,8 @@ Function11c08f: ; 11c08f
 	ld l, e
 	ld h, d
 	push hl
-	ld a, $3
-.asm_11c094
+	ld a, 3
+.loop
 	push af
 	ld a, [bc]
 	ld e, a
@@ -58,21 +59,21 @@ Function11c08f: ; 11c08f
 	inc bc
 	push bc
 	call Function11c05d
-	jr c, .asm_11c0a2
+	jr c, .okay
 	inc bc
 
-.asm_11c0a2
+.okay
 	ld l, c
 	ld h, b
 	pop bc
 	pop af
 	dec a
-	jr nz, .asm_11c094
+	jr nz, .loop
 	pop hl
-	ld de, $0028
+	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	ld a, $3
-.asm_11c0b0
+.loop2
 	push af
 	ld a, [bc]
 	ld e, a
@@ -82,20 +83,20 @@ Function11c08f: ; 11c08f
 	inc bc
 	push bc
 	call Function11c05d
-	jr c, .asm_11c0be
+	jr c, .okay2
 	inc bc
 
-.asm_11c0be
+.okay2
 	ld l, c
 	ld h, b
 	pop bc
 	pop af
 	dec a
-	jr nz, .asm_11c0b0
+	jr nz, .loop2
 	ret
 ; 11c0c6
 
-PrintFixedWordBattleMessage: ; 11c0c6
+PrintEZChatBattleMessage: ; 11c0c6
 ; Use up to 6 words from bc to print text starting at de.
 	; Preserve $cf63, $cf64
 	ld a, [wJumptableIndex]
@@ -131,7 +132,7 @@ PrintFixedWordBattleMessage: ; 11c0c6
 	; preserving hl and bc, get the length of the word
 	push hl
 	push bc
-	call CopyMobileFixedWordToC608
+	call CopyMobileEZChatToC608
 	call GetLengthOfWordAtC608
 	ld e, c
 	pop bc
@@ -223,7 +224,7 @@ GetLengthOfWordAtC608: ; 11c14a
 	jr .loop
 ; 11c156
 
-CopyMobileFixedWordToC608: ; 11c156
+CopyMobileEZChatToC608: ; 11c156
 	ld a, [rSVBK]
 	push af
 	ld a, $1
@@ -235,7 +236,7 @@ CopyMobileFixedWordToC608: ; 11c156
 	ld a, d
 	and a
 	jr z, .get_name
-	ld hl, MobileFixedWordCategoryPointers
+	ld hl, MobileEZChatCategoryPointers
 	dec d
 	sla d
 	ld c, d
@@ -286,18 +287,18 @@ Function11c1ab: ; 11c1ab
 ; 11c1b9
 
 Function11c1b9: ; 11c1b9
-	call Function11c1ca
+	call .InitKanaMode
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	call Function11c283
+	call EZChat_MasterLoop
 	pop af
 	ld [rSVBK], a
 	ret
 ; 11c1ca
 
-Function11c1ca: ; 11c1ca
+.InitKanaMode: ; 11c1ca
 	xor a
 	ld [wJumptableIndex], a
 	ld [wcf64], a
@@ -342,8 +343,8 @@ Function11c1ca: ; 11c1ca
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
-	call Function11d4aa
-	call Function11d3ba
+	call EZChat_GetCategoryWordsByKana
+	call EZChat_GetSeenPokemonByKana
 	ret
 ; 11c254
 
@@ -362,20 +363,20 @@ Function11c254: ; 11c254
 	ld b, $0
 	add hl, bc
 	ld de, wcd36
-	ld bc, $000c
+	ld bc, 12
 	call CopyBytes
 	call CloseSRAM
 	ret
 ; 11c277
 
-Function11c277: ; 11c277 (47:4277)
+EZChat_ClearBottom12Rows: ; 11c277 (47:4277)
 	ld a, " "
 	hlcoord 0, 6
 	ld bc, (SCREEN_HEIGHT - 6) * SCREEN_WIDTH
 	call ByteFill
 	ret
 
-Function11c283: ; 11c283
+EZChat_MasterLoop: ; 11c283
 .loop
 	call JoyTextDelay
 	ld a, [hJoyPressed]
@@ -558,7 +559,7 @@ String_11c3bc: ; 11c3bc
 ; 11c3c2
 
 Function11c3c2: ; 11c3c2 (47:43c2)
-	call Function11c277
+	call EZChat_ClearBottom12Rows
 	ld de, Unknown_11cfbe
 	call Function11d035
 	hlcoord 1, 7
@@ -735,8 +736,8 @@ String_11c51b: ; 11c51b
 ; 11c52c
 
 Function11c52c: ; 11c52c (47:452c)
-	call Function11c277
-	call Function11c5f0
+	call EZChat_ClearBottom12Rows
+	call EZChat_PlaceCategoryNames
 	call Function11c618
 	ld hl, wcd24
 	res 1, [hl]
@@ -784,12 +785,12 @@ Function11c53d: ; 11c53d (47:453d)
 
 .a
 	ld a, [wcd21]
-	cp $f
-	jr c, .asm_11c59d
+	cp 15
+	jr c, .got_category
 	sub $f
-	jr z, .asm_11c5ab
+	jr z, .done
 	dec a
-	jr z, .asm_11c599
+	jr z, .mode
 	jr .b
 
 .start
@@ -800,30 +801,30 @@ Function11c53d: ; 11c53d (47:453d)
 
 .b
 	ld a, $4
-	jr .asm_11c59f
+	jr .go_to_function
 
 .select
 	ld a, [wcd2b]
 	xor $1
 	ld [wcd2b], a
 	ld a, $15
-	jr .asm_11c59f
+	jr .go_to_function
 
-.asm_11c599
+.mode
 	ld a, $13
-	jr .asm_11c59f
+	jr .go_to_function
 
-.asm_11c59d
+.got_category
 	ld a, $8
 
-.asm_11c59f
+.go_to_function
 	ld hl, wcd24
 	set 1, [hl]
 	ld [wJumptableIndex], a
 	call PlayClickSFX
 	ret
 
-.asm_11c5ab
+.done
 	ld a, [wcd20] ; wcd20
 	call Function11ca6a
 	call PlayClickSFX
@@ -834,14 +835,14 @@ Function11c53d: ; 11c53d (47:453d)
 	cp $3
 	ret c
 	sub $3
-	jr .asm_11c5ee
+	jr .finish_dpad
 
 .down
 	ld a, [hl]
 	cp $f
 	ret nc
 	add $3
-	jr .asm_11c5ee
+	jr .finish_dpad
 
 .left
 	ld a, [hl]
@@ -858,7 +859,7 @@ Function11c53d: ; 11c53d (47:453d)
 	cp $f
 	ret z
 	dec a
-	jr .asm_11c5ee
+	jr .finish_dpad
 
 .right
 	ld a, [hl]
@@ -876,16 +877,16 @@ Function11c53d: ; 11c53d (47:453d)
 	ret z
 	inc a
 
-.asm_11c5ee
+.finish_dpad
 	ld [hl], a
 	ret
 ; 11c5f0
 
-Function11c5f0: ; 11c5f0 (47:45f0)
-	ld de, MobileFixedWordCategoryNames
-	ld bc, Unknown_11c63a
-	ld a, $f
-.asm_11c5f8
+EZChat_PlaceCategoryNames: ; 11c5f0 (47:45f0)
+	ld de, MobileEZChatCategoryNames
+	ld bc, Coords_11c63a
+	ld a, 15
+.loop
 	push af
 	ld a, [bc]
 	inc bc
@@ -895,17 +896,20 @@ Function11c5f0: ; 11c5f0 (47:45f0)
 	ld h, a
 	push bc
 	call PlaceString
-.asm_11c603
+	; The category names are padded with "@".
+	; To find the next category, the system must
+	; find the first character at de that is not "@".
+.find_next_string_loop
 	inc de
 	ld a, [de]
-	cp $50
-	jr z, .asm_11c603
+	cp "@"
+	jr z, .find_next_string_loop
 	pop bc
 	pop af
 	dec a
-	jr nz, .asm_11c5f8
+	jr nz, .loop
 	hlcoord 1, 17
-	ld de, String_11c62a
+	ld de, EZChatString_Stop_Mode_Cancel
 	call PlaceString
 	ret
 
@@ -918,11 +922,11 @@ Function11c618: ; 11c618 (47:4618)
 	ret
 ; 11c62a (47:462a)
 
-String_11c62a: ; 11c62a
+EZChatString_Stop_Mode_Cancel: ; 11c62a
 	db "けす    モード   やめる@"
 ; 11c63a
 
-Unknown_11c63a: ; 11c63a
+Coords_11c63a: ; 11c63a
 	dwcoord  1,  7
 	dwcoord  7,  7
 	dwcoord 13,  7
@@ -941,7 +945,7 @@ Unknown_11c63a: ; 11c63a
 ; 11c658
 
 Function11c658: ; 11c658 (47:4658)
-	call Function11c277
+	call EZChat_ClearBottom12Rows
 	call Function11c770
 	ld de, Unknown_11cfc2
 	call Function11d035
@@ -1125,7 +1129,7 @@ Function11c770: ; 11c770 (47:4770)
 	; load from data array
 	dec a
 	sla a
-	ld hl, MobileFixedWordData_WordAndPageCounts
+	ld hl, MobileEZChatData_WordAndPageCounts
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -1632,13 +1636,13 @@ String_11ca57: ; 11ca57
 
 Function11ca5e: ; 11ca5e (47:4a5e)
 	xor a
-.asm_11ca5f
+.loop
 	push af
 	call Function11ca6a
 	pop af
 	inc a
 	cp $6
-	jr nz, .asm_11ca5f
+	jr nz, .loop
 	ret
 
 Function11ca6a: ; 11ca6a (47:4a6a)
@@ -1949,7 +1953,7 @@ String_11cd10: ; 11cd10
 ; 11cd20
 
 Function11cd20: ; 11cd20 (47:4d20)
-	call Function11c277
+	call EZChat_ClearBottom12Rows
 	ld de, Unknown_11cfc6
 	call Function11cfce
 	hlcoord 1, 14
@@ -2061,12 +2065,12 @@ String_11cdf5: ; 11cdf5
 ; 11ce0b
 
 Function11ce0b: ; 11ce0b (47:4e0b)
-	call Function11c277
+	call EZChat_ClearBottom12Rows
 	hlcoord 1, 7
 	ld de, String_11cf79
 	call PlaceString
 	hlcoord 1, 17
-	ld de, String_11c62a
+	ld de, EZChatString_Stop_Mode_Cancel
 	call PlaceString
 	call Function11c618
 	ld hl, wcd24
@@ -2117,9 +2121,9 @@ Function11ce2b: ; 11ce2b (47:4e2b)
 	cp NUM_KANA
 	jr c, .place
 	sub NUM_KANA
-	jr z, .asm_11cea4
+	jr z, .done
 	dec a
-	jr z, .asm_11ce96
+	jr z, .mode
 	jr .b
 
 .start
@@ -2142,7 +2146,7 @@ Function11ce2b: ; 11ce2b (47:4e2b)
 	ld a, $8
 	jr .load
 
-.asm_11ce96
+.mode
 	ld a, $13
 .load
 	ld [wJumptableIndex], a
@@ -2151,7 +2155,7 @@ Function11ce2b: ; 11ce2b (47:4e2b)
 	call PlayClickSFX
 	ret
 
-.asm_11cea4
+.done
 	ld a, [wcd20] ; wcd20
 	call Function11ca6a
 	call PlayClickSFX
@@ -2622,7 +2626,7 @@ AnimateEZChatCursor: ; 11d0b6 (47:50b6)
 	ret
 
 .seven ; 11d175 (47:5175)
-	ld a, [wFixedWordsCursorYCoord]
+	ld a, [wEZChatCursorYCoord]
 	cp $4
 	jr z, .frameset_26
 	ld a, SPRITE_ANIM_FRAMESET_28
@@ -2632,11 +2636,11 @@ AnimateEZChatCursor: ; 11d0b6 (47:50b6)
 	ld a, SPRITE_ANIM_FRAMESET_26
 .got_frameset
 	call ReinitSpriteAnimFrame
-	ld a, [wFixedWordsCursorYCoord]
+	ld a, [wEZChatCursorYCoord]
 	cp $4
 	jr z, .asm_11d1b1
-	; X = [wFixedWordsCursorXCoord] * 8 + 32
-	ld a, [wFixedWordsCursorXCoord]
+	; X = [wEZChatCursorXCoord] * 8 + 32
+	ld a, [wEZChatCursorXCoord]
 	sla a
 	sla a
 	sla a
@@ -2644,8 +2648,8 @@ AnimateEZChatCursor: ; 11d0b6 (47:50b6)
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld [hli], a
-	; Y = [wFixedWordsCursorYCoord] * 16 + 72
-	ld a, [wFixedWordsCursorYCoord]
+	; Y = [wEZChatCursorYCoord] * 16 + 72
+	ld a, [wEZChatCursorYCoord]
 	sla a
 	sla a
 	sla a
@@ -2658,8 +2662,8 @@ AnimateEZChatCursor: ; 11d0b6 (47:50b6)
 	ret
 
 .asm_11d1b1
-	; X = [wFixedWordsCursorXCoord] * 40 + 24
-	ld a, [wFixedWordsCursorXCoord]
+	; X = [wEZChatCursorXCoord] * 40 + 24
+	ld a, [wEZChatCursorXCoord]
 	sla a
 	sla a
 	sla a
@@ -3007,7 +3011,7 @@ Palette_11d33a:
 	RGB 00, 00, 00
 ; 11d3ba
 
-Function11d3ba: ; 11d3ba
+EZChat_GetSeenPokemonByKana: ; 11d3ba
 	ld a, [rSVBK]
 	push af
 	ld hl, $c648
@@ -3033,8 +3037,8 @@ Function11d3ba: ; 11d3ba
 	ld a, $c64a / $100
 	ld [wcd34], a
 
-	ld hl, Unknown_11f23c
-	ld a, (Unknown_11f23cEnd - Unknown_11f23c) / 4
+	ld hl, EZChat_SortedWords
+	ld a, (EZChat_SortedWordsEnd - EZChat_SortedWords) / 4
 
 .MasterLoop: ; 11d3ef
 	push af
@@ -3203,15 +3207,15 @@ Function11d3ba: ; 11d3ba
 	ret
 ; 11d4aa
 
-Function11d4aa: ; 11d4aa
+EZChat_GetCategoryWordsByKana: ; 11d4aa
 	ld a, [rSVBK]
 	push af
 	ld a, $3
 	ld [rSVBK], a
 
 	; load pointers
-	ld hl, MobileFixedWordCategoryPointers
-	ld bc, MobileFixedWordData_WordAndPageCounts
+	ld hl, MobileEZChatCategoryPointers
+	ld bc, MobileEZChatData_WordAndPageCounts
 
 	; init WRAM registers
 	xor a
@@ -3435,7 +3439,7 @@ LZ_11d6de:
 INCBIN "gfx/pokedex/slowpoke.2bpp.lz"
 ; 11da52
 
-MobileFixedWordCategoryNames: ; 11da52
+MobileEZChatCategoryNames: ; 11da52
 ; Fixed message categories
 	db "ポケモン@@" ; 00
 	db "タイプ@@@" ; 01
@@ -3454,7 +3458,7 @@ MobileFixedWordCategoryNames: ; 11da52
 	db "あれこれ@@" ; 0e
 ; 11daac
 
-MobileFixedWordCategoryPointers: ; 11daac
+MobileEZChatCategoryPointers: ; 11daac
 	dw .Types          ; 01
 	dw .Greetings      ; 02
 	dw .People         ; 03
@@ -4246,7 +4250,7 @@ MobileFixedWordCategoryPointers: ; 11daac
 	db "なんの@@", $2, $4, $0
 ; 11f220
 
-MobileFixedWordData_WordAndPageCounts:
+MobileEZChatData_WordAndPageCounts:
 macro_11f220: macro
 ; parameter: number of words
 	db \1
@@ -4272,7 +4276,12 @@ endm
     macro_11f220 66 ; 0d: Farewells
     macro_11f220 36 ; 0e: ThisAndThat
 
-Unknown_11f23c:
+EZChat_SortedWords:
+; Addresses in WRAM bank 3 where EZChat words beginning
+; with the given kana are sorted in memory, and the pre-
+; allocated size for each.
+; These arrays are expanded dynamically to accomodate
+; any Pokemon you've seen that starts with each kana.\
 macro_11f23c: macro
 	dw x - w3_d000, \1
 x = x + 2 * \1
@@ -4324,4 +4333,4 @@ x = $d012
 	macro_11f23c $15 ; wa
 x = $d000
 	macro_11f23c $09 ; end
-Unknown_11f23cEnd:
+EZChat_SortedWordsEnd:

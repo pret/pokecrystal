@@ -2480,20 +2480,20 @@ CoinCase: ; f59a
 
 OldRod: ; f5a5
 	ld e, $0
-	jr Function_0xf5b1
+	jr UseRod
 ; f5a9
 
 GoodRod: ; f5a9
 	ld e, $1
-	jr Function_0xf5b1
+	jr UseRod
 ; f5ad
 
 SuperRod: ; f5ad
 	ld e, $2
-	jr Function_0xf5b1
+	jr UseRod
 ; f5b1
 
-Function_0xf5b1: ; f5b1
+UseRod: ; f5b1
 	callba FishFunction
 	ret
 ; f5b8

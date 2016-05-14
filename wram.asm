@@ -1170,9 +1170,9 @@ wBTTempOTSprite::
 wcd49:: ds 1
 wcd4a:: ds 1
 wcd4b:: ds 1
-wFixedWordsCursorXCoord::
+wEZChatCursorXCoord::
 wcd4c:: ds 1
-wFixedWordsCursorYCoord::
+wEZChatCursorYCoord::
 wcd4d:: ds 1
 wcd4e:: ds 1
 wcd4f:: ds 1

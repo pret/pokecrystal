@@ -3477,7 +3477,7 @@ Mobile_PrintOpponentBattleMessage: ; 4ea0a
 
 	ld bc, wMobileOpponentBattleMessage
 	decoord 1, 14
-	callba PrintFixedWordBattleMessage
+	callba PrintEZChatBattleMessage
 
 	pop af
 	ld [rSVBK], a
