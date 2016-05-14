@@ -141,28 +141,28 @@ Route40HiddenHyperPotion:
 	dwb EVENT_ROUTE_40_HIDDEN_HYPER_POTION, HYPER_POTION
 
 MovementData_0x1a621c:
-	step_right
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
+	step RIGHT
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
 	step_end
 
 MovementData_0x1a6224:
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
 	step_end
 
 MovementData_0x1a622a:
-	step_up
-	step_up
-	step_up
-	step_up
+	step UP
+	step UP
+	step UP
+	step UP
 	step_end
 
 SwimmermSimonSeenText:

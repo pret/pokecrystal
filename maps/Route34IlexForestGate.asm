@@ -82,13 +82,13 @@ LassScript_0x62d94:
 	jumptextfaceplayer UnknownText_0x62e97
 
 MovementData_0x62d97:
-	step_up
-	step_up
+	step UP
+	step UP
 	step_end
 
 MovementData_0x62d9a:
-	step_down
-	step_right
+	step DOWN
+	step RIGHT
 	step_end
 
 UnknownText_0x62d9d:

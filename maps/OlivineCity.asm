@@ -120,55 +120,55 @@ OlivineCityMartSign:
 	jumpstd martsign
 
 MovementData_0x1a88d2:
-	step_down
-	step_right
-	step_right
+	step DOWN
+	step RIGHT
+	step RIGHT
 	step_end
 
 MovementData_0x1a88d6:
-	step_down
-	step_down
-	step_right
-	step_right
+	step DOWN
+	step DOWN
+	step RIGHT
+	step RIGHT
 	step_end
 
 MovementData_0x1a88db:
-	step_right
-	step_right
-	step_right
-	step_right
-	step_right
-	step_right
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
 	step_end
 
 MovementData_0x1a88e8:
-	step_right
-	step_right
-	step_right
-	step_right
-	step_right
-	step_right
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
 	step_end
 
 MovementData_0x1a88f4:
-	step_down
-	turn_head_up
+	step DOWN
+	turn_head UP
 	step_end
 
 MovementData_0x1a88f7:
-	step_up
-	turn_head_down
+	step UP
+	turn_head DOWN
 	step_end
 
 UnknownText_0x1a88fa:

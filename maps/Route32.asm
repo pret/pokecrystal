@@ -519,16 +519,16 @@ Route32HiddenSuperPotion:
 
 
 Movement_Route32CooltrainerMPushesYouBackToViolet:
-	step_up
-	step_up
+	step UP
+	step UP
 	step_end
 
 Movement_Route32CooltrainerMReset1:
-	step_down
+	step DOWN
 	step_end
 
 Movement_Route32CooltrainerMReset2:
-	step_right
+	step RIGHT
 	step_end
 
 Route32CooltrainerMText_WhatsTheHurry:

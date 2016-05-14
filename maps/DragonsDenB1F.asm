@@ -197,17 +197,17 @@ DragonsDenB1FHiddenMaxElixer:
 	dwb EVENT_DRAGONS_DEN_B1F_HIDDEN_MAX_ELIXER, MAX_ELIXER
 
 MovementDragonsDen_ClairWalksToYou:
-	slow_step_right
-	slow_step_right
-	slow_step_right
-	slow_step_right
+	slow_step RIGHT
+	slow_step RIGHT
+	slow_step RIGHT
+	slow_step RIGHT
 	step_end
 
 MovementDragonsDen_ClairWalksAway:
-	slow_step_left
-	slow_step_left
-	slow_step_left
-	slow_step_left
+	slow_step LEFT
+	slow_step LEFT
+	slow_step LEFT
+	slow_step LEFT
 	step_end
 
 ClairText_Wait:

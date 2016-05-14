@@ -210,16 +210,16 @@ FashShipB1FTrashcan:
 
 MovementData_0x76871:
 	fix_facing
-	big_step_right
+	big_step RIGHT
 	remove_fixed_facing
-	turn_head_down
+	turn_head DOWN
 	step_end
 
 MovementData_0x76876:
 	fix_facing
-	big_step_left
+	big_step LEFT
 	remove_fixed_facing
-	turn_head_down
+	turn_head DOWN
 	step_end
 
 UnknownText_0x7687b:

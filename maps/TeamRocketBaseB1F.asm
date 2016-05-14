@@ -549,91 +549,91 @@ TeamRocketBaseB1FHiddenRevive:
 
 
 SecurityCameraMovement1:
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_right
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
 	step_end
 
 SecurityCameraMovement2:
-	big_step_up
-	big_step_right
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
-	turn_head_right
+	big_step UP
+	big_step RIGHT
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
+	turn_head RIGHT
 	step_end
 
 SecurityCameraMovement3:
-	big_step_left
-	big_step_left
-	big_step_left
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_left
-	big_step_left
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step LEFT
+	big_step LEFT
 	step_end
 
 SecurityCameraMovement4:
 ; he jumps over a trap
-	jump_step_up
-	big_step_right
-	big_step_up
-	big_step_up
-	big_step_up
-	turn_head_right
+	jump_step UP
+	big_step RIGHT
+	big_step UP
+	big_step UP
+	big_step UP
+	turn_head RIGHT
 	step_end
 
 SecurityCameraMovement5:
-	big_step_left
-	big_step_left
-	big_step_left
-	big_step_up
-	big_step_up
-	big_step_left
-	big_step_left
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step UP
+	big_step UP
+	big_step LEFT
+	big_step LEFT
 	step_end
 
 SecurityCameraMovement6:
-	big_step_up
-	big_step_up
-	big_step_right
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_left
+	big_step UP
+	big_step UP
+	big_step RIGHT
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step LEFT
 	step_end
 
 SecurityCameraMovement7:
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_right
-	big_step_up
-	big_step_up
-	big_step_left
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step RIGHT
+	big_step UP
+	big_step UP
+	big_step LEFT
 	step_end
 
 SecurityCameraMovement8:
-	big_step_down
-	big_step_down
-	big_step_right
-	big_step_down
-	big_step_down
-	big_step_down
-	big_step_left
-	big_step_left
-	big_step_left
+	big_step DOWN
+	big_step DOWN
+	big_step RIGHT
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
 	step_end
 
 SecurityCameraMovement9:
-	big_step_left
-	big_step_left
-	big_step_left
-	big_step_left
-	big_step_left
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
 	step_end
 
 CameraGrunt1SeenText:

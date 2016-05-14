@@ -1995,7 +1995,7 @@ ApplyMovementToFollower: ; 54b8
 	ret z
 	cp movement_step_bump
 	ret z
-	cp movement_turn_step_right + 1
+	cp movement_slow_step
 	ret c
 	push af
 	ld hl, wFollowerMovementQueueLength
@@ -2509,7 +2509,7 @@ RefreshPlayerSprite: ; 579d
 	ld [wPlayerNextMovement], a
 	ld [wPlayerMovement], a
 	xor a
-	ld [wd04e], a
+	ld [wPlayerTurningDirection], a
 	ld [PlayerObjectStepFrame], a
 	call .TryResetPlayerAction
 	callba CheckWarpFacingDown

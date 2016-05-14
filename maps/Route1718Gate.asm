@@ -33,8 +33,8 @@ UnknownScript_0x73617:
 	end
 
 MovementData_0x73629:
-	step_right
-	turn_head_left
+	step RIGHT
+	turn_head LEFT
 	step_end
 
 UnknownText_0x7362c:

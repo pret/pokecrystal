@@ -50,20 +50,20 @@ HallOfFameScript:
 	end
 
 HallOfFame_WalkUpWithLance:
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
-	step_right
-	turn_head_left
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	step RIGHT
+	turn_head LEFT
 	step_end
 
 HallOfFame_SlowlyApproachMachine:
-	slow_step_up
+	slow_step UP
 	step_end
 
 HallOfFame_LanceText:

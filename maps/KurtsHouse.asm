@@ -437,20 +437,20 @@ KurtsHouseRadio:
 	jumpstd radio2
 
 MovementData_0x18e466:
-	big_step_down
-	big_step_down
-	big_step_down
-	big_step_down
-	big_step_down
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
 	step_end
 
 MovementData_0x18e46c:
-	big_step_right
-	big_step_down
-	big_step_down
-	big_step_down
-	big_step_down
-	big_step_down
+	big_step RIGHT
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
 	step_end
 
 UnknownText_0x18e473:

@@ -489,257 +489,257 @@ MapIlexForestSignpost4Script:
 	end
 
 MovementData_Farfetchd_Pos1_Pos2:
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
 	step_end
 
 MovementData_Farfetchd_Pos2_Pos3:
-	big_step_up
-	big_step_up
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_down
+	big_step UP
+	big_step UP
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step DOWN
 	step_end
 
 MovementData_Farfetchd_Pos2_Pos8:
-	big_step_down
-	big_step_down
-	big_step_down
-	big_step_down
-	big_step_down
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
 	step_end
 
 MovementData_Farfetchd_Pos3_Pos4:
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_right
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
 	step_end
 
 MovementData_Farfetchd_Pos3_Pos2:
-	big_step_up
-	big_step_left
-	big_step_left
-	big_step_left
-	big_step_left
+	big_step UP
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
 	step_end
 
 MovementData_Farfetchd_Pos4_Pos5:
-	big_step_down
-	big_step_down
-	big_step_down
-	big_step_down
-	big_step_down
-	big_step_down
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
 	step_end
 
 MovementData_Farfetchd_Pos4_Pos3:
-	big_step_left
-	jump_step_left
-	big_step_left
-	big_step_left
+	big_step LEFT
+	jump_step LEFT
+	big_step LEFT
+	big_step LEFT
 	step_end
 
 MovementData_Farfetchd_Pos5_Pos6:
-	big_step_down
-	big_step_down
-	big_step_down
-	big_step_down
-	big_step_down
-	big_step_left
-	big_step_left
-	big_step_left
-	big_step_left
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
 	step_end
 
 MovementData_Farfetchd_Pos5_Pos7:
-	big_step_left
-	big_step_left
-	big_step_left
-	big_step_left
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
 	step_end
 
 MovementData_Farfetched_Pos5_Pos4_Up:
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_right
-	big_step_up
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step RIGHT
+	big_step UP
 	step_end
 
 MovementData_Farfetched_Pos5_Pos4_Right:
-	big_step_right
-	turn_head_up
+	big_step RIGHT
+	turn_head UP
 	step_sleep 1
-	turn_head_down
+	turn_head DOWN
 	step_sleep 1
-	turn_head_up
+	turn_head UP
 	step_sleep 1
-	big_step_down
-	big_step_down
+	big_step DOWN
+	big_step DOWN
 	fix_facing
-	jump_step_up
+	jump_step UP
 	step_sleep 8
 	step_sleep 8
 	remove_fixed_facing
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
 	step_end
 
 MovementData_Farfetched_Pos6_Pos7:
-	big_step_left
-	big_step_left
-	big_step_left
-	big_step_up
-	big_step_up
-	big_step_right
-	big_step_up
-	big_step_up
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step UP
+	big_step UP
+	big_step RIGHT
+	big_step UP
+	big_step UP
 	step_end
 
 MovementData_Farfetched_Pos6_Pos5:
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
 	step_end
 
 MovementData_Farfetched_Pos7_Pos8:
-	big_step_up
-	big_step_up
-	big_step_left
-	big_step_left
-	big_step_left
-	big_step_left
-	big_step_left
+	big_step UP
+	big_step UP
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
 	step_end
 
 MovementData_Farfetched_Pos7_Pos6:
-	big_step_down
-	big_step_down
-	big_step_left
-	big_step_down
-	big_step_down
-	big_step_right
-	big_step_right
-	big_step_right
+	big_step DOWN
+	big_step DOWN
+	big_step LEFT
+	big_step DOWN
+	big_step DOWN
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
 	step_end
 
 MovementData_Farfetched_Pos7_Pos5:
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_right
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
 	step_end
 
 MovementData_Farfetched_Pos8_Pos9:
-	big_step_down
-	big_step_left
-	big_step_down
-	big_step_down
-	big_step_down
-	big_step_down
-	big_step_down
+	big_step DOWN
+	big_step LEFT
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
 	step_end
 
 MovementData_Farfetched_Pos8_Pos7:
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_right
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
 	step_end
 
 MovementData_Farfetched_Pos8_Pos2:
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
 	step_end
 
 MovementData_Farfetched_Pos9_Pos10:
-	big_step_left
-	big_step_left
+	big_step LEFT
+	big_step LEFT
 	fix_facing
-	jump_step_right
+	jump_step RIGHT
 	step_sleep 8
 	step_sleep 8
 	remove_fixed_facing
-	big_step_left
-	big_step_left
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
+	big_step LEFT
+	big_step LEFT
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
 	step_end
 
 MovementData_Farfetched_Pos9_Pos8_Right:
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
 	step_end
 
 MovementData_Farfetched_Pos9_Pos8_Down:
-	big_step_left
-	big_step_left
+	big_step LEFT
+	big_step LEFT
 	fix_facing
-	jump_step_right
+	jump_step RIGHT
 	step_sleep 8
 	step_sleep 8
 	remove_fixed_facing
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
 	step_end
 
 MovementData_0x6ef4e:
-	step_up
-	step_up
-	step_up
-	step_up
+	step UP
+	step UP
+	step UP
+	step UP
 	step_end
 
 MovementData_0x6ef53:
-	step_down
-	step_down
-	step_down
-	step_down
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
 	step_end
 
 MovementData_0x6ef58:
 	fix_facing
-	slow_step_down
+	slow_step DOWN
 	remove_fixed_facing
 	step_end
 

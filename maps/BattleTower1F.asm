@@ -268,87 +268,87 @@ GrannyScript_0x9e56e:
 	jumptextfaceplayer Text_BattleTowerGranny
 
 MovementData_BattleTower1FWalkToElevator:
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
 MovementData_BattleTowerHallwayPlayerEntersBattleRoom:
-	step_up
+	step UP
 	step_end
 
 MovementData_BattleTowerElevatorExitElevator:
-	step_down
+	step DOWN
 	step_end
 
 MovementData_BattleTowerHallwayWalkTo1020Room:
-	step_right
-	step_right
+	step RIGHT
+	step RIGHT
 MovementData_BattleTowerHallwayWalkTo3040Room:
-	step_right
-	step_right
-	step_up
-	step_right
-	turn_head_left
+	step RIGHT
+	step RIGHT
+	step UP
+	step RIGHT
+	turn_head LEFT
 	step_end
 
 MovementData_BattleTowerHallwayWalkTo90100Room:
-	step_left
-	step_left
+	step LEFT
+	step LEFT
 MovementData_BattleTowerHallwayWalkTo7080Room:
-	step_left
-	step_left
+	step LEFT
+	step LEFT
 MovementData_BattleTowerHallwayWalkTo5060Room:
-	step_left
-	step_left
-	step_up
-	step_left
-	turn_head_right
+	step LEFT
+	step LEFT
+	step UP
+	step LEFT
+	turn_head RIGHT
 	step_end
 
 MovementData_BattleTowerBattleRoomPlayerWalksIn:
-	step_up
-	step_up
-	step_up
-	step_up
-	turn_head_right
+	step UP
+	step UP
+	step UP
+	step UP
+	turn_head RIGHT
 	step_end
 
 MovementData_BattleTowerBattleRoomOpponentWalksIn:
-	slow_step_down
-	slow_step_down
-	slow_step_down
-	turn_head_left
+	slow_step DOWN
+	slow_step DOWN
+	slow_step DOWN
+	turn_head LEFT
 	step_end
 
 MovementData_BattleTowerBattleRoomOpponentWalksOut:
-	turn_head_up
-	slow_step_up
-	slow_step_up
-	slow_step_up
+	turn_head UP
+	slow_step UP
+	slow_step UP
+	slow_step UP
 	step_end
 
 MovementData_BattleTowerBattleRoomReceptionistWalksToPlayer:
-	slow_step_right
-	slow_step_right
-	slow_step_up
-	slow_step_up
+	slow_step RIGHT
+	slow_step RIGHT
+	slow_step UP
+	slow_step UP
 	step_end
 
 MovementData_BattleTowerBattleRoomReceptionistWalksAway:
-	slow_step_down
-	slow_step_down
-	slow_step_left
-	slow_step_left
-	turn_head_right
+	slow_step DOWN
+	slow_step DOWN
+	slow_step LEFT
+	slow_step LEFT
+	turn_head RIGHT
 	step_end
 
 MovementData_BattleTowerBattleRoomPlayerTurnsToFaceReceptionist:
-	turn_head_down
+	turn_head DOWN
 	step_end
 
 MovementData_BattleTowerBattleRoomPlayerTurnsToFaceNextOpponent:
-	turn_head_right
+	turn_head RIGHT
 	step_end
 
 Text_BattleTowerWelcomesYou: ; 0x9e5ab

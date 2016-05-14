@@ -233,12 +233,12 @@ DoPlayerMovement:: ; 80000
 ; If the player is turning, change direction first. This also lets
 ; the player change facing without moving by tapping a direction.
 
-	ld a, [wd04e]
+	ld a, [wPlayerTurningDirection]
 	cp 0
-	jr nz, .asm_80169
+	jr nz, .not_turning
 	ld a, [WalkingDirection]
 	cp STANDING
-	jr z, .asm_80169
+	jr z, .not_turning
 
 	ld e, a
 	ld a, [PlayerDirection]
@@ -246,7 +246,7 @@ DoPlayerMovement:: ; 80000
 	rrca
 	and 3
 	cp e
-	jr z, .asm_80169
+	jr z, .not_turning
 
 	ld a, STEP_TURN
 	call .DoStep
@@ -254,7 +254,7 @@ DoPlayerMovement:: ; 80000
 	scf
 	ret
 
-.asm_80169
+.not_turning
 	xor a
 	ret
 ; 8016b
@@ -465,10 +465,10 @@ DoPlayerMovement:: ; 80000
 	ld a, [hl]
 	ld [MovementAnimation], a
 
-	ld hl, .InPlace
+	ld hl, .FinishFacing
 	add hl, de
 	ld a, [hl]
-	ld [wd04e], a
+	ld [wPlayerTurningDirection], a
 
 	ld a, 4
 	ret
@@ -481,53 +481,53 @@ DoPlayerMovement:: ; 80000
 	dw .SlideStep
 	dw .TurningStep
 	dw .BackJumpStep
-	dw .InPlace
+	dw .FinishFacing
 
 .SlowStep:
-	slow_step_down
-	slow_step_up
-	slow_step_left
-	slow_step_right
+	slow_step DOWN
+	slow_step UP
+	slow_step LEFT
+	slow_step RIGHT
 .NormalStep:
-	step_down
-	step_up
-	step_left
-	step_right
+	step DOWN
+	step UP
+	step LEFT
+	step RIGHT
 .FastStep:
-	big_step_down
-	big_step_up
-	big_step_left
-	big_step_right
+	big_step DOWN
+	big_step UP
+	big_step LEFT
+	big_step RIGHT
 .JumpStep:
-	jump_step_down
-	jump_step_up
-	jump_step_left
-	jump_step_right
+	jump_step DOWN
+	jump_step UP
+	jump_step LEFT
+	jump_step RIGHT
 .SlideStep:
-	fast_slide_step_down
-	fast_slide_step_up
-	fast_slide_step_left
-	fast_slide_step_right
+	fast_slide_step DOWN
+	fast_slide_step UP
+	fast_slide_step LEFT
+	fast_slide_step RIGHT
 .BackJumpStep:
-	jump_step_up
-	jump_step_down
-	jump_step_right
-	jump_step_left
+	jump_step UP
+	jump_step DOWN
+	jump_step RIGHT
+	jump_step LEFT
 .TurningStep:
-	turn_step_down
-	turn_step_up
-	turn_step_left
-	turn_step_right
-.InPlace:
-	db $80 + movement_turn_head_down
-	db $80 + movement_turn_head_up
-	db $80 + movement_turn_head_left
-	db $80 + movement_turn_head_right
+	turn_step DOWN
+	turn_step UP
+	turn_step LEFT
+	turn_step RIGHT
+.FinishFacing:
+	db $80 + DOWN
+	db $80 + UP
+	db $80 + LEFT
+	db $80 + RIGHT
 ; 802b3
 
 .StandInPlace: ; 802b3
 	ld a, 0
-	ld [wd04e], a
+	ld [wPlayerTurningDirection], a
 	ld a, movement_step_sleep
 	ld [MovementAnimation], a
 	xor a
@@ -536,7 +536,7 @@ DoPlayerMovement:: ; 80000
 
 ._WalkInPlace: ; 802bf
 	ld a, 0
-	ld [wd04e], a
+	ld [wPlayerTurningDirection], a
 	ld a, movement_step_bump
 	ld [MovementAnimation], a
 	xor a
@@ -549,7 +549,7 @@ DoPlayerMovement:: ; 80000
 	call CheckStandingOnIce
 	ret nc
 
-	ld a, [wd04e]
+	ld a, [wPlayerTurningDirection]
 	cp 0
 	ret z
 
@@ -812,7 +812,7 @@ DoPlayerMovement:: ; 80000
 ; 80404
 
 CheckStandingOnIce:: ; 80404
-	ld a, [wd04e]
+	ld a, [wPlayerTurningDirection]
 	cp 0
 	jr z, .not_ice
 	cp $f0
@@ -833,7 +833,7 @@ CheckStandingOnIce:: ; 80404
 	ret
 ; 80422
 
-Function80422:: ; 80422
+StopPlayerForEvent:: ; 80422
 	ld hl, wPlayerNextMovement
 	ld a, movement_step_sleep
 	cp [hl]
@@ -841,6 +841,6 @@ Function80422:: ; 80422
 
 	ld [hl], a
 	ld a, 0
-	ld [wd04e], a
+	ld [wPlayerTurningDirection], a
 	ret
 ; 80430

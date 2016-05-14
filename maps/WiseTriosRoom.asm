@@ -121,18 +121,18 @@ UnknownScript_0x9861b:
 	end
 
 MovementData_0x98622:
-	step_left
-	step_left
+	step LEFT
+	step LEFT
 	step_end
 
 MovementData_0x98625:
-	step_right
-	step_down
+	step RIGHT
+	step DOWN
 	step_end
 
 MovementData_0x98628:
-	step_right
-	step_down
+	step RIGHT
+	step DOWN
 	step_end
 
 UnknownText_0x9862b:

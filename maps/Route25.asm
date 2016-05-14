@@ -197,47 +197,47 @@ Route25HiddenPotion:
 
 
 MovementData_0x19efe8:
-	big_step_down
+	big_step DOWN
 	step_end
 
 MovementData_0x19efea:
-	big_step_down
-	big_step_down
+	big_step DOWN
+	big_step DOWN
 	step_end
 
 MovementData_0x19efed:
-	step_up
-	step_up
-	step_up
-	step_left
-	step_left
-	step_left
+	step UP
+	step UP
+	step UP
+	step LEFT
+	step LEFT
+	step LEFT
 	step_end
 
 MovementData_0x19eff4:
-	step_up
-	step_up
-	step_left
-	step_left
-	step_left
+	step UP
+	step UP
+	step LEFT
+	step LEFT
+	step LEFT
 	step_end
 
 MovementData_0x19effa:
-	step_down
-	step_left
+	step DOWN
+	step LEFT
 	step_end
 
 MovementData_0x19effd:
-	step_up
-	step_left
+	step UP
+	step LEFT
 	step_end
 
 MovementData_0x19f000:
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
 	step_end
 
 UnknownText_0x19f006:

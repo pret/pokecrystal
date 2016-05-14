@@ -131,70 +131,70 @@ BurnedTowerB1FBoulder:
 
 BurnedTowerRaikouMovement:
 	set_sliding
-	fast_jump_step_down
-	fast_jump_step_left
+	fast_jump_step DOWN
+	fast_jump_step LEFT
 	remove_sliding
 	step_end
 
 BurnedTowerEnteiMovement:
 	set_sliding
-	fast_jump_step_right
-	fast_jump_step_down
-	fast_jump_step_right
+	fast_jump_step RIGHT
+	fast_jump_step DOWN
+	fast_jump_step RIGHT
 	remove_sliding
 	step_end
 
 BurnedTowerSuicuneMovement1:
 	set_sliding
-	fast_jump_step_right
-	fast_jump_step_down
-	fast_jump_step_down
-	fast_jump_step_left
+	fast_jump_step RIGHT
+	fast_jump_step DOWN
+	fast_jump_step DOWN
+	fast_jump_step LEFT
 	remove_sliding
 	step_end
 
 BurnedTowerSuicuneMovement2:
 	set_sliding
-	fast_jump_step_left
-	fast_jump_step_up
-	big_step_up
-	fast_jump_step_right
+	fast_jump_step LEFT
+	fast_jump_step UP
+	big_step UP
+	fast_jump_step RIGHT
 	remove_sliding
 	step_end
 
 MovementData_0x18624f:
 	set_sliding
-	big_step_down
+	big_step DOWN
 	remove_sliding
 	step_end
 
 BurnedTowerSuicuneMovement3:
 	set_sliding
-	big_step_up
-	fast_jump_step_right
-	fast_jump_step_down
-	fast_jump_step_down
-	fast_jump_step_down
-	fast_jump_step_down
+	big_step UP
+	fast_jump_step RIGHT
+	fast_jump_step DOWN
+	fast_jump_step DOWN
+	fast_jump_step DOWN
+	fast_jump_step DOWN
 	remove_sliding
 	step_end
 
 BurnedTowerB1FEusineMovement2:
-	step_left
-	step_left
-	step_down
-	step_down
-	step_left
-	step_down
+	step LEFT
+	step LEFT
+	step DOWN
+	step DOWN
+	step LEFT
+	step DOWN
 	step_end
 
 BurnedTowerB1FEusineMovement1:
-	step_down
-	step_left
-	step_left
-	step_left
-	step_down
-	step_down
+	step DOWN
+	step LEFT
+	step LEFT
+	step LEFT
+	step DOWN
+	step DOWN
 	step_end
 
 BurnedTowerB1FEusineText:

@@ -203,34 +203,34 @@ VermilionPortHiddenIron:
 
 
 MovementData_0x74ef1:
-	step_down
+	step DOWN
 	step_end
 
 MovementData_0x74ef3:
-	step_up
+	step UP
 	step_end
 
 MovementData_0x74ef5:
-	step_right
-	turn_head_left
+	step RIGHT
+	turn_head LEFT
 	step_end
 
 MovementData_0x74ef8:
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
 	step_end
 
 MovementData_0x74efe:
-	step_right
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
+	step RIGHT
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
 	step_end
 
 UnknownText_0x74f06:

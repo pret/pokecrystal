@@ -121,18 +121,18 @@ ComputePathToWalkToPlayer:: ; 1b5f
 ; 1ba5
 
 .MovementData:
-	slow_step_down
-	slow_step_up
-	slow_step_left
-	slow_step_right
-	step_down
-	step_up
-	step_left
-	step_right
-	big_step_down
-	big_step_up
-	big_step_left
-	big_step_right
+	slow_step DOWN
+	slow_step UP
+	slow_step LEFT
+	slow_step RIGHT
+	step DOWN
+	step UP
+	step LEFT
+	step RIGHT
+	big_step DOWN
+	big_step UP
+	big_step LEFT
+	big_step RIGHT
 ; 1bb1
 
 SetMenuAttributes:: ; 1bb1

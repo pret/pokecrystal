@@ -144,52 +144,52 @@ MapNewBarkTownSignpost3Script:
 	jumptext ElmsHouseSignText
 
 Movement_TeacherRunsToYou1_NBT:
-	step_left
-	step_left
-	step_left
-	step_left
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
 	step_end
 
 Movement_TeacherRunsToYou2_NBT:
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
-	turn_head_down
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	turn_head DOWN
 	step_end
 
 Movement_TeacherBringsYouBack1_NBT:
-	step_right
-	step_right
-	step_right
-	step_right
-	turn_head_left
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	turn_head LEFT
 	step_end
 
 Movement_TeacherBringsYouBack2_NBT:
-	step_right
-	step_right
-	step_right
-	step_right
-	step_right
-	turn_head_left
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	turn_head LEFT
 	step_end
 
 Movement_SilverPushesYouAway_NBT:
-	turn_head_up
-	step_down
+	turn_head UP
+	step DOWN
 	step_end
 
 Movement_SilverShovesYouOut_NBT:
-	turn_head_up
+	turn_head UP
 	fix_facing
-	jump_step_down
+	jump_step DOWN
 	remove_fixed_facing
 	step_end
 
 Movement_SilverReturnsToTheShadows_NBT:
-	step_right
+	step RIGHT
 	step_end
 
 Text_GearIsImpressive:

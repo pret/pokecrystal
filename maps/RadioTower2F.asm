@@ -339,8 +339,8 @@ RadioTower2FBookshelf:
 	jumpstd magazinebookshelf
 
 MovementData_0x5d921:
-	slow_step_down
-	slow_step_right
+	slow_step DOWN
+	slow_step RIGHT
 	step_end
 
 UnknownText_0x5d924:

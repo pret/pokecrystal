@@ -127,21 +127,21 @@ SlowpokeWellB1FSuperPotion:
 	itemball SUPER_POTION
 
 KurtSlowpokeWellVictoryMovementData:
-	step_left
-	step_left
-	step_left
-	step_left
-	step_up
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step UP
 	step_sleep 8
 	step_sleep 8
 	step_sleep 8
-	step_left
-	step_up
-	step_up
+	step LEFT
+	step UP
+	step UP
 	step_sleep 8
 	step_sleep 8
 	step_sleep 8
-	turn_head_left
+	turn_head LEFT
 	step_end
 
 UnknownText_0x5a6b5:

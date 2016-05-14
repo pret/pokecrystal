@@ -751,7 +751,7 @@ Script_UsedWaterfall: ; 0xcb20
 	ret
 
 .WaterfallStep: ; cb4f
-	turn_waterfall_up
+	turn_waterfall UP
 	step_end
 
 .Text_UsedWaterfall: ; 0xcb51

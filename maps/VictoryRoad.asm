@@ -122,49 +122,49 @@ VictoryRoadHiddenFullHeal:
 
 
 MovementData_0x74539:
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
-	step_up
-	step_up
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step UP
+	step UP
 	step_end
 
 MovementData_0x74542:
-	step_up
-	step_up
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
-	step_up
-	step_up
+	step UP
+	step UP
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step UP
+	step UP
 	step_end
 
 MovementData_0x7454c:
-	step_down
-	step_down
-	step_right
-	step_right
-	step_right
-	step_right
-	step_right
-	step_right
+	step DOWN
+	step DOWN
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
 	step_end
 
 MovementData_0x74555:
-	step_down
-	step_down
-	step_right
-	step_right
-	step_right
-	step_right
-	step_right
-	step_down
-	step_down
+	step DOWN
+	step DOWN
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step DOWN
+	step DOWN
 	step_end
 
 UnknownText_0x7455f:

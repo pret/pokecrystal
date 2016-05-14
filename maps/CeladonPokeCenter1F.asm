@@ -58,18 +58,18 @@ CeladonEusine:
 	end
 
 .Movement2:
-	step_left
-	step_down
-	step_down
-	step_down
-	step_down
+	step LEFT
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
 	step_end
 
 .Movement1:
-	step_down
-	step_down
-	step_down
-	step_down
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
 	step_end
 
 UnknownText_0x71e70:

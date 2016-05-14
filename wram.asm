@@ -1702,8 +1702,9 @@ wScriptAfterPointer:: ds 2
 wRunningTrainerBattleScript:: ds 1
 MenuItemsListEnd::
 wTempTrainerHeaderEnd::
-wd04e:: ds 24
-wTMHMMoveNameBackup:: ds MOVE_NAME_LENGTH
+wPlayerTurningDirection:: ; d04e
+	ds 24
+wTMHMMoveNameBackup:: ds MOVE_NAME_LENGTH ; d066
 
 StringBuffer1:: ; d073
 	ds 19

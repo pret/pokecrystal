@@ -199,19 +199,19 @@ FridgeScript:
 	jumptext FridgeText
 
 MovementData_0x7a5fc:
-	turn_head_right
+	turn_head RIGHT
 	step_end
 
 MovementData_0x7a5fe:
-	slow_step_right
+	slow_step RIGHT
 	step_end
 
 MovementData_0x7a600:
-	turn_head_left
+	turn_head LEFT
 	step_end
 
 MovementData_0x7a602:
-	slow_step_left
+	slow_step LEFT
 	step_end
 
 UnknownText_0x7a604:

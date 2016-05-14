@@ -221,23 +221,23 @@ FastShipCaptainsCabinTrashcan:
 	jumpstd trashcan
 
 MovementData_0x76004:
-	big_step_right
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
+	big_step RIGHT
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
 	step_end
 
 MovementData_0x7600c:
-	step_up
-	step_up
-	turn_head_left
+	step UP
+	step UP
+	turn_head LEFT
 	step_end
 
 MovementData_0x76010:
-	step_down
+	step DOWN
 	step_end
 
 UnknownText_0x76012:

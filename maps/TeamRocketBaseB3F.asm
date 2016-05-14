@@ -226,101 +226,101 @@ TeamRocketBaseB3FUltraBall:
 	itemball ULTRA_BALL
 
 MovementData_0x6e12a:
-	step_right
+	step RIGHT
 	step_end
 
 MovementData_0x6e12c:
-	step_down
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
+	step DOWN
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
 	step_end
 
 MovementData_0x6e133:
-	step_up
-	step_up
-	step_up
-	step_left
-	step_left
-	turn_head_up
+	step UP
+	step UP
+	step UP
+	step LEFT
+	step LEFT
+	turn_head UP
 	step_end
 
 MovementData_0x6e13a:
-	step_up
-	step_up
-	step_left
-	step_up
-	step_left
-	step_left
-	turn_head_up
+	step UP
+	step UP
+	step LEFT
+	step UP
+	step LEFT
+	step LEFT
+	turn_head UP
 	step_end
 
 MovementData_0x6e142:
-	step_down
+	step DOWN
 	step_end
 
 MovementData_0x6e144:
-	big_step_right
-	big_step_right
+	big_step RIGHT
+	big_step RIGHT
 	step_end
 
 MovementData_0x6e147:
 	fix_facing
-	fast_jump_step_left
+	fast_jump_step LEFT
 	remove_fixed_facing
 	step_sleep 8
 	step_sleep 8
-	slow_step_right
-	big_step_down
-	big_step_down
-	big_step_down
-	big_step_right
-	big_step_down
-	big_step_down
-	big_step_down
-	big_step_left
-	big_step_left
-	big_step_left
-	big_step_left
-	big_step_left
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_left
-	big_step_left
+	slow_step RIGHT
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step RIGHT
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step LEFT
+	big_step LEFT
 	step_end
 
 RocketBaseRivalEnterMovement:
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_right
-	step_right
-	step_right
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step RIGHT
+	step RIGHT
+	step RIGHT
 	step_end
 
 RocketBaseRivalLeaveMovement:
-	step_left
-	step_left
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
+	step LEFT
+	step LEFT
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
 	step_end
 
 RocketBaseRivalShovesPlayerMovement:
 	fix_facing
-	big_step_right
+	big_step RIGHT
 	remove_fixed_facing
 	step_end
 

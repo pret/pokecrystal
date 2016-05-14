@@ -547,7 +547,7 @@ OWPlayerInput: ; 96974
 
 .Action:
 	push af
-	callba Function80422
+	callba StopPlayerForEvent
 	pop af
 	scf
 	ret

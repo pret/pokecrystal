@@ -202,18 +202,18 @@ PowerPlantBookshelf:
 	jumpstd difficultbookshelf
 
 MovementData_0x188ed5:
-	step_right
-	step_right
-	step_up
-	step_up
+	step RIGHT
+	step RIGHT
+	step UP
+	step UP
 	step_end
 
 MovementData_0x188eda:
-	step_down
-	step_down
-	step_left
-	step_left
-	turn_head_down
+	step DOWN
+	step DOWN
+	step LEFT
+	step LEFT
+	turn_head DOWN
 	step_end
 
 UnknownText_0x188ee0:

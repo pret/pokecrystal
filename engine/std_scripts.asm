@@ -1907,8 +1907,8 @@ HappinessCheckScript:
 	end
 
 Movement_ContestResults_WalkAfterWarp: ; bcea1
-	step_right
-	step_down
-	turn_head_up
+	step RIGHT
+	step DOWN
+	turn_head UP
 	step_end
 ; bcea5

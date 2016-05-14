@@ -240,52 +240,52 @@ OlivinePortHiddenProtein:
 
 
 MovementData_0x74a30:
-	step_down
+	step DOWN
 	step_end
 
 MovementData_0x74a32:
-	step_up
+	step UP
 	step_end
 
 MovementData_0x74a34:
-	step_right
-	turn_head_left
+	step RIGHT
+	turn_head LEFT
 	step_end
 
 MovementData_0x74a37:
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
 	step_end
 
 MovementData_0x74a3f:
-	step_right
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
+	step RIGHT
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
 	step_end
 
 MovementData_0x74a49:
-	step_up
-	step_right
-	step_right
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
+	step UP
+	step RIGHT
+	step RIGHT
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
 	step_end
 
 UnknownText_0x74a55:
