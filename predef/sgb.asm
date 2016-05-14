@@ -50,9 +50,9 @@ Predef_LoadSGBLayout: ; 864c
 	dw .SGB17
 	dw .SGB18
 	dw .SGB19
-	dw .SGB1a
-	dw .SGB1b
-	dw .SGB_FrontpicPals
+	dw .SGB_PlayerOrMonFrontpicPals
+	dw .SGB_TradeTube
+	dw .SGB_TrainerOrMonFrontpicPals
 	dw .SGB1d
 	dw .SGB1e
 ; 86ad
@@ -503,7 +503,7 @@ endr
 	ret
 ; 89ad
 
-.SGB1a: ; 89ad
+.SGB_PlayerOrMonFrontpicPals: ; 89ad
 	ld hl, PalPacket_9ce6
 	ld de, wSGBPals
 	ld bc, $10
@@ -524,13 +524,13 @@ endr
 	ret
 ; 89d9
 
-.SGB1b: ; 89d9
+.SGB_TradeTube: ; 89d9
 	ld hl, PalPacket_9cc6
 	ld de, BlkPacket_9a86
 	ret
 ; 89e0
 
-.SGB_FrontpicPals: ; 89e0
+.SGB_TrainerOrMonFrontpicPals: ; 89e0
 	ld hl, PalPacket_9ce6
 	ld de, wSGBPals
 	ld bc, $10

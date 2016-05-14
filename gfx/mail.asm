@@ -32,7 +32,7 @@ ReadAnyMail: ; b9237
 	lb bc, BANK(StandardEnglishFont), $80
 	call Get1bpp
 	pop de
-	call Functionb92b8
+	call .LoadGFX
 	call EnableLCD
 	call WaitBGMap
 	ld a, [Buffer3]
@@ -65,7 +65,7 @@ ReadAnyMail: ; b9237
 	jr .loop
 ; b92b8
 
-Functionb92b8: ; b92b8
+.LoadGFX: ; b92b8
 	ld h, d
 	ld l, e
 	push hl
@@ -83,7 +83,7 @@ Functionb92b8: ; b92b8
 	call CloseSRAM
 	ld hl, MailGFXPointers
 	ld c, 0
-.loop
+.loop2
 	ld a, [hli]
 	cp b
 	jr z, .got_pointer
@@ -92,7 +92,7 @@ Functionb92b8: ; b92b8
 	inc c
 	inc hl
 	inc hl
-	jr .loop
+	jr .loop2
 
 .invalid
 	ld hl, MailGFXPointers
@@ -726,6 +726,7 @@ MailGFX_PlaceMessage: ; b9803
 ; b984e
 
 Functionb984e: ; b984e
+; XXX
 .loop
 	ld a, [hl]
 	xor $ff

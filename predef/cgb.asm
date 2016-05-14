@@ -59,9 +59,9 @@ Predef_LoadSGBLayoutCGB: ; 8d59
 	dw _CGB17
 	dw _CGB18
 	dw _CGB_GamefreakLogo ; called before copyright
-	dw _CGB1a
-	dw _CGB1b
-	dw _CGB_FrontpicPals
+	dw _CGB_PlayerOrMonFrontpicPals
+	dw _CGB_TradeTube
+	dw _CGB_TrainerOrMonFrontpicPals
 	dw _CGB1d
 	dw _CGB1e
 ; 8db8
@@ -1026,7 +1026,7 @@ _CGB_GamefreakLogo: ; 94fa
 	RGB 00, 00, 00
 ; 9529
 
-_CGB1a: ; 9529
+_CGB_PlayerOrMonFrontpicPals: ; 9529
 	ld de, UnknBGPals
 	ld a, [CurPartySpecies]
 	ld bc, TempMonDVs
@@ -1048,7 +1048,7 @@ _CGB1e: ; 9542
 	ret
 ; 9555
 
-_CGB1b: ; 9555
+_CGB_TradeTube: ; 9555
 	ld hl, PalPacket_9cc6 + 1
 	call CopyFourPalettes
 	ld hl, Palettes_b681
@@ -1064,7 +1064,7 @@ _CGB1b: ; 9555
 	ret
 ; 9578
 
-_CGB_FrontpicPals: ; 9578
+_CGB_TrainerOrMonFrontpicPals: ; 9578
 	ld de, UnknBGPals
 	ld a, [CurPartySpecies]
 	ld bc, TempMonDVs

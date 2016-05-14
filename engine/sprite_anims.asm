@@ -554,19 +554,19 @@ DoAnimFrame: ; 8d24b
 	inc [hl]
 	inc [hl]
 	cp $b0
-	jr nc, .asm_8d53f
+	jr nc, .delete
 	and $3
 	ret nz
 	ld de, SFX_POKEBALLS_PLACED_ON_TABLE
 	call PlaySFX
 	ret
 
-.asm_8d53f
+.delete
 	call DeinitializeSprite
 	ret
 
 .eighteen ; 8d543 (23:5543)
-	callab Function29676
+	callab TradeAnim_AnimateTrademonInTube
 	ret
 
 .EggShell: ; 8d54a (23:554a)

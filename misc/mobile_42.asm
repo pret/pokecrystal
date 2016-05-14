@@ -492,7 +492,7 @@ MobileTradeAnim_ShowPlayerMonToBeSent: ; 10830e
 	ld [TempMonDVs], a
 	ld a, [wPlayerTrademonDVs + 1]
 	ld [TempMonDVs + 1], a
-	ld b, SCGB_1A
+	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	ld a, %11100100 ; 3,2,1,0
 	call DmgToCgbBGPals
@@ -585,7 +585,7 @@ MobileTradeAnim_ShowOTMonFromTrade: ; 10839b
 	ld [TempMonDVs], a
 	ld a, [wOTTrademonDVs + 1]
 	ld [TempMonDVs + 1], a
-	ld b, SCGB_1A
+	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	ld a, %11100100 ; 3,2,1,0
 	call DmgToCgbBGPals
@@ -627,7 +627,7 @@ MobileTradeAnim_ShowPlayerMonForGTS: ; 10842c
 	ld [TempMonDVs], a
 	ld a, [wPlayerTrademonDVs + 1]
 	ld [TempMonDVs + 1], a
-	ld b, SCGB_1A
+	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	ld a, %11100100 ; 3,2,1,0
 	call DmgToCgbBGPals
@@ -729,7 +729,7 @@ MobileTradeAnim_ShowOTMonFromGTS: ; 1084d7
 	ld [TempMonDVs], a
 	ld a, [wOTTrademonDVs + 1]
 	ld [TempMonDVs + 1], a
-	ld b, SCGB_1A
+	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	ld a, %11100100 ; 3,2,1,0
 	call DmgToCgbBGPals
@@ -798,7 +798,7 @@ MobileTradeAnim_GetOddEgg: ; 108589
 	ld [TempMonDVs], a
 	ld a, [wOTTrademonDVs + 1]
 	ld [TempMonDVs + 1], a
-	ld b, SCGB_1A
+	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	ld a, %11100100 ; 3,2,1,0
 	call DmgToCgbBGPals
