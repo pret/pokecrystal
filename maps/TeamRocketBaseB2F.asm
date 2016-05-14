@@ -465,17 +465,17 @@ MovementData_0x6d254:
 	step_end
 
 MovementData_0x6d258:
-	step_sleep_8
+	step_sleep 8
 	step_left
 	step_left
 	turn_head_up
-	step_sleep_8
+	step_sleep 8
 	step_right
 	step_right
 	step_right
 	step_right
 	turn_head_up
-	step_sleep_8
+	step_sleep 8
 	step_left
 	step_left
 	turn_head_down

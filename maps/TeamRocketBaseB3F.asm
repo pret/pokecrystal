@@ -270,8 +270,8 @@ MovementData_0x6e147:
 	fix_facing
 	fast_jump_step_left
 	remove_fixed_facing
-	step_sleep_8
-	step_sleep_8
+	step_sleep 8
+	step_sleep 8
 	slow_step_right
 	big_step_down
 	big_step_down

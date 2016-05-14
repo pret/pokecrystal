@@ -311,51 +311,16 @@ hide_person: macro
 	db movement_hide_person ; $3d
 	endm
 
-	enum movement_step_sleep_1
-step_sleep_1: macro
-	db movement_step_sleep_1 ; $3e
-	endm
-
-	enum movement_step_sleep_2
-step_sleep_2: macro
-	db movement_step_sleep_2 ; $3f
-	endm
-
-	enum movement_step_sleep_3
-step_sleep_3: macro
-	db movement_step_sleep_3 ; $40
-	endm
-
-	enum movement_step_sleep_4
-step_sleep_4: macro
-	db movement_step_sleep_4 ; $41
-	endm
-
-	enum movement_step_sleep_5
-step_sleep_5: macro
-	db movement_step_sleep_5 ; $42
-	endm
-
-	enum movement_step_sleep_6
-step_sleep_6: macro
-	db movement_step_sleep_6 ; $43
-	endm
-
-	enum movement_step_sleep_7
-step_sleep_7: macro
-	db movement_step_sleep_7 ; $44
-	endm
-
-	enum movement_step_sleep_8
-step_sleep_8: macro
-	db movement_step_sleep_8 ; $45
-	endm
-
 	enum movement_step_sleep
 step_sleep: macro
-	db movement_step_sleep ; $46
-	db \1 ; duration
-	endm
+if \1 <= 8
+	db movement_step_sleep + \1 - 1
+else
+	db movement_step_sleep + 8, \1
+endc
+endm
+
+__enum__ SET $47
 
 	enum movement_step_end
 step_end: macro

@@ -578,17 +578,17 @@ MovementData_Farfetched_Pos5_Pos4_Up:
 MovementData_Farfetched_Pos5_Pos4_Right:
 	big_step_right
 	turn_head_up
-	step_sleep_1
+	step_sleep 1
 	turn_head_down
-	step_sleep_1
+	step_sleep 1
 	turn_head_up
-	step_sleep_1
+	step_sleep 1
 	big_step_down
 	big_step_down
 	fix_facing
 	jump_step_up
-	step_sleep_8
-	step_sleep_8
+	step_sleep 8
+	step_sleep 8
 	remove_fixed_facing
 	big_step_up
 	big_step_up
@@ -679,8 +679,8 @@ MovementData_Farfetched_Pos9_Pos10:
 	big_step_left
 	fix_facing
 	jump_step_right
-	step_sleep_8
-	step_sleep_8
+	step_sleep 8
+	step_sleep 8
 	remove_fixed_facing
 	big_step_left
 	big_step_left
@@ -709,8 +709,8 @@ MovementData_Farfetched_Pos9_Pos8_Down:
 	big_step_left
 	fix_facing
 	jump_step_right
-	step_sleep_8
-	step_sleep_8
+	step_sleep 8
+	step_sleep 8
 	remove_fixed_facing
 	big_step_right
 	big_step_right

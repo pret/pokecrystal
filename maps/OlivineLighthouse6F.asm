@@ -136,8 +136,8 @@ MovementData_0x60c68:
 	slow_step_right
 	slow_step_up
 	slow_step_up
-	step_sleep_8
-	step_sleep_8
+	step_sleep 8
+	step_sleep 8
 	step_end
 
 MovementData_0x60c70:
@@ -158,7 +158,7 @@ MovementData_0x60c79:
 	slow_step_up
 	slow_step_up
 	slow_step_up
-	step_sleep_8
+	step_sleep 8
 	step_end
 
 UnknownText_0x60c81:

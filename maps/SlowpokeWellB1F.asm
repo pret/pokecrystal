@@ -132,15 +132,15 @@ KurtSlowpokeWellVictoryMovementData:
 	step_left
 	step_left
 	step_up
-	step_sleep_8
-	step_sleep_8
-	step_sleep_8
+	step_sleep 8
+	step_sleep 8
+	step_sleep 8
 	step_left
 	step_up
 	step_up
-	step_sleep_8
-	step_sleep_8
-	step_sleep_8
+	step_sleep 8
+	step_sleep 8
+	step_sleep 8
 	turn_head_left
 	step_end
 

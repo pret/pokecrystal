@@ -1,7 +1,7 @@
 DoPlayerMovement:: ; 80000
 
 	call .GetDPad
-	ld a, movement_step_sleep_1
+	ld a, movement_step_sleep
 	ld [MovementAnimation], a
 	xor a
 	ld [wd041], a
@@ -528,7 +528,7 @@ DoPlayerMovement:: ; 80000
 .StandInPlace: ; 802b3
 	ld a, 0
 	ld [wd04e], a
-	ld a, movement_step_sleep_1
+	ld a, movement_step_sleep
 	ld [MovementAnimation], a
 	xor a
 	ret
@@ -835,7 +835,7 @@ CheckStandingOnIce:: ; 80404
 
 Function80422:: ; 80422
 	ld hl, wPlayerNextMovement
-	ld a, movement_step_sleep_1
+	ld a, movement_step_sleep
 	cp [hl]
 	ret z
 

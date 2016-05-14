@@ -1427,12 +1427,12 @@ ShowEmoteScript: ; 973b6
 
 .Show:
 	show_emote
-	step_sleep_1
+	step_sleep 1
 	step_end
 
 .Hide:
 	hide_emote
-	step_sleep_1
+	step_sleep 1
 	step_end
 ; 973c7
 

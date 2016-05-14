@@ -516,7 +516,7 @@ CopyTempObjectToObjectStruct: ; 8286
 TrainerWalkToPlayer: ; 831e
 	ld a, [hLastTalked]
 	call InitMovementBuffer
-	ld a, movement_step_sleep_1
+	ld a, movement_step_sleep
 	call AppendToMovementBuffer
 	ld a, [wd03f]
 	dec a

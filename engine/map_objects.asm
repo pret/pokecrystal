@@ -1876,8 +1876,8 @@ Function5000: ; unscripted?
 	ld a, [wPlayerNextMovement]
 	ld hl, wPlayerMovement
 	ld [hl], a
-; load [wPlayerNextMovement] with movement_step_sleep_1
-	ld a, movement_step_sleep_1
+; load [wPlayerNextMovement] with movement_step_sleep
+	ld a, movement_step_sleep
 	ld [wPlayerNextMovement], a
 ; recover the previous value of [wPlayerNextMovement]
 	ld a, [hl]
@@ -1987,7 +1987,7 @@ ApplyMovementToFollower: ; 54b8
 	cp d
 	ret nz
 	ld a, e
-	cp movement_step_sleep_1
+	cp movement_step_sleep
 	ret z
 	cp movement_step_end
 	ret z
@@ -2034,7 +2034,7 @@ GetFollowerNextMovementByte: ; 54e6
 .done
 	call .CancelFollowIfLeaderMissing
 	ret c
-	ld a, movement_step_sleep_1
+	ld a, movement_step_sleep
 	ret
 
 .CancelFollowIfLeaderMissing:
@@ -2505,7 +2505,7 @@ HandleNPCStep:: ; 576a
 ; 579d
 
 RefreshPlayerSprite: ; 579d
-	ld a, movement_step_sleep_1
+	ld a, movement_step_sleep
 	ld [wPlayerNextMovement], a
 	ld [wPlayerMovement], a
 	xor a
