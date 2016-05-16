@@ -140,7 +140,14 @@ lda_coord: MACRO
 ; pic animations
 frame: MACRO
 	db \1
-	db \2
+x = \2
+IF _NARG > 2
+rept _NARG +- 2
+x = x | (1 << (\3 + 1))
+	shift
+endr
+endc
+	db x
 	ENDM
 setrepeat: MACRO
 	db $fe
