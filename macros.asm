@@ -155,6 +155,12 @@ endanim: MACRO
 	ENDM
 
 
+delanim: MACRO
+	db $fc
+	ENDM
+dorestart: MACRO
+	db $fe
+	ENDM
 
 sine_wave: MACRO
 ; \1: amplitude
