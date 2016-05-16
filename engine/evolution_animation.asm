@@ -21,7 +21,7 @@ EvolutionAnimation: ; 4e5e1
 	pop de
 	pop hl
 
-	ld a, [Buffer4]
+	ld a, [wEvolutionCanceled]
 	and a
 	ret z
 
@@ -30,7 +30,7 @@ EvolutionAnimation: ; 4e5e1
 ; 4e607
 
 .EvolutionAnimation: ; 4e607
-	ld a, $e4
+	ld a, %11100100
 	ld [rOBP0], a
 
 	ld de, MUSIC_NONE
@@ -48,29 +48,29 @@ EvolutionAnimation: ; 4e5e1
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
-	ld a, [Buffer1]
+	ld a, [wEvolutionOldSpecies]
 	ld [PlayerHPPal], a
 
 	ld c, $0
 	call .GetSGBLayout
-	ld a, [Buffer1]
+	ld a, [wEvolutionOldSpecies]
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	call .PlaceFrontpic
 
 	ld de, VTiles2
 	ld hl, VTiles2 tile $31
-	ld bc, $31
+	ld bc, 7 * 7
 	call Request2bpp
 
-	ld a, $31
-	ld [wd1ec], a
+	ld a, 7 * 7
+	ld [wEvolutionPicOffset], a
 	call .ReplaceFrontpic
-	ld a, [Buffer2]
+	ld a, [wEvolutionNewSpecies]
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	call .LoadFrontpic
-	ld a, [Buffer1]
+	ld a, [wEvolutionOldSpecies]
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 
@@ -79,7 +79,7 @@ EvolutionAnimation: ; 4e5e1
 	call .check_statused
 	jr c, .skip_cry
 
-	ld a, [Buffer1]
+	ld a, [wEvolutionOldSpecies]
 	call PlayCry
 
 .skip_cry
@@ -95,13 +95,12 @@ EvolutionAnimation: ; 4e5e1
 	jr c, .cancel_evo
 
 	ld a, -7 * 7
-	ld [wd1ec], a
-
+	ld [wEvolutionPicOffset], a
 	call .ReplaceFrontpic
 	xor a
-	ld [Buffer4], a
+	ld [wEvolutionCanceled], a
 
-	ld a, [Buffer2]
+	ld a, [wEvolutionNewSpecies]
 	ld [PlayerHPPal], a
 
 	ld c, $0
@@ -136,9 +135,9 @@ EvolutionAnimation: ; 4e5e1
 
 .cancel_evo
 	ld a, $1
-	ld [Buffer4], a
+	ld [wEvolutionCanceled], a
 
-	ld a, [Buffer1]
+	ld a, [wEvolutionOldSpecies]
 	ld [PlayerHPPal], a
 
 	ld c, $0
@@ -200,10 +199,10 @@ EvolutionAnimation: ; 4e5e1
 
 .Flash: ; 4e741
 	ld a, -7 * 7 ; new stage
-	ld [wd1ec], a
+	ld [wEvolutionPicOffset], a
 	call .ReplaceFrontpic
 	ld a, 7 * 7 ; previous stage
-	ld [wd1ec], a
+	ld [wEvolutionPicOffset], a
 	call .ReplaceFrontpic
 	dec b
 	jr nz, .Flash
@@ -220,7 +219,7 @@ EvolutionAnimation: ; 4e5e1
 .loop1
 	push bc
 .loop2
-	ld a, [wd1ec]
+	ld a, [wEvolutionPicOffset]
 	add [hl]
 	ld [hli], a
 	dec c
@@ -269,7 +268,7 @@ EvolutionAnimation: ; 4e5e1
 ; 4e7a6
 
 .PlayEvolvedSFX: ; 4e7a6
-	ld a, [Buffer4]
+	ld a, [wEvolutionCanceled]
 	and a
 	ret nz
 	ld de, SFX_EVOLVED

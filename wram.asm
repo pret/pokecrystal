@@ -2037,14 +2037,17 @@ wCurHPAnimHighHP::  db ; d1f6
 	ds wCurHPAnimMaxHP - @
 
 MagikarpLength::
+wEvolutionOldSpecies::
 Buffer1:: ; d1ea
 	ds 1
 MovementType::
+wEvolutionNewSpecies::
 Buffer2:: ; d1eb
 	ds 1
-
+wEvolutionPicOffset::
 Buffer3::
 wd1ec:: ds 1
+wEvolutionCanceled::
 Buffer4::
 wd1ed:: ds 1
 Buffer5::

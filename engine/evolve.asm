@@ -29,7 +29,7 @@ EvolveAfterBattle_MasterLoop
 	cp $ff
 	jp z, .ReturnToMap
 
-	ld [Buffer1], a
+	ld [wEvolutionOldSpecies], a
 
 	push hl
 	ld a, [CurPartyMon]
@@ -41,7 +41,7 @@ EvolveAfterBattle_MasterLoop
 	and a
 	jp z, EvolveAfterBattle_MasterLoop
 
-	ld a, [Buffer1]
+	ld a, [wEvolutionOldSpecies]
 	dec a
 	ld b, 0
 	ld c, a
@@ -204,7 +204,7 @@ EvolveAfterBattle_MasterLoop
 	push hl
 
 	ld a, [hl]
-	ld [Buffer2], a
+	ld [wEvolutionNewSpecies], a
 	ld a, [CurPartyMon]
 	ld hl, PartyMonNicknames
 	call GetNick
@@ -240,7 +240,7 @@ EvolveAfterBattle_MasterLoop
 	ld a, [hl]
 	ld [CurSpecies], a
 	ld [TempMonSpecies], a
-	ld [Buffer2], a
+	ld [wEvolutionNewSpecies], a
 	ld [wd265], a
 	call GetPokemonName
 
@@ -530,7 +530,7 @@ FillMoves: ; 424e1
 	ld a, [CurPartyLevel]
 	cp b
 	jp c, .done
-	ld a, [Buffer1]
+	ld a, [wEvolutionOldSpecies]
 	and a
 	jr z, .CheckMove
 	ld a, [wd002]
@@ -563,7 +563,7 @@ FillMoves: ; 424e1
 	ld h, d
 	ld l, e
 	call ShiftMoves
-	ld a, [Buffer1]
+	ld a, [wEvolutionOldSpecies]
 	and a
 	jr z, .ShiftedMove
 	push de
@@ -580,7 +580,7 @@ FillMoves: ; 424e1
 .LearnMove:
 	ld a, [hl]
 	ld [de], a
-	ld a, [Buffer1]
+	ld a, [wEvolutionOldSpecies]
 	and a
 	jr z, .NextMove
 	push hl
