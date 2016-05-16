@@ -1457,7 +1457,7 @@ ChooseMoveToDelete: ; 12f5b
 	push af
 	set NO_TEXT_SCROLL, [hl]
 	call LoadFontsBattleExtra
-	call .asm_12f73
+	call .ChooseMoveToDelete
 	pop bc
 	ld a, b
 	ld [Options], a
@@ -1467,36 +1467,36 @@ ChooseMoveToDelete: ; 12f5b
 	ret
 ; 12f73
 
-.asm_12f73
+.ChooseMoveToDelete
 	call SetUpMoveScreenBG
 	ld de, DeleteMoveScreenAttrs
 	call SetMenuAttributes
 	call SetUpMoveList
 	ld hl, w2DMenuFlags1
 	set 6, [hl]
-	jr .asm_12f93
+	jr .enter_loop
 
-.asm_12f86
+.loop
 	call ScrollingMenuJoypad
-	bit 1, a
-	jp nz, .asm_12f9f
-	bit 0, a
-	jp nz, .asm_12f9c
+	bit B_BUTTON_F, a
+	jp nz, .b_button
+	bit A_BUTTON_F, a
+	jp nz, .a_button
 
-.asm_12f93
+.enter_loop
 	call PrepareToPlaceMoveData
 	call PlaceMoveData
-	jp .asm_12f86
+	jp .loop
 ; 12f9c
 
-.asm_12f9c
+.a_button
 	and a
-	jr .asm_12fa0
+	jr .finish
 
-.asm_12f9f
+.b_button
 	scf
 
-.asm_12fa0
+.finish
 	push af
 	xor a
 	ld [wSwitchMon], a

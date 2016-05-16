@@ -2832,11 +2832,11 @@ PlayerAttackDamage: ; 352e2
 	call GetDamageStatsCritical
 	jr c, .thickclub
 
-	ld hl, EnemyStats + 2
+	ld hl, EnemyDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld hl, PlayerStats
+	ld hl, PlayerAttack
 	jr .thickclub
 
 .special
@@ -2856,11 +2856,11 @@ PlayerAttackDamage: ; 352e2
 	call GetDamageStatsCritical
 	jr c, .lightball
 
-	ld hl, EnemyStats + SP_DEFENSE * 2
+	ld hl, EnemySpDef
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld hl, PlayerStats + SP_ATTACK * 2
+	ld hl, PlayerSpAtk
 
 .lightball
 ; Note: Returns player special attack at hl in hl.
@@ -3098,11 +3098,11 @@ EnemyAttackDamage: ; 353f6
 	call GetDamageStatsCritical
 	jr c, .thickclub
 
-	ld hl, PlayerStats + 2
+	ld hl, PlayerDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld hl, EnemyStats
+	ld hl, EnemyAttack
 	jr .thickclub
 
 .Special:
@@ -3121,11 +3121,11 @@ EnemyAttackDamage: ; 353f6
 	ld hl, EnemyMonSpclAtk
 	call GetDamageStatsCritical
 	jr c, .lightball
-	ld hl, PlayerStats + 8
+	ld hl, PlayerSpDef
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld hl, EnemyStats + 6
+	ld hl, EnemySpAtk
 
 .lightball
 	call LightBallBoost

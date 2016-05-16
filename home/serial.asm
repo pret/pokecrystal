@@ -143,12 +143,12 @@ Function78a:: ; 78a
 	jr nz, .reset_ffca
 	ld a, [hLinkPlayerNumber]
 	cp $1
-	jr nz, .not_player_1_or_wcf5b_zero
-	call Checkwcf5bNonzero
-	jr z, .not_player_1_or_wcf5b_zero
+	jr nz, .not_player_1_or_wLinkTimeoutFrames_zero
+	call CheckwLinkTimeoutFramesNonzero
+	jr z, .not_player_1_or_wLinkTimeoutFrames_zero
 	call .delay_15_cycles
 	push hl
-	ld hl, wcf5b + 1
+	ld hl, wLinkTimeoutFrames + 1
 	inc [hl]
 	jr nz, .no_rollover_up
 	dec hl
@@ -156,11 +156,11 @@ Function78a:: ; 78a
 
 .no_rollover_up
 	pop hl
-	call Checkwcf5bNonzero
+	call CheckwLinkTimeoutFramesNonzero
 	jr nz, .loop2
 	jp SerialDisconnected
 
-.not_player_1_or_wcf5b_zero
+.not_player_1_or_wLinkTimeoutFrames_zero
 	ld a, [rIE]
 	and $f
 	cp $8
@@ -176,6 +176,7 @@ Function78a:: ; 78a
 	ld a, [hLinkPlayerNumber]
 	cp $1
 	jr z, .reset_ffca
+
 	ld a, 255
 .delay_255_cycles
 	dec a
@@ -188,6 +189,7 @@ Function78a:: ; 78a
 	and $f
 	sub $8
 	jr nz, .rIE_not_equal_8
+
 	ld [wcf5d], a
 	ld a, $50
 	ld [wcf5d + 1], a
@@ -196,10 +198,10 @@ Function78a:: ; 78a
 	ld a, [hSerialReceive]
 	cp $fe
 	ret nz
-	call Checkwcf5bNonzero
-	jr z, .wcf5b_zero
+	call CheckwLinkTimeoutFramesNonzero
+	jr z, .wLinkTimeoutFrames_zero
 	push hl
-	ld hl, wcf5b + 1
+	ld hl, wLinkTimeoutFrames + 1
 	ld a, [hl]
 	dec a
 	ld [hld], a
@@ -209,10 +211,10 @@ Function78a:: ; 78a
 
 .no_rollover
 	pop hl
-	call Checkwcf5bNonzero
+	call CheckwLinkTimeoutFramesNonzero
 	jr z, SerialDisconnected
 
-.wcf5b_zero
+.wLinkTimeoutFrames_zero
 	ld a, [rIE]
 	and $f
 	cp $8
@@ -231,9 +233,9 @@ Function78a:: ; 78a
 	ret
 ; 82b
 
-Checkwcf5bNonzero:: ; 82b
+CheckwLinkTimeoutFramesNonzero:: ; 82b
 	push hl
-	ld hl, wcf5b
+	ld hl, wLinkTimeoutFrames
 	ld a, [hli]
 	or [hl]
 	pop hl
@@ -242,8 +244,8 @@ Checkwcf5bNonzero:: ; 82b
 
 SerialDisconnected:: ; 833
 	dec a
-	ld [wcf5b], a
-	ld [wcf5b + 1], a
+	ld [wLinkTimeoutFrames], a
+	ld [wLinkTimeoutFrames + 1], a
 	ret
 ; 83b
 
@@ -276,7 +278,7 @@ Function83b:: ; 83b
 Function862:: ; 862
 	call LoadTileMapToTempTileMap
 	callab PlaceWaitingText
-	call Function87d
+	call WaitLinkTransfer
 	jp Call_LoadTempTileMapToTileMap
 ; 871
 
@@ -284,21 +286,21 @@ Function862:: ; 862
 Function871:: ; 871
 	call LoadTileMapToTempTileMap
 	callab PlaceWaitingText
-	jp Function87d
+	jp WaitLinkTransfer
 ; 87d
 
 ; One "giant" leap for machinekind
 
-Function87d:: ; 87d
+WaitLinkTransfer:: ; 87d
 	ld a, $ff
 	ld [wOtherPlayerLinkAction], a
 .loop
 	call LinkTransfer
 	call DelayFrame
-	call Checkwcf5bNonzero
+	call CheckwLinkTimeoutFramesNonzero
 	jr z, .check
 	push hl
-	ld hl, wcf5b + 1
+	ld hl, wLinkTimeoutFrames + 1
 	dec [hl]
 	jr nz, .skip
 	dec hl

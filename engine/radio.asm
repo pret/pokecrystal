@@ -201,10 +201,11 @@ OaksPkmnTalk3:
 
 OaksPkmnTalk4:
 ; Choose a random route, and a random Pokemon from that route.
+.sample
 	call Random
 	and $1f
-	cp $f
-	jr nc, OaksPkmnTalk4
+	cp $f ; so wasteful
+	jr nc, .sample
 	; We now have a number between 0 and 14.
 	ld hl, .routes
 	ld c, a
@@ -1576,7 +1577,8 @@ BuenasPassword4:
 ; There are only 11 groups to choose from.
 .greater_than_11
 	call Random
-	and $f
+	maskbits NUM_PASSWORD_CATEGORIES
+	and x
 	cp NUM_PASSWORD_CATEGORIES
 	jr nc, .greater_than_11
 ; Store it in the high nybble of e.

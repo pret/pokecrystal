@@ -2507,7 +2507,7 @@ LinkMonStatsScreen: ; 4d319
 	callba LoadTradeScreenBorder
 	callba Link_WaitBGMap
 	callba InitTradeSpeciesList
-	callba Function28eff
+	callba SetTradeRoomBGPals
 	call WaitBGMap2
 	ret
 

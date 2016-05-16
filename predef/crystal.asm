@@ -566,7 +566,7 @@ _InitMG_Mobile_LinkTradePalMap: ; 49797
 	ret
 ; 49811
 
-Function49811: ; 49811
+LoadTradeRoomBGPals: ; 49811
 	ld hl, Palette_49826
 	ld de, UnknBGPals + $10
 	ld bc, $30

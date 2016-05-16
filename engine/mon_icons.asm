@@ -38,11 +38,11 @@ LoadMenuMonIcon: ; 8e83f
 
 
 .Jumptable: ; 8e854 (23:6854)
-	dw Function8e8d5 ; party menu
-	dw Function8e961 ; naming screen
-	dw Function8e97d ; moves (?)
+	dw PartyMenu_InitAnimatedMonIcon ; party menu
+	dw NamingScreen_InitAnimatedMonIcon ; naming screen
+	dw MoveList_InitAnimatedMonIcon ; moves (?)
 	dw Trade_LoadMonIconGFX ; trade
-	dw Function8e898 ; mobile
+	dw Mobile_InitAnimatedMonIcon ; mobile
 	dw Mobile_InitPartyMenuBGPal71 ; mobile
 	dw .GetPartyMenuMonIcon ; unused
 
@@ -84,8 +84,8 @@ LoadMenuMonIcon: ; 8e83f
 	ld [hl], a
 	ret
 
-Function8e898: ; 8e898 (23:6898)
-	call Function8e8d5
+Mobile_InitAnimatedMonIcon: ; 8e898 (23:6898)
+	call PartyMenu_InitAnimatedMonIcon
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
 	ld a, SPRITE_ANIM_SEQ_NULL
@@ -121,7 +121,7 @@ Mobile_InitPartyMenuBGPal71: ; 8e8b1 (23:68b1)
 	ld [wc608 + 1], a
 	ret
 
-Function8e8d5: ; 8e8d5 (23:68d5)
+PartyMenu_InitAnimatedMonIcon: ; 8e8d5 (23:68d5)
 	call InitPartyMenuIcon
 	call .SpawnItemIcon
 	call SetPartyMonIconAnimSpeed
@@ -144,11 +144,11 @@ Function8e8d5: ; 8e8d5 (23:68d5)
 	pop bc
 	pop hl
 	jr c, .mail
-	ld a, $3
+	ld a, SPRITE_ANIM_FRAMESET_03
 	jr .okay
 
 .mail
-	ld a, $2
+	ld a, SPRITE_ANIM_FRAMESET_02
 .okay
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
@@ -218,7 +218,7 @@ SetPartyMonIconAnimSpeed: ; 8e936 (23:6936)
 	db $00, $40, $80
 ; 8e961
 
-Function8e961: ; 8e961 (23:6961)
+NamingScreen_InitAnimatedMonIcon: ; 8e961 (23:6961)
 	ld a, [wd265]
 	call ReadMonMenuIcon
 	ld [CurIcon], a
@@ -232,7 +232,7 @@ Function8e961: ; 8e961 (23:6961)
 	ld [hl], SPRITE_ANIM_SEQ_NULL
 	ret
 
-Function8e97d: ; 8e97d (23:697d)
+MoveList_InitAnimatedMonIcon: ; 8e97d (23:697d)
 	ld a, [wd265]
 	call ReadMonMenuIcon
 	ld [CurIcon], a

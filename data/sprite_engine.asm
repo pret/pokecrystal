@@ -68,205 +68,223 @@ SpriteAnimFrameData: ; 8d6e6
 ; 8d76a
 ; OAM idx (see SpriteAnimOAMData), flip flags/duration
 .Frameset_00:
-	db $00, $20
+	db SPRITE_ANIM_FRAME_IDX_00, $20
 	db -1
 
 .Frameset_01:
-	db $00, $08
-	db $01, $08
+	db SPRITE_ANIM_FRAME_IDX_00, $08
+	db SPRITE_ANIM_FRAME_IDX_01, $08
 	db -2
 
 .Frameset_02:
-	db $3d, $08
-	db $3e, $08
+	db SPRITE_ANIM_FRAME_IDX_3D, $08
+	db SPRITE_ANIM_FRAME_IDX_3E, $08
 	db -2
 
 .Frameset_03:
-	db $3f, $08
-	db $40, $08
+	db SPRITE_ANIM_FRAME_IDX_3F, $08
+	db SPRITE_ANIM_FRAME_IDX_40, $08
 	db -2
 
 .Frameset_04:
-	db $00, $04
-	db $01, $04
+	db SPRITE_ANIM_FRAME_IDX_00, $04
+	db SPRITE_ANIM_FRAME_IDX_01, $04
 	db -2
 
 .Frameset_05:
-	db $3d, $04
-	db $3e, $04
+	db SPRITE_ANIM_FRAME_IDX_3D, $04
+	db SPRITE_ANIM_FRAME_IDX_3E, $04
 	db -2
 
 .Frameset_06:
-	db $3f, $04
-	db $40, $04
+	db SPRITE_ANIM_FRAME_IDX_3F, $04
+	db SPRITE_ANIM_FRAME_IDX_40, $04
 	db -2
 
 .Frameset_11:
-	db $00, $08
-	db $01, $08
-	db $00, $08
-	db $01, $48
+	db SPRITE_ANIM_FRAME_IDX_00, $08
+	db SPRITE_ANIM_FRAME_IDX_01, $08
+	db SPRITE_ANIM_FRAME_IDX_00, $08
+	db SPRITE_ANIM_FRAME_IDX_01, $48
 	db -2
 
 .Frameset_2d:
-	db $63, $08
-	db $64, $08
-	db $63, $08
-	db $64, $48
+	db SPRITE_ANIM_FRAME_IDX_63, $08
+	db SPRITE_ANIM_FRAME_IDX_64, $08
+	db SPRITE_ANIM_FRAME_IDX_63, $08
+	db SPRITE_ANIM_FRAME_IDX_64, $48
 	db -2
 
 .Frameset_2e:
-	db $65, $08
-	db $66, $08
-	db $65, $08
-	db $66, $48
+	db SPRITE_ANIM_FRAME_IDX_65, $08
+	db SPRITE_ANIM_FRAME_IDX_66, $08
+	db SPRITE_ANIM_FRAME_IDX_65, $08
+	db SPRITE_ANIM_FRAME_IDX_66, $48
 	db -2
 
 .Frameset_07:
-	db $1e, $01
-	db $1f, $01
+	db SPRITE_ANIM_FRAME_IDX_1E, $01
+	db SPRITE_ANIM_FRAME_IDX_1F, $01
 	db -2
 
 .Frameset_08:
-	db $20, $01
+	db SPRITE_ANIM_FRAME_IDX_20, $01
 	db -3, $01
 	db -2
 
 .Frameset_09:
-	db $21, $01
+	db SPRITE_ANIM_FRAME_IDX_21, $01
 	db -3, $01
 	db -2
 
 .Frameset_0a:
-	db $81, $0c
-	db $82, $01
-	db $83, $01
-	db $82, $04
-	db $81, $0c
-	db $82, $0c
-	db $83, $04
-	db $84, $20
-	db $85, $03
-	db $86, $03
-	db $87, $04
-	db $88, $04
-	db $89, $04
-	db $8a, $0a
-	db $8b, $07
+	db SPRITE_ANIM_FRAME_IDX_81, $0c
+	db SPRITE_ANIM_FRAME_IDX_82, $01
+	db SPRITE_ANIM_FRAME_IDX_83, $01
+	db SPRITE_ANIM_FRAME_IDX_82, $04
+	db SPRITE_ANIM_FRAME_IDX_81, $0c
+	db SPRITE_ANIM_FRAME_IDX_82, $0c
+	db SPRITE_ANIM_FRAME_IDX_83, $04
+	db SPRITE_ANIM_FRAME_IDX_84, $20
+	db SPRITE_ANIM_FRAME_IDX_85, $03
+	db SPRITE_ANIM_FRAME_IDX_86, $03
+	db SPRITE_ANIM_FRAME_IDX_87, $04
+	db SPRITE_ANIM_FRAME_IDX_88, $04
+	db SPRITE_ANIM_FRAME_IDX_89, $04
+	db SPRITE_ANIM_FRAME_IDX_8A, $0a
+	db SPRITE_ANIM_FRAME_IDX_8B, $07
 	db -1
 
 .Frameset_0b:
-	db $23, $03
-	db $23, $83
+	db SPRITE_ANIM_FRAME_IDX_23, $03
+	db SPRITE_ANIM_FRAME_IDX_23, $83
 	db -2
 
 .Frameset_0c:
-	db $24, $02
-	db $25, $02
-	db $26, $02
-	db $25, $02
+	db SPRITE_ANIM_FRAME_IDX_24, $02
+	db SPRITE_ANIM_FRAME_IDX_25, $02
+	db SPRITE_ANIM_FRAME_IDX_26, $02
+	db SPRITE_ANIM_FRAME_IDX_25, $02
 	db -2
 
 .Frameset_0d:
-	db $27, $07
-	db $28, $07
-	db $27, $87
-	db $28, $47
+	db SPRITE_ANIM_FRAME_IDX_27, $07
+	db SPRITE_ANIM_FRAME_IDX_28, $07
+	db SPRITE_ANIM_FRAME_IDX_27, $87
+	db SPRITE_ANIM_FRAME_IDX_28, $47
 	db -2
 
 .Frameset_0e:
-	db $29, $07
-	db $2a, $07
-	db $29, $07
-	db $2b, $07
+	db SPRITE_ANIM_FRAME_IDX_29, $07
+	db SPRITE_ANIM_FRAME_IDX_2A, $07
+	db SPRITE_ANIM_FRAME_IDX_29, $07
+	db SPRITE_ANIM_FRAME_IDX_2B, $07
 	db -2
 
 .Frameset_0f:
-	db $29, $07
-	db $2c, $07
-	db $2d, $07
-	db $2c, $07
-	db $29, $07
+	db SPRITE_ANIM_FRAME_IDX_29, $07
+	db SPRITE_ANIM_FRAME_IDX_2C, $07
+	db SPRITE_ANIM_FRAME_IDX_2D, $07
+	db SPRITE_ANIM_FRAME_IDX_2C, $07
+	db SPRITE_ANIM_FRAME_IDX_29, $07
 	db -1
 
 .Frameset_10:
-	db $2e, $14
+	db SPRITE_ANIM_FRAME_IDX_2E, $14
 	db -1
 
 .Frameset_12:
-	db $2f, $20
+	db SPRITE_ANIM_FRAME_IDX_2F, $20
 	db -1
 
 .Frameset_13:
-	db $30, $20
+	db SPRITE_ANIM_FRAME_IDX_30, $20
 	db -1
 
 .Frameset_14:
-	db $30, $03
-	db $31, $03
-	db $30, $03
-	db $31, $43
+	db SPRITE_ANIM_FRAME_IDX_30, $03
+	db SPRITE_ANIM_FRAME_IDX_31, $03
+	db SPRITE_ANIM_FRAME_IDX_30, $03
+	db SPRITE_ANIM_FRAME_IDX_31, $43
 	db -2
 
 .Frameset_15:
-	db $32, $04
-	db $33, $04
-	db $34, $04
+	db SPRITE_ANIM_FRAME_IDX_32, $04
+	db SPRITE_ANIM_FRAME_IDX_33, $04
+	db SPRITE_ANIM_FRAME_IDX_34, $04
 	db -4
 
 .Frameset_16:
-	db $35, $03
-	db $36, $03
+	db SPRITE_ANIM_FRAME_IDX_35, $03
+	db SPRITE_ANIM_FRAME_IDX_36, $03
 	db -2
 
 .Frameset_17:
-	db $37, $07
-	db $38, $07
+	db SPRITE_ANIM_FRAME_IDX_37, $07
+	db SPRITE_ANIM_FRAME_IDX_38, $07
 	db -2
 
 .Frameset_18:
-	db $39, $20
+	db SPRITE_ANIM_FRAME_IDX_39, $20
 	db -1
 
 .Frameset_19:
-	db $3b, $02
-	db $3a, $02
-	db $3b, $02
+	db SPRITE_ANIM_FRAME_IDX_3B, $02
+	db SPRITE_ANIM_FRAME_IDX_3A, $02
+	db SPRITE_ANIM_FRAME_IDX_3B, $02
 	db -1
 
 .Frameset_1a:
-	db $3c, $20
+	db SPRITE_ANIM_FRAME_IDX_3C, $20
 	db -1
 
 .Frameset_1b:
-	db $41, $08
-	db $42, $08
-	db $41, $08
-	db $42, $48
+	db SPRITE_ANIM_FRAME_IDX_41, $08
+	db SPRITE_ANIM_FRAME_IDX_42, $08
+	db SPRITE_ANIM_FRAME_IDX_41, $08
+	db SPRITE_ANIM_FRAME_IDX_42, $48
 	db -2
-	db $43, $08
-	db $44, $08
+
+; XXX
+	db SPRITE_ANIM_FRAME_IDX_43, $08
+	db SPRITE_ANIM_FRAME_IDX_44, $08
 	db -2
-	db $45, $08
-	db $46, $08
+
+; XXX
+	db SPRITE_ANIM_FRAME_IDX_45, $08
+	db SPRITE_ANIM_FRAME_IDX_46, $08
 	db -2
-	db $47, $08
-	db $48, $08
+
+; XXX
+	db SPRITE_ANIM_FRAME_IDX_47, $08
+	db SPRITE_ANIM_FRAME_IDX_48, $08
 	db -2
-	db $49, $01
-	db $49, $41
-	db $49, $c1
-	db $49, $81
+
+; XXX
+	db SPRITE_ANIM_FRAME_IDX_49, $01
+	db SPRITE_ANIM_FRAME_IDX_49, $41
+	db SPRITE_ANIM_FRAME_IDX_49, $c1
+	db SPRITE_ANIM_FRAME_IDX_49, $81
 	db -2
-	db $4a, $20
+
+; XXX
+	db SPRITE_ANIM_FRAME_IDX_4A, $20
 	db -1
-	db $4b, $20
+
+; XXX
+	db SPRITE_ANIM_FRAME_IDX_4B, $20
 	db -1
-	db $4c, $20
+
+; XXX
+	db SPRITE_ANIM_FRAME_IDX_4C, $20
 	db -1
-	db $4d, $20
+
+; XXX
+	db SPRITE_ANIM_FRAME_IDX_4D, $20
 	db -1
-	db $4e, $03
+
+; XXX
+	db SPRITE_ANIM_FRAME_IDX_4E, $03
 	db -3, $03
 	db -2
 
@@ -275,193 +293,193 @@ SpriteAnimFrameData: ; 8d6e6
 	db -1
 
 .Frameset_1d:
-	db $4f, $20
+	db SPRITE_ANIM_FRAME_IDX_4F, $20
 	db -1
 
 .Frameset_1e:
-	db $50, $02
-	db $51, $10
+	db SPRITE_ANIM_FRAME_IDX_50, $02
+	db SPRITE_ANIM_FRAME_IDX_51, $10
 	db -3, $01
-	db $52, $01
+	db SPRITE_ANIM_FRAME_IDX_52, $01
 	db -3, $01
-	db $53, $01
+	db SPRITE_ANIM_FRAME_IDX_53, $01
 	db -4
 
 .Frameset_1f:
-	db $54, $20
+	db SPRITE_ANIM_FRAME_IDX_54, $20
 	db -1
 
 .Frameset_20:
-	db $55, $20
+	db SPRITE_ANIM_FRAME_IDX_55, $20
 	db -1
 
 .Frameset_21:
-	db $55, $60
+	db SPRITE_ANIM_FRAME_IDX_55, $60
 	db -1
 
 .Frameset_22:
-	db $55, $a0
+	db SPRITE_ANIM_FRAME_IDX_55, $a0
 	db -1
 
 .Frameset_23:
-	db $55, $e0
+	db SPRITE_ANIM_FRAME_IDX_55, $e0
 	db -1
 
 .Frameset_24:
-	db $56, $0a
-	db $57, $09
-	db $58, $0a
-	db $59, $0a
-	db $58, $09
-	db $5a, $0a
+	db SPRITE_ANIM_FRAME_IDX_56, $0a
+	db SPRITE_ANIM_FRAME_IDX_57, $09
+	db SPRITE_ANIM_FRAME_IDX_58, $0a
+	db SPRITE_ANIM_FRAME_IDX_59, $0a
+	db SPRITE_ANIM_FRAME_IDX_58, $09
+	db SPRITE_ANIM_FRAME_IDX_5A, $0a
 	db -2
 
 .Frameset_25:
-	db $50, $02
-	db $5b, $02
-	db $50, $02
-	db $5b, $42
+	db SPRITE_ANIM_FRAME_IDX_50, $02
+	db SPRITE_ANIM_FRAME_IDX_5B, $02
+	db SPRITE_ANIM_FRAME_IDX_50, $02
+	db SPRITE_ANIM_FRAME_IDX_5B, $42
 	db -2
 
 .Frameset_26:
-	db $5c, $02
+	db SPRITE_ANIM_FRAME_IDX_5C, $02
 	db -1
 
 .Frameset_27:
-	db $5d, $02
+	db SPRITE_ANIM_FRAME_IDX_5D, $02
 	db -1
 
 .Frameset_28:
-	db $5e, $02
+	db SPRITE_ANIM_FRAME_IDX_5E, $02
 	db -1
 
 .Frameset_29:
-	db $5f, $02
+	db SPRITE_ANIM_FRAME_IDX_5F, $02
 	db -1
 
 .Frameset_2a:
-	db $60, $02
+	db SPRITE_ANIM_FRAME_IDX_60, $02
 	db -1
 
 .Frameset_2b:
-	db $61, $02
+	db SPRITE_ANIM_FRAME_IDX_61, $02
 	db -1
 
 .Frameset_2c:
-	db $62, $02
+	db SPRITE_ANIM_FRAME_IDX_62, $02
 	db -1
 
 .Frameset_2f:
-	db $32, $03
-	db $33, $03
-	db $34, $03
-	db $30, $03
-	db $31, $03
-	db $30, $03
-	db $31, $43
-	db $30, $03
-	db $31, $03
-	db $30, $03
-	db $31, $43
-	db $30, $03
-	db $31, $03
-	db $30, $03
-	db $31, $43
+	db SPRITE_ANIM_FRAME_IDX_32, $03
+	db SPRITE_ANIM_FRAME_IDX_33, $03
+	db SPRITE_ANIM_FRAME_IDX_34, $03
+	db SPRITE_ANIM_FRAME_IDX_30, $03
+	db SPRITE_ANIM_FRAME_IDX_31, $03
+	db SPRITE_ANIM_FRAME_IDX_30, $03
+	db SPRITE_ANIM_FRAME_IDX_31, $43
+	db SPRITE_ANIM_FRAME_IDX_30, $03
+	db SPRITE_ANIM_FRAME_IDX_31, $03
+	db SPRITE_ANIM_FRAME_IDX_30, $03
+	db SPRITE_ANIM_FRAME_IDX_31, $43
+	db SPRITE_ANIM_FRAME_IDX_30, $03
+	db SPRITE_ANIM_FRAME_IDX_31, $03
+	db SPRITE_ANIM_FRAME_IDX_30, $03
+	db SPRITE_ANIM_FRAME_IDX_31, $43
 	db -1
 
 .Frameset_30:
-	db $30, $03
-	db $31, $03
-	db $30, $03
-	db $31, $43
-	db $30, $03
-	db $31, $03
-	db $30, $03
-	db $31, $43
-	db $30, $03
-	db $31, $03
-	db $30, $03
-	db $31, $43
-	db $32, $03
-	db $33, $03
-	db $34, $03
+	db SPRITE_ANIM_FRAME_IDX_30, $03
+	db SPRITE_ANIM_FRAME_IDX_31, $03
+	db SPRITE_ANIM_FRAME_IDX_30, $03
+	db SPRITE_ANIM_FRAME_IDX_31, $43
+	db SPRITE_ANIM_FRAME_IDX_30, $03
+	db SPRITE_ANIM_FRAME_IDX_31, $03
+	db SPRITE_ANIM_FRAME_IDX_30, $03
+	db SPRITE_ANIM_FRAME_IDX_31, $43
+	db SPRITE_ANIM_FRAME_IDX_30, $03
+	db SPRITE_ANIM_FRAME_IDX_31, $03
+	db SPRITE_ANIM_FRAME_IDX_30, $03
+	db SPRITE_ANIM_FRAME_IDX_31, $43
+	db SPRITE_ANIM_FRAME_IDX_32, $03
+	db SPRITE_ANIM_FRAME_IDX_33, $03
+	db SPRITE_ANIM_FRAME_IDX_34, $03
 	db -4
 
 .Frameset_31:
-	db $67, $03
-	db $68, $03
+	db SPRITE_ANIM_FRAME_IDX_67, $03
+	db SPRITE_ANIM_FRAME_IDX_68, $03
 	db -2
 
 .Frameset_32:
-	db $6c, $03
+	db SPRITE_ANIM_FRAME_IDX_6C, $03
 	db -1
 
 .Frameset_33:
-	db $6d, $03
+	db SPRITE_ANIM_FRAME_IDX_6D, $03
 	db -1
 
 .Frameset_34:
-	db $69, $02
-	db $6a, $02
-	db $6b, $02
+	db SPRITE_ANIM_FRAME_IDX_69, $02
+	db SPRITE_ANIM_FRAME_IDX_6A, $02
+	db SPRITE_ANIM_FRAME_IDX_6B, $02
 	db -4
 
 .Frameset_35:
-	db $6e, $03
-	db $6f, $03
-	db $70, $03
-	db $71, $03
+	db SPRITE_ANIM_FRAME_IDX_6E, $03
+	db SPRITE_ANIM_FRAME_IDX_6F, $03
+	db SPRITE_ANIM_FRAME_IDX_70, $03
+	db SPRITE_ANIM_FRAME_IDX_71, $03
 	db -2
 
 .Frameset_36:
-	db $71, $03
-	db $6e, $07
+	db SPRITE_ANIM_FRAME_IDX_71, $03
+	db SPRITE_ANIM_FRAME_IDX_6E, $07
 	db -1
 
 .Frameset_37:
-	db $72, $20
-	db $73, $07
-	db $74, $07
+	db SPRITE_ANIM_FRAME_IDX_72, $20
+	db SPRITE_ANIM_FRAME_IDX_73, $07
+	db SPRITE_ANIM_FRAME_IDX_74, $07
 	db -1
 
 .Frameset_38:
-	db $75, $03
+	db SPRITE_ANIM_FRAME_IDX_75, $03
 	db -1
 
 .Frameset_39:
-	db $76, $03
-	db $77, $03
-	db $78, $07
+	db SPRITE_ANIM_FRAME_IDX_76, $03
+	db SPRITE_ANIM_FRAME_IDX_77, $03
+	db SPRITE_ANIM_FRAME_IDX_78, $07
 	db -4
 
 .Frameset_3a:
-	db $76, $43
-	db $77, $43
-	db $78, $47
+	db SPRITE_ANIM_FRAME_IDX_76, $43
+	db SPRITE_ANIM_FRAME_IDX_77, $43
+	db SPRITE_ANIM_FRAME_IDX_78, $47
 	db -4
 
 .Frameset_3b:
-	db $76, $83
-	db $77, $83
-	db $78, $87
+	db SPRITE_ANIM_FRAME_IDX_76, $83
+	db SPRITE_ANIM_FRAME_IDX_77, $83
+	db SPRITE_ANIM_FRAME_IDX_78, $87
 	db -4
 
 .Frameset_3c:
-	db $76, $c3
-	db $77, $c3
-	db $78, $c7
+	db SPRITE_ANIM_FRAME_IDX_76, $c3
+	db SPRITE_ANIM_FRAME_IDX_77, $c3
+	db SPRITE_ANIM_FRAME_IDX_78, $c7
 	db -4
 
 .Frameset_3d:
-	db $79, $03
-	db $7a, $03
-	db $7b, $03
-	db $7c, $07
-	db $7d, $07
+	db SPRITE_ANIM_FRAME_IDX_79, $03
+	db SPRITE_ANIM_FRAME_IDX_7A, $03
+	db SPRITE_ANIM_FRAME_IDX_7B, $03
+	db SPRITE_ANIM_FRAME_IDX_7C, $07
+	db SPRITE_ANIM_FRAME_IDX_7D, $07
 	db -1
 
 .Frameset_3e:
-	db $7e, $03
+	db SPRITE_ANIM_FRAME_IDX_7E, $03
 	db -1
 
 .Frameset_3f:
@@ -469,13 +487,13 @@ SpriteAnimFrameData: ; 8d6e6
 	db -1
 
 .Frameset_40:
-	db $7f, $08
-	db $80, $08
+	db SPRITE_ANIM_FRAME_IDX_7F, $08
+	db SPRITE_ANIM_FRAME_IDX_80, $08
 	db -1
 
 .Frameset_41:
-	db $7f, $48
-	db $80, $48
+	db SPRITE_ANIM_FRAME_IDX_7F, $48
+	db SPRITE_ANIM_FRAME_IDX_80, $48
 	db -1
 ; 8d94d
 

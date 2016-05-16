@@ -270,3 +270,22 @@ jumptable: MACRO
 	ld l, a
 	jp [hl]
 endm
+
+maskbits: macro
+; returns to x
+; usage in rejection sampling
+; .loop
+; 	call Random
+; 	maskbits 30
+; 	and x
+; 	cp 30
+; 	jr nc, .loop
+
+x = 1
+rept 8
+IF \1 > x
+x = (x + 1) * 2 +- 1
+ENDC
+endr
+endm
+

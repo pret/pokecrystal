@@ -536,10 +536,18 @@ wTurnEnded:: ds 1 ; c6b4
 	ds 1
 
 PlayerStats:: ; c6b6
-	ds 10
+PlayerAttack:: ds 2
+PlayerDefense:: ds 2
+PlayerSpeed:: ds 2
+PlayerSpAtk:: ds 2
+PlayerSpDef:: ds 2
 	ds 1
 EnemyStats:: ; c6c1
-	ds 10
+EnemyAttack:: ds 2
+EnemyDefense:: ds 2
+EnemySpeed:: ds 2
+EnemySpAtk:: ds 2
+EnemySpDef:: ds 2
 	ds 1
 
 PlayerStatLevels:: ; c6cc
@@ -1270,7 +1278,7 @@ wOtherPlayerLinkMode:: ds 1
 wOtherPlayerLinkAction:: ds 4
 wPlayerLinkAction:: ds 1
 wcf57:: ds 4
-wcf5b:: dw
+wLinkTimeoutFrames:: dw ; cf5b
 wcf5d:: ds 2
 
 MonType:: ; cf5f
