@@ -2902,31 +2902,31 @@ wPokeAnimPointer:: ds 2
 wPokeAnimSpecies:: ds 1
 wPokeAnimUnownLetter:: ds 1
 wPokeAnimSpeciesOrUnown:: ds 1
-w2_d16e:: ds 1
+wPokeAnimGraphicStartTile:: ds 1
 wPokeAnimCoord:: ds 2
 wPokeAnimFrontpicHeight:: ds 1
 ; PokeAnim Data
 wPokeAnimExtraFlag:: ds 1
-w2_d173:: ds 1
+wPokeAnimSpeed:: ds 1
 wPokeAnimPointerBank:: ds 1
 wPokeAnimPointerAddr:: ds 2
 wPokeAnimFramesBank:: ds 1
 wPokeAnimFramesAddr:: ds 2
 wPokeAnimBitmaskBank:: ds 1
 wPokeAnimBitmaskAddr:: ds 2
-w2_d17d:: ds 1
-w2_d17e:: ds 1
+wPokeAnimFrame:: ds 1
+wPokeAnimJumptableIndex:: ds 1
 wPokeAnimRepeatTimer:: ds 1
-w2_d180:: ds 1
+wPokeAnimCurBitmask:: ds 1
 wPokeAnimWaitCounter:: ds 1
-w2_d182:: ds 1
-w2_d183:: ds 1
-w2_d184:: ds 1
-w2_d185:: ds 1
-w2_d186:: ds 1
-w2_d187:: ds 1
-w2_d188:: ds 1
-	ds 8
+wPokeAnimCommand:: ds 1
+wPokeAnimParameter:: ds 1
+	ds 1
+wPokeAnimBitmaskCurCol:: ds 1
+wPokeAnimBitmaskCurRow:: ds 1
+wPokeAnimBitmaskCurBit:: ds 1
+wPokeAnimBitmaskBuffer:: ds 7
+	ds 2
 wPokeAnimStructEnd::
 
 
