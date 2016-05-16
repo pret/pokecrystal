@@ -41,10 +41,10 @@ _AnimateHPBar: ; d627
 ; d65f
 
 .IsMaximumMoreThan48Pixels: ; d65f
-	ld a, [Buffer2]
+	ld a, [wCurHPAnimMaxHP + 1]
 	and a
 	jr nz, .player
-	ld a, [Buffer1]
+	ld a, [wCurHPAnimMaxHP]
 	cp 6 * 8
 	jr nc, .player
 	and a
@@ -56,11 +56,8 @@ _AnimateHPBar: ; d627
 ; d670
 
 .ComputePixels: ; d670
-; Buffer1-2: Max HP
-; Buffer3-4: Old HP
-; Buffer5-6: New HP
 	push hl
-	ld hl, Buffer1
+	ld hl, wCurHPAnimMaxHP
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -74,20 +71,20 @@ _AnimateHPBar: ; d627
 	ld a, e
 	ld [wCurHPBarPixels], a
 
-	ld a, [Buffer5]
+	ld a, [wCurHPAnimNewHP]
 	ld c, a
-	ld a, [Buffer6]
+	ld a, [wCurHPAnimNewHP + 1]
 	ld b, a
-	ld a, [Buffer1]
+	ld a, [wCurHPAnimMaxHP]
 	ld e, a
-	ld a, [Buffer2]
+	ld a, [wCurHPAnimMaxHP + 1]
 	ld d, a
 	call ComputeHPBarPixels
 	ld a, e
 	ld [wNewHPBarPixels], a
 
 	push hl
-	ld hl, Buffer3
+	ld hl, wCurHPAnimOldHP
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
@@ -104,18 +101,18 @@ _AnimateHPBar: ; d627
 	sbc b
 	ld d, a
 	jr c, .negative
-	ld a, [Buffer3]
-	ld [wd1f5], a
-	ld a, [Buffer5]
-	ld [wd1f6], a
+	ld a, [wCurHPAnimOldHP]
+	ld [wCurHPAnimLowHP], a
+	ld a, [wCurHPAnimNewHP]
+	ld [wCurHPAnimHighHP], a
 	ld bc, 1
 	jr .got_direction
 
 .negative
-	ld a, [Buffer3]
-	ld [wd1f6], a
-	ld a, [Buffer5]
-	ld [wd1f5], a
+	ld a, [wCurHPAnimOldHP]
+	ld [wCurHPAnimHighHP], a
+	ld a, [wCurHPAnimNewHP]
+	ld [wCurHPAnimLowHP], a
 	ld a, e
 	xor $ff
 	inc a
@@ -126,9 +123,9 @@ _AnimateHPBar: ; d627
 	ld bc, -1
 .got_direction
 	ld a, d
-	ld [wd1f3], a
+	ld [wCurHPAnimDeltaHP], a
 	ld a, e
-	ld [wd1f4], a
+	ld [wCurHPAnimDeltaHP + 1], a
 	ret
 ; d6e2
 
@@ -151,7 +148,7 @@ ShortAnim_UpdateVariables: ; d6e2
 
 LongAnim_UpdateVariables: ; d6f5
 .loop
-	ld hl, Buffer3
+	ld hl, wCurHPAnimOldHP
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -171,13 +168,13 @@ LongAnim_UpdateVariables: ; d6f5
 	ld h, d
 	add hl, bc
 	ld a, l
-	ld [Buffer3], a
+	ld [wCurHPAnimOldHP], a
 	ld a, h
-	ld [Buffer4], a
+	ld [wCurHPAnimOldHP + 1], a
 	push hl
 	push de
 	push bc
-	ld hl, Buffer1
+	ld hl, wCurHPAnimMaxHP
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -222,13 +219,13 @@ ShortHPBarAnim_UpdateTiles: ; d730
 
 LongHPBarAnim_UpdateTiles: ; d749
 	call HPBarAnim_UpdateHPRemaining
-	ld a, [Buffer3]
+	ld a, [wCurHPAnimOldHP]
 	ld c, a
-	ld a, [Buffer4]
+	ld a, [wCurHPAnimOldHP + 1]
 	ld b, a
-	ld a, [Buffer1]
+	ld a, [wCurHPAnimMaxHP]
 	ld e, a
-	ld a, [Buffer2]
+	ld a, [wCurHPAnimMaxHP + 1]
 	ld d, a
 	call ComputeHPBarPixels
 	ld c, e
@@ -277,9 +274,9 @@ HPBarAnim_UpdateHPRemaining: ; d784
 	ld [hli], a
 	ld [hld], a
 	dec hl
-	ld a, [Buffer3]
+	ld a, [wCurHPAnimOldHP]
 	ld [StringBuffer2 + 1], a
-	ld a, [Buffer4]
+	ld a, [wCurHPAnimOldHP + 1]
 	ld [StringBuffer2], a
 	ld de, StringBuffer2
 	lb bc, 2, 3
@@ -292,9 +289,9 @@ HPBarAnim_PaletteUpdate: ; d7b4
 	ld a, [hCGB]
 	and a
 	ret z
-	ld hl, wd1f0
+	ld hl, wCurHPAnimPal
 	call SetHPPal
-	ld a, [wd1f0]
+	ld a, [wCurHPAnimPal]
 	ld c, a
 	callba ApplyHPBarPals
 	ret
@@ -375,7 +372,7 @@ HPBarAnim_BGMapUpdate: ; d7c9
 ; d839
 
 ShortHPBar_CalcPixelFrame: ; d839
-	ld a, [Buffer1]
+	ld a, [wCurHPAnimMaxHP]
 	ld c, a
 	ld b, 0
 	ld hl, 0
@@ -411,24 +408,24 @@ ShortHPBar_CalcPixelFrame: ; d839
 	jr c, .no_carry
 	inc b
 .no_carry
-	ld a, [wd1f5]
+	ld a, [wCurHPAnimLowHP]
 	cp b
 	jr nc, .finish
-	ld a, [wd1f6]
+	ld a, [wCurHPAnimHighHP]
 	cp b
 	jr c, .finish
 	ld a, b
 .finish
-	ld [Buffer3], a
+	ld [wCurHPAnimOldHP], a
 	ret
 
 .return_zero
 	xor a
-	ld [Buffer3], a
+	ld [wCurHPAnimOldHP], a
 	ret
 
 .return_max
-	ld a, [Buffer1]
-	ld [Buffer3], a
+	ld a, [wCurHPAnimMaxHP]
+	ld [wCurHPAnimOldHP], a
 	ret
 ; d88c

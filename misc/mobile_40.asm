@@ -7450,17 +7450,17 @@ Function10339a: ; 10339a
 Function1033af: ; 1033af
 	call GetJoypad
 	ld a, [hJoyPressed]
-	bit 5, a
+	bit D_LEFT_F, a
 	jr nz, .left
-	bit 4, a
+	bit D_RIGHT_F, a
 	jr nz, .right
-	bit 1, a
+	bit B_BUTTON_F, a
 	jr nz, .b
-	bit 0, a
+	bit A_BUTTON_F, a
 	jr nz, .a
-	bit 6, a
+	bit D_UP_F, a
 	jr nz, .up
-	bit 7, a
+	bit D_DOWN_F, a
 	jr nz, .down
 	ret
 
@@ -7468,7 +7468,7 @@ Function1033af: ; 1033af
 	ld a, [wd1f0]
 	dec a
 	ld [wd1f0], a
-	cp $01
+	cp 1
 	ret nc
 	ld a, [wd1ee]
 	ld [wd1f0], a
@@ -7482,7 +7482,7 @@ Function1033af: ; 1033af
 	ld a, [wd1ee]
 	cp c
 	ret nc
-	ld a, $01
+	ld a, 1
 	ld [wd1f0], a
 	ret
 
@@ -7494,8 +7494,8 @@ Function1033af: ; 1033af
 
 .a
 	ld a, [wd1f3]
-	cp $03
-	jr nz, .asm_103412
+	cp 3
+	jr nz, .a_return
 	ld de, SFX_TRANSACTION
 	call PlaySFX
 	ld hl, Buffer2
@@ -7506,9 +7506,9 @@ Function1033af: ; 1033af
 
 .left
 .right
-.asm_103412
+.a_return
 	ld a, [wd1f3]
-	cp $03
+	cp 3
 	ret z
 	ld de, SFX_PUSH_BUTTON
 	call PlaySFX
