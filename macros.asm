@@ -257,9 +257,9 @@ debgcoord EQUS "bgcoord de,"
 bcbgcoord EQUS "bgcoord bc,"
 bgrows EQUS "* $20"
 
-palred EQUS "$0400 *"
+palred EQUS "$0001 *"
 palgreen EQUS "$0020 *"
-palblue EQUS "$0001 *"
+palblue EQUS "$0400 *"
 
 dsprite: MACRO
 ; conditional segment is there because not every instance of

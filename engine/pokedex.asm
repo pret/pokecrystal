@@ -694,9 +694,9 @@ Pokedex_UpdateSearchScreen: ; 40471 (10:4471)
 .show_search_results
 	ld [wDexListingEnd], a
 	ld a, [wDexListingScrollOffset]
-	ld [wc7e0], a
+	ld [wDexListingScrollOffsetBackup], a
 	ld a, [wDexListingCursor]
-	ld [wc7e1], a
+	ld [wDexListingCursorBackup], a
 	ld a, [wLastDexEntry]
 	ld [wcf65], a
 	xor a
@@ -777,9 +777,9 @@ Pokedex_UpdateSearchResultsScreen: ; 40562 (10:4562)
 	ret
 
 .return_to_search_screen
-	ld a, [wc7e0]
+	ld a, [wDexListingScrollOffsetBackup]
 	ld [wDexListingScrollOffset], a
-	ld a, [wc7e1]
+	ld a, [wDexListingCursorBackup]
 	ld [wDexListingCursor], a
 	ld a, [wcf65]
 	ld [wLastDexEntry], a

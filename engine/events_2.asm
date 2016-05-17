@@ -458,7 +458,7 @@ HandleQueuedCommand: ; 97e79
 .okay
 	ld e, a
 	ld d, 0
-	ld hl, .Jumptable_ba
+	ld hl, .Jumptable
 	add hl, de
 	add hl, de
 	add hl, de
@@ -472,7 +472,7 @@ HandleQueuedCommand: ; 97e79
 	ret
 ; 97e94
 
-.Jumptable_ba: ; 97e94
+.Jumptable: ; 97e94
 	dba CmdQueue_Null
 	dba CmdQueue_Null2
 	dba CmdQueue_StoneTable
@@ -531,9 +531,9 @@ CmdQueue_Type4: ; 97ebc
 	ld a, [hl]
 	dec a
 	ld [hl], a
-	jr z, .asm_97eee
+	jr z, .finish
 	and $1
-	jr z, .asm_97ee4
+	jr z, .add
 	ld hl, 2
 	add hl, bc
 	ld a, [hSCY]
@@ -541,7 +541,7 @@ CmdQueue_Type4: ; 97ebc
 	ld [hSCY], a
 	ret
 
-.asm_97ee4
+.add
 	ld hl, 2
 	add hl, bc
 	ld a, [hSCY]
@@ -549,7 +549,7 @@ CmdQueue_Type4: ; 97ebc
 	ld [hSCY], a
 	ret
 
-.asm_97eee
+.finish
 	ld hl, 4
 	add hl, bc
 	ld a, [hl]

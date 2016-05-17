@@ -5129,10 +5129,10 @@ LoadPoisonBGPals: ; cbcdd
 	ld hl, BGPals
 	ld c, $20
 .loop
-; RGB 31, 21, 28
-	ld a, (palred 31 + palgreen 21 + palblue 28) % $100
+; RGB 28, 21, 31
+	ld a, (palred 28 + palgreen 21 + palblue 31) % $100
 	ld [hli], a
-	ld a, (palred 31 + palgreen 21 + palblue 28) / $100
+	ld a, (palred 28 + palgreen 21 + palblue 31) / $100
 	ld [hli], a
 	dec c
 	jr nz, .loop
@@ -5358,11 +5358,11 @@ RotateUnownFrontpic: ; e0000
 
 	ld hl, OverworldMap
 	ld de, sScratch
-	ld bc, $31 tiles
+	ld bc, 7 * 7 tiles
 	call CopyBytes
 	pop hl
 	ld de, sScratch
-	ld c, $31
+	ld c, 7 * 7
 	ld a, [hROMBank]
 	ld b, a
 	call Get2bpp
@@ -5774,7 +5774,8 @@ DrawPokedexSearchResultsWindow: ; 1de1d1 (77:61d1)
 
 .esults_D ; 1de23c
 ; (SEARCH R)
-	db   "ESULTS<NEXT>"
+	db   "ESULTS"
+	next ""
 ; (### FOUN)
 	next "D!@"
 

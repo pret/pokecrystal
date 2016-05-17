@@ -258,8 +258,8 @@ MapSetupCommands: ; 15440
 	dba LoadMapPalettes ; 11
 	dba LoadWildMonData ; 12
 	dba RefreshMapSprites ; 13
-	dba RunCallback_05_03 ; 14
-	dba RunCallback_03 ; 15
+	dba HandleNewMap ; 14
+	dba InitCommandQueue ; 15
 	dba LoadObjectsRunCallback_02 ; 16
 	dba LoadSpawnPoint ; 17
 	dba EnterMapConnection ; 18

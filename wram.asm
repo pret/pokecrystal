@@ -875,8 +875,8 @@ wUnlockedUnownMode:: ds 1
 wDexCurrentUnownIndex:: ds 1
 wDexUnownCount:: ds 1
 wDexConvertedMonType:: ds 1 ; mon type converted from dex search mon type
-wc7e0:: ds 1
-wc7e1:: ds 1
+wDexListingScrollOffsetBackup:: ds 1
+wDexListingCursorBackup:: ds 1
 wBackupDexListingCursor::
 wc7e2:: ds 1
 wBackupDexListingPage::
@@ -896,7 +896,7 @@ ENDC
 
 wMiscEnd::
 
-wc7e8:: ds 24
+wc7e8:: ds 24 ; ????
 
 SECTION "Overworld Map", WRAM0 [$c800]
 
@@ -1878,7 +1878,7 @@ UsedSpritesEnd::
 wd154:: ; d154
 	ds 31 ; 64
 
-wd173:: ds 1
+wd173:: ds 1 ; related to command queue type 3
 	ds 13
 wd181:: ds 1
 wd182:: ds 1
