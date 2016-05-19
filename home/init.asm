@@ -207,7 +207,7 @@ ClearWRAM:: ; 25a
 	pop af
 	inc a
 	cp 8
-	jr nc, .bank_loop
+	jr nc, .bank_loop ; Should be jr c
 	ret
 ; 270
 
