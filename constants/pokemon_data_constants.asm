@@ -4,8 +4,8 @@
 	const SLIGHTLY_FAST
 	const SLIGHTLY_SLOW
 	const MEDIUM_SLOW
-	const SLOW
 	const FAST
+	const SLOW
 
 ; egg group constants
 const_value SET 1

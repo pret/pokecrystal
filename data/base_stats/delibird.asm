@@ -14,7 +14,7 @@
 	db 5 ; unknown
 	dn 6, 6 ; frontpic dimensions
 	db 0, 0, 0, 0 ; padding
-	db SLOW ; growth rate
+	db FAST ; growth rate
 	dn AMPHIBIAN, FIELD ; egg groups
 
 	; tmhm

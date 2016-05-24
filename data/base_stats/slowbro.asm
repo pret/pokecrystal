@@ -1,4 +1,4 @@
-	db SLOWBRO ; 080
+	db FASTBRO ; 080
 
 	db  95,  75, 110,  30, 100,  80
 	;   hp  atk  def  spd  sat  sdf
