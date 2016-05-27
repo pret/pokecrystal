@@ -341,25 +341,11 @@ Special_ReloadSpritesNoPalettes:: ; d91
 
 
 FarCallSwapTextboxPalettes:: ; db1
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(SwapTextboxPalettes)
-	rst Bankswitch
-	call SwapTextboxPalettes
-	pop af
-	rst Bankswitch
+	homecall SwapTextboxPalettes
 	ret
 ; dbd
 
 FarCallScrollBGMapPalettes:: ; dbd
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(ScrollBGMapPalettes)
-	rst Bankswitch
-
-	call ScrollBGMapPalettes
-
-	pop af
-	rst Bankswitch
+	homecall ScrollBGMapPalettes
 	ret
 ; dc9

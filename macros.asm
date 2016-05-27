@@ -302,3 +302,15 @@ ENDC
 endr
 endm
 
+homecall: MACRO
+	ld a, [hROMBank]
+	push af
+	ld a, BANK(\1)
+	rst Bankswitch
+
+	call \1
+
+	pop af
+	rst Bankswitch
+ENDM
+

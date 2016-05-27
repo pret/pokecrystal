@@ -1,12 +1,5 @@
 PrinterReceive:: ; 2057
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_PrinterReceive)
-	rst Bankswitch
-
-	call _PrinterReceive
-	pop af
-	rst Bankswitch
+	homecall _PrinterReceive
 
 	ret
 ; 2063

@@ -2929,7 +2929,7 @@ Play_SFX_FULL_HEAL: ; f780
 	ret
 ; f789
 
-UseItemText ; f789
+UseItemText: ; f789
 	ld hl, UsedItemText
 	call PrintText
 	call Play_SFX_FULL_HEAL

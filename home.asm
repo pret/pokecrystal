@@ -386,28 +386,12 @@ CopyDataUntil:: ; 318c
 ; 0x3198
 
 PrintNum:: ; 3198
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_PrintNum)
-	rst Bankswitch
-
-	call _PrintNum
-
-	pop af
-	rst Bankswitch
+	homecall _PrintNum
 	ret
 ; 31a4
 
 MobilePrintNum:: ; 31a4
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_MobilePrintNum)
-	rst Bankswitch
-
-	call _MobilePrintNum
-
-	pop af
-	rst Bankswitch
+	homecall _MobilePrintNum
 	ret
 ; 31b0
 
@@ -737,10 +721,10 @@ GetHPPal:: ; 3353
 
 	ld d, HP_GREEN
 	ld a, e
-	cp 24
+	cp (50 * 48 / 100)
 	ret nc
 	inc d ; yellow
-	cp 10
+	cp (21 * 48 / 100)
 	ret nc
 	inc d ; red
 	ret
