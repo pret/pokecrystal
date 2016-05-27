@@ -14,7 +14,7 @@
 	db 5 ; unknown
 	dn 5, 5 ; frontpic dimensions
 	db 0, 0, 0, 0 ; padding
-	db FAST ; growth rate
+	db SLOW ; growth rate
 	dn FIELD, FIELD ; egg groups
 
 	; tmhm
