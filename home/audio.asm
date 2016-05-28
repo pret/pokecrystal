@@ -196,7 +196,7 @@ endr
 
 PlaySFX:: ; 3c23
 ; Play sound effect de.
-; Sound effects are ordered by priority (lowest to highest)
+; Sound effects are ordered by priority (highest to lowest)
 
 	push hl
 	push de
