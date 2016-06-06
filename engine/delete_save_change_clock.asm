@@ -1,6 +1,6 @@
 _ResetClock: ; 4d3b1
 	callba BlankScreen
-	ld b, SCGB_08
+	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call LoadStandardFont
 	call LoadFontsExtra
@@ -261,7 +261,7 @@ ClockResetPassword: ; 4d41e
 
 _DeleteSaveData: ; 4d54c
 	callba BlankScreen
-	ld b, SCGB_08
+	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call LoadStandardFont
 	call LoadFontsExtra

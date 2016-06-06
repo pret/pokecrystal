@@ -2035,7 +2035,7 @@ INCLUDE "tilesets/ob.pal"
 RoofPals:
 INCLUDE "tilesets/roof.pal"
 
-Palettes_b641:
+DiplomaPalettes:
 	RGB 27, 31, 27
 	RGB 21, 21, 21
 	RGB 13, 13, 13

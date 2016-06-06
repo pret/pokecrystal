@@ -153,7 +153,7 @@ EvolutionAnimation: ; 4e5e1
 ; 4e703
 
 .GetSGBLayout: ; 4e703
-	ld b, SCGB_0B
+	ld b, SCGB_EVOLUTION
 	jp GetSGBLayout
 ; 4e708
 

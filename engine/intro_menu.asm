@@ -1048,7 +1048,7 @@ StartTitleScreen: ; 6219
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	ld b, SCGB_08
+	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call UpdateTimePals
 	ld a, [wcf64]

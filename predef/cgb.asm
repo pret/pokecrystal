@@ -41,13 +41,13 @@ Predef_LoadSGBLayoutCGB: ; 8d59
 	dw _CGB_SlotMachine
 	dw _CGB06
 	dw _CGB07
-	dw _CGB08
+	dw _CGB_Diploma
 	dw _CGB_MapPals
-	dw _CGB0a
-	dw _CGB0b
+	dw _CGB_PartyMenu
+	dw _CGB_Evolution
 	dw _CGB0c
 	dw _CGB0d
-	dw _CGB0e
+	dw _CGB_MoveList
 	dw _CGB0f
 	dw _CGB_PokedexSearchOption
 	dw _CGB11
@@ -56,13 +56,13 @@ Predef_LoadSGBLayoutCGB: ; 8d59
 	dw _CGB_PackPals
 	dw _CGB_TrainerCard
 	dw _CGB_PokedexUnownMode
-	dw _CGB17
-	dw _CGB18
+	dw _CGB_BillsPC
+	dw _CGB_UnownPuzzle
 	dw _CGB_GamefreakLogo ; called before copyright
 	dw _CGB_PlayerOrMonFrontpicPals
 	dw _CGB_TradeTube
 	dw _CGB_TrainerOrMonFrontpicPals
-	dw _CGB1d
+	dw _CGB_MysteryGift
 	dw _CGB1e
 ; 8db8
 
@@ -329,7 +329,7 @@ Palette8fc2: ; 8fc2
 	RGB 00, 00, 00
 ; 8fca
 
-_CGB17: ; 8fca
+_CGB_BillsPC: ; 8fca
 	ld de, UnknBGPals
 	ld a, $1d
 	call GetPredefPal
@@ -568,8 +568,8 @@ _CGB11: ; 9195
 	ret
 ; 91ad
 
-_CGB08: ; 91ad
-	ld hl, Palettes_b641
+_CGB_Diploma: ; 91ad
+	ld hl, DiplomaPalettes
 	ld de, UnknBGPals
 	ld bc, 16 palettes
 	ld a, $5
@@ -589,7 +589,7 @@ _CGB_MapPals: ; 91c8
 	ret
 ; 91d1
 
-_CGB0a: ; 91d1
+_CGB_PartyMenu: ; 91d1
 	ld hl, PalPacket_9c56 + 1
 	call CopyFourPalettes
 	call InitPartyMenuBGPal0
@@ -599,7 +599,7 @@ _CGB0a: ; 91d1
 	ret
 ; 91e4
 
-_CGB0b: ; 91e4
+_CGB_Evolution: ; 91e4
 	ld de, UnknBGPals
 	ld a, c
 	and a
@@ -645,7 +645,7 @@ _CGB0c: ; 9228
 	ld bc, 2 palettes
 	ld a, $5
 	call FarCopyWRAM
-	ld a, SCGB_08
+	ld a, SCGB_DIPLOMA
 	ld [SGBPredef], a
 	call ApplyPals
 	ld a, $1
@@ -661,7 +661,7 @@ _CGB0d: ; 9251
 	ret
 ; 925e
 
-_CGB18: ; 925e
+_CGB_UnownPuzzle: ; 925e
 	ld hl, PalPacket_9bc6 + 1
 	call CopyFourPalettes
 	ld de, UnknOBPals
@@ -786,7 +786,7 @@ _CGB_TrainerCard: ; 9289
 	ret
 ; 9373
 
-_CGB0e: ; 9373
+_CGB_MoveList: ; 9373
 	ld de, UnknBGPals
 	ld a, $10
 	call GetPredefPal
@@ -1076,7 +1076,7 @@ _CGB_TrainerOrMonFrontpicPals: ; 9578
 	ret
 ; 9591
 
-_CGB1d: ; 9591
+_CGB_MysteryGift: ; 9591
 	ld hl, .Palettes
 	ld de, UnknBGPals
 	ld bc, 2 palettes

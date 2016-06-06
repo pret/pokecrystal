@@ -786,7 +786,7 @@ EggHatch_AnimationSequence: ; 1728f (5:728f)
 
 Hatch_LoadFrontpicPal: ; 17363 (5:7363)
 	ld [PlayerHPPal], a
-	ld b, SCGB_0B
+	ld b, SCGB_EVOLUTION
 	ld c, $0
 	jp GetSGBLayout
 

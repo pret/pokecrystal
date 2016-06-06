@@ -20,7 +20,7 @@ SelectTradeOrDaycareMon: ; 5001d
 	call ClearBGPalettes
 	call InitPartyMenuLayout
 	call WaitBGMap
-	ld b, SCGB_0A
+	ld b, SCGB_PARTY_MENU
 	call GetSGBLayout
 	call SetPalettes
 	call DelayFrame
@@ -160,7 +160,7 @@ PlacePartyHPBar: ; 500cf
 	inc b
 	dec c
 	jr nz, .loop
-	ld b, SCGB_0A
+	ld b, SCGB_PARTY_MENU
 	call GetSGBLayout
 	ret
 ; 50117

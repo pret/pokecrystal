@@ -5227,7 +5227,7 @@ DisplayCaughtContestMonStats: ; cc000
 	ld [Options], a
 
 	call WaitBGMap
-	ld b, SCGB_08
+	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call SetPalettes
 	ret

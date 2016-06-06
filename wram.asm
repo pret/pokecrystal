@@ -914,6 +914,8 @@ wGameboyPrinter2bppSource::
 wGameboyPrinter2bppSourceEnd::
 wca80:: ds 1
 wPrinterRowIndex:: ds 1
+
+; Printer data header
 wca82:: ds 1
 wca83:: ds 1
 wca84:: ds 1
@@ -1243,6 +1245,7 @@ wcd8a:: ds 1
 wcd8b:: ds 1
 wcd8c:: ds 1
 wcd8d:: ds 11
+BGMapBufferEnd::
 
 SGBPredef:: ; cd98
 	ds 1

@@ -258,7 +258,7 @@ Function4820d: ; 4820d (12:420d)
 	call Function48d30
 	pop bc
 	call ClearTileMap
-	ld b, SCGB_08
+	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	ld hl, wd479
 	set 1, [hl]

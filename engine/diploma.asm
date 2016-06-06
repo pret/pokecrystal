@@ -31,7 +31,7 @@ PlaceDiplomaOnScreen: ; 1dd709
 	call PlaceString
 	call EnableLCD
 	call WaitBGMap
-	ld b, SCGB_08
+	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call SetPalettes
 	call DelayFrame

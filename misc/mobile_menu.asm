@@ -845,7 +845,7 @@ Function4a6ab: ; 4a6ab (12:66ab)
 	ld a, $2
 	call MenuClickSound
 	call ClearBGPalettes
-	ld b, SCGB_08
+	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	callba Function11c1ab
 	pop bc

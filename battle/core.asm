@@ -8916,7 +8916,7 @@ DisplayLinkRecord: ; 3f836
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	call WaitBGMap2
-	ld b, SCGB_08
+	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call SetPalettes
 	ld c, 8

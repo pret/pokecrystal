@@ -25,7 +25,7 @@ Function16d43b: ; 16d43b
 	call ClearSprites
 	callba __LoadTradeScreenBorder ; useless to farcall
 	callba Function16d42e ; useless to farcall
-	ld b, SCGB_08
+	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call SetPalettes
 	call WaitBGMap

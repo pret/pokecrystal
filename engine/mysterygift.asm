@@ -27,7 +27,7 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	call ClearTileMap
 	call EnableLCD
 	call WaitBGMap
-	ld b, SCGB_08
+	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call SetPalettes
 	pop de
@@ -1333,7 +1333,7 @@ Function105153: ; 105153 (41:5153)
 	ld [hl], $41
 	call EnableLCD
 	call WaitBGMap
-	ld b, SCGB_1D
+	ld b, SCGB_MYSTERY_GIFT
 	call GetSGBLayout
 	call SetPalettes
 	ret
@@ -1511,7 +1511,7 @@ Function105777: ; 105777 (41:5777)
 	call ClearTileMap
 	call EnableLCD
 	call WaitBGMap
-	ld b, SCGB_08
+	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call SetPalettes
 	ret

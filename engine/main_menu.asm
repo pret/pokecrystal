@@ -6,7 +6,7 @@ MainMenu: ; 49cdc
 	xor a
 	ld [wDisableTextAcceleration], a
 	call Function49ed0
-	ld b, SCGB_08
+	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call SetPalettes
 	ld hl, GameTimerPause

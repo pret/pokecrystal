@@ -47,7 +47,7 @@ UnownPuzzle: ; e1190
 	ld a, $93
 	ld [rLCDC], a
 	call WaitBGMap
-	ld b, SCGB_18
+	ld b, SCGB_UNOWN_PUZZLE
 	call GetSGBLayout
 	ld a, $e4
 	call DmgToCgbBGPals

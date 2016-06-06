@@ -260,7 +260,7 @@ _ShowLinkBattleParticipants: ; 2c1b2
 	ld [hli], a
 	ld [hl], $6a ; "S"
 	callba LinkBattle_TrainerHuds ; no need to callba
-	ld b, SCGB_08
+	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call SetPalettes
 	ld a, $e4

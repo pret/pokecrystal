@@ -32,7 +32,7 @@ _OptionsMenu: ; e41d0
 	inc a
 	ld [hBGMapMode], a
 	call WaitBGMap
-	ld b, SCGB_08
+	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call SetPalettes
 

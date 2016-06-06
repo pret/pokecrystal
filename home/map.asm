@@ -1382,7 +1382,7 @@ UpdateBGMapColumn:: ; 27f8
 
 ; unreferenced
 	ld hl, BGMapBuffer
-	ld bc, SGBPredef - BGMapBuffer
+	ld bc, BGMapBufferEnd - BGMapBuffer
 	xor a
 	call ByteFill
 	ret
