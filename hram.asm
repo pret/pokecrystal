@@ -69,6 +69,8 @@ hPrintNum8         EQU $ffba
 hPrintNum9         EQU $ffbb
 hPrintNum10        EQU $ffbc
 
+hMGStatusFlags     EQU $ffbc
+
 hUsedSpriteIndex   EQU $ffbd
 hUsedSpriteTile    EQU $ffbe
 hFFBF              EQU $ffbf
@@ -77,9 +79,12 @@ hFFC1              EQU $ffc1
 hFFC2              EQU $ffc2
 hMoneyTemp         EQU $ffc3
 
+hMGJoypadPressed   EQU $ffc3
+hMGJoypadReleased  EQU $ffc4
+
 hFFC6              EQU $ffc6
-hLYOverrideStart              EQU $ffc7
-hLYOverrideEnd              EQU $ffc8
+hLYOverrideStart   EQU $ffc7
+hLYOverrideEnd     EQU $ffc8
 hMobileReceive     EQU $ffc9
 hFFCA              EQU $ffca
 hLinkPlayerNumber  EQU $ffcb

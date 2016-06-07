@@ -116,8 +116,6 @@ DoBattle: ; 3c000
 	jp BattleMenu
 ; 3c0e5
 
-
-
 WildFled_EnemyFled_LinkBattleCanceled: ; 3c0e5
 	call Call_LoadTempTileMapToTileMap
 	ld a, [wBattleResult]
@@ -159,7 +157,6 @@ WildFled_EnemyFled_LinkBattleCanceled: ; 3c0e5
 	ld [BattleEnded], a
 	ret
 ; 3c12f
-
 
 BattleTurn: ; 3c12f
 .loop
@@ -251,7 +248,6 @@ MobileFn_3c1bf: mobile
 	call CloseSRAM
 	ret
 ; 3c1d6
-
 
 HandleBetweenTurnEffects: ; 3c1d6
 	ld a, [hLinkPlayerNumber]
@@ -769,7 +765,6 @@ HandleEncore: ; 3c4df
 	jp StdBattleTextBox
 ; 3c543
 
-
 TryEnemyFlee: ; 3c543
 	ld a, [wBattleMode]
 	dec a
@@ -861,7 +856,6 @@ AlwaysFleeMons: ; 3c5b1
 	db -1
 ; 3c5b4
 
-
 CompareMovePriority: ; 3c5b4
 ; Compare the priority of the player and enemy's moves.
 ; Return carry if the player goes first, or z if they match.
@@ -915,7 +909,6 @@ MoveEffectPriorities: ; 3c5df
 	db -1
 ; 3c5ec
 
-
 GetMoveEffect: ; 3c5ec
 	ld a, b
 	dec a
@@ -927,7 +920,6 @@ GetMoveEffect: ; 3c5ec
 	ld b, a
 	ret
 ; 3c5fe
-
 
 Battle_EnemyFirst: ; 3c5fe
 	call LoadTileMapToTempTileMap
@@ -1695,7 +1687,6 @@ HandleSafeguard: ; 3cafb
 	ld hl, BattleText_SafeguardFaded
 	jp StdBattleTextBox
 
-
 HandleScreens: ; 3cb36
 	ld a, [hLinkPlayerNumber]
 	cp 1
@@ -1738,7 +1729,6 @@ HandleScreens: ; 3cb36
 .Enemy:
 	db "Enemy@"
 ; 3cb80
-
 
 .LightScreenTick: ; 3cb80
 	ld a, [de]
@@ -1878,7 +1868,6 @@ SubtractHPFromUser: ; 3cc3f
 	jp UpdateHPBarBattleHuds
 ; 3cc45
 
-
 SubtractHP: ; 3cc45
 	ld hl, BattleMonHP
 	ld a, [hBattleTurn]
@@ -1925,7 +1914,6 @@ GetSixteenthMaxHP: ; 3cc76
 	ret
 ; 3cc83
 
-
 GetEighthMaxHP: ; 3cc83
 ; output: bc
 	call GetQuarterMaxHP
@@ -1940,7 +1928,6 @@ GetEighthMaxHP: ; 3cc83
 .end
 	ret
 ; 3cc8e
-
 
 GetQuarterMaxHP: ; 3cc8e
 ; output: bc
@@ -1962,7 +1949,6 @@ GetQuarterMaxHP: ; 3cc8e
 	ret
 ; 3cc9f
 
-
 GetHalfMaxHP: ; 3cc9f
 ; output: bc
 	call GetMaxHP
@@ -1979,7 +1965,6 @@ GetHalfMaxHP: ; 3cc9f
 .end
 	ret
 ; 3ccac
-
 
 GetMaxHP: ; 3ccac
 ; output: bc, Buffer1-2
@@ -2035,7 +2020,6 @@ CheckUserHasEnoughHP: ; 3ccde
 	sbc [hl]
 	ret
 ; 3ccef
-
 
 RestoreHP ; 3ccef
 	ld hl, EnemyMonMaxHP
@@ -2349,8 +2333,6 @@ IsAnyMonHoldingExpShare: ; 3ceaa
 	ret
 ; 3ceec
 
-
-
 StopDangerSound: ; 3ceec
 	xor a
 	ld [Danger], a
@@ -2622,7 +2604,6 @@ WinTrainerBattle: ; 3cfa4
 	dw SentAllToMomText
 ; 3d0b1
 
-
 .CheckMaxedOutMomMoney: ; 3d0b1
 	ld hl, wMomsMoney + 2
 	ld a, [hld]
@@ -2705,8 +2686,6 @@ PlayVictoryMusic: ; 3d0ea
 	ret
 ; 3d123
 
-
-
 ; These functions check if the current opponent is a gym leader or one of a
 ; few other special trainers.
 
@@ -2759,7 +2738,6 @@ KantoGymLeaders:
 	db BLAINE
 	db BLUE
 	db -1
-
 
 HandlePlayerMonFaint: ; 3d14e
 	call FaintYourPokemon
@@ -2961,7 +2939,6 @@ PlayerPartyMonEntrance: ; 3d2b3
 	jp SpikesDamage
 ; 3d2e0
 
-
 CheckMobileBattleError: ; 3d2e0
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
@@ -3060,7 +3037,6 @@ ForcePickPartyMonInBattle: ; 3d362
 	jr .pick
 ; 3d375
 
-
 PickSwitchMonInBattle: ; 3d375
 .pick
 	call PickPartyMonInBattle
@@ -3084,7 +3060,6 @@ ForcePickSwitchMonInBattle: ; 3d380
 	xor a
 	ret
 ; 3d38e
-
 
 LostBattle: ; 3d38e
 	ld a, 1
@@ -3182,7 +3157,6 @@ LostBattle: ; 3d38e
 	ret
 ; 3d432
 
-
 EnemyMonFaintedAnimation: ; 3d432
 	hlcoord 12, 5
 	decoord 12, 6
@@ -3250,7 +3224,6 @@ MonFaintedAnimation: ; 3d444
 	db "       @"
 ; 3d490
 
-
 SlideBattlePicOut: ; 3d490
 	ld [hMapObjectIndexBuffer], a
 	ld c, a
@@ -3297,7 +3270,6 @@ SlideBattlePicOut: ; 3d490
 	ret
 ; 3d4c3
 
-
 ForceEnemySwitch: ; 3d4c3
 	call ResetEnemyBattleVars
 	ld a, [wEnemySwitchMonIndex]
@@ -3312,7 +3284,6 @@ ForceEnemySwitch: ; 3d4c3
 	call ResetBattleParticipants
 	ret
 ; 3d4e1
-
 
 EnemySwitch: ; 3d4e1
 	call CheckWhetherToAskSwitch
@@ -3846,7 +3817,6 @@ CheckPlayerPartyForFitPkmn: ; 3d873
 	ret
 ; 3d887
 
-
 CheckIfCurPartyMonIsFitToFight: ; 3d887
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1HP
@@ -3877,7 +3847,6 @@ CheckIfCurPartyMonIsFitToFight: ; 3d887
 	xor a
 	ret
 ; 3d8b3
-
 
 TryToRunAwayFromBattle: ; 3d8b3
 ; Run away from battle, with or without item
@@ -4068,7 +4037,6 @@ TryToRunAwayFromBattle: ; 3d8b3
 	ret
 ; 3da0d
 
-
 InitBattleMon: ; 3da0d
 	ld a, MON_SPECIES
 	call GetPartyParamLocation
@@ -4159,7 +4127,6 @@ ResetPlayerStatLevels: ; 3dab1
 	ret
 ; 3dabd
 
-
 InitEnemyMon: ; 3dabd
 	ld a, [CurPartyMon]
 	ld hl, OTPartyMon1Species
@@ -4213,7 +4180,6 @@ InitEnemyMon: ; 3dabd
 	ret
 ; 3db32
 
-
 SwitchPlayerMon: ; 3db32
 	call ClearSprites
 	ld a, [CurBattleMon]
@@ -4233,7 +4199,6 @@ SwitchPlayerMon: ; 3db32
 	or [hl]
 	ret
 ; 3db5f
-
 
 SendOutPlayerMon: ; 3db5f
 	ld hl, BattleMonDVs
@@ -4580,7 +4545,6 @@ UseOpponentItem:
 	jp StdBattleTextBox
 ; 3ddc8
 
-
 ItemRecoveryAnim: ; 3ddc8
 	push hl
 	push de
@@ -4664,7 +4628,6 @@ UseHeldStatusHealingItem: ; 3dde9
 	db HELD_HEAL_STATUS, ALL_STATUS
 	db $ff
 ; 3de51
-
 
 UseConfusionHealingItem: ; 3de51
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
@@ -4790,7 +4753,6 @@ HandleStatBoostingHeldItems: ; 3de97
 	db $ff
 ; 3df12
 
-
 GetPartymonItem: ; 3df12
 	ld hl, PartyMon1Item
 	ld a, [CurBattleMon]
@@ -4823,8 +4785,6 @@ UpdateBattleHUDs: ; 3df2c
 	pop hl
 	ret
 ; 3df48
-
-
 
 UpdatePlayerHUD:: ; 3df48
 	push hl
@@ -5383,34 +5343,41 @@ BattleMenuPKMN_Loop:
 
 Battle_StatsScreen: ; 3e308
 	call DisableLCD
+
 	ld hl, VTiles2 tile $31
 	ld de, VTiles0
-	ld bc, $0110
+	ld bc, $11 tiles
 	call CopyBytes
+
 	ld hl, VTiles2
 	ld de, VTiles0 tile $11
 	ld bc, $31 tiles
 	call CopyBytes
+
 	call EnableLCD
+
 	call ClearSprites
 	call LowVolume
 	xor a ; PARTYMON
 	ld [MonType], a
 	callba BattleStatsScreenInit
 	call MaxVolume
+
 	call DisableLCD
+
 	ld hl, VTiles0
 	ld de, VTiles2 tile $31
 	ld bc, $11 tiles
 	call CopyBytes
+
 	ld hl, VTiles0 tile $11
 	ld de, VTiles2
 	ld bc, $31 tiles
 	call CopyBytes
+
 	call EnableLCD
 	ret
 ; 3e358
-
 
 TryPlayerSwitch: ; 3e358
 	ld a, [CurBattleMon]
@@ -5566,7 +5533,6 @@ PassedBattleMonEntrance: ; 3e459
 	jp SpikesDamage
 ; 3e489
 
-
 BattleMenu_Run: ; 3e489
 	call Call_LoadTempTileMapToTileMap
 	ld a, $3
@@ -5582,7 +5548,6 @@ BattleMenu_Run: ; 3e489
 	ret nz
 	jp BattleMenu
 ; 3e4a8
-
 
 CheckAmuletCoin: ; 3e4a8
 	ld a, [BattleMonItem]
@@ -5990,7 +5955,6 @@ MoveInfoBox: ; 3e6c8
 	db "TYPE/@"
 ; 3e75f
 
-
 .PrintPP: ; 3e75f
 	hlcoord 5, 11
 	ld a, [wLinkMode] ; What's the point of this check?
@@ -6059,8 +6023,6 @@ CheckPlayerHasUsableMoves: ; 3e786
 	xor a
 	ret
 ; 3e7c1
-
-
 
 ParseEnemyAction: ; 3e7c1
 	ld a, [wEnemyIsSwitching]
@@ -6242,7 +6204,6 @@ LinkBattleSendReceiveAction: ; 3e8e4
 	ret
 ; 3e8eb
 
-
 LoadEnemyMon: ; 3e8eb
 ; Initialize enemy monster parameters
 ; To do this we pull the species from TempEnemyMonSpecies
@@ -6275,7 +6236,6 @@ LoadEnemyMon: ; 3e8eb
 ; Grab the BaseData for this species
 	call GetBaseData
 
-
 ; Let's get the item:
 
 ; Is the item predetermined?
@@ -6289,7 +6249,6 @@ LoadEnemyMon: ; 3e8eb
 	call GetPartyLocation ; bc = PartyMon[CurPartyMon] - PartyMons
 	ld a, [hl]
 	jr .UpdateItem
-
 
 .WildItem:
 ; In a wild battle, we pull from the item slots in BaseData
@@ -6320,10 +6279,8 @@ LoadEnemyMon: ; 3e8eb
 	jr nc, .UpdateItem
 	ld a, [BaseItems+1]
 
-
 .UpdateItem:
 	ld [EnemyMonItem], a
-
 
 ; Initialize DVs
 
@@ -6346,7 +6303,6 @@ LoadEnemyMon: ; 3e8eb
 	ld [de], a
 	jp .Happiness
 
-
 .InitDVs:
 
 ; Trainer DVs
@@ -6358,7 +6314,6 @@ LoadEnemyMon: ; 3e8eb
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .UpdateDVs
-
 
 ; Wild DVs
 ; Here's where the fun starts
@@ -6402,7 +6357,6 @@ LoadEnemyMon: ; 3e8eb
 ; We're done with DVs
 	jr .UpdateDVs
 
-
 .NotRoaming:
 ; Register a contains BattleType
 
@@ -6429,15 +6383,12 @@ LoadEnemyMon: ; 3e8eb
 	ld [hli], a
 	ld [hl], c
 
-
 ; We've still got more to do if we're dealing with a wild monster
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .Happiness
 
-
 ; Species-specfic:
-
 
 ; Unown
 	ld a, [TempEnemyMonSpecies]
@@ -6451,7 +6402,6 @@ LoadEnemyMon: ; 3e8eb
 ; If combined with forced shiny battletype, causes an infinite loop
 	call CheckUnownLetter
 	jr c, .GenerateDVs ; try again
-
 
 .Magikarp:
 ; Skimming this part recommended
@@ -6512,7 +6462,6 @@ LoadEnemyMon: ; 3e8eb
 	ld a, [MagikarpLength]
 	cp a, 1024 >> 8
 	jr c, .GenerateDVs ; try again
-
 
 ; Finally done with DVs
 
@@ -6588,7 +6537,6 @@ LoadEnemyMon: ; 3e8eb
 	ld [hl], a
 	jr .Moves
 
-
 .OpponentParty:
 ; Get HP from the party struct
 	ld hl, (OTPartyMon1HP + 1)
@@ -6607,7 +6555,6 @@ LoadEnemyMon: ; 3e8eb
 	dec hl
 	ld a, [hl] ; OTPartyMonStatus
 	ld [EnemyMonStatus], a
-
 
 .Moves:
 	ld hl, BaseType1
@@ -6718,7 +6665,6 @@ LoadEnemyMon: ; 3e8eb
 	ret
 ; 3eb38
 
-
 CheckSleepingTreeMon: ; 3eb38
 ; Return carry if species is in the list
 ; for the current time of day
@@ -6778,7 +6724,6 @@ CheckSleepingTreeMon: ; 3eb38
 	db HERACROSS
 	db -1 ; end
 ; 3eb75
-
 
 CheckUnownLetter: ; 3eb75
 ; Return carry if the Unown letter hasn't been unlocked yet
@@ -6847,7 +6792,6 @@ CheckUnownLetter: ; 3eb75
 	db 24, 25, 26, $ff
 
 ; 3ebc7
-
 
 SwapBattlerLevels: ; 3ebc7
 ; unreferenced
@@ -6923,7 +6867,6 @@ BattleWinSlideInEnemyTrainerFrontpic: ; 3ebd8
 	pop hl
 	ret
 ; 3ec2c
-
 
 ApplyStatusEffectOnPlayerStats: ; 3ec2c
 	ld a, 1
@@ -7143,7 +7086,6 @@ ApplyStatLevelMultiplier: ; 3ecb7
 	db  4,  1 ; 400%
 ; 3ed45
 
-
 BadgeStatBoosts: ; 3ed45
 ; Raise BattleMon stats depending on which badges have been obtained.
 
@@ -7202,7 +7144,6 @@ BadgeStatBoosts: ; 3ed45
 	ret
 ; 3ed7c
 
-
 BoostStat: ; 3ed7c
 ; Raise stat at hl by 1/8.
 
@@ -7235,7 +7176,6 @@ BoostStat: ; 3ed7c
 	ret
 ; 3ed9f
 
-
 _LoadBattleFontsHPBar: ; 3ed9f
 	callab LoadBattleFontsHPBar
 	ret
@@ -7245,7 +7185,6 @@ _LoadHPBar: ; 3eda6
 	callab LoadHPBar
 	ret
 ; 3edad
-
 
 LoadHPExpBarGFX: ; unreferenced
 	ld de, EnemyHPBarBorderGFX
@@ -7262,14 +7201,12 @@ LoadHPExpBarGFX: ; unreferenced
 	jp Get2bpp
 ; 3edd1
 
-
 EmptyBattleTextBox: ; 3edd1
 	ld hl, .empty
 	jp BattleTextBox
 .empty
 	db "@"
 ; 3edd8
-
 
 _BattleRandom:: ; 3edd8
 ; If the normal RNG is used in a link battle it'll desync.
@@ -7340,7 +7277,6 @@ _BattleRandom:: ; 3edd8
 	ret
 ; 3ee0f
 
-
 Call_PlayBattleAnim_OnlyIfVisible: ; 3ee0f
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVar
@@ -7372,7 +7308,6 @@ FinishBattleAnim: ; 3ee27
 	pop af
 	ret
 ; 3ee3b
-
 
 GiveExperiencePoints: ; 3ee3b
 ; Give experience.
@@ -7832,7 +7767,6 @@ TextJump_StringBuffer2ExpPoints: ; 3f131
 	db "@"
 ; 3f136
 
-
 AnimateExpBar: ; 3f136
 	push bc
 
@@ -8019,8 +7953,6 @@ AnimateExpBar: ; 3f136
 	ld [hBGMapMode], a
 	ret
 
-
-
 SendOutPkmnText: ; 3f26d
 	ld a, [wLinkMode]
 	and a
@@ -8082,7 +8014,6 @@ SendOutPkmnText: ; 3f26d
 .skip_to_textbox
 	jp BattleTextBox
 ; 3f2d1
-
 
 JumpText_GoPkmn: ; 3f2d1
 	text_jump Text_GoPkmn
@@ -8197,7 +8128,6 @@ TextJump_ComeBack: ; 3f35b
 	db "@"
 ; 3f360
 
-
 HandleSafariAngerEatingStatus: ; unreferenced
 	ld hl, wSafariMonEating
 	ld a, [hl]
@@ -8229,7 +8159,6 @@ HandleSafariAngerEatingStatus: ; unreferenced
 	pop hl
 	jp StdBattleTextBox
 ; 3f390
-
 
 FillInExpBar: ; 3f390
 	push hl
@@ -8447,7 +8376,6 @@ GetFrontpic_DoAnim: ; 3f4b4
 	ret
 ; 3f4c1
 
-
 StartBattle: ; 3f4c1
 ; This check prevents you from entering a battle without any Pokemon.
 ; Those using walk-through-walls to bypass getting a Pokemon experience
@@ -8467,13 +8395,11 @@ StartBattle: ; 3f4c1
 	ret
 ; 3f4d9
 
-
 _DoBattle: ; 3f4d9
 ; unreferenced
 	call DoBattle
 	ret
 ; 3f4dd
-
 
 BattleIntro: ; 3f4dd
 	callba MobileFn_106050 ; mobile
@@ -8702,7 +8628,6 @@ Function3f662: ; 3f662
 	ret
 ; 3f69e
 
-
 ExitBattle: ; 3f69e
 	call .HandleEndOfBattle
 	call CleanUpBattleRAM
@@ -8881,7 +8806,6 @@ DetermineMobileBattleResult: ; 3f77c
 	db "  DRAW@"
 ; 3f80f
 
-
 .Mobile_InvalidBattle: ; 3f80f
 	hlcoord 6, 8
 	ld de, .Invalid
@@ -8896,13 +8820,11 @@ DetermineMobileBattleResult: ; 3f77c
 	db "INVALID BATTLE@"
 ; 3f830
 
-
 IsMobileBattle2: ; 3f830
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	ret
 ; 3f836
-
 
 DisplayLinkRecord: ; 3f836
 	ld a, BANK(sLinkBattleStats)
@@ -8924,7 +8846,6 @@ DisplayLinkRecord: ; 3f836
 	call WaitPressAorB_BlinkCursor
 	ret
 ; 3f85f
-
 
 ReadAndPrintLinkBattleRecord: ; 3f85f
 	call ClearTileMap
@@ -9060,7 +8981,6 @@ ReadAndPrintLinkBattleRecord: ; 3f85f
 	db "TOTAL  WIN LOSE DRAW@"
 ; 3f998
 
-
 BattleEnd_HandleRoamMons: ; 3f998
 	ld a, [BattleType]
 	cp BATTLETYPE_ROAMING
@@ -9167,7 +9087,6 @@ GetRoamMonSpecies: ; 3fa31
 	ld hl, wRoamMon3Species
 	ret
 ; 3fa42
-
 
 AddLastMobileBattleToLinkRecord: ; 3fa42
 	ld hl, OTPlayerID
@@ -9449,7 +9368,6 @@ InitBattleDisplay: ; 3fb6c
 	ret
 ; 3fbff
 
-
 GetTrainerBackpic: ; 3fbff
 ; Load the player character's backpic (6x6) into VRAM starting from VTiles2 tile $31.
 
@@ -9483,7 +9401,6 @@ GetTrainerBackpic: ; 3fbff
 	predef DecompressPredef
 	ret
 ; 3fc30
-
 
 CopyBackpic: ; 3fc30
 	ld a, [rSVBK]
@@ -9542,7 +9459,6 @@ CopyBackpic: ; 3fc30
 	jr nz, .outer_loop
 	ret
 ; 3fc8b
-
 
 BattleStartMessage: ; 3fc8b
 	ld a, [wBattleMode]
