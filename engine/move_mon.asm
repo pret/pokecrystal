@@ -266,15 +266,15 @@ endr
 	ld [de], a
 	inc de
 	ld hl, EnemyMonStatus
-    ; Copy EnemyMonStatus
+	; Copy EnemyMonStatus
 	ld a, [hli]
 	ld [de], a
 	inc de
-    ; Copy EnemyMonUnused
+	; Copy EnemyMonUnused
 	ld a, [hli]
 	ld [de], a
 	inc de
-    ; Copy EnemyMonHP
+	; Copy EnemyMonHP
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -452,8 +452,8 @@ SentGetPkmnIntoFromBox: ; db3f
 	ld hl, wBreedMon1Species
 	jr z, .breedmon
 
-    ; we want to sent a Pkmn into the Box
-    ; so check if there's enough space
+	; we want to sent a Pkmn into the Box
+	; so check if there's enough space
 	ld hl, sBoxCount
 	ld a, [hl]
 	cp MONS_PER_BOX
@@ -973,7 +973,7 @@ SentPkmnIntoBox: ; de6e
 	ld [de], a
 	inc de
 
-    ; Set all 5 Experience Values to 0
+	; Set all 5 Experience Values to 0
 	xor a
 	ld b, 2 * 5
 .loop2

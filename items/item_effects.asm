@@ -2515,7 +2515,7 @@ Mysteryberry: ; f5bf
 	ld [wd002], a
 
 .loop
-    ; Party Screen opens to choose on which Pkmn to use the Item
+	; Party Screen opens to choose on which Pkmn to use the Item
 	ld b, PARTYMENUACTION_HEALING_ITEM
 	call UseItem_SelectMon
 	jp c, PPRestoreItem_Cancel

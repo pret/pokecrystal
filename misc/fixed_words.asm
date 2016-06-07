@@ -4267,14 +4267,14 @@ endm
 	macro_11f220 69 ; 04: Battle
 	macro_11f220 66 ; 05: Exclamations
 	macro_11f220 66 ; 06: Conversation
-    macro_11f220 69 ; 07: Feelings
-    macro_11f220 66 ; 08: Conditions
-    macro_11f220 39 ; 09: Life
-    macro_11f220 39 ; 0a: Hobbies
-    macro_11f220 69 ; 0b: Actions
-    macro_11f220 39 ; 0c: Time
-    macro_11f220 66 ; 0d: Farewells
-    macro_11f220 36 ; 0e: ThisAndThat
+	macro_11f220 69 ; 07: Feelings
+	macro_11f220 66 ; 08: Conditions
+	macro_11f220 39 ; 09: Life
+	macro_11f220 39 ; 0a: Hobbies
+	macro_11f220 69 ; 0b: Actions
+	macro_11f220 39 ; 0c: Time
+	macro_11f220 66 ; 0d: Farewells
+	macro_11f220 36 ; 0e: ThisAndThat
 
 EZChat_SortedWords:
 ; Addresses in WRAM bank 3 where EZChat words beginning
