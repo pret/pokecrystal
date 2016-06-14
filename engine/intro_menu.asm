@@ -140,7 +140,7 @@ _ResetWRAM: ; 5bae
 	ld [wSecretID + 1], a
 
 	ld hl, PartyCount
-	call InitList
+	call .InitList
 
 	xor a
 	ld [wCurBox], a
@@ -151,20 +151,20 @@ _ResetWRAM: ; 5bae
 	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld hl, sBoxCount
-	call InitList
+	call .InitList
 	call CloseSRAM
 
 	ld hl, NumItems
-	call InitList
+	call .InitList
 
 	ld hl, NumKeyItems
-	call InitList
+	call .InitList
 
 	ld hl, NumBalls
-	call InitList
+	call .InitList
 
 	ld hl, PCItems
-	call InitList
+	call .InitList
 
 	xor a
 	ld [wRoamMon1Species], a
@@ -232,7 +232,7 @@ ENDC
 	ret
 ; 5ca1
 
-InitList: ; 5ca1
+.InitList: ; 5ca1
 ; Loads 0 in the count and -1 in the first item or mon slot.
 	xor a
 	ld [hli], a
@@ -1041,7 +1041,7 @@ StartTitleScreen: ; 6219
 	call ClearScreen
 	call WaitBGMap2
 	xor a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	ld [hSCX], a
 	ld [hSCY], a
 	ld a, $7
@@ -1172,7 +1172,7 @@ TitleScreenEntrance: ; 62bc
 	ld hl, wJumptableIndex
 	inc [hl]
 	xor a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 
 ; Play the title screen music.
 	ld de, MUSIC_TITLE

@@ -1199,7 +1199,7 @@ Function11c7bc: ; 11c7bc (47:47bc)
 	ret
 
 .asm_11c7e9
-	ld hl, wd100
+	ld hl, wListPointer
 	ld a, [wcd26]
 	ld e, a
 	add hl, de
@@ -1433,7 +1433,7 @@ Function11c8f6: ; 11c8f6 (47:48f6)
 	add [hl]
 	ld c, a
 	ld b, $0
-	ld hl, wd100
+	ld hl, wListPointer
 	add hl, bc
 	ld a, [hl]
 	jr .asm_11c911

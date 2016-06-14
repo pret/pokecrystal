@@ -55,7 +55,7 @@ ReturnFromMapSetupScript:: ; b8000
 	ld [rWY], a
 	ld [hWY], a
 	xor a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	ret
 ; b8064
 
@@ -126,7 +126,7 @@ PlaceMapNameSign:: ; b8098 (2e:4098)
 	ld [rWY], a
 	ld [hWY], a
 	xor a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	ret
 
 

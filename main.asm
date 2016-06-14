@@ -77,7 +77,7 @@ ReanchorBGMap_NoOAMUpdate:: ; 6454
 
 .ReanchorBGMap:
 	xor a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	ld [hBGMapMode], a
 	ld a, $90
 	ld [hWY], a
@@ -4258,10 +4258,10 @@ ListMoves: ; 50d6f
 .done
 	ret
 
-LoadAddrsForLinkMonStatsScreen: ; 50db9
-	ld a, [wd263]
+InitList: ; 50db9
+	ld a, [wInitListType]
 
-	cp $1
+	cp INIT_ENEMYOT_LIST
 	jr nz, .check_party_ot_name
 	ld hl, OTPartyCount
 	ld de, OTPartyMonOT
@@ -4269,7 +4269,7 @@ LoadAddrsForLinkMonStatsScreen: ; 50db9
 	jr .done
 
 .check_party_ot_name
-	cp $4
+	cp INIT_PLAYEROT_LIST
 	jr nz, .check_mon_name
 	ld hl, PartyCount
 	ld de, PartyMonOT
@@ -4277,7 +4277,7 @@ LoadAddrsForLinkMonStatsScreen: ; 50db9
 	jr .done
 
 .check_mon_name
-	cp $5
+	cp INIT_MON_LIST
 	jr nz, .check_item_name
 	ld hl, CurMart
 	ld de, PokemonNames
@@ -4285,7 +4285,7 @@ LoadAddrsForLinkMonStatsScreen: ; 50db9
 	jr .done
 
 .check_item_name
-	cp $2
+	cp INIT_BAG_ITEM_LIST
 	jr nz, .check_ob_item_name
 	ld hl, NumItems
 	ld de, ItemNames
@@ -4299,18 +4299,18 @@ LoadAddrsForLinkMonStatsScreen: ; 50db9
 .done
 	ld [wNamedObjectTypeBuffer], a ; d265
 	ld a, l
-	ld [wd100], a
+	ld [wListPointer], a
 	ld a, h
-	ld [wd101], a
+	ld [wListPointer + 1], a
 	ld a, e
-	ld [wd102], a
+	ld [wUnusedD102], a
 	ld a, d
-	ld [wd103], a
+	ld [wUnusedD102 + 1], a
 	ld bc, ItemAttributes ; ParseEnemyAction, HandleMapTimeAndJoypad, Music_LakeOfRage_Ch3, String_11a7c1 $67c1
 	ld a, c
-	ld [wd104], a
+	ld [wItemAttributesPtr], a
 	ld a, b
-	ld [wd105], a
+	ld [wItemAttributesPtr + 1], a
 	ret
 
 CalcLevel: ; 50e1b

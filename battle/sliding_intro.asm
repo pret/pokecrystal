@@ -5,10 +5,10 @@ BattleIntroSlidingPics: ; 4e980
 	ld [rSVBK], a
 	call .subfunction1
 	ld a, rSCX - $ff00
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	call .subfunction2
 	xor a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	pop af
 	ld [rSVBK], a
 	ret

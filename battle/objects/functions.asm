@@ -1150,8 +1150,8 @@ BattleAnimFunction_0D: ; cd66a (33:566a)
 	dw .four
 .zero
 	call BattleAnim_IncAnonJumptableIndex
-	ld a, $42
-	ld [hFFC6], a
+	ld a, rSCY - $ff00
+	ld [hLCDCPointer], a
 	ld a, $58
 	ld [hLYOverrideStart], a
 	ld a, $5e
@@ -1209,7 +1209,7 @@ BattleAnimFunction_0D: ; cd66a (33:566a)
 	cp $70
 	jr c, asm_cd6da
 	xor a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	ld [hLYOverrideStart], a
 	ld [hLYOverrideEnd], a
 .four

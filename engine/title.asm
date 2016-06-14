@@ -188,8 +188,8 @@ _TitleScreen: ; 10ed67
 	call ByteFill
 
 ; Let LCD Stat know we're messing around with SCX
-	ld a, rSCX - rJOYP
-	ld [hFFC6], a
+	ld a, rSCX - $ff00
+	ld [hLCDCPointer], a
 
 	pop af
 	ld [rSVBK], a

@@ -61,7 +61,7 @@ Special_MagnetTrain: ; 8cc04
 	ld [hVBlank], a
 	call ClearBGPalettes
 	xor a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	ld [hLYOverrideStart], a
 	ld [hLYOverrideEnd], a
 	ld [hSCX], a
@@ -251,8 +251,8 @@ MagnetTrain_InitLYOverrides: ; 8cda6
 	ld bc, LYOverridesBackupEnd - LYOverridesBackup
 	ld a, [wMagnetTrainInitPosition]
 	call ByteFill
-	ld a, $43
-	ld [hFFC6], a
+	ld a, rSCX - $ff00
+	ld [hLCDCPointer], a
 	ret
 ; 8cdc3
 

@@ -39,7 +39,7 @@ Predef_StartBattle: ; 8c20f
 	call DmgToCgbBGPals
 	call DelayFrame
 	xor a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	ld [hLYOverrideStart], a
 	ld [hLYOverrideEnd], a
 	ld [hSCY], a
@@ -302,8 +302,8 @@ StartTrainerBattle_SetUpForWavyOutro: ; 8c3e8 (23:43e8)
 
 	call StartTrainerBattle_NextScene
 
-	ld a, $43
-	ld [hFFC6], a
+	ld a, rSCX - $ff00
+	ld [hLCDCPointer], a
 	xor a
 	ld [hLYOverrideStart], a
 	ld a, $90

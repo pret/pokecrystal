@@ -67,7 +67,7 @@ SetRAMStateForMobile: ; 100063
 	ld [BGMapBuffer], a
 	xor a
 	ld [hMapAnims], a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	ret
 ; 100082
 
@@ -85,7 +85,7 @@ EnableMobile: ; 100082
 	ld [rIE], a
 	xor a
 	ld [hMapAnims], a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	ld a, $01
 	ld [hMobileReceive], a
 	ld [hMobile], a

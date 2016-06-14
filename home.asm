@@ -825,9 +825,9 @@ GetName:: ; 33c3
 
 .done
 	ld a, e
-	ld [wd102], a
+	ld [wUnusedD102], a
 	ld a, d
-	ld [wd103], a
+	ld [wUnusedD102 + 1], a
 
 	pop de
 	pop bc
@@ -1905,7 +1905,7 @@ INCLUDE "home/battle.asm"
 
 PushLYOverrides:: ; 3b0c
 
-	ld a, [hFFC6]
+	ld a, [hLCDCPointer]
 	and a
 	ret z
 

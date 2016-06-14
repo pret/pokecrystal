@@ -1795,12 +1795,9 @@ wMailboxItems:: ds MAILBOX_CAPACITY
 wMailboxEnd:: ds 1 ; d0fe
 	ds 2
 
-wd100:: ds 1
-wd101:: ds 1
-wd102:: ds 1
-wd103:: ds 1
-wd104:: ds 1
-wd105:: ds 1
+wListPointer:: dw ; d100
+wUnusedD102:: dw ; d102
+wItemAttributesPtr:: dw ; d104
 
 CurItem:: ds 1 ; d106
 CurItemQuantity:: ; d107
@@ -2180,7 +2177,7 @@ wNiteEncounterRate::  ds 1 ; d25c
 wWaterEncounterRate:: ds 1 ; d25d
 wListMoves_MoveIndicesBuffer:: ds NUM_MOVES
 wPutativeTMHMMove:: ds 1
-wd263:: ds 1
+wInitListType:: ds 1
 wAISwitch:: ds 1
 wFoundMatchingIDInParty::
 wNamedObjectIndexBuffer::

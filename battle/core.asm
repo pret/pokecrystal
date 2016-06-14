@@ -5124,7 +5124,6 @@ BattleMenu: ; 3e139
 	jr z, .skip_dude_pack_select
 	callba _DudeAutoInput_DownA
 .skip_dude_pack_select
-
 	call LoadBattleMenu2
 	ret c
 

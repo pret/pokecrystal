@@ -933,7 +933,7 @@ BattleBGEffect_Surf: ; c8545 (32:4545)
 	call InitSurfWaves
 
 .one
-	ld a, [hFFC6]
+	ld a, [hLCDCPointer]
 	and a
 	ret z
 	push bc
@@ -997,8 +997,8 @@ BattleBGEffect_Whirlpool: ; c8599 (32:4599)
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
-	ld a, $42
-	ld [hFFC6], a
+	ld a, rSCY - $ff00
+	ld [hLCDCPointer], a
 	xor a
 	ld [hLYOverrideStart], a
 	ld a, $5e
@@ -1017,7 +1017,7 @@ BattleBGEffect_Whirlpool: ; c8599 (32:4599)
 
 BattleBGEffect_30: ; c85c2 (32:45c2)
 	call BattleBGEffects_ClearLYOverrides
-	ld a, $42
+	ld a, rSCY - $ff00
 	call BattleBGEffect_SetLCDStatCustoms1
 	call EndBattleBGEffect
 	ret
@@ -1071,8 +1071,8 @@ BattleBGEffect_Psychic: ; c8607 (32:4607)
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
-	ld a, $43
-	ld [hFFC6], a
+	ld a, rSCX - $ff00
+	ld [hLCDCPointer], a
 	xor a
 	ld [hLYOverrideStart], a
 	ld a, $5f
@@ -1109,7 +1109,7 @@ BattleBGEffect_Teleport: ; c863f (32:463f)
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
-	ld a, $43
+	ld a, rSCX - $ff00
 	call BattleBGEffect_SetLCDStatCustoms1
 	lb de, 6, 5
 	call Functionc8f2e
@@ -1134,7 +1134,7 @@ BattleBGEffect_NightShade: ; c8662 (32:4662)
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
-	ld a, $42
+	ld a, rSCY - $ff00
 	call BattleBGEffect_SetLCDStatCustoms1
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
@@ -1165,7 +1165,7 @@ BattleBGEffect_DoubleTeam: ; c8689 (32:4689)
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
-	ld a, $43
+	ld a, rSCX - $ff00
 	call BattleBGEffect_SetLCDStatCustoms1
 	ld a, [hLYOverrideEnd]
 	inc a
@@ -1257,7 +1257,7 @@ BattleBGEffect_AcidArmor: ; c8709 (32:4709)
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
-	ld a, $42
+	ld a, rSCY - $ff00
 	call BattleBGEffect_SetLCDStatCustoms1
 	ld hl, BG_EFFECT_STRUCT_03
 	add hl, bc
@@ -1320,7 +1320,7 @@ BattleBGEffect_Withdraw: ; c8761 (32:4761)
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
-	ld a, $42
+	ld a, rSCY - $ff00
 	call BattleBGEffect_SetLCDStatCustoms1
 	ld a, [hLYOverrideEnd]
 	inc a
@@ -1370,7 +1370,7 @@ BattleBGEffect_Dig: ; c87a7 (32:47a7)
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
-	ld a, $42
+	ld a, rSCY - $ff00
 	call BattleBGEffect_SetLCDStatCustoms1
 	ld a, [hLYOverrideEnd]
 	inc a
@@ -1437,7 +1437,7 @@ BattleBGEffect_Tackle: ; c8805 (32:4805)
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
-	ld a, $43
+	ld a, rSCX - $ff00
 	call BattleBGEffect_SetLCDStatCustoms1
 	ld a, [hLYOverrideEnd]
 	inc a
@@ -1472,7 +1472,7 @@ BattleBGEffect_25: ; c8837 (32:4837)
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
-	ld a, $43
+	ld a, rSCX - $ff00
 	call BattleBGEffect_SetLCDStatCustoms2
 	ld a, [hLYOverrideEnd]
 	inc a
@@ -1604,7 +1604,7 @@ BattleBGEffect_2d: ; c88e7 (32:48e7)
 BGEffect2d_2f_zero:
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
-	ld a, $43
+	ld a, rSCX - $ff00
 	call BattleBGEffect_SetLCDStatCustoms1
 	ld a, [hLYOverrideEnd]
 	inc a
@@ -1648,7 +1648,7 @@ BattleBGEffect_26: ; c892a (32:492a)
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
-	ld a, $43
+	ld a, rSCX - $ff00
 	call BattleBGEffect_SetLCDStatCustoms1
 	ld a, [hLYOverrideEnd]
 	inc a
@@ -1687,7 +1687,7 @@ BattleBGEffect_2c: ; c8964 (32:4964)
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
-	ld a, $43
+	ld a, rSCX - $ff00
 	call BattleBGEffect_SetLCDStatCustoms1
 	ld a, [hLYOverrideEnd]
 	inc a
@@ -1742,7 +1742,7 @@ BattleBGEffect_28: ; c89b5 (32:49b5)
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
-	ld a, $43
+	ld a, rSCX - $ff00
 	call BattleBGEffect_SetLCDStatCustoms1
 	ret
 
@@ -1785,7 +1785,7 @@ BattleBGEffect_BounceDown: ; c89ee (32:49ee)
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
-	ld a, $42
+	ld a, rSCY - $ff00
 	call BattleBGEffect_SetLCDStatCustoms2
 	ld a, [hLYOverrideEnd]
 	inc a
@@ -1944,7 +1944,7 @@ BattleBGEffect_2b: ; c8acc (32:4acc)
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
-	ld a, $43
+	ld a, rSCX - $ff00
 	call BattleBGEffect_SetLCDStatCustoms1
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
@@ -1986,8 +1986,8 @@ BattleBGEffect_1c: ; c8b00 (32:4b00)
 	call BattleBGEffects_IncrementJumptable
 	ld a, $e4
 	call BattleBGEffects_SetLYOverrides
-	ld a, $47
-	ld [hFFC6], a
+	ld a, rBGP - $ff00
+	ld [hLCDCPointer], a
 	xor a
 	ld [hLYOverrideStart], a
 	ld a, $60
@@ -2221,7 +2221,7 @@ BattleBGEffect_VibrateMon: ; c8c61 (32:4c61)
 .zero ; c8c68 (32:4c68)
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
-	ld a, $43
+	ld a, rSCX - $ff00
 	call BattleBGEffect_SetLCDStatCustoms1
 	ld a, [hLYOverrideEnd]
 	inc a
@@ -2267,8 +2267,8 @@ BattleBGEffect_WobbleMon: ; c8ca2 (32:4ca2)
 .zero ; c8cab (32:4cab)
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
-	ld a, $43
-	ld [hFFC6], a
+	ld a, rSCX - $ff00
+	ld [hLCDCPointer], a
 	xor a
 	ld [hLYOverrideStart], a
 	ld a, $37
@@ -2655,7 +2655,7 @@ BattleBGEffect_GetNextDMGPal: ; c8eb2 (32:4eb2)
 BattleBGEffects_ClearLYOverrides: ; c8eca (32:4eca)
 	xor a
 BattleBGEffects_SetLYOverrides: ; c8ecb (32:4ecb)
-	ld hl, LYOverrides ; wd100
+	ld hl, LYOverrides ; wListPointer
 	ld e, $99
 .loop1
 	ld [hli], a
@@ -2670,7 +2670,7 @@ BattleBGEffects_SetLYOverrides: ; c8ecb (32:4ecb)
 	ret
 
 BattleBGEffect_SetLCDStatCustoms1: ; c8ede (32:4ede)
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	call BGEffect_CheckBattleTurn
 	jr nz, .player_turn
 	lb de, $00, $36
@@ -2686,7 +2686,7 @@ BattleBGEffect_SetLCDStatCustoms1: ; c8ede (32:4ede)
 	ret
 
 BattleBGEffect_SetLCDStatCustoms2: ; c8ef4 (32:4ef4)
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	call BGEffect_CheckBattleTurn
 	jr nz, .player_turn
 	lb de, $00, $36
@@ -2707,13 +2707,13 @@ BattleAnim_ResetLCDStatCustom: ; c8f0a (32:4f0a)
 	ld [hLYOverrideEnd], a
 	call BattleBGEffects_ClearLYOverrides
 	xor a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	call EndBattleBGEffect
 	ret
 
 BattleBGEffects_ResetVideoHRAM: ; c8f19 (32:4f19)
 	xor a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	ld a, %11100100
 	ld [rBGP], a
 	ld [wBGP], a

@@ -183,7 +183,7 @@ Credits:: ; 109847
 	call ByteFill
 
 	ld a, rSCX - $ff00
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 
 	call GetCreditsPalette
 	call SetPalettes
@@ -211,7 +211,7 @@ Credits:: ; 109847
 .exit_credits
 	call ClearBGPalettes
 	xor a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	ld [hBGMapAddress], a
 	pop af
 	ld [hVBlank], a

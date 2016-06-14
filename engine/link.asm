@@ -163,9 +163,9 @@ TimeCapsule: ; 2805d
 	ld hl, wTimeCapsulePartyMon1Species
 	call Function2868a
 	ld a, OTPartyMonOT % $100
-	ld [wd102], a
+	ld [wUnusedD102], a
 	ld a, OTPartyMonOT / $100
-	ld [wd103], a
+	ld [wUnusedD102 + 1], a
 	ld de, MUSIC_NONE
 	call PlayMusic
 	ld a, [hLinkPlayerNumber]
@@ -404,9 +404,9 @@ Gen2ToGen2LinkComms: ; 28177
 	ld bc, OTPartyDataEnd - OTPartyMons
 	call CopyBytes
 	ld a, OTPartyMonOT % $100
-	ld [wd102], a
+	ld [wUnusedD102], a
 	ld a, OTPartyMonOT / $100
-	ld [wd103], a
+	ld [wUnusedD102 + 1], a
 	ld de, MUSIC_NONE
 	call PlayMusic
 	ld a, [hLinkPlayerNumber]
@@ -1254,8 +1254,8 @@ LinkTradeOTPartymonMenuLoop: ; 28835
 	bit A_BUTTON_F, a
 	jr z, .not_a_button
 	ld a, $1
-	ld [wd263], a
-	callab LoadAddrsForLinkMonStatsScreen
+	ld [wInitListType], a
+	callab InitList
 	ld hl, OTPartyMon1Species
 	callba LinkMonStatsScreen
 	jp LinkTradePartiesMenuMasterLoop
@@ -1447,8 +1447,8 @@ Function28926: ; 28926
 	pop af
 	ld [wMenuCursorY], a
 	ld a, $4
-	ld [wd263], a
-	callab LoadAddrsForLinkMonStatsScreen
+	ld [wInitListType], a
+	callab InitList
 	callba LinkMonStatsScreen
 	call Call_LoadTempTileMapToTileMap
 	hlcoord 6, 1

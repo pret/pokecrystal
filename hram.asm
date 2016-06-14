@@ -82,7 +82,7 @@ hMoneyTemp         EQU $ffc3
 hMGJoypadPressed   EQU $ffc3
 hMGJoypadReleased  EQU $ffc4
 
-hFFC6              EQU $ffc6
+hLCDCPointer              EQU $ffc6
 hLYOverrideStart   EQU $ffc7
 hLYOverrideEnd     EQU $ffc8
 hMobileReceive     EQU $ffc9
