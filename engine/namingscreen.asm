@@ -986,15 +986,15 @@ BoxNameInputUpper:
 ; 11e5d
 
 GFX_11e5d: ; ????
-INCBIN "gfx/unknown/011e5d.2bpp"
+INCBIN "gfx/unknown/011e5d.1bpp"
 ; 11e6d
 
 NamingScreenGFX_MiddleLine:
-INCBIN "gfx/unknown/011e65.2bpp"
+INCBIN "gfx/unknown/011e65.1bpp"
 ; 11e6d
 
 NamingScreenGFX_UnderLine: ; 11e6d
-INCBIN "gfx/unknown/011e6d.2bpp"
+INCBIN "gfx/unknown/011e6d.1bpp"
 ; 11e75
 
 _ComposeMailMessage: ; 11e75 (mail?)
