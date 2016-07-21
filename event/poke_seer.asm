@@ -298,9 +298,8 @@ PrintSeerText: ; 4f26d
 	ld e, a
 	ld d, 0
 	ld hl, SeerTexts
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

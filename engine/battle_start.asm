@@ -39,9 +39,9 @@ Predef_StartBattle: ; 8c20f
 	call DmgToCgbBGPals
 	call DelayFrame
 	xor a
-	ld [hFFC6], a
-	ld [hFFC7], a
-	ld [hFFC8], a
+	ld [hLCDCPointer], a
+	ld [hLYOverrideStart], a
+	ld [hLYOverrideEnd], a
 	ld [hSCY], a
 
 	ld a, $1
@@ -56,7 +56,7 @@ Predef_StartBattle: ; 8c20f
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	jr z, .mobile
-	callba Function6454
+	callba ReanchorBGMap_NoOAMUpdate
 	call UpdateSprites
 	call DelayFrame
 	call .NonMobile_LoadPokeballTiles
@@ -84,7 +84,7 @@ Predef_StartBattle: ; 8c20f
 .NonMobile_LoadPokeballTiles: ; 8c2a0
 	call LoadTrainerBattlePokeballTiles
 	hlbgcoord 0, 0
-	call Function8c2cf
+	call ConvertTrainerBattlePokeballTilesTo2bpp
 	ret
 ; 8c2aa
 
@@ -113,7 +113,7 @@ LoadTrainerBattlePokeballTiles:
 	ret
 ; 8c2cf
 
-Function8c2cf: ; 8c2cf
+ConvertTrainerBattlePokeballTilesTo2bpp: ; 8c2cf
 	ld a, [rSVBK]
 	push af
 	ld a, $6
@@ -132,7 +132,7 @@ Function8c2cf: ; 8c2cf
 
 	pop hl
 	ld de, wDecompressScratch
-	ld b, BANK(Function8c2cf) ; BANK(@)
+	ld b, BANK(ConvertTrainerBattlePokeballTilesTo2bpp) ; BANK(@)
 	ld c, $28
 	call Request2bpp
 	pop af
@@ -302,12 +302,12 @@ StartTrainerBattle_SetUpForWavyOutro: ; 8c3e8 (23:43e8)
 
 	call StartTrainerBattle_NextScene
 
-	ld a, $43
-	ld [hFFC6], a
+	ld a, rSCX - $ff00
+	ld [hLCDCPointer], a
 	xor a
-	ld [hFFC7], a
+	ld [hLYOverrideStart], a
 	ld a, $90
-	ld [hFFC8], a
+	ld [hLYOverrideEnd], a
 	xor a
 	ld [wcf64], a
 	ld [wcf65], a

@@ -75,14 +75,14 @@ tradeanim_do_givemon_scroll: macro
 	db tradeanim_do_givemon_scroll_command ; 1c
 endm
 
-	enum tradeanim_1d_command
-tradeanim_1d: macro
-	db tradeanim_1d_command ; 1d
+	enum tradeanim_frontpic_scroll_command
+tradeanim_frontpic_scroll: macro
+	db tradeanim_frontpic_scroll_command ; 1d
 endm
 
-	enum tradeanim_1e_command
-tradeanim_1e: macro
-	db tradeanim_1e_command ; 1e
+	enum tradeanim_textbox_scroll_command
+tradeanim_textbox_scroll: macro
+	db tradeanim_textbox_scroll_command ; 1e
 endm
 
 	enum tradeanim_scroll_out_right_command

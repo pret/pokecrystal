@@ -196,9 +196,9 @@ AI_TryItem: ; 38105
 	jr z, .has_item
 
 	dec de
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	jr .loop
 
 .has_item
@@ -216,9 +216,8 @@ endr
 	pop de
 	pop hl
 
-rept 2
 	inc hl
-endr
+	inc hl
 	jr c, .loop
 
 .used_item
@@ -572,20 +571,20 @@ EnemyUsedFullHeal: ; 383a3 (e:43a3)
 
 EnemyUsedMaxPotion: ; 383ae (e:43ae)
 	ld a, MAX_POTION
-	ld [wd1f1], a
+	ld [CurEnemyItem], a
 	jr FullRestoreContinue
 
 EnemyUsedFullRestore: ; 383b5 (e:43b5)
 	call AI_HealStatus
 	ld a, FULL_RESTORE
-	ld [wd1f1], a
+	ld [CurEnemyItem], a
 	ld hl, EnemySubStatus3
 	res SUBSTATUS_CONFUSED, [hl]
 	xor a
 	ld [EnemyConfuseCount], a
 
 FullRestoreContinue: ; 383c6
-	ld de, wd1ec
+	ld de, wCurHPAnimOldHP
 	ld hl, EnemyMonHP + 1
 	ld a, [hld]
 	ld [de], a
@@ -597,11 +596,11 @@ FullRestoreContinue: ; 383c6
 	ld a, [hld]
 	ld [de], a
 	inc de
-	ld [Buffer1], a
+	ld [wCurHPAnimMaxHP], a
 	ld [EnemyMonHP + 1], a
 	ld a, [hl]
 	ld [de], a
-	ld [Buffer2], a
+	ld [wCurHPAnimMaxHP + 1], a
 	ld [EnemyMonHP], a
 	jr EnemyPotionFinish
 ; 383e8 (e:43e8)
@@ -621,20 +620,20 @@ EnemyUsedHyperPotion: ; 383f4 (e:43f4)
 	ld b, 200
 
 EnemyPotionContinue: ; 383f8
-	ld [wd1f1], a
+	ld [CurEnemyItem], a
 	ld hl, EnemyMonHP + 1
 	ld a, [hl]
-	ld [wd1ec], a
+	ld [wCurHPAnimOldHP], a
 	add b
 	ld [hld], a
-	ld [wd1ee], a
+	ld [wCurHPAnimNewHP], a
 	ld a, [hl]
-	ld [wd1ec + 1], a
-	ld [wd1ee + 1], a
+	ld [wCurHPAnimOldHP + 1], a
+	ld [wCurHPAnimNewHP + 1], a
 	jr nc, .ok
 	inc a
 	ld [hl], a
-	ld [wd1ee + 1], a
+	ld [wCurHPAnimNewHP + 1], a
 .ok
 	inc hl
 	ld a, [hld]
@@ -642,22 +641,22 @@ EnemyPotionContinue: ; 383f8
 	ld de, EnemyMonMaxHP + 1
 	ld a, [de]
 	dec de
-	ld [Buffer1], a
+	ld [wCurHPAnimMaxHP], a
 	sub b
 	ld a, [hli]
 	ld b, a
 	ld a, [de]
-	ld [Buffer2], a
+	ld [wCurHPAnimMaxHP + 1], a
 	sbc b
 	jr nc, EnemyPotionFinish
 	inc de
 	ld a, [de]
 	dec de
 	ld [hld], a
-	ld [wd1ee], a
+	ld [wCurHPAnimNewHP], a
 	ld a, [de]
 	ld [hl], a
-	ld [wd1ef], a
+	ld [wCurHPAnimNewHP + 1], a
 
 EnemyPotionFinish: ; 38436
 	call PrintText_UsedItemOn
@@ -844,7 +843,7 @@ EnemyUsedXSpecial: ; 38553
 ; a = ITEM_CONSTANT
 ; b = BATTLE_CONSTANT (ATTACK, DEFENSE, SPEED, SP_ATTACK, SP_DEFENSE, ACCURACY, EVASION)
 EnemyUsedXItem:
-	ld [wd1f1], a
+	ld [CurEnemyItem], a
 	push bc
 	call PrintText_UsedItemOn
 	pop bc
@@ -856,13 +855,13 @@ EnemyUsedXItem:
 ; Parameter
 ; a = ITEM_CONSTANT
 PrintText_UsedItemOn_AND_AIUpdateHUD: ; 38568
-	ld [wd1f1], a
+	ld [CurEnemyItem], a
 	call PrintText_UsedItemOn
 	jp AIUpdateHUD
 ; 38571
 
 PrintText_UsedItemOn: ; 38571
-	ld a, [wd1f1]
+	ld a, [CurEnemyItem]
 	ld [wd265], a
 	call GetItemName
 	ld hl, StringBuffer1

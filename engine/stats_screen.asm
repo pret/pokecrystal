@@ -6,14 +6,14 @@ BattleStatsScreenInit: ; 4dc7b (13:5c7b)
 	ld a, [wBattleMode] ; wd22d (aliases: EnemyMonEnd)
 	and a
 	jr z, StatsScreenInit
-	jr _BattleStatsScreenInit
+	jr _MobileStatsScreenInit
 
 StatsScreenInit: ; 4dc8a
 	ld hl, StatsScreenMain
 	jr StatsScreenInit_gotaddress
 
-_BattleStatsScreenInit: ; 4dc8f
-	ld hl, StatsScreenBattle
+_MobileStatsScreenInit: ; 4dc8f
+	ld hl, StatsScreenMobile
 	jr StatsScreenInit_gotaddress
 
 StatsScreenInit_gotaddress: ; 4dc94
@@ -33,7 +33,7 @@ StatsScreenInit_gotaddress: ; 4dc94
 	call ClearBGPalettes
 	call ClearTileMap
 	call UpdateSprites
-	callba Functionfb53e
+	callba StatsScreen_LoadFont
 	pop hl
 	call _hl_
 	call ClearBGPalettes
@@ -73,7 +73,7 @@ StatsScreenMain: ; 0x4dcd2
 	ret
 ; 0x4dcf7
 
-StatsScreenBattle: ; 4dcf7
+StatsScreenMobile: ; 4dcf7
 	xor a
 	ld [wJumptableIndex], a
 	; stupid interns
@@ -89,7 +89,7 @@ StatsScreenBattle: ; 4dcf7
 	ld hl, StatsScreenPointerTable
 	rst JumpTable
 	call StatsScreen_WaitAnim
-	callba Function100dfd
+	callba MobileComms_CheckInactivityTimer
 	jr c, .exit
 	ld a, [wJumptableIndex]
 	bit 7, a
@@ -100,7 +100,6 @@ StatsScreenBattle: ; 4dcf7
 ; 4dd2a
 
 StatsScreenPointerTable: ; 4dd2a
-
 	dw MonStatsInit       ; regular pokémon
 	dw EggStatsInit       ; egg
 	dw StatsScreenWaitCry
@@ -129,7 +128,7 @@ StatsScreen_WaitAnim: ; 4dd3a (13:5d3a)
 .finish
 	ld hl, wcf64
 	res 5, [hl]
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	ret
 
 StatsScreen_SetJumptableIndex: ; 4dd62 (13:5d62)
@@ -149,7 +148,7 @@ MonStatsInit: ; 4dd72 (13:5d72)
 	res 6, [hl]
 	call ClearBGPalettes
 	call ClearTileMap
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	call StatsScreen_CopyToTempMon
 	ld a, [CurPartySpecies]
 	cp EGG
@@ -223,7 +222,7 @@ StatsScreenWaitCry: ; 4dde6 (13:5de6)
 
 StatsScreen_CopyToTempMon: ; 4ddf2 (13:5df2)
 	ld a, [MonType]
-	cp BREEDMON
+	cp TEMPMON
 	jr nz, .breedmon
 	ld a, [wBufferMon]
 	ld [CurSpecies], a
@@ -250,7 +249,7 @@ StatsScreen_CopyToTempMon: ; 4ddf2 (13:5df2)
 StatsScreen_GetJoypad: ; 4de2c (13:5e2c)
 	call GetJoypad
 	ld a, [MonType]
-	cp BREEDMON
+	cp TEMPMON
 	jr nz, .notbreedmon
 	push hl
 	push de
@@ -641,9 +640,8 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	inc a
 	ld d, a
 	callba CalcExpAtLevel
-rept 2
 	ld hl, TempMonExp + 2
-endr
+	ld hl, TempMonExp + 2
 	ld a, [hQuotient + 2]
 	sub [hl]
 	dec hl
@@ -660,9 +658,8 @@ endr
 .AlreadyAtMaxLevel:
 	ld hl, Buffer1 ; wd1ea (aliases: MagikarpLength)
 	xor a
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld [hl], a
 	ret
 ; 4e119 (13:6119)
@@ -1016,7 +1013,7 @@ EggStatsScreen: ; 4e33a
 	call DelayFrame
 	hlcoord 0, 0
 	call PrepMonFrontpic
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	call StatsScreen_AnimateEgg
 
 	ld a, [TempMonHappiness]
@@ -1147,7 +1144,7 @@ GetNicknamePointer: ; 4e528 (13:6528)
 	ld h, [hl]
 	ld l, a
 	ld a, [MonType]
-	cp BREEDMON
+	cp TEMPMON
 	ret z
 	ld a, [CurPartyMon]
 	jp SkipNames

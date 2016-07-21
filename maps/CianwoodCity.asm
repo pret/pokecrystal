@@ -156,33 +156,33 @@ CianwoodCityHiddenMaxEther:
 
 MovementData_0x1a00da:
 	db $39 ; movement
-	fast_jump_step_down
-	fast_jump_step_down
-	fast_jump_step_right
+	fast_jump_step DOWN
+	fast_jump_step DOWN
+	fast_jump_step RIGHT
 	db $38 ; movement
 	step_end
 
 MovementData_0x1a00e0:
 	db $39 ; movement
-	fast_jump_step_right
-	fast_jump_step_up
-	fast_jump_step_right
-	fast_jump_step_right
+	fast_jump_step RIGHT
+	fast_jump_step UP
+	fast_jump_step RIGHT
+	fast_jump_step RIGHT
 	db $38 ; movement
 	step_end
 
 MovementData_0x1a00e7:
-	step_up
-	step_up
-	step_up
-	step_up
+	step UP
+	step UP
+	step UP
+	step UP
 	step_end
 
 MovementData_0x1a00ec:
-	step_down
-	step_down
-	step_down
-	step_down
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
 	step_end
 
 UnknownText_0x1a00f1:

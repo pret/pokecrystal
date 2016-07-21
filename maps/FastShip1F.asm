@@ -141,72 +141,72 @@ WorriedGrandpaTriggerLeft:
 	end
 
 MovementData_0x7520e:
-	slow_step_left
-	turn_head_right
+	slow_step LEFT
+	turn_head RIGHT
 	step_end
 
 MovementData_0x75211:
-	slow_step_right
-	turn_head_down
+	slow_step RIGHT
+	turn_head DOWN
 	step_end
 
 MovementData_0x75214:
-	slow_step_down
-	turn_head_up
+	slow_step DOWN
+	turn_head UP
 	step_end
 
 MovementData_0x75217:
-	step_down
-	step_down
-	turn_head_down
+	step DOWN
+	step DOWN
+	turn_head DOWN
 	step_end
 
 MovementData_0x7521b:
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_right
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
 	step_end
 
 MovementData_0x75220:
-	step_right
+	step RIGHT
 	step_end
 
 MovementData_0x75222:
-	big_step_down
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_down
-	big_step_down
-	big_step_down
-	big_step_down
+	big_step DOWN
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
 	step_end
 
 MovementData_0x7522e:
-	big_step_right
-	turn_head_left
+	big_step RIGHT
+	turn_head LEFT
 	step_end
 
 MovementData_0x75231:
-	step_up
+	step UP
 	step_end
 
 MovementData_0x75233:
-	step_down
+	step DOWN
 	step_end
 
 MovementData_0x75235:
-	step_up
-	step_up
+	step UP
+	step UP
 	step_end
 
 MovementData_0x75238:
-	step_right
-	step_up
+	step RIGHT
+	step UP
 	step_end
 
 UnknownText_0x7523b:

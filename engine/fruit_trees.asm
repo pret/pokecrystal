@@ -66,9 +66,9 @@ PickedFruitTree: ; 4405f
 ResetFruitTrees: ; 4406a
 	xor a
 	ld hl, FruitTreeFlags
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 	ld hl, DailyFlags
 	set 4, [hl]

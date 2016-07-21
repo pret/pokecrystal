@@ -625,180 +625,180 @@ OfficerScript_0x192c9a:
 	end
 
 PokeCenter2FMovementData_ReceptionistWalksUpAndLeft_LookRight:
-	slow_step_up
-	slow_step_left
-	turn_head_right
+	slow_step UP
+	slow_step LEFT
+	turn_head RIGHT
 	step_end
 
 PokeCenter2FMobileMobileMovementData_ReceptionistWalksUpAndLeft_LookDown:
-	slow_step_up
-	slow_step_left
-	turn_head_down
+	slow_step UP
+	slow_step LEFT
+	turn_head DOWN
 	step_end
 
 PokeCenter2FMovementData_ReceptionistStepsLeftLooksDown:
-	slow_step_left
-	turn_head_down
+	slow_step LEFT
+	turn_head DOWN
 	step_end
 
 PokeCenter2FMovementData_ReceptionistStepsRightLooksDown:
-	slow_step_right
-	turn_head_down
+	slow_step RIGHT
+	turn_head DOWN
 	step_end
 
 PokeCenter2FMovementData_ReceptionistWalksUpAndLeft_LookRight_2:
-	slow_step_up
-	slow_step_left
-	turn_head_right
+	slow_step UP
+	slow_step LEFT
+	turn_head RIGHT
 	step_end
 
 PokeCenter2FMovementData_ReceptionistLooksRight:
-	turn_head_right
+	turn_head RIGHT
 	step_end
 
 PokeCenter2FMovementData_PlayerTakesThreeStepsUp:
-	step_up
-	step_up
-	step_up
+	step UP
+	step UP
+	step UP
 	step_end
 
 PokeCenter2FMovementData_PlayerTakesTwoStepsUp:
-	step_up
-	step_up
+	step UP
+	step UP
 	step_end
 
 PokeCenter2FMovementData_PlayerTakesOneStepUp:
-	step_up
+	step UP
 	step_end
 
 PokeCenter2FMobileMovementData_PlayerWalksIntoMobileBattleRoom:
-	step_up
-	step_up
-	step_right
-	step_up
+	step UP
+	step UP
+	step RIGHT
+	step UP
 	step_end
 
 PokeCenter2FMovementData_PlayerTakesTwoStepsUp_2:
-	step_up
-	step_up
+	step UP
+	step UP
 	step_end
 
 PokeCenter2FMovementData_PlayerWalksLeftAndUp:
-	step_left
-	step_up
+	step LEFT
+	step UP
 	step_end
 
 PokeCenter2FMovementData_PlayerWalksRightAndUp:
-	step_right
-	step_up
+	step RIGHT
+	step UP
 	step_end
 
 PokeCenter2FMovementData_PlayerTakesThreeStepsDown:
-	step_down
-	step_down
-	step_down
+	step DOWN
+	step DOWN
+	step DOWN
 	step_end
 
 PokeCenter2FMovementData_PlayerTakesTwoStepsDown:
-	step_down
-	step_down
+	step DOWN
+	step DOWN
 	step_end
 
 PokeCenter2FMovementData_PlayerTakesOneStepDown:
-	step_down
+	step DOWN
 	step_end
 
 PokeCenter2FMovementData_ReceptionistStepsRightAndDown:
-	slow_step_right
-	slow_step_down
+	slow_step RIGHT
+	slow_step DOWN
 	step_end
 
 PokeCenter2FMovementData_ReceptionistStepsRightLooksDown_2:
-	slow_step_right
-	turn_head_down
+	slow_step RIGHT
+	turn_head DOWN
 	step_end
 
 PokeCenter2FMovementData_ReceptionistStepsRightLooksDown_3:
-	slow_step_up
-	slow_step_left
-	turn_head_right
+	slow_step UP
+	slow_step LEFT
+	turn_head RIGHT
 	step_end
 
 PokeCenter2FMovementData_ReceptionistStepsLeftLooksRight:
-	slow_step_left
-	turn_head_right
+	slow_step LEFT
+	turn_head RIGHT
 	step_end
 
 PokeCenter2FMobileMovementData_ReceptionistWalksUpAndLeft:
-	slow_step_up
-	slow_step_left
-	turn_head_right
+	slow_step UP
+	slow_step LEFT
+	turn_head RIGHT
 	step_end
 
 PokeCenter2FMovementData_PlayerWalksOutOfMobileRoom:
-	step_down
-	step_left
-	step_down
-	step_down
+	step DOWN
+	step LEFT
+	step DOWN
+	step DOWN
 	step_end
 
 PokeCenter2FMobileMovementData_ReceptionistWalksRightAndDown:
-	slow_step_right
-	slow_step_down
+	slow_step RIGHT
+	slow_step DOWN
 	step_end
 
 PokeCenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight:
-	turn_head_down
-	turn_head_left
-	turn_head_up
-	turn_head_right
+	turn_head DOWN
+	turn_head LEFT
+	turn_head UP
+	turn_head RIGHT
 	step_end
 
 PokeCenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft:
-	turn_head_down
-	turn_head_left
-	turn_head_up
-	turn_head_right
-	turn_head_left
+	turn_head DOWN
+	turn_head LEFT
+	turn_head UP
+	turn_head RIGHT
+	turn_head LEFT
 	step_end
 
 PokeCenter2FMovementData_PlayerSpinsClockwiseEndsFacingDown:
-	turn_head_down
-	turn_head_left
-	turn_head_up
-	turn_head_right
-	turn_head_down
+	turn_head DOWN
+	turn_head LEFT
+	turn_head UP
+	turn_head RIGHT
+	turn_head DOWN
 	step_end
 
 PokeCenter2FMovementData_PlayerTakesOneStepDown_2:
-	step_down
+	step DOWN
 	step_end
 
 PokeCenter2FMovementData_PlayerTakesTwoStepsDown_2:
-	step_down
-	step_down
+	step DOWN
+	step DOWN
 	step_end
 
 PokeCenter2FMovementData_PlayerTakesOneStepUp_2:
-	step_up
+	step UP
 	step_end
 
 PokeCenter2FMovementData_PlayerTakesOneStepRight:
-	step_right
+	step RIGHT
 	step_end
 
 PokeCenter2FMovementData_PlayerTakesOneStepLeft:
-	step_left
+	step LEFT
 	step_end
 
 PokeCenter2FMovementData_ReceptionistStepsLeftLooksRight_2:
-	slow_step_left
-	turn_head_right
+	slow_step LEFT
+	turn_head RIGHT
 	step_end
 
 PokeCenter2FMovementData_ReceptionistStepsRightLooksLeft_2:
-	slow_step_right
-	turn_head_left
+	slow_step RIGHT
+	turn_head LEFT
 	step_end
 
 Text_BattleReceptionistMobile:

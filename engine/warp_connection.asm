@@ -1,5 +1,5 @@
 
-RunCallback_05_03: ; 1045b0
+HandleNewMap: ; 1045b0
 	call Clearwc7e8
 	call ResetMapBufferEventFlags
 	call ResetFlashIfOutOfCave
@@ -7,7 +7,7 @@ RunCallback_05_03: ; 1045b0
 	call ResetBikeFlags
 	ld a, MAPCALLBACK_NEWMAP
 	call RunMapCallback
-RunCallback_03: ; 1045c4
+InitCommandQueue: ; 1045c4
 	callba ClearCmdQueue
 	ld a, MAPCALLBACK_CMDQUEUE
 	call RunMapCallback
@@ -20,18 +20,16 @@ EnterMapConnection: ; 1045d6
 ; Return carry if a connection has been entered.
 	ld a, [wPlayerStepDirection]
 	and a
-	jp z, EnterSouthConnection
-	cp 1
-	jp z, EnterNorthConnection
-	cp 2
-	jp z, EnterWestConnection
-	cp 3
-	jp z, EnterEastConnection
+	jp z, .south
+	cp UP
+	jp z, .north
+	cp LEFT
+	jp z, .west
+	cp RIGHT
+	jp z, .east
 	ret
-; 1045ed
 
-
-EnterWestConnection: ; 1045ed
+.west
 	ld a, [WestConnectedMapGroup]
 	ld [MapGroup], a
 	ld a, [WestConnectedMapNumber]
@@ -64,11 +62,9 @@ EnterWestConnection: ; 1045ed
 	ld [wOverworldMapAnchor], a
 	ld a, h
 	ld [wOverworldMapAnchor + 1], a
-	jp EnteredConnection
-; 104629
+	jp .done
 
-
-EnterEastConnection: ; 104629
+.east
 	ld a, [EastConnectedMapGroup]
 	ld [MapGroup], a
 	ld a, [EastConnectedMapNumber]
@@ -85,27 +81,25 @@ EnterEastConnection: ; 104629
 	ld h, [hl]
 	ld l, a
 	srl c
-	jr z, .skip_to_load
+	jr z, .skip_to_load2
 	ld a, [EastConnectedMapWidth]
 	add 6
 	ld e, a
 	ld d, 0
 
-.loop
+.loop2
 	add hl, de
 	dec c
-	jr nz, .loop
+	jr nz, .loop2
 
-.skip_to_load
+.skip_to_load2
 	ld a, l
 	ld [wOverworldMapAnchor], a
 	ld a, h
 	ld [wOverworldMapAnchor + 1], a
-	jp EnteredConnection
-; 104665
+	jp .done
 
-
-EnterNorthConnection: ; 104665
+.north
 	ld a, [NorthConnectedMapGroup]
 	ld [MapGroup], a
 	ld a, [NorthConnectedMapNumber]
@@ -128,11 +122,9 @@ EnterNorthConnection: ; 104665
 	ld [wOverworldMapAnchor], a
 	ld a, h
 	ld [wOverworldMapAnchor + 1], a
-	jp EnteredConnection
-; 104696
+	jp .done
 
-
-EnterSouthConnection: ; 104696
+.south
 	ld a, [SouthConnectedMapGroup]
 	ld [MapGroup], a
 	ld a, [SouthConnectedMapNumber]
@@ -155,10 +147,7 @@ EnterSouthConnection: ; 104696
 	ld [wOverworldMapAnchor], a
 	ld a, h
 	ld [wOverworldMapAnchor + 1], a
-	; fallthrough
-; 1046c4
-
-EnteredConnection: ; 1046c4
+.done
 	scf
 	ret
 ; 1046c6
@@ -239,35 +228,39 @@ LoadMapTimeOfDay: ; 104750
 	callba ReplaceTimeOfDayPals
 	callba UpdateTimeOfDayPal
 	call OverworldTextModeSwitch
-	call Function104770
-	call Function1047a3
+	call .ClearBGMap
+	call .PushAttrMap
 	ret
 
-Function104770: ; 104770 (41:4770)
+.ClearBGMap: ; 104770 (41:4770)
 	ld a, VBGMap0 / $100
 	ld [wBGMapAnchor + 1], a
 	xor a
 	ld [wBGMapAnchor], a
 	ld [hSCY], a
 	ld [hSCX], a
-	callba Function5958
+	callba ApplyBGMapAnchorToObjects
+
 	ld a, [rVBK]
 	push af
 	ld a, $1
 	ld [rVBK], a
+
 	xor a
 	ld bc, VBGMap1 - VBGMap0
 	hlbgcoord 0, 0
 	call ByteFill
+
 	pop af
 	ld [rVBK], a
+
 	ld a, $60
 	ld bc, VBGMap1 - VBGMap0
 	hlbgcoord 0, 0
 	call ByteFill
 	ret
 
-Function1047a3: ; 1047a3 (41:47a3)
+.PushAttrMap: ; 1047a3 (41:47a3)
 	decoord 0, 0
 	call .copy
 	ld a, [hCGB]
@@ -326,7 +319,7 @@ RefreshMapSprites: ; 1047f0
 	jr nz, .skip
 	ld hl, VramState
 	set 0, [hl]
-	call Function2e31
+	call SafeUpdateSprites
 .skip
 	ld a, [wPlayerSpriteSetupFlags]
 	and %00011100
@@ -369,7 +362,7 @@ CheckMovingOffEdgeOfMap:: ; 104820 (41:4820)
 
 .left
 	ld a, [PlayerStandingMapX]
-	sub $4
+	sub 4
 	cp -1
 	jr z, .ok
 	and a

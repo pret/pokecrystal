@@ -77,28 +77,28 @@ EcruteakPokeCenter1FGymGuyScript:
 	jumptextfaceplayer EcruteakPokeCenter1FGymGuyText
 
 EcruteakPokeCenter1FBillMovement1:
-	step_up
-	step_up
-	step_up
-	step_up
-	step_right
-	step_right
-	step_right
-	turn_head_up
+	step UP
+	step UP
+	step UP
+	step UP
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	turn_head UP
 	step_end
 
 EcruteakPokeCenter1FBillMovement2:
-	step_right
-	step_down
-	step_down
-	step_down
-	step_down
+	step RIGHT
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
 	step_end
 
 EcruteakPokeCenter1FPlayerMovement1:
-	step_up
-	step_up
-	step_up
+	step UP
+	step UP
+	step UP
 	step_end
 
 EcruteakPokeCenter1F_BillText1:

@@ -140,9 +140,9 @@ Special_BattleTowerFade: ; 8c092
 	ld b, $4
 .asm_8c09c
 	call DmgToCgbTimePals
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	ld c, $7
 	call DelayFrames
 	dec b
@@ -245,9 +245,8 @@ GetTimePalette: ; 8c117
 	ld e, a
 	ld d, 0
 	ld hl, .TimePalettes
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -305,9 +304,9 @@ DmgToCgbTimePals: ; 8c14e
 ConvertTimePalsIncHL: ; 8c15e
 .loop
 	call DmgToCgbTimePals
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	ld c, 2
 	call DelayFrames
 	dec b
@@ -318,9 +317,9 @@ endr
 ConvertTimePalsDecHL: ; 8c16d
 .loop
 	call DmgToCgbTimePals
-rept 3
 	dec hl
-endr
+	dec hl
+	dec hl
 	ld c, 2
 	call DelayFrames
 	dec b
@@ -346,9 +345,8 @@ GetTimePalFade: ; 8c17c
 	ld c, a
 	ld b, $0
 	ld hl, .dmgfades
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

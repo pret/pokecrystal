@@ -70,9 +70,8 @@ Elevator:: ; 1342d
 	call GetFarByte
 	cp -1
 	jr z, .fail
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [wElevatorPointerBank]
 	call GetFarByte
 	inc hl
@@ -222,9 +221,8 @@ FloorToString: ; 13575
 	ld e, a
 	ld d, 0
 	ld hl, .floors
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

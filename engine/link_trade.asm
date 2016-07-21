@@ -25,7 +25,7 @@ Function16d43b: ; 16d43b
 	call ClearSprites
 	callba __LoadTradeScreenBorder ; useless to farcall
 	callba Function16d42e ; useless to farcall
-	ld b, SCGB_08
+	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call SetPalettes
 	call WaitBGMap
@@ -145,8 +145,8 @@ LinkComms_LoadPleaseWaitTextboxBorderGFX: ; 16d69a
 	ret
 ; 16d6a7
 
-Function16d6a7: ; 16d6a7
-	callba Function49811
+LoadTradeRoomBGPals_: ; 16d6a7
+	callba LoadTradeRoomBGPals
 	ret
 ; 16d6ae
 
@@ -171,7 +171,7 @@ LinkTextbox: ; 16d6ca
 Function16d6ce: ; 16d6ce
 	call LoadStandardMenuDataHeader
 	call Function16d6e1
-	callba Function87d
+	callba WaitLinkTransfer
 	call Call_ExitMenu
 	call WaitBGMap2
 	ret

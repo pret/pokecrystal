@@ -71,9 +71,8 @@ _CardFlip: ; e00ee (38:40ee)
 	ld e, a
 	ld d, 0
 	ld hl, .Jumptable
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -276,9 +275,8 @@ endr
 	ld e, a
 	ld d, 0
 	ld hl, wDeck
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [wCardFlipWhichCard]
 	ld e, a
 	add hl, de
@@ -442,9 +440,8 @@ CardFlip_DisplayCardFaceUp: ; e03ec
 	ld e, a
 	ld d, 0
 	ld hl, .Deck
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -675,9 +672,8 @@ CardFlip_BlankDiscardedCardSlot: ; e0534
 	and a
 	jr nz, .discarded2
 	hlcoord 13, 3
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld [hl], $36
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -686,9 +682,8 @@ endr
 
 .discarded2
 	hlcoord 13, 3
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld [hl], $36
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -703,9 +698,8 @@ endr
 	and a
 	jr nz, .discarded1
 	hlcoord 13, 4
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld [hl], $3b
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -714,9 +708,8 @@ endr
 
 .discarded1
 	hlcoord 13, 4
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld [hl], $3d
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -731,9 +724,8 @@ endr
 	and a
 	jr nz, .discarded4
 	hlcoord 13, 6
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld [hl], $36
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -742,9 +734,8 @@ endr
 
 .discarded4
 	hlcoord 13, 6
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld [hl], $36
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -759,9 +750,8 @@ endr
 	and a
 	jr nz, .discarded3
 	hlcoord 13, 7
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld [hl], $3c
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -770,9 +760,8 @@ endr
 
 .discarded3
 	hlcoord 13, 7
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld [hl], $3d
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -787,9 +776,8 @@ endr
 	and a
 	jr nz, .discarded6
 	hlcoord 13, 9
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld [hl], $36
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -798,9 +786,8 @@ endr
 
 .discarded6
 	hlcoord 13, 9
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld [hl], $36
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -815,9 +802,8 @@ endr
 	and a
 	jr nz, .discarded5
 	hlcoord 13, 10
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld [hl], $3c
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -826,9 +812,8 @@ endr
 
 .discarded5
 	hlcoord 13, 10
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld [hl], $3d
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -1296,9 +1281,8 @@ ChooseCard_HandleJoypad: ; e089c
 	ld [hl], a
 	cp $3
 	jr c, .left_to_number_gp
-rept 2
 	dec [hl]
-endr
+	dec [hl]
 	jp .play_sound
 
 .left_to_number_gp
@@ -1326,9 +1310,8 @@ endr
 	ld [hl], a
 	cp $4
 	ret nc
-rept 2
 	inc [hl]
-endr
+	inc [hl]
 	jr .play_sound
 
 .d_up ; e090a
@@ -1357,9 +1340,8 @@ endr
 	ld [hl], a
 	cp $3
 	jr c, .up_to_mon_group
-rept 2
 	dec [hl]
-endr
+	dec [hl]
 	jr .play_sound
 
 .up_to_mon_group
@@ -1387,9 +1369,8 @@ endr
 	ld [hl], a
 	cp $6
 	ret nc
-rept 2
 	inc [hl]
-endr
+	inc [hl]
 
 .play_sound ; e0959
 	ld de, SFX_POKEBALLS_PLACED_ON_TABLE
@@ -1408,9 +1389,8 @@ CardFlip_UpdateCursorOAM: ; e0960
 
 .skip
 	call CollapseCursorPosition
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld de, .OAMData
 	add hl, de
 	ld a, [hli]

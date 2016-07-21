@@ -3,9 +3,8 @@ GetLandmarkCoords: ; 0x1ca896
 	push hl
 	ld l, e
 	ld h, 0
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld de, Landmarks
 	add hl, de
 	ld a, [hli]
@@ -24,9 +23,8 @@ GetLandmarkName:: ; 0x1ca8a5
 
 	ld l, e
 	ld h, 0
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld de, Landmarks + 2
 	add hl, de
 	ld a, [hli]

@@ -147,11 +147,11 @@ BurnedTower1FHPUp:
 	itemball HP_UP
 
 BurnedTowerMovement_PlayerWalksToSilver:
-	step_left
+	step LEFT
 	step_end
 
 BurnedTowerMovement_SilverWalksToPlayer:
-	step_right
+	step RIGHT
 	step_end
 
 BurnedTower1FMovement_PlayerStartsToFall:
@@ -159,11 +159,11 @@ BurnedTower1FMovement_PlayerStartsToFall:
 	step_end
 
 BurnedTower1FEusineMovement:
-	step_down
-	step_left
-	step_left
-	step_left
-	step_down
+	step DOWN
+	step LEFT
+	step LEFT
+	step LEFT
+	step DOWN
 	step_end
 
 BurnedTowerSilver_BeforeText:

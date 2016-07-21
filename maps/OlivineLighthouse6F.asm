@@ -131,34 +131,34 @@ OlivineLighthouse6FSuperPotion:
 	itemball SUPER_POTION
 
 MovementData_0x60c68:
-	slow_step_up
-	slow_step_up
-	slow_step_right
-	slow_step_up
-	slow_step_up
-	step_sleep_8
-	step_sleep_8
+	slow_step UP
+	slow_step UP
+	slow_step RIGHT
+	slow_step UP
+	slow_step UP
+	step_sleep 8
+	step_sleep 8
 	step_end
 
 MovementData_0x60c70:
-	slow_step_down
-	slow_step_right
-	slow_step_right
-	slow_step_right
-	slow_step_up
-	slow_step_right
-	slow_step_right
-	slow_step_right
+	slow_step DOWN
+	slow_step RIGHT
+	slow_step RIGHT
+	slow_step RIGHT
+	slow_step UP
+	slow_step RIGHT
+	slow_step RIGHT
+	slow_step RIGHT
 	step_end
 
 MovementData_0x60c79:
-	slow_step_up
-	slow_step_up
-	slow_step_right
-	slow_step_up
-	slow_step_up
-	slow_step_up
-	step_sleep_8
+	slow_step UP
+	slow_step UP
+	slow_step RIGHT
+	slow_step UP
+	slow_step UP
+	slow_step UP
+	step_sleep 8
 	step_end
 
 UnknownText_0x60c81:

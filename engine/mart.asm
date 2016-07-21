@@ -145,9 +145,8 @@ GetMart: ; 15b31
 
 .IsAMart:
 	ld hl, Marts
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -393,9 +392,8 @@ LoadBuyMenuText: ; 15c7d
 	pop af
 	ld e, a
 	ld d, 0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -405,9 +403,8 @@ endr
 
 MartAskPurchaseQuantity: ; 15c91
 	call GetMartDialogGroup ; gets a pointer from GetMartDialogGroup.MartTextFunctionPointers
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hl]
 	and a
 	jp z, StandardMartAskPurchaseQuantity
@@ -421,9 +418,9 @@ GetMartDialogGroup: ; 15ca3
 	ld e, a
 	ld d, 0
 	ld hl, .MartTextFunctionPointers
-rept 3
 	add hl, de
-endr
+	add hl, de
+	add hl, de
 	ret
 ; 15cb0
 
@@ -579,9 +576,9 @@ BargainShopAskPurchaseQuantity:
 	ld h, [hl]
 	ld l, a
 	inc hl
-rept 3
 	add hl, de
-endr
+	add hl, de
+	add hl, de
 	inc hl
 	ld a, [hli]
 	ld [hMoneyTemp + 2], a
@@ -620,9 +617,9 @@ RooftopSaleAskPurchaseQuantity:
 	ld h, [hl]
 	ld l, a
 	inc hl
-rept 3
 	add hl, de
-endr
+	add hl, de
+	add hl, de
 	inc hl
 	ld e, [hl]
 	inc hl
@@ -666,9 +663,9 @@ MenuDataHeader_Buy: ; 0x15e18
 	ld c, a
 	ld b, 0
 	ld hl, wMartItem1BCD
-rept 3
 	add hl, bc
-endr
+	add hl, bc
+	add hl, bc
 	push de
 	ld d, h
 	ld e, l

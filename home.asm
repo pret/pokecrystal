@@ -37,7 +37,7 @@ INCLUDE "home/handshake.asm"
 INCLUDE "home/game_time.asm"
 INCLUDE "home/map.asm"
 
-Function2d43:: ; 2d43
+InexplicablyEmptyFunction:: ; 2d43
 ; Inexplicably empty.
 ; Seen in PredefPointers.
 	rept 16
@@ -49,13 +49,6 @@ Function2d43:: ; 2d43
 INCLUDE "home/farcall.asm"
 INCLUDE "home/predef.asm"
 INCLUDE "home/window.asm"
-
-Function2e4e:: ; 2e4e
-; Unreferenced.
-	scf
-	ret
-; 2e50
-
 INCLUDE "home/flag.asm"
 
 Function2ebb:: ; 2ebb
@@ -342,7 +335,7 @@ PrintLetterDelay:: ; 313d
 	call GetJoypad
 
 ; input override
-	ld a, [wc2d7]
+	ld a, [wDisableTextAcceleration]
 	and a
 	jr nz, .wait
 
@@ -393,28 +386,12 @@ CopyDataUntil:: ; 318c
 ; 0x3198
 
 PrintNum:: ; 3198
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_PrintNum)
-	rst Bankswitch
-
-	call _PrintNum
-
-	pop af
-	rst Bankswitch
+	homecall _PrintNum
 	ret
 ; 31a4
 
 MobilePrintNum:: ; 31a4
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_MobilePrintNum)
-	rst Bankswitch
-
-	call _MobilePrintNum
-
-	pop af
-	rst Bankswitch
+	homecall _MobilePrintNum
 	ret
 ; 31b0
 
@@ -570,7 +547,7 @@ LoadEDTile:: ; 323d
 ; 323f
 
 ; XXX
-	callba Function104000
+	callba HDMATransferAttrMapAndTileMapToWRAMBank3
 	ret
 ; 3246
 
@@ -744,10 +721,10 @@ GetHPPal:: ; 3353
 
 	ld d, HP_GREEN
 	ld a, e
-	cp 24
+	cp (50 * 48 / 100)
 	ret nc
 	inc d ; yellow
-	cp 10
+	cp (21 * 48 / 100)
 	ret nc
 	inc d ; red
 	ret
@@ -798,12 +775,7 @@ NamesPointers:: ; 33ab
 	dbw 0, PartyMonOT
 	dbw 0, OTPartyMonOT
 	dba TrainerClassNames
-; 33c0
-
-Function33c0:
-	inc b
-	ld d, d
-	ld c, e
+	dbw $4, $4b52 ; within PackMenuGFX
 ; 33c3
 
 GetName:: ; 33c3
@@ -834,9 +806,9 @@ GetName:: ; 33c3
 	ld e, a
 	ld d, 0
 	ld hl, NamesPointers
-rept 3
 	add hl, de
-endr
+	add hl, de
+	add hl, de
 	ld a, [hli]
 	rst Bankswitch
 	ld a, [hli]
@@ -853,9 +825,9 @@ endr
 
 .done
 	ld a, e
-	ld [wd102], a
+	ld [wUnusedD102], a
 	ld a, d
-	ld [wd103], a
+	ld [wUnusedD102 + 1], a
 
 	pop de
 	pop bc
@@ -1142,7 +1114,7 @@ InitScrollingMenu:: ; 352f
 	jp TextBox
 ; 354b
 
-Function354b:: ; 354b joypad
+JoyTextDelay_ForcehJoyDown:: ; 354b joypad
 	call DelayFrame
 
 	ld a, [hInMenu]
@@ -1692,22 +1664,22 @@ PrintLevel:: ; 382d
 ; How many digits?
 	ld c, 2
 	cp 100
-	jr c, Function3842
+	jr c, Print8BitNumRightAlign
 
 ; 3-digit numbers overwrite the :L.
 	dec hl
 	inc c
-	jr Function3842
+	jr Print8BitNumRightAlign
 ; 383d
 
-Function383d:: ; 383d
+PrintLevel_Force3Digits:: ; 383d
 ; Print :L and all 3 digits
 	ld [hl], "<LV>"
 	inc hl
 	ld c, 3
 ; 3842
 
-Function3842:: ; 3842
+Print8BitNumRightAlign:: ; 3842
 	ld [wd265], a
 	ld de, wd265
 	ld b, PRINTNUM_RIGHTALIGN | 1
@@ -1715,6 +1687,8 @@ Function3842:: ; 3842
 ; 384d
 
 Function384d:: ; 384d
+; XXX
+; GetNthMove
 	ld hl, wListMoves_MoveIndicesBuffer
 	ld c, a
 	ld b, 0
@@ -1907,13 +1881,17 @@ GetPartyLocation:: ; 3927
 ; 392d
 
 Function392d:: ; 392d
+; XXX
+; GetDexNumber
+; Probably used in gen 1 to convert index number to dex number
+; Not required in gen 2 because index number == dex number
 	push hl
 	ld a, b
 	dec a
 	ld b, 0
 	add hl, bc
 	ld hl, BaseData + 0
-	ld bc, $0020
+	ld bc, BaseData1 - BaseData0
 	call AddNTimes
 	ld a, BANK(BaseData)
 	call GetFarHalfword
@@ -1925,9 +1903,9 @@ Function392d:: ; 392d
 
 INCLUDE "home/battle.asm"
 
-Function3b0c:: ; 3b0c
+PushLYOverrides:: ; 3b0c
 
-	ld a, [hFFC6]
+	ld a, [hLCDCPointer]
 	and a
 	ret z
 

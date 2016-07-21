@@ -117,9 +117,9 @@ CheckOwnMonAnywhere: ; 0x4a721
 	; Load the box.
 	ld hl, BoxAddressTable1
 	ld b, 0
-rept 3
 	add hl, bc
-endr
+	add hl, bc
+	add hl, bc
 	ld a, [hli]
 	call GetSRAMBank
 	ld a, [hli]

@@ -61,9 +61,8 @@ ENDC
 
 .okay2
 	push af
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld c, a
 	ld a, [hl]
@@ -72,9 +71,8 @@ endr
 	pop af
 	ld c, a
 	ld b, 0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld c, a
 	ld a, [hl]
@@ -83,7 +81,7 @@ endr
 	bccoord 1, 14
 	pop af
 	ld [rSVBK], a
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	ret
 ; 11c05d
 

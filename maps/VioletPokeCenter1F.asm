@@ -88,21 +88,21 @@ YoungsterScript_0x69546:
 	jumptextfaceplayer UnknownText_0x698b8
 
 MovementData_AideWalksStraightOutOfPokecenter:
-	step_down
-	step_down
-	step_down
-	step_down
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
 	step_end
 
 MovementData_AideWalksLeftToExitPokecenter:
-	step_left
-	step_down
+	step LEFT
+	step DOWN
 	step_end
 
 MovementData_AideFinishesLeavingPokecenter:
-	step_down
-	step_down
-	step_down
+	step DOWN
+	step DOWN
+	step DOWN
 	step_end
 
 UnknownText_0x69555:

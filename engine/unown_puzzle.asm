@@ -47,7 +47,7 @@ UnownPuzzle: ; e1190
 	ld a, $93
 	ld [rLCDC], a
 	call WaitBGMap
-	ld b, SCGB_18
+	ld b, SCGB_UNOWN_PUZZLE
 	call GetSGBLayout
 	ld a, $e4
 	call DmgToCgbBGPals
@@ -178,9 +178,8 @@ UnownPuzzleJumptable: ; e12ca
 	ld e, a
 	ld d, 0
 	ld hl, .Jumptable
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -840,9 +839,8 @@ LoadUnownPuzzlePiecesGFX: ; e17a3
 	ld e, a
 	ld d, 0
 	ld hl, .LZPointers
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

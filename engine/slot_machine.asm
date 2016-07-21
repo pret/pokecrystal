@@ -201,9 +201,9 @@ Function9282c: ; 9282c
 	ld a, [hl]
 	xor $20
 	ld [hli], a
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	dec c
 	jr nz, .loop
 	ret
@@ -686,9 +686,9 @@ Slots_SpinReels: ; 92b0f (24:6b0f)
 	ld a, [hl]
 	add d
 	ld [hli], a
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	dec e
 	jr nz, .loop
 	ret
@@ -1844,9 +1844,9 @@ SlotPayoutText: ; 93158 (24:7158)
 	ld e, a
 	ld d, 0
 	ld hl, .PayoutStrings
-rept 3
 	add hl, de
-endr
+	add hl, de
+	add hl, de
 	ld de, StringBuffer2
 	ld bc, 4
 	call CopyBytes
@@ -1948,7 +1948,7 @@ endr
 ; 9321d
 
 SlotMachine_AnimateGolem: ; 9321d (24:721d)
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
@@ -1982,7 +1982,7 @@ SlotMachine_AnimateGolem: ; 9321d (24:721d)
 
 .retain
 	dec [hl]
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	inc [hl]
 	ld hl, SPRITEANIMSTRUCT_0C
@@ -2009,7 +2009,7 @@ SlotMachine_AnimateGolem: ; 9321d (24:721d)
 	ret
 
 .play_sound
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	inc [hl]
 	ld hl, SPRITEANIMSTRUCT_0D
@@ -2041,7 +2041,7 @@ SlotMachine_AnimateGolem: ; 9321d (24:721d)
 	ret
 
 .restart
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	xor a
 	ld [hl], a
@@ -2049,7 +2049,7 @@ SlotMachine_AnimateGolem: ; 9321d (24:721d)
 	ret
 
 Slots_AnimateChansey: ; 932ac (24:72ac)
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
@@ -2082,7 +2082,7 @@ Slots_AnimateChansey: ; 932ac (24:72ac)
 	ret
 
 .limit
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	inc [hl]
 	ld a, $1
@@ -2100,7 +2100,7 @@ Slots_AnimateChansey: ; 932ac (24:72ac)
 	ret
 
 .retain
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	inc [hl]
 	ld hl, SPRITEANIMSTRUCT_0C
@@ -2116,7 +2116,7 @@ Slots_AnimateChansey: ; 932ac (24:72ac)
 	ret
 
 .spawn_egg
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	dec [hl]
 	push bc

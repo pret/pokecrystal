@@ -140,7 +140,14 @@ lda_coord: MACRO
 ; pic animations
 frame: MACRO
 	db \1
-	db \2
+x = \2
+IF _NARG > 2
+rept _NARG +- 2
+x = x | (1 << (\3 + 1))
+	shift
+endr
+endc
+	db x
 	ENDM
 setrepeat: MACRO
 	db $fe
@@ -155,6 +162,12 @@ endanim: MACRO
 	ENDM
 
 
+delanim: MACRO
+	db $fc
+	ENDM
+dorestart: MACRO
+	db $fe
+	ENDM
 
 sine_wave: MACRO
 ; \1: amplitude
@@ -244,9 +257,9 @@ debgcoord EQUS "bgcoord de,"
 bcbgcoord EQUS "bgcoord bc,"
 bgrows EQUS "* $20"
 
-palred EQUS "$0400 *"
+palred EQUS "$0001 *"
 palgreen EQUS "$0020 *"
-palblue EQUS "$0001 *"
+palblue EQUS "$0400 *"
 
 dsprite: MACRO
 ; conditional segment is there because not every instance of
@@ -270,3 +283,34 @@ jumptable: MACRO
 	ld l, a
 	jp [hl]
 endm
+
+maskbits: macro
+; returns to x
+; usage in rejection sampling
+; .loop
+; 	call Random
+; 	maskbits 30
+; 	and x
+; 	cp 30
+; 	jr nc, .loop
+
+x = 1
+rept 8
+IF \1 > x
+x = (x + 1) * 2 +- 1
+ENDC
+endr
+endm
+
+homecall: MACRO
+	ld a, [hROMBank]
+	push af
+	ld a, BANK(\1)
+	rst Bankswitch
+
+	call \1
+
+	pop af
+	rst Bankswitch
+ENDM
+

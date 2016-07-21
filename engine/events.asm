@@ -167,10 +167,10 @@ HandleMap: ; 96773
 	cp 2 ; HandleMap
 	ret nz
 
-	call Function967d1
+	call HandleMapObjects
 	call NextOverworldFrame
-	call Function967e1
-	call Function967f4
+	call HandleMapBackground
+	call CheckPlayerState
 	ret
 ; 96795
 
@@ -226,21 +226,21 @@ HandleMapTimeAndJoypad: ; 967c1
 	ret
 ; 967d1
 
-Function967d1: ; 967d1
+HandleMapObjects: ; 967d1
 	callba HandleNPCStep ; engine/map_objects.asm
 	callba _HandlePlayerStep
 	call _CheckObjectEnteringVisibleRange
 	ret
 ; 967e1
 
-Function967e1: ; 967e1
+HandleMapBackground: ; 967e1
 	callba _UpdateSprites
 	callba ScrollScreen
 	callba PlaceMapNameSign
 	ret
 ; 967f4
 
-Function967f4: ; 967f4
+CheckPlayerState: ; 967f4
 	ld a, [wPlayerStepFlags]
 	bit 5, a ; in the middle of step
 	jr z, .events
@@ -547,7 +547,7 @@ OWPlayerInput: ; 96974
 
 .Action:
 	push af
-	callba Function80422
+	callba StopPlayerForEvent
 	pop af
 	scf
 	ret
@@ -1030,9 +1030,9 @@ DoPlayerEvent: ; 96beb
 	ld c, a
 	ld b, 0
 	ld hl, PlayerEventScriptPointers
-rept 3
 	add hl, bc
-endr
+	add hl, bc
+	add hl, bc
 	ld a, [hli]
 	ld [ScriptBank], a
 	ld a, [hli]

@@ -219,12 +219,12 @@ Route42HiddenMaxPotion:
 
 MovementData_0x1a9356:
 	db $39 ; movement
-	fast_jump_step_up
-	fast_jump_step_up
-	fast_jump_step_up
-	fast_jump_step_right
-	fast_jump_step_right
-	fast_jump_step_right
+	fast_jump_step UP
+	fast_jump_step UP
+	fast_jump_step UP
+	fast_jump_step RIGHT
+	fast_jump_step RIGHT
+	fast_jump_step RIGHT
 	db $38 ; movement
 	step_end
 

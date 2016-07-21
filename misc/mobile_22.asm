@@ -45,7 +45,9 @@ Function8917a: ; 8917a (22:517a)
 	ret
 
 Function89185: ; 89185 (22:5185)
-; Compares c bytes starting at de and hl and incrementing together until a match is found.
+; strcmp(hl, de, c)
+; Compares c bytes starting at de and hl and incrementing together until a mismatch is found.
+; Preserves hl and de.
 	push de
 	push hl
 .loop
@@ -62,7 +64,9 @@ Function89185: ; 89185 (22:5185)
 	ret
 
 Function89193: ; 89193
+; copy(hl, de, 4)
 ; Copies c bytes from hl to de.
+; Preserves hl and de.
 	push de
 	push hl
 .loop
@@ -92,14 +96,14 @@ Function8919e: ; 8919e (22:519e)
 	ret
 
 Function891ab: ; 891ab
-	call Function89240
+	call Mobile22_SetBGMapMode1
 	callba ReloadMapPart
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	ret
 ; 891b8
 
 Function891b8: ; 891b8
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	hlcoord 0, 0
 	ld a, " "
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
@@ -125,7 +129,7 @@ Function891d3: ; 891d3 (22:51d3)
 	ret
 
 Function891de: ; 891de
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call ClearPalettes
 	hlcoord 0, 0, AttrMap
 	ld a, $7
@@ -193,18 +197,18 @@ Function8921f: ; 8921f (22:521f)
 	pop de
 	ret
 
-Function89235: ; 89235 (22:5235)
+Mobile22_ButtonSound: ; 89235 (22:5235)
 	call JoyWaitAorB
 	call PlayClickSFX
 	ret
 
-Function8923c: ; 8923c
+Mobile22_SetBGMapMode0: ; 8923c
 	xor a
 	ld [hBGMapMode], a
 	ret
 ; 89240
 
-Function89240: ; 89240
+Mobile22_SetBGMapMode1: ; 89240
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
@@ -249,7 +253,7 @@ Function89261: ; 89261
 	pop af
 	ld [wMenuCursorBuffer], a
 	call PushWindow
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call Function89209
 	call VerticalMenu
 	push af
@@ -355,10 +359,10 @@ Function89305: ; 89305 (22:5305)
 
 Function8931b: ; 8931b
 	push hl
-	ld hl, $a03b
+	ld hl, $a03b ; 4:a03b
 	ld a, [MenuSelection]
 	dec a
-	ld bc, $0025
+	ld bc, 37
 	call AddNTimes
 	ld b, h
 	ld c, l
@@ -371,7 +375,9 @@ Function8932d: ; 8932d
 	add hl, bc
 
 Function89331: ; 89331
-; Scans up to 5 characters starting at hl, looking for a nonspace character up to the next terminator.  Sets carry if it does not find a nonspace character.  Returns the location of the following character in hl.
+; Scans up to 5 characters starting at hl, looking for a nonspace character up to the next terminator.
+; Sets carry if it does not find a nonspace character.
+; Returns the location of the following character in hl.
 	push bc
 	ld c, 5
 .loop
@@ -669,9 +675,8 @@ Function894dc: ; 894dc
 	ld c, d
 	ld b, 0
 	ld hl, .PalettePointers
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -770,7 +775,7 @@ Function8956f: ; 8956f
 	add hl, bc
 	ld b, h
 	ld c, l
-	callba Function4e929
+	callba GetMobileOTTrainerClass
 	ld a, c
 	ld [TrainerClass], a
 	ld a, [rSVBK]
@@ -787,9 +792,8 @@ Function8956f: ; 8956f
 	ld a, [TrainerClass]
 	ld h, 0
 	ld l, a
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld de, TrainerPalettes
 	add hl, de
 	ld a, [rSVBK]
@@ -1043,9 +1047,8 @@ Function896eb: ; 896eb
 Function896f5: ; 896f5
 	call Function8971f
 	call Function89736
-rept 2
 	inc hl
-endr
+	inc hl
 	ld b, 2
 
 ClearScreenArea: ; 0x896ff
@@ -1071,9 +1074,8 @@ ClearScreenArea: ; 0x896ff
 	jr nz, .loop
 
 	dec hl
-rept 2
 	inc c
-endr
+	inc c
 .asm_89713
 	ld a, $36
 	ld [hli], a
@@ -1107,9 +1109,8 @@ Function8971f: ; 8971f
 
 Function89736: ; 89736
 	push hl
-rept 2
 	inc hl
-endr
+	inc hl
 	ld e, c
 	ld d, $0
 	add hl, de
@@ -1145,9 +1146,8 @@ Function8975b: ; 8975b
 	ld [hli], a
 	ld a, $d
 	ld [hl], a
-rept 2
 	dec hl
-endr
+	dec hl
 	ld a, $4
 	ld e, $3
 .asm_89769
@@ -1220,7 +1220,7 @@ Function897af: ; 897af
 	add hl, bc
 	ld b, h
 	ld c, l
-	callba Function4e929
+	callba GetMobileOTTrainerClass
 	ld a, c
 	ld [TrainerClass], a
 	xor a
@@ -1655,44 +1655,44 @@ String_89a53: ; 89a53
 ; 89a57
 
 Function89a57: ; 89a57
-	call Function354b
-	bit 6, c
-	jr nz, .asm_89a78
-	bit 7, c
-	jr nz, .asm_89a81
-	bit 0, c
-	jr nz, .asm_89a70
-	bit 1, c
-	jr nz, .asm_89a70
-	bit 3, c
-	jr nz, .asm_89a74
+	call JoyTextDelay_ForcehJoyDown ; joypad
+	bit D_UP_F, c
+	jr nz, .d_up
+	bit D_DOWN_F, c
+	jr nz, .d_down
+	bit A_BUTTON_F, c
+	jr nz, .a_b_button
+	bit B_BUTTON_F, c
+	jr nz, .a_b_button
+	bit START_F, c
+	jr nz, .start_button
 	scf
 	ret
 
-.asm_89a70
+.a_b_button
 	ld a, $1
 	and a
 	ret
 
-.asm_89a74
+.start_button
 	ld a, $2
 	and a
 	ret
 
-.asm_89a78
-	call Function89a9b
-	call nc, Function89a8a
+.d_up
+	call .MoveCursorUp
+	call nc, .PlayPocketSwitchSFX
 	ld a, $0
 	ret
 
-.asm_89a81
-	call Function89a93
-	call nc, Function89a8a
+.d_down
+	call .MoveCursorDown
+	call nc, .PlayPocketSwitchSFX
 	ld a, $0
 	ret
 ; 89a8a
 
-Function89a8a: ; 89a8a
+.PlayPocketSwitchSFX: ; 89a8a
 	push af
 	ld de, SFX_SWITCH_POCKETS
 	call PlaySFX
@@ -1700,42 +1700,42 @@ Function89a8a: ; 89a8a
 	ret
 ; 89a93
 
-Function89a93: ; 89a93
-	ld d, $28
-	ld e, $1
-	call Function89aa3
+.MoveCursorDown: ; 89a93
+	ld d, 40
+	ld e,  1
+	call .ApplyCursorMovement
 	ret
 ; 89a9b
 
-Function89a9b: ; 89a9b
-	ld d, $1
-	ld e, $ff
-	call Function89aa3
+.MoveCursorUp: ; 89a9b
+	ld d,  1
+	ld e, -1
+	call .ApplyCursorMovement
 	ret
 ; 89aa3
 
-Function89aa3: ; 89aa3
+.ApplyCursorMovement: ; 89aa3
 	ld a, [MenuSelection]
 	ld c, a
 	push bc
-.asm_89aa8
+.loop
 	ld a, [MenuSelection]
 	cp d
-	jr z, .asm_89ac0
+	jr z, .equal_to_d
 	add e
-	jr nz, .asm_89ab2
+	jr nz, .not_zero
 	inc a
 
-.asm_89ab2
+.not_zero
 	ld [MenuSelection], a
-	call Function89ac7
-	jr nc, .asm_89aa8
-	call Function89ae6
+	call .Function89ac7 ; BCD conversion of data in SRAM?
+	jr nc, .loop
+	call .Function89ae6 ; split [MenuSelection] into [wd030] + [wd031] where [wd030] <= 5
 	pop bc
 	and a
 	ret
 
-.asm_89ac0
+.equal_to_d
 	pop bc
 	ld a, c
 	ld [MenuSelection], a
@@ -1743,48 +1743,48 @@ Function89aa3: ; 89aa3
 	ret
 ; 89ac7
 
-Function89ac7: ; 89ac7
+.Function89ac7: ; 89ac7
 	call OpenSRAMBank4
 	call Function8931b
-	call Function89ad4
+	call .Function89ad4
 	call CloseSRAM
 	ret
 ; 89ad4
 
-Function89ad4: ; 89ad4
+.Function89ad4: ; 89ad4
 	push de
-	call Function8932d
-	jr c, .asm_89ae3
-	ld hl, $0011
+	call Function8932d ; find a non-space character within 5 bytes of bc
+	jr c, .no_nonspace_character
+	ld hl, 17
 	add hl, bc
 	call Function89b45
-	jr c, .asm_89ae4
+	jr c, .finish_decode
 
-.asm_89ae3
+.no_nonspace_character
 	and a
 
-.asm_89ae4
+.finish_decode
 	pop de
 	ret
 ; 89ae6
 
-Function89ae6: ; 89ae6
+.Function89ae6: ; 89ae6
 	ld hl, wd031
 	xor a
 	ld [hl], a
 	ld a, [MenuSelection]
-.asm_89aee
-	cp $6
-	jr c, .asm_89afc
-	sub $5
+.loop2
+	cp 6
+	jr c, .load_and_ret
+	sub 5
 	ld c, a
 	ld a, [hl]
-	add $5
+	add 5
 	ld [hl], a
 	ld a, c
-	jr .asm_89aee
+	jr .loop2
 
-.asm_89afc
+.load_and_ret
 	ld [wd030], a
 	ret
 ; 89b00
@@ -1796,7 +1796,7 @@ Function89b00: ; 89b00 (22:5b00)
 ; 89b07 (22:5b07)
 
 Function89b07: ; 89b07
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call DelayFrame
 	callba Function4a3a7
 	ret
@@ -1824,53 +1824,55 @@ Function89b28: ; 89b28 (22:5b28)
 	ret
 
 Function89b3b: ; 89b3b (22:5b3b)
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	callba Function48cda
 	ret
 
 Function89b45: ; 89b45
+	; some sort of decoder?
+	; BCD?
 	push hl
 	push bc
 	ld c, $10
 	ld e, $0
-.asm_89b4b
+.loop
 	ld a, [hli]
 	ld b, a
 	and $f
-	cp $a
-	jr c, .asm_89b5a
+	cp 10
+	jr c, .low_nybble_less_than_10
 	ld a, c
 	cp $b
-	jr nc, .asm_89b74
-	jr .asm_89b71
+	jr nc, .clear_carry
+	jr .set_carry
 
-.asm_89b5a
+.low_nybble_less_than_10
 	dec c
 	swap b
 	inc e
 	ld a, b
 	and $f
-	cp $a
-	jr c, .asm_89b6c
+	cp 10
+	jr c, .high_nybble_less_than_10
 	ld a, c
 	cp $b
-	jr nc, .asm_89b74
-	jr .asm_89b71
+	jr nc, .clear_carry
+	jr .set_carry
 
-.asm_89b6c
+.high_nybble_less_than_10
 	inc e
 	dec c
-	jr nz, .asm_89b4b
+	jr nz, .loop
 	dec e
 
-.asm_89b71
+.set_carry
 	scf
-	jr .asm_89b75
+	jr .finish
 
-.asm_89b74
+.clear_carry
 	and a
 
-.asm_89b75
+.finish
 	pop bc
 	pop hl
 	ret
@@ -1912,9 +1914,8 @@ Function89b97: ; 89b97 (22:5b97)
 	and a
 	jr z, .asm_89bae
 .asm_89ba9
-rept 2
 	inc hl
-endr
+	inc hl
 	dec a
 	jr nz, .asm_89ba9
 .asm_89bae
@@ -2034,56 +2035,59 @@ Function89c44: ; 89c44 (22:5c44)
 	ret
 
 Function89c67: ; 89c67 (22:5c67)
-	call Function354b
+; menu scrolling?
+	call JoyTextDelay_ForcehJoyDown ; joypad
 	ld b, $0
-	bit 0, c
-	jr z, .asm_89c74
+	bit A_BUTTON_F, c
+	jr z, .not_a_button
 	ld b, $1
 	and a
 	ret
-.asm_89c74
-	bit 1, c
-	jr z, .asm_89c7a
+
+.not_a_button
+	bit B_BUTTON_F, c
+	jr z, .not_b_button
 	scf
 	ret
-.asm_89c7a
+
+.not_b_button
 	xor a
-	bit 6, c
-	jr z, .asm_89c81
+	bit D_UP_F, c
+	jr z, .not_d_up
 	ld a, $1
-.asm_89c81
-	bit 7, c
-	jr z, .asm_89c87
+.not_d_up
+	bit D_DOWN_F, c
+	jr z, .not_d_down
 	ld a, $2
-.asm_89c87
-	bit 5, c
-	jr z, .asm_89c8d
+.not_d_down
+	bit D_LEFT_F, c
+	jr z, .not_d_left
 	ld a, $3
-.asm_89c8d
-	bit 4, c
-	jr z, .asm_89c93
+.not_d_left
+	bit D_RIGHT_F, c
+	jr z, .not_d_right
 	ld a, $4
-.asm_89c93
+.not_d_right
 	and a
-	ret z
+	ret z ; no dpad pressed
 	dec a
 	ld c, a
 	ld d, $0
-	ld hl, Unknown_89cbf
+	ld hl, .ScrollData0
 	ld a, [wd02f]
 	and a
-	jr z, .asm_89ca5
-	ld hl, Unknown_89ccf
-.asm_89ca5
+	jr z, .got_data
+	ld hl, .ScrollData1
+.got_data
 	ld a, [wd011]
 	and a
-	jr z, .asm_89cb1
+	jr z, .got_row
 	ld e, $4
-.asm_89cad
+.add_n_times
 	add hl, de
 	dec a
-	jr nz, .asm_89cad
-.asm_89cb1
+	jr nz, .add_n_times
+.got_row
 	ld e, c
 	add hl, de
 	ld a, [hl]
@@ -2096,13 +2100,13 @@ Function89c67: ; 89c67 (22:5c67)
 	ret
 ; 89cbf (22:5cbf)
 
-Unknown_89cbf: ; 89cbf
+.ScrollData0: ; 89cbf
 	db 0, 2, 0, 0
 	db 1, 3, 0, 0
 	db 2, 4, 0, 0
 	db 3, 0, 0, 0
 
-Unknown_89ccf: ; 89ccf
+.ScrollData1: ; 89ccf
 	db 0, 0, 0, 0
 	db 0, 3, 0, 0
 	db 2, 4, 0, 0
@@ -2148,44 +2152,48 @@ Function89cdf: ; 89cdf (22:5cdf)
 	ret
 
 Function89d0d: ; 89d0d (22:5d0d)
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld c, $8
+
+	ld c, 8
 	ld de, UnknBGPals
-.asm_89d1c
+.loop
 	push bc
-	ld hl, Palette_89d4e
-	ld bc, $8
+	ld hl, .Palette1
+	ld bc, 1 palettes
 	call CopyBytes
 	pop bc
 	dec c
-	jr nz, .asm_89d1c
-	ld hl, Palette_89d56
-	ld de, wd010
-	ld bc, $8
+	jr nz, .loop
+
+	ld hl, .Palette2
+	ld de, UnknBGPals + 2 palettes
+	ld bc, 1 palettes
 	call CopyBytes
+
 	pop af
 	ld [rSVBK], a
+
 	call SetPalettes
-	callba Function845db
-	call Function89240
-	ld c, $18
+	callba PrintMail_
+	call Mobile22_SetBGMapMode1
+	ld c, 24
 	call DelayFrames
 	call RestartMapMusic
 	ret
 ; 89d4e (22:5d4e)
 
-Palette_89d4e: ; 89d4e
+.Palette1: ; 89d4e
 	RGB 31, 31, 31
 	RGB 19, 19, 19
 	RGB 15, 15, 15
 	RGB 00, 00, 00
 ; 89d56
 
-Palette_89d56: ; 89d56
+.Palette2: ; 89d56
 	RGB 31, 31, 31
 	RGB 19, 19, 19
 	RGB 19, 19, 19
@@ -2197,7 +2205,7 @@ Function89d5e: ; 89d5e (22:5d5e)
 	call CopyMenuDataHeader
 	pop af
 	ld [wMenuCursorBuffer], a
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call PlaceVerticalMenuItems
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags1
@@ -2206,21 +2214,21 @@ Function89d5e: ; 89d5e (22:5d5e)
 
 Function89d75: ; 89d75 (22:5d75)
 	push hl
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call _hl_
-	callba Function104148
+	callba Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	pop hl
 	jr asm_89d90
 
 Function89d85: ; 89d85 (22:5d85)
 	push hl
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call _hl_
 	call CGBOnly_LoadEDTile
 	pop hl
 
 asm_89d90: ; 89d90 (22:5d90)
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	push hl
 	call _hl_
 	call Function89dab
@@ -2238,9 +2246,9 @@ asm_89d90: ; 89d90 (22:5d90)
 	ret
 
 Function89dab: ; 89dab (22:5dab)
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	callba MobileMenuJoypad
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	ld a, c
 	ld hl, wMenuJoypadFilter
 	and [hl]
@@ -2312,7 +2320,7 @@ Jumptable_89e18: ; 89e18 (22:5e18)
 
 Function89e1e: ; 89e1e (22:5e1e)
 	call OpenSRAMBank4
-	ld bc, $a037
+	ld bc, $a037 ; 4:a037
 	call Function8b36c
 	call CloseSRAM
 	xor a
@@ -2418,7 +2426,7 @@ Function89eb9: ; 89eb9 (22:5eb9)
 Function89ee1: ; 89ee1 (22:5ee1)
 	call ClearBGPalettes
 	call Function893e2
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	callba Function4a3a7
 	callba MG_Mobile_Layout_CreatePalBoxes
 	hlcoord 1, 0
@@ -2523,9 +2531,8 @@ Function89f77: ; 89f77 (22:5f77)
 	ld [hli], a
 	ld a, c
 	ld [hli], a
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, $8
 	add c
 	ld c, a
@@ -2625,7 +2632,7 @@ Function89ff6: ; 89ff6 (22:5ff6)
 	call Function89a0c
 	call CloseSRAM
 	call Function891ab
-	call Function89235
+	call Mobile22_ButtonSound
 	jp Function89e36
 
 Function8a03d: ; 8a03d (22:603d)
@@ -2656,9 +2663,9 @@ Function8a055: ; 8a055 (22:6055)
 	ld a, $5
 	call Function8a5a3
 	pop hl
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	ld a, $6
 	call Function8a5a3
 	call CGBOnly_LoadEDTile
@@ -2680,7 +2687,7 @@ endr
 	jp Function89e36
 
 Function8a0a1: ; 8a0a1 (22:60a1)
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	push bc
 	call Function8a0c9
 	ld e, $6
@@ -2781,7 +2788,7 @@ Function8a116: ; 8a116 (22:6116)
 	ld hl, MenuDataHeader_0x8a176
 	call LoadMenuDataHeader
 .asm_8a121
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call Function8a17b
 	jr c, .asm_8a16b
 	ld a, [wMenuCursorY]
@@ -2948,7 +2955,7 @@ Function8a241: ; 8a241 (22:6241)
 Function8a262: ; 8a262 (22:6262)
 	call ClearBGPalettes
 	call Function893e2
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	callba Function4a3a7
 	callba MG_Mobile_Layout_CreatePalBoxes
 	hlcoord 1, 0
@@ -3042,7 +3049,7 @@ Function8a313: ; 8a313 (22:6313)
 
 Function8a31c: ; 8a31c (22:631c)
 	push bc
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	callba Function4a3a7
 	callba MG_Mobile_Layout_CreatePalBoxes
 	hlcoord 1, 0
@@ -3060,7 +3067,7 @@ Function8a31c: ; 8a31c (22:631c)
 	set 7, [hl]
 .asm_8a34e
 	call Function8a3a2
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call Function8a453
 	call Function8a4d3
 	call Function8a4fc
@@ -3585,7 +3592,7 @@ Function8a6cd: ; 8a6cd (22:66cd)
 	call Function8a765
 	call CloseSRAM
 	jr nc, .asm_8a73f
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call Function89448
 	call Function89a23
 	hlcoord 1, 13
@@ -3804,7 +3811,7 @@ Function8a8c3: ; 8a8c3 (22:68c3)
 	call Function892b4
 	call CloseSRAM
 	call Function89a23
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	hlcoord 1, 13
 	ld de, String_8a926
 	call PlaceString
@@ -4069,7 +4076,7 @@ Function8aab6: ; 8aab6 (22:6ab6)
 ; 8aaf0 (22:6af0)
 
 String_8aaf0: ; 8aaf0
-	db "あたらしい めいし", $4a, "できまし", $22, "@"
+	db "あたらしい めいし<PKMN>できまし<LNBRK>@"
 ; 8ab00
 
 Function8ab00: ; 8ab00
@@ -4077,7 +4084,7 @@ Function8ab00: ; 8ab00
 	hlcoord 1, 13
 	call PlaceString
 	call WaitBGMap
-	call Function89235
+	call Mobile22_ButtonSound
 	and a
 	ret
 
@@ -4104,6 +4111,7 @@ Function8ab11: ; 8ab11 (22:6b11)
 	ret
 
 Function8ab3b: ; 8ab3b (22:6b3b)
+.pressed_start
 	call Function891fe
 	call ClearBGPalettes
 	call Function893cc
@@ -4122,23 +4130,24 @@ Function8ab3b: ; 8ab3b (22:6b3b)
 	call Function89a0c
 	call CloseSRAM
 	call Function891ab
-	call Function8ab77
-	jr c, Function8ab3b
+	call .JoypadLoop
+	jr c, .pressed_start
 	ret
 
-Function8ab77: ; 8ab77 (22:6b77)
-	call Function354b
-	bit 0, c
-	jr nz, .asm_8ab8e
-	bit 1, c
-	jr nz, .asm_8ab8e
-	bit 3, c
-	jr z, Function8ab77
+.JoypadLoop: ; 8ab77 (22:6b77)
+	call JoyTextDelay_ForcehJoyDown
+	bit A_BUTTON_F, c
+	jr nz, .a_b_button
+	bit B_BUTTON_F, c
+	jr nz, .a_b_button
+	bit START_F, c
+	jr z, .JoypadLoop
 	call PlayClickSFX
 	call Function89d0d
 	scf
 	ret
-.asm_8ab8e
+
+.a_b_button
 	call PlayClickSFX
 	and a
 	ret
@@ -4363,7 +4372,7 @@ Function8ad0b: ; 8ad0b
 	jr z, .asm_8ad0b
 	cp $2
 	jr z, .asm_8ad37
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	push bc
 	hlcoord 0, 12
 	ld b, $4
@@ -4375,7 +4384,7 @@ Function8ad0b: ; 8ad0b
 	ld a, $2
 	call Function8925e
 	jr c, .asm_8ad87
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	hlcoord 0, 12
 	ld b, $4
 	ld c, $12

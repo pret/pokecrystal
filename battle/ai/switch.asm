@@ -136,9 +136,11 @@ CheckPlayerMoveTypeMatchups: ; 3484e
 	jr c, .loop2
 
 	; neutral
-rept 5
 	inc c
-endr
+	inc c
+	inc c
+	inc c
+	inc c
 	cp 10
 	jr z, .loop2
 
@@ -161,18 +163,12 @@ endr
 
 .doubledown
 	call .DecreaseScore
-
-	; fallthrough
-; 34931
-
-
 .DecreaseScore: ; 34931
 	ld a, [wEnemyAISwitchScore]
 	dec a
 	ld [wEnemyAISwitchScore], a
 	ret
 ; 34939
-
 
 .IncreaseScore: ; 34939
 	ld a, [wEnemyAISwitchScore]
@@ -198,16 +194,16 @@ CheckAbleToSwitch: ; 34941
 	; Perish count is 1
 
 	call FindAliveEnemyMons
-	call FindEnemyMonsWithEnoughHP
+	call FindEnemyMonsWithAtLeastQuarterMaxHP
 	call FindEnemyMonsThatResistPlayer
-	call Function34a85
+	call FindAliveEnemyMonsWithASuperEffectiveMove
 
 	ld a, e
 	cp 2
 	jr nz, .not_2
 
 	ld a, [wEnemyAISwitchScore]
-	add $30
+	add $30 ; maximum chance
 	ld [wEnemySwitchMonParam], a
 	ret
 
@@ -223,12 +219,11 @@ CheckAbleToSwitch: ; 34941
 	jr nc, .loop1
 
 	ld a, b
-	add $30
+	add $30 ; maximum chance
 	ld [wEnemySwitchMonParam], a
 	ret
 
 .no_perish
-
 	call CheckPlayerMoveTypeMatchups
 	ld a, [wEnemyAISwitchScore]
 	cp 11
@@ -238,13 +233,13 @@ CheckAbleToSwitch: ; 34941
 	and a
 	jr z, .no_last_counter_move
 
-	call Function34a2a
+	call FindEnemyMonsImmuneToLastCounterMove
 	ld a, [wEnemyAISwitchScore]
 	and a
 	jr z, .no_last_counter_move
 
 	ld c, a
-	call Function34aa7
+	call FindEnemyMonsWithASuperEffectiveMove
 	ld a, [wEnemyAISwitchScore]
 	cp $ff
 	ret z
@@ -285,9 +280,9 @@ CheckAbleToSwitch: ; 34941
 	ret nc
 
 	call FindAliveEnemyMons
-	call FindEnemyMonsWithEnoughHP
+	call FindEnemyMonsWithAtLeastQuarterMaxHP
 	call FindEnemyMonsThatResistPlayer
-	call Function34a85
+	call FindAliveEnemyMonsWithASuperEffectiveMove
 
 	ld a, e
 	cp $2
@@ -352,7 +347,7 @@ FindAliveEnemyMons: ; 349f4
 ; 34a2a
 
 
-Function34a2a: ; 34a2a
+FindEnemyMonsImmuneToLastCounterMove: ; 34a2a
 	ld hl, OTPartyMon1
 	ld a, [OTPartyCount]
 	ld b, a
@@ -361,44 +356,50 @@ Function34a2a: ; 34a2a
 	xor a
 	ld [wEnemyAISwitchScore], a
 
-.asm_34a39
+.loop
 	ld a, [CurOTMon]
 	cp d
 	push hl
-	jr z, .asm_34a77
+	jr z, .next
 
 	push hl
 	push bc
+
+	; If the Pokemon has at least 1 HP...
 	ld bc, MON_HP
 	add hl, bc
 	pop bc
 	ld a, [hli]
 	or [hl]
 	pop hl
-	jr z, .asm_34a77
+	jr z, .next
 
 	ld a, [hl]
 	ld [CurSpecies], a
 	call GetBaseData
+
+	; the enemy's last move is damaging...
 	ld a, [LastEnemyCounterMove]
 	dec a
 	ld hl, Moves + MOVE_POWER
 	call GetMoveAttr
 	and a
-	jr z, .asm_34a77
+	jr z, .next
 
+	; and the Pokemon is immune to it...
 	inc hl
 	call GetMoveByte
 	ld hl, BaseType
 	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	and a
-	jr nz, .asm_34a77
+	jr nz, .next
 
+	; ... encourage that Pokemon.
 	ld a, [wEnemyAISwitchScore]
 	or c
 	ld [wEnemyAISwitchScore], a
-.asm_34a77
+.next
 	pop hl
 	dec b
 	ret z
@@ -410,11 +411,11 @@ Function34a2a: ; 34a2a
 
 	inc d
 	srl c
-	jr .asm_34a39
+	jr .loop
 ; 34a85
 
 
-Function34a85: ; 34a85
+FindAliveEnemyMonsWithASuperEffectiveMove: ; 34a85
 	push bc
 	ld a, [OTPartyCount]
 	ld e, a
@@ -444,13 +445,9 @@ Function34a85: ; 34a85
 
 	and c
 	ld c, a
+FindEnemyMonsWithASuperEffectiveMove: ; 34aa7
 
-	; fallthrough
-; 34aa7
-
-Function34aa7: ; 34aa7
-
-	ld a, $ff
+	ld a, -1
 	ld [wEnemyAISwitchScore], a
 	ld hl, OTPartyMon1Moves
 	ld b, 1 << (PARTY_LENGTH - 1)
@@ -463,32 +460,40 @@ Function34aa7: ; 34aa7
 
 	push hl
 	push bc
+	; for move on mon:
 	ld b, NUM_MOVES
 	ld c, 0
 .loop3
+	; if move is None: break
 	ld a, [hli]
 	and a
 	push hl
 	jr z, .break3
 
+	; if move has no power: continue
 	dec a
 	ld hl, Moves + MOVE_POWER
 	call GetMoveAttr
 	and a
 	jr z, .nope
 
+	; check type matchups
 	inc hl
 	call GetMoveByte
 	ld hl, BattleMonType1
 	call CheckTypeMatchup
+
+	; if immune or not very effective: continue
 	ld a, [wTypeMatchup]
 	cp 10
 	jr c, .nope
 
+	; if neutral: load 1 and continue
 	ld e, 1
 	cp 10 + 1
 	jr c, .nope
 
+	; if super-effective: load 2 and break
 	ld e, 2
 	jr .break3
 
@@ -505,18 +510,19 @@ Function34aa7: ; 34aa7
 	ld a, e
 	pop bc
 	pop hl
-	cp $2
-	jr z, .done2
+	cp 2
+	jr z, .done2 ; at least one move is super-effective
+	cp 1
+	jr nz, .next ; no move does more than half damage
 
-	cp $1
-	jr nz, .next
-
+	; encourage this pokemon
 	ld a, d
 	or b
 	ld d, a
-	jr .next
+	jr .next ; such a long jump
 
 .next
+	; next pokemon?
 	push bc
 	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
@@ -524,12 +530,14 @@ Function34aa7: ; 34aa7
 	srl b
 	jr nc, .loop
 
+	; if no pokemon has a super-effective move: return
 	ld a, d
 	ld b, a
 	and a
 	ret z
 
 .done2
+	; convert the bit flag to an int and return
 	push bc
 	sla b
 	sla b
@@ -608,7 +616,7 @@ FindEnemyMonsThatResistPlayer: ; 34b20
 ; 34b77
 
 
-FindEnemyMonsWithEnoughHP: ; 34b77
+FindEnemyMonsWithAtLeastQuarterMaxHP: ; 34b77
 	push bc
 	ld de, OTPartySpecies
 	ld b, 1 << (PARTY_LENGTH - 1)
@@ -626,17 +634,15 @@ FindEnemyMonsWithEnoughHP: ; 34b77
 	ld b, [hl]
 	inc hl
 	ld c, [hl]
-rept 2
 	inc hl
-endr
+	inc hl
 ; hl = MaxHP + 1
-; b = (4 * b) % $100 + (c & 3)
-; c = c / 4
+; bc = [CurHP] * 4
 	srl c
 	rl b
 	srl c
 	rl b
-; a = (MaxHP / $100) - b - (1 if c > (MaxHP % $100) else 0)
+; if bc >= [hl], encourage
 	ld a, [hld]
 	cp c
 	ld a, [hl]

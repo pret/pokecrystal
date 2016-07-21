@@ -38,12 +38,12 @@ BattleTowerElevator_MapScriptHeader:
 	end
 
 MovementData_BattleTowerElevatorReceptionistWalksIn:
-	step_right
-	turn_head_down
+	step RIGHT
+	turn_head DOWN
 	step_end
 
 MovementData_BattleTowerElevatorPlayerWalksIn:
-	turn_head_down
+	turn_head DOWN
 	step_end
 
 BattleTowerElevator_MapEventHeader:

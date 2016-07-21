@@ -375,9 +375,8 @@ Function1161b8: ; 1161b8
 	ld e, a
 	ld d, 0
 	ld hl, .Jumptable
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

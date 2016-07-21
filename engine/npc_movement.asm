@@ -320,7 +320,7 @@ IsNPCAtCoord: ; 7041
 	xor a
 .loop
 	ld [hObjectStructIndexBuffer], a
-	call GetObjectSprite
+	call DoesObjectHaveASprite
 	jr z, .next
 
 	ld hl, OBJECT_FLAGS1
@@ -490,7 +490,7 @@ Function7113: ; unreferenced
 	xor a
 .loop
 	ld [hObjectStructIndexBuffer], a
-	call GetObjectSprite
+	call DoesObjectHaveASprite
 	jr z, .next
 	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc

@@ -67,10 +67,10 @@ soundinput: macro
 	db \1 ; input
 	endm
 
-	enum unknownmusic0xde_cmd
-unknownmusic0xde: macro
-	db unknownmusic0xde_cmd
-	db \1 ; unknown
+	enum sound_duty_cmd
+sound_duty: macro
+	db sound_duty_cmd
+	db \1 | (\2 << 2) | (\3 << 4) | (\4 << 6) ; duty sequence
 	endm
 
 	enum togglesfx_cmd
@@ -78,11 +78,10 @@ togglesfx: macro
 	db togglesfx_cmd
 	endm
 
-	enum unknownmusic0xe0_cmd
-unknownmusic0xe0: macro
-	db unknownmusic0xe0_cmd
+	enum slidepitchto_cmd
+slidepitchto: macro
+	db slidepitchto_cmd
 	db \1 ; unknown
-	; db \2 ; unknown
 	dn \2, \3 ; octave, pitch
 	endm
 

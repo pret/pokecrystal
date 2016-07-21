@@ -6,13 +6,7 @@ Get2bpp_2:: ; dc9
 	bit 7, a
 	jp z, Copy2bpp
 
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_Get2bpp)
-	rst Bankswitch
-	call _Get2bpp
-	pop af
-	rst Bankswitch
+	homecall _Get2bpp
 
 	ret
 ; ddc
@@ -22,13 +16,7 @@ Get1bpp_2:: ; ddc
 	bit 7, a
 	jp z, Copy1bpp
 
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_Get1bpp)
-	rst Bankswitch
-	call _Get1bpp
-	pop af
-	rst Bankswitch
+	homecall _Get1bpp
 
 	ret
 ; def
@@ -205,9 +193,8 @@ FarCopyBytesDouble:: ; e9b
 .loop
 	ld a, [de]
 	inc de
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 .dec
 	dec c
 	jr nz, .loop
@@ -422,9 +409,9 @@ Copy1bpp:: ; fa4
 	push af
 	ld h, 0
 	ld l, c
-rept 3
 	add hl, hl
-endr
+	add hl, hl
+	add hl, hl
 	ld b, h
 	ld c, l
 	pop af

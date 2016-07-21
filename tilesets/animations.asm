@@ -16,9 +16,8 @@ _AnimateTileset:: ; fc000
 	ld [hTileAnimFrame], a
 
 	ld h, 0
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	add hl, de
 
 ; 2-byte parameter
@@ -473,9 +472,9 @@ AnimateWaterTile: ; fc402
 	and 3 << 1
 
 ; 2 x 8 = 16 bytes per tile
-rept 3
 	add a
-endr
+	add a
+	add a
 
 	add WaterTileFrames % $100
 	ld l, a
@@ -512,9 +511,9 @@ ForestTreeLeftAnimation: ; fc45c
 .asm_fc46c
 	ld a, [TileAnimationTimer]
 	call GetForestTreeFrame
-rept 3
 	add a
-endr
+	add a
+	add a
 	add ForestTreeLeftFrames % $100
 	ld l, a
 	ld a, 0
@@ -554,9 +553,9 @@ ForestTreeRightAnimation: ; fc4c4
 .asm_fc4d4
 	ld a, [TileAnimationTimer]
 	call GetForestTreeFrame
-rept 3
 	add a
-endr
+	add a
+	add a
 	add ForestTreeLeftFrames % $100
 	ld l, a
 	ld a, 0
@@ -590,9 +589,9 @@ ForestTreeLeftAnimation2: ; fc4f2
 	ld a, [TileAnimationTimer]
 	call GetForestTreeFrame
 	xor 2
-rept 3
 	add a
-endr
+	add a
+	add a
 	add ForestTreeLeftFrames % $100
 	ld l, a
 	ld a, 0
@@ -622,9 +621,9 @@ ForestTreeRightAnimation2: ; fc51c
 	ld a, [TileAnimationTimer]
 	call GetForestTreeFrame
 	xor 2
-rept 3
 	add a
-endr
+	add a
+	add a
 	add ForestTreeLeftFrames % $100
 	ld l, a
 	ld a, 0
@@ -714,9 +713,8 @@ SafariFountainAnim1: ; fc5cc
 	ld a, [TileAnimationTimer]
 	and 6
 	srl a
-rept 2
 	inc a
-endr
+	inc a
 	and 3
 	swap a
 	ld e, a
@@ -736,9 +734,9 @@ SafariFountainAnim2: ; fc5eb
 	ld c, l
 	ld a, [TileAnimationTimer]
 	and 6
-rept 3
 	add a
-endr
+	add a
+	add a
 	ld e, a
 	ld d, 0
 	ld hl, SafariFountainFrames

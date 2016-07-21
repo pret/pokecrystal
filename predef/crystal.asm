@@ -5,7 +5,7 @@ GetMysteryGift_MobileAdapterLayout: ; 4930f (mobile)
 	ld a, [SGBPredef]
 .not_ram
 	push af
-	callba Function9673
+	callba ResetBGPals
 	pop af
 	ld l, a
 	ld h, 0
@@ -554,9 +554,9 @@ _InitMG_Mobile_LinkTradePalMap: ; 49797
 	hlcoord 2, 16, AttrMap
 	ld [hli], a
 	ld a, $7
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld a, $2
 	ld [hl], a
 	hlcoord 2, 17, AttrMap
@@ -566,7 +566,7 @@ endr
 	ret
 ; 49811
 
-Function49811: ; 49811
+LoadTradeRoomBGPals: ; 49811
 	ld hl, Palette_49826
 	ld de, UnknBGPals + $10
 	ld bc, $30

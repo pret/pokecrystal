@@ -54,16 +54,18 @@ Function8b363: ; 8b363
 ; 8b36c
 
 Function8b36c: ; 8b36c (22:736c)
+	; [bc + (0:4)] = -1
 	push bc
 	ld h, b
 	ld l, c
-	ld bc, $4
+	ld bc, 4
 	ld a, -1
 	call ByteFill
 	pop bc
 	ret
 
 Function8b379: ; 8b379 (22:7379)
+	; d = [bc + e]
 	push bc
 	ld a, c
 	add e
@@ -77,6 +79,7 @@ Function8b379: ; 8b379 (22:7379)
 	ret
 
 Function8b385: ; 8b385 (22:7385)
+	; [bc + e] = d
 	push bc
 	ld a, c
 	add e
@@ -90,36 +93,39 @@ Function8b385: ; 8b385 (22:7385)
 	ret
 
 Function8b391: ; 8b391 (22:7391)
+	; find first e in range(4) such that [bc + e] == -1
+	; if none exist, return carry
 	push bc
-	ld e, $0
-	ld d, $4
-.asm_8b396
+	ld e, 0
+	ld d, 4
+.loop
 	ld a, [bc]
 	inc bc
-	cp $ff
-	jr z, .asm_8b3a2
+	cp -1
+	jr z, .done
 	inc e
 	dec d
-	jr nz, .asm_8b396
+	jr nz, .loop
 	dec e
 	scf
-.asm_8b3a2
+.done
 	pop bc
 	ret
 
 Function8b3a4: ; 8b3a4 (22:73a4)
+	; strcmp(hl, bc, 4)
 	push de
 	push bc
 	ld d, b
 	ld e, c
-	ld c, $4
+	ld c, 4
 	call Function89185
 	pop bc
 	pop de
 	ret
 
 Function8b3b0: ; 8b3b0 (22:73b0)
-	ld bc, $a037
+	ld bc, $a037 ; 4:a037
 	ld a, [$a60b]
 	and a
 	jr z, .asm_8b3c2
@@ -153,82 +159,88 @@ Function8b3cd: ; 8b3cd (22:73cd)
 Function8b3dd: ; 8b3dd (22:73dd)
 	push de
 	push bc
-	call Function354b
+	call JoyTextDelay_ForcehJoyDown ; joypad
 	ld a, c
 	pop bc
 	pop de
-	bit 0, a
-	jr nz, .asm_8b3f7
-	bit 1, a
-	jr nz, .asm_8b40e
-	bit 6, a
-	jr nz, .asm_8b429
-	bit 7, a
-	jr nz, .asm_8b443
+	bit A_BUTTON_F, a
+	jr nz, .a_button
+	bit B_BUTTON_F, a
+	jr nz, .b_button
+	bit D_UP_F, a
+	jr nz, .d_up
+	bit D_DOWN_F, a
+	jr nz, .d_down
 	and a
 	ret
-.asm_8b3f7
+
+.a_button
 	ld a, e
 	cp $3
-	jr z, .asm_8b407
+	jr z, .e_is_zero
 	inc e
-	ld d, $0
+	ld d, 0
 	call Function8b385
 	xor a
 	ld [wd010], a
 	ret
-.asm_8b407
+
+.e_is_zero
 	call PlayClickSFX
 	ld d, $0
 	scf
 	ret
-.asm_8b40e
+
+.b_button
 	ld a, e
 	and a
-	jr nz, .asm_8b41e
+	jr nz, .e_is_not_zero
 	call PlayClickSFX
-	ld d, $ff
+	ld d, -1
 	call Function8b385
-	ld d, $1
+	ld d, 1
 	scf
 	ret
-.asm_8b41e
-	ld d, $ff
+
+.e_is_not_zero
+	ld d, -1
 	call Function8b385
 	dec e
 	xor a
 	ld [wd010], a
 	ret
-.asm_8b429
+
+.d_up
 	call Function8b379
 	ld a, d
 	cp $a
-	jr c, .asm_8b433
+	jr c, .less_than_10_up_1
 	ld d, $9
-.asm_8b433
+.less_than_10_up_1
 	inc d
 	ld a, d
 	cp $a
-	jr c, .asm_8b43b
+	jr c, .less_than_10_up_2
 	ld d, $0
-.asm_8b43b
+.less_than_10_up_2
 	call Function8b385
 	xor a
 	ld [wd010], a
 	ret
-.asm_8b443
+
+.d_down
 	call Function8b379
 	ld a, d
 	cp $a
-	jr c, .asm_8b44d
+	jr c, .less_than_10_down
 	ld d, $0
-.asm_8b44d
+.less_than_10_down
 	ld a, d
 	dec d
 	and a
-	jr nz, .asm_8b454
+	jr nz, .nonzero_down
 	ld d, $9
-.asm_8b454
+.nonzero_down
 	call Function8b385
 	xor a
 	ld [wd010], a
@@ -243,7 +255,7 @@ Function8b45c: ; 8b45c (22:745c)
 	ld d, $0
 	call Function8b385
 .asm_8b46e
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call Function8b493
 	call Function8b4cc
 	call Function8b518
@@ -264,7 +276,7 @@ Function8b45c: ; 8b45c (22:745c)
 
 Function8b493: ; 8b493 (22:7493)
 	push bc
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	call Function8b521
 	ld hl, Jumptable_8b4a0
 	pop bc
@@ -314,9 +326,8 @@ Function8b4d8: ; 8b4d8 (22:74d8)
 	ld hl, Unknown_8b529
 	call Function8b50a
 	push hl
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
@@ -331,9 +342,8 @@ Function8b4ea: ; 8b4ea (22:74ea)
 	ld hl, Unknown_8b529
 	call Function8b50a
 	push hl
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
@@ -405,6 +415,7 @@ Function8b539: ; 8b539 (22:7539)
 	ret
 
 Function8b555: ; 8b555 (22:7555)
+.loop
 	ld hl, UnknownText_0x8b5ce
 	call PrintText
 	ld bc, wd017
@@ -418,27 +429,29 @@ Function8b555: ; 8b555 (22:7555)
 	jr nz, .asm_8b57c
 	ld hl, UnknownText_0x8b5e2
 	call PrintText
-	jr Function8b555
+	jr .loop
+
 .asm_8b57c
 	ld hl, UnknownText_0x8b5d3
 	call PrintText
 	ld bc, wd013
 	call Function8b45c
-	jr c, Function8b555
+	jr c, .loop
 	ld bc, wd017
 	ld hl, wd013
 	call Function8b3a4
-	jr z, .asm_8b5a6
+	jr z, .strings_equal
 	call Function89448
 	ld bc, wd013
 	call Function8b493
 	ld hl, UnknownText_0x8b5d8
 	call PrintText
 	jr .asm_8b57c
-.asm_8b5a6
+
+.strings_equal
 	call OpenSRAMBank4
 	ld hl, wd013
-	ld de, $a037
+	ld de, $a037 ; 4:a037
 	ld bc, $4
 	call CopyBytes
 	call CloseSRAM
@@ -506,7 +519,7 @@ Function8b5e7: ; 8b5e7 (22:75e7)
 	ld bc, wd013
 	call Function8b493
 	call OpenSRAMBank4
-	ld hl, $a037
+	ld hl, $a037 ; 4:a037
 	call Function8b3a4
 	call CloseSRAM
 	jr z, .asm_8b635
@@ -644,7 +657,7 @@ Function8b6ed: ; 8b6ed
 ; 8b703
 
 Function8b703: ; 8b703
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	push hl
 	ld a, $c
 	ld [hli], a
@@ -698,12 +711,10 @@ Function8b73e: ; 8b73e
 Function8b744: ; 8b744
 	ld de, AttrMap - TileMap
 	add hl, de
-rept 2
 	inc b
-endr
-rept 2
+	inc b
 	inc c
-endr
+	inc c
 	xor a
 .asm_8b74d
 	push bc
@@ -722,7 +733,7 @@ endr
 ; 8b75d
 
 Function8b75d: ; 8b75d
-	call Function8923c
+	call Mobile22_SetBGMapMode0
 	hlcoord 0, 0
 	ld a, $1
 	ld bc, SCREEN_WIDTH
@@ -975,9 +986,8 @@ Function8b8c8: ; 8b8c8
 	ld b, 0
 	ld c, a
 	ld hl, Unknown_8b903
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

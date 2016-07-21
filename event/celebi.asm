@@ -55,9 +55,9 @@ Special_CelebiShrineEvent: ; 4989a
 	ld c, $4
 .OAMloop:
 	ld [hli], a
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	inc a
 	dec c
 	jr nz, .OAMloop
@@ -259,9 +259,8 @@ CelebiEvent_Cosine: ; 49b3b (12:5b3b)
 	ld a, d
 	ld d, $0
 	ld hl, .sinewave
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]

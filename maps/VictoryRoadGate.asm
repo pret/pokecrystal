@@ -52,7 +52,7 @@ BlackBeltScript_0x9ba24:
 	jumptextfaceplayer UnknownText_0x9bb37
 
 MovementData_0x9ba27:
-	step_down
+	step DOWN
 	step_end
 
 UnknownText_0x9ba29:

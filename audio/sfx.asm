@@ -2322,7 +2322,7 @@ Sfx_Aeroblast: ; f1334
 ; f133a
 
 Sfx_Aeroblast_Ch5: ; f133a
-	unknownmusic0xde $f2
+	sound_duty 2, 0, 3, 3
 	soundinput $f5
 	sound C_, 13, $f8, $0580
 	soundinput $8
@@ -4762,7 +4762,7 @@ Sfx_Supersonic_branch_f21ef: ; f21ef
 ; f21fc
 
 Sfx_Supersonic_Ch6: ; f21fc
-	unknownmusic0xde $b3
+	sound_duty 3, 0, 3, 2
 	sound __, 16, $2f, $07c8
 Sfx_Supersonic_branch_f2202: ; f2202
 	sound __, 16, $cf, $07c7
@@ -4790,7 +4790,7 @@ Sfx_Leer_branch_f221a: ; f221a
 
 Sfx_Leer_Ch6: ; f2229
 Sfx_Leer_branch_f2229: ; f2229
-	unknownmusic0xde $b3
+	sound_duty 3, 0, 3, 2
 	sound __,  1, $e1, $07c1
 	sound __,  1, $e1, $0701
 	loopchannel 12, Sfx_Leer_branch_f2229
@@ -4807,7 +4807,7 @@ Sfx_Leer_branch_f2238: ; f2238
 
 Sfx_Ember_Ch5: ; f2243
 Sfx_Ember_branch_f2243: ; f2243
-	unknownmusic0xde $c9
+	sound_duty 1, 2, 0, 3
 	sound __, 12, $f3, $0120
 	sound __, 10, $d3, $0150
 	loopchannel 5, Sfx_Ember_branch_f2243
@@ -4829,7 +4829,7 @@ Sfx_Ember_branch_f225a: ; f225a
 
 Sfx_Bubblebeam_Ch5: ; f226e
 Sfx_Bubblebeam_branch_f226e: ; f226e
-	unknownmusic0xde $39
+	sound_duty 1, 2, 3, 0
 	sound __,  5, $f4, $0600
 	sound __,  4, $c4, $0500
 	sound __,  6, $b5, $0600
@@ -4841,7 +4841,7 @@ Sfx_Bubblebeam_branch_f226e: ; f226e
 
 Sfx_Bubblebeam_Ch6: ; f2289
 Sfx_Bubblebeam_branch_f2289: ; f2289
-	unknownmusic0xde $8d
+	sound_duty 1, 3, 0, 2
 	sound __,  6, $e4, $05e0
 	sound __,  5, $b4, $04e0
 	sound __,  7, $a5, $05e8
@@ -4862,7 +4862,7 @@ Sfx_Bubblebeam_branch_f22a0: ; f22a0
 
 Sfx_HydroPump_Ch5: ; f22b1
 Sfx_HydroPump_branch_f22b1: ; f22b1
-	unknownmusic0xde $d2
+	sound_duty 2, 0, 1, 3
 	sound __,  4, $81, $0300
 	sound __,  4, $c1, $0400
 	sound __,  4, $f1, $0500
@@ -4887,7 +4887,7 @@ Sfx_HydroPump_branch_f22d0: ; f22d0
 
 Sfx_Surf_Ch5: ; f22e7
 Sfx_Surf_branch_f22e7: ; f22e7
-	unknownmusic0xde $39
+	sound_duty 1, 2, 3, 0
 	sound __, 16, $f4, $0500
 	sound __, 16, $c4, $0400
 	sound __, 16, $e2, $05c0
@@ -4897,7 +4897,7 @@ Sfx_Surf_branch_f22e7: ; f22e7
 
 Sfx_Surf_Ch6: ; f22fa
 Sfx_Surf_branch_f22fa: ; f22fa
-	unknownmusic0xde $8d
+	sound_duty 1, 3, 0, 2
 	sound __,  8, $e4, $0430
 	sound __, 16, $b4, $0330
 	sound __, 16, $a2, $0438
@@ -4917,7 +4917,7 @@ Sfx_Surf_branch_f230d: ; f230d
 
 Sfx_Psybeam_Ch5: ; f231e
 Sfx_Psybeam_branch_f231e: ; f231e
-	unknownmusic0xde $a1
+	sound_duty 1, 0, 2, 2
 	sound __, 11, $f1, $0640
 	sound __, 11, $f3, $0680
 	sound __, 11, $f2, $0620
@@ -4928,7 +4928,7 @@ Sfx_Psybeam_branch_f231e: ; f231e
 
 Sfx_Psybeam_Ch6: ; f2335
 Sfx_Psybeam_branch_f2335: ; f2335
-	unknownmusic0xde $b3
+	sound_duty 3, 0, 3, 2
 	sound __, 11, $f3, $0571
 	sound __,  8, $e3, $0531
 	sound __, 11, $f1, $0551
@@ -4958,7 +4958,7 @@ Sfx_Charge_branch_f2357: ; f2357
 
 Sfx_Charge_Ch6: ; f236e
 Sfx_Charge_branch_f236e: ; f236e
-	unknownmusic0xde $b3
+	sound_duty 3, 0, 3, 2
 	sound __,  3, $e1, $0302
 	sound __,  4, $e1, $07f2
 	sound __,  5, $e1, $0602
@@ -4979,7 +4979,7 @@ Sfx_Charge_branch_f2385: ; f2385
 
 Sfx_Thundershock_Ch5: ; f2396
 Sfx_Thundershock_branch_f2396: ; f2396
-	unknownmusic0xde $2b
+	sound_duty 3, 2, 2, 0
 	sound __,  4, $f1, $07f0
 	sound __,  5, $f2, $0200
 	loopchannel 8, Sfx_Thundershock_branch_f2396
@@ -4988,7 +4988,7 @@ Sfx_Thundershock_branch_f2396: ; f2396
 
 Sfx_Thundershock_Ch6: ; f23a5
 Sfx_Thundershock_branch_f23a5: ; f23a5
-	unknownmusic0xde $b3
+	sound_duty 3, 0, 3, 2
 	sound __,  5, $e2, $0202
 	sound __,  5, $e1, $07e2
 	loopchannel 9, Sfx_Thundershock_branch_f23a5
@@ -5092,7 +5092,7 @@ Sfx_Sharpen_Ch6: ; f2463
 ; f247a
 
 Sfx_EggBomb_Ch5: ; f247a
-	unknownmusic0xde $ed
+	sound_duty 1, 3, 2, 3
 	sound __,  9, $ff, $03f8
 	sound __, 16, $ff, $0400
 	sound __, 16, $f3, $0400
@@ -5100,7 +5100,7 @@ Sfx_EggBomb_Ch5: ; f247a
 ; f2489
 
 Sfx_EggBomb_Ch6: ; f2489
-	unknownmusic0xde $b4
+	sound_duty 0, 1, 3, 2
 	sound __,  9, $ef, $03c0
 	sound __, 16, $ef, $03c0
 	sound __, 16, $e3, $03c0
@@ -5168,7 +5168,7 @@ Sfx_HyperBeam_branch_f24f8: ; f24f8
 ; f2509
 
 Sfx_HyperBeam_Ch6: ; f2509
-	unknownmusic0xde $b3
+	sound_duty 3, 0, 3, 2
 	sound __,  3, $f1, $0781
 	sound __,  3, $f1, $0701
 	sound __,  3, $f1, $0791

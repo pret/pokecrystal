@@ -47,7 +47,7 @@ Function17a6a8: ; 17a6a8 (5e:66a8)
 	call Function17aba0
 	callba Function106464
 	call Function17ac0c
-	callba Function104000
+	callba HDMATransferAttrMapAndTileMapToWRAMBank3
 	call Function17abcf
 	callba LoadOW_BGPal7
 	callba Function49420
@@ -169,7 +169,7 @@ Function17a78f: ; 17a78f (5e:678f)
 	bit 7, [hl]
 	res 7, [hl]
 	jr nz, .asm_17a79f
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	ret
 
 .asm_17a79f
@@ -576,16 +576,16 @@ Function17aa22: ; 17aa22 (5e:6a22)
 	push de
 	ld a, $3
 	call Function17aae0
-rept 3
 	add a
-endr
+	add a
+	add a
 	add $0
 	push af
 	ld a, $4
 	call Function17aae0
-rept 3
 	add a
-endr
+	add a
+	add a
 	add $8
 	ld c, a
 	pop af
@@ -682,15 +682,13 @@ Function17aaa9: ; 17aaa9 (5e:6aa9)
 Function17aac3: ; 17aac3 (5e:6ac3)
 	ld a, $b
 	push hl
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	pop hl
 	ld de, SCREEN_WIDTH
 	add hl, de
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ret
 
 Function17aad0: ; 17aad0 (5e:6ad0)

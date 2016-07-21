@@ -156,42 +156,42 @@ RadioTower5FBookshelf:
 	jumpstd magazinebookshelf
 
 FakeDirectorMovement:
-	step_left
-	step_left
-	step_left
-	step_up
-	step_up
+	step LEFT
+	step LEFT
+	step LEFT
+	step UP
+	step UP
 	step_end
 
 RadioTower5FDirectorWalksIn:
-	step_down
-	step_down
-	step_right
-	step_right
-	step_right
-	step_right
-	step_down
-	step_down
-	step_down
-	step_left
+	step DOWN
+	step DOWN
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step DOWN
+	step DOWN
+	step DOWN
+	step LEFT
 	step_end
 
 RadioTower5FDirectorWalksOut:
-	step_right
-	step_up
-	step_up
-	step_up
-	step_left
-	step_left
-	step_left
-	step_left
-	step_up
-	step_up
+	step RIGHT
+	step UP
+	step UP
+	step UP
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step UP
+	step UP
 	step_end
 
 MovementData_0x60125:
-	step_left
-	step_left
+	step LEFT
+	step LEFT
 	step_end
 
 FakeDirectorTextBefore1:

@@ -183,29 +183,29 @@ AbraScript:
 	end
 
 PlateauRivalMovement1:
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
-	turn_head_left
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	turn_head LEFT
 	step_end
 
 PlateauRivalMovement2:
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
-	turn_head_right
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	turn_head RIGHT
 	step_end
 
 PlateauRivalLeavesMovement:
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
 	step_end
 
 UnknownText_0x180178:

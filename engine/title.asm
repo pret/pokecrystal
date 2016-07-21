@@ -188,8 +188,8 @@ _TitleScreen: ; 10ed67
 	call ByteFill
 
 ; Let LCD Stat know we're messing around with SCX
-	ld a, rSCX - rJOYP
-	ld [hFFC6], a
+	ld a, rSCX - $ff00
+	ld [hLCDCPointer], a
 
 	pop af
 	ld [rSVBK], a
@@ -351,9 +351,8 @@ InitializeBackground: ; 10ef06
 	ld b, a
 	ld a, e
 	ld [hli], a
-rept 2
 	inc e
-endr
+	inc e
 	ld a, $80
 	ld [hli], a
 	dec c
@@ -378,9 +377,9 @@ AnimateTitleCrystal: ; 10ef32
 	ld a, [hl]
 	add 2
 	ld [hli], a
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	dec c
 	jr nz, .loop
 

@@ -111,7 +111,7 @@ Function170139: ; 170139
 	call CopyBytes
 	ld bc, PlayerID
 	ld de, PlayerGender
-	callba Function4e929
+	callba GetMobileOTTrainerClass
 	ld de, wBT_OTTempPkmn1CaughtGender
 	ld a, c
 	ld [de], a
@@ -217,9 +217,8 @@ _BattleTowerBattle: ; 17022c
 	ld e, a
 	ld d, 0
 	ld hl, .dw
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -459,9 +458,8 @@ endr
 	ld a, POUND
 	ld [hli], a
 	xor a
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld [hl], a
 	jr .done_moves
 
@@ -489,9 +487,8 @@ endr
 	predef CalcPkmnStats
 	pop de
 	pop hl
-rept 2
 	dec de
-endr
+	dec de
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -690,9 +687,8 @@ Function1704e1: ; 1704e1
 	ld e, a
 	ld d, 0
 	ld hl, .dw
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -908,9 +904,8 @@ endr
 	ld [hli], a
 	dec c
 	jr nz, .clearbox_column
-rept 2
 	inc hl
-endr
+	inc hl
 	dec b
 	jr nz, .clearbox_row
 	ret
@@ -947,9 +942,8 @@ BattleTowerAction: ; 170687
 	ld e, a
 	ld d, 0
 	ld hl, .dw
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1393,9 +1387,8 @@ rept 4
 	dec hl
 endr
 	ld a, "@"
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	pop hl
 	ld a, EGG_TICKET
 	ld [CurItem], a
@@ -1445,9 +1438,8 @@ Function1709bb: ; 1709bb (5c:49bb) BattleTowerAction $10
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_1709e7
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

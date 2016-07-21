@@ -34,7 +34,7 @@ wCurTrackDuty:: ds 1
 wCurTrackIntensity:: ds 1
 wCurTrackFrequency:: dw
 wc296:: ds 1 ; BCD value, dummied out
-wc297:: ds 1 ; used in MusicE0 and LoadNote
+wCurNoteDuration:: ds 1 ; used in MusicE0 and LoadNote
 
 CurMusicByte:: ; c298
 	ds 1
@@ -152,15 +152,15 @@ AutoInputLength:: ; c2cb
 	ds 1
 
 wMonStatusFlags:: ds 1
-wc2cd:: ds 1
+wGameLogicPaused:: ds 1 ; c2cd
 wSpriteUpdatesEnabled:: ds 1
 wc2cf:: ds 1
 wMapTimeOfDay:: ds 1
 	ds 3
-wc2d4:: ds 1
-wc2d5:: ds 1
+wPrinterConnectionOpen:: ds 1
+wPrinterOpcode:: ds 1
 wLastDexEntry:: ds 1
-wc2d7:: ds 1
+wDisableTextAcceleration:: ds 1
 wPreviousLandmark:: ds 1
 wCurrentLandmark:: ds 1
 wLandmarkSignTimer:: ds 2
@@ -242,26 +242,6 @@ wc311:: ds 1
 wc312:: ds 1
 wc313:: ds 1
 wSpriteAnimationStructs::
-
-sprite_anim_struct: MACRO
-\1Index:: ds 1          ; 0
-\1FramesetID:: ds 1     ; 1
-\1AnimSeqID:: ds 1      ; 2
-\1TileID:: ds 1         ; 3
-\1XCoord:: ds 1         ; 4
-\1YCoord:: ds 1         ; 5
-\1XOffset:: ds 1        ; 6
-\1YOffset:: ds 1        ; 7
-\1Duration:: ds 1       ; 8
-\1DurationOffset:: ds 1 ; 9
-\1FrameIndex:: ds 1     ; a
-\1Sprite0b:: ds 1
-\1Sprite0c:: ds 1
-\1Sprite0d:: ds 1
-\1Sprite0e:: ds 1
-\1Sprite0f:: ds 1
-ENDM
-
 ; Field  0: Index
 ; Fields 1-3: Loaded from SpriteAnimSeqData
 wc314::
@@ -374,7 +354,9 @@ wBT_OTTemp:: battle_tower_struct wBT_OTTemp
 wMisc:: ; ds (SCREEN_WIDTH + 4) * (SCREEN_HEIGHT + 2)
 	ds 10
 wc612::
-	ds 10
+	ds 6
+wc618::
+	ds 4
 wInitHourBuffer:: ; c61c
 	ds 10
 wc626::
@@ -554,10 +536,18 @@ wTurnEnded:: ds 1 ; c6b4
 	ds 1
 
 PlayerStats:: ; c6b6
-	ds 10
+PlayerAttack:: ds 2
+PlayerDefense:: ds 2
+PlayerSpeed:: ds 2
+PlayerSpAtk:: ds 2
+PlayerSpDef:: ds 2
 	ds 1
 EnemyStats:: ; c6c1
-	ds 10
+EnemyAttack:: ds 2
+EnemyDefense:: ds 2
+EnemySpeed:: ds 2
+EnemySpAtk:: ds 2
+EnemySpDef:: ds 2
 	ds 1
 
 PlayerStatLevels:: ; c6cc
@@ -885,8 +875,8 @@ wUnlockedUnownMode:: ds 1
 wDexCurrentUnownIndex:: ds 1
 wDexUnownCount:: ds 1
 wDexConvertedMonType:: ds 1 ; mon type converted from dex search mon type
-wc7e0:: ds 1
-wc7e1:: ds 1
+wDexListingScrollOffsetBackup:: ds 1
+wDexListingCursorBackup:: ds 1
 wBackupDexListingCursor::
 wc7e2:: ds 1
 wBackupDexListingPage::
@@ -906,7 +896,7 @@ ENDC
 
 wMiscEnd::
 
-wc7e8:: ds 24
+wc7e8:: ds 24 ; ????
 
 SECTION "Overworld Map", WRAM0 [$c800]
 
@@ -915,7 +905,47 @@ OverworldMap:: ; c800
 OverworldMapEnd::
 	ds OverworldMap - @
 
-wBillsPCPokemonList::
+wGameboyPrinterRAM::
+wGameboyPrinterScreen:: ds SCREEN_HEIGHT * SCREEN_WIDTH ; c800
+wGameboyPrinterScreenEnd:: ; c968
+	ds wGameboyPrinterScreen - @
+wGameboyPrinter2bppSource::
+	ds 40 tiles
+wGameboyPrinter2bppSourceEnd::
+wca80:: ds 1
+wPrinterRowIndex:: ds 1
+
+; Printer data header
+wca82:: ds 1
+wca83:: ds 1
+wca84:: ds 1
+wca85:: ds 1
+wPrinterChecksum:: dw ; ca86
+wPrinterHandshake:: ds 1
+wPrinterStatusFlags::
+; bit 7: set if error 1 (battery low)
+; bit 6: set if error 4 (too hot or cold)
+; bit 5: set if error 3 (paper jammed or empty)
+; if this and the previous byte are both $ff: error 2 (connection error)
+	ds 1
+
+wHandshakeFrameDelay:: ds 1
+wPrinterSerialFrameDelay:: ds 1
+wPrinterSendByteOffset:: dw
+wPrinterSendByteCounter:: dw
+
+; tilemap backup?
+wPrinterTileMapBuffer:: ds SCREEN_HEIGHT * SCREEN_WIDTH ; ca90
+wPrinterTileMapBufferEnd::
+wPrinterStatus:: ds 1 ; cbf8
+	ds 1
+wcbfa:: ds 1
+wGBPrinterSettings:: ds 1
+	ds 16
+wGameboyPrinterRAMEnd::
+	ds wGameboyPrinterRAM - @
+
+wBillsPCPokemonList:: ; c800
 ; Pokemon, box number, list index
 
 wMysteryGiftPartyTemp:: ; ds PARTY_LENGTH * (1 + 1 + NUM_MOVES)
@@ -1036,44 +1066,14 @@ wca40:: ds 16
 wca50:: ds 16
 wca60:: ds 16
 wca70:: ds 16
-wca80:: ds 1
-wca81:: ds 1
-wca82:: ds 1
-wca83:: ds 1
-wca84:: ds 1
-wca85:: ds 1
-wca86:: ds 1
-wca87:: ds 1
 
-; Gameboy Printer
-wca88:: ds 1
-wca89::
-; bit 7: set if error 1
-; bit 6: set if error 4
-; bit 5: set if error 3
-	ds 1
+	ds 35
 
-wca8a:: ds 1
-wca8b:: ds 1
-wca8c:: ds 1
-wca8d:: ds 1
-wca8e:: ds 1
-wca8f:: ds 1
-
-; tilemap backup?
-wca90:: ds 16
-wcaa0:: ds 3
-wcaa3:: ds 2
-wcaa5:: ds 11
-wcab0:: ds 5
+wcaa3:: ds 2 ; caa3
+wcaa5:: ds 16
 wcab5:: ds 10
-wcabf:: ds 1
-wcac0:: ds 9
-wcac9:: ds 7
-wcad0:: ds 16
-wcae0:: ds 16
-wcaf0:: ds 16
-wcb00:: ds 8
+wcabf:: ds 10
+wcac9:: ds 63
 wcb08:: ds 6
 wcb0e:: ds 5
 wcb13:: ds 9
@@ -1096,11 +1096,8 @@ wcb84:: ds 100
 wcbe8:: dw
 wLinkOTPartyMonTypes::
 	ds 2 * PARTY_LENGTH
-	ds 2
+	ds 84
 
-wcbf8:: ds 2
-wcbfa:: ds 1
-wcbfb:: ds 79
 wcc4a:: ds 22
 wcc60:: ds 1
 wcc61:: ds 1
@@ -1132,7 +1129,7 @@ CreditsTimer:: ; cd22
 
 wcd23:: ds 1
 wcd24:: ds 1
-wcd25:: ds 1
+wMobileCommsJumptableIndex:: ds 1 ; cd25
 wcd26:: ds 1
 wcd27:: ds 1
 wcd28:: ds 1
@@ -1151,8 +1148,12 @@ wcd32:: ds 1
 wcd33:: ds 1
 wcd34:: ds 1
 wcd35:: ds 1
-wcd36:: ds 2
-wcd38:: ds 1
+
+; current time for link/mobile?
+wcd36:: ds 1 ; hours
+wcd37:: ds 1 ; mins
+wcd38:: ds 1 ; secs
+
 wcd39:: ds 1
 wcd3a:: ds 1
 wcd3b:: ds 1
@@ -1164,9 +1165,12 @@ wcd40:: ds 1
 wcd41:: ds 1
 wcd42:: ds 1
 wcd43:: ds 1
-wcd44:: ds 1
-wcd45:: ds 1
-wcd46:: ds 1
+
+; some sort of timer in link battles
+wMobileInactivityTimerMinutes:: ds 1 ; mins
+wMobileInactivityTimerSeconds:: ds 1 ; secs
+wMobileInactivityTimerFrames:: ds 1 ; frames
+
 wcd47:: ds 1
 
 BGMapPalBuffer:: ; cd48
@@ -1176,13 +1180,16 @@ wBTTempOTSprite::
 wcd49:: ds 1
 wcd4a:: ds 1
 wcd4b:: ds 1
+wEZChatCursorXCoord::
 wcd4c:: ds 1
+wEZChatCursorYCoord::
 wcd4d:: ds 1
 wcd4e:: ds 1
 wcd4f:: ds 1
 wcd50:: ds 1
 wcd51:: ds 1
 wcd52:: ds 1
+wMobileOpponentBattleMessage:: ; dc $c
 wcd53:: ds 1
 wcd54:: ds 1
 wcd55:: ds 1
@@ -1220,7 +1227,7 @@ wcd71:: ds 1
 wcd72:: ds 1
 wcd73:: ds 1
 wcd74:: ds 1
-wcd75:: ds 2
+wOTMonSelection:: ds 2 ; ds 3
 wcd77:: ds 1
 wcd78:: ds 1
 wcd79:: ds 1
@@ -1238,6 +1245,7 @@ wcd8a:: ds 1
 wcd8b:: ds 1
 wcd8c:: ds 1
 wcd8d:: ds 11
+BGMapBufferEnd::
 
 SGBPredef:: ; cd98
 	ds 1
@@ -1251,10 +1259,14 @@ wcda1:: ds 8
 wSGBPals:: ds 48 ; cda9
 
 AttrMap:: ; cdd9
-; 20x18 grid of palettes for 8x8 tiles
+; 20x18 grid of bg tile attributes for 8x8 tiles
 ; read horizontally from the top row
-; bit 3: vram bank
-; bit 0-2: palette id
+;		bit 7: priority
+;		bit 6: y flip
+;		bit 5: x flip
+;		bit 4: pal # (non-cgb)
+;		bit 3: vram bank (cgb only)
+;		bit 2-0: pal # (cgb only)
 	ds SCREEN_WIDTH * SCREEN_HEIGHT
 AttrMapEnd::
 	ds 1
@@ -1269,8 +1281,7 @@ wOtherPlayerLinkMode:: ds 1
 wOtherPlayerLinkAction:: ds 4
 wPlayerLinkAction:: ds 1
 wcf57:: ds 4
-wcf5b:: ds 1
-wcf5c:: ds 1
+wLinkTimeoutFrames:: dw ; cf5b
 wcf5d:: ds 2
 
 MonType:: ; cf5f
@@ -1301,6 +1312,7 @@ wTitleScreenTimerLo::
 wUnownPuzzleCursorPosition::
 wCardFlipCursorX::
 wCurrPocket::
+wPrinterQueueLength::
 wcf65:: ds 1
 wCreditsLYOverride::
 wTitleScreenTimerHi::
@@ -1524,18 +1536,13 @@ wSeerCaughtData:: ds 1
 wSeerCaughtGender:: ds 1
 	ds wSeerAction - @
 
-wBufferMonNick:: ds PKMN_NAME_LENGTH
-wBufferMonOT:: ds NAME_LENGTH
-wBufferMon:: party_struct wBufferMon
+wBufferMonNick:: ds PKMN_NAME_LENGTH ; d002
+wBufferMonOT:: ds NAME_LENGTH ; d00d
+wBufferMon:: party_struct wBufferMon ; d018
 	ds 8
 wMonOrItemNameBuffer::
 	ds wBufferMonNick - @
 
-bugcontestwinner: macro
-\1PersonID:: ds 1
-\1Mon:: ds 1
-\1Score:: ds 2
-endm
 wBugContestResults::
 	bugcontestwinner wBugContestFirstPlace
 	bugcontestwinner wBugContestSecondPlace
@@ -1555,6 +1562,7 @@ LuckyNumberDigit1Buffer::
 wCurrentRadioLine::
 wMovementBufferCount::
 wMartItem1BCD::
+wWhichBoxMonToPrint::
 	ds 1
 wd003::
 LuckyNumberDigit2Buffer::
@@ -1562,12 +1570,14 @@ PhoneCallerLo::
 wNextRadioLine::
 wMovementBufferPerson::
 wPlaceBallsDirection::
+wFinishedPrintingBox::
 	ds 1
 wd004::
 LuckyNumberDigit3Buffer::
 PhoneCallerHi::
 wRadioTextDelay::
 wTrainerHUDTiles::
+wAddrOfBoxToPrint::
 	ds 1
 wd005::
 LuckyNumberDigit4Buffer::
@@ -1580,9 +1590,11 @@ wMobileParticipant1Nickname::
 LuckyNumberDigit5Buffer::
 EndFlypoint:: ; d006
 wOaksPkmnTalkSegmentCounter::
+wBankOfBoxToPrint::
 	ds 1
 
 wd007::
+wWhichBoxToPrint::
 MovementBuffer:: ; d007
 	ds 1
 
@@ -1701,8 +1713,9 @@ wScriptAfterPointer:: ds 2
 wRunningTrainerBattleScript:: ds 1
 MenuItemsListEnd::
 wTempTrainerHeaderEnd::
-wd04e:: ds 24
-wTMHMMoveNameBackup:: ds MOVE_NAME_LENGTH
+wPlayerTurningDirection:: ; d04e
+	ds 24
+wTMHMMoveNameBackup:: ds MOVE_NAME_LENGTH ; d066
 
 StringBuffer1:: ; d073
 	ds 19
@@ -1782,12 +1795,9 @@ wMailboxItems:: ds MAILBOX_CAPACITY
 wMailboxEnd:: ds 1 ; d0fe
 	ds 2
 
-wd100:: ds 1
-wd101:: ds 1
-wd102:: ds 1
-wd103:: ds 1
-wd104:: ds 1
-wd105:: ds 1
+wListPointer:: dw ; d100
+wUnusedD102:: dw ; d102
+wItemAttributesPtr:: dw ; d104
 
 CurItem:: ds 1 ; d106
 CurItemQuantity:: ; d107
@@ -1845,8 +1855,8 @@ wPrevMapGroup:: ds 1
 wPrevMapNumber:: ds 1
 ; d14c
 
-wFollowNotExactPersonX:: ds 1 ; used in FollowNotExact
-wFollowNotExactPersonY:: ds 1 ; used in FollowNotExact
+wPlayerBGMapOffsetX:: ds 1 ; used in FollowNotExact; unit is pixels
+wPlayerBGMapOffsetY:: ds 1 ; used in FollowNotExact; unit is pixels
 
 ; Player movement
 wPlayerStepVectorX:: ds 1   ; d14e
@@ -1868,7 +1878,7 @@ UsedSpritesEnd::
 wd154:: ; d154
 	ds 31 ; 64
 
-wd173:: ds 1
+wd173:: ds 1 ; related to command queue type 3
 	ds 13
 wd181:: ds 1
 wd182:: ds 1
@@ -2012,16 +2022,32 @@ TilesetPalettes:: ; d1e6
 EvolvableFlags:: ; d1e8
 	flag_array PARTY_LENGTH
 
-wForceEvolution:: ds 1
+wForceEvolution:: db ; d1e9
+
+; HP bar animations
+wCurHPAnimMaxHP::   dw ; d1ea
+wCurHPAnimOldHP::   dw ; d1ec
+wCurHPAnimNewHP::   dw ; d1ee
+wCurHPAnimPal::     db ; d1f0
+wCurHPBarPixels::   db ; d1f1
+wNewHPBarPixels::   db ; d1f2
+wCurHPAnimDeltaHP:: dw ; d1f3
+wCurHPAnimLowHP::   db ; d1f5
+wCurHPAnimHighHP::  db ; d1f6
+	ds wCurHPAnimMaxHP - @
+
 MagikarpLength::
+wEvolutionOldSpecies::
 Buffer1:: ; d1ea
 	ds 1
 MovementType::
+wEvolutionNewSpecies::
 Buffer2:: ; d1eb
 	ds 1
-
+wEvolutionPicOffset::
 Buffer3::
 wd1ec:: ds 1
+wEvolutionCanceled::
 Buffer4::
 wd1ed:: ds 1
 Buffer5::
@@ -2029,14 +2055,14 @@ wd1ee:: ds 1
 Buffer6::
 wd1ef:: ds 1
 wd1f0:: ds 1
-wCurHPBarPixels::
+CurEnemyItem::
 wd1f1:: ds 1
-wNewHPBarPixels::
 wd1f2:: ds 1
 wd1f3:: ds 1
 wd1f4:: ds 1
 wd1f5:: ds 1
-wd1f6:: ds 4
+wd1f6::
+	ds 4
 
 LinkBattleRNs:: ; d1fa
 	ds 10
@@ -2151,7 +2177,7 @@ wNiteEncounterRate::  ds 1 ; d25c
 wWaterEncounterRate:: ds 1 ; d25d
 wListMoves_MoveIndicesBuffer:: ds NUM_MOVES
 wPutativeTMHMMove:: ds 1
-wd263:: ds 1
+wInitListType:: ds 1
 wAISwitch:: ds 1
 wFoundMatchingIDInParty::
 wNamedObjectIndexBuffer::
@@ -2351,44 +2377,6 @@ wFollowerMovementQueueLength:: ds 1
 wFollowMovementQueue:: ds 5
 
 ObjectStructs:: ; d4d6
-object_struct: MACRO
-\1Struct::
-\1Sprite:: ds 1
-\1MapObjectIndex:: ds 1
-\1SpriteTile:: ds 1
-\1MovementType:: ds 1
-\1Flags:: ds 2
-\1Palette:: ds 1
-\1Walking:: ds 1
-\1Direction:: ds 1
-\1StepType:: ds 1
-\1StepDuration:: ds 1
-\1Action:: ds 1
-\1ObjectStepFrame:: ds 1
-\1Facing:: ds 1
-\1StandingTile:: ds 1 ; collision
-\1LastTile:: ds 1     ; collision
-\1StandingMapX:: ds 1
-\1StandingMapY:: ds 1
-\1LastMapX:: ds 1
-\1LastMapY:: ds 1
-\1ObjectInitX:: ds 1
-\1ObjectInitY:: ds 1
-\1Radius:: ds 1
-\1SpriteX:: ds 1
-\1SpriteY:: ds 1
-\1SpriteXOffset:: ds 1
-\1SpriteYOffset:: ds 1
-\1MovementByteIndex:: ds 1
-\1Object28:: ds 1
-\1Object29:: ds 1
-\1Object30:: ds 1
-\1Object31:: ds 1
-\1Range:: ds 1
-	ds 7
-\1StructEnd::
-ENDM
-
 	object_struct Player
 	object_struct Object1
 	object_struct Object2
@@ -2408,23 +2396,6 @@ wCmdQueue:: ds CMDQUEUE_CAPACITY * CMDQUEUE_ENTRY_SIZE
 	ds $28
 
 MapObjects:: ; d71e
-map_object: MACRO
-\1Object::
-\1ObjectStructID::  ds 1
-\1ObjectSprite::    ds 1
-\1ObjectYCoord::    ds 1
-\1ObjectXCoord::    ds 1
-\1ObjectMovement::  ds 1
-\1ObjectRadius::    ds 1
-\1ObjectHour::      ds 1
-\1ObjectTimeOfDay:: ds 1
-\1ObjectColor::     ds 1
-\1ObjectRange::     ds 1
-\1ObjectScript::    ds 2
-\1ObjectEventFlag:: ds 2
-	ds 2
-endm
-
 	map_object Player
 	map_object Map1
 	map_object Map2
@@ -2741,7 +2712,7 @@ wWhichMomItem:: ds 1 ; dc17
 wWhichMomItemSet:: ds 1 ; dc18
 MomItemTriggerBalance:: ds 3 ; dc19
 
-wDailyResetTimer:: ds 2
+wDailyResetTimer:: ds 2 ; dc1c
 DailyFlags:: ds 1
 WeeklyFlags:: ds 1
 SwarmFlags:: ds 1
@@ -2753,9 +2724,9 @@ FruitTreeFlags:: flag_array NUM_FRUIT_TREES ; dc27
 
 	ds 2
 
-wLuckyNumberDayBuffer:: ds 2
+wLuckyNumberDayBuffer:: ds 2 ; dc2d
 	ds 2
-wSpecialPhoneCallID:: ds 1
+wSpecialPhoneCallID:: ds 1 ; dc31
 	ds 3
 wBugContestStartTime:: ds 4 ; day, hour, min, sec ; dc35
 wUnusedTwoDayTimerOn:: ds 1 ; dc39
@@ -2773,7 +2744,7 @@ wDailyPhoneTimeOfDayFlags:: ds 4
 wKenjiBreakTimer:: ds 2 ; Kenji
 wYanmaMapGroup:: ds 1 ; dc5a
 wYanmaMapNumber:: ds 1
-wdc5c:: ds 3
+wPlayerMonSelection:: ds 3
 wdc5f:: ds 1
 wdc60:: ds 19
 
@@ -2921,15 +2892,6 @@ wDunsparceMapGroup:: ds 1
 wDunsparceMapNumber:: ds 1
 wFishingSwarmFlag:: ds 1
 
-roam_struct: MACRO
-\1Species::   db
-\1Level::     db
-\1MapGroup::  db
-\1MapNumber:: db
-\1HP::        ds 1
-\1DVs::       ds 2
-ENDM
-
 wRoamMon1:: roam_struct wRoamMon1 ; dfcf
 wRoamMon2:: roam_struct wRoamMon2 ; dfd6
 wRoamMon3:: roam_struct wRoamMon3 ; dfdd
@@ -2956,31 +2918,31 @@ wPokeAnimPointer:: ds 2
 wPokeAnimSpecies:: ds 1
 wPokeAnimUnownLetter:: ds 1
 wPokeAnimSpeciesOrUnown:: ds 1
-w2_d16e:: ds 1
+wPokeAnimGraphicStartTile:: ds 1
 wPokeAnimCoord:: ds 2
 wPokeAnimFrontpicHeight:: ds 1
 ; PokeAnim Data
 wPokeAnimExtraFlag:: ds 1
-w2_d173:: ds 1
+wPokeAnimSpeed:: ds 1
 wPokeAnimPointerBank:: ds 1
 wPokeAnimPointerAddr:: ds 2
 wPokeAnimFramesBank:: ds 1
 wPokeAnimFramesAddr:: ds 2
 wPokeAnimBitmaskBank:: ds 1
 wPokeAnimBitmaskAddr:: ds 2
-w2_d17d:: ds 1
-w2_d17e:: ds 1
+wPokeAnimFrame:: ds 1
+wPokeAnimJumptableIndex:: ds 1
 wPokeAnimRepeatTimer:: ds 1
-w2_d180:: ds 1
+wPokeAnimCurBitmask:: ds 1
 wPokeAnimWaitCounter:: ds 1
-w2_d182:: ds 1
-w2_d183:: ds 1
-w2_d184:: ds 1
-w2_d185:: ds 1
-w2_d186:: ds 1
-w2_d187:: ds 1
-w2_d188:: ds 1
-	ds 8
+wPokeAnimCommand:: ds 1
+wPokeAnimParameter:: ds 1
+	ds 1
+wPokeAnimBitmaskCurCol:: ds 1
+wPokeAnimBitmaskCurRow:: ds 1
+wPokeAnimBitmaskCurBit:: ds 1
+wPokeAnimBitmaskBuffer:: ds 7
+	ds 2
 wPokeAnimStructEnd::
 
 
@@ -3053,7 +3015,7 @@ wMagnetTrainInitPosition:: ds 1
 wMagnetTrainHoldPosition:: ds 1
 wMagnetTrainFinalPosition:: ds 1
 wMagnetTrainPlayerSpriteInitX:: ds 1
-ds 106
+	ds 106
 
 LYOverridesBackup:: ; d200
 	ds SCREEN_HEIGHT_PX
@@ -3063,34 +3025,6 @@ LYOverridesBackupEnd::
 SECTION "Battle Animations", WRAMX [$d300], BANK [5]
 
 wBattleAnimTileDict:: ds 10
-
-battle_anim_struct: MACRO
-; Placeholder until we can figure out what it all means
-\1_Index::  ds 1
-\1_Anim01:: ds 1
-\1_Anim02:: ds 1
-\1_FramesetIndex:: ds 1
-\1_FunctionIndex:: ds 1
-\1_Anim05:: ds 1
-\1_TileID:: ds 1
-\1_XCoord:: ds 1
-\1_YCoord:: ds 1
-\1_XOffset:: ds 1
-\1_YOffset:: ds 1
-\1_Anim0b:: ds 1
-\1_Anim0c:: ds 1
-\1_Anim0d:: ds 1
-\1_AnonJumptableIndex:: ds 1
-\1_Anim0f:: ds 1
-\1_Anim10:: ds 1
-\1_Anim11:: ds 1
-\1_Anim12:: ds 1
-\1_Anim13:: ds 1
-\1_Anim14:: ds 1
-\1_Anim15:: ds 1
-\1_Anim16:: ds 1
-\1_Anim17:: ds 1
-endm
 
 ActiveAnimObjects:: ; d30a
 AnimObject01:: battle_anim_struct AnimObject01
@@ -3104,13 +3038,6 @@ AnimObject08:: battle_anim_struct AnimObject08
 AnimObject09:: battle_anim_struct AnimObject09
 AnimObject10:: battle_anim_struct AnimObject10
 ActiveAnimObjectsEnd:: ; d3aa
-
-battle_bg_effect: MACRO
-\1_Function:: ds 1
-\1_01:: ds 1
-\1_02:: ds 1
-\1_03:: ds 1
-endm
 
 ActiveBGEffects:: ; d3fa
 BGEffect1:: battle_bg_effect BGEffect1
@@ -3166,15 +3093,17 @@ w5_da00:: ds $200
 w5_dc00:: ds $d
 w5_dc0d:: ds 4
 w5_dc11:: ds 9
-w5_dc1a:: ds $c
-w5_dc26:: ds $c
-w5_dc32:: ds $c
-w5_dc3e:: ds $c
+w5_MobileOpponentBattleMessages:: ds $c ; dc1a
+w5_MobileOpponentBattleStartMessage:: ds $c ; dc26
+w5_MobileOpponentBattleWinMessage:: ds $c ; dc32
+w5_MobileOpponentBattleLossMessage:: ds $c ; dc3e
 
 SECTION "WRAM 6", WRAMX, BANK [6]
 
-wDecompressScratch:: ds $400
-wBackupAttrMap:: ds $200
+wDecompressScratch::
+wScratchTileMap::
+	ds BG_MAP_WIDTH * BG_MAP_HEIGHT
+wScratchAttrMap:: ds $200
 w6_d600:: ds $200
 w6_d800::
 

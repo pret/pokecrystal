@@ -177,13 +177,13 @@ GoldenrodGymStatue:
 	jumpstd gymstatue2
 
 BridgetWalksUpMovement:
-	step_left
-	turn_head_up
+	step LEFT
+	turn_head UP
 	step_end
 
 BridgetWalksAwayMovement:
-	step_right
-	turn_head_left
+	step RIGHT
+	turn_head LEFT
 	step_end
 
 UnknownText_0x54122:

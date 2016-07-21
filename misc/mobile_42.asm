@@ -372,9 +372,8 @@ MobileTradeAnim_JumptableLoop: ; 10824b
 	ld e, a
 	ld d, 0
 	ld hl, .Jumptable
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -446,7 +445,7 @@ Function1082db: ; 1082db
 .loop
 	callba PlaySpriteAnimations
 	callba SetUpPokeAnim
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	jr nc, .loop
 	ret
 ; 1082f0
@@ -493,7 +492,7 @@ MobileTradeAnim_ShowPlayerMonToBeSent: ; 10830e
 	ld [TempMonDVs], a
 	ld a, [wPlayerTrademonDVs + 1]
 	ld [TempMonDVs + 1], a
-	ld b, SCGB_1A
+	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	ld a, %11100100 ; 3,2,1,0
 	call DmgToCgbBGPals
@@ -586,7 +585,7 @@ MobileTradeAnim_ShowOTMonFromTrade: ; 10839b
 	ld [TempMonDVs], a
 	ld a, [wOTTrademonDVs + 1]
 	ld [TempMonDVs + 1], a
-	ld b, SCGB_1A
+	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	ld a, %11100100 ; 3,2,1,0
 	call DmgToCgbBGPals
@@ -628,7 +627,7 @@ MobileTradeAnim_ShowPlayerMonForGTS: ; 10842c
 	ld [TempMonDVs], a
 	ld a, [wPlayerTrademonDVs + 1]
 	ld [TempMonDVs + 1], a
-	ld b, SCGB_1A
+	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	ld a, %11100100 ; 3,2,1,0
 	call DmgToCgbBGPals
@@ -730,7 +729,7 @@ MobileTradeAnim_ShowOTMonFromGTS: ; 1084d7
 	ld [TempMonDVs], a
 	ld a, [wOTTrademonDVs + 1]
 	ld [TempMonDVs + 1], a
-	ld b, SCGB_1A
+	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	ld a, %11100100 ; 3,2,1,0
 	call DmgToCgbBGPals
@@ -799,7 +798,7 @@ MobileTradeAnim_GetOddEgg: ; 108589
 	ld [TempMonDVs], a
 	ld a, [wOTTrademonDVs + 1]
 	ld [TempMonDVs + 1], a
-	ld b, SCGB_1A
+	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	ld a, %11100100 ; 3,2,1,0
 	call DmgToCgbBGPals
@@ -955,9 +954,8 @@ MobileTradeAnim_GiveTrademon1: ; 108763
 	ld a, [hSCX]
 	cp $e0
 	jr z, .loop2
-rept 2
 	dec a
-endr
+	dec a
 	ld [hSCX], a
 	cp $f8
 	jr nz, .next
@@ -974,9 +972,8 @@ endr
 	ld a, [hSCY]
 	cp $f8
 	jr z, .done
-rept 2
 	dec a
-endr
+	dec a
 	ld [hSCY], a
 	cp $40
 	jr z, .init
@@ -1125,9 +1122,8 @@ MobileTradeAnim_GetTrademon2: ; 108894
 	ld a, [hSCY]
 	cp $78
 	jr z, .asm_1088ee
-rept 2
 	inc a
-endr
+	inc a
 	ld [hSCY], a
 	cp $30
 	jr z, .asm_1088c5
@@ -1166,9 +1162,8 @@ endr
 	ld a, [hSCX]
 	cp $c
 	jr z, .asm_108906
-rept 2
 	inc a
-endr
+	inc a
 	ld [hSCX], a
 	cp -8
 	jr nz, .asm_1088e7

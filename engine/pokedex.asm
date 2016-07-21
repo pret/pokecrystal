@@ -694,9 +694,9 @@ Pokedex_UpdateSearchScreen: ; 40471 (10:4471)
 .show_search_results
 	ld [wDexListingEnd], a
 	ld a, [wDexListingScrollOffset]
-	ld [wc7e0], a
+	ld [wDexListingScrollOffsetBackup], a
 	ld a, [wDexListingCursor]
-	ld [wc7e1], a
+	ld [wDexListingCursorBackup], a
 	ld a, [wLastDexEntry]
 	ld [wcf65], a
 	xor a
@@ -777,9 +777,9 @@ Pokedex_UpdateSearchResultsScreen: ; 40562 (10:4562)
 	ret
 
 .return_to_search_screen
-	ld a, [wc7e0]
+	ld a, [wDexListingScrollOffsetBackup]
 	ld [wDexListingScrollOffset], a
-	ld a, [wc7e1]
+	ld a, [wDexListingCursorBackup]
 	ld [wDexListingCursor], a
 	ld a, [wcf65]
 	ld [wLastDexEntry], a
@@ -823,7 +823,7 @@ Pokedex_UpdateUnownMode: ; 405df (10:45df)
 	call DelayFrame
 	call Pokedex_CheckSGB
 	jr nz, .decompress
-	callba Function1ddf26
+	callba LoadSGBPokedexGFX2
 	jr .done
 
 .decompress
@@ -2385,9 +2385,8 @@ Pokedex_ApplyUsualPals: ; 41427
 Pokedex_LoadPointer: ; 41432
 	ld e, a
 	ld d, 0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

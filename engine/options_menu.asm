@@ -32,7 +32,7 @@ _OptionsMenu: ; e41d0
 	inc a
 	ld [hBGMapMode], a
 	call WaitBGMap
-	ld b, SCGB_08
+	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call SetPalettes
 
@@ -85,9 +85,8 @@ GetOptionPointer: ; e42d6
 	ld e, a ; copy it to de
 	ld d, 0
 	ld hl, .Pointers
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -143,9 +142,8 @@ Options_TextSpeed: ; e42f5
 .NonePressed:
 	ld b, 0
 	ld hl, .Strings
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -363,9 +361,8 @@ Options_Print: ; e4424
 .NonePressed:
 	ld b, $0
 	ld hl, .Strings
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld e, [hl]
 	inc hl
 	ld d, [hl]

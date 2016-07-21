@@ -219,36 +219,36 @@ AzaleaTownHiddenFullHeal:
 
 
 AzaleaTownRivalBattleApproachMovement1:
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
-	turn_head_up
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	turn_head UP
 	step_end
 
 AzaleaTownRivalBattleApproachMovement2:
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
-	turn_head_down
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	turn_head DOWN
 	step_end
 
 AzaleaTownRivalBattleExitMovement:
-	step_left
-	step_left
-	step_left
+	step LEFT
+	step LEFT
+	step LEFT
 	step_end
 
 Movement_PlayerWalksOutOfKurtsHouse:
-	step_left
-	step_left
-	step_up
-	turn_head_left
+	step LEFT
+	step LEFT
+	step UP
+	turn_head LEFT
 	step_end
 
 AzaleaTownRivalBeforeText:
