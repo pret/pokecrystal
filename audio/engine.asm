@@ -231,7 +231,6 @@ UpdateChannels: ; e8125
 	ld l, a
 	jp [hl]
 
-
 .ChannelFnPtrs:
 	dw .Channel1
 	dw .Channel2
@@ -642,7 +641,6 @@ FadeMusic: ; e8358
 	jr z, .novolume
 	dec a
 	jr .updatevolume
-
 
 .novolume
 	; make sure volume is off
@@ -1211,8 +1209,6 @@ ParseMusic: ; e85e1
 	set NOTE_UNKN_4, [hl]
 	jp LoadNote
 
-
-
 .rest
 ; note = rest
 	ld hl, Channel1NoteFlags - Channel1
@@ -1220,7 +1216,6 @@ ParseMusic: ; e85e1
 	set NOTE_REST, [hl] ; Rest
 	ret
 
-;
 .endchannel
 ; $ff is reached in music data
 	ld hl, Channel1Flags - Channel1
@@ -1808,10 +1803,12 @@ Music_SlidePitchTo: ; e88bd
 	ld [wCurNoteDuration], a
 
 	call GetMusicByte
+	; pitch in e
 	ld d, a
 	and $f
 	ld e, a
 
+	; octave in d
 	ld a, d
 	swap a
 	and $f
@@ -2054,7 +2051,7 @@ Music_ForceOctave: ; e89b1
 ; this forces all notes up by the starting octave
 ; params: 1
 	call GetMusicByte
-	ld hl, Channel1StartingOctave - Channel1
+	ld hl, Channel1PitchOffset - Channel1
 	add hl, bc
 	ld [hl], a
 	ret
@@ -2246,7 +2243,7 @@ GetFrequency: ; e8a5d
 
 ; get octave
 	; get starting octave
-	ld hl, Channel1StartingOctave - Channel1
+	ld hl, Channel1PitchOffset - Channel1
 	add hl, bc
 	ld a, [hl]
 	swap a ; hi nybble
@@ -2255,7 +2252,7 @@ GetFrequency: ; e8a5d
 	add d
 	push af ; we'll use this later
 	; get starting octave
-	ld hl, Channel1StartingOctave - Channel1
+	ld hl, Channel1PitchOffset - Channel1
 	add hl, bc
 	ld a, [hl]
 	and $f ; lo nybble
@@ -2573,7 +2570,6 @@ _PlayCryHeader:: ; e8b79
 	dec a
 	jr nz, .loop
 
-
 ; Cries play at max volume, so we save the current volume for later.
 	ld a, [LastVolume]
 	and a
@@ -2693,7 +2689,6 @@ _PlaySFX:: ; e8c04
 
 ; e8ca6
 
-
 PlayStereoSFX:: ; e8ca6
 ; play sfx de
 
@@ -2797,7 +2792,6 @@ PlayStereoSFX:: ; e8ca6
 
 ; e8d1b
 
-
 LoadChannel: ; e8d1b
 ; prep channel for use
 ; input:
@@ -2889,31 +2883,31 @@ LoadMusicByte:: ; e8d76
 ; e8d80
 
 FrequencyTable: ; e8d80
-	dw 0 ; filler
-	dw $f82c
-	dw $f89d
-	dw $f907
-	dw $f96b
-	dw $f9ca
-	dw $fa23
-	dw $fa77
-	dw $fac7
-	dw $fb12
-	dw $fb58
-	dw $fb9b
-	dw $fbda
-	dw $fc16
-	dw $fc4e
-	dw $fc83
-	dw $fcb5
-	dw $fce5
-	dw $fd11
-	dw $fd3b
-	dw $fd63
-	dw $fd89
-	dw $fdac
-	dw $fdcd
-	dw $fded
+	dw 0     ; __
+	dw $f82c ; C_
+	dw $f89d ; C#
+	dw $f907 ; D_
+	dw $f96b ; D#
+	dw $f9ca ; E_
+	dw $fa23 ; F_
+	dw $fa77 ; F#
+	dw $fac7 ; G_
+	dw $fb12 ; G#
+	dw $fb58 ; A_
+	dw $fb9b ; A#
+	dw $fbda ; B_
+	dw $fc16 ; C_
+	dw $fc4e ; C#
+	dw $fc83 ; D_
+	dw $fcb5 ; D#
+	dw $fce5 ; E_
+	dw $fd11 ; F_
+	dw $fd3b ; F#
+	dw $fd63 ; G_
+	dw $fd89 ; G#
+	dw $fdac ; A_
+	dw $fdcd ; A#
+	dw $fded ; B_
 ; e8db2
 
 WaveSamples: ; e8db2

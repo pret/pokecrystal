@@ -8,7 +8,7 @@ Music_LookRocket: ; f74a2
 Music_LookRocket_Ch1: ; f74ae
 	tempo 123
 	volume $77
-	forceoctave $2
+	pitchoffset 0, D_
 	stereopanning $f
 	dutycycle $3
 	vibrato $5, $64
@@ -94,7 +94,7 @@ Music_RocketTheme_branch_f750c: ; f750c
 ; f7514
 
 Music_LookRocket_Ch2: ; f7514
-	forceoctave $2
+	pitchoffset 0, D_
 	vibrato $4, $64
 	dutycycle $3
 	notetype $c, $b7
@@ -216,7 +216,7 @@ Music_RocketTheme_branch_f758a: ; f758a
 ; f7597
 
 Music_LookRocket_Ch3: ; f7597
-	forceoctave $2
+	pitchoffset 0, D_
 	vibrato $4, $22
 	notetype $c, $14
 	stereopanning $f0

@@ -1957,9 +1957,9 @@ Sfx_GetBadge_Ch5: ; f1189
 	note F_, 3
 	callchannel Sfx_GetBadge_branch_f11aa
 	note A#, 3
-	forceoctave $2
+	pitchoffset 0, D_
 	callchannel Sfx_GetBadge_branch_f11aa
-	forceoctave $0
+	pitchoffset 0, C_
 	intensity $a7
 	note A_, 16
 	note __, 6

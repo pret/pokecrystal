@@ -37,10 +37,10 @@ notetype: macro
 	endc
 	endm
 
-	enum forceoctave_cmd
-forceoctave: macro
-	db forceoctave_cmd
-	db \1 ; octave
+	enum pitchoffset_cmd
+pitchoffset: macro
+	db pitchoffset_cmd
+	dn \1, \2 - 1 ; octave, key
 	endm
 
 	enum tempo_cmd
@@ -81,7 +81,7 @@ togglesfx: macro
 	enum slidepitchto_cmd
 slidepitchto: macro
 	db slidepitchto_cmd
-	db \1 ; unknown
+	db \1 - 1 ; duration
 	dn \2, \3 ; octave, pitch
 	endm
 

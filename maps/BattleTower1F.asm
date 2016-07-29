@@ -168,7 +168,6 @@ Script_WaitButton: ; 0x9e4bb
 	closetext
 	end
 
-
 UnreferencedScript_0x9e4be:
 	writetext Text_SaveBeforeEnteringBattleRoom
 	yesorno

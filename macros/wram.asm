@@ -134,7 +134,7 @@ channel_struct: MACRO
 \1FrequencyHi::       db
 \1Pitch::             db ; 0:rest 1-c:note
 \1Octave::            db ; 7-0 (0 is highest)
-\1StartingOctave::    db ; raises existing octaves (to repeat phrases)
+\1PitchOffset::    db ; raises existing octaves (to repeat phrases)
 \1NoteDuration::      db ; frames remaining for the current note
 \1Field0x16::         ds 1 ; c117
                       ds 1 ; c118

@@ -9,7 +9,7 @@ Music_KantoTrainerBattle: ; ec9fa
 Music_KantoTrainerBattle_Ch1: ; eca04
 	tempo 114
 	volume $77
-	forceoctave $1b
+	pitchoffset 1, B_
 	notetype $c, $b3
 	vibrato $12, $24
 	dutycycle $1
@@ -467,7 +467,7 @@ Music_KantoTrainerBattle_branch_eca88: ; eca88
 ; ecbea
 
 Music_KantoTrainerBattle_Ch2: ; ecbea
-	forceoctave $1b
+	pitchoffset 1, B_
 	vibrato $6, $36
 	dutycycle $1
 	notetype $c, $d1
@@ -920,7 +920,7 @@ Music_KantoTrainerBattle_branch_ecc41: ; ecc41
 ; ecdd2
 
 Music_KantoTrainerBattle_Ch3: ; ecdd2
-	forceoctave $1b
+	pitchoffset 1, B_
 	vibrato $12, $23
 	notetype $c, $15
 	octave 2

@@ -29,14 +29,14 @@ Music_WildPokemonVictory_branch_f4538: ; f4538
 	intensity $78
 	octave 3
 	note G_, 4
-	forceoctave $1
+	pitchoffset 0, C#
 	callchannel Music_WildPokemonVictory_branch_f455c
 	note F#, 2
 	note F#, 2
 	note F#, 4
 	callchannel Music_WildPokemonVictory_branch_f455c
 	note G#, 4
-	forceoctave $0
+	pitchoffset 0, C_
 	intensity $78
 	octave 3
 	note F#, 4
@@ -97,7 +97,7 @@ Music_WildPokemonVictory_branch_f4587: ; f4587
 	note E_, 1
 	note G_, 1
 	note A#, 1
-	forceoctave $1
+	pitchoffset 0, C#
 	callchannel Music_WildPokemonVictory_branch_f45b5
 	octave 4
 	note B_, 2
@@ -106,7 +106,7 @@ Music_WildPokemonVictory_branch_f4587: ; f4587
 	callchannel Music_WildPokemonVictory_branch_f45b5
 	octave 4
 	note B_, 4
-	forceoctave $0
+	pitchoffset 0, C_
 	intensity $81
 	octave 3
 	note B_, 1
@@ -156,7 +156,7 @@ Music_WildPokemonVictory_branch_f45cf: ; f45cf
 	note E_, 2
 	note __, 2
 	note C_, 4
-	forceoctave $1
+	pitchoffset 0, C#
 	callchannel Music_WildPokemonVictory_branch_f45f4
 	note D#, 2
 	note C#, 2
@@ -166,7 +166,7 @@ Music_WildPokemonVictory_branch_f45cf: ; f45cf
 	callchannel Music_WildPokemonVictory_branch_f45f4
 	note E_, 2
 	note __, 2
-	forceoctave $0
+	pitchoffset 0, C_
 	octave 2
 	note B_, 4
 	loopchannel 0, Music_WildPokemonVictory_branch_f45cf

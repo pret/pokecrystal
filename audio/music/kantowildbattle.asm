@@ -327,17 +327,17 @@ Music_KantoWildBattle_branch_ed1c8: ; ed1c8
 	notetype $6, $b7
 	callchannel Music_KantoWildBattle_branch_ed307
 	callchannel Music_KantoWildBattle_branch_ed307
-	forceoctave $1
+	pitchoffset 0, C#
 	callchannel Music_KantoWildBattle_branch_ed307
 	callchannel Music_KantoWildBattle_branch_ed307
-	forceoctave $0
+	pitchoffset 0, C_
 rept 4
 	callchannel Music_KantoWildBattle_branch_ed307
 endr
-	forceoctave $1
+	pitchoffset 0, C#
 	callchannel Music_KantoWildBattle_branch_ed307
 	callchannel Music_KantoWildBattle_branch_ed307
-	forceoctave $0
+	pitchoffset 0, C_
 	callchannel Music_KantoWildBattle_branch_ed307
 	callchannel Music_KantoWildBattle_branch_ed307
 	note __, 16
@@ -384,9 +384,9 @@ endr
 	note G#, 1
 	notetype $6, $b7
 	callchannel Music_KantoWildBattle_branch_ed31b
-	forceoctave $1
+	pitchoffset 0, C#
 	callchannel Music_KantoWildBattle_branch_ed31b
-	forceoctave $0
+	pitchoffset 0, C_
 	callchannel Music_KantoWildBattle_branch_ed340
 	octave 2
 	note C_, 2
@@ -450,9 +450,9 @@ endr
 	callchannel Music_KantoWildBattle_branch_ed354
 	callchannel Music_KantoWildBattle_branch_ed340
 	callchannel Music_KantoWildBattle_branch_ed354
-	forceoctave $1
+	pitchoffset 0, C#
 	callchannel Music_KantoWildBattle_branch_ed340
-	forceoctave $0
+	pitchoffset 0, C_
 	note C#, 2
 	note __, 2
 	octave 3
