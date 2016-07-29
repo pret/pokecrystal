@@ -1,105 +1,106 @@
-
 	enum_start
+
+; Directional movements
 
 	enum movement_turn_head
 turn_head: macro
 	db movement_turn_head | \1 ; $00
 	endm
 
-__enum__ SET $4
+__enum__ = __enum__ + 3
 
 	enum movement_turn_step
 turn_step: macro
 	db movement_turn_step | \1 ; $04
 	endm
 
-__enum__ SET $8
+__enum__ = __enum__ + 3
 
 	enum movement_slow_step
 slow_step: macro
 	db movement_slow_step | \1; $08
 	endm
 
-__enum__ SET $c
+__enum__ = __enum__ + 3
 
 	enum movement_step
 step: macro
 	db movement_step | \1 ; $0c
 	endm
 
-__enum__ SET $10
+__enum__ = __enum__ + 3
 
 	enum movement_big_step
 big_step: macro
 	db movement_big_step | \1 ; $10
 	endm
 
-__enum__ SET $14
+__enum__ = __enum__ + 3
 
 	enum movement_slow_slide_step
 slow_slide_step: macro
 	db movement_slow_slide_step | \1 ; $14
 	endm
 
-__enum__ SET $18
+__enum__ = __enum__ + 3
 
 	enum movement_slide_step
 slide_step: macro
 	db movement_slide_step | \1 ; $18
 	endm
 
-__enum__ SET $1c
+__enum__ = __enum__ + 3
 
 	enum movement_fast_slide_step
 fast_slide_step: macro
 	db movement_fast_slide_step | \1 ; $1c
 	endm
 
-__enum__ SET $20
+__enum__ = __enum__ + 3
 
 	enum movement_turn_away
 turn_away: macro
 	db movement_turn_away | \1 ; $20
 	endm
 
-__enum__ SET $24
+__enum__ = __enum__ + 3
 
 	enum movement_turn_in
 turn_in: macro
 	db movement_turn_in | \1 ; $24
 	endm
 
-__enum__ SET $28
+__enum__ = __enum__ + 3
 
 	enum movement_turn_waterfall
 turn_waterfall: macro
 	db movement_turn_waterfall | \1 ; $28
 	endm
 
-__enum__ SET $2c
+__enum__ = __enum__ + 3
 
 	enum movement_slow_jump_step
 slow_jump_step: macro
 	db movement_slow_jump_step | \1 ; $2c
 	endm
 
-__enum__ SET $30
+__enum__ = __enum__ + 3
 
 	enum movement_jump_step
 jump_step: macro
 	db movement_jump_step | \1 ; $30
 	endm
 
-__enum__ SET $34
+__enum__ = __enum__ + 3
 
 	enum movement_fast_jump_step
 fast_jump_step: macro
 	db movement_fast_jump_step | \1 ; $34
 	endm
 
-; Control
-__enum__ SET $38
+__enum__ = __enum__ + 3
 
+; Control
 	enum movement_remove_sliding
 remove_sliding: macro
 	db movement_remove_sliding ; $38
@@ -141,7 +142,7 @@ else
 endc
 endm
 
-__enum__ SET $47
+__enum__ = __enum__ + 8
 
 	enum movement_step_end
 step_end: macro
@@ -149,8 +150,11 @@ step_end: macro
 	endm
 
 ; Whatever Movement_48 is, it takes a one-byte parameter
-
-__enum__ = $49
+	enum movement_step_48
+step_48: macro
+	db movement_step_48
+	db \1
+	endm
 
 	enum movement_remove_person
 remove_person: macro
