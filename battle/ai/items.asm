@@ -725,7 +725,7 @@ AI_Switch: ; 3846c
 
 .skiptext
 	ld a, 1
-	ld [wAISwitch], a
+	ld [wBattleHasJustStarted], a
 	callab NewEnemyMonStatus
 	callab ResetEnemyStatLevels
 	ld hl, PlayerSubStatus1
@@ -733,7 +733,7 @@ AI_Switch: ; 3846c
 	callba EnemySwitch
 	callba ResetBattleParticipants
 	xor a
-	ld [wAISwitch], a
+	ld [wBattleHasJustStarted], a
 	ld a, [wLinkMode]
 	and a
 	ret nz

@@ -2178,7 +2178,7 @@ wWaterEncounterRate:: ds 1 ; d25d
 wListMoves_MoveIndicesBuffer:: ds NUM_MOVES
 wPutativeTMHMMove:: ds 1
 wInitListType:: ds 1
-wAISwitch:: ds 1
+wBattleHasJustStarted:: ds 1
 wFoundMatchingIDInParty::
 wNamedObjectIndexBuffer::
 wCurTMHM::

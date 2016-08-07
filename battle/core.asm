@@ -7,7 +7,7 @@ DoBattle: ; 3c000
 	ld [wPlayerAction], a
 	ld [BattleEnded], a
 	inc a
-	ld [wAISwitch], a
+	ld [wBattleHasJustStarted], a
 	ld hl, OTPartyMon1HP
 	ld bc, PARTYMON_STRUCT_LENGTH - 1
 	ld d, BATTLEACTION_SWITCH1 - 1
@@ -167,7 +167,7 @@ BattleTurn: ; 3c12f
 	xor a
 	ld [wPlayerIsSwitching], a
 	ld [wEnemyIsSwitching], a
-	ld [wAISwitch], a
+	ld [wBattleHasJustStarted], a
 	ld [wPlayerJustGotFrozen], a
 	ld [wEnemyJustGotFrozen], a
 	ld [CurDamage], a
@@ -3343,14 +3343,14 @@ CheckWhetherSwitchmonIsPredetermined: ; 3d533
 .not_linked
 	ld a, [wEnemySwitchMonIndex]
 	and a
-	jr z, .check_wAISwitch
+	jr z, .check_wBattleHasJustStarted
 
 	dec a
 	ld b, a
 	jr .return_carry
 
-.check_wAISwitch
-	ld a, [wAISwitch]
+.check_wBattleHasJustStarted
+	ld a, [wBattleHasJustStarted]
 	and a
 	ld b, $0
 	jr nz, .return_carry
@@ -3626,7 +3626,7 @@ LoadEnemyPkmnToSwitchTo: ; 3d6ca
 ; 3d714
 
 CheckWhetherToAskSwitch: ; 3d714
-	ld a, [wAISwitch]
+	ld a, [wBattleHasJustStarted]
 	dec a
 	jp z, .return_nc
 	ld a, [PartyCount]
@@ -3825,7 +3825,7 @@ CheckIfCurPartyMonIsFitToFight: ; 3d887
 	or [hl]
 	ret nz
 
-	ld a, [wAISwitch]
+	ld a, [wBattleHasJustStarted]
 	and a
 	jr nz, .finish_fail
 	ld hl, PartySpecies
@@ -7959,7 +7959,7 @@ SendOutPkmnText: ; 3f26d
 
 	ld hl, JumpText_GoPkmn ; If we're in a LinkBattle print just "Go <PlayerMon>"
 
-	ld a, [wAISwitch] ; unless this (unidentified) variable is set
+	ld a, [wBattleHasJustStarted] ; unless this (unidentified) variable is set
 	and a
 	jr nz, .skip_to_textbox
 
