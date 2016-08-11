@@ -35,7 +35,7 @@ JanineScript_0x195db9:
 	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_LASS
 	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_LASS
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
-	special RunCallback_04
+	special MapCallbackSprites_LoadUsedSpritesGFX
 	opentext
 	writetext UnknownText_0x195feb
 	playsound SFX_GET_BADGE
@@ -65,7 +65,7 @@ FuschiaGym1Script_0x195e1b:
 	applymovement FUCHSIAGYM_FUCHSIA_GYM_1, MovementData_0x195f27
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_LASS
-	special RunCallback_04
+	special MapCallbackSprites_LoadUsedSpritesGFX
 UnknownScript_0x195e2c:
 	faceplayer
 	opentext
@@ -99,7 +99,7 @@ FuschiaGym2Script_0x195e55:
 	applymovement FUCHSIAGYM_FUCHSIA_GYM_2, MovementData_0x195f27
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_LASS
-	special RunCallback_04
+	special MapCallbackSprites_LoadUsedSpritesGFX
 UnknownScript_0x195e66:
 	faceplayer
 	opentext
@@ -133,7 +133,7 @@ FuschiaGym3Script_0x195e8f:
 	applymovement FUCHSIAGYM_FUCHSIA_GYM_3, MovementData_0x195f27
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_LASS
-	special RunCallback_04
+	special MapCallbackSprites_LoadUsedSpritesGFX
 UnknownScript_0x195ea0:
 	faceplayer
 	opentext
@@ -167,7 +167,7 @@ FuschiaGym4Script_0x195ec9:
 	applymovement FUCHSIAGYM_FUCHSIA_GYM_4, MovementData_0x195f27
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
-	special RunCallback_04
+	special MapCallbackSprites_LoadUsedSpritesGFX
 UnknownScript_0x195eda:
 	faceplayer
 	opentext
@@ -220,19 +220,19 @@ FuchsiaGymStatue:
 	jumpstd gymstatue2
 
 MovementData_0x195f27:
-	turn_head_down
-	turn_head_left
-	turn_head_up
-	turn_head_right
-	turn_head_down
-	turn_head_left
-	turn_head_up
-	turn_head_right
-	turn_head_down
-	turn_head_left
-	turn_head_up
-	turn_head_right
-	turn_head_down
+	turn_head DOWN
+	turn_head LEFT
+	turn_head UP
+	turn_head RIGHT
+	turn_head DOWN
+	turn_head LEFT
+	turn_head UP
+	turn_head RIGHT
+	turn_head DOWN
+	turn_head LEFT
+	turn_head UP
+	turn_head RIGHT
+	turn_head DOWN
 	step_end
 
 UnknownText_0x195f35:

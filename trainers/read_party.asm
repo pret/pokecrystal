@@ -32,9 +32,8 @@ ReadTrainerParty: ; 39771
 	ld c, a
 	ld b, 0
 	ld hl, TrainerGroups
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -62,9 +61,8 @@ endr
 	ld d, h
 	ld e, l
 	ld hl, TrainerTypes
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -312,9 +310,9 @@ TrainerType4: ; 3989d
 ComputeTrainerReward: ; 3991b (e:591b)
 	ld hl, hProduct
 	xor a
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld a, [wEnemyTrainerBaseReward]
 	ld [hli], a
 	ld a, [CurPartyLevel]
@@ -364,9 +362,8 @@ GetTrainerName:: ; 3994c
 	push bc
 	ld b, 0
 	ld hl, TrainerGroups
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

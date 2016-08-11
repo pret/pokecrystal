@@ -236,83 +236,83 @@ TinTowerEusine:
 	jumptextfaceplayer TinTowerEusineHoOhText
 
 TinTowerPlayerMovement1:
-	slow_step_up
-	slow_step_up
-	slow_step_up
-	slow_step_up
+	slow_step UP
+	slow_step UP
+	slow_step UP
+	slow_step UP
 	step_end
 
 TinTowerRaikouMovement1:
 	set_sliding
-	fast_jump_step_down
+	fast_jump_step DOWN
 	remove_sliding
 	step_end
 
 TinTowerRaikouMovement2:
 	set_sliding
-	fast_jump_step_down
-	fast_jump_step_right
-	fast_jump_step_down
+	fast_jump_step DOWN
+	fast_jump_step RIGHT
+	fast_jump_step DOWN
 	remove_sliding
 	step_end
 
 TinTowerEnteiMovement1:
 	set_sliding
-	fast_jump_step_down
+	fast_jump_step DOWN
 	remove_sliding
 	step_end
 
 TinTowerEnteiMovement2:
 	set_sliding
-	fast_jump_step_down
-	fast_jump_step_left
-	fast_jump_step_down
+	fast_jump_step DOWN
+	fast_jump_step LEFT
+	fast_jump_step DOWN
 	remove_sliding
 	step_end
 
 TinTowerSuicuneMovement:
 	set_sliding
-	fast_jump_step_down
+	fast_jump_step DOWN
 	remove_sliding
 	step_end
 
 TinTowerPlayerMovement2:
 	fix_facing
-	big_step_down
+	big_step DOWN
 	remove_fixed_facing
 	step_end
 
 MovementData_0x1851ec:
-	step_up
-	step_up
-	step_up
-	turn_head_left
+	step UP
+	step UP
+	step UP
+	turn_head LEFT
 	step_end
 
 MovementData_0x1851f1:
-	step_down
-	step_down
-	step_down
+	step DOWN
+	step DOWN
+	step DOWN
 	step_end
 
 MovementData_0x1851f5:
-	step_up
-	step_up
-	step_left
-	step_left
-	turn_head_up
+	step UP
+	step UP
+	step LEFT
+	step LEFT
+	turn_head UP
 	step_end
 
 MovementData_0x1851fb:
-	step_up
-	step_up
+	step UP
+	step UP
 	step_end
 
 MovementData_0x1851fe:
-	step_up
-	step_right
-	step_right
-	step_up
+	step UP
+	step RIGHT
+	step RIGHT
+	step UP
 	step_end
 
 TinTowerEusineSuicuneText:

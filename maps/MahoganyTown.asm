@@ -126,22 +126,22 @@ MahoganyTownPokeCenterSign:
 	jumpstd pokecentersign
 
 MovementData_0x1900a4:
-	step_down
-	big_step_up
-	turn_head_down
+	step DOWN
+	big_step UP
+	turn_head DOWN
 MovementData_0x1900a7:
-	step_left
+	step LEFT
 	step_end
 
 MovementData_0x1900a9:
-	step_right
-	step_down
-	turn_head_left
+	step RIGHT
+	step DOWN
+	turn_head LEFT
 	step_end
 
 MovementData_0x1900ad:
-	step_up
-	turn_head_down
+	step UP
+	turn_head DOWN
 	step_end
 
 UnknownText_0x1900b0:

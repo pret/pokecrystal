@@ -25,9 +25,8 @@ HealMachineAnim: ; 12324
 	ld e, a
 	ld d, 0
 	ld hl, .Pointers
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -219,9 +218,9 @@ INCBIN "gfx/unknown/0123fc.2bpp"
 	ld [hld], a
 	ld a, e
 	ld [hli], a
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	dec c
 	jr nz, .palette_loop_2
 	pop de

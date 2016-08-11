@@ -145,8 +145,8 @@ MapCeladonGameCornerSignpost9Script:
 
 MovementData_0x721cd:
 ; Unreferenced.
-	step_right
-	turn_head_left
+	step RIGHT
+	turn_head LEFT
 	step_end
 
 UnknownText_0x721d0:

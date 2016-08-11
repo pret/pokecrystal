@@ -62,9 +62,9 @@ TrainerCard: ; 25105
 	call WaitBGMap
 	ld hl, wJumptableIndex
 	xor a
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 	ret
 

@@ -362,9 +362,8 @@ Kurt_GetAddressOfApricornQuantity: ; 88201
 	inc hl
 	ld c, a
 	ld b, $0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	inc hl
 	ld a, [hl]
 	pop bc
@@ -379,9 +378,8 @@ Kurt_GetRidOfItem: ; 88211
 	ld c, a
 	ld b, $0
 	inc hl
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [CurItem]
 	ld c, a
 	ld a, [hli]

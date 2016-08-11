@@ -180,7 +180,7 @@ HaveWantPals: ; 17cff3
 
 CheckStringForErrors: ; 17d073
 ; Valid character ranges:
-; $00, $05 - $13, $19 - $1c, $26 - $34, $3a - $3e, $40 - $48, $60 - $ff
+; $0, $5 - $13, $19 - $1c, $26 - $34, $3a - $3e, $40 - $48, $60 - $ff
 .loop
 	ld a, [de]
 	inc de
@@ -308,7 +308,7 @@ Function17d0f3: ; 17d0f3
 	callba EvolvePokemon
 	xor a
 	ld [wLinkMode], a
-	callba Function14a58
+	callba SaveAfterLinkTrade
 	ld a, $5
 	call GetSRAMBank
 	ld a, $5
@@ -612,7 +612,7 @@ Function17d314: ; 17d314
 	call GetSRAMBank
 	xor a
 	ld hl, $aa73
-	ld bc, $000c
+	ld bc, $c
 	call ByteFill
 	call CloseSRAM
 	ld a, $2
@@ -747,7 +747,7 @@ Jumptable_17d483: ; 17d483
 Function17d48d: ; 17d48d
 	ld hl, Palette_17eff6
 	ld de, $c608
-	ld bc, $0040
+	ld bc, $40
 	call CopyBytes
 	ld hl, TileAttrmap_17eb8e
 	decoord 0, 0
@@ -775,7 +775,7 @@ Function17d48d: ; 17d48d
 	jr nz, .asm_17d4a8
 	pop hl
 	push bc
-	ld bc, $0040
+	ld bc, $40
 	add hl, bc
 	pop bc
 	pop af
@@ -876,7 +876,7 @@ Function17d48d: ; 17d48d
 	dec a
 	jr nz, .asm_17d53a
 	ld de, CreditsTimer
-	ld bc, $000c
+	ld bc, $c
 	call CopyBytes
 	xor a
 	ld [wcd2e], a
@@ -885,18 +885,18 @@ Function17d48d: ; 17d48d
 	ld [wcd30], a
 	ld [wcd31], a
 	ld de, wcd32
-	ld bc, $0010
+	ld bc, $10
 	call CopyBytes
 	ld a, [hli]
 	ld [wcd42], a
 	ld a, [hli]
 	ld [wcd43], a
 	ld a, [hli]
-	ld [wcd44], a
+	ld [wMobileInactivityTimerMinutes], a
 	ld a, [hli]
-	ld [wcd45], a
+	ld [wMobileInactivityTimerSeconds], a
 	ld a, [hli]
-	ld [wcd46], a
+	ld [wMobileInactivityTimerFrames], a
 	ld a, [hli]
 	and a
 	jr z, .asm_17d58a
@@ -987,7 +987,7 @@ Function17d60b: ; 17d60b
 	call GetSRAMBank
 	ld hl, $b1d3
 	ld de, $c608
-	ld bc, $0020
+	ld bc, $20
 	call CopyBytes
 	ld a, [$b1b1]
 	ld c, a
@@ -1012,7 +1012,7 @@ Function17d60b: ; 17d60b
 	ld a, h
 	ld [de], a
 	inc de
-	ld bc, $000a
+	ld bc, $a
 	add hl, bc
 	pop bc
 	ld a, [hli]
@@ -1102,12 +1102,12 @@ Function17d6a1: ; 17d6a1
 	ld a, h
 	ld [wcd5f], a
 	ld de, wcd60
-	ld bc, $0004
+	ld bc, $4
 	call CopyBytes
 	inc hl
 	inc hl
 	ld de, wcd64
-	ld bc, $0004
+	ld bc, $4
 	call CopyBytes
 	ld a, [hli]
 	ld [wcd69], a
@@ -1478,7 +1478,7 @@ Function17d902: ; 17d902
 Function17d93a: ; 17d93a
 	call Function17e415
 	ld de, $c708
-	ld bc, $0005
+	ld bc, $5
 	call CopyBytes
 	call Function17e41e
 	call Function17e32b
@@ -1492,7 +1492,7 @@ Function17d93a: ; 17d93a
 	ld [CurPartySpecies], a
 	ld a, [$c70c]
 	ld e, a
-	callba Function8bc6
+	callba LoadMonPaletteAsNthBGPal
 	call SetPalettes
 	ld a, [$c708]
 	ld l, a
@@ -1514,7 +1514,7 @@ Function17d93a: ; 17d93a
 Function17d98b: ; 17d98b
 	call Function17e415
 	ld de, $c708
-	ld bc, $0004
+	ld bc, $4
 	call CopyBytes
 	call Function17e41e
 	call Function17e32b
@@ -1528,7 +1528,7 @@ Function17d98b: ; 17d98b
 	ld [TrainerClass], a
 	ld a, [$c70b]
 	ld e, a
-	callba Function8bbd
+	callba LoadTrainerClassPaletteAsNthBGPal
 	call SetPalettes
 	ld a, [$c708]
 	ld e, a
@@ -1540,7 +1540,7 @@ Function17d98b: ; 17d98b
 	pop hl
 	decoord 0, 0
 	add hl, de
-	ld bc, $0707
+	ld bc, $707
 	predef PlaceGraphic
 	pop af
 	ld [rSVBK], a
@@ -1551,7 +1551,7 @@ Function17d98b: ; 17d98b
 Function17d9e3: ; 17d9e3
 	call Function17e415
 	ld de, $c708
-	ld bc, $0007
+	ld bc, $7
 	call CopyBytes
 	call Function17e41e
 	ld a, [$c70b]
@@ -1597,7 +1597,7 @@ Function17d9e3: ; 17d9e3
 Function17da31: ; 17da31
 	call Function17e415
 	ld de, $c708
-	ld bc, $0004
+	ld bc, $4
 	call CopyBytes
 	call Function17e41e
 	ld a, [$c709]
@@ -1888,7 +1888,7 @@ Function17dbe9: ; 17dbe9
 Function17dc1f: ; 17dc1f
 	call Function17e415
 	ld de, $c688
-	ld bc, $0006
+	ld bc, $6
 	call CopyBytes
 	call Function17e32b
 	ld a, [rSVBK]
@@ -1968,7 +1968,7 @@ Function17dcaf:
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, UnknBGPals
-	ld de, $0008
+	ld de, $8
 	ld c, $8
 .asm_17dcbb
 	push hl
@@ -2050,7 +2050,7 @@ Function17dd13: ; 17dd13
 	push hl
 	pop bc
 	pop hl
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	ret
 ; 17dd30
 
@@ -2076,7 +2076,7 @@ Function17dd30: ; 17dd30
 Function17dd49: ; 17dd49
 	call Function17e415
 	ld de, $c708
-	ld bc, $000a
+	ld bc, $a
 	call CopyBytes
 	ld a, [$c711]
 	ld c, a
@@ -2157,7 +2157,7 @@ Function17dd49: ; 17dd49
 Function17ddcd: ; 17ddcd
 	call Function17e415
 	ld de, $c708
-	ld bc, $0008
+	ld bc, $8
 	call CopyBytes
 	ld a, [$c70a]
 	cp $c0
@@ -2219,7 +2219,7 @@ Function17ddcd: ; 17ddcd
 Function17de32: ; 17de32
 	call Function17e415
 	ld de, $c708
-	ld bc, $0009
+	ld bc, $9
 	call CopyBytes
 	ld a, [$c710]
 	ld c, a
@@ -2278,7 +2278,7 @@ Function17de32: ; 17de32
 Function17de91: ; 17de91
 	call Function17e415
 	ld de, $c708
-	ld bc, $0007
+	ld bc, $7
 	call CopyBytes
 	ld a, $6
 	call GetSRAMBank
@@ -2321,7 +2321,7 @@ Function17de91: ; 17de91
 Function17ded9: ; 17ded9
 	call Function17e415
 	ld de, $c708
-	ld bc, $001f
+	ld bc, $1f
 	call CopyBytes
 	call Function17e32b
 	ld a, [rSVBK]
@@ -2363,7 +2363,7 @@ Function17ded9: ; 17ded9
 	jr .asm_17df37
 
 .asm_17df33
-	ld de, $0006
+	ld de, $6
 	add hl, de
 
 .asm_17df37
@@ -2388,7 +2388,7 @@ Function17ded9: ; 17ded9
 	jr .asm_17df5e
 
 .asm_17df5a
-	ld de, $0007
+	ld de, $7
 	add hl, de
 
 .asm_17df5e
@@ -2502,7 +2502,7 @@ Function17ded9: ; 17ded9
 	ld e, l
 	pop hl
 	push de
-	ld bc, $0004
+	ld bc, $4
 	call CopyBytes
 	pop de
 	push hl
@@ -2520,7 +2520,7 @@ Function17ded9: ; 17ded9
 	jp asm_17e0ee
 
 .asm_17e01f
-	ld de, $0004
+	ld de, $4
 	add hl, de
 	jp asm_17e0ee
 ; 17e026
@@ -2546,21 +2546,21 @@ Function17e026: ; 17e026
 	bit 1, b
 	jr z, .asm_17e067
 	push bc
-	ld bc, $000b
+	ld bc, $b
 	ld de, sBoxMonNicknames
 	call CopyBytes
 	pop bc
 	jr .asm_17e06b
 
 .asm_17e067
-	ld de, $0006
+	ld de, $6
 	add hl, de
 
 .asm_17e06b
 	bit 2, b
 	jr z, .asm_17e08e
 	push bc
-	ld bc, $0006
+	ld bc, $6
 	ld de, sBoxMonOT
 	call CopyBytes
 	ld a, [hli]
@@ -2575,7 +2575,7 @@ Function17e026: ; 17e026
 	jr .asm_17e092
 
 .asm_17e08e
-	ld de, $0007
+	ld de, $7
 	add hl, de
 
 .asm_17e092
@@ -2623,7 +2623,7 @@ Function17e026: ; 17e026
 	jr z, .asm_17e0e1
 	push bc
 	ld de, sBoxMon1Moves
-	ld bc, $0004
+	ld bc, $4
 	call CopyBytes
 	push hl
 	ld hl, sBoxMon1Moves
@@ -2638,12 +2638,12 @@ Function17e026: ; 17e026
 
 .asm_17e0e1
 	call CloseSRAM
-	ld de, $0006
+	ld de, $6
 	add hl, de
 	jr asm_17e0ee
 
 .asm_17e0ea
-	ld bc, $001a
+	ld bc, $1a
 	add hl, bc
 
 asm_17e0ee
@@ -2662,7 +2662,7 @@ asm_17e0ee
 Function17e0fd: ; 17e0fd
 	call Function17e415
 	ld de, $c708
-	ld bc, $0006
+	ld bc, $6
 	call CopyBytes
 	ld a, [rSVBK]
 	push af
@@ -2696,7 +2696,7 @@ Function17e0fd: ; 17e0fd
 Function17e133: ; 17e133
 	call Function17e415
 	ld de, $c708
-	ld bc, $0005
+	ld bc, $5
 	call CopyBytes
 	ld a, [rSVBK]
 	push af
@@ -2727,7 +2727,7 @@ Function17e133: ; 17e133
 Function17e165: ; 17e165
 	call Function17e415
 	ld de, $c708
-	ld bc, $0005
+	ld bc, $5
 	call CopyBytes
 	ld a, [rSVBK]
 	push af
@@ -2764,7 +2764,7 @@ Function17e165: ; 17e165
 Function17e1a1: ; 17e1a1
 	call Function17e415
 	ld de, $c708
-	ld bc, $000d
+	ld bc, $d
 	call CopyBytes
 	ld a, [$c70a]
 	cp $c0
@@ -2978,7 +2978,7 @@ Function17e2a7: ; 17e2a7
 	call GetSRAMBank
 	ld hl, $aa73
 	ld de, $aa7f
-	ld bc, $000c
+	ld bc, $c
 	call CopyBytes
 	call CloseSRAM
 	ret
@@ -3016,10 +3016,10 @@ Function17e32b: ; 17e32b
 	call GetSRAMBank
 	ld hl, $c608
 	ld de, $b0b1
-	ld bc, $0040
+	ld bc, $40
 	call CopyBytes
 	ld hl, BGMapBuffer
-	ld bc, $005b
+	ld bc, $5b
 	call CopyBytes
 	call CloseSRAM
 	ret
@@ -3030,10 +3030,10 @@ Function17e349: ; 17e349
 	call GetSRAMBank
 	ld hl, $b0b1
 	ld de, $c608
-	ld bc, $0040
+	ld bc, $40
 	call CopyBytes
 	ld de, BGMapBuffer
-	ld bc, $005b
+	ld bc, $5b
 	call CopyBytes
 	call CloseSRAM
 	ret
@@ -3059,7 +3059,7 @@ Function17e37e: ; 17e37e
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	callba Function14a58
+	callba SaveAfterLinkTrade
 	pop af
 	ld [rSVBK], a
 	ret
@@ -3216,7 +3216,7 @@ Function17e451: ; 17e451
 	add hl, bc
 	push hl
 	hlcoord 0, 0
-	ld bc, $0014
+	ld bc, $14
 	ld a, [wcd23]
 	call AddNTimes
 	ld a, [CreditsTimer]
@@ -3224,7 +3224,7 @@ Function17e451: ; 17e451
 	ld b, $0
 	add hl, bc
 	pop bc
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 .asm_17e48b
 	push af
 	push hl
@@ -3267,7 +3267,7 @@ Function17e451: ; 17e451
 	jr nz, .asm_17e490
 	pop hl
 	ld a, [wcd27]
-	ld de, $0014
+	ld de, $14
 .asm_17e4cb
 	add hl, de
 	dec a
@@ -3294,7 +3294,7 @@ Function17e4dd: ; 17e4dd
 	ret z
 	ld a, [wcd29]
 	hlcoord 0, 0
-	ld bc, $0014
+	ld bc, $14
 	call AddNTimes
 	ld a, [wcd28]
 	ld c, a
@@ -3308,7 +3308,7 @@ Function17e4dd: ; 17e4dd
 
 .asm_17e4ff
 	ld a, [wcd2a]
-	ld bc, $0014
+	ld bc, $14
 	call AddNTimes
 	ld a, [wcd42]
 	ld c, a
@@ -3331,7 +3331,7 @@ Function17e51b: ; 17e51b
 	inc a
 	ld [wcd4f], a
 	hlcoord 0, 0
-	ld bc, $0014
+	ld bc, $14
 	ld a, [wcd23]
 	dec a
 	call AddNTimes
@@ -3339,7 +3339,7 @@ Function17e51b: ; 17e51b
 	ld c, a
 	ld b, $0
 	add hl, bc
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	ld c, a
 	ld a, [wcd27]
 	call SimpleMultiply
@@ -3352,7 +3352,7 @@ Function17e51b: ; 17e51b
 	ld a, $7f
 	call ByteFill
 	pop hl
-	ld bc, $0014
+	ld bc, $14
 	add hl, bc
 	pop af
 	dec a
@@ -3381,7 +3381,7 @@ Function17e566: ; 17e566
 Function17e571: ; 17e571
 	push af
 	hlcoord 0, 0
-	ld bc, $0014
+	ld bc, $14
 	ld a, [wcd23]
 	call AddNTimes
 	ld a, [CreditsTimer]
@@ -3397,7 +3397,7 @@ Function17e571: ; 17e571
 	call SimpleMultiply
 	ld l, $0
 	ld h, l
-	ld bc, $0014
+	ld bc, $14
 	call AddNTimes
 	ld a, [wcd30]
 	dec a
@@ -3420,16 +3420,16 @@ Function17e5af: ; 17e5af
 	ret z
 	ld a, [wcd43]
 	ld l, a
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	ld h, a
 	bccoord 0, 0
 	add hl, bc
 	ld bc, $ffec
 	add hl, bc
-	ld a, [wcd45]
+	ld a, [wMobileInactivityTimerSeconds]
 	ld c, a
 	ld b, $0
-	ld a, [wcd46]
+	ld a, [wMobileInactivityTimerFrames]
 	call Function17e600
 	ld a, [wcd2e]
 	ld c, a
@@ -3453,7 +3453,7 @@ Function17e5af: ; 17e5af
 	pop de
 	ld a, [wcd43]
 	ld l, a
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	ld h, a
 	bccoord 0, 0
 	add hl, bc
@@ -3470,7 +3470,7 @@ Function17e600: ; 17e600
 	call ByteFill
 	pop bc
 	pop hl
-	ld de, $0014
+	ld de, $14
 	add hl, de
 	pop af
 	dec a
@@ -3481,7 +3481,7 @@ Function17e600: ; 17e600
 Function17e613: ; 17e613
 	push hl
 	hlcoord 0, 0
-	ld bc, $0014
+	ld bc, $14
 	ld a, [de]
 	inc de
 	push af
@@ -3520,7 +3520,7 @@ Function17e613: ; 17e613
 	add $2
 	ld [hl], a
 	pop hl
-	ld bc, $0014
+	ld bc, $14
 	add hl, bc
 	ld a, [de]
 	dec de
@@ -3550,7 +3550,7 @@ Function17e613: ; 17e613
 	ld [hl], a
 	pop hl
 	push bc
-	ld bc, $0014
+	ld bc, $14
 	add hl, bc
 	pop bc
 	dec b
@@ -3583,7 +3583,7 @@ Function17e613: ; 17e613
 Function17e691: ; 17e691
 	push hl
 	ld hl, NULL
-	ld bc, $0014
+	ld bc, $14
 	ld a, [de]
 	inc de
 	push af
@@ -3636,7 +3636,7 @@ Function17e691: ; 17e691
 	dec a
 	jr nz, .asm_17e6af
 	pop hl
-	ld bc, $0014
+	ld bc, $14
 	add hl, bc
 	pop af
 	dec a
@@ -3663,7 +3663,7 @@ Function17e6de: ; 17e6de
 	dec c
 	jr nz, .asm_17e6f1
 	pop hl
-	ld de, $0014
+	ld de, $14
 	add hl, de
 	dec b
 	jr nz, .asm_17e6ee
@@ -3733,14 +3733,14 @@ Function17f047: ; 17f047
 	ld a, [de]
 	inc de
 	cp $50
-	jr z, .asm_17f05f
+	jr z, .finished
 	cp $10
-	jr nc, .asm_17f05f
+	jr nc, .finished
 	dec a
 	push de
 	ld e, a
 	ld d, 0
-	ld hl, Jumptable_17f061
+	ld hl, .Jumptable
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -3748,35 +3748,35 @@ Function17f047: ; 17f047
 	ld l, a
 	jp [hl]
 
-.asm_17f05f
+.finished
 	scf
 	ret
 ; 17f061
 
-Jumptable_17f061: ; 17f061
-	dw Function17f081
-	dw Function17f0f8
-	dw Function17f154
-	dw Function17f181
-	dw Function17f1d0
-	dw Function17f220
-	dw Function17f27b
-	dw Function17f2cb
-	dw Function17f2ff
-	dw Function17f334
-	dw Function17f382
-	dw Function17f3c9
-	dw Function17f3f0
-	dw Function17f41d
-	dw Function17f44f
-	dw Function17f44f
+.Jumptable: ; 17f061
+	dw Function17f081 ; 0
+	dw Function17f0f8 ; 1
+	dw Function17f154 ; 2
+	dw Function17f181 ; 3
+	dw Function17f1d0 ; 4
+	dw Function17f220 ; 5
+	dw Function17f27b ; 6
+	dw Function17f2cb ; 7
+	dw Function17f2ff ; 8
+	dw Function17f334 ; 9
+	dw Function17f382 ; a
+	dw Function17f3c9 ; b
+	dw Function17f3f0 ; c
+	dw Function17f41d ; d
+	dw Function17f44f ; e
+	dw Function17f44f ; f
 ; 17f081
 
 Function17f081: ; 17f081
 	pop hl
 	call Function17f524
 	jr c, .asm_17f09f
-	ld de, $0004
+	ld de, 4
 	add hl, de
 	ld a, [hli]
 	inc hl
@@ -3801,7 +3801,7 @@ Function17f081: ; 17f081
 .asm_17f09f
 	push bc
 	ld de, wcd54
-	ld bc, $0007
+	ld bc, 7
 	call CopyBytes
 	pop bc
 	push hl
@@ -3864,7 +3864,7 @@ Function17f0f8: ; 17f0f8
 	pop hl
 	call Function17f524
 	jr c, .asm_17f114
-	ld de, $0003
+	ld de, $3
 	add hl, de
 	ld a, [hli]
 	ld e, l
@@ -3887,7 +3887,7 @@ Function17f0f8: ; 17f0f8
 .asm_17f114
 	push bc
 	ld de, wcd54
-	ld bc, $0004
+	ld bc, $4
 	call CopyBytes
 	pop bc
 	push hl
@@ -3963,7 +3963,7 @@ Function17f181: ; 17f181
 	pop hl
 	call Function17f524
 	jr c, .asm_17f19d
-	ld de, $0002
+	ld de, $2
 	add hl, de
 	ld a, [hli]
 	ld e, l
@@ -4018,7 +4018,7 @@ Function17f1d0: ; 17f1d0
 	pop hl
 	call Function17f524
 	jr c, .asm_17f1ec
-	ld de, $0002
+	ld de, $2
 	add hl, de
 	ld a, [hli]
 	ld e, l
@@ -4075,7 +4075,7 @@ Function17f220: ; 17f220
 	pop hl
 	call Function17f524
 	jr c, .asm_17f23c
-	ld de, $0002
+	ld de, $2
 	add hl, de
 	ld a, [hli]
 	ld e, l
@@ -4139,7 +4139,7 @@ Function17f27b: ; 17f27b
 	pop hl
 	call Function17f524
 	jr c, .asm_17f297
-	ld de, $0002
+	ld de, $2
 	add hl, de
 	ld a, [hli]
 	ld e, l
@@ -4236,7 +4236,7 @@ Function17f2ff: ; 17f2ff
 	ld [rSVBK], a
 	ld hl, PlayerName
 	ld de, $c608
-	ld bc, $0006
+	ld bc, $6
 	call CopyBytes
 	ld a, $4
 	ld [rSVBK], a
@@ -4346,7 +4346,7 @@ Function17f3c9: ; 17f3c9
 	push bc
 	ld hl, wcd36
 	ld de, $c708
-	ld bc, $000c
+	ld bc, 12
 	call CopyBytes
 	pop de
 	ld c, $0
@@ -4354,7 +4354,7 @@ Function17f3c9: ; 17f3c9
 	push hl
 	ld hl, $c708
 	ld de, wcd36
-	ld bc, $000c
+	ld bc, $c
 	call CopyBytes
 	pop bc
 	pop de
@@ -4393,9 +4393,9 @@ Function17f3f0: ; 17f3f0
 	pop hl
 	add hl, de
 	add hl, de
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	ld e, l
 	ld d, h
 	ld l, c
@@ -4453,7 +4453,7 @@ Function17f44f: ; 17f44f
 	pop hl
 	call Function17f524
 	jr c, .asm_17f46d
-	ld de, $0005
+	ld de, $5
 	add hl, de
 	ld a, [hli]
 	inc hl
@@ -4478,7 +4478,7 @@ Function17f44f: ; 17f44f
 .asm_17f46d
 	push bc
 	ld de, wcd54
-	ld bc, $0008
+	ld bc, $8
 	call CopyBytes
 	pop bc
 	push hl
@@ -4647,7 +4647,7 @@ Function17f555: ; 17f555
 	ld a, [wc303]
 	bit 7, a
 	jr nz, .quit
-	callba Function104000
+	callba HDMATransferAttrMapAndTileMapToWRAMBank3
 	jr .loop
 
 .quit
@@ -4716,7 +4716,7 @@ Function17f5c3: ; 17f5c3
 
 Function17f5d2: ; 17f5d2
 	call Function17f5e4
-	callba Function104000
+	callba HDMATransferAttrMapAndTileMapToWRAMBank3
 	call SetPalettes
 	ld a, $1
 	ld [wc303], a

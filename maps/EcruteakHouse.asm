@@ -144,16 +144,16 @@ GrampsScript_0x980c4:
 
 MovementData_0x980c7:
 	fix_facing
-	big_step_left
+	big_step LEFT
 	remove_fixed_facing
-	turn_head_down
+	turn_head DOWN
 	step_end
 
 MovementData_0x980cc:
 	fix_facing
-	big_step_right
+	big_step RIGHT
 	remove_fixed_facing
-	turn_head_down
+	turn_head DOWN
 	step_end
 
 UnknownText_0x980d1:

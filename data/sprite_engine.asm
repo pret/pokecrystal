@@ -66,417 +66,435 @@ SpriteAnimFrameData: ; 8d6e6
 	dw .Frameset_40 ; 40 celebi on the left
 	dw .Frameset_41 ; 41 celebi on the right
 ; 8d76a
-; OAM idx (see SpriteAnimOAMData), flip flags/duration
+
 .Frameset_00:
-	db $00, $20
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_00, 32
+	endanim
 
 .Frameset_01:
-	db $00, $08
-	db $01, $08
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_00,  8
+	frame SPRITE_ANIM_FRAME_IDX_01,  8
+	dorestart
 
 .Frameset_02:
-	db $3d, $08
-	db $3e, $08
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_3D,  8
+	frame SPRITE_ANIM_FRAME_IDX_3E,  8
+	dorestart
 
 .Frameset_03:
-	db $3f, $08
-	db $40, $08
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_3F,  8
+	frame SPRITE_ANIM_FRAME_IDX_40,  8
+	dorestart
 
 .Frameset_04:
-	db $00, $04
-	db $01, $04
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_00,  4
+	frame SPRITE_ANIM_FRAME_IDX_01,  4
+	dorestart
 
 .Frameset_05:
-	db $3d, $04
-	db $3e, $04
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_3D,  4
+	frame SPRITE_ANIM_FRAME_IDX_3E,  4
+	dorestart
 
 .Frameset_06:
-	db $3f, $04
-	db $40, $04
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_3F,  4
+	frame SPRITE_ANIM_FRAME_IDX_40,  4
+	dorestart
 
 .Frameset_11:
-	db $00, $08
-	db $01, $08
-	db $00, $08
-	db $01, $48
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_00,  8
+	frame SPRITE_ANIM_FRAME_IDX_01,  8
+	frame SPRITE_ANIM_FRAME_IDX_00,  8
+	frame SPRITE_ANIM_FRAME_IDX_01,  8, OAM_X_FLIP
+	dorestart
 
 .Frameset_2d:
-	db $63, $08
-	db $64, $08
-	db $63, $08
-	db $64, $48
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_63,  8
+	frame SPRITE_ANIM_FRAME_IDX_64,  8
+	frame SPRITE_ANIM_FRAME_IDX_63,  8
+	frame SPRITE_ANIM_FRAME_IDX_64,  8, OAM_X_FLIP
+	dorestart
 
 .Frameset_2e:
-	db $65, $08
-	db $66, $08
-	db $65, $08
-	db $66, $48
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_65,  8
+	frame SPRITE_ANIM_FRAME_IDX_66,  8
+	frame SPRITE_ANIM_FRAME_IDX_65,  8
+	frame SPRITE_ANIM_FRAME_IDX_66,  8, OAM_X_FLIP
+	dorestart
 
 .Frameset_07:
-	db $1e, $01
-	db $1f, $01
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_1E,  1
+	frame SPRITE_ANIM_FRAME_IDX_1F,  1
+	dorestart
 
 .Frameset_08:
-	db $20, $01
-	db -3, $01
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_20,  1
+	dorepeat  1
+	dorestart
 
 .Frameset_09:
-	db $21, $01
-	db -3, $01
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_21,  1
+	dorepeat  1
+	dorestart
 
 .Frameset_0a:
-	db $81, $0c
-	db $82, $01
-	db $83, $01
-	db $82, $04
-	db $81, $0c
-	db $82, $0c
-	db $83, $04
-	db $84, $20
-	db $85, $03
-	db $86, $03
-	db $87, $04
-	db $88, $04
-	db $89, $04
-	db $8a, $0a
-	db $8b, $07
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_81, 12
+	frame SPRITE_ANIM_FRAME_IDX_82,  1
+	frame SPRITE_ANIM_FRAME_IDX_83,  1
+	frame SPRITE_ANIM_FRAME_IDX_82,  4
+	frame SPRITE_ANIM_FRAME_IDX_81, 12
+	frame SPRITE_ANIM_FRAME_IDX_82, 12
+	frame SPRITE_ANIM_FRAME_IDX_83,  4
+	frame SPRITE_ANIM_FRAME_IDX_84, 32
+	frame SPRITE_ANIM_FRAME_IDX_85,  3
+	frame SPRITE_ANIM_FRAME_IDX_86,  3
+	frame SPRITE_ANIM_FRAME_IDX_87,  4
+	frame SPRITE_ANIM_FRAME_IDX_88,  4
+	frame SPRITE_ANIM_FRAME_IDX_89,  4
+	frame SPRITE_ANIM_FRAME_IDX_8A, 10
+	frame SPRITE_ANIM_FRAME_IDX_8B,  7
+	endanim
 
 .Frameset_0b:
-	db $23, $03
-	db $23, $83
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_23,  3
+	frame SPRITE_ANIM_FRAME_IDX_23,  3, OAM_Y_FLIP
+	dorestart
 
 .Frameset_0c:
-	db $24, $02
-	db $25, $02
-	db $26, $02
-	db $25, $02
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_24,  2
+	frame SPRITE_ANIM_FRAME_IDX_25,  2
+	frame SPRITE_ANIM_FRAME_IDX_26,  2
+	frame SPRITE_ANIM_FRAME_IDX_25,  2
+	dorestart
 
 .Frameset_0d:
-	db $27, $07
-	db $28, $07
-	db $27, $87
-	db $28, $47
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_27,  7
+	frame SPRITE_ANIM_FRAME_IDX_28,  7
+	frame SPRITE_ANIM_FRAME_IDX_27,  7, OAM_Y_FLIP
+	frame SPRITE_ANIM_FRAME_IDX_28,  7, OAM_X_FLIP
+	dorestart
 
 .Frameset_0e:
-	db $29, $07
-	db $2a, $07
-	db $29, $07
-	db $2b, $07
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_29,  7
+	frame SPRITE_ANIM_FRAME_IDX_2A,  7
+	frame SPRITE_ANIM_FRAME_IDX_29,  7
+	frame SPRITE_ANIM_FRAME_IDX_2B,  7
+	dorestart
 
 .Frameset_0f:
-	db $29, $07
-	db $2c, $07
-	db $2d, $07
-	db $2c, $07
-	db $29, $07
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_29,  7
+	frame SPRITE_ANIM_FRAME_IDX_2C,  7
+	frame SPRITE_ANIM_FRAME_IDX_2D,  7
+	frame SPRITE_ANIM_FRAME_IDX_2C,  7
+	frame SPRITE_ANIM_FRAME_IDX_29,  7
+	endanim
 
 .Frameset_10:
-	db $2e, $14
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_2E, 20
+	endanim
 
 .Frameset_12:
-	db $2f, $20
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_2F, 32
+	endanim
 
 .Frameset_13:
-	db $30, $20
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_30, 32
+	endanim
 
 .Frameset_14:
-	db $30, $03
-	db $31, $03
-	db $30, $03
-	db $31, $43
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_30,  3
+	frame SPRITE_ANIM_FRAME_IDX_31,  3
+	frame SPRITE_ANIM_FRAME_IDX_30,  3
+	frame SPRITE_ANIM_FRAME_IDX_31,  3, OAM_X_FLIP
+	dorestart
 
 .Frameset_15:
-	db $32, $04
-	db $33, $04
-	db $34, $04
-	db -4
+	frame SPRITE_ANIM_FRAME_IDX_32,  4
+	frame SPRITE_ANIM_FRAME_IDX_33,  4
+	frame SPRITE_ANIM_FRAME_IDX_34,  4
+	delanim
 
 .Frameset_16:
-	db $35, $03
-	db $36, $03
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_35,  3
+	frame SPRITE_ANIM_FRAME_IDX_36,  3
+	dorestart
 
 .Frameset_17:
-	db $37, $07
-	db $38, $07
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_37,  7
+	frame SPRITE_ANIM_FRAME_IDX_38,  7
+	dorestart
 
 .Frameset_18:
-	db $39, $20
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_39, 32
+	endanim
 
 .Frameset_19:
-	db $3b, $02
-	db $3a, $02
-	db $3b, $02
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_3B,  2
+	frame SPRITE_ANIM_FRAME_IDX_3A,  2
+	frame SPRITE_ANIM_FRAME_IDX_3B,  2
+	endanim
 
 .Frameset_1a:
-	db $3c, $20
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_3C, 32
+	endanim
 
 .Frameset_1b:
-	db $41, $08
-	db $42, $08
-	db $41, $08
-	db $42, $48
-	db -2
-	db $43, $08
-	db $44, $08
-	db -2
-	db $45, $08
-	db $46, $08
-	db -2
-	db $47, $08
-	db $48, $08
-	db -2
-	db $49, $01
-	db $49, $41
-	db $49, $c1
-	db $49, $81
-	db -2
-	db $4a, $20
-	db -1
-	db $4b, $20
-	db -1
-	db $4c, $20
-	db -1
-	db $4d, $20
-	db -1
-	db $4e, $03
-	db -3, $03
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_41,  8
+	frame SPRITE_ANIM_FRAME_IDX_42,  8
+	frame SPRITE_ANIM_FRAME_IDX_41,  8
+	frame SPRITE_ANIM_FRAME_IDX_42,  8, OAM_X_FLIP
+	dorestart
+
+; XXX
+	frame SPRITE_ANIM_FRAME_IDX_43,  8
+	frame SPRITE_ANIM_FRAME_IDX_44,  8
+	dorestart
+
+; XXX
+	frame SPRITE_ANIM_FRAME_IDX_45,  8
+	frame SPRITE_ANIM_FRAME_IDX_46,  8
+	dorestart
+
+; XXX
+	frame SPRITE_ANIM_FRAME_IDX_47,  8
+	frame SPRITE_ANIM_FRAME_IDX_48,  8
+	dorestart
+
+; XXX
+	frame SPRITE_ANIM_FRAME_IDX_49,  1
+	frame SPRITE_ANIM_FRAME_IDX_49,  1, OAM_X_FLIP
+	frame SPRITE_ANIM_FRAME_IDX_49,  1, OAM_X_FLIP, OAM_Y_FLIP
+	frame SPRITE_ANIM_FRAME_IDX_49,  1, OAM_Y_FLIP
+	dorestart
+
+; XXX
+	frame SPRITE_ANIM_FRAME_IDX_4A, 32
+	endanim
+
+; XXX
+	frame SPRITE_ANIM_FRAME_IDX_4B, 32
+	endanim
+
+; XXX
+	frame SPRITE_ANIM_FRAME_IDX_4C, 32
+	endanim
+
+; XXX
+	frame SPRITE_ANIM_FRAME_IDX_4D, 32
+	endanim
+
+; XXX
+	frame SPRITE_ANIM_FRAME_IDX_4E,  3
+	dorepeat  3
+	dorestart
 
 .Frameset_1c:
-	db -3, $20
-	db -1
+	dorepeat 32
+	endanim
 
 .Frameset_1d:
-	db $4f, $20
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_4F, 32
+	endanim
 
 .Frameset_1e:
-	db $50, $02
-	db $51, $10
-	db -3, $01
-	db $52, $01
-	db -3, $01
-	db $53, $01
-	db -4
+	frame SPRITE_ANIM_FRAME_IDX_50,  2
+	frame SPRITE_ANIM_FRAME_IDX_51, 16
+	dorepeat  1
+	frame SPRITE_ANIM_FRAME_IDX_52,  1
+	dorepeat  1
+	frame SPRITE_ANIM_FRAME_IDX_53,  1
+	delanim
 
 .Frameset_1f:
-	db $54, $20
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_54, 32
+	endanim
 
 .Frameset_20:
-	db $55, $20
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_55, 32
+	endanim
 
 .Frameset_21:
-	db $55, $60
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_55, 32, OAM_X_FLIP
+	endanim
 
 .Frameset_22:
-	db $55, $a0
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_55, 32, OAM_Y_FLIP
+	endanim
 
 .Frameset_23:
-	db $55, $e0
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_55, 32, OAM_X_FLIP, OAM_Y_FLIP
+	endanim
 
 .Frameset_24:
-	db $56, $0a
-	db $57, $09
-	db $58, $0a
-	db $59, $0a
-	db $58, $09
-	db $5a, $0a
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_56, 10
+	frame SPRITE_ANIM_FRAME_IDX_57,  9
+	frame SPRITE_ANIM_FRAME_IDX_58, 10
+	frame SPRITE_ANIM_FRAME_IDX_59, 10
+	frame SPRITE_ANIM_FRAME_IDX_58,  9
+	frame SPRITE_ANIM_FRAME_IDX_5A, 10
+	dorestart
 
 .Frameset_25:
-	db $50, $02
-	db $5b, $02
-	db $50, $02
-	db $5b, $42
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_50,  2
+	frame SPRITE_ANIM_FRAME_IDX_5B,  2
+	frame SPRITE_ANIM_FRAME_IDX_50,  2
+	frame SPRITE_ANIM_FRAME_IDX_5B,  2, OAM_X_FLIP
+	dorestart
 
 .Frameset_26:
-	db $5c, $02
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_5C,  2
+	endanim
 
 .Frameset_27:
-	db $5d, $02
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_5D,  2
+	endanim
 
 .Frameset_28:
-	db $5e, $02
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_5E,  2
+	endanim
 
 .Frameset_29:
-	db $5f, $02
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_5F,  2
+	endanim
 
 .Frameset_2a:
-	db $60, $02
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_60,  2
+	endanim
 
 .Frameset_2b:
-	db $61, $02
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_61,  2
+	endanim
 
 .Frameset_2c:
-	db $62, $02
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_62,  2
+	endanim
 
 .Frameset_2f:
-	db $32, $03
-	db $33, $03
-	db $34, $03
-	db $30, $03
-	db $31, $03
-	db $30, $03
-	db $31, $43
-	db $30, $03
-	db $31, $03
-	db $30, $03
-	db $31, $43
-	db $30, $03
-	db $31, $03
-	db $30, $03
-	db $31, $43
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_32,  3
+	frame SPRITE_ANIM_FRAME_IDX_33,  3
+	frame SPRITE_ANIM_FRAME_IDX_34,  3
+	frame SPRITE_ANIM_FRAME_IDX_30,  3
+	frame SPRITE_ANIM_FRAME_IDX_31,  3
+	frame SPRITE_ANIM_FRAME_IDX_30,  3
+	frame SPRITE_ANIM_FRAME_IDX_31,  3, OAM_X_FLIP
+	frame SPRITE_ANIM_FRAME_IDX_30,  3
+	frame SPRITE_ANIM_FRAME_IDX_31,  3
+	frame SPRITE_ANIM_FRAME_IDX_30,  3
+	frame SPRITE_ANIM_FRAME_IDX_31,  3, OAM_X_FLIP
+	frame SPRITE_ANIM_FRAME_IDX_30,  3
+	frame SPRITE_ANIM_FRAME_IDX_31,  3
+	frame SPRITE_ANIM_FRAME_IDX_30,  3
+	frame SPRITE_ANIM_FRAME_IDX_31,  3, OAM_X_FLIP
+	endanim
 
 .Frameset_30:
-	db $30, $03
-	db $31, $03
-	db $30, $03
-	db $31, $43
-	db $30, $03
-	db $31, $03
-	db $30, $03
-	db $31, $43
-	db $30, $03
-	db $31, $03
-	db $30, $03
-	db $31, $43
-	db $32, $03
-	db $33, $03
-	db $34, $03
-	db -4
+	frame SPRITE_ANIM_FRAME_IDX_30,  3
+	frame SPRITE_ANIM_FRAME_IDX_31,  3
+	frame SPRITE_ANIM_FRAME_IDX_30,  3
+	frame SPRITE_ANIM_FRAME_IDX_31,  3, OAM_X_FLIP
+	frame SPRITE_ANIM_FRAME_IDX_30,  3
+	frame SPRITE_ANIM_FRAME_IDX_31,  3
+	frame SPRITE_ANIM_FRAME_IDX_30,  3
+	frame SPRITE_ANIM_FRAME_IDX_31,  3, OAM_X_FLIP
+	frame SPRITE_ANIM_FRAME_IDX_30,  3
+	frame SPRITE_ANIM_FRAME_IDX_31,  3
+	frame SPRITE_ANIM_FRAME_IDX_30,  3
+	frame SPRITE_ANIM_FRAME_IDX_31,  3, OAM_X_FLIP
+	frame SPRITE_ANIM_FRAME_IDX_32,  3
+	frame SPRITE_ANIM_FRAME_IDX_33,  3
+	frame SPRITE_ANIM_FRAME_IDX_34,  3
+	delanim
 
 .Frameset_31:
-	db $67, $03
-	db $68, $03
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_67,  3
+	frame SPRITE_ANIM_FRAME_IDX_68,  3
+	dorestart
 
 .Frameset_32:
-	db $6c, $03
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_6C,  3
+	endanim
 
 .Frameset_33:
-	db $6d, $03
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_6D,  3
+	endanim
 
 .Frameset_34:
-	db $69, $02
-	db $6a, $02
-	db $6b, $02
-	db -4
+	frame SPRITE_ANIM_FRAME_IDX_69,  2
+	frame SPRITE_ANIM_FRAME_IDX_6A,  2
+	frame SPRITE_ANIM_FRAME_IDX_6B,  2
+	delanim
 
 .Frameset_35:
-	db $6e, $03
-	db $6f, $03
-	db $70, $03
-	db $71, $03
-	db -2
+	frame SPRITE_ANIM_FRAME_IDX_6E,  3
+	frame SPRITE_ANIM_FRAME_IDX_6F,  3
+	frame SPRITE_ANIM_FRAME_IDX_70,  3
+	frame SPRITE_ANIM_FRAME_IDX_71,  3
+	dorestart
 
 .Frameset_36:
-	db $71, $03
-	db $6e, $07
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_71,  3
+	frame SPRITE_ANIM_FRAME_IDX_6E,  7
+	endanim
 
 .Frameset_37:
-	db $72, $20
-	db $73, $07
-	db $74, $07
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_72, 32
+	frame SPRITE_ANIM_FRAME_IDX_73,  7
+	frame SPRITE_ANIM_FRAME_IDX_74,  7
+	endanim
 
 .Frameset_38:
-	db $75, $03
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_75,  3
+	endanim
 
 .Frameset_39:
-	db $76, $03
-	db $77, $03
-	db $78, $07
-	db -4
+	frame SPRITE_ANIM_FRAME_IDX_76,  3
+	frame SPRITE_ANIM_FRAME_IDX_77,  3
+	frame SPRITE_ANIM_FRAME_IDX_78,  7
+	delanim
 
 .Frameset_3a:
-	db $76, $43
-	db $77, $43
-	db $78, $47
-	db -4
+	frame SPRITE_ANIM_FRAME_IDX_76,  3, OAM_X_FLIP
+	frame SPRITE_ANIM_FRAME_IDX_77,  3, OAM_X_FLIP
+	frame SPRITE_ANIM_FRAME_IDX_78,  7, OAM_X_FLIP
+	delanim
 
 .Frameset_3b:
-	db $76, $83
-	db $77, $83
-	db $78, $87
-	db -4
+	frame SPRITE_ANIM_FRAME_IDX_76,  3, OAM_Y_FLIP
+	frame SPRITE_ANIM_FRAME_IDX_77,  3, OAM_Y_FLIP
+	frame SPRITE_ANIM_FRAME_IDX_78,  7, OAM_Y_FLIP
+	delanim
 
 .Frameset_3c:
-	db $76, $c3
-	db $77, $c3
-	db $78, $c7
-	db -4
+	frame SPRITE_ANIM_FRAME_IDX_76,  3, OAM_X_FLIP, OAM_Y_FLIP
+	frame SPRITE_ANIM_FRAME_IDX_77,  3, OAM_X_FLIP, OAM_Y_FLIP
+	frame SPRITE_ANIM_FRAME_IDX_78,  7, OAM_X_FLIP, OAM_Y_FLIP
+	delanim
 
 .Frameset_3d:
-	db $79, $03
-	db $7a, $03
-	db $7b, $03
-	db $7c, $07
-	db $7d, $07
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_79,  3
+	frame SPRITE_ANIM_FRAME_IDX_7A,  3
+	frame SPRITE_ANIM_FRAME_IDX_7B,  3
+	frame SPRITE_ANIM_FRAME_IDX_7C,  7
+	frame SPRITE_ANIM_FRAME_IDX_7D,  7
+	endanim
 
 .Frameset_3e:
-	db $7e, $03
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_7E,  3
+	endanim
 
 .Frameset_3f:
-	db -3, $00
-	db -1
+	dorepeat 0
+	endanim
 
 .Frameset_40:
-	db $7f, $08
-	db $80, $08
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_7F,  8
+	frame SPRITE_ANIM_FRAME_IDX_80,  8
+	endanim
 
 .Frameset_41:
-	db $7f, $48
-	db $80, $48
-	db -1
+	frame SPRITE_ANIM_FRAME_IDX_7F,  8, OAM_X_FLIP
+	frame SPRITE_ANIM_FRAME_IDX_80,  8, OAM_X_FLIP
+	endanim
 ; 8d94d
 
 SpriteAnimOAMData: ; 8d94d

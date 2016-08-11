@@ -137,7 +137,7 @@ Function437b: ; 437b
 	cp STEP_TYPE_SLEEP
 	ret z
 .ok3
-	ld hl, Pointers4b45
+	ld hl, StepTypesJumptable
 	rst JumpTable
 	ret
 
@@ -268,9 +268,9 @@ EndSpriteMovement: ; 467b
 	ld [hl], a
 	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
 	add hl, bc
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a ; OBJECT_30
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
@@ -1084,7 +1084,7 @@ SetRandomStepDuration: ; 4b2d
 	ret
 ; 4b45
 
-Pointers4b45: ; 4b45
+StepTypesJumptable: ; 4b45
 ; These pointers use OBJECT_STEP_TYPE.  See constants/sprite_constants.asm
 	dw ObjectMovementReset ; 00
 	dw MapObjectMovementPattern ; unused
@@ -1876,8 +1876,8 @@ Function5000: ; unscripted?
 	ld a, [wPlayerNextMovement]
 	ld hl, wPlayerMovement
 	ld [hl], a
-; load [wPlayerNextMovement] with movement_step_sleep_1
-	ld a, movement_step_sleep_1
+; load [wPlayerNextMovement] with movement_step_sleep
+	ld a, movement_step_sleep
 	ld [wPlayerNextMovement], a
 ; recover the previous value of [wPlayerNextMovement]
 	ld a, [hl]
@@ -1987,7 +1987,7 @@ ApplyMovementToFollower: ; 54b8
 	cp d
 	ret nz
 	ld a, e
-	cp movement_step_sleep_1
+	cp movement_step_sleep
 	ret z
 	cp movement_step_end
 	ret z
@@ -1995,7 +1995,7 @@ ApplyMovementToFollower: ; 54b8
 	ret z
 	cp movement_step_bump
 	ret z
-	cp movement_turn_step_right + 1
+	cp movement_slow_step
 	ret c
 	push af
 	ld hl, wFollowerMovementQueueLength
@@ -2034,7 +2034,7 @@ GetFollowerNextMovementByte: ; 54e6
 .done
 	call .CancelFollowIfLeaderMissing
 	ret c
-	ld a, movement_step_sleep_1
+	ld a, movement_step_sleep
 	ret
 
 .CancelFollowIfLeaderMissing:
@@ -2209,7 +2209,7 @@ Function55e0:: ; 55e0
 	xor a
 .loop
 	ld [hMapObjectIndexBuffer], a
-	call GetObjectSprite
+	call DoesObjectHaveASprite
 	jr z, .ok
 	call Function565c
 .ok
@@ -2260,7 +2260,7 @@ Function5629: ; 5629
 	cp NUM_OBJECT_STRUCTS
 	ret nc
 	call GetObjectStruct
-	call GetObjectSprite
+	call DoesObjectHaveASprite
 	ret z
 	call Function5673
 	ret
@@ -2363,7 +2363,7 @@ Function56a3: ; 56a3
 ; 56cd
 
 Function56cd: ; 56cd
-	ld a, [wFollowNotExactPersonX]
+	ld a, [wPlayerBGMapOffsetX]
 	ld d, a
 	ld hl, OBJECT_SPRITE_X_OFFSET
 	add hl, bc
@@ -2392,7 +2392,7 @@ Function56cd: ; 56cd
 	sub $20
 .ok3
 	ld [hUsedSpriteIndex], a
-	ld a, [wFollowNotExactPersonY]
+	ld a, [wPlayerBGMapOffsetY]
 	ld e, a
 	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
@@ -2489,7 +2489,7 @@ HandleNPCStep:: ; 576a
 	xor a
 .loop
 	ld [hMapObjectIndexBuffer], a
-	call GetObjectSprite
+	call DoesObjectHaveASprite
 	jr z, .next
 	call Function437b
 .next
@@ -2505,11 +2505,11 @@ HandleNPCStep:: ; 576a
 ; 579d
 
 RefreshPlayerSprite: ; 579d
-	ld a, movement_step_sleep_1
+	ld a, movement_step_sleep
 	ld [wPlayerNextMovement], a
 	ld [wPlayerMovement], a
 	xor a
-	ld [wd04e], a
+	ld [wPlayerTurningDirection], a
 	ld [PlayerObjectStepFrame], a
 	call .TryResetPlayerAction
 	callba CheckWarpFacingDown
@@ -2662,7 +2662,7 @@ Function587a: ; 587a
 	xor a
 .loop
 	push af
-	call GetObjectSprite
+	call DoesObjectHaveASprite
 	jr z, .next
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
@@ -2707,7 +2707,7 @@ Function58b9:: ; 58b9
 	xor a
 .loop
 	push af
-	call GetObjectSprite
+	call DoesObjectHaveASprite
 	jr z, .next
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
@@ -2817,19 +2817,19 @@ _UpdateSprites:: ; 5920
 	ret
 ; 5958
 
-Function5958: ; 5958
+ApplyBGMapAnchorToObjects: ; 5958
 	push hl
 	push de
 	push bc
-	ld a, [wFollowNotExactPersonX]
+	ld a, [wPlayerBGMapOffsetX]
 	ld d, a
-	ld a, [wFollowNotExactPersonY]
+	ld a, [wPlayerBGMapOffsetY]
 	ld e, a
 	ld bc, ObjectStructs
 	ld a, NUM_OBJECT_STRUCTS
 .loop
 	push af
-	call GetObjectSprite
+	call DoesObjectHaveASprite
 	jr z, .skip
 	ld hl, OBJECT_SPRITE_X
 	add hl, bc
@@ -2850,8 +2850,8 @@ Function5958: ; 5958
 	dec a
 	jr nz, .loop
 	xor a
-	ld [wFollowNotExactPersonX], a
-	ld [wFollowNotExactPersonY], a
+	ld [wPlayerBGMapOffsetX], a
+	ld [wPlayerBGMapOffsetY], a
 	pop bc
 	pop de
 	pop hl
@@ -2881,7 +2881,7 @@ PRIORITY_HIGH EQU $30
 	ld hl, wMovementPointer
 .loop
 	push hl
-	call GetObjectSprite
+	call DoesObjectHaveASprite
 	jr z, .skip
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
@@ -2986,7 +2986,7 @@ PRIORITY_HIGH EQU $30
 	add [hl]
 	add 8
 	ld e, a
-	ld a, [wFollowNotExactPersonX]
+	ld a, [wPlayerBGMapOffsetX]
 	add e
 	ld [hFFBF], a
 	ld hl, OBJECT_SPRITE_Y
@@ -2997,7 +2997,7 @@ PRIORITY_HIGH EQU $30
 	add [hl]
 	add 12
 	ld e, a
-	ld a, [wFollowNotExactPersonY]
+	ld a, [wPlayerBGMapOffsetY]
 	add e
 	ld [hFFC0], a
 	ld hl, OBJECT_FACING_STEP

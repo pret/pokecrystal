@@ -100,7 +100,7 @@ Init:: ; 17d
 	ld [rSVBK], a
 	call ClearVRAM
 	call ClearSprites
-	call Function270
+	call ClearsScratch
 
 
 	ld a, BANK(LoadPushOAM)
@@ -139,7 +139,7 @@ Init:: ; 17d
 	ld a, -1
 	ld [hLinkPlayerNumber], a
 
-	callba Function9890
+	callba InitCGBPals
 
 	ld a, VBGMap1 / $100
 	ld [hBGMapAddress + 1], a
@@ -154,9 +154,9 @@ Init:: ; 17d
 
 	ld a, [hCGB]
 	and a
-	jr z, .asm_22b
+	jr z, .no_double_speed
 	call NormalSpeed
-.asm_22b
+.no_double_speed
 
 	xor a
 	ld [rIF], a
@@ -166,7 +166,7 @@ Init:: ; 17d
 
 	call DelayFrame
 
-	predef Function9853
+	predef InitSGBBorder ; SGB init
 
 	call MapSetup_Sound_Off
 	xor a
@@ -194,9 +194,10 @@ ClearVRAM:: ; 245
 
 ClearWRAM:: ; 25a
 ; Wipe swappable WRAM banks (1-7)
+; Assumes CGB or AGB
 
 	ld a, 1
-.asm_25c
+.bank_loop
 	push af
 	ld [rSVBK], a
 	xor a
@@ -206,15 +207,17 @@ ClearWRAM:: ; 25a
 	pop af
 	inc a
 	cp 8
-	jr nc, .asm_25c
+	jr nc, .bank_loop ; Should be jr c
 	ret
 ; 270
 
-Function270:: ; 270
-	ld a, $0
+ClearsScratch:: ; 270
+; Wipe the first 32 bytes of sScratch
+
+	ld a, BANK(sScratch)
 	call GetSRAMBank
-	ld hl, $a000
-	ld bc, $0020
+	ld hl, sScratch
+	ld bc, $20
 	xor a
 	call ByteFill
 	call CloseSRAM

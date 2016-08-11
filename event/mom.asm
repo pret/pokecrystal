@@ -23,9 +23,8 @@ Special_BankOfMom: ; 16218
 	ld e, a
 	ld d, 0
 	ld hl, .dw
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -143,16 +142,15 @@ endr
 	call PrintText
 	xor a
 	ld hl, StringBuffer2
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld [hl], a
 	ld a, $5
 	ld [wcf64], a
 	call LoadStandardMenuDataHeader
-	call Function16517
-	call Function1656b
-	call Function16571
+	call Mom_SetUpDepositMenu
+	call Mom_Wait10Frames
+	call Mom_WithdrawDepositMenuJoypad
 	call CloseWindow
 	jr c, .CancelDeposit
 	ld hl, StringBuffer2
@@ -211,16 +209,15 @@ endr
 	call PrintText
 	xor a
 	ld hl, StringBuffer2
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld [hl], a
 	ld a, $5
 	ld [wcf64], a
 	call LoadStandardMenuDataHeader
-	call Function16512
-	call Function1656b
-	call Function16571
+	call Mom_SetUpWithdrawMenu
+	call Mom_Wait10Frames
+	call Mom_WithdrawDepositMenuJoypad
 	call CloseWindow
 	jr c, .CancelWithdraw
 	ld hl, StringBuffer2
@@ -324,13 +321,13 @@ DSTChecks: ; 16439
 	call .ClearBox
 	bccoord 1, 14
 	ld hl, .Text_AdjustClock
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	call YesNoBox
 	ret c
 	call .ClearBox
 	bccoord 1, 14
 	ld hl, .Text_LostInstructionBooklet
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	ret
 
 .loop
@@ -340,7 +337,7 @@ DSTChecks: ; 16439
 	bit 7, a
 	jr z, .SetDST
 	ld hl, .Text_IsDSTOver
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	call YesNoBox
 	ret c
 	ld a, [wDST]
@@ -350,12 +347,12 @@ DSTChecks: ; 16439
 	call .ClearBox
 	bccoord 1, 14
 	ld hl, .Text_SetClockBack
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	ret
 
 .SetDST:
 	ld hl, .Text_SwitchToDST
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	call YesNoBox
 	ret c
 	ld a, [wDST]
@@ -365,7 +362,7 @@ DSTChecks: ; 16439
 	call .ClearBox
 	bccoord 1, 14
 	ld hl, .Text_SetClockForward
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	ret
 ; 164b9
 
@@ -444,14 +441,13 @@ DSTChecks: ; 16439
 	db "@"
 ; 0x16512
 
-Function16512: ; 16512
-	ld de, String_1669f
-	jr Function1651a
+Mom_SetUpWithdrawMenu: ; 16512
+	ld de, Mon_WithdrawString
+	jr Mom_ContinueMenuSetup
 
-Function16517: ; 16517
-	ld de, String_166a8
-
-Function1651a: ; 1651a
+Mom_SetUpDepositMenu: ; 16517
+	ld de, Mom_DepositString
+Mom_ContinueMenuSetup: ; 1651a
 	push de
 	xor a
 	ld [hBGMapMode], a
@@ -459,14 +455,14 @@ Function1651a: ; 1651a
 	lb bc, 6, 18
 	call TextBox
 	hlcoord 1, 2
-	ld de, String_16699
+	ld de, Mom_SavedString
 	call PlaceString
 	hlcoord 12, 2
 	ld de, wMomsMoney
 	lb bc, PRINTNUM_MONEY | 3, 6
 	call PrintNum
 	hlcoord 1, 4
-	ld de, String_166b0
+	ld de, Mom_HeldString
 	call PlaceString
 	hlcoord 12, 4
 	ld de, Money
@@ -484,13 +480,13 @@ Function1651a: ; 1651a
 	ret
 ; 1656b
 
-Function1656b: ; 1656b
+Mom_Wait10Frames: ; 1656b
 	ld c, 10
 	call DelayFrames
 	ret
 ; 16571
 
-Function16571: ; 16571
+Mom_WithdrawDepositMenuJoypad: ; 16571
 .loop
 	call JoyTextDelay
 	ld hl, hJoyPressed
@@ -532,9 +528,8 @@ Function16571: ; 16571
 .pressedA
 	and a
 	ret
-; 165b9
 
-.dpadaction ; 165b9
+.dpadaction
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_UP
@@ -584,16 +579,15 @@ Function16571: ; 16571
 	ld de, StringBuffer2
 	callba TakeMoney
 	ret
-; 16607
 
-.getdigitquantity ; 16607
+.getdigitquantity
 	ld a, [wMomBankDigitCursorPosition]
 	push de
 	ld e, a
 	ld d, 0
-rept 3
 	add hl, de
-endr
+	add hl, de
+	add hl, de
 	pop de
 	ret
 ; 16613
@@ -717,19 +711,19 @@ UnknownText_0x16694: ; 0x16694
 	db "@"
 ; 0x16699
 
-String_16699: ; 16699
+Mom_SavedString: ; 16699
 	db "SAVED@"
 ; 1669f
 
-String_1669f: ; 1669f
+Mon_WithdrawString: ; 1669f
 	db "WITHDRAW@"
 ; 166a8
 
-String_166a8: ; 166a8
+Mom_DepositString: ; 166a8
 	db "DEPOSIT@"
 ; 166b0
 
-String_166b0: ; 166b0
+Mom_HeldString: ; 166b0
 	db "HELD@"
 ; 166b5
 

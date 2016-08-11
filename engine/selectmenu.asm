@@ -45,9 +45,8 @@ CheckRegisteredItem: ; 13345
 	inc hl
 	ld e, a
 	ld d, 0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	call .IsSameItem
 	jr c, .NoRegisteredItem
 	and a
@@ -71,9 +70,8 @@ endr
 	inc hl
 	ld e, a
 	ld d, 0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	call .IsSameItem
 	jr c, .NoRegisteredItem
 	ret

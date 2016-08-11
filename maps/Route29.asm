@@ -220,37 +220,37 @@ Route29Potion:
 	itemball POTION
 
 DudeMovementData1a:
-	step_up
-	step_up
-	step_up
-	step_up
-	step_right
-	step_right
+	step UP
+	step UP
+	step UP
+	step UP
+	step RIGHT
+	step RIGHT
 	step_end
 
 DudeMovementData2a:
-	step_up
-	step_up
-	step_up
-	step_right
-	step_right
+	step UP
+	step UP
+	step UP
+	step RIGHT
+	step RIGHT
 	step_end
 
 DudeMovementData1b:
-	step_left
-	step_left
-	step_down
-	step_down
-	step_down
-	step_down
+	step LEFT
+	step LEFT
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
 	step_end
 
 DudeMovementData2b:
-	step_left
-	step_left
-	step_down
-	step_down
-	step_down
+	step LEFT
+	step LEFT
+	step DOWN
+	step DOWN
+	step DOWN
 	step_end
 
 UnknownText_0x1a10a7:

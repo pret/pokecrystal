@@ -4,7 +4,7 @@ Function100000: ; 100000
 ; bc: addr
 	ld a, [rSVBK]
 	push af
-	ld a, $01
+	ld a, 1
 	ld [rSVBK], a
 
 	call Function100022
@@ -26,7 +26,7 @@ Function100000: ; 100000
 Function100022: ; 100022
 	push de
 	push bc
-	call Function100063
+	call SetRAMStateForMobile
 	pop bc
 	pop de
 	ld a, d
@@ -47,14 +47,14 @@ Function100022: ; 100022
 ; 100057
 
 Function100057: ; 100057
-	call Function1000a4
+	call DisableMobile
 	call ReturnToMapFromSubmenu
 	ld hl, VramState
 	res 1, [hl]
 	ret
 ; 100063
 
-Function100063: ; 100063
+SetRAMStateForMobile: ; 100063
 	xor a
 	ld hl, BGMapBuffer
 	ld bc, $65
@@ -67,15 +67,16 @@ Function100063: ; 100063
 	ld [BGMapBuffer], a
 	xor a
 	ld [hMapAnims], a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	ret
 ; 100082
 
-Function100082: ; 100082
+EnableMobile: ; 100082
 	xor a
 	ld hl, OverworldMap
 	ld bc, OverworldMapEnd - OverworldMap
 	call ByteFill
+
 	di
 	call DoubleSpeed
 	xor a
@@ -84,15 +85,16 @@ Function100082: ; 100082
 	ld [rIE], a
 	xor a
 	ld [hMapAnims], a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	ld a, $01
 	ld [hMobileReceive], a
 	ld [hMobile], a
 	ei
+
 	ret
 ; 0x1000a4
 
-Function1000a4: ; 1000a4
+DisableMobile: ; 1000a4
 	di
 	xor a
 	ld [hMobileReceive], a
@@ -110,12 +112,12 @@ Function1000a4: ; 1000a4
 
 Function1000ba: ; 1000ba
 .loop
-	; call [wcd22]:([wcd23][wcd24] + [wcd25])
+	; call [wcd22]:([wcd23][wcd24] + [wMobileCommsJumptableIndex])
 	ld hl, wcd23
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -202,7 +204,7 @@ Function100144: ; 100144
 	ret z
 	res 2, [hl]
 	res 6, [hl]
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	ret
 ; 100163
 
@@ -445,12 +447,12 @@ Function100301: ; 100301
 ; 100320
 
 Function100320: ; 100320
-	callba Function104099
+	callba Mobile_ReloadMapPart
 	ret
 ; 100327
 
 Function100327: ; 100327
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	ret
 ; 100327
 
@@ -984,67 +986,66 @@ MenuData2_100604: ; 100604
 	db "まつ@"
 ; 10060d
 
-Function10060d: ; 10060d
+Mobile_CommunicationStandby: ; 10060d
 	hlcoord 3, 10
-	ld b, $01
-	ld c, $0b
+	ld b, 1
+	ld c, 11
 	call Function3eea
-	ld de, String_100621
+	ld de, .String
 	hlcoord 4, 11
 	call PlaceString
 	ret
 ; 100621
 
-String_100621: ; 100621
+.String: ; 100621
 	db "つうしんたいきちゅう!@"
 ; 10062d
 
-Function10062d: ; 10062d
+AdvanceMobileInactivityTimerAndCheckExpired: ; 10062d
 	push bc
-	call Function10064e
+	call IncrementMobileInactivityTimerByCFrames
 	pop bc
-	ld a, [wcd44]
+	ld a, [wMobileInactivityTimerMinutes]
 	cp b
-	jr nc, .asm_10063a
+	jr nc, .timed_out
 	and a
 	ret
 
-.asm_10063a
+.timed_out
 	ld a, $fa
 	ld [wcd2b], a
 	scf
 	ret
 ; 100641
 
-Function100641: ; 100641
+StartMobileInactivityTimer: ; 100641
 	xor a
-	ld [wcd44], a
-	ld [wcd45], a
-	ld [wcd46], a
+	ld [wMobileInactivityTimerMinutes], a
+	ld [wMobileInactivityTimerSeconds], a
+	ld [wMobileInactivityTimerFrames], a
 	ret
 ; 10064c
 
-Function10064c: ; 10064c
+IncrementMobileInactivityTimerBy1Frame: ; 10064c
 	ld c, 1
-
-Function10064e: ; 10064e
-	ld hl, wcd46
+IncrementMobileInactivityTimerByCFrames: ; 10064e
+	ld hl, wMobileInactivityTimerFrames ; timer?
 	ld a, [hl]
 	add c
-	cp $3c
-	jr c, .asm_100658
+	cp 60
+	jr c, .seconds
 	xor a
 
-.asm_100658
+.seconds
 	ld [hld], a
 	ret c
 	ld a, [hl]
 	inc a
-	cp $3c
-	jr c, .asm_100661
+	cp 60
+	jr c, .minutes
 	xor a
 
-.asm_100661
+.minutes
 	ld [hld], a
 	ret c
 	inc [hl]
@@ -1166,9 +1167,9 @@ Function1006fd: ; 1006fd
 	ld hl, $a800
 	call GetSRAMBank
 	xor a
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	call CloseSRAM
 	ret
 ; 10070d
@@ -1266,35 +1267,35 @@ Function100772: ; 100772
 Function10079c: ; 10079c
 	ld a, [wcd21]
 	cp $01
-	jr nz, .asm_1007f4
+	jr nz, .dont_quit
 	ld hl, wcd2a
 	bit 5, [hl]
-	jr nz, .asm_1007f4
+	jr nz, .dont_quit
 	ld hl, wcd2a
 	bit 6, [hl]
-	jr nz, .asm_1007f4
+	jr nz, .dont_quit
 	ld a, [wcd6a]
 	add c
-	cp $3c
-	jr nc, .asm_1007be
+	cp 60
+	jr nc, .overflow
 	ld [wcd6a], a
 	and a
 	ret
 
-.asm_1007be
-	sub $3c
+.overflow
+	sub 60
 	ld [wcd6a], a
 	ld d, b
 	push de
 	call Function1007f6
 	pop de
-	jr c, .asm_1007e5
+	jr c, .quit
 	ld a, c
 	and a
-	jr nz, .asm_1007e5
+	jr nz, .quit
 	ld a, b
-	cp $0a
-	jr nc, .asm_1007e5
+	cp 10
+	jr nc, .quit
 	ld a, d
 	and a
 	ret z
@@ -1307,7 +1308,7 @@ Function10079c: ; 10079c
 	and a
 	ret
 
-.asm_1007e5
+.quit
 	call Function1008e0
 	ld hl, wcd2a
 	set 4, [hl]
@@ -1316,7 +1317,7 @@ Function10079c: ; 10079c
 	scf
 	ret
 
-.asm_1007f4
+.dont_quit
 	and a
 	ret
 ; 1007f6
@@ -1702,7 +1703,7 @@ _LinkBattleSendReceiveAction: ; 100a09
 
 .MobileBattle_SendReceiveAction: ; 100a87
 	call Function100acf
-	call Function100641
+	call StartMobileInactivityTimer
 	ld a, 0
 	ld [wcd27], a
 .asm_100a92
@@ -1712,7 +1713,7 @@ _LinkBattleSendReceiveAction: ; 100a09
 	ld c, $01
 	ld b, $03
 	push bc
-	call Function10062d
+	call AdvanceMobileInactivityTimerAndCheckExpired
 	pop bc
 	jr c, .asm_100ac7
 	ld b, $01
@@ -1821,7 +1822,7 @@ Function100b45: ; 100b45
 	call Mobile_SetOverworldDelay
 	callba MobileMenuJoypad
 	push bc
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	call Function100e2d
 	pop bc
 	jr c, .asm_100b6b
@@ -1882,7 +1883,7 @@ MobileMoveSelectionScreen: ; 100b9f
 	call Mobile_SetOverworldDelay
 	callba MobileMenuJoypad
 	push bc
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	call Function100e2d
 	pop bc
 	jr c, .b_button
@@ -2016,8 +2017,8 @@ Mobile_PartyMenuSelect: ; 100cb5
 	callba MobileMenuJoypad
 	push bc
 	callba PlaySpriteAnimations
-	callba Function10402d
-	call Function100dfd
+	callba HDMATransferTileMapToWRAMBank3
+	call MobileComms_CheckInactivityTimer
 	pop bc
 	jr c, .done
 	ld a, [wMenuJoypadFilter]
@@ -2070,8 +2071,8 @@ MobileBattleMonMenu: ; 100d22
 	callba MobileMenuJoypad
 	push bc
 	callba PlaySpriteAnimations
-	callba Function10402d
-	call Function100dfd
+	callba HDMATransferTileMapToWRAMBank3
+	call MobileComms_CheckInactivityTimer
 	pop bc
 	jr c, .asm_100d54
 	ld a, [wMenuJoypadFilter]
@@ -2178,7 +2179,7 @@ Mobile_SetOverworldDelay: ; 100dd2
 Function100dd8: ; 100dd8
 	ld c, $01
 	ld b, $03
-	callba Function10062d
+	callba AdvanceMobileInactivityTimerAndCheckExpired
 	jr c, .asm_100dfb
 	ld c, $3c
 	ld b, $01
@@ -2196,7 +2197,7 @@ Function100dd8: ; 100dd8
 	ret
 ; 100dfd
 
-Function100dfd: ; 100dfd
+MobileComms_CheckInactivityTimer: ; 100dfd
 	ld a, [OverworldDelay]
 	ld c, a
 	ld a, 30
@@ -2204,22 +2205,22 @@ Function100dfd: ; 100dfd
 	ld c, a
 	ld b, 3
 	push bc
-	callba Function10062d
+	callba AdvanceMobileInactivityTimerAndCheckExpired ; useless to farcall
 	pop bc
-	jr c, .asm_100e2b
+	jr c, .quit
 	ld b, 1
 	call Function10079c
-	jr c, .asm_100e2b
+	jr c, .quit
 	call Function1009f3
-	jr c, .asm_100e2b
-	callba Function10032e
+	jr c, .quit
+	callba Function10032e ; useless to farcall
 	ld a, [wcd2b]
 	and a
-	jr nz, .asm_100e2b
+	jr nz, .quit
 	xor a
 	ret
 
-.asm_100e2b
+.quit
 	scf
 	ret
 ; 100e2d
@@ -2232,7 +2233,7 @@ Function100e2d: ; 100e2d
 	ld c, a
 	ld b, 3
 	push bc
-	callba Function10062d
+	callba AdvanceMobileInactivityTimerAndCheckExpired
 	pop bc
 	jr c, .asm_100e61
 	ld b, 1
@@ -2641,53 +2642,55 @@ Function1010de: ; 1010de
 	ret
 ; 1010f2
 
-Function1010f2: ; 1010f2
+LoadSelectedPartiesForColosseum: ; 1010f2
 	xor a
 	ld hl, StringBuffer2
 	ld bc, 9
 	call ByteFill
-	ld hl, wdc5c
+	ld hl, wPlayerMonSelection
 	ld de, PartyCount
-	call Function101145
-	ld hl, wdc5c
+	call .CopyThreeSpecies
+	ld hl, wPlayerMonSelection
 	ld de, PartyMon1Species
-	call Function10117c
-	ld hl, wdc5c
+	call .CopyPartyStruct
+	ld hl, wPlayerMonSelection
 	ld de, PartyMonOT
-	call Function101181
-	ld hl, wdc5c
+	call .CopyName
+	ld hl, wPlayerMonSelection
 	ld de, PartyMonNicknames
-	call Function101181
-	ld hl, wcd75
+	call .CopyName
+	ld hl, wOTMonSelection
 	ld de, OTPartyCount
-	call Function101145
-	ld hl, wcd75
+	call .CopyThreeSpecies
+	ld hl, wOTMonSelection
 	ld de, OTPartyMon1Species
-	call Function10117c
-	ld hl, wcd75
+	call .CopyPartyStruct
+	ld hl, wOTMonSelection
 	ld de, OTPartyMonOT
-	call Function101181
-	ld hl, wcd75
+	call .CopyName
+	ld hl, wOTMonSelection
 	ld de, OTPartyMonNicknames
-	call Function101181
+	call .CopyName
 	ret
 ; 101145
 
-Function101145: ; 101145
+.CopyThreeSpecies: ; 101145
+; Load the 3 choices to the buffer
 	push de
 	ld bc, StringBuffer2 + 6
 	xor a
-.asm_10114a
+.party_loop
 	push af
-	call Function101168
+	call .GetNthSpecies
 	ld [bc], a
 	inc bc
 	pop af
 	inc a
-	cp $03
-	jr nz, .asm_10114a
+	cp 3
+	jr nz, .party_loop
 	pop de
-	ld a, $03
+; Copy the 3 choices to the party
+	ld a, 3
 	ld [de], a
 	inc de
 	ld hl, StringBuffer2 + 6
@@ -2698,7 +2701,9 @@ Function101145: ; 101145
 	ret
 ; 101168
 
-Function101168: ; 101168
+.GetNthSpecies: ; 101168
+; Preserves hl and de
+; Get the index of the Nth selection
 	push hl
 	add l
 	ld l, a
@@ -2707,6 +2712,7 @@ Function101168: ; 101168
 	ld h, a
 	ld a, [hl]
 	pop hl
+; Get the corresponding species
 	push de
 	inc de
 	add e
@@ -2719,34 +2725,38 @@ Function101168: ; 101168
 	ret
 ; 10117c
 
-Function10117c: ; 10117c
-	ld bc, $30
-	jr asm_101184
+.CopyPartyStruct: ; 10117c
+	ld bc, PARTYMON_STRUCT_LENGTH
+	jr .ContinueCopy
 
-Function101181: ; 101181
-	ld bc, 11
+.CopyName: ; 101181
+	ld bc, NAME_LENGTH
 
-asm_101184:
+.ContinueCopy:
+	; Copy, via wc608...
 	ld a, wc608 % $100
 	ld [StringBuffer2], a
 	ld a, wc608 / $100
 	ld [StringBuffer2 + 1], a
+	; ... bc bytes...
 	ld a, c
 	ld [StringBuffer2 + 2], a
 	ld a, b
 	ld [StringBuffer2 + 3], a
+	; ... to de...
 	ld a, e
 	ld [StringBuffer2 + 4], a
 	ld a, d
 	ld [StringBuffer2 + 5], a
-	ld a, $03
-.asm_1011a0
+	; ... 3 times.
+	ld a, 3
+.big_copy_loop
 	push af
 	ld a, [hli]
 	push hl
 	push af
-	call Function1011df
-	call Function1011e8
+	call .GetDestinationAddress
+	call .GetCopySize
 	pop af
 	call AddNTimes
 	ld a, [StringBuffer2]
@@ -2761,14 +2771,14 @@ asm_101184:
 	pop hl
 	pop af
 	dec a
-	jr nz, .asm_1011a0
-	call Function1011e8
+	jr nz, .big_copy_loop
+	call .GetCopySize
 	ld a, 3
 	ld hl, 0
 	call AddNTimes
 	ld b, h
 	ld c, l
-	call Function1011df
+	call .GetDestinationAddress
 	ld d, h
 	ld e, l
 	ld hl, wc608
@@ -2776,7 +2786,7 @@ asm_101184:
 	ret
 ; 1011df
 
-Function1011df: ; 1011df
+.GetDestinationAddress: ; 1011df
 	ld a, [StringBuffer2 + 4]
 	ld l, a
 	ld a, [StringBuffer2 + 5]
@@ -2784,7 +2794,7 @@ Function1011df: ; 1011df
 	ret
 ; 1011e8
 
-Function1011e8: ; 1011e8
+.GetCopySize: ; 1011e8
 	ld a, [StringBuffer2 + 2]
 	ld c, a
 	ld a, [StringBuffer2 + 3]
@@ -2889,146 +2899,144 @@ Function10127d: ; 10127d
 Function10127e: ; 10127e
 	ld a, [wdc5f]
 	and a
-	jr z, .asm_101290
-	cp $01
+	jr z, .zero
+	cp 1
 	ld c, $27
-	jr z, .asm_101292
-	cp $02
+	jr z, .load
+	cp 2
 	ld c, $37
-	jr z, .asm_101292
-
-.asm_101290
+	jr z, .load
+.zero
 	ld c, 0
-
-.asm_101292
+.load
 	ld a, c
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101297
 
 Jumptable_101297: ; 101297
-	dw Function101a97
-	dw Function101ab4
-	dw Function101475
-	dw Function101b0f
-	dw Function101438
-	dw Function101b2b
-	dw Function101b59
-	dw Function101475
-	dw Function101b70
-	dw Function101438
-	dw Function101b8f
-	dw Function101d7b
-	dw Function101d95
-	dw Function101475
-	dw Function101db2
-	dw Function101e4f
-	dw Function101475
-	dw Function101e64
-	dw Function101e4f
-	dw Function101475
-	dw Function101e64
-	dw Function101d95
-	dw Function101475
-	dw Function101db2
-	dw Function101dd0
-	dw Function101de3
-	dw Function101e39
-	dw Function101e09
-	dw Function101e4f
-	dw Function101475
-	dw Function101e64
-	dw Function101d95
-	dw Function101475
-	dw Function101db2
-	dw Function101e09
-	dw Function101e31
-	dw Function101bc8
-	dw Function101438
-	dw Function101be5
-	dw Function101ac6
-	dw Function101ab4
-	dw Function101475
-	dw Function101c11
-	dw Function1014f4
-	dw Function101cc8
-	dw Function1014e2
-	dw Function1014e2
-	dw Function101d10
-	dw Function101d2a
-	dw Function101d2a
-	dw Function101507
-	dw Function10156d
-	dw Function101557
-	dw Function10158a
-	dw Function101c42
-	dw Function101aed
-	dw Function101ab4
-	dw Function101475
-	dw Function101c2b
-	dw Function1014f4
-	dw Function101cdf
-	dw Function1014e2
-	dw Function1014e2
-	dw Function101d1e
-	dw Function101d2a
-	dw Function101d2a
-	dw Function101507
-	dw Function10156d
-	dw Function101544
-	dw Function10158a
-	dw Function101c42
-	dw Function101c50
-	dw Function1014ce
-	dw Function101cf6
-	dw Function101826
-	dw Function1017e4
-	dw Function1017f1
-	dw Function1018a8
-	dw Function1018d6
-	dw Function1017e4
-	dw Function1017f1
-	dw Function1018e1
-	dw Function1015df
-	dw Function10167d
-	dw Function10168a
-	dw Function10162a
-	dw Function1015be
-	dw Function10167d
-	dw Function10168a
-	dw Function10161f
-	dw Function10159d
-	dw Function10167d
-	dw Function10168a
-	dw Function101600
-	dw Function101d03
-	dw Function101d6b
-	dw Function10159d
-	dw Function1014ce
-	dw Function10168e
-	dw Function101600
-	dw Function101913
-	dw Function10194b
-	dw Function10196d
-	dw Function1017e4
-	dw Function1017f5
-	dw Function1019ab
-	dw Function101537
-	dw Function101571
-	dw Function101c92
-	dw Function10152a
-	dw Function101571
-	dw Function101a4f
-	dw Function101cbc
-	dw Function101c62
-	dw Function101537
-	dw Function101571
-	dw Function101c92
-	dw Function10152a
-	dw Function101571
-	dw Function101ca0
-	dw Function101475
-	dw Function101cbc
+	dw Function101a97                         ; 00
+	dw Function101ab4                         ; 01
+	dw Function101475                         ; 02
+	dw Function101b0f                         ; 03
+	dw Function101438                         ; 04
+	dw Function101b2b                         ; 05
+	dw Function101b59                         ; 06
+	dw Function101475                         ; 07
+	dw Function101b70                         ; 08
+	dw Function101438                         ; 09
+	dw Function101b8f                         ; 0a
+	dw Function101d7b                         ; 0b
+	dw Function101d95                         ; 0c
+	dw Function101475                         ; 0d
+	dw Function101db2                         ; 0e
+	dw Function101e4f                         ; 0f
+	dw Function101475                         ; 10
+	dw Function101e64                         ; 11
+	dw Function101e4f                         ; 12
+	dw Function101475                         ; 13
+	dw Function101e64                         ; 14
+	dw Function101d95                         ; 15
+	dw Function101475                         ; 16
+	dw Function101db2                         ; 17
+	dw Function101dd0                         ; 18
+	dw Function101de3                         ; 19
+	dw Function101e39                         ; 1a
+	dw Function101e09                         ; 1b
+	dw Function101e4f                         ; 1c
+	dw Function101475                         ; 1d
+	dw Function101e64                         ; 1e
+	dw Function101d95                         ; 1f
+	dw Function101475                         ; 20
+	dw Function101db2                         ; 21
+	dw Function101e09                         ; 22
+	dw Function101e31                         ; 23
+	dw Function101bc8                         ; 24
+	dw Function101438                         ; 25
+	dw Function101be5                         ; 26
+	dw Function101ac6                         ; 27
+	dw Function101ab4                         ; 28
+	dw Function101475                         ; 29
+	dw Function101c11                         ; 2a
+	dw Function1014f4                         ; 2b
+	dw Function101cc8                         ; 2c
+	dw Function1014e2                         ; 2d
+	dw Function1014e2                         ; 2e
+	dw Function101d10                         ; 2f
+	dw Function101d2a                         ; 30
+	dw Function101d2a                         ; 31
+	dw Function101507                         ; 32
+	dw Function10156d                         ; 33
+	dw Function101557                         ; 34
+	dw Function10158a                         ; 35
+	dw Function101c42                         ; 36
+	dw Function101aed                         ; 37
+	dw Function101ab4                         ; 38
+	dw Function101475                         ; 39
+	dw Function101c2b                         ; 3a
+	dw Function1014f4                         ; 3b
+	dw Function101cdf                         ; 3c
+	dw Function1014e2                         ; 3d
+	dw Function1014e2                         ; 3e
+	dw Function101d1e                         ; 3f
+	dw Function101d2a                         ; 40
+	dw Function101d2a                         ; 41
+	dw Function101507                         ; 42
+	dw Function10156d                         ; 43
+	dw Function101544                         ; 44
+	dw Function10158a                         ; 45
+	dw Function101c42                         ; 46
+	dw Function101c50                         ; 47
+	dw Function1014ce                         ; 48
+	dw Function101cf6                         ; 49
+	dw Function101826                         ; 4a
+	dw Function1017e4                         ; 4b
+	dw Function1017f1                         ; 4c
+	dw Function1018a8                         ; 4d
+	dw Function1018d6                         ; 4e
+	dw Function1017e4                         ; 4f
+	dw Function1017f1                         ; 50
+	dw Function1018e1                         ; 51
+	dw Function1015df                         ; 52
+	dw Function10167d                         ; 53
+	dw Function10168a                         ; 54
+	dw Function10162a                         ; 55
+	dw Function1015be                         ; 56
+	dw Function10167d                         ; 57
+	dw Function10168a                         ; 58
+	dw Function10161f                         ; 59
+	dw Function10159d                         ; 5a
+	dw Function10167d                         ; 5b
+	dw Function10168a                         ; 5c
+	dw Function101600                         ; 5d
+	dw Function101d03                         ; 5e
+	dw Function101d6b                         ; 5f
+	dw Function10159d                         ; 60
+	dw Function1014ce                         ; 61
+	dw Function10168e                         ; 62
+	dw Function101600                         ; 63
+	dw Function101913                         ; 64
+	dw Function10194b                         ; 65
+	dw _SelectMonsForMobileBattle             ; 66
+	dw Function1017e4                         ; 67
+	dw Function1017f5                         ; 68
+	dw _StartMobileBattle                     ; 69
+	dw Function101537                         ; 6a
+	dw Function101571                         ; 6b
+	dw Function101c92                         ; 6c
+	dw Function10152a                         ; 6d
+	dw Function101571                         ; 6e
+	dw Function101a4f                         ; 6f
+	dw Function101cbc                         ; 70
+	dw Function101c62                         ; 71
+	dw Function101537                         ; 72
+	dw Function101571                         ; 73
+	dw Function101c92                         ; 74
+	dw Function10152a                         ; 75
+	dw Function101571                         ; 76
+	dw Function101ca0                         ; 77
+	dw Function101475                         ; 78
+	dw Function101cbc                         ; 79
 ; 10138b
 
 Function10138b: ; 10138b
@@ -3074,7 +3082,7 @@ Function1013c0: ; 1013c0
 ; 1013d6
 
 Function1013d6: ; 1013d6
-	callba Function104000
+	callba HDMATransferAttrMapAndTileMapToWRAMBank3
 	ret
 ; 1013dd
 
@@ -3182,9 +3190,9 @@ Function101438: ; 101438
 	ret z
 	ld a, 0
 	ld [wcd26], a
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101457
 
@@ -3221,9 +3229,9 @@ Function101475: ; 101475
 	ret z
 	ld a, 0
 	ld [wcd26], a
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101494
 
@@ -3268,10 +3276,10 @@ Function1014b7: ; 1014b7
 
 Function1014ce: ; 1014ce
 	callba Function100720
-	callba Function100641
-	ld a, [wcd25]
+	callba StartMobileInactivityTimer
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 1014e2
 
@@ -3280,19 +3288,19 @@ Function1014e2: ; 1014e2
 	set 6, [hl]
 	ld a, 0
 	ld [wcd26], a
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 1014f4
 
 Function1014f4: ; 1014f4
-	callba Function100082
+	callba EnableMobile
 	ld hl, wcd29
 	set 6, [hl]
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101507
 
@@ -3302,57 +3310,57 @@ Function101507: ; 101507
 	ld bc, $40
 	ld a, $02
 	call Function3e32
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 10151d
 
 Function10151d: ; 10151d ; unreferenced
 	ld a, $34
 	call Function3e32
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 10152a
 
 Function10152a: ; 10152a
 	ld a, $36
 	call Function3e32
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101537
 
 Function101537: ; 101537
 	ld a, $0a
 	call Function3e32
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101544
 
 Function101544: ; 101544
-	callba Function100641
+	callba StartMobileInactivityTimer
 	ld a, $12
 	call Function3e32
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101557
 
 Function101557: ; 101557
-	callba Function100641
+	callba StartMobileInactivityTimer
 	ld hl, wcd53
 	ld a, $08
 	call Function3e32
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 10156d
 
@@ -3371,15 +3379,15 @@ Function101571: ; 101571
 	ret
 
 .asm_101582
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 10158a
 
 Function10158a: ; 10158a
-	callba Function10064c
-	ld a, [wcd44]
+	callba IncrementMobileInactivityTimerBy1Frame
+	ld a, [wMobileInactivityTimerMinutes]
 	cp $0a
 	jr c, Function10156d
 	ld a, $fb
@@ -3396,9 +3404,9 @@ Function10159d: ; 10159d
 	call Function10174c
 	ld a, 0
 	ld [wcd26], a
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 1015be
 
@@ -3411,9 +3419,9 @@ Function1015be: ; 1015be
 	call Function10174c
 	ld a, 0
 	ld [wcd26], a
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 1015df
 
@@ -3426,9 +3434,9 @@ Function1015df: ; 1015df
 	call Function10174c
 	ld a, 0
 	ld [wcd26], a
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101600
 
@@ -3440,25 +3448,25 @@ Function101600: ; 101600
 	call FarCopyWRAM
 	ld de, wc608
 	callba Function100ee6
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 10161f
 
 Function10161f: ; 10161f
 	call Function101649
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 10162a
 
 Function10162a: ; 10162a
 	call Function101663
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101635
 
@@ -3513,9 +3521,9 @@ Function101674: ; 101674 ; unreferenced
 Function10167d: ; 10167d
 	ld a, 0
 	ld [wcd26], a
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 10168a
 
@@ -3530,7 +3538,7 @@ Function10168e: ; 10168e
 	ret c
 	ld c, $01
 	ld b, $03
-	callba Function10062d
+	callba AdvanceMobileInactivityTimerAndCheckExpired
 	ret c
 	ld a, [wcd26]
 	ld hl, Jumptable_1016c3
@@ -3542,9 +3550,9 @@ Function10168e: ; 10168e
 	ret z
 	ld a, 0
 	ld [wcd26], a
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 1016c3
 
@@ -3746,9 +3754,9 @@ Function1017c7: ; 1017c7
 Function1017e4: ; 1017e4
 	ld a, 0
 	ld [wcd27], a
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 1017f1
 
@@ -3763,20 +3771,20 @@ Function1017f5: ; 1017f5
 	ret c
 	ld c, $01
 	ld b, $03
-	callba Function10062d
+	callba AdvanceMobileInactivityTimerAndCheckExpired
 	ret c
 	callba Function100382
 	ld a, [wcd27]
 	bit 7, a
-	jr nz, .asm_10181e
+	jr nz, .next
 	ld hl, wcd29
 	set 6, [hl]
 	ret
 
-.asm_10181e
-	ld a, [wcd25]
+.next
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101826
 
@@ -3792,9 +3800,9 @@ Function101826: ; 101826
 	ld hl, Unknown_10186f
 	ld de, wccb4
 	call Function1013f5
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 
 .asm_101844
@@ -3811,9 +3819,9 @@ Function101826: ; 101826
 .asm_10185b
 	ld de, wccb4
 	call Function1013f5
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 
 .asm_101869
@@ -3857,9 +3865,9 @@ Function1018a8: ; 1018a8
 	ld a, $06
 	call Function101406
 	jr c, .asm_1018ca
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 
 .asm_1018ca
@@ -3875,17 +3883,17 @@ Function1018a8: ; 1018a8
 
 Function1018d6: ; 1018d6
 	call Function1018ec
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 1018e1
 
 Function1018e1: ; 1018e1
 	call Function1018fb
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 1018ec
 
@@ -3938,17 +3946,17 @@ Function101913: ; 101913
 	cp $02
 	jr z, .asm_101945
 	ld a, $71
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 
 .asm_10193f
 	ld a, $66
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 
 .asm_101945
 	ld a, $65
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 10194b
 
@@ -3961,25 +3969,25 @@ Function10194b: ; 10194b
 	jr nz, .asm_101967
 	call Function1013c0
 	ld a, $71
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 
 .asm_101967
 	ld a, $60
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 10196d
 
-Function10196d: ; 10196d
+_SelectMonsForMobileBattle: ; 10196d
 	callba BlankScreen
-	callba Function10060d
+	callba Mobile_CommunicationStandby
 	ld hl, wcd29
 	set 5, [hl]
 	ld hl, wcd2a
 	set 6, [hl]
 	ld a, $06
 	ld [wccb4], a
-	ld hl, wdc5c
+	ld hl, wPlayerMonSelection
 	ld de, wccb5
 	ld bc, 3
 	call CopyBytes
@@ -3990,14 +3998,14 @@ Function10196d: ; 10196d
 	ld [wccb9], a
 	ld a, [hl]
 	ld [wccba], a
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 1019ab
 
-Function1019ab: ; 1019ab
-	call Function101a75
+_StartMobileBattle: ; 1019ab
+	call CopyOtherPlayersBattleMonSelection
 	callba Function100754
 	xor a
 	ld [wdc5f], a
@@ -4005,33 +4013,32 @@ Function1019ab: ; 1019ab
 	callba BlankScreen
 	call SpeechTextBox
 	callba Function100846
-	ld c, $78
+	ld c, 120
 	call DelayFrames
 	callba ClearTileMap
-	call Function1019ee
-	call Function101a21
+	call .CopyOTDetails
+	call StartMobileBattle
 	ld a, [wcd2b]
 	cp $fc
 	jr nz, .asm_1019e6
 	xor a
 	ld [wcd2b], a
-
 .asm_1019e6
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 1019ee
 
-Function1019ee: ; 1019ee
+.CopyOTDetails: ; 1019ee
 	ld a, [rSVBK]
 	push af
-	ld a, $05
+	ld a, 5
 	ld [rSVBK], a
 
 	ld bc, w5_dc0d
 	ld de, w5_dc11
-	callba Function4e929
+	callba GetMobileOTTrainerClass
 
 	pop af
 	ld [rSVBK], a
@@ -4044,29 +4051,29 @@ Function1019ee: ; 1019ee
 	call CopyBytes
 	ld a, [wcd2f]
 	and a
-	ld a, $02
-	jr z, .asm_101a1e
-	ld a, $01
-
-.asm_101a1e
+	ld a, 2
+	jr z, .got_link_player_number
+	ld a, 1
+.got_link_player_number
 	ld [hLinkPlayerNumber], a
 	ret
 ; 101a21
 
-Function101a21: ; 101a21
+StartMobileBattle: ; 101a21
+	; force stereo and fast text speed
 	ld hl, Options
 	ld a, [hl]
 	push af
-	and $20
-	or $01
+	and (1 << STEREO)
+	or 1 ; 1 frame per character i.e. fast text
 	ld [hl], a
-	ld a, $01
-	ld [wc2d7], a
+	ld a, 1
+	ld [wDisableTextAcceleration], a
 	callba BattleIntro
 	callba DoBattle
 	callba ShowLinkBattleParticipantsAfterEnd
 	xor a
-	ld [wc2d7], a
+	ld [wDisableTextAcceleration], a
 	ld a, $ff
 	ld [hLinkPlayerNumber], a
 	pop af
@@ -4075,29 +4082,29 @@ Function101a21: ; 101a21
 ; 101a4f
 
 Function101a4f: ; 101a4f
-	ld a, $01
-	ld [wc2d7], a
+	ld a, 1
+	ld [wDisableTextAcceleration], a
 	callba DetermineMobileBattleResult
 	xor a
-	ld [wc2d7], a
+	ld [wDisableTextAcceleration], a
 	callba CleanUpBattleRAM
 	callba LoadPokemonData
 	call Function1013c0
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101a75
 
-Function101a75: ; 101a75
+CopyOtherPlayersBattleMonSelection: ; 101a75
 	ld hl, wcc61
-	ld de, wcd75
+	ld de, wOTMonSelection
 	ld bc, 3
 	call CopyBytes
 	ld de, wcc64
 	callba Function100772
 	callba Function101050
-	callba Function1010f2
+	callba LoadSelectedPartiesForColosseum
 	ret
 ; 101a97
 
@@ -4109,9 +4116,9 @@ Function101a97: ; 101a97
 	call Function10142c
 	ld hl, wcd29
 	set 6, [hl]
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101ab4
 
@@ -4120,9 +4127,9 @@ Function101ab4: ; 101ab4
 	call Function101ee4
 	ld hl, wcd29
 	set 5, [hl]
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101ac6
 
@@ -4138,9 +4145,9 @@ Function101ac6: ; 101ac6
 	ld [wcd2f], a
 	ld de, wdc42
 	call Function102068
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101aed
 
@@ -4154,9 +4161,9 @@ Function101aed: ; 101aed
 	set 6, [hl]
 	ld a, $01
 	ld [wcd2f], a
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101b0f
 
@@ -4167,9 +4174,9 @@ Function101b0f: ; 101b0f
 	call Function101ee4
 	ld hl, wcd29
 	set 5, [hl]
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ld a, 0
 	ld [wcd26], a
 	ret
@@ -4193,9 +4200,9 @@ Function101b2b: ; 101b2b
 	ret
 
 .asm_101b51
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101b59
 
@@ -4206,9 +4213,9 @@ Function101b59: ; 101b59
 	call Function101ee4
 	ld hl, wcd29
 	set 5, [hl]
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101b70
 
@@ -4220,9 +4227,9 @@ Function101b70: ; 101b70
 	ld hl, wcd29
 	set 5, [hl]
 	call UpdateSprites
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ld a, 0
 	ld [wcd26], a
 	ret
@@ -4243,17 +4250,17 @@ Function101b8f: ; 101b8f
 	jr z, .asm_101bbc
 	ld a, $01
 	ld [wcd2f], a
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 
 .asm_101bbc
 	xor a
 	ld [wcd2f], a
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101bc8
 
@@ -4266,9 +4273,9 @@ Function101bc8: ; 101bc8
 	call Function1013dd
 	ld a, 0
 	ld [wcd26], a
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101be5
 
@@ -4286,7 +4293,7 @@ Function101be5: ; 101be5
 	cp $01
 	jr nz, .asm_101c0b
 	ld a, $2a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 
 .asm_101c0b
@@ -4303,9 +4310,9 @@ Function101c11: ; 101c11
 	call Function102048
 	ld hl, wcd29
 	set 5, [hl]
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101c2b
 
@@ -4316,9 +4323,9 @@ Function101c2b: ; 101c2b
 	call Function101ee4
 	ld hl, wcd29
 	set 5, [hl]
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101c42
 
@@ -4327,7 +4334,7 @@ Function101c42: ; 101c42
 	set 1, [hl]
 	call Function100665
 	ld a, $47
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101c50
 
@@ -4336,9 +4343,9 @@ Function101c50: ; 101c50
 	call Function101ee4
 	ld hl, wcd29
 	set 2, [hl]
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101c62
 
@@ -4356,9 +4363,9 @@ Function101c62: ; 101c62
 	call Function101ee4
 	ld hl, wcd29
 	set 5, [hl]
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ld a, 0
 	ld [wcd26], a
 	ret
@@ -4366,9 +4373,9 @@ Function101c62: ; 101c62
 
 Function101c92: ; 101c92
 	callba Function100675
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101ca0
 
@@ -4379,9 +4386,9 @@ Function101ca0: ; 101ca0
 	call Function101ee4
 	ld hl, wcd29
 	set 5, [hl]
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ld a, 0
 	ld [wcd26], a
 	ret
@@ -4406,9 +4413,9 @@ Function101cc8: ; 101cc8
 	ld [wc30d], a
 	ld hl, wcd29
 	set 4, [hl]
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101cdf
 
@@ -4419,44 +4426,44 @@ Function101cdf: ; 101cdf
 	ld [wc30d], a
 	ld hl, wcd29
 	set 4, [hl]
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101cf6
 
 Function101cf6: ; 101cf6
 	ld a, $0b
 	ld [wc314 + 1], a
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101d03
 
 Function101d03: ; 101d03
 	ld a, $0e
 	ld [wc314 + 1], a
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101d10
 
 Function101d10: ; 101d10
 	ld c, $01
 	call Function10142c
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	jr Function101d2a
 
 Function101d1e: ; 101d1e
 	ld c, $03
 	call Function10142c
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 
 Function101d2a: ; 101d2a
 	call Function101418
@@ -4471,9 +4478,9 @@ Function101d2a: ; 101d2a
 	ret z
 	ld a, 0
 	ld [wcd26], a
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101d4d
 
@@ -4506,7 +4513,7 @@ Function101d6b: ; 101d6b
 	ld hl, wcd29
 	res 4, [hl]
 	ld a, $64
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101d7b
 
@@ -4517,7 +4524,7 @@ Function101d7b: ; 101d7b
 	add hl, bc
 	ld c, [hl]
 	ld a, c
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101d8d
 
@@ -4532,9 +4539,9 @@ Function101d95: ; 101d95
 	call Function101ee4
 	ld hl, wcd29
 	set 5, [hl]
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ld a, 0
 	ld [wcd26], a
 	ret
@@ -4546,9 +4553,9 @@ Function101db2: ; 101db2
 	ld hl, wcd29
 	set 5, [hl]
 	jr c, .asm_101dca
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 
 .asm_101dca
@@ -4562,12 +4569,12 @@ Function101dd0: ; 101dd0
 	bit 1, [hl]
 	jr nz, .asm_101ddd
 	ld a, $19
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 
 .asm_101ddd
 	ld a, $1b
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101de3
 
@@ -4575,17 +4582,17 @@ Function101de3: ; 101de3
 	call Function101ecc
 	call Function101ead
 	jr c, .asm_101df3
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 
 .asm_101df3
 	call Function101e98
 	jr c, .asm_101e00
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 
 .asm_101e00
@@ -4598,9 +4605,9 @@ Function101de3: ; 101de3
 Function101e09: ; 101e09
 	call Function101ead
 	jr c, .asm_101e16
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 
 .asm_101e16
@@ -4610,9 +4617,9 @@ Function101e09: ; 101e09
 	call Function101ed3
 	pop af
 	jr c, .asm_101e2b
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 
 .asm_101e2b
@@ -4623,7 +4630,7 @@ Function101e09: ; 101e09
 
 Function101e31: ; 101e31
 	ld a, $3a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	jp Function101c2b
 ; 101e39
 
@@ -4634,7 +4641,7 @@ Function101e39: ; 101e39
 	pop af
 	jr c, .asm_101e49
 	ld a, $2a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 
 .asm_101e49
@@ -4647,9 +4654,9 @@ Function101e4f: ; 101e4f
 	ld e, $06
 	call Function101ee4
 	call Function1013d6
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ld a, 0
 	ld [wcd26], a
 	ret
@@ -4663,7 +4670,7 @@ Function101e64: ; 101e64
 	pop af
 	jr c, .asm_101e77
 	ld a, $24
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 
 .asm_101e77
@@ -4676,17 +4683,17 @@ Function101e64: ; 101e64
 
 Function101e82: ; 101e82 ; unreferenced
 	call Function101ecc
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101e8d
 
 Function101e8d: ; 101e8d ; unreferenced
 	call Function101ed3
-	ld a, [wcd25]
+	ld a, [wMobileCommsJumptableIndex]
 	inc a
-	ld [wcd25], a
+	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 101e98
 
@@ -5182,7 +5189,7 @@ Function10224b: ; 10224b
 .asm_10225e
 	res 1, [hl]
 	res 2, [hl]
-	callba Function104099
+	callba Mobile_ReloadMapPart
 	scf
 	ret
 ; 10226a
@@ -5269,7 +5276,7 @@ Function1022d0: ; 1022d0
 	sub c
 	ld c, a
 	ld b, $03
-	callba Function10062d
+	callba AdvanceMobileInactivityTimerAndCheckExpired
 	jr c, .asm_1022f3
 	xor a
 	ret
@@ -5444,7 +5451,7 @@ Function102416: ; 102416
 Function102423: ; 102423
 	call Function102921
 	ret nc
-	callba Function14a58
+	callba SaveAfterLinkTrade
 	callba MobileFn_1060af
 	callba BackupMobileEventIndex
 	ld hl, wcd4b
@@ -6145,7 +6152,7 @@ Function1028e8: ; 1028e8
 	ld hl, wcd4b
 	res 6, [hl]
 	ld [wcd50], a
-	callba Function100641
+	callba StartMobileInactivityTimer
 	ld a, 0
 	ld [wcd4a], a
 	ret
@@ -6549,7 +6556,7 @@ Function102bac: ; 102bac
 	ld [CurPartyMon], a
 	call LowVolume
 	call ClearSprites
-	callba _BattleStatsScreenInit
+	callba _MobileStatsScreenInit
 	ld a, [CurPartyMon]
 	inc a
 	ld [wMenuCursorY], a
@@ -6809,7 +6816,7 @@ Function102d9a: ; 102d9a
 	hlcoord 0, 0, AttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
-	callba Function104000
+	callba HDMATransferAttrMapAndTileMapToWRAMBank3
 	ret
 ; 102db7
 
@@ -7204,9 +7211,9 @@ Function1030cd: ; 1030cd
 	ld a, [wcf44]
 	ld l, a
 	ld h, 0
-rept 3
 	add hl, hl
-endr
+	add hl, hl
+	add hl, hl
 	ld bc, Unknown_103112
 	add hl, bc
 	ld b, $30
@@ -7390,7 +7397,7 @@ Function103309: ; 103309
 	ld [wd1ee], a
 	call Function1034be
 	call UpdateSprites
-	callba Function104000
+	callba HDMATransferAttrMapAndTileMapToWRAMBank3
 	ld a, $01
 	ld [wd1f0], a
 	call Function10339a
@@ -7404,7 +7411,7 @@ Function103362: ; 103362
 	call Function1033af
 	call Function10339a
 	call Function10342c
-	callba Function10402d
+	callba HDMATransferTileMapToWRAMBank3
 	ld a, [Buffer2]
 	bit 7, a
 	jr z, .asm_103362
@@ -7443,17 +7450,17 @@ Function10339a: ; 10339a
 Function1033af: ; 1033af
 	call GetJoypad
 	ld a, [hJoyPressed]
-	bit 5, a
+	bit D_LEFT_F, a
 	jr nz, .left
-	bit 4, a
+	bit D_RIGHT_F, a
 	jr nz, .right
-	bit 1, a
+	bit B_BUTTON_F, a
 	jr nz, .b
-	bit 0, a
+	bit A_BUTTON_F, a
 	jr nz, .a
-	bit 6, a
+	bit D_UP_F, a
 	jr nz, .up
-	bit 7, a
+	bit D_DOWN_F, a
 	jr nz, .down
 	ret
 
@@ -7461,7 +7468,7 @@ Function1033af: ; 1033af
 	ld a, [wd1f0]
 	dec a
 	ld [wd1f0], a
-	cp $01
+	cp 1
 	ret nc
 	ld a, [wd1ee]
 	ld [wd1f0], a
@@ -7475,7 +7482,7 @@ Function1033af: ; 1033af
 	ld a, [wd1ee]
 	cp c
 	ret nc
-	ld a, $01
+	ld a, 1
 	ld [wd1f0], a
 	ret
 
@@ -7487,8 +7494,8 @@ Function1033af: ; 1033af
 
 .a
 	ld a, [wd1f3]
-	cp $03
-	jr nz, .asm_103412
+	cp 3
+	jr nz, .a_return
 	ld de, SFX_TRANSACTION
 	call PlaySFX
 	ld hl, Buffer2
@@ -7499,9 +7506,9 @@ Function1033af: ; 1033af
 
 .left
 .right
-.asm_103412
+.a_return
 	ld a, [wd1f3]
-	cp $03
+	cp 3
 	ret z
 	ld de, SFX_PUSH_BUTTON
 	call PlaySFX
@@ -8101,7 +8108,7 @@ Function10383c: ; 10383c
 	ld a, $01
 	ld [wdc60], a
 	xor a
-	ld hl, wdc5c
+	ld hl, wPlayerMonSelection
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
@@ -8112,7 +8119,7 @@ Function10383c: ; 10383c
 	callba Function4a94e
 	jr c, .asm_103870
 	ld hl, wd002
-	ld de, wdc5c
+	ld de, wPlayerMonSelection
 	ld bc, 3
 	call CopyBytes
 	xor a

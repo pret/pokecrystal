@@ -1,28 +1,28 @@
-Function13a47: ; unreferenced
+CorrectErrorsInPlayerParty: ; unreferenced
 	ld hl, PartyCount
 	ld a, [hl]
 	and a
 	ret z
 
 	cp PARTY_LENGTH + 1
-	jr c, .asm_13a54
+	jr c, .party_length_okay
 	ld a, PARTY_LENGTH
 	ld [hl], a
-.asm_13a54
+.party_length_okay
 	inc hl
 
 	ld b, a
 	ld c, 0
-.asm_13a58
+.loop1
 	ld a, [hl]
 	and a
-	jr z, .asm_13a64
-	cp $fc
-	jr z, .asm_13a64
-	cp $fe
-	jr c, .asm_13a73
+	jr z, .invalid_species
+	cp NUM_POKEMON + 1
+	jr z, .invalid_species
+	cp EGG + 1
+	jr c, .next_species
 
-.asm_13a64
+.invalid_species
 	ld [hl], SMEARGLE
 	push hl
 	push bc
@@ -33,29 +33,29 @@ Function13a47: ; unreferenced
 	pop bc
 	pop hl
 
-.asm_13a73
+.next_species
 	inc hl
 	inc c
 	dec b
-	jr nz, .asm_13a58
+	jr nz, .loop1
 	ld [hl], $ff
 
 	ld hl, PartyMon1
 	ld a, [PartyCount]
 	ld d, a
 	ld e, 0
-.asm_13a83
+.loop2
 	push de
 	push hl
 	ld b, h
 	ld c, l
 	ld a, [hl]
 	and a
-	jr z, .asm_13a8f
+	jr z, .invalid_species_2
 	cp NUM_POKEMON + 1
-	jr c, .asm_13a9c
+	jr c, .check_level
 
-.asm_13a8f
+.invalid_species_2
 	ld [hl], SMEARGLE
 	push de
 	ld d, 0
@@ -65,7 +65,7 @@ Function13a47: ; unreferenced
 	ld a, SMEARGLE
 	ld [hl], a
 
-.asm_13a9c
+.check_level
 	ld [CurSpecies], a
 	call GetBaseData
 	ld hl, MON_LEVEL
@@ -73,14 +73,14 @@ Function13a47: ; unreferenced
 	ld a, [hl]
 	cp MIN_LEVEL
 	ld a, MIN_LEVEL
-	jr c, .asm_13ab4
+	jr c, .invalid_level
 	ld a, [hl]
 	cp MAX_LEVEL
-	jr c, .asm_13ab5
+	jr c, .load_level
 	ld a, MAX_LEVEL
-.asm_13ab4
+.invalid_level
 	ld [hl], a
-.asm_13ab5
+.load_level
 	ld [CurPartyLevel], a
 
 	ld hl, MON_MAXHP
@@ -97,20 +97,20 @@ Function13a47: ; unreferenced
 	pop de
 	inc e
 	dec d
-	jr nz, .asm_13a83
+	jr nz, .loop2
 
 	ld de, PartyMonNicknames
 	ld a, [PartyCount]
 	ld b, a
 	ld c, 0
-.asm_13adc
+.loop3
 	push bc
-	call Function13b71
+	call .GetLengthOfStringWith6CharCap
 	push de
 	callba CheckStringForErrors
 	pop hl
 	pop bc
-	jr nc, .asm_13b0e
+	jr nc, .valid_nickname
 
 	push bc
 	push hl
@@ -122,84 +122,84 @@ Function13a47: ; unreferenced
 	ld a, [hl]
 	cp EGG
 	ld hl, .TAMAGO
-	jr z, .asm_13b06
+	jr z, .got_nickname
 	ld [wd265], a
 	call GetPokemonName
 	ld hl, StringBuffer1
-.asm_13b06
+.got_nickname
 	pop de
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	pop bc
 
-.asm_13b0e
+.valid_nickname
 	inc c
 	dec b
-	jr nz, .asm_13adc
+	jr nz, .loop3
 
 	ld de, PartyMonOT
 	ld a, [PartyCount]
 	ld b, a
 	ld c, 0
-.asm_13b1b
+.loop4
 	push bc
-	call Function13b71
+	call .GetLengthOfStringWith6CharCap
 	push de
 	callba CheckStringForErrors
 	pop hl
-	jr nc, .asm_13b34
+	jr nc, .valid_ot_name
 	ld d, h
 	ld e, l
 	ld hl, PlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
-.asm_13b34
+.valid_ot_name
 	pop bc
 	inc c
 	dec b
-	jr nz, .asm_13b1b
+	jr nz, .loop4
 
 	ld hl, PartyMon1Moves
 	ld a, [PartyCount]
 	ld b, a
-.asm_13b40
+.loop5
 	push hl
 	ld c, NUM_MOVES
 	ld a, [hl]
 	and a
-	jr z, .asm_13b4b
+	jr z, .invalid_move
 	cp NUM_ATTACKS + 1
-	jr c, .asm_13b4d
-.asm_13b4b
+	jr c, .moves_loop
+.invalid_move
 	ld [hl], POUND
 
-.asm_13b4d
+.moves_loop
 	ld a, [hl]
 	and a
-	jr z, .asm_13b55
+	jr z, .fill_invalid_moves
 	cp NUM_ATTACKS + 1
-	jr c, .asm_13b5c
+	jr c, .next_move
 
-.asm_13b55
+.fill_invalid_moves
 	xor a
 	ld [hli], a
 	dec c
-	jr nz, .asm_13b55
-	jr .asm_13b60
+	jr nz, .fill_invalid_moves
+	jr .next_pokemon
 
-.asm_13b5c
+.next_move
 	inc hl
 	dec c
-	jr nz, .asm_13b4d
+	jr nz, .moves_loop
 
-.asm_13b60
+.next_pokemon
 	pop hl
 	push bc
 	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .asm_13b40
+	jr nz, .loop5
 	ret
 ; 13b6b
 
@@ -207,23 +207,22 @@ Function13a47: ; unreferenced
 	db "タマゴ@@@"
 ; 13b71
 
-Function13b71: ; 13b71
+.GetLengthOfStringWith6CharCap: ; 13b71
 	push de
 	ld c, 1
 	ld b, 6
-.loop
+.search_loop
 	ld a, [de]
 	cp "@"
 	jr z, .done
 	inc de
 	inc c
 	dec b
-	jr nz, .loop
+	jr nz, .search_loop
 	dec c
 	dec de
 	ld a, "@"
 	ld [de], a
-
 .done
 	pop de
 	ret

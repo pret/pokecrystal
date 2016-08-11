@@ -367,204 +367,204 @@ TeamRocketBaseB2FHiddenFullHeal:
 
 
 MovementData_0x6d212:
-	step_right
-	step_right
-	step_right
-	step_right
-	step_right
-	step_right
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
 	step_end
 
 MovementData_0x6d219:
-	step_right
-	step_right
-	step_right
-	step_right
-	step_right
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
 	step_end
 
 MovementData_0x6d21f:
-	step_down
-	step_down
-	step_down
-	turn_head_right
+	step DOWN
+	step DOWN
+	step DOWN
+	turn_head RIGHT
 	step_end
 
 MovementData_0x6d224:
-	big_step_left
-	big_step_left
-	big_step_up
-	big_step_up
-	big_step_up
-	big_step_left
-	big_step_left
-	big_step_left
-	big_step_left
-	turn_head_down
+	big_step LEFT
+	big_step LEFT
+	big_step UP
+	big_step UP
+	big_step UP
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	turn_head DOWN
 	step_end
 
 MovementData_0x6d22f:
-	big_step_left
-	big_step_left
-	big_step_up
-	big_step_up
-	big_step_left
-	big_step_left
+	big_step LEFT
+	big_step LEFT
+	big_step UP
+	big_step UP
+	big_step LEFT
+	big_step LEFT
 	step_end
 
 MovementData_0x6d236:
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_right
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
 	step_end
 
 MovementData_0x6d23b:
 	fix_facing
 	db $39 ; movement
-	jump_step_right
+	jump_step RIGHT
 	db $38 ; movement
 	remove_fixed_facing
 	step_end
 
 MovementData_0x6d241:
-	slow_step_down
-	turn_head_left
+	slow_step DOWN
+	turn_head LEFT
 	step_end
 
 MovementData_0x6d244:
-	step_right
-	step_right
-	step_right
+	step RIGHT
+	step RIGHT
+	step RIGHT
 	step_end
 
 MovementData_0x6d248:
-	big_step_left
+	big_step LEFT
 	step_end
 
 MovementData_0x6d24a:
-	big_step_left
+	big_step LEFT
 	step_end
 
 MovementData_0x6d24c:
-	big_step_left
-	big_step_up
-	turn_head_left
+	big_step LEFT
+	big_step UP
+	turn_head LEFT
 	step_end
 
 MovementData_0x6d250:
-	step_right
-	step_right
-	turn_head_down
+	step RIGHT
+	step RIGHT
+	turn_head DOWN
 	step_end
 
 MovementData_0x6d254:
-	step_up
-	step_up
-	step_up
+	step UP
+	step UP
+	step UP
 	step_end
 
 MovementData_0x6d258:
-	step_sleep_8
-	step_left
-	step_left
-	turn_head_up
-	step_sleep_8
-	step_right
-	step_right
-	step_right
-	step_right
-	turn_head_up
-	step_sleep_8
-	step_left
-	step_left
-	turn_head_down
+	step_sleep 8
+	step LEFT
+	step LEFT
+	turn_head UP
+	step_sleep 8
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	turn_head UP
+	step_sleep 8
+	step LEFT
+	step LEFT
+	turn_head DOWN
 	step_end
 
 MovementData_0x6d267:
-	step_right
-	step_right
-	step_right
-	step_right
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
 	step_end
 
 MovementData_0x6d271:
-	step_up
-	step_left
-	step_left
-	step_left
-	step_left
-	turn_head_up
+	step UP
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	turn_head UP
 	step_end
 
 MovementData_0x6d278:
-	step_left
+	step LEFT
 	step_end
 
 MovementData_0x6d27a:
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_left
-	step_left
-	step_left
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step LEFT
+	step LEFT
+	step LEFT
 	step_end
 
 MovementData_0x6d283:
-	step_down
-	step_down
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
+	step DOWN
+	step DOWN
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
 	step_end
 
 MovementData_0x6d28c:
-	step_right
-	step_right
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_right
-	step_right
-	step_right
-	step_right
+	step RIGHT
+	step RIGHT
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
 	step_end
 
 MovementData_0x6d299:
-	step_right
-	step_right
-	step_down
-	step_down
-	step_down
-	step_down
-	step_right
-	step_right
-	step_right
-	step_right
+	step RIGHT
+	step RIGHT
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
 	step_end
 
 MovementData_0x6d2a4:
-	step_right
-	step_right
-	step_down
-	step_down
-	step_right
-	step_right
-	step_right
-	step_right
+	step RIGHT
+	step RIGHT
+	step DOWN
+	step DOWN
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
 	step_end
 
 UnknownText_0x6d2ad:

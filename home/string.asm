@@ -8,8 +8,6 @@ InitName:: ; 2ef9
 ; Intended for names, so this function is limited to ten characters.
 	push hl
 	ld c, 10
-; 2efc
-
 _InitString:: ; 2efc
 ; if the string pointed to by hl is empty (defined as "zero or more spaces
 ; followed by a null"), then initialize it to the string pointed to by de.
@@ -31,6 +29,7 @@ _InitString:: ; 2efc
 	inc c
 	call CopyBytes
 	ret
+
 .notblank
 	pop bc
 	pop hl

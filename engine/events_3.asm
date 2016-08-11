@@ -45,7 +45,7 @@ ReturnFromMapSetupScript:: ; b8000
 	ld [wLandmarkSignTimer], a
 	call LoadMapNameSignGFX
 	call InitMapNameFrame
-	callba Function104303
+	callba HDMATransfer_OnlyTopFourRows
 	ret
 
 .dont_do_map_sign
@@ -55,7 +55,7 @@ ReturnFromMapSetupScript:: ; b8000
 	ld [rWY], a
 	ld [hWY], a
 	xor a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	ret
 ; b8064
 
@@ -65,7 +65,7 @@ ReturnFromMapSetupScript:: ; b8000
 	ld a, [wPreviousLandmark]
 	cp c
 	ret z
-	cp $0
+	cp SPECIAL_MAP
 	ret
 ; b8070
 
@@ -113,7 +113,7 @@ PlaceMapNameSign:: ; b8098 (2e:4098)
 	jr nz, .skip2
 	call InitMapNameFrame
 	call PlaceMapNameCenterAlign
-	callba Function104303
+	callba HDMATransfer_OnlyTopFourRows
 .skip2
 	ld a, $80
 	ld a, $70
@@ -126,7 +126,7 @@ PlaceMapNameSign:: ; b8098 (2e:4098)
 	ld [rWY], a
 	ld [hWY], a
 	xor a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	ret
 
 
@@ -184,12 +184,10 @@ PlaceMapNameCenterAlign: ; b80e1 (2e:40e1)
 InitMapSignAttrMap: ; b8115
 	ld de, AttrMap - TileMap
 	add hl, de
-rept 2
 	inc b
-endr
-rept 2
+	inc b
 	inc c
-endr
+	inc c
 	ld a, $87
 .loop
 	push bc
@@ -261,15 +259,13 @@ PlaceMapNameFrame: ; b812f
 	jr .enterloop
 
 .continueloop
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 
 .enterloop
 	inc a
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	dec a
 	dec c
 	jr nz, .continueloop
@@ -280,13 +276,13 @@ CheckForHiddenItems: ; b8172
 ; Checks to see if there are hidden items on the screen that have not yet been found.  If it finds one, returns carry.
 	call GetMapScriptHeaderBank
 	ld [Buffer1], a
-; Get the coordinate of the bottom right corner of the screen, and load it in wd1ec/wd1ed.
+; Get the coordinate of the bottom right corner of the screen, and load it in Buffer3/Buffer4.
 	ld a, [XCoord]
 	add SCREEN_WIDTH / 4
-	ld [wd1ed], a
+	ld [Buffer4], a
 	ld a, [YCoord]
 	add SCREEN_HEIGHT / 4
-	ld [wd1ec], a
+	ld [Buffer3], a
 ; Get the pointer for the first signpost header in the map...
 	ld hl, wCurrentMapSignpostHeaderPointer
 	ld a, [hli]
@@ -305,7 +301,7 @@ CheckForHiddenItems: ; b8172
 	call .GetFarByte
 	ld e, a
 ; Is the Y coordinate of the signpost on the screen?  If not, go to the next signpost.
-	ld a, [wd1ec]
+	ld a, [Buffer3]
 	sub e
 	jr c, .next
 	cp SCREEN_HEIGHT / 2
@@ -313,7 +309,7 @@ CheckForHiddenItems: ; b8172
 ; Is the X coordinate of the signpost on the screen?  If not, go to the next signpost.
 	call .GetFarByte
 	ld d, a
-	ld a, [wd1ed]
+	ld a, [Buffer4]
 	sub d
 	jr c, .next
 	cp SCREEN_WIDTH / 2
@@ -522,9 +518,8 @@ GetTreeMons: ; b82d2
 	ld e, a
 	ld d, 0
 	ld hl, TreeMons
-rept 2
 	add hl, de
-endr
+	add hl, de
 
 	ld a, [hli]
 	ld h, [hl]
@@ -709,9 +704,9 @@ SelectTreeMon: ; b841f
 .loop
 	sub [hl]
 	jr c, .ok
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	jr .loop
 
 .ok

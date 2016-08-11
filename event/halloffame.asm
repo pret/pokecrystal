@@ -3,7 +3,7 @@ HallOfFame:: ; 0x8640e
 	ld a, [StatusFlags]
 	push af
 	ld a, 1
-	ld [wc2cd], a
+	ld [wGameLogicPaused], a
 	call DisableSpriteUpdates
 	ld a, SPAWN_LANCE
 	ld [wSpawnAfterChampion], a
@@ -25,7 +25,7 @@ HallOfFame:: ; 0x8640e
 	callba AddHallOfFameEntry
 
 	xor a
-	ld [wc2cd], a
+	ld [wGameLogicPaused], a
 	call AnimateHallOfFame
 	pop af
 	ld b, a
@@ -44,7 +44,7 @@ RedCredits:: ; 86455
 	xor a
 	ld [VramState], a
 	ld [hMapAnims], a
-	callba Function4e8c2
+	callba InitDisplayForRedCredits
 	ld c, 8
 	call DelayFrames
 	call DisableSpriteUpdates
@@ -67,7 +67,7 @@ HallOfFame_FadeOutMusic: ; 8648e
 	xor a
 	ld [VramState], a
 	ld [hMapAnims], a
-	callba Function4e881
+	callba InitDisplayForHallOfFame
 	ld c, 100
 	jp DelayFrames
 ; 864b4
@@ -230,14 +230,13 @@ GetHallOfFameParty: ; 8653f
 AnimateHOFMonEntrance: ; 865b5
 	push hl
 	call ClearBGPalettes
-	callba Function4e906
+	callba ResetDisplayBetweenHallOfFameMons
 	pop hl
 	ld a, [hli]
 	ld [TempMonSpecies], a
 	ld [CurPartySpecies], a
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hli]
 	ld [TempMonDVs], a
 	ld a, [hli]
@@ -262,7 +261,7 @@ endr
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
-	ld b, SCGB_1A
+	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	call SetPalettes
 	call HOF_SlideBackpic
@@ -298,9 +297,8 @@ HOF_SlideFrontpic:
 	ld a, [hSCX]
 	and a
 	ret z
-rept 2
 	dec a
-endr
+	dec a
 	ld [hSCX], a
 	call DelayFrame
 	jr .frontpicloop
@@ -398,7 +396,7 @@ _HallOfFamePC: ; 86650
 	ld de, .EmptyString
 	call PlaceString
 	call WaitBGMap
-	ld b, SCGB_1A
+	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	call SetPalettes
 	decoord 6, 5
@@ -497,7 +495,7 @@ DisplayHOFMon: ; 86748
 	call GetBasePokemonName
 	hlcoord 7, 13
 	call PlaceString
-	ld a, BREEDMON
+	ld a, TEMPMON
 	ld [MonType], a
 	callba GetGender
 	ld a, " "
@@ -555,7 +553,7 @@ HOF_AnimatePlayerPic: ; 86810
 	xor a
 	ld [hBGMapMode], a
 	ld [CurPartySpecies], a
-	ld b, SCGB_1A
+	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	call SetPalettes
 	call HOF_SlideBackpic

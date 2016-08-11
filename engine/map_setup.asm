@@ -204,9 +204,9 @@ ReadMapSetupScript: ; 1541d
 	ld c, a
 	ld b, 0
 	ld hl, MapSetupCommands
-rept 3
 	add hl, bc
-endr
+	add hl, bc
+	add hl, bc
 
 	; bank
 	ld b, [hl]
@@ -258,8 +258,8 @@ MapSetupCommands: ; 15440
 	dba LoadMapPalettes ; 11
 	dba LoadWildMonData ; 12
 	dba RefreshMapSprites ; 13
-	dba RunCallback_05_03 ; 14
-	dba RunCallback_03 ; 15
+	dba HandleNewMap ; 14
+	dba InitCommandQueue ; 15
 	dba LoadObjectsRunCallback_02 ; 16
 	dba LoadSpawnPoint ; 17
 	dba EnterMapConnection ; 18
@@ -289,7 +289,7 @@ MapSetupCommands: ; 15440
 
 DontScrollText: ; 154ca
 	xor a
-	ld [wc2d7], a
+	ld [wDisableTextAcceleration], a
 	ret
 ; 154cf
 

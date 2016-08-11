@@ -8,25 +8,24 @@ MountMoonSquare_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x77092, 0
+	dw .Trigger0, 0
 
 .MapCallbacks:
 	db 2
 
 	; callbacks
 
-	dbw MAPCALLBACK_NEWMAP, UnknownScript_0x77093
+	dbw MAPCALLBACK_NEWMAP, .DisappearMoonStone
+	dbw MAPCALLBACK_OBJECTS, .DisappearRock
 
-	dbw MAPCALLBACK_OBJECTS, UnknownScript_0x77097
-
-UnknownScript_0x77092:
+.Trigger0:
 	end
 
-UnknownScript_0x77093:
+.DisappearMoonStone:
 	setevent EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE
 	return
 
-UnknownScript_0x77097:
+.DisappearRock:
 	disappear MOUNTMOONSQUARE_ROCK
 	return
 
@@ -39,7 +38,7 @@ ClefairyDance:
 	iffalse .NoDancing
 	appear MOUNTMOONSQUARE_FAIRY1
 	appear MOUNTMOONSQUARE_FAIRY2
-	applymovement PLAYER, MovementData_0x77121
+	applymovement PLAYER, PlayerWalksUpToDancingClefairies
 	pause 15
 	appear MOUNTMOONSQUARE_ROCK
 	spriteface MOUNTMOONSQUARE_FAIRY1, RIGHT
@@ -48,19 +47,19 @@ ClefairyDance:
 	pause 30
 	follow MOUNTMOONSQUARE_FAIRY1, MOUNTMOONSQUARE_FAIRY2
 	cry CLEFAIRY
-	applymovement MOUNTMOONSQUARE_FAIRY1, MovementData_0x77123
+	applymovement MOUNTMOONSQUARE_FAIRY1, ClefairyDanceStep1
 	cry CLEFAIRY
-	applymovement MOUNTMOONSQUARE_FAIRY1, MovementData_0x77126
+	applymovement MOUNTMOONSQUARE_FAIRY1, ClefairyDanceStep2
 	cry CLEFAIRY
-	applymovement MOUNTMOONSQUARE_FAIRY1, MovementData_0x77128
+	applymovement MOUNTMOONSQUARE_FAIRY1, ClefairyDanceStep3
 	cry CLEFAIRY
-	applymovement MOUNTMOONSQUARE_FAIRY1, MovementData_0x7712b
+	applymovement MOUNTMOONSQUARE_FAIRY1, ClefairyDanceStep4
 	cry CLEFAIRY
-	applymovement MOUNTMOONSQUARE_FAIRY1, MovementData_0x7712d
+	applymovement MOUNTMOONSQUARE_FAIRY1, ClefairyDanceStep5
 	stopfollow
-	applymovement MOUNTMOONSQUARE_FAIRY2, MovementData_0x77130
+	applymovement MOUNTMOONSQUARE_FAIRY2, ClefairyDanceStep6
 	follow MOUNTMOONSQUARE_FAIRY1, MOUNTMOONSQUARE_FAIRY2
-	applymovement MOUNTMOONSQUARE_FAIRY1, MovementData_0x77132
+	applymovement MOUNTMOONSQUARE_FAIRY1, ClefairyDanceStep7
 	stopfollow
 	spriteface MOUNTMOONSQUARE_FAIRY1, DOWN
 	pause 10
@@ -69,7 +68,7 @@ ClefairyDance:
 	cry CLEFAIRY
 	pause 15
 	follow MOUNTMOONSQUARE_FAIRY1, MOUNTMOONSQUARE_FAIRY2
-	applymovement MOUNTMOONSQUARE_FAIRY1, MovementData_0x77134
+	applymovement MOUNTMOONSQUARE_FAIRY1, ClefairyFleeMovement
 	disappear MOUNTMOONSQUARE_FAIRY1
 	disappear MOUNTMOONSQUARE_FAIRY2
 	stopfollow
@@ -90,48 +89,48 @@ DontLitterSign:
 MtMoonSquareRock:
 	jumpstd smashrock
 
-MovementData_0x77121:
-	step_up
+PlayerWalksUpToDancingClefairies:
+	step UP
 	step_end
 
-MovementData_0x77123:
-	slow_step_down
-	slow_jump_step_down
+ClefairyDanceStep1:
+	slow_step DOWN
+	slow_jump_step DOWN
 	step_end
 
-MovementData_0x77126:
-	slow_jump_step_right
+ClefairyDanceStep2:
+	slow_jump_step RIGHT
 	step_end
 
-MovementData_0x77128:
-	slow_step_up
-	slow_jump_step_up
+ClefairyDanceStep3:
+	slow_step UP
+	slow_jump_step UP
 	step_end
 
-MovementData_0x7712b:
-	slow_jump_step_left
+ClefairyDanceStep4:
+	slow_jump_step LEFT
 	step_end
 
-MovementData_0x7712d:
-	slow_step_down
-	slow_jump_step_down
+ClefairyDanceStep5:
+	slow_step DOWN
+	slow_jump_step DOWN
 	step_end
 
-MovementData_0x77130:
-	slow_step_down
+ClefairyDanceStep6:
+	slow_step DOWN
 	step_end
 
-MovementData_0x77132:
-	slow_step_right
+ClefairyDanceStep7:
+	slow_step RIGHT
 	step_end
 
-MovementData_0x77134:
-	step_right
-	step_right
-	step_right
-	jump_step_right
-	step_right
-	step_right
+ClefairyFleeMovement:
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	jump_step RIGHT
+	step RIGHT
+	step RIGHT
 	step_end
 
 DontLitterSignText:

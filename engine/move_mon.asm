@@ -266,15 +266,15 @@ endr
 	ld [de], a
 	inc de
 	ld hl, EnemyMonStatus
-    ; Copy EnemyMonStatus
+	; Copy EnemyMonStatus
 	ld a, [hli]
 	ld [de], a
 	inc de
-    ; Copy EnemyMonUnused
+	; Copy EnemyMonUnused
 	ld a, [hli]
 	ld [de], a
 	inc de
-    ; Copy EnemyMonHP
+	; Copy EnemyMonHP
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -452,8 +452,8 @@ SentGetPkmnIntoFromBox: ; db3f
 	ld hl, wBreedMon1Species
 	jr z, .breedmon
 
-    ; we want to sent a Pkmn into the Box
-    ; so check if there's enough space
+	; we want to sent a Pkmn into the Box
+	; so check if there's enough space
 	ld hl, sBoxCount
 	ld a, [hl]
 	cp MONS_PER_BOX
@@ -654,7 +654,7 @@ SentGetPkmnIntoFromBox: ; db3f
 	ld a, [sBoxCount]
 	dec a
 	ld b, a
-	call Functiondcb6
+	call RestorePPofDepositedPokemon
 .CloseSRAM_And_ClearCarryFlag:
 	call CloseSRAM
 	and a
@@ -667,7 +667,7 @@ CloseSRAM_And_SetCarryFlag: ; dcb1
 	ret
 ; dcb6
 
-Functiondcb6: ; dcb6
+RestorePPofDepositedPokemon: ; dcb6
 	ld a, b
 	ld hl, sBoxMons
 	ld bc, BOXMON_STRUCT_LENGTH
@@ -696,10 +696,10 @@ Functiondcb6: ; dcb6
 	ld a, [MonType]
 	push af
 	ld b, 0
-.asm_dcec
+.loop
 	ld a, [hli]
 	and a
-	jr z, .asm_dd18
+	jr z, .done
 	ld [TempMonMoves], a
 	ld a, BOXMON
 	ld [MonType], a
@@ -722,9 +722,9 @@ Functiondcb6: ; dcb6
 	inc b
 	ld a, b
 	cp NUM_MOVES
-	jr c, .asm_dcec
+	jr c, .loop
 
-.asm_dd18
+.done
 	pop af
 	ld [MonType], a
 	pop af
@@ -973,7 +973,7 @@ SentPkmnIntoBox: ; de6e
 	ld [de], a
 	inc de
 
-    ; Set all 5 Experience Values to 0
+	; Set all 5 Experience Values to 0
 	xor a
 	ld b, 2 * 5
 .loop2
@@ -1025,7 +1025,7 @@ SentPkmnIntoBox: ; de6e
 	call CopyBytes
 
 	ld b, 0
-	call Functiondcb6
+	call RestorePPofDepositedPokemon
 
 	call CloseSRAM
 	scf
@@ -1459,9 +1459,9 @@ CalcPkmnStatC: ; e17b
 	ld a, [hl]
 	swap a
 	and $1
-rept 3
 	add a
-endr
+	add a
+	add a
 	ld b, a
 	ld a, [hli]
 	and $1

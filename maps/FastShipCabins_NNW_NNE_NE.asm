@@ -118,19 +118,19 @@ FastShipCabins_NNW_NNE_NETrashcan:
 	jumpstd trashcan
 
 MovementData_0x75637:
-	step_left
-	step_left
-	step_up
-	step_up
+	step LEFT
+	step LEFT
+	step UP
+	step UP
 	step_end
 
 MovementData_0x7563c:
-	step_down
-	step_left
-	step_left
-	step_up
-	step_up
-	step_up
+	step DOWN
+	step LEFT
+	step LEFT
+	step UP
+	step UP
+	step UP
 	step_end
 
 CooltrainermSeanSeenText:

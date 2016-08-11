@@ -48,17 +48,20 @@ GetClock:: ; 5b7
 
 	ld [hl], RTC_S
 	ld a, [de]
-	and $3f
+	maskbits 60
+	and x
 	ld [hRTCSeconds], a
 
 	ld [hl], RTC_M
 	ld a, [de]
-	and $3f
+	maskbits 60
+	and x
 	ld [hRTCMinutes], a
 
 	ld [hl], RTC_H
 	ld a, [de]
-	and $1f
+	maskbits 24
+	and x
 	ld [hRTCHours], a
 
 	ld [hl], RTC_DL

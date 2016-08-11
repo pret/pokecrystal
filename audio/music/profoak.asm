@@ -34,10 +34,10 @@ Music_ProfOak_branch_f4e22: ; f4e22
 	callchannel Music_ProfOak_branch_f4e58
 	callchannel Music_ProfOak_branch_f4e6c
 	callchannel Music_ProfOak_branch_f4e6c
-	forceoctave $2
+	pitchoffset 0, D_
 	callchannel Music_ProfOak_branch_f4e58
 	callchannel Music_ProfOak_branch_f4e58
-	forceoctave $0
+	pitchoffset 0, C_
 	callchannel Music_ProfOak_branch_f4e6c
 	callchannel Music_ProfOak_branch_f4e6c
 	loopchannel 0, Music_ProfOak_branch_f4e22
@@ -241,10 +241,10 @@ Music_ProfOak_branch_f4f1d: ; f4f1d
 	callchannel Music_ProfOak_branch_f4f5a
 	callchannel Music_ProfOak_branch_f4f69
 	callchannel Music_ProfOak_branch_f4f69
-	forceoctave $2
+	pitchoffset 0, D_
 	callchannel Music_ProfOak_branch_f4f5a
 	callchannel Music_ProfOak_branch_f4f5a
-	forceoctave $0
+	pitchoffset 0, C_
 	callchannel Music_ProfOak_branch_f4f69
 	callchannel Music_ProfOak_branch_f4f69
 	loopchannel 0, Music_ProfOak_branch_f4f1d

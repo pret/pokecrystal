@@ -18,7 +18,7 @@ InitClock: ; 90672 (24:4672)
 	call RotateFourPalettesLeft
 	call ClearTileMap
 	call ClearSprites
-	ld b, SCGB_08
+	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	xor a
 	ld [hBGMapMode], a
@@ -200,9 +200,8 @@ UnreferencedFunction907f1: ; 907f1
 	push hl
 	call DisplayHourOClock
 	pop de
-rept 2
 	inc de
-endr
+	inc de
 	ld a, ":"
 	ld [de], a
 	inc de
@@ -216,9 +215,9 @@ endr
 	ld [hl], a
 	pop hl
 	call DisplayMinutesWithMinString
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	ret
 ; 90810
 
@@ -521,9 +520,8 @@ Special_SetDayOfWeek: ; 90913
 	ld e, a
 	ld d, 0
 	ld hl, .WeekdayStrings
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -579,7 +577,7 @@ Special_InitialSetDSTFlag: ; 90a54
 	lb bc, 3, 18
 	call ClearBox
 	ld hl, .Text
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	ret
 ; 90a6c
 
@@ -610,7 +608,7 @@ Special_InitialClearDSTFlag: ; 90a88
 	lb bc, 3, 18
 	call ClearBox
 	ld hl, .Text
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	ret
 ; 90aa0
 
@@ -638,7 +636,7 @@ DebugDisplayTime: ; 90abc
 	lb bc, 3, SCREEN_WIDTH - 2
 	call ClearBox
 	ld hl, .Text
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	ret
 ; 90acc
 

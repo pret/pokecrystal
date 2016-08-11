@@ -28,9 +28,8 @@ GetSpriteVTile:: ; 180e
 .loop
 	cp [hl]
 	jr z, .found
-rept 2
 	inc hl
-endr
+	inc hl
 	dec c
 	jr nz, .loop
 	ld a, [UsedSprites + 1]
@@ -503,9 +502,8 @@ rept SPRITEMOVEDATA_FIELDS
 endr
 	ld a, BANK(SpriteMovementData)
 	call GetFarByte
-rept 2
 	add a
-endr
+	add a
 	and $c
 	pop de
 	pop bc
@@ -638,7 +636,7 @@ GetObjectStruct:: ; 1ae5
 	ret
 ; 1af1
 
-GetObjectSprite:: ; 1af1
+DoesObjectHaveASprite:: ; 1af1
 	ld hl, OBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]

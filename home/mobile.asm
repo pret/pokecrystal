@@ -6,7 +6,7 @@ Function3e32:: ; 3e32
 	ld [$c986], a
 	ld a, h
 	ld [$c987], a
-	jr nz, .asm_3e4f
+	jr nz, .okay
 
 	ld [$c982], a
 	ld a, l
@@ -17,7 +17,7 @@ Function3e32:: ; 3e32
 	ld a, b
 	ld [hl], a
 
-.asm_3e4f
+.okay
 	ld hl, $c822
 	set 6, [hl]
 	ld a, [hROMBank]
@@ -30,6 +30,7 @@ Function3e32:: ; 3e32
 ; 3e60
 
 Function3e60:: ; 3e60
+; Return from Function110030
 	ld [$c986], a
 	ld a, l
 	ld [$c987], a

@@ -111,9 +111,8 @@ Function170c06: ; 170c06
 	inc [hl]
 
 .asm_170c15
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [$a89b]
 	add [hl]
 	ld [hld], a
@@ -138,9 +137,8 @@ endr
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hld]
 	sub c
 	ld c, a
@@ -370,9 +368,8 @@ Function171a36: ; 171a36 (5c:5a36)
 	ld e, a
 	ld d, 0
 	ld hl, Jumptable_171a45
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -498,9 +495,9 @@ Function171aec: ; 171aec (5c:5aec)
 .asm_171b34
 	pop hl
 	ld bc, $14
-rept 3
 	add hl, bc
-endr
+	add hl, bc
+	add hl, bc
 	pop af
 	dec a
 	jr nz, .asm_171b1b
@@ -519,24 +516,27 @@ Function171b4b: ; 171b4b (5c:5b4b)
 	depixel 8, 2
 	ld a, SPRITE_ANIM_INDEX_1D
 	call _InitSpriteAnimStruct
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, $8
 	ld [hl], a
+
 	depixel 8, 19
 	ld a, SPRITE_ANIM_INDEX_1D
 	call _InitSpriteAnimStruct
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, $9
 	ld [hl], a
+
 	depixel 17, 14, 2, 0
 	ld a, SPRITE_ANIM_INDEX_1D
 	call _InitSpriteAnimStruct
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, $a
 	ld [hl], a
+
 	ld a, $4
 	ld [wcd23], a
 	ld a, $8
@@ -732,9 +732,8 @@ Function171ccd: ; 171ccd (5c:5ccd)
 Function171cf0: ; 171cf0 (5c:5cf0)
 	xor a
 	hlcoord 4, 15
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld a, [wcd4b]
 	xor $1
 	ld [wcd4b], a

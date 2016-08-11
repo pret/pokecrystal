@@ -46,9 +46,8 @@ ValidateOTTrademon: ; fb57e
 	ld [CurSpecies], a
 	call GetBaseData
 	ld hl, wLinkOTPartyMonTypes
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [BaseType1]
 	cp [hl]
 	jr nz, .abnormal
@@ -384,7 +383,7 @@ NewPokedexEntry: ; fb877
 	ld [TempMonDVs], a
 	ld a, [hl]
 	ld [TempMonDVs + 1], a
-	ld b, SCGB_FRONTPICPALS
+	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	call SetPalettes
 	ret

@@ -1427,12 +1427,12 @@ ShowEmoteScript: ; 973b6
 
 .Show:
 	show_emote
-	step_sleep_1
+	step_sleep 1
 	step_end
 
 .Hide:
 	hide_emote
-	step_sleep_1
+	step_sleep 1
 	step_end
 ; 973c7
 
@@ -1652,9 +1652,9 @@ ScriptCall: ; 974cb
 	inc [hl]
 	ld d, $0
 	ld hl, wScriptStack
-rept 3
 	add hl, de
-endr
+	add hl, de
+	add hl, de
 	pop de
 	ld a, [ScriptBank]
 	ld [hli], a
@@ -1825,9 +1825,9 @@ StdScript: ; 9757b
 	call GetScriptByte
 	ld d, a
 	ld hl, StdScripts
-rept 3
 	add hl, de
-endr
+	add hl, de
+	add hl, de
 	ld a, BANK(StdScripts)
 	call GetFarByte
 	ld b, a
@@ -3054,7 +3054,7 @@ Script_loadbytec2cf: ; 97b27
 Script_closetext: ; 97b2f
 ; script command 0x49
 
-	call Function2e20
+	call _OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	call CloseText
 	ret
 ; 97b36
@@ -3160,9 +3160,9 @@ ExitScriptSubroutine: ; 97b9a
 	ld e, [hl]
 	ld d, $0
 	ld hl, wScriptStack
-rept 3
 	add hl,de
-endr
+	add hl,de
+	add hl,de
 	ld a, [hli]
 	ld b, a
 	and " "

@@ -157,9 +157,9 @@ BattleTower_ExecuteJumptable: ; 8b25b
 ; 8b281
 
 .GetTextPointers: ; 8b281
-rept 3
 	inc de
-endr
+	inc de
+	inc de
 	ld a, [de]
 	ld l, a
 	inc de
@@ -200,13 +200,11 @@ endr
 .PrintNthText: ; 8b2a9
 	push bc
 	call .GetTextPointers
-rept 2
 	inc hl
-endr
+	inc hl
 	ld b, $0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	call .LoadTextPointer
 	call PrintText
 	pop bc

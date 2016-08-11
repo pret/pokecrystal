@@ -140,20 +140,20 @@ MapRuinsofAlphOutsideSignpost2Script:
 	jumptext UnknownText_0x58362
 
 MovementData_0x580ba:
-	step_right
-	step_right
-	step_right
-	step_right
-	step_up
-	step_up
-	step_right
-	step_right
-	step_up
-	step_up
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step UP
+	step UP
+	step RIGHT
+	step RIGHT
+	step UP
+	step UP
 	step_end
 
 MovementData_0x580c5:
-	step_up
+	step UP
 	step_end
 
 UnknownText_0x580c7:

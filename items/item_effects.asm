@@ -253,9 +253,8 @@ ParkBall: ; e8a2
 	jr z, .skip_or_return_from_ball_fn
 	cp c
 	jr z, .call_ball_function
-rept 2
 	inc hl
-endr
+	inc hl
 	jr .get_multiplier_loop
 
 .call_ball_function
@@ -288,9 +287,8 @@ endr
 
 	ld h, d
 	ld l, e
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld d, h
 	ld e, l
 	ld a, d
@@ -805,9 +803,8 @@ HeavyBallMultiplier:
 	dec a
 	ld e, a
 	ld d, 0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, BANK(PokedexDataPointerTable)
 	call GetFarHalfword
 
@@ -820,9 +817,8 @@ endr
 
 	call GetPokedexEntryBank
 	push bc
-rept 2
 	inc hl
-endr
+	inc hl
 	call GetFarHalfword
 
 	srl h
@@ -868,9 +864,8 @@ endr
 	ld a, c
 	cp [hl]
 	jr c, .heavymon
-rept 2
 	inc hl
-endr
+	inc hl
 	jr .lookup
 
 .heavymon
@@ -929,9 +924,8 @@ GLOBAL EvosAttacksPointers
 	ld c, a
 	ld b, 0
 	ld hl, EvosAttacksPointers
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, BANK(EvosAttacksPointers)
 	call GetFarHalfword
 	pop bc
@@ -943,9 +937,9 @@ endr
 	pop bc
 	ret nz
 
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 
 ; Moon Stone's constant from Pokémon Red is used.
 ; No Pokémon evolve with Burn Heal,
@@ -2127,9 +2121,8 @@ GetHealingItemAmount: ; f395 (3:7395)
 	jr z, .NotFound
 	cp d
 	jr z, .done
-rept 2
 	inc hl
-endr
+	inc hl
 	jr .next
 
 .NotFound:
@@ -2335,9 +2328,8 @@ XSpecial: ; f4c5
 .loop
 	cp [hl]
 	jr z, .got_it
-rept 2
 	inc hl
-endr
+	inc hl
 	jr .loop
 
 .got_it
@@ -2488,20 +2480,20 @@ CoinCase: ; f59a
 
 OldRod: ; f5a5
 	ld e, $0
-	jr Function_0xf5b1
+	jr UseRod
 ; f5a9
 
 GoodRod: ; f5a9
 	ld e, $1
-	jr Function_0xf5b1
+	jr UseRod
 ; f5ad
 
 SuperRod: ; f5ad
 	ld e, $2
-	jr Function_0xf5b1
+	jr UseRod
 ; f5b1
 
-Function_0xf5b1: ; f5b1
+UseRod: ; f5b1
 	callba FishFunction
 	ret
 ; f5b8
@@ -2523,7 +2515,7 @@ Mysteryberry: ; f5bf
 	ld [wd002], a
 
 .loop
-    ; Party Screen opens to choose on which Pkmn to use the Item
+	; Party Screen opens to choose on which Pkmn to use the Item
 	ld b, PARTYMENUACTION_HEALING_ITEM
 	call UseItem_SelectMon
 	jp c, PPRestoreItem_Cancel
@@ -2937,7 +2929,7 @@ Play_SFX_FULL_HEAL: ; f780
 	ret
 ; f789
 
-UseItemText ; f789
+UseItemText: ; f789
 	ld hl, UsedItemText
 	call PrintText
 	call Play_SFX_FULL_HEAL
@@ -3250,11 +3242,11 @@ GetMaxPPOfMove: ; f8ec
 
 	ld hl, TempMonMoves ; Wasted cycles
 	dec a
-	jr z, .got_nonpartymon ; BREEDMON
+	jr z, .got_nonpartymon ; TEMPMON
 
 	ld hl, BattleMonMoves ; WILDMON
 
-.got_nonpartymon ; BOXMON, BREEDMON, WILDMON
+.got_nonpartymon ; BOXMON, TEMPMON, WILDMON
 	call GetMthMoveOfCurrentMon
 	jr .gotdatmove
 

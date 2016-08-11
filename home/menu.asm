@@ -229,9 +229,9 @@ _OffsetMenuDataHeader:: ; 1e35
 ; 1e5d
 
 DoNthMenu:: ; 1e5d
-	call MenuFunc_1e7f
+	call DrawVariableLengthMenuBox
 	call MenuWriteText
-	call Function1eff
+	call InitMenuCursorAndButtonPermissions
 	call GetStaticMenuJoypad
 	call GetMenuJoypad
 	call MenuClickSound
@@ -239,17 +239,17 @@ DoNthMenu:: ; 1e5d
 ; 1e70
 
 SetUpMenu:: ; 1e70
-	call MenuFunc_1e7f ; ???
+	call DrawVariableLengthMenuBox ; ???
 	call MenuWriteText
-	call Function1eff ; set up selection pointer
+	call InitMenuCursorAndButtonPermissions ; set up selection pointer
 	ld hl, w2DMenuFlags1
 	set 7, [hl]
 	ret
 
-MenuFunc_1e7f::
+DrawVariableLengthMenuBox::
 	call CopyMenuData2
 	call GetMenuIndexSet
-	call Function1ea6
+	call AutomaticGetMenuBottomCoord
 	call MenuBox
 	ret
 
@@ -257,8 +257,8 @@ MenuWriteText::
 	xor a
 	ld [hBGMapMode], a
 	call GetMenuIndexSet ; sort out the text
-	call Function1eda ; actually write it
-	call Function2e31
+	call RunMenuItemPrintingFunction ; actually write it
+	call SafeUpdateSprites
 	ld a, [hOAMUpdate]
 	push af
 	ld a, $1
@@ -269,7 +269,7 @@ MenuWriteText::
 	ret
 ; 0x1ea6
 
-Function1ea6:: ; 1ea6
+AutomaticGetMenuBottomCoord:: ; 1ea6
 	ld a, [wMenuBorderLeftCoord]
 	ld c, a
 	ld a, [wMenuBorderRightCoord]
@@ -310,7 +310,7 @@ GetMenuIndexSet:: ; 1ebd
 	ret
 ; 1eda
 
-Function1eda:: ; 1eda
+RunMenuItemPrintingFunction:: ; 1eda
 	call MenuBoxCoord2Tile
 	ld bc, 2 * SCREEN_WIDTH + 2
 	add hl, bc
@@ -325,7 +325,7 @@ Function1eda:: ; 1eda
 	ld d, h
 	ld e, l
 	ld hl, wMenuData2DisplayFunctionPointer
-	call .__wMenuData2DisplayFunction__
+	call ._hl_
 	pop hl
 	ld de, 2 * SCREEN_WIDTH
 	add hl, de
@@ -333,14 +333,14 @@ Function1eda:: ; 1eda
 	jr .loop
 ; 1efb
 
-.__wMenuData2DisplayFunction__ ; 1efb
+._hl_ ; 1efb
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
 ; 1eff
 
-Function1eff:: ; 1eff
+InitMenuCursorAndButtonPermissions:: ; 1eff
 	call InitVerticalMenuCursor
 	ld hl, wMenuJoypadFilter
 	ld a, [wMenuData2Flags]

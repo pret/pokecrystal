@@ -1,50 +1,46 @@
 _Squirtbottle: ; 50730
-	ld hl, UnknownScript_0x5073c
+	ld hl, .SquirtbottleScript
 	call QueueScript
 	ld a, $1
 	ld [wItemEffectSucceeded], a
 	ret
-; 5073c
 
-UnknownScript_0x5073c: ; 0x5073c
+.SquirtbottleScript:
 	reloadmappart
 	special UpdateTimePals
-	callasm Function50753
-	iffalse UnknownScript_0x5074b
+	callasm .CheckCanUseSquirtbottle
+	iffalse .NothingHappenedScript
 	farjump WateredWeirdTreeScript
-; 0x5074b
 
-UnknownScript_0x5074b: ; 0x5074b
-	jumptext UnknownText_0x5074e
-; 0x5074e
+.NothingHappenedScript:
+	jumptext .NothingHappenedText
 
-UnknownText_0x5074e: ; 0x5074e
+.NothingHappenedText:
 	; sprinkled water. But nothing happened…
 	text_jump UnknownText_0x1c0b3b
 	db "@"
-; 0x50753
 
-Function50753: ; 50753
+.CheckCanUseSquirtbottle:
 	ld a, [MapGroup]
 	cp GROUP_ROUTE_36
-	jr nz, .asm_50774
+	jr nz, .nope
 
 	ld a, [MapNumber]
 	cp MAP_ROUTE_36
-	jr nz, .asm_50774
+	jr nz, .nope
 
 	callba GetFacingObject
-	jr c, .asm_50774
+	jr c, .nope
 
 	ld a, d
-	cp $17
-	jr nz, .asm_50774
+	cp SPRITEMOVEDATA_SUDOWOODO
+	jr nz, .nope
 
-	ld a, $1
+	ld a, 1
 	ld [ScriptVar], a
 	ret
 
-.asm_50774
+.nope
 	xor a
 	ld [ScriptVar], a
 	ret

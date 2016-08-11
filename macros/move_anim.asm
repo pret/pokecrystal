@@ -183,9 +183,9 @@ anim_0xed: macro
 	db anim_0xed_command
 	endm
 
-	enum anim_jumpand_command ; ee
-anim_jumpand: macro
-	db anim_jumpand_command
+	enum anim_if_param_and_command ; ee
+anim_if_param_and: macro
+	db anim_if_param_and_command
 	db \1 ; value
 	dw \2 ; address
 	endm
@@ -243,9 +243,9 @@ anim_0xf7: macro
 	db anim_0xf7_command
 	endm
 
-	enum anim_jumpif_command ; f8
-anim_jumpif: macro
-	db anim_jumpif_command
+	enum anim_if_param_equal_command ; f8
+anim_if_param_equal: macro
+	db anim_if_param_equal_command
 	db \1 ; value
 	dw \2 ; address
 	endm
@@ -261,9 +261,9 @@ anim_incvar: macro
 	db anim_incvar_command
 	endm
 
-	enum anim_jumpvar_command ; fb
-anim_jumpvar: macro
-	db anim_jumpvar_command
+	enum anim_if_var_equal_command ; fb
+anim_if_var_equal: macro
+	db anim_if_var_equal_command
 	db \1 ; value
 	dw \2 ; address
 	endm

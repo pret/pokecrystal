@@ -3,7 +3,7 @@
 
 Function547:: ; 547
 ; Unreferenced
-	ld a, [hFFC6]
+	ld a, [hLCDCPointer]
 	cp rSCX - $ff00
 	ret nz
 	ld c, a
@@ -15,7 +15,7 @@ Function547:: ; 547
 
 LCD:: ; 552
 	push af
-	ld a, [hFFC6]
+	ld a, [hLCDCPointer]
 	and a
 	jr z, .done
 
@@ -26,7 +26,7 @@ LCD:: ; 552
 	ld b, LYOverrides >> 8
 	ld a, [bc]
 	ld b, a
-	ld a, [hFFC6]
+	ld a, [hLCDCPointer]
 	ld c, a
 	ld a, b
 	ld [$ff00+c], a

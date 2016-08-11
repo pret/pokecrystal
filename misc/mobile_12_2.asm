@@ -53,9 +53,9 @@ MobileCheckOwnMonAnywhere: ; 4a843
 	jr z, .asm_4a8d1
 	ld hl, .BoxAddrs
 	ld b, 0
-rept 3
 	add hl, bc
-endr
+	add hl, bc
+	add hl, bc
 	ld a, [hli]
 	call GetSRAMBank
 	ld a, [hli]
@@ -616,9 +616,8 @@ Function4abc3: ; 4abc3
 	ld a, [wMenuCursorY]
 	ld [wMenuCursorY], a
 	ld a, [PartyCount]
-rept 2
 	inc a
-endr
+	inc a
 	ld b, a
 	ld a, [wMenuCursorY]
 	cp b

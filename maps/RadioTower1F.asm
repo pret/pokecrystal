@@ -203,13 +203,13 @@ MapRadioTower1FSignpost1Script:
 	jumptext UnknownText_0x5d631
 
 MovementData_0x5ce71:
-	step_right
-	turn_head_up
+	step RIGHT
+	turn_head UP
 	step_end
 
 MovementData_0x5ce74:
-	step_left
-	turn_head_up
+	step LEFT
+	turn_head UP
 	step_end
 
 UnknownText_0x5ce77:

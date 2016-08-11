@@ -67,9 +67,9 @@ ChangeHappiness: ; 71c2
 	dec c
 	ld b, 0
 	ld hl, .Actions
-rept 3
 	add hl, bc
-endr
+	add hl, bc
+	add hl, bc
 	ld d, 0
 	add hl, de
 	ld a, [hl]

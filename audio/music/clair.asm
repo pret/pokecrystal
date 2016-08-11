@@ -207,9 +207,9 @@ Music_Clair_branch_1fb77: ; 1fb77
 	octave 3
 	note A#, 16
 	note __, 4
-	forceoctave $c
+	pitchoffset 0, CC
 	callchannel Music_Clair_branch_1fba6
-	forceoctave $0
+	pitchoffset 0, C_
 	octave 5
 	note F#, 2
 	note __, 4
@@ -254,7 +254,7 @@ Music_Clair_branch_1fba6: ; 1fba6
 
 Music_Clair_Ch3: ; 1fbb9
 	notetype $c, $14
-	forceoctave $c
+	pitchoffset 0, CC
 	octave 3
 	note C#, 2
 	note __, 4

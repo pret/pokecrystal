@@ -119,46 +119,46 @@ GrannyScript_0x6c3ee:
 
 MovementData_0x6c3f6:
 	fix_facing
-	big_step_left
-	big_step_right
+	big_step LEFT
+	big_step RIGHT
 	remove_fixed_facing
 	step_end
 
 MovementData_0x6c3fb:
 	fix_facing
-	big_step_left
+	big_step LEFT
 	remove_fixed_facing
-	turn_head_down
-	turn_head_left
-	turn_head_up
-	turn_head_right
+	turn_head DOWN
+	turn_head LEFT
+	turn_head UP
+	turn_head RIGHT
 	step_end
 
 MovementData_0x6c403:
 	fix_facing
-	big_step_left
+	big_step LEFT
 	remove_fixed_facing
 	step_end
 
 MovementData_0x6c407:
-	slow_step_left
-	turn_head_down
+	slow_step LEFT
+	turn_head DOWN
 	step_end
 
 MovementData_0x6c40a:
-	slow_step_right
-	slow_step_up
-	slow_step_up
+	slow_step RIGHT
+	slow_step UP
+	slow_step UP
 	step_end
 
 MovementData_0x6c40e:
-	slow_step_up
-	slow_step_right
-	slow_step_right
+	slow_step UP
+	slow_step RIGHT
+	slow_step RIGHT
 	step_end
 
 MovementData_0x6c412:
-	slow_step_right
+	slow_step RIGHT
 	step_end
 
 UnknownText_0x6c414:

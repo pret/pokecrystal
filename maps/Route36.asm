@@ -99,7 +99,7 @@ DidntCatchSudowoodo:
 	applymovement ROUTE36_WEIRD_TREE, WeirdTreeMovement_Flee
 	disappear ROUTE36_WEIRD_TREE
 	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
-	special RunCallback_04
+	special MapCallbackSprites_LoadUsedSpritesGFX
 	special RefreshSprites
 	end
 
@@ -376,42 +376,42 @@ SudowoodoShakeMovement:
 	step_end
 
 WeirdTreeMovement_Flee:
-	fast_jump_step_up
-	fast_jump_step_up
+	fast_jump_step UP
+	fast_jump_step UP
 	step_end
 
 FloriaMovement1:
-	step_down
-	step_down
-	step_down
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
+	step DOWN
+	step DOWN
+	step DOWN
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
 	step_end
 
 FloriaMovement2:
-	step_left
-	step_down
-	step_down
-	step_down
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
+	step LEFT
+	step DOWN
+	step DOWN
+	step DOWN
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
 	step_end
 
 Route36SuicuneMovement:
 	set_sliding
-	fast_jump_step_down
-	fast_jump_step_down
-	fast_jump_step_down
-	fast_jump_step_right
-	fast_jump_step_right
-	fast_jump_step_right
+	fast_jump_step DOWN
+	fast_jump_step DOWN
+	fast_jump_step DOWN
+	fast_jump_step RIGHT
+	fast_jump_step RIGHT
+	fast_jump_step RIGHT
 	remove_sliding
 	step_end
 
