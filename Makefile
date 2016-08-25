@@ -1,13 +1,10 @@
-PYTHON := python
 MD5 := md5sum -c --quiet
 
 .SUFFIXES:
-.PHONY: all clean crystal crystal11
+.PHONY: all clean tools crystal crystal11
 .SECONDEXPANSION:
-.PRECIOUS: %.2bpp %.1bpp
+.PRECIOUS: %.2bpp %.1bpp %.pal.bin
 
-gfx       := $(PYTHON) gfx.py
-includes  := $(PYTHON) scan_includes.py
 
 
 crystal_obj := \
@@ -41,13 +38,18 @@ clean:
 compare: pokecrystal.gbc pokecrystal11.gbc
 	@$(MD5) roms.md5
 
+tools: tools/lzcomp tools/png_dimensions tools/scan_includes tools/palette tools/pokemon_animation tools/pokemon_animation_graphics
+
+tools/%: tools/%.c
+	$(CC) -o $@ $<
+
 %.asm: ;
 
-%11.o: dep = $(shell $(includes) $(@D)/$*.asm)
+%11.o: dep = $(shell tools/scan_includes $(@D)/$*.asm)
 %11.o: %.asm $$(dep)
 	rgbasm -D CRYSTAL11 -o $@ $<
 
-%.o: dep = $(shell $(includes) $(@D)/$*.asm)
+%.o: dep = $(shell tools/scan_includes $(@D)/$*.asm)
 %.o: %.asm $$(dep)
 	rgbasm -o $@ $<
 
@@ -59,13 +61,38 @@ pokecrystal.gbc: $(crystal_obj)
 	rgblink -n pokecrystal.sym -m pokecrystal.map -o $@ $^
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 
-%.png: ;
-%.2bpp: %.png ; $(gfx) 2bpp $<
-%.1bpp: %.png ; $(gfx) 1bpp $<
-%.lz: % ; $(gfx) lz $<
-
-%.pal: %.2bpp ;
-gfx/pics/%/normal.pal gfx/pics/%/bitmask.asm gfx/pics/%/frames.asm: gfx/pics/%/front.2bpp ;
 %.bin: ;
 %.blk: ;
-%.tilemap: ;
+
+%.png: ;
+%.2bpp: %.png
+	rgbgfx -o $@ $<
+%.1bpp: %.png
+	rgbgfx -d1 -o $@ $<
+%.lz: %
+	tools/lzcomp $@ $<
+
+%.dimensions: %.png
+	tools/png_dimensions $< $@
+%.tilemap: %.png
+	rgbgfx -t $@ $<
+%.pal: %.pal.bin
+	tools/palette $< > $@
+%.pal.bin: %.png
+	rgbgfx -p $@ $<
+gfx/pics/%/normal.pal: gfx/pics/normal.pal.bin
+	tools/palette -p $< > $@
+gfx/pics/%/normal.pal.bin: gfx/pics/%/front.png
+	rgbgfx -p $@ $<
+gfx/pics/%/front.tilemap: gfx/pics/%/front.png
+	rgbgfx -t $@ $<
+gfx/pics/%/bitmask.asm: gfx/pics/%/front.animated.tilemap gfx/pics/%/front.dimensions
+	tools/pokemon_animation -b $^ > $@
+gfx/pics/%/frames.asm: gfx/pics/%/front.animated.tilemap gfx/pics/%/front.dimensions
+	tools/pokemon_animation -f $^ > $@
+gfx/pics/%/front.animated.2bpp: gfx/pics/%/front.2bpp gfx/pics/%/front.dimensions
+	tools/pokemon_animation_graphics -o $@ $^
+gfx/pics/%/front.animated.tilemap: gfx/pics/%/front.2bpp gfx/pics/%/front.dimensions
+	tools/pokemon_animation_graphics -t $@ $^
+gfx/pics/%/front.2bpp: gfx/pics/%/front.png
+	rgbgfx -o $@ $<
