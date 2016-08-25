@@ -80,6 +80,7 @@ pokecrystal.gbc: $(crystal_obj)
 	tools/palette $< > $@
 %.pal.bin: %.png
 	rgbgfx -p $@ $<
+
 gfx/pics/%/normal.pal: gfx/pics/normal.pal.bin
 	tools/palette -p $< > $@
 gfx/pics/%/normal.pal.bin: gfx/pics/%/front.png
@@ -96,3 +97,11 @@ gfx/pics/%/front.animated.tilemap: gfx/pics/%/front.2bpp gfx/pics/%/front.dimens
 	tools/pokemon_animation_graphics -t $@ $^
 gfx/pics/%/front.2bpp: gfx/pics/%/front.png
 	rgbgfx -o $@ $<
+
+gfx/shrink1.2bpp: gfx/shrink1.png
+	rgbgfx -h -o $@ $<
+gfx/shrink2.2bpp: gfx/shrink2.png
+	rgbgfx -h -o $@ $<
+
+gfx/trainers/%.2bpp: gfx/trainers/%.png
+	rgbgfx -h -o $@ $<
