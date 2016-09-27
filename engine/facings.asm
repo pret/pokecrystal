@@ -20,15 +20,15 @@ Facings: ; 4049
 	dw FacingFishLeft
 	dw FacingFishRight
 	dw FacingEmote
-	dw Facing21
-	dw Facing22
-	dw Facing23
-	dw Facing24
-	dw Facing25
-	dw Facing26
-	dw Facing27
-	dw Facing28
-	dw Facing29
+	dw FacingShadow
+	dw FacingBigDollAsymmetric
+	dw FacingBigDollSymmetric
+	dw FacingWeirdTree0
+	dw FacingWeirdTree1
+	dw FacingWeirdTree2
+	dw FacingWeirdTree3
+	dw FacingBoulderDust1
+	dw FacingBoulderDust2
 	dw FacingGrass1
 	dw FacingGrass2
 FacingsEnd: dw 0
@@ -49,8 +49,8 @@ BEHIND_BG EQU 1 << OAM_PRIORITY
 
 FacingStepDown0:
 FacingStepDown2:
-Facing24:
-Facing26: ; standing down
+FacingWeirdTree0:
+FacingWeirdTree2: ; standing down
 	db 4 ; #
 	db  0,  0, 0, $00
 	db  0,  8, 0, $01
@@ -179,13 +179,13 @@ FacingEmote: ; emote
 	db  8,  8, 4, $fb
 ; 419a
 
-Facing21: ; shadow
+FacingShadow: ; shadow
 	db 2 ; #
 	db  0,  0, 4, $fc
 	db  0,  8, 4 | X_FLIP, $fc
 ; 41a3
 
-Facing23: ; big snorlax or lapras doll
+FacingBigDollSymmetric: ; big snorlax or lapras doll
 	db 16 ; #
 	db  0,  0, 0, $00
 	db  0,  8, 0, $01
@@ -205,7 +205,7 @@ Facing23: ; big snorlax or lapras doll
 	db 24, 16, X_FLIP, $07
 ; 41e4
 
-Facing25: ; 41e4
+FacingWeirdTree1: ; 41e4
 	db 4 ; #
 	db  0,  0, 0, $04
 	db  0,  8, 0, $05
@@ -213,7 +213,7 @@ Facing25: ; 41e4
 	db  8,  8, 0, $07
 ; 41f5
 
-Facing27: ; 41f5
+FacingWeirdTree3: ; 41f5
 	db 4 ; #
 	db  0,  8, X_FLIP, $04
 	db  0,  0, X_FLIP, $05
@@ -221,7 +221,7 @@ Facing27: ; 41f5
 	db  8,  0, X_FLIP, $07
 ; 4206
 
-Facing22: ; big doll other than snorlax or lapras
+FacingBigDollAsymmetric: ; big doll other than snorlax or lapras
 	db 14 ; #
 	db  0,  0, 0, $00
 	db  0,  8, 0, $01
@@ -239,7 +239,7 @@ Facing22: ; big doll other than snorlax or lapras
 	db 24, 16, 0, $0b
 ; 423f
 
-Facing28: ; boulder dust 1
+FacingBoulderDust1: ; boulder dust 1
 	db 4 ; #
 	db  0,  0, 4, $fe
 	db  0,  8, 4, $fe
@@ -247,7 +247,7 @@ Facing28: ; boulder dust 1
 	db  8,  8, 4, $fe
 ; 4250
 
-Facing29: ; boulder dust 2
+FacingBoulderDust2: ; boulder dust 2
 	db 4 ; #
 	db  0,  0, 4, $ff
 	db  0,  8, 4, $ff

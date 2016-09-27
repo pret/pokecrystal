@@ -365,7 +365,7 @@ Movement_tree_shake: ; 5279
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_0B
+	ld [hl], PERSON_ACTION_WEIRD_TREE
 
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
