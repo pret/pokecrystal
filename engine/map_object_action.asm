@@ -14,23 +14,23 @@
 ; 445f
 
 Pointers445f: ; 445f
-	dw SetFacingStanding, SetFacingStanding ; 00
-	dw Function44b5,      SetFacingCurrent ; 01 standing?
-	dw Function44c1,      SetFacingCurrent ; 02 walking?
-	dw Function4508,      SetFacingCurrent ; 03 bumping?
-	dw Function4529,      SetFacingCurrent ; 04
-	dw Function4539,      SetFacingStanding ; 05
-	dw Function456e,      Function456e ; 06
-	dw Function457b,      SetFacingStanding ; 07
-	dw Function4582,      Function4582 ; 08
-	dw Function4589,      Function4589 ; 09
-	dw Function4590,      Function45a4 ; 0a
-	dw Function45ab,      SetFacingCurrent ; 0c
-	dw Function45be,      Function45be ; 0b
-	dw Function45c5,      Function45c5 ; 0d
-	dw Function45da,      SetFacingStanding ; 0e
-	dw Function45ed,      SetFacingStanding ; 0f
-	dw Function44e4,      SetFacingCurrent ; 10
+	dw SetFacingStanding,              SetFacingStanding ; 00
+	dw SetFacingStandAction,           SetFacingCurrent ; 01 standing?
+	dw SetFacingStepAction,            SetFacingCurrent ; 02 walking?
+	dw SetFacingBumpAction,            SetFacingCurrent ; 03 bumping?
+	dw SetFacingCounterclockwiseSpin,  SetFacingCurrent ; 04
+	dw SetFacingCounterclockwiseSpin2, SetFacingStanding ; 05
+	dw SetFacingFish,                  SetFacingFish ; 06
+	dw Function457b,                   SetFacingStanding ; 07
+	dw Function4582,                   Function4582 ; 08
+	dw Function4589,                   Function4589 ; 09
+	dw Function4590,                   Function45a4 ; 0a
+	dw Function45ab,                   SetFacingCurrent ; 0c
+	dw Function45be,                   Function45be ; 0b
+	dw Function45c5,                   Function45c5 ; 0d
+	dw Function45da,                   SetFacingStanding ; 0e
+	dw SetFacingGrassShake,            SetFacingStanding ; 0f
+	dw Function44e4,                   SetFacingCurrent ; 10
 ; 44a3
 
 SetFacingStanding: ; 44a3
@@ -49,16 +49,16 @@ SetFacingCurrent: ; 44aa
 	ret
 ; 44b5
 
-Function44b5: ; 44b5
+SetFacingStandAction: ; 44b5
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld a, [hl]
 	and 1
-	jr nz, Function44c1
+	jr nz, SetFacingStepAction
 	jp SetFacingCurrent
 ; 44c1
 
-Function44c1: ; 44c1
+SetFacingStepAction: ; 44c1
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit SLIDING, [hl]
@@ -112,7 +112,7 @@ Function44e4: ; 44e4
 	ret
 ; 4508
 
-Function4508: ; 4508
+SetFacingBumpAction: ; 4508
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit SLIDING, [hl]
@@ -138,8 +138,8 @@ Function4508: ; 4508
 	ret
 ; 4529
 
-Function4529: ; 4529
-	call Function453f
+SetFacingCounterclockwiseSpin: ; 4529
+	call CounterclockwiseSpinAction
 	ld hl, OBJECT_FACING
 	add hl, bc
 	ld a, [hl]
@@ -150,12 +150,16 @@ Function4529: ; 4529
 	ret
 ; 4539
 
-Function4539: ; 4539
-	call Function453f
+SetFacingCounterclockwiseSpin2: ; 4539
+	call CounterclockwiseSpinAction
 	jp SetFacingStanding
 ; 453f
 
-Function453f: ; 453f
+CounterclockwiseSpinAction: ; 453f
+; Here, OBJECT_STEP_FRAME consists of two 2-bit components,
+; using only bits 0,1 and 4,5.
+; bits 0,1 is a timer (4 overworld frames)
+; bits 4,5 determines the facing - the direction is counterclockwise.
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
 	ld a, [hl]
@@ -195,11 +199,11 @@ Function453f: ; 453f
 	db OW_DOWN, OW_RIGHT, OW_UP, OW_LEFT
 ; 456e
 
-Function456e: ; 456e
+SetFacingFish: ; 456e
 	call GetSpriteDirection
 	rrca
 	rrca
-	add $10
+	add FACING_FISH_DOWN
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], a
@@ -238,7 +242,7 @@ Function4590: ; 4590
 	jr z, Function45a4
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
-	ld [hl], FACING_04
+	ld [hl], FACING_STEP_UP_0
 	ret
 ; 45a4
 
@@ -305,7 +309,7 @@ Function45da: ; 45da
 	ret
 ; 45ed
 
-Function45ed: ; 45ed
+SetFacingGrassShake: ; 45ed
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
 	inc [hl]
@@ -313,9 +317,9 @@ Function45ed: ; 45ed
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	and 4
-	ld a, FACING_1E
+	ld a, FACING_GRASS_1
 	jr z, .ok
-	inc a ; FACING_1F
+	inc a ; FACING_GRASS_2
 
 .ok
 	ld [hl], a
