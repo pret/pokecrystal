@@ -88,7 +88,7 @@ CheckBreedmonCompatibility: ; 16e1d
 
 .CheckDVs: ; 16ebc (5:6ebc)
 ; If Defense DVs match and the lower 3 bits of the Special DVs match,
-; maximize the chances of spawning an egg regardless of species.
+; avoid breeding
 	ld a, [wBreedMon1DVs]
 	and %1111
 	ld b, a
