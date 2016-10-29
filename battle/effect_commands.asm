@@ -6682,6 +6682,10 @@ BattleCommand_Teleport: ; 36778
 	srl b
 	srl b
 	cp b
+	; This does the wrong thing. What was
+	; probably intended was jr c, .failed
+	; The way this is made makes enemy use
+	; of Teleport always succeed if able
 	jr nc, .run_away
 .run_away
 	call UpdateBattleMonInParty
@@ -9745,6 +9749,7 @@ BattleCommand_ThunderAccuracy: ; 37d94
 	ret
 
 .rain
+	; Redundant with CheckHit guranteeing hit
 	ld [hl], 100 percent
 	ret
 
