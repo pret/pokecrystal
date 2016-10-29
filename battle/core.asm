@@ -4676,21 +4676,21 @@ HandleStatBoostingHeldItems: ; 3de97
 	ld a, [hLinkPlayerNumber]
 	cp $1
 	jr z, .player_1
-	call .DoEnemy
-	jp .DoPlayer
-
-.player_1
 	call .DoPlayer
 	jp .DoEnemy
+
+.player_1
+	call .DoEnemy
+	jp .DoPlayer
 ; 3dea9
 
-.DoEnemy: ; 3dea9
+.DoPlayer: ; 3dea9
 	call GetPartymonItem
 	ld a, $0
 	jp .HandleItem
 ; 3deb1
 
-.DoPlayer: ; 3deb1
+.DoEnemy: ; 3deb1
 	call GetOTPartymonItem
 	ld a, $1
 .HandleItem: ; 3deb6
