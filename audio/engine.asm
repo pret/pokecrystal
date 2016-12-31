@@ -258,21 +258,21 @@ UpdateChannels: ; e8125
 .asm_e8159
 	bit NOTE_REST, [hl] ; rest
 	jr nz, .ch1rest
-	bit NOTE_UNKN_4, [hl]
+	bit NOTE_NOISE_SAMPLING, [hl]
 	jr nz, .asm_e81a2
-	bit NOTE_UNKN_1, [hl]
-	jr nz, .asm_e816b
-	bit NOTE_UNKN_6, [hl]
+	bit NOTE_FREQ_OVERRIDE, [hl]
+	jr nz, .frequency_override
+	bit NOTE_VIBRATO_OVERRIDE, [hl]
 	jr nz, .asm_e8184
-	jr .asm_e8175
+	jr .check_duty_override
 
-.asm_e816b
+.frequency_override
 	ld a, [wCurTrackFrequency]
 	ld [rNR13], a
 	ld a, [wCurTrackFrequency + 1]
 	ld [rNR14], a
-.asm_e8175
-	bit NOTE_UNKN_0, [hl]
+.check_duty_override
+	bit NOTE_DUTY_OVERRIDE, [hl]
 	ret z
 	ld a, [wCurTrackDuty]
 	ld d, a
@@ -321,11 +321,11 @@ UpdateChannels: ; e8125
 	add hl, bc
 	bit NOTE_REST, [hl] ; rest
 	jr nz, .ch2rest
-	bit NOTE_UNKN_4, [hl]
+	bit NOTE_NOISE_SAMPLING, [hl]
 	jr nz, .asm_e8204
-	bit NOTE_UNKN_6, [hl]
+	bit NOTE_VIBRATO_OVERRIDE, [hl]
 	jr nz, .asm_e81e6
-	bit NOTE_UNKN_0, [hl]
+	bit NOTE_DUTY_OVERRIDE, [hl]
 	ret z
 	ld a, [wCurTrackDuty]
 	ld d, a
@@ -381,9 +381,9 @@ UpdateChannels: ; e8125
 	add hl, bc
 	bit NOTE_REST, [hl] ; rest
 	jr nz, .ch3rest
-	bit NOTE_UNKN_4, [hl]
+	bit NOTE_NOISE_SAMPLING, [hl]
 	jr nz, .asm_e824d
-	bit NOTE_UNKN_6, [hl]
+	bit NOTE_VIBRATO_OVERRIDE, [hl]
 	jr nz, .asm_e823a
 	ret
 
@@ -482,7 +482,7 @@ endr
 	add hl, bc
 	bit NOTE_REST, [hl] ; rest
 	jr nz, .ch4rest
-	bit NOTE_UNKN_4, [hl]
+	bit NOTE_NOISE_SAMPLING, [hl]
 	jr nz, .asm_e82d4
 	ret
 
@@ -853,7 +853,7 @@ HandleTrackVibrato: ; e8466
 	ld [wCurTrackDuty], a
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set NOTE_UNKN_0, [hl]
+	set NOTE_DUTY_OVERRIDE, [hl]
 .next
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
@@ -930,9 +930,9 @@ HandleTrackVibrato: ; e8466
 	ld d, a
 	ld a, e
 	sub d
-	jr nc, .asm_e84ef
+	jr nc, .no_carry
 	ld a, 0
-	jr .asm_e84ef
+	jr .no_carry
 
 .down
 	; vibrato up
@@ -943,14 +943,14 @@ HandleTrackVibrato: ; e8466
 	swap a ; move it to lo
 	;
 	add e
-	jr nc, .asm_e84ef
+	jr nc, .no_carry
 	ld a, $ff
-.asm_e84ef
+.no_carry
 	ld [wCurTrackFrequency], a
 	;
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set NOTE_UNKN_6, [hl]
+	set NOTE_VIBRATO_OVERRIDE, [hl]
 .quit
 	ret
 
@@ -1067,8 +1067,8 @@ ApplyPitchWheel: ; e84f9
 	ld [hl], d
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set NOTE_UNKN_1, [hl]
-	set NOTE_UNKN_0, [hl]
+	set NOTE_FREQ_OVERRIDE, [hl]
+	set NOTE_DUTY_OVERRIDE, [hl]
 	ret
 
 ; e858c
@@ -1145,7 +1145,7 @@ ReadNoiseSample: ; e85af
 
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set NOTE_UNKN_4, [hl]
+	set NOTE_NOISE_SAMPLING, [hl]
 	ret
 
 .quit
@@ -1206,7 +1206,7 @@ ParseMusic: ; e85e1
 	; ????
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set NOTE_UNKN_4, [hl]
+	set NOTE_NOISE_SAMPLING, [hl]
 	jp LoadNote
 
 .rest
@@ -1288,7 +1288,7 @@ ParseSFXOrRest: ; e8698
 	; turn noise sampling on
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
-	set NOTE_UNKN_4, [hl] ; noise sample
+	set NOTE_NOISE_SAMPLING, [hl] ; noise sample
 	; update note duration
 	ld a, [CurMusicByte]
 	call SetNoteDuration ; top nybble doesnt matter?
