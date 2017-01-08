@@ -206,7 +206,7 @@ Function170c06: ; 170c06
 ; 170c8b
 
 Function170c8b: ; 170c8b
-	ld hl, LastPlayerCounterMove
+	ld hl, LastEnemyCounterMove
 	ld b, $5
 .asm_170c90
 	ld a, [hl]
