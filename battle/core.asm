@@ -3366,8 +3366,8 @@ CheckWhetherSwitchmonIsPredetermined: ; 3d533
 ResetEnemyBattleVars: ; 3d557
 ; and draw empty TextBox
 	xor a
-	ld [LastEnemyCounterMove], a
 	ld [LastPlayerCounterMove], a
+	ld [LastEnemyCounterMove], a
 	ld [LastEnemyMove], a
 	ld [CurEnemyMove], a
 	dec a
@@ -3766,8 +3766,8 @@ Function_SetEnemyPkmnAndSendOutAnimation: ; 3d7c7
 
 NewEnemyMonStatus: ; 3d834
 	xor a
-	ld [LastEnemyCounterMove], a
 	ld [LastPlayerCounterMove], a
+	ld [LastEnemyCounterMove], a
 	ld [LastEnemyMove], a
 	ld hl, EnemySubStatus1
 rept 4
@@ -4217,8 +4217,8 @@ SendOutPlayerMon: ; 3db5f
 	ld [CurMoveNum], a
 	ld [TypeModifier], a
 	ld [wPlayerMoveStruct + MOVE_ANIM], a
-	ld [LastEnemyCounterMove], a
 	ld [LastPlayerCounterMove], a
+	ld [LastEnemyCounterMove], a
 	ld [LastPlayerMove], a
 	call CheckAmuletCoin
 	call FinishBattleAnim
@@ -4258,8 +4258,8 @@ SendOutPlayerMon: ; 3db5f
 
 NewBattleMonStatus: ; 3dbde
 	xor a
-	ld [LastEnemyCounterMove], a
 	ld [LastPlayerCounterMove], a
+	ld [LastEnemyCounterMove], a
 	ld [LastPlayerMove], a
 	ld hl, PlayerSubStatus1
 rept 4
