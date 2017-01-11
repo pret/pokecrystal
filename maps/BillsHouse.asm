@@ -74,7 +74,7 @@ GrampsScript_0x189538:
 
 .GotWaterStone:
 	checkver
-	iftrue .Crystal11
+	iftrue .AskVulpix
 	writetext BillsGrandpaGrowlitheText
 	buttonsound
 	writetext BillsGrandpaAskToSeeMonText
@@ -88,7 +88,7 @@ GrampsScript_0x189538:
 	setevent EVENT_SHOWED_GROWLITHE_VULPIX_TO_BILLS_GRANDPA
 	jump .ShowedGrowlitheVulpix
 
-.Crystal11:
+.AskVulpix:
 	writetext BillsGrandpaVulpixText
 	buttonsound
 	writetext BillsGrandpaAskToSeeMonText
