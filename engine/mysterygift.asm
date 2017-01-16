@@ -63,7 +63,7 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	jr z, .skip_append_save
 	call .SaveMysteryGiftTrainerName
 	callba RestoreMobileEventIndex
-	callba MobileFn_1060a9
+	callba TrainerRankings_MysteryGift
 	callba BackupMobileEventIndex
 .skip_append_save
 	ld a, [wMysteryGiftPartnerSentDeco]

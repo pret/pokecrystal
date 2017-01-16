@@ -472,7 +472,7 @@ UsedSurfScript: ; c986
 	end
 
 .empty_fn ; c9a2
-	callba MobileFn_1060bb ; empty
+	callba TrainerRankings_Surf
 	ret
 
 UsedSurfText: ; c9a9
@@ -745,7 +745,7 @@ Script_UsedWaterfall: ; 0xcb20
 	ld a, [PlayerStandingTile]
 	call CheckWaterfallTile
 	ret z
-	callba MobileFn_1060c1
+	callba TrainerRankings_Waterfall
 	ld a, $1
 	ld [ScriptVar], a
 	ret

@@ -3098,7 +3098,7 @@ Function17e3c3: ; 17e3c3
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	callba MobileFn_106155
+	callba UpdateTrainerRankingsChecksum2
 	callba BackupMobileEventIndex
 	pop af
 	ld [rSVBK], a

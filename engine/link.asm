@@ -1973,7 +1973,7 @@ LinkTrade: ; 28b87
 
 .save
 	callba SaveAfterLinkTrade
-	callba MobileFn_1060af
+	callba TrainerRankings_Trades
 	callba BackupMobileEventIndex
 	ld c, 40
 	call DelayFrames

@@ -1,50 +1,63 @@
 SECTION "bank41_2", ROMX, BANK[$41]
 
-Mobile_HallOfFame2:: mobile ; 0x105ef6
+; These functions deal with miscellaneous statistics
+; which were used for Trainer Rankings in Pokémon News.
+
+; Copies certain values at the time the player enters the Hall of Fame.
+TrainerRankings_HallOfFame2:: mobile ; 0x105ef6
 	ld a, $5
 	call GetSRAMBank
+
 	ld hl, GameTimeHours
-	ld de, $a001
+	ld de, sTrainerRankingGameTimeHOF
 	ld bc, 4
 	call CopyBytes
-	ld hl, $a010
-	ld de, $a005
+
+	ld hl, sTrainerRankingStepCount
+	ld de, sTrainerRankingStepCountHOF
 	ld bc, 4
 	call CopyBytes
-	ld hl, $a039
-	ld de, $a009
+
+	; sTrainerRankingHealings is only a 3-byte value.
+	; One extraneous byte is copied from sTrainerRankingMysteryGift.
+	ld hl, sTrainerRankingHealings
+	ld de, sTrainerRankingHealingsHOF
 	ld bc, 4
 	call CopyBytes
-	ld hl, $a01b
-	ld de, $a00d
+
+	ld hl, sTrainerRankingBattles
+	ld de, sTrainerRankingBattlesHOF
 	ld bc, 3
 	call CopyBytes
-	call Function106162
+
+	call UpdateTrainerRankingsChecksum
 	call CloseSRAM
 	ret
 ; 105f33
 
-MagikarpLength_Mobile: mobile ; 105f33
+TrainerRankings_MagikarpLength: mobile ; 105f33
 	ld a, $5
 	call GetSRAMBank
 	ld de, Buffer1
-	ld hl, $a07b
+	ld hl, sTrainerRankingLongestMagikarp
+
+	; Is this Magikarp the longest measured?
 	ld a, [de]
 	cp [hl]
-	jr z, .asm_105f47
-	jr nc, .asm_105f4f
-	jr .asm_105f55
+	jr z, .isLowByteHigher
+	jr nc, .newRecordLongest
+	jr .checkShortest
 
-.asm_105f47
+.isLowByteHigher
 	inc hl
 	inc de
 	ld a, [de]
 	cp [hl]
 	dec hl
 	dec de
-	jr c, .asm_105f55
+	jr c, .checkShortest
 
-.asm_105f4f
+.newRecordLongest
 	ld a, [de]
 	inc de
 	ld [hli], a
@@ -52,150 +65,157 @@ MagikarpLength_Mobile: mobile ; 105f33
 	dec de
 	ld [hl], a
 
-.asm_105f55
-	ld hl, $a07d
+.checkShortest
+	; First, check if the record for shortest Magikarp is 0.
+	; This seems unnecessary, because the value is initialized to 100.0 cm.
+	ld hl, sTrainerRankingShortestMagikarp
 	ld a, [hli]
 	or [hl]
 	dec hl
-	jr z, .asm_105f6d
+	jr z, .newRecordShortest
+
+	; Now check if this Magikarp is the shortest
 	ld a, [de]
 	cp [hl]
-	jr z, .asm_105f65
-	jr c, .asm_105f6d
-	jr .asm_105f72
+	jr z, .isLowByteLower
+	jr c, .newRecordShortest
+	jr .done
 
-.asm_105f65
+.isLowByteLower
 	inc hl
 	inc de
 	ld a, [de]
 	cp [hl]
-	jr nc, .asm_105f72
+	jr nc, .done
 	dec hl
 	dec de
 
-.asm_105f6d
+.newRecordShortest
 	ld a, [de]
 	inc de
 	ld [hli], a
 	ld a, [de]
 	ld [hl], a
 
-.asm_105f72
-	call Function106162
+.done
+	call UpdateTrainerRankingsChecksum
 	call CloseSRAM
 	ret
 ; 105f79
 
-MobileFn_105f79: mobile ; 105f79
+TrainerRankings_BugContestScore: mobile ; 105f79
 	ld a, $5
 	call GetSRAMBank
 	ld a, [hProduct]
-	ld hl, $a07f
+	ld hl, sTrainerRankingBugContestScore
 	cp [hl]
-	jr z, .asm_105f8b
-	jr nc, .asm_105f92
-	jr .asm_105f98
+	jr z, .isLowByteHigher
+	jr nc, .newHighScore
+	jr .done
 
-.asm_105f8b
+.isLowByteHigher
 	inc hl
 	ld a, [hMultiplicand]
 	cp [hl]
-	jr c, .asm_105f98
+	jr c, .done
 	dec hl
 
-.asm_105f92
+.newHighScore
 	ld a, [hProduct]
 	ld [hli], a
 	ld a, [hMultiplicand]
 	ld [hl], a
 
-.asm_105f98
-	call Function106162
+.done
+	call UpdateTrainerRankingsChecksum
 	call CloseSRAM
 	ret
 ; 105f9f
 
-MobileFn_105f9f: mobile ; 105f9f
+TrainerRankings_AddToSlotsWinStreak: mobile ; 105f9f
 	ld a, $5
 	call GetSRAMBank
-	ld hl, $a070
+
+	; Increment the current streak
+	ld hl, sTrainerRankingCurrentSlotsStreak + 1
 	inc [hl]
-	jr nz, .asm_105fae
+	jr nz, .noCarry
 	dec hl
 	inc [hl]
 	inc hl
 
-.asm_105fae
+.noCarry
 	dec hl
-	ld a, [$a071]
+	; Now check if this is a new record for longest streak
+	ld a, [sTrainerRankingLongestSlotsStreak]
 	cp [hl]
-	jr z, .asm_105fb9
-	jr c, .asm_105fc1
-	jr .asm_105fc9
+	jr z, .isLowByteHigher
+	jr c, .newRecordStreak
+	jr .done
 
-.asm_105fb9
+.isLowByteHigher
 	inc hl
-	ld a, [$a072]
+	ld a, [sTrainerRankingLongestSlotsStreak + 1]
 	cp [hl]
-	jr nc, .asm_105fc9
+	jr nc, .done
 	dec hl
 
-.asm_105fc1
+.newRecordStreak
 	ld a, [hli]
-	ld [$a071], a
+	ld [sTrainerRankingLongestSlotsStreak], a
 	ld a, [hl]
-	ld [$a072], a
+	ld [sTrainerRankingLongestSlotsStreak + 1], a
 
-.asm_105fc9
-	call Function106162
+.done
+	call UpdateTrainerRankingsChecksum
 	call CloseSRAM
 	ret
 ; 105fd0
 
-MobileFn_105fd0: mobile ; 105fd0
+TrainerRankings_EndSlotsWinStreak: mobile ; 105fd0
 	ld a, $5
 	call GetSRAMBank
-	ld hl, $a06f
+	ld hl, sTrainerRankingCurrentSlotsStreak
 	xor a
 	ld [hli], a
 	ld [hl], a
-	call Function106162
+	call UpdateTrainerRankingsChecksum
 	call CloseSRAM
 	ret
 ; 105fe3
 
-MobileFn_105fe3: mobile ; 105fe3
+TrainerRankings_AddToSlotsPayouts: mobile ; 105fe3
 	ld a, $5
 	call GetSRAMBank
-	ld hl, $a076
+	ld hl, sTrainerRankingTotalSlotsPayouts + 3
 	ld a, e
 	add [hl]
 	ld [hld], a
 	ld a, d
 	adc [hl]
 	ld [hld], a
-	jr nc, .asm_106001
+	jr nc, .done
 	inc [hl]
-	jr nz, .asm_106001
+	jr nz, .done
 	dec hl
 	inc [hl]
-	jr nz, .asm_106001
+	jr nz, .done
 	ld a, $ff
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
 
-.asm_106001
-	call Function106162
+.done
+	call UpdateTrainerRankingsChecksum
 	call CloseSRAM
 	ret
 ; 106008
 
-MobileFn_106008: mobile ; 106008
+TrainerRankings_AddToBattlePayouts: mobile ; 106008
 	ld a, $5
 	call GetSRAMBank
-	ld hl, $a07a
+	ld hl, sTrainerRankingTotalBattlePayouts + 3
 	ld a, [bc]
 	dec bc
 	add [hl]
@@ -207,189 +227,195 @@ MobileFn_106008: mobile ; 106008
 	ld a, [bc]
 	adc [hl]
 	ld [hld], a
-	jr nc, .asm_106027
+	jr nc, .done
 	inc [hl]
-	jr nz, .asm_106027
+	jr nz, .done
 	ld a, $ff
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
 
-.asm_106027
-	call Function106162
+.done
+	call UpdateTrainerRankingsChecksum
 	call CloseSRAM
 	ret
 ; 10602e
 
-MobileFn_10602e: mobile ; 10602e (41:602e)
-	ld hl, $a010
-	jp MobileFn_106117
+TrainerRankings_StepCount: mobile ; 10602e (41:602e)
+	ld hl, sTrainerRankingStepCount
+	jp TrainerRankings_Increment4Byte
 
-MobileFn_106035: mobile ; 106035
+; Unreferenced in English version.
+TrainerRankings_BattleTowerWins: mobile ; 106035
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$aa8d]
 	and a
 	call CloseSRAM
 	ret nz
-	ld hl, $a014
-	jp Function106123
+	ld hl, sTrainerRankingBattleTowerWins
+	jp TrainerRankings_Increment2Byte
 
-MobileFn_106049: mobile ; 106049
-	ld hl, $a018
-	jp Function10611d
+TrainerRankings_TMsHMsTaught: mobile ; 106049
+	ld hl, sTrainerRankingTMsHMsTaught
+	jp TrainerRankings_Increment3Byte
 
-MobileFn_106050: mobile ; 106050
+TrainerRankings_Battles: mobile ; 106050
 	ld a, [BattleType]
-	cp BATTLETYPE_TUTORIAL
+	cp BATTLETYPE_TUTORIAL ; Exclude the Dude’s tutorial battle
 	ret z
-	ld hl, $a01b
-	jp Function10611d
+	ld hl, sTrainerRankingBattles
+	jp TrainerRankings_Increment3Byte
 
-MobileFn_10605d: mobile ; 10605d
+TrainerRankings_WildBattles: mobile ; 10605d
 	ld a, [BattleType]
-	cp BATTLETYPE_TUTORIAL
+	cp BATTLETYPE_TUTORIAL ; Exclude the Dude’s tutorial battle
 	ret z
-	ld hl, $a01e
-	jp Function10611d
+	ld hl, sTrainerRankingWildBattles
+	jp TrainerRankings_Increment3Byte
 
-MobileFn_10606a: mobile ; 10606a
-	ld hl, $a021
-	jp Function10611d
+TrainerRankings_TrainerBattles: mobile ; 10606a
+	ld hl, sTrainerRankingTrainerBattles
+	jp TrainerRankings_Increment3Byte
 
-MobileFn_106071: mobile ; 106071
-	ld hl, $a024
-	jp Function10611d
+TrainerRankings_Unused1: mobile ; 106071
+	ld hl, sTrainerRankingUnused1
+	jp TrainerRankings_Increment3Byte
 
-Mobile_HallOfFame:: mobile ; 0x106078
-	ld hl, $a027
-	jp Function10611d
+TrainerRankings_HallOfFame:: mobile ; 0x106078
+	ld hl, sTrainerRankingHOFEntries
+	jp TrainerRankings_Increment3Byte
 
-MobileFn_10607f: mobile ; 10607f (41:607f)
-	ld hl, $a02a
-	jp Function10611d
+TrainerRankings_WildMonsCaught: mobile ; 10607f (41:607f)
+	ld hl, sTrainerRankingWildMonsCaught
+	jp TrainerRankings_Increment3Byte
 
-MobileFn_106086: mobile ; 106086
-	ld hl, $a02d
-	jp Function10611d
+TrainerRankings_HookedEncounters: mobile ; 106086
+	ld hl, sTrainerRankingHookedEncounters
+	jp TrainerRankings_Increment3Byte
 
-MobileFn_10608d: mobile ; 10608d (41:608d)
-	ld hl, $a030
-	jp Function10611d
+TrainerRankings_EggsHatched: mobile ; 10608d (41:608d)
+	ld hl, sTrainerRankingEggsHatched
+	jp TrainerRankings_Increment3Byte
 
-MobileFn_106094: mobile ; 106094
-	ld hl, $a033
-	jp Function10611d
+TrainerRankings_MonsEvolved: mobile ; 106094
+	ld hl, sTrainerRankingMonsEvolved
+	jp TrainerRankings_Increment3Byte
 
-MobileFn_10609b: mobile ; 10609b
-	ld hl, $a036
-	jp Function10611d
+TrainerRankings_FruitPicked: mobile ; 10609b
+	ld hl, sTrainerRankingFruitPicked
+	jp TrainerRankings_Increment3Byte
 
-Mobile_HealParty: mobile ; 1060a2
-	ld hl, $a039
-	jp Function10611d
+TrainerRankings_Healings: mobile ; 1060a2
+	ld hl, sTrainerRankingHealings
+	jp TrainerRankings_Increment3Byte
 
-MobileFn_1060a9: mobile ; 1060a9 (41:60a9)
-	ld hl, $a03c
-	jr Function10611d
+TrainerRankings_MysteryGift: mobile ; 1060a9 (41:60a9)
+	ld hl, sTrainerRankingMysteryGift
+	jr TrainerRankings_Increment3Byte
 
-MobileFn_1060af: mobile ; 1060af
-	ld hl, $a03f
-	jr Function10611d
+TrainerRankings_Trades: mobile ; 1060af
+	ld hl, sTrainerRankingTrades
+	jr TrainerRankings_Increment3Byte
 
-MobileFn_1060b5: mobile ; 1060b5
-	ld hl, $a042
-	jr Function10611d
+TrainerRankings_Fly: mobile ; 1060b5
+	ld hl, sTrainerRankingFly
+	jr TrainerRankings_Increment3Byte
 
-MobileFn_1060bb: mobile ; 1060bb
-	ld hl, $a045
-	jr Function10611d
+TrainerRankings_Surf: mobile ; 1060bb
+	ld hl, sTrainerRankingSurf
+	jr TrainerRankings_Increment3Byte
 
-MobileFn_1060c1: mobile ; 1060c1
-	ld hl, $a048
-	jr Function10611d
+TrainerRankings_Waterfall: mobile ; 1060c1
+	ld hl, sTrainerRankingWaterfall
+	jr TrainerRankings_Increment3Byte
 
-MobileFn_1060c7: mobile ; 1060c7
-	ld hl, $a04b
-	jr Function10611d
+TrainerRankings_WhiteOuts: mobile ; 1060c7
+	ld hl, sTrainerRankingWhiteOuts
+	jr TrainerRankings_Increment3Byte
 
-MobileFn_1060cd: mobile ; 1060cd
-	ld hl, $a04e
-	jr Function106123
+TrainerRankings_LuckyNumberShow: mobile ; 1060cd
+	ld hl, sTrainerRankingLuckyNumberShow
+	jr TrainerRankings_Increment2Byte
 
-MobileFn_1060d3: mobile ; 1060d3
-	ld hl, $a051
-	jr Function10611d
+TrainerRankings_PhoneCalls: mobile ; 1060d3
+	ld hl, sTrainerRankingPhoneCalls
+	jr TrainerRankings_Increment3Byte
 
-MobileFn_1060d9: mobile ; 1060df
-	ld hl, $a054
-	jr Function10611d
+TrainerRankings_Unused2: mobile ; 1060df
+	ld hl, sTrainerRankingUnused2
+	jr TrainerRankings_Increment3Byte
 
-MobileFn_1060df: mobile ; 1060df
-	ld hl, $a057
-	jr Function10611d
+TrainerRankings_LinkBattles: mobile ; 1060df
+	ld hl, sTrainerRankingLinkBattles
+	jr TrainerRankings_Increment3Byte
 
-MobileFn_1060e5: mobile ; 1060e5
+TrainerRankings_Splash: mobile ; 1060e5
+	; Only counts if it’s the player’s turn
 	ld a, [hBattleTurn]
 	and a
 	ret nz
-	ld hl, $a05a
-	jr Function10611d
+	ld hl, sTrainerRankingSplash
+	jr TrainerRankings_Increment3Byte
 
-MobileFn_1060ef: mobile ; 1060ef
-	ld hl, $a05d
-	jr Function10611d
+TrainerRankings_TreeEncounters: mobile ; 1060ef
+	ld hl, sTrainerRankingTreeEncounters
+	jr TrainerRankings_Increment3Byte
 
-MobileFn_1060f5: mobile ; 1060f5
-	ld hl, $a060
-	jr Function10611d
+TrainerRankings_Unused3: mobile ; 1060f5
+	ld hl, sTrainerRankingUnused3
+	jr TrainerRankings_Increment3Byte
 
-MobileFn_SaveBattleResult_Win: mobile ; win
-	ld hl, $a063
-	jr Function10611d
+TrainerRankings_ColosseumWins: mobile ; win
+	ld hl, sTrainerRankingColosseumWins
+	jr TrainerRankings_Increment3Byte
 
-MobileFn_SaveBattleResult_Lose: mobile ; lose
-	ld hl, $a066
-	jr Function10611d
+TrainerRankings_ColosseumLosses: mobile ; lose
+	ld hl, sTrainerRankingColosseumLosses
+	jr TrainerRankings_Increment3Byte
 ; 106107
 
-MobileFn_SaveBattleResult_Draw: mobile ; draw
-	ld hl, $a069
-	jr Function10611d
+TrainerRankings_ColosseumDraws: mobile ; draw
+	ld hl, sTrainerRankingColosseumDraws
+	jr TrainerRankings_Increment3Byte
 ; 10610d
 
-MobileFn_10610d: mobile ; 10610d
+; Counts uses of both SelfDestruct and Explosion.
+TrainerRankings_SelfDestruct: mobile ; 10610d
+	; Only counts if it’s the player’s turn
 	ld a, [hBattleTurn]
 	and a
 	ret nz
-	ld hl, $a06c
-	jr Function10611d
+	ld hl, sTrainerRankingSelfDestruct
+	jr TrainerRankings_Increment3Byte
 ; 106117
 
-MobileFn_106117: ; 106117
+TrainerRankings_Increment4Byte: ; 106117
 	push bc
 	ld bc, 3
-	jr Function10612d
+	jr TrainerRankings_Increment
 ; 10611d
 
-Function10611d: ; 10611d
+TrainerRankings_Increment3Byte: ; 10611d
 	push bc
 	ld bc, 2
-	jr Function10612d
+	jr TrainerRankings_Increment
 ; 106123
 
-Function106123: ; 106123
+TrainerRankings_Increment2Byte: ; 106123
 	push bc
 	ld bc, 1
-	jr Function10612d
+	jr TrainerRankings_Increment
 ; 106129
 
-Function106129: ; 106129
+; unused
+TrainerRankings_Increment1Byte: ; 106129
 	push bc
 	ld bc, 0
 
-Function10612d: ; 10612d
+; Increments a big-endian value of bc + 1 bytes at hl
+TrainerRankings_Increment: ; 10612d
 	ld a, $5
 	call GetSRAMBank
 	push hl
@@ -419,24 +445,25 @@ Function10612d: ; 10612d
 	jr .asm_106142
 
 .asm_10614d
-	call Function106162
+	call UpdateTrainerRankingsChecksum
 	call CloseSRAM
 	pop bc
 	ret
 ; 106155
 
-MobileFn_106155: mobile ; 106155
+; Used when SRAM bank 5 isn’t already loaded — what’s the point of this?
+UpdateTrainerRankingsChecksum2: mobile ; 106155
 	ld a, $5
 	call GetSRAMBank
-	call Function106162
+	call UpdateTrainerRankingsChecksum
 	call CloseSRAM
 	ret
 ; 106162
 
-Function106162: ; 106162
+UpdateTrainerRankingsChecksum: ; 106162
 	push de
-	call Function10616e
-	ld hl, $a081 ; s5_a081
+	call CalculateTrainerRankingsChecksum
+	ld hl, sTrainerRankingsChecksum
 	ld [hl], d
 	inc hl
 	ld [hl], e
@@ -444,10 +471,10 @@ Function106162: ; 106162
 	ret
 ; 10616e
 
-Function10616e: ; 10616e
+CalculateTrainerRankingsChecksum: ; 10616e
 	push bc
-	ld hl, $a001 ; s5_a001
-	ld bc, $80
+	ld hl, sTrainerRankings
+	ld bc, sTrainerRankingsChecksum - sTrainerRankings
 	xor a
 	ld de, 0
 .asm_106179
@@ -495,9 +522,10 @@ RestoreMobileEventIndex: ; 10619d (41:619d)
 	ret
 ; 1061b3 (41:61b3)
 
-Function1061b3: ; 1061b3
-	call Function10616e
-	ld hl, $a081 ; s5_a081
+; Unreferenced in English version.
+VerifyTrainerRankingsChecksum: ; 1061b3
+	call CalculateTrainerRankingsChecksum
+	ld hl, sTrainerRankingsChecksum
 	ld a, d
 	cp [hl]
 	ret nz
@@ -516,19 +544,24 @@ DeleteMobileEventIndex: ; 1061c0 (41:61c0)
 	ret
 ; 1061cd (41:61cd)
 
-Function1061cd: ; unreferenced
-	ld hl, $a001
-	ld bc, $82
+; Used in the Japanese version to initialize Trainer Rankings data
+; for a new save file. Unreferenced in the English version.
+InitializeTrainerRankings:
+	ld hl, sTrainerRankings
+	ld bc, sTrainerRankingsEnd - sTrainerRankings
 	xor a
 	call ByteFill
-	ld hl, $a07d
+
+	; Initialize the shortest Magikarp to 100.0 cm
+	ld hl, sTrainerRankingShortestMagikarp
 	ld a, $3
 	ld [hli], a
 	ld [hl], $e8
-	call Function106162
-	ld hl, $a001
-	ld de, $a084
-	ld bc, $82
+
+	call UpdateTrainerRankingsChecksum
+	ld hl, sTrainerRankings
+	ld de, sTrainerRankingsBackup
+	ld bc, sTrainerRankingsEnd - sTrainerRankings
 	call CopyBytes
 	ret
 ; 1061ef

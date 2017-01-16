@@ -2830,7 +2830,7 @@ Special_CheckForLuckyNumberWinners: ; 4d87a
 	ld a, [ScriptVar]
 	and a
 	ret z ; found nothing
-	callba MobileFn_1060cd
+	callba TrainerRankings_LuckyNumberShow
 	ld a, [wFoundMatchingIDInParty]
 	and a
 	push af

@@ -1255,7 +1255,7 @@ MonMenu_Fly: ; 12e30
 	jr z, .Fail
 	cp $0
 	jr z, .Error
-	callba MobileFn_1060b5
+	callba TrainerRankings_Fly
 	ld b, $4
 	ld a, $2
 	ret

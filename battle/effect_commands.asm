@@ -8073,7 +8073,7 @@ BattleCommand_LeechSeed: ; 36f9d
 
 BattleCommand_Splash: ; 36fe1
 	call AnimateCurrentMove
-	callba MobileFn_1060e5
+	callba TrainerRankings_Splash
 	jp PrintNothingHappened
 
 ; 36fed
@@ -8600,7 +8600,7 @@ CheckSubstituteOpp: ; 37378
 
 
 BattleCommand_SelfDestruct: ; 37380
-	callba MobileFn_10610d
+	callba TrainerRankings_SelfDestruct
 	ld a, BATTLEANIM_PLAYER_DAMAGE
 	ld [wNumHits], a
 	ld c, 3

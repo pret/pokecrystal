@@ -243,7 +243,7 @@ RunBattleTowerTrainer: ; 17024d
 
 	xor a
 	ld [wLinkMode], a
-	callba Mobile_HealParty
+	callba TrainerRankings_Healings
 	callba HealParty
 	call ReadBTTrainerParty
 	call Clears5_a89a

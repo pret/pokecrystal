@@ -512,7 +512,7 @@ ParkBall: ; e8a2
 	cp BATTLETYPE_TUTORIAL
 	jp z, .FinishTutorial
 
-	callba MobileFn_10607f
+	callba TrainerRankings_WildMonsCaught
 
 	ld hl, Text_GotchaMonWasCaught
 	call PrintText

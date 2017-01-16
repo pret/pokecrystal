@@ -5452,7 +5452,7 @@ Function102423: ; 102423
 	call Function102921
 	ret nc
 	callba SaveAfterLinkTrade
-	callba MobileFn_1060af
+	callba TrainerRankings_Trades
 	callba BackupMobileEventIndex
 	ld hl, wcd4b
 	set 1, [hl]
