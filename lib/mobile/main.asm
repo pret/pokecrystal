@@ -4,7 +4,7 @@ charmap "<CR>", $d
 
 INCLUDE "gbhw.asm"
 
-SECTION "Main", ROMX
+SECTION "Main", ROMX[$4000], BANK[$44]
 
 Function110000: ; 110000 (44:4000)
 ; Copy b bytes from hl to de
