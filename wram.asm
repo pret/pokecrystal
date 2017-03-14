@@ -2,7 +2,7 @@ INCLUDE "includes.asm"
 INCLUDE "macros/wram.asm"
 INCLUDE "vram.asm"
 
-SECTION "Stack", WRAM0
+SECTION "Stack", WRAM0 [$c000]
 wc000::
 StackBottom::
 	ds $100 - 1
@@ -11,7 +11,7 @@ StackTop::
 	ds 1
 
 
-SECTION "Audio", WRAM0
+SECTION "Audio", WRAM0 [$c100]
 wMusic::
 MusicPlaying:: ; c100
 ; nonzero if playing
@@ -134,7 +134,7 @@ wMapMusic:: ; c2c0
 wDontPlayMapMusicOnReload:: ds 1
 wMusicEnd::
 
-SECTION "WRAM", WRAM0
+SECTION "WRAM", WRAM0 [$c2c2]
 
 wLZAddress:: dw ; c2c2
 wLZBank::    db ; c2c4
@@ -330,7 +330,7 @@ Sprites:: ; c400
 SpritesEnd::
 
 
-SECTION "Tilemap", WRAM0
+SECTION "Tilemap", WRAM0 [$c4a0]
 
 TileMap:: ; c4a0
 ; 20x18 grid of 8x8 tiles
@@ -338,7 +338,7 @@ TileMap:: ; c4a0
 TileMapEnd::
 
 
-SECTION "Battle", WRAM0
+SECTION "Battle", WRAM0 [$c608]
 wc608::
 wOddEgg:: party_struct OddEgg
 wOddEggName:: ds PKMN_NAME_LENGTH
@@ -1111,7 +1111,7 @@ wccb8:: ds 1
 wccb9:: ds 1
 wccba:: ds 102
 
-SECTION "Video", WRAM0
+SECTION "Video", WRAM0 [$cd20]
 CreditsPos::
 BGMapBuffer::
 wMobileMonSpeciesPointerBuffer:: dw
@@ -1514,7 +1514,7 @@ wDaysSince:: ds 1
 wRAM0End:: ; cfd8
 
 
-SECTION "WRAM 1", WRAMX, BANK [1]
+SECTION "WRAM 1", WRAMX [$d000], BANK [1]
 
 wd000:: ds 1
 DefaultSpawnpoint::
@@ -2193,7 +2193,7 @@ TimeOfDay:: ; d269
 
 	ds 1
 
-SECTION "Enemy Party", WRAMX, BANK [1]
+SECTION "Enemy Party", WRAMX [$d26b], BANK [1]
 wPokedexShowPointerAddr::
 wd26b:: ds 1
 wd26c:: ds 1
@@ -2808,7 +2808,7 @@ wScreenSave:: ds 6 * 5
 wMapDataEnd::
 
 
-SECTION "Party", WRAMX, BANK [1]
+SECTION "Party", WRAMX [$dcd7], BANK [1]
 
 wPokemonData::
 
@@ -2907,7 +2907,7 @@ wMagikarpRecordHoldersName:: ds NAME_LENGTH
 wPokemonDataEnd::
 wGameDataEnd::
 
-SECTION "Pic Animations", WRAMX, BANK [2]
+SECTION "Pic Animations", WRAMX [$d000], BANK [2]
 
 TempTileMap::
 ; 20x18 grid of 8x8 tiles
@@ -2946,7 +2946,7 @@ wPokeAnimBitmaskBuffer:: ds 7
 wPokeAnimStructEnd::
 
 
-SECTION "Battle Tower", WRAMX, BANK [3]
+SECTION "Battle Tower", WRAMX [$d000], BANK [3]
 
 w3_d000:: ds 1 ; d000
 w3_d001:: ds 1
@@ -2997,7 +2997,7 @@ w3_dd68:: ds SCREEN_WIDTH * SCREEN_HEIGHT
 w3_dfec:: ds $10
 w3_dffc:: ds 4
 
-SECTION "GBC Video", WRAMX, BANK [5]
+SECTION "GBC Video", WRAMX [$d000], BANK [5]
 
 ; 8 4-color palettes
 UnknBGPals:: ds 8 palettes ; d000
@@ -3098,7 +3098,7 @@ w5_MobileOpponentBattleStartMessage:: ds $c ; dc26
 w5_MobileOpponentBattleWinMessage:: ds $c ; dc32
 w5_MobileOpponentBattleLossMessage:: ds $c ; dc3e
 
-SECTION "WRAM 6", WRAMX, BANK [6]
+SECTION "WRAM 6", WRAMX [$d000], BANK [6]
 
 wDecompressScratch::
 wScratchTileMap::
@@ -3109,6 +3109,6 @@ w6_d800::
 
 INCLUDE "sram.asm"
 
-SECTION "WRAM 7", WRAMX, BANK [7]
+SECTION "WRAM 7", WRAMX [$d000], BANK [7]
 wWindowStack:: ds $1000 - 1
 wWindowStackBottom:: ds 1

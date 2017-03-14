@@ -1,4 +1,4 @@
-SECTION "bank41_2", ROMX, BANK[$41]
+SECTION "bank41_2", ROMX[$5ef6], BANK[$41]
 
 ; These functions deal with miscellaneous statistics
 ; which were used for Trainer Rankings in Pokémon News.
