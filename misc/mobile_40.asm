@@ -1784,7 +1784,7 @@ Function100ae7: ; 100ae7
 ; 100b0a
 
 
-SECTION "tetsuji", ROMX, BANK[$40]
+SECTION "tetsuji", ROMX[$4B0A], BANK[$40]
 
 	charmap " ", $20 ; revert to ascii
 
@@ -1793,7 +1793,7 @@ Unknown_100b0a: ; 100b0a
 ; 100b12
 
 
-SECTION "bank40_2", ROMX, BANK[$40]
+SECTION "bank40_2", ROMX[$4B12], BANK[$40]
 
 Function100b12: ; 100b12
 	call Function100dd8
@@ -3831,7 +3831,7 @@ Function101826: ; 101826
 ; 10186f
 
 
-SECTION "ascii 10186f", ROMX, BANK[$40]
+SECTION "ascii 10186f", ROMX[$586F], BANK[$40]
 
 	charmap " ", $20 ; revert to ascii
 
@@ -3852,7 +3852,7 @@ Unknown_101895:
 ; 1018a8
 
 
-SECTION "bank40_3", ROMX, BANK[$40]
+SECTION "bank40_3", ROMX[$58A8], BANK[$40]
 
 Function1018a8: ; 1018a8
 	ld hl, wccb5

@@ -1,5 +1,5 @@
 
-SECTION "bank5F", ROMX, BANK[$5F]
+SECTION "bank5F", ROMX[$4000], BANK[$5F]
 
 Function17c000: ; 17c000
 
