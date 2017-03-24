@@ -1,5 +1,5 @@
 
-SECTION "bank45", ROMX[$4000], BANK[$45]
+SECTION "bank45", ROMX, BANK[$45]
 
 	charmap " ", $20 ; revert to ascii
 
@@ -6835,7 +6835,7 @@ Unknown_117356: ; 117356
 ; 117656
 
 
-SECTION "Mobile Stadium", ROMX[$7656], BANK[$45]
+SECTION "Mobile Stadium", ROMX, BANK[$45]
 
 Special_GiveOddEgg: ; 117656
 	callba GiveOddEgg

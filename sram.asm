@@ -3,7 +3,7 @@ SRAM_End   EQU $c000
 GLOBAL SRAM_Begin, SRAM_End
 
 
-SECTION "Scratch", SRAM [$a000], BANK [0]
+SECTION "Scratch", SRAM, BANK [0]
 sScratch::
 
 
@@ -98,7 +98,7 @@ s0_bf0f:: ds 1 ; loaded with 0x7f, used to check save corruption
 sStackTop:: ds 2
 
 
-SECTION "Save", SRAM [$a000], BANK [1]
+SECTION "Save", SRAM, BANK [1]
 
 sOptions:: ds OptionsEnd - Options
 
@@ -117,13 +117,13 @@ sGameDataEnd::
 sChecksum::   ds 2
 s1_ad0f::     ds 1 ; loaded with 0x7f, used to check save corruption
 
-SECTION "Active Box", SRAM [$ad10], BANK [1]
+SECTION "Active Box", SRAM, BANK [1]
 ; ad10
 	box sBox
 ; b160
 
 	ds $f4
-SECTION "Link Battle Data", SRAM [$b254], BANK [1]
+SECTION "Link Battle Data", SRAM, BANK [1]
 sLinkBattleResults:: ds $c
 
 sLinkBattleStats:: ; b260
@@ -145,7 +145,7 @@ sLinkBattleRecord4:: link_battle_record sLinkBattleRecord4
 sLinkBattleRecord5:: link_battle_record sLinkBattleRecord5
 sLinkBattleStatsEnd::
 
-SECTION "SRAM Hall of Fame", SRAM [$b2c0], BANK [1]
+SECTION "SRAM Hall of Fame", SRAM, BANK [1]
 sHallOfFame:: ; b2c0
 ; temporary until I can find a way to macrofy it
 	hall_of_fame sHallOfFame01
@@ -193,14 +193,14 @@ sHallOfFame:: ; b2c0
 ; endr
 sHallOfFameEnd::
 
-SECTION "SRAM Crystal Data", SRAM [$be3c], BANK [1]
+SECTION "SRAM Crystal Data", SRAM, BANK [1]
 sMobileEventIndex:: ds 1 ; be3c
 
 sCrystalData::
 	ds wCrystalDataEnd - wCrystalData
 sMobileEventIndexBackup:: ds 1
 
-SECTION "SRAM Battle Tower", SRAM [$be45], BANK [1]
+SECTION "SRAM Battle Tower", SRAM, BANK [1]
 ; data of the BattleTower must be in SRAM because you can save and leave between battles
 sBattleTowerChallengeState:: ds 1
 ; 0: normal
@@ -226,7 +226,7 @@ sBTPkmnPrevPrevTrainer2:: ds 1
 sBTPkmnPrevPrevTrainer3:: ds 1
 
 
-SECTION "Boxes 1-7",  SRAM [$a000], BANK [2]
+SECTION "Boxes 1-7",  SRAM, BANK [2]
 	box sBox1
 	box sBox2
 	box sBox3
@@ -235,7 +235,7 @@ SECTION "Boxes 1-7",  SRAM [$a000], BANK [2]
 	box sBox6
 	box sBox7
 
-SECTION "Boxes 8-14", SRAM [$a000], BANK [3]
+SECTION "Boxes 8-14", SRAM, BANK [3]
 	box sBox8
 	box sBox9
 	box sBox10

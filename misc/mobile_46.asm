@@ -1,4 +1,4 @@
-SECTION "bank46", ROMX[$4000], BANK[$46]
+SECTION "bank46", ROMX, BANK[$46]
 
 Function118000: ; 118000
 	ld a, $1
@@ -3014,7 +3014,7 @@ Unknown_1196b8: ; 1196b8
 	db "Sun"
 ; 1196cd
 
-SECTION "bank46_2", ROMX[$56cd], BANK[$46]
+SECTION "bank46_2", ROMX, BANK[$46]
 ; A hack to use ascii above.
 
 Function1196cd: ; 1196cd (46:56cd)

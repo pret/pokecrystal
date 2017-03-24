@@ -1,7 +1,7 @@
 INCLUDE "includes.asm"
 
 
-SECTION "Evolutions and Attacks", ROMX[$65b1], BANK[EVOS_ATTACKS]
+SECTION "Evolutions and Attacks", ROMX, BANK[EVOS_ATTACKS]
 
 
 INCLUDE "data/evos_attacks_pointers.asm"
