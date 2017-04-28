@@ -6,18 +6,17 @@ If you run into trouble, ask on irc ([**freenode#pret**](https://kiwiirc.com/cli
 
 # Linux
 
-Python 2.7 is required.
-
 ```bash
-sudo apt-get install make gcc bison git python
+sudo apt-get install make gcc bison git
 
 git clone https://github.com/bentley/rgbds
 cd rgbds
 sudo make install
 cd ..
 
-git clone --recursive https://github.com/pret/pokecrystal
+git clone https://github.com/pret/pokecrystal
 cd pokecrystal
+make tools
 ```
 
 To build **pokecrystal.gbc**:
@@ -39,8 +38,9 @@ cd rgbds
 sudo make install
 cd ..
 
-git clone --recursive https://github.com/pret/pokecrystal
+git clone https://github.com/pret/pokecrystal
 cd pokecrystal
+make tools
 ```
 
 To build **pokecrystal.gbc**:
@@ -54,17 +54,18 @@ make
 
 To build on Windows, install [**Cygwin**](http://cygwin.com/install.html) with the default settings.
 
-In the installer, select the following packages: `make` `git` `python` `gettext`
+In the installer, select the following packages: `make` `git` `gettext`
 
 Then get the most recent version of [**rgbds**](https://github.com/bentley/rgbds/releases/).
-Extract the archive and put `rgbasm.exe`, `rgblink.exe` and `rgbfix.exe` in `C:\cygwin64\usr\local\bin`.
+Extract the archive and put `rgbasm.exe`, `rgblink.exe`, `rgbfix.exe` and `rgbgfx.exe` in `C:\cygwin64\usr\local\bin`.
 
 In the **Cygwin terminal**:
 
 ```bash
 
-git clone --recursive https://github.com/pret/pokecrystal
+git clone https://github.com/pret/pokecrystal
 cd pokecrystal
+make tools
 ```
 
 To build **pokecrystal.gbc**:
