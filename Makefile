@@ -64,13 +64,12 @@ pokecrystal.gbc: $(crystal_obj)
 %.bin: ;
 %.blk: ;
 
-%.png: ;
 %.2bpp: %.png
 	rgbgfx -o $@ $<
 %.1bpp: %.png
 	rgbgfx -d1 -o $@ $<
 %.lz: %
-	tools/lzcomp $@ $<
+	tools/lzcomp $< $@
 
 %.dimensions: %.png
 	tools/png_dimensions $< $@
