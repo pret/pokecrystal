@@ -155,9 +155,9 @@ LoadMetatiles:: ; 2198
 	add a
 	ld l, a
 	ld h, 0
-rept 3
 	add hl, hl
-endr
+	add hl, hl
+	add hl, hl
 	ld a, [TilesetBlocksAddress]
 	add l
 	ld l, a
@@ -694,9 +694,9 @@ RestoreFacingAfterWarp:: ; 248a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-rept 3
 	inc hl ; get to the warp coords
-endr
+	inc hl ; get to the warp coords
+	inc hl ; get to the warp coords
 	ld a, [WarpNumber]
 	dec a
 	ld c, a
@@ -751,9 +751,9 @@ ChangeMap:: ; 24e4
 	ld [hConnectionStripLength], a
 	ld c, a
 	ld b, 0
-rept 3
 	add hl, bc
-endr
+	add hl, bc
+	add hl, bc
 	ld c, 3
 	add hl, bc
 	ld a, [MapBlockDataBank]
@@ -1072,7 +1072,7 @@ MapTextbox:: ; 269a
 
 	push hl
 	call SpeechTextBox
-	call Function2e31
+	call SafeUpdateSprites
 	ld a, 1
 	ld [hOAMUpdate], a
 	call ApplyTilemap
@@ -1382,7 +1382,7 @@ UpdateBGMapColumn:: ; 27f8
 
 ; unreferenced
 	ld hl, BGMapBuffer
-	ld bc, SGBPredef - BGMapBuffer
+	ld bc, BGMapBufferEnd - BGMapBuffer
 	xor a
 	call ByteFill
 	ret

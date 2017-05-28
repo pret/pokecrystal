@@ -266,9 +266,8 @@ CheckSpecialPhoneCall:: ; 90136 (24:4136)
 	jr nc, .NoPhoneCall
 
 	call .DoSpecialPhoneCall
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hli]
 	ld e, a
 	push hl
@@ -472,7 +471,7 @@ UnknownScript_0x90261: ; 0x90261
 RingTwice_StartCall: ; 9026f
 	call .Ring
 	call .Ring
-	callba MobileFn_1060d3
+	callba TrainerRankings_PhoneCalls
 	ret
 ; 9027c
 
@@ -501,7 +500,7 @@ PhoneCall:: ; 9029a
 	ld [PhoneCallerHi], a
 	call Phone_FirstOfTwoRings
 	call Phone_FirstOfTwoRings
-	callba MobileFn_1060d3
+	callba TrainerRankings_PhoneCalls
 	ret
 ; 902b3
 
@@ -520,9 +519,8 @@ Phone_CallerTextboxWithName2: ; 902c9
 	call Phone_CallerTextbox
 	hlcoord 1, 2
 	ld [hl], $62
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [PhoneScriptBank]
 	ld b, a
 	ld a, [PhoneCallerLo]
@@ -621,9 +619,8 @@ Function90363: ; 90363 (24:4363)
 	call Phone_CallerTextbox
 	hlcoord 1, 1
 	ld [hl], $62
-rept 2
 	inc hl
-endr
+	inc hl
 	ld d, h
 	ld e, l
 	pop bc
@@ -699,9 +696,8 @@ GetCallerName: ; 903a9 (24:43a9)
 	ld c, b
 	ld b, 0
 	ld hl, NonTrainerCallerNames
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]

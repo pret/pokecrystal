@@ -174,7 +174,7 @@ Cry_Mantine: ; f2e74
 
 Cry_Entei_Ch5: ; f2e7d
 	soundinput $ff
-	unknownmusic0xde $63
+	sound_duty 3, 0, 2, 1
 	sound __,  2, $f8, $05f8
 	sound __,  9, $9f, $04d8
 	sound __,  7, $f8, $05c4
@@ -184,7 +184,7 @@ Cry_Entei_Ch5: ; f2e7d
 ; f2e94
 
 Cry_Entei_Ch6: ; f2e94
-	unknownmusic0xde $33
+	sound_duty 3, 0, 3, 0
 	sound __,  2, $c8, $0640
 	sound __,  7, $ff, $0668
 	sound __,  8, $a8, $0534
@@ -201,7 +201,7 @@ Cry_Entei_Ch8: ; f2ea7
 ; f2eb4
 
 Cry_Magcargo_Ch5: ; f2eb4
-	unknownmusic0xde $c4
+	sound_duty 0, 1, 0, 3
 	sound __,  5, $af, $0720
 	sound __,  3, $f8, $071c
 	sound __,  3, $f8, $0718
@@ -213,7 +213,7 @@ Cry_Magcargo_Ch5: ; f2eb4
 ; f2ed3
 
 Cry_Magcargo_Ch6: ; f2ed3
-	unknownmusic0xde $a
+	sound_duty 2, 2, 0, 0
 	sound __,  2, $b8, $0710
 	sound __,  4, $d8, $072c
 	sound __,  5, $d8, $0665
@@ -235,7 +235,7 @@ Cry_Magcargo_branch_f2ef5: ; f2ef5
 ; f2f03
 
 Cry_Dunsparce_Ch5: ; f2f03
-	unknownmusic0xde $22
+	sound_duty 2, 0, 2, 0
 	sound __,  2, $f8, $05b0
 	sound __,  2, $f8, $04b4
 	sound __,  2, $f8, $05b8
@@ -249,7 +249,7 @@ Cry_Dunsparce_Ch5: ; f2f03
 ; f2f26
 
 Cry_Dunsparce_Ch6: ; f2f26
-	unknownmusic0xde $22
+	sound_duty 2, 0, 2, 0
 	sound __,  9, $b8, $04c8
 	sound C#,  1, $b5, $0410
 	endchannel
@@ -263,7 +263,7 @@ Cry_Dunsparce_Ch8: ; f2f31
 ; f2f3b
 
 Cry_Slowking_Ch5: ; f2f3b
-	unknownmusic0xde $33
+	sound_duty 3, 0, 3, 0
 	sound __,  3, $f1, $0550
 	sound __,  3, $f1, $0530
 	sound __,  3, $f1, $0510
@@ -275,7 +275,7 @@ Cry_Slowking_Ch5: ; f2f3b
 ; f2f5a
 
 Cry_Slowking_Ch6: ; f2f5a
-	unknownmusic0xde $f2
+	sound_duty 2, 0, 3, 3
 	sound __,  5, $e1, $0620
 	sound __,  6, $e2, $0500
 	sound __,  7, $e1, $0620
@@ -312,7 +312,7 @@ Cry_Pichu_Ch5: ; f2f8a
 ; f2fab
 
 Cry_Pichu_Ch6: ; f2fab
-	unknownmusic0xde $10
+	sound_duty 0, 0, 1, 0
 	sound __,  3, $c8, $076d
 	sound __,  3, $c8, $0771
 	sound __,  3, $c8, $078d
@@ -331,7 +331,7 @@ Cry_Pichu_Ch8: ; f2fc2
 ; f2fd2
 
 Cry_Marill_Ch5: ; f2fd2
-	unknownmusic0xde $22
+	sound_duty 2, 0, 2, 0
 	sound __,  3, $88, $06d8
 	sound __,  9, $e2, $06e0
 	sound __,  3, $61, $06e5
@@ -343,7 +343,7 @@ Cry_Marill_Ch5: ; f2fd2
 ; f2ff1
 
 Cry_Marill_Ch6: ; f2ff1
-	unknownmusic0xde $63
+	sound_duty 3, 0, 2, 1
 	sound __,  3, $68, $06b1
 	sound __,  6, $c1, $06b9
 	sound __,  6, $99, $0760
@@ -367,7 +367,7 @@ Cry_Togepi_Ch5: ; f301f
 	tone $0002
 Cry_Togepi_Ch6: ; f3022
 Cry_Togetic_branch_f3022: ; f3022
-	unknownmusic0xde $52
+	sound_duty 2, 0, 1, 1
 	sound __,  5, $f1, $0796
 	sound __,  5, $f1, $072d
 	sound __,  8, $0, 0
@@ -396,7 +396,7 @@ Cry_Spinarak_Ch5: ; f3048
 ; f305b
 
 Cry_Spinarak_Ch6: ; f305b
-	unknownmusic0xde $2a
+	sound_duty 2, 2, 2, 0
 	sound __,  4, $2c, $07c7
 	sound __,  2, $0, 0
 	sound __,  6, $59, $07be
@@ -413,7 +413,7 @@ Cry_Spinarak_Ch8: ; f306e
 ; f307b
 
 Cry_Raikou_Ch5: ; f307b
-	unknownmusic0xde $f8
+	sound_duty 0, 2, 3, 3
 	sound __,  3, $f1, $04b0
 	sound __,  3, $f7, $0590
 	sound __,  9, $f8, $0510
@@ -425,7 +425,7 @@ Cry_Raikou_Ch5: ; f307b
 ; f309a
 
 Cry_Raikou_Ch6: ; f309a
-	unknownmusic0xde $f2
+	sound_duty 2, 0, 3, 3
 	sound __,  3, $f1, $0720
 	sound __,  3, $e1, $0650
 	sound __,  5, $f1, $0750
@@ -450,7 +450,7 @@ Cry_Raikou_Ch8: ; f30bd
 ; f30d6
 
 Cry_Hoothoot_Ch5: ; f30d6
-	unknownmusic0xde $66
+	sound_duty 2, 1, 2, 1
 	sound __,  5, $78, $0650
 	sound __,  5, $f8, $0660
 	sound __,  5, $f8, $065c
@@ -463,7 +463,7 @@ Cry_Hoothoot_Ch5: ; f30d6
 ; f30f9
 
 Cry_Hoothoot_Ch6: ; f30f9
-	unknownmusic0xde $22
+	sound_duty 2, 0, 2, 0
 Cry_Hoothoot_branch_f30fb: ; f30fb
 	sound __,  3, $a1, $0600
 	loopchannel 3, Cry_Hoothoot_branch_f30fb
@@ -490,7 +490,7 @@ Cry_Sentret_Ch5: ; f3121
 ; f3129
 
 Cry_Sentret_Ch6: ; f3129
-	unknownmusic0xde $1b
+	sound_duty 3, 2, 1, 0
 Cry_Sentret_branch_f312b: ; f312b
 	sound __,  9, $39, $072d
 	sound __,  9, $f1, $0720
@@ -510,7 +510,7 @@ Cry_Mareep_Ch5: ; f313b
 ; f3143
 
 Cry_Mareep_Ch6: ; f3143
-	unknownmusic0xde $1
+	sound_duty 1, 0, 0, 0
 Cry_Mareep_branch_f3145: ; f3145
 Cry_Gligar_branch_f3145: ; f3145
 	sound __,  5, $3a, $073d
@@ -546,7 +546,7 @@ Cry_Gligar_Ch8: ; f3178
 Cry_Chikorita_Ch5: ; f317f
 	tone $0020
 Cry_Chikorita_Ch6: ; f3182
-	unknownmusic0xde $21
+	sound_duty 1, 0, 2, 0
 	sound __,  3, $c8, $0641
 	sound __,  3, $48, $0641
 	sound __,  7, $f8, $0790
@@ -562,7 +562,7 @@ Cry_Chikorita_Ch8: ; f3199
 ; f31a0
 
 Cry_Gligar_Ch5: ; f31a0
-	unknownmusic0xde $a2
+	sound_duty 2, 0, 2, 2
 	jumpchannel Cry_Gligar_branch_f3145
 ; f31a5
 
@@ -573,7 +573,7 @@ Cry_Girafarig_Ch5: ; f31a5
 ; f31ad
 
 Cry_Girafarig_Ch6: ; f31ad
-	unknownmusic0xde $41
+	sound_duty 1, 0, 0, 1
 Cry_Girafarig_branch_f31af: ; f31af
 	sound __,  5, $68, $0758
 	sound __,  3, $e8, $0760
@@ -593,7 +593,7 @@ Cry_Girafarig_Ch8: ; f31c4
 ; f31d4
 
 Cry_Slugma_Ch5: ; f31d4
-	unknownmusic0xde $91
+	sound_duty 1, 0, 1, 2
 	sound __, 13, $f2, $07a6
 	sound __,  5, $f8, $07b0
 	sound __,  5, $e8, $03b0
@@ -617,7 +617,7 @@ Cry_Ledyba_Ch5: ; f31f8
 ; f3200
 
 Cry_Ledyba_Ch6: ; f3200
-	unknownmusic0xde $1
+	sound_duty 1, 0, 0, 0
 Cry_Ledyba_branch_f3202: ; f3202
 	sound __,  4, $f8, $0791
 	sound __,  4, $d8, $078d
@@ -652,7 +652,7 @@ Cry_Donphan_Ch5: ; f322e
 
 Cry_Wooper_Ch6: ; f3249
 Cry_Donphan_Ch6: ; f3249
-	unknownmusic0xde $7
+	sound_duty 3, 1, 0, 0
 	sound __,  3, $b9, $0738
 	sound __,  5, $cb, $0742
 	sound __,  9, $cb, $0754
@@ -682,7 +682,7 @@ Cry_Donphan_Ch8: ; f3274
 
 Cry_Typhlosion_Ch5: ; f3284
 Cry_Teddiursa_Ch5: ; f3284
-	unknownmusic0xde $12
+	sound_duty 2, 0, 1, 0
 Cry_Typhlosion_branch_f3286: ; f3286
 Cry_Teddiursa_branch_f3286: ; f3286
 	sound __,  4, $c1, $0791
@@ -711,7 +711,7 @@ Cry_Teddiursa_branch_f32ae: ; f32ae
 
 Cry_Typhlosion_Ch6: ; f32bb
 Cry_Teddiursa_Ch6: ; f32bb
-	unknownmusic0xde $78
+	sound_duty 0, 2, 3, 1
 	sound __,  9, $99, $0740
 	sound __,  9, $79, $0746
 	sound C_,  1, $f6, $078d
@@ -731,7 +731,7 @@ Cry_Typhlosion_Ch8: ; f32da
 ; f32e7
 
 Cry_Natu_Ch5: ; f32e7
-	unknownmusic0xde $de
+	sound_duty 2, 3, 1, 3
 Cry_Mantine_branch_f32e9: ; f32e9
 Cry_Sunflora_branch_f32e9: ; f32e9
 	sound __,  5, $f8, $07b1
@@ -747,7 +747,7 @@ Cry_Mantine_branch_f32f5: ; f32f5
 Cry_Mantine_branch_f3302: ; f3302
 Cry_Natu_Ch6: ; f3302
 Cry_Sunflora_Ch6: ; f3302
-	unknownmusic0xde $f2
+	sound_duty 2, 0, 3, 3
 	sound __,  5, $f8, $07b2
 	sound __,  5, $f8, $07b1
 	sound __,  5, $28, $07b0
@@ -802,7 +802,7 @@ Cry_Mantine_Ch8: ; f334c
 ; f3353
 
 Cry_Ampharos_Ch5: ; f3353
-	unknownmusic0xde $de
+	sound_duty 2, 3, 1, 3
 Cry_Ampharos_branch_f3355: ; f3355
 	sound __,  2, $c1, $0520
 	sound __,  2, $a1, $0420
@@ -815,7 +815,7 @@ Cry_Ampharos_branch_f3355: ; f3355
 ; f3370
 
 Cry_Ampharos_Ch6: ; f3370
-	unknownmusic0xde $32
+	sound_duty 2, 0, 3, 0
 	sound __,  9, $f8, $0700
 	sound __,  8, $f8, $0720
 	sound __,  5, $f8, $0790
@@ -835,7 +835,7 @@ Cry_Ampharos_Ch8: ; f3387
 ; f339a
 
 Cry_Totodile_Ch5: ; f339a
-	unknownmusic0xde $32
+	sound_duty 2, 0, 3, 0
 	sound __,  9, $f8, $0330
 	sound __,  9, $f8, $0340
 	sound __,  9, $c8, $07b2
@@ -845,7 +845,7 @@ Cry_Totodile_Ch5: ; f339a
 ; f33b1
 
 Cry_Totodile_Ch6: ; f33b1
-	unknownmusic0xde $12
+	sound_duty 2, 0, 1, 0
 	sound __,  9, $e8, $0320
 	sound __,  9, $e8, $0328
 	sound __,  9, $98, $0780
@@ -863,7 +863,7 @@ Cry_Totodile_Ch8: ; f33c8
 ; f33d5
 
 Cry_Cleffa_Ch5: ; f33d5
-	unknownmusic0xde $39
+	sound_duty 1, 2, 3, 0
 	soundinput $ff
 	sound __,  3, $f8, $0720
 	sound __,  3, $f8, $0727
@@ -879,7 +879,7 @@ Cry_Cleffa_Ch5: ; f33d5
 ; f33fc
 
 Cry_Cleffa_Ch6: ; f33fc
-	unknownmusic0xde $22
+	sound_duty 2, 0, 2, 0
 	sound __,  7, $b2, $071e
 	sound __,  6, $92, $0779
 	sound __,  5, $82, $073e
@@ -898,7 +898,7 @@ Cry_Cleffa_Ch8: ; f340f
 ; f3422
 
 Cry_Aipom_Ch5: ; f3422
-	unknownmusic0xde $d2
+	sound_duty 2, 0, 1, 3
 	sound __,  4, $f8, $06b0
 	sound __,  2, $f8, $06a5
 	sound __,  2, $f8, $069d
@@ -910,7 +910,7 @@ Cry_Aipom_Ch5: ; f3422
 ; f3441
 
 Cry_Aipom_Ch6: ; f3441
-	unknownmusic0xde $27
+	sound_duty 3, 1, 2, 0
 Cry_Aipom_branch_f3443: ; f3443
 	sound __,  2, $f1, $07b4
 	loopchannel 8, Cry_Aipom_branch_f3443
@@ -1167,7 +1167,7 @@ Cry_Weepinbell: ; f35ca
 ; f35d3
 
 Unknown_Cry_Ch5: ; f35d3
-	unknownmusic0xde $f0
+	sound_duty 0, 0, 3, 3
 	sound __, 16, $e0, $0780
 	sound __, 16, $f0, $0784
 	sound __, 16, $c3, $05e0
@@ -1178,7 +1178,7 @@ Unknown_Cry_Ch5: ; f35d3
 ; f35ee
 
 Unknown_Cry_Ch6: ; f35ee
-	unknownmusic0xde $5
+	sound_duty 1, 1, 0, 0
 	sound __, 16, $a0, $0741
 	sound __, 16, $b0, $0743
 	sound __, 16, $93, $05b1
@@ -1200,11 +1200,11 @@ Unknown_Cry_Ch8: ; f3609
 ; f361f
 
 Cry_Raichu_Ch5: ; f361f
-	unknownmusic0xde $f0
+	sound_duty 0, 0, 3, 3
 	sound __, 16, $f7, $07a0
 	sound __,  7, $e6, $07a3
 	sound __, 11, $f4, $07a0
-	unknownmusic0xde $a5
+	sound_duty 1, 1, 2, 2
 	sound __, 11, $f6, $07d8
 	sound __,  5, $e3, $07d7
 	sound __, 16, $f2, $07d8
@@ -1212,12 +1212,12 @@ Cry_Raichu_Ch5: ; f361f
 ; f363c
 
 Cry_Raichu_Ch6: ; f363c
-	unknownmusic0xde $5
+	sound_duty 1, 1, 0, 0
 	sound __,  3, $8, 0
 	sound __, 16, $a7, $06a1
 	sound __,  7, $86, $06a2
 	sound __, 11, $74, $06a1
-	unknownmusic0xde $5f
+	sound_duty 3, 3, 1, 1
 	sound __, 11, $76, $06d6
 	sound __,  5, $83, $06d9
 	sound __, 16, $a2, $06d7
@@ -1237,7 +1237,7 @@ Cry_Raichu_Ch8: ; f365d
 ; f3676
 
 Cry_Vileplume_Ch5: ; f3676
-	unknownmusic0xde $f0
+	sound_duty 0, 0, 3, 3
 	sound __, 16, $f7, $07c0
 	sound __,  7, $e4, $07c1
 	sound __, 11, $f6, $07c0
@@ -1247,7 +1247,7 @@ Cry_Vileplume_Ch5: ; f3676
 ; f368d
 
 Cry_Vileplume_Ch6: ; f368d
-	unknownmusic0xde $5f
+	sound_duty 3, 3, 1, 1
 	sound __, 16, $97, $0781
 	sound __,  7, $84, $0780
 	sound __, 11, $96, $0781
@@ -1264,7 +1264,7 @@ Cry_Vileplume_Ch8: ; f36a0
 ; f36ad
 
 Cry_Vulpix_Ch5: ; f36ad
-	unknownmusic0xde $f0
+	sound_duty 0, 0, 3, 3
 	sound __, 16, $f7, $0680
 	sound __, 11, $e6, $0684
 	sound __, 16, $d7, $0690
@@ -1277,7 +1277,7 @@ Cry_Vulpix_Ch5: ; f36ad
 ; f36d0
 
 Cry_Vulpix_Ch6: ; f36d0
-	unknownmusic0xde $5
+	sound_duty 1, 1, 0, 0
 	sound __, 16, $b7, $0641
 	sound __, 11, $96, $0642
 	sound __, 16, $a7, $0651
@@ -1299,7 +1299,7 @@ Cry_Vulpix_Ch8: ; f36f3
 ; f3703
 
 Cry_Rhydon_Ch5: ; f3703
-	unknownmusic0xde $f0
+	sound_duty 0, 0, 3, 3
 	sound __,  7, $f7, $07a0
 	sound __,  9, $e6, $07a4
 	sound __,  5, $d6, $07a0
@@ -1311,7 +1311,7 @@ Cry_Rhydon_Ch5: ; f3703
 ; f3722
 
 Cry_Rhydon_Ch6: ; f3722
-	unknownmusic0xde $a
+	sound_duty 2, 2, 0, 0
 	sound __,  5, $8, 0
 	sound __,  7, $a7, $0741
 	sound __,  9, $86, $0743
@@ -1335,7 +1335,7 @@ Cry_Rhydon_Ch8: ; f3745
 ; f375b
 
 Cry_Weepinbell_Ch5: ; f375b
-	unknownmusic0xde $a5
+	sound_duty 1, 1, 2, 2
 	sound __,  7, $f4, $0740
 	sound __, 16, $e3, $0730
 	sound __,  5, $f4, $0740
@@ -1345,7 +1345,7 @@ Cry_Weepinbell_Ch5: ; f375b
 ; f3772
 
 Cry_Weepinbell_Ch6: ; f3772
-	unknownmusic0xde $77
+	sound_duty 3, 1, 3, 1
 	sound __,  7, $c3, $0712
 	sound __, 16, $b3, $0704
 	sound __,  4, $c3, $0712
@@ -1363,7 +1363,7 @@ Cry_Weepinbell_Ch8: ; f3789
 ; f3796
 
 Cry_Kangaskhan_Ch5: ; f3796
-	unknownmusic0xde $f0
+	sound_duty 0, 0, 3, 3
 	sound __,  5, $f7, $0608
 	sound __,  7, $e6, $0600
 	sound __,  7, $d7, $05f0
@@ -1375,7 +1375,7 @@ Cry_Kangaskhan_Ch5: ; f3796
 ; f37b5
 
 Cry_Kangaskhan_Ch6: ; f37b5
-	unknownmusic0xde $a
+	sound_duty 2, 2, 0, 0
 	sound __,  5, $c7, $0504
 	sound __,  7, $a6, $0502
 	sound __,  7, $97, $04f1
@@ -1395,7 +1395,7 @@ Cry_Kangaskhan_Ch8: ; f37d4
 ; f37e1
 
 Cry_Bulbasaur_Ch5: ; f37e1
-	unknownmusic0xde $f1
+	sound_duty 1, 0, 3, 3
 	sound __,  5, $f7, $07c0
 	sound __, 13, $e6, $07c2
 	sound __,  7, $b5, $0680
@@ -1406,7 +1406,7 @@ Cry_Bulbasaur_Ch5: ; f37e1
 ; f37fc
 
 Cry_Bulbasaur_Ch6: ; f37fc
-	unknownmusic0xde $cc
+	sound_duty 0, 3, 0, 3
 	sound __,  4, $c7, $0781
 	sound __, 13, $b6, $0780
 	sound __,  7, $a5, $0641
@@ -1426,7 +1426,7 @@ Cry_Bulbasaur_Ch8: ; f3817
 ; f3827
 
 Cry_Spearow_Ch5: ; f3827
-	unknownmusic0xde $c9
+	sound_duty 1, 2, 0, 3
 	sound __,  9, $f7, $0680
 	sound __,  3, $f7, $0660
 	sound __,  2, $e7, $0640
@@ -1439,7 +1439,7 @@ Cry_Spearow_Ch5: ; f3827
 ; f384a
 
 Cry_Spearow_Ch6: ; f384a
-	unknownmusic0xde $79
+	sound_duty 1, 2, 3, 1
 	sound __, 11, $e7, $0682
 	sound __,  3, $e7, $0662
 	sound __,  2, $d7, $0642
@@ -1459,7 +1459,7 @@ Cry_Spearow_Ch8: ; f386d
 ; f3877
 
 Cry_Nidoran_M_Ch5: ; f3877
-	unknownmusic0xde $f5
+	sound_duty 1, 1, 3, 3
 	sound __,  5, $f3, $0718
 	sound __, 16, $e5, $0798
 	sound __,  9, $91, $0758
@@ -1467,7 +1467,7 @@ Cry_Nidoran_M_Ch5: ; f3877
 ; f3886
 
 Cry_Nidoran_M_Ch6: ; f3886
-	unknownmusic0xde $a0
+	sound_duty 0, 0, 2, 2
 	sound __,  6, $b3, $0708
 	sound __, 16, $c5, $0788
 	sound __,  9, $71, $0748
@@ -1482,7 +1482,7 @@ Cry_Nidoran_M_Ch8: ; f3895
 ; f389f
 
 Cry_Pidgey_Ch5: ; f389f
-	unknownmusic0xde $a5
+	sound_duty 1, 1, 2, 2
 	sound __,  5, $e1, $0700
 	sound __,  5, $f2, $0780
 	sound __,  3, $92, $0740
@@ -1491,7 +1491,7 @@ Cry_Pidgey_Ch5: ; f389f
 ; f38b2
 
 Cry_Pidgey_Ch6: ; f38b2
-	unknownmusic0xde $a
+	sound_duty 2, 2, 0, 0
 	sound __,  5, $b1, $06e1
 	sound __,  4, $c2, $06e1
 	sound __,  4, $62, $0681
@@ -1507,7 +1507,7 @@ Cry_Pidgey_Ch8: ; f38c5
 ; f38cf
 
 Cry_Voltorb_Ch5: ; f38cf
-	unknownmusic0xde $fa
+	sound_duty 2, 2, 3, 3
 	sound __,  7, $83, $0247
 	sound __, 16, $62, $0226
 	sound __,  5, $52, $0245
@@ -1529,7 +1529,7 @@ Cry_Voltorb_Ch8: ; f38ea
 ; f38fd
 
 Cry_Muk_Ch5: ; f38fd
-	unknownmusic0xde $f0
+	sound_duty 0, 0, 3, 3
 	sound __,  5, $f3, $06e0
 	sound __, 16, $e4, $0640
 	sound __,  9, $c1, $0620
@@ -1537,7 +1537,7 @@ Cry_Muk_Ch5: ; f38fd
 ; f390c
 
 Cry_Muk_Ch6: ; f390c
-	unknownmusic0xde $a
+	sound_duty 2, 2, 0, 0
 	sound __,  4, $c3, $0683
 	sound __, 15, $b4, $0602
 	sound __,  9, $a1, $0601
@@ -1552,7 +1552,7 @@ Cry_Muk_Ch8: ; f391b
 ; f3925
 
 Cry_Grimer_Ch5: ; f3925
-	unknownmusic0xde $a
+	sound_duty 2, 2, 0, 0
 	sound __,  7, $e2, $0500
 	sound __,  7, $e3, $0580
 	sound __,  7, $d3, $0570
@@ -1561,7 +1561,7 @@ Cry_Grimer_Ch5: ; f3925
 ; f3938
 
 Cry_Grimer_Ch6: ; f3938
-	unknownmusic0xde $f5
+	sound_duty 1, 1, 3, 3
 	sound __,  7, $e2, $0482
 	sound __,  7, $d3, $0501
 	sound __,  7, $b2, $04e2
@@ -1571,7 +1571,7 @@ Cry_Grimer_Ch8: ; f394a
 ; f394b
 
 Cry_Diglett_Ch5: ; f394b
-	unknownmusic0xde $cc
+	sound_duty 0, 3, 0, 3
 	sound __,  5, $f1, $0700
 	sound __,  5, $e1, $0780
 	sound __,  5, $d1, $0740
@@ -1586,7 +1586,7 @@ Cry_Diglett_Ch5: ; f394b
 ; f3976
 
 Cry_Diglett_Ch6: ; f3976
-	unknownmusic0xde $44
+	sound_duty 0, 1, 0, 1
 	sound __, 13, $8, 0
 	sound __,  5, $f1, $0701
 	sound __,  5, $e1, $0782
@@ -1610,7 +1610,7 @@ Cry_Diglett_Ch8: ; f3995
 ; f39ae
 
 Cry_Seel_Ch5: ; f39ae
-	unknownmusic0xde $cc
+	sound_duty 0, 3, 0, 3
 	sound __,  9, $f5, $0600
 	sound __,  3, $d2, $0638
 	sound __,  3, $c2, $0630
@@ -1624,7 +1624,7 @@ Cry_Seel_Ch5: ; f39ae
 ; f39d5
 
 Cry_Seel_Ch6: ; f39d5
-	unknownmusic0xde $44
+	sound_duty 0, 1, 0, 1
 	sound __, 13, $c3, $05c0
 	sound __,  4, $b1, $05f9
 	sound __,  3, $a1, $05f1
@@ -1639,7 +1639,7 @@ Cry_Seel_Ch8: ; f39fb
 ; f39fc
 
 Cry_Slowpoke_Ch5: ; f39fc
-	unknownmusic0xde $0
+	sound_duty 0, 0, 0, 0
 	sound __,  9, $f5, $0480
 	sound __,  3, $e1, $05e0
 	sound __,  9, $d1, $05dc
@@ -1647,7 +1647,7 @@ Cry_Slowpoke_Ch5: ; f39fc
 ; f3a0b
 
 Cry_Slowpoke_Ch6: ; f3a0b
-	unknownmusic0xde $a5
+	sound_duty 1, 1, 2, 2
 	sound __,  8, $95, $0441
 	sound __,  3, $81, $0521
 	sound __,  9, $61, $051a
@@ -1657,7 +1657,7 @@ Cry_Slowpoke_Ch8: ; f3a19
 
 Cry_Drowzee_Ch5: ; f3a1a
 Cry_Drowzee_branch_f3a1a: ; f3a1a
-	unknownmusic0xde $88
+	sound_duty 0, 2, 0, 2
 	sound __,  6, $f2, $0650
 	sound __, 10, $d1, $0660
 	sound __,  6, $e2, $0612
@@ -1669,7 +1669,7 @@ Cry_Drowzee_branch_f3a1a: ; f3a1a
 ; f3a39
 
 Cry_Drowzee_Ch6: ; f3a39
-	unknownmusic0xde $40
+	sound_duty 0, 0, 0, 1
 	sound __,  5, $8, 0
 	sound __,  6, $f2, $0651
 	sound __, 10, $d1, $0661
@@ -1699,7 +1699,7 @@ Cry_Drowzee_Ch8: ; f3a68
 ; f3a87
 
 Cry_Nidoran_F_Ch5: ; f3a87
-	unknownmusic0xde $a0
+	sound_duty 0, 0, 2, 2
 	sound __,  5, $f3, $0600
 	sound __,  9, $d5, $0760
 	sound __,  4, $e2, $0720
@@ -1708,7 +1708,7 @@ Cry_Nidoran_F_Ch5: ; f3a87
 ; f3a9a
 
 Cry_Nidoran_F_Ch6: ; f3a9a
-	unknownmusic0xde $5a
+	sound_duty 2, 2, 1, 1
 	sound __,  6, $b3, $06f1
 	sound __,  8, $c5, $0752
 	sound __,  4, $a2, $0711
@@ -1725,7 +1725,7 @@ Cry_Nidoran_F_Ch8: ; f3aad
 ; f3aba
 
 Cry_Nidoqueen_Ch5: ; f3aba
-	unknownmusic0xde $f0
+	sound_duty 0, 0, 3, 3
 	sound __,  9, $f7, $06e0
 	sound __,  7, $e6, $06e5
 	sound __,  4, $f4, $06e0
@@ -1737,7 +1737,7 @@ Cry_Nidoqueen_Ch5: ; f3aba
 ; f3ad9
 
 Cry_Nidoqueen_Ch6: ; f3ad9
-	unknownmusic0xde $5
+	sound_duty 1, 1, 0, 0
 	sound __,  4, $8, 0
 	sound __,  9, $a7, $06a1
 	sound __,  7, $86, $06a3
@@ -1762,7 +1762,7 @@ Cry_Nidoqueen_Ch8: ; f3afc
 ; f3b15
 
 Cry_Oddish_Ch5: ; f3b15
-	unknownmusic0xde $f0
+	sound_duty 0, 0, 3, 3
 	sound __, 16, $f6, $0565
 	sound __, 11, $e4, $057c
 	sound __,  4, $c2, $055c
@@ -1771,7 +1771,7 @@ Cry_Oddish_Ch5: ; f3b15
 ; f3b28
 
 Cry_Oddish_Ch6: ; f3b28
-	unknownmusic0xde $5a
+	sound_duty 2, 2, 1, 1
 	sound __, 15, $d6, $0503
 	sound __, 10, $b4, $051b
 	sound __,  5, $92, $04fa
@@ -1787,7 +1787,7 @@ Cry_Oddish_Ch8: ; f3b3b
 ; f3b45
 
 Cry_Charmander_Ch5: ; f3b45
-	unknownmusic0xde $f0
+	sound_duty 0, 0, 3, 3
 	sound __,  5, $f7, $06a0
 	sound __,  9, $e6, $06a4
 	sound __,  5, $d6, $06a0
@@ -1799,7 +1799,7 @@ Cry_Charmander_Ch5: ; f3b45
 ; f3b64
 
 Cry_Charmander_Ch6: ; f3b64
-	unknownmusic0xde $5a
+	sound_duty 2, 2, 1, 1
 	sound __,  5, $e7, $0601
 	sound __,  9, $d6, $0603
 	sound __,  5, $c6, $0601
@@ -1821,7 +1821,7 @@ Cry_Charmander_Ch8: ; f3b83
 ; f3b96
 
 Cry_Clefairy_Ch5: ; f3b96
-	unknownmusic0xde $1b
+	sound_duty 3, 2, 1, 0
 	sound __,  8, $d2, $0740
 	sound __, 16, $e5, $0760
 	sound C_,  9, $c1, $0730
@@ -1829,7 +1829,7 @@ Cry_Clefairy_Ch5: ; f3b96
 ; f3ba5
 
 Cry_Clefairy_Ch6: ; f3ba5
-	unknownmusic0xde $81
+	sound_duty 1, 0, 0, 2
 	sound __,  3, $c2, $0701
 	sound __,  5, $c2, $0708
 	sound __, 16, $d7, $0741
@@ -1839,7 +1839,7 @@ Cry_Clefairy_Ch8: ; f3bb7
 ; f3bb8
 
 Cry_Caterpie_Ch5: ; f3bb8
-	unknownmusic0xde $f0
+	sound_duty 0, 0, 3, 3
 	sound __, 16, $d7, $0780
 	sound __,  5, $e6, $07a0
 	sound __, 16, $d2, $0740
@@ -1847,7 +1847,7 @@ Cry_Caterpie_Ch5: ; f3bb8
 ; f3bc7
 
 Cry_Caterpie_Ch6: ; f3bc7
-	unknownmusic0xde $5a
+	sound_duty 2, 2, 1, 1
 	sound __, 16, $c7, $0753
 	sound __,  6, $b6, $0772
 	sound __, 16, $c2, $0711
@@ -1862,7 +1862,7 @@ Cry_Caterpie_Ch8: ; f3bd6
 ; f3be0
 
 Cry_Lapras_Ch5: ; f3be0
-	unknownmusic0xde $f0
+	sound_duty 0, 0, 3, 3
 	sound __,  7, $f7, $06c0
 	sound __, 16, $e7, $0700
 	sound __,  5, $f4, $06f0
@@ -1872,7 +1872,7 @@ Cry_Lapras_Ch5: ; f3be0
 ; f3bf7
 
 Cry_Lapras_Ch6: ; f3bf7
-	unknownmusic0xde $a
+	sound_duty 2, 2, 0, 0
 	sound __,  8, $e6, $0681
 	sound __, 15, $d5, $06c1
 	sound __,  5, $c4, $06b1
@@ -1890,7 +1890,7 @@ Cry_Lapras_Ch8: ; f3c0e
 ; f3c1b
 
 Cry_Golem_Ch5: ; f3c1b
-	unknownmusic0xde $a5
+	sound_duty 1, 1, 2, 2
 	sound __, 13, $f2, $0440
 	sound __, 16, $e3, $04a0
 	sound __,  5, $d2, $0490
@@ -1899,7 +1899,7 @@ Cry_Golem_Ch5: ; f3c1b
 ; f3c2e
 
 Cry_Golem_Ch6: ; f3c2e
-	unknownmusic0xde $ee
+	sound_duty 2, 3, 2, 3
 	sound __, 12, $d2, $0438
 	sound __, 15, $c6, $0498
 	sound __,  4, $b2, $0488
@@ -1916,7 +1916,7 @@ Cry_Golem_Ch8: ; f3c41
 ; f3c4e
 
 Cry_Blastoise_Ch5: ; f3c4e
-	unknownmusic0xde $33
+	sound_duty 3, 0, 3, 0
 	sound __, 16, $f6, $05c0
 	sound __,  9, $e3, $05bc
 	sound __,  7, $d2, $05d0
@@ -1927,7 +1927,7 @@ Cry_Blastoise_Ch5: ; f3c4e
 ; f3c69
 
 Cry_Blastoise_Ch6: ; f3c69
-	unknownmusic0xde $99
+	sound_duty 1, 2, 1, 2
 	sound __, 15, $c6, $04b1
 	sound __,  8, $c3, $04ad
 	sound __,  6, $b2, $04c1
@@ -1948,7 +1948,7 @@ Cry_Blastoise_Ch8: ; f3c84
 ; f3c97
 
 Cry_Pidgeotto_Ch5: ; f3c97
-	unknownmusic0xde $f0
+	sound_duty 0, 0, 3, 3
 	sound __,  9, $e4, $0790
 	sound __, 16, $f5, $07c0
 	sound __,  9, $d1, $07d8
@@ -1956,7 +1956,7 @@ Cry_Pidgeotto_Ch5: ; f3c97
 ; f3ca6
 
 Cry_Pidgeotto_Ch6: ; f3ca6
-	unknownmusic0xde $a5
+	sound_duty 1, 1, 2, 2
 	sound __, 11, $c4, $0771
 	sound __, 16, $b6, $07a2
 	sound __,  9, $a1, $07b7
@@ -1971,7 +1971,7 @@ Cry_Pidgeotto_Ch8: ; f3cb5
 ; f3cbf
 
 Cry_Paras_Ch5: ; f3cbf
-	unknownmusic0xde $f0
+	sound_duty 0, 0, 3, 3
 	sound __,  7, $f2, $0600
 	sound __,  7, $e2, $0640
 	sound __,  7, $d2, $0680
@@ -1984,7 +1984,7 @@ Cry_Paras_Ch5: ; f3cbf
 ; f3ce2
 
 Cry_Paras_Ch6: ; f3ce2
-	unknownmusic0xde $11
+	sound_duty 1, 0, 1, 0
 	sound __,  4, $8, $0001
 	sound __,  7, $c2, $05c1
 	sound __,  7, $b2, $0602
@@ -2011,7 +2011,7 @@ Cry_Paras_Ch8: ; f3d09
 ; f3d25
 
 Cry_Weedle_Ch5: ; f3d25
-	unknownmusic0xde $f0
+	sound_duty 0, 0, 3, 3
 	sound __,  5, $f3, $0780
 	sound __, 16, $e7, $0700
 	sound __,  9, $d3, $0710
@@ -2022,7 +2022,7 @@ Cry_Weedle_Ch5: ; f3d25
 ; f3d40
 
 Cry_Weedle_Ch6: ; f3d40
-	unknownmusic0xde $5a
+	sound_duty 2, 2, 1, 1
 	sound __,  7, $c3, $0701
 	sound __, 15, $b7, $0681
 	sound __,  8, $b3, $0692
@@ -2043,7 +2043,7 @@ Cry_Weedle_Ch8: ; f3d5b
 ; f3d6e
 
 Cry_Ekans_Ch5: ; f3d6e
-	unknownmusic0xde $f
+	sound_duty 3, 3, 0, 0
 	sound __, 16, $f7, $0500
 	sound __, 16, $e7, $0508
 	sound __,  9, $b4, $0480
@@ -2052,7 +2052,7 @@ Cry_Ekans_Ch5: ; f3d6e
 ; f3d81
 
 Cry_Ekans_Ch6: ; f3d81
-	unknownmusic0xde $44
+	sound_duty 0, 1, 0, 1
 	sound __, 15, $d7, $0481
 	sound __, 15, $c7, $0489
 	sound __, 11, $b4, $0401
@@ -2069,7 +2069,7 @@ Cry_Ekans_Ch8: ; f3d94
 ; f3da1
 
 Cry_Metapod_Ch5: ; f3da1
-	unknownmusic0xde $f5
+	sound_duty 1, 1, 3, 3
 	sound __,  8, $d6, $07e1
 	sound __,  7, $c6, $07e2
 	sound __, 10, $d6, $07e1
@@ -2082,7 +2082,7 @@ Cry_Metapod_Ch5: ; f3da1
 ; f3dc4
 
 Cry_Metapod_Ch6: ; f3dc4
-	unknownmusic0xde $44
+	sound_duty 0, 1, 0, 1
 	sound __,  7, $c3, $07c9
 	sound __,  7, $b3, $07c7
 	sound __, 11, $c4, $07c3
@@ -2102,7 +2102,7 @@ Cry_Metapod_Ch8: ; f3ddf
 ; f3def
 
 Cry_Venonat_Ch5: ; f3def
-	unknownmusic0xde $f0
+	sound_duty 0, 0, 3, 3
 	sound __,  7, $f7, $0740
 	sound __, 13, $e6, $0744
 	sound __,  7, $d5, $0750
@@ -2113,7 +2113,7 @@ Cry_Venonat_Ch5: ; f3def
 ; f3e0a
 
 Cry_Venonat_Ch6: ; f3e0a
-	unknownmusic0xde $a
+	sound_duty 2, 2, 0, 0
 	sound __,  7, $c7, $0701
 	sound __, 12, $b6, $0702
 	sound __,  7, $a5, $0711
@@ -2134,7 +2134,7 @@ Cry_Venonat_Ch8: ; f3e25
 ; f3e38
 
 Cry_Squirtle_Ch5: ; f3e38
-	unknownmusic0xde $f4
+	sound_duty 0, 1, 3, 3
 	sound __, 16, $f0, $0705
 	sound __, 11, $e0, $0700
 	sound __,  7, $b4, $0710
@@ -2145,7 +2145,7 @@ Cry_Squirtle_Ch5: ; f3e38
 ; f3e53
 
 Cry_Squirtle_Ch6: ; f3e53
-	unknownmusic0xde $22
+	sound_duty 2, 0, 2, 0
 	sound __, 16, $b0, $06c3
 	sound __, 11, $a0, $06c1
 	sound __,  7, $84, $06d2
@@ -2165,7 +2165,7 @@ Cry_Squirtle_Ch8: ; f3e6e
 ; f3e7e
 
 Cry_Fearow_Ch5: ; f3e7e
-	unknownmusic0xde $50
+	sound_duty 0, 0, 1, 1
 	sound __, 11, $f5, $0680
 	sound __,  4, $e2, $06a0
 	sound __,  4, $f2, $06c0
@@ -2178,7 +2178,7 @@ Cry_Fearow_Ch5: ; f3e7e
 ; f3ea1
 
 Cry_Fearow_Ch6: ; f3ea1
-	unknownmusic0xde $f
+	sound_duty 3, 3, 0, 0
 	sound __, 10, $d5, $0631
 	sound __,  4, $d2, $0652
 	sound __,  4, $e2, $0671
@@ -2201,7 +2201,7 @@ Cry_Fearow_Ch8: ; f3ec4
 ; f3ed7
 
 Cry_Growlithe_Ch5: ; f3ed7
-	unknownmusic0xde $a5
+	sound_duty 1, 1, 2, 2
 	sound __,  4, $f4, $0641
 	sound __, 14, $d6, $0721
 	sound __,  9, $f4, $0719
@@ -2210,7 +2210,7 @@ Cry_Growlithe_Ch5: ; f3ed7
 ; f3eea
 
 Cry_Growlithe_Ch6: ; f3eea
-	unknownmusic0xde $cc
+	sound_duty 0, 3, 0, 3
 	sound __,  5, $f4, $0580
 	sound __, 15, $e6, $06e0
 	sound __,  9, $d5, $06d8
@@ -2227,7 +2227,7 @@ Cry_Growlithe_Ch8: ; f3efd
 ; f3f0a
 
 Cry_Krabby_Ch5: ; f3f0a
-	unknownmusic0xde $f0
+	sound_duty 0, 0, 3, 3
 	sound __, 14, $f1, $0511
 	sound __, 14, $e1, $0515
 	sound __, 14, $e1, $0511
@@ -2236,7 +2236,7 @@ Cry_Krabby_Ch5: ; f3f0a
 ; f3f1d
 
 Cry_Krabby_Ch6: ; f3f1d
-	unknownmusic0xde $15
+	sound_duty 1, 1, 1, 0
 	sound __, 13, $e1, $050c
 	sound __, 13, $d1, $0510
 	sound __, 15, $c1, $050c
@@ -2253,7 +2253,7 @@ Cry_Krabby_Ch8: ; f3f30
 ; f3f3d
 
 Cry_Psyduck_Ch5: ; f3f3d
-	unknownmusic0xde $1b
+	sound_duty 3, 2, 1, 0
 	sound __,  4, $f3, $0564
 	sound __,  3, $e2, $0544
 	sound __,  6, $d1, $0522
@@ -2266,7 +2266,7 @@ Cry_Psyduck_Ch5: ; f3f3d
 ; f3f60
 
 Cry_Psyduck_Ch6: ; f3f60
-	unknownmusic0xde $cc
+	sound_duty 0, 3, 0, 3
 	sound __,  4, $d3, $0560
 	sound __,  3, $c2, $0540
 	sound __,  6, $c1, $0520
@@ -2280,7 +2280,7 @@ Cry_Psyduck_Ch8: ; f3f82
 ; f3f83
 
 Cry_Rattata_Ch5: ; f3f83
-	unknownmusic0xde $11
+	sound_duty 1, 0, 1, 0
 	sound __,  3, $3d, $0381
 	sound __,  8, $f5, $0601
 	sound __,  2, $c2, $0481
@@ -2289,7 +2289,7 @@ Cry_Rattata_Ch5: ; f3f83
 ; f3f96
 
 Cry_Rattata_Ch6: ; f3f96
-	unknownmusic0xde $ee
+	sound_duty 2, 3, 2, 3
 	sound __,  3, $3e, $05b0
 	sound __,  8, $d5, $075d
 	sound __,  2, $b2, $06b0

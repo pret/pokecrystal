@@ -55,8 +55,8 @@ MovementPointers: ; 5075
 	dw Movement_fast_jump_step_up     ; 35
 	dw Movement_fast_jump_step_left   ; 36
 	dw Movement_fast_jump_step_right  ; 37
-	dw Movement_remove_sliding                    ; 38
-	dw Movement_set_sliding                    ; 39
+	dw Movement_remove_sliding        ; 38
+	dw Movement_set_sliding           ; 39
 	dw Movement_remove_fixed_facing   ; 3a
 	dw Movement_fix_facing            ; 3b
 	dw Movement_show_person           ; 3c
@@ -85,10 +85,10 @@ MovementPointers: ; 5075
 	dw Movement_hide_emote            ; 53
 	dw Movement_show_emote            ; 54
 	dw Movement_step_shake            ; 55
-	dw Movement_tree_shake                    ; 56
+	dw Movement_tree_shake            ; 56
 	dw Movement_rock_smash            ; 57
 	dw Movement_return_dig            ; 58
-	dw Movement_skyfall_top       ; 59
+	dw Movement_skyfall_top           ; 59
 ; 5129
 
 
@@ -365,7 +365,7 @@ Movement_tree_shake: ; 5279
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_0B
+	ld [hl], PERSON_ACTION_WEIRD_TREE
 
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc

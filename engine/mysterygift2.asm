@@ -1,4 +1,4 @@
-Function2c642: ; 2c642 (b:4642)
+PrepMysteryGiftDataToSend: ; 2c642 (b:4642)
 	ld de, wMysteryGiftStaging
 	ld a, $1
 	ld [de], a

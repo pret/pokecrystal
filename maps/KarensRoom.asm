@@ -79,10 +79,10 @@ UnknownScript_0x180c1c:
 	end
 
 MovementData_0x180c22:
-	step_up
-	step_up
-	step_up
-	step_up
+	step UP
+	step UP
+	step UP
+	step UP
 	step_end
 
 UnknownText_0x180c27:

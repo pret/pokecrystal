@@ -115,7 +115,7 @@ MrPokemonsHouse_OakScript:
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
 	playmusic MUSIC_HEAL
-	special Mobile_HealParty
+	special TrainerRankings_Healings
 	special HealParty
 	pause 60
 	special Special_FadeInQuickly
@@ -157,20 +157,20 @@ MapMrPokemonsHouseSignpost4Script:
 	jumptext MrPokemonsHouse_StrangeCoinsText
 
 MrPokemonsHouse_PlayerWalksToMrPokemon:
-	step_right
-	step_up
+	step RIGHT
+	step UP
 	step_end
 
 MrPokemonsHouse_OakWalksToPlayer:
-	step_down
-	step_left
-	step_left
+	step DOWN
+	step LEFT
+	step LEFT
 	step_end
 
 MrPokemonsHouse_OakExits:
-	step_down
-	step_left
-	turn_head_down
+	step DOWN
+	step LEFT
+	turn_head DOWN
 	db $3f ; movement
 	step_end
 

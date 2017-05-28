@@ -107,7 +107,7 @@ PokeCenterNurseScript:
 
 	farwritetext NurseTakePokemonText
 	pause 20
-	special Mobile_HealParty
+	special TrainerRankings_Healings
 	spriteface LAST_TALKED, LEFT
 	pause 10
 	special HealParty
@@ -1907,8 +1907,8 @@ HappinessCheckScript:
 	end
 
 Movement_ContestResults_WalkAfterWarp: ; bcea1
-	step_right
-	step_down
-	turn_head_up
+	step RIGHT
+	step DOWN
+	turn_head UP
 	step_end
 ; bcea5

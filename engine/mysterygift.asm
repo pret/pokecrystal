@@ -2,13 +2,13 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	call ClearTileMap
 	call ClearSprites
 	call WaitBGMap
-	call Function105153
+	call InitMysteryGiftLayout
 	hlcoord 3, 8
 	ld de, .String_PressAToLink_BToCancel
 	call PlaceString
 	call WaitBGMap
-	callba Function2c642
-	call Function1050fb
+	callba PrepMysteryGiftDataToSend
+	call MysteryGift_ClearTrainerData
 	ld a, $2
 	ld [wca01], a
 	ld a, $14
@@ -27,7 +27,7 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	call ClearTileMap
 	call EnableLCD
 	call WaitBGMap
-	ld b, SCGB_08
+	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call SetPalettes
 	pop de
@@ -63,7 +63,7 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	jr z, .skip_append_save
 	call .SaveMysteryGiftTrainerName
 	callba RestoreMobileEventIndex
-	callba MobileFn_1060a9
+	callba TrainerRankings_MysteryGift
 	callba BackupMobileEventIndex
 .skip_append_save
 	ld a, [wMysteryGiftPartnerSentDeco]
@@ -239,14 +239,16 @@ Function104a95: ; 104a95 (41:4a95)
 	di
 	callba ClearChannels
 	call Function104d5e
+
 .loop2
 	call Function104d96
 	call Function104ddd
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	cp $10
 	jp z, Function104bd0
 	cp $6c
 	jr nz, .loop2
+
 	ld a, [hPrintNum9]
 	cp $2
 	jr z, Function104b22
@@ -256,7 +258,8 @@ Function104a95: ; 104a95 (41:4a95)
 	jr nz, .ly_loop
 	call Function104b49
 	jp nz, Function104bd0
-	jr asm_104b0a
+	jr Function104b0a
+	; Delay frame
 .ly_loop
 	ld a, [rLY]
 	cp $90
@@ -264,12 +267,15 @@ Function104a95: ; 104a95 (41:4a95)
 	ld c, rRP % $100
 	ld a, $c0
 	ld [$ff00+c], a
-	ld b, $f0
+	ld b, 240 ; This might have been intended as a 4-second timeout buffer.
+	          ; However, it is reset with each frame.
 .loop3
 	push bc
-	call Function105038
+	call MysteryGift_ReadJoypad
+
 	ld b, $2
 	ld c, rRP % $100
+	; Delay frame
 .ly_loop2
 	ld a, [$ff00+c]
 	and b
@@ -284,24 +290,25 @@ Function104a95: ; 104a95 (41:4a95)
 	ld a, [rLY]
 	cp $90
 	jr c, .ly_loop3
+
 	ld a, b
 	pop bc
 	dec b
-	jr z, .loop2
+	jr z, .loop2 ; we never jump here
 	or a
 	jr nz, .loop2
-	ld a, [hMoneyTemp + 1]
-	bit 1, a
+	; Check if we've pressed the B button
+	ld a, [hMGJoypadReleased]
+	bit B_BUTTON_F, a
 	jr z, .loop3
 	ld a, $10
-	ld [hPrintNum10], a
+	ld [hMGStatusFlags], a
 	jp Function104bd0
 
 Function104b04: ; 104b04 (41:4b04)
 	call Function104b40
 	jp nz, Function104bd0
-
-asm_104b0a: ; 104b0a (41:4b0a)
+Function104b0a: ; 104b0a (41:4b0a)
 	call Function104d38
 	jp nz, Function104bd0
 	call Function104b88
@@ -331,7 +338,7 @@ Function104b40: ; 104b40 (41:4b40)
 
 Function104b49: ; 104b49 (41:4b49)
 	call Function105033
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	cp $6c
 	ret nz
 	ld a, [hPrintNum1]
@@ -346,7 +353,7 @@ Function104b49: ; 104b49 (41:4b49)
 	call Function104d4e
 	ret nz
 	call Function10502e
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	cp $6c
 	ret nz
 	call Function104d43
@@ -357,7 +364,7 @@ Function104b49: ; 104b49 (41:4b49)
 	call Function104d56
 	ret nz
 	call Function105033
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	cp $6c
 	ret
 
@@ -369,7 +376,7 @@ Function104b88: ; 104b88 (41:4b88)
 	call Function104d4e
 	ret nz
 	call Function10502e
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	cp $6c
 	ret nz
 	call Function104d43
@@ -379,7 +386,7 @@ Function104b88: ; 104b88 (41:4b88)
 	call Function104d56
 	ret nz
 	call Function105033
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	cp $6c
 	ret nz
 	ld a, [hPrintNum1]
@@ -393,29 +400,29 @@ Function104b88: ; 104b88 (41:4b88)
 	call Function104d4e
 	ret nz
 	call Function10502e
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	cp $6c
 	ret
 
 Function104bd0: ; 104bd0 (41:4bd0)
 	nop
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	cp $10
-	jr z, .asm_104c18
+	jr z, .quit
 	cp $6c
-	jr nz, .asm_104c18
+	jr nz, .quit
 	ld hl, wca01
 	dec [hl]
-	jr z, .asm_104c18
+	jr z, .quit
 	ld hl, wMysteryGiftTrainerData
 	ld de, wMysteryGiftPartnerData
 	ld bc, wMysteryGiftPartnerDataEnd - wMysteryGiftPartnerData
 	call CopyBytes
 	ld a, [wMysteryGiftTrainerData]
 	cp $3
-	jr nc, .asm_104c18
+	jr nc, .quit
 	callba StagePartyDataForMysteryGift
-	call Function1050fb
+	call MysteryGift_ClearTrainerData
 	ld a, $26
 	ld [wca02], a
 	ld a, [hPrintNum9]
@@ -424,12 +431,14 @@ Function104bd0: ; 104bd0 (41:4bd0)
 	call Function104d43
 	jr nz, Function104bd0
 	jp Function104b04
+
 .asm_104c10
 	call Function104d38
 	jr nz, Function104bd0
 	jp Function104b22
-.asm_104c18
-	ld a, [hPrintNum10]
+
+.quit
+	ld a, [hMGStatusFlags]
 	push af
 	call Function104da0
 	xor a
@@ -449,7 +458,7 @@ Function104c2d: ; 104c2d (41:4c2d)
 .asm_104c37
 	call Function104d96
 	call Function104ddd
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	cp $10
 	jp z, Function104d1c
 	cp $6c
@@ -485,7 +494,7 @@ Function104c8a: ; 104c8a (41:4c8a)
 	call Function104d56
 	ret nz
 	call Function105033
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	cp $6c
 	ret nz
 	ld a, [hPrintNum1]
@@ -500,7 +509,7 @@ Function104c8a: ; 104c8a (41:4c8a)
 	call Function104d4e
 	ret nz
 	call Function10502e
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	cp $6c
 	ret nz
 	call Function104d43
@@ -511,7 +520,7 @@ Function104c8a: ; 104c8a (41:4c8a)
 	call Function104d56
 	ret nz
 	call Function105033
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	cp $6c
 	ret
 
@@ -523,7 +532,7 @@ Function104cd2: ; 104cd2 (41:4cd2)
 	call Function104d4e
 	ret nz
 	call Function10502e
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	cp $6c
 	ret nz
 	call Function104d43
@@ -533,7 +542,7 @@ Function104cd2: ; 104cd2 (41:4cd2)
 	call Function104d56
 	ret nz
 	call Function105033
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	cp $6c
 	ret nz
 	ld a, [hPrintNum1]
@@ -548,13 +557,13 @@ Function104cd2: ; 104cd2 (41:4cd2)
 	call Function104d4e
 	ret nz
 	call Function10502e
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	cp $6c
 	ret
 
 Function104d1c: ; 104d1c (41:4d1c)
 	nop
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	push af
 	call Function104da0
 	xor a
@@ -569,33 +578,33 @@ Function104d1c: ; 104d1c (41:4d1c)
 
 Function104d32: ; 104d32 (41:4d32)
 	ld a, $80
-	ld [hPrintNum10], a
+	ld [hMGStatusFlags], a
 	and a
 	ret
 
 Function104d38: ; 104d38 (41:4d38)
 	call Function104d96
 	call Function104e46
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	cp $6c
 	ret
 
 Function104d43: ; 104d43 (41:4d43)
 	call Function104d96
 	call Function104dfe
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	cp $6c
 	ret
 
 Function104d4e: ; 104d4e (41:4d4e)
 	call Function104e93
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	cp $6c
 	ret
 
 Function104d56: ; 104d56 (41:4d56)
 	call Function104f57
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	cp $6c
 	ret
 
@@ -704,19 +713,19 @@ Function104ddd: ; 104ddd (41:4ddd)
 	ld a, $1
 	ld [hPrintNum9], a
 .loop
-	call Function105038
+	call MysteryGift_ReadJoypad
 	ld b, $2
 	ld c, rRP % $100
-	ld a, [hMoneyTemp + 1]
-	bit 1, a
+	ld a, [hMGJoypadReleased]
+	bit B_BUTTON_F, a
 	jr z, .next
 	ld a, $10
-	ld [hPrintNum10], a
+	ld [hMGStatusFlags], a
 	ret
 
 .next
 	bit 0, a
-	jr nz, asm_104e3a
+	jr nz, Function104e3a
 	ld a, [$ff00+c]
 	and b
 	jr nz, .loop
@@ -735,7 +744,7 @@ Function104dfe: ; 104dfe (41:4dfe)
 	call Function104da9
 	jp z, Function104f42
 	ld a, $6c
-	ld [hPrintNum10], a
+	ld [hMGStatusFlags], a
 	ld d, $3d
 	call Function104dd1
 	ld d, $5
@@ -748,17 +757,17 @@ Function104dfe: ; 104dfe (41:4dfe)
 	call Function104dd1
 	ret
 
-asm_104e3a: ; 104e3a (41:4e3a)
+Function104e3a: ; 104e3a (41:4e3a)
+	; Wait a random amount of time
 	call Random
 	ld e, a
 	and $f
 	ld d, a
-.asm_104e41
+.loop
 	dec de
 	ld a, d
 	or e
-	jr nz, .asm_104e41
-
+	jr nz, .loop
 Function104e46: ; 104e46 (41:4e46)
 	ld a, $2
 	ld [hPrintNum9], a
@@ -788,13 +797,13 @@ Function104e46: ; 104e46 (41:4e46)
 	ld d, $3d
 	call Function104dd1
 	ld a, $6c
-	ld [hPrintNum10], a
+	ld [hMGStatusFlags], a
 	ret
 
 Function104e8c: ; 104e8c (41:4e8c)
 	ld [rRP], a
 	ld a, $ff
-	ld [hPrintNum10], a
+	ld [hMGStatusFlags], a
 	ret
 
 Function104e93: ; 104e93 (41:4e93)
@@ -824,7 +833,7 @@ Function104e93: ; 104e93 (41:4e93)
 	ld hl, hPrintNum2 ; $ffb4 (aliases: hMultiplicand)
 	ld b, $2
 	call Function104ed6
-	ld hl, hPrintNum10
+	ld hl, hMGStatusFlags
 	ld b, $1
 	call Function104faf
 	ld a, [hPrintNum2]
@@ -902,21 +911,21 @@ Function104ed6: ; 104ed6 (41:4ed6)
 	ret
 
 Function104f42: ; 104f42 (41:4f42)
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	or $2
-	ld [hPrintNum10], a
+	ld [hMGStatusFlags], a
 	ret
 
 Function104f49: ; 104f49 (41:4f49)
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	or $1
-	ld [hPrintNum10], a
+	ld [hMGStatusFlags], a
 	ret
 
 Function104f50: ; 104f50 (41:4f50)
-	ld a, [hPrintNum10]
+	ld a, [hMGStatusFlags]
 	or $80
-	ld [hPrintNum10], a
+	ld [hMGStatusFlags], a
 	ret
 
 Function104f57: ; 104f57 (41:4f57)
@@ -960,7 +969,7 @@ Function104f57: ; 104f57 (41:4f57)
 	push de
 	ld d, $3d
 	call Function104dd1
-	ld hl, hPrintNum10
+	ld hl, hMGStatusFlags
 	ld b, $1
 	call Function104ed6
 	pop de
@@ -986,7 +995,7 @@ Function104faf: ; 104faf (41:4faf)
 	cpl
 	ld b, a
 	xor a
-	ld [hMoneyTemp + 2], a
+	ld [hMGJoypadPressed + 2], a
 	call Function104d86
 .asm_104fd2
 	inc b
@@ -1009,10 +1018,10 @@ Function104faf: ; 104faf (41:4faf)
 	bit 1, a
 	jr nz, .asm_104fe5
 .asm_104fed
-	ld a, [hMoneyTemp + 2]
+	ld a, [hMGJoypadPressed + 2]
 	ld d, a
 	ld a, [rTIMA]
-	ld [hMoneyTemp + 2], a
+	ld [hMGJoypadPressed + 2], a
 	sub d
 	cp $12
 	jr c, .asm_104ffd
@@ -1058,31 +1067,48 @@ Function105033: ; 105033 (41:5033)
 	ld b, $0
 	jp Function104f57
 
-Function105038: ; 105038 (41:5038)
-	ld a, $20
+MysteryGift_ReadJoypad: ; 105038 (41:5038)
+; We can only get four inputs at a time.
+; We take d-pad first for no particular reason.
+	ld a, R_DPAD
 	ld [rJOYP], a
+; Read twice to give the request time to take.
 	ld a, [rJOYP]
 	ld a, [rJOYP]
+
+; The Joypad register output is in the lo nybble (inversed).
+; We make the hi nybble of our new container d-pad input.
 	cpl
 	and $f
 	swap a
+
+; We'll keep this in b for now.
 	ld b, a
-	ld a, $10
+
+; Buttons make 8 total inputs (A, B, Select, Start).
+; We can fit this into one byte.
+	ld a, R_BUTTONS
 	ld [rJOYP], a
+; Wait for input to stabilize.
 rept 6
 	ld a, [rJOYP]
 endr
+; Buttons take the lo nybble.
 	cpl
 	and $f
 	or b
 	ld c, a
-	ld a, [hMoneyTemp]
+; To get the delta we xor the last frame's input with the new one.
+	ld a, [hMGJoypadPressed]
 	xor c
+; Released this frame:
 	and c
-	ld [hMoneyTemp + 1], a
+	ld [hMGJoypadReleased], a
+; Pressed this frame:
 	ld a, c
-	ld [hMoneyTemp], a
+	ld [hMGJoypadPressed], a
 	ld a, $30
+; Reset the joypad register since we're done with it.
 	ld [rJOYP], a
 	ret
 
@@ -1179,7 +1205,7 @@ RestoreMysteryGift: ; 1050ea (41:50ea)
 	ld [de], a
 	jp CloseSRAM
 
-Function1050fb: ; 1050fb (41:50fb)
+MysteryGift_ClearTrainerData: ; 1050fb (41:50fb)
 	ld hl, wMysteryGiftTrainerData
 	xor a
 	ld b, wMysteryGiftTrainerDataEnd - wMysteryGiftTrainerData
@@ -1247,7 +1273,7 @@ StagePartyDataForMysteryGift: ; 10510b (41:510b)
 	ld [wca00], a
 	jp CloseSRAM
 
-Function105153: ; 105153 (41:5153)
+InitMysteryGiftLayout: ; 105153 (41:5153)
 	call ClearBGPalettes
 	call DisableLCD
 	ld hl, MysteryGiftGFX
@@ -1333,7 +1359,7 @@ Function105153: ; 105153 (41:5153)
 	ld [hl], $41
 	call EnableLCD
 	call WaitBGMap
-	ld b, SCGB_1D
+	ld b, SCGB_MYSTERY_GIFT
 	call GetSGBLayout
 	call SetPalettes
 	ret
@@ -1398,7 +1424,7 @@ Function105688: ; 105688 (41:5688)
 	call PlaceString
 	call WaitBGMap
 	call Function10578c
-	call Function1050fb
+	call MysteryGift_ClearTrainerData
 	ld a, $24
 	ld [wca02], a
 	ld a, [rIE]
@@ -1511,7 +1537,7 @@ Function105777: ; 105777 (41:5777)
 	call ClearTileMap
 	call EnableLCD
 	call WaitBGMap
-	ld b, SCGB_08
+	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call SetPalettes
 	ret

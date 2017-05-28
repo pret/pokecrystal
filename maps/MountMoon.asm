@@ -74,19 +74,19 @@ MountMoon_MapScriptHeader:
 	end
 
 MountMoonSilverMovementBefore:
-	step_left
-	step_left
-	step_left
+	step LEFT
+	step LEFT
+	step LEFT
 	step_end
 
 MountMoonSilverMovementAfter:
-	step_right
-	step_right
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
+	step RIGHT
+	step RIGHT
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
 	step_end
 
 MountMoonSilverTextBefore:

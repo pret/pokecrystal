@@ -181,18 +181,18 @@ MapRuinsofAlphResearchCenterSignpost0Script:
 	jumptext UnknownText_0x59886
 
 MovementData_0x5926f:
-	step_up
-	step_up
-	step_left
-	turn_head_up
+	step UP
+	step UP
+	step LEFT
+	turn_head UP
 	step_end
 
 MovementData_0x59274:
-	step_down
+	step DOWN
 	step_end
 
 MovementData_0x59276:
-	step_up
+	step UP
 	step_end
 
 UnknownText_0x59278:

@@ -58,7 +58,7 @@ CheckFruitTree: ; 44055
 ; 4405f
 
 PickedFruitTree: ; 4405f
-	callba MobileFn_10609b ; empty function
+	callba TrainerRankings_FruitPicked
 	ld b, 1
 	jp GetFruitTreeFlag
 ; 4406a
@@ -66,9 +66,9 @@ PickedFruitTree: ; 4405f
 ResetFruitTrees: ; 4406a
 	xor a
 	ld hl, FruitTreeFlags
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 	ld hl, DailyFlags
 	set 4, [hl]

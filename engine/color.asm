@@ -79,6 +79,7 @@ CheckContestMon:
 	ret
 
 Function8aa4:
+; XXX
 	push de
 	push bc
 	ld hl, PalPacket_9ce6
@@ -96,9 +97,9 @@ Function8aa4:
 	ld a, d
 	ld [wSGBPals + 6], a
 	ld hl, wSGBPals
-	call Function9809
+	call PushSGBPals_
 	ld hl, BlkPacket_9a86
-	call Function9809
+	call PushSGBPals_
 	ret
 
 InitPartyMenuPalettes:
@@ -138,6 +139,7 @@ Function8b07:
 ; Unreferenced
 	call CheckCGB
 	ret z
+; CGB only
 	ld hl, .BGPal
 	ld de, UnknBGPals
 	ld bc, 1 palettes
@@ -175,16 +177,17 @@ Function8b3f:
 	and a
 	ret z
 	ld hl, BlkPacket_9a86
-	jp Function9809
+	jp PushSGBPals_
 
 Function8b4d:
+; XXX
 	call CheckCGB
 	jr nz, .cgb
 	ld a, [hSGB]
 	and a
 	ret z
 	ld hl, PalPacket_9c26
-	jp Function9809
+	jp PushSGBPals_
 
 .cgb
 	ld de, UnknOBPals
@@ -193,13 +196,14 @@ Function8b4d:
 	jp LoadHLPaletteIntoDE
 
 Function8b67:
+; XXX
 	call CheckCGB
 	jr nz, .cgb
 	ld a, [hSGB]
 	and a
 	ret z
 	ld hl, PalPacket_9c36
-	jp Function9809
+	jp PushSGBPals_
 
 .cgb
 	ld de, UnknOBPals
@@ -208,8 +212,9 @@ Function8b67:
 	jp LoadHLPaletteIntoDE
 
 Function8b81:
+; XXX
 	call CheckCGB
-	jr nz, .asm_8bb2
+	jr nz, .cgb
 	ld a, [hSGB]
 	and a
 	ret z
@@ -230,45 +235,45 @@ Function8b81:
 	ld a, [hl]
 	ld [wSGBPals + 6], a
 	ld hl, wSGBPals
-	jp Function9809
+	jp PushSGBPals_
 
-.asm_8bb2
+.cgb
 	ld de, UnknOBPals
 	ld a, c
 	call GetMonPalettePointer_
 	call LoadPalette_White_Col1_Col2_Black
 	ret
 
-Function8bbd:
+LoadTrainerClassPaletteAsNthBGPal:
 	ld a, [TrainerClass]
 	call GetTrainerPalettePointer
 	ld a, e
-	jr asm_8bd7
+	jr got_palette_pointer_8bd7
 
-Function8bc6:
+LoadMonPaletteAsNthBGPal:
 	ld a, [CurPartySpecies]
 	call GetMonPalettePointer
 	ld a, e
 	bit 7, a
-	jr z, .asm_8bd7
+	jr z, got_palette_pointer_8bd7
 	and $7f
-rept 4
 	inc hl
-endr
-.asm_8bd7
+	inc hl
+	inc hl
+	inc hl
 
-asm_8bd7
+got_palette_pointer_8bd7
 	push hl
 	ld hl, UnknBGPals
-	ld de, $8
-.asm_8bde
+	ld de, 1 palettes
+.loop
 	and a
-	jr z, .asm_8be5
+	jr z, .got_addr
 	add hl, de
 	dec a
-	jr .asm_8bde
+	jr .loop
 
-.asm_8be5
+.got_addr
 	ld e, l
 	ld d, h
 	pop hl
@@ -276,30 +281,31 @@ asm_8bd7
 	ret
 
 Function8bec:
+; XXX
 	ld a, [hCGB]
 	and a
-	jr nz, .asm_8bf7
+	jr nz, .cgb
 	ld hl, PlayerLightScreenCount
-	jp Function9809
+	jp PushSGBPals_
 
-.asm_8bf7
-	ld a, [EnemyLightScreenCount]
+.cgb
+	ld a, [EnemyLightScreenCount] ; col
 	ld c, a
-	ld a, [EnemyReflectCount]
+	ld a, [EnemyReflectCount] ; row
 	hlcoord 0, 0, AttrMap
-	ld de, $14
-.asm_8c04
+	ld de, SCREEN_WIDTH
+.loop
 	and a
-	jr z, .asm_8c0b
+	jr z, .done
 	add hl, de
 	dec a
-	jr .asm_8c04
+	jr .loop
 
-.asm_8c0b
+.done
 	ld b, $0
 	add hl, bc
 	lb bc, 6, 4
-	ld a, [EnemySafeguardCount]
+	ld a, [EnemySafeguardCount] ; value
 	and $3
 	call FillBoxCGB
 	call LoadEDTile
@@ -401,16 +407,16 @@ LoadStatsScreenPals:
 	ld a, $1
 	ret
 
-Function8cb4:
+LoadMailPalettes:
 	ld l, e
 	ld h, 0
-rept 3
 	add hl, hl
-endr
-	ld de, Palettes_8d05
+	add hl, hl
+	add hl, hl
+	ld de, .MailPals
 	add hl, de
 	call CheckCGB
-	jr nz, .asm_8cf0
+	jr nz, .cgb
 	push hl
 	ld hl, PalPacket_9ce6
 	ld de, wSGBPals
@@ -428,12 +434,12 @@ endr
 	ld a, [hli]
 	ld [wSGBPals + 6], a
 	ld hl, wSGBPals
-	call Function9809
+	call PushSGBPals_
 	ld hl, BlkPacket_9a86
-	call Function9809
+	call PushSGBPals_
 	ret
 
-.asm_8cf0
+.cgb
 	ld de, UnknBGPals
 	ld bc, 1 palettes
 	ld a, $5
@@ -443,7 +449,7 @@ endr
 	call ApplyAttrMap
 	ret
 
-Palettes_8d05:
+.MailPals:
 	RGB 20, 31, 11
 	RGB 31, 19, 00
 	RGB 31, 10, 09
@@ -497,7 +503,8 @@ Palettes_8d05:
 INCLUDE "predef/cgb.asm"
 
 Function95f0:
-	ld hl, Palette_9608
+; XXX
+	ld hl, .Palette
 	ld de, UnknBGPals
 	ld bc, 8
 	ld a, $5
@@ -507,7 +514,7 @@ Function95f0:
 	call ApplyAttrMap
 	ret
 
-Palette_9608:
+.Palette:
 	RGB 31, 31, 31
 	RGB 09, 31, 31
 	RGB 10, 12, 31
@@ -534,9 +541,9 @@ CopyPalettes:
 GetPredefPal:
 	ld l, a
 	ld h, $0
-rept 3 ; multiply by 8
 	add hl, hl
-endr
+	add hl, hl
+	add hl, hl
 	ld bc, Palettes_9df6
 	add hl, bc
 	ret
@@ -604,30 +611,36 @@ FillBoxCGB:
 	jr nz, .row
 	ret
 
-Function9673:
+ResetBGPals:
 	push af
 	push bc
 	push de
 	push hl
+
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
+
 	ld hl, UnknBGPals
 	ld c, 8
 .loop
 	ld a, $ff
-rept 4
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
 	xor a
-rept 4
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
 	dec c
 	jr nz, .loop
+
 	pop af
 	ld [rSVBK], a
+
 	pop hl
 	pop de
 	pop bc
@@ -769,8 +782,8 @@ GetFrontpicPalettePointer:
 GetTrainerPalettePointer:
 	ld l, a
 	ld h, 0
-	add hl,hl
-	add hl,hl
+	add hl, hl
+	add hl, hl
 	ld bc, TrainerPalettes
 	add hl, bc
 	ret
@@ -830,19 +843,20 @@ Palettes_979c:
 	RGB 00, 00, 00
 
 Function97cc:
+; XXX
 	call CheckCGB
 	ret z
 	ld a, $90
 	ld [rOBPI], a
 	ld a, $1c
 	call GetPredefPal
-	call Function97e5
+	call .PushPalette
 	ld a, $21
 	call GetPredefPal
-	call Function97e5
+	call .PushPalette
 	ret
 
-Function97e5:
+.PushPalette:
 	ld c, 1 palettes
 .loop
 	ld a, [hli]
@@ -854,9 +868,9 @@ Function97e5:
 GetMonPalettePointer:
 	ld l, a
 	ld h, $0
-rept 3
 	add hl, hl
-endr
+	add hl, hl
+	add hl, hl
 	ld bc, PokemonPalettes
 	add hl, bc
 	ret
@@ -874,7 +888,7 @@ rept 4
 endr
 	ret
 
-Function9809:
+PushSGBPals_:
 	ld a, [wcfbe]
 	push af
 	set 7, a
@@ -924,9 +938,10 @@ PushSGBPals:
 	jr nz, .loop
 	ret
 
-Function9853:
+InitSGBBorder:
 	call CheckCGB
 	ret nz
+; SGB/DMG only
 	di
 	ld a, [wcfbe]
 	push af
@@ -935,29 +950,30 @@ Function9853:
 	xor a
 	ld [rJOYP], a
 	ld [hSGB], a
-	call Function994a
-	jr nc, .asm_988a
+	call PushSGBBorderPalsAndWait
+	jr nc, .skip
 	ld a, $1
 	ld [hSGB], a
-	call Function98eb
-	call Function99b4
+	call _InitSGBBorderPals
+	call SGBBorder_PushBGPals
 	call SGBDelayCycles
-	call Function993f
-	call Function992c
+	call SGB_ClearVRAM
+	call PushSGBBorder
 	call SGBDelayCycles
-	call Function993f
+	call SGB_ClearVRAM
 	ld hl, PalPacket_9d66
 	call PushSGBPals
 
-.asm_988a
+.skip
 	pop af
 	ld [wcfbe], a
 	ei
 	ret
 
-Function9890::
+InitCGBPals::
 	call CheckCGB
 	ret z
+; CGB only
 	ld a, $1
 	ld [rVBK], a
 	ld hl, VTiles0
@@ -1009,7 +1025,7 @@ Function9890::
 	jr nz, .loop
 	ret
 
-Function98eb:
+_InitSGBBorderPals:
 	ld hl, .PalPacketPointerTable
 	ld c, 9
 .loop
@@ -1038,25 +1054,26 @@ Function98eb:
 	dw PalPacket_9de6
 
 Function9911:
+; XXX
 	di
 	xor a
 	ld [rJOYP], a
 	ld hl, PalPacket_9d56
 	call PushSGBPals
-	call Function992c
+	call PushSGBBorder
 	call SGBDelayCycles
-	call Function993f
+	call SGB_ClearVRAM
 	ld hl, PalPacket_9d66
 	call PushSGBPals
 	ei
 	ret
 
-Function992c:
+PushSGBBorder:
 	call .LoadSGBBorderPointers
 	push de
-	call Function9a24
+	call SGBBorder_YetMorePalPushing
 	pop hl
-	call Function99d8
+	call SGBBorder_MorePalPushing
 	ret
 
 .LoadSGBBorderPointers:
@@ -1064,21 +1081,21 @@ Function992c:
 	ld de, SGBBorderMap
 	ret
 
-Function993f:
+SGB_ClearVRAM:
 	ld hl, VTiles0
 	ld bc, $2000
 	xor a
 	call ByteFill
 	ret
 
-Function994a:
+PushSGBBorderPalsAndWait:
 	ld hl, PalPacket_9d26
 	call PushSGBPals
 	call SGBDelayCycles
 	ld a, [rJOYP]
 	and $3
 	cp $3
-	jr nz, .asm_99a6
+	jr nz, .carry
 	ld a, $20
 	ld [rJOYP], a
 	ld a, [rJOYP]
@@ -1098,32 +1115,32 @@ endr
 	call SGBDelayCycles
 	ld a, $30
 	ld [rJOYP], a
-rept 3
 	ld a, [rJOYP]
-endr
+	ld a, [rJOYP]
+	ld a, [rJOYP]
 	call SGBDelayCycles
 	call SGBDelayCycles
 	ld a, [rJOYP]
 	and $3
 	cp $3
-	jr nz, .asm_99a6
-	call Function99ab
+	jr nz, .carry
+	call .FinalPush
 	and a
 	ret
 
-.asm_99a6
-	call Function99ab
+.carry
+	call .FinalPush
 	scf
 	ret
 
-Function99ab:
+.FinalPush:
 	ld hl, PalPacket_9d16
 	call PushSGBPals
 	jp SGBDelayCycles
 
-Function99b4:
+SGBBorder_PushBGPals:
 	call DisableLCD
-	ld a, $e4
+	ld a, %11100100
 	ld [rBGP], a
 	ld hl, Palettes_9df6
 	ld de, VTiles1
@@ -1138,7 +1155,7 @@ Function99b4:
 	ld [rBGP], a
 	ret
 
-Function99d8:
+SGBBorder_MorePalPushing:
 	call DisableLCD
 	ld a, $e4
 	ld [rBGP], a
@@ -1146,7 +1163,7 @@ Function99d8:
 	ld bc, 20 tiles
 	call CopyData
 	ld b, 18
-.asm_99ea
+.loop
 	push bc
 	ld bc, $c
 	call CopyData
@@ -1156,7 +1173,7 @@ Function99d8:
 	call CopyData
 	pop bc
 	dec b
-	jr nz, .asm_99ea
+	jr nz, .loop
 	ld bc, $140
 	call CopyData
 	ld bc, Start
@@ -1172,13 +1189,13 @@ Function99d8:
 	ld [rBGP], a
 	ret
 
-Function9a24:
+SGBBorder_YetMorePalPushing:
 	call DisableLCD
 	ld a, %11100100
 	ld [rBGP], a
 	ld de, VTiles1
 	ld b, $80
-.asm_9a30
+.loop
 	push bc
 	ld bc, 1 tiles
 	call CopyData
@@ -1186,7 +1203,7 @@ Function9a24:
 	call ClearBytes
 	pop bc
 	dec b
-	jr nz, .asm_9a30
+	jr nz, .loop
 	call DrawDefaultTiles
 	ld a, $e3
 	ld [rLCDC], a
@@ -1198,25 +1215,27 @@ Function9a24:
 
 CopyData: ; 0x9a52
 ; copy bc bytes of data from hl to de
+.loop
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec bc
 	ld a, c
 	or b
-	jr nz, CopyData
+	jr nz, .loop
 	ret
 ; 0x9a5b
 
 ClearBytes: ; 0x9a5b
 ; clear bc bytes of data starting from de
+.loop
 	xor a
 	ld [de], a
 	inc de
 	dec bc
 	ld a, c
 	or b
-	jr nz, ClearBytes
+	jr nz, .loop
 	ret
 ; 0x9a64
 
@@ -1729,34 +1748,34 @@ Palettes_9df6:
 	RGB 31, 31, 31
 
 SGBBorderMap:
-	db $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $14,$14, $15,$14, $16,$14, $17,$14, $17,$54, $16,$54, $15,$54, $14,$54, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14
-	db $01,$14, $02,$14, $03,$14, $03,$54, $02,$54, $01,$54, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $24,$14, $25,$14, $26,$14, $07,$14, $07,$54, $26,$54, $25,$54, $24,$54, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$54, $01,$14, $02,$14, $03,$14, $03,$54, $02,$54, $01,$54
-	db $11,$14, $12,$14, $13,$14, $13,$54, $12,$54, $11,$54, $10,$54, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $24,$14, $34,$14, $35,$14, $35,$54, $34,$54, $33,$54, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $10,$14, $11,$14, $12,$14, $13,$14, $13,$54, $12,$54, $11,$54
-	db $21,$14, $22,$14, $23,$14, $23,$54, $22,$54, $21,$54, $20,$54, $07,$14, $08,$14, $09,$14, $0a,$14, $0b,$14, $0c,$14, $0d,$14, $07,$14, $07,$14, $18,$14, $09,$14, $1a,$14, $1b,$14, $0d,$14, $0c,$14, $1c,$14, $29,$14, $07,$14, $20,$14, $21,$14, $22,$14, $23,$14, $23,$54, $22,$54, $21,$54
-	db $31,$14, $32,$14, $07,$14, $07,$14, $32,$54, $36,$10, $38,$10, $38,$10, $38,$10, $38,$10, $38,$10, $38,$10, $38,$10, $38,$10, $38,$10, $38,$10, $38,$10, $38,$10, $38,$10, $38,$10, $38,$10, $38,$10, $38,$10, $38,$10, $38,$10, $38,$10, $27,$10, $32,$14, $07,$54, $07,$54, $32,$54, $31,$54
-	db $05,$14, $06,$14, $07,$14, $07,$54, $06,$54, $1f,$10,                                                                                                                                                                                     $37,$10, $06,$14, $07,$14, $07,$54, $06,$54, $05,$54
-	db $15,$14, $16,$14, $17,$14, $17,$54, $16,$54, $1f,$10,                                                                                                                                                                                     $37,$10, $16,$14, $17,$14, $17,$54, $16,$54, $15,$54
-	db $25,$14, $26,$14, $07,$14, $07,$54, $26,$54, $1f,$10,                                                                                                                                                                                     $37,$10, $26,$14, $07,$14, $07,$54, $26,$54, $25,$54
-	db $33,$14, $34,$14, $35,$14, $35,$54, $34,$54, $1f,$10,                                                                                                                                                                                     $37,$10, $34,$14, $35,$14, $35,$54, $34,$54, $33,$54
-	db $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $1f,$10,                                                                                                                                                                                     $37,$10, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14
-	db $02,$54, $01,$54, $07,$54, $07,$14, $07,$14, $1f,$10,                                                                                                                                                                                     $37,$10, $07,$14, $07,$14, $07,$14, $01,$14, $02,$14
-	db $12,$54, $11,$54, $10,$54, $07,$14, $07,$14, $1f,$10,                                                                                                                                                                                     $37,$10, $07,$14, $07,$14, $10,$14, $11,$14, $12,$14
-	db $22,$54, $21,$54, $20,$54, $07,$14, $07,$14, $1f,$10,                                                                                                                                                                                     $37,$10, $07,$14, $07,$14, $20,$14, $21,$14, $22,$14
-	db $32,$54, $31,$54, $30,$54, $07,$14, $07,$14, $1f,$10,                                                                                                                                                                                     $37,$10, $07,$14, $07,$14, $30,$14, $31,$14, $32,$14
-	db $06,$54, $05,$54, $04,$54, $07,$14, $07,$14, $1f,$10,                                                                                                                                                                                     $37,$10, $07,$14, $07,$14, $04,$14, $05,$14, $06,$14
-	db $16,$54, $15,$54, $14,$54, $07,$14, $07,$14, $1f,$10,                                                                                                                                                                                     $37,$10, $07,$14, $07,$14, $14,$14, $15,$14, $16,$14
-	db $26,$54, $25,$54, $24,$54, $07,$14, $07,$14, $1f,$10,                                                                                                                                                                                     $37,$10, $07,$14, $07,$14, $24,$14, $25,$14, $26,$14
-	db $34,$54, $33,$54, $07,$54, $07,$14, $07,$14, $1f,$10,                                                                                                                                                                                     $37,$10, $07,$14, $07,$14, $07,$14, $33,$14, $34,$14
-	db $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $1f,$10,                                                                                                                                                                                     $37,$10, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14
-	db $01,$14, $02,$14, $03,$14, $03,$54, $02,$54, $1f,$10,                                                                                                                                                                                     $37,$10, $02,$14, $03,$14, $03,$54, $02,$54, $01,$54
-	db $11,$14, $12,$14, $13,$14, $13,$54, $12,$54, $1f,$10,                                                                                                                                                                                     $37,$10, $12,$14, $13,$14, $13,$54, $12,$54, $11,$54
-	db $21,$14, $22,$14, $23,$14, $23,$54, $22,$54, $1f,$10,                                                                                                                                                                                     $37,$10, $22,$14, $23,$14, $23,$54, $22,$54, $21,$54
-	db $31,$14, $32,$14, $07,$14, $07,$14, $32,$54, $1f,$10,                                                                                                                                                                                     $37,$10, $32,$14, $07,$54, $07,$54, $32,$54, $31,$54
-	db $05,$14, $06,$14, $07,$14, $07,$54, $06,$54, $2e,$10, $2f,$10, $2f,$10, $2f,$10, $2f,$10, $2f,$10, $2f,$10, $2f,$10, $2f,$10, $2f,$10, $2f,$10, $2f,$10, $2f,$10, $2f,$10, $2f,$10, $2f,$10, $2f,$10, $2f,$10, $2f,$10, $2f,$10, $2f,$10, $2d,$10, $06,$14, $07,$14, $07,$54, $06,$54, $05,$54
-	db $15,$14, $16,$14, $17,$14, $17,$54, $16,$54, $15,$54, $14,$54, $07,$14, $07,$14, $39,$14, $0e,$14, $09,$14, $0f,$14, $28,$14, $07,$14, $19,$14, $0c,$14, $1c,$14, $29,$14, $2a,$14, $2b,$14, $2c,$14, $39,$14, $07,$14, $07,$14, $14,$14, $15,$14, $16,$14, $17,$14, $17,$54, $16,$54, $15,$54
-	db $25,$14, $26,$14, $07,$14, $07,$54, $26,$54, $25,$54, $24,$54, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $01,$14, $02,$14, $03,$14, $03,$54, $02,$54, $01,$54, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $24,$14, $25,$14, $26,$14, $07,$14, $07,$54, $26,$54, $25,$54
-	db $33,$14, $34,$14, $35,$14, $35,$54, $34,$54, $24,$54, $07,$54, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $10,$14, $11,$14, $12,$14, $13,$14, $13,$54, $12,$54, $11,$54, $10,$54, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $24,$14, $34,$14, $35,$14, $35,$54, $34,$54, $33,$54
-	db $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $20,$14, $21,$14, $22,$14, $23,$14, $23,$54, $22,$54, $21,$54, $20,$54, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14
+	db $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $14, $14, $15, $14, $16, $14, $17, $14, $17, $54, $16, $54, $15, $54, $14, $54, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14
+	db $01, $14, $02, $14, $03, $14, $03, $54, $02, $54, $01, $54, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $24, $14, $25, $14, $26, $14, $07, $14, $07, $54, $26, $54, $25, $54, $24, $54, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $54, $01, $14, $02, $14, $03, $14, $03, $54, $02, $54, $01, $54
+	db $11, $14, $12, $14, $13, $14, $13, $54, $12, $54, $11, $54, $10, $54, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $24, $14, $34, $14, $35, $14, $35, $54, $34, $54, $33, $54, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $10, $14, $11, $14, $12, $14, $13, $14, $13, $54, $12, $54, $11, $54
+	db $21, $14, $22, $14, $23, $14, $23, $54, $22, $54, $21, $54, $20, $54, $07, $14, $08, $14, $09, $14, $0a, $14, $0b, $14, $0c, $14, $0d, $14, $07, $14, $07, $14, $18, $14, $09, $14, $1a, $14, $1b, $14, $0d, $14, $0c, $14, $1c, $14, $29, $14, $07, $14, $20, $14, $21, $14, $22, $14, $23, $14, $23, $54, $22, $54, $21, $54
+	db $31, $14, $32, $14, $07, $14, $07, $14, $32, $54, $36, $10, $38, $10, $38, $10, $38, $10, $38, $10, $38, $10, $38, $10, $38, $10, $38, $10, $38, $10, $38, $10, $38, $10, $38, $10, $38, $10, $38, $10, $38, $10, $38, $10, $38, $10, $38, $10, $38, $10, $38, $10, $27, $10, $32, $14, $07, $54, $07, $54, $32, $54, $31, $54
+	db $05, $14, $06, $14, $07, $14, $07, $54, $06, $54, $1f, $10,                                                                                                                                                                                     $37, $10, $06, $14, $07, $14, $07, $54, $06, $54, $05, $54
+	db $15, $14, $16, $14, $17, $14, $17, $54, $16, $54, $1f, $10,                                                                                                                                                                                     $37, $10, $16, $14, $17, $14, $17, $54, $16, $54, $15, $54
+	db $25, $14, $26, $14, $07, $14, $07, $54, $26, $54, $1f, $10,                                                                                                                                                                                     $37, $10, $26, $14, $07, $14, $07, $54, $26, $54, $25, $54
+	db $33, $14, $34, $14, $35, $14, $35, $54, $34, $54, $1f, $10,                                                                                                                                                                                     $37, $10, $34, $14, $35, $14, $35, $54, $34, $54, $33, $54
+	db $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $1f, $10,                                                                                                                                                                                     $37, $10, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14
+	db $02, $54, $01, $54, $07, $54, $07, $14, $07, $14, $1f, $10,                                                                                                                                                                                     $37, $10, $07, $14, $07, $14, $07, $14, $01, $14, $02, $14
+	db $12, $54, $11, $54, $10, $54, $07, $14, $07, $14, $1f, $10,                                                                                                                                                                                     $37, $10, $07, $14, $07, $14, $10, $14, $11, $14, $12, $14
+	db $22, $54, $21, $54, $20, $54, $07, $14, $07, $14, $1f, $10,                                                                                                                                                                                     $37, $10, $07, $14, $07, $14, $20, $14, $21, $14, $22, $14
+	db $32, $54, $31, $54, $30, $54, $07, $14, $07, $14, $1f, $10,                                                                                                                                                                                     $37, $10, $07, $14, $07, $14, $30, $14, $31, $14, $32, $14
+	db $06, $54, $05, $54, $04, $54, $07, $14, $07, $14, $1f, $10,                                                                                                                                                                                     $37, $10, $07, $14, $07, $14, $04, $14, $05, $14, $06, $14
+	db $16, $54, $15, $54, $14, $54, $07, $14, $07, $14, $1f, $10,                                                                                                                                                                                     $37, $10, $07, $14, $07, $14, $14, $14, $15, $14, $16, $14
+	db $26, $54, $25, $54, $24, $54, $07, $14, $07, $14, $1f, $10,                                                                                                                                                                                     $37, $10, $07, $14, $07, $14, $24, $14, $25, $14, $26, $14
+	db $34, $54, $33, $54, $07, $54, $07, $14, $07, $14, $1f, $10,                                                                                                                                                                                     $37, $10, $07, $14, $07, $14, $07, $14, $33, $14, $34, $14
+	db $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $1f, $10,                                                                                                                                                                                     $37, $10, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14
+	db $01, $14, $02, $14, $03, $14, $03, $54, $02, $54, $1f, $10,                                                                                                                                                                                     $37, $10, $02, $14, $03, $14, $03, $54, $02, $54, $01, $54
+	db $11, $14, $12, $14, $13, $14, $13, $54, $12, $54, $1f, $10,                                                                                                                                                                                     $37, $10, $12, $14, $13, $14, $13, $54, $12, $54, $11, $54
+	db $21, $14, $22, $14, $23, $14, $23, $54, $22, $54, $1f, $10,                                                                                                                                                                                     $37, $10, $22, $14, $23, $14, $23, $54, $22, $54, $21, $54
+	db $31, $14, $32, $14, $07, $14, $07, $14, $32, $54, $1f, $10,                                                                                                                                                                                     $37, $10, $32, $14, $07, $54, $07, $54, $32, $54, $31, $54
+	db $05, $14, $06, $14, $07, $14, $07, $54, $06, $54, $2e, $10, $2f, $10, $2f, $10, $2f, $10, $2f, $10, $2f, $10, $2f, $10, $2f, $10, $2f, $10, $2f, $10, $2f, $10, $2f, $10, $2f, $10, $2f, $10, $2f, $10, $2f, $10, $2f, $10, $2f, $10, $2f, $10, $2f, $10, $2f, $10, $2d, $10, $06, $14, $07, $14, $07, $54, $06, $54, $05, $54
+	db $15, $14, $16, $14, $17, $14, $17, $54, $16, $54, $15, $54, $14, $54, $07, $14, $07, $14, $39, $14, $0e, $14, $09, $14, $0f, $14, $28, $14, $07, $14, $19, $14, $0c, $14, $1c, $14, $29, $14, $2a, $14, $2b, $14, $2c, $14, $39, $14, $07, $14, $07, $14, $14, $14, $15, $14, $16, $14, $17, $14, $17, $54, $16, $54, $15, $54
+	db $25, $14, $26, $14, $07, $14, $07, $54, $26, $54, $25, $54, $24, $54, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $01, $14, $02, $14, $03, $14, $03, $54, $02, $54, $01, $54, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $24, $14, $25, $14, $26, $14, $07, $14, $07, $54, $26, $54, $25, $54
+	db $33, $14, $34, $14, $35, $14, $35, $54, $34, $54, $24, $54, $07, $54, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $10, $14, $11, $14, $12, $14, $13, $14, $13, $54, $12, $54, $11, $54, $10, $54, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $24, $14, $34, $14, $35, $14, $35, $54, $34, $54, $33, $54
+	db $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $20, $14, $21, $14, $22, $14, $23, $14, $23, $54, $22, $54, $21, $54, $20, $54, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14, $07, $14
 
 SGBBorderPalettes:
 	RGB 24, 06, 06
@@ -1941,9 +1960,9 @@ LoadMapPals:
 	ld a, [MapGroup]
 	ld l, a
 	ld h, 0
-rept 3
-	add hl,hl
-endr
+	add hl, hl
+	add hl, hl
+	add hl, hl
 	ld de, RoofPals
 	add hl, de
 	ld a, [TimeOfDayPal]
@@ -2016,7 +2035,7 @@ INCLUDE "tilesets/ob.pal"
 RoofPals:
 INCLUDE "tilesets/roof.pal"
 
-Palettes_b641:
+DiplomaPalettes:
 	RGB 27, 31, 27
 	RGB 21, 21, 21
 	RGB 13, 13, 13

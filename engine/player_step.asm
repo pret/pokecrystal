@@ -26,12 +26,12 @@ _HandlePlayerStep:: ; d497 (3:5497)
 	ld d, a
 	ld a, [wPlayerStepVectorY]
 	ld e, a
-	ld a, [wFollowNotExactPersonX]
+	ld a, [wPlayerBGMapOffsetX]
 	sub d
-	ld [wFollowNotExactPersonX], a
-	ld a, [wFollowNotExactPersonY]
+	ld [wPlayerBGMapOffsetX], a
+	ld a, [wPlayerBGMapOffsetY]
 	sub e
-	ld [wFollowNotExactPersonY], a
+	ld [wPlayerBGMapOffsetY], a
 	ret
 
 ScrollScreen:: ; d4d2 (3:54d2)
@@ -77,7 +77,7 @@ HandlePlayerStep: ; d4e5 (3:54e5)
 	ret
 
 .mobile ; d509 (3:5509)
-	callba MobileFn_10602e
+	callba TrainerRankings_StepCount
 	ret
 
 .fail2 ; d510 (3:5510)

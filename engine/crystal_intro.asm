@@ -13,7 +13,7 @@ Copyright_GFPresents: ; e4579
 	ld a, $90
 	ld [hWY], a
 	call WaitBGMap
-	ld b, SCGB_19
+	ld b, SCGB_GAMEFREAK_LOGO
 	call GetSGBLayout
 	call SetPalettes
 	ld c, 10
@@ -82,13 +82,13 @@ Copyright_GFPresents: ; e4579
 	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_GAMEFREAK_LOGO
 	call _InitSpriteAnimStruct
-	ld hl, $7
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], $a0
-	ld hl, $c
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $60
-	ld hl, $d
+	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld [hl], $30
 	xor a
@@ -101,7 +101,7 @@ Copyright_GFPresents: ; e4579
 	ld [hBGMapMode], a
 	ld a, $90
 	ld [hWY], a
-	ld de, $e4e4
+	lb de, %11100100, %11100100
 	call DmgToCgbObjPals
 	ret
 ; e465e
@@ -120,9 +120,8 @@ PlaceGameFreakPresents: ; e4670
 	ld e, a
 	ld d, 0
 	ld hl, .dw
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -213,14 +212,13 @@ PlaceGameFreakPresents_3: ; e46dd
 
 
 GameFreakLogoJumper: ; e46ed (39:46ed)
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
 	ld hl, GameFreakLogoScenes
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -234,7 +232,7 @@ GameFreakLogoScenes: ; e46fd (39:46fd)
 	dw GameFreakLogoScene5
 
 GameFreakLogoScene1: ; e4707 (39:4707)
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	inc [hl]
 	ret
@@ -275,7 +273,7 @@ GameFreakLogoScene2: ; e470d (39:470d)
 	ret
 
 .asm_e4747
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	inc [hl]
 	ld hl, SPRITEANIMSTRUCT_0D
@@ -295,7 +293,7 @@ GameFreakLogoScene3: ; e4759 (39:4759)
 	ret
 
 .asm_e4764
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	inc [hl]
 	ld hl, SPRITEANIMSTRUCT_0D
@@ -317,9 +315,8 @@ GameFreakLogoScene4: ; e4776 (39:4776)
 	ld e, a
 	ld d, $0
 	ld hl, GameFreakLogoPalettes
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -335,7 +332,7 @@ endr
 	ret
 
 .asm_e47a3
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	inc [hl]
 	call PlaceGameFreakPresents_AdvanceIndex
@@ -436,9 +433,8 @@ IntroSceneJumper: ; e490f
 	ld e, a
 	ld d, 0
 	ld hl, IntroScenes
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -625,7 +621,7 @@ IntroScene5: ; e4a7a (39:4a7a)
 	call ClearTileMap
 	xor a
 	ld [hBGMapMode], a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap005
@@ -819,7 +815,7 @@ IntroScene8: ; e4bd3 (39:4bd3)
 IntroScene9: ; e4c04 (39:4c04)
 ; Set up the next scene (same bg).
 	xor a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	call ClearSprites
 	hlcoord 0, 0, AttrMap
 	; first 12 rows have palette 1
@@ -893,7 +889,7 @@ IntroScene11: ; e4c86 (39:4c86)
 	call ClearTileMap
 	xor a
 	ld [hBGMapMode], a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap007
@@ -986,9 +982,8 @@ IntroScene12: ; e4cfa (39:4cfa)
 	ret z
 	cp c
 	jr z, .playsound
-rept 2
 	inc hl
-endr
+	inc hl
 	jr .loop
 .playsound
 	ld a, [hli]
@@ -1660,16 +1655,15 @@ CrystalIntro_InitUnownAnim: ; e51dc (39:51dc)
 	ret
 
 CrystalIntro_UnownFade: ; e5223 (39:5223)
-rept 3
 	add a
-endr
+	add a
+	add a
 	ld e, a
 	ld d, $0
 	ld hl, BGPals
 	add hl, de
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [wcf65]
 	and $3f
 	cp $1f
@@ -1698,9 +1692,8 @@ endr
 
 	push hl
 	ld hl, .BWFade
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -1712,9 +1705,8 @@ endr
 
 	push hl
 	ld hl, .BlackLBlueFade
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -1726,9 +1718,8 @@ endr
 
 	push hl
 	ld hl, .BlackBlueFade
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -1786,9 +1777,9 @@ Intro_Scene20_AppearUnown: ; e5348 (39:5348)
 .got_pointer
 	ld a, [wcf65]
 	and $7
-rept 3
 	add a
-endr
+	add a
+	add a
 	ld c, a
 	ld a, [rSVBK]
 	push af
@@ -1844,9 +1835,9 @@ endr
 ; e539d
 
 Intro_FadeUnownWordPals: ; e539d (39:539d)
-rept 3
 	add a
-endr
+	add a
+	add a
 	ld e, a
 	ld d, $0
 	ld hl, BGPals
@@ -2102,8 +2093,8 @@ Intro_ResetLYOverrides: ; e5516 (39:5516)
 
 	pop af
 	ld [rSVBK], a
-	ld a, $43
-	ld [hFFC6], a
+	ld a, rSCX - $ff00
+	ld [hLCDCPointer], a
 	ret
 
 Intro_PerspectiveScrollBG: ; e552f (39:552f)
@@ -2127,9 +2118,8 @@ Intro_PerspectiveScrollBG: ; e552f (39:552f)
 	; grass in the front
 	ld hl, LYOverrides + $5f
 	ld a, [hl]
-rept 2
 	inc a
-endr
+	inc a
 	ld bc, $31
 	call ByteFill
 	ld a, [LYOverrides + 0]

@@ -2,6 +2,8 @@
 
 
 Function48c:: ; 48c
+; XXX
+; TimeOfDayFade
 	ld a, [TimeOfDayPal]
 	ld b, a
 	ld hl, IncGradGBPalTable_11

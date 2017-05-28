@@ -59,7 +59,7 @@ UnownPrinter: ; 16be4
 	ld [TempMonDVs], a
 	ld [TempMonDVs + 1], a
 
-	ld b, SCGB_FRONTPICPALS
+	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	call SetPalettes
 
@@ -132,7 +132,7 @@ UnownPrinter: ; 16be4
 .UpdateUnownFrontpic: ; 16cc8
 	ld a, [wJumptableIndex]
 	cp 26
-	jr z, Function16d20
+	jr z, .vacant
 	inc a
 	ld [UnownLetter], a
 	ld a, UNOWN
@@ -141,18 +141,17 @@ UnownPrinter: ; 16be4
 	ld [wBoxAlignment], a
 	ld de, VTiles2
 	predef GetFrontpic
-	call Function16cff
+	call .Load2bppToSRAM
 	hlcoord 1, 6
 	xor a
 	ld [hGraphicStartTile], a
 	lb bc, 7, 7
 	predef PlaceGraphic
 	ld de, VTiles2 tile $31
-	callba Functione0000
+	callba RotateUnownFrontpic
 	ret
-; 16cff
 
-Function16cff: ; 16cff
+.Load2bppToSRAM: ; 16cff
 	ld a, [rSVBK]
 	push af
 	ld a, $6
@@ -171,9 +170,8 @@ Function16cff: ; 16cff
 	pop af
 	ld [rSVBK], a
 	ret
-; 16d20
 
-Function16d20: ; 16d20
+.vacant
 	hlcoord 1, 6
 	lb bc, 7, 7
 	call ClearBox
@@ -221,7 +219,7 @@ UnownDexBTile: ; 16da4
 INCBIN "gfx/unknown/016da4.1bpp"
 ; 16dac
 
-Function16dac: ; 16dac
+PlaceUnownPrinterFrontpic: ; 16dac
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "

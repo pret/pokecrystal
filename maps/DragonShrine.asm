@@ -344,66 +344,66 @@ MenuData2_0x18d2ad:
 
 
 MovementData_0x18d2bf:
-	slow_step_up
-	slow_step_up
-	slow_step_up
-	slow_step_right
-	slow_step_up
-	slow_step_up
-	slow_step_up
+	slow_step UP
+	slow_step UP
+	slow_step UP
+	slow_step RIGHT
+	slow_step UP
+	slow_step UP
+	slow_step UP
 	step_end
 
 MovementData_0x18d2c7:
-	slow_step_down
+	slow_step DOWN
 	step_end
 
 MovementData_0x18d2c9:
-	slow_step_left
-	slow_step_left
-	slow_step_left
-	turn_head_down
+	slow_step LEFT
+	slow_step LEFT
+	slow_step LEFT
+	turn_head DOWN
 	step_end
 
 MovementData_0x18d2ce:
-	slow_step_right
-	slow_step_right
+	slow_step RIGHT
+	slow_step RIGHT
 	step_end
 
 MovementData_0x18d2d1:
-	slow_step_right
-	turn_head_down
+	slow_step RIGHT
+	turn_head DOWN
 	step_end
 
 MovementData_0x18d2d4:
-	slow_step_up
-	slow_step_up
-	slow_step_up
-	slow_step_up
-	slow_step_up
+	slow_step UP
+	slow_step UP
+	slow_step UP
+	slow_step UP
+	slow_step UP
 	step_end
 
 MovementData_0x18d2da:
 	fix_facing
-	big_step_left
+	big_step LEFT
 	step_end
 
 MovementData_0x18d2dd:
-	slow_step_left
+	slow_step LEFT
 	remove_fixed_facing
 	step_end
 
 MovementData_0x18d2e0:
-	slow_step_right
-	slow_step_right
+	slow_step RIGHT
+	slow_step RIGHT
 	step_end
 
 MovementData_0x18d2e3:
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
 	step_end
 
 UnknownText_0x18d2ea:

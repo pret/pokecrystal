@@ -8,7 +8,7 @@ CheckBreedmonCompatibility: ; 16e1d
 	ld [TempMonDVs], a
 	ld a, [wBreedMon1DVs + 1]
 	ld [TempMonDVs + 1], a
-	ld a, BREEDMON
+	ld a, TEMPMON
 	ld [MonType], a
 	predef GetGender
 	jr c, .genderless
@@ -88,7 +88,7 @@ CheckBreedmonCompatibility: ; 16e1d
 
 .CheckDVs: ; 16ebc (5:6ebc)
 ; If Defense DVs match and the lower 3 bits of the Special DVs match,
-; maximize the chances of spawning an egg regardless of species.
+; avoid breeding
 	ld a, [wBreedMon1DVs]
 	and %1111
 	ld b, a
@@ -232,7 +232,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	push de
 
 	callba SetEggMonCaughtData
-	callba MobileFn_10608d
+	callba TrainerRankings_EggsHatched
 	ld a, [CurPartyMon]
 	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -442,9 +442,8 @@ GLOBAL EggMoves
 	ld c, a
 	ld b, 0
 	ld hl, EggMovePointers
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, BANK(EggMovePointers)
 	call GetFarHalfword
 .loop
@@ -477,9 +476,8 @@ endr
 	ld c, a
 	ld b, 0
 	ld hl, EvosAttacksPointers
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, BANK(EvosAttacksPointers)
 	call GetFarHalfword
 .loop3
@@ -590,7 +588,7 @@ GetHeritableMoves: ; 17197
 	ld [TempMonDVs], a
 	ld a, [wBreedMon2DVs + 1]
 	ld [TempMonDVs + 1], a
-	ld a, BREEDMON
+	ld a, TEMPMON
 	ld [MonType], a
 	predef GetGender
 	jr c, .inherit_mon2_moves
@@ -606,7 +604,7 @@ GetHeritableMoves: ; 17197
 	ld [TempMonDVs], a
 	ld a, [wBreedMon1DVs + 1]
 	ld [TempMonDVs + 1], a
-	ld a, BREEDMON
+	ld a, TEMPMON
 	ld [MonType], a
 	predef GetGender
 	jr c, .inherit_mon1_moves
@@ -788,7 +786,7 @@ EggHatch_AnimationSequence: ; 1728f (5:728f)
 
 Hatch_LoadFrontpicPal: ; 17363 (5:7363)
 	ld [PlayerHPPal], a
-	ld b, SCGB_0B
+	ld b, SCGB_EVOLUTION
 	ld c, $0
 	jp GetSGBLayout
 
@@ -849,7 +847,7 @@ Hatch_InitShellFragments: ; 173b3 (5:73b3)
 	add [hl]
 	ld [hl], a
 
-	ld hl, SPRITEANIMSTRUCT_0B
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld [hl], d
 

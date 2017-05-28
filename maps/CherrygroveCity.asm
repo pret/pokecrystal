@@ -242,101 +242,101 @@ CherrygroveCityMartSign:
 	jumpstd martsign
 
 GuideGentMovement1:
-	step_left
-	step_left
-	step_up
-	step_left
-	turn_head_up
+	step LEFT
+	step LEFT
+	step UP
+	step LEFT
+	turn_head UP
 	step_end
 
 GuideGentMovement2:
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
-	turn_head_up
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	turn_head UP
 	step_end
 
 GuideGentMovement3:
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
-	turn_head_up
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	turn_head UP
 	step_end
 
 GuideGentMovement4:
-	step_left
-	step_left
-	step_left
-	step_down
-	step_left
-	step_left
-	step_left
-	step_down
-	turn_head_left
+	step LEFT
+	step LEFT
+	step LEFT
+	step DOWN
+	step LEFT
+	step LEFT
+	step LEFT
+	step DOWN
+	turn_head LEFT
 	step_end
 
 GuideGentMovement5:
-	step_down
-	step_down
-	step_right
-	step_right
-	step_right
-	step_right
-	step_right
-	step_right
-	step_right
-	step_right
-	step_right
-	step_right
-	step_down
-	step_down
-	step_right
-	step_right
-	step_right
-	step_right
-	step_right
-	turn_head_up
+	step DOWN
+	step DOWN
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step DOWN
+	step DOWN
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	turn_head UP
 	step_end
 
 GuideGentMovement6:
-	step_up
-	step_up
+	step UP
+	step UP
 	step_end
 
 CherrygroveCity_RivalWalksToYou:
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
 	step_end
 
 CherrygroveCity_RivalPushesYouOutOfTheWay:
-	big_step_down
-	turn_head_up
+	big_step DOWN
+	turn_head UP
 	step_end
 
 CherrygroveCity_UnusedMovementData:
-	step_left
-	turn_head_down
+	step LEFT
+	turn_head DOWN
 	step_end
 
 CherrygroveCity_RivalExitsStageLeft:
-	big_step_left
-	big_step_left
-	big_step_left
-	big_step_left
-	big_step_up
-	big_step_up
-	big_step_left
-	big_step_left
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step UP
+	big_step UP
+	big_step LEFT
+	big_step LEFT
 	step_end
 
 GuideGentIntroText:

@@ -499,17 +499,17 @@ Route34HiddenSuperPotion:
 
 
 Route34MovementData_DayCareManWalksBackInside:
-	slow_step_left
-	slow_step_left
-	slow_step_up
+	slow_step LEFT
+	slow_step LEFT
+	slow_step UP
 	step_end
 
 Route34MovementData_DayCareManWalksBackInside_WalkAroundPlayer:
-	slow_step_down
-	slow_step_left
-	slow_step_left
-	slow_step_up
-	slow_step_up
+	slow_step DOWN
+	slow_step LEFT
+	slow_step LEFT
+	slow_step UP
+	slow_step UP
 	step_end
 
 YoungsterSamuelSeenText:

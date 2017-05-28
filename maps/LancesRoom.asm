@@ -136,79 +136,79 @@ LanceScript_0x180e7b:
 	end
 
 LancesRoom_PlayerWalksInMovementData:
-	step_up
-	step_up
-	step_up
-	step_up
+	step UP
+	step UP
+	step UP
+	step UP
 	step_end
 
 MovementData_ApproachLanceFromLeft:
-	step_up
-	step_up
-	turn_head_right
+	step UP
+	step UP
+	turn_head RIGHT
 	step_end
 
 MovementData_ApproachLanceFromRight:
-	step_up
-	step_left
-	step_up
-	turn_head_right
+	step UP
+	step LEFT
+	step UP
+	turn_head RIGHT
 	step_end
 
 LancesRoomMovementData_MaryRushesIn:
-	big_step_up
-	big_step_up
-	big_step_up
-	turn_head_down
+	big_step UP
+	big_step UP
+	big_step UP
+	turn_head DOWN
 	step_end
 
 LancesRoomMovementData_OakWalksIn:
-	step_up
-	step_up
+	step UP
+	step UP
 	step_end
 
 LancesRoomMovementData_MaryYieldsToOak:
-	step_left
-	turn_head_right
+	step LEFT
+	turn_head RIGHT
 	step_end
 
 LancesRoomMovementData_MaryInterviewChampion:
-	big_step_up
-	turn_head_right
+	big_step UP
+	turn_head RIGHT
 	step_end
 
 LancesRoomMovementData_LancePositionsSelfToGuidePlayerAway:
-	step_up
-	step_left
-	turn_head_down
+	step UP
+	step LEFT
+	turn_head DOWN
 	step_end
 
 LancesRoomMovementData_LanceLeadsPlayerToHallOfFame:
-	step_up
+	step UP
 	step_end
 
 LancesRoomMovementData_PlayerExits:
-	step_up
+	step UP
 	step_end
 
 LancesRoomMovementData_MaryTriesToFollow:
-	step_up
-	step_right
-	turn_head_up
+	step UP
+	step RIGHT
+	turn_head UP
 	step_end
 
 LancesRoomMovementData_MaryRunsBackAndForth:
-	big_step_right
-	big_step_right
-	big_step_left
-	big_step_left
-	big_step_left
-	big_step_right
-	big_step_right
-	big_step_right
-	big_step_left
-	big_step_left
-	turn_head_up
+	big_step RIGHT
+	big_step RIGHT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step RIGHT
+	big_step RIGHT
+	big_step RIGHT
+	big_step LEFT
+	big_step LEFT
+	turn_head UP
 	step_end
 
 LanceBattleIntroText:

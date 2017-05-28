@@ -45,7 +45,7 @@ OfficerScript_0x550ec:
 	end
 
 .MovementBoardTheTrain:
-	turn_head_down
+	turn_head DOWN
 	step_end
 
 .PassNotInBag:
@@ -74,37 +74,37 @@ GentlemanScript_0x55143:
 	jumptextfaceplayer UnknownText_0x552a3
 
 MovementData_0x55146:
-	step_up
-	step_up
-	step_right
-	turn_head_left
+	step UP
+	step UP
+	step RIGHT
+	turn_head LEFT
 	step_end
 
 MovementData_0x5514b:
-	step_left
-	step_down
-	step_down
+	step LEFT
+	step DOWN
+	step DOWN
 	step_end
 
 MovementData_0x5514f:
-	step_up
-	step_up
-	step_up
-	step_left
-	step_left
-	step_left
-	step_up
-	step_up
+	step UP
+	step UP
+	step UP
+	step LEFT
+	step LEFT
+	step LEFT
+	step UP
+	step UP
 	step_end
 
 MovementData_0x55158:
-	step_left
-	step_left
-	step_down
-	step_down
-	step_down
-	step_down
-	turn_head_up
+	step LEFT
+	step LEFT
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	turn_head UP
 	step_end
 
 UnknownText_0x55160:

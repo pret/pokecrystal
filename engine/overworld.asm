@@ -23,7 +23,7 @@ Function14146: ; mobile
 	push af
 	res 7, [hl]
 	set 6, [hl]
-	call RunCallback_04
+	call MapCallbackSprites_LoadUsedSpritesGFX
 	pop af
 	ld [wSpriteFlags], a
 	ret
@@ -35,7 +35,7 @@ Function14157: ; mobile
 	push af
 	set 7, [hl]
 	res 6, [hl]
-	call RunCallback_04
+	call MapCallbackSprites_LoadUsedSpritesGFX
 	pop af
 	ld [wSpriteFlags], a
 	ret
@@ -43,7 +43,7 @@ Function14157: ; mobile
 
 RefreshSprites:: ; 14168
 	call .Refresh
-	call RunCallback_04
+	call MapCallbackSprites_LoadUsedSpritesGFX
 	ret
 ; 1416f
 
@@ -147,9 +147,8 @@ AddOutdoorSprites: ; 141ee
 	ld c, a
 	ld b, 0
 	ld hl, OutdoorSprites
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -165,7 +164,7 @@ endr
 ; 14209
 
 
-RunCallback_04: ; 14209
+MapCallbackSprites_LoadUsedSpritesGFX: ; 14209
 	ld a, MAPCALLBACK_SPRITES
 	call RunMapCallback
 	call GetUsedSprites
@@ -364,9 +363,8 @@ AddSpriteGFX: ; 142e5
 	jr z, .exists
 	and a
 	jr z, .new
-rept 2
 	inc hl
-endr
+	inc hl
 	dec c
 	jr nz, .loop
 
@@ -428,9 +426,8 @@ SortUsedSprites: ; 1431e
 	ld a, [de]
 	and a
 	jr nz, .FoundLastSprite
-rept 2
 	dec de
-endr
+	dec de
 	dec c
 	jr nz, .FindLastSprite
 .FoundLastSprite:
@@ -472,16 +469,14 @@ endr
 ; Keep doing this until everything's in order.
 
 .loop
-rept 2
 	dec de
-endr
+	dec de
 	dec c
 	jr nz, .CheckFollowing
 
 	pop hl
-rept 2
 	inc hl
-endr
+	inc hl
 	pop de
 	pop bc
 	dec c

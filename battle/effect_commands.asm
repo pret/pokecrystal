@@ -1541,11 +1541,6 @@ BattleCheckTypeMatchup: ; 347c8
 	and a
 	jr z, CheckTypeMatchup
 	ld hl, BattleMonType1
-
-	; fallthrough
-; 347d3
-
-
 CheckTypeMatchup: ; 347d3
 	push hl
 	push de
@@ -2837,11 +2832,11 @@ PlayerAttackDamage: ; 352e2
 	call GetDamageStatsCritical
 	jr c, .thickclub
 
-	ld hl, EnemyStats + 2
+	ld hl, EnemyDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld hl, PlayerStats
+	ld hl, PlayerAttack
 	jr .thickclub
 
 .special
@@ -2861,11 +2856,11 @@ PlayerAttackDamage: ; 352e2
 	call GetDamageStatsCritical
 	jr c, .lightball
 
-	ld hl, EnemyStats + SP_DEFENSE * 2
+	ld hl, EnemySpDef
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld hl, PlayerStats + SP_ATTACK * 2
+	ld hl, PlayerSpAtk
 
 .lightball
 ; Note: Returns player special attack at hl in hl.
@@ -3103,11 +3098,11 @@ EnemyAttackDamage: ; 353f6
 	call GetDamageStatsCritical
 	jr c, .thickclub
 
-	ld hl, PlayerStats + 2
+	ld hl, PlayerDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld hl, EnemyStats
+	ld hl, EnemyAttack
 	jr .thickclub
 
 .Special:
@@ -3126,11 +3121,11 @@ EnemyAttackDamage: ; 353f6
 	ld hl, EnemyMonSpclAtk
 	call GetDamageStatsCritical
 	jr c, .lightball
-	ld hl, PlayerStats + 8
+	ld hl, PlayerSpDef
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld hl, EnemyStats + 6
+	ld hl, EnemySpAtk
 
 .lightball
 	call LightBallBoost
@@ -3407,9 +3402,9 @@ HitSelfInConfusion: ; 355dd
 	sla c
 	rl b
 .mimic_screen
-rept 3
 	dec hl
-endr
+	dec hl
+	dec hl
 	ld a, [hli]
 	ld l, [hl]
 	ld h, a
@@ -3953,9 +3948,9 @@ BattleCommand_Encore: ; 35864
 	set SUBSTATUS_ENCORED, [hl]
 	call BattleRandom
 	and $3
-rept 3
 	inc a
-endr
+	inc a
+	inc a
 	ld [de], a
 	call CheckOpponentWentFirst
 	jr nz, .finish_move
@@ -4094,12 +4089,12 @@ BattleCommand_PainSplit: ; 35926
 	ld a, [CurDamage + 1]
 	rr a
 	ld [CurDamage + 1], a
-rept 3
 	inc hl
-endr
-rept 3
+	inc hl
+	inc hl
 	inc de
-endr
+	inc de
+	inc de
 
 .EnemyShareHP: ; 359ac
 	ld c, [hl]
@@ -6687,6 +6682,10 @@ BattleCommand_Teleport: ; 36778
 	srl b
 	srl b
 	cp b
+	; This does the wrong thing. What was
+	; probably intended was jr c, .failed
+	; The way this is made makes enemy use
+	; of Teleport always succeed if able
 	jr nc, .run_away
 .run_away
 	call UpdateBattleMonInParty
@@ -7447,9 +7446,9 @@ BattleCommand_TrapTarget: ; 36c2d
 	ret nz
 	call BattleRandom
 	and 3
-rept 3
 	inc a
-endr
+	inc a
+	inc a
 	ld [hl], a
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
@@ -8074,7 +8073,7 @@ BattleCommand_LeechSeed: ; 36f9d
 
 BattleCommand_Splash: ; 36fe1
 	call AnimateCurrentMove
-	callba MobileFn_1060e5
+	callba TrainerRankings_Splash
 	jp PrintNothingHappened
 
 ; 36fed
@@ -8601,7 +8600,7 @@ CheckSubstituteOpp: ; 37378
 
 
 BattleCommand_SelfDestruct: ; 37380
-	callba MobileFn_10610d
+	callba TrainerRankings_SelfDestruct
 	ld a, BATTLEANIM_PLAYER_DAMAGE
 	ld [wNumHits], a
 	ld c, 3
@@ -9750,6 +9749,7 @@ BattleCommand_ThunderAccuracy: ; 37d94
 	ret
 
 .rain
+	; Redundant with CheckHit guranteeing hit
 	ld [hl], 100 percent
 	ret
 

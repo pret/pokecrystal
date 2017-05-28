@@ -129,12 +129,10 @@ TextBoxPalette:: ; 1024
 ; Fill text box width c height b at hl with pal 7
 	ld de, AttrMap - TileMap
 	add hl, de
-rept 2
 	inc b
-endr
-rept 2
+	inc b
 	inc c
-endr
+	inc c
 	ld a, TEXTBOX_PAL
 .col
 	push bc
@@ -184,7 +182,7 @@ BuenaPrintText:: ; 105a
 
 PrintTextBoxText:: ; 1065
 	bccoord TEXTBOX_INNERX, TEXTBOX_INNERY
-	call PlaceWholeStringInBoxAtOnce
+	call PlaceHLTextAtBC
 	ret
 ; 106c
 
@@ -527,7 +525,7 @@ Paragraph:: ; 12f2
 	call LoadBlinkingCursor
 
 .linkbattle
-	call Function13b6
+	call Text_WaitBGMap
 	call ButtonSound
 	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY
 	lb bc, TEXTBOX_INNERH - 1, TEXTBOX_INNERW
@@ -548,7 +546,7 @@ Char4B:: ; 131f
 	call LoadBlinkingCursor
 
 .communication
-	call Function13b6
+	call Text_WaitBGMap
 
 	push de
 	call ButtonSound
@@ -600,7 +598,7 @@ PromptText:: ; 135a
 	call LoadBlinkingCursor
 
 .ok
-	call Function13b6
+	call Text_WaitBGMap
 	call ButtonSound
 	ld a, [wLinkMode]
 	cp LINK_COLOSSEUM
@@ -640,12 +638,10 @@ TextScroll:: ; 138c
 	dec c
 	jr nz, .row
 
-rept 2
 	inc de
-endr
-rept 2
+	inc de
 	inc hl
-endr
+	inc hl
 	pop af
 	dec a
 	jr nz, .col
@@ -659,7 +655,7 @@ endr
 	ret
 ; 13b6
 
-Function13b6:: ; 13b6
+Text_WaitBGMap:: ; 13b6
 	push bc
 	ld a, [hOAMUpdate]
 	push af
@@ -712,7 +708,7 @@ PokeFluteTerminatorCharacter:: ; 13e0
 ; 13e5
 
 
-PlaceWholeStringInBoxAtOnce:: ; 13e5
+PlaceHLTextAtBC:: ; 13e5
 	ld a, [TextBoxFlags]
 	push af
 	set 1, a
@@ -738,9 +734,8 @@ DoTextUntilTerminator:: ; 13f6
 	ld c, a
 	ld b, 0
 	ld hl, TextCommands
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1014,9 +1009,8 @@ Text_PlaySound:: ; 1500
 	jr z, .done
 	cp b
 	jr z, .play
-rept 2
 	inc hl
-endr
+	inc hl
 	jr .loop
 
 .play
@@ -1035,6 +1029,8 @@ endr
 ; 1522
 
 Function1522:: ; 1522
+; XXX
+; TX_CRY
 	push de
 	ld e, [hl]
 	inc hl
@@ -1113,9 +1109,8 @@ Text_TX_STRINGBUFFER:: ; 156a
 	ld e, a
 	ld d, 0
 	ld hl, StringBufferPointers
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, BANK(StringBufferPointers)
 	call GetFarHalfword
 	ld d, h
@@ -1136,9 +1131,8 @@ Text_TX_DAY:: ; 1582
 	ld c, a
 	ld b, 0
 	ld hl, .Days
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

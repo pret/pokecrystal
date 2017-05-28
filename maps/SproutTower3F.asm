@@ -140,19 +140,19 @@ SproutTower3FEscapeRope:
 	itemball ESCAPE_ROPE
 
 MovementData_0x184a1d:
-	step_up
-	step_up
-	step_up
-	step_up
+	step UP
+	step UP
+	step UP
+	step UP
 	step_end
 
 MovementData_0x184a22:
-	step_up
+	step UP
 	step_end
 
 MovementData_0x184a24:
-	step_right
-	step_down
+	step RIGHT
+	step DOWN
 	step_end
 
 UnknownText_0x184a27:

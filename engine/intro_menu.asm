@@ -140,7 +140,7 @@ _ResetWRAM: ; 5bae
 	ld [wSecretID + 1], a
 
 	ld hl, PartyCount
-	call InitList
+	call .InitList
 
 	xor a
 	ld [wCurBox], a
@@ -151,20 +151,20 @@ _ResetWRAM: ; 5bae
 	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld hl, sBoxCount
-	call InitList
+	call .InitList
 	call CloseSRAM
 
 	ld hl, NumItems
-	call InitList
+	call .InitList
 
 	ld hl, NumKeyItems
-	call InitList
+	call .InitList
 
 	ld hl, NumBalls
-	call InitList
+	call .InitList
 
 	ld hl, PCItems
-	call InitList
+	call .InitList
 
 	xor a
 	ld [wRoamMon1Species], a
@@ -232,7 +232,7 @@ ENDC
 	ret
 ; 5ca1
 
-InitList: ; 5ca1
+.InitList: ; 5ca1
 ; Loads 0 in the count and -1 in the first item or mon slot.
 	xor a
 	ld [hli], a
@@ -688,7 +688,7 @@ OakSpeech: ; 0x5f99
 	ld [TrainerClass], a
 	call Intro_PrepTrainerPic
 
-	ld b, SCGB_FRONTPICPALS
+	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	call Intro_RotatePalettesLeftFrontpic
 
@@ -709,7 +709,7 @@ OakSpeech: ; 0x5f99
 	ld [TempMonDVs], a
 	ld [TempMonDVs + 1], a
 
-	ld b, SCGB_FRONTPICPALS
+	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	call Intro_WipeInFrontpic
 
@@ -726,7 +726,7 @@ OakSpeech: ; 0x5f99
 	ld [TrainerClass], a
 	call Intro_PrepTrainerPic
 
-	ld b, SCGB_FRONTPICPALS
+	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	call Intro_RotatePalettesLeftFrontpic
 
@@ -739,7 +739,7 @@ OakSpeech: ; 0x5f99
 	ld [CurPartySpecies], a
 	callba DrawIntroPlayerPic
 
-	ld b, SCGB_FRONTPICPALS
+	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	call Intro_RotatePalettesLeftFrontpic
 
@@ -809,7 +809,7 @@ NamePlayer: ; 0x6074
 	ld [CurPartySpecies], a
 	callba DrawIntroPlayerPic
 
-	ld b, SCGB_FRONTPICPALS
+	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	call RotateThreePalettesLeft
 
@@ -1041,14 +1041,14 @@ StartTitleScreen: ; 6219
 	call ClearScreen
 	call WaitBGMap2
 	xor a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 	ld [hSCX], a
 	ld [hSCY], a
 	ld a, $7
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	ld b, SCGB_08
+	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call UpdateTimePals
 	ld a, [wcf64]
@@ -1172,7 +1172,7 @@ TitleScreenEntrance: ; 62bc
 	ld hl, wJumptableIndex
 	inc [hl]
 	xor a
-	ld [hFFC6], a
+	ld [hLCDCPointer], a
 
 ; Play the title screen music.
 	ld de, MUSIC_TITLE

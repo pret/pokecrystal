@@ -643,33 +643,33 @@ UndergroundPathSwitchRoomEntrancesHiddenRevive:
 
 
 UndergroundSilverApproachMovement1:
-	step_down
-	step_left
-	step_left
-	step_left
+	step DOWN
+	step LEFT
+	step LEFT
+	step LEFT
 	step_end
 
 UndergroundSilverApproachMovement2:
-	step_down
-	step_down
-	step_left
-	step_left
-	step_left
+	step DOWN
+	step DOWN
+	step LEFT
+	step LEFT
+	step LEFT
 	step_end
 
 UndergroundSilverRetreatMovement1:
-	step_right
-	step_right
-	step_right
-	step_up
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step UP
 	step_end
 
 UndergroundSilverRetreatMovement2:
-	step_right
-	step_right
-	step_right
-	step_up
-	step_up
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step UP
+	step UP
 	step_end
 
 UndergroundSilverBeforeText:

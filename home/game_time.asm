@@ -33,7 +33,7 @@ UpdateGameTimer:: ; 20ad
 
 
 ; Don't update if game logic is paused.
-	ld a, [wc2cd]
+	ld a, [wGameLogicPaused]
 	and a
 	ret nz
 

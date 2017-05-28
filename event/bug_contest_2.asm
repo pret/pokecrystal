@@ -13,9 +13,8 @@ Special_SelectRandomBugContestContestants: ; 139a8
 	ld b, RESET_FLAG
 	call EventFlagAction
 	pop hl
-rept 2
 	inc hl
-endr
+	inc hl
 	pop bc
 	dec c
 	jr nz, .loop1
@@ -34,9 +33,8 @@ endr
 	ld e, b
 	ld d, 0
 	ld hl, BugCatchingContestantEventFlagTable
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -66,9 +64,8 @@ Special_CheckBugContestContestantFlag: ; 139ed
 	ld hl, BugCatchingContestantEventFlagTable
 	ld e, a
 	ld d, 0
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]

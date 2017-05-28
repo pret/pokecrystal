@@ -169,7 +169,7 @@ Sfx_GameFreakPresents_Ch5: ; 179945
 	dutycycle $2
 	notetype $2, $b1
 	soundinput $ff
-	forceoctave $1a
+	pitchoffset 1, A#
 	octave 5
 	note C_, 2
 	note E_, 2
@@ -194,7 +194,7 @@ Sfx_Tingle: ; 179961
 Sfx_Tingle_Ch5: ; 179964
 	togglesfx
 	dutycycle $1
-	forceoctave $b
+	pitchoffset 0, B_
 	notetype $1, $b1
 Sfx_Tingle_branch_17996c: ; 17996c
 	octave 5
@@ -234,7 +234,7 @@ Sfx_4NoteDitty_Ch5: ; 17999b
 	togglesfx
 	dutycycle $2
 	notetype $2, $e8
-	forceoctave $2
+	pitchoffset 0, D_
 	octave 4
 	note C_, 2
 	intensity $48
@@ -279,7 +279,7 @@ Sfx_Twinkle: ; 1799cb
 Sfx_Twinkle_Ch5: ; 1799ce
 	togglesfx
 	dutycycle $0
-	forceoctave $2
+	pitchoffset 0, D_
 	notetype $2, $e1
 	octave 3
 	note G_, 2

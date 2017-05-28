@@ -4,9 +4,9 @@ INCBIN "gfx/unknown/049c0c.2bpp"
 
 MainMenu: ; 49cdc
 	xor a
-	ld [wc2d7], a
+	ld [wDisableTextAcceleration], a
 	call Function49ed0
-	ld b, SCGB_08
+	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call SetPalettes
 	ld hl, GameTimerPause

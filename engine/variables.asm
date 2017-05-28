@@ -7,9 +7,9 @@ _GetVarAction:: ; 80648 (20:4648)
 	ld c, a
 	ld b, 0
 	ld hl, .VarActionTable
-rept 3
 	add hl, bc
-endr
+	add hl, bc
+	add hl, bc
 	ld e, [hl]
 	inc hl
 	ld d, [hl]

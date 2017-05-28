@@ -275,17 +275,17 @@ GoldenrodCityFlowerShopSign:
 	jumptext GoldenrodCityFlowerShopSignText
 
 MovementData_0x198a5f:
-	step_right
-	step_right
-	step_up
+	step RIGHT
+	step RIGHT
+	step UP
 	step_end
 
 MovementData_0x198a63:
-	step_down
-	step_right
-	step_right
-	step_up
-	step_up
+	step DOWN
+	step RIGHT
+	step RIGHT
+	step UP
+	step UP
 	step_end
 
 UnknownText_0x198a69:

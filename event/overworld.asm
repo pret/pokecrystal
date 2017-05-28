@@ -472,7 +472,7 @@ UsedSurfScript: ; c986
 	end
 
 .empty_fn ; c9a2
-	callba MobileFn_1060bb ; empty
+	callba TrainerRankings_Surf
 	ret
 
 UsedSurfText: ; c9a9
@@ -745,13 +745,13 @@ Script_UsedWaterfall: ; 0xcb20
 	ld a, [PlayerStandingTile]
 	call CheckWaterfallTile
 	ret z
-	callba MobileFn_1060c1
+	callba TrainerRankings_Waterfall
 	ld a, $1
 	ld [ScriptVar], a
 	ret
 
 .WaterfallStep: ; cb4f
-	turn_waterfall_up
+	turn_waterfall UP
 	step_end
 
 .Text_UsedWaterfall: ; 0xcb51
@@ -1632,7 +1632,7 @@ Script_GotABite: ; 0xd035
 	fish_got_bite
 	fish_got_bite
 	fish_got_bite
-	step_sleep_1
+	step_sleep 1
 	show_emote
 	step_end
 

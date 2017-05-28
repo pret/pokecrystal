@@ -107,18 +107,18 @@ SpecialKabutoChamber: ; 8ae4e
 
 Special_DisplayUnownWords: ; 8ae68
 	ld a, [ScriptVar]
-	ld hl, MenuDataHeader_0x8aed5
+	ld hl, .MenuDataHeader_Escape
 	and a
-	jr z, .asm_8ae79
+	jr z, .load
 
 	ld d, $0
 	ld e, $5
-.asm_8ae75
+.loop
 	add hl, de
 	dec a
-	jr nz, .asm_8ae75
+	jr nz, .loop
 
-.asm_8ae79
+.load
 	call LoadMenuDataHeader
 	xor a
 	ld [hBGMapMode], a
@@ -127,29 +127,27 @@ Special_DisplayUnownWords: ; 8ae68
 	call ApplyTilemap
 	call MenuBoxCoord2Tile
 	inc hl
-	ld d, $0
-	ld e, $14
-rept 2
+	ld d, 0
+	ld e, SCREEN_WIDTH
 	add hl, de
-endr
+	add hl, de
 	ld a, [ScriptVar]
 	ld c, a
-	ld de, Unknown_8aebc
+	ld de, .UnownText
 	and a
-	jr z, .asm_8aea5
-.asm_8ae9c
+	jr z, .copy
+.loop2
 	ld a, [de]
 	inc de
 	cp $ff
-	jr nz, .asm_8ae9c
+	jr nz, .loop2
 	dec c
-	jr nz, .asm_8ae9c
-
-.asm_8aea5
-	call Function8af09
+	jr nz, .loop2
+.copy
+	call .CopyWord
 	ld bc, AttrMap - TileMap
 	add hl, bc
-	call Function8aee9
+	call .FillAttr
 	call WaitBGMap2
 	call JoyWaitAorB
 	call PlayClickSFX
@@ -157,59 +155,91 @@ endr
 	ret
 ; 8aebc
 
-Unknown_8aebc: ; 8aebc
-	db $08, $44, $04, $00, $2e, $08, $ff
-	db $26, $20, $0c, $0e, $46, $ff
-	db $4c, $00, $46, $08, $42, $ff
-	db $0e, $2c, $64, $2c, $0e, $ff
+.UnownText: ; 8aebc
+
+unownwall: MACRO
+rept _NARG
+if \1 == "-"
+x = $64
+else
+if \1 >= "Y"
+x = 2 * (\1 - "Y") + $60
+else
+if \1 >= "Q"
+x = 2 * (\1 - "Q") + $40
+else
+if \1 >= "I"
+x = 2 * (\1 - "I") + $20
+else
+x = 2 * (\1 - "A")
+endc
+endc
+endc
+endc
+	db x
+shift
+endr
+	db $ff
+endm
+
+.UnownText_Escape:
+	; db      $08, $44, $04, $00, $2e, $08, $ff
+	unownwall "E", "S", "C", "A", "P", "E"
+.UnownText_Light:
+	; db      $26, $20, $0c, $0e, $46, $ff
+	unownwall "L", "I", "G", "H", "T"
+.UnownText_Water:
+	; db      $4c, $00, $46, $08, $42, $ff
+	unownwall "W", "A", "T", "E", "R"
+.UnownText_Ho_Oh:
+	; db      $0e, $2c, $64, $2c, $0e, $ff
+	unownwall "H", "O", "-", "O", "H"
 ; 8aed5
 
-MenuDataHeader_0x8aed5: ; 0x8aed5
+.MenuDataHeader_Escape: ; 0x8aed5
 	db $40 ; flags
 	db 04, 03 ; start coords
 	db 09, 16 ; end coords
 
-MenuDataHeader_0x8aeda: ; 0x8aeda
+.MenuDataHeader_Light: ; 0x8aeda
 	db $40 ; flags
 	db 04, 04 ; start coords
 	db 09, 15 ; end coords
 
-MenuDataHeader_0x8aedf: ; 0x8aedf
+.MenuDataHeader_Water: ; 0x8aedf
 	db $40 ; flags
 	db 04, 04 ; start coords
 	db 09, 15 ; end coords
 
-MenuDataHeader_0x8aee4: ; 0x8aee4
+.MenuDataHeader_Ho_Oh: ; 0x8aee4
 	db $40 ; flags
 	db 04, 04 ; start coords
 	db 09, 15 ; end coords
 ; 8aee9
 
-Function8aee9: ; 8aee9
-.asm_8aee9
+.FillAttr: ; 8aee9
 	ld a, [de]
 	cp $ff
 	ret z
 	cp $60
-	ld a, $d
-	jr c, .asm_8aef5
-	ld a, $5
+	ld a, (1 << 3) | PAL_BG_BROWN
+	jr c, .got_pal
+	ld a, PAL_BG_BROWN
 
-.asm_8aef5
-	call Function8aefd
-rept 2
+.got_pal
+	call .PlaceSquare
 	inc hl
-endr
+	inc hl
 	inc de
-	jr .asm_8aee9
+	jr .FillAttr
 ; 8aefd
 
-Function8aefd: ; 8aefd
+.PlaceSquare: ; 8aefd
 	push hl
 	ld [hli], a
 	ld [hld], a
-	ld b, $0
-	ld c, $14
+	ld b, 0
+	ld c, SCREEN_WIDTH
 	add hl, bc
 	ld [hli], a
 	ld [hl], a
@@ -217,42 +247,41 @@ Function8aefd: ; 8aefd
 	ret
 ; 8af09
 
-Function8af09: ; 8af09
+.CopyWord: ; 8af09
 	push hl
 	push de
-.asm_8af0b
+.word_loop
 	ld a, [de]
 	cp $ff
-	jr z, .asm_8af19
+	jr z, .word_done
 	ld c, a
-	call Function8af1c
-rept 2
+	call .ConvertChar
 	inc hl
-endr
+	inc hl
 	inc de
-	jr .asm_8af0b
+	jr .word_loop
 
-.asm_8af19
+.word_done
 	pop de
 	pop hl
 	ret
 ; 8af1c
 
-Function8af1c: ; 8af1c
+.ConvertChar: ; 8af1c
 	push hl
 	ld a, c
 	cp $60
-	jr z, .asm_8af3b
+	jr z, .Tile60
 	cp $62
-	jr z, .asm_8af4b
+	jr z, .Tile62
 	cp $64
-	jr z, .asm_8af5b
+	jr z, .Tile64
 	ld [hli], a
 	inc a
 	ld [hld], a
 	dec a
-	ld b, $0
-	ld c, $14
+	ld b, 0
+	ld c, SCREEN_WIDTH
 	add hl, bc
 	ld c, $10
 	add c
@@ -262,11 +291,11 @@ Function8af1c: ; 8af1c
 	pop hl
 	ret
 
-.asm_8af3b
+.Tile60:
 	ld [hl], $5b
 	inc hl
 	ld [hl], $5c
-	ld bc, $0013
+	ld bc, SCREEN_WIDTH - 1
 	add hl, bc
 	ld [hl], $4d
 	inc hl
@@ -274,11 +303,11 @@ Function8af1c: ; 8af1c
 	pop hl
 	ret
 
-.asm_8af4b
+.Tile62:
 	ld [hl], $4e
 	inc hl
 	ld [hl], $4f
-	ld bc, $0013
+	ld bc, SCREEN_WIDTH - 1
 	add hl, bc
 	ld [hl], $5e
 	inc hl
@@ -286,11 +315,11 @@ Function8af1c: ; 8af1c
 	pop hl
 	ret
 
-.asm_8af5b
+.Tile64:
 	ld [hl], $2
 	inc hl
 	ld [hl], $3
-	ld bc, $0013
+	ld bc, SCREEN_WIDTH - 1
 	add hl, bc
 	ld [hl], $3
 	inc hl

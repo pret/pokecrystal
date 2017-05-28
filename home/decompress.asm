@@ -99,7 +99,7 @@ LZ_LONG_HI   EQU %00000011
 	add a ; << 3
 	add a
 
-        ; This is our new control code.
+	; This is our new control code.
 	and LZ_CMD
 	push af
 

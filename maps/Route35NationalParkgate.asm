@@ -216,18 +216,18 @@ Route35NationalParkgate_GetDayOfWeek:
 	end
 
 MovementData_0x6a2e2:
-	step_down
-	turn_head_left
+	step DOWN
+	turn_head LEFT
 	step_end
 
 MovementData_0x6a2e5:
-	step_right
-	step_up
-	step_up
+	step RIGHT
+	step UP
+	step UP
 	step_end
 
 MovementData_0x6a2e9:
-	step_up
+	step UP
 	step_end
 
 UnknownText_0x6a2eb:

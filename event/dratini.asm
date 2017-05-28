@@ -37,9 +37,8 @@ SpecialDratini: ; 0x8b170
 
 	; get address of mon's first move
 	pop de
-rept 2
 	inc de
-endr
+	inc de
 
 .GiveMoves:
 	ld a, [hl]

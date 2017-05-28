@@ -120,35 +120,35 @@ UnknownScript_0x61051:
 	end
 
 MovementData_0x6105a:
-	step_up
-	step_right
-	step_right
-	step_right
-	turn_head_down
+	step UP
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	turn_head DOWN
 	step_end
 
 MovementData_0x61060:
-	step_left
-	step_left
-	step_left
-	step_down
+	step LEFT
+	step LEFT
+	step LEFT
+	step DOWN
 	step_end
 
 MovementData_0x61065:
-	step_up
-	step_right
-	step_right
-	step_right
-	step_right
-	turn_head_down
+	step UP
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	turn_head DOWN
 	step_end
 
 MovementData_0x6106c:
-	step_left
-	step_left
-	step_left
-	step_left
-	step_down
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	step DOWN
 	step_end
 
 ; unused

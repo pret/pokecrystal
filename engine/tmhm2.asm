@@ -146,7 +146,7 @@ TeachTMHM: ; 2c867
 	and a
 	jr z, .nope
 
-	callba MobileFn_106049
+	callba TrainerRankings_TMsHMsTaught
 	ld a, [CurItem]
 	call IsHM
 	ret c
@@ -423,9 +423,9 @@ TMHM_DisplayPocketItems: ; 2c9e2 (b:49e2)
 
 .NotTMHM:
 	call TMHMPocket_GetCurrentLineCoord
-rept 3
 	inc hl
-endr
+	inc hl
+	inc hl
 	push de
 	ld de, TMHM_String_Cancel
 	call PlaceString
@@ -581,9 +581,8 @@ PrintMoveDesc: ; 2cb3e
 	dec a
 	ld c, a
 	ld b, 0
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]

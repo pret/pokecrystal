@@ -1,36 +1,36 @@
 Facings: ; 4049
-	dw Facing00
-	dw Facing01
-	dw Facing02
-	dw Facing03
-	dw Facing04
-	dw Facing05
-	dw Facing06
-	dw Facing07
-	dw Facing08
-	dw Facing09
-	dw Facing10
-	dw Facing11
-	dw Facing12
-	dw Facing13
-	dw Facing14
-	dw Facing15
-	dw Facing16
-	dw Facing17
-	dw Facing18
-	dw Facing19
-	dw Facing20
-	dw Facing21
-	dw Facing22
-	dw Facing23
-	dw Facing24
-	dw Facing25
-	dw Facing26
-	dw Facing27
-	dw Facing28
-	dw Facing29
-	dw Facing30
-	dw Facing31
+	dw FacingStepDown0
+	dw FacingStepDown1
+	dw FacingStepDown2
+	dw FacingStepDown3
+	dw FacingStepUp0
+	dw FacingStepUp1
+	dw FacingStepUp2
+	dw FacingStepUp3
+	dw FacingStepLeft0
+	dw FacingStepLeft1
+	dw FacingStepLeft2
+	dw FacingStepLeft3
+	dw FacingStepRight0
+	dw FacingStepRight1
+	dw FacingStepRight2
+	dw FacingStepRight3
+	dw FacingFishDown
+	dw FacingFishUp
+	dw FacingFishLeft
+	dw FacingFishRight
+	dw FacingEmote
+	dw FacingShadow
+	dw FacingBigDollAsymmetric
+	dw FacingBigDollSymmetric
+	dw FacingWeirdTree0
+	dw FacingWeirdTree1
+	dw FacingWeirdTree2
+	dw FacingWeirdTree3
+	dw FacingBoulderDust1
+	dw FacingBoulderDust2
+	dw FacingGrass1
+	dw FacingGrass2
 FacingsEnd: dw 0
 
 NUM_FACINGS EQU (FacingsEnd - Facings) / 2
@@ -47,10 +47,10 @@ Y_FLIP    EQU 1 << OAM_Y_FLIP
 BEHIND_BG EQU 1 << OAM_PRIORITY
 
 
-Facing00:
-Facing02:
-Facing24:
-Facing26: ; standing down
+FacingStepDown0:
+FacingStepDown2:
+FacingWeirdTree0:
+FacingWeirdTree2: ; standing down
 	db 4 ; #
 	db  0,  0, 0, $00
 	db  0,  8, 0, $01
@@ -58,7 +58,7 @@ Facing26: ; standing down
 	db  8,  8, 2, $03
 ; 409c
 
-Facing01: ; walking down 1
+FacingStepDown1: ; walking down 1
 	db 4 ; #
 	db  0,  0, 0, $80
 	db  0,  8, 0, $81
@@ -66,7 +66,7 @@ Facing01: ; walking down 1
 	db  8,  8, 2, $83
 ; 40ad
 
-Facing03: ; walking down 2
+FacingStepDown3: ; walking down 2
 	db 4 ; #
 	db  0,  8, X_FLIP, $80
 	db  0,  0, X_FLIP, $81
@@ -74,8 +74,8 @@ Facing03: ; walking down 2
 	db  8,  0, 2 | X_FLIP, $83
 ; 40be
 
-Facing04:
-Facing06: ; standing up
+FacingStepUp0:
+FacingStepUp2: ; standing up
 	db 4 ; #
 	db  0,  0, 0, $04
 	db  0,  8, 0, $05
@@ -83,7 +83,7 @@ Facing06: ; standing up
 	db  8,  8, 2, $07
 ; 40cf
 
-Facing05: ; walking up 1
+FacingStepUp1: ; walking up 1
 	db 4 ; #
 	db  0,  0, 0, $84
 	db  0,  8, 0, $85
@@ -91,7 +91,7 @@ Facing05: ; walking up 1
 	db  8,  8, 2, $87
 ; 40e0
 
-Facing07: ; walking up 2
+FacingStepUp3: ; walking up 2
 	db 4 ; #
 	db  0,  8, X_FLIP, $84
 	db  0,  0, X_FLIP, $85
@@ -99,8 +99,8 @@ Facing07: ; walking up 2
 	db  8,  0, 2 | X_FLIP, $87
 ; 40f1
 
-Facing08:
-Facing10: ; standing left
+FacingStepLeft0:
+FacingStepLeft2: ; standing left
 	db 4 ; #
 	db  0,  0, 0, $08
 	db  0,  8, 0, $09
@@ -108,8 +108,8 @@ Facing10: ; standing left
 	db  8,  8, 2, $0b
 ; 4102
 
-Facing12:
-Facing14: ; standing right
+FacingStepRight0:
+FacingStepRight2: ; standing right
 	db 4 ; #
 	db  0,  8, X_FLIP, $08
 	db  0,  0, X_FLIP, $09
@@ -117,8 +117,8 @@ Facing14: ; standing right
 	db  8,  0, 2 | X_FLIP, $0b
 ; 4113
 
-Facing09:
-Facing11: ; walking left
+FacingStepLeft1:
+FacingStepLeft3: ; walking left
 	db 4 ; #
 	db  0,  0, 0, $88
 	db  0,  8, 0, $89
@@ -126,8 +126,8 @@ Facing11: ; walking left
 	db  8,  8, 2, $8b
 ; 4124
 
-Facing13:
-Facing15: ; walking right
+FacingStepRight1:
+FacingStepRight3: ; walking right
 	db 4 ; #
 	db  0,  8, X_FLIP, $88
 	db  0,  0, X_FLIP, $89
@@ -135,7 +135,7 @@ Facing15: ; walking right
 	db  8,  0, 2 | X_FLIP, $8b
 ; 4135
 
-Facing16: ; fishing down
+FacingFishDown: ; fishing down
 	db 5 ; #
 	db  0,  0, 0, $00
 	db  0,  8, 0, $01
@@ -144,7 +144,7 @@ Facing16: ; fishing down
 	db 16,  0, 4, $fc
 ; 414a
 
-Facing17: ; fishing up
+FacingFishUp: ; fishing up
 	db 5 ; #
 	db  0,  0, 0, $04
 	db  0,  8, 0, $05
@@ -153,7 +153,7 @@ Facing17: ; fishing up
 	db -8,  0, 4, $fc
 ; 415f
 
-Facing18: ; fishing left
+FacingFishLeft: ; fishing left
 	db 5 ; #
 	db  0,  0, 0, $08
 	db  0,  8, 0, $09
@@ -162,7 +162,7 @@ Facing18: ; fishing left
 	db  5, -8, 4 | X_FLIP, $fd
 ; 4174
 
-Facing19: ; fishing right
+FacingFishRight: ; fishing right
 	db 5 ; #
 	db  0,  8, X_FLIP, $08
 	db  0,  0, X_FLIP, $09
@@ -171,7 +171,7 @@ Facing19: ; fishing right
 	db  5, 16, 4, $fd
 ; 4189
 
-Facing20: ; emote
+FacingEmote: ; emote
 	db 4 ; #
 	db  0,  0, 4, $f8
 	db  0,  8, 4, $f9
@@ -179,13 +179,13 @@ Facing20: ; emote
 	db  8,  8, 4, $fb
 ; 419a
 
-Facing21: ; shadow
+FacingShadow: ; shadow
 	db 2 ; #
 	db  0,  0, 4, $fc
 	db  0,  8, 4 | X_FLIP, $fc
 ; 41a3
 
-Facing23: ; big snorlax or lapras doll
+FacingBigDollSymmetric: ; big snorlax or lapras doll
 	db 16 ; #
 	db  0,  0, 0, $00
 	db  0,  8, 0, $01
@@ -205,7 +205,7 @@ Facing23: ; big snorlax or lapras doll
 	db 24, 16, X_FLIP, $07
 ; 41e4
 
-Facing25: ; 41e4
+FacingWeirdTree1: ; 41e4
 	db 4 ; #
 	db  0,  0, 0, $04
 	db  0,  8, 0, $05
@@ -213,7 +213,7 @@ Facing25: ; 41e4
 	db  8,  8, 0, $07
 ; 41f5
 
-Facing27: ; 41f5
+FacingWeirdTree3: ; 41f5
 	db 4 ; #
 	db  0,  8, X_FLIP, $04
 	db  0,  0, X_FLIP, $05
@@ -221,7 +221,7 @@ Facing27: ; 41f5
 	db  8,  0, X_FLIP, $07
 ; 4206
 
-Facing22: ; big doll other than snorlax or lapras
+FacingBigDollAsymmetric: ; big doll other than snorlax or lapras
 	db 14 ; #
 	db  0,  0, 0, $00
 	db  0,  8, 0, $01
@@ -239,7 +239,7 @@ Facing22: ; big doll other than snorlax or lapras
 	db 24, 16, 0, $0b
 ; 423f
 
-Facing28: ; boulder dust 1
+FacingBoulderDust1: ; boulder dust 1
 	db 4 ; #
 	db  0,  0, 4, $fe
 	db  0,  8, 4, $fe
@@ -247,7 +247,7 @@ Facing28: ; boulder dust 1
 	db  8,  8, 4, $fe
 ; 4250
 
-Facing29: ; boulder dust 2
+FacingBoulderDust2: ; boulder dust 2
 	db 4 ; #
 	db  0,  0, 4, $ff
 	db  0,  8, 4, $ff
@@ -255,13 +255,13 @@ Facing29: ; boulder dust 2
 	db  8,  8, 4, $ff
 ; 4261
 
-Facing30: ; 4261
+FacingGrass1: ; 4261
 	db 2 ; #
 	db  8,  0, 4, $fe
 	db  8,  8, 4 | X_FLIP, $fe
 ; 426a
 
-Facing31: ; 426a
+FacingGrass2: ; 426a
 	db 2 ; #
 	db  9, -1, 4, $fe
 	db  9,  9, 4 | X_FLIP, $fe

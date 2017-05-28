@@ -8,14 +8,6 @@ Sine:: ; 1b11
 
 	ld e, a
 
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_Sine)
-	rst Bankswitch
-
-	call _Sine
-
-	pop af
-	rst Bankswitch
+	homecall _Sine
 	ret
 ; 1b1e

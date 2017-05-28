@@ -75,7 +75,7 @@ Function110029: ; 110029 (44:4029)
 Function110030:: ; 110030 (44:4030)
 ; Use the byte at $c988 as a parameter
 ; for a dw.
-; If [$c988] in {12, 14, 16},
+; If [$c988] not in {12, 14, 16},
 ; clear [$c835].
 	push de
 	ld a, [$c988]
@@ -89,24 +89,29 @@ Function110030:: ; 110030 (44:4030)
 	ld [$c835], a
 	ld a, [$c988]
 .noreset
-	ld d, $0
+	; Get the pointer
+	ld d, 0
 	ld e, a
 	ld hl, .dw
 	add hl, de
+	; Store the low byte in [$c988]
 	ld a, [hli]
 	ld [$c988], a
 	ld a, [hl]
+	; restore de
 	pop de
-	ld hl, Function3e60
+	ld hl, Function3e60 ; return here
 	push hl
+	; If the destination function is not Function110236,
+	; call Function1100b4.
 	ld h, a
 	ld a, [$c988]
 	ld l, a
 	push hl
-	ld a, $36
+	ld a, Function110236 % $100
 	cp l
 	jr nz, .okay
-	ld a, $42
+	ld a, Function110236 / $100
 	cp h
 .okay
 	call nz, Function1100b4
@@ -681,9 +686,8 @@ Function1103ac: ; 1103ac
 	ld hl, Unknown_112037
 	ld de, $cb74
 	call Function110000
-rept 2
 	inc de
-endr
+	inc de
 	pop hl
 	ld bc, 0
 	call Function110007
@@ -741,9 +745,9 @@ Function110438: ; 110438
 	ld a, $c8
 	ld [hli], a
 	xor a
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 	ld a, $ff
 	ld [$c86e], a
@@ -964,9 +968,9 @@ Function1105dd: ; 1105dd
 	ld a, $c8
 	ld [hli], a
 	xor a
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 	ld a, $ff
 	ld [$c86e], a
@@ -1127,9 +1131,8 @@ Function1106ef: ; 1106ef
 	ld hl, Unknown_112072
 	ld b, $5
 	call Function110000
-rept 2
 	inc de
-endr
+	inc de
 	ld bc, $0001
 	ld hl, Unknown_11209e
 	call Function110007
@@ -1395,9 +1398,8 @@ Function110905: ; 110905
 	ld hl, Unknown_112072
 	ld b, $5
 	call Function110000
-rept 2
 	inc de
-endr
+	inc de
 	ld hl, Unknown_1120c8
 	call Function110007
 	pop hl
@@ -1561,12 +1563,10 @@ Function110a5b: ; 110a5b
 	ld [hli], a
 	ld a, d
 	ld [hli], a
-rept 2
 	inc de
-endr
-rept 2
+	inc de
 	dec bc
-endr
+	dec bc
 	ld hl, $c98f
 	ld a, e
 	ld [hli], a
@@ -1586,9 +1586,8 @@ endr
 	xor a
 	ld [hli], a
 	xor a
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	xor a
 	ld [$c86b], a
 	ld de, $cb47
@@ -1628,9 +1627,8 @@ Function110af4: ; 110af4
 	ld [hli], a
 	ld a, d
 	ld [hli], a
-rept 2
 	inc de
-endr
+	inc de
 	ld a, e
 	ld [hli], a
 	ld a, d
@@ -1641,9 +1639,8 @@ endr
 	ld [$c86e], a
 	ld [$c86f], a
 	jr z, .asm_110b5c
-rept 2
 	dec bc
-endr
+	dec bc
 	ld a, [$c993]
 	or a
 	jp nz, .asm_110bd5
@@ -1909,12 +1906,10 @@ Function110c9e: ; 110c9e
 	ld [hli], a
 	ld a, d
 	ld [hli], a
-rept 2
 	inc de
-endr
-rept 2
+	inc de
 	dec bc
-endr
+	dec bc
 	ld hl, $c98f
 	ld a, e
 	ld [hli], a
@@ -1934,9 +1929,8 @@ endr
 	xor a
 	ld [hli], a
 	xor a
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	xor a
 	ld [$c86b], a
 	ld de, $cb47
@@ -2151,16 +2145,14 @@ Function110ddd: ; 110ddd
 	ld [$c833], a
 	ld a, [hli]
 	ld [$c834], a
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, l
 	ld [$c97f], a
 	ld a, h
 	ld [$c980], a
-rept 2
 	dec hl
-endr
+	dec hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2282,9 +2274,9 @@ endr
 .asm_110ee3
 	ld hl, $c98b
 	xor a
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 	pop bc
 	pop de
@@ -2302,9 +2294,8 @@ endr
 	ld [hli], a
 	ld a, d
 	ld [hli], a
-rept 2
 	inc hl
-endr
+	inc hl
 	xor a
 	ld [$c994], a
 
@@ -2350,9 +2341,8 @@ Function110f07: ; 110f07
 	ld hl, $c866
 	ld b, $4
 	call Function110000
-rept 2
 	inc de
-endr
+	inc de
 	ld b, $6
 	call Function111f63
 	ld a, [$cabc]
@@ -2424,9 +2414,8 @@ Function111044: ; 111044
 	ld [hli], a
 	ld a, d
 	ld [hli], a
-rept 2
 	inc de
-endr
+	inc de
 	ld a, e
 	ld [hli], a
 	ld a, d
@@ -2436,9 +2425,8 @@ endr
 	or c
 	ld [$c86e], a
 	ld [$c86f], a
-rept 2
 	dec bc
-endr
+	dec bc
 	jp z, Function1111ca
 	ld a, [$c991]
 	or a
@@ -2741,16 +2729,14 @@ endr
 	ld [$c833], a
 	ld a, [hli]
 	ld [$c834], a
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, l
 	ld [$c97f], a
 	ld a, h
 	ld [$c980], a
-rept 2
 	dec hl
-endr
+	dec hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2828,9 +2814,8 @@ endr
 	ld a, [hld]
 	cp $2f
 	jr nz, .asm_1112a4
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hl]
 	cp $30
 	jr c, .asm_1112cc
@@ -2884,9 +2869,8 @@ endr
 	ld [hli], a
 	ld a, d
 	ld [hli], a
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, e
 	ld [hli], a
 	ld a, d
@@ -2904,9 +2888,8 @@ endr
 	ld [$c9ac], a
 	ld a, [hli]
 	ld [$c9ad], a
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hli]
 	ld [$c876], a
 	ld a, [hl]
@@ -2922,9 +2905,8 @@ Function111335: ; 111335
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -3099,9 +3081,9 @@ Function1113fe: ; 1113fe
 	push hl
 	ld hl, $c829
 	xor a
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld [hl], a
 	ld de, $cb47
 	ld hl, Unknown_112072
@@ -3114,9 +3096,8 @@ endr
 	cp $81
 	jr nc, .asm_111485
 	ld c, a
-rept 2
 	inc a
-endr
+	inc a
 	ld [de], a
 	inc de
 	ld a, $ff
@@ -3128,9 +3109,8 @@ endr
 	ld b, c
 	call Function110000
 	ld b, c
-rept 2
 	inc b
-endr
+	inc b
 	call Function111f63
 	ld hl, $c822
 	set 7, [hl]
@@ -3457,9 +3437,8 @@ Function11164f: ; 11164f (44:564f)
 	ld a, b
 	srl a
 	srl a
-rept 2
 	add b
-endr
+	add b
 	ld [hl], a
 	ret
 
@@ -3599,9 +3578,9 @@ _MobileReceive:: ; 1116c5 (44:56c5)
 	ld [$c800], a
 	xor a
 	ld hl, $c80a
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld hl, $c81f
 	ld a, [hli]
 	ld b, a
@@ -4126,9 +4105,8 @@ Function111abd: ; 111abd (44:5abd)
 	ld [$c800], a
 	xor a
 	ld hl, $c80a
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld [hl], a
 	ld hl, $c815
 	ld a, [$c820]
@@ -4331,9 +4309,8 @@ Function111c17: ; 111c17 (44:5c17)
 .asm_111c52
 	ld b, a
 	ld a, [$ca3f]
-rept 2
 	dec a
-endr
+	dec a
 	cp b
 	jr c, .asm_111c6e
 .asm_111c5b
@@ -5604,9 +5581,8 @@ Function112451: ; 112451
 	xor a
 	ld [hli], a
 	xor a
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	pop de
 	ld a, $1
 	ld [$c994], a
@@ -5731,24 +5707,21 @@ Function1125c7: ; 1125c7
 	ld [hli], a
 	ld a, d
 	ld [hli], a
-rept 2
 	inc de
-endr
+	inc de
 	ld a, $80
 	ld [hli], a
 	ld a, $c8
 	ld [hli], a
-rept 2
 	dec bc
-endr
+	dec bc
 	ld a, $fa
 	ld [hli], a
 	ld a, $0
 	ld [hli], a
 	xor a
-rept 2
 	ld [hli], a
-endr
+	ld [hli], a
 	ld de, $cb47
 	ld hl, Unknown_112072
 	ld b, $6
@@ -6236,9 +6209,8 @@ Function1128db: ; 1128db
 	ld de, $cb4c
 	ld a, $1
 	ld [de], a
-rept 2
 	inc de
-endr
+	inc de
 	ld b, $1
 	call Function111f63
 	jr .asm_112941
@@ -6471,9 +6443,8 @@ Function112a56: ; 112a56
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, e
 	ld [hli], a
 	ld a, d
@@ -6970,9 +6941,8 @@ Function112d33: ; 112d33
 	ld hl, $c821
 	res 2, [hl]
 	ld hl, $c86b
-rept 2
 	dec [hl]
-endr
+	dec [hl]
 
 .asm_112d82
 	ld hl, $c86b
@@ -7131,9 +7101,8 @@ endr
 	cp $1
 	ld a, $32
 	jr z, .asm_112e95
-rept 2
 	inc de
-endr
+	inc de
 	inc a
 
 .asm_112e95
@@ -7512,9 +7481,8 @@ Function113095: ; 113095
 .asm_1130d6
 	ld a, [$c82b]
 	ld c, a
-rept 2
 	dec b
-endr
+	dec b
 	ld a, b
 	ld [$c82d], a
 	jr z, .asm_11310d
@@ -7522,9 +7490,8 @@ endr
 	ld d, a
 	ld a, [$c872]
 	ld e, a
-rept 2
 	dec de
-endr
+	dec de
 	xor a
 	or d
 	jr nz, .asm_1130f5
@@ -7543,9 +7510,8 @@ endr
 	ld e, a
 	ld a, [$c875]
 	ld d, a
-rept 2
 	inc de
-endr
+	inc de
 	call Function110000
 
 .asm_11310d
@@ -7658,9 +7624,8 @@ Function113197: ; 113197
 	ld a, b
 	ld [de], a
 	inc de
-rept 2
 	dec b
-endr
+	dec b
 	call Function110000
 	xor a
 	ld [de], a
@@ -7682,9 +7647,8 @@ Function1131a9: ; 1131a9
 	inc b
 	cp $a
 	jr nz, .asm_1131b7
-rept 2
 	inc hl
-endr
+	inc hl
 	dec b
 	ld c, b
 	call Function110000
@@ -7728,9 +7692,8 @@ endr
 	ld hl, $c821
 	res 2, [hl]
 	ld hl, $c86b
-rept 2
 	dec [hl]
-endr
+	dec [hl]
 	ld a, $4
 	ret
 ; 113206
@@ -7753,9 +7716,8 @@ Function113206: ; 113206
 	ld e, a
 	ld a, [$c875]
 	ld d, a
-rept 2
 	inc de
-endr
+	inc de
 	call Function110000
 	ld a, [$c991]
 	ld [$c993], a
@@ -8026,9 +7988,8 @@ Function1133fe: ; 1133fe
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -8039,9 +8000,8 @@ endr
 	ld a, [hld]
 	cp $2f
 	jr nz, .asm_11344c
-rept 2
 	inc hl
-endr
+	inc hl
 	ld e, l
 	ld d, h
 .asm_113455
@@ -8059,9 +8019,8 @@ endr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -8158,9 +8117,8 @@ Function1134cb: ; 1134cb
 	ret
 
 .asm_1134f0
-rept 2
 	inc [hl]
-endr
+	inc [hl]
 	jr .asm_1134fc
 
 .asm_1134f4
@@ -9185,9 +9143,9 @@ Function113c8e: ; 113c8e
 	ld bc, $0003
 
 .asm_113ccf
-rept 3
 	dec bc
-endr
+	dec bc
+	dec bc
 	ld a, c
 	ld [$cc10], a
 	ld a, b
@@ -9223,9 +9181,8 @@ endr
 	ld a, $3f
 	and c
 	ld [hld], a
-rept 2
 	dec hl
-endr
+	dec hl
 	pop de
 	ld b, h
 	ld c, l
@@ -9572,9 +9529,8 @@ Function113ec7: ; 113ec7
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-rept 2
 	inc hl
-endr
+	inc hl
 	ld a, [hld]
 	dec hl
 	xor $80
@@ -9615,9 +9571,8 @@ Function113ef2: ; 113ef2
 	ld l, a
 	ld e, l
 	ld d, h
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld e, l
 	ld d, h
 	ld hl, $c815
@@ -9677,9 +9632,8 @@ Function113f2d: ; 113f2d
 	ld l, a
 	ld e, l
 	ld d, h
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld e, l
 	ld d, h
 	ld hl, $c815

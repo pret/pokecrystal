@@ -14,23 +14,23 @@
 ; 445f
 
 Pointers445f: ; 445f
-	dw SetFacingStanding, SetFacingStanding ; 00
-	dw Function44b5,      SetFacingCurrent ; 01 standing?
-	dw Function44c1,      SetFacingCurrent ; 02 walking?
-	dw Function4508,      SetFacingCurrent ; 03 bumping?
-	dw Function4529,      SetFacingCurrent ; 04
-	dw Function4539,      SetFacingStanding ; 05
-	dw Function456e,      Function456e ; 06
-	dw Function457b,      SetFacingStanding ; 07
-	dw Function4582,      Function4582 ; 08
-	dw Function4589,      Function4589 ; 09
-	dw Function4590,      Function45a4 ; 0a
-	dw Function45ab,      SetFacingCurrent ; 0c
-	dw Function45be,      Function45be ; 0b
-	dw Function45c5,      Function45c5 ; 0d
-	dw Function45da,      SetFacingStanding ; 0e
-	dw Function45ed,      SetFacingStanding ; 0f
-	dw Function44e4,      SetFacingCurrent ; 10
+	dw SetFacingStanding,              SetFacingStanding ; 00
+	dw SetFacingStandAction,           SetFacingCurrent ; 01 standing?
+	dw SetFacingStepAction,            SetFacingCurrent ; 02 walking?
+	dw SetFacingBumpAction,            SetFacingCurrent ; 03 bumping?
+	dw SetFacingCounterclockwiseSpin,  SetFacingCurrent ; 04
+	dw SetFacingCounterclockwiseSpin2, SetFacingStanding ; 05
+	dw SetFacingFish,                  SetFacingFish ; 06
+	dw SetFacingShadow,                SetFacingStanding ; 07
+	dw SetFacingEmote,                 SetFacingEmote ; 08
+	dw SetFacingBigDollSym,            SetFacingBigDollSym ; 09
+	dw SetFacingBounce,                SetFacingFreezeBounce ; 0a
+	dw SetFacingWeirdTree,             SetFacingCurrent ; 0b
+	dw SetFacingBigDollAsym,           SetFacingBigDollAsym ; 0c
+	dw SetFacingBigDoll,               SetFacingBigDoll ; 0d
+	dw SetFacingBoulderDust,           SetFacingStanding ; 0e
+	dw SetFacingGrassShake,            SetFacingStanding ; 0f
+	dw SetFacingSkyfall,               SetFacingCurrent ; 10
 ; 44a3
 
 SetFacingStanding: ; 44a3
@@ -42,23 +42,23 @@ SetFacingStanding: ; 44a3
 
 SetFacingCurrent: ; 44aa
 	call GetSpriteDirection
-	or 0 ; useless
+	or FACING_STEP_DOWN_0 ; useless
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], a
 	ret
 ; 44b5
 
-Function44b5: ; 44b5
+SetFacingStandAction: ; 44b5
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld a, [hl]
 	and 1
-	jr nz, Function44c1
+	jr nz, SetFacingStepAction
 	jp SetFacingCurrent
 ; 44c1
 
-Function44c1: ; 44c1
+SetFacingStepAction: ; 44c1
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit SLIDING, [hl]
@@ -77,7 +77,7 @@ Function44c1: ; 44c1
 	ld d, a
 
 	call GetSpriteDirection
-	or 0 ; useless
+	or FACING_STEP_DOWN_0 ; useless
 	or d
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
@@ -85,7 +85,7 @@ Function44c1: ; 44c1
 	ret
 ; 44e4
 
-Function44e4: ; 44e4
+SetFacingSkyfall: ; 44e4
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit SLIDING, [hl]
@@ -104,7 +104,7 @@ Function44e4: ; 44e4
 	ld d, a
 
 	call GetSpriteDirection
-	or 0 ; useless
+	or FACING_STEP_DOWN_0 ; useless
 	or d
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
@@ -112,7 +112,7 @@ Function44e4: ; 44e4
 	ret
 ; 4508
 
-Function4508: ; 4508
+SetFacingBumpAction: ; 4508
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit SLIDING, [hl]
@@ -130,7 +130,7 @@ Function4508: ; 4508
 	ld d, a
 
 	call GetSpriteDirection
-	or 0 ; useless
+	or FACING_STEP_DOWN_0 ; useless
 	or d
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
@@ -138,24 +138,28 @@ Function4508: ; 4508
 	ret
 ; 4529
 
-Function4529: ; 4529
-	call Function453f
+SetFacingCounterclockwiseSpin: ; 4529
+	call CounterclockwiseSpinAction
 	ld hl, OBJECT_FACING
 	add hl, bc
 	ld a, [hl]
-	or 0 ; useless
+	or FACING_STEP_DOWN_0 ; useless
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], a
 	ret
 ; 4539
 
-Function4539: ; 4539
-	call Function453f
+SetFacingCounterclockwiseSpin2: ; 4539
+	call CounterclockwiseSpinAction
 	jp SetFacingStanding
 ; 453f
 
-Function453f: ; 453f
+CounterclockwiseSpinAction: ; 453f
+; Here, OBJECT_STEP_FRAME consists of two 2-bit components,
+; using only bits 0,1 and 4,5.
+; bits 0,1 is a timer (4 overworld frames)
+; bits 4,5 determines the facing - the direction is counterclockwise.
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
 	ld a, [hl]
@@ -195,39 +199,39 @@ Function453f: ; 453f
 	db OW_DOWN, OW_RIGHT, OW_UP, OW_LEFT
 ; 456e
 
-Function456e: ; 456e
+SetFacingFish: ; 456e
 	call GetSpriteDirection
 	rrca
 	rrca
-	add $10
+	add FACING_FISH_DOWN
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], a
 	ret
 ; 457b
 
-Function457b: ; 457b
+SetFacingShadow: ; 457b
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
-	ld [hl], FACING_15
+	ld [hl], FACING_SHADOW
 	ret
 ; 4582
 
-Function4582: ; 4582 emote
+SetFacingEmote: ; 4582 emote
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], FACING_EMOTE
 	ret
 ; 4589
 
-Function4589: ; 4589
+SetFacingBigDollSym: ; 4589
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
-	ld [hl], FACING_17
+	ld [hl], FACING_BIG_DOLL_SYM
 	ret
 ; 4590
 
-Function4590: ; 4590
+SetFacingBounce: ; 4590
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
 	ld a, [hl]
@@ -235,21 +239,21 @@ Function4590: ; 4590
 	and %00001111
 	ld [hl], a
 	and %00001000
-	jr z, Function45a4
+	jr z, SetFacingFreezeBounce
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
-	ld [hl], FACING_04
+	ld [hl], FACING_STEP_UP_0
 	ret
 ; 45a4
 
-Function45a4: ; 45a4
+SetFacingFreezeBounce: ; 45a4
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
-	ld [hl], 0
+	ld [hl], FACING_STEP_DOWN_0
 	ret
 ; 45ab
 
-Function45ab: ; 45ab
+SetFacingWeirdTree: ; 45ab
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
 	ld a, [hl]
@@ -258,28 +262,28 @@ Function45ab: ; 45ab
 	and %00001100
 	rrca
 	rrca
-	add $18
+	add FACING_WEIRD_TREE_0
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], a
 	ret
 ; 45be
 
-Function45be: ; 45be
+SetFacingBigDollAsym: ; 45be
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
-	ld [hl], FACING_16
+	ld [hl], FACING_BIG_DOLL_ASYM
 	ret
 ; 45c5
 
-Function45c5: ; 45c5
+SetFacingBigDoll: ; 45c5
 	ld a, [VariableSprites + SPRITE_BIG_DOLL - SPRITE_VARS]
-	ld d, FACING_17
+	ld d, FACING_BIG_DOLL_SYM ; symmetric
 	cp SPRITE_BIG_SNORLAX
 	jr z, .ok
 	cp SPRITE_BIG_LAPRAS
 	jr z, .ok
-	ld d, FACING_16
+	ld d, FACING_BIG_DOLL_ASYM ; asymmetric
 
 .ok
 	ld hl, OBJECT_FACING_STEP
@@ -288,7 +292,7 @@ Function45c5: ; 45c5
 	ret
 ; 45da
 
-Function45da: ; 45da
+SetFacingBoulderDust: ; 45da
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
 	inc [hl]
@@ -297,15 +301,15 @@ Function45da: ; 45da
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	and 2
-	ld a, FACING_1C
+	ld a, FACING_BOULDER_DUST_1
 	jr z, .ok
-	inc a ; FACING_1D
+	inc a ; FACING_BOULDER_DUST_2
 .ok
 	ld [hl], a
 	ret
 ; 45ed
 
-Function45ed: ; 45ed
+SetFacingGrassShake: ; 45ed
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
 	inc [hl]
@@ -313,9 +317,9 @@ Function45ed: ; 45ed
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	and 4
-	ld a, FACING_1E
+	ld a, FACING_GRASS_1
 	jr z, .ok
-	inc a ; FACING_1F
+	inc a ; FACING_GRASS_2
 
 .ok
 	ld [hl], a

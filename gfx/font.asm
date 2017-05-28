@@ -21,14 +21,16 @@ INCBIN "gfx/frames/9.1bpp"
 
 ; TODO: Various misc graphics here.
 
-GFX_f89b0: ; f89b0
+StatsScreenPageTilesGFX: ; f89b0
 INCBIN "gfx/unknown/0f89b0.2bpp"
 ; f8a90
 
 ShinyIcon: ; f8a90
+; also part of StatsScreenPageTilesGFX
 INCBIN "gfx/stats/shiny.2bpp"
 
-GFX_f8aa0: ; f8aa0
+StatsScreenPageTilesGFX_Part2: ; f8aa0
+; not referenced on its own, but part of StatsScreenPageTilesGFX
 INCBIN "gfx/unknown/0f8aa0.2bpp"
 ; f8ac0
 
@@ -48,7 +50,7 @@ TownMapGFX: ; f8ba0
 INCBIN "gfx/misc/town_map.2bpp.lz"
 ; f8ea4
 
-GFX_f8ea4: ; unused
+GFX_f8ea4: ; unused kanji
 INCBIN "gfx/unknown/0f8ea4.2bpp"
 ; f8f24
 
@@ -56,8 +58,8 @@ OverworldPhoneIconGFX: ; f8f24
 INCBIN "gfx/mobile/overworld_phone_icon.2bpp"
 ; f8f34
 
-GFX_f8f34: ; unused
-INCBIN "gfx/unknown/0f8f34.2bpp"
+GFX_f8f34: ; unused bold letters + unown chars
+INCBIN "gfx/unknown/0f8f34.w64.1bpp"
 ; f9204
 
 TextBoxSpaceGFX: ; f9204
@@ -72,7 +74,7 @@ MapEntryFrameGFX: ; f9344
 INCBIN "gfx/frames/map_entry_sign.2bpp"
 ; f9424
 
-GFX_f9424: ; f9424
+FontsExtra2_UpArrowGFX: ; f9424
 INCBIN "gfx/unknown/0f9424.2bpp"
 ; f9434
 
@@ -81,6 +83,7 @@ INCBIN "gfx/misc/footprints.1bpp"
 ; fb434
 
 ; This and the following two functions are unreferenced.
+; Debug, perhaps?
 Unknown_fb434:
 	db 0
 
@@ -143,9 +146,9 @@ _LoadFontsExtra1:: ; fb48a
 ; fb4b0
 
 _LoadFontsExtra2:: ; fb4b0
-	ld de, GFX_f9424
+	ld de, FontsExtra2_UpArrowGFX
 	ld hl, VTiles2 tile $61
-	ld b, BANK(GFX_f9424)
+	ld b, BANK(FontsExtra2_UpArrowGFX)
 	ld c, 1
 	call Get2bpp_2
 	ret
@@ -208,7 +211,7 @@ LoadHPBar: ; fb50d
 	ret
 ; fb53e
 
-Functionfb53e: ; fb53e
+StatsScreen_LoadFont: ; fb53e
 	call _LoadFontsBattleExtra
 	ld de, EnemyHPBarBorderGFX
 	ld hl, VTiles2 tile $6c
@@ -226,11 +229,10 @@ Functionfb53e: ; fb53e
 	ld hl, VTiles2 tile $55
 	lb bc, BANK(ExpBarGFX), 8
 	call Get2bpp_2
-
-Functionfb571: ; fb571
-	ld de, GFX_f89b0
+LoadStatsScreenPageTilesGFX: ; fb571
+	ld de, StatsScreenPageTilesGFX
 	ld hl, VTiles2 tile $31
-	lb bc, BANK(GFX_f89b0), $11
+	lb bc, BANK(StatsScreenPageTilesGFX), $11
 	call Get2bpp_2
 	ret
 ; fb57e

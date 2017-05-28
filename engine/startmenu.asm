@@ -5,7 +5,7 @@ StartMenu:: ; 125cd
 	ld de, SFX_MENU
 	call PlaySFX
 
-	callba Function6454
+	callba ReanchorBGMap_NoOAMUpdate
 
 	ld hl, StatusFlags2
 	bit 2, [hl] ; bug catching contest
@@ -19,11 +19,11 @@ StartMenu:: ; 125cd
 	ld a, [wd0d2]
 	ld [wMenuCursorBuffer], a
 	call .DrawMenuAccount_
-	call MenuFunc_1e7f
+	call DrawVariableLengthMenuBox
 	call .DrawBugContestStatusBox
-	call Function2e31
-	call Function2e20
-	callba Function64bf
+	call SafeUpdateSprites
+	call _OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
+	callba LoadFonts_NoOAMUpdate
 	call .DrawBugContestStatus
 	call UpdateTimePals
 	jr .Select
@@ -142,7 +142,7 @@ StartMenu:: ; 125cd
 	call Call_ExitMenu
 	call ReloadTilesetAndPalettes
 	call .DrawMenuAccount_
-	call MenuFunc_1e7f
+	call DrawVariableLengthMenuBox
 	call .DrawBugContestStatus
 	call UpdateSprites
 	call ret_d90
@@ -194,31 +194,31 @@ StartMenu:: ; 125cd
 .QuitString:    	db "QUIT@"
 
 .PokedexDesc:  db   "#MON"
-              next "database@"
+	next "database@"
 
 .PartyDesc:    db   "Party ", $4a
-              next "status@"
+	next "status@"
 
 .PackDesc:     db   "Contains"
-              next "items@"
+	next "items@"
 
 .PokegearDesc: db   "Trainer's"
-              next "key device@"
+	next "key device@"
 
 .StatusDesc:   db   "Your own"
-              next "status@"
+	next "status@"
 
 .SaveDesc:     db   "Save your"
-              next "progress@"
+	next "progress@"
 
 .OptionDesc:   db   "Change"
-              next "settings@"
+	next "settings@"
 
 .ExitDesc:     db   "Close this"
-              next "menu@"
+	next "menu@"
 
 .QuitDesc:     db   "Quit and"
-              next "be judged.@"
+	next "be judged.@"
 
 
 .OpenMenu: ; 127e5
@@ -1255,7 +1255,7 @@ MonMenu_Fly: ; 12e30
 	jr z, .Fail
 	cp $0
 	jr z, .Error
-	callba MobileFn_1060b5
+	callba TrainerRankings_Fly
 	ld b, $4
 	ld a, $2
 	ret
@@ -1457,7 +1457,7 @@ ChooseMoveToDelete: ; 12f5b
 	push af
 	set NO_TEXT_SCROLL, [hl]
 	call LoadFontsBattleExtra
-	call .asm_12f73
+	call .ChooseMoveToDelete
 	pop bc
 	ld a, b
 	ld [Options], a
@@ -1467,36 +1467,36 @@ ChooseMoveToDelete: ; 12f5b
 	ret
 ; 12f73
 
-.asm_12f73
+.ChooseMoveToDelete
 	call SetUpMoveScreenBG
 	ld de, DeleteMoveScreenAttrs
 	call SetMenuAttributes
 	call SetUpMoveList
 	ld hl, w2DMenuFlags1
 	set 6, [hl]
-	jr .asm_12f93
+	jr .enter_loop
 
-.asm_12f86
+.loop
 	call ScrollingMenuJoypad
-	bit 1, a
-	jp nz, .asm_12f9f
-	bit 0, a
-	jp nz, .asm_12f9c
+	bit B_BUTTON_F, a
+	jp nz, .b_button
+	bit A_BUTTON_F, a
+	jp nz, .a_button
 
-.asm_12f93
+.enter_loop
 	call PrepareToPlaceMoveData
 	call PlaceMoveData
-	jp .asm_12f86
+	jp .loop
 ; 12f9c
 
-.asm_12f9c
+.a_button
 	and a
-	jr .asm_12fa0
+	jr .finish
 
-.asm_12f9f
+.b_button
 	scf
 
-.asm_12fa0
+.finish
 	push af
 	xor a
 	ld [wSwitchMon], a
@@ -1762,7 +1762,7 @@ SetUpMoveScreenBG: ; 13172
 	call ClearSprites
 	xor a
 	ld [hBGMapMode], a
-	callba Functionfb571
+	callba LoadStatsScreenPageTilesGFX
 	callba ClearSpriteAnims2
 	ld a, [CurPartyMon]
 	ld e, a
@@ -1797,7 +1797,7 @@ SetUpMoveScreenBG: ; 13172
 	call PrintLevel
 	ld hl, PlayerHPPal
 	call SetHPPal
-	ld b, SCGB_0E
+	ld b, SCGB_MOVE_LIST
 	call GetSGBLayout
 	hlcoord 16, 0
 	lb bc, 1, 3

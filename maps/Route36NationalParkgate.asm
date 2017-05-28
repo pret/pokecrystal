@@ -475,9 +475,9 @@ UnknownScript_0x6adce:
 	jumptext UnknownText_0x6b84c
 
 MovementData_0x6add1:
-	big_step_down
-	big_step_right
-	turn_head_up
+	big_step DOWN
+	big_step RIGHT
+	turn_head UP
 	step_end
 
 UnknownText_0x6add5:

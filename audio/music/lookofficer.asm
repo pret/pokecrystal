@@ -73,9 +73,9 @@ Music_LookOfficer_branch_ed882: ; ed882
 	note E_, 2
 	note G#, 2
 	loopchannel 2, Music_LookOfficer_branch_ed882
-	forceoctave $1
+	pitchoffset 0, C#
 	callchannel Music_LookOfficer_branch_ed89e
-	forceoctave $0
+	pitchoffset 0, C_
 	callchannel Music_LookOfficer_branch_ed89e
 	loopchannel 0, Music_LookOfficer_branch_ed882
 ; ed89e

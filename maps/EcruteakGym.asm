@@ -168,17 +168,17 @@ EcruteakGymStatue:
 	jumpstd gymstatue2
 
 MovementData_0x99e5d:
-	step_up
+	step UP
 	step_end
 
 MovementData_0x99e5f:
 	fix_facing
-	slow_step_down
+	slow_step DOWN
 	remove_fixed_facing
 	step_end
 
 MovementData_0x99e63:
-	slow_step_down
+	slow_step DOWN
 	step_end
 
 UnknownText_0x99e65:

@@ -310,12 +310,12 @@ Route27RareCandy:
 	itemball RARE_CANDY
 
 MovementData_0x1a0a66:
-	step_left
-	step_left
+	step LEFT
+	step LEFT
 	step_end
 
 MovementData_0x1a0a69:
-	step_left
+	step LEFT
 	step_end
 
 UnknownText_0x1a0a6b:

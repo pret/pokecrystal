@@ -11,16 +11,16 @@ Music_HealPokemon_Ch1: ; f06a0
 	tone $0001
 	notetype $c, $81
 	note __, 2
-	unknownmusic0xe0 $0, 4, __
+	slidepitchto 1, 4, __
 	note B_, 2
-	unknownmusic0xe0 $0, 5, E_
+	slidepitchto 1, 5, E_
 	note B_, 2
-	unknownmusic0xe0 $0, 4, E_
+	slidepitchto 1, 4, E_
 	note E_, 2
 	note __, 4
-	unknownmusic0xe0 $0, 3, __
+	slidepitchto 1, 3, __
 	note E_, 4
-	unknownmusic0xe0 $0, 4, __
+	slidepitchto 1, 4, __
 	note B_, 4
 	endchannel
 ; f06c4

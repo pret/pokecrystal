@@ -1,6 +1,6 @@
 _BugContestJudging: ; 1369d
 	call ContestScore
-	callba MobileFn_105f79
+	callba TrainerRankings_BugContestScore
 	call BugContest_JudgeContestants
 	ld a, [wBugContestThirdPlacePersonID]
 	call LoadContestantName
@@ -85,9 +85,8 @@ LoadContestantName: ; 13730
 	ld c, a
 	ld b, 0
 	ld hl, BugContestantPointers
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -320,23 +319,20 @@ ComputeAIContestantScores: ; 138b0
 	pop de
 	jr nz, .done
 	ld a, e
-rept 2
 	inc a
-endr
+	inc a
 	ld [wBugContestTempPersonID], a
 	dec a
 	ld c, a
 	ld b, 0
 	ld hl, BugContestantPointers
-rept 2
 	add hl, bc
-endr
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-rept 2
 	inc hl
-endr
+	inc hl
 .loop2
 	call Random
 	and 3
@@ -344,9 +340,9 @@ endr
 	jr z, .loop2
 	ld c, a
 	ld b, 0
-rept 3
 	add hl, bc
-endr
+	add hl, bc
+	add hl, bc
 	ld a, [hli]
 	ld [wBugContestTempMon], a
 	ld a, [hli]
@@ -412,9 +408,8 @@ ContestScore: ; 13900
 	ld a, [wContestMonDVs + 0]
 	ld b, a
 	and 2
-rept 2
 	add a
-endr
+	add a
 	ld c, a
 
 	swap b
@@ -433,12 +428,10 @@ endr
 	ld a, b
 	and 2
 	srl a
-rept 2
 	add c
-endr
-rept 2
+	add c
 	add d
-endr
+	add d
 
 	call .AddContestStat
 

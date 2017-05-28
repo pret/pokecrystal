@@ -32,13 +32,13 @@ Predef_LoadSGBLayout: ; 864c
 	dw .SGB_SlotMachine
 	dw .SGB06
 	dw .SGB07
-	dw .SGB08
+	dw .SGB_Diploma
 	dw .SGB_MapPals
-	dw .SGB0a
-	dw .SGB0b
+	dw .SGB_PartyMenu
+	dw .SGB_Evolution
 	dw .SGB0c
 	dw .SGB0d
-	dw .SGB0e
+	dw .SGB_MoveList
 	dw .SGB0f
 	dw .SGB_PokedexSearchOption
 	dw .SGB11
@@ -47,13 +47,13 @@ Predef_LoadSGBLayout: ; 864c
 	dw .SGB_PackPals
 	dw .SGB_TrainerCard
 	dw .SGB_PokedexUnownMode
-	dw .SGB17
-	dw .SGB18
+	dw .SGB_BillsPC
+	dw .SGB_UnownPuzzle
 	dw .SGB19
-	dw .SGB1a
-	dw .SGB1b
-	dw .SGB_FrontpicPals
-	dw .SGB1d
+	dw .SGB_PlayerOrMonFrontpicPals
+	dw .SGB_TradeTube
+	dw .SGB_TrainerOrMonFrontpicPals
+	dw .SGB_MysteryGift
 	dw .SGB1e
 ; 86ad
 
@@ -65,7 +65,7 @@ Predef_LoadSGBLayout: ; 864c
 
 .SGB_BattleColors: ; 86b4
 	ld hl, BlkPacket_9aa6
-	call Function9809
+	call PushSGBPals_
 
 	ld hl, PalPacket_9ce6
 	ld de, wSGBPals
@@ -75,9 +75,8 @@ Predef_LoadSGBLayout: ; 864c
 	ld a, [PlayerHPPal]
 	ld l, a
 	ld h, 0
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld de, Palettes_a8be
 	add hl, de
 
@@ -93,9 +92,8 @@ endr
 	ld a, [EnemyHPPal]
 	ld l, a
 	ld h, 0
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 
 	ld de, Palettes_a8be
 	add hl, de
@@ -140,7 +138,7 @@ endr
 	ret
 ; 873c
 
-.SGB0e: ; 873c
+.SGB_MoveList: ; 873c
 	ld hl, PalPacket_9bd6
 	ld de, wSGBPals
 	ld bc, $10
@@ -148,9 +146,8 @@ endr
 
 	ld hl, wSGBPals + 1
 	ld [hl], $10
-rept 2
 	inc hl
-endr
+	inc hl
 
 	ld a, [PlayerHPPal]
 	add $2f
@@ -174,9 +171,8 @@ endr
 	ld a, [wcda1]
 	ld l, a
 	ld h, 0
-rept 2
 	add hl, hl
-endr
+	add hl, hl
 	ld de, Palettes_a8be
 	add hl, de
 	ld a, [hli]
@@ -203,7 +199,7 @@ endr
 	ret
 ; 87ab
 
-.SGB0a: ; 87ab
+.SGB_PartyMenu: ; 87ab
 	ld hl, PalPacket_9c56
 	ld de, wSGBPals + 1
 	ret
@@ -237,7 +233,7 @@ endr
 	ret
 ; 87e9
 
-.SGB17: ; 87e9
+.SGB_BillsPC: ; 87e9
 	ld hl, PalPacket_9ce6
 	ld de, wSGBPals
 	ld bc, $10
@@ -308,8 +304,8 @@ endr
 	ret
 ; 8860
 
-.SGB08:
-.SGB1d: ; 8860
+.SGB_Diploma:
+.SGB_MysteryGift: ; 8860
 	ld hl, PalPacket_9cb6
 	ld de, BlkPacket_9a86
 	ret
@@ -340,7 +336,7 @@ endr
 .SGB0c: ; 8884
 	ld hl, PalPacket_9b96
 	ld de, BlkPacket_9b56
-	ld a, SCGB_08
+	ld a, SCGB_DIPLOMA
 	ld [SGBPredef], a
 	ret
 ; 8890
@@ -381,7 +377,7 @@ endr
 	ret
 ; 88cd
 
-.SGB0b: ; 88cd
+.SGB_Evolution: ; 88cd
 	push bc
 	ld hl, PalPacket_9ce6
 	ld de, wSGBPals
@@ -391,11 +387,14 @@ endr
 	ld a, c
 	and a
 	jr z, .partymon
+	; Egg
 	ld hl, wSGBPals + 3
+	; RGB 7, 7, 7
 	ld [hl], $e7
 	inc hl
 	ld [hl], $1c
 	inc hl
+	; RGB 2, 3, 3
 	ld [hl], $62
 	inc hl
 	ld [hl], $c
@@ -432,7 +431,7 @@ endr
 	ret
 ; 8921
 
-.SGB18: ; 8921
+.SGB_UnownPuzzle: ; 8921
 	ld hl, PalPacket_9bc6
 	ld de, BlkPacket_9a86
 	ret
@@ -476,9 +475,9 @@ endr
 	ld a, [CurPartySpecies]
 	ld l, a
 	ld h, 0
-rept 3
 	add hl, hl
-endr
+	add hl, hl
+	add hl, hl
 	ld de, PokemonPalettes
 	add hl, de
 	ld a, [wcf65]
@@ -507,7 +506,7 @@ endr
 	ret
 ; 89ad
 
-.SGB1a: ; 89ad
+.SGB_PlayerOrMonFrontpicPals: ; 89ad
 	ld hl, PalPacket_9ce6
 	ld de, wSGBPals
 	ld bc, $10
@@ -528,13 +527,13 @@ endr
 	ret
 ; 89d9
 
-.SGB1b: ; 89d9
+.SGB_TradeTube: ; 89d9
 	ld hl, PalPacket_9cc6
 	ld de, BlkPacket_9a86
 	ret
 ; 89e0
 
-.SGB_FrontpicPals: ; 89e0
+.SGB_TrainerOrMonFrontpicPals: ; 89e0
 	ld hl, PalPacket_9ce6
 	ld de, wSGBPals
 	ld bc, $10
@@ -631,7 +630,7 @@ endr
 
 .Finish: ; 8a60
 	push de
-	call Function9809
+	call PushSGBPals_
 	pop hl
-	jp Function9809
+	jp PushSGBPals_
 ; 8a68

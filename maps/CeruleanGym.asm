@@ -167,36 +167,36 @@ CeruleanGymStatue:
 	jumpstd gymstatue2
 
 MovementData_0x1884e3:
-	big_step_down
-	big_step_down
-	big_step_down
-	big_step_down
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
 	step_end
 
 MovementData_0x1884e8:
-	big_step_right
-	big_step_down
+	big_step RIGHT
+	big_step DOWN
 	step_end
 
 MovementData_0x1884eb:
 	fix_facing
 	db $39 ; movement
-	jump_step_up
+	jump_step UP
 	db $38 ; movement
 	remove_fixed_facing
-	step_sleep_8
-	step_sleep_8
-	step_down
-	step_down
+	step_sleep 8
+	step_sleep 8
+	step DOWN
+	step DOWN
 	step_end
 
 MovementData_0x1884f5:
-	big_step_down
+	big_step DOWN
 	step_end
 
 MovementData_0x1884f7:
 	fix_facing
-	slow_step_up
+	slow_step UP
 	remove_fixed_facing
 	step_end
 

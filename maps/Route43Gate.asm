@@ -132,69 +132,69 @@ UnknownScript_0x19aca0:
 	end
 
 MovementData_0x19aca2:
-	step_down
+	step DOWN
 	step_end
 
 MovementData_0x19aca4:
-	big_step_up
-	big_step_up
-	big_step_right
-	big_step_right
-	turn_head_up
+	big_step UP
+	big_step UP
+	big_step RIGHT
+	big_step RIGHT
+	turn_head UP
 	step_end
 
 MovementData_0x19acaa:
-	big_step_left
-	big_step_left
-	big_step_down
-	big_step_down
+	big_step LEFT
+	big_step LEFT
+	big_step DOWN
+	big_step DOWN
 	step_end
 
 MovementData_0x19acaf:
-	big_step_down
-	big_step_down
-	big_step_right
-	big_step_right
-	turn_head_down
+	big_step DOWN
+	big_step DOWN
+	big_step RIGHT
+	big_step RIGHT
+	turn_head DOWN
 	step_end
 
 MovementData_0x19acb5:
-	big_step_left
-	big_step_left
-	big_step_up
-	big_step_up
-	turn_head_down
+	big_step LEFT
+	big_step LEFT
+	big_step UP
+	big_step UP
+	turn_head DOWN
 	step_end
 
 MovementData_0x19acbb:
-	big_step_up
-	big_step_up
-	big_step_left
-	big_step_left
-	turn_head_up
+	big_step UP
+	big_step UP
+	big_step LEFT
+	big_step LEFT
+	turn_head UP
 	step_end
 
 MovementData_0x19acc1:
-	big_step_right
-	big_step_right
-	big_step_down
-	big_step_down
-	turn_head_up
+	big_step RIGHT
+	big_step RIGHT
+	big_step DOWN
+	big_step DOWN
+	turn_head UP
 	step_end
 
 MovementData_0x19acc7:
-	big_step_down
-	big_step_down
-	big_step_left
-	big_step_left
-	turn_head_down
+	big_step DOWN
+	big_step DOWN
+	big_step LEFT
+	big_step LEFT
+	turn_head DOWN
 	step_end
 
 MovementData_0x19accd:
-	big_step_right
-	big_step_right
-	big_step_up
-	big_step_up
+	big_step RIGHT
+	big_step RIGHT
+	big_step UP
+	big_step UP
 	step_end
 
 UnknownText_0x19acd2:

@@ -313,7 +313,7 @@ ElmsLabHealingMachine:
 	end
 
 ElmsLabHealingMachine_HealParty:
-	special Mobile_HealParty
+	special TrainerRankings_Healings
 	special HealParty
 	playmusic MUSIC_NONE
 	writebyte 1 ; Machine is in Elm's Lab
@@ -616,118 +616,118 @@ ElmsLabBookshelf:
 	jumpstd difficultbookshelf
 
 ElmsLab_WalkUpToElmMovement:
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
-	turn_head_left
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	turn_head LEFT
 	step_end
 
 MovementData_0x78f70:
-	step_up
+	step UP
 	step_end
 
 MeetCopScript2_StepLeft:
-	step_left
+	step LEFT
 	step_end
 
 MeetCopScript_WalkUp:
-	step_up
-	step_up
-	turn_head_right
+	step UP
+	step UP
+	turn_head RIGHT
 	step_end
 
 OfficerLeavesMovement:
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
 	step_end
 
 AideWalksRight1:
-	step_right
-	step_right
-	turn_head_up
+	step RIGHT
+	step RIGHT
+	turn_head UP
 	step_end
 
 AideWalksRight2:
-	step_right
-	step_right
-	step_right
-	turn_head_up
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	turn_head UP
 	step_end
 
 AideWalksLeft1:
-	step_left
-	step_left
-	turn_head_down
+	step LEFT
+	step LEFT
+	turn_head DOWN
 	step_end
 
 AideWalksLeft2:
-	step_left
-	step_left
-	step_left
-	turn_head_down
+	step LEFT
+	step LEFT
+	step LEFT
+	turn_head DOWN
 	step_end
 
 ElmJumpUpMovement:
 	fix_facing
-	big_step_up
+	big_step UP
 	remove_fixed_facing
 	step_end
 
 ElmJumpDownMovement:
 	fix_facing
-	big_step_down
+	big_step DOWN
 	remove_fixed_facing
 	step_end
 
 ElmJumpLeftMovement:
 	fix_facing
-	big_step_left
+	big_step LEFT
 	remove_fixed_facing
 	step_end
 
 ElmJumpRightMovement:
 	fix_facing
-	big_step_right
+	big_step RIGHT
 	remove_fixed_facing
 	step_end
 
 ElmsLab_ElmToDefaultPositionMovement1:
-	step_up
+	step UP
 	step_end
 
 ElmsLab_ElmToDefaultPositionMovement2:
-	step_right
-	step_right
-	step_up
-	turn_head_down
+	step RIGHT
+	step RIGHT
+	step UP
+	turn_head DOWN
 	step_end
 
 AfterCyndaquilMovement:
-	step_left
-	step_up
-	turn_head_up
+	step LEFT
+	step UP
+	turn_head UP
 	step_end
 
 AfterTotodileMovement:
-	step_left
-	step_left
-	step_up
-	turn_head_up
+	step LEFT
+	step LEFT
+	step UP
+	turn_head UP
 	step_end
 
 AfterChikoritaMovement:
-	step_left
-	step_left
-	step_left
-	step_up
-	turn_head_up
+	step LEFT
+	step LEFT
+	step LEFT
+	step UP
+	turn_head UP
 	step_end
 
 ElmText_Intro:

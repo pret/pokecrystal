@@ -2,9 +2,9 @@
 Special:: ; c01b
 ; Run script special de.
 	ld hl, SpecialsPointers
-rept 3
 	add hl,de
-endr
+	add hl,de
+	add hl,de
 	ld b, [hl]
 	inc hl
 	ld a, [hli]
@@ -114,7 +114,7 @@ SpecialsPointers:: ; c029
 	add_special RandomPhoneRareWildMon
 	add_special RandomPhoneWildMon
 	add_special RandomPhoneMon
-	add_special RunCallback_04
+	add_special MapCallbackSprites_LoadUsedSpritesGFX
 	add_special PlaySlowCry
 	add_special SpecialSnorlaxAwake
 	add_special Special_YoungerHaircutBrother
@@ -179,7 +179,7 @@ SpecialsPointers:: ; c029
 	add_special Mobile_SelectThreeMons
 	add_special Function1037eb
 	add_special Function10383c
-	add_special Mobile_HealParty
+	add_special TrainerRankings_Healings
 	add_special RefreshSprites
 	add_special Function1037c2
 	add_special Mobile_DummyReturnFalse

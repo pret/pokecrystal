@@ -77,40 +77,40 @@ TrainerHouseReceptionistScript:
 	end
 
 Movement_EnterTrainerHouseBattleRoom:
-	step_left
-	step_left
-	step_left
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_left
-	turn_head_right
+	step LEFT
+	step LEFT
+	step LEFT
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step LEFT
+	turn_head RIGHT
 	step_end
 
 Movement_ExitTrainerHouseBattleRoom:
-	step_up
-	step_up
-	step_up
-	step_right
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
-	step_right
-	step_right
-	step_right
-	step_right
+	step UP
+	step UP
+	step UP
+	step RIGHT
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
 	step_end
 
 Movement_TrainerHouseTurnBack:
-	step_right
-	turn_head_left
+	step RIGHT
+	turn_head LEFT
 	step_end
 
 TrainerHouseB1FIntroText:

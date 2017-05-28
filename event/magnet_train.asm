@@ -48,7 +48,7 @@ Special_MagnetTrain: ; 8cc04
 	callab PlaySpriteAnimations
 	call MagnetTrain_Jumptable
 	call MagnetTrain_UpdateLYOverrides
-	call Function3b0c
+	call PushLYOverrides
 	call DelayFrame
 	jr .loop
 
@@ -61,9 +61,9 @@ Special_MagnetTrain: ; 8cc04
 	ld [hVBlank], a
 	call ClearBGPalettes
 	xor a
-	ld [hFFC6], a
-	ld [hFFC7], a
-	ld [hFFC8], a
+	ld [hLCDCPointer], a
+	ld [hLYOverrideStart], a
+	ld [hLYOverrideEnd], a
 	ld [hSCX], a
 	ld [Requested2bppSource], a
 	ld [Requested2bppSource + 1], a
@@ -101,9 +101,8 @@ MagnetTrain_UpdateLYOverrides: ; 8cc99
 	ld d, a
 	ld hl, wcf64
 	ld a, [hl]
-rept 2
 	add d
-endr
+	add d
 	ld [hl], a
 	ret
 
@@ -150,9 +149,9 @@ MagntTrain_LoadGFX_PlayMusic: ; 8ccc9
 	xor a
 	ld [hli], a
 	ld a, [wMagnetTrainInitPosition]
-rept 3
 	ld [hli], a
-endr
+	ld [hli], a
+	ld [hli], a
 	ld de, MUSIC_MAGNET_TRAIN
 	call PlayMusic2
 	ret
@@ -211,9 +210,8 @@ GetMagnetTrainBGTiles: ; 8cd74
 	ld e, a
 	ld d, 0
 	ld hl, MagnetTrainBGTiles
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -253,8 +251,8 @@ MagnetTrain_InitLYOverrides: ; 8cda6
 	ld bc, LYOverridesBackupEnd - LYOverridesBackup
 	ld a, [wMagnetTrainInitPosition]
 	call ByteFill
-	ld a, $43
-	ld [hFFC6], a
+	ld a, rSCX - $ff00
+	ld [hLCDCPointer], a
 	ret
 ; 8cdc3
 
@@ -296,9 +294,8 @@ MagnetTrain_Jumptable: ; 8cdf7
 	ld e, a
 	ld d, 0
 	ld hl, .Jumptable
-rept 2
 	add hl, de
-endr
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -398,17 +395,15 @@ endr
 	inc a
 	ld d, a
 	ld a, e
-rept 2
 	add d
-endr
+	add d
 	ld [wcf65], a
 	ld hl, wGlobalAnimXOffset
 	ld a, [wMagnetTrainDirection]
 	ld d, a
 	ld a, [hl]
-rept 2
 	add d
-endr
+	add d
 	ld [hl], a
 	ret
 
@@ -431,7 +426,7 @@ MagnetTrain_Jumptable_FirstRunThrough: ; 8ceae
 	callba PlaySpriteAnimations
 	call MagnetTrain_Jumptable
 	call MagnetTrain_UpdateLYOverrides
-	call Function3b0c
+	call PushLYOverrides
 	call DelayFrame
 	ld a, [rSVBK]
 	push af
