@@ -38,7 +38,7 @@ clean:
 compare: pokecrystal.gbc pokecrystal11.gbc
 	@$(MD5) roms.md5
 
-tools: tools/lzcomp tools/png_dimensions tools/scan_includes tools/palette tools/pokemon_animation tools/pokemon_animation_graphics
+tools: tools/lzcomp tools/png_dimensions tools/scan_includes tools/palette tools/pokemon_animation tools/pokemon_animation_graphics ;
 
 tools/%: tools/%.c
 	$(CC) -o $@ $<
@@ -68,22 +68,39 @@ pokecrystal.gbc: $(crystal_obj)
 	rgbgfx -o $@ $<
 %.1bpp: %.png
 	rgbgfx -d1 -o $@ $<
+%.tilemap: %.png
+	rgbgfx -t $@ $<
+%.gbcpal: %.png
+	rgbgfx -p $@ $<
+
+
+define LOUD
+echo "$1"; $1
+endef
+
+# For files that the compressor can't match, there will be a .lz file suffixed with the hash of the correct uncompressed file.
+# If the hash of the uncompressed file matches, use this .lz instead.
+# This allows pngs to be used for compressed graphics and still match.
+
+%.lz: hash = $(shell md5sum $(*D)/$(*F) | sed "s/\(.\{8\}\).*/\1/")
 %.lz: %
-	tools/lzcomp $< $@
+	$(eval filename := $@.$(hash))
+	@if [ -f $(filename) ]; then \
+		$(call LOUD, cp $(filename) $@); \
+	else \
+		$(call LOUD, tools/lzcomp $< $@); \
+	fi
+
+
+# Pokemon pic graphics rules
 
 %.dimensions: %.png
 	tools/png_dimensions $< $@
-%.tilemap: %.png
-	rgbgfx -t $@ $<
-%.pal: %.pal.bin
+%.pal: %.gbcpal
 	tools/palette $< > $@
-%.pal.bin: %.png
-	rgbgfx -p $@ $<
 
-gfx/pics/%/normal.pal: gfx/pics/%/normal.pal.bin
+gfx/pics/%/normal.pal: gfx/pics/%/normal.gbcpal
 	tools/palette -p $< > $@
-gfx/pics/%/normal.pal.bin: gfx/pics/%/front.png
-	rgbgfx -p $@ $<
 gfx/pics/%/back.2bpp: gfx/pics/%/back.png
 	rgbgfx -h -o $@ $<
 gfx/pics/%/bitmask.asm: gfx/pics/%/front.animated.tilemap gfx/pics/%/front.dimensions
@@ -97,12 +114,11 @@ gfx/pics/%/front.animated.tilemap: gfx/pics/%/front.2bpp gfx/pics/%/front.dimens
 # Don't use -h, pokemon_animation_graphics takes care of it
 #gfx/pics/%/front.2bpp: gfx/pics/%/front.png
 #	rgbgfx -o $@ $<
-gfx/pics/%/front.2bpp.lz: gfx/pics/%/front.animated.2bpp
-	tools/lzcomp $< $@
 
-gfx/shrink1.2bpp: gfx/shrink1.png
-	rgbgfx -h -o $@ $<
-gfx/shrink2.2bpp: gfx/shrink2.png
+
+# Misc file-specific graphics rules
+
+gfx/shrink%.2bpp: gfx/shrink%.png
 	rgbgfx -h -o $@ $<
 
 gfx/trainers/%.2bpp: gfx/trainers/%.png
