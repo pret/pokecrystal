@@ -1,4 +1,4 @@
-The source files are assembled into a rom using [**rgbds**](https://github.com/bentley/rgbds).
+The source files are assembled into a rom using [**rgbds**](https://github.com/rednex/rgbds).
 These instructions explain how to set up the tools required to build.
 
 If you run into trouble, ask on irc ([**freenode#pret**](https://kiwiirc.com/client/irc.freenode.net/?#pret)).
@@ -9,8 +9,9 @@ If you run into trouble, ask on irc ([**freenode#pret**](https://kiwiirc.com/cli
 ```bash
 sudo apt-get install make gcc bison git
 
-git clone https://github.com/bentley/rgbds
+git clone https://github.com/rednex/rgbds
 cd rgbds
+git checkout v0.2.5
 sudo make install
 cd ..
 
@@ -33,8 +34,9 @@ In **Terminal**, run:
 ```bash
 xcode-select --install
 
-git clone https://github.com/bentley/rgbds
+git clone https://github.com/rednex/rgbds
 cd rgbds
+git checkout v0.2.5
 sudo make install
 cd ..
 
@@ -56,7 +58,7 @@ To build on Windows, install [**Cygwin**](http://cygwin.com/install.html) with t
 
 In the installer, select the following packages: `make` `git` `gettext`
 
-Then get the most recent version of [**rgbds**](https://github.com/bentley/rgbds/releases/).
+Then get [**rgbds 0.2.5**](https://github.com/rednex/rgbds/releases/). Versions 0.3.0 and later are not compatible.
 Extract the archive and put `rgbasm.exe`, `rgblink.exe`, `rgbfix.exe` and `rgbgfx.exe` in `C:\cygwin64\usr\local\bin`.
 
 In the **Cygwin terminal**:
