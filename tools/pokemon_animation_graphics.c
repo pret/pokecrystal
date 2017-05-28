@@ -48,15 +48,25 @@ int get_tile_index(uint8_t* tile, uint8_t* tiles, int num_tiles) {
 	return -1;
 }
 
+FILE *fopen_verbose(char *filename, char *mode) {
+	FILE *f = fopen(filename, mode);
+	if (!f) {
+		fprintf(stderr, "Could not open file: \"%s\"\n", filename);
+	}
+	return f;
+}
+
 void create_tilemap(struct Tilemap* tilemap, struct Graphic* graphic, char* graphics_filename, int width, int height) {
 	long graphics_size;
 	uint8_t* graphics;
 	FILE* f;
-	int tile;
-	int num_tiles;
 	int i;
+	int tile;
 
-	f = fopen(graphics_filename, "rb");
+	f = fopen_verbose(graphics_filename, "rb");
+	if (!f) {
+		exit(1);
+	}
 	fseek(f, 0, SEEK_END);
 	graphics_size = ftell(f);
 	rewind(f);
@@ -64,20 +74,27 @@ void create_tilemap(struct Tilemap* tilemap, struct Graphic* graphic, char* grap
 	fread(graphics, 1, graphics_size, f);
 	fclose(f);
 
+	int num_tiles_per_frame = width * height;
+	int tile_size = 16;
+	int num_frames = graphics_size / (tile_size * num_tiles_per_frame);
+	int frame_size = num_tiles_per_frame * tile_size;
+
 	// transpose each frame
-	for (i = 0; i < graphics_size / (width * height); i++) {
-		transpose_tiles(graphics + i * (width * height) * 16, width, width * height * 16, 16);
+	for (i = 0; i < num_frames; i++) {
+		transpose_tiles(graphics + i * frame_size, width, frame_size, tile_size);
 	}
 
-	// first frame is naively populated with redundant tiles
-	num_tiles = width * height;
-	tilemap->data = malloc(graphics_size / 16);
+	// first frame is naively populated with redundant tiles,
+	// so fill it unconditionally and start from the second frame
+	int num_tiles = width * height;
+	int tilemap_size = graphics_size / tile_size;
+	tilemap->data = malloc(tilemap_size);
 	for (i = 0; i < num_tiles; i++) {
 		tilemap->data[tilemap->size] = i;
 		tilemap->size++;
 	}
-	for (i = width * height; i < graphics_size / 16; i++) {
-		tile = get_tile_index(graphics + i * 16, graphics, i);
+	for (i = num_tiles; i < tilemap_size; i++) {
+		tile = get_tile_index(graphics + i * tile_size, graphics, i);
 		if (tile == -1) {
 			tilemap->data[tilemap->size] = num_tiles;
 			tilemap->size++;
@@ -103,7 +120,7 @@ void create_tilemap(struct Tilemap* tilemap, struct Graphic* graphic, char* grap
 }
 
 int main(int argc, char* argv[]) {
-	int ch;
+	int opt;
 	char* dimensions_filename;
 	char* graphics_filename;
 	char* outfile;
@@ -116,8 +133,8 @@ int main(int argc, char* argv[]) {
 	struct Graphic graphic = {0};
 	struct Tilemap tilemap = {0};
 
-	while ((ch = getopt(argc, argv, "o:t:")) != -1) {
-		switch (ch) {
+	while ((opt = getopt(argc, argv, "o:t:")) != -1) {
+		switch (opt) {
 			case 'o':
 				outfile = optarg;
 				break;
@@ -126,6 +143,7 @@ int main(int argc, char* argv[]) {
 				break;
 			default:
 				usage();
+				break;
 		}
 	}
 	argc -= optind;
@@ -138,7 +156,10 @@ int main(int argc, char* argv[]) {
 	graphics_filename = argv[0];
 	dimensions_filename = argv[1];
 
-	f = fopen(dimensions_filename, "rb");
+	f = fopen_verbose(dimensions_filename, "rb");
+	if (!f) {
+		exit(1);
+	}
 	fread(bytes, 1, 1, f);
 	fclose(f);
 	width = bytes[0] & 0xf;
@@ -146,16 +167,20 @@ int main(int argc, char* argv[]) {
 
 	create_tilemap(&tilemap, &graphic, graphics_filename, width, height);
 
-	if (outfile != NULL) {
-		f = fopen(outfile, "wb");
-		fwrite(graphic.data, 1, graphic.size, f);
-		fclose(f);
+	if (outfile) {
+		f = fopen_verbose(outfile, "wb");
+		if (f) {
+			fwrite(graphic.data, 1, graphic.size, f);
+			fclose(f);
+		}
 	}
 
-	if (mapfile != NULL) {
-		f = fopen(mapfile, "wb");
-		fwrite(tilemap.data, 1, tilemap.size, f);
-		fclose(f);
+	if (mapfile) {
+		f = fopen_verbose(mapfile, "wb");
+		if (f) {
+			fwrite(tilemap.data, 1, tilemap.size, f);
+			fclose(f);
+		}
 	}
 
 	free(graphic.data);
