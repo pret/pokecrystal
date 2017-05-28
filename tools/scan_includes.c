@@ -2,11 +2,23 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <getopt.h>
 
 void usage(void) {
-	printf("Usage: scan_includes filename\n");
-	exit(1);
+	printf("Usage: scan_includes [-h] [-s] filename\n"
+	       "-h, --help\n"
+	       "    Print usage and exit\n"
+	       "-s, --strict\n"
+	       "    Fail if a file cannot be read\n");
 }
+
+struct Options {
+	bool help;
+	bool strict;
+};
+
+struct Options Options = {0};
+
 
 void scan_file(char* filename) {
 	FILE* f;
@@ -17,9 +29,13 @@ void scan_file(char* filename) {
 	int length;
 
 	f = fopen(filename, "r");
-	if (f == NULL) {
-		fprintf(stderr, "Could not open file: '%s'\n", filename);
-		exit(1);
+	if (!f) {
+		if (Options.strict) {
+			fprintf(stderr, "Could not open file: '%s'\n", filename);
+			exit(1);
+		} else {
+			return;
+		}
 	}
 
 	fseek(f, 0, SEEK_END);
@@ -68,10 +84,43 @@ void scan_file(char* filename) {
 	free(orig);
 }
 
-int main(int argc, char* argv[]) {
-	if (argc < 2) {
-		usage();
+void get_args(int argc, char *argv[]) {
+	while (1) {
+		struct option long_options[] = {
+			{"strict", no_argument, 0, 's'},
+			{"help", no_argument, 0, 'h'},
+			{0}
+		};
+		int i = 0;
+		int opt = getopt_long(argc, argv, "sh", long_options, &i);
+
+		if (opt == -1) {
+			break;
+		}
+
+		switch (opt) {
+		case 's':
+			Options.strict = true;
+			break;
+		case 'h':
+			Options.help = true;
+			break;
+		}
 	}
-	scan_file(argv[1]);
+}
+
+int main(int argc, char* argv[]) {
+	get_args(argc, argv);
+	argc -= optind;
+	argv += optind;
+	if (Options.help) {
+		usage();
+		return 0;
+	}
+	if (argc < 1) {
+		usage();
+		exit(1);
+	}
+	scan_file(argv[0]);
 	return 0;
 }
