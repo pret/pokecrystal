@@ -80,12 +80,12 @@ pokecrystal.gbc: $(crystal_obj)
 %.pal.bin: %.png
 	rgbgfx -p $@ $<
 
-gfx/pics/%/normal.pal: gfx/pics/normal.pal.bin
+gfx/pics/%/normal.pal: gfx/pics/%/normal.pal.bin
 	tools/palette -p $< > $@
 gfx/pics/%/normal.pal.bin: gfx/pics/%/front.png
 	rgbgfx -p $@ $<
-gfx/pics/%/front.tilemap: gfx/pics/%/front.png
-	rgbgfx -t $@ $<
+gfx/pics/%/back.2bpp: gfx/pics/%/back.png
+	rgbgfx -h -o $@ $<
 gfx/pics/%/bitmask.asm: gfx/pics/%/front.animated.tilemap gfx/pics/%/front.dimensions
 	tools/pokemon_animation -b $^ > $@
 gfx/pics/%/frames.asm: gfx/pics/%/front.animated.tilemap gfx/pics/%/front.dimensions
@@ -94,8 +94,11 @@ gfx/pics/%/front.animated.2bpp: gfx/pics/%/front.2bpp gfx/pics/%/front.dimension
 	tools/pokemon_animation_graphics -o $@ $^
 gfx/pics/%/front.animated.tilemap: gfx/pics/%/front.2bpp gfx/pics/%/front.dimensions
 	tools/pokemon_animation_graphics -t $@ $^
-gfx/pics/%/front.2bpp: gfx/pics/%/front.png
-	rgbgfx -o $@ $<
+# Don't use -h, pokemon_animation_graphics takes care of it
+#gfx/pics/%/front.2bpp: gfx/pics/%/front.png
+#	rgbgfx -o $@ $<
+gfx/pics/%/front.2bpp.lz: gfx/pics/%/front.animated.2bpp
+	tools/lzcomp $< $@
 
 gfx/shrink1.2bpp: gfx/shrink1.png
 	rgbgfx -h -o $@ $<
