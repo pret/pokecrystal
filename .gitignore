@@ -34,3 +34,7 @@ pokecrystal.txt
 # swap files for gedit
 *~
 
+*.dimensions
+*.gbcpal
+*.2bpp
+*.lz
