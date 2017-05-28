@@ -45,8 +45,8 @@ tools/%: tools/%.c
 
 %.asm: ;
 
-%11.o: dep = $(shell tools/scan_includes $(@D)/$*.asm)
-%11.o: %.asm $$(dep)
+$(crystal11_obj): dep = $(shell tools/scan_includes $(@D)/$*.asm)
+$(crystal11_obj): %11.o: %.asm $$(dep)
 	rgbasm -D CRYSTAL11 -o $@ $<
 
 %.o: dep = $(shell tools/scan_includes $(@D)/$*.asm)
