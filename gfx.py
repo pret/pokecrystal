@@ -74,7 +74,7 @@ def filepath_rules(filepath):
 			args['pic'] = True
 			args['animate'] = True
 		elif name == 'back':
-			args['pal_file'] = os.path.join(filedir, 'shiny.pal')
+			args['pal_file'] = os.path.join(filedir, 'normal.pal')
 			args['pic'] = True
 
 	elif 'gfx/trainers' in filedir:
