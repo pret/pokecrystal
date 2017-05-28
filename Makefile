@@ -3,8 +3,8 @@ MD5 := md5sum -c --quiet
 .SUFFIXES:
 .PHONY: all clean tools crystal crystal11
 .SECONDEXPANSION:
-.PRECIOUS: %.2bpp %.1bpp %.pal.bin
-
+.PRECIOUS:
+.SECONDARY:
 
 
 crystal_obj := \
