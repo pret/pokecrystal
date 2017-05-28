@@ -99,6 +99,8 @@ endef
 %.pal: %.gbcpal
 	tools/palette $< > $@
 
+gfx/pics/%/normal.gbcpal: gfx/pics/%/front.png
+	rgbgfx -p $@ $<
 gfx/pics/%/normal.pal: gfx/pics/%/normal.gbcpal
 	tools/palette -p $< > $@
 gfx/pics/%/back.2bpp: gfx/pics/%/back.png
