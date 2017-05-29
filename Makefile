@@ -1,7 +1,7 @@
 MD5 := md5sum -c --quiet
 
 .SUFFIXES:
-.PHONY: all clean tools crystal crystal11
+.PHONY: all clean tools compare crystal crystal11
 .SECONDEXPANSION:
 .PRECIOUS:
 .SECONDARY:
@@ -38,13 +38,11 @@ clean:
 compare: pokecrystal.gbc pokecrystal11.gbc
 	@$(MD5) roms.md5
 
-tools: tools/lzcomp tools/png_dimensions tools/scan_includes tools/palette tools/pokemon_animation tools/pokemon_animation_graphics ;
+tools:
+	make -C tools/
 
-tools/%: tools/%.c
-	$(CC) -o $@ $<
-
-$(crystal11_obj): dep = $(shell tools/scan_includes $(@D)/$*.asm)
-$(crystal11_obj): %11.o: %.asm $$(dep)
+%11.o: dep = $(shell tools/scan_includes $(@D)/$*.asm)
+%11.o: %.asm $$(dep)
 	rgbasm -D CRYSTAL11 -o $@ $<
 
 %.o: dep = $(shell tools/scan_includes $(@D)/$*.asm)
