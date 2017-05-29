@@ -38,3 +38,7 @@ pokecrystal.txt
 *.gbcpal
 *.2bpp
 *.lz
+*.pal
+*.animated.tilemap
+gfx/pics/*/bitmask.asm
+gfx/pics/*/frames.asm
