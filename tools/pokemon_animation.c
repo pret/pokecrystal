@@ -29,8 +29,8 @@ struct Bitmasks {
 
 
 void make_frames(struct Frames* frames, struct Bitmasks* bitmasks, char* tilemap_filename, char* dimensions_filename);
-int bitmask_exists(struct Bitmask bitmask, struct Bitmasks bitmasks);
-void print_frames();
+int bitmask_exists(struct Bitmask *bitmask, struct Bitmasks *bitmasks);
+void print_frames(struct Frames* frames);
 
 
 void make_frames(struct Frames* frames, struct Bitmasks* bitmasks, char* tilemap_filename, char* dimensions_filename) {
@@ -41,8 +41,6 @@ void make_frames(struct Frames* frames, struct Bitmasks* bitmasks, char* tilemap
 	int width;
 	int height;
 	uint8_t byte;
-	struct Frame* frame;
-	struct Bitmask* bitmask;
 	int frame_size;
 	int num_frames;
 	int i, j;
@@ -77,33 +75,40 @@ void make_frames(struct Frames* frames, struct Bitmasks* bitmasks, char* tilemap
 	num_frames = size / frame_size - 1;
 	//fprintf(stderr, "num_frames: %d\n", num_frames);
 
-	bitmasks->bitmasks = malloc((sizeof (struct Bitmask*)) * num_frames);
+	bitmasks->bitmasks = malloc((sizeof (struct Bitmask)) * num_frames);
 	bitmasks->num_bitmasks = 0;
 
-	frames->frames = malloc((sizeof (struct Frame*)) * num_frames);
+	frames->frames = malloc((sizeof (struct Frame)) * num_frames);
 	frames->frame_size = frame_size;
 	frames->num_frames = 0;
 
+	uint8_t *first_frame = tilemap;
 	this_frame = tilemap + frame_size;
 	for (i = 0; i < num_frames; i++) {
-		frame = (struct Frame*)malloc(sizeof(struct Frame));
+		struct Frame *frame = (struct Frame*)malloc(sizeof(struct Frame));
 		frame->data = malloc(frame_size);
 		frame->size = 0;
-		bitmask = (struct Bitmask*)malloc(sizeof(struct Bitmask));
-		bitmask->data = malloc((frame_size + 7) / 8);
+		struct Bitmask *bitmask = (struct Bitmask*)malloc(sizeof(struct Bitmask));
+		bitmask->data = calloc((frame_size + 7) / 8, 1);
 		bitmask->bitlength = 0;
 		for (j = 0; j < frame_size; j++) {
-			if (this_frame[j] != tilemap[j]) {
+			if (bitmask->bitlength % 8 == 0) {
+				bitmask->data[bitmask->bitlength / 8] = 0;
+			}
+			bitmask->data[bitmask->bitlength / 8] >>= 1;
+			if (this_frame[j] != first_frame[j]) {
 				frame->data[frame->size] = this_frame[j];
 				frame->size++;
-				bitmask->data[bitmask->bitlength / 8] |= 1;
+				bitmask->data[bitmask->bitlength / 8] |= (1 << 7);
 			}
 			bitmask->bitlength++;
-			if (bitmask->bitlength % 8 != 0) {
-				bitmask->data[bitmask->bitlength / 8] <<= 1;
-			}
 		}
-		frame->bitmask = bitmask_exists(*bitmask, *bitmasks);
+		// I don't remember exactly why this works.
+		// I think it was that the bits are read backwards, but not indexed backwards.
+		int last = bitmask->bitlength - 1;
+		bitmask->data[last / 8] >>= (7 - (last % 8));
+
+		frame->bitmask = bitmask_exists(bitmask, bitmasks);
 		if (frame->bitmask == -1) {
 			frame->bitmask = bitmasks->num_bitmasks;
 			bitmasks->bitmasks[bitmasks->num_bitmasks] = *bitmask;
@@ -135,20 +140,22 @@ void make_frames(struct Frames* frames, struct Bitmasks* bitmasks, char* tilemap
 	free(tilemap);
 }
 
-int bitmask_exists(struct Bitmask bitmask, struct Bitmasks bitmasks) {
+int bitmask_exists(struct Bitmask *bitmask, struct Bitmasks *bitmasks) {
 	int i, j;
 	struct Bitmask existing;
-	for (i = 0; i < bitmasks.num_bitmasks; i++) {
-		existing = bitmasks.bitmasks[i];
-		if (bitmask.bitlength != existing.bitlength) {
+	for (i = 0; i < bitmasks->num_bitmasks; i++) {
+		existing = bitmasks->bitmasks[i];
+		if (bitmask->bitlength != existing.bitlength) {
 			continue;
 		}
-		for (j = 0; j < (bitmask.bitlength + 7) / 8; j++) {
-			if (bitmask.data[j] != existing.data[j]) {
+		bool match = true;
+		for (j = 0; j < (bitmask->bitlength + 7) / 8; j++) {
+			if (bitmask->data[j] != existing.data[j]) {
+				match = false;
 				break;
 			}
 		}
-		if (j == (bitmask.bitlength + 7) / 8) {
+		if (match) {
 			return i;
 		}
 	}
@@ -158,18 +165,23 @@ int bitmask_exists(struct Bitmask bitmask, struct Bitmasks bitmasks) {
 void print_frames(struct Frames* frames) {
 	int i;
 	int j;
-	struct Frame frame;
 	for (i = 0; i < frames->num_frames; i++) {
 		printf("\tdw .frame%d\n", i + 1);
 	}
 	for (i = 0; i < frames->num_frames; i++) {
-		frame = frames->frames[i];
+		struct Frame *frame = &frames->frames[i];
 		printf(".frame%d\n", i + 1);
-		printf("\tdb %d\n", frame.bitmask);
-		if (frame.size > 0) {
-			printf("\tdb %d", frame.data[0]);
-			for (j = 1; j < frame.size; j++) {
-				printf(", %d", frame.data[j]);
+		printf("\tdb $%02x ; bitmask\n", frame->bitmask);
+		if (frame->size > 0) {
+			for (j = 0; j < frame->size; j++) {
+				if (j % 12 == 0) {
+					if (j) {
+						printf("\n");
+					}
+					printf("\tdb $%02x", frame->data[j]);
+				} else {
+					printf(", $%02x", frame->data[j]);
+				}
 			}
 			printf("\n");
 		}

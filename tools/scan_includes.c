@@ -105,6 +105,10 @@ void get_args(int argc, char *argv[]) {
 		case 'h':
 			Options.help = true;
 			break;
+		default:
+			usage();
+			exit(1);
+			break;
 		}
 	}
 }

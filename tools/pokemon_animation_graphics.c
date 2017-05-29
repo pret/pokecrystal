@@ -2,11 +2,20 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
+#include <getopt.h>
 
 static void usage(void) {
 	printf("Usage: pokemon_animation_graphics [-o outfile] [-t mapfile] 2bpp_file dimensions_file\n");
 	exit(1);
 }
+
+struct Options {
+	int girafarig;
+};
+
+struct Options Options = {0};
+
 
 struct Tilemap {
 	uint8_t* data;
@@ -32,16 +41,25 @@ void transpose_tiles(uint8_t* tiles, int width, int size, int tile_size) {
 	free(new_tiles);
 }
 
-int get_tile_index(uint8_t* tile, uint8_t* tiles, int num_tiles) {
-	int i;
-	int j;
-	for (i = 0; i < num_tiles; i++) {
-		for (j = 0; j < 16; j++) {
-			if (tile[j] != tiles[16 * i + j]) {
-				break;
-			}
+bool compare_tile(uint8_t *tile, uint8_t *other) {
+	for (int j = 0; j < 16; j++) {
+		if (tile[j] != other[j]) {
+			return false;
 		}
-		if (j == 16) {
+	}
+	return true;
+}
+
+int get_tile_index(uint8_t* tile, uint8_t* tiles, int num_tiles, int preferred_tile_id) {
+	if (preferred_tile_id >= 0 && preferred_tile_id < num_tiles) {
+		uint8_t *other = &tiles[preferred_tile_id * 16];
+		if (compare_tile(tile, other)) {
+			return preferred_tile_id;
+		}
+	}
+	for (int i = 0; i < num_tiles; i++) {
+		uint8_t *other = &tiles[i * 16];
+		if (compare_tile(tile, other)) {
 			return i;
 		}
 	}
@@ -88,32 +106,45 @@ void create_tilemap(struct Tilemap* tilemap, struct Graphic* graphic, char* grap
 	// so fill it unconditionally and start from the second frame
 	int num_tiles = width * height;
 	int tilemap_size = graphics_size / tile_size;
-	tilemap->data = malloc(tilemap_size);
+	tilemap->data = malloc(tilemap_size * 2);
 	for (i = 0; i < num_tiles; i++) {
 		tilemap->data[tilemap->size] = i;
 		tilemap->size++;
 	}
 	for (i = num_tiles; i < tilemap_size; i++) {
-		tile = get_tile_index(graphics + i * tile_size, graphics, i);
-		if (tile == -1) {
-			tilemap->data[tilemap->size] = num_tiles;
-			tilemap->size++;
-			num_tiles++;
+		int preferred = i % num_tiles_per_frame;
+		int index = get_tile_index(graphics + i * tile_size, graphics, i, preferred);
+		if (Options.girafarig && index == 0) {
+			tile = num_tiles;
+		} else if (index == -1) {
+			tile = num_tiles++;
 		} else {
-			tilemap->data[tilemap->size] = tile;
-			tilemap->size++;
+			tile = tilemap->data[index];
 		}
+		tilemap->data[tilemap->size] = tile;
+		tilemap->size++;
 	}
 
-	graphic->data = malloc(tilemap->size * 16);
+	int graphic_size = tilemap->size * 16;
+	if (Options.girafarig) {
+		// This is probably not needed, but just in case...
+		graphic_size += 16;
+	}
+
+	graphic->data = malloc(graphic_size);
 	graphic->size = 16 * width * height;
 	memcpy(graphic->data, graphics, graphic->size);
 	for (i = width * height; i < tilemap->size; i++) {
-		tile = get_tile_index(graphics + 16 * i, graphic->data, graphic->size / 16);
+		tile = get_tile_index(graphics + 16 * i, graphic->data, graphic->size / 16, i % num_tiles_per_frame);
 		if (tile == -1) {
 			memcpy(graphic->data + graphic->size, graphics + 16 * i, 16);
 			graphic->size += 16;
 		}
+	}
+	if (Options.girafarig) {
+		// Add a duplicate of tile 0 to the end.
+		memcpy(graphic->data + graphic->size, graphics, 16);
+		graphic->size += 16;
 	}
 
 	free(graphics);
@@ -123,8 +154,8 @@ int main(int argc, char* argv[]) {
 	int opt;
 	char* dimensions_filename;
 	char* graphics_filename;
-	char* outfile;
-	char* mapfile;
+	char* outfile = NULL;
+	char* mapfile = NULL;
 	FILE* f;
 	long size;
 	uint8_t bytes[1];
@@ -133,17 +164,30 @@ int main(int argc, char* argv[]) {
 	struct Graphic graphic = {0};
 	struct Tilemap tilemap = {0};
 
-	while ((opt = getopt(argc, argv, "o:t:")) != -1) {
+	while (1) {
+		struct option long_options[] = {
+			{"girafarig", no_argument, &Options.girafarig, 1},
+			{"tilemap", required_argument, 0, 't'},
+			{"output", required_argument, 0, 'o'},
+			{0}
+		};
+		int long_option_index = 0;
+		int opt = getopt_long(argc, argv, "o:t:", long_options, &long_option_index);
+		if (opt == -1) {
+			break;
+		}
 		switch (opt) {
-			case 'o':
-				outfile = optarg;
-				break;
-			case 't':
-				mapfile = optarg;
-				break;
-			default:
-				usage();
-				break;
+		case 0:
+			break;
+		case 'o':
+			outfile = optarg;
+			break;
+		case 't':
+			mapfile = optarg;
+			break;
+		default:
+			usage();
+			break;
 		}
 	}
 	argc -= optind;
