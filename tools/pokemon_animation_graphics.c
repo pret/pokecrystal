@@ -43,7 +43,8 @@ void transpose_tiles(uint8_t* tiles, int width, int size, int tile_size) {
 }
 
 bool compare_tile(uint8_t *tile, uint8_t *other) {
-	for (int j = 0; j < 16; j++) {
+	int j;
+	for (j = 0; j < 16; j++) {
 		if (tile[j] != other[j]) {
 			return false;
 		}
@@ -58,7 +59,8 @@ int get_tile_index(uint8_t* tile, uint8_t* tiles, int num_tiles, int preferred_t
 			return preferred_tile_id;
 		}
 	}
-	for (int i = 0; i < num_tiles; i++) {
+	int i;
+	for (i = 0; i < num_tiles; i++) {
 		uint8_t *other = &tiles[i * 16];
 		if (compare_tile(tile, other)) {
 			return i;
