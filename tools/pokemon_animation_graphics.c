@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <getopt.h>
+#include <stdint.h>
 
 static void usage(void) {
 	printf("Usage: pokemon_animation_graphics [-o outfile] [-t mapfile] 2bpp_file dimensions_file\n");
