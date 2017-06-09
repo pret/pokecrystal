@@ -19,6 +19,7 @@ before_script:
       fi;
     }
 script:
+  - make tools
   - make crystal crystal11
   - make compare
 #  - check_status
