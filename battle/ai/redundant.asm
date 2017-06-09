@@ -11,7 +11,7 @@ AI_Redundant: ; 2c41a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .Moves: ; 2c42c
 	dbw EFFECT_DREAM_EATER,  .DreamEater

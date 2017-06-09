@@ -796,7 +796,7 @@ Function92bd4: ; 92bd4 (24:6bd4)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 ; 92be4 (24:6be4)
 
@@ -1311,7 +1311,7 @@ Slots_CheckMatchedFirstTwoReels: ; 92e94
 	ld l, a
 	ld de, .return
 	push de
-	jp [hl]
+	jp hl
 
 .return
 	ld a, [wFirstTwoReelsMatching]
@@ -1422,7 +1422,7 @@ Slots_CheckMatchedAllThreeReels: ; 92f1d
 	ld l, a
 	ld de, .return
 	push de
-	jp [hl]
+	jp hl
 
 .return
 	ld a, [wSlotMatched]
@@ -1855,7 +1855,7 @@ SlotPayoutText: ; 93158 (24:7158)
 	ld l, a
 	ld de, .return
 	push de
-	jp [hl]
+	jp hl
 
 .return
 	ld hl, .Text_PrintPayout
@@ -1958,7 +1958,7 @@ SlotMachine_AnimateGolem: ; 9321d (24:721d)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .Jumptable: ; 9322d (24:722d)
 
@@ -2059,7 +2059,7 @@ Slots_AnimateChansey: ; 932ac (24:72ac)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .Jumptable: ; 932bc (24:72bc)
 

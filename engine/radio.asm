@@ -25,7 +25,7 @@ PlayRadioShow:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 RadioJumptable:
 	dw OaksPkmnTalk1  ; $00

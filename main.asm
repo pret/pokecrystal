@@ -3214,7 +3214,7 @@ CatchTutorial:: ; 4e554
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .dw ; 4e564 (13:6564)
 	dw .DudeTutorial

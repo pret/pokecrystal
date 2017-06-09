@@ -235,7 +235,7 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 	ld l, a
 	ld de, .return_from_jumptable
 	push de
-	jp [hl]
+	jp hl
 
 .return_from_jumptable
 	call Pokegear_FinishTilemap
@@ -431,7 +431,7 @@ PokegearJumptable: ; 90f04 (24:4f04)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .Jumptable: ; 90f13 (24:4f13)
 	dw PokegearClock_Init
@@ -1217,7 +1217,7 @@ PokegearPhoneContactSubmenu: ; 91342 (24:5342)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .Cancel: ; 913f1
 	ld hl, PokegearText_WhomToCall
@@ -1484,7 +1484,7 @@ UpdateRadioStation: ; 9166f (24:566f)
 	ld l, a
 	ld de, .returnafterstation
 	push de
-	jp [hl]
+	jp hl
 
 .returnafterstation
 	ld a, [wPokegearRadioChannelBank]
@@ -2043,7 +2043,7 @@ PlayRadio: ; 91a53
 	ld l, a
 	ld de, .jump_return
 	push de
-	jp [hl]
+	jp hl
 
 .jump_return
 	push de

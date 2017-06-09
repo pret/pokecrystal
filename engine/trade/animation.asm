@@ -232,7 +232,7 @@ DoTradeAnimation: ; 29082
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 ; 290af
 
 .JumpTable: ; 290af
@@ -549,7 +549,7 @@ TradeAnim_TubeAnimJumptable: ; 29281
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 ; 2928f
 
 .Jumptable: ; 2928f
@@ -1173,7 +1173,7 @@ TradeAnim_AnimateTrademonInTube: ; 29676 (a:5676)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 ; 29686
 
 .Jumptable: ; 29686 (a:5686)
