@@ -29,11 +29,12 @@ crystal11_obj := $(crystal_obj:.o=11.o)
 roms := pokecrystal.gbc pokecrystal11.gbc
 
 all: crystal
-crystal: pokecrystal.gbc
-crystal11: pokecrystal11.gbc
+crystal: tools pokecrystal.gbc
+crystal11: tools pokecrystal11.gbc
 
 clean:
 	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
+	make clean -C tools/
 
 compare: $(roms)
 	@$(MD5) roms.md5
