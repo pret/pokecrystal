@@ -36,7 +36,6 @@ xcode-select --install
 
 git clone https://github.com/rednex/rgbds
 cd rgbds
-git checkout v0.2.5
 sudo make install
 cd ..
 
@@ -58,7 +57,7 @@ To build on Windows, install [**Cygwin**](http://cygwin.com/install.html) with t
 
 In the installer, select the following packages: `make` `git` `gettext`
 
-Then get [**rgbds 0.2.5**](https://github.com/rednex/rgbds/releases/). Versions 0.3.0 and later are not compatible.
+Then get [**rgbds**](https://github.com/rednex/rgbds/releases/).
 Extract the archive and put `rgbasm.exe`, `rgblink.exe`, `rgbfix.exe` and `rgbgfx.exe` in `C:\cygwin64\usr\local\bin`.
 
 In the **Cygwin terminal**:
