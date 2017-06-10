@@ -29,8 +29,15 @@ crystal11_obj := $(crystal_obj:.o=11.o)
 roms := pokecrystal.gbc pokecrystal11.gbc
 
 all: crystal
-crystal: tools pokecrystal.gbc
-crystal11: tools pokecrystal11.gbc
+crystal: pokecrystal.gbc
+crystal11: pokecrystal11.gbc
+
+# Ensure that the tools are built when making the ROM
+ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(MAKECMDGOALS),tools)
+Makefile: tools
+endif
+endif
 
 clean:
 	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
