@@ -7,7 +7,7 @@ If you run into trouble, ask on irc ([**freenode#pret**](https://kiwiirc.com/cli
 # Linux
 
 ```bash
-sudo apt-get install make gcc bison git
+sudo apt-get install make gcc bison git libpng-dev
 
 git clone https://github.com/rednex/rgbds
 cd rgbds
