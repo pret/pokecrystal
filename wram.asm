@@ -11,7 +11,7 @@ StackTop::
 	ds 1
 
 
-SECTION "Audio", WRAM0
+SECTION "Audio RAM", WRAM0
 wMusic::
 MusicPlaying:: ; c100
 ; nonzero if playing
@@ -216,7 +216,7 @@ TilePermissions:: ; c2fe
 
 	ds 1
 
-SECTION "wSpriteAnims", WRAM0 [$c300]
+SECTION "wSpriteAnims", WRAM0
 ; wc300 - wc313 is a 10x2 dictionary.
 ; keys: taken from third column of SpriteAnimSeqData
 ; values: VTiles
@@ -310,7 +310,7 @@ wc3fb:: ds 1
 wc3fc:: ds 4
 
 
-SECTION "Sprites", WRAM0 [$c400]
+SECTION "Sprites", WRAM0
 
 Sprites:: ; c400
 ; 4 bytes per sprite
@@ -898,7 +898,7 @@ wMiscEnd::
 
 wc7e8:: ds 24 ; ????
 
-SECTION "Overworld Map", WRAM0 [$c800]
+SECTION "Overworld Map", WRAM0
 
 OverworldMap:: ; c800
 	ds 1300
@@ -1514,7 +1514,7 @@ wDaysSince:: ds 1
 wRAM0End:: ; cfd8
 
 
-SECTION "WRAM 1", WRAMX, BANK [1]
+SECTION "WRAM 1", WRAMX
 
 wd000:: ds 1
 DefaultSpawnpoint::
@@ -2193,7 +2193,7 @@ TimeOfDay:: ; d269
 
 	ds 1
 
-SECTION "Enemy Party", WRAMX, BANK [1]
+SECTION "Enemy Party", WRAMX
 wPokedexShowPointerAddr::
 wd26b:: ds 1
 wd26c:: ds 1
@@ -2204,7 +2204,7 @@ wd271:: ds 5
 	ds wd26b - @
 
 
-; SECTION "Enemy Party", WRAMX, BANK [1]
+; SECTION "Enemy Party", WRAMX
 OTPlayerName:: ds NAME_LENGTH ; d26b
 OTPlayerID:: ds 2 ; d276
 	ds 8
@@ -2530,7 +2530,7 @@ FarfetchdPosition:: ; d964
 	ds 13
 
 
-;SECTION "Map Triggers", WRAMX, BANK [1]
+;SECTION "Map Triggers", WRAMX
 
 wPokecenter2FTrigger::                       ds 1 ; d972
 wTradeCenterTrigger::                        ds 1 ; d973
@@ -2615,7 +2615,7 @@ wMobileBattleRoomTrigger::                   ds 1 ; d9c0
 	ds 49
 
 
-;SECTION "Events", WRAMX, BANK [1]
+;SECTION "Events", WRAMX
 
 wJackFightCount::    ds 1 ; d9f2
 wBeverlyFightCount:: ds 1 ; unused
@@ -2808,7 +2808,7 @@ wScreenSave:: ds 6 * 5
 wMapDataEnd::
 
 
-SECTION "Party", WRAMX, BANK [1]
+SECTION "Party", WRAMX
 
 wPokemonData::
 
@@ -2907,7 +2907,7 @@ wMagikarpRecordHoldersName:: ds NAME_LENGTH
 wPokemonDataEnd::
 wGameDataEnd::
 
-SECTION "Pic Animations", WRAMX, BANK [2]
+SECTION "Pic Animations", WRAMX
 
 TempTileMap::
 ; 20x18 grid of 8x8 tiles
@@ -2946,7 +2946,7 @@ wPokeAnimBitmaskBuffer:: ds 7
 wPokeAnimStructEnd::
 
 
-SECTION "Battle Tower", WRAMX, BANK [3]
+SECTION "Battle Tower", WRAMX
 
 w3_d000:: ds 1 ; d000
 w3_d001:: ds 1
@@ -2997,7 +2997,7 @@ w3_dd68:: ds SCREEN_WIDTH * SCREEN_HEIGHT
 w3_dfec:: ds $10
 w3_dffc:: ds 4
 
-SECTION "GBC Video", WRAMX, BANK [5]
+SECTION "GBC Video", WRAMX
 
 ; 8 4-color palettes
 UnknBGPals:: ds 8 palettes ; d000
@@ -3022,7 +3022,7 @@ LYOverridesBackup:: ; d200
 LYOverridesBackupEnd::
 
 
-SECTION "Battle Animations", WRAMX [$d300], BANK [5]
+SECTION "Battle Animations", WRAMX
 
 wBattleAnimTileDict:: ds 10
 
@@ -3087,7 +3087,7 @@ wSurfWaveBGEffectEnd::
 	ds -$e
 wBattleAnimEnd::
 
-SECTION "WRAM 5 MOBILE", WRAMX [$d800], BANK [5]
+SECTION "WRAM 5 MOBILE", WRAMX
 w5_d800:: ds $200
 w5_da00:: ds $200
 w5_dc00:: ds $d
@@ -3098,7 +3098,7 @@ w5_MobileOpponentBattleStartMessage:: ds $c ; dc26
 w5_MobileOpponentBattleWinMessage:: ds $c ; dc32
 w5_MobileOpponentBattleLossMessage:: ds $c ; dc3e
 
-SECTION "WRAM 6", WRAMX, BANK [6]
+SECTION "WRAM 6", WRAMX
 
 wDecompressScratch::
 wScratchTileMap::
@@ -3109,6 +3109,6 @@ w6_d800::
 
 INCLUDE "sram.asm"
 
-SECTION "WRAM 7", WRAMX, BANK [7]
+SECTION "WRAM 7", WRAMX
 wWindowStack:: ds $1000 - 1
 wWindowStackBottom:: ds 1

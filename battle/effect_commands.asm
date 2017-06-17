@@ -113,7 +113,7 @@ DoMove: ; 3402c
 	jr .ReadMoveEffectCommand
 
 .DoMoveEffectCommand:
-	jp [hl]
+	jp hl
 
 ; 34084
 

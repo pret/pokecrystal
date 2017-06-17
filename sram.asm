@@ -3,11 +3,11 @@ SRAM_End   EQU $c000
 GLOBAL SRAM_Begin, SRAM_End
 
 
-SECTION "Scratch", SRAM, BANK [0]
+SECTION "Scratch", SRAM
 sScratch::
 
 
-SECTION "SRAM Bank 0", SRAM [$a600], BANK [0]
+SECTION "SRAM Bank 0", SRAM
 
 ; a600
 sPartyMail::
@@ -78,7 +78,7 @@ sRTCStatusFlags:: ds 8
 sLuckyNumberDay:: ds 1
 sLuckyIDNumber:: ds 2
 
-SECTION "Backup Save", SRAM [$b200], BANK [0]
+SECTION "Backup Save", SRAM
 sBackupOptions:: ds OptionsEnd - Options
 
 s0_b208:: ds 1 ; loaded with 99, used to check save corruption
@@ -98,7 +98,7 @@ s0_bf0f:: ds 1 ; loaded with 0x7f, used to check save corruption
 sStackTop:: ds 2
 
 
-SECTION "Save", SRAM, BANK [1]
+SECTION "Save", SRAM
 
 sOptions:: ds OptionsEnd - Options
 
@@ -117,13 +117,13 @@ sGameDataEnd::
 sChecksum::   ds 2
 s1_ad0f::     ds 1 ; loaded with 0x7f, used to check save corruption
 
-SECTION "Active Box", SRAM, BANK [1]
+SECTION "Active Box", SRAM
 ; ad10
 	box sBox
 ; b160
 
 	ds $f4
-SECTION "Link Battle Data", SRAM, BANK [1]
+SECTION "Link Battle Data", SRAM
 sLinkBattleResults:: ds $c
 
 sLinkBattleStats:: ; b260
@@ -145,7 +145,7 @@ sLinkBattleRecord4:: link_battle_record sLinkBattleRecord4
 sLinkBattleRecord5:: link_battle_record sLinkBattleRecord5
 sLinkBattleStatsEnd::
 
-SECTION "SRAM Hall of Fame", SRAM, BANK [1]
+SECTION "SRAM Hall of Fame", SRAM
 sHallOfFame:: ; b2c0
 ; temporary until I can find a way to macrofy it
 	hall_of_fame sHallOfFame01
@@ -193,14 +193,14 @@ sHallOfFame:: ; b2c0
 ; endr
 sHallOfFameEnd::
 
-SECTION "SRAM Crystal Data", SRAM, BANK [1]
+SECTION "SRAM Crystal Data", SRAM
 sMobileEventIndex:: ds 1 ; be3c
 
 sCrystalData::
 	ds wCrystalDataEnd - wCrystalData
 sMobileEventIndexBackup:: ds 1
 
-SECTION "SRAM Battle Tower", SRAM, BANK [1]
+SECTION "SRAM Battle Tower", SRAM
 ; data of the BattleTower must be in SRAM because you can save and leave between battles
 sBattleTowerChallengeState:: ds 1
 ; 0: normal
@@ -235,7 +235,7 @@ SECTION "Boxes 1-7",  SRAM, BANK [2]
 	box sBox6
 	box sBox7
 
-SECTION "Boxes 8-14", SRAM, BANK [3]
+SECTION "Boxes 8-14", SRAM
 	box sBox8
 	box sBox9
 	box sBox10

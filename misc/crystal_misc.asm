@@ -1,7 +1,7 @@
 INCLUDE "includes.asm"
 
 
-SECTION "Misc Crystal", ROMX, BANK[MISC_CRYSTAL]
+SECTION "Misc Crystal", ROMX
 
 MobileAdapterGFX::
 INCBIN "gfx/misc/mobile_adapter.2bpp"

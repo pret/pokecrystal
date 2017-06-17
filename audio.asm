@@ -1,7 +1,7 @@
 INCLUDE "includes.asm"
 
 
-SECTION "Audio", ROMX, BANK[AUDIO]
+SECTION "Audio", ROMX
 
 INCLUDE "audio/engine.asm"
 
@@ -21,7 +21,7 @@ INCLUDE "audio/sfx_pointers.asm"
 
 
 
-SECTION "Songs 1", ROMX, BANK[SONGS_1]
+SECTION "Songs 1", ROMX
 
 INCLUDE "audio/music/route36.asm"
 INCLUDE "audio/music/rivalbattle.asm"
@@ -40,7 +40,7 @@ INCLUDE "audio/music/lookpokemaniac.asm"
 INCLUDE "audio/music/trainervictory.asm"
 
 
-SECTION "Songs 2", ROMX, BANK[SONGS_2]
+SECTION "Songs 2", ROMX
 
 INCLUDE "audio/music/route1.asm"
 INCLUDE "audio/music/route3.asm"
@@ -76,7 +76,7 @@ INCLUDE "audio/music/contestresults.asm"
 INCLUDE "audio/music/route30.asm"
 
 
-SECTION "Songs 3", ROMX, BANK[SONGS_3]
+SECTION "Songs 3", ROMX
 
 INCLUDE "audio/music/violetcity.asm"
 INCLUDE "audio/music/route29.asm"
@@ -86,7 +86,7 @@ INCLUDE "audio/music/evolution.asm"
 INCLUDE "audio/music/printer.asm"
 
 
-SECTION "Songs 4", ROMX, BANK[SONGS_4]
+SECTION "Songs 4", ROMX
 
 INCLUDE "audio/music/viridiancity.asm"
 INCLUDE "audio/music/celadoncity.asm"
@@ -127,7 +127,7 @@ INCLUDE "audio/music/pokeflutechannel.asm"
 INCLUDE "audio/music/bugcatchingcontest.asm"
 
 
-SECTION "Songs 5", ROMX, BANK[SONGS_5]
+SECTION "Songs 5", ROMX
 
 INCLUDE "audio/music/mobileadaptermenu.asm"
 INCLUDE "audio/music/buenaspassword.asm"
@@ -140,31 +140,31 @@ INCLUDE "audio/music/mobilecenter.asm"
 
 
 
-SECTION "Extra Songs 1", ROMX, BANK[EXTRA_SONGS_1]
+SECTION "Extra Songs 1", ROMX
 
 INCLUDE "audio/music/credits.asm"
 INCLUDE "audio/music/clair.asm"
 INCLUDE "audio/music/mobileadapter.asm"
 
 
-SECTION "Extra Songs 2", ROMX, BANK[EXTRA_SONGS_2]
+SECTION "Extra Songs 2", ROMX
 
 INCLUDE "audio/music/postcredits.asm"
 
 
 
-SECTION "Sound Effects", ROMX, BANK[SOUND_EFFECTS]
+SECTION "Sound Effects", ROMX
 
 INCLUDE "audio/sfx.asm"
 
 
-SECTION "Crystal Sound Effects", ROMX, BANK[CRYSTAL_SOUND_EFFECTS]
+SECTION "Crystal Sound Effects", ROMX
 
 INCLUDE "audio/sfx_crystal.asm"
 
 
 
-SECTION "Cries", ROMX, BANK[CRIES]
+SECTION "Cries", ROMX
 
 CryHeaders:: INCLUDE "audio/cry_headers.asm"
 

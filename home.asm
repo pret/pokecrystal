@@ -1,18 +1,18 @@
 INCLUDE "includes.asm"
 
-SECTION "NULL", ROM0[0]
+SECTION "NULL", ROM0
 NULL::
 
 INCLUDE "rst.asm"
 INCLUDE "interrupts.asm"
 
-SECTION "Header", ROM0[$100]
+SECTION "Header", ROM0
 
 Start::
 	nop
 	jp _Start
 
-SECTION "Home", ROM0[$150]
+SECTION "Home", ROM0
 
 INCLUDE "home/init.asm"
 INCLUDE "home/vblank.asm"
@@ -152,7 +152,7 @@ INCLUDE "home/sram.asm"
 ; Register aliases
 
 _hl_:: ; 2fec
-	jp [hl]
+	jp hl
 ; 2fed
 
 _de_:: ; 2fed

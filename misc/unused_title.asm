@@ -1,5 +1,5 @@
 
-SECTION "bank43", ROMX, BANK[$43]
+SECTION "bank43", ROMX
 
 UnusedTitleScreen: ; 10c000
 

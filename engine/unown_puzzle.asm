@@ -183,7 +183,7 @@ UnownPuzzleJumptable: ; e12ca
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 ; e12d9
 
 .Jumptable: ; e12d9

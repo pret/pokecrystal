@@ -1,5 +1,5 @@
 
-SECTION "bank45", ROMX, BANK[$45]
+SECTION "bank45", ROMX
 
 	charmap " ", $20 ; revert to ascii
 
@@ -146,7 +146,7 @@ Function114243:: ; 114243
 	ld h, [hl]
 	ld l, a
 	pop de
-	jp [hl]
+	jp hl
 
 ; 11425c
 
@@ -5397,7 +5397,7 @@ Function11659d: ; 11659d
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 ; 1165af
 
@@ -6835,7 +6835,7 @@ Unknown_117356: ; 117356
 ; 117656
 
 
-SECTION "Mobile Stadium", ROMX, BANK[$45]
+SECTION "Mobile Stadium", ROMX
 
 Special_GiveOddEgg: ; 117656
 	callba GiveOddEgg
@@ -6931,7 +6931,7 @@ Function117719: ; 117719 (45:7719)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 Jumptable_117728: ; 117728 (45:7728)
 	dw Function117738
@@ -7419,7 +7419,7 @@ Function117ae9: ; 0x117ae9
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .Jumptable: ; 0x117af8
 	dw Function117b06

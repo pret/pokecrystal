@@ -1,6 +1,6 @@
 INCLUDE "includes.asm"
 
-SECTION "bank1", ROMX, BANK[$1]
+SECTION "bank1", ROMX
 
 PlaceWaitingText:: ; 4000
 	hlcoord 3, 10
@@ -246,14 +246,14 @@ Predef1: ; 747a
 ; not used
 	ret
 
-SECTION "bank2", ROMX, BANK[$2]
+SECTION "bank2", ROMX
 
 INCLUDE "engine/player_object.asm"
 INCLUDE "engine/sine.asm"
 INCLUDE "engine/predef.asm"
 INCLUDE "engine/color.asm"
 
-SECTION "bank3", ROMX, BANK[$3]
+SECTION "bank3", ROMX
 
 CheckTime:: ; c000
 	ld a, [TimeOfDay]
@@ -380,7 +380,7 @@ KnowsMove: ; f9ea
 	text_jump UnknownText_0x1c5ea8
 	db "@"
 
-SECTION "bank4", ROMX, BANK[$4]
+SECTION "bank4", ROMX
 
 INCLUDE "engine/pack.asm"
 INCLUDE "engine/time.asm"
@@ -603,7 +603,7 @@ root	set 1
 root	set root+1
 	endr
 
-SECTION "bank5", ROMX, BANK[$5]
+SECTION "bank5", ROMX
 
 INCLUDE "engine/rtc.asm"
 INCLUDE "engine/overworld.asm"
@@ -620,27 +620,27 @@ INCLUDE "event/daycare.asm"
 INCLUDE "event/photo.asm"
 INCLUDE "engine/breeding/egg.asm"
 
-SECTION "Tileset Data 1", ROMX, BANK[TILESETS_1]
+SECTION "Tileset Data 1", ROMX
 
 INCLUDE "tilesets/data_1.asm"
 
-SECTION "Roofs", ROMX, BANK[ROOFS]
+SECTION "Roofs", ROMX
 
 INCLUDE "tilesets/roofs.asm"
 
-SECTION "Tileset Data 2", ROMX, BANK[TILESETS_2]
+SECTION "Tileset Data 2", ROMX
 
 INCLUDE "tilesets/data_2.asm"
 
-SECTION "bank8", ROMX, BANK[$8]
+SECTION "bank8", ROMX
 
 INCLUDE "engine/clock_reset.asm"
 
-SECTION "Tileset Data 3", ROMX, BANK[TILESETS_3]
+SECTION "Tileset Data 3", ROMX
 
 INCLUDE "tilesets/data_3.asm"
 
-SECTION "bank9", ROMX, BANK[$9]
+SECTION "bank9", ROMX
 
 StringBufferPointers:: ; 24000
 	dw StringBuffer3
@@ -1159,7 +1159,7 @@ Kurt_SelectQuantity_InterpretJoypad: ; 27a28
 	ld b, a
 	ret
 
-SECTION "bankA", ROMX, BANK[$A]
+SECTION "bankA", ROMX
 
 INCLUDE "engine/link.asm"
 
@@ -1183,7 +1183,7 @@ INCBIN "gfx/misc/player.6x6.2bpp.lz"
 DudeBackpic: ; 2bbaa
 INCBIN "gfx/misc/dude.6x6.2bpp.lz"
 
-SECTION "bankB", ROMX, BANK[$B]
+SECTION "bankB", ROMX
 
 INCLUDE "battle/trainer_huds.asm"
 
@@ -1618,15 +1618,15 @@ PlaceGraphic: ; 2ef6e
 	jr nz, .x2
 	ret
 
-SECTION "Tileset Data 4", ROMX, BANK[TILESETS_4]
+SECTION "Tileset Data 4", ROMX
 
 INCLUDE "tilesets/data_4.asm"
 
-SECTION "Effect Commands", ROMX, BANK[$D]
+SECTION "Effect Commands", ROMX
 
 INCLUDE "battle/effect_commands.asm"
 
-SECTION "Enemy Trainers", ROMX, BANK[$E]
+SECTION "Enemy Trainers", ROMX
 
 INCLUDE "battle/ai/items.asm"
 
@@ -1706,13 +1706,13 @@ INCLUDE "trainers/trainer_pointers.asm"
 
 INCLUDE "trainers/trainers.asm"
 
-SECTION "Battle Core", ROMX, BANK[$F]
+SECTION "Battle Core", ROMX
 
 INCLUDE "battle/core.asm"
 
 INCLUDE "battle/effect_command_pointers.asm"
 
-SECTION "bank10", ROMX, BANK[$10]
+SECTION "bank10", ROMX
 
 INCLUDE "engine/pokedex.asm"
 
@@ -1720,7 +1720,7 @@ INCLUDE "battle/moves/moves.asm"
 
 INCLUDE "engine/evolve.asm"
 
-SECTION "bank11", ROMX, BANK[$11]
+SECTION "bank11", ROMX
 
 INCLUDE "engine/fruit_trees.asm"
 
@@ -1852,7 +1852,7 @@ DisplayDexEntry: ; 4424d
 	jr z, .skip_height
 	push hl
 	push de
-	ld hl, [sp+$0]
+	ld hl, sp+$0
 	ld d, h
 	ld e, l
 	hlcoord 12, 7
@@ -1876,7 +1876,7 @@ DisplayDexEntry: ; 4424d
 	or d
 	jr z, .skip_weight
 	push de
-	ld hl, [sp+$0]
+	ld hl, sp+$0
 	ld d, h
 	ld e, l
 	hlcoord 11, 9
@@ -1946,7 +1946,7 @@ INCLUDE "data/pokedex/entry_pointers.asm"
 
 INCLUDE "engine/mail.asm"
 
-SECTION "Crystal Unique", ROMX, BANK[$12]
+SECTION "Crystal Unique", ROMX
 
 INCLUDE "engine/init_gender.asm"
 
@@ -2153,7 +2153,7 @@ Buena_ExitMenu: ; 4ae5e
 	ld [hOAMUpdate], a
 	ret
 
-SECTION "bank13", ROMX, BANK[$13]
+SECTION "bank13", ROMX
 
 SwapTextboxPalettes:: ; 4c000
 	hlcoord 0, 0
@@ -3214,7 +3214,7 @@ CatchTutorial:: ; 4e554
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .dw ; 4e564 (13:6564)
 	dw .DudeTutorial
@@ -3538,7 +3538,7 @@ INCLUDE "misc/gbc_only.asm"
 
 INCLUDE "event/poke_seer.asm"
 
-SECTION "bank14", ROMX, BANK[$14]
+SECTION "bank14", ROMX
 
 INCLUDE "engine/party_menu.asm"
 INCLUDE "event/poisonstep.asm"
@@ -4666,11 +4666,11 @@ UnknownEggPic:: ; 53d9c
 ; Another egg pic. This is shifted up a few pixels.
 INCBIN "gfx/misc/unknown_egg.5x5.2bpp.lz"
 
-SECTION "bank19", ROMX, BANK[$19]
+SECTION "bank19", ROMX
 
 INCLUDE "text/phone/extra.asm"
 
-SECTION "bank20", ROMX, BANK[$20]
+SECTION "bank20", ROMX
 
 INCLUDE "engine/player_movement.asm"
 
@@ -4683,7 +4683,7 @@ INCLUDE "text/battle.asm"
 
 INCLUDE "engine/debug.asm"
 
-SECTION "bank21", ROMX, BANK[$21]
+SECTION "bank21", ROMX
 
 INCLUDE "engine/printer.asm"
 
@@ -4691,7 +4691,7 @@ INCLUDE "battle/anim_gfx.asm"
 
 INCLUDE "event/halloffame.asm"
 
-SECTION "bank22", ROMX, BANK[$22]
+SECTION "bank22", ROMX
 
 INCLUDE "event/kurt.asm"
 
@@ -4969,7 +4969,7 @@ INCLUDE "event/dratini.asm"
 INCLUDE "event/battle_tower.asm"
 INCLUDE "misc/mobile_22_2.asm"
 
-SECTION "bank23", ROMX, BANK[$23]
+SECTION "bank23", ROMX
 
 Predef35: ; 8c000
 Predef36:
@@ -4998,7 +4998,7 @@ INCLUDE "engine/sprites.asm"
 
 INCLUDE "engine/mon_icons.asm"
 
-SECTION "bank24", ROMX, BANK[$24]
+SECTION "bank24", ROMX
 
 INCLUDE "engine/phone.asm"
 INCLUDE "engine/timeset.asm"
@@ -5007,12 +5007,12 @@ INCLUDE "engine/pokegear.asm"
 INCLUDE "engine/fish.asm"
 INCLUDE "engine/slot_machine.asm"
 
-SECTION "Phone Engine", ROMX, BANK[$28]
+SECTION "Phone Engine", ROMX
 
 INCLUDE "engine/more_phone_scripts.asm"
 INCLUDE "engine/buena_phone_scripts.asm"
 
-SECTION "Phone Text", ROMX, BANK[$29]
+SECTION "Phone Text", ROMX
 
 INCLUDE "text/phone/anthony_overworld.asm"
 INCLUDE "text/phone/todd_overworld.asm"
@@ -5032,11 +5032,11 @@ INCLUDE "text/phone/kenji_overworld.asm"
 INCLUDE "text/phone/parry_overworld.asm"
 INCLUDE "text/phone/erin_overworld.asm"
 
-SECTION "Tileset Data 5", ROMX, BANK[TILESETS_5]
+SECTION "Tileset Data 5", ROMX
 
 INCLUDE "tilesets/data_5.asm"
 
-SECTION "bank2E", ROMX, BANK[$2E]
+SECTION "bank2E", ROMX
 
 INCLUDE "engine/events_3.asm"
 
@@ -5044,7 +5044,7 @@ INCLUDE "engine/radio.asm"
 
 INCLUDE "gfx/mail.asm"
 
-SECTION "bank2F", ROMX, BANK[$2F]
+SECTION "bank2F", ROMX
 
 INCLUDE "engine/std_scripts.asm"
 
@@ -5082,15 +5082,15 @@ StartBattleWithMapTrainerScript: ; 0xbe68a
 AlreadyBeatenTrainerScript:
 	scripttalkafter
 
-SECTION "bank30", ROMX, BANK[$30]
+SECTION "bank30", ROMX
 
 INCLUDE "gfx/overworld/sprites_1.asm"
 
-SECTION "bank31", ROMX, BANK[$31]
+SECTION "bank31", ROMX
 
 INCLUDE "gfx/overworld/sprites_2.asm"
 
-SECTION "bank32", ROMX, BANK[$32]
+SECTION "bank32", ROMX
 
 INCLUDE "battle/bg_effects.asm"
 
@@ -5148,7 +5148,7 @@ LoadPoisonBGPals: ; cbcdd
 TheEndGFX:: ; cbd2e
 INCBIN "gfx/credits/theend.2bpp"
 
-SECTION "bank33", ROMX, BANK[$33]
+SECTION "bank33", ROMX
 
 DisplayCaughtContestMonStats: ; cc000
 
@@ -5263,7 +5263,7 @@ INCLUDE "battle/anim_commands.asm"
 
 INCLUDE "battle/anim_objects.asm"
 
-SECTION "Pic Animations 1", ROMX, BANK[$34]
+SECTION "Pic Animations 1", ROMX
 
 INCLUDE "gfx/pics/animation.asm"
 
@@ -5303,26 +5303,26 @@ INCLUDE "gfx/pics/bitmasks.asm"
 INCLUDE "gfx/pics/unown_bitmask_pointers.asm"
 INCLUDE "gfx/pics/unown_bitmasks.asm"
 
-SECTION "Pic Animations 2", ROMX, BANK[$35]
+SECTION "Pic Animations 2", ROMX
 
 INCLUDE "gfx/pics/frame_pointers.asm"
 INCLUDE "gfx/pics/kanto_frames.asm"
 
-SECTION "bank36", ROMX, BANK[$36]
+SECTION "bank36", ROMX
 
 FontInversed: INCBIN "gfx/misc/font_inversed.1bpp"
 
-SECTION "Pic Animations 3", ROMX, BANK[$36]
+SECTION "Pic Animations 3", ROMX
 
 INCLUDE "gfx/pics/johto_frames.asm"
 INCLUDE "gfx/pics/unown_frame_pointers.asm"
 INCLUDE "gfx/pics/unown_frames.asm"
 
-SECTION "Tileset Data 6", ROMX, BANK[TILESETS_6]
+SECTION "Tileset Data 6", ROMX
 
 INCLUDE "tilesets/data_6.asm"
 
-SECTION "bank38", ROMX, BANK[$38]
+SECTION "bank38", ROMX
 
 RotateUnownFrontpic: ; e0000
 ; something to do with Unown printer
@@ -5449,7 +5449,7 @@ INCLUDE "engine/unown_puzzle.asm"
 INCLUDE "engine/dummy_game.asm"
 INCLUDE "engine/billspc.asm"
 
-SECTION "bank39", ROMX, BANK[$39]
+SECTION "bank39", ROMX
 
 CopyrightGFX:: ; e4000
 INCBIN "gfx/misc/copyright.2bpp"
@@ -5457,7 +5457,7 @@ INCBIN "gfx/misc/copyright.2bpp"
 INCLUDE "engine/options_menu.asm"
 INCLUDE "engine/crystal_intro.asm"
 
-SECTION "bank3E", ROMX, BANK[$3E]
+SECTION "bank3E", ROMX
 
 INCLUDE "gfx/font.asm"
 INCLUDE "engine/time_capsule/conversion.asm"
@@ -5468,7 +5468,7 @@ INCLUDE "battle/hidden_power.asm"
 
 INCLUDE "battle/misc.asm"
 
-SECTION "bank3F", ROMX, BANK[$3F]
+SECTION "bank3F", ROMX
 
 INCLUDE "tilesets/animations.asm"
 
@@ -5476,11 +5476,11 @@ INCLUDE "engine/npctrade.asm"
 
 INCLUDE "event/mom_phone.asm"
 
-SECTION "bank40", ROMX, BANK[$40]
+SECTION "bank40", ROMX
 
 INCLUDE "misc/mobile_40.asm"
 
-SECTION "bank41", ROMX, BANK[$41]
+SECTION "bank41", ROMX
 
 INCLUDE "misc/gfx_41.asm"
 
@@ -5492,11 +5492,11 @@ INCLUDE "battle/used_move_text.asm"
 
 INCLUDE "misc/mobile_41.asm"
 
-SECTION "bank42", ROMX, BANK[$42]
+SECTION "bank42", ROMX
 
 INCLUDE "misc/mobile_42.asm"
 
-SECTION "Intro Logo", ROMX, BANK[$42]
+SECTION "Intro Logo", ROMX
 
 IntroLogoGFX: ; 109407
 INCBIN "gfx/intro/logo.2bpp.lz"
@@ -5508,24 +5508,24 @@ INCLUDE "engine/title.asm"
 INCLUDE "misc/mobile_45.asm"
 INCLUDE "misc/mobile_46.asm"
 
-SECTION "bank47", ROMX, BANK[$47]
+SECTION "bank47", ROMX
 
 INCLUDE "misc/battle_tower_47.asm"
 
-SECTION "bank5B", ROMX, BANK[$5B]
+SECTION "bank5B", ROMX
 
 INCLUDE "misc/mobile_5b.asm"
 INCLUDE "engine/link_trade.asm"
 
-SECTION "bank5C", ROMX, BANK[$5C]
+SECTION "bank5C", ROMX
 
 INCLUDE "misc/mobile_5c.asm"
 
-SECTION "bank5D", ROMX, BANK[$5D]
+SECTION "bank5D", ROMX
 
 INCLUDE "text/phone/extra3.asm"
 
-SECTION "bank5E", ROMX, BANK[$5E]
+SECTION "bank5E", ROMX
 
 _UpdateBattleHUDs:
 	callba DrawPlayerHUD
@@ -5539,7 +5539,7 @@ _UpdateBattleHUDs:
 
 INCLUDE "misc/mobile_5f.asm"
 
-SECTION "Common Text 1", ROMX, BANK[$6C]
+SECTION "Common Text 1", ROMX
 
 INCLUDE "text/stdtext.asm"
 INCLUDE "text/phone/jack_overworld.asm"
@@ -5554,14 +5554,14 @@ INCLUDE "text/phone/wade_overworld.asm"
 INCLUDE "text/phone/ralph_overworld.asm"
 INCLUDE "text/phone/liz_overworld.asm"
 
-SECTION "bank6D", ROMX, BANK[$6D]
+SECTION "bank6D", ROMX
 
 INCLUDE "text/phone/mom.asm"
 INCLUDE "text/phone/bill.asm"
 INCLUDE "text/phone/elm.asm"
 INCLUDE "text/phone/trainers1.asm"
 
-SECTION "bank72", ROMX, BANK[$72]
+SECTION "bank72", ROMX
 
 ItemNames::
 INCLUDE "items/item_names.asm"
@@ -5573,7 +5573,7 @@ INCLUDE "battle/move_names.asm"
 
 INCLUDE "engine/landmarks.asm"
 
-SECTION "bank77", ROMX, BANK[$77]
+SECTION "bank77", ROMX
 
 UnownFont: ; 1dc000
 INCBIN "gfx/misc/unown_font.2bpp"
@@ -5586,11 +5586,11 @@ INCBIN "gfx/mobile/hp.1bpp"
 MobileLvIcon: ; 1dc599
 INCBIN "gfx/mobile/lv.1bpp"
 
-SECTION "Tileset Data 7", ROMX, BANK[TILESETS_7]
+SECTION "Tileset Data 7", ROMX
 
 INCLUDE "tilesets/data_7.asm"
 
-SECTION "bank77_2", ROMX, BANK[$77]
+SECTION "bank77_2", ROMX
 
 Function1dd6a9: ; 1dd6a9
 ; XXX
@@ -5599,7 +5599,7 @@ Function1dd6a9: ; 1dd6a9
 	ld c, a
 	push bc
 	push de
-	ld hl, [sp+$2]
+	ld hl, sp+$2
 	ld d, h
 	ld e, l
 	pop hl
@@ -5625,7 +5625,7 @@ PrintHoursMins ; 1dd6bb (77:56bb)
 	ld b, a
 ; Crazy stuff happening with the stack
 	push bc
-	ld hl, [sp+$1]
+	ld hl, sp+$1
 	push de
 	push hl
 	pop de
@@ -5637,7 +5637,7 @@ PrintHoursMins ; 1dd6bb (77:56bb)
 	inc hl
 	ld d, h
 	ld e, l
-	ld hl, [sp+$0]
+	ld hl, sp+$0
 	push de
 	push hl
 	pop de
@@ -6021,19 +6021,19 @@ LeggiPostaInglese:
 	jr nz, .loop
 	ret
 
-SECTION "Tileset Data 8", ROMX, BANK[TILESETS_8]
+SECTION "Tileset Data 8", ROMX
 
 INCLUDE "tilesets/data_8.asm"
 
-SECTION "bank7B", ROMX, BANK[$7B]
+SECTION "bank7B", ROMX
 
 INCLUDE "text/battle_tower.asm"
 
-SECTION "bank7C", ROMX, BANK[$7C]
+SECTION "bank7C", ROMX
 
 INCLUDE "data/battle_tower_2.asm"
 
-SECTION "bank7D", ROMX, BANK[$7D]
+SECTION "bank7D", ROMX
 
 	db $cc, $6b, $1e ; XXX
 
@@ -6078,14 +6078,14 @@ Function1f5d9f: ; 1f5d9f
 .unknown_data
 INCBIN "unknown/1f5db4.bin"
 
-SECTION "bank7E", ROMX, BANK[$7E]
+SECTION "bank7E", ROMX
 
 INCLUDE "data/battle_tower.asm"
 INCLUDE "data/odd_eggs.asm"
 
-SECTION "bank7F", ROMX, BANK[$7F]
+SECTION "bank7F", ROMX
 
-SECTION "stadium2", ROMX[$8000-$220], BANK[$7F]
+SECTION "stadium2", ROMX
 
 IF DEF(CRYSTAL11)
 INCBIN "misc/stadium2_2.bin"

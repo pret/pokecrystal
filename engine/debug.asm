@@ -305,7 +305,7 @@ Function81a74: ; 81a74
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .asm_81a9a
 	call Function81eca
@@ -611,7 +611,7 @@ Function81cc2: ; 81cc2
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .asm_81cdf
 	ld a, $4
@@ -1353,7 +1353,7 @@ Function822f0: ; 822f0
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 ; 82301
 
 .dw ; 82301

@@ -125,7 +125,7 @@ PlaceGameFreakPresents: ; e4670
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 ; e467f
 
 .dw ; e467f
@@ -222,7 +222,7 @@ GameFreakLogoJumper: ; e46ed (39:46ed)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 GameFreakLogoScenes: ; e46fd (39:46fd)
 	dw GameFreakLogoScene1
@@ -438,7 +438,7 @@ IntroSceneJumper: ; e490f
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 ; e491e
 
 IntroScenes: ; e491e (39:491e)

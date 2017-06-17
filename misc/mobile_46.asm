@@ -1,4 +1,4 @@
-SECTION "bank46", ROMX, BANK[$46]
+SECTION "bank46", ROMX
 
 Function118000: ; 118000
 	ld a, $1
@@ -3014,7 +3014,7 @@ Unknown_1196b8: ; 1196b8
 	db "Sun"
 ; 1196cd
 
-SECTION "bank46_2", ROMX, BANK[$46]
+SECTION "bank46_2", ROMX
 ; A hack to use ascii above.
 
 Function1196cd: ; 1196cd (46:56cd)
@@ -5874,7 +5874,7 @@ Function11ad6e: ; 11ad6e
 	ld a, [wJumptableIndex]
 	ld hl, Jumptable_11ad78
 	call Function11b239
-	jp [hl]
+	jp hl
 ; 11ad78
 
 Jumptable_11ad78: ; 11ad78
