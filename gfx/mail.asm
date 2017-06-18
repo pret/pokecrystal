@@ -226,7 +226,7 @@ LoadEonMailGFX: ; b93d2
 	ld de, EonMailBorder1GFX
 	ld c, 1 * 8
 	call LoadMailGFX_Color2
-	ld de, EonMailBorder3GFX
+	ld de, SurfMailBorderGFX + 6 * 8
 	ld c, 1 * 8
 	call LoadMailGFX_Color2
 	ld de, MailEeveeGFX
@@ -329,13 +329,13 @@ LoadMorphMailGFX: ; b94d6
 	ld hl, VTiles2 tile $31
 	ld bc, 5 * 8
 	call MailGFX_GenerateMonochromeTilesColor2
+	ld de, MorphMailBorderCornerGFX + 3 * 8
+	ld c, 1 * 8
+	call LoadMailGFX_Color2
+	ld de, MorphMailBorderCornerGFX
+	ld c, 1 * 8
+	call LoadMailGFX_Color2
 	ld de, MorphMailBorderGFX
-	ld c, 1 * 8
-	call LoadMailGFX_Color2
-	ld de, MorphMailBorderCorner1GFX
-	ld c, 1 * 8
-	call LoadMailGFX_Color2
-	ld de, MorphMailBorderCorner2GFX
 	ld c, 1 * 8
 	call LoadMailGFX_Color2
 	ld de, EonMailBorder1GFX
@@ -418,16 +418,16 @@ LoadBlueSkyMailGFX: ; b9582
 	ld de, MailCloudGFX
 	ld c, 6 * 8
 	call LoadMailGFX_Color1
-	ld de, FlowerMailSenderUnderlineGFX
+	ld de, FlowerMailBorderGFX + 6 * 8
 	ld c, 1 * 8
 	call LoadMailGFX_Color1
 	ld de, MailCloudGFX
 	ld c, 1 * 8
 	call LoadMailGFX_Color1
-	ld de, MailCloud2GFX
+	ld de, MailCloudGFX + 2 * 8
 	ld c, 2 * 8
 	call LoadMailGFX_Color1
-	ld de, MailCloud3GFX
+	ld de, MailCloudGFX + 5 * 8
 	ld c, 1 * 8
 	call LoadMailGFX_Color1
 
@@ -497,10 +497,10 @@ LoadFlowerMailGFX: ; b963e
 	ld de, MailOddishGFX
 	ld c, 4 * 8
 	call LoadMailGFX_Color3
-	ld de, FlowerMailSenderUnderlineGFX
+	ld de, FlowerMailBorderGFX + 6 * 8
 	ld c, 1 * 8
 	call LoadMailGFX_Color2
-	ld de, FlowerMailLargeFlowerGFX
+	ld de, FlowerMailFlowerGFX
 	ld c, 4 * 8
 	call LoadMailGFX_Color1
 	ld c, 4 * 8
@@ -580,7 +580,7 @@ LoadMusicMailGFX: ; b9710
 	ld de, MusicMailBorderGFX
 	ld c, 4 * 8
 	call LoadMailGFX_Color2
-	ld de, MorphMailBorderCorner2GFX
+	ld de, MorphMailBorderGFX
 	ld c, 2 * 8
 	call LoadMailGFX_Color2
 	ld de, MailNatuGFX
@@ -628,10 +628,10 @@ LoadMirageMailGFX: ; b9776
 	ld de, MailMewGFX
 	ld c, 18 * 8
 	call LoadMailGFX_Color2
-	ld de, MirageMailTopDividerGFX
+	ld de, LiteBlueMailBorderGFX + 1 * 8
 	ld c, 1 * 8
 	call LoadMailGFX_Color1
-	ld de, MirageMailBottomDividerGFX
+	ld de, LiteBlueMailBorderGFX + 6 * 8
 	ld c, 1 * 8
 	call LoadMailGFX_Color1
 
@@ -947,7 +947,7 @@ INCBIN "gfx/mail/0b992e.1bpp"
 PortraitMailSmallPokeballGFX: ; b9936
 INCBIN "gfx/mail/0b9936.1bpp"
 
-MorphMailBorderCorner2GFX: ; b993e
+MorphMailBorderGFX: ; b993e
 INCBIN "gfx/mail/0b993e.1bpp"
 
 MusicMailSmallNoteGFX: ; b9946
@@ -1016,20 +1016,14 @@ INCBIN "gfx/mail/0b9c3e.1bpp"
 LovelyMailLargeHeartGFX: ; b9c5e
 INCBIN "gfx/mail/0b9c5e.1bpp"
 
-MorphMailBorderCorner1GFX: ; b9c7e
+MorphMailBorderCornerGFX: ; b9c7e
 INCBIN "gfx/mail/0b9c7e.1bpp"
-
-MorphMailBorderGFX: ; b9c96
-INCBIN "gfx/mail/0b9c96.1bpp"
 
 MailLargeCircleGFX: ; b9c9e
 INCBIN "gfx/mail/0b9c9e.1bpp"
 
-FlowerMailLargeFlowerGFX: ; b9cbe
+FlowerMailFlowerGFX: ; b9cbe
 INCBIN "gfx/mail/0b9cbe.1bpp"
-
-FlowerMailSmallFlowerGFX: ; b9cde
-; indirectly referenced
 INCBIN "gfx/mail/0b9cde.1bpp"
 
 MusicMailLargeNoteGFX: ; b9cfe
@@ -1038,32 +1032,14 @@ INCBIN "gfx/mail/0b9cfe.1bpp"
 MailCloudGFX: ; b9d16
 INCBIN "gfx/mail/0b9d16.1bpp"
 
-MailCloud2GFX: ; b9d26
-INCBIN "gfx/mail/0b9d26.1bpp"
-
-MailCloud3GFX: ; b9d3e
-INCBIN "gfx/mail/0b9d3e.1bpp"
-
 SurfMailBorderGFX: ; b9d46
 INCBIN "gfx/mail/0b9d46.1bpp"
-
-EonMailBorder3GFX: ; b9d76
-INCBIN "gfx/mail/0b9d76.1bpp"
 
 FlowerMailBorderGFX: ; b9d86
 INCBIN "gfx/mail/0b9d86.1bpp"
 
-FlowerMailSenderUnderlineGFX: ; b9db6
-INCBIN "gfx/mail/0b9db6.1bpp"
-
 LiteBlueMailBorderGFX: ; b9dc6
 INCBIN "gfx/mail/0b9dc6.1bpp"
-
-MirageMailTopDividerGFX: ; b9dce
-INCBIN "gfx/mail/0b9dce.1bpp"
-
-MirageMailBottomDividerGFX: ; b9df6
-INCBIN "gfx/mail/0b9df6.1bpp"
 
 MusicMailBorderGFX: ; b9e06
 INCBIN "gfx/mail/0b9e06.1bpp"

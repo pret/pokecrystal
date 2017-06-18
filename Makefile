@@ -124,6 +124,9 @@ gfx/shrink%.2bpp: gfx/shrink%.png
 gfx/trainers/%.2bpp: gfx/trainers/%.png
 	rgbgfx -h -o $@ $<
 
+gfx/mail/%.1bpp: gfx/mail/%.png
+	rgbgfx -d1 -o $@ $<
+	tools/gfx -d1 --remove-whitespace -o $@ $@
 
 %.bin: ;
 %.blk: ;
