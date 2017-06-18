@@ -31,7 +31,7 @@ void get_args(int argc, char *argv[]) {
 		{0}
 	};
 	for (int opt = 0; opt != -1;) {
-		switch(opt = getopt_long(argc, argv, "ho:d:", long_options)) {
+		switch (opt = getopt_long(argc, argv, "ho:d:", long_options)) {
 		case 'h':
 			Options.help = true;
 			break;
@@ -45,7 +45,6 @@ void get_args(int argc, char *argv[]) {
 		case -1:
 			break;
 		default:
-			printf("ay %d", opt);
 			usage();
 			exit(1);
 			break;
