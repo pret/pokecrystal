@@ -299,7 +299,7 @@ MagnetTrain_Jumptable: ; 8cdf7
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 ; 8ce06
 
 .Jumptable: ; 8ce06

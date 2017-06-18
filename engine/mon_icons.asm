@@ -33,7 +33,7 @@ LoadMenuMonIcon: ; 8e83f
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 ; 8e854
 
 

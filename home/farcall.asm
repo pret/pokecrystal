@@ -50,5 +50,5 @@ ReturnFarCall:: ; 2d6e
 ; 2d82
 
 FarJump_hl:: ; 2d82
-	jp [hl]
+	jp hl
 ; 2d83

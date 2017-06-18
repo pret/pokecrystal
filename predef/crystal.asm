@@ -17,7 +17,7 @@ GetMysteryGift_MobileAdapterLayout: ; 4930f (mobile)
 	ld l, a
 	ld de, .done
 	push de
-	jp [hl]
+	jp hl
 .done
 	ret
 ; 49330 (12:5330)

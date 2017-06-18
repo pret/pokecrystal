@@ -75,7 +75,7 @@ DoBattleBGEffectFunction: ; c804a (32:404a)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 BattleBGEffects: ; c805a (32:405a)
 	dw BattleBGEffect_End
@@ -161,7 +161,7 @@ BattleBGEffects_AnonJumptable: ; c80d7 (32:40d7)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 BattleBGEffects_IncrementJumptable: ; c80e5 (32:40e5)
 	ld hl, BG_EFFECT_STRUCT_JT_INDEX
@@ -2059,7 +2059,7 @@ BattleBGEffect_1c: ; c8b00 (32:4b00)
 .cgb
 	ld de, .Jumptable
 	call BatttleBGEffects_GetNamedJumptablePointer
-	jp [hl]
+	jp hl
 
 .Jumptable:
 	dw .cgb_zero
@@ -2421,7 +2421,7 @@ BGEffect_RapidCyclePals: ; c8d77 (32:4d77)
 	ld de, .Jumptable_DMG
 	call BatttleBGEffects_GetNamedJumptablePointer
 	pop de
-	jp [hl]
+	jp hl
 
 .Jumptable_DMG:
 	dw .zero_dmg
@@ -2484,7 +2484,7 @@ BGEffect_RapidCyclePals: ; c8d77 (32:4d77)
 	ld de, .Jumptable_CGB
 	call BatttleBGEffects_GetNamedJumptablePointer
 	pop de
-	jp [hl]
+	jp hl
 
 .Jumptable_CGB: ; c8ddd (32:4ddd)
 	dw .zero_cgb
