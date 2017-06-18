@@ -6,7 +6,8 @@ all: \
 	scan_includes \
 	palette \
 	pokemon_animation \
-	pokemon_animation_graphics
+	pokemon_animation_graphics \
+	gfx
 	@:
 
 %: %.c
