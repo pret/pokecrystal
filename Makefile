@@ -120,6 +120,8 @@ gfx/mail/0b9d86.1bpp: tools/gfx += --remove-whitespace
 gfx/mail/0b9dc6.1bpp: tools/gfx += --remove-whitespace
 gfx/mail/0b9cfe.1bpp: tools/gfx += --remove-whitespace
 
+gfx/pokedex/%.2bpp: tools/gfx += --trim-whitespace
+
 %.bin: ;
 %.blk: ;
 
