@@ -58,10 +58,6 @@ pokecrystal.gbc: $(crystal_obj)
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 
 
-define LOUD
-echo "$1"; $1
-endef
-
 # For files that the compressor can't match, there will be a .lz file suffixed with the hash of the correct uncompressed file.
 # If the hash of the uncompressed file matches, use this .lz instead.
 # This allows pngs to be used for compressed graphics and still match.
@@ -69,11 +65,7 @@ endef
 %.lz: hash = $(shell md5sum $(*D)/$(*F) | sed "s/\(.\{8\}\).*/\1/")
 %.lz: %
 	$(eval filename := $@.$(hash))
-	@if [ -f $(filename) ]; then \
-		$(call LOUD, cp $(filename) $@); \
-	else \
-		$(call LOUD, tools/lzcomp $< $@); \
-	fi
+	$(if $(wildcard $(filename)),cp $(filename) $@,tools/lzcomp $< $@)
 
 # Terrible hacks to match animations. Delete these rules if you don't care about matching.
 
@@ -118,23 +110,27 @@ gfx/pics/%/front.animated.tilemap: gfx/pics/%/front.2bpp gfx/pics/%/front.dimens
 
 # Misc file-specific graphics rules
 
-gfx/shrink%.2bpp: gfx/shrink%.png
-	rgbgfx -h -o $@ $<
+gfx/shrink%.2bpp: rgbgfx += -h
 
-gfx/trainers/%.2bpp: gfx/trainers/%.png
-	rgbgfx -h -o $@ $<
+gfx/trainers/%.2bpp: rgbgfx += -h
 
-gfx/mail/%.1bpp: gfx/mail/%.png
-	rgbgfx -d1 -o $@ $<
-	tools/gfx -d1 --remove-whitespace -o $@ $@
+gfx/mail/0b9b46.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/0b9d46.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/0b9d86.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/0b9dc6.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/0b9cfe.1bpp: tools/gfx += --remove-whitespace
 
 %.bin: ;
 %.blk: ;
 
 %.2bpp: %.png
-	rgbgfx -o $@ $<
+	rgbgfx $(rgbgfx) -o $@ $<
+	$(if $(tools/gfx),tools/gfx $(tools/gfx) -o $@ $@)
+
 %.1bpp: %.png
-	rgbgfx -d1 -o $@ $<
+	rgbgfx $(rgbgfx) -d1 -o $@ $<
+	$(if $(tools/gfx),tools/gfx $(tools/gfx) -d1 -o $@ $@)
+
 %.tilemap: %.png
 	rgbgfx -t $@ $<
 %.gbcpal: %.png
