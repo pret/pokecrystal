@@ -2987,7 +2987,7 @@ INCBIN "gfx/misc/kanto.bin"
 PokedexNestIconGFX: ; 922d1
 INCBIN "gfx/pokegear/dexmap_nest_icon.2bpp"
 FlyMapLabelBorderGFX: ; 922e1
-INCBIN "gfx/pokegear/flymap_label_border.2bpp"
+INCBIN "gfx/pokegear/flymap_label_border.1bpp"
 
 ; XXX
 	xor a
