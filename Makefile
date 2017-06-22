@@ -122,6 +122,11 @@ gfx/mail/0b9cfe.1bpp: tools/gfx += --remove-whitespace
 
 gfx/pokedex/%.2bpp: tools/gfx += --trim-whitespace
 
+gfx/title/crystal.2bpp: tools/gfx += --interleave --width=48
+gfx/title/old_fg.2bpp: tools/gfx += --interleave --width=64
+gfx/title/logo.2bpp: rgbgfx += -x 4
+
+
 %.bin: ;
 %.blk: ;
 
