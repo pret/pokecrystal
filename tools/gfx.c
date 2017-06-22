@@ -7,7 +7,12 @@
 #include "common.h"
 
 static void usage(void) {
-	fprintf(stderr, "Usage: gfx [--trim-whitespace] [--remove-whitespace] [-d depth] [-h] [-o outfile] infile \n");
+	fprintf(stderr, "Usage: gfx [--trim-whitespace] [--remove-whitespace] [--interleave] [-w width] [-d depth] [-h] [-o outfile] infile\n");
+}
+
+static void error(char *message) {
+	fprintf(stderr, message);
+	fprintf(stderr, "\n");
 }
 
 struct Options {
@@ -16,6 +21,8 @@ struct Options {
 	int help;
 	char *outfile;
 	int depth;
+	int interleave;
+	int width;
 };
 
 struct Options Options = {
@@ -26,6 +33,8 @@ void get_args(int argc, char *argv[]) {
 	struct option long_options[] = {
 		{"remove-whitespace", no_argument, &Options.remove_whitespace, 1},
 		{"trim-whitespace", no_argument, &Options.trim_whitespace, 1},
+		{"interleave", no_argument, &Options.interleave, 1},
+		{"width", required_argument, 0, 'w'},
 		{"depth", required_argument, 0, 'd'},
 		{"help", no_argument, 0, 'h'},
 		{0}
@@ -41,6 +50,9 @@ void get_args(int argc, char *argv[]) {
 		case 'd':
 			Options.depth = strtoul(optarg, NULL, 0);
 			break;
+		case 'w':
+			Options.width = strtoul(optarg, NULL, 0);
+			break;
 		case 0:
 		case -1:
 			break;
@@ -52,6 +64,11 @@ void get_args(int argc, char *argv[]) {
 	}
 }
 
+struct Graphic {
+	int size;
+	uint8_t *data;
+};
+
 bool is_whitespace(uint8_t *tile, int tile_size) {
 	uint8_t WHITESPACE = 0;
 	for (int i = 0; i < tile_size; i++) {
@@ -62,36 +79,50 @@ bool is_whitespace(uint8_t *tile, int tile_size) {
 	return true;
 }
 
-void trim_whitespace(char *infile, char *outfile) {
-	int size;
-	uint8_t *data = read_u8(infile, &size);
+void trim_whitespace(struct Graphic *graphic) {
 	int tile_size = Options.depth * 8;
-	for (int i = size - tile_size; i > 0; i -= tile_size) {
-		if (is_whitespace(&data[i], tile_size)) {
-			size = i;
+	for (int i = graphic->size - tile_size; i > 0; i -= tile_size) {
+		if (is_whitespace(&graphic->data[i], tile_size)) {
+			graphic->size = i;
 		} else {
 			break;
 		}
 	}
-	write_u8(outfile, data, size);
 }
 
-void remove_whitespace(char *infile, char *outfile) {
-	int size;
-	uint8_t *data = read_u8(infile, &size);
+void remove_whitespace(struct Graphic *graphic) {
 	int tile_size = Options.depth * 8;
 	int i = 0;
-	for (int j = 0; i < size && j < size; i += tile_size, j += tile_size) {
-		while (is_whitespace(&data[j], tile_size)) {
+	for (int j = 0; i < graphic->size && j < graphic->size; i += tile_size, j += tile_size) {
+		while (is_whitespace(&graphic->data[j], tile_size)) {
 			j += tile_size;
 		}
 		if (j > i) {
-			memcpy(&data[i], &data[j], tile_size);
+			memcpy(&graphic->data[i], &graphic->data[j], tile_size);
 		}
 	}
-	size = i;
-	write_u8(outfile, data, size);
+	graphic->size = i;
 }
+
+void interleave(struct Graphic *graphic, int width) {
+	int tile_size = Options.depth * 8;
+	int width_tiles = width / 8;
+	int num_tiles = graphic->size / tile_size;
+	uint8_t *interleaved = malloc(graphic->size);
+	for (int i = 0; i < num_tiles; i++) {
+		int tile = i * 2;
+		int row = i / width_tiles;
+		tile -= width_tiles * row;
+		if (row % 2) {
+			tile -= width_tiles;
+			tile += 1;
+		}
+		memcpy(&interleaved[tile * tile_size], &graphic->data[i * tile_size], tile_size);
+	}
+	memcpy(graphic->data, interleaved, graphic->size);
+	free(interleaved);
+}
+
 
 int main(int argc, char *argv[]) {
 	get_args(argc, argv);
@@ -106,14 +137,25 @@ int main(int argc, char *argv[]) {
 		exit(1);
 	}
 	char *infile = argv[0];
+	struct Graphic graphic;
+	graphic.data = read_u8(infile, &graphic.size);
 	if (Options.remove_whitespace) {
-		if (Options.outfile) {
-			remove_whitespace(infile, Options.outfile);
-		}
-	} else if (Options.trim_whitespace) {
-		if (Options.outfile) {
-			trim_whitespace(infile, Options.outfile);
-		}
+		remove_whitespace(&graphic);
 	}
+	if (Options.trim_whitespace) {
+		trim_whitespace(&graphic);
+	}
+	if (Options.interleave) {
+		if (!Options.width) {
+			error("interleave: must set --width to a nonzero value");
+			usage();
+			exit(1);
+		}
+		interleave(&graphic, Options.width);
+	}
+	if (Options.outfile) {
+		write_u8(Options.outfile, graphic.data, graphic.size);
+	}
+	free(graphic.data);
 	return 0;
 }
