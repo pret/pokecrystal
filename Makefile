@@ -113,6 +113,8 @@ gfx/pics/%/front.animated.tilemap: gfx/pics/%/front.2bpp gfx/pics/%/front.dimens
 gfx/shrink%.2bpp: rgbgfx += -h
 
 gfx/trainers/%.2bpp: rgbgfx += -h
+gfx/trainers/%.pal: gfx/trainers/%.gbcpal
+	tools/palette -p $< > $@
 
 gfx/mail/0b9b46.1bpp: tools/gfx += --remove-whitespace
 gfx/mail/0b9d46.1bpp: tools/gfx += --remove-whitespace
