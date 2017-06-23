@@ -126,6 +126,8 @@ gfx/title/crystal.2bpp: tools/gfx += --interleave --width=48
 gfx/title/old_fg.2bpp: tools/gfx += --interleave --width=64
 gfx/title/logo.2bpp: rgbgfx += -x 4
 
+gfx/trade/ball.2bpp: tools/gfx += --remove-whitespace
+
 
 %.bin: ;
 %.blk: ;
