@@ -12,8 +12,8 @@ static void usage(void) {
 }
 
 static void error(char *message) {
-	fprintf(stderr, message);
-	fprintf(stderr, "\n");
+	fputs(message, stderr);
+	fputs("\n", stderr);
 }
 
 struct Options {
