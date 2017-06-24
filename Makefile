@@ -110,7 +110,8 @@ gfx/pics/%/front.animated.tilemap: gfx/pics/%/front.2bpp gfx/pics/%/front.dimens
 
 # Misc file-specific graphics rules
 
-gfx/shrink%.2bpp: rgbgfx += -h
+gfx/shrink1.2bpp: rgbgfx += -h
+gfx/shrink2.2bpp: rgbgfx += -h
 
 gfx/trainers/%.2bpp: rgbgfx += -h
 gfx/trainers/%.pal: gfx/trainers/%.gbcpal
