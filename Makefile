@@ -1,4 +1,8 @@
-MD5 := md5sum -c
+ifeq (,$(shell which sha1sum))
+SHA1 := shasum
+else
+SHA1 := sha1sum
+endif
 
 .SUFFIXES:
 .PHONY: all clean tools compare crystal crystal11
@@ -36,7 +40,7 @@ clean:
 	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
 
 compare: $(roms)
-	@$(MD5) roms.md5
+	@$(SHA1) -c roms.sha1
 
 tools:
 	make -C tools/
