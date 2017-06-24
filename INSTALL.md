@@ -56,10 +56,10 @@ make
 
 To build on Windows, install [**Cygwin**](http://cygwin.com/install.html) with the default settings.
 
-In the installer, select the following packages: `make` `git` `gettext`
+In the installer, select the following packages: `make` `git` `gettext` `gcc-core`
 
 Then get [**rgbds 0.2.5**](https://github.com/rednex/rgbds/releases/). Versions 0.3.0 and later are not compatible.
-Extract the archive and put `rgbasm.exe`, `rgblink.exe`, `rgbfix.exe` and `rgbgfx.exe` in `C:\cygwin64\usr\local\bin`.
+Extract the archive and put all the `exe` and `dll` files individually in `C:\cygwin64\usr\local\bin`.
 
 In the **Cygwin terminal**:
 
@@ -67,7 +67,7 @@ In the **Cygwin terminal**:
 
 git clone https://github.com/pret/pokecrystal
 cd pokecrystal
-make tools
+make tools CC=gcc
 ```
 
 To build **pokecrystal.gbc**:
