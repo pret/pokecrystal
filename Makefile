@@ -153,6 +153,16 @@ gfx/fx/rocks.2bpp: tools/gfx += --remove-whitespace
 gfx/fx/skyattack.2bpp: tools/gfx += --remove-whitespace
 gfx/fx/status.2bpp: tools/gfx += --remove-whitespace
 
+gfx/misc/chris.2bpp: rgbgfx += -h
+gfx/misc/chris_card.2bpp: rgbgfx += -h
+gfx/misc/kris.2bpp: rgbgfx += -h
+gfx/misc/kris_card.2bpp: rgbgfx += -h
+gfx/misc/kris_back.2bpp: rgbgfx += -h
+gfx/misc/dude.2bpp: rgbgfx += -h
+gfx/misc/player.2bpp: rgbgfx += -h
+gfx/misc/pokegear.2bpp: tools/gfx += --trim-whitespace
+gfx/misc/pokegear_sprites.2bpp: tools/gfx += --trim-whitespace
+
 
 %.bin: ;
 %.blk: ;
