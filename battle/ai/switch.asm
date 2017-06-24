@@ -229,7 +229,7 @@ CheckAbleToSwitch: ; 34941
 	cp 11
 	ret nc
 
-	ld a, [LastEnemyCounterMove]
+	ld a, [LastPlayerCounterMove]
 	and a
 	jr z, .no_last_counter_move
 
@@ -378,8 +378,8 @@ FindEnemyMonsImmuneToLastCounterMove: ; 34a2a
 	ld [CurSpecies], a
 	call GetBaseData
 
-	; the enemy's last move is damaging...
-	ld a, [LastEnemyCounterMove]
+	; the player's last move is damaging...
+	ld a, [LastPlayerCounterMove]
 	dec a
 	ld hl, Moves + MOVE_POWER
 	call GetMoveAttr
@@ -568,7 +568,7 @@ FindEnemyMonsThatResistPlayer: ; 34b20
 	push hl
 	ld [CurSpecies], a
 	call GetBaseData
-	ld a, [LastEnemyCounterMove]
+	ld a, [LastPlayerCounterMove]
 	and a
 	jr z, .skip_move
 

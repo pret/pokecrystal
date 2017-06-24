@@ -238,7 +238,7 @@ AI_TryItem: ; 38105
 	res SUBSTATUS_RAGE, [hl]
 
 	xor a
-	ld [LastPlayerCounterMove], a
+	ld [LastEnemyCounterMove], a
 
 	scf
 	ret
