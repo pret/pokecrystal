@@ -7,7 +7,7 @@
 #include "common.h"
 
 static void usage(void) {
-	fprintf(stderr, "Usage: gfx [--trim-whitespace] [--remove-whitespace] [--interleave] [--remove-duplicates [--keep-whitespace]] [--remove-xflip] [-w width] [-d depth] [-h] [-o outfile] infile\n");
+	fprintf(stderr, "Usage: gfx [--trim-whitespace] [--remove-whitespace] [--interleave] [--remove-duplicates [--keep-whitespace]] [--remove-xflip] [--remove-yflip] [-w width] [-d depth] [-h] [-o outfile] infile\n");
 }
 
 static void error(char *message) {
@@ -26,6 +26,7 @@ struct Options {
 	int remove_duplicates;
 	int keep_whitespace;
 	int remove_xflip;
+	int remove_yflip;
 };
 
 struct Options Options = {
@@ -40,6 +41,7 @@ void get_args(int argc, char *argv[]) {
 		{"remove-duplicates", no_argument, &Options.remove_duplicates, 1},
 		{"keep-whitespace", no_argument, &Options.keep_whitespace, 1},
 		{"remove-xflip", no_argument, &Options.remove_xflip, 1},
+		{"remove-yflip", no_argument, &Options.remove_yflip, 1},
 		{"width", required_argument, 0, 'w'},
 		{"depth", required_argument, 0, 'd'},
 		{"help", no_argument, 0, 'h'},
@@ -157,12 +159,12 @@ bool flip_exists(uint8_t *tile, uint8_t *tiles, int tile_size, int num_tiles, bo
 	for (int i = 0; i < tile_size; i++) {
 		int byte = i;
 		if (yflip) {
-			byte = tile_size - 1 - i;
+			byte = tile_size - 1 - (i ^ 1);
 			if (Options.interleave && i < half_size) {
-				byte = half_size - 1 - i;
+				byte = half_size - 1 - (i ^ 1);
 			}
 		}
-		if (flip) {
+		if (xflip) {
 			for (int bit = 0; bit < 8; bit++) {
 				flip[byte] |= ((tile[i] >> bit) & 1) << (7 - bit);
 			}
@@ -176,16 +178,12 @@ bool flip_exists(uint8_t *tile, uint8_t *tiles, int tile_size, int num_tiles, bo
 	return false;
 }
 
-bool xflip_exists(uint8_t *tile, uint8_t *tiles, int tile_size, int num_tiles) {
-	return flip_exists(tile, tiles, tile_size, num_tiles, true, false);
-}
-
-void remove_xflip(struct Graphic *graphic) {
+void remove_flip(struct Graphic *graphic, bool xflip, bool yflip) {
 	int tile_size = Options.depth * 8;
 	if (Options.interleave) tile_size *= 2;
 	int num_tiles = 0;
 	for (int i = 0, j = 0; i < graphic->size && j < graphic->size; i += tile_size, j += tile_size) {
-		while (xflip_exists(&graphic->data[j], graphic->data, tile_size, num_tiles)) {
+		while (flip_exists(&graphic->data[j], graphic->data, tile_size, num_tiles, xflip, yflip)) {
 			if (Options.keep_whitespace && is_whitespace(&graphic->data[j], tile_size)) {
 				break;
 			}
@@ -253,7 +251,13 @@ int main(int argc, char *argv[]) {
 		remove_duplicates(&graphic);
 	}
 	if (Options.remove_xflip) {
-		remove_xflip(&graphic);
+		remove_flip(&graphic, true, false);
+	}
+	if (Options.remove_yflip) {
+		remove_flip(&graphic, false, true);
+	}
+	if (Options.remove_xflip && Options.remove_yflip) {
+		remove_flip(&graphic, true, true);
 	}
 	if (Options.remove_whitespace) {
 		remove_whitespace(&graphic);
