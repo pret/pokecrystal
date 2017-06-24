@@ -9,7 +9,8 @@ all: \
 	palette \
 	pokemon_animation \
 	pokemon_animation_graphics \
-	gfx
+	gfx \
+	md5
 	@:
 
 %: %.c
