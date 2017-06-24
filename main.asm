@@ -1178,10 +1178,10 @@ INCLUDE "engine/wildmons.asm"
 INCLUDE "battle/link_result.asm"
 
 ChrisBackpic: ; 2ba1a
-INCBIN "gfx/misc/player.6x6.2bpp.lz"
+INCBIN "gfx/misc/player.2bpp.lz"
 
 DudeBackpic: ; 2bbaa
-INCBIN "gfx/misc/dude.6x6.2bpp.lz"
+INCBIN "gfx/misc/dude.2bpp.lz"
 
 SECTION "bankB", ROMX, BANK[$B]
 
@@ -4664,7 +4664,7 @@ Unknown_53d84: ; unreferenced
 
 UnknownEggPic:: ; 53d9c
 ; Another egg pic. This is shifted up a few pixels.
-INCBIN "gfx/misc/unknown_egg.5x5.2bpp.lz"
+INCBIN "gfx/misc/unknown_egg.2bpp.lz"
 
 SECTION "bank19", ROMX, BANK[$19]
 
@@ -4857,10 +4857,10 @@ GetCardPic: ; 8833e
 	ret
 
 ChrisCardPic: ; 88365
-INCBIN "gfx/misc/chris_card.5x7.2bpp"
+INCBIN "gfx/misc/chris_card.2bpp"
 
 KrisCardPic: ; 88595
-INCBIN "gfx/misc/kris_card.5x7.2bpp"
+INCBIN "gfx/misc/kris_card.2bpp"
 
 CardGFX: ; 887c5
 INCBIN "gfx/misc/trainer_card.2bpp"
@@ -4943,10 +4943,10 @@ DrawIntroPlayerPic: ; 88874
 	ret
 
 ChrisPic: ; 888a9
-INCBIN "gfx/misc/chris.7x7.2bpp"
+INCBIN "gfx/misc/chris.2bpp"
 
 KrisPic: ; 88bb9
-INCBIN "gfx/misc/kris.7x7.2bpp"
+INCBIN "gfx/misc/kris.2bpp"
 
 GetKrisBackpic: ; 88ec9
 ; Kris's backpic is uncompressed.
@@ -4957,7 +4957,7 @@ GetKrisBackpic: ; 88ec9
 	ret
 
 KrisBackpic: ; 88ed6
-INCBIN "gfx/misc/kris_back.6x6.2bpp"
+INCBIN "gfx/misc/kris_back.2bpp"
 
 String_89116:
 	db "-----@"

@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <getopt.h>
 
 void usage(void) {
 	printf("Usage: palette palfile\n");
