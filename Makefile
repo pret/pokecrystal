@@ -163,6 +163,15 @@ gfx/misc/player.2bpp: rgbgfx += -h
 gfx/misc/pokegear.2bpp: tools/gfx += --trim-whitespace
 gfx/misc/pokegear_sprites.2bpp: tools/gfx += --trim-whitespace
 
+gfx/unknown/0e0ea8.2bpp: tools/gfx += --remove-whitespace
+gfx/unknown/0f8f34.1bpp: tools/gfx += --trim-whitespace
+gfx/unknown/16c173.2bpp: tools/gfx += --remove-duplicates --remove-xflip
+gfx/unknown/170d16.2bpp: tools/gfx += --trim-whitespace
+gfx/unknown/1715a4.2bpp: tools/gfx += --trim-whitespace
+gfx/unknown/1715a4_nonmatching.2bpp: tools/gfx += --remove-duplicates --remove-xflip
+gfx/unknown/171db1.2bpp: tools/gfx += --trim-whitespace
+gfx/unknown/172f1f.2bpp: tools/gfx += --trim-whitespace
+
 
 %.bin: ;
 %.blk: ;
