@@ -63,7 +63,7 @@ INCBIN "gfx/unknown/0f8f34.1bpp"
 ; f9204
 
 TextBoxSpaceGFX: ; f9204
-INCBIN "gfx/frames/space.2bpp"
+INCBIN "gfx/frames/space.1bpp"
 ; f9214
 
 MobilePhoneTilesGFX: ; f9214
