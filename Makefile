@@ -62,11 +62,11 @@ pokecrystal.gbc: $(crystal_obj)
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 
 
-# For files that the compressor can't match, there will be a .lz file suffixed with the hash of the correct uncompressed file.
+# For files that the compressor can't match, there will be a .lz file suffixed with the md5 hash of the correct uncompressed file.
 # If the hash of the uncompressed file matches, use this .lz instead.
 # This allows pngs to be used for compressed graphics and still match.
 
-%.lz: hash = $(shell md5sum $(*D)/$(*F) | sed "s/\(.\{8\}\).*/\1/")
+%.lz: hash = $(shell tools/md5 $(*D)/$(*F) | sed "s/\(.\{8\}\).*/\1/")
 %.lz: %
 	$(eval filename := $@.$(hash))
 	$(if $(wildcard $(filename)),cp $(filename) $@,tools/lzcomp $< $@)
