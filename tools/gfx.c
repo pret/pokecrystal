@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <getopt.h>
 #include <string.h>
+#include <stdint.h>
 
 #include "common.h"
 

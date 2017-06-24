@@ -1,5 +1,7 @@
 .PHONY: all
 
+CFLAGS := -std=c99
+
 all: \
 	lzcomp \
 	png_dimensions \
@@ -11,4 +13,4 @@ all: \
 	@:
 
 %: %.c
-	$(CC) -o $@ $<
+	$(CC) $(CFLAGS) -o $@ $<
