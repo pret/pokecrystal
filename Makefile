@@ -159,8 +159,9 @@ gfx/misc/kris.2bpp: rgbgfx += -h
 gfx/misc/kris_card.2bpp: rgbgfx += -h
 gfx/misc/kris_back.2bpp: rgbgfx += -h
 gfx/misc/dude.2bpp: rgbgfx += -h
+gfx/misc/unknown_egg.2bpp: rgbgfx += -h
 gfx/misc/player.2bpp: rgbgfx += -h
-gfx/misc/pokegear.2bpp: tools/gfx += --trim-whitespace
+gfx/misc/pokegear.2bpp: rgbgfx += -x2
 gfx/misc/pokegear_sprites.2bpp: tools/gfx += --trim-whitespace
 
 gfx/unknown/0e0ea8.2bpp: tools/gfx += --remove-whitespace
