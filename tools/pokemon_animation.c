@@ -229,7 +229,7 @@ int main(int argc, char* argv[]) {
 	struct Frames frames = {0};
 	struct Bitmasks bitmasks = {0};
 	int ch;
-	bool use_bitmasks, use_frames;
+	bool use_bitmasks = false, use_frames = false;
 	char* tilemap_filename;
 	char* dimensions_filename;
 
