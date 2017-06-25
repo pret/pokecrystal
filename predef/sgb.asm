@@ -20,7 +20,7 @@ Predef_LoadSGBLayout: ; 864c
 	ld l, a
 	ld de, .Finish
 	push de
-	jp [hl]
+	jp hl
 ; 866f
 
 .Jumptable: ; 866f

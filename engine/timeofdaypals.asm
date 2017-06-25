@@ -250,7 +250,7 @@ GetTimePalette: ; 8c117
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 ; 8c126
 
 .TimePalettes:

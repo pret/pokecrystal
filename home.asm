@@ -152,7 +152,7 @@ INCLUDE "home/sram.asm"
 ; Register aliases
 
 _hl_:: ; 2fec
-	jp [hl]
+	jp hl
 ; 2fed
 
 _de_:: ; 2fed

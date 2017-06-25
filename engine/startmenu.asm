@@ -55,7 +55,7 @@ StartMenu:: ; 125cd
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .MenuReturns:
 	dw .Reopen
@@ -227,7 +227,7 @@ StartMenu:: ; 125cd
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 ; 127ef
 
 .MenuString: ; 127ef
@@ -701,7 +701,7 @@ PokemonActionSubmenu: ; 12a88
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .nothing
 	ld a, 0
@@ -1255,7 +1255,7 @@ MonMenu_Fly: ; 12e30
 	jr z, .Fail
 	cp $0
 	jr z, .Error
-	callba MobileFn_1060b5
+	callba TrainerRankings_Fly
 	ld b, $4
 	ld a, $2
 	ret

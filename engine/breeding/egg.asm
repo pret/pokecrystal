@@ -232,7 +232,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	push de
 
 	callba SetEggMonCaughtData
-	callba MobileFn_10608d
+	callba TrainerRankings_EggsHatched
 	ld a, [CurPartyMon]
 	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
 	ld bc, PARTYMON_STRUCT_LENGTH

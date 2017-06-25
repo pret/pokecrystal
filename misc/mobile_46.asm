@@ -5874,7 +5874,7 @@ Function11ad6e: ; 11ad6e
 	ld a, [wJumptableIndex]
 	ld hl, Jumptable_11ad78
 	call Function11b239
-	jp [hl]
+	jp hl
 ; 11ad78
 
 Jumptable_11ad78: ; 11ad78

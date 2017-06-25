@@ -113,7 +113,7 @@ DoMove: ; 3402c
 	jr .ReadMoveEffectCommand
 
 .DoMoveEffectCommand:
-	jp [hl]
+	jp hl
 
 ; 34084
 
@@ -971,7 +971,7 @@ BattleCommand_CheckObedience: ; 343db
 .EndDisobedience:
 	xor a
 	ld [LastPlayerMove], a
-	ld [LastEnemyCounterMove], a
+	ld [LastPlayerCounterMove], a
 
 	; Break Encore too.
 	ld hl, PlayerSubStatus5
@@ -1542,6 +1542,12 @@ BattleCheckTypeMatchup: ; 347c8
 	jr z, CheckTypeMatchup
 	ld hl, BattleMonType1
 CheckTypeMatchup: ; 347d3
+; There is an incorrect assumption about this function made in the AI related code: when
+; the AI calls CheckTypeMatchup (not BattleCheckTypeMatchup), it assumes that placing the
+; offensive type in a will make this function do the right thing. Since a is overwritten,
+; this assumption is incorrect. A simple fix would be to load the move type for the
+; current move into a in BattleCheckTypeMatchup, before falling through, which is
+; consistent with how the rest of the code assumes this code works like.
 	push hl
 	push de
 	push bc
@@ -8073,7 +8079,7 @@ BattleCommand_LeechSeed: ; 36f9d
 
 BattleCommand_Splash: ; 36fe1
 	call AnimateCurrentMove
-	callba MobileFn_1060e5
+	callba TrainerRankings_Splash
 	jp PrintNothingHappened
 
 ; 36fed
@@ -8600,7 +8606,7 @@ CheckSubstituteOpp: ; 37378
 
 
 BattleCommand_SelfDestruct: ; 37380
-	callba MobileFn_10610d
+	callba TrainerRankings_SelfDestruct
 	ld a, BATTLEANIM_PLAYER_DAMAGE
 	ld [wNumHits], a
 	ld c, 3

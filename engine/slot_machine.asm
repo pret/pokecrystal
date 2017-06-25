@@ -20,7 +20,7 @@ _SlotMachine:
 	call PlaySFX
 	call WaitSFX
 	call ClearBGPalettes
-	callba MobileFn_105fd0
+	callba TrainerRankings_EndSlotsWinStreak
 	ld hl, Options
 	res NO_TEXT_SCROLL, [hl]
 	ld hl, rLCDC ; $ff40
@@ -796,7 +796,7 @@ Function92bd4: ; 92bd4 (24:6bd4)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 ; 92be4 (24:6be4)
 
@@ -1311,7 +1311,7 @@ Slots_CheckMatchedFirstTwoReels: ; 92e94
 	ld l, a
 	ld de, .return
 	push de
-	jp [hl]
+	jp hl
 
 .return
 	ld a, [wFirstTwoReelsMatching]
@@ -1422,7 +1422,7 @@ Slots_CheckMatchedAllThreeReels: ; 92f1d
 	ld l, a
 	ld de, .return
 	push de
-	jp [hl]
+	jp hl
 
 .return
 	ld a, [wSlotMatched]
@@ -1812,7 +1812,7 @@ SlotGetPayout: ; 93124 (24:7124)
 	ld a, [hl]
 	ld [wPayout], a
 	ld d, a
-	callba MobileFn_105fe3
+	callba TrainerRankings_AddToSlotsPayouts
 	ret
 
 .PayoutTable:
@@ -1836,7 +1836,7 @@ SlotPayoutText: ; 93158 (24:7158)
 	jr nz, .MatchedSomething
 	ld hl, .Text_Darn
 	call PrintText
-	callba MobileFn_105fd0
+	callba TrainerRankings_EndSlotsWinStreak
 	ret
 
 .MatchedSomething:
@@ -1855,12 +1855,12 @@ SlotPayoutText: ; 93158 (24:7158)
 	ld l, a
 	ld de, .return
 	push de
-	jp [hl]
+	jp hl
 
 .return
 	ld hl, .Text_PrintPayout
 	call PrintText
-	callba MobileFn_105f9f
+	callba TrainerRankings_AddToSlotsWinStreak
 	ret
 
 ; 93195 (24:7195)
@@ -1958,7 +1958,7 @@ SlotMachine_AnimateGolem: ; 9321d (24:721d)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .Jumptable: ; 9322d (24:722d)
 
@@ -2059,7 +2059,7 @@ Slots_AnimateChansey: ; 932ac (24:72ac)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .Jumptable: ; 932bc (24:72bc)
 

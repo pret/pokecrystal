@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 30 ; step cycles to hatch
 	db 5 ; unknown
-	dn 6, 6 ; frontpic dimensions
+	INCBIN "gfx/pics/kabutops/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db MEDIUM_FAST ; growth rate
 	dn AMPHIBIAN, INVERTEBRATE ; egg groups

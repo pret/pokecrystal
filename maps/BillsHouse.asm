@@ -8,7 +8,7 @@ BillsHouse_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-GrampsScript_0x189538:
+BillsGrandpa:
 	faceplayer
 	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
@@ -74,7 +74,7 @@ GrampsScript_0x189538:
 
 .GotWaterStone:
 	checkver
-	iftrue .Crystal11
+	iftrue .AskVulpix
 	writetext BillsGrandpaGrowlitheText
 	buttonsound
 	writetext BillsGrandpaAskToSeeMonText
@@ -88,7 +88,7 @@ GrampsScript_0x189538:
 	setevent EVENT_SHOWED_GROWLITHE_VULPIX_TO_BILLS_GRANDPA
 	jump .ShowedGrowlitheVulpix
 
-.Crystal11:
+.AskVulpix:
 	writetext BillsGrandpaVulpixText
 	buttonsound
 	writetext BillsGrandpaAskToSeeMonText
@@ -370,4 +370,4 @@ BillsHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_GRAMPS, 3, 2, SPRITEMOVEDATA_STANDING_UP, 2, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, GrampsScript_0x189538, -1
+	person_event SPRITE_GRAMPS, 3, 2, SPRITEMOVEDATA_STANDING_UP, 2, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, BillsGrandpa, -1

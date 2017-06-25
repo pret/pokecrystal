@@ -34,3 +34,12 @@ pokecrystal.txt
 # swap files for gedit
 *~
 
+*.dimensions
+*.gbcpal
+*.2bpp
+*.1bpp
+*.lz
+*.pal
+*.animated.tilemap
+gfx/pics/*/bitmask.asm
+gfx/pics/*/frames.asm

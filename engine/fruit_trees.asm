@@ -58,7 +58,7 @@ CheckFruitTree: ; 44055
 ; 4405f
 
 PickedFruitTree: ; 4405f
-	callba MobileFn_10609b ; empty function
+	callba TrainerRankings_FruitPicked
 	ld b, 1
 	jp GetFruitTreeFlag
 ; 4406a

@@ -263,7 +263,7 @@ ParkBall: ; e8a2
 	ld l, a
 	ld de, .skip_or_return_from_ball_fn
 	push de
-	jp [hl]
+	jp hl
 
 .skip_or_return_from_ball_fn
 	ld a, [CurItem]
@@ -512,7 +512,7 @@ ParkBall: ; e8a2
 	cp BATTLETYPE_TUTORIAL
 	jp z, .FinishTutorial
 
-	callba MobileFn_10607f
+	callba TrainerRankings_WildMonsCaught
 
 	ld hl, Text_GotchaMonWasCaught
 	call PrintText

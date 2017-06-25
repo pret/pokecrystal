@@ -1146,7 +1146,7 @@ Function17d711:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 asm_17d721
 	call Function17e5af
@@ -3098,7 +3098,7 @@ Function17e3c3: ; 17e3c3
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	callba MobileFn_106155
+	callba UpdateTrainerRankingsChecksum2
 	callba BackupMobileEventIndex
 	pop af
 	ld [rSVBK], a
@@ -3746,7 +3746,7 @@ Function17f047: ; 17f047
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .finished
 	scf

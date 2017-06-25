@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 35 ; step cycles to hatch
 	db 5 ; unknown
-	dn 6, 6 ; frontpic dimensions
+	INCBIN "gfx/pics/flareon/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db MEDIUM_FAST ; growth rate
 	dn FIELD, FIELD ; egg groups

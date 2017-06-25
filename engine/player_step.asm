@@ -77,7 +77,7 @@ HandlePlayerStep: ; d4e5 (3:54e5)
 	ret
 
 .mobile ; d509 (3:5509)
-	callba MobileFn_10602e
+	callba TrainerRankings_StepCount
 	ret
 
 .fail2 ; d510 (3:5510)

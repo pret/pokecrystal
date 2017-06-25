@@ -23,7 +23,7 @@ Pack: ; 10000
 	ld a, [wJumptableIndex]
 	ld hl, .Jumptable
 	call Pack_GetJumptablePointer
-	jp [hl]
+	jp hl
 
 ; 10030
 
@@ -144,7 +144,7 @@ Pack: ; 10000
 	ld a, [wMenuCursorY]
 	dec a
 	call Pack_GetJumptablePointer
-	jp [hl]
+	jp hl
 
 ; 10124 (4:4124)
 .MenuDataHeader1: ; 0x10124
@@ -306,7 +306,7 @@ Pack: ; 10000
 	ld a, [wMenuCursorY]
 	dec a
 	call Pack_GetJumptablePointer
-	jp [hl]
+	jp hl
 
 ; 10249 (4:4249)
 MenuDataHeader_UsableKeyItem: ; 0x10249
@@ -689,7 +689,7 @@ BattlePack: ; 10493
 	ld a, [wJumptableIndex]
 	ld hl, .Jumptable
 	call Pack_GetJumptablePointer
-	jp [hl]
+	jp hl
 
 ; 104c3
 
@@ -846,7 +846,7 @@ TMHMSubmenu: ; 105dc (4:45dc)
 	ld a, [wMenuCursorY]
 	dec a
 	call Pack_GetJumptablePointer
-	jp [hl]
+	jp hl
 
 ; 10601 (4:4601)
 .UsableMenuDataHeader: ; 0x10601
@@ -997,7 +997,7 @@ DepositSellPack: ; 106be
 	ld a, [wJumptableIndex]
 	ld hl, .Jumptable
 	call Pack_GetJumptablePointer
-	jp [hl]
+	jp hl
 
 ; 106d1
 
@@ -1144,7 +1144,7 @@ TutorialPack: ; 107bb
 	ld a, [wJumptableIndex]
 	ld hl, .dw
 	call Pack_GetJumptablePointer
-	jp [hl]
+	jp hl
 
 ; 107e1
 
