@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 20 ; step cycles to hatch
 	db 5 ; unknown
-	dn 5, 5 ; frontpic dimensions
+	INCBIN "gfx/pics/magnemite/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db MEDIUM_FAST ; growth rate
 	dn INANIMATE, INANIMATE ; egg groups
