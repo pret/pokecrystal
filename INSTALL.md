@@ -17,7 +17,6 @@ cd ..
 
 git clone https://github.com/pret/pokecrystal
 cd pokecrystal
-make tools
 ```
 
 To build **pokecrystal.gbc**:
@@ -42,7 +41,6 @@ cd ..
 
 git clone https://github.com/pret/pokecrystal
 cd pokecrystal
-make tools
 ```
 
 To build **pokecrystal.gbc**:
@@ -67,7 +65,6 @@ In the **Cygwin terminal**:
 
 git clone https://github.com/pret/pokecrystal
 cd pokecrystal
-make tools CC=gcc
 ```
 
 To build **pokecrystal.gbc**:

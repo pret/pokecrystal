@@ -36,8 +36,16 @@ all: crystal
 crystal: pokecrystal.gbc
 crystal11: pokecrystal11.gbc
 
+# Ensure that the tools are built when making the ROM
+ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(MAKECMDGOALS),tools)
+Makefile: tools
+endif
+endif
+
 clean:
 	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
+	make clean -C tools/
 
 compare: $(roms)
 	@$(SHA1) -c roms.sha1

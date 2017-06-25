@@ -1,8 +1,8 @@
-.PHONY: all
+.PHONY: all clean
 
 CFLAGS := -std=c99
 
-all: \
+tools := \
 	lzcomp \
 	png_dimensions \
 	scan_includes \
@@ -11,7 +11,11 @@ all: \
 	pokemon_animation_graphics \
 	gfx \
 	md5
+all: $(tools)
 	@:
+
+clean:
+	rm -f $(tools)
 
 %: %.c
 	$(CC) $(CFLAGS) -o $@ $<
