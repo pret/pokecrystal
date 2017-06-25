@@ -227,7 +227,7 @@ GetBattleVarAddr:: ; 39e7
 	dw wPlayerMoveStructPower,       wEnemyMoveStructPower
 	dw wPlayerMoveStructType,        wEnemyMoveStructType
 	dw CurPlayerMove,                CurEnemyMove
-	dw LastEnemyCounterMove,         LastPlayerCounterMove
+	dw LastPlayerCounterMove,        LastEnemyCounterMove
 	dw LastPlayerMove,               LastEnemyMove
 ; 3a90
 

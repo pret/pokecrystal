@@ -9,7 +9,7 @@ DoBattleAnimFrame: ; ccfbe
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 ; ccfce
 
 .Jumptable:
@@ -4085,7 +4085,7 @@ BattleAnim_AnonJumptable: ; ce71e (33:671e)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 BattleAnim_IncAnonJumptableIndex: ; ce72c (33:672c)
 	ld hl, BATTLEANIMSTRUCT_ANON_JT_INDEX

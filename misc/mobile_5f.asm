@@ -1146,7 +1146,7 @@ Function17d711:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 asm_17d721
 	call Function17e5af
@@ -3746,7 +3746,7 @@ Function17f047: ; 17f047
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .finished
 	scf

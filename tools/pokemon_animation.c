@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <getopt.h>
 
 struct Frame {
 	uint8_t* data;

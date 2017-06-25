@@ -9,7 +9,7 @@ DoAnimFrame: ; 8d24b
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 ; 8d25b
 
 .Jumptable: ; 8d25b (23:525b)
@@ -134,7 +134,7 @@ DoAnimFrame: ; 8d24b
 
 .four ; 8d302 (23:5302)
 	call .AnonymousJumptable
-	jp [hl]
+	jp hl
 ; 8d306 (23:5306)
 
 ; Anonymous dw (see .AnonymousJumptable)
@@ -418,7 +418,7 @@ DoAnimFrame: ; 8d24b
 
 .sixteen ; 8d483 (23:5483)
 	call .AnonymousJumptable
-	jp [hl]
+	jp hl
 ; 8d487 (23:5487)
 
 ; Anonymous dw (see .AnonymousJumptable)

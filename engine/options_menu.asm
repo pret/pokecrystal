@@ -90,7 +90,7 @@ GetOptionPointer: ; e42d6
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl] ; jump to the code of the current highlighted item
+	jp hl ; jump to the code of the current highlighted item
 ; e42e5
 
 .Pointers:

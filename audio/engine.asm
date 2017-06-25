@@ -229,7 +229,7 @@ UpdateChannels: ; e8125
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .ChannelFnPtrs:
 	dw .Channel1
@@ -1389,7 +1389,7 @@ ParseMusicCommand: ; e870f
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 ; e8720
 

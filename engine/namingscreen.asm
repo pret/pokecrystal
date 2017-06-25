@@ -70,7 +70,7 @@ NamingScreen: ; 116c1
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 ; 1172e
 
@@ -405,7 +405,7 @@ NamingScreenJoypadLoop: ; 11915
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 ; 11977
 
@@ -1166,7 +1166,7 @@ INCBIN "gfx/icon/mail2.2bpp"
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .Jumptable: ; 12017 (4:6017)
 	dw .init_blinking_cursor

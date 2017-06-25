@@ -608,8 +608,8 @@ TrainerCard_JohtoBadgesOAM: ; 254c9
 
 CardStatusGFX: INCBIN "gfx/misc/card_status.2bpp"
 
-LeaderGFX:  INCBIN "gfx/misc/leaders.w24.2bpp"
-LeaderGFX2: INCBIN "gfx/misc/leaders.w24.2bpp"
+LeaderGFX:  INCBIN "gfx/misc/leaders.2bpp"
+LeaderGFX2: INCBIN "gfx/misc/leaders.2bpp"
 BadgeGFX:   INCBIN "gfx/misc/badges.2bpp"
 BadgeGFX2:  INCBIN "gfx/misc/badges.2bpp"
 

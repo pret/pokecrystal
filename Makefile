@@ -1,4 +1,8 @@
-MD5 := md5sum -c
+ifeq (,$(shell which sha1sum))
+SHA1 := shasum
+else
+SHA1 := sha1sum
+endif
 
 .SUFFIXES:
 .PHONY: all clean tools compare crystal crystal11
@@ -44,7 +48,7 @@ clean:
 	make clean -C tools/
 
 compare: $(roms)
-	@$(MD5) roms.md5
+	@$(SHA1) -c roms.sha1
 
 tools:
 	make -C tools/
@@ -66,22 +70,14 @@ pokecrystal.gbc: $(crystal_obj)
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 
 
-define LOUD
-echo "$1"; $1
-endef
-
-# For files that the compressor can't match, there will be a .lz file suffixed with the hash of the correct uncompressed file.
+# For files that the compressor can't match, there will be a .lz file suffixed with the md5 hash of the correct uncompressed file.
 # If the hash of the uncompressed file matches, use this .lz instead.
 # This allows pngs to be used for compressed graphics and still match.
 
-%.lz: hash = $(shell md5sum $(*D)/$(*F) | sed "s/\(.\{8\}\).*/\1/")
+%.lz: hash = $(shell tools/md5 $(*D)/$(*F) | sed "s/\(.\{8\}\).*/\1/")
 %.lz: %
 	$(eval filename := $@.$(hash))
-	@if [ -f $(filename) ]; then \
-		$(call LOUD, cp $(filename) $@); \
-	else \
-		$(call LOUD, tools/lzcomp $< $@); \
-	fi
+	$(if $(wildcard $(filename)),cp $(filename) $@,tools/lzcomp $< $@)
 
 # Terrible hacks to match animations. Delete these rules if you don't care about matching.
 
@@ -126,20 +122,82 @@ gfx/pics/%/front.animated.tilemap: gfx/pics/%/front.2bpp gfx/pics/%/front.dimens
 
 # Misc file-specific graphics rules
 
-gfx/shrink%.2bpp: gfx/shrink%.png
-	rgbgfx -h -o $@ $<
+gfx/shrink1.2bpp: rgbgfx += -h
+gfx/shrink2.2bpp: rgbgfx += -h
 
-gfx/trainers/%.2bpp: gfx/trainers/%.png
-	rgbgfx -h -o $@ $<
+gfx/trainers/%.2bpp: rgbgfx += -h
+gfx/trainers/%.pal: gfx/trainers/%.gbcpal
+	tools/palette -p $< > $@
+
+gfx/mail/0b9b46.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/0b9d46.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/0b9d86.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/0b9dc6.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/0b9cfe.1bpp: tools/gfx += --remove-whitespace
+
+gfx/pokedex/%.2bpp: tools/gfx += --trim-whitespace
+
+gfx/title/crystal.2bpp: tools/gfx += --interleave --width=48
+gfx/title/old_fg.2bpp: tools/gfx += --interleave --width=64
+gfx/title/logo.2bpp: rgbgfx += -x 4
+
+gfx/trade/ball.2bpp: tools/gfx += --remove-whitespace
+
+gfx/slots_2.2bpp: tools/gfx += --interleave --width=16
+gfx/slots_3.2bpp: tools/gfx += --interleave --width=24 --remove-duplicates --keep-whitespace --remove-xflip
+gfx/slots_3a.2bpp: tools/gfx += --interleave --width=16
+gfx/slots_3b.2bpp: tools/gfx += --interleave --width=24 --remove-duplicates --keep-whitespace --remove-xflip
+
+gfx/fx/angels.2bpp: tools/gfx += --trim-whitespace
+gfx/fx/beam.2bpp: tools/gfx += --remove-xflip --remove-yflip --remove-whitespace
+gfx/fx/bubble.2bpp: tools/gfx += --trim-whitespace
+gfx/fx/charge.2bpp: tools/gfx += --trim-whitespace
+gfx/fx/egg.2bpp: tools/gfx += --remove-whitespace
+gfx/fx/explosion.2bpp: tools/gfx += --remove-whitespace
+gfx/fx/hit.2bpp: tools/gfx += --remove-whitespace
+gfx/fx/horn.2bpp: tools/gfx += --remove-whitespace
+gfx/fx/lightning.2bpp: tools/gfx += --remove-whitespace
+gfx/fx/misc.2bpp: tools/gfx += --remove-duplicates --remove-xflip
+gfx/fx/noise.2bpp: tools/gfx += --remove-whitespace
+gfx/fx/objects.2bpp: tools/gfx += --remove-whitespace --remove-xflip
+gfx/fx/pokeball.2bpp: tools/gfx += --remove-xflip --keep-whitespace
+gfx/fx/reflect.2bpp: tools/gfx += --remove-whitespace
+gfx/fx/rocks.2bpp: tools/gfx += --remove-whitespace
+gfx/fx/skyattack.2bpp: tools/gfx += --remove-whitespace
+gfx/fx/status.2bpp: tools/gfx += --remove-whitespace
+
+gfx/misc/chris.2bpp: rgbgfx += -h
+gfx/misc/chris_card.2bpp: rgbgfx += -h
+gfx/misc/kris.2bpp: rgbgfx += -h
+gfx/misc/kris_card.2bpp: rgbgfx += -h
+gfx/misc/kris_back.2bpp: rgbgfx += -h
+gfx/misc/dude.2bpp: rgbgfx += -h
+gfx/misc/unknown_egg.2bpp: rgbgfx += -h
+gfx/misc/player.2bpp: rgbgfx += -h
+gfx/misc/pokegear.2bpp: rgbgfx += -x2
+gfx/misc/pokegear_sprites.2bpp: tools/gfx += --trim-whitespace
+
+gfx/unknown/0e0ea8.2bpp: tools/gfx += --remove-whitespace
+gfx/unknown/0f8f34.1bpp: tools/gfx += --trim-whitespace
+gfx/unknown/16c173.2bpp: tools/gfx += --remove-duplicates --remove-xflip
+gfx/unknown/170d16.2bpp: tools/gfx += --trim-whitespace
+gfx/unknown/1715a4.2bpp: tools/gfx += --trim-whitespace
+gfx/unknown/1715a4_nonmatching.2bpp: tools/gfx += --remove-duplicates --remove-xflip
+gfx/unknown/171db1.2bpp: tools/gfx += --trim-whitespace
+gfx/unknown/172f1f.2bpp: tools/gfx += --trim-whitespace
 
 
 %.bin: ;
 %.blk: ;
 
 %.2bpp: %.png
-	rgbgfx -o $@ $<
+	rgbgfx $(rgbgfx) -o $@ $<
+	$(if $(tools/gfx),tools/gfx $(tools/gfx) -o $@ $@)
+
 %.1bpp: %.png
-	rgbgfx -d1 -o $@ $<
+	rgbgfx $(rgbgfx) -d1 -o $@ $<
+	$(if $(tools/gfx),tools/gfx $(tools/gfx) -d1 -o $@ $@)
+
 %.tilemap: %.png
 	rgbgfx -t $@ $<
 %.gbcpal: %.png

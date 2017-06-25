@@ -380,7 +380,7 @@ Function1161b8: ; 1161b8
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 ; 1161c7
 

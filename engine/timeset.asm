@@ -397,11 +397,11 @@ OakText_ResponseToSetTime: ; 0x908b8
 ; 0x908fb
 
 GFX_908fb: ; 908fb
-INCBIN "gfx/unknown/0908fb.2bpp"
+INCBIN "gfx/unknown/0908fb.1bpp"
 GFX_90903: ; 90903
-INCBIN "gfx/unknown/090903.2bpp"
+INCBIN "gfx/unknown/090903.1bpp"
 GFX_9090b: ; 9090b
-INCBIN "gfx/unknown/09090b.2bpp"
+INCBIN "gfx/unknown/09090b.1bpp"
 ; 90913
 
 Special_SetDayOfWeek: ; 90913

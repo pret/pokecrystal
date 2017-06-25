@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 25 ; step cycles to hatch
 	db 5 ; unknown
-	dn 7, 7 ; frontpic dimensions
+	INCBIN "gfx/pics/hitmonlee/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db MEDIUM_FAST ; growth rate
 	dn HUMANSHAPE, HUMANSHAPE ; egg groups

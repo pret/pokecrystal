@@ -169,7 +169,7 @@ OWCutJumptable: ; 8ca0c
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 ; 8ca1b
 
 

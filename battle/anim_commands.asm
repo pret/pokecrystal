@@ -347,7 +347,7 @@ RunBattleAnimCommand: ; cc25f
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 ; cc2a4
 
 

@@ -7,7 +7,7 @@ If you run into trouble, ask on irc ([**freenode#pret**](https://kiwiirc.com/cli
 # Linux
 
 ```bash
-sudo apt-get install make gcc bison git
+sudo apt-get install make gcc bison git libpng-dev
 
 git clone https://github.com/rednex/rgbds
 cd rgbds
@@ -54,10 +54,10 @@ make
 
 To build on Windows, install [**Cygwin**](http://cygwin.com/install.html) with the default settings.
 
-In the installer, select the following packages: `make` `git` `gettext`
+In the installer, select the following packages: `make` `git` `gettext` `gcc-core`
 
 Then get [**rgbds 0.2.5**](https://github.com/rednex/rgbds/releases/). Versions 0.3.0 and later are not compatible.
-Extract the archive and put `rgbasm.exe`, `rgblink.exe`, `rgbfix.exe` and `rgbgfx.exe` in `C:\cygwin64\usr\local\bin`.
+Extract the archive and put all the `exe` and `dll` files individually in `C:\cygwin64\usr\local\bin`.
 
 In the **Cygwin terminal**:
 
