@@ -263,7 +263,7 @@ Credits_Jumptable: ; 109926
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 ; 109937
 
 

@@ -28,7 +28,7 @@ Special_BankOfMom: ; 16218
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 ; 16242
 
 .dw ; 16242

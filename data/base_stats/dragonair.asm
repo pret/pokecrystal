@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 40 ; step cycles to hatch
 	db 5 ; unknown
-	dn 6, 6 ; frontpic dimensions
+	INCBIN "gfx/pics/dragonair/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db SLOW ; growth rate
 	dn AMPHIBIAN, REPTILE ; egg groups

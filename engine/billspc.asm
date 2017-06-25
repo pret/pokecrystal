@@ -39,7 +39,7 @@ _DepositPKMN: ; e2391 (38:6391)
 	ld a, [wJumptableIndex]
 	ld hl, .Jumptable
 	call BillsPC_Jumptable
-	jp [hl]
+	jp hl
 
 .Jumptable: ; e23df (38:63df)
 
@@ -147,7 +147,7 @@ _DepositPKMN: ; e2391 (38:6391)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 BillsPCDepositJumptable: ; e24a1 (38:64a1)
 
@@ -306,7 +306,7 @@ _WithdrawPKMN: ; e2583 (38:6583)
 	ld a, [wJumptableIndex]
 	ld hl, .Jumptable
 	call BillsPC_Jumptable
-	jp [hl]
+	jp hl
 
 .Jumptable: ; e25d2 (38:65d2)
 
@@ -415,7 +415,7 @@ BillsPC_Withdraw: ; e2675 (38:6675)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .dw ; e2699 (38:6699) #mark
 	dw .withdraw ; Withdraw
@@ -556,7 +556,7 @@ _MovePKMNWithoutMail: ; e2759
 	ld a, [wJumptableIndex]
 	ld hl, .Jumptable
 	call BillsPC_Jumptable
-	jp [hl]
+	jp hl
 ; e27ac
 
 .Jumptable: ; e27ac
@@ -678,7 +678,7 @@ _MovePKMNWithoutMail: ; e2759
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 ; e2881
 
 .Jumptable2: ; e2881
@@ -2014,7 +2014,7 @@ MovePKMNWitoutMail_InsertMon: ; e31e7
 	ld l, a
 	ld de, .dw_return
 	push de
-	jp [hl]
+	jp hl
 ; e322a
 
 .dw_return ; e322a

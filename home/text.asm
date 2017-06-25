@@ -943,7 +943,7 @@ Text_START_ASM:: ; 14c9
 
 	bit 7, h
 	jr nz, .not_rom
-	jp [hl]
+	jp hl
 
 .not_rom
 	ld a, "@"

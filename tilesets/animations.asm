@@ -32,7 +32,7 @@ _AnimateTileset:: ; fc000
 	ld h, [hl]
 	ld l, a
 
-	jp [hl]
+	jp hl
 ; fc01b
 
 Tileset00Anim: ; 0xfc01b

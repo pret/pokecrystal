@@ -756,7 +756,7 @@ AI_Smart_AlwaysHit: ; 38947
 AI_Smart_MirrorMove: ; 3895b
 
 ; If the player did not use any move last turn...
-	ld a, [LastEnemyCounterMove]
+	ld a, [LastPlayerCounterMove]
 	and a
 	jr nz, .asm_38968
 
@@ -1353,7 +1353,7 @@ AI_Smart_Rage: ; 38b7f
 
 
 AI_Smart_Mimic: ; 38ba8
-	ld a, [LastEnemyCounterMove]
+	ld a, [LastPlayerCounterMove]
 	and a
 	jr z, .asm_38be9
 
@@ -1361,7 +1361,7 @@ AI_Smart_Mimic: ; 38ba8
 	jr nc, .asm_38bef
 
 	push hl
-	ld a, [LastEnemyCounterMove]
+	ld a, [LastPlayerCounterMove]
 	call AIGetEnemyMove
 
 	ld a, $1
@@ -1380,7 +1380,7 @@ AI_Smart_Mimic: ; 38ba8
 	dec [hl]
 
 .asm_38bd4
-	ld a, [LastEnemyCounterMove]
+	ld a, [LastPlayerCounterMove]
 	push hl
 	ld hl, UsefulMoves
 	ld de, 1
@@ -1438,7 +1438,7 @@ AI_Smart_Counter: ; 38bf1
 	cp $3
 	jr nc, .asm_38c30
 
-	ld a, [LastEnemyCounterMove]
+	ld a, [LastPlayerCounterMove]
 	and a
 	jr z, .asm_38c38
 
@@ -1499,7 +1499,7 @@ AI_Smart_Encore: ; 38c3b
 
 .asm_38c68
 	push hl
-	ld a, [LastEnemyCounterMove]
+	ld a, [LastPlayerCounterMove]
 	ld hl, .EncoreMoves
 	ld de, 1
 	call IsInArray
@@ -1615,7 +1615,7 @@ AI_Smart_DefrostOpponent: ; 38ccb
 
 
 AI_Smart_Spite: ; 38cd5
-	ld a, [LastEnemyCounterMove]
+	ld a, [LastPlayerCounterMove]
 	and a
 	jr nz, .asm_38ce7
 
@@ -1837,7 +1837,7 @@ AI_Smart_Disable: ; 38dd1
 	jr nc, .asm_38df3
 
 	push hl
-	ld a, [LastEnemyCounterMove]
+	ld a, [LastPlayerCounterMove]
 	ld hl, UsefulMoves
 	ld de, 1
 	call IsInArray
@@ -2367,7 +2367,7 @@ AI_Smart_Magnitude:
 AI_Smart_Earthquake: ; 39044
 
 ; Greatly encourage this move if the player is underground and the enemy is faster.
-	ld a, [LastEnemyCounterMove]
+	ld a, [LastPlayerCounterMove]
 	cp DIG
 	ret nz
 
@@ -2741,7 +2741,7 @@ AI_Smart_MirrorCoat: ; 3918b
 	cp $3
 	jr nc, .asm_391ca
 
-	ld a, [LastEnemyCounterMove]
+	ld a, [LastPlayerCounterMove]
 	and a
 	jr z, .asm_391d2
 
@@ -2775,7 +2775,7 @@ AI_Smart_Twister:
 AI_Smart_Gust: ; 391d5
 
 ; Greatly encourage this move if the player is flying and the enemy is faster.
-	ld a, [LastEnemyCounterMove]
+	ld a, [LastPlayerCounterMove]
 	cp FLY
 	ret nz
 

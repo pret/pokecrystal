@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 15 ; step cycles to hatch
 	db 5 ; unknown
-	dn 5, 5 ; frontpic dimensions
+	INCBIN "gfx/pics/spinarak/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db FAST ; growth rate
 	dn INSECT, INSECT ; egg groups

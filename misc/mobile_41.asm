@@ -1116,16 +1116,18 @@ INCBIN "gfx/unknown/106514.2bpp"
 
 
 LoadOverworldFont:: ; 106594
-	ld de, .bgfont
+	ld de, .font
 	ld hl, VTiles1
-	lb bc, BANK(.bgfont), $80
+	lb bc, BANK(.font), $80
 	call Get2bpp
-	ld de, .bgfont + $80 tiles
+	ld de, .space
 	ld hl, VTiles2 tile $7f
-	lb bc, BANK(.bgfont), 1
+	lb bc, BANK(.space), 1
 	call Get2bpp
 	ret
 ; 1065ad
 
-.bgfont
+.font
 INCBIN "gfx/unknown/1065ad.2bpp"
+.space
+INCBIN "gfx/unknown/106dad.2bpp"

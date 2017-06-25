@@ -635,9 +635,9 @@ EnemyDisabledMove:: ; c6f6
 wWhichMonFaintedFirst:: ds 1
 
 ; exists so you can't counter on switch
-LastEnemyCounterMove:: ; c6f8
+LastPlayerCounterMove:: ; c6f8
 	ds 1
-LastPlayerCounterMove:: ; c6f9
+LastEnemyCounterMove:: ; c6f9
 	ds 1
 
 wEnemyMinimized:: ds 1 ; c6fa

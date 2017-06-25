@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <getopt.h>
 
 struct Frame {
 	uint8_t* data;
@@ -228,7 +229,7 @@ int main(int argc, char* argv[]) {
 	struct Frames frames = {0};
 	struct Bitmasks bitmasks = {0};
 	int ch;
-	bool use_bitmasks, use_frames;
+	bool use_bitmasks = false, use_frames = false;
 	char* tilemap_filename;
 	char* dimensions_filename;
 
