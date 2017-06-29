@@ -1,5 +1,6 @@
 .PHONY: all clean
 
+CC := gcc
 CFLAGS := -std=c99
 
 tools := \
