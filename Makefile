@@ -45,13 +45,13 @@ endif
 
 clean:
 	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
-	make clean -C tools/
+	$(MAKE) clean -C tools/
 
 compare: $(roms)
 	@$(SHA1) -c roms.sha1
 
 tools:
-	make -C tools/
+	$(MAKE) -C tools/
 
 %11.o: dep = $(shell tools/scan_includes $(@D)/$*.asm)
 %11.o: %.asm $$(dep)
