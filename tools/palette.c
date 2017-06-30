@@ -65,7 +65,7 @@ void print_palette(char* palette_filename) {
 
 int main(int argc, char* argv[]) {
 	int ch;
-	bool pokemon;
+	bool pokemon = false;
 
 	while ((ch = getopt(argc, argv, "p")) != -1) {
 		switch (ch) {
