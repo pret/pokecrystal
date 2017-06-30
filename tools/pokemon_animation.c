@@ -54,9 +54,17 @@ void make_frames(struct Frames* frames, struct Bitmasks* bitmasks, char* tilemap
 
 	fseek(f, 0, SEEK_END);
 	size = ftell(f);
+	if (!size) {
+		fprintf(stderr, "empty file %s\n", tilemap_filename);
+		exit(1);
+	}
 	rewind(f);
 
 	tilemap = malloc(size);
+	if (!tilemap) {
+		fprintf(stderr, "malloc failure\n");
+		exit(1);
+	}
 	fread(tilemap, 1, size, f);
 	fclose(f);
 

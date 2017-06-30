@@ -90,8 +90,16 @@ void create_tilemap(struct Tilemap* tilemap, struct Graphic* graphic, char* grap
 	}
 	fseek(f, 0, SEEK_END);
 	graphics_size = ftell(f);
+	if (!graphics_size) {
+		fprintf(stderr, "empty file %s\n", graphics_filename);
+		exit(1);
+	}
 	rewind(f);
 	graphics = malloc(graphics_size);
+	if (!graphics) {
+		fprintf(stderr, "malloc failure\n");
+		exit(1);
+	}
 	fread(graphics, 1, graphics_size, f);
 	fclose(f);
 

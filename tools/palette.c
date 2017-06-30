@@ -50,9 +50,17 @@ void print_palette(char* palette_filename) {
 
 	fseek(f, 0, SEEK_END);
 	size = ftell(f);
+	if (!size) {
+		fprintf(stderr, "empty file %s\n", palette_filename);
+		exit(1);
+	}
 	rewind(f);
 
 	bytes = malloc(size);
+	if (!bytes) {
+		fprintf(stderr, "malloc failure\n");
+		exit(1);
+	}
 
 	fseek(f, 0, SEEK_SET);
 	fread(bytes, 1, size, f);
