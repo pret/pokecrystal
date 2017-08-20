@@ -75,9 +75,12 @@ pokecrystal.gbc: $(crystal_obj)
 %.lz: hash = $(shell tools/md5 $(*D)/$(*F) | sed "s/\(.\{8\}\).*/\1/")
 %.lz: %
 	$(eval filename := $@.$(hash))
-	$(if $(wildcard $(filename)),cp $(filename) $@,tools/lzcomp $< $@)
+	$(if $(wildcard $(filename)),\
+		cp $(filename) $@,\
+		tools/lzcomp $< $@)
 
-# Terrible hacks to match animations. Delete these rules if you don't care about matching.
+
+### Terrible hacks to match animations. Delete these rules if you don't care about matching.
 
 # Dewgong has an unused tile id in its last frame. The tile itself is missing.
 gfx/pics/dewgong/frames.asm: gfx/pics/dewgong/front.animated.tilemap gfx/pics/dewgong/front.dimensions
@@ -97,7 +100,7 @@ gfx/pics/girafarig/front.animated.tilemap: gfx/pics/girafarig/front.2bpp gfx/pic
 	tools/pokemon_animation_graphics --girafarig -t $@ $^
 
 
-# Pokemon pic graphics rules
+### Pokemon pic graphics rules
 
 gfx/pics/%/normal.gbcpal: gfx/pics/%/front.png
 	rgbgfx -p $@ $<
@@ -118,7 +121,7 @@ gfx/pics/%/front.animated.tilemap: gfx/pics/%/front.2bpp gfx/pics/%/front.dimens
 #	rgbgfx -o $@ $<
 
 
-# Misc file-specific graphics rules
+### Misc file-specific graphics rules
 
 gfx/shrink1.2bpp: rgbgfx += -h
 gfx/shrink2.2bpp: rgbgfx += -h
@@ -190,11 +193,13 @@ gfx/unknown/172f1f.2bpp: tools/gfx += --trim-whitespace
 
 %.2bpp: %.png
 	rgbgfx $(rgbgfx) -o $@ $<
-	$(if $(tools/gfx),tools/gfx $(tools/gfx) -o $@ $@)
+	$(if $(tools/gfx),\
+		tools/gfx $(tools/gfx) -o $@ $@)
 
 %.1bpp: %.png
 	rgbgfx $(rgbgfx) -d1 -o $@ $<
-	$(if $(tools/gfx),tools/gfx $(tools/gfx) -d1 -o $@ $@)
+	$(if $(tools/gfx),\
+		tools/gfx $(tools/gfx) -d1 -o $@ $@)
 
 %.tilemap: %.png
 	rgbgfx -t $@ $<
