@@ -138,16 +138,16 @@ gfx/mail/0b9cfe.1bpp: tools/gfx += --remove-whitespace
 
 gfx/pokedex/%.2bpp: tools/gfx += --trim-whitespace
 
-gfx/title/crystal.2bpp: tools/gfx += --interleave --width=48
-gfx/title/old_fg.2bpp: tools/gfx += --interleave --width=64
+gfx/title/crystal.2bpp: tools/gfx += --interleave --png=$<
+gfx/title/old_fg.2bpp: tools/gfx += --interleave --png=$<
 gfx/title/logo.2bpp: rgbgfx += -x 4
 
 gfx/trade/ball.2bpp: tools/gfx += --remove-whitespace
 
-gfx/slots_2.2bpp: tools/gfx += --interleave --width=16
-gfx/slots_3.2bpp: tools/gfx += --interleave --width=24 --remove-duplicates --keep-whitespace --remove-xflip
-gfx/slots_3a.2bpp: tools/gfx += --interleave --width=16
-gfx/slots_3b.2bpp: tools/gfx += --interleave --width=24 --remove-duplicates --keep-whitespace --remove-xflip
+gfx/slots_2.2bpp: tools/gfx += --interleave --png=$<
+gfx/slots_3.2bpp: tools/gfx += --interleave --png=$< --remove-duplicates --keep-whitespace --remove-xflip
+gfx/slots_3a.2bpp: tools/gfx += --interleave --png=$<
+gfx/slots_3b.2bpp: tools/gfx += --interleave --png=$< --remove-duplicates --keep-whitespace --remove-xflip
 
 gfx/fx/angels.2bpp: tools/gfx += --trim-whitespace
 gfx/fx/beam.2bpp: tools/gfx += --remove-xflip --remove-yflip --remove-whitespace

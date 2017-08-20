@@ -8,7 +8,7 @@
 #include "common.h"
 
 static void usage(void) {
-	fprintf(stderr, "Usage: gfx [--trim-whitespace] [--remove-whitespace] [--interleave] [--remove-duplicates [--keep-whitespace]] [--remove-xflip] [--remove-yflip] [-w width] [-d depth] [-h] [-o outfile] infile\n");
+	fprintf(stderr, "Usage: gfx [--trim-whitespace] [--remove-whitespace] [--interleave] [--remove-duplicates [--keep-whitespace]] [--remove-xflip] [--remove-yflip] [--png filename] [-d depth] [-h] [-o outfile] infile\n");
 }
 
 static void error(char *message) {
@@ -23,11 +23,11 @@ struct Options {
 	char *outfile;
 	int depth;
 	int interleave;
-	int width;
 	int remove_duplicates;
 	int keep_whitespace;
 	int remove_xflip;
 	int remove_yflip;
+	char *png_file;
 };
 
 struct Options Options = {
@@ -43,13 +43,13 @@ void get_args(int argc, char *argv[]) {
 		{"keep-whitespace", no_argument, &Options.keep_whitespace, 1},
 		{"remove-xflip", no_argument, &Options.remove_xflip, 1},
 		{"remove-yflip", no_argument, &Options.remove_yflip, 1},
-		{"width", required_argument, 0, 'w'},
+		{"png", required_argument, 0, 'p'},
 		{"depth", required_argument, 0, 'd'},
 		{"help", no_argument, 0, 'h'},
 		{0}
 	};
 	for (int opt = 0; opt != -1;) {
-		switch (opt = getopt_long(argc, argv, "ho:d:", long_options)) {
+		switch (opt = getopt_long(argc, argv, "ho:d:p:", long_options)) {
 		case 'h':
 			Options.help = true;
 			break;
@@ -59,8 +59,8 @@ void get_args(int argc, char *argv[]) {
 		case 'd':
 			Options.depth = strtoul(optarg, NULL, 0);
 			break;
-		case 'w':
-			Options.width = strtoul(optarg, NULL, 0);
+		case 'p':
+			Options.png_file = optarg;
 			break;
 		case 0:
 		case -1:
@@ -221,6 +221,25 @@ void interleave(struct Graphic *graphic, int width) {
 	free(interleaved);
 }
 
+int png_get_width(char *filename) {
+	FILE *f = fopen_verbose(filename, "rb");
+	if (!f) {
+		exit(1);
+	}
+
+	const int OFFSET_WIDTH = 16;
+	uint8_t bytes[4];
+	fseek(f, OFFSET_WIDTH, SEEK_SET);
+	fread(bytes, 1, 4, f);
+	fclose(f);
+
+	int width = 0;
+	for (int i = 0; i < 4; i++) {
+		width |= bytes[i] << (8 * (3 - i));
+	}
+	return width;
+}
+
 
 int main(int argc, char *argv[]) {
 	get_args(argc, argv);
@@ -241,12 +260,13 @@ int main(int argc, char *argv[]) {
 		trim_whitespace(&graphic);
 	}
 	if (Options.interleave) {
-		if (!Options.width) {
-			error("interleave: must set --width to a nonzero value");
+		if (!Options.png_file) {
+			error("interleave: need --png to infer dimensions");
 			usage();
 			exit(1);
 		}
-		interleave(&graphic, Options.width);
+		int width = png_get_width(Options.png_file);
+		interleave(&graphic, width);
 	}
 	if (Options.remove_duplicates) {
 		remove_duplicates(&graphic);
