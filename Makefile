@@ -36,11 +36,9 @@ all: crystal
 crystal: pokecrystal.gbc
 crystal11: pokecrystal11.gbc
 
-# Ensure that the tools are built when making the ROM
-ifneq ($(MAKECMDGOALS),clean)
-ifneq ($(MAKECMDGOALS),tools)
-Makefile: tools
-endif
+# Build tools when building the rom
+ifeq (,$(filter clean tools,$(MAKECMDGOALS)))
+Makefile: tools ;
 endif
 
 clean:
