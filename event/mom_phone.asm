@@ -194,7 +194,7 @@ GetItemFromMom: ; fd117
 
 .zero
 	ld a, [wWhichMomItem]
-	cp MOM_ITEM_LIST_1 ; 10
+	cp MOM_ITEM_LIST_2 ; 10
 	jr c, .ok
 	xor a
 
