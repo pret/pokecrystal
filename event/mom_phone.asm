@@ -1,3 +1,6 @@
+MOM_ITEM_LIST_1 EQU 5  ; how many are in list 1?
+MOM_ITEM_LIST_2 EQU 10 ; how many are in list 2?
+
 MomTriesToBuySomething:: ; fcfec
 	ld a, [wMapReentryScriptQueueFlag]
 	and a
@@ -53,7 +56,7 @@ MomTriesToBuySomething:: ; fcfec
 
 CheckBalance_MomItem2: ; fd044
 	ld a, [wWhichMomItem]
-	cp 10
+	cp MOM_ITEM_LIST_2 ; 10
 	jr nc, .nope
 	call GetItemFromMom
 	ld a, [hli]
@@ -96,7 +99,7 @@ CheckBalance_MomItem2: ; fd044
 
 .exact
 	call .AddMoney
-	ld a, 5
+	ld a, MOM_ITEM_LIST_1 ; 5
 	call RandomRange
 	inc a
 	ld [wWhichMomItemSet], a
@@ -191,7 +194,7 @@ GetItemFromMom: ; fd117
 
 .zero
 	ld a, [wWhichMomItem]
-	cp 10 ; length of MomItems_2
+	cp MOM_ITEM_LIST_1 ; 10
 	jr c, .ok
 	xor a
 
