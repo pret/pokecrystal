@@ -379,9 +379,7 @@ wEnemyTrainerItem1:: ds 1 ; c650
 wEnemyTrainerItem2:: ds 1 ; c651
 wEnemyTrainerBaseReward:: ds 1 ; c652
 wEnemyTrainerAIFlags:: ds 3 ; c653
-OTClassName:: ds NAME_LENGTH ; c656
-
-	ds 2
+OTClassName:: ds TRAINER_CLASS_NAME_LENGTH ; c656
 
 CurOTMon:: ; c663
 	ds 1
