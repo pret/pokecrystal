@@ -9,8 +9,19 @@ It builds the following roms:
 
 To set up the repository, see [INSTALL.md](INSTALL.md).
 
-### irc: [freenode#pret][irc]
+## See also
+* Disassembly of [**Pokémon Red/Blue**][pokered]
+* Disassembly of [**Pokémon Yellow**][pokeyellow]
+* Disassembly of [**Pokémon Pinball**][pokepinball]
+* Disassembly of [**Pokémon TCG**][poketcg]
+* Discord: [**pret**][Discord]
+* irc: [freenode#pret][irc]
 
+[pokered]: https://github.com/pret/pokered
+[pokeyellow]: https://github.com/pret/pokeyellow
+[pokepinball]: https://github.com/pret/pokepinball
+[poketcg]: https://github.com/pret/poketcg
+[Discord]: https://discord.gg/cJxDDVP
 [irc]: https://kiwiirc.com/client/irc.freenode.net/?#pret
 [travis]: https://travis-ci.org/pret/pokecrystal
 [travis-badge]: https://travis-ci.org/pret/pokecrystal.svg?branch=master
