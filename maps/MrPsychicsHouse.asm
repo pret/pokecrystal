@@ -15,7 +15,7 @@ MrPsychic:
 	iftrue .AlreadyGotItem
 	writetext MrPsychicText1
 	buttonsound
-	verbosegiveitem TM_PSYCHIC
+	verbosegiveitem TM_PSYCHIC_M
 	iffalse .Done
 	setevent EVENT_GOT_TM29_PSYCHIC
 .AlreadyGotItem:
