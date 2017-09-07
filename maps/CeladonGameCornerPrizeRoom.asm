@@ -47,10 +47,10 @@ CeladonPrizeRoom_tmcounterloop:
 .psychic
 	checkcoins 3500
 	if_equal $2, CeladonPrizeRoom_notenoughcoins
-	itemtotext TM_PSYCHIC, $0
+	itemtotext TM_PSYCHIC_M, $0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
-	giveitem TM_PSYCHIC
+	giveitem TM_PSYCHIC_M
 	iffalse CeladonPrizeRoom_notenoughroom
 	takecoins 3500
 	jump CeladonPrizeRoom_purchased
