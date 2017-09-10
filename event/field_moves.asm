@@ -75,7 +75,7 @@ ShakeHeadbuttTree: ; 8c80a
 ; 8c893
 
 HeadbuttTreeGFX: ; 8c893
-INCBIN "gfx/unknown/08c893.2bpp"
+INCBIN "gfx/overworld/headbutt_tree.2bpp"
 ; 8c913
 
 HideHeadbuttTree: ; 8c913
