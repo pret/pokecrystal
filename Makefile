@@ -142,6 +142,7 @@ gfx/title/old_fg.2bpp: tools/gfx += --interleave --width=64
 gfx/title/logo.2bpp: rgbgfx += -x 4
 
 gfx/trade/ball.2bpp: tools/gfx += --remove-whitespace
+gfx/trade/game_boy_n64.2bpp: tools/gfx += --trim-whitespace
 
 gfx/slots_2.2bpp: tools/gfx += --interleave --width=16
 gfx/slots_3.2bpp: tools/gfx += --interleave --width=24 --remove-duplicates --keep-whitespace --remove-xflip
@@ -184,7 +185,6 @@ gfx/unknown/170d16.2bpp: tools/gfx += --trim-whitespace
 gfx/unknown/1715a4.2bpp: tools/gfx += --trim-whitespace
 gfx/unknown/1715a4_nonmatching.2bpp: tools/gfx += --remove-duplicates --remove-xflip
 gfx/unknown/171db1.2bpp: tools/gfx += --trim-whitespace
-gfx/unknown/172f1f.2bpp: tools/gfx += --trim-whitespace
 
 
 %.bin: ;
