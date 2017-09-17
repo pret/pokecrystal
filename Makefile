@@ -62,11 +62,11 @@ tools:
 	rgbasm -o $@ $<
 
 pokecrystal11.gbc: $(crystal11_obj)
-	rgblink -n pokecrystal11.sym -m pokecrystal11.map -o $@ $^
+	rgblink -n pokecrystal11.sym -m pokecrystal11.map -l linkerscript.link -o $@ $^
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t PM_CRYSTAL $@
 
 pokecrystal.gbc: $(crystal_obj)
-	rgblink -n pokecrystal.sym -m pokecrystal.map -o $@ $^
+	rgblink -n pokecrystal.sym -m pokecrystal.map -l linkerscript.link -o $@ $^
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 
 

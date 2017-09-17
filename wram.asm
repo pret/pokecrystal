@@ -11,7 +11,7 @@ StackTop::
 	ds 1
 
 
-SECTION "Audio", WRAM0
+SECTION "WRAM Audio", WRAM0
 wMusic::
 MusicPlaying:: ; c100
 ; nonzero if playing

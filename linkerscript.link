@@ -1,0 +1,454 @@
+ROMX $1
+	"bank1" ; $4000
+
+ROMX $2
+	"bank2" ; $4000
+
+ROMX $3
+	"bank3" ; $4000
+
+ROMX $4
+	"bank4" ; $4000
+
+ROMX $5
+	"bank5" ; $4000
+
+ROMX $6 ; TILESETS_1
+	"Tileset Data 1" ; $4000
+
+ROMX $7 ; ROOFS, TILESETS_2, EXTRA_SONGS_1
+	"Roofs" ; $4000
+	"Tileset Data 2" ; $430c
+	"Extra Songs 1" ; $731c
+
+ROMX $8 ; TILESETS_3, EGG_MOVES
+	"bank8" ; $4000
+	"Tileset Data 3" ; $4181
+	"Egg Moves" ; $7b11
+
+ROMX $9
+	"bank9" ; $4000
+
+ROMX $a
+	"bankA" ; $4000
+
+ROMX $b
+	"bankB" ; $4000
+
+ROMX $c ; TILESETS_4
+	"Tileset Data 4" ; $4000
+
+ROMX $d
+	"Effect Commands" ; $4000
+
+ROMX $e
+	"Enemy Trainers" ; $4000
+
+ROMX $f
+	"Battle Core" ; $4000
+
+ROMX $10 ; EVOS_ATTACKS
+	"bank10" ; $4000
+	"Evolutions and Attacks" ; $65b1
+
+ROMX $11
+	"bank11" ; $4000
+
+ROMX $12
+	"Crystal Unique" ; $4000
+
+ROMX $13
+	"bank13" ; $4000
+
+ROMX $14
+	"bank14" ; $4000
+
+ROMX $15 ; MAP_SCRIPTS_1
+	"Map Scripts 1" ; $4000
+
+ROMX $16 ; MAP_SCRIPTS_2
+	"Map Scripts 2" ; $4000
+
+ROMX $17 ; MAP_SCRIPTS_3
+	"Map Scripts 3" ; $4000
+
+ROMX $18 ; MAP_SCRIPTS_4
+	"Map Scripts 4" ; $4000
+
+ROMX $19
+	"bank19" ; $4000
+
+ROMX $1a ; MAP_SCRIPTS_5
+	"Map Scripts 5" ; $4000
+
+ROMX $1b ; MAP_SCRIPTS_6
+	"Map Scripts 6" ; $4000
+
+ROMX $1c ; MAP_SCRIPTS_7
+	"Map Scripts 7" ; $4000
+
+ROMX $1d ; MAP_SCRIPTS_8
+	"Map Scripts 8" ; $4000
+
+ROMX $1e ; MAP_SCRIPTS_9
+	"Map Scripts 9" ; $4000
+
+ROMX $1f ; MAP_SCRIPTS_10
+	"Map Scripts 10" ; $4000
+
+ROMX $20
+	"bank20" ; $4000
+
+ROMX $21
+	"bank21" ; $4000
+
+ROMX $22
+	"bank22" ; $4000
+
+ROMX $23
+	"bank23" ; $4000
+
+ROMX $24
+	"bank24" ; $4000
+
+ROMX $25 ; MAP_HEADERS, EVENTS
+	"Map Headers" ; $4000
+	"Events" ; $66b0
+
+ROMX $28
+	"Phone Engine" ; $4000
+
+ROMX $29
+	"Phone Text" ; $4000
+
+ROMX $2a ; MAPS_1
+	"Map Blockdata 1" ; $4000
+
+ROMX $2b ; MAPS_2
+	"Map Blockdata 2" ; $4000
+
+ROMX $26 ; MAP_SCRIPTS_11
+	"Map Scripts 11" ; $4000
+
+ROMX $27 ; MAP_SCRIPTS_12
+	"Map Scripts 12" ; $4000
+
+ROMX $2c ; MAPS_3
+	"Map Blockdata 3" ; $4000
+
+ROMX $2d ; TILESETS_5
+	"Tileset Data 5" ; $4000
+
+ROMX $2e
+	"bank2E" ; $4000
+
+ROMX $2f
+	"bank2F" ; $4000
+
+ROMX $30
+	"bank30" ; $4000
+
+ROMX $31
+	"bank31" ; $4000
+
+ROMX $32
+	"bank32" ; $4000
+
+ROMX $33 ; EXTRA_SONGS_2
+	"bank33" ; $4000
+	"Extra Songs 2" ; $7d9e
+
+ROMX $34
+	"Pic Animations 1" ; $4000
+
+ROMX $35
+	"Pic Animations 2" ; $4000
+
+ROMX $36
+	"bank36" ; $4000
+	"Pic Animations 3" ; $4400
+
+ROMX $37 ; TILESETS_6
+	"Tileset Data 6" ; $4000
+
+ROMX $38
+	"bank38" ; $4000
+
+ROMX $39
+	"bank39" ; $4000
+
+ROMX $3a ; AUDIO, SONGS_1
+	"Audio" ; $4000
+	"Songs 1" ; $54e9
+
+ROMX $3b ; SONGS_2
+	"Songs 2" ; $4000
+
+ROMX $3c ; SONGS_3, SOUND_EFFECTS, CRIES
+	"Songs 3" ; $4000
+	"Sound Effects" ; $4941
+	"Cries" ; $6787
+
+ROMX $3d ; SONGS_4
+	"Songs 4" ; $4000
+
+ROMX $3e
+	"bank3E" ; $4000
+
+ROMX $3f
+	"bank3F" ; $4000
+
+ROMX $40
+	"bank40" ; $4000
+	"tetsuji" ; $4b0a
+	"bank40_2" ; $4b12
+	"ascii 10186f" ; $586f
+	"bank40_3" ; $58a8
+
+ROMX $41
+	"bank41" ; $4000
+	"bank41_2" ; $5ef6
+
+ROMX $42 ; CREDITS
+	"bank42" ; $4000
+	"Intro Logo" ; $5407
+	"Credits" ; $5847
+
+ROMX $43
+	"bank43" ; $4000
+
+ROMX $44
+	"Main" ; $4000
+
+ROMX $45
+	"bank45" ; $4000
+	"Mobile Stadium" ; $7656
+
+ROMX $46
+	"bank46" ; $4000
+	"bank46_2" ; $56cd
+
+ROMX $47
+	"bank47" ; $4000
+
+ROMX $48 ; PICS_1
+	ORG $45ee
+	"Pics 1" ; $45ee
+
+ROMX $49 ; PICS_2
+	ORG $409c
+	"Pics 2" ; $409c
+
+ROMX $4a ; TRAINER_PIC_POINTERS, PICS_3
+	"Trainer Pic Pointers" ; $4000
+	"Pics 3" ; $40c9
+
+ROMX $4b ; PICS_4
+	"Pics 4" ; $4000
+
+ROMX $4c ; PICS_5
+	"Pics 5" ; $4000
+
+ROMX $4d ; PICS_6
+	"Pics 6" ; $4000
+
+ROMX $4e ; PICS_7
+	"Pics 7" ; $4000
+
+ROMX $4f ; PICS_8
+	"Pics 8" ; $4000
+
+ROMX $50 ; PICS_9
+	"Pics 9" ; $4000
+
+ROMX $51 ; PICS_10
+	"Pics 10" ; $4000
+
+ROMX $52 ; PICS_11
+	"Pics 11" ; $4000
+
+ROMX $53 ; PICS_12
+	"Pics 12" ; $4000
+
+ROMX $54 ; PICS_13
+	"Pics 13" ; $4000
+
+ROMX $55 ; PICS_14
+	"Pics 14" ; $4000
+
+ROMX $56 ; PICS_15
+	"Pics 15" ; $4000
+
+ROMX $57 ; PICS_16
+	"Pics 16" ; $4000
+
+ROMX $58 ; PICS_17
+	"Pics 17" ; $4000
+
+ROMX $59 ; PICS_18
+	"Pics 18" ; $4000
+
+ROMX $5a ; PICS_19
+	"Pics 19" ; $4000
+
+ROMX $5b
+	"bank5B" ; $4000
+
+ROMX $5c
+	"bank5C" ; $4000
+
+ROMX $5d
+	"bank5D" ; $4000
+
+ROMX $5e ; SONGS_5, CRYSTAL_SOUND_EFFECTS, MISC_CRYSTAL
+	"bank5E" ; $4000
+	"Songs 5" ; $401f
+	"Crystal Sound Effects" ; $582d
+	"Misc Crystal" ; $59ef
+
+ROMX $5f
+	"bank5F" ; $4000
+
+ROMX $60 ; MAP_SCRIPTS_13, POKEDEX_ENTRIES_1
+	"Map Scripts 13" ; $4000
+	"Pokedex Entries 001-064" ; $5695
+
+ROMX $61 ; MAP_SCRIPTS_14
+	"Map Scripts 14" ; $4000
+
+ROMX $62 ; MAP_SCRIPTS_15
+	"Map Scripts 15" ; $4000
+
+ROMX $63 ; MAP_SCRIPTS_16
+	"Map Scripts 16" ; $4000
+
+ROMX $64 ; MAP_SCRIPTS_17
+	"Map Scripts 17" ; $4000
+
+ROMX $65 ; MAP_SCRIPTS_18
+	"Map Scripts 18" ; $4000
+
+ROMX $66 ; MAP_SCRIPTS_19
+	"Map Scripts 19" ; $4000
+
+ROMX $67 ; MAP_SCRIPTS_20
+	"Map Scripts 20" ; $4000
+
+ROMX $68 ; MAP_SCRIPTS_21
+	"Map Scripts 21" ; $4000
+
+ROMX $69 ; MAP_SCRIPTS_22
+	"Map Scripts 22" ; $4000
+
+ROMX $6a ; MAP_SCRIPTS_23
+	"Map Scripts 23" ; $4000
+
+ROMX $6b ; MAP_SCRIPTS_24
+	"Map Scripts 24" ; $4000
+
+ROMX $6c ; MAP_SCRIPTS_25
+	"Common Text 1" ; $4000
+	"Map Scripts 25" ; $6042
+
+ROMX $6d
+	"bank6D" ; $4000
+
+ROMX $6e ; POKEDEX_ENTRIES_2
+	"Pokedex Entries 065-128" ; $4000
+
+ROMX $6f
+	"Text 1" ; $4000
+
+ROMX $70
+	"Text 2" ; $4000
+
+ROMX $71
+	"Text 3" ; $4000
+
+ROMX $72
+	"bank72" ; $4000
+
+ROMX $73 ; POKEDEX_ENTRIES_3
+	"Pokedex Entries 129-192" ; $4000
+
+ROMX $74 ; POKEDEX_ENTRIES_4
+	"Pokedex Entries 193-251" ; $4000
+
+ROMX $77 ; TILESETS_7
+	"bank77" ; $4000
+	"Tileset Data 7" ; $45a1
+	"bank77_2" ; $56a9
+
+ROMX $78 ; TILESETS_8
+	"Tileset Data 8" ; $4000
+
+ROMX $7b
+	"bank7B" ; $4000
+
+ROMX $7c
+	"bank7C" ; $4000
+
+ROMX $7d
+	"bank7D" ; $4000
+
+ROMX $7e
+	"bank7E" ; $4000
+
+ROMX $7f
+	"bank7F" ; $4000
+
+
+SRAM 0
+	"Scratch" ; $a000
+
+SRAM 1
+	"Save" ; $a000
+	"Active Box" ; $ad10
+	"Link Battle Data" ; $b254
+	"SRAM Hall of Fame" ; $b2c0
+	"SRAM Crystal Data" ; $be3c
+	"SRAM Battle Tower" ; $be45
+
+SRAM 2
+	"Boxes 1-7" ; $a000
+
+SRAM 3
+	"Boxes 8-14" ; $a000
+
+
+VRAM 0
+	"VRAM0" ; $8000
+
+VRAM 1
+	"VRAM1" ; $8000
+
+
+WRAM0
+	"Stack" ; $c000
+	"WRAM Audio" ; $c100
+	"WRAM" ; $c2c2
+	ORG $c4a0
+	"Tilemap" ; $c4a0
+	"Battle" ; $c608
+	ORG $cd20
+	"Video" ; $cd20
+
+WRAMX 1
+	"WRAM 1" ; $d000
+	"Enemy Party" ; $d26b
+	"Party" ; $dcd7
+
+WRAMX 2
+	"Pic Animations" ; $d000
+
+WRAMX 3
+	"Battle Tower" ; $d000
+
+WRAMX 5
+	"GBC Video" ; $d000
+
+WRAMX6
+	"WRAM 6" ; $d000
+
+WRAMX 7
+	"WRAM 7" ; $d000
