@@ -858,7 +858,7 @@ Function172e78: ; 172e78 (5c:6e78)
 	ld bc, $168
 	call ByteFill
 	call DisableLCD
-	ld hl, GFX_172f1f
+	ld hl, GameBoyN64GFX
 	ld de, VTiles2 tile $00
 	ld bc, $610
 	call CopyBytes
@@ -929,8 +929,8 @@ Palette_172edf:
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 
-GFX_172f1f:
-INCBIN "gfx/unknown/172f1f.2bpp"
+GameBoyN64GFX:
+INCBIN "gfx/trade/game_boy_n64.2bpp"
 
 Tilemap_1733af:
 IF DEF(CRYSTAL11)
