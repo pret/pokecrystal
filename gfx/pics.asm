@@ -16,6 +16,7 @@ TrainerPicPointers:: INCLUDE "gfx/pics/trainer_pic_pointers.asm"
 
 
 SECTION "Pics 1", ROMX
+Pics_1::
 
 HoOhFrontpic:        INCBIN "gfx/pics/ho_oh/front.animated.2bpp.lz"
 MachampFrontpic:     INCBIN "gfx/pics/machamp/front.animated.2bpp.lz"
