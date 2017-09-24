@@ -1,7 +1,7 @@
 The source files are assembled into a rom using [**rgbds**](https://github.com/rednex/rgbds).
 These instructions explain how to set up the tools required to build.
 
-If you run into trouble, ask on irc ([**freenode#pret**](https://kiwiirc.com/client/irc.freenode.net/?#pret)).
+If you run into trouble, ask for help on irc or discord (see [README.md](README.md)).
 
 
 # Linux
@@ -11,7 +11,6 @@ sudo apt-get install make gcc bison git libpng-dev
 
 git clone https://github.com/rednex/rgbds
 cd rgbds
-git checkout v0.2.5
 sudo make install
 cd ..
 
@@ -35,7 +34,6 @@ xcode-select --install
 
 git clone https://github.com/rednex/rgbds
 cd rgbds
-git checkout v0.2.5
 sudo make install
 cd ..
 
@@ -54,10 +52,15 @@ make
 
 To build on Windows, install [**Cygwin**](http://cygwin.com/install.html) with the default settings.
 
-In the installer, select the following packages: `make` `git` `gettext` `gcc-core`
+In the installer, select the following packages:
+- `make`
+- `git`
+- `gcc-core`
 
-Then get [**rgbds 0.2.5**](https://github.com/rednex/rgbds/releases/). Versions 0.3.0 and later are not compatible.
+Then download [**rgbds**](https://github.com/rednex/rgbds/releases/).
 Extract the archive and put all the `exe` and `dll` files individually in `C:\cygwin64\usr\local\bin`.
+
+**Note: If you have an older rgbds, you will need to update to 0.3.3 or newer.** Ignore this if you have never installed rgbds before.
 
 In the **Cygwin terminal**:
 
@@ -72,7 +75,3 @@ To build **pokecrystal.gbc**:
 ```bash
 make
 ```
-
-## notes
-
-- If `gettext` no longer exists, grab `libsasl2-3` `ca-certificates`.
