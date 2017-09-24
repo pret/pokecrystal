@@ -162,13 +162,11 @@ void create_tilemap(struct Tilemap* tilemap, struct Graphic* graphic, char* grap
 }
 
 int main(int argc, char* argv[]) {
-	int opt;
 	char* dimensions_filename;
 	char* graphics_filename;
 	char* outfile = NULL;
 	char* mapfile = NULL;
 	FILE* f;
-	long size;
 	uint8_t bytes[1];
 	int width;
 	int height;

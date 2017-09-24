@@ -36,11 +36,9 @@ all: crystal
 crystal: pokecrystal.gbc
 crystal11: pokecrystal11.gbc
 
-# Ensure that the tools are built when making the ROM
-ifneq ($(MAKECMDGOALS),clean)
-ifneq ($(MAKECMDGOALS),tools)
-Makefile: tools
-endif
+# Build tools when building the rom
+ifeq (,$(filter clean tools,$(MAKECMDGOALS)))
+Makefile: tools ;
 endif
 
 clean:
@@ -79,9 +77,12 @@ pokecrystal.gbc: $(crystal_obj)
 %.lz: hash = $(shell tools/md5 $(*D)/$(*F) | sed "s/\(.\{8\}\).*/\1/")
 %.lz: %
 	$(eval filename := $@.$(hash))
-	$(if $(wildcard $(filename)),cp $(filename) $@,tools/lzcomp $< $@)
+	$(if $(wildcard $(filename)),\
+		cp $(filename) $@,\
+		tools/lzcomp $< $@)
 
-# Terrible hacks to match animations. Delete these rules if you don't care about matching.
+
+### Terrible hacks to match animations. Delete these rules if you don't care about matching.
 
 # Dewgong has an unused tile id in its last frame. The tile itself is missing.
 gfx/pics/dewgong/frames.asm: gfx/pics/dewgong/front.animated.tilemap gfx/pics/dewgong/front.dimensions
@@ -101,7 +102,7 @@ gfx/pics/girafarig/front.animated.tilemap: gfx/pics/girafarig/front.2bpp gfx/pic
 	tools/pokemon_animation_graphics --girafarig -t $@ $^
 
 
-# Pokemon pic graphics rules
+### Pokemon pic graphics rules
 
 gfx/pics/%/normal.gbcpal: gfx/pics/%/front.png
 	rgbgfx -p $@ $<
@@ -122,7 +123,7 @@ gfx/pics/%/front.animated.tilemap: gfx/pics/%/front.2bpp gfx/pics/%/front.dimens
 #	rgbgfx -o $@ $<
 
 
-# Misc file-specific graphics rules
+### Misc file-specific graphics rules
 
 gfx/shrink1.2bpp: rgbgfx += -h
 gfx/shrink2.2bpp: rgbgfx += -h
@@ -139,17 +140,17 @@ gfx/mail/0b9cfe.1bpp: tools/gfx += --remove-whitespace
 
 gfx/pokedex/%.2bpp: tools/gfx += --trim-whitespace
 
-gfx/title/crystal.2bpp: tools/gfx += --interleave --width=48
-gfx/title/old_fg.2bpp: tools/gfx += --interleave --width=64
+gfx/title/crystal.2bpp: tools/gfx += --interleave --png=$<
+gfx/title/old_fg.2bpp: tools/gfx += --interleave --png=$<
 gfx/title/logo.2bpp: rgbgfx += -x 4
 
 gfx/trade/ball.2bpp: tools/gfx += --remove-whitespace
 gfx/trade/game_boy_n64.2bpp: tools/gfx += --trim-whitespace
 
-gfx/slots_2.2bpp: tools/gfx += --interleave --width=16
-gfx/slots_3.2bpp: tools/gfx += --interleave --width=24 --remove-duplicates --keep-whitespace --remove-xflip
-gfx/slots_3a.2bpp: tools/gfx += --interleave --width=16
-gfx/slots_3b.2bpp: tools/gfx += --interleave --width=24 --remove-duplicates --keep-whitespace --remove-xflip
+gfx/slots_2.2bpp: tools/gfx += --interleave --png=$<
+gfx/slots_3.2bpp: tools/gfx += --interleave --png=$< --remove-duplicates --keep-whitespace --remove-xflip
+gfx/slots_3a.2bpp: tools/gfx += --interleave --png=$<
+gfx/slots_3b.2bpp: tools/gfx += --interleave --png=$< --remove-duplicates --keep-whitespace --remove-xflip
 
 gfx/fx/angels.2bpp: tools/gfx += --trim-whitespace
 gfx/fx/beam.2bpp: tools/gfx += --remove-xflip --remove-yflip --remove-whitespace
@@ -194,11 +195,13 @@ gfx/unknown/171db1.2bpp: tools/gfx += --trim-whitespace
 
 %.2bpp: %.png
 	rgbgfx $(rgbgfx) -o $@ $<
-	$(if $(tools/gfx),tools/gfx $(tools/gfx) -o $@ $@)
+	$(if $(tools/gfx),\
+		tools/gfx $(tools/gfx) -o $@ $@)
 
 %.1bpp: %.png
 	rgbgfx $(rgbgfx) -d1 -o $@ $<
-	$(if $(tools/gfx),tools/gfx $(tools/gfx) -d1 -o $@ $@)
+	$(if $(tools/gfx),\
+		tools/gfx $(tools/gfx) -d1 -o $@ $@)
 
 %.tilemap: %.png
 	rgbgfx -t $@ $<

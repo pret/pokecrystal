@@ -32,7 +32,7 @@ static const uint32_t K[64] = {
 };
 
 #define rotate_left_32(value, by) \
-	((((value) << (by)) & 0xffffffff) | ((value) >> 32 - (by)))
+	((((value) << (by)) & 0xffffffff) | ((value) >> (32 - (by))))
 
 void md5_wikipedia(uint8_t *data, int length, uint8_t *result) {
 

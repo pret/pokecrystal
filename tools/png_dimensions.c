@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 void usage(void) {
-	fprintf(stderr, "Usage: png_dimensions infile, outfile\n");
+	fprintf(stderr, "Usage: png_dimensions infile outfile\n");
 	exit(1);
 }
 
