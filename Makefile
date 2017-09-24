@@ -62,12 +62,14 @@ tools:
 	rgbasm -o $@ $<
 
 pokecrystal11.gbc: $(crystal11_obj)
-	rgblink -n pokecrystal11.sym -m pokecrystal11.map -o $@ $^
+	rgblink -n pokecrystal11.sym -m pokecrystal11.map -l pokecrystal.ld -o $@ $^
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t PM_CRYSTAL $@
+	sort pokecrystal11.sym -o pokecrystal11.sym
 
 pokecrystal.gbc: $(crystal_obj)
-	rgblink -n pokecrystal.sym -m pokecrystal.map -o $@ $^
+	rgblink -n pokecrystal.sym -m pokecrystal.map -l pokecrystal.ld -o $@ $^
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
+	sort pokecrystal.sym -o pokecrystal.sym
 
 
 # For files that the compressor can't match, there will be a .lz file suffixed with the md5 hash of the correct uncompressed file.

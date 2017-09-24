@@ -1,0 +1,357 @@
+ROM0
+	org $0000
+	"NULL"
+	"rst0"
+	org $0008
+	"rst8"
+	org $0010
+	"rst10"
+	org $0018
+	"rst18"
+	org $0020
+	"rst20"
+	org $0028
+	"rst28"
+	org $0038
+	"rst38"
+	org $0040
+	"vblank"
+	org $0048
+	"lcd"
+	org $0050
+	"timer"
+	org $0058
+	"serial"
+	org $0060
+	"joypad"
+	org $0100
+	"Header"
+	org $0150
+	"Home"
+ROMX $01
+	"bank1"
+ROMX $02
+	"bank2"
+ROMX $03
+	"bank3"
+ROMX $04
+	"bank4"
+ROMX $05
+	"bank5"
+ROMX $06
+	"Tileset Data 1"
+ROMX $07
+	"Roofs"
+	"Tileset Data 2"
+	"Extra Songs 1"
+ROMX $08
+	"bank8"
+	"Tileset Data 3"
+	"Egg Moves"
+ROMX $09
+	"bank9"
+ROMX $0a
+	"bankA"
+ROMX $0b
+	"bankB"
+ROMX $0c
+	"Tileset Data 4"
+ROMX $0d
+	"Effect Commands"
+ROMX $0e
+	"Enemy Trainers"
+ROMX $0f
+	"Battle Core"
+ROMX $10
+	"bank10"
+	"Evolutions and Attacks"
+ROMX $11
+	"bank11"
+ROMX $12
+	"Crystal Unique"
+ROMX $13
+	"bank13"
+ROMX $14
+	"bank14"
+ROMX $15
+	"Map Scripts 1"
+ROMX $16
+	"Map Scripts 2"
+ROMX $17
+	"Map Scripts 3"
+ROMX $18
+	"Map Scripts 4"
+ROMX $19
+	"bank19"
+ROMX $1a
+	"Map Scripts 5"
+ROMX $1b
+	"Map Scripts 6"
+ROMX $1c
+	"Map Scripts 7"
+ROMX $1d
+	"Map Scripts 8"
+ROMX $1e
+	"Map Scripts 9"
+ROMX $1f
+	"Map Scripts 10"
+ROMX $20
+	"bank20"
+ROMX $21
+	"bank21"
+ROMX $22
+	"bank22"
+ROMX $23
+	"bank23"
+ROMX $24
+	"bank24"
+ROMX $25
+	"Map Headers"
+	"Events"
+ROMX $26
+	"Map Scripts 11"
+ROMX $27
+	"Map Scripts 12"
+ROMX $28
+	"Phone Engine"
+ROMX $29
+	"Phone Text"
+ROMX $2a
+	"Map Blockdata 1"
+ROMX $2b
+	"Map Blockdata 2"
+ROMX $2c
+	"Map Blockdata 3"
+ROMX $2d
+	"Tileset Data 5"
+ROMX $2e
+	"bank2E"
+ROMX $2f
+	"bank2F"
+ROMX $30
+	"bank30"
+ROMX $31
+	"bank31"
+ROMX $32
+	"bank32"
+ROMX $33
+	"bank33"
+	"Extra Songs 2"
+ROMX $34
+	"Pic Animations 1"
+ROMX $35
+	"Pic Animations 2"
+ROMX $36
+	"bank36"
+	"Pic Animations 3"
+ROMX $37
+	"Tileset Data 6"
+ROMX $38
+	"bank38"
+ROMX $39
+	"bank39"
+ROMX $3a
+	"Audio"
+	"Songs 1"
+ROMX $3b
+	"Songs 2"
+ROMX $3c
+	"Songs 3"
+	"Sound Effects"
+	"Cries"
+ROMX $3d
+	"Songs 4"
+ROMX $3e
+	"bank3E"
+ROMX $3f
+	"bank3F"
+ROMX $40
+	"bank40"
+	"tetsuji"
+	"bank40_2"
+	"ascii 10186f"
+	"bank40_3"
+ROMX $41
+	"bank41"
+	"bank41_2"
+ROMX $42
+	"bank42"
+	"Intro Logo"
+	"Credits"
+ROMX $43
+	"bank43"
+ROMX $44
+	"Main"
+ROMX $45
+	"bank45"
+	"Mobile Stadium"
+ROMX $46
+	"bank46"
+	"bank46_2"
+ROMX $47
+	"bank47"
+ROMX $48
+	"Pic Pointers"
+	"Pics 1"
+ROMX $49
+	"Unown Pic Pointers"
+	"Pics 2"
+ROMX $4a
+	"Trainer Pic Pointers"
+	"Pics 3"
+ROMX $4b
+	"Pics 4"
+ROMX $4c
+	"Pics 5"
+ROMX $4d
+	"Pics 6"
+ROMX $4e
+	"Pics 7"
+ROMX $4f
+	"Pics 8"
+ROMX $50
+	"Pics 9"
+ROMX $51
+	"Pics 10"
+ROMX $52
+	"Pics 11"
+ROMX $53
+	"Pics 12"
+ROMX $54
+	"Pics 13"
+ROMX $55
+	"Pics 14"
+ROMX $56
+	"Pics 15"
+ROMX $57
+	"Pics 16"
+ROMX $58
+	"Pics 17"
+ROMX $59
+	"Pics 18"
+ROMX $5a
+	"Pics 19"
+ROMX $5b
+	"bank5B"
+ROMX $5c
+	"bank5C"
+ROMX $5d
+	"bank5D"
+ROMX $5e
+	"bank5E"
+	"Songs 5"
+	"Crystal Sound Effects"
+	"Misc Crystal"
+ROMX $5f
+	"bank5F"
+ROMX $60
+	"Map Scripts 13"
+	"Pokedex Entries 001-064"
+ROMX $61
+	"Map Scripts 14"
+ROMX $62
+	"Map Scripts 15"
+ROMX $63
+	"Map Scripts 16"
+ROMX $64
+	"Map Scripts 17"
+ROMX $65
+	"Map Scripts 18"
+ROMX $66
+	"Map Scripts 19"
+ROMX $67
+	"Map Scripts 20"
+ROMX $68
+	"Map Scripts 21"
+ROMX $69
+	"Map Scripts 22"
+ROMX $6a
+	"Map Scripts 23"
+ROMX $6b
+	"Map Scripts 24"
+ROMX $6c
+	"Common Text 1"
+	"Map Scripts 25"
+ROMX $6d
+	"bank6D"
+ROMX $6e
+	"Pokedex Entries 065-128"
+ROMX $6f
+	"Text 1"
+ROMX $70
+	"Text 2"
+ROMX $71
+	"Text 3"
+ROMX $72
+	"bank72"
+ROMX $73
+	"Pokedex Entries 129-192"
+ROMX $74
+	"Pokedex Entries 193-251"
+ROMX $77
+	"bank77"
+	"Tileset Data 7"
+	"bank77_2"
+ROMX $78
+	"Tileset Data 8"
+ROMX $7b
+	"bank7B"
+ROMX $7c
+	"bank7C"
+ROMX $7d
+	"bank7D"
+ROMX $7e
+	"bank7E"
+ROMX $7f
+	"bank7F"
+	org $7de0
+	"stadium2"
+WRAM0
+	"Stack"
+	"Audio RAM"
+	"WRAM"
+	"wSpriteAnims"
+	"Sprites"
+	"Tilemap"
+	"Battle"
+	"Overworld Map"
+	"Video"
+WRAMX 1
+	"WRAM 1"
+	"Enemy Party"
+	"Party"
+WRAMX 2
+	"Pic Animations"
+WRAMX 3
+	"Battle Tower"
+WRAMX 5
+	"GBC Video"
+	org $d300
+	"Battle Animations"
+	org $d800
+	"WRAM 5 MOBILE"
+WRAMX 6
+	"WRAM 6"
+WRAMX 7
+	"WRAM 7"
+VRAM $00
+	"VRAM0"
+VRAM $01
+	"VRAM1"
+SRAM $00
+	"Scratch"
+	org $a600
+	"SRAM Bank 0"
+	org $b200
+	"Backup Save"
+SRAM $01
+	"Save"
+	"Active Box"
+	"Link Battle Data"
+	"SRAM Hall of Fame"
+	"SRAM Crystal Data"
+	"SRAM Battle Tower"
+SRAM $02
+	"Boxes 1-7"
+SRAM $03
+	"Boxes 8-14"

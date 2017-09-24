@@ -855,7 +855,7 @@ DoAnimFrame: ; 8d24b
 	ret
 
 .AnonymousJumptable: ; 8d6c5 (23:56c5)
-	ld hl, [sp+$0]
+	ld hl, sp+$0
 	ld e, [hl]
 	inc hl
 	ld d, [hl]

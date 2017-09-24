@@ -1,6 +1,6 @@
 INCLUDE "includes.asm"
 
-SECTION "Credits", ROMX, BANK[CREDITS]
+SECTION "Credits", ROMX
 
 	const_def
 	const SATOSHI_TAJIRI
