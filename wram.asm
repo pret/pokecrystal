@@ -299,6 +299,7 @@ wGlobalAnimXOffset:: ds 1
 wSpriteAnimsEnd::
 
 	ds 11
+
 wc3cc:: ds 1
 wc3cd:: ds 31
 wc3ec:: ds 1
@@ -317,7 +318,9 @@ wc3f8:: ds 1
 wc3f9:: ds 1
 wc3fa:: ds 1
 wc3fb:: ds 1
-wc3fc:: ds 4
+wc3fc:: ds 1
+
+	ds 3
 
 
 SECTION "Sprites", WRAM0

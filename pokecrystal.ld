@@ -311,6 +311,7 @@ WRAM0
 	"Audio RAM"
 	"WRAM"
 	"wSpriteAnims"
+	align 8
 	"Sprites"
 	"Tilemap"
 	"Battle"
