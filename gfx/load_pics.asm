@@ -250,9 +250,13 @@ GetBackpic: ; 5116c
 
 FixPicBank: ; 511c5
 ; This is a thing for some reason.
+
+PICS_FIX EQU $36
+GLOBAL PICS_FIX
+
 	push hl
 	push bc
-	sub PICS_1 - PICS_FIX
+	sub BANK(Pics_1) - PICS_FIX
 	ld c, a
 	ld b, 0
 	ld hl, .PicsBanks
@@ -263,30 +267,30 @@ FixPicBank: ; 511c5
 	ret
 
 .PicsBanks: ; 511d4
-	db PICS_1
-	db PICS_2
-	db PICS_3
-	db PICS_4
-	db PICS_5
-	db PICS_6
-	db PICS_7
-	db PICS_8
-	db PICS_9
-	db PICS_10
-	db PICS_11
-	db PICS_12
-	db PICS_13
-	db PICS_14
-	db PICS_15
-	db PICS_16
-	db PICS_17
-	db PICS_18
-	db PICS_19
-	db PICS_19 + 1
-	db PICS_19 + 2
-	db PICS_19 + 3
-	db PICS_19 + 4
-	db PICS_19 + 5
+	db BANK(Pics_1) + 0
+	db BANK(Pics_1) + 1
+	db BANK(Pics_1) + 2
+	db BANK(Pics_1) + 3
+	db BANK(Pics_1) + 4
+	db BANK(Pics_1) + 5
+	db BANK(Pics_1) + 6
+	db BANK(Pics_1) + 7
+	db BANK(Pics_1) + 8
+	db BANK(Pics_1) + 9
+	db BANK(Pics_1) + 10
+	db BANK(Pics_1) + 11
+	db BANK(Pics_1) + 12
+	db BANK(Pics_1) + 13
+	db BANK(Pics_1) + 14
+	db BANK(Pics_1) + 15
+	db BANK(Pics_1) + 16
+	db BANK(Pics_1) + 17
+	db BANK(Pics_1) + 18
+	db BANK(Pics_1) + 19
+	db BANK(Pics_1) + 20
+	db BANK(Pics_1) + 21
+	db BANK(Pics_1) + 22
+	db BANK(Pics_1) + 23
 
 Function511ec: ; 511ec
 	ld a, c

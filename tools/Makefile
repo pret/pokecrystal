@@ -1,7 +1,7 @@
 .PHONY: all clean
 
 CC := gcc
-CFLAGS := -std=c99 -Wall -Wextra
+CFLAGS := -O3 -std=c99 -Wall -Wextra
 
 tools := \
 	lzcomp \
