@@ -6,35 +6,35 @@ KarensRoom_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x180bbc, 0
-	dw UnknownScript_0x180bc0, 0
+	dw .Trigger0, 0
+	dw .Trigger1, 0
 
 .MapCallbacks:
 	db 1
 
 	; callbacks
 
-	dbw MAPCALLBACK_TILES, UnknownScript_0x180bc1
+	dbw MAPCALLBACK_TILES, .KarensRoomDoors
 
-UnknownScript_0x180bbc:
-	priorityjump UnknownScript_0x180bd6
+.Trigger0:
+	priorityjump .KarensDoorLocksBehindYou
 	end
 
-UnknownScript_0x180bc0:
+.Trigger1:
 	end
 
-UnknownScript_0x180bc1:
+.KarensRoomDoors:
 	checkevent EVENT_KARENS_ROOM_ENTRANCE_CLOSED
-	iffalse UnknownScript_0x180bcb
+	iffalse .KeepDoorsClosed
 	changeblock $4, $e, $2a
-UnknownScript_0x180bcb:
+.KeepDoorsClosed:
 	checkevent EVENT_KARENS_ROOM_EXIT_OPEN
-	iffalse UnknownScript_0x180bd5
+	iffalse .OpenDoors
 	changeblock $4, $2, $16
-UnknownScript_0x180bd5:
+.OpenDoors:
 	return
 
-UnknownScript_0x180bd6:
+.KarensDoorLocksBehindYou:
 	applymovement PLAYER, MovementData_0x180c22
 	refreshscreen $86
 	playsound SFX_STRENGTH
@@ -47,21 +47,21 @@ UnknownScript_0x180bd6:
 	waitsfx
 	end
 
-KarenScript_0x180bee:
+KarenScript_Battle:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_ELITE_4_KAREN
 	iftrue UnknownScript_0x180c1c
-	writetext UnknownText_0x180c27
+	writetext KarenScript_KarenBeforeText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x180cf8, 0
+	winlosstext KarenScript_KarenBeatenText, 0
 	loadtrainer KAREN, 1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ELITE_4_KAREN
 	opentext
-	writetext UnknownText_0x180d29
+	writetext KarenScript_KarenDefeatText
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
@@ -73,7 +73,7 @@ KarenScript_0x180bee:
 	end
 
 UnknownScript_0x180c1c:
-	writetext UnknownText_0x180d29
+	writetext KarenScript_KarenDefeatText
 	waitbutton
 	closetext
 	end
@@ -85,7 +85,7 @@ MovementData_0x180c22:
 	step UP
 	step_end
 
-UnknownText_0x180c27:
+KarenScript_KarenBeforeText:
 	text "I am KAREN of the"
 	line "ELITE FOUR."
 
@@ -108,13 +108,13 @@ UnknownText_0x180c27:
 	para "Let's go."
 	done
 
-UnknownText_0x180cf8:
+KarenScript_KarenBeatenText:
 	text "Well, aren't you"
 	line "good. I like that"
 	cont "in a trainer."
 	done
 
-UnknownText_0x180d29:
+KarenScript_KarenDefeatText:
 	text "Strong #MON."
 
 	para "Weak #MON."
@@ -156,4 +156,4 @@ KarensRoom_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_KAREN, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, KarenScript_0x180bee, -1
+	person_event SPRITE_KAREN, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, KarenScript_Battle, -1

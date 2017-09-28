@@ -6,35 +6,35 @@ KogasRoom_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x180728, 0
-	dw UnknownScript_0x18072c, 0
+	dw .Trigger0, 0
+	dw .Trigger1, 0
 
 .MapCallbacks:
 	db 1
 
 	; callbacks
 
-	dbw MAPCALLBACK_TILES, UnknownScript_0x18072d
+	dbw MAPCALLBACK_TILES, .KogasRoomDoors
 
-UnknownScript_0x180728:
-	priorityjump UnknownScript_0x180742
+.Trigger0:
+	priorityjump .KogasDoorLocksBehindYou
 	end
 
-UnknownScript_0x18072c:
+.Trigger1:
 	end
 
-UnknownScript_0x18072d:
+.KogasRoomDoors:
 	checkevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
-	iffalse UnknownScript_0x180737
+	iffalse .KeepDoorsClosed
 	changeblock $4, $e, $2a
-UnknownScript_0x180737:
+.KeepDoorsClosed:
 	checkevent EVENT_KOGAS_ROOM_EXIT_OPEN
-	iffalse UnknownScript_0x180741
+	iffalse .OpenDoors
 	changeblock $4, $2, $16
-UnknownScript_0x180741:
+.OpenDoors:
 	return
 
-UnknownScript_0x180742:
+.KogasDoorLocksBehindYou:
 	applymovement PLAYER, MovementData_0x18078e
 	refreshscreen $86
 	playsound SFX_STRENGTH
@@ -47,21 +47,21 @@ UnknownScript_0x180742:
 	waitsfx
 	end
 
-KogaScript_0x18075a:
+KogaScript_Battle:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_ELITE_4_KOGA
 	iftrue UnknownScript_0x180788
-	writetext UnknownText_0x180793
+	writetext KogaScript_KogaBeforeText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x1808a9, 0
+	winlosstext KogaScript_KogaBeatenText, 0
 	loadtrainer KOGA, 1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ELITE_4_KOGA
 	opentext
-	writetext UnknownText_0x1808ca
+	writetext KogaScript_KogaDefeatText
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
@@ -73,7 +73,7 @@ KogaScript_0x18075a:
 	end
 
 UnknownScript_0x180788:
-	writetext UnknownText_0x1808ca
+	writetext KogaScript_KogaDefeatText
 	waitbutton
 	closetext
 	end
@@ -85,7 +85,7 @@ MovementData_0x18078e:
 	step UP
 	step_end
 
-UnknownText_0x180793:
+KogaScript_KogaBeforeText:
 	text "Fwahahahaha!"
 
 	para "I am KOGA of the"
@@ -114,13 +114,13 @@ UnknownText_0x180793:
 	line "see soon enough!"
 	done
 
-UnknownText_0x1808a9:
+KogaScript_KogaBeatenText:
 	text "Ah!"
 	line "You have proven"
 	cont "your worth!"
 	done
 
-UnknownText_0x1808ca:
+KogaScript_KogaDefeatText:
 	text "I subjected you to"
 	line "everything I could"
 	cont "muster."
@@ -153,4 +153,4 @@ KogasRoom_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_KOGA, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, KogaScript_0x18075a, -1
+	person_event SPRITE_KOGA, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, KogaScript_Battle, -1
