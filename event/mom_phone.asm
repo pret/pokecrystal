@@ -56,7 +56,7 @@ MomTriesToBuySomething:: ; fcfec
 
 CheckBalance_MomItem2: ; fd044
 	ld a, [wWhichMomItem]
-	cp MOM_ITEM_LIST_2 ; 10
+	cp NUM_MOM_ITEMS_2 ; 10
 	jr nc, .nope
 	call GetItemFromMom
 	ld a, [hli]
@@ -99,7 +99,7 @@ CheckBalance_MomItem2: ; fd044
 
 .exact
 	call .AddMoney
-	ld a, MOM_ITEM_LIST_1 ; 5
+	ld a, NUM_MOM_ITEMS_1 ; 5
 	call RandomRange
 	inc a
 	ld [wWhichMomItemSet], a
@@ -194,7 +194,7 @@ GetItemFromMom: ; fd117
 
 .zero
 	ld a, [wWhichMomItem]
-	cp MOM_ITEM_LIST_2 ; 10
+	cp NUM_MOM_ITEMS_2 ; 10
 	jr c, .ok
 	xor a
 
