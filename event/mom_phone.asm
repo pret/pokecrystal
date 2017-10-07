@@ -1,5 +1,5 @@
-NUM_MOM_ITEMS_1 EQUS ((MomItems_1End - MomItems_1) / 8)
-NUM_MOM_ITEMS_2 EQUS ((MomItems_2End - MomItems_2) / 8)
+NUM_MOM_ITEMS_1 EQU ((MomItems_1End - MomItems_1) / 8)
+NUM_MOM_ITEMS_2 EQU ((MomItems_2End - MomItems_2) / 8)
 
 MomTriesToBuySomething:: ; fcfec
 	ld a, [wMapReentryScriptQueueFlag]
