@@ -1,5 +1,5 @@
-MOM_ITEM_LIST_1 EQU 5  ; how many are in list 1?
-MOM_ITEM_LIST_2 EQU 10 ; how many are in list 2?
+NUM_MOM_ITEMS_1 EQUS ((MomItems_1End - MomItems_1) / 8)
+NUM_MOM_ITEMS_2 EQUS ((MomItems_2End - MomItems_2) / 8)
 
 MomTriesToBuySomething:: ; fcfec
 	ld a, [wMapReentryScriptQueueFlag]
@@ -225,6 +225,8 @@ MomItems_1: ; fd136
 	momitem      0,   180, MOM_ITEM, POKE_BALL
 	momitem      0,   450, MOM_ITEM, ESCAPE_ROPE
 	momitem      0,   500, MOM_ITEM, GREAT_BALL
+MomItems_1End:
+
 MomItems_2: ; fd15e
 	momitem    900,   600, MOM_ITEM, SUPER_POTION
 	momitem   4000,   270, MOM_ITEM, REPEL
@@ -236,6 +238,7 @@ MomItems_2: ; fd15e
 	momitem  40000,   900, MOM_ITEM, HYPER_POTION
 	momitem  50000,  8000, MOM_DOLL, DECO_PIKACHU_DOLL
 	momitem 100000, 22800, MOM_DOLL, DECO_BIG_SNORLAX_DOLL
+MomItems_2End:
 ; fd1ae
 
 	db 0, 0, 0 ; XXX
