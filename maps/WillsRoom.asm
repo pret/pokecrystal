@@ -51,7 +51,7 @@ WillScript_Battle:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_ELITE_4_WILL
-	iftrue WillsRoom_0x180526
+	iftrue WillScript_0x180526
 	writetext WillScript_WillBeforeText
 	waitbutton
 	closetext
