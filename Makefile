@@ -4,6 +4,11 @@ else
 SHA1 := sha1sum
 endif
 
+RGBASM := rgbasm
+RGBFIX := rgbfix
+RGBGFX := rgbgfx
+RGBLINK := rgblink
+
 .SUFFIXES:
 .PHONY: all clean tools compare crystal crystal11
 .SECONDEXPANSION:
@@ -53,20 +58,20 @@ tools:
 
 %11.o: dep = $(shell tools/scan_includes $(@D)/$*.asm)
 %11.o: %.asm $$(dep)
-	rgbasm -D CRYSTAL11 -o $@ $<
+	$(RGBASM) -D CRYSTAL11 -o $@ $<
 
 %.o: dep = $(shell tools/scan_includes $(@D)/$*.asm)
 %.o: %.asm $$(dep)
-	rgbasm -o $@ $<
+	$(RGBASM) -o $@ $<
 
 pokecrystal11.gbc: $(crystal11_obj) pokecrystal.link
-	rgblink -n pokecrystal11.sym -m pokecrystal11.map -l pokecrystal.link -o $@ $(crystal11_obj)
-	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t PM_CRYSTAL $@
+	$(RGBLINK) -n pokecrystal11.sym -m pokecrystal11.map -l pokecrystal.link -o $@ $(crystal11_obj)
+	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t PM_CRYSTAL $@
 	sort pokecrystal11.sym -o pokecrystal11.sym
 
 pokecrystal.gbc: $(crystal_obj) pokecrystal.link
-	rgblink -n pokecrystal.sym -m pokecrystal.map -l pokecrystal.link -o $@ $(crystal_obj)
-	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
+	$(RGBLINK) -n pokecrystal.sym -m pokecrystal.map -l pokecrystal.link -o $@ $(crystal_obj)
+	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 	sort pokecrystal.sym -o pokecrystal.sym
 
 
@@ -105,11 +110,11 @@ gfx/pics/girafarig/front.animated.tilemap: gfx/pics/girafarig/front.2bpp gfx/pic
 ### Pokemon pic graphics rules
 
 gfx/pics/%/normal.gbcpal: gfx/pics/%/front.png
-	rgbgfx -p $@ $<
+	$(RGBGFX) -p $@ $<
 gfx/pics/%/normal.pal: gfx/pics/%/normal.gbcpal
 	tools/palette -p $< > $@
 gfx/pics/%/back.2bpp: gfx/pics/%/back.png
-	rgbgfx -h -o $@ $<
+	$(RGBGFX) -h -o $@ $<
 gfx/pics/%/bitmask.asm: gfx/pics/%/front.animated.tilemap gfx/pics/%/front.dimensions
 	tools/pokemon_animation -b $^ > $@
 gfx/pics/%/frames.asm: gfx/pics/%/front.animated.tilemap gfx/pics/%/front.dimensions
@@ -120,7 +125,7 @@ gfx/pics/%/front.animated.tilemap: gfx/pics/%/front.2bpp gfx/pics/%/front.dimens
 	tools/pokemon_animation_graphics -t $@ $^
 # Don't use -h, pokemon_animation_graphics takes care of it
 #gfx/pics/%/front.2bpp: gfx/pics/%/front.png
-#	rgbgfx -o $@ $<
+#	$(RGBGFX) -o $@ $<
 
 
 ### Misc file-specific graphics rules
@@ -194,19 +199,19 @@ gfx/unknown/171db1.2bpp: tools/gfx += --trim-whitespace
 %.blk: ;
 
 %.2bpp: %.png
-	rgbgfx $(rgbgfx) -o $@ $<
+	$(RGBGFX) $(rgbgfx) -o $@ $<
 	$(if $(tools/gfx),\
 		tools/gfx $(tools/gfx) -o $@ $@)
 
 %.1bpp: %.png
-	rgbgfx $(rgbgfx) -d1 -o $@ $<
+	$(RGBGFX) $(rgbgfx) -d1 -o $@ $<
 	$(if $(tools/gfx),\
 		tools/gfx $(tools/gfx) -d1 -o $@ $@)
 
 %.tilemap: %.png
-	rgbgfx -t $@ $<
+	$(RGBGFX) -t $@ $<
 %.gbcpal: %.png
-	rgbgfx -p $@ $<
+	$(RGBGFX) -p $@ $<
 %.pal: %.gbcpal
 	tools/palette $< > $@
 %.dimensions: %.png
