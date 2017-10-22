@@ -59,13 +59,13 @@ tools:
 %.o: %.asm $$(dep)
 	rgbasm -o $@ $<
 
-pokecrystal11.gbc: $(crystal11_obj) pokecrystal.ld
-	rgblink -n pokecrystal11.sym -m pokecrystal11.map -l pokecrystal.ld -o $@ $(crystal11_obj)
+pokecrystal11.gbc: $(crystal11_obj) pokecrystal.link
+	rgblink -n pokecrystal11.sym -m pokecrystal11.map -l pokecrystal.link -o $@ $(crystal11_obj)
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t PM_CRYSTAL $@
 	sort pokecrystal11.sym -o pokecrystal11.sym
 
-pokecrystal.gbc: $(crystal_obj) pokecrystal.ld
-	rgblink -n pokecrystal.sym -m pokecrystal.map -l pokecrystal.ld -o $@ $(crystal_obj)
+pokecrystal.gbc: $(crystal_obj) pokecrystal.link
+	rgblink -n pokecrystal.sym -m pokecrystal.map -l pokecrystal.link -o $@ $(crystal_obj)
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 	sort pokecrystal.sym -o pokecrystal.sym
 
