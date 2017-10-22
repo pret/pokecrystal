@@ -6,35 +6,35 @@ WillsRoom_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x1804c6, 0
-	dw UnknownScript_0x1804ca, 0
+	dw .Trigger0, 0
+	dw .Trigger1, 0
 
 .MapCallbacks:
 	db 1
 
 	; callbacks
 
-	dbw MAPCALLBACK_TILES, UnknownScript_0x1804cb
+	dbw MAPCALLBACK_TILES, .WillsRoomDoors
 
-UnknownScript_0x1804c6:
-	priorityjump UnknownScript_0x1804e0
+.Trigger0:
+	priorityjump .WillsDoorLocksBehindYou
 	end
 
-UnknownScript_0x1804ca:
+.Trigger1:
 	end
 
-UnknownScript_0x1804cb:
+.WillsRoomDoors:
 	checkevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
-	iffalse UnknownScript_0x1804d5
+	iffalse .KeepDoorClosed
 	changeblock $4, $e, $2a
-UnknownScript_0x1804d5:
+.KeepDoorClosed:
 	checkevent EVENT_WILLS_ROOM_EXIT_OPEN
-	iffalse UnknownScript_0x1804df
+	iffalse .OpenDoor
 	changeblock $4, $2, $16
-UnknownScript_0x1804df:
+.OpenDoor:
 	return
 
-UnknownScript_0x1804e0:
+.WillsDoorLocksBehindYou:
 	applymovement PLAYER, MovementData_0x18052c
 	refreshscreen $86
 	playsound SFX_STRENGTH
@@ -47,21 +47,21 @@ UnknownScript_0x1804e0:
 	waitsfx
 	end
 
-WillScript_0x1804f8:
+WillScript_Battle:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_ELITE_4_WILL
-	iftrue UnknownScript_0x180526
-	writetext UnknownText_0x180531
+	iftrue WillScript_0x180526
+	writetext WillScript_WillBeforeText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x18062c, 0
+	winlosstext WillScript_WillBeatenText, 0
 	loadtrainer WILL, 1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ELITE_4_WILL
 	opentext
-	writetext UnknownText_0x180644
+	writetext WillScript_WillDefeatText
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
@@ -72,8 +72,8 @@ WillScript_0x1804f8:
 	waitsfx
 	end
 
-UnknownScript_0x180526:
-	writetext UnknownText_0x180644
+WillScript_0x180526:
+	writetext WillScript_WillDefeatText
 	waitbutton
 	closetext
 	end
@@ -85,7 +85,7 @@ MovementData_0x18052c:
 	step UP
 	step_end
 
-UnknownText_0x180531:
+WillScript_WillBeforeText:
 	text "Welcome to #MON"
 	line "LEAGUE, <PLAYER>."
 
@@ -110,12 +110,12 @@ UnknownText_0x180531:
 	line "option!"
 	done
 
-UnknownText_0x18062c:
+WillScript_WillBeatenText:
 	text "I… I can't…"
 	line "believe it…"
 	done
 
-UnknownText_0x180644:
+WillScript_WillDefeatText:
 	text "Even though I was"
 	line "defeated, I won't"
 	cont "change my course."
@@ -151,4 +151,4 @@ WillsRoom_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_WILL, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, WillScript_0x1804f8, -1
+	person_event SPRITE_WILL, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, WillScript_Battle, -1

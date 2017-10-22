@@ -17,7 +17,7 @@ BrunosRoom_MapScriptHeader:
 	dbw MAPCALLBACK_TILES, .BrunosRoomDoors
 
 .Trigger0:
-	priorityjump UnknownScript_0x1809ad
+	priorityjump .BrunosDoorLocksBehindYou
 	end
 
 .Trigger1:
@@ -34,7 +34,7 @@ BrunosRoom_MapScriptHeader:
 .OpenDoor:
 	return
 
-UnknownScript_0x1809ad:
+.BrunosDoorLocksBehindYou:
 	applymovement PLAYER, MovementData_0x1809f9
 	refreshscreen $86
 	playsound SFX_STRENGTH
@@ -47,21 +47,21 @@ UnknownScript_0x1809ad:
 	waitsfx
 	end
 
-BrunoScript_0x1809c5:
+BrunoScript_Battle:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_ELITE_4_BRUNO
 	iftrue UnknownScript_0x1809f3
-	writetext UnknownText_0x1809fe
+	writetext BrunoScript_BrunoBeforeText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x180b23, 0
+	winlosstext BrunoScript_BrunoBeatenText, 0
 	loadtrainer BRUNO, 1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ELITE_4_BRUNO
 	opentext
-	writetext UnknownText_0x180b3c
+	writetext BrunoScript_BrunoDefeatText
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
@@ -73,7 +73,7 @@ BrunoScript_0x1809c5:
 	end
 
 UnknownScript_0x1809f3:
-	writetext UnknownText_0x180b3c
+	writetext BrunoScript_BrunoDefeatText
 	waitbutton
 	closetext
 	end
@@ -85,7 +85,7 @@ MovementData_0x1809f9:
 	step UP
 	step_end
 
-UnknownText_0x1809fe:
+BrunoScript_BrunoBeforeText:
 	text "I am BRUNO of the"
 	line "ELITE FOUR."
 
@@ -115,12 +115,12 @@ UnknownText_0x1809fe:
 	para "Hoo hah!"
 	done
 
-UnknownText_0x180b23:
+BrunoScript_BrunoBeatenText:
 	text "Why? How could we"
 	line "lose?"
 	done
 
-UnknownText_0x180b3c:
+BrunoScript_BrunoDefeatText:
 	text "Having lost, I"
 	line "have no right to"
 	cont "say anything…"
@@ -148,4 +148,4 @@ BrunosRoom_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_BRUNO, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, BrunoScript_0x1809c5, -1
+	person_event SPRITE_BRUNO, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, BrunoScript_Battle, -1
