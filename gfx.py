@@ -31,23 +31,106 @@ def get_base_stats():
         base_stats = recursive_read('data/base_stats.asm')
     return base_stats
 
-def get_pokemon_dimensions(name):
+def get_pokemon_dimensions(path):
     try:
-        if name == 'egg':
-            return 5, 5
-        if name == 'questionmark':
-            return 7, 7
-        if name.startswith('unown_'):
-            name = 'unown'
-        base_stats = get_base_stats()
-        start = base_stats.find('\tdb ' + name.upper())
-        start = base_stats.find('\tdn ', start)
-        end = base_stats.find('\n', start)
-        line = base_stats[start:end].replace(',', ' ')
-        w, h = map(int, line.split()[1:3])
-        return w, h
+        byte = bytearray(open(path, 'rb').read())[0]
+        width = byte & 0xf
+        height = (byte >> 8) & 0xf
+        return width, height
     except:
-        return 7, 7
+        return None
+
+
+def get_animation_frames(path=None, w=7, h=7, bitmask_path=None, frame_path=None):
+    """Retrieve animation frame tilemaps from generated frame/bitmask data."""
+    if not path:
+        path = bitmask_path
+    if not path:
+        path = frame_path
+    if not path:
+        raise Exception("need at least one of path, bitmask_path or frame_path")
+
+    if not bitmask_path:
+        bitmask_path = os.path.join(os.path.split(path)[0], 'bitmask.asm')
+    if not frame_path:
+        frame_path = os.path.join(os.path.split(path)[0], 'frames.asm')
+    bitmask_lines = open(bitmask_path).readlines()
+    frame_lines = open(frame_path).readlines()
+
+    bitmask_length = w * h
+
+    bitmasks = []
+    bitmask = []
+    for line in bitmask_lines:
+        if '\tdb ' in line:
+            value = line.split('\tdb ')[1].strip().replace('%', '0b')
+            value = int(value, 0)
+            #print line.strip(), value, len(bitmasks), len(bitmask)
+            for bit in xrange(8):
+                bitmask += [(value >> bit) & 1]
+                if len(bitmask) >= bitmask_length:
+                    bitmasks += [bitmask]
+                    bitmask = []
+                    break
+    if bitmask:
+        bitmasks += [bitmask]
+
+    frames = []
+    frame_labels = []
+    i = 0
+    for line in frame_lines:
+        if '\tdw ' in line:
+            frame_labels += [line.split('\tdw ')[1].strip()]
+        else:
+            for part in line.split():
+                part = part.strip()
+                if part in frame_labels:
+                    frames += [(part, i)]
+        i += 1
+
+    results = []
+
+    for label, i in frames:
+        result = []
+
+        # get the bitmask and tile ids for each frame
+        # don't care if we read past bounds, so just read the rest of the file
+        values = []
+        for line in frame_lines[i:]:
+            if '\tdb ' in line:
+                values += line.split('\tdb ')[1].split(';')[0].split(',')
+
+        #print bitmasks
+        #print values[0]
+        #print int(values[0].replace('$', '0x'), 0)
+        bitmask = bitmasks[int(values[0].replace('$', '0x'), 0)]
+        tiles = values[1:]
+        k = 0
+        j = 0
+        for bit in bitmask:
+            if bit:
+                result += [int(tiles[k].replace('$', '0x'), 0)]
+                k += 1
+            else:
+                result += [j]
+            j += 1
+
+        results += [result]
+
+    return results
+
+def get_animated_graphics(path, w=7, h=7, bitmask_path=None, frame_path=None):
+    frames = get_animation_frames(path, w, h, bitmask_path, frame_path)
+    new_path = path.replace('.animated.2bpp', '.2bpp')
+    tiles = gfx.get_tiles(bytearray(open(path, 'rb').read()))
+    new_tiles = tiles[:w * h]
+    for frame in frames:
+        for tile in frame:
+            new_tiles += [tiles[tile]]
+    new_graphic = gfx.connect(new_tiles)
+    print new_path, list(new_graphic)
+    open(new_path, 'wb').write(bytearray(new_graphic))
+    return new_path
 
 def filepath_rules(filepath):
     """Infer attributes of certain graphics by their location in the filesystem."""
@@ -69,7 +152,7 @@ def filepath_rules(filepath):
             index = filedir.find(pokemon_name)
             if index != -1:
                 filedir = filedir[:index + len('unown')] + filedir[index + len('unown_a'):]
-        if name == 'front':
+        if name == 'front' or name == 'front.animated':
             args['pal_file'] = os.path.join(filedir, 'normal.pal')
             args['pic'] = True
             args['animate'] = True
@@ -98,8 +181,8 @@ def filepath_rules(filepath):
             w = min(w/8, h/8)
             args['pic_dimensions'] = w, w
         elif ext == '.2bpp':
-            if pokemon_name and name == 'front':
-                w, h = get_pokemon_dimensions(pokemon_name)
+            if pokemon_name and name == 'front' or name == 'front.animated':
+                w, h = get_pokemon_dimensions(filepath.replace(ext, '.dimensions')) or (7, 7)
                 args['pic_dimensions'] = w, w
             elif pokemon_name and name == 'back':
                 args['pic_dimensions'] = 6, 6
@@ -132,6 +215,10 @@ def to_2bpp(filename, **kwargs):
 def to_png(filename, **kwargs):
     name, ext = os.path.splitext(filename)
     if   ext == '.1bpp': gfx.export_1bpp_to_png(filename, **kwargs)
+    elif ext == '.2bpp' and name.endswith('.animated'):
+        w, h = kwargs.get('pic_dimensions') or (7, 7)
+        new_path = get_animated_graphics(filename, w=w, h=h)
+        return to_png(new_path, **kwargs)
     elif ext == '.2bpp': gfx.export_2bpp_to_png(filename, **kwargs)
     elif ext == '.png':  pass
     elif ext == '.lz':
