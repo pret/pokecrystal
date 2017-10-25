@@ -5,7 +5,7 @@ MomPhoneGreetingText: ; 0x1b4000
 	line "Working hard?"
 	done
 
-UnknownText_0x1b4021: ; 0x1b4021
+MomPhoneLandmarkText: ; 0x1b4021
 	text "Oh, so you're in"
 	line "@"
 	text_from_ram StringBuffer3
@@ -50,7 +50,7 @@ MomPhoneCherrygroveText: ; 0x1b40e4
 	line "home for a bit?"
 	done
 
-UnknownText_0x1b411c: ; 0x1b411c
+MomOtherAreaText: ; 0x1b411c
 	text "Wow, you're in"
 	line "@"
 	text_from_ram StringBuffer3
@@ -60,7 +60,7 @@ UnknownText_0x1b411c: ; 0x1b411c
 	line "#MON quest!"
 	done
 
-UnknownText_0x1b4150: ; 0x1b4150
+MomDeterminedText: ; 0x1b4150
 	text "That sounds really"
 	line "tough."
 
@@ -71,7 +71,7 @@ UnknownText_0x1b4150: ; 0x1b4150
 	line "be OK, right?"
 	done
 
-UnknownText_0x1b41a7: ; 0x1b41a7
+MomCheckBalanceText: ; 0x1b41a7
 	text "By the way, you've"
 	line "saved up ¥@"
 	text_from_ram StringBuffer3
