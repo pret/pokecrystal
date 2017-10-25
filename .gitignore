@@ -43,3 +43,4 @@ pokecrystal.txt
 *.animated.tilemap
 gfx/pics/*/bitmask.asm
 gfx/pics/*/frames.asm
+!gfx/pics/*/shiny.pal
