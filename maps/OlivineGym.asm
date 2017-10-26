@@ -14,16 +14,16 @@ JasmineScript_0x9c12f:
 	opentext
 	checkevent EVENT_BEAT_JASMINE
 	iftrue .FightDone
-	writetext UnknownText_0x9c1b9
+	writetext Jasmine_SteelTypeIntro
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x9c2bb, 0
+	winlosstext Jasmine_BetterTrainer, 0
 	loadtrainer JASMINE, 1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_JASMINE
 	opentext
-	writetext UnknownText_0x9c33a
+	writetext Text_ReceivedMineralBadge
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_MINERALBADGE
@@ -31,21 +31,21 @@ JasmineScript_0x9c12f:
 	scall OlivineGymTriggerRockets
 .FightDone:
 	checkevent EVENT_GOT_TM23_IRON_TAIL
-	iftrue UnknownScript_0x9c172
-	writetext UnknownText_0x9c354
+	iftrue .GotIronTail
+	writetext Jasmine_BadgeSpeech
 	buttonsound
 	verbosegiveitem TM_IRON_TAIL
-	iffalse UnknownScript_0x9c176
+	iffalse .NoRoomForIronTail
 	setevent EVENT_GOT_TM23_IRON_TAIL
-	writetext UnknownText_0x9c3a5
+	writetext Jasmine_IronTailSpeech
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x9c172:
-	writetext UnknownText_0x9c3d1
+.GotIronTail:
+	writetext Jasmine_GoodLuck
 	waitbutton
-UnknownScript_0x9c176:
+.NoRoomForIronTail:
 	closetext
 	end
 
@@ -94,7 +94,7 @@ OlivineGymStatue:
 	trainertotext JASMINE, 1, $1
 	jumpstd gymstatue2
 
-UnknownText_0x9c1b9:
+Jasmine_SteelTypeIntro:
 	text "…Thank you for"
 	line "your help at the"
 	cont "LIGHTHOUSE…"
@@ -119,7 +119,7 @@ UnknownText_0x9c1b9:
 	para "…Um… May I begin?"
 	done
 
-UnknownText_0x9c2bb:
+Jasmine_BetterTrainer:
 	text "…You are a better"
 	line "trainer than me,"
 
@@ -133,12 +133,12 @@ UnknownText_0x9c2bb:
 	line "this BADGE."
 	done
 
-UnknownText_0x9c33a:
+Text_ReceivedMineralBadge:
 	text "<PLAYER> received"
 	line "MINERALBADGE."
 	done
 
-UnknownText_0x9c354:
+Jasmine_BadgeSpeech:
 	text "MINERALBADGE"
 	line "raises #MON's"
 	cont "DEFENSE."
@@ -147,18 +147,18 @@ UnknownText_0x9c354:
 	line "this too…"
 	done
 
-UnknownText_0x9c393:
+Text_ReceivedTM09:
 	text "<PLAYER> received"
 	line "TM09."
 	done
 
-UnknownText_0x9c3a5:
+Jasmine_IronTailSpeech:
 	text "…You could use"
 	line "that TM to teach"
 	cont "IRON TAIL."
 	done
 
-UnknownText_0x9c3d1:
+Jasmine_GoodLuck:
 	text "Um… I don't know"
 	line "how to say this,"
 	cont "but good luck…"
