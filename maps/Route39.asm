@@ -33,41 +33,41 @@ PokefanmDerek1Script:
 	end_if_just_battled
 	opentext
 	checkflag ENGINE_DEREK_HAS_NUGGET
-	iftrue UnknownScript_0x1a5b4a
+	iftrue DerekHasNugget
 	checkcellnum PHONE_POKEFANM_DEREK
-	iftrue UnknownScript_0x1a5b6e
+	iftrue DerekIsRegistered
 	checkpoke PIKACHU
-	iffalse UnknownScript_0x1a5b5c
+	iffalse DerekWantsPikachu
 	checkevent EVENT_DEREK_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x1a5b33
-	writetext UnknownText_0x1a5cf8
+	iftrue DerekWantsYourNumber
+	writetext DerekText_NotBragging
 	buttonsound
 	setevent EVENT_DEREK_ASKED_FOR_PHONE_NUMBER
 	scall UnknownScript_0x1a5b62
-	jump UnknownScript_0x1a5b36
+	jump DerekAsksForPhoneNumber
 
-UnknownScript_0x1a5b33:
+DerekWantsYourNumber:
 	scall UnknownScript_0x1a5b66
-UnknownScript_0x1a5b36:
+DerekAsksForPhoneNumber:
 	askforphonenumber PHONE_POKEFANM_DEREK
 	if_equal $1, UnknownScript_0x1a5b76
 	if_equal $2, UnknownScript_0x1a5b72
 	trainertotext POKEFANM, DEREK1, $0
 	scall UnknownScript_0x1a5b6a
-	jump UnknownScript_0x1a5b6e
+	jump DerekIsRegistered
 
-UnknownScript_0x1a5b4a:
+DerekHasNugget:
 	scall UnknownScript_0x1a5b7a
 	verbosegiveitem NUGGET
 	iffalse UnknownScript_0x1a5b59
 	clearflag ENGINE_DEREK_HAS_NUGGET
-	jump UnknownScript_0x1a5b6e
+	jump DerekIsRegistered
 
 UnknownScript_0x1a5b59:
-	jump UnknownScript_0x1a5b7e
+	jump PackIsFull
 
-UnknownScript_0x1a5b5c:
-	writetext UnknownText_0x1a5dec
+DerekWantsPikachu:
+	writetext DerekText_PikachuIsIt
 	waitbutton
 	closetext
 	end
@@ -84,7 +84,7 @@ UnknownScript_0x1a5b6a:
 	jumpstd registerednumberm
 	end
 
-UnknownScript_0x1a5b6e:
+DerekIsRegistered:
 	jumpstd numberacceptedm
 	end
 
@@ -100,7 +100,7 @@ UnknownScript_0x1a5b7a:
 	jumpstd giftm
 	end
 
-UnknownScript_0x1a5b7e:
+PackIsFull:
 	jumpstd packfullm
 	end
 
@@ -220,7 +220,7 @@ PokefanmDerek1BeatenText:
 	line "show off PIKACHU…"
 	done
 
-UnknownText_0x1a5cf8:
+DerekText_NotBragging:
 	text "I'm not listening"
 	line "to your bragging!"
 
@@ -253,7 +253,7 @@ UnknownText_0x1a5db2:
 	line "adorable!"
 	done
 
-UnknownText_0x1a5dec:
+DerekText_PikachuIsIt:
 	text "PIKACHU is it!"
 	line "Don't you agree?"
 	done
