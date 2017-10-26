@@ -8,134 +8,134 @@ Route43Gate_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x19abc5, 0
-	dw UnknownScript_0x19abc9, 0
+	dw .Trigger0, 0
+	dw .Trigger1, 0
 
 .MapCallbacks:
 	db 1
 
 	; callbacks
 
-	dbw MAPCALLBACK_NEWMAP, UnknownScript_0x19abca
+	dbw MAPCALLBACK_NEWMAP, GateScript_CheckIfRockets
 
-UnknownScript_0x19abc5:
-	priorityjump UnknownScript_0x19abda
+.Trigger0:
+	priorityjump GateScript_RocketTakeover
 	end
 
-UnknownScript_0x19abc9:
+.Trigger1:
 	end
 
-UnknownScript_0x19abca:
+GateScript_CheckIfRockets:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
-	iftrue UnknownScript_0x19abd5
+	iftrue GateScript_NoRockets
 	domaptrigger ROUTE_43, $0
 	return
 
-UnknownScript_0x19abd5:
+GateScript_NoRockets:
 	domaptrigger ROUTE_43, $1
 	return
 
-UnknownScript_0x19abda:
+GateScript_RocketTakeover:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	checkcode VAR_FACING
-	if_equal DOWN, UnknownScript_0x19abea
-	if_equal UP, UnknownScript_0x19ac38
+	if_equal DOWN, RocketScript_Southbound
+	if_equal UP, RocketScript_Northbound
 	dotrigger $1
 	end
 
-UnknownScript_0x19abea:
-	applymovement PLAYER, MovementData_0x19aca2
+RocketScript_Southbound:
+	applymovement PLAYER, PlayerStepsIn
 	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET2, 15
-	applymovement ROUTE43GATE_ROCKET2, MovementData_0x19acbb
+	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_BlocksYouSouth
 	spriteface ROUTE43GATE_ROCKET1, UP
 	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET1, 15
-	applymovement ROUTE43GATE_ROCKET1, MovementData_0x19aca4
+	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_BlocksYouSouth
 	opentext
-	writetext UnknownText_0x19acd2
+	writetext RocketText_TollFee
 	buttonsound
 	checkmoney $0, 999
-	if_equal $0, UnknownScript_0x19ac12
-	jump UnknownScript_0x19ac1d
+	if_equal $0, RocketScript_TollSouth
+	jump RocketScript_YoureBrokeSouth
 
-UnknownScript_0x19ac12:
+RocketScript_TollSouth:
 	takemoney $0, 1000
-	writetext UnknownText_0x19ad0a
-	jump UnknownScript_0x19ac28
+	writetext RocketText_ThankYou
+	jump RocketScript_ShakeDownSouth
 
-UnknownScript_0x19ac1d:
+RocketScript_YoureBrokeSouth:
 	takemoney $0, 1000
-	writetext UnknownText_0x19ad20
-	jump UnknownScript_0x19ac28
+	writetext RocketText_AllYouGot
+	jump RocketScript_ShakeDownSouth
 
-UnknownScript_0x19ac28:
+RocketScript_ShakeDownSouth:
 	buttonsound
 	closetext
-	applymovement ROUTE43GATE_ROCKET1, MovementData_0x19acaa
-	applymovement ROUTE43GATE_ROCKET2, MovementData_0x19acc1
+	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_LetsYouPassSouth
+	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_LetsYouPassSouth
 	dotrigger $1
 	special RestartMapMusic
 	end
 
-UnknownScript_0x19ac38:
+RocketScript_Northbound:
 	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET1, 15
-	applymovement ROUTE43GATE_ROCKET1, MovementData_0x19acaf
+	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_BlocksYouNorth
 	spriteface ROUTE43GATE_ROCKET2, DOWN
 	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET2, 15
-	applymovement ROUTE43GATE_ROCKET2, MovementData_0x19acc7
+	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_BlocksYouNorth
 	opentext
-	writetext UnknownText_0x19acd2
+	writetext RocketText_TollFee
 	buttonsound
 	checkmoney $0, 999
-	if_equal $0, UnknownScript_0x19ac5c
-	jump UnknownScript_0x19ac67
+	if_equal $0, RocketScript_TollNorth
+	jump RocketScript_YoureBrokeNorth
 
-UnknownScript_0x19ac5c:
+RocketScript_TollNorth:
 	takemoney $0, 1000
-	writetext UnknownText_0x19ad0a
-	jump UnknownScript_0x19ac72
+	writetext RocketText_ThankYou
+	jump RocketScript_ShakeDownNorth
 
-UnknownScript_0x19ac67:
+RocketScript_YoureBrokeNorth:
 	takemoney $0, 1000
-	writetext UnknownText_0x19ad20
-	jump UnknownScript_0x19ac72
+	writetext RocketText_AllYouGot
+	jump RocketScript_ShakeDownNorth
 
-UnknownScript_0x19ac72:
+RocketScript_ShakeDownNorth:
 	buttonsound
 	closetext
-	applymovement ROUTE43GATE_ROCKET2, MovementData_0x19accd
-	applymovement ROUTE43GATE_ROCKET1, MovementData_0x19acb5
+	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_LetsYouPassNorth
+	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_LetsYouPassNorth
 	dotrigger $1
 	special RestartMapMusic
 	end
 
-RocketScript_0x19ac82:
-	jumptextfaceplayer UnknownText_0x19ad41
+RocketScript_MakingABundle:
+	jumptextfaceplayer RocketText_MakingABundle
 
-OfficerScript_0x19ac85:
+OfficerScript_GuardWithSludgeBomb:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_TM36_SLUDGE_BOMB
-	iftrue UnknownScript_0x19ac9c
-	writetext UnknownText_0x19ad9b
+	iftrue .GotSludgeBomb
+	writetext OfficerText_FoundTM
 	buttonsound
 	verbosegiveitem TM_SLUDGE_BOMB
-	iffalse UnknownScript_0x19aca0
+	iffalse .NoRoomForSludgeBomb
 	setevent EVENT_GOT_TM36_SLUDGE_BOMB
 	closetext
 	end
 
-UnknownScript_0x19ac9c:
-	writetext UnknownText_0x19ae2d
+.GotSludgeBomb:
+	writetext OfficerText_AvoidGrass
 	waitbutton
-UnknownScript_0x19aca0:
+.NoRoomForSludgeBomb:
 	closetext
 	end
 
-MovementData_0x19aca2:
+PlayerStepsIn:
 	step DOWN
 	step_end
 
-MovementData_0x19aca4:
+Rocket1Script_BlocksYouSouth:
 	big_step UP
 	big_step UP
 	big_step RIGHT
@@ -143,14 +143,14 @@ MovementData_0x19aca4:
 	turn_head UP
 	step_end
 
-MovementData_0x19acaa:
+Rocket1Script_LetsYouPassSouth:
 	big_step LEFT
 	big_step LEFT
 	big_step DOWN
 	big_step DOWN
 	step_end
 
-MovementData_0x19acaf:
+Rocket1Script_BlocksYouNorth:
 	big_step DOWN
 	big_step DOWN
 	big_step RIGHT
@@ -158,7 +158,7 @@ MovementData_0x19acaf:
 	turn_head DOWN
 	step_end
 
-MovementData_0x19acb5:
+Rocket1Script_LetsYouPassNorth:
 	big_step LEFT
 	big_step LEFT
 	big_step UP
@@ -166,7 +166,7 @@ MovementData_0x19acb5:
 	turn_head DOWN
 	step_end
 
-MovementData_0x19acbb:
+Rocket2Script_BlocksYouSouth:
 	big_step UP
 	big_step UP
 	big_step LEFT
@@ -174,7 +174,7 @@ MovementData_0x19acbb:
 	turn_head UP
 	step_end
 
-MovementData_0x19acc1:
+Rocket2Script_LetsYouPassSouth:
 	big_step RIGHT
 	big_step RIGHT
 	big_step DOWN
@@ -182,7 +182,7 @@ MovementData_0x19acc1:
 	turn_head UP
 	step_end
 
-MovementData_0x19acc7:
+Rocket2Script_BlocksYouNorth:
 	big_step DOWN
 	big_step DOWN
 	big_step LEFT
@@ -190,14 +190,14 @@ MovementData_0x19acc7:
 	turn_head DOWN
 	step_end
 
-MovementData_0x19accd:
+Rocket2Script_LetsYouPassNorth:
 	big_step RIGHT
 	big_step RIGHT
 	big_step UP
 	big_step UP
 	step_end
 
-UnknownText_0x19acd2:
+RocketText_TollFee:
 	text "Hold it there,"
 	line "kiddo!"
 
@@ -205,17 +205,17 @@ UnknownText_0x19acd2:
 	line "to go through."
 	done
 
-UnknownText_0x19ad0a:
+RocketText_ThankYou:
 	text "Thank you very"
 	line "much!"
 	done
 
-UnknownText_0x19ad20:
+RocketText_AllYouGot:
 	text "Then pay what you"
 	line "have, please."
 	done
 
-UnknownText_0x19ad41:
+RocketText_MakingABundle:
 	text "He-he-he. We're"
 	line "making a bundle."
 
@@ -226,7 +226,7 @@ UnknownText_0x19ad41:
 	line "RAGE."
 	done
 
-UnknownText_0x19ad9b:
+OfficerText_FoundTM:
 	text "I got chased from"
 	line "my post by these"
 	cont "thugs in black."
@@ -239,12 +239,12 @@ UnknownText_0x19ad9b:
 	cont "you take it away?"
 	done
 
-UnknownText_0x19ae1b:
+Text_ReceivedTM30:
 	text "<PLAYER> received"
 	line "TM30."
 	done
 
-UnknownText_0x19ae2d:
+OfficerText_AvoidGrass:
 	text "Use this gate to"
 	line "avoid walking in"
 	cont "the grass."
@@ -269,6 +269,6 @@ Route43Gate_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_OFFICER, 4, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, OfficerScript_0x19ac85, EVENT_LAKE_OF_RAGE_CIVILIANS
-	person_event SPRITE_ROCKET, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RocketScript_0x19ac82, EVENT_ROUTE_43_GATE_ROCKETS
-	person_event SPRITE_ROCKET, 4, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RocketScript_0x19ac82, EVENT_ROUTE_43_GATE_ROCKETS
+	person_event SPRITE_OFFICER, 4, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, OfficerScript_GuardWithSludgeBomb, EVENT_LAKE_OF_RAGE_CIVILIANS
+	person_event SPRITE_ROCKET, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RocketScript_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS
+	person_event SPRITE_ROCKET, 4, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RocketScript_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS
