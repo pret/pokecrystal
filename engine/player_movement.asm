@@ -770,7 +770,7 @@ DoPlayerMovement:: ; 80000
 ; Otherwise, return carry.
 
 	call GetTileCollision
-	cp 1
+	cp WATERTILE
 	jr z, .Water
 
 ; Can walk back onto land from water.

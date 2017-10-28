@@ -76,7 +76,7 @@ Function6f07: ; 6f07
 	ld a, [hl]
 	ld d, a
 	call GetTileCollision
-	and a
+	and a ; land
 	jr z, Function6f3e
 	scf
 	ret
@@ -89,7 +89,7 @@ Function6f2c: ; 6f2c
 	add hl, bc
 	ld a, [hl]
 	call GetTileCollision
-	cp $1
+	cp WATERTILE
 	jr z, Function6f3e
 	scf
 	ret
@@ -210,11 +210,11 @@ Function6fa1: ; 6fa1
 	call GetCoordTile
 	call GetTileCollision
 	pop de
-	and a
+	and a ; land
 	jr nz, .asm_6fd7
 	call GetCoordTile
 	call GetTileCollision
-	and a
+	and a ; land
 	jr nz, .asm_6fd7
 	xor a
 	ret
