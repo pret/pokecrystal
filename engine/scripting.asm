@@ -958,7 +958,7 @@ Script_waitsfx:
 Script_warpsound:
 ; script command 0x87
 
-	callba Function14a07
+	callba GetWarpSFX
 	call PlaySFX
 	ret
 

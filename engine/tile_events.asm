@@ -97,14 +97,14 @@ CheckCutCollision: ; 149f5
 	db -1
 ; 14a07
 
-Function14a07:: ; 14a07
+GetWarpSFX:: ; 14a07
 	ld a, [PlayerStandingTile]
-	ld de, $1f
+	ld de, SFX_ENTER_DOOR
 	cp $71 ; door
 	ret z
-	ld de, $13
+	ld de, SFX_WARP_TO
 	cp $7c ; warp pad
 	ret z
-	ld de, $23
+	ld de, SFX_EXIT_BUILDING
 	ret
 ; 14a1a
