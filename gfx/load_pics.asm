@@ -70,7 +70,7 @@ FrontpicPredef: ; 5108b
 	xor a
 	ld [hBGMapMode], a
 	call _GetFrontpic
-	call Function51103
+	call GetAnimatedFrontpic
 	pop af
 	ld [rSVBK], a
 	ret
@@ -83,7 +83,7 @@ _GetFrontpic: ; 510a5
 	ld b, a
 	push bc
 	call GetFrontpicPointer
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 	ld a, b
 	ld de, wDecompressScratch + $800
@@ -91,7 +91,7 @@ _GetFrontpic: ; 510a5
 	pop bc
 	ld hl, wDecompressScratch
 	ld de, wDecompressScratch + $800
-	call Function512ab
+	call PadFrontpic
 	pop hl
 	push hl
 	ld de, wDecompressScratch
@@ -131,8 +131,8 @@ GLOBAL PicPointers, UnownPicPointers
 	pop bc
 	ret
 
-Function51103: ; 51103
-	ld a, $1
+GetAnimatedFrontpic: ; 51103
+	ld a, BANK(VTiles3)
 	ld [rVBK], a
 	push hl
 	ld de, wDecompressScratch
@@ -144,7 +144,7 @@ Function51103: ; 51103
 	ld de, 7 * 7 tiles
 	add hl, de
 	push hl
-	ld a, $1
+	ld a, BANK(BasePicSize)
 	ld hl, BasePicSize
 	call GetFarWRAMByte
 	pop hl
@@ -163,7 +163,7 @@ Function51103: ; 51103
 
 	push hl
 	push bc
-	call Function5114f
+	call LoadFrontpicTiles
 	pop bc
 	pop hl
 	ld de, wDecompressScratch
@@ -174,7 +174,7 @@ Function51103: ; 51103
 	ld [rVBK], a
 	ret
 
-Function5114f: ; 5114f
+LoadFrontpicTiles: ; 5114f
 	ld hl, wDecompressScratch
 	swap c
 	ld a, c
@@ -186,13 +186,13 @@ Function5114f: ; 5114f
 	push bc
 	call LoadFrontpic
 	pop bc
-.asm_51161
+.loop
 	push bc
 	ld c, $0
 	call LoadFrontpic
 	pop bc
 	dec b
-	jr nz, .asm_51161
+	jr nz, .loop
 	ret
 
 GetBackpic: ; 5116c
@@ -413,7 +413,7 @@ FixBackpicAlignment: ; 5127c
 	pop de
 	ret
 
-Function512ab: ; 512ab
+PadFrontpic: ; 512ab
 	ld a, b
 	cp 6
 	jr z, .six
