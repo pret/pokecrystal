@@ -18,33 +18,33 @@ LoadMapGroupRoof:: ; 1c000
 ; 1c021
 
 MapGroupRoofs: ; 1c021i
-	db -1 ; group 1
-	db  3 ; group 2
-	db  2 ; group 3
-	db -1 ; group 4
-	db  1 ; group 5
-	db  2 ; group 6
+	db -1 ; group 0 (unused)
+	db  3 ; group 1
+	db  2 ; group 2
+	db -1 ; group 3
+	db  1 ; group 4
+	db  2 ; group 5
+	db -1 ; group 6
 	db -1 ; group 7
-	db -1 ; group 8
+	db  2 ; group 8
 	db  2 ; group 9
-	db  2 ; group 10
-	db  1 ; group 11
-	db  4 ; group 12
+	db  1 ; group 10
+	db  4 ; group 11
+	db -1 ; group 12
 	db -1 ; group 13
 	db -1 ; group 14
 	db -1 ; group 15
 	db -1 ; group 16
 	db -1 ; group 17
 	db -1 ; group 18
-	db -1 ; group 19
-	db  0 ; group 20
+	db  0 ; group 19
+	db -1 ; group 20
 	db -1 ; group 21
-	db -1 ; group 22
-	db  3 ; group 23
-	db -1 ; group 24
-	db  0 ; group 25
-	db -1 ; group 26
-	db  0 ; group 27
+	db  3 ; group 22
+	db -1 ; group 23
+	db  0 ; group 24
+	db -1 ; group 25
+	db  0 ; group 26
 ; 1c03c
 
 Roofs: ; 1c03c
