@@ -320,22 +320,22 @@ AI_Smart: ; 386be
 .table_386f2
 	dbw EFFECT_SLEEP,            AI_Smart_Sleep
 	dbw EFFECT_LEECH_HIT,        AI_Smart_LeechHit
-	dbw EFFECT_EXPLOSION,        AI_Smart_Explosion
+	dbw EFFECT_SELFDESTRUCT,     AI_Smart_Selfdestruct
 	dbw EFFECT_DREAM_EATER,      AI_Smart_DreamEater
 	dbw EFFECT_MIRROR_MOVE,      AI_Smart_MirrorMove
 	dbw EFFECT_EVASION_UP,       AI_Smart_EvasionUp
 	dbw EFFECT_ALWAYS_HIT,       AI_Smart_AlwaysHit
 	dbw EFFECT_ACCURACY_DOWN,    AI_Smart_AccuracyDown
-	dbw EFFECT_HAZE,             AI_Smart_Haze
+	dbw EFFECT_RESET_STATS,      AI_Smart_ResetStats
 	dbw EFFECT_BIDE,             AI_Smart_Bide
-	dbw EFFECT_WHIRLWIND,        AI_Smart_Whirlwind
+	dbw EFFECT_FORCE_SWITCH,     AI_Smart_ForceSwitch
 	dbw EFFECT_HEAL,             AI_Smart_Heal
 	dbw EFFECT_TOXIC,            AI_Smart_Toxic
 	dbw EFFECT_LIGHT_SCREEN,     AI_Smart_LightScreen
 	dbw EFFECT_OHKO,             AI_Smart_Ohko
 	dbw EFFECT_RAZOR_WIND,       AI_Smart_RazorWind
 	dbw EFFECT_SUPER_FANG,       AI_Smart_SuperFang
-	dbw EFFECT_BIND,             AI_Smart_Bind
+	dbw EFFECT_TRAP_TARGET,      AI_Smart_TrapTarget
 	dbw EFFECT_UNUSED_2B,        AI_Smart_Unused2B
 	dbw EFFECT_CONFUSE,          AI_Smart_Confuse
 	dbw EFFECT_SP_DEF_UP_2,      AI_Smart_SpDefenseUp2
@@ -565,7 +565,7 @@ AI_Smart_LockOn: ; 3881d
 ; 388a6
 
 
-AI_Smart_Explosion: ; 388a6
+AI_Smart_Selfdestruct: ; 388a6
 ; Selfdestruct, Explosion
 
 ; Unless this is the enemy's last Pokemon...
@@ -904,7 +904,7 @@ AI_Smart_AccuracyDown: ; 38985
 ; 389f5
 
 
-AI_Smart_Haze: ; 389f5
+AI_Smart_ResetStats: ; 389f5
 
 ; 85% chance to encourage this move if any of enemy's stat levels is lower than -2.
 	push hl
@@ -960,7 +960,7 @@ AI_Smart_Bide: ; 38a1e
 ; 38a2a
 
 
-AI_Smart_Whirlwind: ; 38a2a
+AI_Smart_ForceSwitch: ; 38a2a
 ; Whirlwind, Roar.
 
 ; Discourage this move if the player has not shown
@@ -1044,7 +1044,7 @@ AI_Smart_Ohko: ; 38a60
 ; 38a71
 
 
-AI_Smart_Bind: ; 38a71
+AI_Smart_TrapTarget: ; 38a71
 ; Bind, Wrap, Fire Spin, Clamp
 
 ; 50% chance to discourage this move if the player is already trapped.
@@ -3317,7 +3317,7 @@ AI_Aggressive: ; 39369
 	ret
 
 .RecklessMoves:
-	db EFFECT_EXPLOSION
+	db EFFECT_SELFDESTRUCT
 	db EFFECT_RAMPAGE
 	db EFFECT_MULTI_HIT
 	db EFFECT_DOUBLE_HIT
@@ -3539,7 +3539,7 @@ endr
 	jr .checkmove
 
 .RiskyMoves:
-	db EFFECT_EXPLOSION
+	db EFFECT_SELFDESTRUCT
 	db EFFECT_OHKO
 	db $ff
 ; 39502
