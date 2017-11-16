@@ -1,6 +1,3 @@
-
-SECTION "bank43", ROMX
-
 UnusedTitleScreen: ; 10c000
 
 	call ClearBGPalettes

@@ -5501,6 +5501,8 @@ SECTION "Intro Logo", ROMX
 IntroLogoGFX: ; 109407
 INCBIN "gfx/intro/logo.2bpp.lz"
 
+SECTION "bank43", ROMX
+
 INCLUDE "misc/unused_title.asm"
 
 INCLUDE "engine/title.asm"
