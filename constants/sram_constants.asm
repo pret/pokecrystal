@@ -36,7 +36,7 @@ sTrainerRankingUnused3            EQU $a060
 sTrainerRankingColosseumWins      EQU $a063
 sTrainerRankingColosseumLosses    EQU $a066
 sTrainerRankingColosseumDraws     EQU $a069
-sTrainerRankingSelfDestruct       EQU $a06c
+sTrainerRankingSelfdestruct       EQU $a06c
 sTrainerRankingCurrentSlotsStreak EQU $a06f
 sTrainerRankingLongestSlotsStreak EQU $a071
 sTrainerRankingTotalSlotsPayouts  EQU $a073

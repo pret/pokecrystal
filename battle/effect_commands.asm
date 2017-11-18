@@ -8605,8 +8605,8 @@ CheckSubstituteOpp: ; 37378
 ; 37380
 
 
-BattleCommand_SelfDestruct: ; 37380
-	callba TrainerRankings_SelfDestruct
+BattleCommand_Selfdestruct: ; 37380
+	callba TrainerRankings_Selfdestruct
 	ld a, BATTLEANIM_PLAYER_DAMAGE
 	ld [wNumHits], a
 	ld c, 3

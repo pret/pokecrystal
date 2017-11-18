@@ -381,13 +381,13 @@ TrainerRankings_ColosseumDraws: mobile ; draw
 	jr TrainerRankings_Increment3Byte
 ; 10610d
 
-; Counts uses of both SelfDestruct and Explosion.
-TrainerRankings_SelfDestruct: mobile ; 10610d
+; Counts uses of both Selfdestruct and Explosion.
+TrainerRankings_Selfdestruct: mobile ; 10610d
 	; Only counts if it’s the player’s turn
 	ld a, [hBattleTurn]
 	and a
 	ret nz
-	ld hl, sTrainerRankingSelfDestruct
+	ld hl, sTrainerRankingSelfdestruct
 	jr TrainerRankings_Increment3Byte
 ; 106117
 
