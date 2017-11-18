@@ -20,12 +20,6 @@ Dratini:
 	closetext
 	end
 
-; unused
-	jumpstd picturebookshelf
-
-; unused
-	jumpstd magazinebookshelf
-
 UnknownText_0x19595c:
 	text "A clan of trainers"
 	line "who can freely"

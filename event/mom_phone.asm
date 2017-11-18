@@ -235,8 +235,6 @@ MomItems_2: ; fd15e
 	momitem 100000, 22800, MOM_DOLL, DECO_BIG_SNORLAX_DOLL
 ; fd1ae
 
-	db 0, 0, 0 ; XXX
-
 _MomText_HiHowAreYou: ; 0xfd1b1
 	; Hi,  ! How are you?
 	text_jump UnknownText_0x1bc615

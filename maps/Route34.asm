@@ -475,9 +475,6 @@ TrainerCooltrainerfKate:
 	closetext
 	end
 
-; unused
-	jumptext MapRoute34UnusedSignpostText
-
 Route34Sign:
 	jumptext Route34SignText
 
@@ -718,11 +715,6 @@ CooltrainerfKateAfterText:
 
 	para "here. You sure"
 	line "startled us."
-	done
-
-MapRoute34UnusedSignpostText:
-	text "ILEX FOREST"
-	line "THROUGH THE GATE"
 	done
 
 Route34SignText:

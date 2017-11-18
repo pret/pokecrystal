@@ -279,11 +279,6 @@ MainMenu_PrintCurrentTimeAndDay: ; 49e09
 	call PrintNum
 	ret
 
-.min
-; unreferenced
-	db "min.@"
-; 49e75
-
 .PrintTimeNotSet: ; 49e75
 	hlcoord 1, 14
 	ld de, .TimeNotSet
@@ -294,12 +289,6 @@ MainMenu_PrintCurrentTimeAndDay: ; 49e09
 .TimeNotSet: ; 49e7f
 	db "TIME NOT SET@"
 ; 49e8c
-
-.UnusedText: ; 49e8c
-	; Clock time unknown
-	text_jump UnknownText_0x1c5182
-	db "@"
-; 49e91
 
 .PlaceCurrentDay: ; 49e91
 	push de

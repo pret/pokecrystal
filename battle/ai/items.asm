@@ -408,50 +408,6 @@ AI_Items: ; 39196
 	jp .Use
 ; 382ae
 
-.asm_382ae ; This appears to be unused
-	callab AICheckEnemyMaxHP
-	jr c, .dont_use
-	push bc
-	ld de, EnemyMonMaxHP + 1
-	ld hl, EnemyMonHP + 1
-	ld a, [de]
-	sub [hl]
-	jr z, .check_40_percent
-	dec hl
-	dec de
-	ld c, a
-	sbc [hl]
-	and a
-	jr nz, .check_40_percent
-	ld a, c
-	cp b
-	jp c, .check_50_percent
-	callab AICheckEnemyQuarterHP
-	jr c, .check_40_percent
-
-.check_50_percent
-	pop bc
-	ld a, [bc]
-	bit UNKNOWN_USE_F, a
-	jp z, .Use
-	call Random
-	cp 1 + 50 percent
-	jp c, .Use
-
-.dont_use
-	jp .DontUse
-
-.check_40_percent
-	pop bc
-	ld a, [bc]
-	bit UNKNOWN_USE_F, a
-	jp z, .DontUse
-	call Random
-	cp 1 + 39 percent
-	jp c, .Use
-	jp .DontUse
-; 382f9
-
 .XAccuracy: ; 382f9
 	call .XItem
 	jp c, .DontUse

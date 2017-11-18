@@ -48,10 +48,6 @@ _MobileStadiumSuccessText::
 	para ""
 	done
 
-UnknownText_0x1c5182::
-	text "Clock time unknown"
-	done
-
 UnknownText_0x1c5196::
 	text "Delete the saved"
 	line "LOG-IN PASSWORD?"

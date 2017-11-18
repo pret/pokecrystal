@@ -2847,8 +2847,6 @@ Script_loadbytec2cf:
 	ld [wc2cf], a
 	ret
 
-	ld c, c ; XXX
-
 Script_closetext:
 ; script command 0x49
 
@@ -3030,12 +3028,3 @@ Script_check_save:
 	ld a, c
 	ld [ScriptVar], a
 	ret
-
-
-; unreferenced
-	ld a, [.byte]
-	ld [ScriptVar], a
-	ret
-
-.byte
-	db 0

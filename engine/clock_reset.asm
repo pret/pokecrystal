@@ -220,13 +220,6 @@ RestartClock: ; 20021 (8:4021)
 	ret
 ; 20160 (8:4160)
 
-.unreferenced ; 20160
-	ld a, [Buffer3]
-	ld b, a
-	call Coord2Tile
-	ret
-; 20168
-
 .PlaceChars: ; 20168 (8:4168)
 	push de
 	call ResetClock_GetWraparoundTime

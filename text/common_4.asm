@@ -599,11 +599,6 @@ UnknownText_0x1c4ef6::
 	line "See you around."
 	done
 
-UnknownText_0x1c4f12::
-	text "You don't have"
-	line "anything to sell."
-	prompt
-
 UnknownText_0x1c4f33::
 	text "How many?"
 	done

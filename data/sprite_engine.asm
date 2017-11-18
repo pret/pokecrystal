@@ -245,49 +245,6 @@ SpriteAnimFrameData: ; 8d6e6
 	frame SPRITE_ANIM_FRAME_IDX_42,  8, OAM_X_FLIP
 	dorestart
 
-; XXX
-	frame SPRITE_ANIM_FRAME_IDX_43,  8
-	frame SPRITE_ANIM_FRAME_IDX_44,  8
-	dorestart
-
-; XXX
-	frame SPRITE_ANIM_FRAME_IDX_45,  8
-	frame SPRITE_ANIM_FRAME_IDX_46,  8
-	dorestart
-
-; XXX
-	frame SPRITE_ANIM_FRAME_IDX_47,  8
-	frame SPRITE_ANIM_FRAME_IDX_48,  8
-	dorestart
-
-; XXX
-	frame SPRITE_ANIM_FRAME_IDX_49,  1
-	frame SPRITE_ANIM_FRAME_IDX_49,  1, OAM_X_FLIP
-	frame SPRITE_ANIM_FRAME_IDX_49,  1, OAM_X_FLIP, OAM_Y_FLIP
-	frame SPRITE_ANIM_FRAME_IDX_49,  1, OAM_Y_FLIP
-	dorestart
-
-; XXX
-	frame SPRITE_ANIM_FRAME_IDX_4A, 32
-	endanim
-
-; XXX
-	frame SPRITE_ANIM_FRAME_IDX_4B, 32
-	endanim
-
-; XXX
-	frame SPRITE_ANIM_FRAME_IDX_4C, 32
-	endanim
-
-; XXX
-	frame SPRITE_ANIM_FRAME_IDX_4D, 32
-	endanim
-
-; XXX
-	frame SPRITE_ANIM_FRAME_IDX_4E,  3
-	dorepeat  3
-	dorestart
-
 .Frameset_1c:
 	dorepeat 32
 	endanim

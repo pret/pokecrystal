@@ -523,15 +523,6 @@ CGBOnly_LoadEDTile:: ; 3238
 	jr z, WaitBGMap
 
 LoadEDTile:: ; 323d
-	jr .LoadEDTile
-; 323f
-
-; XXX
-	callba HDMATransferAttrMapAndTileMapToWRAMBank3
-	ret
-; 3246
-
-.LoadEDTile: ; 3246
 	ld a, [hBGMapMode]
 	push af
 	xor a
@@ -1476,10 +1467,6 @@ PrintWinLossText:: ; 3718
 	ld a, [BattleType]
 	cp BATTLETYPE_CANLOSE
 	jr .canlose ; ??????????
-
-; unreferenced
-	ld hl, wWinTextPointer
-	jr .ok
 
 .canlose
 	ld a, [wBattleResult]

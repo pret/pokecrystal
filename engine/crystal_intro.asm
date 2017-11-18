@@ -1358,15 +1358,6 @@ IntroScene20: ; e5019 (39:5019)
 	call Intro_Scene20_AppearUnown
 	ret
 ; e5049 (39:5049)
-; unused
-	ld a, c
-	and $1c
-	srl a
-	srl a
-	ld [wcf65], a
-	ld a, 1
-	call Intro_Scene20_AppearUnown
-	ret
 
 .finished
 	call NextIntroScene

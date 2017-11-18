@@ -196,16 +196,3 @@ ElmPhoneGiftText: ; 0x1b4d09
 
 	para "See you later!"
 	done
-
-ElmPhoneUnusedText: ; 0x1b4d5d
-	text "Hello, <PLAY_G>?"
-	line "How's it going?"
-
-	para "I got ahold of"
-	line "something neat."
-
-	para "Swing by my LAB"
-	line "and pick it up!"
-
-	para "See you later!"
-	done

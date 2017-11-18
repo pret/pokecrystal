@@ -41,6 +41,8 @@ LeerCorreosIngleses
 LeggiPostaInglese
 LireLeCourrierAnglais
 MalePlayerNameArray
+NamingScreen_AdvanceCursor_CheckEndOfString
+NamingScreen_LoadNextCharacter
 SGBBorderPalettes
 SetSeenMon
 Sfx_GetEggFromDaycareMan_Ch5
@@ -59,6 +61,7 @@ StatsScreenPageTilesGFX_Part2
 TeruSama
 UnknownMoveDescription
 UnknownScript_0x58f6e
+WaitDMATransfer
 _CalcHoursDaysSince
 asm_118e3e
 EOF

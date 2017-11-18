@@ -692,14 +692,6 @@ GetDecoName: ; 26c72
 	call .getdeconame
 	pop de
 	ld a, e
-	jr .getpokename
-
-.unused ; 26cb8
-	push de
-	call .getdeconame
-	pop de
-	ld a, e
-	jr .getdeconame
 
 .getpokename ; 26cc0
 	push bc

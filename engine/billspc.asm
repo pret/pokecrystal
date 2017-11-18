@@ -354,11 +354,6 @@ _WithdrawPKMN: ; e2583 (38:6583)
 	ld [wJumptableIndex], a
 	ret ; e264a (38:664a)
 
-.unused
-	ld hl, wJumptableIndex
-	dec [hl]
-	ret
-
 .b_button
 	ld a, $4
 	ld [wJumptableIndex], a
@@ -614,11 +609,6 @@ _MovePKMNWithoutMail: ; e2759
 	jr z, .b_button
 	ld a, $2
 	ld [wJumptableIndex], a
-	ret
-
-.unused
-	ld hl, wJumptableIndex
-	dec [hl]
 	ret
 
 .b_button
@@ -2530,8 +2520,6 @@ BillsPC_ChangeBoxSubmenu: ; e36f9 (38:76f9)
 	call CopyName2
 	ret
 ; e3778 (38:7778)
-
-	hlcoord 11, 7 ; XXX
 
 .MenuDataHeader: ; 0xe377b
 	db $40 ; flags

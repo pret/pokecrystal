@@ -10,10 +10,6 @@ _MainMenu: ; 5ae8
 	jp StartTitleScreen
 ; 5b04
 
-; unreferenced
-	ret
-; 5b05
-
 PrintDayOfWeek: ; 5b05
 	push de
 	ld hl, .Days
@@ -1104,12 +1100,6 @@ TitleScreenScene: ; 62a3
 	dw TitleScreenMain
 	dw TitleScreenEnd
 ; 62b7
-
-.NextScene: ; Unreferenced
-	ld hl, wJumptableIndex
-	inc [hl]
-	ret
-; 62bc
 
 
 TitleScreenEntrance: ; 62bc

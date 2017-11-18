@@ -1570,11 +1570,6 @@ Function108bec: ; 108bec
 	db "@"
 ; 0x108c11
 
-.UnusedTextPlayersMonTrade: ; 0x108c11
-	text_jump UnknownText_0x1bc7b0
-	db "@"
-; 0x108c16
-
 Function108c16: ; 108c16
 	ld a, $90
 	ld [hWY], a

@@ -1031,12 +1031,6 @@ StrengthFunction: ; cce5
 	jr c, .Failed
 	jr .UseStrength
 
-.AlreadyUsing: ; unreferenced
-	ld hl, .JumpText
-	call MenuTextBoxBackup
-	ld a, $80
-	ret
-
 .JumpText: ; 0xcd01
 	text_jump UnknownText_0x1c0751
 	db "@"
@@ -1788,10 +1782,6 @@ Script_GetOnBike_Register: ; 0xd14e
 	closetext
 	special ReplaceKrisSprite
 	end
-
-; XXX
-	nop
-	ret
 
 Script_GetOffBike: ; 0xd158
 	reloadmappart

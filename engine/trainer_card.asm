@@ -118,15 +118,6 @@ TrainerCard_Page1_Joypad: ; 251d7 (9:51d7)
 	ld [wJumptableIndex], a
 	ret
 
-.KantoCheck:
-; unreferenced
-	ld a, [KantoBadges]
-	and a
-	ret z
-	ld a, $4
-	ld [wJumptableIndex], a
-	ret
-
 ; 251f4
 
 TrainerCard_Page2_LoadGFX: ; 251f4 (9:51f4)
@@ -161,15 +152,6 @@ TrainerCard_Page2_Joypad: ; 25221 (9:5221)
 
 .d_left
 	ld a, $0
-	ld [wJumptableIndex], a
-	ret
-
-.KantoCheck:
-; unreferenced
-	ld a, [KantoBadges]
-	and a
-	ret z
-	ld a, $4
 	ld [wJumptableIndex], a
 	ret
 

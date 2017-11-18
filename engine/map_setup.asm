@@ -313,10 +313,6 @@ LoadObjectsRunCallback_02: ; 154d7
 	ret
 ; 154ea (5:54ea)
 
-; unreferenced
-	ret
-; 154eb
-
 DelayClearingOldSprites: ; 154eb
 	ld hl, wPlayerSpriteSetupFlags
 	set 7, [hl]

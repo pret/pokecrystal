@@ -821,19 +821,6 @@ SellMenu: ; 15eb3
 	ret
 ; 15ed3
 
-.NothingToSell: ; unreferenced
-	ld hl, .NothingToSellText
-	call MenuTextBoxBackup
-	and a
-	ret
-; 15edb
-
-.NothingToSellText: ; 0x15edb
-	; You don't have anything to sell.
-	text_jump UnknownText_0x1c4f12
-	db "@"
-; 0x15ee0
-
 
 .TryToSellItem: ; 15ee0
 	callba CheckItemMenu

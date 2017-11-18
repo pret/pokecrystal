@@ -6907,9 +6907,6 @@ Function112d33: ; 112d33
 	dec a
 	jp .asm_112e46
 
-; XXX
-	ret
-
 .asm_112d4d
 	ld a, [$c86a]
 	cp $23

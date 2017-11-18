@@ -5769,8 +5769,6 @@ INCLUDE "data/battle_tower_2.asm"
 
 SECTION "bank7D", ROMX
 
-	db $cc, $6b, $1e ; XXX
-
 SECTION "bank7E", ROMX
 
 INCLUDE "data/battle_tower.asm"

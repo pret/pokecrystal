@@ -381,15 +381,6 @@ CheckIndoorMap:: ; 22f4
 	ret
 ; 2300
 
-; XXX
-	cp INDOOR
-	ret z
-	cp GATE
-	ret z
-	cp PERM_5
-	ret
-; 2309
-
 LoadMapAttributes:: ; 2309
 	call CopyMapHeaders
 	call SwitchToMapScriptHeaderBank
@@ -1362,14 +1353,6 @@ UpdateBGMapColumn:: ; 27f8
 	ret
 ; 2816
 
-; unreferenced
-	ld hl, BGMapBuffer
-	ld bc, BGMapBufferEnd - BGMapBuffer
-	xor a
-	call ByteFill
-	ret
-; 2821
-
 LoadTileset:: ; 2821
 	ld hl, TilesetAddress
 	ld a, [hli]
@@ -2220,9 +2203,6 @@ GetMapPermission:: ; 2c8a
 	pop hl
 	ret
 ; 2c98
-
-	ret ; XXX
-; 2c99
 
 GetAnyMapPermission:: ; 2c99
 	push hl
