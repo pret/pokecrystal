@@ -28,7 +28,6 @@ DoAnimFrame: ; 8d24b
 	dw .SlotsChanseyEgg      ; Something to do with slots
 	dw .mailcompositioncursor      ; blinking cursor
 	dw .thirteen
-	dw .fourteen
 	dw .fifteen
 	dw .sixteen
 	dw .seventeen
@@ -410,10 +409,6 @@ DoAnimFrame: ; 8d24b
 
 .fifteen ; 8d475 (23:5475)
 	callab AnimatePokegearModeIndicatorArrow
-	ret
-
-.fourteen ; 8d47c (23:547c)
-	callab DummyGame_InterpretJoypad_AnimateCursor
 	ret
 
 .sixteen ; 8d483 (23:5483)
